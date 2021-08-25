@@ -123,7 +123,7 @@ module.exports = {
   'Not Assigned': '未分配',
   PROJECT_ADMINISTRATOR_DESC: '選擇企業空間的用戶作為管理員。',
 
-  'Disk Log Collection': '落盤紀錄收集',
+  DISK_LOG_COLLECTION: '落盤紀錄收集',
 
   'Are you sure to close ?': '確認關閉？',
   "The project's file log collection is about to close.":

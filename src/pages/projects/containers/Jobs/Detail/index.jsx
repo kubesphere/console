@@ -86,7 +86,7 @@ export default class JobDetail extends React.Component {
     {
       key: 'rerun',
       icon: 'refresh',
-      text: t('Rerun'),
+      text: t('RERUN'),
       action: 'edit',
       onClick: this.handleRerun,
     },

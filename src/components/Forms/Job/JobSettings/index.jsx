@@ -40,8 +40,8 @@ export default class JobSettings extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('JOB_BACK_OFF_LIMIT_LABEL')}
-              desc={t('JOB_BACK_OFF_LIMIT_DESC')}
+              label={t('BACK_OFF_LIMIT')}
+              desc={t('BACK_OFF_LIMIT_DESC')}
             >
               <NumberInput
                 min={0}
@@ -64,8 +64,8 @@ export default class JobSettings extends React.Component {
               <NumberInput min={0} name={`${this.prefix}completions`} integer />
             </Form.Item>
             <Form.Item
-              label={t('JOB_ACTIVE_DL_SECONDS_LABEL')}
-              desc={t('JOB_ACTIVE_DL_SECONDS')}
+              label={t('JOB_ACTIVE_DEADLINE')}
+              desc={t('JOB_ACTIVE_DEADLINE_DESC')}
             >
               <NumberInput
                 min={0}

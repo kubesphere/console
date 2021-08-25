@@ -72,19 +72,19 @@ export default class Metadata extends React.Component {
     return (
       <>
         <Form.Item
-          label={t('Labels')}
+          label={t('LABELS')}
           rules={[{ validator: this.labelsValidator }]}
         >
           <PropertiesInput
             name="metadata.labels"
-            addText={t('ADD_LABEL')}
+            addText={t('ADD')}
             onChange={this.handleLabelsChange}
           />
         </Form.Item>
-        <Form.Item label={t('Annotations')}>
+        <Form.Item label={t('ANNOTATIONS')}>
           <PropertiesInput
             name="metadata.annotations"
-            addText={t('ADD_ANNOTATION')}
+            addText={t('ADD')}
             hiddenKeys={globals.config.preservedAnnotations}
             onChange={this.handleAnnotationsChange}
           />

@@ -167,8 +167,8 @@ module.exports = {
 
   EDIT: '編輯',
   Restart: '重啟',
-  Pause: '暫停',
-  Start: '啟動',
+  PAUSE: '暫停',
+  START: '啟動',
   Cordon: '停止調度',
   Uncordon: '啟動調度',
   Destroy: '銷毀',

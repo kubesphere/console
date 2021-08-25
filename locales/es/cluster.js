@@ -268,7 +268,7 @@ module.exports = {
     'Los clústeres de miembros de una versión anterior a la {version} no pueden utilizar esta función. Actualice el clúster de miembros a la versión {version} o superior.',
 
   // Unbind Cluster
-  UNBIND_CLUSTER_Q: 'Are you sure you want to unbind the cluster?',
+  UNBIND_CLUSTER_Q: 'Unbind Cluster',
 
   // Cluster Visibility
   ADMINISTRATOR: 'Administrator',

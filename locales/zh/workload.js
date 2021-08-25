@@ -17,7 +17,7 @@
  */
 module.exports = {
   SELECT_PROJECT_DESC: '选择一个项目。',
-  PROJECT_EMPTY_DESC: '请选择一个项目',
+  PROJECT_EMPTY_DESC: '请选择一个项目。',
   REPLICA_LOW_SI: '副本',
   REPLICA_LOW_PL: '副本',
   Workload: '工作负载',
@@ -67,7 +67,6 @@ module.exports = {
   'Storage Size': '存储大小',
   'Access Mode': '访问模式',
   PROVISIONER: '供应者',
-  Volumes: '存储卷',
   'Volume Source': '存储卷来源',
   mounted: '已挂载',
   created: '已创建',
@@ -136,13 +135,13 @@ module.exports = {
     '工作负载 (Workload) 通常是访问服务的实际载体, 也是对节点日志收集、监控等系统应用的实际运行载体，是对一组容器组 (Pod) 的抽象模型。',
 
   JOB_DESC:
-    '任务 (Job) 负责批量处理短暂的一次性任务，即仅执行一次的任务，它保证批处理任务的一个或多个容器组成功结束。',
+    '任务（Job）用于运行短暂的一次性任务。任务会创建一个或多个容器组，并保证指定数量的容器组成功结束。',
   JOB_CREATE_DESC:
-    '任务 (Job) 负责批量处理短暂的一次性任务，即仅执行一次的任务，它保证批处理任务的一个或多个容器组成功结束。',
+    '任务（Job）用于运行短暂的一次性任务。任务会创建一个或多个容器组，并保证指定数量的容器组成功结束。',
   CRONJOB_DESC:
-    '定时任务 (CronJob) 管理基于时间的任务，例如在给定时间点只运行一次，或周期性地在给定时间点运行。',
+    '定时任务（CronJob）管理基于时间的任务（Job），可用于运行周期性任务或重复性任务。',
   CRONJOB_CREATE_DESC:
-    '定时任务 (CronJob) 管理基于时间的任务，例如在给定时间点只运行一次，或周期性地在给定时间点运行。',
+    '定时任务（CronJob）管理基于时间的任务（Job），可用于运行周期性任务或重复性任务。',
 
   CRONJOB_NAME_DESC:
     '最长 52 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
@@ -311,7 +310,7 @@ module.exports = {
   CRONJOBS_VOLUME_DESC:
     '可以将临时存储卷，持久化存储卷挂载至定时任务的容器组内。',
   CRONJOB_CRON_DESC:
-    '按照给定的时间计划运行工作。语法参照 <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a>。Kubernetes 默认使用 UTC 时间, 请注意根据时区调整定时计划。',
+    '为要执行的定时任务设置定时计划。有关 Cron 语法规则，请参阅 <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Cron</a>。Kubernetes 默认使用 UTC 时间, 您需要根据时区调整定时计划。',
 
   MOUNT_VOLUME_DESC:
     '持久化存储卷请选择支持多节点读写模式 (ROX 或者 RWX) 的存储卷，否则可能因容器组不在同一节点导致容器组更新失败。如果您选择了单节点读写 (RWO) 模式的存储卷您也可以通过节点选择将容器组安排在同一节点上来避免因存储卷访问模式造成的更新错误。',
@@ -319,10 +318,10 @@ module.exports = {
   Job: '任务',
   CronJob: '定时任务',
   Revision: '版本',
-  'Every Hour': '每小时',
-  'Every Day': '每天',
-  'Every Week': '每周',
-  'Every Month': '每月',
+  EVERY_HOUR: '（每小时）',
+  EVERY_DAY: '（每天）',
+  EVERY_WEEK: '（每周）',
+  EVERY_MONTH: '（每月）',
   Schedule: '定时计划',
   'Revision Records': '版本记录',
   'Revision Rollback': '版本回退',
@@ -336,8 +335,8 @@ module.exports = {
   'Edit Config Template': '编辑配置模板',
   'Environment Variables': '环境变量',
   'File List': '文件列表',
-  Rerun: '重新执行',
-  'Please input a schedule.': '请输入定时计划',
+  RERUN: '重新执行',
+  ENTER_SCHEDULE_TIP: '请输入定时计划。',
 
   'Please select rollback revision': '请选择回退版本',
 
@@ -359,14 +358,14 @@ module.exports = {
   'Worker Container': '工作容器',
   'Request Type': '请求类型',
 
-  startingDeadlineSeconds: '启动 Job 的期限（秒）',
-  'startingDeadlineSeconds(s)': '启动 Job 的期限（秒）',
-  successfulJobsHistoryLimit: '保留完成 Job 数',
-  failedJobsHistoryLimit: '保留失败 Job 数',
-  concurrencyPolicy: '并发策略',
+  startingDeadlineSeconds: '启动任务的截止期限（秒）',
+  'startingDeadlineSeconds(s)': '启动任务的截止期限（秒）',
+  successfulJobsHistoryLimit: '保留完成任务数',
+  failedJobsHistoryLimit: '保留失败任务数',
+  CONCURRENCY_POLICY: '并发策略',
 
   'Select resource': '选择资源',
-  'Restart Policy': '重启策略',
+  RESTART_POLICY: '重启策略',
 
   'Container Liveness Check': '容器存活检查',
   'Container Readiness Check': '容器就绪检查',
@@ -410,14 +409,11 @@ module.exports = {
   DAEMONSETS_REPLICA_DESC:
     '守护进程集 (DaemonSet) 可以确保集群中的每个节点运行一个副本，当有节点加入集群或者离开集群的时候，会自动地调整副本的数量来保证副本的数量与集群的节点数量一致。您可以使用守护进程集来运行存储服务，如 GlusterFS，Ceph 等；运行日志搜集服务，如 Fluentd，Logstash 等；运行监控服务等。',
 
-  'The number of failed jobs allowed to be retained.':
-    '允许保留的失败的任务个数',
-  'The number of successful jobs allowed to be retained.':
-    '允许保留的成功的任务个数',
-  'The concurrency policy setting.': '并发策略设置',
+  FAILED_JOBS_DESC: '允许保留的失败任务的个数。',
+  SUCCESSFUL_JOBS_DESC: '允许保留的成功任务的个数。',
+  CONCURRENCY_POLICY_DESC: '为定时任务所创建的任务选择并发策略。',
   'Can be found by node IP or node name': '可以通过节点 IP 或者节点名称查找',
-  START_DEADLINE_SECONDS_DESC:
-    '即在指定 启动时间 + 启动 Job 的期限 这个周期之内都可以启动任务',
+  START_DEADLINE_SECONDS_DESC: '启动任务的截止期限。',
   'Container CPU Resource Request, 1 Core = 1000m':
     '容器的 CPU 资源请求值, 1核 = 1000m',
   'Container Memory Resource Request': '容器的 内存 资源请求值',
@@ -447,7 +443,7 @@ module.exports = {
   'Please select a volume': '请选择存储卷',
   'Please select a configmap': '请选择配置文件',
   'Please select a secret': '请选择密钥',
-  'What is Disk Log Collection?': '什么是落盘日志收集？',
+  DISK_LOG_COLLECTION_Q: '什么是落盘日志收集？',
 
   'for example': '例如',
   'Container mount path': '容器挂载路径',
@@ -469,19 +465,19 @@ module.exports = {
     '临时存储卷随 Pod 被分配在主机上。当 Pod（不管任何原因）从主机上被删除时，临时存储卷也同时会删除，存储卷的数据也将永久删除。<br />注：删除容器不影响临时存储卷。',
   SELECT_VOLUME_TYPE_DESC: '您可以根据需要选择适合您的存储卷类型进行添加',
 
-  JOB_BACK_OFF_LIMIT_LABEL: '最大重试次数',
+  BACK_OFF_LIMIT: '最大重试次数',
   JOB_PARALLELISM_LABEL: '并行数',
   JOB_COMPLETION_LABEL: '完成数',
-  JOB_ACTIVE_DL_SECONDS_LABEL: '退出超时时限(单位：秒)',
+  JOB_ACTIVE_DEADLINE: '退出超时时限（秒）',
 
-  JOB_BACK_OFF_LIMIT_DESC:
-    '失败尝试次数，若失败次数超过该值，则任务不会继续尝试工作',
-  JOB_PARALLELISM_DESC: '标志并行运行的容器组的个数',
-  JOB_COMPLETION_DESC: '标志任务结束需要成功运行的容器组个数',
-  JOB_ACTIVE_DL_SECONDS: '任务运行的超时时间',
+  BACK_OFF_LIMIT_DESC: '将任务标记为失败之前的最大重试次数。默认值为 6。',
+  JOB_PARALLELISM_DESC: '并行运行的容器组数量。',
+  JOB_COMPLETION_DESC: '任务结束需要成功运行的容器组数量。',
+  JOB_ACTIVE_DEADLINE_DESC:
+    '任务的持续时间。任务达到持续时间后，运行中的容器组将会终止。该值必须为正整数。',
 
-  RESTART_POLICY_NEVER_DESC: '容器组出现故障时创建新的容器组',
-  RESTART_POLICY_ONFAILURE_DESC: '容器组出现故障时内部重启容器',
+  RESTART_POLICY_NEVER_DESC: '（容器组出现故障时创建新的容器组）',
+  RESTART_POLICY_ONFAILURE_DESC: '（容器组出现故障时内部重启容器）',
 
   RESTART_POLICY_TIP:
     'RestartPolicy 只能指定 Never 或 OnFailure，当任务未完成的情况下：<br/>* 如果 RestartPolicy 指定 Never，则任务会在容器组出现故障时创建新的容器组，且故障容器组不会消失。<br/>* 如果 RestartPolicy 指定 OnFailure，则任务会在容器组出现故障时其内部重启容器，而不是创建容器组。',
@@ -519,10 +515,10 @@ module.exports = {
   COLLECT_SAVED_LOG_DESC:
     '您已开启落盘日志收集，请至少添加一个存储卷并指定日志所在目录',
   COLLECT_FILE_LOG_TIP:
-    '当您添加存储卷后(需要读&写模式)，您可以对存储卷内的日志信息进行收集。开启后，会在容器组中以 SideCar 的方式注入 filebeat 容器镜像，来收集相关日志。',
+    '添加存储卷后（读写模式），您可以对存储卷内的日志信息进行收集。开启落盘日志收集时，将在容器组中以 Sidecar 方式注入 Filebeat 镜像来收集相关日志。',
 
   PROJECT_COLLECT_SAVED_DISABLED_DESC:
-    '请联系项目管理员在 “项目设置” => "高级设置" 中开启项目的落盘日志收集功能',
+    '请联系项目管理员在<b>项目设置</b> > <b>高级设置</b>中开启落盘日志收集功能。',
 
   ADD_VOLUME_TEMPLATE_DESC:
     '添加存储卷模板，存储卷的生命周期将随容器组的生命周期存在',
@@ -709,4 +705,16 @@ module.exports = {
 
   // Pods Page
   NODE_IP: '{node}（{ip}）',
+
+  // Jobs
+  JOBS: '任务',
+  CRONJOBS: '定时任务',
+  SCHEDULE: '定时计划',
+  LABELS: '标签',
+  ANNOTATIONS: '注解',
+
+  // CronJobs
+  ADD_VOLUME: '添加存储卷',
+  RESTART_POLICY_DESC: '容器组的重启策略。该值可为 Never 或 onFailure。',
+  MOUNT_VOLUMES: '挂载存储卷',
 }

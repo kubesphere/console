@@ -166,8 +166,8 @@ module.exports = {
 
   EDIT: '编辑',
   Restart: '重启',
-  Pause: '暂停',
-  Start: '启动',
+  PAUSE: '暂停',
+  START: '启动',
   Cordon: '停止调度',
   Uncordon: '启动调度',
   Destroy: '销毁',

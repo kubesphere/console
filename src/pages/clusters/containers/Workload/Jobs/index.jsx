@@ -51,11 +51,11 @@ export default class Jobs extends React.Component {
       options: [
         {
           value: 'jobs',
-          label: t('Jobs'),
+          label: t('JOBS'),
         },
         {
           value: 'cronjobs',
-          label: t('CronJobs'),
+          label: t('CRONJOBS'),
         },
       ],
     }
@@ -67,7 +67,7 @@ export default class Jobs extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFO'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -77,7 +77,7 @@ export default class Jobs extends React.Component {
       {
         key: 'rerun',
         icon: 'refresh',
-        text: t('Rerun'),
+        text: t('RERUN'),
         action: 'edit',
         onClick: item => store.rerun(item),
       },

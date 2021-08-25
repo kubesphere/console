@@ -312,7 +312,7 @@ module.exports = {
     '低于 {version} 版本 member 集群无法使用此功能, 请将 member 集群升级到 {version} 或以上版本。',
 
   // Unbind Cluster
-  UNBIND_CLUSTER_Q: '您确定解绑集群吗？',
+  UNBIND_CLUSTER_Q: '解绑集群',
 
   // Cluster Visibility
   ADMINISTRATOR: '管理员',

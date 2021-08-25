@@ -282,7 +282,7 @@ module.exports = {
     'Member Clusters of version lower than {version} cannot use this function. Please upgrade the Member Cluster to {version} or above.',
 
   // Unbind Cluster
-  UNBIND_CLUSTER_Q: 'Are you sure you want to unbind the cluster?',
+  UNBIND_CLUSTER_Q: 'Unbind Cluster',
 
   // Cluster Visibility
   ADMINISTRATOR: 'Administrator',

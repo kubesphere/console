@@ -500,7 +500,7 @@ class VolumeSettings extends React.Component {
   renderToolTipContent() {
     return (
       <div>
-        <div className="tooltip-title">{t('What is Disk Log Collection?')}</div>
+        <div className="tooltip-title">{t('DISK_LOG_COLLECTION_Q')}</div>
         <p>{t('COLLECT_FILE_LOG_TIP')}</p>
       </div>
     )
@@ -523,11 +523,11 @@ class VolumeSettings extends React.Component {
   renderTitle() {
     return (
       <div className="font-bold margin-b8 relative">
-        <span>{t('Mount Volumes')}</span>
+        <span>{t('MOUNT_VOLUMES')}</span>
         {globals.app.hasClusterModule(this.cluster, 'logging') && (
           <div className={styles.toggle}>
             {!this.projectEnableCollectingFileLog ? (
-              <Tooltip content={t('PROJECT_COLLECT_SAVED_DISABLED_DESC')}>
+              <Tooltip content={t.html('PROJECT_COLLECT_SAVED_DISABLED_DESC')}>
                 {this.renderToggle(true)}
               </Tooltip>
             ) : (
@@ -535,7 +535,7 @@ class VolumeSettings extends React.Component {
             )}
             <span className="text-secondary align-middle">
               {' '}
-              {t('Disk Log Collection')}{' '}
+              {t('DISK_LOG_COLLECTION')}{' '}
             </span>
             <Tooltip content={this.renderToolTipContent()}>
               <Icon name="question" />

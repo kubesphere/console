@@ -124,7 +124,7 @@ export default class Initializing extends Component {
           <Icon name="pen" /> {t('EDIT_YAML')}
         </Menu.MenuItem>
         <Menu.MenuItem key="rerun">
-          <Icon name="refresh" /> {t('Rerun')}
+          <Icon name="refresh" /> {t('RERUN')}
         </Menu.MenuItem>
       </Menu>
     )

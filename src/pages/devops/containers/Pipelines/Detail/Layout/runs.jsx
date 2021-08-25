@@ -170,7 +170,7 @@ export default class RunDetailLayout extends React.Component {
     {
       key: 'rerun',
       type: 'control',
-      text: t('Rerun'),
+      text: t('RERUN'),
       action: 'edit',
       onClick: this.rePlay,
     },
