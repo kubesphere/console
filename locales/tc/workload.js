@@ -131,6 +131,7 @@ module.exports = {
   CHOOSE_EXIST_VOLUME_DESC: '請選擇一個已經創建好的持久化儲存卷掛載至容器',
 
   REQUEST_EXCCED: '資源預留不能超過資源限制',
+  REQUEST_EXCCED_WORKSPACE: '資源设置不能大於工作區資源限制',
 
   WORKLOAD_DESC:
     '工作負載 (Workload) 通常是訪問服務的實際載體, 也是對節點紀錄收集、監控等系統應用的實際運行載體，是對一組容器組 (Pod) 的抽象模型。',

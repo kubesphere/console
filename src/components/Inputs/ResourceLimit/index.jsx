@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get, set, isEqual } from 'lodash'
+import { get, set, isEqual, isFinite, isEmpty } from 'lodash'
 
 import { Icon, Input, Columns, Column, Alert } from '@kube-design/components'
 
@@ -53,6 +53,7 @@ export default class ResourceLimit extends React.Component {
       defaultValue: props.defaultValue,
       cpuError: '',
       memoryError: '',
+      workspaceLimitCheck: {},
     }
   }
 
@@ -105,6 +106,26 @@ export default class ResourceLimit extends React.Component {
           memoryUnit
         ),
       },
+      workspaceRequests: {
+        cpu: cpuFormat(
+          ResourceLimit.getWorkspaceRequestLimit(props, 'cpu'),
+          cpuUnit
+        ),
+        memory: memoryFormat(
+          `${ResourceLimit.getWorkspaceRequestLimit(props, 'memory')}Mi`,
+          memoryUnit
+        ),
+      },
+      workspaceLimits: {
+        cpu: cpuFormat(
+          ResourceLimit.getWorkspaceLimitValue(props, 'cpu'),
+          cpuUnit
+        ),
+        memory: memoryFormat(
+          `${ResourceLimit.getWorkspaceLimitValue(props, 'memory')}Mi`,
+          memoryUnit
+        ),
+      },
     }
   }
 
@@ -122,6 +143,14 @@ export default class ResourceLimit extends React.Component {
       `value.limits.${key}`,
       get(props, `defaultValue.limits.${key}`)
     )
+  }
+
+  static getWorkspaceRequestLimit(props, key) {
+    return get(props, `workspaceLimitProps.requests.${key}`)
+  }
+
+  static getWorkspaceLimitValue(props, key) {
+    return get(props, `workspaceLimitProps.limits.${key}`)
   }
 
   cpuFormatter = value => {
@@ -223,15 +252,54 @@ export default class ResourceLimit extends React.Component {
     return { cpuError, memoryError }
   }
 
+  checkAndTrigger = () => {
+    const {
+      requests,
+      limits,
+      workspaceLimits: wsL,
+      workspaceRequests: wsR,
+    } = this.state
+
+    this.setState(
+      {
+        workspaceLimitCheck: {
+          requestCpuError: this.checkNumOutLimit(requests.cpu, wsR.cpu),
+          requestMemoryError: this.checkNumOutLimit(
+            requests.memory,
+            wsR.memory
+          ),
+          limitCpuError: this.checkNumOutLimit(limits.cpu, wsL.cpu),
+          limitMemoryError: this.checkNumOutLimit(limits.memory, wsL.memory),
+        },
+      },
+      this.triggerChange
+    )
+  }
+
+  checkNumOutLimit = (num, limit) => {
+    return limit && isFinite(Number(num)) && Number(num) > limit
+      ? 'workspaceRequestExceed'
+      : ''
+  }
+
   triggerChange = () => {
     const { onChange, onError } = this.props
-    const { requests, limits, cpuError, memoryError } = this.state
+    const {
+      requests,
+      limits,
+      cpuError,
+      memoryError,
+      workspaceLimitCheck: wsL,
+    } = this.state
     const { unit: memoryUnit } = this.getMemoryProps()
     let { unit: cpuUnit } = this.getCPUProps()
 
     cpuUnit = cpuUnit === 'Core' ? '' : cpuUnit
 
-    onError(cpuError || memoryError)
+    const errorList = this.getWorkspaceCheckError()
+    errorList.length > 0
+      ? onError(cpuError || memoryError || wsL[errorList[0]])
+      : onError(cpuError || memoryError)
 
     const result = {}
     if (requests.cpu > 0 && requests.cpu < Infinity) {
@@ -250,13 +318,19 @@ export default class ResourceLimit extends React.Component {
     onChange(result)
   }
 
+  getWorkspaceCheckError = () => {
+    return Object.keys(this.state.workspaceLimitCheck).filter(
+      key => this.state.workspaceLimitCheck[key] !== ''
+    )
+  }
+
   handleCPUChange = value => {
     this.setState(
       ({ requests, limits }) => ({
         requests: { ...requests, cpu: value[0] },
         limits: { ...limits, cpu: value[1] },
       }),
-      this.triggerChange
+      this.checkAndTrigger
     )
   }
 
@@ -266,7 +340,7 @@ export default class ResourceLimit extends React.Component {
         requests: { ...requests, memory: value[0] },
         limits: { ...limits, memory: value[1] },
       }),
-      this.triggerChange
+      this.checkAndTrigger
     )
   }
 
@@ -275,11 +349,63 @@ export default class ResourceLimit extends React.Component {
     this.setState(state => {
       set(state, name, isNaN(value) ? '' : value)
       return { ...state, ...this.checkError(state) }
-    }, this.triggerChange)
+    }, this.checkAndTrigger)
+  }
+
+  renderTip() {
+    const { workspaceLimits: wsL, workspaceRequests: wsR } = this.state
+    const { limitType } = this.props.workspaceLimitProps
+    const memoryUnit = this.memoryUnit
+    const cpuUnit = this.cpuUnit
+
+    const title =
+      limitType === 'workspace'
+        ? t('Workspace Remaining Quota')
+        : t('Project Remaining Quota')
+
+    const message = () => (
+      <>
+        <div>
+          <div className={styles.message}>
+            <span>{t('Resource Requests')}:</span>
+            <span>
+              CPU&nbsp;
+              {wsR.cpu}
+              {cpuUnit},&nbsp;
+              {t('MEMORY')}&nbsp;
+              {wsR.memory}
+              {memoryUnit}
+            </span>
+          </div>
+          <div className={styles.message}>
+            <span>{t('Resource Limits')}:</span>
+            <span>
+              CPU&nbsp;
+              {wsL.cpu}
+              {cpuUnit},&nbsp;
+              {t('MEMORY')}&nbsp;
+              {wsL.memory}
+              {memoryUnit}
+            </span>
+          </div>
+        </div>
+      </>
+    )
+
+    return (
+      <Alert
+        title={title}
+        type="info"
+        className="margin-t12"
+        message={message()}
+      />
+    )
   }
 
   render() {
-    const { cpuError, memoryError } = this.state
+    const { cpuError, memoryError, workspaceLimitCheck: limit } = this.state
+    const { workspaceLimitProps } = this.props
+    const outWorkSpaceLimit = this.getWorkspaceCheckError()
 
     return (
       <div className={styles.wrapper}>
@@ -300,7 +426,7 @@ export default class ResourceLimit extends React.Component {
                 <Icon name="cpu" size={48} />
                 <div
                   className={classnames(styles.input, {
-                    [styles.error]: cpuError,
+                    [styles.error]: cpuError || limit.requestCpuError,
                   })}
                 >
                   <span className={styles.label}>{t('Resource Request')}:</span>
@@ -314,7 +440,7 @@ export default class ResourceLimit extends React.Component {
                 </div>
                 <div
                   className={classnames(styles.input, {
-                    [styles.error]: cpuError,
+                    [styles.error]: cpuError || limit.limitCpuError,
                   })}
                 >
                   <span className={styles.label}>{t('Resource Limit')}:</span>
@@ -333,7 +459,7 @@ export default class ResourceLimit extends React.Component {
                 <Icon name="memory" size={48} />
                 <div
                   className={classnames(styles.input, {
-                    [styles.error]: memoryError,
+                    [styles.error]: memoryError || limit.requestMemoryError,
                   })}
                 >
                   <span className={styles.label}>{t('Resource Request')}:</span>
@@ -347,7 +473,7 @@ export default class ResourceLimit extends React.Component {
                 </div>
                 <div
                   className={classnames(styles.input, {
-                    [styles.error]: memoryError,
+                    [styles.error]: memoryError || limit.limitMemoryError,
                   })}
                 >
                   <span className={styles.label}>{t('Resource Limit')}:</span>
@@ -363,11 +489,19 @@ export default class ResourceLimit extends React.Component {
             </Column>
           </Columns>
         </div>
+        {!isEmpty(workspaceLimitProps) && this.renderTip()}
         {(cpuError || memoryError) && (
           <Alert
             type="error"
             className="margin-t12"
             message={t('REQUEST_EXCCED')}
+          />
+        )}
+        {outWorkSpaceLimit.length > 0 && (
+          <Alert
+            type="error"
+            className="margin-t12"
+            message={t('REQUEST_EXCCED_WORKSPACE')}
           />
         )}
       </div>
