@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, omitBy, isEmpty } from 'lodash'
+import { get, set, omitBy, isEmpty, isString } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import QuotaEditModal from 'components/Modals/QuotaEdit'
@@ -68,7 +68,27 @@ export default {
           }
 
           const spec = get(data, 'spec.hard', {})
-          data.spec = { hard: omitBy(spec, v => isEmpty(v.toString())) }
+          const units = ['ki', 'mi', 'gi', 'ti']
+          Object.keys(spec).forEach(key => {
+            const value = spec[key]
+            if (value === Infinity) {
+              spec[key] = ''
+            }
+            if (!isString(value)) {
+              return
+            }
+            if (value.slice(-1) === '.') {
+              spec[key] = value.slice(0, -1)
+            }
+            const keyUnit = value.slice(-2).toLowerCase()
+            if (value.slice(-3, -2) === '.' && units.indexOf(keyUnit) > -1) {
+              spec[key] = `${value.slice(0, -3)}${value.slice(-2)}`
+            }
+          })
+
+          data.spec = {
+            hard: omitBy(spec, v => (!v ? !v : isEmpty(v.toString()))),
+          }
           const resp = await quotaStore.checkName(params)
 
           if (resp.exist) {

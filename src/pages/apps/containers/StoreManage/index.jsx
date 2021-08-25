@@ -51,7 +51,7 @@ export default class Store extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '30%',
       render: (name, app) => (
@@ -66,7 +66,7 @@ export default class Store extends React.Component {
       ),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       width: '10%',
@@ -75,7 +75,7 @@ export default class Store extends React.Component {
       ),
     },
     {
-      title: t('Workspace'),
+      title: t('WORKSPACE'),
       dataIndex: 'isv',
       isHideable: true,
       width: '10%',

@@ -51,8 +51,8 @@ export default class ContainerPorts extends React.Component {
           <thead>
             <tr>
               {isFederated && <th>{t('Cluster')}</th>}
-              <th>{t('Name')}</th>
-              <th>{t('Protocol')}</th>
+              <th>{t('NAME')}</th>
+              <th>{t('PROTOCOL')}</th>
               <th>{t('Port')}</th>
             </tr>
           </thead>

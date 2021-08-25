@@ -467,7 +467,7 @@ export default class StepsEditor extends React.Component {
           </span>
         </div>
         <div className={styles.form}>
-          <Form.Item label={t('Name')}>
+          <Form.Item label={t('NAME')}>
             <Input
               className={styles.name_input}
               value={this.props.activeStage.name || ''}
@@ -475,7 +475,7 @@ export default class StepsEditor extends React.Component {
             />
           </Form.Item>
           <div className={styles.title}>{t('Agent')}</div>
-          <Form.Item desc={t('AGENT_TYPE_DESC')} label={t('Type')}>
+          <Form.Item desc={t('AGENT_TYPE_DESC')} label={t('TYPE')}>
             <Select
               options={AgentType}
               defaultValue="none"

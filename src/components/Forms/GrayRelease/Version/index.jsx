@@ -71,7 +71,7 @@ export default class Version extends ContainerSettings {
         if (resp.exist) {
           return callback({
             message: t(
-              `${t('Deployments')} ${name} ${t('exists')}, ${t(
+              `${t('DEPLOYMENTS')} ${name} ${t('exists')}, ${t(
                 'version number is invalid'
               )}`
             ),

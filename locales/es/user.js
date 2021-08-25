@@ -45,7 +45,7 @@ module.exports = {
   'Password Strength': 'Seguridad de la contraseña',
   'Please input current password': 'Por favor introduce la contraseña actual',
   'Please input email': 'Por favor introduce el correo electrónico',
-  'Please input user name': 'Por favor introduce el nombre de usuario',
+  ENTER_USERNAME_TIP: 'Por favor introduce el nombre de usuario',
   'Please repeat the new password': 'Por favor repita la nueva contraseña',
   'Please select role': 'Por favor selecciona un rol',
   'Repeat the new password': 'Repite la nueva contraseña',

@@ -132,12 +132,12 @@ export default class Logs extends Component {
       >
         <Text
           icon="log"
-          title={t('Log Info')}
-          description={`${t('Current Progress')}: ${t(
-            `CLUSTER_${lastStep.toUpperCase().replace(/\s+/g, '_')}`
-          )}`}
+          title={t('LOGS')}
+          description={t('CURRENT_STEP', {
+            step: t(lastStep.toUpperCase().replace(/\s+/g, '_')),
+          })}
         />
-        <Text title={status} description={t('Status')} />
+        <Text title={status} description={t('STATUS')} />
       </div>
     )
   }

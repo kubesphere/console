@@ -80,19 +80,19 @@ export default class StatefulSetting extends React.Component {
       {
         icon: 'backup',
         value: 'stateful',
-        label: t('Stateful Service'),
+        label: t('STATEFUL_SERVICE'),
         description: t('STATEFUL_SERVICE_DESC'),
       },
       {
         icon: 'backup',
         value: 'stateless',
-        label: t('Stateless Service'),
+        label: t('STATELESS_SERVICE'),
         description: t('STATELESS_SERVICE_DESC'),
       },
     ]
 
     return (
-      <Form.Item className={styles.formItem} label={t('Service Type')}>
+      <Form.Item className={styles.formItem} label={t('SERVICE_TYPE')}>
         <TypeSelect
           value={this.getValue()}
           options={options}

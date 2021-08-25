@@ -64,13 +64,13 @@ export default class MemberDevOpsProjects extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '33%',
       render: (name, record) => getDisplayName(record),
     },
     {
-      title: t('Created Time'),
+      title: t('CREATED_AT'),
       dataIndex: 'createTime',
       width: '33%',
       render: createTime => (

@@ -111,7 +111,7 @@ export default class GitLabForm extends React.Component {
         <Form data={formData} ref={formRef}>
           <Form.Item
             label={t('GitLab Server')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Select
               name="gitlab_source.server_name"
@@ -121,7 +121,7 @@ export default class GitLabForm extends React.Component {
           </Form.Item>
           <Form.Item
             label={t('GitLab Owner')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Input
               name="gitlab_source.owner"
@@ -129,7 +129,7 @@ export default class GitLabForm extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('Credential')}
+            label={t('CREDENTIAL_SI')}
             desc={
               <p>
                 {t('ADD_NEW_CREDENTIAL_DESC')}
@@ -156,7 +156,7 @@ export default class GitLabForm extends React.Component {
           </Form.Item>
           <Form.Item
             label={t('Repository Name')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Select name="gitlab_source.repo" options={projectList} />
           </Form.Item>

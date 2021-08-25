@@ -80,7 +80,7 @@ export default class TextMonitorForm extends Component {
         }
         sidebar={<GraphTextInput type="singlestat" />}
         main={
-          <FormGroupCard label={t('Data')}>
+          <FormGroupCard label={t('DATA')}>
             <SingleStatDataForm
               supportMetrics={this.supportMetrics}
               labelsets={labelsets}

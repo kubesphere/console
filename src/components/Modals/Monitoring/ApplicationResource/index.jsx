@@ -215,7 +215,7 @@ export default class ResourceMonitorModal extends React.Component {
             />
           </Form.Item>
         )}
-        <Form.Item label={t('Project')}>
+        <Form.Item label={t('PROJECT')}>
           <Select
             name="namespace"
             placeholder={t('Please select project')}

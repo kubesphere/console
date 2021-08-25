@@ -114,7 +114,7 @@ export default class DeleteModal extends React.Component {
                 name="confirm"
                 value={this.state.confirm}
                 onChange={this.handleInputChange}
-                placeholder={t('DELETE_CONFIRM_PLACEHOLDER', { resource })}
+                placeholder={resource}
                 autoFocus={true}
               />
             )}
@@ -128,7 +128,7 @@ export default class DeleteModal extends React.Component {
         </div>
         <div className={styles.footer}>
           <Button onClick={onCancel} data-test="modal-cancel">
-            {t('Cancel')}
+            {t('CANCEL')}
           </Button>
           <Button
             type="danger"

@@ -179,7 +179,7 @@ export default class PipelineDetailLayout extends React.Component {
         : []),
       {
         key: 'delete',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: () => {
           this.trigger('resource.delete', {
@@ -234,7 +234,7 @@ export default class PipelineDetailLayout extends React.Component {
         value: devopsName,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: <Status {...getPipelineStatus(this.getCurrentState())} />,
       },
       {
@@ -242,7 +242,7 @@ export default class PipelineDetailLayout extends React.Component {
         value: <Status {...this.getPipelineStatus(syncStatus)} />,
       },
       {
-        name: t('Updated Time'),
+        name: t('UPDATED_AT'),
         value: this.getUpTime(),
       },
     ]

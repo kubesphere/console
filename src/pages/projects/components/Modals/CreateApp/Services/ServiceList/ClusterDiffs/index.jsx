@@ -49,7 +49,7 @@ export default class AdvancedSettings extends React.Component {
       <div>
         {this.showContainerSettings && (
           <>
-            <div className={styles.title}>{t('Container Image')}</div>
+            <div className={styles.title}>{t('CONTAINER_IMAGE')}</div>
             <ClustersMapper clusters={clusters} overrides={overrides}>
               {props => (
                 <ContainersMapper formTemplate={workload} {...props}>

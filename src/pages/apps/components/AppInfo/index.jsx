@@ -22,6 +22,7 @@ import classnames from 'classnames'
 import moment from 'moment-mini'
 
 import { Markdown } from 'components/Base'
+import { Checkbox } from '@kube-design/components'
 import ImageSlider from './ImageSlider'
 
 import styles from './index.scss'
@@ -82,6 +83,21 @@ export default class AppInfo extends React.PureComponent {
     )
   }
 
+  renderAppDeployAgreement() {
+    const { isCheck, onChange } = this.props
+    return (
+      <div className={styles.agree}>
+        <p>{t('APP_DEPLOY_AGREEMENT_1')}</p>
+        <p>{t.html('APP_DEPLOY_AGREEMENT_2')}</p>
+        <div className="margin-t12">
+          <Checkbox checked={isCheck} onChange={onChange}>
+            {t('APP_DEPLOY_AGREEMENT_CHEKC')}
+          </Checkbox>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     const { className, app } = this.props
     const { abstraction, screenshots } = app
@@ -101,6 +117,10 @@ export default class AppInfo extends React.PureComponent {
             {t('Versions')} ({t('VERSION_LIST_DES')})
           </h3>
           {this.renderVersionTable()}
+        </div>
+        <div>
+          <h3 className={styles.title}>{t('App Deploy Agreement')}</h3>
+          {this.renderAppDeployAgreement()}
         </div>
       </div>
     )

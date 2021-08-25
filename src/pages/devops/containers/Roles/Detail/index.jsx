@@ -75,7 +75,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit Info'),
+        text: t('EDIT_INFO'),
         action: 'edit',
         onClick: () =>
           this.trigger('resource.baseinfo.edit', {
@@ -101,7 +101,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         type: 'danger',
         show: this.showEdit,
@@ -135,11 +135,11 @@ export default class RoleDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Updated Time'),
+        name: t('UPDATED_AT'),
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

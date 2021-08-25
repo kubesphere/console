@@ -74,7 +74,7 @@ export default class JobDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFO'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -104,7 +104,7 @@ export default class JobDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
@@ -135,11 +135,11 @@ export default class JobDetail extends React.Component {
         value: cluster,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: t(status),
       },
       {
@@ -159,7 +159,7 @@ export default class JobDetail extends React.Component {
         value: spec.activeDeadlineSeconds,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

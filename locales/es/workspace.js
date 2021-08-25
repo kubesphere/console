@@ -18,7 +18,7 @@
 
 module.exports = {
   'Cluster Authorization Info': 'Información de autorización de clúster',
-  'Cluster Info': 'Información del clúster',
+  CLUSTER_INFORMATION: 'Información del clúster',
   'Create Workspace': 'Crear espacio de trabajo',
   'Create Workspace Role': 'Crear rol de espacio de trabajo',
   'Created Projects': 'Proyectos creados',
@@ -29,13 +29,13 @@ module.exports = {
   'Invite members to the workspace': 'Invitar miembros al espacio de trabajo',
   'Involved Projects': 'Proyectos involucrados',
   'Manage Organizations': 'Administrar organizaciones',
-  'No Available Cluster': 'Clúster no disponible',
+  NO_AVAILABLE_CLUSTER: 'Clúster no disponible',
   'Please input workspace name': 'Introduce el nombre del espacio de trabajo',
   'Project Number': 'Número de proyecto',
   'Remove from Workspace': 'Eliminar del espacio de trabajo',
   'The current name is not applicable.': 'El nombre actual no es aplicable.',
   'View Workspace': 'Ver espacio de trabajo',
-  Workspace: 'Espacio de trabajo',
+  WORKSPACE: 'Espacio de trabajo',
   'Workspace Info': 'Información del espacio de trabajo',
   'Workspace Logo': 'Logotipo del espacio de trabajo',
   'Workspace Manager': 'Gestor del espacio de trabajo',
@@ -85,7 +85,7 @@ module.exports = {
   NO_PUBLIC_CLUSTER_TIP:
     'No hay clústeres públicos disponibles, solicita autorización para clúster al administrador de la plataforma o al administrador del clúster después de crear el espacio de trabajo',
   WORKSPACE_NO_CLUSTER_TIP:
-    'Debes ponerte en contacto con el administrador de la plataforma o el administrador del clúster para que valide los derechos de acceso del clúster en el espacio de trabajo.',
+    'You need to contact the platform or cluster administrator to authorize a cluster to the workspace.',
   WORKSPACE_BASE_INFO_Q1:
     '¿Cómo solicitar más clústeres para el espacio de trabajo?',
   WORKSPACE_BASE_INFO_A1:

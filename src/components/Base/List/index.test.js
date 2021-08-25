@@ -34,6 +34,7 @@ it('renders correctly', () => {
 
   const wrapper = mount(
     <List>
+      {' '}
       {Object.entries(value).map(([key, _value]) => (
         <List.Item
           key={key}
@@ -43,12 +44,12 @@ it('renders correctly', () => {
           onDelete={onDelete}
           onEdit={onEdit}
         />
-      ))}
+      ))}{' '}
       <List.Add
-        title={'Add Data'}
-        description={'Add key / value pair data'}
+        title={'ADD_DATA_TCAP'}
+        description={'ADD_DATA_DESC'}
         onClick={onAdd}
-      />
+      />{' '}
     </List>
   )
   expect(wrapper).toIncludeText('key1')

@@ -63,7 +63,7 @@ export default class LogCollectionDetail extends React.Component {
   getAttrs() {
     return [
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: get(this.store, 'detail.enabled')
           ? t('Collecting')
           : t('Stopped'),
@@ -75,7 +75,7 @@ export default class LogCollectionDetail extends React.Component {
     {
       key: 'edit',
       type: 'control',
-      text: t('Edit'),
+      text: t('EDIT'),
       action: 'edit',
       onClick: () =>
         this.trigger('log.collection.edit', {
@@ -110,7 +110,7 @@ export default class LogCollectionDetail extends React.Component {
     },
     {
       key: 'editYaml',
-      text: t('Edit YAML'),
+      text: t('EDIT_YAML'),
       icon: 'pen',
       action: 'edit',
       onClick: () => {

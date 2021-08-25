@@ -42,7 +42,7 @@ module.exports = {
   ROLE_DESC:
     '角色類型根據權限範圍分為集群和項目兩類，目前角色的授權範圍為整個集群.',
   'New Password': '新的密碼',
-  'Please input user name': '請輸入用戶名稱',
+  ENTER_USERNAME_TIP: '請輸入用戶名稱',
   'Please input email': '請輸入郵箱',
   'Please repeat the new password': '請重複新的密碼',
   'Please input current password': '請輸入目前密碼',

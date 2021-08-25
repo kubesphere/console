@@ -99,10 +99,13 @@ export default class TimeSelector extends React.PureComponent {
 
   renderButtonText() {
     const { step, times, start, end, lastTime } = this.state
+    const { showStep = true } = this.props
 
     if (start && end && !lastTime) {
       const intervalText = `(${t('Interval')} ${getTimeLabel(step)})`
-      return `${getDateStr(start)} ~ ${getDateStr(end)} ${intervalText}`
+      return `${getDateStr(start)} ~ ${getDateStr(end)} ${
+        showStep ? intervalText : ''
+      }`
     }
 
     const lastTimeText = getTimeLabel(lastTime || getLastTimeStr(step, times))
@@ -111,6 +114,7 @@ export default class TimeSelector extends React.PureComponent {
 
   renderContent() {
     const { step, times } = this.state
+    const { showStep = true } = this.props
     return (
       <div className={styles.content}>
         <DefaultRange
@@ -121,6 +125,7 @@ export default class TimeSelector extends React.PureComponent {
         <CustomRange
           step={step}
           times={times}
+          showStep={showStep}
           onSubmit={this.handleTimeChange}
           onCancel={this.hideSelector}
         />
@@ -129,9 +134,10 @@ export default class TimeSelector extends React.PureComponent {
   }
 
   render() {
+    const { className, dark, arrowIcon } = this.props
     return (
       <div
-        className={classnames(styles.selector, {
+        className={classnames(styles.selector, className, {
           [styles.active]: this.state.visible,
         })}
       >
@@ -142,9 +148,13 @@ export default class TimeSelector extends React.PureComponent {
           onClick={this.hideSelector}
         />
         <Button className={styles.button} onClick={this.handleToggle}>
-          <Icon type="light" name="timed-task" size={20} />
+          <Icon type={dark ? 'dark' : 'light'} name="timed-task" size={20} />
           <p>{this.renderButtonText()}</p>
-          <Icon className={styles.arrow} type="light" name="caret-down" />
+          <Icon
+            className={styles.arrow}
+            type={dark ? 'dark' : 'light'}
+            name={arrowIcon || 'caret-down'}
+          />
         </Button>
         <div className={styles.dropdown}>{this.renderContent()}</div>
       </div>

@@ -192,7 +192,7 @@ export default class GitHubForm extends React.Component {
         >
           <Form.Item
             label={t('Token')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             error={
               isAccessTokenWrong
                 ? {
@@ -315,7 +315,7 @@ export default class GitHubForm extends React.Component {
         <InputSearch
           value={this.state.searchValue}
           onSearch={this.filterResource}
-          placeholder={t('Search by name')}
+          placeholder={t('SEARCH_BY_NAME')}
         />
       </div>
     )

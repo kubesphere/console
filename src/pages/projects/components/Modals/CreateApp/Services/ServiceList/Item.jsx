@@ -83,8 +83,8 @@ export default class Item extends React.Component {
             </div>
             <div className={styles.description}>
               {type === 'deployments'
-                ? t('Stateless Service')
-                : t('Stateful Service')}
+                ? t('STATELESS_SERVICE')
+                : t('STATEFUL_SERVICE')}
             </div>
           </div>
         </div>
@@ -120,14 +120,14 @@ export default class Item extends React.Component {
                         type="light"
                       />
                       <span>
-                        {replicas} {t('Replicas')}
+                        {replicas} {t('REPLICAS')}
                       </span>
                     </Tag>
                   )
                 })}
               </div>
               <div className={styles.description}>
-                {t('Deployment Location')}
+                {t('DEPLOYMENT_LOCATION')}
               </div>
             </div>
           </div>

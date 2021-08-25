@@ -71,7 +71,7 @@ export default class CRDApps extends React.Component {
   getColumns = () => {
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar
@@ -83,7 +83,7 @@ export default class CRDApps extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         width: '20%',
@@ -106,7 +106,7 @@ export default class CRDApps extends React.Component {
         width: '20%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 180,

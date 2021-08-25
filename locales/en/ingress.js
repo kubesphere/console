@@ -17,41 +17,43 @@
  */
 
 module.exports = {
-  'Add Annotation': 'Add Annotation',
-  'Add Path': 'Add Path',
-  'Auto Generate': 'Auto Generate',
+  ADD_ANNOTATION: 'Add Annotation',
+  ADD_PATH_TCAP: 'Add Path',
+  ADD_PATH_TIP: 'Please add at least one path.',
+  AUTO_GENERATE_TCAP: 'Auto Generate',
+  ADD_ROUTE_RULE_TCAP: 'Add Route Rule',
   'Click to visit': 'Click to visit',
   'Create Route': 'Create Route',
-  'Edit Annotations': 'Edit Annotations',
-  'Edit Rules': 'Edit Rules',
-  'Gateway Address': 'Gateway Address',
+  EDIT_ANNOTATIONS_TCAP: 'Edit Annotations',
+  EDIT_RULES_TCAP: 'Edit Rules',
+  GATEWAY_ADDRESS_TCAP: 'Gateway Address',
   'Gateway IP': 'Gateway IP',
   'Gateway Type': 'Gateway Type',
-  HostName: 'HostName',
-  'Invalid host': 'Invalid host',
+  DOMAIN_NAME_TCAP: 'Domain Name',
+  INVALID_DOMAIN_TIP: 'Invalid domain name',
   'Invalid paths': 'Invalid paths',
-  Mode: 'Mode',
-  Paths: 'Paths',
-  'Please add at least one routing rule.':
-    'Please add at least one routing rule.',
-  'Please input Hostname': 'Please input Hostname',
-  'Please select a service': 'Please select a service',
+  MODE_TCAP: 'Mode',
+  PATH_PL: 'Paths',
+  PATH_SI: 'Path',
+  ADD_ROUTE_RULE_DESC: 'Please add at least one route rule.',
+  HOSTNAME_TIP: 'Please enter a Hostname.',
+  PATH_SERVICE_TIP: 'Service',
   Route: 'Route',
-  'Route Rules': 'Route Rules',
+  ROUTE_RULES_TCAP: 'Route Rules',
   Rules: 'Rules',
-  'Set Route Rule': 'Set Route Rule',
-  'Specify Domain': 'Specify Domain',
+  SET_ROUTE_RULE_TCAP: 'Set Route Rule',
+  SPECIFY_DOMAIN_TCAP: 'Specify Domain',
   'Unable to access': 'Unable to access',
 
   ROUTE_DESC:
-    "A Route provides a way to aggregate Services, and you can expose the cluster's internal Services outside through an externally accessible IP address.",
+    'A Route provides a way to aggregate Services. You can expose the internal Services outside the cluster through an externally accessible IP address.',
   ROUTE_CREATE_DESC:
-    "A Route provides a way to aggregate Services, and you can expose the cluster's internal Services outside through an externally accessible IP address.",
+    'A Route provides a way to aggregate Services. You can expose the internal Services outside the cluster through an externally accessible IP address.',
   ROUTE_ANNOTATION_DESC:
     'You can set route behavior by adding annotations to the route. See <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">Annotations</a> for the detailed list of available annotations.',
 
   RULE_SETTING_MODE_AUTO:
-    'By configuring DNS access and changing the domain name to {$hostname} + {$gateway address} +nip.io, you can access the Service via {$hostname}.{$gateway address} .nip.io:{$NodePort}. <br/>Please ensure that you are in an enabling network environment to access the gateway address.',
+    'By configuring DNS access and changing the domain name to {$hostname} + {$gateway address} +nip.io, you can access the Service via {$hostname}.{$gateway address}.nip.io:{$NodePort}. <br/>Please ensure that your network environment can access the gateway address.',
   RULE_SETTING_MODE_SPECIFY:
     'Make sure that the domain name you set can be resolved to the IP address of the access portal. <br/>If you are in a private cloud environment, modify the local host file and then access it via {$domain name}:{$node port}.',
   GATEWAY_SERVICE_MESH_STATUS_ON: 'On',

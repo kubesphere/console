@@ -27,7 +27,12 @@ import styles from './index.scss'
 export default class ServiceCard extends Component {
   render() {
     const { data, prefix } = this.props
-    const serviceType = get(data, 'annotations["kubesphere.io/serviceType"]')
+    const serviceType = get(
+      data,
+      'annotations["kubesphere.io/serviceType"]',
+      ''
+    )
+
     return (
       <div className={styles.wrapper}>
         <Text
@@ -41,7 +46,7 @@ export default class ServiceCard extends Component {
           title={`${data.name}.${data.namespace}.svc`}
           description={t('EIP_POOL_DESC')}
         />
-        <Text title={data.clusterIP} description={t('Virtual IP')} />
+        <Text title={data.clusterIP} description={t('VIRTUAL_IP')} />
       </div>
     )
   }

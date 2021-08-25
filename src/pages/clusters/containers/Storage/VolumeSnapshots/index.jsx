@@ -53,7 +53,7 @@ export default class VolumeSnapshot extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
@@ -71,7 +71,7 @@ export default class VolumeSnapshot extends React.Component {
 
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sortOrder: getSortOrder('name'),
         search: true,
@@ -87,7 +87,7 @@ export default class VolumeSnapshot extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         filters: this.getStatus(),
@@ -112,7 +112,7 @@ export default class VolumeSnapshot extends React.Component {
         },
       },
       {
-        title: t('Project'),
+        title: t('PROJECT'),
         dataIndex: 'namespace',
         isHideable: true,
         render: namespace => <div>{namespace}</div>,
@@ -125,7 +125,7 @@ export default class VolumeSnapshot extends React.Component {
         render: restoreSize => restoreSize || '-',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         isHideable: true,
         sorter: true,

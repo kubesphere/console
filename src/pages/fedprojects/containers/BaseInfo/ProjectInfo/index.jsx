@@ -35,7 +35,7 @@ export default class ProjectInfo extends React.Component {
       <Menu onClick={onMenuClick}>
         {actions.map(action => (
           <Menu.MenuItem key={action.key}>
-            <Icon name={action.icon} /> {action.text}
+            <Icon name={action.icon} type="light" /> {action.text}
           </Menu.MenuItem>
         ))}
       </Menu>
@@ -56,7 +56,7 @@ export default class ProjectInfo extends React.Component {
             <div>
               <Link to={`/workspaces/${workspace}`}>{workspace}</Link>
             </div>
-            <p>{t('Workspace')}</p>
+            <p>{t('WORKSPACE')}</p>
           </div>
           <div className={styles.item}>
             <div>{get(detail, 'creator') || '-'}</div>
@@ -66,7 +66,7 @@ export default class ProjectInfo extends React.Component {
             <div>
               {getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`)}
             </div>
-            <p>{t('Created Time')}</p>
+            <p>{t('CREATED_AT')}</p>
           </div>
           {!isEmpty(actions) && (
             <div className={classNames(styles.item, 'text-right')}>

@@ -87,7 +87,7 @@ export default class ProjectDetail extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit Info'),
+        text: t('EDIT_INFO'),
         action: 'edit',
         type: 'control',
         onClick: () =>
@@ -125,7 +125,7 @@ export default class ProjectDetail extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         type: 'danger',
         show: this.store.detail.workspace !== globals.config.systemWorkspace,
@@ -148,7 +148,7 @@ export default class ProjectDetail extends React.Component {
 
     return [
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: <Status type={detail.status} name={t(detail.status)} />,
       },
       {
@@ -156,11 +156,11 @@ export default class ProjectDetail extends React.Component {
         value: this.props.match.params.cluster,
       },
       {
-        name: t('Workspace'),
+        name: t('WORKSPACE'),
         value: detail.workspace,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

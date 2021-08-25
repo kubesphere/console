@@ -134,7 +134,8 @@ export default class ProjectSelectModal extends React.Component {
       params.labelSelector = `kubesphere.io/workspace=${workspace}`
     } else {
       params.cluster = cluster
-      params.labelSelector = 'kubefed.io/managed!=true'
+      params.labelSelector =
+        'kubefed.io/managed!=true, kubesphere.io/kubefed-host-namespace!=true'
     }
 
     if (search) {
@@ -225,7 +226,7 @@ export default class ProjectSelectModal extends React.Component {
         width={960}
         icon="enterprise"
         title={<a onClick={this.handleEnterWorkspace}>{workspace}</a>}
-        description={get(detail, 'description') || t('Workspace')}
+        description={get(detail, 'description') || t('WORKSPACE')}
         hideFooter
       >
         <div className={styles.bar}>
@@ -253,7 +254,7 @@ export default class ProjectSelectModal extends React.Component {
                     [styles.withSelect]: showClusterSelect,
                   })}
                   value={this.state.search}
-                  placeholder={t('Search by name')}
+                  placeholder={t('SEARCH_BY_NAME')}
                   onSearch={this.handleSearch}
                 />
               </div>
@@ -267,7 +268,7 @@ export default class ProjectSelectModal extends React.Component {
                 />
                 {this.canCreate && (
                   <Button type="control" onClick={this.showCreate}>
-                    {t('Create Project')}
+                    {t('CREATE_PROJECT')}
                   </Button>
                 )}
               </div>

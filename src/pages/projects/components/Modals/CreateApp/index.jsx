@@ -126,7 +126,7 @@ export default class ServiceDeployAppModal extends React.Component {
         required: true,
       },
       {
-        title: 'Internet Access',
+        title: 'INTERNET_ACCESS',
         component: Routes,
         required: true,
       },
@@ -247,7 +247,7 @@ export default class ServiceDeployAppModal extends React.Component {
         isFunction(get(this, 'resourcesFormRef.current.hasSubRoute')) &&
         this.resourcesFormRef.current.hasSubRoute()
       ) {
-        return Notify.warning(t('Please save the current form first'))
+        return Notify.warning(t('SAVE_FORM_TIP'))
       }
 
       if (isCodeMode && isFunction(get(this, 'codeRef.current.getData'))) {
@@ -313,7 +313,7 @@ export default class ServiceDeployAppModal extends React.Component {
         )}
         <Switch
           className={styles.switch}
-          text={t('Edit Mode')}
+          text={t('EDIT_MODE')}
           onChange={this.handleModeChange}
           checked={isCodeMode}
         />
@@ -395,12 +395,12 @@ export default class ServiceDeployAppModal extends React.Component {
             <Button onClick={onCancel}>{t('Cancel')}</Button>
             {currentStep > 0 && (
               <Button type="control" onClick={this.handlePrev}>
-                {t('Previous')}
+                {t('PREVIOUS')}
               </Button>
             )}
             {currentStep < total ? (
               <Button type="control" onClick={this.handleNext}>
-                {t('Next')}
+                {t('NEXT')}
               </Button>
             ) : (
               <Button

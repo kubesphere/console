@@ -32,15 +32,15 @@ export const dropDownItems = {
   },
   workspace_filter: {
     icon: 'appcenter',
-    text: t('Workspace'),
+    text: t('WORKSPACE'),
   },
   involved_object_namespace_filter: {
     icon: 'project',
-    text: t('Project'),
+    text: t('PROJECT'),
   },
   involved_object_kind_filter: {
     icon: 'vnc',
-    text: t('Resource Type'),
+    text: t('RESOURCE_TYPE'),
   },
   involved_object_name_filter: {
     icon: 'strategy-group',
@@ -81,19 +81,19 @@ export const supportQueryParams = [
   },
   {
     icon: 'appcenter',
-    title: t('Search Events by', { field: t('Workspace') }),
+    title: t('Search Events by', { field: t('WORKSPACE') }),
     tips: t('Workspace Event Query Tip'),
     key: 'workspace_filter',
   },
   {
     icon: 'project',
-    title: t('Search Events by', { field: t('Project') }),
+    title: t('Search Events by', { field: t('PROJECT') }),
     tips: t('Project Event Query Tip'),
     key: 'involved_object_namespace_filter',
   },
   {
     icon: 'vnc',
-    title: t('Search Events by', { field: t('Resource Type') }),
+    title: t('Search Events by', { field: t('RESOURCE_TYPE') }),
     tips: t('Resource Type Event Query Tip'),
     key: 'involved_object_kind_filter',
   },

@@ -19,6 +19,7 @@
 import React from 'react'
 import { get, set, debounce } from 'lodash'
 import { observer } from 'mobx-react'
+import ProjectStore from 'stores/project'
 
 import { updateLabels } from 'utils'
 import {
@@ -32,6 +33,29 @@ import { ProjectSelect } from 'components/Inputs'
 
 @observer
 export default class BaseInfo extends React.Component {
+  projectStore = new ProjectStore()
+
+  componentDidMount() {
+    this.fetchProjects()
+  }
+
+  fetchProjects = (params = {}) => {
+    const { cluster } = this.props
+    return this.projectStore.fetchList({
+      cluster,
+      labelSelector: 'kubefed.io/managed=true',
+      ...params,
+    })
+  }
+
+  getProjects() {
+    const { data } = this.projectStore.list
+    const result = data.map(item => ({
+      value: item.name,
+    }))
+    return result
+  }
+
   get cluster() {
     return this.props.cluster
   }
@@ -64,10 +88,19 @@ export default class BaseInfo extends React.Component {
       })
       .then(resp => {
         if (resp.exist) {
-          return callback({ message: t('Name exists'), field: rule.field })
+          return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
         }
         callback()
       })
+  }
+
+  projectValidator = (rule, value, callback) => {
+    const options = this.getProjects()
+    const hasDisableValue = options.some(item => item.value === value)
+
+    return hasDisableValue
+      ? callback({ message: t('INVALID_PROJECT') })
+      : callback()
   }
 
   handleNameChange = debounce(value => {
@@ -96,13 +129,13 @@ export default class BaseInfo extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('Name')}
+              label={t('NAME')}
               desc={desc}
               rules={[
-                { required: true, message: t('Please input name') },
+                { required: true, message: t('NAME_EMPTY_DESC') },
                 {
                   pattern: PATTERN_NAME,
-                  message: t('Invalid name', { message: desc }),
+                  message: t('INVALID_NAME_DESC', { message: desc }),
                 },
                 { validator: this.nameValidator },
               ]}
@@ -116,7 +149,7 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+            <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
               <Input
                 name="metadata.annotations['kubesphere.io/alias-name']"
                 maxLength={63}
@@ -128,10 +161,11 @@ export default class BaseInfo extends React.Component {
           {!this.props.namespace && (
             <Column>
               <Form.Item
-                label={t('Project')}
-                desc={t('PROJECT_DESC')}
+                label={t('PROJECT')}
+                desc={t('SELECT_PROJECT_DESC')}
                 rules={[
-                  { required: true, message: t('Please select a project') },
+                  { required: true, message: t('PROJECT_EMPTY_DESC') },
+                  { validator: this.projectValidator },
                 ]}
               >
                 <ProjectSelect
@@ -143,7 +177,7 @@ export default class BaseInfo extends React.Component {
             </Column>
           )}
           <Column>
-            <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+            <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
               <TextArea
                 name="metadata.annotations['kubesphere.io/description']"
                 maxLength={256}

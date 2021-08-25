@@ -28,7 +28,7 @@ import styles from './index.scss'
 export default class ServiceSettingsForm extends Base {
   renderName() {
     return (
-      <Form.Item label={t('Name')}>
+      <Form.Item label={t('NAME')}>
         <Input name="metadata.name" disabled />
       </Form.Item>
     )
@@ -50,7 +50,7 @@ export default class ServiceSettingsForm extends Base {
 
   renderTypeSelect() {
     return (
-      <Form.Item label={t('Access Type')}>
+      <Form.Item label={t('ACCESS_TYPE')}>
         <TypeSelect
           className="margin-b12"
           value={this.state.serviceType}

@@ -17,6 +17,10 @@
  */
 
 module.exports = {
+  SELECT_PROJECT_DESC: '選擇一個項目。',
+  PROJECT_EMPTY_DESC: '請選擇一個項目。',
+  REPLICA_LOW_SI: '副本',
+  REPLICA_LOW_PL: '副本',
   Workload: '工作負載',
   Workloads: '工作負載',
   'Service Configuration': '服務配置',
@@ -25,11 +29,13 @@ module.exports = {
   'Desired number of nodes scheduled': '期望節點數',
   'Current number of nodes scheduled': '目前節點數',
   'View YAML': '查看配置文件',
-  'Edit YAML': '編輯配置文件',
+  EDIT_YAML: '編輯配置文件',
   'Add Labels': '添加標籤',
   'Edit Labels': '編輯標籤',
-  'Pod Replicas': '容器組副本數量',
-  'Container Image': '容器鏡像',
+  POD_REPLICAS: '容器組副本數量',
+  CONTAINERS: '容器鏡像',
+  CONTAINER_IMAGE: '容器鏡像',
+  ADD_CONTAINER: '添加容器',
   'Pod Status': '容器組運行狀態',
   'Container Setting': '容器設置',
   'Pods List': '容器組列表',
@@ -37,18 +43,17 @@ module.exports = {
   Log: '紀錄',
   'Container Logs': '容器紀錄',
   'Resource Info': '資源資訊',
-  Logs: '操作紀錄',
   'Node Name': '主機名稱',
   'Node IP': '主機 IP',
-  'Pod IP': '容器組 IP',
-  Image: '鏡像',
+  POD_IP_TCAP: '容器組 IP',
+  IMAGE: '鏡像',
   'Image ID': '鏡像 ID',
   'Port(s)': '端口',
   Port: '端口',
   port: '端口',
-  'Edit Container': '編輯容器',
+  EDIT_CONTAINER: '編輯容器',
   'Host Port': '主機端口',
-  'Add Port': '添加端口',
+  ADD_PORT: '添加端口',
   'target port': '目標端口',
   Environment: '環境變量',
   'Mount point': '掛載點',
@@ -60,10 +65,10 @@ module.exports = {
   Mount: '掛載',
   Capacity: '容量',
   capacity: '容量',
-  'Volume Capacity': '儲存卷容量',
+  VOLUME_CAPACITY_TCAP: '儲存卷容量',
   'Storage Size': '儲存大小',
   'Access Mode': '訪問模式',
-  Provisioner: '供應者',
+  PROVISIONER: '供應者',
   Volumes: '儲存卷',
   'Volume Source': '儲存卷來源',
   mounted: '已掛載',
@@ -111,14 +116,13 @@ module.exports = {
 
   'Collecting file log': '收集落盤紀錄',
 
-  'Add Metadata': '添加元數據',
+  ADD_METADATA: '添加元數據',
   'Set Node Scheduling Policy': '設置節點調度策略',
   'You can allow Pod replicas to run on specified nodes.':
     '可以讓容器組副本在指定的節點運行',
-  'Additional metadata settings for resources such as Labels and Annotations.':
-    '對資源進行額外的元數據設置，例如 Label 和 Annotation',
+  ADD_METADATA_DESC: 'Add metadata to resources.',
 
-  'Deployment Location': '部署位置',
+  DEPLOYMENT_LOCATION: '部署位置',
 
   REFFER_CONFIGMAP_DESC: '將配置中的值添加為卷。',
   REFFER_SECRET_DESC: '將密鑰中的值添加為卷。',
@@ -127,6 +131,7 @@ module.exports = {
   CHOOSE_EXIST_VOLUME_DESC: '請選擇一個已經創建好的持久化儲存卷掛載至容器',
 
   REQUEST_EXCCED: '資源預留不能超過資源限制',
+  REQUEST_EXCCED_WORKSPACE: '資源设置不能大於工作區資源限制',
 
   WORKLOAD_DESC:
     '工作負載 (Workload) 通常是訪問服務的實際載體, 也是對節點紀錄收集、監控等系統應用的實際運行載體，是對一組容器組 (Pod) 的抽象模型。',
@@ -151,8 +156,6 @@ module.exports = {
   IMAGE_REGISTRY_PLACEHOLDER: '請選擇鏡像倉庫密鑰',
   IMAGE_DESC:
     '要從私有鏡像倉庫部署，需要先<a href={link} target="_blank">創建鏡像倉庫密鑰</a>，然後拉取鏡像。',
-
-  Replicas: '副本',
   'Replicas Number': '副本數量',
   'Specify Replicas Number': '指定副本數量',
   'Replica Status': '副本運行狀態',
@@ -203,14 +206,14 @@ module.exports = {
   'UI Mode': '界面模式',
   'Coding Mode': '代碼模式',
 
-  'Labels exists': '標籤組重複',
-  'Labels cannot be empty': '標籤不能為空',
-  'Add Label': '添加標籤',
+  LABEL_EXIST_DESC: 'The label already exsists. Please use another label.',
+  EMPTY_LABEL_DESC: '請添加標籤。',
+  ADD_LABEL: '添加標籤',
   'Add Container': '添加容器',
   'Add new container': '添加新的容器',
   'Adding new contianer': '正在添加新的容器',
   'Add Node Selector': '添加節點選擇器',
-  'Please add at least one container.': '請至少添加一個容器',
+  CONTAINER_EMPTY_DESC: '請至少添加一個容器',
   'Container Name': '容器名稱',
   'Container Type': '容器類型',
   'Advanced Options': '高級選項',
@@ -233,7 +236,11 @@ module.exports = {
   'Please input mount point': '請輸入掛載點',
   'Please select a storage class': '請選擇儲存卷類型',
   'Please select image': '請選擇鏡像',
+
   'Invalid name': '名稱格式不合法。{message}',
+  'Invalid pod': '容器組數量格式不合法',
+  INVALID_NAME_DESC:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
   'Service Labels': '服務標籤',
 
   'Add Existing Volume': '添加已有儲存卷',
@@ -254,13 +261,13 @@ module.exports = {
   'Please input command': '請輸入命令',
   'Please input volume name': '請輸入儲存卷名稱',
 
-  PORT_INPUT_DESC: '當存在多條端口時，名稱為必填項目且不可重複',
+  PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
 
   PORT_NAME_DESC:
-    '端口名最長 63 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母開頭, 字母或數字結尾',
+    'The port name can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
 
   WORKLOAD_PORT_NAME_DESC:
-    '端口名最長 15 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母開頭, 字母或數字結尾',
+    'The port name can contain only lowercase letters, numbers and hyphens (-), and must begin and end with a lowercase letter or number. The maximum length is 15 characters.',
 
   CPU_REQUEST_TARGET_DESC:
     '當 CPU 使用率超過或低於此目標值時，將添加或刪除副本',
@@ -367,7 +374,7 @@ module.exports = {
   'Container Readiness Check': '容器就緒檢查',
   'Container Startup Check': '容器啟動檢查',
 
-  Redeploy: '重新部署',
+  REDEPLOY: '重新部署',
   'Redeploy Successfully': '重新部署成功',
 
   REDEPLOY_CONFIRM_DESC:
@@ -548,7 +555,7 @@ module.exports = {
     '容器組副本將會盡量部署在同一節點上',
   'Pod replicas will be deployed by the default policy.':
     '容器組副本將根據預設策略部署',
-  'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).':
+  ADD_CONTAINER_DESC:
     'Kubesphere 支持從鏡像倉庫拉取鏡像以及通過代碼構建新的鏡像並部署',
 
   'Scheduling Info': '調度資訊',
@@ -605,7 +612,7 @@ module.exports = {
   FILL_IMAGE_DEFAULT_PORTS_DESC: '是否暴露該鏡像的預設端口？',
 
   ISTIO_PROTOCOL_TIP:
-    '為了充分利用應用治理的能力，請選擇服務實際使用的協定。例如，如果服務暴露的是 HTTP 服務，則選擇 http 協定，會生成形如 http-[name] 的端口名稱。',
+    'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
 
   WORKLOAD_CONDITIONS: '狀態分析(Conditions)',
   WORKLOAD_CONDITION_AVAILABLE: '可用性(Available)',
@@ -701,4 +708,8 @@ module.exports = {
     '可以將容器組部署在不同集群中，並對集群中部署的副本數量進行定義。不同集群中的容器組將由聯邦集群控制器(Federation Controller Manager)進行統一的調度及狀態同步。',
   IGNORE_CERT_DESC: '發現證書錯誤，是否忽略證書驗證並再次',
   IGNORE_CERT_WARN_DESC: '忽略驗證證書，可能會導致帳戶密碼被欺騙。',
+  INVALID_PROJECT: '項目不可選',
+
+  // Pods Page
+  NODE_IP: '{node}（{ip}）',
 }

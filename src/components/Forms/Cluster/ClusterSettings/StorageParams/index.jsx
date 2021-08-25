@@ -83,7 +83,7 @@ export default class StorageParams extends Component {
           </div>
         ))}
         <a className={styles.edit} onClick={this.showEdit}>
-          {t('Edit')}
+          {t('EDIT')}
         </a>
       </div>
     )
@@ -94,7 +94,7 @@ export default class StorageParams extends Component {
     const { params } = this.props
     return (
       <Modal.Form
-        title={t('Edit')}
+        title={t('EDIT')}
         data={value}
         onOk={this.handleEdit}
         onCancel={this.hideEdit}

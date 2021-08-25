@@ -201,14 +201,14 @@ export default class FedProjectCreateModal extends React.Component {
           <Columns>
             <Column>
               <Form.Item
-                label={t('Name')}
+                label={t('NAME')}
                 desc={t('SERVICE_NAME_DESC')}
                 ref={this.nameRef}
                 rules={[
-                  { required: true, message: t('Please input name') },
+                  { required: true, message: t('NAME_EMPTY_DESC') },
                   {
                     pattern: PATTERN_SERVICE_NAME,
-                    message: t('Invalid name', {
+                    message: t('INVALID_NAME_DESC', {
                       message: t('SERVICE_NAME_DESC'),
                     }),
                   },
@@ -219,7 +219,7 @@ export default class FedProjectCreateModal extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+              <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
                 <Input
                   name="metadata.annotations['kubesphere.io/alias-name']"
                   maxLength={63}
@@ -229,7 +229,7 @@ export default class FedProjectCreateModal extends React.Component {
           </Columns>
           <Columns>
             <Column>
-              <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+              <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
                 <TextArea
                   name="metadata.annotations['kubesphere.io/description']"
                   maxLength={256}

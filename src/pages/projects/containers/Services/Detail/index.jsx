@@ -90,7 +90,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -102,7 +102,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'editService',
       icon: 'network-router',
-      text: t('Edit Service'),
+      text: t('EDIT_SERVICE'),
       action: 'edit',
       onClick: () =>
         this.trigger('service.edit', {
@@ -113,9 +113,9 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'editGateway',
       icon: 'ip',
-      text: t('Edit Internet Access'),
+      text: t('EDIT_INTERNET_ACCESS'),
       action: 'edit',
-      show: record => record.type === SERVICE_TYPES.VirtualIP,
+      show: this.store.detail.type === SERVICE_TYPES.VirtualIP,
       onClick: () =>
         this.trigger('service.gateway.edit', {
           detail: this.store.detail,
@@ -137,7 +137,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'editYaml',
       icon: 'pen',
-      text: t('Edit YAML'),
+      text: t('EDIT_YAML'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -148,7 +148,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       onClick: () =>
         this.trigger('service.delete', {
@@ -176,7 +176,11 @@ export default class ServiceDetail extends React.Component {
       externalIP = detail.externalIPs.join('\r\n')
     }
 
-    const serviceType = get(detail, 'annotations["kubesphere.io/serviceType"]')
+    const serviceType = get(
+      detail,
+      'annotations["kubesphere.io/serviceType"]',
+      ''
+    )
 
     return [
       {
@@ -184,17 +188,17 @@ export default class ServiceDetail extends React.Component {
         value: cluster,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Type'),
+        name: t('TYPE'),
         value: (
           <span>
             {`${
               serviceType
                 ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                : t('Custom Creation')
+                : t('CUSTOM_CREATION')
             }`}
             <span className="text-desc"> ({detail.type})</span>
           </span>
@@ -205,7 +209,7 @@ export default class ServiceDetail extends React.Component {
         value: detail.app,
       },
       {
-        name: t('Virtual IP'),
+        name: t('VIRTUAL_IP'),
         value: detail.clusterIP,
       },
       {
@@ -229,11 +233,11 @@ export default class ServiceDetail extends React.Component {
         value: this.renderEndpoints(),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Updated Time'),
+        name: t('UPDATED_AT'),
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

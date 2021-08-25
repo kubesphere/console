@@ -35,7 +35,7 @@ export default class ClusterCard extends React.Component {
     const details = [
       {
         title: data.nodeCount,
-        description: t('Node Count'),
+        description: t('NODES'),
       },
       {
         title: data.kubernetesVersion,
@@ -43,14 +43,14 @@ export default class ClusterCard extends React.Component {
       },
       {
         title: data.provider,
-        description: t('Provider'),
+        description: t('PROVIDER'),
         className: styles.provider,
       },
       {
         title: data.createTime
           ? getLocalTime(data.createTime).format(`YYYY-MM-DD HH:mm:ss`)
           : '-',
-        description: t('Created Time'),
+        description: t('CREATED_AT'),
       },
     ]
 

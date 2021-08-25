@@ -137,7 +137,7 @@ class TimeRangeSelector extends Component {
     const { recentOpts } = this.props
     return (
       <>
-        <div className={styles.title}>{t('Select Time Range')}</div>
+        <div className={styles.title}>{t('SELECT_TIME_RANGE')}</div>
         <div className={styles.recentWrapper}>
           {recentOpts.map(({ label }, index) => (
             <span
@@ -165,7 +165,7 @@ class TimeRangeSelector extends Component {
 
     return (
       <>
-        <div className={styles.title}>{t('Custom Time Range')}</div>
+        <div className={styles.title}>{t('CUSTOM_TIME_RANGE')}</div>
         <Form
           data={{ interval, startTime: [startTime], endTime: [endTime] }}
           onSubmit={this.handleSubmit}

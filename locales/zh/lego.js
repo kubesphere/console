@@ -20,7 +20,7 @@ module.exports = {
   KUBE_ASCENDING_ORDER: '正序排列…',
   KUBE_DESCENDING_ORDER: '倒序排列…',
   KUBE_OPERATE: '操作',
-  KUBE_FILTER: '过滤选项',
+  KUBE_FILTER: '过滤',
   KUBE_PLEASE_SELECT: '请选择',
   KUBE_NO_AVAILABLE_DATA: '暂无数据',
   KUBE_SUN: '日',

@@ -17,6 +17,10 @@
  */
 
 module.exports = {
+  SELECT_PROJECT_DESC: 'Select a project.',
+  PROJECT_EMPTY_DESC: 'Please select a project.',
+  REPLICA_LOW_SI: 'replica',
+  REPLICA_LOW_PL: 'replicas',
   'Access Control': 'Access Control',
   'Access Mode': 'Access Mode',
   'Add argument': 'Add argument',
@@ -26,19 +30,18 @@ module.exports = {
   'Add Environment Variable': 'Add Environment Variable',
   'Add Existing Volume': 'Add Existing Volume',
   'Add HostPath': 'Add HostPath',
-  'Add Label': 'Add Label',
+  ADD_LABEL: 'Add Label',
   'Add Labels': 'Add Labels',
-  'Add Metadata': 'Add Metadata',
+  ADD_METADATA: 'Add Metadata',
   'Add new container': 'Add new container',
   'Add Node Selector': 'Add Node Selector',
-  'Add Port': 'Add Port',
+  ADD_PORT: 'Add Port',
   'Add Probe': 'Add Probe',
   'Add Temporary Volume': 'Add Temporary Volume',
   'Add Volume': 'Add Volume',
   'Add Volume Template': 'Add Volume Template',
   'Adding new contianer': 'Adding new contianer',
-  'Additional metadata settings for resources such as Labels and Annotations.':
-    'Additional metadata settings for resources such as Labels and Annotations.',
+  ADD_METADATA_DESC: 'Add metadata to resources.',
   'Advanced Options': 'Advanced Options',
   'Applied to the workload': 'Applied to the workload',
   Argument: 'Argument',
@@ -60,7 +63,9 @@ module.exports = {
   'Container Config': 'Container Config',
   'Container CPU Resource Request, 1 Core = 1000m':
     'Container CPU Resource Request, 1 Core = 1000m',
-  'Container Image': 'Container Image',
+  CONTAINERS: 'Containers',
+  CONTAINER_IMAGE: 'Container Image',
+  ADD_CONTAINER: 'Add Container',
   'Container Liveness Check': 'Container Liveness Check',
   'container log relative path': 'container log relative path',
   'Container Logs': 'Container Logs',
@@ -89,7 +94,7 @@ module.exports = {
   'Current Revision': 'Current Revision',
   'Current Stage(phase)': 'Current Stage(phase)',
   'Current Utilization': 'Current Utilization',
-  'Deployment Location': 'Deployment Location',
+  DEPLOYMENT_LOCATION: 'Deployment Location',
   'Deployment Mode': 'Deployment Mode',
   DEPLOYMENT_MODE_DESC: 'You can specify rules for Pod scheduling.',
   DeploymentPaused: 'DeploymentPaused',
@@ -99,9 +104,9 @@ module.exports = {
   'Diff Settings': 'Diff Settings',
   DockerDaemonNotReady: 'DockerDaemonNotReady',
   'Edit Config Template': 'Edit Config Template',
-  'Edit Container': 'Edit Container',
+  EDIT_CONTAINER: 'Edit Container',
   'Edit Labels': 'Edit Labels',
-  'Edit YAML': 'Edit YAML',
+  EDIT_YAML: 'Edit YAML',
   EmptyDir: 'EmptyDir',
   Environment: 'Environment',
   'Environment Variables': 'Environment Variables',
@@ -130,7 +135,7 @@ module.exports = {
   'How pods are assinged to nodes?': 'How pods are assinged to nodes?',
   'HTTP Request': 'HTTP Request',
   'HTTP Request Check': 'HTTP Request Check',
-  Image: 'Image',
+  IMAGE: 'Image',
   'Image ID': 'Image ID',
   'Image Name': 'Image Name',
   'Image Pull Policy': 'Image Pull Policy',
@@ -141,23 +146,26 @@ module.exports = {
   'Initial Delay(s)': 'Initial Delay(s)',
   'Instance Status': 'Instance Status',
   'Invalid image': 'Invalid image',
+
   'Invalid name': 'Invalid name. {message}',
+  'Invalid pod': 'Invalid value',
+  INVALID_NAME_DESC:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
   InvalidImageName: 'InvalidImageName',
   'is running': 'is running',
   Job: 'Job',
   'Job Records': 'Job Records',
   'Job Settings': 'Job Settings',
   'Job Template': 'Job Template',
-  'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).':
-    'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).',
-  'Labels cannot be empty': 'Labels cannot be empty',
-  'Labels exists': 'Labels exists',
+  ADD_CONTAINER_DESC: 'Pull images from image registries to create containers.',
+  EMPTY_LABEL_DESC: 'Please add a label.',
+  LABEL_EXIST_DESC: 'The label already exists. Please use another label.',
   layers: 'layers',
   'Liveness Probe': 'Liveness Probe',
   Log: 'Log',
   'log path relative to container mount path':
     'log path relative to container mount path',
-  Logs: 'Logs',
+  LOGS: 'Logs',
   'm.internalLifecycle.PreStartContainer':
     'm.internalLifecycle.PreStartContainer',
   'Max Replicas Number': 'Max Replicas Number',
@@ -200,7 +208,7 @@ module.exports = {
   'Not found this image': 'Not found this image',
   OnDelete: 'OnDelete',
   'Period Seconds': 'Period Seconds',
-  'Please add at least one container.': 'Please add at least one container.',
+  CONTAINER_EMPTY_DESC: 'Please add at least one container.',
   'Please add at least one volume': 'Please add at least one volume',
   'Please add at least one volume or volume template':
     'Please add at least one volume or volume template',
@@ -225,15 +233,17 @@ module.exports = {
   'Pod CPU Request': 'Pod CPU Request',
   'Pod Decentralized Deployment': 'Pod Decentralized Deployment',
   'Pod Default Deployment': 'Pod Default Deployment',
-  'Pod IP': 'Pod IP',
+  POD_IP_TCAP: 'Pod IP',
   'Pod Memory Request': 'Pod Memory Request',
-  'Pod Replicas': 'Pod Replicas',
+  POD_REPLICAS: 'Pod Replicas',
   'Pod replicas will be deployed according to the default policy.':
     'Pod replicas will be deployed according to the default policy.',
   'Pod replicas will be deployed on different nodes as much as possible.':
     'Pod replicas will be deployed on different nodes as much as possible.',
   'Pod replicas will be deployed on the same node as much as possible.':
     'Pod replicas will be deployed on the same node as much as possible.',
+  'Pod replicas will be deployed according to user customization.':
+    'Pod replicas will be deployed according to user customization.',
   'Pod Security Context': 'Pod Security Context',
   'Pod Status': 'Pod Status',
   'Pod Status Analysis': 'Pod Status Analysis',
@@ -253,16 +263,15 @@ module.exports = {
   Probe: 'Probe',
   ProgressDeadlineExceeded: 'ProgressDeadlineExceeded',
   Protocols: 'Protocols',
-  Provisioner: 'Provisioner',
+  PROVISIONER: 'Provisioner',
   'Read Write Mode': 'Read Write Mode',
   'Readiness Probe': 'Readiness Probe',
   Recreate: 'Recreate',
-  Redeploy: 'Redeploy',
+  REDEPLOY: 'Redeploy',
   'Redeploy Successfully': 'Redeploy Successfully',
   registry: 'registry',
   RegistryUnavailable: 'RegistryUnavailable',
   'Replica Status': 'Replica Status',
-  Replicas: 'Replicas',
   'Replicas Number': 'Replicas Number',
   ReplicaSetCreateError: 'ReplicaSetCreateError',
   ReplicaSetUpdated: 'ReplicaSetUpdated',
@@ -336,7 +345,7 @@ module.exports = {
   'User and User Group': 'User and User Group',
   'User Group': 'User Group',
   'View YAML': 'View YAML',
-  'Volume Capacity': 'Volume Capacity',
+  VOLUME_CAPACITY_TCAP: 'Volume Capacity',
   'Volume Name': 'Volume Name',
   'Volume Source': 'Volume Source',
   Volumes: 'Volumes',
@@ -435,12 +444,11 @@ module.exports = {
   EMPTYDIR_DESC: 'Temporary storage created for the workload',
   HOSTPATH_DESC:
     'A hostPath volume mounts a file or directory from the host node’s filesystem into your Pod.',
-  PORT_INPUT_DESC:
-    'The name is required and cannot be duplicated when there are multiple ports,',
+  PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
   PORT_NAME_DESC:
-    'The port name can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The value can contain a maximum of 63 characters.',
+    'The port name can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
   WORKLOAD_PORT_NAME_DESC:
-    'The port name can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The value can contain a maximum of 15 characters.',
+    'The port name can contain only lowercase letters, numbers and hyphens (-), and must begin and end with a lowercase letter or number. The maximum length is 15 characters.',
 
   DEPLOYMENTS_BASEINFO_DESC:
     'You can give the deployment a name that is easy to distinguish when you use it.',
@@ -594,17 +602,17 @@ module.exports = {
 
   POD_CONDITION_INITIALIZED: 'Initialized',
   POD_CONDITION_INITIALIZED_DESC:
-    'All init containers have started successfully.',
+    'All Init containers have started successfully.',
   POD_CONDITION_READY: 'Ready',
   POD_CONDITION_READY_DESC:
-    'The pod is already running and can be accessed through the service.',
-  POD_CONDITION_CONTAINERSREADY: 'ContainersReady',
-  POD_CONDITION_CONTAINERSREADY_DESC: 'Containers in the pod are ready.',
-  POD_CONDITION_PODSCHEDULED: 'PodScheduled',
+    'The Pod is already running and can be accessed through the Service.',
+  POD_CONDITION_CONTAINERSREADY: 'Containers Ready',
+  POD_CONDITION_CONTAINERSREADY_DESC: 'Containers in the Pod are ready.',
+  POD_CONDITION_PODSCHEDULED: 'Pod Scheduled',
   POD_CONDITION_PODSCHEDULED_DESC:
-    'The pod has been successfully assigned to a node.',
+    'The Pod has been successfully assigned to a node.',
   POD_ASSIGNED_DESC:
-    "The request value (ie, Request) set by the pod in the pod group is used as the basis for determining the resource allocation. Only when the amount that can be allocated in the node ≥ the pod's requst value, can the pod be allocated to this node.",
+    "The request value (namely, Request) set by the containers in the Pod is used as the basis for determining the resource allocation. Only when the amount available for allocation in the node is greater than or equal to the Pod's request value can the Pod be allocated to this node.",
   POD_DESC:
     'A Pod is the basic execution unit of a Kubernetes application, representing the smallest and simplest unit in the Kubernetes object model that you create or deploy.',
   POD_CREATE_DESC:
@@ -614,7 +622,8 @@ module.exports = {
 
   REQUEST_EXCCED:
     'Resource requests should not be greater than resource limits.',
-
+  REQUEST_EXCCED_WORKSPACE:
+    'Resource setting should not be greater than workspace resource limits.',
   WORKLOAD_CONDITIONS: 'Conditions',
   WORKLOAD_CONDITION_AVAILABLE: 'Available',
   WORKLOAD_CONDITION_PROGRESSING: 'Progressing',
@@ -628,7 +637,7 @@ module.exports = {
     'When you add the PersistentVolumeClaim（PVC) (read & write mode), you can collect log information from the PVC. Once it is enabled, the filebeat pod image, which can be used to collect relevant logs, will be installed through SideCar.',
 
   ISTIO_PROTOCOL_TIP:
-    'In order to fully use the Application Governance function, please select the protocol the service will actually be using. For example, please select HTTP protocol for a HTTP service and you will get a port name like http-[name].',
+    'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
 
   CONTAINER_LOG_PATH_TIP:
     'The container log relative path is the path from the pod mount path, which can be given in glob mode. When there are multiple groups, separate them by commas. For example, when the pod mount path is /data, the pod log relative path is configured as log/*.log, which means that all .log suffix files in the /data/log directory are matched. If you need to match all .log suffix files in the /data/log directory and its subdirectories, you can configure the pod log relative path to log/**/*.log.',
@@ -698,4 +707,8 @@ module.exports = {
     'A certificate error was found, do you want to ignore the certificate verification',
   IGNORE_CERT_WARN_DESC:
     'Ignoring the verification certificate may cause the account password to be disclosed. ',
+  INVALID_PROJECT: 'Invalid project.',
+
+  // Pods Page
+  NODE_IP: '{node} ({ip})',
 }

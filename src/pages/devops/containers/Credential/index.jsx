@@ -116,7 +116,7 @@ class Credential extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '35%',
       render: id => {
@@ -125,19 +125,19 @@ class Credential extends React.Component {
       },
     },
     {
-      title: t('Type'),
+      title: t('TYPE'),
       dataIndex: 'type',
       width: '25%',
       render: type => t(type),
     },
     {
-      title: t('Description'),
+      title: t('DESCRIPTION'),
       dataIndex: 'description',
       render: description => description,
       width: '25%',
     },
     {
-      title: t('Created Time'),
+      title: t('CREATED_AT'),
       dataIndex: 'createTime',
       width: '20%',
       render: createTime =>

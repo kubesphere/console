@@ -109,6 +109,10 @@ export default class ContainerSetting extends React.Component {
       : this.formTemplate
   }
 
+  get workspaceQuota() {
+    return get(this.state.leftQuota, 'namespace', {})
+  }
+
   initService() {
     const workloadName = get(this.formTemplate, 'metadata.name')
     let serviceName = get(this.props.formTemplate, 'Service.metadata.name')
@@ -405,7 +409,7 @@ export default class ContainerSetting extends React.Component {
 
   containersValidator = (rule, value, callback) => {
     if (isEmpty(value)) {
-      return callback({ message: t('Please add at least one container.') })
+      return callback({ message: t('CONTAINER_EMPTY_DESC') })
     }
 
     callback()
@@ -427,6 +431,7 @@ export default class ContainerSetting extends React.Component {
         onCancel={this.hideContainer}
         withService={withService}
         isFederated={isFederated}
+        workspaceQuota={this.workspaceQuota}
         {...params}
       />
     )
@@ -452,7 +457,7 @@ export default class ContainerSetting extends React.Component {
       return (
         <Form.Item
           className="margin-b12"
-          label={t('Deployment Location')}
+          label={t('POD_REPLICAS')}
           tip={this.renderDeployPlacementTip()}
         >
           <ClusterReplicasControl
@@ -482,7 +487,7 @@ export default class ContainerSetting extends React.Component {
 
     return (
       <Form.Item
-        label={t('Container Image')}
+        label={t('CONTAINERS')}
         rules={[{ validator: this.containersValidator }]}
       >
         <ContainerList

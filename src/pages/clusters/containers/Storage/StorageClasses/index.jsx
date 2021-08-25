@@ -57,7 +57,7 @@ export default class StorageClasses extends React.Component {
     const { getSortOrder, prefix } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         key: 'name',
         dataIndex: 'name',
         sorter: true,
@@ -73,26 +73,26 @@ export default class StorageClasses extends React.Component {
         ),
       },
       {
-        title: t('Volume Count'),
+        title: t('VOLUMES'),
         dataIndex: 'volumeCount',
         isHideable: true,
         render: (count, record) =>
           get(record, 'annotations["kubesphere.io/pvc-count"]') || 0,
       },
       {
-        title: t('Default'),
+        title: t('DEFAULT'),
         dataIndex: 'default',
         isHideable: true,
-        render: value => (value ? t('Yes') : '-'),
+        render: value => (value ? t('YES') : '-'),
       },
       {
-        title: t('Support Volume Snapshot'),
+        title: t('VOLUME_SNAPSHOT_SUPPORT'),
         dataIndex: 'supportSnapshot',
         isHideable: true,
         render: supportSnapshot => (supportSnapshot ? t('True') : t('False')),
       },
       {
-        title: t('Provisioner'),
+        title: t('PROVISIONER'),
         dataIndex: 'provisioner',
         isHideable: true,
       },

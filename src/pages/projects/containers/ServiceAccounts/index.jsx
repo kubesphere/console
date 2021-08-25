@@ -47,7 +47,7 @@ export default class ServiceAccounts extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('serviceaccount.edit', {
@@ -58,7 +58,7 @@ export default class ServiceAccounts extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -68,7 +68,7 @@ export default class ServiceAccounts extends React.Component {
       {
         key: 'modify',
         icon: 'pen',
-        text: t('Modify Service Account Role'),
+        text: t('MODIFY_SERVICE_ACCOUNT_ROLE'),
         action: 'edit',
         onClick: item =>
           trigger('serviceaccount.role.edit', {
@@ -79,7 +79,7 @@ export default class ServiceAccounts extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
@@ -94,7 +94,7 @@ export default class ServiceAccounts extends React.Component {
     const { getSortOrder, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -128,7 +128,7 @@ export default class ServiceAccounts extends React.Component {
           )),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

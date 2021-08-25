@@ -191,7 +191,7 @@ export default class UploadInfo extends Component {
             )}
           </div>
           <div className={styles.description}>
-            {t('Updated Time')}:&nbsp;
+            {t('UPDATED_AT')}:&nbsp;
             {getLocalTime(updateTime).format('YYYY-MM-DD HH:mm:ss')}
           </div>
         </div>

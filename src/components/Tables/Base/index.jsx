@@ -230,7 +230,7 @@ export default class WorkloadTable extends React.Component {
             onClick={onDelete}
             data-test="table-delete"
           >
-            {t('Delete')}
+            {t('DELETE')}
           </Button>
         )}
       </div>
@@ -261,7 +261,7 @@ export default class WorkloadTable extends React.Component {
     }
 
     if (searchType) {
-      const placeholder = this.props.placeholder || t('Search by name')
+      const placeholder = this.props.placeholder || t('SEARCH_BY_NAME')
 
       return (
         <InputSearch

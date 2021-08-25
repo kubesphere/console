@@ -44,7 +44,7 @@ module.exports = {
   Synchronize: 'Synchronize',
   syncing: 'syncing',
   'Unrecognized URL': 'Unrecognized URL.',
-  Validate: 'Validate',
+  VALIDATE: 'Validate',
 
   'App Repositorys': 'App Repositories',
   APP_REPO_URL_DESC:

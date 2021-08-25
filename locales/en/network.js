@@ -18,7 +18,9 @@
 
 module.exports = {
   'Add Allowlist': 'Add Allowlist',
-  'Create Network Policy': 'Create Network Policy',
+  CREATE_NETWORK_POLICY_TCAP: 'Create Network Policy',
+  // Network Policies Page
+  CREATE_BTN: 'Create',
   Direction: 'Direction',
   Egress: 'Egress',
   Ingress: 'Ingress',
@@ -36,11 +38,11 @@ module.exports = {
   NETWORK_POLICY_Q: 'How do I use a network policy better?',
   NETWORK_ISOLATION_Q: 'How do I use network isolation better?',
   NETWORK_POLICY_A:
-    'We have compiled several common application scenarios based on the actual scenarios, and you can refer to the documentation for more information.',
-  NETWORK_POLICY_Q1: 'Requirement to implement a network policy',
-  NETWORK_ISOLATION_Q1: 'Requirement to implement network isolation',
+    'We have identified several common use cases based on actual scenarios, and you can refer to the documentation for more information.',
+  NETWORK_POLICY_Q1: 'Requirement for implementing a network policy',
+  NETWORK_ISOLATION_Q1: 'Requirement for implementing network isolation',
   NETWORK_POLICY_A1:
-    'Make sure that the CNI network plugin used by the cluster supports <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/" target="_blank">NetworkPolicy</a>. There are a number of CNI network plugins that support NetworkPolicy, including Calico, Cilium, Kube-router, Romana and Weave Net.',
+    'Make sure that the CNI network plugin used by the cluster supports <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/" target="_blank">Network Policies</a>. A number of CNI network plugins support Network Policies, including Calico, Cilium, Kube-router, Romana, and Weave Net.',
   NETWORK_POLICY_EMP_TITLE: 'Project Network Isolation Not Enabled',
   NETWORK_POLICY_EMP_DESC:
     'The current project can be accessed by other projects in the cluster based on the workspace settings. Once network isolation is enabled for the project, other projects will be unable to access it while you can still customize specific projects, services or external addresses that can be released.',
@@ -63,7 +65,7 @@ module.exports = {
   NETWORK_POLICY_D_OP1: 'Egress',
   NETWORK_POLICY_D_OP2: 'Ingress',
   NETWORK_POLICY_CREATE_DESC:
-    'The network policy is configured to allow network isolation within the same cluster, that is, the ability to build a firewall between certain instances (pods).',
+    'The network policy is configured to allow network isolation within the same cluster, namely, the ability to build a firewall between certain instances (Pods).',
   CIDR_DESC: 'Based on the traffic direction',
   NETWORK_POLICY_MODAL_DIRECT: 'Please select the rule direction',
   NETWORK_POLICY_MODAL_CIDRERR: 'Please fill in the CIDR information correctly',

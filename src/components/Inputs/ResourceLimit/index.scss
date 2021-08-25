@@ -150,3 +150,9 @@
     }
   }
 }
+
+.message {
+  span + span {
+    margin-left: 8px;
+  }
+}

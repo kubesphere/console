@@ -69,8 +69,6 @@ export default class App extends Component {
       set(globals, `clusterConfig.${cluster.name}`, cluster.configz)
     })
 
-    await this.props.rootStore.getRules(params)
-
     globals.app.cacheHistory(this.props.match.url, {
       type: 'Multi-cluster Project',
       name: this.store.detail.name,

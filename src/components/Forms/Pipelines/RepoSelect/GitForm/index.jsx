@@ -59,12 +59,12 @@ export default class GitForm extends React.Component {
             desc={t(
               'Any repository containing Jenkinsfile will be built automatically.'
             )}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Input name="git_source.url" />
           </Form.Item>
           <Form.Item
-            label={t('Credential')}
+            label={t('CREDENTIAL_SI')}
             desc={
               <p>
                 {t('ADD_NEW_CREDENTIAL_DESC')}

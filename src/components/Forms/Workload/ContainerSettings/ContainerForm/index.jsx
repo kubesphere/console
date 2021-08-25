@@ -97,7 +97,7 @@ export default class ContaineForm extends React.Component {
   get title() {
     const { type, titlePrefix } = this.props
 
-    const title = t(`${type} Container`)
+    const title = t(`${type.toUpperCase()}_CONTAINER`)
 
     return `${titlePrefix}${title}`
   }
@@ -188,6 +188,7 @@ export default class ContaineForm extends React.Component {
             imageRegistries={imageRegistries}
             defaultContainerType={containerType}
             onContainerTypeChange={this.handleContainerTypeChange}
+            workspaceQuota={this.props.workspaceQuota}
           />
           <Ports withService={containerType !== 'init' ? withService : false} />
           <ImagePullPolicy />

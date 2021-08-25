@@ -72,7 +72,7 @@ export default class MonitoringModalController extends Base {
       <div className={styles.header}>
         <div className={styles.title}>
           <Icon name={icon || 'monitor'} size={16} />
-          {title || t('Monitoring')}
+          {title || t('MONITORING')}
         </div>
         {this.renderOperations()}
       </div>

@@ -150,12 +150,12 @@ export default class CreateModal extends React.Component {
       <div className={styles.footer}>
         {currentStep ? (
           <Button type="default" onClick={this.handlePrev}>
-            {t('Previous')}
+            {t('PREVIOUS')}
           </Button>
         ) : null}
         {showNext && (
           <Button type="control" onClick={this.handleNext}>
-            {t('Next')}
+            {t('NEXT')}
           </Button>
         )}
         {showModify && (

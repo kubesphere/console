@@ -129,7 +129,7 @@ export default class SanpshotForm extends Component {
       <>
         <Form.Item
           label={t('Volume Snapshot')}
-          rules={[{ required: true, message: t('This param is required') }]}
+          rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           className={styles.snapshotContainer}
         >
           <SnapshotSelect
@@ -147,8 +147,8 @@ export default class SanpshotForm extends Component {
           <Loading spinning={isStorageClassLoading}>
             <Form.Item
               className="margin-t12"
-              label={t('Access Mode')}
-              rules={[{ required: true, message: t('This param is required') }]}
+              label={t('ACCESS_MODE_TCAP')}
+              rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <AccessModes
                 name="spec.accessModes[0]"
@@ -211,7 +211,7 @@ function SnapshotSelect({
           </div>
           <div>
             <h3>{snapshot.createTime}</h3>
-            <p>{t('Created Time')}</p>
+            <p>{t('CREATED_AT')}</p>
           </div>
         </div>
       ))}

@@ -24,45 +24,45 @@ module.exports = {
   Selector: '選擇器',
   'External Address': '外部地址',
   'LoadBalancer IP': '負載平衡 IP',
-  'Create Service': '創建服務',
+  CREATE_SERVICE: '創建服務',
   'Delete Service': '刪除服務',
-  'Access Method': '訪問方式',
+  ACCESS_METHOD: '訪問方式',
   'Target Port': '目標端口',
-  'Container Port': '容器端口',
-  'Service Port': '服務端口',
+  CONTAINER_PORT: '容器端口',
+  SERVICE_PORT: '服務端口',
   'Node Port': '節點端口',
   'Node Port(s)': '節點端口',
-  'Edit Service': '編輯服務',
-  'Edit Internet Access': '編輯外網訪問',
+  EDIT_SERVICE: '編輯服務',
+  EDIT_INTERNET_ACCESS: '編輯外網訪問',
   'Please select Service': '請選擇 Service',
   'Path is Required': '請填寫 Path',
-  'Virtual IP': '虛擬 IP',
+  VIRTUAL_IP: '虛擬 IP',
 
-  'Service Type': '服務類型',
+  SERVICE_TYPE_TCAP: '服務類型',
   'Service Access': '服務訪問',
-  'Stateless Service': '無狀態服務',
-  'Stateful Service': '有狀態服務',
+  STATELESS_SERVICE: '無狀態服務',
+  STATEFUL_SERVICE: '有狀態服務',
   'External Service': '外部服務',
   'Simple Service': '簡單服務',
   'Associated Application': '關聯應用',
   'Service Mesh': '服務治理',
 
   'Internal access': '内部訪問',
-  'Access Type': '訪問類型',
+  ACCESS_TYPE: '訪問類型',
 
   'Service Name': '服務名稱',
   'Please input service name': '請輸入服務名稱',
-  'Please input ExternalName': '請輸入 ExternalName',
-  'Specify Workload': '指定工作負載',
+  ENTER_EXTERNALNAME_DESC: '請輸入 ExternalName。',
+  SPECIFY_WORKLOAD: '指定工作負載',
   'Specify Node': '指定節點',
   'Add Selector': '添加選擇器',
 
   Auto: '自动',
 
-  'Invalid port': '無效端口',
+  INVALID_PORT_DESC: 'Please enter a valid protocol or port number.',
   'Not Associate': '不關聯',
 
-  'Custom Creation': '自定義創建',
+  CUSTOM_CREATION: '自定義創建',
   'Specify Workloads': '指定工作負載',
   'Create service by specifying workloads': '指定工作負載創建服務',
   'Create service by Yaml': '通過 Yaml 創建服務',
@@ -74,21 +74,20 @@ module.exports = {
   'Automatically assign Service IP': '自動分配服務 IP',
   'Do not assign Service IP': '不分配服務 IP',
   'Map Services outside the cluster': '映射集群外部的服務',
-  'Please input ports': '請輸入端口',
+  ENTER_PORT_NUMBER: '請輸入端口',
   'Please select a workload': '請選擇一個工作負載',
-  'Please input valid Selector': '請輸入正确的選擇器',
+  ENTER_SELECTOR_TIP: 'Please enter a valid selector.',
   TOTAL_WORKLOAD: '共 {count} 個工作負載',
 
-  'Enable Sticky Session': '開啟會話保持',
-  'Maximum Session Sticky Time (s)': '最大會話保持時間(秒)',
-  'The maximum session sticky time is 10800s (3 hours).':
-    '會話保持時間預設是 10800 秒(即 3 小時)',
+  STICKY_SESSION: '會話保持',
+  MAXIMUM_STICKINESS_DURATION: '最大會話保持時間（秒）',
+  STICKY_SESSION_DESC: 'The default stickiness duration is 10800s (3 h).',
 
   SERVICE_NAME_DESC:
-    '最長 63 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母開頭, 字母或數字結尾',
+    'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
 
   SERVICE_DESC:
-    '服務 (Service) 是定義了一類容器組的邏輯集合和一個用於訪問它们的策略。',
+    'Services provide an abstract way to expose applications running on a Pod as network services.',
   SERVICE_CREATE_DESC:
     '服務是定義了一類 Pod 的邏輯集合和一個用於訪問它们的策略。您可選擇服務的類型或者創建服務的方式。<br/>KubeSphere 支持無狀態服務和有狀態服務，並支持通過代碼或者成品構建服務。',
 
@@ -99,10 +98,9 @@ module.exports = {
   SERVICE_EXTERNAL_NAME_DESC:
     '通過返回 CNAME 和它的值，可以將服務映射到 externalName 字段的内容',
 
-  ACCESS_NONE_TIP: '不提供外網訪問',
-  ACCESS_NODEPORT_TIP: '通過訪問集群節點的對應端口來訪問服務（NodePort）',
-  ACCESS_LOADBALANCER_TIP:
-    '通過雲服務商提供的負載平衡器來訪問服務 (LoadBalancer)',
+  ACCESS_NONE_TIP: '不提供外網訪問。',
+  ACCESS_NODEPORT_TIP: '通過集群節點的對應端口來訪問服務。',
+  ACCESS_LOADBALANCER_TIP: '通過雲服務商提供的負載平衡器來訪問服務。',
 
   'The current selector': '目前設置的選擇器',
   'Commonly included tags in the current workloads':
@@ -114,15 +112,14 @@ module.exports = {
   Creating: '正在創建',
   'Creation failed, please delete and try again': '創建失敗，請刪除後重試',
 
-  'Add Route Rule': '添加路由規則',
+  ADD_ROUTE_RULE_TCAP: '添加路由規則',
 
-  VIRTUAL_IP_TITLE: '通過集群内部IP來訪問服務 Virtual IP',
+  VIRTUAL_IP_TITLE: 'Virtual IP Address',
   VIRTUAL_IP_DESC:
-    '以集群為服務生成的集群内唯一的 IP 為基礎，集群内部可以通過此 IP 來訪問服務。',
-  HEADLESS_SELECTOR_TITLE:
-    '集群内部通過服務的後端 Endpoint IP 直接訪問服務 Headless (selector)',
+    'The cluster generates a unique IP address for the Service and the Service can be accessed within the cluster using this IP address.',
+  HEADLESS_SELECTOR_TITLE: 'Headless (Selector)',
   HEADLESS_SELECTOR_DESC:
-    '集群不為服務生成 IP，集群内部通過服務的後端 Endpoint IP 直接訪問服務。此類型適合後端異構的服務，比如需要區分主從的服務。',
+    'The cluster does not generate an IP address for the Service and the Service can be directly accessed using the Endpoint IP address of the Service.',
   HEADLESS_EXTERNAL_NAME_TITLE:
     '映射集群外部的地址來訪 Headless (externalname)',
   HEADLESS_EXTERNAL_NAME_DESC: '將集群或者項目外部服務映射到集群或項目内。',
@@ -135,7 +132,7 @@ module.exports = {
   SERVICE_TYPE: '您可以自定義創建 無狀態服務 或者 有狀態服務',
 
   SPECIFY_WORKLOAD_DESC:
-    '指定工作負載可以將工作負載所創建的容器組副本的 Label 作為預填充内容',
+    '將工作負載所創建的容器組副本的 Label 作為預填充内容。',
 
   SPECIFY_NODE_DESC: '指定節點可以將節點的 Label 作為預填充內容',
 
@@ -166,9 +163,23 @@ module.exports = {
   SERVICE_TYPE_STATELESSSERVICE: '無狀態服務',
   SERVICE_TYPE_EXTERNALSERVICE: '映射外部服務',
 
-  SERVICE_PORTS_DESC: '設置容器鏡像暴露的端口以及服務端口',
+  SERVICE_PORTS_DESC: '設置容器鏡像暴露的端口以及服務端口。',
 
   EIP_POOL_DESC: '集群内部訪問方式(DNS)',
 
-  SERVICE_SESSION_STICKY_DESC: '最小為 0，最大為 86400',
+  STICKINESS_VALUE_RANGE: 'Value range: 0-86400.',
+
+  // Services
+  PORT: 'Port',
+  PROTOCOL: 'Protocol',
+  ADD: 'Add',
+  LABEL_SELECTOR: 'Label Selector',
+  NONE: 'None',
+  UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
+  HEADLESS: 'Headless',
+  EXTERNALNAME: 'ExternalName',
+  UNKNOWN: 'Unknown',
+  EXTERNALNAME_EXAMPLE: 'Example: ',
+  PORTS: 'Ports',
+  REQUIRED: 'Required',
 }

@@ -20,7 +20,6 @@ module.exports = {
   'Log In': 'Log In',
   'Please Log In': 'Please Log In',
   'Username or Email': 'Username or Email',
-  Password: 'Password',
   Captcha: 'Captcha',
   'User does not exist': 'User does not exist',
   'Wrong username or password, please try again':
@@ -42,7 +41,7 @@ module.exports = {
   'Log In with {title}': 'Log In with {title}',
 
   'Please input username or email': 'Please input username or email',
-  'Please input password': 'Please input password',
+  ENTER_PASSWORD_TIP: 'Please enter a password.',
   'Please input captch': 'Please input captch',
   'Please confirm your account info': 'Please confirm your account info',
   'Please input username': 'Please enter your username',

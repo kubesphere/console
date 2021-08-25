@@ -116,7 +116,7 @@ class BaseInfo extends React.Component {
         key: 'edit',
         icon: 'pen',
         action: 'edit',
-        text: t('Edit Info'),
+        text: t('EDIT_INFO'),
       },
       {
         key: 'delete',
@@ -216,7 +216,7 @@ class BaseInfo extends React.Component {
             <div>
               <Link to={`/workspaces/${this.workspace}`}>{this.workspace}</Link>
             </div>
-            <p>{t('Workspace')}</p>
+            <p>{t('WORKSPACE')}</p>
           </div>
           <div className={styles.item}>
             <div>{detail.creator || '-'}</div>
@@ -226,7 +226,7 @@ class BaseInfo extends React.Component {
             <div>
               {getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`)}
             </div>
-            <p>{t('Created Time')}</p>
+            <p>{t('CREATED_AT')}</p>
           </div>
           {!isEmpty(this.enabledItemActions) && (
             <div className={classNames(styles.item, 'text-right')}>

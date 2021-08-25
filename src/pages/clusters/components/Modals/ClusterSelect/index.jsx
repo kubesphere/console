@@ -74,7 +74,7 @@ export default class ClusterSelectModal extends React.Component {
             <Column>
               <InputSearch
                 value={keyword}
-                placeholder={t('Search by name')}
+                placeholder={t('SEARCH_BY_NAME')}
                 onSearch={this.handleSearch}
               />
             </Column>

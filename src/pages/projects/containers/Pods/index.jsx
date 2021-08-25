@@ -60,7 +60,7 @@ export default class Pods extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
@@ -100,7 +100,7 @@ export default class Pods extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -115,7 +115,7 @@ export default class Pods extends React.Component {
         render: this.renderNode,
       },
       {
-        title: t('Pod IP'),
+        title: t('POD_IP_TCAP'),
         dataIndex: 'podIp',
         isHideable: true,
         width: '15%',
@@ -128,7 +128,7 @@ export default class Pods extends React.Component {
         width: '15%',
       },
       {
-        title: t('Updated Time'),
+        title: t('UPDATED_AT'),
         dataIndex: 'startTime',
         sorter: true,
         sortOrder: getSortOrder('startTime'),
@@ -172,7 +172,7 @@ export default class Pods extends React.Component {
 
     if (!node) return '-'
 
-    const text = `${node}(${nodeIp})`
+    const text = t('NODE_IP', { node, ip: nodeIp })
 
     return <Link to={`/clusters/${cluster}/nodes/${node}`}>{text}</Link>
   }

@@ -46,22 +46,27 @@ export default class Shell extends React.Component {
   static getDerivedStateFromProps(nextProps) {
     if (nextProps.edittingData.type === 'script') {
       const value = get(nextProps.edittingData.data, '[0].value.value', '')
-      return { value }
+      return { value, initValue: value }
     }
     return null
   }
 
   handleChange = value => {
+    this.isInputed = true
     this.newValue = value
   }
 
   handleOk = () => {
+    const { initValue } = this.state
     this.props.onAddStep({
       name: 'script',
       arguments: [
         {
           key: 'scriptBlock',
-          value: { isLiteral: true, value: this.newValue || '' },
+          value: {
+            isLiteral: true,
+            value: this.isInputed ? this.newValue : initValue,
+          },
         },
       ],
     })

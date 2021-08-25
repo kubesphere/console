@@ -75,21 +75,21 @@ class ClusterMonitorings extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'utilisation',
-      title: 'CPU Utilization',
+      title: 'CPU_USAGE',
       unit: '%',
-      legend: ['Utilization'],
+      legend: ['USAGE'],
       data: get(this.metrics, `${MetricTypes.cpu_utilisation}.data.result`),
     },
     {
       type: 'utilisation',
-      title: 'Memory Utilization',
+      title: 'MEMORY_USAGE',
       unit: '%',
-      legend: ['Utilization'],
+      legend: ['USAGE'],
       data: get(this.metrics, `${MetricTypes.memory_utilisation}.data.result`),
     },
     {
       type: 'load',
-      title: 'CPU Load Average',
+      title: 'AVERAGE_CPU_LOAD',
       legend: [
         t('TIME_M', { num: 1 }),
         t('TIME_M', { num: 5 }),
@@ -103,16 +103,16 @@ class ClusterMonitorings extends React.Component {
     },
     {
       type: 'usage',
-      title: 'Disk Usage',
+      title: 'DISK_USAGE',
       unitType: 'disk',
-      legend: ['Usage'],
+      legend: ['USAGE'],
       data: get(this.metrics, `${MetricTypes.disk_size_usage}.data.result`),
     },
     {
       type: 'utilisation',
-      title: 'inode Utilization',
+      title: 'INODE_USAGE',
       unit: '%',
-      legend: ['UTILIZATION'],
+      legend: ['USAGE'],
       data: get(
         this.metrics,
         `${MetricTypes.disk_inode_utilisation}.data.result`
@@ -120,7 +120,7 @@ class ClusterMonitorings extends React.Component {
       renderTooltip: () => {
         const usageData = getChartData({
           unit: '',
-          legend: ['UTILIZATION'],
+          legend: ['USAGE'],
           valuesData: [
             get(
               this.metrics,
@@ -131,7 +131,7 @@ class ClusterMonitorings extends React.Component {
         })
         const totalData = getChartData({
           unit: '',
-          legend: ['UTILIZATION'],
+          legend: ['USAGE'],
           valuesData: [
             get(
               this.metrics,
@@ -146,9 +146,9 @@ class ClusterMonitorings extends React.Component {
     },
     {
       type: 'throughput',
-      title: 'Disk Throughput',
+      title: 'DISK_THROUGHPUT',
       unitType: 'throughput',
-      legend: ['Read', 'Write'],
+      legend: ['READ', 'WRITE'],
       data: [
         get(
           this.metrics,
@@ -165,7 +165,7 @@ class ClusterMonitorings extends React.Component {
     {
       type: 'iops',
       title: 'IOPS',
-      legend: ['Read', 'Write'],
+      legend: ['READ', 'WRITE'],
       data: [
         get(this.metrics, `${MetricTypes.disk_read_iops}.data.result[0]`, {}),
         get(this.metrics, `${MetricTypes.disk_write_iops}.data.result[0]`, {}),
@@ -173,9 +173,9 @@ class ClusterMonitorings extends React.Component {
     },
     {
       type: 'bandwidth',
-      title: 'Network Bandwidth',
+      title: 'NETWORK_BANDWIDTH',
       unitType: 'bandwidth',
-      legend: ['Out', 'In'],
+      legend: ['OUT', 'IN'],
       data: [
         get(this.metrics, `${MetricTypes.net_transmitted}.data.result[0]`, {}),
         get(this.metrics, `${MetricTypes.net_received}.data.result[0]`, {}),
@@ -183,9 +183,9 @@ class ClusterMonitorings extends React.Component {
     },
     {
       type: 'count',
-      title: 'Pod Status',
+      title: 'POD_STATUS',
       unit: '',
-      legend: ['Running', 'Completed', 'Warning'],
+      legend: ['RUNNING', 'COMPLETED', 'WARNING'],
       data: [
         get(
           this.metrics,
@@ -212,7 +212,7 @@ class ClusterMonitorings extends React.Component {
 
     return (
       <MonitoringController
-        title={t('Running Status')}
+        title={t('PHYSICAL_RESOURCES_MONITORING')}
         step="2m"
         times={50}
         onFetch={this.fetchData}

@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  Validate: '验证',
+  VALIDATE: '验证',
   APP_REPO_DESC:
     '可用添加来自第三方的应用仓库源，可以支持基于 Helm 的 Kubernetes 应用。 ',
   APP_REPO_URL_DESC: '所输入的 URL 需要先验证才可进行添加或编辑操作',

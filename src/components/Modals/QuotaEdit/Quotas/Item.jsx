@@ -18,29 +18,25 @@
 
 import React from 'react'
 
-import { Button, Select } from '@kube-design/components'
-import { NumberInput } from 'components/Inputs'
+import { Input, Select } from '@kube-design/components'
 import { QUOTAS_MAP } from 'utils/constants'
-import { debounce } from 'lodash'
+import { ObjectInput, NumberInput } from 'components/Inputs'
 
 import {
   RESERVED_MODULES,
   FEDERATED_PROJECT_UNSOPPORT_QUOTA,
 } from './constants'
 
-import styles from './index.scss'
-
 export default class QuotaItem extends React.Component {
-  state = {
-    module: this.props.module,
-  }
-
   get options() {
-    const { filterModules = [], module } = this.props
+    const { arrayValue, value } = this.props
+    const module = value.module
+    const filterModules = arrayValue.map(_item => _item.module)
     const filteredModules = [
       ...filterModules.filter(m => m !== module),
       ...RESERVED_MODULES,
     ]
+
     return Object.keys(QUOTAS_MAP)
       .filter(
         key =>
@@ -55,56 +51,49 @@ export default class QuotaItem extends React.Component {
       }))
   }
 
-  handleDebounceModuleChange = debounce((newModule, index) => {
-    const { onModuleChange } = this.props
-    onModuleChange(newModule, index)
-  }, 400)
-
-  handleModuleChange = (newModule, index) => {
-    this.setState(
-      {
-        module: newModule,
-      },
-      () => {
-        this.handleDebounceModuleChange(newModule, index)
-      }
-    )
+  handleLimitValue = item => {
+    this.props.onChange(item)
   }
 
-  handleModuleDelete = index => {
-    const { onModuleDelete } = this.props
-    onModuleDelete(index)
-  }
-
-  render() {
-    const { value, onChange, disableSelect, index } = this.props
-
-    return (
-      <div className={styles.item}>
-        <Select
-          disabled={disableSelect}
-          options={this.options}
-          onChange={moduleValue => this.handleModuleChange(moduleValue, index)}
-          value={this.state.module}
-          searchable
-        />
+  renderInputByModule = () => {
+    const { value } = this.props
+    const mapKey = Object.keys(QUOTAS_MAP)
+    if (mapKey.includes(value.module)) {
+      return (
         <NumberInput
+          name="value"
           className="margin-l12"
-          value={value}
           placeholder={t(
             'You can limit the number of resources. Blank means no limit.'
           )}
           integer
-          onChange={onChange}
         />
-        <Button
-          type="flat"
-          icon="trash"
-          className="margin-l12"
-          onClick={() => this.handleModuleDelete(index)}
-          disabled={disableSelect}
+      )
+    }
+    return (
+      <Input
+        name="value"
+        className="margin-l12"
+        placeholder={t(
+          'You can limit the number of resources. Blank means no limit.'
+        )}
+      />
+    )
+  }
+
+  render() {
+    const { value } = this.props
+
+    return (
+      <ObjectInput value={value} onChange={this.handleLimitValue}>
+        <Select
+          name="module"
+          options={this.options}
+          searchable
+          disabled={value.module === 'pods'}
         />
-      </div>
+        {this.renderInputByModule()}
+      </ObjectInput>
     )
   }
 }

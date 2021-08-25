@@ -87,7 +87,7 @@ export default class ModifyModal extends React.Component {
     return (
       <Modal.Form
         width={600}
-        title={title || t('Modify Service Account Role')}
+        title={title || t('MODIFY_SERVICE_ACCOUNT_ROLE')}
         icon="client"
         data={formData}
         onOk={this.handleOk}
@@ -95,7 +95,7 @@ export default class ModifyModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Project Role')} desc={t('PROJECT_ROLE_DESC')}>
+        <Form.Item label={t('PROJECT_ROLE_SI')} desc={t('PROJECT_ROLE_DESC')}>
           <RoleSelect
             name="metadata.annotations['iam.kubesphere.io/role']"
             cluster={cluster}

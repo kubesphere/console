@@ -17,6 +17,7 @@
  */
 
 module.exports = {
+  DISK: '磁盘',
   Dashboard: '首页',
   dashboard: '首页',
   'Last login time': '最近登录',
@@ -33,7 +34,6 @@ module.exports = {
   'CPU Utilization': 'CPU 利用率',
   'CPU Load Average': 'CPU 平均负载',
   'Replica Availability': '副本可用率',
-  'Local Storage': '本地存储',
   'Disk Utilization': '磁盘利用率',
   'Node Status': '主机状态',
   'View All Nodes': '查看全部主机',
@@ -50,9 +50,9 @@ module.exports = {
   'Cluster Status': '集群状况',
   'Resources Usage Ranking': '资源用量排行',
 
-  Deployments: '部署',
-  StatefulSets: '有状态副本集',
-  DaemonSets: '守护进程集',
+  DEPLOYMENTS: '部署',
+  STATEFULSETS: '有状态副本集',
+  DAEMONSETS: '守护进程集',
   Jobs: '任务',
   CronJobs: '定时任务',
   Pods: '容器组',

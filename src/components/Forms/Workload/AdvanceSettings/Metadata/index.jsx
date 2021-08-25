@@ -62,7 +62,7 @@ export default class Metadata extends React.Component {
       .checkLabels({ labels: value, namespace, cluster })
       .then(resp => {
         if (resp.exist) {
-          return callback({ message: t('Labels exists'), field: rule.field })
+          return callback({ message: t('LABEL_EXIST_DESC'), field: rule.field })
         }
         callback()
       })
@@ -77,14 +77,14 @@ export default class Metadata extends React.Component {
         >
           <PropertiesInput
             name="metadata.labels"
-            addText={t('Add Label')}
+            addText={t('ADD_LABEL')}
             onChange={this.handleLabelsChange}
           />
         </Form.Item>
         <Form.Item label={t('Annotations')}>
           <PropertiesInput
             name="metadata.annotations"
-            addText={t('Add Annotation')}
+            addText={t('ADD_ANNOTATION')}
             hiddenKeys={globals.config.preservedAnnotations}
             onChange={this.handleAnnotationsChange}
           />

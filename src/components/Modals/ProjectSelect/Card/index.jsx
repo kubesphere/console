@@ -66,7 +66,7 @@ export default class ProjectCard extends React.Component {
       { title: admin || '-', description: t('Creator') },
       {
         title: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
-        description: t('Created Time'),
+        description: t('CREATED_AT'),
       },
     ]
 

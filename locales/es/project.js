@@ -17,15 +17,16 @@
  */
 
 module.exports = {
+  CLUSTER: 'Cluster',
   'Add Quota Item': 'Agregar elemento de cuota',
   'Are you sure to disable it?': '¿Estás seguro de deshabilitarlo?',
-  'Assign Workspace': 'Asignar espacio de trabajo',
-  'Choose a workspace': 'Elige un espacio de trabajo',
+  ASSIGN_WORKSPACE: 'Asignar espacio de trabajo',
+  SELECT_WORKSPACE_DESC: 'Elige un espacio de trabajo',
   Closed: 'Cerrado',
   'Container Resource Default Request':
     'Solicitud predeterminada de recursos de contenedor',
   'Create Multi-cluster Project': 'Crear proyecto de clúster múltiple',
-  'Create Project': 'Crear proyecto',
+  CREATE_PROJECT: 'Crear proyecto',
   cronjobs: 'cronjobs',
   DaemonSet: 'DaemonSet',
   daemonsets: 'daemonsets',
@@ -79,6 +80,9 @@ module.exports = {
   'Modify Members Role': 'Modificar rol de miembros',
   'Multi-cluster Project': 'Proyecto de clúster múltiple',
   'Multi-cluster Projects': 'Proyectos de clústeres múltiples',
+
+  FEDPROJECT_CANNOT_ADD_CLUSTER: 'Unable to add a new cluster',
+
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
     'Borrar un proyecto multi-cluster borra también el mismo proyecto en el host de cluster.</br>Por favor, introduce el nombre {type} <strong>{resource}</strong> para estar seguro de que entiendes el riesgo de esta operación.',
   'Network Isolation': 'Aislamiento de red',
@@ -89,7 +93,7 @@ module.exports = {
   'Please input project name': 'Por favor introduce el nombre del proyecto',
   pods: 'pods',
   'Project Info': 'Información del proyecto',
-  'Project Manager': 'Gestor de proyecto',
+  PROJECT_ADMINISTRATOR: 'Gestor de proyecto',
   'Project Member': 'Miembro del proyecto',
   'Project Members': 'Miembros del proyecto',
   'project members': 'miembros del proyecto',
@@ -101,6 +105,8 @@ module.exports = {
   'Project Placement': 'Colocación del proyecto',
   'Project Quota': 'Cuota de proyecto',
   'Project Role': 'Rol del proyecto',
+  // Create ServiceAccount Page
+  PROJECT_ROLE_SI: 'Rol del proyecto',
   'Project Roles': 'Roles del proyecto',
   Project_Admin: 'Project_Admin',
   Projects: 'Proyectos',
@@ -111,12 +117,12 @@ module.exports = {
   'requests.cpu': 'request.cpu',
   'requests.memory': 'requests.memory',
   'Resource Quota': 'Cuota de recursos',
-  'Resource Type': 'Tipo de recurso',
-  'Select a user of the workspace as the manager of the project.':
+  RESOURCE_TYPE: 'Tipo de recurso',
+  PROJECT_ADMINISTRATOR_DESC:
     'Selecciona un usuario del espacio de trabajo como administrador del proyecto.',
   'Select Project Type': 'Seleccionar tipo de proyecto',
-  'Select the cluster to create the project.':
-    'Selecciona el clúster para crear el proyecto.',
+  SELECT_CLUSTER_DESC: 'Selecciona el clúster para crear el proyecto.',
+  CLUSTER_NOT_SELECT_DESC: 'Selecciona un cluster, por favor.',
   Service: 'Servicio',
   'Set Gateway': 'Establecer puerta de enlace',
   StatefulSet: 'StatefulSet',
@@ -130,12 +136,14 @@ module.exports = {
     'Puedes limitar la cantidad de recursos. En blanco significa que no hay límite.',
   PROJECTS_DESC:
     'Un proyecto es un namespace de Kubernetes en KubeSphere, que proporciona un mecanismo para organizar los recursos en un espacio de trabajo.',
-  PROJECT_CREATE_DESC:
+  CREATE_PROJECT_DESC:
     'Un proyecto es un namespace de Kubernetes en KubeSphere, que proporciona un mecanismo para organizar los recursos en un espacio de trabajo.',
   PROJECT_ADVANCE_DESC:
     'Establecer la solicitud de recursos predeterminada del proyecto',
   PROJECT_NAME_DESC:
-    'El nombre del proyecto solo puedes contener letras minúsculas, números y guiones ("-").',
+    'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 63.',
+  PROJECT_NAME_INVALID_DESC:
+    'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 63.',
   PROJECT_BASEINFO_DESC: 'Configuración de información básica del proyecto',
   PROJECT_TYPES_PROJECT_TITLE: 'Crear un proyecto de recursos',
   PROJECT_TYPES_PROJECT_DESC:

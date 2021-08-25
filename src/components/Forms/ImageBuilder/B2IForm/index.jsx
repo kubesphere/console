@@ -209,7 +209,7 @@ export default class S2IForm extends React.Component {
               label={t('imageName')}
               desc={t('S2I_IMAGENAME_DESC')}
               rules={[
-                { required: true, message: t('This param is required') },
+                { required: true, message: t('PARAM_REQUIRED') },
                 {
                   pattern: PATTERN_IMAGE_NAME,
                   message: t('Invalid name', {
@@ -224,7 +224,7 @@ export default class S2IForm extends React.Component {
           <div className="is-2">
             <Form.Item
               label={t('tag')}
-              rules={[{ required: true, message: t('This param is required') }]}
+              rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <Input
                 name={`${this.prefix}spec.config.tag`}
@@ -238,7 +238,7 @@ export default class S2IForm extends React.Component {
               desc={t.html('S2I_TARGET_IMAGE_REPONSTRY_DESC', {
                 link: getDocsUrl('secrets'),
               })}
-              rules={[{ required: true, message: t('This param is required') }]}
+              rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <Select
                 name={`${this.prefix}spec.config.pushAuthentication.secretRef.name`}

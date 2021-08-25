@@ -104,7 +104,7 @@ export default class ImageBuilderDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFO'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -116,7 +116,7 @@ export default class ImageBuilderDetail extends React.Component {
     {
       key: 'editYaml',
       icon: 'pen',
-      text: t('Edit YAML'),
+      text: t('EDIT_YAML'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -127,7 +127,7 @@ export default class ImageBuilderDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
@@ -163,11 +163,11 @@ export default class ImageBuilderDetail extends React.Component {
 
     return [
       {
-        name: t('Name'),
+        name: t('NAME'),
         value: detail.name,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: detail.namespace,
       },
       {
@@ -208,7 +208,7 @@ export default class ImageBuilderDetail extends React.Component {
         ),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

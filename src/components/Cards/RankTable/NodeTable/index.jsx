@@ -57,7 +57,7 @@ export default class NodeUsageRank extends React.Component {
       render: () => <Icon name="nodes" type="dark" size={40} />,
     },
     {
-      title: t('NODES'),
+      title: t('NODE'),
       render: node => {
         const link = get(node, 'role', []).includes('edge')
           ? `/clusters/${this.props.cluster}/edgenodes/${node.node}`
@@ -82,7 +82,7 @@ export default class NodeUsageRank extends React.Component {
       key: 'cpu',
       width: this.rankTdWidth,
       sort_metric: 'node_cpu_utilisation',
-      title: t('CPU'),
+      title: t('CPU_USAGE'),
       render: node => {
         const unit = getSuitableUnit(node.node_cpu_total, 'cpu')
         return (
@@ -99,7 +99,7 @@ export default class NodeUsageRank extends React.Component {
     {
       width: this.rankTdWidth,
       title: (
-        <span className={styles.averageload}>{t('CPU_AVERAGE_LOAD')}</span>
+        <span className={styles.averageload}>{t('AVERAGE_CPU_LOAD')}</span>
       ),
       sort_metric: 'node_load1',
       render: node => (
@@ -113,7 +113,7 @@ export default class NodeUsageRank extends React.Component {
     {
       width: this.rankTdWidth,
       sort_metric: 'node_memory_utilisation',
-      title: t('Memory'),
+      title: t('MEMORY_USAGE'),
       key: 'Memory',
       render: node => (
         <div>
@@ -126,7 +126,7 @@ export default class NodeUsageRank extends React.Component {
       ),
     },
     {
-      title: t('Local Storage'),
+      title: t('DISK_USAGE'),
       key: 'disk',
       sort_metric: 'node_disk_size_utilisation',
       width: this.rankTdWidth,
@@ -142,7 +142,7 @@ export default class NodeUsageRank extends React.Component {
     },
     {
       width: this.rankTdWidth,
-      title: t('inode Utilization'),
+      title: t('INODE_USAGE'),
       sort_metric: 'node_disk_inode_utilisation',
       render: node => (
         <div>
@@ -155,7 +155,7 @@ export default class NodeUsageRank extends React.Component {
       ),
     },
     {
-      title: t('Pods'),
+      title: t('POD_USAGE'),
       key: 'Pod',
       width: this.rankTdWidth,
       sort_metric: 'node_pod_utilisation',

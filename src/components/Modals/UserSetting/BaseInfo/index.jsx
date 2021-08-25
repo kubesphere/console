@@ -74,7 +74,7 @@ export default class BaseInfo extends React.Component {
         >
           <Columns>
             <Column>
-              <Form.Item label={t('User Name')}>
+              <Form.Item label={t('USERNAME')}>
                 <Input name="metadata.name" placeholder="username" disabled />
               </Form.Item>
               <Form.Item label={t('Email')} desc={t('USER_SETTING_EMAIL_DESC')}>

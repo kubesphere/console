@@ -39,7 +39,7 @@ module.exports = {
     'Haz clic para seleccionar el archivo de artefacto a subir',
   'Code Resource': 'Recurso de código',
   'Code URL': 'URL de código',
-  'Container Settings': 'Configuración del contenedor',
+  CONTAINER_SETTINGS: 'Configuración del contenedor',
   creationTimestamp: 'creationTimestamp',
   'Currently only supports git repo': 'Actualmente solo admite repositorio git',
   'Download Artifact': 'Descargar Artefacto',
@@ -69,7 +69,7 @@ module.exports = {
   'No Log Records': 'Sin registros',
   'Please set the access policy for the container.':
     'Establece la política de acceso para el contenedor.',
-  'Please set the container name and computing resources.':
+  CONTAINER_SETTINGS_DESC:
     'Establece el nombre del contenedor y los recursos de computación.',
   'Published Time': 'Hora publicada',
   'Pull Command': 'Comando de pull',

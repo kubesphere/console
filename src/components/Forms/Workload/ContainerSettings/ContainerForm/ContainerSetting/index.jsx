@@ -79,6 +79,23 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
+  get workspaceLimitProps() {
+    const { workspaceQuota } = this.props
+    return !isEmpty(workspaceQuota)
+      ? {
+          limits: {
+            cpu: get(workspaceQuota, 'limits.cpu'),
+            memory: get(workspaceQuota, 'limits.memory'),
+          },
+          requests: {
+            cpu: get(workspaceQuota, 'requests.cpu'),
+            memory: get(workspaceQuota, 'requests.memory'),
+          },
+          limitType: 'project',
+        }
+      : {}
+  }
+
   limitError = ''
 
   getFormTemplate(data, imageRegistries) {
@@ -143,10 +160,12 @@ export default class ContainerSetting extends React.Component {
                 label={t('Container Name')}
                 desc={t('NAME_DESC')}
                 rules={[
-                  { required: true, message: t('Please input name') },
+                  { required: true, message: t('NAME_EMPTY_DESC') },
                   {
                     pattern: PATTERN_NAME,
-                    message: t('Invalid name', { message: t('NAME_DESC') }),
+                    message: t('INVALID_NAME_DESC', {
+                      message: t('NAME_DESC'),
+                    }),
                   },
                 ]}
               >
@@ -181,6 +200,7 @@ export default class ContainerSetting extends React.Component {
               name="resources"
               defaultValue={defaultResourceLimit}
               onError={this.handleError}
+              workspaceLimitProps={this.workspaceLimitProps}
             />
           </Form.Item>
         </>
@@ -193,8 +213,8 @@ export default class ContainerSetting extends React.Component {
     return (
       <Form.Group
         className={className}
-        label={t('Container Settings')}
-        desc={t('Please set the container name and computing resources.')}
+        label={t('CONTAINER_SETTINGS')}
+        desc={t('CONTAINER_SETTINGS_DESC')}
         noWrapper
       >
         {this.renderImageForm()}

@@ -37,16 +37,16 @@ const Card = ({ volume, match, isMultiProject }) => {
   let description
   let details
   if (volume.hostPath) {
-    description = `${t('Type')}: ${t('HostPath')}`
+    description = `${t('TYPE')}: ${t('HostPath')}`
     details = [
       { title: get(volume, 'hostPath.path', '-'), description: t('Host Path') },
     ]
   } else if (volume.emptyDir) {
-    description = `${t('Type')}: ${t('EmptyDir')}`
+    description = `${t('TYPE')}: ${t('EmptyDir')}`
     details = []
   } else if (volume.configMap) {
     icon = 'hammer'
-    description = `${t('Type')}: ${t('ConfigMap')}`
+    description = `${t('TYPE')}: ${t('ConfigMap')}`
     const configmap = get(volume, 'configMap.name', '-')
     details = [
       {
@@ -60,7 +60,7 @@ const Card = ({ volume, match, isMultiProject }) => {
     ]
   } else if (volume.secret) {
     icon = 'key'
-    description = `${t('Type')}: ${t('Secret')}`
+    description = `${t('TYPE')}: ${t('Secret')}`
     const secret = get(volume, 'secret.secretName', '-')
     details = [
       {
@@ -94,7 +94,7 @@ const Card = ({ volume, match, isMultiProject }) => {
       },
       {
         title: get(volume, 'accessMode', '-'),
-        description: t('Access Mode'),
+        description: t('ACCESS_MODE_TCAP'),
       },
     ]
   }

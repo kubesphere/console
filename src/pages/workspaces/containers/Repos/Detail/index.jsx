@@ -81,7 +81,7 @@ export default class RepoDetail extends React.Component {
       key: 'edit',
       icon: 'pen',
       type: 'control',
-      text: t('Edit'),
+      text: t('EDIT'),
       action: 'edit',
       onClick: () =>
         this.trigger('openpitrix.repo.edit', {
@@ -94,7 +94,7 @@ export default class RepoDetail extends React.Component {
       key: 'delete',
       icon: 'trash',
       type: 'danger',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       onClick: () =>
         this.trigger('resource.delete', {
@@ -114,7 +114,7 @@ export default class RepoDetail extends React.Component {
 
     return [
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`),
       },
       {

@@ -26,7 +26,7 @@ import styles from './index.scss'
 export default class ClusterNodes extends Component {
   render() {
     return (
-      <Panel title={t('Cluster Nodes')}>
+      <Panel title={t('NODE_PL')}>
         <div className={styles.status}>
           <NodesStatus />
         </div>

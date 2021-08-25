@@ -17,28 +17,28 @@
  */
 
 module.exports = {
-  'Account Password Secret': 'Account Password Secret',
-  'Add Data': 'Add Data',
-  'Add key / value pair data': 'Add key / value pair data',
+  ACCOUNT_PASSWORD_SECRET_TCAP: 'Account Password Secret',
+  ADD_DATA_TCAP: 'Add Data',
+  ADD_DATA_DESC: 'Add key-value pair data.',
   'Config Number': 'Count',
-  Data: 'Data',
-  'Edit Data': 'Edit Data',
+  DATA: 'Data',
+  EDIT_DATA_TCAP: 'Edit Data',
   'Edit Secret': 'Edit Secret',
   'Example: docker.io': 'Example: docker.io',
-  'Image Registry Secret': 'Image Registry Secret',
+  IMAGE_REGISTRY_SECRET_TCAP: 'Image Registry Secret',
   IMAGE_REGISTRY_REQUIRED_DESC:
     'The image registry secret must at least include the registry address, username and password.',
-  'Please input credential': 'Please input credential',
-  'Please input data': 'Please input data',
-  'Please input private key': 'Please input private key',
+  ENTER_CREDENTIAL_TIP: 'Please enter a credential.',
+  ENTER_DATA_DESC: 'Please enter data.',
+  ENTER_PRIVATE_KEY_DESC: 'Please enter a private key.',
   'Please input the registry address': 'Please input the registry address',
-  'Private Key': 'Private Key',
-  'Registry Address': 'Registry Address',
-  'Registry verification failed': 'Registry verification failed',
-  'Registry verification succeeded': 'Registry verification succeeded',
+  PRIVATE_KEY_TCAP: 'Private Key',
+  REGISTRY_ADDRESS_TCAP: 'Registry Address',
+  REGISTRY_SECRET_VER_ERR: 'Registry verification failed',
+  REGISTRY_SECRET_VER_SUC: 'Registry verification succeeded',
   Secret: 'Secret',
-  'Secret Name': 'Secret Name',
-  'Secret Settings': 'Secret Settings',
+  SECRET_NAME_TCAP: 'Secret Name',
+  SECRET_SETTINGS_TCAP: 'Secret Settings',
   secrets: 'secrets',
   Secrets: 'Secrets',
   Unverified: 'Unverified',
@@ -47,14 +47,14 @@ module.exports = {
     'A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
   SECRET_CREATE_DESC:
     'A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
-  SECRET_TYPE_DESC: 'You can choose or customize a Secret type.',
+  SECRET_TYPE_DESC: 'Choose or customize a Secret type.',
 
   SECRET_NO_CHINESE_CODE_DESC:
     'Chinese characters cannot be included in the secret.',
 
   IMAGE_REGISTRY_VALIDATE_TIP:
-    'Before you create the image registry secret, please verify if it is valid.',
+    'Before you create the image registry Secret, please verify if it is valid.',
 
-  'DATA-KEY': 'Key',
-  'DATA-VALUE': 'Value',
+  DATA_KEY: 'Key',
+  DATA_VALUE: 'Value',
 }

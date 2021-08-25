@@ -64,14 +64,14 @@ export default class NodeItem extends React.Component {
             )}
           </>
         }
-        description={t('Status')}
+        description={t('STATUS')}
       />
     )
   }
 
   renderTaintsTip = data => (
     <div>
-      <div>{t('Taints')}:</div>
+      <div>{t('TAINTS')}:</div>
       <div>
         {data.map(item => {
           const text = `${item.key}=${item.value || ''}:${item.effect}`
@@ -149,7 +149,7 @@ export default class NodeItem extends React.Component {
             {metrics.memory_utilisation >= 0.9 && <Icon name="exclamation" />}
           </div>
         }
-        description={t('Memory')}
+        description={t('MEMORY')}
       />
     )
   }

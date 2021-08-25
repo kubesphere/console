@@ -86,7 +86,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'editApp',
         type: 'control',
-        text: t('Edit Info'),
+        text: t('EDIT_INFO'),
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.edit', {
@@ -128,7 +128,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.delete', {
@@ -150,7 +150,7 @@ export default class RoleDetail extends React.Component {
         value: detail.app_id,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: t(capitalize(transferAppStatus(detail.status))),
       },
       {
@@ -162,11 +162,11 @@ export default class RoleDetail extends React.Component {
         value: getVersionTypesName(get(detail, 'app_version_types', '')),
       },
       {
-        name: t('Workspace'),
+        name: t('WORKSPACE'),
         value: get(detail, 'isv', '-'),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]

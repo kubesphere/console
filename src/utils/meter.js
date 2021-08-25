@@ -522,21 +522,27 @@ export const getFetchParams = ({
   openpitrixs,
   ...params
 }) => {
+  const isClusterView = globals.app.hasPermission({
+    module: 'clusters',
+    action: 'view',
+  })
+
   const PARAMS_CONFIG = {
-    cluster: isMultiCluster
-      ? [{ page: 1, limit: -1 }]
-      : [
-          {
-            page: 1,
-            limit: -1,
-            labelSelector: `cluster-role.kubesphere.io/host`,
-          },
-          {
-            page: 1,
-            limit: -1,
-            labelSelector: `!cluster-role.kubesphere.io/host`,
-          },
-        ],
+    cluster:
+      isMultiCluster || !isClusterView
+        ? [{ page: 1, limit: -1 }]
+        : [
+            {
+              page: 1,
+              limit: -1,
+              labelSelector: `cluster-role.kubesphere.io/host`,
+            },
+            {
+              page: 1,
+              limit: -1,
+              labelSelector: `!cluster-role.kubesphere.io/host`,
+            },
+          ],
     nodes: [{ limit: -1, page: 1, cluster }],
     workspaces: [
       {
@@ -553,6 +559,7 @@ export const getFetchParams = ({
         cluster,
         namespace: namespaces,
         workspace: workspaces,
+        labelSelector: '!kubesphere.io/devopsproject',
       },
     ],
     openpitrixs: [

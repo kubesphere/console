@@ -111,14 +111,14 @@ class PhysicalResource extends React.Component {
       type: 'cpu',
       title: 'CPU',
       unitType: 'cpu',
-      legend: ['Usage'],
+      legend: ['USAGE'],
       metricType: MetricTypes.cpu_usage,
     },
     {
       type: 'memory',
-      title: 'Memory',
+      title: 'MEMORY',
       unitType: 'memory',
-      legend: ['Usage'],
+      legend: ['USAGE'],
       metricType: MetricTypes.memory_usage,
     },
   ]
@@ -129,7 +129,7 @@ class PhysicalResource extends React.Component {
 
     return (
       <MonitoringController
-        title={t('Cluster Resources Usage')}
+        title={t('CLUSTER_RESOURCE_USAGE')}
         step="1h"
         times={24}
         onFetch={this.fetchData}

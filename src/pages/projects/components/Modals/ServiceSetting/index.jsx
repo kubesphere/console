@@ -22,7 +22,7 @@ import { toJS } from 'mobx'
 import { Modal } from 'components/Base'
 import ExternalName from 'components/Forms/Service/ExternalName'
 
-import { SERVICE_TYPES } from 'utils/constants'
+import { SERVICE_TYPES, SERVICE_TYPES_VALUE } from 'utils/constants'
 import ServiceSettings from './Form'
 
 import styles from './index.scss'
@@ -87,13 +87,14 @@ export default class ServiceSettingModal extends React.Component {
   }
 
   renderServiceSettings() {
-    const { cluster } = this.props
+    const { cluster, type } = this.props
     return (
       <ServiceSettings
         formRef={this.formRef}
         formTemplate={this.state.formTemplate}
         onCancel={this.resetState}
         cluster={cluster}
+        type={SERVICE_TYPES_VALUE[type]}
       />
     )
   }
@@ -109,7 +110,7 @@ export default class ServiceSettingModal extends React.Component {
   }
 
   renderEmpty() {
-    return <p className={styles.empty}>{t('Unknown service type')}</p>
+    return <p className={styles.empty}>{t('UNKNOWN_SERVICE_TYPE')}</p>
   }
 
   renderForm() {
@@ -138,7 +139,7 @@ export default class ServiceSettingModal extends React.Component {
     return (
       <Modal
         width={1162}
-        title={t('Edit Service')}
+        title={t('EDIT_SERVICE')}
         onOk={type !== SERVICE_TYPES.Unknown ? this.handleOk : null}
         onCancel={this.handleCancel}
         visible={visible}

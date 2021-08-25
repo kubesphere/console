@@ -87,7 +87,7 @@ export default class CreateIPPoolModal extends Component {
 
     if (!value.name) {
       return callback({
-        message: t('Please input name'),
+        message: t('NAME_EMPTY_DESC'),
         field: rule.field,
       })
     }
@@ -106,9 +106,9 @@ export default class CreateIPPoolModal extends Component {
         {...rest}
       >
         <Form.Item
-          label={t('IP Address')}
+          label={t('IP_ADDRESS_TCAP')}
           rules={[
-            { required: true, message: t('Please input the IP address') },
+            { required: true, message: t('INTERNAL_IP_ADDRESS_EMPTY_DESC') },
             {
               pattern: PATTERN_IP,
               message: t('Invalid IP address'),
@@ -118,8 +118,8 @@ export default class CreateIPPoolModal extends Component {
           <Input name="ip" onChange={this.handleIPChange} />
         </Form.Item>
         <Form.Item
-          label={t('Mask Bit')}
-          rules={[{ required: true, message: t('Please input the mask bit') }]}
+          label={t('MASK_BIT_TCAP')}
+          rules={[{ required: true, message: t('MASK_BIT_TIP') }]}
         >
           <NumberInput
             name="mask"
@@ -131,14 +131,12 @@ export default class CreateIPPoolModal extends Component {
           />
         </Form.Item>
         <Form.Item
-          label={t('Number of Creation')}
+          label={t('NUMBER_OF_CREATION_TCAP')}
           desc={t('IP_POOL_CREATE_COUNT_DESC')}
           rules={[
             {
               required: true,
-              message: t(
-                'Please input the number of Pod IP Pools to be created'
-              ),
+              message: t('IP_POOL_NUM_TIP'),
             },
           ]}
         >
@@ -158,13 +156,13 @@ export default class CreateIPPoolModal extends Component {
             rules={[{ validator: this.validator }]}
           >
             <ObjectInput className={styles.item} name={`cidrs[${index}]`}>
-              <Input name="cidr" placeholder={t('IP/Mask Bit')} />
+              <Input name="cidr" placeholder={t('IP_MASK_BIT_TCAP')} />
               <Input
                 name="name"
                 defaultValue={`ippool-${this.random}-${index}`}
-                placeholder={t('Name')}
+                placeholder={t('NAME')}
               />
-              <Input name="desc" placeholder={t('Description')} />
+              <Input name="desc" placeholder={t('DESCRIPTION')} />
             </ObjectInput>
           </Form.Item>
         ))}

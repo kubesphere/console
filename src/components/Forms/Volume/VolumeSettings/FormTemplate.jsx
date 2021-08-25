@@ -23,8 +23,8 @@ import { toJS } from 'mobx'
 import { PropTypes } from 'prop-types'
 import { safeParseJSON } from 'utils'
 import { ACCESS_MODES } from 'utils/constants'
-import { Form, Slider, Select } from '@kube-design/components'
-import { AccessModes } from 'components/Inputs'
+import { Form, Select } from '@kube-design/components'
+import { AccessModes, UnitSlider } from 'components/Inputs'
 
 import StorageClassStore from 'stores/storageClass'
 
@@ -155,7 +155,7 @@ export default class VolumeSettings extends React.Component {
   sizeValidator = (rule, value, callback) => {
     if (parseInt(value, 10) <= 0) {
       return callback({
-        message: t('The volume size must be greater than zero'),
+        message: t('VOLUME_SIZE_TIP'),
         field: rule.field,
       })
     }
@@ -175,7 +175,7 @@ export default class VolumeSettings extends React.Component {
         <Form.Item
           label={t('Storage Class')}
           desc={t('VOLUME_STORAGE_CLASS_DESC')}
-          rules={[{ required: true, message: t('This param is required') }]}
+          rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
         >
           <Select
             name={STORAGE_CLASSES_KEY}
@@ -192,8 +192,8 @@ export default class VolumeSettings extends React.Component {
         {editModalTitle !== 'Edit Config Template' &&
         tabTitle !== 'Diff Settings' ? (
           <Form.Item
-            label={t('Access Mode')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            label={t('ACCESS_MODE_TCAP')}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <AccessModes
               name={ACCESSMODE_KEY}
@@ -208,10 +208,10 @@ export default class VolumeSettings extends React.Component {
           ''
         )}
         <Form.Item
-          label={t('Volume Capacity')}
+          label={t('VOLUME_CAPACITY_TCAP')}
           rules={[{ validator: this.sizeValidator }]}
         >
-          <Slider
+          <UnitSlider
             name="spec.resources.requests.storage"
             {...this.getSliderProps(storageClass)}
             withInput

@@ -53,14 +53,14 @@ export default class CodeMode extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.step}>
-          <div>{t('Edit Mode')}</div>
+          <div>{t('EDIT_MODE')}</div>
           <p>{t('CREATE_BY_YAML_DESC')}</p>
         </div>
         <div className={styles.codeWrapper}>
           <div className={styles.pane}>
             <div className={styles.title}>
               <Icon name="coding" size={20} />
-              <span>{t('Edit YAML')}</span>
+              <span>{t('EDIT_YAML')}</span>
             </div>
             <EditMode
               ref={this.editor}

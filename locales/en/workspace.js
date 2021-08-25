@@ -18,7 +18,6 @@
 
 module.exports = {
   'Cluster Authorization Info': 'Cluster Authorization Information',
-  'Cluster Info': 'Cluster Information',
   'Create Workspace': 'Create Workspace',
   'Create Workspace Role': 'Create Workspace Role',
   'Created Projects': 'Created Projects',
@@ -29,13 +28,13 @@ module.exports = {
   'Invite members to the workspace': 'Invite Member',
   'Involved Projects': 'Involved Projects',
   'Manage Organizations': 'Manage Organization',
-  'No Available Cluster': 'No Cluster Available',
+  NO_AVAILABLE_CLUSTER: 'No Available Cluster',
   'Please input workspace name': 'Enter a workspace name.',
   'Project Number': 'Projects',
   'Remove from Workspace': 'Remove from Workspace',
   'The current name is not applicable.': 'The name is invalid.',
   'View Workspace': 'View Workspace',
-  Workspace: 'Workspace',
+  WORKSPACE: 'Workspace',
   'Workspace Info': 'Workspace Information',
   'Workspace Logo': 'Workspace Logo',
   'Workspace Manager': 'Administrator',
@@ -83,7 +82,7 @@ module.exports = {
     'No public cluster available. Please contact the platform or cluster administrator to obtain authorization.',
 
   WORKSPACE_NO_CLUSTER_TIP:
-    'No cluster available. Please contact the platform or cluster administrator to obtain authorization.',
+    'You need to contact the platform or cluster administrator to authorize a cluster to the workspace.',
 
   WORKSPACE_BASE_INFO_Q1: 'How do I apply for more clusters for the workspace?',
   WORKSPACE_BASE_INFO_A1:

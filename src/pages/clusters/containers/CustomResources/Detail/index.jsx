@@ -72,11 +72,11 @@ export default class CustomResourceDetail extends React.Component {
         value: this.props.match.params.cluster,
       },
       {
-        name: t('Scope'),
+        name: t('SCOPE_TCAP'),
         value: detail.scope,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

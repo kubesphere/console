@@ -17,6 +17,7 @@
  */
 
 module.exports = {
+  CLUSTER: '集群',
   Deployment: '部署',
   StatefulSet: '有狀態副本集',
   DaemonSet: '守護進程集',
@@ -24,17 +25,19 @@ module.exports = {
   LoadBalancer: '負載平衡',
   Volume: '儲存卷',
   Terminating: '刪除中',
-  'Create Project': '創建項目',
+  CREATE_PROJECT: '創建項目',
   'Edit Project': '編輯項目',
   Details: '詳情',
   Members: '成員',
   'Project Roles': '項目角色',
   'Project Role': '項目角色',
+  // Create ServiceAccount Page
+  PROJECT_ROLE_SI: '項目角色',
   projects: '項目',
   Projects: '項目',
   'Project Overview': '項目預覽',
   'Members Management': '成員管理',
-  'Project Manager': '項目管理員',
+  PROJECT_ADMINISTRATOR: '項目管理員',
   'Manage Project': '項目管理',
   'Resource Quota': '資源配額',
   'Project Name': '項目名稱',
@@ -65,9 +68,12 @@ module.exports = {
   Opened: '已開啟',
   Closed: '已關閉',
 
-  PROJECT_CREATE_DESC:
+  CREATE_PROJECT_DESC:
     'KubeSphere 中的項目對應的是 Kubernetes 的 namespace，是對一組資源和對象的抽象集合，常用來將系統内部的對象劃分為不同的項目組或用戶組。',
-  PROJECT_NAME_DESC: '項目名稱只能包含小寫字母、數字及分隔符號("-")',
+  PROJECT_NAME_DESC:
+    '最長 63 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母開頭, 字母或數字結尾',
+  PROJECT_NAME_INVALID_DESC:
+    '最長 63 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母開頭, 字母或數字結尾',
   'Please input project name': '請輸入項目名稱',
   'Invalid project name': '項目名稱格式不合法',
   'Project name exists': '項目名稱已存在',
@@ -99,7 +105,7 @@ module.exports = {
   'Container Resource Default Request': '容器資源預設請求',
   'Edit Resource Default Request': '編輯資源預設請求',
 
-  'Resource Type': '資源類型',
+  RESOURCE_TYPE: '資源類型',
 
   'Help Information': '幫助資訊',
 
@@ -111,12 +117,11 @@ module.exports = {
   'Default limit resource': '預設最大使用資源',
   'Default request resource': '預設最小使用資源',
 
-  'Assign Workspace': '分配企業空間',
+  ASSIGN_WORKSPACE: '分配企業空間',
   'Target Workspace': '目標企業空間',
-  'Choose a workspace': '選擇一個企業空間',
+  SELECT_WORKSPACE_DESC: '選擇一個企業空間',
   'Not Assigned': '未分配',
-  'Select a user of the workspace as the manager of the project.':
-    '選擇企業空間的用戶作為管理員。',
+  PROJECT_ADMINISTRATOR_DESC: '選擇企業空間的用戶作為管理員。',
 
   'Disk Log Collection': '落盤紀錄收集',
 
@@ -124,11 +129,14 @@ module.exports = {
   "The project's file log collection is about to close.":
     '項目的落盤紀錄收集即將關閉.',
 
-  'Select the cluster to create the project.': '選擇要創建項目的集群.',
+  SELECT_CLUSTER_DESC: '選擇要創建項目的集群。',
+  CLUSTER_NOT_SELECT_DESC: '請選擇集群。',
 
   'Project Member': '項目成員',
 
   'Number of volumes': '存儲卷（數量）',
+
+  FEDPROJECT_CANNOT_ADD_CLUSTER: '無法添加新的集羣',
 
   CLOSE_FILE_LOG_TIP:
     '落盤紀錄收集即將關閉。 關閉後，已開啟落盤紀錄收集的服務在容器組副本重啟前將繼續進行落盤紀錄的收集，重啟後，將不再收集。</br>如果需要再次收集，請開啟落盤紀錄收集，並重起容器組副本。',

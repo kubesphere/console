@@ -69,7 +69,7 @@ export default class Jobs extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -86,7 +86,7 @@ export default class Jobs extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         type: 'danger',
         onClick: item =>
@@ -120,7 +120,7 @@ export default class Jobs extends React.Component {
     const { getSortOrder, getFilteredValue, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -137,7 +137,7 @@ export default class Jobs extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
@@ -147,7 +147,7 @@ export default class Jobs extends React.Component {
         render: (status, record) => <JobStatus data={record} module={module} />,
       },
       {
-        title: t('Updated Time'),
+        title: t('UPDATED_AT'),
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),

@@ -199,7 +199,7 @@ export default class NetworkPoliciesModal extends React.Component {
           </RadioGroup>
         </Form.Item>
         <Form.Item
-          label={`${t('Type')}:`}
+          label={`${t('TYPE')}:`}
           rules={[{ validator: this.psValidator }]}
           ref={this.psRef}
         >
@@ -212,7 +212,7 @@ export default class NetworkPoliciesModal extends React.Component {
             size="small"
             rules={[{ required: true }]}
           >
-            <RadioButton value="projects">{t('Project')}</RadioButton>
+            <RadioButton value="projects">{t('PROJECT')}</RadioButton>
             <RadioButton value="services">{t('Service')}</RadioButton>
           </RadioGroup>
         </Form.Item>

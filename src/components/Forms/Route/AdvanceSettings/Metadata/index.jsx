@@ -27,12 +27,12 @@ export default class Metadata extends React.Component {
         <Form.Item label={t('Annotations')}>
           <AnnotationsInput
             name="metadata.annotations"
-            addText={t('Add Annotation')}
+            addText={t('ADD_ANNOTATION')}
             hiddenKeys={globals.config.preservedAnnotations}
           />
         </Form.Item>
         <Form.Item label={t('Labels')}>
-          <PropertiesInput name="metadata.labels" addText={t('Add Label')} />
+          <PropertiesInput name="metadata.labels" addText={t('ADD_LABEL')} />
         </Form.Item>
       </>
     )

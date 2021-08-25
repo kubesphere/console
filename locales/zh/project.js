@@ -17,6 +17,7 @@
  */
 
 module.exports = {
+  CLUSTER: '集群',
   Deployment: '部署',
   StatefulSet: '有状态副本集',
   DaemonSet: '守护进程集',
@@ -25,18 +26,20 @@ module.exports = {
   Volume: '存储卷',
   Terminating: '删除中',
   Deleting: '删除中',
-  'Create Project': '创建项目',
+  CREATE_PROJECT: '创建项目',
   'Create Multi-cluster Project': '创建多集群项目',
   'Edit Project': '编辑项目',
   Details: '详情',
   Members: '成员',
   'Project Roles': '项目角色',
   'Project Role': '项目角色',
+  // Create ServiceAccount Page
+  PROJECT_ROLE_SI: '项目角色',
   projects: '项目',
   Projects: '项目',
   'Project Overview': '项目预览',
   'Members Management': '成员管理',
-  'Project Manager': '项目管理员',
+  PROJECT_ADMINISTRATOR: '项目管理员',
   'Manage Project': '项目管理',
   'Resource Quota': '资源配额',
   'Project Name': '项目名称',
@@ -70,9 +73,11 @@ module.exports = {
   Opened: '已开启',
   Closed: '已关闭',
 
-  PROJECT_CREATE_DESC:
-    'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，常用来将系统内部的对象划分为不同的项目组或用户组。',
-  PROJECT_NAME_DESC: '项目名只能包含小写字母、数字及分隔符("-")',
+  CREATE_PROJECT_DESC: '创建项目以对资源进行隔离并实现权限控制。',
+  PROJECT_NAME_DESC:
+    '名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 63 个字符。',
+  PROJECT_NAME_INVALID_DESC:
+    '名称无效。名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 63 个字符。',
   'Please input project name': '请输入项目名',
   'Invalid project name': '项目名格式不合法',
   'Project name exists': '项目名已存在',
@@ -104,7 +109,7 @@ module.exports = {
   'Container Resource Default Request': '容器资源默认请求',
   'Edit Resource Default Request': '编辑资源默认请求',
 
-  'Resource Type': '资源类型',
+  RESOURCE_TYPE: '资源类型',
 
   'Help Information': '帮助信息',
 
@@ -116,12 +121,11 @@ module.exports = {
   'Default limit resource': '默认最大使用资源',
   'Default request resource': '默认最小使用资源',
 
-  'Assign Workspace': '分配企业空间',
+  ASSIGN_WORKSPACE: '分配企业空间',
   'Target Workspace': '目标企业空间',
-  'Choose a workspace': '选择一个企业空间',
+  SELECT_WORKSPACE_DESC: '选择一个企业空间。',
   'Not Assigned': '未分配',
-  'Select a user of the workspace as the manager of the project.':
-    '选择企业空间的用户作为管理员。',
+  PROJECT_ADMINISTRATOR_DESC: '选择企业空间中的用户作为项目管理员。',
 
   'Disk Log Collection': '落盘日志收集',
 
@@ -129,11 +133,14 @@ module.exports = {
   'Disk Log Collection of the project is about to be disabled.':
     '项目的落盘日志收集即将关闭.',
 
-  'Select the cluster to create the project.': '选择要创建项目的集群.',
+  SELECT_CLUSTER_DESC: '选择要创建项目的集群。',
+  CLUSTER_NOT_SELECT_DESC: '请选择集群。',
 
   'Project Member': '项目成员',
 
   'Number of volumes': '存储卷（数量）',
+
+  FEDPROJECT_CANNOT_ADD_CLUSTER: '无法添加新的集群',
 
   CLOSE_FILE_LOG_TIP:
     '落盘日志收集即将关闭。 关闭后，已开启落盘日志收集的服务在容器组副本重启前将继续进行落盘日志的收集，重启后，将不再收集。</br>如果需要再次收集，请开启落盘日志收集，并重起容器组副本。',
@@ -151,7 +158,7 @@ module.exports = {
   PROJECT_TYPES_DEVOPS_TITLE: '创建一个 DevOps 工程',
   PROJECT_TYPES_DEVOPS_DESC: '持续、自动地构建/测试软件项目。',
 
-  PROJECT_ASSIGN_DESC: '项目一旦被分配到企业空间后将不允许修改企业空间',
+  PROJECT_ASSIGN_DESC: '项目被分配到企业空间后不允许变更项目所属的企业空间。',
 
   'Invite Members to the Project': '邀请成员到该项目',
   'Invite Members to the DevOps Project': '邀请成员到该工程',
@@ -198,7 +205,7 @@ module.exports = {
   PROJECT_ADVANCED_SETTINGS_DESC:
     '对项目中的外网访问网关以及服务治理和落盘日志收集等配置进行设置',
   PROJECT_MEMBERS_DESC: '对项目内的成员进行管理及角色分配',
-  PROJECT_ROLE_DESC: '项目角色定义了在当前项目下用户所拥有的权限',
+  PROJECT_ROLE_DESC: '项目角色定义了在当前项目下用户所拥有的权限。',
   COLLECTING_FILE_LOG_DESC:
     '对容器内的落盘日志进行收集，并转发到标准输出，然后由日志收集系统统一采集。',
 

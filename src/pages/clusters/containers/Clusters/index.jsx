@@ -207,7 +207,7 @@ class Clusters extends React.Component {
         <InputSearch
           className={styles.search}
           onSearch={this.handleSearch}
-          placeholder={t('Search by name')}
+          placeholder={t('SEARCH_BY_NAME')}
         />
         <Button
           type="flat"

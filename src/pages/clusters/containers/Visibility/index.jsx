@@ -59,7 +59,7 @@ export default class Overview extends React.Component {
     return [
       {
         title: t('CLUSTER_VISIBILITY_Q1'),
-        description: t('CLUSTER_VISIBILITY_A1'),
+        description: t.html('CLUSTER_VISIBILITY_A1'),
       },
       {
         title: t('CLUSTER_VISIBILITY_Q2'),
@@ -86,7 +86,7 @@ export default class Overview extends React.Component {
   getColumns() {
     return [
       {
-        title: t('Workspace'),
+        title: t('WORKSPACE'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar
@@ -99,11 +99,11 @@ export default class Overview extends React.Component {
         ),
       },
       {
-        title: t('Manager'),
+        title: t('ADMINISTRATOR'),
         dataIndex: 'manager',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         width: '20%',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -134,7 +134,7 @@ export default class Overview extends React.Component {
     const emptyProps = {
       name: 'Workspace',
       module: 'workspaces',
-      desc: t('CLUSTER_AUTHORIZATION_DESC'),
+      desc: t('CLUSTER_VISIBILITY_DESC'),
     }
 
     return (
@@ -159,8 +159,8 @@ export default class Overview extends React.Component {
       <>
         <Banner
           icon="cluster"
-          title={t('Cluster Visibility')}
-          description={t('CLUSTER_AUTHORIZATION_DESC')}
+          title={t('CLUSTER_VISIBILITY_TCAP')}
+          description={t('CLUSTER_VISIBILITY_DESC')}
           tips={this.tips}
         />
         <Panel>
@@ -170,14 +170,14 @@ export default class Overview extends React.Component {
               title={
                 this.isClusterPublicVisible
                   ? t('VISIBILITY_PUBLIC')
-                  : t('VISIBILITY_PART')
+                  : t('VISIBILITY_PARTIAL')
               }
-              description={t('Cluster Visibility')}
+              description={t('CLUSTER_VISIBILITY_SCAP')}
             />
             {globals.app.isMultiCluster &&
               this.enabledActions.includes('edit') && (
                 <Button onClick={this.editVisibility}>
-                  {t('Edit Visibility')}
+                  {t('EDIT_VISIBILITY')}
                 </Button>
               )}
           </div>

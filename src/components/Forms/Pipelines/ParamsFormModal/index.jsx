@@ -280,7 +280,7 @@ export default class ParamsFormModal extends React.Component {
           {!isEmpty(branches) ? (
             <Form.Item
               label={t('Branch')}
-              rules={[{ required: true, message: t('This param is required') }]}
+              rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <Select
                 name="branch"

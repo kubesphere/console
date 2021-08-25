@@ -78,11 +78,11 @@ export default class Workspaces extends React.Component {
                 <Text
                   icon="enterprise"
                   title={item}
-                  description={workspace.description || t('Workspace')}
+                  description={workspace.description || t('WORKSPACE')}
                 />
                 <Text
                   title={workspacesStatus[item].allocations}
-                  description={t('Used IP')}
+                  description={t('USED_IP_TCAP')}
                 />
                 <Text title={workspace.manager} description={t('Manager')} />
               </div>

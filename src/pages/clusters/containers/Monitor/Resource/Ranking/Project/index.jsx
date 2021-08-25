@@ -52,7 +52,7 @@ class Ranking extends React.Component {
   get options() {
     return this.store.sort_metric_options.map(option => ({
       value: option,
-      label: t(`Sort By ${option}`),
+      label: t(`SORT_BY_${option.toUpperCase()}`),
     }))
   }
 
@@ -102,7 +102,7 @@ class Ranking extends React.Component {
           </span>
         </div>
         <div className={styles.toolbar_buttons}>
-          <Button onClick={this.download}>{t('Export')}</Button>
+          <Button onClick={this.download}>{t('EXPORT')}</Button>
         </div>
       </div>
     )

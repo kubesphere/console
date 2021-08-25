@@ -67,15 +67,15 @@ export default class WorkloadSelect extends Component {
   get kinds() {
     return [
       {
-        label: t('Deployment'),
+        label: t('DEPLOYMENT'),
         value: 'Deployment',
       },
       {
-        label: t('StatefulSet'),
+        label: t('STATEFULSET'),
         value: 'StatefulSet',
       },
       {
-        label: t('DaemonSet'),
+        label: t('DAEMONSET'),
         value: 'DaemonSet',
       },
     ]
@@ -93,7 +93,7 @@ export default class WorkloadSelect extends Component {
     const pagination = pick(this.store.list, ['page', 'limit', 'total'])
     return (
       <>
-        <Form.Item label={t('Resource Type')}>
+        <Form.Item label={t('RESOURCE_TYPE')}>
           <Select
             name="kind"
             defaultValue="Deployment"
@@ -102,8 +102,8 @@ export default class WorkloadSelect extends Component {
           />
         </Form.Item>
         <Form.Item
-          label={t('Monitoring Target')}
-          rules={[{ required: true, message: t('RESOURCE_WORKLOAD_FORM_TIP') }]}
+          label={t('MONITORING_TARGETS')}
+          rules={[{ required: true, message: t('SELECT_WORKLOAD_TIP') }]}
         >
           <Select
             name="resources"

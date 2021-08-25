@@ -199,14 +199,14 @@ export default class FormMode extends React.Component {
 
     return (
       <div className={styles.footer}>
-        <Button onClick={onCancel}>{t('Cancel')}</Button>
+        <Button onClick={onCancel}>{t('CANCEL')}</Button>
         {currentStep ? (
           <Button
             type="default"
             onClick={this.handlePrev}
             data-test="modal-previous"
           >
-            {t('Previous')}
+            {t('PREVIOUS')}
           </Button>
         ) : null}
         {showNext && (
@@ -216,7 +216,7 @@ export default class FormMode extends React.Component {
             disabled={!isEmpty(subRoute)}
             data-test="modal-next"
           >
-            {t('Next')}
+            {t('NEXT')}
           </Button>
         )}
         {showCreate && (
@@ -227,7 +227,7 @@ export default class FormMode extends React.Component {
             disabled={isSubmitting || !isEmpty(subRoute)}
             data-test="modal-create"
           >
-            {okBtnText || t('Create')}
+            {okBtnText || t('CREATE')}
           </Button>
         )}
       </div>

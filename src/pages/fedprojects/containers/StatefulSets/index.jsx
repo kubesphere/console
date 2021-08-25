@@ -53,11 +53,11 @@ export default class StatefulSets extends React.Component {
       options: [
         {
           value: 'deployments',
-          label: t('Deployments'),
+          label: t('DEPLOYMENTS'),
         },
         {
           value: 'statefulsets',
-          label: t('StatefulSets'),
+          label: t('STATEFULSETS'),
         },
       ],
     }
@@ -69,7 +69,7 @@ export default class StatefulSets extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -79,7 +79,7 @@ export default class StatefulSets extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -89,7 +89,7 @@ export default class StatefulSets extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('workload.delete', {
@@ -109,7 +109,7 @@ export default class StatefulSets extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           action: 'delete',
           onClick: () =>
             trigger('workload.batch.delete', {
@@ -144,7 +144,7 @@ export default class StatefulSets extends React.Component {
     const { module, projectStore } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar
@@ -158,7 +158,7 @@ export default class StatefulSets extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         width: '22%',
@@ -180,7 +180,7 @@ export default class StatefulSets extends React.Component {
         width: '22%',
       },
       {
-        title: t('Updated Time'),
+        title: t('UPDATED_AT'),
         dataIndex: 'updateTime',
         isHideable: true,
         width: 150,

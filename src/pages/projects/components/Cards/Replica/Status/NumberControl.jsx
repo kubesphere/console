@@ -54,7 +54,7 @@ class NumberControl extends PureComponent {
       <div className={classnames(styles.control, className)}>
         <Icon
           className={styles.add}
-          name="chevron-up"
+          name="add"
           size={24}
           color={color}
           onClick={this.handlePlusOne}
@@ -62,7 +62,7 @@ class NumberControl extends PureComponent {
         />
         <Icon
           className={styles.substract}
-          name="chevron-down"
+          name="substract"
           size={24}
           color={color}
           onClick={this.handleMinusOne}

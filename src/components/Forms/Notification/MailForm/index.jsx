@@ -102,8 +102,8 @@ export default class MailForm extends Component {
                   { pattern: PATTERN_HOST, message: t('Invalid address') },
                 ]}
                 portRules={[
-                  { required: true, message: t('Please input port') },
-                  { pattern: PATTERN_PORT, message: t('Invalid port') },
+                  { required: true, message: t('ENTER_PORT_NUMBER') },
+                  { pattern: PATTERN_PORT, message: t('INVALID_PORT_DESC') },
                 ]}
                 defaultPort={25}
               />
@@ -132,8 +132,8 @@ export default class MailForm extends Component {
               />
             </Form.Item>
             <Form.Item
-              label={`SMTP ${t('Password')}`}
-              rules={[{ required: true, message: t('Please input password') }]}
+              label={`SMTP ${t('PASSWORD')}`}
+              rules={[{ required: true, message: t('ENTER_PASSWORD_TIP') }]}
             >
               <Input
                 name="secret.data.authPassword"

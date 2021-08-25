@@ -72,7 +72,7 @@ export default class Routers extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -82,7 +82,7 @@ export default class Routers extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -102,7 +102,7 @@ export default class Routers extends React.Component {
       {
         key: 'editAnnotations',
         icon: 'firewall',
-        text: t('Edit Annotations'),
+        text: t('EDIT_ANNOTATIONS_TCAP'),
         action: 'edit',
         onClick: item =>
           trigger('router.annotations.edit', {
@@ -112,7 +112,7 @@ export default class Routers extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
@@ -127,7 +127,7 @@ export default class Routers extends React.Component {
     const { getSortOrder, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -143,7 +143,7 @@ export default class Routers extends React.Component {
         ),
       },
       {
-        title: t('Gateway Address'),
+        title: t('GATEWAY_ADDRESS_TCAP'),
         dataIndex: 'loadBalancerIngress',
         isHideable: true,
         width: '22%',
@@ -157,7 +157,7 @@ export default class Routers extends React.Component {
         width: '22%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

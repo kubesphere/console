@@ -24,7 +24,6 @@ module.exports = {
   'Add New Subdepartment': '添加新的子部門',
   NO_DEPARTMENT_TIP: '暫時沒有部門，請在右側創建',
   'workspace role': '企業空間角色',
-  WORKSPACE_ROLE_DESC: '將角色賦予給整個用戶組',
   'Bind Project Role': '綁定項目角色',
   'Add Project': '添加項目',
   'project roles': '項目角色',

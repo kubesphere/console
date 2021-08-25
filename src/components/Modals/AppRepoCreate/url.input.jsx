@@ -277,7 +277,7 @@ export default class UrlInput extends React.Component {
               onClick={this.handleVerify}
               disabled={!this.checkVerifyEnable() || this.props.isSubmitting}
             >
-              {t('Validate')}
+              {t('VALIDATE')}
             </Button>
           )}
         </div>
@@ -312,7 +312,7 @@ export default class UrlInput extends React.Component {
           onClick={this.handleVerify}
           disabled={!this.checkVerifyEnable() || this.props.isSubmitting}
         >
-          {t('Validate')}
+          {t('VALIDATE')}
         </Button>
       </div>
     )

@@ -129,7 +129,7 @@ export default class Git extends React.Component {
         <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item
             label={t('Url')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Input name="url" />
           </Form.Item>

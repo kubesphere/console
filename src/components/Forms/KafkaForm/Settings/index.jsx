@@ -27,19 +27,21 @@ export default class BaseInfo extends React.Component {
       const [, host = '', port = ''] = broker.match(/(.*):(.*)$/) || []
       return host && port
     })
-    return isValid ? callback() : callback({ message: t('URL_SYNTAX_ERROR') })
+    return isValid
+      ? callback()
+      : callback({ message: t('INVALID_SERVICE_ADDRESS') })
   }
 
   render() {
     return (
       <div>
-        <Form.Item label={t('topic')}>
+        <Form.Item label={t('TOPIC')}>
           <Input name="topics" autoComplete="nope" />
         </Form.Item>
         <Form.Item
-          label={t('Service Address')}
+          label={t('SERVICE_ADDRESS')}
           rules={[
-            { required: true, message: t('Please input service address') },
+            { required: true, message: t('ENTER_SERVICE_ADDRESS') },
             { validator: this.addressValidator },
           ]}
         >

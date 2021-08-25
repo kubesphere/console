@@ -102,7 +102,7 @@ module.exports = {
   'Load balance algorithm': '負載平衡算法',
   'Session retention': '會話保持',
 
-  Method: '方式',
+  METHOD: '方式',
   'According to the HTTP header': '根據 HTTP header',
 
   On: '開啟',
@@ -162,7 +162,7 @@ module.exports = {
   'Please try other query conditions': '請嘗試其它查詢條件',
 
   'Deploy sample app Bookinfo': '部署示例應用 Bookinfo',
-  'Please save the current form first': '請先保存目前表單',
+  SAVE_FORM_TIP: '請先保存目前表單',
   'Add Component Successfully': '添加組件成功',
 
   'Connection pool management': '連接池管理',
@@ -231,7 +231,7 @@ module.exports = {
     '應用模板來自於企業空間和第三方的 Helm 應用模板，支持一鍵部署並可通過視覺化的方式在 KubeSphere 中展示並提供部署及管理的功能',
   APP_REPOS_DESC:
     '應用倉庫來自於第三方的 Helm Chart Repo，通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，用戶可以基於應用倉庫中的模板快速地一鍵部署應用。',
-  SEARCH_TIPS: '您可以根據相關條件進行過濾',
+  SEARCH_TIPS: 'Search',
 
   'From workspace': '來自企業空間',
   'Add stateful or stateless services': '添加有狀態服務或無狀態服務',

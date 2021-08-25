@@ -81,22 +81,22 @@ export default class ETCDStatusTab extends React.Component {
     const result = [
       {
         icon: ICON_TYPES['etcd'],
-        name: 'ETCD',
+        name: 'etcd',
         title: 'ETCD_STATUS',
       },
       {
         icon: ICON_TYPES['etcd'],
-        name: 'ETCD',
+        name: 'etcd',
         title: 'ETCD_PROPOSAL',
       },
       {
         icon: ICON_TYPES['etcd'],
-        name: 'ETCD',
+        name: 'etcd',
         title: 'ETCD_DB_SIZE',
       },
       {
         icon: ICON_TYPES['etcd'],
-        name: 'ETCD',
+        name: 'etcd',
         title: 'ETCD_CLIENT_TRAFFIC',
       },
     ]
@@ -119,7 +119,7 @@ export default class ETCDStatusTab extends React.Component {
       {
         props: {
           type: 'area',
-          title: 'Raft Proposals',
+          title: 'RAFT_PROPOSAL',
           unit: 'times/s',
           legend: [
             'PROPOSAL_COMMITTED',
@@ -149,9 +149,9 @@ export default class ETCDStatusTab extends React.Component {
       {
         props: {
           type: 'area',
-          title: 'DB Size',
+          title: 'DB_SIZE',
           unitType: 'memory',
-          legend: ['DB Size'],
+          legend: ['DB_SIZE'],
           data: get(metrics, `${MetricTypes.db_size}.data.result`),
         },
         render: this.renderChart,
@@ -159,9 +159,9 @@ export default class ETCDStatusTab extends React.Component {
       {
         props: {
           type: 'area',
-          title: 'Client Traffic',
+          title: 'CLIENT_TRAFFIC',
           unitType: 'traffic',
-          legend: ['Received', 'Sent'],
+          legend: ['RECEIVED', 'SENT'],
           data: [
             get(metrics, `${MetricTypes.client_received_bytes}.data.result[0]`),
             get(metrics, `${MetricTypes.client_sent_bytes}.data.result[0]`),
@@ -195,7 +195,7 @@ export default class ETCDStatusTab extends React.Component {
 
     return (
       <StatusTabs
-        title={t('ETCD Monitoring')}
+        title={t('ETCD_MONITORING')}
         tabOptions={this.getTabOptions()}
         contentOptions={this.getContentOptions()}
         loading={isLoading}

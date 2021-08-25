@@ -65,7 +65,7 @@ export default class NetworkPolicies extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -76,7 +76,7 @@ export default class NetworkPolicies extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -87,7 +87,7 @@ export default class NetworkPolicies extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
@@ -106,7 +106,7 @@ export default class NetworkPolicies extends React.Component {
       {
         key: 'create',
         type: 'control',
-        text: t('Create Network Policy'),
+        text: t('CREATE_BTN'),
         action: 'create',
         onClick: () =>
           trigger('network.policies.addByYaml', {
@@ -123,7 +123,7 @@ export default class NetworkPolicies extends React.Component {
     const { cluster } = this.props.match.params
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -138,7 +138,7 @@ export default class NetworkPolicies extends React.Component {
         ),
       },
       {
-        title: t('Project'),
+        title: t('PROJECT'),
         dataIndex: 'namespace',
         isHideable: true,
         width: '22%',

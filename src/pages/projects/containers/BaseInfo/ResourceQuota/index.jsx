@@ -16,9 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 
 import { QUOTAS_MAP } from 'utils/constants'
 import { Panel } from 'components/Base'
@@ -27,21 +27,44 @@ import QuotaItem from './QuotaItem'
 
 import styles from './index.scss'
 
-export default class ResourceQuota extends React.Component {
-  render() {
-    const { detail } = this.props
-    return (
-      <Panel className={styles.wrapper} title={t('Resource Quota')}>
-        {Object.entries(QUOTAS_MAP).map(([key, value]) => (
-          <QuotaItem
-            key={key}
-            name={key}
-            total={get(detail, `hard["${value.name}"]`)}
-            used={get(detail, `used["${value.name}"]`, 0)}
-            left={get(detail, `left["${value.name}"]`)}
-          />
-        ))}
-      </Panel>
-    )
-  }
+export default function ResourceQuota({ detail }) {
+  const [quotaListKeys, setQuotaListKeys] = useState([])
+
+  useEffect(() => {
+    if (detail.used) {
+      const _quotaListKeys = Object.entries(QUOTAS_MAP).map(([key, value]) => {
+        return {
+          label: key,
+          ...value,
+        }
+      })
+
+      Object.entries(detail.used).forEach(([key]) => {
+        const quota = _quotaListKeys.find(item => item.name === key)
+
+        if (isEmpty(quota)) {
+          _quotaListKeys.push({
+            label: key,
+            name: key,
+          })
+        }
+      })
+
+      setQuotaListKeys(_quotaListKeys)
+    }
+  }, [detail])
+
+  return (
+    <Panel className={styles.wrapper} title={t('Resource Quota')}>
+      {quotaListKeys.map(({ label, name }) => (
+        <QuotaItem
+          key={label}
+          name={label}
+          total={get(detail, `hard["${name}"]`)}
+          used={get(detail, `used["${name}"]`, 0)}
+          left={get(detail, `left["${name}"]`)}
+        />
+      ))}
+    </Panel>
+  )
 }

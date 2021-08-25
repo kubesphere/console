@@ -55,7 +55,7 @@ export default class InstanceItem extends React.PureComponent {
               name={t(detail.status)}
             />
           </dt>
-          <dd>{t('Status')}</dd>
+          <dd>{t('STATUS')}</dd>
         </dl>
         {showVersion && (
           <dl>
@@ -77,7 +77,7 @@ export default class InstanceItem extends React.PureComponent {
               'YYYY-MM-DD HH:mm:ss'
             )}
           </dt>
-          <dd>{t('Updated Time')}</dd>
+          <dd>{t('UPDATED_AT')}</dd>
         </dl>
       </div>
     )

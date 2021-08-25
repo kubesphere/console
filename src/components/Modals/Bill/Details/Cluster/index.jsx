@@ -227,7 +227,8 @@ export default class ClusterDetails extends React.Component {
         const cluster = this.clusterList.find(
           _item => _item.name === _cluster.name
         )
-        if (cluster.disabled) {
+
+        if (cluster && cluster.disabled) {
           count++
         }
       })
@@ -1107,7 +1108,7 @@ export default class ClusterDetails extends React.Component {
             <EmptyList
               className={styles.emptyCard}
               icon="cluster"
-              title={t('No Available Cluster')}
+              title={t('NO_AVAILABLE_CLUSTER')}
               desc={t('No cluster with metering module enabled')}
               actions={<Button onClick={this.props.handleBack}>返回</Button>}
             />

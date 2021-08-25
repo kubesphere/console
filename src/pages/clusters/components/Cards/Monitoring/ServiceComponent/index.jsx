@@ -103,23 +103,23 @@ export default class ServiceComponentStatusTab extends React.Component {
     const result = [
       {
         icon: ICON_TYPES['apiserver'],
-        name: 'APIServer',
-        title: 'REQUEST_LATENCY',
+        name: 'API_SERVER',
+        title: 'REQUEST_LATENCY_TCAP',
       },
       {
         icon: ICON_TYPES['apiserver'],
-        name: 'APIServer',
+        name: 'API_SERVER',
         title: 'REQUEST_RATE',
       },
       {
         icon: ICON_TYPES['scheduler'],
-        name: 'Scheduler',
-        title: 'ATTEMPT_FREQUENCY',
+        name: 'SCHEDULER',
+        title: 'ATTEMPT_FREQUENCY_TCAP',
       },
       {
         icon: ICON_TYPES['scheduler'],
-        name: 'Scheduler',
-        title: 'ATTEMPT_RATE',
+        name: 'SCHEDULER',
+        title: 'ATTEMPT_RATE_TCAP',
       },
     ]
 
@@ -134,7 +134,7 @@ export default class ServiceComponentStatusTab extends React.Component {
     const result = [
       {
         type: 'area',
-        title: 'Request Latency',
+        title: 'REQUEST_LATENCY',
         unit: 'ms',
         legend: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT', 'TOTAL_AVERAGE'],
         data: [
@@ -148,14 +148,14 @@ export default class ServiceComponentStatusTab extends React.Component {
       },
       {
         type: 'area',
-        title: 'Request Per Second',
+        title: 'REQUEST_PER_SECOND',
         unit: 'times/s',
-        legend: ['Request'],
+        legend: ['REQUEST'],
         data: get(metrics, `${MetricTypes.request_rate}.data.result`),
       },
       {
         type: 'area',
-        title: 'Attempt Frequency',
+        title: 'ATTEMPT_FREQUENCY',
         unit: '',
         legend: ['SCHEDULED_SUCCESS', 'SCHEDULED_ERROR', 'SCHEDULED_FAIL'],
         data: [
@@ -175,7 +175,7 @@ export default class ServiceComponentStatusTab extends React.Component {
       },
       {
         type: 'area',
-        title: 'Attempt Rate',
+        title: 'ATTEMPT_RATE',
         unit: 'times/s',
         legend: ['SCHEDULED_SUCCESS', 'SCHEDULED_ERROR', 'SCHEDULED_FAIL'],
         data: [
@@ -218,7 +218,7 @@ export default class ServiceComponentStatusTab extends React.Component {
 
     return (
       <StatusTabs
-        title={t('Service Component Monitoring')}
+        title={t('SERVICE_COMPONENT_MONITORING')}
         tabOptions={this.getTabOptions()}
         contentOptions={this.getContentOptions()}
         loading={isLoading}

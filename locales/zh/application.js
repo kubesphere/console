@@ -56,7 +56,6 @@ module.exports = {
     '示例应用可以帮助您快速入手应用创建, 以及应用治理功能',
 
   'Add Service': '添加服务',
-  'Add Route': '添加应用路由',
   'Add Component': '添加组件',
   'Edit Component': '编辑组件',
   'Add New Component': '添加新组件',
@@ -108,7 +107,7 @@ module.exports = {
   'Load balance algorithm': '负载均衡算法',
   'Session retention': '会话保持',
 
-  Method: '方式',
+  METHOD: '方式',
   'According to the HTTP header': '根据 HTTP header',
 
   On: '开启',
@@ -168,7 +167,7 @@ module.exports = {
   'Please try other query conditions': '请尝试其它查询条件',
 
   'Deploy sample app Bookinfo': '部署示例应用 Bookinfo',
-  'Please save the current form first': '请先保存当前表单',
+  SAVE_FORM_TIP: '请先保存当前表单。',
   'Add Component Successfully': '添加组件成功',
   'Add Route Successfully': '添加应用路由成功',
 
@@ -237,7 +236,7 @@ module.exports = {
     '应用模板来自于企业空间和第三方的 Helm 应用模板，支持一键部署并可通过可视化的方式在 KubeSphere 中展示并提供部署及管理的功能',
   APP_REPOS_DESC:
     '应用仓库来自于第三方的 Helm Chart Repo，通过可视化的方式在 KubeSphere 中展示并提供部署及管理功能，用户可以基于应用仓库中的模板快速地一键部署应用。',
-  SEARCH_TIPS: '您可以根据相关条件进行过滤',
+  SEARCH_TIPS: '搜索',
 
   'From workspace': '来自企业空间',
   'Add stateful or stateless services': '添加有状态服务或无状态服务',

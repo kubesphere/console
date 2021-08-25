@@ -72,7 +72,7 @@ class BaseInfo extends React.Component {
       return (
         <EmptyList
           icon="cluster"
-          title={t('No Available Cluster')}
+          title={t('NO_AVAILABLE_CLUSTER')}
           desc={t('WORKSPACE_NO_CLUSTER_TIP')}
         />
       )
@@ -85,7 +85,7 @@ class BaseInfo extends React.Component {
     return (
       <div>
         <Banner
-          title={t('Cluster Info')}
+          title={t('CLUSTER_INFORMATION')}
           icon="cluster"
           description={t('WORKSPACE_CLUSTERS_DESC')}
           tips={this.tips}

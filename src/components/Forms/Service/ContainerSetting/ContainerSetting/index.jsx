@@ -123,13 +123,13 @@ export default class ContainerSetting extends React.Component {
         {t('Remaining Quota')}:&nbsp;&nbsp;&nbsp;&nbsp;[{t('Resource Request')}:
         CPU{' '}
         {cpuRequestLeft ? `${cpuFormat(cpuRequestLeft)} Core` : t('No Limit')},{' '}
-        {t('Memory')}{' '}
+        {t('MEMORY')}{' '}
         {memoryRequestLeft
           ? `${memoryFormat(memoryRequestLeft)} Mi`
           : t('No Limit')}
         ]&nbsp;&nbsp;&nbsp;&nbsp;[{t('Resource Limit')}: CPU{' '}
         {cpuLimitLeft ? `${cpuFormat(cpuLimitLeft)} Core` : t('No Limit')},{' '}
-        {t('Memory')}{' '}
+        {t('MEMORY')}{' '}
         {memoryLimitLeft
           ? `${memoryFormat(memoryLimitLeft)} Mi`
           : t('No Limit')}
@@ -162,8 +162,8 @@ export default class ContainerSetting extends React.Component {
   render() {
     return (
       <Form.Group
-        label={t('Container Settings')}
-        desc={t('Please set the container name and computing resources.')}
+        label={t('CONTAINER_SETTINGS')}
+        desc={t('CONTAINER_SETTINGS_DESC')}
         noWrapper
       >
         <Form.Item
@@ -171,10 +171,10 @@ export default class ContainerSetting extends React.Component {
           label={t('Container Name')}
           desc={t('NAME_DESC')}
           rules={[
-            { required: true, message: t('Please input name') },
+            { required: true, message: t('NAME_EMPTY_DESC') },
             {
               pattern: PATTERN_NAME,
-              message: t('Invalid name', { message: t('NAME_DESC') }),
+              message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
             },
           ]}
         >

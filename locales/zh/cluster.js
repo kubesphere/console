@@ -25,7 +25,7 @@ module.exports = {
   Validating: '校验中',
   'Validation failed': '校验失败',
 
-  'Cluster Name': '集群名称',
+  CLUSTER_NAME: '集群名称',
   'Cluster Management': '集群管理',
   'Nodes Management': '节点管理',
   'Node Types': '节点类型',
@@ -36,39 +36,39 @@ module.exports = {
   Snapshots: '存储卷快照',
   'Network Policies': '网络策略',
   'Network Topology': '网络拓扑',
-  'Cluster Visibility': '集群可见性',
+  CLUSTER_VISIBILITY_SCAP: '集群可见性',
+  CLUSTER_VISIBILITY_TCAP: '集群可见性',
   'Cluster Members': '集群成员',
   'Cluster Roles': '集群角色',
   'Kubernetes Settings': 'Kubernetes 设置',
   'Connection Method': '连接方式',
 
   'Host Cluster': 'Host 集群',
+  HOST_CLUSTER: '主集群',
   'Host Clusters': 'Host 集群',
   'Member Cluster': 'Member 集群',
   'Member Clusters': 'Member 集群',
 
-  'Kubernetes Version': 'Kubernetes 版本',
-  'KubeSphere Version': 'KubeSphere 版本',
+  KUBERNETES_VERSION: 'Kubernetes 版本',
+  KUBESPHERE_VERSION: 'KubeSphere 版本',
 
-  'Edit Cluster Info': '编辑集群信息',
+  EDIT_INFORMATION: '编辑信息',
 
   'Cluster List': '集群列表',
-  'Cluster Info': '集群信息',
-  'Kubernetes Status': 'Kubernetes 组件状态',
+  CLUSTER_INFORMATION: '集群信息',
+  KUBERNETES_STATUS: 'Kubernetes 状态',
   Tools: '工具',
 
-  'Edit Visibility': '编辑可见范围',
+  EDIT_VISIBILITY: '编辑可见性',
 
   'Go back': '返回上一步',
 
-  Provider: '服务商',
-
   'Choose a provider': '选择服务商',
 
-  'User Projects': '用户项目',
-  'System Projects': '系统项目',
+  USER_PROJECTS: '用户项目',
+  SYSTEM_PROJECTS: '系统项目',
 
-  'Waiting for the cluster to join': '等待集群加入',
+  WAIT_FOR_CLUSTER: '等待集群加入...',
 
   'Click to Copy': '点击复制',
 
@@ -78,35 +78,36 @@ module.exports = {
 
   'Copy successfully': '复制成功',
 
-  Unbind: '解除绑定',
+  UNBIND: '解绑',
 
-  'Unbind Cluster': '解绑集群',
+  UNBIND_CLUSTER: '解绑集群',
+  'Are you sure you want to unbind the cluster?': '您确定解绑集群吗？',
 
   'Cluster Member': '集群成员',
 
-  Authorized: '已授权',
+  AUTHORIZED: '已授权',
   Unauthorized: '待授权',
 
   'Please input cluster name': '请输入集群名称',
 
   'Authorize the cluster to workspace': '集群授权企业空间',
-  'Set as public cluster': '设置为公开集群',
+  SET_PUBLIC_CLUSTER: '设置为公开集群',
 
   'The current cluster is public': '当前集群处于公开状态',
 
   'Available Clusters': '可用集群',
   'Select Clusters': '集群选择',
-  'Edit cluster basic information': '编辑集群基础信息',
+  EDIT_CLUSTER_INFO_DESC: '编辑集群基本信息。',
 
-  'Scheduler Scheduling Times': '调度器调度次数',
-  'Scheduling Failed Pods': '调度失败的容器组',
+  SCHEDULING_OPERATIONS: '调度次数',
+  SCHEDULING_FAILURES: '调度失败次数',
 
   'Please select or input a tag': '请选择或输入标识',
   'Please select or input a provider': '请选择或输入服务商',
   'Please input the kubesphere api server address of the cluster':
     '请输入待加入集群的 Kubesphere API Server 地址',
 
-  'All Projects': '全部项目',
+  ALL_PROJECTS: '全部项目',
 
   'Enter the project': '进入项目',
 
@@ -121,17 +122,18 @@ module.exports = {
   'Node Settings': '节点设置',
 
   'Please add at least one cluster node': '请至少添加一个集群节点',
-  "Please specify the node's roles": '请指定节点的角色',
-  'Please input the IP address': '请输入 IP 地址',
+  NODE_ROLE_EMPTY_DESC: '设置节点在集群中的角色。',
 
   'Add node to the cluster': '添加节点到集群中',
 
-  'Node Internal IP Address': '节点内网 IP 地址',
-  'SSH Port': 'SSH 端口',
-  'SSH IP Address': 'SSH IP 地址',
-  'Username & Password': '用户名密码',
-  'SSH Secret': 'SSH 密钥',
-  'SSH Authentication Mode': 'SSH 鉴权方式',
+  INTERNAL_IP: '内网 IP 地址',
+  PORT: '端口',
+  EXTERNAL_IP: '外网 IP 地址',
+  USERNAME_AND_PASSWORD: '用户名和密码',
+  SSH_KEY_TCAP: 'SSH 密钥',
+  SSH_KEY_SCAP: 'SSH 密钥',
+
+  SSH_AUTH_MODE: 'SSH 认证方式',
   'Kubernetes Cluster Settings': 'Kubernetes 集群配置',
   'Network Plugin': '网络插件',
   'Max Pods': '节点最大容器组数量',
@@ -147,14 +149,16 @@ module.exports = {
 
   'KubeSphere Settings': 'KubeSphere 设置',
 
-  'Invalid IP address': 'IP 地址不合法',
+  INVALID_IP_DESC: 'IP 地址格式错误。',
 
-  'Cluster Creation Progress': '集群创建进度',
+  CLUSTER_CREATION_PROGRESS: '集群创建进度',
 
-  'Current Progress': '当前进度',
+  CURRENT_STEP: '当前步骤：{step}',
 
   'Log Info': '日志信息',
+  'Cluster Visibility': '集群可见性',
 
+  CLUSTER_BASIC_INFO: '基本信息',
   NO_CLUSTER_TIP: '请添加至少 1 个集群',
   NO_CLUSTER_TIP_DESC:
     '集群是一组运行着 Kubernetes 的节点 (物理或者虚拟机)，Kubesphere 的功能也依托于集群中的节点来运行',
@@ -162,38 +166,37 @@ module.exports = {
   CHOOSE_PROVIDER_DESC:
     'KubeSphere 提供了在主流服务商中快速部署 Kubernetes 集群的方案',
 
-  VISIBILITY_PART: '部分可见',
+  VISIBILITY_PARTIAL: '部分可见',
   VISIBILITY_PUBLIC: '公开',
 
   MULTI_CLUSTER: '多集群',
 
   CLUSTER_SETTINGS_DESC: '定义集群配置信息',
-  CLUSTER_TAG: '标识',
-  CLUSTER_TAG_DESC: '标识此集群的用途，例如 生产环境、测试环境、演示环境 等',
-  CLUSTER_PROVIDER_DESC: '提供集群基础设施的厂商',
+  CLUSTER_TAG: '标签',
+  CLUSTER_TAG_DESC: '为集群添加标签来标识集群的用途。',
+  CLUSTER_PROVIDER_DESC: '提供集群基础设施的服务商。',
   CLUSTER_CONNECT_METHOD_DESC: '可以直接连接集群或者使用代理',
 
   CONNTECT_DIRECT: '直接连接 Kubernetes 集群',
   CONNTECT_PROXY: '集群连接代理',
 
-  CLUSTER_WAITING_JOIN_DESC:
-    '暂时没有可用的节点，集群为不可以用状态，您可以添加以下配置文件以启用该集群',
+  WAIT_FOR_CLUSTER_DESC: '集群当前不可用。请执行以下步骤添加集群。',
 
   CLUSTER_AGENT_TIP_1:
-    '请在通过SSH在目标集群中创建一个名称为 agent.yaml 的文件',
-  CLUSTER_AGENT_TIP_1_DESC: '例如 <span class="code">vi agent.yaml</span>',
-  CLUSTER_AGENT_TIP_2: '复制以下配置文件至 agent.yaml 中',
-  CLUSTER_AGENT_TIP_2_DESC: '该代理文件可以将目标集群与平台进行连接',
+    '1. 通过 SSH 登录集群，并执行 <span class="code">vi agent.yaml</span> 命令创建配置文件。',
+  CLUSTER_AGENT_TIP_2:
+    '2. 将以下信息复制到 <span class="code">agent.yaml</span> 文件中。',
   CLUSTER_AGENT_TIP_3:
-    '通过命令行执行 <span class="code">kubectl create -f agent.yaml</span>',
-  CLUSTER_AGENT_TIP_3_DESC: '执行命令之后等待集群状态的更新',
+    '3. 执行 <span class="code">kubectl create -f agent.yaml</span> 命令添加集群。',
+  CLUSTER_AGENT_TIP_3_DESC: '此操作可能需要一定时间，请等待集群状态更新。',
 
   CLUSTER_CONDITIONS: '集群状态',
-  CLUSTER_BASE_INFO_DESC: '当前集群基础信息总览',
+  CLUSTER_BASE_INFO_DESC: '当前集群基础信息总览。',
+  CLUSTER_INFO_TCAP: '集群信息',
 
   UNBIND_CLUSTER_DESC:
-    '解绑集群后，KubeSphere 将无法再对该集群进行管理。 解绑后，该集群内的 Kubernetes 资源不会被删除。',
-  SURE_TO_UNBIND_CLUSTER: '我确定要执行解绑集群的操作',
+    '解绑集群后，KubeSphere 将无法管理该集群，但该集群上的 Kubernetes 资源不会被删除。',
+  SURE_TO_UNBIND_CLUSTER: '我确定解绑集群。',
 
   'Invite members to the cluster': '邀请成员到该集群',
   INVITE_CLUSTER_MEMBER_DESC: '您可以邀请新的成员来此集群',
@@ -209,10 +212,10 @@ module.exports = {
 
   CLUSTER_VISIBILITY_Q1: '如何将集群授权给指定的企业空间使用？',
   CLUSTER_VISIBILITY_A1:
-    '集群可以通过“编辑可见范围”将集群授权给不同的企业空间使用',
+    '您可以点击<strong>编辑可见性</strong>将集群授权给指定的企业空间使用。',
   CLUSTER_VISIBILITY_Q2: '什么是公开集群?',
   CLUSTER_VISIBILITY_A2:
-    '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源',
+    '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源。',
 
   SELECT_CLUSTERS_DESC: '选择企业空间下可用的集群',
 
@@ -232,15 +235,15 @@ module.exports = {
   CLUSTER_AGENT_DESC: '需要在集群中设置下相应的代理 Agent',
 
   SELECT_HOST_CLUSTER_WARNING:
-    '请尽量不要在 Host 集群上创建资源，以免 Host 集群负载过高，导致多集群稳定性下降。',
+    '请尽量不要在 Host 集群上创建资源，Host 集群负载过高会导致多集群稳定性下降。',
   HOST_CLUSTER_VISIBILITY_WARNING:
     '请谨慎将 Host 集群授权给企业空间，Host 集群负载过高会导致多集群稳定性下降。',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
-    '移除集群对企业空间的授权，将删除该企业空间在当前集群下的所有资源。',
+    '移除集群对企业空间的授权后，该企业空间在当前集群下的所有资源将被删除。',
 
-  REMOVE_WORKSPACE_CONFIRM_TITLE: '确定移除授权？',
+  REMOVE_WORKSPACE_CONFIRM_TITLE: '移除授权',
   REMOVE_WORKSPACE_CONFIRM_DESC:
-    '确定移除对企业空间 {resource} 的授权？移除集群对企业空间的授权，将删除该企业空间在当前集群下的所有资源！',
+    '请输入企业空间名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
 
   SELECT_ADD_CLUSTER_METHOD: '选择添加集群的方式',
   SELECT_ADD_CLUSTER_METHOD_DESC: '支持添加新集群和导入已存在集群',
@@ -248,14 +251,14 @@ module.exports = {
   NEW_CLUSTER_DESC: '添加新的 Kubernetes 集群',
   IMPORT_CLUSTER_DESC: '导入已有的 Kubernetes 集群',
   CLUSTER_NODE_SETTINGS_DESC: '添加集群需要的节点',
-  CLUSTER_NODE_INTERNAL_IP_DESC: '集群内各节点间可以互相访问的内网 IP 地址',
-  NODE_ROLE_DESC:
-    '集群角色中，master 节点数量需要为 1 或 3，woker 节点数量至少为 1',
-  SSH_IP_ADDRESS_DESC: 'SSH IP 地址请填入当前 Host 集群可以访问到的 IP 地址',
-  SSH_AUTH_MODE_DESC: '支持用户名密码以及 SSH 密钥',
-  SSH_ACCOUNT_DESC: '默认以 root 用户登录',
-  SSH_PASSWORD_DESC: '登录节点时需要的密码',
-  SSH_SECRET_PLACEHOLDER: 'Ctrl + v 将密钥粘贴于此',
+  NODE_INTERNAL_IP_DESC: '输入节点在私网内的 IP 地址。',
+  NODE_INTERNAL_IP_EMPTY_DESC: '请输入节点在私网内的 IP 地址。',
+  NODE_ROLE_DESC: '设置节点在集群中的角色。',
+  NODE_EXTERNAL_IP_DESC: '输入用于 SSH 登录的节点 IP 地址和端口号。',
+  NODE_EXTERNAL_IP_EMPTY_DESC: '请输入用于 SSH 登录的节点 IP 地址。',
+  SSH_AUTH_MODE_DESC: '选择 SSH 认证模式。',
+  NODE_USERNAME_DESC: '输入用于 SSH 登录节点的用户名。',
+  NODE_PASSWORD_DESC: '输入用于 SSH 登录节点的密码。',
 
   K8S_CLUSTER_SETTINGS_DESC: '对即将新建的 Kubernetes 集群进行初始化配置',
 
@@ -286,26 +289,43 @@ module.exports = {
   CLUSTER_ETCD_BACKUP_NUMBER_DESC: '要保留多少个备份副本。',
   CLUSTER_KUBESPHERE_SETTINGS_DESC: '针对 KubeSphere 的一些定制化设置',
 
-  CLUSTER_CREATING: '集群正在创建中',
-  CLUSTER_CREATING_TIP:
-    '当前集群正在创建，暂时没有可用的节点，所以集群为不可以用状态',
-
-  CLUSTER_INIT_NODES: '初始化节点',
-  CLUSTER_PULL_IMAGES: '拉取镜像',
-  CLUSTER_INIT_ETCD_CLUSTER: '初始化 etcd 集群',
-  CLUSTER_INIT_CONTROL_PLANE: '初始化控制平面',
-  CLUSTER_JOIN_NODES: '添加节点',
-  CLUSTER_INSTALL_ADDONS: '安装插件',
-  FETCHING_LOGS: `正在获取日志...`,
+  CREATING_CLUSTER: '集群创建中...',
+  CREATING_CLUSTER_DESC: '集群正在创建中，当前状态不可用。',
+  COPY_SUCCESSFUL: '复制成功。',
+  INIT_NODES: '初始化节点',
+  PULL_IMAGES: '拉取镜像',
+  INIT_ETCD_CLUSTER: '初始化 etcd 集群',
+  INIT_CONTROL_PLANE: '初始化控制平面',
+  JOIN_NODES: '添加节点',
+  INSTALL_ADDONS: '安装插件',
+  FETCHING_LOGS: `获取日志中...`,
 
   MASTER_NODE_COUNT_TIP: 'Master 节点数量需要为 1 或 3',
   WORKER_NODE_COUNT_TIP: 'Worker 节点数量至少为 1',
 
   CLUSTER_CREATION_PROGRESS_TIP:
-    '根据所创建的集群规模和网络连接的不同，创建完成整个集群大概需要 30 ~ 60 分钟。',
+    '取决于集群规模和基础设施环境，集群创建可能需要 30 到 60 分钟。',
 
   CLUSTER_UPGRADE_REQUIRED:
     '当前集群版本无法使用此功能，请升级到 {version} 或以上版本。',
   MEMBER_CLUSTER_UPGRADE_TIP:
     '低于 {version} 版本 member 集群无法使用此功能, 请将 member 集群升级到 {version} 或以上版本。',
+
+  // Unbind Cluster
+  UNBIND_CLUSTER_Q: '您确定解绑集群吗？',
+
+  // Cluster Visibility
+  ADMINISTRATOR: '管理员',
+  CLUSTER_VISIBILITY: '集群可见性',
+  CLUSTER_VISIBILITY_DESC:
+    '将集群授权给企业空间，以在企业空间中查看并管理集群资源。',
+  EDIT_VISIBILITY_DESC: '编辑集群在企业空间中的可见性。',
+  TO_BE_AUTHORIZED: '待授权',
+  LOGGING: '日志',
+  EVENTS: '事件',
+  AUDITING: '审计',
+  REMOVE_WORKSPACE_CONFIRM_SI:
+    '请输入企业空间名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
+  REMOVE_WORKSPACE_CONFIRM_PL:
+    '请输入企业空间名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
 }

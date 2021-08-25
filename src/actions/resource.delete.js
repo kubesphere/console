@@ -41,16 +41,25 @@ export default {
   'resource.batch.delete': {
     on({ store, success, rowKey, ...props }) {
       const { data, selectedRowKeys } = store.list
-      const selectNames = data
+      const selectValues = data
         .filter(item => selectedRowKeys.includes(item[rowKey]))
-        .map(item => item.name)
+        .map(item => {
+          return { name: item.name, namespace: item.namespace }
+        })
+
+      const selectNames = selectValues.map(item => item.name)
 
       const modal = Modal.open({
         onOk: async () => {
           const reqs = []
 
           data.forEach(item => {
-            if (selectNames.includes(item.name)) {
+            const selectValue = selectValues.find(
+              value =>
+                value.name === item.name && value.namespace === item.namespace
+            )
+
+            if (selectValue) {
               reqs.push(store.delete(item))
             }
           })

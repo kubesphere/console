@@ -95,7 +95,7 @@ export default class CreateModal extends React.Component {
         isFunction(get(this, 'formRef.current.hasSubRoute')) &&
         this.formRef.current.hasSubRoute()
       ) {
-        return Notify.warning(t('Please save the current form first'))
+        return Notify.warning(t('SAVE_FORM_TIP'))
       }
 
       if (
@@ -158,7 +158,7 @@ export default class CreateModal extends React.Component {
     return (
       <Switch
         className={styles.switch}
-        text={t('Edit Mode')}
+        text={t('EDIT_YAML')}
         onChange={this.handleModeChange}
         checked={isCodeMode}
       />
@@ -169,7 +169,7 @@ export default class CreateModal extends React.Component {
     const { name, width, visible, onCancel, noCodeEdit, ...rest } = this.props
     const { isCodeMode } = this.state
 
-    const title = this.props.title || `${t('Create ')}${t(name)}`
+    const title = this.props.title || t('CREATE_NAME', { name: t(name) })
 
     return (
       <Modal

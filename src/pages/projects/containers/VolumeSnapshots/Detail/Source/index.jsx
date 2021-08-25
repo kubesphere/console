@@ -39,7 +39,7 @@ export default class VolumeSnapshotSource extends Component {
               <Icon name={'storage'} size={40} />
             </div>
             <div>
-              <Attr title={snapshotSourceName} value={t('Name')} />
+              <Attr title={snapshotSourceName} value={t('NAME')} />
             </div>
             <div>
               <Attr title={snapshotClassName} value={t('Storage Class')} />

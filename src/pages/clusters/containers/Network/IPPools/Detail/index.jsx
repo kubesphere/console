@@ -72,7 +72,7 @@ export default class IPPoolDetail extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit Info'),
+        text: t('EDIT_INFO'),
         action: 'edit',
         type: 'control',
         onClick: () =>
@@ -96,7 +96,7 @@ export default class IPPoolDetail extends React.Component {
       {
         key: 'modify',
         icon: 'enterprise',
-        text: t('Assign Workspace'),
+        text: t('ASSIGN_WORKSPACE'),
         action: 'edit',
         onClick: () =>
           this.trigger('network.ipool.assignworkspace', {
@@ -106,7 +106,7 @@ export default class IPPoolDetail extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         type: 'danger',
         onClick: () =>
@@ -130,7 +130,7 @@ export default class IPPoolDetail extends React.Component {
 
     return [
       {
-        name: t('IP/Mask Bit'),
+        name: t('IP_MASK_BIT_TCAP'),
         value: detail.cidr,
       },
       {
@@ -150,7 +150,7 @@ export default class IPPoolDetail extends React.Component {
         value: block.last,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

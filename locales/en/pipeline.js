@@ -80,9 +80,9 @@ module.exports = {
   Continue: 'Continue',
   Coverage: 'Coverage',
   'Create a credential': 'Create a credential',
-  'Create Credentials': 'Create Credentials',
+  'Create Credential': 'Create Credential',
   'Create Pipeline': 'Create Pipeline',
-  Credential: 'Credential',
+  CREDENTIAL_SI: 'Credential',
   'credential Id': 'credential Id',
   'Credential Id': 'Credential Id',
   'Credential ID': 'Credential ID',
@@ -103,7 +103,7 @@ module.exports = {
   "Didn't pass": "Didn't pass",
   dir: 'dir',
   Discard: 'Discard',
-  'Discard old branch': 'Discard old branch',
+  'Discard old branches': 'Discard old branches',
   'Discard old builds': 'Discard old builds',
   'Discover Tag Branches': 'Discover Tag Branches',
   'Discover Branches': 'Discover Branches',
@@ -200,7 +200,7 @@ module.exports = {
     'Only branches that are also filed as PRs',
   'Parametric Build': 'Parametric Build',
   'Params Input': 'Params Input',
-  passphrase: 'passphrase',
+  Passphrase: 'Passphrase',
   'passphrase Variable': 'passphrase Variable',
   passphraseVariable: 'passphraseVariable',
   'Password Variable': 'Password Variable',
@@ -249,11 +249,10 @@ module.exports = {
   'Scan Repo Trigger': 'Scan Repo Trigger',
   'Scan Repository Logs': 'Scan Repository Logs',
   'Scan Repository': 'Scan Repository',
-  Schedule: 'Schedule',
   'Scheduled build': 'Scheduled build',
   SCM: 'SCM',
   'Script Path': 'Script Path',
-  'Secret Name': 'Secret Name',
+  // SECRET_NAME_TCAP: 'Secret Name', (Duplicated)
   secretName: 'secretName',
   secretNamespace: 'secretNamespace',
   'select a pipeline': 'select a pipeline',
@@ -390,10 +389,8 @@ module.exports = {
     any branches that exceed this limit will be dropped.`,
   tips_Timing_build:
     'Provides cron-like functionality to perform this project regularly',
-  tips_days_keep_withscm: `If the number of days the branch has been retained will be deleted.
-    (Default -1: will delete the branch that has been deleted)`,
-  tips_numbers_keep_withscm: `If the number of branches reached the number of reservations will be deleted.
-    (Default value -1: will delete the branches that have been deleted)`,
+  tips_days_keep_withscm: `if not empty, old branches are only kept up to this number of days`,
+  tips_numbers_keep_withscm: `if not empty, only up to this number of old branches are kept`,
   tips_timer_trigger: `This field follows the cron syntax (slightly different).
     Specifically, each line contains 5 fields separated by tabs or spaces.
     minutes: the first few minutes of an hour (0-59)

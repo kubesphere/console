@@ -54,11 +54,11 @@ export default class SecretDetail extends React.Component {
     return (
       <div className={styles.tlsWrapper}>
         <div className={styles.tlsItem}>
-          <div className="h6">{t('Credential')}</div>
+          <div className="h6">{t('CREDENTIAL_SI')}</div>
           <pre>{this.convert(data['tls.crt'])}</pre>
         </div>
         <div className={styles.tlsItem}>
-          <div className="h6">{t('Private Key')}</div>
+          <div className="h6">{t('PRIVATE_KEY_TCAP')}</div>
           <pre>{this.convert(data['tls.key'])}</pre>
         </div>
       </div>

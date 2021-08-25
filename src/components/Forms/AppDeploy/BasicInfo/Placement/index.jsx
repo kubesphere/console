@@ -40,7 +40,7 @@ import ProjectStore from 'stores/project'
 import styles from './index.scss'
 
 @observer
-export default class Placment extends Component {
+export default class Placement extends Component {
   state = {
     showForm: false,
     initializing: true,
@@ -185,9 +185,9 @@ export default class Placment extends Component {
     const { namespace, workspace, cluster } = formData
     return (
       <div className={styles.placement}>
-        <Text title={workspace} description={t('Workspace')} />
+        <Text title={workspace} description={t('WORKSPACE')} />
         <Text title={cluster} description={t('Cluster')} />
-        <Text icon="project" title={namespace} description={t('Project')} />
+        <Text icon="project" title={namespace} description={t('PROJECT')} />
         <Icon className={styles.icon} name="chevron-down" size={20} />
       </div>
     )
@@ -227,7 +227,7 @@ export default class Placment extends Component {
         <Form ref={this.formRef} type="inner" data={this.state.formData}>
           <Columns>
             <Column>
-              <Form.Item label={t('Workspace')}>
+              <Form.Item label={t('WORKSPACE')}>
                 <Select
                   name="workspace"
                   placeholder={t('Please select a workspace')}
@@ -252,7 +252,7 @@ export default class Placment extends Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('Project')}
+                label={t('PROJECT')}
                 rules={[
                   { required: true, message: t('Please select a project') },
                 ]}
