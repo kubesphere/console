@@ -62,7 +62,7 @@ export default class EditBasicInfoModal extends React.Component {
         'metadata.labels["topology.kubernetes.io/region"]',
         ''
       ),
-      formData: copy(props.detail),
+      formData: copy(props.detail._originData),
     }
   }
 

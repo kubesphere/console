@@ -47,7 +47,7 @@ export default class EditBasicInfoModal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      formData: copy(props.detail),
+      formData: copy(props.detail._originData),
     }
 
     this.userStore = new UserStore()
