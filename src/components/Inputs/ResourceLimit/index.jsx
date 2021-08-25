@@ -81,30 +81,58 @@ export default class ResourceLimit extends React.Component {
     return null
   }
 
+  static allowInputDot(formatNum, unit, formatFn, isMemory = false) {
+    const inputNum = formatNum && isMemory ? formatNum.slice(0, -2) : formatNum
+    if (inputNum && inputNum.endsWith('.')) {
+      const number = formatFn(formatNum, unit)
+      return `${number}.`
+    }
+    if (inputNum && inputNum.endsWith('.0')) {
+      const number = formatFn(formatNum, unit)
+      return `${number}.0`
+    }
+
+    return formatFn(formatNum, unit)
+  }
+
   static getValue(props) {
     const cpuUnit = get(props, 'cpuProps.unit', 'Core')
     const memoryUnit = get(props, 'memoryProps.unit', 'Mi')
 
+    const cpuRequests = ResourceLimit.allowInputDot(
+      ResourceLimit.getDefaultRequestValue(props, 'cpu'),
+      cpuUnit,
+      cpuFormat
+    )
+
+    const cpuLimits = ResourceLimit.allowInputDot(
+      ResourceLimit.getDefaultLimitValue(props, 'cpu'),
+      cpuUnit,
+      cpuFormat
+    )
+
+    const memoryRequests = ResourceLimit.allowInputDot(
+      ResourceLimit.getDefaultRequestValue(props, 'memory'),
+      memoryUnit,
+      memoryFormat,
+      true
+    )
+
+    const memoryLimits = ResourceLimit.allowInputDot(
+      ResourceLimit.getDefaultLimitValue(props, 'memory'),
+      memoryUnit,
+      memoryFormat,
+      true
+    )
+
     return {
       requests: {
-        cpu: cpuFormat(
-          ResourceLimit.getDefaultRequestValue(props, 'cpu'),
-          cpuUnit
-        ),
-        memory: memoryFormat(
-          ResourceLimit.getDefaultRequestValue(props, 'memory'),
-          memoryUnit
-        ),
+        cpu: cpuRequests,
+        memory: memoryRequests,
       },
       limits: {
-        cpu: cpuFormat(
-          ResourceLimit.getDefaultLimitValue(props, 'cpu'),
-          cpuUnit
-        ),
-        memory: memoryFormat(
-          ResourceLimit.getDefaultLimitValue(props, 'memory'),
-          memoryUnit
-        ),
+        cpu: cpuLimits,
+        memory: memoryLimits,
       },
       workspaceRequests: {
         cpu: cpuFormat(
@@ -241,11 +269,19 @@ export default class ResourceLimit extends React.Component {
     let memoryError = ''
     const { requests, limits } = state
 
-    if (limits.cpu && Number(requests.cpu) > Number(limits.cpu)) {
+    if (
+      limits.cpu &&
+      !String(limits.cpu).endsWith('.') &&
+      Number(requests.cpu) > Number(limits.cpu)
+    ) {
       cpuError = 'RequestExceed'
     }
 
-    if (limits.memory && Number(requests.memory) > Number(limits.memory)) {
+    if (
+      limits.memory &&
+      !String(limits.memory).endsWith('.') &&
+      Number(requests.memory) > Number(limits.memory)
+    ) {
       memoryError = 'RequestExceed'
     }
 
@@ -344,10 +380,39 @@ export default class ResourceLimit extends React.Component {
     )
   }
 
+  getInputMaxiNum(name) {
+    let maxiNum
+    if (this.props.cpuProps) {
+      if (name.indexOf('cpu')) {
+        const marks = this.props.cpuProps.marks
+        maxiNum = marks[marks.length - 2].value
+      } else if (name.indexOf('memory')) {
+        const memoryMarks = this.props.memoryProps.marks
+        maxiNum = memoryMarks[memoryMarks.length - 2].value
+      }
+    } else if (name.indexOf('cpu')) {
+      maxiNum = 4
+    } else if (name.indexOf('memory')) {
+      maxiNum = 8000
+    }
+    return maxiNum
+  }
+
   handleInputChange = (e, value) => {
+    let inputNum
     const name = e.target.name
+    const maxiNum = this.getInputMaxiNum(name)
+    if (value === '') {
+      inputNum = 0
+    } else if (value > maxiNum) {
+      value = 'infinity'
+    } else {
+      const number = /^(([1-9]{1}\d*)|(0{1}))(\.\d{0,2})?$/.exec(value)
+      inputNum = number == null ? get(this.state, name, null) : number[0]
+    }
+
     this.setState(state => {
-      set(state, name, isNaN(value) ? '' : value)
+      set(state, name, isNaN(inputNum) ? '' : inputNum)
       return { ...state, ...this.checkError(state) }
     }, this.checkAndTrigger)
   }
