@@ -7,12 +7,19 @@
 
 .cluster,
 .clusterLoading {
-  width: 326px; 
+  width: 326px;
   height: 108px;
   padding: 8px;
   margin-right: 12px;
   color: #fff;
+  border-radius: 4px;
   background-image: url('/assets/cluster-card-bg.svg');
+}
+
+.scheduleCluster {
+  width: 298px;
+  height: 160px;
+  padding: 12px;
 }
 
 .clusterLoading {
@@ -27,6 +34,7 @@
 .text {
   flex: 1;
   overflow: hidden;
+
   & > div {
     @include TypographyTitleH6(#fff);
     @include ellipsis;
@@ -75,16 +83,19 @@
   position: absolute;
   bottom: 4px;
   right: 6px;
+
   :global {
     .icon {
       padding: 4px;
       border-radius: $border-radius;
       background-color: $dark-color06;
     }
+
     .icon.icon-clickable:hover,
     .icon.icon-clickable:active {
       background-color: $dark-color07;
     }
+
     .icon + .icon {
       margin-left: 4px;
     }
@@ -105,4 +116,99 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.titleBox {
+  margin-bottom: 12px;
+  display: flex;
+
+  .IconBox {
+    display: flex;
+    align-items: center;
+  }
+
+  .right {
+    margin-left: 17px;
+
+    span {
+      display: block;
+      font-family: PingFang SC;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 20px;
+
+      &:nth-of-type(1) {
+        font-weight: 600;
+        color: $dark-color07;
+      }
+
+      &:nth-of-type(2) {
+        color: $dark-color01;
+      }
+    }
+  }
+}
+
+.totalBox {
+  width: 72px;
+  height: 160px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 12px;
+  background: $dark-color07;
+  margin-right: 12px;
+
+  .total {
+    font-family: PingFang SC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    margin: 4px 0;
+    text-align: center;
+  }
+
+  .replicasInput {
+    input {
+      outline: none;
+      width: 48px;
+      height: 32px;
+      padding: 6px 12px;
+      background: $dark-color07;
+      border: 1px solid $dark-color04;
+      box-sizing: border-box;
+      border-radius: 4px;
+      color: #fff;
+    }
+  }
+}
+
+.weight {
+  display: flex;
+  width: 274px;
+  height: 32px;
+  margin: 0 auto;
+  margin-top: 12px;
+  padding: 6px;
+  background: $dark-color06;
+  border-radius: 16px;
+
+  .value {
+    flex: 1;
+    text-align: center;
+    @include TypographySymbolText($dark-color06);
+
+    .spanText {
+      color: $white;
+    }
+
+    .subText {
+      color: $dark-color01;
+    }
+  }
 }

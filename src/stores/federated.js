@@ -316,14 +316,6 @@ export default class FederatedStore extends Base {
     return this.submitting(withDryRun(reqs))
   }
 
-  @action updateResource(cluster, data) {
-    this.isResourcesLoading = true
-    Object.assign(this.resources, {
-      [cluster]: { ...this.mapper(data), cluster },
-    })
-    this.isResourcesLoading = false
-  }
-
   @action
   scheduleCreate(data, params = {}) {
     const reqs = []
@@ -334,6 +326,14 @@ export default class FederatedStore extends Base {
     const promises = reqs.map(item => request.post(item.url, item.data))
 
     return Promise.all(promises)
+  }
+
+  @action updateResource(cluster, data) {
+    this.isResourcesLoading = true
+    Object.assign(this.resources, {
+      [cluster]: { ...this.mapper(data), cluster },
+    })
+    this.isResourcesLoading = false
   }
 
   async deleteSchedule(params) {
