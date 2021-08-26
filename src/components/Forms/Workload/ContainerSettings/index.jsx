@@ -30,7 +30,7 @@ import QuotaStore from 'stores/quota'
 import WorkspaceQuotaStore from 'stores/workspace.quota'
 import ProjectStore from 'stores/project'
 
-import { Form } from '@kube-design/components'
+import { Form, Tooltip, Icon } from '@kube-design/components'
 import AffinityForm from 'components/Forms/Workload/ContainerSettings/Affinity'
 import ReplicasControl from './ReplicasControl'
 import ClusterReplicasControl from './ClusterReplicasControl'
@@ -38,6 +38,7 @@ import UpdateStrategy from './UpdateStrategy'
 import ContainerList from './ContainerList'
 import ContainerForm from './ContainerForm'
 import PodSecurityContext from './PodSecurityContext'
+import styles from './index.scss'
 
 export default class ContainerSetting extends React.Component {
   constructor(props) {
@@ -83,10 +84,14 @@ export default class ContainerSetting extends React.Component {
   }
 
   componentDidMount() {
+    const { store } = this.props
     this.fetchData()
     this.fetchQuota()
     if (this.props.withService) {
       this.initService(this.formTemplate)
+    }
+    if (store.renderScheduleTab) {
+      this.props.store.setMetadata(this.formTemplate.metadata)
     }
   }
 
@@ -100,7 +105,9 @@ export default class ContainerSetting extends React.Component {
 
   get formTemplate() {
     const { formTemplate, module } = this.props
-    return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
+    const template = get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
+    template.totalReplicas = ''
+    return template
   }
 
   get fedFormTemplate() {
@@ -439,9 +446,54 @@ export default class ContainerSetting extends React.Component {
 
   renderDeployPlacementTip() {
     return (
-      <div>
-        <div className="tooltip-title">{t('DEPLOY_PLACEMENT_TIP_TITLE')}</div>
-        <p>{t('DEPLOY_PLACEMENT_TIP_VALUE')}</p>
+      <div className={styles.tipBox}>
+        <div className={styles.tipTitle}>{t('Fixed Replicas')}:</div>
+        <p>{t('Fixed_Deploy_text')}</p>
+        <div className={styles.tipTitle}>{t('Federated Schedule')}:</div>
+        <p>{t('Federated_Schedule_Text')}</p>
+      </div>
+    )
+  }
+
+  renderDeployPlace() {
+    const { projectDetail } = this.props
+
+    return (
+      <Form.Item
+        className="margin-b12"
+        label={t('POD_REPLICAS')}
+        tip={this.renderDeployPlacementTip()}
+      >
+        <ClusterReplicasControl
+          module={this.module}
+          template={this.formTemplate}
+          clusters={projectDetail.clusters}
+          onClusterUpdate={this.handleClusterUpdate}
+        />
+      </Form.Item>
+    )
+  }
+
+  renderDeployMode() {
+    const { projectDetail } = this.props
+
+    return (
+      <div className="margin-b12">
+        <div className={styles.formTip}>
+          <span className={styles.tipLabel}>{t('Deployment Mode')}</span>
+          <Tooltip placement="right" content={this.renderDeployPlacementTip()}>
+            <Icon name="question" size="20"></Icon>
+          </Tooltip>
+        </div>
+        <Form.Item>
+          <ClusterReplicasControl
+            module={this.module}
+            template={this.formTemplate}
+            clusters={projectDetail.clusters}
+            onClusterUpdate={this.handleClusterUpdate}
+            store={this.props.store}
+          />
+        </Form.Item>
       </div>
     )
   }
@@ -451,23 +503,12 @@ export default class ContainerSetting extends React.Component {
       return null
     }
 
-    const { projectDetail, isFederated } = this.props
+    const { isFederated, store } = this.props
 
     if (isFederated) {
-      return (
-        <Form.Item
-          className="margin-b12"
-          label={t('POD_REPLICAS')}
-          tip={this.renderDeployPlacementTip()}
-        >
-          <ClusterReplicasControl
-            module={this.module}
-            template={this.formTemplate}
-            clusters={projectDetail.clusters}
-            onClusterUpdate={this.handleClusterUpdate}
-          />
-        </Form.Item>
-      )
+      return store.isScheduleDeployment
+        ? this.renderDeployMode()
+        : this.renderDeployPlace()
     }
 
     return (

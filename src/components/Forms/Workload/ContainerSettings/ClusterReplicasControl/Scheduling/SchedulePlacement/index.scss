@@ -5,7 +5,6 @@
   width: 220px;
   padding: 4px 8px 8px;
   margin-right: 8px;
-  border-radius: 2px;
   border-radius: 4px;
   background-color: $light-color03;
   cursor: pointer;
@@ -19,18 +18,19 @@
 
   &.checked {
     background-color: $dark-color07;
-    color: #fff;
+    color: $white;
 
     :global {
       label.checkbox .label-value {
-        color: #fff;
+        color: $white;
       }
     }
 
     .replicas {
       background-color: $dark-color06;
+
       .value {
-        color: #fff;
+        color: $white;
       }
     }
   }

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, omit } from 'lodash'
 import { toJS } from 'mobx'
 import { withProps } from 'utils'
 import { Notify } from '@kube-design/components'
@@ -52,13 +52,24 @@ const FORM_STEPS = {
 
 export default {
   'workload.create': {
-    on({ store, cluster, namespace, module, success, isFederated, ...props }) {
+    on({
+      store,
+      cluster,
+      namespace,
+      module,
+      success,
+      isFederated,
+      renderScheduleTab = false,
+      ...props
+    }) {
       const kind = MODULE_KIND_MAP[module]
       const formTemplate = {
         [kind]: FORM_TEMPLATES[module]({
           namespace,
         }),
       }
+
+      let scheduleTemplate = {}
 
       if (module === 'statefulsets') {
         formTemplate.Service = FORM_TEMPLATES.services({
@@ -74,7 +85,15 @@ export default {
             clusters: props.projectDetail.clusters.map(item => item.name),
             kind: key,
           })
+
+          scheduleTemplate = FORM_TEMPLATES.deploymentsSchedule({
+            data: formTemplate[key],
+            includeClusters: props.projectDetail.clusters.map(
+              item => item.name
+            ),
+          })
         })
+        store.setScheduleTemplate(scheduleTemplate)
       }
 
       const steps = [...FORM_STEPS[module]]
@@ -89,10 +108,20 @@ export default {
         })
       }
 
+      if (renderScheduleTab) {
+        store.switchSchedule(true)
+        store.ifRenderScheduleTab(renderScheduleTab)
+      }
+
       const modal = Modal.open({
         onOk: newObject => {
+          const omitArr = [
+            `${kind}.spec.template.totalReplicas`,
+            'totalReplicas',
+            `${kind}.totalReplicas`,
+          ]
+          newObject = omit(newObject, omitArr)
           let data = newObject
-
           if (!data) {
             return
           }
@@ -116,7 +145,12 @@ export default {
             }
           }
 
-          store.create(data, { cluster, namespace }).then(() => {
+          store.create(data, { cluster, namespace }).then(async () => {
+            const { isScheduleDeployment } = store
+            if (isScheduleDeployment && renderScheduleTab) {
+              const scheduleData = toJS(store.scheduleTemplate)
+              await store.scheduleCreate(scheduleData, { cluster, namespace })
+            }
             Modal.close(modal)
             Notify.success({ content: `${t('Created Successfully')}` })
             success && success()

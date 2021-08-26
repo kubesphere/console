@@ -48,6 +48,36 @@ const getDeploymentTemplate = ({ namespace }) => ({
   },
 })
 
+const getScheduleDeploymentTemplate = ({ data, includeClusters }) => {
+  const namespace = get(data, 'metadata.namespace')
+  const template = cloneDeep(data)
+
+  unset(template, 'apiVersion')
+  unset(template, 'kind')
+  unset(template, 'metadata.name')
+  unset(template, 'metadata.annotations')
+
+  const clusterS = {}
+
+  includeClusters.forEach(cluster => {
+    clusterS[cluster] = {
+      weight: 1,
+    }
+  })
+
+  return {
+    apiVersion: 'scheduling.kubefed.io/v1alpha1',
+    kind: 'ReplicaSchedulingPreference',
+    metadata: { namespace },
+    spec: {
+      rebalance: true,
+      targetKind: 'FederatedDeployment',
+      totalReplicas: '',
+      clusters: clusterS,
+    },
+  }
+}
+
 const getFederatedTemplate = ({ data, clusters, kind }) => {
   const namespace = get(data, 'metadata.namespace')
 
@@ -596,6 +626,7 @@ const getNotificationReceiverTemplate = ({ name, type }) => ({
 
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
+  deploymentsSchedule: getScheduleDeploymentTemplate,
   daemonsets: getDaemonSetTemplate,
   statefulsets: getStatefulSetTemplate,
   jobs: getJobTemplate,
