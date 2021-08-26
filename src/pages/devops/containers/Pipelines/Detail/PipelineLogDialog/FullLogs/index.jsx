@@ -159,7 +159,7 @@ export default class FullLogs extends React.Component {
             name="refresh"
             color={{ primary: '#fff', secondary: '#fff' }}
             size={20}
-            onClick={this.handleRefreshLogs}
+            onClick={isRealtime ? null : this.handleRefreshLogs}
             clickable
             changeable
             disabled={isRealtime}
