@@ -29,22 +29,27 @@ import RunStore from 'stores/devops/run'
 
 import LogItem from './logItem'
 import styles from './index.scss'
+import FullLogs from './FullLogs'
 
 @observer
 export default class PipelineLog extends React.Component {
   constructor(props) {
     super(props)
     this.store = new RunStore()
+
     this.reaction = reaction(
       () => this.isEmptySteps,
       () => {
         clearInterval(this.getIndexLogInterval)
-        if (this.isEmptySteps) {
-          this.getIndexLogInterval = setInterval(this.getRunStatusLogs, 4000)
+        if (this.isEmptySteps && Array.isArray(this.activeStage.steps)) {
+          this.getIndexLogInterval = setInterval(this.getPipelineIndexLog, 4000)
         }
       }
     )
   }
+
+  @observable
+  isShowLog = false
 
   async componentDidMount() {
     await this.getPipelineIndexLog()
@@ -72,6 +77,8 @@ export default class PipelineLog extends React.Component {
   @observable
   refreshFlag = true
 
+  logRefresh = null
+
   @action
   updateActiveTabs = (lineindex, columnIndex) => () => {
     this.activeNodeIndex = [lineindex, columnIndex]
@@ -89,14 +96,18 @@ export default class PipelineLog extends React.Component {
 
   handleExpandErrorStep = () => {
     const nodes = toJS(this.props.nodes)
-    const errorNodeIdex = nodes.findIndex(item => item.result !== 'SUCCESS')
+    const errorNodeIdex =
+      Array.isArray(nodes) && nodes.findIndex(item => item.result !== 'SUCCESS')
 
     if (errorNodeIdex > -1) {
-      const subStepIdex = nodes[errorNodeIdex].steps.findIndex(
-        item => item.result !== 'SUCCESS'
-      )
-
-      this.activeNodeIndex = [errorNodeIdex, subStepIdex]
+      if (nodes[errorNodeIdex].steps) {
+        const subStepIdex = nodes[errorNodeIdex].steps.findIndex(
+          item => item.result !== 'SUCCESS'
+        )
+        this.activeNodeIndex = [errorNodeIdex, subStepIdex]
+      } else {
+        this.activeNodeIndex = [errorNodeIdex]
+      }
     }
   }
 
@@ -142,6 +153,10 @@ export default class PipelineLog extends React.Component {
     )
   }
 
+  handleVisableLog = () => {
+    this.isShowLog = !this.isShowLog
+  }
+
   renderLogContent() {
     const { params } = this.props
     const { runDetailLogs } = this.store
@@ -164,8 +179,19 @@ export default class PipelineLog extends React.Component {
   }
 
   render() {
-    const { nodes } = this.props
+    const { nodes, params } = this.props
     const _nodes = toJS(nodes)
+
+    if (this.isShowLog) {
+      return (
+        <FullLogs
+          store={this.store}
+          isShowLog={this.isShowLog}
+          params={params}
+          handleVisableLog={this.handleVisableLog}
+        />
+      )
+    }
 
     return (
       <div className={styles.container}>
@@ -180,6 +206,7 @@ export default class PipelineLog extends React.Component {
             <Button onClick={this.handleDownloadLogs}>
               {t('Download Logs')}
             </Button>
+            <Button onClick={this.handleVisableLog}>{t('Show Logs')}</Button>
             <Button onClick={this.handleRefresh}>{t('Refresh')}</Button>
           </div>
           <div className={styles.logContainer}>{this.renderLogContent()}</div>
