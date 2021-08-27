@@ -82,20 +82,16 @@ export default class RulePath extends React.Component {
   }
 
   render() {
-    const keyProps = {
-      component: AutoComplete,
-      options: this.services.map(item => item.value),
-    }
-    const { component: KeySelect, ...keyInputProps } = keyProps
+    const options = this.services.map(item => item.value)
     return (
       <ObjectInput {...this.props} onChange={this.handleChange}>
         <Input name="path" placeholder={t('Path')} defaultValue="/" />
-        <KeySelect
+        <AutoComplete
           className={styles.autocomplete}
           name="backend.serviceName"
           placeholder={t('PATH_SERVICE_TIP')}
           onChange={this.handleServiceChange}
-          {...keyInputProps}
+          options={options}
         />
         <Select
           className={styles.input}
