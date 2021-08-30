@@ -21,7 +21,8 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { parse } from 'qs'
-import { Link } from 'react-router-dom'
+import Link from 'components/Layout/Nav/Link'
+
 import { Button, Notify } from '@kube-design/components'
 import Status from 'devops/components/Status'
 import Health from 'devops/components/Health'
@@ -31,6 +32,9 @@ import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 
 import Table from 'components/Tables/List'
 import EmptyCard from 'devops/components/Cards/EmptyCard'
+
+import classNames from 'classnames'
+import styles from './index.scss'
 
 @inject('rootStore', 'detailStore')
 @observer
@@ -146,9 +150,15 @@ export default class Branch extends React.Component {
       title: t('NAME'),
       dataIndex: 'name',
       width: '20%',
-      render: name => (
-        <Link className="item-name" to={`${this.prefix}/${name}/activity`}>
-          <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
+      render: (name, record) => (
+        <Link
+          className={classNames('item-name', {
+            [styles.itemNameDisabled]: record.disabled,
+          })}
+          to={`${this.prefix}/${name}/activity`}
+          disabled={record.disabled}
+        >
+          <ForkIcon style={{ width: '20px', height: '20px' }} />
           {decodeURIComponent(name)}
         </Link>
       ),
