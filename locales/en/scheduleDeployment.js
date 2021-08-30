@@ -28,4 +28,12 @@ module.exports = {
   TOTAL_REPLICAS: 'Total Replicas',
   'replicas input invalid': 'Replicas input invalid.',
   'Please input total replicas num': 'Please input total replicas num.',
+  'Storage Function Manage': 'Storage volume function management',
+  'Volume Clone': 'Storage volume clone',
+  Volume_Clone_Des: 'Create an identical storage volume.',
+  Volume_SnapShot_Des:
+    'Create a storage volume snapshot, which can be used to create other storage volumes.',
+  'Volume Expansion': 'Storage volume expansion',
+  Volume_Expansion_Des:
+    'Increase the capacity of the storage volume. The capacity of the storage volume cannot be reduced on the console because data may be lost.',
 }
