@@ -18,7 +18,6 @@
 
 module.exports = {
   'Network Policy': '网络策略',
-  'Network Policies': '网络策略',
   'Network Policys': '网络策略',
   'Network Isolation': '网络隔离',
   CREATE_NETWORK_POLICY_TCAP: '创建网络策略',

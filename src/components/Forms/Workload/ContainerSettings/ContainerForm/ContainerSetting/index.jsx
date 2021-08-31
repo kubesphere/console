@@ -54,8 +54,8 @@ export default class ContainerSetting extends React.Component {
 
   get containerTypes() {
     return [
-      { label: t('Worker Container'), value: 'worker' },
-      { label: t('Init Container'), value: 'init' },
+      { label: t('WORKER_CONTAINER'), value: 'worker' },
+      { label: t('INIT_CONTAINER'), value: 'init' },
     ]
   }
 
@@ -157,7 +157,7 @@ export default class ContainerSetting extends React.Component {
           <Columns className={styles.columns}>
             <Column>
               <Form.Item
-                label={t('Container Name')}
+                label={t('CONTAINER_NAME')}
                 desc={t('NAME_DESC')}
                 rules={[
                   { required: true, message: t('NAME_EMPTY_DESC') },
@@ -177,7 +177,7 @@ export default class ContainerSetting extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Container Type')}>
+              <Form.Item label={t('CONTAINER_TYPE')}>
                 <Select
                   name="type"
                   defaultValue={defaultContainerType}
@@ -190,7 +190,7 @@ export default class ContainerSetting extends React.Component {
           </Columns>
           <Alert
             className="margin-b12"
-            type="warning"
+            type="info"
             message={t('CONTAINER_RESOURCE_LIMIT_TIP')}
           />
           <Form.Item

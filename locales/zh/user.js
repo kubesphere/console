@@ -18,8 +18,8 @@
 
 module.exports = {
   users: '用户',
-  // Users: '用户', (Duplicated)
   User: '用户',
+  USER: '用户',
   Accounts: '帐户',
   'User Management': '用户管理',
   'Authorized Projects': '授权项目',
@@ -78,8 +78,6 @@ module.exports = {
   'You must enter the correct current password to change to a new password.':
     '您必须输入正确的当前密码才可更改为新的密码',
 
-  // 'Your password must meet the following requirements':
-  //  '您的密码必须符合如下要求', (Duplicated)
   'At least 1 uppercase and lowercase letter': '至少 1 个大写和小写字母',
   'At least 1 number': '至少 1 个数字',
   'Password length is at least 6 characters': '密码长度至少为 6',

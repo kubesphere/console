@@ -74,14 +74,14 @@ export default class ContainerItem extends React.Component {
 
     if ('httpGet' in probe) {
       const { path, port, scheme } = probe.httpGet
-      probeType = 'HTTP Request Check'
+      probeType = 'HTTP_REQUEST'
       probeDetail = `GET ${path} on port ${port} (${scheme})`
     } else if ('tcpSocket' in probe) {
-      probeType = 'TCP Port Check'
+      probeType = 'TCP_PORT'
       probeDetail = `Open socket on port ${probe.tcpSocket.port} (TCP)`
     } else {
       const { command = [] } = probe.exec
-      probeType = 'Exec Command Check'
+      probeType = 'COMMAND'
       probeDetail = command.join(' ')
     }
 
@@ -91,8 +91,7 @@ export default class ContainerItem extends React.Component {
           <Tag type={tagType}>{title}</Tag>
           <span className={styles.probeType}>{t(probeType)}</span>
           <span className={styles.probeTime}>
-            {t('Initial Delay')}: {delay}s &nbsp;&nbsp;
-            {t('Timeout')}: {timeout}s
+            {t('INITIAL_DELAY_TIMEOUT_VALUE', { delay, timeout })}
           </span>
         </div>
         <p>{probeDetail}</p>

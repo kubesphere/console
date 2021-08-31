@@ -166,12 +166,11 @@ module.exports = {
   CHOOSE_PROVIDER_DESC:
     'KubeSphere 提供了在主流服务商中快速部署 Kubernetes 集群的方案',
 
-  VISIBILITY_PARTIAL: '部分可见',
-  VISIBILITY_PUBLIC: '公开',
+  VISIBILITY_PARTIAL: '对部分企业空间可见',
+  VISIBILITY_PUBLIC: '对所有企业空间可见',
 
   MULTI_CLUSTER: '多集群',
 
-  CLUSTER_SETTINGS_DESC: '定义集群配置信息',
   CLUSTER_TAG: '标签',
   CLUSTER_TAG_DESC: '为集群添加标签来标识集群的用途。',
   CLUSTER_PROVIDER_DESC: '提供集群基础设施的服务商。',
@@ -321,7 +320,6 @@ module.exports = {
     '将集群授权给企业空间，以在企业空间中查看并管理集群资源。',
   EDIT_VISIBILITY_DESC: '编辑集群在企业空间中的可见性。',
   TO_BE_AUTHORIZED: '待授权',
-  LOGGING: '日志',
   EVENTS: '事件',
   AUDITING: '审计',
   REMOVE_WORKSPACE_CONFIRM_SI:

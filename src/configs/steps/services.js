@@ -39,7 +39,7 @@ export default {
       required: true,
     },
     {
-      title: 'Mount Volumes',
+      title: 'VOLUME_SETTINGS',
       icon: 'storage',
       component: VolumeSettings,
       required: true,
@@ -60,7 +60,7 @@ export default {
       required: true,
     },
     {
-      title: 'Mount Volumes',
+      title: 'VOLUME_SETTINGS',
       icon: 'storage',
       component: VolumeSettings,
       required: true,
@@ -119,7 +119,7 @@ export default {
       required: true,
     },
     {
-      title: 'Mount Volumes',
+      title: 'VOLUME_SETTINGS',
       icon: 'storage',
       component: VolumeSettings,
       required: true,
@@ -149,7 +149,7 @@ export default {
       required: true,
     },
     {
-      title: 'Mount Volumes',
+      title: 'VOLUME_SETTINGS',
       icon: 'storage',
       component: VolumeSettings,
       required: true,

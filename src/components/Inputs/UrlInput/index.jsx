@@ -30,7 +30,7 @@ export default class UrlInput extends React.Component {
     portName: 'Port',
     defaultPort: 9200,
     hostRules: [{ required: true, message: t('ENTER_SERVICE_ADDRESS') }],
-    portRules: [{ required: true, message: t('ENTER_PORT_NUMBER') }],
+    portRules: [{ required: true, message: t('PORT_NUMBER_EMPTY') }],
   }
 
   render() {

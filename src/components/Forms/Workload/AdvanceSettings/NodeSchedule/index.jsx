@@ -30,7 +30,7 @@ export default class NodeSchedule extends React.Component {
       <Form.Item>
         <SelectorsInput
           name={`${this.prefix}spec.nodeSelector`}
-          addText={t('Add Node Selector')}
+          addText={t('ADD_NODE_SELECTOR')}
           {...this.props}
         />
       </Form.Item>

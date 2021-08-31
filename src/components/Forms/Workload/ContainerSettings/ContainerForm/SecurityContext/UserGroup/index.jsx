@@ -31,7 +31,7 @@ export default class UserGroup extends React.Component {
   render() {
     return (
       <div className="margin-b12">
-        <div className={styles.title}>{t('User and User Group')}</div>
+        <div className={styles.title}>{t('USER_AND_USER_GROUP')}</div>
         <div className={styles.content}>
           <Form.Item>
             <CheckableText
@@ -43,13 +43,13 @@ export default class UserGroup extends React.Component {
           <div className="padding-12">
             <Columns>
               <Column>
-                <Form.Item label={t('User')} desc={t('RUN_AS_USER_DESC')}>
+                <Form.Item label={t('USER')} desc={t('RUN_AS_USER_DESC')}>
                   <NumberInput name={`${this.prefix}.runAsUser`} integer />
                 </Form.Item>
               </Column>
               <Column>
                 <Form.Item
-                  label={t('User Group')}
+                  label={t('USER_GROUP')}
                   desc={t('RUN_AS_USER_GROUP_DESC')}
                 >
                   <NumberInput name={`${this.prefix}.runAsGroup`} integer />

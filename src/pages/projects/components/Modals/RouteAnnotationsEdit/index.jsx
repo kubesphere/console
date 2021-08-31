@@ -88,7 +88,7 @@ class RouteAnnotationsEdit extends React.Component {
               <AnnotationsInput
                 name="metadata.annotations"
                 hiddenKeys={globals.config.preservedAnnotations}
-                addText={t('ADD_ANNOTATION')}
+                addText={t('ADD')}
               />
             </Form.Item>
           </div>

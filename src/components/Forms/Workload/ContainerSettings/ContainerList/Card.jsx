@@ -39,7 +39,7 @@ const Card = ({ type = 'worker', container, onDelete, onEdit, readOnly }) => {
       <List.Item
         icon="istio"
         title={container.name}
-        description={`${t('IMAGE')}: ${container.image}`}
+        description={t('IMAGE_VALUE', { value: container.image })}
       />
     )
   }
@@ -49,7 +49,7 @@ const Card = ({ type = 'worker', container, onDelete, onEdit, readOnly }) => {
     extras = (
       <div className={styles.limits}>
         <Icon name="exclamation" />
-        <span>&nbsp;{t('No resource limits')}</span>
+        <span>&nbsp;{t('NO_RESOURCE_LIMIT')}</span>
       </div>
     )
   } else {
@@ -58,7 +58,7 @@ const Card = ({ type = 'worker', container, onDelete, onEdit, readOnly }) => {
         {(limits.cpu || requests.cpu) && (
           <span className={styles.limit}>
             <Icon name="cpu" size={20} />
-            <span>{`${requests.cpu ? cpuFormat(requests.cpu) : 0} ~ ${
+            <span>{`${requests.cpu ? cpuFormat(requests.cpu) : 0} – ${
               limits.cpu ? cpuFormat(limits.cpu) : '∞'
             }`}</span>
           </span>
@@ -66,9 +66,9 @@ const Card = ({ type = 'worker', container, onDelete, onEdit, readOnly }) => {
         {(limits.memory || requests.memory) && (
           <span className={styles.limit}>
             <Icon name="memory" size={20} />
-            {`${requests.memory ? `${memoryFormat(requests.memory)}Mi` : 0} ~ ${
-              limits.memory ? `${memoryFormat(limits.memory)}Mi` : '∞'
-            }`}
+            {`${
+              requests.memory ? `${memoryFormat(requests.memory)} MiB` : 0
+            } – ${limits.memory ? `${memoryFormat(limits.memory)} MiB` : '∞'}`}
           </span>
         )}
       </div>
@@ -80,7 +80,7 @@ const Card = ({ type = 'worker', container, onDelete, onEdit, readOnly }) => {
       <span>
         {container.name}
         <Tag className="margin-l8" type="warning">
-          {t('Init Container')}
+          {t('INIT_CONTAINER')}
         </Tag>
       </span>
     ) : (
@@ -91,7 +91,7 @@ const Card = ({ type = 'worker', container, onDelete, onEdit, readOnly }) => {
     <List.Item
       icon="docker"
       title={title}
-      description={`${t('IMAGE')}: ${container.image}`}
+      description={t('IMAGE_VALUE', { value: container.image })}
       extras={extras}
       onDelete={!readOnly && handleDelete}
       onEdit={!readOnly && handleEdit}

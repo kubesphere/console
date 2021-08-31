@@ -239,7 +239,6 @@ module.exports = {
   'Repository Url': 'Repository URL',
   'Repository Name': 'Repository Name',
   Rescan: 'Rescan',
-  Review: 'Review',
   Run: 'Run',
   'Run Pipeline': 'Run Pipeline',
   'Save Artifact': 'Save Artifact',
@@ -302,6 +301,7 @@ module.exports = {
   'This name has existed.': 'This name has existed.',
   'Time Used': 'Time Used',
   Timeout: 'Timeout',
+  TIMEOUT_VALUE: 'Timeout: {value}',
   timeout: 'timeout',
   'Timeout after no activity in logs for this block':
     'Timeout after no activity in logs for this block',

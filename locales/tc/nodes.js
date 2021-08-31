@@ -25,16 +25,15 @@ module.exports = {
   WORKER_NODE_PL: '工作節點',
 
   'Cluster Node': '集群節點',
-  CLUSTER_NODE_PL: '集群節點',
+  CLUSTER_NODES: '集群節點',
   'Cluster Nodes': '集群節點',
 
   'Edge Node': '邊緣節點',
-  'Edge Nodes': '邊緣節點',
+  EDGE_NODES: '邊緣節點',
   'Master Node': 'Master 節點',
   'Worker Node': '工作節點',
   ADD_NODE: '添加節點',
   'System Version': '系統版本',
-  'Node Status': '節點狀態',
   ONLINE_NODES: '在線節點',
   ALL_NODES: '全部節點',
   IP_ADDRESS_TCAP: 'IP 地址',
@@ -50,10 +49,7 @@ module.exports = {
   'Kube-Proxy Version': 'Kube-Proxy 版本',
   lastHeartbeatTime: '最近更新時間',
   NODE_ONLINE_STATUS: '節點在線狀態',
-  'CPU Utilization': 'CPU 使用情況',
-  'Memory Utilization': '記憶體使用情況',
   'Pod Count': '容器組數量',
-  PODS: '容器組',
   'Pod Usage': '容器組使用情況',
   'Pod Quantity Trend': '容器組數量變化',
   'Local Storage Capacity': '本地儲存容量',
@@ -64,7 +60,7 @@ module.exports = {
   Taint: '汙點',
   taint: '汙點',
   Conditions: '狀態',
-  Annotations: '注解',
+  ANNOTATIONS: '注解',
 
   'Resource Usage': '資源使用情況',
 

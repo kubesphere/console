@@ -164,7 +164,7 @@ export default class AdvancedSettings extends React.Component {
             </Form.Group>
           )}
           <Form.Group
-            label={withService ? t('Service Settings') : t('Port Settings')}
+            label={withService ? t('SERVICE_SETTINGS') : t('PORT_SETTINGS')}
             desc={t('CLUSTER_SERVICE_DIFF_DESC')}
             checkable
           >
@@ -201,7 +201,7 @@ export default class AdvancedSettings extends React.Component {
           </Form.Group>
           {module === 'service' && isEdit ? null : (
             <Form.Group
-              label={t('Environment Variables')}
+              label={t('ENVIRONMENT_VARIABLES')}
               desc={t('CLUSTER_ENV_DIFF_DESC')}
               checkable
             >

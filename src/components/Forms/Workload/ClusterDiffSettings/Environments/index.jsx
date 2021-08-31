@@ -64,7 +64,7 @@ export default class ContainerImages extends Component {
     const { configMaps, secrets } = this.state
 
     const title = (
-      <span>{`${t('Environment Variables')}: ${(formData.env || [])
+      <span>{`${t('ENVIRONMENT_VARIABLES')}: ${(formData.env || [])
         .map(item => item.name)
         .join(', ') || t('None')}`}</span>
     )

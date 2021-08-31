@@ -33,7 +33,6 @@ module.exports = {
   'Workspace Groups': '企業組織',
   'Maintain Organization': '維護組織結構',
 
-  projects: '項目',
   devops: 'DevOps 工程',
 
   'Project Number': '項目數量',

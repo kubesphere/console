@@ -126,7 +126,7 @@ export default class UpdateStrategyForm extends React.Component {
     const number = /^[0-9]*$/
     const percentage = /^[0-9]+%$/
     if (!number.test(value) && !percentage.test(value)) {
-      return callback({ message: t('Invalid pod') })
+      return callback({ message: t('ENTER_INTEGER_OR_PERCENTAGE') })
     }
     callback()
   }
@@ -138,13 +138,14 @@ export default class UpdateStrategyForm extends React.Component {
         <Columns className={styles.wrapper}>
           <Column>
             <Form.Item
-              label={t('Partition')}
-              desc={t('STATEFULSET_PARTITION_DESC')}
-              rules={[{ required: true, message: t('Please input value') }]}
+              label={t('PARTITION_ORDINAL')}
+              desc={t('PARTITION_ORDINAL_DESC')}
+              rules={[
+                { required: true, message: t('PARTITION_ORDINAL_EMPTY') },
+              ]}
             >
               <NumberInput
                 name={`${this.rollingUpdatePrefix}.partition`}
-                placeholder={t('STATEFULSET_PARTITION_PLACEHOLDER')}
                 defaultValue={0}
                 min={0}
                 integer
@@ -160,9 +161,9 @@ export default class UpdateStrategyForm extends React.Component {
         <Columns className={styles.wrapper}>
           <Column>
             <Form.Item
-              label={t('MAX_UNAVAILABLE_POD_LABEL')}
-              desc={t('MAX_DAEMON_UNAVAILABLE_POD_DESC')}
-              rules={[{ required: true, message: t('Please input value') }]}
+              label={t('MAX_UNAVAILABLE_PODS')}
+              desc={t('MAX_UNAVAILABLE_PODS_DESC')}
+              rules={[{ required: true, message: t('MAX_UNAVAILABLE_EMPTY') }]}
             >
               <Input
                 name={`${this.rollingUpdatePrefix}.maxUnavailable`}
@@ -172,9 +173,11 @@ export default class UpdateStrategyForm extends React.Component {
           </Column>
           <Column>
             <Form.Item
-              label={t('MinReadySeconds')}
+              label={t('MIN_READY_SECONDS')}
               desc={t('MIN_READY_SECONDS_DESC')}
-              rules={[{ required: true, message: t('Please input value') }]}
+              rules={[
+                { required: true, message: t('MIN_READY_SECONDS_EMPTY') },
+              ]}
             >
               <NumberInput
                 name="spec.minReadySeconds"
@@ -192,10 +195,10 @@ export default class UpdateStrategyForm extends React.Component {
       <Columns className={styles.wrapper}>
         <Column>
           <Form.Item
-            label={t('MAX_UNAVAILABLE_POD_LABEL')}
-            desc={t('MAX_DEPLOY_UNAVAILABLE_POD_DESC')}
+            label={t('MAX_UNAVAILABLE_PODS')}
+            desc={t('MAX_UNAVAILABLE_PODS_DESC')}
             rules={[
-              { required: true, message: t('Please input value') },
+              { required: true, message: t('MAX_UNAVAILABLE_EMPTY') },
               { validator: this.valueValidator },
             ]}
           >
@@ -207,10 +210,10 @@ export default class UpdateStrategyForm extends React.Component {
         </Column>
         <Column>
           <Form.Item
-            label={t('MAX_SURGE_POD_LABEL')}
-            desc={t('MAX_SURGE_POD_DESC')}
+            label={t('MAX_EXTRA_PODS')}
+            desc={t('MAX_EXTRA_PODS_DESC')}
             rules={[
-              { required: true, message: t('Please input value') },
+              { required: true, message: t('MAX_EXTRA_EMPTY') },
               { validator: this.valueValidator },
             ]}
           >
@@ -253,7 +256,7 @@ export default class UpdateStrategyForm extends React.Component {
 
     return (
       <>
-        <Form.Item label={t('Update Strategy')}>
+        <Form.Item label={t('UPDATE_STRATEGY')}>
           <TypeSelect
             name={`${STRATEGIES_PREFIX[module]}.type`}
             onChange={this.handleStrategyChange}
@@ -261,7 +264,11 @@ export default class UpdateStrategyForm extends React.Component {
             options={this.strategyOptions}
           />
         </Form.Item>
-        <Form.Group label={t('POD_SETTING_TIP')} checkable keepDataWhenUnCheck>
+        <Form.Group
+          label={t('ROLLING_UPDATE_SETTINGS')}
+          checkable
+          keepDataWhenUnCheck
+        >
           {this.isRollingUpdate && this.renderRollingUpdateParams()}
         </Form.Group>
       </>

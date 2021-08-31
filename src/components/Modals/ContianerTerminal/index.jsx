@@ -152,7 +152,7 @@ export default class ContainerTerminalModal extends React.Component {
             <dd>{selectContainer.ready ? t('Running') : t('Updating')}</dd>
             <dt>{t('IMAGE')}</dt>
             <dd>{selectContainer.image}</dd>
-            <dt>{t('Command')}</dt>
+            <dt>{t('COMMAND')}</dt>
             <dd>{isEmpty(command) ? '-' : command.join(' ')}</dd>
             <dt>{t('Resource Requests')}</dt>
             <dd>{this.getResourceInfo('requests')}</dd>

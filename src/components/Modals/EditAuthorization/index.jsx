@@ -126,7 +126,7 @@ export default class EditAuthorizationModal extends React.Component {
                 title={t(item.name)}
                 description={
                   currentModule === item.name
-                    ? t('SETTING')
+                    ? t('IN_PROGRESS')
                     : t(item.state || 'Not Enabled')
                 }
               />

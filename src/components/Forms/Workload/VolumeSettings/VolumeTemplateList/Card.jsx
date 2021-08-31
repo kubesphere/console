@@ -32,7 +32,7 @@ const Card = ({ volume, onDelete, onEdit }) => {
   const details = [
     {
       title: get(volume, 'spec.resources.requests.storage', '-'),
-      description: t('Capacity'),
+      description: t('CAPACITY'),
     },
     {
       title: get(volume, 'spec.accessModes[0]', '-'),
@@ -54,7 +54,7 @@ const Card = ({ volume, onDelete, onEdit }) => {
                 <div>
                   <Icon name="mgmt-node" size={20} /> <span>{mountPath}</span>
                   <span className="text-secondary">
-                    &nbsp;({readOnly ? t('ReadOnly') : t('ReadAndWrite')})
+                    &nbsp;({readOnly ? t('READ_ONLY') : t('READ_AND_WRITE')})
                   </span>
                 </div>
                 {subPath && (

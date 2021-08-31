@@ -55,11 +55,15 @@ module.exports = {
   ENTER_EXTERNALNAME_DESC: '請輸入 ExternalName。',
   SPECIFY_WORKLOAD: '指定工作負載',
   'Specify Node': '指定節點',
+  'Please input ExternalName': '請輸入 ExternalName',
+  'Specify Workload': '指定工作負載',
+  SPECIFY_NODE: '指定節點',
   'Add Selector': '添加選擇器',
 
   Auto: '自动',
 
   INVALID_PORT_DESC: 'Please enter a valid protocol or port number.',
+  INVALID_PORT: '端口無效。',
   'Not Associate': '不關聯',
 
   CUSTOM_CREATION: '自定義創建',
@@ -75,6 +79,7 @@ module.exports = {
   'Do not assign Service IP': '不分配服務 IP',
   'Map Services outside the cluster': '映射集群外部的服務',
   ENTER_PORT_NUMBER: '請輸入端口',
+  PORT_EMPTY: '請輸入端口',
   'Please select a workload': '請選擇一個工作負載',
   ENTER_SELECTOR_TIP: 'Please enter a valid selector.',
   TOTAL_WORKLOAD: '共 {count} 個工作負載',
@@ -170,9 +175,6 @@ module.exports = {
   STICKINESS_VALUE_RANGE: 'Value range: 0-86400.',
 
   // Services
-  PORT: 'Port',
-  PROTOCOL: 'Protocol',
-  ADD: 'Add',
   LABEL_SELECTOR: 'Label Selector',
   NONE: 'None',
   UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
@@ -181,5 +183,4 @@ module.exports = {
   UNKNOWN: 'Unknown',
   EXTERNALNAME_EXAMPLE: 'Example: ',
   PORTS: 'Ports',
-  REQUIRED: 'Required',
 }

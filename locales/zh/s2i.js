@@ -61,19 +61,18 @@ module.exports = {
   IMAGE_FROM_B2I: '通过制品构建新的镜像',
   S2I_DESC: '您可以选择您的代码开发语言，并将它们制作成镜像',
   B2I_DESC: '您可以将已有制品构建成新的镜像',
-  'Please set the access policy for the container.': '设置容器的访问策略',
+  PORT_SETTINGS_DESC: '设置用于访问容器的端口。',
   CONTAINER_SETTINGS_DESC: '设置容器的镜像、名称、类型和计算资源。',
-  'The health of the container will be checked regularly according to user needs.':
-    '根据用户需要，定时检查容器健康状况。',
-  'Start Command': '启动命令',
-  START_COMMAND_DESC:
-    '在默认情况下，镜像会运行默认命令，如果想运行特定命令或重写镜像默认值。',
+  HEALTH_CHECKER_DESC: '添加探针以定时检查容器健康状态。',
+  STARTUP_COMMAND: '启动命令',
+  STARTUP_COMMAND_DESC:
+    '自定义容器启动时运行的命令。默认情况下，容器启动时将运行镜像默认命令。',
   'Run Command': '运行命令',
-  RUN_COMMAND_DESC:
-    '容器的启动命令参数，默认使用打包时使用的启动命令, 如需多个请以 "," 分隔',
-  CONTAINER_PARAMS_DESC: '容器的启动命令参数, 如需多个请以 "," 分隔',
-  PROBE_COMMAND_DESC: '如需多个请以 "," 分隔',
-  CONTAINER_ENVIROMENT_DESC: '添加容器的环境变量',
+  CONTAINER_COMMAND_DESC: '容器的启动命令。',
+  CONTAINER_ARGUMENT_DESC:
+    '容器启动命令的参数。如有多个参数请使用半角逗号（,）分隔。',
+  PROBE_COMMAND_DESC: '使用半角逗号（,）分隔多条命令。',
+  CONTAINER_ENVIRONMENT_DESC: '为容器添加添加环境变量。',
   IMAGE_PULL_POLICY_DESC: '在默认情况下，优先使用本地镜像',
   S2I_ENVIROMENT_DESC:
     '应用程序开发人员可以使用以下环境变量来配置此镜像的运行时行为；详细的配置说明请查看<a href={link} target="_blank">编译模板</a>',
@@ -101,7 +100,6 @@ module.exports = {
   'Build Times': '构建次数',
   ImageName: '镜像名称',
   StartTime: '开始时间',
-  'Last Message': '最后消息',
   s2i: '代码构建镜像',
   b2i: '制品构建镜像',
   'Log is loading...': '日志正在加载',

@@ -62,7 +62,7 @@ export default class Metadata extends React.Component {
       .checkLabels({ labels: value, namespace, cluster })
       .then(resp => {
         if (resp.exist) {
-          return callback({ message: t('LABEL_EXIST_DESC'), field: rule.field })
+          return callback({ message: t('DUPLICATE_LABELS'), field: rule.field })
         }
         callback()
       })

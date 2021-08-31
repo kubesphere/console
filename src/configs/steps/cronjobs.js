@@ -41,7 +41,7 @@ export default [
     required: true,
   },
   {
-    title: 'Mount Volumes',
+    title: 'VOLUME_SETTINGS',
     icon: 'storage',
     component: withProps(VolumeSettings, {
       prefix: 'spec.jobTemplate.spec.template.',

@@ -160,7 +160,7 @@ export default class QuotaEditModal extends React.Component {
     return {
       cpuProps: {
         marks: [
-          { value: 0, label: t('No Request'), weight: 4 },
+          { value: 0, label: t('NO_REQUEST'), weight: 4 },
           { value: 1, label: 1, weight: 4 },
           { value: 2, label: 2, weight: 2 },
           { value: 3, label: 3, weight: 2 },
@@ -169,12 +169,12 @@ export default class QuotaEditModal extends React.Component {
           { value: 6, label: 6 },
           { value: 7, label: 7 },
           { value: 8, label: 8 },
-          { value: Infinity, label: t('No Limit') },
+          { value: Infinity, label: t('NO_LIMIT') },
         ],
       },
       memoryProps: {
         marks: [
-          { value: 0, label: t('No Request'), weight: 4 },
+          { value: 0, label: t('NO_REQUEST'), weight: 4 },
           { value: 2, label: 2, weight: 4 },
           { value: 4, label: 4, weight: 2 },
           { value: 6, label: 6, weight: 2 },
@@ -183,7 +183,7 @@ export default class QuotaEditModal extends React.Component {
           { value: 12, label: 12 },
           { value: 14, label: 14 },
           { value: 16, label: 16 },
-          { value: Infinity, label: t('No Limit') },
+          { value: Infinity, label: t('NO_LIMIT') },
         ],
         unit: 'Gi',
         valueFormatter: memoryFormatter,

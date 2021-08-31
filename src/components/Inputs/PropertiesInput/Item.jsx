@@ -51,13 +51,13 @@ export default class PropertyItem extends React.Component {
         <ObjectInput {...rest} onChange={this.handleChange}>
           <KeyInput
             name="key"
-            placeholder={t('key')}
+            placeholder={t('KEY')}
             readOnly={readOnly}
             {...keyInputProps}
           />
           <ValueInput
             name="value"
-            placeholder={t('value')}
+            placeholder={t('VALUE')}
             readOnly={readOnly}
             {...valueInputProps}
           />

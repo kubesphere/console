@@ -64,39 +64,31 @@ export default class AffinityForm extends React.Component {
     return [
       {
         value: 'default',
-        label: t('Pod Default Deployment'),
+        label: t('DEFAULT_RULES'),
         affinity: {},
-        description: t(
-          'Pod replicas will be deployed according to the default policy.'
-        ),
+        description: t('DEFAULT_RULES_DESC'),
       },
       {
         value: 'decentralized',
-        label: t('Pod Decentralized Deployment'),
+        label: t('DECENTRALIZED_SCHEDULING'),
         affinity: {
           podAntiAffinity: affinity,
         },
-        description: t(
-          'Pod replicas will be deployed on different nodes as much as possible.'
-        ),
+        description: t('DECENTRALIZED_SCHEDULING_DESC'),
       },
       {
         value: 'aggregation',
-        label: t('Pod Aggregation Deployment'),
+        label: t('CENTRALIZED_SCHEDULING'),
         affinity: {
           podAffinity: affinity,
         },
-        description: t(
-          'Pod replicas will be deployed on the same node as much as possible.'
-        ),
+        description: t('CENTRALIZED_SCHEDULING_DESC'),
       },
       {
         value: 'custom',
-        label: t('Custom Deployment Mode'),
+        label: t('CUSTOM_RULES'),
         affinity: {},
-        description: t(
-          'Pod replicas will be deployed according to user customization.'
-        ),
+        description: t('CUSTOM_RULES_DESC'),
       },
     ]
   }
@@ -104,11 +96,11 @@ export default class AffinityForm extends React.Component {
   get policys() {
     return [
       {
-        label: t('Deploy with the Target'),
+        label: t('SCHEDULE_WITH_TARGET'),
         value: 'podAffinity',
       },
       {
-        label: t('Deploy away from the Target'),
+        label: t('SCHEDULE_AWAY_FROM_TARGET'),
         value: 'podAntiAffinity',
       },
     ]
@@ -117,11 +109,11 @@ export default class AffinityForm extends React.Component {
   get types() {
     return [
       {
-        label: t('Match as much as possible'),
+        label: t('MATCH_IF_POSSIBLE'),
         value: 'preferredDuringSchedulingIgnoredDuringExecution',
       },
       {
-        label: t('Must match'),
+        label: t('MUST_MATCH'),
         value: 'requiredDuringSchedulingIgnoredDuringExecution',
       },
     ]
@@ -243,7 +235,7 @@ export default class AffinityForm extends React.Component {
 
     if (value.some(item => !this.checkItemValid(item))) {
       return callback({
-        message: t('Please complete the policy'),
+        message: t('RULE_NOT_COMPLETE'),
         field: rule.field,
       })
     }
@@ -274,30 +266,30 @@ export default class AffinityForm extends React.Component {
         </Form.Item>
         {mode === 'custom' && (
           <Form.Item
-            label={t('Custom Deployment Mode')}
+            label={t('CUSTOM_RULES')}
             rules={[{ validator: this.modeValidator, checkOnSubmit: true }]}
           >
             <ArrayInput
               name="spec.template.spec.customMode"
               itemType="object"
-              addText={t('Add Deployment Mode')}
+              addText={t('ADD')}
               checkItemValid={this.checkItemValid}
               onChange={this.handleChange}
             >
               <ObjectInput>
                 <Select
                   name="policy"
-                  placeholder={t('Strategy')}
+                  placeholder={t('TYPE')}
                   options={this.policys}
                 />
                 <Select
                   name="type"
-                  placeholder={t('TYPE')}
+                  placeholder={t('STRATEGY')}
                   options={this.types}
                 />
                 <Select
                   name="target"
-                  placeholder={t('Please input an application name')}
+                  placeholder={t('TARGET')}
                   options={targets}
                   style={{ marginLeft: 20 }}
                 />
@@ -313,8 +305,8 @@ export default class AffinityForm extends React.Component {
     const { checkable } = this.props
     return (
       <Form.Group
-        label={t('Deployment Mode')}
-        desc={t('DEPLOYMENT_MODE_DESC')}
+        label={t('POD_SCHEDULING_RULES')}
+        desc={t('POD_SCHEDULING_RULES_DESC')}
         keepDataWhenUnCheck
         checkable={checkable}
       >

@@ -40,7 +40,7 @@ export default class Annotations extends React.Component {
     if (isEmpty(data)) return null
 
     return (
-      <Card className={className} title={t('Annotations')}>
+      <Card className={className} title={t('ANNOTATIONS')}>
         <ul className={styles.annotations}>
           {Object.keys(data)
             .filter(key => !isEmpty(data[key]))

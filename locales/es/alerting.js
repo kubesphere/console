@@ -52,7 +52,6 @@ module.exports = {
   'memory usage (including cache)': 'uso de memoria (incluyendo caché)',
   'memory utilisation (including cache)': 'uso de memoria (incluyendo caché)',
   MEMORY_USAGE_SCAP: 'ratio de uso de memoria',
-  Message: 'Mensaje',
 
   CRITICAL_ALERT: 'Critical Alert',
   ERROR_ALERT: 'Error Alert',
@@ -75,6 +74,7 @@ module.exports = {
   'Recovery Time': 'Tiempo de Recuperación',
   'Repeat Rule': 'Regla de Repetición',
   Rule: 'Regla',
+  RULE: 'Regla',
   'Rule Name': 'Nombre de la Regla',
   THRESHOLD: 'Umbral',
   'Unavailable replicas ratio': 'Ratio de replicas no disponibles',
@@ -91,7 +91,6 @@ module.exports = {
   RULE_EXPRESSION: 'Rule Expression',
   INVALID_TIME_DESC:
     'Invalid value. Please select a value from the drop-down list or enter 0 or a positive integer.',
-  NAME: 'Name',
   ALIAS: 'Alias',
   ALERT_DURATION_MIN: 'Duration (min)',
 
@@ -158,7 +157,4 @@ module.exports = {
   DEPLOYMENT: 'Deployment',
   STATEFULSET: 'StatefulSet',
   DAEMONSET: 'DaemonSet',
-
-  // Custom Monitoring
-  CREATED_AT: 'Created At',
 }

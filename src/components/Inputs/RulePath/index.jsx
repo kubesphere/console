@@ -85,7 +85,7 @@ export default class RulePath extends React.Component {
     const options = this.services.map(item => item.value)
     return (
       <ObjectInput {...this.props} onChange={this.handleChange}>
-        <Input name="path" placeholder={t('Path')} defaultValue="/" />
+        <Input name="path" placeholder={t('PATH')} defaultValue="/" />
         <AutoComplete
           className={styles.autocomplete}
           name="backend.serviceName"
@@ -96,7 +96,7 @@ export default class RulePath extends React.Component {
         <Select
           className={styles.input}
           name="backend.servicePort"
-          placeholder={t('Port')}
+          placeholder={t('PORT')}
           options={this.ports}
           searchable
         />

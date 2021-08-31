@@ -17,7 +17,6 @@
  */
 
 module.exports = {
-  'Grayscale Release': '灰度发布',
   'Job Status': '任务状态',
 
   GRAY_RELEASE_CATEGORIES: '灰度策略',

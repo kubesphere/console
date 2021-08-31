@@ -25,8 +25,7 @@ module.exports = {
   'Application Resources': '應用資源',
   APPLICATION_RESOURCES: '應用資源監控',
 
-  NODES: '節點數量',
-  'Cluster Status': '集群狀態',
+  NODE_COUNT: '節點數量',
   CLUSTER_STATUS: '集群狀態',
   'Cluster Monitors': '集群監控',
   'Cluster Resource Monitoring': '集群資源監控',
@@ -53,7 +52,6 @@ module.exports = {
   PHYSICAL_RESOURCE_STATUS: '物理資源狀態',
   'Disk Usage': '硬碟使用量',
   'Disk Capacity': '硬碟容量',
-  INODE_USAGE: 'inode Usage',
   RUNNING_PODS: 'Running Pods',
   'Abnormal Pods': '異常容器組',
 
@@ -89,8 +87,6 @@ module.exports = {
   times: '次',
   'times/s': '次/秒',
   USAGE_RANKING: 'Usage Ranking',
-  CPU_USAGE: 'CPU Usage',
-  MEMORY_USAGE: 'Memory Usage',
   OUTBOUND_TRAFFIC: 'Outbound Traffic',
   INBOUND_TRAFFIC: 'Inbound Traffic',
   QUOTA: 'Quota',

@@ -30,14 +30,14 @@ export default class AccessControl extends React.Component {
   render() {
     return (
       <div className="margin-b12">
-        <div className={styles.title}>Capabilities (Beta)</div>
+        <div className={styles.title}>{t('CAPABILITIES_BETA')}</div>
         <div className={styles.content}>
-          <Form.Item label="Add">
+          <Form.Item label={t('ADD')}>
             <ArrayInput name={`${this.prefix}.capabilities.add`}>
               <Input />
             </ArrayInput>
           </Form.Item>
-          <Form.Item label="Drop">
+          <Form.Item label={t('DROP')}>
             <ArrayInput name={`${this.prefix}.capabilities.drop`}>
               <Input />
             </ArrayInput>

@@ -179,16 +179,15 @@ export default class ImageSearch extends Component {
             >
               <Icon name="docker" className={styles.icon} />
               <p className={styles.desc}>
-                {t('IGNORE_CERT_DESC')}
+                {t('CERT_ERROR')}
                 <Tooltip content={this.renderWaringText}>
                   <span
                     className={styles.textConfirm}
                     onClick={this.getImageDetailNoCert}
                   >
-                    {t('to try again')}
+                    {t('IGNORE_AND_RETRY')}
                   </span>
                 </Tooltip>
-                <span>?</span>
               </p>
             </div>
           )
@@ -199,7 +198,7 @@ export default class ImageSearch extends Component {
             className={classnames(styles.selectedContent, styles.emptyContent)}
           >
             <Icon name="docker" className={styles.icon} />
-            <p className={styles.desc}>{t('Not found this image')}</p>
+            <p className={styles.desc}>{t('NO_IMAGE_FOUND')}</p>
           </div>
         )
       }
@@ -228,16 +227,26 @@ export default class ImageSearch extends Component {
             />
             <div className={styles.imageInfo}>
               <p className={styles.title}>{image}</p>
-              <p className={styles.desc}>{`${moment(
-                createTime
-              ).fromNow()}, ${formatSize(size)}, ${layers} ${t('layers')}`}</p>
+              <p className={styles.desc}>
+                {layers === 1
+                  ? t('IMAGE_TIME_SIZE_LAYER_SI', {
+                      time: moment(createTime).fromNow(),
+                      size: formatSize(size),
+                      layer: layers,
+                    })
+                  : t('IMAGE_TIME_SIZE_LAYER_PL', {
+                      time: moment(createTime).fromNow(),
+                      size: formatSize(size),
+                      layer: layers,
+                    })}
+              </p>
             </div>
             {this.state.showPortsTips ? (
               <Button
                 className={styles.defaultPortButtons}
                 onClick={this.handleFillPorts}
               >
-                👉 {t('Use Default Ports')}
+                👉 {t('USE_DEFAULT_PORT')}
               </Button>
             ) : null}
           </div>
@@ -247,21 +256,21 @@ export default class ImageSearch extends Component {
               <Icon name="tag" className={styles.icon} />
               <div className={styles.imageInfo}>
                 <p>{this.tag}</p>
-                <p>{t('tag')}</p>
+                <p>{t('TAG')}</p>
               </div>
             </div>
             <div className={styles.selectedInfo}>
               <Icon name="port" className={styles.icon} />
               <div className={styles.imageInfo}>
-                <p>{ports || t('No default ports config')}</p>
-                <p>{t('ports')}</p>
+                <p>{ports || t('NO_DEFAULT_PORT')}</p>
+                <p>{t('PORT')}</p>
               </div>
             </div>
             <div className={styles.selectedInfo}>
               <Icon name="docker" className={styles.icon} />
               <div className={styles.imageInfo}>
                 <p>{registry}</p>
-                <p>{t('registry')}</p>
+                <p>{t('REGISTRY')}</p>
               </div>
             </div>
           </div>
@@ -271,7 +280,7 @@ export default class ImageSearch extends Component {
     return (
       <div className={classnames(styles.selectedContent, styles.emptyContent)}>
         <Icon name="docker" className={styles.icon} />
-        <p className={styles.desc}>{t('Please select image')}</p>
+        <p className={styles.desc}>{t('SET_IMAGE_DESC')}</p>
       </div>
     )
   }
@@ -285,8 +294,8 @@ export default class ImageSearch extends Component {
             link: getDocsUrl('imageregistry'),
           })}
           rules={[
-            { required: true, message: t('IMAGE_PLACEHOLDER') },
-            { pattern: PATTERN_IMAGE, message: t('Invalid image') },
+            { required: true, message: t('IMAGE_EMPTY') },
+            { pattern: PATTERN_IMAGE, message: t('INVALID_IMAGE') },
           ]}
         >
           <DropdownContent

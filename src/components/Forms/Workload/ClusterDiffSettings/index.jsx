@@ -93,7 +93,7 @@ export default class AdvancedSettings extends React.Component {
           </Form.Group>
         )}
         <Form.Group
-          label={t('Service Settings')}
+          label={t('SERVICE_SETTINGS')}
           desc={t('CLUSTER_SERVICE_DIFF_DESC')}
           checkable
         >
@@ -115,7 +115,7 @@ export default class AdvancedSettings extends React.Component {
           </ClustersMapper>
         </Form.Group>
         <Form.Group
-          label={t('Environment Variables')}
+          label={t('ENVIRONMENT_VARIABLES')}
           desc={t('CLUSTER_ENV_DIFF_DESC')}
           checkable
         >

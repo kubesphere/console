@@ -46,6 +46,7 @@ module.exports = {
   ALERTING_RESOURCE: '告警资源',
 
   Rule: '规则',
+  RULE: '规则',
   'Add Rule': '添加规则',
   'Edit Rule': '编辑规则',
   'Rule Name': '规则名称',
@@ -65,7 +66,6 @@ module.exports = {
   RULE_EXPRESSION: '告警规则表达式',
   INVALID_TIME_DESC:
     '数值无效。请从下拉列表中选择一个数值，或者输入 0 或正整数。',
-  NAME: '名称',
   ALIAS: '别名',
   ALERT_DURATION_MIN: '告警持续时间（分钟）',
 
@@ -149,7 +149,4 @@ module.exports = {
   DEPLOYMENT: '部署',
   STATEFULSET: '有状态副本集',
   DAEMONSET: '守护进程集',
-
-  // Custom Monitoring
-  CREATED_AT: '创建时间',
 }

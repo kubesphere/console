@@ -134,11 +134,11 @@ export default class ContainerDetail extends React.Component {
         value: detail.imageID,
       },
       {
-        name: t('Port'),
+        name: t('PORT'),
         value: this.ports,
       },
       {
-        name: t('Command'),
+        name: t('COMMAND'),
         value: this.command,
       },
       {

@@ -191,7 +191,7 @@ export default class AppDeploy extends React.Component {
               readOnly
             />
             <div className={styles.label}>{`${t('Current App Config')} (${t(
-              'ReadOnly'
+              'READ_ONLY'
             )})`}</div>
             <Loading spinning={false}>
               <CodeEditor

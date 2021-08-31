@@ -34,13 +34,14 @@ module.exports = {
   volumes: '存储卷',
   PersistentVolumeClaim: '存储卷',
   'Volume Usage': '存储卷用量',
-  VOLUMES: '存储卷数量',
+  VOLUME_COUNT: '存储卷数量',
   'Create Volume': '创建存储卷',
   'Delete Volume': '删除存储卷',
   'storage classes': '存储类型',
   storageclasses: '存储类型',
   'Create Storage Class': '创建存储类型',
   'Storage Class': '存储类型',
+  STORAGE_CLASS: '存储类型',
   'Storage Classs': '存储类型',
   STORAGE_CLASS_SETTINGS: '存储类型设置',
   'Mount Info': '挂载信息',
@@ -60,10 +61,10 @@ module.exports = {
   STORAGE_VOLUME_EXTENSION: '允许存储卷扩容',
   'Mount Status': '挂载状态',
   'Mounted Pods': '已挂载容器组',
-  Idle: '闲置',
-  'In Use': '已使用',
+  AVAILABLE: '可用',
+  IN_USER: '使用中',
 
-  'The volume name exists': '存储卷名称已使用',
+  VOLUME_NAME_EXIST: '存储卷名称已存在。',
 
   'Used Capacity': '已分配存储',
   'Available Capacity': '剩余存储',
@@ -77,6 +78,7 @@ module.exports = {
   STORAGE_SYSTEM: '存储系统',
 
   ACCESS_MODE: '访问模式',
+  ACCESS_MODE_SCAP: '访问模式',
   'Custom Provisioner': '自定义供应者',
   Parameters: '参数',
   'Apply immediately': '立即生效',
@@ -219,5 +221,4 @@ module.exports = {
   GID_MAX: 'GID 最大值',
   CUSTOM: '自定义',
   PARAMETERS: '参数',
-  ADD: '添加',
 }

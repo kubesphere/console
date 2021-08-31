@@ -24,6 +24,8 @@ module.exports = {
 
   IP_MASK_BIT_TCAP: 'IP/Mask Bit',
   USED_IP_TCAP: 'Used IP',
+  NETWORK_SEGMENT: 'IP/Mask Bit',
+  'Used IP': 'Used IP',
 
   Mask: 'Mask',
   MASK_BIT_TCAP: 'Mask Bit',
@@ -31,9 +33,9 @@ module.exports = {
 
   'First Available': 'First Available',
   'Last Available': 'Last Available',
-  'Available Number': 'Available Number',
+  AVAILABLE_ADDRESSES: 'Available Number',
 
-  'Pod IP Range': 'Pod IP Range',
+  POD_IP_POOL: 'Pod IP Range',
 
   NUMBER_OF_CREATION_TCAP: 'Number of Creation',
   'Pod IP Pools to be created': 'Pod IP Pools to be created',

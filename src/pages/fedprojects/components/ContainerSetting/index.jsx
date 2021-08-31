@@ -59,7 +59,7 @@ export default class ContainerSetting extends Base {
           <Columns className={styles.columns}>
             <Column>
               <Form.Item
-                label={t('Container Name')}
+                label={t('CONTAINER_NAME')}
                 desc={t('NAME_DESC')}
                 rules={[
                   { required: true, message: t('NAME_EMPTY_DESC') },
@@ -79,7 +79,7 @@ export default class ContainerSetting extends Base {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Container Type')}>
+              <Form.Item label={t('CONTAINER_TYPE')}>
                 <Select
                   name="type"
                   defaultValue={defaultContainerType}

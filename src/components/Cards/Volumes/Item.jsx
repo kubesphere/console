@@ -90,7 +90,7 @@ const Card = ({ volume, match, isMultiProject }) => {
       },
       {
         title: get(volume, 'capacity', '-'),
-        description: t('Capacity'),
+        description: t('CAPACITY'),
       },
       {
         title: get(volume, 'accessMode', '-'),
@@ -113,7 +113,7 @@ const Card = ({ volume, match, isMultiProject }) => {
                 <Icon name="mgmt-node" size={20} />
                 <span>{mountPath}</span>
                 <span className="text-secondary">
-                  &nbsp;({readOnly ? t('ReadOnly') : t('ReadAndWrite')})
+                  &nbsp;({readOnly ? t('READ_ONLY') : t('READ_AND_WRITE')})
                 </span>
               </div>
               {subPath && (

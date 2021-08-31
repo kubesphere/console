@@ -29,7 +29,7 @@ export default class ToggleView extends React.Component {
   }
 
   static defaultProps = {
-    label: 'Advanced Settings',
+    label: 'ADVANCED_SETTINGS',
   }
 
   state = {

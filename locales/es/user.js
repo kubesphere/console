@@ -33,7 +33,6 @@ module.exports = {
   'Edit User': 'editar usuario',
   Email: 'Email',
   'Email exists': 'EL email ya existe',
-  'Invalid email': 'Email inválido',
   'Invalid user name': 'Nombre de usuario no válido. {message}',
   'Last Login Time': 'Última hora de inicio de sesión',
   'Login History': 'Historial de inicio de sesión',
@@ -54,14 +53,12 @@ module.exports = {
   Time: 'Hora',
   'Unable to delete itself': 'No se puedes eliminar',
   User: 'Usuario',
+  USER: 'Usuario',
   'User Management': 'Gestión de usuarios',
   'User name exists': 'El ombre de usuario ya existe',
-  Users: 'Usuarios',
   users: 'usuarios',
   'You must enter the correct current password to change to a new password.':
     'Debe ingresar correctamente la contraseña actual para cambiar a una nueva contraseña.',
-  'Your password must meet the following requirements':
-    'Su contraseña debe cumplir con los siguientes requisitos',
   user_active: 'Activo',
   USER_ACTIVE: 'Activo',
   USER_AUTHLIMITEXCEEDED: 'Login Restricted',

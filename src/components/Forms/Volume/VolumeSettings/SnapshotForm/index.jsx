@@ -147,7 +147,7 @@ export default class SanpshotForm extends Component {
           <Loading spinning={isStorageClassLoading}>
             <Form.Item
               className="margin-t12"
-              label={t('ACCESS_MODE_TCAP')}
+              label={t('Access Mode')}
               rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <AccessModes
@@ -207,7 +207,7 @@ function SnapshotSelect({
           </div>
           <div>
             <h3>{snapshot.restoreSize || 0}</h3>
-            <p>{t('Capacity')}</p>
+            <p>{t('CAPACITY')}</p>
           </div>
           <div>
             <h3>{snapshot.createTime}</h3>

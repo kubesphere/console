@@ -60,19 +60,19 @@ export default class ProbeCard extends React.Component {
 
     if ('httpGet' in probe) {
       const { path, port, scheme } = probe.httpGet
-      probeType = 'HTTP Request Check'
+      probeType = 'HTTP_REQUEST'
       details = [
         { title: scheme, description: t('Request Type') },
-        { title: path, description: t('Path') },
-        { title: port, description: t('Port') },
+        { title: path, description: t('PATH') },
+        { title: port, description: t('PORT') },
       ]
     } else if ('tcpSocket' in probe) {
-      probeType = 'TCP Port Check'
-      details = [{ title: probe.tcpSocket.port, description: t('Port') }]
+      probeType = 'TCP_PORT'
+      details = [{ title: probe.tcpSocket.port, description: t('PORT') }]
     } else {
       const { command = [] } = probe.exec
-      probeType = 'Exec Command Check'
-      details = [{ title: command.join(' '), description: t('Command') }]
+      probeType = 'COMMAND'
+      details = [{ title: command.join(' '), description: t('COMMANDS') }]
     }
 
     const titleElm = (
@@ -83,9 +83,7 @@ export default class ProbeCard extends React.Component {
     )
 
     const description = (
-      <span>
-        {t('Initial Delay')}: {delay}s &nbsp;&nbsp;{t('Timeout')}: {timeout}s
-      </span>
+      <span>{t('INITIAL_DELAY_TIMEOUT_VALUE', { delay, timeout })}</span>
     )
 
     return (
@@ -100,7 +98,7 @@ export default class ProbeCard extends React.Component {
 
   render() {
     return (
-      <Panel title={t('Health Checker')}>
+      <Panel title={t('HEALTH_CHECKER')}>
         <div className={styles.wrapper}>{this.renderProbe()}</div>
       </Panel>
     )

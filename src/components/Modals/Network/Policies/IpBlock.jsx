@@ -238,7 +238,7 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
             </div>
           </>
         </Form.Item>
-        <div className={styles.title}>{`${t('Port')}:`}</div>
+        <div className={styles.title}>{`${t('PORT')}:`}</div>
         {portRules.map(({ port, protocol }, idx) => {
           if (port.valid === false) {
             portInvalid = true
@@ -254,7 +254,7 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
                 />
                 <Form.Item>
                   <Input
-                    placeholder={`${t('Port')} eg: 80`}
+                    placeholder={`${t('PORT')} eg: 80`}
                     className={port.valid === false ? styles.error : ''}
                     value={port.value}
                     onBlur={this.validPort}

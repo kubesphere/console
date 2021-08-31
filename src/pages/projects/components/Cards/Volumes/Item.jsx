@@ -34,7 +34,7 @@ const Card = ({ volume, prefix }) => {
   const details = [
     {
       title: get(volume, 'capacity', '-'),
-      description: t('Capacity'),
+      description: t('CAPACITY'),
     },
     {
       title: get(volume, 'accessMode', '-'),

@@ -61,19 +61,18 @@ module.exports = {
   IMAGE_FROM_B2I: '通過成品構建新的鏡像',
   S2I_DESC: '您可以選擇您的代碼開發語言，並將它們製作成鏡像',
   B2I_DESC: '您可以將已有成品構建成新的鏡像',
-  'Please set the access policy for the container.': '設置容器的訪問策略',
+  PORT_SETTINGS_DESC: '設置容器的訪問策略',
   CONTAINER_SETTINGS_DESC: '對容器的名稱及容器的計算資源進行設置',
-  'The health of the container will be checked regularly according to user needs.':
-    '根據用戶需要，定時檢查容器健康狀況。',
-  'Start Command': '啟動命令',
-  START_COMMAND_DESC:
+  HEALTH_CHECKER_DESC: '根據用戶需要，定時檢查容器健康狀況。',
+  STARTUP_COMMAND: '啟動命令',
+  STARTUP_COMMAND_DESC:
     '在預設情况下，鏡像會運行預設命令，如果想運行特定命令或重寫鏡像預設值。',
   'Run Command': '運行命令',
-  RUN_COMMAND_DESC:
+  CONTAINER_COMMAND_DESC:
     '容器的啟動命令參數，預設使用打包時使用的啟動命令, 如需多個請以 "," 分隔',
-  CONTAINER_PARAMS_DESC: '容器的啟動命令參數, 如需多個請以 "," 分隔',
+  CONTAINER_ARGUMENT_DESC: '容器的啟動命令參數, 如需多個請以 "," 分隔',
   PROBE_COMMAND_DESC: '如需多個請以 "," 分隔',
-  CONTAINER_ENVIROMENT_DESC: '添加容器的環境變量',
+  CONTAINER_ENVIRONMENT_DESC: '添加容器的環境變量',
   IMAGE_PULL_POLICY_DESC: '在預設情况下，優先使用本地鏡像',
   S2I_ENVIROMENT_DESC:
     '應用程式開發人員可以使用以下環境變量來配置此鏡像的運行時行為; 詳細的配置說明請查看 <a href={link} target="_blank">編譯模板</a>',
@@ -101,7 +100,6 @@ module.exports = {
   'Build Times': '構建次數',
   ImageName: '鏡像名稱',
   StartTime: '開始時間',
-  'Last Message': '最後訊息',
   s2i: '代碼構建鏡像',
   b2i: '成品構建鏡像',
   'Log is loading...': '紀錄正在載入',

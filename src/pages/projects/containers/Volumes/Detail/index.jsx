@@ -222,7 +222,7 @@ export default class VolumeDetail extends React.Component {
         ),
       },
       {
-        name: t('Capacity'),
+        name: t('CAPACITY'),
         value: capacity,
       },
       {

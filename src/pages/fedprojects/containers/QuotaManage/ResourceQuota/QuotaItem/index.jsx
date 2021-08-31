@@ -59,7 +59,7 @@ const QuotaItem = ({ name, total, used }) => {
         <p>{t('Used')}</p>
       </div>
       <div className={styles.item}>
-        <div>{isUndefined(total) ? t('No Limit') : total}</div>
+        <div>{isUndefined(total) ? t('NO_LIMIT') : total}</div>
         <p>{t('Resource Limit')}</p>
       </div>
       <div className={styles.item} style={{ flex: 3 }}>
@@ -67,7 +67,7 @@ const QuotaItem = ({ name, total, used }) => {
         <Bar
           value={Math.min(ratio, 1)}
           className={styles.bar}
-          rightText={!total ? t('No Limit') : ''}
+          rightText={!total ? t('NO_LIMIT') : ''}
           text={`${t('Used')} ${Number((ratio * 100).toFixed(2))}%`}
         />
       </div>
