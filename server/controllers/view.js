@@ -45,7 +45,11 @@ const renderView = async ctx => {
 }
 
 const renderLogin = async ctx => {
-  ctx.cookies.set('referer', ctx.query.referer)
+  const referer = ctx.querystring.split('referer=')[1]
+
+  if (isValidReferer(referer)) {
+    ctx.cookies.set('referer', referer)
+  }
 
   const oauthServers = await getOAuthInfo(ctx)
 
