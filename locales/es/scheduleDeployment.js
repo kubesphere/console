@@ -28,4 +28,13 @@ module.exports = {
   TOTAL_REPLICAS: 'Número total de copias',
   'replicas input invalid': 'La entrada de copia es ilegal',
   'Please input total replicas num': 'Ingrese el número total de copias',
+  'Storage Function Manage':
+    'Gestión de la función de volumen de almacenamiento',
+  'Volume Clone': 'Clon de volumen de almacenamiento',
+  Volume_Clone_Des: 'Crea un volumen de almacenamiento idéntico.',
+  Volume_SnapShot_Des:
+    'Cree una instantánea del volumen de almacenamiento, que se puede utilizar para crear otros volúmenes de almacenamiento.',
+  'Volume Expansion': 'Expansión del volumen de almacenamiento',
+  Volume_Expansion_Des:
+    'Aumente la capacidad del volumen de almacenamiento. La capacidad del volumen de almacenamiento no se puede reducir en la consola porque se pueden perder datos.',
 }
