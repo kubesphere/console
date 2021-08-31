@@ -124,14 +124,9 @@ export default class ReplicasControl extends React.Component {
     const { clusters } = this.props
     const store = this.props.store
     const { TabPanel } = Tabs
-    const activeTabName = store.isScheduleDeployment ? 'Scheduling' : 'Normal'
     return (
       <>
-        <Tabs
-          type="button"
-          activeName={activeTabName}
-          onChange={this.switchMode}
-        >
+        <Tabs type="button" onChange={this.switchMode}>
           <TabPanel
             label={`${t('Fixed Replicas')}`}
             name="Normal"
