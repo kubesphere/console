@@ -506,7 +506,7 @@ export default class ContainerSetting extends React.Component {
     const { isFederated, store } = this.props
 
     if (isFederated) {
-      return store.isScheduleDeployment
+      return store.renderScheduleTab
         ? this.renderDeployMode()
         : this.renderDeployPlace()
     }

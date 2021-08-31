@@ -109,7 +109,6 @@ export default {
       }
 
       if (renderScheduleTab) {
-        store.switchSchedule(true)
         store.ifRenderScheduleTab(renderScheduleTab)
       }
 
@@ -150,12 +149,19 @@ export default {
             if (isScheduleDeployment && renderScheduleTab) {
               const scheduleData = toJS(store.scheduleTemplate)
               await store.scheduleCreate(scheduleData, { cluster, namespace })
+              await store.switchSchedule(false)
             }
             Modal.close(modal)
             Notify.success({ content: `${t('Created Successfully')}` })
             success && success()
             formPersist.delete(`${module}_create_form`)
           })
+        },
+        onCancel: () => {
+          const { isScheduleDeployment } = store
+          if (isScheduleDeployment && renderScheduleTab) {
+            store.switchSchedule(false)
+          }
         },
         steps,
         module,
