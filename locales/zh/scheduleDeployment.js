@@ -26,4 +26,11 @@ module.exports = {
   TOTAL_REPLICAS: '总副本数',
   'Please input total replicas num': '请输入副本总数',
   'replicas input invalid': '请输入正确的副本数',
+  'Storage Function Manage': '存储卷功能管理',
+  'Volume Clone': '存储卷克隆',
+  Volume_Clone_Des: '创建一个相同的存储卷。',
+  Volume_SnapShot_Des: '创建一个存储卷快照，可用于创建其他存储卷。',
+  'Volume Expansion': '存储卷扩容',
+  Volume_Expansion_Des:
+    '增加存储卷的容量。无法在控制台上减少存储卷的容量，因为数据可能会因此丢失。',
 }
