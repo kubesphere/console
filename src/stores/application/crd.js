@@ -306,7 +306,7 @@ export default class ApplicationStore extends Base {
       }
 
       requests.push({
-        url: `apis/extensions/v1beta1${this.getPath(params)}/ingresses`,
+        url: `apis/networking.k8s.io/v1${this.getPath(params)}/ingresses`,
         data: ingress,
       })
     }
