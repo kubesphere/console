@@ -105,7 +105,7 @@ export default class ResourceStatistics extends React.Component {
             <Column>
               <Info
                 icon={ICON_TYPES['projects']}
-                desc={t('PROJECTS')}
+                desc={t('PROJECT_PL')}
                 title={metrics.cluster_namespace_count}
                 url={this.getLink('projects')}
                 size="large"
@@ -115,7 +115,7 @@ export default class ResourceStatistics extends React.Component {
               <Column>
                 <Info
                   icon={ICON_TYPES['devops']}
-                  desc={t('DEVOPS_PROJECTS')}
+                  desc={t('DEVOPS_PROJECT_PL')}
                   title={metrics.cluster_devops_project_count}
                   size="large"
                 />

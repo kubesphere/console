@@ -54,6 +54,8 @@ module.exports = {
   'Snapshots Message': 'Snapshot Message',
   'Storage Class': 'Storage Class',
   STORAGE_CLASS: 'Storage Class',
+  STORAGE_CLASS_PL: 'Storage Classes',
+  STORAGE_CLASS_LOW: 'storage class',
   STORAGE_CLASS_VALUE: 'Storage class: {value}',
   'Storage Class Name': 'Storage Class Name',
   STORAGE_CLASS_SETTINGS: 'Storage Class Settings',
@@ -69,7 +71,8 @@ module.exports = {
   'Used Capacity': 'Used Capacity',
   'Clone Volume': 'Clone Volume',
   VOLUME: 'Volume',
-  // VOLUMES: 'Volumes',
+  VOLUME_PL: 'Volumes',
+  VOLUME_LOW: 'volumes',
   'The volume name exists': 'The volume name exists',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
   VOLUME_COUNT: 'Volumes',
@@ -101,8 +104,7 @@ module.exports = {
 
   VOLUMES_BASEINFO_DESC:
     'The volume can persist data, and its lifecycle is independent of the workload. Make sure the storage class is created before you create a volume.',
-  VOLUME_CREATE_DESC:
-    'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
+  VOLUME_EMPTY_DESC: 'Please create a volume.',
   VOLUME_SETTINGS_DESC:
     'Fill in the capacity of the volume as needed, and the volume size and access mode must be compatible with the storage class and storage server capabilities. The access mode is usually selected as RWO.',
   VOLUME_STORAGE_CLASS_DESC:
@@ -212,8 +214,8 @@ module.exports = {
     'Select a storage class to create a volume.',
   VOLUMESNAPSHOT_DESC:
     'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
-  VOLUMESNAPSHOT_CREATE_DESC:
-    'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
+  VOLUMESNAPSHOT_EMPTY_DESC:
+    'Please go to the details page of a volume and create a volume snapshot',
   WHAT_IS_VOLUME_SNAPSHOTS: 'What are volume snapshots?',
 
   CLUSTER_VOLUME_DIFF_DESC:

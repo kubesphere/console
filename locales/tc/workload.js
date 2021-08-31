@@ -22,6 +22,9 @@ module.exports = {
   REPLICA_LOW_SI: '副本',
   REPLICA_LOW_PL: '副本',
   Workload: '工作負載',
+  WORKLOAD: '工作負載',
+  WORKLOAD_PL: '工作負載',
+  WORKLOAD_LOW: '工作負載',
   Workloads: '工作負載',
   IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} 層',
   IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} 層',
@@ -38,7 +41,13 @@ module.exports = {
   POD_SETTINGS: '容器組設置',
   MOUNT_PATH_EMPTY: '請輸入掛載路徑。',
   CONFIGMAP: '配置字典',
-  SECRET: '保密字典',
+  CONFIGMAP_PL: 'ConfigMaps',
+  CONFIGMAP_LOW: 'ConfigMap',
+  DEPLOYMENT_EMPTY_DESC: 'Please create a Deployment.',
+  STATEFULSET_EMPTY_DESC: 'Please create a StatefulSet.',
+  DAEMONSET_EMPTY_DESC: 'Please create a DaemonSet.',
+  JOB_EMPTY_DESC: 'Please create a Job.',
+  CRONJOB_EMPTY_DESC: 'Please create a CronJob.',
   'Service Configuration': '服務配置',
 
   'Available number of nodes scheduled': '可用節點數',
@@ -51,7 +60,7 @@ module.exports = {
   POD_REPLICAS: '容器組副本數量',
   DEFAULT_RULES: 'Default Rules',
   DEFAULT_RULES_DESC:
-    'Schedules Pod replicas to nodes according to default rules.',
+    'Schedules the Pod replicas to nodes according to default rules.',
   CONTAINERS: '容器鏡像',
   CONTAINER_IMAGE: '容器鏡像',
   ADD_CONTAINER: '添加容器',
@@ -62,7 +71,6 @@ module.exports = {
   'Container Logs': '容器紀錄',
   'Resource Info': '資源資訊',
   'Node Name': '主機名稱',
-  'Node IP': '主機 IP',
   POD_IP_ADDRESS: '容器組 IP',
   IMAGE: '鏡像',
   IMAGE_VALUE: '鏡像：{value}',
@@ -166,16 +174,12 @@ module.exports = {
   WORKLOAD_DESC:
     '工作負載 (Workload) 通常是訪問服務的實際載體, 也是對節點紀錄收集、監控等系統應用的實際運行載體，是對一組容器組 (Pod) 的抽象模型。',
 
-  WORKLOAD_CREATE_DESC:
+  WORKLOAD_EMPTY_DESC:
     '工作負載 (Workload) 通常是訪問服務的實際載體, 也是對節點紀錄收集、監控等系統應用的實際運行載體，是對一組容器組 (Pod) 的抽象模型。',
 
   JOB_DESC:
     'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
-  JOB_CREATE_DESC:
-    'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
   CRONJOB_DESC:
-    'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
-  CRONJOB_CREATE_DESC:
     'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
 
   CRONJOB_NAME_DESC:
@@ -352,7 +356,11 @@ module.exports = {
     '持久化儲存卷請選擇支持多節點讀寫模式 (ROX 或者 RWX) 的儲存卷，否則可能因容器組不在同一節點導致容器組更新失敗。如果您選擇了單節點讀寫 (RWO) 模式的儲存卷您也可以通過節點選擇將容器組安排在同一節點上來避免因儲存卷訪問模式造成的更新錯誤。',
 
   Job: '任務',
+  JOB: '任務',
   CronJob: '定時任務',
+  CRONJOB: '定時任務',
+  CRONJOB_PL: '定時任務',
+  CRONJOB_LOW: '定時任務',
   Revision: '版本',
   EVERY_HOUR: '（每小時）',
   EVERY_DAY: '（每天）',
@@ -379,7 +387,7 @@ module.exports = {
 
   'Horizontal Pod Autoscaling': '彈性伸縮',
   'Container Config': '容器配置',
-  'Add Command': '添加命令',
+  EDGENODE_CONFIG_COMMAND: '添加命令',
   Probe: '探針',
   'Add Probe': '添加探針',
   'Initial Delay': '初始延遲',
@@ -473,7 +481,7 @@ module.exports = {
   'min replicas number should not be greater than max replicas number':
     '最大副本數應不小於最小副本數',
 
-  'Horizontal Pod Autoscaling has been set': '已設置彈性伸縮策略',
+  HPA_SET_TIP: '已設置彈性伸縮策略',
 
   'Mount path is already in use': '掛載路徑已使用',
   'Please specify the read and write mode and mount path':
@@ -646,7 +654,7 @@ module.exports = {
   NetworkPluginNotReady: '網路插件還沒有完全啟動',
   POD_DESC:
     '容器組 (Pod) 是 Kubernetes 應用程式的基本執行單元，是您創建或部署的 Kubernetes 對象模型中最小和最簡單的單元。',
-  POD_CREATE_DESC:
+  POD_EMPTY_DESC:
     '容器組 (Pod) 是 Kubernetes 應用程式的基本執行單元，是您創建或部署的 Kubernetes 對象模型中最小和最簡單的單元。',
   FILL_IMAGE_DEFAULT_PORTS_DESC: '是否暴露該鏡像的預設端口？',
 
@@ -749,7 +757,8 @@ module.exports = {
   NODE_IP: '{node}（{ip}）',
 
   // Jobs
-  JOBS: 'Jobs',
+  JOB_PL: 'Jobs',
+  JOB_LOW: 'Job',
   CRONJOBS: 'CronJobs',
   SCHEDULE: 'Schedule',
 

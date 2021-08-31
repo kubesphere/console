@@ -61,10 +61,7 @@ export default function WorkloadStatus({ data, module }) {
         flicker
       />
       {!isEmpty(get(data, 'annotations["kubesphere.io/relatedHPA"]')) && (
-        <Tooltip
-          content={t('Horizontal Pod Autoscaling has been set')}
-          trigger="hover"
-        >
+        <Tooltip content={t('HPA_SET_TIP')} trigger="hover">
           <Icon name="timed-task" />
         </Tooltip>
       )}

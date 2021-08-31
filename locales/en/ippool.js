@@ -34,6 +34,9 @@ module.exports = {
   AVAILABLE_ADDRESSES: 'Available addresses',
 
   POD_IP_POOL: 'Pod IP Pool',
+  POD_IP_POOL_PL: 'Pod IP Pools',
+  POD_IP_POOL_LOW: 'Pod IP pool',
+  POD_IP_POOL_EMPTY_DESC: 'Please create a Pod IP pool.',
 
   NUMBER_OF_CREATION_TCAP: 'Number of Creation',
   IP_POOL_CREATE_DESC: 'Pod IP pools to be created.',
@@ -64,5 +67,4 @@ module.exports = {
   TOTAL_VALUE: 'Total: {value}',
   ALL: 'All',
   NOT_ASSIGNED: 'Not assigned',
-  WORKSPACE: 'Workspace',
 }

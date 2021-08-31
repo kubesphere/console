@@ -19,6 +19,9 @@
 module.exports = {
   ServiceAccounts: '服務帳戶',
   ServiceAccount: '服務帳戶',
+  SERVICE_ACCOUNT: 'Service Account',
+  SERVICE_ACCOUNT_PL: 'Service Accounts',
+  SERVICE_ACCOUNT_LOW: 'service account',
   'Edit Service Account': '編輯服務帳戶',
   CHANGE_ROLE: '修改角色',
   'Secret Detail': '密鑰詳情',

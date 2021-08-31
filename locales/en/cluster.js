@@ -45,7 +45,7 @@ module.exports = {
   'Enter the project': 'Enter the project',
   'Go back': 'Go back',
   'Host Cluster': 'Host Cluster',
-  HOST_CLUSTER: 'Host Cluster',
+  HOST_CLUSTER: 'Host cluster',
   'Host Clusters': 'Host Clusters',
   Import: 'Import',
   'Import Kubernetes Cluster': 'Import Kubernetes Cluster',
@@ -68,7 +68,9 @@ module.exports = {
   'Please select or input a provider': 'Please select or input a provider',
   'Please select or input a tag': 'Please select or input a tag',
   SCHEDULING_OPERATIONS: 'Scheduling operations',
+  SCHEDULING_OPERATION: 'Scheduling operation',
   SCHEDULING_FAILURES: 'Scheduling failures',
+  SCHEDULING_FAILURE: 'Scheduling failure',
   'Select Clusters': 'Select Clusters',
   SET_PUBLIC_CLUSTER: 'Set as a public cluster',
   Snapshots: 'Volume Snapshots',
@@ -201,7 +203,7 @@ module.exports = {
 
   REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
   REMOVE_WORKSPACE_CONFIRM_DESC:
-    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 
   SELECT_ADD_CLUSTER_METHOD: 'Choose how to add a cluster',
   SELECT_ADD_CLUSTER_METHOD_DESC:
@@ -210,9 +212,13 @@ module.exports = {
   NEW_CLUSTER_DESC: 'add a new Kubernetes cluster',
   CLUSTER_NODE_SETTINGS_DESC: 'add the nodes for the cluster',
   NODE_INTERNAL_IP_DESC:
-    'Enter the IP address of the node in the private network.',
+    'Set the internal IP address of the node in the KubeSphere cluster.',
+  EDGENODE_INTERNAL_IP_DESC:
+    'Set the internal IP address of the edge node in the KubeSphere cluster.',
   NODE_INTERNAL_IP_EMPTY_DESC:
-    'Please enter the IP address of the node in the private network.',
+    'Please set the internal IP address of the node in the KubeSphere cluster.',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC:
+    'Please set the internal IP address of the edge node in the KubeSphere cluster.',
   NODE_ROLE_DESC: 'Set the role of the node in the cluster.',
   NODE_EXTERNAL_IP_DESC:
     'Enter the node IP address and port number used for SSH login.',
@@ -259,6 +265,7 @@ module.exports = {
   CREATING_CLUSTER_DESC:
     'The cluster is being created and is currently unavailable.',
   COPY_SUCCESSFUL: 'Copied successfully.',
+  CLUSTER_INIT_FAILED: 'Cluster initialization failed.',
   CLUSTER_CREATION_PROGRESS: 'Cluster Creation Progress',
   INIT_NODES: 'Initialize nodes',
   PULL_IMAGES: 'Pull images',
@@ -293,7 +300,7 @@ module.exports = {
   EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:
-    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   REMOVE_WORKSPACE_CONFIRM_PL:
-    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 }

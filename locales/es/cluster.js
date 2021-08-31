@@ -70,7 +70,9 @@ module.exports = {
   'Please select or input a tag':
     'Por favor selecciona o introduce una etiqueta',
   SCHEDULING_OPERATIONS: 'Horarios de programación',
+  SCHEDULING_OPERATION: 'Scheduling operation',
   SCHEDULING_FAILURES: 'Programar pods fallidos',
+  SCHEDULING_FAILURE: 'Scheduling failure',
   'Select Clusters': 'Seleccionar clústeres',
   SET_PUBLIC_CLUSTER: 'Establecer como clúster público',
   Snapshots: 'Volume Snapshots',
@@ -186,7 +188,7 @@ module.exports = {
     'The stability across clusters will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
   REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
   REMOVE_WORKSPACE_CONFIRM_DESC:
-    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 
   SELECT_ADD_CLUSTER_METHOD: 'Choose how to add a cluster',
   SELECT_ADD_CLUSTER_METHOD_DESC:
@@ -196,8 +198,12 @@ module.exports = {
   CLUSTER_NODE_SETTINGS_DESC: 'add the nodes for the cluster',
   NODE_INTERNAL_IP_DESC:
     'The internal IP address for the connection between cluster nodes.',
+  EDGENODE_INTERNAL_IP_DESC:
+    'The internal IP address for the connection between cluster nodes.',
   NODE_INTERNAL_IP_EMPTY_DESC:
-    'Please enter the IP address of the node in the private network.',
+    'Please set the IP address of the node in the KubeSphere cluster.',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC:
+    'Please set the IP address of the edge node in the KubeSphere cluster.',
   NODE_ROLE_DESC:
     'The number of master nodes needs to be 1 or 3, and the number of woker nodes must be at least 1.',
   NODE_EXTERNAL_IP_DESC:
@@ -246,6 +252,7 @@ module.exports = {
   CREATING_CLUSTER_DESC:
     'The current cluster is being created, and there are no nodes available for the time being.',
   COPY_SUCCESSFUL: 'Copied successfully.',
+  CLUSTER_INIT_FAILED: 'Cluster initialization failed.',
   INIT_NODES: 'Init Nodes',
   PULL_IMAGES: 'Pull Images',
   INIT_ETCD_CLUSTER: 'Init etcd Cluster',
@@ -281,7 +288,7 @@ module.exports = {
   EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:
-    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   REMOVE_WORKSPACE_CONFIRM_PL:
-    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 }

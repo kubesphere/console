@@ -154,7 +154,7 @@ export default class ServiceCreateModal extends React.Component {
     return (
       <div className={styles.header}>
         <div className="h4 margin-b12">{t('CREATE_SERVICE')}</div>
-        <p>{t.html('SERVICE_CREATE_DESC')}</p>
+        <p>{t.html('CREATE_SERVICE_DESC')}</p>
         <img src="/assets/create-service.svg" alt="" />
       </div>
     )

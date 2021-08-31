@@ -100,7 +100,9 @@ module.exports = {
   EDIT_CLUSTER_INFO_DESC: '编辑集群基本信息。',
 
   SCHEDULING_OPERATIONS: '调度次数',
+  SCHEDULING_OPERATION: '调度次数',
   SCHEDULING_FAILURES: '调度失败次数',
+  SCHEDULING_FAILURE: '调度失败次数',
 
   'Please select or input a tag': '请选择或输入标识',
   'Please select or input a provider': '请选择或输入服务商',
@@ -126,7 +128,7 @@ module.exports = {
 
   'Add node to the cluster': '添加节点到集群中',
 
-  INTERNAL_IP: '内网 IP 地址',
+  INTERNAL_IP: '内部 IP 地址',
   PORT: '端口',
   EXTERNAL_IP: '外网 IP 地址',
   USERNAME_AND_PASSWORD: '用户名和密码',
@@ -250,8 +252,11 @@ module.exports = {
   NEW_CLUSTER_DESC: '添加新的 Kubernetes 集群',
   IMPORT_CLUSTER_DESC: '导入已有的 Kubernetes 集群',
   CLUSTER_NODE_SETTINGS_DESC: '添加集群需要的节点',
-  NODE_INTERNAL_IP_DESC: '输入节点在私网内的 IP 地址。',
-  NODE_INTERNAL_IP_EMPTY_DESC: '请输入节点在私网内的 IP 地址。',
+  NODE_INTERNAL_IP_DESC: '设置节点在 KubeSphere 集群内部的 IP 地址。',
+  EDGENODE_INTERNAL_IP_DESC: '设置边缘节点在 KubeSphere 集群内部的 IP 地址。',
+  NODE_INTERNAL_IP_EMPTY_DESC: '请设置节点在 KubeSphere 集群内部的 IP 地址。',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC:
+    '请设置边缘节点在 KubeSphere 集群内部的 IP 地址。',
   NODE_ROLE_DESC: '设置节点在集群中的角色。',
   NODE_EXTERNAL_IP_DESC: '输入用于 SSH 登录的节点 IP 地址和端口号。',
   NODE_EXTERNAL_IP_EMPTY_DESC: '请输入用于 SSH 登录的节点 IP 地址。',
@@ -291,6 +296,7 @@ module.exports = {
   CREATING_CLUSTER: '集群创建中...',
   CREATING_CLUSTER_DESC: '集群正在创建中，当前状态不可用。',
   COPY_SUCCESSFUL: '复制成功。',
+  CLUSTER_INIT_FAILED: '集群初始化失败。',
   INIT_NODES: '初始化节点',
   PULL_IMAGES: '拉取镜像',
   INIT_ETCD_CLUSTER: '初始化 etcd 集群',

@@ -144,7 +144,7 @@ module.exports = {
   CUSTOM_MONITOR_DESC:
     'Users can customize application monitoring dashboards based on their needs.',
   CUSTOMMONITORDASHBOARD_CREATE_DESC:
-    'Users can define their application monitoring dashboards as needed.',
+    'Please create a custom monitoring dashboard.',
 
   ADD_MONITOR_ITEM: 'Add Monitoring Item',
   ADD_MONITOR_ROW: 'Add Monitoring Group',
@@ -217,13 +217,15 @@ module.exports = {
   POD_STATUS: 'Pod Status',
   NO_MONITORING_DATA_FOUND: 'No Monitoring Data Found',
   NOT_ENABLED: 'Not Enabled',
-  RUNNING: 'Running',
   COMPLETED: 'Completed',
   WARNING: 'Warning',
 
   // Application Resources
   WORKSPACES: 'Workspaces',
   ACCOUNTS: 'Accounts',
-  PROJECTS: 'Projects',
-  DEVOPS_PROJECTS: 'DevOps Projects',
+  PROJECT_PL: 'Projects',
+  PROJECT_LOW: 'project',
+  DEVOPS_PROJECT: 'DevOps Project',
+  DEVOPS_PROJECT_PL: 'DevOps Projects',
+  DEVOPS_PROJECT_LOW: 'DevOps project',
 }

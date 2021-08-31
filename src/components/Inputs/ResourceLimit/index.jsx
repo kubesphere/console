@@ -508,7 +508,7 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: cpuError || limit.limitCpuError,
                   })}
                 >
-                  <span className={styles.label}>{t('CPU_LIMIT')}:</span>
+                  <span className={styles.label}>{t('CPU_LIMIT')}</span>
                   <Input
                     name="limits.cpu"
                     value={this.getLimit(this.state.limits.cpu)}

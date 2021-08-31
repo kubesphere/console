@@ -33,8 +33,8 @@ const Item = ({ onSelect, onDelete, disabled, ...params }) => {
   return (
     <div className={styles.item}>
       <ObjectInput className={styles.inputs} {...params}>
-        <Input name="key" placeholder={t('key')} />
-        <Input name="value" placeholder={t('value')} />
+        <Input name="key" placeholder={t('KEY')} />
+        <Input name="value" placeholder={t('VALUE')} />
         <Select name="effect" options={effects} defaultValue="NoSchedule" />
       </ObjectInput>
       <div className={styles.tips}>

@@ -140,7 +140,7 @@ export default class Initializing extends Component {
           <div className={styles.title}>
             <Loading size={28} />
             <Text
-              title={t('Cluster initialized failed')}
+              title={t('CLUSTER_INIT_FAILED')}
               description={get(conditions, 'Initialized.reason')}
             />
           </div>

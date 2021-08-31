@@ -96,6 +96,7 @@ module.exports = {
   'Image building succeeded': '构建镜像成功',
   RevisionId: '修订版本号',
   'Image Builder': '镜像构建器',
+  IMAGE_BUILDER: '镜像构建器',
   'Last build environment': '最后一次构建环境',
   'Build Times': '构建次数',
   ImageName: '镜像名称',
@@ -129,8 +130,7 @@ module.exports = {
   WAR_DESC:
     'War 文件是用于分发 Jar 文件，JavaServer Pages，Java Servlet，Java类，XML 文件，标记库，静态网页（HTML 和相关文件）以及共同构成 Web 应用程序的其他资源的集合的文件。',
   BINARY_DESC: '',
-  IMAGE_BUILDER_CREATE_DESC:
-    '镜像构建器 (Image Builder) 是将代码或者制品容器化的工具。仅需要通过简单的设置即可将制品和代码构建成服务。目前需配合服务创建一起使用。',
+  IMAGE_BUILDER_EMPTY_DESC: '请创建一个镜像构建器。',
   'The current code repository does not require a key.':
     '当前代码仓库不需要秘钥',
   'Repository Not Found': '未找到代码仓库',

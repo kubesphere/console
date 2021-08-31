@@ -82,13 +82,13 @@ export default class ServiceComponents extends React.Component {
     },
     {
       type: 'monitoring',
-      title: 'Monitoring',
+      title: t('MONITORING'),
       icon: '/assets/monitoring.svg',
       disabled: !globals.app.hasClusterModule(this.cluster, 'monitoring'),
     },
     {
       type: 'logging',
-      title: 'Logging',
+      title: t('LOGGING'),
       icon: '/assets/logging.svg',
       disabled: !globals.app.hasClusterModule(this.cluster, 'logging'),
     },
@@ -108,7 +108,7 @@ export default class ServiceComponents extends React.Component {
     return (
       <Banner
         icon="components"
-        title={t('Service Components')}
+        title={t('SERVICE_COMPONENTS')}
         description={t('SERVICE_COMPONENTS_DESC')}
         extra={<div className={styles.toolbar}>{this.renderBar()}</div>}
       />

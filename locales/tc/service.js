@@ -93,8 +93,7 @@ module.exports = {
 
   SERVICE_DESC:
     'Services provide an abstract way to expose applications running on a Pod as network services.',
-  SERVICE_CREATE_DESC:
-    '服務是定義了一類 Pod 的邏輯集合和一個用於訪問它们的策略。您可選擇服務的類型或者創建服務的方式。<br/>KubeSphere 支持無狀態服務和有狀態服務，並支持通過代碼或者成品構建服務。',
+  SERVICE_EMPTY_DESC: 'Please create a Service.',
 
   SERVICES_BASEINFO_DESC:
     '創建服務需要提供服務的名稱和描述，服務名稱不能和同一項目下已有的服務名稱相同。',

@@ -58,7 +58,6 @@ module.exports = {
   Utilization: 'Utilización',
   'View All Nodes': 'Ver todos los nodos',
   Volumes: 'Volúmenes',
-  VOLUMES: 'Volúmenes',
   DASHBOARD_TITLE: 'Hola {username}',
   DASHBOARD_BANNER_TITLE: 'Visión general de la plataforma',
   DASHBOARD_BANNER_DESC:

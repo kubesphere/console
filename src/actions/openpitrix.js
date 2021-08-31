@@ -210,7 +210,7 @@ export default {
     on({ store, detail, versions, success, ...props }) {
       const type = t('App Templates')
       const resource = detail.name
-      let desc = t.html('DELETE_CONFIRM_TIP', { type, resource })
+      let desc = t.html('DELETE_RESOURCE_TYPE_DESC', { type, resource })
       if (versions.length) {
         desc = (
           <span>

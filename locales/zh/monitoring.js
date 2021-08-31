@@ -199,7 +199,7 @@ module.exports = {
   CUSTOM_MONITORING: '自定义监控',
   CUSTOMMONITORDASHBOARD_DESC: '用户可以根据自己需求定义应用监控面板',
   CUSTOM_MONITOR_DESC: '用户可根据需求自定义应用监控面板。',
-  CUSTOMMONITORDASHBOARD_CREATE_DESC: '用户可以根据自己需求定义应用监控面板',
+  CUSTOMMONITORDASHBOARD_CREATE_DESC: '请创建一个自定义监控面板。',
 
   'Default Color': '默认配色',
   'Cool Color': '冷色调',
@@ -217,13 +217,15 @@ module.exports = {
   POD_STATUS: '容器组状态',
   NO_MONITORING_DATA_FOUND: '没有找到监控数据',
   NOT_ENABLED: '未启用',
-  RUNNING: '运行中',
   COMPLETED: '已完成',
   WARNING: '异常',
 
   // Application Resources
   WORKSPACES: '企业空间',
   ACCOUNTS: '帐户',
-  PROJECTS: '项目',
-  DEVOPS_PROJECTS: 'DevOps 工程',
+  PROJECT_PL: '项目',
+  PROJECT_LOW: 'project',
+  DEVOPS_PROJECT: 'DevOps 工程',
+  DEVOPS_PROJECT_PL: 'DevOps 工程',
+  DEVOPS_PROJECT_LOW: 'DevOps 工程',
 }

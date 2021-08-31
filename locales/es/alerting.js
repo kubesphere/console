@@ -29,6 +29,8 @@ module.exports = {
   'Alerting Policies': 'Políticas de alerta',
   'alerting policy': 'política de alerta',
   ALERTING_POLICY: 'Política de alerta',
+  ALERTING_POLICY_PL: 'Alerting Policies',
+  ALERTING_POLICY_LOW: 'alerting policy',
   ALERTING_RESOURCE: 'Alerting Resource',
   'alerting rule': 'regla de alerta',
   ALERTING_RULE: 'Regla de Alerta',
@@ -113,7 +115,7 @@ module.exports = {
   ALERT_MESSAGE_DESC:
     'Users can view all alerting messages that have met the conditions of alerting policies at the cluster level.',
 
-  ALERTING_POLICY_CREATE_DESC:
+  ALERTING_POLICY_EMPTY_DESC:
     'You can notice if a resource is abnormal in real time by creating an alerting policy.',
 
   SELECT_NODE_TIP: 'Please select at lease a cluster node.',

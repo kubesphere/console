@@ -18,6 +18,10 @@
 
 module.exports = {
   'Network Policy': '网络策略',
+  NETWORK_POLICY: '网络策略',
+  NETWORK_POLICY_PL: 'Network Policies',
+  NETWORK_POLICY_LOW: 'network policy',
+  NETWORK_POLICY_EMPTY_DESC: '请创建一个网络策略。',
   'Network Policys': '网络策略',
   'Network Isolation': '网络隔离',
   CREATE_NETWORK_POLICY_TCAP: '创建网络策略',
@@ -33,7 +37,7 @@ module.exports = {
     '通过配置网络策略，允许在同个集群内实现网络的隔离，即可以在某些实例（Pod）之间架起防火墙。',
   NETWORK_ISOLATION_DESC:
     '通过配置网络隔离控制同一集群内 Pod 之间的流量以及来自外部的流量，从而实现隔离应用并增强应用的安全性。',
-  NETWORK_POLICY_CREATE_DESC:
+  CREATE_NETWORK_POLICY_DESC:
     '通过配置网络策略控制同一集群内 Pod 之间的流量以及来自外部的流量，从而实现隔离应用并增强应用的安全性。',
   NETWORK_POLICY_Q: '如何更好地使用网络策略?',
   NETWORK_ISOLATION_Q: '如何更好地使用网络隔离?',

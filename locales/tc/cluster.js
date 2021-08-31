@@ -91,7 +91,9 @@ module.exports = {
   EDIT_CLUSTER_INFO_DESC: '編輯集群基礎資訊',
 
   SCHEDULING_OPERATIONS: '排程器調度次數',
+  SCHEDULING_OPERATION: '排程器調度次數',
   SCHEDULING_FAILURES: '調度失敗的容器組',
+  SCHEDULING_FAILURE: '調度失敗的容器組',
 
   'Please select or input a tag': '請選擇或輸入標籤',
   'Please select or input a provider': '請選擇或輸入服務商',
@@ -230,7 +232,7 @@ module.exports = {
     'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
   REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
   REMOVE_WORKSPACE_CONFIRM_DESC:
-    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 
   'Host Cluster': 'Host 集群',
   HOST_CLUSTER: 'Host 集群',
@@ -245,7 +247,9 @@ module.exports = {
   IMPORT_CLUSTER_DESC: '導入已有的 Kubernetes 集群',
   CLUSTER_NODE_SETTINGS_DESC: '添加集群需要的節點',
   NODE_INTERNAL_IP_DESC: '集群内各節點間可以互相訪問的內網 IP 地址',
+  EDGENODE_INTERNAL_IP_DESC: '集群内各節點間可以互相訪問的內網 IP 地址',
   NODE_INTERNAL_IP_EMPTY_DESC: '请输入节点在私网内的 IP 地址。',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC: '请输入节点在私网内的 IP 地址。',
   NODE_ROLE_DESC:
     '集群角色中，master 節點數量需要為 1 或 3，woker 節點數量至少為 1',
   NODE_EXTERNAL_IP_DESC: '請填入當前 Host 集群可以訪問到的 IP 地址',
@@ -287,6 +291,7 @@ module.exports = {
   CREATING_CLUSTER_DESC:
     '當前集群正在創建，暫時沒有可用的節點，所以集群為不可以用狀態',
   COPY_SUCCESSFUL: '复制成功。',
+  CLUSTER_INIT_FAILED: 'Cluster initialization failed.',
   INIT_NODES: '初始化節點',
   PULL_IMAGES: '拉取鏡像',
   INIT_ETCD_CLUSTER: '初始化 etcd 集群',
@@ -319,7 +324,7 @@ module.exports = {
   EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:
-    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   REMOVE_WORKSPACE_CONFIRM_PL:
-    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 }
