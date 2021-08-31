@@ -106,7 +106,7 @@ export default class SetDefaultStorageClassModal extends React.Component {
       >
         <div className={styles.body}>
           {this.Items.map(item => {
-            const checked = this.state[item.key]
+            const checked = JSON.parse(this.state[item.key])
             return (
               <div className={styles.Item} key={item.title}>
                 <div className={styles.icon}>
