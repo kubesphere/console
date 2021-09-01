@@ -66,7 +66,7 @@ export default class Item extends React.Component {
         onClick={onClick}
         {...rest}
       >
-        <div className={styles.icon}>
+        <div className={styles.icon} style={{ top: title ? '12px' : '0' }}>
           {image ? (
             <img src={image} alt="" />
           ) : (
