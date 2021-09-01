@@ -71,7 +71,7 @@ module.exports = {
   SCHEDULING_FAILURES: 'Scheduling failures',
   'Select Clusters': 'Select Clusters',
   SET_PUBLIC_CLUSTER: 'Set as a public cluster',
-  Snapshots: 'Snapshots',
+  Snapshots: 'Volume Snapshots',
   'Storage Management': 'Storage',
   SYSTEM_PROJECTS: 'System Projects',
   'The current cluster is public': 'The current cluster is public',

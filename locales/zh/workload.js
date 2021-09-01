@@ -63,7 +63,7 @@ module.exports = {
   'Container Logs': '容器日志',
   'Resource Info': '资源信息',
   'Node Name': '节点名称',
-  POD_IP_TCAP: '容器组 IP',
+  POD_IP_ADDRESS: '容器组 IP',
   IMAGE: '镜像',
   IMAGE_VALUE: '镜像：{value}',
   'Image ID': '镜像 ID',

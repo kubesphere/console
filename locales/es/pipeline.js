@@ -257,7 +257,6 @@ module.exports = {
   'Scheduled build': 'Build programada',
   SCM: 'SCM',
   'Script Path': 'Ruta del script',
-  // SECRET_NAME_TCAP: 'Nombre del secreto', (Duplicated)
   secretName: 'secretName',
   secretNamespace: 'secretNamespace',
   'select a pipeline': 'selecciona una pipeline',

@@ -211,7 +211,7 @@ module.exports = {
   "Missing one or more required properties: 'name'": 'name 不能为空',
   'Please add at least one step.': '至少添加一个步骤',
   'This name has existed.': '此名称已存在',
-  'Please input the credential name.': '请输入凭证名称',
+  'Please input the credential name.': '请输入凭证名称。',
   SCM: '代码仓库',
   'No commit records': '没有提交记录',
   'Clean Workspace': '清理企业空间',
@@ -255,7 +255,6 @@ module.exports = {
   'Docker Container Registry Credentials': 'Docker 容器仓库凭证',
   'Docker Registry URL': 'Docker 仓库 URL',
   'Registry Credentials': '仓库凭证',
-  // SECRET_NAME_TCAP: 'Secret 名称', (Duplicated)
   'Show Advanced Settings': '展示高级设置',
   'Config File Path': '配置文件路径',
   'Add another credential': '增加一个凭证',

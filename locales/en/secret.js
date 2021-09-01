@@ -17,27 +17,28 @@
  */
 
 module.exports = {
-  ACCOUNT_PASSWORD_SECRET_TCAP: 'Account Password Secret',
+  ACCOUNT_PASSWORD_SECRET_SCAP: 'Account password Secret',
   ADD_DATA_TCAP: 'Add Data',
-  ADD_DATA_DESC: 'Add key-value pair data.',
-  'Config Number': 'Count',
+  ADD_DATA_DESC: 'Add a key-value pair.',
+  SECRET_FIELD_COUNT: 'Fields',
   DATA: 'Data',
   EDIT_DATA_TCAP: 'Edit Data',
-  'Edit Secret': 'Edit Secret',
-  'Example: docker.io': 'Example: docker.io',
-  IMAGE_REGISTRY_SECRET_TCAP: 'Image Registry Secret',
+  EDIT_SECRET: 'Edit Secret',
+  REGISTRY_ADDRESS_TIP:
+    'Establezca una dirección de registro, por ejemplo, docker.io.',
+  IMAGE_REGISTRY_SECRET_SCAP: 'Image registry Secret',
   IMAGE_REGISTRY_REQUIRED_DESC:
-    'The image registry secret must at least include the registry address, username and password.',
+    'Please set the registry address, username, and password.',
   ENTER_CREDENTIAL_TIP: 'Please enter a credential.',
-  ENTER_DATA_DESC: 'Please enter data.',
+  ENTER_DATA_DESC: 'Please add data.',
   ENTER_PRIVATE_KEY_DESC: 'Please enter a private key.',
   'Please input the registry address': 'Please input the registry address',
   PRIVATE_KEY_TCAP: 'Private Key',
   REGISTRY_ADDRESS_TCAP: 'Registry Address',
-  REGISTRY_SECRET_VER_ERR: 'Registry verification failed',
-  REGISTRY_SECRET_VER_SUC: 'Registry verification succeeded',
+  REGISTRY_SECRET_VER_ERR: 'Registry Verification Failed.',
+  REGISTRY_SECRET_VER_SUC: 'Registry Verification Succeeded.',
   Secret: 'Secret',
-  SECRET_NAME_TCAP: 'Secret Name',
+  SECRET: 'Secret',
   SECRET_SETTINGS_TCAP: 'Secret Settings',
   secrets: 'secrets',
   Secrets: 'Secrets',
@@ -47,14 +48,16 @@ module.exports = {
     'A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
   SECRET_CREATE_DESC:
     'A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
-  SECRET_TYPE_DESC: 'Choose or customize a Secret type.',
+  SECRET_TYPE_DESC: 'Select a Secret type.',
 
   SECRET_NO_CHINESE_CODE_DESC:
-    'Chinese characters cannot be included in the secret.',
+    'The key of the Secret must consist of alphanumeric characters, hyphens (-), underscores (_), or periods (.).',
 
   IMAGE_REGISTRY_VALIDATE_TIP:
-    'Before you create the image registry Secret, please verify if it is valid.',
+    'Please validate the username and password before creating the image registry Secret.',
 
   DATA_KEY: 'Key',
   DATA_VALUE: 'Value',
+  // Secret Type Drop-down List
+  SECRET_VALUE_LABEL: '{value} ({label})',
 }

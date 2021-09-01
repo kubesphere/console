@@ -17,17 +17,17 @@
  */
 
 module.exports = {
-  ACCOUNT_PASSWORD_SECRET_TCAP: 'Secreto de contraseña de cuenta',
+  ACCOUNT_PASSWORD_SECRET_SCAP: 'Secreto de contraseña de cuenta',
   ADD_DATA_TCAP: 'Agregar datos',
   ADD_DATA_DESC: 'Agregar datos de par clave / valor',
-  'Config Number': 'Número de configuración',
+  SECRET_FIELD_COUNT: 'Los campos',
   DATA: 'Datos',
   EDIT_DATA_TCAP: 'Editar datos',
-  'Edit Secret': 'Editar secreto',
-  'Example: docker.io': 'Ejemplo: docker.io',
-  'Image Repository Secret': 'Secreto del repositorio de imágenes',
+  EDIT_SECRET: 'Editar secreto',
+  REGISTRY_ADDRESS_TIP: 'Set a registry address, for example, docker.io.',
+  IMAGE_REGISTRY_SECRET_SCAP: 'Secreto del repositorio de imágenes',
   IMAGE_REGISTRY_REQUIRED_DESC:
-    'The image registry secret must at least include the registry address, username and password.',
+    'Establezca la dirección de registro, el nombre de usuario y la contraseña.',
   ENTER_CREDENTIAL_TIP: 'Por favor introduce la credencial',
   ENTER_DATA_DESC: 'Por favor introduce los datos',
   ENTER_PRIVATE_KEY_DESC: 'Por favor introduce la clave privada',
@@ -38,7 +38,7 @@ module.exports = {
   REGISTRY_SECRET_VER_ERR: 'La verificación del registro falló',
   REGISTRY_SECRET_VER_SUC: 'Verificación de registro exitosa',
   Secret: 'Secreto',
-  SECRET_NAME_TCAP: 'Nombre del secreto',
+  SECRET: 'Secreto',
   SECRET_SETTINGS_TCAP: 'Configuraciones secretas',
   secrets: 'secretos',
   Secrets: 'Secretos',
@@ -49,9 +49,11 @@ module.exports = {
     'Un secreto es un objeto que contiene una pequeña cantidad de datos confidenciales, como una contraseña, un token o una clave.',
   SECRET_TYPE_DESC: 'Puedes elegir o personalizar un tipo secreto.',
   SECRET_NO_CHINESE_CODE_DESC:
-    'Los caracteres chinos no se pueden incluir en el secreto.',
+    'La clave del Secreto debe constar de caracteres alfanuméricos, guiones (-), guiones bajos (_) o puntos (.).',
   DATA_KEY: 'Clave',
   DATA_VALUE: 'Valor',
   IMAGE_REGISTRY_VALIDATE_TIP:
-    'Before you create the image registry Secret, please verify if it is valid.',
+    'Valide el nombre de usuario y la contraseña antes de crear el registro de imágenes Secreto.',
+  // Secret Type Drop-down List
+  SECRET_VALUE_LABEL: '{value} ({label})',
 }

@@ -62,7 +62,7 @@ export default class ServiceAccounts extends React.Component {
       {
         key: 'modify',
         icon: 'pen',
-        text: t('MODIFY_SERVICE_ACCOUNT_ROLE'),
+        text: t('CHANGE_ROLE'),
         action: 'edit',
         onClick: item =>
           trigger('serviceaccount.role.edit', {

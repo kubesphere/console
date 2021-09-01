@@ -128,7 +128,7 @@ export default class SecretEditModal extends React.Component {
     return (
       <Modal
         width={960}
-        title={t('Edit Secret')}
+        title={t('EDIT_SECRET')}
         icon="pen"
         bodyClassName={styles.body}
         onOk={this.handleOk}

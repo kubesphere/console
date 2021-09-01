@@ -96,17 +96,13 @@ export default class SecretDataForm extends React.Component {
           <Form data={this.state.formData} ref={this.formRef}>
             <Form.Item
               label={t('DATA_KEY')}
-              description={t(
-                'The unique key value of this configuration map entry'
-              )}
+              description={t('CONFIG_FIELD_DESC')}
             >
               <Input name="key" />
             </Form.Item>
             <Form.Item
               label={t('DATA_VALUE')}
-              description={t(
-                'Enter the value of the configuration map entry or use the contents of the file'
-              )}
+              description={t('ENTER_CONFIG_VALUE_DESC')}
             >
               <TextArea maxHeight={430} name="value" rows={4} autoResize />
             </Form.Item>

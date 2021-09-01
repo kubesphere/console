@@ -115,7 +115,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'editAnnotations',
       icon: 'firewall',
-      text: t('EDIT_ANNOTATIONS_TCAP'),
+      text: t('EDIT_ANNOTATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('router.annotations.edit', {

@@ -94,7 +94,7 @@ export default class SecretDetail extends React.Component {
     {
       key: 'editSecret',
       icon: 'pen',
-      text: t('Edit Secret'),
+      text: t('EDIT_SECRET'),
       action: 'edit',
       onClick: () =>
         this.trigger('secret.edit', {

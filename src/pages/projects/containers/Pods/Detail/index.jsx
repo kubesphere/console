@@ -129,7 +129,7 @@ export default class PodDetail extends React.Component {
         value: t(status),
       },
       {
-        name: t('POD_IP_TCAP'),
+        name: t('POD_IP_ADDRESS'),
         value: detail.podIp,
       },
       {

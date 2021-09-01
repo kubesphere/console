@@ -38,13 +38,13 @@ module.exports = {
   'Mount Options': 'Mount Options',
   'Mount Status': 'Mount Status',
   // Volumes List Page
-  MOUNT_TCAP: 'Mount',
+  MOUNT_STATUS: 'Mount Status',
   MOUNTED_TCAP: 'Mounted',
   'Mounted Pods': 'Mounted Pods',
-  NOT_MOUNTED_TCAP: 'Not Mounted',
+  NOT_MOUNTED: 'Not mounted',
   Parameters: 'Parameters',
   'Parameters (key-value pairs)': 'Parameters (key-value pairs)',
-  PersistentVolumeClaim: 'PersistentVolumeClaim',
+  PersistentVolumeClaim: 'Volume',
   PersistentVolumes: 'PersistentVolumes',
   RECLAMATION_POLICY: 'Reclamation Policy',
   CREATE: 'Create',
@@ -68,6 +68,8 @@ module.exports = {
   ACCESS_MODE_SCAP: 'Access mode',
   'Used Capacity': 'Used Capacity',
   'Clone Volume': 'Clone Volume',
+  VOLUME: 'Volume',
+  VOLUMES: 'Volumes',
   'The volume name exists': 'The volume name exists',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
   VOLUME_COUNT: 'Volumes',
@@ -104,7 +106,7 @@ module.exports = {
   VOLUME_SETTINGS_DESC:
     'Fill in the capacity of the volume as needed, and the volume size and access mode must be compatible with the storage class and storage server capabilities. The access mode is usually selected as RWO.',
   VOLUME_STORAGE_CLASS_DESC:
-    'The cluster administrator configures the storage server parameters and provides storage for the user by type.',
+    'Select a storage class to create a specific type of volume.',
 
   PROVISIONER_DESC: 'Provide backend storage',
 
@@ -118,8 +120,7 @@ module.exports = {
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce: Single node read and write.<br/>ReadOnlyMany: Multi-node read-only.<br/>ReadWriteMany: Multi-node read and write.<br/>Only one mode can be used when mounting.',
 
-  STORAGE_CLASS_DESC:
-    'Storage classes support dynamic volume provisioning, allowing administrators to create new storage volumes on demand.',
+  STORAGE_CLASS_DESC: 'Select a storage class to create a volume.',
 
   'STORAGE-CLASSES_BASEINFO_DESC':
     'The storage type records the configuration information of a certain type of storage provided by the administrator. Before creating a specific type of storage volume, the corresponding storage type must be configured.',
@@ -203,8 +204,8 @@ module.exports = {
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
     'Make sure if there are resources dependent on the storage class. If there are, you need to disable the resources before it the resource functions are affected.',
 
-  CREATE_VOLUME_BY_STORAGECLASS: 'Create a volume by StorageClass',
-  CREATE_VOLUME_BY_SNAPSHOT: 'Create a volume by VolumeSnapshot',
+  CREATE_VOLUME_BY_STORAGECLASS: 'Create a Volume from Storage Class',
+  CREATE_VOLUME_BY_SNAPSHOT: 'Create a Volume from Volume Snapshot',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select a snapshot to create a volume.',
   VOLUMESNAPSHOT_DESC:
     'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',

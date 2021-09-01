@@ -149,7 +149,7 @@ export default class NetworkPolicies extends React.Component {
         ),
       },
       {
-        title: t('Create Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

@@ -115,7 +115,7 @@ export default class Pods extends React.Component {
         render: this.renderNode,
       },
       {
-        title: t('POD_IP_TCAP'),
+        title: t('POD_IP_ADDRESS'),
         dataIndex: 'podIp',
         isHideable: true,
         width: '15%',

@@ -20,15 +20,13 @@ module.exports = {
   'Pod IP Pool': '容器組 IP 地址範圍',
   'Pod IP Pools': '容器組 IP 地址範圍',
 
-  'Create Pod IP Pool': '創建容器組 IP 地址範圍',
+  CREATE_POD_IP_POOL: '創建容器組 IP 地址範圍',
 
-  IP_MASK_BIT_TCAP: 'IP / 遮罩位元',
-  USED_IP_TCAP: '已用 IP',
-  NETWORK_SEGMENT: 'IP / 遮罩位元',
+  NETWORK_SEGMENT: '网段',
+  USED_IP_ADDRESSES: '已用 IP 地址',
   'Used IP': '已用 IP',
 
-  Mask: '遮罩',
-  MASK_BIT_TCAP: '遮罩位元',
+  MASK: '遮罩',
   Network: '網路',
 
   'First Available': '第一個可用',
@@ -38,12 +36,12 @@ module.exports = {
   POD_IP_POOL: '容器組 IP 地址範圍',
 
   NUMBER_OF_CREATION_TCAP: '創建數量',
-  'Pod IP Pools to be created': '即將創建的容器組 IP 地址範圍',
+  IP_POOL_CREATE_DESC: '即將創建的容器組 IP 地址範圍',
   'Set to be globally available': '設為全局可用',
 
-  'Please input the IP address': '請輸入 IP 地址。',
-  MASK_BIT_TIP: '請輸入遮罩位元。',
-  'Please input the IP/mask bit': '請輸入 IP 地址 / 遮罩位元',
+  IP_ADDRESS_EMPTY_DESC: '請輸入 IP 地址。',
+  MASK_TIP: '請輸入遮罩。',
+  ENTER_NETWORK_SEGMENT_TIP: '請輸入網段。',
 
   IP_POOL_NUM_TIP: '請輸入需要創建的容器組 IP 地址範圍數量。',
 
@@ -54,12 +52,16 @@ module.exports = {
   IPPOOL_USAGE_A:
     'IP 地址範圍用於規劃 Pod 網路地址空間，每個 IP 地址範圍之間地址空間不能。創建工作負載時，可選擇特定的 IP 地址範圍，這樣創建出的容器組將從該 IP 地址範圍中分配 IP。',
 
-  IPPOOL_ASSIGN_WORKSPACE_DESC:
-    'IP 地址範圍分配给企業空間之後才能被企業空間使用。',
+  IPPOOL_ASSIGN_WORKSPACE_DESC: '为 IP 地址範圍分配一个企業空間。',
   IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING:
-    'IP 地址範圍已被使用，無法分配给某一個具體的企業空間',
+    'IP 地址範圍已被使用，無法分配给另一個具體的企業空間。',
   IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING:
-    'IP 地址範圍已被使用，且已指定具體的企業空間，無法更改目標企業空間',
+    'IP 地址範圍已被使用且已指定具體的企業空間，無法更改企業空間。',
 
   IPPOOL_WORKSPACE_EMPTY_TIP: '暫無企業空間使用此 IP 地址範圍',
+  // IP Pod Pools List Page
+  TOTAL_VALUE: '總計：{value}',
+  ALL: '全部',
+  NOT_ASSIGNED: '未分配',
+  WORKSPACE: '企業空間',
 }

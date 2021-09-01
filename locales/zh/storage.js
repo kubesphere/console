@@ -35,6 +35,8 @@ module.exports = {
   PersistentVolumeClaim: '存储卷',
   'Volume Usage': '存储卷用量',
   VOLUME_COUNT: '存储卷数量',
+  VOLUME: '存储卷',
+  VOLUMES: '存储卷数量',
   'Create Volume': '创建存储卷',
   'Delete Volume': '删除存储卷',
   'storage classes': '存储类型',
@@ -46,11 +48,12 @@ module.exports = {
   STORAGE_CLASS_SETTINGS: '存储类型设置',
   'Mount Info': '挂载信息',
   // Volumes List Page
-  MOUNT_TCAP: '挂载',
+  MOUNT_STATUS: '挂载',
   MOUNTED_TCAP: '已挂载',
-  NOT_MOUNTED_TCAP: '未挂载',
+  NOT_MOUNTED: '未挂载',
   Scalable: '可扩容性',
   RECLAMATION_POLICY: '回收机制',
+  CREATE: '创建',
   DELETE_STORAGE_TIP: '如果存储卷正在被挂载时，待工作负载被删除时一同删除。',
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce：单个节点读写。<br/>ReadOnlyMany：多节点只读。<br/>ReadWriteMany：多节点读写。<br/>挂载时只能使用一种模式。',
@@ -96,8 +99,7 @@ module.exports = {
     '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
   VOLUME_CREATE_DESC:
     '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
-  STORAGE_CLASS_DESC:
-    '存储类型（StorageClass）支持动态卷供应，使管理员能够按需创建新的存储卷。',
+  STORAGE_CLASS_DESC: '选择已有的存储类型来创建存储卷。',
   STORAGE_CLASS_CREATE_DESC:
     '存储类型（Storage Class）是由集群管理员配置的多种存储类型，不同的存储类型为集群用户提供不同类型的存储卷。',
   'STORAGE-CLASSES_BASEINFO_DESC':
@@ -110,7 +112,7 @@ module.exports = {
 
   PROVISIONER_DESC: '提供后端存储',
 
-  VOLUME_STORAGE_CLASS_DESC: '不同的存储类型为集群用户提供不同类型的存储卷。',
+  VOLUME_STORAGE_CLASS_DESC: '选择一个存储类型来创建具体种类的存储卷。',
 
   ACCESS_MODES_DESC: '选择存储类型支持的访问模式。',
 
@@ -199,7 +201,7 @@ module.exports = {
 
   CREATE_VOLUME_BY_STORAGECLASS: '通过存储类型',
   CREATE_VOLUME_BY_SNAPSHOT: '通过存储卷快照创建',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: '选择已有的存储卷快照进行创建',
+  SELECT_SNAPSHOT_TO_CREATE_VOLUME: '选择已有的存储卷快照来创建存储卷。',
 
   CLUSTER_VOLUME_DIFF_DESC: '可针对不同集群，选择不同的存储类型',
 

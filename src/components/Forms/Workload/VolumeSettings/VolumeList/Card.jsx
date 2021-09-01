@@ -72,7 +72,7 @@ const Card = ({ volume, onDelete, onEdit }) => {
     details = [
       {
         title: get(volume, 'volume.name', '-'),
-        description: t('Volume'),
+        description: t('VOLUME'),
       },
       {
         title: get(volume, 'volume.capacity', '-'),

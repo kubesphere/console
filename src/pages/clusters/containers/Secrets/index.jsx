@@ -66,7 +66,7 @@ export default class Secrets extends React.Component {
       {
         key: 'editSecret',
         icon: 'pen',
-        text: t('Edit Secret'),
+        text: t('EDIT_SECRET'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -134,7 +134,7 @@ export default class Secrets extends React.Component {
         render: type => (SECRET_TYPES[type] ? t(SECRET_TYPES[type]) : type),
       },
       {
-        title: t('Config Number'),
+        title: t('SECRET_FIELD_COUNT'),
         dataIndex: 'data',
         isHideable: true,
         width: '16%',

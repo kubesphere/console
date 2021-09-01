@@ -138,7 +138,7 @@ export default class RuleForm extends React.Component {
     }
 
     if (value.some(item => !this.checkItemValid(item))) {
-      return callback({ message: t('Invalid paths'), field: rule.field })
+      return callback({ message: t('INVALID_PATH_TIP'), field: rule.field })
     }
 
     callback()
@@ -195,7 +195,7 @@ export default class RuleForm extends React.Component {
             <Form.Item
               label={t('DOMAIN_NAME_TCAP')}
               rules={[
-                { required: true, message: t('HOSTNAME_TIP') },
+                { required: true, message: t('DOMAIN_NAME_TIP') },
                 {
                   pattern: PATTERN_HOST,
                   message: t('INVALID_DOMAIN_TIP'),
@@ -213,8 +213,12 @@ export default class RuleForm extends React.Component {
               />
             </Form.Item>
             {protocol === 'https' && (
-              <Form.Item label={t('SECRET_NAME_TCAP')}>
-                <Select name="secretName" options={this.secrets} />
+              <Form.Item label={t('SECRET')}>
+                <Select
+                  name="secretName"
+                  options={this.secrets}
+                  placeholder=" "
+                />
               </Form.Item>
             )}
           </>

@@ -86,7 +86,7 @@ const Card = ({ volume, match, isMultiProject }) => {
         ) : (
           <Link to={`${prefix}/volumes/${volumeName}`}>{volumeName}</Link>
         ),
-        description: t('Volume'),
+        description: t('VOLUME'),
       },
       {
         title: get(volume, 'capacity', '-'),
