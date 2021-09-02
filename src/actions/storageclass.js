@@ -104,9 +104,11 @@ export default {
       const modal = Modal.open({
         onOk: async state => {
           await store.patch(detail, {
-            annotations: {
-              'storageclass.kubesphere.io/allow-clone': state.allowClone,
-              'storageclass.kubesphere.io/allow-snapshot': state.allowSnapshot,
+            metadata: {
+              annotations: {
+                'storageclass.kubesphere.io/allow-clone': `${state.allowClone}`,
+                'storageclass.kubesphere.io/allow-snapshot': `${state.allowSnapshot}`,
+              },
             },
             allowVolumeExpansion: state.allowVolumeExpansion,
           })

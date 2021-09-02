@@ -79,7 +79,7 @@ export default class VolumeDetail extends React.Component {
       const clone = toJS(this.storageclass).detail.annotations[
         'storageclass.kubesphere.io/allow-clone'
       ]
-      return isUndefined(clone) ? true : clone
+      return isUndefined(clone) ? true : !JSON.parse(clone)
     } catch (err) {
       return true
     }
@@ -90,7 +90,7 @@ export default class VolumeDetail extends React.Component {
       const snapShot = toJS(this.storageclass).detail.annotations[
         'storageclass.kubesphere.io/allow-snapshot'
       ]
-      return isUndefined(snapShot) ? true : snapShot
+      return isUndefined(snapShot) ? true : !JSON.parse(snapShot)
     } catch (err) {
       return true
     }
