@@ -24,8 +24,7 @@ module.exports = {
   DATA: 'Data',
   EDIT_DATA_TCAP: 'Edit Data',
   EDIT_SECRET: 'Edit Secret',
-  REGISTRY_ADDRESS_TIP:
-    'Establezca una dirección de registro, por ejemplo, docker.io.',
+  REGISTRY_ADDRESS_TIP: 'Set a registry address, for example, docker.io.',
   IMAGE_REGISTRY_SECRET_SCAP: 'Image registry Secret',
   IMAGE_REGISTRY_REQUIRED_DESC:
     'Please set the registry address, username, and password.',
