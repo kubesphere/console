@@ -362,6 +362,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: productpage
-              servicePort: 9080
+              service:
+                name: productpage
+                port: 9080
       host: productpage.servicemesh.139.198.121.92.nip.io
