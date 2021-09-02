@@ -119,7 +119,9 @@ module.exports = {
     'ReadWriteOnce: lectura y escritura de un solo nodo. <br/> ReadOnlyMany: ' +
     'Multi-nodo de solo lectura. <br/> ReadWriteMany: lectura y escritura de ' +
     'múlti-nodos. <br/> Solo se puede usar un modo al montar.',
-  STORAGE_CLASS_DESC: 'Selecciona clase de almacenamiento para crear volumen.',
+  STORAGE_CLASS_DESC:
+    'Storage classes support dynamic volume provisioning, allowing administrators to create new storage volumes on demand.' +
+    'las "clases" de almacenamiento que ofrecen.',
   'STORAGE-CLASSES_BASEINFO_DESC':
     'El tipo de almacenamiento registra la información de configuración de un cierto tipo de almacenamiento proporcionado por el administrador. Antes de crear un tipo específico de volumen de almacenamiento, se debe configurar el tipo de almacenamiento correspondiente.',
   STORAGE_CLASS_SETTING_DESC:
@@ -191,9 +193,11 @@ module.exports = {
     'Additional function of the Ceph cluster. The value should only be set when you set imageFormat to "2".',
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
     'Make sure if there are resources dependent on the storage class. If there are, you need to disable the resources before it the resource functions are affected.',
-  CREATE_VOLUME_BY_STORAGECLASS: 'Crear volumen por clase de almacenamiento',
+  CREATE_VOLUME_BY_STORAGE_CLASS: 'Crear volumen por clase de almacenamiento',
   CREATE_VOLUME_BY_SNAPSHOT: 'Crear volumen por snapshot',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Selecciona snapshot para crear volumen.',
+  SELECT_STORAGE_CLASS_CREATE_VOLUME:
+    'Seleccione una clase de almacenamiento para crear un volumen.',
   VOLUMESNAPSHOT_DESC:
     'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
   VOLUMESNAPSHOT_CREATE_DESC:

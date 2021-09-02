@@ -99,7 +99,8 @@ module.exports = {
     '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
   VOLUME_CREATE_DESC:
     '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
-  STORAGE_CLASS_DESC: '选择已有的存储类型来创建存储卷。',
+  STORAGE_CLASS_DESC:
+    '存储类型（StorageClass）支持动态卷供应，使管理员能够按需创建新的存储卷。',
   STORAGE_CLASS_CREATE_DESC:
     '存储类型（Storage Class）是由集群管理员配置的多种存储类型，不同的存储类型为集群用户提供不同类型的存储卷。',
   'STORAGE-CLASSES_BASEINFO_DESC':
@@ -199,9 +200,10 @@ module.exports = {
     '存储卷快照是存储卷在特定时间点的副本，可使用快照中的数据预配新存储卷，或者将存储卷恢复至快照捕捉到的先前状态。',
   WHAT_IS_VOLUME_SNAPSHOTS: '什么是存储卷快照',
 
-  CREATE_VOLUME_BY_STORAGECLASS: '通过存储类型',
+  CREATE_VOLUME_BY_STORAGE_CLASS: '通过存储类型',
   CREATE_VOLUME_BY_SNAPSHOT: '通过存储卷快照创建',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: '选择已有的存储卷快照来创建存储卷。',
+  SELECT_STORAGE_CLASS_CREATE_VOLUME: '选择已有的存储类型来创建存储卷。',
 
   CLUSTER_VOLUME_DIFF_DESC: '可针对不同集群，选择不同的存储类型',
 

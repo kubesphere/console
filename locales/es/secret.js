@@ -18,14 +18,17 @@
 
 module.exports = {
   ACCOUNT_PASSWORD_SECRET_SCAP: 'Secreto de contraseña de cuenta',
+  ACCOUNT_PASSWORD_SECRET_TCAP: 'Secreto de contraseña de cuenta',
   ADD_DATA_TCAP: 'Agregar datos',
   ADD_DATA_DESC: 'Agregar datos de par clave / valor',
   SECRET_FIELD_COUNT: 'Los campos',
   DATA: 'Datos',
   EDIT_DATA_TCAP: 'Editar datos',
   EDIT_SECRET: 'Editar secreto',
-  REGISTRY_ADDRESS_TIP: 'Set a registry address, for example, docker.io.',
+  REGISTRY_ADDRESS_TIP:
+    'Establezca una dirección de registro, por ejemplo, docker.io.',
   IMAGE_REGISTRY_SECRET_SCAP: 'Secreto del repositorio de imágenes',
+  IMAGE_REGISTRY_SECRET_TCAP: 'Secreto del repositorio de imágenes',
   IMAGE_REGISTRY_REQUIRED_DESC:
     'Establezca la dirección de registro, el nombre de usuario y la contraseña.',
   ENTER_CREDENTIAL_TIP: 'Por favor introduce la credencial',

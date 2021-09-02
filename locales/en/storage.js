@@ -120,7 +120,8 @@ module.exports = {
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce: Single node read and write.<br/>ReadOnlyMany: Multi-node read-only.<br/>ReadWriteMany: Multi-node read and write.<br/>Only one mode can be used when mounting.',
 
-  STORAGE_CLASS_DESC: 'Select a storage class to create a volume.',
+  STORAGE_CLASS_DESC:
+    'Storage classes support dynamic volume provisioning, allowing administrators to create new storage volumes on demand.',
 
   'STORAGE-CLASSES_BASEINFO_DESC':
     'The storage type records the configuration information of a certain type of storage provided by the administrator. Before creating a specific type of storage volume, the corresponding storage type must be configured.',
@@ -204,9 +205,11 @@ module.exports = {
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
     'Make sure if there are resources dependent on the storage class. If there are, you need to disable the resources before it the resource functions are affected.',
 
-  CREATE_VOLUME_BY_STORAGECLASS: 'Create a Volume from Storage Class',
+  CREATE_VOLUME_BY_STORAGE_CLASS: 'Create a Volume from Storage Class',
   CREATE_VOLUME_BY_SNAPSHOT: 'Create a Volume from Volume Snapshot',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select a snapshot to create a volume.',
+  SELECT_STORAGE_CLASS_CREATE_VOLUME:
+    'Select a storage class to create a volume.',
   VOLUMESNAPSHOT_DESC:
     'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
   VOLUMESNAPSHOT_CREATE_DESC:

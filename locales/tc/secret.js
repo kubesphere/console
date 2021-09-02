@@ -26,6 +26,7 @@ module.exports = {
   SECRET_SETTINGS_TCAP: '密鑰設置',
   PRIVATE_KEY_TCAP: '私鑰',
   IMAGE_REGISTRY_SECRET_SCAP: '鏡像倉庫保密字典',
+  IMAGE_REGISTRY_SECRET_TCAP: '鏡像倉庫保密字典',
   ENTER_CREDENTIAL_TIP: '請輸入憑證。',
   ENTER_PRIVATE_KEY_DESC: '請輸入私鑰。',
   ENTER_DATA_DESC: '請添加數據。',
@@ -44,6 +45,7 @@ module.exports = {
   REGISTRY_SECRET_VER_ERR: '鏡像倉庫驗證失敗。',
   REGISTRY_SECRET_VER_SUC: '鏡像倉庫驗證通過。',
   ACCOUNT_PASSWORD_SECRET_SCAP: '帳號密碼保密字典',
+  ACCOUNT_PASSWORD_SECRET_TCAP: '帳號密碼保密字典',
 
   DATA: '數據',
   ADD_DATA_TCAP: '添加數據',
