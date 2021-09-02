@@ -68,6 +68,18 @@ const KIND_MODULE = {
 }
 
 export const getAlertingResource = (labels = {}) => {
+  const renderPod = (_labels, workloadType) => {
+    const podsName = _labels.pod
+
+    if (podsName && podsName.startsWith(_labels[workloadType])) {
+      return {
+        module: 'pods',
+        name: _labels.pod,
+        namespace: _labels.namespace,
+      }
+    }
+  }
+
   if (labels.node) {
     return {
       module: 'nodes',
@@ -84,15 +96,34 @@ export const getAlertingResource = (labels = {}) => {
       }
     }
 
-    if (labels.pod) {
+    if (labels.job_name) {
+      renderPod(labels, 'job_name')
       return {
-        module: 'pods',
-        name: labels.pod,
+        module: 'jobs',
+        name: labels.job_name,
+        namespace: labels.namespace,
+      }
+    }
+
+    if (labels.cronjob) {
+      renderPod(labels, 'cronjob')
+      return {
+        module: 'cronjobs',
+        name: labels.cronjob,
+        namespace: labels.namespace,
+      }
+    }
+
+    if (labels.hpa) {
+      return {
+        module: 'hpas',
+        name: labels.hpa,
         namespace: labels.namespace,
       }
     }
 
     if (labels.deployment) {
+      renderPod(labels, 'deployment')
       return {
         module: 'deployments',
         name: labels.deployment,
@@ -101,6 +132,7 @@ export const getAlertingResource = (labels = {}) => {
     }
 
     if (labels.statefulset) {
+      renderPod(labels, 'statefulsets')
       return {
         module: 'statefulsets',
         name: labels.statefulset,
@@ -109,9 +141,18 @@ export const getAlertingResource = (labels = {}) => {
     }
 
     if (labels.daemonset) {
+      renderPod(labels, 'daemonsets')
       return {
         module: 'daemonsets',
         name: labels.daemonset,
+        namespace: labels.namespace,
+      }
+    }
+
+    if (labels.pod) {
+      return {
+        module: 'pods',
+        name: labels.pod,
         namespace: labels.namespace,
       }
     }

@@ -266,6 +266,7 @@ export const MODULE_KIND_MAP = {
   ippools: 'IPPool',
   groups: 'Group',
   volumes: 'Volumes',
+  hpas: 'Hpas',
 }
 
 export const QUOTAS_MAP = {
