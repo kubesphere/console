@@ -54,7 +54,6 @@ module.exports = {
   'memory utilisation (including cache)':
     'Memory utilization (including caches)',
   MEMORY_USAGE_SCAP: 'Memory usage',
-  Message: 'Message',
 
   CRITICAL_ALERT: 'Critical',
   ERROR_ALERT: 'Error',
@@ -76,6 +75,7 @@ module.exports = {
   'Recent Notification': 'Recent Notification',
   'Recovery Time': 'Recovery Time',
   Rule: 'Rule',
+  RULE: 'Rule',
   'Rule Name': 'Rule Name',
   THRESHOLD: 'Threshold',
   'Unavailable replicas ratio': 'Unavailable replicas',
@@ -92,9 +92,9 @@ module.exports = {
   RULE_EXPRESSION: 'Rule Expression',
   INVALID_TIME_DESC:
     'Invalid value. Please select a value from the drop-down list or enter 0 or a positive integer.',
-  NAME: 'Name',
+
   ALIAS: 'Alias',
-  ALERT_DURATION_MIN: 'Duration (Minutes)',
+  ALERT_DURATION_MIN: 'Duration (min)',
 
   ENTER_RULE_EXPRESSION: 'Please enter a rule expression.',
   ALERT_FUNCTIONS: 'Functions',
@@ -120,7 +120,7 @@ module.exports = {
   ALERTING_POLICY_CREATE_DESC:
     'You can notice if a resource is abnormal in real time by creating an alerting policy.',
 
-  SELECT_NODE_TIP: 'Please select at least a cluster resource.',
+  SELECT_NODE_TIP: 'Please select at least a cluster node.',
   SELECT_WORKLOAD_TIP: 'Please select at least a workload.',
 
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How do I trigger alerting messages?',
@@ -158,7 +158,7 @@ module.exports = {
   // Alerting Policies
   ALERTING_POLICIES: 'Alerting Policies',
   NOTIFICATION_SETTINGS: 'Notification Settings',
-
-  // Custom Monitoring
-  CREATED_AT: 'Created At',
+  DEPLOYMENT: 'Deployment',
+  STATEFULSET: 'StatefulSet',
+  DAEMONSET: 'DaemonSet',
 }

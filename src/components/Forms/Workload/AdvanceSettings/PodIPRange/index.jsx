@@ -47,11 +47,11 @@ export default class PodIPRange extends Component {
         details: [
           {
             label: item.cidr,
-            description: t('IP_MASK_BIT_TCAP'),
+            description: t('NETWORK_SEGMENT'),
           },
           {
             label: get(item, 'status.unallocated'),
-            description: t('Available Number'),
+            description: t('AVAILABLE_ADDRESSES'),
           },
         ],
       }))
@@ -65,7 +65,7 @@ export default class PodIPRange extends Component {
     }
 
     return (
-      <Form.Item label={t('Pod IP Range')}>
+      <Form.Item label={t('POD_IP_POOL')}>
         <TypeSelect
           name={`${this.prefix}metadata.annotations["cni.projectcalico.org/ipv4pools"]`}
           options={options}

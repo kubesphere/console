@@ -18,7 +18,6 @@
 
 module.exports = {
   'Network Policy': '网络策略',
-  'Network Policies': '网络策略',
   'Network Policys': '网络策略',
   'Network Isolation': '网络隔离',
   CREATE_NETWORK_POLICY_TCAP: '创建网络策略',
@@ -40,7 +39,7 @@ module.exports = {
   NETWORK_ISOLATION_Q: '如何更好地使用网络隔离?',
   NETWORK_POLICY_A:
     '我们根据实际使用场景整理了几种较为常见的应用场景，您可以查阅文档了解更多',
-  NETWORK_POLICY_Q1: '实现网络策略的必要条件',
+  NETWORK_POLICY_Q1: 'CNI 插件实现网络策略需满足哪些必要条件？',
   NETWORK_ISOLATION_Q1: '实现网络隔离的必要条件',
   NETWORK_POLICY_A1:
     'Kubernetes 所使用 CNI 必须支持 Kubernetes 原生<a href="https://kubernetes.io/zh/docs/concepts/services-networking/network-policies/" target="_blank">网络策略</a>，例如 Calico、Cilium、Kube-router、Romana 和 Weave Net。',
@@ -48,11 +47,11 @@ module.exports = {
   NETWORK_POLICY_EMP_DESC:
     '由于企业空间的设置，当前项目允许集群内其他项目进行访问。启用项目网络隔离后，将禁止其他项目访问当前项目，同时可以自定义需要放行的项目、服务、外部地址',
   NETWORK_POLICY_STATUS: '项目网络隔离',
-  NETWORK_POLICY_R_DESC1: '可以设置对以下资源进行访问(匹配下面任意策略)',
+  NETWORK_POLICY_R_DESC1: '设置对以下资源进行访问（匹配下面任意策略）。',
   NETWORK_POLICY_R_DESC2:
-    '可以允许以下资源对当前项目进行访问(匹配下面任意策略)',
+    '允许以下资源对当前项目进行访问（匹配下面任意策略）。',
   NETWORK_POLICY_R1_TITLE: '集群内部白名单',
-  NETWORK_POLICY_R1_DESC: '允许集群内部服务访问',
+  NETWORK_POLICY_R1_DESC: '允许集群内部服务访问。',
   NETWORK_POLICY_R1_DESC1:
     '选择指定的项目或者服务作为白名单成员，允许这些资源访问当前项目。',
   NETWORK_POLICY_R2_TITLE: '集群外部IP地址',
@@ -60,7 +59,8 @@ module.exports = {
   NETWORK_POLICY_R2_DESC1:
     '选择特定的 IP CIDR 范围以允许作为入口源或出口目的地。',
   NETWORK_POLICY_D_DESC: '匹配 Egress(出口) 流量以及 Ingress(入口) 流量',
-  NETWORK_POLICY_D_DESC2: 'CIDR 代表一个合法的 IP 地址段,例如 “192.168.1.1/24”',
+  NETWORK_POLICY_D_DESC2:
+    'CIDR 代表一个合法的 IP 地址段，例如 “192.168.1.1/24”。',
   NETWORK_POLICY_D_OP1: 'Egress(出口)',
   NETWORK_POLICY_D_OP2: 'Ingress(入口)',
 

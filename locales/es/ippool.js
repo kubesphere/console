@@ -20,44 +20,48 @@ module.exports = {
   'Pod IP Pool': 'Pod IP Pool',
   'Pod IP Pools': 'Pod IP Pools',
 
-  'Create Pod IP Pool': 'Create Pod IP Pool',
+  CREATE_POD_IP_POOL: 'Create Pod IP Pool',
 
-  IP_MASK_BIT_TCAP: 'IP/Mask Bit',
-  USED_IP_TCAP: 'Used IP',
+  NETWORK_SEGMENT: 'Network Segment',
+  USED_IP_ADDRESSES: 'Used IP Addresses',
+  'Used IP': 'Used IP',
 
-  Mask: 'Mask',
-  MASK_BIT_TCAP: 'Mask Bit',
+  MASK: 'Mask',
   Network: 'Network',
 
   'First Available': 'First Available',
   'Last Available': 'Last Available',
-  'Available Number': 'Available Number',
+  AVAILABLE_ADDRESSES: 'Available Number',
 
-  'Pod IP Range': 'Pod IP Range',
+  POD_IP_POOL: 'Pod IP Range',
 
   NUMBER_OF_CREATION_TCAP: 'Number of Creation',
-  'Pod IP Pools to be created': 'Pod IP Pools to be created',
+  IP_POOL_CREATE_DESC: 'Pod IP pools to be created',
   'Set to be globally available': 'Set to be globally available',
 
-  'Please input the IP address': 'Please input the IP address',
-  MASK_BIT_TIP: 'Please enter the mask bit.',
-  'Please input the IP/mask bit': 'Please input the IP/mask bit',
+  IP_ADDRESS_EMPTY_DESC: 'Please enter an IP address.',
+  MASK_TIP: 'Please enter a mask.',
+  ENTER_NETWORK_SEGMENT_TIP: 'Please enter a network segment.',
 
-  IP_POOL_NUM_TIP: 'Please enter the number of Pod IP Pools to be created.',
+  IP_POOL_NUM_TIP: 'Please enter the number of Pod IP pools to be created.',
 
-  POD_IP_POOL_DESC: 'Pod IP Pools of the cluster.',
+  POD_IP_POOL_DESC: 'Pod IP pools of the cluster.',
   IP_POOL_CREATE_COUNT_DESC:
-    'Up to 10 Pod IP Pools can be created at the same time.',
-  IPPOOL_USAGE_Q: 'How do I manage a Pod network using a Pod IP Pool?',
+    'Up to 10 Pod IP pools can be created at the same time.',
+  IPPOOL_USAGE_Q: 'How do I manage a Pod network using a Pod IP pool?',
   IPPOOL_USAGE_A:
-    'A Pod IP Pool is used to manage the Pod network address space, and the address space between each Pod IP Pool cannot overlap. When creating a workload, you can select a specific Pod IP Pool to assign IP addresses from this Pod IP Pool to the created Pods.',
+    'A Pod IP pool is used to manage the Pod network address space, and the address spaces between different Pod IP Pools cannot overlap. When creating a workload, you can select a specific Pod IP Pool to assign IP addresses from this Pod IP Pool to the created Pods.',
 
-  IPPOOL_ASSIGN_WORKSPACE_DESC:
-    'The Pod IP Pool can be used by a workspace after assigned to it.',
+  IPPOOL_ASSIGN_WORKSPACE_DESC: 'Assign the Pod IP pool to a workspace.',
   IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING:
-    'The Pod IP Pool has been used and cannot be assigned to a specific workspace.',
+    'The Pod IP pool is in use and cannot be assigned to another specific workspace.',
   IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING:
-    'The Pod IP Pool has been used with a specific workspace assigned. The target workspace cannot be changed.',
+    'The Pod IP pool is in use with a specific workspace assigned. The workspace cannot be changed.',
 
-  IPPOOL_WORKSPACE_EMPTY_TIP: 'No workspace is using this Pod IP Pool.',
+  IPPOOL_WORKSPACE_EMPTY_TIP: 'No workspace is using this Pod IP pool.',
+  // IP Pod Pools List Page
+  TOTAL_VALUE: 'Total: {value}',
+  ALL: 'Todos',
+  NOT_ASSIGNED: 'No asignado',
+  WORKSPACE: 'Espacio de trabajo',
 }

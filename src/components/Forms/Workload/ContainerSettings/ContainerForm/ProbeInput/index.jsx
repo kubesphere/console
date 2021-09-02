@@ -48,14 +48,14 @@ export default class ProbeInput extends React.Component {
 
   getProbeTypeText = value => {
     if ('httpGet' in value) {
-      return 'HTTP Request Check'
+      return 'HTTP_REQUEST'
     }
 
     if ('tcpSocket' in value) {
-      return 'TCP Port Check'
+      return 'TCP_PORT'
     }
 
-    return 'Exec Command Check'
+    return 'COMMAND'
   }
 
   showForm = () => {
@@ -85,15 +85,15 @@ export default class ProbeInput extends React.Component {
         <>
           <div>
             <strong>{get(value, 'httpGet.scheme', '')}</strong>
-            <p>{t('Type')}</p>
+            <p>{t('TYPE')}</p>
           </div>
           <div>
             <strong>{get(value, 'httpGet.path', '')}</strong>
-            <p>{t('Path')}</p>
+            <p>{t('PATH')}</p>
           </div>
           <div>
             <strong>{get(value, 'httpGet.port', '')}</strong>
-            <p>{t('Port')}</p>
+            <p>{t('PORT')}</p>
           </div>
         </>
       )
@@ -103,7 +103,7 @@ export default class ProbeInput extends React.Component {
       return (
         <div>
           <strong>{get(value, 'tcpSocket.port', '')}</strong>
-          <p>{t('Port')}</p>
+          <p>{t('PORT')}</p>
         </div>
       )
     }
@@ -116,7 +116,7 @@ export default class ProbeInput extends React.Component {
             {commands[0]}
             {commands.length > 1 && ' ...'}
           </strong>
-          <p>{t('Command')}</p>
+          <p>{t('COMMANDS')}</p>
         </div>
       )
     }
@@ -138,7 +138,7 @@ export default class ProbeInput extends React.Component {
   }
 
   render() {
-    const { type, description, value } = this.props
+    const { description, value } = this.props
     const { showForm } = this.state
 
     if (showForm) {
@@ -148,7 +148,7 @@ export default class ProbeInput extends React.Component {
     if (isEmpty(value)) {
       return (
         <div className={classnames(styles.empty)} onClick={this.showForm}>
-          <div>{`${t('Add ')}${type}`}</div>
+          <div>{t('ADD_PROBE')}</div>
           <p className="text-secondary">{description}</p>
         </div>
       )
@@ -162,11 +162,10 @@ export default class ProbeInput extends React.Component {
             <strong>{t(this.getProbeTypeText(value))}</strong>
             <p>
               <span>
-                {t('Initial Delay')}: {`${value.initialDelaySeconds || 0}s`}
-              </span>
-              &nbsp;&nbsp;
-              <span>
-                {t('Timeout')}: {`${value.timeoutSeconds || 0}s`}
+                {t('INITIAL_DELAY_TIMEOUT_VALUE', {
+                  delay: value.initialDelaySeconds || 0,
+                  timeout: value.timeoutSeconds || 0,
+                })}
               </span>
             </p>
           </div>

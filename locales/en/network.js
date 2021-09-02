@@ -25,7 +25,6 @@ module.exports = {
   Egress: 'Egress',
   Ingress: 'Ingress',
   'Network Isolation': 'Network Isolation',
-  'Network Policies': 'Network Policies',
   'Network Policy': 'Network Policy',
   'Traffic Egress': 'Traffic Egress',
   'Traffic Ingress': 'Traffic Ingress',
@@ -39,8 +38,9 @@ module.exports = {
   NETWORK_ISOLATION_Q: 'How do I use network isolation better?',
   NETWORK_POLICY_A:
     'We have identified several common use cases based on actual scenarios, and you can refer to the documentation for more information.',
-  NETWORK_POLICY_Q1: 'Requirement for implementing a network policy',
-  NETWORK_ISOLATION_Q1: 'Requirement for implementing network isolation',
+  NETWORK_POLICY_Q1:
+    'What are the requirements on the CNI plugin for implementing a network policy?',
+  NETWORK_ISOLATION_Q1: 'Requirements for implementing network isolation',
   NETWORK_POLICY_A1:
     'Make sure that the CNI network plugin used by the cluster supports <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/" target="_blank">Network Policies</a>. A number of CNI network plugins support Network Policies, including Calico, Cilium, Kube-router, Romana, and Weave Net.',
   NETWORK_POLICY_EMP_TITLE: 'Project Network Isolation Not Enabled',
@@ -65,7 +65,7 @@ module.exports = {
   NETWORK_POLICY_D_OP1: 'Egress',
   NETWORK_POLICY_D_OP2: 'Ingress',
   NETWORK_POLICY_CREATE_DESC:
-    'The network policy is configured to allow network isolation within the same cluster, namely, the ability to build a firewall between certain instances (Pods).',
+    'Configure a network policy to control traffic between Pods within the same cluster and traffic from outside to implement application isolation and enhance application security.',
   CIDR_DESC: 'Based on the traffic direction',
   NETWORK_POLICY_MODAL_DIRECT: 'Please select the rule direction',
   NETWORK_POLICY_MODAL_CIDRERR: 'Please fill in the CIDR information correctly',

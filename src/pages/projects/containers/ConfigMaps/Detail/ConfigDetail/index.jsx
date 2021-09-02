@@ -70,7 +70,7 @@ class ConfigMapDetail extends React.Component {
     return (
       <div>
         {this.renderPlacement()}
-        <Card title={t('Config Value')} loading={isLoading}>
+        <Card title={t('CONFIG_FIELD')} loading={isLoading}>
           {this.renderContent(detail.data)}
         </Card>
       </div>

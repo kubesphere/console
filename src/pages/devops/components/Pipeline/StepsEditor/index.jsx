@@ -475,7 +475,7 @@ export default class StepsEditor extends React.Component {
             />
           </Form.Item>
           <div className={styles.title}>{t('Agent')}</div>
-          <Form.Item desc={t('AGENT_TYPE_DESC')} label={t('Type')}>
+          <Form.Item desc={t('AGENT_TYPE_DESC')} label={t('TYPE')}>
             <Select
               options={AgentType}
               defaultValue="none"

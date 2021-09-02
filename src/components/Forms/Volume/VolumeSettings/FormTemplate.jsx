@@ -155,7 +155,7 @@ export default class VolumeSettings extends React.Component {
   sizeValidator = (rule, value, callback) => {
     if (parseInt(value, 10) <= 0) {
       return callback({
-        message: t('The volume size must be greater than zero'),
+        message: t('VOLUME_SIZE_TIP'),
         field: rule.field,
       })
     }
@@ -173,9 +173,9 @@ export default class VolumeSettings extends React.Component {
     return (
       <>
         <Form.Item
-          label={t('Storage Class')}
+          label={t('STORAGE_CLASS')}
           desc={t('VOLUME_STORAGE_CLASS_DESC')}
-          rules={[{ required: true, message: t('This param is required') }]}
+          rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
         >
           <Select
             name={STORAGE_CLASSES_KEY}
@@ -192,8 +192,8 @@ export default class VolumeSettings extends React.Component {
         {editModalTitle !== 'Edit Config Template' &&
         tabTitle !== 'Diff Settings' ? (
           <Form.Item
-            label={t('ACCESS_MODE_TCAP')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            label={t('ACCESS_MODE')}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <AccessModes
               name={ACCESSMODE_KEY}
@@ -208,7 +208,7 @@ export default class VolumeSettings extends React.Component {
           ''
         )}
         <Form.Item
-          label={t('Volume Capacity')}
+          label={t('VOLUME_CAPACITY')}
           rules={[{ validator: this.sizeValidator }]}
         >
           <UnitSlider

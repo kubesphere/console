@@ -167,7 +167,7 @@ export default class Projects extends React.Component {
         ),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         isHideable: true,
         sorter: true,

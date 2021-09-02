@@ -76,7 +76,7 @@ export default class GroupUser extends Component {
   getConfigs = () => [
     {
       type: 'notingroup',
-      title: t('Not Assigned'),
+      title: t('NOT_ASSIGNED'),
       onFetch: 'fetchNotingroupData',
     },
     {

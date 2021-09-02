@@ -89,13 +89,13 @@ export default class ModifyPasswordModal extends Component {
           className={styles.password}
           label={t('New Password')}
           rules={[
-            { required: true, message: t('Please input password') },
+            { required: true, message: t('ENTER_PASSWORD_TIP') },
             { pattern: PATTERN_PASSWORD, message: t('PASSWORD_DESC') },
           ]}
         >
           <InputPassword
             name="password"
-            placeholder={t('Please input password')}
+            placeholder={t('ENTER_PASSWORD_TIP')}
             autoComplete="new-password"
             onChange={this.handlePassswordChange}
             withStrength

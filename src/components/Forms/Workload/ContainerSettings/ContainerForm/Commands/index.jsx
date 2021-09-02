@@ -36,23 +36,18 @@ export default class Commands extends React.Component {
   render() {
     return (
       <Form.Group
-        label={t('Start Command')}
-        desc={t('START_COMMAND_DESC')}
+        label={t('STARTUP_COMMAND')}
+        desc={t('STARTUP_COMMAND_DESC')}
         checkable
       >
-        <Form.Item label={t('Run Command')} desc={t('RUN_COMMAND_DESC')}>
+        <Form.Item label={t('COMMAND')} desc={t('CONTAINER_COMMAND_DESC')}>
           <StringInput
             className={styles.input}
             name={`${this.prefix}command`}
-            placeholder={t('Command')}
           />
         </Form.Item>
-        <Form.Item label={t('Parameters')} desc={t('CONTAINER_PARAMS_DESC')}>
-          <StringInput
-            className={styles.input}
-            name={`${this.prefix}args`}
-            placeholder={t('Argument')}
-          />
+        <Form.Item label={t('ARGUMENTS')} desc={t('CONTAINER_ARGUMENT_DESC')}>
+          <StringInput className={styles.input} name={`${this.prefix}args`} />
         </Form.Item>
       </Form.Group>
     )

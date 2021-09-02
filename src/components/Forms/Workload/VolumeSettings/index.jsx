@@ -500,7 +500,6 @@ class VolumeSettings extends React.Component {
   renderToolTipContent() {
     return (
       <div>
-        <div className="tooltip-title">{t('What is Disk Log Collection?')}</div>
         <p>{t('COLLECT_FILE_LOG_TIP')}</p>
       </div>
     )
@@ -523,11 +522,11 @@ class VolumeSettings extends React.Component {
   renderTitle() {
     return (
       <div className="font-bold margin-b8 relative">
-        <span>{t('Mount Volumes')}</span>
+        <span>{t('VOLUME_SETTINGS')}</span>
         {globals.app.hasClusterModule(this.cluster, 'logging') && (
           <div className={styles.toggle}>
             {!this.projectEnableCollectingFileLog ? (
-              <Tooltip content={t('PROJECT_COLLECT_SAVED_DISABLED_DESC')}>
+              <Tooltip content={t.html('PROJECT_COLLECT_SAVED_DISABLED_DESC')}>
                 {this.renderToggle(true)}
               </Tooltip>
             ) : (
@@ -535,7 +534,7 @@ class VolumeSettings extends React.Component {
             )}
             <span className="text-secondary align-middle">
               {' '}
-              {t('Disk Log Collection')}{' '}
+              {t('COLLECT_LOGS_ON_VOLUMES')}{' '}
             </span>
             <Tooltip content={this.renderToolTipContent()}>
               <Icon name="question" />
@@ -578,17 +577,13 @@ class VolumeSettings extends React.Component {
             className="margin-b12"
             icon="information"
             type="warning"
-            title={t(
-              isSTS
-                ? 'Please add at least one volume or volume template'
-                : 'Please add at least one volume'
-            )}
-            message={t('COLLECT_SAVED_LOG_DESC')}
+            title={t(isSTS ? 'MOUNT_VOLUME_OR_TEMPLATE' : 'MOUNT_VOLUME')}
+            message={t(isSTS ? 'VOLUME_OR_TEMPLATE_EMPTY' : 'VOLUME_EMPTY')}
           />
         )}
         <div className={styles.volumes}>
           {isSTS && (
-            <Form.Item label={t('Volume Templates')}>
+            <Form.Item label={t('VOLUME_TEMPLATES')}>
               <VolumeTemplateList
                 prefix={this.prefix}
                 name="spec.volumeClaimTemplates"
@@ -600,7 +595,7 @@ class VolumeSettings extends React.Component {
               />
             </Form.Item>
           )}
-          <Form.Item label={t('Volumes')}>
+          <Form.Item label={t('VOLUMES')}>
             <VolumeList
               prefix={this.prefix}
               name={`${this.prefix}spec.volumes`}

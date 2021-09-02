@@ -160,7 +160,7 @@ export default class ProjectDetail extends React.Component {
         value: detail.workspace,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

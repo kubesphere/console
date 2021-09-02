@@ -81,7 +81,7 @@ export default class Volumes extends React.Component {
       ),
     },
     {
-      title: t('Capacity'),
+      title: t('CAPACITY'),
       dataIndex: 'capacity',
       width: '16%',
       render: capacity => capacity || '-',
@@ -100,7 +100,7 @@ export default class Volumes extends React.Component {
       customizable: true,
     },
     {
-      title: t('Created Time'),
+      title: t('CREATED_AT'),
       dataIndex: 'createTime',
       width: '16%',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),

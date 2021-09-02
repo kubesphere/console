@@ -58,7 +58,7 @@ export default class DaemonSets extends React.Component {
         },
         {
           value: 'daemonsets',
-          label: t('STATEFULSETS'),
+          label: t('DAEMONSETS'),
         },
       ],
     }
@@ -174,7 +174,7 @@ export default class DaemonSets extends React.Component {
         ),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

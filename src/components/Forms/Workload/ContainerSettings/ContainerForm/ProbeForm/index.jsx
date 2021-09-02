@@ -143,9 +143,9 @@ export default class ProbeForm extends React.Component {
       return (
         <Form.Item
           key={checkerType}
-          label={t('Commands')}
+          label={t('COMMANDS')}
           desc={t('PROBE_COMMAND_DESC')}
-          rules={[{ required: true, message: t('Please input command') }]}
+          rules={[{ required: true, message: t('PROBE_COMMAND_EMPTY') }]}
         >
           <StringInput className="max-width-full" name="exec.command" />
         </Form.Item>
@@ -157,8 +157,8 @@ export default class ProbeForm extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('Port')}
-              rules={[{ required: true, message: t('ENTER_PORT_NUMBER') }]}
+              label={t('PORT')}
+              rules={[{ required: true, message: t('PORT_NUMBER_EMPTY') }]}
             >
               <NumberInput
                 name="tcpSocket.port"
@@ -177,8 +177,8 @@ export default class ProbeForm extends React.Component {
     return (
       <Form.Item
         key={checkerType}
-        label={t('HTTP Request')}
-        rules={[{ required: true, message: t('Please input http request') }]}
+        label={t('PATH')}
+        rules={[{ required: true, message: t('HTTP_PATH_EMPTY') }]}
       >
         <ObjectInput
           name="httpGet"
@@ -207,9 +207,9 @@ export default class ProbeForm extends React.Component {
             onChange={this.handleTypeChange}
             size="small"
           >
-            <RadioButton value="http">{t('HTTP Request Check')}</RadioButton>
-            <RadioButton value="command">{t('Exec Command Check')}</RadioButton>
-            <RadioButton value="tcp">{t('TCP Port Check')}</RadioButton>
+            <RadioButton value="http">{t('HTTP_REQUEST')}</RadioButton>
+            <RadioButton value="command">{t('COMMAND')}</RadioButton>
+            <RadioButton value="tcp">{t('TCP_PORT')}</RadioButton>
           </RadioGroup>
         </div>
         <Form ref={this.formRef} type="inner" data={formData}>
@@ -217,7 +217,7 @@ export default class ProbeForm extends React.Component {
           <Columns>
             <Column>
               <Form.Item
-                label={t('Initial Delay(s)')}
+                label={t('INITIAL_DELAY_S')}
                 desc={t('INITIAL_DELAY_DESC')}
               >
                 <NumberInput
@@ -229,7 +229,10 @@ export default class ProbeForm extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Timeout(s)')} desc={t('TIMEOUT_DESC')}>
+              <Form.Item
+                label={t('TIMEOUT_PERIOD_S')}
+                desc={t('TIMEOUT_PERIOD_DESC')}
+              >
                 <NumberInput
                   name="timeoutSeconds"
                   defaultValue={1}
@@ -242,8 +245,8 @@ export default class ProbeForm extends React.Component {
           <Columns>
             <Column>
               <Form.Item
-                label={t('Period Seconds')}
-                desc={t('PERIOD_SECONDS_DESC')}
+                label={t('CHECK_INTERVAL_S')}
+                desc={t('CHECK_INTERVAL_DESC')}
               >
                 <NumberInput
                   name="periodSeconds"
@@ -255,7 +258,7 @@ export default class ProbeForm extends React.Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('Success Threshold')}
+                label={t('SUCCESS_THRESHOLD')}
                 desc={t('SUCCESS_THRESHOLD_DESC')}
               >
                 <NumberInput
@@ -273,7 +276,7 @@ export default class ProbeForm extends React.Component {
           <Columns>
             <Column>
               <Form.Item
-                label={t('Failure Threshold')}
+                label={t('FAILURE_THRESHOLD')}
                 desc={t('FAILURE_THRESHOLD_DESC')}
               >
                 <NumberInput

@@ -34,6 +34,8 @@ module.exports = {
   volumes: '存储卷',
   PersistentVolumeClaim: '存储卷',
   'Volume Usage': '存储卷用量',
+  VOLUME_COUNT: '存储卷数量',
+  VOLUME: '存储卷',
   VOLUMES: '存储卷数量',
   'Create Volume': '创建存储卷',
   'Delete Volume': '删除存储卷',
@@ -41,15 +43,17 @@ module.exports = {
   storageclasses: '存储类型',
   'Create Storage Class': '创建存储类型',
   'Storage Class': '存储类型',
+  STORAGE_CLASS: '存储类型',
   'Storage Classs': '存储类型',
   STORAGE_CLASS_SETTINGS: '存储类型设置',
   'Mount Info': '挂载信息',
   // Volumes List Page
-  MOUNT_TCAP: '挂载',
+  MOUNT_STATUS: '挂载',
   MOUNTED_TCAP: '已挂载',
-  NOT_MOUNTED_TCAP: '未挂载',
+  NOT_MOUNTED: '未挂载',
   Scalable: '可扩容性',
   RECLAMATION_POLICY: '回收机制',
+  CREATE: '创建',
   DELETE_STORAGE_TIP: '如果存储卷正在被挂载时，待工作负载被删除时一同删除。',
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce：单个节点读写。<br/>ReadOnlyMany：多节点只读。<br/>ReadWriteMany：多节点读写。<br/>挂载时只能使用一种模式。',
@@ -60,10 +64,10 @@ module.exports = {
   STORAGE_VOLUME_EXTENSION: '允许存储卷扩容',
   'Mount Status': '挂载状态',
   'Mounted Pods': '已挂载容器组',
-  Idle: '闲置',
-  'In Use': '已使用',
+  AVAILABLE: '可用',
+  IN_USER: '使用中',
 
-  'The volume name exists': '存储卷名称已使用',
+  VOLUME_NAME_EXIST: '存储卷名称已存在。',
 
   'Used Capacity': '已分配存储',
   'Available Capacity': '剩余存储',
@@ -72,16 +76,17 @@ module.exports = {
 
   'Set as default storage class': '设为默认存储类型',
   'Storage Class Name': '存储类型名称',
-  Default: '默认',
+  DEFAULT: '默认',
   StorageClasses: '存储类型',
   STORAGE_SYSTEM: '存储系统',
 
   ACCESS_MODE: '访问模式',
+  ACCESS_MODE_SCAP: '访问模式',
   'Custom Provisioner': '自定义供应者',
   Parameters: '参数',
   'Apply immediately': '立即生效',
 
-  'The volume size must be greater than zero': '存储卷容量必须大于 0',
+  VOLUME_SIZE_TIP: '存储卷容量必须大于 0。',
 
   STORAGECLASSES_BASEINFO_DESC:
     '存储类型记录管理员所提供的某类存储的配置信息，创建特定类型的存储卷之前必须已配置相应的存储类型。',
@@ -94,8 +99,7 @@ module.exports = {
     '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
   VOLUME_CREATE_DESC:
     '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
-  STORAGE_CLASS_DESC:
-    '存储类型（StorageClass）支持动态卷供应，使管理员能够按需创建新的存储卷。',
+  STORAGE_CLASS_DESC: '选择已有的存储类型来创建存储卷。',
   STORAGE_CLASS_CREATE_DESC:
     '存储类型（Storage Class）是由集群管理员配置的多种存储类型，不同的存储类型为集群用户提供不同类型的存储卷。',
   'STORAGE-CLASSES_BASEINFO_DESC':
@@ -108,7 +112,7 @@ module.exports = {
 
   PROVISIONER_DESC: '提供后端存储',
 
-  VOLUME_STORAGE_CLASS_DESC: '不同的存储类型为集群用户提供不同类型的存储卷。',
+  VOLUME_STORAGE_CLASS_DESC: '选择一个存储类型来创建具体种类的存储卷。',
 
   ACCESS_MODES_DESC: '选择存储类型支持的访问模式。',
 
@@ -140,7 +144,6 @@ module.exports = {
   QINGCLOUD_VOLUME_TAGS_DESC: '为存储卷添加关联标签，多个标签需用逗号分隔。',
 
   MAXSIZE: '容量上限',
-  TYPE: '类型',
   STEPSIZE: '增量值',
   MINSIZE: '容量下限',
   FSTYPE: '文件系统类型',
@@ -173,7 +176,7 @@ module.exports = {
     'Ceph 集群的额外功能。仅当设置 imageFormat 为“2”时，才需要填写该值。',
 
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
-    '请确认是否有资源依赖该存储类型。若存在依赖，请先将依赖的资源关闭，以免影响资源功能。',
+    '请确认是否有资源依赖该存储类型。若有，请先将依赖的资源关闭，以免影响资源的功能。',
 
   CREATE_VOLUME_WITH_SNAPSHOT: '基于快照创建存储卷',
 
@@ -198,7 +201,7 @@ module.exports = {
 
   CREATE_VOLUME_BY_STORAGECLASS: '通过存储类型',
   CREATE_VOLUME_BY_SNAPSHOT: '通过存储卷快照创建',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: '选择已有的存储卷快照进行创建',
+  SELECT_SNAPSHOT_TO_CREATE_VOLUME: '选择已有的存储卷快照来创建存储卷。',
 
   CLUSTER_VOLUME_DIFF_DESC: '可针对不同集群，选择不同的存储类型',
 
@@ -208,7 +211,6 @@ module.exports = {
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',
   CLUSTER_ID: '集群 ID',
-  ADD_PARAMETER: '添加',
   REST_AUTH_ENABLED: '启用 REST 认证',
   REST_USER: 'REST 用户',
   VOLUME_TYPE: '存储卷类型',
@@ -219,4 +221,6 @@ module.exports = {
   SECRET_NAMESPACE: '密钥所属项目',
   GID_MIN: 'GID 最小值',
   GID_MAX: 'GID 最大值',
+  CUSTOM: '自定义',
+  PARAMETERS: '参数',
 }

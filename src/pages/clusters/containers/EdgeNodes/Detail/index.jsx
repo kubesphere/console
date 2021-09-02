@@ -77,7 +77,7 @@ export default class NodeDetail extends React.Component {
         action: 'edit',
         onClick: () =>
           this.trigger('node.labels', {
-            title: t('Labels'),
+            title: t('LABELS'),
             detail: this.store.detail,
             success: this.fetchData,
           }),
@@ -159,7 +159,7 @@ export default class NodeDetail extends React.Component {
         value: nodeInfo.architecture,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
@@ -190,7 +190,7 @@ export default class NodeDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Edge Nodes'),
+          label: t('EDGE_NODES'),
           url: this.listUrl,
         },
       ],

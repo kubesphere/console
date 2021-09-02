@@ -73,17 +73,17 @@ export default class StorageClasses extends React.Component {
         ),
       },
       {
-        title: t('VOLUMES'),
+        title: t('VOLUME_COUNT'),
         dataIndex: 'volumeCount',
         isHideable: true,
         render: (count, record) =>
           get(record, 'annotations["kubesphere.io/pvc-count"]') || 0,
       },
       {
-        title: t('Default'),
+        title: t('DEFAULT'),
         dataIndex: 'default',
         isHideable: true,
-        render: value => (value ? t('Yes') : '-'),
+        render: value => (value ? t('YES') : '-'),
       },
       {
         title: t('VOLUME_SNAPSHOT_SUPPORT'),
@@ -92,7 +92,7 @@ export default class StorageClasses extends React.Component {
         render: supportSnapshot => (supportSnapshot ? t('True') : t('False')),
       },
       {
-        title: t('Provisioner'),
+        title: t('PROVISIONER'),
         dataIndex: 'provisioner',
         isHideable: true,
       },

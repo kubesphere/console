@@ -18,8 +18,8 @@
 
 module.exports = {
   users: '用戶',
-  Users: '用戶',
   User: '用戶',
+  USER: '用戶',
   Accounts: '帳號',
   'User Management': '用戶管理',
   'Authorized Projects': '授權項目',
@@ -42,14 +42,13 @@ module.exports = {
   ROLE_DESC:
     '角色類型根據權限範圍分為集群和項目兩類，目前角色的授權範圍為整個集群.',
   'New Password': '新的密碼',
-  'Please input user name': '請輸入用戶名稱',
+  ENTER_USERNAME_TIP: '請輸入用戶名稱',
   'Please input email': '請輸入郵箱',
   'Please repeat the new password': '請重複新的密碼',
   'Please input current password': '請輸入目前密碼',
   'The password entered twice must be the same': '兩次輸入的密碼必須一致',
   'Please select role': '請選擇角色',
   'Invalid user name': '用戶名稱格式不合法。{message}',
-  'Invalid email': '郵箱格式不合法',
   'User name exists': '用戶名稱已存在',
   'Email exists': '郵箱已存在',
   'Unable to delete itself': '無法刪除自己',
@@ -78,8 +77,6 @@ module.exports = {
   'You must enter the correct current password to change to a new password.':
     '您必須輸入正確的目前密碼才可更改為新的密碼',
 
-  'Your password must meet the following requirements':
-    '您的密碼必須符合如下要求',
   'At least 1 uppercase and lowercase letter': '至少 1 個大寫和小寫字母',
   'At least 1 number': '至少 1 個數字',
   'Password length is at least 6 characters': '密碼長度至少為 6',

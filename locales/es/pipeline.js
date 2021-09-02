@@ -82,7 +82,7 @@ module.exports = {
   'Create a credential': 'Crear una credencial',
   'Create Credential': 'Crear credenciale',
   'Create Pipeline': 'Crear pipeline',
-  Credential: 'Autentificación',
+  CREDENTIAL_SI: 'Autentificación',
   'credential Id': 'ID de autentificación',
   'Credential Id': 'ID de autentificación',
   'Credential ID': 'ID de autentificación',
@@ -244,7 +244,7 @@ module.exports = {
   'Repository Url': 'URL del repositorio',
   'Repository Name': 'Nombre del repositorio',
   Rescan: 'Reescanear',
-  Review: 'revisión',
+
   Run: 'ejecutar',
   'Run Pipeline': 'Ejecutar pipeline',
   'Save Artifact': 'Guardar artefacto',
@@ -257,7 +257,6 @@ module.exports = {
   'Scheduled build': 'Build programada',
   SCM: 'SCM',
   'Script Path': 'Ruta del script',
-  SECRET_NAME_TCAP: 'Nombre del secreto',
   secretName: 'secretName',
   secretNamespace: 'secretNamespace',
   'select a pipeline': 'selecciona una pipeline',
@@ -308,6 +307,7 @@ module.exports = {
   'This name has existed.': 'Este nombre ha existido.',
   'Time Used': 'Tiempo utilizado',
   Timeout: 'Se acabó el tiempo',
+  TIMEOUT_VALUE: 'Se acabó el tiempo: {value}',
   timeout: 'se acabó el tiempo',
   'Timeout after no activity in logs for this block':
     'Tiempo de espera agotado tras inactividad en los logs deregistro de este bloque',

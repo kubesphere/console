@@ -58,6 +58,12 @@ module.exports = {
   'Add Selector': '添加选择器',
 
   INVALID_PORT_DESC: '请输入有效协议或端口号。',
+  'Please input ExternalName': '请输入 ExternalName',
+  'Specify Workload': '指定工作负载',
+  SPECIFY_NODE: '指定节点',
+  'Add Selector': '添加选择器',
+
+  INVALID_PORT: '端口无效。',
   'Not Associate': '不关联',
 
   Auto: '自动',
@@ -75,6 +81,7 @@ module.exports = {
   'Do not assign Service IP': '不分配服务 IP',
   'Map Services outside the cluster': '映射集群外部的服务',
   ENTER_PORT_NUMBER: '请输入端口号。',
+  PORT_EMPTY: '请设置端口。',
   'Please select a workload': '请选择一个工作负载',
   ENTER_SELECTOR_TIP: '请输入有效的选择器。',
   TOTAL_WORKLOAD: '共 {count} 个工作负载',
@@ -112,7 +119,7 @@ module.exports = {
   Creating: '正在创建',
   'Creation failed, please delete and try again': '创建失败，请删除后重试',
 
-  'Add Route Rule': '添加路由规则',
+  ADD_ROUTE_RULE_TCAP: '添加路由规则',
 
   VIRTUAL_IP_TITLE: '虚拟 IP',
   VIRTUAL_IP_DESC:
@@ -169,9 +176,6 @@ module.exports = {
   STICKINESS_VALUE_RANGE: '取值范围：0-86400。',
 
   // Services
-  PORT: '端口',
-  PROTOCOL: '协议',
-  ADD: '添加',
   LABEL_SELECTOR: '标签选择器',
   NONE: '无',
   UNKNOWN_SERVICE_TYPE: '未知服务类型',
@@ -180,5 +184,4 @@ module.exports = {
   UNKNOWN: '未知',
   EXTERNALNAME_EXAMPLE: '例如：',
   PORTS: '端口',
-  REQUIRED: '必填',
 }

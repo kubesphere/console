@@ -41,9 +41,9 @@ module.exports = {
   Deployment: 'Despliegue',
   deployments: 'implementaciones',
   Details: 'Detalles',
-  'DevOps Project': 'Proyecto DevOps',
   'DevOps Projects': 'Proyectos DevOps',
-  'Disk Log Collection': 'Colección de registro de disco',
+  DISK_LOG_COLLECTION: 'Colección de registro de disco',
+  COLLECT_LOGS_ON_VOLUMES: 'Colección de registro de disco',
   'Disk Log Collection of the project is about to be disabled.':
     'La recopilación de registros de disco del proyecto está a punto de desactivarse.',
   'Edit Gateway': 'Editar puerta de enlace',
@@ -85,7 +85,6 @@ module.exports = {
 
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
     'Borrar un proyecto multi-cluster borra también el mismo proyecto en el host de cluster.</br>Por favor, introduce el nombre {type} <strong>{resource}</strong> para estar seguro de que entiendes el riesgo de esta operación.',
-  'Network Isolation': 'Aislamiento de red',
   'No Platform Manage Authorization':
     'Sin autorización de gestión de plataforma',
   'Not Assigned': 'No asignado',
@@ -105,6 +104,8 @@ module.exports = {
   'Project Placement': 'Colocación del proyecto',
   'Project Quota': 'Cuota de proyecto',
   'Project Role': 'Rol del proyecto',
+  // Create ServiceAccount Page
+  PROJECT_ROLE_SI: 'Rol del proyecto',
   'Project Roles': 'Roles del proyecto',
   Project_Admin: 'Project_Admin',
   Projects: 'Proyectos',
@@ -115,13 +116,12 @@ module.exports = {
   'requests.cpu': 'request.cpu',
   'requests.memory': 'requests.memory',
   'Resource Quota': 'Cuota de recursos',
-  'Resource Type': 'Tipo de recurso',
+  RESOURCE_TYPE: 'Tipo de recurso',
   PROJECT_ADMINISTRATOR_DESC:
     'Selecciona un usuario del espacio de trabajo como administrador del proyecto.',
   'Select Project Type': 'Seleccionar tipo de proyecto',
   SELECT_CLUSTER_DESC: 'Selecciona el clúster para crear el proyecto.',
   CLUSTER_NOT_SELECT_DESC: 'Selecciona un cluster, por favor.',
-  Service: 'Servicio',
   'Set Gateway': 'Establecer puerta de enlace',
   StatefulSet: 'StatefulSet',
   statefulsets: 'statefulsets',
@@ -162,8 +162,6 @@ module.exports = {
     '¿Estás seguro de eliminar el miembro <strong>{name}</strong> ? El miembro no podrá acceder a este proyecto una vez eliminado.',
   PROJECT_ADMIN_DESC:
     'Puedes especificar un miembro del proyecto como administrador.',
-  DEVOPS_ADMIN_DESC:
-    'Puedes especificar un miembro del proyecto DevOps como administrador.',
   PROJECT_INTERNET_ACCESS_DESC:
     'Antes de crear una ruta, debe habilitar el portal de acceso a Internet (es decir, la puerta de enlace). Este paso crea un controlador de enrutamiento correspondiente para reenviar la solicitud al servicio de back-end correspondiente.',
   DELETE_INTERNET_ACCESS_TITLE:

@@ -73,7 +73,7 @@ module.exports = {
   SCHEDULING_FAILURES: 'Programar pods fallidos',
   'Select Clusters': 'Seleccionar clústeres',
   SET_PUBLIC_CLUSTER: 'Establecer como clúster público',
-  Snapshots: 'Snapshots',
+  Snapshots: 'Volume Snapshots',
   'Storage Management': 'Storage',
   SYSTEM_PROJECTS: 'Proyectos de Sistema',
   'The current cluster is public': 'El clúster actual es público.',
@@ -130,7 +130,6 @@ module.exports = {
   IMPORT_CLUSTER_DESC: 'Importar un clúster de Kubernetes existente',
   SELECT_CLUSTERS_DESC:
     'Selecciona el clúster disponible en el espacio de trabajo.',
-  CLUSTER_SETTINGS_DESC: 'Definir información de configuración del clúster',
   CLUSTER_TAG: 'Etiqueta',
   CLUSTER_TAG_DESC:
     'Para indicar para qué se utiliza el clúster, como un entorno de producción, un entorno de prueba o un entorno de demostración',
@@ -268,9 +267,10 @@ module.exports = {
     'Los clústeres de miembros de una versión anterior a la {version} no pueden utilizar esta función. Actualice el clúster de miembros a la versión {version} o superior.',
 
   // Unbind Cluster
-  UNBIND_CLUSTER_Q: 'Are you sure you want to unbind the cluster?',
+  UNBIND_CLUSTER_Q: 'Unbind Cluster',
 
   // Cluster Visibility
+  ADMINISTRATOR: 'Administrator',
   CLUSTER_VISIBILITY: 'Cluster Visibility',
   CLUSTER_VISIBILITY_DESC:
     'Cluster visibility allows users to view and manage cluster resources in workspaces after the cluster is authorized to the workspaces.',
@@ -278,7 +278,6 @@ module.exports = {
   CLUSTER_VISIBILITY_REMOVE_WARNING:
     'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
   TO_BE_AUTHORIZED: 'To be authorized',
-  LOGGING: 'Logging',
   EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:

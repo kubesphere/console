@@ -20,12 +20,14 @@ module.exports = {
   ServiceAccounts: 'Service Accounts',
   ServiceAccount: 'Service Account',
   'Edit Service Account': 'Edit Service Account',
-  'Modify Service Account Role': 'Modify Service Account Role',
+  CHANGE_ROLE: 'Change Role',
   'Secret Detail': 'Secret Detail',
   SERVICEACCOUNT_DESC:
     'A Service Account provides the processes that run in a Pod with an identity that can be used to access the API server.',
 
   'Invalid configuration file format': 'Invalid configuration file format',
+
+  SELECT_PROJECT_ROLE_DESC: 'Select a project role to specify permissions.',
 
   SERVICEACCOUNT_KUBECONFIG_DESC:
     'KubeConfig configuration method please refer to <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">official documents</a> After downloading, please modify the service address to the external address of the Kubernetes API',

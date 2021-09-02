@@ -21,7 +21,6 @@ module.exports = {
   Deployment: '部署',
   StatefulSet: '有状态副本集',
   DaemonSet: '守护进程集',
-  Service: '服务',
   LoadBalancer: '负载均衡',
   Volume: '存储卷',
   Terminating: '删除中',
@@ -33,6 +32,8 @@ module.exports = {
   Members: '成员',
   'Project Roles': '项目角色',
   'Project Role': '项目角色',
+  // Create ServiceAccount Page
+  PROJECT_ROLE_SI: '项目角色',
   projects: '项目',
   Projects: '项目',
   'Project Overview': '项目预览',
@@ -83,14 +84,11 @@ module.exports = {
   DELETE_MEMBER_TIP:
     '确定移除成员 <strong>{name}</strong> ? 移除后该成员将无法访问本项目。',
 
-  'DevOps Project': 'DevOps 工程',
   'DevOps Projects': 'DevOps 工程',
   'Select Project Type': '选择项目类型',
 
   'Edit Project Quota': '编辑项目配额',
   'Add Quota Item': '添加配额项',
-
-  'Network Isolation': '网络隔离',
 
   deployments: '部署',
   statefulsets: '有状态副本集',
@@ -107,7 +105,7 @@ module.exports = {
   'Container Resource Default Request': '容器资源默认请求',
   'Edit Resource Default Request': '编辑资源默认请求',
 
-  'Resource Type': '资源类型',
+  RESOURCE_TYPE: '资源类型',
 
   'Help Information': '帮助信息',
 
@@ -125,7 +123,8 @@ module.exports = {
   'Not Assigned': '未分配',
   PROJECT_ADMINISTRATOR_DESC: '选择企业空间中的用户作为项目管理员。',
 
-  'Disk Log Collection': '落盘日志收集',
+  DISK_LOG_COLLECTION: '落盘日志收集',
+  COLLECT_LOGS_ON_VOLUMES: '收集存储卷上的日志',
 
   'Are you sure to disable it?': '确认关闭？',
   'Disk Log Collection of the project is about to be disabled.':

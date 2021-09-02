@@ -50,14 +50,14 @@ export default class AddExistVolumes extends React.Component {
       label: (
         <span>
           {getDisplayName(volume)}{' '}
-          <Tag>{volume.inUse ? t('In Use') : t('Idle')}</Tag>
+          <Tag>{volume.inUse ? t('IN_USE') : t('AVAILABLE')}</Tag>
         </span>
       ),
-      description: `${t('Storage Class')}: ${volume.storageClassName}`,
+      description: t('STORAGE_CLASS_VALUE', { value: volume.storageClassName }),
       value: volume,
       details: [
-        { label: volume.capacity, description: t('Capacity') },
-        { label: volume.accessMode, description: t('ACCESS_MODE_TCAP') },
+        { label: volume.capacity, description: t('CAPACITY') },
+        { label: volume.accessMode, description: t('ACCESS_MODE_SCAP') },
       ],
     }))
   }
@@ -94,14 +94,14 @@ export default class AddExistVolumes extends React.Component {
       } else if (item.mountPath) {
         if (this.getMountPaths(item).includes(item.mountPath)) {
           return callback({
-            message: t('Mount path is already in use'),
+            message: t('MOUNT_PATH_IN_USE'),
             field: rule.field,
           })
         }
         callback()
       } else {
         callback({
-          message: t('Please specify the read and write mode and mount path'),
+          message: t('READ_WRITE_MOUNT_EMPTY'),
           field: rule.field,
         })
       }
@@ -119,15 +119,15 @@ export default class AddExistVolumes extends React.Component {
 
     const placeholder = {
       icon: 'storage',
-      label: t('Choose an existing volume'),
-      description: t('CHOOSE_EXIST_VOLUME_DESC'),
+      label: t('SELECT_VOLUME'),
+      description: t('SELECT_VOLUME_DESC'),
     }
 
     return (
       <div className={classNames(styles.wrapper, className)}>
         <Form data={formData} ref={formRef}>
           <Form.Item
-            rules={[{ required: true, message: t('Please select a volume') }]}
+            rules={[{ required: true, message: t('VOLUME_NOT_SELECT') }]}
           >
             <TypeSelect
               name="volume"

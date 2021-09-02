@@ -60,7 +60,7 @@ export default class SyncTimeZone extends React.PureComponent {
       <div className={styles.wrapper}>
         <div className={styles.title}>
           <Checkbox checked={isCheck} onChange={this.handleCheck}>
-            {t('Sync Host Timezone')}
+            {t('SYNC_HOST_TIMEZONE')}
           </Checkbox>
         </div>
         <div className={styles.desc}>{t('SYNC_HOST_TIMEZONE_DESC')}</div>

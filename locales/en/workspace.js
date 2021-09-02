@@ -28,7 +28,7 @@ module.exports = {
   'Invite members to the workspace': 'Invite Member',
   'Involved Projects': 'Involved Projects',
   'Manage Organizations': 'Manage Organization',
-  'No Available Cluster': 'No Cluster Available',
+  NO_AVAILABLE_CLUSTER: 'No Available Cluster',
   'Please input workspace name': 'Enter a workspace name.',
   'Project Number': 'Projects',
   'Remove from Workspace': 'Remove from Workspace',
@@ -47,7 +47,6 @@ module.exports = {
   'Workspace Settings': 'Workspace Settings',
   Workspaces: 'Workspaces',
   'Workspaces Manager': 'Workspace Manager',
-  projects: 'Projects',
   devops: 'DevOps Projects',
   'Workspace Quota': 'Edit Workspace Quota',
   'Edit Workspace Quota': 'Edit Workspace Quota',
@@ -71,8 +70,6 @@ module.exports = {
   INVITE_WORKSPACE_MEMBER_DESC: 'Invite members to the workspace.',
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: 'Enter a username.',
 
-  MEMBER_CREATE_DESC: '',
-
   WORKSPACE_ROLE_DESC:
     'The role of a workspace member determines the permissions of the member in the workspace.',
 
@@ -82,7 +79,7 @@ module.exports = {
     'No public cluster available. Please contact the platform or cluster administrator to obtain authorization.',
 
   WORKSPACE_NO_CLUSTER_TIP:
-    'No cluster available. Please contact the platform or cluster administrator to obtain authorization.',
+    'You need to contact the platform or cluster administrator to authorize a cluster to the workspace.',
 
   WORKSPACE_BASE_INFO_Q1: 'How do I apply for more clusters for the workspace?',
   WORKSPACE_BASE_INFO_A1:

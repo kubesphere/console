@@ -33,7 +33,6 @@ module.exports = {
 
   'Create Application by Service': '通过服务构建应用',
 
-  'Application Name': '应用名称',
   'Application Version(Optional)': '应用版本(可选)',
   'Application Governance': '应用治理',
   'Application Components': '应用组件',
@@ -56,7 +55,6 @@ module.exports = {
     '示例应用可以帮助您快速入手应用创建, 以及应用治理功能',
 
   'Add Service': '添加服务',
-  'Add Route': '添加应用路由',
   'Add Component': '添加组件',
   'Edit Component': '编辑组件',
   'Add New Component': '添加新组件',
@@ -66,6 +64,7 @@ module.exports = {
   'Component Version': '组件版本',
 
   'Please input an application name': '请输入应用名称',
+  APP: '应用',
 
   'Service components should not be empty': '服务组件不能为空',
   'Please finish the sub form first': '请完成子表单的编辑',
@@ -108,7 +107,7 @@ module.exports = {
   'Load balance algorithm': '负载均衡算法',
   'Session retention': '会话保持',
 
-  Method: '方式',
+  METHOD: '方式',
   'According to the HTTP header': '根据 HTTP header',
 
   On: '开启',
@@ -168,7 +167,7 @@ module.exports = {
   'Please try other query conditions': '请尝试其它查询条件',
 
   'Deploy sample app Bookinfo': '部署示例应用 Bookinfo',
-  SAVE_FORM_TIP: '请先保存当前表单。',
+  SAVE_FORM_TIP: '请先保存当前设置。',
   'Add Component Successfully': '添加组件成功',
   'Add Route Successfully': '添加应用路由成功',
 

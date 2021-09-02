@@ -46,6 +46,7 @@ module.exports = {
   ALERTING_RESOURCE: '告警资源',
 
   Rule: '规则',
+  RULE: '规则',
   'Add Rule': '添加规则',
   'Edit Rule': '编辑规则',
   'Rule Name': '规则名称',
@@ -65,7 +66,6 @@ module.exports = {
   RULE_EXPRESSION: '告警规则表达式',
   INVALID_TIME_DESC:
     '数值无效。请从下拉列表中选择一个数值，或者输入 0 或正整数。',
-  NAME: '名称',
   ALIAS: '别名',
   ALERT_DURATION_MIN: '告警持续时间（分钟）',
 
@@ -115,7 +115,7 @@ module.exports = {
   'Unavailable daemonset replicas ratio': '守护进程集副本不可用率',
   'Unavailable statefulset replicas ratio': '有状态副本集副本不可用率',
 
-  SELECT_NODE_TIP: '请选择至少一个集群资源。',
+  SELECT_NODE_TIP: '请选择至少一个集群节点。',
   SELECT_WORKLOAD_TIP: '请选择至少一个工作负载。',
 
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '如何触发告警消息？',
@@ -146,7 +146,7 @@ module.exports = {
   // Alerting Policies
   ALERTING_POLICIES: '告警策略',
   NOTIFICATION_SETTINGS: '通知设置',
-
-  // Custom Monitoring
-  CREATED_AT: '创建时间',
+  DEPLOYMENT: '部署',
+  STATEFULSET: '有状态副本集',
+  DAEMONSET: '守护进程集',
 }

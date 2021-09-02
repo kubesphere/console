@@ -168,7 +168,7 @@ export default class ServiceMonitor extends Component {
               </Column>
               <Column>
                 <Form.Item
-                  label={t('Timeout(s)')}
+                  label={t('TIMEOUT_PERIOD_S')}
                   desc={t('SCRAP_TIMEOUT_DESC')}
                 >
                   <NumberInput

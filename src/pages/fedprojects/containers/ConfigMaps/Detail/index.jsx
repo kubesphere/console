@@ -93,7 +93,7 @@ export default class ConfigMapDetail extends React.Component {
     {
       key: 'editConfigMap',
       icon: 'pen',
-      text: t('Modify Config'),
+      text: t('MODIFY_CONFIG'),
       action: 'edit',
       onClick: () =>
         this.trigger('configmap.edit', {
@@ -131,7 +131,7 @@ export default class ConfigMapDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

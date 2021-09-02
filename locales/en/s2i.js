@@ -59,15 +59,13 @@ module.exports = {
   'is Failed': 'is Failed',
   'Job Records': 'Job Records',
   'Last build environment': 'Last build environment',
-  'Last Message': 'Last Message',
   'The logging module is not installed.':
     'The logging module is not installed.',
   'Log is loading...': 'Log is loading...',
   'New Image Tag': 'New Image Tag',
   'New Tag': 'New Tag',
   'No Log Records': 'No Log Records',
-  'Please set the access policy for the container.':
-    'Please set the access policy for the container.',
+  PORT_SETTINGS_DESC: 'Set the ports used for accessing the container.',
   CONTAINER_SETTINGS_DESC:
     'Set the image, name, type, and computing resources of the container.',
   'Published Time': 'Published Time',
@@ -89,14 +87,14 @@ module.exports = {
   SourceUrl: 'SourceUrl',
   'Specify a relative directory inside the application. (Default value /)':
     'Specify a relative directory inside the application. (Default value /)',
-  'Start Command': 'Start Command',
+  STARTUP_COMMAND: 'Start Command',
   StartTime: 'StartTime',
   'Target Image Repository': 'Target Image Repository',
   'The current code repository does not require a key.':
     'The current code repository does not require a key.',
   'The file has not been uploaded.': 'The file has not been uploaded.',
-  'The health of the container will be checked regularly according to user needs.':
-    'The health of the container will be checked regularly according to user needs.',
+  HEALTH_CHECKER_DESC:
+    'Add probes to check the container health status regularly.',
   'Upload Artifact': 'Upload Artifact',
   'Upload file failed': 'Upload file failed',
   'Upload Percent': 'Upload Percent',
@@ -108,13 +106,12 @@ module.exports = {
   NEW_TAG_DESC: 'enter tag of the new image',
   S2I_RELATIVE_PATH_DESC:
     'Source code repository address (currently supports git) and can assign code branches and relative paths in source code terminals',
-  START_COMMAND_DESC:
-    'By default, the container runs the default image command. You can change the container command from here.',
-  RUN_COMMAND_DESC:
-    'The start command of the container. By default, the start command for packaging will be used. Please use commas to separate multiple commands.',
-  CONTAINER_PARAMS_DESC:
-    'The start command parameters of the container. Please use commas to separate multiple ones.',
-  CONTAINER_ENVIROMENT_DESC: "Please add the container's environment variable.",
+  STARTUP_COMMAND_DESC:
+    'Customize the command run by the container upon startup. By default, the container runs the default image command.',
+  CONTAINER_COMMAND_DESC: 'Startup command of the container.',
+  CONTAINER_ARGUMENT_DESC:
+    'Arguments of the startup command. Use commas to separate multiple arguments.',
+  CONTAINER_ENVIRONMENT_DESC: 'Add environment variables to the container.',
   IMAGE_PULL_POLICY_DESC:
     'By default, the image is pulled only if it is not already present locally.',
   S2I_ENVIROMENT_DESC:
@@ -155,7 +152,7 @@ module.exports = {
     'Image Builder is a tool that makes it easy to write container images that take application source code or artifacts as an input and produce a new image that runs the assembled application as output. It includes Source to Image, a.k.a S2I which takes source code as input, and Binary to Image, a.k.a. B2I which takes application artifacts as input.',
   WRONG_FILE_EXTENSION_NAME:
     'The selected file type does not match, please select the {type} type',
-  PROBE_COMMAND_DESC: 'Please use commas to separate multiple commands.',
+  PROBE_COMMAND_DESC: 'Use commas to separate multiple commands.',
   'Secret Code': 'Secret Code',
   SECRET_CODE_RULE_DESC:
     'It can only contain upper and lower case letters, numbers.',

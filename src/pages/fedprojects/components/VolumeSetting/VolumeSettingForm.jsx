@@ -56,7 +56,7 @@ export default class VolumeSettingsForm extends Base {
     return (
       <Form data={this.fedFormTemplate} ref={formRef} {...formProps}>
         {!isFederated && (
-          <Form.Item label={t('Method')}>
+          <Form.Item label={t('METHOD')}>
             <TypeSelect
               value={fromSnapshot}
               options={CREATE_TYPE_OPTIONS}

@@ -38,16 +38,16 @@ const Card = ({ volume, onDelete, onEdit }) => {
   let description
   let details
   if (volume.hostPath) {
-    description = `${t('Type')}: ${t('HostPath')}`
+    description = `${t('TYPE')}: ${t('HostPath')}`
     details = [
       { title: get(volume, 'hostPath.path', '-'), description: t('Host Path') },
     ]
   } else if (volume.emptyDir) {
-    description = `${t('Type')}: ${t('EmptyDir')}`
+    description = `${t('TYPE')}: ${t('EmptyDir')}`
     details = []
   } else if (volume.configMap) {
     icon = 'hammer'
-    description = `${t('Type')}: ${t('ConfigMap')}`
+    description = `${t('TYPE')}: ${t('ConfigMap')}`
     details = [
       {
         title: get(volume, 'configMap.name', '-'),
@@ -56,7 +56,7 @@ const Card = ({ volume, onDelete, onEdit }) => {
     ]
   } else if (volume.secret) {
     icon = 'key'
-    description = `${t('Type')}: ${t('Secret')}`
+    description = `${t('TYPE')}: ${t('Secret')}`
     details = [
       {
         title: get(volume, 'secret.secretName', '-'),
@@ -72,11 +72,11 @@ const Card = ({ volume, onDelete, onEdit }) => {
     details = [
       {
         title: get(volume, 'volume.name', '-'),
-        description: t('Volume'),
+        description: t('VOLUME'),
       },
       {
         title: get(volume, 'volume.capacity', '-'),
-        description: t('Capacity'),
+        description: t('CAPACITY'),
       },
       {
         title: get(volume, 'volume.accessMode', '-'),
@@ -99,7 +99,7 @@ const Card = ({ volume, onDelete, onEdit }) => {
                 <Icon name="mgmt-node" size={20} />
                 <span>{mountPath}</span>
                 <span className="text-secondary">
-                  &nbsp;({readOnly ? t('ReadOnly') : t('ReadAndWrite')})
+                  &nbsp;({readOnly ? t('READ_ONLY') : t('READ_AND_WRITE')})
                 </span>
               </div>
               {subPath && (

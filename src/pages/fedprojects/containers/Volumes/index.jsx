@@ -126,7 +126,7 @@ export default class Volumes extends React.Component {
           ),
       },
       {
-        title: t('MOUNT_TCAP'),
+        title: t('MOUNT_STATUS'),
         dataIndex: 'inUse',
         isHideable: true,
         width: '14%',
@@ -138,7 +138,7 @@ export default class Volumes extends React.Component {
             {cluster =>
               get(record, `resources[${cluster.name}].inUse`)
                 ? t('MOUNTED_TCAP')
-                : t('NOT_MOUNTED_TCAP')
+                : t('NOT_MOUNTED')
             }
           </ClusterWrapper>
         ),
@@ -156,7 +156,7 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 150,

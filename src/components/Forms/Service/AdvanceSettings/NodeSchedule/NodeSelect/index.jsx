@@ -124,7 +124,7 @@ export default class NodeSelect extends React.PureComponent {
         size="small"
       >
         <RadioButton value="node">{t('Cluster Nodes')}</RadioButton>
-        <RadioButton value="edgenode">{t('Edge Nodes')}</RadioButton>
+        <RadioButton value="edgenode">{t('EDGE_NODES')}</RadioButton>
       </RadioGroup>
     ) : null
   }

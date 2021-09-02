@@ -62,7 +62,7 @@ export default class Metadata extends React.Component {
       .checkLabels({ labels: value, namespace, cluster })
       .then(resp => {
         if (resp.exist) {
-          return callback({ message: t('LABEL_EXIST_DESC'), field: rule.field })
+          return callback({ message: t('DUPLICATE_LABELS'), field: rule.field })
         }
         callback()
       })
@@ -72,19 +72,19 @@ export default class Metadata extends React.Component {
     return (
       <>
         <Form.Item
-          label={t('Labels')}
+          label={t('LABELS')}
           rules={[{ validator: this.labelsValidator }]}
         >
           <PropertiesInput
             name="metadata.labels"
-            addText={t('Add Label')}
+            addText={t('ADD')}
             onChange={this.handleLabelsChange}
           />
         </Form.Item>
-        <Form.Item label={t('Annotations')}>
+        <Form.Item label={t('ANNOTATIONS')}>
           <PropertiesInput
             name="metadata.annotations"
-            addText={t('ADD_ANNOTATION')}
+            addText={t('ADD')}
             hiddenKeys={globals.config.preservedAnnotations}
             onChange={this.handleAnnotationsChange}
           />

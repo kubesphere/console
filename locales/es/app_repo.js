@@ -44,7 +44,7 @@ module.exports = {
   Synchronize: 'Sincronizar',
   syncing: 'syncing',
   'Unrecognized URL': 'URL no reconocida',
-  Validate: 'Validar',
+  VALIDATE: 'Validar',
   'App Repositorys': 'Repositorios de aplicaciones',
   APP_REPO_URL_DESC:
     'La URL introducida debe validarse antes de agregarse o editarse.',

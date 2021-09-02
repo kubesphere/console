@@ -20,7 +20,6 @@ module.exports = {
   'Log In': '登入',
   'Please Log In': '歡迎登入',
   'Username or Email': '用戶名或者信箱',
-  Password: '密碼',
   Captcha: '驗證碼',
   'User does not exist': '用戶名不存在',
   'Wrong username or password, please try again': '用戶名或密碼錯誤',
@@ -39,7 +38,7 @@ module.exports = {
   'Log In with {title}': '通過 {title} 登入',
 
   'Please input username or email': '請輸入用戶名或信箱',
-  'Please input password': '請輸入密碼',
+  ENTER_PASSWORD_TIP: '請輸入密碼',
   'Please input captch': '請輸入驗證碼',
   'Please confirm your account info': '請確認您的帳戶資訊',
   'Please input username': '請輸入用戶名',

@@ -25,7 +25,6 @@ module.exports = {
   Egress: 'Salida',
   Ingress: 'Entrada',
   'Network Isolation': 'Aislamiento de red',
-  'Network Policies': 'Políticas de red',
   'Network Policy': 'Política de red',
   'Traffic Egress': 'Salida de tráfico',
   'Traffic Ingress': 'Entrada de Tráfico',
@@ -38,7 +37,8 @@ module.exports = {
   NETWORK_ISOLATION_Q: '¿Cómo usar mejor el aislamiento de red?',
   NETWORK_POLICY_A:
     'Hemos compilado varios escenarios de aplicación comunes basados en los escenarios reales, y puedes consultar la documentación para obtener más información.',
-  NETWORK_POLICY_Q1: 'Requisito para implementar una política de red',
+  NETWORK_POLICY_Q1:
+    'Requisitos del complemento CNI para implementar una política de red',
   NETWORK_ISOLATION_Q1: 'Requisito para implementar un aislamiento de red',
   NETWORK_POLICY_A1:
     'Asegúrate de que el plugin de red (CNI) utilizado por el clúster sea compatible con <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/" target="_blank">NetworkPolicy</a>. Existen varios plugins de red (CNI) que soportan NetworkPolicy, incluyendo Calico, Cilium, Kube-router, Romana y Weave Net.',
@@ -66,7 +66,7 @@ module.exports = {
   NETWORK_POLICY_D_OP1: 'Salida',
   NETWORK_POLICY_D_OP2: 'Entrada',
   NETWORK_POLICY_CREATE_DESC:
-    'La política de red está configurada para permitir el aislamiento de la red dentro del mismo clúster, es decir, la capacidad de construir un cortafuegos entre ciertas instancias (pods).',
+    'Configure una política de red para controlar el tráfico entre los pods dentro del mismo clúster y el tráfico desde el exterior para implementar el aislamiento de la aplicación y mejorar la seguridad de la aplicación.',
   CIDR_DESC: 'Basado en la dirección del tráfico',
   NETWORK_POLICY_MODAL_DIRECT: 'Por favor, selecciona la dirección de la regla',
   NETWORK_POLICY_MODAL_CIDRERR: 'Please fill in the CIDR information correctly',

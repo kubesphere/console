@@ -270,7 +270,7 @@ export default class CredentialModal extends React.Component {
           <Form.Item
             label={t('Credential ID')}
             rules={[
-              { required: true, message: t('Please input credential') },
+              { required: true, message: t('ENTER_CREDENTIAL_TIP') },
               {
                 pattern: PATTERN_NAME,
                 message: `${t('Invalid credential ID')}, ${t('NAME_DESC')}`,
@@ -280,7 +280,7 @@ export default class CredentialModal extends React.Component {
           >
             <Input name="id" disabled={isEditMode} />
           </Form.Item>
-          <Form.Item label={t('Type')}>
+          <Form.Item label={t('TYPE')}>
             <Select
               options={[
                 { label: t('username_password'), value: 'username_password' },

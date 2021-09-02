@@ -47,11 +47,11 @@ const Card = ({ gateway, rule, tls = [], prefix }) => {
           {host}
           <div>
             <span>
-              {t('Protocol')}: {protocol}
+              {t('PROTOCOL')}: {protocol}
             </span>
             {protocol === 'https' && (
               <span>
-                {t('Certificate')}: {tlsItem.secretName}
+                {t('CERTIFICATE')}: {tlsItem.secretName}
               </span>
             )}
             <span className={styles.tip}>
@@ -69,7 +69,7 @@ const Card = ({ gateway, rule, tls = [], prefix }) => {
           <Columns>
             <Column>
               <span>
-                {t('path')}: <strong>{path.path}</strong>
+                {t('PATH_SI')}: <strong>{path.path}</strong>
               </span>
             </Column>
             <Column>
@@ -84,7 +84,7 @@ const Card = ({ gateway, rule, tls = [], prefix }) => {
             </Column>
             <Column>
               <span>
-                {t('Port')}: <strong>{path.backend.servicePort}</strong>
+                {t('PORT')}: <strong>{path.backend.servicePort}</strong>
               </span>
             </Column>
             <Column>

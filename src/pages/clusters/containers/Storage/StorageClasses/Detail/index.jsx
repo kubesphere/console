@@ -69,14 +69,14 @@ export default class StorageClassDetail extends React.Component {
 
   getOperations = () => [
     {
-      key: 'viewYaml',
+      key: 'editYaml',
       type: 'default',
-      text: t('View YAML'),
-      action: 'view',
+      text: t('EDIT_YAML'),
+      action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
           detail: toJS(this.store.detail),
-          readOnly: true,
+          readOnly: false,
         }),
     },
     {
@@ -88,6 +88,18 @@ export default class StorageClassDetail extends React.Component {
         this.trigger('storageclass.set.default', {
           detail: toJS(this.store.detail),
           defaultStorageClass: this.defaultStorageClass.name,
+          success: this.fetchData,
+        }),
+    },
+    {
+      key: 'funcManage',
+      icon: 'slider',
+      text: t('Storage Function Manage'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('storageclass.volume.function.update', {
+          detail: toJS(this.store.detail),
+          StorageClassStore: this.store,
           success: this.fetchData,
         }),
     },
@@ -113,7 +125,7 @@ export default class StorageClassDetail extends React.Component {
 
     return [
       {
-        name: t('Provisioner'),
+        name: t('PROVISIONER'),
         value: detail.provisioner,
       },
       {

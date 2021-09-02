@@ -44,8 +44,15 @@ export default {
     on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
-          set(data, 'metadata.resourceVersion', detail.resourceVersion)
-          await store.update(detail, data)
+          const isScheduleProject = store.isScheduleProject
+          if (isScheduleProject) {
+            set(data[0], 'metadata.resourceVersion', detail.resourceVersion)
+            await store.update(detail, data[0])
+            await store.updateScheduleYaml(detail, data[1])
+          } else {
+            set(data, 'metadata.resourceVersion', detail.resourceVersion)
+            await store.update(detail, data)
+          }
           Notify.success({ content: `${t('Updated Successfully')}` })
           Modal.close(modal)
           success && success()

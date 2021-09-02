@@ -52,7 +52,6 @@ module.exports = {
   'Select file': '選擇檔案',
   'Application Name': '應用名稱',
   'Application Version': '應用版本',
-  'App Description': '應用簡介',
   APP_ABSTRACTION_DESC: '對應用的概括性介紹，最長 120 個字元',
   APP_DETAIL_DESC: '在用戶搜索應用時會非常有幫助',
   'Upload Icon': '上傳圖標',
@@ -63,10 +62,8 @@ module.exports = {
   File: '檔案',
   'Platform App Store Management': '平台級應用商店管理',
 
-  'App Store': '應用商店',
   APP_STORE_DESC: '對已上架、已下架的應用進行管理',
   PROVIDER: '服務商',
-  'Latest Version': '最新版本',
   'App Category': '應用分類',
   'Release / Suspended Time': '上架 (下架) 時間',
 

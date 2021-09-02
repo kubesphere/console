@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { isEmpty, get } from 'lodash'
+import { isEmpty, get, isUndefined } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
@@ -27,7 +27,6 @@ import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
 import Volume from 'stores/volume'
 import StorageClass from 'stores/storageClass'
-import StorageClassCapability from 'stores/storageclasscapabilities'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -40,8 +39,6 @@ export default class VolumeDetail extends React.Component {
   store = new Volume()
 
   storageclass = new StorageClass()
-
-  storageclasscapabilities = new StorageClassCapability()
 
   componentDidMount() {
     this.fetchData()
@@ -77,17 +74,34 @@ export default class VolumeDetail extends React.Component {
     return this.store.detail.isFedManaged
   }
 
+  get allowClone() {
+    try {
+      const clone = toJS(this.storageclass).detail.annotations[
+        'storageclass.kubesphere.io/allow-clone'
+      ]
+      return isUndefined(clone) ? true : !JSON.parse(clone)
+    } catch (err) {
+      return true
+    }
+  }
+
+  get allowSnapshot() {
+    try {
+      const snapShot = toJS(this.storageclass).detail.annotations[
+        'storageclass.kubesphere.io/allow-snapshot'
+      ]
+      return isUndefined(snapShot) ? true : !JSON.parse(snapShot)
+    } catch (err) {
+      return true
+    }
+  }
+
   fetchData = async () => {
     const { cluster } = this.props.match.params
     await this.store.fetchDetail(this.props.match.params)
 
     const { storageClassName } = this.store.detail
     await this.storageclass.fetchDetail({
-      cluster,
-      name: storageClassName,
-    })
-
-    await this.storageclasscapabilities.fetchDetail({
       cluster,
       name: storageClassName,
     })
@@ -123,11 +137,7 @@ export default class VolumeDetail extends React.Component {
       text: t('Clone Volume'),
       icon: 'copy',
       action: 'create',
-      disabled: !get(
-        this.storageclasscapabilities,
-        'detail.volumeFeature.clone',
-        false
-      ),
+      disabled: this.allowClone,
       onClick: () => {
         this.trigger('volume.clone', {})
       },
@@ -138,11 +148,7 @@ export default class VolumeDetail extends React.Component {
       text: t('Create Snapshot'),
       icon: 'copy',
       action: 'create',
-      disabled: !get(
-        this.storageclasscapabilities,
-        'detail.snapshotFeature.create',
-        false
-      ),
+      disabled: this.allowSnapshot,
       onClick: () => {
         this.trigger('volume.create.snapshot', {})
       },
@@ -152,11 +158,7 @@ export default class VolumeDetail extends React.Component {
       text: t('Expand Volume'),
       icon: 'scaling',
       action: 'edit',
-      disabled: !get(
-        this.storageclasscapabilities,
-        'detail.supportExpandVolume',
-        false
-      ),
+      disabled: !get(this.storageclass.detail, 'allowVolumeExpansion', false),
       onClick: () => {
         const { detail, isSubmitting } = this.store
         const originData = toJS(detail._originData)
@@ -220,7 +222,7 @@ export default class VolumeDetail extends React.Component {
         ),
       },
       {
-        name: t('Capacity'),
+        name: t('CAPACITY'),
         value: capacity,
       },
       {
@@ -232,7 +234,7 @@ export default class VolumeDetail extends React.Component {
         value: storageClassName,
       },
       {
-        name: t('Provisioner'),
+        name: t('PROVISIONER'),
         value: get(
           detail,
           "annotations['volume.beta.kubernetes.io/storage-provisioner']",

@@ -70,7 +70,7 @@ export default class TableColumnInput extends React.Component {
     const items = [
       {
         key: 'type',
-        label: t('Type'),
+        label: t('TYPE'),
       },
       {
         key: 'unit',

@@ -33,7 +33,6 @@ module.exports = {
   'Edit User': 'Edit Account',
   Email: 'Email',
   'Email exists': 'The email already exists.',
-  'Invalid email': 'Invalid email.',
   'Invalid user name': 'Invalid username. {message}',
   'Last Login Time': 'Last Login',
   'Login History': 'Login History',
@@ -44,7 +43,7 @@ module.exports = {
   'Password Strength': 'Password Strength',
   'Please input current password': 'Enter the current password.',
   'Please input email': 'Enter the email.',
-  'Please input user name': 'Enter the username.',
+  ENTER_USERNAME_TIP: 'Please enter a username.',
   'Please repeat the new password': 'Enter the new password again.',
   'Please select role': 'Select a role.',
   'Repeat the New Password': 'Confirm Password',
@@ -53,14 +52,12 @@ module.exports = {
   Time: 'Time',
   'Unable to delete itself': 'Unable to delete itself.',
   User: 'User',
+  USER: 'User',
   'User Management': 'User Management',
   'User name exists': 'The username already exists.',
-  Users: 'Users',
   users: 'users',
   'You must enter the correct current password to change to a new password.':
     'Enter the current password.',
-  'Your password must meet the following requirements':
-    'Complexity Requirements',
 
   user_active: 'Active',
   USER_ACTIVE: 'Active',
@@ -68,7 +65,7 @@ module.exports = {
   USER_PENDING: 'Pending',
   USER_DISABLED: 'Disabled',
   USER_NAME_DESC:
-    'The value can contain only lowercase letters, numbers, dots and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 32 characters.',
+    'The value can contain only lowercase letters, numbers, dots and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 32 characters.',
   EMAIL_DESC: 'The email address can be used to log in to the system.',
   USER_SETTING_EMAIL_DESC:
     'The email address can be used to log in to the system.',

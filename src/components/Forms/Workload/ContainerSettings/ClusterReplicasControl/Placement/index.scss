@@ -6,6 +6,7 @@
   padding: 4px 8px 8px;
   margin-right: 8px;
   border-radius: 2px;
+  border-radius: 4px;
   background-color: $light-color03;
   cursor: pointer;
   flex-shrink: 0;
@@ -47,7 +48,7 @@
     flex: 1;
     text-align: center;
     @include TypographySymbolText($dark-color06);
-     
+
     & > span {
       color: $dark-color01;
     }

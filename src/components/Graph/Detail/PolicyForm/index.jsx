@@ -443,7 +443,7 @@ export default class PolicyForm extends React.Component {
     return (
       <div className="margin-t12">
         <Form.Item
-          label={t('Method')}
+          label={t('METHOD')}
           rules={[{ validator: this.sessionValidator }]}
         >
           <SessionRetention

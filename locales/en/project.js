@@ -40,9 +40,9 @@ module.exports = {
   Deployment: 'Deployment',
   deployments: 'deployments',
   Details: 'Details',
-  'DevOps Project': 'DevOps Project',
   'DevOps Projects': 'DevOps Projects',
-  'Disk Log Collection': 'Disk Log Collection',
+  DISK_LOG_COLLECTION: 'Disk Log Collection',
+  COLLECT_LOGS_ON_VOLUMES: 'Collect Logs on Volumes',
   'Disk Log Collection of the project is about to be disabled.':
     'Disk Log Collection of the project is about to be disabled.',
   'Edit Gateway': 'Edit Gateway',
@@ -80,7 +80,6 @@ module.exports = {
   'Multi-cluster Projects': 'Multi-cluster Projects',
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
     'Deleting a multi-cluster project will also delete the same project on the host cluster.</br>Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risk of the operation.',
-  'Network Isolation': 'Network Isolation',
   'No Platform Manage Authorization': 'No Platform Manage Authorization',
   'Not Assigned': 'Unassigned',
   Opened: 'Opened',
@@ -99,6 +98,8 @@ module.exports = {
   'Project Placement': 'Project Placement',
   'Project Quota': 'Project Quota',
   'Project Role': 'Project Role',
+  // Create ServiceAccount Page
+  PROJECT_ROLE_SI: 'Project Role',
   'Project Roles': 'Project Roles',
   'Project Quota Not Set': 'Project Quota Not Set',
   'Resource Default Request Not Set': 'Resource Default Request Not Set',
@@ -111,14 +112,13 @@ module.exports = {
   'requests.cpu': 'requests.cpu',
   'requests.memory': 'requests.memory',
   'Resource Quota': 'Resource Quota',
-  'Resource Type': 'Resource Type',
+  RESOURCE_TYPE: 'Resource Type',
   PROJECT_ADMINISTRATOR_DESC:
     'Select a user in the workspace as the project administrator.',
   'Select Project Type': 'Select Project Type',
   SELECT_CLUSTER_DESC:
     'Select the cluster in which the project is to be created.',
   CLUSTER_NOT_SELECT_DESC: 'Please select a cluster.',
-  Service: 'Service',
   'Set Gateway': 'Set Gateway',
   StatefulSet: 'StatefulSet',
   statefulsets: 'statefulsets',
@@ -163,8 +163,6 @@ module.exports = {
 
   PROJECT_ADMIN_DESC:
     'You can specify a member of the project as an administrator.',
-  DEVOPS_ADMIN_DESC:
-    'You can specify a member of the DevOps project as an administrator.',
 
   PROJECT_INTERNET_ACCESS_DESC:
     'Before creating a route, you need to enable the Internet access portal (i.e. the gateway). This step is to create a corresponding routing controller to forward the request to the corresponding backend Service.',

@@ -1,0 +1,25 @@
+@import '~scss/variables';
+
+@mixin tipFont {
+  font-family: PingFang SC;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 20px;
+  color: $white;
+}
+
+.formTip {
+  margin-bottom: 4px;
+
+  .tipLabel {
+    margin-right: 4px;
+  }
+}
+
+.tipBox {
+  @include tipFont();
+
+  .tipTitle {
+    font-weight: 600;
+  }
+}

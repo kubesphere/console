@@ -93,7 +93,7 @@ export default class Source extends React.Component {
         <Form data={this.formTemplate} ref={formRef}>
           <Form.Item
             label={t('PROJECT')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Select
               name={'metadata.namespace'}
@@ -109,8 +109,8 @@ export default class Source extends React.Component {
           </Form.Item>
 
           <Form.Item
-            label={t('Volume')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            label={t('VOLUME')}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Select
               name={'spec.source.name'}

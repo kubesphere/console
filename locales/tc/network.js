@@ -18,7 +18,6 @@
 
 module.exports = {
   'Network Policy': '網路策略',
-  'Network Policies': '網路策略',
   'Network Policys': '網路策略',
   'Network Isolation': '網路隔離',
   CREATE_NETWORK_POLICY_TCAP: '創建網路策略',
@@ -40,7 +39,7 @@ module.exports = {
   NETWORK_ISOLATION_Q: '如何更好地使用網路隔離?',
   NETWORK_POLICY_A:
     '根據實際使用場景我们整理了幾種較為常見的應用場景，您可以查閱文件了解更多',
-  NETWORK_POLICY_Q1: '實現網路策略的必要條件',
+  NETWORK_POLICY_Q1: 'CNI 插件實現網絡策略需滿足哪些必要條件？',
   NETWORK_ISOLATION_Q1: '實現網路隔離的必要條件',
   NETWORK_POLICY_A1:
     'Kubernetes 所使用 CNI 必須支持 Kubernetes 原生<a href="https://kubernetes.io/zh/docs/concepts/services-networking/network-policies/" target="_blank">網路策略</a>，例如 Calico, Cilium, Kube-router, Romana and Weave Net。',

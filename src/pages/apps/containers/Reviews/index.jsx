@@ -135,7 +135,7 @@ export default class Reviews extends React.Component {
       ),
     },
     {
-      title: t('Type'),
+      title: t('TYPE'),
       dataIndex: 'type',
       isHideable: true,
       width: '15%',

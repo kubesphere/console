@@ -40,6 +40,7 @@
   text-indent: 2em;
   cursor: pointer;
   @include ellipsis;
+
   :global {
     .pipeline_status_icon {
       width: 12px;
@@ -62,6 +63,7 @@
 .header {
   height: 32px;
   margin-bottom: 12px;
+
   button {
     float: right;
     margin-left: 15px;
@@ -95,12 +97,14 @@
   border-radius: 4px;
   background-color: #36435c;
   cursor: pointer;
+
   :global {
     .icon {
       display: inline-block;
       vertical-align: top;
       margin: 5px 15px 0 0;
     }
+
     .kubed-icon {
       color: white;
     }
@@ -111,6 +115,7 @@
   float: right;
   margin-right: 20px;
   color: #79879c;
+
   :global {
     .pipeline_status_icon {
       margin-left: 15px;
@@ -126,4 +131,24 @@
   line-height: 22px;
   background-color: #242e42;
   color: white;
+}
+
+.logs_container {
+  .header {
+    line-height: 32px;
+    margin-bottom: 0;
+
+    a {
+      display: flex;
+      align-items: center;
+      span {
+        margin-top: 2px;
+        margin-left: 8px;
+        font-size: 12px;
+      }
+    }
+  }
+  pre {
+    padding: 10px 0 10px 20px;
+  }
 }

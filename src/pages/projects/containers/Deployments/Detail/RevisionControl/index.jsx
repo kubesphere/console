@@ -157,7 +157,7 @@ class RevisionControl extends React.Component {
                 title={getLocalTime(revision.createTime).format(
                   `${t('MMMM Do YYYY')} HH:mm:ss`
                 )}
-                description={t('Created Time')}
+                description={t('CREATED_AT')}
               />
             </div>
             <div className={styles.diffWrapper}>{this.renderDiff()}</div>

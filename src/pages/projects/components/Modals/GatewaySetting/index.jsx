@@ -174,10 +174,10 @@ export default class GatewaySettingModal extends React.Component {
                   </>
                 )}
                 {type === 'LoadBalancer' && (
-                  <Form.Item label={t('Annotations')}>
+                  <Form.Item label={t('ANNOTATIONS')}>
                     <PropertiesInput
                       name="annotations"
-                      addText={t('ADD_ANNOTATION')}
+                      addText={t('ADD')}
                       defaultValue={this.anonotationsDefault}
                     />
                   </Form.Item>

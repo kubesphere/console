@@ -25,7 +25,6 @@ module.exports = {
   NO_DEPARTMENT_TIP:
     'No hay departamento en este momento, por favor cree a la derecha',
   'Workspace role': 'rol del espacio de trabajo',
-  WORKSPACE_ROLE_DESC: 'Asignar roles a todo el grupo de usuarios',
   'Bind Project Role': 'Rol de proyecto vinculantes',
   'Add Project': 'Agregar proyecto',
   'project roles': 'roles de proyecto',

@@ -68,7 +68,7 @@ export default class Metadata extends React.Component {
       })
       .then(resp => {
         if (resp.exist) {
-          return callback({ message: t('LABEL_EXIST_DESC'), field: rule.field })
+          return callback({ message: t('DUPLICATE_LABELS'), field: rule.field })
         }
         callback()
       })
@@ -79,7 +79,7 @@ export default class Metadata extends React.Component {
     return (
       <>
         <Form.Item
-          label={t('Labels')}
+          label={t('LABELS')}
           rules={[
             { required: true, message: t('EMPTY_LABEL_DESC') },
             { validator: this.labelsValidator },
@@ -93,7 +93,7 @@ export default class Metadata extends React.Component {
         </Form.Item>
         {!noWorkload && (
           <Form.Item
-            label={`${t('Annotations')} (${t('Applied to the workload')})`}
+            label={`${t('ANNOTATIONS')} (${t('Applied to the workload')})`}
           >
             <PropertiesInput
               name={`${kind}.metadata.annotations`}

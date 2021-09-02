@@ -68,7 +68,7 @@ export default class ServiceAccounts extends React.Component {
       {
         key: 'modify',
         icon: 'pen',
-        text: t('Modify Service Account Role'),
+        text: t('CHANGE_ROLE'),
         action: 'edit',
         onClick: item =>
           trigger('serviceaccount.role.edit', {
@@ -128,7 +128,7 @@ export default class ServiceAccounts extends React.Component {
           )),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

@@ -60,7 +60,7 @@ export default class Secrets extends React.Component {
       {
         key: 'editSecret',
         icon: 'pen',
-        text: t('Edit Secret'),
+        text: t('EDIT_SECRET'),
         action: 'edit',
         onClick: item =>
           trigger('secret.edit', {
@@ -102,21 +102,21 @@ export default class Secrets extends React.Component {
         ),
       },
       {
-        title: t('Type'),
+        title: t('TYPE'),
         dataIndex: 'type',
         isHideable: true,
         width: '24%',
         render: type => (SECRET_TYPES[type] ? t(SECRET_TYPES[type]) : type),
       },
       {
-        title: t('Config Number'),
+        title: t('SECRET_FIELD_COUNT'),
         dataIndex: 'data',
         isHideable: true,
         width: '20%',
         render: data => Object.keys(data).length,
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

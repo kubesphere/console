@@ -24,7 +24,7 @@ module.exports = {
   'Create Volume': 'Create Volume',
   CREATE_VOLUME_WITH_SNAPSHOT: 'Create volume based on snapshots',
   'Custom Provisioner': 'Custom Provisioner',
-  Default: 'Default',
+  DEFAULT: 'Default',
   'Default Storage Class': 'Default Storage Class',
   'Default Volume': 'Default Volume',
   'Delete Volume': 'Delete Volume',
@@ -32,19 +32,19 @@ module.exports = {
   'Apply immediately': 'Apply immediately',
   Expand: 'Expand',
   'Expand Volume': 'Expand Volume',
-  Idle: 'Idle',
-  'In Use': 'In Use',
+  AVAILABLE: 'Available',
+  IN_USER: 'In use',
   'Mount Info': 'Mount Info',
   'Mount Options': 'Mount Options',
   'Mount Status': 'Mount Status',
   // Volumes List Page
-  MOUNT_TCAP: 'Mount',
+  MOUNT_STATUS: 'Mount Status',
   MOUNTED_TCAP: 'Mounted',
   'Mounted Pods': 'Mounted Pods',
-  NOT_MOUNTED_TCAP: 'Not Mounted',
+  NOT_MOUNTED: 'Not mounted',
   Parameters: 'Parameters',
   'Parameters (key-value pairs)': 'Parameters (key-value pairs)',
-  PersistentVolumeClaim: 'PersistentVolumeClaim',
+  PersistentVolumeClaim: 'Volume',
   PersistentVolumes: 'PersistentVolumes',
   RECLAMATION_POLICY: 'Reclamation Policy',
   CREATE: 'Create',
@@ -53,6 +53,8 @@ module.exports = {
   'Snapshot Message': 'Snapshot Message',
   'Snapshots Message': 'Snapshot Message',
   'Storage Class': 'Storage Class',
+  STORAGE_CLASS: 'Storage Class',
+  STORAGE_CLASS_VALUE: 'Storage class: {value}',
   'Storage Class Name': 'Storage Class Name',
   STORAGE_CLASS_SETTINGS: 'Storage Class Settings',
   'storage classes': 'storage classes',
@@ -63,10 +65,15 @@ module.exports = {
   storageclasses: 'storageclasses',
   VOLUME_SNAPSHOT_SUPPORT: 'Volume Snapshot Support',
   ACCESS_MODE: 'Access Mode',
+  ACCESS_MODE_SCAP: 'Access mode',
   'Used Capacity': 'Used Capacity',
   'Clone Volume': 'Clone Volume',
+  VOLUME: 'Volume',
   VOLUMES: 'Volumes',
   'The volume name exists': 'The volume name exists',
+  VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
+  VOLUME_COUNT: 'Volumes',
+  VOLUME_NAME_EXIST: 'The volume name already exists.',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
   'Volume Template Settings': 'Volume Template Settings',
@@ -99,7 +106,7 @@ module.exports = {
   VOLUME_SETTINGS_DESC:
     'Fill in the capacity of the volume as needed, and the volume size and access mode must be compatible with the storage class and storage server capabilities. The access mode is usually selected as RWO.',
   VOLUME_STORAGE_CLASS_DESC:
-    'The cluster administrator configures the storage server parameters and provides storage for the user by type.',
+    'Select a storage class to create a specific type of volume.',
 
   PROVISIONER_DESC: 'Provide backend storage',
 
@@ -113,8 +120,7 @@ module.exports = {
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce: Single node read and write.<br/>ReadOnlyMany: Multi-node read-only.<br/>ReadWriteMany: Multi-node read and write.<br/>Only one mode can be used when mounting.',
 
-  STORAGE_CLASS_DESC:
-    'Storage classes support dynamic volume provisioning, allowing administrators to create new storage volumes on demand.',
+  STORAGE_CLASS_DESC: 'Select a storage class to create a volume.',
 
   'STORAGE-CLASSES_BASEINFO_DESC':
     'The storage type records the configuration information of a certain type of storage provided by the administrator. Before creating a specific type of storage volume, the corresponding storage type must be configured.',
@@ -138,7 +144,7 @@ module.exports = {
   WHAT_IS_LOCAL_VOLUME_Q: 'What is a Local Volume?',
   WHAT_IS_LOCAL_VOLUME_A:
     'A Local Volume is a mounted local storage device, such as a disk, partition, or directory.',
-  CHOOSE_STORAGE_SYSTEM_TIP: 'Choose the Storage System You Need',
+  CHOOSE_STORAGE_SYSTEM_TIP: 'Select Storage System',
   PROVISIONER_DEPENDENCE_DESC:
     'Storage plug-ins need to be deployed in the storage system to provide services.',
 
@@ -149,7 +155,6 @@ module.exports = {
     'Use QingCloud CSI as the underlying storage plug-in. For more information, see <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">QingCloud CSI</a>.',
 
   MAXSIZE: 'Maximum Size',
-  TYPE: 'Type',
   MINSIZE: 'Minimum Size',
   STEPSIZE: 'Step Size',
   FSTYPE: 'File System Type',
@@ -197,10 +202,10 @@ module.exports = {
     'Additional function of the Ceph cluster. The value should only be set when you set imageFormat to "2".',
 
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
-    'Please check if the storage class is being used by other resources. If there is any resource dependent on the storage class, you need to disable the resource first.',
+    'Make sure if there are resources dependent on the storage class. If there are, you need to disable the resources before it the resource functions are affected.',
 
-  CREATE_VOLUME_BY_STORAGECLASS: 'Create a volume by StorageClass',
-  CREATE_VOLUME_BY_SNAPSHOT: 'Create a volume by VolumeSnapshot',
+  CREATE_VOLUME_BY_STORAGECLASS: 'Create a Volume from Storage Class',
+  CREATE_VOLUME_BY_SNAPSHOT: 'Create a Volume from Volume Snapshot',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select a snapshot to create a volume.',
   VOLUMESNAPSHOT_DESC:
     'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
@@ -217,7 +222,6 @@ module.exports = {
   // Storage Classes
   RESTURL: 'REST URL',
   CLUSTER_ID: 'Cluster ID',
-  ADD_PARAMETER: 'Add',
   REST_AUTH_ENABLED: 'REST Authentication',
   REST_USER: 'REST User',
   VOLUME_TYPE: 'Volume Type',
@@ -228,4 +232,6 @@ module.exports = {
   SECRET_NAMESPACE: 'Secret Namespace',
   GID_MIN: 'GID Minimum Value',
   GID_MAX: 'GID Maximum Value',
+  CUSTOM: 'Custom',
+  PARAMETERS: 'Parameters',
 }

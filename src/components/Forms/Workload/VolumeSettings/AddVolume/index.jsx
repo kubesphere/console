@@ -200,16 +200,16 @@ export default class AddVolume extends React.Component {
           {t('Volumes')}
         </div>
         <div className={classNames(styles.contentWrapper, contentClassName)}>
-          <div className={styles.title}>{t('Volume Source')}</div>
+          <div className={styles.title}>{t('MOUNT_VOLUME')}</div>
           <RadioGroup
             mode="button"
             value={this.state.type}
             onChange={this.handleTypeChange}
             size="small"
           >
-            <RadioButton value="exist">{t('Existing Volume')}</RadioButton>
-            <RadioButton value="temp">{t('Temporary Volume')}</RadioButton>
-            <RadioButton value="host">{t('HostPath')}</RadioButton>
+            <RadioButton value="exist">{t('EXISTING_VOLUME')}</RadioButton>
+            <RadioButton value="temp">{t('TEMPORARY_VOLUME')}</RadioButton>
+            <RadioButton value="host">{t('HOSTPATH_VOLUME')}</RadioButton>
           </RadioGroup>
           {this.renderContent()}
         </div>

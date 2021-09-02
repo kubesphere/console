@@ -87,7 +87,7 @@ export default class Viewer extends React.Component {
             render: item => this.renderIpBlock(item),
           },
           {
-            title: t('Port'),
+            title: t('PORT'),
             dataIndex: 'ports',
             render: item =>
               isEmpty(item)

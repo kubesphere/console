@@ -80,7 +80,7 @@ export default class JobDetail extends React.Component {
     {
       key: 'start',
       icon: 'start',
-      text: t('Start'),
+      text: t('START'),
       action: 'edit',
       onClick: this.handleSwitch(true),
       show: this.store.detail.suspend,
@@ -88,7 +88,7 @@ export default class JobDetail extends React.Component {
     {
       key: 'pause',
       icon: 'stop',
-      text: t('Pause'),
+      text: t('PAUSE'),
       action: 'edit',
       onClick: this.handleSwitch(false),
       show: !this.store.detail.suspend,
@@ -166,11 +166,11 @@ export default class JobDetail extends React.Component {
         value: spec.failedJobsHistoryLimit,
       },
       {
-        name: t('concurrencyPolicy'),
+        name: t('CONCURRENCY_POLICY'),
         value: spec.concurrencyPolicy,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

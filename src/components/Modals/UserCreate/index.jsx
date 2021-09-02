@@ -113,9 +113,9 @@ export default class UserCreateModal extends Component {
     const title = detail ? 'Edit User' : 'Add User'
 
     const userRules = detail
-      ? [{ required: true, message: t('Please input user name') }]
+      ? [{ required: true, message: t('ENTER_USERNAME_TIP') }]
       : [
-          { required: true, message: t('Please input user name') },
+          { required: true, message: t('ENTER_USERNAME_TIP') },
           {
             pattern: PATTERN_USER_NAME,
             message: t('Invalid user name', { message: t('USER_NAME_DESC') }),
@@ -147,7 +147,7 @@ export default class UserCreateModal extends Component {
           disabled
         />
         <Form.Item
-          label={t('User Name')}
+          label={t('USERNAME')}
           desc={t('USER_NAME_DESC')}
           rules={userRules}
         >
@@ -177,10 +177,10 @@ export default class UserCreateModal extends Component {
         {!detail && (
           <Form.Item
             className={styles.password}
-            label={t('Password')}
+            label={t('PASSWORD')}
             desc={t('PASSWORD_DESC')}
             rules={[
-              { required: true, message: t('Please input password') },
+              { required: true, message: t('ENTER_PASSWORD_TIP') },
               {
                 pattern: PATTERN_PASSWORD,
                 message: t('PASSWORD_DESC'),
@@ -189,7 +189,7 @@ export default class UserCreateModal extends Component {
           >
             <InputPassword
               name="spec.password"
-              placeholder={t('Please input password')}
+              placeholder={t('ENTER_PASSWORD_TIP')}
               autoComplete="nope"
               withStrength
             />

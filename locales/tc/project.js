@@ -21,7 +21,6 @@ module.exports = {
   Deployment: '部署',
   StatefulSet: '有狀態副本集',
   DaemonSet: '守護進程集',
-  Service: '服務',
   LoadBalancer: '負載平衡',
   Volume: '儲存卷',
   Terminating: '刪除中',
@@ -31,6 +30,8 @@ module.exports = {
   Members: '成員',
   'Project Roles': '項目角色',
   'Project Role': '項目角色',
+  // Create ServiceAccount Page
+  PROJECT_ROLE_SI: '項目角色',
   projects: '項目',
   Projects: '項目',
   'Project Overview': '項目預覽',
@@ -79,14 +80,11 @@ module.exports = {
   DELETE_MEMBER_TIP:
     '確定移除成員 <strong>{name}</strong> ? 移除後該成員將無法訪問此項目。',
 
-  'DevOps Project': 'DevOps 工程',
   'DevOps Projects': 'DevOps 工程',
   'Select Project Type': '選擇項目類型',
 
   'Edit Project Quota': '編輯項目配額',
   'Add Quota Item': '添加配額項目',
-
-  'Network Isolation': '網路隔离',
 
   deployments: '部署',
   statefulsets: '有狀態副本集',
@@ -103,7 +101,7 @@ module.exports = {
   'Container Resource Default Request': '容器資源預設請求',
   'Edit Resource Default Request': '編輯資源預設請求',
 
-  'Resource Type': '資源類型',
+  RESOURCE_TYPE: '資源類型',
 
   'Help Information': '幫助資訊',
 
@@ -121,7 +119,8 @@ module.exports = {
   'Not Assigned': '未分配',
   PROJECT_ADMINISTRATOR_DESC: '選擇企業空間的用戶作為管理員。',
 
-  'Disk Log Collection': '落盤紀錄收集',
+  DISK_LOG_COLLECTION: '落盤紀錄收集',
+  COLLECT_LOGS_ON_VOLUMES: '落盤紀錄收集',
 
   'Are you sure to close ?': '確認關閉？',
   "The project's file log collection is about to close.":

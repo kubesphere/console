@@ -32,7 +32,6 @@ module.exports = {
   'Exact Match': 'Coincidencia exacta',
   'Forward by request content': 'Reenviar por contenido de solicitud',
   'Forward by traffic ratio': 'Reenviar por ratio de tráfico',
-  'Grayscale Release': 'Grayscale Release',
   'Grayscale Release Component': 'Componente de Grayscale Release',
   'Grayscale Release Components': 'Componentes de Grayscale Release',
   'Grayscale Release Strategy': 'Estrategia Grayscale Release',

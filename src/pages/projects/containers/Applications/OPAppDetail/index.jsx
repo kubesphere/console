@@ -137,7 +137,7 @@ export default class OPAppDetail extends React.Component {
         value: get(detail, 'version.name', '-'),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(get(detail, 'create_time')).format(
           'YYYY-MM-DD HH:mm:ss'
         ),

@@ -130,11 +130,11 @@ export default class IPPoolDetail extends React.Component {
 
     return [
       {
-        name: t('IP_MASK_BIT_TCAP'),
+        name: t('NETWORK_SEGMENT'),
         value: detail.cidr,
       },
       {
-        name: t('Mask'),
+        name: t('MASK'),
         value: block.mask,
       },
       {
@@ -150,7 +150,7 @@ export default class IPPoolDetail extends React.Component {
         value: block.last,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

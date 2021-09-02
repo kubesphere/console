@@ -47,11 +47,11 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
           description={
             <div className={styles.description}>
               <span>
-                {t('Protocol')}: {protocol}
+                {t('PROTOCOL')}: {protocol}
               </span>
               {protocol === 'https' && (
                 <span>
-                  {t('Certificate')}: {tlsItem.secretName}
+                  {t('CERTIFICATE')}: {tlsItem.secretName}
                 </span>
               )}
             </div>
@@ -74,7 +74,7 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
           <div key={path.path} className={styles.path}>
             <Columns>
               <Column>
-                <span>{t('path')}:</span>
+                <span>{t('PATH_SI')}:</span>
                 <span>{path.path}</span>
               </Column>
               <Column>
@@ -82,7 +82,7 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
                 <span>{get(path, 'backend.serviceName')}</span>
               </Column>
               <Column>
-                <span>{t('Port')}:</span>
+                <span>{t('PORT')}:</span>
                 <span>{get(path, 'backend.servicePort')}</span>
               </Column>
             </Columns>

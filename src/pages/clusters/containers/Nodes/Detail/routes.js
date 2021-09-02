@@ -42,7 +42,7 @@ export default [
   },
   {
     path: `${PATH}/monitors`,
-    title: 'Monitoring',
+    title: 'MONITORING',
     component: Monitoring,
     exact: true,
   },

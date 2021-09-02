@@ -73,7 +73,7 @@ class RouteAnnotationsEdit extends React.Component {
 
     return (
       <Modal.Form
-        title={t('EDIT_ANNOTATIONS_TCAP')}
+        title={t('EDIT_ANNOTATION')}
         icon="firewall"
         visible={visible}
         width={960}
@@ -88,7 +88,7 @@ class RouteAnnotationsEdit extends React.Component {
               <AnnotationsInput
                 name="metadata.annotations"
                 hiddenKeys={globals.config.preservedAnnotations}
-                addText={t('ADD_ANNOTATION')}
+                addText={t('ADD')}
               />
             </Form.Item>
           </div>

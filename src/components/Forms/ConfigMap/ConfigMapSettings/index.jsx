@@ -90,7 +90,7 @@ export default class ConfigMapSettings extends React.Component {
 
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
-        <Form.Item label={t('Config Value')}>
+        <Form.Item label={t('DATA')}>
           <DataList
             name="data"
             onEdit={this.handleDataItemEdit}

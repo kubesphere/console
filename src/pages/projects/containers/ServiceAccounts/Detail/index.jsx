@@ -104,7 +104,7 @@ export default class ServiceAccountDetail extends React.Component {
     {
       key: 'modifyServiceAccountRole',
       icon: 'pen',
-      text: t('Modify Service Account Role'),
+      text: t('CHANGE_ROLE'),
       action: 'edit',
       onClick: () =>
         this.trigger('serviceaccount.role.edit', {
@@ -150,7 +150,7 @@ export default class ServiceAccountDetail extends React.Component {
         value: detail.role,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

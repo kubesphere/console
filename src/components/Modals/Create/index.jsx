@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isFunction, cloneDeep, isArray } from 'lodash'
+import { get, isFunction, cloneDeep, isArray, omit } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Notify } from '@kube-design/components'
@@ -88,6 +88,13 @@ export default class CreateModal extends React.Component {
 
   handleModeChange = () => {
     this.setState(({ isCodeMode, formTemplate }) => {
+      const kind = Object.keys(formTemplate)[0]
+      const omitArr = [
+        `${kind}.spec.template.totalReplicas`,
+        'totalReplicas',
+        `${kind}.totalReplicas`,
+      ]
+      formTemplate = omit(formTemplate, omitArr)
       const newState = { formTemplate, isCodeMode: !isCodeMode }
 
       if (

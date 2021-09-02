@@ -17,13 +17,16 @@
  */
 
 import React from 'react'
+import { observer } from 'mobx-react'
 import { get, set, uniqBy } from 'lodash'
+import { Tabs } from '@kube-design/components'
 import PropTypes from 'prop-types'
 
 import Placement from './Placement'
-
+import Scheduling from './Scheduling'
 import styles from './index.scss'
 
+@observer
 export default class ReplicasControl extends React.Component {
   static propTypes = {
     template: PropTypes.object,
@@ -91,8 +94,18 @@ export default class ReplicasControl extends React.Component {
     return cod ? cod.value : replicas
   }
 
-  render() {
-    const { clusters } = this.props
+  switchMode = () => {
+    const store = this.props.store
+    store.isScheduleDeployment
+      ? store.switchSchedule(false)
+      : store.switchSchedule(true)
+  }
+
+  getTotalReplicas = () => {
+    return get(this.props.scheduleTemplate, 'spec.totalReplicas', '')
+  }
+
+  renderPlacement(clusters) {
     return (
       <div className={styles.wrapper}>
         {clusters.map(cluster => (
@@ -105,5 +118,43 @@ export default class ReplicasControl extends React.Component {
         ))}
       </div>
     )
+  }
+
+  renderSchedule() {
+    const { clusters } = this.props
+    const store = this.props.store
+    const { TabPanel } = Tabs
+    return (
+      <>
+        <Tabs type="button" onChange={this.switchMode}>
+          <TabPanel
+            label={`${t('Fixed Replicas')}`}
+            name="Normal"
+            icon="cluster"
+          >
+            {this.renderPlacement(clusters)}
+          </TabPanel>
+          <TabPanel
+            label={`${t('Federated Schedule')}`}
+            name="Scheduling"
+            icon="cluster"
+          >
+            <Scheduling
+              clusters={clusters}
+              scheduleTemplate={store.scheduleTemplate}
+              onError={this.props.onError}
+            ></Scheduling>
+          </TabPanel>
+        </Tabs>
+      </>
+    )
+  }
+
+  render() {
+    const { clusters } = this.props
+    const renderScheduleTab = get(this.props.store, 'renderScheduleTab', false)
+    return renderScheduleTab
+      ? this.renderSchedule()
+      : this.renderPlacement(clusters)
   }
 }

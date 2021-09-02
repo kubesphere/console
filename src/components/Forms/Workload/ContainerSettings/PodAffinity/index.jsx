@@ -47,31 +47,25 @@ export default class PodAffinity extends Component {
     return [
       {
         uid: 'default',
-        label: t('Pod Default Deployment'),
+        label: t('CUSTOM_RULES'),
         value: {},
-        description: t(
-          'Pod replicas will be deployed according to the default policy.'
-        ),
+        description: t('CUSTOM_RULES_DESC'),
       },
       {
         uid: 'decentralized',
-        label: t('Pod Decentralized Deployment'),
+        label: t('DECENTRALIZED_SCHEDULING'),
         value: {
           podAntiAffinity: affinity,
         },
-        description: t(
-          'Pod replicas will be deployed on different nodes as much as possible.'
-        ),
+        description: t('DECENTRALIZED_SCHEDULING_DESC'),
       },
       {
         uid: 'aggregation',
-        label: t('Pod Aggregation Deployment'),
+        label: t('CENTRALIZED_SCHEDULING'),
         value: {
           podAffinity: affinity,
         },
-        description: t(
-          'Pod replicas will be deployed on the same node as much as possible.'
-        ),
+        description: t('CENTRALIZED_SCHEDULING_DESC'),
       },
     ]
   }
@@ -79,7 +73,7 @@ export default class PodAffinity extends Component {
   render() {
     const options = this.replicasPolicyOptions
     return (
-      <Form.Item label={t('Deployment Mode')}>
+      <Form.Item label={t('POD_SCHEDULING_RULES')}>
         <TypeSelect
           name="spec.template.spec.affinity"
           options={options}

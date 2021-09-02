@@ -149,7 +149,7 @@ export default class VolumeDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Capacity'),
+        name: t('CAPACITY'),
         value: capacity,
       },
       {
@@ -163,7 +163,7 @@ export default class VolumeDetail extends React.Component {
           annotations['volume.beta.kubernetes.io/storage-class'],
       },
       {
-        name: t('Provisioner'),
+        name: t('PROVISIONER'),
         value:
           annotations['volume.beta.kubernetes.io/storage-provisioner'] || '-',
       },

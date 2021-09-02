@@ -41,7 +41,7 @@ export default class ContainerPorts extends Component {
         {formData.ports &&
           formData.ports.map((port, index) => (
             <div key={index} className={styles.port}>
-              <span>{`${t('Protocol')}: ${port.protocol}`}</span>
+              <span>{`${t('PROTOCOL')}: ${port.protocol}`}</span>
               <span>{`${t('NAME')}: ${port.name}`}</span>
               <span>{`${t('CONTAINER_PORT')}: ${port.containerPort}`}</span>
               {showServicePort && (

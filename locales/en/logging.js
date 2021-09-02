@@ -74,7 +74,6 @@ module.exports = {
   KAFKA_DESC: 'Kafka is a popular open-source, stream-processing platform.',
   FLUENTD_DESC:
     'Fluentd is an open-source data collector for unified logging layer.',
-  TOTAL_COLLECTIONS: 'Total {num} receivers',
   TOOLBOX_SHIFT_TIPS:
     ' 👻 You can open the page in a new window with "SHIFT + LEFT CLICK".',
 
@@ -136,7 +135,7 @@ module.exports = {
   STOP_REAL_TIME_LOG: 'Disable real-time logging',
   LOG_EXPORT: 'Log Export',
 
-  CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create custom monitoring dashboard',
+  CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create Custom Monitoring Dashboard',
   SELECT_MONITORING_TEMPLATE: 'Select Monitoring Template',
   CUSTON_MONITORING_TEMPLATE_DESC:
     'Generate default monitoring template based on the application template you select or customize a template.',
@@ -176,6 +175,6 @@ module.exports = {
   LOG_CLOSE: 'Close',
   INVALID_SERVICE_ADDRESS: 'Invalid service address.',
   EXAMPLE: 'Example: ',
-  ENTER_PORT_NUMBER: 'Please enter a port number.',
+  PORT_NUMBER_EMPTY: 'Please enter a port number.',
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
 }

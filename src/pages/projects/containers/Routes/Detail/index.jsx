@@ -106,7 +106,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'editAnnotations',
       icon: 'firewall',
-      text: t('EDIT_ANNOTATIONS_TCAP'),
+      text: t('EDIT_ANNOTATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('router.annotations.edit', {
@@ -155,7 +155,7 @@ export default class RouteDetail extends React.Component {
         value: detail.loadBalancerIngress.join('\r\n'),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

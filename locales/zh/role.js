@@ -23,16 +23,13 @@ module.exports = {
   'Role Management': '角色管理',
   'Account Role': '帐户角色',
   'Account Roles': '帐户角色',
-  Terminating: '删除中',
   'Create Role': '创建角色',
   'Edit Role': '编辑角色',
   'Project Details': '项目详情',
-  'Project Roles': '项目角色',
   'Cluster Role': '集群角色',
   'Authorization List': '权限列表',
   'Authorized Users': '授权用户',
   'Authorization Settings': '权限设置',
-  'User Name': '用户名',
   Cluster: '集群',
   Member: '成员',
 
@@ -200,7 +197,6 @@ module.exports = {
   'Cluster Resources Management': '集群资源管理',
   'Project Resources Management': '项目资源管理',
   'Nodes View': '节点查看',
-  'Nodes Management': '节点管理',
   NODES_VIEW_DESC: '查看节点信息',
   NODES_MANAGEMENT_DESC: '管理节点，停用/启用、污点管理等',
   'Components Management': '服务组件管理',
@@ -238,7 +234,6 @@ module.exports = {
   PIPELINES_MANAGEMENT_DESC:
     '管理 DevOps 工程流水线，包含 创建/编辑/删除 等操作.',
   PIPELINES_VIEW_DESC: '查看 DevOps 工程流水线，下载制品等.',
-  'Credentials Management': '凭证管理',
   'Credentials View': '凭证查看',
   CREDENTIALS_MANAGEMENT_DESC:
     '管理 DevOps 工程凭证，包含 创建/编辑/删除 等操作.',

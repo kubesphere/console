@@ -17,17 +17,16 @@
  */
 
 module.exports = {
-  'Config Field': 'Config Field',
-  'Config Value': 'Config Value',
+  CONFIG_FIELD: 'Configuration Fields',
   ConfigMap: 'ConfigMap',
   'ConfigMap Settings': 'ConfigMap Settings',
   configmaps: 'configmaps',
   ConfigMaps: 'ConfigMaps',
-  'Enter the value of the configuration map entry or use the contents of the file':
-    'Enter the value of the configuration map entry or use the contents of the file',
-  'Modify Config': 'Modify Config',
-  'The unique key value of this configuration map entry':
-    'The unique key value of this configuration map entry',
+  ENTER_CONFIG_VALUE_DESC:
+    'Enter the value of the mapping configuration field or use the content from the file.',
+  MODIFY_CONFIG: 'Edit Configuration',
+  CONFIG_FIELD_DESC:
+    'The unique value of the key mapped by the configuration field.',
 
   CONFIGMAP_CREATE_DESC:
     'A ConfigMap is an object used to store common configuration variables, allowing the unified management of environment variables for different modules in a distributed system.',

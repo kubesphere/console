@@ -96,7 +96,7 @@ export default class ProjectUsageRank extends React.Component {
     },
     {
       sort_metric: 'namespace_pod_count',
-      title: t('PODS'),
+      title: t('POD_COUNT'),
       key: 'pod',
       width: this.rankTdWidth,
       render: node => (

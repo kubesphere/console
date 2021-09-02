@@ -199,7 +199,7 @@ export default class NetworkPoliciesModal extends React.Component {
           </RadioGroup>
         </Form.Item>
         <Form.Item
-          label={`${t('Type')}:`}
+          label={`${t('TYPE')}:`}
           rules={[{ validator: this.psValidator }]}
           ref={this.psRef}
         >

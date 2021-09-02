@@ -209,7 +209,7 @@ class BaseInfo extends React.Component {
             title={getLocalTime(detail.createTime).format(
               'YYYY-MM-DD HH:mm:ss'
             )}
-            description={t('Created Time')}
+            description={t('CREATED_AT')}
           />
           {this.enabledActions.includes('manage') && (
             <Button className={styles.action} onClick={this.showEdit}>
@@ -290,7 +290,7 @@ class BaseInfo extends React.Component {
     return (
       <Panel className={styles.network} title={t('Network Policy')}>
         {isEmpty(data) && !isLoading && (
-          <div className={styles.empty}>{t('No Available Cluster')}</div>
+          <div className={styles.empty}>{t('NO_AVAILABLE_CLUSTER')}</div>
         )}
         {data.map(cluster => {
           const clusterTemp =

@@ -24,7 +24,7 @@ module.exports = {
   'Create Volume': 'Crear volumen',
   CREATE_VOLUME_WITH_SNAPSHOT: 'CREATE_VOLUME_WITH_SNAPSHOT',
   'Custom Provisioner': 'Provisioner personalizado',
-  Default: 'Predeterminado',
+  DEFAULT: 'Predeterminado',
   'Default Storage Class': 'Clase de almacenamiento predeterminada',
   'Default Volume': 'Volumen predeterminado',
   'Delete Volume': 'Eliminar volumen',
@@ -33,28 +33,29 @@ module.exports = {
   'Enable Volume Snapshot': 'Habilitar snapshot de volumen',
   Expand: 'Expandir',
   'Expand Volume': 'Ampliar volumen',
-  Idle: 'En desuso',
-  'In Use': 'En uso',
+  AVAILABLE: 'En desuso',
+  IN_USER: 'En uso',
   'Mount Info': 'Información de montaje',
   'Mount Options': 'Opciones de montaje',
   'Mount Status': 'Estado de montaje',
   // Volumes List Page
-  MOUNT_TCAP: 'Montar',
+  MOUNT_STATUS: 'Montar',
   MOUNTED_TCAP: 'Montado',
   'Mounted Pods': 'Pods montados',
-  NOT_MOUNTED_TCAP: 'No montado',
+  NOT_MOUNTED: 'No montado',
   Parameters: 'Parámetros',
   'Parameters (key-value pairs)': 'Parámetros (pares clave-valor)',
-  PersistentVolumeClaim: 'PersistentVolumeClaim',
+  PersistentVolumeClaim: 'Volume',
   PersistentVolumes: 'PersistentVolumes',
   RECLAMATION_POLICY: 'Reclamation Policy',
-  CREATE: 'Create',
+  CREATE: 'Crear',
   Scalable: 'Escalable',
   'Set as default storage class':
     'Establecer como clase de almacenamiento predeterminada',
   'Snapshot Message': 'Mensaje de snapshot',
   'Snapshots Message': 'Mensaje de snapshots',
   'Storage Class': 'Clase de almacenamiento',
+  STORAGE_CLASS: 'Clase de almacenamiento',
   'Storage Class Name': 'Nombre de clase de almacenamiento',
   STORAGE_CLASS_SETTINGS: 'Configuraciones de clase de almacenamiento',
   'storage classes': 'clases de almacenamiento',
@@ -64,10 +65,15 @@ module.exports = {
   storageclasses: 'storageclasses',
   VOLUME_SNAPSHOT_SUPPORT: 'Soporta snapshot de volumen',
   ACCESS_MODE: 'Modo de acceso admitido',
+  ACCESS_MODE_SCAP: 'Modo de acceso admitido',
   'Used Capacity': 'Capacidad utilizada',
   'Clone Volume': 'Clon del volumen',
+  VOLUME: 'Volumen',
   VOLUMES: 'Recuento de volumen',
   'The volume name exists': 'nombre de volumen existe',
+  VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
+  VOLUME_COUNT: 'Recuento de volumen',
+  VOLUME_NAME_EXIST: 'nombre de volumen existe',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
   'Volume Template Settings': 'Volume Template Settings',
@@ -102,8 +108,7 @@ module.exports = {
     'Complete la capacidad del volumen según sea necesario, y el tamaño del volumen ' +
     'y el modo de acceso deben ser compatibles con la clase de almacenamiento y las capacidades del servidor de almacenamiento. El modo de acceso generalmente se selecciona como RWO.',
   VOLUME_STORAGE_CLASS_DESC:
-    'El administrador del clúster configura los parámetros del servidor de ' +
-    'almacenamiento y proporciona almacenamiento para el usuario por tipo.',
+    'Selecciona clase de almacenamiento para crear un tipo específico de volumen.',
   PROVISIONER_DESC: 'Proporciona el backend de almacenamiento',
   ACCESS_MODES_DESC:
     'Selecciona el modo de acceso compatible con la clase de almacenamiento.',
@@ -114,9 +119,7 @@ module.exports = {
     'ReadWriteOnce: lectura y escritura de un solo nodo. <br/> ReadOnlyMany: ' +
     'Multi-nodo de solo lectura. <br/> ReadWriteMany: lectura y escritura de ' +
     'múlti-nodos. <br/> Solo se puede usar un modo al montar.',
-  STORAGE_CLASS_DESC:
-    'Storage classes support dynamic volume provisioning, allowing administrators to create new storage volumes on demand.' +
-    'las "clases" de almacenamiento que ofrecen.',
+  STORAGE_CLASS_DESC: 'Selecciona clase de almacenamiento para crear volumen.',
   'STORAGE-CLASSES_BASEINFO_DESC':
     'El tipo de almacenamiento registra la información de configuración de un cierto tipo de almacenamiento proporcionado por el administrador. Antes de crear un tipo específico de volumen de almacenamiento, se debe configurar el tipo de almacenamiento correspondiente.',
   STORAGE_CLASS_SETTING_DESC:
@@ -150,7 +153,6 @@ module.exports = {
   VOLUME_FS_TYPE:
     'Set the file system type of the storage volume. The value can be ext3, ext4, or xfs, and it defaults to ext4.',
   MAXSIZE: 'Maximum Size',
-  TYPE: 'Type',
   MINSIZE: 'Minimum Size',
   STEPSIZE: 'Step Size',
   FSTYPE: 'File System Type',
@@ -188,7 +190,7 @@ module.exports = {
   CEPHRBD_IMAGE_FEATURES_DESC:
     'Additional function of the Ceph cluster. The value should only be set when you set imageFormat to "2".',
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
-    'Compruebe si la clase de almacenamiento está siendo utilizada por otros recursos. Si hay algún recurso dependiente de la clase de almacenamiento, primero debe deshabilitar el recurso.',
+    'Make sure if there are resources dependent on the storage class. If there are, you need to disable the resources before it the resource functions are affected.',
   CREATE_VOLUME_BY_STORAGECLASS: 'Crear volumen por clase de almacenamiento',
   CREATE_VOLUME_BY_SNAPSHOT: 'Crear volumen por snapshot',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Selecciona snapshot para crear volumen.',
@@ -207,7 +209,6 @@ module.exports = {
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',
   CLUSTER_ID: 'Cluster ID',
-  ADD_PARAMETER: 'Add',
   REST_AUTH_ENABLED: 'REST Authentication',
   REST_USER: 'REST User',
   VOLUME_TYPE: 'Volume Type',
@@ -218,4 +219,6 @@ module.exports = {
   SECRET_NAMESPACE: 'Secret Namespace',
   GID_MIN: 'GID Minimum Value',
   GID_MAX: 'GID Maximum Value',
+  CUSTOM: 'Custom',
+  PARAMETERS: 'Parameters',
 }

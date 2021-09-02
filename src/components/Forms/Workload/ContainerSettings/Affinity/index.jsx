@@ -63,32 +63,32 @@ export default class AffinityForm extends React.Component {
 
     return [
       {
-        uid: 'default',
-        label: t('Pod Default Deployment'),
-        value: {},
-        description: t(
-          'Pod replicas will be deployed according to the default policy.'
-        ),
+        value: 'default',
+        label: t('DEFAULT_RULES'),
+        affinity: {},
+        description: t('DEFAULT_RULES_DESC'),
       },
       {
-        uid: 'decentralized',
-        label: t('Pod Decentralized Deployment'),
-        value: {
+        value: 'decentralized',
+        label: t('DECENTRALIZED_SCHEDULING'),
+        affinity: {
           podAntiAffinity: affinity,
         },
-        description: t(
-          'Pod replicas will be deployed on different nodes as much as possible.'
-        ),
+        description: t('DECENTRALIZED_SCHEDULING_DESC'),
       },
       {
-        uid: 'aggregation',
-        label: t('Pod Aggregation Deployment'),
-        value: {
+        value: 'aggregation',
+        label: t('CENTRALIZED_SCHEDULING'),
+        affinity: {
           podAffinity: affinity,
         },
-        description: t(
-          'Pod replicas will be deployed on the same node as much as possible.'
-        ),
+        description: t('CENTRALIZED_SCHEDULING_DESC'),
+      },
+      {
+        value: 'custom',
+        label: t('CUSTOM_RULES'),
+        affinity: {},
+        description: t('CUSTOM_RULES_DESC'),
       },
     ]
   }
@@ -96,11 +96,11 @@ export default class AffinityForm extends React.Component {
   get policys() {
     return [
       {
-        label: t('Deploy with the Target'),
+        label: t('SCHEDULE_WITH_TARGET'),
         value: 'podAffinity',
       },
       {
-        label: t('Deploy away from the Target'),
+        label: t('SCHEDULE_AWAY_FROM_TARGET'),
         value: 'podAntiAffinity',
       },
     ]
@@ -109,11 +109,11 @@ export default class AffinityForm extends React.Component {
   get types() {
     return [
       {
-        label: t('Match as much as possible'),
+        label: t('MATCH_IF_POSSIBLE'),
         value: 'preferredDuringSchedulingIgnoredDuringExecution',
       },
       {
-        label: t('Must match'),
+        label: t('MUST_MATCH'),
         value: 'requiredDuringSchedulingIgnoredDuringExecution',
       },
     ]
@@ -122,25 +122,25 @@ export default class AffinityForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      mode: {},
+      mode: 'default',
     }
-
+    this.deploymentMode =
+      "spec.template.metadata.annotations['deployment.kubernetes.io/deploymentMode']"
     this.store = new WorkloadStore(props.module)
   }
 
   componentDidMount() {
-    const { initial } = this.props
     const affinity = get(this.props.data, 'spec.template.spec.affinity', {})
+
     if (!isEmpty(affinity)) {
       const options = this.replicasPolicyOptions
-
-      if (options.some(item => isEqual(item.value, affinity))) {
-        this.setState({ mode: affinity })
-        set(this.props.data, 'spec.template.spec.customMode', [{}])
-      } else if (initial) {
-        set(this.props.data, 'spec.template.spec.affinity', {})
+      const equalItem = options.find(item => isEqual(item.affinity, affinity))
+      if (equalItem) {
+        this.setState({ mode: equalItem.value })
+        set(this.props.data, this.deploymentMode, equalItem.value)
         delete this.props.data.spec.template.spec.customMode
       } else {
+        this.setState({ mode: 'custom' })
         const modes = Object.keys(affinity).map(item => {
           const type = Object.keys(affinity[item])[0]
           const target = get(
@@ -156,17 +156,25 @@ export default class AffinityForm extends React.Component {
             target,
           }
         })
-
-        set(this.props.data, 'spec.template.spec.affinity', {})
+        set(this.props.data, this.deploymentMode, 'custom')
         set(this.props.data, 'spec.template.spec.customMode', modes)
       }
+    } else {
+      set(this.props.data, this.deploymentMode, 'default')
     }
-
     const { cluster, namespace } = this.props
     this.store.fetchList({ cluster, namespace, limit: Infinity })
   }
 
   handleAffinityChange = mode => {
+    const item = this.replicasPolicyOptions.find(key => key.value === mode)
+    set(this.props.data, 'spec.template.spec.affinity', item.affinity)
+    if (mode === 'custom') {
+      set(this.props.data, 'spec.template.spec.customMode', [{}])
+    } else {
+      delete this.props.data.spec.template.spec.customMode
+    }
+
     this.setState({ mode })
   }
 
@@ -227,7 +235,7 @@ export default class AffinityForm extends React.Component {
 
     if (value.some(item => !this.checkItemValid(item))) {
       return callback({
-        message: t('Please complete the policy'),
+        message: t('RULE_NOT_COMPLETE'),
         field: rule.field,
       })
     }
@@ -239,7 +247,6 @@ export default class AffinityForm extends React.Component {
     const { mode } = this.state
 
     const options = this.replicasPolicyOptions
-    const affinity = get(this.props.data, 'spec.template.spec.affinity', {})
 
     const data = get(this.store, 'list.data', [])
     const targets = data.map(item => ({
@@ -251,39 +258,38 @@ export default class AffinityForm extends React.Component {
       <>
         <Form.Item>
           <TypeSelect
-            name="spec.template.spec.affinity"
+            name={this.deploymentMode}
             options={options}
             onChange={this.handleAffinityChange}
             defaultValue={options[0].value}
           />
         </Form.Item>
-        {(isEmpty(mode) ||
-          !options.some(item => isEqual(item.value, affinity))) && (
+        {mode === 'custom' && (
           <Form.Item
-            label={t('Custom Deployment Mode')}
+            label={t('CUSTOM_RULES')}
             rules={[{ validator: this.modeValidator, checkOnSubmit: true }]}
           >
             <ArrayInput
               name="spec.template.spec.customMode"
               itemType="object"
-              addText={t('Add Deployment Mode')}
+              addText={t('ADD')}
               checkItemValid={this.checkItemValid}
               onChange={this.handleChange}
             >
               <ObjectInput>
                 <Select
                   name="policy"
-                  placeholder={t('Strategy')}
+                  placeholder={t('TYPE')}
                   options={this.policys}
                 />
                 <Select
                   name="type"
-                  placeholder={t('Type')}
+                  placeholder={t('STRATEGY')}
                   options={this.types}
                 />
                 <Select
                   name="target"
-                  placeholder={t('Please input an application name')}
+                  placeholder={t('TARGET')}
                   options={targets}
                   style={{ marginLeft: 20 }}
                 />
@@ -299,8 +305,8 @@ export default class AffinityForm extends React.Component {
     const { checkable } = this.props
     return (
       <Form.Group
-        label={t('Deployment Mode')}
-        desc={t('DEPLOYMENT_MODE_DESC')}
+        label={t('POD_SCHEDULING_RULES')}
+        desc={t('POD_SCHEDULING_RULES_DESC')}
         keepDataWhenUnCheck
         checkable={checkable}
       >

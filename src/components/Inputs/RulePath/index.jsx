@@ -18,7 +18,7 @@
 
 import { get, set, isNumber } from 'lodash'
 import React from 'react'
-import { Input, Select } from '@kube-design/components'
+import { Input, Select, AutoComplete } from '@kube-design/components'
 import { ObjectInput } from 'components/Inputs'
 
 import styles from './index.scss'
@@ -82,20 +82,21 @@ export default class RulePath extends React.Component {
   }
 
   render() {
+    const options = this.services.map(item => item.value)
     return (
       <ObjectInput {...this.props} onChange={this.handleChange}>
-        <Input name="path" placeholder={t('Path')} defaultValue="/" />
-        <Select
-          className="margin-r12"
+        <Input name="path" placeholder={t('PATH')} defaultValue="/" />
+        <AutoComplete
+          className={styles.autocomplete}
           name="backend.serviceName"
           placeholder={t('PATH_SERVICE_TIP')}
-          options={this.services}
           onChange={this.handleServiceChange}
+          options={options}
         />
         <Select
           className={styles.input}
           name="backend.servicePort"
-          placeholder={t('Port')}
+          placeholder={t('PORT')}
           options={this.ports}
           searchable
         />

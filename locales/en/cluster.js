@@ -71,7 +71,7 @@ module.exports = {
   SCHEDULING_FAILURES: 'Scheduling failures',
   'Select Clusters': 'Select Clusters',
   SET_PUBLIC_CLUSTER: 'Set as a public cluster',
-  Snapshots: 'Snapshots',
+  Snapshots: 'Volume Snapshots',
   'Storage Management': 'Storage',
   SYSTEM_PROJECTS: 'System Projects',
   'The current cluster is public': 'The current cluster is public',
@@ -121,15 +121,14 @@ module.exports = {
   CHOOSE_PROVIDER_DESC:
     'KubeSphere provides a solution for quickly deploying Kubernetes clusters among mainstream service providers',
 
-  VISIBILITY_PARTIAL: 'Partially Visible',
-  VISIBILITY_PUBLIC: 'Public',
+  VISIBILITY_PARTIAL: 'Visible to some workspaces',
+  VISIBILITY_PUBLIC: 'Visible to all workspaces',
 
   MULTI_CLUSTER: 'Multi-Clusters',
 
   IMPORT_CLUSTER_DESC: 'Import an existing Kubernetes cluster.',
   SELECT_CLUSTERS_DESC: 'Select the cluster available in the workspace.',
 
-  CLUSTER_SETTINGS_DESC: 'Define cluster configuration information',
   CLUSTER_TAG: 'Tag',
   CLUSTER_TAG_DESC: 'A tag helps users identify what the cluster is used for.',
   CLUSTER_PROVIDER_DESC: 'Provider of the cluster infrastructure.',
@@ -282,15 +281,15 @@ module.exports = {
     'Member Clusters of version lower than {version} cannot use this function. Please upgrade the Member Cluster to {version} or above.',
 
   // Unbind Cluster
-  UNBIND_CLUSTER_Q: 'Are you sure you want to unbind the cluster?',
+  UNBIND_CLUSTER_Q: 'Unbind Cluster',
 
   // Cluster Visibility
+  ADMINISTRATOR: 'Administrator',
   CLUSTER_VISIBILITY: 'Cluster Visibility',
   CLUSTER_VISIBILITY_DESC:
     'Cluster visibility allows users to view and manage cluster resources in workspaces after the cluster is authorized to the workspaces.',
   EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
   TO_BE_AUTHORIZED: 'To be authorized',
-  LOGGING: 'Logging',
   EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:

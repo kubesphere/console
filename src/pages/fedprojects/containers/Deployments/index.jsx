@@ -177,6 +177,7 @@ export default class Deployments extends React.Component {
       isFederated: true,
       projectDetail: projectStore.detail,
       namespace: match.params.namespace,
+      renderScheduleTab: true,
     })
   }
 

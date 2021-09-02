@@ -112,11 +112,11 @@ export default class IPPools extends React.Component {
         ),
       },
       {
-        title: t('IP_MASK_BIT_TCAP'),
+        title: t('NETWORK_SEGMENT'),
         dataIndex: 'cidr',
       },
       {
-        title: t('USED_IP_TCAP'),
+        title: t('USED_IP_ADDRESSES'),
         dataIndex: 'status',
         render: status => {
           const capacity = get(status, 'capacity', 0)
@@ -125,7 +125,7 @@ export default class IPPools extends React.Component {
           return (
             <Text
               title={capacity - unallocated}
-              description={`${t('Total')}: ${capacity}`}
+              description={t('TOTAL_VALUE', { value: capacity })}
             />
           )
         },
@@ -134,7 +134,7 @@ export default class IPPools extends React.Component {
         title: t('WORKSPACE'),
         dataIndex: 'workspace',
         render: (workspace, record) =>
-          record.isDefault ? t('All') : workspace || t('Not Assigned'),
+          record.isDefault ? t('ALL') : workspace || t('NOT_ASSIGNED'),
       },
     ]
   }

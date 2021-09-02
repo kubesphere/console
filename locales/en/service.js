@@ -29,6 +29,7 @@ module.exports = {
     'Commonly included tags in the current workloads',
   CONTAINER_PORT: 'Container Port',
   CREATE_SERVICE: 'Create Service',
+  'Create Service': 'Create Service',
   'Create service by specifying workloads':
     'Create service by specifying workloads',
   'Create service by Yaml': 'Create service by Yaml',
@@ -45,6 +46,7 @@ module.exports = {
   'External Service': 'External Service',
   'Internal access': 'Internal access',
   INVALID_PORT_DESC: 'Please enter a valid protocol or port number.',
+  INVALID_PORT: 'Invalid port.',
   'Language Type': 'Language Type',
   'LoadBalancer IP': 'LoadBalancer IP',
   'Map Services outside the cluster': 'Map Services outside the cluster',
@@ -57,6 +59,8 @@ module.exports = {
   'Path is Required': 'Path is Required',
   ENTER_EXTERNALNAME_DESC: 'Please enter an ExternalName.',
   ENTER_PORT_NUMBER: 'Please enter a port number.',
+  'Please input ExternalName': 'Please input ExternalName',
+  PORT_EMPTY: 'Please set a port.',
   'Please input selectors that have corresponding workloads':
     'Please input selectors that have corresponding workloads',
   'Please input service name': 'Please input service name',
@@ -76,6 +80,11 @@ module.exports = {
   'Simple Service': 'Simple Service',
   SPECIFY_WORKLOAD: 'Specify Workload',
   'Specify Node': 'Specify Node',
+  'Service Type': 'Service Type',
+  services: 'services',
+  'Simple Service': 'Simple Service',
+  'Specify Workload': 'Specify Workload',
+  SPECIFY_NODE: 'Specify Node',
   'Specify Workloads': 'Specify Workloads',
   STATEFUL_SERVICE: 'Stateful Service',
   STATELESS_SERVICE: 'Stateless Service',
@@ -169,9 +178,6 @@ module.exports = {
   STICKINESS_VALUE_RANGE: 'Value range: 0–86400.',
 
   // Services
-  PORT: 'Port',
-  PROTOCOL: 'Protocol',
-  ADD: 'Add',
   LABEL_SELECTOR: 'Label Selector',
   NONE: 'None',
   UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
@@ -180,5 +186,4 @@ module.exports = {
   UNKNOWN: 'Unknown',
   EXTERNALNAME_EXAMPLE: 'Example: ',
   PORTS: 'Ports',
-  REQUIRED: 'Required',
 }

@@ -93,9 +93,9 @@ export default class PasswordConfirm extends Component {
           <Alert className="margin-b12" message={t('CONFIRM_PASSWORD_TIP')} />
           <Form data={formData} onSubmit={this.handleSubmit}>
             <Form.Item
-              label={t('Password')}
+              label={t('PASSWORD')}
               rules={[
-                { required: true, message: t('Please input password') },
+                { required: true, message: t('ENTER_PASSWORD_TIP') },
                 {
                   pattern: PATTERN_PASSWORD,
                   message: t('PASSWORD_DESC'),

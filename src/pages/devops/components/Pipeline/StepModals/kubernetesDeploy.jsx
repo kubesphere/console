@@ -230,7 +230,7 @@ export default class KubernetesDeploy extends React.Component {
         <Form.Item label={t('Kubernetes Namespace for Secret')}>
           <Input name="secretNamespace" />
         </Form.Item>
-        <Form.Item label={t('SECRET_NAME_TCAP')}>
+        <Form.Item label={t('SECRET')}>
           <Input name="secretName" />
         </Form.Item>
         <div className={styles.dockerCredentialsContent__title}>
@@ -355,7 +355,7 @@ export default class KubernetesDeploy extends React.Component {
         >
           <Form.Item
             label={t('Kubeconfig')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             desc={
               <p>
                 {t('ADD_NEW_CREDENTIAL_DESC')}

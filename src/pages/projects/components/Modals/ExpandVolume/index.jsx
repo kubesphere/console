@@ -101,7 +101,7 @@ export default class ExpandVolume extends Component {
     const { max, min, unit } = this.props
     const marks = this.getMarks()
     return (
-      <Form.Item label={t('Volume Capacity')}>
+      <Form.Item label={t('VOLUME_CAPACITY')}>
         <UnitSlider
           name="spec.resources.requests.storage"
           max={max}

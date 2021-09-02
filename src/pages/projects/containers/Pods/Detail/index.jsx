@@ -129,7 +129,7 @@ export default class PodDetail extends React.Component {
         value: t(status),
       },
       {
-        name: t('POD_IP_TCAP'),
+        name: t('POD_IP_ADDRESS'),
         value: detail.podIp,
       },
       {
@@ -149,7 +149,7 @@ export default class PodDetail extends React.Component {
         value: get(detail, 'status.qosClass'),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]

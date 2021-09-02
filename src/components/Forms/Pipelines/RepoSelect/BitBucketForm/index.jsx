@@ -132,7 +132,7 @@ export default class BitBucketForm extends GitHubForm {
           <Form.Item
             label="Bitbucket Server"
             error={errorsBody['apiUrl']}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Select
               name="apiUrl"
@@ -142,8 +142,8 @@ export default class BitBucketForm extends GitHubForm {
           </Form.Item>
 
           <Form.Item
-            label={t('Credential')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            label={t('CREDENTIAL_SI')}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             error={errorsBody['username'] || errorsBody['password']}
             desc={
               <p>

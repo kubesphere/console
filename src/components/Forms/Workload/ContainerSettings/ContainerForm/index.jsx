@@ -188,6 +188,7 @@ export default class ContaineForm extends React.Component {
             imageRegistries={imageRegistries}
             defaultContainerType={containerType}
             onContainerTypeChange={this.handleContainerTypeChange}
+            workspaceQuota={this.props.workspaceQuota}
           />
           <Ports withService={containerType !== 'init' ? withService : false} />
           <ImagePullPolicy />

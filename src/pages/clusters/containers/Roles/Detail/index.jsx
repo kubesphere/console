@@ -125,7 +125,7 @@ export default class RoleDetail extends React.Component {
 
     return [
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`),
       },
       {

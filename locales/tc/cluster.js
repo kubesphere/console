@@ -160,7 +160,6 @@ module.exports = {
 
   MULTI_CLUSTER: '多集群',
 
-  CLUSTER_SETTINGS_DESC: '定義集群配置資訊',
   CLUSTER_TAG: '標籤',
   CLUSTER_TAG_DESC: '標籤此集群的用途，例如 生產環境、測試環境、示範環境 等',
   CLUSTER_PROVIDER_DESC: '提供集群基礎設施的廠商',
@@ -308,15 +307,15 @@ module.exports = {
     '低於 {version} 版本 member 集群無法使用此功能, 請將 member 集群升級到 {version} 或以上版本。',
 
   // Unbind Cluster
-  UNBIND_CLUSTER_Q: 'Are you sure you want to unbind the cluster?',
+  UNBIND_CLUSTER_Q: 'Unbind Cluster',
 
   // Cluster Visibility
+  ADMINISTRATOR: 'Administrator',
   CLUSTER_VISIBILITY: '集群能見度',
   CLUSTER_VISIBILITY_DESC:
     'Cluster visibility allows users to view and manage cluster resources in workspaces after the cluster is authorized to the workspaces.',
   EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
   TO_BE_AUTHORIZED: 'To be authorized',
-  LOGGING: 'Logging',
   EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:

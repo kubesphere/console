@@ -86,7 +86,7 @@ export default class JobDetail extends React.Component {
     {
       key: 'rerun',
       icon: 'refresh',
-      text: t('Rerun'),
+      text: t('RERUN'),
       action: 'edit',
       onClick: this.handleRerun,
     },
@@ -159,7 +159,7 @@ export default class JobDetail extends React.Component {
         value: spec.activeDeadlineSeconds,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
