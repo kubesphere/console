@@ -133,7 +133,13 @@ module.exports = {
   TOTAL_EVENTS_TODAY:
     '今日总共收录了 <span class={className}> {events} </span> 条事件',
   NO_EVENTS_TODAY: '今日没有收录的事件',
-
+  IMPORT_GRAFANA_DASHBOARD: '导入 Grafana dashboard',
+  IMPORT_GRAFANA_JSON_FILE: '导入 Grafana JSON 文件',
+  SUPPORT_JSON_FILE: '仅支持 JSON 格式的文件',
+  IMPORT_GRAFANA_URL: '使用 Grafana dashboard URL 导入',
+  'Only one file can be uploaded': '只能上传一个文件',
+  'Need to upload a file': '需要上传一个文件',
+  'Click or drag files to this area to upload': '点击或拖动文件到此区域内上传',
   'No cluster with event query enabled': '暂无启用事件查询的集群',
   'No cluster with auditing module enabled': '暂无启用审计模块的集群',
   'No cluster with logging module enabled': '暂无启用日志模块的集群',

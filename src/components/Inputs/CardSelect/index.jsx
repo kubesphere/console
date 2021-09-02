@@ -35,23 +35,37 @@ export default class CardSelect extends Component {
     selectedClassName: styles.selected,
   }
 
-  handleClick = e => {
-    const targetValue = e.currentTarget.dataset.value
-    const { value, onChange } = this.props
+  state = {
+    value: this.props.value,
+  }
+
+  handleClick = _value => {
+    const targetValue = _value
+    const { value } = this.state
+    const { onChange } = this.props
 
     if (isArray(value)) {
       if (value.includes(targetValue)) {
-        onChange(value.filter(item => item !== targetValue))
+        this.setState(
+          { value: value.filter(item => item !== targetValue) },
+          () => {
+            onChange(value.filter(item => item !== targetValue))
+          }
+        )
       } else {
-        onChange([...value, targetValue])
+        this.setState({ value: [...value, targetValue] }, () => {
+          onChange([...value, targetValue])
+        })
       }
     } else {
-      onChange(targetValue)
+      this.setState({ value: targetValue }, () => {
+        onChange(targetValue)
+      })
     }
   }
 
   selectedCheck = optValue => {
-    const { value } = this.props
+    const { value } = this.state
     return isArray(value) ? value.includes(optValue) : optValue === value
   }
 
@@ -64,10 +78,11 @@ export default class CardSelect extends Component {
             <li
               key={value}
               data-value={value}
-              onClick={this.handleClick}
+              onClick={() => this.handleClick(value)}
               className={classnames({
                 [selectedClassName]: this.selectedCheck(value),
               })}
+              style={{ paddingTop: description ? '12px' : '18px' }}
             >
               <figure>
                 {image ? <img src={image} /> : <Icon name={icon} />}

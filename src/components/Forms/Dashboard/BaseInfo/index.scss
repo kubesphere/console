@@ -4,15 +4,31 @@
 .templateList {
   display: flex;
   flex-wrap: wrap;
-  margin: 10px -10px;  
+  margin: 10px -10px;
 
   & > li {
-    height: auto;
-    margin: 10px;
+    width: 220px;
+    height: 100px;
+    margin-left: 12px;
+    padding-top: 18px;
+    flex-basis: 220px;
 
-    flex-basis: 22%;
+    figure {
+      width: 40px;
+      height: 40px;
+      padding: 4px;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    h3 {
+      margin-top: -8px;
+    }
 
     p {
+      margin-top: -2px;
       color: $dark-color01;
     }
   }

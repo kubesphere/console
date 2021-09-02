@@ -134,7 +134,13 @@ module.exports = {
   TOTAL_EVENTS_TODAY:
     '今日總共收錄了 <span class={className}> {events} </span> 條事件',
   NO_EVENTS_TODAY: '今日沒有收錄的事件',
-
+  IMPORT_GRAFANA_DASHBOARD: '導入 Grafana dashboard',
+  IMPORT_GRAFANA_JSON_FILE: '導入 Grafana JSON 文件',
+  IMPORT_GRAFANA_URL: '使用 Grafana dashboard URL 導入',
+  SUPPORT_JSON_FILE: '僅支持 JSON 格式的文件',
+  'Only one file can be uploaded': '只能上傳一個文化',
+  'Need to upload a file': '需要上傳一個文件',
+  'Click or drag files to this area to upload': '點擊或拖動檔案到此區域內上傳',
   'No cluster with event query enabled': '暫無啟用事件查詢的集群',
   'No cluster with auditing module enabled': '暫無啟用審計模組的集群',
   'No cluster with logging module enabled': '暫無啟用紀錄模組的集群',

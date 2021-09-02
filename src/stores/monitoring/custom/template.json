@@ -659,9 +659,8 @@
       ],
       "title": "Elasticsearch Overview"
     },
-    "description": "Elasticsearch Exporter",
     "name": "Elasticsearch",
-    "logo": "/assets/elasticsearch.svg"
+    "logo": "/assets/elasticsearch-das.svg"
   },
   "MySQL Overview": {
     "settings": {
@@ -1183,9 +1182,8 @@
       ],
       "title": "MySQL Overview"
     },
-    "description": "Prometheus Mysql Exporter",
     "name": "MySQL",
-    "logo": "/assets/mysql@2x.png"
+    "logo": "/assets/mysql.svg"
   },
   "Redis Overview": {
     "settings": {
@@ -1495,8 +1493,7 @@
       "title": "Redis Overview"
     },
     "name": "Redis",
-    "description": "Prometheus Redis Exporter",
-    "logo": "/assets/redis.svg"
+    "logo": "/assets/redis-das.svg"
   },
   "Jenkins Overview": {
     "settings": {
@@ -1950,8 +1947,17 @@
       "title": "Jenkins Overview"
     },
     "name": "Jenkins",
-    "description": "Prometheus Jenkins Exporter",
     "logo": "/assets/jenkins.svg"
+  },
+  "Grafana": {
+    "settings": {
+      "datasource": "prometheus",
+      "panels": [],
+      "title": "Grafana"
+    },
+    "name": "Grafana",
+    "description": "IMPORT_GRAFANA_DASHBOARD",
+    "logo": "/assets/grafana.svg"
   },
   "Custom Monitoring": {
     "settings": {
@@ -1960,7 +1966,7 @@
       "title": "Custom Monitoring"
     },
     "name": "Custom",
-    "description": "Customize Your Exporter",
+    "description": "CUSTOM_MONITORING_DASHBOARD",
     "logo": "/assets/prometheus.svg"
   }
 }
