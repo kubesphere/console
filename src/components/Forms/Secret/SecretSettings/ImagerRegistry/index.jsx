@@ -163,7 +163,7 @@ export default class ImageRegistry extends Component {
           <Column>
             <Wrapper
               label={t('REGISTRY_ADDRESS_TCAP')}
-              desc={t('Example: docker.io')}
+              desc={t('REGISTRY_ADDRESS_TIP')}
               required
             >
               <SchemeInput value={url} onChange={this.handleUrlChange} />

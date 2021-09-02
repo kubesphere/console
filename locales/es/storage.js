@@ -39,16 +39,16 @@ module.exports = {
   'Mount Options': 'Opciones de montaje',
   'Mount Status': 'Estado de montaje',
   // Volumes List Page
-  MOUNT_TCAP: 'Montar',
+  MOUNT_STATUS: 'Montar',
   MOUNTED_TCAP: 'Montado',
   'Mounted Pods': 'Pods montados',
-  NOT_MOUNTED_TCAP: 'No montado',
+  NOT_MOUNTED: 'No montado',
   Parameters: 'Parámetros',
   'Parameters (key-value pairs)': 'Parámetros (pares clave-valor)',
-  PersistentVolumeClaim: 'PersistentVolumeClaim',
+  PersistentVolumeClaim: 'Volume',
   PersistentVolumes: 'PersistentVolumes',
   RECLAMATION_POLICY: 'Reclamation Policy',
-  CREATE: 'Create',
+  CREATE: 'Crear',
   Scalable: 'Escalable',
   'Set as default storage class':
     'Establecer como clase de almacenamiento predeterminada',
@@ -68,6 +68,8 @@ module.exports = {
   ACCESS_MODE_SCAP: 'Modo de acceso admitido',
   'Used Capacity': 'Capacidad utilizada',
   'Clone Volume': 'Clon del volumen',
+  VOLUME: 'Volumen',
+  VOLUMES: 'Recuento de volumen',
   'The volume name exists': 'nombre de volumen existe',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
   VOLUME_COUNT: 'Recuento de volumen',
@@ -106,8 +108,7 @@ module.exports = {
     'Complete la capacidad del volumen según sea necesario, y el tamaño del volumen ' +
     'y el modo de acceso deben ser compatibles con la clase de almacenamiento y las capacidades del servidor de almacenamiento. El modo de acceso generalmente se selecciona como RWO.',
   VOLUME_STORAGE_CLASS_DESC:
-    'El administrador del clúster configura los parámetros del servidor de ' +
-    'almacenamiento y proporciona almacenamiento para el usuario por tipo.',
+    'Selecciona clase de almacenamiento para crear un tipo específico de volumen.',
   PROVISIONER_DESC: 'Proporciona el backend de almacenamiento',
   ACCESS_MODES_DESC:
     'Selecciona el modo de acceso compatible con la clase de almacenamiento.',
@@ -118,9 +119,7 @@ module.exports = {
     'ReadWriteOnce: lectura y escritura de un solo nodo. <br/> ReadOnlyMany: ' +
     'Multi-nodo de solo lectura. <br/> ReadWriteMany: lectura y escritura de ' +
     'múlti-nodos. <br/> Solo se puede usar un modo al montar.',
-  STORAGE_CLASS_DESC:
-    'Storage classes support dynamic volume provisioning, allowing administrators to create new storage volumes on demand.' +
-    'las "clases" de almacenamiento que ofrecen.',
+  STORAGE_CLASS_DESC: 'Selecciona clase de almacenamiento para crear volumen.',
   'STORAGE-CLASSES_BASEINFO_DESC':
     'El tipo de almacenamiento registra la información de configuración de un cierto tipo de almacenamiento proporcionado por el administrador. Antes de crear un tipo específico de volumen de almacenamiento, se debe configurar el tipo de almacenamiento correspondiente.',
   STORAGE_CLASS_SETTING_DESC:

@@ -106,10 +106,8 @@ export default class BaseInfo extends React.Component {
             <Column>
               <Form.Item
                 label={t('PROJECT')}
-                desc={t('PROJECT_DESC')}
-                rules={[
-                  { required: true, message: t('Please select a project') },
-                ]}
+                desc={t('SELECT_PROJECT_DESC')}
+                rules={[{ required: true, message: t('PROJECT_EMPTY_DESC') }]}
               >
                 <ProjectSelect
                   name="metadata.namespace"
@@ -132,12 +130,13 @@ export default class BaseInfo extends React.Component {
           <Column>
             <Form.Item
               label={t('PROJECT_ROLE_SI')}
-              desc={t('PROJECT_ROLE_DESC')}
+              desc={t('SELECT_PROJECT_ROLE_DESC')}
             >
               <RoleSelect
                 name="metadata.annotations['iam.kubesphere.io/role']"
                 cluster={cluster}
                 namespace={namespace}
+                placeholder=" "
               />
             </Form.Item>
           </Column>

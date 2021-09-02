@@ -35,6 +35,8 @@ module.exports = {
   PersistentVolumeClaim: '儲存卷',
   'Volume Usage': '儲存卷用量',
   VOLUME_COUNT: '儲存卷數量',
+  VOLUME: '儲存卷',
+  VOLUMES: '儲存卷數量',
   'Create Volume': '創建儲存卷',
   'Delete Volume': '刪除儲存卷',
   'storage classes': '儲存類型',
@@ -45,12 +47,12 @@ module.exports = {
   STORAGE_CLASS_SETTINGS: '儲存類型設置',
   'Mount Info': '掛載資訊',
   // Volumes List Page
-  MOUNT_TCAP: '掛載',
+  MOUNT_STATUS: '掛載',
   MOUNTED_TCAP: '已掛載',
-  NOT_MOUNTED_TCAP: '未掛載',
+  NOT_MOUNTED: '未掛載',
   Scalable: '可擴容性',
   RECLAMATION_POLICY: '回收機制',
-  CREATE: 'Create',
+  CREATE: '創建',
   DELETE_STORAGE_TIP: '如果儲存卷正在被掛載時，等待工作負載被刪除時一同刪除。',
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce：單個節點讀寫。<br/>ReadOnlyMany：多節點唯讀。<br/>ReadWriteMany：多節點讀寫。<br/>掛載時只能使用一種模式。',
@@ -97,8 +99,7 @@ module.exports = {
     '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
   VOLUME_CREATE_DESC:
     '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
-  STORAGE_CLASS_DESC:
-    'Storage classes support dynamic volume provisioning, allowing administrators to create new storage volumes on demand.',
+  STORAGE_CLASS_DESC: '選擇已有的存儲類型來創建存儲卷。',
   STORAGE_CLASS_CREATE_DESC:
     '儲存類型 (StorageClass) 是由集群管理員配置儲存服務端參數，並按類型提供儲存給集群用戶使用。',
   'STORAGE-CLASSES_BASEINFO_DESC':
@@ -111,20 +112,19 @@ module.exports = {
 
   PROVISIONER_DESC: '提供後端儲存',
 
-  VOLUME_STORAGE_CLASS_DESC:
-    '由集群管理員配置儲存服務端參數，並按類型提供儲存給用戶使用。',
+  VOLUME_STORAGE_CLASS_DESC: '選擇一個存儲類型來創建具體種類的存儲卷。',
 
   ACCESS_MODES_DESC: '選擇儲存類型支持的訪問模式',
 
-  WHAT_IS_STORAGE_CLASS_Q: '什麼是儲存卷類型?',
+  WHAT_IS_STORAGE_CLASS_Q: '什麼是存儲類型?',
   WHAT_IS_STORAGE_CLASS_A:
-    '儲存卷類型 (StorageClass) 是由集群管理員配置儲存服務端的參數，並按類型提供儲存給集群用戶使用。',
+    '存儲類型（Storage Class）是由集群管理員配置的多種存儲類型，不同的存儲類型為集群用戶提供不同類型的存儲卷。',
 
-  WHAT_IS_LOCAL_VOLUME_Q: '什麼是本地儲存卷 (Local Volume) ?',
+  WHAT_IS_LOCAL_VOLUME_Q: '什麼是本地儲存卷（Local Volume）?',
   WHAT_IS_LOCAL_VOLUME_A:
     '本地儲存卷表示掛載的本地儲存設備，如硬碟、分割區或目錄。',
   CHOOSE_STORAGE_SYSTEM_TIP: '選擇您需要儲存系統',
-  PROVISIONER_DEPENDENCE_DESC: '儲存系統需要部署相關的儲存插件来提供服務',
+  PROVISIONER_DEPENDENCE_DESC: '儲存系統需要部署相關的儲存插件来提供服務。',
 
   'Expand Volume': '儲存卷擴容',
   VOLUME_EXPAND_TIPS:
@@ -204,7 +204,7 @@ module.exports = {
 
   CREATE_VOLUME_BY_STORAGECLASS: '通過儲存類型',
   CREATE_VOLUME_BY_SNAPSHOT: '通過儲存卷快照創建',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: '選擇已有的儲存卷快照並行創建',
+  SELECT_SNAPSHOT_TO_CREATE_VOLUME: '選擇已有的儲存卷快照來創建存儲卷。',
 
   CLUSTER_VOLUME_DIFF_DESC: '可針對不同集群，選擇不同的儲存類型',
 

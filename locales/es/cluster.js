@@ -73,7 +73,7 @@ module.exports = {
   SCHEDULING_FAILURES: 'Programar pods fallidos',
   'Select Clusters': 'Seleccionar clústeres',
   SET_PUBLIC_CLUSTER: 'Establecer como clúster público',
-  Snapshots: 'Snapshots',
+  Snapshots: 'Volume Snapshots',
   'Storage Management': 'Storage',
   SYSTEM_PROJECTS: 'Proyectos de Sistema',
   'The current cluster is public': 'El clúster actual es público.',

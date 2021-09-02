@@ -159,11 +159,11 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: t('MOUNT_TCAP'),
+        title: t('MOUNT_STATUS'),
         dataIndex: 'inUse',
         isHideable: true,
         width: '14%',
-        render: inUse => (inUse ? t('MOUNTED_TCAP') : t('NOT_MOUNTED_TCAP')),
+        render: inUse => (inUse ? t('MOUNTED_TCAP') : t('NOT_MOUNTED')),
       },
       {
         title: t('CREATED_AT'),

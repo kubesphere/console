@@ -26,18 +26,19 @@ module.exports = {
   'Auto Generate': 'Autogenerar',
   'Click to visit': 'Haz clic para visitar',
   'Create Route': 'Crear ruta',
-  EDIT_ANNOTATIONS_TCAP: 'Editar annotations',
-  EDIT_RULES_TCAP: 'Editar reglas',
+  EDIT_ANNOTATION: 'Editar annotation',
+  EDIT_RULE: 'Editar regla',
   GATEWAY_ADDRESS_TCAP: 'Dirección del gateway',
   'Gateway IP': 'IP del gateway',
   'Gateway Type': 'Tipo de gateway',
   DOMAIN_NAME_TCAP: 'Domain Name',
   INVALID_DOMAIN_TIP: 'Invalid domain name',
-  'Invalid paths': 'Rutas inválidas',
+  INVALID_PATH_TIP: 'Establezca una ruta correcta',
   MODE_TCAP: 'Modo',
   PATH_PL: 'Rutas',
-  ADD_ROUTE_RULE_DESC: 'Agrega al menos una regla de enrutamiento.',
-  HOSTNAME_TIP: 'Introduce el nombre de host',
+  ADD_ROUTE_RULE_DESC:
+    'Agregar una regla de ruta para asignar un nombre de dominio a un servicio.',
+  DOMAIN_NAME_TIP: 'Ingrese un nombre de dominio',
   PATH_SERVICE_TIP: 'Selecciona un servicio',
   Route: 'Ruta',
   ROUTE_RULES_TCAP: 'Reglas de ruta',
@@ -52,9 +53,9 @@ module.exports = {
   ROUTE_ANNOTATION_DESC:
     'Puedes definir el comportamiento de la ruta agregando annotations a la ruta. Consulta <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">Annotations</a> para obtener una lista detallada de las annotations disponibles.',
   RULE_SETTING_MODE_AUTO:
-    'Al configurar el acceso DNS y cambiar el nombre de dominio a {$hostname} + {$gateway address} + nip.io, podrás acceder al servicio a través de {$hostname}.{$gateway address} .nip.io:{$NodePort}. <br/>Asegúrate de estar en un entorno de red capaz de acceder a la dirección de la puerta de enlace.',
+    'Al configurar el acceso DNS y cambiar el nombre de dominio a &ltService name&gt + &ltProject name&gt + &ltGateway address&gt + nip.io, podrás acceder al servicio a través de &ltService name&gt.&ltProject name&gt.&ltGateway address&gt.nip.io:&ltNodePort&gt. <br/>Asegúrate de estar en un entorno de red capaz de acceder a la dirección de la puerta de enlace.',
   RULE_SETTING_MODE_SPECIFY:
-    'Asegúrate de que el nombre de dominio establecido pueda resolverse en la dirección IP del portal de acceso. <br/>Si se encuentra en un entorno de nube privada, modifica el archivo de host local y luego accede a través de {$domain name}:{$node port}.',
+    'Especifique un nombre de dominio personalizado y use el archivo de hosts local o un servidor DNS para resolver el nombre de dominio en la dirección IP de la puerta de enlace.',
   GATEWAY_SERVICE_MESH_STATUS_ON: 'Activado',
   GATEWAY_SERVICE_MESH_STATUS_OFF: 'Desactivado',
   INGRESS_CONTROLLER_NODEPORT_DESC:
@@ -62,7 +63,7 @@ module.exports = {
   INGRESS_CONTROLLER_LOADBALANCER_DESC:
     'Para usar un LoadBalancer de QingCloud como gateway, primero implementa el complemento QingCloud Cloud Controller Manager.',
   NO_INTERNET_ACCESS_TIP:
-    'La dirección de gateway no se encuentra en el proyecto actual, por lo que no puede usar el modo generado automáticamente. Ponte en contacto con el administrador de tu proyecto para activarlo en <strong>Acceso a Internet</strong> .',
+    'Para usar la generación automática, comuníquese con el administrador del proyecto para configurar el método de acceso a la puerta de enlace en la configuración avanzada del proyecto.',
   UNABLE_CREATE_ROUTE_TIP:
     'No se puede crear la ruta de la aplicación puesto que la dirección de gateway disponible no se encuentra en el proyecto actual.',
   GATEWAY_APPLICATION_GOVERNANCE_TIP:

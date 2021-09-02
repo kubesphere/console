@@ -27,8 +27,6 @@ module.exports = {
   CONFIGMAP_CREATE_DESC:
     '配置字典是儲存通用的配置變量的，用戶可以將分布式系統中用於不同模組的環境變量統一到一個對象中管理',
   MODIFY_CONFIG: '修改配置',
-  'The unique key value of this configuration map entry':
-    '此配置映射條目的唯一 key 值',
-  'Enter the value of the configuration map entry or use the contents of the file':
-    '輸入配置映射條目的值或使用文件的内容',
+  CONFIG_FIELD_DESC: '此配置映射條目的唯一 key 值。',
+  ENTER_CONFIG_VALUE_DESC: '輸入配置映射條目的值或使用文件的内容。',
 }

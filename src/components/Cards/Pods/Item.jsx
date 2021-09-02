@@ -195,7 +195,7 @@ export default class PodItem extends React.PureComponent {
 
   renderPodIPContent = data => (
     <div className={styles.ipTip}>
-      <div>{t('POD_IP_TCAP')}</div>
+      <div>{t('POD_IP_ADDRESS')}</div>
       <ul>
         {data.map(item => (
           <li key={item}>
@@ -276,7 +276,7 @@ export default class PodItem extends React.PureComponent {
               </Tooltip>
             )}
           </div>
-          <p>{t('POD_IP_TCAP')}</p>
+          <p>{t('POD_IP_ADDRESS')}</p>
         </div>
         {this.renderMonitorings()}
         <div className={styles.arrow}>

@@ -87,7 +87,7 @@ export default class ModifyModal extends React.Component {
     return (
       <Modal.Form
         width={600}
-        title={title || t('MODIFY_SERVICE_ACCOUNT_ROLE')}
+        title={title || t('CHANGE_ROLE')}
         icon="client"
         data={formData}
         onOk={this.handleOk}
@@ -100,6 +100,7 @@ export default class ModifyModal extends React.Component {
             name="metadata.annotations['iam.kubesphere.io/role']"
             cluster={cluster}
             namespace={namespace}
+            placeholder=" "
           />
         </Form.Item>
       </Modal.Form>

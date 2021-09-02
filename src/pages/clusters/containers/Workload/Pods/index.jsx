@@ -91,7 +91,7 @@ export default class Pods extends React.Component {
           type="pod"
         />
       ) : (
-        t(type)
+        t(type.toUpperCase())
       )
 
     return desc
@@ -116,7 +116,7 @@ export default class Pods extends React.Component {
         render: this.renderNode,
       },
       {
-        title: t('POD_IP_TCAP'),
+        title: t('POD_IP_ADDRESS'),
         dataIndex: 'podIp',
         isHideable: true,
         width: '15%',

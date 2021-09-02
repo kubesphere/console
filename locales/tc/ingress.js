@@ -22,12 +22,12 @@ module.exports = {
   ADD_PATH_TIP: '請添加至少一個路徑。',
   Rules: '規則',
   EDIT_RULES_TCAP: '編輯規則',
-  EDIT_ANNOTATIONS_TCAP: '編輯注解',
+  EDIT_ANNOTATION: '編輯注解',
   ROUTE_RULES_TCAP: '路由規則',
   GATEWAY_ADDRESS_TCAP: '網關地址',
-  HOSTNAME_TIP: '請輸入 Hostname。',
+  DOMAIN_NAME_TIP: '請輸入域名。',
   'Click to visit': '點擊訪問',
-  PATH_SERVICE_TIP: '服務（Service）',
+  PATH_SERVICE_TIP: '服務',
   ADD_PATH_TCAP: '添加路徑',
   'Please select a service': '請選擇一個服務',
   'Add Path': '添加 Path',
@@ -49,7 +49,7 @@ module.exports = {
   PATH_PL: '路徑',
   DOMAIN_NAME_TCAP: '域名',
 
-  'Invalid paths': '請填寫正確路徑',
+  INVALID_PATH_TIP: '請填寫正確路徑。',
 
   ROUTE_DESC:
     '應用路由提供一種聚合服務的方式，您可以將集群的内部服務通過一個外部可訪問的 IP 地址暴露給集群外部。',
@@ -66,19 +66,20 @@ module.exports = {
   GATEWAY_APPLICATION_GOVERNANCE_TIP:
     '如果您不需要使用應用治理的功能，無需打開此項；如果您需要使用應用治理的 Tracing 功能，請打開開此項。打開此項後，如果您的應用路由無法訪問，請檢查應用路由中是否添加 `nginx.ingress.kubernetes.io/service-upstream: true` 注解，如無，請手動添加。',
 
-  ADD_ROUTE_RULE_DESC: '請至少添加一個路由規則。',
+  ADD_ROUTE_RULE_DESC: '添加一個路由規則將域名映射至服務。',
 
   UNABLE_TO_ACCESS_TIP:
     '● 請確保您設置的域名可以解析到訪問入口的 IP 地址;<br/>● 如果在私有雲環境中，請修改本地的 host 檔案，並通過 域名+節點端口 的方式來訪問;<br/>● 通過配置 DNS 訪問，將域名修改為 hostname + 網關地址 + nip.io，然後可以通過 hostname.網關地址.nip.io:節點端口 的形式來訪問服務;<br/>● 如果通過域名訪問被拒絕，請確認您的域名是真實而且已經申請通過。',
 
   NO_INTERNET_ACCESS_TIP:
-    '目前項目中沒有找到可用的網關地址，因此您無法使用自動生成模式。請聯繫您的項目管理員在 <strong>高級設置</strong> 中設置外網訪問方式',
-  UNABLE_CREATE_ROUTE_TIP: '目前項目中沒有找到可用的網關地址，無法創建應用路由',
+    '若要使用自動生成模式，請聯系項目管理員在此項目的高級設置中設置網關訪問方式。',
+  UNABLE_CREATE_ROUTE_TIP:
+    '目前項目中沒有找到可用的網關地址，無法創建應用路由。',
 
   RULE_SETTING_MODE_AUTO:
-    '通過配置 DNS 訪問，將域名修改為 hostname + 網關地址 + nip.io，然後可以通過 hostname.網關地址.nip.io:節點端口 的形式來訪問服務;<br/>請確保所在網路環境可以正常訪問網關地址。',
+    '配置路徑以自動生成域名，域名格式為 &lt服務名稱&gt + &lt項目名稱&gt + &lt網關地址&gt + nip.io，然後可以通過 &lt服務名稱&gt.&lt項目名稱&gt.&lt網關地址&gt.nip.io:&ltNodePort&gt 的形式來訪問服務。<br/>請確保所在網路環境可以正常訪問網關地址。',
   RULE_SETTING_MODE_SPECIFY:
-    '請確保您設置的域名可以解析到訪問入口的 IP 地址;<br/>如果在私有雲環境中，請修改本地的 host 檔案，並通過 域名+節點端口 的方式來訪問',
+    '指定自定義域名，通過本地 hosts 文件或 DNS 服務器將域名解析為網關 IP 地址。',
 
   GATEWAY_SERVICE_MESH_STATUS_ON: '已開啟',
   GATEWAY_SERVICE_MESH_STATUS_OFF: '未開啟',

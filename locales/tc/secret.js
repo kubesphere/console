@@ -20,43 +20,45 @@ module.exports = {
   secrets: '密鑰',
   Secrets: '密鑰',
   Secret: '密鑰',
-  SECRET_NAME_TCAP: '保密字典名稱',
-  'Config Number': '配置項數量',
-  'Edit Secret': '編輯密鑰',
+  SECRET: '保密字典',
+  SECRET_FIELD_COUNT: '字段數量',
+  EDIT_SECRET: '編輯保密字典',
   SECRET_SETTINGS_TCAP: '密鑰設置',
   PRIVATE_KEY_TCAP: '私鑰',
-  IMAGE_REGISTRY_SECRET_TCAP: '鏡像倉庫密鑰',
-  ENTER_CREDENTIAL_TIP: '請輸入憑證',
-  ENTER_PRIVATE_KEY_DESC: '請輸入私鑰',
-  ENTER_DATA_DESC: '請輸入數據',
-  Unverified: '鏡像倉庫密鑰驗證失敗',
-  SECRET_TYPE_DESC: '可以選擇也可以自定義一個密鑰類型',
+  IMAGE_REGISTRY_SECRET_SCAP: '鏡像倉庫保密字典',
+  ENTER_CREDENTIAL_TIP: '請輸入憑證。',
+  ENTER_PRIVATE_KEY_DESC: '請輸入私鑰。',
+  ENTER_DATA_DESC: '請添加數據。',
+  Unverified: '鏡像倉庫密鑰驗證失敗。',
+  SECRET_TYPE_DESC: '選擇一個保密字典類型',
 
   SECRET_DESC:
-    '密鑰 (Secret) 是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
+    '保密字典（Secret）是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
   SECRET_CREATE_DESC:
-    '密鑰 (Secret) 是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
+    '保密字典是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
 
-  SECRET_NO_CHINESE_CODE_DESC: '密鑰中不能包含中文字元',
+  SECRET_NO_CHINESE_CODE_DESC:
+    '保密字典的鍵必須由字母數字字符、連字符（-）、下劃線（_）或句點（.）組成。',
 
   REGISTRY_ADDRESS_TCAP: '倉庫地址',
-  REGISTRY_SECRET_VER_ERR: '鏡像倉庫校驗失敗',
-  REGISTRY_SECRET_VER_SUC: '鏡像倉庫校驗通過',
-  ACCOUNT_PASSWORD_SECRET_TCAP: '帳號密碼密鑰',
+  REGISTRY_SECRET_VER_ERR: '鏡像倉庫驗證失敗。',
+  REGISTRY_SECRET_VER_SUC: '鏡像倉庫驗證通過。',
+  ACCOUNT_PASSWORD_SECRET_SCAP: '帳號密碼保密字典',
 
   DATA: '數據',
   ADD_DATA_TCAP: '添加數據',
   EDIT_DATA_TCAP: '編輯數據',
-  ADD_DATA_DESC: '添加鍵/值對形式數據',
+  ADD_DATA_DESC: '添加鍵值對數據。',
 
   DATA_KEY: '鍵（Key）',
   DATA_VALUE: '值(Value)',
-  'Example: docker.io': '例：docker.io',
+  REGISTRY_ADDRESS_TIP: '設置鏡像倉庫地址，例如 docker.io。',
 
-  IMAGE_REGISTRY_REQUIRED_DESC:
-    '鏡像倉庫密鑰需要至少包含倉庫地址、用戶名稱和密碼資訊',
+  IMAGE_REGISTRY_REQUIRED_DESC: '請設置倉庫地址、用戶名和密碼信息。',
 
-  IMAGE_REGISTRY_VALIDATE_TIP: '創建鏡像倉庫密鑰前, 請先驗證密鑰是否可用',
+  IMAGE_REGISTRY_VALIDATE_TIP: '創建鏡像倉庫密鑰前, 請先驗證用戶名和密碼。',
 
-  'Please input the registry address': '請輸入鏡像倉庫地址',
+  'Please input the registry address': '請輸入鏡像倉庫地址。',
+  // Secret Type Drop-down List
+  SECRET_VALUE_LABEL: '{value}（{label}）',
 }

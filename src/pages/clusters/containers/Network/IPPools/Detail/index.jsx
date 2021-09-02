@@ -130,11 +130,11 @@ export default class IPPoolDetail extends React.Component {
 
     return [
       {
-        name: t('IP_MASK_BIT_TCAP'),
+        name: t('NETWORK_SEGMENT'),
         value: detail.cidr,
       },
       {
-        name: t('Mask'),
+        name: t('MASK'),
         value: block.mask,
       },
       {

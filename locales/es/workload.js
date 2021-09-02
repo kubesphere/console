@@ -19,7 +19,7 @@
 module.exports = {
   SELECT_PROJECT_DESC:
     'Select a project in which the resource is to be created.',
-  PROJECT_EMPTY_DESC: 'Please select a project',
+  PROJECT_EMPTY_DESC: 'Please select a project.',
   REPLICA_LOW_SI: 'replica',
   REPLICA_LOW_PL: 'replicas',
   IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} layers',
@@ -273,9 +273,8 @@ module.exports = {
   'Pod CPU Request': 'Solicitud de CPU para el pod',
   'Pod Decentralized Deployment': 'Despliegue descentralizado de pod',
   'Pod Default Deployment': 'Despliegue predeterminado del pod',
-  POD_IP_TCAP: 'IP del POD',
+  POD_IP_ADDRESS: 'IP del POD',
   DECENTRALIZED_SCHEDULING: 'Despliegue descentralizado de pod',
-  'Pod IP': 'IP del POD',
   'Pod Memory Request': 'Solicitud de memoria de pod',
   POD_REPLICAS: 'Réplicas de pod',
   DEFAULT_RULES: 'Default Rules',
