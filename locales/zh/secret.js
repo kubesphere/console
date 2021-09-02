@@ -26,6 +26,7 @@ module.exports = {
   SECRET_SETTINGS_TCAP: '保密字典设置',
   PRIVATE_KEY_TCAP: '私钥',
   IMAGE_REGISTRY_SECRET_SCAP: '镜像仓库保密字典',
+  IMAGE_REGISTRY_SECRET_TCAP: '镜像仓库保密字典',
   ENTER_CREDENTIAL_TIP: '请输入凭证。',
   ENTER_PRIVATE_KEY_DESC: '请输入私钥。',
   ENTER_DATA_DESC: '请添加数据。',
@@ -44,6 +45,7 @@ module.exports = {
   REGISTRY_SECRET_VER_ERR: '镜像仓库验证失败。',
   REGISTRY_SECRET_VER_SUC: '镜像仓库验证通过。',
   ACCOUNT_PASSWORD_SECRET_SCAP: '帐户密码保密字典',
+  ACCOUNT_PASSWORD_SECRET_TCAP: '帐户密码保密字典',
 
   DATA: '数据',
   ADD_DATA_TCAP: '添加数据',
