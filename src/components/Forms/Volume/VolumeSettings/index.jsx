@@ -39,10 +39,10 @@ const CREATE_TYPE_OPTIONS = [
     icon: 'database',
     value: false,
     get label() {
-      return t('CREATE_VOLUME_BY_STORAGECLASS')
+      return t('CREATE_VOLUME_BY_STORAGE_CLASS')
     },
     get description() {
-      return t('STORAGE_CLASS_DESC')
+      return t('SELECT_STORAGE_CLASS_CREATE_VOLUME')
     },
   },
 ]

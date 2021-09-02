@@ -99,7 +99,8 @@ module.exports = {
     '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
   VOLUME_CREATE_DESC:
     '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
-  STORAGE_CLASS_DESC: '選擇已有的存儲類型來創建存儲卷。',
+  STORAGE_CLASS_DESC:
+    '存儲類型（StorageClass）支持動態卷供應，使管理員能夠按需創建新的存儲卷。',
   STORAGE_CLASS_CREATE_DESC:
     '儲存類型 (StorageClass) 是由集群管理員配置儲存服務端參數，並按類型提供儲存給集群用戶使用。',
   'STORAGE-CLASSES_BASEINFO_DESC':
@@ -202,9 +203,10 @@ module.exports = {
     '儲存卷快照表示儲存卷的時間點副本。快照可用於配置新卷（預先填充快照數據）或將現有儲存卷還原到先前狀態（由快照表示）',
   WHAT_IS_VOLUME_SNAPSHOTS: '什麼是儲存卷快照',
 
-  CREATE_VOLUME_BY_STORAGECLASS: '通過儲存類型',
+  CREATE_VOLUME_BY_STORAGE_CLASS: '通過儲存類型',
   CREATE_VOLUME_BY_SNAPSHOT: '通過儲存卷快照創建',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: '選擇已有的儲存卷快照來創建存儲卷。',
+  SELECT_STORAGE_CLASS_CREATE_VOLUME: '選擇已有的存儲類型來創建存儲卷。',
 
   CLUSTER_VOLUME_DIFF_DESC: '可針對不同集群，選擇不同的儲存類型',
 
