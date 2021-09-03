@@ -151,7 +151,9 @@ export default class VolumeDetail extends React.Component {
       action: 'create',
       disabled: this.allowSnapshot,
       onClick: () => {
-        this.trigger('volume.create.snapshot', {})
+        this.trigger('volume.create.snapshot', {
+          detail: this.store.detail,
+        })
       },
     },
     {

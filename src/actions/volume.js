@@ -120,11 +120,21 @@ export default {
     },
   },
   'volume.create.snapshot': {
-    on({ store, ...props }) {
-      const options = store.snapshotType.items.map(item => ({
-        label: item.metadata.name,
-        value: item.metadata.name,
-      }))
+    on({ store, detail, ...props }) {
+      const provisioner = get(
+        detail,
+        "annotations['volume.beta.kubernetes.io/storage-provisioner']",
+        '-'
+      )
+      const options = []
+      store.snapshotType.items.forEach(item => {
+        if (item.driver === provisioner) {
+          options.push({
+            label: item.metadata.name,
+            value: item.metadata.name,
+          })
+        }
+      })
       const modal = Modal.open({
         onOk: async params => {
           await store.createSnapshot(params)
