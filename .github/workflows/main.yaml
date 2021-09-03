@@ -46,7 +46,7 @@ jobs:
 
     - name: Build image
       if: github.event_name == 'push'
-      run: docker build  --pull --file Dockerfile --tag $IMAGE_NAME  . 
+      run: docker build  --pull --file Dockerfile --tag $IMAGE_NAME  .
 
     - name: Docker login
       if: github.event_name == 'push'
@@ -60,10 +60,10 @@ jobs:
       run: |
           IMAGE_ID=$DOCKERHUB_REPO/$IMAGE_NAME
           # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          VERSION=${GITHUB_REF#refs/*/}
           # Use Docker `latest` tag convention
-          [ "$VERSION" == "master" ] && VERSION=latest
-          [ "$VERSION" == "dev" ] && VERSION=dev
+          # [ "$VERSION" == "master" ] && VERSION=latest
+          # [ "$VERSION" == "dev" ] && VERSION=dev
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
