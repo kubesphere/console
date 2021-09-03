@@ -35,6 +35,14 @@ export default class VolumeStore extends Base {
 
   module = 'persistentvolumeclaims'
 
+  snapshotType = []
+
+  async getSnapshotType() {
+    this.snapshotType = await request.get(
+      `/apis/snapshot.storage.k8s.io/v1beta1/volumesnapshotclasses`
+    )
+  }
+
   async fetchVolumeMountStatus() {
     const { name, namespace } = this.detail
 
@@ -90,14 +98,9 @@ export default class VolumeStore extends Base {
   /**
    * create snapshot from detail
    */
-  async createSnapshot({ name }) {
+  async createSnapshot({ name, type }) {
     const snapshotstore = new VolumeSnapshotStore()
-    const {
-      cluster,
-      namespace,
-      name: sourceName,
-      storageClassName,
-    } = this.detail
+    const { cluster, namespace, name: sourceName } = this.detail
 
     const path = snapshotstore.getListUrl({ cluster, namespace })
 
@@ -108,7 +111,7 @@ export default class VolumeStore extends Base {
         name,
       },
       spec: {
-        volumeSnapshotClassName: storageClassName,
+        volumeSnapshotClassName: type,
         source: {
           kind: this.resourceKind,
           persistentVolumeClaimName: sourceName,

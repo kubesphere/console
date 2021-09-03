@@ -69,7 +69,7 @@ module.exports = {
   'Used Capacity': 'Capacidad utilizada',
   'Clone Volume': 'Clon del volumen',
   VOLUME: 'Volumen',
-  VOLUMES: 'Recuento de volumen',
+  // VOLUMES: 'Recuento de volumen',
   'The volume name exists': 'nombre de volumen existe',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
   VOLUME_COUNT: 'Recuento de volumen',
@@ -225,4 +225,6 @@ module.exports = {
   GID_MAX: 'GID Maximum Value',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
+  SNAPSHOT_TYPE: 'Tipo de instantánea',
+  SNAPSHOT_EMPTY_TIP: 'Seleccione un tipo de instantánea.',
 }

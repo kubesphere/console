@@ -69,7 +69,7 @@ module.exports = {
   'Used Capacity': 'Used Capacity',
   'Clone Volume': 'Clone Volume',
   VOLUME: 'Volume',
-  VOLUMES: 'Volumes',
+  // VOLUMES: 'Volumes',
   'The volume name exists': 'The volume name exists',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
   VOLUME_COUNT: 'Volumes',
@@ -237,4 +237,6 @@ module.exports = {
   GID_MAX: 'GID Maximum Value',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
+  SNAPSHOT_TYPE: 'Snapshot type',
+  SNAPSHOT_EMPTY_TIP: 'Please select a snapshot type.',
 }
