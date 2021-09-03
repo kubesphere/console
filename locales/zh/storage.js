@@ -227,4 +227,7 @@ module.exports = {
   PARAMETERS: '参数',
   SNAPSHOT_TYPE: '快照类型',
   SNAPSHOT_EMPTY_TIP: '请选择一个快照类型。',
+  VOLUME_BINDING_MODE: '存储卷绑定模式',
+  BINDING_IMMEDIATE: '立即绑定',
+  BINDING_WAIT: '延迟绑定',
 }

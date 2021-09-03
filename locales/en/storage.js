@@ -239,4 +239,7 @@ module.exports = {
   PARAMETERS: 'Parameters',
   SNAPSHOT_TYPE: 'Snapshot type',
   SNAPSHOT_EMPTY_TIP: 'Please select a snapshot type.',
+  VOLUME_BINDING_MODE: 'Storage volume binding mode',
+  BINDING_IMMEDIATE: 'Bind now',
+  BINDING_WAIT: 'Delayed binding',
 }

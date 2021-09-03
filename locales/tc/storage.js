@@ -230,4 +230,7 @@ module.exports = {
   PARAMETERS: 'Parameters',
   SNAPSHOT_TYPE: '快照類型',
   SNAPSHOT_EMPTY_TIP: '請選擇一個快照類型。',
+  VOLUME_BINDING_MODE: '存儲卷綁定模式',
+  BINDING_IMMEDIATE: '立即綁定',
+  BINDING_WAIT: '延遲綁定',
 }
