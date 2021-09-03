@@ -23,6 +23,7 @@ import { Modal } from 'components/Base'
 import { toJS } from 'mobx'
 import CreateModal from 'components/Modals/Create'
 import NameModal from 'projects/components/Modals/ResourceNamed'
+import SnapshotModal from 'projects/components/Modals/ResourceSnapshot'
 import ExpandModal from 'projects/components/Modals/ExpandVolume'
 import ClusterDiffSettings from 'components/Forms/Volume/ClusterDiffSettings'
 import EditConfigTemplateModal from 'fedprojects/components/VolumeSetting'
@@ -120,6 +121,10 @@ export default {
   },
   'volume.create.snapshot': {
     on({ store, ...props }) {
+      const options = store.snapshotType.items.map(item => ({
+        label: item.metadata.name,
+        value: item.metadata.name,
+      }))
       const modal = Modal.open({
         onOk: async params => {
           await store.createSnapshot(params)
@@ -127,8 +132,9 @@ export default {
           Notify.success({ content: `${t('Created Successfully')}` })
         },
         title: t('Create Snapshot'),
-        modal: NameModal,
+        modal: SnapshotModal,
         store,
+        options,
         ...props,
       })
     },

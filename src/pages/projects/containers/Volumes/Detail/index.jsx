@@ -105,6 +105,7 @@ export default class VolumeDetail extends React.Component {
       cluster,
       name: storageClassName,
     })
+    await this.store.getSnapshotType()
   }
 
   getOperations = () => [

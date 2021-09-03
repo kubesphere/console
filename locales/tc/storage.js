@@ -36,7 +36,7 @@ module.exports = {
   'Volume Usage': '儲存卷用量',
   VOLUME_COUNT: '儲存卷數量',
   VOLUME: '儲存卷',
-  VOLUMES: '儲存卷數量',
+  // VOLUMES: '儲存卷數量',
   'Create Volume': '創建儲存卷',
   'Delete Volume': '刪除儲存卷',
   'storage classes': '儲存類型',
@@ -228,4 +228,6 @@ module.exports = {
   GID_MAX: 'GID Maximum Value',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
+  SNAPSHOT_TYPE: '快照類型',
+  SNAPSHOT_EMPTY_TIP: '請選擇一個快照類型。',
 }
