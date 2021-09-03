@@ -70,6 +70,11 @@ module.exports = {
   'Add Volume': 'Agregar volumen',
   'Add Volume Template': 'Agregar plantilla de volumen',
   'Adding new contianer': 'Agregar nuevo contianer',
+
+  'Additional metadata settings for resources such as Labels and Annotations.':
+    'Configuración de metadatos adicionales para recursos como Etiquetas y Anotaciones.',
+  'Additional metadata settings for resources.':
+    'Configuración de metadatos adicionales para recursos.',
   ADD_METADATA_DESC: 'Add metadata to resources.',
   'Advanced Options': 'Opciones avanzadas',
   'Applied to the workload': 'Aplicado a la carga de trabajo.',

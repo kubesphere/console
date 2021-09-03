@@ -140,6 +140,11 @@ module.exports = {
   'Set Node Scheduling Policy': '設置節點調度策略',
   'You can allow Pod replicas to run on specified nodes.':
     '可以讓容器組副本在指定的節點運行',
+
+  'Additional metadata settings for resources such as Labels and Annotations.':
+    '對資源進行額外的元數據設置，例如 Label 和 Annotation',
+  'Additional metadata settings for resources.': '對資源進行額外的元數據設置',
+
   SELECT_NODES: '設置節點調度策略',
   SELECT_NODES_DESC: '可以讓容器組副本在指定的節點運行',
   WORKLOAD_SPECIFY_NODE_DESC: '可以讓容器組副本在指定的節點運行',

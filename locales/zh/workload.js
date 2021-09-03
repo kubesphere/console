@@ -145,6 +145,8 @@ module.exports = {
   WORKLOAD_SPECIFY_NODE_DESC: '将容器副本分配给特定节点。',
   ADD_METADATA_DESC: '为资源添加标签和注解等元数据。',
 
+  'Additional metadata settings for resources.': '对资源进行额外的元数据设置',
+
   DEPLOYMENT_LOCATION: '部署位置',
 
   SELECT_CONFIGMAP_DESC: '将配置字典挂载到容器。',
