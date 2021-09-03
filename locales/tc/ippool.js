@@ -45,7 +45,8 @@ module.exports = {
 
   IP_POOL_NUM_TIP: '請輸入需要創建的容器組 IP 地址範圍數量。',
 
-  POD_IP_POOL_DESC: '集群内容器組 IP 地址範圍',
+  POD_IP_POOL_DESC:
+    '容器組 IP 池用於規劃集群內 Pod 的網絡地址空間，您可以按需創建容器組 IP 池。',
   IP_POOL_CREATE_COUNT_DESC:
     '可以同時創建多個容器組 IP 地址範圍，數量範圍為 1～10',
   IPPOOL_USAGE_Q: '如何利用 IP 地址範圍規劃容器組網路？',

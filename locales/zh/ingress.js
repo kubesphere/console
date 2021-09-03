@@ -52,9 +52,9 @@ module.exports = {
   INVALID_PATH_TIP: '请填写正确路径。',
 
   ROUTE_DESC:
-    '应用路由提供一种聚合服务的方式，您可以通过一个外部可访问的 IP 地址将集群的内部服务暴露给外部。',
+    '应用路由即 Kubernetes 的 Ingress，您可以使用应用路由和单个 IP 地址来聚合和暴露多个服务。',
   ROUTE_CREATE_DESC:
-    '应用路由提供一种聚合服务的方式，您可以通过一个外部可访问的 IP 地址将集群的内部服务暴露给外部。',
+    '应用路由即 Kubernetes 的 Ingress，您可以使用应用路由和单个 IP 地址来聚合和暴露多个服务。',
   ROUTE_ANNOTATION_DESC:
     '可以通过给应用路由添加注解来设置应用路由的行为。详细的可供配置的注解列表，参见 <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">Annotations</a>。',
 
