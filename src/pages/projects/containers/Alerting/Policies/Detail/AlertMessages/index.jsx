@@ -89,7 +89,10 @@ export default class AlertHistory extends React.Component {
         <Text
           icon="loudspeaker"
           title={get(record, 'annotations.summary')}
-          description={get(record, 'annotations.message', '-')}
+          description={
+            get(record, 'annotations.message') ||
+            get(record, 'annotations.description', '-')
+          }
         />
       ),
     },
@@ -116,6 +119,13 @@ export default class AlertHistory extends React.Component {
           return '-'
         }
 
+        if (module === 'hpas') {
+          return (
+            <span>
+              {t(MODULE_KIND_MAP[module])}: {name}
+            </span>
+          )
+        }
         return (
           <Link to={`${this.getPrefix({ namespace })}/${module}/${name}`}>
             {t(MODULE_KIND_MAP[module])}: {name}
