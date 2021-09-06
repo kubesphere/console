@@ -1,4 +1,12 @@
 /*
+ * @Author: your name
+ * @Date: 2021-09-02 16:31:50
+ * @LastEditTime: 2021-09-03 15:17:05
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /console/locales/zh/secret.js
+ */
+/*
  * This file is part of KubeSphere Console.
  * Copyright (C) 2019 The KubeSphere Console Authors.
  *
@@ -64,4 +72,5 @@ module.exports = {
 
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value}（{label}）',
+  CREATE_SECRET: '新建保密字典',
 }

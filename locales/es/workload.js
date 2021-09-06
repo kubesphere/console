@@ -746,7 +746,8 @@ module.exports = {
   IGNORE_CERT_WARN_DESC:
     'Ignoring the verification certificate may cause the account password to be disclosed. ',
   INVALID_PROJECT: 'Proyecto no válido',
-
+  DESC_CREATE_CONFIGMAP_SECRET:
+    'If there is no suitable configuration file or key reference, you can',
   // Pods Page
   NODE_IP: '{node} ({ip})',
 

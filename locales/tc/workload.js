@@ -744,6 +744,7 @@ module.exports = {
   CERT_ERROR: '發現證書錯誤，是否忽略證書驗證並再次',
   IGNORE_CERT_WARN_DESC: '忽略驗證證書，可能會導致帳戶密碼被欺騙。',
   INVALID_PROJECT: '項目不可選',
+  DESC_CREATE_CONFIGMAP_SECRET: '如果沒有合適的配置文件或密鑰引用, 您可以',
 
   // Pods Page
   NODE_IP: '{node}（{ip}）',
