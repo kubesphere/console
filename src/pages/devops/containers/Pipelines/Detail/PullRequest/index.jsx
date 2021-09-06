@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { get, omit, isEmpty } from 'lodash'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
@@ -26,9 +25,12 @@ import { getLocalTime } from 'utils'
 import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
 import Health from 'devops/components/Health'
+import classNames from 'classnames'
+import Link from 'components/Layout/Nav/Link'
 
 import Table from 'components/Tables/List'
 import EmptyCard from 'devops/components/Cards/EmptyCard'
+import styles from './index.scss'
 
 @inject('rootStore', 'detailStore')
 @observer
@@ -119,10 +121,13 @@ export default class Pullrequest extends React.Component {
       title: t('NAME'),
       dataIndex: 'displayName',
       width: '15%',
-      render: displayName => (
+      render: (displayName, record) => (
         <Link
-          className="item-name"
+          className={classNames('item-name', {
+            [styles.itemNameDisabled]: record.disabled,
+          })}
           to={`${this.prefix}/branch/${displayName}/`}
+          disabled={record.disabled}
         >
           {displayName}
         </Link>
