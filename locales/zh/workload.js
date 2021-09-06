@@ -37,7 +37,6 @@ module.exports = {
   TARGET: '目标',
   MOUNT_PATH_EMPTY: '请输入挂载路径。',
   CONFIGMAP: '配置字典',
-  SECRET: '保密字典',
   PARTITION_ORDINAL: '容器组副本分组序号',
   PARTITION_ORDINAL_DESC:
     '容器组副本按序号分成两组。更新有状态副本集时，只有序号大于分组序号的容器组副本会被更新。',
@@ -764,6 +763,8 @@ module.exports = {
   CERT_ERROR: '证书错误。',
   IGNORE_CERT_WARN_DESC: '忽略证书验证可能会导致帐户密码被泄露。',
   INVALID_PROJECT: '项目无效。',
+
+  DESC_CREATE_CONFIGMAP_SECRET: '如果没有合适的配置文件或密钥引用, 您可以',
 
   // Pods Page
   NODE_IP: '{node}（{ip}）',

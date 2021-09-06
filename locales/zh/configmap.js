@@ -28,5 +28,14 @@ module.exports = {
     '配置字典常用于存储通用的配置变量，用户可以将分布式系统中用于不同模块的环境变量统一到一个对象中进行管理。',
   MODIFY_CONFIG: '修改配置',
   CONFIG_FIELD_DESC: '此配置项映射条目的唯一 key 值。',
-  ENTER_CONFIG_VALUE_DESC: '输入配置项映射条目的值或使用文件的内容。',
+  ENTER_CONFIG_VALUE_DESC:
+    '配置项用于存储通用的配置变量，使用户可以将分布式系统中用于不同模块的环境变量统一到一个对象中进行管理。',
+  'Config Value': '配置项',
+  'Modify Config': '修改配置',
+  'The unique key value of this configuration map entry':
+    '此配置项映射条目的唯一 key 值',
+  'Enter the value of the configuration map entry or use the contents of the file':
+    '输入配置项映射条目的值或使用文件的内容',
+
+  CREATE_CONFIG: '新建配置项',
 }
