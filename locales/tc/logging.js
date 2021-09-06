@@ -140,6 +140,7 @@ module.exports = {
   SUPPORT_JSON_FILE: '僅支持 JSON 格式的文件',
   'Only one file can be uploaded': '只能上傳一個文化',
   'Need to upload a file': '需要上傳一個文件',
+  'Need to a URL': '需要填寫一個 Grafana Url',
   'Click or drag files to this area to upload': '點擊或拖動檔案到此區域內上傳',
   'No cluster with event query enabled': '暫無啟用事件查詢的集群',
   'No cluster with auditing module enabled': '暫無啟用審計模組的集群',

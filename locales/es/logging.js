@@ -151,6 +151,7 @@ module.exports = {
     'Click or drag files to this area to upload',
   'Only one file can be uploaded': 'Only one file can be uploaded',
   'Need to upload a file': 'Need to upload a file',
+  'Need to a URL': 'the Grafana Url is required',
   SERVICE_BUILT_INTERFACE:
     'la supervisión del servicio se genera con la captura de datos de interfaz',
   'Search Auditing Logs by': 'Auditoría de búsqueda por {field}',

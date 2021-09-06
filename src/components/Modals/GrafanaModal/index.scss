@@ -1,3 +1,8 @@
 .container {
-  margin-top: 12px;
+  margin-bottom: 12px;
+  :global {
+    .radio-group {
+      margin-bottom: 12px;
+    }
+  }
 }

@@ -40,6 +40,7 @@ export default class GrafanaModal extends React.Component {
   @action
   handleTypeChange = key => {
     this.type = key
+    this.formData = {}
   }
 
   handleSave = () => {
@@ -64,29 +65,31 @@ export default class GrafanaModal extends React.Component {
       })
   }
 
-  renderUpload = () => (
-    <Form.Item
-      label={t('SUPPORT_JSON_FILE')}
-      rules={[{ required: true, message: t('Need to upload a file') }]}
-    >
-      <Uploader name="grafanaDashboardContent" />
-    </Form.Item>
-  )
+  renderUpload = () =>
+    this.type === 'json' ? (
+      <Form.Item
+        label={t('SUPPORT_JSON_FILE')}
+        rules={[{ required: true, message: t('Need to upload a file') }]}
+      >
+        <Uploader name="grafanaDashboardContent" />
+      </Form.Item>
+    ) : null
 
-  renderUrl = () => (
-    <Form.Item
-      label={t('IMPORT_GRAFANA_URL')}
-      rules={[
-        { required: true, message: t('NAME_EMPTY_DESC') },
-        {
-          pattern: PATTERN_URL,
-          message: t('Invalid URL'),
-        },
-      ]}
-    >
-      <Input name="grafanaDashboardUrl" autoFocus={true} maxLength={63} />
-    </Form.Item>
-  )
+  renderUrl = () =>
+    this.type === 'json' ? null : (
+      <Form.Item
+        label={t('IMPORT_GRAFANA_URL')}
+        rules={[
+          { required: true, message: t('Need to a URL') },
+          {
+            pattern: PATTERN_URL,
+            message: t('Invalid URL'),
+          },
+        ]}
+      >
+        <Input name="grafanaDashboardUrl" autoFocus maxLength={63} />
+      </Form.Item>
+    )
 
   render() {
     const { onCancel } = this.props
@@ -99,19 +102,21 @@ export default class GrafanaModal extends React.Component {
         title={t('IMPORT_GRAFANA_DASHBOARD')}
         onOk={this.handleSave}
       >
-        <RadioGroup
-          mode="button"
-          value={this.type}
-          onChange={this.handleTypeChange}
-          size="small"
-        >
-          <RadioButton value="json">{t('Dashboard JSON')}</RadioButton>
-          <RadioButton value="url">{t('Grafana dashboard URL')}</RadioButton>
-        </RadioGroup>
-
         <div className={styles.container}>
           <Form data={this.formData} ref={this.formRef}>
-            {this.type === 'json' ? this.renderUpload() : this.renderUrl()}
+            <RadioGroup
+              mode="button"
+              value={this.type}
+              onChange={this.handleTypeChange}
+              size="small"
+            >
+              <RadioButton value="json">{t('Dashboard JSON')}</RadioButton>
+              <RadioButton value="url">
+                {t('Grafana dashboard URL')}
+              </RadioButton>
+            </RadioGroup>
+            {this.renderUpload()}
+            {this.renderUrl()}
           </Form>
         </div>
       </Modal>

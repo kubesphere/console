@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+
 import { Icon, Notify, Progress } from '@kube-design/components'
 import Upload from 'components/Base/Upload'
 import { isNumber } from 'lodash'
@@ -25,12 +26,6 @@ import { formatSize } from 'utils'
 import { ReactComponent as JSONIcon } from 'assets/json.svg'
 
 import styles from './index.scss'
-
-const headers = {
-  'x-kubernetes-action': 'post',
-  'x-kubernetes-group-version-kind':
-    '{"group":"devops.kubesphere.io","version":"v1alpha1","kind":"S2iBinary"}',
-}
 
 export default class Uploader extends React.Component {
   constructor(props) {
@@ -41,7 +36,7 @@ export default class Uploader extends React.Component {
       method: 'post',
       action: this.getUploadUrl,
       multiple: false,
-      headers,
+      type: 'json',
       beforeUpload: this.beforeUploadHandler,
       onStart: this.startHandler,
       onSuccess: this.successHandler,
@@ -77,8 +72,8 @@ export default class Uploader extends React.Component {
 
     const extensionName = file.name.slice(file.name.lastIndexOf('.') + 1)
     if (extensionName !== 'json') {
-      Notify.error(t('WRONG_FILE_EXTENSION_NAME'), { type: 'json' })
-      return Promise.reject(t('WRONG_FILE_EXTENSION_NAME'), { type: 'json' })
+      Notify.error(t('WRONG_FILE_EXTENSION_NAME', { type: 'json' }))
+      return Promise.reject(t('WRONG_FILE_EXTENSION_NAME', { type: 'json' }))
     }
   }
 
