@@ -63,7 +63,20 @@ module.exports = {
   STORAGE_CLASS_CREATE_DESC: 'STORAGE_CLASS_CREATE_DESC',
   StorageClasses: 'StorageClasses',
   storageclasses: 'storageclasses',
-  VOLUME_SNAPSHOT_SUPPORT: 'Soporta snapshot de volumen',
+  VOLUME_SNAPSHOT_SUPPORT:
+    'Permitir el almacenamiento de instantáneas de volumen',
+  VOLUME_CLONE_SUPPORT: 'Permitir la clonación del volumen de almacenamiento',
+  VOLUME_EXPANSION_SUPPORT:
+    'Permitir la expansión del volumen de almacenamiento',
+  PV: 'Backend de volumen',
+  PV_STATUS_AVAILABLE: 'Disponible',
+  PV_STATUS_BOUND: 'Ligado',
+  PV_STATUS_RELEASED: 'Liberado',
+  PV_STATUS_FAILED: 'indisponible',
+  PV_STATUS_TERMINATING: 'Terminando',
+  'Bound Volume': 'Límite de volumen de almacenamiento',
+  'Recycling mechanism': 'Mecanismo de reciclaje',
+
   ACCESS_MODE: 'Modo de acceso admitido',
   ACCESS_MODE_SCAP: 'Modo de acceso admitido',
   'Used Capacity': 'Capacidad utilizada',

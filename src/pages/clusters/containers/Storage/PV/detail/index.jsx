@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { isEmpty, get, isUndefined } from 'lodash'
+import { isEmpty, get } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
@@ -25,8 +25,7 @@ import { Status } from 'components/Base'
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
-import Volume from 'stores/volume'
-import StorageClass from 'stores/storageClass'
+import PV from 'stores/pv'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -36,76 +35,36 @@ import getRoutes from './routes'
 @observer
 @trigger
 export default class VolumeDetail extends React.Component {
-  store = new Volume()
-
-  storageclass = new StorageClass()
+  store = new PV()
 
   componentDidMount() {
     this.fetchData()
   }
 
   get name() {
-    return 'Volume'
+    return 'PV'
   }
 
   get module() {
-    return 'volumes'
+    return 'persistentvolumes'
   }
 
   get authKey() {
-    return 'volumes'
+    return 'persistentvolumes'
   }
 
   get listUrl() {
-    const { isFedManaged } = toJS(this.store.detail)
+    const { cluster } = this.props.match.params
 
-    const { workspace, cluster, namespace } = this.props.match.params
-    if (workspace) {
-      if (isFedManaged) {
-        return `/${workspace}/federatedprojects/${namespace}/${this.module}`
-      }
-
-      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${this.module}`
-    }
-    return `/clusters/${cluster}/${this.module}`
+    return `/clusters/${cluster}/PV`
   }
 
   get isFedManaged() {
     return this.store.detail.isFedManaged
   }
 
-  get allowClone() {
-    try {
-      const clone = toJS(this.storageclass).detail.annotations[
-        'storageclass.kubesphere.io/allow-clone'
-      ]
-      return isUndefined(clone) ? true : !JSON.parse(clone)
-    } catch (err) {
-      return true
-    }
-  }
-
-  get allowSnapshot() {
-    try {
-      const snapShot = toJS(this.storageclass).detail.annotations[
-        'storageclass.kubesphere.io/allow-snapshot'
-      ]
-      return isUndefined(snapShot) ? true : !JSON.parse(snapShot)
-    } catch (err) {
-      return true
-    }
-  }
-
   fetchData = async () => {
-    const { cluster } = this.props.match.params
     await this.store.fetchDetail(this.props.match.params)
-
-    const { storageClassName } = this.store.detail
-    await this.storageclass.fetchDetail({
-      cluster,
-      name: storageClassName,
-    })
-    await this.store.getSnapshotType()
   }
 
   getOperations = () => [
@@ -133,54 +92,12 @@ export default class VolumeDetail extends React.Component {
         }),
     },
     {
-      key: 'clone',
-      type: 'control',
-      text: t('Clone Volume'),
-      icon: 'copy',
-      action: 'create',
-      disabled: this.allowClone,
-      onClick: () => {
-        this.trigger('volume.clone', {})
-      },
-    },
-    {
-      key: 'snapshot',
-      type: 'control',
-      text: t('Create Snapshot'),
-      icon: 'copy',
-      action: 'create',
-      disabled: this.allowSnapshot,
-      onClick: () => {
-        this.trigger('volume.create.snapshot', {})
-      },
-    },
-    {
-      key: 'expand',
-      text: t('Expand Volume'),
-      icon: 'scaling',
-      action: 'edit',
-      disabled: !get(this.storageclass.detail, 'allowVolumeExpansion', false),
-      onClick: () => {
-        const { detail, isSubmitting } = this.store
-        const originData = toJS(detail._originData)
-        const storageClassSizeConfig = this.storageclass.getStorageSizeConfig()
-
-        this.trigger('volume.expand', {
-          isExpanding: isSubmitting,
-          shouldAlertVisible: detail.inUse,
-          detail: originData,
-          max: storageClassSizeConfig.max,
-          min: storageClassSizeConfig.min,
-          step: storageClassSizeConfig.step,
-        })
-      },
-    },
-    {
       key: 'delete',
       icon: 'trash',
       text: t('DELETE'),
       action: 'delete',
       type: 'danger',
+      disabled: get(this.store.detail, 'phase') === 'Bound',
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
@@ -196,55 +113,37 @@ export default class VolumeDetail extends React.Component {
       createTime,
       creator,
       phase,
-      capacity,
-      namespace,
+      storageClassName,
+      storageProvisioner,
+      persistentVolumeReclaimPolicy,
       accessMode = '-',
     } = detail
     if (isEmpty(detail)) return null
 
-    const storageClassName =
-      detail.storageClassName ||
-      get(detail, "annotations['volume.beta.kubernetes.io/storage-class']")
-
     return [
-      {
-        name: t('PROJECT'),
-        value: namespace,
-      },
       {
         name: t('STATUS'),
         value: (
           <div>
-            <Status
-              type={phase}
-              name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)}
-            />
+            <Status type={phase} name={t(`PV_STATUS_${phase.toUpperCase()}`)} />
           </div>
         ),
-      },
-      {
-        name: t('CAPACITY'),
-        value: capacity,
       },
       {
         name: t('ACCESS_MODE_TCAP'),
         value: accessMode,
       },
       {
-        name: t('Storage Class'),
+        name: t('Storage Classes'),
         value: storageClassName,
       },
       {
         name: t('PROVISIONER'),
-        value: get(
-          detail,
-          "annotations['volume.beta.kubernetes.io/storage-provisioner']",
-          '-'
-        ),
+        value: storageProvisioner,
       },
       {
-        name: 'PV',
-        value: get(detail, '_originData.spec.volumeName', ''),
+        name: t('RECLAMATION_POLICY'),
+        value: persistentVolumeReclaimPolicy,
       },
       {
         name: t('Create Time'),
@@ -278,7 +177,7 @@ export default class VolumeDetail extends React.Component {
       icon: 'storage',
       breadcrumbs: [
         {
-          label: t('Volumes'),
+          label: t('PV'),
           url: this.listUrl,
         },
       ],

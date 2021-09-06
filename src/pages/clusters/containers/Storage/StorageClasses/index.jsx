@@ -86,10 +86,26 @@ export default class StorageClasses extends React.Component {
         render: value => (value ? t('YES') : '-'),
       },
       {
+        title: t('VOLUME_CLONE_SUPPORT'),
+        dataIndex: 'annotations',
+        isHideable: true,
+        render: annotations =>
+          annotations['storageclass.kubesphere.io/allow-clone']
+            ? t('True')
+            : t('False'),
+      },
+      {
         title: t('VOLUME_SNAPSHOT_SUPPORT'),
         dataIndex: 'supportSnapshot',
         isHideable: true,
         render: supportSnapshot => (supportSnapshot ? t('True') : t('False')),
+      },
+      {
+        title: t('VOLUME_EXPANSION_SUPPORT'),
+        dataIndex: 'allowVolumeExpansion',
+        isHideable: true,
+        render: allowVolumeExpansion =>
+          allowVolumeExpansion ? t('True') : t('False'),
       },
       {
         title: t('PROVISIONER'),

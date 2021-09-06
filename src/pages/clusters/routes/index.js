@@ -57,7 +57,7 @@ import NetworkPolicies from '../containers/Network/Policies'
 import IPPools from '../containers/Network/IPPools'
 import LogCollections from '../containers/LogCollections'
 import CustomMonitoring from '../containers/CustomMonitoring'
-
+import PV from '../containers/Storage/PV'
 import detail from './detail'
 
 const PATH = '/clusters/:cluster'
@@ -181,6 +181,11 @@ export default [
           {
             path: `${PATH}/volumes`,
             component: Volumes,
+            exact: true,
+          },
+          {
+            path: `${PATH}/pv`,
+            component: PV,
             exact: true,
           },
           {
