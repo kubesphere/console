@@ -78,6 +78,14 @@ export const getAlertingResource = (labels = {}) => {
         namespace: _labels.namespace,
       }
     }
+
+    const module = workloadType === 'job_name' ? 'jobs' : `${workloadType}s`
+
+    return {
+      module,
+      name: _labels[workloadType],
+      namespace: _labels.namespace,
+    }
   }
 
   if (labels.node) {
@@ -97,21 +105,11 @@ export const getAlertingResource = (labels = {}) => {
     }
 
     if (labels.job_name) {
-      renderPod(labels, 'job_name')
-      return {
-        module: 'jobs',
-        name: labels.job_name,
-        namespace: labels.namespace,
-      }
+      return renderPod(labels, 'job_name')
     }
 
     if (labels.cronjob) {
-      renderPod(labels, 'cronjob')
-      return {
-        module: 'cronjobs',
-        name: labels.cronjob,
-        namespace: labels.namespace,
-      }
+      return renderPod(labels, 'cronjob')
     }
 
     if (labels.hpa) {
@@ -123,30 +121,15 @@ export const getAlertingResource = (labels = {}) => {
     }
 
     if (labels.deployment) {
-      renderPod(labels, 'deployment')
-      return {
-        module: 'deployments',
-        name: labels.deployment,
-        namespace: labels.namespace,
-      }
+      return renderPod(labels, 'deployment')
     }
 
     if (labels.statefulset) {
-      renderPod(labels, 'statefulsets')
-      return {
-        module: 'statefulsets',
-        name: labels.statefulset,
-        namespace: labels.namespace,
-      }
+      return renderPod(labels, 'statefulset')
     }
 
     if (labels.daemonset) {
-      renderPod(labels, 'daemonsets')
-      return {
-        module: 'daemonsets',
-        name: labels.daemonset,
-        namespace: labels.namespace,
-      }
+      return renderPod(labels, 'daemonset')
     }
 
     if (labels.pod) {
