@@ -17,13 +17,13 @@
  */
 
 module.exports = {
-  'Custom Resource Definition': '自定义资源',
-  'Custom Resource Definitions': '自定义资源',
+  'Custom Resource Definition': '定制资源定义',
+  'Custom Resource Definitions': '定制资源定义',
 
   CUSTOM_RESOURCE_DEFINITION_DESC:
-    '自定义资源（CRD）是一种 Kubernetes 实现自定义资源类型的扩展方式，用户可以像操作内置资源对象一样操作 CRD 对象。',
+    '定制资源定义（CRD）是一种 Kubernetes 实现自定义资源类型的扩展方式，您可以像操作内置资源对象一样操作 CRD 对象。',
   CUSTOM_RESOURCE_DEFINITION_CREATE_DESC:
-    '自定义资源（CRD）是一种 Kubernetes 实现自定义资源类型的扩展方式，用户可以像操作内置资源对象一样操作 CRD 对象。',
+    '定制资源定义（CRD）是一种 Kubernetes 实现自定义资源类型的扩展方式，您可以像操作内置资源对象一样操作 CRD 对象。',
 
   // CRD List Page
   KIND_TCAP: '类别',

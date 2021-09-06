@@ -47,9 +47,9 @@ module.exports = {
   SPECIFY_DOMAIN_TCAP: 'Especificar dominio',
   'Unable to access': 'No es posible acceder',
   ROUTE_DESC:
-    'Una ruta proporciona una forma de agregar servicios, y puede exponer los servicios internos del clúster al exterior a través de una dirección IP accesible desde el exterior.',
+    'Una ruta en KubeSphere es lo mismo que un Ingress en Kubernetes. Puede utilizar una Ruta y una única dirección IP para agregar y exponer varios Servicios.',
   ROUTE_CREATE_DESC:
-    'Una ruta proporciona una forma de agregar servicios, y puede exponer los servicios internos del clúster al exterior a través de una dirección IP accesible desde el exterior.',
+    'Una ruta en KubeSphere es lo mismo que un Ingress en Kubernetes. Puede utilizar una Ruta y una única dirección IP para agregar y exponer varios Servicios.',
   ROUTE_ANNOTATION_DESC:
     'Puedes definir el comportamiento de la ruta agregando annotations a la ruta. Consulta <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">Annotations</a> para obtener una lista detallada de las annotations disponibles.',
   RULE_SETTING_MODE_AUTO:

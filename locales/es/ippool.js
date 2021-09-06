@@ -45,7 +45,8 @@ module.exports = {
 
   IP_POOL_NUM_TIP: 'Please enter the number of Pod IP pools to be created.',
 
-  POD_IP_POOL_DESC: 'Pod IP pools of the cluster.',
+  POD_IP_POOL_DESC:
+    'Pod IP pools is used to manage the Pod network address space in the cluster. You can create Pod IP pools based on your needs.',
   IP_POOL_CREATE_COUNT_DESC:
     'Up to 10 Pod IP pools can be created at the same time.',
   IPPOOL_USAGE_Q: 'How do I manage a Pod network using a Pod IP pool?',

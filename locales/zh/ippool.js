@@ -45,7 +45,8 @@ module.exports = {
 
   IP_POOL_NUM_TIP: '请输入需要创建的容器组 IP 池数量。',
 
-  POD_IP_POOL_DESC: '集群内容器组 IP 池',
+  POD_IP_POOL_DESC:
+    '容器组 IP 池用于规划集群内 Pod 的网络地址空间，您可以按需创建容器组 IP 池。',
   IP_POOL_CREATE_COUNT_DESC: '可以同时创建多个容器组 IP 池，数量范围为 1～10',
   IPPOOL_USAGE_Q: '如何利用 IP 池规划容器组网络？',
   IPPOOL_USAGE_A:
