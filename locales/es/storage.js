@@ -227,4 +227,7 @@ module.exports = {
   PARAMETERS: 'Parameters',
   SNAPSHOT_TYPE: 'Tipo de instantánea',
   SNAPSHOT_EMPTY_TIP: 'Seleccione un tipo de instantánea.',
+  VOLUME_BINDING_MODE: 'Modo de vinculación de volumen de almacenamiento',
+  BINDING_IMMEDIATE: 'Enlazar ahora',
+  BINDING_WAIT: 'Encuadernación retrasada',
 }

@@ -46,6 +46,19 @@ export default class StorageClassSetting extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  get volumeBindingMode() {
+    return [
+      {
+        label: t('BINDING_IMMEDIATE'),
+        value: 'Immediate',
+      },
+      {
+        label: t('BINDING_WAIT'),
+        value: 'WaitForFirstConsumer',
+      },
+    ]
+  }
+
   getAccessModesOptions() {
     const provisioner =
       PROVISIONERS.find(({ value }) => value === this.provisionerValue) || {}
@@ -184,6 +197,17 @@ export default class StorageClassSetting extends React.Component {
                 <Input name={'provisioner'} />
               </Form.Item>
             </Column>
+          </Columns>
+          <Columns>
+            <Column>
+              <Form.Item label={t('VOLUME_BINDING_MODE')}>
+                <Select
+                  name="metadata.VolumeBindingMode"
+                  options={this.volumeBindingMode}
+                ></Select>
+              </Form.Item>
+            </Column>
+            <Column></Column>
           </Columns>
           {this.renderParams()}
         </Form>
