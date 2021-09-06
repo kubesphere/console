@@ -364,5 +364,6 @@ spec:
             backend:
               service:
                 name: productpage
-                port: 9080
+                port:
+                  number: 9080
       host: productpage.servicemesh.139.198.121.92.nip.io

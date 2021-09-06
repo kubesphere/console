@@ -79,11 +79,11 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
               </Column>
               <Column>
                 <span>{t('Service')}:</span>
-                <span>{get(path, 'backend.serviceName')}</span>
+                <span>{get(path, 'backend.service.name')}</span>
               </Column>
               <Column>
                 <span>{t('PORT')}:</span>
-                <span>{get(path, 'backend.servicePort')}</span>
+                <span>{get(path, 'backend.service.port.number')}</span>
               </Column>
             </Columns>
           </div>

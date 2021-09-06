@@ -61,7 +61,6 @@ module.exports = {
   'Please input ExternalName': '请输入 ExternalName',
   'Specify Workload': '指定工作负载',
   SPECIFY_NODE: '指定节点',
-  'Add Selector': '添加选择器',
 
   INVALID_PORT: '端口无效。',
   'Not Associate': '不关联',
