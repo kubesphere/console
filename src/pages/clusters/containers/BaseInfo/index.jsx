@@ -187,27 +187,29 @@ export default class Overview extends React.Component {
             ))}
           </div>
         </Panel>
-        {globals.app.isMultiCluster && actions.includes('delete') && (
-          <Panel title={t('UNBIND_CLUSTER')}>
-            <Alert
-              className={styles.tip}
-              type="error"
-              title={`${t('UNBIND_CLUSTER_Q')}`}
-              message={t('UNBIND_CLUSTER_DESC')}
-            />
-            <Button
-              className={styles.unbind}
-              type="danger"
-              disabled={!this.state.confirm}
-              onClick={this.handleUnbind}
-            >
-              {t('UNBIND')}
-            </Button>
-            <Checkbox onChange={this.handleChange}>
-              {t('SURE_TO_UNBIND_CLUSTER')}
-            </Checkbox>
-          </Panel>
-        )}
+        {globals.app.isMultiCluster &&
+          actions.includes('delete') &&
+          !this.store.detail.isHost && (
+            <Panel title={t('UNBIND_CLUSTER')}>
+              <Alert
+                className={styles.tip}
+                type="error"
+                title={`${t('UNBIND_CLUSTER_Q')}`}
+                message={t('UNBIND_CLUSTER_DESC')}
+              />
+              <Button
+                className={styles.unbind}
+                type="danger"
+                disabled={!this.state.confirm}
+                onClick={this.handleUnbind}
+              >
+                {t('UNBIND')}
+              </Button>
+              <Checkbox onChange={this.handleChange}>
+                {t('SURE_TO_UNBIND_CLUSTER')}
+              </Checkbox>
+            </Panel>
+          )}
       </>
     )
   }
