@@ -32,7 +32,7 @@ import styles from './index.scss'
   store: new Dashboard(),
   module: 'dashboards',
   authKey: 'custom-monitoring',
-  name: 'CustomMonitorDashboard',
+  name: 'CUSTOM_MONITOR_DASHBOARD',
 })
 export default class CustomMonitoringDashboards extends React.Component {
   getColumns() {

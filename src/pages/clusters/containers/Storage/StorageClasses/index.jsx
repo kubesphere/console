@@ -80,7 +80,7 @@ export default class StorageClasses extends React.Component {
           get(record, 'annotations["kubesphere.io/pvc-count"]') || 0,
       },
       {
-        title: t('DEFAULT'),
+        title: t('DEFAULT_STORAGE_CLASS'),
         dataIndex: 'default',
         isHideable: true,
         render: value => (value ? t('YES') : '-'),

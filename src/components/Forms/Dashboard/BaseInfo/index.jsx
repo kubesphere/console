@@ -47,7 +47,7 @@ export default class BaseInfo extends React.Component {
     ([key, configs]) => ({
       value: key,
       image: configs.logo,
-      label: configs.name,
+      label: configs.name === 'Custom' ? t('CUSTOM') : configs.name,
       description: configs.description,
     })
   )

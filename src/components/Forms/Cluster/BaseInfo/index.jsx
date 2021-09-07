@@ -138,7 +138,7 @@ export default class BaseInfo extends React.Component {
           >
             <Input name="metadata.name" maxLength={63} />
           </Form.Item>
-          <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>
+          <Form.Item label={t('TAG')} desc={t('CLUSTER_TAG_DESC')}>
             <Select
               name="metadata.labels['cluster.kubesphere.io/group']"
               options={CLUSTER_PRESET_GROUPS}

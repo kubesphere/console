@@ -56,7 +56,7 @@ module.exports = {
   MOUNTED_TCAP: '已挂载',
   NOT_MOUNTED: '未挂载',
   Scalable: '可扩容性',
-  RECLAMATION_POLICY: '回收机制',
+  RECLAIM_POLICY: '回收机制',
   DELETE_STORAGE_TIP: '如果存储卷正在被挂载时，待工作负载被删除时一同删除。',
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce：单个节点读写。<br/>ReadOnlyMany：多节点只读。<br/>ReadWriteMany：多节点读写。<br/>挂载时只能使用一种模式。',
@@ -64,7 +64,7 @@ module.exports = {
   'Default Volume': '默认存储卷',
   'Parameters (key-value pairs)': '参数 (键值对)',
   'Mount Options': '挂载选项',
-  STORAGE_VOLUME_EXTENSION: '允许存储卷扩容',
+  VOLUME_EXPANSION: '存储卷扩容',
   'Mount Status': '挂载状态',
   'Mounted Pods': '已挂载容器组',
   AVAILABLE: '可用',
@@ -127,7 +127,7 @@ module.exports = {
   WHAT_IS_LOCAL_VOLUME_A:
     '本地存储卷表示挂载的本地存储设备，如磁盘、分区或目录。',
   CHOOSE_STORAGE_SYSTEM_TIP: '选择存储系统',
-  PROVISIONER_DEPENDENCE_DESC: '存储系统需要部署相关的存储插件来提供服务。',
+  PROVISIONER_DEPENDENCE_DESC: '您需要先在存储系统中部署相关插件才能提供服务。',
 
   'Expand Volume': '存储卷扩容',
   VOLUME_EXPAND_TIPS:
@@ -135,16 +135,16 @@ module.exports = {
   Expand: '扩容',
 
   QINGCLOUD_CSI_DESC:
-    '使用 QingCloud CSI 作为底层存储插件。有关更多信息，请参见<a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md"> QingCloud CSI</a>。',
+    '使用 QingCloud CSI 作为底层存储插件。<a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md">了解更多</a>',
 
   QINGCLOUD_CSI_TYPE_DESC:
     '在青云云平台中，0 代表性能型硬盘；2 代表容量型硬盘；3 代表超高性能型硬盘；5 代表企业级分布式 SAN（NeonSAN）型硬盘；100 代表基础型硬盘；200 代表 SSD 企业型硬盘。',
-  CREATE_VOLUME_MAX_SIZE: '设置存储卷的容量上限。',
-  CREATE_VOLUME_STEP_SIZE: '设置存储卷的增量值。',
-  CREATE_VOLUME_MIN_SIZE: '设置存储卷的容量下限。',
-  VOLUME_FS_TYPE:
-    '设置存储卷的文件系统类型。该值可为 ext3、ext4 或 xfs，默认为 ext4。',
-  QINGCLOUD_VOLUME_TAGS_DESC: '为存储卷添加关联标签，多个标签需用逗号分隔。',
+  CREATE_VOLUME_MAX_SIZE: '存储卷的容量上限。',
+  CREATE_VOLUME_STEP_SIZE: '存储卷的增量值。',
+  CREATE_VOLUME_MIN_SIZE: '存储卷的容量下限。',
+  VOLUME_FS_TYPE: '支持 ext3、ext4 和 XFS。默认类型为 ext4。',
+  QINGCLOUD_VOLUME_TAGS_DESC:
+    '为存储卷添加标签。使用半角逗号（,）分隔多个标签。',
 
   MAXSIZE: '容量上限',
   STEPSIZE: '增量值',
@@ -153,16 +153,16 @@ module.exports = {
   TAGS: '标签',
 
   GLUSTERFS_RESTURL_DESC:
-    '按需分配 Gluster 卷的 Gluster REST 服务或 Heketi 服务的 URL。',
+    '供应存储卷的 Heketi REST URL，例如，<Heketi 服务集群 IP 地址>:<Heketi 服务端口号>。',
   GLUSTERFS_ID_DESC: 'Gluster 集群 ID。',
   GLUSTERFS_RESTAUTHENABLED_DESC: ' Gluster 启用对 REST 服务器的认证。',
-  GLUSTERFS_RESTUSER_DESC:
-    '能够在 Gluster Trusted Pool 中创建卷的 Gluster REST 服务用户或 Heketi 用户。',
+  GLUSTERFS_RESTUSER_DESC: 'Gluster REST 服务或 Heketi 服务的用户名。',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Heketi 用户密钥的所属项目。',
   GLUSTERFS_SECRET_NAME_DESC: 'Heketi 用户密钥的名称。',
-  GLUSTERFS_GID_MIN_DESC: '存储类型 GID 范围的最小值。',
-  GLUSTERFS_GID_MAX_DESC: '存储类型 GID 范围的最大值。',
-  GLUSTERFS_VOLUME_TYPE_DESC: '卷的可选类型。',
+  GLUSTERFS_GID_MIN_DESC: '存储卷的 GID 最小值。',
+  GLUSTERFS_GID_MAX_DESC: '存储卷的 GID 最大值。',
+  GLUSTERFS_VOLUME_TYPE_DESC:
+    '存储卷的类型。该值可为 none，replicate:<副本数>，或 disperse:<数据>:<冗余数>。如果未设置该值，则默认存储卷类型为 replicate:3。',
 
   CEPHRBD_MONITORS_DESC: 'Ceph 集群 Monitors 的 IP 地址。',
   CEPHRBD_ADMIN_ID_DESC: 'Ceph 集群能够创建卷的用户 ID。',
@@ -226,7 +226,6 @@ module.exports = {
   REST_AUTH_ENABLED: '启用 REST 认证',
   REST_USER: 'REST 用户',
   VOLUME_TYPE: '存储卷类型',
-  REST_URL_EXAMPLE: 'IP 地址:端口号',
   SECRET_NAME: '密钥名称',
   REST_AUTH_TRUE: '是',
   CEPH_MONITOR_IP: 'IP 地址:端口号',
@@ -240,4 +239,5 @@ module.exports = {
   VOLUME_BINDING_MODE: '存储卷绑定模式',
   BINDING_IMMEDIATE: '立即绑定',
   BINDING_WAIT: '延迟绑定',
+  DEFAULT_STORAGE_CLASS: '默认存储类型',
 }

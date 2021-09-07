@@ -157,7 +157,7 @@ export default class StorageClassSetting extends React.Component {
         <Form data={this.formTemplate} ref={formRef}>
           <Columns>
             <Column>
-              <Form.Item label={t('STORAGE_VOLUME_EXTENSION')}>
+              <Form.Item label={t('VOLUME_EXPANSION')}>
                 <Select
                   name="allowVolumeExpansion"
                   options={[
@@ -168,7 +168,7 @@ export default class StorageClassSetting extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('RECLAMATION_POLICY')}>
+              <Form.Item label={t('RECLAIM_POLICY')}>
                 <Input name="reclaimPolicy" disabled />
               </Form.Item>
             </Column>

@@ -224,7 +224,6 @@ module.exports = {
     'Using App Governance requires creating a homebrew app and turning on service governance for each service',
   APP_REPOS_DESC:
     'The app repository comes from a third-party Helm Chart Repo, which visually displays and provides deployment and management capabilities in KubeSphere. Users can quickly deploy applications with one click based on templates in the app repository.',
-  SEARCH_TIPS: 'Search',
 
   APPLICATION_BASEINFO_DESC: 'Basic app information (such as name description)',
 

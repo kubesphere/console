@@ -46,9 +46,7 @@ const Item = ({ prefix = '', data = {} }) => {
               <Link to={`${prefix}/${node_name}`}>{node_name}</Link>
             )}
           </strong>
-          <span>
-            {t('Node IP')}: {node_ip || '-'}
-          </span>
+          <span>{t('NODE_IP_ADDRESS', { value: node_ip || '-' })}</span>
         </p>
         <p>
           <strong>{hasLeader ? t('YES') : t('NO')}</strong>

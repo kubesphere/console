@@ -54,8 +54,8 @@ module.exports = {
   MOUNTED_TCAP: '已掛載',
   NOT_MOUNTED: '未掛載',
   Scalable: '可擴容性',
-  RECLAMATION_POLICY: '回收機制',
   CREATE: '創建',
+  RECLAIM_POLICY: '回收機制',
   DELETE_STORAGE_TIP: '如果儲存卷正在被掛載時，等待工作負載被刪除時一同刪除。',
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce：單個節點讀寫。<br/>ReadOnlyMany：多節點唯讀。<br/>ReadWriteMany：多節點讀寫。<br/>掛載時只能使用一種模式。',
@@ -63,7 +63,7 @@ module.exports = {
   'Default Volume': '預設儲存卷',
   'Parameters (key-value pairs)': '參數 (鍵值對)',
   'Mount Options': '掛載選項',
-  STORAGE_VOLUME_EXTENSION: '允許儲存卷擴容',
+  VOLUME_EXPANSION: '儲存卷擴容',
   'Mount Status': '掛載狀態',
   'Mounted Pods': '已掛載容器組',
   AVAILABLE: '閒置',
@@ -128,7 +128,8 @@ module.exports = {
   WHAT_IS_LOCAL_VOLUME_A:
     '本地儲存卷表示掛載的本地儲存設備，如硬碟、分割區或目錄。',
   CHOOSE_STORAGE_SYSTEM_TIP: '選擇您需要儲存系統',
-  PROVISIONER_DEPENDENCE_DESC: '儲存系統需要部署相關的儲存插件来提供服務。',
+  PROVISIONER_DEPENDENCE_DESC:
+    'You need to deploy a plugin in your storage system before it provides services.',
 
   'Expand Volume': '儲存卷擴容',
   VOLUME_EXPAND_TIPS:
@@ -136,7 +137,7 @@ module.exports = {
   Expand: '擴容',
 
   QINGCLOUD_CSI_DESC:
-    'Use QingCloud CSI as the underlying storage plug-in. For more information, see <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">QingCloud CSI</a>.',
+    'Use QingCloud CSI as the underlying storage plugin. <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">Learn More</a>',
 
   MAXSIZE: 'Maximum Size',
   MINSIZE: 'Minimum Size',
@@ -146,27 +147,25 @@ module.exports = {
 
   QINGCLOUD_CSI_TYPE_DESC:
     '在青雲雲平台中，0 代表性能型硬碟，2 代表容量型硬碟，3 代表超高性能型硬碟，5 代表企業級分布式 SAN（NeonSAN）型硬碟，100 代表基礎型硬碟，200 代表企業型硬碟',
-  CREATE_VOLUME_MAX_SIZE: '創建儲存卷容量上限',
-  CREATE_VOLUME_STEP_SIZE: '創建儲存卷增量值',
-  CREATE_VOLUME_MIN_SIZE: '創建儲存卷容量下限',
-  VOLUME_FS_TYPE:
-    'Set the file system type of the storage volume. The value can be ext3, ext4, or xfs, and it defaults to ext4.',
+  CREATE_VOLUME_MAX_SIZE: 'Maximum size of the volume.',
+  CREATE_VOLUME_STEP_SIZE: 'Step size of the volume.',
+  CREATE_VOLUME_MIN_SIZE: 'Minimum size of the volume.',
+  VOLUME_FS_TYPE: 'Supports ext3, ext4, and XFS. The default type is ext4.',
   QINGCLOUD_VOLUME_TAGS_DESC:
-    'Add tags to the storage volume. Multiple tags need to be separated by commas.',
+    'Add tags to the storage volume. Use commas to separate multiple tags.',
 
   GLUSTERFS_RESTURL_DESC:
-    'Gluster REST service or Heketi service URL that provisions Gluster volumes on demand.',
-  GLUSTERFS_ID_DESC: 'Gluster 集群 ID。',
+    'Heketi REST URL that provisions volumes, for example, <Heketi Service cluster IP Address>:<Heketi Service port number>.',
+  GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
   GLUSTERFS_RESTAUTHENABLED_DESC: ' Gluster 啟用对 REST 伺服器的認證',
   GLUSTERFS_RESTUSER_DESC:
-    'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
+    'Username of Gluster REST service or Heketi service.',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
   GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
-  GLUSTERFS_GID_MIN_DESC:
-    'The minimum value of GID range for the storage class.',
-  GLUSTERFS_GID_MAX_DESC:
-    'The maximum value of GID range for the storage class.',
-  GLUSTERFS_VOLUME_TYPE_DESC: 'Optional type of the volume.',
+  GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the volume.',
+  GLUSTERFS_GID_MAX_DESC: 'Maximum GID of the volume.',
+  GLUSTERFS_VOLUME_TYPE_DESC:
+    'Type of volume. The value can be none, replicate:<Replicate count>, or disperse:<Data>:<Redundancy count>. If the volume type is not set, the default volume type is replicate:3.',
 
   CEPHRBD_MONITORS_DESC: 'IP address of Ceph monitors.',
   CEPHRBD_ADMIN_ID_DESC: 'ceph 集群能夠創建卷的用戶 ID',
@@ -231,13 +230,12 @@ module.exports = {
   REST_AUTH_ENABLED: 'REST Authentication',
   REST_USER: 'REST User',
   VOLUME_TYPE: 'Volume Type',
-  REST_URL_EXAMPLE: 'IP address and port number',
   SECRET_NAME: 'Secret Name',
   REST_AUTH_TRUE: 'True',
   CEPH_MONITOR_IP: 'IP address and port number',
   SECRET_NAMESPACE: 'Secret Namespace',
-  GID_MIN: 'GID Minimum Value',
-  GID_MAX: 'GID Maximum Value',
+  GID_MIN: 'Minimum GID',
+  GID_MAX: 'Maximum GID',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
   SNAPSHOT_TYPE: '快照類型',
@@ -245,4 +243,5 @@ module.exports = {
   VOLUME_BINDING_MODE: '存儲卷綁定模式',
   BINDING_IMMEDIATE: '立即綁定',
   BINDING_WAIT: '延遲綁定',
+  DEFAULT_STORAGE_CLASS: 'Default Storage Class',
 }

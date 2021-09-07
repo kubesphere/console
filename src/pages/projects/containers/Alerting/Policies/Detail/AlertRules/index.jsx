@@ -51,7 +51,7 @@ export default class AlertRules extends React.Component {
     return (
       <>
         {!isEmpty(detail.rules) && (
-          <Panel title={t('ALERTING_RULES')}>
+          <Panel title={t('ALERTING_RULE')}>
             {detail.rules.map((item, index) => (
               <RuleItem
                 key={index}

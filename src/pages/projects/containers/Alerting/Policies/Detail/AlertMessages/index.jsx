@@ -109,7 +109,7 @@ export default class AlertHistory extends React.Component {
       },
     },
     {
-      title: t('ALERTING_RESOURCE'),
+      title: t('MONITORING_TARGET'),
       dataIndex: 'labels',
       isHideable: true,
       width: '20%',

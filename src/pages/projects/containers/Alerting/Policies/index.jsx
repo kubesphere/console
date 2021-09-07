@@ -184,7 +184,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('ALERTING_TYPE'),
+        title: t('SEVERITY'),
         dataIndex: 'labels.severity',
         filters: this.getAlertingTypes(),
         filteredValue: getFilteredValue('labels.severity'),

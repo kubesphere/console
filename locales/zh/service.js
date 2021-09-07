@@ -54,20 +54,19 @@ module.exports = {
   'Please input service name': '请输入服务名称',
   ENTER_EXTERNALNAME_DESC: '请输入 ExternalName。',
   SPECIFY_WORKLOAD: '指定工作负载',
-  'Specify Node': '指定节点',
+  SPECIFY_NODE: '指定节点',
+  'Add Selector': '添加选择器',
 
   INVALID_PORT_DESC: '请输入有效协议或端口号。',
   'Please input ExternalName': '请输入 ExternalName',
   'Specify Workload': '指定工作负载',
-  SPECIFY_NODE: '指定节点',
-  'Add Selector': '添加选择器',
 
   INVALID_PORT: '端口无效。',
   'Not Associate': '不关联',
 
   Auto: '自动',
 
-  CUSTOM_CREATION: '自定义创建',
+  CUSTOM_SERVICE: '自定义服务',
   'Specify Workloads': '指定工作负载',
   'Create service by specifying workloads': '指定工作负载创建服务',
   'Create service by Yaml': '通过 Yaml 创建服务',
@@ -86,8 +85,9 @@ module.exports = {
   TOTAL_WORKLOAD: '共 {count} 个工作负载',
 
   STICKY_SESSION: '会话保持',
-  MAXIMUM_STICKINESS_DURATION: '最大会话保持时间（秒）',
-  STICKY_SESSION_DESC: '会话保持时间默认是 10800 秒（即 3 小时）。',
+  MAXIMUM_STICKINESS_DURATION: '最大会话保持时间（s）',
+  STICKY_SESSION_DESC:
+    '确保属于同一个会话的请求全都发送到同一台服务器进行处理。',
 
   SERVICE_NAME_DESC:
     '名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 63 个字符。',
@@ -105,7 +105,7 @@ module.exports = {
 
   ACCESS_NONE_TIP: '不提供外网访问，只能在集群内访问服务。',
   ACCESS_NODEPORT_TIP: '通过集群节点的对应端口来访问服务。',
-  ACCESS_LOADBALANCER_TIP: '通过云服务商提供的负载均衡器来访问服务。',
+  ACCESS_LOADBALANCER_TIP: '通过负载均衡器来访问服务。',
 
   'The current selector': '当前设置的选择器',
   'Commonly included tags in the current workloads':
@@ -167,11 +167,12 @@ module.exports = {
   SERVICE_TYPE_STATELESSSERVICE: '无状态服务',
   SERVICE_TYPE_EXTERNALSERVICE: '映射外部服务',
 
-  SERVICE_PORTS_DESC: '设置容器镜像暴露的端口以及服务端口。',
+  SERVICE_PORTS_DESC: '设置用于访问容器的端口以及服务端口。',
 
   EIP_POOL_DESC: '集群内部访问方式(DNS)',
 
-  STICKINESS_VALUE_RANGE: '取值范围：0-86400。',
+  STICKY_DURATION_DESC:
+    '设置最大会话保持时间。取值范围为 0 到 86400，默认值 10800。',
 
   // Services
   LABEL_SELECTOR: '标签选择器',

@@ -123,7 +123,7 @@ export default class TimeSelect extends React.Component {
             })}
             onChange={this.handleTimeRangeChange('start')}
           />
-          <p>{t('Start Time')}</p>
+          <p>{t('START_TIME')}</p>
         </li>
         <li>
           <DatePicker
@@ -139,7 +139,7 @@ export default class TimeSelect extends React.Component {
             })}
             onChange={this.handleTimeRangeChange('end')}
           />
-          <p>{t('End Time')}</p>
+          <p>{t('END_TIME')}</p>
         </li>
         <li>
           <div>
@@ -152,7 +152,7 @@ export default class TimeSelect extends React.Component {
               })}
             />
           </div>
-          <p>{t('Time Interval')}</p>
+          <p>{t('SAMPLING_INTERVAL')}</p>
         </li>
       </ul>
     )

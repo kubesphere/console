@@ -98,7 +98,7 @@ export default class AdvancedSettings extends React.Component {
           )}
         {(noWorkload || module !== 'statefulsets') && (
           <Form.Group
-            label={t('INTERNET_ACCESS')}
+            label={t('NETWORK_ACCESS')}
             desc={t('SERVICES_INTERNET_ACCESS_DESC')}
             checkable
           >
@@ -116,7 +116,7 @@ export default class AdvancedSettings extends React.Component {
         >
           <Form.Item
             label={t('MAXIMUM_STICKINESS_DURATION')}
-            desc={t('STICKINESS_VALUE_RANGE')}
+            desc={t('STICKY_DURATION_DESC')}
           >
             <NumberInput
               name={`Service.${this.fedPrefix}spec.sessionAffinityConfig.clientIP.timeoutSeconds`}

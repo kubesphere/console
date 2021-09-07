@@ -72,8 +72,8 @@ class APIServerMonitorings extends React.Component {
       title: 'REQUEST_LATENCY',
       unit: 'ms',
       legend: [
-        'CREATE',
-        'DELETE',
+        'REST_CREATE',
+        'REST_DELETE',
         'DELETECOLLECTION',
         'GET',
         'POST',

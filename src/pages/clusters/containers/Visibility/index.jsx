@@ -59,7 +59,7 @@ export default class Overview extends React.Component {
     return [
       {
         title: t('CLUSTER_VISIBILITY_Q1'),
-        description: t.html('CLUSTER_VISIBILITY_A1'),
+        description: t('CLUSTER_VISIBILITY_A1'),
       },
       {
         title: t('CLUSTER_VISIBILITY_Q2'),

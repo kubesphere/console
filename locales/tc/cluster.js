@@ -162,9 +162,10 @@ module.exports = {
 
   MULTI_CLUSTER: '多集群',
 
-  CLUSTER_TAG: '標籤',
-  CLUSTER_TAG_DESC: '標籤此集群的用途，例如 生產環境、測試環境、示範環境 等',
-  CLUSTER_PROVIDER_DESC: '提供集群基礎設施的廠商',
+  CLUSTER_SETTINGS_DESC: '定義集群配置資訊',
+  TAG: '標籤',
+  CLUSTER_TAG_DESC: 'Select a tag to identify the purpose of the cluster.',
+  CLUSTER_PROVIDER_DESC: 'Select the provider of the cluster infrastructure.',
   CLUSTER_CONNECT_METHOD_DESC: '可以直接連接集群或者使用代理',
 
   CONNTECT_DIRECT: '直接連接Kubernetes集群',
@@ -186,7 +187,7 @@ module.exports = {
 
   UNBIND_CLUSTER_DESC:
     '解綁集群後，KubeSphere 將無法再對該集群進行管理。 解綁後，該集群内的 Kubernetes 資源不會被刪除。',
-  SURE_TO_UNBIND_CLUSTER: '我確定要執行解綁集群的操作',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation.',
 
   'Invite members to the cluster': '邀請成員到該集群',
   INVITE_CLUSTER_MEMBER_DESC: '您可以邀請新的成員來此集群',
@@ -202,7 +203,7 @@ module.exports = {
 
   CLUSTER_VISIBILITY_Q1: '如何將集群授權給指定的企業空間使用？',
   CLUSTER_VISIBILITY_A1:
-    'You can assign a cluster to specific workspaces by clicking <strong>Edit Visibility</strong>.',
+    'You can assign a cluster to specific workspaces by clicking Edit Visibility.',
   CLUSTER_VISIBILITY_Q2: '什麼是公開集群?',
   CLUSTER_VISIBILITY_A2:
     '公開狀態的集群意味著平台内的用戶都可以使用該集群，並在集群中創建和調度資源',
@@ -225,7 +226,7 @@ module.exports = {
   CLUSTER_AGENT_DESC: '需要在集群中設置下相應的代理 Agent',
 
   SELECT_HOST_CLUSTER_WARNING:
-    'The stability across clusters will decrease if the host cluster is overloaded. It is not recommended to create resources on the host cluster.',
+    'The visibility of the multi-cluster environment will decrease if the host cluster is overloaded. It is not recommended to create resources on the host cluster.',
   HOST_CLUSTER_VISIBILITY_WARNING:
     '請謹慎將 Host 集群授權给企業空間，Host 集群負載過高會導致多集群穩定性下降。',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
@@ -315,12 +316,14 @@ module.exports = {
   UNBIND_CLUSTER_Q: 'Unbind Cluster',
 
   // Cluster Visibility
+  NODE: 'Node',
   ADMINISTRATOR: 'Administrator',
   CLUSTER_VISIBILITY: '集群能見度',
   CLUSTER_VISIBILITY_DESC:
-    'Cluster visibility allows users to view and manage cluster resources in workspaces after the cluster is authorized to the workspaces.',
+    'Cluster visibility controls the cluster authorization to workspaces. After a cluster is authorized to workspaces, you can view and manage the cluster resources in the workspaces.',
   EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
-  TO_BE_AUTHORIZED: 'To be authorized',
+  UNAUTHORIZED: 'Unauthorized',
+  LOGGING: 'Logging',
   EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:

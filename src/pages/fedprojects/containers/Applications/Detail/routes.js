@@ -34,7 +34,7 @@ export default [
   },
   {
     path: `${PATH}/ingresses`,
-    title: 'INTERNET_ACCESS',
+    title: 'NETWORK_ACCESS',
     component: AppIngresses,
     exact: true,
   },

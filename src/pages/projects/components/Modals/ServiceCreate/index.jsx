@@ -95,7 +95,7 @@ export default class ServiceCreateModal extends React.Component {
           ? []
           : [
               {
-                name: 'CUSTOM_CREATION',
+                name: 'CUSTOM_SERVICE',
                 description: 'SERVICE_CUSTOM_CREATE',
                 options: [
                   {

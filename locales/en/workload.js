@@ -24,7 +24,6 @@ module.exports = {
   REPLICA_LOW_PL: 'replicas',
   IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} layers',
   IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} layers',
-  TAG: 'Tag',
   CPU_REQUEST: 'CPU Request',
   CPU_LIMIT: 'CPU Limit',
   MEMORY_REQUEST: 'Memory Request',
@@ -59,7 +58,6 @@ module.exports = {
   'Add Labels': 'Add Labels',
   ADD_METADATA: 'Add Metadata',
   'Add new container': 'Add new container',
-  'Add Node Selector': 'Add Node Selector',
   ADD_NODE_SELECTOR: 'Add Node Selector',
   ADD_PORT: 'Add Port',
   'Add Probe': 'Add Probe',
@@ -149,10 +147,10 @@ module.exports = {
   'environment variables': 'environment variables',
   ErrImageNeverPull: 'ErrImageNeverPull',
   ErrImagePull: 'ErrImagePull',
-  EVERY_DAY: ' (Every day)',
-  EVERY_HOUR: ' (Every hour)',
-  EVERY_MONTH: ' (Every month)',
-  EVERY_WEEK: ' (Every week)',
+  EVERY_DAY: '0 0 * * * (every day)',
+  EVERY_HOUR: '0 * * * * (every hour)',
+  EVERY_MONTH: '0 0 1 * * (every month)',
+  EVERY_WEEK: '0 0 * * 0 (every week)',
   'Exec Command Check': 'Exec Command Check',
   'Every Day': 'Every Day',
   'Every Hour': 'Every Hour',
@@ -162,8 +160,8 @@ module.exports = {
   EXISTING_VOLUME: 'Existing Volume',
   FailedCreate: 'FailedCreate',
   FailedDelete: 'FailedDelete',
-  failedJobsHistoryLimit: 'failedJobsHistoryLimit',
   FAILURE_THRESHOLD: 'Failure Threshold',
+  FAILED_JOBS_HISTORY_LIMIT: 'Failed Jobs Record',
   'File List': 'File List',
   'for example': 'for example',
   FoundNewReplicaSet: 'FoundNewReplicaSet',
@@ -244,6 +242,8 @@ module.exports = {
   'No related resources': 'No related resources',
   NO_REQUEST: 'No request',
   NO_RESOURCE_LIMIT: 'No resource limit',
+  'No Request': 'No Request',
+  'No resource limits': 'No resource limits',
   'Node Name': 'Node Name',
   'Node Scheduling Info': 'Node Scheduling Information',
   NO_IMAGE_FOUND: 'No Image Found',
@@ -365,8 +365,7 @@ module.exports = {
   SELECT_NODES: 'Select Nodes',
   'Specify Replicas Number': 'Specify Replicas Number',
   SYNC_HOST_TIMEZONE: 'Synchronize Host Timezone',
-  startingDeadlineSeconds: 'startingDeadlineSeconds',
-  'startingDeadlineSeconds(s)': 'startingDeadlineSeconds(s)',
+  STARTING_DEADLINE: 'Job Starting Deadline (s)',
   'Startup Probe': 'Startup Probe',
   'Storage Size': 'Storage Size',
   'Strategy Type': 'Strategy Type',
@@ -374,7 +373,7 @@ module.exports = {
   SUCCESS_THRESHOLD: 'Success Threshold',
   SuccessfulCreate: 'SuccessfulCreate',
   SuccessfulDelete: 'SuccessfulDelete',
-  successfulJobsHistoryLimit: 'successfulJobsHistoryLimit',
+  SUCCESSFUL_JOBS_HISTORY_LIMIT: 'Successful Jobs Record',
   WORKLOAD_MOUNT_VOLUME_DESC:
     'Mount an existing volume, temporary volume, or HostPath volume to the containers.',
   'Sure to delete the workload(s)?': 'Sure to delete the workload(s)?',
@@ -548,30 +547,32 @@ module.exports = {
 
   BACK_OFF_LIMIT: 'Backoff Limit',
   BACK_OFF_LIMIT_DESC:
-    'Maximum number of retries before marking a Job as failed. The default value is 6.',
+    'Maximum number of retries before marking the Job as failed. The default value is 6.',
   JOB_PARALLELISM_LABEL: 'Parallelism',
   JOB_PARALLELISM_DESC: 'Number of Pods that run concurrently.',
   JOB_COMPLETION_LABEL: 'Completions',
   JOB_COMPLETION_DESC:
-    'Number of Pods that need to run successfully before a Job is complete.',
+    'Number of Pods that complete successfully required for the Job to be marked as complete.',
   JOB_ACTIVE_DEADLINE: 'Active Deadline (s)',
   JOB_ACTIVE_DEADLINE_DESC:
-    'Duration of a Job. The running Pods are terminated when the Job reaches the duration. The value must be a positive integer.',
+    'Maximum duration of the Job. The Job is terminated after reaching the specific timeout.',
 
   RESTART_POLICY_TIP:
     'RestartPolicy can only specify Never or OnFailure, when the job is not completed:<br/>* If RestartPolicy specifies Never, the job creates a new Pod when the Pod fails, and the failed Pod does not disappear.<br/>* If RestartPolicy specifies OnFailure, the job will internally restart the container when the Pod fails, instead of creating a new Pod.',
 
-  RESTART_POLICY_NEVER_DESC: ' (Create a new Pod when a Pod fails)',
-  RESTART_POLICY_ONFAILURE_DESC: ' (Restart the container when a Pod fails)',
+  RESTART_POLICY_NEVER_DESC: 'Never (create a new Pod when a Pod fails)',
+  RESTART_POLICY_ONFAILURE_DESC:
+    'On failure (restart the container when a Pod fails)',
 
   CRONJOBS_BASEINFO_DESC:
     'Basic information regarding the CronJob. You need to specify the name and schedule',
   CRONJOBS_VOLUME_DESC:
     'You can mount a temporary volumes, or persistent volumes to a Pod of the cronjob.',
   CRONJOB_CRON_DESC:
-    'Set a schedule of a CronJob to be executed. For Cron syntax, see <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Cron</a>. Kubernetes use UTC by default. You need to adjust the schedule according to your time zone.',
+    'Set a schedule for the CronJob. KubeSphere uses UTC by default and you need to adjust the schedule according to your time zone. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Learn More</a>',
 
-  START_DEADLINE_SECONDS_DESC: 'Deadline for starting a Job.',
+  START_DEADLINE_SECONDS_DESC:
+    'Deadline for starting the Job if the scheduled run is missed for any reason.',
 
   VOLUME_EMPTY_TIP: 'No created volumes, please',
 
@@ -778,7 +779,6 @@ module.exports = {
 
   // CronJobs
   ADD_VOLUME: 'Add Volume',
-  RESTART_POLICY_DESC:
-    'The Pod restart policy. The value can be Never or onFailure.',
+  RESTART_POLICY_DESC: 'The Pod restart policy.',
   MOUNT_VOLUMES: 'Mount Volumes',
 }

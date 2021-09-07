@@ -19,8 +19,8 @@
 module.exports = {
   'Add Rule': 'Add Rule',
   Alerting: 'Alerting',
-  SUMMARY: 'Summary',
-  NOTIFICATION_MESSAGE: 'Message',
+  NOTIFICATION_SUMMARY: 'Summary',
+  NOTIFICATION_MESSAGE: 'Notification Message',
   'Alerting Detail': 'Alerting Detail',
   ALERTING_HISTORY: 'Alerting History',
   ALERTING_MESSAGE: 'Alerting Message',
@@ -35,10 +35,9 @@ module.exports = {
   'Alerting Resource': 'Alerting Resource',
   'alerting rule': 'alerting rule',
   ALERTING_RULE: 'Alerting Rule',
-  ALERTING_RULES: 'Alerting Rules',
   ALERTING_STATUS: 'Status',
   'Alerting Duration': 'Duration',
-  ALERTING_TYPE: 'Severity',
+  SEVERITY: 'Severity',
   Condition: 'Condition',
   'cpu usage': 'CPU usage',
   CPU_USAGE_SCAP: 'CPU usage',
@@ -48,7 +47,6 @@ module.exports = {
   DISK_WRITE_IOPS: 'Local disk write IOPS',
   DISK_WRITE_THROUGHPUT: 'Local disk write throughput',
   'Edit Rule': 'Edit Rule',
-  INODE_USAGE: 'inode usage',
   DISK_SPACE_USAGE: 'Local disk space usage',
   MEMORY_AVAILABLE: 'Available memory',
   'memory usage': 'Memory usage',
@@ -71,7 +69,7 @@ module.exports = {
   'Notification Settings': 'Notification Settings',
   SET_RULE_DESC: 'Please set an alerting rule.',
   'Please input the threshold': 'Please input the threshold',
-  POD_ANOMALY: 'Pod anomalies',
+  ABNORMAL_PODS: 'Abnormal Pods',
   POD_USAGE_SCAP: 'Pod usage',
   ACTIVATED_AT: 'Activated At',
   'Recent Notification': 'Recent Notification',
@@ -89,14 +87,14 @@ module.exports = {
     'Unavailable statefulset replicas ratio',
   'View Details': 'View Details',
 
-  RULE_TEMPLATES: 'Rule Templates',
-  CUSTOM_RULES: 'Custom Rules',
+  RULE_TEMPLATE: 'Rule Template',
+  CUSTOM_RULE: 'Custom Rule',
   RULE_EXPRESSION: 'Rule Expression',
   INVALID_TIME_DESC:
     'Invalid value. Please select a value from the drop-down list or enter 0 or a positive integer.',
 
   ALIAS: 'Alias',
-  ALERT_DURATION_MIN: 'Duration (min)',
+  THRESHOLD_DURATION_MIN: 'Threshold Duration (min)',
 
   ENTER_RULE_EXPRESSION: 'Please enter a rule expression.',
   ALERT_FUNCTIONS: 'Functions',
@@ -104,7 +102,7 @@ module.exports = {
   ALERT_LABELS: 'Labels',
   ALERT_RATE_RANGES: 'Rate Ranges',
 
-  NOTIFICATION_CONTENT: 'Notification Content',
+  NOTIFICATION_DETAILS: 'Details',
 
   CUSTOM_POLICIES: 'Custom Policies',
   BUILT_IN_POLICIES: 'Built-in Policies',
@@ -120,27 +118,29 @@ module.exports = {
     'Users can view all alerting messages that have met the conditions of alerting policies at the cluster level.',
 
   ALERTING_POLICY_EMPTY_DESC: 'Please create an alerting policy.',
+  ALERTING_POLICY_CREATE_DESC:
+    'You can create alerting policies to detect abnormal resources in real time.',
 
   SELECT_NODE_TIP: 'Please select at least a cluster node.',
   SELECT_WORKLOAD_TIP: 'Please select at least a workload.',
 
-  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How do I trigger alerting messages?',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerting messages generated?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A:
-    'You need to set an alerting policy for a resource. Alerting messages will be triggered when the resource metric reaches the threshold of the alerting policy.',
+    'You need to set an alerting policy for a resource. Alerting messages will be generated when the metric configured in the alerting policy reaches a threshold.',
   REQUESTS_FOR_PUSH_AN_ALARM_Q:
     'How do I receive alerting messages if an alerting policy is triggered?',
   REQUESTS_FOR_PUSH_AN_ALARM_A:
-    'The platform administrator needs to select a notification method and configure the corresponding server.',
+    'The platform administrator needs to select a notification method and configure the server corresponding to the method.',
   HOW_TO_SUPRESS_AN_ALARM_Q: 'How do I suppress alerting messages?',
   HOW_TO_SUPRESS_AN_ALARM_A:
-    'You can set alerting policies at different levels. Each level corresponds to an alerting period and repetition period.',
+    'You can set alerting policies at different levels. Each level corresponds to an alerting interval.',
 
   EDIT_TCAP: 'Edit',
   EDIT_ALERTING_POLICY: 'Edit Alerting Policy',
   DELETE_TCAP: 'Delete',
 
   ALERT_DURATION:
-    'An alert is triggered when the duration reaches the pre-set value.',
+    'An alert is firing when the threshold duration reaches the preset value.',
   ALERT_RULE_INACTIVE: 'Inactive',
   ALERT_RULE_PENDING: 'Pending',
   ALERT_RULE_FIRING: 'Firing',
@@ -149,12 +149,13 @@ module.exports = {
   ALERT_RULE_HEALTH_UNKNOWN: 'UnKnown',
 
   ALERT_RULE_EXPRESSION_DESC:
-    'You can define a custom rule using PromQL statements. For more information, see <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener"> Prometheus Querying</a>.',
+    'You can define a custom rule using PromQL statements. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Learn More</a>',
 
   // Alerting Messages
   ALERTING_MESSAGES: 'Alerting Messages',
   ALERTING_RESOURCE: 'Alerting Resource',
   NO_DATA_DESC: 'No Data Found',
+  MONITORING_TARGET: 'Monitoring Target',
 
   // Alerting Policies
   ALERTING_POLICIES: 'Alerting Policies',

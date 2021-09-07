@@ -27,7 +27,6 @@ module.exports = {
   Workloads: '工作负载',
   IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} 层',
   IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} 层',
-  TAG: '标签',
   CPU_REQUEST: 'CPU 预留',
   CPU_LIMIT: 'CPU 限制',
   MEMORY_REQUEST: '内存预留',
@@ -351,7 +350,7 @@ module.exports = {
   CRONJOBS_VOLUME_DESC:
     '可以将临时存储卷，持久化存储卷挂载至定时任务的容器组内。',
   CRONJOB_CRON_DESC:
-    '为要执行的定时任务设置定时计划。有关 Cron 语法规则，请参阅 <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Cron</a>。Kubernetes 默认使用 UTC 时间, 您需要根据时区调整定时计划。',
+    '为定时任务设置定时计划。KubeSphere 默认使用 UTC 时间, 您需要根据时区调整定时计划。<a href="//en.wikipedia.org/wiki/Cron" target="_blank">了解更多</a>',
 
   MOUNT_VOLUME_DESC:
     '持久化存储卷请选择支持多节点读写模式 (ROX 或者 RWX) 的存储卷，否则可能因容器组不在同一节点导致容器组更新失败。如果您选择了单节点读写 (RWO) 模式的存储卷您也可以通过节点选择将容器组安排在同一节点上来避免因存储卷访问模式造成的更新错误。',
@@ -363,10 +362,10 @@ module.exports = {
   CRONJOB_PL: '定时任务',
   CRONJOB_LOW: '定时任务',
   Revision: '版本',
-  EVERY_HOUR: '（每小时）',
-  EVERY_DAY: '（每天）',
-  EVERY_WEEK: '（每周）',
-  EVERY_MONTH: '（每月）',
+  EVERY_DAY: '0 0 * * * (每天))',
+  EVERY_HOUR: '0 * * * * (每小时))',
+  EVERY_MONTH: '0 0 1 * * (每月)',
+  EVERY_WEEK: '0 0 * * 0 (每周)',
   Schedule: '定时计划',
   'Revision Records': '版本记录',
   'Revision Rollback': '版本回退',
@@ -405,10 +404,9 @@ module.exports = {
   WORKER_CONTAINER: '工作容器',
   'Request Type': '请求类型',
 
-  startingDeadlineSeconds: '启动任务的截止期限（秒）',
-  'startingDeadlineSeconds(s)': '启动任务的截止期限（秒）',
-  successfulJobsHistoryLimit: '保留完成任务数',
-  failedJobsHistoryLimit: '保留失败任务数',
+  STARTING_DEADLINE: '启动任务的截止期限（s）',
+  SUCCESSFUL_JOBS_HISTORY_LIMIT: '保留完成任务数',
+  FAILED_JOBS_HISTORY_LIMIT: '保留失败任务数',
   CONCURRENCY_POLICY: '并发策略',
 
   'Select resource': '选择资源',
@@ -463,7 +461,8 @@ module.exports = {
   SUCCESSFUL_JOBS_DESC: '允许保留的成功任务的个数。',
   CONCURRENCY_POLICY_DESC: '为定时任务所创建的任务选择并发策略。',
   'Can be found by node IP or node name': '可以通过节点 IP 或者节点名称查找',
-  START_DEADLINE_SECONDS_DESC: '启动任务的截止期限。',
+  START_DEADLINE_SECONDS_DESC:
+    '因为某种原因任务未能按定时计划执行，启动该任务的截止期限。',
   'Container CPU Resource Request, 1 Core = 1000m':
     '容器的 CPU 资源请求值, 1核 = 1000m',
   'Container Memory Resource Request': '容器的 内存 资源请求值',
@@ -524,16 +523,16 @@ module.exports = {
   BACK_OFF_LIMIT: '最大重试次数',
   JOB_PARALLELISM_LABEL: '并行数',
   JOB_COMPLETION_LABEL: '完成数',
-  JOB_ACTIVE_DEADLINE: '退出超时时限（秒）',
+  JOB_ACTIVE_DEADLINE: '退出超时时限（s）',
 
   BACK_OFF_LIMIT_DESC: '将任务标记为失败之前的最大重试次数。默认值为 6。',
   JOB_PARALLELISM_DESC: '并行运行的容器组数量。',
-  JOB_COMPLETION_DESC: '任务结束需要成功运行的容器组数量。',
+  JOB_COMPLETION_DESC: '将任务标记为结束需要成功运行的容器组数量。',
   JOB_ACTIVE_DEADLINE_DESC:
-    '任务的持续时间。任务达到持续时间后，运行中的容器组将会终止。该值必须为正整数。',
+    '任务的最大持续时间。任务达到指定超时时限后就会结束。',
 
-  RESTART_POLICY_NEVER_DESC: '（容器组出现故障时创建新的容器组）',
-  RESTART_POLICY_ONFAILURE_DESC: '（容器组出现故障时内部重启容器）',
+  RESTART_POLICY_NEVER_DESC: 'Never（容器组出现故障时创建新的容器组）',
+  RESTART_POLICY_ONFAILURE_DESC: 'On failure（容器组出现故障时内部重启容器）',
 
   RESTART_POLICY_TIP:
     'RestartPolicy 只能指定 Never 或 OnFailure，当任务未完成的情况下：<br/>* 如果 RestartPolicy 指定 Never，则任务会在容器组出现故障时创建新的容器组，且故障容器组不会消失。<br/>* 如果 RestartPolicy 指定 OnFailure，则任务会在容器组出现故障时其内部重启容器，而不是创建容器组。',
@@ -782,6 +781,6 @@ module.exports = {
 
   // CronJobs
   ADD_VOLUME: '添加存储卷',
-  RESTART_POLICY_DESC: '容器组的重启策略。该值可为 Never 或 onFailure。',
+  RESTART_POLICY_DESC: '容器组的重启策略。',
   MOUNT_VOLUMES: '挂载存储卷',
 }

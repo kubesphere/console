@@ -60,7 +60,7 @@ export default [
   },
   {
     path: `${PATH}/ranking`,
-    title: 'NODE_USAGE_RANKING',
+    title: 'RESOURCE_USAGE_RANKING',
     component: NodeUsageRanking,
     exact: true,
   },
