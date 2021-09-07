@@ -214,13 +214,15 @@ module.exports = {
   POD_STATUS: 'Pod Status',
   NO_MONITORING_DATA_FOUND: 'No Monitoring Data Found',
   NOT_ENABLED: 'Not Enabled',
-  RUNNING: 'Running',
   COMPLETED: 'Completed',
   WARNING: 'Warning',
 
   // Application Resources
   WORKSPACES: 'Workspaces',
   ACCOUNTS: 'Accounts',
-  PROJECTS: 'Projects',
-  DEVOPS_PROJECTS: 'DevOps Projects',
+  PROJECT_PL: 'Projects',
+  PROJECT_LOW: 'project',
+  DEVOPS_PROJECT: 'DevOps Project',
+  DEVOPS_PROJECT_PL: 'DevOps Projects',
+  DEVOPS_PROJECT_LOW: 'DevOps project',
 }

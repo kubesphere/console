@@ -25,11 +25,11 @@ module.exports = {
   WORKER_NODE_PL: '工作節點',
 
   'Cluster Node': '集群節點',
-  CLUSTER_NODES: '集群節點',
+  CLUSTER_NODE_PL: '集群節點',
   'Cluster Nodes': '集群節點',
 
   'Edge Node': '邊緣節點',
-  EDGE_NODES: '邊緣節點',
+  EDGE_NODE_PL: '邊緣節點',
   'Master Node': 'Master 節點',
   'Worker Node': '工作節點',
   ADD_NODE: '添加節點',
@@ -78,17 +78,18 @@ module.exports = {
   NOEXECUTE_OPTION: '不允許並驅逐已有容器組 (NoExecute)',
 
   MANAGE_TAINT: '汙點管理',
-  'Common Taints': '公共汙點',
+  MANAGE_TAINTS: '汙點管理',
+  COMMON_TAINTS: '公共汙點',
   'Node List': '主機列表',
   'Node Taints': '主機汙點',
-  TAINTS_MSG:
+  TAINTS_DESC:
     '汙點表示此節點已被 key=value 汙染，容器組調度不允許（PodToleratesNodeTaints 策略）或盡量不（TaintTolerationPriority 策略）調度到此節點，除非是能夠容忍（Tolerations）key=value 汙點的容器組。',
   TAINTS_TIPS:
     '如果主機中存在一個或多個影響策略為 NoSchedule 的汙點，該容器組不會被調度到該主機<br>如果主機中不存在影響策略為 NoSchedule 的汙點，但是存在一個或多個影響策略為 PreferNoSchedule 的汙點，該容器組會盡量不調度到該主機<br>如果主機中存在一個或多個影響策略為 NoExecute 的汙點，該容器組不會被調度到該主機，並且會驅逐已經調度到該主機的容器組實例',
   NO_TAINTS_TIPS: '暫未設置汙點',
   TAINT_SELECT_TIPS: '加入公共汙點',
-  TAINT_DELETE_TIPS: '刪除該汙點',
-  'Add Taint': '添加汙點',
+  TAINT_DELETE_TIPS: '刪除汙點',
+  ADD_TAINT: '添加汙點',
   'Delete All Taints': '全部刪除',
   'CPU Used': '已使用 CPU ',
   'Memory Used': '已使用記憶體',
@@ -105,11 +106,11 @@ module.exports = {
 
   CLUSTER_NODE_DESC:
     '集群節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
-  CLUSTER_NODE_CREATE_DESC:
+  CLUSTER_NODE_EMPTY_DESC:
     '集群節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
   EDGE_NODE_DESC:
     '邊緣節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
-  EDGE_NODE_CREATE_DESC:
+  EDGE_NODE_EMPTY_DESC:
     '邊緣節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
   NODE_NETWORKUNAVAILABLE: '網路配置 (NetworkUnavailable)',
   NODE_NETWORKUNAVAILABLE_DESC: '檢查節點上的網路配置是否正確',
@@ -140,7 +141,8 @@ module.exports = {
   IN_USE_Node_NAME: '節點名稱 {name} 已被使用',
   'Add Edge Node': '添加邊緣節點',
   NODE_NAME_EMPTY_DESC: '請輸入節點名稱',
-  INSTALL_EDGENODE_DESC:
-    '運行命令前請確保已在邊緣節點安裝容器運行時如 docker 或 containerd，詳見 <a href="https://kubeedge.io/en/docs/" target="_blank">文档</a>',
-  ADD_DEFAULT_STAIN: '添加默認污點 {params}',
+  EDGENODE_NAME_EMPTY_DESC: '請輸入節點名稱',
+  EDGENODE_CONFIG_COMMAND_TIP:
+    '運行命令前請確保已在邊緣節點安裝容器運行時如 docker 或 container。<a href="https://kubeedge.io/en/docs/" target="_blank">了解更多</a>',
+  ADD_DEFAULT_TAINT: '添加默認污點 {params}',
 }

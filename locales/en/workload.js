@@ -42,13 +42,14 @@ module.exports = {
   MUST_MATCH: 'Must match',
   MOUNT_PATH_EMPTY: 'Please enter a mount path.',
   CONFIGMAP: 'ConfigMap',
-  SECRET: 'Secret',
+  CONFIGMAP_PL: 'ConfigMaps',
+  CONFIGMAP_LOW: 'ConfigMap',
   PARTITION_ORDINAL: 'Ordinal for Dividing Pod Replicas',
   PARTITION_ORDINAL_DESC:
     'Ordinal that divides the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
   'Access Mode': 'Access Mode',
   'Add argument': 'Add argument',
-  'Add Command': 'Add Command',
+  EDGENODE_CONFIG_COMMAND: 'Edge Node Configuration Command',
   'Add command': 'Add command',
   'Add Container': 'Add Container',
   ADD_ENVIRONMENT_VARIABLE: 'Add Environment Variable',
@@ -117,6 +118,9 @@ module.exports = {
   CreateContainerError: 'CreateContainerError',
   created: 'created',
   CronJob: 'CronJob',
+  CRONJOB: 'CronJob',
+  CRONJOB_PL: 'CronJobs',
+  CRONJOB_LOW: 'CronJob',
   'CronJob Settings': 'CronJob Settings',
   'Current number of nodes scheduled': 'Current number of nodes scheduled',
   'Current Replicas': 'Current Replicas',
@@ -164,8 +168,7 @@ module.exports = {
   'for example': 'for example',
   FoundNewReplicaSet: 'FoundNewReplicaSet',
   'Horizontal Pod Autoscaling': 'Horizontal Pod Autoscaling',
-  'Horizontal Pod Autoscaling has been set':
-    'Horizontal Pod Autoscaling has been set',
+  HPA_SET_TIP: 'Horizontal Pod autoscaling has been set.',
   'Host Path': 'Host Path',
   'Host Port': 'Host Port',
   'How pods are assinged to nodes?': 'How pods are assinged to nodes?',
@@ -193,6 +196,7 @@ module.exports = {
   InvalidImageName: 'InvalidImageName',
   'is running': 'is running',
   Job: 'Job',
+  JOB: 'Job',
   'Job Settings': 'Job Settings',
   'Job Template': 'Job Template',
   EMPTY_LABEL_DESC: 'Please add a label.',
@@ -278,7 +282,7 @@ module.exports = {
   POD_REPLICAS: 'Pod Replicas',
   DEFAULT_RULES: 'Default Rules',
   DEFAULT_RULES_DESC:
-    'Schedules Pod replicas to nodes according to default rules.',
+    'Schedules the Pod replicas to nodes according to default rules.',
   'Pod replicas will be deployed on different nodes as much as possible.':
     'Pod replicas will be deployed on different nodes as much as possible.',
   'Pod replicas will be deployed on the same node as much as possible.':
@@ -413,6 +417,9 @@ module.exports = {
   'What is Disk Log Collection?': 'What is Disk Log Collection?',
   WORKER_CONTAINER: 'Worker container',
   Workload: 'Workload',
+  WORKLOAD: 'Workload',
+  WORKLOAD_PL: 'Workloads',
+  WORKLOAD_LOW: 'workload',
 
   'Not Limited': 'Not Limited',
   Cost: 'Cost',
@@ -437,27 +444,22 @@ module.exports = {
     'Assign Pod replicas to specific nodes. You can use labels to select nodes or manually specify a node.',
   WORKLOAD_SPECIFY_NODE_DESC: 'Assign Pod replicas to a specific node.',
   WORKLOAD_DESC:
-    'A workload is usually the actual carrier for accessing a Service, and is also the actual running carrier for system applications such as node log collection and monitoring. A workload is an abstract model for a group of Pods.',
+    'Workloads are used to handle service requests and can contain one or more Pods. System functions such as logging and monitoring are also implemented by workloads.',
   DEPLOYMENT_DESC:
     'Deployment provides fine-grained management of common applications in KubeSphere. Deployment configuration describes the desired state of specific components of an application as Pod templates.',
-  DEPLOYMENT_CREATE_DESC:
-    "A Deployment controller provides declarative updates for Pods and ReplicaSets, it's used to replace the ReplicationController to get Application management easier. Typically, using Deployment to create pods and ReplicateSet, rolling upgrade and rolling back applications, scaling out or in applications, stopping or resuming applications.",
+  DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
   STATEFULSET_DESC:
     'StatefulSet is used to manage stateful applications, manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.',
-  STATEFULSET_CREATE_DESC:
-    'StatefulSet is used to manage stateful applications, manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.',
+  STATEFULSET_EMPTY_DESC: 'Please create a StatefulSet.',
   DAEMONSET_DESC:
     'A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. Typically, a DaemonSet is used to running a logs collection, monitoring daemon or other system management applications.',
-  DAEMONSET_CREATE_DESC:
-    'A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. Typically, a DaemonSet is used to running a logs collection, monitoring daemon or other system management applications.',
+  DAEMONSET_EMPTY_DESC: 'Please create a DaemonSet.',
   JOB_DESC:
     'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
-  JOB_CREATE_DESC:
-    'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
+  JOB_EMPTY_DESC: 'Please create a Job.',
   CRONJOB_DESC:
     'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
-  CRONJOB_CREATE_DESC:
-    'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
+  CRONJOB_EMPTY_DESC: 'Please create a CronJob.',
   CRONJOB_NAME_DESC:
     'It can only contain lowercase letters, numbers and hyphens("-"), and must start and end with a lowercase letter or a number. The value can contain a maximum of 52 characters.',
   CRONJOB_NAME_TOO_LONG: 'The value can contain a maximum of 52 characters.',
@@ -498,7 +500,7 @@ module.exports = {
   IMAGE_EMPTY: 'Please set an image.',
   IMAGE_REGISTRY_PLACEHOLDER: 'Select the registry secret',
   IMAGE_DESC:
-    'To use a private image registry, you need to <a href={link} target="_blank">create an image registry secret</a> first.',
+    'To use a private image registry, you need to first create an image registry secret. <a href={link} target="_blank">Learn More</a>',
 
   REPLICAS_DESC: 'The desired number of pods will be created for the {module}.',
   VOLUME_SUB_TEXT: 'Volumes used by the containers of the workload',
@@ -669,8 +671,7 @@ module.exports = {
     "The request value (namely, Request) set by the containers in the Pod is used as the basis for determining the resource allocation. Only when the amount available for allocation in the node is greater than or equal to the Pod's request value can the Pod be allocated to this node.",
   POD_DESC:
     'A Pod is the basic execution unit of a Kubernetes application, representing the smallest and simplest unit in the Kubernetes object model that you create or deploy.',
-  POD_CREATE_DESC:
-    'A Pod is the basic execution unit of a Kubernetes application, representing the smallest and simplest unit in the Kubernetes object model that you create or deploy.',
+  POD_EMPTY_DESC: 'Please create a Pod.',
   FILL_IMAGE_DEFAULT_PORTS_DESC:
     'Whether to expose the default port of the image?',
 
@@ -699,7 +700,7 @@ module.exports = {
     'Select the protocol used by the service to fully utilize the Application Governance function. For example, select HTTP for an HTTP service.',
 
   CONTAINER_LOG_PATH_TIP:
-    'Container log path relative to the volume mount path. Globbing patterns are supported. You can used commas (,) to separate multiple paths. For example, when the volume mount path is /data, log/*.log indicates that the container log files are all .log files in the /data/log directory.',
+    'Container log path relative to the volume mount path. Globbing patterns are supported. You can used commas (,) to separate multiple paths.<br /><br /><b>Example</b><br />When the volume mount path is /data, log/*.log indicates that the container log files are all .log files in the /data/log directory.',
   SPECIFY_SUBPATH_TIP:
     'Specify a volume subpath to be mounted to the container.',
   DELETE_WORKLOAD_DESC:
@@ -708,7 +709,7 @@ module.exports = {
     'Select an existing volume and mount it to the containers.',
 
   REDEPLOY_CONFIRM_DESC:
-    'You are about to redeploy the workload {resource} ({type}). The pod will be redeployed according to the update strategy, and your business may be temporarily interrupted.',
+    'Are you sure you want to redeploy the {type} {resource}? The Pod replicas will be redeployed according to the update strategy and the service will be interrupted.',
 
   CONTAINER_SECURITY_CONTEXT_DESC:
     'Customize the privilege settings of the container.',
@@ -735,9 +736,7 @@ module.exports = {
   RUN_AS_USER_GROUP_DESC:
     'GID to run the entrypoint of the container process. The default value is the container runtime default GID.',
 
-  WORKLOAD_CREATE_DESC:
-    'A workload is usually the actual carrier for accessing a Service, and is also the actual running carrier for system applications such as node log collection and monitoring. A workload is an abstract model for a group of Pods.',
-
+  WORKLOAD_EMPTY_DESC: 'Please create a workload.',
   CONTAINER_RESOURCE_LIMIT_TIP:
     'Set the resource limits and requests of the container so that the container is scheduled to appropriate nodes.',
 
@@ -772,7 +771,8 @@ module.exports = {
   NODE_IP: '{node} ({ip})',
 
   // Jobs
-  JOBS: 'Jobs',
+  JOB_PL: 'Jobs',
+  JOB_LOW: 'Job',
   CRONJOBS: 'CronJobs',
   SCHEDULE: 'Schedule',
 

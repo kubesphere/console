@@ -126,6 +126,11 @@ module.exports = {
   STOP_REAL_TIME_LOG: '關閉實時紀錄',
   LOG_EXPORT: '紀錄導出',
   CUSTOM_MONITORING_DASHBOARD: '自定義監控面板',
+  CUSTOMMONITORDASHBOARD: '自定義監控面板',
+  CUSTOMMONITORDASHBOARD_PL: 'Custom Monitoring Dashboards',
+  CUSTOMMONITORDASHBOARD_LOW: 'custom monitoring dashboard',
+  CUSTOMMONITORDASHBOARD_EMPTY_DESC:
+    'Please create a custom monitoring dashboard.',
   CREATE_CUSTOM_MONITORING_DASHBOARD: '創建自定義監控面板',
   SELECT_MONITORING_TEMPLATE: '選擇監控模板',
   CUSTON_MONITORING_TEMPLATE_DESC:

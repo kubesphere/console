@@ -46,13 +46,14 @@ module.exports = {
   MUST_MATCH: 'Must match',
   MOUNT_PATH_EMPTY: 'Please enter a mount path.',
   CONFIGMAP: 'ConfigMap',
-  SECRET: 'Secret',
+  CONFIGMAP_PL: 'ConfigMaps',
+  CONFIGMAP_LOW: 'ConfigMap',
   PARTITION_ORDINAL: 'Ordinal for Dividing Pod Replicas',
   PARTITION_ORDINAL_DESC:
     'Ordinal that divides the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
   'Access Mode': 'Modo de acceso',
   'Add argument': 'Agregar argumento',
-  'Add Command': 'Agregar comando',
+  EDGENODE_CONFIG_COMMAND: 'Agregar comando',
   'Add command': 'Agregar comando',
   'Add Container': 'Agregar contenedor',
   ADD_ENVIRONMENT_VARIABLE: 'Agregar variable de entorno',
@@ -123,6 +124,7 @@ module.exports = {
   CreateContainerError: 'CreateContainerError',
   created: 'creado',
   CronJob: 'CronJob',
+  CRONJOB: 'CronJob',
   'CronJob Settings': 'Configuración de CronJob',
   'Current number of nodes scheduled': 'Número actual de nodos programados',
   'Current Replicas': 'Réplicas actuales',
@@ -169,8 +171,7 @@ module.exports = {
   'for example': 'por ejemplo',
   FoundNewReplicaSet: 'FoundNewReplicaSet',
   'Horizontal Pod Autoscaling': 'Autoescalado horizontal de pods',
-  'Horizontal Pod Autoscaling has been set':
-    'El Autoscaling Horizontal de Pods ha sido configurado',
+  HPA_SET_TIP: 'El Autoscaling Horizontal de Pods ha sido configurado',
   'Host Path': 'Ruta de host',
   'Host Port': 'Puerto host',
   'How pods are assinged to nodes?': '¿Cómo se asignan los pods a los nodos?',
@@ -199,6 +200,7 @@ module.exports = {
   InvalidImageName: 'InvalidImageName',
   'is running': 'En ejecución',
   Job: 'Trabajo',
+  JOB: 'Trabajo',
   'Job Settings': 'Configuraciones de tareas',
   'Job Template': 'Plantilla de tareas',
   ADD_CONTAINER_DESC:
@@ -284,7 +286,7 @@ module.exports = {
   POD_REPLICAS: 'Réplicas de pod',
   DEFAULT_RULES: 'Default Rules',
   DEFAULT_RULES_DESC:
-    'Schedules Pod replicas to nodes according to default rules.',
+    'Schedules the Pod replicas to nodes according to default rules.',
   CUSTOM_RULES_DESC:
     'Las réplicas de pod se implementarán de acuerdo con la política predeterminada.',
   'Pod replicas will be deployed according to user customization.':
@@ -412,6 +414,9 @@ module.exports = {
     '¿Qué es la recopilación de registro de disco?',
   WORKER_CONTAINER: 'Contenedor de trabajo',
   Workload: 'Carga de trabajo',
+  WORKLOAD: 'Carga de trabajo',
+  WORKLOAD_PL: 'Carga de trabajo',
+  WORKLOAD_LOW: 'workload',
 
   'Not Limited': 'Not Limited',
   Cost: 'Cost',
@@ -444,23 +449,21 @@ module.exports = {
     'La carga de trabajo suele ser el operador real para acceder al servicio, y también es el operador real en ejecución para aplicaciones del sistema, como la recopilación y supervisión de registros de nodos. Workload es un modelo abstracto para un grupo de Pods.',
   DEPLOYMENT_DESC:
     'La implementación proporciona una gestión detallada de aplicaciones comunes en KubeSphere. La configuración de implementación describe el estado deseado de componentes específicos de una aplicación como plantillas Pod.',
-  DEPLOYMENT_CREATE_DESC:
-    'Un controlador de implementación proporciona actualizaciones declarativas para Pods y ReplicaSets, se usa para reemplazar ReplicationController para facilitar la administración de aplicaciones. Por lo general, el uso de la implementación para crear pods y ReplicateSet, la actualización progresiva y la reversión de aplicaciones, el escalado horizontal o en las aplicaciones, la detención o reanudación de las aplicaciones.',
+  DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
   STATEFULSET_DESC:
     'StatefulSet se usa para administrar aplicaciones con estado, administrar la implementación y la ampliación de un conjunto de Pods, y proporciona garantías sobre el orden y la unicidad de estos Pods.',
-  STATEFULSET_CREATE_DESC:
-    'StatefulSet se usa para administrar aplicaciones con estado, administrar la implementación y la ampliación de un conjunto de Pods, y proporciona garantías sobre el orden y la unicidad de estos Pods.',
+  STATEFULSET_EMPTY_DESC: 'Please create a StatefulSet.',
   DAEMONSET_DESC:
     'Un DaemonSet asegura que todos (o algunos) nodos ejecuten una copia de un Pod. Por lo general, un DaemonSet se usa para ejecutar una colección de registros, monitorear daemon u otras aplicaciones de administración del sistema.',
-  DAEMONSET_CREATE_DESC:
+  DAEMONSET_EMPTY_DESC:
     'Un DaemonSet asegura que todos (o algunos) nodos ejecuten una copia de un Pod. Por lo general, un DaemonSet se usa para ejecutar una colección de registros, monitorear daemon u otras aplicaciones de administración del sistema.',
   JOB_DESC:
     'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
-  JOB_CREATE_DESC:
+  JOB_EMPTY_DESC:
     'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
   CRONJOB_DESC:
     'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
-  CRONJOB_CREATE_DESC:
+  CRONJOB_EMPTY_DESC:
     'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
   CRONJOB_NAME_DESC:
     'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 52.',
@@ -665,7 +668,7 @@ module.exports = {
     'El valor de solicitud (es decir, Solicitud) establecido por el pod en el grupo de pod se utiliza como base para determinar la asignación de recursos. Solo cuando la cantidad que se puede asignar en el nodo ≥ el valor requerido del pod, se puede asignar el pod a este nodo.',
   POD_DESC:
     'Un Pod es la unidad de ejecución básica de una aplicación Kubernetes, que representa la unidad más pequeña y más simple en el modelo de objetos Kubernetes que crea o implementa.',
-  POD_CREATE_DESC:
+  POD_EMPTY_DESC:
     'Un Pod es la unidad de ejecución básica de una aplicación Kubernetes, que representa la unidad más pequeña y más simple en el modelo de objetos Kubernetes que crea o implementa.',
   FILL_IMAGE_DEFAULT_PORTS_DESC:
     'Ya sea para exponer el puerto predeterminado de la imagen?',
@@ -717,7 +720,7 @@ module.exports = {
     'El UID para ejecutar el punto de entrada del proceso contenedor. El valor predeterminado es el usuario especificado en los metadatos de la imagen si no se especifica.',
   RUN_AS_USER_GROUP_DESC:
     'El GID para ejecutar el punto de entrada del proceso contenedor. Utiliza el tiempo de ejecución predeterminado si no está configurado.',
-  WORKLOAD_CREATE_DESC:
+  WORKLOAD_EMPTY_DESC:
     'La carga de trabajo suele ser el operador real para acceder a los servicios y también es el operador real para las aplicaciones del sistema, como la recopilación y supervisión de registros de nodos. Workload es también un modelo abstracto para un grupo de Pods.',
   CONTAINER_RESOURCE_LIMIT_TIP:
     'Set the resource limits and requests of the container so that the container is scheduled to appropriate nodes.',
@@ -751,7 +754,8 @@ module.exports = {
   NODE_IP: '{node} ({ip})',
 
   // Jobs
-  JOBS: 'Jobs',
+  JOB_PL: 'Jobs',
+  JOB_LOW: 'Job',
   CRONJOBS: 'CronJobs',
   SCHEDULE: 'Schedule',
 

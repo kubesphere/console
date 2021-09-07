@@ -26,6 +26,10 @@ module.exports = {
   Ingress: 'Entrada',
   'Network Isolation': 'Aislamiento de red',
   'Network Policy': 'Política de red',
+  NETWORK_POLICY: 'Política de red',
+  NETWORK_POLICY_PL: 'Network Policies',
+  NETWORK_POLICY_LOW: 'network policy',
+  NETWORK_POLICY_EMPTY_DESC: 'Please create a network policy.',
   'Traffic Egress': 'Salida de tráfico',
   'Traffic Ingress': 'Entrada de Tráfico',
   'Network Policys': 'Políticas de red',
@@ -65,8 +69,8 @@ module.exports = {
     'rango de IPs (CIDR) es una cadena que representa un bloque de IPs válido, como "192.168.1.1/24".',
   NETWORK_POLICY_D_OP1: 'Salida',
   NETWORK_POLICY_D_OP2: 'Entrada',
-  NETWORK_POLICY_CREATE_DESC:
-    'Configure una política de red para controlar el tráfico entre los pods dentro del mismo clúster y el tráfico desde el exterior para implementar el aislamiento de la aplicación y mejorar la seguridad de la aplicación.',
+  CREATE_NETWORK_POLICY_DESC:
+    'La política de red está configurada para permitir el aislamiento de la red dentro del mismo clúster, es decir, la capacidad de construir un cortafuegos entre ciertas instancias (pods).',
   CIDR_DESC: 'Basado en la dirección del tráfico',
   NETWORK_POLICY_MODAL_DIRECT: 'Por favor, selecciona la dirección de la regla',
   NETWORK_POLICY_MODAL_CIDRERR: 'Please fill in the CIDR information correctly',

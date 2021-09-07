@@ -31,6 +31,8 @@ module.exports = {
   ALERT_MONITORING: '告警監控',
   'alerting policy': '告警策略',
   ALERTING_POLICY: '告警策略',
+  ALERTING_POLICY_PL: 'Alerting Policies',
+  ALERTING_POLICY_LOW: 'alerting policy',
   'Alerting Policies': '告警策略',
   ALERTING_HISTORY: '告警歷史',
   'alerting rule': '告警規則',
@@ -73,7 +75,7 @@ module.exports = {
   ALERT_COMMENT: '處理意見',
   ALERT_COMMENT_DESC:
     '處理意見將作為告警處理的紀錄保留，但並不能作為處理告警的方法。紀錄訊息將給相關用戶查看該告警的處理情況。',
-  ALERTING_POLICY_CREATE_DESC:
+  ALERTING_POLICY_EMPTY_DESC:
     'You can notice if a resource is abnormal in real time by creating an alerting policy.',
   'ALERTING-POLICY_BASEINFO_DESC': '設置告警策略的基礎資訊',
   'ALERTING-POLICY_MONITORING-TARGET_DESC': '選擇告警策略的監控目標',

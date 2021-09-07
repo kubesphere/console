@@ -95,7 +95,7 @@ client:
           icon: nodes
           children:
             - { name: nodes, title: Cluster Nodes }
-            - { name: edgenodes, title: Edge Nodes, clusterModule: kubeedge }
+            - { name: edgenodes, title: EDGE_NODE_PL, clusterModule: kubeedge }
         - { name: components, title: Service Components, icon: components }
         - { name: projects, title: NAV_PROJECTS, icon: project }
         - name: app-workloads

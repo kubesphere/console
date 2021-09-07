@@ -21,6 +21,9 @@ module.exports = {
   REPLICA_LOW_SI: '副本',
   REPLICA_LOW_PL: '副本',
   Workload: '工作负载',
+  WORKLOAD: '工作负载',
+  WORKLOAD_PL: '工作负载',
+  WORKLOAD_LOW: '工作负载',
   Workloads: '工作负载',
   IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} 层',
   IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} 层',
@@ -37,10 +40,16 @@ module.exports = {
   TARGET: '目标',
   MOUNT_PATH_EMPTY: '请输入挂载路径。',
   CONFIGMAP: '配置字典',
-  SECRET: '保密字典',
+  CONFIGMAP_PL: '配置字典',
+  CONFIGMAP_LOW: '配置字典',
   PARTITION_ORDINAL: '容器组副本分组序号',
   PARTITION_ORDINAL_DESC:
     '容器组副本按序号分成两组。更新有状态副本集时，只有序号大于分组序号的容器组副本会被更新。',
+  DEPLOYMENT_EMPTY_DESC: '请创建一个部署。',
+  STATEFULSET_EMPTY_DESC: '请创建一个有状态副本集。',
+  DAEMONSET_EMPTY_DESC: '请创建一个守护进程集。',
+  JOB_EMPTY_DESC: '请创建一个任务。',
+  CRONJOB_EMPTY_DESC: '请创建一个定时任务。',
   'Service Configuration': '服务配置',
 
   'Available number of nodes scheduled': '可用节点数',
@@ -161,18 +170,12 @@ module.exports = {
   REQUEST_EXCEED_LIMIT: '资源预留不能超过资源限制。',
 
   WORKLOAD_DESC:
-    '工作负载 (Workload) 通常是访问服务的实际载体, 也是对节点日志收集、监控等系统应用的实际运行载体，是对一组容器组 (Pod) 的抽象模型。',
+    '工作负载（Workload）用于处理业务请求，可包含一个或多个容器组。日志、监控等系统功能也是由工作负载实现的。',
 
-  WORKLOAD_CREATE_DESC:
-    '工作负载 (Workload) 通常是访问服务的实际载体, 也是对节点日志收集、监控等系统应用的实际运行载体，是对一组容器组 (Pod) 的抽象模型。',
-
+  WORKLOAD_EMPTY_DESC: '请创建一个工作负载。',
   JOB_DESC:
     '任务（Job）用于运行短暂的一次性任务。任务会创建一个或多个容器组，并保证指定数量的容器组成功结束。',
-  JOB_CREATE_DESC:
-    '任务（Job）用于运行短暂的一次性任务。任务会创建一个或多个容器组，并保证指定数量的容器组成功结束。',
   CRONJOB_DESC:
-    '定时任务（CronJob）管理基于时间的任务（Job），可用于运行周期性任务或重复性任务。',
-  CRONJOB_CREATE_DESC:
     '定时任务（CronJob）管理基于时间的任务（Job），可用于运行周期性任务或重复性任务。',
 
   CRONJOB_NAME_DESC:
@@ -183,7 +186,7 @@ module.exports = {
   IMAGE_EMPTY: '请设置镜像。',
   IMAGE_REGISTRY_PLACEHOLDER: '请选择镜像仓库密钥',
   IMAGE_DESC:
-    '如需使用私有镜像仓库，您需要先<a href={link} target="_blank">创建镜像仓库密钥</a>。',
+    '如需使用私有镜像仓库，您需要先创建镜像仓库密钥。<a href={link} target="_blank">了解更多</a>',
   'Replicas Number': '副本数量',
   'Specify Replicas Number': '指定副本数量',
   'Replica Status': '副本运行状态',
@@ -354,7 +357,11 @@ module.exports = {
     '持久化存储卷请选择支持多节点读写模式 (ROX 或者 RWX) 的存储卷，否则可能因容器组不在同一节点导致容器组更新失败。如果您选择了单节点读写 (RWO) 模式的存储卷您也可以通过节点选择将容器组安排在同一节点上来避免因存储卷访问模式造成的更新错误。',
 
   Job: '任务',
+  JOB: '任务',
   CronJob: '定时任务',
+  CRONJOB: '定时任务',
+  CRONJOB_PL: '定时任务',
+  CRONJOB_LOW: '定时任务',
   Revision: '版本',
   EVERY_HOUR: '（每小时）',
   EVERY_DAY: '（每天）',
@@ -381,7 +388,7 @@ module.exports = {
 
   'Horizontal Pod Autoscaling': '弹性伸缩',
   'Container Config': '容器配置',
-  'Add Command': '添加命令',
+  EDGENODE_CONFIG_COMMAND: '边缘节点配置命令',
   Probe: '探针',
   'Add Probe': '添加探针',
   'Initial Delay': '初始延迟',
@@ -417,7 +424,7 @@ module.exports = {
   'Redeploy Successfully': '重新部署成功',
 
   REDEPLOY_CONFIRM_DESC:
-    '您即将重新部署工作负载 {resource} ({type}) , 容器组将根据更新策略进行重新部署，您的业务可能会被暂时中断。',
+    '您确定重新部署{type} {resource} 吗？容器组副本将根据更新策略重新部署，同时相关业务将会中断。',
 
   MORE: '更多操作',
   VIEW_YAML: '查看 YAML 文件',
@@ -475,7 +482,7 @@ module.exports = {
   'min replicas number should not be greater than max replicas number':
     '最大副本数应不小于最小副本数',
 
-  'Horizontal Pod Autoscaling has been set': '已设置弹性伸缩策略',
+  HPA_SET_TIP: '已设置容器组水平自动扩缩策略。',
 
   'Mount path is already in use': '挂载路径已使用',
   'Please specify the read and write mode and mount path':
@@ -650,8 +657,7 @@ module.exports = {
   NetworkPluginNotReady: '网络插件还没有完全启动',
   POD_DESC:
     '容器组（Pod）是 Kubernetes 应用程序的基本执行单元，是您创建或部署的 Kubernetes 对象模型中最小和最简单的单元。',
-  POD_CREATE_DESC:
-    '容器组（Pod）是 Kubernetes 应用程序的基本执行单元，是您创建或部署的 Kubernetes 对象模型中最小和最简单的单元。',
+  POD_EMPTY_DESC: '请创建一个容器组。',
   FILL_IMAGE_DEFAULT_PORTS_DESC: '是否暴露该镜像的默认端口？',
 
   ISTIO_PROTOCOL_TIP:
@@ -769,7 +775,8 @@ module.exports = {
   NODE_IP: '{node}（{ip}）',
 
   // Jobs
-  JOBS: '任务',
+  JOB_PL: '任务',
+  JOB_LOW: '任务',
   CRONJOBS: '定时任务',
   SCHEDULE: '定时计划',
 

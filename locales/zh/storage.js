@@ -28,6 +28,7 @@ module.exports = {
   VOLUME_STATUS_PENDING: '等待中',
   VOLUME_STATUS_TERMINATING: '删除中',
   VOLUME_STATUS_UPDATING: '更新中',
+  CREATE: '创建',
 
   VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: '硬盘扩容中(FilesystemSizePending)',
 
@@ -36,7 +37,8 @@ module.exports = {
   'Volume Usage': '存储卷用量',
   VOLUME_COUNT: '存储卷数量',
   VOLUME: '存储卷',
-  // VOLUMES: '存储卷数量',
+  VOLUME_PL: '存储卷数量',
+  VOLUME_LOW: 'volumes',
   'Create Volume': '创建存储卷',
   'Delete Volume': '删除存储卷',
   'storage classes': '存储类型',
@@ -44,6 +46,8 @@ module.exports = {
   'Create Storage Class': '创建存储类型',
   'Storage Class': '存储类型',
   STORAGE_CLASS: '存储类型',
+  STORAGE_CLASS_PL: '存储类型',
+  STORAGE_CLASS_LOW: '存储类型',
   'Storage Classs': '存储类型',
   STORAGE_CLASS_SETTINGS: '存储类型设置',
   'Mount Info': '挂载信息',
@@ -53,7 +57,6 @@ module.exports = {
   NOT_MOUNTED: '未挂载',
   Scalable: '可扩容性',
   RECLAMATION_POLICY: '回收机制',
-  CREATE: '创建',
   DELETE_STORAGE_TIP: '如果存储卷正在被挂载时，待工作负载被删除时一同删除。',
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce：单个节点读写。<br/>ReadOnlyMany：多节点只读。<br/>ReadWriteMany：多节点读写。<br/>挂载时只能使用一种模式。',
@@ -97,8 +100,7 @@ module.exports = {
 
   VOLUME_DESC:
     '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
-  VOLUME_CREATE_DESC:
-    '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
+  VOLUME_EMPTY_DESC: '请创建一个存储卷。',
   STORAGE_CLASS_DESC:
     '存储类型（StorageClass）支持动态卷供应，使管理员能够按需创建新的存储卷。',
   STORAGE_CLASS_CREATE_DESC:
@@ -205,8 +207,7 @@ module.exports = {
   VolumeSnapshots: '存储卷快照',
   VOLUMESNAPSHOT_DESC:
     '存储卷快照是存储卷在特定时间点的副本，可使用快照中的数据预配新存储卷，或者将存储卷恢复至快照捕捉到的先前状态。',
-  VOLUMESNAPSHOT_CREATE_DESC:
-    '存储卷快照是存储卷在特定时间点的副本，可使用快照中的数据预配新存储卷，或者将存储卷恢复至快照捕捉到的先前状态。',
+  VOLUMESNAPSHOT_EMPTY_DESC: '请前往存储卷详情页面创建一个存储卷快照。',
   WHAT_IS_VOLUME_SNAPSHOTS: '什么是存储卷快照',
 
   CREATE_VOLUME_BY_STORAGE_CLASS: '通过存储类型',

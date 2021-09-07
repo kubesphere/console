@@ -25,12 +25,12 @@ module.exports = {
   WORKER_NODE_PL: '工作节点',
 
   'Cluster Node': '集群节点',
-  CLUSTER_NODES: '集群节点',
+  CLUSTER_NODE_PL: '集群节点',
   'Cluster Nodes': '集群节点',
 
   'Node Role': '节点角色',
   'Edge Node': '边缘节点',
-  EDGE_NODES: '边缘节点',
+  EDGE_NODE_PL: '边缘节点',
   'Master Node': 'Master 节点',
   'Worker Node': '工作节点',
   ADD_NODE: '添加节点',
@@ -65,9 +65,9 @@ module.exports = {
 
   'Resource Usage': '资源使用情况',
 
-  'CPU Requests': 'CPU 请求',
+  'CPU Requests': 'CPU 预留',
   'CPU Limits': 'CPU 限制',
-  'Memory Requests': '内存请求',
+  'Memory Requests': '内存预留',
   'Memory Limits': '内存限制',
 
   NODE_STATUS_UNSCHEDULABLE: '无法调度',
@@ -76,22 +76,23 @@ module.exports = {
   NODE_STATUS_PENDING: '创建中',
   NODE_STATUS_FAILED: '创建失败',
 
-  NOSCHEDULE_OPTION: '不允许调度 (NoSchedule)',
-  PREFER_NOSCHEDULE_OPTION: '尽量不调度 (PreferNoSchedule)',
-  NOEXECUTE_OPTION: '不允许并驱逐已有容器组 (NoExecute)',
+  NOSCHEDULE_OPTION: '阻止调度',
+  PREFER_NOSCHEDULE_OPTION: '尽可能阻止调度',
+  NOEXECUTE_OPTION: '阻止调度并驱逐现有容器组',
 
   MANAGE_TAINT: '管理污点',
-  'Common Taints': '公共污点',
+  MANAGE_TAINTS: '管理污点',
+  COMMON_TAINTS: '公共污点',
   'Node List': '主机列表',
   'Node Taints': '主机污点',
-  TAINTS_MSG:
-    '污点表示此节点已被 key=value 污染，容器组调度不允许（PodToleratesNodeTaints 策略）或尽量不（TaintTolerationPriority 策略）调度到此节点，除非是能够容忍（Tolerations）key=value 污点的容器组。',
+  TAINTS_DESC:
+    '为节点添加污点以避免或尽可能避免避免容器组调度到节点。为节点设置污点后，您可以为容器组设置容忍度以允许容器组调度有特定污点的节点。',
   TAINTS_TIPS:
     '如果主机中存在一个或多个影响策略为 NoSchedule 的污点，该容器组不会被调度到该主机<br>如果主机中不存在影响策略为 NoSchedule 的污点，但是存在一个或多个影响策略为 PreferNoSchedule 的污点，该容器组会尽量不调度到该主机<br>如果主机中存在一个或多个影响策略为 NoExecute 的污点，该容器组不会被调度到该主机，并且会驱逐已经调度到该主机的容器组实例',
   NO_TAINTS_TIPS: '暂未设置污点',
   TAINT_SELECT_TIPS: '加入公共污点',
-  TAINT_DELETE_TIPS: '删除该污点',
-  'Add Taint': '添加污点',
+  TAINT_DELETE_TIPS: '删除污点',
+  ADD_TAINT: '添加污点',
   'Delete All Taints': '全部删除',
   'CPU Used': 'CPU 使用',
   'Memory Used': '内存使用',
@@ -107,13 +108,11 @@ module.exports = {
   Metadata: '元数据',
 
   CLUSTER_NODE_DESC:
-    '集群节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
-  CLUSTER_NODE_CREATE_DESC:
-    '集群节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
+    '集群节点是 KubeSphere 集群中的基础服务器，您可以在此页面对集群节点进行管理。',
+  CLUSTER_NODE_EMPTY_DESC: '请为集群添加一个节点。',
   EDGE_NODE_DESC:
-    '边缘节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
-  EDGE_NODE_CREATE_DESC:
-    '边缘节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
+    '边缘节点是部署在 KubeSphere 集群外部的服务器，您可以将边缘节点添加到 KubeSphere 集群以对其进行管理。',
+  EDGE_NODE_EMPTY_DESC: '请为集群添加一个边缘节点。',
 
   NODE_NETWORKUNAVAILABLE: '网络配置(NetworkUnavailable)',
   NODE_NETWORKUNAVAILABLE_DESC: '检查节点上的网络配置是否正确',
@@ -128,7 +127,7 @@ module.exports = {
   NODE_READY: '容器组接收(Ready)',
   NODE_READY_DESC: '节点健康且可以接收新的容器组',
 
-  NODE_TYPES_Q: '集群节点的类型有哪些？',
+  NODE_TYPES_Q: '集群节点有哪些类型？',
   NODE_TYPES_A: '集群节点分为主节点和工作节点。',
   WHAT_IS_NODE_TAINTS_Q: '什么是节点污点？',
   WHAT_IS_NODE_TAINTS_A:
@@ -139,12 +138,13 @@ module.exports = {
 
   NODE_TYPE_DESCRIPTION_DEC:
     '描述信息在选择节点类型时将帮助用户更好的选择节点类型并使用集群',
-  ADD_EDGE_COMMAND: '将命令复制到命令行中进行创建边缘节点',
-  IN_USE_Node_IP: '节点 IP {ip} 已被使用',
-  IN_USE_Node_NAME: '节点名称 {name} 已被使用',
+  ADD_EDGE_COMMAND: '在边缘节点中运行以上命令以对其进行配置。',
+  IN_USE_Node_IP: 'IP 地址 {ip} 已被使用，请使用其他 IP 地址。',
+  IN_USE_Node_NAME: '节点名称 {name} 已存在，请使用其他名称。',
   'Add Edge Node': '添加边缘节点',
-  NODE_NAME_EMPTY_DESC: '请输入节点名称。',
-  INSTALL_EDGENODE_DESC:
-    '运行命令前请确保已在边缘节点安装容器运行时如 docker 或 containerd，详见  <a href="https://kubeedge.io/en/docs/" target="_blank">文档</a>',
-  ADD_DEFAULT_STAIN: '添加默认污点 {params}',
+  NODE_NAME_EMPTY_DESC: '请设置节点的名称。',
+  EDGENODE_NAME_EMPTY_DESC: '请设置边缘节点的名称。',
+  EDGENODE_CONFIG_COMMAND_TIP:
+    '运行命令前请确保已在边缘节点安装容器运行时，例如 Docker 或 containerd。<a href="https://kubeedge.io/en/docs/" target="_blank">了解更多</a>',
+  ADD_DEFAULT_TAINT: '添加默认污点 {params}',
 }

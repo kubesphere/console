@@ -190,7 +190,7 @@ export default class NodeDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('EDGE_NODES'),
+          label: t('EDGE_NODE_PL'),
           url: this.listUrl,
         },
       ],

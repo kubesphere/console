@@ -140,6 +140,11 @@ module.exports = {
   CUSTON_MONITORING_TEMPLATE_DESC:
     'Generate default monitoring template based on the application template you select or customize a template.',
   CUSTOM_MONITORING_DASHBOARD: 'Custom Monitoring Dashboard',
+  CUSTOMMONITORDASHBOARD: 'Custom Monitoring Dashboard',
+  CUSTOMMONITORDASHBOARD_PL: 'Custom Monitoring Dashboards',
+  CUSTOMMONITORDASHBOARD_LOW: 'custom monitoring dashboard',
+  CUSTOMMONITORDASHBOARD_EMPTY_DESC:
+    'Please create a custom monitoring dashboard.',
 
   SERVICE_BUILT_INTERFACE: 'service monitoring is built interface data capture',
 

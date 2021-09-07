@@ -34,6 +34,9 @@ module.exports = {
   AVAILABLE_ADDRESSES: '可用地址数量',
 
   POD_IP_POOL: '容器组 IP 池',
+  POD_IP_POOL_PL: '容器组 IP 池',
+  POD_IP_POOL_LOW: '容器组 IP 池',
+  POD_IP_POOL_EMPTY_DESC: '请创建一个容器组 IP 池。',
 
   NUMBER_OF_CREATION_TCAP: '创建数量',
   IP_POOL_CREATE_DESC: '即将创建的容器组 IP 池',
@@ -63,5 +66,4 @@ module.exports = {
   TOTAL_VALUE: '总计：{value}',
   ALL: '全部',
   NOT_ASSIGNED: '未分配',
-  WORKSPACE: '企业空间',
 }

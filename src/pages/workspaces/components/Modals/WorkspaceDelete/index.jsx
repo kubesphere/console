@@ -89,8 +89,11 @@ export default class DeleteModal extends React.Component {
     const tip =
       desc ||
       (resource && type
-        ? t.html('DELETE_CONFIRM_TIP', { type: type.toLowerCase(), resource })
-        : t.html('DELETE_TIP', { type, resource }))
+        ? t.html('DELETE_RESOURCE_TYPE_DESC', {
+            type: type.toLowerCase(),
+            resource,
+          })
+        : t.html('DELETE_DESC', { type, resource }))
 
     return (
       <Modal
@@ -105,7 +108,7 @@ export default class DeleteModal extends React.Component {
         <div className={styles.body}>
           <div className="h5">
             <Icon name="close" type="light" className={styles.closeIcon} />
-            {title || t('DELETE_TITLE', { type })}
+            {title || t('DELETE_TITLE_SI', { type })}
           </div>
           <div className={styles.content}>
             <p>{tip}</p>

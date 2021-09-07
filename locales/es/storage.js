@@ -56,6 +56,8 @@ module.exports = {
   'Snapshots Message': 'Mensaje de snapshots',
   'Storage Class': 'Clase de almacenamiento',
   STORAGE_CLASS: 'Clase de almacenamiento',
+  STORAGE_CLASS_PL: 'Storage Classes',
+  STORAGE_CLASS_LOW: 'storage class',
   'Storage Class Name': 'Nombre de clase de almacenamiento',
   STORAGE_CLASS_SETTINGS: 'Configuraciones de clase de almacenamiento',
   'storage classes': 'clases de almacenamiento',
@@ -82,7 +84,8 @@ module.exports = {
   'Used Capacity': 'Capacidad utilizada',
   'Clone Volume': 'Clon del volumen',
   VOLUME: 'Volumen',
-  // VOLUMES: 'Recuento de volumen',
+  VOLUME_PL: 'Recuento de volumen',
+  VOLUME_LOW: 'volumes',
   'The volume name exists': 'nombre de volumen existe',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
   VOLUME_COUNT: 'Recuento de volumen',
@@ -114,7 +117,7 @@ module.exports = {
   VOLUMES_BASEINFO_DESC:
     'El volumen puede conservar datos y su ciclo de vida es independiente de la ' +
     'carga de trabajo. Asegúrese de que la clase de almacenamiento se cree antes de crear un volumen.',
-  VOLUME_CREATE_DESC:
+  VOLUME_EMPTY_DESC:
     'Un volumen es un PVC (PersistentVolumeClaim) creado mediante el aprovisionamiento ' +
     'de volumen dinámico.',
   VOLUME_SETTINGS_DESC:
@@ -213,7 +216,7 @@ module.exports = {
     'Seleccione una clase de almacenamiento para crear un volumen.',
   VOLUMESNAPSHOT_DESC:
     'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
-  VOLUMESNAPSHOT_CREATE_DESC:
+  VOLUMESNAPSHOT_EMPTY_DESC:
     'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
   WHAT_IS_VOLUME_SNAPSHOTS: '¿Qué son los snapshots de volumenes?',
 

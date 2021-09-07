@@ -31,6 +31,8 @@ module.exports = {
   ALERT_MONITORING: '告警监控',
   'alerting policy': '告警策略',
   ALERTING_POLICY: '告警策略',
+  ALERTING_POLICY_PL: '告警策略',
+  ALERTING_POLICY_LOW: '告警策略',
   'Alerting Policies': '告警策略',
   ALERTING_HISTORY: '告警历史',
   'alerting rule': '告警规则',
@@ -86,7 +88,7 @@ module.exports = {
   ALERT_MESSAGE_DESC:
     '用户可以查看集群级别的告警策略中，所有满足告警规则的告警消息。',
 
-  ALERTING_POLICY_CREATE_DESC: '您可以创建告警规则，即时发现资源的异常情况。',
+  ALERTING_POLICY_EMPTY_DESC: '请创建一个告警规则。',
 
   CPU_LOAD_1: '过去 1 分钟的 CPU 平均负载',
   CPU_LOAD_5: '过去 5 分钟的 CPU 平均负载',

@@ -26,7 +26,7 @@ module.exports = {
 
   ADD_NODE: 'Añadir nodo',
   'Add Node Type': 'Añadir tipo de nodo',
-  'Add Taint': 'Añadir Taint',
+  ADD_TAINT: 'Añadir Taint',
   'Add Type': 'Añadir tipo',
   ALL_NODES: 'Todos los nodos',
   'Allocated CPU': 'CPU reservada',
@@ -34,11 +34,11 @@ module.exports = {
   ANNOTATIONS: 'Anotaciones',
   Architecture: 'Arquitectura',
   'Cluster Node': 'Nodo de clúster',
-  CLUSTER_NODES: 'Nodo de clúster',
+  CLUSTER_NODE_PL: 'Nodo de clúster',
   'Cluster Nodes': 'Nodo de clúster',
   'Edge Node': 'Nó de Borda',
-  EDGE_NODES: 'Nó de Borda',
-  'Common Taints': 'Taints Comunes',
+  EDGE_NODE_PL: 'Nó de Borda',
+  COMMON_TAINTS: 'Taints Comunes',
   Conditions: 'Condiciones',
   ContainerRuntimeVersion: 'ContainerRuntimeVersion',
   'CPU Limits': 'Límites de CPU',
@@ -75,6 +75,7 @@ module.exports = {
   taint: 'taint',
   Taint: 'Taint',
   MANAGE_TAINT: 'Gestión de Taints',
+  MANAGE_TAINTS: 'Gestión de Taints',
   taints: 'taints',
   TAINTS: 'Taints',
   'Type Name': 'Escribe un nombre',
@@ -84,7 +85,7 @@ module.exports = {
   NOSCHEDULE_OPTION: 'NoProgramable',
   PREFER_NOSCHEDULE_OPTION: 'PreferNoSchedule',
   NOEXECUTE_OPTION: 'NoEjecutar',
-  TAINTS_MSG:
+  TAINTS_DESC:
     'Si se agrega un taint con "clave=valor" al nodo, significa que no se programará ningún pod en este nodo (política PodToleratesNodeTaints) o al menos se evita la programación tanto como sea posible (política TaintTolerationPriority), a menos que el pod tenga una coincidencia tolerancia con "clave=valor".',
   TAINTS_TIPS:
     'Si hay al menos un taint no ignorado con efecto NoProgramable, entonces el sistema no programará pods en ese nodo. <br /> Si no hay un taint no ignorado con efecto NoProgramable pero hay al menos un taint no ignorada con efecto PreferNoSchedule, entonces el sistema intentará no programar pods en el nodo. <br /> si hay al menos un taint no ignorada con efecto NoEjecutar, los pods serán expulsados del nodo (si ya se está ejecutando en el nodo) y no se programarán en el nodo (si aún no se está ejecutando en el nodo).',
@@ -96,12 +97,12 @@ module.exports = {
   NODE_STATUS_WARNING: 'Advertencia',
   CLUSTER_NODE_DESC:
     'Este módulo gestiona los nodos del clúster y muestra el estado de ejecución de ellos. Puedes editar o eliminar nodos aquí.',
-  CLUSTER_NODE_CREATE_DESC:
+  CLUSTER_NODE_EMPTY_DESC:
     'Este módulo gestiona los nodos del clúster y muestra el estado de ejecución de ellos. Puedes editar o eliminar nodos aquí.',
   NODE_NETWORKUNAVAILABLE: 'Red no disponible',
   EDGE_NODE_DESC:
     'Este módulo gestiona los nodos del borda y muestra el estado de ejecución de ellos. Puedes editar o eliminar nodos aquí.',
-  EDGE_NODE_CREATE_DESC:
+  EDGE_NODE_EMPTY_DESC:
     'Este módulo gestiona los nodos del borda y muestra el estado de ejecución de ellos. Puedes editar o eliminar nodos aquí.',
 
   NODE_NETWORKUNAVAILABLE_DESC:
@@ -145,7 +146,8 @@ module.exports = {
   IN_USE_Node_NAME: 'Node name {name} in use',
   'Add Edge Node': 'Add Edge Node',
   NODE_NAME_EMPTY_DESC: 'Please set a name for the node.',
-  INSTALL_EDGENODE_DESC:
+  EDGENODE_NAME_EMPTY_DESC: 'Please set a name for the node.',
+  EDGENODE_CONFIG_COMMAND_TIP:
     'Before running the command, you must install a container runtime such as Docker or containerd on your edge node. See the KubeEdge <a href="https://kubeedge.io/en/docs/" target="_blank">documentation</a> for more details.',
-  ADD_DEFAULT_STAIN: 'Adicionar mancha padrão {params}',
+  ADD_DEFAULT_TAINT: 'Adicionar mancha padrão {params}',
 }

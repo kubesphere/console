@@ -78,8 +78,6 @@ module.exports = {
   'Service Name': 'Nombre del Servicio',
   SERVICE_PORT: 'Puerto de servicio',
   SERVICE_TYPE_TCAP: 'Tipo de servicio',
-  services: 'servicios',
-  'Simple Service': 'Servicio simple',
   SPECIFY_WORKLOAD: 'Specify Workload',
   'Specify Node': 'Especificar nó',
   'Service Type': 'Tipo de servicio',
@@ -105,8 +103,7 @@ module.exports = {
     'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
   SERVICE_DESC:
     'Services provide an abstract way to expose applications running on a Pod as network services.',
-  SERVICE_CREATE_DESC:
-    'Un servicio es una abstracción que define una colección lógica de Pods y una estrategia para acceder a ellos. Puedes seleccionar el tipo de servicio o cómo se crea un servicio. KubeSphere admite servicios con y sin estado y los servicios se pueden crear a través de códigos o artefactos.',
+  SERVICE_EMPTY_DESC: 'Please create a Service.',
   SERVICES_BASEINFO_DESC:
     'El nombre y la descripción del servicio deben proporcionarse para crear el servicio. El nombre del servicio no puedes ser el mismo que el nombre del servicio existente en el mismo proyecto.',
   SERVICES_SETTINGS_DESC:

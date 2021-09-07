@@ -36,7 +36,8 @@ module.exports = {
   'Volume Usage': '儲存卷用量',
   VOLUME_COUNT: '儲存卷數量',
   VOLUME: '儲存卷',
-  // VOLUMES: '儲存卷數量',
+  VOLUME_PL: '儲存卷數量',
+  VOLUME_LOW: 'volumes',
   'Create Volume': '創建儲存卷',
   'Delete Volume': '刪除儲存卷',
   'storage classes': '儲存類型',
@@ -44,6 +45,8 @@ module.exports = {
   'Create Storage Class': '創建儲存類型',
   'Storage Class': '儲存類型',
   STORAGE_CLASS: '儲存類型',
+  STORAGE_CLASS_PL: 'Storage Classes',
+  STORAGE_CLASS_LOW: 'storage class',
   STORAGE_CLASS_SETTINGS: '儲存類型設置',
   'Mount Info': '掛載資訊',
   // Volumes List Page
@@ -97,7 +100,7 @@ module.exports = {
 
   VOLUME_DESC:
     '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
-  VOLUME_CREATE_DESC:
+  VOLUME_EMPTY_DESC:
     '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
   STORAGE_CLASS_DESC:
     '存儲類型（StorageClass）支持動態卷供應，使管理員能夠按需創建新的存儲卷。',
@@ -208,7 +211,7 @@ module.exports = {
   VolumeSnapshots: '儲存卷快照',
   VOLUMESNAPSHOT_DESC:
     '儲存卷快照表示儲存卷的時間點副本。快照可用於配置新卷（預先填充快照數據）或將現有儲存卷還原到先前狀態（由快照表示）',
-  VOLUMESNAPSHOT_CREATE_DESC:
+  VOLUMESNAPSHOT_EMPTY_DESC:
     '儲存卷快照表示儲存卷的時間點副本。快照可用於配置新卷（預先填充快照數據）或將現有儲存卷還原到先前狀態（由快照表示）',
   WHAT_IS_VOLUME_SNAPSHOTS: '什麼是儲存卷快照',
 

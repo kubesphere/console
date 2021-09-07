@@ -55,7 +55,6 @@ module.exports = {
   ENTER_EXTERNALNAME_DESC: '请输入 ExternalName。',
   SPECIFY_WORKLOAD: '指定工作负载',
   'Specify Node': '指定节点',
-  'Add Selector': '添加选择器',
 
   INVALID_PORT_DESC: '请输入有效协议或端口号。',
   'Please input ExternalName': '请输入 ExternalName',
@@ -95,8 +94,7 @@ module.exports = {
 
   SERVICE_DESC:
     '服务（Service）提供一种抽象的方法，将运行在容器组（Pod）上的应用程序公开为网络服务。',
-  SERVICE_CREATE_DESC:
-    '服务（Service）提供一种抽象的方法，将运行在容器组（Pod）上的应用程序公开为网络服务。您可选择服务的类型或者创建服务的方式。<br/>KubeSphere 支持无状态服务和有状态服务，并支持通过代码或者制品构建服务。',
+  SERVICE_EMPTY_DESC: '请创建一个服务。',
 
   SERVICES_BASEINFO_DESC:
     '创建服务需要提供服务的名称和描述，服务名称不能和同一项目下已有的服务名称相同。',
