@@ -86,9 +86,9 @@ module.exports = {
   VOLUME: 'Volumen',
   VOLUME_PL: 'Recuento de volumen',
   VOLUME_LOW: 'volumes',
+  VOLUME_COUNT: 'Recuento de volumen',
   'The volume name exists': 'nombre de volumen existe',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
-  VOLUME_COUNT: 'Recuento de volumen',
   VOLUME_NAME_EXIST: 'nombre de volumen existe',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
@@ -158,7 +158,7 @@ module.exports = {
     'Un volumen local es un dispositivo de almacenamiento local montado, como un disco, partición o directorio.',
   CHOOSE_STORAGE_SYSTEM_TIP: 'Elija el sistema de almacenamiento que necesita',
   PROVISIONER_DEPENDENCE_DESC:
-    'Deploy a storage plugin in your storage system to provide services.',
+    'You need to deploy a plugin in your storage system before it provides services.',
   VOLUME_EXPAND_TIPS:
     'El PVC actual se ha montado para la carga de trabajo, por lo que la expansión conllevará un reinicio de la carga de trabajo y a una nueva versión. El servicio puedes sufrir una breve interrupción.',
   QINGCLOUD_CSI_DESC:
@@ -180,7 +180,7 @@ module.exports = {
   GLUSTERFS_RESTAUTHENABLED_DESC:
     'Habilite la autenticación en el servidor REST.',
   GLUSTERFS_RESTUSER_DESC:
-    'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
+    'Username of Gluster REST service or Heketi service.',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
   GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
   GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the volume.',
@@ -243,6 +243,5 @@ module.exports = {
   VOLUME_BINDING_MODE: 'Modo de vinculación de volumen de almacenamiento',
   BINDING_IMMEDIATE: 'Enlazar ahora',
   BINDING_WAIT: 'Encuadernación retrasada',
-  ADD: 'Add',
   DEFAULT_STORAGE_CLASS: 'Default Storage Class',
 }

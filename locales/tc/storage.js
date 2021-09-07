@@ -129,7 +129,7 @@ module.exports = {
     '本地儲存卷表示掛載的本地儲存設備，如硬碟、分割區或目錄。',
   CHOOSE_STORAGE_SYSTEM_TIP: '選擇您需要儲存系統',
   PROVISIONER_DEPENDENCE_DESC:
-    'Deploy a storage plugin in your storage system to provide services.',
+    'You need to deploy a plugin in your storage system before it provides services.',
 
   'Expand Volume': '儲存卷擴容',
   VOLUME_EXPAND_TIPS:
@@ -159,7 +159,7 @@ module.exports = {
   GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
   GLUSTERFS_RESTAUTHENABLED_DESC: ' Gluster 啟用对 REST 伺服器的認證',
   GLUSTERFS_RESTUSER_DESC:
-    'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
+    'Username of Gluster REST service or Heketi service.',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
   GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
   GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the volume.',
@@ -243,6 +243,5 @@ module.exports = {
   VOLUME_BINDING_MODE: '存儲卷綁定模式',
   BINDING_IMMEDIATE: '立即綁定',
   BINDING_WAIT: '延遲綁定',
-  ADD: 'Add',
   DEFAULT_STORAGE_CLASS: 'Default Storage Class',
 }

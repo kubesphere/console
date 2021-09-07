@@ -83,9 +83,9 @@ module.exports = {
   VOLUME: 'Volume',
   VOLUME_PL: 'Volumes',
   VOLUME_LOW: 'volumes',
+  VOLUME_COUNT: 'Volumes',
   'The volume name exists': 'The volume name exists',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
-  VOLUME_COUNT: 'Volumes',
   VOLUME_NAME_EXIST: 'The volume name already exists.',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
@@ -159,7 +159,7 @@ module.exports = {
     'A Local Volume is a mounted local storage device, such as a disk, partition, or directory.',
   CHOOSE_STORAGE_SYSTEM_TIP: 'Select Storage System',
   PROVISIONER_DEPENDENCE_DESC:
-    'Deploy a storage plugin in your storage system to provide services.',
+    'You need to deploy a plugin in your storage system before it provides services.',
 
   VOLUME_EXPAND_TIPS:
     'The current PVC has been mounted to the work load, so the expansion will lead to the workload restart, and a new version. Business may be a brief interruption. ',
@@ -186,7 +186,7 @@ module.exports = {
   GLUSTERFS_RESTAUTHENABLED_DESC:
     'Gluster enables authentication to the REST server.',
   GLUSTERFS_RESTUSER_DESC:
-    'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
+    'Username of Gluster REST service or Heketi service.',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
   GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
   GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the volume.',

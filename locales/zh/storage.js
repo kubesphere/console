@@ -127,7 +127,7 @@ module.exports = {
   WHAT_IS_LOCAL_VOLUME_A:
     '本地存储卷表示挂载的本地存储设备，如磁盘、分区或目录。',
   CHOOSE_STORAGE_SYSTEM_TIP: '选择存储系统',
-  PROVISIONER_DEPENDENCE_DESC: '在存储系统中部署存储插件来提供服务。',
+  PROVISIONER_DEPENDENCE_DESC: '您需要先在存储系统中部署相关插件才能提供服务。',
 
   'Expand Volume': '存储卷扩容',
   VOLUME_EXPAND_TIPS:
@@ -156,8 +156,7 @@ module.exports = {
     '供应存储卷的 Heketi REST URL，例如，<Heketi 服务集群 IP 地址>:<Heketi 服务端口号>。',
   GLUSTERFS_ID_DESC: 'Gluster 集群 ID。',
   GLUSTERFS_RESTAUTHENABLED_DESC: ' Gluster 启用对 REST 服务器的认证。',
-  GLUSTERFS_RESTUSER_DESC:
-    '能够在 Gluster 可信池中创建存储卷的 Gluster REST 服务用户或 Heketi 用户。',
+  GLUSTERFS_RESTUSER_DESC: 'Gluster REST 服务或 Heketi 服务的用户名。',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Heketi 用户密钥的所属项目。',
   GLUSTERFS_SECRET_NAME_DESC: 'Heketi 用户密钥的名称。',
   GLUSTERFS_GID_MIN_DESC: '存储卷的 GID 最小值。',
@@ -240,6 +239,5 @@ module.exports = {
   VOLUME_BINDING_MODE: '存储卷绑定模式',
   BINDING_IMMEDIATE: '立即绑定',
   BINDING_WAIT: '延迟绑定',
-  ADD: '添加',
   DEFAULT_STORAGE_CLASS: '默认存储类型',
 }
