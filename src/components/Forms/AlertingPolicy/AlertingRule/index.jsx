@@ -76,7 +76,7 @@ export default class AlertingRule extends React.Component {
           formTemplate={formTemplate}
         />
         <Form.Item
-          label={t('ALERTING_RULES')}
+          label={t('ALERTING_RULE')}
           rules={[
             { required: true, message: t('SET_RULE_DESC') },
             { validator: this.ruleValidator },
@@ -130,8 +130,8 @@ export default class AlertingRule extends React.Component {
           value={ruleType}
           onChange={this.handleTypeChange}
         >
-          <RadioButton value="template">{t('RULE_TEMPLATES')}</RadioButton>
-          <RadioButton value="custom">{t('CUSTOM_RULES')}</RadioButton>
+          <RadioButton value="template">{t('RULE_TEMPLATE')}</RadioButton>
+          <RadioButton value="custom">{t('CUSTOM_RULE')}</RadioButton>
         </RadioGroup>
         <div className={styles.content}>
           <div className={styles.contentWrapper}>

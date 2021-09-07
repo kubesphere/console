@@ -74,8 +74,8 @@ module.exports = {
   SCHEDULING_FAILURES: 'Programar pods fallidos',
   SCHEDULING_FAILURE: 'Scheduling failure',
   'Select Clusters': 'Seleccionar clústeres',
-  SET_PUBLIC_CLUSTER: 'Establecer como clúster público',
-  Snapshots: 'Volume Snapshots',
+  SET_PUBLIC_CLUSTER: 'Set as Public Cluster',
+  Snapshots: 'Snapshots',
   'Storage Management': 'Storage',
   SYSTEM_PROJECTS: 'Proyectos de Sistema',
   'The current cluster is public': 'El clúster actual es público.',
@@ -132,10 +132,10 @@ module.exports = {
   IMPORT_CLUSTER_DESC: 'Importar un clúster de Kubernetes existente',
   SELECT_CLUSTERS_DESC:
     'Selecciona el clúster disponible en el espacio de trabajo.',
-  CLUSTER_TAG: 'Etiqueta',
-  CLUSTER_TAG_DESC:
-    'Para indicar para qué se utiliza el clúster, como un entorno de producción, un entorno de prueba o un entorno de demostración',
-  CLUSTER_PROVIDER_DESC: 'El proveedor de infraestructura de clúster',
+  CLUSTER_SETTINGS_DESC: 'Definir información de configuración del clúster',
+  TAG: 'Etiqueta',
+  CLUSTER_TAG_DESC: 'Select a tag to identify the purpose of the cluster.',
+  CLUSTER_PROVIDER_DESC: 'Select the provider of the cluster infrastructure.',
   CLUSTER_CONNECT_METHOD_DESC:
     'Conéctese directamente al clúster o use un agente',
   CONNTECT_DIRECT: 'Conexión directa al clúster de Kubernetes',
@@ -169,7 +169,7 @@ module.exports = {
   HOW_TO_GET_KUBECONFIG: '¿Cómo obtener KubeConfig?',
   UNBIND_CLUSTER_DESC:
     'Una vez que el clúster no está vinculado, KubeSphere no podrá administrar el clúster y los recursos de Kubernetes dentro del clúster no se eliminarán.',
-  SURE_TO_UNBIND_CLUSTER: 'Sí, confirmo que quiero desvincular el clúster.',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation.',
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
     'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
   PUBLIC_CLUSTER_DESC:
@@ -178,14 +178,14 @@ module.exports = {
     'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
   CLUSTER_VISIBILITY_Q1: 'How do I authorize a cluster to specific workspaces?',
   CLUSTER_VISIBILITY_A1:
-    'You can assign a cluster to specific workspaces by clicking <strong>Edit Visibility</strong>.',
+    'You can assign a cluster to specific workspaces by clicking Edit Visibility.',
   CLUSTER_VISIBILITY_Q2: '¿Qué es un clúster público?',
   CLUSTER_VISIBILITY_A2:
     'Un clúster público significa que todos los usuarios de la plataforma pueden acceder al clúster, en el que pueden crear y programar recursos.',
   SELECT_HOST_CLUSTER_WARNING:
-    'The stability across clusters will decrease if the host cluster is overloaded. It is not recommended to create resources on the host cluster.',
+    'The visibility of the multi-cluster environment will decrease if the host cluster is overloaded. It is not recommended to create resources on the host cluster.',
   HOST_CLUSTER_VISIBILITY_WARNING:
-    'The stability across clusters will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
+    'The visibility of the multi-cluster environment will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
   REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
   REMOVE_WORKSPACE_CONFIRM_DESC:
     'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
@@ -277,14 +277,17 @@ module.exports = {
   UNBIND_CLUSTER_Q: 'Unbind Cluster',
 
   // Cluster Visibility
+  NODE: 'Node',
+  NODE_COUNT: 'Node Count',
   ADMINISTRATOR: 'Administrator',
   CLUSTER_VISIBILITY: 'Cluster Visibility',
   CLUSTER_VISIBILITY_DESC:
-    'Cluster visibility allows users to view and manage cluster resources in workspaces after the cluster is authorized to the workspaces.',
+    'Cluster visibility controls the cluster authorization to workspaces. After a cluster is authorized to workspaces, you can view and manage the cluster resources in the workspaces.',
   EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
     'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
-  TO_BE_AUTHORIZED: 'To be authorized',
+  UNAUTHORIZED: 'Unauthorized',
+  LOGGING: 'Logging',
   EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:

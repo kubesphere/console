@@ -169,7 +169,7 @@ export default class NodeSelect extends React.PureComponent {
           </div>
         </div>
         <div className={styles.footer}>
-          <Button onClick={this.handleCancel}>{t('Cancel')}</Button>
+          <Button onClick={this.handleCancel}>{t('CANCEL')}</Button>
           <Button type="control" onClick={this.handleOK}>
             {t('OK')}
           </Button>

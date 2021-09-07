@@ -151,7 +151,7 @@ export default class Services extends React.Component {
               title={
                 serviceType
                   ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                  : t('CUSTOM_CREATION')
+                  : t('CUSTOM_SERVICE')
               }
               description={t(record.type) || '-'}
             />
@@ -159,7 +159,7 @@ export default class Services extends React.Component {
         },
       },
       {
-        title: t('INTERNET_ACCESS'),
+        title: t('NETWORK_ACCESS'),
         dataIndex: 'specType',
         isHideable: true,
         width: '20%',

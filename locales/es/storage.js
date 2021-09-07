@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  STORAGE_VOLUME_EXTENSION: 'Permitir expansión de volumen',
+  VOLUME_EXPANSION: 'Volume Expansion',
   'Available Capacity': 'Capacidad disponible',
   'Create Snapshot': 'Crear snapshot',
   'Create Storage Class': 'Crear clase de almacenamiento',
@@ -47,8 +47,8 @@ module.exports = {
   'Parameters (key-value pairs)': 'Parámetros (pares clave-valor)',
   PersistentVolumeClaim: 'Volume',
   PersistentVolumes: 'PersistentVolumes',
-  RECLAMATION_POLICY: 'Reclamation Policy',
-  CREATE: 'Crear',
+  RECLAIM_POLICY: 'Reclaim Policy',
+  CREATE: 'Create',
   Scalable: 'Escalable',
   'Set as default storage class':
     'Establecer como clase de almacenamiento predeterminada',
@@ -158,18 +158,17 @@ module.exports = {
     'Un volumen local es un dispositivo de almacenamiento local montado, como un disco, partición o directorio.',
   CHOOSE_STORAGE_SYSTEM_TIP: 'Elija el sistema de almacenamiento que necesita',
   PROVISIONER_DEPENDENCE_DESC:
-    'El sistema de almacenamiento debe implementar los plugins de almacenamiento correspondientes para proporcionar servicios.',
+    'Deploy a storage plugin in your storage system to provide services.',
   VOLUME_EXPAND_TIPS:
     'El PVC actual se ha montado para la carga de trabajo, por lo que la expansión conllevará un reinicio de la carga de trabajo y a una nueva versión. El servicio puedes sufrir una breve interrupción.',
   QINGCLOUD_CSI_DESC:
-    'Use QingCloud CSI as the underlying storage plug-in. For more information, see <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">QingCloud CSI</a>.',
+    'Use QingCloud CSI as the underlying storage plugin. <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">Learn More</a>',
   QINGCLOUD_CSI_TYPE_DESC:
     'En la plataforma de nube pública QingCloud, 0 representa un volumen de alto rendimiento. 2 representa volumen de alta capacidad. 3 representa un volumen súper alto rendimiento. 5 representa Enterprise Server SAN. 100 representa  volumen estándar.',
   CREATE_VOLUME_MAX_SIZE: 'Límite superior de tamaño de volumen',
   CREATE_VOLUME_STEP_SIZE: 'Incremento de tamaño de volumen',
   CREATE_VOLUME_MIN_SIZE: 'Límite inferior de tamaño de volumen',
-  VOLUME_FS_TYPE:
-    'Set the file system type of the storage volume. The value can be ext3, ext4, or xfs, and it defaults to ext4.',
+  VOLUME_FS_TYPE: 'Supports ext3, ext4, and XFS. The default type is ext4.',
   MAXSIZE: 'Maximum Size',
   MINSIZE: 'Minimum Size',
   STEPSIZE: 'Step Size',
@@ -177,20 +176,18 @@ module.exports = {
   TAGS: 'Tag',
   GLUSTERFS_RESTURL_DESC:
     'Gluster REST service or Heketi service URL that provisions Gluster volumes on demand.',
-  GLUSTERFS_ID_DESC: 'The Gluster cluster ID.',
+  GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
   GLUSTERFS_RESTAUTHENABLED_DESC:
     'Habilite la autenticación en el servidor REST.',
   GLUSTERFS_RESTUSER_DESC:
     'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
   GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
-  GLUSTERFS_GID_MIN_DESC:
-    'El valor mínimo del rango de GID para la clase de almacenamiento.',
-  GLUSTERFS_GID_MAX_DESC:
-    'El valor máximo del rango de GID para la clase de almacenamiento.',
+  GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the storage class.',
+  GLUSTERFS_GID_MAX_DESC: 'Maximum GID of the storage class.',
   GLUSTERFS_VOLUME_TYPE_DESC: 'Optional type of the volume.',
   QINGCLOUD_VOLUME_TAGS_DESC:
-    'Los tags se asociarán automáticamente cuando se cree un disco duro. Separe varios tags con comas.',
+    'Add tags to the storage volume. Use commas to separate multiple tags.',
   CEPHRBD_MONITORS_DESC: 'IP address of Ceph monitors.',
   CEPHRBD_ADMIN_ID_DESC:
     'ID de cliente de Ceph que es capaz de crear imágenes en el pool.',
@@ -232,13 +229,12 @@ module.exports = {
   REST_AUTH_ENABLED: 'REST Authentication',
   REST_USER: 'REST User',
   VOLUME_TYPE: 'Volume Type',
-  REST_URL_EXAMPLE: 'IP address and port number',
   SECRET_NAME: 'Secret Name',
   REST_AUTH_TRUE: 'True',
   CEPH_MONITOR_IP: 'IP address and port number',
   SECRET_NAMESPACE: 'Secret Namespace',
-  GID_MIN: 'GID Minimum Value',
-  GID_MAX: 'GID Maximum Value',
+  GID_MIN: 'Minimum GID',
+  GID_MAX: 'Maximum GID',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
   SNAPSHOT_TYPE: 'Tipo de instantánea',
@@ -246,4 +242,6 @@ module.exports = {
   VOLUME_BINDING_MODE: 'Modo de vinculación de volumen de almacenamiento',
   BINDING_IMMEDIATE: 'Enlazar ahora',
   BINDING_WAIT: 'Encuadernación retrasada',
+  ADD: 'Add',
+  DEFAULT_STORAGE_CLASS: 'Default Storage Class',
 }

@@ -138,7 +138,7 @@ export default class JobDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -150,19 +150,19 @@ export default class JobDetail extends React.Component {
         value: status,
       },
       {
-        name: t('Schedule'),
+        name: t('SCHEDULE'),
         value: spec.schedule,
       },
       {
-        name: t('startingDeadlineSeconds'),
+        name: t('STARTING_DEADLINE'),
         value: spec.startingDeadlineSeconds,
       },
       {
-        name: t('successfulJobsHistoryLimit'),
+        name: t('SUCCESSFUL_JOBS_HISTORY_LIMIT'),
         value: spec.successfulJobsHistoryLimit,
       },
       {
-        name: t('failedJobsHistoryLimit'),
+        name: t('FAILED_JOBS_HISTORY_LIMIT'),
         value: spec.failedJobsHistoryLimit,
       },
       {

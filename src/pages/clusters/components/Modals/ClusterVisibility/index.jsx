@@ -151,9 +151,9 @@ export default class ClusterVisibility extends React.Component {
 
     const resource = deleteWorkspaces.map(item => item.name).join(', ')
     const desc =
-      deleteWorkspaces.length > 1
-        ? t.html('REMOVE_WORKSPACE_CONFIRM_PL', { resource })
-        : t.html('REMOVE_WORKSPACE_CONFIRM_SI', { resource })
+      deleteWorkspaces.length === 1
+        ? t.html('REMOVE_WORKSPACE_CONFIRM_SI', { resource })
+        : t.html('REMOVE_WORKSPACE_CONFIRM_PL', { resource })
 
     return (
       <Modal
@@ -180,13 +180,13 @@ export default class ClusterVisibility extends React.Component {
         <div className={styles.wrapper}>
           <Columns>
             <Column className="is-half">
-              <div className={styles.title}>{t('TO_BE_AUTHORIZED')}</div>
+              <div className={styles.title}>{t('UNAUTHORIZED')}</div>
               <div className={styles.content}>
                 <div className={styles.search}>
                   <InputSearch
                     name="name"
                     onSearch={this.handleSearch}
-                    placeholder={t('SEARCH_TIPS')}
+                    placeholder={t('SEARCH')}
                   />
                 </div>
                 <div className={styles.list}>

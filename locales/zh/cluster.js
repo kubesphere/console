@@ -173,9 +173,10 @@ module.exports = {
 
   MULTI_CLUSTER: '多集群',
 
-  CLUSTER_TAG: '标签',
-  CLUSTER_TAG_DESC: '为集群添加标签来标识集群的用途。',
-  CLUSTER_PROVIDER_DESC: '提供集群基础设施的服务商。',
+  CLUSTER_SETTINGS_DESC: '定义集群配置信息',
+  TAG: '标签',
+  CLUSTER_TAG_DESC: '选择标签来标识集群的用途。',
+  CLUSTER_PROVIDER_DESC: '选择提供集群基础设施的服务商。',
   CLUSTER_CONNECT_METHOD_DESC: '可以直接连接集群或者使用代理',
 
   CONNTECT_DIRECT: '直接连接 Kubernetes 集群',
@@ -197,7 +198,7 @@ module.exports = {
 
   UNBIND_CLUSTER_DESC:
     '解绑集群后，KubeSphere 将无法管理该集群，但该集群上的 Kubernetes 资源不会被删除。',
-  SURE_TO_UNBIND_CLUSTER: '我确定解绑集群。',
+  SURE_TO_UNBIND_CLUSTER: '我已了解操作所带来的风险。',
 
   'Invite members to the cluster': '邀请成员到该集群',
   INVITE_CLUSTER_MEMBER_DESC: '您可以邀请新的成员来此集群',
@@ -212,8 +213,7 @@ module.exports = {
     '集群授权可以将集群通过授权的形式指定给企业空间使用该集群',
 
   CLUSTER_VISIBILITY_Q1: '如何将集群授权给指定的企业空间使用？',
-  CLUSTER_VISIBILITY_A1:
-    '您可以点击<strong>编辑可见性</strong>将集群授权给指定的企业空间使用。',
+  CLUSTER_VISIBILITY_A1: '您可以点击编辑可见性将集群授权给指定的企业空间使用。',
   CLUSTER_VISIBILITY_Q2: '什么是公开集群?',
   CLUSTER_VISIBILITY_A2:
     '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源。',
@@ -320,12 +320,15 @@ module.exports = {
   UNBIND_CLUSTER_Q: '解绑集群',
 
   // Cluster Visibility
+  NODE: '节点',
+  NODE_COUNT: '节点数量',
   ADMINISTRATOR: '管理员',
   CLUSTER_VISIBILITY: '集群可见性',
   CLUSTER_VISIBILITY_DESC:
-    '将集群授权给企业空间，以在企业空间中查看并管理集群资源。',
+    '集群可见性控制集群对企业空间的授权。将集群授权给企业空间后，即可在企业空间中查看并管理集群资源。',
   EDIT_VISIBILITY_DESC: '编辑集群在企业空间中的可见性。',
-  TO_BE_AUTHORIZED: '待授权',
+  UNAUTHORIZED: '未授权',
+  LOGGING: '日志',
   EVENTS: '事件',
   AUDITING: '审计',
   REMOVE_WORKSPACE_CONFIRM_SI:

@@ -24,7 +24,7 @@ import AlertingMessages from './AlertMessages'
 export default path => [
   {
     path: `${path}/rules`,
-    title: 'ALERTING_RULES',
+    title: 'ALERTING_RULE',
     component: AlertingRules,
     exact: true,
   },

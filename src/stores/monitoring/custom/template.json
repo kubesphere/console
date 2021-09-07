@@ -659,7 +659,7 @@
       ],
       "title": "Elasticsearch Overview"
     },
-    "description": "Elasticsearch Exporter",
+    "description": " ",
     "name": "Elasticsearch",
     "logo": "/assets/elasticsearch.svg"
   },
@@ -1183,7 +1183,7 @@
       ],
       "title": "MySQL Overview"
     },
-    "description": "Prometheus Mysql Exporter",
+    "description": " ",
     "name": "MySQL",
     "logo": "/assets/mysql@2x.png"
   },
@@ -1495,7 +1495,7 @@
       "title": "Redis Overview"
     },
     "name": "Redis",
-    "description": "Prometheus Redis Exporter",
+    "description": " ",
     "logo": "/assets/redis.svg"
   },
   "Jenkins Overview": {
@@ -1950,7 +1950,7 @@
       "title": "Jenkins Overview"
     },
     "name": "Jenkins",
-    "description": "Prometheus Jenkins Exporter",
+    "description": " ",
     "logo": "/assets/jenkins.svg"
   },
   "Custom Monitoring": {
@@ -1960,7 +1960,7 @@
       "title": "Custom Monitoring"
     },
     "name": "Custom",
-    "description": "Customize Your Exporter",
+    "description": " ",
     "logo": "/assets/prometheus.svg"
   }
 }

@@ -700,7 +700,6 @@ export const PROVISIONERS = [
       {
         key: 'RESTURL',
         type: 'input',
-        placeholder: 'REST_URL_EXAMPLE',
         desc: 'GLUSTERFS_RESTURL_DESC',
       },
       {

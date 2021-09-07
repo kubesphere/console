@@ -89,7 +89,7 @@ export default class NodeUsageRank extends React.Component {
           <div>
             <h3>{this.toPercentage(node.node_cpu_utilisation)}</h3>
             <div>
-              {getValueByUnit(node.node_cpu_usage, unit) || '-'} /{' '}
+              {getValueByUnit(node.node_cpu_usage, unit) || '-'}/{''}
               {getValueByUnit(node.node_cpu_total, unit) || '-'} {unit}
             </div>
           </div>
@@ -119,7 +119,7 @@ export default class NodeUsageRank extends React.Component {
         <div>
           <h3>{this.toPercentage(node.node_memory_utilisation)}</h3>
           <div>
-            {getValueByUnit(node.node_memory_usage_wo_cache, 'Gi') || '-'} /{' '}
+            {getValueByUnit(node.node_memory_usage_wo_cache, 'Gi') || '-'}/
             {getValueByUnit(node.node_memory_total, 'Gi') || '-'} Gi
           </div>
         </div>
@@ -134,7 +134,7 @@ export default class NodeUsageRank extends React.Component {
         <div>
           <h3>{this.toPercentage(node.node_disk_size_utilisation)}</h3>
           <div>
-            {getValueByUnit(node.node_disk_size_usage, 'GB') || '-'} /{' '}
+            {getValueByUnit(node.node_disk_size_usage, 'GB') || '-'}/
             {getValueByUnit(node.node_disk_size_capacity, 'GB') || '-'} GB
           </div>
         </div>
@@ -148,7 +148,7 @@ export default class NodeUsageRank extends React.Component {
         <div>
           <h3>{this.toPercentage(node.node_disk_inode_utilisation)}</h3>
           <div>
-            {node.node_disk_inode_usage || '-'} /{' '}
+            {node.node_disk_inode_usage || '-'}/
             {node.node_disk_inode_total || '-'}
           </div>
         </div>
@@ -163,7 +163,7 @@ export default class NodeUsageRank extends React.Component {
         <div>
           <h3>{this.toPercentage(node.node_pod_utilisation)}</h3>
           <div>
-            {node.node_pod_running_count || '-'} / {node.node_pod_quota || '-'}
+            {node.node_pod_running_count || '-'}/{node.node_pod_quota || '-'}
           </div>
         </div>
       ),

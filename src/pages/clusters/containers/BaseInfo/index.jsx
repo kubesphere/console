@@ -103,7 +103,8 @@ export default class Overview extends React.Component {
 
     return [
       {
-        name: 'NODES',
+        name:
+          this.getValue(data[MetricTypes.node_count]) === 1 ? 'NODE' : 'NODES',
         icon: 'nodes',
         value: this.getValue(data[MetricTypes.node_count]),
       },
@@ -163,7 +164,7 @@ export default class Overview extends React.Component {
             <Text
               icon={CLUSTER_PROVIDER_ICON[provider] || 'kubernetes'}
               title={getDisplayName(this.store.detail)}
-              description={t('Cluster')}
+              description={t('CLUSTER')}
             />
             {provider && <Text title={provider} description={t('PROVIDER')} />}
             <Text

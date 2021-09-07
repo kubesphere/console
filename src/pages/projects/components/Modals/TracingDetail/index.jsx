@@ -217,7 +217,7 @@ export default class TracingDetailModal extends React.Component {
           </div>
           <ul>
             <li>
-              <span>{t('Start Time')}: </span>
+              <span>{t('START_TIME')}: </span>
               <span>
                 {getLocalTime(startTime / 1000).format('YYYY-MM-DD HH:mm:ss')}
               </span>

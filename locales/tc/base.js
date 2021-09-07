@@ -73,9 +73,9 @@ module.exports = {
   SERVICE_PL: '服務',
   Overview: '概覽',
   'Node Selector': '節點選擇器',
-  'Start Time': '開始時間',
-  'End Time': '結束時間',
-  'Time Interval': '時間間隔',
+  START_TIME: '開始時間',
+  END_TIME: '結束時間',
+  SAMPLING_INTERVAL: 'Sampling Interval',
   CREATED_AT: '創建時間',
   UPDATED_AT: '更新時間',
   RUNNING_TIME: '運行時間',
@@ -236,7 +236,7 @@ module.exports = {
   RESOURCE_NOT_FOUND: '很抱歉，沒有找到您所尋找的資源。',
   NO_AVAILABLE_RESOURCE: '暫無可用資源',
   'No Data': '暫無數據',
-  'No Relevant Data': '暫時沒有相關數據',
+  NO_RELEVANT_DATA: 'No Relavant Data Found',
 
   or: '或',
   refresh: '刷新',
@@ -263,11 +263,10 @@ module.exports = {
   'Port Settings': '端口設置',
   'Service Settings': '服務設置',
   'Health Checker': '健康檢查器',
-  INTERNET_ACCESS: '外網訪問',
   PORT_SETTINGS: '端口設置',
   SERVICE_SETTINGS: '服務設置',
   HEALTH_CHECKER: '健康檢查器',
-  'Internet Access': '外網訪問',
+  NETWORK_ACCESS: '外網訪問',
   'Advanced Settings': '高級設置',
   ADVANCED_SETTINGS: '高級設置',
   Settings: '設置',
@@ -383,6 +382,7 @@ module.exports = {
   exists: '已存在',
 
   Quota: '配額',
+  'No Limit': '無限制',
   'Remaining Quota': '剩餘配額',
 
   TOTAL_ITEMS: '共 {num} 個項目',
@@ -599,7 +599,7 @@ module.exports = {
 
   DATA_SOURCE: '數據源',
 
-  EMPTY_WRAPPER: '未發現 {resource}',
+  EMPTY_WRAPPER: '未發現{resource}',
 
   'User Guides': '用戶指南',
   'Quick Support': '快速獲取幫助',

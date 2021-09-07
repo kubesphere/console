@@ -36,7 +36,7 @@ module.exports = {
   Creating: 'Creating',
   'Creation failed, please delete and try again':
     'Creation failed, please delete and try again',
-  CUSTOM_CREATION: 'Custom Creation',
+  CUSTOM_SERVICE: 'Custom Service',
   'Delete Service': 'Delete Service',
   'Do not assign Service IP': 'Do not assign Service IP',
   EDIT_INTERNET_ACCESS: 'Edit Internet Access',
@@ -80,7 +80,6 @@ module.exports = {
   SPECIFY_WORKLOAD: 'Specify Workload',
   'Specify Node': 'Specify Node',
   'Service Type': 'Service Type',
-  services: 'services',
   'Specify Workload': 'Specify Workload',
   SPECIFY_NODE: 'Specify Node',
   'Specify Workloads': 'Specify Workloads',
@@ -89,7 +88,8 @@ module.exports = {
   'Sure to delete the service(s)?': 'Sure to delete the service(s)?',
   'Target Port': 'Target Port',
   'The current selector': 'The current selector',
-  STICKY_SESSION_DESC: 'The default stickiness duration is 10800s (3 h).',
+  STICKY_SESSION_DESC:
+    'Ensures that all requests from the same client are forwarded to the same backend server during one session.',
   VIRTUAL_IP: 'Virtual IP',
 
   SERVICE_EXTERNAL_NAME_DESC:
@@ -122,10 +122,8 @@ module.exports = {
 
   ACCESS_NONE_TIP:
     'Internet access is not supported. The Service can be accessed only within the cluster.',
-  ACCESS_NODEPORT_TIP:
-    'Access the Service through the port of the cluster node.',
-  ACCESS_LOADBALANCER_TIP:
-    'Access the Service using a LoadBalancer provided by a cloud provider.',
+  ACCESS_NODEPORT_TIP: 'Use a port of the cluster nodes to access the Service.',
+  ACCESS_LOADBALANCER_TIP: 'Use a load balancer to access the Service.',
 
   SERVICE_NODE_PORT_DESC:
     'If your current network is on the same network as the cluster node, you can access it through the cluster IP address + node port number or through the node IP + node port.',
@@ -162,7 +160,7 @@ module.exports = {
 
   SERVISE_SIMPLE_DESC: 'Create a Service with existing Pods.',
   SERVICE_PORTS_DESC:
-    'Set the ports to which container images are exposed and the service ports.',
+    'Set the ports used to access the container and the service ports.',
   SPECIFY_WORKLOAD_DESC:
     'Pre-populate the fields with labels of container replicas created by the workloads.',
 
@@ -171,7 +169,8 @@ module.exports = {
 
   EIP_POOL_DESC: 'Access method within the cluster (DNS)',
 
-  STICKINESS_VALUE_RANGE: 'Value range: 0–86400.',
+  STICKY_DURATION_DESC:
+    'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
 
   // Services
   LABEL_SELECTOR: 'Label Selector',

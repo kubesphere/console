@@ -135,7 +135,7 @@ export default class GatewaySettingModal extends React.Component {
       >
         <div>
           <Title
-            title={t('INTERNET_ACCESS')}
+            title={t('NETWORK_ACCESS')}
             desc={t('SERVICES_INTERNET_ACCESS_DESC')}
           />
           <div className={styles.wrapper}>

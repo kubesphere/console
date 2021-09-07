@@ -28,7 +28,6 @@ module.exports = {
   Workloads: '工作負載',
   IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} 層',
   IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} 層',
-  TAG: '標籤',
   CPU_REQUEST: 'CPU 預留',
   CPU_LIMIT: 'CPU 限制',
   MEMORY_REQUEST: '記憶體預留',
@@ -72,6 +71,7 @@ module.exports = {
   'Resource Info': '資源資訊',
   'Node Name': '主機名稱',
   POD_IP_ADDRESS: '容器組 IP',
+  POD_IP_TCAP: '容器組 IP',
   IMAGE: '鏡像',
   IMAGE_VALUE: '鏡像：{value}',
   'Image ID': '鏡像 ID',
@@ -350,7 +350,7 @@ module.exports = {
   CRONJOBS_VOLUME_DESC:
     '可以將臨時儲存卷，持久化儲存卷掛載至定時任務的容器組内。',
   CRONJOB_CRON_DESC:
-    'Set a schedule of a CronJob to be executed. For Cron syntax, see <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Cron</a>. Kubernetes use UTC by default. You need to adjust the schedule according to your time zone.',
+    'Set a schedule for the CronJob. KubeSphere uses UTC by default and you need to adjust the schedule according to your time zone. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Learn More</a>',
 
   MOUNT_VOLUME_DESC:
     '持久化儲存卷請選擇支持多節點讀寫模式 (ROX 或者 RWX) 的儲存卷，否則可能因容器組不在同一節點導致容器組更新失敗。如果您選擇了單節點讀寫 (RWO) 模式的儲存卷您也可以通過節點選擇將容器組安排在同一節點上來避免因儲存卷訪問模式造成的更新錯誤。',
@@ -362,10 +362,10 @@ module.exports = {
   CRONJOB_PL: '定時任務',
   CRONJOB_LOW: '定時任務',
   Revision: '版本',
-  EVERY_HOUR: '（每小時）',
-  EVERY_DAY: '（每天）',
-  EVERY_WEEK: '（每週）',
-  EVERY_MONTH: '（每月）',
+  EVERY_DAY: '0 0 * * * (every day)',
+  EVERY_HOUR: '0 * * * * (every hour)',
+  EVERY_MONTH: '0 0 1 * * (every month)',
+  EVERY_WEEK: '0 0 * * 0 (every week)',
   Schedule: '定時計畫',
   'Revision Records': '版本記錄',
   'Revision Rollback': '版本回退',
@@ -404,10 +404,9 @@ module.exports = {
   WORKER_CONTAINER: '工作容器',
   'Request Type': '請求類型',
 
-  startingDeadlineSeconds: '啟動 Job 的期限（秒）',
-  'startingDeadlineSeconds(s)': '啟動 Job 的期限（秒）',
-  successfulJobsHistoryLimit: '保留完成 Job 數',
-  failedJobsHistoryLimit: '保留失敗 Job 數',
+  STARTING_DEADLINE: 'Job Starting Deadline (s)',
+  SUCCESSFUL_JOBS_HISTORY_LIMIT: '保留完成任务數',
+  FAILED_JOBS_HISTORY_LIMIT: '保留失敗任务數',
   CONCURRENCY_POLICY: '並發策略',
 
   'Select resource': '選擇資源',
@@ -462,7 +461,8 @@ module.exports = {
   CONCURRENCY_POLICY_DESC:
     'Select a concurrency policy of a Job created by the CronJob.',
   'Can be found by node IP or node name': '可以通過節點 IP 或者節點名稱查找',
-  START_DEADLINE_SECONDS_DESC: 'Set the deadline for starting a Job.',
+  START_DEADLINE_SECONDS_DESC:
+    'Deadline for starting the Job if the scheduled run is missed for any reason.',
   'Container CPU Resource Request, 1 Core = 1000m':
     '容器的 CPU 資源請求值, 1核 = 1000m',
   'Container Memory Resource Request': '容器的 記憶體 資源請求值',
@@ -524,18 +524,19 @@ module.exports = {
   BACK_OFF_LIMIT: '最大重試次數',
   JOB_PARALLELISM_LABEL: '並行數',
   JOB_COMPLETION_LABEL: '完成數',
-  JOB_ACTIVE_DEADLINE: '退出超時時限（秒）',
+  JOB_ACTIVE_DEADLINE: '退出超時時限（s）',
 
   BACK_OFF_LIMIT_DESC:
-    'Maximum number of retries before marking a Job as failed. The default value is 6.',
-  JOB_PARALLELISM_DESC: 'Number of Pods that run concurrently.',
+    'Maximum number of retries before marking the Job as failed. The default value is 6.',
+  JOB_PARALLELISM_DESC:
+    'Number of Pods that run concurrently. The default value is 1.',
   JOB_COMPLETION_DESC:
-    'Number of Pods that need to run successfully before a Job is complete.',
+    'Number of Pods that complete successfully required for the Job to be marked as complete.',
   JOB_ACTIVE_DEADLINE_DESC:
-    'Duration of a Job. The running Pods are terminated when the Job reaches the duration. The value must be a positive integer.',
+    'Maximum duration of the Job. The Job is terminated after reaching the specific timeout.',
 
-  RESTART_POLICY_NEVER_DESC: '（容器組出現故障時創建新的容器組）',
-  RESTART_POLICY_ONFAILURE_DESC: '（容器組出現故障時内部重啟容器）',
+  RESTART_POLICY_NEVER_DESC: 'Never（容器組出現故障時創建新的容器組）',
+  RESTART_POLICY_ONFAILURE_DESC: 'On failure（容器組出現故障時内部重啟容器）',
 
   RESTART_POLICY_TIP:
     'RestartPolicy 只能指定 Never 或 OnFailure，當任務未完成的情況下：<br/>* 如果 RestartPolicy 指定 Never，則任務會在容器組出現故障時創建新的容器組，且故障容器組不會消失。<br/>* 如果 RestartPolicy 指定 OnFailure，則任務會在容器組出現故障時其内部重啟容器，而不是創建容器組。',
@@ -764,7 +765,6 @@ module.exports = {
 
   // CronJobs
   ADD_VOLUME: 'Add Volume',
-  RESTART_POLICY_DESC:
-    'The Pod restart policy. The value can be Never or onFailure.',
+  RESTART_POLICY_DESC: 'The Pod restart policy.',
   MOUNT_VOLUMES: 'Mount Volumes',
 }

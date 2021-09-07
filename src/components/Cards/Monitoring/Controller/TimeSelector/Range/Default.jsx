@@ -97,7 +97,7 @@ export default class DefaultRange extends React.Component {
                 [styles.cur]: value === lastTimeStr,
               })}
             >
-              {`${t('Last')} ${label}`}
+              {t('LAST_TIME', { value: label })}
             </li>
           ))}
         </ul>
