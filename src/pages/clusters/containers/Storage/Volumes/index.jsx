@@ -18,29 +18,13 @@
  */
 
 import React from 'react'
-import { isEmpty } from 'lodash'
-import { withClusterList, ListPage } from 'components/HOCs/withList'
-import ResourceTable from 'clusters/components/ResourceTable'
-import VolumeStore from 'stores/volume'
-import { getLocalTime, getDisplayName } from 'utils'
-import { getVolumeStatus } from 'utils/status'
-import { VOLUME_STATUS } from 'utils/constants'
-import StatusReason from 'projects/components/StatusReason'
-
-import { Avatar, Status } from 'components/Base'
-
+import { observer, inject } from 'mobx-react'
 import Banner from 'components/Cards/Banner'
+import { renderRoutes } from 'utils/router.config'
+import routes from './routes'
 
-import { Link } from 'react-router-dom'
-import styles from './index.scss'
-
-@withClusterList({
-  store: new VolumeStore(),
-  module: 'persistentvolumeclaims',
-  authKey: 'volumes',
-  name: 'Volume',
-  rowKey: 'uid',
-})
+@inject('rootStore')
+@observer
 export default class Volumes extends React.Component {
   get tips() {
     return [
@@ -55,199 +39,30 @@ export default class Volumes extends React.Component {
     ]
   }
 
-  get tabs() {
+  get bannerProps() {
     return {
-      value: 'Volume',
-      onChange: this.handleTabChange,
-      options: [
-        {
-          value: `Volume`,
-          label: t('Volume'),
-        },
-        {
-          value: 'PV',
-          label: t('PV'),
-        },
-      ],
+      className: 'margin-b12',
+      description: t('VOLUME_DESC'),
+      module: 'persistentvolumeclaims',
+      title: t('VOLUME'),
     }
   }
 
-  handleTabChange = () => {
-    const { cluster } = this.props.match.params
-    this.props.rootStore.routing.push(`/clusters/${cluster}/PV`)
-  }
-
-  showAction = record => !record.isFedManaged
-
-  get itemActions() {
-    const { trigger, name } = this.props
-
-    return [
-      {
-        key: 'edit',
-        icon: 'pen',
-        text: t('EDIT'),
-        action: 'edit',
-        show: this.showAction,
-        onClick: item =>
-          trigger('resource.baseinfo.edit', {
-            detail: item,
-          }),
-      },
-      {
-        key: 'editYaml',
-        icon: 'pen',
-        text: t('EDIT_YAML'),
-        action: 'edit',
-        show: this.showAction,
-        onClick: item =>
-          trigger('resource.yaml.edit', {
-            detail: item,
-          }),
-      },
-      {
-        key: 'delete',
-        icon: 'trash',
-        text: t('DELETE'),
-        action: 'delete',
-        show: this.showAction,
-        onClick: item =>
-          trigger('resource.delete', {
-            type: t(name),
-            detail: item,
-          }),
-      },
-    ]
-  }
-
-  getItemDesc = record => {
-    const status = getVolumeStatus(record)
-    const desc = !isEmpty(status) ? (
-      <StatusReason reason={status} data={record} type={'volume'} />
-    ) : (
-      record.storageClassName || '-'
-    )
-
-    return desc
-  }
-
-  getCheckboxProps = record => ({
-    disabled: record.isFedManaged,
-    name: record.name,
-  })
-
-  getStatus() {
-    return VOLUME_STATUS.map(status => ({
-      text: t(status.text),
-      value: status.value,
-    }))
-  }
-
-  getColumns() {
-    const { getSortOrder, getFilteredValue } = this.props
-    const { cluster } = this.props.match.params
-
-    return [
-      {
-        title: t('NAME'),
-        dataIndex: 'name',
-        sortOrder: getSortOrder('name'),
-        search: true,
-        sorter: true,
-        render: (name, record) => (
-          <Avatar
-            icon={'storage'}
-            iconSize={40}
-            to={`/clusters/${cluster}/projects/${record.namespace}/volumes/${name}`}
-            isMultiCluster={record.isFedManaged}
-            desc={this.getItemDesc(record)}
-            title={getDisplayName(record)}
-          />
-        ),
-      },
-      {
-        title: t('STATUS'),
-        dataIndex: 'status',
-        isHideable: true,
-        search: true,
-        filters: this.getStatus(),
-        filteredValue: getFilteredValue('status'),
-        width: '10.56%',
-        render: (_, { phase }) => (
-          <Status
-            type={phase}
-            className={styles.status}
-            name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)}
-            flicker
-          />
-        ),
-      },
-      {
-        title: 'PV',
-        dataIndex: '_originData',
-        isHideable: true,
-        search: false,
-        width: '28.5%',
-        render: _ => (
-          <Link to={`/clusters/${cluster}/PV/${_.spec.volumeName}`}>
-            {_.spec.volumeName}
-          </Link>
-        ),
-      },
-      {
-        title: t('ACCESS_MODE_TCAP'),
-        dataIndex: 'capacity',
-        isHideable: true,
-        width: '12.32%',
-        render: (capacity, { accessMode }) => (
-          <div className={styles.capacity}>
-            <p>{accessMode}</p>
-          </div>
-        ),
-      },
-      {
-        title: t('MOUNT_STATUS'),
-        dataIndex: 'inUse',
-        isHideable: true,
-        width: '7.74%',
-        render: inUse => (inUse ? t('MOUNTED_TCAP') : t('NOT_MOUNTED')),
-      },
-      {
-        title: t('CREATED_AT'),
-        dataIndex: 'createTime',
-        sorter: true,
-        sortOrder: getSortOrder('createTime'),
-        isHideable: true,
-        width: 140,
-        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm'),
-      },
-    ]
-  }
-
-  showCreate = () => {
-    const { store, match, module } = this.props
-
-    return this.props.trigger('volume.create', {
-      store,
-      module,
-      cluster: match.params.cluster,
-    })
+  get routes() {
+    return routes
+      .filter(item => !!item.title)
+      .map(item => ({
+        ...item,
+        name: item.path.split('/').pop(),
+      }))
   }
 
   render() {
-    const { tableProps, match, bannerProps } = this.props
     return (
-      <ListPage {...this.props}>
-        <Banner {...bannerProps} tips={this.tips} tabs={this.tabs} />
-        <ResourceTable
-          {...tableProps}
-          itemActions={this.itemActions}
-          columns={this.getColumns()}
-          onCreate={this.showCreate}
-          cluster={match.params.cluster}
-          getCheckboxProps={this.getCheckboxProps}
-        />
-      </ListPage>
+      <>
+        <Banner {...this.bannerProps} tips={this.tips} routes={this.routes} />
+        {renderRoutes(routes)}
+      </>
     )
   }
 }
