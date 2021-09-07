@@ -19,28 +19,27 @@
 
 import React from 'react'
 import { isEmpty } from 'lodash'
-import { withProjectList, ListPage } from 'components/HOCs/withList'
+import withList, { ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
-import VolumeStore from 'stores/volume'
-import { getLocalTime, getDisplayName } from 'utils'
+
+import PvStore from 'stores/pv'
+import { getLocalTime } from 'utils'
 import { getVolumeStatus } from 'utils/status'
-import { VOLUME_STATUS } from 'utils/constants'
+import { PV_STATUS } from 'utils/constants'
+import Banner from 'components/Cards/Banner'
 import StatusReason from 'projects/components/StatusReason'
 
 import { Avatar, Status } from 'components/Base'
 
-import Banner from 'components/Cards/Banner'
-
-import styles from './index.scss'
-
-@withProjectList({
-  store: new VolumeStore(),
-  module: 'persistentvolumeclaims',
-  authKey: 'volumes',
-  name: 'Volume',
+@withList({
+  store: new PvStore(),
+  module: 'persistentvolumes',
+  name: 'PV',
   rowKey: 'uid',
 })
-export default class Volumes extends React.Component {
+export default class PV extends React.Component {
+  showAction = record => !record.isFedManaged
+
   get tips() {
     return [
       {
@@ -54,42 +53,72 @@ export default class Volumes extends React.Component {
     ]
   }
 
+  get tabs() {
+    return {
+      value: 'PV',
+      onChange: this.handleTabChange,
+      options: [
+        {
+          value: `Volume`,
+          label: t('Volume'),
+        },
+        {
+          value: 'PV',
+          label: t('PV'),
+        },
+      ],
+    }
+  }
+
+  get bannerProps() {
+    return {
+      className: 'margin-b12',
+      description: t('VOLUME_DESC'),
+      module: 'persistentvolumeclaims',
+      title: t('VOLUMES'),
+    }
+  }
+
+  handleTabChange = () => {
+    const { cluster } = this.props.match.params
+    this.props.rootStore.routing.push(`/clusters/${cluster}/Volumes`)
+  }
+
   get itemActions() {
-    const { trigger, name } = this.props
+    const { trigger } = this.props
 
     return [
-      {
-        key: 'edit',
-        icon: 'pen',
-        text: t('EDIT'),
-        action: 'edit',
-        onClick: item =>
-          trigger('resource.baseinfo.edit', {
-            detail: item,
-          }),
-      },
-      {
-        key: 'editYaml',
-        icon: 'pen',
-        text: t('EDIT_YAML'),
-        action: 'edit',
-        onClick: item =>
-          trigger('resource.yaml.edit', {
-            detail: item,
-          }),
-      },
       {
         key: 'delete',
         icon: 'trash',
         text: t('DELETE'),
         action: 'delete',
+        show: this.showAction,
         onClick: item =>
-          trigger('resource.delete', {
-            type: t(name),
-            detail: item,
-          }),
+          trigger('pv.delete', { ...this.props.tableProps, detail: item }),
       },
     ]
+  }
+
+  get tableActions() {
+    const { trigger, tableProps } = this.props
+    return {
+      ...tableProps.tableActions,
+      selectActions: [
+        {
+          key: 'delete',
+          icon: 'trash',
+          text: t('DELETE'),
+          action: 'delete',
+          type: 'danger',
+          show: this.showAction,
+          onClick: () =>
+            trigger('pv.batch.delete', {
+              ...this.props.tableProps,
+            }),
+        },
+      ],
+    }
   }
 
   getItemDesc = record => {
@@ -103,8 +132,13 @@ export default class Volumes extends React.Component {
     return desc
   }
 
+  getCheckboxProps = record => ({
+    disabled: record.isFedManaged,
+    name: record.name,
+  })
+
   getStatus() {
-    return VOLUME_STATUS.map(status => ({
+    return PV_STATUS.map(status => ({
       text: t(status.text),
       value: status.value,
     }))
@@ -112,6 +146,7 @@ export default class Volumes extends React.Component {
 
   getColumns() {
     const { getSortOrder, getFilteredValue } = this.props
+    const { cluster } = this.props.match.params
 
     return [
       {
@@ -120,15 +155,18 @@ export default class Volumes extends React.Component {
         sortOrder: getSortOrder('name'),
         search: true,
         sorter: true,
-        render: (name, record) => (
-          <Avatar
-            icon={'storage'}
-            iconSize={40}
-            to={`${this.props.match.url}/${name}`}
-            desc={this.getItemDesc(record)}
-            title={getDisplayName(record)}
-          />
-        ),
+        render: (name, record) => {
+          return (
+            <Avatar
+              icon={'storage'}
+              iconSize={40}
+              to={`/clusters/${cluster}/pv/${name}`}
+              isMultiCluster={record.isFedManaged}
+              desc={this.getItemDesc(record)}
+              title={name}
+            />
+          )
+        },
       },
       {
         title: t('STATUS'),
@@ -137,41 +175,32 @@ export default class Volumes extends React.Component {
         search: true,
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
-        width: '10.6%',
+        width: '10.56%',
         render: (_, { phase }) => (
           <Status
             type={phase}
-            className={styles.status}
-            name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)}
+            name={t(`PV_STATUS_${phase.toUpperCase()}`)}
             flicker
           />
         ),
       },
       {
-        title: 'PV',
-        dataIndex: '_originData',
-        isHideable: true,
-        search: false,
-        width: '28.5%',
-        render: _ => _.spec.volumeName,
-      },
-      {
         title: t('ACCESS_MODE_TCAP'),
         dataIndex: 'capacity',
         isHideable: true,
-        width: '12.3%',
+        width: '12.32%',
         render: (capacity, { accessMode }) => (
-          <div className={styles.capacity}>
+          <div>
             <p>{accessMode}</p>
           </div>
         ),
       },
       {
-        title: t('MOUNT_STATUS'),
-        dataIndex: 'inUse',
+        title: t('Recycling mechanism'),
+        dataIndex: '_originData',
         isHideable: true,
-        width: '7.7%',
-        render: inUse => (inUse ? t('MOUNTED_TCAP') : t('NOT_MOUNTED')),
+        width: '7.74%',
+        render: _ => _.spec.persistentVolumeReclaimPolicy,
       },
       {
         title: t('CREATED_AT'),
@@ -185,28 +214,19 @@ export default class Volumes extends React.Component {
     ]
   }
 
-  showCreate = () => {
-    const { match, module, projectStore } = this.props
-    return this.props.trigger('volume.create', {
-      module,
-      projectDetail: projectStore.detail,
-      namespace: match.params.namespace,
-      cluster: match.params.cluster,
-    })
-  }
-
   render() {
-    const { query, match, bannerProps, tableProps } = this.props
+    const { match, tableProps } = this.props
     return (
       <ListPage {...this.props}>
-        <Banner {...bannerProps} tips={this.tips} />
+        <Banner {...this.bannerProps} tips={this.tips} tabs={this.tabs} />
         <Table
           {...tableProps}
           itemActions={this.itemActions}
-          namespace={query.namespace}
+          tableActions={this.tableActions}
           columns={this.getColumns()}
-          onCreate={this.showCreate}
           cluster={match.params.cluster}
+          getCheckboxProps={this.getCheckboxProps}
+          renderProjectSelect={false}
         />
       </ListPage>
     )

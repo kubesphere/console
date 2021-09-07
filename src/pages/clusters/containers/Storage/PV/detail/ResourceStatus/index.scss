@@ -1,0 +1,37 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+@mixin item {
+  .title {
+    display: block;
+    font-size: 12px;
+    line-height: 20px;
+    color: $dark-color07;
+  }
+
+  .des {
+    display: block;
+    font-size: 12px;
+    line-height: 20px;
+    color: $dark-color01;
+  }
+}
+
+.ItemBox {
+  display: flex;
+
+  .leftBox {
+    display: flex;
+    flex: auto;
+
+    .rightBox {
+      margin-left: 12px;
+      @include item();
+    }
+  }
+
+  .titleBox {
+    flex: auto;
+    @include item();
+  }
+}

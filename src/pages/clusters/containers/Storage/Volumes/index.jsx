@@ -31,6 +31,7 @@ import { Avatar, Status } from 'components/Base'
 
 import Banner from 'components/Cards/Banner'
 
+import { Link } from 'react-router-dom'
 import styles from './index.scss'
 
 @withClusterList({
@@ -52,6 +53,28 @@ export default class Volumes extends React.Component {
         description: t('WHAT_IS_LOCAL_VOLUME_A'),
       },
     ]
+  }
+
+  get tabs() {
+    return {
+      value: 'Volume',
+      onChange: this.handleTabChange,
+      options: [
+        {
+          value: `Volume`,
+          label: t('Volume'),
+        },
+        {
+          value: 'PV',
+          label: t('PV'),
+        },
+      ],
+    }
+  }
+
+  handleTabChange = () => {
+    const { cluster } = this.props.match.params
+    this.props.rootStore.routing.push(`/clusters/${cluster}/PV`)
   }
 
   showAction = record => !record.isFedManaged
@@ -149,7 +172,7 @@ export default class Volumes extends React.Component {
         search: true,
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
-        width: '14%',
+        width: '10.56%',
         render: (_, { phase }) => (
           <Status
             type={phase}
@@ -160,10 +183,22 @@ export default class Volumes extends React.Component {
         ),
       },
       {
+        title: 'PV',
+        dataIndex: '_originData',
+        isHideable: true,
+        search: false,
+        width: '28.5%',
+        render: _ => (
+          <Link to={`/clusters/${cluster}/PV/${_.spec.volumeName}`}>
+            {_.spec.volumeName}
+          </Link>
+        ),
+      },
+      {
         title: t('ACCESS_MODE_TCAP'),
         dataIndex: 'capacity',
         isHideable: true,
-        width: '16%',
+        width: '12.32%',
         render: (capacity, { accessMode }) => (
           <div className={styles.capacity}>
             <p>{accessMode}</p>
@@ -174,7 +209,7 @@ export default class Volumes extends React.Component {
         title: t('MOUNT_STATUS'),
         dataIndex: 'inUse',
         isHideable: true,
-        width: '14%',
+        width: '7.74%',
         render: inUse => (inUse ? t('MOUNTED_TCAP') : t('NOT_MOUNTED')),
       },
       {
@@ -183,7 +218,7 @@ export default class Volumes extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('createTime'),
         isHideable: true,
-        width: 150,
+        width: 140,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm'),
       },
     ]
@@ -200,10 +235,10 @@ export default class Volumes extends React.Component {
   }
 
   render() {
-    const { match, bannerProps, tableProps } = this.props
+    const { tableProps, match, bannerProps } = this.props
     return (
       <ListPage {...this.props}>
-        <Banner {...bannerProps} tips={this.tips} />
+        <Banner {...bannerProps} tips={this.tips} tabs={this.tabs} />
         <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}

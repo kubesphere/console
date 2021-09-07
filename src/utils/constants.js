@@ -57,6 +57,13 @@ export const VOLUME_STATUS = [
   { text: 'VOLUME_STATUS_PENDING', value: 'pending' },
 ]
 
+export const PV_STATUS = [
+  { text: 'PV_STATUS_AVAILABLE', value: 'available' },
+  { text: 'PV_STATUS_BOUND', value: 'bound' },
+  { text: 'PV_STATUS_RELEASED', value: 'released' },
+  { text: 'PV_STATUS_FAILED', value: 'failed' },
+]
+
 export const NODE_STATUS = [
   { text: 'NODE_STATUS_UNSCHEDULABLE', value: 'unschedulable' },
   { text: 'NODE_STATUS_RUNNING', value: 'running' },
@@ -246,6 +253,7 @@ export const MODULE_KIND_MAP = {
   services: 'Service',
   ingresses: 'Ingress',
   persistentvolumeclaims: 'PersistentVolumeClaim',
+  persistentvolumes: 'PersistentVolumes',
   storageclasses: 'StorageClass',
   'alert-policies': 'AlertingPolicy',
   configmaps: 'ConfigMap',
@@ -860,6 +868,7 @@ export const API_VERSIONS = {
   resourcequotas: 'api/v1',
   limitranges: 'api/v1',
   persistentvolumeclaims: 'api/v1',
+  persistentvolumes: 'api/v1',
   ingresses: 'apis/extensions/v1beta1',
   nodes: 'api/v1',
   storageclasses: 'apis/storage.k8s.io/v1',
