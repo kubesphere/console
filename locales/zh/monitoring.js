@@ -26,7 +26,6 @@ module.exports = {
   APPLICATION_RESOURCES: '应用资源',
 
   NODE_COUNT: '节点数量',
-  'Cluster Status': '集群状态',
   CLUSTER_STATUS: '集群状态',
   'Cluster Monitors': '集群监控',
   'Cluster Resource Monitoring': '集群资源监控',
@@ -65,7 +64,6 @@ module.exports = {
   KUBERNETES_SCHEDULER: 'Kubernetes 调度器',
   SCHEDULER: '调度器',
   Node: '节点',
-  NODE: '节点',
 
   SELECT_TIME_RANGE: '选择时间范围',
   CUSTOM_TIME_RANGE: '自定义时间范围',
@@ -111,7 +109,7 @@ module.exports = {
   REQUEST: '请求',
   API_REQUESTS_PER_SECOND: '每秒 API 请求数',
   API_REQUEST_LATENCY: 'API 请求延迟',
-  SCHEDULE_ATTEMPS: '调度次数',
+  SCHEDULE_ATTEMPTS: '调度次数',
   SCHEDULING_RATE: '调度速率',
   SCHEDULING_LATENCY: '调度延迟',
 
@@ -129,7 +127,7 @@ module.exports = {
   ETCD_CLIENT_TRAFFIC: '客户端 <span>流量</span>',
   REQUEST_LATENCY_TCAP: '请求 <span>延迟</span>',
   REQUEST_RATE: '请求 <span>速率</span>',
-  SCHEDULE_ATTEMPS_TCAP: '调度 <span>次数</span>',
+  SCHEDULE_ATTEMPTS_TCAP: '调度 <span>次数</span>',
   SCHEDULING_RATE_TCAP: '调度 <span>速率</span>',
   PROPOSAL_COMMITTED: '提议提交速率',
   PROPOSAL_APPLIED: '提议应用速率',

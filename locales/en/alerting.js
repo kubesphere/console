@@ -47,7 +47,6 @@ module.exports = {
   DISK_WRITE_IOPS: 'Local disk write IOPS',
   DISK_WRITE_THROUGHPUT: 'Local disk write throughput',
   'Edit Rule': 'Edit Rule',
-  INODE_USAGE: 'Inode Usage',
   DISK_SPACE_USAGE: 'Local disk space usage',
   MEMORY_AVAILABLE: 'Available memory',
   'memory usage': 'Memory usage',

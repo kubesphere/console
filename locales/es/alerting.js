@@ -46,7 +46,6 @@ module.exports = {
   DISK_WRITE_IOPS: 'iops de escritura de disco',
   DISK_WRITE_THROUGHPUT: 'rendimiento de escritura en disco',
   'Edit Rule': 'Editar regla',
-  INODE_USAGE: 'ratio de utilización de inodes',
   DISK_SPACE_USAGE: 'ratio de utilización de espacio del disco local',
   MEMORY_AVAILABLE: 'memoria disponible',
   'memory usage': 'uso de memoria',

@@ -317,7 +317,6 @@ module.exports = {
 
   // Cluster Visibility
   NODE: 'Node',
-  NODE_COUNT: 'Node Count',
   ADMINISTRATOR: 'Administrator',
   CLUSTER_VISIBILITY: '集群能見度',
   CLUSTER_VISIBILITY_DESC:

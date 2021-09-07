@@ -67,7 +67,7 @@ class SchedulerMonitorings extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'area',
-      title: 'SCHEDULE_ATTEMPS',
+      title: 'SCHEDULE_ATTEMPTS',
       unit: '',
       legend: ['SUCCESS', 'ERROR', 'FAILURE'],
       data: [

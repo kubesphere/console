@@ -60,7 +60,6 @@ module.exports = {
   KUBERNETES_SCHEDULER: 'K8s 調度器',
   SCHEDULER: '調度器',
   Node: '節點',
-  NODE: '節點',
 
   SELECT_TIME_RANGE: '選擇時間範圍',
   CUSTOM_TIME_RANGE: '自定義時間範圍',
@@ -110,7 +109,7 @@ module.exports = {
   API_REQUESTS_PER_SECOND: '每秒 API 請求數',
   API_REQUEST_LATENCY: 'API 請求延遲',
   REQUEST: '請求',
-  SCHEDULE_ATTEMPS: '調度次數',
+  SCHEDULE_ATTEMPTS: '調度次數',
   SCHEDULING_RATE: '調度速率',
   SCHEDULING_LATENCY: '調度延遲',
 
@@ -128,7 +127,7 @@ module.exports = {
   ETCD_CLIENT_TRAFFIC: '客戶端 <span>流量</span>',
   REQUEST_LATENCY_TCAP: '請求 <span>延遲</span>',
   REQUEST_RATE: '請求 <span>速率</span>',
-  SCHEDULE_ATTEMPS_TCAP: '調度 <span>次數</span>',
+  SCHEDULE_ATTEMPTS_TCAP: '調度 <span>次數</span>',
   SCHEDULING_RATE_TCAP: '調度 <span>速率</span>',
   PROPOSAL_COMMITTED: '提議提交速率',
   PROPOSAL_APPLIED: '提議應用速率',

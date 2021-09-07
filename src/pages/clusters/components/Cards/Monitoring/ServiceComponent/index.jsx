@@ -114,7 +114,7 @@ export default class ServiceComponentStatusTab extends React.Component {
       {
         icon: ICON_TYPES['scheduler'],
         name: 'SCHEDULER',
-        title: 'SCHEDULE_ATTEMPS_TCAP',
+        title: 'SCHEDULE_ATTEMPTS_TCAP',
       },
       {
         icon: ICON_TYPES['scheduler'],
@@ -155,7 +155,7 @@ export default class ServiceComponentStatusTab extends React.Component {
       },
       {
         type: 'area',
-        title: 'SCHEDULE_ATTEMPS',
+        title: 'SCHEDULE_ATTEMPTS',
         unit: '',
         legend: ['SUCCESS', 'ERROR', 'FAILURE'],
         data: [
