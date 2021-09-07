@@ -37,7 +37,6 @@ module.exports = {
   TARGET: '目标',
   MOUNT_PATH_EMPTY: '请输入挂载路径。',
   CONFIGMAP: '配置字典',
-  SECRET: '保密字典',
   PARTITION_ORDINAL: '容器组副本分组序号',
   PARTITION_ORDINAL_DESC:
     '容器组副本按序号分成两组。更新有状态副本集时，只有序号大于分组序号的容器组副本会被更新。',

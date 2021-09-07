@@ -64,5 +64,4 @@ module.exports = {
   TOTAL_VALUE: '總計：{value}',
   ALL: '全部',
   NOT_ASSIGNED: '未分配',
-  WORKSPACE: '企業空間',
 }

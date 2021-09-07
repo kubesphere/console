@@ -39,7 +39,6 @@ module.exports = {
   REGISTRY_SECRET_VER_ERR: 'Registry Verification Failed.',
   REGISTRY_SECRET_VER_SUC: 'Registry Verification Succeeded.',
   Secret: 'Secret',
-  SECRET: 'Secret',
   SECRET_SETTINGS_TCAP: 'Secret Settings',
   secrets: 'secrets',
   Secrets: 'Secrets',

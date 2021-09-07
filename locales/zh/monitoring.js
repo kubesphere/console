@@ -217,8 +217,6 @@ module.exports = {
   POD_STATUS: '容器组状态',
   NO_MONITORING_DATA_FOUND: '没有找到监控数据',
   NOT_ENABLED: '未启用',
-  RUNNING: '运行中',
-  COMPLETED: '已完成',
   WARNING: '异常',
 
   // Application Resources

@@ -46,7 +46,6 @@ module.exports = {
   MUST_MATCH: 'Must match',
   MOUNT_PATH_EMPTY: 'Please enter a mount path.',
   CONFIGMAP: 'ConfigMap',
-  SECRET: 'Secret',
   PARTITION_ORDINAL: 'Ordinal for Dividing Pod Replicas',
   PARTITION_ORDINAL_DESC:
     'Ordinal that divides the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',

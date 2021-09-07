@@ -38,7 +38,6 @@ module.exports = {
   POD_SETTINGS: '容器組設置',
   MOUNT_PATH_EMPTY: '請輸入掛載路徑。',
   CONFIGMAP: '配置字典',
-  SECRET: '保密字典',
   'Service Configuration': '服務配置',
 
   'Available number of nodes scheduled': '可用節點數',
@@ -62,7 +61,6 @@ module.exports = {
   'Container Logs': '容器紀錄',
   'Resource Info': '資源資訊',
   'Node Name': '主機名稱',
-  'Node IP': '主機 IP',
   POD_IP_ADDRESS: '容器組 IP',
   IMAGE: '鏡像',
   IMAGE_VALUE: '鏡像：{value}',

@@ -34,7 +34,6 @@ module.exports = {
   'Remove from Workspace': 'Remove from Workspace',
   'The current name is not applicable.': 'The name is invalid.',
   'View Workspace': 'View Workspace',
-  WORKSPACE: 'Workspace',
   'Workspace Info': 'Workspace Information',
   'Workspace Logo': 'Workspace Logo',
   'Workspace Manager': 'Administrator',

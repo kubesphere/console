@@ -218,8 +218,6 @@ module.exports = {
   POD_STATUS: 'Pod Status',
   NO_MONITORING_DATA_FOUND: 'No Monitoring Data Found',
   NOT_ENABLED: 'Not Enabled',
-  RUNNING: 'Running',
-  COMPLETED: 'Completed',
   WARNING: 'Warning',
 
   // Application Resources

@@ -64,5 +64,4 @@ module.exports = {
   TOTAL_VALUE: 'Total: {value}',
   ALL: 'Todos',
   NOT_ASSIGNED: 'No asignado',
-  WORKSPACE: 'Espacio de trabajo',
 }
