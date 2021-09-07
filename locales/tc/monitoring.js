@@ -199,7 +199,8 @@ module.exports = {
   CUSTOM_MONITORING: '自定義監控',
   CUSTOM_MONITOR_DESC:
     'Users can customize application monitoring dashboards based on their needs.',
-  CUSTOMMONITORDASHBOARD_CREATE_DESC: '用戶可以根據自己需求定義應用監控面板',
+  CUSTOMMONITORDASHBOARD_CREATE_DESC:
+    'You can customize application monitoring dashboards based on your needs.',
 
   'Default Color': '預設配色',
   'Cool Color': '冷色調',

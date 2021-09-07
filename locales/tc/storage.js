@@ -147,24 +147,25 @@ module.exports = {
 
   QINGCLOUD_CSI_TYPE_DESC:
     '在青雲雲平台中，0 代表性能型硬碟，2 代表容量型硬碟，3 代表超高性能型硬碟，5 代表企業級分布式 SAN（NeonSAN）型硬碟，100 代表基礎型硬碟，200 代表企業型硬碟',
-  CREATE_VOLUME_MAX_SIZE: '創建儲存卷容量上限',
-  CREATE_VOLUME_STEP_SIZE: '創建儲存卷增量值',
-  CREATE_VOLUME_MIN_SIZE: '創建儲存卷容量下限',
+  CREATE_VOLUME_MAX_SIZE: 'Maximum size of the volume.',
+  CREATE_VOLUME_STEP_SIZE: 'Step size of the volume.',
+  CREATE_VOLUME_MIN_SIZE: 'Minimum size of the volume.',
   VOLUME_FS_TYPE: 'Supports ext3, ext4, and XFS. The default type is ext4.',
   QINGCLOUD_VOLUME_TAGS_DESC:
     'Add tags to the storage volume. Use commas to separate multiple tags.',
 
   GLUSTERFS_RESTURL_DESC:
-    'Gluster REST service or Heketi service URL that provisions Gluster volumes on demand.',
+    'Heketi REST URL that provisions volumes, for example, <Heketi Service cluster IP Address>:<Heketi Service port number>.',
   GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
   GLUSTERFS_RESTAUTHENABLED_DESC: ' Gluster 啟用对 REST 伺服器的認證',
   GLUSTERFS_RESTUSER_DESC:
     'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
   GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
-  GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the storage class.',
-  GLUSTERFS_GID_MAX_DESC: 'Maximum GID of the storage class.',
-  GLUSTERFS_VOLUME_TYPE_DESC: 'Optional type of the volume.',
+  GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the volume.',
+  GLUSTERFS_GID_MAX_DESC: 'Maximum GID of the volume.',
+  GLUSTERFS_VOLUME_TYPE_DESC:
+    'Type of volume. The value can be none, replicate:<Replicate count>, or disperse:<Data>:<Redundancy count>. If the volume type is not set, the default volume type is replicate:3.',
 
   CEPHRBD_MONITORS_DESC: 'IP address of Ceph monitors.',
   CEPHRBD_ADMIN_ID_DESC: 'ceph 集群能夠創建卷的用戶 ID',

@@ -165,9 +165,9 @@ module.exports = {
     'Use QingCloud CSI as the underlying storage plugin. <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">Learn More</a>',
   QINGCLOUD_CSI_TYPE_DESC:
     'En la plataforma de nube pública QingCloud, 0 representa un volumen de alto rendimiento. 2 representa volumen de alta capacidad. 3 representa un volumen súper alto rendimiento. 5 representa Enterprise Server SAN. 100 representa  volumen estándar.',
-  CREATE_VOLUME_MAX_SIZE: 'Límite superior de tamaño de volumen',
-  CREATE_VOLUME_STEP_SIZE: 'Incremento de tamaño de volumen',
-  CREATE_VOLUME_MIN_SIZE: 'Límite inferior de tamaño de volumen',
+  CREATE_VOLUME_MAX_SIZE: 'Maximum size of the volume.',
+  CREATE_VOLUME_STEP_SIZE: 'Step size of the volume.',
+  CREATE_VOLUME_MIN_SIZE: 'Minimum size of the volume.',
   VOLUME_FS_TYPE: 'Supports ext3, ext4, and XFS. The default type is ext4.',
   MAXSIZE: 'Maximum Size',
   MINSIZE: 'Minimum Size',
@@ -175,7 +175,7 @@ module.exports = {
   FSTYPE: 'File System Type',
   TAGS: 'Tag',
   GLUSTERFS_RESTURL_DESC:
-    'Gluster REST service or Heketi service URL that provisions Gluster volumes on demand.',
+    'Heketi REST URL that provisions volumes, for example, <Heketi Service cluster IP Address>:<Heketi Service port number>.',
   GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
   GLUSTERFS_RESTAUTHENABLED_DESC:
     'Habilite la autenticación en el servidor REST.',
@@ -183,9 +183,10 @@ module.exports = {
     'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
   GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
-  GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the storage class.',
-  GLUSTERFS_GID_MAX_DESC: 'Maximum GID of the storage class.',
-  GLUSTERFS_VOLUME_TYPE_DESC: 'Optional type of the volume.',
+  GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the volume.',
+  GLUSTERFS_GID_MAX_DESC: 'Maximum GID of the volume.',
+  GLUSTERFS_VOLUME_TYPE_DESC:
+    'Type of volume. The value can be none, replicate:<Replicate count>, or disperse:<Data>:<Redundancy count>. If the volume type is not set, the default volume type is replicate:3.',
   QINGCLOUD_VOLUME_TAGS_DESC:
     'Add tags to the storage volume. Use commas to separate multiple tags.',
   CEPHRBD_MONITORS_DESC: 'IP address of Ceph monitors.',

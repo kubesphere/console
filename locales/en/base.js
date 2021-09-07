@@ -402,6 +402,8 @@ module.exports = {
   total: 'total',
   true: 'true',
   True: 'True',
+  TRUE: 'True',
+  FALSE: 'False',
   TYPE: 'Type',
   type: 'type',
   Uncordon: 'Uncordon',

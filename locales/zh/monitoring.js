@@ -200,7 +200,8 @@ module.exports = {
   CustomMonitorDashboard: '自定义监控面板',
   CUSTOM_MONITORING: '自定义监控',
   CUSTOM_MONITOR_DESC: '用户可根据需求自定义应用监控面板。',
-  CUSTOMMONITORDASHBOARD_CREATE_DESC: '请创建一个自定义监控面板。',
+  CUSTOMMONITORDASHBOARD_CREATE_DESC:
+    '您可以根据自己的需求自定义应用监控面板。',
 
   'Default Color': '默认配色',
   'Cool Color': '冷色调',

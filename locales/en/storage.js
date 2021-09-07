@@ -175,22 +175,24 @@ module.exports = {
 
   QINGCLOUD_CSI_TYPE_DESC:
     'On QingCloud Public Cloud Platform, 0 means high performance volume; 2 high capacity volume; 3 ultra-high performance volume; 5 enterprise server SAN (NeonSAN); 100 standard volume; 200 enterprise SSD.',
-  CREATE_VOLUME_MAX_SIZE: 'Set the maximum size of the storage volume.',
-  CREATE_VOLUME_STEP_SIZE: 'Set the step size of the storage volume.',
-  CREATE_VOLUME_MIN_SIZE: 'Set the minimum size of the storage volume.',
+  CREATE_VOLUME_MAX_SIZE: 'Maximum size of the volume.',
+  CREATE_VOLUME_STEP_SIZE: 'Step size of the volume.',
+  CREATE_VOLUME_MIN_SIZE: 'Minimum size of the volume.',
   VOLUME_FS_TYPE: 'Supports ext3, ext4, and XFS. The default type is ext4.',
 
   GLUSTERFS_RESTURL_DESC:
-    'Gluster REST service or Heketi service URL that provisions Gluster volumes on demand.',
+    'Heketi REST URL that provisions volumes, for example, <Heketi Service cluster IP Address>:<Heketi Service port number>.',
   GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
-  GLUSTERFS_RESTAUTHENABLED_DESC: 'Enable authentication to the REST server.',
+  GLUSTERFS_RESTAUTHENABLED_DESC:
+    'Gluster enables authentication to the REST server.',
   GLUSTERFS_RESTUSER_DESC:
     'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
   GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
-  GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the storage class.',
-  GLUSTERFS_GID_MAX_DESC: 'Maximum GID of the storage class.',
-  GLUSTERFS_VOLUME_TYPE_DESC: 'Optional type of the volume.',
+  GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the volume.',
+  GLUSTERFS_GID_MAX_DESC: 'Maximum GID of the volume.',
+  GLUSTERFS_VOLUME_TYPE_DESC:
+    'Type of volume. The value can be none, replicate:<Replicate count>, or disperse:<Data>:<Redundancy count>. If the volume type is not set, the default volume type is replicate:3.',
   QINGCLOUD_VOLUME_TAGS_DESC:
     'Add tags to the storage volume. Use commas to separate multiple tags.',
 

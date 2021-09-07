@@ -549,8 +549,7 @@ module.exports = {
   BACK_OFF_LIMIT_DESC:
     'Maximum number of retries before marking the Job as failed. The default value is 6.',
   JOB_PARALLELISM_LABEL: 'Parallelism',
-  JOB_PARALLELISM_DESC:
-    'Number of Pods that run concurrently. The default value is 1.',
+  JOB_PARALLELISM_DESC: 'Number of Pods that run concurrently.',
   JOB_COMPLETION_LABEL: 'Completions',
   JOB_COMPLETION_DESC:
     'Number of Pods that complete successfully required for the Job to be marked as complete.',

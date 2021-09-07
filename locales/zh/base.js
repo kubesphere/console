@@ -294,6 +294,8 @@ module.exports = {
   YES: '是',
   true: '是',
   True: '是',
+  TRUE: '是',
+  FALSE: '否',
   NO: '否',
   false: '否',
   False: '否',

@@ -526,7 +526,7 @@ module.exports = {
   JOB_ACTIVE_DEADLINE: '退出超时时限（s）',
 
   BACK_OFF_LIMIT_DESC: '将任务标记为失败之前的最大重试次数。默认值为 6。',
-  JOB_PARALLELISM_DESC: '并行运行的容器组数量。默认值为 1。',
+  JOB_PARALLELISM_DESC: '并行运行的容器组数量。',
   JOB_COMPLETION_DESC: '将任务标记为结束需要成功运行的容器组数量。',
   JOB_ACTIVE_DEADLINE_DESC:
     '任务的最大持续时间。任务达到指定超时时限后就会结束。',

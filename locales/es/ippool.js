@@ -54,7 +54,7 @@ module.exports = {
     'Up to 10 Pod IP pools can be created at the same time.',
   IPPOOL_USAGE_Q: 'How do I manage a Pod network using a Pod IP pool?',
   IPPOOL_USAGE_A:
-    'A Pod IP pool is used to manage the Pod network address space, and the address spaces between different Pod IP Pools cannot overlap. When creating a workload, you can select a specific Pod IP Pool to assign IP addresses from this Pod IP Pool to the created Pods.',
+    'A Pod IP pool is used to manage the Pod network address space, and the address spaces between different Pod IP pools cannot overlap. When creating a workload, you can select a specific Pod IP pool to assign IP addresses from this Pod IP pool to the created Pods.',
 
   IPPOOL_ASSIGN_WORKSPACE_DESC: 'Assign the Pod IP pool to a workspace.',
   IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING:

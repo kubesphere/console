@@ -142,7 +142,7 @@ module.exports = {
   CUSTOM_MONITOR_DESC:
     'Users can customize application monitoring dashboards based on their needs.',
   CUSTOMMONITORDASHBOARD_CREATE_DESC:
-    'Los usuarios pueden definir sus paneles de monitorización de aplicaciones de acuerdo con sus propias necesidades.',
+    'You can customize application monitoring dashboards based on your needs.',
   ADD_MONITOR_ITEM: 'Agregar elemento de monitorización',
   ADD_MONITOR_ROW: 'Agregar grupo de monitorización',
   SELECT_CHART_TYPE: 'Selecciona un tipo de gráfico',

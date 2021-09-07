@@ -712,8 +712,8 @@ export const PROVISIONERS = [
         type: 'select',
         defaultValue: 'true',
         options: [
-          { label: 'True', value: 'true' },
-          { label: 'False', value: 'false' },
+          { label: 'TRUE', value: 'true' },
+          { label: 'FALSE', value: 'false' },
         ],
         desc: 'GLUSTERFS_RESTAUTHENABLED_DESC',
       },
