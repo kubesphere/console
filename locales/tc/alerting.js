@@ -66,9 +66,10 @@ module.exports = {
 
   ALERT_TYPE: ' {type} 告警',
   ALERT_POLICY_TYPE: ' {type} 告警策略',
-  ALERT_POLICY_DESC: '設置告警規則',
+  ALERT_POLICY_DESC:
+    'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
   ALERT_MESSAGE_DESC:
-    'Users can view all alerting messages that have met the conditions of alerting policies at the cluster level.',
+    'Alerting messages display details of triggered alerts after the conditions of alerting policies are met.',
   ALERT_POLICY_TRIGGER_RULE: '觸發規則： 滿足以下任意條件',
   ALERT_METRIC_NAME: '告警指標名稱',
   ALERT_COMMENT: '處理意見',

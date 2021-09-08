@@ -33,9 +33,9 @@ module.exports = {
   VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: '硬盘扩容中(FilesystemSizePending)',
 
   volumes: '存储卷',
+  VOLUMES: '存储卷',
   PersistentVolumeClaim: '存储卷',
   'Volume Usage': '存储卷用量',
-  VOLUME_COUNT: '存储卷数量',
   VOLUME: '存储卷',
   VOLUME_PL: '存储卷数量',
   VOLUME_LOW: 'volumes',
@@ -185,9 +185,9 @@ module.exports = {
 
   'Create Snapshot': '创建快照',
   'Clone Volume': '存储卷克隆',
-  VOLUME_SNAPSHOT_SUPPORT: '允许存储卷快照',
-  VOLUME_CLONE_SUPPORT: '允许存储卷克隆',
-  VOLUME_EXPANSION_SUPPORT: '允许存储卷扩容',
+  ALLOW_VOLUME_SNAPSHOT: '允许存储卷快照',
+  ALLOW_VOLUME_CLONE: '允许存储卷克隆',
+  ALLOW_VOLUME_EXPANSION: '允许存储卷扩容',
   PV: '存储卷后端',
   PV_STATUS_AVAILABLE: '可用',
   PV_STATUS_BOUND: '已绑定',
@@ -237,7 +237,7 @@ module.exports = {
   SNAPSHOT_TYPE: '快照类型',
   SNAPSHOT_EMPTY_TIP: '请选择一个快照类型。',
   VOLUME_BINDING_MODE: '存储卷绑定模式',
-  BINDING_IMMEDIATE: '立即绑定',
+  IMMEDIATE_BINDING: '立即绑定',
   BINDING_WAIT: '延迟绑定',
   DEFAULT_STORAGE_CLASS: '默认存储类型',
 }

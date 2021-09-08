@@ -193,7 +193,8 @@ module.exports = {
   CLUSTER_AGENT_TIP_3_DESC: '此操作可能需要一定时间，请等待集群状态更新。',
 
   CLUSTER_CONDITIONS: '集群状态',
-  CLUSTER_BASE_INFO_DESC: '当前集群基础信息总览。',
+  CLUSTER_BASE_INFO_DESC:
+    '基本信息是当前集群的信息概览，您可以查看和编辑集群的基本信息。',
   CLUSTER_INFO_TCAP: '集群信息',
 
   UNBIND_CLUSTER_DESC:

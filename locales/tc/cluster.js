@@ -182,7 +182,8 @@ module.exports = {
   CLUSTER_AGENT_TIP_3_DESC: '執行命令之後等待集群狀態的更新',
 
   CLUSTER_CONDITIONS: '集群狀態',
-  CLUSTER_BASE_INFO_DESC: '目前集群基礎資訊總覽。',
+  CLUSTER_BASE_INFO_DESC:
+    'Basic information provides an overview of the cluster. You can view and edit cluster information.',
   CLUSTER_INFO_TCAP: 'Cluster Information',
 
   UNBIND_CLUSTER_DESC:

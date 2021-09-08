@@ -76,9 +76,11 @@ module.exports = {
   TIME_D: '{num} 天',
   UTILIZATION: '使用率',
   RESOURCE_USAGE_TITLE: '資源使用情况',
-  MONITORING_CLUSTER_DESC: '監控集群的運行狀態',
+  MONITORING_CLUSTER_DESC:
+    'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
   MONITORING_PHYSICAL_DESC: '監控集群物理資源的運行狀態',
-  MONITORING_APPLICATION_DESC: '監控集群應用資源的運行狀態',
+  MONITORING_APPLICATION_DESC:
+    'Application resources provide the monitoring data of application resource usage and usage ranking.',
   TIMERANGE_SELECTOR_MSG: '結束時間需晚於開始時間。',
   MONITORING_SELECT_LIMIT_MSG: '最多可以選擇 10 個資源',
 
@@ -197,7 +199,7 @@ module.exports = {
   CustomMonitorDashboard: '自定義監控面板',
   CUSTOM_MONITORING: '自定義監控',
   CUSTOM_MONITOR_DESC:
-    'Users can customize application monitoring dashboards based on their needs.',
+    'Custom monitoring provides application monitoring templates. You can customize monitoring dashboards based on your needs.',
   CUSTOMMONITORDASHBOARD_CREATE_DESC:
     'You can customize application monitoring dashboards based on your needs.',
 

@@ -83,9 +83,8 @@ module.exports = {
 
   ALERT_TYPE: '{type}告警',
   ALERT_POLICY_DESC:
-    '使用告警策略监控资源指标，资源指标达到告警条件阈值后将触发告警消息。',
-  ALERT_MESSAGE_DESC:
-    '用户可以查看集群级别的告警策略中，所有满足告警规则的告警消息。',
+    '告警策略是用于监控集群资源的一系列条件，您可以创建告警策略对资源进行监控。',
+  ALERT_MESSAGE_DESC: '告警消息是满足告警策略条件后触发的告警的详细信息。',
 
   ALERTING_POLICY_EMPTY_DESC: '请创建一个告警规则。',
   ALERTING_POLICY_CREATE_DESC: '您可以创建告警策略以即时发现资源的异常情况。',

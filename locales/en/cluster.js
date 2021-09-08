@@ -154,7 +154,8 @@ module.exports = {
     'This operation may take a while. Please wait until the cluster status is updated.',
 
   CLUSTER_CONDITIONS: 'Cluster Conditions',
-  CLUSTER_BASE_INFO_DESC: 'Overview of the cluster basic information.',
+  CLUSTER_BASE_INFO_DESC:
+    'Basic information provides an overview of the cluster. You can view and edit cluster information.',
   CLUSTER_INFO_TCAP: 'Cluster Information',
 
   INVITE_CLUSTER_MEMBER_DESC: 'You can invite new members to this cluster.',

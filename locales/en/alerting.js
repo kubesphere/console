@@ -113,9 +113,9 @@ module.exports = {
 
   ALERT_TYPE: '{type} Alert',
   ALERT_POLICY_DESC:
-    'Alerting policies are used to monitor resource metrics. Alerting messages will be triggered when the resource metrics reach the threshold of the alerting policies.',
+    'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
   ALERT_MESSAGE_DESC:
-    'Users can view all alerting messages that have met the conditions of alerting policies at the cluster level.',
+    'Alerting messages display details of triggered alerts after the conditions of alerting policies are met.',
 
   ALERTING_POLICY_EMPTY_DESC: 'Please create an alerting policy.',
   ALERTING_POLICY_CREATE_DESC:

@@ -110,10 +110,11 @@ module.exports = {
   TIME_D: '{num, plural, =1 {1 day} other{# days}}',
   UTILIZATION: 'Utilization',
   RESOURCE_USAGE_TITLE: 'Resource Usage',
-  MONITORING_CLUSTER_DESC: 'You can monitor the status of the cluster.',
+  MONITORING_CLUSTER_DESC:
+    'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
   MONITORING_PHYSICAL_DESC: 'Monitor the status of the physical resources',
   MONITORING_APPLICATION_DESC:
-    'You can monitor the status of cluster application resources.',
+    'Application resources provide the monitoring data of application resource usage and usage ranking.',
   TIMERANGE_SELECTOR_MSG: 'The end time must be later than the start time.',
   MONITORING_SELECT_LIMIT_MSG: 'You can select up to ten resources',
 
@@ -141,7 +142,7 @@ module.exports = {
   CustomMonitorDashboards: 'Custom Monitoring Dashboards',
   CUSTOM_MONITORING: 'Custom Monitoring',
   CUSTOM_MONITOR_DESC:
-    'Users can customize application monitoring dashboards based on their needs.',
+    'Custom monitoring provides application monitoring templates. You can customize monitoring dashboards based on your needs.',
   CUSTOMMONITORDASHBOARD_CREATE_DESC:
     'You can customize application monitoring dashboards based on your needs.',
 

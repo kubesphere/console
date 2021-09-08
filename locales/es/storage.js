@@ -65,11 +65,10 @@ module.exports = {
   STORAGE_CLASS_CREATE_DESC: 'STORAGE_CLASS_CREATE_DESC',
   StorageClasses: 'StorageClasses',
   storageclasses: 'storageclasses',
-  VOLUME_SNAPSHOT_SUPPORT:
+  ALLOW_VOLUME_SNAPSHOT:
     'Permitir el almacenamiento de instantáneas de volumen',
-  VOLUME_CLONE_SUPPORT: 'Permitir la clonación del volumen de almacenamiento',
-  VOLUME_EXPANSION_SUPPORT:
-    'Permitir la expansión del volumen de almacenamiento',
+  ALLOW_VOLUME_CLONE: 'Permitir la clonación del volumen de almacenamiento',
+  ALLOW_VOLUME_EXPANSION: 'Permitir la expansión del volumen de almacenamiento',
   PV: 'Backend de volumen',
   PV_STATUS_AVAILABLE: 'Disponible',
   PV_STATUS_BOUND: 'Ligado',
@@ -84,9 +83,9 @@ module.exports = {
   'Used Capacity': 'Capacidad utilizada',
   'Clone Volume': 'Clon del volumen',
   VOLUME: 'Volumen',
+  VOLUMES: 'Volumes',
   VOLUME_PL: 'Recuento de volumen',
   VOLUME_LOW: 'volumes',
-  VOLUME_COUNT: 'Recuento de volumen',
   'The volume name exists': 'nombre de volumen existe',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
   VOLUME_NAME_EXIST: 'nombre de volumen existe',
@@ -240,8 +239,8 @@ module.exports = {
   PARAMETERS: 'Parameters',
   SNAPSHOT_TYPE: 'Tipo de instantánea',
   SNAPSHOT_EMPTY_TIP: 'Seleccione un tipo de instantánea.',
-  VOLUME_BINDING_MODE: 'Modo de vinculación de volumen de almacenamiento',
-  BINDING_IMMEDIATE: 'Enlazar ahora',
-  BINDING_WAIT: 'Encuadernación retrasada',
+  VOLUME_BINDING_MODE: 'Volume Binding Mode',
+  IMMEDIATE_BINDING: 'Immediate binding',
+  BINDING_WAIT: 'Delayed binding',
   DEFAULT_STORAGE_CLASS: 'Default Storage Class',
 }

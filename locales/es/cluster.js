@@ -151,7 +151,8 @@ module.exports = {
   CLUSTER_AGENT_TIP_3_DESC:
     'Después de ejecutar el comando, espere la actualización del estado del clúster.',
   CLUSTER_CONDITIONS: 'Condiciones de clúster',
-  CLUSTER_BASE_INFO_DESC: 'Overview of the cluster basic information.',
+  CLUSTER_BASE_INFO_DESC:
+    'Basic information provides an overview of the cluster. You can view and edit cluster information.',
   INVITE_CLUSTER_MEMBER_DESC:
     'Puedes invitar a nuevos miembros a este clúster.',
   CLUSTER_API_SERVER_TITLE: 'Servidor API Kubesphere para agregar al clúster',

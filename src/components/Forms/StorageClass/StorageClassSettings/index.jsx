@@ -49,7 +49,7 @@ export default class StorageClassSetting extends React.Component {
   get volumeBindingMode() {
     return [
       {
-        label: t('BINDING_IMMEDIATE'),
+        label: t('IMMEDIATE_BINDING'),
         value: 'Immediate',
       },
       {

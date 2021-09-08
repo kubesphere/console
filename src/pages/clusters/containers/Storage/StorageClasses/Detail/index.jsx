@@ -141,7 +141,7 @@ export default class StorageClassDetail extends React.Component {
         value: detail.reclaimPolicy,
       },
       {
-        name: t('VOLUME_SNAPSHOT_SUPPORT'),
+        name: t('ALLOW_VOLUME_SNAPSHOT'),
         value: detail.supportSnapshot ? t('True') : t('False'),
       },
     ]
