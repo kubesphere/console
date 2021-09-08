@@ -80,7 +80,7 @@ export default {
         onOk: () => {
           store.delete({ name: ruleName, namespace, cluster }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Deleted Successfully')}` })
+            Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
             success && success()
           })
         },

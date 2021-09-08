@@ -183,7 +183,7 @@ export default class ProjectSelect extends Component {
             value={cluster}
             disabled={disabled}
             options={clusters}
-            placeholder={t('CLUSTER_EMPTY_DESC')}
+            placeholder={t('CLUSTER')}
             valueRenderer={option =>
               t('CLUSTER_VALUE', { value: option.value })
             }
@@ -197,8 +197,8 @@ export default class ProjectSelect extends Component {
           value={namespace}
           disabled={disabled}
           options={this.projects}
-          placeholder={t('Please select a project')}
-          valueRenderer={option => `${t('PROJECT')}: ${option.value}`}
+          placeholder={t('PROJECT')}
+          valueRenderer={option => t('PROJECT_VALUE', { value: option.value })}
           prefixIcon={<Icon name="project" size={16} />}
           onChange={this.handleProjectsChange}
         />
@@ -207,9 +207,11 @@ export default class ProjectSelect extends Component {
           value={role}
           disabled={disabled}
           options={this.roles}
-          valueRenderer={option => `${t('PROJECT_ROLE_SI')}: ${option.value}`}
+          valueRenderer={option =>
+            t('PROJECT_ROLE_VALUE', { value: option.value })
+          }
           prefixIcon={<Icon name="role" size={16} />}
-          placeholder={t('Please select a project role')}
+          placeholder={t('ROLE')}
           onChange={this.handleRoleChange}
         />
       </div>

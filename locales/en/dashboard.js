@@ -18,7 +18,7 @@
 
 module.exports = {
   DISK: 'Disk',
-  'App Repositories': 'App Repositories',
+  APP_REPO: 'App Repositories',
   'Cluster Status': 'Cluster Status',
   'CPU Load Average': 'CPU Load Average',
   'CPU Usage': 'CPU Usage',

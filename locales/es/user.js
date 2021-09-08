@@ -34,10 +34,10 @@ module.exports = {
   EMAIL: 'Email',
   EMAIL_EXISTS: 'EL email ya existe',
   USERNAME_INVALID: 'Nombre de usuario no válido. {message}',
-  'Last Login Time': 'Última hora de inicio de sesión',
+  LAST_LOGIN: 'Last Login',
   'Login History': 'Historial de inicio de sesión',
   'New Password': 'Nueva contraseña',
-  NOT_LOGIN_YET: 'Aún no ha iniciado sesión',
+  NOT_LOGGED_IN: 'Not logged in',
   'Password length is at least 6 characters':
     'La longitud de la contraseña es de al menos 6 caracteres.',
   'Password Setting': 'Configuración de contraseña',
@@ -88,4 +88,5 @@ module.exports = {
     'Lo que un usuario está autorizado a hacer depende de la función que define la identidad del usuario, así como de la relación entre el usuario y los recursos que el usuario tiene acceso para ver y manejar. Los usuarios pueden crear roles personalizados cuando el rol preestablecido de KubeSphere no satisface sus necesidades. La mayor ventaja de los roles personalizados es que se pueden configurar para admitir la gestión detallada de los recursos de la plataforma, ya que se pueden autorizar diferentes roles para acceder a diferentes recursos',
   CLUSTER_ROLE_DESC:
     'Este módulo le permite administrar el acceso de los usuarios dentro de un clúster.',
+  NOT_LOGIN_YET: 'Not Logged in yet',
 }

@@ -285,9 +285,9 @@ module.exports = {
     'Depending on the cluster size and infrastructure environment, cluster creation may take 30 to 60 minutes.',
 
   CLUSTER_UPGRADE_REQUIRED:
-    'This function is not available in the current cluster version. Please upgrade to {version} or above.',
+    'The cluster verison does not support this function. Please upgrade the cluster to {version} or later.',
   MEMBER_CLUSTER_UPGRADE_TIP:
-    'Member Clusters of version lower than {version} cannot use this function. Please upgrade the Member Cluster to {version} or above.',
+    'Member clusters with versions earlier than {version} do not support this function. Please upgrade the member clusters to {version} or later.',
 
   // Unbind Cluster
   UNBIND_CLUSTER_Q: 'Unbind Cluster',

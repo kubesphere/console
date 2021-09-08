@@ -159,7 +159,7 @@ export default class Mail extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('Added Successfully')
+      message = t('ADDED_SUCCESS_DESC')
     } else {
       await this.configStore.update({ name: CONFIG_NAME }, config)
       await this.secretStore.update(
@@ -167,7 +167,7 @@ export default class Mail extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
-      message = t('Update Successfully')
+      message = t('UPDATED_SUCCESS_DESC')
     }
 
     this.fetchData()

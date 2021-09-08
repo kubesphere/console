@@ -36,8 +36,8 @@ module.exports = {
   'Workspace Logo': '企业空间 Logo',
   'Workspaces Manager': '企业空间管理员',
   'Create Workspace': '创建企业空间',
-  'Workspace Groups': '企业组织',
-  'Maintain Organization': '维护组织结构',
+  DEPARTMENT_MANAGEMENT: '部门管理',
+  SET_DEPARTMENT: '设置部门',
 
   devops: 'DevOps 工程',
 
@@ -45,13 +45,13 @@ module.exports = {
   'DevOps Project Number': 'DevOps 工程数量',
   EDIT_QUOTA: '编辑配额',
 
-  'Workspace Quota': '企业空间配额',
+  EDIT_WORKSPACE_QUOTA: '编辑企业空间配额',
   'Edit Workspace Quota': '企业空间配额',
 
   'View Workspace': '进入企业空间',
-  'Delete Workspace': '删除企业空间',
+  DELETE_WORKSPACE: '删除企业空间',
 
-  'Workspace Info': '企业空间信息',
+  WORKSPACE_INFO: '企业空间信息',
 
   'Manage Organizations': '管理组织结构',
 
@@ -61,10 +61,10 @@ module.exports = {
   'The current name is not applicable.': '当前名称不可用',
 
   'Cluster Authorization Info': '集群授权信息',
-  'Workspace Network Isolation': '企业空间网络隔离',
+  WS_NETWORK_ISOLATION: '企业空间网络隔离',
 
   NO_AVAILABLE_CLUSTER: '暂时没有可用集群',
-  'Network module is not installed': '网络模块未安装',
+  NETWORK_POLICY_UNINSATLLED_DESC: '该集群未安装网络策略组件。',
 
   'All members': '全部成员',
   Assigned: '已分配',
@@ -94,42 +94,75 @@ module.exports = {
 
   SEARCH_WORKSPACE_TIP: '请输入企业名称进行查找',
 
-  'Invite members to the workspace': '邀请成员到该企业空间',
   WORKSPACE_MEMBER_DESC:
-    '对企业空间内的成员进行管理及角色分配。项目可以邀请当前企业空间内的企业空间成员作为项目成员，协同工作。',
-  INVITE_WORKSPACE_MEMBER_DESC: '您可以邀请新的成员来您的企业空间',
+    '企业空间成员可以查看或管理企业空间资源。您可以管理企业空间中的成员并控制成员权限。',
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请企业空间成员',
+  INVITE_WORKSPACE_MEMBER_DESC: '您可以邀请成员至该企业空间。',
 
   DELETE_WORKSPACE_TIP:
     '确定删除企业空间 <strong>{resource}</strong> ? 删除后将无法恢复, 企业空间下的资源也同时会被销毁。',
 
-  DELETE_WORKSPACE_DESC: '删除后将无法恢复, 企业空间下的资源也同时会被销毁。',
-  SURE_TO_DELETE_WORKSPACE: '确定删除企业空间',
+  DELETE_WORKSPACE_DESC:
+    '企业空间删除后将无法恢复, 企业空间下的资源也同时会被销毁。',
 
   WORKSPACE_BASE_INFO_Q1: '如何为企业空间申请更多的集群？',
-  WORKSPACE_BASE_INFO_A1:
-    '集群由平台管理员以及集群管理员共同运营维护，如果您需要使用更多的集群请联系您的平台管理员，或者提交申请',
+  WORKSPACE_BASE_INFO_A1: '请联系平台管理员或集群管理员来申请更多的集群。',
   WORKSPACE_BASE_INFO_Q2: '如何定义网络策略?',
   WORKSPACE_BASE_INFO_A2: '',
 
   WORKSPACE_CLUSTERS_DESC: '集群信息是企业空间对集群资源的使用情况的统计',
 
   HOW_TO_APPLY_MORE_CLUSTER_Q: '如何为企业空间申请更多的集群？',
-  HOW_TO_APPLY_MORE_CLUSTER_A:
-    '集群由平台管理员以及集群管理员共同运营维护，如果您需要使用更多的集群请联系您的平台管理员，或者提交申请',
+  HOW_TO_APPLY_MORE_CLUSTER_A: '请联系平台管理员或集群管理员以申请更多集群。',
 
   NO_PUBLIC_CLUSTER_TIP:
     '暂无可用的公开集群, 请在企业空间创建完毕后, 向平台管理员或集群管理员申请集群的授权',
   WORKSPACE_NO_CLUSTER_TIP:
     '请联系平台管理员或者集群管理员将一个集群授权给企业空间。',
 
-  WORKSPACE_GROUP_DESC:
-    '组织可以以用户组或者部门的形式授予项目以及 Devops 工程权限',
-  WORKSPACE_GROUP_EMPTY_DESC:
-    '暂时没有可用的组织机构，请先维护组织机构后添加成员',
+  DEPARTMENT_MANAGEMENT_DESC:
+    '企业空间中的部门是用来管理权限的逻辑单元。您可以在部门中设置企业空间角色、多个项目角色以及多个 DevOps 工程角色，还可以将用户分配到部门中以批量管理用户权限。',
+  DEPARTMENT_EMPTY_DESC: '没有可用部门',
   WORKSPACE_GROUP_USER_EMPTY_DESC: '暂时没有可分配的成员',
   WORKSPACE_QUOTA_MANAGE_DESC:
-    '管理企业空间配额，企业空间下的所有项目 / DevOps 工程将共享这些配额',
+    '企业空间配额用于管理企业空间中所有项目和 DevOps 工程的总资源用量。',
 
   DELETE_WORKSPACE_PROJECTS_DESC: '删除企业空间中的项目。',
+  DELETE_WORDSPACE_RELATED_RESOURCES_DESC: '删除该企业空间关联项目',
+
+  // App Repositories
+  ACCESS_KEY_ID: '访问密钥 ID',
+  SECRET_ACCESS_KEY: '秘密访问密钥',
+
+  // Basic Information
+  WORKSPACE_BASIC_INFO_DESC:
+    '基本信息提供企业空间的信息概览，您可以查看企业空间的基本信息。',
+  SURE_TO_DELETE_WORKSPACE: '您确定删除企业空间吗？',
+  ON: '开启',
+  OFF: '关闭',
+  WS_MEMBER_LOW: '企业空间成员',
+  WS_MEMBER_LOW_PL: '企业空间成员',
+
+  // Quota Management
+  QUOTA_MANAGEMENT: '配额管理',
+  RESOURCE_TYPE_LOW: '资源类型',
+  RESOURCE_LIMIT: '资源限制',
+  USED_PERCENT: '已使用：{percent}%',
+
+  // Worksapce Members
+  CHANGE_MEMBER_ROLE: '修改成员角色',
+  INVITE_MEMBER: '邀请成员',
+  WORKSPACE_MEMBERS: '企业空间成员',
+
+  // Department Management
+  'Workspace Groups': '部门管理',
+  NOT_ASSIGNED_TCAP: '未分配',
+  ASSIGNED: '已分配',
+  ADDED_SUCCESS_TIP: '添加成功。',
+  WORKSPACE_ROLE: '企业空间角色',
+  DEVOPS_PROJECT: '请选择 DevOps 工程',
+  PROJECT_VALUE: '项目：{value}',
+  PROJECT_ROLE_VALUE: '项目角色：{value}',
+  DEVOPS_VALUE: 'DevOps 工程：{value}',
+  DEVOPS_PROJECT_ROLES_VALUE: 'DevOps 工程角色：{value}',
 }

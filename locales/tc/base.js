@@ -211,7 +211,7 @@ module.exports = {
   OK: '確定',
   Cancel: '取消',
   Apply: '應用',
-  Close: '關閉',
+  CLOSE: '關閉',
   PREVIOUS: '上一步',
   NEXT: '下一步',
   Update: '更新',
@@ -419,10 +419,10 @@ module.exports = {
 
   'Error Tips': '錯誤提示',
 
-  'Added Successfully': '添加成功',
   CREATE_SUCCESSFUL: '創建成功',
-  'Updated Successfully': '更新成功',
-  'Deleted Successfully': '刪除成功',
+  ADDED_SUCCESS_DESC: '添加成功。',
+  UPDATED_SUCCESS_DESC: 'Updated successfully.',
+  DELETE_SUCCESS_DESC: '刪除成功。',
   'Canceled Successfully': '取消成功',
 
   EVENT_NORMAL: '正常',

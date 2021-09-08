@@ -152,7 +152,7 @@ export default class Groups extends React.Component {
         workspace,
       })
       .then(() => {
-        Notify.success({ content: `${t('Added Successfully')}` })
+        Notify.success({ content: `${t('ADDED_SUCCESS_TIP')}` })
         this.setState(prev => ({
           refreshFlag: !prev.refreshFlag,
           selectUserKeys: [],
@@ -172,8 +172,8 @@ export default class Groups extends React.Component {
     return (
       <Banner
         icon="group"
-        title={t('Workspace Groups')}
-        description={t('WORKSPACE_GROUP_DESC')}
+        title={t('DEPARTMENT_MANAGEMENT')}
+        description={t('DEPARTMENT_MANAGEMENT_DESC')}
       />
     )
   }
@@ -207,7 +207,7 @@ export default class Groups extends React.Component {
             <Icon name="refresh" />
           </Button>
           <Button type="control" onClick={this.showEditModal}>
-            {t('Maintain Organization')}
+            {t('SET_DEPARTMENT')}
           </Button>
         </LevelRight>
       </Level>
@@ -218,13 +218,13 @@ export default class Groups extends React.Component {
     return (
       <Level>
         <LevelLeft>
-          {t.html('Add the member to', { group: this.state.groupTitle })}
+          {t.html('ADD_MEMBER_TIP', { group: this.state.groupTitle })}
         </LevelLeft>
         <LevelRight>
           <Button type="primary" onClick={this.handleAddGroup}>
             {t('OK')}
           </Button>
-          <Button onClick={this.handleCancelSelect}>{t('Cancel')}</Button>
+          <Button onClick={this.handleCancelSelect}>{t('CANCEL')}</Button>
         </LevelRight>
       </Level>
     )
@@ -264,7 +264,7 @@ export default class Groups extends React.Component {
         {showModal && (
           <EditGroupModal
             visible={showModal}
-            title={t('Maintain Organization')}
+            title={t('SET_DEPARTMENT')}
             treeData={treeData}
             rowTreeData={rowTreeData}
             store={this.store}

@@ -173,18 +173,27 @@ class BaseInfo extends React.Component {
 
     return [
       {
-        name: 'Projects',
+        name:
+          metrics.workspace_namespace_count === '1'
+            ? t('PROJECT')
+            : t('PROJECTS'),
         icon: 'project',
         value: metrics.workspace_namespace_count,
       },
       {
-        name: 'DevOps Projects',
+        name:
+          metrics.workspace_devops_project_count === '1'
+            ? t('DEVOPS_PROJECT_LOW')
+            : t('DEVOPS_PROJECT_LOW_PL'),
         icon: 'strategy-group',
         value: metrics.workspace_devops_project_count,
         hidden: !globals.app.hasKSModule('devops'),
       },
       {
-        name: 'Workspace Members',
+        name:
+          metrics.workspace_member_count === '1'
+            ? t('WS_MEMBER_LOW')
+            : t('WS_MEMBER_LOW_PL'),
         icon: 'human',
         value: metrics.workspace_member_count,
       },
@@ -195,7 +204,7 @@ class BaseInfo extends React.Component {
     const { detail } = this.store
     const options = this.getResourceOptions()
     return (
-      <Panel title={t('Workspace Info')}>
+      <Panel title={t('WORKSPACE_INFO')}>
         <div className={styles.header}>
           <Text
             className={styles.title}
@@ -204,12 +213,12 @@ class BaseInfo extends React.Component {
             description={detail.description || t('WORKSPACE')}
             ellipsis
           />
-          <Text title={detail.manager} description={t('Manager')} />
+          <Text title={detail.manager} description={t('MANAGER')} />
           <Text
             title={getLocalTime(detail.createTime).format(
               'YYYY-MM-DD HH:mm:ss'
             )}
-            description={t('CREATED_AT')}
+            description={t('CREATION_TIME')}
           />
           {this.enabledActions.includes('manage') && (
             <Button className={styles.action} onClick={this.showEdit}>
@@ -237,11 +246,11 @@ class BaseInfo extends React.Component {
 
   renderDelete() {
     return (
-      <Panel title={t('Delete Workspace')}>
+      <Panel title={t('DELETE_WORKSPACE')}>
         <Alert
           className={styles.tip}
           type="error"
-          title={`${t('Delete Workspace')}?`}
+          title={t('SURE_TO_DELETE_WORKSPACE')}
           message={t('DELETE_WORKSPACE_DESC')}
         />
         <Button
@@ -265,17 +274,17 @@ class BaseInfo extends React.Component {
       const networkIsolation = workspace.networkIsolation || false
 
       return (
-        <Panel className={styles.network} title={t('Network Policy')}>
+        <Panel className={styles.network} title={t('NETWORK_POLICY')}>
           <div className={styles.item}>
             <Text
               icon="firewall"
-              title={t(networkIsolation ? 'On' : 'Off')}
-              description={t('Workspace Network Isolation')}
+              title={t(networkIsolation ? 'ON' : 'OFF')}
+              description={t('WS_NETWORK_ISOLATION')}
             />
             {this.enabledActions.includes('manage') && (
               <Switch
                 className={styles.switch}
-                text={t(networkIsolation ? 'On' : 'Off')}
+                text={t(networkIsolation ? 'ON' : 'OFF')}
                 onChange={this.handleSingleClusterNetworkChange}
                 checked={networkIsolation}
               />
@@ -288,7 +297,7 @@ class BaseInfo extends React.Component {
     const { data, isLoading } = toJS(this.store.clusters)
 
     return (
-      <Panel className={styles.network} title={t('Network Policy')}>
+      <Panel className={styles.network} title={t('NETWORK_POLICY')}>
         {isEmpty(data) && !isLoading && (
           <div className={styles.empty}>{t('NO_AVAILABLE_CLUSTER')}</div>
         )}
@@ -307,20 +316,20 @@ class BaseInfo extends React.Component {
               <ClusterTitle cluster={cluster} className={styles.clusterTitle} />
               <Text
                 icon="firewall"
-                title={t(networkIsolation ? 'On' : 'Off')}
-                description={t('Workspace Network Isolation')}
+                title={t(networkIsolation ? 'ON' : 'OFF')}
+                description={t('WS_NETWORK_ISOLATION')}
               />
               {this.enabledActions.includes('manage') &&
                 (get(cluster, 'configz.network') ? (
                   <Switch
                     className={styles.switch}
-                    text={t(networkIsolation ? 'On' : 'Off')}
+                    text={t(networkIsolation ? 'ON' : 'OFF')}
                     onChange={this.handleNetworkChange(cluster.name)}
                     checked={networkIsolation}
                   />
                 ) : (
                   <span className={styles.noModule}>
-                    {t('Network module is not installed')}
+                    {t('NETWORK_POLICY_UNINSATLLED_DESC')}
                   </span>
                 ))}
             </div>
@@ -334,9 +343,9 @@ class BaseInfo extends React.Component {
     return (
       <div>
         <Banner
-          title={t('Basic Info')}
+          title={t('BASIC_INFORMATION')}
           icon="cdn"
-          description={t('WORKSPACE_CREATE_DESC')}
+          description={t('WORKSPACE_BASIC_INFO_DESC')}
           tips={this.tips}
           module={this.module}
         />

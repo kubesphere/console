@@ -46,7 +46,7 @@ export default class UserItem extends React.Component {
 
     return (
       <div className={styles.menu}>
-        <p>{t('INVITE_MEMBER_CHOOSE_ROLE_TIP')}</p>
+        <p>{t('ASSIGN_ROLE')}</p>
         <Menu onClick={this.handleMoreMenuClick}>
           {roles.map(role => (
             <Menu.MenuItem key={role.name}>

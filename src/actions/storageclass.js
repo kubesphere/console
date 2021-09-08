@@ -116,7 +116,7 @@ export default {
             name: detail.name,
             cluster: detail.cluster,
           })
-          Notify.success({ content: `${t('Update Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
           Modal.close(modal)
           success && success()
         },

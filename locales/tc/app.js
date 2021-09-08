@@ -127,7 +127,6 @@ module.exports = {
   'Submit Successfully': '提交成功',
   'Cancel Successfully': '取消成功',
   'Release Successfully': '發佈成功',
-  'Delete Successfully': '刪除成功',
   'Pass Successfully': '通過成功',
   'Reject Successfully': '拒絕成功',
   'Suspend Successfully': '下架成功',
@@ -203,7 +202,7 @@ module.exports = {
   UNDER_REVIEW_TIPS: '目前應用有版本正在審核中，以下資訊暫時不可更改',
 
   'Instance Name': '實例名稱',
-  'Index Successfully': '同步成功',
+  INDEX_SUCCESS_TIP: '同步成功。',
 
   NO_DEPLOY_RUNTIME_NOTE: '項目中沒有可用的部署運行環境',
 

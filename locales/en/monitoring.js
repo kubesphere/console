@@ -239,6 +239,7 @@ module.exports = {
   DEVOPS_PROJECT_TCAP: 'DevOps project',
   DEVOPS_PROJECT_TCAP_PL: 'DevOps projects',
   DEVOPS_PROJECT_LOW: 'DevOps project',
+  DEVOPS_PROJECT_LOW_PL: 'DevOps projects',
   PROJECTS: 'Projects',
   DEVOPS_PROJECTS: 'DevOps Projects',
   SERVICES: 'Services',

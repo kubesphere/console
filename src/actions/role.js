@@ -88,7 +88,7 @@ export default {
 
           store.update(detail, formTemplate).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}` })
+            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
             success && success()
           })
         },
@@ -107,7 +107,7 @@ export default {
         onOk: () => {
           store.delete(detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Delete Successfully')}` })
+            Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
             success && success()
           })
         },

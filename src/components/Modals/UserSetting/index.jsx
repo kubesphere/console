@@ -263,7 +263,7 @@ export default class UserSettingModal extends React.Component {
           </Button>
         )}
         {isEmpty(subRoute) && (
-          <Button onClick={this.props.onCancel}>{t('Close')}</Button>
+          <Button onClick={this.props.onCancel}>{t('CLOSE')}</Button>
         )}
       </div>
     )

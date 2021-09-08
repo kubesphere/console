@@ -36,8 +36,8 @@ module.exports = {
   'Workspace Logo': '企業空間 Logo',
   'Workspaces Manager': '企業空間管理員',
   'Create Workspace': '創建企業空間',
-  'Workspace Groups': '企業組織',
-  'Maintain Organization': '維護組織結構',
+  DEPARTMENT_MANAGEMENT: 'Department Management',
+  SET_DEPARTMENT: 'Set Department',
 
   devops: 'DevOps 工程',
 
@@ -46,12 +46,12 @@ module.exports = {
   EDIT_QUOTA: '編輯配額',
 
   'View Workspace': '進入企業空間',
-  'Delete Workspace': '刪除企業空間',
+  DELETE_WORKSPACE: '刪除企業空間',
 
-  'Workspace Quota': '企業空間配額',
+  EDIT_WORKSPACE_QUOTA: 'Edit Workspace Quota',
   'Edit Workspace Quota': '企業空間配額',
 
-  'Workspace Info': '企業空間資訊',
+  WORKSPACE_INFO: '企業空間資訊',
 
   'Manage Organizations': '管理組織結構',
 
@@ -61,7 +61,7 @@ module.exports = {
   'The current name is not applicable.': '目前名稱不可用',
 
   'Cluster Authorization Info': '集群授權資訊',
-  'Workspace Network Isolation': '企業空間網路隔離',
+  WS_NETWORK_ISOLATION: '企業空間網路隔離',
 
   NO_AVAILABLE_CLUSTER: '暫時沒有可用集群',
 
@@ -94,21 +94,18 @@ module.exports = {
 
   SEARCH_WORKSPACE_TIP: '請輸入企業名稱進行查找',
 
-  'Invite members to the workspace': '邀請成員到該企業空間',
   WORKSPACE_MEMBER_DESC:
-    '對企業空間内的成員進行管理及角色分配。項目可以邀請目前企業空間内的企業成員作為項目成員，協同工作。',
-  INVITE_WORKSPACE_MEMBER_DESC: '您可以邀請新的成員來您的企業空間',
-  INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: '輸入郵箱邀請企業空間成員',
+    'Workspace members can view or manage workspace resources. You can manage members and control their permissions in the workspace.',
+  INVITE_WORKSPACE_MEMBER_DESC: 'You can invite members to the workspace.',
 
   DELETE_WORKSPACE_TIP:
     '確定刪除企業空間 <strong> {resource} </strong> ？ 刪除後將無法恢復，企業空間下的資源也同時會被銷毀。',
 
   DELETE_WORKSPACE_DESC: '刪除後將無法恢復，企業空間下的資源也同時會被銷毀。',
-  SURE_TO_DELETE_WORKSPACE: '確定刪除企業空間',
 
   WORKSPACE_BASE_INFO_Q1: '如何為企業空間申請更多的集群？',
   WORKSPACE_BASE_INFO_A1:
-    '集群由平台管理員以及集群管理員共同營運維護，如果您需要使用更多的集群請聯繫您的平台管理員，或者提交申請。',
+    'Contact the platform or cluster administrator to apply for more clusters.',
   WORKSPACE_BASE_INFO_Q2: '如何定義網路策略？',
   WORKSPACE_BASE_INFO_A2: '',
 
@@ -116,20 +113,58 @@ module.exports = {
 
   HOW_TO_APPLY_MORE_CLUSTER_Q: '如何為企業空間申請更多的集群？',
   HOW_TO_APPLY_MORE_CLUSTER_A:
-    '集群由平台管理員以及集群管理員共同營運維護，如果您需要使用更多的集群請聯繫您的平台管理員，或者提交申請。',
+    'Contact the platform or cluster administrator to apply for more clusters.',
 
   NO_PUBLIC_CLUSTER_TIP:
     '暫無可用的公開集群，請在企業空間創建完畢後，向平台管理員或集群管理員申請集群的授權。',
   WORKSPACE_NO_CLUSTER_TIP:
     '您需要聯繫平台管理員或者集群管理員為企業空間授權集群的訪問權限。',
 
-  WORKSPACE_GROUP_DESC:
-    '組織可以以用戶組或者部門的形式授予項目以及 Devops 工程權限',
-  WORKSPACE_GROUP_EMPTY_DESC:
-    '暫時沒有可用的組織機構，請先維護組織機構後添加成員',
+  DEPARTMENT_MANAGEMENT_DESC:
+    'A department in a workspace is a logical unit used for permission control. You can set a workspace role, multiple project roles, and multiple DevOps project roles in a department, and assign users to the department to control user permissions in batches.',
+  DEPARTMENT_EMPTY_DESC: 'No Department Available',
   WORKSPACE_GROUP_USER_EMPTY_DESC: '暫時沒有可分配的成員',
   WORKSPACE_QUOTA_MANAGE_DESC:
-    '管理企業空間配額，企業空間下的所有項目 / DevOps 工程將共享這些配額',
+    'Workspace quotas are used to control the total resource usage of all projects and DevOps projects in a workspace.',
 
   DELETE_WORKSPACE_PROJECTS_DESC: '刪除該企業空間關聯項目',
+  DELETE_WORDSPACE_RELATED_RESOURCES_DESC: '刪除該企業空間關聯項目',
+
+  // App Repositories
+  ACCESS_KEY_ID: 'Access Key ID',
+  SECRET_ACCESS_KEY: 'Secret Access Key',
+
+  // Basic Information
+  WORKSPACE_BASIC_INFO_DESC:
+    'Basic information provides the overview of the workspace. You can view the basic information of the workspace.',
+  SURE_TO_DELETE_WORKSPACE: 'Are you sure you want to delete the workspace?',
+  ON: 'On',
+  OFF: 'Off',
+  NETWORK_POLICY_UNINSATLLED_DESC:
+    'The network policy component is not installed in this cluster.',
+  WS_MEMBER_LOW: 'Workspace member',
+  WS_MEMBER_LOW_PL: 'Workspace members',
+
+  // Quota Management
+  QUOTA_MANAGEMENT: 'Quota Management',
+  RESOURCE_TYPE_LOW: 'Resource type',
+  RESOURCE_LIMIT: 'Resource limit',
+  USED_PERCENT: 'Used: {percent}%',
+
+  // Worksapce Members
+  CHANGE_MEMBER_ROLE: 'Change Member Role',
+  INVITE_MEMBER: 'Invite Member',
+  WORKSPACE_MEMBERS: 'Workspace Members',
+
+  // Department Management
+  'Workspace Groups': 'Department Mangement',
+  NOT_ASSIGNED_TCAP: 'Not Assigned',
+  ASSIGNED: 'Assigned',
+  ADDED_SUCCESS_TIP: 'Added successfully.',
+  WORKSPACE_ROLE: 'Workspace Role',
+  DEVOPS_PROJECT: 'Select a DevOps project',
+  PROJECT_VALUE: 'Project: {value}',
+  PROJECT_ROLE_VALUE: 'Project role: {value}',
+  DEVOPS_VALUE: 'DevOps project: {value}',
+  DEVOPS_PROJECT_ROLES_VALUE: 'DevOps project role: {value}',
 }

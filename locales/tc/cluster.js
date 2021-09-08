@@ -309,9 +309,9 @@ module.exports = {
     '根據所創建的的集群規模和網路連接的不同，創建完整整個集群大概需要 30 ~ 60 分鐘。',
 
   CLUSTER_UPGRADE_REQUIRED:
-    '目前集群版本無法使用此功能，請升級到 {version} 或以上版本。',
+    'The cluster version does not support this function. Please upgrade the cluster to {version} or later.',
   MEMBER_CLUSTER_UPGRADE_TIP:
-    '低於 {version} 版本 member 集群無法使用此功能, 請將 member 集群升級到 {version} 或以上版本。',
+    'Member clusters with versions earlier than {version} do not support this function. Please upgrade the member clusters to {version} or later.',
 
   // Unbind Cluster
   UNBIND_CLUSTER_Q: 'Unbind Cluster',

@@ -61,7 +61,7 @@ module.exports = {
   Routes: '應用路由',
   Volumes: '儲存卷',
   'Storage Classes': '儲存類型',
-  'App Repositories': '應用倉庫',
+  APP_REPO: '應用倉庫',
   Users: '用戶',
 
   DASHBOARD_TITLE: '您好 {username}',

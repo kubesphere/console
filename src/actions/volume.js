@@ -155,7 +155,7 @@ export default {
         onOk: async params => {
           await store.patch(store.detail, params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Updated Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
         },
         modal: ExpandModal,
         store,

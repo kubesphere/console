@@ -52,7 +52,7 @@ export default {
               cb && cb()
             })
           Modal.close(modal)
-          Notify.success({ content: `${t('Update Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
           success && success()
         },
         store,

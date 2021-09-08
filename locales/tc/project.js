@@ -49,7 +49,7 @@ module.exports = {
   'Modify Member Role': '修改成員角色',
   'Modify Members Role': '修改成員角色',
   'Remove Members': '移除成員',
-  'Remove Member': '移除成員',
+  REMOVE_MEMBER: '移除成員',
   'Invite Member': '邀請成員',
   'Gateway Info': '網關資訊',
   'Set Gateway': '設置網關',
@@ -165,7 +165,7 @@ module.exports = {
   INVITE_MEMBER_DESC: '您可以邀請新的成員來協助您的項目',
   INVITE_MEMBER_DESC_DEVOPS: '您可以邀請新的成員來協助您的工程',
   INVITE_MEMBER_SEARCH_PLACEHODLER: '輸入郵箱邀請項目成員',
-  INVITE_MEMBER_CHOOSE_ROLE_TIP: '請選擇一個角色赋予該成員',
+  ASSIGN_ROLE: 'Assign a Role to the Member',
   PROJECT_ADMIN_DESC: '可以指定項目内一個成員為管理員',
 
   PROJECT_INTERNET_ACCESS_DESC:

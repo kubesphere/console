@@ -113,7 +113,7 @@ module.exports = {
   Projects: 'Projects',
   projects: 'projects',
   'Quota Management': 'Quota Management',
-  'Remove Member': 'Remove Member',
+  REMOVE_MEMBER: 'Remove Member',
   'Remove Members': 'Remove Members',
   'requests.cpu': 'requests.cpu',
   'requests.memory': 'requests.memory',
@@ -163,7 +163,7 @@ module.exports = {
   INVITE_MEMBER_DESC_DEVOPS:
     'You can invite new members to assist your DevOps project.',
   INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter a username to invite members',
-  INVITE_MEMBER_CHOOSE_ROLE_TIP: 'Please assign a role to this member',
+  ASSIGN_ROLE: 'Assign a Role to the Member',
   DELETE_MEMBER_TIP:
     'Are you sure about deleting the member <strong>{name}</strong>? The member cannot access this project once removed.',
 

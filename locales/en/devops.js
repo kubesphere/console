@@ -28,7 +28,7 @@ module.exports = {
   'DevOps Project Manager': 'DevOps Project Manager',
   'DevOps Role': 'DevOps Role',
   'DevOps Roles': 'DevOps Roles',
-  Manager: 'Manager',
+  MANAGER: 'Manager',
 
   DEVOPS_PROJECT_MANAGEMENT: 'Project Management',
   DEVOPS_PROJECT_MEMBERS: 'Project Members',
