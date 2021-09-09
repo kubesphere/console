@@ -148,6 +148,9 @@ module.exports = {
   ALERTING_POLICIES: '告警策略',
   NOTIFICATION_SETTINGS: '通知设置',
   DEPLOYMENT: '部署',
+  DEPLOYMENT_PL: '部署',
   STATEFULSET: '有状态副本集',
+  STATEFULSET_PL: '有状态副本集',
   DAEMONSET: '守护进程集',
+  DAEMONSET_PL: '守护进程集',
 }

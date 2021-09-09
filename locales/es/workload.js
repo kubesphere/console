@@ -122,14 +122,13 @@ module.exports = {
   CreateContainerError: 'CreateContainerError',
   created: 'creado',
   CronJob: 'CronJob',
-  CRONJOB: 'CronJob',
   'CronJob Settings': 'Configuración de CronJob',
   'Current number of nodes scheduled': 'Número actual de nodos programados',
   'Current Replicas': 'Réplicas actuales',
   'Current Revision': 'Revisión actual',
   'Current Stage(phase)': 'Estado actual (fase)',
   'Current Utilization': 'Utilización actual',
-  DEPLOYMENT_LOCATION: 'Ubicación de despliegue',
+  LOCATION: 'Ubicación de despliegue',
   'Deployment Mode': 'Modo de despliegue',
   POD_SCHEDULING_RULES: 'Pod Assignment Strategy',
   POD_SCHEDULING_RULES_DESC: 'You can specify rules for pod scheduling',
@@ -420,8 +419,8 @@ module.exports = {
 
   'Not Limited': 'Not Limited',
   Cost: 'Cost',
-  'Project Remaining Quota': 'Project Remaining Quota',
-  'Workspace Remaining Quota': 'Workspace Remaining Quota',
+  PROJECT_REMAINING_QUOTAS: 'Project Remaining Quota',
+  WORKSPACE_REMAINING_QUOTAS: 'Workspace Remaining Quota',
   QUOTA_OVERCOST_TIP:
     'The current resource usage has exceeded the remaining quota',
 
@@ -675,7 +674,7 @@ module.exports = {
     'Ya sea para exponer el puerto predeterminado de la imagen?',
   REQUEST_EXCEED_LIMIT:
     'Las solicitudes de recursos no deben ser mayores que los límites de recursos',
-  REQUEST_EXCCED_WORKSPACE:
+  REQUEST_EXCEED_WORKSPACE:
     'Resource setting should not be greater than workspace resource limits.',
   WORKLOAD_CONDITIONS: 'Condiciones',
   WORKLOAD_CONDITION_AVAILABLE: 'Disponible',
@@ -756,8 +755,12 @@ module.exports = {
 
   // Jobs
   JOB_PL: 'Jobs',
+  NUMBER_OF_JOBS: 'Number of Jobs',
   JOB_LOW: 'Job',
-  CRONJOBS: 'CronJobs',
+  CRONJOB: 'CronJob',
+  CRONJOB_PL: 'CronJobs',
+  NUMBER_OF_CRONJOBS: 'Number of CronJobs',
+  CRONJOB_LOW: 'CronJob',
   SCHEDULE: 'Schedule',
 
   // CronJobs

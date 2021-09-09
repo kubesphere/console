@@ -123,12 +123,12 @@ export default class CreateModal extends React.Component {
     return (
       <Modal.Form
         width={600}
-        title={title || t('Create Role')}
+        title={title || t('CREATE_ROLE')}
         icon="role"
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.showEditAuthorization}
-        okText={t('Edit Authorization')}
+        okText={t('EDIT_PERMISSION')}
         visible={visible}
       >
         <Form.Item
@@ -136,7 +136,7 @@ export default class CreateModal extends React.Component {
           desc={t('NAME_DESC')}
           tip={isWorkspaceRole ? t('WORKSPACE_ROLE_NAME_TIP') : null}
           rules={[
-            { required: true, message: t('Please input role name') },
+            { required: true, message: t('NAME_EMPTY_DESC') },
             {
               pattern: PATTERN_NAME,
               message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
@@ -152,7 +152,7 @@ export default class CreateModal extends React.Component {
             maxLength={63}
           />
         </Form.Item>
-        <Form.Item label={t('description')} desc={t('DESCRIPTION_DESC')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
           <TextArea
             name="metadata.annotations['kubesphere.io/description']"
             maxLength={256}
@@ -160,8 +160,8 @@ export default class CreateModal extends React.Component {
         </Form.Item>
         <Alert
           className="margin-t12"
-          title={t('ROLE_CREATE_TIP_TITLE')}
-          message={t('ROLE_CREATE_TIP_MESSAGE')}
+          title={t('NEXT_STEP')}
+          message={t('NEXT_STEP_DESC')}
         />
       </Modal.Form>
     )

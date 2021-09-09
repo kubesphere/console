@@ -957,7 +957,7 @@ export const COMPONENT_ICON_MAP = {
 
 export const CLUSTER_PROVIDER_ICON = {
   'Aliyun ACK': 'aliyun',
-  'Aure Kubernetes Service': 'windows',
+  'Azure Kubernetes Service': 'windows',
   'Huawei Cloud CCE': 'kubernetes',
   'Amazon EKS': 'aws',
   'Google Kubernetes Engine': 'google-plus',
@@ -973,7 +973,7 @@ export const CLUSTER_PROVIDERS = [
     icon: 'aliyun',
   },
   {
-    label: 'Aure Kubernetes Service',
+    label: 'Azure Kubernetes Service',
     value: 'Aure Kubernetes Service',
     icon: 'windows',
   },

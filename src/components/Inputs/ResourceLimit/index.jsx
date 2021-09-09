@@ -425,8 +425,8 @@ export default class ResourceLimit extends React.Component {
 
     const title =
       limitType === 'workspace'
-        ? t('Workspace Remaining Quota')
-        : t('Project Remaining Quota')
+        ? t('WORKSPACE_REMAINING_QUOTAS')
+        : t('PROJECT_REMAINING_QUOTAS')
 
     const message = () => (
       <>
@@ -566,7 +566,7 @@ export default class ResourceLimit extends React.Component {
           <Alert
             type="error"
             className="margin-t12"
-            message={t('REQUEST_EXCCED_WORKSPACE')}
+            message={t('REQUEST_EXCEED_WORKSPACE')}
           />
         )}
       </div>

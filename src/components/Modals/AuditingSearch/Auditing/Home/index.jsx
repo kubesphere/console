@@ -126,7 +126,7 @@ export default class Home extends React.Component {
     )
   }
 
-  clusterRenderer = option => `${t('Cluster')}: ${option.label}`
+  clusterRenderer = option => t('CLUSTER_VALUE', { value: option.label })
 
   renderSearchBar() {
     const { searchInputState, clustersOpts } = this.props

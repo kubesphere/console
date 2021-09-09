@@ -181,7 +181,7 @@ export default class ImageRegistry extends Component {
         </Columns>
         <Columns>
           <Column>
-            <Wrapper label={t('Email')}>
+            <Wrapper label={t('EMAIL')}>
               <Input value={email} onChange={this.handleEmailChange} />
             </Wrapper>
           </Column>

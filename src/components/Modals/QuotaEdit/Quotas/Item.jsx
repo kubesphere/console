@@ -46,7 +46,7 @@ export default class QuotaItem extends React.Component {
             : true)
       )
       .map(key => ({
-        label: key === 'volumes' ? t('Number of volumes') : t(key),
+        label: t(`NUMBER_OF_${key.toUpperCase()}`),
         value: key,
       }))
   }
@@ -63,9 +63,7 @@ export default class QuotaItem extends React.Component {
         <NumberInput
           name="value"
           className="margin-l12"
-          placeholder={t(
-            'You can limit the number of resources. Blank means no limit.'
-          )}
+          placeholder={t('RESOURCE_QUANTITY_LIMIT')}
           integer
         />
       )
@@ -74,9 +72,7 @@ export default class QuotaItem extends React.Component {
       <Input
         name="value"
         className="margin-l12"
-        placeholder={t(
-          'You can limit the number of resources. Blank means no limit.'
-        )}
+        placeholder={t('RESOURCE_QUANTITY_LIMIT')}
       />
     )
   }
@@ -90,6 +86,7 @@ export default class QuotaItem extends React.Component {
           name="module"
           options={this.options}
           searchable
+          placeholder=" "
           disabled={value.module === 'pods'}
         />
         {this.renderInputByModule()}

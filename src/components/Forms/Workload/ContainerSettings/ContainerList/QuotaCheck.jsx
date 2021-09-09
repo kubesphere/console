@@ -69,13 +69,13 @@ export default class QuotaCheck extends Component {
               <span>
                 CPU&nbsp;{t('Cost')}&nbsp;
                 {get(result, '["requests.cpu"].cost', t('Not Limited'))}&nbsp;(
-                {t('Project Remaining Quota')}:&nbsp;
+                {t('PROJECT_REMAINING_QUOTAS')}:&nbsp;
                 {get(
                   result,
                   '["requests.cpu"].namespaceQuota',
                   t('NO_REQUEST')
                 )}
-                ,&nbsp;{t('Workspace Remaining Quota')}:&nbsp;
+                ,&nbsp;{t('WORKSPACE_REMAINING_QUOTAS')}:&nbsp;
                 {get(
                   result,
                   '["requests.cpu"].workspaceQuota',
@@ -90,13 +90,13 @@ export default class QuotaCheck extends Component {
                 {t('Cost')}&nbsp;
                 {get(result, '["requests.memory"].cost', t('Not Limited'))}
                 &nbsp;(
-                {t('Project Remaining Quota')}:&nbsp;
+                {t('PROJECT_REMAINING_QUOTAS')}:&nbsp;
                 {get(
                   result,
                   '["requests.memory"].namespaceQuota',
                   t('NO_REQUEST')
                 )}
-                ,&nbsp;{t('Workspace Remaining Quota')}:&nbsp;
+                ,&nbsp;{t('WORKSPACE_REMAINING_QUOTAS')}:&nbsp;
                 {get(
                   result,
                   '["requests.memory"].workspaceQuota',
@@ -114,10 +114,10 @@ export default class QuotaCheck extends Component {
               <span>
                 CPU&nbsp;{t('Cost')}&nbsp;
                 {get(result, '["limits.cpu"].cost', t('Not Limited'))}&nbsp;(
-                {t('Project Remaining Quota')}:&nbsp;
+                {t('PROJECT_REMAINING_QUOTAS')}:&nbsp;
                 {get(result, '["limits.cpu"].namespaceQuota', t('NO_LIMIT'))}
                 ,&nbsp;
-                {t('Workspace Remaining Quota')}:&nbsp;
+                {t('WORKSPACE_REMAINING_QUOTAS')}:&nbsp;
                 {get(result, '["limits.cpu"].workspaceQuota', t('NO_LIMIT'))})
               </span>
             )}
@@ -126,9 +126,9 @@ export default class QuotaCheck extends Component {
                 {t('MEMORY')}&nbsp;
                 {t('Cost')}&nbsp;
                 {get(result, '["limits.memory"].cost', t('Not Limited'))}&nbsp;(
-                {t('Project Remaining Quota')}:&nbsp;
+                {t('PROJECT_REMAINING_QUOTAS')}:&nbsp;
                 {get(result, '["limits.memory"].namespaceQuota', t('NO_LIMIT'))}
-                ,&nbsp;{t('Workspace Remaining Quota')}:&nbsp;
+                ,&nbsp;{t('WORKSPACE_REMAINING_QUOTAS')}:&nbsp;
                 {get(result, '["limits.memory"].workspaceQuota', t('NO_LIMIT'))}
                 )
               </span>
@@ -144,30 +144,30 @@ export default class QuotaCheck extends Component {
       <>
         <div className={styles.message}>
           <span>
-            {t('Resource Requests')}: CPU ({t('Project Remaining Quota')}:
+            {t('Resource Requests')}: CPU ({t('PROJECT_REMAINING_QUOTAS')}:
             {get(result, '["requests.cpu"].namespaceQuota', t('NO_REQUEST'))},
-            {t('Workspace Remaining Quota')}:
+            {t('WORKSPACE_REMAINING_QUOTAS')}:
             {get(result, '["requests.cpu"].workspaceQuota', t('NO_REQUEST'))});
           </span>
           <span>
-            {t('MEMORY')} ({t('Project Remaining Quota')}:
+            {t('MEMORY')} ({t('PROJECT_REMAINING_QUOTAS')}:
             {get(result, '["requests.memory"].namespaceQuota', t('NO_REQUEST'))}
-            ;{t('Workspace Remaining Quota')}:
+            ;{t('WORKSPACE_REMAINING_QUOTAS')}:
             {get(result, '["requests.memory"].workspaceQuota', t('NO_REQUEST'))}
             ).
           </span>
         </div>
         <div className={styles.message}>
           <span>
-            {t('Resource Limits')}: CPU ({t('Project Remaining Quota')}:
+            {t('Resource Limits')}: CPU ({t('PROJECT_REMAINING_QUOTAS')}:
             {get(result, '["limits.cpu"].namespaceQuota', t('NO_LIMIT'))},
-            {t('Workspace Remaining Quota')}:
+            {t('WORKSPACE_REMAINING_QUOTAS')}:
             {get(result, '["limits.cpu"].workspaceQuota', t('NO_LIMIT'))});
           </span>
           <span>
-            {t('MEMORY')} ({t('Project Remaining Quota')}:
+            {t('MEMORY')} ({t('PROJECT_REMAINING_QUOTAS')}:
             {get(result, '["limits.memory"].namespaceQuota', t('NO_LIMIT'))};
-            {t('Workspace Remaining Quota')}:
+            {t('WORKSPACE_REMAINING_QUOTAS')}:
             {get(result, '["limits.memory"].workspaceQuota', t('NO_LIMIT'))}).
           </span>
         </div>

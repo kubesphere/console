@@ -18,16 +18,22 @@
 
 module.exports = {
   WORKSPACE: '企業空間',
+  WORKSPACE_PL: 'Workspaces',
+  WORKSPACE_LOW: 'workspace',
   Workspaces: '企業空間',
+  WORKSPACE_SETTINGS: '企業空間設置',
   'Workspace Settings': '企業空間設置',
   'Workspace Members': '企業空間成員',
+  WORKSPACE_MEMBER: 'Workspace Member',
+  WORKSPACE_MEMBER_PL: 'Workspace Members',
+  WORKSPACE_MEMBER_TCAP: 'Workspace member',
+  WORKSPACE_MEMBER_TCAP_PL: 'Workspace members',
   'Workspace Roles': '企業角色',
   'Workspace Role': '企業角色',
-  'Create Workspace Role': '創建企業角色',
+  CREATE_WORKSPACE_ROLE: '創建企業角色',
   'Edit Workspace Role': '編輯企業角色',
   'Workspace Name': '企業空間名稱',
   'Workspace Logo': '企業空間 Logo',
-  'Workspace Manager': '企業空間管理員',
   'Workspaces Manager': '企業空間管理員',
   'Create Workspace': '創建企業空間',
   'Workspace Groups': '企業組織',
@@ -37,7 +43,7 @@ module.exports = {
 
   'Project Number': '項目數量',
   'DevOps Project Number': 'DevOps 工程數量',
-  'Edit Quota': '編輯配額',
+  EDIT_QUOTA: '編輯配額',
 
   'View Workspace': '進入企業空間',
   'Delete Workspace': '刪除企業空間',
@@ -81,7 +87,7 @@ module.exports = {
     '企業標誌尺寸必須小於 200px X 200px，支持 png、jpg 格式。建議從上傳透明背景的 png 格式圖片以達到最佳顯示效果。',
 
   'Remove from Workspace': '從企業空間移除',
-  'Please input workspace name': '請輸入企業空間名稱',
+  WORKSPACE_NAME_EMPTY_DESC: '請輸入企業空間名稱',
 
   NO_WORKSPACE_TIP:
     '您的帳號目前不屬於任何企業空間，請您創建一個企業空間或者聯繫管理員邀請您到其企業空間内進行工作',
@@ -125,5 +131,5 @@ module.exports = {
   WORKSPACE_QUOTA_MANAGE_DESC:
     '管理企業空間配額，企業空間下的所有項目 / DevOps 工程將共享這些配額',
 
-  DELETE_WORDSPACE_RELATED_RESOURCES_DESC: '刪除該企業空間關聯項目',
+  DELETE_WORKSPACE_PROJECTS_DESC: '刪除該企業空間關聯項目',
 }

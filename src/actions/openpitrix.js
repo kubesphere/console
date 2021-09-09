@@ -139,14 +139,14 @@ export default {
       const modal = Modal.open({
         onOk: async data => {
           await store.create({ ...data, workspace })
-          Notify.success({ content: `${t('Upload successfully')}` })
+          Notify.success({ content: t('UPLOAD_SUCCESS') })
           Modal.close(modal)
           success && success()
         },
         store,
         modal: TemplateUploadModal,
         title: t('UPLOAD_HELM_TITLE'),
-        description: t('UPLOAD_HELM_DESC'),
+        description: t('UPLOAD_HELM_CHART_DESC'),
         icon: 'templet',
         type: 'CREATE_APP',
         workspace,
@@ -160,7 +160,7 @@ export default {
         onOk: async params => {
           await store.update(params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Modify Successfully')}` })
+          Notify.success({ content: t('MODIFY_SUCCESSFUL') })
           success && success()
         },
         store,
@@ -175,14 +175,14 @@ export default {
       const modal = Modal.open({
         onOk: async params => {
           await versionStore.create(params)
-          Notify.success({ content: `${t('Add Version Successfully')}` })
+          Notify.success({ content: t('ADD_VERSION_SUCCESSFUL') })
           Modal.close(modal)
           success && success()
         },
         store,
         modal: TemplateUploadModal,
         title: t('UPLOAD_HELM_TITLE'),
-        description: t('UPLOAD_HELM_DESC'),
+        description: t('UPLOAD_HELM_CHART_DESC'),
         icon: 'templet',
         type: 'CREATE_APP',
         workspace,
@@ -314,10 +314,10 @@ export default {
           let content
           if (detail.category_id) {
             await store.update(params)
-            content = `${t('Modify Successfully')}`
+            content = `${t('MODIFY_SUCCESSFUL')}`
           } else {
             await store.create(params)
-            content = `${t('Created Successfully')}`
+            content = `${t('CREATE_SUCCESSFUL')}`
           }
           Modal.close(modal)
           Notify.success({ content })

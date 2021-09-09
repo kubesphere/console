@@ -35,7 +35,7 @@ module.exports = {
   'Please enter an email address': '請輸入要添加的郵箱',
   'This email address has existed': '此郵箱已存在',
   'Invalid address': '地址格式錯誤',
-  'Invalid email': '郵箱格式不合法',
+  INVALID_EMAIL: '郵箱格式不合法',
   'Please add the recipient email address': '請添加接收郵箱',
   MAX_EAMIL_COUNT: '最多添加 {count} 個郵箱',
 

@@ -65,7 +65,7 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
                 clustersDetail={projectDetail.clusters}
               />
             }
-            description={t('DEPLOYMENT_LOCATION')}
+            description={t('LOCATION')}
           />
         )}
       </div>

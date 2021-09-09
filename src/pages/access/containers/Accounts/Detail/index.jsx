@@ -130,14 +130,14 @@ export default class AccountDetail extends React.Component {
         value: detail.globalrole,
       },
       {
-        name: t('Email'),
+        name: t('EMAIL'),
         value: detail.email,
       },
       {
         name: t('Last Login Time'),
         value: detail.lastLoginTime
           ? getLocalTime(detail.lastLoginTime).format(`YYYY-MM-DD HH:mm:ss`)
-          : t('Not logged in yet'),
+          : t('NOT_LOGIN_YET'),
       },
     ]
   }

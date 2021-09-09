@@ -19,31 +19,37 @@
 module.exports = {
   'Cluster Authorization Info': 'Cluster Authorization Information',
   'Create Workspace': 'Create Workspace',
-  'Create Workspace Role': 'Create Workspace Role',
+  CREATE_WORKSPACE_ROLE: 'Create Workspace Role',
   'Created Projects': 'Created Projects',
   'Delete Workspace': 'Delete Workspace',
   'DevOps Project Number': 'DevOps Projects',
-  'Edit Quota': 'Edit Quota',
+  EDIT_QUOTA: 'Edit Quota',
   'Edit Workspace Role': 'Edit Workspace Role',
   'Invite members to the workspace': 'Invite Member',
   'Involved Projects': 'Involved Projects',
   'Manage Organizations': 'Manage Organization',
   NO_AVAILABLE_CLUSTER: 'No Available Cluster',
-  'Please input workspace name': 'Enter a workspace name.',
+  WORKSPACE_NAME_EMPTY_DESC: 'Please enter a workspace name.',
   'Project Number': 'Projects',
   'Remove from Workspace': 'Remove from Workspace',
   'The current name is not applicable.': 'The name is invalid.',
   'View Workspace': 'View Workspace',
   WORKSPACE: 'Workspace',
+  WORKSPACE_PL: 'Workspaces',
+  WORKSPACE_LOW: 'workspace',
   'Workspace Info': 'Workspace Information',
   'Workspace Logo': 'Workspace Logo',
-  'Workspace Manager': 'Administrator',
   'Workspace Members': 'Workspace Members',
+  WORKSPACE_MEMBER: 'Workspace Member',
+  WORKSPACE_MEMBER_PL: 'Workspace Members',
+  WORKSPACE_MEMBER_TCAP: 'Workspace member',
+  WORKSPACE_MEMBER_TCAP_PL: 'Workspace members',
   'Workspace Name': 'Name',
   'Workspace name exists': 'The workspace name already exists.',
   'Workspace Network Isolation': 'Network Isolation',
   'Workspace Role': 'Workspace Role',
   'Workspace Roles': 'Workspace Roles',
+  WORKSPACE_SETTINGS: 'Workspace Settings',
   'Workspace Settings': 'Workspace Settings',
   Workspaces: 'Workspaces',
   'Workspaces Manager': 'Workspace Manager',
@@ -57,7 +63,7 @@ module.exports = {
     'A workspace is an isolated logical unit used to organize projects and DevOps projects, manage resource access, and share information within your team.',
   WORKSPACE_SEARCH_PLACEHOLDER: 'Enter a workspace name.',
   WORKSPACE_CREATE_DESC:
-    'A workspace is an isolated logical unit used to organize projects and DevOps projects, manage resource access, and share information within your team.',
+    'Customize workspace information to create a workspace.',
   WORKSPACE_NAME_DESC:
     'You are advised to use a short workspace name such as the abbreviation of your company name.',
   WORKSPACE_LOGO_PLACEHOLDER:
@@ -79,7 +85,7 @@ module.exports = {
     'No public cluster available. Please contact the platform or cluster administrator to obtain authorization.',
 
   WORKSPACE_NO_CLUSTER_TIP:
-    'You need to contact the platform or cluster administrator to authorize a cluster to the workspace.',
+    'Please contact the platform or cluster administrator to authorize a cluster to the workspace.',
 
   WORKSPACE_BASE_INFO_Q1: 'How do I apply for more clusters for the workspace?',
   WORKSPACE_BASE_INFO_A1:
@@ -108,6 +114,5 @@ module.exports = {
   WORKSPACE_QUOTA_MANAGE_DESC:
     'Manage workspace quotas, which are shared by all projects and DevOps projects in the workspace.',
 
-  DELETE_WORDSPACE_RELATED_RESOURCES_DESC:
-    'Delete the project associated with the workspace',
+  DELETE_WORKSPACE_PROJECTS_DESC: 'Delete projects in the workspace.',
 }

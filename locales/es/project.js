@@ -18,14 +18,16 @@
 
 module.exports = {
   CLUSTER: 'Cluster',
-  'Add Quota Item': 'Agregar elemento de cuota',
+  CLUSTER_PL: 'Clusters',
+  CLUSTER_VALUE: 'Cluster: {value}',
+  ADD_QUOTA: 'Agregar elemento de cuota',
   'Are you sure to disable it?': '¿Estás seguro de deshabilitarlo?',
   ASSIGN_WORKSPACE: 'Asignar espacio de trabajo',
   SELECT_WORKSPACE_DESC: 'Elige un espacio de trabajo',
   Closed: 'Cerrado',
   'Container Resource Default Request':
     'Solicitud predeterminada de recursos de contenedor',
-  'Create Multi-cluster Project': 'Crear proyecto de clúster múltiple',
+  CREATE_MULTI_CLUSTER_PROJECT: 'Crear proyecto de clúster múltiple',
   CREATE_PROJECT: 'Crear proyecto',
   cronjobs: 'cronjobs',
   DaemonSet: 'DaemonSet',
@@ -79,8 +81,11 @@ module.exports = {
   'Modify Member Role': 'Modificar rol de miembro',
   'Modify Members Role': 'Modificar rol de miembros',
   'Multi-cluster Project': 'Proyecto de clúster múltiple',
+  MULTI_CLUSTER_PROJECT: 'Proyecto de clúster múltiple',
+  MULTI_CLUSTER_PROJECT_LOW: 'Proyecto de clúster múltiple',
   'Multi-cluster Projects': 'Proyectos de clústeres múltiples',
-
+  MULTI_CLUSTER_PROJECT_PL: 'Proyectos de clústeres múltiples',
+  PROJECT_NAME_EXISTS_IN_HOST: 'The project name exists on the host cluster.',
   FEDPROJECT_CANNOT_ADD_CLUSTER: 'Unable to add a new cluster',
 
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
@@ -96,13 +101,14 @@ module.exports = {
   'Project Member': 'Miembro del proyecto',
   'Project Members': 'Miembros del proyecto',
   'project members': 'miembros del proyecto',
-  'Project Name': 'Nombre del proyecto',
+  PROJECT_NAME: 'Nombre del proyecto',
   'Project name exists': 'El nombre del proyecto existe',
   'Project name exists on host cluster':
     'El nombre del proyecto existe en el clúster',
   'Project Overview': 'Descripción del proyecto',
   'Project Placement': 'Colocación del proyecto',
   'Project Quota': 'Cuota de proyecto',
+  EDIT_PROJECT_QUOTAS: 'Edit Project Quotas',
   'Project Role': 'Rol del proyecto',
   // Create ServiceAccount Page
   PROJECT_ROLE_SI: 'Rol del proyecto',
@@ -115,22 +121,23 @@ module.exports = {
   'Remove Members': 'Eliminar miembros',
   'requests.cpu': 'request.cpu',
   'requests.memory': 'requests.memory',
-  'Resource Quota': 'Cuota de recursos',
+  RESOURCE_QUOTAS: 'Cuota de recursos',
   RESOURCE_TYPE: 'Tipo de recurso',
   PROJECT_ADMINISTRATOR_DESC:
     'Selecciona un usuario del espacio de trabajo como administrador del proyecto.',
   'Select Project Type': 'Seleccionar tipo de proyecto',
   SELECT_CLUSTER_DESC: 'Selecciona el clúster para crear el proyecto.',
-  CLUSTER_NOT_SELECT_DESC: 'Selecciona un cluster, por favor.',
+  CLUSTER_EMPTY_DESC: 'Selecciona un cluster, por favor.',
   'Set Gateway': 'Establecer puerta de enlace',
   StatefulSet: 'StatefulSet',
   statefulsets: 'statefulsets',
   'Target Workspace': 'Espacio de trabajo de destino',
   Terminating: 'Terminando',
   Usage: 'Uso',
+  USAGE: 'Uso',
   Volume: 'Volumen',
   'Number of volumes': 'Numero de volúmenes',
-  'You can limit the number of resources. Blank means no limit.':
+  RESOURCE_QUANTITY_LIMIT:
     'Puedes limitar la cantidad de recursos. En blanco significa que no hay límite.',
   PROJECTS_DESC:
     'Un proyecto es un namespace de Kubernetes en KubeSphere, que proporciona un mecanismo para organizar los recursos en un espacio de trabajo.',
@@ -211,7 +218,7 @@ module.exports = {
     '¿Cómo puedes acceder a los servicios del proyecto a través de la red externa?',
   PROJECT_TYPES_A:
     'La puerta de enlace del proyecto es responsable de crear el controlador de enrutamiento de la aplicación correspondiente para reenviar la solicitud al servicio de back-end correspondiente. Después de abrir la puerta de enlace del proyecto, el servicio puedes exponerse a la red externa a través de Ingress.',
-  NAME_EXIST_IN_CLUSTER: 'El nombre existe en {cluster}',
+  PROJECT_NAME_EXISTS_IN_CLUSTER: 'El nombre existe en {cluster}',
   PROJECT_CLUSTER_SETTINGS_DESC:
     'Selecciona el clúster para crear el proyecto. Cuando se seleccionan varios grupos, se creará un proyecto de múltiples grupos.',
   NETWORK_ISOLATED_DESC: 'Establecer estrategia de aislamiento de red',
@@ -223,7 +230,7 @@ module.exports = {
     'El proyecto multi-clúster actual se ejecuta en distintos clústers. Puedes saltar entre clústers para comprobar los parámetros de este proyecto en cada uno de ellos.',
   MULTI_CLUSER_RESOURCE_TIP:
     'El recurso multi-clúster actual se ejecuta en distintos clústers. Puedes saltar entre clústers para comprobar los parámetros de este recurso en cada uno de ellos.',
-  MULTI_CLUSTER_PROJECT_CREATE_DESC:
+  CREATE_MULTI_CLUSTER_PROJECT_DESC:
     'Un proyecto multi-clúster se ejecuta sobre distintos clústers a la vez, lo que ayuda a que puedas construir un entorno de contenedores para una rápida iteración de aplicaciones y conseguir alta disponibilidad.',
 
   'Project Quota Not Set': 'Project Quota Not Set',

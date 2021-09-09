@@ -104,7 +104,7 @@ export default class MemberDetail extends React.Component {
         value: detail.workspacerole,
       },
       {
-        name: t('Email'),
+        name: t('EMAIL'),
         value: detail.email,
       },
     ]

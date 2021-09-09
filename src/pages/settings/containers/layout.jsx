@@ -36,7 +36,7 @@ class AccessLayout extends Component {
               <Icon name="cogwheel" size={40} type="light" />
             </div>
             <div className={styles.text}>
-              <div className="h6">{t('Platform Settings')}</div>
+              <div className="h6">{t('PLATFORM_SETTINGS')}</div>
               <p>{t('PLATFORM_SETTINGS_SELECTOR_DESC')}</p>
             </div>
           </div>

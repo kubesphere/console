@@ -220,7 +220,7 @@ class ResourceUsage extends React.Component {
     })
   }
 
-  clusterRenderer = option => `${t('Cluster')}: ${option.value}`
+  clusterRenderer = option => t('CLUSTER_VALUE', { value: option.value })
 
   renderApplicationResource() {
     const { isLoading } = toJS(this.overviewStore.resource)

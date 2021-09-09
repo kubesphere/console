@@ -118,6 +118,7 @@ module.exports = {
   CronJob: 'CronJob',
   CRONJOB: 'CronJob',
   CRONJOB_PL: 'CronJobs',
+  NUMBER_OF_CRONJOBS: 'Number of CronJobs',
   CRONJOB_LOW: 'CronJob',
   'CronJob Settings': 'CronJob Settings',
   'Current number of nodes scheduled': 'Current number of nodes scheduled',
@@ -125,7 +126,7 @@ module.exports = {
   'Current Revision': 'Current Revision',
   'Current Stage(phase)': 'Current Stage(phase)',
   'Current Utilization': 'Current Utilization',
-  DEPLOYMENT_LOCATION: 'Deployment Location',
+  LOCATION: 'Location',
   'Deployment Mode': 'Deployment Mode',
   POD_SCHEDULING_RULES: 'Pod Scheduling Rules',
   POD_SCHEDULING_RULES_DESC:
@@ -422,8 +423,8 @@ module.exports = {
 
   'Not Limited': 'Not Limited',
   Cost: 'Cost',
-  'Project Remaining Quota': 'Project Remaining Quota',
-  'Workspace Remaining Quota': 'Workspace Remaining Quota',
+  PROJECT_REMAINING_QUOTAS: 'Project Remaining Quota',
+  WORKSPACE_REMAINING_QUOTAS: 'Workspace Remaining Quotas',
   QUOTA_OVERCOST_TIP:
     'The current resource usage has exceeded the remaining quota',
 
@@ -678,8 +679,8 @@ module.exports = {
 
   REQUEST_EXCCED:
     'Resource requests should not be greater than resource limits.',
-  REQUEST_EXCCED_WORKSPACE:
-    'Resource setting should not be greater than workspace resource limits.',
+  REQUEST_EXCEED_WORKSPACE:
+    'Resource requests and limits cannot exceed workspace resource limits.',
   REQUEST_EXCEED_LIMIT:
     'Resource requests cannot be greater than resource limits.',
 
@@ -773,6 +774,7 @@ module.exports = {
 
   // Jobs
   JOB_PL: 'Jobs',
+  NUMBER_OF_JOBS: 'Number of Jobs',
   JOB_LOW: 'Job',
   CRONJOBS: 'CronJobs',
   SCHEDULE: 'Schedule',

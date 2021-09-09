@@ -113,55 +113,55 @@ class VirtualResource extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'deployment',
-      title: 'DEPLOYMENTS',
-      legend: ['DEPLOYMENTS'],
+      title: 'DEPLOYMENT',
+      legend: ['DEPLOYMENT_PL'],
       metricType: MetricTypes.deployment_count,
     },
     {
       type: 'statefulset',
-      title: 'STATEFULSETS',
-      legend: ['STATEFULSETS'],
+      title: 'STATEFULSET',
+      legend: ['STATEFULSET_PL'],
       metricType: MetricTypes.statefulset_count,
     },
     {
       type: 'daemonset',
-      title: 'DAEMONSETS',
-      legend: ['DAEMONSETS'],
+      title: 'DAEMONSET',
+      legend: ['DAEMONSET_PL'],
       metricType: MetricTypes.daemonset_count,
     },
     {
       type: 'job',
-      title: 'JOB_PL',
+      title: 'JOB',
       legend: ['JOB_PL'],
       metricType: MetricTypes.job_count,
     },
     {
       type: 'cronjob',
-      title: 'CRONJOBS',
-      legend: ['CRONJOBS'],
+      title: 'CRONJOB',
+      legend: ['CRONJOB_PL'],
       metricType: MetricTypes.cronjob_count,
     },
     {
       type: 'pvc',
-      title: 'VOLUMES',
-      legend: ['VOLUMES'],
+      title: 'VOLUME',
+      legend: ['VOLUME_PL'],
       metricType: MetricTypes.pvc_count,
     },
     {
       type: 'service',
-      title: 'SERVICES',
-      legend: ['SERVICES'],
+      title: 'SERVICE',
+      legend: ['SERVICE_PL'],
       metricType: MetricTypes.service_count,
     },
     {
       type: 'routes',
-      title: 'ROUTES',
-      legend: ['ROUTES'],
+      title: 'ROUTE',
+      legend: ['ROUTE_PL'],
       metricType: MetricTypes.route_count,
     },
     {
       type: 'pod',
-      title: 'Pods',
+      title: 'POD',
       legend: ['RUNNING_PODS'],
       metricType: MetricTypes.pod_running_count,
     },
@@ -173,7 +173,7 @@ class VirtualResource extends React.Component {
 
     return (
       <MonitoringController
-        title={t('APPLICATION_RESOURCES_USAGE')}
+        title={t('APPLICATION_RESOURCE_USAGE')}
         step="1h"
         times={24}
         onFetch={this.fetchData}

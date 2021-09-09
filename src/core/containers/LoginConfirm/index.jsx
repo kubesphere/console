@@ -41,7 +41,7 @@ export default class LoginConfirm extends Component {
 
     this.store.checkName({ name: value }).then(resp => {
       if (resp.exist) {
-        return callback({ message: t('User name exists'), field: rule.field })
+        return callback({ message: t('USERNAME_EXISTS'), field: rule.field })
       }
       callback()
     })
@@ -54,7 +54,7 @@ export default class LoginConfirm extends Component {
 
     this.store.checkEmail(value).then(resp => {
       if (resp.exist) {
-        return callback({ message: t('Email exists'), field: rule.field })
+        return callback({ message: t('EMAIL_EXISTS'), field: rule.field })
       }
       callback()
     })
@@ -86,11 +86,11 @@ export default class LoginConfirm extends Component {
           )}
           <Form data={formData} onSubmit={this.handleSubmit}>
             <Form.Item
-              label={t('Email')}
+              label={t('EMAIL')}
               desc={t('USER_SETTING_EMAIL_DESC')}
               rules={[
-                { required: true, message: t('Please input email') },
-                { type: 'email', message: t('Invalid email') },
+                { required: true, message: t('EMAIL_EMPTY_DESC') },
+                { type: 'email', message: t('INVALID_EMAIL') },
                 { validator: this.emailValidator },
               ]}
             >
@@ -102,13 +102,13 @@ export default class LoginConfirm extends Component {
             </Form.Item>
             <Form.Item
               label={t('Username')}
-              desc={t('USER_NAME_DESC')}
+              desc={t('USERNAME_DESC')}
               rules={[
                 { required: true, message: t('Please input username') },
                 {
                   pattern: PATTERN_USER_NAME,
-                  message: t('Invalid user name', {
-                    message: t('USER_NAME_DESC'),
+                  message: t('USERNAME_INVALID', {
+                    message: t('USERNAME_DESC'),
                   }),
                 },
                 { validator: this.userNameValidator },

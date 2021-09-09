@@ -100,7 +100,7 @@ export default class ProjectDetail extends React.Component {
       {
         key: 'editQuota',
         icon: 'pen',
-        text: t('Edit Quota'),
+        text: t('EDIT_QUOTA'),
         action: 'edit',
         onClick: () =>
           this.trigger('project.quota.edit', {

@@ -83,6 +83,7 @@ module.exports = {
   VOLUME: 'Volume',
   VOLUMES: 'Volumes',
   VOLUME_PL: 'Volumes',
+  NUMBER_OF_VOLUMES: 'Number of volumes',
   VOLUME_LOW: 'volumes',
   'The volume name exists': 'The volume name exists',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',

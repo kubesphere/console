@@ -72,7 +72,7 @@ export default class AuthorizedUsers extends React.Component {
         <p>
           {login_time
             ? getLocalTime(login_time).format('YYYY-MM-DD HH:mm:ss')
-            : t('Not logged in yet')}
+            : t('NOT_LOGIN_YET')}
         </p>
       ),
     },

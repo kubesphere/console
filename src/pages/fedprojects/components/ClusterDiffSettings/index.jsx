@@ -108,7 +108,7 @@ export default class AdvancedSettings extends React.Component {
     return (
       <div>
         <Form data={this.formTemplate} ref={formRef} {...formProps}>
-          <Form.Group label={t('DEPLOYMENT_LOCATION')}>
+          <Form.Group label={t('LOCATION')}>
             <Form.Item>
               <ClusterSelect
                 name="clusters"

@@ -56,11 +56,11 @@ export default class Projects extends React.Component {
       options: [
         {
           value: 'projects',
-          label: t('Projects'),
+          label: t('PROJECT_PL'),
         },
         {
           value: 'federatedprojects',
-          label: t('Multi-cluster Projects'),
+          label: t('MULTI_CLUSTER_PROJECT_PL'),
         },
       ],
     }
@@ -84,7 +84,7 @@ export default class Projects extends React.Component {
       {
         key: 'add',
         icon: 'add',
-        text: t('Add Cluster'),
+        text: t('ADD_CLUSTER'),
         action: 'edit',
         onClick: item =>
           trigger('federated.project.add.cluster', {
@@ -159,7 +159,7 @@ export default class Projects extends React.Component {
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('DEPLOYMENT_LOCATION'),
+        title: t('LOCATION'),
         dataIndex: 'clusters',
         isHideable: true,
         render: clusters => (
@@ -194,7 +194,7 @@ export default class Projects extends React.Component {
           {...bannerProps}
           tabs={this.tabs}
           icon="project"
-          title={t('Projects')}
+          title={t('PROJECT_PL')}
           description={t('PROJECT_DESC')}
         />
         <Table
