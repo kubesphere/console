@@ -27,7 +27,7 @@ module.exports = {
   MODIFY_CONFIG: 'Modificar configuración',
   CONFIG_FIELD_DESC:
     'El valor único de la clave asignada por el campo de configuración.',
-  CONFIGMAP_CREATE_DESC:
+  CONFIGMAP_EMPTY_DESC:
     'Un ConfigMap es un objeto utilizado para almacenar variables de configuración comunes, lo que permite la gestión unificada de variables de entorno para diferentes módulos en un sistema distribuido.',
   CONFIGMAP_DESC:
     'Un ConfigMap a menudo se usa para almacenar la información de configuración necesaria para workload. Muchas aplicaciones leerán la información de archivos de configuración, de parámetros de la línea de comandos o de variables de entorno.',

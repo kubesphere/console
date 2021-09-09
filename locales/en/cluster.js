@@ -45,7 +45,7 @@ module.exports = {
   'Enter the project': 'Enter the project',
   'Go back': 'Go back',
   'Host Cluster': 'Host Cluster',
-  HOST_CLUSTER: 'Host Cluster',
+  HOST_CLUSTER: 'Host cluster',
   'Host Clusters': 'Host Clusters',
   Import: 'Import',
   'Import Kubernetes Cluster': 'Import Kubernetes Cluster',
@@ -68,10 +68,12 @@ module.exports = {
   'Please select or input a provider': 'Please select or input a provider',
   'Please select or input a tag': 'Please select or input a tag',
   SCHEDULING_OPERATIONS: 'Scheduling operations',
+  SCHEDULING_OPERATION: 'Scheduling operation',
   SCHEDULING_FAILURES: 'Scheduling failures',
+  SCHEDULING_FAILURE: 'Scheduling failure',
   'Select Clusters': 'Select Clusters',
-  SET_PUBLIC_CLUSTER: 'Set as a public cluster',
-  Snapshots: 'Volume Snapshots',
+  SET_PUBLIC_CLUSTER: 'Set as Public Cluster',
+  Snapshots: 'Snapshots',
   'Storage Management': 'Storage',
   SYSTEM_PROJECTS: 'System Projects',
   'The current cluster is public': 'The current cluster is public',
@@ -129,9 +131,10 @@ module.exports = {
   IMPORT_CLUSTER_DESC: 'Import an existing Kubernetes cluster.',
   SELECT_CLUSTERS_DESC: 'Select the cluster available in the workspace.',
 
-  CLUSTER_TAG: 'Tag',
-  CLUSTER_TAG_DESC: 'A tag helps users identify what the cluster is used for.',
-  CLUSTER_PROVIDER_DESC: 'Provider of the cluster infrastructure.',
+  CLUSTER_SETTINGS_DESC: 'Define cluster configuration information',
+  TAG: 'Tag',
+  CLUSTER_TAG_DESC: 'Select a tag to identify the purpose of the cluster.',
+  CLUSTER_PROVIDER_DESC: 'Select the provider of the cluster infrastructure.',
   CLUSTER_CONNECT_METHOD_DESC:
     'Directly connect to the cluster or use an agent.',
 
@@ -151,7 +154,8 @@ module.exports = {
     'This operation may take a while. Please wait until the cluster status is updated.',
 
   CLUSTER_CONDITIONS: 'Cluster Conditions',
-  CLUSTER_BASE_INFO_DESC: 'Overview of the cluster basic information.',
+  CLUSTER_BASE_INFO_DESC:
+    'Basic information provides an overview of the cluster. You can view and edit cluster information.',
   CLUSTER_INFO_TCAP: 'Cluster Information',
 
   INVITE_CLUSTER_MEMBER_DESC: 'You can invite new members to this cluster.',
@@ -174,7 +178,7 @@ module.exports = {
 
   UNBIND_CLUSTER_DESC:
     'After the cluster is unbound, KubeSphere will not be able to manage the cluster. The Kubernetes resources on the cluster will not be deleted.',
-  SURE_TO_UNBIND_CLUSTER: 'I confirm to unbind the cluster.',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation.',
 
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
     'Clusters can be assigned to workspaces through authorization.',
@@ -187,7 +191,7 @@ module.exports = {
 
   CLUSTER_VISIBILITY_Q1: 'How do I authorize a cluster to specific workspaces?',
   CLUSTER_VISIBILITY_A1:
-    'You can assign a cluster to specific workspaces by clicking <strong>Edit Visibility</strong>.',
+    'You can assign a cluster to specific workspaces by clicking Edit Visibility.',
   CLUSTER_VISIBILITY_Q2: 'What are public clusters?',
   CLUSTER_VISIBILITY_A2:
     'Public clusters can be accessed by all platform users. Users can create and schedule resources on public clusters.',
@@ -195,13 +199,13 @@ module.exports = {
   SELECT_HOST_CLUSTER_WARNING:
     'Please try not to create resources on the host cluster to avoid excessive loads, which can lead to a decrease in the stability across clusters.',
   HOST_CLUSTER_VISIBILITY_WARNING:
-    'The stability across clusters will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
+    'The visibility of the multi-cluster environment will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
     'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
 
   REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
   REMOVE_WORKSPACE_CONFIRM_DESC:
-    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 
   SELECT_ADD_CLUSTER_METHOD: 'Choose how to add a cluster',
   SELECT_ADD_CLUSTER_METHOD_DESC:
@@ -210,9 +214,13 @@ module.exports = {
   NEW_CLUSTER_DESC: 'add a new Kubernetes cluster',
   CLUSTER_NODE_SETTINGS_DESC: 'add the nodes for the cluster',
   NODE_INTERNAL_IP_DESC:
-    'Enter the IP address of the node in the private network.',
+    'Set the internal IP address of the node in the KubeSphere cluster.',
+  EDGENODE_INTERNAL_IP_DESC:
+    'Set the internal IP address of the edge node in the KubeSphere cluster.',
   NODE_INTERNAL_IP_EMPTY_DESC:
-    'Please enter the IP address of the node in the private network.',
+    'Please set the internal IP address of the node in the KubeSphere cluster.',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC:
+    'Please set the internal IP address of the edge node in the KubeSphere cluster.',
   NODE_ROLE_DESC: 'Set the role of the node in the cluster.',
   NODE_EXTERNAL_IP_DESC:
     'Enter the node IP address and port number used for SSH login.',
@@ -259,6 +267,7 @@ module.exports = {
   CREATING_CLUSTER_DESC:
     'The cluster is being created and is currently unavailable.',
   COPY_SUCCESSFUL: 'Copied successfully.',
+  CLUSTER_INIT_FAILED: 'Cluster initialization failed.',
   CLUSTER_CREATION_PROGRESS: 'Cluster Creation Progress',
   INIT_NODES: 'Initialize nodes',
   PULL_IMAGES: 'Pull images',
@@ -284,16 +293,18 @@ module.exports = {
   UNBIND_CLUSTER_Q: 'Unbind Cluster',
 
   // Cluster Visibility
+  NODE: 'Node',
   ADMINISTRATOR: 'Administrator',
   CLUSTER_VISIBILITY: 'Cluster Visibility',
   CLUSTER_VISIBILITY_DESC:
-    'Cluster visibility allows users to view and manage cluster resources in workspaces after the cluster is authorized to the workspaces.',
+    'Cluster visibility controls the cluster authorization to workspaces. After a cluster is authorized to workspaces, you can view and manage the cluster resources in the workspaces.',
   EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
-  TO_BE_AUTHORIZED: 'To be authorized',
+  UNAUTHORIZED: 'Unauthorized',
+  LOGGING: 'Logging',
   EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:
-    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   REMOVE_WORKSPACE_CONFIRM_PL:
-    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 }

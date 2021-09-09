@@ -32,11 +32,12 @@ module.exports = {
   VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: '硬碟擴容中(FilesystemSizePending)',
 
   volumes: '儲存卷',
+  VOLUMES: '儲存卷',
   PersistentVolumeClaim: '儲存卷',
   'Volume Usage': '儲存卷用量',
-  VOLUME_COUNT: '儲存卷數量',
   VOLUME: '儲存卷',
-  // VOLUMES: '儲存卷數量',
+  VOLUME_PL: '儲存卷數量',
+  VOLUME_LOW: 'volumes',
   'Create Volume': '創建儲存卷',
   'Delete Volume': '刪除儲存卷',
   'storage classes': '儲存類型',
@@ -44,6 +45,8 @@ module.exports = {
   'Create Storage Class': '創建儲存類型',
   'Storage Class': '儲存類型',
   STORAGE_CLASS: '儲存類型',
+  STORAGE_CLASS_PL: 'Storage Classes',
+  STORAGE_CLASS_LOW: 'storage class',
   STORAGE_CLASS_SETTINGS: '儲存類型設置',
   'Mount Info': '掛載資訊',
   // Volumes List Page
@@ -51,8 +54,8 @@ module.exports = {
   MOUNTED_TCAP: '已掛載',
   NOT_MOUNTED: '未掛載',
   Scalable: '可擴容性',
-  RECLAMATION_POLICY: '回收機制',
   CREATE: '創建',
+  RECLAIM_POLICY: '回收機制',
   DELETE_STORAGE_TIP: '如果儲存卷正在被掛載時，等待工作負載被刪除時一同刪除。',
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce：單個節點讀寫。<br/>ReadOnlyMany：多節點唯讀。<br/>ReadWriteMany：多節點讀寫。<br/>掛載時只能使用一種模式。',
@@ -60,7 +63,7 @@ module.exports = {
   'Default Volume': '預設儲存卷',
   'Parameters (key-value pairs)': '參數 (鍵值對)',
   'Mount Options': '掛載選項',
-  STORAGE_VOLUME_EXTENSION: '允許儲存卷擴容',
+  VOLUME_EXPANSION: '儲存卷擴容',
   'Mount Status': '掛載狀態',
   'Mounted Pods': '已掛載容器組',
   AVAILABLE: '閒置',
@@ -97,7 +100,7 @@ module.exports = {
 
   VOLUME_DESC:
     '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
-  VOLUME_CREATE_DESC:
+  VOLUME_EMPTY_DESC:
     '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
   STORAGE_CLASS_DESC:
     '存儲類型（StorageClass）支持動態卷供應，使管理員能夠按需創建新的存儲卷。',
@@ -125,7 +128,8 @@ module.exports = {
   WHAT_IS_LOCAL_VOLUME_A:
     '本地儲存卷表示掛載的本地儲存設備，如硬碟、分割區或目錄。',
   CHOOSE_STORAGE_SYSTEM_TIP: '選擇您需要儲存系統',
-  PROVISIONER_DEPENDENCE_DESC: '儲存系統需要部署相關的儲存插件来提供服務。',
+  PROVISIONER_DEPENDENCE_DESC:
+    'You need to deploy a plugin in your storage system before it provides services.',
 
   'Expand Volume': '儲存卷擴容',
   VOLUME_EXPAND_TIPS:
@@ -133,7 +137,7 @@ module.exports = {
   Expand: '擴容',
 
   QINGCLOUD_CSI_DESC:
-    'Use QingCloud CSI as the underlying storage plug-in. For more information, see <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">QingCloud CSI</a>.',
+    'Use QingCloud CSI as the underlying storage plugin. <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">Learn More</a>',
 
   MAXSIZE: 'Maximum Size',
   MINSIZE: 'Minimum Size',
@@ -143,27 +147,25 @@ module.exports = {
 
   QINGCLOUD_CSI_TYPE_DESC:
     '在青雲雲平台中，0 代表性能型硬碟，2 代表容量型硬碟，3 代表超高性能型硬碟，5 代表企業級分布式 SAN（NeonSAN）型硬碟，100 代表基礎型硬碟，200 代表企業型硬碟',
-  CREATE_VOLUME_MAX_SIZE: '創建儲存卷容量上限',
-  CREATE_VOLUME_STEP_SIZE: '創建儲存卷增量值',
-  CREATE_VOLUME_MIN_SIZE: '創建儲存卷容量下限',
-  VOLUME_FS_TYPE:
-    'Set the file system type of the storage volume. The value can be ext3, ext4, or xfs, and it defaults to ext4.',
+  CREATE_VOLUME_MAX_SIZE: 'Maximum size of the volume.',
+  CREATE_VOLUME_STEP_SIZE: 'Step size of the volume.',
+  CREATE_VOLUME_MIN_SIZE: 'Minimum size of the volume.',
+  VOLUME_FS_TYPE: 'Supports ext3, ext4, and XFS. The default type is ext4.',
   QINGCLOUD_VOLUME_TAGS_DESC:
-    'Add tags to the storage volume. Multiple tags need to be separated by commas.',
+    'Add tags to the storage volume. Use commas to separate multiple tags.',
 
   GLUSTERFS_RESTURL_DESC:
-    'Gluster REST service or Heketi service URL that provisions Gluster volumes on demand.',
-  GLUSTERFS_ID_DESC: 'Gluster 集群 ID。',
+    'Heketi REST URL that provisions volumes, for example, <Heketi Service cluster IP Address>:<Heketi Service port number>.',
+  GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
   GLUSTERFS_RESTAUTHENABLED_DESC: ' Gluster 啟用对 REST 伺服器的認證',
   GLUSTERFS_RESTUSER_DESC:
-    'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
+    'Username of Gluster REST service or Heketi service.',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
   GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
-  GLUSTERFS_GID_MIN_DESC:
-    'The minimum value of GID range for the storage class.',
-  GLUSTERFS_GID_MAX_DESC:
-    'The maximum value of GID range for the storage class.',
-  GLUSTERFS_VOLUME_TYPE_DESC: 'Optional type of the volume.',
+  GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the volume.',
+  GLUSTERFS_GID_MAX_DESC: 'Maximum GID of the volume.',
+  GLUSTERFS_VOLUME_TYPE_DESC:
+    'Type of volume. The value can be none, replicate:<Replicate count>, or disperse:<Data>:<Redundancy count>. If the volume type is not set, the default volume type is replicate:3.',
 
   CEPHRBD_MONITORS_DESC: 'IP address of Ceph monitors.',
   CEPHRBD_ADMIN_ID_DESC: 'ceph 集群能夠創建卷的用戶 ID',
@@ -186,8 +188,17 @@ module.exports = {
 
   'Create Snapshot': '創建快照',
   'Clone Volume': '儲存卷克隆',
-  VOLUME_SNAPSHOT_SUPPORT: '支持儲存卷快照',
-
+  ALLOW_VOLUME_SNAPSHOT: '允許存儲卷快照',
+  ALLOW_VOLUME_CLONE: '允許存儲卷克隆',
+  ALLOW_VOLUME_EXPANSION: '允許存儲卷擴容',
+  PV: '存儲卷後端',
+  PV_STATUS_AVAILABLE: '可用',
+  PV_STATUS_BOUND: '已綁定',
+  PV_STATUS_RELEASED: '已釋放',
+  PV_STATUS_FAILED: '不可用',
+  PV_STATUS_TERMINATING: '刪除中',
+  'Bound Volume': '已綁定存儲卷',
+  'Recycling mechanism': '回收機制',
   VOLUME_SNAPSHOT_STATUS_CREATING: '創建中',
   VOLUME_SNAPSHOT_STATUS_READY: '創建成功',
   VOLUME_SNAPSHOT_STATUS_FAILED: '創建失敗',
@@ -199,7 +210,7 @@ module.exports = {
   VolumeSnapshots: '儲存卷快照',
   VOLUMESNAPSHOT_DESC:
     '儲存卷快照表示儲存卷的時間點副本。快照可用於配置新卷（預先填充快照數據）或將現有儲存卷還原到先前狀態（由快照表示）',
-  VOLUMESNAPSHOT_CREATE_DESC:
+  VOLUMESNAPSHOT_EMPTY_DESC:
     '儲存卷快照表示儲存卷的時間點副本。快照可用於配置新卷（預先填充快照數據）或將現有儲存卷還原到先前狀態（由快照表示）',
   WHAT_IS_VOLUME_SNAPSHOTS: '什麼是儲存卷快照',
 
@@ -219,15 +230,18 @@ module.exports = {
   REST_AUTH_ENABLED: 'REST Authentication',
   REST_USER: 'REST User',
   VOLUME_TYPE: 'Volume Type',
-  REST_URL_EXAMPLE: 'IP address and port number',
   SECRET_NAME: 'Secret Name',
   REST_AUTH_TRUE: 'True',
   CEPH_MONITOR_IP: 'IP address and port number',
   SECRET_NAMESPACE: 'Secret Namespace',
-  GID_MIN: 'GID Minimum Value',
-  GID_MAX: 'GID Maximum Value',
+  GID_MIN: 'Minimum GID',
+  GID_MAX: 'Maximum GID',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
   SNAPSHOT_TYPE: '快照類型',
   SNAPSHOT_EMPTY_TIP: '請選擇一個快照類型。',
+  VOLUME_BINDING_MODE: 'Volume Binding Mode',
+  IMMEDIATE_BINDING: 'Immediate binding',
+  BINDING_WAIT: 'Delayed binding',
+  DEFAULT_STORAGE_CLASS: 'Default Storage Class',
 }

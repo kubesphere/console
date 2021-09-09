@@ -40,6 +40,8 @@ module.exports = {
   REGISTRY_SECRET_VER_SUC: 'Registry Verification Succeeded.',
   Secret: 'Secret',
   SECRET: 'Secret',
+  SECRET_PL: 'Secrets',
+  SECRET_LOW: 'Secret',
   SECRET_SETTINGS_TCAP: 'Secret Settings',
   secrets: 'secrets',
   Secrets: 'Secrets',
@@ -47,9 +49,8 @@ module.exports = {
 
   SECRET_DESC:
     'A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
-  SECRET_CREATE_DESC:
-    'A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
   SECRET_TYPE_DESC: 'Select a Secret type.',
+  SECRET_EMPTY_DESC: 'Please create a Secret.',
 
   SECRET_NO_CHINESE_CODE_DESC:
     'The key of the Secret must consist of alphanumeric characters, hyphens (-), underscores (_), or periods (.).',

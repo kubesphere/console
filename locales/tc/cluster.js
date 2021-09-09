@@ -91,7 +91,9 @@ module.exports = {
   EDIT_CLUSTER_INFO_DESC: '編輯集群基礎資訊',
 
   SCHEDULING_OPERATIONS: '排程器調度次數',
+  SCHEDULING_OPERATION: '排程器調度次數',
   SCHEDULING_FAILURES: '調度失敗的容器組',
+  SCHEDULING_FAILURE: '調度失敗的容器組',
 
   'Please select or input a tag': '請選擇或輸入標籤',
   'Please select or input a provider': '請選擇或輸入服務商',
@@ -160,9 +162,10 @@ module.exports = {
 
   MULTI_CLUSTER: '多集群',
 
-  CLUSTER_TAG: '標籤',
-  CLUSTER_TAG_DESC: '標籤此集群的用途，例如 生產環境、測試環境、示範環境 等',
-  CLUSTER_PROVIDER_DESC: '提供集群基礎設施的廠商',
+  CLUSTER_SETTINGS_DESC: '定義集群配置資訊',
+  TAG: '標籤',
+  CLUSTER_TAG_DESC: 'Select a tag to identify the purpose of the cluster.',
+  CLUSTER_PROVIDER_DESC: 'Select the provider of the cluster infrastructure.',
   CLUSTER_CONNECT_METHOD_DESC: '可以直接連接集群或者使用代理',
 
   CONNTECT_DIRECT: '直接連接Kubernetes集群',
@@ -179,12 +182,13 @@ module.exports = {
   CLUSTER_AGENT_TIP_3_DESC: '執行命令之後等待集群狀態的更新',
 
   CLUSTER_CONDITIONS: '集群狀態',
-  CLUSTER_BASE_INFO_DESC: '目前集群基礎資訊總覽。',
+  CLUSTER_BASE_INFO_DESC:
+    'Basic information provides an overview of the cluster. You can view and edit cluster information.',
   CLUSTER_INFO_TCAP: 'Cluster Information',
 
   UNBIND_CLUSTER_DESC:
     '解綁集群後，KubeSphere 將無法再對該集群進行管理。 解綁後，該集群内的 Kubernetes 資源不會被刪除。',
-  SURE_TO_UNBIND_CLUSTER: '我確定要執行解綁集群的操作',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation.',
 
   'Invite members to the cluster': '邀請成員到該集群',
   INVITE_CLUSTER_MEMBER_DESC: '您可以邀請新的成員來此集群',
@@ -200,7 +204,7 @@ module.exports = {
 
   CLUSTER_VISIBILITY_Q1: '如何將集群授權給指定的企業空間使用？',
   CLUSTER_VISIBILITY_A1:
-    'You can assign a cluster to specific workspaces by clicking <strong>Edit Visibility</strong>.',
+    'You can assign a cluster to specific workspaces by clicking Edit Visibility.',
   CLUSTER_VISIBILITY_Q2: '什麼是公開集群?',
   CLUSTER_VISIBILITY_A2:
     '公開狀態的集群意味著平台内的用戶都可以使用該集群，並在集群中創建和調度資源',
@@ -223,14 +227,14 @@ module.exports = {
   CLUSTER_AGENT_DESC: '需要在集群中設置下相應的代理 Agent',
 
   SELECT_HOST_CLUSTER_WARNING:
-    'The stability across clusters will decrease if the host cluster is overloaded. It is not recommended to create resources on the host cluster.',
+    'The visibility of the multi-cluster environment will decrease if the host cluster is overloaded. It is not recommended to create resources on the host cluster.',
   HOST_CLUSTER_VISIBILITY_WARNING:
     '請謹慎將 Host 集群授權给企業空間，Host 集群負載過高會導致多集群穩定性下降。',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
     'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
   REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
   REMOVE_WORKSPACE_CONFIRM_DESC:
-    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 
   'Host Cluster': 'Host 集群',
   HOST_CLUSTER: 'Host 集群',
@@ -245,7 +249,9 @@ module.exports = {
   IMPORT_CLUSTER_DESC: '導入已有的 Kubernetes 集群',
   CLUSTER_NODE_SETTINGS_DESC: '添加集群需要的節點',
   NODE_INTERNAL_IP_DESC: '集群内各節點間可以互相訪問的內網 IP 地址',
+  EDGENODE_INTERNAL_IP_DESC: '集群内各節點間可以互相訪問的內網 IP 地址',
   NODE_INTERNAL_IP_EMPTY_DESC: '请输入节点在私网内的 IP 地址。',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC: '请输入节点在私网内的 IP 地址。',
   NODE_ROLE_DESC:
     '集群角色中，master 節點數量需要為 1 或 3，woker 節點數量至少為 1',
   NODE_EXTERNAL_IP_DESC: '請填入當前 Host 集群可以訪問到的 IP 地址',
@@ -287,6 +293,7 @@ module.exports = {
   CREATING_CLUSTER_DESC:
     '當前集群正在創建，暫時沒有可用的節點，所以集群為不可以用狀態',
   COPY_SUCCESSFUL: '复制成功。',
+  CLUSTER_INIT_FAILED: 'Cluster initialization failed.',
   INIT_NODES: '初始化節點',
   PULL_IMAGES: '拉取鏡像',
   INIT_ETCD_CLUSTER: '初始化 etcd 集群',
@@ -310,16 +317,18 @@ module.exports = {
   UNBIND_CLUSTER_Q: 'Unbind Cluster',
 
   // Cluster Visibility
+  NODE: 'Node',
   ADMINISTRATOR: 'Administrator',
   CLUSTER_VISIBILITY: '集群能見度',
   CLUSTER_VISIBILITY_DESC:
-    'Cluster visibility allows users to view and manage cluster resources in workspaces after the cluster is authorized to the workspaces.',
+    'Cluster visibility controls the cluster authorization to workspaces. After a cluster is authorized to workspaces, you can view and manage the cluster resources in the workspaces.',
   EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
-  TO_BE_AUTHORIZED: 'To be authorized',
+  UNAUTHORIZED: 'Unauthorized',
+  LOGGING: 'Logging',
   EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:
-    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   REMOVE_WORKSPACE_CONFIRM_PL:
-    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 }

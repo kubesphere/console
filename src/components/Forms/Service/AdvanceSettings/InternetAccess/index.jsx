@@ -49,7 +49,7 @@ export default class InternetAccess extends React.Component {
         value: 'NodePort',
       },
       {
-        label: 'LoadBalancer',
+        label: t('Load Balancer'),
         desc: t('ACCESS_LOADBALANCER_TIP'),
         value: 'LoadBalancer',
       },
@@ -103,6 +103,7 @@ export default class InternetAccess extends React.Component {
             options={this.accessModes}
             onChange={this.handleAccessModeChange}
             optionRenderer={this.optionRenderer}
+            placeholder=" "
           />
         </Form.Item>
         {mode === 'LoadBalancer' && (

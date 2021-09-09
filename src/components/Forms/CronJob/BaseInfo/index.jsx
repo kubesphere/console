@@ -42,10 +42,10 @@ export default class BaseInfo extends React.Component {
 
   getCronOptions() {
     return [
-      { label: `0 * * * * ${t('EVERY_HOUR')}`, value: '0 * * * *' },
-      { label: `0 0 * * * ${t('EVERY_DAY')}`, value: '0 0 * * *' },
-      { label: `0 0 * * 0 ${t('EVERY_WEEK')}`, value: '0 0 * * 0' },
-      { label: `0 0 1 * * ${t('EVERY_MONTH')}`, value: '0 0 1 * *' },
+      { label: t('EVERY_HOUR'), value: '0 * * * *' },
+      { label: t('EVERY_DAY'), value: '0 0 * * *' },
+      { label: t('EVERY_WEEK'), value: '0 0 * * 0' },
+      { label: t('EVERY_MONTH'), value: '0 0 1 * *' },
     ]
   }
 
@@ -145,6 +145,7 @@ export default class BaseInfo extends React.Component {
                 name="spec.schedule"
                 options={this.getCronOptions()}
                 searchable
+                placeholder=" "
               />
             </Form.Item>
           </Column>
@@ -162,7 +163,7 @@ export default class BaseInfo extends React.Component {
           <Columns className="margin-t8">
             <Column>
               <Form.Item
-                label={t('startingDeadlineSeconds(s)')}
+                label={t('STARTING_DEADLINE')}
                 desc={t('START_DEADLINE_SECONDS_DESC')}
               >
                 <NumberInput
@@ -172,7 +173,7 @@ export default class BaseInfo extends React.Component {
                 />
               </Form.Item>
               <Form.Item
-                label={t('failedJobsHistoryLimit')}
+                label={t('FAILED_JOBS_HISTORY_LIMIT')}
                 desc={t('FAILED_JOBS_DESC')}
               >
                 <NumberInput
@@ -184,7 +185,7 @@ export default class BaseInfo extends React.Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('successfulJobsHistoryLimit')}
+                label={t('SUCCESSFUL_JOBS_HISTORY_LIMIT')}
                 desc={t('SUCCESSFUL_JOBS_DESC')}
               >
                 <NumberInput

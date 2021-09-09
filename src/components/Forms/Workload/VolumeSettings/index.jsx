@@ -595,7 +595,7 @@ class VolumeSettings extends React.Component {
               />
             </Form.Item>
           )}
-          <Form.Item label={t('VOLUMES')}>
+          <Form.Item label={t('VOLUME_PL')}>
             <VolumeList
               prefix={this.prefix}
               name={`${this.prefix}spec.volumes`}

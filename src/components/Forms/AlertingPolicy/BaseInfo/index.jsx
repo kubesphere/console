@@ -140,17 +140,21 @@ export default class BaseInfo extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('ALERT_DURATION_MIN')}
+              label={t('THRESHOLD_DURATION_MIN')}
               desc={t('ALERT_DURATION')}
               rules={[{ validator: this.timeValidator }]}
             >
               <UnitWrapper name="duration" unit="m">
-                <Select options={this.durationOptions} searchable />
+                <Select
+                  options={this.durationOptions}
+                  searchable
+                  placeholder=" "
+                />
               </UnitWrapper>
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('ALERTING_TYPE')}>
+            <Form.Item label={t('SEVERITY')}>
               <Select name="labels.severity" options={this.severities} />
             </Form.Item>
           </Column>

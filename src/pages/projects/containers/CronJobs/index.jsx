@@ -52,11 +52,11 @@ export default class CronJobs extends React.Component {
       options: [
         {
           value: 'jobs',
-          label: t('Jobs'),
+          label: t('JOBS'),
         },
         {
           value: 'cronjobs',
-          label: t('CronJobs'),
+          label: t('CRONJOBS'),
         },
       ],
     }

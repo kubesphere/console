@@ -134,11 +134,12 @@ export default class EditBasicInfoModal extends React.Component {
         <Form.Item label={t('CLUSTER_NAME')} desc={t('NAME_DESC')}>
           <Input name="metadata.name" disabled />
         </Form.Item>
-        <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>
+        <Form.Item label={t('TAG')} desc={t('CLUSTER_TAG_DESC')}>
           <Select
             name="metadata.labels['cluster.kubesphere.io/group']"
             options={CLUSTER_PRESET_GROUPS}
             optionRenderer={this.groupOptionRenderer}
+            placeholder=" "
           />
         </Form.Item>
         <Form.Item label={t('PROVIDER')} desc={t('CLUSTER_PROVIDER_DESC')}>
@@ -146,6 +147,7 @@ export default class EditBasicInfoModal extends React.Component {
             name="spec.provider"
             options={CLUSTER_PROVIDERS}
             optionRenderer={this.providerOptionRenderer}
+            placeholder=" "
           />
         </Form.Item>
         <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>

@@ -57,7 +57,6 @@ module.exports = {
   Services: '服务',
   Routes: '应用路由',
   Volumes: '存储卷',
-  VOLUMES: '存储卷',
   'Storage Classes': '存储类型',
   'App Repositories': '应用仓库',
   Users: '用户',

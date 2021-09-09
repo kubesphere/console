@@ -350,7 +350,7 @@ export default class MountConfig extends React.Component {
           <a className="custom-icon" onClick={this.handleGoBack}>
             <BackIcon />
           </a>
-          {t('VOLUMES')}
+          {t('VOLUME_PL')}
         </div>
         <div className={styles.contentWrapper}>
           <div className={styles.title}>{t('MOUNT_CONFIGMAP_OR_SECRET')}</div>

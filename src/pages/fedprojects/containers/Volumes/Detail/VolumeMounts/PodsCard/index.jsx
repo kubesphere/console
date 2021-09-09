@@ -49,13 +49,7 @@ export default class PodsCardWrapper extends Component {
           />
         </div>
         <div className={styles.content}>
-          <PodsCard
-            detail={detail}
-            prefix={this.prefix}
-            hideHeader
-            hideFooter
-            noWrapper
-          />
+          <PodsCard detail={detail} hideHeader hideFooter noWrapper />
         </div>
       </Panel>
     )

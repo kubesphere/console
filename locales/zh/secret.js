@@ -21,6 +21,8 @@ module.exports = {
   Secrets: '保密字典',
   Secret: '保密字典',
   SECRET: '保密字典',
+  SECRET_PL: '保密字典',
+  SECRET_LOW: '保密字典',
   SECRET_FIELD_COUNT: '字段数量',
   EDIT_SECRET: '编辑保密字典',
   SECRET_SETTINGS_TCAP: '保密字典设置',
@@ -34,9 +36,8 @@ module.exports = {
   SECRET_TYPE_DESC: '选择一个保密字典类型。',
 
   SECRET_DESC:
-    '保密字典（Secret）是一种包含少量敏感信息的资源对象，例如密码、令牌、保密字典等，以键值对形式保存并且可以在容器组中使用。',
-  SECRET_CREATE_DESC:
-    '保密字典是一种包含少量敏感信息的资源对象，例如密码、令牌、保密字典等，以键值对形式保存并且可以在容器组中使用。',
+    '保密字典（Secret）是一种包含少量敏感信息的资源对象，例如密码、令牌、保密字典等，以键/值对形式保存并且可以在容器组中使用。',
+  SECRET_EMPTY_DESC: '请创建一个保密字典。',
 
   SECRET_NO_CHINESE_CODE_DESC:
     '保密字典的键必须由字母数字字符、连字符（-）、下划线（_）或句点（.）组成。',

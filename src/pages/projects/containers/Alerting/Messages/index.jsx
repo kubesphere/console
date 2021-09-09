@@ -39,7 +39,7 @@ import MessageStore from 'stores/alerting/message'
 @withList({
   store: new MessageStore(),
   module: 'alerts',
-  name: 'Alerting Message',
+  name: 'ALERTING_MESSAGE',
 })
 export default class AlertingPolicy extends React.Component {
   state = {
@@ -149,7 +149,10 @@ export default class AlertingPolicy extends React.Component {
           <Text
             icon="loudspeaker"
             title={get(record, 'annotations.summary')}
-            description={get(record, 'annotations.message', '-')}
+            description={
+              get(record, 'annotations.message') ||
+              get(record, 'annotations.description', '-')
+            }
           />
         ),
       },
@@ -171,7 +174,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('ALERTING_TYPE'),
+        title: t('SEVERITY'),
         dataIndex: 'labels.severity',
         filters: this.getAlertingTypes(),
         filteredValue: getFilteredValue('labels.severity'),
@@ -204,7 +207,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('ALERTING_RESOURCE'),
+        title: t('MONITORING_TARGET'),
         dataIndex: 'labels',
         isHideable: true,
         width: '16%',
@@ -214,6 +217,13 @@ export default class AlertingPolicy extends React.Component {
             return '-'
           }
 
+          if (module === 'hpas') {
+            return (
+              <span>
+                {t(MODULE_KIND_MAP[module])}: {name}
+              </span>
+            )
+          }
           return (
             <Link to={`${this.getPrefix({ namespace })}/${module}/${name}`}>
               {t(MODULE_KIND_MAP[module])}: {name}

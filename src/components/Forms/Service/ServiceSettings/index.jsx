@@ -158,11 +158,7 @@ export default class ServiceSettings extends React.Component {
             { validator: this.portsValidator, checkOnSubmit: true },
           ]}
         >
-          <ArrayInput
-            name="spec.ports"
-            itemType="object"
-            addText={t('ADD_PORT')}
-          >
+          <ArrayInput name="spec.ports" itemType="object" addText={t('ADD')}>
             <ServicePort />
           </ArrayInput>
         </Form.Item>

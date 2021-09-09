@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  STORAGE_VOLUME_EXTENSION: 'Storage Volume Extension',
+  VOLUME_EXPANSION: 'Volume Expansion',
   'Available Capacity': 'Available Capacity',
   'Create Snapshot': 'Create Snapshot',
   'Create Storage Class': 'Create Storage Class',
@@ -46,7 +46,7 @@ module.exports = {
   'Parameters (key-value pairs)': 'Parameters (key-value pairs)',
   PersistentVolumeClaim: 'Volume',
   PersistentVolumes: 'PersistentVolumes',
-  RECLAMATION_POLICY: 'Reclamation Policy',
+  RECLAIM_POLICY: 'Reclaim Policy',
   CREATE: 'Create',
   Scalable: 'Scalable',
   'Set as default storage class': 'Set as default storage class',
@@ -54,6 +54,8 @@ module.exports = {
   'Snapshots Message': 'Snapshot Message',
   'Storage Class': 'Storage Class',
   STORAGE_CLASS: 'Storage Class',
+  STORAGE_CLASS_PL: 'Storage Classes',
+  STORAGE_CLASS_LOW: 'storage class',
   STORAGE_CLASS_VALUE: 'Storage class: {value}',
   'Storage Class Name': 'Storage Class Name',
   STORAGE_CLASS_SETTINGS: 'Storage Class Settings',
@@ -63,16 +65,27 @@ module.exports = {
     'The Storage Class is configured by the cluster administrator to configure storage server parameters and provide storage for cluster users by class.',
   StorageClasses: 'StorageClasses',
   storageclasses: 'storageclasses',
-  VOLUME_SNAPSHOT_SUPPORT: 'Volume Snapshot Support',
+  ALLOW_VOLUME_SNAPSHOT: 'Volume Snapshot Allowed',
+  ALLOW_VOLUME_CLONE: 'Volume Clone Allowed',
+  ALLOW_VOLUME_EXPANSION: 'Volume Expansion Allowed',
+  PV: 'Volume Backend',
+  PV_STATUS_AVAILABLE: 'Available',
+  PV_STATUS_BOUND: 'Bound',
+  PV_STATUS_RELEASED: 'Released',
+  PV_STATUS_FAILED: 'Failed',
+  PV_STATUS_TERMINATING: 'Terminating',
+  'Bound Volume': 'Storage volume bound',
+  'Recycling mechanism': 'Recycling Mechanism',
   ACCESS_MODE: 'Access Mode',
   ACCESS_MODE_SCAP: 'Access mode',
   'Used Capacity': 'Used Capacity',
   'Clone Volume': 'Clone Volume',
   VOLUME: 'Volume',
-  // VOLUMES: 'Volumes',
+  VOLUMES: 'Volumes',
+  VOLUME_PL: 'Volumes',
+  VOLUME_LOW: 'volumes',
   'The volume name exists': 'The volume name exists',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
-  VOLUME_COUNT: 'Volumes',
   VOLUME_NAME_EXIST: 'The volume name already exists.',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
@@ -101,8 +114,7 @@ module.exports = {
 
   VOLUMES_BASEINFO_DESC:
     'The volume can persist data, and its lifecycle is independent of the workload. Make sure the storage class is created before you create a volume.',
-  VOLUME_CREATE_DESC:
-    'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
+  VOLUME_EMPTY_DESC: 'Please create a volume.',
   VOLUME_SETTINGS_DESC:
     'Fill in the capacity of the volume as needed, and the volume size and access mode must be compatible with the storage class and storage server capabilities. The access mode is usually selected as RWO.',
   VOLUME_STORAGE_CLASS_DESC:
@@ -147,13 +159,13 @@ module.exports = {
     'A Local Volume is a mounted local storage device, such as a disk, partition, or directory.',
   CHOOSE_STORAGE_SYSTEM_TIP: 'Select Storage System',
   PROVISIONER_DEPENDENCE_DESC:
-    'Storage plug-ins need to be deployed in the storage system to provide services.',
+    'You need to deploy a plugin in your storage system before it provides services.',
 
   VOLUME_EXPAND_TIPS:
     'The current PVC has been mounted to the work load, so the expansion will lead to the workload restart, and a new version. Business may be a brief interruption. ',
 
   QINGCLOUD_CSI_DESC:
-    'Use QingCloud CSI as the underlying storage plug-in. For more information, see <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">QingCloud CSI</a>.',
+    'Use QingCloud CSI as the underlying storage plugin. <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">Learn More</a>',
 
   MAXSIZE: 'Maximum Size',
   MINSIZE: 'Minimum Size',
@@ -163,27 +175,26 @@ module.exports = {
 
   QINGCLOUD_CSI_TYPE_DESC:
     'On QingCloud Public Cloud Platform, 0 means high performance volume; 2 high capacity volume; 3 ultra-high performance volume; 5 enterprise server SAN (NeonSAN); 100 standard volume; 200 enterprise SSD.',
-  CREATE_VOLUME_MAX_SIZE: 'Set the maximum size of the storage volume.',
-  CREATE_VOLUME_STEP_SIZE: 'Set the step size of the storage volume.',
-  CREATE_VOLUME_MIN_SIZE: 'Set the minimum size of the storage volume.',
-  VOLUME_FS_TYPE:
-    'Set the file system type of the storage volume. The value can be ext3, ext4, or xfs, and it defaults to ext4.',
+  CREATE_VOLUME_MAX_SIZE: 'Maximum size of the volume.',
+  CREATE_VOLUME_STEP_SIZE: 'Step size of the volume.',
+  CREATE_VOLUME_MIN_SIZE: 'Minimum size of the volume.',
+  VOLUME_FS_TYPE: 'Supports ext3, ext4, and XFS. The default type is ext4.',
 
   GLUSTERFS_RESTURL_DESC:
-    'Gluster REST service or Heketi service URL that provisions Gluster volumes on demand.',
-  GLUSTERFS_ID_DESC: 'The Gluster cluster ID.',
-  GLUSTERFS_RESTAUTHENABLED_DESC: 'Enable authentication to the REST server.',
+    'Heketi REST URL that provisions volumes, for example, <Heketi Service cluster IP Address>:<Heketi Service port number>.',
+  GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
+  GLUSTERFS_RESTAUTHENABLED_DESC:
+    'Gluster enables authentication to the REST server.',
   GLUSTERFS_RESTUSER_DESC:
-    'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
+    'Username of Gluster REST service or Heketi service.',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
   GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
-  GLUSTERFS_GID_MIN_DESC:
-    'The minimum value of GID range for the storage class.',
-  GLUSTERFS_GID_MAX_DESC:
-    'The maximum value of GID range for the storage class.',
-  GLUSTERFS_VOLUME_TYPE_DESC: 'Optional type of the volume.',
+  GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the volume.',
+  GLUSTERFS_GID_MAX_DESC: 'Maximum GID of the volume.',
+  GLUSTERFS_VOLUME_TYPE_DESC:
+    'Type of volume. The value can be none, replicate:<Replicate count>, or disperse:<Data>:<Redundancy count>. If the volume type is not set, the default volume type is replicate:3.',
   QINGCLOUD_VOLUME_TAGS_DESC:
-    'Add tags to the storage volume. Multiple tags need to be separated by commas.',
+    'Add tags to the storage volume. Use commas to separate multiple tags.',
 
   CEPHRBD_MONITORS_DESC: 'IP address of Ceph monitors.',
   CEPHRBD_ADMIN_ID_DESC:
@@ -212,8 +223,8 @@ module.exports = {
     'Select a storage class to create a volume.',
   VOLUMESNAPSHOT_DESC:
     'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
-  VOLUMESNAPSHOT_CREATE_DESC:
-    'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
+  VOLUMESNAPSHOT_EMPTY_DESC:
+    'Please go to the details page of a volume and create a volume snapshot',
   WHAT_IS_VOLUME_SNAPSHOTS: 'What are volume snapshots?',
 
   CLUSTER_VOLUME_DIFF_DESC:
@@ -228,15 +239,18 @@ module.exports = {
   REST_AUTH_ENABLED: 'REST Authentication',
   REST_USER: 'REST User',
   VOLUME_TYPE: 'Volume Type',
-  REST_URL_EXAMPLE: 'IP address and port number',
   SECRET_NAME: 'Secret Name',
   REST_AUTH_TRUE: 'True',
   CEPH_MONITOR_IP: 'IP address and port number',
   SECRET_NAMESPACE: 'Secret Namespace',
-  GID_MIN: 'GID Minimum Value',
-  GID_MAX: 'GID Maximum Value',
+  GID_MIN: 'Minimum GID',
+  GID_MAX: 'Maximum GID',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
   SNAPSHOT_TYPE: 'Snapshot type',
   SNAPSHOT_EMPTY_TIP: 'Please select a snapshot type.',
+  VOLUME_BINDING_MODE: 'Volume Binding Mode',
+  IMMEDIATE_BINDING: 'Immediate binding',
+  BINDING_WAIT: 'Delayed binding',
+  DEFAULT_STORAGE_CLASS: 'Default Storage Class',
 }

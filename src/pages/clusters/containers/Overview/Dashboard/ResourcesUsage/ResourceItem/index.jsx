@@ -67,7 +67,7 @@ export default function ResourceItem(props) {
               : `${used} ${unit}`
             : used
         }
-        description={t('Used')}
+        description={t('USED')}
       />
       <Text
         title={
@@ -77,7 +77,7 @@ export default function ResourceItem(props) {
               : `${total} ${unit}`
             : total
         }
-        description={t('Total')}
+        description={t('TOTAL')}
       />
     </div>
   )

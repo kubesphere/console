@@ -41,7 +41,7 @@ module.exports = {
     'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines themselves (for example, project type and organization type).',
   DEVOPS_PROJECT_CREATE_DESC:
     'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines themselves (for example, project type and organization type).',
-
+  DEVOPS_PROJECT_EMPTY_DESC: 'Please create a DevOps project.',
   DEVOPS_ADMIN_DESC:
     'You can specify a member of the project as an administrator',
 

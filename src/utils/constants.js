@@ -57,6 +57,13 @@ export const VOLUME_STATUS = [
   { text: 'VOLUME_STATUS_PENDING', value: 'pending' },
 ]
 
+export const PV_STATUS = [
+  { text: 'PV_STATUS_AVAILABLE', value: 'available' },
+  { text: 'PV_STATUS_BOUND', value: 'bound' },
+  { text: 'PV_STATUS_RELEASED', value: 'released' },
+  { text: 'PV_STATUS_FAILED', value: 'failed' },
+]
+
 export const NODE_STATUS = [
   { text: 'NODE_STATUS_UNSCHEDULABLE', value: 'unschedulable' },
   { text: 'NODE_STATUS_RUNNING', value: 'running' },
@@ -246,6 +253,7 @@ export const MODULE_KIND_MAP = {
   services: 'Service',
   ingresses: 'Ingress',
   persistentvolumeclaims: 'PersistentVolumeClaim',
+  persistentvolumes: 'PersistentVolumes',
   storageclasses: 'StorageClass',
   'alert-policies': 'AlertingPolicy',
   configmaps: 'ConfigMap',
@@ -253,7 +261,7 @@ export const MODULE_KIND_MAP = {
   secrets: 'Secret',
   s2ibuilders: 'S2iBuilder',
   nodes: 'Node',
-  volumesnapshots: 'Volume Snapshot',
+  volumesnapshots: 'VolumeSnapshot',
   namespaces: 'Namespace',
   workspaces: 'WorkspaceTemplate',
   clusters: 'Cluster',
@@ -266,6 +274,7 @@ export const MODULE_KIND_MAP = {
   ippools: 'IPPool',
   groups: 'Group',
   volumes: 'Volumes',
+  hpas: 'HPA',
 }
 
 export const QUOTAS_MAP = {
@@ -487,6 +496,7 @@ export const GRAY_RELEASE_CATEGORIES = [
 
 export const PATTERN_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_USER_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/
+export const PATTERN_IMAGE_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?((\.|\/)[a-z0-9]([-a-z0-9]*[a-z0-9])?)*(:([a-z0-9])*)?$/
 export const PATTERN_SERVICE_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_SERVICE_VERSION = /^[a-z0-9]*$/
 export const PATTERN_LABEL = /(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?/
@@ -690,7 +700,6 @@ export const PROVISIONERS = [
       {
         key: 'RESTURL',
         type: 'input',
-        placeholder: 'REST_URL_EXAMPLE',
         desc: 'GLUSTERFS_RESTURL_DESC',
       },
       {
@@ -703,8 +712,8 @@ export const PROVISIONERS = [
         type: 'select',
         defaultValue: 'true',
         options: [
-          { label: 'True', value: 'true' },
-          { label: 'False', value: 'false' },
+          { label: 'TRUE', value: 'true' },
+          { label: 'FALSE', value: 'false' },
         ],
         desc: 'GLUSTERFS_RESTAUTHENABLED_DESC',
       },
@@ -858,6 +867,7 @@ export const API_VERSIONS = {
   resourcequotas: 'api/v1',
   limitranges: 'api/v1',
   persistentvolumeclaims: 'api/v1',
+  persistentvolumes: 'api/v1',
   ingresses: 'apis/extensions/v1beta1',
   nodes: 'api/v1',
   storageclasses: 'apis/storage.k8s.io/v1',

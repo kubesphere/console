@@ -19,8 +19,8 @@
 module.exports = {
   Alerting: '告警',
   Notification: '通知',
-  NOTIFICATION_MESSAGE: '訊息',
-  SUMMARY: '標題',
+  NOTIFICATION_MESSAGE: 'Notification Message',
+  NOTIFICATION_SUMMARY: 'Summary',
   EDIT_TCAP: 'Edit',
   EDIT_ALERTING_POLICY: 'Edit Alerting Policy',
   DELETE_TCAP: 'Delete',
@@ -31,13 +31,14 @@ module.exports = {
   ALERT_MONITORING: '告警監控',
   'alerting policy': '告警策略',
   ALERTING_POLICY: '告警策略',
+  ALERTING_POLICY_PL: 'Alerting Policies',
+  ALERTING_POLICY_LOW: 'alerting policy',
   'Alerting Policies': '告警策略',
   ALERTING_HISTORY: '告警歷史',
   'alerting rule': '告警規則',
   ALERTING_RULE: '告警規則',
-  ALERTING_RULES: '告警規則',
   ALERTING_STATUS: '告警狀態',
-  ALERTING_TYPE: '告警級別',
+  SEVERITY: '告警級別',
   'Alerting Duration': '告警持續時間',
   'Notification Settings': '通知設置',
   'monitoring target': '監控目標',
@@ -65,16 +66,17 @@ module.exports = {
 
   ALERT_TYPE: ' {type} 告警',
   ALERT_POLICY_TYPE: ' {type} 告警策略',
-  ALERT_POLICY_DESC: '設置告警規則',
+  ALERT_POLICY_DESC:
+    'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
   ALERT_MESSAGE_DESC:
-    'Users can view all alerting messages that have met the conditions of alerting policies at the cluster level.',
+    'Alerting messages display details of triggered alerts after the conditions of alerting policies are met.',
   ALERT_POLICY_TRIGGER_RULE: '觸發規則： 滿足以下任意條件',
   ALERT_METRIC_NAME: '告警指標名稱',
   ALERT_COMMENT: '處理意見',
   ALERT_COMMENT_DESC:
     '處理意見將作為告警處理的紀錄保留，但並不能作為處理告警的方法。紀錄訊息將給相關用戶查看該告警的處理情況。',
   ALERTING_POLICY_CREATE_DESC:
-    'You can notice if a resource is abnormal in real time by creating an alerting policy.',
+    'You can create alerting policies to detect abnormal resources in real time.',
   'ALERTING-POLICY_BASEINFO_DESC': '設置告警策略的基礎資訊',
   'ALERTING-POLICY_MONITORING-TARGET_DESC': '選擇告警策略的監控目標',
   'ALERTING-POLICY_ALERTING-RULE_DESC': '設置告警規則',
@@ -116,13 +118,13 @@ module.exports = {
   ALERT_RULE_STATUS_NO_OCCURRED: '未告警',
   SENT_RULE_TIME_TITLE: '有效時間週期',
   SENT_RULE_CHANNEL_TITLE: '推送頻道',
-  RULE_TEMPLATES: '規則模版',
-  CUSTOM_RULES: '自定義規則',
+  RULE_TEMPLATE: '規則模版',
+  CUSTOM_RULE: '自定義規則',
   RULE_EXPRESSION: '告警規則表達式',
   INVALID_TIME_DESC:
     'Invalid value. Please select a value from the drop-down list or enter 0 or a positive integer.',
   ALIAS: 'Alias',
-  ALERT_DURATION_MIN: 'Duration (min)',
+  THRESHOLD_DURATION_MIN: 'Threshold Duration (min)',
 
   ENTER_RULE_EXPRESSION: '请输入告警規則表達式。',
   ALERT_FUNCTIONS: 'Functions',
@@ -130,7 +132,7 @@ module.exports = {
   ALERT_LABELS: 'Labels',
   ALERT_RATE_RANGES: 'Rate Ranges',
 
-  NOTIFICATION_CONTENT: '通知内容',
+  NOTIFICATION_DETAILS: 'Details',
 
   CUSTOM_POLICIES: '自定義策略',
   BUILT_IN_POLICIES: '内置策略',
@@ -138,14 +140,13 @@ module.exports = {
   CPU_LOAD_1: 'Average CPU load over 1 minute',
   CPU_LOAD_5: 'Average CPU load over 5 minutes',
   CPU_LOAD_15: 'Average CPU load over 15 minutes',
-  POD_ANOMALY: '容器組異常率',
+  ABNORMAL_PODS: '容器組異常率',
   POD_USAGE_SCAP: '容器組利用率',
   CPU_USAGE_SCAP: 'CPU 利用率',
   MEMORY_AVAILABLE: '可用記憶體',
   MEMORY_USAGE_SCAP: '記憶體利用率',
   DISK_SPACE_AVAILABLE: '本地硬碟可用空間',
   DISK_SPACE_USAGE: '本地硬碟空間利用率',
-  INODE_USAGE: 'inode 利用率',
   DISK_READ_IOPS: '本地硬碟讀取 IOPS',
   DISK_WRITE_IOPS: '本地硬碟寫入 IOPS',
   DISK_READ_THROUGHPUT: '本地硬碟讀取吞吐量',
@@ -161,17 +162,18 @@ module.exports = {
   'Unavailable daemonset replicas ratio': '守護進程集副本不可用率',
   'Unavailable statefulset replicas ratio': '有狀態集副本不可用率',
 
-  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How do I trigger alerting messages?',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerting messages generated?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A:
-    '需要對資源設置告警策略，當資源某項指標達到了告警策略的臨界值後即會觸發並推送訊息。',
+    'You need to set an alerting policy for a resource. Alerting messages will be generated when the metric configured in the alerting policy reaches a threshold.',
   REQUESTS_FOR_PUSH_AN_ALARM_Q: '告警策略訊息推送的前提條件？',
   REQUESTS_FOR_PUSH_AN_ALARM_A:
-    '平台管理員需要選擇告警通知的方式並配置對應的伺服器。',
+    'The platform administrator needs to select a notification method and configure the server corresponding to the method.',
   HOW_TO_SUPRESS_AN_ALARM_Q: '如何對告警訊息進行抑制？',
   HOW_TO_SUPRESS_AN_ALARM_A:
-    '可以對每條告警策略進行多級别的設置，每個級别對應不同的告警週期及重覆週期',
+    'You can set alerting policies at different levels. Each level corresponds to an alerting interval.',
 
-  ALERT_DURATION: '監控目標满足告警條件的時間達到告警持續時間後，將觸發告警',
+  ALERT_DURATION:
+    'An alert is firing when the threshold duration reaches the preset value.',
   ALERT_RULE_INACTIVE: '未觸發',
   ALERT_RULE_PENDING: '待觸發',
   ALERT_RULE_FIRING: '觸發中',
@@ -180,11 +182,12 @@ module.exports = {
   ALERT_RULE_HEALTH_UNKNOWN: '未知',
 
   ALERT_RULE_EXPRESSION_DESC:
-    '告警規則可以通過 PromQL 語句來自定義，PromQL 相關語法請參考 <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Prometheus Querying</a>',
+    'You can define a custom rule using PromQL statements. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Learn More</a>',
 
   // Alerting Messages
   ALERTING_MESSAGES: 'Alerting Messages',
   NO_DATA_DESC: 'No Data Found',
+  MONITORING_TARGET: 'Monitoring Target',
 
   // Alerting Policies
   ALERTING_POLICIES: 'Alerting Policies',

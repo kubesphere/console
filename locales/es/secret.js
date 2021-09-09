@@ -42,13 +42,15 @@ module.exports = {
   REGISTRY_SECRET_VER_SUC: 'Verificación de registro exitosa',
   Secret: 'Secreto',
   SECRET: 'Secreto',
+  SECRET_PL: 'Secrets',
+  SECRET_LOW: 'Secret',
   SECRET_SETTINGS_TCAP: 'Configuraciones secretas',
   secrets: 'secretos',
   Secrets: 'Secretos',
   Unverified: 'Sin verificar',
   SECRET_DESC:
     'Un secreto es un objeto que contiene una pequeña cantidad de datos confidenciales, como una contraseña, un token o una clave.',
-  SECRET_CREATE_DESC:
+  SECRET_EMPTY_DESC:
     'Un secreto es un objeto que contiene una pequeña cantidad de datos confidenciales, como una contraseña, un token o una clave.',
   SECRET_TYPE_DESC: 'Puedes elegir o personalizar un tipo secreto.',
   SECRET_NO_CHINESE_CODE_DESC:

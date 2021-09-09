@@ -259,7 +259,8 @@ export default class EdgeNodes extends React.Component {
         dataIndex: 'role',
         isHideable: true,
         search: true,
-        render: roles => roles.join(','),
+        render: roles =>
+          roles.map(role => t(role.replace('-', '_').toUpperCase())).join('/'),
       },
       {
         title: t('CPU'),
@@ -326,13 +327,13 @@ export default class EdgeNodes extends React.Component {
                   )}
                 </div>
               }
-              description={`${metrics.memory_used}/${metrics.memory_total} Gi`}
+              description={`${metrics.memory_used}/${metrics.memory_total} GiB`}
             />
           )
         },
       },
       {
-        title: t('Pods'),
+        title: t('POD_PL'),
         key: 'pods',
         isHideable: true,
         render: record => {
@@ -357,13 +358,13 @@ export default class EdgeNodes extends React.Component {
         },
       },
       {
-        title: t('Allocated CPU'),
+        title: t('ALLOCATED_CPU'),
         key: 'allocated_resources_cpu',
         isHideable: true,
         render: this.renderCPUTooltip,
       },
       {
-        title: t('Allocated Memory'),
+        title: t('ALLOCATED_MEMORY'),
         key: 'allocated_resources_memory',
         isHideable: true,
         render: this.renderMemoryTooltip,
@@ -374,22 +375,62 @@ export default class EdgeNodes extends React.Component {
   renderCPUTooltip = record => {
     const content = (
       <p>
-        {t('Resource Limits')}:{' '}
-        {cpuFormat(get(record, 'annotations["node.kubesphere.io/cpu-limits"]'))}{' '}
-        Core (
-        {get(record, 'annotations["node.kubesphere.io/cpu-limits-fraction"]')})
+        {cpuFormat(
+          get(record, 'annotations["node.kubesphere.io/cpu-limits"]')
+        ) === 1
+          ? t('CPU_LIMIT_SI', {
+              core: cpuFormat(
+                get(record, 'annotations["node.kubesphere.io/cpu-limits"]')
+              ),
+              percent: get(
+                record,
+                'annotations["node.kubesphere.io/cpu-limits-fraction"]'
+              ),
+            })
+          : t('CPU_LIMIT_PL', {
+              core: cpuFormat(
+                get(record, 'annotations["node.kubesphere.io/cpu-limits"]')
+              ),
+              percent: get(
+                record,
+                'annotations["node.kubesphere.io/cpu-limits-fraction"]'
+              ),
+            })}
       </p>
     )
     return (
       <Tooltip content={content} placement="top">
         <Text
-          title={`${cpuFormat(
-            get(record, 'annotations["node.kubesphere.io/cpu-requests"]')
-          )} Core (${get(
-            record,
-            'annotations["node.kubesphere.io/cpu-requests-fraction"]'
-          )})`}
-          description={t('Resource Requests')}
+          title={
+            cpuFormat(
+              get(record, 'annotations["node.kubesphere.io/cpu-limits"]')
+            ) === 1
+              ? t('CPU_REQUEST_SI', {
+                  core: cpuFormat(
+                    get(
+                      record,
+                      'annotations["node.kubesphere.io/cpu-requests"]'
+                    )
+                  ),
+                  percent: get(
+                    record,
+                    'annotations["node.kubesphere.io/cpu-requests-fraction"]'
+                  ),
+                })
+              : t('CPU_REQUEST_PL', {
+                  core: cpuFormat(
+                    get(
+                      record,
+                      'annotations["node.kubesphere.io/cpu-requests"]'
+                    )
+                  ),
+                  percent: get(
+                    record,
+                    'annotations["node.kubesphere.io/cpu-requests-fraction"]'
+                  ),
+                })
+          }
+          description={t('RESOURCE_REQUEST')}
         />
       </Tooltip>
     )
@@ -398,30 +439,32 @@ export default class EdgeNodes extends React.Component {
   renderMemoryTooltip = record => {
     const content = (
       <p>
-        {t('Resource Limits')}:{' '}
-        {memoryFormat(
-          get(record, 'annotations["node.kubesphere.io/memory-limits"]'),
-          'Gi'
-        )}{' '}
-        Gi (
-        {get(
-          record,
-          'annotations["node.kubesphere.io/memory-limits-fraction"]'
-        )}
-        )
+        {t('MEMORY_LIMIT_VALUE', {
+          gib: memoryFormat(
+            get(record, 'annotations["node.kubesphere.io/memory-limits"]'),
+            'Gi'
+          ),
+          percent: get(
+            record,
+            'annotations["node.kubesphere.io/memory-limits-fraction"]'
+          ),
+        })}
       </p>
     )
     return (
       <Tooltip content={content} placement="top">
         <Text
-          title={`${memoryFormat(
-            get(record, 'annotations["node.kubesphere.io/memory-requests"]'),
-            'Gi'
-          )} Gi (${get(
-            record,
-            'annotations["node.kubesphere.io/memory-requests-fraction"]'
-          )})`}
-          description={t('Resource Requests')}
+          title={t('MEMORY_REQUEST_VALUE', {
+            gib: memoryFormat(
+              get(record, 'annotations["node.kubesphere.io/memory-requests"]'),
+              'Gi'
+            ),
+            percent: get(
+              record,
+              'annotations["node.kubesphere.io/memory-requests-fraction"]'
+            ),
+          })}
+          description={t('RESOURCE_REQUEST')}
         />
       </Tooltip>
     )
@@ -442,7 +485,7 @@ export default class EdgeNodes extends React.Component {
 
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
-        <Banner {...bannerProps} tips={this.tips} />
+        <Banner {...bannerProps} title={t('EDGE_NODE_PL')} tips={this.tips} />
         <Table
           {...tableProps}
           onCreate={this.showCreate}

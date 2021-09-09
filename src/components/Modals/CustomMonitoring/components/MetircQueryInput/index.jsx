@@ -78,7 +78,7 @@ export default class MetircQueryInput extends Component {
           onSelect={this.handleMetricSelect}
         >
           <span className={styles.trigger}>
-            {t('MONITOR_METRICS')}
+            {t('MONITOR_METRIC')}
             <Icon type="light" name={'caret-down'} />
           </span>
         </Cascader>

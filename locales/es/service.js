@@ -38,7 +38,7 @@ module.exports = {
   Creating: 'Creando',
   'Creation failed, please delete and try again':
     'Creación fallida, por favor, elimínela e intente de nuevo',
-  CUSTOM_CREATION: 'Creacion personalizada',
+  CUSTOM_SERVICE: 'Custom Service',
   'Delete Service': 'Eliminar servicio',
   'Do not assign Service IP': 'No asignar IP de servicio',
   EDIT_INTERNET_ACCESS: 'Editar acceso a Internet',
@@ -78,13 +78,9 @@ module.exports = {
   'Service Name': 'Nombre del Servicio',
   SERVICE_PORT: 'Puerto de servicio',
   SERVICE_TYPE_TCAP: 'Tipo de servicio',
-  services: 'servicios',
-  'Simple Service': 'Servicio simple',
   SPECIFY_WORKLOAD: 'Specify Workload',
   'Specify Node': 'Especificar nó',
   'Service Type': 'Tipo de servicio',
-  services: 'servicios',
-  'Simple Service': 'Servicio simple',
   'Specify Workload': 'Especificar carga de trabajo',
   SPECIFY_NODE: 'Especificar nó',
   'Specify Workloads': 'Especificar cargas de trabajo',
@@ -94,7 +90,8 @@ module.exports = {
     '¿Seguro que quiere eliminar los servicios?',
   'Target Port': 'Puerto destino',
   'The current selector': 'El selector actual',
-  STICKY_SESSION_DESC: 'The default stickiness duration is 10800s (3 h).',
+  STICKY_SESSION_DESC:
+    'Ensures that all requests from the same client are forwarded to the same backend server during one session.',
   VIRTUAL_IP: 'IP virtual',
   SERVICE_EXTERNAL_NAME_DESC:
     'Asigne el servicio al contenido del campo externalName devolviendo un registro CNAME con su valor.',
@@ -105,8 +102,7 @@ module.exports = {
     'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
   SERVICE_DESC:
     'Services provide an abstract way to expose applications running on a Pod as network services.',
-  SERVICE_CREATE_DESC:
-    'Un servicio es una abstracción que define una colección lógica de Pods y una estrategia para acceder a ellos. Puedes seleccionar el tipo de servicio o cómo se crea un servicio. KubeSphere admite servicios con y sin estado y los servicios se pueden crear a través de códigos o artefactos.',
+  SERVICE_EMPTY_DESC: 'Please create a Service.',
   SERVICES_BASEINFO_DESC:
     'El nombre y la descripción del servicio deben proporcionarse para crear el servicio. El nombre del servicio no puedes ser el mismo que el nombre del servicio existente en el mismo proyecto.',
   SERVICES_SETTINGS_DESC:
@@ -124,10 +120,8 @@ module.exports = {
     'Asigne servicios externos a un clúster o proyecto.',
   ACCESS_NONE_TIP:
     'Internet access is not supported. The Service can be accessed only within the cluster.',
-  ACCESS_NODEPORT_TIP:
-    'Access the Service through the port of the cluster node.',
-  ACCESS_LOADBALANCER_TIP:
-    'Access the Service using a LoadBalancer provided by a cloud provider.',
+  ACCESS_NODEPORT_TIP: 'Use a port of the cluster nodes to access the Service.',
+  ACCESS_LOADBALANCER_TIP: 'Use a load balancer to access the Service.',
   SERVICE_NODE_PORT_DESC:
     'Si su red actual está en la misma red que el nodo del clúster, puedes acceder a ella a través de la dirección IP del clúster + número de puerto del nodo o a través del puerto del nodo IP + nodo.',
   SERVICE_TYPE: 'Puedes crear un servicio sin estado o un servicio con estado.',
@@ -160,7 +154,7 @@ module.exports = {
     'El servicio más utilizado en servicios de contenedores. Define la plantilla del Pod para controlar el estado del Pod, incluidas las actualizaciones continuas y los retrocesos.',
   SERVISE_SIMPLE_DESC: 'Crea un servicio con Pods existentes.',
   SERVICE_PORTS_DESC:
-    'Set the ports to which container images are exposed and the service ports.',
+    'Set the ports used to access the container and the service ports.',
   SPECIFY_WORKLOAD_DESC:
     'Pre-populate the fields with labels of container replicas created by the workloads.',
 
@@ -172,7 +166,8 @@ module.exports = {
   LABEL_SELECTOR: 'Label Selector',
   NONE: 'None',
   UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
-  STICKINESS_VALUE_RANGE: 'Value range: 0–86400.',
+  STICKY_DURATION_DESC:
+    'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
   HEADLESS: 'Headless',
   EXTERNALNAME: 'ExternalName',
   UNKNOWN: 'Unknown',

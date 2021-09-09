@@ -21,6 +21,8 @@ module.exports = {
   Secrets: '密鑰',
   Secret: '密鑰',
   SECRET: '保密字典',
+  SECRET_PL: 'Secrets',
+  SECRET_LOW: 'Secret',
   SECRET_FIELD_COUNT: '字段數量',
   EDIT_SECRET: '編輯保密字典',
   SECRET_SETTINGS_TCAP: '密鑰設置',
@@ -34,9 +36,9 @@ module.exports = {
   SECRET_TYPE_DESC: '選擇一個保密字典類型',
 
   SECRET_DESC:
-    '保密字典（Secret）是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵值對形式保存並且可以在容器組中使用。',
-  SECRET_CREATE_DESC:
-    '保密字典是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵值對形式保存並且可以在容器組中使用。',
+    '保密字典（Secret）是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
+  SECRET_EMPTY_DESC:
+    '保密字典是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
 
   SECRET_NO_CHINESE_CODE_DESC:
     '保密字典的鍵必須由字母數字字符、連字符（-）、下劃線（_）或句點（.）組成。',

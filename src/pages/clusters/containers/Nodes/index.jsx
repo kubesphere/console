@@ -266,7 +266,8 @@ export default class Nodes extends React.Component {
         dataIndex: 'role',
         isHideable: true,
         search: true,
-        render: roles => roles.map(role => t(role.toUpperCase())).join(', '),
+        render: roles =>
+          roles.map(role => t(role.replace('-', '_').toUpperCase())).join('/'),
       },
       {
         title: t('CPU_USAGE'),
@@ -339,7 +340,7 @@ export default class Nodes extends React.Component {
         },
       },
       {
-        title: t('PODS'),
+        title: t('POD_PL'),
         key: 'pods',
         isHideable: true,
         render: record => {
@@ -515,7 +516,11 @@ export default class Nodes extends React.Component {
 
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
-        <Banner {...bannerProps} title={t('CLUSTER_NODES')} tips={this.tips} />
+        <Banner
+          {...bannerProps}
+          title={t('CLUSTER_NODE_PL')}
+          tips={this.tips}
+        />
         {this.renderOverview()}
         <Table
           {...tableProps}

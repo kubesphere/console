@@ -26,6 +26,10 @@ module.exports = {
   Ingress: 'Ingress',
   'Network Isolation': 'Network Isolation',
   'Network Policy': 'Network Policy',
+  NETWORK_POLICY: 'Network Policy',
+  NETWORK_POLICY_PL: 'Network Policies',
+  NETWORK_POLICY_LOW: 'network policy',
+  NETWORK_POLICY_EMPTY_DESC: 'Please create a network policy.',
   'Traffic Egress': 'Traffic Egress',
   'Traffic Ingress': 'Traffic Ingress',
 
@@ -64,8 +68,8 @@ module.exports = {
     'CIDR is a string representing a valid IP block, such as "192.168.1.1/24".',
   NETWORK_POLICY_D_OP1: 'Egress',
   NETWORK_POLICY_D_OP2: 'Ingress',
-  NETWORK_POLICY_CREATE_DESC:
-    'Configure a network policy to control traffic between Pods within the same cluster and traffic from outside to implement application isolation and enhance application security.',
+  CREATE_NETWORK_POLICY_DESC:
+    'The network policy is configured to allow network isolation within the same cluster, namely, the ability to build a firewall between certain instances (Pods).',
   CIDR_DESC: 'Based on the traffic direction',
   NETWORK_POLICY_MODAL_DIRECT: 'Please select the rule direction',
   NETWORK_POLICY_MODAL_CIDRERR: 'Please fill in the CIDR information correctly',
