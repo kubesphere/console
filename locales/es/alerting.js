@@ -109,9 +109,10 @@ module.exports = {
   CPU_LOAD_5: 'Average CPU load over 5 minutes',
   CPU_LOAD_15: 'Average CPU load over 15 minutes',
   ALERT_TYPE: 'Alerta {type}',
-  ALERT_POLICY_DESC: 'Establecer reglas de alerta',
+  ALERT_POLICY_DESC:
+    'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
   ALERT_MESSAGE_DESC:
-    'Users can view all alerting messages that have met the conditions of alerting policies at the cluster level.',
+    'Alerting messages display details of triggered alerts after the conditions of alerting policies are met.',
 
   ALERTING_POLICY_EMPTY_DESC:
     'You can notice if a resource is abnormal in real time by creating an alerting policy.',

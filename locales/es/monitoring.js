@@ -109,11 +109,11 @@ module.exports = {
   UTILIZATION: 'Utilización',
   RESOURCE_USAGE_TITLE: 'Uso de recursos',
   MONITORING_CLUSTER_DESC:
-    'Puedes supervisar el estado de ejecución del clúster en este módulo.',
+    'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
   MONITORING_PHYSICAL_DESC:
     'Supervisar el estado de ejecución de los recursos físicos.',
   MONITORING_APPLICATION_DESC:
-    'Puedes supervisar el estado de ejecución de los recursos de la aplicación en este módulo.',
+    'Application resources provide the monitoring data of application resource usage and usage ranking.',
   TIMERANGE_SELECTOR_MSG: 'The end time must be later than the start time.',
   MONITORING_SELECT_LIMIT_MSG: 'Puedes seleccionar hasta diez recursos',
   AVERAGE: 'Promedio',
@@ -139,7 +139,7 @@ module.exports = {
   CustomMonitorDashboards: 'Paneles de monitorización personalizados',
   CUSTOM_MONITORING: 'Custom Monitoring',
   CUSTOM_MONITOR_DESC:
-    'Users can customize application monitoring dashboards based on their needs.',
+    'Custom monitoring provides application monitoring templates. You can customize monitoring dashboards based on your needs.',
   CUSTOMMONITORDASHBOARD_CREATE_DESC:
     'You can customize application monitoring dashboards based on your needs.',
   ADD_MONITOR_ITEM: 'Agregar elemento de monitorización',

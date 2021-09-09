@@ -80,9 +80,11 @@ module.exports = {
   TIME_D: '{num} 天',
   UTILIZATION: '使用率',
   RESOURCE_USAGE_TITLE: '资源用量',
-  MONITORING_CLUSTER_DESC: '监控集群的运行状态。',
+  MONITORING_CLUSTER_DESC:
+    '集群状态展示集群资源的概览和详情，您可以查看集群资源的监控数据和用量排行情况。',
   MONITORING_PHYSICAL_DESC: '监控集群物理资源的运行状态',
-  MONITORING_APPLICATION_DESC: '监控集群应用资源的运行状态。',
+  MONITORING_APPLICATION_DESC:
+    '应用资源提供应用资源用量的监控数据以及用量排行情况。',
   TIMERANGE_SELECTOR_MSG: '结束时间需晚于开始时间。',
   MONITORING_SELECT_LIMIT_MSG: '最多可以选择 10 个资源',
 
@@ -197,7 +199,8 @@ module.exports = {
   CustomMonitorDashboards: '自定义监控面板',
   CustomMonitorDashboard: '自定义监控面板',
   CUSTOM_MONITORING: '自定义监控',
-  CUSTOM_MONITOR_DESC: '用户可根据需求自定义应用监控面板。',
+  CUSTOM_MONITOR_DESC:
+    '自定义监控提供应用监控模板，您可以根据需求自定义监控面板。',
   CUSTOMMONITORDASHBOARD_CREATE_DESC:
     '您可以根据自己的需求自定义应用监控面板。',
 

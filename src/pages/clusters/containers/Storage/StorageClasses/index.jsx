@@ -73,7 +73,7 @@ export default class StorageClasses extends React.Component {
         ),
       },
       {
-        title: t('VOLUME_COUNT'),
+        title: t('VOLUME_PL'),
         dataIndex: 'volumeCount',
         isHideable: true,
         render: (count, record) =>
@@ -86,26 +86,26 @@ export default class StorageClasses extends React.Component {
         render: value => (value ? t('YES') : '-'),
       },
       {
-        title: t('VOLUME_CLONE_SUPPORT'),
+        title: t('ALLOW_VOLUME_CLONE'),
         dataIndex: 'annotations',
         isHideable: true,
         render: annotations =>
           annotations['storageclass.kubesphere.io/allow-clone']
-            ? t('True')
-            : t('False'),
+            ? t('TRUE')
+            : t('FALSE'),
       },
       {
-        title: t('VOLUME_SNAPSHOT_SUPPORT'),
+        title: t('ALLOW_VOLUME_SNAPSHOT'),
         dataIndex: 'supportSnapshot',
         isHideable: true,
-        render: supportSnapshot => (supportSnapshot ? t('True') : t('False')),
+        render: supportSnapshot => (supportSnapshot ? t('TRUE') : t('FALSE')),
       },
       {
-        title: t('VOLUME_EXPANSION_SUPPORT'),
+        title: t('ALLOW_VOLUME_EXPANSION'),
         dataIndex: 'allowVolumeExpansion',
         isHideable: true,
         render: allowVolumeExpansion =>
-          allowVolumeExpansion ? t('True') : t('False'),
+          allowVolumeExpansion ? t('TRUE') : t('FALSE'),
       },
       {
         title: t('PROVISIONER'),

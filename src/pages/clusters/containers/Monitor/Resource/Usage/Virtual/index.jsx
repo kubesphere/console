@@ -131,8 +131,8 @@ class VirtualResource extends React.Component {
     },
     {
       type: 'job',
-      title: 'JOBS',
-      legend: ['JOBS'],
+      title: 'JOB_PL',
+      legend: ['JOB_PL'],
       metricType: MetricTypes.job_count,
     },
     {
