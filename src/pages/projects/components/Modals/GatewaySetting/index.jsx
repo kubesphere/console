@@ -125,7 +125,6 @@ export default class GatewaySettingModal extends React.Component {
       <Modal
         width={1162}
         title={t('Set Gateway')}
-        onCancel={onCancel}
         visible={visible}
         bodyClassName={styles.modalBody}
         closable={false}
@@ -187,6 +186,13 @@ export default class GatewaySettingModal extends React.Component {
           </div>
         </div>
         <div className={styles.footer}>
+          <Button
+            onClick={onCancel}
+            loading={isSubmitting}
+            disabled={isSubmitting}
+          >
+            {t('Cancel')}
+          </Button>
           <Button
             type="control"
             onClick={this.handleOk}
