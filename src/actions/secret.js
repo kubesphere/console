@@ -93,6 +93,7 @@ export default {
         store,
         detail,
         modal: SecretEditModal,
+        disableSelect: true,
         ...props,
       })
     },
