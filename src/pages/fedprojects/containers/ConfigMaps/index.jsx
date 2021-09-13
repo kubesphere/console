@@ -31,7 +31,7 @@ import FederatedStore from 'stores/federated'
 @withProjectList({
   store: new FederatedStore({ module: 'configmaps' }),
   module: 'configmaps',
-  name: 'ConfigMap',
+  name: 'CONFIGMAP',
 })
 export default class ConfigMaps extends React.Component {
   get itemActions() {
@@ -75,7 +75,7 @@ export default class ConfigMaps extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

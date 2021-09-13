@@ -94,11 +94,11 @@ export default class BasicInfo extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Form data={formData} ref={formRef}>
-          <div className={styles.title}>{t('Basic Info')}</div>
+          <div className={styles.title}>{t('BASIC_INFORMATION')}</div>
           <Columns>
             <Column>
               <Form.Item
-                label={t('Application Name')}
+                label={t('NAME')}
                 desc={t('CLUSTER_NAME_DESC')}
                 rules={[
                   { required: true, message: t('NAME_EMPTY_DESC') },
@@ -115,15 +115,13 @@ export default class BasicInfo extends React.Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('Application Version')}
-                rules={[
-                  { required: true, message: t('Please select version') },
-                ]}
+                label={t('VERSION')}
+                rules={[{ required: true, message: t('VERSION_EMPTY_DESC') }]}
               >
                 <Select
                   name="version_id"
                   options={this.sortedVersions}
-                  placeholder={t('Please select version')}
+                  placeholder=" "
                   pagination={pick(versionStore.list, [
                     'page',
                     'limit',
@@ -154,7 +152,7 @@ export default class BasicInfo extends React.Component {
                 rules={[
                   {
                     required: true,
-                    message: t('Please select a project to deploy'),
+                    message: t('PROJECT_EMPTY_DESC'),
                   },
                 ]}
               >

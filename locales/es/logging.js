@@ -155,8 +155,9 @@ module.exports = {
 
   CUSTOMMONITORDASHBOARD: 'Panel de control personalizado',
   CUSTOMMONITORDASHBOARD_PL: 'Custom Monitoring Dashboards',
+  CUSTOM_MONITORING_DASHBOARD_PL: 'Custom Monitoring Dashboards',
   CUSTOMMONITORDASHBOARD_LOW: 'custom monitoring dashboard',
-  CUSTOMMONITORDASHBOARD_EMPTY_DESC:
+  CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC:
     'Please create a custom monitoring dashboard.',
 
   SERVICE_BUILT_INTERFACE:

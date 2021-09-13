@@ -32,7 +32,7 @@ import { getLocalTime } from 'utils'
   store: new UserStore(),
   module: 'users',
   authKey: 'members',
-  name: 'Member',
+  name: 'MEMBER',
 })
 export default class Accounts extends React.Component {
   roleStore = new RoleStore('workspaceroles')

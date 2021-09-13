@@ -32,7 +32,7 @@ import StorageClassStore from 'stores/storageClass'
 
 @withList({
   store: new StorageClassStore(),
-  name: 'Storage Class',
+  name: 'STORAGE_CLASS',
   module: 'storageclasses',
 })
 export default class StorageClasses extends React.Component {

@@ -222,9 +222,9 @@ module.exports = {
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select a snapshot to create a volume.',
   SELECT_STORAGE_CLASS_CREATE_VOLUME:
     'Select a storage class to create a volume.',
-  VOLUMESNAPSHOT_DESC:
+  VOLUME_SNAPSHOT_DESC:
     'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
-  VOLUMESNAPSHOT_EMPTY_DESC:
+  VOLUME_SNAPSHOT_EMPTY_DESC:
     'Please go to the details page of a volume and create a volume snapshot',
   WHAT_IS_VOLUME_SNAPSHOTS: 'What are volume snapshots?',
 

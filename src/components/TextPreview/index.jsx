@@ -148,7 +148,7 @@ export default class TextPreview extends React.Component {
           <>
             <div className={styles.icon}>
               <Icon name="coding" size={20} />
-              <span>{t('Chart Files')}</span>
+              <span>{t('CHART_FILES')}</span>
             </div>
             {this.renderFileSelect()}
           </>

@@ -153,7 +153,7 @@ export default class HPAModal extends React.Component {
               message={t('HPA_MSG')}
             />
             <Form.Item
-              label={t('Resource Name')}
+              label={t('RESOURCE_NAME')}
               rules={[{ required: true, message: t('NAME_EMPTY_DESC') }]}
             >
               <Input name="metadata.name" disabled />

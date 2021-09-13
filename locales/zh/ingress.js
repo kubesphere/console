@@ -21,14 +21,15 @@ module.exports = {
   ROUTE: '应用路由',
   ROUTE_PL: '应用路由',
   ROUTE_LOW: '应用路由',
+  EDIT_RULE: 'Edit Rule',
   'Create Route': '创建应用路由',
-  ADD_PATH_TIP: '请添加至少一个路径。',
+  PATH_EMPTY_DESC: '请添加至少一个路径。',
   Rules: '规则',
   EDIT_RULES_TCAP: '编辑规则',
   EDIT_ANNOTATION: '编辑注解',
-  ROUTE_RULES_TCAP: '路由规则',
+  ROUTING_RULES: '路由规则',
   GATEWAY_ADDRESS_TCAP: '网关地址',
-  DOMAIN_NAME_TIP: '请输入域名。',
+  DOMAIN_NAME_EMPTY_DESC: '请输入一个域名。',
   'Click to visit': '点击访问',
   PATH_SERVICE_TIP: '服务',
   ADD_PATH_TCAP: '添加路径',
@@ -36,23 +37,25 @@ module.exports = {
   'Add Path': '添加 Path',
   ADD_ANNOTATION: '添加注解',
 
-  SET_ROUTE_RULE_TCAP: '设置路由规则',
+  SET_ROUTING_RULES: '设置路由规则',
 
   AUTO_GENERATE_TCAP: '自动生成',
   SPECIFY_DOMAIN_TCAP: '指定域名',
 
   'Unable to access': '无法访问',
 
-  INVALID_DOMAIN_TIP: '域名格式错误。',
+  INVALID_DOMAIN_DESC: '域名格式错误。',
 
   'Gateway IP': '网关 IP',
   'Gateway Type': '网关类型',
 
   MODE_TCAP: '模式',
   PATH_PL: '路径',
+  PATH_SI: '路径',
+  PATH_VALUE: '路径：{value}',
   DOMAIN_NAME_TCAP: '域名',
 
-  INVALID_PATH_TIP: '请填写正确路径。',
+  INVALID_PATH_DESC: '路径不正确。',
 
   ROUTE_DESC:
     '应用路由提供一种聚合服务的方式，您可以通过一个外部可访问的 IP 地址将集群的内部服务暴露给外部。',
@@ -68,20 +71,20 @@ module.exports = {
   GATEWAY_APPLICATION_GOVERNANCE_TIP:
     '如您不需要使用应用治理的功能，无需打开此项；如果您需要使用应用治理的 Tracing 功能，请打开此项。打开此项后，如果您的应用路由无法访问，请检查应用路由中是否添加 `nginx.ingress.kubernetes.io/service-upstream: true` 注解，如无，请手动添加。',
 
-  ADD_ROUTE_RULE_DESC: '添加一个路由规则将域名映射至服务。',
+  ADD_ROUTING_RULE_DESC: '添加一个路由规则将域名映射至服务。',
 
   UNABLE_TO_ACCESS_TIP:
     '● 请确保您设置的域名可以解析到访问入口的 IP 地址;<br/>● 如果在私有云环境中，请修改本地的 host 文件，并通过<strong>域名+节点端口</strong>的方式来访问;<br/>● 通过通配 DNS 访问，将域名修改为 hostname + 网关地址 + nip.io，然后可以通过<strong>hostname.网关地址.nip.io:节点端口</strong>的形式来访问服务;<br/>● 如果通过域名访问被拦截，请确认您的域名是真实而且已经备案。',
 
-  NO_INTERNET_ACCESS_TIP:
-    '若要使用自动生成模式，请联系项目管理员在此项目的高级设置中设置网关访问方式。',
+  NO_GATEWAY_DESC:
+    '如需使用自动生成模式，请联系项目管理员在此项目的高级设置中设置网关访问方式。',
   UNABLE_CREATE_ROUTE_TIP:
     '当前项目中没有找到可用的网关地址，无法创建应用路由。',
 
   RULE_SETTING_MODE_AUTO:
-    '配置路径以自动生成域名，域名格式为 &lt服务名称&gt + &lt项目名称&gt + &lt网关地址&gt + nip.io，然后可以通过 &lt服务名称&gt.&lt项目名称&gt.&lt网关地址&gt.nip.io:&ltNodePort&gt 的形式来访问服务。<br/>请确保所在网络环境可以正常访问网关地址。',
+    '系统将自动按照 &lt服务名称&gt.&lt项目名称&gt.&lt网关地址&gt.nip.io 格式生成域名，该域名将由 nip.io 自动解析为网关 IP 地址。此模式仅支持 HTTP 协议。',
   RULE_SETTING_MODE_SPECIFY:
-    '指定自定义域名，通过本地 hosts 文件或 DNS 服务器将域名解析为网关 IP 地址。',
+    '指定自定义域名并通过本地 hosts 文件或 DNS 服务器将域名解析为网关 IP 地址。',
 
   GATEWAY_SERVICE_MESH_STATUS_ON: '已开启',
   GATEWAY_SERVICE_MESH_STATUS_OFF: '未开启',

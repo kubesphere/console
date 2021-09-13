@@ -33,7 +33,7 @@ import RoleStore from 'stores/role'
   store: new UserStore(),
   module: 'users',
   authKey: 'members',
-  name: 'Project Member',
+  name: 'PROJECT_MEMBER',
   rowKey: 'username',
 })
 export default class Members extends React.Component {

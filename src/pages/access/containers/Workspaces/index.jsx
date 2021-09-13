@@ -33,7 +33,7 @@ import ClusterStore from 'stores/cluster'
 @withList({
   store: new WorkspaceStore(),
   module: 'workspaces',
-  name: 'Workspace',
+  name: 'WORKSPACE',
 })
 export default class Workspaces extends React.Component {
   clusterStore = new ClusterStore()
@@ -74,7 +74,7 @@ export default class Workspaces extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('workspace.delete', {
-            type: t(name),
+            type: name,
             resource: item.name,
             detail: item,
             success: routing.query,
@@ -95,7 +95,7 @@ export default class Workspaces extends React.Component {
           action: 'delete',
           onClick: () =>
             trigger('workspace.batch.delete', {
-              type: t(name),
+              type: name,
               rowKey: 'name',
             }),
         },

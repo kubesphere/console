@@ -57,7 +57,7 @@ export default class ClusterService extends Component {
     {
       key: 'editGateway',
       icon: 'ip',
-      text: t('EDIT_INTERNET_ACCESS'),
+      text: t('EDIT_EXTERNAL_ACCESS'),
       action: 'edit',
       onClick: () => this.props.updateService(this.cluster),
     },

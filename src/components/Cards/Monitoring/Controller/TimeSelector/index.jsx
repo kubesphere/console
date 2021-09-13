@@ -109,7 +109,7 @@ export default class TimeSelector extends React.PureComponent {
     }
 
     const lastTimeText = getTimeLabel(lastTime || getLastTimeStr(step, times))
-    return `${t('Last')} ${lastTimeText}`
+    return t('LAST_TIME', { value: lastTimeText })
   }
 
   renderContent() {

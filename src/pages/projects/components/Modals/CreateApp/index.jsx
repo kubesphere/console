@@ -115,18 +115,18 @@ export default class ServiceDeployAppModal extends React.Component {
   get steps() {
     return [
       {
-        title: 'Basic Info',
+        title: 'BASIC_INFORMATION',
         component: BaseInfo,
         required: true,
         isForm: true,
       },
       {
-        title: 'Service Components',
+        title: 'SERVICE_PL',
         component: Services,
         required: true,
       },
       {
-        title: 'NETWORK_ACCESS',
+        title: 'EXTERNAL_ACCESS',
         component: Routes,
         required: true,
       },
@@ -303,7 +303,7 @@ export default class ServiceDeployAppModal extends React.Component {
           <Icon name="close" size={20} clickable onClick={onCancel} />
           <span />
           <Icon name="appcenter" size={20} />
-          <span>{t('Create Application by Service')}</span>
+          <span>{t('CREATE_COMPOSED_APP')}</span>
         </div>
         {!isCodeMode && (
           <div className={styles.steps}>
@@ -313,7 +313,7 @@ export default class ServiceDeployAppModal extends React.Component {
         )}
         <Switch
           className={styles.switch}
-          text={t('EDIT_MODE')}
+          text={t('EDIT_YAML')}
           onChange={this.handleModeChange}
           checked={isCodeMode}
         />
@@ -373,13 +373,13 @@ export default class ServiceDeployAppModal extends React.Component {
         <div className={styles.footer}>
           <div className={styles.wrapper}>
             <div className="text-right">
-              <Button onClick={onCancel}>{t('Cancel')}</Button>
+              <Button onClick={onCancel}>{t('CANCEL')}</Button>
               <Button
                 type="control"
                 onClick={this.handleOk}
                 loading={store.isSubmitting}
               >
-                {t('Create')}
+                {t('CREATE')}
               </Button>
             </div>
           </div>
@@ -392,7 +392,7 @@ export default class ServiceDeployAppModal extends React.Component {
       <div className={styles.footer}>
         <div className={styles.wrapper}>
           <div className="text-right">
-            <Button onClick={onCancel}>{t('Cancel')}</Button>
+            <Button onClick={onCancel}>{t('CANCEL')}</Button>
             {currentStep > 0 && (
               <Button type="control" onClick={this.handlePrev}>
                 {t('PREVIOUS')}
@@ -408,7 +408,7 @@ export default class ServiceDeployAppModal extends React.Component {
                 onClick={this.handleOk}
                 loading={store.isSubmitting}
               >
-                {t('Create')}
+                {t('CREATE')}
               </Button>
             )}
           </div>

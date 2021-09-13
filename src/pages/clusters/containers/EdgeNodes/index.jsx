@@ -49,7 +49,7 @@ const MetricTypes = {
 
 @withClusterList({
   store: new EdgeNodeStore(),
-  name: 'Edge Node',
+  name: 'EDGE_NODE',
   module: 'edgenodes',
 })
 export default class EdgeNodes extends React.Component {
@@ -99,7 +99,7 @@ export default class EdgeNodes extends React.Component {
         show: item => item.importStatus === 'failed',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
             success: routing.query,
           }),

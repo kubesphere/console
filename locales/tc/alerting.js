@@ -52,7 +52,7 @@ module.exports = {
   'Add Rule': '添加規則',
   'Edit Rule': '編輯規則',
   'Rule Name': '規則名稱',
-  'View Details': '查看詳情',
+  VIEW_DETAILS: '查看詳情',
   ACTIVATED_AT: '告警激活時間',
   SET_RULE_DESC: '請輸入告警規則。',
   'Please input the threshold': '請輸入臨界值',
@@ -185,7 +185,7 @@ module.exports = {
     'You can define a custom rule using PromQL statements. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Learn More</a>',
 
   // Alerting Messages
-  ALERTING_MESSAGES: 'Alerting Messages',
+  ALERTING_MESSAGE_PL: 'Alerting Messages',
   NO_DATA_DESC: 'No Data Found',
   MONITORING_TARGET: 'Monitoring Target',
 
@@ -198,4 +198,7 @@ module.exports = {
   STATEFULSET_PL: 'StatefulSets',
   DAEMONSET: 'DaemonSet',
   DAEMONSET_PL: 'DaemonSets',
+  DEPLOYMENTS_VALUE: 'Deployments: {value}',
+  STATEFULSETS_VALUE: 'StatefulSets: {value}',
+  DAEMONSETS_VALUE: 'DaemonSets: {value}',
 }

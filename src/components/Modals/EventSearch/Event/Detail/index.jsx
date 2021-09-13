@@ -114,7 +114,7 @@ export default class Detail extends React.PureComponent {
       className: styles.timecol,
     },
     {
-      thead: t('Category'),
+      thead: t('CATEGORY'),
       key: 'type',
       hidden: false,
       content: ({ type }) => (

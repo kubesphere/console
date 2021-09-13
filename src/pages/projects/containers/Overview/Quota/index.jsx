@@ -67,11 +67,11 @@ export default class Quota extends Component {
         <Text
           className={styles.text}
           icon="exclamation"
-          title={t('Project Quota Not Set')}
-          description={t('HOW_TO_USE_QUOTA_A')}
+          title={t('PROJECT_QUOTAS_NOT_SET')}
+          description={t('PROJECT_QUOTAS_DESC')}
         />
         <Button type="control" onClick={this.showSetting}>
-          {t('Set')}
+          {t('EDIT_QUOTA')}
         </Button>
       </Panel>
     )

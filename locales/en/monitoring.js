@@ -21,7 +21,7 @@ module.exports = {
   'APIs Average': 'APIs Average',
   API_SERVER_MONITORING: 'API Server Monitoring',
   'Application Resources': 'Application Resources',
-  APPLICATION_RESOURCES: 'Application Resources',
+  APPLICATION_RESOURCE_PL: 'Application Resources',
   APPLICATION_RESOURCES_USAGE: 'Application Resource Usage',
   SCHEDULE_ATTEMPTS: 'Scheduling Attempts',
   SCHEDULING_RATE: 'Scheduling Rate',
@@ -110,6 +110,9 @@ module.exports = {
 
   Interval: 'Interval',
   Last: 'Last',
+  LAST_TIME_M: '{num, plural, =1 {last 1 minute} other{last # minutes}}',
+  LAST_TIME_H: '{num, plural, =1 {last 1 hour} other{last # hours}}',
+  LAST_TIME_D: '{num, plural, =1 {last 1 day} other{last # days}}',
   TIME_M: '{num, plural, =1 {1 minute} other{# minutes}}',
   TIME_H: '{num, plural, =1 {1 hour} other{# hours}}',
   TIME_D: '{num, plural, =1 {1 day} other{# days}}',
@@ -146,7 +149,7 @@ module.exports = {
 
   CustomMonitorDashboards: 'Custom Monitoring Dashboards',
   CUSTOM_MONITORING: 'Custom Monitoring',
-  CUSTOM_MONITOR_DESC:
+  CUSTOM_MONITORING_DASHBOARD_DESC:
     'Custom monitoring provides application monitoring templates. You can customize monitoring dashboards based on your needs.',
   CUSTOMMONITORDASHBOARD_CREATE_DESC:
     'You can customize application monitoring dashboards based on your needs.',
@@ -213,7 +216,6 @@ module.exports = {
   // Cluster Status
   DISK_USAGE: 'Disk Usage',
   POD_COUNT: 'Pods',
-  USAGE: 'Usage',
   API_SERVER: 'API Server',
   AVERAGE_CPU_LOAD: 'Average CPU Load',
   POD_USAGE: 'Pod Usage',

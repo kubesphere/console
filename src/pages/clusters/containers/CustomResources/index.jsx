@@ -30,7 +30,7 @@ import CrdStore from 'stores/crd'
 @withList({
   store: new CrdStore(),
   module: 'customresourcedefinitions',
-  name: 'Custom Resource Definition',
+  name: 'CRD',
 })
 export default class CustomResources extends React.Component {
   getColumns = () => {

@@ -231,7 +231,7 @@ export default class Home extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Banner className={styles.banner}>
-          <h2 className={styles.title}>{t('App Store')}</h2>
+          <h2 className={styles.title}>{t('APP_STORE')}</h2>
           <p className={styles.desc}>{t('HOME_APP_STORE_DESC')}</p>
         </Banner>
         {this.renderToolbar()}

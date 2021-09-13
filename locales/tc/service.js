@@ -29,20 +29,30 @@ module.exports = {
   ACCESS_METHOD: '訪問方式',
   'Target Port': '目標端口',
   CONTAINER_PORT: '容器端口',
+  CONTAINER_PORT_VALUE: '容器端口：{value}',
   SERVICE_PORT: '服務端口',
+  SERVICE_PORT_VALUE: '服務端口：{value}',
   'Node Port': '節點端口',
   'Node Port(s)': '節點端口',
   EDIT_SERVICE: '編輯服務',
-  EDIT_INTERNET_ACCESS: '編輯外網訪問',
+  EDIT_EXTERNAL_ACCESS: '編輯外網訪問',
   'Please select Service': '請選擇 Service',
   'Path is Required': '請填寫 Path',
   VIRTUAL_IP: '虛擬 IP',
 
   SERVICE_TYPE_TCAP: '服務類型',
+  SERVICE_TYPE_DESC: 'Select a Service type.',
+  SELECT_SERVICE_TYPE_DESC:
+    'Create a stateless or stateful Service, or map a Service to an external Service.',
+  APP_SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful Service.',
+  JAVA: 'Java',
+  NODEJS: 'Node.js',
+  PYTHON: 'Python',
+  BINARY: 'Binary',
   'Service Access': '服務訪問',
   STATELESS_SERVICE: '無狀態服務',
   STATEFUL_SERVICE: '有狀態服務',
-  'External Service': '外部服務',
+  EXTERNAL_SERVICE: '外部服務',
   'Simple Service': '簡單服務',
   'Associated Application': '關聯應用',
   'Service Mesh': '服務治理',
@@ -54,6 +64,9 @@ module.exports = {
   'Please input service name': '請輸入服務名稱',
   ENTER_EXTERNALNAME_DESC: '請輸入 ExternalName。',
   SPECIFY_WORKLOAD: '指定工作負載',
+  SPECIFY_WORKLOAD_TO_CREATE_SERVICE: 'Specify Workload to Create Service',
+  EDIT_YAML_TO_CREATE_SERVICE: 'Edit YAML to Create Service',
+  CREATE_EXTERNAL_SERVICE: 'Create External Service',
   'Specify Node': '指定節點',
   'Please input ExternalName': '請輸入 ExternalName',
   'Specify Workload': '指定工作負載',
@@ -67,7 +80,7 @@ module.exports = {
   'Not Associate': '不關聯',
 
   CUSTOM_SERVICE: 'Custom Service',
-  'Specify Workloads': '指定工作負載',
+  CUSTOMIZE_SERVICE: 'Customize Service',
   'Create service by specifying workloads': '指定工作負載創建服務',
   'Create service by Yaml': '通過 Yaml 創建服務',
 
@@ -81,13 +94,13 @@ module.exports = {
   ENTER_PORT_NUMBER: '請輸入端口',
   PORT_EMPTY: '請輸入端口',
   'Please select a workload': '請選擇一個工作負載',
-  ENTER_SELECTOR_TIP: 'Please enter a valid selector.',
-  TOTAL_WORKLOAD: '共 {count} 個工作負載',
+  ENTER_SELECTOR_TIP: 'Please set a workload selector.',
+  TOTAL_WORKLOADS_VALUE: '共 {count} 個工作負載',
 
   STICKY_SESSION: '會話保持',
   MAXIMUM_STICKINESS_DURATION: '最大會話保持時間（s）',
   STICKY_SESSION_DESC:
-    'Ensures that all requests from the same client are forwarded to the same backend server during one session.',
+    'Set the system to forward all requests from the same client to the same backend within a specified duration.',
 
   SERVICE_NAME_DESC:
     'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
@@ -100,7 +113,7 @@ module.exports = {
     '創建服務需要提供服務的名稱和描述，服務名稱不能和同一項目下已有的服務名稱相同。',
   SERVICES_SETTINGS_DESC: '服務設置定義了如何來訪問已有的工作負載。',
 
-  SERVICE_EXTERNAL_NAME_DESC:
+  CREATE_EXTERNAL_SERVICE_DESC:
     '通過返回 CNAME 和它的值，可以將服務映射到 externalName 字段的内容',
 
   ACCESS_NONE_TIP: '不提供外網訪問。',
@@ -108,6 +121,11 @@ module.exports = {
   ACCESS_LOADBALANCER_TIP: '通過負載平衡器來訪問服務。',
 
   'The current selector': '目前設置的選擇器',
+  NO_WORKLOAD_MATCH_SELECTOR: 'The current selector matches no workload.',
+  WORKLOADS_MATCH_SELECTOR_SI:
+    'The current selector ({selector}) matches {count} workload.',
+  WORKLOADS_MATCH_SELECTOR_PL:
+    'The current selector ({selector}) matches {count} workloads.',
   'Commonly included tags in the current workloads':
     '目前的工作負載中共同包含的標籤',
   SERVICE_SELECTOR_AFFECT_2: '共影響到 {count} 個工作負載',
@@ -117,13 +135,14 @@ module.exports = {
   Creating: '正在創建',
   'Creation failed, please delete and try again': '創建失敗，請刪除後重試',
 
-  ADD_ROUTE_RULE_TCAP: '添加路由規則',
+  ADD_ROUTING_RULE: '添加路由規則',
+  EDIT_ROUTING_RULE: 'Edit Routing Rule',
 
   VIRTUAL_IP_TITLE: 'Virtual IP Address',
   VIRTUAL_IP_DESC:
     'The cluster generates a unique IP address for the Service and the Service can be accessed within the cluster using this IP address.',
-  HEADLESS_SELECTOR_TITLE: 'Headless (Selector)',
-  HEADLESS_SELECTOR_DESC:
+  INTERNAL_DOMAIN_NAME: 'Internal Domain Name',
+  INTERNAL_DOMAIN_NAME_DESC:
     'The cluster does not generate an IP address for the Service and the Service can be directly accessed using the Endpoint IP address of the Service.',
   HEADLESS_EXTERNAL_NAME_TITLE:
     '映射集群外部的地址來訪 Headless (externalname)',
@@ -134,10 +153,10 @@ module.exports = {
   SERVICE_NODE_PORT_DESC:
     '如果您目前的網路與集群節點在同一網路内，那麼您可以透通集群IP地址+節點端口號進行訪問，或者通過節點 IP+節點端口進行訪問',
 
-  SERVICE_TYPE: '您可以自定義創建 無狀態服務 或者 有狀態服務',
+  SERVICE_TYPE: 'Service Type',
+  SELECT_SERVICE_TYPE: 'Select Service Type',
 
-  SPECIFY_WORKLOAD_DESC:
-    '將工作負載所創建的容器組副本的 Label 作為預填充内容。',
+  SELECT_WORKLOAD_DESC: '將工作負載所創建的容器組副本的 Label 作為預填充内容。',
 
   SPECIFY_NODE_DESC: '指定節點可以將節點的 Label 作為預填充內容',
 
@@ -153,16 +172,18 @@ module.exports = {
   STATELESS_SERVICE_DESC:
     '容器服務中最常用的一種服務，通過定義容器組模板來控制容器組狀態，包括滾動升級和回滾',
   SERVICE_FROM_CODE: '通過代碼構建新的服務',
-  SERVICE_FROM_ARTIFACTS: '通過成品構建新的服務',
+  SERVICE_FROM_ARTIFACT: '通過成品構建新的服務',
   SERVICE_FROM_CODE_DESC:
     '您可以將已有的代碼通過  Source to Image 的方式構建成鏡像並部署',
-  SERVICE_FROM_ARTIFACTS_DESC: '您可以將已有成品構建成新的鏡像並完成部署',
-  'Language Type': '語言類型',
-  SERVISE_SIMPLE_DESC: '通過已有的容器組來創建服務',
+  SERVICE_FROM_ARTIFACT_DESC: '您可以將已有成品構建成新的鏡像並完成部署',
+  LANGUAGE_TYPE_VALUE: '語言類型：{value}',
+  ARTIFACT_TYPE_VALUE: 'Artifact Type: {value}',
+  SPECIFY_WORKLOAD_DESC: '通過已有的容器組來創建服務',
   DELETE_SERVICE_DESC:
     '您即將刪除服務 {resource}，請您進行確認是否刪除關聯資源?',
 
-  SERVICE_CUSTOM_CREATE: '您可以通過指定工作負載或者編輯配置 (Yaml) 來創建服務',
+  CUSTOMIZE_SERVICE_DESC:
+    '您可以通過指定工作負載或者編輯配置 (Yaml) 來創建服務',
 
   SERVICE_TYPE_STATEFULSERVICE: '有狀態服務',
   SERVICE_TYPE_STATELESSSERVICE: '無狀態服務',
@@ -173,11 +194,11 @@ module.exports = {
 
   EIP_POOL_DESC: '集群内部訪問方式(DNS)',
 
-  STICKY_DURATION_DESC:
+  MAXIMUM_STICKINESS_DURATION_DESC:
     'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
 
   // Services
-  LABEL_SELECTOR: 'Label Selector',
+  WORKLOAD_SELECTOR: 'Workload Selector',
   NONE: 'None',
   UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
   HEADLESS: 'Headless',

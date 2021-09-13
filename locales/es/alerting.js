@@ -84,7 +84,7 @@ module.exports = {
     'Ratio de replicas de despliegues no disponibles',
   'Unavailable statefulset replicas ratio':
     'Ratio de replicas de statefulset no disponibles',
-  'View Details': 'Ver detalles',
+  VIEW_DETAILS: 'Ver detalles',
 
   RULE_TEMPLATE: 'Rule Template',
   CUSTOM_RULE: 'Custom Rule',
@@ -151,7 +151,7 @@ module.exports = {
     'You can define a custom rule using PromQL statements. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Learn More</a>',
 
   // Alerting Messages
-  ALERTING_MESSAGES: 'Alerting Messages',
+  ALERTING_MESSAGE_PL: 'Alerting Messages',
   NO_DATA_DESC: 'No Data Found',
   MONITORING_TARGET: 'Monitoring Target',
 
@@ -164,4 +164,7 @@ module.exports = {
   STATEFULSET_PL: 'StatefulSets',
   DAEMONSET: 'DaemonSet',
   DAEMONSET_PL: 'DaemonSets',
+  DEPLOYMENTS_VALUE: 'Deployments: {value}',
+  STATEFULSETS_VALUE: 'StatefulSets: {value}',
+  DAEMONSETS_VALUE: 'DaemonSets: {value}',
 }

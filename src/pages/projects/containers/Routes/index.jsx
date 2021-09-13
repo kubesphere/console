@@ -36,7 +36,7 @@ import styles from './index.scss'
 @withProjectList({
   store: new RouterStore(),
   module: 'ingresses',
-  name: 'Route',
+  name: 'ROUTE',
 })
 export default class Routers extends React.Component {
   componentDidMount() {
@@ -116,7 +116,7 @@ export default class Routers extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

@@ -35,7 +35,7 @@ import AppStore from 'stores/openpitrix/app'
   store: new AppStore(),
   module: 'apps',
   authKey: 'app-templates',
-  name: 'App Template',
+  name: 'APP_TEMPLATE',
   rowKey: 'app_id',
 })
 export default class Apps extends React.Component {

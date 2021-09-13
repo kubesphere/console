@@ -227,7 +227,7 @@ class ScheduleInfo extends React.Component {
             </p>
           )}
           <p>
-            {t('Last Updated Time')}:{' '}
+            {t('UPDATED_AT')}:{' '}
             {getLocalTime(condition.lastTransitionTime).format(
               'YYYY-MM-DD HH:mm:ss'
             )}

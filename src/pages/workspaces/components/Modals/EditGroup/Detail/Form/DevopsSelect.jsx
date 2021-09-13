@@ -196,7 +196,7 @@ export default class DevopsSelect extends Component {
           value={namespace}
           disabled={disabled}
           options={this.devops}
-          placeholder={t('DEVOPS_PROJECT')}
+          placeholder=" "
           valueRenderer={option => t('DEVOPS_VALUE', { value: option.value })}
           prefixIcon={<Icon name="strategy-group" size={16} />}
           onChange={this.handleDevopsChange}

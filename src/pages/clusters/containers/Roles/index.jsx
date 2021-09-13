@@ -32,7 +32,7 @@ import RoleStore from 'stores/role'
 @withList({
   store: new RoleStore('clusterroles'),
   module: 'clusterroles',
-  name: 'Cluster Role',
+  name: 'CLUSTER_ROLE',
 })
 export default class ClusterRoles extends React.Component {
   componentDidMount() {
@@ -80,7 +80,7 @@ export default class ClusterRoles extends React.Component {
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            type: t(name),
+            type: name,
             success: routing.query,
             cluster: this.props.match.params.cluster,
           }),

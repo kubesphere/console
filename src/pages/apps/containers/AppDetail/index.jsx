@@ -182,7 +182,7 @@ export default class App extends React.Component {
     return (
       <div className={styles.deployButton}>
         <Button onClick={this.handleDeploy} type="control">
-          {t('Deploy')}
+          {t('DEPLOY')}
         </Button>
       </div>
     )
@@ -203,7 +203,7 @@ export default class App extends React.Component {
         activeName={tab}
         onChange={this.handleTabChange}
       >
-        <TabPanel label={t('App Info')} name="appInfo">
+        <TabPanel label={t('APP_INFORMATION')} name="appInfo">
           {this.renderDeployButton()}
           <Columns>
             <Column className="is-8">

@@ -71,7 +71,7 @@ export default class ProjectInfo extends React.Component {
           </div>
           <div className={styles.item}>
             <div>{get(detail, 'creator') || '-'}</div>
-            <p>{t('Creator')}</p>
+            <p>{t('CREATOR')}</p>
           </div>
           <div className={styles.item}>
             <div>
@@ -105,14 +105,14 @@ export default class ProjectInfo extends React.Component {
               <Icon name="role" size={40} />
               <div className={styles.item}>
                 <div>{roleCount}</div>
-                <p>{t('Project Roles')}</p>
+                <p>{t('PROJECT_ROLE_PL')}</p>
               </div>
             </div>
             <div className={styles.contentItem}>
               <Icon name="group" size={40} />
               <div className={styles.item}>
                 <div>{memberCount}</div>
-                <p>{t('Project Members')}</p>
+                <p>{t('PROJECT_MEMBER_PL')}</p>
               </div>
             </div>
           </div>

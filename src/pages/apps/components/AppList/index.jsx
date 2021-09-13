@@ -121,7 +121,7 @@ export default class AppList extends React.PureComponent {
         )}
         {!isLoading && apps.length < total && (
           <a className={styles.loadMore} onClick={onFetchMore}>
-            <span>{t('Load More')}</span>
+            <span>{t('VIEW_MORE')}</span>
           </a>
         )}
       </div>

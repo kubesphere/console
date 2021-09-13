@@ -87,7 +87,7 @@ export default class DefaultResourceEditModal extends React.Component {
     return (
       <Modal
         width={791}
-        title={t('Container Resource Default Request')}
+        title={t('EDIT_DEFAULT_CONTAINER_QUOTAS')}
         icon="firewall"
         onOk={this.handleOk}
         onCancel={onCancel}

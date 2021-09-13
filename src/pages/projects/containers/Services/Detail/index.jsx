@@ -113,7 +113,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'editGateway',
       icon: 'ip',
-      text: t('EDIT_INTERNET_ACCESS'),
+      text: t('EDIT_EXTERNAL_ACCESS'),
       action: 'edit',
       show: this.store.detail.type === SERVICE_TYPES.VirtualIP,
       onClick: () =>
@@ -241,7 +241,7 @@ export default class ServiceDetail extends React.Component {
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]

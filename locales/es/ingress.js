@@ -19,9 +19,10 @@
 module.exports = {
   ADD_ANNOTATION: 'Añadir annotation',
   ADD_PATH_TCAP: 'Agregar ruta',
-  ADD_PATH_TIP: 'Please add at least one path.',
+  PATH_EMPTY_DESC: 'Please add at least one path.',
   AUTO_GENERATE_TCAP: 'Autogenerar',
-  ADD_ROUTE_RULE_TCAP: 'Agregar regla de ruta',
+  ADD_ROUTING_RULE: 'Agregar regla de ruta',
+  EDIT_ROUTING_RULE: 'Edit Routing Rule',
   'Add Path': 'Agregar ruta',
   'Auto Generate': 'Autogenerar',
   'Click to visit': 'Haz clic para visitar',
@@ -32,21 +33,23 @@ module.exports = {
   'Gateway IP': 'IP del gateway',
   'Gateway Type': 'Tipo de gateway',
   DOMAIN_NAME_TCAP: 'Domain Name',
-  INVALID_DOMAIN_TIP: 'Invalid domain name',
-  INVALID_PATH_TIP: 'Establezca una ruta correcta',
+  INVALID_DOMAIN_DESC: 'Invalid domain name',
+  INVALID_PATH_DESC: 'Establezca una ruta correcta',
   MODE_TCAP: 'Modo',
   PATH_PL: 'Rutas',
-  ADD_ROUTE_RULE_DESC:
+  PATH_SI: 'Ruta',
+  PATH_VALUE: 'Ruta: {value}',
+  ADD_ROUTING_RULE_DESC:
     'Agregar una regla de ruta para asignar un nombre de dominio a un servicio.',
-  DOMAIN_NAME_TIP: 'Ingrese un nombre de dominio',
+  DOMAIN_NAME_EMPTY_DESC: 'Ingrese un nombre de dominio',
   PATH_SERVICE_TIP: 'Selecciona un servicio',
   Route: 'Ruta',
   ROUTE: 'Ruta',
   ROUTE_PL: 'Routes',
   ROUTE_LOW: 'Route',
-  ROUTE_RULES_TCAP: 'Reglas de ruta',
+  ROUTING_RULES: 'Reglas de ruta',
   Rules: 'Reglas',
-  SET_ROUTE_RULE_TCAP: 'Establecer regla de ruta',
+  SET_ROUTING_RULES: 'Establecer regla de ruta',
   SPECIFY_DOMAIN_TCAP: 'Especificar dominio',
   'Unable to access': 'No es posible acceder',
   ROUTE_DESC:
@@ -65,7 +68,7 @@ module.exports = {
     'Si el gateway está habilitado, el sistema asignará automáticamente números de puerto de http y https. Las rutas de aplicación pueden acceder a los servicios a través del proxy inverso.',
   INGRESS_CONTROLLER_LOADBALANCER_DESC:
     'Para usar un LoadBalancer de QingCloud como gateway, primero implementa el complemento QingCloud Cloud Controller Manager.',
-  NO_INTERNET_ACCESS_TIP:
+  NO_GATEWAY_DESC:
     'Para usar la generación automática, comuníquese con el administrador del proyecto para configurar el método de acceso a la puerta de enlace en la configuración avanzada del proyecto.',
   UNABLE_CREATE_ROUTE_TIP:
     'No se puede crear la ruta de la aplicación puesto que la dirección de gateway disponible no se encuentra en el proyecto actual.',

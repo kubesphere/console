@@ -31,7 +31,7 @@ import SecretStore from 'stores/secret'
 @withProjectList({
   store: new SecretStore(),
   module: 'secrets',
-  name: 'Secret',
+  name: 'SECRET',
 })
 export default class Secrets extends React.Component {
   get itemActions() {
@@ -75,7 +75,7 @@ export default class Secrets extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

@@ -126,7 +126,7 @@ export default class GatewaySettingModal extends React.Component {
     return (
       <Modal.Form
         width={1162}
-        title={t('EDIT_INTERNET_ACCESS')}
+        title={t('EDIT_EXTERNAL_ACCESS')}
         data={formTemplate}
         onOk={this.handleOk}
         onCancel={onCancel}
@@ -135,7 +135,7 @@ export default class GatewaySettingModal extends React.Component {
       >
         <div>
           <Title
-            title={t('NETWORK_ACCESS')}
+            title={t('EXTERNAL_ACCESS')}
             desc={t('SERVICES_INTERNET_ACCESS_DESC')}
           />
           <div className={styles.wrapper}>

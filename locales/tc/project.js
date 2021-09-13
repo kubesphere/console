@@ -31,7 +31,7 @@ module.exports = {
   'Edit Project': '編輯項目',
   Details: '詳情',
   Members: '成員',
-  'Project Roles': '項目角色',
+  PROJECT_ROLE_PL: '項目角色',
   'Project Role': '項目角色',
   // Create ServiceAccount Page
   PROJECT_ROLE_SI: '項目角色',
@@ -43,7 +43,7 @@ module.exports = {
   'Manage Project': '項目管理',
   RESOURCE_QUOTAS: '資源配額',
   PROJECT_NAME: '項目名稱',
-  'Project Members': '項目成員',
+  PROJECT_MEMBER_PL: '項目成員',
   'project members': '項目成員',
   'Member Name': '成員名稱',
   'Modify Member Role': '修改成員角色',
@@ -62,6 +62,7 @@ module.exports = {
   'Project Quota': '項目配額',
   EDIT_PROJECT_QUOTAS: 'Edit Project Quotas',
   'Quota Management': '配額管理',
+  WORKSPACE_QUOTA_PL: 'Workspace Quotas',
 
   'Project Placement': '項目位置',
 
@@ -105,7 +106,8 @@ module.exports = {
   'requests.memory': '記憶體需求',
   'limits.memory': '記憶體限額',
 
-  'Container Resource Default Request': '容器資源預設請求',
+  DEFAULT_CONTAINER_QUOTAS: '容器資源預設請求',
+  EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
   'Edit Resource Default Request': '編輯資源預設請求',
 
   RESOURCE_TYPE: '資源類型',
@@ -207,11 +209,13 @@ module.exports = {
   HOW_TO_USE_QUOTA_Q: '如何使用配額?',
   HOW_TO_USE_QUOTA_A:
     '資源配額（Resource Quotas）是用來限制用戶資源用量的一種機制，可以對 CPU、記憶體、容器組數量等進行配額限制。',
-
+  PROJECT_QUOTAS_DESC:
+    'Project quotas specify the number of available CPU and memory resources and the maximum number of Pods, Deployments, and Services in the project.',
   WHAT_IS_LIMIT_RANGE_Q: '什麼是容器資源預設請求?',
   WHAT_IS_LIMIT_RANGE_A:
     '容器資源預設請求 (LimitRange) 基於項目的資源管理，包括容器組和容器的保留資源、最大限額等。',
-
+  DEFAULT_CONTAINER_QUOTAS_DESC:
+    'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
   WHAT_IS_INTERNET_GATEWAY: '什麼是外網訪問網關?',
   WHAT_IS_COLLECT_FILE_LOG_A:
     '容器所掛載的儲存卷中的紀錄路徑以 glob 方式給出，可在工作負載中配置紀錄路徑以收集這些紀錄。需要管理員預先開啟落盤紀錄收集。',
@@ -220,9 +224,8 @@ module.exports = {
   HOW_TO_INVITE_MEMBER_A:
     '項目管理員或者擁有成員邀請權限的用戶可以邀請目前企業空間内的成員加入項目',
 
-  'How do I invite other members to the current project?':
-    '邀請其他成員到目前項目中?',
-  'How do I set the project gateway?': '如何設置項目網關？',
+  HOW_TO_INVITE_USERS: '邀請其他成員到目前項目中?',
+  HOW_TO_SET_PROJECT_GATEWAY: '如何設置項目網關？',
   RESOURCE_QUANTITY_LIMIT: '您可以對資源的數量進行限制, 不填寫即不限制',
 
   PROJECT_TYPES_Q: '項目中的服務如何通過外網訪問？',
@@ -256,6 +259,6 @@ module.exports = {
   CREATE_MULTI_CLUSTER_PROJECT_DESC:
     '您可以創建多集群項目，讓項目運行在多個集群中，為應用提供快速疊代開發的容器環境並實現高可用。',
 
-  'Project Quota Not Set': '項目配額未設置',
-  'Resource Default Request Not Set': '容器資源預設請求未設置',
+  PROJECT_QUOTAS_NOT_SET: '項目配額未設置',
+  DEFAULT_CONTAINER_QUOTAS_NOT_SET: '容器資源預設請求未設置',
 }

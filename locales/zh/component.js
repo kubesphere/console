@@ -28,7 +28,7 @@ module.exports = {
   'Service Details': '服务详情',
 
   SERVICE_COMPONENTS_DESC:
-    '服务组件是 KubeSphere 系统中提供各种功能的软件组件，您可以在此页面查看服务组件的运行状态。',
+    '系统组件是 KubeSphere 系统中提供各种功能的软件组件，您可以在此页面查看系统组件的运行状态。',
 
   KS_ACCOUNT_DESC: '提供用户、权限管理相关的 API',
   KS_APIGATEWAY_DESC: '负责处理服务请求和处理 API 调用过程中的所有任务',

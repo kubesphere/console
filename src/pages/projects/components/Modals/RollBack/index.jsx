@@ -153,7 +153,7 @@ export default class RollBackModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Resource Name')}>
+        <Form.Item label={t('RESOURCE_NAME')}>
           <Input name="name" disabled />
         </Form.Item>
         <Form.Item label={t('Current Revision')}>

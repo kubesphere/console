@@ -143,7 +143,7 @@ export default class RoleDetail extends React.Component {
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]

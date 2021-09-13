@@ -31,7 +31,7 @@ import RoleStore from 'stores/role'
 @withList({
   store: new UserStore(),
   module: 'users',
-  name: 'DevOps Member',
+  name: 'DEVOPS_PROJECT_MEMBER',
   rowKey: 'username',
   injectStores: ['rootStore', 'devopsStore'],
 })

@@ -209,9 +209,9 @@ module.exports = {
   'Snapshots Message': '快照資訊',
 
   VolumeSnapshots: '儲存卷快照',
-  VOLUMESNAPSHOT_DESC:
+  VOLUME_SNAPSHOT_DESC:
     '儲存卷快照表示儲存卷的時間點副本。快照可用於配置新卷（預先填充快照數據）或將現有儲存卷還原到先前狀態（由快照表示）',
-  VOLUMESNAPSHOT_EMPTY_DESC:
+  VOLUME_SNAPSHOT_EMPTY_DESC:
     '儲存卷快照表示儲存卷的時間點副本。快照可用於配置新卷（預先填充快照數據）或將現有儲存卷還原到先前狀態（由快照表示）',
   WHAT_IS_VOLUME_SNAPSHOTS: '什麼是儲存卷快照',
 

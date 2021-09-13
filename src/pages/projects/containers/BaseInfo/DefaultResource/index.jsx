@@ -38,7 +38,7 @@ class DefaultResource extends React.Component {
     )
 
     return (
-      <Panel title={t('Container Resource Default Request')}>
+      <Panel title={t('DEFAULT_CONTAINER_QUOTAS')}>
         <div className={styles.content}>
           <div className={styles.contentItem}>
             <Icon name="cpu" size={40} />

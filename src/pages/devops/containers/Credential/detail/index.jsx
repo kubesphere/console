@@ -193,7 +193,7 @@ export default class CredentialDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Credentials'),
+          label: t('CREDENTIAL_PL'),
           url: this.listUrl,
         },
       ],

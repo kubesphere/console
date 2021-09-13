@@ -32,7 +32,7 @@ import AppStore from 'stores/openpitrix/store'
 @withList({
   store: new AppStore(),
   module: 'apps',
-  name: 'Apps',
+  name: 'APP',
   rowKey: 'app_id',
 })
 export default class Store extends React.Component {
@@ -108,7 +108,7 @@ export default class Store extends React.Component {
       <ListPage {...this.props} noWatch>
         <Banner
           {...bannerProps}
-          title={t('App Store')}
+          title={t('APP_STORE')}
           description={t('APP_STORE_DESC')}
         />
         <Table

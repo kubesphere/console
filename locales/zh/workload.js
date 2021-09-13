@@ -56,6 +56,7 @@ module.exports = {
   'Current number of nodes scheduled': '当前节点数',
   'View YAML': '查看配置文件',
   EDIT_YAML: '编辑配置文件',
+  YAML_FILE: 'YAML 文件',
   'Add Labels': '添加标签',
   'Edit Labels': '编辑标签',
   POD_REPLICAS: '容器组副本数量',
@@ -77,7 +78,7 @@ module.exports = {
   'Image ID': '镜像 ID',
   'Port(s)': '端口',
   Port: '端口',
-  Topology: '拓扑图',
+  SERVICE_TOPOLOGY: '服务拓扑',
   EDIT_CONTAINER: '编辑容器',
   'Host Port': '节点端口',
   ADD_PORT: '添加端口',
@@ -151,7 +152,7 @@ module.exports = {
   SELECT_NODES_DESC:
     '将容器组副本分配给特定的节点。您可以使用标签选择节点或手动指定节点。',
   WORKLOAD_SPECIFY_NODE_DESC: '将容器副本分配给特定节点。',
-  ADD_METADATA_DESC: '为资源添加标签和注解等元数据。',
+  ADD_METADATA_DESC: '为资源添加元数据。',
 
   'Additional metadata settings for resources.': '对资源进行额外的元数据设置',
 
@@ -375,7 +376,7 @@ module.exports = {
   'Execution Records': '执行记录',
   'Cluster Resource Status': '集群资源状态',
   'Resource Status': '资源状态',
-  'Resource Name': '资源名称',
+  RESOURCE_NAME: '资源名称',
   'Config Template': '配置模板',
   'Edit Config Template': '编辑配置模板',
   'Environment Variables': '环境变量',

@@ -150,7 +150,7 @@ export default class ClusterSettings extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Title
-          title={t('Cluster Settings')}
+          title={t('CLUSTER_SETTINGS')}
           description={t('K8S_CLUSTER_SETTINGS_DESC')}
         />
         <Form className={styles.form} data={formTemplate} ref={formRef}>

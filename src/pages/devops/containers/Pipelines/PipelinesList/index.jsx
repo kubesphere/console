@@ -34,7 +34,7 @@ import { withDevOpsList, ListPage } from 'components/HOCs/withList'
 @withDevOpsList({
   store: new PipelineStore(),
   module: 'pipelines',
-  name: 'Pipeline',
+  name: 'PIPELINE',
   rowKey: 'name',
 })
 export default class PipelinesList extends React.Component {
@@ -172,7 +172,7 @@ export default class PipelinesList extends React.Component {
         action: 'delete',
         onClick: record => {
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             resource: record.name,
             detail: {
               name: record.name,
@@ -357,7 +357,7 @@ export default class PipelinesList extends React.Component {
     }
 
     this.props.trigger('pipeline.batch.run', {
-      type: t('Pipeline'),
+      type: t('PIPELINE'),
       rowKey: 'name',
       devops: this.devops,
       cluster: this.cluster,
@@ -423,7 +423,7 @@ export default class PipelinesList extends React.Component {
           action: 'delete',
           onClick: () =>
             this.props.trigger('pipeline.batch.delete', {
-              type: t('Pipeline'),
+              type: t('PIPELINE'),
               rowKey: 'name',
               devops: this.devops,
               cluster: this.cluster,

@@ -144,7 +144,7 @@ export default class RoleDetail extends React.Component {
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]
@@ -165,7 +165,7 @@ export default class RoleDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Project Roles'),
+          label: t('PROJECT_ROLE_PL'),
           url: this.listUrl,
         },
       ],

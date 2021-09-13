@@ -71,13 +71,13 @@ client:
       icon: key
       authKey: users|roles|workspaces
     - name: apps-manage
-      title: App Store Management
+      title: APP_STORE_MANAGEMENT
       icon: openpitrix
       authKey: app-templates
       authAction: manage
       ksModule: openpitrix.appstore
     - name: settings
-      title: Platform Settings
+      title: PLATFORM_SETTINGS
       icon: cogwheel
       authKey: platform-settings
       authAction: manage
@@ -86,124 +86,124 @@ client:
     - cate: cluster
       items:
         - name: overview
-          title: Overview
+          title: OVERVIEW
           icon: dashboard
           skipAuth: true
           showInDisable: true
         - name: nodes
-          title: Nodes Management
+          title: NODE_PL
           icon: nodes
           children:
-            - { name: nodes, title: Cluster Nodes }
+            - { name: nodes, title: CLUSTER_NODE_PL }
             - { name: edgenodes, title: EDGE_NODE_PL, clusterModule: kubeedge }
-        - { name: components, title: Service Components, icon: components }
-        - { name: projects, title: NAV_PROJECTS, icon: project }
+        - { name: components, title: SYSTEM_COMPONENT_PL, icon: components }
+        - { name: projects, title: PROJECT_PL, icon: project }
         - name: app-workloads
-          title: APPLICATION_WORKLOADS
+          title: APPLICATION_WORKLOAD_PL
           icon: appcenter
           children:
             - name: workloads
-              title: Workloads
+              title: WORKLOAD_PL
               tabs:
-                - { name: deployments, title: Deployments }
-                - { name: statefulsets, title: StatefulSets }
-                - { name: daemonsets, title: DaemonSets }
+                - { name: deployments, title: DEPLOYMENT_PL }
+                - { name: statefulsets, title: STATEFULSET_PL }
+                - { name: daemonsets, title: DAEMONSET_PL }
             - name: jobs
-              title: Jobs
+              title: JOB_PL
               tabs:
-                - { name: jobs, title: Jobs }
-                - { name: cronjobs, title: CronJobs }
-            - { name: pods, title: Pods }
-            - { name: services, title: Services }
-            - { name: ingresses, title: Routes }
+                - { name: jobs, title: JOB_PL }
+                - { name: cronjobs, title: CRONJOB_PL }
+            - { name: pods, title: POD_PL }
+            - { name: services, title: SERVICE_PL }
+            - { name: ingresses, title: ROUTE_PL }
         - name: config
-          title: Configuration Center
+          title: CONFIGURATION
           icon: hammer
           children:
-            - { name: secrets, title: Secrets }
-            - { name: configmaps, title: ConfigMaps }
+            - { name: secrets, title: SECRET_PL }
+            - { name: configmaps, title: CONFIGMAP_PL }
             - {
                 name: serviceaccounts,
-                title: ServiceAccounts,
+                title: SERVICE_ACCOUNT_PL,
                 requiredClusterVersion: v3.1.0,
               }
         - name: network
-          title: Network Management
+          title: NETWORK
           icon: earth
           children:
             - {
                 name: networkpolicies,
-                title: Network Policies,
+                title: NETWORK_POLICY_PL,
                 clusterModule: network,
               }
             - {
                 name: ippools,
-                title: Pod IP Pools,
+                title: POD_IP_POOL_PL,
                 clusterModule: "network.ippool",
               }
         # Contains dangerous operations, only available for platform-admin.
         - {
             name: customresources,
-            title: Custom Resources,
+            title: CRD_PL,
             icon: select,
             admin: true,
           }
         - name: storage
-          title: Storage Management
+          title: STORAGE
           icon: database
           children:
-            - { name: volumes, title: Volumes }
-            - { name: volume-snapshots, title: Snapshots, authKey: volumes }
-            - { name: storageclasses, title: Storage Classes }
+            - { name: volumes, title: VOLUME_PL }
+            - { name: volume-snapshots, title: VOLUME_SNAPSHOT_PL, authKey: volumes }
+            - { name: storageclasses, title: STORAGE_CLASS_PL }
         - name: monitoring-alerting
-          title: Monitoring & Alerting
+          title: MONITORING_AND_ALERTING
           icon: monitor
           children:
             - {
                 name: monitor-cluster,
-                title: Cluster Status,
+                title: CLUSTER_STATUS,
                 icon: linechart,
                 authKey: monitoring,
               }
             - {
                 name: monitor-resource,
-                title: Application Resources,
+                title: APPLICATION_RESOURCE_PL,
                 icon: linechart,
                 authKey: monitoring,
               }
             - {
                 name: alerts,
-                title: Alerting Messages,
+                title: ALERTING_MESSAGE_PL,
                 icon: loudspeaker,
                 clusterModule: alerting,
                 requiredClusterVersion: v3.1.0,
               }
             - {
                 name: alert-rules,
-                title: Alerting Policies,
+                title: ALERTING_POLICY_PL,
                 icon: hammer,
                 clusterModule: alerting,
                 requiredClusterVersion: v3.1.0,
               }
             - {
                 name: custom-monitoring,
-                title: Custom Monitoring,
+                title: CUSTOM_MONITORING,
                 requiredClusterVersion: v3.1.0,
               }
         - name: cluster-settings
-          title: Cluster Settings
+          title: CLUSTER_SETTINGS
           icon: cogwheel
           showInDisable: true
           children:
             - {
                 name: base-info,
-                title: Basic Info,
+                title: BASIC_INFORMATION,
                 skipAuth: true,
                 showInDisable: true,
               }
             - {
                 name: visibility,
-                title: Cluster Visibility,
+                title: CLUSTER_VISIBILITY,
                 authKey: cluster-settings,
                 multiCluster: true,
               }
@@ -211,7 +211,7 @@ client:
             # - { name: roles, title: Cluster Roles }
             - {
                 name: log-collections,
-                title: Log Collections,
+                title: LOG_COLLECTION,
                 icon: file,
                 authKey: cluster-settings,
                 clusterModule: logging|events|auditing,
@@ -221,9 +221,9 @@ client:
   accessNavs:
     - cate: "access"
       items:
-        - { name: workspaces, title: Workspaces, icon: enterprise }
-        - { name: accounts, title: Users, icon: human, authKey: users }
-        - { name: roles, title: PLATFORM_ROLES, icon: role }
+        - { name: workspaces, title: WORKSPACE_PL, icon: enterprise }
+        - { name: accounts, title: USER_PL, icon: human, authKey: users }
+        - { name: roles, title: PLATFORM_ROLE_PL, icon: role }
 
   # platform settings navigations
   platformSettingsNavs:
@@ -231,12 +231,12 @@ client:
       items:
         - {
             name: base-info,
-            title: Platform Info,
+            title: PLATFORM_INFORMATION,
             icon: home,
             authKey: platform-settings,
           }
         - name: notification-management
-          title: Notification Management
+          title: NOTIFICATION_MANAGEMENT
           icon: bell
           children:
             - { name: mail, title: Mail, authKey: platform-settings }
@@ -251,62 +251,62 @@ client:
       items:
         - {
             name: overview,
-            title: Overview,
+            title: OVERVIEW,
             icon: dashboard,
             authKey: "projects",
           }
         - name: projects
-          title: NAV_PROJECTS
+          title: PROJECT_PL
           icon: project
           skipAuth: true
           tabs:
-            - { name: projects, title: Projects }
-            - { name: federatedprojects, title: Multi-cluster Projects }
+            - { name: projects, title: PROJECT_PL }
+            - { name: federatedprojects, title: MULTI_CLUSTER_PROJECT_PL }
         - {
             name: devops,
-            title: DevOps Projects,
+            title: DEVOPS_PROJECT_PL,
             icon: strategy-group,
             ksModule: devops,
             skipAuth: true,
           }
         - name: apps
-          title: Apps Management
+          title: APPS_MANAGEMENT
           icon: appcenter
           children:
             - {
                 name: apps,
-                title: App Templates,
+                title: APP_TEMPLATE_PL,
                 icon: appcenter,
                 authKey: app-templates,
                 ksModule: openpitrix.appstore,
               }
             - {
                 name: repos,
-                title: App Repos,
+                title: APP_REPOSITORY_PL,
                 authKey: "app-repos",
                 ksModule: openpitrix,
               }
         - name: management
-          title: Workspace Settings
+          title: WORKSPACE_SETTINGS
           icon: cogwheel
           children:
             - { name: base-info, title: Basic Info, skipAuth: true }
             - {
                 name: quota,
-                title: Quota Management,
+                title: WORKSPACE_QUOTA_PL,
                 authKey: "workspace-settings",
               }
-            - { name: roles, title: Workspace Roles }
-            - { name: members, title: Workspace Members }
-            - { name: groups, title: Workspace Groups }
+            - { name: roles, title: WORKSPACE_ROLE_PL }
+            - { name: members, title: WORKSPACE_MEMBER_PL }
+            - { name: groups, title: DEPARTMENT_PL }
 
   # apps manage page navigations
   manageAppNavs:
     - cate: "apps"
       items:
-        - { name: store, title: App Store, icon: appcenter }
-        - { name: categories, title: App Categories, icon: tag }
-        - { name: reviews, title: App Review, icon: safe-notice }
+        - { name: store, title: APP_STORE, icon: appcenter }
+        - { name: categories, title: APP_CATEGORY_PL, icon: tag }
+        - { name: reviews, title: APP_REVIEW, icon: safe-notice }
 
   # project page navigations
   projectNavs:
@@ -314,154 +314,154 @@ client:
       items:
         - {
             name: overview,
-            title: Overview,
+            title: OVERVIEW,
             icon: dashboard,
             authKey: "services",
           }
         - name: app-workloads
-          title: APPLICATION_WORKLOADS
+          title: APPLICATION_WORKLOAD_PL
           icon: appcenter
           children:
-            - { name: applications, title: Applications, icon: application }
-            - { name: services, title: Services }
+            - { name: applications, title: APP_PL, icon: application }
+            - { name: services, title: SERVICE_PL }
             - name: workloads
-              title: Workloads
+              title: WORKLOAD_PL
               tabs:
-                - { name: deployments, title: Deployments }
-                - { name: statefulsets, title: StatefulSets }
-                - { name: daemonsets, title: DaemonSets }
+                - { name: deployments, title: DEPLOYMENT_PL }
+                - { name: statefulsets, title: STATEFULSET_PL }
+                - { name: daemonsets, title: DAEMONSET_PL }
             - name: jobs
               title: Jobs
               tabs:
-                - { name: jobs, title: Jobs }
-                - { name: cronjobs, title: CronJobs }
-            - { name: ingresses, title: Routes }
-            - { name: pods, title: Pods }
+                - { name: jobs, title: JOB_PL }
+                - { name: cronjobs, title: CRONJOB_PL }
+            - { name: ingresses, title: ROUTE_PL }
+            - { name: pods, title: POD_PL }
         - name: storage
-          title: Storage Management
+          title: STORAGE
           icon: database
           children:
-            - { name: volumes, title: Volumes }
-            - { name: volume-snapshots, title: Snapshots }
+            - { name: volumes, title: VOLUME_PL }
+            - { name: volume-snapshots, title: VOLUME_SNAPSHOT_PL }
         - name: config
-          title: Configuration Center
+          title: CONFIGURATION
           icon: hammer
           children:
-            - { name: secrets, title: Secrets }
-            - { name: configmaps, title: ConfigMaps }
+            - { name: secrets, title: SECRET_PL }
+            - { name: configmaps, title: CONFIGMAP_PL }
             - {
                 name: serviceaccounts,
-                title: ServiceAccounts,
+                title: SERVICE_ACCOUNT_PL,
                 requiredClusterVersion: v3.1.0,
               }
         - {
             name: grayrelease,
-            title: Grayscale Release,
+            title: GRAYSCALE_RELEASE,
             icon: bird,
             authKey: grayscale-release,
             clusterModule: servicemesh,
           }
         - {
             name: s2ibuilders,
-            title: Image Builder,
+            title: IMAGE_BUILDER,
             icon: vnas,
             clusterModule: devops,
           }
         - name: monitoring
-          title: Monitoring & Alerting
+          title: MONITORING_AND_ALERTING
           icon: monitor
           children:
             - {
                 name: alerts,
-                title: Alerting Messages,
+                title: ALERTING_MESSAGE_PL,
                 icon: loudspeaker,
                 clusterModule: alerting,
                 requiredClusterVersion: v3.1.0,
               }
             - {
                 name: alert-rules,
-                title: Alerting Policies,
+                title: ALERTING_POLICY_PL,
                 icon: hammer,
                 clusterModule: alerting,
                 requiredClusterVersion: v3.1.0,
               }
             - {
                 name: custom-monitoring,
-                title: Custom Monitoring,
+                title: CUSTOM_MONITORING,
                 requiredClusterVersion: v3.1.0,
               }
         - name: settings
-          title: Project Settings
+          title: PROJECT_SETTINGS
           icon: cogwheel
           children:
             - { name: base-info, title: Basic Info, skipAuth: true }
             - {
                 name: networkpolicies,
-                title: Network Isolation,
+                title: NETWORK_ISOLATION,
                 clusterModule: network,
                 authKey: "project-settings",
               }
-            - { name: roles, title: Project Roles }
-            - { name: members, title: Project Members }
+            - { name: roles, title: PROJECT_ROLE_PL }
+            - { name: members, title: PROJECT_MEMBER_PL }
             - {
                 name: advanced,
-                title: Advanced Settings,
+                title: ADVANCED_SETTINGS,
                 authKey: "project-settings",
               }
 
   federatedProjectNavs:
     - cate: "project"
       items:
-        - { name: overview, title: Overview, icon: dashboard, skipAuth: true }
+        - { name: overview, title: OVERVIEW, icon: dashboard, skipAuth: true }
         - name: app-workloads
-          title: APPLICATION_WORKLOADS
+          title: APPLICATION_WORKLOAD_PL
           icon: appcenter
           children:
-            - { name: applications, title: Applications, icon: application }
-            - { name: services, title: Services }
+            - { name: applications, title: APP_PL, icon: application }
+            - { name: services, title: SERVICE_PL }
             - name: workloads
-              title: Workloads
+              title: WORKLOAD_PL
               tabs:
-                - { name: deployments, title: Deployments }
-                - { name: statefulsets, title: StatefulSets }
-            - { name: ingresses, title: Routes }
-        - { name: volumes, title: Volumes, icon: storage }
+                - { name: deployments, title: DEPLOYMENT_PL }
+                - { name: statefulsets, title: STATEFULSET_PL }
+            - { name: ingresses, title: ROUTE_PL }
+        - { name: volumes, title: VOLUME_PL, icon: storage }
         - name: config
-          title: Configuration Center
+          title: CONFIGURATION
           icon: hammer
           children:
-            - { name: secrets, title: Secrets }
-            - { name: configmaps, title: ConfigMaps }
+            - { name: secrets, title: SECRET_PL }
+            - { name: configmaps, title: CONFIGMAP_PL }
         - name: settings
-          title: Project Settings
+          title: PROJECT_SETTINGS
           icon: cogwheel
           children:
-            - { name: base-info, title: Basic Info, skipAuth: true }
+            - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
             - {
                 name: quota,
-                title: Quota Management,
+                title: QUOTA_MANAGEMENT,
                 authKey: "project-settings",
               }
             - {
                 name: advanced,
-                title: Advanced Settings,
-                authKey: "project-settings",
+                title: ADVANCED_SETTINGS,
+                AUTHKEY: "project-settings",
               }
 
   # devops page navigations
   devopsNavs:
     - cate: ""
       items:
-        - { name: pipelines, title: Pipelines, icon: application }
+        - { name: pipelines, title: PIPELINE_PL, icon: application }
         - name: management
           title: DEVOPS_PROJECT_MANAGEMENT
           icon: cogwheel
           open: true
           children:
-            - { name: base-info, title: Basic Info, skipAuth: true }
-            - { name: credentials, title: Credentials }
-            - { name: roles, title: DEVOPS_PROJECT_ROLES }
-            - { name: members, title: DEVOPS_PROJECT_MEMBERS }
+            - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
+            - { name: credentials, title: DEVOPS_CREDENTIAL_PL }
+            - { name: roles, title: DEVOPS_PROJECT_ROLE_PL }
+            - { name: members, title: DEVOPS_PROJECT_MEMBER_PL }
 
   # system workspace rules control
   systemWorkspace: system-workspace

@@ -17,9 +17,9 @@
  */
 
 module.exports = {
-  'App ID': 'App ID',
+  APP_ID: 'App ID',
   'App Readme': 'App Readme',
-  'App Store': 'App Store',
+  APP_STORE: 'App Store',
   'App Store Settings': 'App Store Settings',
   Back: 'Back',
   Categories: 'Categories',
@@ -27,11 +27,13 @@ module.exports = {
   'Config files': 'Config files',
   Contact: 'Contact',
   Developer: 'Developer',
+  DEVELOPER_VALUE: 'Developer: {value}',
+  LATEST_VALUE: 'Latest: {value}',
   'Find an app': 'Find an app',
   'Install and Deploy': 'Install and Deploy',
   Keywords: 'Keywords',
   Latest: 'Latest',
-  'Published Date': 'Published Date',
+  RELEASE_DATE: 'Release Date',
   Screenshots: 'Screenshots',
   'Version Number': 'Version Number',
   VERSION_LIST_DES: 'Only display the last 10 versions',

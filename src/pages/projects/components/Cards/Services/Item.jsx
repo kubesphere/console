@@ -76,7 +76,7 @@ export default class ServiceItem extends React.Component {
               ? t('On')
               : t('Off')
           }
-          description={t('Application Governance')}
+          description={t('APPLICATION_GOVERNANCE')}
         />
         <ServiceAccess data={detail} />
       </div>

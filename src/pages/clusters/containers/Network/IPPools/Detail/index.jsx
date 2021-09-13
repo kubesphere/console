@@ -138,7 +138,7 @@ export default class IPPoolDetail extends React.Component {
         value: block.mask,
       },
       {
-        name: t('Network'),
+        name: t('NETWORK'),
         value: block.base,
       },
       {
@@ -154,7 +154,7 @@ export default class IPPoolDetail extends React.Component {
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator || '-',
       },
     ]

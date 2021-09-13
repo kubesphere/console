@@ -18,13 +18,15 @@
 
 module.exports = {
   'App Store Settings': '应用商店管理',
-  'App Store': '应用商店',
+  APP_STORE: '应用商店',
   HOME_APP_STORE_DESC:
     'KubeSphere 官方应用商店，提供部署及管理功能，用户可以基于应用模板快速地一键部署应用',
   'Find an app': '查找应用',
   TOTAL_CATE_COUNT: '共收录 {total} 款应用',
   Categories: '分类',
   Developer: '开发者',
+  DEVELOPER_VALUE: '开发者：{value}',
+  LATEST_VALUE: '最新：{value}',
   Latest: '最新',
   Back: '返回',
   Screenshots: '截图',
@@ -32,8 +34,8 @@ module.exports = {
   'Version Number': '版本号',
   'Change Log': '更新日志',
   Contact: '联系方式',
-  'Published Date': '上架时间',
-  'App ID': '应用编号',
+  RELEASE_DATE: '发布时间',
+  APP_ID: '应用编号',
   'App Readme': '应用描述',
   'Config files': '配置文件',
   'Install and Deploy': '安装部署',

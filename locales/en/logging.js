@@ -151,9 +151,10 @@ module.exports = {
   'Need to a URL': 'the Grafana Url is required',
 
   CUSTOMMONITORDASHBOARD: 'Custom Monitoring Dashboard',
+  CUSTOM_MONITORING_DASHBOARD_PL: 'Custom Monitoring Dashboards',
   CUSTOMMONITORDASHBOARD_PL: 'Custom Monitoring Dashboards',
   CUSTOMMONITORDASHBOARD_LOW: 'custom monitoring dashboard',
-  CUSTOMMONITORDASHBOARD_EMPTY_DESC:
+  CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC:
     'Please create a custom monitoring dashboard.',
 
 

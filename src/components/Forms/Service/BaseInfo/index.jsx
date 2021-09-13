@@ -250,13 +250,13 @@ export default class ServiceBaseInfo extends React.Component {
           {!noWorkload && (
             <Column>
               <Form.Item
-                label={t('Version')}
-                desc={t('COMPONENT_VERSION_DESC')}
+                label={t('VERSION')}
+                desc={t('VERSION_DESC')}
                 rules={[
-                  { required: true, message: t('COMPONENT_VERSION_DESC') },
+                  { required: true, message: t('VERSION_DESC') },
                   {
                     pattern: PATTERN_SERVICE_VERSION,
-                    message: t('COMPONENT_VERSION_DESC'),
+                    message: t('VERSION_DESC'),
                   },
                   { validator: this.versionValidator },
                 ]}

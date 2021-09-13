@@ -108,7 +108,7 @@ export default class Card extends React.PureComponent {
         </div>
         <div className={styles.version}>
           <strong>{versions.join(',') || '-'}</strong>
-          <p>{t('Version')}</p>
+          <p>{t('VERSION')}</p>
         </div>
         {this.renderActions()}
       </div>

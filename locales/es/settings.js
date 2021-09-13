@@ -18,6 +18,7 @@
 
 module.exports = {
   PLATFORM_SETTINGS: 'Configuración de la plataforma',
+  'Platform Settings': 'Configuración de la plataforma',
   Configure: 'Configurar',
   'Current third-party login configurations':
     'Configuración actual de inicio de sesión de terceros',

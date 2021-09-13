@@ -197,13 +197,13 @@ export default class AppReview extends Component {
         hideFooter
       >
         <Tabs type="button" activeName={tab} onChange={this.handleTabChange}>
-          <TabPanel label={t('App Info')} name="appInfo">
+          <TabPanel label={t('APP_INFORMATION')} name="appInfo">
             {this.renderBaseInfo()}
           </TabPanel>
           <TabPanel label={t('Introduction')} name="readme">
             <AppReadme readme={readme} />
           </TabPanel>
-          <TabPanel label={t('Chart Files')} name="configFiles">
+          <TabPanel label={t('CHART_FILES')} name="configFiles">
             {this.renderConfigFiles()}
           </TabPanel>
           <TabPanel label={t('Update Log')} name="updateLog">

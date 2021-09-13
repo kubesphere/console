@@ -80,7 +80,7 @@ export default class CRDAppDetail extends React.Component {
     {
       key: 'addComponent',
       icon: 'add',
-      text: t('Add Service'),
+      text: t('ADD_SERVICE'),
       action: 'edit',
       onClick: () =>
         this.trigger('crd.app.addservice', {
@@ -144,7 +144,7 @@ export default class CRDAppDetail extends React.Component {
         value: appName,
       },
       {
-        name: t('Version'),
+        name: t('VERSION'),
         value: detail.version,
       },
       {
@@ -156,7 +156,7 @@ export default class CRDAppDetail extends React.Component {
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]
@@ -177,7 +177,7 @@ export default class CRDAppDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Applications'),
+          label: t('APP_PL'),
           url: this.listUrl,
         },
       ],

@@ -64,7 +64,7 @@ export default class Confiuguration extends React.Component {
     return (
       <div>
         <Title
-          title={t('Cluster Settings')}
+          title={t('CLUSTER_SETTINGS')}
           description={t('CLUSTER_SETTINGS_DESC')}
         />
         <Form data={formTemplate} ref={formRef}>

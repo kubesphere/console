@@ -33,7 +33,7 @@ import WorkloadStore from 'stores/workload'
 @withProjectList({
   store: new WorkloadStore('cronjobs'),
   module: 'cronjobs',
-  name: 'CronJob',
+  name: 'CRONJOB',
 })
 export default class CronJobs extends React.Component {
   get prefix() {
@@ -52,11 +52,11 @@ export default class CronJobs extends React.Component {
       options: [
         {
           value: 'jobs',
-          label: t('JOBS'),
+          label: t('JOB_PL'),
         },
         {
           value: 'cronjobs',
-          label: t('CRONJOBS'),
+          label: t('CRONJOB_PL'),
         },
       ],
     }
@@ -108,7 +108,7 @@ export default class CronJobs extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

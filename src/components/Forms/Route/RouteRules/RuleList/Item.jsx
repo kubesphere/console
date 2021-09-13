@@ -46,12 +46,10 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
           title={rule.host}
           description={
             <div className={styles.description}>
-              <span>
-                {t('PROTOCOL')}: {protocol}
-              </span>
+              <span>{t('PROTOCOL_VALUE', { value: protocol })}</span>
               {protocol === 'https' && (
                 <span>
-                  {t('CERTIFICATE')}: {tlsItem.secretName}
+                  {t('CERTIFICATE_VALUE', { value: tlsItem.secretName })}
                 </span>
               )}
             </div>
@@ -74,16 +72,19 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
           <div key={path.path} className={styles.path}>
             <Columns>
               <Column>
-                <span>{t('PATH_SI')}:</span>
-                <span>{path.path}</span>
+                <span>{t('PATH_VALUE', { value: path.path })}</span>
               </Column>
               <Column>
-                <span>{t('Service')}:</span>
-                <span>{get(path, 'backend.serviceName')}</span>
+                <span>
+                  {t('SERVICE_VALUE', {
+                    value: get(path, 'backend.serviceName'),
+                  })}
+                </span>
               </Column>
               <Column>
-                <span>{t('PORT')}:</span>
-                <span>{get(path, 'backend.servicePort')}</span>
+                <span>
+                  {t('PORT_VALUE', { value: get(path, 'backend.servicePort') })}
+                </span>
               </Column>
             </Columns>
           </div>

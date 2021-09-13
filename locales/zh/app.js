@@ -34,20 +34,21 @@ module.exports = {
 
   APPS_MANAGEMENT: '应用管理',
   'Apps Management': '应用管理',
-  'App Store Management': '应用商店管理',
+  APP_STORE_MANAGEMENT: '应用商店管理',
   PROVIDER: '提供商',
 
   Apps: '应用',
-  'App Info': '应用信息',
+  APP_INFORMATION: '应用信息',
   'Base Info': '基本信息',
   'App Details': '应用详情',
   'App Config': '应用配置',
+  APP_SETTINGS: '应用设置',
   'Current App Config': '当前应用配置',
   'New App Config': '新的应用配置',
   Introduction: '使用说明',
   'Terms of service': '服务条款',
   'Config File': '配置文件',
-  'Chart Files': '配置文件',
+  CHART_FILES: '配置文件',
   'Update Log': '更新日志',
   'No update log': '暂无更新日志',
   Note: '提示',
@@ -69,9 +70,10 @@ module.exports = {
   'App Category': '应用分类',
   'Release / Suspended Time': '上架(下架)时间',
 
-  'App Review': '应用审核',
+  APP_REVIEW: '应用审核',
   'App Reviews': '应用审核',
   APP_REVIEW_DESC: '对应用上架提供审核功能',
+  APP_REVIEW_EMPTY_DESC: '没有找到侍审核的应用。',
   APP_REVIEWS_CREATE_DESC: '对应用上架提供审核功能',
   Unprocessed: '待处理',
   Processed: '已处理',
@@ -98,7 +100,7 @@ module.exports = {
   APP_CATEGORIES_DESC: '对已上架的应用分类管理',
   AUDIT_RECORD_CREATE_DESC: '暂无相关的审核记录数据',
 
-  'App Categories': '应用分类',
+  APP_CATEGORY_PL: '应用分类',
   APP_CATEGORIES_CREATE_DESC: '该分类暂无绑定的应用数据',
   'All Categories': '全部分类',
   'Adjust App Category': '调整应用分类',
@@ -217,7 +219,7 @@ module.exports = {
   MISS_FILE_NOTE: '文件{file}没有找到',
 
   'Please select a project to deploy': '请选择项目部署',
-  'Please select a workspace': '请选择企业空间',
+  WORKSPACE_EMPTY_DESC: '请选择企业空间',
   'Please select a cluster': '请选择集群',
   'Please select a project': '请选择项目',
   'Please select a project role': '请选择项目角色',
@@ -225,7 +227,7 @@ module.exports = {
   'Please select a DevOps project role': '请选择工程角色',
 
   HELM_APP_SCHEMA_FORM_TIP:
-    '此应用支持表单模式，可选择通过表单或 YAML 编辑器来修改默认应用配置。注意：不同模式之间数据独立。',
+    '您可以通过图形化表单或 YAML 文件对应用进行设置。图形化表单和 YAML 文件中的设置相互独立。',
 
   DELETE_APP_TEMPLATE_TIP: '删除应用模板前，需要先删除所有版本。',
 

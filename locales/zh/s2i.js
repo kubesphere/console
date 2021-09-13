@@ -110,7 +110,7 @@ module.exports = {
   'Upload Percent': '上传进度',
   'File Size': '文件大小',
   'Download Artifact': '下载制品',
-  'Image Builders': '镜像构建器',
+  IMAGE_BUILDER_PL: '镜像构建器',
   'Artifact Type': '制品类型',
   IMAGE_BUILDER_DESC:
     '镜像构建器 (Image Builder) 是将代码或者制品容器化的工具，仅需要通过简单的设置即可将制品或代码直接生成容器镜像。',

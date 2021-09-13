@@ -28,7 +28,7 @@ export default class ContainerImages extends Component {
 
     return (
       <div key={key}>
-        <span>{`${t('IMAGE')}: ${container.image}`}</span>
+        <span>{t('IMAGE_VALUE', { value: container.image })}</span>
         {selected && (
           <span className={styles.modify}>
             <span>{t('EDIT')}</span>
