@@ -46,6 +46,8 @@ module.exports = {
   CONFIGMAP_LOW: 'ConfigMap',
   PARTITION_ORDINAL: 'Ordinal for Dividing Pod Replicas',
   SERVICE_TOPOLOGY: 'Service Topology',
+  DIFFERENTIATED_SETTINGS: 'Differentiated Settings',
+  'Diff Settings': 'Differentiated Settings',
   PARTITION_ORDINAL_DESC:
     'Ordinal that divides the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
   'Access Mode': 'Access Mode',
@@ -136,7 +138,6 @@ module.exports = {
   DeploymentResumed: 'DeploymentResumed',
   'Desired number of nodes scheduled': 'Desired number of nodes scheduled',
   'Desired Replicas': 'Desired Replicas',
-  'Diff Settings': 'Diff Settings',
   DockerDaemonNotReady: 'DockerDaemonNotReady',
   'Edit Config Template': 'Edit Config Template',
   EDIT_CONTAINER: 'Edit Container',
@@ -241,7 +242,7 @@ module.exports = {
   NO_LIMIT: 'No limit',
   'No related resources found with the current workload(s)':
     'No related resources found with the current workload(s)',
-  'No related resources': 'No related resources',
+  NO_RELATED_RESOURCE_FOUND: 'No Related Resource Found',
   NO_REQUEST: 'No request',
   NO_RESOURCE_LIMIT: 'No resource limit',
   'No Request': 'No Request',
@@ -293,6 +294,7 @@ module.exports = {
     'Pod replicas will be deployed according to user customization.',
   'Pod Security Context': 'Pod Security Context',
   DECENTRALIZED_SCHEDULING: 'Decentralized Scheduling',
+  CUSTOM_RULES: 'Custom Rules',
   CUSTOM_RULES_DESC:
     'Schedules the Pod replicas to nodes according to custom rules.',
   'Pod IP': 'Pod IP',
@@ -705,8 +707,10 @@ module.exports = {
     'Container log path relative to the volume mount path. Globbing patterns are supported. You can used commas (,) to separate multiple paths.<br /><br /><b>Example</b><br />When the volume mount path is /data, log/*.log indicates that the container log files are all .log files in the /data/log directory.',
   SPECIFY_SUBPATH_TIP:
     'Specify a volume subpath to be mounted to the container.',
-  DELETE_WORKLOAD_DESC:
-    'You are about to delete the workload(s) {resource}. Please confirm whether to delete the associated resource?',
+  DELETE_WORKLOAD_DESC_SI:
+    'You are about to delete the workload {resource}.<br/>Do you want to also delete the resource related to the workload?',
+  DELETE_WORKLOAD_DESC_PL:
+    'You are about to delete the workloads {resource}.<br/>Do you want to also delete the resources related to the workloads?',
   SELECT_VOLUME_DESC:
     'Select an existing volume and mount it to the containers.',
 
@@ -746,12 +750,12 @@ module.exports = {
   REVISION_DESC:
     'After the resource template of workload is changed, a new log will be generated and Pods will be rescheduled for version update. The latest 10 versions will be saved by default. You can implement a redeployment based on the change log.',
 
-  CLUSTER_CONTAINER_IMAGE_DIFF_DESC:
-    'Set different containers in different clusters according to needs',
-  CLUSTER_SERVICE_DIFF_DESC:
-    'Different service ports can be set in different clusters',
-  CLUSTER_ENV_DIFF_DESC:
-    'Different container enviroments can be set in different clusters',
+  CLUSTER_DIFF_CONTAINER_SETTINGS_DESC:
+    'Use different container settings in different clusters.',
+  CLUSTER_DIFF_PORT_SETTINGS_DESC:
+    'Set different ports for containers in different clusters.',
+  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC:
+    'Set different environment variables for containers in different clusters.',
   POD_SCALE_DESC: 'The number of Pod instances that can be scaled',
   REPLICAS_AVAILABLE: 'Available',
   REPLICAS_EXPECTED: 'Expected',

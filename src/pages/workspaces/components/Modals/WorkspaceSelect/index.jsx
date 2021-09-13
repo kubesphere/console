@@ -110,7 +110,7 @@ export default class WorkspaceSelectModal extends React.Component {
                 />
                 {canCreate && (
                   <Button type="control" onClick={this.showCreate}>
-                    {t('Create Workspace')}
+                    {t('CREATE_WORKSPACE')}
                   </Button>
                 )}
               </div>

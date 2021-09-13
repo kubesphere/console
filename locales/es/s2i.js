@@ -37,8 +37,11 @@ module.exports = {
   'Choose a Language': 'Elige un idioma',
   CLICK_UPLOAD_ARTIFACT:
     'Haz clic para seleccionar el archivo de artefacto a subir',
-  'Code Resource': 'Recurso de código',
   CODE_URL: 'URL de código',
+  UPLOAD_ARTIFACT_FILE:
+    'Haz clic para seleccionar el archivo de artefacto a subir',
+  'Code Resource': 'Recurso de código',
+  CODE_REPOSITORY_URL: 'URL de código',
   CONTAINER_SETTINGS: 'Configuración del contenedor',
   creationTimestamp: 'creationTimestamp',
   'Currently only supports git repo': 'Actualmente solo admite repositorio git',
@@ -57,6 +60,10 @@ module.exports = {
   'Image building succeeded': 'La construcción de la imagen tuvo éxito',
   'Image Size': 'Tamaño de la imagen',
   IMAGE_NAME: 'Image Name',
+  IMAGE_NAME_EMPTY_DESC: 'Please enter an image name.',
+  IMAGE_TAG_EMPTY_DESC: 'Please enter an image tag.',
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Please set a target image repository.',
+  IMAGE_TAG: 'Image Tag',
   ImageName: 'Image Name',
   'is Failed': 'falló',
   'Job Records': 'Registros de trabajos',
@@ -89,7 +96,6 @@ module.exports = {
   SourceUrl: 'SourceUrl',
   S2I_RELATIVE_PATH_TIP:
     'Especifica un directorio relativo dentro de la aplicación. (Valor por defecto /)',
-  STARTUP_COMMAND: 'Comando de inicio',
   StartTime: 'Hora de inicio',
   TARGET_IMAGE_REPOSITORY: 'Repositorio de imágenes de destino',
   S2I_NO_SECRET: 'El repositorio de código actual no requiere clave.',
@@ -98,6 +104,15 @@ module.exports = {
     'La salud del contenedor se verificará periódicamente de acuerdo con las necesidades del usuario.',
   UPLOAD_ARTIFACT: 'Subir artefactos',
   FILE_UPLOAD_FAILED: 'Error al cargar el archivo',
+  CODE_RELATIVE_PATH_DESC:
+    'Especifica un directorio relativo dentro de la aplicación. (Valor por defecto /)',
+  STARTUP_COMMAND: 'Comando de inicio',
+  'Target Image Repository': 'Repositorio de imágenes de destino',
+  CODE_REPOSITORY_KEY_NOT_REQUIRED:
+    'El repositorio de código actual no requiere clave.',
+  ARTIFACT_FILE_EMPTY_DESC: 'El archivo no se ha subido.',
+  ARTIFACT_FILE: 'Subir artefactos',
+  'Upload file failed': 'Error al cargar el archivo',
   'Upload Percent': 'Porcentaje de subida',
   SORT_BY: 'ordenado por { name }',
   S2I_Building: 'esta construyendo',
@@ -127,12 +142,12 @@ module.exports = {
     'Selecciona un contenedor de despliegue de imagen existente',
   IMAGE_FROM_EXSIT_DESC:
     'Descarga una imagen de un repositorio de imágenes público o privado.',
-  S2I_SECRET_DESC:
+  CODE_REPOSITORY_KEY_DESC:
     'Si es un repositorio de código privado, escoge la clave del repositorio de código.',
-  S2I_IMAGE_REPONSITRY_DESC:
+  CODE_REPOSITORY_URL_DESC:
     'La dirección del repositorio del código fuente (actualmente es compatible con git). Puedes especificar ramas de código y rutas relativas en el terminal del código fuente.',
-  S2I_RELATIVE_PATH: 'Ruta relativa del código (opcional):',
-  S2I_IMAGENAME_DESC:
+  CODE_RELATIVE_PATH: 'Ruta relativa del código (opcional):',
+  S2I_IMAGE_NAME_DESC:
     'Nombre de la imagen y tag, que por defecto es el nombre del proyecto del repositorio de código.',
   S2I_TARGET_IMAGE_REPOSITORY_DESC:
     'Select a Secret with push permissions to the image repository. De lo contrario, puedes <a href={link} target="_blank">crear una nueva credencial de repositorio de imágenes</a> .',
@@ -159,13 +174,16 @@ module.exports = {
   SECRET_CODE: 'Secret Code',
   SECRET_CODE_RULE_DESC:
     'It can only contain upper and lower case letters and numbers.',
+  TRIGGER_TOKEN: 'Secret Code',
+  TRIGGER_TOKEN_DESC:
+    'Set a token used to authenticate a client against KubeSphere when the client attempts to trigger image building on KubeSphere. The token can contain only uppercase letters, lowercase letters, and numbers.',
+  INVALID_TRIGGER_TOKEN_DESC:
+    'It can only contain upper and lower case letters, numbers.',
   'Remote Trigger Link': 'Remote Trigger Link',
 
   // Image Builder List Page
-  TYPE: 'Tipo',
 
   // Creation Page
-  TAG: 'Etiqueta',
   UPLOADED: 'Uploaded: {percent}%',
   UPLOAD_FULLY: 'Uploaded: 100%',
   FILE_SIZE: 'File size: {size}',

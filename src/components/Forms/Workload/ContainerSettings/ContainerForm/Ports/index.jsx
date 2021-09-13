@@ -84,7 +84,7 @@ export default class Ports extends React.Component {
     return (
       <Form.Group
         className={className}
-        label={withService ? t('SERVICE_SETTINGS') : t('PORT_SETTINGS')}
+        label={t('PORT_SETTINGS')}
         desc={t('PORT_SETTINGS_DESC')}
       >
         <Form.Item

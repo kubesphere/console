@@ -32,6 +32,7 @@ module.exports = {
   'Allocated CPU': 'CPU reservada',
   'Allocated Memory': 'Memoria reservada',
   ANNOTATIONS: 'Anotaciones',
+  WORKLOAD_ANNOTATIONS: 'Workload Annotations',
   Architecture: 'Arquitectura',
   'Cluster Node': 'Nodo de clúster',
   CLUSTER_NODE_PL: 'Nodo de clúster',

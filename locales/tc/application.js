@@ -26,8 +26,8 @@ module.exports = {
   'App Template': '應用模板',
   APP_TEMPLATE: 'App Template',
   APP_TEMPLATE_PL: 'App Templates',
-  TEMPLATE_BASED_APP_PL: 'Template-based Apps',
-  NO_TEMPLATE_BASED_APP_FOUND: 'No Templated-based App Found',
+  TEMPLATE_BASED_APP_PL: 'Template-Based Apps',
+  NO_TEMPLATE_BASED_APP_FOUND: 'No Template-Based App Found',
   TEMPLATE_BASED_APP_EMPTY_DESC:
     'Please create an app from the KubeSphere App Store or an app template.',
   APP_TEMPLATE_LOW: 'app template',
@@ -245,7 +245,8 @@ module.exports = {
 
   CURRENT_WORKSPACE: '來自企業空間',
   SELECT_APP_REPOSITORY: 'Select app repository',
-  CREATE_SERVICE_DESC: '添加有狀態服務或無狀態服務',
+  APP_CREATE_SERVICE_DESC: '添加有狀態服務或無狀態服務',
+  CREATE_SERVICE_DESC: 'Select a Service creation method.',
   'Add an Internet access rule for the application': '為應用添加外網訪問規則',
 
   EXTERNAL_ACCESS_DESC: '可以設置應用的外網訪問規則 (Ingress)',

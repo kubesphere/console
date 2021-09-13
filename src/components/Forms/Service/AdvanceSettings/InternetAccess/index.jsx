@@ -49,7 +49,7 @@ export default class InternetAccess extends React.Component {
         value: 'NodePort',
       },
       {
-        label: t('Load Balancer'),
+        label: 'LoadBalancer',
         desc: t('ACCESS_LOADBALANCER_TIP'),
         value: 'LoadBalancer',
       },

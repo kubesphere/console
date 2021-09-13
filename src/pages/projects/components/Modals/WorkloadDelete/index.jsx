@@ -233,8 +233,8 @@ export default class WorkloadDeleteModal extends React.Component {
         <EmptyList
           icon="appcenter"
           className={styles.empty}
-          title={t('No related resources')}
-          desc={t('No related resources found with the current workload(s)')}
+          title={t('NO_RELATED_RESOURCE_FOUND')}
+          desc={t('NO_WORKLOAD_RELATED_RESOURCE_DESC')}
         />
       )
     }
@@ -248,7 +248,7 @@ export default class WorkloadDeleteModal extends React.Component {
               onClick={this.handleSelectAll}
               indeterminate={!isEmpty(selectedRelatedResourceIds)}
             />
-            <span className={styles.resourceName}>{t('Select All')}</span>
+            <span className={styles.resourceName}>{t('SELECT_ALL')}</span>
           </div>
         )}
         {relatedResources.map(resource => (
@@ -289,13 +289,21 @@ export default class WorkloadDeleteModal extends React.Component {
     const { enableConfirm, timer } = this.state
     const { resource, onOk, onCancel, isSubmitting, ...rest } = this.props
 
-    const title = `${t('Sure to delete the workload(s)?')}`
+    const title =
+      isArray(resource) && resource.length !== 1
+        ? t('DELETE_MULTIPLE_WORKLOADS')
+        : t('DELETE_WORKLOAD')
 
-    const description = t('DELETE_WORKLOAD_DESC', {
-      resource: isArray(resource)
-        ? resource.map(item => item.name).join(', ')
-        : resource.name,
-    })
+    const description =
+      isArray(resource) && resource.length !== 1
+        ? t.html('DELETE_WORKLOAD_DESC_PL', {
+            resource: resource.map(item => item.name).join(', '),
+          })
+        : isArray(resource)
+        ? t.html('DELETE_WORKLOAD_DESC_SI', {
+            resource: resource.map(item => item.name).join(', '),
+          })
+        : t.html('DELETE_WORKLOAD_DESC_SI', { resource: resource.name })
 
     return (
       <Modal
@@ -312,7 +320,7 @@ export default class WorkloadDeleteModal extends React.Component {
         <div className={styles.body}>{this.renderContent()}</div>
         <div className={styles.footer}>
           <Button onClick={onCancel} data-test="modal-cancel">
-            {t('Cancel')}
+            {t('CANCEL')}
           </Button>
           <Button
             type="danger"

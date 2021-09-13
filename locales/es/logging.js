@@ -196,8 +196,6 @@ module.exports = {
   EXAMPLE: 'Example: ',
   PORT_NUMBER_EMPTY: 'Please enter a port number.',
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
-  LOGGING: 'Logging',
   EVENTS: 'Events',
-  AUDITING: 'Auditing',
   CREATION_TIME: 'Creation time',
 }

@@ -60,7 +60,6 @@ module.exports = {
   Recover: 'Recuperar',
   REGEX_MATCH: 'Coincidencia regex',
   GRAY_RELEASE_JOB_NAME: 'Liberar nombre del job',
-  REQUEST_LATENCY: 'Duración de solicitud',
   REQUEST_SUCCESS_RATE: 'Tasa de éxito de solicitud',
   RULE_DESCRIPTION: 'Descripción de la regla',
   'Take Over': 'Tomar el control',

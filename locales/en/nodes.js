@@ -36,6 +36,7 @@ module.exports = {
   'Allocated Memory': 'Allocated Memory',
   'Allocated Resources': 'Allocated Resources',
   ANNOTATIONS: 'Annotations',
+  WORKLOAD_ANNOTATIONS: 'Workload Annotations',
   Architecture: 'Architecture',
   'Cluster Node': 'Cluster Node',
   'Edge Node': 'Edge Node',

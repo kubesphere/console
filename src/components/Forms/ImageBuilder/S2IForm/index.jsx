@@ -193,11 +193,12 @@ export default class S2IForm extends React.Component {
       <>
         <div className={styles.margin_b_10}>
           <Form.Item
-            label={t('SECRET_CODE')}
+            label={t('TRIGGER_TOKEN')}
+            desc={t('TRIGGER_TOKEN_DESC')}
             rules={[
               {
                 pattern: /^[a-zA-Z0-9]+$/,
-                message: `${t('SECRET_CODE_RULE_DESC')}`,
+                message: `${t('INVALID_TRIGGER_TOKEN_DESC')}`,
               },
             ]}
           >
@@ -210,8 +211,8 @@ export default class S2IForm extends React.Component {
 
         <div className={styles.margin_b_10}>
           <Form.Item
-            label={t('S2I_RELATIVE_PATH')}
-            desc={t('S2I_RELATIVE_PATH_TIP')}
+            label={t('CODE_RELATIVE_PATH')}
+            desc={t('CODE_RELATIVE_PATH_DESC')}
           >
             <Input
               name={`${this.prefix}spec.config.contextDir`}
@@ -255,8 +256,8 @@ export default class S2IForm extends React.Component {
           <div className={styles.column}>
             <Loading spinning={this.state.readRepoLoading} size={18}>
               <Form.Item
-                label={t('CODE_URL')}
-                desc={t('S2I_IMAGE_REPONSITRY_DESC')}
+                label={t('CODE_REPOSITORY_URL')}
+                desc={t('CODE_REPOSITORY_URL_DESC')}
                 error={this.state.repoReadError}
                 rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
               >
@@ -269,7 +270,7 @@ export default class S2IForm extends React.Component {
           </div>
           <div className="is-2">
             <Form.Item
-              label={t('BRANCH_SI')}
+              label={t('CODE_REPOSITORY_BRANCH')}
               rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <Input
@@ -282,11 +283,11 @@ export default class S2IForm extends React.Component {
             <Loading spinning={this.state.readRepoLoading} size={18}>
               <Form.Item
                 className={this.state.repoNeedSecret ? '' : styles.disabled}
-                label={t('S2I_SECRET')}
+                label={t('CODE_REPOSITORY_KEY')}
                 desc={
                   this.state.repoNeedSecret
-                    ? t('S2I_SECRET_DESC')
-                    : t('S2I_NO_SECRET')
+                    ? t('CODE_REPOSITORY_KEY_DESC')
+                    : t('CODE_REPOSITORY_KEY_NOT_REQUIRED')
                 }
               >
                 <Select
@@ -307,13 +308,13 @@ export default class S2IForm extends React.Component {
           <div className={styles.column}>
             <Form.Item
               label={t('IMAGE_NAME')}
-              desc={t('S2I_IMAGENAME_DESC')}
+              desc={t('S2I_IMAGE_NAME_DESC')}
               rules={[
                 { required: true, message: t('PARAM_REQUIRED') },
                 {
                   pattern: PATTERN_IMAGE_NAME,
                   message: t('INVALID_NAME_DESC', {
-                    message: t('S2I_IMAGENAME_DESC'),
+                    message: t('S2I_IMAGE_NAME_DESC'),
                   }),
                 },
               ]}
@@ -323,7 +324,7 @@ export default class S2IForm extends React.Component {
           </div>
           <div className="is-2">
             <Form.Item
-              label={t('TAG')}
+              label={t('IMAGE_TAG')}
               rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <Input

@@ -606,8 +606,8 @@ export default class ContainerSetting extends React.Component {
     return (
       <div className="margin-b12">
         <Form.Group
-          label={t('Add Metadata')}
-          desc={t('Additional metadata settings for resources.')}
+          label={t('ADD_METADATA')}
+          desc={t('ADD_METADATA_DESC')}
           keepDataWhenUnCheck
           checkable
         >

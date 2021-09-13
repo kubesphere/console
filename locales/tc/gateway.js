@@ -28,7 +28,6 @@ module.exports = {
   'Cluster Gateway Not Set': '集群網關未設置',
   'Project Gateway Not Set': '沒有找到 項目網關',
   'Gateway Not Set': '網關未設置',
-  'Gateway Info': '網關信息',
   'View Gateway': '查看網關',
   'Set Gateway': '設置網關',
   'Edit Gateway': '編輯網關',
@@ -42,8 +41,6 @@ module.exports = {
   DISK_LOG_COLLECTION_TITLE: '落盤日誌',
   DISK_LOG_COLLECTION_DESC:
     '容器內的落盤日誌進行收集，並轉發到標準輸出，然後由日誌收集系統統一採集。 ',
-  PROJECT_INTERNET_ACCESS_DESC:
-    '在創建應用路由之前，需要先啟用外網訪問入口，即網關。這一步是創建對應的應用路由控制器，用來負責將請求轉發到對應的後端服務。 ',
   UPDATED_GATEWAY_DESC: '請在業務低峰期操作，升級過程可能會造成業務短暫中斷。 ',
   UPDATED_GATEWAY_TITLE: '升級網關確認?',
   CLUSTER_GATEWAY_GUIDE_DESC:

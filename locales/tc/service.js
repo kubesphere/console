@@ -59,10 +59,11 @@ module.exports = {
 
   'Internal access': '内部訪問',
   ACCESS_TYPE: '訪問類型',
+  INTERNAL_ACCESS_METHOD: 'Internal Access Method',
 
   'Service Name': '服務名稱',
   'Please input service name': '請輸入服務名稱',
-  ENTER_EXTERNALNAME_DESC: '請輸入 ExternalName。',
+  EXTERNAL_SERVICE_ADDRESS_EMPTY_DESC: '請輸入 ExternalName。',
   SPECIFY_WORKLOAD: '指定工作負載',
   SPECIFY_WORKLOAD_TO_CREATE_SERVICE: 'Specify Workload to Create Service',
   EDIT_YAML_TO_CREATE_SERVICE: 'Edit YAML to Create Service',
@@ -73,7 +74,7 @@ module.exports = {
   SPECIFY_NODE: '指定節點',
   'Add Selector': '添加選擇器',
 
-  Auto: '自动',
+  AUTO_REFRESH: '自动',
 
   INVALID_PORT_DESC: 'Please enter a valid protocol or port number.',
   INVALID_PORT: '端口無效。',
@@ -85,8 +86,9 @@ module.exports = {
   'Create service by Yaml': '通過 Yaml 創建服務',
 
   'Sure to delete the service(s)?': '確認刪除服務',
-  'No related resources found with current service(s)':
-    '目前服務下沒有關聯的資源',
+  NO_SERVICE_RELATED_RESOURCE_DESC: '目前服務下沒有關聯的資源',
+  NO_WORKLOAD_RELATED_RESOURCE_DESC:
+    'No resources related to the workload is found.',
 
   'Automatically assign Service IP': '自動分配服務 IP',
   'Do not assign Service IP': '不分配服務 IP',
@@ -148,7 +150,7 @@ module.exports = {
     '映射集群外部的地址來訪 Headless (externalname)',
   HEADLESS_EXTERNAL_NAME_DESC: '將集群或者項目外部服務映射到集群或項目内。',
 
-  SERVICES_INTERNET_ACCESS_DESC: '將服務暴露给外網',
+  SERVICE_EXTERNAL_ACCESS_DESC: '將服務暴露给外網',
 
   SERVICE_NODE_PORT_DESC:
     '如果您目前的網路與集群節點在同一網路内，那麼您可以透通集群IP地址+節點端口號進行訪問，或者通過節點 IP+節點端口進行訪問',
@@ -179,7 +181,9 @@ module.exports = {
   LANGUAGE_TYPE_VALUE: '語言類型：{value}',
   ARTIFACT_TYPE_VALUE: 'Artifact Type: {value}',
   SPECIFY_WORKLOAD_DESC: '通過已有的容器組來創建服務',
-  DELETE_SERVICE_DESC:
+  DELETE_SERVICE_DESC_SI:
+    '您即將刪除服務 {resource}，請您進行確認是否刪除關聯資源?',
+  DELETE_SERVICE_DESC_PL:
     '您即將刪除服務 {resource}，請您進行確認是否刪除關聯資源?',
 
   CUSTOMIZE_SERVICE_DESC:
@@ -203,6 +207,9 @@ module.exports = {
   UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
   HEADLESS: 'Headless',
   EXTERNALNAME: 'ExternalName',
+  EXTERNAL_SERVICE_ADDRESS: 'External Service Address',
+  EXTERNAL_SERVICE_ADDRESS_DESC:
+    'Enter the domain name of an external Service.',
   UNKNOWN: 'Unknown',
   EXTERNALNAME_EXAMPLE: 'Example: ',
   PORTS: 'Ports',

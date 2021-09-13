@@ -109,8 +109,10 @@ module.exports = {
   EXISTING_VOLUME: '已有儲存卷',
   VOLUME_NAME: '儲存卷名稱',
   'Diff Settings': '差異化配置',
+  DIFFERENTIATED_SETTINGS: 'Differentiated Settings',
   'Deployment Mode': '部署模式',
   POD_SCHEDULING_RULES: '容器组调度策略',
+  CUSTOM_RULES: 'Custom Rules',
   CUSTOM_RULES_DESC:
     'Pod replicas are scheduled to nodes according to user-defined rules.',
   ADD_RULE: '添加部署模式',
@@ -698,11 +700,13 @@ module.exports = {
 
   CONTAINER_NOT_SELECTED: '請至少選擇一個容器進行掛載',
   'Sure to delete the workload(s)?': '確認刪除工作負載',
-  'No related resources': '沒有關聯的資源',
+  NO_RELATED_RESOURCE_FOUND: '沒有關聯的資源',
   'No related resources found with the current workload(s)':
     '目前工作負載下沒有關聯的資源',
-  DELETE_WORKLOAD_DESC:
-    '您即將刪除工作負載 {resource}，請您進行確認是否刪除關聯資源?',
+  DELETE_WORKLOAD_DESC_SI:
+    'You are about to delete the workload {resource}.<br/>Do you want to also delete the resource related to the workload?',
+  DELETE_WORKLOAD_DESC_PL:
+    'You are about to delete the workloads {resource}.<br/>Do you want to also delete the resources related to the workloads?',
 
   CONTAINER_SECURITY_CONTEXT: '容器 Security Context',
   POD_SECURITY_CONTEXT: '容器組 Security Context',
@@ -731,10 +735,10 @@ module.exports = {
   REVISION_DESC:
     '對工作負載的資源模板進行修改後會生成一個新的紀錄並重新調度 容器組（Pod）進行版本的疊代，預設保存10個最近的版本。您可以根據修改紀錄進行重新部署。',
 
-  CLUSTER_CONTAINER_IMAGE_DIFF_DESC:
+  CLUSTER_DIFF_CONTAINER_SETTINGS_DESC:
     '根據不同的需要在不同的集群中設置不同的容器',
-  CLUSTER_SERVICE_DIFF_DESC: '可以在不同集群設置不同的服務端口',
-  CLUSTER_ENV_DIFF_DESC: '可以在不同集群設置不同的環境變量',
+  CLUSTER_DIFF_PORT_SETTINGS_DESC: '可以在不同集群設置不同的服務端口',
+  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: '可以在不同集群設置不同的環境變量',
 
   CONTAINER_RESOURCE_LIMIT_TIP:
     '請設置容器的資源限制與資源預留，這將能夠幫助系統更好地調度容器，提高穩定性。您也可在【項目設置】中，通過【基本資訊】->【項目管理】->【編輯資源預設請求】，來統一設置預設值。',

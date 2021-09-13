@@ -29,7 +29,6 @@ module.exports = {
   user_active: '活躍',
   Avatar: '頭像',
   NOT_LOGIN_YET: '尚未登入',
-  LAST_LOGIN: 'Last Login',
   NOT_LOGGED_IN: '尚未登入',
   'Change Password': '修改密碼',
   'Password Setting': '密碼設置',

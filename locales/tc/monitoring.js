@@ -26,7 +26,6 @@ module.exports = {
   APPLICATION_RESOURCE_PL: '應用資源監控',
 
   NODE_COUNT: '節點數量',
-  'Cluster Status': '集群狀態',
   CLUSTER_STATUS: '集群狀態',
   'Cluster Monitors': '集群監控',
   'Cluster Resource Monitoring': '集群資源監控',
@@ -218,6 +217,7 @@ module.exports = {
   // Cluster Status
   DISK_USAGE: 'Disk Usage',
   POD_COUNT: 'Pods',
+  POD_COUNT_VALUE: 'Pods: {value}',
   API_SERVER: 'API Server',
   AVERAGE_CPU_LOAD: 'Average CPU Load',
   POD_USAGE: 'Pod Usage',
@@ -254,6 +254,4 @@ module.exports = {
   CUSTOM_MONITOR_DASHBOARD: 'Custom Monitoring Dashboard',
   CUSTOM_MONITOR_DASHBOARD_CREATE_DESC:
     'You can customize application monitoring dashboards based on your needs.',
-  CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC:
-    'Please create a custom monitoring dashboard.',
 }

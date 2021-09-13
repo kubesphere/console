@@ -37,7 +37,7 @@ export default class HealthChecker extends React.Component {
   render() {
     return (
       <Form.Group
-        label={t('HEALTH_CHECKER')}
+        label={t('HEALTH_CHECK')}
         desc={t('HEALTH_CHECKER_DESC')}
         checkable
       >

@@ -92,7 +92,7 @@ export default class ServiceCreateModal extends React.Component {
     return (
       <div className={styles.header}>
         <div className="h4 margin-b12">{t('CREATE_SERVICE')}</div>
-        <p>{t.html('CREATE_SERVICE_DESC')}</p>
+        <p>{t.html('APP_CREATE_SERVICE_DESC')}</p>
         <img src="/assets/create-service.svg" alt="" />
       </div>
     )
@@ -181,7 +181,7 @@ export default class ServiceCreateModal extends React.Component {
 
         if (isFederated) {
           steps.push({
-            title: 'Diff Settings',
+            title: 'DIFFERENTIATED_SETTINGS',
             icon: 'blue-green-deployment',
             component: withProps(ClusterDiffSettings, { withService: true }),
           })
@@ -245,7 +245,7 @@ export default class ServiceCreateModal extends React.Component {
 
         if (isFederated) {
           steps.push({
-            title: 'Diff Settings',
+            title: 'DIFFERENTIATED_SETTINGS',
             icon: 'blue-green-deployment',
             component: withProps(ClusterDiffSettings, { withService: true }),
           })

@@ -139,7 +139,7 @@ export default class Workspaces extends React.Component {
 
     if (globals.app.isMultiCluster) {
       columns.splice(1, 0, {
-        title: t('CLUSTER_INFORMATION'),
+        title: t('CLUSTER_PL'),
         dataIndex: 'clusters',
         width: '30%',
         render: clusters => (

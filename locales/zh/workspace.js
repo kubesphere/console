@@ -35,7 +35,7 @@ module.exports = {
   'Workspace Name': '企业空间名称',
   'Workspace Logo': '企业空间 Logo',
   'Workspaces Manager': '企业空间管理员',
-  'Create Workspace': '创建企业空间',
+  CREATE_WORKSPACE: '创建企业空间',
   DEPARTMENT_MANAGEMENT: '部门管理',
   SET_DEPARTMENT: '设置部门',
   DEPARTMENT_PL: '部门管理',
@@ -79,7 +79,7 @@ module.exports = {
 
   WORKSPACE_SEARCH_PLACEHOLDER: '请输入企业空间名称进行查找',
 
-  WORKSPACE_CREATE_DESC: '配置企业空间基本信息以创建企业空间。',
+  WORKSPACE_CREATE_DESC: '设置企业空间的基本信息。',
 
   WORKSPACE_NAME_DESC:
     '请尽量保持名称简短，比如用企业名称的缩写或者大家经常的称呼，无需使用企业的完整名称或者营业执照上的注册名称。',
@@ -117,8 +117,8 @@ module.exports = {
   HOW_TO_APPLY_MORE_CLUSTER_Q: '如何为企业空间申请更多的集群？',
   HOW_TO_APPLY_MORE_CLUSTER_A: '请联系平台管理员或集群管理员以申请更多集群。',
 
-  NO_PUBLIC_CLUSTER_TIP:
-    '暂无可用的公开集群, 请在企业空间创建完毕后, 向平台管理员或集群管理员申请集群的授权',
+  NO_CLUSTER_AVAILABLE_DESC:
+    '没有找到可用的集群。请在企业空间创建完成后，联系平台管理员或集群管理员将一个集群授权给该企业空间。',
   WORKSPACE_NO_CLUSTER_TIP:
     '请联系平台管理员或者集群管理员将一个集群授权给企业空间。',
 

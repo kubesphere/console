@@ -21,6 +21,7 @@ module.exports = {
   Secrets: '密鑰',
   Secret: '密鑰',
   SECRET: '保密字典',
+  CODE_REPOSITORY_KEY: 'Key',
   SECRET_PL: 'Secrets',
   SECRET_LOW: 'Secret',
   SECRET_FIELD_COUNT: '字段數量',

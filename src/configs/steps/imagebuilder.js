@@ -25,7 +25,7 @@ export default [
     component: LanguageSelect,
   },
   {
-    title: 'Build Settings',
+    title: 'BUILD_SETTINGS',
     component: S2IForm,
     required: true,
   },

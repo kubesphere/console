@@ -34,6 +34,8 @@ module.exports = {
   MANAGER: 'Manager',
 
   DEVOPS_PROJECT_MANAGEMENT: 'Project Management',
+  DEVOPS_PROJECT_SETTINGS: 'DevOps Project Settings',
+  MANAGE_DEVOPS_PROJECT: 'Manage DevOps Project',
   DEVOPS_PROJECT_MEMBER_PL: 'DevOps Project Members',
   DEVOPS_PROJECT_ROLE_PL: 'DevOps Project Roles',
 
@@ -45,6 +47,7 @@ module.exports = {
   DEVOPS_PROJECT_CREATE_DESC:
     'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines themselves (for example, project type and organization type).',
   DEVOPS_PROJECT_EMPTY_DESC: 'Please create a DevOps project.',
+  PIPELINE_EMPTY_DESC: 'Please create a pipeline.',
   DEVOPS_ADMIN_DESC:
     'You can specify a member of the project as an administrator',
 

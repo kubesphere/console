@@ -89,7 +89,7 @@ export default class ClusterSettings extends Component {
     const { data, isLoading } = toJS(this.clusterStore.list)
 
     if (isEmpty(data) && !isLoading) {
-      return <Alert type="warning" message={t('NO_PUBLIC_CLUSTER_TIP')} />
+      return <Alert type="warning" message={t('NO_CLUSTER_AVAILABLE_DESC')} />
     }
 
     return (

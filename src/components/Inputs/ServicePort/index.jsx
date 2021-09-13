@@ -135,7 +135,7 @@ export default class ServicePort extends React.Component {
             onChange={this.handleProtocolChange}
           />
         </AddonsInput>
-        <AddonsInput prefix={t('NAME')}>
+        <AddonsInput prefix={t('NAME')} placeholder={t('REQUIRED')}>
           <Input name="name" value={name} onChange={this.handleNameChange} />
         </AddonsInput>
         <AddonsInput prefix={t('CONTAINER_PORT')}>

@@ -85,8 +85,8 @@ module.exports = {
 
   'The current cluster is public': '目前集群處於公開狀態',
 
-  'Available Clusters': '可用集群',
-  'Select Clusters': '集群選擇',
+  AVAILABLE_CLUSTERS: '可用集群',
+  SELECT_CLUSTER: '集群選擇',
   EDIT_CLUSTER_INFO_DESC: '編輯集群基礎資訊',
 
   SCHEDULING_OPERATIONS: '排程器調度次數',
@@ -324,8 +324,6 @@ module.exports = {
     'Cluster visibility controls the cluster authorization to workspaces. After a cluster is authorized to workspaces, you can view and manage the cluster resources in the workspaces.',
   EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
   UNAUTHORIZED: 'Unauthorized',
-  LOGGING: 'Logging',
-  EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:
     'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',

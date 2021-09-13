@@ -38,10 +38,14 @@ module.exports = {
   CLICK_UPLOAD_ARTIFACT: 'Click to Upload an Artifact',
   'Code Resource': 'Code Resource',
   CODE_URL: 'Code URL',
+  DOWNLOAD_ARTIFACT: 'Download Artifact',
+  UPLOAD_ARTIFACT_FILE: 'Upload Artifact File',
+  CODE_REPOSITORY_URL: 'Code Repository URL',
   CONTAINER_SETTINGS: 'Container Settings',
   creationTimestamp: 'creationTimestamp',
-  'Currently only supports git repo': 'Currently only supports git repo',
-  DOWNLOAD_ARTIFACT: 'Download Artifact',
+  'Currently only supports git repo':
+    'Only Git repositories are supported currently.',
+  'Download Artifact': 'Download Artifact',
   'Environment Params': 'Environment Params',
   'exec: "git": executable file not found in $PATH':
     'exec: "git": executable file not found in $PATH',
@@ -56,6 +60,10 @@ module.exports = {
   'Image building succeeded': 'Image building succeeded',
   'Image Size': 'Image Size',
   IMAGE_NAME: 'Image Name',
+  IMAGE_NAME_EMPTY_DESC: 'Please enter an image name.',
+  IMAGE_TAG_EMPTY_DESC: 'Please enter an image tag.',
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Please set a target image repository.',
+  IMAGE_TAG: 'Image Tag',
   ImageName: 'ImageName',
   'is Failed': 'is Failed',
   'Job Records': 'Job Records',
@@ -88,7 +96,6 @@ module.exports = {
   SourceUrl: 'SourceUrl',
   S2I_RELATIVE_PATH_TIP:
     'Specify a relative directory inside the application. (Default value /)',
-  STARTUP_COMMAND: 'Start Command',
   StartTime: 'StartTime',
   TARGET_IMAGE_REPOSITORY: 'Target Image Repository',
   S2I_NO_SECRET: 'The current code repository does not require a secret.',
@@ -97,6 +104,14 @@ module.exports = {
     'Add probes to check the container health status regularly.',
   UPLOAD_ARTIFACT: 'Upload Artifact',
   FILE_UPLOAD_FAILED: 'Upload file failed.',
+  CODE_RELATIVE_PATH_DESC:
+    'Specify the relative path of the code in the code repository. The default path is /.',
+  STARTUP_COMMAND: 'Start Command',
+  CODE_REPOSITORY_KEY_NOT_REQUIRED:
+    'The current code repository does not require a key.',
+  ARTIFACT_FILE_EMPTY_DESC: 'Please upload an artifact file.',
+  ARTIFACT_FILE: 'Artifact File',
+  'Upload file failed': 'Upload file failed',
   'Upload Percent': 'Upload Percent',
 
   SORT_BY: 'sort by { name }',
@@ -115,7 +130,7 @@ module.exports = {
   IMAGE_PULL_POLICY_DESC:
     'By default, the image is pulled only if it is not already present locally.',
   S2I_ENVIRONMENT_DESC:
-    'App developers can use environment variables to configure the runtime behavior of the image. For more information, see <a href={link} target="_blank">S2I Templates</a>.',
+    'Set environment variables to control the runtime behavior of the image. <a href={link} target="_blank">Learn More</a>',
   S2I_UPDATE_WORKLOAD: 'Update workload after building is successful',
   S2I_UPDATA_WORKLOAD_DESC:
     'After the image is rebuilt successfully, the image of the relevant workload will be updated and the workload version will be updated.',
@@ -131,10 +146,6 @@ module.exports = {
   S2I_RELATIVE_PATH: 'Code Relative Path (Optional)',
   S2I_IMAGENAME_DESC:
     'Image name and tag, which defaults to the project name of the code repository.',
-  S2I_TARGET_IMAGE_REPOSITORY_DESC:
-    'Select a Secret with push permissions to the image repository. If it is not available, you need to <a href={link} target="_blank">create a new image repository Secret</a>.',
-  S2I_BUILDERNAME_DESC:
-    'Select the editing environment, you can also view the <a href={link} target="_blank">corresponding compilation template</a>',
   IMAGE_BUILDER_DESC:
     'Image Builder is a tool that builds container images from source code or artifacts. You can build container images from source code or artifacts through simple configurations.',
   BUILD_IMAGE_FOR_SERVICE: 'Build image for Service {service}.',
@@ -142,11 +153,21 @@ module.exports = {
   IMAGE_FROM_S2I: 'Build a New Image from Source Code',
   IMAGE_FROM_B2I: 'Build a New Image from Artifact',
   B2I_DESC: 'Select the file type of your artifact.',
-  B2I_DEFAULT_DESC: 'Please upload your artifact to build a container image.',
-  JAR_DESC:
-    'A JAR file is a package file format that is commonly used to aggregate a large number of Java class files, related metadata and resources (text, images, etc.) files into a file.',
-  WAR_DESC:
-    'WAR file is a file used to distribute a collection of JAR-files, JavaServer Pages, Java Servlets, Java classes, XML files, tag libraries, static web pages (HTML and related files), and other resources that together constitute a web application.',
+  CODE_REPOSITORY_KEY_DESC:
+    'Select the Secret that contains the code repository key if a private code repository is used.',
+  CODE_REPOSITORY_URL_DESC:
+    'Enter the address of the source code repository. Currently, only Git repositories are supported.',
+  CODE_RELATIVE_PATH: 'Code Relative Path',
+  S2I_IMAGE_NAME_DESC:
+    'The name can contain only lowercase letters, numbers, hyphens (-), dots (.), slashes (/), and colons (:), and must start and end with a lowercase letter or number.',
+  S2I_TARGET_IMAGE_REPOSITORY_DESC:
+    'Select an image repository for storing the image to be created. If no image repository is available, you need to create an image repository Secret. <br/><a href={link} target="_blank">Learn More</a>',
+  S2I_BUILDERNAME_DESC:
+    'Select the editing environment, you can also view the <a href={link} target="_blank">corresponding compilation template</a>',
+  'Build image for service x': 'Build image for service {service}',
+  B2I_DEFAULT_DESC: 'Upload an artifact file.',
+  JAR_DESC: 'Upload an artifact file in JAR format.',
+  WAR_DESC: 'Upload an artifact file in WAR format.',
   BINARY_DESC: '',
   IMAGE_BUILDER_EMPTY_DESC: 'Please create an image builder.',
   WRONG_FILE_EXTENSION_NAME:
@@ -155,13 +176,17 @@ module.exports = {
   SECRET_CODE: 'Secret Code',
   SECRET_CODE_RULE_DESC:
     'It can only contain upper and lower case letters and numbers.',
+  TRIGGER_TOKEN: 'Trigger Token',
+  TRIGGER_TOKEN_DESC:
+    'Set a token used to authenticate a client against KubeSphere. You can set a client to automatically trigger image building on KubeSphere over a webhook. The token can contain only uppercase letters, lowercase letters, and numbers.',
+  S2I_ACCESS_TOKEN_DESC: 'Set the ',
+  INVALID_TRIGGER_TOKEN_DESC:
+    'Invalid token. The token can contain only uppercase letters, lowercase letters, and numbers.',
   'Remote Trigger Link': 'Remote Trigger Link',
 
   // Image Builder List Page
-  TYPE: 'Type',
 
   // Creation Page
-  TAG: 'Tag',
   UPLOADED: 'Uploaded: {percent}%',
   UPLOAD_FULLY: 'Uploaded: 100%',
   FILE_SIZE: 'File size: {size}',

@@ -85,7 +85,6 @@ module.exports = {
 
   TRAFFIC_MONITORING: '流量監控',
   REQUEST_SUCCESS_RATE: '請求成功率',
-  REQUEST_LATENCY: '請求延遲',
 
   TRAFFIC_IN_LAST_FIVE_MINUTES: '最近五分鐘流量',
 

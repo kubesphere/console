@@ -243,7 +243,8 @@ module.exports = {
 
   CURRENT_WORKSPACE: '当前企业空间',
   SELECT_APP_REPOSITORY: '选择应用仓库',
-  CREATE_SERVICE_DESC: '创建服务用于外部访问。',
+  APP_CREATE_SERVICE_DESC: '为自制应用创建一个服务。',
+  CREATE_SERVICE_DESC: '选择创建服务的方式。',
   'Add an Internet access rule for the application': '为应用添加外网访问规则',
 
   EXTERNAL_ACCESS_DESC: '为应用设置路由规则以从集群外访问应用。',

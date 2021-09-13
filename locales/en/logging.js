@@ -157,7 +157,6 @@ module.exports = {
   CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC:
     'Please create a custom monitoring dashboard.',
 
-
   SERVICE_BUILT_INTERFACE: 'service monitoring is built interface data capture',
 
   'Search Auditing Logs by': 'Search Auditing Logs by {field}',
@@ -194,8 +193,6 @@ module.exports = {
   EXAMPLE: 'Example: ',
   PORT_NUMBER_EMPTY: 'Please enter a port number.',
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
-  LOGGING: 'Logging',
   EVENTS: 'Events',
-  AUDITING: 'Auditing',
   CREATION_TIME: 'Creation time',
 }

@@ -18,7 +18,7 @@
 
 module.exports = {
   'Cluster Authorization Info': 'Información de autorización de clúster',
-  'Create Workspace': 'Crear espacio de trabajo',
+  CREATE_WORKSPACE: 'Crear espacio de trabajo',
   CREATE_WORKSPACE_ROLE: 'Crear rol de espacio de trabajo',
   'Created Projects': 'Proyectos creados',
   DELETE_WORKSPACE: 'Eliminar espacio de trabajo',
@@ -83,7 +83,7 @@ module.exports = {
   WORKSPACE_ROLE_DESC:
     'El rol del espacio de trabajo determina los permisos del rol en el espacio de trabajo actual.',
   SEARCH_WORKSPACE_TIP: 'Introduce el nombre del espacio de trabajo a buscar',
-  NO_PUBLIC_CLUSTER_TIP:
+  NO_CLUSTER_AVAILABLE_DESC:
     'No hay clústeres públicos disponibles, solicita autorización para clúster al administrador de la plataforma o al administrador del clúster después de crear el espacio de trabajo',
   WORKSPACE_NO_CLUSTER_TIP:
     'You need to contact the platform or cluster administrator to authorize a cluster to the workspace.',

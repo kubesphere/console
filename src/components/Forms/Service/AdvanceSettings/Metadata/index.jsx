@@ -92,9 +92,7 @@ export default class Metadata extends React.Component {
           />
         </Form.Item>
         {!noWorkload && (
-          <Form.Item
-            label={`${t('ANNOTATIONS')} (${t('Applied to the workload')})`}
-          >
+          <Form.Item label={t('WORKLOAD_ANNOTATIONS')}>
             <PropertiesInput
               name={`${kind}.metadata.annotations`}
               addText={t('ADD')}

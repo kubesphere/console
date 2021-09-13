@@ -184,10 +184,10 @@ module.exports = {
   HOW_TO_USE_QUOTA_Q: 'How do I use resource quotas?',
   HOW_TO_USE_QUOTA_A:
     'Resource quotas are a mechanism used to limit the resource usage. You can edit project resource quotas and default container quotas by clicking <b>Edit Project</b>.',
-  PROJECT_QUOTAS_DESC:
-    'Project quotas specify the number of available CPU and memory resources and the maximum number of Pods, Deployments, and Services allowed in the project.',
   DEFAULT_CONTAINER_QUOTAS_DESC:
     'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
+  PROJECT_QUOTAS_DESC:
+    'Project quotas specify the number of available CPU and memory resources and the maximum number of Pods, Deployments, and Services allowed in the project.',
   WHAT_IS_COLLECT_FILE_LOG_A:
     'La ruta de registro en el volumen montado en el contenedor se da en un patrón global. La ruta de registro se puede configurar en el workload para recopilar registros. El administrador debe habilitar la recopilación de registros de disco de antemano.',
   WHAT_IS_LIMIT_RANGE_Q: 'What are default container quotas?',

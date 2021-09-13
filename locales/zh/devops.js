@@ -28,6 +28,8 @@ module.exports = {
   DEVOPS_CREDENTIAL_LOW: 'DevOps 凭证',
   'DevOps Basic Info': '基本信息',
   DEVOPS_PROJECT_MANAGEMENT: '工程管理',
+  DEVOPS_PROJECT_SETTINGS: 'DevOps 工程设置',
+  MANAGE_DEVOPS_PROJECT: '管理 DevOps 工程',
   DEVOPS_PROJECT_MEMBER_PL: 'DevOps 工程成员',
   DEVOPS_PROJECT_ROLE_PL: 'DevOps 工程角色',
 
@@ -44,6 +46,7 @@ module.exports = {
   DEVOPS_PROJECT_CREATE_DESC:
     'DevOps 是一个独立的命名空间，其中定义了一组的流水线；用户可以按照自己的方式对流水线进行分组 (例如：项目类型、组织类型)。',
   DEVOPS_PROJECT_EMPTY_DESC: '请创建一个 DevOps 工程。',
+  PIPELINE_EMPTY_DESC: '请创建一个流水线。',
   DEVOPS_ADMIN_DESC: '可以指定工程内一个成员为管理员',
 
   NO_RELATE_DEVOPS_TITLE: '没有找到与您相关联的 DevOps 工程',

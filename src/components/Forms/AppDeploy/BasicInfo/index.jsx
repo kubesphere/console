@@ -58,7 +58,7 @@ export default class BasicInfo extends React.Component {
     <span style={{ display: 'flex', alignItem: 'center' }}>
       {label}&nbsp;&nbsp;
       {value === this.latestVersion && (
-        <Tag type="warning">{t('LATEST_VERSION')}</Tag>
+        <Tag type="warning">{t('LATEST_VERSION_SCAP')}</Tag>
       )}
     </span>
   )

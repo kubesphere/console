@@ -23,10 +23,10 @@ import { PropertiesInput } from 'components/Inputs'
 export default function Metadata() {
   return (
     <>
-      <Form.Item label={t('Annotations')}>
+      <Form.Item label={t('ANNOTATIONS')}>
         <PropertiesInput
           name="spec.template.metadata.annotations"
-          addText={t('Add Annotation')}
+          addText={t('ADD')}
           hiddenKeys={globals.config.preservedAnnotations}
         />
       </Form.Item>

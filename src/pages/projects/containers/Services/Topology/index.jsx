@@ -74,7 +74,7 @@ export default class Topology extends Component {
 
   get options() {
     return [
-      { label: 'Auto', icon: 'start', value: 'auto' },
+      { label: 'AUTO_REFRESH', icon: 'start', value: 'auto' },
       { label: 'PAUSE', icon: 'pause', value: 'pause' },
     ]
   }

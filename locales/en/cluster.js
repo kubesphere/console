@@ -22,7 +22,7 @@ module.exports = {
   ALL_PROJECTS: 'All projects',
   'Authorize the cluster to workspace': 'Assign the Cluster to Workspaces',
   AUTHORIZED: 'Authorized',
-  'Available Clusters': 'Available Clusters',
+  AVAILABLE_CLUSTERS: 'Available Clusters',
   'Choose a provider': 'Choose a provider',
   'Click to Copy': 'Click to Copy',
   CLUSTER_INFORMATION: 'Cluster Information',
@@ -71,7 +71,7 @@ module.exports = {
   SCHEDULING_OPERATION: 'Scheduling operation',
   SCHEDULING_FAILURES: 'Scheduling failures',
   SCHEDULING_FAILURE: 'Scheduling failure',
-  'Select Clusters': 'Select Clusters',
+  SELECT_CLUSTER: 'Select Clusters',
   SET_PUBLIC_CLUSTER: 'Set as Public Cluster',
   STORAGE: 'Storage',
   SYSTEM_PROJECTS: 'System Projects',
@@ -129,7 +129,7 @@ module.exports = {
   MULTI_CLUSTER: 'Multi-Clusters',
 
   IMPORT_CLUSTER_DESC: 'Import an existing Kubernetes cluster.',
-  SELECT_CLUSTERS_DESC: 'Select the cluster available in the workspace.',
+  SELECT_CLUSTERS_DESC: 'Select clusters to be used in the workspace.',
 
   CLUSTER_SETTINGS_DESC: 'Define cluster configuration information',
   TAG: 'Tag',
@@ -197,7 +197,7 @@ module.exports = {
     'Public clusters can be accessed by all platform users. Users can create and schedule resources on public clusters.',
 
   SELECT_HOST_CLUSTER_WARNING:
-    'Please try not to create resources on the host cluster to avoid excessive loads, which can lead to a decrease in the stability across clusters.',
+    'The current system is a multi-cluster system. Please avoid creating resources in the host cluster if possible. Excessive loads in the host cluster will decrease the stability of the multi-cluster system.',
   HOST_CLUSTER_VISIBILITY_WARNING:
     'The visibility of the multi-cluster environment will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
@@ -300,8 +300,6 @@ module.exports = {
     'Cluster visibility controls the cluster authorization to workspaces. After a cluster is authorized to workspaces, you can view and manage the cluster resources in the workspaces.',
   EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
   UNAUTHORIZED: 'Unauthorized',
-  LOGGING: 'Logging',
-  EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:
     'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',

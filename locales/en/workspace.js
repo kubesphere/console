@@ -18,7 +18,7 @@
 
 module.exports = {
   'Cluster Authorization Info': 'Cluster Authorization Information',
-  'Create Workspace': 'Create Workspace',
+  CREATE_WORKSPACE: 'Create Workspace',
   CREATE_WORKSPACE_ROLE: 'Create Workspace Role',
   'Created Projects': 'Created Projects',
   DELETE_WORKSPACE: 'Delete Workspace',
@@ -61,8 +61,7 @@ module.exports = {
   WORKSPACE_DESC:
     'A workspace is an isolated logical unit used to organize projects and DevOps projects, manage resource access, and share information within your team.',
   WORKSPACE_SEARCH_PLACEHOLDER: 'Enter a workspace name.',
-  WORKSPACE_CREATE_DESC:
-    'Customize workspace information to create a workspace.',
+  WORKSPACE_CREATE_DESC: 'Set the basic information about the cluster.',
   WORKSPACE_NAME_DESC:
     'You are advised to use a short workspace name such as the abbreviation of your company name.',
   WORKSPACE_LOGO_PLACEHOLDER:
@@ -79,8 +78,8 @@ module.exports = {
 
   SEARCH_WORKSPACE_TIP: 'Enter a workspace name.',
 
-  NO_PUBLIC_CLUSTER_TIP:
-    'No public cluster available. Please contact the platform or cluster administrator to obtain authorization.',
+  NO_CLUSTER_AVAILABLE_DESC:
+    'No cluster is available. After the workspace is created, please contact the platform or cluster administrator to authorize a cluster to the workspace.',
 
   WORKSPACE_NO_CLUSTER_TIP:
     'Please contact the platform or cluster administrator to authorize a cluster to the workspace.',

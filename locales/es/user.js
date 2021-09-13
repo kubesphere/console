@@ -34,7 +34,6 @@ module.exports = {
   EMAIL: 'Email',
   EMAIL_EXISTS: 'EL email ya existe',
   USERNAME_INVALID: 'Nombre de usuario no válido. {message}',
-  LAST_LOGIN: 'Last Login',
   'Login History': 'Historial de inicio de sesión',
   'New Password': 'Nueva contraseña',
   NOT_LOGGED_IN: 'Not logged in',

@@ -40,6 +40,7 @@ module.exports = {
   REGISTRY_SECRET_VER_SUC: 'Registry Verification Succeeded.',
   Secret: 'Secret',
   SECRET: 'Secret',
+  CODE_REPOSITORY_KEY: 'Code Repository Key',
   SECRET_PL: 'Secrets',
   SECRET_LOW: 'Secret',
   SECRET_SETTINGS_TCAP: 'Secret Settings',
