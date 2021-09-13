@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Add Cluster': 'Add Cluster',
+  ADD_CLUSTER: 'Add Cluster',
   'Add New Cluster': 'Add New Cluster',
   ALL_PROJECTS: 'All projects',
   'Authorize the cluster to workspace': 'Assign the Cluster to Workspaces',

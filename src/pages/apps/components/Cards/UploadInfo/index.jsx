@@ -132,7 +132,7 @@ export default class UploadInfo extends Component {
       packageName,
     }
     this.fileStore.downloadPackage(data).then(() => {
-      Notify.success({ content: `${t('Download Successfully')}` })
+      Notify.success({ content: t('DOWNLOAD_SUCCESSFUL') })
     })
   }
 

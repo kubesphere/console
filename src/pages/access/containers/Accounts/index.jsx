@@ -107,21 +107,21 @@ export default class Accounts extends React.Component {
       ),
     },
     {
-      title: t('Account Role'),
+      title: t('PLATFORM_ROLE'),
       dataIndex: 'globalrole',
       isHideable: true,
       width: '20%',
       render: role => role || '-',
     },
     {
-      title: t('Last login time'),
+      title: t('LAST_LOGIN'),
       dataIndex: 'lastLoginTime',
       isHideable: true,
       width: '20%',
       render: time =>
         time
           ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss')
-          : t('Not logged in yet'),
+          : t('NOT_LOGIN_YET'),
     },
   ]
 
@@ -134,7 +134,7 @@ export default class Accounts extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
-        <Banner {...bannerProps} tabs={this.tabs} title={t('NAV_ACCOUNTS')} />
+        <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
           tableActions={this.tableActions}

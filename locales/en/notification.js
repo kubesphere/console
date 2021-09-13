@@ -36,7 +36,7 @@ module.exports = {
   'Please enter an email address': 'Please enter an email address',
   'This email address has existed': 'This email address has existed',
   'Invalid address': 'Invalid address',
-  'Invalid email': 'Invalid email address',
+  INVALID_EMAIL: 'Invalid email address format.',
   'Please add the recipient email address':
     'Please add the recipient email address',
   MAX_EAMIL_COUNT: 'Add up to {count} emails',

@@ -242,7 +242,7 @@ export default class QuotaEditModal extends React.Component {
     return (
       <Modal.Form
         width={960}
-        title={t('Project Quota')}
+        title={t('EDIT_PROJECT_QUOTAS')}
         icon="pen"
         data={this.state.formTemplate}
         onOk={onOk}
@@ -252,13 +252,13 @@ export default class QuotaEditModal extends React.Component {
         disableOk={!!error}
       >
         <div className={styles.body}>
-          <Form.Item label={t('Project Name')}>
+          <Form.Item label={t('PROJECT_NAME')}>
             <Input name="name" defaultValue={detail.name} disabled />
           </Form.Item>
           <Form.Item>
             <ResourceLimit {...this.resourceLimitProps} />
           </Form.Item>
-          <div className={styles.label}>{t('Resource Quota')}</div>
+          <div className={styles.label}>{t('RESOURCE_QUOTAS')}</div>
           <Quotas data={this.state.formTemplate} isFederated={isFederated} />
         </div>
       </Modal.Form>

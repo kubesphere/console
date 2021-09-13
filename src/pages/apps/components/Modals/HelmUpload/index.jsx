@@ -151,7 +151,7 @@ export default class HelmUpload extends Component {
                 <div className={styles.description}>
                   #&nbsp;&nbsp;
                   {file.isOptional && (
-                    <span>[{t('optional')}]&nbsp;&nbsp;</span>
+                    <span>[{t('OPTIONAL')}]&nbsp;&nbsp;</span>
                   )}
                   {t(file.description)}
                 </div>
@@ -163,14 +163,10 @@ export default class HelmUpload extends Component {
           )}
         </div>
         <div className={styles.note}>
-          💁‍♂️ {t('APP_CREATE_GUIDE')}
-          <a
-            href={getDocsUrl('helm_specification')}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            {t('HELM_DEVELOP_GUIDE')}
-          </a>
+          💁‍♂️{' '}
+          {t.html('APP_CREATE_GUIDE', {
+            url: getDocsUrl('helm_specification'),
+          })}
         </div>
       </div>
     )

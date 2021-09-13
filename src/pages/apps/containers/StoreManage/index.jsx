@@ -81,7 +81,7 @@ export default class Store extends React.Component {
       width: '10%',
     },
     {
-      title: t('Latest Version'),
+      title: t('LATEST_VERSION'),
       dataIndex: 'latest_app_version.name',
       isHideable: true,
       width: '16%',

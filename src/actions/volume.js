@@ -87,7 +87,7 @@ export default {
           params.namespace = params.namespace || get(data, 'metadata.namespace')
           await store.create(data, params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
           success && success()
           formPersist.delete(`${module}_create_form`)
         },
@@ -110,7 +110,7 @@ export default {
         onOk: async params => {
           await store.cloneVolume(params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
         },
         title: t('Clone Volume'),
         modal: NameModal,
@@ -139,7 +139,7 @@ export default {
         onOk: async params => {
           await store.createSnapshot(params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
         },
         title: t('Create Snapshot'),
         modal: SnapshotModal,

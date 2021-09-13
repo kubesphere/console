@@ -183,8 +183,10 @@ export default class ProjectSelect extends Component {
             value={cluster}
             disabled={disabled}
             options={clusters}
-            placeholder={t('Please select a cluster')}
-            valueRenderer={option => `${t('Cluster')}: ${option.value}`}
+            placeholder={t('CLUSTER_EMPTY_DESC')}
+            valueRenderer={option =>
+              t('CLUSTER_VALUE', { value: option.value })
+            }
             optionRenderer={this.clusterRenderer}
             prefixIcon={<Icon name="cluster" size={16} />}
             onChange={this.handleClusterChange}

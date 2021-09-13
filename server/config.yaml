@@ -63,11 +63,11 @@ client:
   # platform management navigations
   globalNavs:
     - name: clusters
-      title: Clusters Management
+      title: CLUSTERS_MANAGEMENT
       desc: CLUSTERS_MANAGE_DESC
       icon: cluster
     - name: access
-      title: Access Control
+      title: ACCESS_CONTROL
       icon: key
       authKey: users|roles|workspaces
     - name: apps-manage
@@ -99,7 +99,7 @@ client:
         - { name: components, title: Service Components, icon: components }
         - { name: projects, title: NAV_PROJECTS, icon: project }
         - name: app-workloads
-          title: Application Workloads
+          title: APPLICATION_WORKLOADS
           icon: appcenter
           children:
             - name: workloads
@@ -222,8 +222,8 @@ client:
     - cate: "access"
       items:
         - { name: workspaces, title: Workspaces, icon: enterprise }
-        - { name: accounts, title: NAV_ACCOUNTS, icon: human, authKey: users }
-        - { name: roles, title: Account Roles, icon: role }
+        - { name: accounts, title: Users, icon: human, authKey: users }
+        - { name: roles, title: PLATFORM_ROLES, icon: role }
 
   # platform settings navigations
   platformSettingsNavs:
@@ -319,7 +319,7 @@ client:
             authKey: "services",
           }
         - name: app-workloads
-          title: Application Workloads
+          title: APPLICATION_WORKLOADS
           icon: appcenter
           children:
             - { name: applications, title: Applications, icon: application }
@@ -414,7 +414,7 @@ client:
       items:
         - { name: overview, title: Overview, icon: dashboard, skipAuth: true }
         - name: app-workloads
-          title: Application Workloads
+          title: APPLICATION_WORKLOADS
           icon: appcenter
           children:
             - { name: applications, title: Applications, icon: application }

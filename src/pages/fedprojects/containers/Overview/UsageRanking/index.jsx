@@ -90,7 +90,7 @@ class UsageRanking extends React.Component {
     return LINK_MAP[owner_kind]
   }
 
-  clusterRenderer = option => `${t('Cluster')}: ${option.value}`
+  clusterRenderer = option => t('CLUSTER_VALUE', { value: option.value })
 
   renderHeader() {
     const { cluster, clusters, onClusterChange } = this.props

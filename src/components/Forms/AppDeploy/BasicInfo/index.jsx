@@ -58,7 +58,7 @@ export default class BasicInfo extends React.Component {
     <span style={{ display: 'flex', alignItem: 'center' }}>
       {label}&nbsp;&nbsp;
       {value === this.latestVersion && (
-        <Tag type="warning">{t('Latest Version')}</Tag>
+        <Tag type="warning">{t('LATEST_VERSION')}</Tag>
       )}
     </span>
   )
@@ -147,7 +147,7 @@ export default class BasicInfo extends React.Component {
             <Column />
           </Columns>
           <br />
-          <div className={styles.title}>{t('DEPLOYMENT_LOCATION')}</div>
+          <div className={styles.title}>{t('LOCATION')}</div>
           <div className={styles.placement}>
             {!namespace ? (
               <Form.Item

@@ -18,16 +18,22 @@
 
 module.exports = {
   WORKSPACE: '企业空间',
+  WORKSPACE_PL: '企业空间',
+  WORKSPACE_LOW: '企业空间',
   Workspaces: '企业空间',
+  WORKSPACE_SETTINGS: '企业空间设置',
   'Workspace Settings': '企业空间设置',
   'Workspace Members': '企业空间成员',
-  'Workspace Roles': '企业角色',
-  'Workspace Role': '企业角色',
-  'Create Workspace Role': '创建企业角色',
-  'Edit Workspace Role': '编辑企业角色',
+  WORKSPACE_MEMBER: '企业空间成员',
+  WORKSPACE_MEMBER_PL: '企业空间成员',
+  WORKSPACE_MEMBER_TCAP: '企业空间成员',
+  WORKSPACE_MEMBER_TCAP_PL: '企业空间成员',
+  'Workspace Roles': '企业空间角色',
+  'Workspace Role': '企业空间角色',
+  CREATE_WORKSPACE_ROLE: '创建企业空间角色',
+  'Edit Workspace Role': '编辑企业空间角色',
   'Workspace Name': '企业空间名称',
   'Workspace Logo': '企业空间 Logo',
-  'Workspace Manager': '企业空间管理员',
   'Workspaces Manager': '企业空间管理员',
   'Create Workspace': '创建企业空间',
   'Workspace Groups': '企业组织',
@@ -37,7 +43,7 @@ module.exports = {
 
   'Project Number': '项目数量',
   'DevOps Project Number': 'DevOps 工程数量',
-  'Edit Quota': '编辑配额',
+  EDIT_QUOTA: '编辑配额',
 
   'Workspace Quota': '企业空间配额',
   'Edit Workspace Quota': '企业空间配额',
@@ -71,18 +77,17 @@ module.exports = {
 
   WORKSPACE_SEARCH_PLACEHOLDER: '请输入企业空间名称进行查找',
 
-  WORKSPACE_CREATE_DESC:
-    '企业空间是一个组织您的项目和 DevOps 工程、管理资源访问权限以及在团队内部共享资源等的逻辑单元，可以作为团队工作的独立工作空间。',
+  WORKSPACE_CREATE_DESC: '配置企业空间基本信息以创建企业空间。',
 
   WORKSPACE_NAME_DESC:
     '请尽量保持名称简短，比如用企业名称的缩写或者大家经常的称呼，无需使用企业的完整名称或者营业执照上的注册名称。',
 
-  WORKSPACE_ROLE_DESC: '企业角色定义了在当前企业空间下用户所拥有的权限。',
+  WORKSPACE_ROLE_DESC: '企业空间角色定义了在当前企业空间下用户所拥有的权限。',
   WORKSPACE_LOGO_PLACEHOLDER:
     '企业标志尺寸必须小于 200px X 200px，支持 png，jpg 格式。建议从上传透明背景的 PNG 格式图片以达到最佳展示效果。',
 
   'Remove from Workspace': '从企业空间移除',
-  'Please input workspace name': '请输入企业空间名称',
+  WORKSPACE_NAME_EMPTY_DESC: '请输入企业空间名称。',
 
   NO_WORKSPACE_TIP:
     '您的帐户目前不属于任何企业空间，请您创建一个企业空间或者联系管理员邀请您到其企业空间内进行工作',
@@ -91,7 +96,7 @@ module.exports = {
 
   'Invite members to the workspace': '邀请成员到该企业空间',
   WORKSPACE_MEMBER_DESC:
-    '对企业空间内的成员进行管理及角色分配。项目可以邀请当前企业空间内的企业成员作为项目成员，协同工作。',
+    '对企业空间内的成员进行管理及角色分配。项目可以邀请当前企业空间内的企业空间成员作为项目成员，协同工作。',
   INVITE_WORKSPACE_MEMBER_DESC: '您可以邀请新的成员来您的企业空间',
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请企业空间成员',
 
@@ -116,7 +121,7 @@ module.exports = {
   NO_PUBLIC_CLUSTER_TIP:
     '暂无可用的公开集群, 请在企业空间创建完毕后, 向平台管理员或集群管理员申请集群的授权',
   WORKSPACE_NO_CLUSTER_TIP:
-    '您需要联系平台管理员或者集群管理员为企业空间授权集群的访问权限。',
+    '请联系平台管理员或者集群管理员将一个集群授权给企业空间。',
 
   WORKSPACE_GROUP_DESC:
     '组织可以以用户组或者部门的形式授予项目以及 Devops 工程权限',
@@ -126,5 +131,5 @@ module.exports = {
   WORKSPACE_QUOTA_MANAGE_DESC:
     '管理企业空间配额，企业空间下的所有项目 / DevOps 工程将共享这些配额',
 
-  DELETE_WORDSPACE_RELATED_RESOURCES_DESC: '删除该企业空间关联项目',
+  DELETE_WORKSPACE_PROJECTS_DESC: '删除企业空间中的项目。',
 }

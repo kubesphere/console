@@ -21,7 +21,7 @@ module.exports = {
     'Una introducción general a la aplicación',
   'Activate Successfully': 'Activado Satisfactoriamente',
   'Add Version': 'Añadir Versión',
-  'Add Version Successfully': 'Versión Añadida Satisfactoriamente',
+  ADD_VERSION_SUCCESSFUL: 'Versión Añadida Satisfactoriamente',
   'Adjust App Category': 'Ajustar Categoría de la Aplicación',
   'Adjust Successfully': 'Ajuste Satisfactorio',
   'All Categories': 'Todas las Categorias',
@@ -47,6 +47,7 @@ module.exports = {
   'Application Name': 'Nombre de Application',
   'Rejection Reason': 'Motivo de Rechazo',
   'Application Version': 'Versión de Aplicación',
+  APPS_MANAGEMENT: 'Gestión de Alicaciones',
   'Apps Management': 'Gestión de Alicaciones',
   'Base Info': 'Info Base',
   'Business introduction': 'Introducción comercial',
@@ -56,7 +57,7 @@ module.exports = {
   'Chart Files': 'Ficheros del Chart',
   'Company website': 'Sitio web de la Compañía',
   'Config File': 'Fichero de configuración',
-  'Create App Template': 'Crear Plantilla de Aplicación',
+  CREATE_APP_TEMPLATE: 'Crear Plantilla de Aplicación',
   'Create Time': 'Momento de creación',
   'Delete all': 'Eliminar todo',
   'Delete picture': 'Eliminar imagen',
@@ -76,7 +77,7 @@ module.exports = {
   'Index Successfully': 'Indexado Satisfactoriamente',
   'Instance Name': 'Nombre de Instancia',
   Introduction: 'Introducción',
-  'Modify Successfully': 'Modificado Satisfactoriamente',
+  MODIFY_SUCCESSFUL: 'Modificado Satisfactoriamente',
   'New Apps': 'Nuevas Aplicaciones',
   'New Version': 'Nueva Versión',
   'No update log': 'Sin registro de actualización',
@@ -135,9 +136,9 @@ module.exports = {
   'Upload Icon': 'Subir Icono',
   'Upload icon': 'Subir icono',
   'Upload Screenshots': 'Subir Capturas de Pantalla',
-  'Upload successfully': 'Subida Satisfactoriamente',
-  'Upload Template': 'Subir Plantilla',
-  Uploading: 'Subiendo',
+  UPLOAD_SUCCESS: 'Subida Satisfactoriamente',
+  UPLOAD_TEMPLATE: 'Subir Plantilla',
+  UPLOADING: 'Subiendo',
   'Version No': 'Version No',
   'Very helpful when users search for apps':
     'Muy útil cuando los usuarios buscan aplicaciones',
@@ -202,12 +203,12 @@ module.exports = {
     'Elige las categorías de aplicación apropiadas para facilitar a los usuarios encontrar tus aplicaciones más rápido',
 
   UPLOAD_HELM_TITLE: 'Subir un Chart de Helm empaquetado',
-  UPLOAD_HELM_DESC: 'Subir un Chart de Helm existente',
-  UPLOAD_HELM_DESCRIPTION:
+  UPLOAD_HELM_CHART_DESC: 'Subir un Chart de Helm existente',
+  HELM_CHART_FORMAT_DESC:
     'Subir tu Chart de Helm en el formato de fichero tar.gz o tgz.',
 
   EDIT_APP_DESC: 'Configurar la información básica de aplicación.',
-  CREATE_APP_DESC:
+  CREATE_APP_TEMPLATE_DESC:
     'La ligera, portable y autocontenida tecnología de empaquetado de software, permite que las aplicaciones se ejecuten de la misma manera en casi cualquier lugar.',
 
   RESOURCE_TOOL_TITLE: 'Creado usando el Coreógrafo de Recursos',
@@ -258,7 +259,7 @@ module.exports = {
   NO_DEPLOY_RUNTIME_NOTE:
     'El proyecto no tiene un entorno de despliegue disponible',
 
-  START_UPLOAD: 'Subir',
+  UPLOAD: 'Subir',
 
   APP_ICON_NOTE: 'JPG o PNG menor o igual a 96px * 96px',
 

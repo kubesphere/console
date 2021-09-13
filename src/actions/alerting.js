@@ -69,7 +69,7 @@ export default {
             Notify.success({ content: `${t('Updated Successfully')}` })
           } else {
             await store.create(params, { cluster, namespace })
-            Notify.success({ content: `${t('Created Successfully')}` })
+            Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
           }
 
           Modal.close(modal)

@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Add Cluster': '添加集群',
+  ADD_CLUSTER: '添加集群',
   'Add New Cluster': '添加新集群',
   'Import Kubernetes Cluster': '导入 Kubernetes 集群',
   Import: '导入',

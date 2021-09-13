@@ -133,7 +133,7 @@ export default class MailForm extends Component {
             </Form.Item>
             <Form.Item
               label={`SMTP ${t('PASSWORD')}`}
-              rules={[{ required: true, message: t('ENTER_PASSWORD_TIP') }]}
+              rules={[{ required: true, message: t('PASSWORD_EMPTY_DESC') }]}
             >
               <Input
                 name="secret.data.authPassword"
@@ -144,8 +144,8 @@ export default class MailForm extends Component {
             <Form.Item
               label={t('SENDER_MAIL')}
               rules={[
-                { required: true, message: t('Please input email') },
-                { type: 'email', message: t('Invalid email') },
+                { required: true, message: t('EMAIL_EMPTY_DESC') },
+                { type: 'email', message: t('INVALID_EMAIL') },
               ]}
             >
               <Input

@@ -43,7 +43,7 @@ export default {
           await store.create(data, params)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
           success && success(selectCluster)
         },
         hideCluster: !globals.app.isMultiCluster || !!cluster,

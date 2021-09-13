@@ -159,6 +159,9 @@ module.exports = {
   ALERTING_POLICIES: 'Alerting Policies',
   NOTIFICATION_SETTINGS: 'Notification Settings',
   DEPLOYMENT: 'Deployment',
+  DEPLOYMENT_PL: 'Deployments',
   STATEFULSET: 'StatefulSet',
+  STATEFULSET_PL: 'StatefulSets',
   DAEMONSET: 'DaemonSet',
+  DAEMONSET_PL: 'DaemonSets',
 }

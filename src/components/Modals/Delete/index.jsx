@@ -111,9 +111,11 @@ export default class DeleteModal extends React.Component {
           <div className="h5">
             <Icon name="close" type="light" className={styles.closeIcon} />
             {title ||
-              (resource.split(', ').length === 1
-                ? t('DELETE_TITLE_SI', { type: t(typeKey) })
-                : t('DELETE_TITLE_PL', { type: t(typeKeyPl) }))}
+              (resource && type
+                ? resource.split(', ').length === 1
+                  ? t('DELETE_TITLE_SI', { type: t(typeKey) })
+                  : t('DELETE_TITLE_PL', { type: t(typeKeyPl) })
+                : t('DELETE'))}
           </div>
           <div className={styles.content}>
             <p>{tip}</p>

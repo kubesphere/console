@@ -82,20 +82,19 @@ export default class ModifyPasswordModal extends Component {
           type="password"
           disabled
         />
-        <Form.Item label={t('Email')}>
+        <Form.Item label={t('EMAIL')}>
           <Input disabled value={detail.email} />
         </Form.Item>
         <Form.Item
           className={styles.password}
           label={t('New Password')}
           rules={[
-            { required: true, message: t('ENTER_PASSWORD_TIP') },
+            { required: true, message: t('PASSWORD_EMPTY_DESC') },
             { pattern: PATTERN_PASSWORD, message: t('PASSWORD_DESC') },
           ]}
         >
           <InputPassword
             name="password"
-            placeholder={t('ENTER_PASSWORD_TIP')}
             autoComplete="new-password"
             onChange={this.handlePassswordChange}
             withStrength

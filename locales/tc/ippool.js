@@ -17,6 +17,7 @@
  */
 
 module.exports = {
+  ALL: 'All',
   'Pod IP Pool': '容器組 IP 地址範圍',
   'Pod IP Pools': '容器組 IP 地址範圍',
 

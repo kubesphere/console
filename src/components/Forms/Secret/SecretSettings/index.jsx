@@ -208,7 +208,7 @@ export default class SecretSettings extends React.Component {
         <Form.Item
           label={t('USERNAME')}
           rules={[
-            { required: true, message: t('ENTER_USERNAME_TIP') },
+            { required: true, message: t('USERNAME_EMPTY_DESC') },
             { validator: this.dataValidator },
           ]}
         >
@@ -219,7 +219,7 @@ export default class SecretSettings extends React.Component {
         <Form.Item
           label={t('PASSWORD')}
           rules={[
-            { required: true, message: t('ENTER_PASSWORD_TIP') },
+            { required: true, message: t('PASSWORD_EMPTY_DESC') },
             { validator: this.dataValidator },
           ]}
         >

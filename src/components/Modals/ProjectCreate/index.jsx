@@ -161,7 +161,7 @@ export default class ProjectCreateModal extends React.Component {
     return (
       <Form.Group label={t('CLUSTER')} desc={t('SELECT_CLUSTER_DESC')}>
         <Form.Item
-          rules={[{ required: true, message: t('CLUSTER_NOT_SELECT_DESC') }]}
+          rules={[{ required: true, message: t('CLUSTER_EMPTY_DESC') }]}
         >
           <Select
             name="cluster"

@@ -20,9 +20,11 @@ module.exports = {
   BASIC_INFORMATION: '基本資訊',
   NAME: '名稱',
   ROLE: '角色',
+  ROLE_PL: '角色',
   CPU_USAGE: 'CPU 使用量',
   MEMORY_USAGE: '記憶體使用量',
   POD_PL: '容器組',
+  NUMBER_OF_PODS: 'Number of Pods',
   POD_LOW: '容器組',
   LEARN_MORE: '了解更多',
   DELETE: '刪除',
@@ -71,7 +73,9 @@ module.exports = {
   SERVICE: '服務',
   SERVICE_LOW: '服務',
   SERVICE_PL: '服務',
+  NUMBER_OF_SERVICES: 'Number of Services',
   Overview: '概覽',
+  OVERVIEW: '概覽',
   'Node Selector': '節點選擇器',
   START_TIME: '開始時間',
   END_TIME: '結束時間',
@@ -84,7 +88,7 @@ module.exports = {
   Monitors: '監控',
   Events: '事件',
   LABELS: '標籤',
-  'Application Workloads': '應用負載',
+  APPLICATION_WORKLOADS: '應用負載',
   Application: '應用',
   APPLICATION: '應用',
   Container: '容器',
@@ -119,8 +123,10 @@ module.exports = {
   SERVICE_COMPONENTS: '服務組件',
   Infrastructure: '基礎設施',
   'Basic Information': '基本資訊',
+  MONITORING_AND_ALERTING: '監控告警',
   'Monitoring & Alerting': '監控告警',
-  'Configuration Center': '配置中心',
+  CONFIGURATION_CENTER: '配置中心',
+  'Configuration Center': '配置',
   'Project Settings': '項目設置',
   'Grayscale Release': '灰度發佈',
 
@@ -152,6 +158,7 @@ module.exports = {
   Disabled: '已停用',
   'Not Enabled': '未啟用',
   Enabled: '已啟用',
+  ENABLED: '已啟用',
   Ceased: '已銷毀',
   Used: '已使用',
   USED: '已使用',
@@ -196,7 +203,7 @@ module.exports = {
   SELECT: '選擇',
   'Select All': '選擇全部',
   Version: '版本',
-  'Latest Version': '最新版本',
+  LATEST_VERSION: '最新版本',
   Source: '來源',
   'Health Status': '健康狀態',
 
@@ -272,11 +279,11 @@ module.exports = {
   Settings: '設置',
   Configuration: '配置',
   MULTI_CLUSTER_DEPLOYMENT: '多集群部署',
-  MULTI_CLUSTER_TIP: '該資源部署在多個集群',
+  MULTI_CLUSTER_PROJECT_TIP: '該資源部署在多個集群',
 
   'Official Document': '官網文件',
 
-  optional: '選填',
+  OPTIONAL: '選填',
   PROTOCOL: '協定',
   Certificate: '憑證',
   key: '鍵',
@@ -332,7 +339,7 @@ module.exports = {
     'The key and value can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number. The maximum length is 63 characters. If the key contains the domain name, the maximum length is 253 characters.',
   DESCRIPTION_DESC: '描述資訊不超過 256 個字元',
   PROJECT_DESC: '將根據項目資源進行分組，可以按項目對資源進行查看管理',
-  'MULTI-CLUSTER_PROJECT_CREATE_DESC':
+  MULTI_CLUSTER_PROJECT_EMPTY_DESC:
     '將根據項目資源進行分組，可以按項目對資源進行查看管理',
   DESCRIPTION: '描述資訊',
 
@@ -413,7 +420,7 @@ module.exports = {
   'Error Tips': '錯誤提示',
 
   'Added Successfully': '添加成功',
-  'Created Successfully': '創建成功',
+  CREATE_SUCCESSFUL: '創建成功',
   'Updated Successfully': '更新成功',
   'Deleted Successfully': '刪除成功',
   'Canceled Successfully': '取消成功',
@@ -564,6 +571,7 @@ module.exports = {
   SAVE_EDIT_HINTS: '請確認修改的内容是正確的，您可以保存設置或者取消設置。',
 
   IN_PROGRESS: '設置中',
+  CURRENT: 'Current',
   NOT_SET: '未設置',
   FINISHED: '已設置',
 

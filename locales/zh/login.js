@@ -38,7 +38,7 @@ module.exports = {
   'Log In with {title}': '通过 {title} 登录',
 
   'Please input username or email': '请输入用户名或邮箱',
-  ENTER_PASSWORD_TIP: '请输入密码',
+  PASSWORD_EMPTY_DESC: '请设置一个密码。',
   'Please input captch': '请输入验证码',
   'Please confirm your account info': '请确认您的帐户信息',
   'Please input username': '请输入用户名',

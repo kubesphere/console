@@ -108,7 +108,7 @@ export default class Card extends Component {
                 <div className="tooltip-title">
                   {t('MULTI_CLUSTER_DEPLOYMENT')}
                 </div>
-                <p>{t('MULTI_CLUSTER_TIP')}</p>
+                <p>{t('MULTI_CLUSTER_PROJECT_TIP')}</p>
               </div>
             }
           >
