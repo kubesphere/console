@@ -19,16 +19,15 @@
 module.exports = {
   VALIDATE: '验证',
   APP_REPO_DESC:
-    '可用添加来自第三方的应用仓库源，可以支持基于 Helm 的 Kubernetes 应用。 ',
-  APP_REPO_URL_DESC: '所输入的 URL 需要先验证才可进行添加或编辑操作',
+    '应用仓库是用于存放应用模板的仓库，您可以添加应用仓库以部署和管理其中的应用。',
+  APP_REPO_URL_DESC: 'URL 需要通过验证才能添加或编辑应用仓库。',
   'App Repository': '应用仓库',
   APP_REPOSITORY: '应用仓库',
   APP_REPOSITORY_PL: '应用仓库',
   APP_REPOSITORY_LOW: '应用仓库',
-  APP_REPOSITORY_EMPTY_DESC: '请创建一个应用仓库。',
-  'App Repository Name': '应用仓库名称',
+  APP_REPOSITORY_EMPTY_DESC: '请添加一个应用仓库。',
   'Add App Repository': '添加应用仓库',
-  'Edit App Repository': '编辑应用仓库',
+  EDIT_APP_REPO: '编辑应用仓库',
   APP_REPOSITORY_CREATE_DESC:
     '可用添加来自第三方的应用仓库源，可以支持基于 Helm 的 Kubernetes 应用。 ',
 
@@ -48,18 +47,18 @@ module.exports = {
   'Invalid Providers': '错误的 Providers 参数',
   'Invalid Repo URL': '不是有效的 Repo 地址',
   'Invalid S3 Scheme': '错误的 S3 类型协议',
-  'Invalid URL': '无效的 URL',
-  'Valid URL': 'URL 验证通过',
+  INVALID_URL_DESC: 'URL 无效。',
+  VALID_URL_DESC: 'URL 验证通过。',
 
   'Please input URL': '请输入 URL',
   'Please input access key ID and secret access key':
     '请输入 Access key ID 和 Secret access key',
 
   'App Repos': '应用仓库',
-  'Add Repository': '添加仓库',
-  'Index Repo': '同步仓库',
+  ADD_APP_REPO: '添加应用仓库',
+  INDEX_REPO: '同步仓库',
 
   HOW_TO_USE_APP_REPO_Q: '如何使用应用仓库？',
   HOW_TO_USE_APP_REPO_A:
-    '企业空间内添加的应用仓库可以在企业空间下的项目内可见，可以通过 应用 => 部署应用 =>  应用仓库 中查找到当前应用仓库下的所有应用,并进行部署',
+    '您需要转到在该企业空间下的项目。在部署新应用时，选择<b>来自应用模板</b>并在下拉列表中选择您的应用仓库，即可部署应用仓库中的应用。',
 }

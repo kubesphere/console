@@ -127,7 +127,6 @@ module.exports = {
   'Submit Successfully': '提交成功',
   'Cancel Successfully': '撤消成功',
   'Release Successfully': '发布成功',
-  'Delete Successfully': '删除成功',
   'Pass Successfully': '通过成功',
   'Reject Successfully': '拒绝成功',
   'Suspend Successfully': '下架成功',
@@ -205,7 +204,7 @@ module.exports = {
   UNDER_REVIEW_TIPS: '当前应用有版本正在审核中，以下信息暂时不可更改',
 
   'Instance Name': '实例名称',
-  'Index Successfully': '同步成功',
+  INDEX_SUCCESS_TIP: '同步成功。',
 
   NO_DEPLOY_RUNTIME_NOTE: '项目中没有可用的部署运行环境',
 

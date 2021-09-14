@@ -29,7 +29,7 @@ module.exports = {
   DEVOPS_PROJECT_MEMBERS: '工程成員',
   DEVOPS_PROJECT_ROLES: '工程角色',
 
-  Manager: '管理員',
+  MANAGER: '管理員',
   'DevOps Project Manager': 'DevOps 工程管理員',
   'Create DevOps Project': '創建 DevOps 工程',
   'Delete DevOps Project': '刪除 DevOps 工程',

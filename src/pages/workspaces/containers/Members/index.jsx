@@ -62,7 +62,7 @@ export default class Accounts extends React.Component {
       {
         key: 'modify',
         icon: 'pen',
-        text: t('Modify Member Role'),
+        text: t('CHANGE_MEMBER_ROLE'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -77,7 +77,7 @@ export default class Accounts extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Remove Member'),
+        text: t('REMOVE_MEMBER'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
@@ -98,18 +98,16 @@ export default class Accounts extends React.Component {
         {
           key: 'invite',
           type: 'control',
-          text: t('Invite Member'),
+          text: t('INVITE_MEMBER'),
           action: 'create',
           onClick: () =>
             trigger('member.invite', {
               ...this.props.match.params,
               roleModule: this.roleStore.module,
               roles: toJS(this.roleStore.list.data),
-              title: t('Invite members to the workspace'),
+              title: t('INVITE_MEMBER'),
               desc: t('INVITE_WORKSPACE_MEMBER_DESC'),
-              searchPlaceholder: t(
-                'INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER'
-              ),
+              searchPlaceholder: t('SEARCH_BY_NAME'),
               success: routing.query,
             }),
         },
@@ -141,7 +139,7 @@ export default class Accounts extends React.Component {
     const { prefix } = this.props
     return [
       {
-        title: t('Member Name'),
+        title: t('NAME'),
         dataIndex: 'username',
         width: '40%',
         render: (name, record) => (
@@ -163,13 +161,13 @@ export default class Accounts extends React.Component {
         ),
       },
       {
-        title: t('Role'),
+        title: t('ROLE'),
         dataIndex: 'workspacerole',
         isHideable: true,
         width: '19%',
       },
       {
-        title: t('Last Login Time'),
+        title: t('LAST_LOGIN'),
         dataIndex: 'lastLoginTime',
         isHideable: true,
         width: '19%',
@@ -191,7 +189,7 @@ export default class Accounts extends React.Component {
         <Banner
           {...bannerProps}
           tabs={this.tabs}
-          title={t('Workspace Members')}
+          title={t('WORKSPACE_MEMBERS')}
           description={t('WORKSPACE_MEMBER_DESC')}
         />
         <Table

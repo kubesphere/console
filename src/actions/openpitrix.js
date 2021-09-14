@@ -58,7 +58,7 @@ export default {
         onOk: data => {
           store.patch(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}` })
+            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
             success && success()
           })
         },
@@ -75,7 +75,7 @@ export default {
         onOk: data => {
           store.upgrade(data, detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}` })
+            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
             success && success()
           })
         },
@@ -223,7 +223,7 @@ export default {
         onOk: async () => {
           await store.delete(detail)
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}` })
+          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
           success && success()
         },
         store,
@@ -339,7 +339,7 @@ export default {
         onOk: async () => {
           await store.delete(detail)
           Modal.close(modal)
-          Notify.success({ content: `${t('Delete Successfully')}` })
+          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
           success && success()
         },
         desc: t('DELETE_CATEGORY_DESC', { name: detail.name }),

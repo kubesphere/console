@@ -54,7 +54,7 @@ export default class WorkspaceItem extends Component {
         <Text
           className={styles.manager}
           title={data.manager}
-          description={t('Manager')}
+          description={t('MANAGER')}
         />
         {!disabled && type !== 'authed' && (
           <Icon name="chevron-right" size={20} />

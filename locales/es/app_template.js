@@ -24,7 +24,6 @@ module.exports = {
   'The app has no chart file.': 'La aplicación no tiene un fichero Chart',
   'The app has no documentation.': 'La aplicación no tiene documentación.',
   'The version has no documentation.': 'La versión no tiene documentación.',
-  'Update Successfully': 'Subida Satisfactoriamente',
 
   APP_TEMPLATE_DESCRIPTION_TITLE: 'Implementar aplicaciones empaquetadas',
   APP_TEMPLATE_DESCRIPTION_ARTICLE:

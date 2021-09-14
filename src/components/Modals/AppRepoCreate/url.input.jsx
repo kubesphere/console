@@ -83,7 +83,7 @@ export default class UrlInput extends React.Component {
         if (this.isValid && this.validateStatus === 'success') {
           cb()
         } else {
-          cb(new Error(t('Invalid URL')))
+          cb(new Error(t('INVALID_URL_DESC')))
         }
       },
     })
@@ -239,7 +239,7 @@ export default class UrlInput extends React.Component {
           placement="top"
           content={
             validateStatus === 'success'
-              ? t('Valid URL')
+              ? t('VALID_URL_DESC')
               : checkRepoInvalidReason(validateStatusCode)
           }
         >
@@ -267,7 +267,7 @@ export default class UrlInput extends React.Component {
             name="url"
             value={this.url}
             validateStatus={this.validateStatus}
-            placeholder="https://github.com/mycompany/myca…"
+            placeholder="example.com"
             onChange={this.handleUrlChange}
           />
           {this.renderValidateStatus()}
@@ -292,7 +292,7 @@ export default class UrlInput extends React.Component {
     return (
       <div className={styles.access}>
         <div className={styles.accessItem}>
-          <label className={styles.label}>{t('Access Key ID')}:</label>
+          <label className={styles.label}>{t('ACCESS_KEY_ID')}</label>
           <Input
             name="accessKeyID"
             value={this.credential.accessKeyID}
@@ -300,7 +300,7 @@ export default class UrlInput extends React.Component {
           />
         </div>
         <div className={styles.accessItem}>
-          <label className={styles.label}>{t('Secret Access Key')}:</label>
+          <label className={styles.label}>{t('SECRET_ACCESS_KEY')}</label>
           <Input
             name="secretAccessKey"
             value={this.credential.secretAccessKey}

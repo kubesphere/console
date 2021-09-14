@@ -177,7 +177,7 @@ export default {
           }
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Updated Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
           success && success()
         },
         modal: DefaultResourceEditModal,
@@ -210,7 +210,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Updated Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
           success && success()
         },
         modal: AssignWorkspaceModal,
@@ -225,7 +225,7 @@ export default {
         onOk: data => {
           store.addGateway({ cluster, namespace }, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}` })
+            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
             success && success()
           })
         },

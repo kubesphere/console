@@ -28,7 +28,7 @@ class LogCollectionStatusForm extends Component {
       value: 1,
     },
     {
-      label: t('Close'),
+      label: t('CLOSE'),
       value: 0,
     },
   ]

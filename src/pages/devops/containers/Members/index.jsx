@@ -103,7 +103,7 @@ export default class Members extends React.Component {
       {
         key: 'modify',
         icon: 'pen',
-        text: t('Modify Member Role'),
+        text: t('CHANGE_MEMBER_ROLE'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -119,7 +119,7 @@ export default class Members extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Remove Member'),
+        text: t('REMOVE_MEMBER'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
@@ -215,7 +215,7 @@ export default class Members extends React.Component {
       width: '19%',
     },
     {
-      title: t('Last Login Time'),
+      title: t('LAST_LOGIN'),
       dataIndex: 'lastLoginTime',
       isHideable: true,
       width: 150,

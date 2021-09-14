@@ -21,11 +21,10 @@ module.exports = {
   'Create Workspace': 'Create Workspace',
   CREATE_WORKSPACE_ROLE: 'Create Workspace Role',
   'Created Projects': 'Created Projects',
-  'Delete Workspace': 'Delete Workspace',
+  DELETE_WORKSPACE: 'Delete Workspace',
   'DevOps Project Number': 'DevOps Projects',
   EDIT_QUOTA: 'Edit Quota',
   'Edit Workspace Role': 'Edit Workspace Role',
-  'Invite members to the workspace': 'Invite Member',
   'Involved Projects': 'Involved Projects',
   'Manage Organizations': 'Manage Organization',
   NO_AVAILABLE_CLUSTER: 'No Available Cluster',
@@ -37,7 +36,7 @@ module.exports = {
   WORKSPACE: 'Workspace',
   WORKSPACE_PL: 'Workspaces',
   WORKSPACE_LOW: 'workspace',
-  'Workspace Info': 'Workspace Information',
+  WORKSPACE_INFO: 'Workspace Information',
   'Workspace Logo': 'Workspace Logo',
   'Workspace Members': 'Workspace Members',
   WORKSPACE_MEMBER: 'Workspace Member',
@@ -46,7 +45,7 @@ module.exports = {
   WORKSPACE_MEMBER_TCAP_PL: 'Workspace members',
   'Workspace Name': 'Name',
   'Workspace name exists': 'The workspace name already exists.',
-  'Workspace Network Isolation': 'Network Isolation',
+  WS_NETWORK_ISOLATION: 'Workspace network isolation',
   'Workspace Role': 'Workspace Role',
   'Workspace Roles': 'Workspace Roles',
   WORKSPACE_SETTINGS: 'Workspace Settings',
@@ -54,9 +53,9 @@ module.exports = {
   Workspaces: 'Workspaces',
   'Workspaces Manager': 'Workspace Manager',
   devops: 'DevOps Projects',
-  'Workspace Quota': 'Edit Workspace Quota',
+  EDIT_WORKSPACE_QUOTA: 'Edit Workspace Quota',
   'Edit Workspace Quota': 'Edit Workspace Quota',
-  'Maintain Organization': 'Set Department',
+  SET_DEPARTMENT: 'Set Department',
 
   WORKSPACE_OVERVIEW_DESC: 'View the resource status of the workspace.',
   WORKSPACE_DESC:
@@ -72,9 +71,8 @@ module.exports = {
   NO_WORKSPACE_TIP:
     'Your account does not belong to any workspace currently. Please create a workspace or contact the administrator to invite you to a workspace.',
   WORKSPACE_MEMBER_DESC:
-    'Manage workspace members and their roles. Workspace members can be invited to projects in the workspace.',
-  INVITE_WORKSPACE_MEMBER_DESC: 'Invite members to the workspace.',
-  INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: 'Enter a username.',
+    'Workspace members can view or manage workspace resources. You can manage members and control their permissions in the workspace.',
+  INVITE_WORKSPACE_MEMBER_DESC: 'You can invite members to the workspace.',
 
   WORKSPACE_ROLE_DESC:
     'The role of a workspace member determines the permissions of the member in the workspace.',
@@ -103,16 +101,53 @@ module.exports = {
 
   DELETE_WORKSPACE_DESC:
     'The workspace cannot be restored after it is deleted and all resources in the workspace will be removed.',
-  SURE_TO_DELETE_WORKSPACE: 'Delete Workspace',
   DELETE_WORKSPACE_TIP:
     'Are you sure you want to delete the workspace <strong>{resource}</strong>? The workspace cannot be restored after it is deleted and all resources in the workspace will be removed.',
 
-  WORKSPACE_GROUP_DESC:
-    'Create departments in your workspace and assign users to different departments to implement permission control.',
-  WORKSPACE_GROUP_EMPTY_DESC: 'No Department Available',
+  DEPARTMENT_MANAGEMENT_DESC:
+    'A department in a workspace is a logical unit used for permission control. You can set a workspace role, multiple project roles, and multiple DevOps project roles in a department, and assign users to the department to control user permissions in batches.',
+  DEPARTMENT_EMPTY_DESC: 'No Department Available',
   WORKSPACE_GROUP_USER_EMPTY_DESC: 'No user available.',
   WORKSPACE_QUOTA_MANAGE_DESC:
-    'Manage workspace quotas, which are shared by all projects and DevOps projects in the workspace.',
+    'Workspace quotas are used to control the total resource usage of all projects and DevOps projects in a workspace.',
 
   DELETE_WORKSPACE_PROJECTS_DESC: 'Delete projects in the workspace.',
+  DELETE_WORDSPACE_RELATED_RESOURCES_DESC:
+    'Delete the project associated with the workspace',
+
+  // App Repositories
+  ACCESS_KEY_ID: 'Access Key ID',
+  SECRET_ACCESS_KEY: 'Secret Access Key',
+
+  // Basic Information
+  WORKSPACE_BASIC_INFO_DESC:
+    'Basic information provides the overview of the workspace. You can view the basic information of the workspace.',
+  SURE_TO_DELETE_WORKSPACE: 'Are you sure you want to delete the workspace?',
+  ON: 'On',
+  OFF: 'Off',
+  NETWORK_POLICY_UNINSATLLED_DESC:
+    'The network policy component is not installed in this cluster.',
+  WS_MEMBER_LOW: 'Workspace member',
+  WS_MEMBER_LOW_PL: 'Workspace members',
+
+  // Quota Management
+  QUOTA_MANAGEMENT: 'Quota Management',
+  RESOURCE_TYPE_LOW: 'Resource type',
+  USED_PERCENT: 'Used: {percent}%',
+
+  // Worksapce Members
+  CHANGE_MEMBER_ROLE: 'Change Member Role',
+  INVITE_MEMBER: 'Invite Member',
+  WORKSPACE_MEMBERS: 'Workspace Members',
+
+  // Department Management
+  'Workspace Groups': 'Department Mangement',
+  NOT_ASSIGNED_TCAP: 'Not Assigned',
+  ASSIGNED: 'Assigned',
+  ADDED_SUCCESS_TIP: 'Added successfully.',
+  DEVOPS_PROJECT: 'Select a DevOps project',
+  PROJECT_VALUE: 'Project: {value}',
+  PROJECT_ROLE_VALUE: 'Project role: {value}',
+  DEVOPS_VALUE: 'DevOps project: {value}',
+  DEVOPS_PROJECT_ROLES_VALUE: 'DevOps project role: {value}',
 }

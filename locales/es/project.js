@@ -117,7 +117,7 @@ module.exports = {
   Projects: 'Proyectos',
   projects: 'proyectos',
   'Quota Management': 'Gestión de cuotas',
-  'Remove Member': 'Eliminar miembro',
+  REMOVE_MEMBER: 'Eliminar miembro',
   'Remove Members': 'Eliminar miembros',
   'requests.cpu': 'request.cpu',
   'requests.memory': 'requests.memory',
@@ -164,7 +164,7 @@ module.exports = {
     'Puedes invitar a nuevos miembros para que ayuden en tu proyecto DevOps.',
   INVITE_MEMBER_SEARCH_PLACEHODLER:
     'Introduce una dirección de correo electrónico para invitar miembros',
-  INVITE_MEMBER_CHOOSE_ROLE_TIP: 'Asigna un rol a este miembro',
+  ASSIGN_ROLE: 'Assign a Role to the Member',
   DELETE_MEMBER_TIP:
     '¿Estás seguro de eliminar el miembro <strong>{name}</strong> ? El miembro no podrá acceder a este proyecto una vez eliminado.',
   PROJECT_ADMIN_DESC:

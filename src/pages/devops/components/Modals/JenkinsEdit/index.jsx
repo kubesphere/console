@@ -167,7 +167,7 @@ export default class JenkinsEdit extends React.Component {
           visible={this.state.isshowComfirm}
           onCancel={this.hideConfirm}
           onOk={this.handleCancel}
-          title={t('Close')}
+          title={t('CLOSE')}
           desc={t('Are you sure to close this jenkinsfile Editor ?')}
         />
       </>

@@ -17,21 +17,20 @@
  */
 
 module.exports = {
-  'Add the member to': '添加成員到 <strong>{group}<strong>',
-  'Department Name': '部門名稱',
+  ADD_MEMBER_TIP:
+    'Are you sure you want to assign the user to <strong>{group}</strong>?',
   principal: '負責人',
-  'Add New Department': '添加新的部門',
-  'Add New Subdepartment': '添加新的子部門',
-  NO_DEPARTMENT_TIP: '暫時沒有部門，請在右側創建',
+  CREATE_DEPARTMENT: 'Create Department',
+  NO_DEPARTMENT_TIP:
+    'No department available. Please create a department on the right.',
   'workspace role': '企業空間角色',
-  'Bind Project Role': '綁定項目角色',
-  'Add Project': '添加項目',
+  PROJECT_ROLE: '項目角色',
+  ADD_PROJECT: '添加項目',
   'project roles': '項目角色',
-  'Bind DevOps Project Role': '綁定 DevOps 工程角色',
-  'Add DevOps Project': '添加 DevOps 工程',
-  'Please add role': '請添加角色',
-  'User Group Assigned': '已分配用戶組',
-  'Department Alias': '别名',
+  DEVOPS_PROJECT_ROLE: 'DevOps 工程角色',
+  ADD_DEVOPS_PROJECT: '添加 DevOps 工程',
+  SELECT_ROLE_TIP: 'Please select a role.',
+  DEPARTMENT: 'Department',
   GROUP_WORKSPACE_ROLE_DESC: '企業空間角色將授予部門中的所有用戶。',
 
   DELETE_PARENT_GROUP_TIP:

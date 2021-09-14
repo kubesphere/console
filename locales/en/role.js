@@ -130,6 +130,7 @@ module.exports = {
   'Workspace Groups': 'Department Management',
   WORKSPACE_GROUPS_MANAGEMENT: 'Department Management',
   WORKSPACE_GROUPS_VIEW: 'Department Viewing',
+  DEPARTMENT_MANAGEMENT: 'Department Management',
 
   NO_AVAILABLE_ROLE: 'No role is available in the current project.',
 

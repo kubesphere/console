@@ -239,6 +239,7 @@ module.exports = {
   DEVOPS_PROJECT_PL: 'DevOps 工程',
   DEVOPS_PROJECT_TCAP_PL: 'DevOps 工程',
   DEVOPS_PROJECT_LOW: 'DevOps 工程',
+  DEVOPS_PROJECT_LOW_PL: 'DevOps 工程',
   PROJECTS: '项目',
   DEVOPS_PROJECTS: 'DevOps 工程',
   SERVICES: '服务',

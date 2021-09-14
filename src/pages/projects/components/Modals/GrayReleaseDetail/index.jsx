@@ -801,7 +801,7 @@ export default class GatewaySettingModal extends React.Component {
         bodyClassName={styles.body}
         headerClassName={styles.header}
         title={t('Job Status')}
-        cancelText={t('Close')}
+        cancelText={t('CLOSE')}
         onCancel={onCancel}
         visible={visible}
         fullScreen
