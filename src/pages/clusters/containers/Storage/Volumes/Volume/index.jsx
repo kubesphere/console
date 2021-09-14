@@ -19,30 +19,89 @@
 
 import React from 'react'
 import { isEmpty } from 'lodash'
-import withList, { ListPage } from 'components/HOCs/withList'
-import Table from 'components/Tables/List'
-
-import PvStore from 'stores/pv'
-import { getLocalTime } from 'utils'
+import { withClusterList, ListPage } from 'components/HOCs/withList'
+import ResourceTable from 'clusters/components/ResourceTable'
+import VolumeStore from 'stores/volume'
+import { getLocalTime, getDisplayName } from 'utils'
 import { getVolumeStatus } from 'utils/status'
-import { PV_STATUS } from 'utils/constants'
+import { VOLUME_STATUS } from 'utils/constants'
 import StatusReason from 'projects/components/StatusReason'
 
 import { Avatar, Status } from 'components/Base'
 
-@withList({
-  store: new PvStore(),
-  module: 'persistentvolumes',
-  name: 'PV',
+import { Link } from 'react-router-dom'
+
+@withClusterList({
+  store: new VolumeStore(),
+  module: 'persistentvolumeclaims',
+  authKey: 'volumes',
+  name: 'Volume',
   rowKey: 'uid',
 })
-export default class PV extends React.Component {
+export default class Volumes extends React.Component {
+  get tips() {
+    return [
+      {
+        title: t('WHAT_IS_STORAGE_CLASS_Q'),
+        description: t('WHAT_IS_STORAGE_CLASS_A'),
+      },
+      {
+        title: t('WHAT_IS_LOCAL_VOLUME_Q'),
+        description: t('WHAT_IS_LOCAL_VOLUME_A'),
+      },
+    ]
+  }
+
+  get tabs() {
+    return {
+      value: 'Volume',
+      onChange: this.handleTabChange,
+      options: [
+        {
+          value: `Volume`,
+          label: t('Volume'),
+        },
+        {
+          value: 'PV',
+          label: t('PV'),
+        },
+      ],
+    }
+  }
+
+  handleTabChange = () => {
+    const { cluster } = this.props.match.params
+    this.props.rootStore.routing.push(`/clusters/${cluster}/PV`)
+  }
+
   showAction = record => !record.isFedManaged
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, name } = this.props
 
     return [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('EDIT'),
+        action: 'edit',
+        show: this.showAction,
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
+      },
+      {
+        key: 'editYaml',
+        icon: 'pen',
+        text: t('EDIT_YAML'),
+        action: 'edit',
+        show: this.showAction,
+        onClick: item =>
+          trigger('resource.yaml.edit', {
+            detail: item,
+          }),
+      },
       {
         key: 'delete',
         icon: 'trash',
@@ -50,30 +109,12 @@ export default class PV extends React.Component {
         action: 'delete',
         show: this.showAction,
         onClick: item =>
-          trigger('pv.delete', { ...this.props.tableProps, detail: item }),
+          trigger('resource.delete', {
+            type: t(name),
+            detail: item,
+          }),
       },
     ]
-  }
-
-  get tableActions() {
-    const { trigger, tableProps } = this.props
-    return {
-      ...tableProps.tableActions,
-      selectActions: [
-        {
-          key: 'delete',
-          icon: 'trash',
-          text: t('DELETE'),
-          action: 'delete',
-          type: 'danger',
-          show: this.showAction,
-          onClick: () =>
-            trigger('pv.batch.delete', {
-              ...this.props.tableProps,
-            }),
-        },
-      ],
-    }
   }
 
   getItemDesc = record => {
@@ -93,7 +134,7 @@ export default class PV extends React.Component {
   })
 
   getStatus() {
-    return PV_STATUS.map(status => ({
+    return VOLUME_STATUS.map(status => ({
       text: t(status.text),
       value: status.value,
     }))
@@ -110,18 +151,16 @@ export default class PV extends React.Component {
         sortOrder: getSortOrder('name'),
         search: true,
         sorter: true,
-        render: (name, record) => {
-          return (
-            <Avatar
-              icon={'storage'}
-              iconSize={40}
-              to={`/clusters/${cluster}/pv/${name}`}
-              isMultiCluster={record.isFedManaged}
-              desc={this.getItemDesc(record)}
-              title={name}
-            />
-          )
-        },
+        render: (name, record) => (
+          <Avatar
+            icon={'storage'}
+            iconSize={40}
+            to={`/clusters/${cluster}/projects/${record.namespace}/volumes/${name}`}
+            isMultiCluster={record.isFedManaged}
+            desc={this.getItemDesc(record)}
+            title={getDisplayName(record)}
+          />
+        ),
       },
       {
         title: t('STATUS'),
@@ -134,9 +173,21 @@ export default class PV extends React.Component {
         render: (_, { phase }) => (
           <Status
             type={phase}
-            name={t(`PV_STATUS_${phase.toUpperCase()}`)}
+            name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)}
             flicker
           />
+        ),
+      },
+      {
+        title: 'PV',
+        dataIndex: '_originData',
+        isHideable: true,
+        search: false,
+        width: '28.5%',
+        render: _ => (
+          <Link to={`/clusters/${cluster}/pv/${_.spec.volumeName}`}>
+            {_.spec.volumeName}
+          </Link>
         ),
       },
       {
@@ -151,11 +202,11 @@ export default class PV extends React.Component {
         ),
       },
       {
-        title: t('Recycling mechanism'),
-        dataIndex: '_originData',
+        title: t('MOUNT_STATUS'),
+        dataIndex: 'inUse',
         isHideable: true,
         width: '7.74%',
-        render: _ => _.spec.persistentVolumeReclaimPolicy,
+        render: inUse => (inUse ? t('MOUNTED_TCAP') : t('NOT_MOUNTED')),
       },
       {
         title: t('CREATED_AT'),
@@ -169,18 +220,27 @@ export default class PV extends React.Component {
     ]
   }
 
+  showCreate = () => {
+    const { store, match, module } = this.props
+
+    return this.props.trigger('volume.create', {
+      store,
+      module,
+      cluster: match.params.cluster,
+    })
+  }
+
   render() {
-    const { match, tableProps } = this.props
+    const { tableProps, match } = this.props
     return (
       <ListPage {...this.props}>
-        <Table
+        <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}
-          tableActions={this.tableActions}
           columns={this.getColumns()}
+          onCreate={this.showCreate}
           cluster={match.params.cluster}
           getCheckboxProps={this.getCheckboxProps}
-          renderProjectSelect={false}
         />
       </ListPage>
     )

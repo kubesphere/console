@@ -56,7 +56,7 @@ export default class VolumeDetail extends React.Component {
   get listUrl() {
     const { cluster } = this.props.match.params
 
-    return `/clusters/${cluster}/PV`
+    return `/clusters/${cluster}/volumes/PV`
   }
 
   get isFedManaged() {
