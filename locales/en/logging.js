@@ -139,11 +139,23 @@ module.exports = {
   CUSTON_MONITORING_TEMPLATE_DESC:
     'Select a default template or customize a template to generate a custom monitoring dashboard.',
   CUSTOM_MONITORING_DASHBOARD: 'Custom Monitoring Dashboard',
+
+  IMPORT_GRAFANA_DASHBOARD: 'Import Grafana dashboard',
+  SUPPORT_JSON_FILE: 'Only supports JSON files',
+  IMPORT_GRAFANA_JSON_FILE: 'Import Grafana JSON Files',
+  IMPORT_GRAFANA_URL: 'Import using Grafana dashboard URL',
+  'Click or drag files to this area to upload':
+    'Click or drag files to this area to upload',
+  'Only one file can be uploaded': 'Only one file can be uploaded',
+  'Need to upload a file': 'Need to upload a file',
+  'Need to a URL': 'the Grafana Url is required',
+
   CUSTOMMONITORDASHBOARD: 'Custom Monitoring Dashboard',
   CUSTOMMONITORDASHBOARD_PL: 'Custom Monitoring Dashboards',
   CUSTOMMONITORDASHBOARD_LOW: 'custom monitoring dashboard',
   CUSTOMMONITORDASHBOARD_EMPTY_DESC:
     'Please create a custom monitoring dashboard.',
+
 
   SERVICE_BUILT_INTERFACE: 'service monitoring is built interface data capture',
 

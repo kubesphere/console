@@ -43,14 +43,20 @@ export default class BaseInfo extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
-  templateSettingsOpts = Object.entries(templateSettings).map(
-    ([key, configs]) => ({
+  templateSettingsOpts = Object.entries(templateSettings)
+    .map(([key, configs]) => ({
       value: key,
       image: configs.logo,
       label: configs.name === 'Custom' ? t('CUSTOM') : configs.name,
       description: configs.description,
+    }))
+    .filter(item => {
+      if (this.props.module === 'dashboards') {
+        return item.label !== 'Grafana'
+      }
+      return true
+
     })
-  )
 
   nameValidator = (rule, value, callback) => {
     if (!value) {
