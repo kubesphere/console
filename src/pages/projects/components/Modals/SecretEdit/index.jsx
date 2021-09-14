@@ -34,6 +34,7 @@ export default class SecretEditModal extends React.Component {
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
     isSubmitting: PropTypes.bool,
+    disableSelect: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -42,6 +43,7 @@ export default class SecretEditModal extends React.Component {
     onOk() {},
     onCancel() {},
     isSubmitting: false,
+    disableSelect: false,
   }
 
   static childContextTypes = {
@@ -123,7 +125,13 @@ export default class SecretEditModal extends React.Component {
 
   render() {
     const { subRoute, formTemplate } = this.state
-    const { visible, isSubmitting, onCancel, isFederated } = this.props
+    const {
+      visible,
+      isSubmitting,
+      onCancel,
+      isFederated,
+      disableSelect,
+    } = this.props
 
     return (
       <Modal
@@ -142,6 +150,7 @@ export default class SecretEditModal extends React.Component {
           formTemplate={formTemplate}
           isFederated={isFederated}
           mode="edit"
+          disableSelect={disableSelect}
         />
         {this.renderSaveBar()}
       </Modal>
