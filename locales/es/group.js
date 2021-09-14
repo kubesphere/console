@@ -17,22 +17,20 @@
  */
 
 module.exports = {
-  'Add the member to': 'Añadir un comentario <strong>{group}<strong>',
-  'Department Name': 'Nombre de Departamento',
+  ADD_MEMBER_TIP:
+    'Are you sure you want to assign the user to <strong>{group}</strong>?',
   principal: 'persona a cargo',
-  'Add New Department': 'Agregar nuevo departamento',
-  'Add New Subdepartment': 'Añadir una nueva subcategoría',
+  CREATE_DEPARTMENT: 'Create Department',
   NO_DEPARTMENT_TIP:
-    'No hay departamento en este momento, por favor cree a la derecha',
-  'Workspace role': 'rol del espacio de trabajo',
-  'Bind Project Role': 'Rol de proyecto vinculantes',
-  'Add Project': 'Agregar proyecto',
+    'No department available. Please create a department on the right.',
+  WORKSPACE_ROLE: 'rol del espacio de trabajo',
+  PROJECT_ROLE: 'Project Role',
+  ADD_PROJECT: 'Agregar proyecto',
   'project roles': 'roles de proyecto',
-  'Bind DevOps Project Role': 'Rol del proyecto Binding Devops',
-  'Add DevOps Project': 'Agregar proyecto DevOps',
-  'Please add role': 'Añadir papel',
-  'User Group Assigned': 'Grupo de usuarios asignado',
-  'Department Alias': 'Alias',
+  DEVOPS_PROJECT_ROLE: 'DevOps Project Role',
+  ADD_DEVOPS_PROJECT: 'Agregar proyecto DevOps',
+  SELECT_ROLE_TIP: 'Please select a role.',
+  DEPARTMENT: 'Department',
   GROUP_WORKSPACE_ROLE_DESC:
     'La función del espacio de trabajo se asignará a todos los miembros del departamento.',
 

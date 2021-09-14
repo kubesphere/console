@@ -88,7 +88,7 @@ export default class EditBasicInfoModal extends React.Component {
       <Modal.Form
         data={this.formTemplate}
         width={691}
-        title={t('Add Cluster')}
+        title={t('ADD_CLUSTER')}
         icon="enterprise"
         onOk={this.handleOk}
         onCancel={onCancel}
@@ -98,9 +98,7 @@ export default class EditBasicInfoModal extends React.Component {
         <div className={styles.fedProClusterContainer}>
           <Form.Group>
             <Form.Item
-              rules={[
-                { required: true, message: t('Please select a cluster') },
-              ]}
+              rules={[{ required: true, message: t('CLUSTER_EMPTY_DESC') }]}
               desc={
                 this.enableAddCluster
                   ? t('FEDPROJECT_CANNOT_ADD_CLUSTER')
@@ -109,13 +107,14 @@ export default class EditBasicInfoModal extends React.Component {
             >
               <ArrayInput
                 name="clusters"
-                addText={t('Add Cluster')}
+                addText={t('ADD_CLUSTER')}
                 itemType="object"
                 onChange={this.handleClusterChange}
               >
                 <ObjectInput>
                   <Select
                     name="name"
+                    placeholder=" "
                     options={this.clusters}
                     valueRenderer={this.valueRenderer}
                     optionRenderer={this.optionRenderer}

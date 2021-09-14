@@ -224,10 +224,6 @@ class Overview extends React.Component {
         type: 'scheduler',
         name: t('KUBERNETES_SCHEDULER'),
       },
-      {
-        type: 'node',
-        name: t('NODE'),
-      },
     ]
 
     return (

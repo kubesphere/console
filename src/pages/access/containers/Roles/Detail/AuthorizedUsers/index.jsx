@@ -65,14 +65,14 @@ export default class AuthorizedUsers extends React.Component {
       ),
     },
     {
-      title: t('Last Login Time'),
+      title: t('LAST_LOGIN'),
       dataIndex: 'lastLoginTime',
       width: '33%',
       render: login_time => (
         <p>
           {login_time
             ? getLocalTime(login_time).format('YYYY-MM-DD HH:mm:ss')
-            : t('Not logged in yet')}
+            : t('NOT_LOGIN_YET')}
         </p>
       ),
     },

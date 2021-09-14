@@ -84,7 +84,11 @@ export default class ResourceStatistics extends React.Component {
             <Column>
               <Info
                 icon={ICON_TYPES['projects']}
-                desc={t('Projects')}
+                desc={
+                  metrics.workspace_namespace_count === '1'
+                    ? t('PROJECT')
+                    : t('PROJECT_PL')
+                }
                 title={metrics.workspace_namespace_count}
                 url={this.getLink('projects')}
                 size="large"
@@ -94,7 +98,11 @@ export default class ResourceStatistics extends React.Component {
               <Column>
                 <Info
                   icon={ICON_TYPES['devops']}
-                  desc={t('DevOps Projects')}
+                  desc={
+                    metrics.workspace_devops_project_count === '1'
+                      ? t('DEVOPS_PROJECT_TCAP')
+                      : t('DEVOPS_PROJECT_TCAP_PL')
+                  }
                   title={metrics.workspace_devops_project_count}
                   url={this.getLink('devops')}
                   size="large"
@@ -105,7 +113,11 @@ export default class ResourceStatistics extends React.Component {
             <Column>
               <Info
                 icon={ICON_TYPES['roles']}
-                desc={t('Roles')}
+                desc={
+                  metrics.workspace_role_count === '1'
+                    ? t('ROLE')
+                    : t('ROLE_PL')
+                }
                 title={metrics.workspace_role_count}
                 url={this.getLink('roles')}
                 size="large"
@@ -114,7 +126,11 @@ export default class ResourceStatistics extends React.Component {
             <Column>
               <Info
                 icon={ICON_TYPES['members']}
-                desc={t('Workspace Members')}
+                desc={
+                  metrics.workspace_member_count === '1'
+                    ? t('WORKSPACE_MEMBER_TCAP')
+                    : t('WORKSPACE_MEMBER_TCAP_PL')
+                }
                 title={metrics.workspace_member_count}
                 url={this.getLink('members')}
                 size="large"

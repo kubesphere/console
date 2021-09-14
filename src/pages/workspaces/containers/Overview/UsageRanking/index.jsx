@@ -73,7 +73,7 @@ class Ranking extends React.Component {
     }))
   }
 
-  valueRenderer = option => `${t('Cluster')}: ${option.value}`
+  valueRenderer = option => t('CLUSTER_VALUE', { value: option.value })
 
   optionRenderer = option => (
     <div>

@@ -29,7 +29,7 @@ module.exports = {
   DEVOPS_PROJECT_MEMBERS: '工程成员',
   DEVOPS_PROJECT_ROLES: '工程角色',
 
-  Manager: '管理员',
+  MANAGER: '管理员',
   Administrator: '管理员',
   'DevOps Project Manager': 'DevOps 工程管理员',
   'Create DevOps Project': '创建 DevOps 工程',

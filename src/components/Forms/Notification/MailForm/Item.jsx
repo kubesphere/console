@@ -45,7 +45,7 @@ export default class Item extends React.Component {
     const { value } = this.props
     const count = globals.config.notification.wecom['max_number_of_email']
     if (!email) {
-      Notify.error({ content: t('Please input email'), duration: 1000 })
+      Notify.error({ content: t('EMAIL_EMPTY_DESC'), duration: 1000 })
       return
     }
     if (value.length > count - 1) {
@@ -63,7 +63,7 @@ export default class Item extends React.Component {
       return
     }
     if (!PATTERN_EMAIL.test(email)) {
-      Notify.error({ content: t('Invalid email'), duration: 1000 })
+      Notify.error({ content: t('INVALID_EMAIL'), duration: 1000 })
       return
     }
     return true

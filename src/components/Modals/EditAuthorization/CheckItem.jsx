@@ -94,7 +94,7 @@ export default class CheckItem extends Component {
           onClick={this.handleCheck}
         />
         <Text
-          title={t(data.aliasName)}
+          title={t(data.aliasName.replace(/\s+/g, '_').toUpperCase())}
           onClick={this.handleCheck}
           description={t(
             `${data.aliasName.toUpperCase().replace(/\s+/g, '_')}_DESC`
@@ -102,10 +102,14 @@ export default class CheckItem extends Component {
         />
         {data.dependencies.length > 0 && (
           <div className={styles.extra}>
-            {t('Depend on')}:{' '}
+            {t('DEPENDS_ON')}
             {data.dependencies.map(item => (
               <Tag className={styles.tag} type="info" key={item}>
-                {t(get(roleTemplatesMap, `[${item}].aliasName`))}
+                {t(
+                  get(roleTemplatesMap, `[${item}].aliasName`)
+                    .replace(/\s+/g, '_')
+                    .toUpperCase()
+                )}
               </Tag>
             ))}
           </div>

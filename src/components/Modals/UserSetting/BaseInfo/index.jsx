@@ -77,7 +77,7 @@ export default class BaseInfo extends React.Component {
               <Form.Item label={t('USERNAME')}>
                 <Input name="metadata.name" placeholder="username" disabled />
               </Form.Item>
-              <Form.Item label={t('Email')} desc={t('USER_SETTING_EMAIL_DESC')}>
+              <Form.Item label={t('EMAIL')} desc={t('USER_SETTING_EMAIL_DESC')}>
                 <Input name="spec.email" placeholder="User@example.com" />
               </Form.Item>
               {globals.config.supportLangs && (

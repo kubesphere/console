@@ -145,7 +145,7 @@ export default class EditBasicInfoModal extends React.Component {
             maxLength={63}
           />
         </Form.Item>
-        <Form.Item label={t('Workspace Manager')}>
+        <Form.Item label={t('ADMINISTRATOR')}>
           <Select
             name="spec.template.spec.manager"
             options={this.users}

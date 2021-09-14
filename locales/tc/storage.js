@@ -37,6 +37,7 @@ module.exports = {
   'Volume Usage': '儲存卷用量',
   VOLUME: '儲存卷',
   VOLUME_PL: '儲存卷數量',
+  NUMBER_OF_VOLUMES: 'Number of volumes',
   VOLUME_LOW: 'volumes',
   'Create Volume': '創建儲存卷',
   'Delete Volume': '刪除儲存卷',

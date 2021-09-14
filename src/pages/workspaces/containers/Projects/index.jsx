@@ -61,11 +61,11 @@ export default class Projects extends React.Component {
       options: [
         {
           value: 'projects',
-          label: t('Projects'),
+          label: t('PROJECT_PL'),
         },
         {
           value: 'federatedprojects',
-          label: t('Multi-cluster Projects'),
+          label: t('MULTI_CLUSTER_PROJECT_PL'),
         },
       ],
     }
@@ -142,7 +142,7 @@ export default class Projects extends React.Component {
       {
         key: 'quotaEdit',
         icon: 'pen',
-        text: t('Edit Quota'),
+        text: t('EDIT_QUOTA'),
         action: 'edit',
         onClick: item =>
           trigger('project.quota.edit', {
@@ -207,7 +207,7 @@ export default class Projects extends React.Component {
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('CPU Usage'),
+        title: t('CPU_USAGE'),
         key: 'namespace_cpu_usage',
         isHideable: true,
         render: record =>
@@ -218,7 +218,7 @@ export default class Projects extends React.Component {
           ),
       },
       {
-        title: t('Memory Usage'),
+        title: t('MEMORY_USAGE'),
         key: 'namespace_memory_usage_wo_cache',
         isHideable: true,
         render: record =>
@@ -229,7 +229,7 @@ export default class Projects extends React.Component {
           ),
       },
       {
-        title: t('POD_PL'),
+        title: t('POD_COUNT'),
         key: 'namespace_pod_count',
         isHideable: true,
         render: record => this.getLastValue(record, MetricTypes.pod),

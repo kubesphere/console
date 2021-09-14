@@ -73,7 +73,7 @@ module.exports = {
   global_admin: '超級管理員',
   admin: '管理員',
 
-  'Download Successfully': '下載成功',
+  DOWNLOAD_SUCCESSFUL: '下載成功',
 
   Passed: '已通過',
   Rejected: '已拒絕',

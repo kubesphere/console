@@ -43,7 +43,7 @@ export default class ClusterSelect extends Component {
     const { className, value } = this.props
     return (
       <div className={classNames(styles.value, className)}>
-        <span className={styles.label}>{`${t('Cluster')}: ${value}`}</span>
+        <span className={styles.label}>{t('CLUSTER_VALUE', { value })}</span>
         <Icon className={styles.rightIcon} name="chevron-down" type="light" />
       </div>
     )

@@ -120,8 +120,8 @@ module.exports = {
 
   'Not Limited': '未限制',
   Cost: '占用',
-  'Project Remaining Quota': '項目剩餘配額',
-  'Workspace Remaining Quota': '企業空間剩餘配額',
+  PROJECT_REMAINING_QUOTAS: '項目剩餘配額',
+  WORKSPACE_REMAINING_QUOTAS: '企業空間剩餘配額',
   QUOTA_OVERCOST_TIP: '目前資源占用已超過剩餘配額',
 
   'Resource Request': '資源預留',
@@ -158,7 +158,7 @@ module.exports = {
   WORKLOAD_SPECIFY_NODE_DESC: '可以讓容器組副本在指定的節點運行',
   ADD_METADATA_DESC: '對資源進行額外的元數據設置，例如 Label 和 Annotation',
 
-  DEPLOYMENT_LOCATION: '部署位置',
+  LOCATION: '位置',
 
   SELECT_CONFIGMAP_DESC: '將配置中的值添加為卷。',
   SELECT_SECRET_DESC: '將密鑰中的值添加為卷。',
@@ -168,7 +168,7 @@ module.exports = {
   SELECT_VOLUME_DESC: '請選擇一個已經創建好的持久化儲存卷掛載至容器',
 
   REQUEST_EXCCED: '資源預留不能超過資源限制',
-  REQUEST_EXCCED_WORKSPACE: '資源设置不能大於工作區資源限制',
+  REQUEST_EXCEED_WORKSPACE: '資源设置不能大於工作區資源限制',
   REQUEST_EXCEED_LIMIT: '資源預留不能超過資源限制。',
 
   WORKLOAD_DESC:
@@ -360,6 +360,7 @@ module.exports = {
   CronJob: '定時任務',
   CRONJOB: '定時任務',
   CRONJOB_PL: '定時任務',
+  NUMBER_OF_CRONJOBS: 'Number of CronJobs',
   CRONJOB_LOW: '定時任務',
   Revision: '版本',
   EVERY_DAY: '0 0 * * * (every day)',
@@ -759,6 +760,7 @@ module.exports = {
 
   // Jobs
   JOB_PL: 'Jobs',
+  NUMBER_OF_JOBS: 'Number of Jobs',
   JOB_LOW: 'Job',
   CRONJOBS: 'CronJobs',
   SCHEDULE: 'Schedule',

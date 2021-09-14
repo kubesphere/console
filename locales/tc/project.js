@@ -18,6 +18,9 @@
 
 module.exports = {
   CLUSTER: '集群',
+  CLUSTER_PL: '集群',
+  CLUSTER_VALUE: '集群：{value}',
+  CREATE_MULTI_CLUSTER_PROJECT: 'Create Multi-cluster Project',
   Deployment: '部署',
   StatefulSet: '有狀態副本集',
   DaemonSet: '守護進程集',
@@ -38,15 +41,15 @@ module.exports = {
   'Members Management': '成員管理',
   PROJECT_ADMINISTRATOR: '項目管理員',
   'Manage Project': '項目管理',
-  'Resource Quota': '資源配額',
-  'Project Name': '項目名稱',
+  RESOURCE_QUOTAS: '資源配額',
+  PROJECT_NAME: '項目名稱',
   'Project Members': '項目成員',
   'project members': '項目成員',
   'Member Name': '成員名稱',
   'Modify Member Role': '修改成員角色',
   'Modify Members Role': '修改成員角色',
   'Remove Members': '移除成員',
-  'Remove Member': '移除成員',
+  REMOVE_MEMBER: '移除成員',
   'Invite Member': '邀請成員',
   'Gateway Info': '網關資訊',
   'Set Gateway': '設置網關',
@@ -57,11 +60,15 @@ module.exports = {
   'Delete Project': '刪除項目',
   'Project Info': '項目資訊',
   'Project Quota': '項目配額',
+  EDIT_PROJECT_QUOTAS: 'Edit Project Quotas',
   'Quota Management': '配額管理',
 
   'Project Placement': '項目位置',
 
   'Multi-cluster Project': '多集群項目',
+  MULTI_CLUSTER_PROJECT: '多集群項目',
+  MULTI_CLUSTER_PROJECT_LOW: '多集群項目',
+  MULTI_CLUSTER_PROJECT_PL: '多集群項目',
   'Multi-cluster Projects': '多集群項目',
 
   Opened: '已開啟',
@@ -84,7 +91,7 @@ module.exports = {
   'Select Project Type': '選擇項目類型',
 
   'Edit Project Quota': '編輯項目配額',
-  'Add Quota Item': '添加配額項目',
+  ADD_QUOTA: '添加配額項目',
 
   deployments: '部署',
   statefulsets: '有狀態副本集',
@@ -127,7 +134,7 @@ module.exports = {
     '項目的落盤紀錄收集即將關閉.',
 
   SELECT_CLUSTER_DESC: '選擇要創建項目的集群。',
-  CLUSTER_NOT_SELECT_DESC: '請選擇集群。',
+  CLUSTER_EMPTY_DESC: '請選擇集群。',
 
   'Project Member': '項目成員',
 
@@ -138,8 +145,8 @@ module.exports = {
   CLOSE_FILE_LOG_TIP:
     '落盤紀錄收集即將關閉。 關閉後，已開啟落盤紀錄收集的服務在容器組副本重啟前將繼續進行落盤紀錄的收集，重啟後，將不再收集。</br>如果需要再次收集，請開啟落盤紀錄收集，並重起容器組副本。',
 
-  Usage: '使用情況',
-
+  Usage: '用量',
+  USAGE: '用量',
   PROJECTS_DESC:
     'KubeSphere 中的項目對應的是 Kubernetes 的 namespace，是對一組資源和對象的抽象集合，常用來將系統内部的對象劃分為不同的項目組或用戶組。',
   PROJECT_BASEINFO_DESC: '項目基礎資訊設置',
@@ -158,7 +165,7 @@ module.exports = {
   INVITE_MEMBER_DESC: '您可以邀請新的成員來協助您的項目',
   INVITE_MEMBER_DESC_DEVOPS: '您可以邀請新的成員來協助您的工程',
   INVITE_MEMBER_SEARCH_PLACEHODLER: '輸入郵箱邀請項目成員',
-  INVITE_MEMBER_CHOOSE_ROLE_TIP: '請選擇一個角色赋予該成員',
+  ASSIGN_ROLE: 'Assign a Role to the Member',
   PROJECT_ADMIN_DESC: '可以指定項目内一個成員為管理員',
 
   PROJECT_INTERNET_ACCESS_DESC:
@@ -216,8 +223,7 @@ module.exports = {
   'How do I invite other members to the current project?':
     '邀請其他成員到目前項目中?',
   'How do I set the project gateway?': '如何設置項目網關？',
-  'You can limit the number of resources. Blank means no limit.':
-    '您可以對資源的數量進行限制, 不填寫即不限制',
+  RESOURCE_QUANTITY_LIMIT: '您可以對資源的數量進行限制, 不填寫即不限制',
 
   PROJECT_TYPES_Q: '項目中的服務如何通過外網訪問？',
   PROJECT_TYPES_A:
@@ -227,7 +233,7 @@ module.exports = {
     '選擇要創建項目的集群. 當選擇了多個集群時, 將創建聯邦項目',
   NETWORK_ISOLATED_DESC: '設置網路隔離策略',
 
-  NAME_EXIST_IN_CLUSTER: '項目名稱在集群 {cluster} 中已存在',
+  PROJECT_NAME_EXISTS_IN_CLUSTER: '項目名稱在集群 {cluster} 中已存在',
 
   MULTI_CLUSER_PROJECT_TIP:
     '目前項目為多集群項目，項目將分布在不同集群中共同來構成多集群項目，您可以切換到不同集群查看項目在該集群中的設置。',
@@ -239,7 +245,7 @@ module.exports = {
     '無法在集群管理内創建多集群項目的資源, 請到多集群項目頁面内進行操作.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '無法在多集群項目裡部署應用.',
 
-  'The project name exists on the host cluster.': '項目名在 Host 集群上已存在',
+  PROJECT_NAME_EXISTS_IN_HOST: '項目名在 Host 集群上已存在',
 
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
     '刪除多集群項目同時也會刪除依賴於 Host 集群上的同名項目,</br>請輸入{type}名稱 <strong>{resource}</strong> 確保您已經了解操作所带來的風險。',
@@ -247,7 +253,7 @@ module.exports = {
   FED_HOST_NAMESPACE_TIP:
     '該項目為多集群項目的相關資源, 請勿在此項目下操作資源',
 
-  MULTI_CLUSTER_PROJECT_CREATE_DESC:
+  CREATE_MULTI_CLUSTER_PROJECT_DESC:
     '您可以創建多集群項目，讓項目運行在多個集群中，為應用提供快速疊代開發的容器環境並實現高可用。',
 
   'Project Quota Not Set': '項目配額未設置',

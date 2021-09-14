@@ -17,25 +17,22 @@
  */
 
 module.exports = {
-  'Add the member to':
+  ADD_MEMBER_TIP:
     'Are you sure you want to assign the user to <strong>{group}</strong>?',
-  'Department Name': 'Name',
-  'Department Alias': 'Alias',
   principal: 'principal',
-  'Add New Department': 'Create Department',
-  'Add New Subdepartment': 'Create Department',
+  CREATE_DEPARTMENT: 'Create Department',
   NO_DEPARTMENT_TIP:
     'No department available. Please create a department on the right.',
-  'Workspace role': 'Workspace Role',
+  WORKSPACE_ROLE: 'Workspace Role',
   GROUP_WORKSPACE_ROLE_DESC:
     'The workspace role will be assigned to all members in the department.',
-  'Bind Project Role': 'Project Role',
-  'Add Project': 'Add Project',
+  PROJECT_ROLE: 'Project Role',
+  ADD_PROJECT: 'Add Project',
   'project roles': 'project roles',
-  'Bind DevOps Project Role': 'DevOps Project Role',
-  'Add DevOps Project': 'Add DevOps Project',
-  'Please add role': 'Please select a role.',
-  'User Group Assigned': 'Department',
+  DEVOPS_PROJECT_ROLE: 'DevOps Project Role',
+  ADD_DEVOPS_PROJECT: 'Add DevOps Project',
+  SELECT_ROLE_TIP: 'Please select a role.',
+  DEPARTMENT: 'Department',
 
   DELETE_GROUP_TIP:
     'Are you sure you want to delete the department <strong>{group_name}</strong>? The associated roles will be unbound from the users.',

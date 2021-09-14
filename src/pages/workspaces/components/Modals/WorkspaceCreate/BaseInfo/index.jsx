@@ -87,17 +87,17 @@ export default class BaseInfo extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.step}>
-          <div>{t('Basic Info')}</div>
+          <div>{t('BASIC_INFORMATION')}</div>
           <p>{t('WORKSPACE_CREATE_DESC')}</p>
         </div>
         <Form data={formTemplate} ref={formRef}>
           <Form.Item
-            label={t('Workspace Name')}
+            label={t('NAME')}
             desc={t('NAME_DESC')}
             rules={[
               {
                 required: true,
-                message: t('Please input workspace name'),
+                message: t('WORKSPACE_NAME_EMPTY_DESC'),
               },
               {
                 pattern: PATTERN_NAME,
@@ -114,7 +114,7 @@ export default class BaseInfo extends React.Component {
               maxLength={63}
             />
           </Form.Item>
-          <Form.Item label={t('Workspace Manager')}>
+          <Form.Item label={t('ADMINISTRATOR')}>
             <Select
               name="spec.template.spec.manager"
               options={this.users}

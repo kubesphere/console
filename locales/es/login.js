@@ -41,7 +41,7 @@ module.exports = {
   'Log In with {title}': 'Log In with {title}',
 
   'Please input username or email': 'Please input username or email',
-  ENTER_PASSWORD_TIP: 'Please enter a password.',
+  PASSWORD_EMPTY_DESC: 'Please enter a password.',
   'Please input captch': 'Please input captch',
   'Please confirm your account info': 'Please confirm your account info',
   'Please input username': 'Please enter your username',

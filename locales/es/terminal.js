@@ -32,6 +32,10 @@ module.exports = {
     <h2><a id="KubeConfig_Configuration_Method_0"></a>Método de configuración KubeConfig</h2>
     <p>Por favor, consultar la <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">documentación oficial</a> para más comandos.</p>
   `,
+
+  VIEW_KUBE_CONFIG:
+    'Related operations of kubeConfig configuration include viewing and downloading',
+
   KUBECTL_TIP: `
     <h2><a id="KubeCtl_Common_Instructions_0"></a>Instrucciones comunes de KubeCtl</h2>
     <p>Por favor, consultar la <a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank">documentación oficial</a> para más comandos.</p>

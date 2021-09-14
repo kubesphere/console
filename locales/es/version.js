@@ -33,7 +33,7 @@ module.exports = {
   'Develop and test guide': 'Guía de desarrollar y test',
   developer: 'desarrollador',
   Developing: 'Desarrollando',
-  'Download Successfully': 'Descargado con éxito',
+  DOWNLOAD_SUCCESSFUL: 'Descargado con éxito',
   Draft: 'Borrador',
   global_admin: 'global_admin',
   'in-review': 'en revisión',

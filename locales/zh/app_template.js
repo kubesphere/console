@@ -18,7 +18,6 @@
 
 module.exports = {
   'Deploy Successfully': '部署成功',
-  'Update Successfully': '更新成功',
   'Configuration Files': '配置文件',
 
   APP_TEMPLATE_DESCRIPTION_TITLE: '应用一键部署',

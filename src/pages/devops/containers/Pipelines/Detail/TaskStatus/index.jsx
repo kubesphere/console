@@ -248,7 +248,7 @@ export default class TaskStatus extends React.Component {
           title={t('Pipeline Run Logs')}
           visible={showLog}
           closable={false}
-          cancelText={t('Close')}
+          cancelText={t('CLOSE')}
         >
           <PipelineLog
             handleDownloadLogs={this.handleDownloadLogs}

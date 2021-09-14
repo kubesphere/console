@@ -182,8 +182,10 @@ export default class DevopsSelect extends Component {
             value={cluster}
             disabled={disabled}
             options={clusters}
-            placeholder={t('Please select a cluster')}
-            valueRenderer={option => `${t('Cluster')}: ${option.value}`}
+            placeholder={t('CLUSTER')}
+            valueRenderer={option =>
+              t('CLUSTER_VALUE', { value: option.value })
+            }
             optionRenderer={this.clusterRenderer}
             prefixIcon={<Icon name="cluster" size={16} />}
             onChange={this.handleClusterChange}
@@ -194,8 +196,8 @@ export default class DevopsSelect extends Component {
           value={namespace}
           disabled={disabled}
           options={this.devops}
-          placeholder={t('Please select a DevOps project')}
-          valueRenderer={option => `${t('DevOps')}: ${option.value}`}
+          placeholder={t('DEVOPS_PROJECT')}
+          valueRenderer={option => t('DEVOPS_VALUE', { value: option.value })}
           prefixIcon={<Icon name="strategy-group" size={16} />}
           onChange={this.handleDevopsChange}
         />
@@ -205,10 +207,10 @@ export default class DevopsSelect extends Component {
           disabled={disabled}
           options={this.roles}
           valueRenderer={option =>
-            `${t('DEVOPS_PROJECT_ROLES')}: ${option.value}`
+            t('DEVOPS_PROJECT_ROLES_VALUE', { value: option.value })
           }
           prefixIcon={<Icon name="role" size={16} />}
-          placeholder={t('Please select a project role')}
+          placeholder={t('ROLE')}
           onChange={this.handleRoleChange}
         />
       </div>

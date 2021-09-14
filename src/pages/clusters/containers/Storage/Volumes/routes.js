@@ -13,35 +13,32 @@
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
+ *
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getChildRoutes } from 'utils/router.config'
+import { getIndexRoute } from 'utils/router.config'
 
-import OverviewLayout from '../containers/Overview'
-import ResourceUsage from '../containers/Overview/ResourceUsage'
-import UsageRanking from '../containers/Overview/UsageRanking'
-import Clusters from '../containers/Overview/Clusters'
+import Volume from './Volume'
+import PV from '../PV'
 
-const PATH = '/workspaces/:workspace/overview'
-const ROUTES = [
-  { name: 'usage', title: 'RESOURCE_USAGE', component: ResourceUsage },
-  { name: 'ranking', title: 'USAGE_RANKING', component: UsageRanking },
-  {
-    name: 'clusters',
-    title: 'CLUSTER_INFORMATION',
-    component: Clusters,
-    multiCluster: true,
-  },
-]
-
+const PATH = '/clusters/:cluster/volumes'
 export default [
   {
-    path: PATH,
-    component: OverviewLayout,
-    routes: getChildRoutes(
-      ROUTES.filter(item => !item.multiCluster || globals.app.isMultiCluster),
-      PATH
-    ),
+    path: `${PATH}/Volumes`,
+    title: 'Volumes',
+    component: Volume,
+    exact: true,
   },
+  {
+    path: `${PATH}/PV`,
+    title: 'PV',
+    component: PV,
+    exact: true,
+  },
+  getIndexRoute({
+    path: PATH,
+    to: `${PATH}/Volumes`,
+    exact: true,
+  }),
 ]

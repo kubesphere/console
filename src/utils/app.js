@@ -134,5 +134,5 @@ export const checkRepoInvalidReason = errCode => {
     114: 'Invalid S3 Scheme', // ErrSchemeNotS3
     // 115: 'Bad Index YAML', // ErrBadIndexYaml
   }
-  return t(errReason[errCode] || 'Invalid URL')
+  return t(errReason[errCode] || 'INVALID_URL_DESC')
 }

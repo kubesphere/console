@@ -46,12 +46,7 @@ export default class EmptyTable extends React.PureComponent {
     const { module, icon, title, name, desc, action, className } = this.props
     const _desc = !isUndefined(desc)
       ? desc
-      : t.html(
-          `${name
-            .split(' ')
-            .join('_')
-            .toUpperCase()}_EMPTY_DESC`
-        )
+      : t.html(`${name.replace(/[-\s]/g, '_').toUpperCase()}_EMPTY_DESC`)
 
     const _icon = icon || ICON_TYPES[module] || 'appcenter'
 

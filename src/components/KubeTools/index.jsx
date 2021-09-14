@@ -110,6 +110,14 @@ export default class KubeTools extends React.Component {
             hidden: !this.isHideMeterModal,
             action: 'toolbox.bill',
           },
+          {
+            icon: 'documentation',
+            description: t('VIEW_KUBE_CONFIG'),
+            title: 'kubeconfig',
+            link: '/kubeConfig',
+            hidden: !globals.config.enableKubeConfig,
+            action: 'toolbox.kubeconfig',
+          },
         ],
       },
       {

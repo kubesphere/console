@@ -62,7 +62,7 @@ export default class IsolateInfo extends React.Component {
             className={classNames(styles.toggle, opened ? '' : styles.closed)}
             onClick={this.toggle}
           >
-            <span>{opened ? t('On') : t('Close')}</span>
+            <span>{opened ? t('On') : t('CLOSE')}</span>
             <label className={styles.toggleop} />
           </div>
         )}

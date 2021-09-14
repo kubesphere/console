@@ -121,7 +121,7 @@ export default class Workspaces extends React.Component {
             icon="enterprise"
             iconSize={40}
             title={getDisplayName(record)}
-            desc={record.description || 'Workspaces'}
+            desc={record.description || '-'}
             to={`/workspaces/${name}`}
           />
         ),
@@ -139,7 +139,7 @@ export default class Workspaces extends React.Component {
 
     if (globals.app.isMultiCluster) {
       columns.splice(1, 0, {
-        title: t('Cluster Info'),
+        title: t('CLUSTER_INFORMATION'),
         dataIndex: 'clusters',
         width: '30%',
         render: clusters => (

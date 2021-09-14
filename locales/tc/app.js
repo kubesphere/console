@@ -28,10 +28,11 @@ module.exports = {
   HOW_PUBLISH_APP_DESC:
     'KubeSphere 目前支持將已有應用的 Helm Chart 上傳至企業空間的應用模板，提交審核後，可以將應用發佈在應用商店中。',
   HOW_APP_DEPLOY_TITLE: '如何部署和測試應用',
-  'Upload Template': '上傳模板',
+  UPLOAD_TEMPLATE: '上傳模板',
   APPS_CREATE_DESC:
     'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
 
+  APPS_MANAGEMENT: '應用管理',
   'Apps Management': '應用管理',
   'App Store Management': '應用商店管理',
 
@@ -111,7 +112,7 @@ module.exports = {
   APP_TEMPLATES_DESC:
     'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
   UPLOAD_HELM_TITLE: '上傳 Helm 配置文件',
-  UPLOAD_HELM_DESC: '上傳已有的 Helm Chart ',
+  UPLOAD_HELM_CHART_DESC: '上傳已有的 Helm chart ',
   'Edit App Informatio': '編輯應用資訊',
   EDIT_APP_DESC: '對應用的基本資訊進行設置',
   'App Number': '應用編號',
@@ -121,12 +122,11 @@ module.exports = {
   'New Version': '添加版本',
   'App Deploy': '應用部署',
   'Test Deployment': '測試部署',
-  'Modify Successfully': '修改成功',
-  'Add Version Successfully': '添加版本成功',
+  MODIFY_SUCCESSFUL: '修改成功',
+  ADD_VERSION_SUCCESSFUL: '添加版本成功',
   'Submit Successfully': '提交成功',
   'Cancel Successfully': '取消成功',
   'Release Successfully': '發佈成功',
-  'Delete Successfully': '刪除成功',
   'Pass Successfully': '通過成功',
   'Reject Successfully': '拒絕成功',
   'Suspend Successfully': '下架成功',
@@ -134,21 +134,21 @@ module.exports = {
   'Activate Successfully': '上架成功',
   'In Project': '所屬項目',
 
-  'Create App Template': '創建應用模板',
-  CREATE_APP_DESC:
+  CREATE_APP_TEMPLATE: '創建應用模板',
+  CREATE_APP_TEMPLATE_DESC:
     '輕量化、可移植、自包含的軟體封裝技術，使應用可以在幾乎任何地方以相同的方式運行。',
   RESOURCE_TOOL_TITLE: '通過資源編排工具創建',
   RESOURCE_TOOL_DESCRIPTION:
     'KubeSphere 提供了視覺化的資源編排工具，您可以通過資源預編輯來創建應用模板，部署測試',
-  UPLOAD_HELM_DESCRIPTION: '上傳已有的 Helm Chart. 文件格式支持 tar.gz 和 tgz',
-  START_UPLOAD: '開始上傳',
+  HELM_CHART_FORMAT_DESC: '支持 tar.gz 和 tgz 格式',
+  UPLOAD: '開始上傳',
   'Start Create': '開始創建',
   APP_CREATE_GUIDE: '完整的應用開發規範請參考',
   HELM_DEVELOP_GUIDE: 'Helm 規範及應用開發',
 
   UPLOAD_SUPPORT_FORMAT: '文件格式支持 tar.gz 和 tgz',
-  Uploading: '正在上傳',
-  'Upload successfully': '上傳成功',
+  UPLOADING: '正在上傳',
+  UPLOAD_SUCCESS: '上傳成功',
   'please upload again': '請重新上傳',
   FILE_FORMAT_PACKAGE: '文件格式支持 tar.gz 和 tgz',
   FILE_FORMAT_ICON: '圖示格式支持 png 和 jpg',
@@ -202,7 +202,7 @@ module.exports = {
   UNDER_REVIEW_TIPS: '目前應用有版本正在審核中，以下資訊暫時不可更改',
 
   'Instance Name': '實例名稱',
-  'Index Successfully': '同步成功',
+  INDEX_SUCCESS_TIP: '同步成功。',
 
   NO_DEPLOY_RUNTIME_NOTE: '項目中沒有可用的部署運行環境',
 

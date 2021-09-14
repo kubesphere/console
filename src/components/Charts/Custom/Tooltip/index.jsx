@@ -61,7 +61,7 @@ const CustomToolTip = (props = {}) => {
           return (
             <div key={dataKey} className={styles.item}>
               <i style={{ background: color }} />
-              {t(name)}:{value}
+              {t(name)}: {value}
               {unitText}
               {ratio}
             </div>

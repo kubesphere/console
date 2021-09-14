@@ -21,7 +21,7 @@ module.exports = {
     'A general introduction to the app',
   'Activate Successfully': 'Activated Successfully',
   'Add Version': 'Add Version',
-  'Add Version Successfully': 'Version Added Successfully',
+  ADD_VERSION_SUCCESSFUL: 'Version added successfully.',
   'Adjust App Category': 'Adjust App Category',
   'Adjust Successfully': 'Adjusted Successfully',
   'All Categories': 'All Categories',
@@ -47,7 +47,8 @@ module.exports = {
   'Application Name': 'App Name',
   'Rejection Reason': 'Rejection Reason',
   'Application Version': 'App Version',
-  'Apps Management': 'App Management',
+  APPS_MANAGEMENT: 'App Management',
+  'App Management': 'App Management',
   'Base Info': 'Basic Information',
   'Business introduction': 'Business introduction',
   'Cancel Successfully': 'Cancelled Successfully',
@@ -56,11 +57,10 @@ module.exports = {
   'Chart Files': 'Chart Files',
   'Company website': 'Company website',
   'Config File': 'Config File',
-  'Create App Template': 'Create App Template',
+  CREATE_APP_TEMPLATE: 'Create App Template',
   'Create Time': 'Create Time',
   'Delete all': 'Delete all',
   'Delete picture': 'Delete picture',
-  'Delete Successfully': 'Deleted Successfully',
   'Deploy after login': 'Deploy after login',
   'Deploy now': 'Deploy now',
   'Detail Introduction': 'Detail Introduction',
@@ -73,10 +73,10 @@ module.exports = {
   Handle: 'Handle',
   Icon: 'Icon',
   'In Project': 'In Project',
-  'Index Successfully': 'Indexed successfully.',
+  INDEX_SUCCESS_TIP: 'Indexed successfully.',
   'Instance Name': 'Instance Name',
   Introduction: 'Introduction',
-  'Modify Successfully': 'Modified Successfully',
+  MODIFY_SUCCESSFUL: 'Modified successfully.',
   'New Apps': 'New Apps',
   'New Version': 'New Version',
   'No update log': 'No update log',
@@ -132,9 +132,9 @@ module.exports = {
   'Upload Icon': 'Upload Icon',
   'Upload icon': 'Upload icon',
   'Upload Screenshots': 'Upload Screenshots',
-  'Upload successfully': 'Uploaded successfully',
-  'Upload Template': 'Upload Template',
-  Uploading: 'Uploading',
+  UPLOAD_SUCCESS: 'Uploaded successfully.',
+  UPLOAD_TEMPLATE: 'Upload Template',
+  UPLOADING: 'Uploading',
   'Version No': 'Version No',
   'Very helpful when users search for apps':
     'Very helpful when users search for apps',
@@ -151,11 +151,11 @@ module.exports = {
 
   DEVELOP_APP_TITLE: 'How do I develop app templates?',
   DEVELOP_APP_DESC:
-    'You can upload Helm Chart or use the resource orchestration tool provided by KubeSphere to develop app templates.',
+    'You can upload Helm charts or use the resource orchestration tool provided by KubeSphere to develop app templates.',
 
   HOW_PUBLISH_APP_TITLE: 'How do I publish apps to the App Store?',
   HOW_PUBLISH_APP_DESC:
-    'KubeSphere currently supports uploading Helm Charts through app templates within the workspace, where you can submit your template for review. Once the template is approved, you can publish it to the App Store.',
+    'You can upload Helm charts as app templates to workspaces. The apps can be published to the App Store after they are approved.',
 
   HOW_APP_DEPLOY_TITLE: 'How to deploy and test applications',
 
@@ -184,7 +184,7 @@ module.exports = {
   REJECT_REASON_DESC: 'Please fill in the reasons for refusal of review.',
 
   APP_CATEGORIES_DESC:
-    'This module allows you to create, edit and delete categories, and to classify active apps of the App Store.',
+    'This module allows you to create, edit, and delete categories, and to classify active apps of the App Store.',
   APP_CATEGORIES_CREATE_DESC: 'No application data available for the category.',
   ADJUST_CATEGORY_DESC:
     'Application classification will determine the classification of the application in the application store',
@@ -196,19 +196,20 @@ module.exports = {
     'Choose the appropriate application categories to facilitate users to find your applications faster',
 
   UPLOAD_HELM_TITLE: 'Upload Helm Chart Package',
-  UPLOAD_HELM_DESC: 'Upload existing Helm Chart',
-  UPLOAD_HELM_DESCRIPTION: 'Suported formats: tar.gz or tgz.',
+  UPLOAD_HELM_CHART_DESC: 'Upload an existing Helm chart.',
+  HELM_CHART_FORMAT_DESC: 'Supports tar.gz and tgz formats.',
 
   EDIT_APP_DESC: 'Set up the basic information of the application',
-  CREATE_APP_DESC:
-    'Lightweight, portable and self-contained software packaging technology enables applications to run in almost any place in the same way.',
+  CREATE_APP_TEMPLATE_DESC:
+    'The lightweight, portable, and self-contained software packaging technology enables applications to run almost anywhere in the same way.',
 
   RESOURCE_TOOL_TITLE: 'Created through Resource Choreographer',
   RESOURCE_TOOL_DESCRIPTION:
     'KubeSphere provides a visual resource orchestration tool that allows you to' +
     ' create application templates and deploy tests through resource pre-editing',
 
-  APP_CREATE_GUIDE: 'See the development guide',
+  APP_CREATE_GUIDE:
+    'See the development guide <a href={url} target="_blank" rel="noreferrer noopener">Helm Specifications</a>.',
   HELM_DEVELOP_GUIDE: ' Helm Specifications.',
 
   CATEGORY_NAME_DESC:
@@ -248,7 +249,7 @@ module.exports = {
 
   NO_DEPLOY_RUNTIME_NOTE: 'The project has no available deploy runtime',
 
-  START_UPLOAD: 'Upload',
+  UPLOAD: 'Upload',
 
   APP_ICON_NOTE: 'JPG or PNG within 96px*96px',
 

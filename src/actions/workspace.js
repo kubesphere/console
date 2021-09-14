@@ -37,7 +37,7 @@ export default {
 
           store.create(data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Created Successfully')}` })
+            Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
             success && success()
           })
         },
@@ -91,7 +91,7 @@ export default {
         onOk: data => {
           store.delete(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Deleted Successfully')}` })
+            Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
             success && success()
           })
         },
@@ -122,7 +122,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}` })
+          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
           store.setSelectRowKeys([])
           success && success()
         },

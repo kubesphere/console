@@ -67,7 +67,7 @@ export default class Roles extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -142,7 +142,7 @@ export default class Roles extends React.Component {
   showCreate = () => {
     const { match, store, trigger, getData } = this.props
     return trigger('role.create', {
-      title: t('Create Workspace Role'),
+      title: t('CREATE_WORKSPACE_ROLE'),
       roleTemplates: toJS(store.roleTemplates.data),
       workspace: match.params.workspace,
       success: getData,

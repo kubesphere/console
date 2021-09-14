@@ -119,8 +119,8 @@ module.exports = {
   NO_LIMIT: '不限制',
   'Not Limited': '未限制',
   Cost: '占用',
-  'Project Remaining Quota': '项目剩余配额',
-  'Workspace Remaining Quota': '企业空间剩余配额',
+  PROJECT_REMAINING_QUOTAS: '项目剩余配额',
+  WORKSPACE_REMAINING_QUOTAS: '企业空间剩余配额',
   QUOTA_OVERCOST_TIP: '当前资源占用已超过剩余配额',
 
   'Resource Request': '资源预留',
@@ -155,7 +155,7 @@ module.exports = {
 
   'Additional metadata settings for resources.': '对资源进行额外的元数据设置',
 
-  DEPLOYMENT_LOCATION: '部署位置',
+  LOCATION: '位置',
 
   SELECT_CONFIGMAP_DESC: '将配置字典挂载到容器。',
   SELECT_SECRET_DESC: '将保密字典挂载到容器。',
@@ -165,7 +165,7 @@ module.exports = {
   SELECT_VOLUME_DESC: '选择现有的存储卷以将其挂载到容器。',
 
   REQUEST_EXCCED: '资源预留不能超过资源限制',
-  REQUEST_EXCCED_WORKSPACE: '资源设置不能大于工作区资源限制',
+  REQUEST_EXCEED_WORKSPACE: '资源设置不能超过企业空间资源上限。',
   REQUEST_EXCEED_LIMIT: '资源预留不能超过资源限制。',
 
   WORKLOAD_DESC:
@@ -360,6 +360,7 @@ module.exports = {
   CronJob: '定时任务',
   CRONJOB: '定时任务',
   CRONJOB_PL: '定时任务',
+  NUMBER_OF_CRONJOBS: '定时任务数量',
   CRONJOB_LOW: '定时任务',
   Revision: '版本',
   EVERY_DAY: '0 0 * * * (每天))',
@@ -777,6 +778,7 @@ module.exports = {
 
   // Jobs
   JOB_PL: '任务',
+  NUMBER_OF_JOBS: '任务数量',
   JOB_LOW: '任务',
   CRONJOBS: '定时任务',
   SCHEDULE: '定时计划',

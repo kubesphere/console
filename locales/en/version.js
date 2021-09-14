@@ -33,7 +33,7 @@ module.exports = {
   'Develop and test guide': 'Develop and test guide',
   developer: 'developer',
   Developing: 'Developing',
-  'Download Successfully': 'Download Successfully',
+  DOWNLOAD_SUCCESSFUL: 'Downloaded successfully.',
   Draft: 'Draft',
   global_admin: 'global_admin',
   'in-review': 'in-review',
@@ -89,22 +89,18 @@ module.exports = {
   PACKAGE_FILE_DESC:
     'Package.json file, which describes the basic information of an application or version, such as the name and version number.',
   CONFIG_FILE_DESC: 'Application Default Profile',
-  LICENSE_FILE_DESC: 'Protocol in Text Format',
+  LICENSE_FILE_DESC: 'License agreement in text format.',
   LOCALE_EN__FILE_DESC: 'English Translation for the Application Configuration',
   LOCALE_ZH_FILE_DESC: 'Chinese Translation for the Application Configuration',
 
   CHART_FILE_DESC:
-    'Yaml file, used to describe the basic information of' +
-    ' Chart, such as the name and version.',
-  README_FILE_DESC: 'App Introductions and Instructions',
-  REQUIREMENTS_FILE_DESC:
-    'Description files for storing other Charts currently dependent on Chart',
-  VALUES_FILE_DESC: "Chart's default configuration file",
-  CHARTS_FILE_DESC:
-    'Place other Charts that Chart currently depends on in this directory',
-  TEMPLATES_FILE_DESC:
-    'Deploy file template directory, fill in the corresponding value in values.yaml, and generate the final kubernetes configuration file',
-  NOTES_FILE_DESC: 'Guide to Use',
+    'YAML file that describes basic information about the chart such as the name and version.',
+  README_FILE_DESC: 'App introduction.',
+  REQUIREMENTS_FILE_DESC: 'File that describes dependencies of the chart.',
+  VALUES_FILE_DESC: 'Default configuration file of the chart.',
+  CHARTS_FILE_DESC: 'Directory that contains dependencies of the chart.',
+  TEMPLATES_FILE_DESC: 'Directory that contains deployment template files.',
+  NOTES_FILE_DESC: 'User instructions.',
 
   VERSION_SUBMIT_TEST_STEPS:
     '1. All dependent charts have been submitted <br/>' +

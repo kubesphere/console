@@ -95,7 +95,7 @@ class BaseInfo extends React.Component {
       {
         key: 'add',
         icon: 'add',
-        text: t('Add Cluster'),
+        text: t('ADD_CLUSTER'),
         action: 'edit',
         onClick: () =>
           this.trigger('federated.project.add.cluster', {
