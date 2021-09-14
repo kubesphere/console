@@ -90,7 +90,7 @@ class UsageRanking extends React.Component {
     return LINK_MAP[owner_kind]
   }
 
-  clusterRenderer = option => `${t('Cluster')}: ${option.value}`
+  clusterRenderer = option => t('CLUSTER_VALUE', { value: option.value })
 
   renderHeader() {
     const { cluster, clusters, onClusterChange } = this.props
@@ -117,7 +117,7 @@ class UsageRanking extends React.Component {
     return (
       <div className={styles.empty}>
         <Icon name="backup" size={32} />
-        <div>{t('No Relevant Data')}</div>
+        <div>{t('NO_RELEVANT_DATA')}</div>
       </div>
     )
   }

@@ -80,9 +80,8 @@ module.exports = {
     '系统将收集每个容器的标准输出和标准错误输出日志，并将其发送到一个或多个目标服务。',
   ADD_LOG_RECEIVER: '添加日志接收器',
   EMPTY_LOG_COLLECTIONS:
-    '没有找到日志接收器。您可以添加日志接收器将日志导出到外部日志收集工具中。',
-  LOG_COLLECTION_TIPS:
-    '每种类型的日志收集器只能添加一个。如果您已经添加一种类型的日志收集器，则不能再次添加。',
+    '没有找到日志接收器。您可以添加日志接收器将日志发送到外部日志接收器中。',
+  LOG_COLLECTION_TIPS: '每种类型的日志收集器只能添加一个。',
 
   Address: '地址',
   SERVICE_ADDRESS: '服务地址',
@@ -94,8 +93,8 @@ module.exports = {
   LOG_COLLECTION_ES_URL_TIPS:
     '默认使用系统部署的 Elasticsearch 服务，您也可以输入在集群内部或外部单独部署的 Elasticsearch 服务的地址。',
   LOG_COLLECTION_ES_INDEX_TIPS:
-    '默认按日期分类建立索引，例如：索引前缀-2020.01.01。',
-  LOG_COLLECTION_FLUENTD_URL_TIPS: '输入接收日志的 Fluentd 的地址。',
+    '使用索引前缀进行快速搜索。系统以<索引前缀>-<年-月-日>格式自动生成索引前缀。',
+  LOG_COLLECTION_FLUENTD_URL_TIPS: '输入接收日志的 Fluentd 服务的地址。',
 
   'Refresh Interval': '刷新频率',
   'Recently Updated': '最近刷新',
@@ -126,9 +125,14 @@ module.exports = {
   STOP_REAL_TIME_LOG: '停止实时日志',
   LOG_EXPORT: '日志导出',
   CUSTOM_MONITORING_DASHBOARD: '自定义监控面板',
+  CUSTOMMONITORDASHBOARD: '自定义监控面板',
+  CUSTOMMONITORDASHBOARD_PL: '自定义监控面板',
+  CUSTOMMONITORDASHBOARD_LOW: '自定义监控面板',
+  CUSTOMMONITORDASHBOARD_EMPTY_DESC: '请创建一个自定义监控面板。',
   CREATE_CUSTOM_MONITORING_DASHBOARD: '创建自定义监控面板',
   SELECT_MONITORING_TEMPLATE: '选择监控模板',
-  CUSTON_MONITORING_TEMPLATE_DESC: '根据所选应用类型生成默认模板或自定义模板。',
+  CUSTON_MONITORING_TEMPLATE_DESC:
+    '选择默认模板或自定义模板来生成自定义监控面板。',
   SERVICE_BUILT_INTERFACE: '服务已内置监控数据抓取接口',
   TOTAL_EVENTS_TODAY:
     '今日总共收录了 <span class={className}> {events} </span> 条事件',
@@ -153,9 +157,13 @@ module.exports = {
   LOG_COLLECTION: '日志收集',
   LOG_ADDRESS: '地址：',
   LOG_COLLECTING: '收集中',
-  LOG_CLOSE: '关闭',
-  INVALID_SERVICE_ADDRESS: '服务地址无效。',
+  LOG_DISABLED: '关闭',
+  INVALID_SERVICE_ADDRESS: '请输入正确的服务地址。',
   EXAMPLE: '例如：',
   PORT_NUMBER_EMPTY: '请输入端口号。',
   PARAMETER_REQUIRED: '此参数为必填项。',
+  LOGGING: '日志',
+  EVENTS: '事件',
+  AUDITING: '审计',
+  CREATION_TIME: '创建时间',
 }

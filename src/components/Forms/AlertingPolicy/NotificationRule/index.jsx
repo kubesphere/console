@@ -51,13 +51,13 @@ export default class NotificationRule extends React.Component {
 
     return (
       <Form className={styles.wrapper} data={formTemplate} ref={formRef}>
-        <div className={styles.title}>{t('NOTIFICATION_CONTENT')}</div>
+        <div className={styles.title}>{t('ALERTING_MESSAGE')}</div>
         <div className={styles.content}>
           <div className={styles.contentWrapper}>
-            <Form.Item label={t('SUMMARY')}>
+            <Form.Item label={t('NOTIFICATION_SUMMARY')}>
               <Input name="annotations.summary" maxLength={253} />
             </Form.Item>
-            <Form.Item label={t('NOTIFICATION_MESSAGE')}>
+            <Form.Item label={t('NOTIFICATION_DETAILS')}>
               <TextArea name="annotations.message" rows={8} />
             </Form.Item>
           </div>

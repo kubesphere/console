@@ -46,12 +46,7 @@ export default class EmptyTable extends React.PureComponent {
     const { module, icon, title, name, desc, action, className } = this.props
     const _desc = !isUndefined(desc)
       ? desc
-      : t.html(
-          `${name
-            .split(' ')
-            .join('_')
-            .toUpperCase()}_CREATE_DESC`
-        )
+      : t.html(`${name.replace(/[-\s]/g, '_').toUpperCase()}_EMPTY_DESC`)
 
     const _icon = icon || ICON_TYPES[module] || 'appcenter'
 
@@ -61,7 +56,10 @@ export default class EmptyTable extends React.PureComponent {
           <Icon name={_icon} size={48} />
         </div>
         <div className={styles.title}>
-          {title || t('EMPTY_WRAPPER', { resource: t(name) })}
+          {title ||
+            t('EMPTY_WRAPPER', {
+              resource: t(name.replace(/[- ]/g, '_').toUpperCase()),
+            })}
         </div>
         <p className={styles.desc}>{_desc}</p>
         {action && <div className={styles.actions}>{action}</div>}

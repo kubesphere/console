@@ -29,7 +29,7 @@ module.exports = {
   DEVOPS_PROJECT_MEMBERS: '工程成員',
   DEVOPS_PROJECT_ROLES: '工程角色',
 
-  Manager: '管理員',
+  MANAGER: '管理員',
   'DevOps Project Manager': 'DevOps 工程管理員',
   'Create DevOps Project': '創建 DevOps 工程',
   'Delete DevOps Project': '刪除 DevOps 工程',
@@ -40,7 +40,7 @@ module.exports = {
     'DevOps 是一個獨立的命名空間，其中定義了一組流水線；用戶可以按照自己的方式對流水線進行分組 (例如：項目類型、組織類型)。',
   DEVOPS_PROJECT_CREATE_DESC:
     'DevOps 是一個獨立的命名空間，其中定義了一組流水線；用戶可以按照自己的方式對流水線進行分組 (例如：項目類型、組織類型)。',
-
+  DEVOPS_PROJECT_EMPTY_DESC: 'Please create a DevOps project.',
   DEVOPS_ADMIN_DESC: '可以指定工程内一個成員為管理員',
 
   NO_RELATE_DEVOPS_TITLE: '沒有找到與您相關聯的 DevOps 工程',

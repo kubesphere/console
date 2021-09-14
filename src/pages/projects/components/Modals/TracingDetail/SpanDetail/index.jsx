@@ -125,7 +125,7 @@ export default class SpanDetail extends React.Component {
             <div className={styles.name}>
               {span.process.serviceName}
               <Label name={t('Service')} value={service} />
-              <Label name={t('Start Time')} value={startTime} />
+              <Label name={t('START_TIME')} value={startTime} />
               <Label name={t('Duration')} value={duration} />
             </div>
             <p>{span.operationName}</p>

@@ -40,7 +40,7 @@ export default class AppRepos extends React.Component {
     return [
       {
         title: t('HOW_TO_USE_APP_REPO_Q'),
-        description: t('HOW_TO_USE_APP_REPO_A'),
+        description: t.html('HOW_TO_USE_APP_REPO_A'),
       },
     ]
   }
@@ -88,7 +88,7 @@ export default class AppRepos extends React.Component {
         {
           key: 'create',
           type: 'control',
-          text: t('Add Repository'),
+          text: t('ADD_APP_REPO'),
           action: 'manage',
           onClick: () =>
             trigger('openpitrix.repo.add', {
@@ -101,7 +101,7 @@ export default class AppRepos extends React.Component {
         {
           key: 'index',
           type: 'primary',
-          text: t('Index Repo'),
+          text: t('INDEX_REPO'),
           action: 'manage',
           onClick: this.handleIndex,
         },
@@ -119,7 +119,7 @@ export default class AppRepos extends React.Component {
         const { message } = resp
 
         if (message === 'success') {
-          Notify.success(t('Index Successfully'))
+          Notify.success(t('INDEX_SUCCESS_TIP'))
         }
       })
     )
@@ -178,7 +178,7 @@ export default class AppRepos extends React.Component {
         <Banner
           {...bannerProps}
           tips={this.tips}
-          title={t('App Repositories')}
+          title={t('APP_REPO')}
           description={t('APP_REPO_DESC')}
         />
         <Table

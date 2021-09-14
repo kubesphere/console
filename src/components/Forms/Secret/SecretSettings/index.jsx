@@ -208,7 +208,7 @@ export default class SecretSettings extends React.Component {
         <Form.Item
           label={t('USERNAME')}
           rules={[
-            { required: true, message: t('ENTER_USERNAME_TIP') },
+            { required: true, message: t('USERNAME_EMPTY_DESC') },
             { validator: this.dataValidator },
           ]}
         >
@@ -219,7 +219,7 @@ export default class SecretSettings extends React.Component {
         <Form.Item
           label={t('PASSWORD')}
           rules={[
-            { required: true, message: t('ENTER_PASSWORD_TIP') },
+            { required: true, message: t('PASSWORD_EMPTY_DESC') },
             { validator: this.dataValidator },
           ]}
         >
@@ -259,7 +259,7 @@ export default class SecretSettings extends React.Component {
     t('SECRET_VALUE_LABEL', { value: option.value, label: option.label })
 
   render() {
-    const { formRef } = this.props
+    const { formRef, disableSelect } = this.props
     const { state } = this.state
 
     if (state === 'data') {
@@ -268,7 +268,10 @@ export default class SecretSettings extends React.Component {
 
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
-        <Form.Item label={t('TYPE')} desc={t('SECRET_TYPE_DESC')}>
+        <Form.Item
+          label={t('TYPE')}
+          desc={disableSelect ? '' : t('SECRET_TYPE_DESC')}
+        >
           <Select
             name="type"
             options={this.getTypeOptions()}
@@ -277,6 +280,7 @@ export default class SecretSettings extends React.Component {
             onChange={this.handleTypeChange}
             placeholder=" "
             searchable
+            disabled={disableSelect}
           />
         </Form.Item>
         {this.renderContent()}

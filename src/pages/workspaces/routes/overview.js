@@ -25,8 +25,8 @@ import Clusters from '../containers/Overview/Clusters'
 
 const PATH = '/workspaces/:workspace/overview'
 const ROUTES = [
-  { name: 'usage', title: 'Resources Usage', component: ResourceUsage },
-  { name: 'ranking', title: 'Usage Ranking', component: UsageRanking },
+  { name: 'usage', title: 'RESOURCE_USAGE', component: ResourceUsage },
+  { name: 'ranking', title: 'USAGE_RANKING', component: UsageRanking },
   {
     name: 'clusters',
     title: 'CLUSTER_INFORMATION',

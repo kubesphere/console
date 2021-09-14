@@ -89,7 +89,7 @@ export default class FedProjectCreateModal extends React.Component {
     const resp = await this.store.checkName({ name: value })
     if (resp.exist) {
       return callback({
-        message: t('The project name exists on the host cluster.'),
+        message: t('PROJECT_NAME_EXISTS_IN_HOST'),
         field: rule.field,
       })
     }
@@ -106,7 +106,9 @@ export default class FedProjectCreateModal extends React.Component {
 
     if (index > -1 && clusters[index]) {
       return callback({
-        message: t('NAME_EXIST_IN_CLUSTER', { cluster: clusters[index].name }),
+        message: t('PROJECT_NAME_EXISTS_IN_CLUSTER', {
+          cluster: clusters[index].name,
+        }),
         field: rule.field,
       })
     }
@@ -148,21 +150,22 @@ export default class FedProjectCreateModal extends React.Component {
   renderClusters() {
     return (
       <Form.Group
-        label={t('Cluster Settings')}
+        label={t('CLUSTER_PL')}
         desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
       >
         <Form.Item
-          rules={[{ required: true, message: t('Please select a cluster') }]}
+          rules={[{ required: true, message: t('CLUSTER_EMPTY_DESC') }]}
         >
           <ArrayInput
             name="spec.placement.clusters"
-            addText={t('Add Cluster')}
+            addText={t('ADD_CLUSTER')}
             itemType="object"
             onChange={this.handleClusterChange}
           >
             <ObjectInput>
               <Select
                 name="name"
+                placeholder=" "
                 className={styles.cluster}
                 options={this.clusters}
                 valueRenderer={this.valueRenderer}
@@ -193,8 +196,8 @@ export default class FedProjectCreateModal extends React.Component {
         <div className={styles.header}>
           <img src="/assets/project-create.svg" alt="" />
           <div className={styles.title}>
-            <div>{t('Create Multi-cluster Project')}</div>
-            <p>{t('MULTI_CLUSTER_PROJECT_CREATE_DESC')}</p>
+            <div>{t('CREATE_MULTI_CLUSTER_PROJECT')}</div>
+            <p>{t('CREATE_MULTI_CLUSTER_PROJECT_DESC')}</p>
           </div>
         </div>
         <div className={styles.content}>

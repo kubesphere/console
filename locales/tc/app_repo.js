@@ -19,12 +19,16 @@
 module.exports = {
   VALIDATE: '驗證',
   APP_REPO_DESC:
-    '可用添加來自第三方的應用倉庫源，可以支持基於 Helm 的 Kubernetes 應用。 ',
-  APP_REPO_URL_DESC: '所輸入的 URL 需要先驗證才可進行添加或編輯操作',
+    'An app repository is a repository used to store application templates. You can add an app repository to deploy and manage its applications.',
+  APP_REPO_URL_DESC:
+    'The URL needs to be validated before you add or edit an app repository.',
   'App Repository': '應用倉庫',
-  'App Repository Name': '應用倉庫名稱',
+  APP_REPOSITORY: 'App Repository',
+  APP_REPOSITORY_PL: 'App Repositories',
+  APP_REPOSITORY_LOW: 'app repository',
+  APP_REPOSITORY_EMPTY_DESC: 'Please add an app repository.',
   'Add App Repository': '添加應用倉庫',
-  'Edit App Repository': '編輯應用倉庫',
+  EDIT_APP_REPO: '編輯應用倉庫',
   APP_REPOSITORY_CREATE_DESC:
     '可用添加來自第三方的應用倉庫源，可以支持基於 Helm 的 Kubernetes 應用。 ',
 
@@ -44,18 +48,18 @@ module.exports = {
   'Invalid Providers': '錯誤的 Providers 參數',
   'Invalid Repo URL': '不是有效的 Repo 地址',
   'Invalid S3 Scheme': '錯誤的 S3 類型協定',
-  'Invalid URL': '無效的 URL',
-  'Valid URL': 'URL 驗證通过',
+  INVALID_URL_DESC: 'Invalid URL.',
+  VALID_URL_DESC: 'URL 驗證通过。',
 
   'Please input URL': '請輸入 URL',
   'Please input access key ID and secret access key':
     '請輸入 Access key ID 和 Secret access key',
 
   'App Repos': '應用倉庫',
-  'Add Repository': '添加倉庫',
-  'Index Repo': '同步倉庫',
+  ADD_APP_REPO: 'Add App Repository',
+  INDEX_REPO: '同步倉庫',
 
   HOW_TO_USE_APP_REPO_Q: '如何使用應用倉庫？',
   HOW_TO_USE_APP_REPO_A:
-    '企業空間内添加的應用倉庫可以在企業空間下的項目内可見，可以通過 應用 => 部署應用 =>  應用倉庫 中查找到目前應用倉庫下的所有應用,並進行部署',
+    'You need to go to your project in the workspace. When you deploy a new app, select <b>From App Template</b> and then choose an app repository in the drop-down list to deploy an app in the repository.',
 }

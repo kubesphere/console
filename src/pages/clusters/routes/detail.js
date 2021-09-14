@@ -32,6 +32,7 @@ import NetworkPoliciesDetail from 'projects/containers/Network/Policies/Detail'
 import Volume from 'projects/containers/Volumes/Detail'
 import VolumeSnapshotsDetail from 'projects/containers/VolumeSnapshots/Detail'
 import AlertPolicyDetail from 'projects/containers/Alerting/Policies/Detail'
+import PV from '../containers/Storage/PV/detail'
 
 import ProjectLayout from '../layouts/Project'
 
@@ -85,6 +86,10 @@ export default [
   {
     path: `${PATH}/ippools/:name`,
     component: IPPoolDetail,
+  },
+  {
+    path: `${PATH}/pv/:name`,
+    component: PV,
   },
   {
     path: `${PATH}/projects/:namespace`,

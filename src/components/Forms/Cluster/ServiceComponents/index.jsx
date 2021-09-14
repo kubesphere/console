@@ -58,7 +58,7 @@ export default class ServiceComponents extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Title
-          title={t('Service Components')}
+          title={t('SERVICE_COMPONENTS')}
           description={t('CLUSTER_COMPONENTS_DESC')}
         />
         <Form className={styles.form} data={formTemplate} ref={formRef}>

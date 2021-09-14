@@ -24,7 +24,6 @@ module.exports = {
   REPLICA_LOW_PL: 'replicas',
   IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} layers',
   IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} layers',
-  TAG: 'Tag',
   CPU_REQUEST: 'CPU Request',
   CPU_LIMIT: 'CPU Limit',
   MEMORY_REQUEST: 'Memory Request',
@@ -42,13 +41,14 @@ module.exports = {
   MUST_MATCH: 'Must match',
   MOUNT_PATH_EMPTY: 'Please enter a mount path.',
   CONFIGMAP: 'ConfigMap',
-  SECRET: 'Secret',
+  CONFIGMAP_PL: 'ConfigMaps',
+  CONFIGMAP_LOW: 'ConfigMap',
   PARTITION_ORDINAL: 'Ordinal for Dividing Pod Replicas',
   PARTITION_ORDINAL_DESC:
     'Ordinal that divides the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
   'Access Mode': 'Access Mode',
   'Add argument': 'Add argument',
-  'Add Command': 'Add Command',
+  EDGENODE_CONFIG_COMMAND: 'Edge Node Configuration Command',
   'Add command': 'Add command',
   'Add Container': 'Add Container',
   ADD_ENVIRONMENT_VARIABLE: 'Add Environment Variable',
@@ -58,7 +58,6 @@ module.exports = {
   'Add Labels': 'Add Labels',
   ADD_METADATA: 'Add Metadata',
   'Add new container': 'Add new container',
-  'Add Node Selector': 'Add Node Selector',
   ADD_NODE_SELECTOR: 'Add Node Selector',
   ADD_PORT: 'Add Port',
   'Add Probe': 'Add Probe',
@@ -117,13 +116,17 @@ module.exports = {
   CreateContainerError: 'CreateContainerError',
   created: 'created',
   CronJob: 'CronJob',
+  CRONJOB: 'CronJob',
+  CRONJOB_PL: 'CronJobs',
+  NUMBER_OF_CRONJOBS: 'Number of CronJobs',
+  CRONJOB_LOW: 'CronJob',
   'CronJob Settings': 'CronJob Settings',
   'Current number of nodes scheduled': 'Current number of nodes scheduled',
   'Current Replicas': 'Current Replicas',
   'Current Revision': 'Current Revision',
   'Current Stage(phase)': 'Current Stage(phase)',
   'Current Utilization': 'Current Utilization',
-  DEPLOYMENT_LOCATION: 'Deployment Location',
+  LOCATION: 'Location',
   'Deployment Mode': 'Deployment Mode',
   POD_SCHEDULING_RULES: 'Pod Scheduling Rules',
   POD_SCHEDULING_RULES_DESC:
@@ -145,10 +148,10 @@ module.exports = {
   'environment variables': 'environment variables',
   ErrImageNeverPull: 'ErrImageNeverPull',
   ErrImagePull: 'ErrImagePull',
-  EVERY_DAY: ' (Every day)',
-  EVERY_HOUR: ' (Every hour)',
-  EVERY_MONTH: ' (Every month)',
-  EVERY_WEEK: ' (Every week)',
+  EVERY_DAY: '0 0 * * * (every day)',
+  EVERY_HOUR: '0 * * * * (every hour)',
+  EVERY_MONTH: '0 0 1 * * (every month)',
+  EVERY_WEEK: '0 0 * * 0 (every week)',
   'Exec Command Check': 'Exec Command Check',
   'Every Day': 'Every Day',
   'Every Hour': 'Every Hour',
@@ -158,14 +161,13 @@ module.exports = {
   EXISTING_VOLUME: 'Existing Volume',
   FailedCreate: 'FailedCreate',
   FailedDelete: 'FailedDelete',
-  failedJobsHistoryLimit: 'failedJobsHistoryLimit',
   FAILURE_THRESHOLD: 'Failure Threshold',
+  FAILED_JOBS_HISTORY_LIMIT: 'Failed Jobs Record',
   'File List': 'File List',
   'for example': 'for example',
   FoundNewReplicaSet: 'FoundNewReplicaSet',
   'Horizontal Pod Autoscaling': 'Horizontal Pod Autoscaling',
-  'Horizontal Pod Autoscaling has been set':
-    'Horizontal Pod Autoscaling has been set',
+  HPA_SET_TIP: 'Horizontal Pod autoscaling has been set.',
   'Host Path': 'Host Path',
   'Host Port': 'Host Port',
   'How pods are assinged to nodes?': 'How pods are assinged to nodes?',
@@ -193,6 +195,7 @@ module.exports = {
   InvalidImageName: 'InvalidImageName',
   'is running': 'is running',
   Job: 'Job',
+  JOB: 'Job',
   'Job Settings': 'Job Settings',
   'Job Template': 'Job Template',
   EMPTY_LABEL_DESC: 'Please add a label.',
@@ -240,6 +243,8 @@ module.exports = {
   'No related resources': 'No related resources',
   NO_REQUEST: 'No request',
   NO_RESOURCE_LIMIT: 'No resource limit',
+  'No Request': 'No Request',
+  'No resource limits': 'No resource limits',
   'Node Name': 'Node Name',
   'Node Scheduling Info': 'Node Scheduling Information',
   NO_IMAGE_FOUND: 'No Image Found',
@@ -278,7 +283,7 @@ module.exports = {
   POD_REPLICAS: 'Pod Replicas',
   DEFAULT_RULES: 'Default Rules',
   DEFAULT_RULES_DESC:
-    'Schedules Pod replicas to nodes according to default rules.',
+    'Schedules the Pod replicas to nodes according to default rules.',
   'Pod replicas will be deployed on different nodes as much as possible.':
     'Pod replicas will be deployed on different nodes as much as possible.',
   'Pod replicas will be deployed on the same node as much as possible.':
@@ -361,8 +366,7 @@ module.exports = {
   SELECT_NODES: 'Select Nodes',
   'Specify Replicas Number': 'Specify Replicas Number',
   SYNC_HOST_TIMEZONE: 'Synchronize Host Timezone',
-  startingDeadlineSeconds: 'startingDeadlineSeconds',
-  'startingDeadlineSeconds(s)': 'startingDeadlineSeconds(s)',
+  STARTING_DEADLINE: 'Job Starting Deadline (s)',
   'Startup Probe': 'Startup Probe',
   'Storage Size': 'Storage Size',
   'Strategy Type': 'Strategy Type',
@@ -370,7 +374,7 @@ module.exports = {
   SUCCESS_THRESHOLD: 'Success Threshold',
   SuccessfulCreate: 'SuccessfulCreate',
   SuccessfulDelete: 'SuccessfulDelete',
-  successfulJobsHistoryLimit: 'successfulJobsHistoryLimit',
+  SUCCESSFUL_JOBS_HISTORY_LIMIT: 'Successful Jobs Record',
   WORKLOAD_MOUNT_VOLUME_DESC:
     'Mount an existing volume, temporary volume, or HostPath volume to the containers.',
   'Sure to delete the workload(s)?': 'Sure to delete the workload(s)?',
@@ -413,11 +417,14 @@ module.exports = {
   'What is Disk Log Collection?': 'What is Disk Log Collection?',
   WORKER_CONTAINER: 'Worker container',
   Workload: 'Workload',
+  WORKLOAD: 'Workload',
+  WORKLOAD_PL: 'Workloads',
+  WORKLOAD_LOW: 'workload',
 
   'Not Limited': 'Not Limited',
   Cost: 'Cost',
-  'Project Remaining Quota': 'Project Remaining Quota',
-  'Workspace Remaining Quota': 'Workspace Remaining Quota',
+  PROJECT_REMAINING_QUOTAS: 'Project Remaining Quota',
+  WORKSPACE_REMAINING_QUOTAS: 'Workspace Remaining Quotas',
   QUOTA_OVERCOST_TIP:
     'The current resource usage has exceeded the remaining quota',
 
@@ -437,27 +444,22 @@ module.exports = {
     'Assign Pod replicas to specific nodes. You can use labels to select nodes or manually specify a node.',
   WORKLOAD_SPECIFY_NODE_DESC: 'Assign Pod replicas to a specific node.',
   WORKLOAD_DESC:
-    'A workload is usually the actual carrier for accessing a Service, and is also the actual running carrier for system applications such as node log collection and monitoring. A workload is an abstract model for a group of Pods.',
+    'Workloads are used to handle service requests and can contain one or more Pods. System functions such as logging and monitoring are also implemented by workloads.',
   DEPLOYMENT_DESC:
     'Deployment provides fine-grained management of common applications in KubeSphere. Deployment configuration describes the desired state of specific components of an application as Pod templates.',
-  DEPLOYMENT_CREATE_DESC:
-    "A Deployment controller provides declarative updates for Pods and ReplicaSets, it's used to replace the ReplicationController to get Application management easier. Typically, using Deployment to create pods and ReplicateSet, rolling upgrade and rolling back applications, scaling out or in applications, stopping or resuming applications.",
+  DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
   STATEFULSET_DESC:
     'StatefulSet is used to manage stateful applications, manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.',
-  STATEFULSET_CREATE_DESC:
-    'StatefulSet is used to manage stateful applications, manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.',
+  STATEFULSET_EMPTY_DESC: 'Please create a StatefulSet.',
   DAEMONSET_DESC:
     'A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. Typically, a DaemonSet is used to running a logs collection, monitoring daemon or other system management applications.',
-  DAEMONSET_CREATE_DESC:
-    'A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. Typically, a DaemonSet is used to running a logs collection, monitoring daemon or other system management applications.',
+  DAEMONSET_EMPTY_DESC: 'Please create a DaemonSet.',
   JOB_DESC:
     'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
-  JOB_CREATE_DESC:
-    'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
+  JOB_EMPTY_DESC: 'Please create a Job.',
   CRONJOB_DESC:
     'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
-  CRONJOB_CREATE_DESC:
-    'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
+  CRONJOB_EMPTY_DESC: 'Please create a CronJob.',
   CRONJOB_NAME_DESC:
     'It can only contain lowercase letters, numbers and hyphens("-"), and must start and end with a lowercase letter or a number. The value can contain a maximum of 52 characters.',
   CRONJOB_NAME_TOO_LONG: 'The value can contain a maximum of 52 characters.',
@@ -498,7 +500,7 @@ module.exports = {
   IMAGE_EMPTY: 'Please set an image.',
   IMAGE_REGISTRY_PLACEHOLDER: 'Select the registry secret',
   IMAGE_DESC:
-    'To use a private image registry, you need to <a href={link} target="_blank">create an image registry secret</a> first.',
+    'To use a private image registry, you need to first create an image registry secret. <a href={link} target="_blank">Learn More</a>',
 
   REPLICAS_DESC: 'The desired number of pods will be created for the {module}.',
   VOLUME_SUB_TEXT: 'Volumes used by the containers of the workload',
@@ -546,30 +548,32 @@ module.exports = {
 
   BACK_OFF_LIMIT: 'Backoff Limit',
   BACK_OFF_LIMIT_DESC:
-    'Maximum number of retries before marking a Job as failed. The default value is 6.',
+    'Maximum number of retries before marking the Job as failed. The default value is 6.',
   JOB_PARALLELISM_LABEL: 'Parallelism',
   JOB_PARALLELISM_DESC: 'Number of Pods that run concurrently.',
   JOB_COMPLETION_LABEL: 'Completions',
   JOB_COMPLETION_DESC:
-    'Number of Pods that need to run successfully before a Job is complete.',
+    'Number of Pods that complete successfully required for the Job to be marked as complete.',
   JOB_ACTIVE_DEADLINE: 'Active Deadline (s)',
   JOB_ACTIVE_DEADLINE_DESC:
-    'Duration of a Job. The running Pods are terminated when the Job reaches the duration. The value must be a positive integer.',
+    'Maximum duration of the Job. The Job is terminated after reaching the specific timeout.',
 
   RESTART_POLICY_TIP:
     'RestartPolicy can only specify Never or OnFailure, when the job is not completed:<br/>* If RestartPolicy specifies Never, the job creates a new Pod when the Pod fails, and the failed Pod does not disappear.<br/>* If RestartPolicy specifies OnFailure, the job will internally restart the container when the Pod fails, instead of creating a new Pod.',
 
-  RESTART_POLICY_NEVER_DESC: ' (Create a new Pod when a Pod fails)',
-  RESTART_POLICY_ONFAILURE_DESC: ' (Restart the container when a Pod fails)',
+  RESTART_POLICY_NEVER_DESC: 'Never (create a new Pod when a Pod fails)',
+  RESTART_POLICY_ONFAILURE_DESC:
+    'On failure (restart the container when a Pod fails)',
 
   CRONJOBS_BASEINFO_DESC:
     'Basic information regarding the CronJob. You need to specify the name and schedule',
   CRONJOBS_VOLUME_DESC:
     'You can mount a temporary volumes, or persistent volumes to a Pod of the cronjob.',
   CRONJOB_CRON_DESC:
-    'Set a schedule of a CronJob to be executed. For Cron syntax, see <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Cron</a>. Kubernetes use UTC by default. You need to adjust the schedule according to your time zone.',
+    'Set a schedule for the CronJob. KubeSphere uses UTC by default and you need to adjust the schedule according to your time zone. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Learn More</a>',
 
-  START_DEADLINE_SECONDS_DESC: 'Deadline for starting a Job.',
+  START_DEADLINE_SECONDS_DESC:
+    'Deadline for starting the Job if the scheduled run is missed for any reason.',
 
   VOLUME_EMPTY_TIP: 'No created volumes, please',
 
@@ -669,15 +673,14 @@ module.exports = {
     "The request value (namely, Request) set by the containers in the Pod is used as the basis for determining the resource allocation. Only when the amount available for allocation in the node is greater than or equal to the Pod's request value can the Pod be allocated to this node.",
   POD_DESC:
     'A Pod is the basic execution unit of a Kubernetes application, representing the smallest and simplest unit in the Kubernetes object model that you create or deploy.',
-  POD_CREATE_DESC:
-    'A Pod is the basic execution unit of a Kubernetes application, representing the smallest and simplest unit in the Kubernetes object model that you create or deploy.',
+  POD_EMPTY_DESC: 'Please create a Pod.',
   FILL_IMAGE_DEFAULT_PORTS_DESC:
     'Whether to expose the default port of the image?',
 
   REQUEST_EXCCED:
     'Resource requests should not be greater than resource limits.',
-  REQUEST_EXCCED_WORKSPACE:
-    'Resource setting should not be greater than workspace resource limits.',
+  REQUEST_EXCEED_WORKSPACE:
+    'Resource requests and limits cannot exceed workspace resource limits.',
   REQUEST_EXCEED_LIMIT:
     'Resource requests cannot be greater than resource limits.',
 
@@ -699,7 +702,7 @@ module.exports = {
     'Select the protocol used by the service to fully utilize the Application Governance function. For example, select HTTP for an HTTP service.',
 
   CONTAINER_LOG_PATH_TIP:
-    'Container log path relative to the volume mount path. Globbing patterns are supported. You can used commas (,) to separate multiple paths. For example, when the volume mount path is /data, log/*.log indicates that the container log files are all .log files in the /data/log directory.',
+    'Container log path relative to the volume mount path. Globbing patterns are supported. You can used commas (,) to separate multiple paths.<br /><br /><b>Example</b><br />When the volume mount path is /data, log/*.log indicates that the container log files are all .log files in the /data/log directory.',
   SPECIFY_SUBPATH_TIP:
     'Specify a volume subpath to be mounted to the container.',
   DELETE_WORKLOAD_DESC:
@@ -708,7 +711,7 @@ module.exports = {
     'Select an existing volume and mount it to the containers.',
 
   REDEPLOY_CONFIRM_DESC:
-    'You are about to redeploy the workload {resource} ({type}). The pod will be redeployed according to the update strategy, and your business may be temporarily interrupted.',
+    'Are you sure you want to redeploy the {type} {resource}? The Pod replicas will be redeployed according to the update strategy and the service will be interrupted.',
 
   CONTAINER_SECURITY_CONTEXT_DESC:
     'Customize the privilege settings of the container.',
@@ -735,9 +738,7 @@ module.exports = {
   RUN_AS_USER_GROUP_DESC:
     'GID to run the entrypoint of the container process. The default value is the container runtime default GID.',
 
-  WORKLOAD_CREATE_DESC:
-    'A workload is usually the actual carrier for accessing a Service, and is also the actual running carrier for system applications such as node log collection and monitoring. A workload is an abstract model for a group of Pods.',
-
+  WORKLOAD_EMPTY_DESC: 'Please create a workload.',
   CONTAINER_RESOURCE_LIMIT_TIP:
     'Set the resource limits and requests of the container so that the container is scheduled to appropriate nodes.',
 
@@ -772,13 +773,14 @@ module.exports = {
   NODE_IP: '{node} ({ip})',
 
   // Jobs
-  JOBS: 'Jobs',
+  JOB_PL: 'Jobs',
+  NUMBER_OF_JOBS: 'Number of Jobs',
+  JOB_LOW: 'Job',
   CRONJOBS: 'CronJobs',
   SCHEDULE: 'Schedule',
 
   // CronJobs
   ADD_VOLUME: 'Add Volume',
-  RESTART_POLICY_DESC:
-    'The Pod restart policy. The value can be Never or onFailure.',
+  RESTART_POLICY_DESC: 'The Pod restart policy.',
   MOUNT_VOLUMES: 'Mount Volumes',
 }

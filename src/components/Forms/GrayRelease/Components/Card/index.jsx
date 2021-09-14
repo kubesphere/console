@@ -73,7 +73,7 @@ export default class Card extends React.PureComponent {
         loading={loading}
         onClick={this.handleClick}
       >
-        {value ? t('Deselect') : t('Select')}
+        {value ? t('DESELECT') : t('SELECT')}
       </Button>
     )
   }

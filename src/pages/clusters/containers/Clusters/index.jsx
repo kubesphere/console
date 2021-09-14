@@ -127,7 +127,7 @@ class Clusters extends React.Component {
           actions={
             this.enabledActions.includes('create') ? (
               <Button type="control" onClick={this.showAddCluster}>
-                {t('Add Cluster')}
+                {t('ADD_CLUSTER')}
               </Button>
             ) : null
           }
@@ -221,7 +221,7 @@ class Clusters extends React.Component {
             onClick={this.showAddCluster}
             data-test="cluster-create"
           >
-            {t('Add Cluster')}
+            {t('ADD_CLUSTER')}
           </Button>
         )}
       </div>

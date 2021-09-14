@@ -247,7 +247,7 @@ export default class WorkloadTable extends React.Component {
           onClick={this.handleCancelSelect}
           data-test="table-cancel-select"
         >
-          {t('Deselect')}
+          {t('DESELECT')}
         </Button>
       </LevelRight>
     </Level>
@@ -335,7 +335,7 @@ export default class WorkloadTable extends React.Component {
             {!hideCustom && (
               <CustomColumns
                 className={styles.columnMenu}
-                title={t('Custom Columns')}
+                title={t('CUSTOM_COLUMNS')}
                 columns={columns}
                 value={hideColumns}
                 onChange={this.handleColumnsHide}
@@ -363,7 +363,7 @@ export default class WorkloadTable extends React.Component {
           <span className={styles.emptyTipIcon}>
             <Icon name="exclamation" size={48} />
           </span>
-          <div>{t('No matching resources found.')}</div>
+          <div>{t('NO_MATCHING_RESULT_FOUND')}</div>
           <p>
             {t('You can try to')}
             <span
@@ -371,7 +371,7 @@ export default class WorkloadTable extends React.Component {
               onClick={this.handleRefresh}
               data-test="table-empty-refresh"
             >
-              {t('refresh')}
+              {t('refresh data')}
             </span>
             {t('or')}
             <span
@@ -379,7 +379,7 @@ export default class WorkloadTable extends React.Component {
               onClick={this.clearFilter}
               data-test="table-empty-clear-filter"
             >
-              {t('clear filters')}
+              {t('clear search conditions')}
             </span>
           </p>
         </div>

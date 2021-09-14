@@ -55,22 +55,22 @@ export default class PhysicalResource extends Base {
   getMonitoringCfgs = () => [
     {
       type: 'cpu',
-      title: 'CPU Usage',
+      title: 'CPU_USAGE',
       unitType: 'cpu',
       legend: ['CPU'],
       metricType: MetricTypes.cpu_usage,
     },
     {
       type: 'memory',
-      title: 'Memory Usage',
+      title: 'MEMORY_USAGE',
       unitType: 'memory',
-      legend: ['Memory'],
+      legend: ['MEMORY'],
       metricType: MetricTypes.memory_usage,
     },
   ]
 
   getControllerProps = () => ({
-    title: t('Physical Resources Usage'),
+    title: t('PHYSICAL_RESOURCES'),
     createTime: this.createTime,
     customAction: this.renderClusters(),
   })

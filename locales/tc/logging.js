@@ -82,9 +82,8 @@ module.exports = {
     '系統將收集每個容器的標準輸出和標準錯誤輸出紀錄，並將其發送到一個或多個目標服務',
   ADD_LOG_RECEIVER: '添加紀錄接收者',
   EMPTY_LOG_COLLECTIONS:
-    'No log receiver is found. You can add log receivers to export logs to external log collectors.',
-  LOG_COLLECTION_TIPS:
-    'You can add one log receiver for each type. If a type of log receiver is already added, you cannot add it again.',
+    'No log receiver is found. You can add log receivers and send logs to external log receivers.',
+  LOG_COLLECTION_TIPS: 'You can add one log receiver for each type.',
 
   Address: '地址',
   SERVICE_ADDRESS: '服務地址',
@@ -96,8 +95,9 @@ module.exports = {
   LOG_COLLECTION_ES_URL_TIPS:
     'The built-in Elasticsearch service is used by default. You can also enter the IP address of Elasticsearch independently deployed inside or outside the cluster.',
   LOG_COLLECTION_ES_INDEX_TIPS:
-    'The index is created based on the date. For example, {prefix}-2020.01.01.',
-  LOG_COLLECTION_FLUENTD_URL_TIPS: '輸入接收紀錄的 Fluentd 的地址。',
+    'Use the index prefix to speed up queries. The index prefix is automatically generated in <Index prefix>-<Year-month-date> format.',
+  LOG_COLLECTION_FLUENTD_URL_TIPS:
+    'Enter the address of the Fluentd service that receives logs.',
 
   'Refresh Interval': '刷新頻率',
   'Recently Updated': '最近刷新',
@@ -126,10 +126,15 @@ module.exports = {
   STOP_REAL_TIME_LOG: '關閉實時紀錄',
   LOG_EXPORT: '紀錄導出',
   CUSTOM_MONITORING_DASHBOARD: '自定義監控面板',
+  CUSTOMMONITORDASHBOARD: '自定義監控面板',
+  CUSTOMMONITORDASHBOARD_PL: 'Custom Monitoring Dashboards',
+  CUSTOMMONITORDASHBOARD_LOW: 'custom monitoring dashboard',
+  CUSTOMMONITORDASHBOARD_EMPTY_DESC:
+    'Please create a custom monitoring dashboard.',
   CREATE_CUSTOM_MONITORING_DASHBOARD: '創建自定義監控面板',
   SELECT_MONITORING_TEMPLATE: '選擇監控模板',
   CUSTON_MONITORING_TEMPLATE_DESC:
-    'Generate default monitoring template based on the application template you select or customize a template.',
+    'Select a default template or customize a template to generate a custom monitoring dashboard.',
   SERVICE_BUILT_INTERFACE: '服務已内置監控數據抓取介面',
   TOTAL_EVENTS_TODAY:
     '今日總共收錄了 <span class={className}> {events} </span> 條事件',
@@ -154,9 +159,13 @@ module.exports = {
   LOG_COLLECTION: 'Log Collection',
   LOG_ADDRESS: 'Address: ',
   LOG_COLLECTING: 'Collecting',
-  LOG_CLOSE: 'Close',
-  INVALID_SERVICE_ADDRESS: 'Invalid service address.',
+  LOG_DISABLED: 'Disabled',
+  INVALID_SERVICE_ADDRESS: 'Please enter a correct service address.',
   EXAMPLE: 'Example: ',
   PORT_NUMBER_EMPTY: 'Please enter a port number.',
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
+  LOGGING: 'Logging',
+  EVENTS: 'Events',
+  AUDITING: 'Auditing',
+  CREATION_TIME: 'Creation time',
 }

@@ -60,6 +60,7 @@ export default {
                 success && success()
               })
           }
+
         },
         module,
         cluster,
@@ -77,7 +78,7 @@ export default {
         onOk: data => {
           set(data, 'metadata.resourceVersion', detail.resourceVersion)
           store.update(detail, data).then(() => {
-            Notify.success({ content: `${t('Updated Successfully')}` })
+            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
             success && success()
           })
         },

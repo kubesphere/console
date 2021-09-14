@@ -50,7 +50,7 @@ export default class ProjectInfo extends React.Component {
           <Icon name="project" size={40} />
           <div className={styles.item}>
             <div>{getDisplayName(detail)}</div>
-            <p>{t('Project Name')}</p>
+            <p>{t('PROJECT_NAME')}</p>
           </div>
           <div className={styles.item}>
             <div>

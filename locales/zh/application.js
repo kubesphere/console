@@ -24,6 +24,10 @@ module.exports = {
   'Deploy App': '部署应用',
   'Create Composing Application': '构建自制应用',
   'App Template': '应用模板',
+  APP_TEMPLATE: '应用模板',
+  APP_TEMPLATE_PL: '应用模板',
+  APP_TEMPLATE_LOW: '应用模板',
+  APP_TEMPLATE_EMPTY_DESC: '请创建一个应用模板。',
   Deploy: '部署',
   'Application Type': '应用类型',
   TOTAL_APPS: '共计 {num} 个应用',
@@ -236,7 +240,6 @@ module.exports = {
     '应用模板来自于企业空间和第三方的 Helm 应用模板，支持一键部署并可通过可视化的方式在 KubeSphere 中展示并提供部署及管理的功能',
   APP_REPOS_DESC:
     '应用仓库来自于第三方的 Helm Chart Repo，通过可视化的方式在 KubeSphere 中展示并提供部署及管理功能，用户可以基于应用仓库中的模板快速地一键部署应用。',
-  SEARCH_TIPS: '搜索',
 
   'From workspace': '来自企业空间',
   'Add stateful or stateless services': '添加有状态服务或无状态服务',

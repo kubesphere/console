@@ -95,7 +95,7 @@ export default class PasswordConfirm extends Component {
             <Form.Item
               label={t('PASSWORD')}
               rules={[
-                { required: true, message: t('ENTER_PASSWORD_TIP') },
+                { required: true, message: t('PASSWORD_EMPTY_DESC') },
                 {
                   pattern: PATTERN_PASSWORD,
                   message: t('PASSWORD_DESC'),

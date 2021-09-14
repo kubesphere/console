@@ -491,6 +491,39 @@ const VolumeMapper = item => {
   }
 }
 
+const PVMapper = item => {
+  const creationTime = get(item, 'metadata.creationTimestamp')
+
+  return {
+    creationTime,
+    phase: getVolumePhase(item),
+    ...getBaseInfo(item),
+    storageProvisioner: get(
+      item,
+      'metadata.annotations["pv.kubernetes.io/provisioned-by"]'
+    ),
+    status: get(item, 'status', {}),
+    resourceVersion: get(item, 'metadata.resourceVersion'),
+    annotations: get(item, 'metadata.annotations'),
+    labels: get(item, 'metadata.labels'),
+    accessMode: get(item, 'spec.accessModes[0]'),
+    accessModes: get(item, 'spec.accessModes'),
+    storageClassName: get(item, 'spec.storageClassName'),
+    capacity: get(
+      item,
+      'status.capacity.storage',
+      get(item, 'spec.resources.requests.storage')
+    ),
+    inUse: get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true',
+    type: 'pvc',
+    persistentVolumeReclaimPolicy: get(
+      item,
+      'spec.persistentVolumeReclaimPolicy'
+    ),
+    _originData: getOriginData(item),
+  }
+}
+
 const StorageClassMapper = item => ({
   ...getBaseInfo(item),
   annotations: get(item, 'metadata.annotations', {}),
@@ -1186,6 +1219,7 @@ export default {
   events: EventsMapper,
   volumes: VolumeMapper,
   persistentvolumeclaims: VolumeMapper,
+  persistentvolumes: PVMapper,
   storageclasses: StorageClassMapper,
   services: ServiceMapper,
   endpoints: EndpointMapper,

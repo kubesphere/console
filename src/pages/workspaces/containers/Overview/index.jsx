@@ -45,7 +45,7 @@ class WorkspaceOverview extends React.Component {
         <Banner
           className={styles.header}
           icon="dashboard"
-          title={t('Overview')}
+          title={t('OVERVIEW')}
           description={t('WORKSPACE_OVERVIEW_DESC')}
           module={this.module}
           routes={route.routes}

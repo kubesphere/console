@@ -103,7 +103,7 @@ export default class ArrayInput extends React.Component {
     }
 
     if (!value.role) {
-      return callback({ message: t('Please add role') })
+      return callback({ message: t('SELECT_ROLE_TIP') })
     }
     callback()
   }

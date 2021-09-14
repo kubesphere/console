@@ -47,7 +47,7 @@ export default class Apps extends React.Component {
         description: t('DEVELOP_APP_DESC'),
         operation: enabledActions.includes('create') ? (
           <Button type="flat" onClick={this.showUpload}>
-            {t('Upload Template')}
+            {t('UPLOAD_TEMPLATE')}
           </Button>
         ) : null,
         closable: false,
@@ -127,7 +127,7 @@ export default class Apps extends React.Component {
       ),
     },
     {
-      title: t('Latest Version'),
+      title: t('LATEST_VERSION'),
       dataIndex: 'latest_app_version.name',
       isHideable: true,
       width: '20%',
@@ -153,7 +153,7 @@ export default class Apps extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
-        <Banner {...bannerProps} tips={this.tips} title={t('App Templates')} />
+        <Banner {...bannerProps} tips={this.tips} />
         <Table
           {...tableProps}
           tableActions={this.tableActions}

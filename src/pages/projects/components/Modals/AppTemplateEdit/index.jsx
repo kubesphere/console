@@ -137,7 +137,7 @@ export default class AppDeploy extends React.Component {
     <span style={{ display: 'flex', alignItem: 'center' }}>
       {label}&nbsp;&nbsp;
       {value === this.latestVersion && (
-        <Tag type="warning">{t('Latest Version')}</Tag>
+        <Tag type="warning">{t('LATEST_VERSION')}</Tag>
       )}
     </span>
   )

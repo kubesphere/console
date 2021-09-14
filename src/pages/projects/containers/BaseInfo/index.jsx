@@ -172,7 +172,7 @@ class BaseInfo extends React.Component {
         key: 'edit-quota',
         icon: 'pen',
         action: 'edit',
-        text: t('Edit Quota'),
+        text: t('EDIT_QUOTA'),
         onClick: () =>
           this.trigger('project.quota.edit', {
             detail,

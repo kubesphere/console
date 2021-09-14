@@ -19,40 +19,45 @@
 module.exports = {
   'Cluster Authorization Info': 'Información de autorización de clúster',
   'Create Workspace': 'Crear espacio de trabajo',
-  'Create Workspace Role': 'Crear rol de espacio de trabajo',
+  CREATE_WORKSPACE_ROLE: 'Crear rol de espacio de trabajo',
   'Created Projects': 'Proyectos creados',
-  'Delete Workspace': 'Eliminar espacio de trabajo',
+  DELETE_WORKSPACE: 'Eliminar espacio de trabajo',
   'DevOps Project Number': 'Número de proyecto DevOps',
-  'Edit Quota': 'Editar quota',
+  EDIT_QUOTA: 'Editar quota',
   'Edit Workspace Role': 'Editar rol del espacio de trabajo',
-  'Invite members to the workspace': 'Invitar miembros al espacio de trabajo',
   'Involved Projects': 'Proyectos involucrados',
   'Manage Organizations': 'Administrar organizaciones',
   NO_AVAILABLE_CLUSTER: 'Clúster no disponible',
-  'Please input workspace name': 'Introduce el nombre del espacio de trabajo',
+  WORKSPACE_NAME_EMPTY_DESC: 'Introduce el nombre del espacio de trabajo',
   'Project Number': 'Número de proyecto',
   'Remove from Workspace': 'Eliminar del espacio de trabajo',
   'The current name is not applicable.': 'El nombre actual no es aplicable.',
   'View Workspace': 'Ver espacio de trabajo',
   WORKSPACE: 'Espacio de trabajo',
-  'Workspace Info': 'Información del espacio de trabajo',
+  WORKSPACE_PL: 'Workspaces',
+  WORKSPACE_LOW: 'workspace',
+  WORKSPACE_INFO: 'Información del espacio de trabajo',
   'Workspace Logo': 'Logotipo del espacio de trabajo',
-  'Workspace Manager': 'Gestor del espacio de trabajo',
   'Workspace Members': 'Miembros del espacio de trabajo',
+  WORKSPACE_MEMBER: 'Workspace Member',
+  WORKSPACE_MEMBER_PL: 'Workspace Members',
+  WORKSPACE_MEMBER_TCAP: 'Workspace member',
+  WORKSPACE_MEMBER_TCAP_PL: 'Workspace members',
   'Workspace Name': 'Nombre del espacio de trabajo',
   'Workspace name exists': 'El nombre del espacio de trabajo ya existe',
-  'Workspace Network Isolation': 'Aislamiento de red de espacio de trabajo',
+  WS_NETWORK_ISOLATION: 'Aislamiento de red de espacio de trabajo',
   'Workspace Role': 'Rol del espacio de trabajo',
   'Workspace Roles': 'Roles del espacio de trabajo',
+  WORKSPACE_SETTINGS: 'Configuración del espacio de trabajo',
   'Workspace Settings': 'Configuración del espacio de trabajo',
-  'Workspace Groups': 'Grupos de espacios de trabajo',
-  'Maintain Organization': 'Mantener la estructura organizativa',
+  DEPARTMENT_MANAGEMENT: 'Department Management',
+  SET_DEPARTMENT: 'Set Department',
 
   'All members': 'Todos los miembros',
   Assigned: 'Asignado',
 
   devops: 'DevOps Projects',
-  'Workspace Quota': 'Workspace Quota',
+  EDIT_WORKSPACE_QUOTA: 'Edit Workspace Quota',
   'Edit Workspace Quota': 'Edit Workspace Quota',
   Workspaces: 'Espacios de trabajo',
   'Workspaces Manager': 'Gestor de espacios de trabajo',
@@ -71,11 +76,8 @@ module.exports = {
   NO_WORKSPACE_TIP:
     'Tu cuenta no pertenece a ningún espacio de trabajo actualmente. Crea uno o ponte en contacto con el administrador para que te invite a un espacio de trabajo.',
   WORKSPACE_MEMBER_DESC:
-    'Este módulo te permite administrar miembros del espacio de trabajo y asignarles roles. Los miembros en el espacio de trabajo actual pueden ser invitados como miembros del proyecto.',
-  INVITE_WORKSPACE_MEMBER_DESC:
-    'Puedes invitar a nuevos miembros a trabajar en el espacio de trabajo.',
-  INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER:
-    'Introduce direcciones de correo electrónico para invitar a miembros del espacio de trabajo',
+    'Workspace members can view or manage workspace resources. You can manage members and control their permissions in the workspace.',
+  INVITE_WORKSPACE_MEMBER_DESC: 'You can invite members to the workspace.',
   WORKSPACE_ROLE_DESC:
     'El rol del espacio de trabajo determina los permisos del rol en el espacio de trabajo actual.',
   SEARCH_WORKSPACE_TIP: 'Introduce el nombre del espacio de trabajo a buscar',
@@ -86,7 +88,7 @@ module.exports = {
   WORKSPACE_BASE_INFO_Q1:
     '¿Cómo solicitar más clústeres para el espacio de trabajo?',
   WORKSPACE_BASE_INFO_A1:
-    'El administrador de la plataforma y el administrador del clúster operan y mantienen un clúster. Si necesitas más clústeres, ponte en contacto con el administrador de tu plataforma o envía una solicitud.',
+    'Contact the platform or cluster administrator to apply for more clusters.',
   WORKSPACE_BASE_INFO_Q2: '¿Cómo definir una política de red?',
   WORKSPACE_BASE_INFO_A2: '',
   WORKSPACE_CLUSTERS_DESC:
@@ -94,21 +96,55 @@ module.exports = {
   HOW_TO_APPLY_MORE_CLUSTER_Q:
     '¿Cómo solicitar más clústeres para el espacio de trabajo?',
   HOW_TO_APPLY_MORE_CLUSTER_A:
-    'El administrador de la plataforma y el administrador del clúster operan y mantienen un clúster. Si necesita más clústeres, ponte en contacto con el administrador de tu plataforma o envía una solicitud.',
+    'Contact the platform or cluster administrator to apply for more clusters.',
   DELETE_WORKSPACE_DESC:
     'El espacio de trabajo no se puede restaurar después de ser eliminado y los recursos en el espacio de trabajo también se eliminarán.',
-  SURE_TO_DELETE_WORKSPACE: 'Deseas eliminar el espacio de trabajo?',
   DELETE_WORKSPACE_TIP:
     '¿Estás seguro de eliminar el espacio de trabajo <strong>{resource}</strong> ? No podrás recuperarlo, y los recursos en el espacio de trabajo también se eliminarán.',
 
-  WORKSPACE_GROUP_DESC:
-    'Project roles and DevOps roles can be assigned to members in a user group or department of an organization.',
-  WORKSPACE_GROUP_EMPTY_DESC:
-    'No hay una organización disponible por el momento, primero mantenga la organización y luego agregue miembros',
+  DEPARTMENT_MANAGEMENT_DESC:
+    'A department in a workspace is a logical unit used for permission control. You can set a workspace role, multiple project roles, and multiple DevOps project roles in a department, and assign users to the department to control user permissions in batches.',
+  DEPARTMENT_EMPTY_DESC: 'No Department Available',
   WORKSPACE_GROUP_USER_EMPTY_DESC: 'Actualmente no hay miembros asignables',
   WORKSPACE_QUOTA_MANAGE_DESC:
-    'Manage workspace quotas which are shared by all projects and DevOps projects in a workspace.',
+    'Workspace quotas are used to control the total resource usage of all projects and DevOps projects in a workspace.',
 
-  DELETE_WORDSPACE_RELATED_RESOURCES_DESC:
+  DELETE_WORKSPACE_PROJECTS_DESC:
     'Eliminar el proyecto asociado con el espacio empresarial',
+
+  // App Repositories
+  ACCESS_KEY_ID: 'Access Key ID',
+  SECRET_ACCESS_KEY: 'Secret Access Key',
+
+  // Basic Information
+  WORKSPACE_BASIC_INFO_DESC:
+    'Basic information provides the overview of the workspace. You can view the basic information of the workspace.',
+  SURE_TO_DELETE_WORKSPACE: 'Are you sure you want to delete the workspace?',
+  ON: 'On',
+  OFF: 'Off',
+  NETWORK_POLICY_UNINSATLLED_DESC:
+    'The network policy component is not installed in this cluster.',
+  WS_MEMBER_LOW: 'Workspace member',
+  WS_MEMBER_LOW_PL: 'Workspace members',
+
+  // Quota Management
+  QUOTA_MANAGEMENT: 'Quota Management',
+  RESOURCE_TYPE_LOW: 'Resource type',
+  RESOURCE_LIMIT: 'Resource limit',
+  USED_PERCENT: 'Used: {percent}%',
+
+  // Worksapce Members
+  CHANGE_MEMBER_ROLE: 'Change Member Role',
+  INVITE_MEMBER: 'Invite Member',
+  WORKSPACE_MEMBERS: 'Workspace Members',
+
+  // Department Management
+  'Workspace Groups': 'Department Mangement',
+  NOT_ASSIGNED_TCAP: 'Not Assigned',
+  ASSIGNED: 'Assigned',
+  ADDED_SUCCESS_TIP: 'Added successfully.',
+  PROJECT_VALUE: 'Project: {value}',
+  PROJECT_ROLE_VALUE: 'Project role: {value}',
+  DEVOPS_VALUE: 'DevOps project: {value}',
+  DEVOPS_PROJECT_ROLES_VALUE: 'DevOps project role: {value}',
 }

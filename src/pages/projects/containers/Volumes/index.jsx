@@ -137,7 +137,7 @@ export default class Volumes extends React.Component {
         search: true,
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
-        width: '14%',
+        width: '10.6%',
         render: (_, { phase }) => (
           <Status
             type={phase}
@@ -148,10 +148,18 @@ export default class Volumes extends React.Component {
         ),
       },
       {
+        title: 'PV',
+        dataIndex: '_originData',
+        isHideable: true,
+        search: false,
+        width: '28.5%',
+        render: _ => _.spec.volumeName,
+      },
+      {
         title: t('ACCESS_MODE_TCAP'),
         dataIndex: 'capacity',
         isHideable: true,
-        width: '16%',
+        width: '12.3%',
         render: (capacity, { accessMode }) => (
           <div className={styles.capacity}>
             <p>{accessMode}</p>
@@ -162,7 +170,7 @@ export default class Volumes extends React.Component {
         title: t('MOUNT_STATUS'),
         dataIndex: 'inUse',
         isHideable: true,
-        width: '14%',
+        width: '7.7%',
         render: inUse => (inUse ? t('MOUNTED_TCAP') : t('NOT_MOUNTED')),
       },
       {
@@ -171,7 +179,7 @@ export default class Volumes extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('createTime'),
         isHideable: true,
-        width: 150,
+        width: 140,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm'),
       },
     ]

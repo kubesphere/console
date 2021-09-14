@@ -41,6 +41,9 @@ module.exports = {
   DOMAIN_NAME_TIP: 'Please enter a domain name.',
   PATH_SERVICE_TIP: 'Service',
   Route: 'Route',
+  ROUTE: 'Route',
+  ROUTE_PL: 'Routes',
+  ROUTE_LOW: 'Route',
   ROUTE_RULES_TCAP: 'Route Rules',
   Rules: 'Rules',
   SET_ROUTE_RULE_TCAP: 'Set Route Rule',
@@ -48,9 +51,8 @@ module.exports = {
   'Unable to access': 'Unable to access',
 
   ROUTE_DESC:
-    'A Route on KubeSphere is the same as an Ingress on Kubernetes. You can use a Route and a single IP address to aggregate and expose multiple Services.',
-  ROUTE_CREATE_DESC:
-    'A Route on KubeSphere is the same as an Ingress on Kubernetes. You can use a Route and a single IP address to aggregate and expose multiple Services.',
+    'A Route provides a way to aggregate Services. You can expose the internal Services outside the cluster through an externally accessible IP address.',
+  ROUTE_EMPTY_DESC: 'Please create a Route.',
   ROUTE_ANNOTATION_DESC:
     'You can set route behavior by adding annotations to the route. See <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">Annotations</a> for the detailed list of available annotations.',
 

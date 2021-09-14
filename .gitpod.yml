@@ -11,6 +11,11 @@ tasks:
   - init: |
       git config --global user.name $GIT_AUTHOR_NAME
       git config --global user.email $GIT_COMMITTER_EMAIL
+
+      [[ ! -z "${DOCKER_USER}" && ! -z "${DOCKER_PASSWD}" ]] && docker login -u${DOCKER_USER} -p${DOCKER_PASSWD}
+      [[ ! -z "${GITHUB_USER}" && ! -z "${GITHUB_TOKEN}" ]] && docker login ghcr.io -u${GITHUB_USER} -p${GITHUB_TOKEN}
+      gh repo fork --remote
+
       cp /home/gitpod/local_config.yaml /workspace/console/server/local_config.yaml
       gp open /workspace/console/server/local_config.yaml
       sed 's/hostname.*:/hostname.replace("8000", "8001") :/' server/views/index.html -i

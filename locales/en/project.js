@@ -18,13 +18,15 @@
 
 module.exports = {
   CLUSTER: 'Cluster',
-  'Add Quota Item': 'Add Quota Item',
+  CLUSTER_PL: 'Clusters',
+  CLUSTER_VALUE: 'Cluster: {value}',
+  ADD_QUOTA: 'Add Quota',
   'Are you sure to disable it?': 'Are you sure to disable it?',
   ASSIGN_WORKSPACE: 'Assign Workspace',
   SELECT_WORKSPACE_DESC: 'Select a workspace.',
   Closed: 'Closed',
   'Container Resource Default Request': 'Container Resource Default Request',
-  'Create Multi-cluster Project': 'Create Multi-cluster Project',
+  CREATE_MULTI_CLUSTER_PROJECT: 'Create Multi-cluster Project',
   CREATE_PROJECT: 'Create Project',
   cronjobs: 'cronjobs',
   DaemonSet: 'DaemonSet',
@@ -54,7 +56,7 @@ module.exports = {
   'Enter DevOps Project': 'Enter DevOps Project',
   'Enter Project': 'Enter Project',
   FED_HOST_NAMESPACE_TIP:
-    'Please do not manipulate resources in this project as it is related to a multi-cluster project.',
+    'Do not change resources in this project because it is related to a multi-cluster project.',
   'Gateway Info': 'Gateway Info',
   'Gateway Not Set': 'Gateway Not Set',
   'Help Information': 'Help Information',
@@ -77,6 +79,9 @@ module.exports = {
   'Modify Member Role': 'Modify Member Role',
   'Modify Members Role': 'Modify Members Role',
   'Multi-cluster Project': 'Multi-cluster Project',
+  MULTI_CLUSTER_PROJECT: 'Multi-cluster Project',
+  MULTI_CLUSTER_PROJECT_LOW: 'multi-cluster project',
+  MULTI_CLUSTER_PROJECT_PL: 'Multi-cluster Projects',
   'Multi-cluster Projects': 'Multi-cluster Projects',
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
     'Deleting a multi-cluster project will also delete the same project on the host cluster.</br>Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risk of the operation.',
@@ -90,13 +95,14 @@ module.exports = {
   'Project Member': 'Project Member',
   'Project Members': 'Project Members',
   'project members': 'project members',
-  'Project Name': 'Project Name',
+  PROJECT_NAME: 'Project Name',
   'Project name exists': 'Project name exists',
-  'The project name exists on the host cluster.':
-    'The project name exists on the host cluster.',
+  PROJECT_NAME_EXISTS_IN_HOST:
+    'The project name already exists in the host cluster. Please use another project name.',
   'Project Overview': 'Project Overview',
   'Project Placement': 'Project Placement',
   'Project Quota': 'Project Quota',
+  EDIT_PROJECT_QUOTAS: 'Edit Project Quotas',
   'Project Role': 'Project Role',
   // Create ServiceAccount Page
   PROJECT_ROLE_SI: 'Project Role',
@@ -107,30 +113,30 @@ module.exports = {
   Projects: 'Projects',
   projects: 'projects',
   'Quota Management': 'Quota Management',
-  'Remove Member': 'Remove Member',
+  REMOVE_MEMBER: 'Remove Member',
   'Remove Members': 'Remove Members',
   'requests.cpu': 'requests.cpu',
   'requests.memory': 'requests.memory',
-  'Resource Quota': 'Resource Quota',
+  RESOURCE_QUOTAS: 'Resource Quotas',
   RESOURCE_TYPE: 'Resource Type',
   PROJECT_ADMINISTRATOR_DESC:
     'Select a user in the workspace as the project administrator.',
   'Select Project Type': 'Select Project Type',
   SELECT_CLUSTER_DESC:
     'Select the cluster in which the project is to be created.',
-  CLUSTER_NOT_SELECT_DESC: 'Please select a cluster.',
+  CLUSTER_EMPTY_DESC: 'Please select a cluster.',
   'Set Gateway': 'Set Gateway',
   StatefulSet: 'StatefulSet',
   statefulsets: 'statefulsets',
   'Target Workspace': 'Target Workspace',
   Terminating: 'Terminating',
   Usage: 'Usage',
+  USAGE: 'Usage',
   Volume: 'Volume',
   'Number of volumes': 'Number of volumes',
-  'You can limit the number of resources. Blank means no limit.':
-    'You can limit the number of resources. Blank means no limit.',
+  RESOURCE_QUANTITY_LIMIT: 'Resource quantity limit',
 
-  FEDPROJECT_CANNOT_ADD_CLUSTER: 'Unable to add a new cluster',
+  FEDPROJECT_CANNOT_ADD_CLUSTER: 'No cluster can be added.',
 
   PROJECTS_DESC:
     'A project is a Kubernetes namespace in KubeSphere, which provides a mechanism to organize resources in a workspace.',
@@ -157,7 +163,7 @@ module.exports = {
   INVITE_MEMBER_DESC_DEVOPS:
     'You can invite new members to assist your DevOps project.',
   INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter a username to invite members',
-  INVITE_MEMBER_CHOOSE_ROLE_TIP: 'Please assign a role to this member',
+  ASSIGN_ROLE: 'Assign a Role to the Member',
   DELETE_MEMBER_TIP:
     'Are you sure about deleting the member <strong>{name}</strong>? The member cannot access this project once removed.',
 
@@ -220,10 +226,11 @@ module.exports = {
   PROJECT_TYPES_A:
     'The project gateway is responsible for creating the corresponding application routing controller to forward the request to the corresponding backend Service. After the project gateway is opened, the service can be exposed to the external network through Ingress.',
 
-  NAME_EXIST_IN_CLUSTER: 'Name exists in {cluster}',
+  PROJECT_NAME_EXISTS_IN_CLUSTER:
+    'The project name already exists in the {cluster} cluster. Please use another project name.',
 
   PROJECT_CLUSTER_SETTINGS_DESC:
-    'Select the cluster to create the project. When multiple clusters are selected, a multi-cluster project will be created.',
+    'Select at least one cluster for the project. If you select multiple clusters, a project with the same name will be created in the host cluster.',
   NETWORK_ISOLATED_DESC: 'Set network isolation strategy',
 
   FEDPROJECT_RESOURCE_TIP:
@@ -236,6 +243,6 @@ module.exports = {
   MULTI_CLUSER_RESOURCE_TIP:
     'The current multi-cluster resource runs on different clusters. You can switch between clusters to check the setting of this resource in each of them.',
 
-  MULTI_CLUSTER_PROJECT_CREATE_DESC:
+  CREATE_MULTI_CLUSTER_PROJECT_DESC:
     'A multi-cluster project runs across different clusters, which helps you to build a container environment for rapid iteration of applications and achieve high availability.',
 }

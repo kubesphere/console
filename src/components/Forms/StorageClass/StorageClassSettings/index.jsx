@@ -46,6 +46,19 @@ export default class StorageClassSetting extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  get volumeBindingMode() {
+    return [
+      {
+        label: t('IMMEDIATE_BINDING'),
+        value: 'Immediate',
+      },
+      {
+        label: t('BINDING_WAIT'),
+        value: 'WaitForFirstConsumer',
+      },
+    ]
+  }
+
   getAccessModesOptions() {
     const provisioner =
       PROVISIONERS.find(({ value }) => value === this.provisionerValue) || {}
@@ -144,7 +157,7 @@ export default class StorageClassSetting extends React.Component {
         <Form data={this.formTemplate} ref={formRef}>
           <Columns>
             <Column>
-              <Form.Item label={t('STORAGE_VOLUME_EXTENSION')}>
+              <Form.Item label={t('VOLUME_EXPANSION')}>
                 <Select
                   name="allowVolumeExpansion"
                   options={[
@@ -155,7 +168,7 @@ export default class StorageClassSetting extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('RECLAMATION_POLICY')}>
+              <Form.Item label={t('RECLAIM_POLICY')}>
                 <Input name="reclaimPolicy" disabled />
               </Form.Item>
             </Column>
@@ -184,6 +197,17 @@ export default class StorageClassSetting extends React.Component {
                 <Input name={'provisioner'} />
               </Form.Item>
             </Column>
+          </Columns>
+          <Columns>
+            <Column>
+              <Form.Item label={t('VOLUME_BINDING_MODE')}>
+                <Select
+                  name="metadata.VolumeBindingMode"
+                  options={this.volumeBindingMode}
+                ></Select>
+              </Form.Item>
+            </Column>
+            <Column></Column>
           </Columns>
           {this.renderParams()}
         </Form>

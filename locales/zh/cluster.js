@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Add Cluster': '添加集群',
+  ADD_CLUSTER: '添加集群',
   'Add New Cluster': '添加新集群',
   'Import Kubernetes Cluster': '导入 Kubernetes 集群',
   Import: '导入',
@@ -100,7 +100,9 @@ module.exports = {
   EDIT_CLUSTER_INFO_DESC: '编辑集群基本信息。',
 
   SCHEDULING_OPERATIONS: '调度次数',
+  SCHEDULING_OPERATION: '调度次数',
   SCHEDULING_FAILURES: '调度失败次数',
+  SCHEDULING_FAILURE: '调度失败次数',
 
   'Please select or input a tag': '请选择或输入标识',
   'Please select or input a provider': '请选择或输入服务商',
@@ -126,7 +128,7 @@ module.exports = {
 
   'Add node to the cluster': '添加节点到集群中',
 
-  INTERNAL_IP: '内网 IP 地址',
+  INTERNAL_IP: '内部 IP 地址',
   PORT: '端口',
   EXTERNAL_IP: '外网 IP 地址',
   USERNAME_AND_PASSWORD: '用户名和密码',
@@ -171,9 +173,10 @@ module.exports = {
 
   MULTI_CLUSTER: '多集群',
 
-  CLUSTER_TAG: '标签',
-  CLUSTER_TAG_DESC: '为集群添加标签来标识集群的用途。',
-  CLUSTER_PROVIDER_DESC: '提供集群基础设施的服务商。',
+  CLUSTER_SETTINGS_DESC: '定义集群配置信息',
+  TAG: '标签',
+  CLUSTER_TAG_DESC: '选择标签来标识集群的用途。',
+  CLUSTER_PROVIDER_DESC: '选择提供集群基础设施的服务商。',
   CLUSTER_CONNECT_METHOD_DESC: '可以直接连接集群或者使用代理',
 
   CONNTECT_DIRECT: '直接连接 Kubernetes 集群',
@@ -190,12 +193,13 @@ module.exports = {
   CLUSTER_AGENT_TIP_3_DESC: '此操作可能需要一定时间，请等待集群状态更新。',
 
   CLUSTER_CONDITIONS: '集群状态',
-  CLUSTER_BASE_INFO_DESC: '当前集群基础信息总览。',
+  CLUSTER_BASE_INFO_DESC:
+    '基本信息是当前集群的信息概览，您可以查看和编辑集群的基本信息。',
   CLUSTER_INFO_TCAP: '集群信息',
 
   UNBIND_CLUSTER_DESC:
     '解绑集群后，KubeSphere 将无法管理该集群，但该集群上的 Kubernetes 资源不会被删除。',
-  SURE_TO_UNBIND_CLUSTER: '我确定解绑集群。',
+  SURE_TO_UNBIND_CLUSTER: '我已了解操作所带来的风险。',
 
   'Invite members to the cluster': '邀请成员到该集群',
   INVITE_CLUSTER_MEMBER_DESC: '您可以邀请新的成员来此集群',
@@ -210,8 +214,7 @@ module.exports = {
     '集群授权可以将集群通过授权的形式指定给企业空间使用该集群',
 
   CLUSTER_VISIBILITY_Q1: '如何将集群授权给指定的企业空间使用？',
-  CLUSTER_VISIBILITY_A1:
-    '您可以点击<strong>编辑可见性</strong>将集群授权给指定的企业空间使用。',
+  CLUSTER_VISIBILITY_A1: '您可以点击编辑可见性将集群授权给指定的企业空间使用。',
   CLUSTER_VISIBILITY_Q2: '什么是公开集群?',
   CLUSTER_VISIBILITY_A2:
     '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源。',
@@ -250,8 +253,11 @@ module.exports = {
   NEW_CLUSTER_DESC: '添加新的 Kubernetes 集群',
   IMPORT_CLUSTER_DESC: '导入已有的 Kubernetes 集群',
   CLUSTER_NODE_SETTINGS_DESC: '添加集群需要的节点',
-  NODE_INTERNAL_IP_DESC: '输入节点在私网内的 IP 地址。',
-  NODE_INTERNAL_IP_EMPTY_DESC: '请输入节点在私网内的 IP 地址。',
+  NODE_INTERNAL_IP_DESC: '设置节点在 KubeSphere 集群内部的 IP 地址。',
+  EDGENODE_INTERNAL_IP_DESC: '设置边缘节点在 KubeSphere 集群内部的 IP 地址。',
+  NODE_INTERNAL_IP_EMPTY_DESC: '请设置节点在 KubeSphere 集群内部的 IP 地址。',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC:
+    '请设置边缘节点在 KubeSphere 集群内部的 IP 地址。',
   NODE_ROLE_DESC: '设置节点在集群中的角色。',
   NODE_EXTERNAL_IP_DESC: '输入用于 SSH 登录的节点 IP 地址和端口号。',
   NODE_EXTERNAL_IP_EMPTY_DESC: '请输入用于 SSH 登录的节点 IP 地址。',
@@ -291,6 +297,7 @@ module.exports = {
   CREATING_CLUSTER: '集群创建中...',
   CREATING_CLUSTER_DESC: '集群正在创建中，当前状态不可用。',
   COPY_SUCCESSFUL: '复制成功。',
+  CLUSTER_INIT_FAILED: '集群初始化失败。',
   INIT_NODES: '初始化节点',
   PULL_IMAGES: '拉取镜像',
   INIT_ETCD_CLUSTER: '初始化 etcd 集群',
@@ -306,20 +313,22 @@ module.exports = {
     '取决于集群规模和基础设施环境，集群创建可能需要 30 到 60 分钟。',
 
   CLUSTER_UPGRADE_REQUIRED:
-    '当前集群版本无法使用此功能，请升级到 {version} 或以上版本。',
+    '该集群版本不支持此功能，请将集群升级到 {version} 或以上版本。',
   MEMBER_CLUSTER_UPGRADE_TIP:
-    '低于 {version} 版本 member 集群无法使用此功能, 请将 member 集群升级到 {version} 或以上版本。',
+    '低于 {version} 版本的成员集群不支持此功能, 请将成员集群升级到 {version} 或以上版本。',
 
   // Unbind Cluster
   UNBIND_CLUSTER_Q: '解绑集群',
 
   // Cluster Visibility
+  NODE: '节点',
   ADMINISTRATOR: '管理员',
   CLUSTER_VISIBILITY: '集群可见性',
   CLUSTER_VISIBILITY_DESC:
-    '将集群授权给企业空间，以在企业空间中查看并管理集群资源。',
+    '集群可见性控制集群对企业空间的授权。将集群授权给企业空间后，即可在企业空间中查看并管理集群资源。',
   EDIT_VISIBILITY_DESC: '编辑集群在企业空间中的可见性。',
-  TO_BE_AUTHORIZED: '待授权',
+  UNAUTHORIZED: '未授权',
+  LOGGING: '日志',
   EVENTS: '事件',
   AUDITING: '审计',
   REMOVE_WORKSPACE_CONFIRM_SI:

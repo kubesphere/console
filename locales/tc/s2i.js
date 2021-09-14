@@ -96,6 +96,7 @@ module.exports = {
   'Image building succeeded': '構建鏡像成功',
   RevisionId: '修訂版本號碼',
   'Image Builder': '構建鏡像',
+  IMAGE_BUILDER: '構建鏡像',
   'Last build environment': '最後一次構建環境',
   'Build Times': '構建次數',
   ImageName: '鏡像名稱',
@@ -129,7 +130,7 @@ module.exports = {
   WAR_DESC:
     'War 檔案是用於分發 Jar 檔案，JavaServer Pages，Java Servlet，Java類，XML 檔案，標記庫，静態網頁（HTML 和相關檔案）以及共同構成 Web 應用程式的其他資源的集合的檔案。',
   BINARY_DESC: '',
-  IMAGE_BUILDER_CREATE_DESC:
+  IMAGE_BUILDER_EMPTY_DESC:
     '構建是將代碼或者成品容器化的工具。僅需要通過簡單的設置即可將成品和代碼構建成服務。目前需配合服務創建一起使用。',
   'The current code repository does not require a key.':
     '目前代碼倉庫不需要密鑰',

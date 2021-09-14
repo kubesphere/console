@@ -19,6 +19,9 @@
 module.exports = {
   ServiceAccounts: 'Service Accounts',
   ServiceAccount: 'Service Account',
+  SERVICE_ACCOUNT: 'Service Account',
+  SERVICE_ACCOUNT_PL: 'Service Accounts',
+  SERVICE_ACCOUNT_LOW: 'service account',
   'Edit Service Account': 'Edit Service Account',
   CHANGE_ROLE: 'Change Role',
   'Secret Detail': 'Secret Detail',

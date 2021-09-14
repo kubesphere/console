@@ -66,7 +66,7 @@ module.exports = {
   INVALID_PORT: '端口無效。',
   'Not Associate': '不關聯',
 
-  CUSTOM_CREATION: '自定義創建',
+  CUSTOM_SERVICE: 'Custom Service',
   'Specify Workloads': '指定工作負載',
   'Create service by specifying workloads': '指定工作負載創建服務',
   'Create service by Yaml': '通過 Yaml 創建服務',
@@ -85,16 +85,16 @@ module.exports = {
   TOTAL_WORKLOAD: '共 {count} 個工作負載',
 
   STICKY_SESSION: '會話保持',
-  MAXIMUM_STICKINESS_DURATION: '最大會話保持時間（秒）',
-  STICKY_SESSION_DESC: 'The default stickiness duration is 10800s (3 h).',
+  MAXIMUM_STICKINESS_DURATION: '最大會話保持時間（s）',
+  STICKY_SESSION_DESC:
+    'Ensures that all requests from the same client are forwarded to the same backend server during one session.',
 
   SERVICE_NAME_DESC:
     'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
 
   SERVICE_DESC:
     'Services provide an abstract way to expose applications running on a Pod as network services.',
-  SERVICE_CREATE_DESC:
-    '服務是定義了一類 Pod 的邏輯集合和一個用於訪問它们的策略。您可選擇服務的類型或者創建服務的方式。<br/>KubeSphere 支持無狀態服務和有狀態服務，並支持通過代碼或者成品構建服務。',
+  SERVICE_EMPTY_DESC: 'Please create a Service.',
 
   SERVICES_BASEINFO_DESC:
     '創建服務需要提供服務的名稱和描述，服務名稱不能和同一項目下已有的服務名稱相同。',
@@ -105,7 +105,7 @@ module.exports = {
 
   ACCESS_NONE_TIP: '不提供外網訪問。',
   ACCESS_NODEPORT_TIP: '通過集群節點的對應端口來訪問服務。',
-  ACCESS_LOADBALANCER_TIP: '通過雲服務商提供的負載平衡器來訪問服務。',
+  ACCESS_LOADBALANCER_TIP: '通過負載平衡器來訪問服務。',
 
   'The current selector': '目前設置的選擇器',
   'Commonly included tags in the current workloads':
@@ -168,11 +168,13 @@ module.exports = {
   SERVICE_TYPE_STATELESSSERVICE: '無狀態服務',
   SERVICE_TYPE_EXTERNALSERVICE: '映射外部服務',
 
-  SERVICE_PORTS_DESC: '設置容器鏡像暴露的端口以及服務端口。',
+  SERVICE_PORTS_DESC:
+    'Set the ports used to access the container and the service ports.',
 
   EIP_POOL_DESC: '集群内部訪問方式(DNS)',
 
-  STICKINESS_VALUE_RANGE: 'Value range: 0-86400.',
+  STICKY_DURATION_DESC:
+    'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
 
   // Services
   LABEL_SELECTOR: 'Label Selector',

@@ -98,7 +98,7 @@ export default class CustomRange extends React.Component {
       <div className={classnames(styles.custom, className)}>
         <div className={styles.title}>{t('CUSTOM_TIME_RANGE')}</div>
         <Form data={this.formData}>
-          <Form.Item label={t('Start Time')}>
+          <Form.Item label={t('START_TIME')}>
             <DatePicker
               name="start"
               defaultDate={start[0]}
@@ -109,7 +109,7 @@ export default class CustomRange extends React.Component {
               onClose={this.handlerStartDateClose}
             />
           </Form.Item>
-          <Form.Item label={t('End Time')}>
+          <Form.Item label={t('END_TIME')}>
             <DatePicker
               name="end"
               defaultDate={end[0]}
@@ -121,7 +121,7 @@ export default class CustomRange extends React.Component {
             />
           </Form.Item>
           {this.props.showStep && (
-            <Form.Item label={t('Time Interval')}>
+            <Form.Item label={t('SAMPLING_INTERVAL')}>
               <Select
                 className={styles.selectBox}
                 defaultValue="1m"
@@ -131,7 +131,7 @@ export default class CustomRange extends React.Component {
             </Form.Item>
           )}
           <div className={styles.actions}>
-            <Button onClick={onCancel}>{t('Cancel')}</Button>
+            <Button onClick={onCancel}>{t('CANCEL')}</Button>
             <Button type="control" onClick={this.handleOk}>
               {t('OK')}
             </Button>

@@ -169,7 +169,7 @@ class Apps extends Component {
         <InputSearch
           onSearch={this.handleSearch}
           className={styles.search}
-          placeholder={t('SEARCH_TIPS')}
+          placeholder={t('SEARCH')}
         />
         <Button type="flat" icon="refresh" onClick={this.handleRefresh} />
       </div>

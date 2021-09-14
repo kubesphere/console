@@ -53,26 +53,24 @@ export default class AppCreate extends Component {
       >
         <div className={classnames(styles.header, 'clearfix')}>
           <img src="/assets/application.svg" alt="" />
-          <div className={styles.title}> {t('Create App Template')}</div>
-          <div className={styles.description}>{t('CREATE_APP_DESC')}</div>
+          <div className={styles.title}> {t('CREATE_APP_TEMPLATE')}</div>
+          <div className={styles.description}>
+            {t('CREATE_APP_TEMPLATE_DESC')}
+          </div>
         </div>
         <ToggleView className={styles.item} title={t('UPLOAD_HELM_TITLE')} show>
           <div className={styles.more}>
             <div className={styles.description}>
-              {t('UPLOAD_HELM_DESCRIPTION')}
+              {t('HELM_CHART_FORMAT_DESC')}
             </div>
             <Button type={'control'} onClick={onOk}>
-              {t('START_UPLOAD')}
+              {t('UPLOAD')}
             </Button>
             <div className={styles.note}>
-              💁‍♂️ {t('APP_CREATE_GUIDE')}
-              <a
-                href={getDocsUrl('helm_specification')}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                {t('HELM_DEVELOP_GUIDE')}
-              </a>
+              💁‍♂️{' '}
+              {t.html('APP_CREATE_GUIDE', {
+                url: getDocsUrl('helm_specification'),
+              })}
             </div>
           </div>
         </ToggleView>

@@ -84,7 +84,7 @@ export default class Workspaces extends React.Component {
                   title={workspacesStatus[item].allocations}
                   description={t('USED_IP_ADDRESSES')}
                 />
-                <Text title={workspace.manager} description={t('Manager')} />
+                <Text title={workspace.manager} description={t('MANAGER')} />
               </div>
             )
           })}

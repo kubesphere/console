@@ -128,7 +128,7 @@ export default class AppCategories extends React.Component {
       width: '25%',
     },
     {
-      title: t('Latest Version'),
+      title: t('LATEST_VERSION'),
       dataIndex: 'latest_app_version.name',
       isHideable: true,
       width: '25%',

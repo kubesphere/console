@@ -85,17 +85,17 @@ export const getDaemonSetStatus = ({ status }) => {
 export const getJobStatus = ({ spec, status }) => {
   if (isEmpty(status)) return 'Failed'
 
-  let _status = 'Running'
+  let _status = 'RUNNING'
 
   if (!isEmpty(status.conditions)) {
     status.conditions.some(item => {
       if (item.type === 'Failed' && item.status === 'True') {
-        _status = 'Failed'
+        _status = 'FAILED'
         return true
       }
 
       if (item.type === 'Complete' && item.status === 'True') {
-        _status = 'Completed'
+        _status = 'COMPLETED'
         return true
       }
 
@@ -352,7 +352,7 @@ export const getPipelineStatus = statusDetail => {
     return { type: 'aborted', label: t('Aborted') }
   }
   if (state === 'PAUSED') {
-    return { type: 'paused', label: t('Paused') }
+    return { type: 'paused', label: t('PAUSED') }
   }
   return { type: 'nostatus', label: t('not run') }
 }

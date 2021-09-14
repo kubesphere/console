@@ -87,7 +87,7 @@ export default {
           params.namespace = params.namespace || get(data, 'metadata.namespace')
           await store.create(data, params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
           success && success()
           formPersist.delete(`${module}_create_form`)
         },
@@ -110,7 +110,7 @@ export default {
         onOk: async params => {
           await store.cloneVolume(params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
         },
         title: t('Clone Volume'),
         modal: NameModal,
@@ -120,16 +120,26 @@ export default {
     },
   },
   'volume.create.snapshot': {
-    on({ store, ...props }) {
-      const options = store.snapshotType.items.map(item => ({
-        label: item.metadata.name,
-        value: item.metadata.name,
-      }))
+    on({ store, detail, ...props }) {
+      const provisioner = get(
+        detail,
+        "annotations['volume.beta.kubernetes.io/storage-provisioner']",
+        '-'
+      )
+      const options = []
+      store.snapshotType.items.forEach(item => {
+        if (item.driver === provisioner) {
+          options.push({
+            label: item.metadata.name,
+            value: item.metadata.name,
+          })
+        }
+      })
       const modal = Modal.open({
         onOk: async params => {
           await store.createSnapshot(params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
         },
         title: t('Create Snapshot'),
         modal: SnapshotModal,
@@ -145,7 +155,7 @@ export default {
         onOk: async params => {
           await store.patch(store.detail, params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Updated Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
         },
         modal: ExpandModal,
         store,

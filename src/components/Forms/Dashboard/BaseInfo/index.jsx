@@ -47,14 +47,15 @@ export default class BaseInfo extends React.Component {
     .map(([key, configs]) => ({
       value: key,
       image: configs.logo,
-      label: configs.name,
-      description: t(configs.description),
+      label: configs.name === 'Custom' ? t('CUSTOM') : configs.name,
+      description: configs.description,
     }))
     .filter(item => {
       if (this.props.module === 'dashboards') {
         return item.label !== 'Grafana'
       }
       return true
+
     })
 
   nameValidator = (rule, value, callback) => {

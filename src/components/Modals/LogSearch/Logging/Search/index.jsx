@@ -413,7 +413,7 @@ export default class LogSearchModal extends React.Component {
     )
   }
 
-  clusterRenderer = option => `${t('Cluster')}: ${option.label}`
+  clusterRenderer = option => t('CLUSTER_VALUE', { value: option.label })
 
   renderSearchBar() {
     return (

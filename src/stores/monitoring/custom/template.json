@@ -1494,6 +1494,7 @@
     },
     "name": "Redis",
     "logo": "/assets/redis-das.svg"
+
   },
   "Jenkins Overview": {
     "settings": {

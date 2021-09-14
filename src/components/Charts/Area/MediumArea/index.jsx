@@ -73,7 +73,7 @@ export default class MediumArea extends React.Component {
         <span>
           <strong>{this.lastValue}</strong> {t(unit)}
         </span>
-        {t(title)}
+        {this.lastValue !== 1 && !unit ? t(`${title}_PL`) : t(title)}
       </div>
     )
   }
