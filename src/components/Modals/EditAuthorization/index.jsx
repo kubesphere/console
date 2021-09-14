@@ -63,8 +63,8 @@ export default class EditAuthorizationModal extends React.Component {
               'annotations["iam.kubesphere.io/module"]'
             ) === item.name
         )
-          ? 'Enabled'
-          : 'Not Enabled',
+          ? 'ENABLED'
+          : 'NOT_ENABLED',
       }))
 
     this.state = {
@@ -98,8 +98,8 @@ export default class EditAuthorizationModal extends React.Component {
       roleModule.state = groupedTemplates[currentModule].some(item =>
         roleTemplates.includes(item.name)
       )
-        ? 'Enabled'
-        : 'Not Enabled'
+        ? 'ENABLED'
+        : 'NOT_ENABLED'
     }
 
     this.setState({ roleTemplates })
@@ -110,7 +110,7 @@ export default class EditAuthorizationModal extends React.Component {
 
     return (
       <div className={styles.tabs}>
-        <div className={styles.title}>{t('Modules')}</div>
+        <div className={styles.title}>{t('MODULES')}</div>
         <div className={styles.tabsWrapper}>
           {roleModules.map(item => (
             <div
@@ -123,16 +123,16 @@ export default class EditAuthorizationModal extends React.Component {
             >
               <Text
                 icon={item.icon}
-                title={t(item.name)}
+                title={t(item.name.replace(/\s+/g, '_').toUpperCase())}
                 description={
                   currentModule === item.name
-                    ? t('IN_PROGRESS')
-                    : t(item.state || 'Not Enabled')
+                    ? t('CURRENT')
+                    : t(item.state || 'NOT_ENABLED')
                 }
               />
               <Indicator
                 className={styles.indicator}
-                type={item.state === 'Enabled' ? 'running' : 'disabled'}
+                type={item.state === 'ENABLED' ? 'running' : 'disabled'}
               />
             </div>
           ))}
@@ -149,9 +149,10 @@ export default class EditAuthorizationModal extends React.Component {
       currentModule,
     } = this.state
     const templates = sortBy(groupedTemplates[currentModule] || [], 'aliasName')
+
     return (
       <div className={styles.content}>
-        <div className={styles.title}>{t('Authorization List')}</div>
+        <div className={styles.title}>{t('PERMISSIONS')}</div>
         <div className={styles.contentWrapper}>
           {templates.map(item => (
             <CheckItem
@@ -172,7 +173,7 @@ export default class EditAuthorizationModal extends React.Component {
 
     return (
       <Modal
-        title={title || t('Edit Authorization')}
+        title={title || t('EDIT_PERMISSION')}
         icon="role"
         onCancel={onCancel}
         onOk={this.handleOk}

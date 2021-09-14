@@ -19,6 +19,9 @@
 module.exports = {
   'Custom Resource Definition': '定制资源定义',
   'Custom Resource Definitions': '定制资源定义',
+  CUSTOM_RESOURCE_DEFINITION: '定制资源定义',
+  CUSTOM_RESOURCE_DEFINITION_PL: '定制资源定义',
+  CUSTOM_RESOURCE_DEFINITION_LOW: '定制资源定义',
 
   CUSTOM_RESOURCE_DEFINITION_DESC:
     '定制资源定义（CRD）是一种 Kubernetes 实现自定义资源类型的扩展方式，您可以像操作内置资源对象一样操作 CRD 对象。',

@@ -26,12 +26,13 @@ module.exports = {
     '您可以上传 Helm Chart 或者使用 KubeSphere 提供的资源编排工具进行应用模板的开发',
   HOW_PUBLISH_APP_TITLE: '如何发布已有应用',
   HOW_PUBLISH_APP_DESC:
-    'KubeSphere 目前支持将已有应用的 Helm Chart 上传至企业空间的应用模板，提交审核后，可以将应用发布在应用商店中。',
+    '您可以将 Helm chart 上传为企业空间的应用模板，提交审核后，可以将应用发布在应用商店中。',
   HOW_APP_DEPLOY_TITLE: '如何部署和测试应用',
-  'Upload Template': '上传模板',
+  UPLOAD_TEMPLATE: '上传模板',
   APPS_CREATE_DESC:
     'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
 
+  APPS_MANAGEMENT: '应用管理',
   'Apps Management': '应用管理',
   'App Store Management': '应用商店管理',
   PROVIDER: '提供商',
@@ -111,7 +112,7 @@ module.exports = {
   APP_TEMPLATES_DESC:
     'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
   UPLOAD_HELM_TITLE: '上传 Helm 配置文件',
-  UPLOAD_HELM_DESC: '上传已有的 Helm  Chart ',
+  UPLOAD_HELM_CHART_DESC: '上传已有的 Helm chart。',
   EDIT_APP_DESC: '对应用的基本信息进行设置',
   'App Number': '应用编号',
   'App Version Types': '交付类型',
@@ -121,12 +122,11 @@ module.exports = {
   'New Version': '添加版本',
   'App Deploy': '应用部署',
   'Test Deployment': '测试部署',
-  'Modify Successfully': '修改成功',
-  'Add Version Successfully': '添加版本成功',
+  MODIFY_SUCCESSFUL: '修改成功。',
+  ADD_VERSION_SUCCESSFUL: '版本添加成功',
   'Submit Successfully': '提交成功',
   'Cancel Successfully': '撤消成功',
   'Release Successfully': '发布成功',
-  'Delete Successfully': '删除成功',
   'Pass Successfully': '通过成功',
   'Reject Successfully': '拒绝成功',
   'Suspend Successfully': '下架成功',
@@ -134,21 +134,22 @@ module.exports = {
   'Activate Successfully': '上架成功',
   'In Project': '所属项目',
 
-  'Create App Template': '创建应用模板',
-  CREATE_APP_DESC:
+  CREATE_APP_TEMPLATE: '创建应用模板',
+  CREATE_APP_TEMPLATE_DESC:
     '轻量级、可移植、自包含的软件打包技术，使应用可以在几乎任何地方以相同的方式运行。',
   RESOURCE_TOOL_TITLE: '通过资源编排工具创建',
   RESOURCE_TOOL_DESCRIPTION:
     'KubeSphere 提供了可视化的资源编排工具，您可以通过资源预编辑来创建应用模板，部署测试',
-  UPLOAD_HELM_DESCRIPTION: '上传已有的 Helm Chart. 文件格式支持 tar.gz 和 tgz',
-  START_UPLOAD: '开始上传',
+  HELM_CHART_FORMAT_DESC: '支持 tar.gz 和 tgz 格式。',
+  UPLOAD: '上传',
   'Start Create': '开始创建',
-  APP_CREATE_GUIDE: '完整的应用开发规范请参看',
+  APP_CREATE_GUIDE:
+    '请参阅开发指南 <a href={url} target="_blank" rel="noreferrer noopener">Helm 规范</a>。',
   HELM_DEVELOP_GUIDE: 'Helm 规范及应用开发',
 
   UPLOAD_SUPPORT_FORMAT: '文件格式支持 tar.gz 和 tgz',
-  Uploading: '正在上传',
-  'Upload successfully': '上传成功',
+  UPLOADING: '正在上传',
+  UPLOAD_SUCCESS: '上传成功。',
   'please upload again': '请重新上传',
   FILE_FORMAT_PACKAGE: '文件格式支持 tar.gz 和 tgz',
   FILE_FORMAT_ICON: '图标格式支持 png 和 jpg',
@@ -203,7 +204,7 @@ module.exports = {
   UNDER_REVIEW_TIPS: '当前应用有版本正在审核中，以下信息暂时不可更改',
 
   'Instance Name': '实例名称',
-  'Index Successfully': '同步成功',
+  INDEX_SUCCESS_TIP: '同步成功。',
 
   NO_DEPLOY_RUNTIME_NOTE: '项目中没有可用的部署运行环境',
 

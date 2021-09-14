@@ -81,7 +81,7 @@ export default class UserCreateModal extends Component {
 
     this.props.store.checkName({ name: value }).then(resp => {
       if (resp.exist) {
-        return callback({ message: t('User name exists'), field: rule.field })
+        return callback({ message: t('USERNAME_EXISTS'), field: rule.field })
       }
       callback()
     })
@@ -94,7 +94,7 @@ export default class UserCreateModal extends Component {
 
     this.props.store.checkEmail(value).then(resp => {
       if (resp.exist) {
-        return callback({ message: t('Email exists'), field: rule.field })
+        return callback({ message: t('EMAIL_EXISTS'), field: rule.field })
       }
       callback()
     })
@@ -110,24 +110,24 @@ export default class UserCreateModal extends Component {
   render() {
     const { store, detail, ...rest } = this.props
 
-    const title = detail ? 'Edit User' : 'Add User'
+    const title = detail ? 'EDIT_USER' : 'CREATE_USER'
 
     const userRules = detail
-      ? [{ required: true, message: t('ENTER_USERNAME_TIP') }]
+      ? [{ required: true, message: t('USERNAME_EMPTY_DESC') }]
       : [
-          { required: true, message: t('ENTER_USERNAME_TIP') },
+          { required: true, message: t('USERNAME_EMPTY_DESC') },
           {
             pattern: PATTERN_USER_NAME,
-            message: t('Invalid user name', { message: t('USER_NAME_DESC') }),
+            message: t('USERNAME_INVALID', { message: t('USERNAME_DESC') }),
           },
           { validator: this.userNameValidator },
         ]
 
     const emailRules = detail
-      ? [{ required: true, message: t('Please input email') }]
+      ? [{ required: true, message: t('EMAIL_EMPTY_DESC') }]
       : [
-          { required: true, message: t('Please input email') },
-          { type: 'email', message: t('Invalid email') },
+          { required: true, message: t('EMAIL_EMPTY_DESC') },
+          { type: 'email', message: t('INVALID_EMAIL') },
           { validator: this.emailValidator },
         ]
 
@@ -148,30 +148,30 @@ export default class UserCreateModal extends Component {
         />
         <Form.Item
           label={t('USERNAME')}
-          desc={t('USER_NAME_DESC')}
+          desc={t('USERNAME_DESC')}
           rules={userRules}
         >
           <Input
             name="metadata.name"
-            placeholder="username"
             autoComplete="nope"
             disabled={!!detail}
             autoFocus={true}
             maxLength={32}
           />
         </Form.Item>
-        <Form.Item label={t('Email')} desc={t('EMAIL_DESC')} rules={emailRules}>
+        <Form.Item label={t('EMAIL')} desc={t('EMAIL_DESC')} rules={emailRules}>
           <Input
             name="spec.email"
-            placeholder="User@example.com"
+            placeholder="user@example.com"
             autoComplete="nope"
           />
         </Form.Item>
-        <Form.Item label={t('Role')} desc={t('ROLE_DESC')}>
+        <Form.Item label={t('PLATFORM_ROLE')} desc={t('PLATFORM_ROLE_DESC')}>
           <Select
             name="metadata.annotations['iam.kubesphere.io/globalrole']"
             optionRenderer={this.optionRenderer}
             options={this.globalRoles}
+            placeholder=" "
           />
         </Form.Item>
         {!detail && (
@@ -180,16 +180,15 @@ export default class UserCreateModal extends Component {
             label={t('PASSWORD')}
             desc={t('PASSWORD_DESC')}
             rules={[
-              { required: true, message: t('ENTER_PASSWORD_TIP') },
+              { required: true, message: t('PASSWORD_EMPTY_DESC') },
               {
                 pattern: PATTERN_PASSWORD,
-                message: t('PASSWORD_DESC'),
+                message: t('PASSWORD_INVALID_DESC'),
               },
             ]}
           >
             <InputPassword
               name="spec.password"
-              placeholder={t('ENTER_PASSWORD_TIP')}
               autoComplete="nope"
               withStrength
             />

@@ -159,7 +159,7 @@ export default class AddNode extends Component {
         >
           <Input
             name="internalAddress"
-            placeholder="XXX.XXX.XXX.XXX"
+            placeholder="0.0.0.0"
             autoComplete="off"
           />
         </Form.Item>
@@ -179,11 +179,7 @@ export default class AddNode extends Component {
                 },
               ]}
             >
-              <Input
-                name="address"
-                placeholder="XXX.XXX.XXX.XXX"
-                autoComplete="off"
-              />
+              <Input name="address" placeholder="0.0.0.0" autoComplete="off" />
             </Form.Item>
           </Column>
           <Column className="is-narrow">

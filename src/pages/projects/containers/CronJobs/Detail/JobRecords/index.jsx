@@ -95,12 +95,12 @@ class JobRecords extends React.Component {
       },
     },
     {
-      title: t('Start Time'),
+      title: t('START_TIME'),
       dataIndex: 'status.startTime',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
     },
     {
-      title: t('End Time'),
+      title: t('END_TIME'),
       dataIndex: 'status.completionTime',
       render: (time, record) => {
         const failedTime = get(record, 'status.conditions[0].lastProbeTime')

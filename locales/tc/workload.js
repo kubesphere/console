@@ -22,10 +22,12 @@ module.exports = {
   REPLICA_LOW_SI: '副本',
   REPLICA_LOW_PL: '副本',
   Workload: '工作負載',
+  WORKLOAD: '工作負載',
+  WORKLOAD_PL: '工作負載',
+  WORKLOAD_LOW: '工作負載',
   Workloads: '工作負載',
   IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} 層',
   IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} 層',
-  TAG: '標籤',
   CPU_REQUEST: 'CPU 預留',
   CPU_LIMIT: 'CPU 限制',
   MEMORY_REQUEST: '記憶體預留',
@@ -38,7 +40,13 @@ module.exports = {
   POD_SETTINGS: '容器組設置',
   MOUNT_PATH_EMPTY: '請輸入掛載路徑。',
   CONFIGMAP: '配置字典',
-  SECRET: '保密字典',
+  CONFIGMAP_PL: 'ConfigMaps',
+  CONFIGMAP_LOW: 'ConfigMap',
+  DEPLOYMENT_EMPTY_DESC: 'Please create a Deployment.',
+  STATEFULSET_EMPTY_DESC: 'Please create a StatefulSet.',
+  DAEMONSET_EMPTY_DESC: 'Please create a DaemonSet.',
+  JOB_EMPTY_DESC: 'Please create a Job.',
+  CRONJOB_EMPTY_DESC: 'Please create a CronJob.',
   'Service Configuration': '服務配置',
 
   'Available number of nodes scheduled': '可用節點數',
@@ -51,7 +59,7 @@ module.exports = {
   POD_REPLICAS: '容器組副本數量',
   DEFAULT_RULES: 'Default Rules',
   DEFAULT_RULES_DESC:
-    'Schedules Pod replicas to nodes according to default rules.',
+    'Schedules the Pod replicas to nodes according to default rules.',
   CONTAINERS: '容器鏡像',
   CONTAINER_IMAGE: '容器鏡像',
   ADD_CONTAINER: '添加容器',
@@ -62,8 +70,8 @@ module.exports = {
   'Container Logs': '容器紀錄',
   'Resource Info': '資源資訊',
   'Node Name': '主機名稱',
-  'Node IP': '主機 IP',
   POD_IP_ADDRESS: '容器組 IP',
+  POD_IP_TCAP: '容器組 IP',
   IMAGE: '鏡像',
   IMAGE_VALUE: '鏡像：{value}',
   'Image ID': '鏡像 ID',
@@ -112,8 +120,8 @@ module.exports = {
 
   'Not Limited': '未限制',
   Cost: '占用',
-  'Project Remaining Quota': '項目剩餘配額',
-  'Workspace Remaining Quota': '企業空間剩餘配額',
+  PROJECT_REMAINING_QUOTAS: '項目剩餘配額',
+  WORKSPACE_REMAINING_QUOTAS: '企業空間剩餘配額',
   QUOTA_OVERCOST_TIP: '目前資源占用已超過剩餘配額',
 
   'Resource Request': '資源預留',
@@ -150,7 +158,7 @@ module.exports = {
   WORKLOAD_SPECIFY_NODE_DESC: '可以讓容器組副本在指定的節點運行',
   ADD_METADATA_DESC: '對資源進行額外的元數據設置，例如 Label 和 Annotation',
 
-  DEPLOYMENT_LOCATION: '部署位置',
+  LOCATION: '位置',
 
   SELECT_CONFIGMAP_DESC: '將配置中的值添加為卷。',
   SELECT_SECRET_DESC: '將密鑰中的值添加為卷。',
@@ -160,22 +168,18 @@ module.exports = {
   SELECT_VOLUME_DESC: '請選擇一個已經創建好的持久化儲存卷掛載至容器',
 
   REQUEST_EXCCED: '資源預留不能超過資源限制',
-  REQUEST_EXCCED_WORKSPACE: '資源设置不能大於工作區資源限制',
+  REQUEST_EXCEED_WORKSPACE: '資源设置不能大於工作區資源限制',
   REQUEST_EXCEED_LIMIT: '資源預留不能超過資源限制。',
 
   WORKLOAD_DESC:
     '工作負載 (Workload) 通常是訪問服務的實際載體, 也是對節點紀錄收集、監控等系統應用的實際運行載體，是對一組容器組 (Pod) 的抽象模型。',
 
-  WORKLOAD_CREATE_DESC:
+  WORKLOAD_EMPTY_DESC:
     '工作負載 (Workload) 通常是訪問服務的實際載體, 也是對節點紀錄收集、監控等系統應用的實際運行載體，是對一組容器組 (Pod) 的抽象模型。',
 
   JOB_DESC:
     'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
-  JOB_CREATE_DESC:
-    'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
   CRONJOB_DESC:
-    'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
-  CRONJOB_CREATE_DESC:
     'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
 
   CRONJOB_NAME_DESC:
@@ -346,18 +350,23 @@ module.exports = {
   CRONJOBS_VOLUME_DESC:
     '可以將臨時儲存卷，持久化儲存卷掛載至定時任務的容器組内。',
   CRONJOB_CRON_DESC:
-    'Set a schedule of a CronJob to be executed. For Cron syntax, see <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Cron</a>. Kubernetes use UTC by default. You need to adjust the schedule according to your time zone.',
+    'Set a schedule for the CronJob. KubeSphere uses UTC by default and you need to adjust the schedule according to your time zone. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Learn More</a>',
 
   MOUNT_VOLUME_DESC:
     '持久化儲存卷請選擇支持多節點讀寫模式 (ROX 或者 RWX) 的儲存卷，否則可能因容器組不在同一節點導致容器組更新失敗。如果您選擇了單節點讀寫 (RWO) 模式的儲存卷您也可以通過節點選擇將容器組安排在同一節點上來避免因儲存卷訪問模式造成的更新錯誤。',
 
   Job: '任務',
+  JOB: '任務',
   CronJob: '定時任務',
+  CRONJOB: '定時任務',
+  CRONJOB_PL: '定時任務',
+  NUMBER_OF_CRONJOBS: 'Number of CronJobs',
+  CRONJOB_LOW: '定時任務',
   Revision: '版本',
-  EVERY_HOUR: '（每小時）',
-  EVERY_DAY: '（每天）',
-  EVERY_WEEK: '（每週）',
-  EVERY_MONTH: '（每月）',
+  EVERY_DAY: '0 0 * * * (every day)',
+  EVERY_HOUR: '0 * * * * (every hour)',
+  EVERY_MONTH: '0 0 1 * * (every month)',
+  EVERY_WEEK: '0 0 * * 0 (every week)',
   Schedule: '定時計畫',
   'Revision Records': '版本記錄',
   'Revision Rollback': '版本回退',
@@ -379,7 +388,7 @@ module.exports = {
 
   'Horizontal Pod Autoscaling': '彈性伸縮',
   'Container Config': '容器配置',
-  'Add Command': '添加命令',
+  EDGENODE_CONFIG_COMMAND: '添加命令',
   Probe: '探針',
   'Add Probe': '添加探針',
   'Initial Delay': '初始延遲',
@@ -396,10 +405,9 @@ module.exports = {
   WORKER_CONTAINER: '工作容器',
   'Request Type': '請求類型',
 
-  startingDeadlineSeconds: '啟動 Job 的期限（秒）',
-  'startingDeadlineSeconds(s)': '啟動 Job 的期限（秒）',
-  successfulJobsHistoryLimit: '保留完成 Job 數',
-  failedJobsHistoryLimit: '保留失敗 Job 數',
+  STARTING_DEADLINE: 'Job Starting Deadline (s)',
+  SUCCESSFUL_JOBS_HISTORY_LIMIT: '保留完成任务數',
+  FAILED_JOBS_HISTORY_LIMIT: '保留失敗任务數',
   CONCURRENCY_POLICY: '並發策略',
 
   'Select resource': '選擇資源',
@@ -454,7 +462,8 @@ module.exports = {
   CONCURRENCY_POLICY_DESC:
     'Select a concurrency policy of a Job created by the CronJob.',
   'Can be found by node IP or node name': '可以通過節點 IP 或者節點名稱查找',
-  START_DEADLINE_SECONDS_DESC: 'Set the deadline for starting a Job.',
+  START_DEADLINE_SECONDS_DESC:
+    'Deadline for starting the Job if the scheduled run is missed for any reason.',
   'Container CPU Resource Request, 1 Core = 1000m':
     '容器的 CPU 資源請求值, 1核 = 1000m',
   'Container Memory Resource Request': '容器的 記憶體 資源請求值',
@@ -473,7 +482,7 @@ module.exports = {
   'min replicas number should not be greater than max replicas number':
     '最大副本數應不小於最小副本數',
 
-  'Horizontal Pod Autoscaling has been set': '已設置彈性伸縮策略',
+  HPA_SET_TIP: '已設置彈性伸縮策略',
 
   'Mount path is already in use': '掛載路徑已使用',
   'Please specify the read and write mode and mount path':
@@ -516,18 +525,18 @@ module.exports = {
   BACK_OFF_LIMIT: '最大重試次數',
   JOB_PARALLELISM_LABEL: '並行數',
   JOB_COMPLETION_LABEL: '完成數',
-  JOB_ACTIVE_DEADLINE: '退出超時時限（秒）',
+  JOB_ACTIVE_DEADLINE: '退出超時時限（s）',
 
   BACK_OFF_LIMIT_DESC:
-    'Maximum number of retries before marking a Job as failed. The default value is 6.',
+    'Maximum number of retries before marking the Job as failed. The default value is 6.',
   JOB_PARALLELISM_DESC: 'Number of Pods that run concurrently.',
   JOB_COMPLETION_DESC:
-    'Number of Pods that need to run successfully before a Job is complete.',
+    'Number of Pods that complete successfully required for the Job to be marked as complete.',
   JOB_ACTIVE_DEADLINE_DESC:
-    'Duration of a Job. The running Pods are terminated when the Job reaches the duration. The value must be a positive integer.',
+    'Maximum duration of the Job. The Job is terminated after reaching the specific timeout.',
 
-  RESTART_POLICY_NEVER_DESC: '（容器組出現故障時創建新的容器組）',
-  RESTART_POLICY_ONFAILURE_DESC: '（容器組出現故障時内部重啟容器）',
+  RESTART_POLICY_NEVER_DESC: 'Never（容器組出現故障時創建新的容器組）',
+  RESTART_POLICY_ONFAILURE_DESC: 'On failure（容器組出現故障時内部重啟容器）',
 
   RESTART_POLICY_TIP:
     'RestartPolicy 只能指定 Never 或 OnFailure，當任務未完成的情況下：<br/>* 如果 RestartPolicy 指定 Never，則任務會在容器組出現故障時創建新的容器組，且故障容器組不會消失。<br/>* 如果 RestartPolicy 指定 OnFailure，則任務會在容器組出現故障時其内部重啟容器，而不是創建容器組。',
@@ -646,7 +655,7 @@ module.exports = {
   NetworkPluginNotReady: '網路插件還沒有完全啟動',
   POD_DESC:
     '容器組 (Pod) 是 Kubernetes 應用程式的基本執行單元，是您創建或部署的 Kubernetes 對象模型中最小和最簡單的單元。',
-  POD_CREATE_DESC:
+  POD_EMPTY_DESC:
     '容器組 (Pod) 是 Kubernetes 應用程式的基本執行單元，是您創建或部署的 Kubernetes 對象模型中最小和最簡單的單元。',
   FILL_IMAGE_DEFAULT_PORTS_DESC: '是否暴露該鏡像的預設端口？',
 
@@ -749,13 +758,14 @@ module.exports = {
   NODE_IP: '{node}（{ip}）',
 
   // Jobs
-  JOBS: 'Jobs',
+  JOB_PL: 'Jobs',
+  NUMBER_OF_JOBS: 'Number of Jobs',
+  JOB_LOW: 'Job',
   CRONJOBS: 'CronJobs',
   SCHEDULE: 'Schedule',
 
   // CronJobs
   ADD_VOLUME: 'Add Volume',
-  RESTART_POLICY_DESC:
-    'The Pod restart policy. The value can be Never or onFailure.',
+  RESTART_POLICY_DESC: 'The Pod restart policy.',
   MOUNT_VOLUMES: 'Mount Volumes',
 }

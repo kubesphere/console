@@ -68,6 +68,7 @@ export default class NodeSelect extends Component {
           onFetch={this.fetchData}
           searchable
           multi
+          placeholder=" "
         />
       </Form.Item>
     )

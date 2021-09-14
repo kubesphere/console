@@ -17,7 +17,27 @@
  */
 
 module.exports = {
+  ROLES_VIEW: 'Roles Viewing',
+  ROLES_MANAGEMENT: 'Role Management',
+  USERS_MANAGEMENT: 'Users Management',
+  USERS_VIEW: 'Users Viewing',
+  WORKSPACES_MANAGEMENT: 'Workspace Management',
+  WORKSPACES_VIEW: 'Workspace Viewing',
+  APP_TEMPLATES_MANAGEMENT: 'App Template Management',
+  APP_TEMPLATES_VIEW: 'App Template Viewing',
+  PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
+  WORKSPACE_ROLE_NAME_TIP:
+    'The role name is used as the unique identifier of the role.',
+  PROJECTS_MANAGEMENT: 'Project Management',
+  DEVOPS_MANAGEMENT: 'DevOps Project Management',
+  WORKSPACE_GROUPS_MANAGEMENT: 'Workspace Department Management',
+  WORKSPACE_GROUPS_VIEW: 'Workspace Department Viewing',
   'Account Role': 'Rol de cuenta',
+  CLUSTERS_VIEW: 'Cluster Viewing',
+  CREATE_ROLE: 'Create Role',
+  PLATFORM_ROLE: 'Platform Role',
+  PLATFORM_ROLES: 'Platform Roles',
+  'Platform Roles': 'Platform Roles',
   'Account Roles': 'Roles de cuenta',
   'Alerting Messages Management': 'Gestión de mensajes de alerta',
   'Alerting Messages View': 'Vista de mensajes de alerta',
@@ -41,7 +61,6 @@ module.exports = {
   'Cluster Role': 'Rol de clúster',
   'Cluster Roles Management': 'Gestión de roles de clúster',
   'Cluster Roles View': 'Vista de roles de clúster',
-  'Clusters Management': 'Gestión de clusters',
   'Clusters View': 'Vista de grupos',
   'Components Management': 'Gestión de componentes',
   'ConfigMaps Management': 'ConfigMaps Management',
@@ -57,14 +76,14 @@ module.exports = {
   'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
     'Rol de usuario predeterminado que permite a un usuario administrar recursos dentro de los proyectos creados por el propio usuario o invitados por otros. No permite al usuario administrar recursos no autorizados en el clúster.',
   'Depend on': 'Depender de',
-  'DevOps Create': 'Creación de DevOps',
+  DEVOPS_CREATE: 'Creación de DevOps',
   'DevOps Management': 'Gestión de DevOps',
   'DevOps Members Management': 'Gestión de miembros de DevOps',
   'DevOps Members View': 'Vista de miembros de DevOps',
   'DevOps Roles Management': 'Gestión de roles de DevOps',
   'DevOps Roles View': 'Vista de roles de DevOps',
   'DevOps Settings': 'Configuración de DevOps',
-  'DevOps View': 'Vista de DevOps',
+  DEVOPS_VIEW: 'Vista de DevOps',
   'Edit Account Role': 'Editar rol de cuenta',
   'Edit Authorization': 'Editar autorización',
   'Edit Cluster Role': 'Editar rol de clúster',
@@ -74,7 +93,7 @@ module.exports = {
   'Invalid role name': 'Nombre de rol inválido',
   'Invited Successfully': 'Invitado con éxito',
   Member: 'Miembro',
-  Modules: 'Módulos',
+  MODULES: 'Módulos',
   'Network Policies Management': 'Gestión de políticas de red',
   'Network Policies View': 'Vista de políticas de red',
   'No Authorization': 'Sin autorización',
@@ -82,7 +101,7 @@ module.exports = {
   'Pipelines Management': 'Gestión de pipelines',
   'Pipelines View': 'Vista de pipelines',
   'Platform Settings Management': 'Gestión de configuración de plataforma',
-  'Please input role name': 'Por favor, introduce el nombre del rol',
+  ROLE_NAME_EMPTY: 'Por favor, introduce el nombre del rol',
   'Please specify role authorization':
     'Por favor, especifique la autorización del rol',
   'Project Details': 'Detalles de proyecto',
@@ -91,9 +110,9 @@ module.exports = {
   'Project Resources Management': 'Gestión de recursos de proyecto',
   'Project Roles Management': 'Gestión de Roles de Proyecto',
   'Project Roles View': 'Vista de roles de proyecto',
-  'Projects Create': 'Creación de proyectos',
+  PROJECTS_CREATE: 'Creación de proyectos',
   'Projects Management': 'Gestión de proyectos',
-  'Projects View': 'Vista de proyectos',
+  PROJECTS_VIEW: 'Vista de proyectos',
   Role: 'Rol',
   'Role Management': 'Gestión de roles',
   'Role name exists': 'El nombre del rol ya existe',
@@ -113,18 +132,18 @@ module.exports = {
   'Volume Snapshots View': 'Vista de snapshots de volumen',
   'Volumes Management': 'Gestión de volúmenes',
   'Volumes View': 'Vista de volúmenes',
-  'Workspace App Repos Management':
+  WORKSPACE_APP_REPOS_MANAGEMENT:
     'Gestión de repositorios de aplicaciones del espacio de trabajo',
-  'Workspace App Repos View':
+  WORKSPACE_APP_REPOS_VIEW:
     'Vista de repositorios de aplicaciones del espacio de trabajo',
-  'Workspace App Templates Management':
+  WORKSPACE_APP_TEMPLATES_MANAGEMENT:
     'Gestión de plantillas de aplicaciones del espacio de trabajo',
-  'Workspace App Templates View':
+  WORKSPACE_APP_TEMPLATES_VIEW:
     'Vista de plantillas de aplicación del espacio de trabajo',
-  'Workspace Members Management': 'Gestión de miembros del espacio de trabajo',
-  'Workspace Members View': 'Vista de miembros del espacio de trabajo',
-  'Workspace Roles Management': 'Gestión de roles del espacio de trabajo',
-  'Workspace Roles View': 'Vista de roles del espacio de trabajo',
+  WORKSPACE_MEMBERS_MANAGEMENT: 'Gestión de miembros del espacio de trabajo',
+  WORKSPACE_MEMBERS_VIEW: 'Vista de miembros del espacio de trabajo',
+  WORKSPACE_ROLES_MANAGEMENT: 'Gestión de roles del espacio de trabajo',
+  WORKSPACE_ROLES_VIEW: 'Vista de roles del espacio de trabajo',
   'Workspaces Management': 'Gestión de espacios de trabajo',
   'Workspaces View': 'Vista de espacios de trabajo',
   NO_AVAILABLE_ROLE: 'No hay roles disponibles para el proyecto actual.',
@@ -208,6 +227,8 @@ module.exports = {
   COMPONENTS_MANAGEMENT_DESC: 'Gestionar componentes del clúster',
   CLUSTERS_VIEW_DESC:
     'Ver todos los clústeres y recursos de clúster dentro de una plataforma',
+  'Clusters Management': 'Cluster Management',
+  CLUSTERS_MANAGEMENT: 'Cluster Management',
   CLUSTERS_MANAGEMENT_DESC:
     'Crear / eliminar grupos, gestionar recursos en todos los clústeres',
   WORKSPACES_VIEW_DESC:
@@ -266,7 +287,7 @@ module.exports = {
   APPLICATION_WORKLOADS_VIEW_DESC:
     'Grant permission to view applications, services, workloads, tasks, grayscale releases and image builder tasks in the project',
   APPLICATION_WORKLOADS_MANAGEMENT_DESC:
-    'Grant permission to create, edit and delete applications, services, workloads, tasks, grayscale releases and image builder tasks in the project',
+    'Grant permission to create, edit, and delete applications, services, workloads, tasks, grayscale releases and image builder tasks in the project',
   VOLUMES_VIEW_DESC: 'Ver volúmenes de proyectos',
   VOLUMES_MANAGEMENT_DESC: 'Crear / editar / eliminar volúmenes de proyecto',
   SECRETS_VIEW_DESC: 'Ver secretos del proyecto',
@@ -361,8 +382,8 @@ module.exports = {
   ROLE_DEVOPS_OPERATOR:
     'Usuario normal en un proyecto DevOps, que puede crear credenciales para las pipelines en el proyecto DevOps.',
 
-  'Workspace Settings View': 'vista de configuración del espacio de trabajo',
-  'Workspace Settings Management':
+  WORKSPACE_SETTINGS_VIEW: 'vista de configuración del espacio de trabajo',
+  WORKSPACE_SETTINGS_MANAGEMENT:
     'gestión de la configuración del espacio de trabajo',
   WORKSPACE_SETTINGS_DESC:
     'Concede permiso para gestionar el workspace: cambiar los parámetros, editar la información, network policies, etc.',

@@ -49,6 +49,7 @@ module.exports = {
   'File Uploaded Successfully': 'File Uploaded Successfully',
   'Image Artifacts': 'Image Artifacts',
   'Image Builder': 'Image Builder',
+  IMAGE_BUILDER: 'Image Builder',
   'Image Builders': 'Image Builder',
   'Image Building': 'Image Building',
   'Image building failed': 'Image building failed',
@@ -148,8 +149,7 @@ module.exports = {
   WAR_DESC:
     'WAR file is a file used to distribute a collection of JAR-files, JavaServer Pages, Java Servlets, Java classes, XML files, tag libraries, static web pages (HTML and related files) and other resources that together constitute a web application.',
   BINARY_DESC: '',
-  IMAGE_BUILDER_CREATE_DESC:
-    'Image Builder is a tool that makes it easy to write container images that take application source code or artifacts as an input and produce a new image that runs the assembled application as output. It includes Source to Image, a.k.a S2I which takes source code as input, and Binary to Image, a.k.a. B2I which takes application artifacts as input.',
+  IMAGE_BUILDER_EMPTY_DESC: 'Please create an image builder.',
   WRONG_FILE_EXTENSION_NAME:
     'The selected file type does not match, please select the {type} type',
   PROBE_COMMAND_DESC: 'Use commas to separate multiple commands.',

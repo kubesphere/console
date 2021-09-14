@@ -21,10 +21,12 @@ module.exports = {
   REPLICA_LOW_SI: '副本',
   REPLICA_LOW_PL: '副本',
   Workload: '工作负载',
+  WORKLOAD: '工作负载',
+  WORKLOAD_PL: '工作负载',
+  WORKLOAD_LOW: '工作负载',
   Workloads: '工作负载',
   IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} 层',
   IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} 层',
-  TAG: '标签',
   CPU_REQUEST: 'CPU 预留',
   CPU_LIMIT: 'CPU 限制',
   MEMORY_REQUEST: '内存预留',
@@ -37,10 +39,16 @@ module.exports = {
   TARGET: '目标',
   MOUNT_PATH_EMPTY: '请输入挂载路径。',
   CONFIGMAP: '配置字典',
-  SECRET: '保密字典',
+  CONFIGMAP_PL: '配置字典',
+  CONFIGMAP_LOW: '配置字典',
   PARTITION_ORDINAL: '容器组副本分组序号',
   PARTITION_ORDINAL_DESC:
     '容器组副本按序号分成两组。更新有状态副本集时，只有序号大于分组序号的容器组副本会被更新。',
+  DEPLOYMENT_EMPTY_DESC: '请创建一个部署。',
+  STATEFULSET_EMPTY_DESC: '请创建一个有状态副本集。',
+  DAEMONSET_EMPTY_DESC: '请创建一个守护进程集。',
+  JOB_EMPTY_DESC: '请创建一个任务。',
+  CRONJOB_EMPTY_DESC: '请创建一个定时任务。',
   'Service Configuration': '服务配置',
 
   'Available number of nodes scheduled': '可用节点数',
@@ -111,8 +119,8 @@ module.exports = {
   NO_LIMIT: '不限制',
   'Not Limited': '未限制',
   Cost: '占用',
-  'Project Remaining Quota': '项目剩余配额',
-  'Workspace Remaining Quota': '企业空间剩余配额',
+  PROJECT_REMAINING_QUOTAS: '项目剩余配额',
+  WORKSPACE_REMAINING_QUOTAS: '企业空间剩余配额',
   QUOTA_OVERCOST_TIP: '当前资源占用已超过剩余配额',
 
   'Resource Request': '资源预留',
@@ -147,7 +155,7 @@ module.exports = {
 
   'Additional metadata settings for resources.': '对资源进行额外的元数据设置',
 
-  DEPLOYMENT_LOCATION: '部署位置',
+  LOCATION: '位置',
 
   SELECT_CONFIGMAP_DESC: '将配置字典挂载到容器。',
   SELECT_SECRET_DESC: '将保密字典挂载到容器。',
@@ -157,22 +165,16 @@ module.exports = {
   SELECT_VOLUME_DESC: '选择现有的存储卷以将其挂载到容器。',
 
   REQUEST_EXCCED: '资源预留不能超过资源限制',
-  REQUEST_EXCCED_WORKSPACE: '资源设置不能大于工作区资源限制',
+  REQUEST_EXCEED_WORKSPACE: '资源设置不能超过企业空间资源上限。',
   REQUEST_EXCEED_LIMIT: '资源预留不能超过资源限制。',
 
   WORKLOAD_DESC:
-    '工作负载 (Workload) 通常是访问服务的实际载体, 也是对节点日志收集、监控等系统应用的实际运行载体，是对一组容器组 (Pod) 的抽象模型。',
+    '工作负载（Workload）用于处理业务请求，可包含一个或多个容器组。日志、监控等系统功能也是由工作负载实现的。',
 
-  WORKLOAD_CREATE_DESC:
-    '工作负载 (Workload) 通常是访问服务的实际载体, 也是对节点日志收集、监控等系统应用的实际运行载体，是对一组容器组 (Pod) 的抽象模型。',
-
+  WORKLOAD_EMPTY_DESC: '请创建一个工作负载。',
   JOB_DESC:
     '任务（Job）用于运行短暂的一次性任务。任务会创建一个或多个容器组，并保证指定数量的容器组成功结束。',
-  JOB_CREATE_DESC:
-    '任务（Job）用于运行短暂的一次性任务。任务会创建一个或多个容器组，并保证指定数量的容器组成功结束。',
   CRONJOB_DESC:
-    '定时任务（CronJob）管理基于时间的任务（Job），可用于运行周期性任务或重复性任务。',
-  CRONJOB_CREATE_DESC:
     '定时任务（CronJob）管理基于时间的任务（Job），可用于运行周期性任务或重复性任务。',
 
   CRONJOB_NAME_DESC:
@@ -183,7 +185,7 @@ module.exports = {
   IMAGE_EMPTY: '请设置镜像。',
   IMAGE_REGISTRY_PLACEHOLDER: '请选择镜像仓库密钥',
   IMAGE_DESC:
-    '如需使用私有镜像仓库，您需要先<a href={link} target="_blank">创建镜像仓库密钥</a>。',
+    '如需使用私有镜像仓库，您需要先创建镜像仓库密钥。<a href={link} target="_blank">了解更多</a>',
   'Replicas Number': '副本数量',
   'Specify Replicas Number': '指定副本数量',
   'Replica Status': '副本运行状态',
@@ -348,18 +350,23 @@ module.exports = {
   CRONJOBS_VOLUME_DESC:
     '可以将临时存储卷，持久化存储卷挂载至定时任务的容器组内。',
   CRONJOB_CRON_DESC:
-    '为要执行的定时任务设置定时计划。有关 Cron 语法规则，请参阅 <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Cron</a>。Kubernetes 默认使用 UTC 时间, 您需要根据时区调整定时计划。',
+    '为定时任务设置定时计划。KubeSphere 默认使用 UTC 时间, 您需要根据时区调整定时计划。<a href="//en.wikipedia.org/wiki/Cron" target="_blank">了解更多</a>',
 
   MOUNT_VOLUME_DESC:
     '持久化存储卷请选择支持多节点读写模式 (ROX 或者 RWX) 的存储卷，否则可能因容器组不在同一节点导致容器组更新失败。如果您选择了单节点读写 (RWO) 模式的存储卷您也可以通过节点选择将容器组安排在同一节点上来避免因存储卷访问模式造成的更新错误。',
 
   Job: '任务',
+  JOB: '任务',
   CronJob: '定时任务',
+  CRONJOB: '定时任务',
+  CRONJOB_PL: '定时任务',
+  NUMBER_OF_CRONJOBS: '定时任务数量',
+  CRONJOB_LOW: '定时任务',
   Revision: '版本',
-  EVERY_HOUR: '（每小时）',
-  EVERY_DAY: '（每天）',
-  EVERY_WEEK: '（每周）',
-  EVERY_MONTH: '（每月）',
+  EVERY_DAY: '0 0 * * * (每天))',
+  EVERY_HOUR: '0 * * * * (每小时))',
+  EVERY_MONTH: '0 0 1 * * (每月)',
+  EVERY_WEEK: '0 0 * * 0 (每周)',
   Schedule: '定时计划',
   'Revision Records': '版本记录',
   'Revision Rollback': '版本回退',
@@ -381,7 +388,7 @@ module.exports = {
 
   'Horizontal Pod Autoscaling': '弹性伸缩',
   'Container Config': '容器配置',
-  'Add Command': '添加命令',
+  EDGENODE_CONFIG_COMMAND: '边缘节点配置命令',
   Probe: '探针',
   'Add Probe': '添加探针',
   'Initial Delay': '初始延迟',
@@ -398,10 +405,9 @@ module.exports = {
   WORKER_CONTAINER: '工作容器',
   'Request Type': '请求类型',
 
-  startingDeadlineSeconds: '启动任务的截止期限（秒）',
-  'startingDeadlineSeconds(s)': '启动任务的截止期限（秒）',
-  successfulJobsHistoryLimit: '保留完成任务数',
-  failedJobsHistoryLimit: '保留失败任务数',
+  STARTING_DEADLINE: '启动任务的截止期限（s）',
+  SUCCESSFUL_JOBS_HISTORY_LIMIT: '保留完成任务数',
+  FAILED_JOBS_HISTORY_LIMIT: '保留失败任务数',
   CONCURRENCY_POLICY: '并发策略',
 
   'Select resource': '选择资源',
@@ -417,7 +423,7 @@ module.exports = {
   'Redeploy Successfully': '重新部署成功',
 
   REDEPLOY_CONFIRM_DESC:
-    '您即将重新部署工作负载 {resource} ({type}) , 容器组将根据更新策略进行重新部署，您的业务可能会被暂时中断。',
+    '您确定重新部署{type} {resource} 吗？容器组副本将根据更新策略重新部署，同时相关业务将会中断。',
 
   MORE: '更多操作',
   VIEW_YAML: '查看 YAML 文件',
@@ -456,7 +462,8 @@ module.exports = {
   SUCCESSFUL_JOBS_DESC: '允许保留的成功任务的个数。',
   CONCURRENCY_POLICY_DESC: '为定时任务所创建的任务选择并发策略。',
   'Can be found by node IP or node name': '可以通过节点 IP 或者节点名称查找',
-  START_DEADLINE_SECONDS_DESC: '启动任务的截止期限。',
+  START_DEADLINE_SECONDS_DESC:
+    '因为某种原因任务未能按定时计划执行，启动该任务的截止期限。',
   'Container CPU Resource Request, 1 Core = 1000m':
     '容器的 CPU 资源请求值, 1核 = 1000m',
   'Container Memory Resource Request': '容器的 内存 资源请求值',
@@ -475,7 +482,7 @@ module.exports = {
   'min replicas number should not be greater than max replicas number':
     '最大副本数应不小于最小副本数',
 
-  'Horizontal Pod Autoscaling has been set': '已设置弹性伸缩策略',
+  HPA_SET_TIP: '已设置容器组水平自动扩缩策略。',
 
   'Mount path is already in use': '挂载路径已使用',
   'Please specify the read and write mode and mount path':
@@ -517,16 +524,16 @@ module.exports = {
   BACK_OFF_LIMIT: '最大重试次数',
   JOB_PARALLELISM_LABEL: '并行数',
   JOB_COMPLETION_LABEL: '完成数',
-  JOB_ACTIVE_DEADLINE: '退出超时时限（秒）',
+  JOB_ACTIVE_DEADLINE: '退出超时时限（s）',
 
   BACK_OFF_LIMIT_DESC: '将任务标记为失败之前的最大重试次数。默认值为 6。',
   JOB_PARALLELISM_DESC: '并行运行的容器组数量。',
-  JOB_COMPLETION_DESC: '任务结束需要成功运行的容器组数量。',
+  JOB_COMPLETION_DESC: '将任务标记为结束需要成功运行的容器组数量。',
   JOB_ACTIVE_DEADLINE_DESC:
-    '任务的持续时间。任务达到持续时间后，运行中的容器组将会终止。该值必须为正整数。',
+    '任务的最大持续时间。任务达到指定超时时限后就会结束。',
 
-  RESTART_POLICY_NEVER_DESC: '（容器组出现故障时创建新的容器组）',
-  RESTART_POLICY_ONFAILURE_DESC: '（容器组出现故障时内部重启容器）',
+  RESTART_POLICY_NEVER_DESC: 'Never（容器组出现故障时创建新的容器组）',
+  RESTART_POLICY_ONFAILURE_DESC: 'On failure（容器组出现故障时内部重启容器）',
 
   RESTART_POLICY_TIP:
     'RestartPolicy 只能指定 Never 或 OnFailure，当任务未完成的情况下：<br/>* 如果 RestartPolicy 指定 Never，则任务会在容器组出现故障时创建新的容器组，且故障容器组不会消失。<br/>* 如果 RestartPolicy 指定 OnFailure，则任务会在容器组出现故障时其内部重启容器，而不是创建容器组。',
@@ -650,8 +657,7 @@ module.exports = {
   NetworkPluginNotReady: '网络插件还没有完全启动',
   POD_DESC:
     '容器组（Pod）是 Kubernetes 应用程序的基本执行单元，是您创建或部署的 Kubernetes 对象模型中最小和最简单的单元。',
-  POD_CREATE_DESC:
-    '容器组（Pod）是 Kubernetes 应用程序的基本执行单元，是您创建或部署的 Kubernetes 对象模型中最小和最简单的单元。',
+  POD_EMPTY_DESC: '请创建一个容器组。',
   FILL_IMAGE_DEFAULT_PORTS_DESC: '是否暴露该镜像的默认端口？',
 
   ISTIO_PROTOCOL_TIP:
@@ -769,12 +775,14 @@ module.exports = {
   NODE_IP: '{node}（{ip}）',
 
   // Jobs
-  JOBS: '任务',
+  JOB_PL: '任务',
+  NUMBER_OF_JOBS: '任务数量',
+  JOB_LOW: '任务',
   CRONJOBS: '定时任务',
   SCHEDULE: '定时计划',
 
   // CronJobs
   ADD_VOLUME: '添加存储卷',
-  RESTART_POLICY_DESC: '容器组的重启策略。该值可为 Never 或 onFailure。',
+  RESTART_POLICY_DESC: '容器组的重启策略。',
   MOUNT_VOLUMES: '挂载存储卷',
 }

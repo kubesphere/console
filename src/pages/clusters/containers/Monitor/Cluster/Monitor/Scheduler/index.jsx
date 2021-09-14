@@ -67,9 +67,9 @@ class SchedulerMonitorings extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'area',
-      title: 'ATTEMPT_FREQUENCY',
+      title: 'SCHEDULE_ATTEMPTS',
       unit: '',
-      legend: ['SCHEDULED_SUCCESS', 'SCHEDULED_ERROR', 'SCHEDULED_FAIL'],
+      legend: ['SUCCESS', 'ERROR', 'FAILURE'],
       data: [
         this.getSpecificData('schedule_attempts_count', 'result', 'scheduled'),
         this.getSpecificData('schedule_attempts_count', 'result', 'error'),
@@ -83,9 +83,9 @@ class SchedulerMonitorings extends React.Component {
     },
     {
       type: 'area',
-      title: 'ATTEMPT_RATE',
+      title: 'SCHEDULING_RATE',
       unit: 'times/s',
-      legend: ['SCHEDULED_SUCCESS', 'SCHEDULED_ERROR', 'SCHEDULED_FAIL'],
+      legend: ['SUCCESS', 'ERROR', 'FAILURE'],
       data: [
         this.getSpecificData('schedule_attempt_rate', 'result', 'scheduled'),
         this.getSpecificData('schedule_attempt_rate', 'result', 'error'),

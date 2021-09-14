@@ -56,7 +56,7 @@ export default class GroupTree extends Component {
   }
 
   renderPlaceHolder = () => {
-    return <div className={styles.empty}>{t('WORKSPACE_GROUP_EMPTY_DESC')}</div>
+    return <div className={styles.empty}>{t('DEPARTMENT_EMPTY_DESC')}</div>
   }
 
   render() {

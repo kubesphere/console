@@ -90,7 +90,7 @@ export default class EditGroupModal extends React.Component {
         width={1162}
         title={title}
         closable={false}
-        cancelText={t('Close')}
+        cancelText={t('CLOSE')}
         visible={visible}
         onCancel={onCancel}
         bodyClassName={styles.modalBody}

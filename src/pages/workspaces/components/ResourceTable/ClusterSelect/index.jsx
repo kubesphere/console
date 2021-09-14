@@ -23,7 +23,7 @@ import StatusReason from 'clusters/components/StatusReason'
 import styles from './index.scss'
 
 export default class ClusterSelect extends Component {
-  valueRenderer = option => `${t('Cluster')}: ${option.value}`
+  valueRenderer = option => t('CLUSTER_VALUE', { value: option.value })
 
   optionRenderer = option => (
     <div>

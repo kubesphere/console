@@ -51,7 +51,7 @@ export default {
             })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('Created Successfully')}` })
+              Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
               success && success()
             })
         },
@@ -74,7 +74,7 @@ export default {
         onOk: data => {
           store.patch(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}` })
+            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
             success && success()
           })
         },
@@ -92,7 +92,7 @@ export default {
         onOk: data => {
           store.patch(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}` })
+            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
             success && success()
           })
         },

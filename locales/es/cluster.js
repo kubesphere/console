@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Add Cluster': 'Agregar clúster',
+  ADD_CLUSTER: 'Agregar clúster',
   'Add New Cluster': 'Agregar nuevo clúster',
   ALL_PROJECTS: 'Todos los proyectos',
   'Authorize the cluster to workspace':
@@ -70,10 +70,12 @@ module.exports = {
   'Please select or input a tag':
     'Por favor selecciona o introduce una etiqueta',
   SCHEDULING_OPERATIONS: 'Horarios de programación',
+  SCHEDULING_OPERATION: 'Scheduling operation',
   SCHEDULING_FAILURES: 'Programar pods fallidos',
+  SCHEDULING_FAILURE: 'Scheduling failure',
   'Select Clusters': 'Seleccionar clústeres',
-  SET_PUBLIC_CLUSTER: 'Establecer como clúster público',
-  Snapshots: 'Volume Snapshots',
+  SET_PUBLIC_CLUSTER: 'Set as Public Cluster',
+  Snapshots: 'Snapshots',
   'Storage Management': 'Storage',
   SYSTEM_PROJECTS: 'Proyectos de Sistema',
   'The current cluster is public': 'El clúster actual es público.',
@@ -130,10 +132,10 @@ module.exports = {
   IMPORT_CLUSTER_DESC: 'Importar un clúster de Kubernetes existente',
   SELECT_CLUSTERS_DESC:
     'Selecciona el clúster disponible en el espacio de trabajo.',
-  CLUSTER_TAG: 'Etiqueta',
-  CLUSTER_TAG_DESC:
-    'Para indicar para qué se utiliza el clúster, como un entorno de producción, un entorno de prueba o un entorno de demostración',
-  CLUSTER_PROVIDER_DESC: 'El proveedor de infraestructura de clúster',
+  CLUSTER_SETTINGS_DESC: 'Definir información de configuración del clúster',
+  TAG: 'Etiqueta',
+  CLUSTER_TAG_DESC: 'Select a tag to identify the purpose of the cluster.',
+  CLUSTER_PROVIDER_DESC: 'Select the provider of the cluster infrastructure.',
   CLUSTER_CONNECT_METHOD_DESC:
     'Conéctese directamente al clúster o use un agente',
   CONNTECT_DIRECT: 'Conexión directa al clúster de Kubernetes',
@@ -149,7 +151,8 @@ module.exports = {
   CLUSTER_AGENT_TIP_3_DESC:
     'Después de ejecutar el comando, espere la actualización del estado del clúster.',
   CLUSTER_CONDITIONS: 'Condiciones de clúster',
-  CLUSTER_BASE_INFO_DESC: 'Overview of the cluster basic information.',
+  CLUSTER_BASE_INFO_DESC:
+    'Basic information provides an overview of the cluster. You can view and edit cluster information.',
   INVITE_CLUSTER_MEMBER_DESC:
     'Puedes invitar a nuevos miembros a este clúster.',
   CLUSTER_API_SERVER_TITLE: 'Servidor API Kubesphere para agregar al clúster',
@@ -167,7 +170,7 @@ module.exports = {
   HOW_TO_GET_KUBECONFIG: '¿Cómo obtener KubeConfig?',
   UNBIND_CLUSTER_DESC:
     'Una vez que el clúster no está vinculado, KubeSphere no podrá administrar el clúster y los recursos de Kubernetes dentro del clúster no se eliminarán.',
-  SURE_TO_UNBIND_CLUSTER: 'Sí, confirmo que quiero desvincular el clúster.',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation.',
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
     'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
   PUBLIC_CLUSTER_DESC:
@@ -176,17 +179,17 @@ module.exports = {
     'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
   CLUSTER_VISIBILITY_Q1: 'How do I authorize a cluster to specific workspaces?',
   CLUSTER_VISIBILITY_A1:
-    'You can assign a cluster to specific workspaces by clicking <strong>Edit Visibility</strong>.',
+    'You can assign a cluster to specific workspaces by clicking Edit Visibility.',
   CLUSTER_VISIBILITY_Q2: '¿Qué es un clúster público?',
   CLUSTER_VISIBILITY_A2:
     'Un clúster público significa que todos los usuarios de la plataforma pueden acceder al clúster, en el que pueden crear y programar recursos.',
   SELECT_HOST_CLUSTER_WARNING:
-    'The stability across clusters will decrease if the host cluster is overloaded. It is not recommended to create resources on the host cluster.',
+    'The visibility of the multi-cluster environment will decrease if the host cluster is overloaded. It is not recommended to create resources on the host cluster.',
   HOST_CLUSTER_VISIBILITY_WARNING:
-    'The stability across clusters will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
+    'The visibility of the multi-cluster environment will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
   REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
   REMOVE_WORKSPACE_CONFIRM_DESC:
-    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 
   SELECT_ADD_CLUSTER_METHOD: 'Choose how to add a cluster',
   SELECT_ADD_CLUSTER_METHOD_DESC:
@@ -196,8 +199,12 @@ module.exports = {
   CLUSTER_NODE_SETTINGS_DESC: 'add the nodes for the cluster',
   NODE_INTERNAL_IP_DESC:
     'The internal IP address for the connection between cluster nodes.',
+  EDGENODE_INTERNAL_IP_DESC:
+    'The internal IP address for the connection between cluster nodes.',
   NODE_INTERNAL_IP_EMPTY_DESC:
-    'Please enter the IP address of the node in the private network.',
+    'Please set the IP address of the node in the KubeSphere cluster.',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC:
+    'Please set the IP address of the edge node in the KubeSphere cluster.',
   NODE_ROLE_DESC:
     'The number of master nodes needs to be 1 or 3, and the number of woker nodes must be at least 1.',
   NODE_EXTERNAL_IP_DESC:
@@ -246,6 +253,7 @@ module.exports = {
   CREATING_CLUSTER_DESC:
     'The current cluster is being created, and there are no nodes available for the time being.',
   COPY_SUCCESSFUL: 'Copied successfully.',
+  CLUSTER_INIT_FAILED: 'Cluster initialization failed.',
   INIT_NODES: 'Init Nodes',
   PULL_IMAGES: 'Pull Images',
   INIT_ETCD_CLUSTER: 'Init etcd Cluster',
@@ -262,26 +270,28 @@ module.exports = {
     'According to the size of the created cluster and the difference in network connection, it takes about 30 to 60 minutes to create the entire cluster. ',
 
   CLUSTER_UPGRADE_REQUIRED:
-    'Esta función no está disponible en la versión actual del clúster. Actualice a {versión} o superior.',
+    'The cluster version does not support this function. Please upgrade the cluster to {version} or later.',
   MEMBER_CLUSTER_UPGRADE_TIP:
-    'Los clústeres de miembros de una versión anterior a la {version} no pueden utilizar esta función. Actualice el clúster de miembros a la versión {version} o superior.',
+    'Member clusters with versions earlier than {version} do not support this function. Please upgrade the member clusters to {version} or later.',
 
   // Unbind Cluster
   UNBIND_CLUSTER_Q: 'Unbind Cluster',
 
   // Cluster Visibility
+  NODE: 'Node',
   ADMINISTRATOR: 'Administrator',
   CLUSTER_VISIBILITY: 'Cluster Visibility',
   CLUSTER_VISIBILITY_DESC:
-    'Cluster visibility allows users to view and manage cluster resources in workspaces after the cluster is authorized to the workspaces.',
+    'Cluster visibility controls the cluster authorization to workspaces. After a cluster is authorized to workspaces, you can view and manage the cluster resources in the workspaces.',
   EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
     'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
-  TO_BE_AUTHORIZED: 'To be authorized',
+  UNAUTHORIZED: 'Unauthorized',
+  LOGGING: 'Logging',
   EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:
-    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   REMOVE_WORKSPACE_CONFIRM_PL:
-    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 }

@@ -100,7 +100,7 @@ export default class AddRepoModal extends Component {
   render() {
     const { detail, store, onOk, onCancel, workspace, ...rest } = this.props
 
-    const title = detail ? 'Edit App Repository' : 'Add App Repository'
+    const title = detail ? 'EDIT_APP_REPO' : 'ADD_APP_REPO'
 
     return (
       <Modal.Form
@@ -114,7 +114,7 @@ export default class AddRepoModal extends Component {
         {...rest}
       >
         <Form.Item
-          label={t('App Repository Name')}
+          label={t('NAME')}
           rules={[{ required: true, message: t('NAME_EMPTY_DESC') }]}
         >
           <Input name="name" autoFocus={true} />

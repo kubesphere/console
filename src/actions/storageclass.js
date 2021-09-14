@@ -46,7 +46,7 @@ export default {
 
           store.createAlongWithSnapshotClasses(data, { cluster }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Created Successfully')}` })
+            Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
             success && success()
             formPersist.delete(`${module}_create_form`)
           })
@@ -116,7 +116,7 @@ export default {
             name: detail.name,
             cluster: detail.cluster,
           })
-          Notify.success({ content: `${t('Update Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
           Modal.close(modal)
           success && success()
         },

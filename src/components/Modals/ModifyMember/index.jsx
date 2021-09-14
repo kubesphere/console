@@ -77,7 +77,7 @@ export default class ModifyMemberModal extends React.Component {
     return (
       <Modal.Form
         width={691}
-        title={t('Modify Member Role')}
+        title={t('CHANGE_MEMBER_ROLE')}
         icon="role"
         onOk={this.handleOk}
         onCancel={onCancel}
@@ -85,8 +85,8 @@ export default class ModifyMemberModal extends React.Component {
         isSubmitting={isSubmitting}
       >
         <Form.Item
-          label={t('Role')}
-          rules={[{ required: true, message: t('Please select a role') }]}
+          label={t('ROLE')}
+          rules={[{ required: true, message: t('SELECT_ROLE_TIP') }]}
         >
           <Select
             name="role"

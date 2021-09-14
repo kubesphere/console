@@ -87,7 +87,7 @@ export default class UserItem extends React.Component {
           <Text
             className={styles.text}
             title={this.getGroupName(user.groups)}
-            description={t('User Group Assigned')}
+            description={t('DEPARTMENT')}
           />
         )}
         {this.renderButton()}

@@ -65,10 +65,10 @@ class QuotaManage extends React.Component {
       <div>
         <Banner
           icon="cdn"
-          title={t('Quota Management')}
+          title={t('QUOTA_MANAGEMENT')}
           description={t('WORKSPACE_QUOTA_MANAGE_DESC')}
         />
-        <div className={styles.title}>{t('Quota Management')}</div>
+        <div className={styles.title}>{t('QUOTA_MANAGEMENT')}</div>
         {clusters.map(cluster => (
           <ResourceQuota
             key={cluster.name}

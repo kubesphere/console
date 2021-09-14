@@ -198,7 +198,7 @@ export default class ServiceDetail extends React.Component {
             {`${
               serviceType
                 ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                : t('CUSTOM_CREATION')
+                : t('CUSTOM_SERVICE')
             }`}
             <span className="text-desc"> ({detail.type})</span>
           </span>

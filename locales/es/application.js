@@ -28,6 +28,10 @@ module.exports = {
   'App Description': 'Descripción de la aplicación',
   'App store deployment': 'Despliegue desde la tienda de aplicaciones',
   'App Template': 'Plantilla de la aplicación',
+  APP_TEMPLATE: 'App Template',
+  APP_TEMPLATE_PL: 'App Templates',
+  APP_TEMPLATE_LOW: 'app template',
+  APP_TEMPLATE_EMPTY_DESC: 'Please create an app template.',
   'App Types': 'Tipos de aplicaciones',
   APP_ICON_TIP:
     'Click to upload the app icon with a maximum size of 120px * 120px.',
@@ -211,7 +215,6 @@ module.exports = {
     'Usar la gestión de aplicación requiere crear una aplicación propia y activar la gestión para cada servicio',
   APP_REPOS_DESC:
     'El repositorio de aplicaciones proviene de un repositorio de Charts de Helm de terceros, que visualmente muestra y proporciona capacidades de despliegue y administración en KubeSphere. Los usuarios pueden desplegar rápidamente aplicaciones con un solo click, basadas en las plantillas del repositorio de aplicaciones.',
-  SEARCH_TIPS: 'Search',
   APPLICATION_BASEINFO_DESC:
     'Información básica de la aplicación (como la descripción)',
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:

@@ -88,19 +88,19 @@ export default class Card extends Component {
         total: this.getValue(data[MetricTypes.cpu_total]),
       },
       {
-        name: 'Memory',
+        name: 'MEMORY',
         unitType: 'memory',
         used: this.getValue(data[MetricTypes.memory_usage]),
         total: this.getValue(data[MetricTypes.memory_total]),
       },
       {
-        name: 'Pod',
+        name: 'POD',
         unitType: '',
         used: this.getValue(data[MetricTypes.pod_count]),
         total: this.getValue(data[MetricTypes.pod_capacity]),
       },
       {
-        name: 'Local Storage',
+        name: 'DISK',
         unitType: 'disk',
         used: this.getValue(data[MetricTypes.disk_size_usage]),
         total: this.getValue(data[MetricTypes.disk_size_capacity]),
@@ -140,9 +140,9 @@ export default class Card extends Component {
               {this.isReady && (
                 <div className={styles.chart}>
                   <RadarChart
-                    cx={136}
+                    cx={200}
                     cy={100}
-                    width={250}
+                    width={400}
                     height={200}
                     data={radarOptions}
                   >

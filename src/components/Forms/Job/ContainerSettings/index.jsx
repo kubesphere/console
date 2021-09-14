@@ -26,11 +26,11 @@ export default class PodTemplate extends Base {
   getRestartPolicyOptions() {
     return [
       {
-        label: `Never${t('RESTART_POLICY_NEVER_DESC')}`,
+        label: t('RESTART_POLICY_NEVER_DESC'),
         value: 'Never',
       },
       {
-        label: `OnFailure${t('RESTART_POLICY_ONFAILURE_DESC')}`,
+        label: t('RESTART_POLICY_ONFAILURE_DESC'),
         value: 'OnFailure',
       },
     ]

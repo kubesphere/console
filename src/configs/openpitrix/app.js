@@ -33,9 +33,9 @@ export const CLUSTER_QUERY_STATUS =
   'creating|active|failed|deleting|upgrading|created|upgraded'
 
 export const UPLOAD_STATUS_WORD = {
-  init: 'UPLOAD_SUPPORT_FORMAT',
-  uploading: 'Uploading',
-  success: 'Upload successfully',
+  init: 'HELM_CHART_FORMAT_DESC',
+  uploading: 'UPLOADING',
+  success: 'UPLOAD_SUCCESS',
 }
 
 export const CATEGORY_ICONS = [

@@ -17,6 +17,9 @@
  */
 
 module.exports = {
+  CUSTOM_RESOURCE_DEFINITION: 'Custom Resource Definition',
+  CUSTOM_RESOURCE_DEFINITION_PL: 'Custom Resource Definitions',
+  CUSTOM_RESOURCE_DEFINITION_LOW: 'custom resource definition',
   'Custom Resource Definition': 'Custom Resource Definition',
   'Custom Resource Definitions': 'Custom Resource Definitions',
   CUSTOM_RESOURCE_DEFINITION_DESC:

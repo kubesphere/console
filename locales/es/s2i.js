@@ -50,6 +50,7 @@ module.exports = {
   'File Uploaded Successfully': 'Documento subido correctamente',
   'Image Artifacts': 'Image Artifacts',
   'Image Builder': 'Image Builder',
+  IMAGE_BUILDER: 'Image Builder',
   'Image Builders': 'Image Builders',
   'Image Building': 'Construcción de la imagen',
   'Image building failed': 'La construcción de la imagen falló',
@@ -152,7 +153,7 @@ module.exports = {
   WAR_DESC:
     'El archivo WAR es un archivo utilizado para distribuir una colección de archivos JAR, JavaServer Pages, Java Servlets, clases Java, archivos XML, bibliotecas de tags, páginas web estáticas (HTML y archivos relacionados) y otros recursos que juntos constituyen una aplicación web.',
   BINARY_DESC: '',
-  IMAGE_BUILDER_CREATE_DESC:
+  IMAGE_BUILDER_EMPTY_DESC:
     'Image Builder es una herramienta que facilita la creación de imágenes de contenedor que toman el código fuente de la aplicación o artefactos como entrada y producen una nueva imagen que ejecuta la aplicación ensamblada como salida. Incluye Source to Image, también conocido como S2I, que toma el código fuente como entrada, y Binary to Image, también conocido como B2I, que toma los artefactos de la aplicación como entrada.',
   WRONG_FILE_EXTENSION_NAME:
     'El tipo de archivo seleccionado no coincide, selecciona el tipo {type}',

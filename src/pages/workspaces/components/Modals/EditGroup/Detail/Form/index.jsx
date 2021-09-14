@@ -159,7 +159,7 @@ export default class GroupForm extends React.Component {
       <div className={styles.formWrapper}>
         <Form data={formTemplate} className={styles.form} ref={this.formRef}>
           <Form.Item
-            label={t('Department Name')}
+            label={t('NAME')}
             desc={t('NAME_DESC')}
             rules={[
               { required: true, message: t('NAME_EMPTY_DESC') },
@@ -178,7 +178,7 @@ export default class GroupForm extends React.Component {
               disabled={mode === 'edit'}
             />
           </Form.Item>
-          <Form.Item label={t(`Department Alias`)} desc={t('ALIAS_DESC')}>
+          <Form.Item label={t(`ALIAS`)} desc={t('ALIAS_DESC')}>
             <Input
               name="metadata.annotations['kubesphere.io/alias-name']"
               maxLength={63}
@@ -186,7 +186,7 @@ export default class GroupForm extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('Workspace role')}
+            label={t('WORKSPACE_ROLE')}
             desc={
               t('GROUP_WORKSPACE_ROLE_DESC') +
               (this.needUpgrade
@@ -200,12 +200,12 @@ export default class GroupForm extends React.Component {
               onChange={this.handleRolesChange}
             />
           </Form.Item>
-          <Form.Group label={t('Bind Project Role')}>
+          <Form.Group label={t('PROJECT_ROLE')}>
             <Form.Item>
               <ArrayInput
                 name="metadata.annotations['kubesphere.io/project-roles']"
                 itemType="object"
-                addText={t('Add Project')}
+                addText={t('ADD_PROJECT')}
                 checkItemValid={this.checkItemValid}
               >
                 <ProjectSelect
@@ -217,12 +217,12 @@ export default class GroupForm extends React.Component {
             </Form.Item>
           </Form.Group>
           {globals.app.hasKSModule('devops') && (
-            <Form.Group label={t('Bind DevOps Project Role')}>
+            <Form.Group label={t('DEVOPS_PROJECT_ROLE')}>
               <Form.Item>
                 <ArrayInput
                   name="metadata.annotations['kubesphere.io/devops-roles']"
                   itemType="object"
-                  addText={t('Add DevOps Project')}
+                  addText={t('ADD_DEVOPS_PROJECT')}
                   checkItemValid={this.checkItemValid}
                 >
                   <DevopsSelect
@@ -236,7 +236,7 @@ export default class GroupForm extends React.Component {
           )}
         </Form>
         <div className={styles.footer}>
-          <Button onClick={onCancel}>{t('Cancel')}</Button>
+          <Button onClick={onCancel}>{t('CANCEL')}</Button>
           <Button type="primary" onClick={this.handleSave}>
             {t('OK')}
           </Button>

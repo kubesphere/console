@@ -75,7 +75,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
           success && success()
         },
         store,
@@ -111,7 +111,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}` })
+          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
           store.setSelectRowKeys([])
           success && success()
         },
@@ -186,7 +186,7 @@ export default {
           await store.updatePipeline({ data, devops, cluster })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Updated Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
           success && success()
         },
         store,
@@ -212,7 +212,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Updated Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
           success && success()
         },
         store,
@@ -265,7 +265,7 @@ export default {
         onOk: async jenkinsFile => {
           await store.updateJenkinsFile(jenkinsFile, params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Updated Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
           success && success()
         },
         modal: JenkinsEdit,
@@ -281,7 +281,7 @@ export default {
         onOk: async jenkinsFile => {
           await store.updateJenkinsFile(jenkinsFile, params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Updated Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
           success && success()
         },
         modal: PipelineModal,
@@ -316,7 +316,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
           success && success()
         },
         store,

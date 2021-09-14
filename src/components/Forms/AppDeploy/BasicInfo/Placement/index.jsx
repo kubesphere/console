@@ -242,7 +242,7 @@ export default class Placement extends Component {
               <Form.Item label={t('Cluster')}>
                 <Select
                   name="cluster"
-                  placeholder={t('Please select a cluster')}
+                  placeholder={t('CLUSTER_EMPTY_DESC')}
                   options={this.clusters}
                   onChange={this.handleClusterChange}
                   optionRenderer={this.clusterOptionRenderer}

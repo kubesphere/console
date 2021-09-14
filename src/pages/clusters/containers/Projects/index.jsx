@@ -209,7 +209,7 @@ export default class Projects extends React.Component {
           ),
       },
       {
-        title: t('PODS'),
+        title: t('POD_PL'),
         key: 'namespace_pod_count',
         isHideable: true,
         render: record => this.getLastValue(record, MetricTypes.pod),

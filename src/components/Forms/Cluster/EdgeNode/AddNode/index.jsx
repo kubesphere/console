@@ -106,7 +106,7 @@ export default class AddEdgeModal extends Component {
 
   handleCopy = () => {
     Notify.success({
-      content: t('Copy Successfully'),
+      content: t('COPY_SUCCESSFUL'),
     })
   }
 
@@ -124,11 +124,11 @@ export default class AddEdgeModal extends Component {
         <Form.Item
           label={
             <>
-              {t('Add Command')}
+              {t('EDGENODE_CONFIG_COMMAND')}
               <Tooltip
                 content={
                   <span className={styles.installInfo}>
-                    {t.html('INSTALL_EDGENODE_DESC')}
+                    {t.html('EDGENODE_CONFIG_COMMAND_TIP')}
                   </span>
                 }
               >
@@ -171,18 +171,19 @@ export default class AddEdgeModal extends Component {
       >
         <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item
-            label={t('Node Name')}
+            label={t('NAME')}
             rules={[
               {
                 required: true,
-                message: t('NODE_NAME_EMPTY_DESC'),
+                message: t('EDGENODE_NAME_EMPTY_DESC'),
               },
               {
                 pattern: PATTERN_NAME,
-                message: t('INVALID_NAME_DESC', { message: '' }),
+                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
               },
               { validator: this.validator('name') },
             ]}
+            desc={t('NAME_DESC')}
           >
             <Input
               name="name"
@@ -194,22 +195,22 @@ export default class AddEdgeModal extends Component {
           <div className={styles.column}>
             <Form.Item
               label={t('INTERNAL_IP')}
-              desc={t('NODE_INTERNAL_IP_DESC')}
+              desc={t('EDGENODE_INTERNAL_IP_DESC')}
               rules={[
                 {
                   required: true,
-                  message: t('INTERNAL_IP_EMPTY_DESC'),
+                  message: t('EDGENODE_INTERNAL_IP_EMPTY_DESC'),
                 },
                 {
                   pattern: PATTERN_IP,
-                  message: t('Invalid IP address'),
+                  message: t('INVALID_IP_DESC'),
                 },
                 { validator: this.validator('IP') },
               ]}
             >
               <Input
                 name="ip"
-                placeholder="XXX.XXX.XXX.XXX"
+                placeholder="0.0.0.0"
                 autoComplete="off"
                 onChange={this.emptyLink}
               />
@@ -224,7 +225,7 @@ export default class AddEdgeModal extends Component {
             checked={this.state.isCheck}
             onChange={this.handleChangeCheck}
           >
-            {t('ADD_DEFAULT_STAIN', {
+            {t('ADD_DEFAULT_TAINT', {
               params: 'node-role.kubernetes.io/edge="":NoSchedule',
             })}
           </Checkbox>

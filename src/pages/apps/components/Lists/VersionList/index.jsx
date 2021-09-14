@@ -137,7 +137,7 @@ export default class VersionList extends React.Component {
   handleCreate = params => {
     this.store.create(params).then(() => {
       this.setState({ uploadModal: false })
-      Notify.success({ content: `${t('Created Successfully')}` })
+      Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
       this.fetchData()
     })
   }

@@ -35,11 +35,11 @@ $silder-circle-diameter: 12px;
 
   .inner {
     display: block;
-    width: 60px;
+    min-width: 60px;
   }
 
   &::before {
-    content: "";
+    content: '';
     right: 0;
     width: $slider-bar-width;
     height: 5.8px;
@@ -49,14 +49,15 @@ $silder-circle-diameter: 12px;
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     right: $slider-bar-width - $silder-circle-diameter;
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background-color: $white;
-    box-shadow: 0 1px 2px 0 rgba(33, 42, 51, 0.04), 0 1px 1px 0 rgba(33, 42, 51, 0.04);
+    box-shadow: 0 1px 2px 0 rgba(33, 42, 51, 0.04),
+      0 1px 1px 0 rgba(33, 42, 51, 0.04);
     transition: all 0.2s cubic-bezier(0.78, 0.14, 0.15, 0.86);
     @include vertical-center;
   }

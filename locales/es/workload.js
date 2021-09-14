@@ -24,7 +24,6 @@ module.exports = {
   REPLICA_LOW_PL: 'replicas',
   IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} layers',
   IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} layers',
-  TAG: 'Tag',
   CPU_REQUEST: 'CPU Request',
   CPU_LIMIT: 'CPU Limit',
   MEMORY_REQUEST: 'Memory Request',
@@ -46,13 +45,14 @@ module.exports = {
   MUST_MATCH: 'Must match',
   MOUNT_PATH_EMPTY: 'Please enter a mount path.',
   CONFIGMAP: 'ConfigMap',
-  SECRET: 'Secret',
+  CONFIGMAP_PL: 'ConfigMaps',
+  CONFIGMAP_LOW: 'ConfigMap',
   PARTITION_ORDINAL: 'Ordinal for Dividing Pod Replicas',
   PARTITION_ORDINAL_DESC:
     'Ordinal that divides the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
   'Access Mode': 'Modo de acceso',
   'Add argument': 'Agregar argumento',
-  'Add Command': 'Agregar comando',
+  EDGENODE_CONFIG_COMMAND: 'Agregar comando',
   'Add command': 'Agregar comando',
   'Add Container': 'Agregar contenedor',
   ADD_ENVIRONMENT_VARIABLE: 'Agregar variable de entorno',
@@ -62,7 +62,6 @@ module.exports = {
   'Add Labels': 'Agregar etiquetas',
   ADD_METADATA: 'Agregar metadatos',
   'Add new container': 'Agregar nuevo contenedor',
-  'Add Node Selector': 'Agregar selector de nodo',
   ADD_NODE_SELECTOR: 'Agregar selector de nodo',
   ADD_PORT: 'Agregar puerto',
   'Add Probe': 'Añadir sonda',
@@ -129,7 +128,7 @@ module.exports = {
   'Current Revision': 'Revisión actual',
   'Current Stage(phase)': 'Estado actual (fase)',
   'Current Utilization': 'Utilización actual',
-  DEPLOYMENT_LOCATION: 'Ubicación de despliegue',
+  LOCATION: 'Ubicación de despliegue',
   'Deployment Mode': 'Modo de despliegue',
   POD_SCHEDULING_RULES: 'Pod Assignment Strategy',
   POD_SCHEDULING_RULES_DESC: 'You can specify rules for pod scheduling',
@@ -150,10 +149,10 @@ module.exports = {
   'environment variables': 'Variables de entorno',
   ErrImageNeverPull: 'ErrImageNeverPull',
   ErrImagePull: 'ErrImagePull',
-  EVERY_DAY: ' (Cada día)',
-  EVERY_HOUR: ' (Cada hora)',
-  EVERY_MONTH: ' (Cada mes)',
-  EVERY_WEEK: ' (Cada semana)',
+  EVERY_DAY: '0 0 * * * (every day)',
+  EVERY_HOUR: '0 * * * * (every hour)',
+  EVERY_MONTH: '0 0 1 * * (every month)',
+  EVERY_WEEK: '0 0 * * 0 (every week)',
   'Exec Command Check': 'Verificación de ejecutables',
   'Every Day': 'Cada día',
   'Every Hour': 'Cada hora',
@@ -163,14 +162,14 @@ module.exports = {
   EXISTING_VOLUME: 'Volumen existente',
   FailedCreate: 'FailedCreate',
   FailedDelete: 'Falló Eliminar',
-  failedJobsHistoryLimit: 'failureJobsHistoryLimit',
   SUCCESS_THRESHOLD: 'Umbral de fallo',
+  FAILED_JOBS_HISTORY_LIMIT: 'Failed Jobs Record',
+  'Failure Threshold': 'Umbral de fallo',
   'File List': 'Lista de archivos',
   'for example': 'por ejemplo',
   FoundNewReplicaSet: 'FoundNewReplicaSet',
   'Horizontal Pod Autoscaling': 'Autoescalado horizontal de pods',
-  'Horizontal Pod Autoscaling has been set':
-    'El Autoscaling Horizontal de Pods ha sido configurado',
+  HPA_SET_TIP: 'El Autoscaling Horizontal de Pods ha sido configurado',
   'Host Path': 'Ruta de host',
   'Host Port': 'Puerto host',
   'How pods are assinged to nodes?': '¿Cómo se asignan los pods a los nodos?',
@@ -199,6 +198,7 @@ module.exports = {
   InvalidImageName: 'InvalidImageName',
   'is running': 'En ejecución',
   Job: 'Trabajo',
+  JOB: 'Trabajo',
   'Job Settings': 'Configuraciones de tareas',
   'Job Template': 'Plantilla de tareas',
   ADD_CONTAINER_DESC:
@@ -284,7 +284,7 @@ module.exports = {
   POD_REPLICAS: 'Réplicas de pod',
   DEFAULT_RULES: 'Default Rules',
   DEFAULT_RULES_DESC:
-    'Schedules Pod replicas to nodes according to default rules.',
+    'Schedules the Pod replicas to nodes according to default rules.',
   CUSTOM_RULES_DESC:
     'Las réplicas de pod se implementarán de acuerdo con la política predeterminada.',
   'Pod replicas will be deployed according to user customization.':
@@ -359,16 +359,17 @@ module.exports = {
   'Set Mount Path': 'Establecer punto de montaje',
   SELECT_NODES: 'Establecer política de programación de nodos',
   'Specify Replicas Number': 'Especificar el número de réplicas',
-  startingDeadlineSeconds: 'startingDeadlineSeconds',
-  'startingDeadlineSeconds(s)': 'startingDeadlineSeconds (s)',
+  STARTING_DEADLINE: 'Job Starting Deadline (s)',
   'Storage Size': 'Tamaño de almacenamiento',
   'Strategy Type': 'Tipo de estrategia',
   SUBPATH: 'sub ruta',
   FAILURE_THRESHOLD: 'Umbral de éxito',
   SuccessfulCreate: 'ExitosoCrear',
   SuccessfulDelete: 'Exitoso Eliminar',
-  successfulJobsHistoryLimit: 'successfulJobsHistoryLimit',
   WORKLOAD_MOUNT_VOLUME_DESC: 'Admite EmptyDir y PersistentVolumeClaim.',
+  SUCCESSFUL_JOBS_HISTORY_LIMIT: 'Successful Jobs Record',
+  'Support EmptyDir and PersistentVolumeClaim.':
+    'Admite EmptyDir y PersistentVolumeClaim.',
   'Sure to delete the workload(s)?':
     '¿Seguro para eliminar la (s) carga (s) de trabajo?',
   'target port': 'puerto de destino',
@@ -412,11 +413,14 @@ module.exports = {
     '¿Qué es la recopilación de registro de disco?',
   WORKER_CONTAINER: 'Contenedor de trabajo',
   Workload: 'Carga de trabajo',
+  WORKLOAD: 'Carga de trabajo',
+  WORKLOAD_PL: 'Carga de trabajo',
+  WORKLOAD_LOW: 'workload',
 
   'Not Limited': 'Not Limited',
   Cost: 'Cost',
-  'Project Remaining Quota': 'Project Remaining Quota',
-  'Workspace Remaining Quota': 'Workspace Remaining Quota',
+  PROJECT_REMAINING_QUOTAS: 'Project Remaining Quota',
+  WORKSPACE_REMAINING_QUOTAS: 'Workspace Remaining Quota',
   QUOTA_OVERCOST_TIP:
     'The current resource usage has exceeded the remaining quota',
 
@@ -444,23 +448,21 @@ module.exports = {
     'La carga de trabajo suele ser el operador real para acceder al servicio, y también es el operador real en ejecución para aplicaciones del sistema, como la recopilación y supervisión de registros de nodos. Workload es un modelo abstracto para un grupo de Pods.',
   DEPLOYMENT_DESC:
     'La implementación proporciona una gestión detallada de aplicaciones comunes en KubeSphere. La configuración de implementación describe el estado deseado de componentes específicos de una aplicación como plantillas Pod.',
-  DEPLOYMENT_CREATE_DESC:
-    'Un controlador de implementación proporciona actualizaciones declarativas para Pods y ReplicaSets, se usa para reemplazar ReplicationController para facilitar la administración de aplicaciones. Por lo general, el uso de la implementación para crear pods y ReplicateSet, la actualización progresiva y la reversión de aplicaciones, el escalado horizontal o en las aplicaciones, la detención o reanudación de las aplicaciones.',
+  DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
   STATEFULSET_DESC:
     'StatefulSet se usa para administrar aplicaciones con estado, administrar la implementación y la ampliación de un conjunto de Pods, y proporciona garantías sobre el orden y la unicidad de estos Pods.',
-  STATEFULSET_CREATE_DESC:
-    'StatefulSet se usa para administrar aplicaciones con estado, administrar la implementación y la ampliación de un conjunto de Pods, y proporciona garantías sobre el orden y la unicidad de estos Pods.',
+  STATEFULSET_EMPTY_DESC: 'Please create a StatefulSet.',
   DAEMONSET_DESC:
     'Un DaemonSet asegura que todos (o algunos) nodos ejecuten una copia de un Pod. Por lo general, un DaemonSet se usa para ejecutar una colección de registros, monitorear daemon u otras aplicaciones de administración del sistema.',
-  DAEMONSET_CREATE_DESC:
+  DAEMONSET_EMPTY_DESC:
     'Un DaemonSet asegura que todos (o algunos) nodos ejecuten una copia de un Pod. Por lo general, un DaemonSet se usa para ejecutar una colección de registros, monitorear daemon u otras aplicaciones de administración del sistema.',
   JOB_DESC:
     'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
-  JOB_CREATE_DESC:
+  JOB_EMPTY_DESC:
     'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
   CRONJOB_DESC:
     'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
-  CRONJOB_CREATE_DESC:
+  CRONJOB_EMPTY_DESC:
     'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
   CRONJOB_NAME_DESC:
     'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 52.',
@@ -555,27 +557,28 @@ module.exports = {
     'Puede montar volúmenes temporales o volúmenes persistentes en un Pod del trabajo.',
   BACK_OFF_LIMIT: 'Límite de retroceso',
   BACK_OFF_LIMIT_DESC:
-    'Maximum number of retries before marking a Job as failed. The default value is 6.',
+    'Maximum number of retries before marking the Job as failed. The default value is 6.',
   JOB_PARALLELISM_LABEL: 'Paralelismo',
   JOB_PARALLELISM_DESC: 'Number of Pods that run concurrently.',
   JOB_COMPLETION_LABEL: 'Terminaciones',
   JOB_COMPLETION_DESC:
-    'Number of Pods that need to run successfully before a Job is complete.',
+    'Number of Pods that complete successfully required for the Job to be marked as complete.',
   JOB_ACTIVE_DEADLINE: 'Active Deadline (s)',
   JOB_ACTIVE_DEADLINE_DESC:
-    'Duration of a Job. The running Pods are terminated when the Job reaches the duration. The value must be a positive integer.',
+    'Maximum duration of the Job. The Job is terminated after reaching the specific timeout.',
   RESTART_POLICY_TIP:
     'RestartPolicy solo puede especificar Never o OnFailure, cuando el trabajo no se completa: <br/> * Si RestartPolicy especifica Nunca, el trabajo crea un nuevo Pod cuando el Pod falla y el Pod fallido no desaparece. <br/> * Si RestartPolicy especifica OnFailure, el trabajo reiniciará internamente el contenedor cuando el Pod falle, en lugar de crear un nuevo Pod.',
-  RESTART_POLICY_NEVER_DESC: ' (Crear un nuevo Pod cuando un Pod falla)',
+  RESTART_POLICY_NEVER_DESC: 'Never (create a new Pod when a Pod fails)',
   RESTART_POLICY_ONFAILURE_DESC:
-    ' (Reinicia el contenedor cuando falla un Pod)',
+    'On failure (restart the container when a Pod fails)',
   CRONJOBS_BASEINFO_DESC:
     'Información básica sobre el CronJob. Debe especificar el nombre y el horario.',
   CRONJOBS_VOLUME_DESC:
     'Puede montar volúmenes temporales o volúmenes persistentes en un Pod del cronjob.',
   CRONJOB_CRON_DESC:
-    'Set a schedule of a CronJob to be executed. For Cron syntax, see <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Cron</a>. Kubernetes use UTC by default. You need to adjust the schedule according to your time zone.',
-  START_DEADLINE_SECONDS_DESC: 'Set the deadline for starting a Job.',
+    'Set a schedule for the CronJob. KubeSphere uses UTC by default and you need to adjust the schedule according to your time zone. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Learn More</a>',
+  START_DEADLINE_SECONDS_DESC:
+    'Deadline for starting the Job if the scheduled run is missed for any reason.',
   VOLUME_EMPTY_TIP: 'No hay volúmenes creados',
   HOST_PATH_DESC:
     'HostPath le permite montar el sistema de archivos en el host al Pod. Si el Pod necesita usar archivos en el host, puede usar HostPath.',
@@ -665,13 +668,13 @@ module.exports = {
     'El valor de solicitud (es decir, Solicitud) establecido por el pod en el grupo de pod se utiliza como base para determinar la asignación de recursos. Solo cuando la cantidad que se puede asignar en el nodo ≥ el valor requerido del pod, se puede asignar el pod a este nodo.',
   POD_DESC:
     'Un Pod es la unidad de ejecución básica de una aplicación Kubernetes, que representa la unidad más pequeña y más simple en el modelo de objetos Kubernetes que crea o implementa.',
-  POD_CREATE_DESC:
+  POD_EMPTY_DESC:
     'Un Pod es la unidad de ejecución básica de una aplicación Kubernetes, que representa la unidad más pequeña y más simple en el modelo de objetos Kubernetes que crea o implementa.',
   FILL_IMAGE_DEFAULT_PORTS_DESC:
     'Ya sea para exponer el puerto predeterminado de la imagen?',
   REQUEST_EXCEED_LIMIT:
     'Las solicitudes de recursos no deben ser mayores que los límites de recursos',
-  REQUEST_EXCCED_WORKSPACE:
+  REQUEST_EXCEED_WORKSPACE:
     'Resource setting should not be greater than workspace resource limits.',
   WORKLOAD_CONDITIONS: 'Condiciones',
   WORKLOAD_CONDITION_AVAILABLE: 'Disponible',
@@ -717,7 +720,7 @@ module.exports = {
     'El UID para ejecutar el punto de entrada del proceso contenedor. El valor predeterminado es el usuario especificado en los metadatos de la imagen si no se especifica.',
   RUN_AS_USER_GROUP_DESC:
     'El GID para ejecutar el punto de entrada del proceso contenedor. Utiliza el tiempo de ejecución predeterminado si no está configurado.',
-  WORKLOAD_CREATE_DESC:
+  WORKLOAD_EMPTY_DESC:
     'La carga de trabajo suele ser el operador real para acceder a los servicios y también es el operador real para las aplicaciones del sistema, como la recopilación y supervisión de registros de nodos. Workload es también un modelo abstracto para un grupo de Pods.',
   CONTAINER_RESOURCE_LIMIT_TIP:
     'Set the resource limits and requests of the container so that the container is scheduled to appropriate nodes.',
@@ -751,13 +754,17 @@ module.exports = {
   NODE_IP: '{node} ({ip})',
 
   // Jobs
-  JOBS: 'Jobs',
-  CRONJOBS: 'CronJobs',
+  JOB_PL: 'Jobs',
+  NUMBER_OF_JOBS: 'Number of Jobs',
+  JOB_LOW: 'Job',
+  CRONJOB: 'CronJob',
+  CRONJOB_PL: 'CronJobs',
+  NUMBER_OF_CRONJOBS: 'Number of CronJobs',
+  CRONJOB_LOW: 'CronJob',
   SCHEDULE: 'Schedule',
 
   // CronJobs
   ADD_VOLUME: 'Add Volume',
-  RESTART_POLICY_DESC:
-    'The Pod restart policy. The value can be Never or onFailure.',
+  RESTART_POLICY_DESC: 'The Pod restart policy.',
   MOUNT_VOLUMES: 'Mount Volumes',
 }

@@ -76,12 +76,12 @@ export default class GroupUser extends Component {
   getConfigs = () => [
     {
       type: 'notingroup',
-      title: t('NOT_ASSIGNED'),
+      title: t('NOT_ASSIGNED_TCAP'),
       onFetch: 'fetchNotingroupData',
     },
     {
       type: 'ingroup',
-      title: t('Assigned'),
+      title: t('ASSIGNED'),
       onFetch: 'fetchIngroupData',
     },
   ]
@@ -208,7 +208,7 @@ export default class GroupUser extends Component {
   }
 
   renderPlaceHolder = () => {
-    return <div className={styles.item}>{t('WORKSPACE_GROUP_EMPTY_DESC')}</div>
+    return <div className={styles.item}>{t('DEPARTMENT_EMPTY_DESC')}</div>
   }
 
   render() {

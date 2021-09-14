@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  STORAGE_VOLUME_EXTENSION: 'Permitir expansión de volumen',
+  VOLUME_EXPANSION: 'Volume Expansion',
   'Available Capacity': 'Capacidad disponible',
   'Create Snapshot': 'Crear snapshot',
   'Create Storage Class': 'Crear clase de almacenamiento',
@@ -47,8 +47,8 @@ module.exports = {
   'Parameters (key-value pairs)': 'Parámetros (pares clave-valor)',
   PersistentVolumeClaim: 'Volume',
   PersistentVolumes: 'PersistentVolumes',
-  RECLAMATION_POLICY: 'Reclamation Policy',
-  CREATE: 'Crear',
+  RECLAIM_POLICY: 'Reclaim Policy',
+  CREATE: 'Create',
   Scalable: 'Escalable',
   'Set as default storage class':
     'Establecer como clase de almacenamiento predeterminada',
@@ -56,6 +56,8 @@ module.exports = {
   'Snapshots Message': 'Mensaje de snapshots',
   'Storage Class': 'Clase de almacenamiento',
   STORAGE_CLASS: 'Clase de almacenamiento',
+  STORAGE_CLASS_PL: 'Storage Classes',
+  STORAGE_CLASS_LOW: 'storage class',
   'Storage Class Name': 'Nombre de clase de almacenamiento',
   STORAGE_CLASS_SETTINGS: 'Configuraciones de clase de almacenamiento',
   'storage classes': 'clases de almacenamiento',
@@ -63,16 +65,30 @@ module.exports = {
   STORAGE_CLASS_CREATE_DESC: 'STORAGE_CLASS_CREATE_DESC',
   StorageClasses: 'StorageClasses',
   storageclasses: 'storageclasses',
-  VOLUME_SNAPSHOT_SUPPORT: 'Soporta snapshot de volumen',
+  ALLOW_VOLUME_SNAPSHOT:
+    'Permitir el almacenamiento de instantáneas de volumen',
+  ALLOW_VOLUME_CLONE: 'Permitir la clonación del volumen de almacenamiento',
+  ALLOW_VOLUME_EXPANSION: 'Permitir la expansión del volumen de almacenamiento',
+  PV: 'Backend de volumen',
+  PV_STATUS_AVAILABLE: 'Disponible',
+  PV_STATUS_BOUND: 'Ligado',
+  PV_STATUS_RELEASED: 'Liberado',
+  PV_STATUS_FAILED: 'indisponible',
+  PV_STATUS_TERMINATING: 'Terminando',
+  'Bound Volume': 'Límite de volumen de almacenamiento',
+  'Recycling mechanism': 'Mecanismo de reciclaje',
+
   ACCESS_MODE: 'Modo de acceso admitido',
   ACCESS_MODE_SCAP: 'Modo de acceso admitido',
   'Used Capacity': 'Capacidad utilizada',
   'Clone Volume': 'Clon del volumen',
   VOLUME: 'Volumen',
-  // VOLUMES: 'Recuento de volumen',
+  VOLUMES: 'Volumes',
+  VOLUME_PL: 'Recuento de volumen',
+  NUMBER_OF_VOLUMES: 'Number of volumes',
+  VOLUME_LOW: 'volumes',
   'The volume name exists': 'nombre de volumen existe',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
-  VOLUME_COUNT: 'Recuento de volumen',
   VOLUME_NAME_EXIST: 'nombre de volumen existe',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
@@ -101,7 +117,7 @@ module.exports = {
   VOLUMES_BASEINFO_DESC:
     'El volumen puede conservar datos y su ciclo de vida es independiente de la ' +
     'carga de trabajo. Asegúrese de que la clase de almacenamiento se cree antes de crear un volumen.',
-  VOLUME_CREATE_DESC:
+  VOLUME_EMPTY_DESC:
     'Un volumen es un PVC (PersistentVolumeClaim) creado mediante el aprovisionamiento ' +
     'de volumen dinámico.',
   VOLUME_SETTINGS_DESC:
@@ -142,39 +158,37 @@ module.exports = {
     'Un volumen local es un dispositivo de almacenamiento local montado, como un disco, partición o directorio.',
   CHOOSE_STORAGE_SYSTEM_TIP: 'Elija el sistema de almacenamiento que necesita',
   PROVISIONER_DEPENDENCE_DESC:
-    'El sistema de almacenamiento debe implementar los plugins de almacenamiento correspondientes para proporcionar servicios.',
+    'You need to deploy a plugin in your storage system before it provides services.',
   VOLUME_EXPAND_TIPS:
     'El PVC actual se ha montado para la carga de trabajo, por lo que la expansión conllevará un reinicio de la carga de trabajo y a una nueva versión. El servicio puedes sufrir una breve interrupción.',
   QINGCLOUD_CSI_DESC:
-    'Use QingCloud CSI as the underlying storage plug-in. For more information, see <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">QingCloud CSI</a>.',
+    'Use QingCloud CSI as the underlying storage plugin. <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">Learn More</a>',
   QINGCLOUD_CSI_TYPE_DESC:
     'En la plataforma de nube pública QingCloud, 0 representa un volumen de alto rendimiento. 2 representa volumen de alta capacidad. 3 representa un volumen súper alto rendimiento. 5 representa Enterprise Server SAN. 100 representa  volumen estándar.',
-  CREATE_VOLUME_MAX_SIZE: 'Límite superior de tamaño de volumen',
-  CREATE_VOLUME_STEP_SIZE: 'Incremento de tamaño de volumen',
-  CREATE_VOLUME_MIN_SIZE: 'Límite inferior de tamaño de volumen',
-  VOLUME_FS_TYPE:
-    'Set the file system type of the storage volume. The value can be ext3, ext4, or xfs, and it defaults to ext4.',
+  CREATE_VOLUME_MAX_SIZE: 'Maximum size of the volume.',
+  CREATE_VOLUME_STEP_SIZE: 'Step size of the volume.',
+  CREATE_VOLUME_MIN_SIZE: 'Minimum size of the volume.',
+  VOLUME_FS_TYPE: 'Supports ext3, ext4, and XFS. The default type is ext4.',
   MAXSIZE: 'Maximum Size',
   MINSIZE: 'Minimum Size',
   STEPSIZE: 'Step Size',
   FSTYPE: 'File System Type',
   TAGS: 'Tag',
   GLUSTERFS_RESTURL_DESC:
-    'Gluster REST service or Heketi service URL that provisions Gluster volumes on demand.',
-  GLUSTERFS_ID_DESC: 'The Gluster cluster ID.',
+    'Heketi REST URL that provisions volumes, for example, <Heketi Service cluster IP Address>:<Heketi Service port number>.',
+  GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
   GLUSTERFS_RESTAUTHENABLED_DESC:
     'Habilite la autenticación en el servidor REST.',
   GLUSTERFS_RESTUSER_DESC:
-    'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
+    'Username of Gluster REST service or Heketi service.',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
   GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
-  GLUSTERFS_GID_MIN_DESC:
-    'El valor mínimo del rango de GID para la clase de almacenamiento.',
-  GLUSTERFS_GID_MAX_DESC:
-    'El valor máximo del rango de GID para la clase de almacenamiento.',
-  GLUSTERFS_VOLUME_TYPE_DESC: 'Optional type of the volume.',
+  GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the volume.',
+  GLUSTERFS_GID_MAX_DESC: 'Maximum GID of the volume.',
+  GLUSTERFS_VOLUME_TYPE_DESC:
+    'Type of volume. The value can be none, replicate:<Replicate count>, or disperse:<Data>:<Redundancy count>. If the volume type is not set, the default volume type is replicate:3.',
   QINGCLOUD_VOLUME_TAGS_DESC:
-    'Los tags se asociarán automáticamente cuando se cree un disco duro. Separe varios tags con comas.',
+    'Add tags to the storage volume. Use commas to separate multiple tags.',
   CEPHRBD_MONITORS_DESC: 'IP address of Ceph monitors.',
   CEPHRBD_ADMIN_ID_DESC:
     'ID de cliente de Ceph que es capaz de crear imágenes en el pool.',
@@ -200,7 +214,7 @@ module.exports = {
     'Seleccione una clase de almacenamiento para crear un volumen.',
   VOLUMESNAPSHOT_DESC:
     'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
-  VOLUMESNAPSHOT_CREATE_DESC:
+  VOLUMESNAPSHOT_EMPTY_DESC:
     'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
   WHAT_IS_VOLUME_SNAPSHOTS: '¿Qué son los snapshots de volumenes?',
 
@@ -216,15 +230,18 @@ module.exports = {
   REST_AUTH_ENABLED: 'REST Authentication',
   REST_USER: 'REST User',
   VOLUME_TYPE: 'Volume Type',
-  REST_URL_EXAMPLE: 'IP address and port number',
   SECRET_NAME: 'Secret Name',
   REST_AUTH_TRUE: 'True',
   CEPH_MONITOR_IP: 'IP address and port number',
   SECRET_NAMESPACE: 'Secret Namespace',
-  GID_MIN: 'GID Minimum Value',
-  GID_MAX: 'GID Maximum Value',
+  GID_MIN: 'Minimum GID',
+  GID_MAX: 'Maximum GID',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
   SNAPSHOT_TYPE: 'Tipo de instantánea',
   SNAPSHOT_EMPTY_TIP: 'Seleccione un tipo de instantánea.',
+  VOLUME_BINDING_MODE: 'Volume Binding Mode',
+  IMMEDIATE_BINDING: 'Immediate binding',
+  BINDING_WAIT: 'Delayed binding',
+  DEFAULT_STORAGE_CLASS: 'Default Storage Class',
 }

@@ -151,7 +151,9 @@ export default class VolumeDetail extends React.Component {
       action: 'create',
       disabled: this.allowSnapshot,
       onClick: () => {
-        this.trigger('volume.create.snapshot', {})
+        this.trigger('volume.create.snapshot', {
+          detail: this.store.detail,
+        })
       },
     },
     {
@@ -241,6 +243,10 @@ export default class VolumeDetail extends React.Component {
           "annotations['volume.beta.kubernetes.io/storage-provisioner']",
           '-'
         ),
+      },
+      {
+        name: 'PV',
+        value: get(detail, '_originData.spec.volumeName', ''),
       },
       {
         name: t('Create Time'),

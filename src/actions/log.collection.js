@@ -39,7 +39,7 @@ export default {
           })
           Modal.close(modal)
           success && success()
-          Notify.success({ content: `${t('Updated Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
         },
         modal: Modal.Form,
         store,
@@ -71,7 +71,7 @@ export default {
           })
           Modal.close(modal)
           success && success()
-          Notify.success({ content: `${t('Updated Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
         },
         modal: Modal.Form,
         data,

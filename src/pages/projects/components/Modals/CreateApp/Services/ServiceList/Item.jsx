@@ -126,9 +126,7 @@ export default class Item extends React.Component {
                   )
                 })}
               </div>
-              <div className={styles.description}>
-                {t('DEPLOYMENT_LOCATION')}
-              </div>
+              <div className={styles.description}>{t('LOCATION')}</div>
             </div>
           </div>
         )}

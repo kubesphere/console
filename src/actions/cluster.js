@@ -49,12 +49,12 @@ export default {
           }
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
           success && success(`/clusters/${name}`)
         },
         module,
         formTemplate,
-        title: t('Add Cluster'),
+        title: t('ADD_CLUSTER'),
         steps: IMPORT_CLUSTER,
         modal: CreateModal,
         store,

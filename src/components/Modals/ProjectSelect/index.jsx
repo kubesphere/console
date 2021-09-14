@@ -180,7 +180,7 @@ export default class ProjectSelectModal extends React.Component {
     }
   }
 
-  clusterRenderer = option => `${t('Cluster')}: ${option.label}`
+  clusterRenderer = option => t('CLUSTER_VALUE', { value: option.label })
 
   showCreate = () => {
     const { workspace, rootStore } = this.props

@@ -218,9 +218,7 @@ export default class ProjectCreateModal extends React.Component {
               <Column>
                 <Form.Item
                   label={t('Cluster Settings')}
-                  rules={[
-                    { required: true, message: t('Please select a cluster') },
-                  ]}
+                  rules={[{ required: true, message: t('CLUSTER_EMPTY_DESC') }]}
                 >
                   <Select
                     name="spec.placement.cluster"

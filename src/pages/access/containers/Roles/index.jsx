@@ -33,7 +33,7 @@ import RoleStore from 'stores/role'
   store: new RoleStore('globalroles'),
   module: 'globalroles',
   authKey: 'roles',
-  name: 'Account Role',
+  name: 'Platform Role',
 })
 export default class Roles extends React.Component {
   componentDidMount() {
@@ -60,7 +60,7 @@ export default class Roles extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -134,7 +134,7 @@ export default class Roles extends React.Component {
   showCreate = () => {
     const { store, trigger, getData } = this.props
     return trigger('role.create', {
-      title: t('Create Account Role'),
+      title: t('CREATE_PLATFORM_ROLE'),
       roleTemplates: toJS(store.roleTemplates.data),
       success: getData,
     })
@@ -144,7 +144,7 @@ export default class Roles extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props} noWatch>
-        <Banner {...bannerProps} tabs={this.tabs} title={t('Account Roles')} />
+        <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
           tableActions={this.tableActions}

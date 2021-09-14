@@ -19,8 +19,8 @@
 module.exports = {
   Alerting: '告警',
   Notification: '通知',
-  NOTIFICATION_MESSAGE: '消息',
-  SUMMARY: '标题',
+  NOTIFICATION_MESSAGE: '通知消息',
+  NOTIFICATION_SUMMARY: '概括',
   EDIT_TCAP: '编辑',
   EDIT_ALERTING_POLICY: '编辑告警策略',
   DELETE_TCAP: '删除',
@@ -31,13 +31,14 @@ module.exports = {
   ALERT_MONITORING: '告警监控',
   'alerting policy': '告警策略',
   ALERTING_POLICY: '告警策略',
+  ALERTING_POLICY_PL: '告警策略',
+  ALERTING_POLICY_LOW: '告警策略',
   'Alerting Policies': '告警策略',
   ALERTING_HISTORY: '告警历史',
   'alerting rule': '告警规则',
   ALERTING_RULE: '告警规则',
-  ALERTING_RULES: '告警规则',
   ALERTING_STATUS: '告警状态',
-  ALERTING_TYPE: '告警级别',
+  SEVERITY: '告警级别',
   'Alerting Duration': '告警持续时间',
   'Notification Settings': '通知设置',
   'monitoring target': '监控目标',
@@ -61,13 +62,13 @@ module.exports = {
   Condition: '条件',
   THRESHOLD: '阈值',
 
-  RULE_TEMPLATES: '规则模板',
-  CUSTOM_RULES: '自定义规则',
+  RULE_TEMPLATE: '规则模板',
+  CUSTOM_RULE: '自定义规则',
   RULE_EXPRESSION: '告警规则表达式',
   INVALID_TIME_DESC:
     '数值无效。请从下拉列表中选择一个数值，或者输入 0 或正整数。',
   ALIAS: '别名',
-  ALERT_DURATION_MIN: '告警持续时间（分钟）',
+  THRESHOLD_DURATION_MIN: '告警持续时间（分钟）',
 
   ENTER_RULE_EXPRESSION: '请输入告警规则表达式。',
   ALERT_FUNCTIONS: '函数',
@@ -75,31 +76,30 @@ module.exports = {
   ALERT_LABELS: '标签',
   ALERT_RATE_RANGES: 'Rate Ranges',
 
-  NOTIFICATION_CONTENT: '通知内容',
+  NOTIFICATION_DETAILS: '详情',
 
   CUSTOM_POLICIES: '自定义策略',
   BUILT_IN_POLICIES: '内置策略',
 
   ALERT_TYPE: '{type}告警',
   ALERT_POLICY_DESC:
-    '使用告警策略监控资源指标，资源指标达到告警条件阈值后将触发告警消息。',
-  ALERT_MESSAGE_DESC:
-    '用户可以查看集群级别的告警策略中，所有满足告警规则的告警消息。',
+    '告警策略是用于监控集群资源的一系列条件，您可以创建告警策略对资源进行监控。',
+  ALERT_MESSAGE_DESC: '告警消息是满足告警策略条件后触发的告警的详细信息。',
 
-  ALERTING_POLICY_CREATE_DESC: '您可以创建告警规则，即时发现资源的异常情况。',
+  ALERTING_POLICY_EMPTY_DESC: '请创建一个告警规则。',
+  ALERTING_POLICY_CREATE_DESC: '您可以创建告警策略以即时发现资源的异常情况。',
 
   CPU_LOAD_1: '过去 1 分钟的 CPU 平均负载',
   CPU_LOAD_5: '过去 5 分钟的 CPU 平均负载',
   CPU_LOAD_15: '过去 15 分钟的 CPU 平均负载',
 
-  POD_ANOMALY: '容器组异常率',
+  ABNORMAL_PODS: '容器组异常率',
   POD_USAGE_SCAP: '容器组利用率',
   CPU_USAGE_SCAP: 'CPU 利用率',
   MEMORY_AVAILABLE: '可用内存',
   MEMORY_USAGE_SCAP: '内存利用率',
   DISK_SPACE_AVAILABLE: '本地磁盘可用空间',
   DISK_SPACE_USAGE: '本地磁盘空间利用率',
-  INODE_USAGE: 'inode 利用率',
   DISK_READ_IOPS: '本地磁盘读取 IOPS',
   DISK_WRITE_IOPS: '本地磁盘写入 IOPS',
   DISK_READ_THROUGHPUT: '本地磁盘读取吞吐量',
@@ -123,12 +123,12 @@ module.exports = {
     '您需要对资源设置告警策略，当资源的某项指标达到告警策略的阈值后即会触发告警消息。',
   REQUESTS_FOR_PUSH_AN_ALARM_Q: '如何在告警策略触发后接收告警消息？',
   REQUESTS_FOR_PUSH_AN_ALARM_A:
-    '平台管理员需要选择告警通知的方式并配置对应的服务器。',
+    '平台管理员需要选择告警通知的方式并配置与该方式对应的服务器。',
   HOW_TO_SUPRESS_AN_ALARM_Q: '如何对告警消息进行抑制？',
   HOW_TO_SUPRESS_AN_ALARM_A:
-    '您可以对每条告警策略进行多级别的设置，每个级别对应不同的告警周期及重复周期。',
+    '您可以对每条告警策略进行多级别的设置，每个级别对应不同的告警周期。',
 
-  ALERT_DURATION: '告警持续时间达到预设值后将触发告警。',
+  ALERT_DURATION: '告警持续时间达到预设值后，告警将变为触发中状态。',
   ALERT_RULE_INACTIVE: '未触发',
   ALERT_RULE_PENDING: '待触发',
   ALERT_RULE_FIRING: '触发中',
@@ -137,16 +137,20 @@ module.exports = {
   ALERT_RULE_HEALTH_UNKNOWN: '未知',
 
   ALERT_RULE_EXPRESSION_DESC:
-    '告警规则可以通过 PromQL 语句来自定义，PromQL 相关语法请参见 <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Prometheus Querying</a>。',
+    '您可以通过 PromQL 语句来自定义告警规则。<a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">了解更多</a>',
 
   // Alerting Messages
   ALERTING_MESSAGES: '告警消息',
   NO_DATA_DESC: '没有找到数据',
+  MONITORING_TARGET: '监控目标',
 
   // Alerting Policies
   ALERTING_POLICIES: '告警策略',
   NOTIFICATION_SETTINGS: '通知设置',
   DEPLOYMENT: '部署',
+  DEPLOYMENT_PL: '部署',
   STATEFULSET: '有状态副本集',
+  STATEFULSET_PL: '有状态副本集',
   DAEMONSET: '守护进程集',
+  DAEMONSET_PL: '守护进程集',
 }

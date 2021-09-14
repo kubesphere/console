@@ -51,17 +51,16 @@ module.exports = {
   PACKAGE_FILE_DESC:
     'Package.json文件，用于描述应用或版本的基本信息，包括名称版本号等',
   CONFIG_FILE_DESC: '应用的默认值配置文件',
-  LICENSE_FILE_DESC: '文本格式的协议',
+  LICENSE_FILE_DESC: '文本格式的许可协议。',
   LOCALE_EN__FILE_DESC: '应用配置的国际化英文翻译',
   LOCALE_ZH_FILE_DESC: '应用配置的国际化中文翻译',
-  CHART_FILE_DESC: 'Yaml文件，用于描述 Chart 的基本信息，包括名称版本等',
-  README_FILE_DESC: '应用介绍、使用说明',
-  REQUIREMENTS_FILE_DESC: '用于存放当前 Chart 依赖的其它 Chart 的说明文件',
-  VALUES_FILE_DESC: 'Chart 的默认值配置文件',
-  CHARTS_FILE_DESC: '该目录中放置当前 Chart 依赖的其它 Chart',
-  TEMPLATES_FILE_DESC:
-    '部署文件模板目录，模板填入 values.yaml 中相应值，生成最终的 Kubernetes 配置文件',
-  NOTES_FILE_DESC: '使用指南',
+  CHART_FILE_DESC: 'YAML 文件，用于描述 chart 的基本信息，例如名称和版本。',
+  README_FILE_DESC: '应用介绍和使用说明。',
+  REQUIREMENTS_FILE_DESC: 'Chart 依赖关系描述文件。',
+  VALUES_FILE_DESC: 'Chart 的默认值配置文件。',
+  CHARTS_FILE_DESC: '存放 Chart 依赖项的目录。',
+  TEMPLATES_FILE_DESC: '存放部署模板文件的目录。',
+  NOTES_FILE_DESC: '使用指南。',
 
   'Version Update Info': '版本更新说明',
   'No version information': '暂无更新说明',
@@ -73,7 +72,7 @@ module.exports = {
   global_admin: '超级管理员',
   admin: '管理员',
 
-  'Download Successfully': '下载成功',
+  DOWNLOAD_SUCCESSFUL: '下载成功。',
 
   Passed: '已通过',
   Rejected: '已拒绝',

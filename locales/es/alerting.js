@@ -19,8 +19,8 @@
 module.exports = {
   'Add Rule': 'Añadir regla',
   Alerting: 'Alertando',
-  SUMMARY: 'Summary',
-  NOTIFICATION_MESSAGE: 'Message',
+  NOTIFICATION_SUMMARY: 'Summary',
+  NOTIFICATION_MESSAGE: 'Notification Message',
   'Alerting Detail': 'Detalles de alertas',
   ALERTING_HISTORY: 'Historial de alertas',
   ALERTING_MESSAGE: 'Mensaje de alerta',
@@ -29,13 +29,14 @@ module.exports = {
   'Alerting Policies': 'Políticas de alerta',
   'alerting policy': 'política de alerta',
   ALERTING_POLICY: 'Política de alerta',
+  ALERTING_POLICY_PL: 'Alerting Policies',
+  ALERTING_POLICY_LOW: 'alerting policy',
   ALERTING_RESOURCE: 'Alerting Resource',
   'alerting rule': 'regla de alerta',
   ALERTING_RULE: 'Regla de Alerta',
-  ALERTING_RULES: 'Reglas de Alerta',
   ALERTING_STATUS: 'Estado de Alerta',
   'Alerting Duration': 'Alerting Duration',
-  ALERTING_TYPE: 'Tipo de alerta',
+  SEVERITY: 'Tipo de alerta',
   Condition: 'Condición',
   'cpu usage': 'uso de CPU',
   CPU_USAGE_SCAP: 'ratio de uso de CPU',
@@ -45,7 +46,6 @@ module.exports = {
   DISK_WRITE_IOPS: 'iops de escritura de disco',
   DISK_WRITE_THROUGHPUT: 'rendimiento de escritura en disco',
   'Edit Rule': 'Editar regla',
-  INODE_USAGE: 'ratio de utilización de inodes',
   DISK_SPACE_USAGE: 'ratio de utilización de espacio del disco local',
   MEMORY_AVAILABLE: 'memoria disponible',
   'memory usage': 'uso de memoria',
@@ -53,9 +53,9 @@ module.exports = {
   'memory utilisation (including cache)': 'uso de memoria (incluyendo caché)',
   MEMORY_USAGE_SCAP: 'ratio de uso de memoria',
 
-  CRITICAL_ALERT: 'Critical Alert',
-  ERROR_ALERT: 'Error Alert',
-  WARNING_ALERT: 'Warning Alert',
+  CRITICAL_ALERT: 'Critical',
+  ERROR_ALERT: 'Error',
+  WARNING_ALERT: 'Warning',
 
   'Monitoring Rules': 'Regla de monitorización',
   'monitoring target': 'objetivo de monitorización',
@@ -67,7 +67,7 @@ module.exports = {
   'Notification Settings': 'Notification Settings',
   SET_RULE_DESC: 'Please set an alerting rule.',
   'Please input the threshold': 'Por favor, introduce el umbral',
-  POD_ANOMALY: 'Relación anormal pod',
+  ABNORMAL_PODS: 'Relación anormal pod',
   POD_USAGE_SCAP: 'ratio de utilización de pod',
   ACTIVATED_AT: 'Activated At',
   'Recent Notification': 'Notificación reciente',
@@ -86,13 +86,13 @@ module.exports = {
     'Ratio de replicas de statefulset no disponibles',
   'View Details': 'Ver detalles',
 
-  RULE_TEMPLATES: 'Rule Templates',
-  CUSTOM_RULES: 'Custom Rules',
+  RULE_TEMPLATE: 'Rule Template',
+  CUSTOM_RULE: 'Custom Rule',
   RULE_EXPRESSION: 'Rule Expression',
   INVALID_TIME_DESC:
     'Invalid value. Please select a value from the drop-down list or enter 0 or a positive integer.',
   ALIAS: 'Alias',
-  ALERT_DURATION_MIN: 'Duration (min)',
+  THRESHOLD_DURATION_MIN: 'Threshold Duration (min)',
 
   ENTER_RULE_EXPRESSION: 'Please enter a rule expression.',
   ALERT_FUNCTIONS: 'Functions',
@@ -100,7 +100,7 @@ module.exports = {
   ALERT_LABELS: 'Labels',
   ALERT_RATE_RANGES: 'Rate Ranges',
 
-  NOTIFICATION_CONTENT: 'Notification Content',
+  NOTIFICATION_DETAILS: 'Details',
 
   CUSTOM_POLICIES: 'Custom Policies',
   BUILT_IN_POLICIES: 'Built-In Policies',
@@ -109,12 +109,15 @@ module.exports = {
   CPU_LOAD_5: 'Average CPU load over 5 minutes',
   CPU_LOAD_15: 'Average CPU load over 15 minutes',
   ALERT_TYPE: 'Alerta {type}',
-  ALERT_POLICY_DESC: 'Establecer reglas de alerta',
+  ALERT_POLICY_DESC:
+    'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
   ALERT_MESSAGE_DESC:
-    'Users can view all alerting messages that have met the conditions of alerting policies at the cluster level.',
+    'Alerting messages display details of triggered alerts after the conditions of alerting policies are met.',
 
-  ALERTING_POLICY_CREATE_DESC:
+  ALERTING_POLICY_EMPTY_DESC:
     'You can notice if a resource is abnormal in real time by creating an alerting policy.',
+  ALERTING_POLICY_CREATE_DESC:
+    'You can create alerting policies to detect abnormal resources in real time.',
 
   SELECT_NODE_TIP: 'Please select at lease a cluster node.',
   SELECT_WORKLOAD_TIP: 'Please select at lease a workload.',
@@ -124,19 +127,19 @@ module.exports = {
   DELETE_TCAP: 'Delete',
   CREATE_ALERTING_POLICY: 'Create Alerting Policy',
 
-  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How do I trigger alerting messages?',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerting messages generated?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A:
-    'Debe establecer una política de alerta para un recurso. Cuando un determinado indicador de un recurso alcanza el umbral de la política de alerta, el mensaje se activa y envía.',
+    'You need to set an alerting policy for a resource. Alerting messages will be generated when the metric configured in the alerting policy reaches a threshold.',
   REQUESTS_FOR_PUSH_AN_ALARM_Q:
     '¿Pre-requisitos para un mensaje push de política de alerta?',
   REQUESTS_FOR_PUSH_AN_ALARM_A:
-    'The platform administrator needs to select a notification method and configure the corresponding server.',
+    'The platform administrator needs to select a notification method and configure the server corresponding to the method.',
   HOW_TO_SUPRESS_AN_ALARM_Q: '¿Cómo suprimir mensajes de alerta?',
   HOW_TO_SUPRESS_AN_ALARM_A:
-    'Cada política de alerta se puedes establecer en diferentes niveles, y cada nivel corresponde a un período de alerta y período de repetición diferente.',
+    'You can set alerting policies at different levels. Each level corresponds to an alerting interval.',
 
   ALERT_DURATION:
-    'After the monitoring target meets the alert condition for the alert duration, the alert will be triggered',
+    'An alert is firing when the threshold duration reaches the preset value.',
   ALERT_RULE_INACTIVE: 'Inactive',
   ALERT_RULE_PENDING: 'Pending',
   ALERT_RULE_FIRING: 'Firing',
@@ -145,16 +148,20 @@ module.exports = {
   ALERT_RULE_HEALTH_UNKNOWN: 'UnKnown',
 
   ALERT_RULE_EXPRESSION_DESC:
-    'Alerting rules can be customized through PromQL statements. For PromQL related syntax, refer to <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener"> Prometheus Querying</a>.',
+    'You can define a custom rule using PromQL statements. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Learn More</a>',
 
   // Alerting Messages
   ALERTING_MESSAGES: 'Alerting Messages',
   NO_DATA_DESC: 'No Data Found',
+  MONITORING_TARGET: 'Monitoring Target',
 
   // Alerting Policies
   ALERTING_POLICIES: 'Alerting Policies',
   NOTIFICATION_SETTINGS: 'Notification Settings',
   DEPLOYMENT: 'Deployment',
+  DEPLOYMENT_PL: 'Deployments',
   STATEFULSET: 'StatefulSet',
+  STATEFULSET_PL: 'StatefulSets',
   DAEMONSET: 'DaemonSet',
+  DAEMONSET_PL: 'DaemonSets',
 }

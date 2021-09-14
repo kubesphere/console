@@ -18,6 +18,8 @@
 
 module.exports = {
   CLUSTER: '集群',
+  CLUSTER_PL: '集群',
+  CLUSTER_VALUE: '集群：{value}',
   Deployment: '部署',
   StatefulSet: '有状态副本集',
   DaemonSet: '守护进程集',
@@ -26,7 +28,7 @@ module.exports = {
   Terminating: '删除中',
   Deleting: '删除中',
   CREATE_PROJECT: '创建项目',
-  'Create Multi-cluster Project': '创建多集群项目',
+  CREATE_MULTI_CLUSTER_PROJECT: '创建多集群项目',
   'Edit Project': '编辑项目',
   Details: '详情',
   Members: '成员',
@@ -40,15 +42,15 @@ module.exports = {
   'Members Management': '成员管理',
   PROJECT_ADMINISTRATOR: '项目管理员',
   'Manage Project': '项目管理',
-  'Resource Quota': '资源配额',
-  'Project Name': '项目名称',
+  RESOURCE_QUOTAS: '资源配额',
+  PROJECT_NAME: '项目名称',
   'Project Members': '项目成员',
   'project members': '项目成员',
   'Member Name': '成员名称',
   'Modify Member Role': '修改成员角色',
   'Modify Members Role': '修改成员角色',
   'Remove Members': '移除成员',
-  'Remove Member': '移除成员',
+  REMOVE_MEMBER: '移除成员',
   'Invite Member': '邀请成员',
   'Gateway Info': '网关信息',
   'Set Gateway': '设置网关',
@@ -59,6 +61,7 @@ module.exports = {
   'Delete Project': '删除项目',
   'Project Info': '项目信息',
   'Project Quota': '项目配额',
+  EDIT_PROJECT_QUOTAS: '编辑项目配额',
   'Quota Management': '配额管理',
 
   'Project Quota Not Set': '项目配额未设置',
@@ -67,12 +70,15 @@ module.exports = {
   'Project Placement': '项目位置',
 
   'Multi-cluster Project': '多集群项目',
+  MULTI_CLUSTER_PROJECT: '多集群项目',
+  MULTI_CLUSTER_PROJECT_LOW: '多集群项目',
+  MULTI_CLUSTER_PROJECT_PL: '多集群项目',
   'Multi-cluster Projects': '多集群项目',
 
   Opened: '已开启',
   Closed: '已关闭',
 
-  CREATE_PROJECT_DESC: '创建项目以对资源进行隔离并实现权限控制。',
+  CREATE_PROJECT_DESC: '创建项目以对资源进行分组并控制不同用户的权限。',
   PROJECT_NAME_DESC:
     '名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 63 个字符。',
   PROJECT_NAME_INVALID_DESC:
@@ -88,7 +94,7 @@ module.exports = {
   'Select Project Type': '选择项目类型',
 
   'Edit Project Quota': '编辑项目配额',
-  'Add Quota Item': '添加配额项',
+  ADD_QUOTA: '添加配额',
 
   deployments: '部署',
   statefulsets: '有状态副本集',
@@ -131,19 +137,19 @@ module.exports = {
     '项目的落盘日志收集即将关闭.',
 
   SELECT_CLUSTER_DESC: '选择要创建项目的集群。',
-  CLUSTER_NOT_SELECT_DESC: '请选择集群。',
+  CLUSTER_EMPTY_DESC: '请选择一个集群。',
 
   'Project Member': '项目成员',
 
   'Number of volumes': '存储卷（数量）',
 
-  FEDPROJECT_CANNOT_ADD_CLUSTER: '无法添加新的集群',
+  FEDPROJECT_CANNOT_ADD_CLUSTER: '没有可添加的集群。',
 
   CLOSE_FILE_LOG_TIP:
     '落盘日志收集即将关闭。 关闭后，已开启落盘日志收集的服务在容器组副本重启前将继续进行落盘日志的收集，重启后，将不再收集。</br>如果需要再次收集，请开启落盘日志收集，并重起容器组副本。',
 
   Usage: '使用情况',
-
+  USAGE: '使用情况',
   PROJECTS_DESC:
     'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，常用来将系统内部的对象划分为不同的项目组或用户组。',
   PROJECT_BASEINFO_DESC: '项目基础信息设置',
@@ -162,7 +168,7 @@ module.exports = {
   INVITE_MEMBER_DESC: '您可以邀请新的成员来协助您的项目',
   INVITE_MEMBER_DESC_DEVOPS: '您可以邀请新的成员来协助您的工程',
   INVITE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请项目成员',
-  INVITE_MEMBER_CHOOSE_ROLE_TIP: '请选择一个角色赋予该成员',
+  ASSIGN_ROLE: '为成员分配角色',
   PROJECT_ADMIN_DESC: '可以指定项目内一个成员为管理员',
 
   PROJECT_INTERNET_ACCESS_DESC:
@@ -186,7 +192,8 @@ module.exports = {
   'Empty value means no limit, CPU 1 Core = 1000m':
     '值为空表示无限制, CPU 1核 = 1000m',
 
-  'The project name exists on the host cluster.': '项目名在 Host 集群上已存在',
+  PROJECT_NAME_EXISTS_IN_HOST:
+    '项目名称在主集群中已经存在，请使用其他项目名称。',
 
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
     '删除多集群项目同时也会删除依赖于 Host 集群上的同名项目,</br>请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
@@ -225,18 +232,18 @@ module.exports = {
   'How do I invite other members to the current project?':
     '邀请其他成员到当前项目中?',
   'How do I set the project gateway?': '如何设置项目网关？',
-  'You can limit the number of resources. Blank means no limit.':
-    '您可以对资源的数量进行限制, 不填即不限制',
+  RESOURCE_QUANTITY_LIMIT: '资源数量上限',
 
   PROJECT_TYPES_Q: '项目中的服务如何通过外网访问？',
   PROJECT_TYPES_A:
     '项目网关负责创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务；开启项目网关后可以将服务通过 Ingress 暴露给外网访问。',
 
   PROJECT_CLUSTER_SETTINGS_DESC:
-    '选择要创建项目的集群. 当选择了多个集群时, 将创建多集群项目, 并会在 Host 集群上创建同名项目',
+    '为项目选择至少一个集群。如果选择多个集群，主集群上将创建同名项目。',
   NETWORK_ISOLATED_DESC: '设置网络隔离策略',
 
-  NAME_EXIST_IN_CLUSTER: '项目名在集群 {cluster} 中已存在',
+  PROJECT_NAME_EXISTS_IN_CLUSTER:
+    '项目名称在在 {cluster} 集群中已存在，请使用其他项目名称。',
 
   MULTI_CLUSER_PROJECT_TIP:
     '当前项目为多集群项目，项目将分布在不同集群中共同来构成多集群项目，您可以切换到不同集群查看项目在该集群中的设置。',
@@ -248,9 +255,8 @@ module.exports = {
     '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作。',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目里部署应用。',
 
-  FED_HOST_NAMESPACE_TIP:
-    '该项目为多集群项目的相关资源, 请勿在此项目下操作资源',
+  FED_HOST_NAMESPACE_TIP: '该项目与多集群项目关联, 请勿修改此项目中的资源。',
 
-  MULTI_CLUSTER_PROJECT_CREATE_DESC:
+  CREATE_MULTI_CLUSTER_PROJECT_DESC:
     '您可以创建多集群项目，让项目运行在多个集群中，为应用提供快速迭代开发的容器环境并实现高可用。',
 }

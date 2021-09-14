@@ -139,7 +139,7 @@ export default class AlertPolicyDetail extends React.Component {
         ),
       },
       {
-        name: t('ALERTING_TYPE'),
+        name: t('SEVERITY'),
         value: level ? (
           <Tag type={level.type}>{t(level.label)}</Tag>
         ) : (

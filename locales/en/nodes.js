@@ -24,12 +24,12 @@ module.exports = {
   WORKER_NODE_SI: 'Worker node',
   WORKER_NODE_PL: 'Worker nodes',
 
-  CLUSTER_NODES: 'Cluster Nodes',
+  CLUSTER_NODE_PL: 'Cluster Nodes',
   'Cluster Nodes': 'Cluster Nodes',
 
   ADD_NODE: 'Add Node',
   'Add Node Type': 'Add Node Type',
-  'Add Taint': 'Add Taint',
+  ADD_TAINT: 'Add Taint',
   'Add Type': 'Add Type',
   ALL_NODES: 'All nodes',
   'Allocated CPU': 'Allocated CPU',
@@ -39,8 +39,8 @@ module.exports = {
   Architecture: 'Architecture',
   'Cluster Node': 'Cluster Node',
   'Edge Node': 'Edge Node',
-  EDGE_NODES: 'Edge Nodes',
-  'Common Taints': 'Common Taints',
+  EDGE_NODE_PL: 'Edge Nodes',
+  COMMON_TAINTS: 'Common Taints',
   Conditions: 'Conditions',
   ContainerRuntimeVersion: 'ContainerRuntimeVersion',
   'CPU Limits': 'CPU Limits',
@@ -67,6 +67,7 @@ module.exports = {
   'OS Image': 'OS Image',
   OsImage: 'OsImage',
   'Pod Count': 'Pod Count',
+  PODS: 'Pods',
   'Pod Quantity Trend': 'Pod Quantity Trend',
   'Pod Usage': 'Pod Usage',
   'Pod Used': 'Pod Used',
@@ -77,6 +78,7 @@ module.exports = {
   taint: 'taint',
   Taint: 'Taint',
   MANAGE_TAINT: 'Manage Taint',
+  MANAGE_TAINTS: 'Manage Taints',
   taints: 'taints',
   TAINTS: 'Taints',
   'Type Name': 'Type Name',
@@ -84,14 +86,14 @@ module.exports = {
   used: 'used',
   'Worker Node': 'Worker Node',
 
-  NOSCHEDULE_OPTION: 'NoSchedule',
-  PREFER_NOSCHEDULE_OPTION: 'PreferNoSchedule',
-  NOEXECUTE_OPTION: 'NoExecute',
+  NOSCHEDULE_OPTION: 'Prevent scheduling',
+  PREFER_NOSCHEDULE_OPTION: 'Prevent scheduling if possible',
+  NOEXECUTE_OPTION: 'Prevent scheduling and evict existing Pods',
 
-  TAINTS_MSG:
-    'If a taint with "key=value" is added to the node, it means no Pod will be scheduled to this node (PodToleratesNodeTaints policy) or at least scheduling is avoided as much as possible (TaintTolerationPriority policy), unless the Pod has a matching toleration with "key=value".',
+  TAINTS_DESC:
+    'Add taints to nodes so that Pods are not scheduled to the nodes or not scheduled to the nodes if possible. After you add taints to nodes, you can set tolerations on a Pod to allow the Pod to be scheduled to nodes with certain taints.',
   TAINTS_TIPS:
-    'If there is at least one un-ignored taint with effect NoSchedule, then the system will not schedule pods onto that node. <br />If there is no un-ignored taint with effect NoSchedule but there is at least one un-ignored taint with effect PreferNoSchedule, then the system will try not to schedule pods onto the node.<br />if there is at least one un-ignored taint with effect NoExecute, then the pods will be evicted from the node (if it is already running on the node), and will not be scheduled onto the node (if it is not yet running on the node).',
+    '<b>Prevent scheduling</b><br />Prevents all Pods from being scheduled to the node.<br /><br /><b>Prevent scheduling if possible</b><br />Prevents all Pods from being scheduled to the node if possible.<br /><br /><b>Prevent scheduling and evict existing Pods</b><br />Prevents all Pods from being scheduled to the node and evict all existing Pods on the node.',
   NO_TAINTS_TIPS: 'No taints have been set yet.',
   TAINT_SELECT_TIPS: 'Join Common Taints',
   TAINT_DELETE_TIPS: 'Delete Taint',
@@ -103,13 +105,11 @@ module.exports = {
   NODE_STATUS_FAILED: 'Failed',
 
   CLUSTER_NODE_DESC:
-    'This module manages cluster nodes and shows the status of them. You can edit or delete nodes here.',
-  CLUSTER_NODE_CREATE_DESC:
-    'This module manages cluster nodes and shows the status of them. You can edit or delete nodes here.',
+    'Cluster nodes are basic servers of the KubeSphere cluster. You can manage cluster nodes on this page.',
+  CLUSTER_NODE_EMPTY_DESC: 'Please add a node to the cluster.',
   EDGE_NODE_DESC:
-    'This module manages edge nodes and shows the status of them. You can edit or delete nodes here.',
-  EDGE_NODE_CREATE_DESC:
-    'This module manages edge nodes and shows the status of them. You can edit or delete nodes here.',
+    'Edge nodes are servers deployed outside the KubeSphere cluster. You can add edge nodes to the KubeSphere cluster to manage them.',
+  EDGE_NODE_EMPTY_DESC: 'Please add an edge node to the cluster.',
   NODE_NETWORKUNAVAILABLE: 'NetworkUnavailable',
   NODE_NETWORKUNAVAILABLE_DESC:
     'Check if the network configuration on the node is available',
@@ -150,11 +150,14 @@ module.exports = {
   NODE_TYPE_DESCRIPTION_DEC:
     'The description will help users to select nodes types and use the cluster.',
   ADD_EDGE_COMMAND: 'Run the above command on your edge node to configure it.',
-  IN_USE_Node_IP: 'Node IP {ip} in use',
-  IN_USE_Node_NAME: 'Node name {name} in use',
+  IN_USE_Node_IP:
+    'The IP address {ip} is in use. Please use another IP address.',
+  IN_USE_Node_NAME:
+    'The node name {name} already exists. Please use another name.',
   'Add Edge Node': 'Add Edge Node',
   NODE_NAME_EMPTY_DESC: 'Please set a name for the node.',
-  INSTALL_EDGENODE_DESC:
-    'Before running the command, you must install a container runtime such as Docker or containerd on your edge node. See the KubeEdge <a href="https://kubeedge.io/en/docs/" target="_blank">documentation</a> for more details.',
-  ADD_DEFAULT_STAIN: 'Add the default taint {params}.',
+  EDGENODE_NAME_EMPTY_DESC: 'Please set a name for the edge node.',
+  EDGENODE_CONFIG_COMMAND_TIP:
+    'Before running the command, you must install a container runtime such as Docker or containerd on your edge node. <a href="https://kubeedge.io/en/docs/" target="_blank">Learn More</a>',
+  ADD_DEFAULT_TAINT: 'Add the default taint {params}',
 }

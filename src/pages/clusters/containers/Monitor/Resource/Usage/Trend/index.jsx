@@ -61,7 +61,7 @@ export default class ProjectTrend extends React.Component {
 
   renderChart() {
     const config = getAreaChartOps({
-      title: 'PROJECT_CHANGE_TREND',
+      title: 'PROJECT_COUNT',
       unit: '',
       legend: ['PROJECT_COUNT'],
       data: get(this.metrics, `${MetricTypes.namespace_count}.data.result`),

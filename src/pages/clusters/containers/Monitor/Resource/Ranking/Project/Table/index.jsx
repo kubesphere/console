@@ -67,8 +67,13 @@ export default class ProjectUsageRank extends React.Component {
         <div>
           <h3>{getSuitableValue(node.namespace_cpu_usage, 'cpu', '-')}</h3>
           <div>
-            {t('Quota')}:{' '}
-            {getSuitableValue(node.namespace_cpu_limit_hard, 'cpu', '-')}
+            {t('QUOTA_VALUE', {
+              value: getSuitableValue(
+                node.namespace_cpu_limit_hard,
+                'cpu',
+                '-'
+              ),
+            })}
           </div>
         </div>
       ),
@@ -88,8 +93,13 @@ export default class ProjectUsageRank extends React.Component {
             )}
           </h3>
           <div>
-            {t('QUOTA')}:
-            {getSuitableValue(node.namespace_memory_limit_hard, 'memory', '-')}
+            {t('QUOTA_VALUE', {
+              value: getSuitableValue(
+                node.namespace_memory_limit_hard,
+                'memory',
+                '-'
+              ),
+            })}
           </div>
         </div>
       ),
@@ -103,7 +113,7 @@ export default class ProjectUsageRank extends React.Component {
         <div>
           <h3>{node.namespace_pod_count || '-'}</h3>
           <div>
-            {t('Quota')}: {node.namespace_pod_count_hard || '-'}
+            {t('QUOTA_VALUE', { value: node.namespace_pod_count_hard || '-' })}
           </div>
         </div>
       ),

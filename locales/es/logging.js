@@ -86,16 +86,15 @@ module.exports = {
   LOG_COLLECTION_ENABLE_TIPS:
     'El nuevo estado tarda aproximadamente 1 minuto en surtir efecto.',
   LOG_COLLECTION_FLUENTD_URL_TIPS:
-    'Introduce la dirección del Fluentd que recibe los logs.',
+    'Enter the address of the Fluentd service that receives logs.',
   EMPTY_LOG_COLLECTIONS:
-    'No log receiver is found. You can add log receivers to export logs to external log collectors.',
-  LOG_COLLECTION_TIPS:
-    'You can add one log receiver for each type. If a type of log receiver is already added, you cannot add it again.',
+    'No log receiver is found. You can add log receivers and send logs to external log receivers.',
+  LOG_COLLECTION_TIPS: 'You can add one log receiver for each type.',
   URL_SYNTAX_ERROR: 'Error de sintaxis de URL',
   LOG_COLLECTION_ES_URL_TIPS:
     'The built-in Elasticsearch service is used by default. You can also enter the IP address of Elasticsearch independently deployed inside or outside the cluster.',
   LOG_COLLECTION_ES_INDEX_TIPS:
-    'The index is created based on the date. For example, {prefix}-2020.01.01.',
+    'Use the index prefix to speed up queries. The index prefix is automatically generated in <Index prefix>-<Year-month-date> format.',
   'Search Logs by': 'Buscar logs por {field}',
   'KeyWord Log Query Tip':
     'Introduce la palabra clave para encontrar el log. También puedes encontrar el log de errores por palabras clave como "Error", "Fail", "Fatal", "Exception" y "Warning".',
@@ -141,8 +140,13 @@ module.exports = {
     'Crear un panel de monitoreo personalizado',
   SELECT_MONITORING_TEMPLATE: 'Selecciona la plantilla de monitoreo adecuada',
   CUSTON_MONITORING_TEMPLATE_DESC:
-    'Generate default monitoring template based on the application template you select or customize a template.',
+    'Select a default template or customize a template to generate a custom monitoring dashboard.',
   CUSTOM_MONITORING_DASHBOARD: 'Panel de control personalizado',
+  CUSTOMMONITORDASHBOARD: 'Panel de control personalizado',
+  CUSTOMMONITORDASHBOARD_PL: 'Custom Monitoring Dashboards',
+  CUSTOMMONITORDASHBOARD_LOW: 'custom monitoring dashboard',
+  CUSTOMMONITORDASHBOARD_EMPTY_DESC:
+    'Please create a custom monitoring dashboard.',
   SERVICE_BUILT_INTERFACE:
     'la supervisión del servicio se genera con la captura de datos de interfaz',
   'Search Auditing Logs by': 'Auditoría de búsqueda por {field}',
@@ -173,10 +177,14 @@ module.exports = {
   LOG_COLLECTION: 'Log Collection',
   LOG_ADDRESS: 'Address: ',
   LOG_COLLECTING: 'Collecting',
-  LOG_CLOSE: 'Close',
-  INVALID_SERVICE_ADDRESS: 'Invalid service address.',
+  LOG_DISABLED: 'Disabled',
+  INVALID_SERVICE_ADDRESS: 'Please enter a correct service address.',
   ADD_SERVICE_ADDRESS: 'Add',
   EXAMPLE: 'Example: ',
   PORT_NUMBER_EMPTY: 'Please enter a port number.',
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
+  LOGGING: 'Logging',
+  EVENTS: 'Events',
+  AUDITING: 'Auditing',
+  CREATION_TIME: 'Creation time',
 }

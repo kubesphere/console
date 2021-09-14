@@ -97,7 +97,7 @@ export default class ResourceMonitorModal extends React.Component {
     }))
 
     result.unshift({
-      label: t('All'),
+      label: t('ALL'),
       value: 'all',
     })
 
@@ -203,10 +203,10 @@ export default class ResourceMonitorModal extends React.Component {
     return (
       <Form className={styles.form} ref={this.formRef} data={formData}>
         {this.props.workspace && (
-          <Form.Item label={t('Cluster')}>
+          <Form.Item label={t('CLUSTER')}>
             <Select
               name="cluster"
-              placeholder={t('Please select cluster')}
+              placeholder=" "
               defaultValue={cluster}
               options={this.clusters}
               onChange={this.handleClusterChange}
@@ -218,7 +218,7 @@ export default class ResourceMonitorModal extends React.Component {
         <Form.Item label={t('PROJECT')}>
           <Select
             name="namespace"
-            placeholder={t('Please select project')}
+            placeholder=" "
             defaultValue={namespace}
             options={this.namespaces}
             onFetch={this.fetchNamespaces}
@@ -275,7 +275,7 @@ export default class ResourceMonitorModal extends React.Component {
     const columns = [
       {
         key: 'time',
-        title: t('Time'),
+        title: t('TIME'),
         dataIndex: 'time',
         width: '30%',
         render: time =>
@@ -285,7 +285,7 @@ export default class ResourceMonitorModal extends React.Component {
       },
       {
         key: 'usage',
-        title: t('Usage'),
+        title: t('USAGE'),
         dataIndex: 'value',
       },
     ]
@@ -293,7 +293,7 @@ export default class ResourceMonitorModal extends React.Component {
     return (
       <div className={styles.table}>
         <div className={styles.box}>
-          <div className={styles.title}>{t(title) || t('Resources Usage')}</div>
+          <div className={styles.title}>{t(title) || t('RESOURCE_USAGE')}</div>
           <Table
             columns={columns}
             dataSource={records}

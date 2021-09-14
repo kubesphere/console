@@ -100,12 +100,12 @@ class ExcuteRecords extends React.Component {
       render: msg => msg || '-',
     },
     {
-      title: t('Start Time'),
+      title: t('START_TIME'),
       dataIndex: 'start-time',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
     },
     {
-      title: t('End Time'),
+      title: t('END_TIME'),
       dataIndex: 'completion-time',
       render: time =>
         !time || /^0001-01-01/.test(time)

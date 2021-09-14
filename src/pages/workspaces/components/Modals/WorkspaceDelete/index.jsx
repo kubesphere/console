@@ -86,11 +86,27 @@ export default class DeleteModal extends React.Component {
       isSubmitting,
     } = this.props
 
+    const typeKey = type ? type.replace(/[- ]/g, '_').toUpperCase() : undefined
+    const typeKeyLow = type
+      ? `${type.replace(/[- ]/g, '_').toUpperCase()}_LOW`
+      : undefined
+    const typeKeyPl = type
+      ? `${type.replace(/[- ]/g, '_').toUpperCase()}_PL`
+      : undefined
+
     const tip =
       desc ||
       (resource && type
-        ? t.html('DELETE_CONFIRM_TIP', { type: type.toLowerCase(), resource })
-        : t.html('DELETE_TIP', { type, resource }))
+        ? resource.split(', ').length === 1
+          ? t.html('DELETE_RESOURCE_TYPE_DESC_SI', {
+              type: t(typeKeyLow),
+              resource,
+            })
+          : t.html('DELETE_RESOURCE_TYPE_DESC_PL', {
+              type: t(typeKeyLow),
+              resource,
+            })
+        : t.html('DELETE_DESC'))
 
     return (
       <Modal
@@ -105,7 +121,12 @@ export default class DeleteModal extends React.Component {
         <div className={styles.body}>
           <div className="h5">
             <Icon name="close" type="light" className={styles.closeIcon} />
-            {title || t('DELETE_TITLE', { type })}
+            {title ||
+              (resource && type
+                ? resource.split(', ').length === 1
+                  ? t('DELETE_TITLE_SI', { type: t(typeKey) })
+                  : t('DELETE_TITLE_PL', { type: t(typeKeyPl) })
+                : t('DELETE'))}
           </div>
           <div className={styles.content}>
             <p>{tip}</p>
@@ -122,7 +143,7 @@ export default class DeleteModal extends React.Component {
               onChange={this.handleDeleteCheckboxChange}
               checked={this.state.checked}
             >
-              {t('DELETE_WORDSPACE_RELATED_RESOURCES_DESC')}
+              {t('DELETE_WORKSPACE_PROJECTS_DESC')}
             </Checkbox>
           </div>
         </div>
