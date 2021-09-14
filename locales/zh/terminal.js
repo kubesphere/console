@@ -33,6 +33,8 @@ module.exports = {
     <p>有关配置文件参数的详细信息，请参阅<a href="https://kubernetes.io/zh/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">官方文档</a>。</p>
   `,
 
+  VIEW_KUBE_CONFIG: 'kubeConfig 配置的相关操作包含查看和下载',
+
   KUBECTL_TIP: `
     <h2><a id="KubeCtl__0"></a>命令参考</h2>
     <p>有关 kubectl 的更多信息，请参阅<a href="https://kubernetes.io/zh/docs/reference/kubectl/overview/" target="_blank">官方文档</a>。</p>

@@ -25,7 +25,7 @@ import fullScreen from 'components/Modals/FullscreenModal'
 import UserTip from 'components/Cards/Tips'
 import { Icon } from '@kube-design/components'
 import { CodeEditor } from 'components/Base'
-
+import { get } from 'lodash'
 import TerminalStore from 'stores/terminal'
 
 import styles from './index.scss'
@@ -36,7 +36,8 @@ export default class KubeConfigModal extends React.Component {
   store = new TerminalStore()
 
   componentDidMount() {
-    this.store.fetchKubeConfig(this.props.match.params)
+    const params = get(this.props, 'match.params', {})
+    this.store.fetchKubeConfig(params)
   }
 
   handleDownload = () => {
