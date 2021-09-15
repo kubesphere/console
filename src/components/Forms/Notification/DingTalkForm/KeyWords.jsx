@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty } from 'lodash'
@@ -26,7 +26,7 @@ import { BoxInput } from 'components/Inputs'
 
 import styles from './index.scss'
 
-export default class Item extends Component {
+export default class KeyWords extends React.Component {
   static propTypes = {
     value: PropTypes.array,
     onChange: PropTypes.func,
@@ -37,32 +37,33 @@ export default class Item extends Component {
     onChange() {},
   }
 
-  handleAdd = newValue => {
+  handleAdd = item => {
     const { value, onChange } = this.props
-    onChange([...value, newValue])
+    onChange([...value, item])
   }
 
-  handleDelete = newValue => {
+  handleDelete = item => {
     const { value, onChange } = this.props
-    const newData = value.filter(item => item !== newValue)
+    const newData = value.filter(v => v !== item)
     onChange(newData)
   }
 
   render() {
-    const { validate, type, value, className } = this.props
-    const text = type.toUpperCase()
+    const { value, validate, className } = this.props
 
     return (
       <div className={classnames(styles.wrapper, className)}>
         <BoxInput
-          placeholder={t(`WECOM_RECEIVER_${text}_INPUT_PLACEHOLDER`)}
+          className={styles.wrapper}
+          title={t('Keywords')}
+          placeholder={t('Please enter a keyword')}
           validate={validate}
           onAdd={this.handleAdd}
         />
-        <p className="margin-t8">{t(`${type.replace('to', '')} Set`)}</p>
-        <div className={classnames(styles.boxWrapper, className)}>
+        <p className="margin-t8">{t('Keywords Set')}</p>
+        <div className={styles.boxWrapper}>
           {isEmpty(value) ? (
-            <div className={styles.empty}>{t(`EMPTY_${text}_DESC`)}</div>
+            <div className={styles.empty}>{t('EMPTY_KEYWORDS_DESC')}</div>
           ) : (
             value.map(item => {
               return (
@@ -73,7 +74,7 @@ export default class Item extends Component {
                     size={12}
                     clickable
                     onClick={() => this.handleDelete(item)}
-                  />
+                  ></Icon>
                 </Tag>
               )
             })

@@ -1,51 +1,46 @@
 @import '~scss/variables';
 
-.formBody {
-  .row {
-    margin-bottom: 12px;
-  }
+.title {
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
 
-  .title {
-    display: flex;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
+.subTitle {
+  margin-top: -12px;
+  margin-bottom: 4px;
+  color: $dark-color01;
+}
 
-  .item {
-    padding: 12px;
-    border: solid 1px $light-color03;
-    border-radius: 4px;
-  }
-
-  .isHorizon {
-    display: flex;
-
-    :global {
-      .form-item-label {
-        margin-bottom: 0;
-        margin-right: 8px;
-      }
-    }
-  }
-
-  :global {
-    .form-item-label {
-      font-weight: 600;
-    }
-  }
+.row {
+  margin-bottom: 12px;
 }
 
 .wrapper {
-  margin-top: 12px;
+  max-width: 455px;
 }
 
-.listWrapper {
+.item {
   padding: 12px;
-  border: solid 1px $light-color03;
+  border: solid 1px $light-color06;
   border-radius: 4px;
-  margin-top: 6px;
+  background-color: white;
+}
+
+.boxWrapper {
   max-width: 455px;
+  margin-top: 4px;
+  padding: 12px;
+  background-color: $light-color01;
+  border-radius: 4px;
+  min-height: 80px;
+
+  .empty {
+    text-align: center;
+    color: $dark-color01;
+    line-height: 56px;
+  }
 }
 
 .tag {
@@ -53,19 +48,11 @@
 
   :global {
     .icon {
-      margin-left: 4px;
+      margin-left: 8px;
     }
   }
 }
 
 .tag + .tag {
-  margin-left: 4px;
-}
-
-.tips {
-  margin-bottom: 12px;
-}
-
-.footer {
-  text-align: right;
+  margin-left: 8px;
 }

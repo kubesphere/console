@@ -18,9 +18,34 @@
 
 module.exports = {
   NOTIFICATION_MANAGEMENT: '通知管理',
+  'Notification Management': '通知管理',
+  NOTIFICATION_CONFIGURATION: '通知配置',
+  'Notification Configuration': '通知配置',
   'Server Settings': '服务器配置',
   'Recipient Settings': '接收设置',
   'Receive Notification': '接收通知',
+  NOTIFICATION_CONFIGURATION_DESC:
+    '可以通过邮件、钉钉、企业微信、Slack、Webhook接收平台的通知，需要配置发送服务',
+
+  'Notification On': '通知开启',
+  'Notification Off': '通知关闭',
+
+  'Notification Condition Settings': '通知条件设置',
+  NOTIFICATION_CONDITION_SETTINGS_DESC: '您只会收到筛选符合条件的通知',
+  NOTIFICATION_CONDITION_SETTING_ANNOTATION:
+    '包含键值：接收的通知标签中会具备已选定的值；包含键：接收的通知具备已选择的标签。',
+  'Include key values': '包含键值',
+  'Not include key values': '不包含键值',
+  'Exists key': '包含键',
+  'Does not exist key': '不包含键',
+  'Please select a tag': '请选择标签',
+  'Please select a regex filter': '请选择过滤规则',
+  'Invalid notification condition': '请填写正确的通知条件',
+
+  SEND_TEST_MESSAGE: '发送测试信息',
+  NOTIFICATION_CONFIGRATION_SEND_TEST_MESSAGE_DESC:
+    '设置好相关配置后，可以发送测试信息验证您的配置。',
+  SEND_TEST_MESSAGE_SUCCESS_DESC: '验证成功，已向您发送了一条测试消息请查收',
 
   Mail: '邮件',
   'SMTP Server Address': 'SMTP 服务器地址',
@@ -46,6 +71,8 @@ module.exports = {
   'Webhook URL': 'Webhook 地址',
   keywords: '关键字',
   'Keywords Set': '已设置关键字',
+  CONVERSATION_ID_TIP:
+    '会话 ID 需要系统管理员进行配置才能获取，如需设置请联系系统管理员。',
 
   'Please enter a conversation ID': '请输入要添加的会话 ID',
   'Please enter a keyword': '请输入要添加的关键字',
@@ -53,6 +80,7 @@ module.exports = {
   'This keyword has existed': '此关键字已存在',
   MAX_CID_COUNT: '最多添加 {count} 个会话 ID',
   MAX_KEYWORD_COUNT: '最多添加 {count} 个关键字',
+  EMPTY_KEYWORDS_DESC: '未添加任何关键字',
 
   DINGTALK_DESC: '可以通过钉钉接收平台的通知，需要配置钉钉发送服务器。',
   DINGTALK_KEYWORDS_DESC: 'ChatBot 的自定义关键字, 如需多个请以 "," 分隔',
@@ -64,11 +92,18 @@ module.exports = {
   'WeChat API Agent ID': '企业应用 ID',
   'WeChat API Secret': '企业应用凭证',
   'User ID': '用户 ID',
-  'Department ID': '部门 ID',
+  'Party ID': '部门 ID',
   'Tag ID': '标签 ID',
   'User Set': '已设置用户',
-  'Department Set': '已设置部门',
+  'Party Set': '已设置部门',
   'Tag Set': '已设置标签',
+  WECOM_RECEIVER_TOUSER_INPUT_PLACEHOLDER: '请输入要添加的用户 ID',
+  WECOM_RECEIVER_TOPARTY_INPUT_PLACEHOLDER: '请输入要添加的部门 ID',
+  WECOM_RECEIVER_TOTAG_INPUT_PLACEHOLDER: '请输入要添加的标签',
+  RECIPIENT_SETTINGS_TIP: '至少需要配置一项方可接收通知',
+  EMPTY_TOUSER_DESC: '未添加任何用户',
+  EMPTY_TOPARTY_DESC: '未添加任何部门',
+  EMPTY_TOTAG_DESC: '未添加任何标签',
 
   'Please enter the WeChat API Corp ID': '请输入企业 ID',
   'Please enter the WeChat API Agent ID': '请输入企业应用 ID',
@@ -90,6 +125,7 @@ module.exports = {
   Channel: '接收频道',
   'Channel Settings': '接收频道设置',
   'Channel Set': '已设置频道',
+  EMPTY_CHANNEL_DESC: '未添加任何频道',
 
   'Please enter the Slack token': '请输入 slack token',
   'Please enter a channel': '请输入要添加的频道',

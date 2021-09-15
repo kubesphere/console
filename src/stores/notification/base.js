@@ -16,6 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get, set } from 'lodash'
+import { action } from 'mobx'
+
+import { LIST_DEFAULT_ORDER } from 'utils/constants'
 import BaseStore from 'stores/base'
 
 export default class Base extends BaseStore {
@@ -26,11 +30,72 @@ export default class Base extends BaseStore {
   getPath({ user }) {
     let path = ''
     if (user) {
-      path += `/user/${user}`
+      path += `/users/${user}`
     }
     return path
   }
 
   getResourceUrl = (params = {}) =>
     `${this.apiVersion}${this.getPath(params)}/${this.module}`
+
+  @action
+  async fetchList({ more, user, ...params } = {}) {
+    this.list.isLoading = true
+
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
+    }
+
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
+    }
+
+    params.limit = params.limit || 10
+
+    const result = await request.get(
+      this.getResourceUrl({ user }),
+      this.getFilterParams(params)
+    )
+    const data = (get(result, 'items') || []).map(item => ({
+      ...this.mapper(item),
+    }))
+
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data,
+      total:
+        result.totalItems ||
+        result.total_count ||
+        result.total ||
+        data.length ||
+        0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
+
+    return data
+  }
+
+  @action
+  async update(params, newObject) {
+    const result = await request.get(
+      this.getDetailUrl(params),
+      {},
+      null,
+      () => {
+        window.onunhandledrejection({
+          status: 404,
+        })
+        return Promise.reject()
+      }
+    )
+    const resourceVersion = get(result, 'metadata.resourceVersion')
+    if (resourceVersion) {
+      set(newObject, 'metadata.resourceVersion', resourceVersion)
+    }
+    return this.submitting(request.put(this.getDetailUrl(params), newObject))
+  }
 }

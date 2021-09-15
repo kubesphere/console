@@ -1,45 +1,19 @@
 @import '~scss/variables';
 
-.formBody {
-  .row {
-    margin-bottom: 12px;
-  }
-
-  .title {
-    display: flex;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
-
-  .item {
-    padding: 12px;
-    border: solid 1px $light-color03;
-    border-radius: 4px;
-  }
-
-  .isHorizon {
-    display: flex;
-
-    :global {
-      .form-item-label {
-        margin-bottom: 0;
-        margin-right: 8px;
-      }
-    }
-  }
-
-  :global {
-    .form-item-label {
-      font-weight: 600;
-    }
-  }
-}
-
-.tips {
+.row {
   margin-bottom: 12px;
 }
 
-.footer {
-  text-align: right;
+.title {
+  display: flex;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.item {
+  padding: 12px;
+  border: solid 1px $light-color03;
+  border-radius: 4px;
+  background: white;
 }

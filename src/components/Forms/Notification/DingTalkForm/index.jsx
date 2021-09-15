@@ -18,23 +18,25 @@
 
 import React, { Component } from 'react'
 import { get } from 'lodash'
+
 import {
   Form,
-  Button,
   Input,
-  Alert,
-  Tag,
-  Icon,
   Notify,
+  Tooltip,
+  Icon,
+  Tabs,
 } from '@kube-design/components'
-import { List, ToggleField } from 'components/Base'
-import { BoxInput } from 'components/Inputs'
+
+import BaseForm from '../BaseForm'
+import Item from './Item'
+import KeyWords from './KeyWords'
 
 import styles from './index.scss'
 
-export default class DingTalkForm extends Component {
-  formRef = React.createRef()
+const { TabPanel } = Tabs
 
+export default class DingTalkForm extends Component {
   validateCid = value => {
     const data = get(
       this.props.data,
@@ -99,186 +101,107 @@ export default class DingTalkForm extends Component {
     return true
   }
 
-  handleSubmit = () => {
-    const form = this.formRef.current
-    form &&
-      form.validate(() => {
-        this.props.onSubmit(form.getData())
-      })
-  }
-
-  render() {
+  renderLabel() {
     return (
-      <Form
-        ref={this.formRef}
-        data={this.props.data}
-        onChange={this.props.onChange}
-      >
-        <div className={styles.formBody}>
-          {this.renderTips()}
-          {this.renderFormItems()}
-        </div>
-        <div className={styles.footer}>{this.renderFooterBtns()}</div>
-      </Form>
+      <div className={styles.labelWrapper}>
+        <span>{t('Conversation ID')}</span>
+        {this.props.user && (
+          <Tooltip content={t('CONVERSATION_ID_TIP')}>
+            <Icon className={styles.tip} name="question" />
+          </Tooltip>
+        )}
+      </div>
     )
   }
 
-  renderTips() {
-    if (this.props.showTip && this.props.formStatus === 'update') {
-      return (
-        <Alert
-          className={styles.tips}
-          type="error"
-          message={t('DINGTALK_SETTINGS_CHANGE_NEED_SAVE_TIP')}
-        />
-      )
-    }
-    return null
+  renderServiceSetting() {
+    return (
+      <div className={styles.row}>
+        <div className={styles.title}>{t('Conversation Settings')}</div>
+        <div className={styles.item}>
+          <Form.Item label={t('AppKey')}>
+            <Input name="secret.data.appkey" />
+          </Form.Item>
+          <Form.Item label={t('AppSecret')}>
+            <Input name="secret.data.appsecret" />
+          </Form.Item>
+        </div>
+      </div>
+    )
   }
 
-  renderFormItems() {
-    const { data, onAdd } = this.props
+  renderReceiverSetting() {
+    const { wrapperClassName } = this.props
     return (
-      <>
-        <div className={styles.row}>
-          <div className={styles.title}>{t('Notification Settings')}</div>
-          <div className={styles.item}>
-            <Form.Item
-              className={styles.isHorizon}
-              label={t('Receive Notification')}
-            >
-              <ToggleField
-                name="receiver.spec.dingtalk.enabled"
-                value={get(data, 'receiver.spec.dingtalk.enabled')}
-                onText={t('On')}
-                offText={t('Off')}
-              />
-            </Form.Item>
-          </div>
+      <div className={styles.row}>
+        <div className={styles.title}>
+          <span>{t('Recipient Settings')}</span>
         </div>
-        <div className={styles.row}>
-          <div className={styles.title}>{t('Conversation Settings')}</div>
-          <div className={styles.item}>
-            <Form.Item label={t('AppKey')}>
-              <Input name="secret.data.appkey" />
-            </Form.Item>
-            <Form.Item label={t('AppSecret')}>
-              <Input name="secret.data.appsecret" />
-            </Form.Item>
-            <BoxInput
-              className={styles.itemWrapper}
+        <div className={styles.item}>
+          <Form.Item label={this.renderLabel()}>
+            <Item
+              className={wrapperClassName}
+              name="receiver.spec.dingtalk.conversation.chatids"
               title={t('Conversation ID')}
               placeholder={t('Please enter a conversation ID')}
               validate={this.validateCid}
-              onAdd={value =>
-                onAdd(value, 'receiver.spec.dingtalk.conversation.chatids')
-              }
             />
-            {this.renderList()}
-          </div>
+          </Form.Item>
         </div>
-        <div className={styles.row}>
-          <div className={styles.title}>
-            <span className="margin-r12">{t('DingTalk Chatbot')}</span>
-          </div>
-          <div className={styles.item}>
-            <Form.Item label={t('Webhook URL')}>
-              <Input name="secret.data.webhook" />
-            </Form.Item>
-            <BoxInput
-              className={styles.itemWrapper}
-              title={t('Keywords')}
-              placeholder={t('Please enter a keyword')}
+      </div>
+    )
+  }
+
+  renderChatSetting() {
+    const { wrapperClassName } = this.props
+    return (
+      <div className={styles.row}>
+        <div className={styles.title}>
+          <span>{t('DingTalk Chatbot')}</span>
+        </div>
+        <div className={styles.item}>
+          <Form.Item label={t('Webhook URL')}>
+            <Input name="secret.data.webhook" />
+          </Form.Item>
+          <Form.Item label={t('Secret')}>
+            <Input name="secret.data.chatbotsecret" />
+          </Form.Item>
+          <Form.Item>
+            <KeyWords
+              className={wrapperClassName}
+              name="receiver.spec.dingtalk.chatbot.keywords"
               validate={this.validateKeywords}
-              onAdd={value =>
-                onAdd(value, 'receiver.spec.dingtalk.chatbot.keywords')
-              }
             />
-            {this.renderKeywords()}
-            <Form.Item label={t('Secret')}>
-              <Input name="secret.data.chatbotsecret" />
-            </Form.Item>
-          </div>
-        </div>
-      </>
-    )
-  }
-
-  renderList() {
-    const { data, onDelete } = this.props
-    const resources = get(
-      data,
-      'receiver.spec.dingtalk.conversation.chatids',
-      []
-    )
-    if (!resources.length) {
-      return null
-    }
-    return (
-      <div className={styles.listWrapper}>
-        <List>
-          {resources.map(item => (
-            <List.Item
-              key={item}
-              title={item}
-              onDelete={() =>
-                onDelete(item, 'receiver.spec.dingtalk.conversation.chatids')
-              }
-            />
-          ))}
-        </List>
-      </div>
-    )
-  }
-
-  renderKeywords() {
-    const { data, onDelete } = this.props
-    const keywordsList = get(
-      data,
-      'receiver.spec.dingtalk.chatbot.keywords',
-      []
-    )
-
-    if (!keywordsList.length) {
-      return null
-    }
-    return (
-      <div>
-        <p>{t('Keywords Set')}</p>
-        <div className={styles.contentWrapper}>
-          {keywordsList.map(item => {
-            return (
-              <Tag className={styles.tag} type="primary" key={item}>
-                {item}
-                <Icon
-                  name="close"
-                  size={12}
-                  clickable
-                  onClick={() =>
-                    onDelete(item, 'receiver.spec.dingtalk.chatbot.keywords')
-                  }
-                ></Icon>
-              </Tag>
-            )
-          })}
+          </Form.Item>
         </div>
       </div>
     )
   }
 
-  renderFooterBtns() {
+  render() {
+    const { user, data, onChange, hideFooter, ...rest } = this.props
     return (
-      <>
-        <Button onClick={this.props.onCancel}>{t('Cancel')}</Button>
-        <Button
-          type="control"
-          loading={this.props.isSubmitting}
-          disabled={this.props.disableSubmit}
-          onClick={this.handleSubmit}
-        >
-          {this.props.formStatus === 'update' ? t('Update') : t('Save')}
-        </Button>
-      </>
+      <BaseForm
+        name="dingtalk"
+        module="DingTalk"
+        data={data}
+        onChange={onChange}
+        hideFooter={hideFooter}
+        user={user}
+        {...rest}
+      >
+        <Tabs type="button">
+          <TabPanel label={t('Conversation Settings')} name="conversation">
+            <>
+              {!user && this.renderServiceSetting()}
+              {this.renderReceiverSetting()}
+            </>
+          </TabPanel>
+          <TabPanel label={t('DingTalk Chatbot')} name="chatbot">
+            {this.renderChatSetting()}
+          </TabPanel>
+        </Tabs>
+      </BaseForm>
     )
   }
 }

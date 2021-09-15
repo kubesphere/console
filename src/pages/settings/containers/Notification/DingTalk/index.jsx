@@ -21,8 +21,9 @@ import { observer } from 'mobx-react'
 import { isEmpty, get, set, cloneDeep } from 'lodash'
 
 import { Notify } from '@kube-design/components'
-import { Banner, Panel } from 'components/Base'
+import { Panel } from 'components/Base'
 import DingTalkForm from 'components/Forms/Notification/DingTalkForm'
+import BaseBanner from 'settings/components/Cards/Banner'
 
 import ConfigStore from 'stores/notification/config'
 import ReceiverStore from 'stores/notification/receiver'
@@ -50,7 +51,6 @@ export default class DingTalk extends React.Component {
       secret: this.secretTemplate,
     },
     formStatus: 'create',
-    showTip: false,
   }
 
   formData = {
@@ -100,9 +100,34 @@ export default class DingTalk extends React.Component {
       this.setState({
         formData: cloneDeep(this.formData),
         formStatus: 'update',
-        showTip: false,
       })
     }
+  }
+
+  getVerifyFormTemplate = data => {
+    const { config, receiver, secret } = cloneDeep(data)
+    set(
+      config,
+      'spec.dingtalk.conversation.appkey.value',
+      get(secret, 'data.appkey')
+    )
+    set(
+      config,
+      'spec.dingtalk.conversation.appsecret.value',
+      get(secret, 'data.appsecret')
+    )
+
+    set(
+      receiver,
+      'spec.dingtalk.chatbot.webhook.value',
+      get(secret, 'data.webhook')
+    )
+    set(
+      receiver,
+      'spec.dingtalk.chatbot.secret.value',
+      get(secret, 'data.chatbotsecret')
+    )
+    return { config, receiver, secret }
   }
 
   handleSubmit = async data => {
@@ -131,7 +156,7 @@ export default class DingTalk extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('ADDED_SUCCESS_DESC')
+      message = t('Added Successfully')
     } else {
       await this.secretStore.update(
         { name: SECRET_NAME },
@@ -145,70 +170,29 @@ export default class DingTalk extends React.Component {
     Notify.success({ content: message, duration: 1000 })
   }
 
-  onAdd = (value, key) => {
-    const { formData } = this.state
-    const data = get(formData, key, [])
-
-    set(formData, key, [...data, value])
-    this.setState({ formData, showTip: true })
-  }
-
-  onDelete = (value, key) => {
-    const { formData } = this.state
-    const data = get(formData, key, [])
-    set(
-      formData,
-      key,
-      data.filter(item => item !== value)
-    )
-    this.setState({ formData, showTip: true })
-  }
-
-  onFormDataChange = () => {
-    this.setState({
-      showTip: true,
-    })
-  }
-
   onFormClose = () => {
     this.setState({
-      showTip: false,
       formData: cloneDeep(this.formData),
     })
   }
 
   render() {
+    const { formData, formStatus } = this.state
+
     return (
       <div>
-        <Banner
-          icon="file"
-          type="white"
-          name={t('DingTalk')}
-          desc={t('DINGTALK_DESC')}
-        />
-        {this.renderConfigForm()}
+        <BaseBanner type="dingtalk" />
+        <Panel loading={this.configStore.list.isLoading}>
+          <DingTalkForm
+            formStatus={formStatus}
+            data={formData}
+            onCancel={this.onFormClose}
+            onSubmit={this.handleSubmit}
+            getVerifyFormTemplate={this.getVerifyFormTemplate}
+            isSubmitting={this.configStore.isSubmitting}
+          />
+        </Panel>
       </div>
-    )
-  }
-
-  renderConfigForm() {
-    const { formData, formStatus, showTip } = this.state
-
-    return (
-      <Panel loading={this.configStore.list.isLoading}>
-        <DingTalkForm
-          showTip={showTip}
-          formStatus={formStatus}
-          data={formData}
-          onCancel={this.onFormClose}
-          onSubmit={this.handleSubmit}
-          onChange={this.onFormDataChange}
-          onAdd={this.onAdd}
-          onDelete={this.onDelete}
-          isSubmitting={this.configStore.isSubmitting}
-          disableSubmit={!showTip && formStatus === 'update'}
-        />
-      </Panel>
     )
   }
 }

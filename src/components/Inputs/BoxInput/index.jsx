@@ -31,7 +31,6 @@ export default class BoxInput extends React.Component {
     options: PropTypes.array,
     onSelectChange: PropTypes.func,
     onAdd: PropTypes.func,
-    onDelete: PropTypes.func,
     validate: PropTypes.func,
   }
 
@@ -40,7 +39,6 @@ export default class BoxInput extends React.Component {
     defaultSelectValue: '',
     options: [],
     onAdd() {},
-    onDelete() {},
     onSelectChange() {},
     validate() {},
   }
@@ -57,15 +55,11 @@ export default class BoxInput extends React.Component {
     const { validate, onAdd } = this.props
     const { inputValue } = this.state
 
-    if (validate(inputValue)) {
+    if (validate(trim(inputValue))) {
       this.setState({ inputValue: '' }, () => {
         onAdd(trim(inputValue))
       })
     }
-  }
-
-  handleDelete = (value, index) => {
-    this.props.onDelete(value, index)
   }
 
   handleKeyUp = e => {

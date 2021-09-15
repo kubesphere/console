@@ -241,6 +241,8 @@ export const ICON_TYPES = {
   pipelines: 'blockchain',
   ippools: 'eip-group',
   cluster: 'cluster',
+  notification: 'loudspeaker',
+  notificationhistory: 'record',
 }
 
 export const MODULE_KIND_MAP = {
