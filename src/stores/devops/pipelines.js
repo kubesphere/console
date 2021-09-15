@@ -322,9 +322,9 @@ export default class PipelineStore extends BaseStore {
     }
 
     let result = await this.request.get(
-      `${this.getDevopsUrlV2({
+      `${this.getDevOpsUrlV4({
         cluster,
-      })}${devops}/pipelines/${name}/runs/`,
+      })}namespaces/${devops}/pipelines/${name}/pipelineruns`,
       {
         start: (page - 1) * limit || 0,
         limit,
@@ -400,16 +400,16 @@ export default class PipelineStore extends BaseStore {
   }
 
   async runBranch({ cluster, devops, name, branch, parameters }) {
-    const href_temp = `${this.getDevopsUrlV2({
+    const href_temp = `${this.getDevOpsUrlV4({
       cluster,
-    })}${devops}/pipelines/${name}${
-      branch ? `/branches/${encodeURIComponent(branch)}` : ''
-    }/runs`
+    })}namespaces/${devops}/pipelines/${name}/pipelineruns${
+      branch ? `?branch=${encodeURIComponent(branch)}` : ''
+    }`
 
-    const params = !isEmpty(parameters) ? { parameters } : { parameters: [] }
+    const body = !isEmpty(parameters) ? { parameters } : { parameters: [] }
 
     return await this.request
-      .post(href_temp, params)
+      .post(href_temp, body)
       // TODO: backend return updated parameters info in run api will be better way
       .then(() => {
         // pipeline parameters not updated immediately

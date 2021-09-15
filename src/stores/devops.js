@@ -70,10 +70,15 @@ export default class DevOpsStore extends Base {
   getBaseUrlV2 = params =>
     `kapis/devops.kubesphere.io/v1alpha2${this.getPath(params)}/`
 
+  getBaseUrlV4 = params =>
+    `kapis/devops.kubesphere.io/v1alpha4${this.getPath(params)}/`
+
   getBaseUrlV3 = params =>
     `kapis/tenant.kubesphere.io/v1alpha2${this.getPath(params)}/devops`
 
   getDevopsUrlV2 = params => `${this.getBaseUrlV2(params)}devops/`
+
+  getDevOpsUrlV4 = params => `${this.getBaseUrlV4(params)}`
 
   getResourceUrl = ({ workspace }) =>
     `${this.getBaseUrlV2({ workspace })}devops`
