@@ -1,4 +1,5 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
 .body {
   padding: 0;
@@ -51,4 +52,8 @@
       color: $blue;
     }
   }
+}
+
+.banLink {
+  @include banLink();
 }

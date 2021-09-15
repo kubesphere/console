@@ -137,3 +137,7 @@
   letter-spacing: normal;
   color: $color;
 }
+
+@mixin banLink {
+  pointer-events: none;
+}

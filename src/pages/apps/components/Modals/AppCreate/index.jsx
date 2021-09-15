@@ -68,6 +68,9 @@ export default class AppCreate extends Component {
               💁‍♂️ {t('APP_CREATE_GUIDE')}
               <a
                 href={getDocsUrl('helm_specification')}
+                className={classnames(styles.link, {
+                  [styles.banLink]: !globals.config.showOutSiteLink,
+                })}
                 target="_blank"
                 rel="noreferrer noopener"
               >

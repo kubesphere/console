@@ -3,7 +3,7 @@
 
 .main {
   .note {
-    color: $second-text-color
+    color: $second-text-color;
   }
   .steps {
     margin: 12px;
@@ -12,4 +12,8 @@
   a {
     color: $blue;
   }
+}
+
+.banLink {
+  @include banLink();
 }

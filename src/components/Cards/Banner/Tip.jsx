@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Icon } from '@kube-design/components'
 import classnames from 'classnames'
-
+import { hrefControl } from 'utils'
 import styles from './index.scss'
 
 export default class Tip extends React.Component {
@@ -79,8 +79,15 @@ export default class Tip extends React.Component {
         </div>
         <div className={styles.operations} onClick={this.stopPropagation}>
           {operation}
-          {more && (
-            <a href={more} target="_blank" rel="noreferrer noopener">
+          {more && globals.config.showOutSiteLink && (
+            <a
+              href={hrefControl(more)}
+              className={classnames({
+                [styles.banLink]: !globals.config.showOutSiteLink,
+              })}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <Button>{t('Learn more')}</Button>
             </a>
           )}

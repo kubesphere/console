@@ -1,4 +1,5 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
 .body {
   background-color: $white;
@@ -66,7 +67,11 @@
       right: 0;
       bottom: 0;
       z-index: 2;
-      background-image: linear-gradient(180deg,rgba(249,250,251,.75), $white);
+      background-image: linear-gradient(
+        180deg,
+        rgba(249, 250, 251, 0.75),
+        $white
+      );
     }
   }
 
@@ -126,3 +131,6 @@
   }
 }
 
+.banLink {
+  @include banLink();
+}

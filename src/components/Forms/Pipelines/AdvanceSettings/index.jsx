@@ -31,7 +31,7 @@ import {
 } from '@kube-design/components'
 
 import { NumberInput } from 'components/Inputs'
-import { getLocalTime } from 'utils'
+import { getLocalTime, learnMoreTip } from 'utils'
 import { TIMETRIGGERINTERVALS, REPO_KEY_MAP } from 'utils/constants'
 
 import ScmStore from 'stores/devops/scm'
@@ -180,6 +180,7 @@ export default class AdvanceSettings extends React.Component {
     const { formTemplate } = this.props
     const enable_timer_trigger = get(formTemplate, 'enable_timer_trigger')
     const enable_remote_trigger = get(formTemplate, 'enable_remote_trigger')
+    const htmlDes = t.html('PIPELINE_CRONJOB_CRON_DESC')
 
     return (
       <div>
@@ -223,10 +224,7 @@ export default class AdvanceSettings extends React.Component {
               <Column>
                 <Form.Item
                   label={t('Schedule')}
-                  desc={
-                    this.state.cronMessage.message ||
-                    t.html('PIPELINE_CRONJOB_CRON_DESC')
-                  }
+                  desc={this.state.cronMessage.message || learnMoreTip(htmlDes)}
                   tip={t('tips_timer_trigger')}
                   rules={[{ validator: this.checkCronScript }]}
                 >

@@ -27,6 +27,7 @@ import UserTip from 'components/Cards/Tips'
 import fullScreen from 'components/Modals/FullscreenModal'
 import TerminalStore from 'stores/terminal'
 import ClusterStore from 'stores/cluster'
+import { htmlLinkControl } from 'utils'
 import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 import { observable } from 'mobx'
 import styles from './index.scss'
@@ -112,6 +113,7 @@ export default class KubeCtlModal extends React.Component {
   }
 
   renderTips() {
+    const htmlDes = t.html('KUBECTL_TIP')
     return (
       <div>
         {!this.props.cluster && globals.app.isMultiCluster && (
@@ -122,7 +124,7 @@ export default class KubeCtlModal extends React.Component {
           />
         )}
         <div className={classnames('markdown-body', styles.doc)}>
-          {t.html('KUBECTL_TIP')}
+          {htmlLinkControl(htmlDes)}
         </div>
       </div>
     )
