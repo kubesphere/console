@@ -1,3 +1,9 @@
+@import '~scss/mixins';
+
 .content {
   min-height: 450px;
+}
+
+.banLink {
+  @include banLink();
 }

@@ -26,6 +26,7 @@ import UserTip from 'components/Cards/Tips'
 import { Icon } from '@kube-design/components'
 import { CodeEditor } from 'components/Base'
 import { get } from 'lodash'
+import { htmlLinkControl } from 'utils'
 import TerminalStore from 'stores/terminal'
 
 import styles from './index.scss'
@@ -73,9 +74,10 @@ export default class KubeConfigModal extends React.Component {
   }
 
   renderTips() {
+    const htmlDes = t.html('KUBECONFIG_TIP')
     return (
       <div className={classnames('markdown-body', styles.tipWrapper)}>
-        {t.html('KUBECONFIG_TIP')}
+        {htmlLinkControl(htmlDes)}
       </div>
     )
   }

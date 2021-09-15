@@ -88,6 +88,7 @@
     & > div {
       @include TypographyTitleH6($dark-color07);
     }
+
     & > p {
       @include TypographyParagraph($dark-color01);
     }
@@ -97,4 +98,8 @@
 .tabsWrapper {
   padding: 6px 12px;
   background-color: $bg-color;
+}
+
+.banLink {
+  @include banLink();
 }

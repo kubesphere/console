@@ -25,7 +25,7 @@ import NetworkPolicyStore from 'stores/network/policy'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
 import ResourceTable from 'clusters/components/ResourceTable'
 
-import { getLocalTime, getDisplayName } from 'utils'
+import { getLocalTime, getDisplayName, htmlLinkControl } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
 @withClusterList({
@@ -35,16 +35,19 @@ import { ICON_TYPES } from 'utils/constants'
   rowKey: 'key',
 })
 export default class NetworkPolicies extends React.Component {
-  tips = [
-    {
-      title: t('NETWORK_POLICY_Q'),
-      description: t.html('NETWORK_POLICY_A'),
-    },
-    {
-      title: t('NETWORK_POLICY_Q1'),
-      description: t.html('NETWORK_POLICY_A1'),
-    },
-  ]
+  tips = () => {
+    const htmlDes = t.html('NETWORK_POLICY_A1')
+    return [
+      {
+        title: t('NETWORK_POLICY_Q'),
+        description: t.html('NETWORK_POLICY_A'),
+      },
+      {
+        title: t('NETWORK_POLICY_Q1'),
+        description: htmlLinkControl(htmlDes),
+      },
+    ]
+  }
 
   constructor(props) {
     super(props)
@@ -165,7 +168,7 @@ export default class NetworkPolicies extends React.Component {
     const { query, match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
-        <Banner {...bannerProps} tips={tips} />
+        <Banner {...bannerProps} tips={tips()} />
         <ResourceTable
           {...tableProps}
           rowKey="key"

@@ -29,7 +29,7 @@ import {
 } from '@kube-design/components'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
-import { generateId } from 'utils'
+import { generateId, learnMoreTip } from 'utils'
 import { PATTERN_IP, PATTERN_NAME } from 'utils/constants'
 
 import { Modal } from 'components/Base'
@@ -118,6 +118,7 @@ export default class AddEdgeModal extends Component {
 
   renderLink = () => {
     const { showLink, link } = this.state
+    const htmlDes = t.html('EDGENODE_CONFIG_COMMAND_TIP')
 
     return showLink ? (
       <div className={styles.column}>
@@ -128,7 +129,7 @@ export default class AddEdgeModal extends Component {
               <Tooltip
                 content={
                   <span className={styles.installInfo}>
-                    {t.html('EDGENODE_CONFIG_COMMAND_TIP')}
+                    {learnMoreTip(htmlDes)}
                   </span>
                 }
               >

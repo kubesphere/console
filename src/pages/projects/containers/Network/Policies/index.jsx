@@ -24,6 +24,7 @@ import { Panel } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import EmptyList from 'components/Cards/EmptyList'
 import { ICON_TYPES } from 'utils/constants'
+import { htmlLinkControl } from 'utils'
 import RuleInfo from './RuleInfo'
 import IsolateInfo from './IsolateInfo'
 import styles from './index.scss'
@@ -35,16 +36,19 @@ export default class Policies extends React.Component {
 
   module = 'namespacenetworkpolicies'
 
-  tips = [
-    {
-      title: t('NETWORK_ISOLATION_Q'),
-      description: t.html('NETWORK_POLICY_A'),
-    },
-    {
-      title: t('NETWORK_ISOLATION_Q1'),
-      description: t.html('NETWORK_POLICY_A1'),
-    },
-  ]
+  tips = () => {
+    const htmlDes = t.html('NETWORK_POLICY_A1')
+    return [
+      {
+        title: t('NETWORK_ISOLATION_Q'),
+        description: t.html('NETWORK_POLICY_A'),
+      },
+      {
+        title: t('NETWORK_ISOLATION_Q1'),
+        description: htmlLinkControl(htmlDes),
+      },
+    ]
+  }
 
   constructor(props) {
     super(props)
@@ -110,7 +114,7 @@ export default class Policies extends React.Component {
           module={module}
           className="margin-b12"
           title={t(name)}
-          tips={tips}
+          tips={tips()}
           description={t('NETWORK_ISOLATION_DESC')}
         />
         <div className={styles.subtitle}>{t(name)}</div>

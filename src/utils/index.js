@@ -413,7 +413,7 @@ export const getDocsUrl = module => {
   const { url: prefix } = globals.config.documents
   const docUrl = get(globals.config, `resourceDocs[${module}]`, '')
 
-  if (!docUrl) {
+  if (!docUrl || !globals.config.showOutSiteLink) {
     return ''
   }
 
@@ -633,4 +633,34 @@ export const JobGpuLimitCancel = (data, path) => {
     })
     set(data, path, newContainer)
   }
+}
+
+export const hrefControl = href => (globals.config.showOutSiteLink ? href : '')
+
+const html_key = 'props.dangerouslySetInnerHTML.__html'
+
+export function htmlLinkControl(item) {
+  const a_reg = /(?<=href=").*?(=")/g
+  const text = get(item, html_key, undefined)
+  if (!globals.config.showOutSiteLink) {
+    if (!isUndefined(text) && a_reg.test(text)) {
+      set(
+        item,
+        html_key,
+        text.replace(a_reg, `" style="pointer-events: none;" target="`)
+      )
+    }
+  }
+  return item
+}
+
+export function learnMoreTip(item) {
+  const reg = /<a.+?>(.+)<\/a>/g
+  const text = get(item, html_key, undefined)
+  if (!globals.config.showOutSiteLink) {
+    if (!isUndefined(text) && reg.test(text)) {
+      set(item, html_key, text.replace(reg, ''))
+    }
+  }
+  return item
 }
