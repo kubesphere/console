@@ -17,7 +17,62 @@
  */
 
 import Base from 'stores/base'
+import { action } from 'mobx'
+import { omit, set, isEmpty } from 'lodash'
 
 export default class LimitRangeStore extends Base {
   module = 'limitranges'
+
+  @action
+  async fetchListByK8s({ cluster, namespace, module, ...rest } = {}) {
+    this.list.isLoading = true
+
+    if (module) {
+      this.module = module
+    }
+
+    const params = rest
+
+    const result = await request.get(
+      this.getListUrl({ cluster, namespace, module }),
+      params
+    )
+    const data = result.items.map(item => ({
+      cluster,
+      module: module || this.module,
+      ...this.mapper(item),
+    }))
+
+    this.cancelGpuSetting(data)
+
+    this.list.update({
+      data,
+      total: result.items.length,
+      isLoading: false,
+    })
+
+    return data
+  }
+
+  cancelGpuSetting(data) {
+    if (data.length > 0) {
+      const gpu = omit(data[0].limit.default, ['cpu', 'memory'])
+      const gpuKey = Object.keys(gpu)[0]
+      if (isEmpty(gpu)) {
+        set(data[0].limit, 'gpu', {
+          type: '',
+          value: '',
+        })
+      } else {
+        data[0] = omit(data[0], [
+          `limit.default['${gpuKey}']`,
+          `limit.defaultRequest['${gpuKey}']`,
+        ])
+        set(data[0].limit, 'gpu', {
+          type: gpuKey,
+          value: Object.values(gpu)[0],
+        })
+      }
+    }
+  }
 }
