@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
-import { get, set, isEmpty } from 'lodash'
+import { get, set, isEmpty, omit } from 'lodash'
 import { Form, Input } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
@@ -94,8 +94,10 @@ export default class QuotaEditModal extends React.Component {
       })
     }
 
+    const storeDetail = toJS(this.store.detail)
+
     this.setState({
-      formTemplate: toJS(this.store.detail),
+      formTemplate: this.cancelGpuSetting(storeDetail),
     })
   }
 
@@ -197,6 +199,7 @@ export default class QuotaEditModal extends React.Component {
           cpu: get(formTemplate, 'spec.hard["requests.cpu"]'),
           memory: get(formTemplate, 'spec.hard["requests.memory"]'),
         },
+        gpu: get(formTemplate, 'spec.gpu'),
       },
       workspaceLimitProps,
       onChange: value => {
@@ -220,11 +223,38 @@ export default class QuotaEditModal extends React.Component {
           'spec.hard["requests.memory"]',
           get(value, 'requests.memory', null)
         )
+        set(formTemplate, `spec.gpu`, get(value, 'gpu'))
       },
       onError: error => {
         this.setState({ error })
       },
     }
+  }
+
+  cancelGpuSetting = formTemplate => {
+    const hard = get(formTemplate, 'spec.hard', {})
+    if (!isEmpty(hard)) {
+      const gpuObj = omit(hard, [
+        'limits.cpu',
+        'limits.memory',
+        'requests.cpu',
+        'requests.memory',
+      ])
+
+      if (!isEmpty(gpuObj)) {
+        const type = Object.keys(gpuObj)[0].split('.')
+        set(formTemplate, 'spec.gpu', {
+          type: type.slice(1).join('.'),
+          value: Object.values(gpuObj)[0],
+        })
+      }
+    } else {
+      set(formTemplate, 'spec.gpu', {
+        type: '',
+        value: '',
+      })
+    }
+    return formTemplate
   }
 
   render() {
