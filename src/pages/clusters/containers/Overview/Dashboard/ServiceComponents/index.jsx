@@ -73,7 +73,7 @@ export default class ServiceComponents extends Component {
   render() {
     const { cluster } = this.props
     return (
-      <Panel title={t('SERVICE_COMPONENTS')}>
+      <Panel title={t('SYSTEM_COMPONENT_PL')}>
         <div className={styles.icons}>
           {this.configs
             .filter(item => !item.disabled)

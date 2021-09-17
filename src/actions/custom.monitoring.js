@@ -35,16 +35,32 @@ export default {
             return
           }
 
-          store
-            .create(data, {
-              cluster,
-              namespace: namespace || get(data, 'metadata.namespace'),
-            })
-            .then(() => {
-              Modal.close(modal)
-              Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
-              success && success()
-            })
+          if (data.type === 'grafana') {
+            delete data.type
+
+            request
+              .post(
+                `/kapis/monitoring.kubesphere.io/v1alpha3/clusterdashboards/${data.grafanaDashboardName}/template`,
+                data
+              )
+              .then(() => {
+                Modal.close(modal)
+                Notify.success({ content: `${t('Created Successfully')}` })
+                success && success()
+              })
+          } else {
+            store
+              .create(data, {
+                cluster,
+                namespace: namespace || get(data, 'metadata.namespace'),
+              })
+              .then(() => {
+                Modal.close(modal)
+                Notify.success({ content: `${t('Created Successfully')}` })
+                success && success()
+              })
+          }
+
         },
         module,
         cluster,

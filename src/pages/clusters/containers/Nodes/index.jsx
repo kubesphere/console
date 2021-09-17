@@ -49,7 +49,7 @@ const MetricTypes = {
 
 @withClusterList({
   store: new NodeStore(),
-  name: 'Cluster Node',
+  name: 'CLUSTER_NODE',
   module: 'nodes',
 })
 export default class Nodes extends React.Component {
@@ -116,7 +116,7 @@ export default class Nodes extends React.Component {
         show: item => item.importStatus === 'failed',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
             success: routing.query,
           }),

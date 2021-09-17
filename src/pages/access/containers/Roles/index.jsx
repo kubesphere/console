@@ -33,7 +33,7 @@ import RoleStore from 'stores/role'
   store: new RoleStore('globalroles'),
   module: 'globalroles',
   authKey: 'roles',
-  name: 'Platform Role',
+  name: 'PLATFORM_ROLE',
 })
 export default class Roles extends React.Component {
   componentDidMount() {
@@ -80,7 +80,7 @@ export default class Roles extends React.Component {
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            type: t(name),
+            type: name,
             success: routing.query,
           }),
       },

@@ -39,7 +39,7 @@ export default class AppsLayout extends Component {
               <Icon name="openpitrix" size={40} type="light" />
             </div>
             <div className={styles.text}>
-              <div className="h6">{t('App Store Management')}</div>
+              <div className="h6">{t('APP_STORE_MANAGEMENT')}</div>
               <p>{t('Platform App Store Management')}</p>
             </div>
           </div>

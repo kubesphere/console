@@ -219,7 +219,7 @@ class InternetAccess extends React.Component {
                   ? t('GATEWAY_SERVICE_MESH_STATUS_ON')
                   : t('GATEWAY_SERVICE_MESH_STATUS_OFF')
               }
-              description={t('Application Governance')}
+              description={t('APPLICATION_GOVERNANCE')}
             />
           </div>
           {gateway.type === 'LoadBalancer' && (

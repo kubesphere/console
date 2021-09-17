@@ -79,7 +79,7 @@ export default class WorkloadSelect extends React.Component {
         <div className={styles.body}>
           <Alert
             className="margin-b8"
-            message={t('SPECIFY_WORKLOAD_DESC')}
+            message={t('SELECT_WORKLOAD_DESC')}
             hideIcon
           />
           <RadioGroup
@@ -89,9 +89,11 @@ export default class WorkloadSelect extends React.Component {
             onChange={this.handleTypeChange}
             size="small"
           >
-            <RadioButton value="deployments">{t('DEPLOYMENTS')}</RadioButton>
-            <RadioButton value="statefulsets">{t('STATEFULSETS')}</RadioButton>
-            <RadioButton value="daemonsets">{t('STATEFULSETS')}</RadioButton>
+            <RadioButton value="deployments">{t('DEPLOYMENT_PL')}</RadioButton>
+            <RadioButton value="statefulsets">
+              {t('STATEFULSET_PL')}
+            </RadioButton>
+            <RadioButton value="daemonsets">{t('STATEFULSET_PL')}</RadioButton>
           </RadioGroup>
           <div className={styles.workloads}>
             <ScrollLoad
@@ -114,7 +116,7 @@ export default class WorkloadSelect extends React.Component {
           </div>
         </div>
         <div className={styles.footer}>
-          <Button onClick={this.handleCancel}>{t('Cancel')}</Button>
+          <Button onClick={this.handleCancel}>{t('CANCEL')}</Button>
           <Button type="control" onClick={this.handleOK}>
             {t('OK')}
           </Button>

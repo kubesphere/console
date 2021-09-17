@@ -66,6 +66,7 @@ const handleLogin = async ctx => {
       ctx.app.emit('error', err)
 
       switch (err.code) {
+        case 400:
         case 401:
           Object.assign(error, {
             status: err.code,

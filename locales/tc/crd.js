@@ -17,13 +17,13 @@
  */
 
 module.exports = {
-  CUSTOM_RESOURCE_DEFINITION: 'Custom Resource Definition',
-  CUSTOM_RESOURCE_DEFINITION_PL: 'Custom Resource Definitions',
+  CRD: 'Custom Resource Definition',
+  CRD_PL: 'CRDs',
   CUSTOM_RESOURCE_DEFINITION_LOW: 'custom resource definition',
   'Custom Resource Definition': '自定義資源',
   'Custom Resource Definitions': '自定義資源',
 
-  CUSTOM_RESOURCE_DEFINITION_DESC:
+  CRD_DESC:
     '定製資源定義 (CRD) 是一種 Kubernetes 實現自定義資源類型的擴展方式，您可以如同操作内置資源對象一樣操作 CRD 對象。',
   CUSTOM_RESOURCE_DEFINITION_CREATE_DESC:
     '定製資源定義 (CRD) 是一種 Kubernetes 實現自定義資源類型的擴展方式，您可以如同操作内置資源對象一樣操作 CRD 對象。',

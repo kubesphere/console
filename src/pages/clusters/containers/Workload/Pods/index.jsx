@@ -36,7 +36,7 @@ import styles from './index.scss'
 @withClusterList({
   store: new PodStore(),
   module: 'pods',
-  name: 'Pod',
+  name: 'POD',
   rowKey: 'uid',
 })
 export default class Pods extends React.Component {
@@ -65,7 +65,7 @@ export default class Pods extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
             success: getData,
           }),

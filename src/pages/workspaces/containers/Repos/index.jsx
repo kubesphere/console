@@ -32,7 +32,7 @@ import AppRepoStore from 'stores/openpitrix/repo'
   store: new AppRepoStore(),
   module: 'repos',
   authKey: 'app-repos',
-  name: 'App Repository',
+  name: 'APP_REPOSITORY',
   rowKey: 'repo_id',
 })
 export default class AppRepos extends React.Component {
@@ -72,7 +72,7 @@ export default class AppRepos extends React.Component {
         onClick: item =>
           trigger('resource.delete', {
             detail: item,
-            type: t(name),
+            type: name,
             success: routing.query,
           }),
       },

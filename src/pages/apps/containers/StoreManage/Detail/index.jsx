@@ -126,7 +126,7 @@ export default class AppDetail extends React.Component {
         value: t(capitalize(transferAppStatus(detail.status))),
       },
       {
-        name: t('Category'),
+        name: t('CATEGORY'),
         value: getAppCategoryNames(get(detail, 'category_set', [])),
       },
       {
@@ -169,7 +169,7 @@ export default class AppDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('App Store'),
+          label: t('APP_STORE'),
           url: this.listUrl,
         },
       ],

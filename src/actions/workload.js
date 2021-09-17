@@ -16,9 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty, omit } from 'lodash'
+import { set, get, isEmpty, omit } from 'lodash'
 import { toJS } from 'mobx'
-import { withProps } from 'utils'
+import { withProps, JobGpuLimitCancel } from 'utils'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -114,6 +114,15 @@ export default {
 
       const modal = Modal.open({
         onOk: newObject => {
+          if (kind === 'CronJob') {
+            JobGpuLimitCancel(
+              newObject[kind],
+              'spec.jobTemplate.spec.template.spec.containers'
+            )
+          } else if (kind === 'Job') {
+            JobGpuLimitCancel(newObject[kind], 'spec.template.spec.containers')
+          }
+
           const omitArr = [
             `${kind}.spec.template.totalReplicas`,
             'totalReplicas',
@@ -261,6 +270,11 @@ export default {
     on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
+          const containers = get(data, 'spec.template.spec.containers', [])
+          const newContainers = containers.map(item =>
+            omit(item, 'resources.gpu')
+          )
+          set(data, 'spec.template.spec.containers', newContainers)
           const customMode = get(data, 'spec.template.spec.customMode', {})
           if (!isEmpty(customMode)) {
             delete data.spec.template.spec.customMode

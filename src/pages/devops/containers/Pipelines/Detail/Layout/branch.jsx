@@ -118,7 +118,7 @@ export default class BranchDetailLayout extends React.Component {
         value: devopsName,
       },
       {
-        name: t('Pipeline'),
+        name: t('PIPELINE'),
         value: detail.displayName,
       },
       {

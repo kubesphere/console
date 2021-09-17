@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-
+import { get, isEmpty, omit } from 'lodash'
 import { Form } from '@kube-design/components'
 import Base from 'components/Forms/Workload/ContainerSettings'
 
@@ -42,6 +42,20 @@ export default class PodTemplate extends Base {
 
     const data =
       isFederated && isEdit ? this.fedFormTemplate : this.formTemplate
+
+    const containers = get(data, 'spec.template.spec.containers', [])
+    containers.forEach(item => {
+      const container = { ...item }
+      const gpuInfo = omit(container.resources.limits, ['cpu', 'memory'])
+      if (!isEmpty(gpuInfo)) {
+        const gpu = {
+          type: Object.keys(gpuInfo)[0],
+          value: Object.values(gpuInfo)[0],
+        }
+        item.resources.gpu = gpu
+      }
+    })
+
     return (
       <Form data={data} ref={formRef} {...formProps}>
         {this.renderContainerList()}

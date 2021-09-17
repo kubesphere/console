@@ -108,7 +108,7 @@ export default class ServiceComponents extends React.Component {
     return (
       <Banner
         icon="components"
-        title={t('SERVICE_COMPONENTS')}
+        title={t('SYSTEM_COMPONENT_PL')}
         description={t('SERVICE_COMPONENTS_DESC')}
         extra={<div className={styles.toolbar}>{this.renderBar()}</div>}
       />

@@ -35,7 +35,7 @@ import WorkloadStore from 'stores/workload'
 @withClusterList({
   store: new WorkloadStore('deployments'),
   module: 'deployments',
-  name: 'Workload',
+  name: 'WORKLOAD',
   rowKey: 'uid',
 })
 export default class Deployments extends React.Component {
@@ -112,7 +112,7 @@ export default class Deployments extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

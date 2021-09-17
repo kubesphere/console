@@ -18,10 +18,11 @@
 
 module.exports = {
   ADD_ANNOTATION: 'Add Annotation',
-  ADD_PATH_TCAP: 'Add',
-  ADD_PATH_TIP: 'Please add at least one path.',
+  ADD_PATH_TCAP: 'Add Path',
+  PATH_EMPTY_DESC: 'Please add at least one path.',
   AUTO_GENERATE_TCAP: 'Auto Generate',
-  ADD_ROUTE_RULE_TCAP: 'Add Route Rule',
+  ADD_ROUTING_RULE: 'Add Routing Rule',
+  EDIT_ROUTING_RULE: 'Edit Routing Rule',
   'Add Path': 'Add Path',
   'Auto Generate': 'Auto Generate',
   'Click to visit': 'Click to visit',
@@ -32,21 +33,23 @@ module.exports = {
   'Gateway IP': 'Gateway IP',
   'Gateway Type': 'Gateway Type',
   DOMAIN_NAME_TCAP: 'Domain Name',
-  INVALID_DOMAIN_TIP: 'Invalid domain name.',
-  INVALID_PATH_TIP: 'Please set a correct path.',
+  INVALID_DOMAIN_DESC: 'Invalid domain name.',
+  INVALID_PATH_DESC: 'Invalid path.',
   MODE_TCAP: 'Mode',
   PATH_PL: 'Paths',
   PATH_SI: 'Path',
-  ADD_ROUTE_RULE_DESC: 'Add a route rule to map a domain name to a Service.',
-  DOMAIN_NAME_TIP: 'Please enter a domain name.',
+  PATH_VALUE: 'Path: {value}',
+  ADD_ROUTING_RULE_DESC:
+    'Add a routing rule to map a domain name to a Service.',
+  DOMAIN_NAME_EMPTY_DESC: 'Please enter a domain name.',
   PATH_SERVICE_TIP: 'Service',
   Route: 'Route',
   ROUTE: 'Route',
   ROUTE_PL: 'Routes',
   ROUTE_LOW: 'Route',
-  ROUTE_RULES_TCAP: 'Route Rules',
+  ROUTING_RULES: 'Routing Rules',
   Rules: 'Rules',
-  SET_ROUTE_RULE_TCAP: 'Set Route Rule',
+  SET_ROUTING_RULES: 'Set Route Rules',
   SPECIFY_DOMAIN_TCAP: 'Specify Domain',
   'Unable to access': 'Unable to access',
 
@@ -57,9 +60,9 @@ module.exports = {
     'You can set route behavior by adding annotations to the route. See <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">Annotations</a> for the detailed list of available annotations.',
 
   RULE_SETTING_MODE_AUTO:
-    'Configure a path to automatically generate a domain name in the format of &ltService name&gt + &ltProject name&gt + &ltGateway address&gt + nip.io to access the Service via &ltService name&gt.&ltProject name&gt.&ltGateway address&gt.nip.io:&ltNodePort&gt. <br/>Please ensure that your network environment can access the gateway address.',
+    'The system will automatically generate a domain name in the &ltService name&gt.&ltProject name&gt.&ltGateway IP address&gt.nip.io format, and the domain name will be resolved by nip.io into the gateway IP address. This mode supports only HTTP.',
   RULE_SETTING_MODE_SPECIFY:
-    'Specify a custom domain name and use the local hosts file or a DNS server to resolve the domain name into the gateway IP address.',
+    'Customize a domain name and use the local hosts file or a DNS server to resolve the domain name into the gateway IP address.',
   GATEWAY_SERVICE_MESH_STATUS_ON: 'On',
   GATEWAY_SERVICE_MESH_STATUS_OFF: 'Off',
 
@@ -68,7 +71,7 @@ module.exports = {
   INGRESS_CONTROLLER_LOADBALANCER_DESC:
     'To use QingCloud LoadBalancer as a service gateway, please deploy the QingCloud Cloud Controller Manager plugin first.',
 
-  NO_INTERNET_ACCESS_TIP:
+  NO_GATEWAY_DESC:
     'To use Auto Generate, please contact the project administrator to set the gateway access method in Advanced Settings of the project.',
   UNABLE_CREATE_ROUTE_TIP:
     'The available gateway address is not found in the current project so the application route cannot be created.',

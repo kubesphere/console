@@ -36,7 +36,7 @@ import styles from './index.scss'
 @withList({
   store: new ReviewStore(),
   module: 'apps',
-  name: 'App Reviews',
+  name: 'APP_REVIEW',
   rowKey: 'version_id',
 })
 export default class Reviews extends React.Component {

@@ -30,7 +30,7 @@ import styles from './index.scss'
 @withList({
   store: new AuditStore(),
   module: 'apps',
-  name: 'Audits',
+  name: 'AUDIT',
   rowKey: 'status_time',
 })
 export default class AuditRecord extends React.Component {
@@ -63,7 +63,7 @@ export default class AuditRecord extends React.Component {
       render: status => <VersionStatus type={status} name={status} />,
     },
     {
-      title: t('Version'),
+      title: t('VERSION'),
       dataIndex: 'version_name',
       isHideable: true,
       width: '15%',

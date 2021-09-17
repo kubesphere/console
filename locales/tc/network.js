@@ -23,7 +23,7 @@ module.exports = {
   NETWORK_POLICY_LOW: 'network policy',
   NETWORK_POLICY_EMPTY_DESC: 'Please create a network policy.',
   'Network Policys': '網路策略',
-  'Network Isolation': '網路隔離',
+  NETWORK_ISOLATION: '網路隔離',
   CREATE_NETWORK_POLICY_TCAP: '創建網路策略',
   // Network Policies Page
   CREATE_BTN: '創建',

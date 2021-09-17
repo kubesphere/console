@@ -23,7 +23,8 @@ module.exports = {
   'Edit by YAML': 'Edit by YAML',
   'The app has no chart file.': 'The app has no chart file.',
   'The app has no documentation.': 'The app has no documentation.',
-  'The version has no documentation.': 'The version has no documentation.',
+  VERSION_INTRO_EMPTY_DESC: 'No introduction to this version is found.',
+  'Update Successfully': 'Update Successfully',
 
   APP_TEMPLATE_DESCRIPTION_TITLE: 'Deploy packaged applications',
   APP_TEMPLATE_DESCRIPTION_ARTICLE:

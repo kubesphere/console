@@ -85,7 +85,7 @@ class GrayRelease extends React.Component {
         <Banner
           icon="bird"
           module="grayrelease"
-          title={t('Grayscale Release')}
+          title={t('GRAYSCALE_RELEASE')}
           description={t('GRAY_RELEASE_DESC')}
           tips={this.tips}
           routes={route.routes}

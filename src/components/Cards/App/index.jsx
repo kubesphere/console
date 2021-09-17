@@ -39,10 +39,10 @@ const AppCard = ({ app }) => (
     </div>
     <div className={styles.bottom}>
       <span className={styles.vendor}>
-        {t('Developer')}: {app.owner || '-'}
+        {t('DEVELOPER_VALUE', { value: app.owner || '-' })}
       </span>
       <span className={styles.version} title={app.latest_app_version.name}>
-        {t('Latest')}: {app.latest_app_version.name || '-'}
+        {t('LATEST_VALUE', { value: app.latest_app_version.name || '-' })}
       </span>
     </div>
   </div>

@@ -125,7 +125,7 @@ export default class HelmUpload extends Component {
 
     return (
       <div className={styles.createInfo}>
-        <div className={styles.title}>{t('App Info')}</div>
+        <div className={styles.title}>{t('APP_INFORMATION')}</div>
         <div className={styles.appContent}>
           <Upload
             ref={node => {

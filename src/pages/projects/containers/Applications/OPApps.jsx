@@ -34,7 +34,7 @@ import Banner from './Banner'
 @withProjectList({
   store: new OpAppStore(),
   module: 'applications',
-  name: 'Application',
+  name: 'APP',
 })
 export default class OPApps extends React.Component {
   type = 'template'
@@ -77,7 +77,7 @@ export default class OPApps extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -110,7 +110,7 @@ export default class OPApps extends React.Component {
         render: this.renderStatus,
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app.name',
         isHideable: true,
         width: '16%',
@@ -119,13 +119,13 @@ export default class OPApps extends React.Component {
         ),
       },
       {
-        title: t('Version'),
+        title: t('VERSION'),
         dataIndex: 'version.name',
         isHideable: true,
         width: '16%',
       },
       {
-        title: t('Last Updated Time'),
+        title: t('UPDATED_AT'),
         dataIndex: 'status_time',
         sorter: true,
         sortOrder: getSortOrder('status_time'),
@@ -170,7 +170,7 @@ export default class OPApps extends React.Component {
           {
             key: 'deploy',
             type: 'control',
-            text: t('Deploy New Application'),
+            text: t('CREATE'),
             onClick: this.showDeploy,
           },
         ]
@@ -183,7 +183,8 @@ export default class OPApps extends React.Component {
         onCreate: null,
       },
       emptyProps: {
-        desc: t('APP_DEPLOYMENT_DESC'),
+        title: t('NO_TEMPLATE_BASED_APP_FOUND'),
+        desc: t('TEMPLATE_BASED_APP_EMPTY_DESC'),
       },
       searchType: 'keyword',
     }

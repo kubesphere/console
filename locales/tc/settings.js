@@ -18,6 +18,7 @@
 
 module.exports = {
   PLATFORM_SETTINGS: '平台設置',
+  'Platform Settings': '平台設置',
 
   'Third-party Login': '第三方登入',
 

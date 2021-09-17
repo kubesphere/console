@@ -32,7 +32,7 @@ import ServiceStore from 'stores/service'
 @withProjectList({
   store: new FederatedStore(new ServiceStore()),
   module: 'services',
-  name: 'Service',
+  name: 'SERVICE',
 })
 export default class Services extends React.Component {
   get tips() {
@@ -96,7 +96,7 @@ export default class Services extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('service.delete', {
-            type: t(name),
+            type: name,
             detail: item,
             isFederated: true,
           }),
@@ -116,7 +116,7 @@ export default class Services extends React.Component {
           action: 'delete',
           onClick: () =>
             trigger('service.batch.delete', {
-              type: t(name),
+              type: name,
               rowKey: 'name',
               isFederated: true,
             }),

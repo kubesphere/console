@@ -34,14 +34,14 @@ import AppStore from 'stores/application/crd'
 @withProjectList({
   store: new FederatedStore(new AppStore()),
   module: 'applications',
-  name: 'Application',
+  name: 'APP',
 })
 export default class CRDApps extends React.Component {
   get tips() {
     return [
       {
-        title: t('HOW_TO_USE_APPLICATION_GOVE_Q'),
-        description: t('HOW_TO_USE_APPLICATION_GOVE_A'),
+        title: t('HOW_TO_USE_APP_GOVERN_Q'),
+        description: t('HOW_TO_USE_APP_GOVERN_A'),
         closable: false,
       },
     ]
@@ -100,7 +100,7 @@ export default class CRDApps extends React.Component {
           ),
       },
       {
-        title: t('Version'),
+        title: t('VERSION'),
         dataIndex: 'version',
         isHideable: true,
         width: '20%',
@@ -143,7 +143,7 @@ export default class CRDApps extends React.Component {
           {
             key: 'create',
             type: 'control',
-            text: t('Create Composing Application'),
+            text: t('CREATE'),
             onClick: this.showCreate,
           },
         ]
@@ -160,8 +160,8 @@ export default class CRDApps extends React.Component {
     return {
       tableActions: this.tableActions,
       emptyProps: {
-        title: t('Composing Apps'),
-        desc: t('COMPOSING_APP_DESC'),
+        title: t('NO_COMPOSED_APP_FOUND'),
+        desc: t('COMPOSED_APP_EMPTY_DESC'),
       },
       searchType: 'name',
     }

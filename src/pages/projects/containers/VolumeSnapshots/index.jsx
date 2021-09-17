@@ -35,7 +35,7 @@ import styles from './index.scss'
 @withProjectList({
   store: new SnapshotStore(),
   module: 'volume-snapshots',
-  name: 'VolumeSnapshot',
+  name: 'VOLUME_SNAPSHOT',
 })
 export default class VolumeSnapshot extends React.Component {
   getStatus() {
@@ -56,7 +56,7 @@ export default class VolumeSnapshot extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
             success: routing.query,
           }),

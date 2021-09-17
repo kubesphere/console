@@ -30,6 +30,7 @@ module.exports = {
   'Commonly included tags in the current workloads':
     'Etiquetas comúnmente incluidas en las cargas de trabajo actuales',
   CONTAINER_PORT: 'Puerto de contenedores',
+  CONTAINER_PORT_VALUE: 'Puerto de contenedores: {value}',
   CREATE_SERVICE: 'Crear servicio',
   'Create Service': 'Crear servicio',
   'Create service by specifying workloads':
@@ -39,17 +40,19 @@ module.exports = {
   'Creation failed, please delete and try again':
     'Creación fallida, por favor, elimínela e intente de nuevo',
   CUSTOM_SERVICE: 'Custom Service',
+  CUSTOMIZE_SERVICE: 'Customize Service',
   'Delete Service': 'Eliminar servicio',
   'Do not assign Service IP': 'No asignar IP de servicio',
-  EDIT_INTERNET_ACCESS: 'Editar acceso a Internet',
+  EDIT_EXTERNAL_ACCESS: 'Editar acceso a Internet',
   EDIT_SERVICE: 'Servicio de edición',
   STICKY_SESSION: 'Sticky Session',
   'External Address': 'Dirección Externa',
-  'External Service': 'Servicio externo',
+  EXTERNAL_SERVICE: 'Servicio externo',
   'Internal access': 'Acceso interno',
   INVALID_PORT_DESC: 'Please enter a valid protocol or port number.',
   INVALID_PORT: 'Puerto inválido',
-  'Language Type': 'Tipo de idioma',
+  LANGUAGE_TYPE_VALUE: 'Tipo de idioma: {value}',
+  ARTIFACT_TYPE_VALUE: 'Artifact Type: {value}',
   'LoadBalancer IP': 'IP del balanceador',
   'Map Services outside the cluster': 'Servicios de mapas fuera del clúster',
   MAXIMUM_STICKINESS_DURATION: 'Tiempo máximo de sesión (s)',
@@ -66,7 +69,7 @@ module.exports = {
   'Please input selectors that have corresponding workloads':
     'Introduce los selectores que tienen las cargas de trabajo correspondientes',
   'Please input service name': 'Por favor introduce el nombre del servicio',
-  ENTER_SELECTOR_TIP: 'Please enter a valid selector.',
+  ENTER_SELECTOR_TIP: 'Please set a workload selector.',
   'Please select a workload': 'Por favor selecciona una carga de trabajo',
   'Please select Service': 'Por favor selecciona Servicio',
   Ports: 'Puertos',
@@ -77,25 +80,41 @@ module.exports = {
   'Service Mesh': 'Malla de servicio',
   'Service Name': 'Nombre del Servicio',
   SERVICE_PORT: 'Puerto de servicio',
+  SERVICE_PORT_VALUE: 'Puerto de servicio: {value}',
   SERVICE_TYPE_TCAP: 'Tipo de servicio',
+  SERVICE_TYPE_DESC: 'Select a Service type.',
+  SELECT_SERVICE_TYPE_DESC:
+    'Create a stateless or stateful Service, or map a Service to an external Service.',
+  APP_SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful Service.',
+  JAVA: 'Java',
+  NODEJS: 'Node.js',
+  PYTHON: 'Python',
+  BINARY: 'Binary',
   SPECIFY_WORKLOAD: 'Specify Workload',
+  SPECIFY_WORKLOAD_TO_CREATE_SERVICE: 'Specify Workload to Create Service',
+  EDIT_YAML_TO_CREATE_SERVICE: 'Edit YAML to Create Service',
+  CREATE_EXTERNAL_SERVICE: 'Create External Service',
   'Specify Node': 'Especificar nó',
   'Service Type': 'Tipo de servicio',
   'Specify Workload': 'Especificar carga de trabajo',
   SPECIFY_NODE: 'Especificar nó',
-  'Specify Workloads': 'Especificar cargas de trabajo',
   STATEFUL_SERVICE: 'Stateful Service',
   STATELESS_SERVICE: 'Stateless Service',
   'Sure to delete the service(s)?':
     '¿Seguro que quiere eliminar los servicios?',
   'Target Port': 'Puerto destino',
   'The current selector': 'El selector actual',
+  NO_WORKLOAD_MATCH_SELECTOR: 'The current selector matches no workload.',
+  WORKLOADS_MATCH_SELECTOR_SI:
+    'The current selector ({selector}) matches {count} workload.',
+  WORKLOADS_MATCH_SELECTOR_PL:
+    'The current selector ({selector}) matches {count} workloads.',
   STICKY_SESSION_DESC:
-    'Ensures that all requests from the same client are forwarded to the same backend server during one session.',
+    'Set the system to forward all requests from the same client to the same backend within a specified duration.',
   VIRTUAL_IP: 'IP virtual',
-  SERVICE_EXTERNAL_NAME_DESC:
+  CREATE_EXTERNAL_SERVICE_DESC:
     'Asigne el servicio al contenido del campo externalName devolviendo un registro CNAME con su valor.',
-  TOTAL_WORKLOAD: 'Total Workloads: { count }',
+  TOTAL_WORKLOADS_VALUE: 'Total Workloads: { count }',
   SERVICE_SELECTOR_AFFECT_1: '',
   SERVICE_SELECTOR_AFFECT_2: 'afectar las workload de {count}',
   SERVICE_NAME_DESC:
@@ -111,8 +130,8 @@ module.exports = {
   VIRTUAL_IP_TITLE: 'Virtual IP Address',
   VIRTUAL_IP_DESC:
     'The cluster generates a unique IP address for the Service and the Service can be accessed within the cluster using this IP address.',
-  HEADLESS_SELECTOR_TITLE: 'Headless (Selector)',
-  HEADLESS_SELECTOR_DESC:
+  INTERNAL_DOMAIN_NAME: 'Internal Domain Name',
+  INTERNAL_DOMAIN_NAME_DESC:
     'The cluster does not generate an IP address for the Service and the Service can be directly accessed using the Endpoint IP address of the Service.',
   HEADLESS_EXTERNAL_NAME_TITLE:
     'Sin cabecera (nombre externo): direcciones de mapas fuera del clúster para visitar',
@@ -124,7 +143,8 @@ module.exports = {
   ACCESS_LOADBALANCER_TIP: 'Use a load balancer to access the Service.',
   SERVICE_NODE_PORT_DESC:
     'Si su red actual está en la misma red que el nodo del clúster, puedes acceder a ella a través de la dirección IP del clúster + número de puerto del nodo o a través del puerto del nodo IP + nodo.',
-  SERVICE_TYPE: 'Puedes crear un servicio sin estado o un servicio con estado.',
+  SERVICE_TYPE: 'Service Type',
+  SELECT_SERVICE_TYPE: 'Select Service Type',
   SERVICE_TYPES_Q: 'Tipos de servicio',
   SERVICE_TYPES_A:
     'El servicio se divide en un servicio sin estado (Servicio virtual + Depolyment) y un servicio con estado (Servicio sin cabeza + Statefulset). En un servicio sin estado, las réplicas pueden compartir un volumen, y un servicio con estado debe tener su propio volumen independiente.',
@@ -132,18 +152,16 @@ module.exports = {
     '¿Cuáles son los escenarios de aplicación para servicios sin estado y servicios con estado?',
   SCENARIOS_FOR_SERVICES_A:
     'Los servicios sin estado son útiles para escenarios en los que los datos persistentes no se almacenan localmente y varias instancias responden a solicitudes uniformes (Nginx, Tomcat, etc.). Los servicios con estado son útiles cuando se trata de almacenamiento de datos, subprocesos múltiples o colas (base de datos MySQL, Kafka, Zookeeper, etc.).',
-  SERVICE_SIMPLE_DESC:
-    'Crear un servicio a partir de un grupo de pods existente',
   DELETE_SERVICE_DESC:
     'Está a punto de eliminar los servicios {resource}. ¿Confirma si desea eliminar el recurso asociado?',
   SERVICE_FROM_CODE:
     'Cree un nuevo servicio desde el repositorio de código fuente',
-  SERVICE_FROM_ARTIFACTS: 'Construye un nuevo servicio a través del artefacto',
+  SERVICE_FROM_ARTIFACT: 'Construye un nuevo servicio a través del artefacto',
   SERVICE_FROM_CODE_DESC:
     'Puedes construir su código existente en una imagen e implementarlo a través de Source to Image.',
-  SERVICE_FROM_ARTIFACTS_DESC:
+  SERVICE_FROM_ARTIFACT_DESC:
     'Puedes construir un artefacto existente en una nueva imagen y completar despliegue.',
-  SERVICE_CUSTOM_CREATE:
+  CUSTOMIZE_SERVICE_DESC:
     'Puedes crear un servicio ya sea especificando una carga de trabajo o editando la configuración (Yaml).',
   SERVICE_TYPE_STATEFULSERVICE: 'Servicio de estado',
   SERVICE_TYPE_STATELESSSERVICE: 'Servicio sin estado',
@@ -152,10 +170,10 @@ module.exports = {
     'Los servicios con estado o stateful se usan para administrar aplicaciones con estado, asegurando un despliegue y escala ordenada y elegante. También proporcionan almacenamiento persistente estable e identificadores de red.',
   STATELESS_SERVICE_DESC:
     'El servicio más utilizado en servicios de contenedores. Define la plantilla del Pod para controlar el estado del Pod, incluidas las actualizaciones continuas y los retrocesos.',
-  SERVISE_SIMPLE_DESC: 'Crea un servicio con Pods existentes.',
+  SPECIFY_WORKLOAD_DESC: 'Crea un servicio con Pods existentes.',
   SERVICE_PORTS_DESC:
     'Set the ports used to access the container and the service ports.',
-  SPECIFY_WORKLOAD_DESC:
+  SELECT_WORKLOAD_DESC:
     'Pre-populate the fields with labels of container replicas created by the workloads.',
 
   SPECIFY_NODE_DESC: 'Especifique um nó que precisa ser associado ao serviço.',
@@ -163,10 +181,10 @@ module.exports = {
   EIP_POOL_DESC: 'Método de acceso dentro del clúster (DNS)',
 
   // Services
-  LABEL_SELECTOR: 'Label Selector',
+  WORKLOAD_SELECTOR: 'Workload Selector',
   NONE: 'None',
   UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
-  STICKY_DURATION_DESC:
+  MAXIMUM_STICKINESS_DURATION_DESC:
     'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
   HEADLESS: 'Headless',
   EXTERNALNAME: 'ExternalName',

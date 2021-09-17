@@ -40,7 +40,7 @@ const MetricTypes = {
 
 @withList({
   store: new ProjectStore(),
-  name: 'Project',
+  name: 'PROJECT',
   module: 'projects',
   injectStores: ['rootStore', 'workspaceStore'],
 })
@@ -157,7 +157,7 @@ export default class Projects extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

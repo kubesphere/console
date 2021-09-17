@@ -18,6 +18,7 @@
 import React from 'react'
 import { get } from 'lodash'
 import CustomMonitoringModal from 'components/Modals/CustomMonitoring'
+import GrafanaModal from 'components/Modals/GrafanaModal'
 import CustomMonitoringTemplate from 'stores/monitoring/custom/template'
 import CreateModal from 'components/Modals/Create'
 import FORM_STEPS from 'configs/steps/dashborads'
@@ -27,8 +28,9 @@ export default class CreateDashboardModalContainer extends React.Component {
     finishBasis: false,
   }
 
-  handleOk = async () => {
-    this.props.onOk(this.store.toJS())
+  handleOk = async data => {
+    const formData = this.state.type === 'Grafana' ? data : this.store.toJS()
+    this.props.onOk(formData)
   }
 
   handleBasicConfirm = params => {
@@ -46,11 +48,15 @@ export default class CreateDashboardModalContainer extends React.Component {
       ...params.spec,
     })
 
-    this.setState({ finishBasis: true })
+    this.setState({
+      finishBasis: true,
+      type: params.spec.title,
+      formData: params,
+    })
   }
 
   render() {
-    const { finishBasis } = this.state
+    const { finishBasis, type, formData } = this.state
     const {
       cluster,
       namespace,
@@ -62,6 +68,15 @@ export default class CreateDashboardModalContainer extends React.Component {
     const { module } = store
 
     if (finishBasis) {
+      if (type === 'Grafana') {
+        return (
+          <GrafanaModal
+            formTemplate={formData}
+            onCancel={onCancel}
+            onOk={this.handleOk}
+          />
+        )
+      }
       return (
         <CustomMonitoringModal
           store={this.store}

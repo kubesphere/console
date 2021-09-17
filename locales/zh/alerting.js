@@ -51,7 +51,7 @@ module.exports = {
   'Add Rule': '添加规则',
   'Edit Rule': '编辑规则',
   'Rule Name': '规则名称',
-  'View Details': '查看详情',
+  VIEW_DETAILS: '查看详情',
   ACTIVATED_AT: '告警激活时间',
   SET_RULE_DESC: '请设置告警规则。',
   'Please input the threshold': '请输入阈值',
@@ -140,7 +140,7 @@ module.exports = {
     '您可以通过 PromQL 语句来自定义告警规则。<a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">了解更多</a>',
 
   // Alerting Messages
-  ALERTING_MESSAGES: '告警消息',
+  ALERTING_MESSAGE_PL: '告警消息',
   NO_DATA_DESC: '没有找到数据',
   MONITORING_TARGET: '监控目标',
 
@@ -153,4 +153,7 @@ module.exports = {
   STATEFULSET_PL: '有状态副本集',
   DAEMONSET: '守护进程集',
   DAEMONSET_PL: '守护进程集',
+  DEPLOYMENTS_VALUE: '部署数量：{value}',
+  STATEFULSETS_VALUE: '有状态副本集数量：{value}',
+  DAEMONSETS_VALUE: '守护进程集数量：{value}',
 }

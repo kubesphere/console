@@ -35,7 +35,7 @@ import { Link } from 'react-router-dom'
   store: new VolumeStore(),
   module: 'persistentvolumeclaims',
   authKey: 'volumes',
-  name: 'Volume',
+  name: 'VOLUME',
   rowKey: 'uid',
 })
 export default class Volumes extends React.Component {
@@ -59,7 +59,7 @@ export default class Volumes extends React.Component {
       options: [
         {
           value: `Volume`,
-          label: t('Volume'),
+          label: t('VOLUME'),
         },
         {
           value: 'PV',

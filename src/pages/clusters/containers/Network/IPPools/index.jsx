@@ -31,7 +31,7 @@ import IPPoolStore from 'stores/network/ippool'
 @withList({
   store: new IPPoolStore(),
   module: 'ippools',
-  name: 'Pod IP Pool',
+  name: 'POD_IP_POOL',
 })
 export default class IPPools extends React.Component {
   get tips() {
@@ -85,7 +85,7 @@ export default class IPPools extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

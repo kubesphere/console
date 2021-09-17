@@ -32,7 +32,7 @@ import RoleStore from 'stores/role'
   store: new UserStore(),
   module: 'users',
   authKey: 'members',
-  name: 'Cluster Member',
+  name: 'CLUSTER_MEMBER',
 })
 export default class Members extends React.Component {
   roleStore = new RoleStore('clusterroles')

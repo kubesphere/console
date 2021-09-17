@@ -19,11 +19,11 @@
 module.exports = {
   'Network Policy': '网络策略',
   NETWORK_POLICY: '网络策略',
-  NETWORK_POLICY_PL: 'Network Policies',
+  NETWORK_POLICY_PL: '网络策略',
   NETWORK_POLICY_LOW: 'network policy',
   NETWORK_POLICY_EMPTY_DESC: '请创建一个网络策略。',
   'Network Policys': '网络策略',
-  'Network Isolation': '网络隔离',
+  NETWORK_ISOLATION: '网络隔离',
   CREATE_NETWORK_POLICY_TCAP: '创建网络策略',
   // Network Policies Page
   CREATE_BTN: '创建',

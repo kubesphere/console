@@ -36,7 +36,7 @@ module.exports = {
   CLUSTERS_VIEW: 'Cluster Viewing',
   CREATE_ROLE: 'Create Role',
   PLATFORM_ROLE: 'Platform Role',
-  PLATFORM_ROLES: 'Platform Roles',
+  PLATFORM_ROLE_PL: 'Platform Roles',
   'Platform Roles': 'Platform Roles',
   'Account Roles': 'Roles de cuenta',
   'Alerting Messages Management': 'Gestión de mensajes de alerta',

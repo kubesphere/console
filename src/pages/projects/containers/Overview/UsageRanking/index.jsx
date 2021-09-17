@@ -83,7 +83,7 @@ class UsageRanking extends React.Component {
   renderHeader() {
     return (
       <div className={styles.header}>
-        <div className={styles.title}>{t('Resource Name')}</div>
+        <div className={styles.title}>{t('RESOURCE_NAME')}</div>
         <Select
           className={styles.select}
           value={this.store.sort_metric}
@@ -98,14 +98,13 @@ class UsageRanking extends React.Component {
     return (
       <div className={styles.empty}>
         <Icon name="backup" size={32} />
-        <div>{t('NO_RELEVANT_DATA')}</div>
+        <div>{t('NO_DATA')}</div>
       </div>
     )
   }
 
   renderContent() {
     const data = toJS(this.store.data)
-
     if (!this.store.isLoading && isEmpty(data)) {
       return this.renderEmpty()
     }
@@ -173,10 +172,7 @@ class UsageRanking extends React.Component {
 
   render() {
     return (
-      <Panel
-        className={styles.wrapper}
-        title={`${t('Resources Usage Ranking')} (Top5)`}
-      >
+      <Panel className={styles.wrapper} title={t('TOP_5_FOR_RESOURCE_USAGE')}>
         {this.renderHeader()}
         {this.renderContent()}
       </Panel>

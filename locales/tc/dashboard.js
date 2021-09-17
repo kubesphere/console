@@ -47,7 +47,7 @@ module.exports = {
   'Regular user': '普通用戶',
   'Platform Usage Status': '平台使用情況',
   'Cluster Status': '集群狀況',
-  'Resources Usage Ranking': '資源用量排行',
+  TOP_5_FOR_RESOURCE_USAGE: '資源用量 Top 5',
 
   DEPLOYMENTS: '部署',
   NUMBER_OF_DEPLOYMENTS: 'Number of Deployments',
@@ -63,6 +63,8 @@ module.exports = {
   'Storage Classes': '儲存類型',
   APP_REPO: '應用倉庫',
   Users: '用戶',
+  'App Repositories': '應用倉庫',
+  USER_PL: '用戶',
 
   DASHBOARD_TITLE: '您好 {username}',
   DASHBOARD_BANNER_TITLE: '平台運行概覽',

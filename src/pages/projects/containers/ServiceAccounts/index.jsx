@@ -31,7 +31,7 @@ import ServiceAccountStore from 'stores/serviceAccount'
 @withProjectList({
   store: new ServiceAccountStore(),
   module: 'serviceaccounts',
-  name: 'ServiceAccount',
+  name: 'SERVICE_ACCOUNT',
 })
 export default class ServiceAccounts extends React.Component {
   get prefix() {
@@ -83,7 +83,7 @@ export default class ServiceAccounts extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

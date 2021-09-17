@@ -253,7 +253,7 @@ export default class VolumeDetail extends React.Component {
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: creator,
       },
     ]

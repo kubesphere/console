@@ -30,7 +30,8 @@ module.exports = {
 
   Mask: '遮罩',
   MASK_BIT_TCAP: '遮罩位元',
-  Network: '網路',
+  NETWORK: '網路',
+  NETWORK_RESOURCE_PL: 'Network Resources',
 
   'First Available': '第一個可用',
   'Last Available': '最後可用',

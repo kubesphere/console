@@ -84,8 +84,8 @@ export default class RuleForm extends React.Component {
 
   get protocols() {
     return [
-      { label: t('http'), value: 'http' },
-      { label: t('https'), value: 'https' },
+      { label: 'HTTP', value: 'http' },
+      { label: 'HTTPS', value: 'https' },
     ]
   }
 
@@ -138,7 +138,7 @@ export default class RuleForm extends React.Component {
     }
 
     if (value.some(item => !this.checkItemValid(item))) {
-      return callback({ message: t('INVALID_PATH_TIP'), field: rule.field })
+      return callback({ message: t('INVALID_PATH_DESC'), field: rule.field })
     }
 
     callback()
@@ -195,10 +195,10 @@ export default class RuleForm extends React.Component {
             <Form.Item
               label={t('DOMAIN_NAME_TCAP')}
               rules={[
-                { required: true, message: t('DOMAIN_NAME_TIP') },
+                { required: true, message: t('DOMAIN_NAME_EMPTY_DESC') },
                 {
                   pattern: PATTERN_HOST,
-                  message: t('INVALID_DOMAIN_TIP'),
+                  message: t('INVALID_DOMAIN_DESC'),
                 },
               ]}
             >
@@ -226,14 +226,14 @@ export default class RuleForm extends React.Component {
         <Form.Item
           label={t('PATH_PL')}
           rules={[
-            { required: true, message: t('ADD_PATH_TIP') },
+            { required: true, message: t('PATH_EMPTY_DESC') },
             { validator: this.pathValidator, checkOnSubmit: true },
           ]}
         >
           <ArrayInput
             name="http.paths"
             itemType="object"
-            addText={t('ADD_PATH_TCAP')}
+            addText={t('ADD')}
             checkItemValid={this.checkItemValid}
           >
             <RulePath services={this.props.services} />
@@ -253,7 +253,7 @@ export default class RuleForm extends React.Component {
           <a className="custom-icon" onClick={this.handleGoBack}>
             <BackIcon />
           </a>
-          {t('SET_ROUTE_RULE_TCAP')}
+          {t('SET_ROUTING_RULES')}
         </div>
         <div className={styles.formWrapper}>
           <Form ref={this.formRef} data={data}>
@@ -271,7 +271,7 @@ export default class RuleForm extends React.Component {
             {!isFederated && isEmpty(gateway) && (
               <Alert
                 className="margin-b12"
-                message={t.html('NO_INTERNET_ACCESS_TIP')}
+                message={t.html('NO_GATEWAY_DESC')}
                 type="warning"
               />
             )}

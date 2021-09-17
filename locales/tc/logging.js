@@ -126,10 +126,10 @@ module.exports = {
   STOP_REAL_TIME_LOG: '關閉實時紀錄',
   LOG_EXPORT: '紀錄導出',
   CUSTOM_MONITORING_DASHBOARD: '自定義監控面板',
-  CUSTOMMONITORDASHBOARD: '自定義監控面板',
+  CUSTOM_MONITORING_DASHBOARD_PL: 'Custom Monitoring Dashboards',
   CUSTOMMONITORDASHBOARD_PL: 'Custom Monitoring Dashboards',
   CUSTOMMONITORDASHBOARD_LOW: 'custom monitoring dashboard',
-  CUSTOMMONITORDASHBOARD_EMPTY_DESC:
+  CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC:
     'Please create a custom monitoring dashboard.',
   CREATE_CUSTOM_MONITORING_DASHBOARD: '創建自定義監控面板',
   SELECT_MONITORING_TEMPLATE: '選擇監控模板',
@@ -139,7 +139,14 @@ module.exports = {
   TOTAL_EVENTS_TODAY:
     '今日總共收錄了 <span class={className}> {events} </span> 條事件',
   NO_EVENTS_TODAY: '今日沒有收錄的事件',
-
+  IMPORT_GRAFANA_DASHBOARD: '導入 Grafana dashboard',
+  IMPORT_GRAFANA_JSON_FILE: '導入 Grafana JSON 文件',
+  IMPORT_GRAFANA_URL: '使用 Grafana dashboard URL 導入',
+  SUPPORT_JSON_FILE: '僅支持 JSON 格式的文件',
+  'Only one file can be uploaded': '只能上傳一個文化',
+  'Need to upload a file': '需要上傳一個文件',
+  'Need to a URL': '需要填寫一個 Grafana Url',
+  'Click or drag files to this area to upload': '點擊或拖動檔案到此區域內上傳',
   'No cluster with event query enabled': '暫無啟用事件查詢的集群',
   'No cluster with auditing module enabled': '暫無啟用審計模組的集群',
   'No cluster with logging module enabled': '暫無啟用紀錄模組的集群',

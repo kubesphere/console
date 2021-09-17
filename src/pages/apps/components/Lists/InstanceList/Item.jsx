@@ -60,7 +60,7 @@ export default class InstanceItem extends React.PureComponent {
         {showVersion && (
           <dl>
             <dt>{version.name}</dt>
-            <dd>{t('Version')}</dd>
+            <dd>{t('VERSION')}</dd>
           </dl>
         )}
         <dl>

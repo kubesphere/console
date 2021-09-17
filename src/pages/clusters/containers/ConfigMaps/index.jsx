@@ -32,7 +32,7 @@ import ConfigMapStore from 'stores/configmap'
 @withClusterList({
   store: new ConfigMapStore(),
   module: 'configmaps',
-  name: 'ConfigMap',
+  name: 'CONFIGMAP',
   rowKey: 'uid',
 })
 export default class ConfigMaps extends React.Component {
@@ -82,7 +82,7 @@ export default class ConfigMaps extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

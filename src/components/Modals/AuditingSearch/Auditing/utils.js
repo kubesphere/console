@@ -101,7 +101,7 @@ export const dropDownItems = {
   },
   objectref_name_filter: {
     icon: 'strategy-group',
-    text: t('Resource Name'),
+    text: t('RESOURCE_NAME'),
   },
   verb_filter: {
     icon: 'wrench',
@@ -158,7 +158,7 @@ export const supportQueryParams = [
   },
   {
     icon: 'strategy-group',
-    title: t('Search Auditing Logs by', { field: t('Resource Name') }),
+    title: t('Search Auditing Logs by', { field: t('RESOURCE_NAME') }),
     tips: t('Resource Name Auditing Query Tip'),
     key: 'objectref_name_filter',
   },

@@ -85,8 +85,8 @@ export default class DeployAppModal extends React.Component {
             <img src="/assets/application.svg" alt="" />
           </div>
           <div className={styles.text}>
-            <h2>{t('Deploy New Application')}</h2>
-            <p>{t('APP_DEPLOYMENT_DESC')}</p>
+            <h2>{t('CREATE_APP')}</h2>
+            <p>{t('CREATE_APP_DESC')}</p>
           </div>
         </div>
 
@@ -94,15 +94,15 @@ export default class DeployAppModal extends React.Component {
           {globals.app.enableAppStore && (
             <Item
               icon="templet"
-              title={t('From App Store')}
+              title={t('FROM_APP_STORE')}
               desc={t('FROM_APP_STORE_DESC')}
               onEnter={this.handleAppTemplate}
             />
           )}
           <Item
             icon="catalog"
-            title={t('From App Templates')}
-            desc={t('FROM_APP_TEMPLATES_DESC')}
+            title={t('FROM_APP_TEMPLATE')}
+            desc={t('FROM_APP_TEMPLATE_DESC')}
             onEnter={this.handleAppRepo}
           />
         </div>

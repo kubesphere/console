@@ -100,7 +100,7 @@ class Credential extends React.Component {
   }
 
   get name() {
-    return 'Credentials'
+    return 'DEVOPS_CREDENTIAL'
   }
 
   handleCreate = () => {
@@ -177,7 +177,7 @@ class Credential extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Banner
-          title={t('DevOps Credentials')}
+          title={t('DEVOPS_CREDENTIAL_PL')}
           icon="key"
           description={t('DEVOPS_PROJECT_CREDENTIALS_DESC')}
           module={this.module}

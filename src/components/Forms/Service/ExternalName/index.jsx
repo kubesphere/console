@@ -40,7 +40,7 @@ export default class ServiceSettings extends React.Component {
       <Form data={this.formTemplate} ref={formRef}>
         <Form.Item
           label={t('EXTERNALNAME')}
-          desc={t('SERVICE_EXTERNAL_NAME_DESC')}
+          desc={t('CREATE_EXTERNAL_SERVICE_DESC')}
           rules={[
             {
               required: true,

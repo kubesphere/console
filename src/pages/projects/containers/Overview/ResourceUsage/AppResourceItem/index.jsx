@@ -140,7 +140,7 @@ export default class ResourceCard extends React.Component {
     const config = getAreaChartOps({
       title: '',
       unit: '',
-      legend: ['Count'],
+      legend: ['COUNT'],
       data: metrics,
     })
 
@@ -157,7 +157,7 @@ export default class ResourceCard extends React.Component {
           onClick={this.handleClick}
         >
           <strong>{num}</strong>
-          <span>{t(name)}</span>
+          <span>{num === '1' ? t(name) : t(`${name}_PL`)}</span>
         </div>
         <TinyArea width={330} height={44} bgColor="transparent" {...config} />
       </div>

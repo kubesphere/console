@@ -21,7 +21,7 @@ module.exports = {
   'APIs Average': 'APIs average',
   API_SERVER_MONITORING: 'Monitorización de API Server',
   'Application Resources': 'Recursos de aplicación',
-  APPLICATION_RESOURCES: 'Monitorización de recursos de aplicaciones',
+  APPLICATION_RESOURCE_PL: 'Monitorización de recursos de aplicaciones',
   APPLICATION_RESOURCES_USAGE: 'Uso de recursos de la aplicación',
   SCHEDULE_ATTEMPTS: 'Scheduling Attempts',
   SCHEDULING_RATE: 'Scheduling Rate',
@@ -106,9 +106,12 @@ module.exports = {
   'Warm Color': 'Colores cálidos',
   Interval: 'Intervalo',
   Last: '',
-  TIME_M: '{num, plural, =1 {1 minuto} other{# minutos}}',
-  TIME_H: '{num, plural, =1 {1 hora} other{# horas}}',
-  TIME_D: '{num, plural, =1 {1 día} other{# días}}',
+  LAST_TIME_M: '{num, plural, =1 {last 1 minute} other{last # minutes}}',
+  LAST_TIME_H: '{num, plural, =1 {last 1 hour} other{last # hours}}',
+  LAST_TIME_D: '{num, plural, =1 {last 1 day} other{last # days}}',
+  TIME_M: '{num, plural, =1 {1 minute} other{# minutes}}',
+  TIME_H: '{num, plural, =1 {1 hour} other{# hours}}',
+  TIME_D: '{num, plural, =1 {1 day} other{# days}}',
   UTILIZATION: 'Utilización',
   RESOURCE_USAGE_TITLE: 'Uso de recursos',
   MONITORING_CLUSTER_DESC:
@@ -141,7 +144,7 @@ module.exports = {
   PROPOSAL_PENDING: 'Pendiente',
   CustomMonitorDashboards: 'Paneles de monitorización personalizados',
   CUSTOM_MONITORING: 'Custom Monitoring',
-  CUSTOM_MONITOR_DESC:
+  CUSTOM_MONITORING_DASHBOARD_DESC:
     'Custom monitoring provides application monitoring templates. You can customize monitoring dashboards based on your needs.',
   CUSTOMMONITORDASHBOARD_CREATE_DESC:
     'You can customize application monitoring dashboards based on your needs.',
@@ -206,7 +209,6 @@ module.exports = {
   // Cluster Status
   DISK_USAGE: 'Disk Usage',
   POD_COUNT: 'Pods',
-  USAGE: 'Usage',
   API_SERVER: 'API Server',
   AVERAGE_CPU_LOAD: 'Average CPU Load',
   POD_USAGE: 'Pod Usage',

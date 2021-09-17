@@ -34,7 +34,7 @@ import styles from './index.scss'
 @withList({
   store: new AppStore(),
   module: 'apps',
-  name: 'Application',
+  name: 'APP',
   rowKey: 'app_id',
 })
 export default class AppCategories extends React.Component {
@@ -143,7 +143,7 @@ export default class AppCategories extends React.Component {
         <Banner
           {...bannerProps}
           icon="tag"
-          title={t('App Categories')}
+          title={t('APP_CATEGORY_PL')}
           description={t('APP_CATEGORIES_DESC')}
         />
         <Columns className={styles.main}>

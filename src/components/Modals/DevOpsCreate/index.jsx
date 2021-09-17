@@ -217,7 +217,7 @@ export default class ProjectCreateModal extends React.Component {
             {!hideCluster && (
               <Column>
                 <Form.Item
-                  label={t('Cluster Settings')}
+                  label={t('CLUSTER_SETTINGS')}
                   rules={[{ required: true, message: t('CLUSTER_EMPTY_DESC') }]}
                 >
                   <Select

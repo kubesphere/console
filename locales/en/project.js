@@ -25,7 +25,8 @@ module.exports = {
   ASSIGN_WORKSPACE: 'Assign Workspace',
   SELECT_WORKSPACE_DESC: 'Select a workspace.',
   Closed: 'Closed',
-  'Container Resource Default Request': 'Container Resource Default Request',
+  DEFAULT_CONTAINER_QUOTAS: 'Default Container Quotas',
+  EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
   CREATE_MULTI_CLUSTER_PROJECT: 'Create Multi-cluster Project',
   CREATE_PROJECT: 'Create Project',
   cronjobs: 'cronjobs',
@@ -60,9 +61,8 @@ module.exports = {
   'Gateway Info': 'Gateway Info',
   'Gateway Not Set': 'Gateway Not Set',
   'Help Information': 'Help Information',
-  'How do I invite other members to the current project?':
-    'How do I invite other members to the current project?',
-  'How do I set the project gateway?': 'How do I set the project gateway?',
+  HOW_TO_INVITE_USERS: 'How do I invite users to the current project?',
+  HOW_TO_SET_PROJECT_GATEWAY: 'How do I set the project gateway?',
   'Invalid project name': 'Invalid project name',
   'Invite Member': 'Invite Member',
   'Invite Members to the DevOps Project':
@@ -93,7 +93,7 @@ module.exports = {
   'Project Info': 'Project Information',
   PROJECT_ADMINISTRATOR: 'Project Administrator',
   'Project Member': 'Project Member',
-  'Project Members': 'Project Members',
+  PROJECT_MEMBER_PL: 'Project Members',
   'project members': 'project members',
   PROJECT_NAME: 'Project Name',
   'Project name exists': 'Project name exists',
@@ -106,14 +106,16 @@ module.exports = {
   'Project Role': 'Project Role',
   // Create ServiceAccount Page
   PROJECT_ROLE_SI: 'Project Role',
-  'Project Roles': 'Project Roles',
-  'Project Quota Not Set': 'Project Quota Not Set',
-  'Resource Default Request Not Set': 'Resource Default Request Not Set',
+  PROJECT_ROLE_PL: 'Project Roles',
+  PROJECT_QUOTAS_NOT_SET: 'Project Quotas Not Set',
+  DEFAULT_CONTAINER_QUOTAS_NOT_SET: 'Default Container Quotas Not Set',
   Project_Admin: 'Project_Admin',
   Projects: 'Projects',
   projects: 'projects',
   'Quota Management': 'Quota Management',
   REMOVE_MEMBER: 'Remove Member',
+  WORKSPACE_QUOTA_PL: 'Workspace Quotas',
+  'Remove Member': 'Remove Member',
   'Remove Members': 'Remove Members',
   'requests.cpu': 'requests.cpu',
   'requests.memory': 'requests.memory',
@@ -194,11 +196,14 @@ module.exports = {
   HOW_TO_USE_QUOTA_Q: 'How do I use quotas?',
   HOW_TO_USE_QUOTA_A:
     "Resource Quotas are a mechanism used to limit user's resources usage. You can limit the number of CPUs, memories, and Pod replicas.",
+  PROJECT_QUOTAS_DESC:
+    'Project quotas specify the number of available CPU and memory resources and the maximum number of Pods, Deployments, and Services allowed in the project.',
 
   WHAT_IS_LIMIT_RANGE_Q: 'What is the container resource default request?',
   WHAT_IS_LIMIT_RANGE_A:
     'The container resource default request (LimitRange) is based on project resource management, including resource limits and resource requests.',
-
+  DEFAULT_CONTAINER_QUOTAS_DESC:
+    'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
   WHAT_IS_INTERNET_GATEWAY: 'What is an Internet Access Gateway?',
   WHAT_IS_COLLECT_FILE_LOG_A:
     'The log path in the volume mounted to the container is given in glob pattern. The log path can be configured in the workload to collect logs. The administrator needs to enable Disk Log Collection in advance.',
@@ -236,7 +241,7 @@ module.exports = {
   FEDPROJECT_RESOURCE_TIP:
     'Unable to create multi-cluster project resources in cluster management, please go to the multi-cluster project page to operate.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP:
-    'Unable to deploy applications in multi-cluster projects.',
+    'The app cannot be deployed in a multi-cluster project.',
   MULTI_CLUSER_PROJECT_TIP:
     'The current multi-cluster project runs on different clusters. You can switch between clusters to check the setting of this project in each of them.',
 

@@ -114,6 +114,12 @@
     }
   }
 
+  img {
+    position: absolute;
+    top: 0;
+    left: 8px;
+  }
+
   .input {
     position: relative;
     display: flex;
@@ -146,6 +152,16 @@
       .input {
         width: auto;
         flex: 1;
+      }
+
+      .select {
+        width: auto;
+        flex: 1.25;
+
+        .icon {
+          align-self: center;
+          position: relative;
+        }
       }
     }
   }

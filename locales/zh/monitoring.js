@@ -23,7 +23,7 @@ module.exports = {
   PHYSICAL_RESOURCES_MONITORING: '物理资源监控',
   SERVICE_COMPONENT_MONITORING: '服务组件监控',
   'Application Resources': '应用资源',
-  APPLICATION_RESOURCES: '应用资源',
+  APPLICATION_RESOURCE_PL: '应用资源',
 
   NODE_COUNT: '节点数量',
   CLUSTER_STATUS: '集群状态',
@@ -77,7 +77,10 @@ module.exports = {
 
   Interval: '间隔',
   Last: '最近',
-  TIME_S: '{num} 秒',
+  LAST_TIME_S: '最近 {num} 秒',
+  LAST_TIME_M: '最近 {num} 分钟',
+  LAST_TIME_H: '最近 {num} 小时',
+  LAST_TIME_D: '最近 {num} 天',
   TIME_M: '{num} 分钟',
   TIME_H: '{num} 小时',
   TIME_D: '{num} 天',
@@ -202,7 +205,7 @@ module.exports = {
   CustomMonitorDashboards: '自定义监控面板',
   CustomMonitorDashboard: '自定义监控面板',
   CUSTOM_MONITORING: '自定义监控',
-  CUSTOM_MONITOR_DESC:
+  CUSTOM_MONITORING_DASHBOARD_DESC:
     '自定义监控提供应用监控模板，您可以根据需求自定义监控面板。',
   CUSTOMMONITORDASHBOARD_CREATE_DESC:
     '您可以根据自己的需求自定义应用监控面板。',
@@ -214,7 +217,6 @@ module.exports = {
   // Cluster Status
   DISK_USAGE: '磁盘用量',
   POD_COUNT: '容器组数量',
-  USAGE: '用量',
   API_SERVER: 'API Server',
   AVERAGE_CPU_LOAD: 'CPU 平均负载',
   POD_USAGE: '容器组用量',
@@ -233,7 +235,7 @@ module.exports = {
   WORKSPACES: '企业空间',
   ACCOUNTS: '帐户',
   PROJECT_PL: '项目',
-  PROJECT_LOW: 'project',
+  PROJECT_LOW: '项目',
   DEVOPS_PROJECT: 'DevOps 工程',
   DEVOPS_PROJECT_TCAP: 'DevOps 工程',
   DEVOPS_PROJECT_PL: 'DevOps 工程',
@@ -244,7 +246,7 @@ module.exports = {
   DEVOPS_PROJECTS: 'DevOps 工程',
   SERVICES: '服务',
   ROUTES: '应用路由',
-  LAST_TIME: '最后 {value}',
+  LAST_TIME: '最近 {value}',
   COUNT: '数量',
 
   // Custom Monitoring

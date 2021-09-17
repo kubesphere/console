@@ -32,7 +32,7 @@ module.exports = {
   'Edit Project': '编辑项目',
   Details: '详情',
   Members: '成员',
-  'Project Roles': '项目角色',
+  PROJECT_ROLE_PL: '项目角色',
   'Project Role': '项目角色',
   // Create ServiceAccount Page
   PROJECT_ROLE_SI: '项目角色',
@@ -44,7 +44,7 @@ module.exports = {
   'Manage Project': '项目管理',
   RESOURCE_QUOTAS: '资源配额',
   PROJECT_NAME: '项目名称',
-  'Project Members': '项目成员',
+  PROJECT_MEMBER_PL: '项目成员',
   'project members': '项目成员',
   'Member Name': '成员名称',
   'Modify Member Role': '修改成员角色',
@@ -63,9 +63,10 @@ module.exports = {
   'Project Quota': '项目配额',
   EDIT_PROJECT_QUOTAS: '编辑项目配额',
   'Quota Management': '配额管理',
+  WORKSPACE_QUOTA_PL: '企业空间配额',
 
-  'Project Quota Not Set': '项目配额未设置',
-  'Resource Default Request Not Set': '容器资源默认请求未设置',
+  PROJECT_QUOTAS_NOT_SET: '未设置项目配额',
+  DEFAULT_CONTAINER_QUOTAS_NOT_SET: '容器资源默认请求未设置',
 
   'Project Placement': '项目位置',
 
@@ -108,7 +109,8 @@ module.exports = {
   'requests.memory': '内存需求',
   'limits.memory': '内存限额',
 
-  'Container Resource Default Request': '容器资源默认请求',
+  DEFAULT_CONTAINER_QUOTAS: '默认容器配额',
+  EDIT_DEFAULT_CONTAINER_QUOTAS: '编辑默认容器配额',
   'Edit Resource Default Request': '编辑资源默认请求',
 
   RESOURCE_TYPE: '资源类型',
@@ -149,7 +151,7 @@ module.exports = {
     '落盘日志收集即将关闭。 关闭后，已开启落盘日志收集的服务在容器组副本重启前将继续进行落盘日志的收集，重启后，将不再收集。</br>如果需要再次收集，请开启落盘日志收集，并重起容器组副本。',
 
   Usage: '使用情况',
-  USAGE: '使用情况',
+  USAGE: '用量',
   PROJECTS_DESC:
     'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，常用来将系统内部的对象划分为不同的项目组或用户组。',
   PROJECT_BASEINFO_DESC: '项目基础信息设置',
@@ -216,11 +218,13 @@ module.exports = {
   HOW_TO_USE_QUOTA_Q: '如何使用配额?',
   HOW_TO_USE_QUOTA_A:
     '资源配额 (ResourceQuota) 是用来限制用户资源用量的一种机制，可以对 CPU、内存、容器组数量等进行配额限制。',
-
+  PROJECT_QUOTAS_DESC:
+    '项目配额用于指定项目中可用的 CPU 和内存资源数量和允许的容器组、部署和服务的最大数量。',
   WHAT_IS_LIMIT_RANGE_Q: '什么是容器资源默认请求?',
   WHAT_IS_LIMIT_RANGE_A:
     '容器资源默认请求 (LimitRange) 基于项目的资源管理，包括容器组和容器的保留资源、最大限额等。',
-
+  DEFAULT_CONTAINER_QUOTAS_DESC:
+    '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 限制、内存预留和内存限制。',
   WHAT_IS_INTERNET_GATEWAY: '什么是外网访问网关?',
   WHAT_IS_COLLECT_FILE_LOG_A:
     '容器所挂载的存储卷中的日志路径以 glob 方式给出，可在工作负载中配置日志路径以收集这些日志。需要管理员预先开启落盘日志收集。',
@@ -229,9 +233,8 @@ module.exports = {
   HOW_TO_INVITE_MEMBER_A:
     '项目管理员或者拥有成员邀请权限的用户可以邀请当前企业空间内的成员加入项目',
 
-  'How do I invite other members to the current project?':
-    '邀请其他成员到当前项目中?',
-  'How do I set the project gateway?': '如何设置项目网关？',
+  HOW_TO_INVITE_USERS: '如何邀请用户到当前项目中？',
+  HOW_TO_SET_PROJECT_GATEWAY: '如何设置项目网关？',
   RESOURCE_QUANTITY_LIMIT: '资源数量上限',
 
   PROJECT_TYPES_Q: '项目中的服务如何通过外网访问？',
@@ -253,7 +256,7 @@ module.exports = {
 
   FEDPROJECT_RESOURCE_TIP:
     '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作。',
-  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目里部署应用。',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目中部署应用。',
 
   FED_HOST_NAMESPACE_TIP: '该项目与多集群项目关联, 请勿修改此项目中的资源。',
 

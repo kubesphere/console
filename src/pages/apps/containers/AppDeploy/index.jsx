@@ -207,7 +207,7 @@ export default class App extends React.Component {
             onClick={this.handleOk}
             loading={this.appStore.isSubmitting}
           >
-            {t('Deploy')}
+            {t('DEPLOY')}
           </Button>
         )}
       </div>

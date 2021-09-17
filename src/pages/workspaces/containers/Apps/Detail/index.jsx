@@ -100,7 +100,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'appDeploy',
         icon: 'snapshot',
-        text: t('Deploy'),
+        text: t('DEPLOY'),
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.deploy', {
@@ -154,7 +154,7 @@ export default class RoleDetail extends React.Component {
         value: t(capitalize(transferAppStatus(detail.status))),
       },
       {
-        name: t('Category'),
+        name: t('CATEGORY'),
         value: getAppCategoryNames(get(detail, 'category_set', [])),
       },
       {

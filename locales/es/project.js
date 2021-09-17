@@ -25,8 +25,9 @@ module.exports = {
   ASSIGN_WORKSPACE: 'Asignar espacio de trabajo',
   SELECT_WORKSPACE_DESC: 'Elige un espacio de trabajo',
   Closed: 'Cerrado',
-  'Container Resource Default Request':
+  DEFAULT_CONTAINER_QUOTAS:
     'Solicitud predeterminada de recursos de contenedor',
+  EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
   CREATE_MULTI_CLUSTER_PROJECT: 'Crear proyecto de clúster múltiple',
   CREATE_PROJECT: 'Crear proyecto',
   cronjobs: 'cronjobs',
@@ -62,9 +63,8 @@ module.exports = {
   'Gateway Info': 'Información de puerta de enlace',
   'Gateway Not Set': 'Puerta de enlace no establecida',
   'Help Information': 'Información de ayuda',
-  'How do I invite other members to the current project?':
-    '¿Cómo invitar a otros miembros al proyecto actual?',
-  'How do I set the project gateway?':
+  HOW_TO_INVITE_USERS: '¿Cómo invitar a otros miembros al proyecto actual?',
+  HOW_TO_SET_PROJECT_GATEWAY:
     '¿Cómo configurar la puerta de enlace del proyecto?',
   'Invalid project name': 'Nombre de proyecto inválido',
   'Invite Member': 'Miembro invitado',
@@ -99,7 +99,7 @@ module.exports = {
   'Project Info': 'Información del proyecto',
   PROJECT_ADMINISTRATOR: 'Gestor de proyecto',
   'Project Member': 'Miembro del proyecto',
-  'Project Members': 'Miembros del proyecto',
+  PROJECT_MEMBER_PL: 'Miembros del proyecto',
   'project members': 'miembros del proyecto',
   PROJECT_NAME: 'Nombre del proyecto',
   'Project name exists': 'El nombre del proyecto existe',
@@ -112,12 +112,14 @@ module.exports = {
   'Project Role': 'Rol del proyecto',
   // Create ServiceAccount Page
   PROJECT_ROLE_SI: 'Rol del proyecto',
-  'Project Roles': 'Roles del proyecto',
+  PROJECT_ROLE_PL: 'Roles del proyecto',
   Project_Admin: 'Project_Admin',
   Projects: 'Proyectos',
   projects: 'proyectos',
   'Quota Management': 'Gestión de cuotas',
   REMOVE_MEMBER: 'Eliminar miembro',
+  WORKSPACE_QUOTA_PL: 'Workspace Quotas',
+  'Remove Member': 'Eliminar miembro',
   'Remove Members': 'Eliminar miembros',
   'requests.cpu': 'request.cpu',
   'requests.memory': 'requests.memory',
@@ -189,10 +191,14 @@ module.exports = {
   HOW_TO_USE_QUOTA_Q: '¿Cómo usar las cuotas?',
   HOW_TO_USE_QUOTA_A:
     'Las cuotas de recursos son un mecanismo utilizado para limitar el uso de recursos del usuario. Puedes limitar la cantidad de CPU, memoria y réplicas de pod.',
+  PROJECT_QUOTAS_DESC:
+    'Project quotas specify the number of available CPU and memory resources and the maximum number of Pods, Deployments, and Services allowed in the project.',
   WHAT_IS_LIMIT_RANGE_Q:
     '¿Cuál es la solicitud predeterminada del recurso contenedor?',
   WHAT_IS_LIMIT_RANGE_A:
     'La solicitud predeterminada de recursos del contenedor (LimitRange) se basa en la gestión de recursos del proyecto, incluidos los límites de recursos y las solicitudes de recursos.',
+  DEFAULT_CONTAINER_QUOTAS_DESC:
+    'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
   WHAT_IS_INTERNET_GATEWAY:
     '¿Qué es una puerta de enlace de acceso a Internet?',
   WHAT_IS_COLLECT_FILE_LOG_A:
@@ -233,6 +239,6 @@ module.exports = {
   CREATE_MULTI_CLUSTER_PROJECT_DESC:
     'Un proyecto multi-clúster se ejecuta sobre distintos clústers a la vez, lo que ayuda a que puedas construir un entorno de contenedores para una rápida iteración de aplicaciones y conseguir alta disponibilidad.',
 
-  'Project Quota Not Set': 'Project Quota Not Set',
-  'Resource Default Request Not Set': 'Resource Default Request Not Set',
+  PROJECT_QUOTAS_NOT_SET: 'Project Quota Not Set',
+  DEFAULT_CONTAINER_QUOTAS_NOT_SET: 'Resource Default Request Not Set',
 }

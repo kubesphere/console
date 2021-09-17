@@ -209,7 +209,7 @@ export default class AppDeploy extends React.Component {
               className="margin-b12"
               value={this.state.formData.version_id}
               options={this.sortedVersions}
-              placeholder={t('Please select version')}
+              placeholder={t('VERSION_EMPTY_DESC')}
               pagination={pick(this.versionStore.list, [
                 'page',
                 'limit',

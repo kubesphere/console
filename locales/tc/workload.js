@@ -47,6 +47,7 @@ module.exports = {
   DAEMONSET_EMPTY_DESC: 'Please create a DaemonSet.',
   JOB_EMPTY_DESC: 'Please create a Job.',
   CRONJOB_EMPTY_DESC: 'Please create a CronJob.',
+  SERVICE_TOPOLOGY: 'Service Topology',
   'Service Configuration': '服務配置',
 
   'Available number of nodes scheduled': '可用節點數',
@@ -54,6 +55,7 @@ module.exports = {
   'Current number of nodes scheduled': '目前節點數',
   'View YAML': '查看配置文件',
   EDIT_YAML: '編輯配置文件',
+  YAML_FILE: 'YAML File',
   'Add Labels': '添加標籤',
   'Edit Labels': '編輯標籤',
   POD_REPLICAS: '容器組副本數量',
@@ -375,7 +377,7 @@ module.exports = {
   'Execution Records': '執行記錄',
   'Cluster Resource Status': '集群資源狀態',
   'Resource Status': '資源狀態',
-  'Resource Name': '資源名稱',
+  RESOURCE_NAME: '資源名稱',
   'Config Template': '配置模板',
   'Edit Config Template': '編輯配置模板',
   'Environment Variables': '環境變量',
@@ -753,6 +755,7 @@ module.exports = {
   CERT_ERROR: '發現證書錯誤，是否忽略證書驗證並再次',
   IGNORE_CERT_WARN_DESC: '忽略驗證證書，可能會導致帳戶密碼被欺騙。',
   INVALID_PROJECT: '項目不可選',
+  DESC_CREATE_CONFIGMAP_SECRET: '如果沒有合適的配置文件或密鑰引用, 您可以',
 
   // Pods Page
   NODE_IP: '{node}（{ip}）',

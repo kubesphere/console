@@ -33,7 +33,7 @@ import WorkloadStore from 'stores/workload'
 @withProjectList({
   store: new FederatedStore(new WorkloadStore('deployments')),
   module: 'deployments',
-  name: 'Workload',
+  name: 'WORKLOAD',
 })
 export default class Deployments extends React.Component {
   get prefix() {
@@ -92,7 +92,7 @@ export default class Deployments extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('workload.delete', {
-            type: t(name),
+            type: name,
             detail: item,
             isFederated: true,
           }),
@@ -112,7 +112,7 @@ export default class Deployments extends React.Component {
           action: 'delete',
           onClick: () =>
             trigger('workload.batch.delete', {
-              type: t(name),
+              type: name,
               rowKey: 'name',
               isFederated: true,
             }),

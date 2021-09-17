@@ -60,7 +60,7 @@ export default class ProjectInfo extends React.Component {
           </div>
           <div className={styles.item}>
             <div>{get(detail, 'creator') || '-'}</div>
-            <p>{t('Creator')}</p>
+            <p>{t('CREATOR')}</p>
           </div>
           <div className={styles.item}>
             <div>

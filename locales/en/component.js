@@ -27,7 +27,7 @@ module.exports = {
   'Service Details': 'Service Details',
 
   SERVICE_COMPONENTS_DESC:
-    'Service components are software components in the KubeSphere system, which provide various functions. You can view the running status of services components on this page.',
+    'System components are software components in the KubeSphere system, which provide various functions. You can view the running status of services components on this page.',
 
   KS_ACCOUNT_DESC: 'Provides users and authorizations management API',
   KS_APIGATEWAY_DESC:

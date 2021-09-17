@@ -43,7 +43,7 @@ export default class BaseInfo extends Component {
       <div>
         <Banner
           icon="home"
-          title={t('Platform Info')}
+          title={t('PLATFORM_INFORMATION')}
           description={t('PLATFORM_INFO_DESC')}
         />
         <Panel title={t('Basic Info')}>

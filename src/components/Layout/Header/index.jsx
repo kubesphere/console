@@ -102,7 +102,7 @@ class Header extends React.Component {
                   [styles.active]: location.pathname === '/apps',
                 })}
               >
-                {t('App Store')}
+                {t('APP_STORE')}
               </Button>
             )}
             <Button

@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Notification Management': '通知管理',
+  NOTIFICATION_MANAGEMENT: '通知管理',
   'Server Settings': '服务器配置',
   'Recipient Settings': '接收设置',
   'Receive Notification': '接收通知',

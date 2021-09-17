@@ -18,18 +18,21 @@
 
 module.exports = {
   application: '应用',
-  Applications: '应用',
-  'Deployed Applications': '已部署应用',
-  'Deploy New Application': '部署新应用',
+  APP_PL: '应用',
+  DEPLOYED_APPS: '已部署应用',
+  CREATE_APP: '创建应用',
   'Deploy App': '部署应用',
-  'Create Composing Application': '构建自制应用',
+  CREATE_COMPOSED_APP: '创建自制应用',
   'App Template': '应用模板',
   APP_TEMPLATE: '应用模板',
   APP_TEMPLATE_PL: '应用模板',
+  TEMPLATE_BASED_APP_PL: '基于模板的应用',
+  NO_TEMPLATE_BASED_APP_FOUND: '没有找到基于模板的应用',
+  TEMPLATE_BASED_APP_EMPTY_DESC: '请从 KubeSphere 应用商店或应用模板创建应用。',
   APP_TEMPLATE_LOW: '应用模板',
   APP_TEMPLATE_EMPTY_DESC: '请创建一个应用模板。',
-  Deploy: '部署',
-  'Application Type': '应用类型',
+  DEPLOY: '部署',
+  APP_TYPES_Q: 'KubeSphere 支持哪些应用类型？',
   TOTAL_APPS: '共计 {num} 个应用',
   TOTAL_COLLECTIONS: '共计 {num} 个接收器',
   Upgrade: '升级',
@@ -37,8 +40,8 @@ module.exports = {
 
   'Create Application by Service': '通过服务构建应用',
 
-  'Application Version(Optional)': '应用版本(可选)',
-  'Application Governance': '应用治理',
+  APP_VERSION: '应用版本',
+  APPLICATION_GOVERNANCE: '应用治理',
   'Application Components': '应用组件',
   'Application Component': '应用组件',
   'Application Route': '应用路由',
@@ -58,7 +61,7 @@ module.exports = {
   'Sample apps can help you get started with app creation and app governance':
     '示例应用可以帮助您快速入手应用创建, 以及应用治理功能',
 
-  'Add Service': '添加服务',
+  ADD_SERVICE: '添加服务',
   'Add Component': '添加组件',
   'Edit Component': '编辑组件',
   'Add New Component': '添加新组件',
@@ -69,7 +72,7 @@ module.exports = {
 
   'Please input an application name': '请输入应用名称',
   APP: '应用',
-
+  APP_LOW: '应用',
   'Service components should not be empty': '服务组件不能为空',
   'Please finish the sub form first': '请完成子表单的编辑',
 
@@ -77,8 +80,10 @@ module.exports = {
   'Traffic Entry': '流量入口',
 
   'App Description': '应用描述',
+  APP_INTRODUCTION: '应用介绍',
 
-  'Composing Apps': '自制应用',
+  COMPOSED_APP_PL: '自制应用',
+  NO_COMPOSED_APP_FOUND: '没有找到自制应用',
   'Composing App': '自制应用',
 
   'Workload Type': '负载类型',
@@ -127,17 +132,16 @@ module.exports = {
 
   APPLICATIONS_DESC:
     '应用为用户提供完整的业务功能，由一个或多个特定功能的组件组成。',
-  APP_DEPLOYMENT_DESC:
-    '轻量级、可移植、自包含的软件打包技术，使应用可以在几乎任何地方以相同的方式运行。',
-  APP_GOVERNANCE_DESC:
-    '开启应用治理后会在每个组件中以 SideCar 的方式注入 Istio-proxy 容器 <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">了解更多</a>',
+  CREATE_APP_DESC: '从 KubeSphere 应用商店或应用模板创建应用。',
+  APPLICATION_GOVERNANCE_DESC:
+    '开启应用治理后，istio-proxy 容器将以 Sidecar 方式注入到自制应用的每个服务中。<a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">了解更多</a>',
 
-  COMPONENT_VERSION_DESC: '最长 16 个字符，只能包含小写字母及数字',
+  VERSION_DESC: '版本只能包含小写字母和数字，最长 16 个字符。',
 
   APP_ICON_TIP: '点击上传应用图标，尺寸最大为 120px * 120px',
 
   CLUSTER_NAME_DESC:
-    '最长 53 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母开头, 字母或数字结尾',
+    '名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 53 个字符。',
 
   SERVICE_PORT_NAME_DESC:
     '端口的名字必须遵循如下格式 <protocol>[-<suffix>]，可以是 http、http2、 grpc、 mongo、 或者 redis 作为 <protocol> ，这样才能使用 Istio 的路由功能。例如 name: http2-foo 和 name: http 都是有效的端口名称，而 name: http2foo 不是。',
@@ -210,16 +214,14 @@ module.exports = {
   'Invalid version': '版本格式不合法',
   WORKLOAD_NAME_EXIST: '工作负载 {name} 已存在',
 
-  APPLICATION_TYPE_DESC:
-    'KubeSphere 支持来自于应用商店和应用仓库的应用部署(基于 Helm)，同样也支持自制应用 (Application CRD)。',
+  APP_TYPES_A:
+    'KubeSphere 支持基于模板的应用和自制应用。基于模板的应用创建自 KubeSphere 应用商店或应用模板，自制应用由用户自定义。',
 
-  APPLICATION_SERVICE_DESC:
-    '根据应用中服务类型的不同设置不同类型的服务组件，支持无状态服务和有状态服务',
-  APPLICATION_BASEINFO_DESC: '对应用的名称描述信息等基本的信息定义',
+  APPLICATION_SERVICE_DESC: '根据需求为应用添加有状态服务或无状态服务。',
+  APP_BASIC_INFORMATION_DESC: '设置应用的基本信息。',
 
-  HOW_TO_USE_APPLICATION_GOVE_Q: '如何使用应用治理?',
-  HOW_TO_USE_APPLICATION_GOVE_A:
-    '使用应用治理需要创建自制应用并对每项服务开启服务治理功能',
+  HOW_TO_USE_APP_GOVERN_Q: '如何使用应用治理功能?',
+  HOW_TO_USE_APP_GOVERN_A: '您可以在创建自制应用时启用应用治理功能。',
 
   'App Types': '应用的类型',
   TIP_APP_TYPE:
@@ -228,24 +230,23 @@ module.exports = {
   TIP_APP_GOVERNANCE:
     '使用应用治理需要创建自制应用并对每项服务开启服务治理功能',
   'App store deployment': '应用商店部署',
-  'From App Store': '来自应用商店',
-  'From App Templates': '来自应用模板',
+  FROM_APP_STORE: '从应用商店',
+  FROM_APP_TEMPLATE: '从应用模板',
   'From third party Helm': '来自第三方 Helm',
-  FROM_APP_STORE_DESC:
-    '来自KubeSphere官方应用商店，提供高质量应用和简易的部署方式',
-  FROM_APP_TEMPLATES_DESC:
-    '来自于企业空间的自制应用模板以及应用仓库中添加的第三方Helm 应用模板',
-  COMPOSING_APP_DESC: '通过资源编排的方式发布服务构建应用(支持应用治理功能)',
+  FROM_APP_STORE_DESC: '从 KubeSphere 应用商店创建应用。',
+  FROM_APP_TEMPLATE_DESC: '从企业空间或远程应用仓库中的应用模板创建应用。',
+  COMPOSED_APP_EMPTY_DESC: '请创建一个自制应用。',
   APP_TEMPLATES_MODAL_DESC:
-    '应用模板来自于企业空间和第三方的 Helm 应用模板，支持一键部署并可通过可视化的方式在 KubeSphere 中展示并提供部署及管理的功能',
+    '从下拉列表中选择当前企业空间或远程应用仓库以查看可用的应用模板。',
   APP_REPOS_DESC:
     '应用仓库来自于第三方的 Helm Chart Repo，通过可视化的方式在 KubeSphere 中展示并提供部署及管理功能，用户可以基于应用仓库中的模板快速地一键部署应用。',
 
-  'From workspace': '来自企业空间',
-  'Add stateful or stateless services': '添加有状态服务或无状态服务',
+  CURRENT_WORKSPACE: '当前企业空间',
+  SELECT_APP_REPOSITORY: '选择应用仓库',
+  CREATE_SERVICE_DESC: '创建服务用于外部访问。',
   'Add an Internet access rule for the application': '为应用添加外网访问规则',
 
-  INTERNET_ACCESS_DESC: '可以设置应用的外网访问规则(Ingress)',
+  EXTERNAL_ACCESS_DESC: '为应用设置路由规则以从集群外访问应用。',
 
   'Microservice enabled': '微服务已启用',
   'Microservice not enabled': '微服务未启用',

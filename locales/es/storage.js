@@ -212,9 +212,9 @@ module.exports = {
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Selecciona snapshot para crear volumen.',
   SELECT_STORAGE_CLASS_CREATE_VOLUME:
     'Seleccione una clase de almacenamiento para crear un volumen.',
-  VOLUMESNAPSHOT_DESC:
+  VOLUME_SNAPSHOT_DESC:
     'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
-  VOLUMESNAPSHOT_EMPTY_DESC:
+  VOLUME_SNAPSHOT_EMPTY_DESC:
     'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
   WHAT_IS_VOLUME_SNAPSHOTS: '¿Qué son los snapshots de volumenes?',
 

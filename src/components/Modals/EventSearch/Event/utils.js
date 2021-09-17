@@ -44,7 +44,7 @@ export const dropDownItems = {
   },
   involved_object_name_filter: {
     icon: 'strategy-group',
-    text: t('Resource Name'),
+    text: t('RESOURCE_NAME'),
   },
   reason_filter: {
     icon: 'resource',
@@ -52,7 +52,7 @@ export const dropDownItems = {
   },
   type_filter: {
     icon: 'cardview',
-    text: t('Category'),
+    text: t('CATEGORY'),
   },
 }
 
@@ -99,7 +99,7 @@ export const supportQueryParams = [
   },
   {
     icon: 'strategy-group',
-    title: t('Search Events by', { field: t('Resource Name') }),
+    title: t('Search Events by', { field: t('RESOURCE_NAME') }),
     tips: t('Resource Name Event Query Tip'),
     key: 'involved_object_name_filter',
   },
@@ -111,7 +111,7 @@ export const supportQueryParams = [
   },
   {
     icon: 'cardview',
-    title: t('Search Events by', { field: t('Category') }),
+    title: t('Search Events by', { field: t('CATEGORY') }),
     tips: t('Category Event Query Tip'),
     key: 'type_filter',
   },

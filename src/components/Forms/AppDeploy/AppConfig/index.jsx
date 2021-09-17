@@ -138,7 +138,7 @@ export default class AppConfig extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.title}>
-          <div>{t('App Config')}</div>
+          <div>{t('APP_SETTINGS')}</div>
           {valuesSchema && (
             <Switch
               className={styles.switch}
@@ -151,7 +151,7 @@ export default class AppConfig extends React.Component {
         {valuesSchema && (
           <Alert
             className="margin-b12"
-            type="warning"
+            type="info"
             message={t('HELM_APP_SCHEMA_FORM_TIP')}
           />
         )}

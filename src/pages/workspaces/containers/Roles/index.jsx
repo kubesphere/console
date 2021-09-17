@@ -33,7 +33,7 @@ import RoleStore from 'stores/role'
   store: new RoleStore('workspaceroles'),
   module: 'workspaceroles',
   authKey: 'roles',
-  name: 'Workspace Role',
+  name: 'WORKSPACE_ROLE',
 })
 export default class Roles extends React.Component {
   componentDidMount() {
@@ -87,7 +87,7 @@ export default class Roles extends React.Component {
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            type: t(name),
+            type: name,
             workspace: this.props.match.params.workspace,
             success: routing.query,
           }),
@@ -162,7 +162,7 @@ export default class Roles extends React.Component {
         <Banner
           {...bannerProps}
           tabs={this.tabs}
-          title={t('Workspace Roles')}
+          title={t('WORKSPACE_ROLE_PL')}
         />
         <Table
           {...tableProps}

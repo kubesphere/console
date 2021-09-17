@@ -37,7 +37,7 @@ import styles from './index.scss'
   store: new VolumeStore(),
   module: 'persistentvolumeclaims',
   authKey: 'volumes',
-  name: 'Volume',
+  name: 'VOLUME',
   rowKey: 'uid',
 })
 export default class Volumes extends React.Component {
@@ -85,7 +85,7 @@ export default class Volumes extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

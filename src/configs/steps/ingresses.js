@@ -23,7 +23,7 @@ import AdvanceSettings from 'components/Forms/Route/AdvanceSettings'
 export default [
   { title: 'Basic Info', icon: 'cdn', component: BaseInfo, required: true },
   {
-    title: 'ROUTE_RULES_TCAP',
+    title: 'ROUTING_RULES',
     icon: 'cdn',
     component: RouteRules,
     required: true,

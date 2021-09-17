@@ -72,7 +72,7 @@ export default class Applications extends React.Component {
         className={styles.more}
         to={`/${workspace}/clusters/${cluster}/projects/${namespace}/applications/template`}
       >
-        {t('View All')}
+        {t('VIEW_MORE')}
       </Link>
     )
   }
@@ -87,7 +87,7 @@ export default class Applications extends React.Component {
     return (
       <Panel
         className={styles.apps}
-        title={`${t('Deployed Applications')}(Helm)`}
+        title={t('DEPLOYED_APPS')}
         extras={this.renderExtras()}
       >
         <Columns className="is-variable is-1">
