@@ -412,10 +412,10 @@ module.exports = {
   'Volume Name': 'Volume Name',
   'Volume Source': 'Volume Source',
   DISK_LOG_COLLECTION_Q: 'What is disk log collection?',
+  'What is Disk Log Collection?': 'What is Disk Log Collection?',
   'Worker Container': 'Worker Container',
   VOLUME_CAPACITY: 'Volume Capacity',
   VOLUME_NAME: 'Volume Name',
-  'What is Disk Log Collection?': 'What is Disk Log Collection?',
   WORKER_CONTAINER: 'Worker container',
   Workload: 'Workload',
   WORKLOAD: 'Workload',
@@ -769,7 +769,8 @@ module.exports = {
   IGNORE_CERT_WARN_DESC:
     'Ignoring certificate verification may cause password disclosure.',
   INVALID_PROJECT: 'Invalid project.',
-
+  DESC_CREATE_CONFIGMAP_SECRET:
+    'If there is no suitable configuration file or key reference, you can',
   // Pods Page
   NODE_IP: '{node} ({ip})',
 

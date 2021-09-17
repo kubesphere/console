@@ -61,4 +61,5 @@ module.exports = {
     'Valide el nombre de usuario y la contraseña antes de crear el registro de imágenes Secreto.',
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value} ({label})',
+  CREATE_SECRET: 'create a secret',
 }

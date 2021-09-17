@@ -65,4 +65,5 @@ module.exports = {
   'Please input the registry address': '請輸入鏡像倉庫地址。',
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value}（{label}）',
+  CREATE_SECRET: '新建保密字典',
 }

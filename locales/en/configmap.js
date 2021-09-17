@@ -33,4 +33,5 @@ module.exports = {
     'A ConfigMap is often used to store configuration information needed for workloads. Many applications will read the information from configuration files, command line parameters, or environment variables.',
   CONFIGMAPS_BASEINFO_DESC: '',
   CONFIGMAP_SETTINGS_DESC: '',
+  CREATE_CONFIG: 'creat a ConfigMap',
 }

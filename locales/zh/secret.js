@@ -65,4 +65,5 @@ module.exports = {
 
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value}（{label}）',
+  CREATE_SECRET: '新建保密字典',
 }

@@ -1,0 +1,15 @@
+@import '~scss/variables';
+
+.desc {
+  float: left;
+  margin-top: 20px;
+  margin-left: 22px;
+
+  a {
+    margin: 0 5px;
+    color: $green-color03;
+  }
+}
+.extraBtn {
+  margin-left: 8px;
+}
