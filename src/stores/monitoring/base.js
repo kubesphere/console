@@ -268,6 +268,7 @@ export default class BaseMonitoringStore {
 
     const params = this.getParams(filters)
     const api = this.getApi(filters)
+
     const response = await to(request.get(api, params))
 
     let result = this.getResult(response)

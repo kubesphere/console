@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, isEmpty, pick } from 'lodash'
+import { get, set, isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -24,18 +24,26 @@ import {
   Button,
   RadioButton,
   RadioGroup,
-  Alert,
+  Select,
+  Icon,
   Toggle,
 } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { PropertiesInput } from 'components/Inputs'
 import Title from 'components/Forms/Base/Title'
 
+import { CLUSTER_PROVIDERS } from 'utils/constants'
+
+import { observable } from 'mobx'
+import { observer } from 'mobx-react'
+import { CLUSTER_PROVIDERS_ANNOTATIONS } from './contants'
+
 import styles from './index.scss'
 
+@observer
 export default class GatewaySettingModal extends React.Component {
   static propTypes = {
-    detail: PropTypes.object,
+    template: PropTypes.object,
     visible: PropTypes.bool,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
@@ -43,33 +51,35 @@ export default class GatewaySettingModal extends React.Component {
   }
 
   static defaultProps = {
-    detail: {},
+    template: {},
     visible: false,
     isSubmitting: false,
     onOk() {},
     onCancel() {},
   }
 
+  @observable
+  template = this.props.detail || {}
+
   constructor(props) {
     super(props)
 
     this.form = React.createRef()
-
     this.state = {
-      type: props.detail.type || 'NodePort',
-      annotations: props.detail.annotations || {},
-      isChecked: props.detail.serviceMeshEnable || false,
+      isChecked: get(
+        props.template,
+        'spec.deployment.annotations["servicemesh.kubesphere.io/enabled"]'
+      ),
     }
-  }
 
-  componentDidUpdate(prevProps) {
-    const { visible, detail } = this.props
-    if (visible && visible !== prevProps.visible) {
-      this.setState({
-        type: detail.type || 'NodePort',
-        isChecked: detail.serviceMeshEnable || false,
-        annotations: detail.annotations || {},
-      })
+    const annotations = get(this.template, 'spec.service.annotations')
+
+    if (isEmpty(annotations)) {
+      set(
+        this.template,
+        'spec.service.annotations',
+        globals.config.loadBalancerDefaultAnnotations
+      )
     }
   }
 
@@ -78,39 +88,64 @@ export default class GatewaySettingModal extends React.Component {
     { label: 'LoadBalancer', value: 'LoadBalancer' },
   ]
 
-  get anonotationsDefault() {
-    return isEmpty(this.state.annotations)
-      ? globals.config.loadBalancerDefaultAnnotations
-      : this.state.annotations
-  }
-
   handleOk = () => {
     const { onOk } = this.props
     const { isChecked } = this.state
-    const form = this.form.current
-    const data = pick(form.getData(), ['type', 'annotations'])
 
     set(
-      data,
-      'annotations["servicemesh.kubesphere.io/enabled"]',
+      this.template,
+      'spec.deployment.annotations["servicemesh.kubesphere.io/enabled"]',
       isChecked ? 'true' : 'false'
     )
 
-    onOk({ ...data })
+    onOk(this.template)
   }
 
   handleTypeChange = type => {
-    const form = this.form.current
-    const data = form.getData()
-
-    if (type === 'LoadBalancer' && isEmpty(data.annotations)) {
-      set(data, 'annotations', this.anonotationsDefault)
-    } else if (data.annotations) {
-      this.setState({ annotations: data.annotations })
-      delete data.annotations
+    const annotations = get(this.template, 'spec.service.annotations')
+    if (type === 'LoadBalancer' && isEmpty(annotations)) {
+      set(
+        this.template,
+        'spec.service.annotations',
+        globals.config.loadBalancerDefaultAnnotations
+      )
+    } else if (annotations) {
+      set(this.template, 'spec.service.annotations', '')
     }
 
     this.setState({ type })
+  }
+
+  providerOptionRenderer = option => (
+    <>
+      <Icon className="margin-r8" name={option.icon} type="light" size={20} />
+      {option.label}
+    </>
+  )
+
+  handleAnnotations = value => {
+    this.initAnnotations(CLUSTER_PROVIDERS_ANNOTATIONS[value])
+  }
+
+  initAnnotations = (value = globals.config.loadBalancerDefaultAnnotations) => {
+    set(this.template, 'spec.service.annotations', value)
+  }
+
+  renderLoadBalancerSupport = () => {
+    return (
+      <Form.Item label={t('LoadBalancer Support')}>
+        <div className={styles.loadBalancer}>
+          <Select
+            options={CLUSTER_PROVIDERS}
+            optionRenderer={this.providerOptionRenderer}
+            onChange={this.handleAnnotations}
+          ></Select>
+          <Button onClick={() => this.initAnnotations()}>
+            {t('Use default annotations')}
+          </Button>
+        </div>
+      </Form.Item>
+    )
   }
 
   handleToggleChange = value => {
@@ -118,8 +153,8 @@ export default class GatewaySettingModal extends React.Component {
   }
 
   render() {
-    const { visible, onCancel, detail = {}, cluster, isSubmitting } = this.props
-    const { type, isChecked } = this.state
+    const { visible, onCancel, cluster, isSubmitting } = this.props
+    const { isChecked } = this.state
 
     return (
       <Modal
@@ -133,18 +168,18 @@ export default class GatewaySettingModal extends React.Component {
       >
         <div className={styles.body}>
           <Title
+            className={styles.title}
             title={t('Set Gateway')}
             desc={t('PROJECT_INTERNET_ACCESS_DESC')}
           />
           <div className={styles.wrapper}>
             <div className={styles.content}>
-              <Form ref={this.form} data={detail}>
+              <Form ref={this.form} data={this.template}>
                 <Form.Item label={t('ACCESS_METHOD')} className={styles.types}>
                   <RadioGroup
-                    name="type"
+                    name="spec.service.type"
                     mode="button"
                     buttonWidth={155}
-                    defaultValue={type}
                     onChange={this.handleTypeChange}
                     size="small"
                   >
@@ -152,11 +187,7 @@ export default class GatewaySettingModal extends React.Component {
                     <RadioButton value="LoadBalancer">LoadBalancer</RadioButton>
                   </RadioGroup>
                 </Form.Item>
-                <Alert
-                  className="margin-t12"
-                  type="info"
-                  message={t(`INGRESS_CONTROLLER_${type.toUpperCase()}_DESC`)}
-                />
+
                 {globals.app.hasClusterModule(cluster, 'servicemesh') && (
                   <>
                     <div className={styles.toggle}>
@@ -173,20 +204,38 @@ export default class GatewaySettingModal extends React.Component {
                     </div>
                   </>
                 )}
-                {type === 'LoadBalancer' && (
-                  <Form.Item label={t('ANNOTATIONS')}>
-                    <PropertiesInput
-                      name="annotations"
-                      addText={t('ADD')}
-                      defaultValue={this.anonotationsDefault}
-                    />
-                  </Form.Item>
+                {get(this.template, 'spec.service.type') === 'LoadBalancer' && (
+                  <>
+                    {this.renderLoadBalancerSupport()}
+                    <Form.Item label={t('ANNOTATIONS')}>
+                      <PropertiesInput
+                        controlled
+                        className={styles.objectBg}
+                        name="spec.service.annotations"
+                        addText={t('ADD')}
+                      />
+                    </Form.Item>
+                  </>
                 )}
+                <Form.Item label={t('Gateway Config')}>
+                  <PropertiesInput
+                    className={styles.objectBg}
+                    name="spec.controller.config"
+                    addText={t('Add Gateway Config')}
+                  />
+                </Form.Item>
               </Form>
             </div>
           </div>
         </div>
         <div className={styles.footer}>
+          <Button
+            onClick={onCancel}
+            loading={isSubmitting}
+            disabled={isSubmitting}
+          >
+            {t('Cancel')}
+          </Button>
           <Button
             type="control"
             onClick={this.handleOk}

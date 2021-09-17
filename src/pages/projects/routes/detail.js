@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import GatewayDetail from 'clusters/containers/Gateway/Detail'
 import DeploymentDetail from '../containers/Deployments/Detail'
 import StatefulSetDetail from '../containers/StatefulSets/Detail'
 import DaemonSetDetail from '../containers/DaemonSets/Detail'
@@ -108,6 +109,10 @@ export default PATH => [
   {
     path: `${PATH}/s2ibuilders/:name`,
     component: ImageBuilderDetail,
+  },
+  {
+    path: `${PATH}/gateways/:gatewayName`,
+    component: GatewayDetail,
   },
   {
     path: [`${PATH}/alert-rules/builtin/:name`, `${PATH}/alert-rules/:name`],

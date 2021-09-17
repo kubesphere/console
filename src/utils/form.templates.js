@@ -232,6 +232,28 @@ const getIngressTemplate = ({ namespace }) => ({
   },
 })
 
+const getGatewayTemplate = () => ({
+  apiVersion: 'gateway.kubesphere.io/v1alpha1',
+  kind: 'Gateway',
+  metadata: {},
+  spec: {
+    controller: {
+      replicas: 1,
+      annotations: {},
+      config: {},
+      scope: { enabled: false, namespace: '' },
+    },
+    deployment: {
+      annotations: {},
+      replicas: 1,
+    },
+    service: {
+      annotations: {},
+      type: 'LoadBalancer',
+    },
+  },
+})
+
 const getConfigmapTemplate = ({ namespace }) => ({
   apiVersion: 'v1',
   kind: 'ConfigMap',
@@ -665,6 +687,7 @@ const FORM_TEMPLATES = {
   globalsecret: getGlobalSecretTemplate,
   notificationconfigs: getNotificationConfigTemplate,
   notificationreceivers: getNotificationReceiverTemplate,
+  gateways: getGatewayTemplate,
 }
 
 export default FORM_TEMPLATES

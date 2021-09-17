@@ -892,6 +892,7 @@ export const API_VERSIONS = {
   ippools: 'apis/network.kubesphere.io/v1alpha1',
   storageclasscapabilities: 'apis/storage.kubesphere.io/v1alpha1',
   meter: 'kapis/metering.kubesphere.io/v1alpha1',
+  gateways: 'kapis/gateway.kubesphere.io/v1alpha1',
 }
 
 export const MONITOR_GRAPH_COLORS = [

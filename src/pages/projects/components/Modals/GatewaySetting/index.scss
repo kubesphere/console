@@ -10,6 +10,11 @@
   max-height: calc(100vh - 214px);
   padding: 40px 40px 20px 40px;
   overflow-y: auto;
+
+  .title {
+    width: auto;
+    margin-bottom: 20px;
+  }
 }
 
 .footer {
@@ -20,7 +25,7 @@
 }
 
 .wrapper {
-  width: 929px;
+  width: 920px;
   margin: 0 auto;
   padding: 12px;
   border-radius: 4px;
@@ -42,7 +47,7 @@
 .toggle {
   display: inline-block;
   font-weight: $font-bold;
-  margin-top: 12px;
+  margin-top: 14px;
 
   :global {
     .toggle {
@@ -59,4 +64,19 @@
   border: solid 1px $light-color03;
   background-color: #fafbfc;
   color: #363e4a;
+}
+
+.objectBg {
+  background: $light-color01;
+  padding: 12px;
+}
+
+.loadBalancer {
+  display: flex;
+  :global {
+    .select {
+      width: 396px;
+      margin-right: 12px;
+    }
+  }
 }

@@ -108,7 +108,7 @@ export const getSuitableValue = (
 }
 
 export const getValueByUnit = (num, unit, precision = 2) => {
-  let value = parseFloat(num)
+  let value = num === 'NAN' ? 0 : parseFloat(num)
 
   switch (unit) {
     default:
