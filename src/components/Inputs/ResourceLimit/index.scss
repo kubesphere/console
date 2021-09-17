@@ -133,7 +133,7 @@
     }
 
     .label {
-      flex: 0.5;
+      width: 54px;
       margin-right: 8px;
       @include TypographyParagraph();
     }
@@ -156,7 +156,7 @@
 
       .select {
         width: auto;
-        flex: 1.25;
+        flex: 1;
 
         .icon {
           align-self: center;
