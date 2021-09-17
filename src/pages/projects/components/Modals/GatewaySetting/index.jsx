@@ -186,6 +186,7 @@ export default class GatewaySettingModal extends React.Component {
           </div>
         </div>
         <div className={styles.footer}>
+          <Button onClick={onCancel}>{t('Cancel')}</Button>
           <Button
             onClick={onCancel}
             loading={isSubmitting}

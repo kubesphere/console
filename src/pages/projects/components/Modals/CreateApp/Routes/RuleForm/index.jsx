@@ -135,7 +135,7 @@ export default class RuleForm extends React.Component {
     const { onOk } = this.props
     if (this.state.type === 'auto') {
       const { gateway } = this.props
-      const service = get(data, 'http.paths[0].backend.serviceName')
+      const service = get(data, 'http.paths[0].backend.service.name')
       const namespace = gateway.namespace
       onOk({
         ...data,

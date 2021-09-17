@@ -129,8 +129,8 @@ export default class RuleForm extends React.Component {
   checkItemValid = item =>
     item.path &&
     item.backend &&
-    item.backend.serviceName &&
-    item.backend.servicePort
+    item.backend.service.name &&
+    item.backend.service.port.number
 
   pathValidator = (rule, value, callback) => {
     if (!value) {
@@ -169,7 +169,7 @@ export default class RuleForm extends React.Component {
         const data = form.getData()
         if (this.state.type === 'auto') {
           const { gateway } = this.props
-          const service = get(data, 'http.paths[0].backend.serviceName')
+          const service = get(data, 'http.paths[0].backend.service.name')
           const namespace = gateway.namespace
           onSave({
             ...data,

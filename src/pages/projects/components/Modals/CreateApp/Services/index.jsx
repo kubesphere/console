@@ -125,7 +125,7 @@ export default class Services extends React.Component {
         kind: 'StatefulSet',
       },
       {
-        group: 'extensions',
+        group: 'networking.k8s.io',
         kind: 'Ingress',
       },
       {
