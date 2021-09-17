@@ -322,7 +322,7 @@ export default class PipelineStore extends BaseStore {
     }
 
     let result = await this.request.get(
-      `${this.getDevOpsUrlV4({
+      `${this.getDevOpsUrlV3({
         cluster,
       })}namespaces/${devops}/pipelines/${name}/pipelineruns`,
       {
@@ -400,7 +400,7 @@ export default class PipelineStore extends BaseStore {
   }
 
   async runBranch({ cluster, devops, name, branch, parameters }) {
-    const href_temp = `${this.getDevOpsUrlV4({
+    const href_temp = `${this.getDevOpsUrlV3({
       cluster,
     })}namespaces/${devops}/pipelines/${name}/pipelineruns${
       branch ? `?branch=${encodeURIComponent(branch)}` : ''
