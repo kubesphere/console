@@ -18,10 +18,13 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import { isEmpty } from 'lodash'
+
 import { Notify } from '@kube-design/components'
 import { List } from 'components/Base'
 import { BoxInput } from 'components/Inputs'
+
 import { PATTERN_EMAIL } from 'utils/constants'
 
 import UserStore from 'stores/user'
@@ -45,7 +48,7 @@ export default class Item extends React.Component {
     const { value } = this.props
     const count = globals.config.notification.wecom['max_number_of_email']
     if (!email) {
-      Notify.error({ content: t('EMAIL_EMPTY_DESC'), duration: 1000 })
+      Notify.error({ content: t('Please input email'), duration: 1000 })
       return
     }
     if (value.length > count - 1) {
@@ -55,7 +58,7 @@ export default class Item extends React.Component {
       })
       return
     }
-    if (value.some(item => item.email === email)) {
+    if (value.some(item => item === email)) {
       Notify.error({
         content: t('This email address has existed'),
         duration: 1000,
@@ -69,24 +72,22 @@ export default class Item extends React.Component {
     return true
   }
 
-  handleAdd = async email => {
+  handleAdd = email => {
     const { value, onChange } = this.props
-    const results = await this.userStore.fetchList({ email })
-    const newData = !isEmpty(results) ? results[0] : { email }
-    onChange([...value, newData])
+    onChange([...value, email])
   }
 
   handleDelete = email => {
     const { value, onChange } = this.props
-    const newData = value.filter(item => item.email !== email)
+    const newData = value.filter(item => item !== email)
     onChange(newData)
   }
 
   render() {
-    const { value } = this.props
+    const { value, className } = this.props
 
     return (
-      <div className={styles.wrapper}>
+      <div className={classnames(styles.wrapper, className)}>
         <BoxInput
           placeholder={t('Please enter an email address')}
           validate={this.validateMail}
@@ -97,11 +98,10 @@ export default class Item extends React.Component {
             <List>
               {value.map(item => (
                 <List.Item
-                  key={item.email}
-                  icon="human"
-                  title={`${item.email}${item.name ? `(${item.name})` : ''}`}
-                  description={item.globalrole || '-'}
-                  onDelete={() => this.handleDelete(item.email)}
+                  key={item}
+                  className={styles.listItem}
+                  title={item}
+                  onDelete={() => this.handleDelete(item)}
                 />
               ))}
             </List>

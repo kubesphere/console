@@ -18,17 +18,16 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty, get, set, cloneDeep, flatten } from 'lodash'
+import { isEmpty, get, set, cloneDeep } from 'lodash'
 
 import { Notify } from '@kube-design/components'
-import { Banner, Panel } from 'components/Base'
+import { Panel } from 'components/Base'
 import MailForm from 'components/Forms/Notification/MailForm'
+import BaseBanner from 'settings/components/Cards/Banner'
 
 import ConfigStore from 'stores/notification/config'
 import ReceiverStore from 'stores/notification/receiver'
 import SecretStore from 'stores/notification/secret'
-import UserStore from 'stores/user'
-
 import { safeBtoa } from 'utils/base64'
 import FORM_TEMPLATES from 'utils/form.templates'
 
@@ -44,8 +43,6 @@ export default class Mail extends React.Component {
 
   secretStore = new SecretStore()
 
-  userStore = new UserStore()
-
   state = {
     formData: {
       config: this.configFormTemplate,
@@ -53,7 +50,7 @@ export default class Mail extends React.Component {
       secret: this.secretTemplate,
     },
     formStatus: 'create',
-    showTip: false,
+    isLoading: false,
   }
 
   formData = {
@@ -82,6 +79,7 @@ export default class Mail extends React.Component {
   }
 
   fetchData = async () => {
+    this.setState({ isLoading: true })
     const results = await this.configStore.fetchList({ type: 'email' })
     const config = results.find(
       item => get(item, 'metadata.name') === CONFIG_NAME
@@ -95,24 +93,6 @@ export default class Mail extends React.Component {
         this.secretStore.fetchList({ name: SECRET_NAME }),
       ])
 
-      let receiverMail = get(receivers[0], 'spec.email.to', [])
-      if (!isEmpty(receiverMail)) {
-        const reqs = []
-        receiverMail.forEach(email => {
-          reqs.push(this.userStore.fetchList({ email }))
-        })
-        const result = await Promise.all(reqs)
-        receiverMail = receiverMail.map(email => {
-          const data = flatten(result).find(v => v.email === email)
-          return !isEmpty(data) ? data : { email }
-        })
-      }
-      set(
-        receivers[0],
-        'metadata.annotations["kubesphere.io/receiver-mail"]',
-        receiverMail
-      )
-
       this.formData = {
         config: set(this.configFormTemplate, 'spec', config.spec),
         receiver: receivers[0],
@@ -121,19 +101,26 @@ export default class Mail extends React.Component {
       this.setState({
         formData: cloneDeep(this.formData),
         formStatus: 'update',
-        showTip: false,
       })
     }
+
+    this.setState({ isLoading: false })
+  }
+
+  getVerifyFormTemplate = data => {
+    const { config, receiver, secret } = cloneDeep(data)
+    set(
+      config,
+      'spec.email.authPassword.value',
+      get(secret, 'data.authPassword')
+    )
+
+    return { config, receiver, secret }
   }
 
   handleSubmit = async data => {
     const { config, receiver, secret } = cloneDeep(data)
     const { formStatus } = this.state
-    const receiverMail = get(
-      receiver,
-      'metadata.annotations["kubesphere.io/receiver-mail"]',
-      []
-    )
     let message
 
     const secretData = get(secret, 'data')
@@ -143,23 +130,14 @@ export default class Mail extends React.Component {
 
     set(config, 'spec.email.authPassword.key', 'authPassword')
     set(config, 'spec.email.authPassword.name', SECRET_NAME)
-    set(
-      receiver,
-      'metadata.annotations["kubesphere.io/receiver-mail"]',
-      JSON.stringify(receiverMail)
-    )
-    set(
-      receiver,
-      'spec.email.to',
-      receiverMail.map(item => item.email)
-    )
+
     if (formStatus === 'create') {
       await this.configStore.create(config)
       await this.secretStore.create(
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('ADDED_SUCCESS_DESC')
+      message = t('Added Successfully')
     } else {
       await this.configStore.update({ name: CONFIG_NAME }, config)
       await this.secretStore.update(
@@ -174,49 +152,28 @@ export default class Mail extends React.Component {
     Notify.success({ content: message, duration: 1000 })
   }
 
-  onFormDataChange = () => {
-    this.setState({
-      showTip: true,
-    })
-  }
-
   onFormClose = () => {
     this.setState({
-      showTip: false,
       formData: cloneDeep(this.formData),
     })
   }
 
   render() {
+    const { formData, isLoading } = this.state
+
     return (
       <div>
-        <Banner
-          icon="file"
-          type="white"
-          name={t('Mail')}
-          desc={t('MAIL_DESC')}
-        />
-        {this.renderConfigForm()}
+        <BaseBanner type="mail" />
+        <Panel loading={isLoading}>
+          <MailForm
+            data={formData}
+            onCancel={this.onFormClose}
+            onSubmit={this.handleSubmit}
+            getVerifyFormTemplate={this.getVerifyFormTemplate}
+            isSubmitting={this.configStore.isSubmitting}
+          />
+        </Panel>
       </div>
-    )
-  }
-
-  renderConfigForm() {
-    const { formData, formStatus, showTip } = this.state
-
-    return (
-      <Panel loading={this.configStore.list.isLoading}>
-        <MailForm
-          showTip={showTip}
-          formStatus={formStatus}
-          data={formData}
-          onCancel={this.onFormClose}
-          onSubmit={this.handleSubmit}
-          onChange={this.onFormDataChange}
-          isSubmitting={this.configStore.isSubmitting}
-          disableSubmit={!showTip && formStatus === 'update'}
-        />
-      </Panel>
     )
   }
 }

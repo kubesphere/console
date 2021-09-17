@@ -27,8 +27,11 @@
 }
 
 .desc {
-  position: absolute;
-  left: 0;
-  bottom: 14px;
   color: $second-text-color;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -1159,10 +1159,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@kube-design/components@^1.1.19":
-  version "1.1.20"
-  resolved "https://registry.npmjs.org/@kube-design/components/-/components-1.1.20.tgz#863c5816b21029ec4bfbb0e3536634389b97a58d"
-  integrity sha512-c9x+zfGiBfjNBtuC+ebuiEItuYPEFXuvC1Xt6Xv2Qa9Xy1f1fxsSEoYLPp+PE43irkxmF/yZxXnpUOWj08LKSA==
+"@kube-design/components@^1.1.23":
+  version "1.1.23"
+  resolved "https://registry.nlark.com/@kube-design/components/download/@kube-design/components-1.1.23.tgz#f72065063b7dbf1d4d0e5383daf4f4908d11f2c5"
+  integrity sha1-9yBlBjt9vx1NDlOD2vT0kI0R8sU=
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@pitrix/lego-locale" "^0.1.10"
@@ -10885,6 +10885,13 @@ react-file-reader@^1.1.4:
   dependencies:
     prop-types "^15.5.0"
     uuid4 "^1.0.0"
+
+react-input-autosize@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/react-input-autosize/download/react-input-autosize-3.0.0.tgz#6b5898c790d4478d69420b55441fcc31d5c50a85"
+  integrity sha1-a1iYx5DUR41pQgtVRB/MMdXFCoU=
+  dependencies:
+    prop-types "^15.5.8"
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.13.1"

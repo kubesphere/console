@@ -625,6 +625,35 @@ const getNotificationReceiverTemplate = ({ name, type }) => ({
   },
 })
 
+const getNotificationVerifyTemplate = ({ user }) => ({
+  config: {
+    apiVersion: 'notification.kubesphere.io/v2beta2',
+    kind: 'Config',
+    metadata: {
+      name: 'test-user-config',
+      labels: {
+        app: 'notification-manager',
+        type: user ? 'tenant' : 'default',
+        user,
+      },
+    },
+    spec: {},
+  },
+  receiver: {
+    apiVersion: 'notification.kubesphere.io/v2beta2',
+    kind: 'Receiver',
+    metadata: {
+      name: 'test-user-receiver',
+      labels: {
+        app: 'notification-manager',
+        type: user ? 'tenant' : 'global',
+        user,
+      },
+    },
+    spec: {},
+  },
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   deploymentsSchedule: getScheduleDeploymentTemplate,
@@ -665,6 +694,7 @@ const FORM_TEMPLATES = {
   globalsecret: getGlobalSecretTemplate,
   notificationconfigs: getNotificationConfigTemplate,
   notificationreceivers: getNotificationReceiverTemplate,
+  notificationVerify: getNotificationVerifyTemplate,
 }
 
 export default FORM_TEMPLATES

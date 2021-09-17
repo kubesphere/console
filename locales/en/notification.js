@@ -18,9 +18,36 @@
 
 module.exports = {
   NOTIFICATION_MANAGEMENT: 'Notification Management',
+  'Notification Management': 'Notification Management',
+  NOTIFICATION_CONFIGURATION: 'Notification Configuration',
+  'Notification Configuration': 'Notification Configuration',
   'Server Settings': 'Server Settings',
   'Recipient Settings': 'Recipient Settings',
   'Receive Notification': 'Receive Notifications',
+  NOTIFICATION_CONFIGURATION_DESC:
+    'You can receive notifications from the platform through e-mail, dingtalk, wecom, slack and webhook. You need to configure the sending server',
+
+  'Notification On': 'Notification On',
+  'Notification Off': 'Notification Off',
+
+  'Notification Condition Settings': 'Notification Condition Settings',
+  NOTIFICATION_CONDITION_SETTINGS_DESC:
+    'You will only receive notifications that meet the filter criteria',
+  NOTIFICATION_CONDITION_SETTING_ANNOTATION:
+    'Include key value: the label of the received notification will have the selected value; include key: the received notification will have the selected label.',
+  'Include key values': 'Include key values',
+  'Not include key values': 'Not include key values',
+  'Exists key': 'Exists key',
+  'Does not exist key': 'Does not exist key',
+  'Please select a tag': 'Please select a tag',
+  'Please select a regex filter': 'Please select a regex filter',
+  'Invalid notification condition': 'Invalid notification condition',
+
+  SEND_TEST_MESSAGE: 'Send Test Message',
+  NOTIFICATION_CONFIGRATION_SEND_TEST_MESSAGE_DESC:
+    'After setting the relevant configuration, you can send test information to verify your configuration.',
+  SEND_TEST_MESSAGE_SUCCESS_DESC:
+    'Verification is successful, a test message has been sent to you, please check it',
 
   Mail: 'Email',
   'SMTP Server Address': 'SMTP Server Address',
@@ -48,6 +75,8 @@ module.exports = {
   'Webhook URL': 'Webhook URL',
   keywords: 'Keywords',
   'Keywords Set': 'Keyword List',
+  CONVERSATION_ID_TIP:
+    'The conversation ID needs to be configured by the system administrator to obtain it. If you need to set it, please contact the system administrator. ',
 
   'Please enter a conversation ID': 'Please enter a conversation ID',
   'Please enter a keyword': 'Please enter a keyword',
@@ -55,6 +84,7 @@ module.exports = {
   'This keyword has existed': 'This keyword has existed',
   MAX_CID_COUNT: 'Add a maximum of {count} conversation IDs',
   MAX_KEYWORD_COUNT: 'Add at most {count} keywords',
+  EMPTY_KEYWORDS_DESC: 'No keywords added',
 
   DINGTALK_DESC:
     'You can receive DingTalk notifications from the platform after configuring the DingTalk server.',
@@ -68,11 +98,20 @@ module.exports = {
   'WeChat API Agent ID': 'WeChat API Agent ID',
   'WeChat API Secret': 'WeChat API Secret',
   'User ID': 'User ID',
-  'Department ID': 'Department ID',
+  'Party ID': 'Department ID',
   'Tag ID': 'Tag ID',
   'User Set': 'User List',
-  'Department Set': 'Department List',
+  'Party Set': 'Department List',
   'Tag Set': 'Tag List',
+  WECOM_RECEIVER_TOUSER_INPUT_PLACEHOLDER: 'Please enter the user ID to add',
+  WECOM_RECEIVER_TOPARTY_INPUT_PLACEHOLDER:
+    'Please enter the department ID to add',
+  WECOM_RECEIVER_TOTAG_INPUT_PLACEHOLDER: 'Please enter the tag to add',
+  RECIPIENT_SETTINGS_TIP:
+    'At least one item must be configured to receive notifications',
+  EMPTY_TOUSER_DESC: 'No user added',
+  EMPTY_TOPARTY_DESC: 'No department added',
+  EMPTY_TOTAG_DESC: 'No tag added',
 
   'Please enter the WeChat API Corp ID': 'Please enter the WeChat API Corp ID',
   'Please enter the WeChat API Agent ID':
@@ -96,6 +135,7 @@ module.exports = {
   Channel: 'Channel',
   'Channel Settings': 'Channel Settings',
   'Channel Set': 'Channel List',
+  EMPTY_CHANNEL_DESC: 'No channel added',
 
   'Please enter the Slack token': 'Please enter the Slack token',
   'Please enter a channel': 'Please enter a channel',

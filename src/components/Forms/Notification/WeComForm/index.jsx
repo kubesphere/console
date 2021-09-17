@@ -18,10 +18,11 @@
 
 import React, { Component } from 'react'
 import { get } from 'lodash'
-import { Form, Button, Input, Alert, Notify } from '@kube-design/components'
-import { ToggleField } from 'components/Base'
-import { BoxInput } from 'components/Inputs'
 
+import { Form, Input, Notify } from '@kube-design/components'
+import { RadioGroup } from 'components/Base'
+
+import BaseForm from '../BaseForm'
 import Item from './Item'
 
 import styles from './index.scss'
@@ -31,14 +32,14 @@ export default class WeComForm extends Component {
     type: 'toUser',
   }
 
-  get options() {
+  get tabs() {
     return [
       {
         label: t('User ID'),
         value: 'toUser',
       },
       {
-        label: t('Department ID'),
+        label: t('Party ID'),
         value: 'toParty',
       },
       {
@@ -47,8 +48,6 @@ export default class WeComForm extends Component {
       },
     ]
   }
-
-  formRef = React.createRef()
 
   validate = value => {
     const { type } = this.state
@@ -75,162 +74,97 @@ export default class WeComForm extends Component {
     return true
   }
 
-  handleSubmit = () => {
-    const form = this.formRef.current
-    form &&
-      form.validate(() => {
-        this.props.onSubmit(form.getData())
-      })
-  }
-
   handleTypeChange = type => {
     this.setState({ type })
   }
 
-  handleAdd = value => {
-    this.props.onAddReceiver(this.state.type, value)
+  renderServiceSetting() {
+    return (
+      <div className={styles.row}>
+        <div className={styles.title}>{t('Server Settings')}</div>
+        <div className={styles.item}>
+          <Form.Item
+            label={t('WeChat API Corp ID')}
+            rules={[
+              {
+                required: true,
+                message: t('Please enter the WeChat API Corp ID'),
+              },
+            ]}
+          >
+            <Input name="config.spec.wechat.wechatApiCorpId" />
+          </Form.Item>
+          <Form.Item
+            label={t('WeChat API Agent ID')}
+            rules={[
+              {
+                required: true,
+                message: t('Please enter the WeChat API Agent ID'),
+              },
+            ]}
+          >
+            <Input name="config.spec.wechat.wechatApiAgentId" />
+          </Form.Item>
+          <Form.Item
+            label={t('WeChat API Secret')}
+            rules={[
+              {
+                required: true,
+                message: t('Please enter the WeChat API Secret'),
+              },
+            ]}
+          >
+            <Input name="secret.data.appsecret" />
+          </Form.Item>
+        </div>
+      </div>
+    )
   }
 
-  handleDelete = (type, value) => {
-    this.props.onDeleteReceiver(type, value)
+  renderReceiverSetting() {
+    const { type } = this.state
+    const { wrapperClassName } = this.props
+
+    return (
+      <div className={styles.row}>
+        <div className={styles.title}>{t('Recipient Settings')}</div>
+        <div className={styles.subTitle}>{t('RECIPIENT_SETTINGS_TIP')}</div>
+        <div className={styles.item}>
+          <div className="margin-b12">
+            <RadioGroup
+              value={type}
+              onChange={this.handleTypeChange}
+              options={this.tabs}
+            />
+          </div>
+          <Form.Item>
+            <Item
+              name={`receiver.spec.wechat.${type}`}
+              className={wrapperClassName}
+              validate={this.validate}
+              type={type}
+            />
+          </Form.Item>
+        </div>
+      </div>
+    )
   }
 
   render() {
+    const { user, data, onChange, hideFooter, ...rest } = this.props
     return (
-      <Form
-        ref={this.formRef}
-        data={this.props.data}
-        onChange={this.props.onChange}
+      <BaseForm
+        name="wecom"
+        module="wecom"
+        data={data}
+        onChange={onChange}
+        hideFooter={hideFooter}
+        user={user}
+        {...rest}
       >
-        <div className={styles.formBody}>
-          {this.renderTips()}
-          {this.renderFormItems()}
-        </div>
-        <div className={styles.footer}>{this.renderFooterBtns()}</div>
-      </Form>
-    )
-  }
-
-  renderTips() {
-    if (this.props.showTip && this.props.formStatus === 'update') {
-      return (
-        <Alert
-          className={styles.tips}
-          type="error"
-          message={t('WECOM_SETTINGS_CHANGE_NEED_SAVE_TIP')}
-        />
-      )
-    }
-    return null
-  }
-
-  renderFormItems() {
-    const { type } = this.state
-    const { data } = this.props
-
-    return (
-      <>
-        <div className={styles.row}>
-          <div className={styles.title}>{t('Notification Settings')}</div>
-          <div className={styles.item}>
-            <Form.Item
-              className={styles.isHorizon}
-              label={t('Receive Notification')}
-            >
-              <ToggleField
-                name="receiver.spec.wechat.enabled"
-                value={get(data, 'receiver.spec.wechat.enabled')}
-                onText={t('On')}
-                offText={t('Off')}
-              />
-            </Form.Item>
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.title}>{t('Server Settings')}</div>
-          <div className={styles.item}>
-            <Form.Item
-              label={t('WeChat API Corp ID')}
-              rules={[
-                {
-                  required: true,
-                  message: t('Please enter the WeChat API Corp ID'),
-                },
-              ]}
-            >
-              <Input name="config.spec.wechat.wechatApiCorpId" />
-            </Form.Item>
-            <Form.Item
-              label={t('WeChat API Agent ID')}
-              rules={[
-                {
-                  required: true,
-                  message: t('Please enter the WeChat API Agent ID'),
-                },
-              ]}
-            >
-              <Input name="config.spec.wechat.wechatApiAgentId" />
-            </Form.Item>
-            <Form.Item
-              label={t('WeChat API Secret')}
-              rules={[
-                {
-                  required: true,
-                  message: t('Please enter the WeChat API Secret'),
-                },
-              ]}
-            >
-              <Input name="secret.data.appsecret" />
-            </Form.Item>
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.title}>{t('Recipient Settings')}</div>
-          <div className={styles.item}>
-            <BoxInput
-              defaultSelectValue={type}
-              options={this.options}
-              onSelectChange={this.handleTypeChange}
-              onAdd={this.handleAdd}
-              validate={this.validate}
-            />
-            <Item
-              title={t('User Set')}
-              resources={get(data, 'receiver.spec.wechat.toUser', [])}
-              type="toUser"
-              onDelete={this.handleDelete}
-            />
-            <Item
-              title={t('Department Set')}
-              resources={get(data, 'receiver.spec.wechat.toParty', [])}
-              type="toParty"
-              onDelete={this.handleDelete}
-            />
-            <Item
-              title={t('Tag Set')}
-              resources={get(data, 'receiver.spec.wechat.toTag', [])}
-              type="toTag"
-              onDelete={this.handleDelete}
-            />
-          </div>
-        </div>
-      </>
-    )
-  }
-
-  renderFooterBtns() {
-    return (
-      <>
-        <Button onClick={this.props.onCancel}>{t('Cancel')}</Button>
-        <Button
-          type="control"
-          loading={this.props.isSubmitting}
-          disabled={this.props.disableSubmit}
-          onClick={this.handleSubmit}
-        >
-          {this.props.formStatus === 'update' ? t('Update') : t('Save')}
-        </Button>
-      </>
+        {!user && this.renderServiceSetting()}
+        {this.renderReceiverSetting()}
+      </BaseForm>
     )
   }
 }
