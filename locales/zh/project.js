@@ -52,11 +52,6 @@ module.exports = {
   'Remove Members': '移除成员',
   REMOVE_MEMBER: '移除成员',
   'Invite Member': '邀请成员',
-  'Gateway Info': '网关信息',
-  'Set Gateway': '设置网关',
-  'Edit Gateway': '编辑网关',
-
-  'Gateway Not Set': '网关未设置',
 
   'Delete Project': '删除项目',
   'Project Info': '项目信息',
@@ -172,9 +167,6 @@ module.exports = {
   INVITE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请项目成员',
   ASSIGN_ROLE: '为成员分配角色',
   PROJECT_ADMIN_DESC: '可以指定项目内一个成员为管理员',
-
-  PROJECT_INTERNET_ACCESS_DESC:
-    '在创建应用路由之前，需要先启用外网访问入口，即网关。这一步是创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务。',
 
   DELETE_INTERNET_ACCESS_TITLE: '确定删除外网访问设置?',
   DELETE_INTERNET_ACCESS_DESC: '删除后可重新绑定',

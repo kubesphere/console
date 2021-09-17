@@ -88,7 +88,7 @@ export default class DeleteModal extends React.Component {
               type: t(typeKeyLow),
               resource,
             })
-        : t.html('DELETE_DESC'))
+        : t.html('DELETE_DESC', { resource, type: '' }))
 
     if (app) {
       tip = t.html('DELETE_APP_RESOURCE_TIP', { type, resource, app })

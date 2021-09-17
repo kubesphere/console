@@ -70,6 +70,13 @@ export default class HPACard extends React.Component {
           current: get(detail, 'status.numberReady', 0),
           desire: get(detail, 'status.desiredNumberScheduled', 0),
         }
+        break
+      }
+      case 'gateways': {
+        status = {
+          current: Array.isArray(detail.pods) ? detail.pods.length : 1,
+          desire: get(detail, 'replicas', 0),
+        }
       }
     }
 

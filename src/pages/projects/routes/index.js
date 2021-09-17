@@ -41,7 +41,7 @@ import ServiceAccounts from '../containers/ServiceAccounts'
 import Secrets from '../containers/Secrets'
 import Roles from '../containers/Roles'
 import Members from '../containers/Members'
-import AdvancedSettings from '../containers/AdvancedSettings'
+import LogCollection from '../containers/LogCollection'
 import AlertingPolicies from '../containers/Alerting/Policies'
 import AlertingMessages from '../containers/Alerting/Messages'
 import CustomMonitoring from '../containers/CustomMonitoring'
@@ -50,6 +50,7 @@ import NetworkPolicies from '../containers/Network/Policies'
 import grayReleaseRoutes from './grayrelease'
 
 import getDetailPath from './detail'
+import Gateway from '../containers/Gateway'
 
 const PATH = '/:workspace/clusters/:cluster/projects/:namespace'
 
@@ -126,7 +127,12 @@ export default [
       { path: `${PATH}/secrets`, component: Secrets, exact: true },
       { path: `${PATH}/roles`, component: Roles, exact: true },
       { path: `${PATH}/members`, component: Members, exact: true },
-      { path: `${PATH}/advanced`, component: AdvancedSettings, exact: true },
+      {
+        path: `${PATH}/log-collections`,
+        component: LogCollection,
+        exact: true,
+      },
+      { path: `${PATH}/gateways`, component: Gateway, exact: true },
       {
         path: `${PATH}/alert-rules`,
         component: AlertingPolicies,

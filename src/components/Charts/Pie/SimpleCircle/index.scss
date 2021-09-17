@@ -147,3 +147,32 @@
     white-space: nowrap;
   }
 }
+
+.legend {
+  display: flex;
+  align-items: center;
+  min-height: 20px;
+  line-height: 20px;
+  justify-content: center;
+  .item {
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    opacity: 0.85;
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    i {
+      width: 6px;
+      height: 6px;
+      margin-right: 8px;
+      background: $lightest;
+      pointer-events: none;
+      border-radius: 0;
+    }
+  }
+}

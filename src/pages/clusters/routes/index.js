@@ -58,6 +58,7 @@ import IPPools from '../containers/Network/IPPools'
 import LogCollections from '../containers/LogCollections'
 import CustomMonitoring from '../containers/CustomMonitoring'
 import detail from './detail'
+import Gateway from '../containers/Gateway'
 
 const PATH = '/clusters/:cluster'
 
@@ -250,6 +251,11 @@ export default [
             component: CustomMonitoring,
             exact: true,
           },
+          {
+            path: `${PATH}/gateways/:component`,
+            component: Gateway,
+            exact: true,
+          },
           getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
           getIndexRoute({
             path: `${PATH}/workloads`,
@@ -259,6 +265,11 @@ export default [
           getIndexRoute({
             path: `${PATH}/log-collections`,
             to: `${PATH}/log-collections/logging`,
+            exact: true,
+          }),
+          getIndexRoute({
+            path: `${PATH}/gateways`,
+            to: `${PATH}/gateways/cluster`,
             exact: true,
           }),
           getIndexRoute({ path: '*', to: '/404', exact: true }),

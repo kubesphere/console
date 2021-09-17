@@ -579,7 +579,9 @@ const ServiceMapper = item => {
     loadBalancerIngress: get(item, 'status.loadBalancer.ingress', []).map(
       lb => lb.ip || lb.hostname
     ),
-    app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+    app:
+      get(item, 'metadata.labels["app.kubernetes.io/name"]') ||
+      get(item, 'metadata.labels.app'),
     _originData: getOriginData(item),
   }
 }
@@ -696,25 +698,27 @@ const IngressMapper = item => ({
 const GatewayMapper = item => {
   const loadBalancerIngress = get(item, 'status.loadBalancer.ingress', [])
   return {
-    uid: get(item, 'metadata.uid'),
-    namespace: get(item, 'metadata.labels.project'), // it's not metadata.namespace
+    ...getBaseInfo(item),
+    namespace: get(item, 'metadata.namespace'), // it's not metadata.namespace
     annotations: omit(
-      get(item, 'metadata.annotations', {}),
+      get(item, 'spec.service.annotations', {}),
       'servicemesh.kubesphere.io/enabled'
     ),
-    createTime: get(item, 'metadata.creationTimestamp', {}),
-    type: get(item, 'spec.type'),
     externalIPs: get(item, 'spec.externalIPs', []),
-    ports: get(item, 'spec.ports', []),
+    ports: get(item, 'status.service', []),
     loadBalancerIngress: loadBalancerIngress.map(lb => lb.ip || lb.hostname),
     defaultIngress:
       get(loadBalancerIngress, '[0].ip') ||
       get(loadBalancerIngress, '[0].hostname'),
     isHostName: !!get(loadBalancerIngress, '[0].hostname'),
     serviceMeshEnable:
-      get(item, 'metadata.annotations["servicemesh.kubesphere.io/enabled"]') ===
-      'true',
-    _originData: getOriginData(item),
+      get(
+        item,
+        'spec.deployment.annotations["servicemesh.kubesphere.io/enabled"]'
+      ) === 'true',
+    replicas: get(item, 'spec.deployment.replicas'),
+    type: get(item, 'spec.service.type'),
+    _originData: item,
   }
 }
 

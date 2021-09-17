@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import InternetAccess from 'projects/containers/AdvancedSettings/InternetAccess'
+import InternetAccess from 'projects/containers/LogCollection/InternetAccess'
 
 export default class Gateway extends React.Component {
   render() {

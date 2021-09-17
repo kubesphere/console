@@ -82,7 +82,7 @@ class InternetAccess extends React.Component {
 
     const func = isEmpty(gateway)
       ? this.store.addGateway.bind(this.store)
-      : this.store.updateGateway.bind(this.store)
+      : this.store.editGateway.bind(this.store)
 
     func({ cluster, namespace }, data).then(() => {
       this.store.getGateway({ cluster, namespace })
