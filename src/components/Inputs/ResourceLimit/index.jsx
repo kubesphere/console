@@ -90,11 +90,11 @@ export default class ResourceLimit extends React.Component {
 
   static allowInputDot(formatNum, unit, formatFn, isMemory = false) {
     const inputNum = formatNum && isMemory ? formatNum.slice(0, -2) : formatNum
-    if (inputNum && inputNum.endsWith('.')) {
+    if (inputNum && String(inputNum).endsWith('.')) {
       const number = formatFn(formatNum, unit)
       return `${number}.`
     }
-    if (inputNum && inputNum.endsWith('.0')) {
+    if (inputNum && String(inputNum).endsWith('.0')) {
       const number = formatFn(formatNum, unit)
       return `${number}.0`
     }
@@ -233,14 +233,6 @@ export default class ResourceLimit extends React.Component {
       {
         label: 'nvidia.com/gpu',
         value: 'nvidia.com/gpu',
-      },
-      {
-        label: 'virtaitech.com/gpu',
-        value: 'virtaitech.com/gpu',
-      },
-      {
-        label: 'tencent.com/vcuda-core',
-        value: 'tencent.com/vcuda-core',
       },
     ]
   }
@@ -536,9 +528,26 @@ export default class ResourceLimit extends React.Component {
     )
   }
 
+  ifRenderTip() {
+    const { workspaceLimitProps } = this.props
+    if (isEmpty(workspaceLimitProps)) {
+      return false
+    }
+    const { limits = {}, requests = {} } = workspaceLimitProps
+    if (
+      get(limits, 'cpu', true) &&
+      get(limits, 'memory', true) &&
+      get(requests, 'cpu', true) &&
+      get(requests, 'memory', true)
+    ) {
+      return false
+    }
+
+    return true
+  }
+
   render() {
     const { cpuError, memoryError, workspaceLimitCheck: limit } = this.state
-    const { workspaceLimitProps } = this.props
     const outWorkSpaceLimit = this.getWorkspaceCheckError()
 
     return (
@@ -653,7 +662,7 @@ export default class ResourceLimit extends React.Component {
             </Column>
           </Columns>
         </div>
-        {!isEmpty(workspaceLimitProps) && this.renderTip()}
+        {this.ifRenderTip() && this.renderTip()}
         {(cpuError || memoryError) && (
           <Alert
             type="error"
