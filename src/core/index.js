@@ -51,6 +51,17 @@ window.onunhandledrejection = function(e) {
   }
 }
 
+// handle safari browser zoom out too small
+window.onresize = () => {
+  const ratio = window.outerHeight / window.innerHeight
+  const ua = navigator.userAgent.toLowerCase()
+  if (ua.indexOf('safari') && ratio < 0.75) {
+    document.body.style.zoom = 1.5
+  } else {
+    document.body.style.zoom = 1
+  }
+}
+
 window.t = i18n.t
 window.request = request
 
