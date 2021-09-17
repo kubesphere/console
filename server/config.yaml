@@ -142,18 +142,17 @@ client:
                 clusterModule: "network.ippool",
               }
         # Contains dangerous operations, only available for platform-admin.
-        - {
-            name: customresources,
-            title: CRD_PL,
-            icon: select,
-            admin: true,
-          }
+        - { name: customresources, title: CRD_PL, icon: select, admin: true }
         - name: storage
           title: STORAGE
           icon: database
           children:
             - { name: volumes, title: VOLUME_PL }
-            - { name: volume-snapshots, title: VOLUME_SNAPSHOT_PL, authKey: volumes }
+            - {
+                name: volume-snapshots,
+                title: VOLUME_SNAPSHOT_PL,
+                authKey: volumes,
+              }
             - { name: storageclasses, title: STORAGE_CLASS_PL }
         - name: monitoring-alerting
           title: MONITORING_AND_ALERTING
@@ -215,6 +214,11 @@ client:
                 icon: file,
                 authKey: cluster-settings,
                 clusterModule: logging|events|auditing,
+              }
+            - {
+                name: gateways,
+                title: GATEWAY_SETTING,
+                authKey: cluster-settings,
               }
 
   # access control page navigations
@@ -404,8 +408,13 @@ client:
             - { name: roles, title: PROJECT_ROLE_PL }
             - { name: members, title: PROJECT_MEMBER_PL }
             - {
-                name: advanced,
-                title: ADVANCED_SETTINGS,
+                name: gateways,
+                title: GATEWAY_SETTING,
+                authKey: "project-settings",
+              }
+            - {
+                name: log-collections,
+                title: DISK_LOG_COLLECTION_TITLE,
                 authKey: "project-settings",
               }
 
@@ -440,6 +449,11 @@ client:
             - {
                 name: quota,
                 title: QUOTA_MANAGEMENT,
+                authKey: "project-settings",
+              }
+            - {
+                name: gateways,
+                title: GATEWAY_SETTING,
                 authKey: "project-settings",
               }
             - {
