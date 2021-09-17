@@ -18,10 +18,11 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
+import { isEmpty } from 'lodash'
+
 import { Notify, Tag, Icon } from '@kube-design/components'
 import { BoxInput } from 'components/Inputs'
-
-import UserStore from 'stores/user'
 
 import styles from './index.scss'
 
@@ -35,8 +36,6 @@ export default class Item extends React.Component {
     value: [],
     onChange() {},
   }
-
-  userStore = new UserStore()
 
   validateChannel = channel => {
     const { value } = this.props
@@ -71,35 +70,36 @@ export default class Item extends React.Component {
   }
 
   render() {
-    const { value } = this.props
+    const { value, className } = this.props
 
     return (
-      <div className={styles.wrapper}>
+      <div>
         <BoxInput
+          className={styles.wrapper}
           placeholder={t('Please enter a channel')}
           onAdd={this.handleAdd}
           validate={this.validateChannel}
         />
-        {value.length > 0 && (
-          <div className="margin-t12">
-            <p>{t('Channel Set')}</p>
-            <div className={styles.listWrapper}>
-              {value.map(item => {
-                return (
-                  <Tag className={styles.tag} type="primary" key={item}>
-                    {item}
-                    <Icon
-                      name="close"
-                      size={12}
-                      clickable
-                      onClick={() => this.handleDelete(item)}
-                    ></Icon>
-                  </Tag>
-                )
-              })}
-            </div>
-          </div>
-        )}
+        <p className="margin-t8">{t('Channel Set')}</p>
+        <div className={classnames(styles.boxWrapper, className)}>
+          {isEmpty(value) ? (
+            <div className={styles.empty}>{t('EMPTY_CHANNEL_DESC')}</div>
+          ) : (
+            value.map(item => {
+              return (
+                <Tag className={styles.tag} key={item}>
+                  {item}
+                  <Icon
+                    name="close"
+                    size={12}
+                    clickable
+                    onClick={() => this.handleDelete(item)}
+                  ></Icon>
+                </Tag>
+              )
+            })
+          )}
+        </div>
       </div>
     )
   }

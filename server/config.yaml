@@ -1,5 +1,4 @@
 # kubesphere configuration
-
 server:
   http:
     hostname: localhost
@@ -27,6 +26,8 @@ server:
 
   # backend service gateway server
   apiServer:
+    clientID: kubesphere
+    clientSecret: kubesphere
     url: http://ks-apiserver.kubesphere-system.svc
     wsUrl: ws://ks-apiserver.kubesphere-system.svc
 
@@ -243,11 +244,14 @@ client:
           title: NOTIFICATION_MANAGEMENT
           icon: bell
           children:
-            - { name: mail, title: Mail, authKey: platform-settings }
-            - { name: dingtalk, title: DingTalk, authKey: platform-settings }
-            - { name: wecom, title: WeCom, authKey: platform-settings }
-            - { name: slack, title: Slack, authKey: platform-settings }
-            - { name: webhook, title: Webhook, authKey: platform-settings }
+            - name: notification-configuration
+              title: NOTIFICATION_CONFIGURATION
+              tabs: 
+                - { name: mail, title: Mail, authKey: platform-settings }
+                - { name: dingtalk, title: DingTalk, authKey: platform-settings}
+                - { name: wecom, title: WeCom, authKey: platform-settings}
+                - { name: slack, title: Slack, authKey: platform-settings}
+                - { name: webhook, title: Webhook, authKey: platform-settings }
 
   # workspace page navigations
   workspaceNavs:

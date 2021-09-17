@@ -67,6 +67,11 @@ export default [
         component: Webhook,
       },
       getIndexRoute({ path: PATH, to: `${PATH}/${indexRoute}`, exact: true }),
+      getIndexRoute({
+        path: `${PATH}/notification-configuration`,
+        to: `${PATH}/mail`,
+        exact: true,
+      }),
       getIndexRoute({ path: '*', to: '/404', exact: true }),
     ],
   },

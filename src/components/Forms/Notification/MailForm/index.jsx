@@ -19,174 +19,128 @@
 import React, { Component } from 'react'
 import { get } from 'lodash'
 
-import { Form, Button, Input, Alert, Checkbox } from '@kube-design/components'
-import { ToggleField } from 'components/Base'
+import { Form, Input, InputPassword, Checkbox } from '@kube-design/components'
 import { UrlInput } from 'components/Inputs'
 
 import { PATTERN_HOST, PATTERN_PORT } from 'utils/constants'
 
+import BaseForm from '../BaseForm'
 import Item from './Item'
 
 import styles from './index.scss'
 
 export default class MailForm extends Component {
-  formRef = React.createRef()
+  renderServiceSetting() {
+    const { data } = this.props
 
-  handleSubmit = () => {
-    const form = this.formRef.current
-    form &&
-      form.validate(() => {
-        this.props.onSubmit(form.getData())
-      })
+    return (
+      <div className={styles.row}>
+        <div className={styles.title}>{t('Server Settings')}</div>
+        <div className={styles.item}>
+          <Form.Item label={t('SMTP Server Address')}>
+            <UrlInput
+              className={styles.urlInput}
+              portName="config.spec.email.smartHost.port"
+              hostName="config.spec.email.smartHost.host"
+              hostRules={[
+                { required: true, message: t('Please enter the address') },
+                { pattern: PATTERN_HOST, message: t('Invalid address') },
+              ]}
+              portRules={[
+                { required: true, message: t('ENTER_PORT_NUMBER') },
+                { pattern: PATTERN_PORT, message: t('INVALID_PORT_DESC') },
+              ]}
+              defaultPort={25}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Checkbox
+              className={styles.sslCheckbox}
+              name="config.spec.email.requireTLS"
+              checked={get(data, 'config.spec.email.requireTLS')}
+            >
+              {t('Use SSL Secure Connection')}
+            </Checkbox>
+          </Form.Item>
+          <Form.Item
+            label={`SMTP ${t('User')}`}
+            rules={[
+              {
+                required: true,
+                message: t('Please enter the SMTP username'),
+              },
+            ]}
+          >
+            <Input
+              name="config.spec.email.authUsername"
+              placeholder={'admin@example.com'}
+            />
+          </Form.Item>
+          <Form.Item
+            label={`SMTP ${t('PASSWORD')}`}
+            rules={[{ required: true, message: t('ENTER_PASSWORD_TIP') }]}
+          >
+            <InputPassword
+              name="secret.data.authPassword"
+              type="password"
+              autoComplete="new-password"
+            />
+          </Form.Item>
+          <Form.Item
+            label={t('SENDER_MAIL')}
+            rules={[
+              { required: true, message: t('Please input email') },
+              { type: 'email', message: t('INVALID_EMAIL') },
+            ]}
+          >
+            <Input
+              name="config.spec.email.from"
+              placeholder={'admin@example.com'}
+            />
+          </Form.Item>
+        </div>
+      </div>
+    )
+  }
+
+  renderReceiverSetting() {
+    const { wrapperClassName } = this.props
+
+    return (
+      <div className={styles.row}>
+        <div className={styles.title}>{t('Recipient Settings')}</div>
+        <div className={styles.item}>
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: t('Please add the recipient email address'),
+              },
+            ]}
+          >
+            <Item className={wrapperClassName} name="receiver.spec.email.to" />
+          </Form.Item>
+        </div>
+      </div>
+    )
   }
 
   render() {
+    const { user, data, onChange, hideFooter, ...rest } = this.props
+
     return (
-      <Form
-        ref={this.formRef}
-        data={this.props.data}
-        onChange={this.props.onChange}
+      <BaseForm
+        name="email"
+        module="mail"
+        data={data}
+        onChange={onChange}
+        hideFooter={hideFooter}
+        user={user}
+        {...rest}
       >
-        <div className={styles.formBody}>
-          {this.renderTips()}
-          {this.renderFormItems()}
-        </div>
-        <div className={styles.footer}>{this.renderFooterBtns()}</div>
-      </Form>
-    )
-  }
-
-  renderTips() {
-    if (this.props.showTip && this.props.formStatus === 'update') {
-      return (
-        <Alert
-          className={styles.tips}
-          type="error"
-          message={t('MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP')}
-        />
-      )
-    }
-    return null
-  }
-
-  renderFormItems() {
-    const { data } = this.props
-    return (
-      <>
-        <div className={styles.row}>
-          <div className={styles.title}>{t('Notification Settings')}</div>
-          <div className={styles.item}>
-            <Form.Item
-              className={styles.isHorizon}
-              label={t('Receive Notification')}
-            >
-              <ToggleField
-                name="receiver.spec.email.enabled"
-                value={get(data, 'receiver.spec.email.enabled')}
-                onText={t('On')}
-                offText={t('Off')}
-              />
-            </Form.Item>
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.title}>{t('Server Settings')}</div>
-          <div className={styles.item}>
-            <Form.Item label={t('SMTP Server Address')}>
-              <UrlInput
-                className={styles.urlInput}
-                portName="config.spec.email.smartHost.port"
-                hostName="config.spec.email.smartHost.host"
-                hostRules={[
-                  { required: true, message: t('Please enter the address') },
-                  { pattern: PATTERN_HOST, message: t('Invalid address') },
-                ]}
-                portRules={[
-                  { required: true, message: t('PORT_NUMBER_EMPTY') },
-                  { pattern: PATTERN_PORT, message: t('INVALID_PORT') },
-                ]}
-                defaultPort={25}
-              />
-            </Form.Item>
-            <Form.Item>
-              <Checkbox
-                className={styles.sslCheckbox}
-                name="config.spec.email.requireTLS"
-                checked={get(data, 'config.spec.email.requireTLS')}
-              >
-                {t('Use SSL Secure Connection')}
-              </Checkbox>
-            </Form.Item>
-            <Form.Item
-              label={`SMTP ${t('User')}`}
-              rules={[
-                {
-                  required: true,
-                  message: t('Please enter the SMTP username'),
-                },
-              ]}
-            >
-              <Input
-                name="config.spec.email.authUsername"
-                placeholder={'admin@example.com'}
-              />
-            </Form.Item>
-            <Form.Item
-              label={`SMTP ${t('PASSWORD')}`}
-              rules={[{ required: true, message: t('PASSWORD_EMPTY_DESC') }]}
-            >
-              <Input
-                name="secret.data.authPassword"
-                type="password"
-                autoComplete="new-password"
-              />
-            </Form.Item>
-            <Form.Item
-              label={t('SENDER_MAIL')}
-              rules={[
-                { required: true, message: t('EMAIL_EMPTY_DESC') },
-                { type: 'email', message: t('INVALID_EMAIL') },
-              ]}
-            >
-              <Input
-                name="config.spec.email.from"
-                placeholder={'admin@example.com'}
-              />
-            </Form.Item>
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.title}>{t('Recipient Settings')}</div>
-          <div className={styles.item}>
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: t('Please add the recipient email address'),
-                },
-              ]}
-            >
-              <Item name='receiver.metadata.annotations["kubesphere.io/receiver-mail"]' />
-            </Form.Item>
-          </div>
-        </div>
-      </>
-    )
-  }
-
-  renderFooterBtns() {
-    return (
-      <>
-        <Button onClick={this.props.onCancel}>{t('Cancel')}</Button>
-        <Button
-          type="control"
-          loading={this.props.isSubmitting}
-          disabled={this.props.disableSubmit}
-          onClick={this.handleSubmit}
-        >
-          {this.props.formStatus === 'update' ? t('Update') : t('Save')}
-        </Button>
-      </>
+        {!user && this.renderServiceSetting()}
+        {this.renderReceiverSetting()}
+      </BaseForm>
     )
   }
 }

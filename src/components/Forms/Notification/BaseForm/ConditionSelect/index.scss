@@ -1,0 +1,25 @@
+.selectWrapper {
+  display: flex;
+  align-items: center;
+
+  & > div + div {
+    margin-left: 12px;
+  }
+  & > div {
+    &:nth-child(1) {
+      flex: 0 0 200px;
+    }
+    &:nth-child(2) {
+      flex: 0 0 180px;
+    }
+    &:nth-child(3) {
+      flex: 1;
+    }
+  }
+  :global {
+    .select,
+    .input {
+      max-width: none;
+    }
+  }
+}

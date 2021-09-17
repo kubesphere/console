@@ -241,6 +241,8 @@ export const ICON_TYPES = {
   pipelines: 'blockchain',
   ippools: 'eip-group',
   cluster: 'cluster',
+  notification: 'loudspeaker',
+  notificationhistory: 'record',
 }
 
 export const MODULE_KIND_MAP = {
@@ -867,8 +869,8 @@ export const API_VERSIONS = {
   resourcequotas: 'api/v1',
   limitranges: 'api/v1',
   persistentvolumeclaims: 'api/v1',
+  ingresses: 'apis/networking.k8s.io/v1',
   persistentvolumes: 'api/v1',
-  ingresses: 'apis/extensions/v1beta1',
   nodes: 'api/v1',
   storageclasses: 'apis/storage.k8s.io/v1',
   roles: 'apis/rbac.authorization.k8s.io/v1',

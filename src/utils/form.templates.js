@@ -221,7 +221,7 @@ const getServiceTemplate = ({ namespace, selector = {} }) => ({
 })
 
 const getIngressTemplate = ({ namespace }) => ({
-  apiVersion: 'extensions/v1beta1',
+  apiVersion: 'networking.k8s.io/v1',
   kind: 'Ingress',
   metadata: {
     namespace,
@@ -647,6 +647,35 @@ const getNotificationReceiverTemplate = ({ name, type }) => ({
   },
 })
 
+const getNotificationVerifyTemplate = ({ user }) => ({
+  config: {
+    apiVersion: 'notification.kubesphere.io/v2beta2',
+    kind: 'Config',
+    metadata: {
+      name: 'test-user-config',
+      labels: {
+        app: 'notification-manager',
+        type: user ? 'tenant' : 'default',
+        user,
+      },
+    },
+    spec: {},
+  },
+  receiver: {
+    apiVersion: 'notification.kubesphere.io/v2beta2',
+    kind: 'Receiver',
+    metadata: {
+      name: 'test-user-receiver',
+      labels: {
+        app: 'notification-manager',
+        type: user ? 'tenant' : 'global',
+        user,
+      },
+    },
+    spec: {},
+  },
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   deploymentsSchedule: getScheduleDeploymentTemplate,
@@ -688,6 +717,7 @@ const FORM_TEMPLATES = {
   notificationconfigs: getNotificationConfigTemplate,
   notificationreceivers: getNotificationReceiverTemplate,
   gateways: getGatewayTemplate,
+  notificationVerify: getNotificationVerifyTemplate,
 }
 
 export default FORM_TEMPLATES

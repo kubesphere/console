@@ -1,43 +1,25 @@
 @import '~scss/variables';
 
-.formBody {
-  .row {
-    margin-bottom: 12px;
-  }
+.title {
+  display: flex;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
 
-  .title {
-    display: flex;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
+.urlInput {
+  max-width: 479px;
+}
 
-  .item {
-    padding: 12px;
-    border: solid 1px $light-color03;
-    border-radius: 4px;
-  }
+.row {
+  margin-bottom: 12px;
+}
 
-  .isHorizon {
-    display: flex;
-
-    :global {
-      .form-item-label {
-        margin-bottom: 0;
-        margin-right: 8px;
-      }
-    }
-  }
-
-  :global {
-    .form-item-label {
-      font-weight: 600;
-    }
-  }
-
-  .urlInput {
-    max-width: 479px;
-  }
+.item {
+  padding: 12px;
+  border: solid 1px $light-color03;
+  border-radius: 4px;
+  background-color: white;
 }
 
 .wrapper {
@@ -45,13 +27,14 @@
 }
 
 .listWrapper {
-  padding: 12px 0;
+  margin-top: 12px;
 }
 
-.tips {
-  margin-bottom: 12px;
-}
-
-.footer {
-  text-align: right;
+.listItem {
+  background-color: $light-color01;
+  :global {
+    .buttons {
+      background-color: $light-color01;
+    }
+  }
 }

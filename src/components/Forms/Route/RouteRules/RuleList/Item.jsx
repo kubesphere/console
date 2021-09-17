@@ -75,16 +75,12 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
                 <span>{t('PATH_VALUE', { value: path.path })}</span>
               </Column>
               <Column>
-                <span>
-                  {t('SERVICE_VALUE', {
-                    value: get(path, 'backend.serviceName'),
-                  })}
-                </span>
+                <span>{t('SERVICE_VALUE')}:</span>
+                <span>{get(path, 'backend.service.name')}</span>
               </Column>
               <Column>
-                <span>
-                  {t('PORT_VALUE', { value: get(path, 'backend.servicePort') })}
-                </span>
+                <span>{t('PORT_VALUE')}:</span>
+                <span>{get(path, 'backend.service.port.number')}</span>
               </Column>
             </Columns>
           </div>

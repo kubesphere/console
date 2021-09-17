@@ -21,8 +21,9 @@ import { observer } from 'mobx-react'
 import { isEmpty, get, set, cloneDeep } from 'lodash'
 
 import { Notify } from '@kube-design/components'
-import { Banner, Panel } from 'components/Base'
+import { Panel } from 'components/Base'
 import WebhookForm from 'components/Forms/Notification/WebhookForm'
+import BaseBanner from 'settings/components/Cards/Banner'
 
 import ReceiverStore from 'stores/notification/receiver'
 import SecretStore from 'stores/notification/secret'
@@ -45,7 +46,6 @@ export default class Webhook extends React.Component {
       secret: this.secretTemplate,
     },
     formStatus: 'create',
-    showTip: false,
   }
 
   formData = {
@@ -86,9 +86,31 @@ export default class Webhook extends React.Component {
       this.setState({
         formData: cloneDeep(this.formData),
         formStatus: 'update',
-        showTip: false,
       })
     }
+  }
+
+  getVerifyFormTemplate = data => {
+    const { receiver, secret } = cloneDeep(data)
+    const type = get(
+      receiver,
+      'metadata.annotations["kubesphere.io/verify-type"]'
+    )
+    const password = safeBtoa(get(secret, 'data.password'))
+    const token = safeBtoa(get(secret, 'data.token'))
+
+    if (type === 'basic') {
+      set(
+        receiver,
+        'spec.webhook.httpConfig.basicAuth.password.value',
+        password
+      )
+    }
+    if (type === 'token') {
+      set(receiver, 'spec.webhook.httpConfig.bearerToken.value', token)
+    }
+
+    return { receiver }
   }
 
   handleSubmit = async data => {
@@ -124,7 +146,7 @@ export default class Webhook extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('ADDED_SUCCESS_DESC')
+      message = t('Added Successfully')
     } else {
       await this.secretStore.update(
         { name: SECRET_NAME },
@@ -138,49 +160,29 @@ export default class Webhook extends React.Component {
     Notify.success({ content: message, duration: 1000 })
   }
 
-  onFormDataChange = () => {
-    this.setState({
-      showTip: true,
-    })
-  }
-
   onFormClose = () => {
     this.setState({
-      showTip: false,
       formData: cloneDeep(this.formData),
     })
   }
 
   render() {
+    const { formData, formStatus } = this.state
+
     return (
       <div>
-        <Banner
-          icon="file"
-          type="white"
-          name={t('Webhook')}
-          desc={t('WEBHOOK_SETTING_DESC')}
-        />
-        {this.renderConfigForm()}
+        <BaseBanner type="webhook" />
+        <Panel loading={this.receiverStore.list.isLoading}>
+          <WebhookForm
+            formStatus={formStatus}
+            data={formData}
+            onCancel={this.onFormClose}
+            onSubmit={this.handleSubmit}
+            getVerifyFormTemplate={this.getVerifyFormTemplate}
+            isSubmitting={this.receiverStore.isSubmitting}
+          />
+        </Panel>
       </div>
-    )
-  }
-
-  renderConfigForm() {
-    const { formData, formStatus, showTip } = this.state
-
-    return (
-      <Panel loading={this.receiverStore.list.isLoading}>
-        <WebhookForm
-          showTip={showTip}
-          formStatus={formStatus}
-          data={formData}
-          onCancel={this.onFormClose}
-          onSubmit={this.handleSubmit}
-          onChange={this.onFormDataChange}
-          isSubmitting={this.receiverStore.isSubmitting}
-          disableSubmit={!showTip && formStatus === 'update'}
-        />
-      </Panel>
     )
   }
 }

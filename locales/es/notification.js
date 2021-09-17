@@ -18,9 +18,39 @@
 
 module.exports = {
   NOTIFICATION_MANAGEMENT: 'Gestión de notificaciones',
+  'Notification Management': 'Gestión de notificaciones',
+  NOTIFICATION_CONFIGURATION: 'Configuración de la notificación',
+  'Notification Configuration': 'Configuración de la notificación',
   'Server Settings': 'Configuración del servidor',
   'Recipient Settings': 'Configuración del receptor',
   'Receive Notification': 'Recibir notificación',
+
+  NOTIFICATION_CONFIGURATION_DESC:
+    'Puede recibir notificaciones de la plataforma a través de correo electrónico, dingtalk, wecom, slack y webhook. Necesita configurar el servidor de envío ',
+
+  'Notification On': 'Notificación activada',
+  'Notification Off': 'Notificación desactivada',
+
+  'Notification Condition Settings':
+    'Configuración de condición de notificación',
+  NOTIFICATION_CONDITION_SETTINGS_DESC:
+    'Solo recibirás notificaciones que cumplan con los criterios del filtro',
+  NOTIFICATION_CONDITION_SETTING_ANNOTATION:
+    'Incluir valor clave: la etiqueta de la notificación recibida tendrá el valor seleccionado; incluir clave: la notificación recibida tendrá la etiqueta seleccionada. ',
+  'Include key values': 'Incluir valores clave',
+  'Not include key value': 'No incluir valores clave',
+  'Exists key': 'Exists key',
+  'Does not exist key': 'No existe clave',
+  'Please select a tag': 'Seleccione una etiqueta',
+  'Please select a regex filter':
+    'Seleccione un filtro de expresiones regulares',
+  'Invalid notification condition': 'Condición de notificación no válida',
+
+  SEND_TEST_MESSAGE: 'Enviar mensaje de prueba',
+  NOTIFICATION_CONFIGRATION_SEND_TEST_MESSAGE_DESC:
+    'Después de establecer la configuración relevante, puede enviar información de prueba para verificar su configuración.',
+  SEND_TEST_MESSAGE_SUCCESS_DESC:
+    'La verificación se realizó correctamente, se le envió un mensaje de prueba, verifíquelo',
 
   Mail: 'Correo',
   'SMTP Server Address': 'Dirección del servidor SMTP',
@@ -48,6 +78,8 @@ module.exports = {
   'Webhook URL': 'URL del webhook',
   keywords: 'palabras clave',
   'Keywords Set': 'Conjunto de palabras clave',
+  CONVERSATION_ID_TIP:
+    'El administrador del sistema debe configurar el ID de conversación para obtenerlo. Si necesita configurarlo, comuníquese con el administrador del sistema.',
 
   'Please enter a conversation ID':
     'Ingrese un ID de conversación para agregar',
@@ -56,6 +88,7 @@ module.exports = {
   'This keyword has existed': 'Esta palabra clave ha existido',
   MAX_CID_COUNT: 'Agrega un máximo de {count} ID de conversación',
   MAX_KEYWORD_COUNT: 'Agregue como máximo {count} palabras clave',
+  EMPTY_KEYWORDS_DESC: 'No se agregaron palabras clave',
 
   DINGTALK_DESC:
     'Puede recibir notificaciones de la plataforma a través de Dingding y debe configurar el servidor de envío de Dingding.',
@@ -69,11 +102,21 @@ module.exports = {
   'WeChat API Agent ID': 'ID de agente de Wechat Api',
   'WeChat API Secret': 'El secreto de Wechat Api',
   'User ID': 'ID de usuario',
-  'Department ID': 'ID de departamento',
+  'Party ID': 'ID de departamento',
   'Tag ID': 'ID de etiqueta',
   'User Set': 'Conjunto de usuario',
-  'Department Set': 'Conjunto de departamentos',
+  'Party Set': 'Conjunto de departamentos',
   'Tag Set': 'Conjunto de etiquetas',
+  WECOM_RECEIVER_TOUSER_INPUT_PLACEHOLDER:
+    'Ingrese el ID de usuario para agregar',
+  WECOM_RECEIVER_TOPARTY_INPUT_PLACEHOLDER:
+    'Por favor ingrese el ID de departamento para agregar',
+  WECOM_RECEIVER_TOTAG_INPUT_PLACEHOLDER: 'Ingrese la etiqueta para agregar',
+  RECIPIENT_SETTINGS_TIP:
+    'Se debe configurar al menos un elemento para recibir notificaciones',
+  EMPTY_TOUSER_DESC: 'No se agregó ningún usuario',
+  EMPTY_TOPARTY_DESC: 'No se agregó ningún departamento',
+  EMPTY_TOTAG_DESC: 'No se agregó ninguna etiqueta',
 
   'Please enter the WeChat API Corp ID': 'Por favor ingrese wechat api corp id',
   'Please enter the WeChat API Agent ID':
@@ -97,6 +140,7 @@ module.exports = {
   Channel: 'Canal',
   'Channel Settings': 'Configuración de canal',
   'Channel Set': 'Conjunto de canales',
+  EMPTY_CHANNEL_DESC: 'No se agregó ningún canal',
 
   'Please enter the Slack token': 'Ingrese el token de holgura',
   'Please enter a channel': 'Ingrese un canal para agregar',
