@@ -579,7 +579,9 @@ const ServiceMapper = item => {
     loadBalancerIngress: get(item, 'status.loadBalancer.ingress', []).map(
       lb => lb.ip || lb.hostname
     ),
-    app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+    app:
+      get(item, 'metadata.labels["app.kubernetes.io/name"]') ||
+      get(item, 'metadata.labels.app'),
     _originData: getOriginData(item),
   }
 }

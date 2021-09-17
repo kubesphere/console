@@ -16,39 +16,45 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-import { Panel } from 'components/Base'
+import { InputSearch } from '@kube-design/components'
 import { observer, inject } from 'mobx-react'
+
+import { ScrollLoad } from 'components/Base'
 import styles from './index.scss'
 
 @inject('detailStore')
 @observer
-export default class GatewayConfig extends React.Component {
-  get module() {
-    return this.props.detailStore.module
-  }
-
+export default class GatewayLog extends React.Component {
   get store() {
     return this.props.detailStore
   }
 
-  get detail() {
-    return this.store.gateway.data
+  getLogs = params => {
+    const { cluster, namespace, gatewayName } = this.props.match.params
+    this.store.getGatewayLogs({ cluster, namespace, gatewayName, ...params })
   }
 
   render() {
+    const { data, total, page, isLoading } = this.store.logs
     return (
-      <Panel title={t('Gateway Config')}>
-        <div className={styles.container}>
-          <ul>
-            {Object.entries(this.detail.annotations).map(([key, value]) => (
-              <li key={key}>
-                <span className={styles.key}>{key}</span>
-                <span>{value}</span>
-              </li>
-            ))}
-          </ul>
+      <div>
+        <div className={styles.title}>
+          <InputSearch />
         </div>
-      </Panel>
+        <div className={styles.body}>
+          <ScrollLoad
+            data={data}
+            total={total}
+            page={page}
+            loading={isLoading}
+            onFetch={param => this.getLogs({ ...param })}
+          >
+            {data.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
+          </ScrollLoad>
+        </div>
+      </div>
     )
   }
 }

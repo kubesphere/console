@@ -21,7 +21,14 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import classNames from 'classnames'
-import { Button, Dropdown, Menu, Icon, Loading } from '@kube-design/components'
+import {
+  Button,
+  Dropdown,
+  Menu,
+  Icon,
+  Loading,
+  Tooltip,
+} from '@kube-design/components'
 import { Panel } from 'components/Base'
 import { getLocalTime } from 'utils'
 
@@ -67,7 +74,7 @@ class InternetAccess extends React.Component {
   }
 
   get canEdit() {
-    return this.props.actions.includes('manage')
+    return !this.props.actions.includes('manage')
   }
 
   get itemActions() {
@@ -76,24 +83,24 @@ class InternetAccess extends React.Component {
         key: 'view',
         icon: 'eye',
         text: t('View Gateway'),
-        disabled: false,
       },
       {
         key: 'edit',
         icon: 'pen',
         text: t('Edit Gateway'),
-        // disabled: this.canEdit,
+        disabled: this.canEdit,
       },
       {
         key: 'update',
         icon: 'update',
         text: t('Update Gateway'),
+        disabled: this.canEdit || this.gateway.createTime != null,
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('DELETE'),
-        // disabled: this.canEdit,
+        disabled: this.canEdit,
       },
     ]
   }
@@ -203,12 +210,34 @@ class InternetAccess extends React.Component {
       ? '-'
       : loadBalancerIngress.join(';')
 
+    const title = () => (
+      <span>
+        <span>
+          {this.props.type === 'project'
+            ? t('PROJECT_GATEWAY')
+            : t('CLUSTER_GATEWAY')}
+        </span>
+        {!createTime ? (
+          <Tooltip content={t('UPDATE_GATEWAY_DESC')} placement="top">
+            <Icon
+              name="update"
+              color={{
+                primary: '#ffc781',
+                secondary: '#f5a623',
+              }}
+            />
+          </Tooltip>
+        ) : null}
+      </span>
+    )
+
     return [
       [
         {
           key: 'clusterType',
           icon: 'loadbalancer',
-          title: t('CLUSTER_GATEWAY'),
+          title: title(),
+
           desc: t('Gateway Type'),
         },
         { key: 'author', title: creator || '-', desc: t('Creator') },

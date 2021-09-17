@@ -57,6 +57,9 @@ export default class Gateway extends Base {
   @observable
   podList = new List()
 
+  @observable
+  logs = new List()
+
   @action
   async getGateway(params) {
     this.gateway.isLoading = true
@@ -99,6 +102,51 @@ export default class Gateway extends Base {
   async updateGateway(params, data) {
     const url = `${this.gatewayUrl(params)}/upgrade`
     return this.submitting(request.post(url, data))
+  }
+
+  @action
+  async getGatewayLogs({ cluster, namespace, gatewayName, more, ...params }) {
+    this.logs.isLoading = true
+
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
+    }
+
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
+    }
+
+    params.limit = params.limit || 10
+
+    const result = await request.get(
+      `${this.gatewayUrl({ cluster, namespace, gatewayName })}/log`,
+      {
+        ...params,
+      },
+      {},
+      () => {
+        return []
+      }
+    )
+
+    const data = (get(result, 'items') || []).map(item => ({
+      cluster,
+      namespace: item.metadata.name.split('kubesphere-router-')[1],
+      ...ObjectMapper.pods(item),
+    }))
+
+    this.logs.update({
+      data: more ? [...this.list.data, ...data] : data,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
+
+    return []
   }
 
   @action

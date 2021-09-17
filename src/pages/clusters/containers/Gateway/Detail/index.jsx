@@ -55,7 +55,7 @@ export default class NodeDetail extends React.Component {
     if (workspace) {
       url = `${this.props.match.url.split('gateways')[0]}gateways`
     } else {
-      url = `${this.props.match.url.split('gateways')[0]}cluster`
+      url = `${this.props.match.url.split('gateways')[0]}gateways/cluster`
     }
 
     return url
