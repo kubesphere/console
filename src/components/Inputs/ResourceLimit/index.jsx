@@ -19,7 +19,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get, set, isEqual, isFinite, isEmpty, isNaN } from 'lodash'
+import {
+  get,
+  set,
+  isEqual,
+  isFinite,
+  isEmpty,
+  isNaN,
+  isUndefined,
+} from 'lodash'
 
 import {
   Icon,
@@ -165,10 +173,28 @@ export default class ResourceLimit extends React.Component {
         ),
         memory: isNaN(limitMeo) ? undefined : limitMeo,
       },
-      gpu: {
-        type: get(props, 'defaultValue.gpu.type'),
-        value: get(props, 'defaultValue.gpu.value'),
-      },
+      gpu: ResourceLimit.gpuSetting(props),
+    }
+  }
+
+  static gpuSetting(props) {
+    const value = get(props, 'value', {})
+    const defaultValue = get(props, 'defaultValue', {})
+    if (!isEmpty(value)) {
+      return {
+        type: get(value, 'gpu.type'),
+        value: get(value, 'gpu.value'),
+      }
+    }
+    if (!isEmpty(defaultValue)) {
+      return {
+        type: get(defaultValue, 'gpu.type'),
+        value: get(defaultValue, 'gpu.value'),
+      }
+    }
+    return {
+      type: '',
+      value: '',
     }
   }
 
@@ -533,12 +559,12 @@ export default class ResourceLimit extends React.Component {
     if (isEmpty(workspaceLimitProps)) {
       return false
     }
-    const { limits = {}, requests = {} } = workspaceLimitProps
+    const { limits, requests } = workspaceLimitProps
     if (
-      get(limits, 'cpu', true) &&
-      get(limits, 'memory', true) &&
-      get(requests, 'cpu', true) &&
-      get(requests, 'memory', true)
+      isUndefined(limits.cpu) &&
+      isUndefined(limits.memory) &&
+      isUndefined(requests.cpu) &&
+      isUndefined(requests.memory)
     ) {
       return false
     }
