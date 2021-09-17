@@ -15,13 +15,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import React from 'react'
+import { Panel } from 'components/Base'
+import styles from './index.scss'
 
-import InternetAccess from 'projects/containers/LogCollection/InternetAccess'
-
-export default class Gateway extends React.Component {
+export default class GatewayConfig extends React.Component {
   render() {
-    return <InternetAccess match={this.props.match} actions={[]} />
+    return (
+      <Panel title={t('Gateway Config')}>
+        <div className={styles.container}>
+          <ul>
+            {/* {Object.entries(gateway.annotations).map(([key, value]) => ( */}
+            <li key={2222}>
+              <span className={styles.key}>{22222}</span>
+              <span>{11111}</span>
+            </li>
+            {/* ))} */}
+          </ul>
+        </div>
+      </Panel>
+    )
   }
 }

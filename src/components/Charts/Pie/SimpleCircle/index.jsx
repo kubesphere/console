@@ -19,11 +19,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 
 import { getColorByName } from 'utils/monitoring'
 
-import { ResponsiveContainer, PieChart, Pie, Sector, Tooltip } from 'recharts'
+import {
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Sector,
+  Tooltip,
+  Legend,
+} from 'recharts'
 
 import styles from './index.scss'
 
@@ -141,7 +148,14 @@ export default class SimpleCircle extends React.Component {
   ]
 
   renderCenter() {
-    const { theme, value, total, showRate, showRatio } = this.props
+    const {
+      theme,
+      value,
+      total,
+      showRate,
+      showRatio,
+      renderCustomCenter,
+    } = this.props
     const colorName = this.getPrimaryColor(this.props)
 
     const extra = showRate
@@ -170,7 +184,7 @@ export default class SimpleCircle extends React.Component {
           [styles.white]: theme === 'dark',
         })}
       >
-        {content}
+        {renderCustomCenter ? renderCustomCenter({ value, total }) : content}
       </div>
     )
   }
@@ -230,8 +244,47 @@ export default class SimpleCircle extends React.Component {
     )
   }
 
+  renderLegend() {
+    const { legend, areaColors } = this.props
+
+    return (
+      <Legend
+        wrapperStyle={{
+          bottom: 0,
+          zIndex: 100,
+        }}
+        content={({ payload }) => {
+          const data = [...payload]
+
+          if (!isEmpty(data)) {
+            data[data.length - 1].value = legend[legend.length - 1]
+            data[data.length - 1].color = areaColors[data.length - 1] || '#fff'
+          }
+
+          return (
+            <div className={styles.legend}>
+              {data.map(item => {
+                const color = get(item, 'payload.fill')
+                return (
+                  <div
+                    key={item.dataKey}
+                    data-key={item.dataKey}
+                    className={styles.item}
+                  >
+                    <i style={{ backgroundColor: color }} />
+                    {t(item.value)}
+                  </div>
+                )
+              })}
+            </div>
+          )
+        }}
+      />
+    )
+  }
+
   render() {
-    const { width, height, showCenter } = this.props
+    const { width, height, showCenter, innerRadius = '70%' } = this.props
     const data = this.getData()
 
     return (
@@ -244,7 +297,7 @@ export default class SimpleCircle extends React.Component {
               dataKey="value"
               activeIndex={0}
               activeShape={this.renderActiveShape}
-              innerRadius="70%"
+              innerRadius={innerRadius}
               outerRadius="100%"
               stroke="transparent"
               {...this.state.totalFill}

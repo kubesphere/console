@@ -44,7 +44,6 @@ export default class ContainerPorts extends React.Component {
     const { ports, isFederated } = this.props
 
     if (isEmpty(ports)) return null
-
     return (
       <div className={styles.content}>
         <table className={styles.table}>
