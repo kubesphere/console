@@ -40,6 +40,7 @@ module.exports = {
   MATCH_IF_POSSIBLE: 'Match if possible',
   MUST_MATCH: 'Must match',
   MOUNT_PATH_EMPTY: 'Please enter a mount path.',
+  GPU_TYPE: 'GPU type',
   CONFIGMAP: 'ConfigMap',
   CONFIGMAP_PL: 'ConfigMaps',
   CONFIGMAP_LOW: 'ConfigMap',
