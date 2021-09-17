@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty, omit } from 'lodash'
+import { set, get, isEmpty, omit } from 'lodash'
 import { toJS } from 'mobx'
 import { withProps, JobGpuLimitCancel } from 'utils'
 import { Notify } from '@kube-design/components'
@@ -270,6 +270,11 @@ export default {
     on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
+          const containers = get(data, 'spec.template.spec.containers', [])
+          const newContainers = containers.map(item =>
+            omit(item, 'resources.gpu')
+          )
+          set(data, 'spec.template.spec.containers', newContainers)
           const customMode = get(data, 'spec.template.spec.customMode', {})
           if (!isEmpty(customMode)) {
             delete data.spec.template.spec.customMode
