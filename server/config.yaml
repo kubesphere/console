@@ -1,5 +1,4 @@
 # kubesphere configuration
-
 server:
   http:
     hostname: localhost
@@ -27,6 +26,8 @@ server:
 
   # backend service gateway server
   apiServer:
+    clientID: kubesphere
+    clientSecret: kubesphere
     url: http://ks-apiserver.kubesphere-system.svc
     wsUrl: ws://ks-apiserver.kubesphere-system.svc
 
