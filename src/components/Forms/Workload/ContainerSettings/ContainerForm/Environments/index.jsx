@@ -19,8 +19,17 @@
 import React from 'react'
 import { Form } from '@kube-design/components'
 import { EnvironmentInput } from 'components/Inputs'
+import RootStore from 'stores/root'
+
+import { lazy } from 'utils'
+
+const getActions = lazy(() =>
+  import(/* webpackChunkName: "actions" */ 'actions')
+)
 
 export default class Environments extends React.Component {
+  rootStore = new RootStore()
+
   static defaultProps = {
     prefix: '',
     checkable: true,
@@ -32,8 +41,14 @@ export default class Environments extends React.Component {
     return prefix ? `${prefix}.` : ''
   }
 
+  componentDidMount() {
+    getActions().then(actions =>
+      this.rootStore.registerActions(actions.default)
+    )
+  }
+
   render() {
-    const { checkable, configMaps, secrets } = this.props
+    const { checkable, namespace, isFederated, cluster } = this.props
     return (
       <Form.Group
         label={t('ENVIRONMENT_VARIABLES')}
@@ -42,9 +57,11 @@ export default class Environments extends React.Component {
       >
         <Form.Item>
           <EnvironmentInput
+            rootStore={this.rootStore}
             name={`${this.prefix}env`}
-            configMaps={configMaps}
-            secrets={secrets}
+            namespace={namespace}
+            isFederated={isFederated}
+            cluster={cluster}
           />
         </Form.Item>
       </Form.Group>

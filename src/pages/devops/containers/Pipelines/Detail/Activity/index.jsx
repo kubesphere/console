@@ -212,22 +212,17 @@ export default class Activity extends React.Component {
   }
 
   getActivityDetailLinks = record => {
-    const matchArray = get(record, '_links.self.href', '').match(
-      /\/pipelines\/\S*?(?=\/)\/branches\/(\S*?(?=\/)?)\//
-    )
-    if (isArray(matchArray)) {
-      return `/branches/${encodeURIComponent(record.pipeline)}/runs/${
-        record.id
-      }`
+    const branchName = record?.branch?.url
+    if (branchName) {
+      // multi-branch
+      return `/branches/${encodeURIComponent(branchName)}/runs/${record.id}`
     }
     return `/runs/${record.id}`
   }
 
   getRunhref = record => {
-    const matchArray = get(record, '_links.self.href', '').match(
-      /\/pipelines\/\S*?(?=\/)\/branches\/(\S*?(?=\/)?)\//
-    )
-    if (isArray(matchArray) && !this.isAtBranchDetailPage) {
+    const branchName = record?.branch?.url
+    if (branchName && !this.isAtBranchDetailPage) {
       return `${this.prefix}/branch/${record.pipeline}/run/${record.id}`
     }
     return `${this.prefix}/run/${record.id}`

@@ -16,29 +16,68 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Button } from '@kube-design/components'
 
+import ConfigMapStore from 'stores/configmap'
+import SecretStore from 'stores/secret'
+import FederatedStore from 'stores/federated'
+import { get, isEmpty } from 'lodash'
+import { trigger } from 'utils/action'
+
 import Item from './Item'
 import ArrayInput from '../ArrayInput'
+import styles from './index.scss'
 
+@trigger
 export default class EnvironmentInput extends React.Component {
+  constructor(props) {
+    super(props)
+    this.configMapStore = new ConfigMapStore()
+    this.secretStore = new SecretStore()
+
+    if (props.isFederated) {
+      this.configMapStore = new FederatedStore({
+        module: this.configMapStore.module,
+      })
+      this.secretStore = new FederatedStore({
+        module: this.secretStore.module,
+      })
+    }
+
+    this.state = { configMaps: [], secrets: [] }
+  }
+
   static propTypes = {
     name: PropTypes.string,
     value: PropTypes.array,
     onChange: PropTypes.func,
-    configMaps: PropTypes.array,
-    secrets: PropTypes.array,
   }
 
   static defaultProps = {
     name: '',
     onChange() {},
-    configMaps: [],
-    secrets: [],
+  }
+
+  componentDidMount() {
+    this.handleGetResource()
+  }
+
+  handleGetResource = () => {
+    const { namespace, cluster } = this.props
+    const params = { namespace, cluster }
+
+    Promise.all([
+      this.configMapStore.fetchListByK8s(params),
+      this.secretStore.fetchListByK8s(params),
+    ]).then(([configMaps, secrets]) => {
+      this.setState({
+        configMaps,
+        secrets,
+      })
+    })
   }
 
   handleAddRef = () => {
@@ -56,13 +95,90 @@ export default class EnvironmentInput extends React.Component {
     }
   }
 
+  handleResourceData = (data, type) => {
+    const { value, onChange } = this.props
+    const resourceType =
+      type === 'configmaps' ? 'configMapKeyRef' : 'secretKeyRef'
+
+    const resourceName = get(data, 'metadata.name')
+    const subResource = get(data, 'data')
+    const key = !isEmpty(subResource) ? Object.keys(get(data, 'data'))[0] : ''
+
+    const newValue = { name: key, valueFrom: {} }
+
+    newValue.valueFrom[resourceType] = {
+      name: resourceName,
+      key,
+    }
+
+    if (Array.isArray(value)) {
+      value.push(newValue)
+      onChange([...value])
+    } else {
+      onChange([{ ...newValue }])
+    }
+  }
+
+  handleCreateSecrets = () => {
+    const { namespace, cluster, isFederated } = this.props
+
+    this.trigger('secret.create', {
+      module: 'secrets',
+      namespace,
+      cluster,
+      isFederated,
+      store: this.secretStore,
+      success: async data => {
+        const secrets = await this.secretStore.fetchListByK8s({
+          namespace,
+          cluster,
+        })
+        this.setState(
+          {
+            secrets,
+          },
+          () => {
+            this.handleResourceData(data, 'secrets')
+          }
+        )
+      },
+    })
+  }
+
+  handleCreateConfig = () => {
+    const { namespace, cluster, isFederated } = this.props
+
+    this.trigger('configmap.create', {
+      module: 'configmaps',
+      namespace,
+      cluster,
+      isFederated,
+      store: this.configMapStore,
+      success: async data => {
+        const configMaps = await this.configMapStore.fetchListByK8s({
+          namespace,
+          cluster,
+        })
+        this.setState(
+          {
+            configMaps,
+          },
+          () => {
+            this.handleResourceData(data, 'configmaps')
+          }
+        )
+      },
+    })
+  }
+
   checkItemValid = item =>
     !isEmpty(item) &&
     !isEmpty(item.name) &&
     (!isEmpty(item.value) || !isEmpty(item.valueFrom))
 
   render() {
-    const { configMaps, secrets, ...rest } = this.props
+    const { ...rest } = this.props
+    const { configMaps, secrets } = this.state
 
     return (
       <ArrayInput
@@ -70,9 +186,21 @@ export default class EnvironmentInput extends React.Component {
         checkItemValid={this.checkItemValid}
         addText={t('ADD_ENVIRONMENT_VARIABLE')}
         extraAdd={
-          <Button onClick={this.handleAddRef} data-test="add-env-configmap">
-            {t('USE_CONFIGMAP_OR_SECRET')}
-          </Button>
+          <>
+            <span className={styles.desc}>
+              {t.html('DESC_CREATE_CONFIGMAP_SECRET')}
+              <a onClick={this.handleCreateConfig}>{t('CREATE_CONFIG')}</a>
+              {t('or')}
+              <a onClick={this.handleCreateSecrets}>{t('CREATE_SECRET')}</a>
+            </span>
+            <Button
+              className={styles.extraBtn}
+              onClick={this.handleAddRef}
+              data-test="add-env-configmap"
+            >
+              {t('USE_CONFIGMAP_OR_SECRET')}
+            </Button>
+          </>
         }
         {...rest}
       >

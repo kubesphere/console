@@ -119,7 +119,7 @@ it('renders correctly', () => {
       name: 'xxxyyy',
       valueFrom: {
         configMapKeyRef: {
-          name: 'aaa',
+          name: '',
           key: 'aaa',
         },
       },

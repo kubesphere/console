@@ -22,7 +22,6 @@ import { generateId } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import { getLeftQuota } from 'utils/workload'
 
-import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
 import LimitRangeStore from 'stores/limitrange'
 import FederatedStore from 'stores/federated'
@@ -49,8 +48,6 @@ export default class ContainerSetting extends React.Component {
     this.state = {
       showContainer: false,
       selectContainer: {},
-      configMaps: [],
-      secrets: [],
       limitRange: {},
       imageRegistries: [],
       replicas: this.getReplicas(),
@@ -59,8 +56,6 @@ export default class ContainerSetting extends React.Component {
 
     this.module = props.module
 
-    this.configMapStore = new ConfigMapStore()
-    this.secretStore = new SecretStore()
     this.limitRangeStore = new LimitRangeStore()
     this.imageRegistryStore = new SecretStore()
     this.quotaStore = new QuotaStore()
@@ -68,12 +63,6 @@ export default class ContainerSetting extends React.Component {
     this.projectStore = new ProjectStore()
 
     if (props.isFederated) {
-      this.configMapStore = new FederatedStore({
-        module: this.configMapStore.module,
-      })
-      this.secretStore = new FederatedStore({
-        module: this.secretStore.module,
-      })
       this.limitRangeStore = new FederatedStore({
         module: this.limitRangeStore.module,
       })
@@ -159,8 +148,6 @@ export default class ContainerSetting extends React.Component {
     }
 
     Promise.all([
-      this.configMapStore.fetchListByK8s(params),
-      this.secretStore.fetchListByK8s(params),
       this.limitRangeStore.fetchListByK8s(params),
       isFederated
         ? this.imageRegistryStore.fetchList({
@@ -172,10 +159,8 @@ export default class ContainerSetting extends React.Component {
             ...params,
             fieldSelector: `type=kubernetes.io/dockerconfigjson`,
           }),
-    ]).then(([configMaps, secrets, limitRanges, imageRegistries]) => {
+    ]).then(([limitRanges, imageRegistries]) => {
       this.setState({
-        configMaps,
-        secrets,
         limitRange: get(limitRanges, '[0].limit'),
         imageRegistries,
       })
@@ -425,10 +410,13 @@ export default class ContainerSetting extends React.Component {
   }
 
   renderContainerForm(data) {
-    const { withService, isFederated } = this.props
-    const { configMaps, secrets, limitRange, imageRegistries } = this.state
+    const { withService, isFederated, cluster } = this.props
+    const { limitRange, imageRegistries } = this.state
     const type = !data.image ? 'Add' : 'Edit'
-    const params = { configMaps, secrets, limitRange, imageRegistries }
+    const params = {
+      limitRange,
+      imageRegistries,
+    }
 
     return (
       <ContainerForm
@@ -441,6 +429,7 @@ export default class ContainerSetting extends React.Component {
         withService={withService}
         isFederated={isFederated}
         workspaceQuota={this.workspaceQuota}
+        cluster={cluster}
         {...params}
       />
     )

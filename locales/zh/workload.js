@@ -49,6 +49,7 @@ module.exports = {
   DAEMONSET_EMPTY_DESC: '请创建一个守护进程集。',
   JOB_EMPTY_DESC: '请创建一个任务。',
   CRONJOB_EMPTY_DESC: '请创建一个定时任务。',
+  GPU_TYPE: 'GPU类型',
   'Service Configuration': '服务配置',
 
   'Available number of nodes scheduled': '可用节点数',
@@ -771,6 +772,8 @@ module.exports = {
   CERT_ERROR: '证书错误。',
   IGNORE_CERT_WARN_DESC: '忽略证书验证可能会导致帐户密码被泄露。',
   INVALID_PROJECT: '项目无效。',
+
+  DESC_CREATE_CONFIGMAP_SECRET: '如果没有合适的配置文件或密钥引用, 您可以',
 
   // Pods Page
   NODE_IP: '{node}（{ip}）',

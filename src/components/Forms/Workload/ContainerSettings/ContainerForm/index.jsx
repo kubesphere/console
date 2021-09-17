@@ -163,8 +163,8 @@ export default class ContaineForm extends React.Component {
   render() {
     const {
       className,
-      configMaps,
-      secrets,
+      isFederated,
+      cluster,
       limitRange,
       imageRegistries,
       namespace,
@@ -194,7 +194,11 @@ export default class ContaineForm extends React.Component {
           <ImagePullPolicy />
           {containerType !== 'init' && <HealthChecker />}
           <Commands />
-          <Environments configMaps={configMaps} secrets={secrets} />
+          <Environments
+            namespace={namespace}
+            isFederated={isFederated}
+            cluster={cluster}
+          />
           <SecurityContext />
           <SyncTimeZone data={formData} />
         </Form>

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, omitBy, isEmpty, isString } from 'lodash'
+import { get, set, omitBy, isEmpty, isString, omit, pick } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import QuotaEditModal from 'components/Modals/QuotaEdit'
@@ -61,6 +61,17 @@ export default {
       const quotaStore = new QuotaStore()
       const modal = Modal.open({
         onOk: async data => {
+          data.spec.hard = pick(data.spec.hard, [
+            'limits.cpu',
+            'limits.memory',
+            'requests.cpu',
+            'requests.memory',
+          ])
+          const gpu = get(data, 'spec.gpu')
+          if (gpu.type !== '') {
+            set(data, `spec.hard["requests.${gpu.type}"]`, gpu.value)
+          }
+          data = omit(data, 'spec.gpu')
           const params = {
             name: data.name,
             namespace: detail.name,
@@ -134,6 +145,12 @@ export default {
     }) {
       const modal = Modal.open({
         onOk: async data => {
+          const gpu = data.gpu
+          data = omit(data, 'gpu')
+          detail = omit(detail, 'limit.gpu')
+          if (!isEmpty(gpu.type) && !isEmpty(gpu.value)) {
+            data.default[`${gpu.type}`] = Number(gpu.value)
+          }
           if (isEmpty(detail)) {
             let formTemplate = FORM_TEMPLATES.limitRange()
 

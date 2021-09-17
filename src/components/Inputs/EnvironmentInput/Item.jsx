@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, has, isEmpty } from 'lodash'
+import { get, has, isEmpty, set } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -51,38 +51,84 @@ export default class EnvironmentInputItem extends React.Component {
     return { resourceType, resourceName, resourceKey }
   }
 
+  handleResourceValueForm = resource => {
+    const { configMaps, secrets } = this.props
+
+    const resourceType = resource.startsWith('configmap-')
+      ? 'configMapKeyRef'
+      : 'secretKeyRef'
+
+    const valueFrom = {}
+    let data
+
+    if (resourceType === 'configMapKeyRef') {
+      const name = resource.replace('configmap-', '')
+      data = configMaps.find(item => item.name === name)
+    } else if (resourceType === 'secretKeyRef') {
+      const name = resource.replace('secret-', '')
+      data = secrets.find(item => item.name === name)
+    }
+
+    valueFrom[resourceType] = {
+      name: data ? data.name : '',
+      key: '',
+    }
+
+    return { valueFrom, resourceType }
+  }
+
   handleChange = value => {
-    const { configMaps, secrets, onChange } = this.props
-    const newValue = { name: value.name, valueFrom: {} }
+    const { onChange } = this.props
+    const isEmptyValue = Object.values(value).every(_value => {
+      return isEmpty(_value)
+    })
+
+    if (isEmptyValue) {
+      return
+    }
+
+    const newValue = { name: '', valueFrom: {} }
+
     if (value.resource) {
-      const resourceType = value.resource.startsWith('configmap-')
-        ? 'configMapKeyRef'
-        : 'secretKeyRef'
+      const { valueFrom, resourceType } = this.handleResourceValueForm(
+        value.resource
+      )
 
-      let data
-      if (resourceType === 'configMapKeyRef') {
-        const name = value.resource.replace('configmap-', '')
-        data = configMaps.find(item => item.name === name)
-      } else if (resourceType === 'secretKeyRef') {
-        const name = value.resource.replace('secret-', '')
-        data = secrets.find(item => item.name === name)
-      }
+      newValue.valueFrom = { ...valueFrom }
 
-      if (data) {
-        newValue.valueFrom = {
-          [resourceType]: {
-            name: data.name,
-            key: value.resourceKey,
-          },
-        }
-      }
-
-      if (!newValue.name && value.resourceKey) {
-        newValue.name = value.resourceKey
+      if (value.resourceKey) {
+        newValue.valueFrom[resourceType].key = value.resourceKey
       }
     }
 
+    newValue.name = value.name
     onChange(newValue)
+  }
+
+  handleResourceData = resource => {
+    const { valueFrom } = this.handleResourceValueForm(resource)
+
+    const newValue = {
+      name: this.props.value.name || '',
+      valueFrom: { ...valueFrom },
+    }
+
+    this.props.onChange(newValue)
+  }
+
+  handleKeyData = data => {
+    const newValue = { ...this.props.value }
+    const key = Object.keys(newValue.valueFrom)
+
+    if (key) {
+      set(newValue, `valueFrom.${key}.key`, data)
+    }
+
+    if (!newValue.name) {
+      newValue.name = data
+    }
+
+    this.props.onChange(newValue)
   }
 
   getResourceOptions() {
@@ -173,11 +219,13 @@ export default class EnvironmentInputItem extends React.Component {
             placeholder={t('RESOURCE')}
             options={this.getResourceOptions()}
             valueRenderer={this.valueRenderer}
+            onChange={this.handleResourceData}
           />
           <Select
             name="resourceKey"
             placeholder={t('KEY_IN_RESOURCE')}
             options={this.getKeysOptions({ resourceType, resourceName })}
+            onChange={this.handleKeyData}
           />
         </ObjectInput>
       )
