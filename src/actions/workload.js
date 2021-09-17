@@ -18,7 +18,7 @@
 
 import { get, isEmpty, omit } from 'lodash'
 import { toJS } from 'mobx'
-import { withProps } from 'utils'
+import { withProps, JobGpuLimitCancel } from 'utils'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -114,6 +114,15 @@ export default {
 
       const modal = Modal.open({
         onOk: newObject => {
+          if (kind === 'CronJob') {
+            JobGpuLimitCancel(
+              newObject[kind],
+              'spec.jobTemplate.spec.template.spec.containers'
+            )
+          } else if (kind === 'Job') {
+            JobGpuLimitCancel(newObject[kind], 'spec.template.spec.containers')
+          }
+
           const omitArr = [
             `${kind}.spec.template.totalReplicas`,
             'totalReplicas',

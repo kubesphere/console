@@ -28,6 +28,7 @@ import {
   isEmpty,
   trimStart,
   isNumber,
+  omit,
 } from 'lodash'
 import generate from 'nanoid/generate'
 import moment from 'moment-mini'
@@ -617,4 +618,19 @@ export const compareVersion = (v1 = '', v2 = '') => {
   }
 
   return 0
+}
+
+export const JobGpuLimitCancel = (data, path) => {
+  const containers = get(data, path, [])
+  if (containers.length > 0) {
+    const newContainer = containers.map(item => {
+      let newItem = {}
+      const gpu = get(item, 'resources.gpu', {})
+      newItem = omit(item, 'resources.gpu')
+      set(newItem, `resources.limits["${gpu.type}"]`, gpu.value)
+      set(newItem, `resources.requests["${gpu.type}"]`, gpu.value)
+      return newItem
+    })
+    set(data, path, newContainer)
+  }
 }
