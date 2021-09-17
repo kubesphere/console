@@ -72,13 +72,9 @@ export default class DeleteModal extends React.Component {
       desc,
       isSubmitting,
     } = this.props
-    const typeKey = type ? type.replace(/[- ]/g, '_').toUpperCase() : undefined
-    const typeKeyLow = type
-      ? `${type.replace(/[- ]/g, '_').toUpperCase()}_LOW`
-      : undefined
-    const typeKeyPl = type
-      ? `${type.replace(/[- ]/g, '_').toUpperCase()}_PL`
-      : undefined
+    const typeKey = type || undefined
+    const typeKeyLow = type ? `${type}_LOW` : undefined
+    const typeKeyPl = type ? `${type}_PL` : undefined
 
     let tip =
       desc ||

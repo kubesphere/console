@@ -133,7 +133,7 @@ export default class OPAppDetail extends React.Component {
         value: get(detail, 'app.name', '-'),
       },
       {
-        name: t('Version'),
+        name: t('VERSION'),
         value: get(detail, 'version.name', '-'),
       },
       {
@@ -149,7 +149,7 @@ export default class OPAppDetail extends React.Component {
         ),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.owner,
       },
     ]
@@ -198,7 +198,7 @@ export default class OPAppDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Applications'),
+          label: t('APP_PL'),
           url: this.listUrl,
         },
       ],

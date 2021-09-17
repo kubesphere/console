@@ -26,14 +26,18 @@ export default class ContainerPorts extends Component {
 
     return (
       <div>
-        <div>{`${t('IMAGE')}: ${container.image}`}</div>
+        <div>{t('IMAGE_VALUE', { value: container.image })}</div>
         {container.ports &&
           container.ports.map((port, index) => (
             <div key={index} className={styles.port}>
-              <span>{`${t('PROTOCOL')}: ${port.protocol}`}</span>
-              <span>{`${t('NAME')}: ${port.name}`}</span>
-              <span>{`${t('CONTAINER_PORT')}: ${port.containerPort}`}</span>
-              <span>{`${t('SERVICE_PORT')}: ${port.servicePort}`}</span>
+              <span>{t('PROTOCOL_VALUE', { value: port.protocol })}</span>
+              <span>{t('NAME_VALUE', { value: port.name })}</span>
+              <span>
+                {t('CONTAINER_PORT_VALUE', { value: port.containerPort })}
+              </span>
+              <span>
+                {t('SERVICE_PORT_VALUE', { value: port.servicePort })}
+              </span>
             </div>
           ))}
       </div>

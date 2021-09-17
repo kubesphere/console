@@ -128,10 +128,8 @@ export default class SelectorsInput extends React.Component {
       return null
     }
 
-    let tips = t('The current selector')
-
     if (count === 0) {
-      tips += t(' has no corresponding workload.')
+      const tips = t('NO_WORKLOAD_MATCH_SELECTOR')
       return <Alert className={styles.alert} message={tips} type="warning" />
     }
 
@@ -139,26 +137,24 @@ export default class SelectorsInput extends React.Component {
       .map(([key, value]) => `${key}=${value}`)
       .join(', ')
 
-    tips += `(${labelStr})`
-    tips += t('SERVICE_SELECTOR_AFFECT_2', { count })
+    const tips =
+      count === 1
+        ? t('WORKLOADS_MATCH_SELECTOR_SI', { selector: labelStr, count })
+        : t('WORKLOADS_MATCH_SELECTOR_PL', { selector: labelStr, count })
 
     const popContent = (
       <div>
-        <p>{t('TOTAL_WORKLOAD', { count })}</p>
+        <p>{t('TOTAL_WORKLOADS_VALUE', { count })}</p>
         {relatedDeployments.map(({ name }) => (
           <p key={`deploy-${name}`}>
-            {t('DEPLOYMENTS')}: {name}
+            {t('DEPLOYMENTS_VALUE', { value: name })}
           </p>
         ))}
         {relatedDaemonSets.map(({ name }) => (
-          <p key={`ds-${name}`}>
-            {t('STATEFULSETS')}: {name}
-          </p>
+          <p key={`ds-${name}`}>{t('STATEFULSETS_VALUE', { value: name })}</p>
         ))}
         {relatedStatefulSets.map(({ name }) => (
-          <p key={`sts-${name}`}>
-            {t('STATEFULSETS')}: {name}
-          </p>
+          <p key={`sts-${name}`}>{t('STATEFULSETS_VALUE', { value: name })}</p>
         ))}
       </div>
     )
@@ -168,7 +164,7 @@ export default class SelectorsInput extends React.Component {
         <p className="inline-block">{tips}</p>
         &nbsp;
         <Tooltip content={popContent} trigger="click">
-          <a className="text-green">{t('View')}</a>
+          <a className="text-green">{t('VIEW_DETAILS')}</a>
         </Tooltip>
       </div>
     )

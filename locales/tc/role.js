@@ -23,7 +23,7 @@ module.exports = {
   'Role Management': '角色管理',
   'Account Role': '帳戶角色',
   PLATFORM_ROLE: 'Platform Role',
-  PLATFORM_ROLES: 'Platform Roles',
+  PLATFORM_ROLE_PL: 'Platform Roles',
   'Platform Roles': 'Platform Roles',
   'Account Roles': '帳戶角色',
   CREATE_ROLE: '創建角色',

@@ -34,7 +34,7 @@ import WorkloadStore from 'stores/workload'
 @withClusterList({
   store: new WorkloadStore('cronjobs'),
   module: 'cronjobs',
-  name: 'CronJob',
+  name: 'CRONJOB',
   rowKey: 'uid',
 })
 export default class CronJobs extends React.Component {
@@ -54,7 +54,7 @@ export default class CronJobs extends React.Component {
         },
         {
           value: 'cronjobs',
-          label: t('CRONJOBS'),
+          label: t('CRONJOB_PL'),
         },
       ],
     }
@@ -106,7 +106,7 @@ export default class CronJobs extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

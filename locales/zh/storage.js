@@ -206,9 +206,9 @@ module.exports = {
   'Snapshots Message': '快照信息',
 
   VolumeSnapshots: '存储卷快照',
-  VOLUMESNAPSHOT_DESC:
+  VOLUME_SNAPSHOT_DESC:
     '存储卷快照是存储卷在特定时间点的副本，可使用快照中的数据预配新存储卷，或者将存储卷恢复至快照捕捉到的先前状态。',
-  VOLUMESNAPSHOT_EMPTY_DESC: '请前往存储卷详情页面创建一个存储卷快照。',
+  VOLUME_SNAPSHOT_EMPTY_DESC: '请前往存储卷详情页面创建一个存储卷快照。',
   WHAT_IS_VOLUME_SNAPSHOTS: '什么是存储卷快照',
 
   CREATE_VOLUME_BY_STORAGE_CLASS: '通过存储类型',

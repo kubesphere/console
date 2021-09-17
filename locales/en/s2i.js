@@ -50,7 +50,7 @@ module.exports = {
   'Image Artifacts': 'Image Artifacts',
   'Image Builder': 'Image Builder',
   IMAGE_BUILDER: 'Image Builder',
-  'Image Builders': 'Image Builder',
+  IMAGE_BUILDER_PL: 'Image Builder',
   'Image Building': 'Image Building',
   'Image building failed': 'Image building failed',
   'Image building succeeded': 'Image building succeeded',

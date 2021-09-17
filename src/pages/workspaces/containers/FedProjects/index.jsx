@@ -32,7 +32,7 @@ import ProjectStore from 'stores/project'
 
 @withList({
   store: new FederatedStore({ module: 'namespaces' }),
-  name: 'Multi-cluster Project',
+  name: 'MULTI_CLUSTER_PROJECT',
   module: 'projects',
   injectStores: ['rootStore', 'workspaceStore'],
 })
@@ -118,7 +118,7 @@ export default class Projects extends React.Component {
           text: t('DELETE'),
           onClick: () =>
             trigger('federated.project.delete.batch', {
-              type: t(name),
+              type: name,
               success: getData,
               rowKey: 'name',
               ...this.props.match.params,

@@ -20,7 +20,10 @@ module.exports = {
   'Create DevOps Project': 'Create DevOps Project',
   'Delete DevOps Project': 'Delete DevOps Project',
   'DevOps Basic Info': 'DevOps Basic Information',
-  'DevOps Credentials': 'DevOps Credentials',
+  DEVOPS_CREDENTIAL_PL: 'DevOps Credentials',
+  DEVOPS_CREDENTIAL_EMPTY_DESC: 'Please create a DevOps credential.',
+  DEVOPS_CREDENTIAL: 'DevOps Credential',
+  DEVOPS_CREDENTIAL_LOW: 'DevOps credential',
   'DevOps Member': 'DevOps Member',
   'DevOps Members': 'DevOps Members',
   'DevOps Name': 'DevOps Name',
@@ -31,8 +34,8 @@ module.exports = {
   MANAGER: 'Manager',
 
   DEVOPS_PROJECT_MANAGEMENT: 'Project Management',
-  DEVOPS_PROJECT_MEMBERS: 'Project Members',
-  DEVOPS_PROJECT_ROLES: 'Project Roles',
+  DEVOPS_PROJECT_MEMBER_PL: 'DevOps Project Members',
+  DEVOPS_PROJECT_ROLE_PL: 'DevOps Project Roles',
 
   DEVOPS_BASEINFO_DESC:
     'Please input the basic information of the DevOps project',

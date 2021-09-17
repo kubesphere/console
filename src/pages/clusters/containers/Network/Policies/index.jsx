@@ -30,7 +30,7 @@ import { ICON_TYPES } from 'utils/constants'
 
 @withClusterList({
   store: new NetworkPolicyStore('networkpolicies'),
-  name: 'Network Policy',
+  name: 'NETWORK_POLICY',
   module: 'networkpolicies',
   rowKey: 'key',
 })
@@ -91,7 +91,7 @@ export default class NetworkPolicies extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
             success: routing.query,
           }),

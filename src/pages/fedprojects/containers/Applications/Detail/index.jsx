@@ -126,7 +126,7 @@ export default class AppDetail extends React.Component {
         value: appName,
       },
       {
-        name: t('Version'),
+        name: t('VERSION'),
         value: detail.version,
       },
       {
@@ -138,7 +138,7 @@ export default class AppDetail extends React.Component {
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]
@@ -159,7 +159,7 @@ export default class AppDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Applications'),
+          label: t('APP_PL'),
           url: this.listUrl,
         },
       ],

@@ -23,7 +23,7 @@ module.exports = {
   PHYSICAL_RESOURCES_MONITORING: '物理資源監控',
   SERVICE_COMPONENT_MONITORING: '服務組件監控',
   'Application Resources': '應用資源',
-  APPLICATION_RESOURCES: '應用資源監控',
+  APPLICATION_RESOURCE_PL: '應用資源監控',
 
   NODE_COUNT: '節點數量',
   'Cluster Status': '集群狀態',
@@ -73,7 +73,10 @@ module.exports = {
 
   Interval: '間隔',
   Last: '最近',
-  TIME_S: '{num} 秒',
+  LAST_TIME_S: '最近 {num} 秒',
+  LAST_TIME_M: '最近 {num} 分鐘',
+  LAST_TIME_H: '最近 {num} 小時',
+  LAST_TIME_D: '最近 {num} 天',
   TIME_M: '{num} 分鐘',
   TIME_H: '{num} 小時',
   TIME_D: '{num} 天',
@@ -201,7 +204,7 @@ module.exports = {
   CustomMonitorDashboards: '自定義監控面板',
   CustomMonitorDashboard: '自定義監控面板',
   CUSTOM_MONITORING: '自定義監控',
-  CUSTOM_MONITOR_DESC:
+  CUSTOM_MONITORING_DASHBOARD_DESC:
     'Custom monitoring provides application monitoring templates. You can customize monitoring dashboards based on your needs.',
   CUSTOMMONITORDASHBOARD_CREATE_DESC:
     'You can customize application monitoring dashboards based on your needs.',
@@ -215,7 +218,6 @@ module.exports = {
   // Cluster Status
   DISK_USAGE: 'Disk Usage',
   POD_COUNT: 'Pods',
-  USAGE: 'Usage',
   API_SERVER: 'API Server',
   AVERAGE_CPU_LOAD: 'Average CPU Load',
   POD_USAGE: 'Pod Usage',

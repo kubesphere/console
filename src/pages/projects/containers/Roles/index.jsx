@@ -31,7 +31,7 @@ import RoleStore from 'stores/role'
 @withProjectList({
   store: new RoleStore(),
   module: 'roles',
-  name: 'Project Role',
+  name: 'PROJECT_ROLE',
 })
 export default class Roles extends React.Component {
   componentDidMount() {
@@ -78,7 +78,7 @@ export default class Roles extends React.Component {
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            type: t(name),
+            type: name,
             cluster: this.props.match.params.cluster,
             namespace: this.props.match.params.namespace,
             success: routing.query,

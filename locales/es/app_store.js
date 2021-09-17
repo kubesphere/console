@@ -17,9 +17,9 @@
  */
 
 module.exports = {
-  'App ID': 'ID de la aplicación',
+  APP_ID: 'ID de la aplicación',
   'App Readme': 'LEEME (README) de la aplicación',
-  'App Store': 'Tienda de aplicaciones',
+  APP_STORE: 'Tienda de aplicaciones',
   'App Store Settings': 'Configuración de la tienda de aplicaciones',
   Back: 'Atrás',
   Categories: 'Categorías',
@@ -27,11 +27,13 @@ module.exports = {
   'Config files': 'Ficheros de configuración',
   Contact: 'Contacto',
   Developer: 'Desarrollador',
+  DEVELOPER_VALUE: 'Desarrollador: {value}',
+  LATEST_VALUE: 'Latest: {value}',
   'Find an app': 'Encuentra la aplicación',
   'Install and Deploy': 'Instalar y desplegar',
   Keywords: 'Palabras clave',
   Latest: 'Último',
-  'Published Date': 'Fecha de Publicación',
+  RELEASE_DATE: 'Fecha de Publicación',
   Screenshots: 'Capturas de pantalla',
   'Version Number': 'Número de versión',
   VERSION_LIST_DES: 'Only display the last 10 versions',

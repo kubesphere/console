@@ -31,7 +31,7 @@ import ServiceAccountStore from 'stores/serviceAccount'
 @withClusterList({
   store: new ServiceAccountStore(),
   module: 'serviceaccounts',
-  name: 'ServiceAccount',
+  name: 'SERVICE_ACCOUNT',
   rowKey: 'uid',
 })
 export default class ServiceAccounts extends React.Component {
@@ -77,7 +77,7 @@ export default class ServiceAccounts extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

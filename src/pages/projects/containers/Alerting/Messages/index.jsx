@@ -251,7 +251,7 @@ export default class AlertingPolicy extends React.Component {
           tips={this.tips}
           tabs={namespace ? {} : this.tabs}
           icon="loudspeaker"
-          title={t('ALERTING_MESSAGES')}
+          title={t('ALERTING_MESSAGE_PL')}
           description={t('ALERT_MESSAGE_DESC')}
         />
         <Table

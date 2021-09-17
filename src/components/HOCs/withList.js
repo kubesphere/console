@@ -37,7 +37,7 @@ export default function withList(options) {
         this.module = options.module || ''
         this.authKey = options.authKey || options.module
         this.name = options.name || ''
-        this.title = `${options.name}s`
+        this.title = `${options.name}_PL`
         this.rowKey = options.rowKey || 'name'
         this.query = {}
       }
@@ -100,7 +100,7 @@ export default function withList(options) {
               action: 'delete',
               onClick: () =>
                 this.trigger('resource.batch.delete', {
-                  type: t(this.name),
+                  type: this.name,
                   rowKey: this.rowKey,
                   success: this.routing.query,
                 }),

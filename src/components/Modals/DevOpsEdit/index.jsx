@@ -108,7 +108,7 @@ export default class DevOpsEditModal extends React.Component {
         >
           <Input name="name" disabled />
         </Form.Item>
-        <Form.Item label={t('Creator')} desc={t('DEVOPS_ADMIN_DESC')}>
+        <Form.Item label={t('CREATOR')} desc={t('DEVOPS_ADMIN_DESC')}>
           <Select name="creator" options={this.getMembersOptions()} disabled />
         </Form.Item>
         <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>

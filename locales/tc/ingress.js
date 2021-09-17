@@ -22,37 +22,40 @@ module.exports = {
   ROUTE_PL: 'Routes',
   ROUTE_LOW: 'Route',
   'Create Route': '創建應用路由',
-  ADD_PATH_TIP: '請添加至少一個路徑。',
+  PATH_EMPTY_DESC: '請添加至少一個路徑。',
   Rules: '規則',
   EDIT_RULES_TCAP: '編輯規則',
   EDIT_ANNOTATION: '編輯注解',
-  ROUTE_RULES_TCAP: '路由規則',
+  ROUTING_RULES: '路由規則',
   GATEWAY_ADDRESS_TCAP: '網關地址',
-  DOMAIN_NAME_TIP: '請輸入域名。',
+  DOMAIN_NAME_EMPTY_DESC: '請輸入域名。',
   'Click to visit': '點擊訪問',
   PATH_SERVICE_TIP: '服務',
-  ADD_PATH_TCAP: '添加路徑',
+  ADD_PATH_TCAP: '添加路径',
+  EDIT_RULE: 'Edit Rule',
   'Please select a service': '請選擇一個服務',
   'Add Path': '添加 Path',
   ADD_ANNOTATION: '添加注解',
 
-  SET_ROUTE_RULE_TCAP: '設置路由規則',
+  SET_ROUTING_RULES: '設置路由規則',
 
   AUTO_GENERATE_TCAP: '自動生成',
   SPECIFY_DOMAIN_TCAP: '指定域名',
 
   'Unable to access': '無法訪問',
 
-  INVALID_DOMAIN_TIP: '域名格式錯誤',
+  INVALID_DOMAIN_DESC: '域名格式錯誤',
 
   'Gateway IP': '網關 IP',
   'Gateway Type': '網關類型',
 
   MODE_TCAP: '模式',
   PATH_PL: '路徑',
+  PATH_SI: '路徑',
+  PATH_VALUE: '路徑：{value}',
   DOMAIN_NAME_TCAP: '域名',
 
-  INVALID_PATH_TIP: '請填寫正確路徑。',
+  INVALID_PATH_DESC: '請填寫正確路徑。',
 
   ROUTE_DESC:
     '應用路由提供一種聚合服務的方式，您可以將集群的内部服務通過一個外部可訪問的 IP 地址暴露給集群外部。',
@@ -69,12 +72,12 @@ module.exports = {
   GATEWAY_APPLICATION_GOVERNANCE_TIP:
     '如果您不需要使用應用治理的功能，無需打開此項；如果您需要使用應用治理的 Tracing 功能，請打開開此項。打開此項後，如果您的應用路由無法訪問，請檢查應用路由中是否添加 `nginx.ingress.kubernetes.io/service-upstream: true` 注解，如無，請手動添加。',
 
-  ADD_ROUTE_RULE_DESC: '添加一個路由規則將域名映射至服務。',
+  ADD_ROUTING_RULE_DESC: '添加一個路由規則將域名映射至服務。',
 
   UNABLE_TO_ACCESS_TIP:
     '● 請確保您設置的域名可以解析到訪問入口的 IP 地址;<br/>● 如果在私有雲環境中，請修改本地的 host 檔案，並通過 域名+節點端口 的方式來訪問;<br/>● 通過配置 DNS 訪問，將域名修改為 hostname + 網關地址 + nip.io，然後可以通過 hostname.網關地址.nip.io:節點端口 的形式來訪問服務;<br/>● 如果通過域名訪問被拒絕，請確認您的域名是真實而且已經申請通過。',
 
-  NO_INTERNET_ACCESS_TIP:
+  NO_GATEWAY_DESC:
     '若要使用自動生成模式，請聯系項目管理員在此項目的高級設置中設置網關訪問方式。',
   UNABLE_CREATE_ROUTE_TIP:
     '目前項目中沒有找到可用的網關地址，無法創建應用路由。',

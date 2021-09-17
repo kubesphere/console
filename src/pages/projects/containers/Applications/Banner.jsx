@@ -67,11 +67,11 @@ export default class AppBanner extends Component {
       options: [
         {
           value: 'template',
-          label: t('App Templates'),
+          label: t('TEMPLATE_BASED_APP_PL'),
         },
         {
           value: 'composing',
-          label: t('Composing Apps'),
+          label: t('COMPOSED_APP_PL'),
         },
       ],
     }
@@ -93,15 +93,15 @@ export default class AppBanner extends Component {
   get tips() {
     return [
       {
-        title: t('Application Type'),
-        description: t('APPLICATION_TYPE_DESC'),
+        title: t('APP_TYPES_Q'),
+        description: t('APP_TYPES_A'),
       },
       {
-        title: t('HOW_TO_USE_APPLICATION_GOVE_Q'),
-        description: t('HOW_TO_USE_APPLICATION_GOVE_A'),
+        title: t('HOW_TO_USE_APP_GOVERN_Q'),
+        description: t('HOW_TO_USE_APP_GOVERN_A'),
         operation: this.canDeployComposingApp ? (
           <Button onClick={this.showDeploySampleApp}>
-            {t('Deploy Sample App')}
+            {t('DEPLOY_SAMPLE_APP')}
           </Button>
         ) : null,
         closable: false,

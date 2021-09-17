@@ -31,7 +31,7 @@ import RoleStore from 'stores/role'
 @withList({
   store: new RoleStore(),
   module: 'roles',
-  name: 'DevOps Role',
+  name: 'DEVOPS_PROJECT_ROLE',
   injectStores: ['rootStore', 'devopsStore'],
 })
 export default class Secrets extends React.Component {
@@ -99,7 +99,7 @@ export default class Secrets extends React.Component {
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            type: t(name),
+            type: name,
             namespace: this.devops,
             cluster: this.cluster,
             workspace: this.props.match.params.workspace,

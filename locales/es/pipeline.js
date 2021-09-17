@@ -86,7 +86,8 @@ module.exports = {
   'credential Id': 'ID de autentificación',
   'Credential Id': 'ID de autentificación',
   'Credential ID': 'ID de autentificación',
-  Credentials: 'Autentificación',
+  CREDENTIAL_PL: 'Autentificación',
+  CREDENTIAL: 'Credential',
   'Credentials Management': 'Gestión de credenciales',
   credentialsId: 'credenciales',
   critical: 'crítico',
@@ -207,7 +208,7 @@ module.exports = {
   passphraseVariable: 'passphraseVariable',
   'Password Variable': 'Variable de contraseña',
   passwordVariable: 'Variable de contraseña',
-  Pipeline: 'Pipeline',
+  PIPELINE: 'Pipeline',
   'Pipeline clone timeout (in minutes)':
     'Tiempo de espera de clonación de pipeline agotado (en minutos)',
   'Pipeline config file not found':
@@ -218,7 +219,7 @@ module.exports = {
   'Pipeline List': 'Lista de Pipelines',
   'Pipeline Run Logs': 'Registros de ejecución de Pipelines',
   'pipeline syntax error': 'error de sintaxis en la Pipeline',
-  Pipelines: 'Pipelines',
+  PIPELINE_PL: 'Pipelines',
   'Please add at least one step.': 'Por favor agregue al menos un paso.',
   'Please input images name': 'Por favor introduce el nombre de las imágenes',
   'Please input pipeline name': 'Por favor introduce el nombre de la pipeline',

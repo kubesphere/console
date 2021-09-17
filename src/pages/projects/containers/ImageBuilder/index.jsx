@@ -34,7 +34,7 @@ import S2IBuilderStore from 'stores/s2i/builder'
 @withProjectList({
   store: new S2IBuilderStore('s2ibuilders'),
   module: 's2ibuilders',
-  name: 'Image Builder',
+  name: 'IMAGE_BUILDER',
 })
 export default class ImageBuilders extends React.Component {
   get store() {
@@ -82,7 +82,7 @@ export default class ImageBuilders extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

@@ -172,7 +172,7 @@ export default class Groups extends React.Component {
     return (
       <Banner
         icon="group"
-        title={t('DEPARTMENT_MANAGEMENT')}
+        title={t('DEPARTMENT_PL')}
         description={t('DEPARTMENT_MANAGEMENT_DESC')}
       />
     )

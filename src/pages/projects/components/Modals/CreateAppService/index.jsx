@@ -41,8 +41,8 @@ export default class ServiceCreateModal extends React.Component {
       workloadModule: 'deployments',
       groups: [
         {
-          name: 'SERVICE_TYPE',
-          description: 'SERVICE_TYPE',
+          name: 'SELECT_SERVICE_TYPE',
+          description: 'APP_SELECT_SERVICE_TYPE_DESC',
           options: [
             {
               icon: 'backup',

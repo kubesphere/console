@@ -250,7 +250,7 @@ export default class VersionItem extends React.PureComponent {
     return (
       <div className={styles.itemExtra}>
         <Tabs type="button" activeName={tab} onChange={this.handleTabChange}>
-          <TabPanel label={t('Chart Files')} name="configFile">
+          <TabPanel label={t('CHART_FILES')} name="configFile">
             <ConfigFile
               appId={detail.app_id}
               versionId={detail.version_id}

@@ -109,14 +109,14 @@ class ResourceUsage extends React.Component {
 
   get timeOptions() {
     return [
-      { label: `${t('Last')} ${t('TIME_H', { num: 1 })}`, value: 3600 },
-      { label: `${t('Last')} ${t('TIME_H', { num: 2 })}`, value: 7200 },
-      { label: `${t('Last')} ${t('TIME_H', { num: 5 })}`, value: 18000 },
-      { label: `${t('Last')} ${t('TIME_H', { num: 12 })}`, value: 43200 },
-      { label: `${t('Last')} ${t('TIME_D', { num: 1 })}`, value: 86400 },
-      { label: `${t('Last')} ${t('TIME_D', { num: 2 })}`, value: 172800 },
-      { label: `${t('Last')} ${t('TIME_D', { num: 3 })}`, value: 259200 },
-      { label: `${t('Last')} ${t('TIME_D', { num: 7 })}`, value: 604800 },
+      { label: t('LAST_TIME_H', { num: 1 }), value: 3600 },
+      { label: t('LAST_TIME_H', { num: 2 }), value: 7200 },
+      { label: t('LAST_TIME_H', { num: 5 }), value: 18000 },
+      { label: t('LAST_TIME_H', { num: 12 }), value: 43200 },
+      { label: t('LAST_TIME_D', { num: 1 }), value: 86400 },
+      { label: t('LAST_TIME_D', { num: 2 }), value: 172800 },
+      { label: t('LAST_TIME_D', { num: 3 }), value: 259200 },
+      { label: t('LAST_TIME_D', { num: 7 }), value: 604800 },
     ]
   }
 

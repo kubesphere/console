@@ -245,7 +245,7 @@ export default class VersionList extends React.Component {
     const { hideHeader, hideFooter } = this.props
 
     return (
-      <Panel className={styles.main} title={t('Version')}>
+      <Panel className={styles.main} title={t('VERSION')}>
         <div className={styles.inner}>
           {!hideHeader && this.renderHeader()}
           {this.renderContent()}

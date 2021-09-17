@@ -31,7 +31,7 @@ export default class Help extends React.Component {
       <div className={classNames(styles.wrapper, className)}>
         <div className={styles.header}>
           <Icon name="question" size={24} />
-          {t('Help Information')}
+          {t('TIPS')}
         </div>
         <div className={styles.tip}>
           <a
@@ -39,7 +39,7 @@ export default class Help extends React.Component {
             target="_blank"
             rel="noreferrer noopener"
           >
-            💁 {t('How do I invite other members to the current project?')}
+            💁 {t('HOW_TO_INVITE_USERS')}
           </a>
         </div>
         <div className={styles.tip}>
@@ -48,7 +48,7 @@ export default class Help extends React.Component {
             target="_blank"
             rel="noreferrer noopener"
           >
-            💁 {t('How do I set the project gateway?')}
+            💁 {t('HOW_TO_SET_PROJECT_GATEWAY')}
           </a>
         </div>
       </div>

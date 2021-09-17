@@ -24,7 +24,7 @@ module.exports = {
   Direction: 'Direction',
   Egress: 'Egress',
   Ingress: 'Ingress',
-  'Network Isolation': 'Network Isolation',
+  NETWORK_ISOLATION: 'Network Isolation',
   'Network Policy': 'Network Policy',
   NETWORK_POLICY: 'Network Policy',
   NETWORK_POLICY_PL: 'Network Policies',

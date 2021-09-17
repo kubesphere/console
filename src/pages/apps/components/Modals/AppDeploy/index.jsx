@@ -85,13 +85,13 @@ export default class AppDeploy extends React.Component {
   get steps() {
     return [
       {
-        title: 'Basic Info',
+        title: 'BASIC_INFORMATION',
         component: BasicInfo,
         required: true,
         isForm: true,
       },
       {
-        title: 'App Config',
+        title: 'APP_SETTINGS',
         component: AppConfig,
         required: true,
       },
@@ -208,7 +208,7 @@ export default class AppDeploy extends React.Component {
             onClick={this.handleOk}
             loading={this.props.store.isSubmitting}
           >
-            {t('Deploy')}
+            {t('DEPLOY')}
           </Button>
         )}
       </div>

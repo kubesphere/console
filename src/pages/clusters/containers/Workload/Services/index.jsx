@@ -33,7 +33,7 @@ import ServiceStore from 'stores/service'
 @withClusterList({
   store: new ServiceStore(),
   module: 'services',
-  name: 'Service',
+  name: 'SERVICE',
   rowKey: 'uid',
 })
 export default class Services extends React.Component {
@@ -78,7 +78,7 @@ export default class Services extends React.Component {
       {
         key: 'editGateway',
         icon: 'ip',
-        text: t('EDIT_INTERNET_ACCESS'),
+        text: t('EDIT_EXTERNAL_ACCESS'),
         action: 'edit',
         show: record =>
           this.showAction(record) && record.type === SERVICE_TYPES.VirtualIP,
@@ -95,7 +95,7 @@ export default class Services extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -159,7 +159,7 @@ export default class Services extends React.Component {
         },
       },
       {
-        title: t('NETWORK_ACCESS'),
+        title: t('EXTERNAL_ACCESS'),
         dataIndex: 'specType',
         isHideable: true,
         width: '20%',

@@ -164,7 +164,7 @@ export default class ProjectDetail extends React.Component {
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator || '-',
       },
     ]
@@ -189,7 +189,7 @@ export default class ProjectDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('NAV_PROJECTS'),
+          label: t('PROJECT_PL'),
           url: this.listUrl,
         },
       ],

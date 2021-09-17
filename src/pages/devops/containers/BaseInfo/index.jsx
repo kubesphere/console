@@ -220,7 +220,7 @@ class BaseInfo extends React.Component {
           </div>
           <div className={styles.item}>
             <div>{detail.creator || '-'}</div>
-            <p>{t('Creator')}</p>
+            <p>{t('CREATOR')}</p>
           </div>
           <div className={styles.item}>
             <div>
@@ -247,14 +247,14 @@ class BaseInfo extends React.Component {
               <Icon name="role" size={40} />
               <div className={styles.item}>
                 <div>{roleCount}</div>
-                <p>{t('DEVOPS_PROJECT_ROLES')}</p>
+                <p>{t('DEVOPS_PROJECT_ROLE_PL')}</p>
               </div>
             </div>
             <div className={styles.contentItem}>
               <Icon name="group" size={40} />
               <div className={styles.item}>
                 <div>{memberCount}</div>
-                <p>{t('DEVOPS_PROJECT_MEMBERS')}</p>
+                <p>{t('DEVOPS_PROJECT_MEMBER_PL')}</p>
               </div>
             </div>
           </div>

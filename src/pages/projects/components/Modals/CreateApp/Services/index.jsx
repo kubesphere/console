@@ -188,10 +188,9 @@ export default class Services extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.step}>
-          <div>{t('SERVICE_COMPONENTS')}</div>
+          <div>{t('SERVICE_PL')}</div>
           <p>{t('APPLICATION_SERVICE_DESC')}</p>
         </div>
-        <div className={styles.title}>{t('Application Components')}</div>
         <div className={styles.components}>
           <ServiceList
             data={components}

@@ -60,7 +60,7 @@ export default class AdminDashboard extends React.Component {
     return (
       <Loading spinning={isLoading}>
         <>
-          <Panel className={styles.info} title={t('Platform Info')}>
+          <Panel className={styles.info} title={t('PLATFORM_INFORMATION')}>
             <Text
               title={get(globals, 'config.version.kubesphere')}
               description={t('Platform Version')}

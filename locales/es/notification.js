@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Notification Management': 'Gestión de notificaciones',
+  NOTIFICATION_MANAGEMENT: 'Gestión de notificaciones',
   'Server Settings': 'Configuración del servidor',
   'Recipient Settings': 'Configuración del receptor',
   'Receive Notification': 'Recibir notificación',

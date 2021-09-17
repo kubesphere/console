@@ -34,7 +34,7 @@ import WorkloadStore from 'stores/workload'
 @withProjectList({
   store: new WorkloadStore('daemonsets'),
   module: 'daemonsets',
-  name: 'Workload',
+  name: 'WORKLOAD',
 })
 export default class DaemonSets extends React.Component {
   get prefix() {
@@ -108,7 +108,7 @@ export default class DaemonSets extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -127,7 +127,7 @@ export default class DaemonSets extends React.Component {
           action: 'delete',
           onClick: () =>
             trigger('workload.batch.delete', {
-              type: t(name),
+              type: name,
               rowKey,
             }),
         },

@@ -57,8 +57,8 @@ export default class ServiceComponents extends React.Component {
         ))}
         <div className={styles.add} onClick={this.handleAdd}>
           <Text
-            title={t('Add Service')}
-            description={t('Add stateful or stateless services')}
+            title={t('CREATE_SERVICE')}
+            description={t('CREATE_SERVICE_DESC')}
           />
         </div>
       </div>

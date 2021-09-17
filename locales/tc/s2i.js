@@ -110,7 +110,7 @@ module.exports = {
   'Upload Percent': '上傳進度',
   'File Size': '檔案大小',
   'Download Artifact': '下載成品',
-  'Image Builders': '構建鏡像',
+  IMAGE_BUILDER_PL: '構建鏡像',
   'Artifact Type': '成品類型',
   IMAGE_BUILDER_DESC:
     '構建是將代碼或者成品容器化的工具，僅需要通過簡單的設置即可將成品或代碼直接生成容器鏡像。',

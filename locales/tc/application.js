@@ -18,18 +18,22 @@
 
 module.exports = {
   application: '應用',
-  Applications: '應用',
-  'Deployed Applications': '已部署應用',
-  'Deploy New Application': '部署新應用',
+  APP_PL: '應用',
+  DEPLOYED_APPS: '已部署應用',
+  CREATE_APP: '部署新應用',
   'Deploy App': '部署應用',
-  'Create Composing Application': '構建應用',
+  CREATE_COMPOSED_APP: '構建應用',
   'App Template': '應用模板',
   APP_TEMPLATE: 'App Template',
   APP_TEMPLATE_PL: 'App Templates',
+  TEMPLATE_BASED_APP_PL: 'Template-based Apps',
+  NO_TEMPLATE_BASED_APP_FOUND: 'No Templated-based App Found',
+  TEMPLATE_BASED_APP_EMPTY_DESC:
+    'Please create an app from the KubeSphere App Store or an app template.',
   APP_TEMPLATE_LOW: 'app template',
   APP_TEMPLATE_EMPTY_DESC: 'Please create an app template.',
-  Deploy: '部署',
-  'Application Type': '應用類型',
+  DEPLOY: '部署',
+  APP_TYPES_Q: '應用類型',
   TOTAL_APPS: '共計 {num} 個應用',
   TOTAL_COLLECTIONS: '共計 {num} 個接收者',
   Upgrade: '升級',
@@ -37,8 +41,8 @@ module.exports = {
 
   'Create Application by Service': '通過服務構建應用',
 
-  'Application Version(Optional)': '應用版本(可選)',
-  'Application Governance': '應用治理',
+  APP_VERSION: '應用版本(可選)',
+  APPLICATION_GOVERNANCE: '應用治理',
   'Application Components': '應用組件',
   'Application Component': '應用組件',
   'Application Route': '應用路由',
@@ -55,7 +59,7 @@ module.exports = {
   'Sample apps can help you get started with app creation and app governance':
     '示例應用可以幫助您快速入手應用創建, 以及應用治理功能',
 
-  'Add Service': '添加服務',
+  ADD_SERVICE: '添加服務',
   'Add Component': '添加組件',
   'Edit Component': '編輯組件',
   'Add New Component': '添加新組件',
@@ -66,7 +70,7 @@ module.exports = {
 
   'Please input an application name': '請輸入應用名稱',
   APP: '應用',
-
+  APP_LOW: '應用',
   'Service components should not be empty': '服務組件不能為空',
   'Please finish the sub form first': '請完成子表單的編輯',
 
@@ -74,8 +78,10 @@ module.exports = {
   'Traffic Entry': '流量入口',
 
   'App Description': '應用描述',
+  APP_INTRODUCTION: 'App Introduction',
 
-  'Composing Apps': '自制應用',
+  COMPOSED_APP_PL: '自制應用',
+  NO_COMPOSED_APP_FOUND: 'No Composed App Found',
   'Composing App': '自制應用',
 
   'Workload Type': '負載類型',
@@ -122,12 +128,12 @@ module.exports = {
 
   APPLICATIONS_DESC:
     '應用為用戶提供完整的業務功能，由一個或多個特定功能的組件組成。',
-  APP_DEPLOYMENT_DESC:
+  CREATE_APP_DESC:
     '輕量化、可移植、自包含的軟體封裝技術，使應用可以在幾乎任何地方以相同的方式運行。',
-  APP_GOVERNANCE_DESC:
+  APPLICATION_GOVERNANCE_DESC:
     '開啟應用治理後會在每個組件中以 SideCar 的方式注入 Istio-proxy 容器 <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">了解更多</a>',
 
-  COMPONENT_VERSION_DESC: '最長 16 個字元，只能包含小寫字母及數字',
+  VERSION_DESC: '最長 16 個字元，只能包含小寫字母及數字',
 
   APP_ICON_TIP: '點擊上傳應用圖示，尺寸最大為 120px * 120px',
 
@@ -205,15 +211,15 @@ module.exports = {
   'Invalid version': '版本格式不合法',
   WORKLOAD_NAME_EXIST: '工作負載 {name} 已存在',
 
-  APPLICATION_TYPE_DESC:
+  APP_TYPES_A:
     'KubeSphere 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)，同樣也支持自制應用(Application CRD)。',
 
   APPLICATION_SERVICE_DESC:
     '根據應用中服務類型的不同設置不同類型的服務組件，支持無狀態服務和有狀態服務',
-  APPLICATION_BASEINFO_DESC: 'ˇ對應用的名稱描述資訊等基本的資訊定義',
+  APP_BASIC_INFORMATION_DESC: 'ˇ對應用的名稱描述資訊等基本的資訊定義',
 
-  HOW_TO_USE_APPLICATION_GOVE_Q: '如何使用應用治理？',
-  HOW_TO_USE_APPLICATION_GOVE_A:
+  HOW_TO_USE_APP_GOVERN_Q: '如何使用應用治理？',
+  HOW_TO_USE_APP_GOVERN_A:
     '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
 
   'App Types': '應用的類型',
@@ -223,24 +229,26 @@ module.exports = {
   TIP_APP_GOVERNANCE:
     '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
   'App store deployment': '應用商店部署',
-  'From App Store': '來自應用商店',
-  'From App Templates': '來自應用模板',
+  FROM_APP_STORE: '來自應用商店',
+  FROM_APP_TEMPLATE: '來自應用模板',
   'From third party Helm': '來自第三方 Helm',
   FROM_APP_STORE_DESC:
     '來自KubeSphere官方應用商店，提供高質量應用和簡易的部署方式',
-  FROM_APP_TEMPLATES_DESC:
+  FROM_APP_TEMPLATE_DESC:
     '來自於企業空間的自制應用模板以及應用倉庫中添加的第三方 Helm 應用模板',
-  COMPOSING_APP_DESC: '通過資源編排的方式發佈服務構建應用(支持應用治理功能)',
+  COMPOSED_APP_EMPTY_DESC:
+    '通過資源編排的方式發佈服務構建應用(支持應用治理功能)',
   APP_TEMPLATES_MODAL_DESC:
     '應用模板來自於企業空間和第三方的 Helm 應用模板，支持一鍵部署並可通過視覺化的方式在 KubeSphere 中展示並提供部署及管理的功能',
   APP_REPOS_DESC:
     '應用倉庫來自於第三方的 Helm Chart Repo，通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，用戶可以基於應用倉庫中的模板快速地一鍵部署應用。',
 
-  'From workspace': '來自企業空間',
-  'Add stateful or stateless services': '添加有狀態服務或無狀態服務',
+  CURRENT_WORKSPACE: '來自企業空間',
+  SELECT_APP_REPOSITORY: 'Select app repository',
+  CREATE_SERVICE_DESC: '添加有狀態服務或無狀態服務',
   'Add an Internet access rule for the application': '為應用添加外網訪問規則',
 
-  INTERNET_ACCESS_DESC: '可以設置應用的外網訪問規則 (Ingress)',
+  EXTERNAL_ACCESS_DESC: '可以設置應用的外網訪問規則 (Ingress)',
 
   'Microservice enabled': '微服務已啟用',
   'Microservice not enabled': '微服務未啟用',

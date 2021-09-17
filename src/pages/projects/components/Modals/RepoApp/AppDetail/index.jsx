@@ -82,11 +82,11 @@ class AppDetail extends Component {
   get tabs() {
     return [
       {
-        label: t('App Info'),
+        label: t('APP_INFORMATION'),
         value: 'versionInfo',
       },
       {
-        label: t('Chart Files'),
+        label: t('CHART_FILES'),
         value: 'chartFiles',
       },
     ]
@@ -132,7 +132,7 @@ class AppDetail extends Component {
   renderVersionList() {
     return (
       <div className="margin-b12">
-        <div className="h6 margin-b12">{t('Versions')}</div>
+        <div className="h6 margin-b12">{t('VERSION')}</div>
         <TypeSelect
           value={this.state.selectAppVersion}
           options={this.versionOptions}
@@ -163,7 +163,7 @@ class AppDetail extends Component {
             onChange={this.handleTabChange}
           />
           <Button type="control" onClick={this.showDeploy}>
-            {t('Deploy')}
+            {t('DEPLOY')}
           </Button>
         </div>
         <div className={styles.content}>

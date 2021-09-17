@@ -31,7 +31,7 @@ import styles from './index.scss'
 @inject('projectStore')
 @observer
 export default class Policies extends React.Component {
-  name = 'Network Isolation'
+  name = 'NETWORK_ISOLATION'
 
   module = 'namespacenetworkpolicies'
 

@@ -60,7 +60,7 @@ export default class VersionSelect extends React.Component {
           >
             <Icon name="appcenter" size={40} />
             <div className={styles.text}>
-              <p>{`${t('Version')}: ${option.name}`}</p>
+              <p>{`${t('VERSION')}: ${option.name}`}</p>
               <p>{`${t('REPLICAS')}: ${option.replicas}`}</p>
             </div>
             {value !== option.name ? (

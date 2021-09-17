@@ -136,7 +136,7 @@ class InternetAccess extends React.Component {
 
   renderEmpty() {
     return (
-      <Panel className="margin-t12 margin-b12" title={t('NETWORK_ACCESS')}>
+      <Panel className="margin-t12 margin-b12" title={t('EXTERNAL_ACCESS')}>
         <div className={styles.empty}>
           <div className={styles.icon}>
             <Icon name="loadbalancer" size={40} />
@@ -186,7 +186,7 @@ class InternetAccess extends React.Component {
   renderInternetAccess(gateway) {
     const { cluster } = this.props.match.params
     return (
-      <Panel className="margin-t12" title={t('NETWORK_ACCESS')}>
+      <Panel className="margin-t12" title={t('EXTERNAL_ACCESS')}>
         <div className={styles.header}>
           <Icon name="eip-group" size={40} />
           <div className={styles.item}>
@@ -217,7 +217,7 @@ class InternetAccess extends React.Component {
                   ? t('GATEWAY_SERVICE_MESH_STATUS_ON')
                   : t('GATEWAY_SERVICE_MESH_STATUS_OFF')}
               </div>
-              <p>{t('Application Governance')}</p>
+              <p>{t('APPLICATION_GOVERNANCE')}</p>
             </div>
           )}
           {this.canEdit && (

@@ -59,7 +59,7 @@ export const NEW_CLUSTER = [
     required: true,
   },
   {
-    title: 'Service Components',
+    title: 'SYSTEM_COMPONENT_PL',
     component: ServiceComponents,
     required: true,
   },

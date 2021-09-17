@@ -35,7 +35,7 @@ import WorkloadStore from 'stores/workload'
 @withClusterList({
   store: new WorkloadStore('daemonsets'),
   module: 'daemonsets',
-  name: 'Workload',
+  name: 'WORKLOAD',
 })
 export default class DaemonSets extends React.Component {
   handleTabChange = value => {
@@ -105,7 +105,7 @@ export default class DaemonSets extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

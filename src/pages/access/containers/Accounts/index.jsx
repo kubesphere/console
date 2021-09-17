@@ -30,7 +30,7 @@ import { getLocalTime } from 'utils'
 @withList({
   store: new UserStore(),
   module: 'users',
-  name: 'User',
+  name: 'USER',
 })
 export default class Accounts extends React.Component {
   showAction(record) {
@@ -63,7 +63,7 @@ export default class Accounts extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             resource: item.username,
             detail: item,
             success: routing.query,

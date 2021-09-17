@@ -23,13 +23,16 @@ module.exports = {
   'Add an Internet access rule for the application':
     'Agregar regla de acceso a Internet para la aplicación',
   'Add New Component': 'Agregar nuevo componente',
-  'Add Service': 'Agregar servicio',
-  'Add stateful or stateless services': 'Agregar servicios con o sin estado',
+  ADD_SERVICE: 'Agregar servicio',
+  CREATE_SERVICE_DESC: 'Agregar servicios con o sin estado',
   'App Description': 'Descripción de la aplicación',
+  APP_INTRODUCTION: 'App Introduction',
   'App store deployment': 'Despliegue desde la tienda de aplicaciones',
   'App Template': 'Plantilla de la aplicación',
   APP_TEMPLATE: 'App Template',
   APP_TEMPLATE_PL: 'App Templates',
+  TEMPLATE_BASED_APP_PL: 'Template-based Apps',
+  NO_TEMPLATE_BASED_APP_FOUND: 'No Templated-based App Found',
   APP_TEMPLATE_LOW: 'app template',
   APP_TEMPLATE_EMPTY_DESC: 'Please create an app template.',
   'App Types': 'Tipos de aplicaciones',
@@ -40,15 +43,15 @@ module.exports = {
   'Application Components': 'Componentes de la aplicación',
   'Application components combine workloads and services as components in applications':
     'Los componentes de la aplicación combinan workload y servicios como componentes en las aplicaciones.',
-  'Application Governance': 'Gestión de aplicación',
+  APPLICATION_GOVERNANCE: 'Gestión de aplicación',
   'Application governance is not enabled':
     'La gestión de la aplicación no está habilitado',
   'Application Icon': 'Ícono de aplicación',
   '': 'Nombre de la aplicación',
   'Application Route': 'Ruta de solicitud',
-  'Application Type': 'tipo de aplicacion',
-  'Application Version(Optional)': 'Versión de aplicación (opcional)',
-  Applications: 'Aplicaciones',
+  APP_TYPES_Q: 'tipo de aplicacion',
+  APP_VERSION: 'Versión de aplicación (opcional)',
+  APP_PL: 'Aplicaciones',
   'Base ejection time (s)': 'Tiempo base de eyección (s)',
   'Based on HTTP cookie': 'Basado en cookie HTTP',
   'Based on HTTP header': 'Basado en el encabezado HTTP',
@@ -64,27 +67,28 @@ module.exports = {
   'Cluster Selection': 'Selección de clúster',
   'Component Version': 'Versión de componente',
   'Composing App': 'Aplicación por composición',
-  'Composing Apps': 'Aplicación por composición',
-
+  COMPOSED_APP_PL: 'Aplicación por composición',
+  NO_COMPOSED_APP_FOUND: 'No Composed App Found',
   'Connection pool management': 'Gestión del grupo de conexiones',
   'Connection timeout': 'El tiempo de conexión expiró',
   'Continuous error response (5xx) number':
     'Continuas respuestas de error (5xx)',
   'Create Application by Service': 'Crear aplicación por servicio',
-  'Create Composing Application': 'Crear aplicación por composición',
+  CREATE_COMPOSED_APP: 'Crear aplicación por composición',
   'Current Version': 'Versión actual',
-  Deploy: 'Desplegar',
+  DEPLOY: 'Desplegar',
   'Deploy App': 'Desplegar aplicación',
   'Deploy applications with one-click application templates provided by Kubesphere':
     'Despliega aplicaciones con plantillas de aplicaciones proporcionadas por Kubesphere, con un solo click',
-  'Deploy New Application': 'Desplegar nueva aplicación',
+  CREATE_APP: 'Desplegar nueva aplicación',
   'Deploy sample app Bookinfo': 'Desplegar la aplicación de ejemplo Bookinfo',
-  'Deployed Applications': 'Aplicaciones desplegadas',
+  DEPLOYED_APPS: 'Aplicaciones desplegadas',
   'Edit Component': 'Editar componente',
-  'From App Store': 'Desde la tienda de aplicaciones',
-  'From App Templates': 'Desde plantillas de aplicaciones',
+  FROM_APP_STORE: 'Desde la tienda de aplicaciones',
+  FROM_APP_TEMPLATE: 'Desde plantillas de aplicaciones',
   'From third party Helm': 'Desde Helm de terceros',
-  'From workspace': 'Del espacio de trabajo',
+  CURRENT_WORKSPACE: 'Del espacio de trabajo',
+  SELECT_APP_REPOSITORY: 'Select app repository',
   'Hash based on a specific HTTP header.':
     'Hash basado en un encabezado HTTP específico.',
   'Hash based on HTTP cookie.': 'Hash basado en cookie HTTP.',
@@ -117,6 +121,7 @@ module.exports = {
   'Please input an application name':
     'Por favor introduce un nombre de aplicación',
   APP: 'App',
+  APP_LOW: 'app',
   'Please input component version':
     'Por favor introduce la versión del componente',
   SAVE_FORM_TIP: 'Por favor guarda el formulario actual primero',
@@ -166,8 +171,10 @@ module.exports = {
   TOTAL_APPS: 'Total de {num} aplicaciones',
   APPLICATIONS_DESC:
     'Una aplicación proporciona a los usuarios funciones comerciales integrales en un solo paquete. Las plantillas de aplicación en KubeSphere se basan en la especificación de empaquetado de Helm. Se entregan a través de un repositorio Helm público o privado unificado. Una aplicación está compuesta por uno o más objetos de Kubernetes, que incluyen workload, servicios e ingress.',
-  APP_DEPLOYMENT_DESC:
+  CREATE_APP_DESC:
     'La liviana, portátil y autónoma tecnología de empaquetado de software permite que las aplicaciones se ejecuten en casi cualquier lugar de la misma manera.',
+  TEMPLATE_BASED_APP_EMPTY_DESC:
+    'Please create an app from the KubeSphere App Store or an app template.',
   LB_ALG_DESC:
     'Admite algoritmos de balanceo de carga estándar </br> ROUND_ROBIN： Secuencial, el algoritmo de balanceo de carga predeterminado. </br> LEAST_CONN: Selecciona aleatoriamente dos hosts sanos y luego selecciona el que tiene menos conexiones de los dos. </br> RANDOM: Elge uno al azar entre todos los hosts sanos.',
   LB_ROUND_ROBIN: 'ROUND_ROBIN',
@@ -175,7 +182,7 @@ module.exports = {
   LB_RANDOM: 'RANDOM',
   CLUSTER_NAME_DESC:
     'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 53.',
-  COMPONENT_VERSION_DESC:
+  VERSION_DESC:
     'Para gestión, ayudándote a distinguir entre componentes. Solo puede contener letras minúsculas y números. La longitud máxima de caracteres se establece en 16.',
   APP_WORKLOAD_TYPE_DESC:
     'Admite servicios sin estado (Deployment) y servicios con estado (StatefulSet)',
@@ -183,7 +190,7 @@ module.exports = {
   SERVICE_STATEFULSET: 'Servicio con estado (StatefulSet)',
   CONNECTION_POOL_TIP:
     'Crea un número fijo de objetos de conexión para la aplicación y guárdalos en el grupo para su reutilización. El grupo existente estará disponible para cada acceso, y cada objeto de conexión volverá al grupo después de su uso.',
-  APP_GOVERNANCE_DESC:
+  APPLICATION_GOVERNANCE_DESC:
     'Si la gestión de aplicación está habilitada, el contenedor Istio-proxy se inyectará como SideCar en cada componente. <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">LEER MAS</a>',
   POD_ISOLATION_RATIO_DESC:
     '% Máximo de Pods que se pueden expulsar del servicio de upstream. Utiliza redondeo hacia arriba. Por ejemplo: Si existen 10 instancias y se establece en 13%, aislará hasta 2 instancias.',
@@ -196,16 +203,16 @@ module.exports = {
   'Last {hour} hours': 'Últimas {hour} horas',
   'Last {day} days': 'Últimos {day} días',
   WORKLOAD_NAME_EXIST: 'La carga de trabajo {name} existe',
-  APPLICATION_TYPE_DESC:
+  APP_TYPES_A:
     'KubeSphere admite implementaciones de aplicaciones (basadas en Helm) desde App Store, así como Application CRD.',
-  HOW_TO_USE_APPLICATION_GOVE_Q: '¿Cómo usar la Gestión de aplicaciones?',
-  HOW_TO_USE_APPLICATION_GOVE_A:
+  HOW_TO_USE_APP_GOVERN_Q: '¿Cómo usar la Gestión de aplicaciones?',
+  HOW_TO_USE_APP_GOVERN_A:
     'Cree una aplicación por composición y habilite la gestión de servicios para cada servicio antes de utilizar la gestión de aplicaciones.',
   FROM_APP_STORE_DESC:
     'Desde la tienda de aplicaciones oficial de KubeSphere con aplicaciones de alta calidad y despliegues fáciles.',
-  FROM_APP_TEMPLATES_DESC:
+  FROM_APP_TEMPLATE_DESC:
     'Desde las plantillas de aplicación del espacio de trabajo y las plantillas de aplicaciones Helm de terceros del repositorio de aplicaciones.',
-  COMPOSING_APP_DESC:
+  COMPOSED_APP_EMPTY_DESC:
     'Puedes publicar servicios para crear aplicaciones a través de la orquestación de recursos (compatible con la gestión de aplicación).',
   APP_TEMPLATES_MODAL_DESC:
     'La plantilla de la aplicación proviene del espacio de trabajo y las plantillas de aplicación de Helm de terceros. Admite el despliegue con un click y se puede visualizar en KubeSphere para mostrar y proporcionar despliegues y funciones de administración.',
@@ -215,7 +222,7 @@ module.exports = {
     'Usar la gestión de aplicación requiere crear una aplicación propia y activar la gestión para cada servicio',
   APP_REPOS_DESC:
     'El repositorio de aplicaciones proviene de un repositorio de Charts de Helm de terceros, que visualmente muestra y proporciona capacidades de despliegue y administración en KubeSphere. Los usuarios pueden desplegar rápidamente aplicaciones con un solo click, basadas en las plantillas del repositorio de aplicaciones.',
-  APPLICATION_BASEINFO_DESC:
+  APP_BASIC_INFORMATION_DESC:
     'Información básica de la aplicación (como la descripción)',
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
     'La gestión del tráfico depende del módulo de microservicios. El clúster actual no tiene habilitado dicho módulo',
@@ -223,6 +230,6 @@ module.exports = {
     'El servicio de tracing depende del módulo de microservicios, el clúster actual no tiene habilitado dicho módulo',
   APPLICATION_SERVICE_DESC:
     'Puedes configurar diferentes componentes de servicio basándote en el tipo de servicio dentro de una aplicación. Tanto los servicios con estado como los sin estado están soportados.',
-  INTERNET_ACCESS_DESC:
+  EXTERNAL_ACCESS_DESC:
     'Puedes definir las reglas de acceso a internet para la aplicación (Ingress).',
 }

@@ -85,7 +85,7 @@ export default class WorkloadItem extends React.Component {
         />
         <Text
           title={version ? `#${version}` : '-'}
-          description={t('Version')}
+          description={t('VERSION')}
         />
       </div>
     )

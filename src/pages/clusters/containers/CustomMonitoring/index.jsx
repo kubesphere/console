@@ -32,7 +32,7 @@ import styles from './index.scss'
   store: new MonitoringDashboard(),
   module: 'clusterdashboards',
   authKey: 'custom-monitoring',
-  name: 'CustomMonitorDashboard',
+  name: 'CUSTOM_MONITORING_DASHBOARD',
 })
 export default class CustomMonitoringDashboards extends React.Component {
   getColumns() {
@@ -93,7 +93,7 @@ export default class CustomMonitoringDashboards extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -121,12 +121,7 @@ export default class CustomMonitoringDashboards extends React.Component {
     return (
       <div>
         <ListPage {...this.props}>
-          <Banner
-            {...bannerProps}
-            title={t('CUSTOM_MONITORING')}
-            description={t('CUSTOM_MONITOR_DESC')}
-            tabs={this.tabs}
-          />
+          <Banner {...bannerProps} tabs={this.tabs} />
           <Table
             {...tableProps}
             itemActions={this.itemActions}

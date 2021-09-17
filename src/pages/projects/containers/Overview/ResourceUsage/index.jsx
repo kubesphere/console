@@ -109,14 +109,14 @@ class ResourceUsage extends React.Component {
 
   get timeOptions() {
     return [
-      { label: `${t('Last')} ${t('TIME_H', { num: 1 })}`, value: 3600 },
-      { label: `${t('Last')} ${t('TIME_H', { num: 2 })}`, value: 7200 },
-      { label: `${t('Last')} ${t('TIME_H', { num: 5 })}`, value: 18000 },
-      { label: `${t('Last')} ${t('TIME_H', { num: 12 })}`, value: 43200 },
-      { label: `${t('Last')} ${t('TIME_D', { num: 1 })}`, value: 86400 },
-      { label: `${t('Last')} ${t('TIME_D', { num: 2 })}`, value: 172800 },
-      { label: `${t('Last')} ${t('TIME_D', { num: 3 })}`, value: 259200 },
-      { label: `${t('Last')} ${t('TIME_D', { num: 7 })}`, value: 604800 },
+      { label: t('LAST_TIME_H', { num: 1 }), value: 3600 },
+      { label: t('LAST_TIME_H', { num: 2 }), value: 7200 },
+      { label: t('LAST_TIME_H', { num: 5 }), value: 18000 },
+      { label: t('LAST_TIME_H', { num: 12 }), value: 43200 },
+      { label: t('LAST_TIME_D', { num: 1 }), value: 86400 },
+      { label: t('LAST_TIME_D', { num: 2 }), value: 172800 },
+      { label: t('LAST_TIME_D', { num: 3 }), value: 259200 },
+      { label: t('LAST_TIME_D', { num: 7 }), value: 604800 },
     ]
   }
 
@@ -158,7 +158,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'pods',
         icon: ICON_TYPES['pods'],
-        name: 'Pods',
+        name: 'POD',
         routeName: 'pods',
         num: used['count/pods'],
         warnNum: status.pods,
@@ -167,7 +167,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'deployments',
         icon: ICON_TYPES['deployments'],
-        name: 'Deployments',
+        name: 'DEPLOYMENT',
         routeName: 'deployments',
         num: used['count/deployments.apps'],
         warnNum: status.deployments,
@@ -176,7 +176,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'statefulsets',
         icon: ICON_TYPES['statefulsets'],
-        name: 'StatefulSets',
+        name: 'STATEFULSET',
         routeName: 'statefulsets',
         num: used['count/statefulsets.apps'],
         warnNum: status.statefulsets,
@@ -185,7 +185,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'daemonsets',
         icon: ICON_TYPES['daemonsets'],
-        name: 'DaemonSets',
+        name: 'DAEMONSET',
         routeName: 'daemonsets',
         num: used['count/daemonsets.apps'],
         warnNum: status.daemonsets,
@@ -194,7 +194,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'jobs',
         icon: ICON_TYPES['jobs'],
-        name: 'Jobs',
+        name: 'JOB',
         routeName: 'jobs',
         num: used['count/jobs.batch'],
         metric: 'namespace_job_count',
@@ -202,7 +202,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'cronjobs',
         icon: ICON_TYPES['cronjobs'],
-        name: 'CronJobs',
+        name: 'CRONJOB',
         routeName: 'cronjobs',
         num: used['count/cronjobs.batch'],
         metric: 'namespace_cronjob_count',
@@ -210,7 +210,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'volumes',
         icon: ICON_TYPES['volumes'],
-        name: 'Volumes',
+        name: 'VOLUME',
         routeName: 'volumes',
         num:
           used.persistentvolumeclaims || used['count/persistentvolumeclaims'],
@@ -220,7 +220,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'services',
         icon: ICON_TYPES['services'],
-        name: 'Services',
+        name: 'SERVICE',
         routeName: 'services',
         num: used['count/services'],
         metric: 'namespace_service_count',
@@ -228,7 +228,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'routes',
         icon: ICON_TYPES['ingresses'],
-        name: 'Routes',
+        name: 'ROUTE',
         routeName: 'ingresses',
         num: used['count/ingresses.extensions'],
         metric: 'namespace_ingresses_extensions_count',
@@ -288,14 +288,14 @@ class ResourceUsage extends React.Component {
       <div>
         <PhysicalResourceItem
           type="cpu"
-          title={`${t('CPU Usage')} (${range.label})`}
+          title={t('CPU_USAGE_TIME', { time: range.label })}
           metrics={get(metrics, `namespace_cpu_usage.data.result`)}
           isLoading={isMetricsLoading || isRefreshing}
           showDay={range.value >= 172800}
         />
         <PhysicalResourceItem
           type="memory"
-          title={`${t('Memory Usage')} (${range.label})`}
+          title={t('MEMORY_USAGE_TIME', { time: range.label })}
           metrics={get(metrics, `namespace_memory_usage_wo_cache.data.result`)}
           isLoading={isMetricsLoading || isRefreshing}
           showDay={range.value >= 172800}

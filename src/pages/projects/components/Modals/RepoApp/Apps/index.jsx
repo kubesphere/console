@@ -68,7 +68,7 @@ class Apps extends Component {
     }))
     options.unshift({
       value: null,
-      label: t('From workspace'),
+      label: t('CURRENT_WORKSPACE'),
     })
 
     return options
@@ -149,7 +149,7 @@ class Apps extends Component {
           <img src="/assets/application.svg" alt="" />
         </div>
         <div className={styles.text}>
-          <h2>{t('App Templates')}</h2>
+          <h2>{t('APP_TEMPLATE_PL')}</h2>
           <p>{t('APP_TEMPLATES_MODAL_DESC')}</p>
         </div>
       </div>
@@ -161,6 +161,7 @@ class Apps extends Component {
       <div className={styles.toolbar}>
         <Select
           name="repo"
+          placeholder={t('SELECT_APP_REPOSITORY')}
           onChange={this.handleChangeRepo}
           className={styles.selectRepos}
           options={this.repoSelectOptions}

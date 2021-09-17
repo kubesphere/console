@@ -46,8 +46,8 @@ export default class BaseInfo extends React.Component {
 
   get governances() {
     return [
-      { label: t('On'), value: 'true' },
-      { label: t('Off'), value: 'false' },
+      { label: t('ON'), value: 'true' },
+      { label: t('OFF'), value: 'false' },
     ]
   }
 
@@ -121,17 +121,17 @@ export default class BaseInfo extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.step}>
-          <div>{t('Basic Info')}</div>
-          <p>{t('APPLICATION_BASEINFO_DESC')}</p>
+          <div>{t('BASIC_INFORMATION')}</div>
+          <p>{t('APP_BASIC_INFORMATION_DESC')}</p>
         </div>
         <Form data={this.formTemplate} ref={formRef}>
           <Form.Item
-            label={t('Application Name')}
+            label={t('NAME')}
             desc={t('NAME_DESC')}
             rules={[
               {
                 required: true,
-                message: t('Please input an application name'),
+                message: t('NAME_EMPTY_DESC'),
               },
               {
                 pattern: PATTERN_NAME,
@@ -147,12 +147,12 @@ export default class BaseInfo extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('Application Version(Optional)')}
-            desc={`${t('COMPONENT_VERSION_DESC')}`}
+            label={t('VERSION')}
+            desc={t('VERSION_DESC')}
             rules={[
               {
                 pattern: PATTERN_SERVICE_VERSION,
-                message: t('COMPONENT_VERSION_DESC'),
+                message: t('VERSION_DESC'),
               },
             ]}
           >
@@ -163,8 +163,8 @@ export default class BaseInfo extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('Application Governance')}
-            desc={t.html('APP_GOVERNANCE_DESC')}
+            label={t('APPLICATION_GOVERNANCE')}
+            desc={t.html('APPLICATION_GOVERNANCE_DESC')}
           >
             <Select
               name="metadata.annotations['servicemesh.kubesphere.io/enabled']"

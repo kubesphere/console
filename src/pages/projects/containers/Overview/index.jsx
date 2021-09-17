@@ -56,7 +56,7 @@ export default class Overview extends React.Component {
     const { detail } = this.project
     return (
       <div>
-        <div className="h3 margin-b12">{t('Overview')}</div>
+        <div className="h3 margin-b12">{t('OVERVIEW')}</div>
         <Columns>
           <Column className="is-8">
             <BaseInfo className="margin-b12" detail={detail} />

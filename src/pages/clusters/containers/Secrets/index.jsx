@@ -32,7 +32,7 @@ import SecretStore from 'stores/secret'
 @withClusterList({
   store: new SecretStore(),
   module: 'secrets',
-  name: 'Secret',
+  name: 'SECRET',
   rowKey: 'uid',
 })
 export default class Secrets extends React.Component {
@@ -83,7 +83,7 @@ export default class Secrets extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

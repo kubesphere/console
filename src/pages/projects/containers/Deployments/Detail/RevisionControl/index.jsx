@@ -150,7 +150,7 @@ class RevisionControl extends React.Component {
             <div className={styles.header}>
               <Text
                 title={get(revision, 'labels.version', '-')}
-                description={t('Version')}
+                description={t('VERSION')}
               />
               <Text title={`#${revision.revision}`} description={t('Record')} />
               <Text

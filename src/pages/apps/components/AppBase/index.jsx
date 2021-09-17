@@ -41,15 +41,15 @@ export default class AppBase extends React.PureComponent {
 
     return (
       <div className={classnames(styles.appBase, className)}>
-        <h3>{t('Basic Info')}:</h3>
+        <h3>{t('BASIC_INFORMATION')}</h3>
         <dl>
-          <dt>{t('Category')}:</dt>
+          <dt>{t('CATEGORY')}</dt>
           <dd>{getAppCategoryNames(get(app, 'category_set', []))}</dd>
-          <dt>{t('Homepage')}:</dt>
-          <dd>{app.home || '-'} </dd>
-          <dt>{t('Published Date')}:</dt>
+          <dt>{t('HOMEPAGE')}</dt>
+          <dd>{app.home || '-'}</dd>
+          <dt>{t('RELEASE_DATE')}</dt>
           <dd>{moment(app.status_time).format(t('YYYY-MM-DD'))}</dd>
-          <dt>{t('App ID')}:</dt>
+          <dt>{t('APP_ID')}</dt>
           <dd>{app.app_id || '-'}</dd>
         </dl>
       </div>

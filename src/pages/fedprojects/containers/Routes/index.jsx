@@ -31,7 +31,7 @@ import RouterStore from 'stores/router'
 @withProjectList({
   store: new FederatedStore(new RouterStore()),
   module: 'ingresses',
-  name: 'Route',
+  name: 'ROUTE',
 })
 export default class Routers extends React.Component {
   get tips() {
@@ -105,7 +105,7 @@ export default class Routers extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

@@ -323,7 +323,7 @@ export default {
           Notify.success({ content })
           success && success()
         },
-        title: t('Category'),
+        title: t('CATEGORY'),
         icon: 'tag',
         detail,
         categoryNames: names,

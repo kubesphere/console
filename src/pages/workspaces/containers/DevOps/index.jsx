@@ -30,7 +30,7 @@ import DevOpsStore from 'stores/devops'
 
 @withList({
   store: new DevOpsStore(),
-  name: 'DevOps Project',
+  name: 'DEVOPS_PROJECT',
   module: 'devops',
   rowKey: 'namespace',
   injectStores: ['rootStore', 'workspaceStore'],
@@ -55,7 +55,7 @@ export default class DevOps extends React.Component {
         action: 'delete',
         onClick: item => {
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             resource: item.name,
             detail: item,
           })
@@ -176,7 +176,7 @@ export default class DevOps extends React.Component {
       render: status => <Status type={status} name={t(status)} flicker />,
     },
     {
-      title: t('Creator'),
+      title: t('CREATOR'),
       dataIndex: 'creator',
       isHideable: true,
       render: creator => creator || '-',

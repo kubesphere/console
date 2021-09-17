@@ -113,7 +113,7 @@ module.exports = {
   'Forward by request content': '按請求内容下發',
 
   'Deploy sample application': '部署範例應用',
-  'Deploy Sample App': '部署範例應用',
+  DEPLOY_SAMPLE_APP: '部署範例應用',
   POLICY_REQUEST_CONTENT_TIP:
     '端口協定非 HTTP, HTTP2 或 gRPC, 不能發佈按内容分配的策略',
 

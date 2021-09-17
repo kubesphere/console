@@ -186,7 +186,7 @@ export default class Placement extends Component {
     return (
       <div className={styles.placement}>
         <Text title={workspace} description={t('WORKSPACE')} />
-        <Text title={cluster} description={t('Cluster')} />
+        <Text title={cluster} description={t('CLUSTER')} />
         <Text icon="project" title={namespace} description={t('PROJECT')} />
         <Icon className={styles.icon} name="chevron-down" size={20} />
       </div>
@@ -230,7 +230,7 @@ export default class Placement extends Component {
               <Form.Item label={t('WORKSPACE')}>
                 <Select
                   name="workspace"
-                  placeholder={t('Please select a workspace')}
+                  placeholder={t('WORKSPACE_EMPTY_DESC')}
                   options={this.workspaces}
                   onChange={this.handleWorkspaceChange}
                   prefixIcon={<Icon name="enterprise" size={16} />}
@@ -239,10 +239,10 @@ export default class Placement extends Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Cluster')}>
+              <Form.Item label={t('CLUSTER')}>
                 <Select
                   name="cluster"
-                  placeholder={t('CLUSTER_EMPTY_DESC')}
+                  placeholder=" "
                   options={this.clusters}
                   onChange={this.handleClusterChange}
                   optionRenderer={this.clusterOptionRenderer}
@@ -253,13 +253,11 @@ export default class Placement extends Component {
             <Column>
               <Form.Item
                 label={t('PROJECT')}
-                rules={[
-                  { required: true, message: t('Please select a project') },
-                ]}
+                rules={[{ required: true, message: t('PROJECT_EMPTY_DESC') }]}
               >
                 <Select
                   name="namespace"
-                  placeholder={t('Please select a project')}
+                  placeholder=" "
                   options={this.namespaces}
                   pagination={pick(this.projectStore.list, [
                     'page',
@@ -304,7 +302,7 @@ export default class Placement extends Component {
             {initializing ? (
               <Loading className="text-center" />
             ) : (
-              t('Please select a project to deploy')
+              t('PROJECT_EMPTY_DESC')
             )}
           </div>
         ) : (

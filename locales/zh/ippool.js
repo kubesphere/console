@@ -27,7 +27,8 @@ module.exports = {
   'Used IP': '已用 IP',
 
   MASK: '掩码',
-  Network: '网络',
+  NETWORK: '网络',
+  NETWORK_RESOURCE_PL: '网络资源',
 
   'First Available': '第一个可用',
   'Last Available': '最后可用',

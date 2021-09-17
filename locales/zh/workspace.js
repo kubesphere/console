@@ -28,7 +28,7 @@ module.exports = {
   WORKSPACE_MEMBER_PL: '企业空间成员',
   WORKSPACE_MEMBER_TCAP: '企业空间成员',
   WORKSPACE_MEMBER_TCAP_PL: '企业空间成员',
-  'Workspace Roles': '企业空间角色',
+  WORKSPACE_ROLE_PL: '企业空间角色',
   'Workspace Role': '企业空间角色',
   CREATE_WORKSPACE_ROLE: '创建企业空间角色',
   'Edit Workspace Role': '编辑企业空间角色',
@@ -38,6 +38,8 @@ module.exports = {
   'Create Workspace': '创建企业空间',
   DEPARTMENT_MANAGEMENT: '部门管理',
   SET_DEPARTMENT: '设置部门',
+  DEPARTMENT_PL: '部门管理',
+  'Maintain Organization': '维护组织结构',
 
   devops: 'DevOps 工程',
 
@@ -160,7 +162,6 @@ module.exports = {
   ASSIGNED: '已分配',
   ADDED_SUCCESS_TIP: '添加成功。',
   WORKSPACE_ROLE: '企业空间角色',
-  DEVOPS_PROJECT: '请选择 DevOps 工程',
   PROJECT_VALUE: '项目：{value}',
   PROJECT_ROLE_VALUE: '项目角色：{value}',
   DEVOPS_VALUE: 'DevOps 工程：{value}',

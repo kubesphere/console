@@ -27,7 +27,8 @@ module.exports = {
   'Used IP': 'Used IP',
 
   MASK: 'Mask',
-  Network: 'Network',
+  NETWORK: 'Network',
+  NETWORK_RESOURCE_PL: 'Network Resources',
 
   'First Available': 'First Available',
   'Last Available': 'Last Available',

@@ -35,7 +35,7 @@ import WorkloadStore from 'stores/workload'
 @withClusterList({
   store: new WorkloadStore('statefulsets'),
   module: 'statefulsets',
-  name: 'Workload',
+  name: 'WORKLOAD',
   rowKey: 'uid',
 })
 export default class StatefulSets extends React.Component {
@@ -112,7 +112,7 @@ export default class StatefulSets extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

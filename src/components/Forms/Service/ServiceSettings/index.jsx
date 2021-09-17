@@ -54,8 +54,8 @@ export default class ServiceSettings extends React.Component {
       },
       {
         icon: 'blockchain',
-        label: t('HEADLESS_SELECTOR_TITLE'),
-        description: t('HEADLESS_SELECTOR_DESC'),
+        label: t('INTERNAL_DOMAIN_NAME'),
+        description: t('INTERNAL_DOMAIN_NAME_DESC'),
         value: 'headlessSelector',
       },
     ]
@@ -133,7 +133,7 @@ export default class ServiceSettings extends React.Component {
   renderLabelSelector() {
     return (
       <Form.Item
-        label={t('LABEL_SELECTOR')}
+        label={t('WORKLOAD_SELECTOR')}
         rules={[
           { required: true, message: t('ENTER_SELECTOR_TIP') },
           { validator: this.labelsValidator },

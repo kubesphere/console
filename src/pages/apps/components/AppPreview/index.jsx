@@ -90,11 +90,7 @@ export default class AppPreview extends React.Component {
       return <Markdown source={readme} />
     }
 
-    return (
-      <p className={styles.noReadme}>
-        {t('The version has no documentation.')}
-      </p>
-    )
+    return <p className={styles.noReadme}>{t('VERSION_INTRO_EMPTY_DESC')}</p>
   }
 
   renderChartFiles = () => {
@@ -128,10 +124,10 @@ export default class AppPreview extends React.Component {
 
     return (
       <Tabs type="button" activeName={tab} onChange={this.handleTabChange}>
-        <TabPanel label={t('App Description')} name="versionInfo">
+        <TabPanel label={t('APP_INTRODUCTION')} name="versionInfo">
           <div className={styles.wrapper}>{this.renderReadMe()}</div>
         </TabPanel>
-        <TabPanel label={t('Chart Files')} name="chartFiles">
+        <TabPanel label={t('CHART_FILES')} name="chartFiles">
           <div className={styles.wrapper}>{this.renderChartFiles()}</div>
         </TabPanel>
       </Tabs>

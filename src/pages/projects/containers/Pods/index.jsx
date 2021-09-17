@@ -36,7 +36,7 @@ import styles from './index.scss'
 @withProjectList({
   store: new PodStore(),
   module: 'pods',
-  name: 'Pod',
+  name: 'POD',
 })
 export default class Pods extends React.Component {
   componentDidMount() {
@@ -64,7 +64,7 @@ export default class Pods extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
             success: getData,
           }),

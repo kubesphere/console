@@ -25,22 +25,23 @@ module.exports = {
   'Adjust App Category': 'Adjust App Category',
   'Adjust Successfully': 'Adjusted Successfully',
   'All Categories': 'All Categories',
-  'App Categories': 'App Categories',
+  APP_CATEGORY_PL: 'App Categories',
   'App Category': 'App Category',
   'App Config': 'App Configurations',
+  APP_SETTINGS: 'App Settings',
   'Current App Config': 'Current App Configurations',
   'New App Config': 'New App Configurations',
   'App Deploy': 'App Deploy',
   'App Details': 'App Details',
   'App Home': 'Homepage',
-  'App Info': 'App Information',
+  APP_INFORMATION: 'App Information',
   'App Introduction': 'App Introduction',
   'App Name': 'App Name',
   'App Number': 'App Number',
-  'App Review': 'App Review',
+  APP_REVIEW: 'App Review',
   'App Reviews': 'App Reviews',
   'App Screenshots': 'App Screenshots',
-  'App Store Management': 'App Store Management',
+  APP_STORE_MANAGEMENT: 'App Store Management',
   'App Version': 'App Version',
   'Current App Version': 'Current App Version',
   'App Version Types': 'App Version Types',
@@ -54,7 +55,7 @@ module.exports = {
   'Cancel Successfully': 'Cancelled Successfully',
   'Category Name': 'Category Name',
   'Change Category': 'Change Category',
-  'Chart Files': 'Chart Files',
+  CHART_FILES: 'Chart Files',
   'Company website': 'Company website',
   'Config File': 'Config File',
   CREATE_APP_TEMPLATE: 'Create App Template',
@@ -92,7 +93,7 @@ module.exports = {
   'Please select a project': 'Please select a project',
   'Please select a project to deploy': 'Please select a project to deploy',
   'Please select a project role': 'Please select a project role',
-  'Please select a workspace': 'Please select a workspace',
+  WORKSPACE_EMPTY_DESC: 'Please select a workspace',
   'Please select a DevOps project': 'Please select a DevOps project',
   'Please select a DevOps project role': 'Please select a DevOps project role',
   'Please select icon': 'Please select icon',
@@ -177,6 +178,7 @@ module.exports = {
 
   APP_REVIEW_DESC:
     'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
+  APP_REVIEW_EMPTY_DESC: 'No app to be reviewed is found.',
   APP_REVIEWS_CREATE_DESC:
     'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
   REVIEW_CONTENT_DESC:
@@ -256,7 +258,7 @@ module.exports = {
   MISS_FILE_NOTE: 'The file {file} not found',
 
   HELM_APP_SCHEMA_FORM_TIP:
-    'The app configuration can be displayed in a form. You can modify the default app configuration through either the form or YAML editor. Note: app data stored in different patterns are independent of each other.',
+    'You can customize the app settings in a GUI form or a YAML file. Settings in the GUI form and those in the YAML file are independent of each other.',
 
   DELETE_APP_TEMPLATE_TIP:
     'Before deleting an application template, you need to delete all versions.',

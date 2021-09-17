@@ -42,7 +42,7 @@ class ResourceStatus extends React.Component {
       <div>
         <Banner
           icon="linechart"
-          title={t('APPLICATION_RESOURCES')}
+          title={t('APPLICATION_RESOURCE_PL')}
           description={t('MONITORING_APPLICATION_DESC')}
           routes={this.routes}
         />

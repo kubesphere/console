@@ -42,7 +42,7 @@ export default [
   },
   {
     path: `${PATH}/grayrelease`,
-    title: 'Grayscale Release',
+    title: 'GRAYSCALE_RELEASE',
     component: GrayRelease,
     clusterModule: 'servicemesh',
     exact: true,

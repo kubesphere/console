@@ -32,7 +32,7 @@ import RouterStore from 'stores/router'
 @withClusterList({
   store: new RouterStore(),
   module: 'ingresses',
-  name: 'Route',
+  name: 'ROUTE',
   rowKey: 'uid',
 })
 export default class Routers extends React.Component {
@@ -93,7 +93,7 @@ export default class Routers extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },

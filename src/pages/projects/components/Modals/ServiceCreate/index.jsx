@@ -51,8 +51,8 @@ export default class ServiceCreateModal extends React.Component {
       workloadModule: 'deployments',
       groups: [
         {
-          name: 'SERVICE_TYPE_TCAP',
-          description: 'SERVICE_TYPE',
+          name: 'SELECT_SERVICE_TYPE',
+          description: 'SELECT_SERVICE_TYPE_DESC',
           options: [
             {
               icon: 'backup',
@@ -69,7 +69,7 @@ export default class ServiceCreateModal extends React.Component {
               : [
                   {
                     icon: 'ip',
-                    name: 'External Service',
+                    name: 'EXTERNAL_SERVICE',
                     value: 'externalservice',
                   },
                 ]),
@@ -84,9 +84,9 @@ export default class ServiceCreateModal extends React.Component {
                 options: S2I_SUPPORTED_TYPES,
               },
               {
-                name: 'SERVICE_FROM_ARTIFACTS',
+                name: 'SERVICE_FROM_ARTIFACT',
                 type: 'b2i',
-                description: 'SERVICE_FROM_ARTIFACTS_DESC',
+                description: 'SERVICE_FROM_ARTIFACT_DESC',
                 options: B2I_SUPPORTED_TYPES,
               },
             ]
@@ -95,15 +95,15 @@ export default class ServiceCreateModal extends React.Component {
           ? []
           : [
               {
-                name: 'CUSTOM_SERVICE',
-                description: 'SERVICE_CUSTOM_CREATE',
+                name: 'CUSTOMIZE_SERVICE',
+                description: 'CUSTOMIZE_SERVICE_DESC',
                 options: [
                   {
                     icon: 'clock',
-                    name: 'Specify Workloads',
+                    name: 'SPECIFY_WORKLOAD',
                     value: 'simpleservice',
                   },
-                  { icon: 'coding', name: 'Edit by YAML', value: 'yaml' },
+                  { icon: 'coding', name: 'EDIT_YAML', value: 'yaml' },
                 ],
               },
             ]),
@@ -154,7 +154,7 @@ export default class ServiceCreateModal extends React.Component {
     return (
       <div className={styles.header}>
         <div className="h4 margin-b12">{t('CREATE_SERVICE')}</div>
-        <p>{t.html('CREATE_SERVICE_DESC')}</p>
+        <p>{t('CREATE_SERVICE_DESC')}</p>
         <img src="/assets/create-service.svg" alt="" />
       </div>
     )
@@ -184,7 +184,7 @@ export default class ServiceCreateModal extends React.Component {
                         size={48}
                       />
                     </div>
-                    <div>{t(option.name || option)}</div>
+                    <div>{t(option.name || option.toUpperCase())}</div>
                   </li>
                 ))}
             </ul>
@@ -219,16 +219,16 @@ export default class ServiceCreateModal extends React.Component {
         Service: FORM_TEMPLATES.services({ namespace }),
       }
       const steps = isS2i ? FORM_STEPS.s2iservice : FORM_STEPS.b2iservice
-      const description = `${
-        isS2i ? t('Language Type') : t('Artifacts Type')
-      } : ${t(type)}`
+      const description = isS2i
+        ? t('LANGUAGE_TYPE_VALUE', { value: t(type.toUpperCase()) })
+        : t('ARTIFACT_TYPE_VALUE', { value: t(type.toUpperCase()) })
 
       this.workloadStore.setModule('deployments')
 
       return (
         <CreateModal
           icon={type}
-          title={isS2i ? t('SERVICE_FROM_CODE') : t('SERVICE_FROM_ARTIFACTS')}
+          title={isS2i ? t('SERVICE_FROM_CODE') : t('SERVICE_FROM_ARTIFACT')}
           description={description}
           width={960}
           module={this.state.workloadModule}
@@ -294,7 +294,6 @@ export default class ServiceCreateModal extends React.Component {
             module={module}
             store={workloadStore}
             name={t('STATELESS_SERVICE')}
-            description={t('STATELESS_SERVICE_DESC')}
             visible={visible}
             cluster={cluster}
             namespace={namespace}
@@ -352,7 +351,6 @@ export default class ServiceCreateModal extends React.Component {
             module={module}
             store={workloadStore}
             name={t('STATEFUL_SERVICE')}
-            description={t('STATEFUL_SERVICE_DESC')}
             visible={visible}
             cluster={cluster}
             namespace={namespace}
@@ -384,13 +382,13 @@ export default class ServiceCreateModal extends React.Component {
 
         const title =
           type === 'externalservice'
-            ? `${t('Create ')}${t('External Service')}`
-            : t('Create service by specifying workloads')
+            ? t('CREATE_EXTERNAL_SERVICE')
+            : t('SPECIFY_WORKLOAD_TO_CREATE_SERVICE')
 
         const description =
           type === 'externalservice'
-            ? t('SERVICE_EXTERNAL_NAME_DESC')
-            : t('SERVISE_SIMPLE_DESC')
+            ? t('CREATE_EXTERNAL_SERVICE_DESC')
+            : t('SPECIFY_WORKLOAD_DESC')
 
         if (type === 'externalservice') {
           set(
@@ -435,7 +433,7 @@ export default class ServiceCreateModal extends React.Component {
           })
         }
 
-        const title = t('Create service by yaml')
+        const title = t('EDIT_YAML_TO_CREATE_SERVICE')
 
         content = (
           <CreateModal

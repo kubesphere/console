@@ -117,7 +117,7 @@ export default class VirtualResource extends Base {
   ]
 
   getControllerProps = () => ({
-    title: t('APPLICATION_RESOURCES'),
+    title: t('APPLICATION_RESOURCE_PL'),
     createTime: this.createTime,
     customAction: this.renderClusters(),
   })

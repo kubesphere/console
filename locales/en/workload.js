@@ -45,6 +45,7 @@ module.exports = {
   CONFIGMAP_PL: 'ConfigMaps',
   CONFIGMAP_LOW: 'ConfigMap',
   PARTITION_ORDINAL: 'Ordinal for Dividing Pod Replicas',
+  SERVICE_TOPOLOGY: 'Service Topology',
   PARTITION_ORDINAL_DESC:
     'Ordinal that divides the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
   'Access Mode': 'Access Mode',
@@ -70,8 +71,7 @@ module.exports = {
     'Additional metadata settings for resources such as Labels and Annotations.',
   'Additional metadata settings for resources.':
     'Additional metadata settings for resources.',
-  ADD_METADATA_DESC:
-    'Add metadata such as labels and annotations to resources.',
+  ADD_METADATA_DESC: 'Add metadata to the resource.',
   'Advanced Options': 'Advanced Options',
   'Applied to the workload': 'Applied to the workload',
   Argument: 'Argument',
@@ -142,6 +142,7 @@ module.exports = {
   EDIT_CONTAINER: 'Edit Container',
   'Edit Labels': 'Edit Labels',
   EDIT_YAML: 'Edit YAML',
+  YAML_FILE: 'YAML File',
   EmptyDir: 'EmptyDir',
   Environment: 'Environment',
   'Environment Variables': 'Environment Variables',
@@ -340,7 +341,7 @@ module.exports = {
   'Resource Limit': 'Resource Limit',
   'Resource Limits': 'Resource Limits',
   'Resource limits remaining quota': 'Resource limits remaining quota',
-  'Resource Name': 'Resource Name',
+  RESOURCE_NAME: 'Resource Name',
   'Resource Request': 'Resource Request',
   'Resource Requests': 'Resource Requests',
   'Resource requests remaining quota': 'Resource requests remaining quota',
@@ -510,7 +511,7 @@ module.exports = {
     'A hostPath volume mounts a file or directory from the host node’s filesystem into your Pod.',
   PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
   PORT_NAME_DESC:
-    'The port name can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
+    'The port name can contain only lowercase letters, numbers, and hyphens (-) and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
   WORKLOAD_PORT_NAME_DESC:
     'The port name can contain only lowercase letters, numbers and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 15 characters.',
 

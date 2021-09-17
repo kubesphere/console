@@ -154,7 +154,7 @@ export default class VolumeSnapshotDetail extends React.Component {
         value: restoreSize,
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: creator,
       },
       {

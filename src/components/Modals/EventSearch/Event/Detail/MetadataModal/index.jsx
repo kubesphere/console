@@ -70,7 +70,7 @@ export default class MetadataModal extends React.Component {
           </div>
         </div>
         <div className={styles.row}>
-          <div className={styles.rowTitle}>{t('Category')}</div>
+          <div className={styles.rowTitle}>{t('CATEGORY')}</div>
           <div
             className={classnames(
               styles.category,

@@ -19,7 +19,7 @@
 module.exports = {
   'Account Role': 'Account Role',
   PLATFORM_ROLE: 'Platform Role',
-  PLATFORM_ROLES: 'Platform Roles',
+  PLATFORM_ROLE_PL: 'Platform Roles',
   'Platform Roles': 'Platform Roles',
   'Account Roles': 'Account Roles',
   'Alerting Messages Management': 'Alerting Message Management',
@@ -127,7 +127,7 @@ module.exports = {
   WORKSPACE_ROLES_VIEW: 'Workspace Role Viewing',
   WORKSPACES_MANAGEMENT: 'Workspace Management',
   WORKSPACES_VIEW: 'Workspace Viewing',
-  'Workspace Groups': 'Department Management',
+  DEPARTMENT_PL: 'Department Management',
   WORKSPACE_GROUPS_MANAGEMENT: 'Department Management',
   WORKSPACE_GROUPS_VIEW: 'Department Viewing',
   DEPARTMENT_MANAGEMENT: 'Department Management',
