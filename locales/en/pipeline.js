@@ -43,7 +43,7 @@ module.exports = {
   bcc: 'bcc',
   'Behavioral strategy': 'Behavioral strategy',
   blocker: 'blocker',
-  Branch: 'Branch',
+  BRANCH_SI: 'Branch',
   Branches: 'Branches',
   'Branch Count': 'Branch Count',
   'Branch Excluded': 'Branch Excluded',
@@ -200,7 +200,7 @@ module.exports = {
   'Only branches that are also filed as PRs':
     'Only branches that are also filed as PRs',
   'Parametric Build': 'Parametric Build',
-  'Params Input': 'Params Input',
+  ENTER_PARAMETERS: 'Enter Parameters',
   Passphrase: 'Passphrase',
   'passphrase Variable': 'passphrase Variable',
   passphraseVariable: 'passphraseVariable',

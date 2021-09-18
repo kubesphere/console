@@ -77,10 +77,10 @@ export default class Branch extends React.Component {
         onOk={this.handleOk}
         visible={visible}
         closable={false}
-        title={t('Branch')}
+        title={t('BRANCH_SI')}
       >
         <Form data={this.state.formData} ref={this.formRef}>
-          <Form.Item label={t('Branch')}>
+          <Form.Item label={t('BRANCH_SI')}>
             <Input name="branch" />
           </Form.Item>
         </Form>

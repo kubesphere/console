@@ -207,7 +207,7 @@ export default class ContainerItem extends React.Component {
             )}
             {isInit && (
               <Tag className="margin-l8" type="warning">
-                {t('Init Container')}
+                {t('INIT_CONTAINER')}
               </Tag>
             )}
             {hasProbe && (

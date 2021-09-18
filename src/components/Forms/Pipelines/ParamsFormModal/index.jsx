@@ -274,12 +274,12 @@ export default class ParamsFormModal extends React.Component {
         onOk={this.handleOk}
         visible={visible}
         closable={false}
-        title={t('Params Input')}
+        title={t('ENTER_PARAMETERS')}
       >
         <Form ref={this.formRef}>
           {!isEmpty(branches) ? (
             <Form.Item
-              label={t('Branch')}
+              label={t('BRANCH_SI')}
               rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <Select

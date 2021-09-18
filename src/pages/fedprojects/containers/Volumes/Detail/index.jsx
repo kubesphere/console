@@ -168,7 +168,7 @@ export default class VolumeDetail extends React.Component {
           annotations['volume.beta.kubernetes.io/storage-provisioner'] || '-',
       },
       {
-        name: t('Create Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

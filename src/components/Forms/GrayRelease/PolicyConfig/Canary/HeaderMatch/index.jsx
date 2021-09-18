@@ -56,8 +56,8 @@ export default class HeaderMatch extends React.Component {
 
   get matchTypes() {
     return [
-      { label: t('Exact Match'), value: 'exact' },
-      { label: t('Regex Match'), value: 'regex' },
+      { label: t('EXACT_MATCH'), value: 'exact' },
+      { label: t('REGEX_MATCH'), value: 'regex' },
     ]
   }
 

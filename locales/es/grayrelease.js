@@ -18,79 +18,73 @@
 
 module.exports = {
   'A/B Testing': 'Testing A/B',
-  'Allocate all traffic proportionally to grayscale release components':
+  ALLOCATE_TRAFFIC_DESC:
     'Asignar todo el tráfico de forma proporcional a los componentes de Grayscale Release',
-  'Blue-green Deployment': 'Despliegue blue-green',
-  'Canary Release': 'Canary Release',
+  BLUE_GREEN_DEPLOYMENT: 'Despliegue blue-green',
+  CANARY_RELEASE: 'Canary Release',
   'Cookie Content': 'Contenido de cookies',
-  'Create Grayscale Release Job': 'Crear un job de Grayscale Release',
-  'Create Job': 'Crear job',
-  'Custom Header': 'Cabecera personalizada',
+  CREATE_GRAYSCALE_RELEASE_JOB: 'Crear un job de Grayscale Release',
+  CUSTOM_HEADER: 'Cabecera personalizada',
   'Deploy sample application': 'Implementar aplicación de demo',
   DEPLOY_SAMPLE_APP: 'Implementar aplicación de demo',
   'Edit Grayscale Release Job': 'Editar job de Grayscale Release',
-  'Exact Match': 'Coincidencia exacta',
-  'Forward by request content': 'Reenviar por contenido de solicitud',
-  'Forward by traffic ratio': 'Reenviar por ratio de tráfico',
-  'Grayscale Release Component': 'Componente de Grayscale Release',
-  'Grayscale Release Components': 'Componentes de Grayscale Release',
-  'Grayscale Release Strategy': 'Estrategia Grayscale Release',
-  'Grayscale Release Version': 'Versión de Grayscale Release',
-  'Grayscale release version access rule':
-    'Regla de acceso a la versión de Grayscale Release',
-  'Grayscale Release Version Number': 'Número de versión Grayscale Release',
+  EXACT_MATCH: 'Coincidencia exacta',
+  FORWARD_BY_REQUEST_CONTENT: 'Reenviar por contenido de solicitud',
+  FORWARD_BY_TRAFFIC_RATIO: 'Reenviar por ratio de tráfico',
+  GRAYSCALE_RELEASE_COMPONENT: 'Componente de Grayscale Release',
+  GRAYSCALE_RELEASE_COMPONENT_PL: 'Componentes de Grayscale Release',
+  GRAYSCALE_RELEASE_VERSION_TCAP: 'Versión de Grayscale Release',
+  GRAYSCALE_ACCESS_RULE: 'Regla de acceso a la versión de Grayscale Release',
+  GRAYSCALE_RELEASE_VERSION_NUMBER: 'Número de versión Grayscale Release',
   'Has taken over all traffic': 'Se ha apoderado de todo el tráfico',
-  'Introduce traffic that meets the following rules into grayscale version':
+  TRAFFIC_CONTROL_DESC:
     'Introducir tráfico que cumpla con las siguientes reglas en la versión en Grayscale Release',
-  'Job offline': 'Trabajo fuera de línea',
-  'Job offline Successfully': 'Trabajo fuera de línea con éxito',
-  'Job Status': 'Estado del trabajo',
+  JOB_OFFLINE: 'Trabajo fuera de línea',
+  JOB_OFFLINE_SUCCESSFULLY: 'Trabajo fuera de línea con éxito',
+  JOB_STATUS: 'Estado del trabajo',
   'Mirrored traffic': 'Tráfico reflejado',
   'Mirrored traffic is only receiving traffic, no service':
     'El tráfico reflejado solo recibe tráfico, no hay servicio',
-  'No workload found': 'No se encontró carga de trabajo',
+  NO_WORKLOAD_FOUND_TIP: 'No se encontró carga de trabajo',
   'Not online': 'Fuera de linea',
-  'Version offline': 'Desconectado esta versión',
+  VERSION_OFFLINE: 'Desconectado esta versión',
   'Operating System': 'Sistema operativo',
-  'Please input grayscale release version':
-    'Introduce la versión Grayscale Release',
-  'Please select a grayscale release component':
-    'Selecciona un componente Grayscale Release',
-  'Policy Config': 'Configuración de política',
+  GRAY_VERSION_TIP: 'Introduce la versión Grayscale Release',
+  SELECT_GRAY_COMPONENT_TIP: 'Selecciona un componente Grayscale Release',
+  STRATEGY_CONFIGURATIONS_TCAP: 'Configuración de estrategia',
   POLICY_REQUEST_CONTENT_TIP:
-    'El protocolo de puerto no es HTTP, no se puede publicar la política por el contenido de la solicitud',
-  'Prefix Match': 'Coincidencia de prefijo',
-  'Real-time traffic distribution': 'Distribución de tráfico en tiempo real.',
-  'Real-time traffic ratio': 'Ratio de tráfico en tiempo real',
+    'Forwarding by request content is unavailable if port protocol is not HTTP, HTTP2, or gRPC.',
+  PREFIX_MATCH: 'Coincidencia de prefijo',
+  REAL_TIME_TRAFFIC_DIST_TCAP: 'Distribución de tráfico en tiempo real.',
+  REAL_TIME_TRAFFIC_RATIO: 'Ratio de tráfico en tiempo real',
   Recover: 'Recuperar',
-  'Regex Match': 'Coincidencia regex',
-  'Release Job Name': 'Liberar nombre del job',
-  'Request duration': 'Duración de solicitud',
-  'Request success rate': 'Tasa de éxito de solicitud',
-  'Rule Description': 'Descripción de la regla',
+  REGEX_MATCH: 'Coincidencia regex',
+  GRAY_RELEASE_JOB_NAME: 'Liberar nombre del job',
+  REQUEST_LATENCY: 'Duración de solicitud',
+  REQUEST_SUCCESS_RATE: 'Tasa de éxito de solicitud',
+  RULE_DESCRIPTION: 'Descripción de la regla',
   'Take Over': 'Tomar el control',
-  'Take over all traffic': 'Tomar el control de todo el tráfico',
+  TAKE_OVER_ALL_TRAFFIC: 'Tomar el control de todo el tráfico',
   'The current version is not online, you can let this version take over all traffic and bring it online.':
     'La versión actual no está online, puedes dejar que esta versión tome el control de todo el tráfico y lo ponga online.',
   traffic: 'tráfico',
-  'Traffic comes from the following operating systems':
-    'El tráfico proviene de los siguientes sistemas operativos',
-  'Traffic Control': 'Control de trafico',
-  'Traffic Mirroring': 'Mirroring de tráfico',
-  'Traffic monitor': 'Monitor de tráfico',
-  'Traffic of last five minutes': 'Tráfico de los últimos cinco minutos',
-  'Traffic Ratio': 'Ratio de tráfico',
-  'Traffic Rules': 'Reglas de tráfico',
-  'Two Versions': 'Dos versiones',
-  'Unfinished grayscale release jobs exist':
-    'Existen jobs de Grayscale Release sin finalizar',
-  'Unsupported workload type': 'Tipo de carga de trabajo no compatible',
-  'Version Comparison': 'Comparar versiones',
+  TRAFFIC_OS: 'El tráfico proviene de los siguientes sistemas operativos',
+  TRAFFIC_CONTROL: 'Control de trafico',
+  TRAFFIC_MIRRORING: 'Mirroring de tráfico',
+  TRAFFIC_MONITORING: 'Monitor de tráfico',
+  TRAFFIC_IN_LAST_FIVE_MINUTES: 'Tráfico de los últimos cinco minutos',
+  TRAFFIC_RATIO: 'Ratio de tráfico',
+  TRAFFIC_RULES: 'Reglas de tráfico',
+  TWO_VERSIONS: 'Dos versiones',
+  UNFINISHED_GRAY_JOB: 'Unfinished grayscale release job exists.',
+  UNSUPPORTED_WORKLOAD_TYPE: 'Tipo de carga de trabajo no compatible',
+  VERSION_COMPARISON: 'Comparar versiones',
   'version number is invalid': 'el número de versión no es válido',
   'Version Off': 'Versión desactivada',
-  GRAY_RELEASE_CATEGORIES: 'Categorías',
+  GRAY_RELEASE_CATEGORIES: 'Strategies',
+  GRAY_RELEASE_STRATEGY_SI: 'Grayscale Release Strategy',
   BLUE_GREEN_DEPLOYMENT_DESC:
-    'The blue-green release provides a zero downtime deployment, which means the new version can be deployed with the old one preserved. At any time, only one of the versions is active serving all the traffic, while the other one remains idle. If there is a problem with running, you can quickly roll back to the old version.',
+    'Blue-green deployment deploys the new version while retaining the old version to ensure zero downtime. At any time, only one of the versions is active serving all the traffic and the other one remains idle. If anything goes wrong, you can quickly roll back to the old version.',
   CANARY_RELEASES_DESC:
     'Este método trae parte del tráfico real a una nueva versión para probar su rendimiento y confiabilidad. Puedes ayudar a detectar posibles problemas en el entorno real sin afectar la estabilidad general del sistema.',
   TRAFFIC_MIRROR_DESC:
@@ -99,10 +93,10 @@ module.exports = {
     'Este método es muy útil para comprender si las actualizaciones o mejoras del producto han cumplido con las expectativas. Se puede usar cuando surgen nuevas necesidades y no afectará la estabilidad del negocio.',
   NO_SERVICE_MESH_TIP:
     'Las aplicaciones que no están habilitadas para el Application Governance no se pueden publicar en Grayscale.',
-  NO_GRAY_RELEASE_JOBS_TIP:
-    'No se está ejecutando un job de Grayscale Release.',
-  NO_GRAY_RELEASE_JOBS_TIP_2:
-    'Puedes vincular estrategias de Grayscale Release para publicar jobs de Grayscale Release.',
+  NO_GRAY_RELEASE_JOBS_TIP: 'No Grayscale Release Job Found',
+  NO_GRAY_RELEASE_JOBS_TIP_2: 'Please create a grayscale release job.',
+  TOTAL_GRAY_RELEASE_JOB:
+    '{num} total de trabajos de liberación en Grayscale Release',
   TOTAL_GRAY_RELEASE_JOBS:
     '{num} total de trabajos de liberación en Grayscale Release',
   GRAY_RELEASE_VERSION_FORMAT_DESC:
@@ -112,13 +106,13 @@ module.exports = {
   POLICY_CONFIG_DESC:
     'Versión basada en el ratio de tráfico: de acuerdo con la regla de configuración del ratio de tráfico, la proporción especificada de tráfico se dividirá de la versión original a la versión en Grayscale Release.',
   GRAY_RELEASE_DESC:
-    'Grayscale Release es un método muy potente para desplegar el software en producción. Proporciona un método de despliegue para la una transición suave de las aplicaciones a medida que se actualizan y se implementan.',
+    'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
   GRAYSCALE_RELEASE_DESC:
-    'Grayscale Release es un método muy potente para desplegar el software en producción. Proporciona un método de despliegue para la una transición suave de las aplicaciones a medida que se actualizan y se implementan.',
+    'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
   GRAY_RELEASE_BY_CONTENT_TIP:
-    'Despliegue basado en el contenido de solicitud: de acuerdo con la regla de configuración del contenido de la solicitud, solo el tráfico que cumpla ciertas condiciones en el contenido solicitado se dividirá en versiones en Grayscale Release. Esta política solo es válida para el acceso directo al servicio del portal.',
+    'De acuerdo con la regla de configuración del contenido de la solicitud, solo el tráfico que cumpla ciertas condiciones en el contenido solicitado se dividirá en versiones en Grayscale Release. Esta política solo es válida para el acceso directo al servicio del portal.',
   MIRROR_POLICY_DESC:
-    'Los microservicios nos permiten entregar aplicaciones más rápido sin afectar la estabilidad del negocio. En este sentido, el traffic mirroring reduce el riesgo de sufrir cambios en el entorno de producción. </br> Con Traffic Mirroring, el tráfico de red del entorno de producción se puede duplicar hacia una versión de Grayscale Release, que sirve como una forma efectiva de probar la nueva versión antes de que se ejecute en el entorno real (con tráfico de usuarios en tiempo real).',
+    'With traffic mirroring, the network traffic in the production environment can be copied into a grayscale version. It serves as an effective way to test the new version with real-time user traffic before it runs in the actual environment.</br>Therefore, traffic mirroring reduces the risk of directly making changes in the production environment.',
   RATIO_MODIFY_NOTIFY_CONTENT:
     'Ha ajustado el índice de tráfico objetivo de la versión {version} a {ratio}%, y puedes continuar ajustando el índice de tráfico objetivo o hacer que surta efecto de inmediato.',
   CANARY_BY_TRAFFIC_DESC:
@@ -130,9 +124,36 @@ module.exports = {
   PREREQUEST_FOR_USE_GRAYRELEASE_Q:
     '¿Cuales son los requisitos previos para usar Grayscale Release?',
   PREREQUEST_FOR_USE_GRAYRELEASE_A:
-    'Debes crear una composite-application y habilitar la función application-governance para el servicio que utilizará la versión en Grayscale Release.',
+    'You need to create a composed app and enable the application governance feature before you implement grayscale release.',
   JOB_OFFLINE_WARNING:
-    'Antes de desconectar una tarea, primero debes seleccionar una versión disponible para asegurarte de que el servicio pueda funcionar sin problemas durante todo el proceso. Debes seleccionar una versión y desconectarla. Después de eso, el sistema transferirá automáticamente todo el tráfico a otra versión disponible.',
+    'You need to select a version to take it offline. The system will retain an available version and automatically transfer all traffic to this available version to make sure the service can run smoothly.',
   JOB_OFFLINE_INFO:
     'Ya puedes desconectar la tarea para proceder a eliminar la versión {versión}.',
+
+  // Grayscale release detail page
+  GRAY_COMPONENT_DESC:
+    'The grayscale release components used to serve the traffic.',
+  TRAFFIC_LOW: 'tráfico',
+
+  // Grayscale release components tab
+  GRAY_APP_NAME: 'App: {name}',
+  GRAY_WORKLOAD_TYPE: 'Tipo de carga de trabajo: ',
+
+  // Grayscale release version tab
+  GRAY_DEPLOY_VERSION_TIP:
+    'Deployment {name} exists. Version number is invalid.',
+  INIT_CONTAINER: 'Init Container',
+  GRAYSCALE_IMAGE: 'Image: {image}',
+
+  // Grayscale strategy configurations tab
+  GRAYSCALE_VERSION: 'Versión: {version}',
+  GRAYSCALE_REPLICA_SI: 'Réplica: {count}',
+  GRAYSCALE_REPLICA_PL: 'Réplicas: {count}',
+
+  // Canary Strategy Tab
+  COOKIE: 'Cookie',
+
+  // Grayscale Release Job List
+  GRAYSCALE_JOB_STRATEGY: 'Grayscale release strategy',
+  GRAYSCALE_JOB_COMPONENT: 'Componente de Grayscale Release',
 }

@@ -97,7 +97,7 @@ export default class PVCSnapshots extends Component {
         </div>
         <div className={styles.itemAttrs}>
           <h3>{moment(createTime).format('YYYY-MM-DD HH:mm:ss')}</h3>
-          <p>{t('Create Time')}</p>
+          <p>{t('CREATED_AT')}</p>
         </div>
       </div>
     )

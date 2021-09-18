@@ -92,9 +92,9 @@ module.exports = {
 
   PREREQUESTS_FOR_USE_ROUTE_Q: '使用應用路由的前提條件?',
   PREREQUESTS_FOR_USE_ROUTE_A:
-    '使用應用路由需要由管理員對目前的項目進行外網訪問設置，即開啟外網訪問網關。',
+    '使用應用路由需要由項目管理員對當前項目設置網關。',
 
   ACCESS_TYPES_OF_ROUTE_Q: '應用路由支持的訪問方式?',
   ACCESS_TYPES_OF_ROUTE_A:
-    'KubeSphere 應用路由支持自定義域名 (HostName) 的方式以及萬用字元 DNS 的訪問方式。',
+    'KubeSphere 應用路由支持 NodePort 訪問方式以及 LoadBalancer 訪問方式。',
 }

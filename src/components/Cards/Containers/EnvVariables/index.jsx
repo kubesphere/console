@@ -80,7 +80,7 @@ export default class ContainerItem extends React.Component {
     return (
       <div className={styles.title}>
         <Icon name="docker" size={20} />
-        {type === 'init' ? t('Init Container') : t('Container')}: {name}
+        {type === 'init' ? t('INIT_CONTAINER') : t('Container')}: {name}
       </div>
     )
   }

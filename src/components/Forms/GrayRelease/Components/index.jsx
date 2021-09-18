@@ -93,7 +93,7 @@ export default class Components extends React.Component {
   valueRenderer = option => (
     <p className={styles.option}>
       <img src={option.icon || '/assets/default-app.svg'} alt="" />
-      {t('Application')}: {option.name}
+      {t('GRAY_APP_NAME', { name: option.name })}
       {option.disabled && (
         <Tooltip trigger="click" content={t('NO_SERVICE_MESH_TIP')}>
           <Icon name="question" className="float-right" />
@@ -241,7 +241,7 @@ export default class Components extends React.Component {
           rules={[
             {
               required: true,
-              message: t('Please select a grayscale release component'),
+              message: t('SELECT_GRAY_COMPONENT_TIP'),
             },
           ]}
         >

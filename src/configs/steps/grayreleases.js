@@ -22,19 +22,23 @@ import GrayReleaseVersion from 'components/Forms/GrayRelease/Version'
 import PolicyConfig from 'components/Forms/GrayRelease/PolicyConfig'
 
 export default [
-  { title: 'Basic Info', component: GrayReleaseBaseInfo, required: true },
   {
-    title: 'Grayscale Release Components',
+    title: 'BASIC_INFORMATION',
+    component: GrayReleaseBaseInfo,
+    required: true,
+  },
+  {
+    title: 'GRAYSCALE_RELEASE_COMPONENT_PL',
     component: GrayReleaseComponents,
     required: true,
   },
   {
-    title: 'Grayscale Release Version',
+    title: 'GRAYSCALE_RELEASE_VERSION_TCAP',
     component: GrayReleaseVersion,
     required: true,
   },
   {
-    title: 'Policy Config',
+    title: 'STRATEGY_CONFIGURATIONS_TCAP',
     component: PolicyConfig,
     required: true,
   },

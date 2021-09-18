@@ -81,7 +81,7 @@ export default class Tip extends React.Component {
           {operation}
           {more && (
             <a href={more} target="_blank" rel="noreferrer noopener">
-              <Button>{t('Learn more')}</Button>
+              <Button>{t('LEARN_MORE')}</Button>
             </a>
           )}
           {closable && (

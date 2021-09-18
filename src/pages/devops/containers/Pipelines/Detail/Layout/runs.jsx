@@ -219,7 +219,11 @@ export default class RunDetailLayout extends React.Component {
       module: this.module,
       breadcrumbs: [
         {
-          label: branch ? (runId ? t('Activity') : t('Branch')) : t('Activity'),
+          label: branch
+            ? runId
+              ? t('Activity')
+              : t('BRANCH_SI')
+            : t('Activity'),
           url: branch
             ? `${this.listUrl}/${name}/branch/${branch}/activity`
             : `${this.listUrl}/${name}/activity`,

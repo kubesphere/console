@@ -31,4 +31,5 @@ module.exports = {
   // CRD List Page
   KIND_TCAP: 'Kind',
   SCOPE_TCAP: 'Scope',
+  CRDS: 'CRDs',
 }

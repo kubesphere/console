@@ -26,7 +26,7 @@ const PATH = '/:workspace/clusters/:cluster/projects/:namespace/grayrelease'
 
 const ROUTES = [
   { name: 'cates', title: 'GRAY_RELEASE_CATEGORIES', component: Categories },
-  { name: 'jobs', title: 'Job Status', component: Jobs },
+  { name: 'jobs', title: 'JOB_STATUS', component: Jobs },
 ]
 
 export default [

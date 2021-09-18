@@ -89,11 +89,11 @@ module.exports = {
   GATEWAY_SERVICE_MESH_STATUS_ON: '已开启',
   GATEWAY_SERVICE_MESH_STATUS_OFF: '未开启',
 
-  PREREQUESTS_FOR_USE_ROUTE_Q: '使用应用路由的前提条件?',
+  PREREQUESTS_FOR_USE_ROUTE_Q: '使用应用路由的前提条件？',
   PREREQUESTS_FOR_USE_ROUTE_A:
-    '使用应用路由需要由管理员对当前的项目进行外网访问设置，即开启外网访问网关。',
+    '使用应用路由需要由项目管理员对当前项目设置网关。',
 
-  ACCESS_TYPES_OF_ROUTE_Q: '应用路由支持的访问方式?',
+  ACCESS_TYPES_OF_ROUTE_Q: '应用路由支持的访问方式？',
   ACCESS_TYPES_OF_ROUTE_A:
-    'KubeSphere 应用路由支持自定义域名 (HostName) 的方式以及通配符 DNS 的访问方式。',
+    'KubeSphere 应用路由支持 NodePort 访问方式以及 LoadBalancer 访问方式。',
 }

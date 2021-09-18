@@ -193,7 +193,7 @@ export default class S2IForm extends React.Component {
       <>
         <div className={styles.margin_b_10}>
           <Form.Item
-            label={t('Secret Code')}
+            label={t('SECRET_CODE')}
             rules={[
               {
                 pattern: /^[a-zA-Z0-9]+$/,
@@ -211,9 +211,7 @@ export default class S2IForm extends React.Component {
         <div className={styles.margin_b_10}>
           <Form.Item
             label={t('S2I_RELATIVE_PATH')}
-            desc={t(
-              'Specify a relative directory inside the application. (Default value /)'
-            )}
+            desc={t('S2I_RELATIVE_PATH_TIP')}
           >
             <Input
               name={`${this.prefix}spec.config.contextDir`}
@@ -223,7 +221,7 @@ export default class S2IForm extends React.Component {
         </div>
         <Alert
           className={styles.margin_b_10}
-          message={t.html('S2I_ENVIROMENT_DESC', {
+          message={t.html('S2I_ENVIRONMENT_DESC', {
             link: this.state.docUrl || getDocsUrl('s2i_template'),
           })}
           type="info"
@@ -257,7 +255,7 @@ export default class S2IForm extends React.Component {
           <div className={styles.column}>
             <Loading spinning={this.state.readRepoLoading} size={18}>
               <Form.Item
-                label={t('Code URL')}
+                label={t('CODE_URL')}
                 desc={t('S2I_IMAGE_REPONSITRY_DESC')}
                 error={this.state.repoReadError}
                 rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
@@ -271,7 +269,7 @@ export default class S2IForm extends React.Component {
           </div>
           <div className="is-2">
             <Form.Item
-              label={t('Branch')}
+              label={t('BRANCH_SI')}
               rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <Input
@@ -284,17 +282,18 @@ export default class S2IForm extends React.Component {
             <Loading spinning={this.state.readRepoLoading} size={18}>
               <Form.Item
                 className={this.state.repoNeedSecret ? '' : styles.disabled}
-                label={t('Secret')}
+                label={t('S2I_SECRET')}
                 desc={
                   this.state.repoNeedSecret
                     ? t('S2I_SECRET_DESC')
-                    : t('The current code repository does not require a key.')
+                    : t('S2I_NO_SECRET')
                 }
               >
                 <Select
                   onChange={this.handleSecretChange}
                   options={this.state.basicSecretOptions}
                   name={`${this.prefix}spec.config.gitSecretRef.name`}
+                  placeholder=" "
                 />
               </Form.Item>
             </Loading>
@@ -307,25 +306,24 @@ export default class S2IForm extends React.Component {
         >
           <div className={styles.column}>
             <Form.Item
-              label={t('imageName')}
+              label={t('IMAGE_NAME')}
               desc={t('S2I_IMAGENAME_DESC')}
               rules={[
                 { required: true, message: t('PARAM_REQUIRED') },
                 {
                   pattern: PATTERN_IMAGE_NAME,
-                  message: t('Invalid name', {
+                  message: t('INVALID_NAME_DESC', {
                     message: t('S2I_IMAGENAME_DESC'),
                   }),
                 },
               ]}
-
             >
               <Input name={`${this.prefix}spec.config.imageName`} />
             </Form.Item>
           </div>
           <div className="is-2">
             <Form.Item
-              label={t('tag')}
+              label={t('TAG')}
               rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <Input
@@ -336,8 +334,8 @@ export default class S2IForm extends React.Component {
           </div>
           <div className="is-half">
             <Form.Item
-              label={t('Target Image Repository')}
-              desc={t.html('S2I_TARGET_IMAGE_REPONSTRY_DESC', {
+              label={t('TARGET_IMAGE_REPOSITORY')}
+              desc={t.html('S2I_TARGET_IMAGE_REPOSITORY_DESC', {
                 link: getDocsUrl('secrets'),
               })}
               rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
@@ -346,6 +344,7 @@ export default class S2IForm extends React.Component {
                 name={`${this.prefix}spec.config.pushAuthentication.secretRef.name`}
                 options={this.state.imageSecretOptions}
                 onChange={this.handleImageSecretChange}
+                placeholder=" "
               />
             </Form.Item>
           </div>

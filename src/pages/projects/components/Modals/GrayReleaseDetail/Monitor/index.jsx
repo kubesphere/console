@@ -137,22 +137,22 @@ export default class Monitor extends React.Component {
     return [
       {
         type: 'traffic-in',
-        title: t('Traffic monitor'),
+        title: t('TRAFFIC_MONITORING'),
         legendData: [detail.newVersion, detail.oldVersion],
         data: request_count,
         unit: 'RPS',
-        tip: t('Traffic of last five minutes'),
+        tip: t('TRAFFIC_IN_LAST_FIVE_MINUTES'),
       },
       {
         type: 'request_success_rate',
-        title: t('Request success rate'),
+        title: t('REQUEST_SUCCESS_RATE'),
         legendData: [detail.newVersion, detail.oldVersion],
         data: request_success_rate,
         unit: '%',
       },
       {
         type: 'request_duration',
-        title: t('Request duration'),
+        title: t('REQUEST_LATENCY'),
         legendData: [detail.newVersion, detail.oldVersion],
         data: request_duration,
         unit: 'ms',
@@ -181,7 +181,7 @@ export default class Monitor extends React.Component {
     return [
       {
         type: 'traffic-in',
-        title: t('TCP - Inbound Traffic'),
+        title: t('TCP_INBOUND_TRAFFIC'),
         legendData: [detail.newVersion, detail.oldVersion],
         data: received,
         unit: 'B/s',
@@ -189,7 +189,7 @@ export default class Monitor extends React.Component {
       },
       {
         type: 'traffic-out',
-        title: t('TCP - Outbound Traffic'),
+        title: t('TCP_OUTBOUND_TRAFFIC'),
         legendData: [detail.newVersion, detail.oldVersion],
         data: sent,
         unit: 'B/s',

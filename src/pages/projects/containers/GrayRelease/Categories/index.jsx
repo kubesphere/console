@@ -133,7 +133,7 @@ export default class Categories extends React.Component {
                     data-type={item.type}
                     onClick={this.showCreate}
                   >
-                    {t('Create Job')}
+                    {t('CREATE_GRAYSCALE_RELEASE_JOB')}
                   </Button>
                 )}
               </div>

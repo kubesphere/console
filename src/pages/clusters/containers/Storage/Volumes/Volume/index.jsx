@@ -179,7 +179,7 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: 'PV',
+        title: t('VOLUME_BACKEND_TCAP'),
         dataIndex: '_originData',
         isHideable: true,
         search: false,

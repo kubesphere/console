@@ -179,7 +179,7 @@ export default class ImageBuilderDetail extends React.Component {
         value: get(spec, 'config.builderImage', '-'),
       },
       {
-        name: t('imageName'),
+        name: t('IMAGE_NAME'),
         value: get(spec, 'config.imageName', '-'),
       },
       {

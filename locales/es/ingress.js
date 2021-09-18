@@ -79,7 +79,7 @@ module.exports = {
   PREREQUESTS_FOR_USE_ROUTE_Q:
     '¿Cuales son los requisitos para poder usar rutas?',
   PREREQUESTS_FOR_USE_ROUTE_A:
-    'Para usar la ruta, el administrador debe configurar el acceso a Internet para el proyecto actual.',
+    'To use a route, the project administrator needs to set the gateway for the current project.',
   ACCESS_TYPES_OF_ROUTE_Q: '¿Qué tipos de acceso admite la ruta?',
   ACCESS_TYPES_OF_ROUTE_A:
     'Las rutas de KubeSphere admiten nombres de dominio personalizados (HostName) y así como wildcards DNS.',

@@ -151,7 +151,7 @@ export default class PV extends React.Component {
         ),
       },
       {
-        title: t('Recycling mechanism'),
+        title: t('RECYCLING_MECHANISM'),
         dataIndex: '_originData',
         isHideable: true,
         width: '7.74%',
