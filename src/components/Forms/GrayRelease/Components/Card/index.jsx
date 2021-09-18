@@ -49,21 +49,17 @@ export default class Card extends React.PureComponent {
     const { value, component, loading } = this.props
 
     if (component.workloads.length <= 0) {
-      return <span className={styles.right}>{t('No workload found')}</span>
+      return <span className={styles.right}>{t('NO_WORKLOAD_FOUND_TIP')}</span>
     }
 
     if (component.workloadType !== 'Deployment') {
       return (
-        <span className={styles.right}>{t('Unsupported workload type')}</span>
+        <span className={styles.right}>{t('UNSUPPORTED_WORKLOAD_TYPE')}</span>
       )
     }
 
     if (component.strategies.length > 0) {
-      return (
-        <span className={styles.right}>
-          {t('Unfinished grayscale release jobs exist')}
-        </span>
-      )
+      return <span className={styles.right}>{t('UNFINISHED_GRAY_JOB')}</span>
     }
 
     return (
@@ -100,7 +96,7 @@ export default class Card extends React.PureComponent {
         </div>
         <div className={styles.text}>
           <div className="h6">{component.name}</div>
-          <p>{`${t('Workload Type')}: ${
+          <p>{`${t('GRAY_WORKLOAD_TYPE')}${
             component.workloadType
               ? t(`SERVICE_${component.workloadType.toUpperCase()}`)
               : ''

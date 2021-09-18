@@ -22,7 +22,7 @@ module.exports = {
   'Authentication required': 'Autenticación requerida',
   b2i: 'b2i',
   binary: 'binario',
-  'Build Environment': 'Entorno de build',
+  BUILD_ENVIRONMENT: 'Entorno de build',
   'Build Times': 'Tiempos de build',
   Builder: 'Builder',
   'builder name': 'nombre del builder',
@@ -35,19 +35,19 @@ module.exports = {
   'Building Log': 'Registro de construcción',
   'building logs': 'registros de construcción',
   'Choose a Language': 'Elige un idioma',
-  'Click to upload an artifact':
+  CLICK_UPLOAD_ARTIFACT:
     'Haz clic para seleccionar el archivo de artefacto a subir',
   'Code Resource': 'Recurso de código',
-  'Code URL': 'URL de código',
+  CODE_URL: 'URL de código',
   CONTAINER_SETTINGS: 'Configuración del contenedor',
   creationTimestamp: 'creationTimestamp',
   'Currently only supports git repo': 'Actualmente solo admite repositorio git',
-  'Download Artifact': 'Descargar Artefacto',
+  DOWNLOAD_ARTIFACT: 'Descargar Artefacto',
   'Environment Params': 'Parámetros de entorno',
   'exec: "git": executable file not found in $PATH':
     'exec: "git": archivo ejecutable no encontrado en $PATH',
   'File Size': 'Tamaño del archivo',
-  'File Uploaded Successfully': 'Documento subido correctamente',
+  FILE_UPLOADED_TIP: 'Documento subido correctamente',
   'Image Artifacts': 'Image Artifacts',
   'Image Builder': 'Image Builder',
   IMAGE_BUILDER: 'Image Builder',
@@ -56,7 +56,7 @@ module.exports = {
   'Image building failed': 'La construcción de la imagen falló',
   'Image building succeeded': 'La construcción de la imagen tuvo éxito',
   'Image Size': 'Tamaño de la imagen',
-  imageName: 'Image Name',
+  IMAGE_NAME: 'Image Name',
   ImageName: 'Image Name',
   'is Failed': 'falló',
   'Job Records': 'Registros de trabajos',
@@ -87,18 +87,17 @@ module.exports = {
   'Source to image jobs': 'Trabajos de origen a imagen',
   sourceUrl: 'sourceUrl',
   SourceUrl: 'SourceUrl',
-  'Specify a relative directory inside the application. (Default value /)':
+  S2I_RELATIVE_PATH_TIP:
     'Especifica un directorio relativo dentro de la aplicación. (Valor por defecto /)',
   STARTUP_COMMAND: 'Comando de inicio',
   StartTime: 'Hora de inicio',
-  'Target Image Repository': 'Repositorio de imágenes de destino',
-  'The current code repository does not require a key.':
-    'El repositorio de código actual no requiere clave.',
-  'The file has not been uploaded.': 'El archivo no se ha subido.',
+  TARGET_IMAGE_REPOSITORY: 'Repositorio de imágenes de destino',
+  S2I_NO_SECRET: 'El repositorio de código actual no requiere clave.',
+  UPLOAD_ARTIFACT_TIP: 'Please upload an artifact.',
   HEALTH_CHECKER_DESC:
     'La salud del contenedor se verificará periódicamente de acuerdo con las necesidades del usuario.',
-  'Upload Artifact': 'Subir artefactos',
-  'Upload file failed': 'Error al cargar el archivo',
+  UPLOAD_ARTIFACT: 'Subir artefactos',
+  FILE_UPLOAD_FAILED: 'Error al cargar el archivo',
   'Upload Percent': 'Porcentaje de subida',
   SORT_BY: 'ordenado por { name }',
   S2I_Building: 'esta construyendo',
@@ -116,7 +115,7 @@ module.exports = {
   CONTAINER_ENVIRONMENT_DESC: 'Añade la variable de entorno del contenedor.',
   IMAGE_PULL_POLICY_DESC:
     'Por defecto, la imagen se descarga solo si aún no está presente localmente.',
-  S2I_ENVIROMENT_DESC:
+  S2I_ENVIRONMENT_DESC:
     'Los desarrolladores de aplicaciones pueden usar las siguientes variables de entorno para configurar el comportamiento en tiempo de ejecución de esta imagen; para configuraciones detalladas, consulta <a href={link} target="_blank">plantillas de compilación</a> .',
   S2I_UPDATE_WORKLOAD:
     'Actualiza la carga de trabajo después de construir con éxito',
@@ -135,17 +134,17 @@ module.exports = {
   S2I_RELATIVE_PATH: 'Ruta relativa del código (opcional):',
   S2I_IMAGENAME_DESC:
     'Nombre de la imagen y tag, que por defecto es el nombre del proyecto del repositorio de código.',
-  S2I_TARGET_IMAGE_REPONSTRY_DESC:
-    'Debes seleccionar un repositorio de imágenes con permisos push para almacenar la imagen. De lo contrario, puedes <a href={link} target="_blank">crear una nueva credencial de repositorio de imágenes</a> .',
+  S2I_TARGET_IMAGE_REPOSITORY_DESC:
+    'Select a Secret with push permissions to the image repository. De lo contrario, puedes <a href={link} target="_blank">crear una nueva credencial de repositorio de imágenes</a> .',
   S2I_BUILDERNAME_DESC:
     'Selecciona el entorno de edición, también puedes ver la <a href={link} target="_blank">plantilla de compilación correspondiente</a>',
   IMAGE_BUILDER_DESC:
-    'Image Builder es una herramienta que facilita la creación de imágenes de contenedor que toman el código fuente de la aplicación o artefactos como entrada y producen una nueva imagen que ejecuta la aplicación ensamblada como salida. Incluye Source to Image, también conocido como S2I, que toma el código fuente como entrada, y Binary to Image, también conocido como B2I, que toma los artefactos de la aplicación como entrada.',
-  'Build image for service x': 'Crear imagen para el servicio {service}',
+    'Image Builder is a tool that builds container images from source code or artifacts. You can build container images from source code or artifacts through simple configurations.',
+  BUILD_IMAGE_FOR_SERVICE: 'Crear imagen para el servicio {service}',
   S2I_DESC: 'Por favor elige tu lenguaje de código fuente',
   IMAGE_FROM_S2I: 'Crea una nueva imagen a partir del código',
   IMAGE_FROM_B2I: 'Crea una nueva imagen a partir del artefacto',
-  B2I_DESC: 'Elige tu artefacto para construir una imagen de contenedor',
+  B2I_DESC: 'Select the file type of your artifact.',
   B2I_DEFAULT_DESC:
     'Elige tu artefacto para construir una imagen de contenedor',
   JAR_DESC:
@@ -153,13 +152,22 @@ module.exports = {
   WAR_DESC:
     'El archivo WAR es un archivo utilizado para distribuir una colección de archivos JAR, JavaServer Pages, Java Servlets, clases Java, archivos XML, bibliotecas de tags, páginas web estáticas (HTML y archivos relacionados) y otros recursos que juntos constituyen una aplicación web.',
   BINARY_DESC: '',
-  IMAGE_BUILDER_EMPTY_DESC:
-    'Image Builder es una herramienta que facilita la creación de imágenes de contenedor que toman el código fuente de la aplicación o artefactos como entrada y producen una nueva imagen que ejecuta la aplicación ensamblada como salida. Incluye Source to Image, también conocido como S2I, que toma el código fuente como entrada, y Binary to Image, también conocido como B2I, que toma los artefactos de la aplicación como entrada.',
+  IMAGE_BUILDER_EMPTY_DESC: 'Crea un generador de image builder.',
   WRONG_FILE_EXTENSION_NAME:
     'El tipo de archivo seleccionado no coincide, selecciona el tipo {type}',
   PROBE_COMMAND_DESC: 'Utiliza comas para separar múltiples comandos.',
-  'Secret Code': 'Secret Code',
+  SECRET_CODE: 'Secret Code',
   SECRET_CODE_RULE_DESC:
-    'It can only contain upper and lower case letters, numbers.',
+    'It can only contain upper and lower case letters and numbers.',
   'Remote Trigger Link': 'Remote Trigger Link',
+
+  // Image Builder List Page
+  TYPE: 'Tipo',
+
+  // Creation Page
+  TAG: 'Etiqueta',
+  UPLOADED: 'Uploaded: {percent}%',
+  UPLOAD_FULLY: 'Uploaded: 100%',
+  FILE_SIZE: 'File size: {size}',
+  S2I_SECRET: 'Secret',
 }

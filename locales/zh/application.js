@@ -97,8 +97,8 @@ module.exports = {
   'Traffic (requests per second)': '流量(每秒请求)',
   'HTTP - Inbound Traffic': 'HTTP - 入站流量',
   'HTTP - Outbound Traffic': 'HTTP - 出站流量',
-  'TCP - Inbound Traffic': 'TCP - 入站流量',
-  'TCP - Outbound Traffic': 'TCP - 出站流量',
+  TCP_INBOUND_TRAFFIC: 'TCP：入站流量',
+  TCP_OUTBOUND_TRAFFIC: 'TCP：出站流量',
 
   'Connection timeout': '连接超时时间',
   'TCP connection timeout.': 'TCP连接超时时间。',
@@ -159,8 +159,8 @@ module.exports = {
 
   APP_WORKLOAD_TYPE_DESC: '支持无状态服务(部署)及有状态服务(有状态副本集)',
 
-  SERVICE_DEPLOYMENT: '无状态服务(部署)',
-  SERVICE_STATEFULSET: '有状态服务(有状态副本集)',
+  SERVICE_DEPLOYMENT: '无状态服务（部署）',
+  SERVICE_STATEFULSET: '有状态服务（有状态副本集）',
 
   'Temporarily unable to use traffic management': '暂时无法使用流量治理',
   'Temporarily unable to use tracing': '暂时无法使用 Tracing',
@@ -211,7 +211,7 @@ module.exports = {
     '熔断机制是应对雪崩效应的一种微服务链路保护机制。当算出链路的某个微服务不可用或者响应时间太长时，会进行服务的降级，进而熔断该节点微服务的调用，快速返回错误的响应信息。当检测到该节点微服务调用响应正常后，恢复调用链路。',
 
   'Please input component version': '请输入组件版本',
-  'Invalid version': '版本格式不合法',
+  INVALID_VERSION_TIP: '无效版本格式。',
   WORKLOAD_NAME_EXIST: '工作负载 {name} 已存在',
 
   APP_TYPES_A:

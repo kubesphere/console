@@ -51,7 +51,7 @@ export default class VersionEdit extends React.Component {
             { required: true, message: t('Please input version number') },
             {
               pattern: PATTERN_APPTEMPLATE_VERSION,
-              message: t('Invalid version'),
+              message: t('INVALID_VERSION_TIP'),
             },
           ]}
         >

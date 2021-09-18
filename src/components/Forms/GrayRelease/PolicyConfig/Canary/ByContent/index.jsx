@@ -72,27 +72,25 @@ export default class ByContent extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.item}>
-          <div className={styles.title}>{t('Rule Description')}</div>
+          <div className={styles.title}>{t('RULE_DESCRIPTION')}</div>
           <p>{t('GRAY_RELEASE_BY_CONTENT_TIP')}</p>
         </div>
         <div className={styles.item}>
-          <div className={styles.title}>
-            {t('Grayscale release version access rule')}
-          </div>
+          <div className={styles.title}>{t('GRAYSCALE_ACCESS_RULE')}</div>
           <Form
             ref={formRef}
             data={this.formTemplate}
             onChange={this.handleFormChange}
             {...rest}
           >
-            <Form.Item label={t('Cookie')}>
+            <Form.Item label={t('COOKIE')}>
               <CookieMatch
                 name={`${this.prefix}.match[0].headers.cookie`}
                 onChange={this.handleCookieChange}
                 placeholder="key=value"
               />
             </Form.Item>
-            <Form.Item label={t('Custom Header')}>
+            <Form.Item label={t('CUSTOM_HEADER')}>
               <HeaderMatch name={`${this.prefix}.match[0].headers`} />
             </Form.Item>
             <Form.Item label={t('URI')}>
@@ -102,9 +100,7 @@ export default class ByContent extends React.Component {
                 matchTypes={['prefix', 'regex']}
               />
             </Form.Item>
-            <Form.Item
-              label={t('Traffic comes from the following operating systems')}
-            >
+            <Form.Item label={t('TRAFFIC_OS')}>
               <OSSelect
                 name={`${this.prefix}.match[0].headers['User-Agent'].regex`}
                 options={GRAY_RELEASE_CANARY_CONTENT}

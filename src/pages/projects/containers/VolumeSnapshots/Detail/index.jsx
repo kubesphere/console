@@ -162,7 +162,7 @@ export default class VolumeSnapshotDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Create Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]

@@ -146,7 +146,7 @@ export default class VolumeDetail extends React.Component {
         value: persistentVolumeReclaimPolicy,
       },
       {
-        name: t('Create Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

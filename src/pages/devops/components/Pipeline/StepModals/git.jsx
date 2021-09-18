@@ -159,7 +159,7 @@ export default class Git extends React.Component {
               clearable
             />
           </Form.Item>
-          <Form.Item label={t('Branch')}>
+          <Form.Item label={t('BRANCH_SI')}>
             <Input name="branch" />
           </Form.Item>
         </Form>

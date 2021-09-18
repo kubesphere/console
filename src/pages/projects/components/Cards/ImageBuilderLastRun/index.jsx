@@ -120,7 +120,7 @@ export default class BuilderInfo extends React.Component {
           <Icon name="branch" className={styles.icon} />
           <div className={styles.info}>
             <p className={styles.value}>{revisionId || 'master'}</p>
-            <p className={styles.name}>{t('Branch')}</p>
+            <p className={styles.name}>{t('BRANCH_SI')}</p>
           </div>
         </li>
       </ul>

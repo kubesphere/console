@@ -259,7 +259,7 @@ export default class Activity extends React.Component {
       ? []
       : [
           {
-            title: t('Branch'),
+            title: t('BRANCH_SI'),
             width: '15%',
             key: 'branch',
             render: record => {

@@ -161,16 +161,16 @@ export default class Item extends React.Component {
     return [
       {
         type: 'traffic',
-        name: t('Traffic monitor'),
+        name: t('TRAFFIC_MONITORING'),
         legendData: [data.newVersion, data.oldVersion],
         data: request_count,
         unit: 'RPS',
         icon: 'changing-over',
-        tip: t('Traffic of last five minutes'),
+        tip: t('TRAFFIC_IN_LAST_FIVE_MINUTES'),
       },
       {
         type: 'request_success_rate',
-        name: t('Request success rate'),
+        name: t('REQUEST_SUCCESS_RATE'),
         legendData: [data.newVersion, data.oldVersion],
         data: request_success_rate,
         icon: 'check',
@@ -178,7 +178,7 @@ export default class Item extends React.Component {
       },
       {
         type: 'request_duration',
-        name: t('Request duration'),
+        name: t('REQUEST_LATENCY'),
         legendData: [data.newVersion, data.oldVersion],
         data: request_duration,
         icon: 'timed-task',
@@ -220,7 +220,7 @@ export default class Item extends React.Component {
     return [
       {
         type: 'traffic-in',
-        name: t('TCP - Inbound Traffic'),
+        name: t('TCP_INBOUND_TRAFFIC'),
         legendData: [data.newVersion, data.oldVersion],
         data: received,
         unit: 'B/s',
@@ -228,7 +228,7 @@ export default class Item extends React.Component {
       },
       {
         type: 'traffic-out',
-        name: t('TCP - Outbound Traffic'),
+        name: t('TCP_OUTBOUND_TRAFFIC'),
         legendData: [data.newVersion, data.oldVersion],
         data: sent,
         unit: 'B/s',
@@ -274,17 +274,17 @@ export default class Item extends React.Component {
               {get(data, 'labels["app.kubernetes.io/name"]')}
             </p>
             <p>
-              <span>{t('GRAY_RELEASE_CATEGORIES')}</span>: {t(cate.title)}
+              <span>{t('GRAYSCALE_JOB_STRATEGY')}</span>: {t(cate.title)}
             </p>
             <p>
-              <span>{t('Grayscale Release Component')}</span>: {data.hosts}
+              <span>{t('GRAYSCALE_JOB_COMPONENT')}</span>: {data.hosts}
             </p>
           </div>
         </div>
         <div className={styles.right}>
           <div className={styles.versions}>
             <p>
-              <strong>{t('Version Comparison')}</strong>
+              <strong>{t('VERSION_COMPARISON')}</strong>
             </p>
             <p className={styles.tag}>
               {data.newVersion}

@@ -70,11 +70,7 @@ export default class Version extends ContainerSettings {
       .then(resp => {
         if (resp.exist) {
           return callback({
-            message: t(
-              `${t('DEPLOYMENTS')} ${name} ${t('exists')}, ${t(
-                'version number is invalid'
-              )}`
-            ),
+            message: t('GRAY_DEPLOY_VERSION_TIP', { name }),
             field: rule.field,
           })
         }
@@ -100,16 +96,16 @@ export default class Version extends ContainerSettings {
       <Column className="is-narrow">
         <Form.Item
           className={styles.narrow}
-          label={t('Grayscale Release Version Number')}
+          label={t('GRAYSCALE_RELEASE_VERSION_NUMBER')}
           desc={t('GRAY_RELEASE_VERSION_FORMAT_DESC')}
           rules={[
             {
               required: true,
-              message: t('Please input grayscale release version'),
+              message: t('GRAY_VERSION_TIP'),
             },
             {
               pattern: PATTERN_COMPONENT_VERSION,
-              message: t('Invalid version'),
+              message: t('INVALID_VERSION_TIP'),
             },
             { validator: this.versionValidator },
           ]}

@@ -203,7 +203,7 @@ export default class BranchDetailLayout extends React.Component {
       module: this.module,
       breadcrumbs: [
         {
-          label: t('Branch'),
+          label: t('BRANCH_SI'),
           url: `/${workspace}/clusters/${cluster}/devops/${devops}/pipelines/${name}/branch`,
         },
       ],

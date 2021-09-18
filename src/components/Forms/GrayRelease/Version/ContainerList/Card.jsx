@@ -46,7 +46,7 @@ const Card = ({ type = 'worker', container, onEdit, onDelete, disabled }) => {
       <span>
         {container.name}
         <Tag className="margin-l8" type="warning">
-          {t('Init Container')}
+          {t('INIT_CONTAINER')}
         </Tag>
       </span>
     ) : (
@@ -58,7 +58,7 @@ const Card = ({ type = 'worker', container, onEdit, onDelete, disabled }) => {
       icon="docker"
       title={title}
       className={styles.card}
-      description={`${t('IMAGE')}: ${container.image}`}
+      description={t('GRAYSCALE_IMAGE', { image: container.image })}
       extras={extras}
       onDelete={!disabled && handleDelete}
       onEdit={!disabled && handleEdit}

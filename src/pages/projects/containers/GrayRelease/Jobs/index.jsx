@@ -95,7 +95,7 @@ class Jobs extends React.Component {
 
   handleDelete = () => {
     this.store.delete(this.state.selectItem).then(() => {
-      Notify.success({ content: `${t('Job offline Successfully')}` })
+      Notify.success({ content: `${t('JOB_OFFLINE_SUCCESSFULLY')}` })
       this.hideDetail()
     })
   }
@@ -121,7 +121,7 @@ class Jobs extends React.Component {
         actions={
           this.canCreate ? (
             <Button type="control" onClick={this.showCreateGrayReleaseJob}>
-              {t('Create Grayscale Release Job')}
+              {t('CREATE')}
             </Button>
           ) : null
         }
@@ -158,7 +158,11 @@ class Jobs extends React.Component {
     const { total } = this.store.list
     return (
       <div className={styles.footer}>
-        <p>{t('TOTAL_GRAY_RELEASE_JOBS', { num: total })}</p>
+        <p>
+          {total === 1
+            ? t('TOTAL_GRAY_RELEASE_JOB', { num: total })
+            : t('TOTAL_GRAY_RELEASE_JOBS', { num: total })}
+        </p>
       </div>
     )
   }

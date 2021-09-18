@@ -31,4 +31,5 @@ module.exports = {
   // CRD List Page
   KIND_TCAP: '類別',
   SCOPE_TCAP: '作用域',
+  CRDS: '定製資源定義',
 }

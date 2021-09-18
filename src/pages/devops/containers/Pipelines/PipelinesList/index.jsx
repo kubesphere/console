@@ -322,7 +322,7 @@ export default class PipelinesList extends React.Component {
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
-      title: t('Branch'),
+      title: t('BRANCH_SI'),
       dataIndex: 'totalNumberOfBranches',
       width: '25%',
       isHideable: true,

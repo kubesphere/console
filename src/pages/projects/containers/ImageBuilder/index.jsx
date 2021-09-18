@@ -102,7 +102,7 @@ export default class ImageBuilders extends React.Component {
             title={getDisplayName(record)}
             desc={
               record.serviceName
-                ? t('Build image for service x', {
+                ? t('BUILD_IMAGE_FOR_SERVICE', {
                     service: record.serviceName,
                   })
                 : '-'
@@ -121,7 +121,7 @@ export default class ImageBuilders extends React.Component {
           _status = _status === 'Running' ? 'Building' : _status
           return (
             <Status
-              name={t(_status || 'Not running yet')}
+              name={t(_status || 'NOT_RUNNING_YET')}
               type={_status || 'Unknown'}
               flicker
             />
@@ -129,14 +129,14 @@ export default class ImageBuilders extends React.Component {
         },
       },
       {
-        title: t('type'),
+        title: t('TYPE'),
         dataIndex: 'type',
         isHideable: true,
         width: '15%',
         render: type => t(type),
       },
       {
-        title: t('Service'),
+        title: t('SERVICE'),
         dataIndex: 'serviceName',
         isHideable: true,
         width: '15%',

@@ -103,11 +103,11 @@ export default class Bluegreen extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.item}>
-          <div className={styles.title}>{t('Rule Description')}</div>
-          <p>{t('Two Versions')}</p>
+          <div className={styles.title}>{t('RULE_DESCRIPTION')}</div>
+          <p>{t('TWO_VERSIONS')}</p>
         </div>
         <div className={styles.item}>
-          <div className={styles.title}>{t('Traffic Rules')}</div>
+          <div className={styles.title}>{t('TRAFFIC_RULES')}</div>
           <Form ref={formRef} data={this.formTemplate} {...rest}>
             <Form.Item>
               <VersionSelect

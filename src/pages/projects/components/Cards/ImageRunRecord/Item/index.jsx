@@ -181,7 +181,7 @@ export default class ImageBuilderLastRun extends React.Component {
           type="primary"
           disabled={status !== 'Successful'}
         >
-          {t('Download Artifact')}
+          {t('DOWNLOAD_ARTIFACT')}
         </Button>
       </div>
     )

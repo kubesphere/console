@@ -156,7 +156,7 @@ class Uploader extends React.Component {
       JSON.stringify(info)
     )
     Notify.success({
-      content: t('File Uploaded Successfully'),
+      content: t('FILE_UPLOADED_TIP'),
     })
     this.props.uploadSuccess && this.props.uploadSuccess()
   }
@@ -169,7 +169,7 @@ class Uploader extends React.Component {
       status: 'exception',
     })
     Notify.error({
-      content: t('Upload file failed'),
+      content: t('FILE_UPLOAD_FAILED'),
     })
   }
 
@@ -191,10 +191,10 @@ class Uploader extends React.Component {
         <p className={styles.fileInfo}>
           <span className={styles.fileName}>{file.name}</span>
           <span className={styles.uploadText}>
-            {t('Upload percent')}: {file.percentage}%
+            {t('UPLOADED', { percent: file.percentage })}
           </span>
           <span className={styles.uploadText}>
-            {t('File size')}: {formatSize(file.size)}
+            {t('FILE_SIZE', { size: formatSize(file.size) })}
           </span>
         </p>
         <Progress
@@ -217,9 +217,9 @@ class Uploader extends React.Component {
       <div className={styles.uploadingContent} key={fileId}>
         <p className={styles.fileInfo}>
           <span className={styles.fileName}>{file.name}</span>
-          <span className={styles.uploadText}>{t('Upload percent')}: 100%</span>
+          <span className={styles.uploadText}>{t('UPLOAD_FULLY')}</span>
           <span className={styles.uploadText}>
-            {t('File size')}: {formatSize(file.size)}
+            {t('FILE_SIZE', { size: formatSize(file.size) })}
           </span>
         </p>
         <Progress
@@ -256,7 +256,7 @@ class Uploader extends React.Component {
               name={this.filesType}
               type="coloured"
             />
-            <p className={styles.title}>{t('Click to upload an artifact')}</p>
+            <p className={styles.title}>{t('CLICK_UPLOAD_ARTIFACT')}</p>
             <p className={styles.desc}>
               {t(`${this.filesType.toUpperCase() || 'B2I_DEFAULT'}_DESC`)}
             </p>

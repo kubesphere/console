@@ -98,7 +98,7 @@ module.exports = {
   'If you need to access applications by application route, add routing rules':
     'If you need to access applications by application route, add routing rules',
   'Inspection period (unit: s)': 'Inspection period (unit: s)',
-  'Invalid version': 'Invalid version',
+  INVALID_VERSION_TIP: 'Invalid version.',
   'Load balance algorithm': 'Load balance algorithm',
   Log: 'Log',
   'Max number of connections': 'Max number of connections',
@@ -137,8 +137,8 @@ module.exports = {
   'Session retention': 'Session retention',
   'Success rate': 'Success rate',
   Tags: 'Tags',
-  'TCP - Inbound Traffic': 'TCP - Inbound Traffic',
-  'TCP - Outbound Traffic': 'TCP - Outbound Traffic',
+  TCP_INBOUND_TRAFFIC: 'TCP: Inbound Traffic',
+  TCP_OUTBOUND_TRAFFIC: 'TCP: Outbound Traffic',
   'TCP connection timeout.': 'TCP connection timeout.',
   'Temporarily unable to use tracing': 'Tracing is not available now',
   'Temporarily unable to use traffic management':
@@ -185,8 +185,8 @@ module.exports = {
   APP_WORKLOAD_TYPE_DESC:
     'Support stateless Services (Deployment) and stateful Services (StatefulSet)',
 
-  SERVICE_DEPLOYMENT: 'Stateless Service(Deployment)',
-  SERVICE_STATEFULSET: 'Stateful Service(StatefulSet)',
+  SERVICE_DEPLOYMENT: 'Stateless Service (Deployment)',
+  SERVICE_STATEFULSET: 'Stateful Service (StatefulSet)',
 
   CONNECTION_POOL_TIP:
     'A fixed number of connection objects will be created for the application and stored in the connection pool for reuse. The existing pool is available for each access, and each connection object will be returned to the pool after use.',

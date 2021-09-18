@@ -93,8 +93,8 @@ module.exports = {
   'Traffic Monitoring': '流量監測',
 
   'Traffic (requests per second)': '流量(每秒請求)',
-  'TCP - Inbound Traffic': 'TCP - 入站流量',
-  'TCP - Outbound Traffic': 'TCP - 出站流量',
+  TCP_INBOUND_TRAFFIC: 'TCP：入站流量',
+  TCP_OUTBOUND_TRAFFIC: 'TCP：出站流量',
 
   'Connection timeout': '連接超時時間',
   'TCP connection timeout.': 'TCP 連接超時時間。',
@@ -156,8 +156,8 @@ module.exports = {
 
   APP_WORKLOAD_TYPE_DESC: '支持無狀態服務(部署)及有狀態服務(有狀態副本集)',
 
-  SERVICE_DEPLOYMENT: '無狀態服務(部署)',
-  SERVICE_STATEFULSET: '有狀態服務(有狀態副本集)',
+  SERVICE_DEPLOYMENT: '無狀態服務（部署）',
+  SERVICE_STATEFULSET: '有狀態服務（有狀態副本集）',
 
   'Temporarily unable to use traffic management': '暫時無法使用流量治理',
   'Temporarily unable to use tracing': '暫時無法使用 Tracing',
@@ -208,7 +208,7 @@ module.exports = {
     '熔斷機制是應對雪崩效應的一種微服務鏈路保護機制。當扇出鏈路的某個微服務不可用或者響應時間太長時，會進行服務的降級，進而熔斷該節點微服務的調用，快速返回錯誤的響應資訊。當檢測到該節點微服務調用響應正常後，恢復調用鏈路。',
 
   'Please input component version': '請輸入組件版本',
-  'Invalid version': '版本格式不合法',
+  INVALID_VERSION_TIP: '无效版本格式。',
   WORKLOAD_NAME_EXIST: '工作負載 {name} 已存在',
 
   APP_TYPES_A:

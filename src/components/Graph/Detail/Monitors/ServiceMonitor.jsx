@@ -265,9 +265,9 @@ export default class Monitors extends React.Component {
     if (protocol === 'tcp') {
       return (
         <>
-          <div className={styles.title}>{t('TCP - Inbound Traffic')}</div>
+          <div className={styles.title}>{t('TCP_INBOUND_TRAFFIC')}</div>
           <Chart {...this.tcpInMetrics} height={150} />
-          <div className={styles.title}>{t('TCP - Outbound Traffic')}</div>
+          <div className={styles.title}>{t('TCP_OUTBOUND_TRAFFIC')}</div>
           <Chart {...this.tcpOutMetrics} height={150} />
         </>
       )

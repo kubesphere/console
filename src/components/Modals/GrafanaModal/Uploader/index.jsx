@@ -118,7 +118,7 @@ export default class Uploader extends React.Component {
     })
 
     Notify.success({
-      content: t('File Uploaded Successfully'),
+      content: t('FILE_UPLOADED_TIP'),
     })
   }
 
@@ -130,7 +130,7 @@ export default class Uploader extends React.Component {
       status: 'exception',
     })
     Notify.error({
-      content: t('Upload file failed'),
+      content: t('FILE_UPLOAD_FAILED'),
     })
   }
 
@@ -152,10 +152,10 @@ export default class Uploader extends React.Component {
         <p className={styles.fileInfo}>
           <span className={styles.fileName}>{file.name}</span>
           <span className={styles.uploadText}>
-            {t('Upload percent')}: {file.percentage}%
+            {t('UPLOADED', { percent: file.percentage })}
           </span>
           <span className={styles.uploadText}>
-            {t('File size')}: {formatSize(file.size)}
+            {t('FILE_SIZE', { size: formatSize(file.size) })}
           </span>
         </p>
         <Progress
@@ -178,9 +178,9 @@ export default class Uploader extends React.Component {
       <div className={styles.uploadingContent} key={fileId}>
         <p className={styles.fileInfo}>
           <span className={styles.fileName}>{file.name}</span>
-          <span className={styles.uploadText}>{t('Upload percent')}: 100%</span>
+          <span className={styles.uploadText}>{t('UPLOAD_FULLY')}</span>
           <span className={styles.uploadText}>
-            {t('File size')}: {formatSize(file.size)}
+            {t('FILE_SIZE', { size: formatSize(file.size) })}
           </span>
         </p>
         <Progress

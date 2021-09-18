@@ -479,19 +479,19 @@ export const GRAY_RELEASE_CATEGORIES = [
   {
     icon: 'blue-green-deployment',
     type: 'Bluegreen',
-    title: 'Blue-green Deployment',
+    title: 'BLUE_GREEN_DEPLOYMENT',
     desc: 'BLUE_GREEN_DEPLOYMENT_DESC',
   },
   {
     icon: 'bird',
     type: 'Canary',
-    title: 'Canary Release',
+    title: 'CANARY_RELEASE',
     desc: 'CANARY_RELEASES_DESC',
   },
   {
     icon: 'mirroring',
     type: 'Mirror',
-    title: 'Traffic Mirroring',
+    title: 'TRAFFIC_MIRRORING',
     desc: 'TRAFFIC_MIRROR_DESC',
   },
 ]
@@ -572,7 +572,7 @@ export const GRAY_RELEASE_CANARY_CONTENT = [
     value: '(Windows NT ([\\d.])+)',
   },
   { label: 'Linux', icon: 'ubuntu', value: '(Linux )' },
-  { label: 'Mac OS', icon: 'windows', value: '( Mac OS X ([\\d.])+)' },
+  { label: 'macOS', icon: 'windows', value: '( Mac OS X ([\\d.])+)' },
   { label: 'Android', icon: 'windows', value: '(Android)' },
   { label: 'iOS', icon: 'windows', value: '(OS [\\d.]+)' },
 ]

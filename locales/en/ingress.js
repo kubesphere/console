@@ -54,7 +54,7 @@ module.exports = {
   'Unable to access': 'Unable to access',
 
   ROUTE_DESC:
-    'A Route provides a way to aggregate Services. You can expose the internal Services outside the cluster through an externally accessible IP address.',
+    'A route provides a way to aggregate Services. You can expose the internal Services outside the cluster through an externally accessible IP address.',
   ROUTE_EMPTY_DESC: 'Please create a Route.',
   ROUTE_ANNOTATION_DESC:
     'You can set route behavior by adding annotations to the route. See <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">Annotations</a> for the detailed list of available annotations.',
@@ -82,11 +82,11 @@ module.exports = {
   UNABLE_TO_ACCESS_TIP:
     '● Make sure that the domain name you set can be resolved to the IP address of the access portal. <br/>● If you are in a private cloud environment, modify the local host file and then access it via {$domain name}:{$node port}.<br/>● By configuring DNS access, you need to modify the domain name to {$hostname} + {$gateway address} + nip.io, and then access the service via {$hostname}.{$gateway address} .nip.io:{$NodePort}. <br/>● If the access is blocked when you use the domain name, please confirm if your domain name exists and has been registered.',
 
-  PREREQUESTS_FOR_USE_ROUTE_Q: 'Prerequisites for using routes',
+  PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using routes?',
   PREREQUESTS_FOR_USE_ROUTE_A:
-    'To use the route, the administrator needs to set the Internet Access for the current project.',
+    'To use a route, the project administrator needs to set the gateway for the current project.',
 
-  ACCESS_TYPES_OF_ROUTE_Q: 'Access types the route supports',
+  ACCESS_TYPES_OF_ROUTE_Q: 'What are the access methods a route supports?',
   ACCESS_TYPES_OF_ROUTE_A:
-    'KubeSphere routes support custom domain names (HostName) and the wildcard DNS access method.',
+    'KubeSphere routes support NodePort access method and LoadBalancer access method.',
 }

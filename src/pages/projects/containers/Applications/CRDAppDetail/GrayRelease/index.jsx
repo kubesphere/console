@@ -98,7 +98,7 @@ class GrayRelease extends Base {
             >
               {this.canCreate && (
                 <Button type="control">
-                  {t('Create Grayscale Release Job')}
+                  {t('CREATE_GRAYSCALE_RELEASE_JOB')}
                 </Button>
               )}
             </Link>

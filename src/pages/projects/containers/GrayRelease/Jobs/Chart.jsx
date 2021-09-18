@@ -82,10 +82,10 @@ export default class Chart extends React.Component {
             {name} {tip && this.renderTip()}
           </div>
           <p className={styles.tag}>
-            {isNaN(data[0]) ? t('No Data') : `${data[0]} ${unit}`}
+            {isNaN(data[0]) ? t('NO_DATA') : `${data[0]} ${unit}`}
           </p>
           <p className={styles.tag}>
-            {isNaN(data[1]) ? t('No Data') : `${data[1]} ${unit}`}
+            {isNaN(data[1]) ? t('NO_DATA') : `${data[1]} ${unit}`}
           </p>
         </div>
       </div>

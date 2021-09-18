@@ -110,12 +110,12 @@ export default class ServiceAccounts extends React.Component {
         ),
       },
       {
-        title: t('Role'),
+        title: t('ROLE'),
         dataIndex: 'role',
         isHideable: true,
       },
       {
-        title: t('Secret'),
+        title: t('SECRET'),
         dataIndex: 'secrets',
         isHideable: true,
         render: secrets =>

@@ -100,7 +100,7 @@ module.exports = {
   'If you need to access applications by application route, add routing rules':
     'Si necesita acceder a las aplicaciones por ruta de aplicación, agregue reglas de enrutamiento',
   'Inspection period (unit: s)': 'Período de inspección (unidad: s)',
-  'Invalid version': 'Versión no válida',
+  INVALID_VERSION_TIP: 'Versión no válida',
   'Load balance algorithm': 'Algoritmo de balanceo de carga',
   Log: 'Registro',
   'Max number of connections': 'Número máximo de conexiones',
@@ -143,8 +143,8 @@ module.exports = {
   'Session retention': 'Retención de la sesión',
   'Success rate': 'Tasa de éxito',
   Tags: 'Etiquetas',
-  'TCP - Inbound Traffic': 'TCP - Tráfico entrante',
-  'TCP - Outbound Traffic': 'TCP - Tráfico saliente',
+  TCP_INBOUND_TRAFFIC: 'TCP - Tráfico entrante',
+  TCP_OUTBOUND_TRAFFIC: 'TCP - Tráfico saliente',
   'TCP connection timeout.': 'Tiempo de espera de conexión TCP.',
   'Temporarily unable to use tracing':
     'No se puede usar el servicio de tracing temporalmente',
