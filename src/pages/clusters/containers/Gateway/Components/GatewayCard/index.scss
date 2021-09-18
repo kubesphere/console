@@ -94,3 +94,17 @@
     }
   }
 }
+.bgWhite {
+  background: $white !important;
+}
+.federatedContainer {
+  background: $light-color01;
+
+  & > div {
+    & + div {
+      .header {
+        background: $white;
+      }
+    }
+  }
+}

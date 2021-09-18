@@ -102,6 +102,8 @@ export default class MonitoringOverview extends React.Component {
           const num =
             typeof _num === 'string' && _num.indexOf('.') > -1
               ? Number(_num).toFixed(4)
+              : isNaN(Number(_num))
+              ? 0
               : _num
           data[item['metric_name']] = num
         })

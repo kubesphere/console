@@ -77,6 +77,12 @@ class InternetAccess extends React.Component {
     return !this.props.actions.includes('manage')
   }
 
+  get cluster() {
+    const { cluster } = this.props.match.params
+    const { isFederated } = this.props
+    return isFederated ? this.props.cluster : cluster
+  }
+
   get itemActions() {
     return [
       {
@@ -106,13 +112,12 @@ class InternetAccess extends React.Component {
   }
 
   handleMoreMenuClick = (e, key) => {
-    const { cluster, namespace, workspace } = this.props.match.params
-    const { type } = this.props
+    const { namespace } = this.props.match.params
+    const { prefix } = this.props
 
-    const url =
-      type === 'project'
-        ? `/${workspace}/clusters/${cluster}/projects/${namespace}/gateways/${this.gateway.name}`
-        : `/clusters/${cluster}/gateways/cluster/${this.gateway.name}`
+    const url = prefix
+      ? `${prefix}/${this.gateway.name}`
+      : `/clusters/${this.cluster}/gateways/cluster/${this.gateway.name}`
 
     switch (key) {
       case 'view':
@@ -120,7 +125,7 @@ class InternetAccess extends React.Component {
         break
       case 'edit':
         this.trigger('gateways.edit', {
-          cluster,
+          cluster: this.cluster,
           namespace,
           detail: toJS(this.gateway._originData),
           success: this.getData,
@@ -128,7 +133,7 @@ class InternetAccess extends React.Component {
         break
       case 'update':
         this.trigger('gateways.update', {
-          cluster,
+          cluster: this.cluster,
           namespace,
           detail: toJS(this.gateway._originData),
           success: this.getData,
@@ -136,7 +141,7 @@ class InternetAccess extends React.Component {
         break
       case 'delete':
         this.trigger('gateways.delete', {
-          cluster,
+          cluster: this.cluster,
           namespace,
           detail: toJS(this.gateway),
           success: this.getData,
@@ -293,30 +298,32 @@ class InternetAccess extends React.Component {
   }
 
   handleCreateGateway = () => {
-    const { namespace, cluster } = this.props.match.params
+    const { namespace } = this.props.match.params
     const { type } = this.props
 
     this.trigger('gateways.create', {
       name: type === 'cluster' ? 'kubesphere-router-kubesphere-system' : '',
       namespace: type === 'cluster' ? 'kubesphere-controls-system' : namespace,
-      cluster,
+      cluster: this.cluster,
       store: this.store,
       success: this.getData,
     })
   }
 
   renderInternetAccess = () => {
+    const { isFederated } = this.props
     return (
-      <Panel className="margin-t12">
+      <Panel
+        className={classNames('margin-t12', {
+          [styles.federatedContainer]: isFederated,
+        })}
+      >
         {this.gatewayConfig.map((item, index) => {
           return (
             <div className={styles.container} key={index}>
               {item.map(detail => {
                 return detail.icon ? (
-                  <div
-                    className={classNames(styles.header, this.props.className)}
-                    key={detail.key}
-                  >
+                  <div className={styles.header} key={detail.key}>
                     {typeof detail.icon === 'string' ? (
                       <Icon name={detail.icon} size={40} />
                     ) : (
@@ -345,8 +352,12 @@ class InternetAccess extends React.Component {
           )
         })}
 
-        <div className={styles.annotations}>
-          <p>{t('ANNOTATION_PL')}</p>
+        <div
+          className={classNames(styles.annotations, {
+            [styles.bgWhite]: isFederated,
+          })}
+        >
+          <p>{t('ANNOTATIONS')}</p>
           <ul>
             {Object.entries(this.gateway.annotations).map(([key, value]) => (
               <li key={key}>

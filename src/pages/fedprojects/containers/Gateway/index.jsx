@@ -21,66 +21,29 @@ import { observer, inject } from 'mobx-react'
 import { trigger } from 'utils/action'
 import Banner from 'components/Cards/Banner'
 
-import GatewayCard from './Components/GatewayCard'
-import ProjectGatewayList from './Components/ProjectGatewayList'
+import Access from './Access'
 
-@inject('rootStore', 'clusterStore')
+@inject('rootStore', 'projectStore')
 @observer
 @trigger
 export default class Getway extends React.Component {
-  get component() {
-    return this.props.match.params.component
+  get store() {
+    return this.props.projectStore
   }
 
-  get cluster() {
-    return this.props.match.params.cluster
+  get clusters() {
+    return this.store.detail.clusters
   }
 
-  get prefix() {
-    return this.props.match.url
+  get namespace() {
+    return this.props.match.params.namespace
   }
 
-  get tabs() {
-    return {
-      value: this.component,
-      onChange: this.handleTabChange,
-      options: [
-        {
-          value: 'cluster',
-          label: t('CLUSTER_GATEWAY'),
-        },
-        {
-          value: 'project',
-          label: t('PROJECT_GATEWAY'),
-        },
-      ],
-    }
-  }
-
-  get enabledActions() {
+  get enableActions() {
     return globals.app.getActions({
-      module: 'cluster-settings',
-      cluster: this.cluster,
+      module: 'project-settings',
+      project: this.namespace,
     })
-  }
-
-  handleTabChange = component => {
-    this.props.rootStore.routing.push(
-      `/clusters/${this.cluster}/gateways/${component}`
-    )
-  }
-
-  renderGatewayCard = () => {
-    return this.component === 'cluster' ? (
-      <GatewayCard
-        type="cluster"
-        {...this.props}
-        actions={this.enabledActions}
-        prefix={this.prefix}
-      />
-    ) : (
-      <ProjectGatewayList {...this.props} />
-    )
   }
 
   render() {
@@ -92,7 +55,16 @@ export default class Getway extends React.Component {
           description={t('GATEWAY_DESC')}
           tabs={this.tabs}
         />
-        {this.renderGatewayCard()}
+        <div>
+          {this.clusters.map(cluster => (
+            <Access
+              key={cluster.name}
+              cluster={cluster}
+              {...this.props}
+              actions={this.enableActions}
+            />
+          ))}
+        </div>
       </>
     )
   }

@@ -33,6 +33,10 @@ export default class Getway extends React.Component {
     return this.props.match.params.cluster
   }
 
+  get prefix() {
+    return this.props.match.url
+  }
+
   get enableActions() {
     return globals.app.getActions({
       module: 'project-settings',
@@ -60,6 +64,7 @@ export default class Getway extends React.Component {
           type="project"
           actions={this.enableActions}
           {...this.props}
+          prefix={this.prefix}
         />
       </>
     )

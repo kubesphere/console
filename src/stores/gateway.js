@@ -44,6 +44,16 @@ export default class Gateway extends Base {
         : '/kubesphere-router-kubesphere-system'
     }`
 
+  gatewayPodsUrl = ({ cluster, namespace, gatewayName = '' }) =>
+    `kapis/gateway.kubesphere.io/v1alpha1/${this.getPath({
+      namespace: namespace || 'kubesphere-system',
+      cluster,
+    })}/${this.module}${
+      this.isCluster(namespace)
+        ? `/${gatewayName}`
+        : '/kubesphere-router-kubesphere-system'
+    }`
+
   isCluster(namespace) {
     return namespace && namespace !== 'kubesphere-controls-system'
   }
@@ -64,6 +74,7 @@ export default class Gateway extends Base {
   async getGateway(params) {
     this.gateway.isLoading = true
     const url = this.gatewayUrl(params)
+
     const result = await request.get(url, null, null, () => {})
     let data = {}
 
@@ -151,7 +162,7 @@ export default class Gateway extends Base {
 
   @action
   async getGatewayPods(params) {
-    const url = `${this.gatewayUrl(params)}/pods`
+    const url = `${this.gatewayPodsUrl(params)}/pods`
     const result = await this.submitting(request.get(url))
     let pods = []
     if (result && result.totalItems > 0) {
@@ -185,7 +196,7 @@ export default class Gateway extends Base {
     params.limit = params.limit || 10
 
     const result = await request.get(
-      `${this.gatewayUrl({ cluster, namespace, gatewayName })}/pods`,
+      `${this.gatewayPodsUrl({ cluster, namespace, gatewayName })}/pods`,
       {
         ...params,
       },
