@@ -53,8 +53,8 @@ export default class IsolateInfo extends React.Component {
             }}
           />
           <div className={styles.isolate}>
-            <div className={styles.isolatetitle}>{t('On')}</div>
-            <div>{t('NETWORK_POLICY_STATUS')}</div>
+            <div className={styles.isolatetitle}>{t('ENABLED')}</div>
+            <div>{t('PROJECT_NETWORK_ISOLATION')}</div>
           </div>
         </div>
         {canEdit && (
@@ -62,7 +62,7 @@ export default class IsolateInfo extends React.Component {
             className={classNames(styles.toggle, opened ? '' : styles.closed)}
             onClick={this.toggle}
           >
-            <span>{opened ? t('On') : t('CLOSE')}</span>
+            <span>{opened ? t('ENABLED') : t('DISABLED')}</span>
             <label className={styles.toggleop} />
           </div>
         )}

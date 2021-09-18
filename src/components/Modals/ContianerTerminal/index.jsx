@@ -154,9 +154,9 @@ export default class ContainerTerminalModal extends React.Component {
             <dd>{selectContainer.image}</dd>
             <dt>{t('COMMAND')}</dt>
             <dd>{isEmpty(command) ? '-' : command.join(' ')}</dd>
-            <dt>{t('Resource Requests')}</dt>
+            <dt>{t('RESOURCE_REQUESTS')}</dt>
             <dd>{this.getResourceInfo('requests')}</dd>
-            <dt>{t('Resource Limits')}</dt>
+            <dt>{t('RESOURCE_LIMITS')}</dt>
             <dd>{this.getResourceInfo('limits')}</dd>
             <dt>{t('Restart Count')}</dt>
             <dd>{selectContainer.restartCount}</dd>

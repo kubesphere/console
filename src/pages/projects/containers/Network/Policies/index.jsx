@@ -38,7 +38,7 @@ export default class Policies extends React.Component {
   tips = [
     {
       title: t('NETWORK_ISOLATION_Q'),
-      description: t('NETWORK_POLICY_A'),
+      description: t.html('NETWORK_POLICY_A'),
     },
     {
       title: t('NETWORK_ISOLATION_Q1'),
@@ -111,7 +111,7 @@ export default class Policies extends React.Component {
           className="margin-b12"
           title={t(name)}
           tips={tips}
-          description={t(`${name.replace(/\s+/g, '_').toUpperCase()}_DESC`)}
+          description={t('NETWORK_ISOLATION_DESC')}
         />
         <div className={styles.subtitle}>{t(name)}</div>
         {!networkIsolate ? (
@@ -127,7 +127,7 @@ export default class Policies extends React.Component {
                   loading={isSubmitting}
                   onClick={this.toggleNetworkIsolate}
                 >
-                  {t('On')}
+                  {t('ENABLE')}
                 </Button>
               )
             }

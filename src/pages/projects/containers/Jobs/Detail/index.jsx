@@ -93,7 +93,7 @@ export default class JobDetail extends React.Component {
     {
       key: 'viewYaml',
       icon: 'eye',
-      text: t('View YAML'),
+      text: t('VIEW_YAML'),
       action: 'view',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -131,7 +131,7 @@ export default class JobDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -143,19 +143,19 @@ export default class JobDetail extends React.Component {
         value: t(status),
       },
       {
-        name: t('backoffLimit'),
+        name: t('BACK_OFF_LIMIT'),
         value: spec.backoffLimit,
       },
       {
-        name: t('completions'),
+        name: t('JOB_COMPLETION_LABEL'),
         value: spec.completions,
       },
       {
-        name: t('parallelism'),
+        name: t('JOB_PARALLELISM_LABEL'),
         value: spec.parallelism,
       },
       {
-        name: t('activeDeadlineSeconds'),
+        name: t('JOB_ACTIVE_DEADLINE'),
         value: spec.activeDeadlineSeconds,
       },
       {

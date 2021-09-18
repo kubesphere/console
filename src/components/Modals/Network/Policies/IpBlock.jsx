@@ -168,20 +168,20 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
       <Modal.Form
         width={600}
         icon="add"
-        title={t('Add Rule')}
+        title={t('ADD_ALLOWLIST')}
         closable={true}
         {...rest}
         onOk={this.handleSave}
       >
         <Form.Item
-          label={`${t('Direction')}:`}
+          label={t('RULE_DIRECTION')}
           desc={
             specType === false ? (
               <span className={styles.errColor}>
-                {t('NETWORK_POLICY_MODAL_DIRECT')}
+                {t('SELECT_RULE_DIRECTION_TIP')}
               </span>
             ) : (
-              t('NETWORK_POLICY_D_DESC')
+              t('EXTERNAL_RULE_DIRECTION_DESC')
             )
           }
         >
@@ -194,22 +194,22 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
           >
             <RadioButton value="egress">
               <Icon name="upload" size={32} />
-              <div>{t('NETWORK_POLICY_D_OP1')}</div>
+              <div>{t('EGRESS')}</div>
             </RadioButton>
             <RadioButton value="ingress">
               <Icon name="download" size={32} />
-              <div>{t('NETWORK_POLICY_D_OP2')}</div>
+              <div>{t('INGRESS')}</div>
             </RadioButton>
           </RadioGroup>
         </Form.Item>
-        <Form.Item label="CIDR:">
+        <Form.Item label={t('NETWORK_SEGMENT')}>
           <>
             <div className={styles.cidr}>
               <Input
                 name="cidr-ip"
                 className={cidr.ip.valid === false ? styles.error : ''}
                 defaultValue={cidr.ip.value}
-                placeholder="eg: 10.0.0.0"
+                placeholder={t('NETWORK_SEGMENT_EXAMPLE')}
                 onChange={(e, v) => this.setCIDR({ ip: { value: v } })}
                 onBlur={this.validCIDR}
               />
@@ -233,12 +233,12 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
               }
             >
               {cidr.ip.valid === false || cidr.mask.valid === false
-                ? t('NETWORK_POLICY_MODAL_CIDRERR')
-                : t('NETWORK_POLICY_D_DESC2')}
+                ? t('ENTER_VALID_ADDRESS_DESC')
+                : t('NETWORK_SEGMENT_DESC')}
             </div>
           </>
         </Form.Item>
-        <div className={styles.title}>{`${t('PORT')}:`}</div>
+        <div className={styles.title}>{t('PORTS')}</div>
         {portRules.map(({ port, protocol }, idx) => {
           if (port.valid === false) {
             portInvalid = true
@@ -254,7 +254,7 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
                 />
                 <Form.Item>
                   <Input
-                    placeholder={`${t('PORT')} eg: 80`}
+                    placeholder={t('PORT_EXAMPLE')}
                     className={port.valid === false ? styles.error : ''}
                     value={port.value}
                     onBlur={this.validPort}
@@ -277,11 +277,11 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
         })}
 
         <div className={styles.addBtn}>
-          <Button onClick={this.addPortRule}>{t('Add Rule')}</Button>
+          <Button onClick={this.addPortRule}>{t('ADD')}</Button>
         </div>
         {portInvalid && (
           <div className={styles.errColor}>
-            {t('NETWORK_POLICY_MODAL_PORTERR')}
+            {t('ENTER_VALID_PORT_NUMBER_DESC')}
           </div>
         )}
       </Modal.Form>

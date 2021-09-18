@@ -40,7 +40,7 @@ module.exports = {
   MATCH_IF_POSSIBLE: 'Match if possible',
   MUST_MATCH: 'Must match',
   MOUNT_PATH_EMPTY: 'Please enter a mount path.',
-  GPU_TYPE: 'GPU type',
+  GPU_TYPE: 'GPU Type',
   CONFIGMAP: 'ConfigMap',
   CONFIGMAP_PL: 'ConfigMaps',
   CONFIGMAP_LOW: 'ConfigMap',
@@ -182,7 +182,6 @@ module.exports = {
   'Image Pull Policy': 'Image Pull Policy',
   ImageInspectError: 'ImageInspectError',
   ImagePullBackOff: 'ImagePullBackOff',
-  INIT_CONTAINER: 'Init container',
   'Initial Delay': 'Initial Delay',
   INITIAL_DELAY_S: 'Initial Delay (s)',
   INITIAL_DELAY_TIMEOUT_VALUE:
@@ -339,11 +338,11 @@ module.exports = {
   RERUN: 'Rerun',
   'Resource Info': 'Resource Info',
   'Resource Limit': 'Resource Limit',
-  'Resource Limits': 'Resource Limits',
+  RESOURCE_LIMITS: 'Resource Limits',
   'Resource limits remaining quota': 'Resource limits remaining quota',
   RESOURCE_NAME: 'Resource Name',
   'Resource Request': 'Resource Request',
-  'Resource Requests': 'Resource Requests',
+  RESOURCE_REQUESTS: 'Resource Requests',
   'Resource requests remaining quota': 'Resource requests remaining quota',
   'Resource Status': 'Resource Status',
   'Restart Count': 'Restart Count',
@@ -414,6 +413,7 @@ module.exports = {
   'Volume Source': 'Volume Source',
   DISK_LOG_COLLECTION_Q: 'What is disk log collection?',
   'What is Disk Log Collection?': 'What is Disk Log Collection?',
+  COLLECT_LOGS_ON_VOLUMES_Q: 'How do I collect logs on volumes?',
   'Worker Container': 'Worker Container',
   VOLUME_CAPACITY: 'Volume Capacity',
   VOLUME_NAME: 'Volume Name',
@@ -425,7 +425,7 @@ module.exports = {
 
   'Not Limited': 'Not Limited',
   Cost: 'Cost',
-  PROJECT_REMAINING_QUOTAS: 'Project Remaining Quota',
+  PROJECT_REMAINING_QUOTAS: 'Project Remaining Quotas',
   WORKSPACE_REMAINING_QUOTAS: 'Workspace Remaining Quotas',
   QUOTA_OVERCOST_TIP:
     'The current resource usage has exceeded the remaining quota',
@@ -637,8 +637,6 @@ module.exports = {
   MONITORING_ALERT_DESC:
     'The current monitoring graph displays five replicas at most. You can click "View All Replicas" to view more monitoring graphs if the number of replicas exceeds five.',
 
-  RESOURCE_REQUESTS: 'Request',
-  RESOURCE_LIMITS: 'Limit',
   CONTAINER_CPU_DESC:
     "It's used as the judgment of resource allocation when scheduling containers. The container is allowed to be scheduled to the node only if the total amount of CPU that can be allocated on the node is equal or greater than the request value of the container CPU.",
   CONTAINER_MEMORY_DESC:

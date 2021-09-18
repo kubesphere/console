@@ -109,7 +109,7 @@ class BaseInfo extends React.Component {
         key: 'edit-default-resource',
         icon: 'pen',
         action: 'edit',
-        text: t('Edit Resource Default Request'),
+        text: t('EDIT_PROJECT_RESOURCE_QUOTAS'),
         onClick: () =>
           this.trigger('project.default.resource', {
             ...this.props.match.params,
@@ -124,7 +124,7 @@ class BaseInfo extends React.Component {
         key: 'delete',
         icon: 'trash',
         action: 'delete',
-        text: t('Delete Project'),
+        text: t('DELETE'),
         onClick: () =>
           this.trigger('federated.project.delete', {
             detail,
@@ -161,7 +161,7 @@ class BaseInfo extends React.Component {
       <div>
         <Banner
           icon="cdn"
-          title={t('Basic Info')}
+          title={t('BASIC_INFORMATION')}
           description={t('PROJECT_BASIC_INFO_DESC')}
           module="project_base_info"
           tips={this.tips}

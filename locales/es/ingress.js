@@ -62,8 +62,6 @@ module.exports = {
     'Al configurar el acceso DNS y cambiar el nombre de dominio a &ltService name&gt + &ltProject name&gt + &ltGateway address&gt + nip.io, podrás acceder al servicio a través de &ltService name&gt.&ltProject name&gt.&ltGateway address&gt.nip.io:&ltNodePort&gt. <br/>Asegúrate de estar en un entorno de red capaz de acceder a la dirección de la puerta de enlace.',
   RULE_SETTING_MODE_SPECIFY:
     'Especifique un nombre de dominio personalizado y use el archivo de hosts local o un servidor DNS para resolver el nombre de dominio en la dirección IP de la puerta de enlace.',
-  GATEWAY_SERVICE_MESH_STATUS_ON: 'Activado',
-  GATEWAY_SERVICE_MESH_STATUS_OFF: 'Desactivado',
   INGRESS_CONTROLLER_NODEPORT_DESC:
     'Si el gateway está habilitado, el sistema asignará automáticamente números de puerto de http y https. Las rutas de aplicación pueden acceder a los servicios a través del proxy inverso.',
   INGRESS_CONTROLLER_LOADBALANCER_DESC:

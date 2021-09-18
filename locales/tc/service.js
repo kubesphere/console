@@ -22,7 +22,7 @@ module.exports = {
   Ports: '端口',
   selector: '選擇器',
   Selector: '選擇器',
-  'External Address': '外部地址',
+  EXTERNAL_IP_ADDRESS: '外部 IP 地址',
   'LoadBalancer IP': '負載平衡 IP',
   CREATE_SERVICE: '創建服務',
   'Delete Service': '刪除服務',

@@ -48,6 +48,8 @@ module.exports = {
   STICKY_SESSION: 'Sticky Session',
   'External Address': 'Dirección Externa',
   EXTERNAL_SERVICE: 'Servicio externo',
+  EXTERNAL_IP_ADDRESS: 'External IP Address',
+  'External Service': 'Servicio externo',
   'Internal access': 'Acceso interno',
   INVALID_PORT_DESC: 'Please enter a valid protocol or port number.',
   INVALID_PORT: 'Puerto inválido',
@@ -58,7 +60,6 @@ module.exports = {
   MAXIMUM_STICKINESS_DURATION: 'Tiempo máximo de sesión (s)',
   'No related resources found with current service(s)':
     'No se encontraron recursos relacionados con los servicios actuales',
-  'Node Port': 'Puerto de nodo',
   'Node Port(s)': 'Puerto(s) de nodo',
   'Not Associate': 'No asociado',
   'Path is Required': 'La ruta es obligatoria',

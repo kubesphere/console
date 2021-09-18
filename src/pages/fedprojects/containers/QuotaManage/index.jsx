@@ -40,7 +40,7 @@ class QuotaManage extends React.Component {
     return [
       {
         title: t('HOW_TO_USE_QUOTA_Q'),
-        description: t('HOW_TO_USE_QUOTA_A'),
+        description: t.html('HOW_TO_USE_QUOTA_A'),
       },
     ]
   }

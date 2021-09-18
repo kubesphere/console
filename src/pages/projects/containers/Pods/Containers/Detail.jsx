@@ -142,11 +142,11 @@ export default class ContainerDetail extends React.Component {
         value: this.command,
       },
       {
-        name: t('Resource Requests'),
+        name: t('RESOURCE_REQUESTS'),
         value: this.getResourceInfo('requests'),
       },
       {
-        name: t('Resource Limits'),
+        name: t('RESOURCE_LIMITS'),
         value: this.getResourceInfo('limits'),
       },
       {

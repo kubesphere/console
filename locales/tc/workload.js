@@ -205,8 +205,8 @@ module.exports = {
   RollingUpdate: '滾動更新',
   ROLLING_UPDATE_RECOMMENDED: '滾動更新(推薦)',
   'Restart Count': '重啟次數',
-  'Resource Requests': '資源預留',
-  'Resource Limits': '資源限制',
+  RESOURCE_REQUESTS: '資源預留',
+  RESOURCE_LIMITS: '資源限制',
   'Image Pull Policy': '鏡像拉取策略',
   Privileged: '特權模式',
   'Desired Replicas': '期望副本',
@@ -403,7 +403,6 @@ module.exports = {
   HTTP_REQUEST: 'HTTP 請求檢查',
   HTTP_PATH_EMPTY: '請設置 HTTP 檢查的路徑。',
   TCP_PORT: 'TCP 端口檢查',
-  INIT_CONTAINER: '初始容器',
   WORKER_CONTAINER: '工作容器',
   'Request Type': '請求類型',
 
@@ -495,7 +494,7 @@ module.exports = {
   'Please select a volume': '請選擇儲存卷',
   'Please select a configmap': '請選擇配置文件',
   'Please select a secret': '請選擇密鑰',
-  DISK_LOG_COLLECTION_Q: 'What is disk log collection?',
+  COLLECT_LOGS_ON_VOLUMES_Q: 'How do I collect logs on volumes?',
   MOUNT_PATH_IN_USE: '掛載路徑已使用',
   READ_WRITE_MOUNT_EMPTY: '請指定讀寫方式及掛載路徑',
   MOUNT_VOLUME: '添加儲存卷',
@@ -546,8 +545,6 @@ module.exports = {
   MONITORING_ALERT_DESC:
     '目前監控最多可顯示五個副本的運行狀態監控，當超過五個副本時，可以點擊具體監控項目的「查看全部副本」，查看更多的副本監控。',
 
-  RESOURCE_REQUESTS: '最小使用',
-  RESOURCE_LIMITS: '最大使用',
   CONTAINER_CPU_DESC:
     '作為容器調度時資源分配的判斷依賴。只有當節點上可分配CPU總量 ≥ 容器CPU最小使用值時，才允許將容器調度到該節點。單位換算規則: 1核 = 1000m',
   CONTAINER_MEMORY_DESC:

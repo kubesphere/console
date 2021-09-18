@@ -91,21 +91,21 @@ class LogCollection extends React.Component {
           <div className={styles.header}>
             <Icon name="log" size={40} />
             <div className={styles.item}>
-              <div>{isOpen ? t('Opened') : t('Closed')}</div>
+              <div>{isOpen ? t('ENABLED') : t('DISABLED')}</div>
               <p>{t('COLLECT_LOGS_ON_VOLUMES')}</p>
             </div>
             {this.canEdit && (
               <div className={classNames(styles.item, 'text-right')}>
                 <Switch
                   type="control"
-                  text={isOpen ? t('Opened') : t('Closed')}
+                  text={isOpen ? t('ENABLED') : t('DISABLED')}
                   onChange={this.handleSwitch}
                   checked={isOpen}
                 />
               </div>
             )}
           </div>
-          <Alert message={t('COLLECTING_FILE_LOG_DESC')} hideIcon />
+          <Alert message={t('COLLECT_FILE_LOG_TIP')} hideIcon />
         </Panel>
         {this.canEdit && (
           <Modal
@@ -125,15 +125,10 @@ class LogCollection extends React.Component {
                 }}
               />
               <div className={styles.title}>
-                <div>{t('Are you sure to disable it?')}</div>
-                <p>
-                  {t(
-                    'Disk Log Collection of the project is about to be disabled.'
-                  )}
-                </p>
+                <div>{t('DISABLE_LOG_COLLECTION')}</div>
               </div>
             </div>
-            <div>{t.html('CLOSE_FILE_LOG_TIP')}</div>
+            <div>{t('CLOSE_FILE_LOG_TIP')}</div>
           </Modal>
         )}
       </>

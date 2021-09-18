@@ -146,7 +146,7 @@ export default class NetworkPoliciesModal extends React.Component {
         : specServices.map(s => ({ service: s }))
     if (rules.length === 0) {
       callback({
-        message: t('NETWORK_POLICY_MODAL_EMPTP'),
+        message: t('EMPTY_RESOURCE_DESC'),
       })
     } else {
       callback()
@@ -168,17 +168,15 @@ export default class NetworkPoliciesModal extends React.Component {
       <Modal.Form
         width={600}
         icon="add"
-        title={t('Add Allowlist')}
+        title={t('ADD_ALLOWLIST')}
         closable={true}
         {...rest}
         onOk={this.handleSave}
       >
         <Form.Item
-          label={`${t('Direction')}:`}
-          desc={t('NETWORK_POLICY_D_DESC')}
-          rules={[
-            { required: true, message: t('NETWORK_POLICY_MODAL_EMPDIR') },
-          ]}
+          label={t('RULE_DIRECTION')}
+          desc={t('INTERNAL_RULE_DIRECTION_DESC')}
+          rules={[{ required: true, message: t('SELECT_RULE_DIRECTION_TIP') }]}
         >
           <RadioGroup
             name="direction"
@@ -190,16 +188,16 @@ export default class NetworkPoliciesModal extends React.Component {
           >
             <RadioButton value="egress">
               <Icon name="upload" size={32} />
-              <div>{t('NETWORK_POLICY_D_OP1')}</div>
+              <div>{t('EGRESS')}</div>
             </RadioButton>
             <RadioButton value="ingress">
               <Icon name="download" size={32} />
-              <div>{t('NETWORK_POLICY_D_OP2')}</div>
+              <div>{t('INGRESS')}</div>
             </RadioButton>
           </RadioGroup>
         </Form.Item>
         <Form.Item
-          label={`${t('TYPE')}:`}
+          label={t('TYPE')}
           rules={[{ validator: this.psValidator }]}
           ref={this.psRef}
         >
@@ -213,7 +211,7 @@ export default class NetworkPoliciesModal extends React.Component {
             rules={[{ required: true }]}
           >
             <RadioButton value="projects">{t('PROJECT')}</RadioButton>
-            <RadioButton value="services">{t('Service')}</RadioButton>
+            <RadioButton value="services">{t('SERVICE')}</RadioButton>
           </RadioGroup>
         </Form.Item>
         <Panel

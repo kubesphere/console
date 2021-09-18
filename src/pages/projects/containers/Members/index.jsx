@@ -72,7 +72,7 @@ export default class Members extends React.Component {
       {
         key: 'modify',
         icon: 'pen',
-        text: t('Modify Member Role'),
+        text: t('CHANGE_MEMBER_ROLE'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -108,7 +108,7 @@ export default class Members extends React.Component {
         {
           key: 'invite',
           type: 'control',
-          text: t('Invite Member'),
+          text: t('INVITE_MEMBER'),
           action: 'create',
           onClick: () =>
             trigger('member.invite', {
@@ -116,9 +116,9 @@ export default class Members extends React.Component {
               roles: toJS(this.roleStore.list.data),
               roleModule: this.roleStore.module,
               workspace: get(this.props, 'projectStore.detail.workspace'),
-              title: t('Invite Members to the Project'),
+              title: t('INVITE_MEMBER'),
               desc: t('INVITE_MEMBER_DESC'),
-              searchPlaceholder: t('INVITE_MEMBER_SEARCH_PLACEHODLER'),
+              searchPlaceholder: t('SEARCH_BY_NAME'),
               success: routing.query,
             }),
         },
@@ -148,7 +148,7 @@ export default class Members extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Member Name'),
+      title: t('NAME'),
       dataIndex: 'username',
       sorter: true,
       render: (name, record) => (
@@ -170,7 +170,7 @@ export default class Members extends React.Component {
       ),
     },
     {
-      title: t('Role'),
+      title: t('ROLE'),
       dataIndex: 'role',
       isHideable: true,
       width: '19%',
@@ -197,7 +197,7 @@ export default class Members extends React.Component {
         <Banner
           {...bannerProps}
           tabs={this.tabs}
-          description={t('INVITE_MEMBER_DESC')}
+          description={t('PROJECT_MEMBER_DESC')}
         />
         <Table
           {...tableProps}

@@ -105,7 +105,7 @@ export default class AlertingPolicy extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_ALERTING_POLICY'),
         action: 'edit',
         onClick: item =>
           trigger('alerting.policy.create', {

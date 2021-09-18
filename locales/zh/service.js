@@ -22,7 +22,7 @@ module.exports = {
   Ports: '端口',
   selector: '选择器',
   Selector: '选择器',
-  'External Address': '外部地址',
+  EXTERNAL_IP_ADDRESS: '外部 IP 地址',
   'LoadBalancer IP': '负载均衡 IP',
   CREATE_SERVICE: '创建服务',
   'Delete Service': '删除服务',
@@ -63,7 +63,6 @@ module.exports = {
   SPECIFY_WORKLOAD_TO_CREATE_SERVICE: '指定工作负载创建服务',
   EDIT_YAML_TO_CREATE_SERVICE: '编辑配置文件创建服务',
   CREATE_EXTERNAL_SERVICE: '创建外部服务',
-  SPECIFY_NODE: '指定节点',
   'Add Selector': '添加选择器',
 
   INVALID_PORT_DESC: '请输入有效协议或端口号。',

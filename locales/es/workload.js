@@ -184,7 +184,6 @@ module.exports = {
   'Image Pull Policy': 'Política de extracción de imagen',
   ImageInspectError: 'ImageInspectError',
   ImagePullBackOff: 'ImagePullBackOff',
-  INIT_CONTAINER: 'Contenedor Init',
   'Initial Delay': 'Retraso inicial',
   INITIAL_DELAY_S: 'Retraso (s) inicial',
   INITIAL_DELAY_TIMEOUT_VALUE:
@@ -333,11 +332,11 @@ module.exports = {
   RERUN: 'Repetición',
   'Resource Info': 'Información de recursos',
   'Resource Limit': 'Límite de recursos',
-  'Resource Limits': 'Límites de recursos',
+  RESOURCE_LIMITS: 'Límites de recursos',
   'Resource limits remaining quota': 'Límite de recursos, cuota restante',
   RESOURCE_NAME: 'Nombre del recurso',
   'Resource Request': 'Solicitud de recursos',
-  'Resource Requests': 'Solicitudes de recursos',
+  RESOURCE_REQUESTS: 'Solicitudes de recursos',
   'Resource requests remaining quota': 'Solicitudes de recursos dejaron cuota',
   'Resource Status': 'Estado del recurso',
   'Restart Count': 'Reiniciar contadores',
@@ -407,7 +406,7 @@ module.exports = {
   VOLUME_CAPACITY_TCAP: 'Capacidad de volumen',
   'Volume Name': 'Nombre del volumen',
   'Volume Source': 'Fuente de volumen',
-  DISK_LOG_COLLECTION_Q: 'What is disk log collection?',
+  COLLECT_LOGS_ON_VOLUMES_Q: 'How do I collect logs on volumes?',
   'Worker Container': 'Contenedor de trabajo',
   VOLUME_CAPACITY: 'Capacidad de volumen',
   VOLUME_NAME: 'Nombre del volumen',
@@ -421,8 +420,8 @@ module.exports = {
 
   'Not Limited': 'Not Limited',
   Cost: 'Cost',
-  PROJECT_REMAINING_QUOTAS: 'Project Remaining Quota',
-  WORKSPACE_REMAINING_QUOTAS: 'Workspace Remaining Quota',
+  PROJECT_REMAINING_QUOTAS: 'Project Remaining Quotas',
+  WORKSPACE_REMAINING_QUOTAS: 'Workspace Remaining Quotas',
   QUOTA_OVERCOST_TIP:
     'The current resource usage has exceeded the remaining quota',
 
@@ -633,8 +632,6 @@ module.exports = {
   SELECT_SECRET_DESC: 'Agregue un nuevo volumen desde el valor Secreto.',
   MONITORING_ALERT_DESC:
     'El gráfico de monitoreo actual muestra cinco réplicas como máximo. Puede hacer clic en "Ver todas las réplicas" para ver más gráficos de monitoreo si el número de réplicas supera las cinco.',
-  RESOURCE_REQUESTS: 'Solicitud',
-  RESOURCE_LIMITS: 'Límite',
   CONTAINER_CPU_DESC:
     'Se utiliza como criterio de asignación de recursos al programar contenedores. Se permite programar el contenedor en el nodo solo si la cantidad total de CPU que se puede asignar en el nodo es igual o mayor que el valor de solicitud de la CPU del contenedor.',
   CONTAINER_MEMORY_DESC:

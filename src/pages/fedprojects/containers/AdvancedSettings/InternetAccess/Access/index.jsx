@@ -58,7 +58,7 @@ class InternetAccess extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit Gateway'),
+        text: t('SET_GATEWAY'),
       },
       {
         key: 'delete',
@@ -145,12 +145,12 @@ class InternetAccess extends React.Component {
           </div>
           <Text
             className={styles.desc}
-            title={t('Gateway Not Set')}
-            description={t('PROJECT_INTERNET_ACCESS_DESC')}
+            title={t('GATEWAY_NOT_SET')}
+            description={t('SET_GATEWAY_TIP')}
           />
           {this.canEdit && (
             <Button type="control" onClick={this.showGatewaySetting}>
-              {t('Set Gateway')}
+              {t('SET_GATEWAY')}
             </Button>
           )}
         </div>
@@ -204,21 +204,17 @@ class InternetAccess extends React.Component {
                 />
                 <Text
                   title={this.getNodePorts(gateway)}
-                  description={t('Node Port')}
+                  description={t('NodePort')}
                 />
               </>
             ) : (
               <Text
                 title={this.getExternalIP(gateway)}
-                description={t('External Address')}
+                description={t('EXTERNAL_IP_ADDRESS')}
               />
             )}
             <Text
-              title={
-                gateway.serviceMeshEnable
-                  ? t('GATEWAY_SERVICE_MESH_STATUS_ON')
-                  : t('GATEWAY_SERVICE_MESH_STATUS_OFF')
-              }
+              title={gateway.serviceMeshEnable ? t('ON') : t('OFF')}
               description={t('APPLICATION_GOVERNANCE')}
             />
           </div>

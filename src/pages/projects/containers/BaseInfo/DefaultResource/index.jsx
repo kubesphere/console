@@ -43,25 +43,39 @@ class DefaultResource extends React.Component {
           <div className={styles.contentItem}>
             <Icon name="cpu" size={40} />
             <div className={styles.item}>
-              <div>{cpuRequest ? `${cpuRequest} Core` : t('NO_REQUEST')}</div>
-              <p>{t('Resource Request')}</p>
+              <div>
+                {cpuRequest
+                  ? t('CPU_REQUEST_CORE', { value: cpuRequest })
+                  : t('NO_REQUEST')}
+              </div>
+              <p>{t('CPU_REQUEST_LOW')}</p>
             </div>
             <div className={styles.item}>
-              <div>{cpuLimit ? `${cpuLimit} Core` : t('NO_LIMIT')}</div>
-              <p>{t('Resource Limit')}</p>
+              <div>
+                {cpuLimit
+                  ? t('CPU_LIMIT_CORE', { value: cpuLimit })
+                  : t('NO_LIMIT')}
+              </div>
+              <p>{t('CPU_LIMIT_LOW')}</p>
             </div>
           </div>
           <div className={styles.contentItem}>
             <Icon name="memory" size={40} />
             <div className={styles.item}>
               <div>
-                {memoryRequest ? `${memoryRequest} Mi` : t('NO_REQUEST')}
+                {memoryRequest
+                  ? t('MEMORY_REQUEST_MIB', { value: memoryRequest })
+                  : t('NO_REQUEST')}
               </div>
-              <p>{t('Resource Request')}</p>
+              <p>{t('MEMORY_REQUEST_LOW')}</p>
             </div>
             <div className={styles.item}>
-              <div>{memoryLimit ? `${memoryLimit} Mi` : t('NO_LIMIT')}</div>
-              <p>{t('Resource Limit')}</p>
+              <div>
+                {memoryLimit
+                  ? t('MEMORY_LIMIT_MIB', { value: memoryLimit })
+                  : t('NO_LIMIT')}
+              </div>
+              <p>{t('MEMORY_LIMIT_LOW')}</p>
             </div>
           </div>
         </div>

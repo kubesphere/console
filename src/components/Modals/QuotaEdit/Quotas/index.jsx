@@ -96,7 +96,7 @@ export default class Quotas extends React.Component {
           <ArrayInput
             value={items}
             itemType="object"
-            addText={t('ADD_QUOTA')}
+            addText={t('ADD')}
             onChange={this.handleAddQuotaItem}
             checkItemValid={this.checkItemValid}
           >

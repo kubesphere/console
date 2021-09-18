@@ -53,7 +53,7 @@ module.exports = {
   DISK_SPACE_USAGE: 'Local disk space usage',
   MEMORY_AVAILABLE: 'Available memory',
   'memory usage': 'Memory usage',
-  'memory usage (including cache)': 'Memory usage (including caches)',
+  MEMORY_USAGE_CACHE: 'Memory usage (including caches)',
   'memory utilisation (including cache)':
     'Memory utilization (including caches)',
   MEMORY_USAGE_SCAP: 'Memory usage',
@@ -81,7 +81,7 @@ module.exports = {
   RULE: 'Rule',
   'Rule Name': 'Rule Name',
   THRESHOLD: 'Threshold',
-  'Unavailable replicas ratio': 'Unavailable replicas',
+  UNAVAILABLE_REPLICAS: 'Unavailable replicas',
   'Unavailable daemonset replicas ratio':
     'Unavailable daemonset replicas ratio',
   'Unavailable deployment replicas ratio':
@@ -118,14 +118,14 @@ module.exports = {
   ALERT_POLICY_DESC:
     'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
   ALERT_MESSAGE_DESC:
-    'Alerting messages display details of triggered alerts after the conditions of alerting policies are met.',
+    'Alert messages display details of triggered alerts that have met the conditions of the alert rules.',
 
   ALERTING_POLICY_EMPTY_DESC: 'Please create an alerting policy.',
   ALERTING_POLICY_CREATE_DESC:
     'You can create alerting policies to detect abnormal resources in real time.',
 
-  SELECT_NODE_TIP: 'Please select at least a cluster node.',
-  SELECT_WORKLOAD_TIP: 'Please select at least a workload.',
+  SELECT_NODE_TIP: 'Please select at least one cluster node.',
+  SELECT_WORKLOAD_TIP: 'Please select at least one workload.',
 
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerting messages generated?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A:

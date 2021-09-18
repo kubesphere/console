@@ -213,7 +213,7 @@ export default class ServiceDetail extends React.Component {
         value: detail.clusterIP,
       },
       {
-        name: t('External Address'),
+        name: t('EXTERNAL_IP_ADDRESS'),
         value: externalIP,
       },
       {
