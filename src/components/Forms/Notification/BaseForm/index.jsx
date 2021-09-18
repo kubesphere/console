@@ -37,6 +37,11 @@ export default class BaseForm extends Component {
   verifyStore = new VerifyStore()
 
   state = {
+    enabled: get(
+      this.props.data,
+      `receiver.spec.${this.props.name}.enabled`,
+      false
+    ),
     isVerifying: false,
   }
 
@@ -50,6 +55,10 @@ export default class BaseForm extends Component {
       return callback({ message: t('Invalid notification condition') })
     }
     callback()
+  }
+
+  handleSwitch = enabled => {
+    this.setState({ enabled })
   }
 
   handleVerify = () => {
@@ -89,8 +98,9 @@ export default class BaseForm extends Component {
   }
 
   renderEnableService() {
-    const { user, data, name, module } = this.props
-    const enabled = get(data, `receiver.spec.${name}.enabled`)
+    const { user, name, module } = this.props
+    const { enabled } = this.state
+
     if (user) {
       return (
         <div className={styles.contentWrapper}>
@@ -120,6 +130,7 @@ export default class BaseForm extends Component {
               name={`receiver.spec.${name}.enabled`}
               text={t(`Notification ${enabled ? 'On' : 'Off'}`)}
               checked={enabled}
+              onChange={this.handleSwitch}
             />
           </Form.Item>
         </div>
