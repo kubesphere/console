@@ -49,7 +49,7 @@ module.exports = {
   DAEMONSET_EMPTY_DESC: '请创建一个守护进程集。',
   JOB_EMPTY_DESC: '请创建一个任务。',
   CRONJOB_EMPTY_DESC: '请创建一个定时任务。',
-  GPU_TYPE: 'GPU类型',
+  GPU_TYPE: 'GPU 类型',
   'Service Configuration': '服务配置',
 
   'Available number of nodes scheduled': '可用节点数',
@@ -200,8 +200,8 @@ module.exports = {
   RollingUpdate: '滚动更新',
   ROLLING_UPDATE_RECOMMENDED: '滚动更新（推荐）',
   'Restart Count': '重启次数',
-  'Resource Requests': '资源预留',
-  'Resource Limits': '资源限制',
+  RESOURCE_REQUESTS: '资源预留',
+  RESOURCE_LIMITS: '资源限制',
   'Image Pull Policy': '镜像拉取策略',
   Privileged: '特权模式',
   'Desired Replicas': '期望副本',
@@ -403,7 +403,6 @@ module.exports = {
   HTTP_REQUEST: 'HTTP 请求',
   HTTP_PATH_EMPTY: '请设置 HTTP 检查的路径。',
   TCP_PORT: 'TCP 端口',
-  INIT_CONTAINER: '初始容器',
   WORKER_CONTAINER: '工作容器',
   'Request Type': '请求类型',
 
@@ -495,7 +494,7 @@ module.exports = {
   'Please select a volume': '请选择存储卷',
   'Please select a configmap': '请选择配置文件',
   'Please select a secret': '请选择密钥',
-  DISK_LOG_COLLECTION_Q: '什么是落盘日志收集？',
+  COLLECT_LOGS_ON_VOLUMES_Q: '如何收集存储卷上的日志？',
   MOUNT_PATH_IN_USE: '挂载路径已被使用，请使用其他挂载路径。',
   READ_WRITE_MOUNT_EMPTY: '请指定读写方式及挂载路径。',
   MOUNT_VOLUME: '挂载存储卷',
@@ -543,8 +542,6 @@ module.exports = {
   MONITORING_ALERT_DESC:
     '当前监控最多可显示五个副本的运行状态监控，当超过五个副本时，可以单击具体监控项的「查看全部副本」，查看更多的副本监控。',
 
-  RESOURCE_REQUESTS: '最小使用',
-  RESOURCE_LIMITS: '最大使用',
   CONTAINER_CPU_DESC:
     '作为容器调度时资源分配的判断依赖。只有当节点上可分配CPU总量 ≥ 容器CPU最小使用值时，才允许将容器调度到该节点。单位换算规则: 1核 = 1000m',
   CONTAINER_MEMORY_DESC:

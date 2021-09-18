@@ -28,7 +28,7 @@ module.exports = {
   Volume: '儲存卷',
   Terminating: '刪除中',
   CREATE_PROJECT: '創建項目',
-  'Edit Project': '編輯項目',
+  EDIT_PROJECT: '編輯項目',
   Details: '詳情',
   Members: '成員',
   PROJECT_ROLE_PL: '項目角色',
@@ -44,6 +44,8 @@ module.exports = {
   RESOURCE_QUOTAS: '資源配額',
   PROJECT_NAME: '項目名稱',
   PROJECT_MEMBER_PL: '項目成員',
+  PROJECT_RESOURCE_QUOTAS: 'Project Resource Quotas',
+  'Project Members': '項目成員',
   'project members': '項目成員',
   'Member Name': '成員名稱',
   'Modify Member Role': '修改成員角色',
@@ -52,14 +54,12 @@ module.exports = {
   REMOVE_MEMBER: '移除成員',
   'Invite Member': '邀請成員',
   'Gateway Info': '網關資訊',
-  'Set Gateway': '設置網關',
-  'Edit Gateway': '編輯網關',
+  SET_GATEWAY: '設置網關',
 
-  'Gateway Not Set': '網關未設置',
+  GATEWAY_NOT_SET: '網關未設置',
 
-  'Delete Project': '刪除項目',
-  'Project Info': '項目資訊',
-  'Project Quota': '項目配額',
+  PROJECT_INFO: '項目資訊',
+  PROJECT_QUOTA: '項目配額',
   EDIT_PROJECT_QUOTAS: 'Edit Project Quotas',
   'Quota Management': '配額管理',
   WORKSPACE_QUOTA_PL: 'Workspace Quotas',
@@ -91,8 +91,9 @@ module.exports = {
   'DevOps Projects': 'DevOps 工程',
   'Select Project Type': '選擇項目類型',
 
-  'Edit Project Quota': '編輯項目配額',
   ADD_QUOTA: '添加配額項目',
+  EDIT_PROJECT_RESOURCE_QUOTAS: 'Edit Project Resource Quotas',
+  EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
 
   deployments: '部署',
   statefulsets: '有狀態副本集',
@@ -106,9 +107,8 @@ module.exports = {
   'requests.memory': '記憶體需求',
   'limits.memory': '記憶體限額',
 
-  DEFAULT_CONTAINER_QUOTAS: '容器資源預設請求',
-  EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
   'Edit Resource Default Request': '編輯資源預設請求',
+  DEFAULT_CONTAINER_QUOTAS: 'Default Container Quotas',
 
   RESOURCE_TYPE: '資源類型',
 
@@ -145,10 +145,9 @@ module.exports = {
   FEDPROJECT_CANNOT_ADD_CLUSTER: '無法添加新的集羣',
 
   CLOSE_FILE_LOG_TIP:
-    '落盤紀錄收集即將關閉。 關閉後，已開啟落盤紀錄收集的服務在容器組副本重啟前將繼續進行落盤紀錄的收集，重啟後，將不再收集。</br>如果需要再次收集，請開啟落盤紀錄收集，並重起容器組副本。',
+    'Are you sure you want to disable log collection? After it is disabled, services that have enabled log collection will continue to collect logs saved in the volumes before the Pod replicas are restarted. If you need to collect the logs again, please enable log collection and restart the Pod replicas.',
 
   Usage: '用量',
-  USAGE: '用量',
   PROJECTS_DESC:
     'KubeSphere 中的項目對應的是 Kubernetes 的 namespace，是對一組資源和對象的抽象集合，常用來將系統内部的對象劃分為不同的項目組或用戶組。',
   PROJECT_BASEINFO_DESC: '項目基礎資訊設置',
@@ -164,7 +163,8 @@ module.exports = {
 
   'Invite Members to the Project': '邀請成員到該項目',
   'Invite Members to the DevOps Project': '邀請成員到該工程',
-  INVITE_MEMBER_DESC: '您可以邀請新的成員來協助您的項目',
+  INVITE_MEMBER_DESC:
+    'You can invite members who belong to the workspace to the project.',
   INVITE_MEMBER_DESC_DEVOPS: '您可以邀請新的成員來協助您的工程',
   INVITE_MEMBER_SEARCH_PLACEHODLER: '輸入郵箱邀請項目成員',
   ASSIGN_ROLE: 'Assign a Role to the Member',
@@ -173,8 +173,9 @@ module.exports = {
   PROJECT_INTERNET_ACCESS_DESC:
     '在創建應用路由之前，需要先啟用外網訪問入口，即網關。這一步是創建對應的應用路由控制器，用來負責將請求轉發到對應的後端服務。',
 
-  DELETE_INTERNET_ACCESS_TITLE: '確定刪除外網訪問設置?',
-  DELETE_INTERNET_ACCESS_DESC: '刪除後可重新綁定',
+  DELETE_INTERNET_ACCESS_TITLE: 'Remove Network Access Settings',
+  DELETE_INTERNET_ACCESS_DESC:
+    'Are you sure you want to remove network access settings? You can reset the network access after the settings are removed.',
 
   NO_RELATE_PROJECTS_TITLE: '沒有找到與您相關聯的項目',
   NO_RELATE_PROJECTS_DESC:
@@ -197,36 +198,41 @@ module.exports = {
 
   QUOTA_EDIT_TIP: '值為空時將不限制配額',
 
-  PROJECT_BASIC_INFO_DESC: '項目的基本資訊涵蓋了項目名稱及項目的配額狀態',
+  PROJECT_BASIC_INFO_DESC:
+    'Basic information provides an overview of the project. You can view the project information and resource quotas.',
   PROJECT_QUOTA_MANAGE_DESC: '管理項目的配額',
   PROJECT_ADVANCED_SETTINGS_DESC:
-    '對項目中的外網訪問網關以及服務治理和落盤紀錄收集等配置進行設置',
+    'Advanced settings are used to configure network access, application governance, and log collection in the project.',
   PROJECT_MEMBERS_DESC: '對項目内的成員進行管理及角色分配',
   PROJECT_ROLE_DESC: '項目角色定義了在目前項目下用戶所擁有的權限',
   COLLECTING_FILE_LOG_DESC:
     '對容器内的落盤紀錄進行收集，並轉發到標準輸出，然後由紀錄收集系統統一採集。',
 
-  HOW_TO_USE_QUOTA_Q: '如何使用配額?',
+  HOW_TO_USE_QUOTA_Q: '如何使用資源配額?',
   HOW_TO_USE_QUOTA_A:
-    '資源配額（Resource Quotas）是用來限制用戶資源用量的一種機制，可以對 CPU、記憶體、容器組數量等進行配額限制。',
+    'Resource quotas are a mechanism used to limit the resource usage. You can edit project resource quotas and default container quotas by clicking <b>Edit Project</b>.',
   PROJECT_QUOTAS_DESC:
     'Project quotas specify the number of available CPU and memory resources and the maximum number of Pods, Deployments, and Services in the project.',
-  WHAT_IS_LIMIT_RANGE_Q: '什麼是容器資源預設請求?',
-  WHAT_IS_LIMIT_RANGE_A:
-    '容器資源預設請求 (LimitRange) 基於項目的資源管理，包括容器組和容器的保留資源、最大限額等。',
   DEFAULT_CONTAINER_QUOTAS_DESC:
     'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
-  WHAT_IS_INTERNET_GATEWAY: '什麼是外網訪問網關?',
-  WHAT_IS_COLLECT_FILE_LOG_A:
-    '容器所掛載的儲存卷中的紀錄路徑以 glob 方式給出，可在工作負載中配置紀錄路徑以收集這些紀錄。需要管理員預先開啟落盤紀錄收集。',
 
-  HOW_TO_INVITE_MEMBER_Q: '如何邀請成員？',
+  WHAT_IS_LIMIT_RANGE_Q: 'What are default container quotas?',
+  WHAT_IS_LIMIT_RANGE_A:
+    'Default container quotas are a policy used to constrain resource allocations to containers in a project. You can set CPU, memory, and GPU quotas for the container.',
+
+  WHAT_IS_INTERNET_GATEWAY: '什麼是外網訪問網關?',
+  COLLECT_LOGS_ON_VOLUMES_A:
+    'To collect logs on volumes, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
+
+  HOW_TO_INVITE_MEMBER_Q: 'How do I invite members to the project?',
   HOW_TO_INVITE_MEMBER_A:
-    '項目管理員或者擁有成員邀請權限的用戶可以邀請目前企業空間内的成員加入項目',
+    '項目管理員或者擁有成員邀請權限的用戶可以邀請目前企業空間内的成員加入項目。',
 
   HOW_TO_INVITE_USERS: '邀請其他成員到目前項目中?',
   HOW_TO_SET_PROJECT_GATEWAY: '如何設置項目網關？',
-  RESOURCE_QUANTITY_LIMIT: '您可以對資源的數量進行限制, 不填寫即不限制',
+  RESOURCE_QUANTITY_LIMIT: 'Resource quantity limit',
+  SET_PROJECT_RESOURCE_QUOTA:
+    'You can set the resource quota by specifying a number.',
 
   PROJECT_TYPES_Q: '項目中的服務如何通過外網訪問？',
   PROJECT_TYPES_A:
@@ -261,4 +267,53 @@ module.exports = {
 
   PROJECT_QUOTAS_NOT_SET: '項目配額未設置',
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: '容器資源預設請求未設置',
+
+  // Jobs
+  MESSAGE: 'Message',
+
+  // Custom Monotoring
+  CUSTOM_MONITORING_DASHBOARD_LOW: 'custom monitoring dashbord',
+
+  // Basic Information
+  PROJECT_NAME_SCAP: 'Project name',
+  PROJECT_ROLE_LOW: 'Project role',
+  PROJECT_ROLE_LOW_PL: 'Project roles',
+  PROJECT_MEMBER_LOW: 'Project member',
+  PROJECT_MEMBER_LOW_PL: 'Project members',
+  CPU_REQUEST_LOW: 'CPU request',
+  CPU_LIMIT_LOW: 'CPU limit',
+  MEMORY_REQUEST_LOW: 'Memory request',
+  MEMORY_LIMIT_LOW: 'Memory limit',
+  CPU_REQUEST_CORE: '{value} Core',
+  CPU_LIMIT_CORE: '{value} Core',
+  MEMORY_REQUEST_MIB: '{value} Mi',
+  MEMORY_LIMIT_MIB: '{value} Mi',
+  WS_RESOURCE_REQUESTS: 'Resource requests:',
+  WS_RESOURCE_LIMITS: 'Resource limits:',
+  SELECT_RESOURCE_TIP: 'Select a resource or enter a resource name',
+  NUMBER_OF_ROUTES: 'Number of routes',
+  NUMBER_OF_SECRETS: 'Number of Secrets',
+  NUMBER_OF_CONFIGMAPS: 'Number of ConfigMaps',
+  GPU_LIMIT: 'GPU Limit',
+  USAGE: 'Usage',
+
+  // Project Members
+  PROJECT_MEMBER: 'Project Member',
+  PROJECT_MEMBER_DESC:
+    'Project members can view or manage project resources. The project administrator can invite members who belong to the workspace to the project and manage project members.',
+
+  // Advanced Settings
+  REMOVE: 'Remove',
+  DISABLED: 'Disabled',
+  ENABLE: 'Enable',
+  DISABLE: 'Disable',
+  DISABLE_LOG_COLLECTION: 'Disable Log Collection',
+  SET_GATEWAY_TIP: 'Please set a gateway.',
+
+  // Network Isolation
+  INGRESS: 'Ingress',
+  INTERNAL_RULE_DIRECTION_DESC:
+    'Specifies the direction of allowed access to and from different projects and services.',
+  NETWORK_SEGMENT_EXAMPLE: 'Example: 10.0.0.0',
+  PORT_EXAMPLE: 'Example: 80',
 }

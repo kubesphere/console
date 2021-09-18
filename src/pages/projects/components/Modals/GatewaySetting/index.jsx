@@ -159,7 +159,8 @@ export default class GatewaySettingModal extends React.Component {
     return (
       <Modal
         width={1162}
-        title={t('Set Gateway')}
+        title={t('SET_GATEWAY')}
+        onCancel={onCancel}
         visible={visible}
         bodyClassName={styles.modalBody}
         closable={false}
@@ -167,8 +168,7 @@ export default class GatewaySettingModal extends React.Component {
       >
         <div className={styles.body}>
           <Title
-            className={styles.title}
-            title={t('Set Gateway')}
+            title={t('SET_GATEWAY')}
             desc={t('PROJECT_INTERNET_ACCESS_DESC')}
           />
           <div className={styles.wrapper}>
@@ -194,8 +194,8 @@ export default class GatewaySettingModal extends React.Component {
                       <Toggle
                         checked={isChecked}
                         onChange={this.handleToggleChange}
-                        onText={t('On')}
-                        offText={t('Off')}
+                        onText={t('ENABLE')}
+                        offText={t('DISABLE')}
                       />
                     </div>
                     <div className={styles.toggleTip}>
@@ -249,7 +249,7 @@ export default class GatewaySettingModal extends React.Component {
             loading={isSubmitting}
             disabled={isSubmitting}
           >
-            {t('Save')}
+            {t('OK')}
           </Button>
         </div>
       </Modal>

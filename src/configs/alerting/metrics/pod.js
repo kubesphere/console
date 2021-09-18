@@ -41,7 +41,7 @@ export default {
     ruleConfig: PERCENT_RULE_CONFIG,
   },
   pod_memory_usage: {
-    label: 'memory usage (including cache)',
+    label: 'MEMORY_USAGE_CACHE',
     prefixIcon: 'memory',
     ruleConfig: MEMORY_RULE_CONFIG,
   },

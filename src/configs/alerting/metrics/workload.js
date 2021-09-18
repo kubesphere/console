@@ -31,17 +31,17 @@ const BANDWIDTH_RULE_CONFIG = getBaseRuleConfig({
 
 export default {
   'namespace:workload_cpu_usage:sum{$1}': {
-    label: 'cpu usage',
+    label: 'CPU_USAGE_SCAP',
     prefixIcon: 'cpu',
     ruleConfig: CPU_RULE_CONFIG,
   },
   'namespace:workload_memory_usage:sum{$1}': {
-    label: 'memory usage (including cache)',
+    label: 'MEMORY_USAGE_CACHE',
     prefixIcon: 'memory',
     ruleConfig: MEMORY_RULE_CONFIG,
   },
   'namespace:workload_memory_usage_wo_cache:sum{$1}': {
-    label: 'memory usage',
+    label: 'MEMORY_USAGE_SCAP',
     prefixIcon: 'memory',
     ruleConfig: MEMORY_RULE_CONFIG,
   },
@@ -56,7 +56,7 @@ export default {
     ruleConfig: BANDWIDTH_RULE_CONFIG,
   },
   'namespace:$2_unavailable_replicas:ratio{$1}': {
-    label: 'Unavailable replicas ratio',
+    label: 'UNAVAILABLE_REPLICAS',
     prefixIcon: 'backup',
     ruleConfig: PERCENT_RULE_CONFIG,
   },

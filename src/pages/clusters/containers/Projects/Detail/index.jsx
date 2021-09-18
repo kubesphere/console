@@ -113,7 +113,7 @@ export default class ProjectDetail extends React.Component {
         key: 'edit-default-resource',
         icon: 'pen',
         action: 'edit',
-        text: t('Edit Resource Default Request'),
+        text: t('EDIT_PROJECT_RESOURCE_QUOTAS'),
         onClick: () =>
           this.trigger('project.default.resource', {
             ...this.props.match.params,

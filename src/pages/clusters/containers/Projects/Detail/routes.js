@@ -41,7 +41,7 @@ export default [
   },
   {
     path: `${PATH}/quota`,
-    title: 'Project Quota',
+    title: 'PROJECT_QUOTA',
     component: Quota,
     exact: true,
   },

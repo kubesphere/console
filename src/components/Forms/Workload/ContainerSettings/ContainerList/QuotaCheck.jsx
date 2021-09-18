@@ -64,7 +64,7 @@ export default class QuotaCheck extends Component {
       <>
         {(requestCPUOver || requestMemoryOver) && (
           <div className={styles.message}>
-            <span>{t('Resource Requests')}:</span>
+            <span>{t('RESOURCE_REQUESTS')}:</span>
             {requestCPUOver && (
               <span>
                 CPU&nbsp;{t('Cost')}&nbsp;
@@ -109,7 +109,7 @@ export default class QuotaCheck extends Component {
         )}
         {(limitCPUOver || limitMemoryOver) && (
           <div className={styles.message}>
-            <span>{t('Resource Limits')}:</span>
+            <span>{t('RESOURCE_LIMITS')}:</span>
             {limitCPUOver && (
               <span>
                 CPU&nbsp;{t('Cost')}&nbsp;
@@ -144,7 +144,7 @@ export default class QuotaCheck extends Component {
       <>
         <div className={styles.message}>
           <span>
-            {t('Resource Requests')}: CPU ({t('PROJECT_REMAINING_QUOTAS')}:
+            {t('RESOURCE_REQUESTS')}: CPU ({t('PROJECT_REMAINING_QUOTAS')}:
             {get(result, '["requests.cpu"].namespaceQuota', t('NO_REQUEST'))},
             {t('WORKSPACE_REMAINING_QUOTAS')}:
             {get(result, '["requests.cpu"].workspaceQuota', t('NO_REQUEST'))});
@@ -159,7 +159,7 @@ export default class QuotaCheck extends Component {
         </div>
         <div className={styles.message}>
           <span>
-            {t('Resource Limits')}: CPU ({t('PROJECT_REMAINING_QUOTAS')}:
+            {t('RESOURCE_LIMITS')}: CPU ({t('PROJECT_REMAINING_QUOTAS')}:
             {get(result, '["limits.cpu"].namespaceQuota', t('NO_LIMIT'))},
             {t('WORKSPACE_REMAINING_QUOTAS')}:
             {get(result, '["limits.cpu"].workspaceQuota', t('NO_LIMIT'))});

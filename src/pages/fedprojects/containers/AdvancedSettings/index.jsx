@@ -63,8 +63,8 @@ class AdvancedSettings extends React.Component {
         description: t('PROJECT_INTERNET_ACCESS_DESC'),
       },
       {
-        title: t('DISK_LOG_COLLECTION_Q'),
-        description: t('WHAT_IS_COLLECT_FILE_LOG_A'),
+        title: t('COLLECT_LOGS_ON_VOLUMES_Q'),
+        description: t('COLLECT_LOGS_ON_VOLUMES_A'),
       },
     ]
   }
@@ -75,7 +75,7 @@ class AdvancedSettings extends React.Component {
       <div>
         <Banner
           icon="cogwheel"
-          title={t('Advanced Settings')}
+          title={t('ADVANCED_SETTINGS')}
           description={t('PROJECT_ADVANCED_SETTINGS_DESC')}
           tips={this.tips}
         />

@@ -519,7 +519,7 @@ export default class ResourceLimit extends React.Component {
       <>
         <div>
           <div className={styles.message}>
-            <span>{t('Resource Requests')}:</span>
+            <span>{t('WS_RESOURCE_REQUESTS')}</span>
             <span>
               CPU&nbsp;
               {wsR.cpu}
@@ -530,7 +530,7 @@ export default class ResourceLimit extends React.Component {
             </span>
           </div>
           <div className={styles.message}>
-            <span>{t('Resource Limits')}:</span>
+            <span>{t('WS_RESOURCE_LIMITS')}</span>
             <span>
               CPU&nbsp;
               {wsL.cpu}
@@ -669,6 +669,7 @@ export default class ResourceLimit extends React.Component {
                     options={this.gpuOption}
                     value={this.state.gpu.type}
                     onChange={this.gpuSelectChange}
+                    placeholder=" "
                   ></Select>
                 </div>
                 <div
@@ -676,7 +677,7 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: memoryError || limit.limitMemoryError,
                   })}
                 >
-                  <span className={styles.label}>{t('RESOURCE_LIMIT')}</span>
+                  <span className={styles.label}>{t('GPU_LIMIT')}</span>
                   <Input
                     name="gpu.value"
                     value={this.state.gpu.value}

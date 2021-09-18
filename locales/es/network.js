@@ -17,12 +17,12 @@
  */
 
 module.exports = {
-  'Add Allowlist': 'Agregar lista de permitidos',
+  ADD_ALLOWLIST: 'Agregar lista de permitidos',
   CREATE_NETWORK_POLICY_TCAP: 'Crear política de red',
   // Network Policies Page
   CREATE_BTN: 'Crear',
-  Direction: 'Dirección',
-  Egress: 'Salida',
+  RULE_DIRECTION: 'Rule Direction',
+  EGRESS: 'Salida',
   Ingress: 'Entrada',
   NETWORK_ISOLATION: 'Aislamiento de red',
   'Network Policy': 'Política de red',
@@ -43,38 +43,36 @@ module.exports = {
     'Hemos compilado varios escenarios de aplicación comunes basados en los escenarios reales, y puedes consultar la documentación para obtener más información.',
   NETWORK_POLICY_Q1:
     'Requisitos del complemento CNI para implementar una política de red',
-  NETWORK_ISOLATION_Q1: 'Requisito para implementar un aislamiento de red',
+  NETWORK_ISOLATION_Q1:
+    'What are the requirements on the CNI plugin for implementing network isolation?',
   NETWORK_POLICY_A1:
     'Asegúrate de que el plugin de red (CNI) utilizado por el clúster sea compatible con <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/" target="_blank">NetworkPolicy</a>. Existen varios plugins de red (CNI) que soportan NetworkPolicy, incluyendo Calico, Cilium, Kube-router, Romana y Weave Net.',
-  NETWORK_POLICY_EMP_TITLE: 'Aislamiento de red del proyecto no habilitado',
+  NETWORK_POLICY_EMP_TITLE: 'Network Isolation Not Enabled',
   NETWORK_POLICY_EMP_DESC:
-    'Otros proyectos en el clúster pueden acceder al proyecto actual según la configuración del espacio de trabajo. Una vez que el aislamiento de la red está habilitado para el proyecto, otros proyectos no podrán acceder a él, mientras que aún puedes personalizar proyectos específicos, servicios o direcciones externas que se pueden liberar de esta restricción.',
-  NETWORK_POLICY_STATUS: 'Aislamiento de red de proyecto',
-  NETWORK_POLICY_R_DESC1:
-    'Puedes configurar el acceso a los siguientes recursos (que coincidan con cualquiera de las siguientes políticas)',
-  NETWORK_POLICY_R_DESC2:
-    'Se puede permitir que los siguientes recursos accedan al proyecto actual (que coincidan con cualquiera de las siguientes políticas)',
-  NETWORK_POLICY_R1_TITLE: 'Lista de permisos interna del clúster',
-  NETWORK_POLICY_R1_DESC: 'Permitir acceso a servicios dentro del clúster',
-  NETWORK_POLICY_R1_DESC1:
-    'Selecciona un proyecto o servicio específico como miembro de la lista de permisos para que estos recursos puedan acceder al proyecto actual.',
-  NETWORK_POLICY_R2_TITLE: 'Dirección IP externa del clúster',
-  NETWORK_POLICY_R2_DESC:
-    'Permitir acceso para rango de IPs (CIDR) externo al clúster',
-  NETWORK_POLICY_R2_DESC1:
-    'Selecciona un rango específico de IPs (CIDR) como origen de entrada o destino de salida.',
-  NETWORK_POLICY_D_DESC:
-    'Haz coincidir el tráfico de salida y el tráfico de entrada',
-  NETWORK_POLICY_D_DESC2:
-    'rango de IPs (CIDR) es una cadena que representa un bloque de IPs válido, como "192.168.1.1/24".',
-  NETWORK_POLICY_D_OP1: 'Salida',
-  NETWORK_POLICY_D_OP2: 'Entrada',
+    'After the project network access is enabled, other projects will be unable to access the project. But you can allow projects, Services, and external IP addresses to access this project based on your needs.',
+  PROJECT_NETWORK_ISOLATION: 'Aislamiento de red de proyecto',
+  NETWORK_POLICY_EGRESS_DESC:
+    'Allows access to resources that match any of the following network policies.',
+  NETWORK_POLICY_INGRESS_DESC:
+    'Allows access from resources that match any of the following network policies.',
+  INTERNAL_ALLOWLIST: 'Internal Allowlist',
+  INTERNAL_ALLOWLIST_DESC:
+    'Specifies the allowed access to and from projects and services in the cluster.',
+  INTERNAL_ALLOWLIST_TIP:
+    'Add projects and services in the cluster to the allowlist.',
+  EXTERNAL_ALLOWLIST: 'External Allowlist',
+  EXTERNAL_ALLOWLIST_DESC:
+    'Specifies the allowed access to and from network segments outside the cluster.',
+  EXTERNAL_ALLOWLIST_TIP:
+    'Add network segments outside the cluster to the allowlist.',
+  EXTERNAL_RULE_DIRECTION_DESC:
+    'Specify the direction of allowed access to or from different network segments.',
+  NETWORK_SEGMENT_DESC: 'Set a network segment (CIDR is supported).',
   CREATE_NETWORK_POLICY_DESC:
     'La política de red está configurada para permitir el aislamiento de la red dentro del mismo clúster, es decir, la capacidad de construir un cortafuegos entre ciertas instancias (pods).',
   CIDR_DESC: 'Basado en la dirección del tráfico',
-  NETWORK_POLICY_MODAL_DIRECT: 'Por favor, selecciona la dirección de la regla',
-  NETWORK_POLICY_MODAL_CIDRERR: 'Please fill in the CIDR information correctly',
-  NETWORK_POLICY_MODAL_PORTERR: 'Please fill in the port correctly',
-  NETWORK_POLICY_MODAL_EMPDIR: 'The direction is required',
-  NETWORK_POLICY_MODAL_EMPTP: 'The project or service is required',
+  SELECT_RULE_DIRECTION_TIP: 'Please select a rule direction.',
+  ENTER_VALID_ADDRESS_DESC: 'Please enter a valid address.',
+  ENTER_VALID_PORT_NUMBER_DESC: 'Please enter a valid port number.',
+  EMPTY_RESOURCE_DESC: 'Please select at least one project or service.',
 }

@@ -29,7 +29,7 @@ module.exports = {
   Deleting: '删除中',
   CREATE_PROJECT: '创建项目',
   CREATE_MULTI_CLUSTER_PROJECT: '创建多集群项目',
-  'Edit Project': '编辑项目',
+  EDIT_PROJECT: '编辑项目',
   Details: '详情',
   Members: '成员',
   PROJECT_ROLE_PL: '项目角色',
@@ -45,6 +45,8 @@ module.exports = {
   RESOURCE_QUOTAS: '资源配额',
   PROJECT_NAME: '项目名称',
   PROJECT_MEMBER_PL: '项目成员',
+  PROJECT_RESOURCE_QUOTAS: '项目资源配额',
+  'Project Members': '项目成员',
   'project members': '项目成员',
   'Member Name': '成员名称',
   'Modify Member Role': '修改成员角色',
@@ -52,10 +54,13 @@ module.exports = {
   'Remove Members': '移除成员',
   REMOVE_MEMBER: '移除成员',
   'Invite Member': '邀请成员',
+  'Gateway Info': '网关信息',
+  SET_GATEWAY: '设置网关',
 
-  'Delete Project': '删除项目',
-  'Project Info': '项目信息',
-  'Project Quota': '项目配额',
+  GATEWAY_NOT_SET: '网关未设置',
+
+  PROJECT_INFO: '项目信息',
+  PROJECT_QUOTA: '项目配额',
   EDIT_PROJECT_QUOTAS: '编辑项目配额',
   'Quota Management': '配额管理',
   WORKSPACE_QUOTA_PL: '企业空间配额',
@@ -107,6 +112,7 @@ module.exports = {
   DEFAULT_CONTAINER_QUOTAS: '默认容器配额',
   EDIT_DEFAULT_CONTAINER_QUOTAS: '编辑默认容器配额',
   'Edit Resource Default Request': '编辑资源默认请求',
+  EDIT_PROJECT_RESOURCE_QUOTAS: '编辑项目资源配额',
 
   RESOURCE_TYPE: '资源类型',
 
@@ -129,7 +135,7 @@ module.exports = {
   DISK_LOG_COLLECTION: '落盘日志收集',
   COLLECT_LOGS_ON_VOLUMES: '收集存储卷上的日志',
 
-  'Are you sure to disable it?': '确认关闭？',
+  DISABLE_LOG_COLLECTION: '停用日志收集',
   'Disk Log Collection of the project is about to be disabled.':
     '项目的落盘日志收集即将关闭.',
 
@@ -143,7 +149,7 @@ module.exports = {
   FEDPROJECT_CANNOT_ADD_CLUSTER: '没有可添加的集群。',
 
   CLOSE_FILE_LOG_TIP:
-    '落盘日志收集即将关闭。 关闭后，已开启落盘日志收集的服务在容器组副本重启前将继续进行落盘日志的收集，重启后，将不再收集。</br>如果需要再次收集，请开启落盘日志收集，并重起容器组副本。',
+    '您确定停用日志收集吗？停用后，已启用日志收集的服务在容器组副本在重启前将继续收集存储卷上的日志。如需再次收集存储卷上的日志，请启用日志收集并重启容器组副本。',
 
   Usage: '使用情况',
   USAGE: '用量',
@@ -162,14 +168,18 @@ module.exports = {
 
   'Invite Members to the Project': '邀请成员到该项目',
   'Invite Members to the DevOps Project': '邀请成员到该工程',
-  INVITE_MEMBER_DESC: '您可以邀请新的成员来协助您的项目',
+  INVITE_MEMBER_DESC: '您可以邀请当前企业空间成员至该项目。',
   INVITE_MEMBER_DESC_DEVOPS: '您可以邀请新的成员来协助您的工程',
   INVITE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请项目成员',
   ASSIGN_ROLE: '为成员分配角色',
   PROJECT_ADMIN_DESC: '可以指定项目内一个成员为管理员',
 
-  DELETE_INTERNET_ACCESS_TITLE: '确定删除外网访问设置?',
-  DELETE_INTERNET_ACCESS_DESC: '删除后可重新绑定',
+  PROJECT_INTERNET_ACCESS_DESC:
+    '在创建应用路由之前，需要先启用外网访问入口，即网关。这一步是创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务。',
+
+  DELETE_INTERNET_ACCESS_TITLE: '删除外网访问设置',
+  DELETE_INTERNET_ACCESS_DESC:
+    '您确定删除外网访问设置吗？删除设置后，您可以重新设置外网访问。',
 
   NO_RELATE_PROJECTS_TITLE: '没有找到与您相关联的项目',
   NO_RELATE_PROJECTS_DESC:
@@ -198,32 +208,35 @@ module.exports = {
 
   QUOTA_EDIT_TIP: '值为空时将不限制配额',
 
-  PROJECT_BASIC_INFO_DESC: '项目的基本信息涵盖了项目名称及项目的配额状态',
+  PROJECT_BASIC_INFO_DESC:
+    '基本信息提供项目的信息概览，您可以查看项目的信息以及资源配额。',
   PROJECT_QUOTA_MANAGE_DESC: '管理项目的配额',
   PROJECT_ADVANCED_SETTINGS_DESC:
-    '对项目中的外网访问网关以及服务治理和落盘日志收集等配置进行设置',
+    '高级设置用于配置项目的外网访问、应用治理以及日志收集功能。',
   PROJECT_MEMBERS_DESC: '对项目内的成员进行管理及角色分配',
   PROJECT_ROLE_DESC: '项目角色定义了在当前项目下用户所拥有的权限。',
   COLLECTING_FILE_LOG_DESC:
     '对容器内的落盘日志进行收集，并转发到标准输出，然后由日志收集系统统一采集。',
 
-  HOW_TO_USE_QUOTA_Q: '如何使用配额?',
+  HOW_TO_USE_QUOTA_Q: '如何使用资源配额?',
   HOW_TO_USE_QUOTA_A:
-    '资源配额 (ResourceQuota) 是用来限制用户资源用量的一种机制，可以对 CPU、内存、容器组数量等进行配额限制。',
+    '资源配额是用来限制资源用量的一种机制，您可以通过<b>编辑项目</b>来编辑项目资源配额和默认容器配额。',
   PROJECT_QUOTAS_DESC:
     '项目配额用于指定项目中可用的 CPU 和内存资源数量和允许的容器组、部署和服务的最大数量。',
-  WHAT_IS_LIMIT_RANGE_Q: '什么是容器资源默认请求?',
-  WHAT_IS_LIMIT_RANGE_A:
-    '容器资源默认请求 (LimitRange) 基于项目的资源管理，包括容器组和容器的保留资源、最大限额等。',
   DEFAULT_CONTAINER_QUOTAS_DESC:
     '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 限制、内存预留和内存限制。',
-  WHAT_IS_INTERNET_GATEWAY: '什么是外网访问网关?',
-  WHAT_IS_COLLECT_FILE_LOG_A:
-    '容器所挂载的存储卷中的日志路径以 glob 方式给出，可在工作负载中配置日志路径以收集这些日志。需要管理员预先开启落盘日志收集。',
 
-  HOW_TO_INVITE_MEMBER_Q: '如何邀请成员？',
+  WHAT_IS_LIMIT_RANGE_Q: '什么是默认容器配额?',
+  WHAT_IS_LIMIT_RANGE_A:
+    '默认容器配额是用于限制项目中容器资源分配的一种策略，您可以设置容器的 CPU、内存和 GPU 配额。',
+
+  WHAT_IS_INTERNET_GATEWAY: '什么是外网访问网关?',
+  COLLECT_LOGS_ON_VOLUMES_A:
+    '如需收集存储卷上的日志，请为容器挂载读写模式的存储卷并设置容器将日志导出到存储卷。',
+
+  HOW_TO_INVITE_MEMBER_Q: '如何邀请成员到项目？',
   HOW_TO_INVITE_MEMBER_A:
-    '项目管理员或者拥有成员邀请权限的用户可以邀请当前企业空间内的成员加入项目',
+    '项目管理员或者拥有成员邀请权限的用户可以邀请当前企业空间内的成员加入项目。',
 
   HOW_TO_INVITE_USERS: '如何邀请用户到当前项目中？',
   HOW_TO_SET_PROJECT_GATEWAY: '如何设置项目网关？',
@@ -254,4 +267,51 @@ module.exports = {
 
   CREATE_MULTI_CLUSTER_PROJECT_DESC:
     '您可以创建多集群项目，让项目运行在多个集群中，为应用提供快速迭代开发的容器环境并实现高可用。',
+
+  // Jobs
+  MESSAGE: '消息',
+  running: '运行中',
+
+  // Custom Monotoring
+  CUSTOM_MONITORING_DASHBOARD_LOW: '自定义监控面板',
+
+  // Basic Information
+  PROJECT_NAME_SCAP: '项目名称',
+  PROJECT_ROLE_LOW: '项目角色',
+  PROJECT_ROLE_LOW_PL: '项目角色',
+  PROJECT_MEMBER_LOW: '项目成员',
+  PROJECT_MEMBER_LOW_PL: '项目成员',
+  CPU_REQUEST_LOW: 'CPU 预留',
+  CPU_LIMIT_LOW: 'CPU 限制',
+  MEMORY_REQUEST_LOW: '内存预留',
+  MEMORY_LIMIT_LOW: '内存限制',
+  CPU_REQUEST_CORE: '{value} 核',
+  CPU_LIMIT_CORE: '{value} 核',
+  MEMORY_REQUEST_MIB: '{value} Mi',
+  MEMORY_LIMIT_MIB: '{value} Mi',
+  WS_RESOURCE_REQUESTS: '资源预留：',
+  WS_RESOURCE_LIMITS: '资源限制：',
+  SELECT_RESOURCE_TIP: '请选择资源或输入资源名称',
+  NUMBER_OF_ROUTES: '应用路由数量',
+  NUMBER_OF_SECRETS: '保密字典数量',
+  NUMBER_OF_CONFIGMAPS: '配置字典数量',
+  GPU_LIMIT: 'GPU 限制',
+
+  // Project Members
+  PROJECT_MEMBER: '项目成员',
+  PROJECT_MEMBER_DESC:
+    '项目成员可以查看或管理项目资源。项目管理员可以邀请企业空间成员至该项目并对项目成员进行管理。',
+
+  // Advanced Settings
+  REMOVE: '删除',
+  DISABLED: '未启用',
+  ENABLE: '启用',
+  DISABLE: '关闭',
+  SET_GATEWAY_TIP: '请设置网关。',
+
+  // Network Isolation
+  INGRESS: '入口',
+  INTERNAL_RULE_DIRECTION_DESC: '指定去往和来自不同项目和服务的访问方向。',
+  NETWORK_SEGMENT_EXAMPLE: '例如：10.0.0.0',
+  PORT_EXAMPLE: '例如：80',
 }

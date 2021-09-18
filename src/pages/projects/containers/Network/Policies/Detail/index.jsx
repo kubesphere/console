@@ -111,7 +111,7 @@ export default class NetworkpoliciesDetail extends React.Component {
     }
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {

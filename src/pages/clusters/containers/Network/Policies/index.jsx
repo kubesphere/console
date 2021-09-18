@@ -38,7 +38,7 @@ export default class NetworkPolicies extends React.Component {
   tips = [
     {
       title: t('NETWORK_POLICY_Q'),
-      description: t('NETWORK_POLICY_A'),
+      description: t.html('NETWORK_POLICY_A'),
     },
     {
       title: t('NETWORK_POLICY_Q1'),

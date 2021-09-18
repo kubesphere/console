@@ -113,6 +113,7 @@ export default class WorkloadSelect extends Component {
             onFetch={this.fetchData}
             searchable
             multi
+            placeholder=" "
           />
         </Form.Item>
       </>

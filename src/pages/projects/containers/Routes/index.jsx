@@ -194,8 +194,8 @@ export default class Routers extends React.Component {
           <Icon className="margin-r12" name="loadbalancer" size={40} />
           <Text
             className={styles.text}
-            title={t('Gateway Not Set')}
-            description={t('PROJECT_INTERNET_ACCESS_DESC')}
+            title={t('GATEWAY_NOT_SET')}
+            description={t('SET_GATEWAY_TIP')}
           />
           {this.canSetGateway && (
             <Button
@@ -203,7 +203,7 @@ export default class Routers extends React.Component {
               type="control"
               onClick={this.showAddGateway}
             >
-              {t('Set Gateway')}
+              {t('SET_GATEWAY')}
             </Button>
           )}
         </div>

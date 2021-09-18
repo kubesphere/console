@@ -27,12 +27,12 @@ module.exports = {
   CREATE_NETWORK_POLICY_TCAP: '創建網路策略',
   // Network Policies Page
   CREATE_BTN: '創建',
-  'Add Allowlist': '添加白名單',
-  Egress: '出口',
+  ADD_ALLOWLIST: '添加白名單',
+  EGRESS: '出口',
   Ingress: '入口',
   'Traffic Egress': '流量出口',
   'Traffic Ingress': '流量入口',
-  Direction: '方向',
+  RULE_DIRECTION: '规则方向',
   NETWORK_POLICY_DESC:
     '通過配置網路策略，允許在同個集群内時現網路的隔離，也就是可以在某些實例（Pod）之間架起防火牆。',
   NETWORK_ISOLATION_DESC:
@@ -44,34 +44,35 @@ module.exports = {
   NETWORK_POLICY_A:
     '根據實際使用場景我们整理了幾種較為常見的應用場景，您可以查閱文件了解更多',
   NETWORK_POLICY_Q1: 'CNI 插件實現網絡策略需滿足哪些必要條件？',
-  NETWORK_ISOLATION_Q1: '實現網路隔離的必要條件',
+  NETWORK_ISOLATION_Q1:
+    'What are the requirements on the CNI plugin for implementing network isolation?',
   NETWORK_POLICY_A1:
     'Kubernetes 所使用 CNI 必須支持 Kubernetes 原生<a href="https://kubernetes.io/zh/docs/concepts/services-networking/network-policies/" target="_blank">網路策略</a>，例如 Calico, Cilium, Kube-router, Romana and Weave Net。',
-  NETWORK_POLICY_EMP_TITLE: '項目網路隔離未開啟',
+  NETWORK_POLICY_EMP_TITLE: '網路隔離未開啟',
   NETWORK_POLICY_EMP_DESC:
-    '由於企業空間的設置，目前項目允許集群内其他項目進行訪問。啟用項目網路隔離後，將禁止其他項目訪問目前項目，同時可以自定義需要放行的項目、服務、外部地址',
-  NETWORK_POLICY_STATUS: '項目網路隔離',
-  NETWORK_POLICY_R_DESC1: '可以設置對以下資源進行訪問(匹配下面任意策略)',
-  NETWORK_POLICY_R_DESC2:
-    '可以允許以下資源對目前項目進行訪問(匹配下面任意策略)',
-  NETWORK_POLICY_R1_TITLE: '集群内部白名單',
-  NETWORK_POLICY_R1_DESC: '允許集群内部服務訪問',
-  NETWORK_POLICY_R1_DESC1:
-    '選擇指定的項目或者服務作為白名單成員，允許這些資源訪問目前項目。',
-  NETWORK_POLICY_R2_TITLE: '集群外部 IP 地址',
-  NETWORK_POLICY_R2_DESC: '允許集群外部 CIRD 訪問',
-  NETWORK_POLICY_R2_DESC1:
-    '選擇特定的 IP CIDR 範圍以允許作為入口來源或出口目的地。',
-  NETWORK_POLICY_D_DESC: '匹配 Egress(出口) 流量以及 Ingress(入口) 流量',
-  NETWORK_POLICY_D_DESC2:
-    'CIDR 代表一個合法的 IP 地址區段,例如 “192.168.1.1/24”',
-  NETWORK_POLICY_D_OP1: 'Egress(出口)',
-  NETWORK_POLICY_D_OP2: 'Ingress(入口)',
+    'After the project network access is enabled, other projects will be unable to access the project. But you can allow projects, Services, and external IP addresses to access this project based on your needs.',
+  PROJECT_NETWORK_ISOLATION: '項目網路隔離',
+  NETWORK_POLICY_EGRESS_DESC:
+    'Allows access to resources that match any of the following network policies.',
+  NETWORK_POLICY_INGRESS_DESC:
+    'Allows access from resources that match any of the following network policies.',
+  INTERNAL_ALLOWLIST: '内部白名單',
+  INTERNAL_ALLOWLIST_DESC:
+    'Specifies the allowed access to and from projects and services in the cluster.',
+  INTERNAL_ALLOWLIST_TIP:
+    'Add projects and services in the cluster to the allowlist.',
+  EXTERNAL_ALLOWLIST: 'External Allowlist',
+  EXTERNAL_ALLOWLIST_DESC:
+    'Specifies the allowed access to and from network segments outside the cluster.',
+  EXTERNAL_ALLOWLIST_TIP:
+    'Add network segments outside the cluster to the allowlist.',
+  EXTERNAL_RULE_DIRECTION_DESC:
+    'Specify the direction of allowed access to or from different network segments.',
+  NETWORK_SEGMENT_DESC: 'Set a network segment (CIDR is supported).',
 
   CIDR_DESC: '將根據流量的方向',
-  NETWORK_POLICY_MODAL_DIRECT: '請選擇規則方向',
-  NETWORK_POLICY_MODAL_CIDRERR: '請正確填寫 CIDR 資訊',
-  NETWORK_POLICY_MODAL_PORTERR: '請正確填寫端口',
-  NETWORK_POLICY_MODAL_EMPDIR: '請選擇方向',
-  NETWORK_POLICY_MODAL_EMPTP: '項目或服務不能為空',
+  SELECT_RULE_DIRECTION_TIP: 'Please select a rule direction.',
+  ENTER_VALID_ADDRESS_DESC: 'Please enter a valid address.',
+  ENTER_VALID_PORT_NUMBER_DESC: 'Please enter a valid port number.',
+  EMPTY_RESOURCE_DESC: 'Please select at least one project or service.',
 }

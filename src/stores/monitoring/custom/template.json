@@ -1494,7 +1494,6 @@
     },
     "name": "Redis",
     "logo": "/assets/redis-das.svg"
-
   },
   "Jenkins Overview": {
     "settings": {
@@ -1967,7 +1966,7 @@
       "title": "Custom Monitoring"
     },
     "name": "Custom",
-    "description": "CUSTOM_MONITORING_DASHBOARD",
+    "description": " ",
     "logo": "/assets/prometheus.svg"
   }
 }

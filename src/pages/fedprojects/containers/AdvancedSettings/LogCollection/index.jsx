@@ -124,7 +124,7 @@ class LogCollection extends React.Component {
               </div>
             )}
           </div>
-          <Alert message={t('COLLECTING_FILE_LOG_DESC')} hideIcon />
+          <Alert message={t('COLLECT_FILE_LOG_TIP')} hideIcon />
         </Panel>
         {this.canEdit && (
           <Modal
@@ -144,7 +144,7 @@ class LogCollection extends React.Component {
                 }}
               />
               <div className={styles.title}>
-                <div>{t('Are you sure to disable it?')}</div>
+                <div>{t('DISABLE_LOG_COLLECTION')}</div>
                 <p>
                   {t(
                     'Disk Log Collection of the project is about to be disabled.'
@@ -152,7 +152,7 @@ class LogCollection extends React.Component {
                 </p>
               </div>
             </div>
-            <div>{t.html('CLOSE_FILE_LOG_TIP')}</div>
+            <div>{t('CLOSE_FILE_LOG_TIP')}</div>
           </Modal>
         )}
       </>

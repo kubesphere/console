@@ -59,8 +59,8 @@ class LogCollection extends React.Component {
   get tips() {
     return [
       {
-        title: t('DISK_LOG_COLLECTION_Q'),
-        description: t('WHAT_IS_COLLECT_FILE_LOG_A'),
+        title: t('COLLECT_LOGS_ON_VOLUMES_Q'),
+        description: t('COLLECT_LOGS_ON_VOLUMES_A'),
       },
     ]
   }

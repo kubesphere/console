@@ -87,9 +87,6 @@ module.exports = {
   RULE_SETTING_MODE_SPECIFY:
     '指定自定義域名，通過本地 hosts 文件或 DNS 服務器將域名解析為網關 IP 地址。',
 
-  GATEWAY_SERVICE_MESH_STATUS_ON: '已開啟',
-  GATEWAY_SERVICE_MESH_STATUS_OFF: '未開啟',
-
   PREREQUESTS_FOR_USE_ROUTE_Q: '使用應用路由的前提條件?',
   PREREQUESTS_FOR_USE_ROUTE_A:
     '使用應用路由需要由項目管理員對當前項目設置網關。',

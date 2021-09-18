@@ -123,13 +123,13 @@ export default class Item extends React.Component {
               />
               <Text
                 title={this.getNodePorts(gateway)}
-                description={t('Node Port')}
+                description={t('NodePort')}
               />
             </>
           ) : (
             <Text
               title={this.getExternalIP(gateway)}
-              description={t('External Address')}
+              description={t('EXTERNAL_IP_ADDRESS')}
             />
           )}
         </div>

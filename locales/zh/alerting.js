@@ -87,7 +87,7 @@ module.exports = {
   ALERT_TYPE: '{type}告警',
   ALERT_POLICY_DESC:
     '告警策略是用于监控集群资源的一系列条件，您可以创建告警策略对资源进行监控。',
-  ALERT_MESSAGE_DESC: '告警消息是满足告警策略条件后触发的告警的详细信息。',
+  ALERT_MESSAGE_DESC: '告警消息显示满足告警规则后触发的告警详细信息。',
 
   ALERTING_POLICY_EMPTY_DESC: '请创建一个告警规则。',
   ALERTING_POLICY_CREATE_DESC: '您可以创建告警策略以即时发现资源的异常情况。',
@@ -98,9 +98,9 @@ module.exports = {
 
   ABNORMAL_PODS: '容器组异常率',
   POD_USAGE_SCAP: '容器组利用率',
-  CPU_USAGE_SCAP: 'CPU 利用率',
+  CPU_USAGE_SCAP: 'CPU 用量',
   MEMORY_AVAILABLE: '可用内存',
-  MEMORY_USAGE_SCAP: '内存利用率',
+  MEMORY_USAGE_SCAP: '内存用量',
   DISK_SPACE_AVAILABLE: '本地磁盘可用空间',
   DISK_SPACE_USAGE: '本地磁盘空间利用率',
   DISK_READ_IOPS: '本地磁盘读取 IOPS',
@@ -111,9 +111,9 @@ module.exports = {
   DATA_RECEIVE_RATE: '网络接收数据速率',
   'cpu usage': 'CPU用量',
   'memory utilisation (including cache)': '内存使用率(包含缓存)',
-  'memory usage (including cache)': '内存用量(包含缓存)',
+  MEMORY_USAGE_CACHE: '内存用量（包含缓存）',
   'memory usage': '内存用量',
-  'Unavailable replicas ratio': '副本不可用率',
+  UNAVAILABLE_REPLICAS: '副本不可用率',
   'Unavailable deployment replicas ratio': '部署副本不可用率',
   'Unavailable daemonset replicas ratio': '守护进程集副本不可用率',
   'Unavailable statefulset replicas ratio': '有状态副本集副本不可用率',

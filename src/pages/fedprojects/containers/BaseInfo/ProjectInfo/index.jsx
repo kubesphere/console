@@ -45,7 +45,7 @@ export default class ProjectInfo extends React.Component {
   render() {
     const { detail, workspace, actions } = this.props
     return (
-      <Panel className={styles.wrapper} title={t('Project Info')}>
+      <Panel className={styles.wrapper} title={t('PROJECT_INFO')}>
         <div className={styles.header}>
           <Icon name="project" size={40} />
           <div className={styles.item}>

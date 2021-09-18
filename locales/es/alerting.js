@@ -52,7 +52,7 @@ module.exports = {
   DISK_SPACE_USAGE: 'ratio de utilización de espacio del disco local',
   MEMORY_AVAILABLE: 'memoria disponible',
   'memory usage': 'uso de memoria',
-  'memory usage (including cache)': 'uso de memoria (incluyendo caché)',
+  MEMORY_USAGE_CACHE: 'Memory usage (including caches)',
   'memory utilisation (including cache)': 'uso de memoria (incluyendo caché)',
   MEMORY_USAGE_SCAP: 'ratio de uso de memoria',
 
@@ -80,7 +80,7 @@ module.exports = {
   RULE: 'Regla',
   'Rule Name': 'Nombre de la Regla',
   THRESHOLD: 'Umbral',
-  'Unavailable replicas ratio': 'Ratio de replicas no disponibles',
+  UNAVAILABLE_REPLICAS: 'Unavailable replicas',
   'Unavailable daemonset replicas ratio':
     'Ratio de replicas de daemonset no disponibles',
   'Unavailable deployment replicas ratio':
@@ -115,7 +115,7 @@ module.exports = {
   ALERT_POLICY_DESC:
     'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
   ALERT_MESSAGE_DESC:
-    'Alerting messages display details of triggered alerts after the conditions of alerting policies are met.',
+    'Alert messages display details of triggered alerts that have met the conditions of the alert rules.',
 
   ALERTING_POLICY_EMPTY_DESC:
     'You can notice if a resource is abnormal in real time by creating an alerting policy.',

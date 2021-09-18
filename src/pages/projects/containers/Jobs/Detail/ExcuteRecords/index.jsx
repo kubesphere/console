@@ -95,7 +95,7 @@ class ExcuteRecords extends React.Component {
       ),
     },
     {
-      title: t('Message'),
+      title: t('MESSAGE'),
       dataIndex: 'messages[0]',
       render: msg => msg || '-',
     },
@@ -132,7 +132,7 @@ class ExcuteRecords extends React.Component {
         <Column>
           <InputSearch
             name="search"
-            placeholder={t('Filter by keyword')}
+            placeholder={t('SEARCH')}
             onSearch={this.handleSearch}
           />
         </Column>

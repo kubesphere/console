@@ -57,12 +57,12 @@ class InternetAccess extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit Gateway'),
+        text: t('SET_GATEWAY'),
       },
       {
         key: 'delete',
         icon: 'trash',
-        text: t('DELETE'),
+        text: t('REMOVE'),
       },
     ]
   }
@@ -142,8 +142,8 @@ class InternetAccess extends React.Component {
             <Icon name="loadbalancer" size={40} />
           </div>
           <div className={styles.text}>
-            <div>{t('Gateway Not Set')}</div>
-            <p>{t('PROJECT_INTERNET_ACCESS_DESC')}</p>
+            <div>{t('GATEWAY_NOT_SET')}</div>
+            <p>{t('SET_GATEWAY_TIP')}</p>
           </div>
           {this.canEdit && (
             <Button
@@ -151,7 +151,7 @@ class InternetAccess extends React.Component {
               type="control"
               onClick={this.showGatewaySetting}
             >
-              {t('Set Gateway')}
+              {t('SET_GATEWAY')}
             </Button>
           )}
         </div>
@@ -201,21 +201,19 @@ class InternetAccess extends React.Component {
               </div>
               <div className={styles.item}>
                 <div>{this.getNodePorts(gateway)}</div>
-                <p>{t('Node Port')}</p>
+                <p>{t('NodePort')}</p>
               </div>
             </>
           ) : (
             <div className={styles.item}>
               <div>{this.getExternalIP(gateway)}</div>
-              <p>{t('External Address')}</p>
+              <p>{t('EXTERNAL_IP_ADDRESS')}</p>
             </div>
           )}
           {globals.app.hasClusterModule(cluster, 'servicemesh') && (
             <div className={styles.item}>
               <div>
-                {gateway.serviceMeshEnable
-                  ? t('GATEWAY_SERVICE_MESH_STATUS_ON')
-                  : t('GATEWAY_SERVICE_MESH_STATUS_OFF')}
+                {gateway.serviceMeshEnable ? t('ENABLED') : t('DISABLED')}
               </div>
               <p>{t('APPLICATION_GOVERNANCE')}</p>
             </div>

@@ -55,13 +55,13 @@ export default class ProjectInfo extends React.Component {
     return (
       <Panel
         className={classNames(styles.wrapper, { [styles.single]: !showDetail })}
-        title={t('Project Info')}
+        title={t('PROJECT_INFO')}
       >
         <div className={styles.header}>
           <Icon name="project" size={40} />
           <div className={styles.item}>
             <div>{getDisplayName(detail)}</div>
-            <p>{t('PROJECT_NAME')}</p>
+            <p>{t('NAME')}</p>
           </div>
           <div className={styles.item}>
             <div>
@@ -77,7 +77,7 @@ export default class ProjectInfo extends React.Component {
             <div>
               {getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`)}
             </div>
-            <p>{t('CREATED_AT')}</p>
+            <p>{t('CREATION_TIME')}</p>
           </div>
           {!isEmpty(actions) && (
             <div className={classNames(styles.item, 'text-right')}>
@@ -87,7 +87,7 @@ export default class ProjectInfo extends React.Component {
                 trigger="click"
                 placement="bottomRight"
               >
-                <Button>{t('Manage Project')}</Button>
+                <Button>{t('EDIT_PROJECT')}</Button>
               </Dropdown>
             </div>
           )}
@@ -98,21 +98,29 @@ export default class ProjectInfo extends React.Component {
               <Icon name="appcenter" size={40} />
               <div className={styles.item}>
                 <div>{serviceCount}</div>
-                <p>{t('Services')}</p>
+                <p>{serviceCount === '1' ? t('SERVICE') : t('SERVICE_PL')}</p>
               </div>
             </div>
             <div className={styles.contentItem}>
               <Icon name="role" size={40} />
               <div className={styles.item}>
                 <div>{roleCount}</div>
-                <p>{t('PROJECT_ROLE_PL')}</p>
+                <p>
+                  {roleCount === '1'
+                    ? t('PROJECT_ROLE_LOW')
+                    : t('PROJECT_ROLE_LOW_PL')}
+                </p>
               </div>
             </div>
             <div className={styles.contentItem}>
               <Icon name="group" size={40} />
               <div className={styles.item}>
                 <div>{memberCount}</div>
-                <p>{t('PROJECT_MEMBER_PL')}</p>
+                <p>
+                  {memberCount === 1
+                    ? t('PROJECT_MEMBER_LOW')
+                    : t('PROJECT_MEMBER_LOW_PL')}
+                </p>
               </div>
             </div>
           </div>

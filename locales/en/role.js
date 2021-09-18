@@ -357,7 +357,7 @@ module.exports = {
     'Administrator who has full control over all resources in the project.',
   ROLE_PROJECT_REGULAR:
     'Regular user who can manage resources other than users and roles in the project.',
-  ROLE_PROJECT_VIEWER: 'View who can view all resources in the project.',
+  ROLE_PROJECT_VIEWER: 'Viewer who can view all resources in the project.',
   ROLE_PROJECT_OPERATOR:
     'Operater who can manage resources other than users and roles in the project.',
 

@@ -21,7 +21,7 @@ module.exports = {
   CLUSTER_PL: 'Clusters',
   CLUSTER_VALUE: 'Cluster: {value}',
   ADD_QUOTA: 'Add Quota',
-  'Are you sure to disable it?': 'Are you sure to disable it?',
+  DISABLE_LOG_COLLECTION: 'Disable Log Collection',
   ASSIGN_WORKSPACE: 'Assign Workspace',
   SELECT_WORKSPACE_DESC: 'Select a workspace.',
   Closed: 'Closed',
@@ -38,7 +38,6 @@ module.exports = {
   'default request memory should not be greater than default limit memory':
     'default request memory should not be greater than default limit memory',
   'Default request resource': 'Default request resource',
-  'Delete Project': 'Delete Project',
   Deleting: 'Deleting',
   Deployment: 'Deployment',
   deployments: 'deployments',
@@ -48,10 +47,8 @@ module.exports = {
   COLLECT_LOGS_ON_VOLUMES: 'Collect Logs on Volumes',
   'Disk Log Collection of the project is about to be disabled.':
     'Disk Log Collection of the project is about to be disabled.',
-  'Edit Gateway': 'Edit Gateway',
-  'Edit Project': 'Edit Project',
-  'Edit Project Quota': 'Edit Project Quota',
-  'Edit Resource Default Request': 'Edit Resource Default Request',
+  EDIT_PROJECT: 'Edit Project',
+  EDIT_PROJECT_RESOURCE_QUOTAS: 'Edit Project Resource Quotas',
   'Empty value means no limit, CPU 1 Core = 1000m':
     'Empty value means no limit, CPU 1 Core = 1000m',
   'Enter DevOps Project': 'Enter DevOps Project',
@@ -59,7 +56,7 @@ module.exports = {
   FED_HOST_NAMESPACE_TIP:
     'Do not change resources in this project because it is related to a multi-cluster project.',
   'Gateway Info': 'Gateway Info',
-  'Gateway Not Set': 'Gateway Not Set',
+  GATEWAY_NOT_SET: 'Gateway Not Set',
   'Help Information': 'Help Information',
   HOW_TO_INVITE_USERS: 'How do I invite users to the current project?',
   HOW_TO_SET_PROJECT_GATEWAY: 'How do I set the project gateway?',
@@ -90,7 +87,7 @@ module.exports = {
   Opened: 'Opened',
   'Please input project name': 'Please input project name',
   pods: 'pods',
-  'Project Info': 'Project Information',
+  PROJECT_INFO: 'Project Information',
   PROJECT_ADMINISTRATOR: 'Project Administrator',
   'Project Member': 'Project Member',
   PROJECT_MEMBER_PL: 'Project Members',
@@ -101,7 +98,7 @@ module.exports = {
     'The project name already exists in the host cluster. Please use another project name.',
   'Project Overview': 'Project Overview',
   'Project Placement': 'Project Placement',
-  'Project Quota': 'Project Quota',
+  PROJECT_QUOTA: 'Project Quota',
   EDIT_PROJECT_QUOTAS: 'Edit Project Quotas',
   'Project Role': 'Project Role',
   // Create ServiceAccount Page
@@ -120,6 +117,7 @@ module.exports = {
   'requests.cpu': 'requests.cpu',
   'requests.memory': 'requests.memory',
   RESOURCE_QUOTAS: 'Resource Quotas',
+  PROJECT_RESOURCE_QUOTAS: 'Project Resource Quotas',
   RESOURCE_TYPE: 'Resource Type',
   PROJECT_ADMINISTRATOR_DESC:
     'Select a user in the workspace as the project administrator.',
@@ -127,13 +125,12 @@ module.exports = {
   SELECT_CLUSTER_DESC:
     'Select the cluster in which the project is to be created.',
   CLUSTER_EMPTY_DESC: 'Please select a cluster.',
-  'Set Gateway': 'Set Gateway',
+  SET_GATEWAY: 'Set Gateway',
   StatefulSet: 'StatefulSet',
   statefulsets: 'statefulsets',
   'Target Workspace': 'Target Workspace',
   Terminating: 'Terminating',
   Usage: 'Usage',
-  USAGE: 'Usage',
   Volume: 'Volume',
   'Number of volumes': 'Number of volumes',
   RESOURCE_QUANTITY_LIMIT: 'Resource quantity limit',
@@ -161,7 +158,8 @@ module.exports = {
   PROJECT_ASSIGN_DESC:
     'After the project is assigned to a workspace, the workspace cannot be changed.',
 
-  INVITE_MEMBER_DESC: 'You can invite new members to assist in your project.',
+  INVITE_MEMBER_DESC:
+    'You can invite members who belong to the workspace to the project.',
   INVITE_MEMBER_DESC_DEVOPS:
     'You can invite new members to assist your DevOps project.',
   INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter a username to invite members',
@@ -174,16 +172,16 @@ module.exports = {
 
   PROJECT_INTERNET_ACCESS_DESC:
     'Before creating a route, you need to enable the Internet access portal (i.e. the gateway). This step is to create a corresponding routing controller to forward the request to the corresponding backend Service.',
-  DELETE_INTERNET_ACCESS_TITLE:
-    'Are you sure about deleting the external network access settings?',
-  DELETE_INTERNET_ACCESS_DESC: 'You can rebind after the deletion.',
+  DELETE_INTERNET_ACCESS_TITLE: 'Remove Network Access Settings',
+  DELETE_INTERNET_ACCESS_DESC:
+    'Are you sure you want to remove network access settings? You can reset the network access after the settings are removed.',
 
   NO_RELATE_PROJECTS_TITLE: 'No project associated with you',
   NO_RELATE_PROJECTS_DESC:
     'You can create or contact the project manager to invite you to the project to start your work.',
 
   DELETE_PROJECT_TIP:
-    'Are you sure about deleting the project <strong>{resource}</strong>? After the deletion, you will not be able to recover it, and the resources under the project will also be destroyed.',
+    'Are you sure you want to delete the project <strong>{resource}</strong>? After the deletion, you will not be able to recover it, and all project resources will also be destroyed.',
 
   DEFAULT_RESOURCE_UNIT_DESC:
     'The value of CPU indicates the number of CPU cores when it has no unit. 1 Core = 1000m',
@@ -193,38 +191,38 @@ module.exports = {
   QUOTA_EDIT_TIP:
     'If the value is empty, the resource quota will not be limited.',
 
-  HOW_TO_USE_QUOTA_Q: 'How do I use quotas?',
+  HOW_TO_USE_QUOTA_Q: 'How do I use resource quotas?',
   HOW_TO_USE_QUOTA_A:
-    "Resource Quotas are a mechanism used to limit user's resources usage. You can limit the number of CPUs, memories, and Pod replicas.",
+    'Resource quotas are a mechanism used to limit the resource usage. You can edit project resource quotas and default container quotas by clicking <b>Edit Project</b>.',
   PROJECT_QUOTAS_DESC:
     'Project quotas specify the number of available CPU and memory resources and the maximum number of Pods, Deployments, and Services allowed in the project.',
 
-  WHAT_IS_LIMIT_RANGE_Q: 'What is the container resource default request?',
+  WHAT_IS_LIMIT_RANGE_Q: 'What are default container quotas?',
   WHAT_IS_LIMIT_RANGE_A:
-    'The container resource default request (LimitRange) is based on project resource management, including resource limits and resource requests.',
+    'Default container quotas are a policy used to constrain resource allocations to containers in a project. You can set CPU, memory, and GPU quotas for the container.',
   DEFAULT_CONTAINER_QUOTAS_DESC:
     'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
-  WHAT_IS_INTERNET_GATEWAY: 'What is an Internet Access Gateway?',
-  WHAT_IS_COLLECT_FILE_LOG_A:
-    'The log path in the volume mounted to the container is given in glob pattern. The log path can be configured in the workload to collect logs. The administrator needs to enable Disk Log Collection in advance.',
+  WHAT_IS_INTERNET_GATEWAY: 'What is a network access gateway?',
+  COLLECT_LOGS_ON_VOLUMES_A:
+    'To collect logs on volumes, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
 
-  HOW_TO_INVITE_MEMBER_Q: 'How to invite members?',
+  HOW_TO_INVITE_MEMBER_Q: 'How do I invite members to the project?',
   HOW_TO_INVITE_MEMBER_A:
-    'Project administrators or users with member invitation privileges can invite members of the current workspace to join the project.',
+    'The project administrator or users who have permission to invite project members can invite workspace members to the project.',
 
   CLOSE_FILE_LOG_TIP:
-    'Disk Log Collection will be turned off. After it is disabled, the service with this function enabled will not stop collecting disk logs until Pod replicas restart. </br>If you need to collect them again, please enable Disk Log Collection and restart the Pod.',
+    'Are you sure you want to disable log collection? After it is disabled, services that have enabled log collection will continue to collect logs saved in the volumes before the Pod replicas are restarted. If you need to collect the logs again, please enable log collection and restart the Pod replicas.',
   COLLECTING_FILE_LOG_DESC:
     'Disk logs in the container will be collected and exported to stdout, which will then be collected by the system log collector together.',
 
   PROJECT_BASIC_INFO_DESC:
-    "The project basic information includes the project name and the project's quota status.",
+    'Basic information provides an overview of the project. You can view the project information and resource quotas.',
   PROJECT_QUOTA_MANAGE_DESC: 'This module allows you to manage project quotas.',
   PROJECT_ROLE_DESC:
     'Project roles define the permissions users have in the current project.',
   PROJECT_MEMBERS_DESC: 'Manage and assign roles for project members.',
   PROJECT_ADVANCED_SETTINGS_DESC:
-    'This module allows you to configure gateway access for external addresses and service governance. Besides, you can also configure the collection of logs on the disk.',
+    'Advanced settings are used to configure network access, application governance, and log collection in the project.',
 
   PROJECT_TYPES_Q:
     'How can the services in the project be accessed through the external network?',
@@ -250,4 +248,52 @@ module.exports = {
 
   CREATE_MULTI_CLUSTER_PROJECT_DESC:
     'A multi-cluster project runs across different clusters, which helps you to build a container environment for rapid iteration of applications and achieve high availability.',
+
+  // Jobs
+  MESSAGE: 'Message',
+
+  // Custom Monotoring
+  CUSTOM_MONITORING_DASHBOARD_LOW: 'custom monitoring dashbord',
+
+  // Basic Information
+  PROJECT_NAME_SCAP: 'Project name',
+  PROJECT_ROLE_LOW: 'Project role',
+  PROJECT_ROLE_LOW_PL: 'Project roles',
+  PROJECT_MEMBER_LOW: 'Project member',
+  PROJECT_MEMBER_LOW_PL: 'Project members',
+  CPU_REQUEST_LOW: 'CPU request',
+  CPU_LIMIT_LOW: 'CPU limit',
+  MEMORY_REQUEST_LOW: 'Memory request',
+  MEMORY_LIMIT_LOW: 'Memory limit',
+  CPU_REQUEST_CORE: '{value} Core',
+  CPU_LIMIT_CORE: '{value} Core',
+  MEMORY_REQUEST_MIB: '{value} Mi',
+  MEMORY_LIMIT_MIB: '{value} Mi',
+  WS_RESOURCE_REQUESTS: 'Resource requests:',
+  WS_RESOURCE_LIMITS: 'Resource limits:',
+  SELECT_RESOURCE_TIP: 'Select a resource or enter a resource name',
+  NUMBER_OF_ROUTES: 'Number of routes',
+  NUMBER_OF_SECRETS: 'Number of Secrets',
+  NUMBER_OF_CONFIGMAPS: 'Number of ConfigMaps',
+  GPU_LIMIT: 'GPU Limit',
+  USAGE: 'Usage',
+
+  // Project Members
+  PROJECT_MEMBER: 'Project Member',
+  PROJECT_MEMBER_DESC:
+    'Project members can view or manage project resources. The project administrator can invite members who belong to the workspace to the project and manage project members.',
+
+  // Advanced Settings
+  REMOVE: 'Remove',
+  DISABLED: 'Disabled',
+  ENABLE: 'Enable',
+  DISABLE: 'Disable',
+  SET_GATEWAY_TIP: 'Please set a gateway.',
+
+  // Network Isolation
+  INGRESS: 'Ingress',
+  INTERNAL_RULE_DIRECTION_DESC:
+    'Specifies the direction of allowed access to and from different projects and services.',
+  NETWORK_SEGMENT_EXAMPLE: 'Example: 10.0.0.0',
+  PORT_EXAMPLE: 'Example: 80',
 }

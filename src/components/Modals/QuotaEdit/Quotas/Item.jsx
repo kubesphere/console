@@ -88,6 +88,7 @@ export default class QuotaItem extends React.Component {
           searchable
           placeholder=" "
           disabled={value.module === 'pods'}
+          placeholder={t('SELECT_RESOURCE_TIP')}
         />
         {this.renderInputByModule()}
       </ObjectInput>
