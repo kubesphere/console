@@ -151,7 +151,7 @@ module.exports = {
 
   // Grayscale release version tab
   GRAY_DEPLOY_VERSION_TIP:
-    'Deployment {name} exists. Version number is invalid.',
+    'Deployment {name} exists. Please enter another version number.',
   INIT_CONTAINER: 'Init Container',
   GRAYSCALE_IMAGE: 'Image: {image}',
 

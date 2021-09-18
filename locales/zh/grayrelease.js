@@ -170,7 +170,7 @@ module.exports = {
   GRAY_WORKLOAD_TYPE: '负载类型：',
 
   // Grayscale release version tab
-  GRAY_DEPLOY_VERSION_TIP: '部署 {name} 已存在，版本号不可用。',
+  GRAY_DEPLOY_VERSION_TIP: '部署 {name} 已存在，请输入不同的版本号。',
   INIT_CONTAINER: 'Init 容器',
   GRAYSCALE_IMAGE: '镜像：{image}',
 

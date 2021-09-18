@@ -70,7 +70,7 @@ export default class Version extends ContainerSettings {
       .then(resp => {
         if (resp.exist) {
           return callback({
-            message: t('GRAY_DEPLOY_VERSION_TIP', { name: t(name) }),
+            message: t('GRAY_DEPLOY_VERSION_TIP', { name }),
             field: rule.field,
           })
         }
