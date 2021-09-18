@@ -16,11 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { get, set } from 'lodash'
-import { action } from 'mobx'
+import { action, observable } from 'mobx'
 import Base from './base'
 
 export default class PvcStore extends Base {
   module = 'persistentvolumes'
+
+  @observable
+  supportPv = false
 
   getDetailUrl = (params = {}) =>
     `${this.getResourceUrl(params)}/${params.name}`
@@ -45,5 +48,22 @@ export default class PvcStore extends Base {
   @action
   delete(params) {
     return this.submitting(request.delete(this.getKs8Url(params)))
+  }
+
+  @action
+  async checkIfSupportPv() {
+    const result = await request.get(
+      'apis/apps/v1/namespaces/kubesphere-system/deployments/ks-apiserver'
+    )
+    const arr = get(result, 'spec.template.spec.containers[0].image', '')
+      .split(':')[1]
+      .replace(/[^\d.]/g, '')
+    const version = Number(
+      arr
+        .split('.')
+        .slice(0, 2)
+        .join('.')
+    )
+    this.supportPv = version >= 3.2
   }
 }
