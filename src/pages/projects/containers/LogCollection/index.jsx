@@ -59,10 +59,6 @@ class LogCollection extends React.Component {
   get tips() {
     return [
       {
-        title: t('WHAT_IS_INTERNET_GATEWAY'),
-        description: t('PROJECT_INTERNET_ACCESS_DESC'),
-      },
-      {
         title: t('COLLECT_LOGS_ON_VOLUMES_Q'),
         description: t('COLLECT_LOGS_ON_VOLUMES_A'),
       },
