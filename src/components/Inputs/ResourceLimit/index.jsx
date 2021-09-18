@@ -439,16 +439,16 @@ export default class ResourceLimit extends React.Component {
   getInputMaxiNum(name) {
     let maxiNum
     if (!isEmpty(this.props.cpuProps)) {
-      if (name.indexOf('cpu')) {
+      if (name.indexOf('cpu') > -1) {
         const marks = this.props.cpuProps.marks
         maxiNum = marks[marks.length - 2].value
-      } else if (name.indexOf('memory')) {
+      } else if (name.indexOf('memory') > -1) {
         const memoryMarks = this.props.memoryProps.marks
         maxiNum = memoryMarks[memoryMarks.length - 2].value
       }
-    } else if (name.indexOf('cpu')) {
+    } else if (name.indexOf('cpu') > -1) {
       maxiNum = 4
-    } else if (name.indexOf('memory')) {
+    } else if (name.indexOf('memory') > -1) {
       maxiNum = 8000
     }
     return maxiNum
