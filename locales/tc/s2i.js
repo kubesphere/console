@@ -79,14 +79,14 @@ module.exports = {
   S2I_UPDATA_WORKLOAD_DESC:
     '重新構建鏡像成功後，將更新相關工作負載的鏡像，同時工作負載的版本也會被更新',
   'No Log Records': '無紀錄紀錄',
-  S2I_SECRET_DESC: '如果是私有代碼倉庫，請選擇代碼倉庫密鑰。',
+  S2I_SECRET_DESC: '如果是私有代碼倉庫，請選擇代碼倉庫 Secret。',
   S2I_IMAGE_REPONSITRY_DESC:
     '源代碼倉庫地址（目前支持 Git）並且可以指定代碼分支及在源代碼終端的相對路徑。',
   S2I_RELATIVE_PATH: '代碼相對路徑(可選)',
   S2I_BUILDERNAME_DESC:
     '選擇編輯環境，您也可以查看對應的 <a href={link} target="_blank">編譯模板</a>',
   S2I_TARGET_IMAGE_REPOSITORY_DESC:
-    '選擇一個有鏡像倉庫推送權限的保密字典，如果沒有可以<a href={link} target="_blank">新建鏡像倉庫保密字典</a>。',
+    '選擇一個有鏡像倉庫推送權限的 Secret，如果沒有可以<a href={link} target="_blank">新建鏡像倉庫 Secret</a>。',
   S2I_IMAGENAME_DESC: '鏡像名稱及標籤，預設為代碼倉庫的項目名稱。',
   TARGET_IMAGE_REPOSITORY: '目標鏡像倉庫',
   'Rebuilt successfully; the image status will be refreshed soon.':
@@ -130,10 +130,10 @@ module.exports = {
     'WAR 檔案是用於分發 Jar 檔案，JavaServer Pages，Java Servlet，Java類，XML 檔案，標記庫，静態網頁（HTML 和相關檔案）以及共同構成 Web 應用程式的其他資源的集合的檔案。',
   BINARY_DESC: '',
   IMAGE_BUILDER_EMPTY_DESC: '請創建一個鏡像構建器。',
-  S2I_NO_SECRET: '目前代碼倉庫不需要密鑰。',
+  S2I_NO_SECRET: '目前代碼倉庫不需要 Secret。',
   'Repository Not Found': '尚未找到代碼倉庫',
   'Currently only supports git repo': '目前僅支持 git 倉庫',
-  'Authentication required': '需要認證資訊，請選擇密鑰。',
+  'Authentication required': '需要認證資訊，請選擇 Secret。',
   'Repo reading failed': '讀取倉庫失敗',
   'exec: "git": executable file not found in $PATH': '目前 URL 未發現代碼倉庫',
   WRONG_FILE_EXTENSION_NAME: '選擇的檔案類型不符合，請選擇 {type} 類型。',
@@ -149,5 +149,5 @@ module.exports = {
   UPLOADED: '已上傳：{percent}%',
   UPLOAD_FULLY: '已上傳：100%',
   FILE_SIZE: '檔案大小：{size}',
-  S2I_SECRET: '密鑰',
+  S2I_SECRET: 'Secret',
 }

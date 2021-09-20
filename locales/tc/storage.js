@@ -174,7 +174,7 @@ module.exports = {
   CEPHRBD_ADMIN_SECRET_NAMESPACE_DESC: 'adminSecrect 所在的項目',
   CEPHRBD_POOL_DESC: 'Name of the Ceph RBD pool.',
   CEPHRBD_USERID_DESC: 'ceph 集群能夠掛載卷的用戶 ID',
-  CEPHRBD_USER_SECRET_NAME_DESC: 'userid 的密鑰名',
+  CEPHRBD_USER_SECRET_NAME_DESC: 'userid 的 Secret 名',
   CEPHRBD_USER_SECRET_NAMESPACE_DESC: 'userSecret 所在的項目',
   CEPHRBD_FS_TYPE_DESC: 'File system type of the storage volume.',
   CEPHRBD_IMAGE_FORMAT_DESC:

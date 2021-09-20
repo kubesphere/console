@@ -251,8 +251,8 @@ module.exports = {
   'passphrase Variable': '密码变量',
   'show yaml editor': '用 YAML 编辑器编辑',
   'Enable Variable Substitution in Config': '在配置中启用变量替换',
-  'Kubernetes Secrets': 'Kubernetes 密钥',
-  'Kubernetes Namespace for Secret': 'Kubernetes 密钥命名空间',
+  'Kubernetes Secrets': 'Kubernetes Secrets',
+  'Kubernetes Namespace for Secret': 'Kubernetes Secrets 命名空间',
   'Docker Container Registry Credentials': 'Docker 容器仓库凭证',
   'Docker Registry URL': 'Docker 仓库 URL',
   'Registry Credentials': '仓库凭证',
@@ -285,7 +285,7 @@ module.exports = {
     <label>目前该步骤支持以下资源:</label>
     <br />
     <li>配置</li>
-    <li>密钥</li>
+    <li>Secrets</li>
     <li>部署</li>
     <li>守护进程集</li>
     <li>应用路由</li>
@@ -416,7 +416,7 @@ module.exports = {
   credentialsId: '凭证 ID',
   enableConfigSubstitution: '启用变量替换',
   configs: '配置',
-  secretNamespace: '密钥命名空间',
+  secretNamespace: 'Secrets 命名空间',
   secretName: '秘钥名称',
   dockerCredentials: 'Docker 容器仓库凭证',
   passwordVariable: '密码变量',

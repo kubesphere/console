@@ -28,8 +28,8 @@ module.exports = {
   'Port connection authentication': '端口連接授權',
   'No Auth': '無須認證',
 
-  'Create a new secret': '建創新密鑰',
-  'refresh secrets': '刷新密鑰',
+  'Create a new secret': '建創新 Secrets',
+  'refresh secrets': '刷新 Secrets',
 
   NO_AUTH_TIP: '接口可直接連接，無須授權',
 

@@ -134,7 +134,7 @@ module.exports = {
 
   // App Repositories
   ACCESS_KEY_ID: '访问密钥 ID',
-  SECRET_ACCESS_KEY: '秘密访问密钥',
+  SECRET_ACCESS_KEY: 'Secret 访问密钥',
 
   // Basic Information
   WORKSPACE_BASIC_INFO_DESC:

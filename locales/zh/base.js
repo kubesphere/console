@@ -464,7 +464,7 @@ module.exports = {
   Domain: '域名',
   Account: '帐户',
   Strategy: '策略',
-  secret: '密钥',
+  secret: 'Secrets',
   Contributors: '贡献者',
   Everyone: '所有人',
   Nobody: '无',

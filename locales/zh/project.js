@@ -293,7 +293,7 @@ module.exports = {
   WS_RESOURCE_LIMITS: '资源限制：',
   SELECT_RESOURCE_TIP: '请选择资源或输入资源名称',
   NUMBER_OF_ROUTES: '应用路由数量',
-  NUMBER_OF_SECRETS: '保密字典数量',
+  NUMBER_OF_SECRETS: 'Secrets 数量',
   NUMBER_OF_CONFIGMAPS: '配置字典数量',
   GPU_LIMIT: 'GPU 限制',
 

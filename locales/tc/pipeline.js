@@ -251,8 +251,8 @@ module.exports = {
   'passphrase Variable': '密碼變量',
   'show yaml editor': '用 YAML 編輯器編輯',
   'Enable Variable Substitution in Config': '在配置中啟用變量替換',
-  'Kubernetes Secrets': 'Kubernetes 密鑰',
-  'Kubernetes Namespace for Secret': 'Kubernetes 密鑰命名空間',
+  'Kubernetes Secrets': 'Kubernetes Secrets',
+  'Kubernetes Namespace for Secret': 'Kubernetes Secret 命名空間',
   'Docker Container Registry Credentials': 'Docker 容器倉庫憑證',
   'Docker Registry URL': 'Docker 倉庫 URL',
   'Registry Credentials': '倉庫憑證',
@@ -285,7 +285,7 @@ module.exports = {
     <label>目前該步驟支持以下資源:</label>
     <br />
     <li>配置</li>
-    <li>密鑰</li>
+    <li>Secrets</li>
     <li>部署</li>
     <li>守護進程集</li>
     <li>應用路由</li>
@@ -416,7 +416,7 @@ module.exports = {
   credentialsId: '憑證 ID',
   enableConfigSubstitution: '啟用變量替換',
   configs: '配置',
-  secretNamespace: '密鑰命名空間',
+  secretNamespace: 'Secrets 命名空間',
   secretName: '秘鑰名稱',
   dockerCredentials: 'Docker 容器倉庫憑證',
   passwordVariable: '密碼變量',

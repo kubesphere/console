@@ -17,37 +17,37 @@
  */
 
 module.exports = {
-  secrets: '密鑰',
-  Secrets: '密鑰',
-  Secret: '密鑰',
-  SECRET: '保密字典',
+  secrets: 'Secrets',
+  Secrets: 'Secrets',
+  Secret: 'Secret',
+  SECRET: 'Secret',
   SECRET_PL: 'Secrets',
   SECRET_LOW: 'Secret',
   SECRET_FIELD_COUNT: '字段數量',
-  EDIT_SECRET: '編輯保密字典',
-  SECRET_SETTINGS_TCAP: '密鑰設置',
+  EDIT_SECRET: '編輯 Secrets',
+  SECRET_SETTINGS_TCAP: 'Secret 設置',
   PRIVATE_KEY_TCAP: '私鑰',
-  IMAGE_REGISTRY_SECRET_SCAP: '鏡像倉庫保密字典',
-  IMAGE_REGISTRY_SECRET_TCAP: '鏡像倉庫保密字典',
+  IMAGE_REGISTRY_SECRET_SCAP: '鏡像倉庫 Secret',
+  IMAGE_REGISTRY_SECRET_TCAP: '鏡像倉庫 Secret',
   ENTER_CREDENTIAL_TIP: '請輸入憑證。',
   ENTER_PRIVATE_KEY_DESC: '請輸入私鑰。',
   ENTER_DATA_DESC: '請添加數據。',
-  Unverified: '鏡像倉庫密鑰驗證失敗。',
-  SECRET_TYPE_DESC: '選擇一個保密字典類型',
+  Unverified: '鏡像倉庫 Secret 驗證失敗。',
+  SECRET_TYPE_DESC: '選擇一個 Secret 類型',
 
   SECRET_DESC:
-    '保密字典（Secret）是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵值對形式保存並且可以在容器組中使用。',
+    'Secret 是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵值對形式保存並且可以在容器組中使用。',
   SECRET_EMPTY_DESC:
-    '保密字典是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
+    'Secret 是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
 
   SECRET_NO_CHINESE_CODE_DESC:
-    '保密字典的鍵必須由字母數字字符、連字符（-）、下劃線（_）或句點（.）組成。',
+    'Secret 的鍵必須由字母數字字符、連字符（-）、下劃線（_）或句點（.）組成。',
 
   REGISTRY_ADDRESS_TCAP: '倉庫地址',
   REGISTRY_SECRET_VER_ERR: '鏡像倉庫驗證失敗。',
   REGISTRY_SECRET_VER_SUC: '鏡像倉庫驗證通過。',
-  ACCOUNT_PASSWORD_SECRET_SCAP: '帳號密碼保密字典',
-  ACCOUNT_PASSWORD_SECRET_TCAP: '帳號密碼保密字典',
+  ACCOUNT_PASSWORD_SECRET_SCAP: '帳號密碼 Secret',
+  ACCOUNT_PASSWORD_SECRET_TCAP: '帳號密碼 Secret',
 
   DATA: '數據',
   ADD_DATA_TCAP: '添加數據',
@@ -60,10 +60,10 @@ module.exports = {
 
   IMAGE_REGISTRY_REQUIRED_DESC: '請設置倉庫地址、用戶名和密碼信息。',
 
-  IMAGE_REGISTRY_VALIDATE_TIP: '創建鏡像倉庫密鑰前, 請先驗證用戶名和密碼。',
+  IMAGE_REGISTRY_VALIDATE_TIP: '創建鏡像倉庫 Secret 前, 請先驗證用戶名和密碼。',
 
   'Please input the registry address': '請輸入鏡像倉庫地址。',
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value}（{label}）',
-  CREATE_SECRET: '新建保密字典',
+  CREATE_SECRET: '新建 Secret',
 }

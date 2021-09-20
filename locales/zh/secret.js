@@ -17,36 +17,36 @@
  */
 
 module.exports = {
-  secrets: '保密字典',
-  Secrets: '保密字典',
-  Secret: '保密字典',
-  SECRET: '保密字典',
-  SECRET_PL: '保密字典',
-  SECRET_LOW: '保密字典',
+  secrets: 'Secrets',
+  Secrets: 'Secrets',
+  Secret: 'Secret',
+  SECRET: 'Secret',
+  SECRET_PL: 'Secrets',
+  SECRET_LOW: 'Secret',
   SECRET_FIELD_COUNT: '字段数量',
-  EDIT_SECRET: '编辑保密字典',
-  SECRET_SETTINGS_TCAP: '保密字典设置',
+  EDIT_SECRET: '编辑 Secret',
+  SECRET_SETTINGS_TCAP: 'Secret 设置',
   PRIVATE_KEY_TCAP: '私钥',
-  IMAGE_REGISTRY_SECRET_SCAP: '镜像仓库保密字典',
-  IMAGE_REGISTRY_SECRET_TCAP: '镜像仓库保密字典',
+  IMAGE_REGISTRY_SECRET_SCAP: '镜像仓库 Secret',
+  IMAGE_REGISTRY_SECRET_TCAP: '镜像仓库 Secret',
   ENTER_CREDENTIAL_TIP: '请输入凭证。',
   ENTER_PRIVATE_KEY_DESC: '请输入私钥。',
   ENTER_DATA_DESC: '请添加数据。',
-  Unverified: '镜像仓库保密字典验证失败。',
-  SECRET_TYPE_DESC: '选择一个保密字典类型。',
+  Unverified: '镜像仓库 Secret 验证失败。',
+  SECRET_TYPE_DESC: '选择一个 Secret 类型。',
 
   SECRET_DESC:
-    '保密字典（Secret）是一种包含少量敏感信息的资源对象，例如密码、令牌、保密字典等，以键值对形式保存并且可以在容器组中使用。',
-  SECRET_EMPTY_DESC: '请创建一个保密字典。',
+    'Secret 是一种包含少量敏感信息的资源对象，例如密码、令牌、保密字典等，以键值对形式保存并且可以在容器组中使用。',
+  SECRET_EMPTY_DESC: '请创建一个 Secret。',
 
   SECRET_NO_CHINESE_CODE_DESC:
-    '保密字典的键必须由字母数字字符、连字符（-）、下划线（_）或句点（.）组成。',
+    'Secret 的键必须由字母数字字符、连字符（-）、下划线（_）或句点（.）组成。',
 
   REGISTRY_ADDRESS_TCAP: '仓库地址',
   REGISTRY_SECRET_VER_ERR: '镜像仓库验证失败。',
   REGISTRY_SECRET_VER_SUC: '镜像仓库验证通过。',
-  ACCOUNT_PASSWORD_SECRET_SCAP: '帐户密码保密字典',
-  ACCOUNT_PASSWORD_SECRET_TCAP: '帐户密码保密字典',
+  ACCOUNT_PASSWORD_SECRET_SCAP: '帐户密码 Secret',
+  ACCOUNT_PASSWORD_SECRET_TCAP: '帐户密码 Secret',
 
   DATA: '数据',
   ADD_DATA_TCAP: '添加数据',
@@ -59,11 +59,11 @@ module.exports = {
 
   IMAGE_REGISTRY_REQUIRED_DESC: '请设置仓库地址、用户名和密码信息。',
 
-  IMAGE_REGISTRY_VALIDATE_TIP: '创建镜像仓库保密字典前, 请先验证用户名和密码。',
+  IMAGE_REGISTRY_VALIDATE_TIP: '创建镜像仓库 Secret 前, 请先验证用户名和密码。',
 
   'Please input the registry address': '请输入镜像仓库地址。',
 
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value}（{label}）',
-  CREATE_SECRET: '新建保密字典',
+  CREATE_SECRET: '新建 Secret',
 }

@@ -79,14 +79,14 @@ module.exports = {
   S2I_UPDATA_WORKLOAD_DESC:
     '重新构建镜像成功后，将更新相关工作负载的镜像，工作负载版本也会一同更新。',
   'No Log Records': '无日志记录',
-  S2I_SECRET_DESC: '如果是私有代码仓库，请选择代码仓库密钥。',
+  S2I_SECRET_DESC: '如果是私有代码仓库，请选择代码仓库 Secret。',
   S2I_IMAGE_REPONSITRY_DESC:
     '源代码仓库地址（目前支持 Git）并且可以指定代码分支及在源代码终端的相对路径。',
   S2I_RELATIVE_PATH: '代码相对路径（可选）',
   S2I_BUILDERNAME_DESC:
     '选择编辑环境，您也可以查看对应的 <a href={link} target="_blank">编译模板</a>',
   S2I_TARGET_IMAGE_REPOSITORY_DESC:
-    '选择一个有镜像仓库推送权限的保密字典，如果没有可以<a href={link} target="_blank">新建镜像仓库保密字典</a>。',
+    '选择一个有镜像仓库推送权限的 Secret，如果没有可以<a href={link} target="_blank">新建镜像仓库 Secret</a>。',
   S2I_IMAGENAME_DESC: '镜像名称及标签，默认为代码仓库的项目名称。',
   TARGET_IMAGE_REPOSITORY: '目标镜像仓库',
   'Rebuilt successfully; the image status will be refreshed soon.':
@@ -130,7 +130,7 @@ module.exports = {
     'WAR 文件用于分发已归档的 JAR 文件、JavaServer Pages、Java Servlet、Java 类、XML 文件、标记库、静态网页（HTML 和相关文件）以及共同构成 Web 应用程序的其他资源。',
   BINARY_DESC: '',
   IMAGE_BUILDER_EMPTY_DESC: '请创建一个镜像构建器。',
-  S2I_NO_SECRET: '当前代码仓库不需要密钥。',
+  S2I_NO_SECRET: '当前代码仓库不需要 Secret。',
   'Repository Not Found': '未找到代码仓库',
   'Currently only supports git repo': '当前仅支持 git 仓库',
   'Authentication required': '需要认证信息，请选择秘钥。',
@@ -149,5 +149,5 @@ module.exports = {
   UPLOADED: '已上传：{percent}%',
   UPLOAD_FULLY: '已上传：100%',
   FILE_SIZE: '文件大小：{size}',
-  S2I_SECRET: '密钥',
+  S2I_SECRET: 'Secret',
 }

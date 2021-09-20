@@ -141,8 +141,8 @@ module.exports = {
   VOLUME_SETTINGS: '掛載儲存',
 
   'Add Volume': '添加儲存卷',
-  MOUNT_CONFIGMAP_OR_SECRET: '掛載配置文件或密鑰',
-  USE_CONFIGMAP_OR_SECRET: '引用配置文件或密鑰',
+  MOUNT_CONFIGMAP_OR_SECRET: '掛載 ConfigMap 或 Secret',
+  USE_CONFIGMAP_OR_SECRET: '引用 ConfigMap 或 Secret',
 
   'Collecting file log': '收集落盤紀錄',
 
@@ -163,7 +163,7 @@ module.exports = {
   LOCATION: '位置',
 
   SELECT_CONFIGMAP_DESC: '將配置中的值添加為卷。',
-  SELECT_SECRET_DESC: '將密鑰中的值添加為卷。',
+  SELECT_SECRET_DESC: '將 Secret 中的值添加為卷。',
 
   SELECT_VOLUME: '選擇已有儲存卷',
   SELECT_TYPE: '選擇{type}',
@@ -190,9 +190,9 @@ module.exports = {
 
   IMAGE_PLACEHOLDER: '點擊右側圖標可選擇鏡像，或直接輸入名稱 例：nginx:latest',
   IMAGE_EMPTY: '請設置鏡像',
-  IMAGE_REGISTRY_PLACEHOLDER: '請選擇鏡像倉庫密鑰',
+  IMAGE_REGISTRY_PLACEHOLDER: '請選擇鏡像倉庫 Secret',
   IMAGE_DESC:
-    '要從私有鏡像倉庫部署，需要先<a href={link} target="_blank">創建鏡像倉庫密鑰</a>，然後拉取鏡像。',
+    '要從私有鏡像倉庫部署，需要先<a href={link} target="_blank">創建鏡像倉庫 Secret</a>，然後拉取鏡像。',
   'Replicas Number': '副本數量',
   'Specify Replicas Number': '指定副本數量',
   'Replica Status': '副本運行狀態',
@@ -292,7 +292,7 @@ module.exports = {
 
   WORKLOAD_MOUNT_VOLUME_DESC: '支持臨時儲存卷以及持久化儲存卷',
 
-  MOUNT_CONFIGMAP_OR_SECRET_DESC: '將配置文件或密鑰掛載至指定目錄',
+  MOUNT_CONFIGMAP_OR_SECRET_DESC: '將配置文件或 Secret 掛載至指定目錄',
 
   'Please specify an image': '請指定鏡像',
 
@@ -492,8 +492,8 @@ module.exports = {
   'Please add at least one volume or volume template':
     '請至少添加一個儲存卷或儲存卷模板',
   'Please select a volume': '請選擇儲存卷',
-  'Please select a configmap': '請選擇配置文件',
-  'Please select a secret': '請選擇密鑰',
+  'Please select a configmap': '請選擇 ConfigMap',
+  'Please select a secret': '請選擇 Secret',
   COLLECT_LOGS_ON_VOLUMES_Q: 'How do I collect logs on volumes?',
   MOUNT_PATH_IN_USE: '掛載路徑已使用',
   READ_WRITE_MOUNT_EMPTY: '請指定讀寫方式及掛載路徑',
@@ -501,7 +501,7 @@ module.exports = {
   MOUNT_VOLUME_OR_TEMPLATE: '請至少添加一個儲存卷或儲存卷模板',
   VOLUME_NOT_SELECT: '請選擇儲存卷',
   CONFIGMAP_NOT_SELECT: '請選擇配置文件',
-  SECRET_NOT_SELECT: '請選擇密鑰',
+  SECRET_NOT_SELECT: '請選擇 Secret',
   'What is Disk Log Collection?': '什麼是落盤紀錄收集？',
 
   'for example': '例如',
@@ -752,7 +752,8 @@ module.exports = {
   CERT_ERROR: '發現證書錯誤，是否忽略證書驗證並再次',
   IGNORE_CERT_WARN_DESC: '忽略驗證證書，可能會導致帳戶密碼被欺騙。',
   INVALID_PROJECT: '項目不可選',
-  DESC_CREATE_CONFIGMAP_SECRET: '如果沒有合適的配置文件或密鑰引用, 您可以',
+  DESC_CREATE_CONFIGMAP_SECRET:
+    '如果沒有合適的 ConfigMap 或 Secret 引用, 您可以',
 
   // Pods Page
   NODE_IP: '{node}（{ip}）',

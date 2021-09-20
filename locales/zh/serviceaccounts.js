@@ -24,7 +24,7 @@ module.exports = {
   SERVICE_ACCOUNT_LOW: '服务帐户',
   'Edit Service Account': '编辑服务帐户',
   CHANGE_ROLE: '修改角色',
-  'Secret Detail': '密钥详情',
+  'Secret Detail': 'Secrets 详情',
   SERVICE_ACCOUNT_DESC:
     '服务帐户（Service Account）为 Pod 中运行的进程提供了一个标识，用于访问 API Server。',
 
