@@ -38,9 +38,9 @@ module.exports = {
   POD_SETTINGS: '容器组设置',
   TARGET: '目标',
   MOUNT_PATH_EMPTY: '请输入挂载路径。',
-  CONFIGMAP: '配置字典',
-  CONFIGMAP_PL: '配置字典',
-  CONFIGMAP_LOW: '配置字典',
+  CONFIGMAP: 'ConfigMap',
+  CONFIGMAP_PL: 'ConfigMaps',
+  CONFIGMAP_LOW: 'ConfigMap',
   PARTITION_ORDINAL: '容器组副本分组序号',
   PARTITION_ORDINAL_DESC:
     '容器组副本按序号分成两组。更新有状态副本集时，只有序号大于分组序号的容器组副本会被更新。',
@@ -140,7 +140,7 @@ module.exports = {
   VOLUME_SETTINGS: '存储卷设置',
 
   'Add Volume': '添加存储卷',
-  MOUNT_CONFIGMAP_OR_SECRET: '挂载配置字典或 Secret',
+  MOUNT_CONFIGMAP_OR_SECRET: '挂载 ConfigMap 或 Secret',
   USE_CONFIGMAP_OR_SECRET: '引用 ConfigMap 文件或 Secret',
 
   'Collecting file log': '收集落盘日志',
@@ -159,7 +159,7 @@ module.exports = {
 
   LOCATION: '位置',
 
-  SELECT_CONFIGMAP_DESC: '将配置字典挂载到容器。',
+  SELECT_CONFIGMAP_DESC: '将 ConfigMap 挂载到容器。',
   SELECT_SECRET_DESC: '将 Secret 挂载到容器。',
 
   SELECT_VOLUME: '选择存储卷',
@@ -500,7 +500,7 @@ module.exports = {
   MOUNT_VOLUME: '挂载存储卷',
   MOUNT_VOLUME_OR_TEMPLATE: '挂载存储卷或存储卷模板',
   VOLUME_NOT_SELECT: '请选择存储卷。',
-  CONFIGMAP_NOT_SELECT: '请选择配置字典。',
+  CONFIGMAP_NOT_SELECT: '请选择 ConfigMap。',
   SECRET_NOT_SELECT: '请选择 Secret。',
   'What is Disk Log Collection?': '什么是落盘日志收集？',
 

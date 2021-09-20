@@ -39,7 +39,7 @@ module.exports = {
   SYNC_HOST_TIMEZONE: '同步宿主機時區',
   POD_SETTINGS: '容器組設置',
   MOUNT_PATH_EMPTY: '請輸入掛載路徑。',
-  CONFIGMAP: '配置字典',
+  CONFIGMAP: 'ConfigMap',
   CONFIGMAP_PL: 'ConfigMaps',
   CONFIGMAP_LOW: 'ConfigMap',
   DEPLOYMENT_EMPTY_DESC: 'Please create a Deployment.',
