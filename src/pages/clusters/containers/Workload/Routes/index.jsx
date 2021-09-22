@@ -27,10 +27,10 @@ import ResourceTable from 'clusters/components/ResourceTable'
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
 
 @withClusterList({
-  store: new RouterStore(),
+  store: new IngressStore(),
   module: 'ingresses',
   name: 'ROUTE',
   rowKey: 'uid',

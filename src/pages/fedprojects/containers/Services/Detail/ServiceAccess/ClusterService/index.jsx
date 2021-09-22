@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
-import RouterStore from 'stores/router'
+import GatewayStore from 'stores/gateway'
 
 import { Panel, Text } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
@@ -33,7 +33,7 @@ import styles from './index.scss'
 @inject('rootStore')
 @observer
 export default class ClusterService extends Component {
-  routerStore = new RouterStore()
+  gatewayStore = new GatewayStore()
 
   get cluster() {
     return this.props.cluster.name
@@ -50,7 +50,7 @@ export default class ClusterService extends Component {
 
   componentDidMount() {
     const { namespace } = this.props.detail
-    this.routerStore.getGateway({ cluster: this.cluster, namespace })
+    this.gatewayStore.getGateway({ cluster: this.cluster, namespace })
   }
 
   getOperations = () => [
@@ -72,7 +72,7 @@ export default class ClusterService extends Component {
 
   renderPorts() {
     const { detail } = this.props
-    const gateway = this.routerStore.gateway.data
+    const gateway = this.gatewayStore.gateway.data
     return <Ports gateway={gateway} detail={detail} />
   }
 

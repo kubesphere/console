@@ -23,8 +23,6 @@ import { Button, Icon } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import FORM_TEMPLATES from 'utils/form.templates'
 
-import RouterStore from 'stores/router'
-
 import Steps from './Steps'
 import BaseInfo from './BaseInfo'
 import ClusterSettings from './ClusterSettings'
@@ -55,8 +53,6 @@ export default class WorkspaceCreateModal extends React.Component {
     }
 
     this.formRef = React.createRef()
-
-    this.routerStore = new RouterStore()
   }
 
   get steps() {

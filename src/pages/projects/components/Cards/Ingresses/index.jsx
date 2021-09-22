@@ -24,7 +24,8 @@ import { Panel } from 'components/Base'
 
 import { joinSelector } from 'utils'
 
-import RouteStore from 'stores/router'
+import IngressStore from 'stores/ingress'
+import GatewayStore from 'stores/gateway'
 
 import Item from './Item'
 
@@ -41,7 +42,9 @@ export default class Routes extends React.Component {
     prefix: '',
   }
 
-  store = new RouteStore()
+  store = new IngressStore()
+
+  gatewayStore = new GatewayStore()
 
   componentDidMount() {
     this.getData()
@@ -57,7 +60,7 @@ export default class Routes extends React.Component {
         labelSelector: joinSelector(selector),
       }
 
-      this.store.getGateway({ cluster, namespace })
+      this.gatewayStore.getGateway({ cluster, namespace })
       this.store.fetchListByK8s(params)
     }
   }
@@ -65,7 +68,7 @@ export default class Routes extends React.Component {
   renderContent() {
     const { prefix } = this.props
     const { data } = this.store.list
-    const gateway = this.store.gateway.data
+    const gateway = this.gatewayStore.gateway.data
 
     if (isEmpty(data)) {
       return null

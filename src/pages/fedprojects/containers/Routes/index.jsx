@@ -26,10 +26,10 @@ import { getLocalTime, getDisplayName, getDocsUrl } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
 import FederatedStore from 'stores/federated'
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
 
 @withProjectList({
-  store: new FederatedStore(new RouterStore()),
+  store: new FederatedStore(new IngressStore()),
   module: 'ingresses',
   name: 'ROUTE',
 })

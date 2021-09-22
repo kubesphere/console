@@ -23,14 +23,14 @@ import { observer } from 'mobx-react'
 import { Panel, Text } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 import Annotations from 'projects/components/Cards/Annotations'
-import RouterStore from 'stores/router'
+import GatewayStore from 'stores/gateway'
 import Rule from '../Rule'
 
 import styles from './index.scss'
 
 @observer
 export default class Item extends React.Component {
-  store = new RouterStore()
+  store = new GatewayStore()
 
   componentDidMount() {
     const { cluster, namespace } = this.props
