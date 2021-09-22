@@ -17,11 +17,13 @@
  */
 
 import React from 'react'
+import { isEmpty } from 'lodash'
 
-import { Select } from '@kube-design/components'
+import { Select, Input, Icon, Notify } from '@kube-design/components'
 import { TagInput } from 'components/Inputs'
 
 import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
+import { PATTERN_NAME } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -33,7 +35,12 @@ export default class ConditionSelect extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.value !== this.props.value) {
-      this.setState({ ...this.getInitialData() })
+      const { key = '', operator = '', values = [] } = this.props.value || {}
+      this.setState({
+        key,
+        operator,
+        values,
+      })
     }
   }
 
@@ -93,7 +100,33 @@ export default class ConditionSelect extends React.Component {
 
   getInitialData() {
     const { key, operator, values } = this.props.value || {}
-    return { key, operator, values }
+
+    return {
+      key,
+      operator,
+      values,
+      keyName: '',
+      keyItems:
+        key && isEmpty(this.keys.find(item => item.value === key))
+          ? [...this.keys, { label: key, value: key }]
+          : [...this.keys],
+    }
+  }
+
+  handleNameChange = (e, keyName) => {
+    this.setState({ keyName })
+  }
+
+  handleAddItem = () => {
+    const { keyItems, keyName } = this.state
+    if (!PATTERN_NAME.test(keyName)) {
+      Notify.error({ content: t('PATTERN_NAME_INVALID_TIP') })
+      return
+    }
+    this.setState({
+      keyItems: [...keyItems, { label: keyName, value: keyName }],
+      keyName: '',
+    })
   }
 
   handleKeyChange = key => {
@@ -118,12 +151,32 @@ export default class ConditionSelect extends React.Component {
     })
   }
 
+  dorpdownRender = options => {
+    const { keyName } = this.state
+
+    return (
+      <div>
+        {options}
+        <div className={styles.customSelect}>
+          <Input
+            className={styles.customInput}
+            value={keyName}
+            onChange={this.handleNameChange}
+          />
+          <div className={styles.iconWrapper} onClick={this.handleAddItem}>
+            <Icon name="add" type="light" size={12} />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   renderValues() {
     const { key, operator, values } = this.state
     if (operator === 'Exists' || operator === 'DoesNotExist') {
       return null
     }
-    if (key === 'type') {
+    if (key === 'severity') {
       return (
         <Select
           name="values"
@@ -145,16 +198,17 @@ export default class ConditionSelect extends React.Component {
   }
 
   render() {
-    const { key, operator } = this.state
+    const { key, operator, keyItems } = this.state
 
     return (
       <div className={styles.selectWrapper}>
         <Select
           name="key"
           value={key}
-          options={this.keys}
+          options={keyItems}
           placeholder={t('Please select a tag')}
           onChange={this.handleKeyChange}
+          dorpdownRender={this.dorpdownRender}
         />
         <Select
           name="operator"

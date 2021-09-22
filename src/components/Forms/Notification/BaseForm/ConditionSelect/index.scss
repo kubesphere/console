@@ -5,21 +5,54 @@
   & > div + div {
     margin-left: 12px;
   }
+
   & > div {
     &:nth-child(1) {
       flex: 0 0 200px;
     }
+
     &:nth-child(2) {
       flex: 0 0 180px;
     }
+
     &:nth-child(3) {
       flex: 1;
     }
   }
+
   :global {
     .select,
     .input {
       max-width: none;
     }
+  }
+}
+
+.customSelect {
+  display: flex;
+  padding: 8px 12px;
+  border-top: 1px solid #36435c;
+  :global {
+    input.input {
+      background-color: transparent;
+      border-color: #36435c;
+      flex: 1;
+      color: #fff;
+    }
+  }
+}
+
+.iconWrapper {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #36435c;
+  border-radius: 4px;
+  margin-left: 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: #36435c;
   }
 }
