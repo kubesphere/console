@@ -598,7 +598,7 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: cpuError || limit.requestCpuError,
                   })}
                 >
-                  <span className={styles.label}>{t('CPU_REQUEST')}</span>
+                  <span className={styles.label}>{t('CPU_REQUEST')}:</span>
                   <Input
                     name="requests.cpu"
                     value={this.getRequest(this.state.requests.cpu)}
@@ -612,7 +612,7 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: cpuError || limit.limitCpuError,
                   })}
                 >
-                  <span className={styles.label}>{t('CPU_LIMIT')}</span>
+                  <span className={styles.label}>{t('CPU_LIMIT')}:</span>
                   <Input
                     name="limits.cpu"
                     value={this.getLimit(this.state.limits.cpu)}
@@ -631,7 +631,7 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: memoryError || limit.requestMemoryError,
                   })}
                 >
-                  <span className={styles.label}>{t('MEMORY_REQUEST')}</span>
+                  <span className={styles.label}>{t('MEMORY_REQUEST')}:</span>
                   <Input
                     name="requests.memory"
                     value={this.getRequest(this.state.requests.memory)}
@@ -645,7 +645,7 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: memoryError || limit.limitMemoryError,
                   })}
                 >
-                  <span className={styles.label}>{t('MEMORY_LIMIT')}</span>
+                  <span className={styles.label}>{t('MEMORY_LIMIT')}:</span>
                   <Input
                     name="limits.memory"
                     value={this.getLimit(this.state.limits.memory)}
@@ -664,7 +664,7 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: memoryError || limit.requestMemoryError,
                   })}
                 >
-                  <span className={styles.label}>{t('GPU_TYPE')}</span>
+                  <span className={styles.label}>{t('GPU_TYPE')}:</span>
                   <Select
                     options={this.gpuOption}
                     value={this.state.gpu.type}
@@ -677,7 +677,7 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: memoryError || limit.limitMemoryError,
                   })}
                 >
-                  <span className={styles.label}>{t('GPU_LIMIT')}</span>
+                  <span className={styles.label}>{t('RESOURCE_LIMIT')}:</span>
                   <Input
                     name="gpu.value"
                     value={this.state.gpu.value}
