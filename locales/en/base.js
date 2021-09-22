@@ -532,6 +532,8 @@ module.exports = {
   HOUR_TIME: '{count, plural, =1 {1 hour} other {# hours}}',
   MINUTE_AGO: '{count, plural, =1 {1 minute} other {# minutes}} ago',
   MINUTE_TIME: '{count, plural, =1 {1 minute} other {# minutes}}',
+  SECOND_AGO: '{count, plural, =1 {1 second} other {# seconds}} ago',
+  SECOND_TIME: '{count, plural, =1 {1 second} other {# seconds}}',
 
   TOTAL_ITEMS: 'Total: {num}',
 

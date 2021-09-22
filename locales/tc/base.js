@@ -333,6 +333,8 @@ module.exports = {
   HOUR_TIME: '{count} 小時',
   MINUTE_AGO: '{count} 分鐘前',
   MINUTE_TIME: '{count} 分鐘',
+  SECOND_AGO: '{count} 秒前',
+  SECOND_TIME: '{count} 秒',
 
   NAME_DESC:
     '最長 63 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',

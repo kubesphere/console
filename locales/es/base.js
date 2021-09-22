@@ -528,6 +528,9 @@ module.exports = {
   HOUR_TIME: '{count, plural, = 1 {1 hora} other {# horas}}',
   MINUTE_AGO: '{count, plural, = 1 {1 minuto} other {# minutos}}',
   MINUTE_TIME: '{count, plural, = 1 {1 minuto} other {# minutos}}',
+  SECOND_AGO: '{count, plural, =1 {1 segundo} other {# segundos}} ago',
+  SECOND_TIME: '{count, plural, =1 {1 segundo} other {# segundos}}',
+
   TOTAL_ITEMS: 'Total de {num} artículos',
   EVENT_NORMAL: 'Normal',
   EVENT_WARNING: 'Advertencia',
