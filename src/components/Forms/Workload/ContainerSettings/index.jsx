@@ -391,20 +391,24 @@ export default class ContainerSetting extends React.Component {
     })
 
     _initContainers.forEach(item => {
-      const gpu = get(item, 'resources.gpu', { type: '', value: '' })
-      item.resources.limits = pick(item.resources.limits, ['cpu', 'memory'])
-      if (gpu.type !== '') {
-        set(item, `resources.limits["${gpu.type}"]`, gpu.value)
-        set(item, `resources.requests["${gpu.type}"]`, gpu.value)
+      if (!isEmpty(get(item, 'resources', undefined))) {
+        const gpu = get(item, 'resources.gpu', { type: '', value: '' })
+        item.resources.limits = pick(item.resources.limits, ['cpu', 'memory'])
+        if (gpu.type !== '') {
+          set(item, `resources.limits["${gpu.type}"]`, gpu.value)
+          set(item, `resources.requests["${gpu.type}"]`, gpu.value)
+        }
       }
     })
 
     _containers.forEach(item => {
-      const gpu = get(item, 'resources.gpu', { type: '', value: '' })
-      item.resources.limits = pick(item.resources.limits, ['cpu', 'memory'])
-      if (gpu.type !== '') {
-        set(item, `resources.limits["${gpu.type}"]`, gpu.value)
-        set(item, `resources.requests["${gpu.type}"]`, gpu.value)
+      if (!isEmpty(get(item, 'resources', undefined))) {
+        const gpu = get(item, 'resources.gpu', { type: '', value: '' })
+        item.resources.limits = pick(item.resources.limits, ['cpu', 'memory'])
+        if (gpu.type !== '') {
+          set(item, `resources.limits["${gpu.type}"]`, gpu.value)
+          set(item, `resources.requests["${gpu.type}"]`, gpu.value)
+        }
       }
     })
 
