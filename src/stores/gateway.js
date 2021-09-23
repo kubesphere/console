@@ -35,7 +35,7 @@ export default class Gateway extends Base {
   gatewayUrl = ({ cluster, namespace, gatewayName = '' }) =>
     `/${
       this.isCluster(namespace) ? 'k' : ''
-    }apis/gateway.kubesphere.io/v1alpha1/${this.getPath({
+    }apis/gateway.kubesphere.io/v1alpha1${this.getPath({
       namespace: namespace || 'kubesphere-controls-system',
       cluster,
     })}/${this.module}${
@@ -45,7 +45,7 @@ export default class Gateway extends Base {
     }`
 
   gatewayPodsUrl = ({ cluster, namespace, gatewayName = '' }) =>
-    `kapis/gateway.kubesphere.io/v1alpha1/${this.getPath({
+    `kapis/gateway.kubesphere.io/v1alpha1${this.getPath({
       namespace: namespace || 'kubesphere-system',
       cluster,
     })}/${this.module}${
@@ -92,6 +92,7 @@ export default class Gateway extends Base {
     this.detail = data
     this.gateway.data = data
     this.gateway.isLoading = false
+    return data
   }
 
   @action

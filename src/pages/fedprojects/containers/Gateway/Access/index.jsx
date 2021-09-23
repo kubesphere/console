@@ -16,12 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
+import { isEmpty, get } from 'lodash'
 import React from 'react'
-import { toJS } from 'mobx'
+import { observable } from 'mobx'
 import { observer, inject } from 'mobx-react'
+import { Tooltip, Icon, Button } from '@kube-design/components'
 
-import { Button, Icon, Tooltip } from '@kube-design/components'
 import { Panel, Text } from 'components/Base'
 import GatewayCard from 'clusters/containers/Gateway/Components/GatewayCard'
 
@@ -29,6 +29,7 @@ import ClusterTitle from 'components/Clusters/ClusterTitle'
 import GatewayStore from 'stores/gateway'
 import { trigger } from 'utils/action'
 
+import { compareVersion } from 'utils'
 import styles from './index.scss'
 
 @inject('rootStore')
@@ -45,46 +46,48 @@ class InternetAccess extends React.Component {
     return this.props.actions.includes('manage')
   }
 
+  get cluster() {
+    return this.props.cluster.name
+  }
+
   get prefix() {
     return this.props.match.url
   }
 
+  @observable
+  gatewayList = []
+
+  getHostGateway = () => {
+    return this.store.getGateway({ cluster: this.cluster })
+  }
+
+  getProjectGateway = () => {
+    const params = { ...this.props.match.params }
+    return this.store.getGateway({ ...params, cluster: this.cluster })
+  }
+
+  getInitGateway = async () => {
+    const dataList = await Promise.all([
+      this.getHostGateway(),
+      this.getProjectGateway(),
+    ])
+    this.gatewayList = dataList
+  }
+
   componentDidMount() {
-    const { namespace, cluster } = this.props
-    this.store.getGateway({ namespace, cluster: cluster.name })
+    this.getInitGateway()
   }
 
   showGatewaySetting = () => {
+    const { namespace } = this.props.match.params
+
     this.trigger('gateways.create', {
-      name: 'kubesphere-router-kubesphere-system',
-      namespace: 'kubesphere-controls-system',
+      name: '',
+      namespace,
       cluster: this.cluster,
       store: this.store,
-      success: this.props.rootStore.routing.query,
+      success: this.getInitGateway,
     })
-  }
-
-  renderEmpty() {
-    const { cluster } = this.props
-    return (
-      <Panel>
-        <div className={styles.empty}>
-          <div className={styles.cluster}>
-            <ClusterTitle cluster={cluster} theme="light" />
-          </div>
-          <Text
-            className={styles.desc}
-            title={t('Gateway Not Set')}
-            description={t('PROJECT_INTERNET_ACCESS_DESC')}
-          />
-          {this.canEdit && (
-            <Button type="control" onClick={this.showGatewaySetting}>
-              {t('Set Gateway')}
-            </Button>
-          )}
-        </div>
-      </Panel>
-    )
   }
 
   renderClusterGatewayTitle = () => (
@@ -96,7 +99,61 @@ class InternetAccess extends React.Component {
     </div>
   )
 
-  renderInternetAccess() {
+  renderProjectTitle = () => {
+    return <div className={styles.title}>{t('PROJECT_GATEWAY')}</div>
+  }
+
+  renderEmpty() {
+    const { cluster } = this.props
+
+    const clusterVersion = globals.app.isMultiCluster
+      ? get(globals, `clusterConfig.${cluster.name}.ksVersion`)
+      : get(globals, 'ksConfig.ksVersion')
+
+    const isDisable = compareVersion(clusterVersion, 'v3.2.0') < 0
+
+    return (
+      <Panel>
+        <div className={styles.empty}>
+          <div className={styles.cluster}>
+            <ClusterTitle cluster={cluster} theme="light" />
+          </div>
+          <Text
+            className={styles.desc}
+            title={
+              <span>
+                {t('Gateway Not Set')}
+                <Tooltip
+                  content={t('CLUSTER_UPGRADE_REQUIRED', { version: '3.2' })}
+                  placement="top"
+                >
+                  <Icon
+                    name="update"
+                    color={{
+                      primary: '#ffc781',
+                      secondary: '#f5a623',
+                    }}
+                  />
+                </Tooltip>
+              </span>
+            }
+            description={t('PROJECT_INTERNET_ACCESS_DESC')}
+          />
+          {this.canEdit && (
+            <Button
+              type="control"
+              onClick={this.showGatewaySetting}
+              disabled={isDisable}
+            >
+              {t('Set Gateway')}
+            </Button>
+          )}
+        </div>
+      </Panel>
+    )
+  }
+
+  renderInternetAccess(data) {
     const { cluster } = this.props
     return (
       <div className={styles.container}>
@@ -104,40 +161,39 @@ class InternetAccess extends React.Component {
           <ClusterTitle cluster={cluster} theme="light" />
         </div>
 
-        <GatewayCard
-          type="cluster"
-          {...this.props}
-          bodyClassName={styles.bodyClass}
-          itemClassName={styles.itemClass}
-          isFederated={true}
-          prefix={this.prefix}
-          title={this.renderClusterGatewayTitle()}
-        />
-        <GatewayCard
-          type="project"
-          {...this.props}
-          bodyClassName={styles.bodyClass}
-          itemClassName={styles.itemClass}
-          isFederated={true}
-          prefix={this.prefix}
-          title={<div className={styles.title}>{t('PROJECT_GATEWAY')}</div>}
-        />
+        {data.map((item, index) => {
+          const isCluster = index === 0
+          return item ? (
+            <GatewayCard
+              type={isCluster ? 'cluster' : 'project'}
+              {...this.props}
+              bodyClassName={styles.bodyClass}
+              itemClassName={styles.itemClass}
+              isFederated={true}
+              prefix={index !== 0 ? this.prefix : null}
+              getData={this.getInitGateway}
+              detail={item}
+              key={index}
+              store={this.store}
+              title={
+                isCluster
+                  ? this.renderClusterGatewayTitle()
+                  : this.renderProjectTitle()
+              }
+              prefix={isCluster ? null : this.prefix}
+            />
+          ) : null
+        })}
       </div>
     )
   }
 
   renderContent() {
-    const { data, isLoading } = toJS(this.store.gateway)
-
-    if (isLoading) {
-      return null
-    }
-
-    if (isEmpty(data)) {
+    if (isEmpty(this.gatewayList[0])) {
       return this.renderEmpty()
     }
 
-    return this.renderInternetAccess(data)
+    return this.renderInternetAccess(this.gatewayList)
   }
 
   render() {

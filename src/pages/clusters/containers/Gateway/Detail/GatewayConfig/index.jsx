@@ -43,7 +43,7 @@ export default class GatewayConfig extends React.Component {
         <div className={styles.container}>
           <ul>
             {isEmpty(config) ? (
-              <li>暂无配置</li>
+              <li>{t('NO_DATA')}</li>
             ) : (
               Object.entries(this.detail.config).map(([key, value]) => (
                 <li key={key}>

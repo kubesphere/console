@@ -22,13 +22,24 @@ import { trigger } from 'utils/action'
 import Banner from 'components/Cards/Banner'
 
 import GatewayCard from 'clusters/containers/Gateway/Components/GatewayCard'
-import { Tooltip, Icon } from '@kube-design/components'
+import { Tooltip, Icon, Loading } from '@kube-design/components'
+import GatewayStore from 'stores/gateway'
+import { observable } from 'mobx'
+
 import styles from './index.scss'
 
 @inject('rootStore')
 @observer
 @trigger
 export default class Getway extends React.Component {
+  store = new GatewayStore()
+
+  @observable
+  gatewayList = []
+
+  @observable
+  isLoading = false
+
   get cluster() {
     return this.props.match.params.cluster
   }
@@ -45,6 +56,29 @@ export default class Getway extends React.Component {
     })
   }
 
+  getHostGateway = () => {
+    return this.store.getGateway({ cluster: this.cluster })
+  }
+
+  getProjectGateway = () => {
+    const params = { ...this.props.match.params }
+    return this.store.getGateway({ ...params, cluster: this.cluster })
+  }
+
+  getInitGateway = async () => {
+    this.isLoading = true
+    const dataList = await Promise.all([
+      this.getHostGateway(),
+      this.getProjectGateway(),
+    ])
+    this.gatewayList = dataList
+    this.isLoading = false
+  }
+
+  componentDidMount() {
+    this.getInitGateway()
+  }
+
   renderClusterGatewayTitle = () => (
     <div className={styles.title}>
       <span> {t('CLUSTER_GATEWAY')}</span>
@@ -54,24 +88,31 @@ export default class Getway extends React.Component {
     </div>
   )
 
+  renderProjectTitle = () => {
+    return <div className={styles.title}>{t('PROJECT_GATEWAY')}</div>
+  }
+
   renderGatewayCard = () => {
-    return (
-      <>
+    return this.gatewayList.map((item, index) => {
+      const isCluster = index === 0
+      return item ? (
         <GatewayCard
-          type="cluster"
+          key={index}
+          type={isCluster ? 'cluster' : 'project'}
+          detail={item}
           actions={this.enableActions}
           {...this.props}
-          title={this.renderClusterGatewayTitle()}
+          store={this.store}
+          getData={this.getInitGateway}
+          title={
+            isCluster
+              ? this.renderClusterGatewayTitle()
+              : this.renderProjectTitle()
+          }
+          prefix={isCluster ? null : this.prefix}
         />
-        <GatewayCard
-          type="project"
-          actions={this.enableActions}
-          {...this.props}
-          prefix={this.prefix}
-          title={<div className={styles.title}>{t('PROJECT_GATEWAY')}</div>}
-        />
-      </>
-    )
+      ) : null
+    })
   }
 
   render() {
@@ -83,7 +124,7 @@ export default class Getway extends React.Component {
           description={t('GATEWAY_DESC')}
           tabs={this.tabs}
         />
-        {this.renderGatewayCard()}
+        <Loading spinning={this.isLoading}>{this.renderGatewayCard()}</Loading>
       </>
     )
   }

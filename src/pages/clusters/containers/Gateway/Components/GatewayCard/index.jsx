@@ -21,18 +21,10 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import classNames from 'classnames'
-import {
-  Button,
-  Dropdown,
-  Menu,
-  Icon,
-  Loading,
-  Tooltip,
-} from '@kube-design/components'
+import { Button, Dropdown, Menu, Icon, Tooltip } from '@kube-design/components'
 import { Panel } from 'components/Base'
 import { getLocalTime } from 'utils'
 
-import GatewayStore from 'stores/gateway'
 import { ReactComponent as AppGoverIcon } from 'assets/app_gover.svg'
 import { trigger } from 'utils/action'
 import GatewayEmpty from '../GatewayEmpty'
@@ -43,31 +35,16 @@ import styles from './index.scss'
 @observer
 @trigger
 class InternetAccess extends React.Component {
-  store = new GatewayStore()
-
-  componentDidMount() {
-    this.getData()
-  }
-
   static defaultProps = {
     type: 'cluster',
   }
 
-  getData = () => {
-    const params = { ...this.props.match.params }
-    if (this.props.type === 'cluster') {
-      delete params.namespace
-    }
-
-    this.store.getGateway(params)
-  }
-
   get gateway() {
-    return this.store.gateway.data
+    return this.props.detail
   }
 
-  get isLoading() {
-    return this.store.gateway.isLoading
+  get store() {
+    return this.props.store
   }
 
   get isEmptyData() {
@@ -81,7 +58,7 @@ class InternetAccess extends React.Component {
   get cluster() {
     const { cluster } = this.props.match.params
     const { isFederated } = this.props
-    return isFederated ? this.props.cluster : cluster
+    return isFederated ? this.props.cluster.name : cluster
   }
 
   get itemActions() {
@@ -114,7 +91,7 @@ class InternetAccess extends React.Component {
 
   handleMoreMenuClick = (e, key) => {
     const { namespace } = this.props.match.params
-    const { prefix } = this.props
+    const { prefix, type } = this.props
 
     const url = prefix
       ? `${prefix}/${this.gateway.name}`
@@ -127,9 +104,10 @@ class InternetAccess extends React.Component {
       case 'edit':
         this.trigger('gateways.edit', {
           cluster: this.cluster,
-          namespace,
+          namespace: type === 'cluster' ? '' : namespace,
           detail: toJS(this.gateway._originData),
-          success: this.getData,
+          store: this.store,
+          success: this.props.getData,
         })
         break
       case 'update':
@@ -137,7 +115,8 @@ class InternetAccess extends React.Component {
           cluster: this.cluster,
           namespace,
           detail: toJS(this.gateway._originData),
-          success: this.getData,
+          store: this.store,
+          success: this.props.getData,
         })
         break
       case 'delete':
@@ -145,7 +124,8 @@ class InternetAccess extends React.Component {
           cluster: this.cluster,
           namespace,
           detail: toJS(this.gateway),
-          success: this.getData,
+          store: this.store,
+          success: this.props.getData,
         })
         break
       default:
@@ -197,6 +177,31 @@ class InternetAccess extends React.Component {
     )
   }
 
+  title = () => {
+    const { createTime } = this.gateway
+
+    return (
+      <>
+        <span>
+          {this.props.type === 'project'
+            ? t('PROJECT_GATEWAY')
+            : t('CLUSTER_GATEWAY')}
+        </span>
+        {!createTime ? (
+          <Tooltip content={t('UPDATE_GATEWAY_DESC')} placement="top">
+            <Icon
+              name="update"
+              color={{
+                primary: '#ffc781',
+                secondary: '#f5a623',
+              }}
+            />
+          </Tooltip>
+        ) : null}
+      </>
+    )
+  }
+
   get gatewayConfig() {
     const {
       creator,
@@ -216,40 +221,21 @@ class InternetAccess extends React.Component {
       ? '-'
       : loadBalancerIngress.join(';')
 
-    const title = () => (
-      <span>
-        <span>
-          {this.props.type === 'project'
-            ? t('PROJECT_GATEWAY')
-            : t('CLUSTER_GATEWAY')}
-        </span>
-        {!createTime ? (
-          <Tooltip content={t('UPDATE_GATEWAY_DESC')} placement="top">
-            <Icon
-              name="update"
-              color={{
-                primary: '#ffc781',
-                secondary: '#f5a623',
-              }}
-            />
-          </Tooltip>
-        ) : null}
-      </span>
-    )
-
     return [
       [
         {
           key: 'clusterType',
           icon: 'loadbalancer',
-          title: title(),
+          title: this.title(),
 
           desc: t('Gateway Type'),
         },
         { key: 'author', title: creator || '-', desc: t('CREATOR') },
         {
           key: 'createTime',
-          title: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
+          title: createTime
+            ? getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss')
+            : '-',
           desc: t('Create Time'),
         },
         {
@@ -300,14 +286,14 @@ class InternetAccess extends React.Component {
 
   handleCreateGateway = () => {
     const { namespace } = this.props.match.params
-    const { type } = this.props
+    const { type, getData } = this.props
 
     this.trigger('gateways.create', {
       name: type === 'cluster' ? 'kubesphere-router-kubesphere-system' : '',
       namespace: type === 'cluster' ? 'kubesphere-controls-system' : namespace,
       cluster: this.cluster,
       store: this.store,
-      success: this.getData,
+      success: getData,
     })
   }
 
@@ -362,13 +348,18 @@ class InternetAccess extends React.Component {
             })}
           >
             <p>{t('ANNOTATIONS')}</p>
+
             <ul>
-              {Object.entries(this.gateway.annotations).map(([key, value]) => (
-                <li key={key}>
-                  <span className={styles.key}>{key}</span>
-                  <span>{value}</span>
-                </li>
-              ))}
+              {isEmpty(this.gateway.annotations) ? (
+                <li>{t('NO_DATA')}</li>
+              ) : (
+                Object.entries(this.gateway.annotations).map(([key, value]) => (
+                  <li key={key}>
+                    <span className={styles.key}>{key}</span>
+                    <span>{value}</span>
+                  </li>
+                ))
+              )}
             </ul>
           </div>
         </Panel>
@@ -382,22 +373,21 @@ class InternetAccess extends React.Component {
 
     return (
       <div>
-        <Loading spinning={this.isLoading}>
-          {this.isEmptyData ? (
-            namespace && type === 'cluster' ? null : (
-              <>
-                {title}
-                <GatewayEmpty
-                  component={component}
-                  type={type}
-                  handleCreateGateway={this.handleCreateGateway}
-                />
-              </>
-            )
-          ) : (
-            this.renderInternetAccess()
-          )}
-        </Loading>
+        {this.isEmptyData ? (
+          namespace && type === 'cluster' ? null : (
+            <>
+              {title}
+              <GatewayEmpty
+                component={component}
+                type={type}
+                handleCreateGateway={this.handleCreateGateway}
+                cluster={this.cluster}
+              />
+            </>
+          )
+        ) : (
+          this.renderInternetAccess()
+        )}
       </div>
     )
   }
