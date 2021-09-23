@@ -68,6 +68,7 @@ export default class NodeDetail extends React.Component {
 
   getOperations = () => {
     const { cluster, namespace } = this.props.match.params
+    const detail = toJS(this.detail)
     return [
       {
         key: 'edit',
@@ -76,7 +77,7 @@ export default class NodeDetail extends React.Component {
         action: 'manage',
 
         onClick: () =>
-          trigger('gateways.edit', {
+          this.trigger('gateways.edit', {
             cluster,
             namespace,
             detail: toJS(this.detail._originData),
@@ -88,8 +89,9 @@ export default class NodeDetail extends React.Component {
         icon: 'update',
         text: t('Update Gateway'),
         action: 'manage',
+        disabled: !isEmpty(detail.createTime),
         onClick: () =>
-          trigger('gateways.edit', {
+          this.trigger('gateways.edit', {
             cluster,
             namespace,
             detail: toJS(this.detail._originData),
@@ -134,7 +136,7 @@ export default class NodeDetail extends React.Component {
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]

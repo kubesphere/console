@@ -58,6 +58,7 @@ class InternetAccess extends React.Component {
     if (this.props.type === 'cluster') {
       delete params.namespace
     }
+
     this.store.getGateway(params)
   }
 
@@ -245,7 +246,7 @@ class InternetAccess extends React.Component {
 
           desc: t('Gateway Type'),
         },
-        { key: 'author', title: creator || '-', desc: t('Creator') },
+        { key: 'author', title: creator || '-', desc: t('CREATOR') },
         {
           key: 'createTime',
           title: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
@@ -291,7 +292,7 @@ class InternetAccess extends React.Component {
           title: serviceMeshEnable
             ? t('GATEWAY_SERVICE_MESH_STATUS_ON')
             : t('GATEWAY_SERVICE_MESH_STATUS_OFF'),
-          desc: t('Application Governance'),
+          desc: t('APPLICATION_GOVERNANCE'),
         },
       ],
     ]
@@ -311,79 +312,88 @@ class InternetAccess extends React.Component {
   }
 
   renderInternetAccess = () => {
-    const { isFederated } = this.props
-    return (
-      <Panel
-        className={classNames('margin-t12', {
-          [styles.federatedContainer]: isFederated,
-        })}
-      >
-        {this.gatewayConfig.map((item, index) => {
-          return (
-            <div className={styles.container} key={index}>
-              {item.map(detail => {
-                return detail.icon ? (
-                  <div className={styles.header} key={detail.key}>
-                    {typeof detail.icon === 'string' ? (
-                      <Icon name={detail.icon} size={40} />
-                    ) : (
-                      <span className={styles.customIcon}>{detail.icon}</span>
-                    )}
-                    <div className={styles.item}>
-                      <div>{detail.title}</div>
-                      <p>{detail.desc}</p>
-                    </div>
-                  </div>
-                ) : detail.component ? (
-                  <div
-                    className={classNames(styles.item, 'text-right')}
-                    key={detail.key}
-                  >
-                    {detail.component}
-                  </div>
-                ) : (
-                  <div className={styles.item} key={detail.key}>
-                    <div>{detail.title}</div>
-                    <p>{t(detail.desc)}</p>
-                  </div>
-                )
-              })}
-            </div>
-          )
-        })}
+    const { isFederated, title } = this.props
 
-        <div
-          className={classNames(styles.annotations, {
-            [styles.bgWhite]: isFederated,
+    return (
+      <>
+        {title}
+        <Panel
+          className={classNames('margin-t12', {
+            [styles.federatedContainer]: isFederated,
           })}
         >
-          <p>{t('ANNOTATIONS')}</p>
-          <ul>
-            {Object.entries(this.gateway.annotations).map(([key, value]) => (
-              <li key={key}>
-                <span className={styles.key}>{key}</span>
-                <span>{value}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Panel>
+          {this.gatewayConfig.map((item, index) => {
+            return (
+              <div className={styles.container} key={index}>
+                {item.map(detail => {
+                  return detail.icon ? (
+                    <div className={styles.header} key={detail.key}>
+                      {typeof detail.icon === 'string' ? (
+                        <Icon name={detail.icon} size={40} />
+                      ) : (
+                        <span className={styles.customIcon}>{detail.icon}</span>
+                      )}
+                      <div className={styles.item}>
+                        <div>{detail.title}</div>
+                        <p>{detail.desc}</p>
+                      </div>
+                    </div>
+                  ) : detail.component ? (
+                    <div
+                      className={classNames(styles.item, 'text-right')}
+                      key={detail.key}
+                    >
+                      {detail.component}
+                    </div>
+                  ) : (
+                    <div className={styles.item} key={detail.key}>
+                      <div>{detail.title}</div>
+                      <p>{t(detail.desc)}</p>
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          })}
+
+          <div
+            className={classNames(styles.annotations, {
+              [styles.bgWhite]: isFederated,
+            })}
+          >
+            <p>{t('ANNOTATIONS')}</p>
+            <ul>
+              {Object.entries(this.gateway.annotations).map(([key, value]) => (
+                <li key={key}>
+                  <span className={styles.key}>{key}</span>
+                  <span>{value}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Panel>
+      </>
     )
   }
 
   render() {
-    const { component } = this.props.match.params
-    const { type } = this.props
+    const { component, namespace } = this.props.match.params
+    const { type, title } = this.props
 
     return (
       <div>
         <Loading spinning={this.isLoading}>
           {this.isEmptyData ? (
-            <GatewayEmpty
-              component={component}
-              type={type}
-              handleCreateGateway={this.handleCreateGateway}
-            />
+            namespace && type === 'cluster' ? null : (
+              <>
+                {title}
+                <GatewayEmpty
+                  component={component}
+                  type={type}
+                  handleCreateGateway={this.handleCreateGateway}
+                />
+              </>
+            )
           ) : (
             this.renderInternetAccess()
           )}

@@ -183,9 +183,10 @@ export default class Routers extends React.Component {
 
   showAddGateway = () => {
     const { trigger, match } = this.props
-    trigger('project.gateway.edit', {
-      detail: toJS(this.gatewayStore.gateway.data),
+    trigger('gateways.edit', {
+      detail: toJS(this.gatewayStore.gateway.data._originData),
       ...this.props.match.params,
+      store: this.gatewayStore,
       success: () => this.gatewayStore.getGateway(match.params),
     })
   }
@@ -216,7 +217,7 @@ export default class Routers extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
-    const { data, isLoading } = this.props.store.gateway
+    const { data, isLoading } = this.gatewayStore.gateway
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tips={this.tips} />

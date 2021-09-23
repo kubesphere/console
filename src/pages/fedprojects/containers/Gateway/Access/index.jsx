@@ -87,6 +87,15 @@ class InternetAccess extends React.Component {
     )
   }
 
+  renderClusterGatewayTitle = () => (
+    <div className={styles.title}>
+      <span> {t('CLUSTER_GATEWAY')}</span>
+      <Tooltip content={t('CLUSTER_GATEWAY_GUIDE_DESC')} placement="top">
+        <Icon name="question" size={20} />
+      </Tooltip>
+    </div>
+  )
+
   renderInternetAccess() {
     const { cluster } = this.props
     return (
@@ -94,12 +103,7 @@ class InternetAccess extends React.Component {
         <div className={styles.cluster}>
           <ClusterTitle cluster={cluster} theme="light" />
         </div>
-        <div className={styles.title}>
-          <span> {t('CLUSTER_GATEWAY')}</span>
-          <Tooltip content={t('CLUSTER_GATEWAY_GUIDE_DESC')} placement="top">
-            <Icon name="question" size={20} />
-          </Tooltip>
-        </div>
+
         <GatewayCard
           type="cluster"
           {...this.props}
@@ -107,8 +111,8 @@ class InternetAccess extends React.Component {
           itemClassName={styles.itemClass}
           isFederated={true}
           prefix={this.prefix}
+          title={this.renderClusterGatewayTitle()}
         />
-        <div className={styles.title}>{t('PROJECT_GATEWAY')}</div>
         <GatewayCard
           type="project"
           {...this.props}
@@ -116,6 +120,7 @@ class InternetAccess extends React.Component {
           itemClassName={styles.itemClass}
           isFederated={true}
           prefix={this.prefix}
+          title={<div className={styles.title}>{t('PROJECT_GATEWAY')}</div>}
         />
       </div>
     )

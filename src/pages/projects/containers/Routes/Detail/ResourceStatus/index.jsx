@@ -22,7 +22,7 @@ import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Panel } from 'components/Base'
 import Placement from 'projects/components/Cards/Placement'
-
+import GatewayStore from 'stores/gateway'
 import Rule from './Rule'
 
 import styles from './index.scss'
@@ -34,12 +34,13 @@ class ResourceStatus extends React.Component {
     super(props)
 
     this.store = props.detailStore
+    this.gatewayStore = new GatewayStore()
     this.module = this.store.module
   }
 
   componentDidMount() {
     const detail = toJS(this.store.detail)
-    this.store.getGateway(detail)
+    this.gatewayStore.getGateway(detail)
   }
 
   renderPlacement() {
@@ -55,8 +56,7 @@ class ResourceStatus extends React.Component {
 
   renderRules() {
     const detail = toJS(this.store.detail)
-    const gateway = toJS(this.store.gateway.data)
-
+    const gateway = toJS(this.gatewayStore.gateway.data)
     const tls = detail.tls || []
 
     if (isEmpty(detail.rules)) {

@@ -81,7 +81,7 @@ const getBaseInfo = item => ({
   creator: getResourceCreator(item),
   description: getDescription(item),
   aliasName: getAliasName(item),
-  createTime: get(item, 'metadata.creationTimestamp'),
+  createTime: get(item, 'metadata.creationTimestamp', ''),
   resourceVersion: get(item, 'metadata.resourceVersion'),
   isFedManaged: get(item, 'metadata.labels["kubefed.io/managed"]') === 'true',
 })
@@ -726,6 +726,7 @@ const GatewayMapper = item => {
       ) === 'true',
     replicas: get(item, 'spec.deployment.replicas'),
     type: get(item, 'spec.service.type'),
+    config: get(item, 'spec.controller.config', {}),
     _originData: item,
   }
 }

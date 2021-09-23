@@ -45,26 +45,30 @@ export default class Getway extends React.Component {
     })
   }
 
+  renderClusterGatewayTitle = () => (
+    <div className={styles.title}>
+      <span> {t('CLUSTER_GATEWAY')}</span>
+      <Tooltip content={t('CLUSTER_GATEWAY_GUIDE_DESC')} placement="top">
+        <Icon name="question" size={20} />
+      </Tooltip>
+    </div>
+  )
+
   renderGatewayCard = () => {
     return (
       <>
-        <div className={styles.title}>
-          <span> {t('CLUSTER_GATEWAY')}</span>
-          <Tooltip content={t('CLUSTER_GATEWAY_GUIDE_DESC')} placement="top">
-            <Icon name="question" size={20} />
-          </Tooltip>
-        </div>
         <GatewayCard
           type="cluster"
           actions={this.enableActions}
           {...this.props}
+          title={this.renderClusterGatewayTitle()}
         />
-        <div className={styles.title}>{t('PROJECT_GATEWAY')}</div>
         <GatewayCard
           type="project"
           actions={this.enableActions}
           {...this.props}
           prefix={this.prefix}
+          title={<div className={styles.title}>{t('PROJECT_GATEWAY')}</div>}
         />
       </>
     )

@@ -181,7 +181,7 @@ export default class ProjectGatewayCard extends React.Component {
         dataIndex: 'replicas',
       },
       {
-        title: t('Application Governance'),
+        title: t('APPLICATION_GOVERNANCE'),
         dataIndex: 'serviceMeshEnable',
         render: serviceMeshEnable =>
           serviceMeshEnable

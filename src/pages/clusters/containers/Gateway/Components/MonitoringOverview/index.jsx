@@ -235,7 +235,7 @@ export default class MonitoringOverview extends React.Component {
               areaColors={['#55BC8A', '#E3E9EF']}
               renderCustomCenter={({ value }) => (
                 <div className={styles.simpleContent}>
-                  <p>{t('Request success rate')}</p>
+                  <p>{t('REQUEST_SUCCESS_RATE')}</p>
                   <span>{value}%</span>
                 </div>
               )}

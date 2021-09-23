@@ -80,8 +80,8 @@ class ResourceStatus extends React.Component {
   }
 
   handleScale = newReplicas => {
-    const { cluster, namespace, name } = this.detail
-    this.store.scale({ cluster, namespace, name }, newReplicas)
+    const { cluster, namespace } = this.props.match.params
+    this.store.scale({ cluster, namespace }, newReplicas)
   }
 
   renderPlacement() {
