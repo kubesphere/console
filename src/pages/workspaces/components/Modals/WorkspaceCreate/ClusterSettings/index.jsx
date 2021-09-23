@@ -30,11 +30,11 @@ export default class BaseInfo extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.step}>
-          <div>{t('Select Clusters')}</div>
+          <div>{t('SELECT_CLUSTER')}</div>
           <p>{t('SELECT_CLUSTERS_DESC')}</p>
         </div>
         <Form data={formTemplate} ref={formRef}>
-          <Form.Item label={t('Available Clusters')}>
+          <Form.Item label={t('AVAILABLE_CLUSTERS')}>
             <ClusterSelect name="spec.placement.clusters" />
           </Form.Item>
         </Form>

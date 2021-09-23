@@ -143,17 +143,18 @@ client:
                 clusterModule: "network.ippool",
               }
         # Contains dangerous operations, only available for platform-admin.
-        - { name: customresources, title: CRD_PL, icon: select, admin: true }
+        - {
+            name: customresources,
+            title: CRD_PL,
+            icon: select,
+            admin: true,
+          }
         - name: storage
           title: STORAGE
           icon: database
           children:
             - { name: volumes, title: VOLUME_PL }
-            - {
-                name: volume-snapshots,
-                title: VOLUME_SNAPSHOT_PL,
-                authKey: volumes,
-              }
+            - { name: volume-snapshots, title: VOLUME_SNAPSHOT_PL, authKey: volumes }
             - { name: storageclasses, title: STORAGE_CLASS_PL }
         - name: monitoring-alerting
           title: MONITORING_AND_ALERTING
@@ -472,7 +473,7 @@ client:
       items:
         - { name: pipelines, title: PIPELINE_PL, icon: application }
         - name: management
-          title: DEVOPS_PROJECT_MANAGEMENT
+          title: DEVOPS_PROJECT_SETTINGS
           icon: cogwheel
           open: true
           children:

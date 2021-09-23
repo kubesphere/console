@@ -99,7 +99,7 @@ export default class AdvancedSettings extends React.Component {
         {(noWorkload || module !== 'statefulsets') && (
           <Form.Group
             label={t('EXTERNAL_ACCESS')}
-            desc={t('SERVICES_INTERNET_ACCESS_DESC')}
+            desc={t('SERVICE_EXTERNAL_ACCESS_DESC')}
             checkable
           >
             <InternetAccess

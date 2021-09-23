@@ -227,8 +227,8 @@ export default class ServiceDeleteModal extends React.Component {
         <EmptyList
           icon="appcenter"
           className={styles.empty}
-          title={t('No related resources')}
-          desc={t('No related resources found with current service(s)')}
+          title={t('NO_RELATED_RESOURCE_FOUND')}
+          desc={t('NO_SERVICE_RELATED_RESOURCE_DESC')}
         />
       )
     }
@@ -275,13 +275,21 @@ export default class ServiceDeleteModal extends React.Component {
     const { enableConfirm, timer } = this.state
     const { resource, onOk, onCancel, isSubmitting, ...rest } = this.props
 
-    const title = `${t('Sure to delete the service(s)?')}`
+    const title =
+      isArray(resource) && resource.length !== 1
+        ? t('DELETE_MULTIPLE_SERVICES')
+        : t('DELETE_SERVICE')
 
-    const description = t('DELETE_SERVICE_DESC', {
-      resource: isArray(resource)
-        ? resource.map(item => item.name).join(', ')
-        : resource.name,
-    })
+    const description =
+      isArray(resource) && resource.length !== 1
+        ? t.html('DELETE_SERVICE_DESC_PL', {
+            resource: resource.map(item => item.name).join(', '),
+          })
+        : isArray(resource)
+        ? t.html('DELETE_SERVICE_DESC_SI', {
+            resource: resource.map(item => item.name).join(', '),
+          })
+        : t.html('DELETE_SERVICE_DESC_SI', { resource: resource.name })
 
     return (
       <Modal
@@ -297,7 +305,7 @@ export default class ServiceDeleteModal extends React.Component {
       >
         <div className={styles.body}>{this.renderContent()}</div>
         <div className={styles.footer}>
-          <Button onClick={onCancel}>{t('Cancel')}</Button>
+          <Button onClick={onCancel}>{t('CANCEL')}</Button>
           <Button
             type="danger"
             loading={isSubmitting}

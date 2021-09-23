@@ -72,10 +72,16 @@ export default class Service extends Component {
                 <div className={styles.title} title={label}>
                   {label}
                 </div>
-                <div className={styles.description}>{labelMinor}</div>
+                <div className={styles.description}>
+                  {t('POD_COUNT_VALUE', {
+                    value: labelMinor.replace(/[ a-z]/g, ''),
+                  })}
+                </div>
               </div>
             </div>
-            <div className={styles.footer}>{internalIP || label}</div>
+            <div className={styles.footer}>
+              {t(internalIP.toUpperCase()) || label}
+            </div>
           </div>
         </foreignObject>
       </g>

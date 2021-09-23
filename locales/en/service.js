@@ -20,10 +20,11 @@ module.exports = {
   ' has no corresponding workload.': ' has no corresponding workload.',
   ACCESS_METHOD: 'Access Method',
   ACCESS_TYPE: 'Access Type',
+  INTERNAL_ACCESS_METHOD: 'Internal Access Method',
   'Add Route Rule': 'Add Route Rule',
   'Add Selector': 'Add Selector',
   'Associated Application': 'Associated Application',
-  Auto: 'Auto',
+  AUTO_REFRESH: 'Auto Refresh',
   'Automatically assign Service IP': 'Automatically assign Service IP',
   'Commonly included tags in the current workloads':
     'Commonly included tags in the current workloads',
@@ -58,13 +59,19 @@ module.exports = {
   MAXIMUM_STICKINESS_DURATION: 'Maximum Stickiness Duration (s)',
   'No related resources found with current service(s)':
     'No related resources found with current service(s)',
+  NO_SERVICE_RELATED_RESOURCE_DESC:
+    'No resources related to the Service is found.',
+  NO_WORKLOAD_RELATED_RESOURCE_DESC:
+    'No resources related to the workload is found.',
+  'Node Port': 'Node Port',
   'Node Port(s)': 'Node Port(s)',
   'Not Associate': 'Not Associate',
   'Path is Required': 'Path is Required',
-  ENTER_EXTERNALNAME_DESC: 'Please enter an ExternalName.',
+  EXTERNAL_SERVICE_ADDRESS_EMPTY_DESC:
+    'Please enter the domain name of an external Service.',
   ENTER_PORT_NUMBER: 'Please enter a port number.',
   'Please input ExternalName': 'Please input ExternalName',
-  PORT_EMPTY: 'Please set a port.',
+  PORT_EMPTY: 'Please set at least one port.',
   'Please input selectors that have corresponding workloads':
     'Please input selectors that have corresponding workloads',
   'Please input service name': 'Please input service name',
@@ -106,7 +113,7 @@ module.exports = {
     'The current selector ({selector}) matches {count} workloads.',
   STICKY_SESSION_DESC:
     'Set the system to forward all requests from the same client to the same Pod within a specified duration.',
-  VIRTUAL_IP: 'Virtual IP address',
+  VIRTUAL_IP: 'Virtual IP',
 
   CREATE_EXTERNAL_SERVICE_DESC:
     'Create a Service and map it to an external Service.',
@@ -124,14 +131,15 @@ module.exports = {
     'The name and description of the service need to be provided to create the service. The service name cannot be the same as the existing service name under the same project.',
   SERVICES_SETTINGS_DESC:
     'Service settings define how to access an existing workload.',
-  SERVICES_INTERNET_ACCESS_DESC: 'Expose the Service outside the cluster.',
+  SERVICE_EXTERNAL_ACCESS_DESC:
+    'Set the method for accessing the Service from outside the cluster.',
 
   VIRTUAL_IP_TITLE: 'Virtual IP Address',
   VIRTUAL_IP_DESC:
-    'A virtual IP address is assigned to the Service for access within the cluster.',
+    'A virtual IP address is assigned to the Service. The Service can be accessed within the cluster through the virtual IP address.',
   INTERNAL_DOMAIN_NAME: 'Internal Domain Name',
   INTERNAL_DOMAIN_NAME_DESC:
-    'No IP address is assigned to the Service. Pods backing the Service can be accessed within the cluster through the cluster DNS mechanism.',
+    'No IP address is assigned to the Service. The Service can be accessed within the cluster through the cluster DNS mechanism.',
   HEADLESS_EXTERNAL_NAME_TITLE:
     'Headless (externalname): Map addresses outside the cluster to visit',
   HEADLESS_EXTERNAL_NAME_DESC: 'Map external services to a cluster or project.',
@@ -156,6 +164,10 @@ module.exports = {
     'Stateless Services applies to scenarios where data persistence is not required, such as Nginx and Tomcat. Stateful Services applies to scenarios where data persistence is required, such as MySQL databases, Kafka, and Zookeeper.',
   DELETE_SERVICE_DESC:
     'You are about to delete the service(s) {resource}. Please confirm whether to delete the associated resource?',
+  DELETE_SERVICE_DESC_PL:
+    'You are about to delete the Services {resource}.<br/>Do you want to also delete the following resources related to the Services?',
+  DELETE_SERVICE_DESC_SI:
+    'You are about to delete the Service {resource}.<br/>Do you want to also delete the following resource related to the Service?',
   SERVICE_FROM_CODE: 'Create Service from Source Code',
   SERVICE_FROM_ARTIFACT: 'Create Service from Artifact',
   SERVICE_FROM_CODE_DESC:
@@ -173,10 +185,8 @@ module.exports = {
   SERVICE_TYPE_STATEFULSERVICE: 'Stateful Service',
   SERVICE_TYPE_STATELESSSERVICE: 'Stateless Service',
   SERVICE_TYPE_EXTERNALSERVICE: 'External Service',
-  STATEFUL_SERVICE_DESC:
-    'Stateful services are used to manage stateful applications, ensuring ordered and graceful deployment and scaling. They also provide stable persistent storage and network identifiers.',
-  STATELESS_SERVICE_DESC:
-    'The most commonly used service in container services. It defines the Pod template to control the Pod status, including rolling updates and rollbacks.',
+  STATEFUL_SERVICE_DESC: 'Create a Service and a StatefulSet.',
+  STATELESS_SERVICE_DESC: 'Create a Service and a Deployment.',
 
   SPECIFY_WORKLOAD_DESC:
     'Create a Service by using one or more existing workloads.',
@@ -198,6 +208,9 @@ module.exports = {
   UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
   HEADLESS: 'Headless',
   EXTERNALNAME: 'ExternalName',
+  EXTERNAL_SERVICE_ADDRESS: 'External Service Address',
+  EXTERNAL_SERVICE_ADDRESS_DESC:
+    'Enter the domain name of an external Service.',
   UNKNOWN: 'Unknown',
   EXTERNALNAME_EXAMPLE: 'Example: ',
   PORTS: 'Ports',

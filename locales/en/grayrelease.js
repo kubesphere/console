@@ -60,7 +60,6 @@ module.exports = {
   Recover: 'Recover',
   REGEX_MATCH: 'Regex Match',
   GRAY_RELEASE_JOB_NAME: 'Grayscale Release Job Name',
-  REQUEST_LATENCY: 'Request Latency',
   REQUEST_SUCCESS_RATE: 'Request Success Rate',
   RULE_DESCRIPTION: 'Rule Description',
   'Take Over': 'Take Over',

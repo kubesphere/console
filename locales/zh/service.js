@@ -55,10 +55,11 @@ module.exports = {
 
   'Internal access': '内部访问',
   ACCESS_TYPE: '访问类型',
+  INTERNAL_ACCESS_METHOD: '内部访问方式',
 
   'Service Name': '服务名称',
   'Please input service name': '请输入服务名称',
-  ENTER_EXTERNALNAME_DESC: '请输入 ExternalName。',
+  EXTERNAL_SERVICE_ADDRESS_EMPTY_DESC: '请输入外部服务的域名。',
   SPECIFY_WORKLOAD: '指定工作负载',
   SPECIFY_WORKLOAD_TO_CREATE_SERVICE: '指定工作负载创建服务',
   EDIT_YAML_TO_CREATE_SERVICE: '编辑配置文件创建服务',
@@ -74,7 +75,7 @@ module.exports = {
   INVALID_PORT: '端口无效。',
   'Not Associate': '不关联',
 
-  Auto: '自动',
+  AUTO_REFRESH: '自动更新',
 
   CUSTOM_SERVICE: '自定义服务',
   CUSTOMIZE_SERVICE: '自定义服务',
@@ -82,8 +83,8 @@ module.exports = {
   'Create service by Yaml': '通过 Yaml 创建服务',
 
   'Sure to delete the service(s)?': '确认删除服务',
-  'No related resources found with current service(s)':
-    '当前服务下没有关联的资源',
+  NO_SERVICE_RELATED_RESOURCE_DESC: '当前服务没有关联的资源。',
+  NO_WORKLOAD_RELATED_RESOURCE_DESC: '当前工作负载没有关联的资源。',
 
   'Automatically assign Service IP': '自动分配服务 IP',
   'Do not assign Service IP': '不分配服务 IP',
@@ -113,8 +114,8 @@ module.exports = {
   CREATE_EXTERNAL_SERVICE_DESC: '创建一个服务并将其映射到一个外部服务。',
 
   ACCESS_NONE_TIP: '不提供外网访问，只能在集群内访问服务。',
-  ACCESS_NODEPORT_TIP: '通过集群节点的对应端口来访问服务。',
-  ACCESS_LOADBALANCER_TIP: '通过负载均衡器来访问服务。',
+  ACCESS_NODEPORT_TIP: '通过集群节点的端口访问服务。',
+  ACCESS_LOADBALANCER_TIP: '通过负载均衡器访问服务。',
 
   'The current selector': '当前设置的选择器',
   NO_WORKLOAD_MATCH_SELECTOR: '没有工作负载匹配当前选择器。',
@@ -135,15 +136,16 @@ module.exports = {
   EDIT_ROUTING_RULE: '编辑路由规则',
 
   VIRTUAL_IP_TITLE: '虚拟 IP 地址',
-  VIRTUAL_IP_DESC: '为服务分配虚拟 IP 地址用于集群内部访问。',
+  VIRTUAL_IP_DESC:
+    '为服务分配虚拟 IP 地址，可通过虚拟 IP 地址在集群内部访问服务。',
   INTERNAL_DOMAIN_NAME: '内部域名',
   INTERNAL_DOMAIN_NAME_DESC:
-    '不为服务分配 IP 地址，服务后端的容器组可通过集群的 DNS 机制在集群内部访问。',
+    '不为服务分配 IP 地址，可通过集群的 DNS 机制在集群内部访问服务。',
   HEADLESS_EXTERNAL_NAME_TITLE:
     '映射集群外部的地址来访 Headless (externalname)',
   HEADLESS_EXTERNAL_NAME_DESC: '将集群或者项目外部服务映射到集群或项目内。',
 
-  SERVICES_INTERNET_ACCESS_DESC: '将服务暴露给外网。',
+  SERVICE_EXTERNAL_ACCESS_DESC: '设置从集群外访问服务的方式。',
 
   SERVICE_NODE_PORT_DESC:
     '如果您当前的网络与集群节点在同一网络内，那么您可以通集群IP地址+节点端口号进行访问，或者通过节点 IP+节点端口进行访问',
@@ -162,13 +164,11 @@ module.exports = {
   SCENARIOS_FOR_SERVICES_Q: '无状态服务和有状态服务分别适用于哪些场景？',
   SCENARIOS_FOR_SERVICES_A:
     '无状态服务适用于不需要数据持久化的场景，例如 Nginx 和 Tomcat。有状态服务适用于需要数据持久化的场景，例如 MySQL 数据库、Kafka 和 ZooKeeper。',
-  STATEFUL_SERVICE_DESC:
-    '有状态服务用来管理有状态应用，可以保证部署和扩容缩容的顺序，提供了稳定的持久化存储和网络标识，有序伸缩等',
-  STATELESS_SERVICE_DESC:
-    '容器服务中最常用的一种服务，通过定义容器组模板来控制容器组状态，包括滚动升级和回滚',
+  STATEFUL_SERVICE_DESC: '创建一个服务和一个有状态副本集。',
+  STATELESS_SERVICE_DESC: '创建一个服务和一个部署。',
   SERVICE_FROM_CODE: '通过代码创建服务',
   SERVICE_FROM_ARTIFACT: '通过制品创建服务',
-  SERVICE_FROM_CODE_DESC: '将现有的源码构建成镜像并部署。',
+  SERVICE_FROM_CODE_DESC: '将现有的代码构建成镜像并部署。',
   SERVICE_FROM_ARTIFACT_DESC: '将现有的制品构建成镜像并部署。',
   JAVA: 'Java',
   NODEJS: 'Node.js',
@@ -177,8 +177,10 @@ module.exports = {
   LANGUAGE_TYPE_VALUE: '语言类型：{value}',
   ARTIFACT_TYPE_VALUE: '制品类型：{value}',
   SPECIFY_WORKLOAD_DESC: '使用一个或多个现有的工作负载创建来创建服务。',
-  DELETE_SERVICE_DESC:
-    '您即将删除服务 {resource}，请您进行确认是否删除关联资源?',
+  DELETE_SERVICE_DESC_PL:
+    '您即将删除服务 {resource}。<br/>请确认是否同时删除以下服务相关资源。',
+  DELETE_SERVICE_DESC_SI:
+    '您即将删除服务 {resource}。<br/>请确认是否同时删除以下服务相关资源。',
 
   CUSTOMIZE_SERVICE_DESC: '通过指定工作负载或编辑 YAML 配置文件来创建服务。',
 
@@ -199,6 +201,8 @@ module.exports = {
   UNKNOWN_SERVICE_TYPE: '未知服务类型',
   HEADLESS: 'Headless',
   EXTERNALNAME: 'ExternalName',
+  EXTERNAL_SERVICE_ADDRESS: '外部服务地址',
+  EXTERNAL_SERVICE_ADDRESS_DESC: '输入外部服务的域名。',
   UNKNOWN: '未知',
   EXTERNALNAME_EXAMPLE: '例如：',
   PORTS: '端口',

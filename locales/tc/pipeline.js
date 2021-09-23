@@ -38,7 +38,7 @@ module.exports = {
   'If not, scan regularly': '如果沒有掃描觸發，則定期掃描',
   'Scan interval': '掃描時間間隔',
   'Push message to': '推送訊息到',
-  'Build Settings': '構建設置',
+  BUILD_SETTINGS: '構建設置',
   'Branch Settings': ' 分支設置',
   'The name of the pipeline. Pipelines in the same project must have different names.':
     'Pipeline 的名稱，同一個項目内 Pipeline 不能重名',
@@ -62,6 +62,7 @@ module.exports = {
   Run: '運行',
   Commit: '提交',
   BRANCH_SI: '分支',
+  CODE_REPOSITORY_BRANCH: '分支',
   'Last Message': '最後訊息',
   Duration: '持續時間',
   TaskStatus: '運行狀態',

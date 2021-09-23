@@ -98,7 +98,7 @@ export default class ProbeCard extends React.Component {
 
   render() {
     return (
-      <Panel title={t('HEALTH_CHECKER')}>
+      <Panel title={t('HEALTH_CHECK')}>
         <div className={styles.wrapper}>{this.renderProbe()}</div>
       </Panel>
     )

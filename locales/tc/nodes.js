@@ -49,8 +49,6 @@ module.exports = {
   'Kube-Proxy Version': 'Kube-Proxy 版本',
   lastHeartbeatTime: '最近更新時間',
   NODE_ONLINE_STATUS: '節點在線狀態',
-  'CPU Utilization': 'CPU 使用情況',
-  'Memory Utilization': '記憶體使用情況',
   PODS: '容器組',
   'Pod Usage': '容器組使用情況',
   'Pod Quantity Trend': '容器組數量變化',
@@ -63,6 +61,7 @@ module.exports = {
   taint: '汙點',
   Conditions: '狀態',
   ANNOTATIONS: '注解',
+  WORKLOAD_ANNOTATIONS: 'Workload Annotations',
 
   'Resource Usage': '資源使用情況',
 

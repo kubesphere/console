@@ -553,7 +553,7 @@ export default class AdvanceSettings extends React.Component {
         <Form data={formTemplate} ref={formRef}>
           <div className="h6">
             {isEmpty(multi_branch_pipeline)
-              ? t('Build Settings')
+              ? t('BUILD_SETTINGS')
               : t('Branch Settings')}
           </div>
           <Form.Item>

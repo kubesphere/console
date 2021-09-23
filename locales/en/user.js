@@ -43,7 +43,6 @@ module.exports = {
   Email: 'Email',
   'Email exists': 'The email already exists.',
   'Invalid user name': 'Invalid username. {message}',
-  LAST_LOGIN: 'Last Login',
   NOT_LOGGED_IN: 'Not logged in',
   'Password length is at least 6 characters': '6 to 64 characters',
   'Password Setting': 'Password Settings',

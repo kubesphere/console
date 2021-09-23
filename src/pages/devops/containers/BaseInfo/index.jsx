@@ -236,7 +236,7 @@ class BaseInfo extends React.Component {
                 trigger="click"
                 placement="bottomRight"
               >
-                <Button>{t('DEVOPS_PROJECT_MANAGEMENT')}</Button>
+                <Button>{t('MANAGE_DEVOPS_PROJECT')}</Button>
               </Dropdown>
             </div>
           )}

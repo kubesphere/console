@@ -209,6 +209,7 @@ module.exports = {
   // Cluster Status
   DISK_USAGE: 'Disk Usage',
   POD_COUNT: 'Pods',
+  POD_COUNT_VALUE: 'Pods: {value}',
   API_SERVER: 'API Server',
   AVERAGE_CPU_LOAD: 'Average CPU Load',
   POD_USAGE: 'Pod Usage',
@@ -248,6 +249,4 @@ module.exports = {
   CUSTOM_MONITOR_DASHBOARD: 'Custom Monitoring Dashboard',
   CUSTOM_MONITOR_DASHBOARD_CREATE_DESC:
     'You can customize application monitoring dashboards based on your needs.',
-  CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC:
-    'Please create a custom monitoring dashboard.',
 }

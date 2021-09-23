@@ -93,7 +93,6 @@ module.exports = {
 
   ADD_QUOTA: '添加配額項目',
   EDIT_PROJECT_RESOURCE_QUOTAS: 'Edit Project Resource Quotas',
-  EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
 
   deployments: '部署',
   statefulsets: '有狀態副本集',
@@ -107,6 +106,7 @@ module.exports = {
   'requests.memory': '記憶體需求',
   'limits.memory': '記憶體限額',
 
+  EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
   'Edit Resource Default Request': '編輯資源預設請求',
   DEFAULT_CONTAINER_QUOTAS: 'Default Container Quotas',
 
@@ -211,15 +211,15 @@ module.exports = {
   HOW_TO_USE_QUOTA_Q: '如何使用資源配額?',
   HOW_TO_USE_QUOTA_A:
     'Resource quotas are a mechanism used to limit the resource usage. You can edit project resource quotas and default container quotas by clicking <b>Edit Project</b>.',
-  PROJECT_QUOTAS_DESC:
-    'Project quotas specify the number of available CPU and memory resources and the maximum number of Pods, Deployments, and Services in the project.',
-  DEFAULT_CONTAINER_QUOTAS_DESC:
-    'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
 
   WHAT_IS_LIMIT_RANGE_Q: 'What are default container quotas?',
   WHAT_IS_LIMIT_RANGE_A:
     'Default container quotas are a policy used to constrain resource allocations to containers in a project. You can set CPU, memory, and GPU quotas for the container.',
 
+  PROJECT_QUOTAS_DESC:
+    'Project quotas specify the number of available CPU and memory resources and the maximum number of Pods, Deployments, and Services in the project.',
+  DEFAULT_CONTAINER_QUOTAS_DESC:
+    'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
   WHAT_IS_INTERNET_GATEWAY: '什麼是外網訪問網關?',
   COLLECT_LOGS_ON_VOLUMES_A:
     'To collect logs on volumes, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',

@@ -119,7 +119,7 @@ export default class ServiceSettings extends React.Component {
 
   renderTypeSelect() {
     return (
-      <Form.Item label={t('ACCESS_TYPE')}>
+      <Form.Item label={t('INTERNAL_ACCESS_METHOD')}>
         <TypeSelect
           className="margin-b12"
           value={this.state.serviceType}

@@ -45,7 +45,7 @@ const init = async () => {
         MM: '%d 个月',
         y: '1 年',
         yy: '%d 年',
-        past: '%s 前',
+        past: '%s前',
         future: '在 %s后',
       },
     })

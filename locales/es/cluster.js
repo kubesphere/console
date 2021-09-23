@@ -23,7 +23,7 @@ module.exports = {
   'Authorize the cluster to workspace':
     'Autorizar el clúster en el espacio de trabajo',
   AUTHORIZED: 'Autorizado',
-  'Available Clusters': 'Clusters Disponibles',
+  AVAILABLE_CLUSTERS: 'Clusters Disponibles',
   'Choose a provider': 'Elige un proveedor',
   'Click to Copy': 'Haga clic para copiar',
   CLUSTER_INFORMATION: 'Información del clúster',
@@ -73,7 +73,7 @@ module.exports = {
   SCHEDULING_OPERATION: 'Scheduling operation',
   SCHEDULING_FAILURES: 'Programar pods fallidos',
   SCHEDULING_FAILURE: 'Scheduling failure',
-  'Select Clusters': 'Seleccionar clústeres',
+  SELECT_CLUSTER: 'Seleccionar clústeres',
   SET_PUBLIC_CLUSTER: 'Set as Public Cluster',
   STORAGE: 'Storage',
   SYSTEM_PROJECTS: 'Proyectos de Sistema',
@@ -287,8 +287,6 @@ module.exports = {
   CLUSTER_VISIBILITY_REMOVE_WARNING:
     'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
   UNAUTHORIZED: 'Unauthorized',
-  LOGGING: 'Logging',
-  EVENTS: 'Events',
   AUDITING: 'Auditing',
   REMOVE_WORKSPACE_CONFIRM_SI:
     'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',

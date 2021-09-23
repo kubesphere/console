@@ -42,6 +42,7 @@ module.exports = {
   REGISTRY_SECRET_VER_SUC: 'Verificación de registro exitosa',
   Secret: 'Secreto',
   SECRET: 'Secreto',
+  CODE_REPOSITORY_KEY: 'Key',
   SECRET_PL: 'Secrets',
   SECRET_LOW: 'Secret',
   SECRET_SETTINGS_TCAP: 'Configuraciones secretas',

@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  CODE_URL: '代码地址',
+  CODE_REPOSITORY_URL: '代码仓库 URL',
   'New Tag': '新标签',
   S2I_Building: '正在构建中',
   S2I_Failed: '构建失败',
@@ -32,7 +32,7 @@ module.exports = {
   NEW_TAG_DESC: '输入重新构建镜像的标签',
   S2I_RELATIVE_PATH_DESC:
     '源代码仓库地址（目前支持 git）并且可以指定代码分支及在源代码终端的相对路径',
-  S2I_RELATIVE_PATH_TIP: '可以指定代码编译的相对路径，默认为 /。',
+  CODE_RELATIVE_PATH_DESC: '指定代码在代码仓库中的相对路径。默认值为 /。',
   'building logs': '构建日志',
   'Building Log': '构建日志',
   'Building Image': '构建镜像',
@@ -44,6 +44,10 @@ module.exports = {
   Builder: '构建',
   BuilderImage: '编译模板',
   IMAGE_NAME: '镜像名称',
+  IMAGE_NAME_EMPTY_DESC: '请输入镜像名称。',
+  IMAGE_TAG_EMPTY_DESC: '请输入镜像标签。',
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: '请设置目标镜像仓库。',
+  IMAGE_TAG: '镜像标签',
   BuilderPullPolicy: '镜像拉取策略',
   builderPullPolicy: '镜像拉取策略',
   'Job Records': '任务记录',
@@ -74,20 +78,21 @@ module.exports = {
   CONTAINER_ENVIRONMENT_DESC: '为容器添加添加环境变量。',
   IMAGE_PULL_POLICY_DESC: '在默认情况下，优先使用本地镜像',
   S2I_ENVIRONMENT_DESC:
-    '应用程序开发人员可以使用环境变量来配置此镜像的运行时行为；详细的配置说明请查看<a href={link} target="_blank">编译模板</a>。',
+    '添加环境变量以控制镜像运行时的行为。<a href={link} target="_blank">了解更多</a>',
   S2I_UPDATE_WORKLOAD: '构建成功后更新工作负载',
   S2I_UPDATA_WORKLOAD_DESC:
     '重新构建镜像成功后，将更新相关工作负载的镜像，工作负载版本也会一同更新。',
   'No Log Records': '无日志记录',
-  S2I_SECRET_DESC: '如果是私有代码仓库，请选择代码仓库密钥。',
-  S2I_IMAGE_REPONSITRY_DESC:
-    '源代码仓库地址（目前支持 Git）并且可以指定代码分支及在源代码终端的相对路径。',
-  S2I_RELATIVE_PATH: '代码相对路径（可选）',
+  CODE_REPOSITORY_KEY_DESC:
+    '如果使用私有代码仓库，请选择包含代码仓库密钥的保密字典。',
+  CODE_REPOSITORY_URL_DESC: '输入代码仓库的地址。目前仅支持 Git 仓库。',
+  CODE_RELATIVE_PATH: '代码相对路径',
   S2I_BUILDERNAME_DESC:
     '选择编辑环境，您也可以查看对应的 <a href={link} target="_blank">编译模板</a>',
   S2I_TARGET_IMAGE_REPOSITORY_DESC:
-    '选择一个有镜像仓库推送权限的保密字典，如果没有可以<a href={link} target="_blank">新建镜像仓库保密字典</a>。',
-  S2I_IMAGENAME_DESC: '镜像名称及标签，默认为代码仓库的项目名称。',
+    '选择一个镜像仓库用于存放即将创建的镜像。如果没有可用的镜像仓库，您需要先创建镜像仓库保密字典。<a href={link} target="_blank">了解更多</a>',
+  S2I_IMAGE_NAME_DESC:
+    '名称只能包含小写字母、数字、连字符（-）、句点（.）、斜钱（/）和冒号（:），并以小写字母或数字开头和结尾。',
   TARGET_IMAGE_REPOSITORY: '目标镜像仓库',
   'Rebuilt successfully; the image status will be refreshed soon.':
     '重建成功，镜像状态稍后将会更新',
@@ -109,6 +114,8 @@ module.exports = {
   'Upload Percent': '上传进度',
   'File Size': '文件大小',
   DOWNLOAD_ARTIFACT: '下载制品',
+  'File Uploaded Successfully': '上传文件成功',
+  'Download Artifact': '下载制品',
   IMAGE_BUILDER_PL: '镜像构建器',
   'Artifact Type': '制品类型',
   IMAGE_BUILDER_DESC:
@@ -123,29 +130,37 @@ module.exports = {
   CLICK_UPLOAD_ARTIFACT: '点击上传制品文件',
   UPLOAD_ARTIFACT: '上传制品',
   'Choose a Language': '选择语言',
-  B2I_DEFAULT_DESC: '请上传制品文件以构建容器镜像。',
-  JAR_DESC:
-    'JAR 文件是一种软件包文件格式，通常用于聚合大量的 Java 类文件、相关的元数据和资源（文本、图片等）文件到一个文件中。',
-  WAR_DESC:
-    'WAR 文件用于分发已归档的 JAR 文件、JavaServer Pages、Java Servlet、Java 类、XML 文件、标记库、静态网页（HTML 和相关文件）以及共同构成 Web 应用程序的其他资源。',
-  BINARY_DESC: '',
   IMAGE_BUILDER_EMPTY_DESC: '请创建一个镜像构建器。',
   S2I_NO_SECRET: '当前代码仓库不需要密钥。',
-  'Repository Not Found': '未找到代码仓库',
-  'Currently only supports git repo': '当前仅支持 git 仓库',
   'Authentication required': '需要认证信息，请选择秘钥。',
   'Repo reading failed': '读取仓库失败',
-  'exec: "git": executable file not found in $PATH': '当前 URL 未发现代码仓库',
   WRONG_FILE_EXTENSION_NAME: '选择的文件类型不匹配，请选择 {type} 类型。',
   SECRET_CODE: '触发令牌',
   SECRET_CODE_RULE_DESC: '只能包含大小写字母、数字。',
+  ARTIFACT_FILE_EMPTY_DESC: '请上传一个制品文件。',
+  'Upload file failed': '文件上传失败',
+  'Build image for service x': '为 {service} 服务构建镜像',
+  UPLOAD_ARTIFACT_FILE: '上传制品文件',
+  ARTIFACT_FILE: '制品文件',
+  B2I_DEFAULT_DESC: '上传一个制品文件。',
+  JAR_DESC: '上传一个 JAR 格式的制品文件。',
+  WAR_DESC: '上传一个 WAR 格式的制品文件。',
+  BINARY_DESC: '',
+  CODE_REPOSITORY_KEY_NOT_REQUIRED: '当前代码仓库不需要密钥。',
+  'Repository Not Found': '没有找到代码仓库。',
+  'Currently only supports git repo': '当前仅支持 Git 仓库。',
+  'exec: "git": executable file not found in $PATH':
+    '没有找到 URL 对应的代码仓库。',
+  TRIGGER_TOKEN: '触发令牌',
+  TRIGGER_TOKEN_DESC:
+    '设置客户端通过 Webhook 触发 KubeSphere 镜像构建时所使用的认证令牌。令牌只能包含大写字母、小写字母和数字。',
+  INVALID_TRIGGER_TOKEN_DESC:
+    '令牌无效。令牌只能包含大写字母、小写字母和数字。',
   'Remote Trigger Link': '远程触发链接',
 
   // Image Builder List Page
-  TYPE: '类型',
 
   // Creation Page
-  TAG: '标签',
   UPLOADED: '已上传：{percent}%',
   UPLOAD_FULLY: '已上传：100%',
   FILE_SIZE: '文件大小：{size}',

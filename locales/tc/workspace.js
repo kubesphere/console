@@ -35,7 +35,7 @@ module.exports = {
   'Workspace Name': '企業空間名稱',
   'Workspace Logo': '企業空間 Logo',
   'Workspaces Manager': '企業空間管理員',
-  'Create Workspace': '創建企業空間',
+  CREATE_WORKSPACE: '創建企業空間',
   DEPARTMENT_MANAGEMENT: 'Department Management',
   SET_DEPARTMENT: 'Set Department',
   DEPARTMENT_PL: '企業組織',
@@ -117,7 +117,7 @@ module.exports = {
   HOW_TO_APPLY_MORE_CLUSTER_A:
     'Contact the platform or cluster administrator to apply for more clusters.',
 
-  NO_PUBLIC_CLUSTER_TIP:
+  NO_CLUSTER_AVAILABLE_DESC:
     '暫無可用的公開集群，請在企業空間創建完畢後，向平台管理員或集群管理員申請集群的授權。',
   WORKSPACE_NO_CLUSTER_TIP:
     '您需要聯繫平台管理員或者集群管理員為企業空間授權集群的訪問權限。',

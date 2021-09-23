@@ -18,6 +18,7 @@
 
 module.exports = {
   CODE_URL: '代碼地址',
+  CODE_REPOSITORY_URL: '代碼地址',
   'New Tag': '新標籤',
   S2I_Building: '正在構建中',
   S2I_Failed: '構建失敗',
@@ -33,6 +34,7 @@ module.exports = {
   S2I_RELATIVE_PATH_DESC:
     '源代碼倉庫地址（目前支持 git）並且可以指定代碼分支及在源代碼終端的相對路徑',
   S2I_RELATIVE_PATH_TIP: '可以指定代碼編譯的相對路徑，預設為 /。',
+  CODE_RELATIVE_PATH_DESC: '可以指定代碼編譯的相對路徑，預設為 /',
   'building logs': '構建紀錄',
   'Building Log': '構建紀錄',
   'Building Image': '構建鏡像',
@@ -44,6 +46,10 @@ module.exports = {
   Builder: '構建',
   BuilderImage: '編譯模板',
   IMAGE_NAME: '鏡像名稱',
+  IMAGE_NAME_EMPTY_DESC: 'Please enter an image name.',
+  IMAGE_TAG_EMPTY_DESC: 'Please enter an image tag.',
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Please set a target image repository.',
+  IMAGE_TAG: 'Image Tag',
   BuilderPullPolicy: '鏡像拉取策略',
   builderPullPolicy: '鏡像拉取策略',
   'Job Records': '任務紀錄',
@@ -88,6 +94,11 @@ module.exports = {
   S2I_TARGET_IMAGE_REPOSITORY_DESC:
     '選擇一個有鏡像倉庫推送權限的保密字典，如果沒有可以<a href={link} target="_blank">新建鏡像倉庫保密字典</a>。',
   S2I_IMAGENAME_DESC: '鏡像名稱及標籤，預設為代碼倉庫的項目名稱。',
+  CODE_REPOSITORY_KEY_DESC: '如果是私有代碼倉庫，請選擇代碼倉庫密鑰',
+  CODE_REPOSITORY_URL_DESC:
+    '源代碼倉庫地址(目前支持 git)並且可以指定代碼分支及在源代碼終端的相對路徑',
+  CODE_RELATIVE_PATH: '代碼相對路徑(可選):',
+  S2I_IMAGE_NAME_DESC: '鏡像名稱及 Tag，預設為代碼倉庫的項目名稱',
   TARGET_IMAGE_REPOSITORY: '目標鏡像倉庫',
   'Rebuilt successfully; the image status will be refreshed soon.':
     '重建成功，鏡像狀態稍後將會更新',
@@ -109,6 +120,8 @@ module.exports = {
   'Upload Percent': '上傳進度',
   'File Size': '檔案大小',
   DOWNLOAD_ARTIFACT: '下載成品',
+  'File Uploaded Successfully': '上傳檔案成功',
+  'Download Artifact': '下載成品',
   IMAGE_BUILDER_PL: '構建鏡像',
   'Artifact Type': '成品類型',
   IMAGE_BUILDER_DESC:
@@ -122,6 +135,11 @@ module.exports = {
   BUILD_IMAGE_FOR_SERVICE: '為 {service} 服務構建鏡像。',
   CLICK_UPLOAD_ARTIFACT: '點擊上傳成品檔案',
   UPLOAD_ARTIFACT: '上傳成品',
+  ARTIFACT_FILE_EMPTY_DESC: '檔案還未上傳',
+  'Upload file failed': '檔案上傳失敗',
+  'Build image for service x': '為 {service} 服務構建鏡像',
+  UPLOAD_ARTIFACT_FILE: '點擊成品檔案進行上傳',
+  ARTIFACT_FILE: '上傳成品',
   'Choose a Language': '選擇語言',
   B2I_DEFAULT_DESC: '請上傳成品檔案以構建容器鏡像。',
   JAR_DESC:
@@ -131,6 +149,7 @@ module.exports = {
   BINARY_DESC: '',
   IMAGE_BUILDER_EMPTY_DESC: '請創建一個鏡像構建器。',
   S2I_NO_SECRET: '目前代碼倉庫不需要密鑰。',
+  CODE_REPOSITORY_KEY_NOT_REQUIRED: '目前代碼倉庫不需要密鑰',
   'Repository Not Found': '尚未找到代碼倉庫',
   'Currently only supports git repo': '目前僅支持 git 倉庫',
   'Authentication required': '需要認證資訊，請選擇密鑰。',
@@ -139,13 +158,15 @@ module.exports = {
   WRONG_FILE_EXTENSION_NAME: '選擇的檔案類型不符合，請選擇 {type} 類型。',
   SECRET_CODE: '觸發令牌',
   SECRET_CODE_RULE_DESC: '只能包含大小寫字母、數字。',
+  TRIGGER_TOKEN: '觸發令牌',
+  TRIGGER_TOKEN_DESC:
+    'Set a token used to authenticate a client against KubeSphere when the client attempts to trigger image building on KubeSphere. The token can contain only uppercase letters, lowercase letters, and numbers.',
+  INVALID_TRIGGER_TOKEN_DESC: '只能包含大小寫字母、數字',
   'Remote Trigger Link': '遠程觸發鏈接',
 
   // Image Builder List Page
-  TYPE: '類型',
 
   // Creation Page
-  TAG: '標籤',
   UPLOADED: '已上傳：{percent}%',
   UPLOAD_FULLY: '已上傳：100%',
   FILE_SIZE: '檔案大小：{size}',

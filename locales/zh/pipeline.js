@@ -38,7 +38,7 @@ module.exports = {
   'If not, scan regularly': '如果没有扫描触发，则定期扫描',
   'Scan interval': '扫描时间间隔',
   'Push message to': '推送消息到',
-  'Build Settings': '构建设置',
+  BUILD_SETTINGS: '构建设置',
   'Branch Settings': ' 分支设置',
   'The name of the pipeline. Pipelines in the same project must have different names.':
     '流水线的名称，同一个工程内流水线不能重名',
@@ -62,6 +62,7 @@ module.exports = {
   Run: '运行',
   Commit: '提交',
   BRANCH_SI: '分支',
+  CODE_REPOSITORY_BRANCH: '代码仓库分支',
   'Last Message': '最后信息',
   Duration: '持续时间',
   TaskStatus: '运行状态',

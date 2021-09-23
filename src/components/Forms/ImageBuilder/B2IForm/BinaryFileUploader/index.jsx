@@ -256,7 +256,7 @@ class Uploader extends React.Component {
               name={this.filesType}
               type="coloured"
             />
-            <p className={styles.title}>{t('CLICK_UPLOAD_ARTIFACT')}</p>
+            <p className={styles.title}>{t('UPLOAD_ARTIFACT_FILE')}</p>
             <p className={styles.desc}>
               {t(`${this.filesType.toUpperCase() || 'B2I_DEFAULT'}_DESC`)}
             </p>

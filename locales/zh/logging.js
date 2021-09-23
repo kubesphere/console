@@ -162,8 +162,6 @@ module.exports = {
   EXAMPLE: '例如：',
   PORT_NUMBER_EMPTY: '请输入端口号。',
   PARAMETER_REQUIRED: '此参数为必填项。',
-  LOGGING: '日志',
   EVENTS: '事件',
-  AUDITING: '审计',
   CREATION_TIME: '创建时间',
 }

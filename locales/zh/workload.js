@@ -109,7 +109,8 @@ module.exports = {
   'New Volume': '新建存储卷',
   EXISTING_VOLUME: '现有存储卷',
   VOLUME_NAME: '存储卷名称',
-  'Diff Settings': '差异化配置',
+  'Diff Settings': '差异化设置',
+  DIFFERENTIATED_SETTINGS: '差异化设置',
   'Deployment Mode': '部署模式',
   POD_SCHEDULING_RULES: '容器组调度规则',
   ADD_RULE: '添加规则',
@@ -590,6 +591,7 @@ module.exports = {
   'Private Registry': '私有仓库',
   'Image Name': '镜像名称',
   NO_IMAGE_FOUND: '没有找到镜像',
+  CUSTOM_RULES: '自定义规则',
   CUSTOM_RULES_DESC: '按照自定义的规则将容器组副本调度到节点。',
   DECENTRALIZED_SCHEDULING: '分散调度',
   'Pod Soft Decentralized Deployment': '容器组软分散部署',
@@ -703,11 +705,13 @@ module.exports = {
 
   CONTAINER_NOT_SELECTED: '请将存储卷挂载到至少一个容器组。',
   'Sure to delete the workload(s)?': '确认删除工作负载',
-  'No related resources': '没有关联的资源',
+  NO_RELATED_RESOURCE_FOUND: '没有相关的资源',
   'No related resources found with the current workload(s)':
     '当前工作负载下没有关联的资源',
-  DELETE_WORKLOAD_DESC:
-    '您即将删除工作负载 {resource}，请您进行确认是否删除关联资源?',
+  DELETE_WORKLOAD_DESC_SI:
+    '您即将删除工作负载 {resource}.<br/>请确认是否同时删除以下工作负载相关资源。',
+  DELETE_WORKLOAD_DESC_PL:
+    '您即将删除工作负载 {resource}.<br/>请确认是否同时删除以下工作负载相关资源。',
 
   'Container Security Context': '容器 Security Context',
   'Pod Security Context': '容器组 Security Context',
@@ -752,10 +756,10 @@ module.exports = {
   REVISION_DESC:
     '对工作负载的资源模板进行修改后会生成一个新的记录并重新调度 容器组（Pod）进行版本的迭代，默认保存10个最近的版本。您可以根据修改记录进行重新部署。',
 
-  CLUSTER_CONTAINER_IMAGE_DIFF_DESC:
-    '根据不同的需要在不同的集群中设置不同的容器',
-  CLUSTER_SERVICE_DIFF_DESC: '可以在不同集群设置不同的服务端口',
-  CLUSTER_ENV_DIFF_DESC: '可以在不同集群设置不同的环境变量',
+  CLUSTER_DIFF_CONTAINER_SETTINGS_DESC: '在不同的集群中使用不同的容器设置。',
+  CLUSTER_DIFF_PORT_SETTINGS_DESC: '为不同集群中的容器设置不同的端口。',
+  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC:
+    '为不同集群中的容器设置不同的环境变量。',
 
   CONTAINER_RESOURCE_LIMIT_TIP:
     '设置容器的资源限制与资源预留，以将容器调度到合适的节点上。',

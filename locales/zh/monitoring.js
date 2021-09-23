@@ -217,6 +217,7 @@ module.exports = {
   // Cluster Status
   DISK_USAGE: '磁盘用量',
   POD_COUNT: '容器组数量',
+  POD_COUNT_VALUE: '容器组数量：{value}',
   API_SERVER: 'API Server',
   AVERAGE_CPU_LOAD: 'CPU 平均负载',
   POD_USAGE: '容器组用量',
@@ -252,6 +253,5 @@ module.exports = {
   // Custom Monitoring
   CUSTOM_MONITOR_DASHBOARD: '自定义监控面板',
   CUSTOM_MONITOR_DASHBOARD_CREATE_DESC: '您可以根据需求自定义应用监控面板。',
-  CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC: '请创建一个自定义监控面板。',
   'Custom Monitoring Dashboards': '自定义监控',
 }

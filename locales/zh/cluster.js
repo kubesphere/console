@@ -94,8 +94,8 @@ module.exports = {
 
   'The current cluster is public': '当前集群处于公开状态',
 
-  'Available Clusters': '可用集群',
-  'Select Clusters': '集群选择',
+  AVAILABLE_CLUSTERS: '可用集群',
+  SELECT_CLUSTER: '集群选择',
   EDIT_CLUSTER_INFO_DESC: '编辑集群基本信息。',
 
   SCHEDULING_OPERATIONS: '调度次数',
@@ -219,7 +219,7 @@ module.exports = {
   CLUSTER_VISIBILITY_A2:
     '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源。',
 
-  SELECT_CLUSTERS_DESC: '选择企业空间下可用的集群',
+  SELECT_CLUSTERS_DESC: '选择企业空间需要使用的集群。',
 
   CLUSTER_API_SERVER_TITLE: '待加入集群的 Kubesphere API Server',
   CLUSTER_API_SERVER_DESC: '需要添加待加入集群的 KubeSphere API Server 地址',
@@ -237,7 +237,7 @@ module.exports = {
   CLUSTER_AGENT_DESC: '需要在集群中设置下相应的代理 Agent',
 
   SELECT_HOST_CLUSTER_WARNING:
-    '请尽量不要在 Host 集群上创建资源，Host 集群负载过高会导致多集群稳定性下降。',
+    '当前系统为多集群系统，请尽量避免在主集群上创建资源。主集群负载过高会导致多集群系统稳定性下降。',
   HOST_CLUSTER_VISIBILITY_WARNING:
     '请谨慎将 Host 集群授权给企业空间，Host 集群负载过高会导致多集群稳定性下降。',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
@@ -328,8 +328,6 @@ module.exports = {
     '集群可见性控制集群对企业空间的授权。将集群授权给企业空间后，即可在企业空间中查看并管理集群资源。',
   EDIT_VISIBILITY_DESC: '编辑集群在企业空间中的可见性。',
   UNAUTHORIZED: '未授权',
-  LOGGING: '日志',
-  EVENTS: '事件',
   AUDITING: '审计',
   REMOVE_WORKSPACE_CONFIRM_SI:
     '请输入企业空间名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',

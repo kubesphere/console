@@ -21,10 +21,11 @@ module.exports = {
     'no tiene carga de trabajo correspondiente.',
   ACCESS_METHOD: 'Método de acceso',
   ACCESS_TYPE: 'Tipo de acceso',
+  INTERNAL_ACCESS_METHOD: 'Internal Access Method',
   'Add Route Rule': 'Agregar regla de ruta',
   'Add Selector': 'Agregar selector',
   'Associated Application': 'Solicitud asociada',
-  Auto: 'Auto',
+  AUTO_REFRESH: 'Auto',
   'Automatically assign Service IP':
     'Asigna automáticamente una IP de servicio',
   'Commonly included tags in the current workloads':
@@ -58,12 +59,15 @@ module.exports = {
   'LoadBalancer IP': 'IP del balanceador',
   'Map Services outside the cluster': 'Servicios de mapas fuera del clúster',
   MAXIMUM_STICKINESS_DURATION: 'Tiempo máximo de sesión (s)',
-  'No related resources found with current service(s)':
+  NO_SERVICE_RELATED_RESOURCE_DESC:
     'No se encontraron recursos relacionados con los servicios actuales',
+  NO_WORKLOAD_RELATED_RESOURCE_DESC:
+    'No resources related to the workload is found.',
+  'Node Port': 'Puerto de nodo',
   'Node Port(s)': 'Puerto(s) de nodo',
   'Not Associate': 'No asociado',
   'Path is Required': 'La ruta es obligatoria',
-  ENTER_EXTERNALNAME_DESC: 'Please enter an ExternalName.',
+  EXTERNAL_SERVICE_ADDRESS_EMPTY_DESC: 'Please enter an ExternalName.',
   ENTER_PORT_NUMBER: 'Please enter a port number.',
   'Please input ExternalName': 'Por favor introduce el ExternalName',
   PORT_EMPTY: 'Por favor introduce puertos',
@@ -127,7 +131,7 @@ module.exports = {
     'El nombre y la descripción del servicio deben proporcionarse para crear el servicio. El nombre del servicio no puedes ser el mismo que el nombre del servicio existente en el mismo proyecto.',
   SERVICES_SETTINGS_DESC:
     'La configuración del servicio define cómo acceder a una carga de trabajo existente.',
-  SERVICES_INTERNET_ACCESS_DESC: 'Exponga el servicio fuera del clúster.',
+  SERVICE_EXTERNAL_ACCESS_DESC: 'Exponga el servicio fuera del clúster.',
   VIRTUAL_IP_TITLE: 'Virtual IP Address',
   VIRTUAL_IP_DESC:
     'The cluster generates a unique IP address for the Service and the Service can be accessed within the cluster using this IP address.',
@@ -155,6 +159,10 @@ module.exports = {
     'Los servicios sin estado son útiles para escenarios en los que los datos persistentes no se almacenan localmente y varias instancias responden a solicitudes uniformes (Nginx, Tomcat, etc.). Los servicios con estado son útiles cuando se trata de almacenamiento de datos, subprocesos múltiples o colas (base de datos MySQL, Kafka, Zookeeper, etc.).',
   DELETE_SERVICE_DESC:
     'Está a punto de eliminar los servicios {resource}. ¿Confirma si desea eliminar el recurso asociado?',
+  DELETE_SERVICE_DESC_PL:
+    'You are about to delete the Services {resource}.<br/>Do you want to also delete the following resources related to the Services?',
+  DELETE_SERVICE_DESC_SI:
+    'You are about to delete the Service {resource}.<br/>Do you want to also delete the following resource related to the Service?',
   SERVICE_FROM_CODE:
     'Cree un nuevo servicio desde el repositorio de código fuente',
   SERVICE_FROM_ARTIFACT: 'Construye un nuevo servicio a través del artefacto',
@@ -189,6 +197,9 @@ module.exports = {
     'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
   HEADLESS: 'Headless',
   EXTERNALNAME: 'ExternalName',
+  EXTERNAL_SERVICE_ADDRESS: 'External Service Address',
+  EXTERNAL_SERVICE_ADDRESS_DESC:
+    'Enter the domain name of an external Service.',
   UNKNOWN: 'Unknown',
   EXTERNALNAME_EXAMPLE: 'Example: ',
   PORTS: 'Ports',

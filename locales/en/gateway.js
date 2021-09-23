@@ -29,7 +29,6 @@ module.exports = {
   'Cluster Gateway Not Set': 'Cluster Gateway Not Set',
   'Project Gateway Not Set': 'Project Gateway Not Set',
   'Gateway Not Set': 'Gateway Not Set',
-  'Gateway Info': 'Gateway Info',
   'View Gateway': 'View Gateway',
   'Set Gateway': 'Set Gateway',
   'Edit Gateway': 'Edit Gateway',
@@ -43,8 +42,6 @@ module.exports = {
   DISK_LOG_COLLECTION_TITLE: 'Order log',
   DISK_LOG_COLLECTION_DESC:
     'The placing logs in the container are collected and forwarded to the standard output, and then collected by the log collection system. ',
-  PROJECT_INTERNET_ACCESS_DESC:
-    'Before creating an application route, you need to enable the external network access portal, that is, the gateway. This step is to create the corresponding application routing controller, which is responsible for forwarding the request to the corresponding back-end service. ',
   UPDATED_GATEWAY_DESC:
     'Please operate during the low peak period of the business. The upgrade process may cause a short business interruption. ',
   UPDATED_GATEWAY_TITLE: 'Confirm to upgrade the gateway?',

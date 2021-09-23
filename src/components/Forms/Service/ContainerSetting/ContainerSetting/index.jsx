@@ -144,7 +144,7 @@ export default class ContainerSetting extends React.Component {
         <>
           <Alert
             className="margin-b12"
-            type="warning"
+            type="info"
             message={t('CONTAINER_RESOURCE_LIMIT_TIP')}
           />
           <Form.Item>

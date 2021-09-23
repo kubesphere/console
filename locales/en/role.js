@@ -22,25 +22,25 @@ module.exports = {
   PLATFORM_ROLE_PL: 'Platform Roles',
   'Platform Roles': 'Platform Roles',
   'Account Roles': 'Account Roles',
-  'Alerting Messages Management': 'Alerting Message Management',
-  'Alerting Messages View': 'Alerting Message Viewing',
-  'Alerting Policies Management': 'Alerting Policy Management',
-  'Alerting Policies View': 'Alerting Policy Viewing',
+  ALERTING_MESSAGES_MANAGEMENT: 'Alerting Message Management',
+  ALERTING_MESSAGES_VIEW: 'Alerting Message Viewing',
+  ALERTING_POLICIES_MANAGEMENT: 'Alerting Policy Management',
+  ALERTING_POLICIES_VIEW: 'Alerting Policy Viewing',
   APP_TEMPLATES_MANAGEMENT: 'App Template Management',
   APP_TEMPLATES_VIEW: 'App Template Viewing',
-  'Application Workloads Management': 'Application Workload Management',
-  'Application Workloads View': 'Application Workload Viewing',
+  APPLICATION_WORKLOADS_MANAGEMENT: 'Application Workload Management',
+  APPLICATION_WORKLOADS_VIEW: 'Application Workload Viewing',
   'Authorization List': 'Permissions',
   PERMISSIONS: 'Permissions',
   'Authorization Settings': 'Authorization Settings',
   'Authorized Actions': 'Authorized Actions',
   'Authorized Users': 'Authorized Users',
-  'ConfigMaps Management': 'ConfigMap Management',
-  'ConfigMaps View': 'ConfigMap Viewing',
-  'ServiceAccount Management': 'ServiceAccount Management',
-  'ServiceAccount View': 'ServiceAccount Viewing',
-  'Custom Monitoring View': 'Custom Monitoring Viewing',
-  'Custom Monitoring Management': 'Custom Monitoring Management',
+  CONFIGMAPS_MANAGEMENT: 'ConfigMap Management',
+  CONFIGMAPS_VIEW: 'ConfigMap Viewing',
+  SERVICEACCOUNT_MANAGEMENT: 'Service Account Management',
+  SERVICEACCOUNT_VIEW: 'Service Account Viewing',
+  CUSTOM_MONITORING_VIEW: 'Custom Monitoring Viewing',
+  CUSTOM_MONITORING_MANAGEMENT: 'Custom Monitoring Management',
   Cluster: 'Cluster',
   'Cluster Members Management': 'Cluster Member Management',
   'Cluster Members View': 'Cluster Member Viewing',
@@ -90,11 +90,11 @@ module.exports = {
   ROLE_NAME_EMPTY_DESC: 'Please enter a role name.',
   'Please specify role authorization': 'Specify the role permissions.',
   'Project Details': 'Project Details',
-  'Project Members Management': 'Project Member Management',
-  'Project Members View': 'Project Member Viewing',
+  PROJECT_MEMBERS_MANAGEMENT: 'Project Member Management',
+  PROJECT_MEMBERS_VIEW: 'Project Member Viewing',
   PROJECT_RESOURCES_MANAGEMENT: 'Project Resource Management',
-  'Project Roles Management': 'Project Role Management',
-  'Project Roles View': 'Project Role Viewing',
+  PROJECT_ROLES_MANAGEMENT: 'Project Role Management',
+  PROJECT_ROLES_VIEW: 'Project Role Viewing',
   PROJECTS_CREATE: 'Project Creation',
   PROJECTS_MANAGEMENT: 'Project Management',
   PROJECTS_VIEW: 'Project Viewing',
@@ -106,17 +106,17 @@ module.exports = {
   roles: 'roles',
   ROLES_MANAGEMENT: 'Role Management',
   ROLES_VIEW: 'Role Viewing',
-  'Secrets Management': 'Secret Management',
-  'Secrets View': 'Secret Viewing',
+  SECRETS_MANAGEMENT: 'Secret Management',
+  SECRETS_VIEW: 'Secret Viewing',
   'StorageClasses Management': 'StorageClass Management',
   'StorageClasses View': 'StorageClass Viewing',
   'Unable to delete preset role': 'Preset roles cannot be deleted.',
   USERS_MANAGEMENT: 'User Management',
   USERS_VIEW: 'User Viewing',
-  'Volume Snapshots Management': 'Volume Snapshot Management',
-  'Volume Snapshots View': 'Volume Snapshot Viewing',
-  'Volumes Management': 'Volume Management',
-  'Volumes View': 'Volume Viewing',
+  VOLUME_SNAPSHOTS_MANAGEMENT: 'Volume Snapshot Management',
+  VOLUME_SNAPSHOTS_VIEW: 'Volume Snapshot Viewing',
+  VOLUMES_MANAGEMENT: 'Volume Management',
+  VOLUMES_VIEW: 'Volume Viewing',
   WORKSPACE_APP_REPOS_MANAGEMENT: 'App Repository Management',
   WORKSPACE_APP_REPOS_VIEW: 'App Repository Viewing',
   WORKSPACE_APP_TEMPLATES_MANAGEMENT: 'App Template Management',
@@ -203,8 +203,6 @@ module.exports = {
   RULE_ADVANCED: 'Advanced Settings',
   RULE_S2IBUILDERS: 'Image Builder',
 
-  CLUSTER_SETTINGS_DESC:
-    'Manage cluster settings and authorizations to workspaces & edit cluster information.',
   WORKSPACE_ROLE_NAME_TIP:
     'The role name is used as the unique identifier of the role.',
   NEXT_STEP: 'Next Step',
@@ -258,34 +256,37 @@ module.exports = {
   STORAGECLASSES_VIEW_DESC: 'View storage classes in a cluster.',
   STORAGECLASSES_MANAGEMENT_DESC:
     'Create, edit, and delete storage classes and set the default storage class.',
-  VOLUME_SNAPSHOTS_VIEW_DESC: 'View volume snapshots.',
+  VOLUME_SNAPSHOTS_VIEW_DESC: 'View volume snapshots in the project.',
   VOLUME_SNAPSHOTS_MANAGEMENT_DESC:
-    'Create, edit, and delete volume snapshots.',
+    'Create, edit, and delete volume snapshots in the project.',
   CLUSTER_MONITORING_VIEW_DESC:
     'View cluster physical resources and monitoring data of application resources.',
   APPLICATION_WORKLOADS_VIEW_DESC:
-    'View applications, Services, workloads, tasks, grayscale releases, and image builder tasks in the project.',
+    'View resources such as applications, Services, workloads, Jobs, grayscale release tasks, and image builders in the project.',
   APPLICATION_WORKLOADS_MANAGEMENT_DESC:
-    'Create, edit, and delete applications, Services, workloads, tasks, grayscale releases, and image builder tasks in the project.',
-  VOLUMES_VIEW_DESC: 'View project volumes.',
-  VOLUMES_MANAGEMENT_DESC: 'Create, edit, and delete project volumes.',
-  SECRETS_VIEW_DESC: 'View project Secrets.',
-  SECRETS_MANAGEMENT_DESC: 'Create, edit, and delete project Secrets.',
-  CONFIGMAPS_VIEW_DESC: 'View project ConfigMaps.',
-  CONFIGMAPS_MANAGEMENT_DESC: 'Create, edit, and delete project ConfigMaps.',
+    'Create, edit, and delete resources such as applications, Services, workloads, Jobs, grayscale release tasks, and image builders in the project.',
+  VOLUMES_VIEW_DESC: 'View volumes in the project.',
+  VOLUMES_MANAGEMENT_DESC: 'Create, edit, and delete volumes in the project.',
+  SECRETS_VIEW_DESC: 'View Secrets in the project.',
+  SECRETS_MANAGEMENT_DESC: 'Create, edit, and delete Secrets in the project.',
+  CONFIGMAPS_VIEW_DESC: 'View ConfigMaps in the project.',
+  CONFIGMAPS_MANAGEMENT_DESC:
+    'Create, edit, and delete ConfigMaps in the project.',
   SERVICEACCOUNT_MANAGEMENT_DESC:
-    'Create, edit, and delete project service accounts.',
-  SERVICEACCOUNT_VIEW_DESC: 'View project service accounts.',
+    'Create, edit, and delete service accounts in the project.',
+  SERVICEACCOUNT_VIEW_DESC: 'View service accounts in the project.',
 
-  CUSTOM_MONITORING_VIEW_DESC: 'View custom monitoring data',
+  CUSTOM_MONITORING_VIEW_DESC:
+    'View custom monitoring dashboards in the project.',
   CUSTOM_MONITORING_MANAGEMENT_DESC:
-    'Create and manage custom monitoring data.',
+    'Create, edit, and delete custom monitoring dashboards in the project.',
 
-  ALERTING_POLICIES_VIEW_DESC: 'View alerting policies.',
+  ALERTING_POLICIES_VIEW_DESC: 'View alerting policies in the project.',
   ALERTING_POLICIES_MANAGEMENT_DESC:
-    'Create, edit, and delete alerting policies.',
-  ALERTING_MESSAGES_VIEW_DESC: 'View alerting messages.',
-  ALERTING_MESSAGES_MANAGEMENT_DESC: 'Comment on and delete alerting messages.',
+    'Create, edit, and delete alerting policies in the project.',
+  ALERTING_MESSAGES_VIEW_DESC: 'View alerting messages in the project.',
+  ALERTING_MESSAGES_MANAGEMENT_DESC:
+    'Comment on and delete alerting messages in the project.',
 
   PROJECT_ROLES_VIEW_DESC: 'View project roles.',
   PROJECT_ROLES_MANAGEMENT_DESC:
@@ -293,7 +294,7 @@ module.exports = {
   PROJECT_MEMBERS_VIEW_DESC: 'View project members.',
   PROJECT_MEMBERS_MANAGEMENT_DESC: 'Invite, edit, and remove project members.',
   PROJECT_SETTINGS_DESC:
-    'Manage project settings, including Internet access, network policies, resource quotas, and log collection.',
+    'Manage project settings including project basic information, external access settings, network policies, resource quotas, and log collection settings.',
   PROJECTS_MANAGEMENT_DESC:
     'Create, edit, and delete projects in the workspace.',
   PROJECTS_CREATE_DESC:
@@ -354,12 +355,13 @@ module.exports = {
     'Workspace regular member who can view workspace settings, manage app templates, and create projects and DevOps projects.',
 
   ROLE_PROJECT_ADMIN:
-    'Administrator who has full control over all resources in the project.',
+    'Project administrator who has full control over all resources in the project.',
   ROLE_PROJECT_REGULAR:
-    'Regular user who can manage resources other than users and roles in the project.',
-  ROLE_PROJECT_VIEWER: 'Viewer who can view all resources in the project.',
+    'Project regular user who can manage resources other than users and roles in the project.',
+  ROLE_PROJECT_VIEWER:
+    'Project viewer who can view all resources in the project.',
   ROLE_PROJECT_OPERATOR:
-    'Operater who can manage resources other than users and roles in the project.',
+    'Project operator who can manage resources other than users and roles in the project.',
 
   ROLE_DEVOPS_ADMIN:
     'Administrator who has full control over all resources in the DevOps project.',
@@ -372,8 +374,5 @@ module.exports = {
 
   NO_AUTHORIZED_USERS: 'No user is bound to this role.',
 
-  RULE_RELATED_WITH:
-    'The permission cannot be deselected because {resource} depends on it.',
-  RULE_RELATED_WITH_PLURAL:
-    'The permission cannot be deselected because {resource} depend on it.',
+  DESELECT_RESOURCE_FIRST: 'Please deselect {resource} first.',
 }

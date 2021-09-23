@@ -138,6 +138,7 @@ module.exports = {
   'Desired number of nodes scheduled': 'Número deseado de nodos programado',
   'Desired Replicas': 'Réplicas deseadas',
   'Diff Settings': 'Configuración de diferencias',
+  DIFFERENTIATED_SETTINGS: 'Differentiated Settings',
   DockerDaemonNotReady: 'DockerDaemonNotReady',
   'Edit Config Template': 'Editar plantilla de configuración',
   EDIT_CONTAINER: 'Editar contenedor',
@@ -243,7 +244,7 @@ module.exports = {
   NO_LIMIT: 'Ilimitado',
   'No related resources found with the current workload(s)':
     'No se encontraron recursos relacionados con las cargas de trabajo actuales',
-  'No related resources': 'No hay recursos relacionados.',
+  NO_RELATED_RESOURCE_FOUND: 'No hay recursos relacionados.',
   NO_REQUEST: 'Ninguna solicitud',
   NO_RESOURCE_LIMIT: 'No resource limit',
   'Node Name': 'Nombre del nodo',
@@ -286,6 +287,7 @@ module.exports = {
   DEFAULT_RULES: 'Default Rules',
   DEFAULT_RULES_DESC:
     'Schedules the Pod replicas to nodes according to default rules.',
+  CUSTOM_RULES: 'Custom Rules',
   CUSTOM_RULES_DESC:
     'Las réplicas de pod se implementarán de acuerdo con la política predeterminada.',
   'Pod replicas will be deployed according to user customization.':
@@ -692,8 +694,10 @@ module.exports = {
     'La ruta relativa del registro del contenedor es la ruta desde la ruta de montaje del módulo, que se puede proporcionar en modo global. Cuando hay varios grupos, sepárelos por comas. Por ejemplo, cuando la ruta de montaje del pod es / data, la ruta relativa del registro de pod se configura como log / *. Log, lo que significa que todos los archivos de sufijos .log en el directorio / data / log coinciden. Si necesita hacer coincidir todos los archivos de sufijos .log en el directorio / data / log y sus subdirectorios, puede configurar la ruta relativa del registro de pod a log / ** / *. Log.',
   SPECIFY_SUBPATH_TIP:
     'Solo es apropiado para montar volúmenes, pero no para hostpath',
-  DELETE_WORKLOAD_DESC:
-    'Está a punto de eliminar la (s) carga (s) de trabajo {recurso}. ¿Confirma si desea eliminar el recurso asociado?',
+  DELETE_WORKLOAD_DESC_SI:
+    'You are about to delete the workload {resource}.<br/>Do you want to also delete the resource related to the workload?',
+  DELETE_WORKLOAD_DESC_PL:
+    'You are about to delete the workloads {resource}.<br/>Do you want to also delete the resources related to the workloads?',
   SELECT_VOLUME_DESC:
     'Selecciona un volumen que se haya creado y móntelo en el contenedor.',
   REDEPLOY_CONFIRM_DESC:
@@ -726,11 +730,11 @@ module.exports = {
   COMPARE_WITH: 'Comparación con la versión anterior {versión}',
   REVISION_DESC:
     'Después de cambiar la plantilla de recursos de la carga de trabajo, se generará un nuevo registro y los pods se reprogramarán para la actualización de la versión. Las últimas 10 versiones se guardarán de forma predeterminada. Puede implementar una redistribución basada en el registro de cambios.',
-  CLUSTER_CONTAINER_IMAGE_DIFF_DESC:
+  CLUSTER_DIFF_CONTAINER_SETTINGS_DESC:
     'Establecer diferentes contenedores en diferentes grupos según las necesidades',
-  CLUSTER_SERVICE_DIFF_DESC:
+  CLUSTER_DIFF_PORT_SETTINGS_DESC:
     'Se pueden configurar diferentes puertos de servicio en diferentes grupos',
-  CLUSTER_ENV_DIFF_DESC:
+  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC:
     'Se pueden configurar diferentes entornos de contenedores en diferentes grupos',
   POD_SCALE_DESC: 'El número de instancias de Pod que se pueden escalar',
   REPLICAS_AVAILABLE: 'Disponibles',

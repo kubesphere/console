@@ -186,7 +186,7 @@ export default class Deployments extends React.Component {
         ),
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         search: true,
