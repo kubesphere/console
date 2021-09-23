@@ -629,28 +629,36 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: cpuError || limit.requestCpuError,
                   })}
                 >
-                  <span className={styles.label}>{t('CPU_REQUEST')}:</span>
-                  <Input
-                    name="requests.cpu"
-                    value={this.getRequest(this.state.requests.cpu)}
-                    onChange={this.handleInputChange}
-                    placeholder={t('NO_REQUEST')}
-                  />
-                  <span className={styles.unit}>{this.cpuUnit}</span>
+                  <span className={styles.label}>
+                    {t('WS_RESOURCE_REQUESTS')}
+                  </span>
+                  <div className={styles.inputBox}>
+                    <Input
+                      name="requests.cpu"
+                      value={this.getRequest(this.state.requests.cpu)}
+                      onChange={this.handleInputChange}
+                      placeholder={t('NO_REQUEST')}
+                    />
+                    <span className={styles.unit}>{this.cpuUnit}</span>
+                  </div>
                 </div>
                 <div
                   className={classnames(styles.input, {
                     [styles.error]: cpuError || limit.limitCpuError,
                   })}
                 >
-                  <span className={styles.label}>{t('CPU_LIMIT')}:</span>
-                  <Input
-                    name="limits.cpu"
-                    value={this.getLimit(this.state.limits.cpu)}
-                    onChange={this.handleInputChange}
-                    placeholder={t('NO_LIMIT')}
-                  />
-                  <span className={styles.unit}>{this.cpuUnit}</span>
+                  <span className={styles.label}>
+                    {t('WS_RESOURCE_LIMITS')}
+                  </span>
+                  <div className={styles.inputBox}>
+                    <Input
+                      name="limits.cpu"
+                      value={this.getLimit(this.state.limits.cpu)}
+                      onChange={this.handleInputChange}
+                      placeholder={t('NO_LIMIT')}
+                    />
+                    <span className={styles.unit}>{this.cpuUnit}</span>
+                  </div>
                 </div>
               </div>
             </Column>
@@ -662,28 +670,36 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: memoryError || limit.requestMemoryError,
                   })}
                 >
-                  <span className={styles.label}>{t('MEMORY_REQUEST')}:</span>
-                  <Input
-                    name="requests.memory"
-                    value={this.getRequest(this.state.requests.memory)}
-                    onChange={this.handleInputChange}
-                    placeholder={t('NO_REQUEST')}
-                  />
-                  <span className={styles.unit}>{this.memoryUnit}</span>
+                  <span className={styles.label}>
+                    {t('WS_RESOURCE_REQUESTS')}
+                  </span>
+                  <div className={styles.inputBox}>
+                    <Input
+                      name="requests.memory"
+                      value={this.getRequest(this.state.requests.memory)}
+                      onChange={this.handleInputChange}
+                      placeholder={t('NO_REQUEST')}
+                    />
+                    <span className={styles.unit}>{this.memoryUnit}</span>
+                  </div>
                 </div>
                 <div
                   className={classnames(styles.input, {
                     [styles.error]: memoryError || limit.limitMemoryError,
                   })}
                 >
-                  <span className={styles.label}>{t('MEMORY_LIMIT')}:</span>
-                  <Input
-                    name="limits.memory"
-                    value={this.getLimit(this.state.limits.memory)}
-                    onChange={this.handleInputChange}
-                    placeholder={t('NO_LIMIT')}
-                  />
-                  <span className={styles.unit}>{this.memoryUnit}</span>
+                  <span className={styles.label}>
+                    {t('WS_RESOURCE_LIMITS')}
+                  </span>
+                  <div className={styles.inputBox}>
+                    <Input
+                      name="limits.memory"
+                      value={this.getLimit(this.state.limits.memory)}
+                      onChange={this.handleInputChange}
+                      placeholder={t('NO_LIMIT')}
+                    />
+                    <span className={styles.unit}>{this.memoryUnit}</span>
+                  </div>
                 </div>
               </div>
             </Column>

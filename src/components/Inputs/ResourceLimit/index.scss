@@ -133,9 +133,16 @@
     }
 
     .label {
-      width: 54px;
+      width: 60px;
+      height: 32px;
       margin-right: 8px;
+      display: flex;
+      align-items: center;
       @include TypographyParagraph();
+    }
+
+    .inputBox {
+      flex: 1;
     }
 
     .unit {
@@ -149,14 +156,12 @@
     }
 
     :global {
-      .input {
-        width: auto;
-        flex: 1;
+      input.input {
+        width: 100%;
       }
 
       .select {
-        width: auto;
-        flex: 1;
+        width: 100%;
 
         .icon {
           align-self: center;

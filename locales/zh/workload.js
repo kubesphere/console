@@ -49,7 +49,7 @@ module.exports = {
   DAEMONSET_EMPTY_DESC: '请创建一个守护进程集。',
   JOB_EMPTY_DESC: '请创建一个任务。',
   CRONJOB_EMPTY_DESC: '请创建一个定时任务。',
-  GPU_TYPE: 'GPU 类型',
+  GPU_TYPE: 'GPU类型：',
   'Service Configuration': '服务配置',
 
   'Available number of nodes scheduled': '可用节点数',
