@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Discover branches from repository': '发现存储库上的分支',
+  'Discover branches from repository': '发现仓库上的分支',
   'Discover pull requests from origin': '发现原始存储库与目标存储库相同的 PR',
   'Discover pull requests from forks': '发现 Fork 存储库与目标存储库相同的 PR',
   'User types that can trigger builds': '可以触发构建的用户类型',
@@ -34,7 +34,7 @@ module.exports = {
   'Behavioral strategy': '行为策略',
   'Specify the location of the Jenkinsfile in the source code repository':
     '指定 Jenkinsfile 在源代码仓库的位置',
-  'Scan Repo Trigger': '扫描 Repo Trigger',
+  'Scan Repo Trigger': '扫描仓库触发器',
   'If not, scan regularly': '如果没有扫描触发，则定期扫描',
   'Scan interval': '扫描时间间隔',
   'Push message to': '推送消息到',
@@ -96,8 +96,8 @@ module.exports = {
   'Repository Url': '仓库 URL',
   'Repository Name': '仓库名称',
   'get token': '获取 Token',
-  PIPELINE_DESC: `Pipeline 是一系列的插件集合，可以通过组合它们来实现持续集成和持续交付的功能。
-    Pipeline DSL 为我们提供了一个可扩展的工具集，让我们可以将简单到复杂的逻辑通过代码实现。`,
+  PIPELINE_DESC: `流水线是一系列的插件集合，可以通过组合它们来实现持续集成和持续交付的功能。
+    流水线 DSL 为我们提供了一个可扩展的工具集，让我们可以将简单到复杂的逻辑通过代码实现。`,
   'Create Credential': '创建凭证',
   'Credential ID': '凭证 ID',
   username_password: '帐户凭证',
@@ -135,7 +135,7 @@ module.exports = {
   remote: '仓库地址',
   'Print message': '打印消息',
   CREDENTIALS_DESC: `凭证是包含了一些敏感数据的对象，如用户名密码，SSH 密钥和 Token 等,
-    用于在 Pipeline 运行时, 为拉取代码、push/pull 镜像、SSH 执行脚本等过程提供认证`,
+    用于在流水线运行时, 为拉取代码、push/pull 镜像、SSH 执行脚本等过程提供认证`,
   'Credential Id': '凭证 ID',
   'No artifacts records': '没有制品记录',
   'Select This Repository': '选择此仓库',
@@ -161,7 +161,7 @@ module.exports = {
   'branch success': '分支成功',
   tips_Parametric_build: `参数化构建过程允许您在进行构建时传入一个或多个参数。
   例如：您可能有一个进行发布软件的流水线，并且希望一起进行上传发行说明。这可以通过在此处添加文本参数来完成。
-  每个参数都有一个 Name 和某种 Value，Value 的值取决于参数类型。在 Pipeline 当中可以使用
+  每个参数都有一个 Name 和某种 Value，Value 的值取决于参数类型。在流水线当中可以使用
     params.Name
   或 Name 访问这些值。这意味着此处定义的每个参数应具有唯一的名称。
   当参数化项目时，构建会被替换为参数化构建，其中将提示用户为每个定义的参数输入值。
@@ -235,16 +235,16 @@ module.exports = {
   'Username Variable': '用户名变量',
   PRIVATE_IMAGE_DESC:
     '要从私有镜像仓库部署，需要先创建镜像仓库，然后拉取镜像。',
-  AGENT_TYPE_DESC: `Agent 部分指定整个 Pipeline 或特定阶段将在 Jenkins 环境中执行的位置，
-    具体取决于该 agent 部分的放置位置。该部分必须在 Pipeline 块内的顶层定义，但 stage 级使用是可选的。`,
+  AGENT_TYPE_DESC: `Agent 部分指定整个流水线或特定阶段将在 Jenkins 环境中执行的位置，
+    具体取决于该 agent 部分的放置位置。该部分必须在流水线块内的顶层定义，但 stage 级使用是可选的。`,
   AUTHENTICATION_TOKEN_DESC: `使用以下 URL 远程触发构建：
     JENKINS_URL / job / JOB_NAME / build？token =TOKEN_NAME
     或者/ buildWithParameters？token = TOKEN_NAME 可选择附加＆cause =原因提供将包含在记录的构建原因中的文本。`,
   'Please select a code repository as the code source for the pipeline.':
-    '请选择一个代码仓库作为 Pipeline 的代码源',
-  'Pipeline config file not found': '未找到 Pipeline 配置文件',
-  ACTIVITY_EMPTY_TIP: '当前 Pipeline 还没有运行',
-  PIPELINE_NO_CONFIG: '当前 Pipeline 中并没有找到相关配置文件',
+    '请选择一个代码仓库作为流水线的代码源',
+  'Pipeline config file not found': '未找到流水线配置文件',
+  ACTIVITY_EMPTY_TIP: '当前流水线还没有运行',
+  PIPELINE_NO_CONFIG: '当前流水线中并没有找到相关配置文件',
   NOT_VALID_JENKINS_FILE:
     '当前 Jenkinsfile 不是标准的声明式 Jenkinsfile，无法进行图形化显示',
   PIPELINE_CRONJOB_CRON_DESC: `Every hour, on the hour 语法参照
@@ -392,8 +392,8 @@ module.exports = {
   'Start the follow-up task after the inspection': '检查通过后开始后续任务',
   'Load the sonarqube configuration provided by Jenkins into the Pipeline.':
     '将 Jenkins 中的 sonarqube 配置加载到流水线中',
-  PIPELINE_CREATE_DESC: '初始化完成后将开始 Pipeline 的任务执行',
-  'Pipeline initialization': 'Pipeline 初始化中',
+  PIPELINE_CREATE_DESC: '初始化完成后将开始流水线的任务执行',
+  'Pipeline initialization': '流水线初始化中',
   'Specify a container to add nested tasks to execute inside the container':
     '指定容器，可添加嵌套任务在容器内执行',
   INPUT_DESC:
@@ -405,14 +405,14 @@ module.exports = {
   waitForQualityGate_DESC: '在执行代码分析后执行',
   script_DESC: '执行groovy脚本',
   Queued: '队列中',
-  PIPELINE_QUEUED_TITLE: 'Pipeline 即将进行初始化',
+  PIPELINE_QUEUED_TITLE: '流水线即将进行初始化',
   PIPELINE_QUEUED_DESC:
     '您需要等待 agent 启动并执行流水线（注：如 agent 长时间没有启动请检查 agent 配置和集群资源情况）',
   pipeline_owner: 'DevOps 工程的所有者，可以进行 DevOps 工程的所有操作',
   pipeline_maintainer:
-    'DevOps 工程的主要维护者，可以进行工程内的凭证配置、Pipeline 配置等操作',
-  pipeline_developer: 'DevOps 工程的开发者，可以进行 Pipeline 的触发以及查看',
-  pipeline_reporter: 'DevOps 工程的观察者，可以查看 Pipeline 的运行情况',
+    'DevOps 工程的主要维护者，可以进行工程内的凭证配置、流水线配置等操作',
+  pipeline_developer: 'DevOps 工程的开发者，可以进行流水线的触发以及查看',
+  pipeline_reporter: 'DevOps 工程的观察者，可以查看流水线的运行情况',
   'sonar is the default config name.': '默认配置名称是 sonar',
   credentialsId: '凭证 ID',
   enableConfigSubstitution: '启用变量替换',
