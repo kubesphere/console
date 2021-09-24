@@ -21,6 +21,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import moment from 'moment-mini'
 
+import { htmlLinkControl } from 'utils'
 import { Markdown } from 'components/Base'
 import { Checkbox } from '@kube-design/components'
 import ImageSlider from './ImageSlider'
@@ -85,10 +86,11 @@ export default class AppInfo extends React.PureComponent {
 
   renderAppDeployAgreement() {
     const { isCheck, onChange } = this.props
+    const htmlDes = t.html('APP_DEPLOY_AGREEMENT_2')
     return (
       <div className={styles.agree}>
         <p>{t('APP_DEPLOY_AGREEMENT_1')}</p>
-        <p>{t.html('APP_DEPLOY_AGREEMENT_2')}</p>
+        <p>{htmlLinkControl(htmlDes)}</p>
         <div className="margin-t12">
           <Checkbox checked={isCheck} onChange={onChange}>
             {t('APP_DEPLOY_AGREEMENT_CHEKC')}

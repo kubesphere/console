@@ -28,7 +28,7 @@ import {
   getSuitableUnit,
   getChartData,
 } from 'utils/monitoring'
-
+import { htmlLinkControl } from 'utils'
 import VolumeStatus from 'projects/components/Charts/VolumeUsage'
 import CustomTooltip from 'components/Charts/Custom/Tooltip'
 import { Alert, Loading } from '@kube-design/components'
@@ -80,6 +80,7 @@ export default class UsageCard extends Component {
   render() {
     const { title, store } = this.props
     const { isLoading, isRefreshing } = store
+    const htmlMes = t.html('VOLUME_MONITORING_TIP')
 
     return (
       <Panel title={title}>
@@ -88,7 +89,7 @@ export default class UsageCard extends Component {
             <Alert
               type="warning"
               className="margin-b12"
-              message={t.html('VOLUME_MONITORING_TIP')}
+              message={htmlLinkControl(htmlMes)}
             />
             {this.renderStatus()}
             {this.renderMonitor()}

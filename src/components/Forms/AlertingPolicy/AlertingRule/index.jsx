@@ -20,6 +20,7 @@ import React from 'react'
 import { get, isEmpty } from 'lodash'
 import { Form, RadioGroup, RadioButton } from '@kube-design/components'
 
+import { learnMoreTip } from 'utils'
 import MonitoringTarget from './MonitoringTarget'
 import RuleInput from './RuleInput'
 import CustomRule from './CustomRule'
@@ -90,11 +91,12 @@ export default class AlertingRule extends React.Component {
 
   renderCustomRule() {
     const { cluster, namespace, store, formTemplate } = this.props
+    const htmlDes = t.html('ALERT_RULE_EXPRESSION_DESC')
     return (
       <>
         <Form.Item
           label={t('RULE_EXPRESSION')}
-          desc={t.html('ALERT_RULE_EXPRESSION_DESC')}
+          desc={learnMoreTip(htmlDes)}
           rules={[{ required: true, message: t('ENTER_RULE_EXPRESSION') }]}
         >
           <CustomRule

@@ -36,6 +36,9 @@ export default class Help extends React.Component {
         <div className={styles.tip}>
           <a
             href={getDocsUrl('project_members')}
+            className={classNames({
+              [styles.banLink]: !globals.config.showOutSiteLink,
+            })}
             target="_blank"
             rel="noreferrer noopener"
           >
@@ -45,6 +48,9 @@ export default class Help extends React.Component {
         <div className={styles.tip}>
           <a
             href={getDocsUrl('internet')}
+            className={classNames({
+              [styles.banLink]: !globals.config.showOutSiteLink,
+            })}
             target="_blank"
             rel="noreferrer noopener"
           >

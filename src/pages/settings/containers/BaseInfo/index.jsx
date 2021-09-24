@@ -20,7 +20,7 @@ import React, { Component } from 'react'
 import { Panel, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { getDocsUrl } from 'utils'
-
+import classNames from 'classnames'
 import styles from './index.scss'
 
 export default class BaseInfo extends Component {
@@ -55,6 +55,9 @@ export default class BaseInfo extends Component {
             />
             <a
               href={`${getDocsUrl('custom_console')}`}
+              className={classNames({
+                [styles.banLink]: !globals.config.showOutSiteLink,
+              })}
               target="_blank"
               rel="noreferrer noopener"
             >
