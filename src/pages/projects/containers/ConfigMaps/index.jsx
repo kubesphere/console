@@ -40,7 +40,7 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -60,7 +60,7 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'editConfigMap',
         icon: 'pen',
-        text: t('EDIT_CONFIGMAP'),
+        text: t('EDIT_SETTINGS'),
         action: 'edit',
         onClick: item =>
           trigger('configmap.edit', {

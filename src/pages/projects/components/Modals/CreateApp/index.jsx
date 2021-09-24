@@ -126,7 +126,7 @@ export default class ServiceDeployAppModal extends React.Component {
         required: true,
       },
       {
-        title: 'EXTERNAL_ACCESS',
+        title: 'ROUTE_SETTINGS',
         component: Routes,
         required: true,
       },

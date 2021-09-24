@@ -45,7 +45,7 @@ module.exports = {
 
   'Project Number': '項目數量',
   'DevOps Project Number': 'DevOps 工程數量',
-  EDIT_QUOTA: '編輯配額',
+  EDIT_QUOTAS: '編輯配額',
 
   'View Workspace': '進入企業空間',
   DELETE_WORKSPACE: '刪除企業空間',

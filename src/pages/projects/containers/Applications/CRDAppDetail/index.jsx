@@ -46,7 +46,7 @@ export default class CRDAppDetail extends React.Component {
   }
 
   get name() {
-    return 'Application'
+    return 'APP'
   }
 
   get listUrl() {
@@ -68,7 +68,7 @@ export default class CRDAppDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -92,7 +92,7 @@ export default class CRDAppDetail extends React.Component {
     {
       key: 'addRoute',
       icon: 'add',
-      text: t('Add Route'),
+      text: t('ADD_ROUTE'),
       action: 'edit',
       onClick: () =>
         this.trigger('crd.app.addroute', {
@@ -128,7 +128,7 @@ export default class CRDAppDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -140,7 +140,7 @@ export default class CRDAppDetail extends React.Component {
         value: <Status name={t(detail.status)} type={detail.status} />,
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: appName,
       },
       {
@@ -156,7 +156,7 @@ export default class CRDAppDetail extends React.Component {
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('CREATOR'),
+        name: t('CREATED_BY'),
         value: detail.creator,
       },
     ]

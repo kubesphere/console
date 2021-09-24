@@ -32,6 +32,7 @@ module.exports = {
   DEVOPS_MANAGEMENT: 'DevOps Project Management',
   WORKSPACE_GROUPS_MANAGEMENT: 'Workspace Department Management',
   WORKSPACE_GROUPS_VIEW: 'Workspace Department Viewing',
+  EDIT_PERMISSIONS: 'Edit Permissions',
   'Account Role': 'Rol de cuenta',
   CLUSTERS_VIEW: 'Cluster Viewing',
   CREATE_ROLE: 'Create Role',

@@ -205,8 +205,7 @@ export default class VolumeSettings extends React.Component {
             clearable
           />
         </Form.Item>
-        {editModalTitle !== 'Edit Config Template' &&
-        tabTitle !== 'CLUSTER_DIFF' ? (
+        {editModalTitle !== 'EDIT_SETTINGS' && tabTitle !== 'CLUSTER_DIFF' ? (
           <Form.Item
             label={t('ACCESS_MODE')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}

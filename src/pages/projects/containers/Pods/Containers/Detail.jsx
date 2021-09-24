@@ -40,7 +40,7 @@ export default class ContainerDetail extends React.Component {
   }
 
   get name() {
-    return 'Container'
+    return 'CONTAINER'
   }
 
   get authKey() {

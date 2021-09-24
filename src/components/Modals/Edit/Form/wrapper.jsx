@@ -96,8 +96,6 @@ const EnhanceWrapper = function(Component) {
           className={classnames(styles.formActions, {
             [styles.active]: this.state.showFormActions,
           })}
-          okText={t('SAVE')}
-          cancelText={t('Undo')}
           onOk={this.handleSaveChange}
           onCancel={this.handleCancelChange}
         />

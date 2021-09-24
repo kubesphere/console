@@ -147,7 +147,7 @@ export default class Nodes extends React.Component {
         {
           key: 'taint',
           type: 'default',
-          text: t('EDIT_TAINT'),
+          text: t('EDIT_TAINTS'),
           action: 'edit',
           onClick: () =>
             trigger('node.taint.batch', {
@@ -298,7 +298,9 @@ export default class Nodes extends React.Component {
                   )}
                 </div>
               }
-              description={`${metrics.cpu_used}/${metrics.cpu_total} cores`}
+              description={`${metrics.cpu_used}/${metrics.cpu_total} ${t(
+                'CORE_PL'
+              )}`}
             />
           )
         },

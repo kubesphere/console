@@ -23,7 +23,7 @@ module.exports = {
   'Created Projects': 'Created Projects',
   DELETE_WORKSPACE: 'Delete Workspace',
   'DevOps Project Number': 'DevOps Projects',
-  EDIT_QUOTA: 'Edit Quota',
+  EDIT_QUOTAS: 'Edit Quotas',
   'Edit Workspace Role': 'Edit Workspace Role',
   'Involved Projects': 'Involved Projects',
   'Manage Organizations': 'Manage Organization',

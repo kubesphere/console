@@ -52,7 +52,7 @@ export default class PipelineDetailLayout extends React.Component {
   }
 
   get name() {
-    return 'pipelines'
+    return 'PIPELINE'
   }
 
   get routing() {
@@ -301,7 +301,7 @@ export default class PipelineDetailLayout extends React.Component {
       labels: this.store.detail.labels,
       breadcrumbs: [
         {
-          label: t('Pipeline List'),
+          label: t('PIPELINE_PL'),
           url: `/${workspace}/clusters/${cluster}/devops/${devops}/pipelines`,
         },
       ],

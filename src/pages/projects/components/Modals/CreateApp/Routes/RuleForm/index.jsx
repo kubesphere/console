@@ -214,7 +214,7 @@ export default class RuleForm extends React.Component {
 
     return (
       <Modal.Form
-        title={isEmpty(data) ? t('ADD_ROUTING_RULE') : t('EDIT_ROUTING_RULE')}
+        title={isEmpty(data) ? t('ADD_ROUTING_RULE') : t('EDIT_ROUTING_RULES')}
         width={920}
         {...this.props}
         onOk={this.handleSubmit}

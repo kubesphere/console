@@ -127,6 +127,8 @@ module.exports = {
   AVERAGE: 'Promedio',
   TOTAL_AVERAGE: 'Total',
   SUCCESS: 'Success',
+  SUCCESSFUL: 'Successful',
+  NOT_SUCCESSFUL: 'Not successful',
   ERROR: 'Error',
   FAILURE: 'Failure',
   ETCD_NODE_TITLE: 'Nodo etcd',
@@ -228,7 +230,8 @@ module.exports = {
   COUNT: 'Count',
   REQUEST_LATENCY: 'Request Latency',
   REQUEST_PER_SECOND: 'Request per Second',
-  NODE_IP_ADDRESS: 'Node IP Address: {value}',
+  NODE_IP_ADDRESS_VALUE: 'Node IP Address: {value}',
+  NODE_IP_ADDRESS: 'Node IP Address',
 
   // Application Resources
   WORKSPACES: 'Workspaces',

@@ -47,7 +47,7 @@ export default class ServiceAccountDetail extends React.Component {
   }
 
   get name() {
-    return 'ServiceAccount'
+    return 'SERVICE_ACCOUNT'
   }
 
   get routing() {
@@ -80,7 +80,7 @@ export default class ServiceAccountDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('serviceaccount.edit', {

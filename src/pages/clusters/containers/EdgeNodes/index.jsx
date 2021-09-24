@@ -130,7 +130,7 @@ export default class EdgeNodes extends React.Component {
         {
           key: 'taint',
           type: 'default',
-          text: t('EDIT_TAINT'),
+          text: t('EDIT_TAINTS'),
           action: 'edit',
           onClick: () =>
             trigger('node.taint.batch', {

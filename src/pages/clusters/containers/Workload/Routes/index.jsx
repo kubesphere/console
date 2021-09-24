@@ -44,7 +44,7 @@ export default class Routers extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -66,7 +66,7 @@ export default class Routers extends React.Component {
       {
         key: 'editRules',
         icon: 'firewall',
-        text: t('EDIT_ROUTING_RULE'),
+        text: t('EDIT_ROUTING_RULES'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -77,7 +77,7 @@ export default class Routers extends React.Component {
       {
         key: 'editAnnotations',
         icon: 'firewall',
-        text: t('EDIT_ANNOTATION'),
+        text: t('EDIT_ANNOTATIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>

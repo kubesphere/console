@@ -139,11 +139,11 @@ export default class ConfigMapEditModal extends React.Component {
     return (
       <Modal
         width={960}
-        title={t('EDIT_CONFIGMAP')}
+        title={t('EDIT_SETTINGS')}
         icon="pen"
         bodyClassName={styles.body}
         onOk={this.handleOk}
-        okText={t('Update')}
+        okText={t('OK')}
         onCancel={onCancel}
         visible={visible}
         disableSubmit={!isEmpty(subRoute)}

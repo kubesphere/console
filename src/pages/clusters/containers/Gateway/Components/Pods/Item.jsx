@@ -110,7 +110,7 @@ export default class PodItem extends React.PureComponent {
 
     return (
       <p>
-        {t('CREATE_TIME', {
+        {t('CREATED_AGO', {
           diff: getLocalTime(this.props.detail.createTime).fromNow(),
         })}
       </p>

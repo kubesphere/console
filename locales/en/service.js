@@ -29,6 +29,8 @@ module.exports = {
   'Commonly included tags in the current workloads':
     'Commonly included tags in the current workloads',
   CONTAINER_PORT: 'Container Port',
+  CONTAINER_PORT_SCAP: 'Container port',
+  SERVICE_PORT_SCAP: 'Service port',
   CONTAINER_PORT_VALUE: 'Container Port: {value}',
   CREATE_SERVICE: 'Create Service',
   'Create Service': 'Create Service',
@@ -43,6 +45,7 @@ module.exports = {
   'Delete Service': 'Delete Service',
   'Do not assign Service IP': 'Do not assign Service IP',
   EDIT_EXTERNAL_ACCESS: 'Edit External Access',
+  EDIT_MONITORING_EXPORTER: 'Edit Monitoring Exporter',
   EDIT_SERVICE: 'Edit Service',
   STICKY_SESSION: 'Sticky Session',
   'External Address': 'External Address',
@@ -113,7 +116,7 @@ module.exports = {
     'The current selector ({selector}) matches {count} workloads.',
   STICKY_SESSION_DESC:
     'Set the system to forward all requests from the same client to the same Pod within a specified duration.',
-  VIRTUAL_IP: 'Virtual IP',
+  VIRTUAL_IP: 'VirtualIP',
 
   CREATE_EXTERNAL_SERVICE_DESC:
     'Create a Service and map it to an external Service.',

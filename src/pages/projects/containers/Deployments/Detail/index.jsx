@@ -48,7 +48,7 @@ export default class DeploymentDetail extends React.Component {
   }
 
   get name() {
-    return 'Deployment'
+    return 'DEPLOYMENT'
   }
 
   get listUrl() {
@@ -89,7 +89,7 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -101,7 +101,7 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'rollBack',
       icon: 'timed-task',
-      text: t('Revision Rollback'),
+      text: t('ROLL_BACK'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.revision.rollback', {
@@ -112,7 +112,7 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'editHpa',
       icon: 'firewall',
-      text: t('HORIZONTAL_POD_AUTOSCALING'),
+      text: t('EDIT_AUTOSCALING'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.hpa.edit', {
@@ -123,7 +123,7 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'editConfigTemplate',
       icon: 'storage',
-      text: t('Edit Config Template'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.template.edit', {
@@ -147,7 +147,7 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'redeploy',
       icon: 'restart',
-      text: t('REDEPLOY'),
+      text: t('RECREATE'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.redeploy', {

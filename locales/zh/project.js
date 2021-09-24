@@ -204,7 +204,7 @@ module.exports = {
     '项目名称在主集群中已经存在，请输入其他项目名称。',
 
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
-    '删除多集群项目同时也会删除依赖于 Host 集群上的同名项目,</br>请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
+    '删除多集群项目同时也会删除依赖于主集群上的同名项目,</br>请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
 
   DEFAULT_RESOURCE_UNIT_DESC: 'CPU无单位时为核数, 1核 = 1000m',
   DEFAULT_RESOURCE_ALERT:

@@ -31,6 +31,8 @@ module.exports = {
   'Commonly included tags in the current workloads':
     'Etiquetas comúnmente incluidas en las cargas de trabajo actuales',
   CONTAINER_PORT: 'Puerto de contenedores',
+  CONTAINER_PORT_SCAP: 'Container port',
+  SERVICE_PORT_SCAP: 'Service port',
   CONTAINER_PORT_VALUE: 'Puerto de contenedores: {value}',
   CREATE_SERVICE: 'Crear servicio',
   'Create Service': 'Crear servicio',
@@ -45,6 +47,7 @@ module.exports = {
   'Delete Service': 'Eliminar servicio',
   'Do not assign Service IP': 'No asignar IP de servicio',
   EDIT_EXTERNAL_ACCESS: 'Editar acceso a Internet',
+  EDIT_MONITORING_EXPORTER: 'Edit Monitoring Exporter',
   EDIT_SERVICE: 'Servicio de edición',
   STICKY_SESSION: 'Sticky Session',
   'External Address': 'Dirección Externa',

@@ -50,7 +50,7 @@ export default class RoleDetail extends React.Component {
   }
 
   get name() {
-    return 'Cluster Role'
+    return 'CLUSTER_ROLE'
   }
 
   get listUrl() {
@@ -75,7 +75,7 @@ export default class RoleDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>
@@ -151,7 +151,7 @@ export default class RoleDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Cluster Roles'),
+          label: t('CLUSTER_ROLE_PL'),
           url: this.listUrl,
         },
       ],

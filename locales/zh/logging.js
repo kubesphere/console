@@ -154,6 +154,7 @@ module.exports = {
 
   // Log Collection
   LOG_COLLECTION: '日志收集',
+  LOG_RECEIVER_PL: '日志接收器',
   LOG_ADDRESS: '地址：',
   LOG_COLLECTING: '收集中',
   LOG_DISABLED: '关闭',

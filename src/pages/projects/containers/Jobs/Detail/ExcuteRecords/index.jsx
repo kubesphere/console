@@ -77,7 +77,7 @@ class ExcuteRecords extends React.Component {
 
   getColumns = () => [
     {
-      title: t('No.'),
+      title: t('SN_NO'),
       dataIndex: 'id',
       width: '7%',
     },
@@ -175,7 +175,7 @@ class ExcuteRecords extends React.Component {
     return (
       <Card
         className={styles.main}
-        title={t('Execution Records')}
+        title={t('JOB_RECORDS')}
         operations={
           <Button icon="refresh" type="flat" onClick={this.handleRefresh} />
         }

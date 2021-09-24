@@ -69,7 +69,7 @@ export default class Jobs extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_INFO'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {

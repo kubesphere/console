@@ -180,7 +180,7 @@ export default class BitBucketForm extends GitHubForm {
             onClick={this.handlePasswordConfirm}
             loading={this.state.isLoading}
           >
-            {t('Confirm')}
+            {t('OK')}
           </Button>
         </Form>
       </div>

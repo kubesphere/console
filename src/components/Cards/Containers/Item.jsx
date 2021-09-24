@@ -234,7 +234,11 @@ export default class ContainerItem extends React.Component {
           <div>
             {isUndefined(detail.restartCount) ? '-' : detail.restartCount}
           </div>
-          <p>{t('RESTART_PL')}</p>
+          <p>
+            {!isUndefined(detail.restartCount) && detail.restartCount === 1
+              ? t('RESTART')
+              : t('RESTART_PL')}
+          </p>
         </div>
         <div className={styles.text}>
           <div>
@@ -244,7 +248,11 @@ export default class ContainerItem extends React.Component {
                   .map(port => `${port.containerPort}/${port.protocol}`)
                   .join(', ')}
           </div>
-          <p>{t('PORT_PL')}</p>
+          <p>
+            {!isEmpty(detail.ports) && detail.ports.length === 1
+              ? t('PORT')
+              : t('PORT_PL')}
+          </p>
         </div>
         <ContainerLogModal
           visible={showContainerLog}

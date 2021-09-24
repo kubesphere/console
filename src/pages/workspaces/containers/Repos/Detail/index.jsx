@@ -49,7 +49,7 @@ export default class RepoDetail extends React.Component {
   }
 
   get name() {
-    return 'App Repo'
+    return 'APP_REPOSITORY'
   }
 
   get listUrl() {
@@ -140,7 +140,7 @@ export default class RepoDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('App Repos'),
+          label: t('APP_REPOSITORY_PL'),
           url: this.listUrl,
         },
       ],

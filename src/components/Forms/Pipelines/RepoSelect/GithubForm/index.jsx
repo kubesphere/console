@@ -239,7 +239,7 @@ export default class GitHubForm extends React.Component {
             loading={this.state.isLoading}
             onClick={this.handlePasswordConfirm}
           >
-            {t('Confirm')}
+            {t('OK')}
           </Button>
         </Form>
       </div>

@@ -136,11 +136,11 @@ export default class SecretEditModal extends React.Component {
     return (
       <Modal
         width={960}
-        title={t('EDIT_SECRET')}
+        title={t('EDIT_SETTINGS')}
         icon="pen"
         bodyClassName={styles.body}
         onOk={this.handleOk}
-        okText={t('Update')}
+        okText={t('OK')}
         onCancel={onCancel}
         visible={visible}
         disableSubmit={!isEmpty(subRoute)}

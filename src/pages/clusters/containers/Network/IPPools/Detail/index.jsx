@@ -45,7 +45,7 @@ export default class IPPoolDetail extends React.Component {
   }
 
   get name() {
-    return 'Pod IP Pool'
+    return 'POD_IP_POOL'
   }
 
   get listUrl() {
@@ -72,7 +72,7 @@ export default class IPPoolDetail extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_INFO'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         type: 'control',
         onClick: () =>

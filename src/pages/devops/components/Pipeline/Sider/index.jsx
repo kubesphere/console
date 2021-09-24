@@ -184,7 +184,7 @@ export default class Sider extends React.Component {
           </Form.Item>
           {this.renderAgentForms()}
           <div className={styles.footer}>
-            <Button onClick={this.handleCancel}>{t('Cancel')}</Button>
+            <Button onClick={this.handleCancel}>{t('CANCEL')}</Button>
             <Button
               disabled={!pipeline || !pipeline.stages.length}
               loading={isSubmitting || this.loading}

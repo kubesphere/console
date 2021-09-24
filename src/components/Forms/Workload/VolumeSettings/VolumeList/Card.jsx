@@ -37,10 +37,10 @@ const Card = ({ volume, onDelete, onEdit }) => {
   let icon = 'storage'
   let description
   let details
-  if (volume.hostPath) {
+  if (volume.HostPath) {
     description = `${t('TYPE')}: ${t('HostPath')}`
     details = [
-      { title: get(volume, 'hostPath.path', '-'), description: t('Host Path') },
+      { title: get(volume, 'HostPath.path', '-'), description: t('Host Path') },
     ]
   } else if (volume.emptyDir) {
     description = `${t('TYPE')}: ${t('EmptyDir')}`
@@ -99,7 +99,8 @@ const Card = ({ volume, onDelete, onEdit }) => {
                 <Icon name="mgmt-node" size={20} />
                 <span>{mountPath}</span>
                 <span className="text-secondary">
-                  &nbsp;({readOnly ? t('READ_ONLY') : t('READ_AND_WRITE')})
+                  &nbsp;(
+                  {readOnly ? t('READ_ONLY_LOW') : t('READ_AND_WRITE_LOW')})
                 </span>
               </div>
               {subPath && (

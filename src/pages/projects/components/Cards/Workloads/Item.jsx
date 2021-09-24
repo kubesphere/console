@@ -50,10 +50,10 @@ export default class WorkloadItem extends React.Component {
 
     const { updateTime, createTime } = detail
     if (updateTime) {
-      return `${t('Updated at')} ${getLocalTime(updateTime).fromNow()}`
+      return t('UPDATED_AGO', { value: getLocalTime(updateTime).fromNow() })
     }
 
-    return `${t('Created at')} ${getLocalTime(createTime).fromNow()}`
+    return t('CREATED_AGO', { diff: getLocalTime(createTime).fromNow() })
   }
 
   render() {
@@ -85,7 +85,7 @@ export default class WorkloadItem extends React.Component {
         />
         <Text
           title={version ? `#${version}` : '-'}
-          description={t('VERSION')}
+          description={t('REVISION_RECORD')}
         />
       </div>
     )

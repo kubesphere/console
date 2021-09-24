@@ -77,8 +77,8 @@ class GrayRelease extends Base {
     return (
       <EmptyList
         icon="istio"
-        title={t('NO_GRAY_RELEASE_JOBS_TIP')}
-        desc={t('NO_GRAY_RELEASE_JOBS_TIP_2')}
+        title={t('NO_GRAYSCALE_RELEASE_TASK_FOUND')}
+        desc={t('NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC')}
       />
     )
   }
@@ -90,7 +90,7 @@ class GrayRelease extends Base {
       <div className={styles.header}>
         <Columns>
           <Column>
-            <p className={styles.headerTip}>{t('GRAY_RELEASE_DESC')}</p>
+            <p className={styles.headerTip}>{t('GRAYSCALE_RELEASE_DESC')}</p>
           </Column>
           <Column className="is-narrow">
             <Link

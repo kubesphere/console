@@ -43,8 +43,8 @@ export default class ExpandVolume extends Component {
     min: 0,
     max: 1024,
     unit: 'Gi',
-    title: 'Expand Volume',
-    okText: 'Expand',
+    title: 'EXPAND_VOLUME',
+    okText: 'OK',
     shouldAlertVisible: false,
   }
 

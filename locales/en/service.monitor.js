@@ -23,6 +23,7 @@ module.exports = {
   SCRAPE_INTERVAL_MIN: 'Scrape Interval (min)',
   'View Monitor': 'View Monitor',
   MONITORING_EXPORTER: 'Monitoring Exporter',
+  MONITORING_EXPORTER_VALUE: 'Monitoring Exporter: {value}',
 
   SELECT_AUTHENTICATION_METHOD: 'Select Authentication Method',
   PORT_CONNECTION_AUTHENTICATION: 'Port connection authentication.',

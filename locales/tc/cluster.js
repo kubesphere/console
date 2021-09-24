@@ -45,8 +45,6 @@ module.exports = {
   KUBERNETES_VERSION: 'Kubernetes 版本',
   KUBESPHERE_VERSION: 'KubeSphere 版本',
 
-  EDIT_INFORMATION: '編輯資訊',
-
   'Cluster List': '集群列表',
   CLUSTER_INFORMATION: '集群資訊',
   KUBERNETES_STATUS: 'Kubernetes 組件狀態',
@@ -229,16 +227,16 @@ module.exports = {
   SELECT_HOST_CLUSTER_WARNING:
     'The visibility of the multi-cluster environment will decrease if the host cluster is overloaded. It is not recommended to create resources on the host cluster.',
   HOST_CLUSTER_VISIBILITY_WARNING:
-    '請謹慎將 Host 集群授權给企業空間，Host 集群負載過高會導致多集群穩定性下降。',
+    '請謹慎將主集群授權给企業空間，主集群負載過高會導致多集群穩定性下降。',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
     'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
   REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
   REMOVE_WORKSPACE_CONFIRM_DESC:
     'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 
-  'Host Cluster': 'Host 集群',
-  HOST_CLUSTER: 'Host 集群',
-  'Host Clusters': 'Host 集群',
+  'Host Cluster': '主集群',
+  HOST_CLUSTER: '主集群',
+  'Host Clusters': '主集群',
   'Member Cluster': '成員集群',
   'Member Clusters': '成員集群',
 
@@ -254,8 +252,8 @@ module.exports = {
   EDGENODE_INTERNAL_IP_EMPTY_DESC: '请输入节点在私网内的 IP 地址。',
   NODE_ROLE_DESC:
     '集群角色中，master 節點數量需要為 1 或 3，woker 節點數量至少為 1',
-  NODE_EXTERNAL_IP_DESC: '請填入當前 Host 集群可以訪問到的 IP 地址',
-  NODE_EXTERNAL_IP_EMPTY_DESC: '請填入當前 Host 集群可以訪問到的 IP 地址',
+  NODE_EXTERNAL_IP_DESC: '請填入當前主集群可以訪問到的 IP 地址',
+  NODE_EXTERNAL_IP_EMPTY_DESC: '請填入當前主集群可以訪問到的 IP 地址',
   SSH_AUTH_MODE_DESC: '支持用戶名密碼以及 SSH 密鑰',
   NODE_USERNAME_DESC: '預設以 root 用戶登入',
   NODE_PASSWORD_DESC: '登入節點時需要的密碼',

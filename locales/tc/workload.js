@@ -27,6 +27,8 @@ module.exports = {
   WORKLOAD_LOW: '工作負載',
   Workloads: '工作負載',
   IMAGE_TIME_SIZE_LAYER: 'Updated {time}',
+  IMAGE_TIME_SIZE_LAYER_PL: 'Updated {time}, {size}, {layer} layer',
+  IMAGE_TIME_SIZE_LAYER_SI: 'Updated {time}, {size}, {layer} layers',
   CPU_REQUEST: 'CPU 預留',
   CPU_LIMIT: 'CPU 限制',
   CPU_REQUEST_SCAP: 'CPU 預留',
@@ -57,11 +59,11 @@ module.exports = {
   'Available number of nodes scheduled': '可用節點數',
   'Desired number of nodes scheduled': '期望節點數',
   'Current number of nodes scheduled': '目前節點數',
-  'View YAML': '查看配置文件',
+  VIEW_YAML: '查看 YAML',
   EDIT_YAML: '編輯配置文件',
   YAML_FILE: 'YAML File',
   'Add Labels': '添加標籤',
-  EDIT_LABEL: '編輯標籤',
+  EDIT_LABELS: '編輯標籤',
   POD_REPLICAS: '容器組副本數量',
   DEFAULT_RULES: 'Default Rules',
   DEFAULT_RULES_DESC:
@@ -78,6 +80,7 @@ module.exports = {
   'Node Name': '主機名稱',
   POD_IP_ADDRESS: '容器組 IP 地址',
   POD_IP_ADDRESS_SCAP: '容器組 IP 地址',
+  NODE_NAME: '主機名稱',
   POD_IP_TCAP: '容器組 IP',
   IMAGE: '鏡像',
   IMAGE_VALUE: '鏡像：{value}',
@@ -134,6 +137,7 @@ module.exports = {
   PROJECT_REMAINING_QUOTAS: '項目剩餘配額',
   WORKSPACE_REMAINING_QUOTAS: '企業空間剩餘配額',
   QUOTA_OVERCOST_TIP: '目前資源占用已超過剩餘配額',
+  QOS_CLASS: 'QoS Class',
 
   'Resource Request': '資源預留',
   'Resource Limit': '資源限制',
@@ -287,6 +291,7 @@ module.exports = {
   SCHEDULE_AWAY_FROM_TARGET: '遠離目標部署',
   RULE_NOT_COMPLETE: '請填寫完整策略',
   SESSION_AFFINITY: '會話親和性',
+  SELECTOR: 'Selector',
   'environment variables': '環境變量',
   ADD_ENVIRONMENT_VARIABLE: '添加環境變量',
   'Read Write Mode': '讀寫模式',
@@ -324,12 +329,11 @@ module.exports = {
   WORKLOAD_PORT_NAME_DESC:
     'The port name can contain only lowercase letters, numbers and hyphens (-), and must begin and end with a lowercase letter or number. The maximum length is 15 characters.',
 
-  CPU_REQUEST_TARGET_DESC:
-    '當 CPU 使用率超過或低於此目標值時，將添加或刪除副本',
-  MEMORY_REQUEST_TARGET_DESC:
+  TARGET_CPU_USAGE_DESC: '當 CPU 使用率超過或低於此目標值時，將添加或刪除副本',
+  TARGET_MEMORY_USAGE_DESC:
     '當記憶體使用量超過或低於此目標值時，將添加或刪除副本',
-  MIN_REPLICAS_DESC: '彈性伸縮可以設置的副本數量的下限',
-  MAX_REPLICAS_DESC: '副本數量的上限',
+  MINIMUM_REPLICAS_DESC: '彈性伸縮可以設置的副本數量的下限',
+  MAXIMUM_REPLICAS_DESC: '副本數量的上限',
   REPLICAS_PLACEHOLDER: '預設值: 1',
 
   DEPLOYMENTS_BASEINFO_DESC:
@@ -390,20 +394,29 @@ module.exports = {
   'Rollback Revisions': '回退版本',
   'Current Revision': '目前版本',
   'Execution Records': '執行記錄',
+  REVISION_RECORD: 'Revision record',
+  ROLL_BACK: '回退',
+  EDIT_AUTOSCALING: 'Edit Autoscaling',
+  TARGET_REVISION_RECORD: '回退版本',
+  CURRENT_REVISION_RECORD: '目前修改记录',
+  RUNNING_RECORDS: '執行記錄',
   'Cluster Resource Status': '集群資源狀態',
   RESOURCE_STATUS: '資源狀態',
   RESOURCE_NAME: '資源名稱',
   'Config Template': '配置模板',
   'Edit Config Template': '編輯配置模板',
+  EDIT_SETTINGS: '編輯配置模板',
+  EDIT_APP_SETTINGS: 'Edit App Settings',
   ENVIRONMENT_VARIABLE_PL: '環境變量',
   ENVIRONMENT_VARIABLE: '環境變量',
   'File List': '文件列表',
   RERUN: '重新執行',
   ENTER_SCHEDULE_TIP: '請选择定時計畫。',
 
-  'Please select rollback revision': '請選擇回退版本',
+  TARGET_REVISION_EMPTY_DESC: '請選擇回退版本',
 
   HORIZONTAL_POD_AUTOSCALING: '彈性伸縮',
+  AUTOSCALING: '彈性伸縮',
   'Container Config': '容器配置',
   EDGENODE_CONFIG_COMMAND: '添加命令',
   PROBE_PL: '探針',
@@ -438,14 +451,13 @@ module.exports = {
   READINESS_CHECK: '容器就緒檢查',
   STARTUP_CHECK: '容器啟動檢查',
 
-  REDEPLOY: '重新部署',
-  'Redeploy Successfully': '重新部署成功',
+  RECREATE: '重新部署',
+  RECREATE_SUCCESS_DESC: '重新部署成功',
 
-  REDEPLOY_CONFIRM_DESC:
+  RECREATE_CONFIRM_DESC:
     '您即將重新部署工作負載 {resource} ({type}) , 容器組將根據更新策略進行重新部署，您的業務可能會被暫時中斷。',
 
   MORE: '更多操作',
-  VIEW_YAML: '查看 YAML 文件',
 
   REVISION_ROLLBACK_SELECT: '請選擇要回退的版本',
   REVISION_TITLE: '{name}版本',
@@ -463,7 +475,7 @@ module.exports = {
     '探測失敗後，連續最小成功探測為成功。預設值為1。最小值為1。存活探針和啟動探針内必須為1。',
   FAILURE_THRESHOLD_DESC: '探針進入失敗狀態時需要連續探測失敗的最小次數。',
 
-  HPA_MSG:
+  CONFIGURE_AUTOSCALING_DESC:
     '根據 CPU 和記憶體使用情況自動伸縮副本。如果同時指定 CPU 和記憶體，則滿足任一條件後即添加或刪除副本',
   PROBE_MSG:
     'Readiness Probe 檢查容器是否準備好處理請求。失敗意示著容器不應該從代理接收任何流量，即使它正在運行。Liveness Probe 檢查配置它的容器是否仍在運行。如果活動狀態探測器失敗，則會殺死容器，容器將遵循其重啟策略',
@@ -494,9 +506,9 @@ module.exports = {
   TARGET_CPU_USAGE: '目標使用率',
   TARGET_MEMORY_USAGE: '目標使用量',
   'Current Utilization': '目前使用率',
-  'CPU Target Utilization': 'CPU 目標使用率',
+  TARGET_CPU_USAGE_UNIT: 'CPU 目標使用率',
   'Memory Target Utilization': '記憶體目標使用率',
-  'Memory Target Usage': '記憶體目標使用量',
+  TARGET_MEMORY_USAGE_UNIT: '記憶體目標使用量',
 
   'min replicas number should not be greater than max replicas number':
     '最大副本數應不小於最小副本數',
@@ -621,12 +633,13 @@ module.exports = {
   ADD_CONTAINER_DESC:
     'Kubesphere 支持從鏡像倉庫拉取鏡像以及通過代碼構建新的鏡像並部署',
 
-  'Scheduling Info': '調度資訊',
-  'Node Scheduling Info': '節點調度資訊',
-  'Pod Status Analysis': '容器狀態分析',
-  'Current Stage(phase)': '目前階段(phase)',
-  'Scheduled to node': '調度至節點',
-  'How pods are assinged to nodes?': '容器組如何被調度至節點?',
+  SCHEDULING_INFORMATION: '調度資訊',
+  SCHEDULING_RESULT: '節點調度資訊',
+  POD_STATUS_ANALYSIS: '容器狀態分析',
+  CURRENT_STATUS: '目前階段(phase)',
+  SCHEDULED_TO_NODE: '調度至 {value}',
+  SCHEDULING_NOT_SUCCESSFUL: 'Scheduling Not Successful',
+  POD_SCHEDULING_METHOD: '容器組如何被調度至節點?',
   'Pod CPU Request': '容器組CPU請求',
   'Pod Memory Request': '容器組記憶體請求',
 
@@ -679,7 +692,7 @@ module.exports = {
   ISTIO_PROTOCOL_TIP:
     'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
 
-  WORKLOAD_CONDITIONS: '狀態分析(Conditions)',
+  STATUS_INFORMATION: '狀態分析(Conditions)',
   WORKLOAD_CONDITION_AVAILABLE: '可用性(Available)',
   WORKLOAD_CONDITION_PROGRESSING: '創建進度(Progressing)',
   WORKLOAD_REASON_REPLICASETUPDATED: '副本已更新(ReplicaSetUpdated)',
@@ -748,7 +761,7 @@ module.exports = {
     '執行容器 entrypoint 進程的 GID。預設為 docker 引擎的 GID',
 
   COMPARE_WITH: '與上一個版本 {version} 的對比',
-  REVISION_DESC:
+  REVISION_RECORDS_DESC:
     '對工作負載的資源模板進行修改後會生成一個新的紀錄並重新調度 容器組（Pod）進行版本的疊代，預設保存10個最近的版本。您可以根據修改紀錄進行重新部署。',
 
   CLUSTER_DIFF_CONTAINER_SETTINGS_DESC:

@@ -43,7 +43,7 @@ module.exports = {
 
   APP_VERSION: '應用版本(可選)',
   APPLICATION_GOVERNANCE: '應用治理',
-  'Application Components': '應用組件',
+  APP_COMPONENT_PL: '應用組件',
   'Application Component': '應用組件',
   'Application Route': '應用路由',
   'Traffic Management': '流量管理',
@@ -60,6 +60,7 @@ module.exports = {
     '示例應用可以幫助您快速入手應用創建, 以及應用治理功能',
 
   ADD_SERVICE: '添加服務',
+  ADD_ROUTE: 'Add Route',
   'Add Component': '添加組件',
   'Edit Component': '編輯組件',
   'Add New Component': '添加新組件',
@@ -76,8 +77,10 @@ module.exports = {
 
   SERVICE_PORTS: '服務端口',
   'Traffic Entry': '流量入口',
+  'Service Ports': '服務端口',
+  TRAFFIC_ENTRY: '流量入口',
 
-  'App Description': '應用描述',
+  APP_DESCRIPTION: '應用描述',
   APP_INTRODUCTION: 'App Introduction',
 
   COMPOSED_APP_PL: '自制應用',
@@ -149,7 +152,7 @@ module.exports = {
   LB_LEAST_CONN: '最小連接數(LEAST_CONN)',
   LB_RANDOM: '随機(RANDOM)',
 
-  'Last {num} records': '最近 {num} 條紀錄',
+  LAST_NUM_RECORDS: '最近 {num} 條紀錄',
   'Last {hour} hour': '最近 {hour} 小時',
   'Last {hour} hours': '最近 {hour} 小時',
   'Last {day} days': '最近 {day} 天',
@@ -158,10 +161,9 @@ module.exports = {
 
   SERVICE_DEPLOYMENT: '無狀態服務（部署）',
   SERVICE_STATEFULSET: '有狀態服務（有狀態副本集）',
-
-  'Temporarily unable to use traffic management': '暫時無法使用流量治理',
+  TRAFFIC_MONITORING_UNAVAILABLE: '暫時無法使用流量治理',
   'Temporarily unable to use tracing': '暫時無法使用 Tracing',
-  'The app has not received the request for a long time, please visit the app and try traffic management':
+  TRAFFIC_MONITORING_UNAVAILABLE_DESC:
     '應用長時間未收到請求，請訪問應用後嘗試流量治理',
   'Application components combine workloads and services as components in applications':
     '應用組件組合了工作負載和服務作為應用中的組件',
@@ -169,8 +171,11 @@ module.exports = {
     '如果您需要將應用通過應用路由的方式進行訪問，請添加路由規則',
 
   'No result found': '未查詢到結果',
-  'Please try other query conditions': '請嘗試其它查詢條件',
-
+  TRACING_NO_DATA_DESC: '請嘗試其它查詢條件',
+  NUM_SPAN_SI: '{num} span',
+  NUM_SPAN_PL: '{num} spans',
+  NUM_ERROR_SI: '{num} error',
+  NUM_ERROR_PL: '{num} errors',
   'Deploy sample app Bookinfo': '部署示例應用 Bookinfo',
   SAVE_FORM_TIP: '請先保存目前表單',
   'Add Component Successfully': '添加組件成功',
@@ -248,8 +253,8 @@ module.exports = {
   APP_CREATE_SERVICE_DESC: '添加有狀態服務或無狀態服務',
   CREATE_SERVICE_DESC: 'Select a Service creation method.',
   'Add an Internet access rule for the application': '為應用添加外網訪問規則',
-
-  EXTERNAL_ACCESS_DESC: '可以設置應用的外網訪問規則 (Ingress)',
+  ROUTE_SETTINGS: 'Route Settings',
+  ROUTE_SETTINGS_DESC: '可以設置應用的外網訪問規則 (Ingress)',
 
   'Microservice enabled': '微服務已啟用',
   'Microservice not enabled': '微服務未啟用',

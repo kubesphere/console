@@ -64,11 +64,11 @@ export default class ServiceCard extends React.Component {
             <strong>
               <Link to={`${prefix}/services/${name}`}>{name}</Link>
             </strong>
-            <p>{type}</p>
+            <p>{t(type)}</p>
           </div>
           <div className={styles.ports}>
             <div className={styles.record}>
-              <label>{t('Ports')}:</label>
+              <label>{t('PORT_PL')}:</label>
               <div className={styles.text}>
                 {this.ports.map((item, i) => (
                   <p key={i}>{item}</p>
@@ -83,7 +83,7 @@ export default class ServiceCard extends React.Component {
 
   render() {
     const { className } = this.props
-    const title = this.props.title || t('Service')
+    const title = this.props.title || t('SERVICE_PL')
 
     return (
       <Panel className={classnames(styles.main, className)} title={title}>

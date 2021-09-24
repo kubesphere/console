@@ -49,7 +49,7 @@ export default class ServiceDetail extends React.Component {
   }
 
   get name() {
-    return 'Service'
+    return 'SERVICE'
   }
 
   get routing() {
@@ -125,7 +125,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'serviceMonitor',
       icon: 'linechart',
-      text: t('SERVICE_MONITORING_EXPORTER'),
+      text: t('EDIT_MONITORING_EXPORTER'),
       action: 'edit',
       onClick: () =>
         this.trigger('service.monitor.edit', {
@@ -195,17 +195,15 @@ export default class ServiceDetail extends React.Component {
         name: t('TYPE'),
         value: (
           <span>
-            {`${
-              serviceType
-                ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                : t('CUSTOM_SERVICE')
-            }`}
+            {serviceType
+              ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
+              : t('CUSTOM_SERVICE')}
             <span className="text-desc"> ({t(detail.type)})</span>
           </span>
         ),
       },
       {
-        name: t('APPLICATION'),
+        name: t('APP'),
         value: detail.app,
       },
       {
@@ -241,7 +239,7 @@ export default class ServiceDetail extends React.Component {
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('CREATOR'),
+        name: t('CREATED_BY'),
         value: detail.creator,
       },
     ]
@@ -312,7 +310,7 @@ export default class ServiceDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(`${this.name}s`),
+          label: t(`${this.name}_PL`),
           url: this.listUrl,
         },
       ],

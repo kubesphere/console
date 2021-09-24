@@ -50,7 +50,7 @@ export default class StorageClassDetail extends React.Component {
   }
 
   get name() {
-    return 'Storage Class'
+    return 'STORAGE_CLASS'
   }
 
   get module() {

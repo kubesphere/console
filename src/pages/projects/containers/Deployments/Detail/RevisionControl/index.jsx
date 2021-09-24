@@ -73,14 +73,12 @@ class RevisionControl extends React.Component {
         if (item.revision === this.curRevision) {
           label = (
             <span>
-              <span>{label}</span> <Tag type="primary">{t('Running')}</Tag>
+              <span>{label}</span> <Tag type="primary">{t('RUNNING')}</Tag>
             </span>
           )
         }
-        const description = t('CREATE_TIME', {
-          diff: getLocalTime(item.createTime).format(
-            `${t('MMMM Do YYYY')} HH:mm:ss`
-          ),
+        const description = t('CREATED_TIME', {
+          diff: getLocalTime(item.createTime).format('YYYY-MM-DD HH:mm:ss'),
         })
         return {
           label,
@@ -114,7 +112,7 @@ class RevisionControl extends React.Component {
     return (
       <DiffYaml
         datas={[oldYaml, newYaml]}
-        title={`${t('Config File')} (Yaml)`}
+        title={t('CONFIG_FILE')}
         description={
           oldRevision
             ? t('COMPARE_WITH', {
@@ -136,8 +134,12 @@ class RevisionControl extends React.Component {
 
     return (
       <div>
-        <Panel title={t('Records')}>
-          <Alert className="margin-b12" message={t('REVISION_DESC')} hideIcon />
+        <Panel title={t('REVISION_RECORDS')}>
+          <Alert
+            className="margin-b12"
+            message={t('REVISION_RECORDS_DESC')}
+            hideIcon
+          />
           <TypeSelect
             value={selectRevision}
             options={this.revisions}
@@ -152,12 +154,15 @@ class RevisionControl extends React.Component {
                 title={get(revision, 'labels.version', '-')}
                 description={t('VERSION')}
               />
-              <Text title={`#${revision.revision}`} description={t('Record')} />
+              <Text
+                title={`#${revision.revision}`}
+                description={t('SERIAL_NUMBER')}
+              />
               <Text
                 title={getLocalTime(revision.createTime).format(
-                  `${t('MMMM Do YYYY')} HH:mm:ss`
+                  'YYYY-MM-DD HH:mm:ss'
                 )}
-                description={t('CREATED_AT')}
+                description={t('CREATION_TIME')}
               />
             </div>
             <div className={styles.diffWrapper}>{this.renderDiff()}</div>

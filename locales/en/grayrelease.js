@@ -70,8 +70,8 @@ module.exports = {
   TRAFFIC_OS: 'Traffic from the Following Operating Systems',
   TRAFFIC_CONTROL: 'Traffic Control',
   TRAFFIC_MIRRORING: 'Traffic Mirroring',
-  TRAFFIC_MONITORING: 'Traffic Monitoring',
   TRAFFIC_IN_LAST_FIVE_MINUTES: 'Traffic in last five minutes.',
+  TRAFFIC_MONITORING: 'Traffic Monitoring',
   TRAFFIC_RATIO: 'Traffic Ratio',
   TRAFFIC_RULES: 'Traffic Rules',
   TWO_VERSIONS: 'Two versions.',
@@ -96,8 +96,9 @@ module.exports = {
   NO_SERVICE_MESH_TIP:
     'Applications that are not enabled for application governance cannot be published in grayscale.',
 
-  NO_GRAY_RELEASE_JOBS_TIP: 'No Grayscale Release Job Found',
-  NO_GRAY_RELEASE_JOBS_TIP_2: 'Please create a grayscale release job.',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND: 'No Grayscale Release Task Found',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC:
+    'Please create a grayscale release task.',
   TOTAL_GRAY_RELEASE_JOB: '{num} grayscale release job in total',
   TOTAL_GRAY_RELEASE_JOBS: '{num} grayscale release jobs in total',
 
@@ -108,8 +109,6 @@ module.exports = {
   POLICY_CONFIG_DESC:
     'Release based on traffic ratio: According to the traffic ratio configuration rule, the specified proportion of traffic will be split from the original version to the grayscale version.',
 
-  GRAY_RELEASE_DESC:
-    'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
   GRAYSCALE_RELEASE_DESC:
     'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
   GRAY_RELEASE_BY_CONTENT_TIP:

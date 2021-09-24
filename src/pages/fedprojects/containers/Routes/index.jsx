@@ -54,7 +54,7 @@ export default class Routers extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item => {
           trigger('resource.baseinfo.edit', {
@@ -75,7 +75,7 @@ export default class Routers extends React.Component {
       {
         key: 'editRules',
         icon: 'firewall',
-        text: t('EDIT_ROUTING_RULE'),
+        text: t('EDIT_ROUTING_RULES'),
         action: 'edit',
         onClick: async item => {
           const detail = await this.props.store.fetchDetail(item)
@@ -89,7 +89,7 @@ export default class Routers extends React.Component {
       {
         key: 'editAnnotations',
         icon: 'firewall',
-        text: t('EDIT_ANNOTATION'),
+        text: t('EDIT_ANNOTATIONS'),
         action: 'edit',
         onClick: async item => {
           const detail = await this.props.store.fetchDetail(item)

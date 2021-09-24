@@ -156,6 +156,7 @@ module.exports = {
 
   // Log Collection
   LOG_COLLECTION: 'Log Collection',
+  LOG_RECEIVER_PL: 'Log Receivers',
   LOG_ADDRESS: 'Address: ',
   LOG_COLLECTING: 'Collecting',
   LOG_DISABLED: 'Disabled',

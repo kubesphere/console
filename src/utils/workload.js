@@ -103,7 +103,7 @@ export const getWorkloadVolumes = async (detail, setDetail = false) => {
         volumeName = volume.persistentVolumeClaim.claimName
         promises.push(to(request.get(`${prefix}/${volumeName}`)))
       } else {
-        volumeName = volume.hostPath ? volume.hostPath.path : volume.name
+        volumeName = volume.HostPath ? volume.HostPath.path : volume.name
       }
 
       return {

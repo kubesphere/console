@@ -46,7 +46,7 @@ export default class AppDetail extends React.Component {
   }
 
   get name() {
-    return 'Application'
+    return 'APP'
   }
 
   get listUrl() {
@@ -68,7 +68,7 @@ export default class AppDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {

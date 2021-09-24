@@ -101,7 +101,7 @@ export default class Graph extends Component {
                         })
                       }
                     >
-                      {t('Add')}
+                      {t('ADD')}
                     </Button>
                   }
                 />

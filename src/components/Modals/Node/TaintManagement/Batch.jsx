@@ -240,7 +240,7 @@ export default class TaintManagementModal extends React.Component {
       <Modal.Form
         width={1162}
         bodyClassName={styles.body}
-        title={t('EDIT_TAINT')}
+        title={t('EDIT_TAINTS')}
         icon="wrench"
         okText={t('SAVE')}
         onOk={this.handleSubmit}

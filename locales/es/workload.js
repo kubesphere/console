@@ -23,6 +23,8 @@ module.exports = {
   REPLICA_LOW_SI: 'replica',
   REPLICA_LOW_PL: 'replicas',
   IMAGE_TIME_SIZE_LAYER: 'Updated {time}',
+  IMAGE_TIME_SIZE_LAYER_PL: 'Updated {time}, {size}, {layer} layers',
+  IMAGE_TIME_SIZE_LAYER_SI: 'Updated {time}, {size}, {layer} layer',
   CPU_REQUEST: 'CPU Request',
   CPU_LIMIT: 'CPU Limit',
   PU_REQUEST_SCAP: 'CPU request',
@@ -69,6 +71,7 @@ module.exports = {
   'Add new container': 'Agregar nuevo contenedor',
   ADD_NODE_SELECTOR: 'Agregar selector de nodo',
   ADD_PORT: 'Agregar puerto',
+  QOS_CLASS: 'QoS Class',
   'Add Probe': 'Añadir sonda',
   'Add Temporary Volume': 'Agregar volumen temporal',
   'Add Volume': 'Agregar volumen',
@@ -128,7 +131,7 @@ module.exports = {
   ContainerNotReady: 'Contenedor No Listo',
   ContainersNotInitialized: 'Contenedores No inicializados',
   ContainersNotReady: 'Contenedores No preparados',
-  'CPU Target Utilization': 'Utilización de CPU',
+  TARGET_CPU_USAGE_UNIT: 'Utilización de CPU',
   'CPU(m)': 'CPU (m)',
   CrashLoopBackOff: 'CrashLoopBackOff',
   CreateContainerConfigError: 'CreateContainerConfigError',
@@ -140,6 +143,8 @@ module.exports = {
   REPLICAS_CURRENT: 'Réplicas actuales',
   'Current Revision': 'Revisión actual',
   'Current Stage(phase)': 'Estado actual (fase)',
+  CURRENT_REVISION_RECORD: 'Revisión actual',
+  CURRENT_STATUS: 'Estado actual (fase)',
   'Current Utilization': 'Utilización actual',
   LOCATION: 'Ubicación de despliegue',
   REPLICA_SCHEDULING_MODE: 'Modo de despliegue',
@@ -151,9 +156,10 @@ module.exports = {
   'Desired Replicas': 'Réplicas deseadas',
   CLUSTER_DIFF: 'Cluster Differences',
   DockerDaemonNotReady: 'DockerDaemonNotReady',
-  'Edit Config Template': 'Editar plantilla de configuración',
+  EDIT_SETTINGS: 'Editar plantilla de configuración',
+  EDIT_APP_SETTINGS: 'Edit App Settings',
   EDIT_CONTAINER: 'Editar contenedor',
-  EDIT_LABEL: 'Editar etiquetas',
+  EDIT_LABELS: 'Editar etiquetas',
   EDIT_YAML: 'Editar YAML',
   YAML_FILE: 'YAML File',
   EmptyDir: 'EmptyDir',
@@ -172,7 +178,7 @@ module.exports = {
   'Every Hour': 'Cada hora',
   'Every Month': 'Cada mes',
   'Every Week': 'Cada semana',
-  'Execution Records': 'Registros de ejecución',
+  RUNNING_RECORDS: 'Registros de ejecución',
   EXISTING_VOLUME: 'Volumen existente',
   FailedCreate: 'FailedCreate',
   FailedDelete: 'Falló Eliminar',
@@ -183,10 +189,11 @@ module.exports = {
   'for example': 'por ejemplo',
   FoundNewReplicaSet: 'FoundNewReplicaSet',
   HORIZONTAL_POD_AUTOSCALING: 'Autoescalado horizontal de pods',
+  AUTOSCALING: 'Autoescalado horizontal de pods',
   HPA_SET_TIP: 'El Autoscaling Horizontal de Pods ha sido configurado',
   'Host Path': 'Ruta de host',
   'Host Port': 'Puerto host',
-  'How pods are assinged to nodes?': '¿Cómo se asignan los pods a los nodos?',
+  POD_SCHEDULING_METHOD: '¿Cómo se asignan los pods a los nodos?',
   HTTP_REQUEST: 'Comprobación de solicitudes HTTP',
   HTTP_PATH_EMPTY: 'Please set a path for the HTTP check.',
   IMAGE: 'Imagen',
@@ -230,7 +237,7 @@ module.exports = {
   MAXIMUM_REPLICAS: 'Número máximo de réplicas',
   MAX_SURGE_POD_VALIDATOR: 'MAX_SURGE_POD_VALIDATOR',
   'Maximum number of replicas': 'Número máximo de réplicas',
-  'Memory Target Usage': 'Uso de destino de memoria',
+  TARGET_MEMORY_USAGE_UNIT: 'Uso de destino de memoria',
   'Memory Target Utilization': 'Utilización de destino de memoria',
   MINIMUM_REPLICAS: 'Número mínimo de réplicas',
   'min replicas number should not be greater than max replicas number':
@@ -265,6 +272,8 @@ module.exports = {
   GPU_LIMIT: 'GPU Limit',
   'Node Name': 'Nombre del nodo',
   'Node Scheduling Info': 'Información de programación de nodos',
+  NODE_NAME: 'Nombre del nodo',
+  SCHEDULING_RESULT: 'Información de programación de nodos',
   NO_IMAGE_FOUND: 'No encontré esta imagen',
   ONDELETE: 'OnDelete',
   CHECK_INTERVAL_S: 'Periodo de Segundos',
@@ -287,8 +296,7 @@ module.exports = {
   CONTAINER_NOT_SELECTED: 'Selecciona al menos un contenedor para montar',
   SET_IMAGE_DESC: 'Por favor selecciona imagen',
   'Please select protocol': 'Por favor selecciona protocolo',
-  'Please select rollback revision':
-    'Por favor selecciona revisión de reversión',
+  TARGET_REVISION_EMPTY_DESC: 'Por favor selecciona revisión de reversión',
   'Please specify an image': 'Por favor especifique una imagen',
   READ_WRITE_MOUNT_EMPTY:
     'Especifique el modo de lectura y escritura y la ruta de montaje',
@@ -315,7 +323,7 @@ module.exports = {
     'Las réplicas de pod se implementarán en el mismo nodo tanto como sea posible.',
   POD_SECURITY_CONTEXT: 'Contexto de seguridad de pod',
   'Pod Status': 'Estado del pod',
-  'Pod Status Analysis': 'Análisis de estado de pod',
+  POD_STATUS_ANALYSIS: 'Análisis de estado de pod',
   POD_REASON_FAILEDCREATE: 'POD_REASON_FAILEDCREATE',
   POD_REASON_FAILEDDELETE: 'POD_REASON_FAILEDDELETE',
   POD_REASON_SUCCESSFULCREATE: 'POD_REASON_SUCCESSFULCREATE',
@@ -335,8 +343,8 @@ module.exports = {
   'Read Write Mode': 'Modo Read Write',
   READINESS_PROBE: 'Sonda de preparación',
   SIMULTANEOUS_UPDATE: 'Recrear',
-  REDEPLOY: 'Redesplegar',
-  'Redeploy Successfully': 'Desplegado correctamente',
+  RECREATE: 'Redesplegar',
+  RECREATE_SUCCESS_DESC: 'Desplegado correctamente',
   REGISTRY: 'registro',
   RegistryUnavailable: 'Registro no disponible',
   REPLICA_STATUS: 'Estado de la réplica',
@@ -364,18 +372,24 @@ module.exports = {
   REVISION_RECORDS: 'Registros de revisión',
   'Revision Rollback': 'Revisión de Rollback',
   'Rollback Revisions': 'Revisiones de Rollback',
+  REVISION_RECORD: 'Revision record',
+  ROLL_BACK: 'Revisión de Rollback',
+  EDIT_AUTOSCALING: 'Edit Autoscaling',
+  TARGET_REVISION_RECORD: 'Revisiones de Rollback',
   RollingUpdate: 'RollingUpdate',
   ROLLING_UPDATE_RECOMMENDED: 'RollingUpdate (recomendado)',
   RunContainerError: 'RunContainerError',
   Schedule: 'Calendario',
-  'Scheduled to node': 'Programado para el nodo',
-  'Scheduling Info': 'Información de programación',
+  SCHEDULED_TO_NODE: 'Scheduled to {value}',
+  SCHEDULING_NOT_SUCCESSFUL: 'Scheduling Not Successful',
+  SCHEDULING_INFORMATION: 'Información de programación',
   'Select by Node': 'Seleccionar por nodo',
   RESOURCE: 'Seleccionar recurso',
   SELECT_SPECIFIC_KEYS: 'Seleccionar claves y caminos específicos',
   'Service Configuration': 'Configuración del servicio',
   'Service Labels': 'Etiquetas de servicio',
   SESSION_AFFINITY: 'Affinity de sesión',
+  SELECTOR: 'Selector',
   'Set Mount Path': 'Establecer punto de montaje',
   SELECT_NODES: 'Establecer política de programación de nodos',
   'Specify Replicas Number': 'Especificar el número de réplicas',
@@ -423,7 +437,7 @@ module.exports = {
   USE_DEFAULT_PORT: 'Usar puertos predeterminados',
   USER_AND_USER_GROUP: 'Usuario y grupo de usuarios',
   USER_GROUP: 'Grupo de usuario',
-  'View YAML': 'Ver YAML',
+  VIEW_YAML: 'Ver YAML',
   VOLUME_CAPACITY_TCAP: 'Capacidad de volumen',
   'Volume Name': 'Nombre del volumen',
   'Volume Source': 'Fuente de volumen',
@@ -540,7 +554,7 @@ module.exports = {
     'Volúmenes utilizados por los contenedores de la carga de trabajo.',
   EMPTYDIR_DESC: 'Almacenamiento temporal creado para la carga de trabajo.',
   HOSTPATH_DESC:
-    'Un volumen hostPath monta un archivo o directorio del sistema de archivos del nodo host en su Pod.',
+    'Un volumen HostPath monta un archivo o directorio del sistema de archivos del nodo host en su Pod.',
   PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
   PORT_NAME_DESC:
     'The port name can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
@@ -612,17 +626,16 @@ module.exports = {
     'Puede elegir un tipo de volumen adecuado para agregar',
   MOUNT_VOLUME_DESC:
     'Para volúmenes de almacenamiento persistentes, selecciona un volumen que admita el modo de lectura y escritura de múltiples nodos (ROX o RWX). De lo contrario, la actualización de los pods puede fallar porque los pods no están en el mismo nodo. Si elige un volumen de modo de lectura-escritura (RWO) de nodo único, también puede programar los pods en el mismo nodo por selección de nodo para evitar errores de actualización.',
-  CPU_REQUEST_TARGET_DESC:
+  TARGET_CPU_USAGE_DESC:
     'Las réplicas aumentarán cuando el uso de la CPU exceda este valor objetivo, por el contrario, disminuirá.',
-  MEMORY_REQUEST_TARGET_DESC:
+  TARGET_MEMORY_USAGE_DESC:
     'Las réplicas aumentarán cuando el uso de la memoria exceda este valor objetivo, por el contrario, disminuirá.',
-  MIN_REPLICAS_DESC: 'Valor mínimo de la cantidad de réplicas',
-  MAX_REPLICAS_DESC: 'Valor máximo del número de réplicas.',
+  MINIMUM_REPLICAS_DESC: 'Valor mínimo de la cantidad de réplicas',
+  MAXIMUM_REPLICAS_DESC: 'Valor máximo del número de réplicas.',
   REPLICAS_PLACEHOLDER: 'Predeterminado: 1',
   ADD_VOLUME_TEMPLATE_DESC:
     'El ciclo de vida del volumen será el mismo que el del pod.',
   MORE: 'Más',
-  VIEW_YAML: 'Ver YAML',
   REVISION_ROLLBACK_SELECT: 'Por favor selecciona la versión a revertir',
   REVISION_TITLE: '{nombre} revisión',
   PROBE_TIME: '{delay} s delay, {timeout} s timeout',
@@ -636,7 +649,7 @@ module.exports = {
     'Mínimos éxitos consecutivos para que la sonda se considere exitosa después de haber fallado. El valor predeterminado es 1 y debe ser 1 para la vida y el inicio. El valor mínimo es 1.',
   FAILURE_THRESHOLD_DESC:
     'Fallos mínimos consecutivos para que la sonda se considere fallida después de haber tenido éxito. El valor predeterminado es 3 y el valor mínimo es 1.',
-  HPA_MSG:
+  CONFIGURE_AUTOSCALING_DESC:
     'Escala automática de las réplicas automáticamente de acuerdo con el uso de CPU y memoria. Si se especifican tanto la CPU como la memoria, las réplicas se agregan o eliminan después de que se cumpla alguna de las condiciones.',
   PROBE_MSG:
     'Readiness Probe comprueba si el contenedor está listo para manejar solicitudes. Fallo significa que el contenedor no debe recibir ningún tráfico del agente, incluso si se estuviera ejecutando. Liveness Probe comprueba si el contenedor que lo configura se está ejecutando. Si la sonda falla, el contenedor se eliminará y la política de reinicio se implementará para el contenedor.',
@@ -696,7 +709,7 @@ module.exports = {
     'Las solicitudes de recursos no deben ser mayores que los límites de recursos',
   REQUEST_EXCEED_WORKSPACE:
     'Resource setting should not be greater than workspace resource limits.',
-  WORKLOAD_CONDITIONS: 'Condiciones',
+  STATUS_INFORMATION: 'Condiciones',
   WORKLOAD_CONDITION_AVAILABLE: 'Disponible',
   WORKLOAD_CONDITION_PROGRESSING: 'Progresando',
   VOLUME_OR_TEMPLATE_EMPTY:
@@ -719,7 +732,7 @@ module.exports = {
     'You are about to delete the workloads {resource}.<br/>Do you want to also delete the resources related to the workloads?',
   SELECT_VOLUME_DESC:
     'Selecciona un volumen que se haya creado y móntelo en el contenedor.',
-  REDEPLOY_CONFIRM_DESC:
+  RECREATE_CONFIRM_DESC:
     'Está a punto de volver a implementar la carga de trabajo {resource} ({type}), el pod se volverá a implementar de acuerdo con la estrategia de actualización y su negocio puede verse interrumpido temporalmente.',
   CONTAINER_SECURITY_CONTEXT_DESC:
     'Un contexto de seguridad define la configuración de privilegios y control de acceso para un Pod o Contenedor.',
@@ -747,7 +760,7 @@ module.exports = {
   CONTAINER_RESOURCE_LIMIT_TIP:
     'Set the resource limits and requests of the container so that the container is scheduled to appropriate nodes.',
   COMPARE_WITH: 'Comparación con la versión anterior {versión}',
-  REVISION_DESC:
+  REVISION_RECORDS_DESC:
     'Después de cambiar la plantilla de recursos de la carga de trabajo, se generará un nuevo registro y los pods se reprogramarán para la actualización de la versión. Las últimas 10 versiones se guardarán de forma predeterminada. Puede implementar una redistribución basada en el registro de cambios.',
   CLUSTER_DIFF_CONTAINER_SETTINGS_DESC:
     'Establecer diferentes contenedores en diferentes grupos según las necesidades',

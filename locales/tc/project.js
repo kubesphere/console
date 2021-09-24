@@ -258,10 +258,10 @@ module.exports = {
     '無法在集群管理内創建多集群項目的資源, 請到多集群項目頁面内進行操作.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '無法在多集群項目裡部署應用.',
 
-  PROJECT_NAME_EXISTS_IN_HOST: '項目名在 Host 集群上已存在',
+  PROJECT_NAME_EXISTS_IN_HOST: '項目名在主集群上已存在',
 
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
-    '刪除多集群項目同時也會刪除依賴於 Host 集群上的同名項目,</br>請輸入{type}名稱 <strong>{resource}</strong> 確保您已經了解操作所带來的風險。',
+    '刪除多集群項目同時也會刪除依賴於主集群上的同名項目,</br>請輸入{type}名稱 <strong>{resource}</strong> 確保您已經了解操作所带來的風險。',
 
   FED_HOST_NAMESPACE_TIP:
     '該項目為多集群項目的相關資源, 請勿在此項目下操作資源',

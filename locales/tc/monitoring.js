@@ -125,6 +125,8 @@ module.exports = {
   AVERAGE: '平均值',
   TOTAL_AVERAGE: '總平均值',
   SUCCESS: '成功',
+  SUCCESSFUL: 'Successful',
+  NOT_SUCCESSFUL: 'Not successful',
   ERROR: '錯誤',
   FAILURE: '失敗',
   ETCD_NODE_TITLE: 'ETCD節點',
@@ -234,7 +236,8 @@ module.exports = {
   REST_CREATE: 'CREATE',
   REST_DELETE: 'DELETE',
   COUNT: 'Count',
-  NODE_IP_ADDRESS: 'Node IP Address: {value}',
+  NODE_IP_ADDRESS_VALUE: 'Node IP Address: {value}',
+  NODE_IP_ADDRESS: 'Node IP Address',
 
   // Application Resources
   WORKSPACES: 'Workspaces',

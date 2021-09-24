@@ -44,7 +44,7 @@ export default class PodDetail extends React.Component {
   }
 
   get name() {
-    return 'Pod'
+    return 'POD'
   }
 
   get routing() {
@@ -79,7 +79,7 @@ export default class PodDetail extends React.Component {
     {
       key: 'viewYaml',
       icon: 'eye',
-      text: t('View YAML'),
+      text: t('VIEW_YAML'),
       action: 'view',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -113,7 +113,7 @@ export default class PodDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -121,7 +121,7 @@ export default class PodDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: detail.app,
       },
       {
@@ -133,19 +133,19 @@ export default class PodDetail extends React.Component {
         value: detail.podIp,
       },
       {
-        name: t('Node Name'),
+        name: t('NODE_NAME'),
         value: detail.node,
       },
       {
-        name: t('Node IP'),
+        name: t('NODE_IP_ADDRESS'),
         value: detail.nodeIp,
       },
       {
-        name: `${t('RESTART_PL')}(${t('Total')})`,
+        name: t('RESTART_PL'),
         value: restarts,
       },
       {
-        name: t('QoS Class'),
+        name: t('QOS_CLASS'),
         value: get(detail, 'status.qosClass'),
       },
       {
@@ -170,7 +170,7 @@ export default class PodDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Pods'),
+          label: t('POD_PL'),
           url: this.listUrl,
         },
       ],

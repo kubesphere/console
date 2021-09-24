@@ -55,7 +55,7 @@ export default class MemberDetail extends React.Component {
   }
 
   get name() {
-    return 'Workspace Member'
+    return 'WORKSPACE_MEMBER'
   }
 
   get listUrl() {

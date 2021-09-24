@@ -23,7 +23,7 @@ module.exports = {
   'Created Projects': 'Proyectos creados',
   DELETE_WORKSPACE: 'Eliminar espacio de trabajo',
   'DevOps Project Number': 'Número de proyecto DevOps',
-  EDIT_QUOTA: 'Editar quota',
+  EDIT_QUOTAS: 'Editar quota',
   'Edit Workspace Role': 'Editar rol del espacio de trabajo',
   'Involved Projects': 'Proyectos involucrados',
   'Manage Organizations': 'Administrar organizaciones',

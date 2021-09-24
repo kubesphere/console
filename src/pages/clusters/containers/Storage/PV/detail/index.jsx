@@ -71,7 +71,7 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -177,7 +177,7 @@ export default class VolumeDetail extends React.Component {
       icon: 'storage',
       breadcrumbs: [
         {
-          label: t('PV'),
+          label: t('STORAGE_INSTANCE_PL'),
           url: this.listUrl,
         },
       ],

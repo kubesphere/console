@@ -131,6 +131,8 @@ module.exports = {
   AVERAGE: 'Average',
   TOTAL_AVERAGE: 'Total',
   SUCCESS: 'Success',
+  SUCCESSFUL: 'Successful',
+  NOT_SUCCESSFUL: 'Not successful',
   ERROR: 'Error',
   FAILURE: 'Failure',
   ETCD_NODE_TITLE: 'etcd Node',
@@ -233,7 +235,8 @@ module.exports = {
   REST_CREATE: 'CREATE',
   REST_DELETE: 'DELETE',
   COUNT: 'Count',
-  NODE_IP_ADDRESS: 'Node IP Address: {value}',
+  NODE_IP_ADDRESS_VALUE: 'Node IP Address: {value}',
+  NODE_IP_ADDRESS: 'Node IP Address',
 
   // Application Resources
   WORKSPACES: 'Workspaces',

@@ -117,7 +117,7 @@ export default class AddHostPath extends React.Component {
             <Input name="name" autoFocus={true} maxLength={63} />
           </Form.Item>
           <Form.Item label={t('HOST_PATH')}>
-            <Input name="hostPath.path" />
+            <Input name="HostPath.path" />
           </Form.Item>
           <Form.Item rules={[{ validator: this.mountValidator }]}>
             <MountInput

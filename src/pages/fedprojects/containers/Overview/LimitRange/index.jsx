@@ -75,7 +75,7 @@ export default class LimitRange extends Component {
           description={t('DEFAULT_CONTAINER_QUOTAS_DESC')}
         />
         <Button type="control" onClick={this.showSetting}>
-          {t('EDIT_QUOTA')}
+          {t('EDIT_QUOTAS')}
         </Button>
       </Panel>
     )

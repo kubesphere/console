@@ -237,7 +237,7 @@ export default class Modal extends React.Component {
                 onClick={onCancel}
                 data-test="modal-cancel"
               >
-                {cancelText || t('Cancel')}
+                {cancelText || t('CANCEL')}
               </Button>
             )}
             {onOk && (
