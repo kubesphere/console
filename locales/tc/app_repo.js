@@ -55,6 +55,12 @@ module.exports = {
   'Please input access key ID and secret access key':
     '請輸入 Access key ID 和 Secret access key',
 
+  SYNC_PERIOD: '時間周期',
+  SYNC_PERIOD_DESC:
+    '默認為 0，不進行同步；時間周期最短是 3 分鐘，最長是 24 小時。',
+  SYNC_PERIOD_EMPTY_DESC: '請輸入時間周期。',
+  SYNC_PERIOD_INVALID: '數值無效，請輸入 0 或正整數。',
+
   'App Repos': '應用倉庫',
   ADD_APP_REPO: 'Add App Repository',
   INDEX_REPO: '同步倉庫',

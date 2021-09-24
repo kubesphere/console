@@ -49,6 +49,13 @@ module.exports = {
   'Unrecognized URL': 'Unrecognized URL.',
   VALIDATE: 'Validate',
 
+  SYNC_PERIOD: 'Sync Period',
+  SYNC_PERIOD_DESC:
+    'The default is 0, no synchronization; the shortest time period is 3 minutes, and the longest is 24 hours. ',
+  SYNC_PERIOD_EMPTY_DESC: 'Please enter the sync period. ',
+  SYNC_PERIOD_INVALID:
+    'The value is invalid, please enter 0 or a positive integer. ',
+
   'App Repositorys': 'App Repositories',
   APP_REPO_URL_DESC:
     'The URL needs to be validated before you add or edit an app repository.',
