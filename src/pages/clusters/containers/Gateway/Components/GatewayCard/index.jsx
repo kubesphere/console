@@ -72,7 +72,7 @@ class InternetAccess extends React.Component {
         key: 'edit',
         icon: 'pen',
         text: t('Edit Gateway'),
-        disabled: this.canEdit,
+        disabled: this.canEdit || this.gateway.createTime == null,
       },
       {
         key: 'update',
@@ -89,17 +89,20 @@ class InternetAccess extends React.Component {
     ]
   }
 
-  handleMoreMenuClick = (e, key) => {
-    const { namespace } = this.props.match.params
-    const { prefix, type } = this.props
-
-    const url = prefix
+  get linkUrl() {
+    const { prefix } = this.props
+    return prefix
       ? `${prefix}/${this.gateway.name}`
       : `/clusters/${this.cluster}/gateways/cluster/${this.gateway.name}`
+  }
+
+  handleMoreMenuClick = (e, key) => {
+    const { namespace } = this.props.match.params
+    const { type } = this.props
 
     switch (key) {
       case 'view':
-        this.props.rootStore.routing.push(url)
+        this.props.rootStore.routing.push(this.linkUrl)
         break
       case 'edit':
         this.trigger('gateways.edit', {
@@ -165,18 +168,6 @@ class InternetAccess extends React.Component {
     )
   }
 
-  renderOperations() {
-    return (
-      <Dropdown
-        content={this.renderMoreMenu()}
-        trigger="click"
-        placement="bottomRight"
-      >
-        <Button icon="more" type="flat" />
-      </Dropdown>
-    )
-  }
-
   title = () => {
     const { createTime } = this.gateway
 
@@ -213,6 +204,8 @@ class InternetAccess extends React.Component {
       serviceMeshEnable,
     } = this.gateway
 
+    const { renderOperations } = this.props
+
     const gatewayPort = isEmpty(ports)
       ? '-'
       : ports.map(item => `${item.name}:${item.nodePort}`).join(';')
@@ -240,14 +233,16 @@ class InternetAccess extends React.Component {
         },
         {
           key: 'edit',
-          component: (
+          component: renderOperations ? (
+            renderOperations(this.linkUrl)
+          ) : (
             <Dropdown
               theme="dark"
               content={this.renderMoreMenu()}
               trigger="click"
               placement="bottomRight"
             >
-              <Button>{t('EDIT')}</Button>
+              <Button>{t('More')}</Button>
             </Dropdown>
           ),
         },

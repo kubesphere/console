@@ -19,7 +19,7 @@
 import React from 'react'
 
 import GatewayCard from 'clusters/containers/Gateway/Components/GatewayCard'
-import { Icon, Loading } from '@kube-design/components'
+import { Icon, Loading, Button } from '@kube-design/components'
 import GatewayStore from 'stores/gateway'
 import { observable, toJS } from 'mobx'
 
@@ -28,7 +28,7 @@ import { isEmpty } from 'lodash'
 import { Panel } from 'components/Base'
 import styles from './index.scss'
 
-@inject('detailStore')
+@inject('detailStore', 'rootStore')
 @observer
 export default class Gateway extends React.Component {
   store = new GatewayStore()
@@ -107,6 +107,18 @@ export default class Gateway extends React.Component {
     )
   }
 
+  renderOperations = url => {
+    return (
+      <Button
+        onClick={() => {
+          this.props.rootStore.routing.push(url)
+        }}
+      >
+        {t('View Gateway')}
+      </Button>
+    )
+  }
+
   renderGatewayCard = () => {
     const isEmptyData = this.gatewayList.every(item => isEmpty(toJS(item)))
 
@@ -131,6 +143,7 @@ export default class Gateway extends React.Component {
               : this.renderProjectTitle()
           }
           prefix={isCluster ? '' : this.prefix}
+          renderOperations={url => this.renderOperations(url)}
         />
       ) : null
     })

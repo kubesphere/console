@@ -46,6 +46,7 @@ import CustomResourceDetail from '../containers/CustomResources/Detail'
 import RoleDetail from '../containers/Roles/Detail'
 import LogCollectionDetail from '../containers/LogCollections/Detail'
 import IPPoolDetail from '../containers/Network/IPPools/Detail'
+import GatewayDetail from '../containers/Gateway/Detail'
 
 const PATH = '/clusters/:cluster'
 
@@ -77,6 +78,10 @@ export default [
   {
     path: `${PATH}/components/:namespace/:name`,
     component: ComponentDetail,
+  },
+  {
+    path: `${PATH}/gateways/:component/:gatewayName`,
+    component: GatewayDetail,
   },
   {
     path: `${PATH}/storageclasses/:name`,
