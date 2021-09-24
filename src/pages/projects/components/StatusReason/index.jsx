@@ -67,14 +67,14 @@ export default function StatusReason({
             </div>
             {cd.status && <p>{`${t('STATUS')}: ${cd.status}`}</p>}
             {cd.reason && (
-              <p>{`${t('Reason')}: ${t(
+              <p>{`${t('REASON')}: ${t(
                 `${type.toUpperCase()}_REASON_${cd.reason.toUpperCase()}`,
                 {
                   defaultValue: cd.reason,
                 }
               )}`}</p>
             )}
-            {cd.message && <p>{`${t('Message')}: ${cd.message}`}</p>}
+            {cd.message && <p>{`${t('MESSAGE')}: ${cd.message}`}</p>}
           </div>
         ))}
       </div>

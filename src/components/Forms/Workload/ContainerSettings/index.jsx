@@ -448,10 +448,11 @@ export default class ContainerSetting extends React.Component {
   renderDeployPlacementTip() {
     return (
       <div className={styles.tipBox}>
-        <div className={styles.tipTitle}>{t('Fixed Replicas')}:</div>
-        <p>{t('Fixed_Deploy_text')}</p>
-        <div className={styles.tipTitle}>{t('Federated Schedule')}:</div>
-        <p>{t('Federated_Schedule_Text')}</p>
+        <div className={styles.tipTitle}>{t('SPECIFY_REPLICAS')}</div>
+        <p>{t('SPECIFY_REPLICAS_DESC')}</p>
+        <br />
+        <div className={styles.tipTitle}>{t('SPECIFY_WEIGHTS')}</div>
+        <p>{t('SPECIFY_WEIGHTS_DESC')}</p>
       </div>
     )
   }
@@ -481,7 +482,9 @@ export default class ContainerSetting extends React.Component {
     return (
       <div className="margin-b12">
         <div className={styles.formTip}>
-          <span className={styles.tipLabel}>{t('Deployment Mode')}</span>
+          <span className={styles.tipLabel}>
+            {t('REPLICA_SCHEDULING_MODE')}
+          </span>
           <Tooltip placement="right" content={this.renderDeployPlacementTip()}>
             <Icon name="question" size="20"></Icon>
           </Tooltip>
@@ -584,7 +587,7 @@ export default class ContainerSetting extends React.Component {
       <div className="margin-b12">
         <Form.Group
           label={t('ADD_METADATA')}
-          desc={t('ADD_METADATA_DESC')}
+          desc={t('POD_ADD_METADATA_DESC')}
           keepDataWhenUnCheck
           checkable
         >

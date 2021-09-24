@@ -25,8 +25,9 @@ module.exports = {
   ASSIGN_WORKSPACE: 'Asignar espacio de trabajo',
   SELECT_WORKSPACE_DESC: 'Elige un espacio de trabajo',
   Closed: 'Cerrado',
+  EDIT_DEFAULT_CONTAINER_QUOTA: 'Edit Default Container Quota',
   EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
-  DEFAULT_CONTAINER_QUOTAS: 'Default Container Quotas',
+  DEFAULT_CONTAINER_QUOTA_PL: 'Default Container Quotas',
   CREATE_MULTI_CLUSTER_PROJECT: 'Crear proyecto de clúster múltiple',
   CREATE_PROJECT: 'Crear proyecto',
   cronjobs: 'cronjobs',
@@ -45,17 +46,17 @@ module.exports = {
   'DevOps Projects': 'Proyectos DevOps',
   DISK_LOG_COLLECTION: 'Colección de registro de disco',
   COLLECT_LOGS_ON_VOLUMES: 'Colección de registro de disco',
-  'Disk Log Collection of the project is about to be disabled.':
-    'La recopilación de registros de disco del proyecto está a punto de desactivarse.',
+  LOG_COLLECTION_ENABLED_DESC:
+    'After this function is enabled or disabled, you need to restart the Pod replicas to make the change take effect.',
   EDIT_PROJECT: 'Editar proyecto',
-  EDIT_PROJECT_RESOURCE_QUOTAS: 'Edit Project Resource Quotas',
+  EDIT_PROJECT_QUOTA: 'Edit Project Quota',
   'Empty value means no limit, CPU 1 Core = 1000m':
     'El valor vacío significa que no hay límite, 1 Core de CPU = 1000m',
   'Enter DevOps Project': 'Introduce el proyecto DevOps',
   'Enter Project': 'Entrar al proyecto',
   FED_HOST_NAMESPACE_TIP:
     'Por favor, no manipules los recursos de este proyecto puesto que pertence a un proyecto multicluster',
-  'Gateway Info': 'Información de puerta de enlace',
+  GATEWAY: 'Información de puerta de enlace',
   GATEWAY_NOT_SET: 'Puerta de enlace no establecida',
   'Help Information': 'Información de ayuda',
   HOW_TO_INVITE_USERS: '¿Cómo invitar a otros miembros al proyecto actual?',
@@ -66,10 +67,10 @@ module.exports = {
   INVITE_DEVOPS_MEMBER: 'Invitar miembros al proyecto DevOps',
   'Invite Members to the Project': 'Invitar miembros al proyecto',
   jobs: 'trabajos',
-  'limits.cpu': 'limit.cpu',
-  'limits.memory': 'limits.memoria',
+  LIMITS_CPU: 'limit.cpu',
+  LIMITS_MEMORY: 'limits.memoria',
   LoadBalancer: 'LoadBalancer',
-  'Manage Project': 'Gestionar proyecto',
+  MANAGE_PROJECT: 'Gestionar proyecto',
   'Member Name': 'Nombre de miembro',
   Members: 'Miembros',
   'Members Management': 'Gestión de miembros',
@@ -78,6 +79,7 @@ module.exports = {
   'Multi-cluster Project': 'Proyecto de clúster múltiple',
   MULTI_CLUSTER_PROJECT: 'Proyecto de clúster múltiple',
   MULTI_CLUSTER_PROJECT_LOW: 'Proyecto de clúster múltiple',
+  MULTI_CLUSTER_PROJECT_SCAP: 'Multi-cluster project',
   'Multi-cluster Projects': 'Proyectos de clústeres múltiples',
   MULTI_CLUSTER_PROJECT_PL: 'Proyectos de clústeres múltiples',
   PROJECT_NAME_EXISTS_IN_HOST: 'The project name exists on the host cluster.',
@@ -114,13 +116,15 @@ module.exports = {
   'Quota Management': 'Gestión de cuotas',
   REMOVE_MEMBER: 'Eliminar miembro',
   WORKSPACE_QUOTA_PL: 'Workspace Quotas',
+  PROJECT_QUOTA_PL: 'Project Quotas',
   'Remove Member': 'Eliminar miembro',
   'Remove Members': 'Eliminar miembros',
-  'requests.cpu': 'request.cpu',
-  'requests.memory': 'requests.memory',
-  RESOURCE_QUOTAS: 'Cuota de recursos',
+  REQUESTS_CPU: 'CPU',
+  REQUESTS_MEMORY: 'Memory Request',
+  RESOURCE_QUOTA_PL: 'Cuota de recursos',
   PROJECT_RESOURCE_QUOTAS: 'Project Resource Quotas',
   RESOURCE_TYPE: 'Tipo de recurso',
+  RESOURCE_TYPE_SCAP: 'Tipo de recurso',
   PROJECT_ADMINISTRATOR_DESC:
     'Selecciona un usuario del espacio de trabajo como administrador del proyecto.',
   'Select Project Type': 'Seleccionar tipo de proyecto',
@@ -187,32 +191,30 @@ module.exports = {
   DEFAULT_CONTAINER_QUOTAS_DESC:
     'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
   PROJECT_QUOTAS_DESC:
-    'Project quotas specify the number of available CPU and memory resources and the maximum number of Pods, Deployments, and Services allowed in the project.',
+    'Project quotas specify the number of available CPU and memory resources and the maximum number of application resources such as Pods, Deployments, and Services allowed in the project.',
   WHAT_IS_COLLECT_FILE_LOG_A:
     'La ruta de registro en el volumen montado en el contenedor se da en un patrón global. La ruta de registro se puede configurar en el workload para recopilar registros. El administrador debe habilitar la recopilación de registros de disco de antemano.',
-  WHAT_IS_LIMIT_RANGE_Q: 'What are default container quotas?',
-  WHAT_IS_LIMIT_RANGE_A:
-    'Default container quotas are a policy used to constrain resource allocations to containers in a project. You can set CPU, memory, and GPU quotas for the container.',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q: 'What are default container quotas?',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A:
+    'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
   WHAT_IS_INTERNET_GATEWAY: 'What is a network access gateway?',
   COLLECT_LOGS_ON_VOLUMES_A:
     'To collect logs on volumes, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
   HOW_TO_INVITE_MEMBER_Q: 'How do I invite members to the project?',
   HOW_TO_INVITE_MEMBER_A:
     'The project administrator or users who have permission to invite project members can invite workspace members to the project.',
-  CLOSE_FILE_LOG_TIP:
+  DISABLE_LOG_COLLECTION_TIP:
     'Are you sure you want to disable log collection? After it is disabled, services that have enabled log collection will continue to collect logs saved in the volumes before the Pod replicas are restarted. If you need to collect the logs again, please enable log collection and restart the Pod replicas.',
   COLLECTING_FILE_LOG_DESC:
     'Los registros de disco en el contenedor se recopilarán y exportarán a stdout, que luego recopilará el recopilador de registros del sistema.',
   PROJECT_BASIC_INFO_DESC:
     'Basic information provides an overview of the project. You can view the project information and resource quotas.',
-  PROJECT_QUOTA_MANAGE_DESC:
-    'Este módulo le permite administrar cuotas de proyectos.',
   PROJECT_ROLE_DESC:
     'Los roles de proyecto definen la autorización que los usuarios tienen en el proyecto actual.',
   PROJECT_MEMBERS_DESC:
     'Gestionar y asignar roles para los miembros del proyecto.',
   PROJECT_ADVANCED_SETTINGS_DESC:
-    'Advanced settings are used to configure network access, application governance, and log collection in the project.',
+    'Advanced settings are used to configure external access, application governance, and log collection in the project.',
   PROJECT_TYPES_Q:
     '¿Cómo puedes acceder a los servicios del proyecto a través de la red externa?',
   PROJECT_TYPES_A:
@@ -227,7 +229,7 @@ module.exports = {
     'No se pueden implementar aplicaciones en proyectos de múltiples clústeres.',
   MULTI_CLUSER_PROJECT_TIP:
     'El proyecto multi-clúster actual se ejecuta en distintos clústers. Puedes saltar entre clústers para comprobar los parámetros de este proyecto en cada uno de ellos.',
-  MULTI_CLUSER_RESOURCE_TIP:
+  MULTI_CLUSTER_RESOURCE_TIP:
     'El recurso multi-clúster actual se ejecuta en distintos clústers. Puedes saltar entre clústers para comprobar los parámetros de este recurso en cada uno de ellos.',
   CREATE_MULTI_CLUSTER_PROJECT_DESC:
     'Un proyecto multi-clúster se ejecuta sobre distintos clústers a la vez, lo que ayuda a que puedas construir un entorno de contenedores para una rápida iteración de aplicaciones y conseguir alta disponibilidad.',
@@ -258,10 +260,9 @@ module.exports = {
   WS_RESOURCE_REQUESTS: 'Resource requests:',
   WS_RESOURCE_LIMITS: 'Resource limits:',
   SELECT_RESOURCE_TIP: 'Select a resource or enter a resource name',
-  NUMBER_OF_ROUTES: 'Number of routes',
+  NUMBER_OF_ROUTES: 'Number of Routes',
   NUMBER_OF_SECRETS: 'Number of Secrets',
   NUMBER_OF_CONFIGMAPS: 'Number of ConfigMaps',
-  GPU_LIMIT: 'GPU Limit',
   USAGE: 'Usage',
 
   // Project Members

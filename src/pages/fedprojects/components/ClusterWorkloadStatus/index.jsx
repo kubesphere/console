@@ -104,13 +104,13 @@ export default class ClusterWorkloadStatus extends Component {
     const params = store.isScheduleProject
       ? {
           Icon: 'stretch',
-          title: t('Federated Schedule'),
-          des: t('Federated_Schedule_Text'),
+          title: t('SPECIFY_WEIGHTS'),
+          des: t('SPECIFY_WEIGHTS_DESC'),
         }
       : {
           Icon: 'backup',
-          title: t('Fixed Replicas'),
-          des: t('Fixed_Deploy_text'),
+          title: t('SPECIFY_REPLICAS'),
+          des: t('SPECIFY_REPLICAS_DESC'),
         }
 
     return (

@@ -99,14 +99,14 @@ export default class ProjectSelectModal extends React.Component {
   get types() {
     const types = [
       {
-        label: t('Projects'),
+        label: t('PROJECT_PL'),
         value: 'projects',
       },
     ]
 
     if (globals.app.isMultiCluster) {
       types.push({
-        label: t('Multi-cluster Projects'),
+        label: t('MULTI_CLUSTER_PROJECT_PL'),
         value: 'federatedprojects',
       })
     }

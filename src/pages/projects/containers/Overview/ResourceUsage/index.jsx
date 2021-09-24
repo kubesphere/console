@@ -283,7 +283,6 @@ class ResourceUsage extends React.Component {
     } = this.physicalResourceMonitorStore
     const range =
       this.timeOptions.find(item => item.value === this.state.range) || {}
-
     return (
       <div>
         <PhysicalResourceItem
@@ -314,9 +313,11 @@ class ResourceUsage extends React.Component {
           size="small"
         >
           <RadioButton value="application">
-            {t('Application Resources')}
+            {t('APPLICATION_RESOURCE_PL')}
           </RadioButton>
-          <RadioButton value="physical">{t('Physical Resources')}</RadioButton>
+          <RadioButton value="physical">
+            {t('PHYSICAL_RESOURCE_PL')}
+          </RadioButton>
         </RadioGroup>
         <Select
           className={styles.timeSelect}
@@ -331,7 +332,7 @@ class ResourceUsage extends React.Component {
   render() {
     const { resourceType } = this.state
     return (
-      <Panel className={styles.wrapper} title={t('Resource Status')}>
+      <Panel className={styles.wrapper} title={t('RESOURCE_STATUS')}>
         {this.renderHeader()}
         {resourceType === 'application'
           ? this.renderApplicationResource()

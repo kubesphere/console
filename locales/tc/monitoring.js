@@ -24,6 +24,7 @@ module.exports = {
   SERVICE_COMPONENT_MONITORING: '服務組件監控',
   'Application Resources': '應用資源',
   APPLICATION_RESOURCE_PL: '應用資源監控',
+  PHYSICAL_RESOURCE_PL: 'Physical Resources',
 
   NODE_COUNT: '節點數量',
   CLUSTER_STATUS: '集群狀態',
@@ -65,8 +66,8 @@ module.exports = {
 
   SELECT_TIME_RANGE: '選擇時間範圍',
   CUSTOM_TIME_RANGE: '自定義時間範圍',
-  'Only Show Selected': '僅顯示已選',
-  'View All Replicas': '查看全部副本',
+  SHOW_SELECTED_ONLY: '僅顯示已選',
+  VIEW_ALL_REPLICAS: '查看所有副本',
   'View All': '查看全部',
   VIEW_MORE: '查看更多',
 
@@ -97,6 +98,7 @@ module.exports = {
   OUTBOUND_TRAFFIC: 'Outbound Traffic',
   INBOUND_TRAFFIC: 'Inbound Traffic',
   QUOTA: 'Quota',
+  QUOTA_PL: 'Quotas',
   QUOTA_VALUE: 'Quota: {value}',
   RAFT_PROPOSAL: 'Raft 提議',
   PROPOSAL_COMMIT_RATE: '提議提交速率',
@@ -216,6 +218,7 @@ module.exports = {
 
   // Cluster Status
   DISK_USAGE: 'Disk Usage',
+  DISK_USAGE_SCAP: 'Disk usage',
   POD_COUNT: 'Pods',
   POD_COUNT_VALUE: 'Pods: {value}',
   API_SERVER: 'API Server',
@@ -224,7 +227,7 @@ module.exports = {
   DISK_THROUGHPUT: 'Disk Throughput',
   NETWORK_BANDWIDTH: 'Network Bandwidth',
   POD_STATUS: 'Pod Status',
-  NO_MONITORING_DATA_FOUND: 'No Monitoring Data Found',
+  NO_MONITORING_DATA: 'No Monitoring Data',
   NOT_ENABLED: 'Not enabled',
   COMPLETED: 'Completed',
   WARNING: 'Warning',

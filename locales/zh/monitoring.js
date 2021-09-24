@@ -24,6 +24,7 @@ module.exports = {
   SERVICE_COMPONENT_MONITORING: '服务组件监控',
   'Application Resources': '应用资源',
   APPLICATION_RESOURCE_PL: '应用资源',
+  PHYSICAL_RESOURCE_PL: '物理资源',
 
   NODE_COUNT: '节点数量',
   CLUSTER_STATUS: '集群状态',
@@ -45,6 +46,7 @@ module.exports = {
   OUTBOUND_TRAFFIC: '网络流出速率',
   INBOUND_TRAFFIC: '网络流入速率',
   QUOTA: '配额',
+  QUOTA_PL: '配额',
   QUOTA_VALUE: '配额：{value}',
   'Resources Usage Trend': '资源用量趋势',
   'Physical Resources Usage': '物理资源用量',
@@ -70,8 +72,8 @@ module.exports = {
 
   SELECT_TIME_RANGE: '选择时间范围',
   CUSTOM_TIME_RANGE: '自定义时间范围',
-  'Only Show Selected': '仅显示已选',
-  'View All Replicas': '查看全部副本',
+  SHOW_SELECTED_ONLY: '仅显示已选',
+  VIEW_ALL_REPLICAS: '查看所有副本',
   'View All': '查看全部',
   VIEW_MORE: '查看更多',
 
@@ -92,7 +94,7 @@ module.exports = {
   MONITORING_APPLICATION_DESC:
     '应用资源提供应用资源用量的监控数据以及用量排行情况。',
   TIMERANGE_SELECTOR_MSG: '结束时间需晚于开始时间。',
-  MONITORING_SELECT_LIMIT_MSG: '最多可以选择 10 个资源',
+  MONITORING_SELECT_LIMIT_MSG: '最多可以选择 10 个资源。',
 
   second: '秒',
   ms: '毫秒',
@@ -216,6 +218,7 @@ module.exports = {
 
   // Cluster Status
   DISK_USAGE: '磁盘用量',
+  DISK_USAGE_SCAP: '磁盘用量',
   POD_COUNT: '容器组数量',
   POD_COUNT_VALUE: '容器组数量：{value}',
   API_SERVER: 'API Server',
@@ -224,7 +227,7 @@ module.exports = {
   DISK_THROUGHPUT: '磁盘吞吐',
   NETWORK_BANDWIDTH: '网络带宽',
   POD_STATUS: '容器组状态',
-  NO_MONITORING_DATA_FOUND: '没有找到监控数据',
+  NO_MONITORING_DATA: '暂无监控数据',
   NOT_ENABLED: '未启用',
   COMPLETED: '已完成',
   WARNING: '异常',

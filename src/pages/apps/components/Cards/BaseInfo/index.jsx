@@ -93,7 +93,7 @@ export default class BaseInfo extends React.Component {
         </div>
         <div className={styles.title}>{t('App Description')}</div>
         <div>
-          <Markdown source={detail.abstraction || t('None')} />
+          <Markdown source={detail.abstraction || t('NONE')} />
         </div>
       </div>
     )

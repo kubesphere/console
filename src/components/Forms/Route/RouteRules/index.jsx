@@ -199,7 +199,7 @@ class RouteRules extends React.Component {
 
   rulesValidator = (_, value, callback) => {
     if (isEmpty(value)) {
-      return callback({ message: t('ADD_ROUTING_RULE_DESC') })
+      return callback({ message: t('ROUTING_RULE_EMPTY_DESC') })
     }
 
     callback()

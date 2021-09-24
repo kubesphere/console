@@ -49,7 +49,7 @@ export default class ContainerPorts extends React.Component {
         <table className={styles.table}>
           <thead>
             <tr>
-              {isFederated && <th>{t('Cluster')}</th>}
+              {isFederated && <th>{t('CLUSTER')}</th>}
               <th>{t('NAME')}</th>
               <th>{t('PROTOCOL')}</th>
               <th>{t('PORT')}</th>

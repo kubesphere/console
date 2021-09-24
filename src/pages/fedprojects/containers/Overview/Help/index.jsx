@@ -31,7 +31,7 @@ export default class Help extends React.Component {
       <div className={classNames(styles.wrapper, className)}>
         <div className={styles.header}>
           <Icon name="question" size={24} />
-          {t('Help Information')}
+          {t('TIPS')}
         </div>
         <div className={styles.tip}>
           <a

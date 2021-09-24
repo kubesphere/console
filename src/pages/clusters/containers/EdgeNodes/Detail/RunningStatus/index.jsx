@@ -73,7 +73,7 @@ export default class RunningStatus extends React.Component {
     return (
       <Panel
         className={styles.resources}
-        title={t('Resource Usage Status')}
+        title={t('RESOURCE_USAGE')}
         loading={this.monitoringStore.isLoading}
       >
         <MonitorTab
@@ -82,32 +82,32 @@ export default class RunningStatus extends React.Component {
               key: 'cpu',
               icon: 'cpu',
               unit: '%',
-              legend: ['node_cpu_utilisation'],
-              title: t('node_cpu_utilisation'),
+              legend: ['CPU_USAGE'],
+              title: 'CPU_USAGE',
               data: get(metrics, 'node_cpu_utilisation.data.result'),
             },
             {
               key: 'memory',
               icon: 'memory',
               unit: '%',
-              legend: ['node_memory_utilisation'],
-              title: t('node_memory_utilisation'),
+              legend: ['MEMORY_USAGE'],
+              title: 'MEMORY_USAGE',
               data: get(metrics, 'node_memory_utilisation.data.result'),
             },
             {
               key: 'pod',
               icon: 'pod',
               unit: '%',
-              legend: ['node_pod_utilisation'],
-              title: t('node_pod_utilisation'),
+              legend: ['MAXIMUM_PODS'],
+              title: 'MAXIMUM_PODS',
               data: get(metrics, 'node_pod_utilisation.data.result'),
             },
             {
               key: 'storage',
               icon: 'database',
               unit: '%',
-              legend: ['node_disk_size_utilisation'],
-              title: t('node_disk_size_utilisation'),
+              legend: ['DISK_USAGE'],
+              title: 'DISK_USAGE',
               data: get(metrics, 'node_disk_size_utilisation.data.result'),
             },
           ]}
@@ -120,44 +120,90 @@ export default class RunningStatus extends React.Component {
     const { detail } = this.store
 
     return (
-      <Panel className={styles.allocated} title={t('Allocated Resources')}>
+      <Panel className={styles.allocated} title={t('ALLOCATED_RESOURCES')}>
         <Text
-          title={`${cpuFormat(
-            get(detail, 'annotations["node.kubesphere.io/cpu-requests"]')
-          )} Core (${get(
-            detail,
-            'annotations["node.kubesphere.io/cpu-requests-fraction"]'
-          )})`}
-          description={t('CPU Requests')}
+          title={
+            cpuFormat(
+              get(detail, 'annotations["node.kubesphere.io/cpu-requests"]')
+            ) === 1
+              ? t('CPU_CORE_PERCENT_SI', {
+                  core: cpuFormat(
+                    get(
+                      detail,
+                      'annotations["node.kubesphere.io/cpu-requests"]'
+                    )
+                  ),
+                  percent: get(
+                    detail,
+                    'annotations["node.kubesphere.io/cpu-requests-fraction"]'
+                  ),
+                })
+              : t('CPU_CORE_PERCENT_PL', {
+                  core: cpuFormat(
+                    get(
+                      detail,
+                      'annotations["node.kubesphere.io/cpu-requests"]'
+                    )
+                  ),
+                  percent: get(
+                    detail,
+                    'annotations["node.kubesphere.io/cpu-requests-fraction"]'
+                  ),
+                })
+          }
+          description={t('CPU_REQUEST_SCAP')}
         />
         <Text
-          title={`${cpuFormat(
-            get(detail, 'annotations["node.kubesphere.io/cpu-limits"]')
-          )} Core (${get(
-            detail,
-            'annotations["node.kubesphere.io/cpu-limits-fraction"]'
-          )})`}
-          description={t('CPU Limits')}
+          title={
+            cpuFormat(
+              get(detail, 'annotations["node.kubesphere.io/cpu-limits"]')
+            ) === 1
+              ? t('CPU_CORE_PERCENT_SI', {
+                  core: cpuFormat(
+                    get(detail, 'annotations["node.kubesphere.io/cpu-limits"]')
+                  ),
+                  percent: get(
+                    detail,
+                    'annotations["node.kubesphere.io/cpu-limits-fraction"]'
+                  ),
+                })
+              : t('CPU_CORE_PERCENT_PL', {
+                  core: cpuFormat(
+                    get(detail, 'annotations["node.kubesphere.io/cpu-limits"]')
+                  ),
+                  percent: get(
+                    detail,
+                    'annotations["node.kubesphere.io/cpu-limits-fraction"]'
+                  ),
+                })
+          }
+          description={t('CPU_LIMIT_SCAP')}
         />
         <Text
-          title={`${memoryFormat(
-            get(detail, 'annotations["node.kubesphere.io/memory-requests"]'),
-            'Gi'
-          )} Gi (${get(
-            detail,
-            'annotations["node.kubesphere.io/memory-requests-fraction"]'
-          )})`}
-          description={t('Memory Requests')}
+          title={t('MEMORY_GIB_PERCENT', {
+            gib: memoryFormat(
+              get(detail, 'annotations["node.kubesphere.io/memory-requests"]'),
+              'Gi'
+            ),
+            percent: get(
+              detail,
+              'annotations["node.kubesphere.io/memory-requests-fraction"]'
+            ),
+          })}
+          description={t('MEMORY_REQUEST_SCAP')}
         />
         <Text
-          title={`${memoryFormat(
-            get(detail, 'annotations["node.kubesphere.io/memory-limits"]'),
-            'Gi'
-          )} Gi (${get(
-            detail,
-            'annotations["node.kubesphere.io/memory-limits-fraction"]'
-          )})`}
-          description={t('Memory Limits')}
+          title={t('MEMORY_GIB_PERCENT', {
+            gib: memoryFormat(
+              get(detail, 'annotations["node.kubesphere.io/memory-limits"]'),
+              'Gi'
+            ),
+            percent: get(
+              detail,
+              'annotations["node.kubesphere.io/memory-limits-fraction"]'
+            ),
+          })}
+          description={t('MEMORY_LIMIT_SCAP')}
         />
       </Panel>
     )
@@ -167,7 +213,7 @@ export default class RunningStatus extends React.Component {
     const { conditions } = this.store.detail
 
     return (
-      <Panel title={t('Health Status')}>
+      <Panel title={t('HEALTH_STATUS')}>
         <div className={styles.conditions}>
           {conditions.map((condition, i) => (
             <ConditionCard key={condition.type || i} data={condition} />

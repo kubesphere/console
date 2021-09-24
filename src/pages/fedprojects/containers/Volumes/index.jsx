@@ -137,7 +137,7 @@ export default class Volumes extends React.Component {
           >
             {cluster =>
               get(record, `resources[${cluster.name}].inUse`)
-                ? t('MOUNTED_TCAP')
+                ? t('MOUNTED')
                 : t('NOT_MOUNTED')
             }
           </ClusterWrapper>

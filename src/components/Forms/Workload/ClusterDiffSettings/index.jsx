@@ -75,7 +75,7 @@ export default class AdvancedSettings extends React.Component {
         </Form.Group>
         {this.showVolumeTemplate && (
           <Form.Group
-            label={t('Volume Template Settings')}
+            label={t('VOLUME_TEMPLATE_SETTINGS')}
             desc={t('CLUSTER_VOLUME_DIFF_DESC')}
             checkable
           >
@@ -115,7 +115,7 @@ export default class AdvancedSettings extends React.Component {
           </ClustersMapper>
         </Form.Group>
         <Form.Group
-          label={t('ENVIRONMENT_VARIABLES')}
+          label={t('ENVIRONMENT_VARIABLE_PL')}
           desc={t('CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC')}
           checkable
         >

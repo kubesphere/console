@@ -87,7 +87,7 @@ module.exports = {
   CREDENTIAL_ID: 'Credential ID',
   CREDENTIAL_PL: 'Credentials',
   CREDENTIAL: 'Credential',
-  'Credentials Management': 'Credentials Management',
+  CREDENTIALS_MANAGEMENT: 'Credential Management',
   credentialsId: 'credentialsId',
   critical: 'critical',
   'Current branch name must match the input value':

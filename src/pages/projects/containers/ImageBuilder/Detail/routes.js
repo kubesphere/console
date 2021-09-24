@@ -45,7 +45,7 @@ export default path => [
   },
   {
     path: `${path}/env`,
-    title: 'Environment Variables',
+    title: 'ENVIRONMENT_VARIABLE_PL',
     component: Env,
     excat: true,
   },

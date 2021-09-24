@@ -17,14 +17,14 @@
  */
 
 module.exports = {
-  CONFIG_FIELD: 'Campo de configuración',
+  FIELDS: 'Campo de configuración',
   ConfigMap: 'ConfigMap',
   'ConfigMap Settings': 'Configuraciones de ConfigMap',
   configmaps: 'configmaps',
   ConfigMaps: 'ConfigMaps',
   ENTER_CONFIG_VALUE_DESC:
     'Introduce el valor de la entrada del configmap o utiliza el contenido del archivo',
-  MODIFY_CONFIG: 'Modificar configuración',
+  EDIT_CONFIGMAP: 'Modificar configuración',
   CONFIG_FIELD_DESC:
     'El valor único de la clave asignada por el campo de configuración.',
   CONFIGMAP_EMPTY_DESC:

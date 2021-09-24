@@ -126,7 +126,7 @@ module.exports = {
   TOTAL_LOGS:
     'Un total de <span class={className}>{logs}</span> registros de <br/> Se recogieron <span class={className}>{contenedores}</span> contenedores.',
   TIME_S: '{num} s',
-  CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS:
+  CONTAINER_LOGS_NOT_SUPPORTED:
     'El contenedor no admite logs en tiempo real en el estado actual, intente nuevamente más tarde.',
   TOTAL_LOGS_TODAY:
     'Hoy se recolectó un total de <span class={className}>{logs}</span> logs de <span class={className}>{contenedores}</span> contenedores.',
@@ -196,6 +196,6 @@ module.exports = {
   EXAMPLE: 'Example: ',
   PORT_NUMBER_EMPTY: 'Please enter a port number.',
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
-  EVENTS: 'Events',
+  EVENT_PL: 'Events',
   CREATION_TIME: 'Creation time',
 }

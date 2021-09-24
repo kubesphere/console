@@ -77,7 +77,7 @@ export default class AuditRecord extends React.Component {
     return (
       <div className={styles.itemMain}>
         {isEmpty(data) ? (
-          <div className={styles.empty}>{t('RESOURCE_NOT_FOUND')}</div>
+          <div className={styles.empty}>{t('NO_RESOURCE_FOUND')}</div>
         ) : (
           data.map((item, index) => this.renderItem(item, index))
         )}

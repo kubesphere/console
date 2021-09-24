@@ -67,7 +67,7 @@ export default class ComponentDetail extends React.Component {
         value: <Status type={status} name={t(status)} />,
       },
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: this.props.match.params.cluster,
       },
       {
@@ -75,8 +75,8 @@ export default class ComponentDetail extends React.Component {
         value: detail.namespace,
       },
       {
-        name: t('Instance Count'),
-        value: `${detail.healthyBackends} / ${detail.totalBackends}`,
+        name: t('INSTANCE_COUNT'),
+        value: `${detail.healthyBackends}/${detail.totalBackends}`,
       },
       {
         name: t('CREATED_AT'),

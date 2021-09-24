@@ -34,7 +34,7 @@ class Logs extends React.Component {
     if (!get(this.store, 'detail.containerID')) {
       return (
         <Card>
-          <Empty desc={'CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS'} />
+          <Empty desc={'CONTAINER_LOGS_NOT_SUPPORTED'} />
         </Card>
       )
     }

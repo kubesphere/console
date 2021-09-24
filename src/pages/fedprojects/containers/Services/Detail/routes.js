@@ -42,7 +42,7 @@ export default (path, detail) => [
     : []),
   {
     path: `${path}/metadata`,
-    title: 'Metadata',
+    title: 'METADATA',
     component: Metadata,
     exact: true,
   },

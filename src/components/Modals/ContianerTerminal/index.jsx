@@ -118,7 +118,7 @@ export default class ContainerTerminalModal extends React.Component {
     const defaultContainers = [
       {
         name: selectContainer.name,
-        image: `${t('Loading')}`,
+        image: t('LOADING'),
       },
     ]
 
@@ -133,7 +133,7 @@ export default class ContainerTerminalModal extends React.Component {
       value: container,
       uid: container.name,
       icon: 'docker',
-      description: `${t('IMAGE')}: ${container.image}`,
+      description: t('IMAGE_VALUE', { value: container.image }),
     }))
 
     const command = selectContainer.command
@@ -146,7 +146,7 @@ export default class ContainerTerminalModal extends React.Component {
             options={containerOpts}
             onChange={this.handleContainerChange}
           />
-          <h6>{t('Basic Information')}</h6>
+          <h6>{t('BASIC_INFORMATION')}</h6>
           <dl>
             <dt>{t('STATUS')}</dt>
             <dd>{selectContainer.ready ? t('Running') : t('Updating')}</dd>
@@ -158,7 +158,7 @@ export default class ContainerTerminalModal extends React.Component {
             <dd>{this.getResourceInfo('requests')}</dd>
             <dt>{t('RESOURCE_LIMITS')}</dt>
             <dd>{this.getResourceInfo('limits')}</dd>
-            <dt>{t('Restart Count')}</dt>
+            <dt>{t('RESTART_PL')}</dt>
             <dd>{selectContainer.restartCount}</dd>
           </dl>
         </div>

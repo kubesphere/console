@@ -117,8 +117,7 @@ module.exports = {
   FLUENTD_DESC: 'Fluentd 是提供统一日志处理层的开源数据收集器。',
   LOG_COLLECTION_ENABLE_TIPS: '新的状态需 1 分钟左右生效',
   'Passwords must be at least 6 characters long': '密码至少 6 个字节',
-  CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS:
-    '容器在当前状态下不支持实时日志，请稍后再试',
+  CONTAINER_LOGS_NOT_SUPPORTED: '容器在当前不支持实时日志，请稍后重试。',
   TOTAL_LOGS_TODAY:
     '今日总共收录了 <span class={className}>{containers}</span> 个容器<br/> <span class={className}> {logs} </span> 条日志信息',
   START_REAL_TIME_LOG: '启用实时日志',
@@ -162,6 +161,6 @@ module.exports = {
   EXAMPLE: '例如：',
   PORT_NUMBER_EMPTY: '请输入端口号。',
   PARAMETER_REQUIRED: '此参数为必填项。',
-  EVENTS: '事件',
+  EVENT_PL: '事件',
   CREATION_TIME: '创建时间',
 }

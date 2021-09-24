@@ -106,7 +106,7 @@ export default class CreateIPPoolModal extends Component {
         {...rest}
       >
         <Form.Item
-          label={t('IP_ADDRESS_TCAP')}
+          label={t('IP_ADDRESS')}
           rules={[
             { required: true, message: t('IP_ADDRESS_EMPTY_DESC') },
             {

@@ -180,8 +180,7 @@ module.exports = {
   STATELESS_SERVICE_DESC:
     'El servicio más utilizado en servicios de contenedores. Define la plantilla del Pod para controlar el estado del Pod, incluidas las actualizaciones continuas y los retrocesos.',
   SPECIFY_WORKLOAD_DESC: 'Crea un servicio con Pods existentes.',
-  SERVICE_PORTS_DESC:
-    'Set the ports used to access the container and the service ports.',
+  SERVICE_PORTS_DESC: 'Set the container ports and Service ports.',
   SELECT_WORKLOAD_DESC:
     'Pre-populate the fields with labels of container replicas created by the workloads.',
 
@@ -191,7 +190,6 @@ module.exports = {
 
   // Services
   WORKLOAD_SELECTOR: 'Workload Selector',
-  NONE: 'None',
   UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
   MAXIMUM_STICKINESS_DURATION_DESC:
     'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
@@ -202,5 +200,5 @@ module.exports = {
     'Enter the domain name of an external Service.',
   UNKNOWN: 'Unknown',
   EXTERNALNAME_EXAMPLE: 'Example: ',
-  PORTS: 'Ports',
+  PORT_PL: 'Ports',
 }

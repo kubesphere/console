@@ -38,9 +38,8 @@ module.exports = {
   'Use default annotations': '使用默認註解',
   GATEWAY_IP: '訪問地址',
   UPDATE_GATEWAY_DESC: '當前網關可升級',
-  DISK_LOG_COLLECTION_TITLE: '落盤日誌',
   DISK_LOG_COLLECTION_DESC:
-    '容器內的落盤日誌進行收集，並轉發到標準輸出，然後由日誌收集系統統一採集。 ',
+    'The Log Collection function allows the system to collect container logs saved on volumes. To use this function, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
   UPDATED_GATEWAY_DESC: '請在業務低峰期操作，升級過程可能會造成業務短暫中斷。 ',
   UPDATED_GATEWAY_TITLE: '升級網關確認?',
   CLUSTER_GATEWAY_GUIDE_DESC:

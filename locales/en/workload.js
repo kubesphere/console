@@ -22,12 +22,16 @@ module.exports = {
   PROJECT_EMPTY_DESC: 'Please select a project.',
   REPLICA_LOW_SI: 'replica',
   REPLICA_LOW_PL: 'replicas',
-  IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} layers',
-  IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} layers',
+  IMAGE_TIME_SIZE_LAYER_PL: 'Updated {time}, {size}, {layer} layers',
+  IMAGE_TIME_SIZE_LAYER_SI: 'Updated {time}, {size}, {layer} layer',
   CPU_REQUEST: 'CPU Request',
   CPU_LIMIT: 'CPU Limit',
+  CPU_REQUEST_SCAP: 'CPU request',
+  CPU_LIMIT_SCAP: 'CPU limit',
   MEMORY_REQUEST: 'Memory Request',
   MEMORY_LIMIT: 'Memory Limit',
+  MEMORY_REQUEST_SCAP: 'Memory request',
+  MEMORY_LIMIT_SCAP: 'Memory limit',
   ADD_PROBE: 'Add Probe',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
   SELINUX_CONTEXT: 'SELinux Context',
@@ -41,15 +45,16 @@ module.exports = {
   MUST_MATCH: 'Must match',
   MOUNT_PATH_EMPTY: 'Please enter a mount path.',
   GPU_TYPE: 'GPU Type',
+  GPU_LIMIT: 'GPU Limit',
   CONFIGMAP: 'ConfigMap',
   CONFIGMAP_PL: 'ConfigMaps',
+  CONFIGMAPS: 'ConfigMaps',
   CONFIGMAP_LOW: 'ConfigMap',
   PARTITION_ORDINAL: 'Ordinal for Dividing Pod Replicas',
   SERVICE_TOPOLOGY: 'Service Topology',
-  DIFFERENTIATED_SETTINGS: 'Differentiated Settings',
-  'Diff Settings': 'Differentiated Settings',
+  CLUSTER_DIFF: 'Cluster Differences',
   PARTITION_ORDINAL_DESC:
-    'Ordinal that divides the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
+    'Set an ordinal to divide the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
   'Access Mode': 'Access Mode',
   'Add argument': 'Add argument',
   EDGENODE_CONFIG_COMMAND: 'Edge Node Configuration Command',
@@ -74,6 +79,11 @@ module.exports = {
   'Additional metadata settings for resources.':
     'Additional metadata settings for resources.',
   ADD_METADATA_DESC: 'Add metadata to the resource.',
+  ROUTE_ADD_METADATA_DESC: 'Add metadata to the Route.',
+  SERVICE_ADD_METADATA_DESC: 'Add metadata to the Service.',
+  VOLUME_ADD_METADATA_DESC: 'Add metadata to the volume.',
+  WORKLOAD_ADD_METADATA_DESC: 'Add metadata to the workload.',
+  POD_ADD_METADATA_DESC: 'Add metadata to the Pod replicas.',
   'Advanced Options': 'Advanced Options',
   'Applied to the workload': 'Applied to the workload',
   Argument: 'Argument',
@@ -91,6 +101,9 @@ module.exports = {
   'Collecting file log': 'Collecting file log',
   Commands: 'Commands',
   CONCURRENCY_POLICY: 'Concurrency Policy',
+  RUN_JOBS_CONCURRENTLY: 'Run Jobs concurrently',
+  SKIP_NEW_JOB: 'Skip new Job',
+  SKIP_OLD_JOB: 'Skip old Job',
   'Config Template': 'Config Template',
   'Container Config': 'Container Config',
   'Container CPU Resource Request, 1 Core = 1000m':
@@ -100,7 +113,7 @@ module.exports = {
   ADD_CONTAINER: 'Add Container',
   LIVENESS_CHECK: 'Liveness Check',
   CONTAINER_LOG_PATH: 'Container log path',
-  'Container Logs': 'Container Logs',
+  CONTAINER_LOGS: 'Container Logs',
   'Container Memory Resource Request': 'Container Memory Resource Request',
   CONTAINER_NAME: 'Container Name',
   READINESS_CHECK: 'Readiness Check',
@@ -125,12 +138,12 @@ module.exports = {
   CRONJOB_LOW: 'CronJob',
   'CronJob Settings': 'CronJob Settings',
   'Current number of nodes scheduled': 'Current number of nodes scheduled',
-  'Current Replicas': 'Current Replicas',
+  REPLICAS_CURRENT: 'Current',
   'Current Revision': 'Current Revision',
   'Current Stage(phase)': 'Current Stage(phase)',
   'Current Utilization': 'Current Utilization',
   LOCATION: 'Location',
-  'Deployment Mode': 'Deployment Mode',
+  REPLICA_SCHEDULING_MODE: 'Replica Scheduling Mode',
   POD_SCHEDULING_RULES: 'Pod Scheduling Rules',
   POD_SCHEDULING_RULES_DESC:
     'Specify the rules for scheduling the Pod replicas to nodes.',
@@ -141,13 +154,13 @@ module.exports = {
   DockerDaemonNotReady: 'DockerDaemonNotReady',
   'Edit Config Template': 'Edit Config Template',
   EDIT_CONTAINER: 'Edit Container',
-  'Edit Labels': 'Edit Labels',
+  EDIT_LABEL: 'Edit Label',
   EDIT_YAML: 'Edit YAML',
   YAML_FILE: 'YAML File',
   EmptyDir: 'EmptyDir',
   Environment: 'Environment',
-  'Environment Variables': 'Environment Variables',
-  ENVIRONMENT_VARIABLES: 'Environment Variables',
+  ENVIRONMENT_VARIABLE_PL: 'Environment Variables',
+  ENVIRONMENT_VARIABLE: 'Environment Variable',
   'environment variables': 'environment variables',
   ErrImageNeverPull: 'ErrImageNeverPull',
   ErrImagePull: 'ErrImagePull',
@@ -165,11 +178,11 @@ module.exports = {
   FailedCreate: 'FailedCreate',
   FailedDelete: 'FailedDelete',
   FAILURE_THRESHOLD: 'Failure Threshold',
-  FAILED_JOBS_HISTORY_LIMIT: 'Failed Jobs Record',
+  FAILED_JOBS_RETAINED: 'Failed Jobs Retained',
   'File List': 'File List',
   'for example': 'for example',
   FoundNewReplicaSet: 'FoundNewReplicaSet',
-  'Horizontal Pod Autoscaling': 'Horizontal Pod Autoscaling',
+  HORIZONTAL_POD_AUTOSCALING: 'Horizontal Pod Autoscaling',
   HPA_SET_TIP: 'Horizontal Pod autoscaling has been set.',
   'Host Path': 'Host Path',
   'Host Port': 'Host Port',
@@ -199,24 +212,25 @@ module.exports = {
   Job: 'Job',
   JOB: 'Job',
   'Job Settings': 'Job Settings',
+  STRATEGY_SETTINGS: 'Strategy Settings',
   'Job Template': 'Job Template',
   EMPTY_LABEL_DESC: 'Please add a label.',
-  LABEL_EXIST_DESC: 'The label already exists. Please use another label.',
+  LABEL_EXIST_DESC: 'The label already exists. Please enter another label.',
   ADD_CONTAINER_DESC: 'Customize container settings to create a container.',
   'Labels cannot be empty': 'Labels cannot be empty',
   DUPLICATE_LABELS: 'Duplicate labels cannot be added.',
   layers: 'layers',
-  'Liveness Probe': 'Liveness Probe',
+  LIVENESS_PROBE: 'Liveness Probe',
   'log path relative to container mount path':
     'log path relative to container mount path',
   'm.internalLifecycle.PreStartContainer':
     'm.internalLifecycle.PreStartContainer',
-  'Max Replicas Number': 'Max Replicas Number',
+  MAXIMUM_REPLICAS: 'Maximum Replicas',
   MAX_SURGE_POD_VALIDATOR: 'MAX_SURGE_POD_VALIDATOR',
   'Maximum number of replicas': 'Maximum number of replicas',
   'Memory Target Usage': 'Memory Target Usage',
   'Memory Target Utilization': 'Memory Target Utilization',
-  'Min Replicas Number': 'Min Replicas Number',
+  MINIMUM_REPLICAS: 'Minimum Replicas',
   'min replicas number should not be greater than max replicas number':
     'min replicas number should not be greater than max replicas number',
   MinimumReplicasAvailable: 'MinimumReplicasAvailable',
@@ -226,7 +240,7 @@ module.exports = {
   MOUNT_CONFIGMAP_OR_SECRET: 'Mount ConfigMap or Secret',
   MOUNT_PATH: 'Mount path',
   MOUNT_PATH_IN_USE:
-    'The mount path is already in use. Please use another mount path.',
+    'The mount path is already in use. Please enter another mount path.',
   'Mount point': 'Mount point',
   'Mount Temporary Volume': 'Mount Temporary Volume',
   MOUNT_CONFIGMAP_OR_SECRET_DESC:
@@ -244,6 +258,8 @@ module.exports = {
     'No related resources found with the current workload(s)',
   NO_RELATED_RESOURCE_FOUND: 'No Related Resource Found',
   NO_REQUEST: 'No request',
+  NO_REQUEST_TCAP: 'No Request',
+  NO_LIMIT_TCAP: 'No Limit',
   NO_RESOURCE_LIMIT: 'No resource limit',
   'No Request': 'No Request',
   'No resource limits': 'No resource limits',
@@ -256,7 +272,7 @@ module.exports = {
   'Please add at least one volume': 'Please add at least one volume',
   'Please add at least one volume or volume template':
     'Please add at least one volume or volume template',
-  ENTER_SCHEDULE_TIP: 'Please enter a schedule.',
+  ENTER_SCHEDULE_TIP: 'Please select a schedule.',
   'Please input command': 'Please input command',
   MOUNT_VOLUME: 'Mount Volume',
   MOUNT_VOLUME_OR_TEMPLATE: 'Mount Volume or Volume Template',
@@ -281,6 +297,7 @@ module.exports = {
   'Pod Decentralized Deployment': 'Pod Decentralized Deployment',
   'Pod Default Deployment': 'Pod Default Deployment',
   POD_IP_ADDRESS: 'Pod IP Address',
+  POD_IP_ADDRESS_SCAP: 'Pod IP address',
   'Pod Memory Request': 'Pod Memory Request',
   POD_REPLICAS: 'Pod Replicas',
   DEFAULT_RULES: 'Default Rules',
@@ -317,18 +334,18 @@ module.exports = {
   PostStartHookError: 'PostStartHookError',
   'Private Registry': 'Private Registry',
   Privileged: 'Privileged',
-  Probe: 'Probe',
+  PROBE_PL: 'Probes',
   ProgressDeadlineExceeded: 'ProgressDeadlineExceeded',
   Protocols: 'Protocols',
   PROVISIONER: 'Provisioner',
   'Read Write Mode': 'Read Write Mode',
-  'Readiness Probe': 'Readiness Probe',
+  READINESS_PROBE: 'Readiness Probe',
   SIMULTANEOUS_UPDATE: 'Simultaneous Update',
   REDEPLOY: 'Redeploy',
   'Redeploy Successfully': 'Redeploy Successfully',
   REGISTRY: 'Registry',
   RegistryUnavailable: 'RegistryUnavailable',
-  'Replica Status': 'Replica Status',
+  REPLICA_STATUS: 'Replica Status',
   'Replicas Number': 'Replicas Number',
   ReplicaSetCreateError: 'ReplicaSetCreateError',
   ReplicaSetUpdated: 'ReplicaSetUpdated',
@@ -346,11 +363,11 @@ module.exports = {
   'Resource Request': 'Resource Request',
   RESOURCE_REQUESTS: 'Resource Requests',
   'Resource requests remaining quota': 'Resource requests remaining quota',
-  'Resource Status': 'Resource Status',
-  'Restart Count': 'Restart Count',
+  RESOURCE_STATUS: 'Resource Status',
+  RESTART_PL: 'Restarts',
   RESTART_POLICY: 'Restart Policy',
   Revision: 'Revision',
-  'Revision Records': 'Revision Records',
+  REVISION_RECORDS: 'Revision Records',
   'Revision Rollback': 'Revision Rollback',
   'Rollback Revisions': 'Rollback Revisions',
   RollingUpdate: 'RollingUpdate',
@@ -369,27 +386,29 @@ module.exports = {
   SELECT_NODES: 'Select Nodes',
   'Specify Replicas Number': 'Specify Replicas Number',
   SYNC_HOST_TIMEZONE: 'Synchronize Host Timezone',
-  STARTING_DEADLINE: 'Job Starting Deadline (s)',
-  'Startup Probe': 'Startup Probe',
+  MAXIMUM_DELAY: 'Maximum Start Delay (s)',
+  STARTUP_PROBE: 'Startup Probe',
   'Storage Size': 'Storage Size',
   'Strategy Type': 'Strategy Type',
   SUBPATH: 'Subpath',
   SUCCESS_THRESHOLD: 'Success Threshold',
   SuccessfulCreate: 'SuccessfulCreate',
   SuccessfulDelete: 'SuccessfulDelete',
-  SUCCESSFUL_JOBS_HISTORY_LIMIT: 'Successful Jobs Record',
+  SUCCESSFUL_JOBS_RETAINED: 'Successful Jobs Retained',
   WORKLOAD_MOUNT_VOLUME_DESC:
     'Mount an existing volume, temporary volume, or HostPath volume to the containers.',
   'Sure to delete the workload(s)?': 'Sure to delete the workload(s)?',
   'target port': 'target port',
-  'Target Usage': 'Target Usage',
-  'Target Utilization': 'Target Utilization',
+  TARGET_MEMORY_USAGE: 'Target Memory Usage',
+  TARGET_CPU_USAGE: 'Target CPU Usage',
   'TCP Port Check': 'TCP Port Check',
   'Temporary Volume': 'Temporary Volume',
   CONCURRENCY_POLICY_DESC:
-    'Select a concurrency policy of a Job created by the CronJob.',
-  FAILED_JOBS_DESC: 'Number of failed Jobs to be retained.',
-  SUCCESSFUL_JOBS_DESC: 'Number of successful Jobs to be retained.',
+    'Policy adopted by the system when multiple Jobs of the CronJob overlap with each other.',
+  FAILED_JOBS_RETAINED_DESC:
+    'Number of failed Jobs allowed to be retained. The default value is 1.',
+  SUCCESSFUL_JOBS_RETAINED_DESC:
+    'Number of successful Jobs allowed to be retained. The default value is 3.',
   'Timeout(s)': 'Timeout(s)',
   TCP_PORT: 'TCP Port',
   TEMPORARY_VOLUME: 'Temporary Volume',
@@ -468,11 +487,11 @@ module.exports = {
     'It can only contain lowercase letters, numbers and hyphens("-"), and must start and end with a lowercase letter or a number. The value can contain a maximum of 52 characters.',
   CRONJOB_NAME_TOO_LONG: 'The value can contain a maximum of 52 characters.',
 
-  REPLICAS_SCALE_NOTIFY_TITLE: 'Does it take effect immediately?',
+  ADJUST_REPLICAS: 'Adjust Replicas',
   REPLICAS_SCALE_NOTIFY_CONTENT:
-    'You are going to change the number of replicas of your workload to {num}. You can continue to change it, or you can make the change take effect immediately.',
-  REPLICAS_SCALE_NOTIFY_CONFIRM: 'Apply changes ({seconds}s)',
-  REPLICAS_SCALE_NOTIFY_CANCEL: 'Discard changes',
+    'Are you sure you want to change the number of Pod replicas to {num}?',
+  REPLICAS_SCALE_NOTIFY_CONFIRM: 'OK ({seconds}s)',
+  REPLICAS_SCALE_NOTIFY_CANCEL: 'Cancel',
 
   ROLLING_UPDATE_SETTINGS: 'Rolling Update Settings',
   MAX_UNAVAILABLE_PODS: 'Maximum Unavailable Pods',
@@ -504,7 +523,7 @@ module.exports = {
   IMAGE_EMPTY: 'Please set an image.',
   IMAGE_REGISTRY_PLACEHOLDER: 'Select the registry secret',
   IMAGE_DESC:
-    'To use a private image registry, you need to first create an image registry secret. <a href={link} target="_blank">Learn More</a>',
+    'To use a private image registry, you need to first create an image registry Secret. <a href={link} target="_blank">Learn More</a>',
 
   REPLICAS_DESC: 'The desired number of pods will be created for the {module}.',
   VOLUME_SUB_TEXT: 'Volumes used by the containers of the workload',
@@ -550,24 +569,23 @@ module.exports = {
   JOBS_VOLUME_DESC:
     'You can mount a temporary volumes, or persistent volumes to a Pod of the job.',
 
-  BACK_OFF_LIMIT: 'Backoff Limit',
-  BACK_OFF_LIMIT_DESC:
-    'Maximum number of retries before marking the Job as failed. The default value is 6.',
-  JOB_PARALLELISM_LABEL: 'Parallelism',
-  JOB_PARALLELISM_DESC: 'Number of Pods that run concurrently.',
-  JOB_COMPLETION_LABEL: 'Completions',
-  JOB_COMPLETION_DESC:
-    'Number of Pods that complete successfully required for the Job to be marked as complete.',
-  JOB_ACTIVE_DEADLINE: 'Active Deadline (s)',
-  JOB_ACTIVE_DEADLINE_DESC:
-    'Maximum duration of the Job. The Job is terminated after reaching the specific timeout.',
+  MAXIMUM_RETRIES: 'Maximum Retries',
+  MAXIMUM_RETRIES_DESC:
+    'Maximum number of retries before the Job is marked as failed. The default value is 6.',
+  PARALLEL_PODS_DESC: 'Number of Pods that run in parallel in the Job.',
+  COMPLETE_PODS_DESC:
+    'Number of complete Pods required for the Job to be marked as complete.',
+  MAXIMUM_DURATION_DESC:
+    'Maximum duration of the Job. The Job is terminated when it reaches the maximum duration.',
+  PARALLEL_PODS: 'Parallel Pods',
+  COMPLETE_PODS: 'Complete Pods',
+  MAXIMUM_DURATION: 'Maximum Duration (s)',
 
   RESTART_POLICY_TIP:
     'RestartPolicy can only specify Never or OnFailure, when the job is not completed:<br/>* If RestartPolicy specifies Never, the job creates a new Pod when the Pod fails, and the failed Pod does not disappear.<br/>* If RestartPolicy specifies OnFailure, the job will internally restart the container when the Pod fails, instead of creating a new Pod.',
 
-  RESTART_POLICY_NEVER_DESC: 'Never (create a new Pod when a Pod fails)',
-  RESTART_POLICY_ONFAILURE_DESC:
-    'On failure (restart the container when a Pod fails)',
+  RESTART_POLICY_NEVER_DESC: 'Re-create Pod',
+  RESTART_POLICY_ONFAILURE_DESC: 'Restart container',
 
   CRONJOBS_BASEINFO_DESC:
     'Basic information regarding the CronJob. You need to specify the name and schedule',
@@ -576,8 +594,8 @@ module.exports = {
   CRONJOB_CRON_DESC:
     'Set a schedule for the CronJob. KubeSphere uses UTC by default and you need to adjust the schedule according to your time zone. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Learn More</a>',
 
-  START_DEADLINE_SECONDS_DESC:
-    'Deadline for starting the Job if the scheduled run is missed for any reason.',
+  MAXIMUM_DELAY_DESC:
+    'Maximum delay before starting a scheduled Job when the Job is missed for certain reasons.',
 
   VOLUME_EMPTY_TIP: 'No created volumes, please',
 
@@ -637,7 +655,7 @@ module.exports = {
   SELECT_SECRET_DESC: 'Mount a Secret to the containers.',
 
   MONITORING_ALERT_DESC:
-    'The current monitoring graph displays five replicas at most. You can click "View All Replicas" to view more monitoring graphs if the number of replicas exceeds five.',
+    'Information about a maximum of five Pod replicas are displayed by default. You can click View All Replicas to view information about all Pod replicas.',
 
   CONTAINER_CPU_DESC:
     "It's used as the judgment of resource allocation when scheduling containers. The container is allowed to be scheduled to the node only if the total amount of CPU that can be allocated on the node is equal or greater than the request value of the container CPU.",
@@ -697,8 +715,8 @@ module.exports = {
   PROJECT_COLLECT_SAVED_DISABLED_DESC:
     'To enable this function, you need to enable Collect Logs on Volumes in Project Settings.',
 
-  COLLECT_FILE_LOG_TIP:
-    'Allow the system to collect container logs saved in a volume. To use this function, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
+  COLLECT_LOGS_ON_VOLUMES_DESC:
+    'Allow the system to collect container logs saved on volumes. To use this function, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
 
   ISTIO_PROTOCOL_TIP:
     'Select the protocol used by the service to fully utilize the Application Governance function. For example, select HTTP for an HTTP service.',
@@ -758,7 +776,7 @@ module.exports = {
     'Set different environment variables for containers in different clusters.',
   POD_SCALE_DESC: 'The number of Pod instances that can be scaled',
   REPLICAS_AVAILABLE: 'Available',
-  REPLICAS_EXPECTED: 'Expected',
+  REPLICAS_DESIRED: 'Desired',
 
   SYNC_HOST_TIMEZONE_DESC:
     'Synchronize the time zone of the container with that of the host.',
@@ -779,6 +797,7 @@ module.exports = {
 
   // Jobs
   JOB_PL: 'Jobs',
+  JOBS: 'Jobs',
   NUMBER_OF_JOBS: 'Number of Jobs',
   JOB_LOW: 'Job',
   CRONJOBS: 'CronJobs',
@@ -786,6 +805,7 @@ module.exports = {
 
   // CronJobs
   ADD_VOLUME: 'Add Volume',
-  RESTART_POLICY_DESC: 'The Pod restart policy.',
+  RESTART_POLICY_DESC:
+    'Select the policy adopted by the system when a container in the Pod exits abnormally.',
   MOUNT_VOLUMES: 'Mount Volumes',
 }

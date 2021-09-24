@@ -54,7 +54,7 @@ module.exports = {
   'Mount Info': '挂载信息',
   // Volumes List Page
   MOUNT_STATUS: '挂载',
-  MOUNTED_TCAP: '已挂载',
+  MOUNTED: '已挂载',
   NOT_MOUNTED: '未挂载',
   Scalable: '可扩容性',
   RECLAIM_POLICY: '回收机制',
@@ -125,8 +125,7 @@ module.exports = {
     '存储类型（Storage Class）是由集群管理员配置的多种存储类型，不同的存储类型为集群用户提供不同类型的存储卷。',
 
   WHAT_IS_LOCAL_VOLUME_Q: '什么是本地存储卷?',
-  WHAT_IS_LOCAL_VOLUME_A:
-    '本地存储卷表示挂载的本地存储设备，如磁盘、分区或目录。',
+  WHAT_IS_LOCAL_VOLUME_A: '本地存储卷是创建在集群本地文件系统中的存储卷。',
   CHOOSE_STORAGE_SYSTEM_TIP: '选择存储系统',
   PROVISIONER_DEPENDENCE_DESC: '您需要先在存储系统中部署相关插件才能提供服务。',
 
@@ -147,7 +146,7 @@ module.exports = {
   QINGCLOUD_VOLUME_TAGS_DESC:
     '为存储卷添加标签。使用半角逗号（,）分隔多个标签。',
 
-  MAXSIZE: '容量上限',
+  MAXSIZE: '容量限制',
   STEPSIZE: '增量值',
   MINSIZE: '容量下限',
   FSTYPE: '文件系统类型',
@@ -217,7 +216,7 @@ module.exports = {
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: '选择已有的存储卷快照来创建存储卷。',
   SELECT_STORAGE_CLASS_CREATE_VOLUME: '选择已有的存储类型来创建存储卷。',
 
-  CLUSTER_VOLUME_DIFF_DESC: '可针对不同集群，选择不同的存储类型',
+  CLUSTER_VOLUME_DIFF_DESC: '为不同的集群选择不同的存储类型。',
 
   VOLUME_MONITORING_TIP:
     'Kubernetes 采集的是存储卷的设备用量数据，未挂载的存储卷暂时采集不到，并且对于如 OpenEBS/Local PV、NFS 等路径型存储卷通常与实际用量有一定出入。详见<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">存储卷监控数据分析</a>。',

@@ -83,7 +83,7 @@ export default class ProjectTrend extends React.Component {
             [styles.empty]: empty,
           })}
           refreshing={isRefreshing}
-          empty={t('NO_MONITORING_DATA_FOUND')}
+          empty={t('NO_MONITORING_DATA')}
         >
           {this.renderChart()}
         </Card>

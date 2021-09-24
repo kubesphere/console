@@ -82,7 +82,7 @@ export default class ConfigMapDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -101,7 +101,7 @@ export default class ConfigMapDetail extends React.Component {
     {
       key: 'editConfigMap',
       icon: 'pen',
-      text: t('MODIFY_CONFIG'),
+      text: t('EDIT_CONFIGMAP'),
       action: 'edit',
       onClick: () =>
         this.trigger('configmap.edit', {
@@ -117,7 +117,7 @@ export default class ConfigMapDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),

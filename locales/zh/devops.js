@@ -24,6 +24,8 @@ module.exports = {
   'DevOps Member': '工程成员',
   'DevOps Members': '工程成员',
   DEVOPS_PROJECT_CREDENTIAL_PL: 'DevOps 工程凭证',
+  DEVOPS_CREDENTIAL: ' DevOps 凭证',
+  DEVOPS_CREDENTIAL_PL: 'DevOps 凭证',
   DEVOPS_CREDENTIAL_EMPTY_DESC: '请创建一个 DevOps 凭证。',
   DEVOPS_CREDENTIAL_LOW: 'DevOps 凭证',
   'DevOps Basic Info': '基本信息',
@@ -55,6 +57,8 @@ module.exports = {
 
   DEVOPS_PROJECT_CREDENTIALS_DESC:
     '凭证是包含了一些敏感数据的对象，如用户名密码、SSH 密钥和令牌等，用于在流水线运行时, 为拉取代码、推送或拉取镜像、SSH 执行脚本等过程提供认证。',
+  DEVOPS_CREDENTIALS_DESC:
+    '凭证是包含了一些敏感数据的对象，如用户名密码，SSH 密钥和 Token 等, 用于在 Pipeline 运行时, 为拉取代码、push/pull 镜像、SSH 执行脚本等过程提供认证',
 
   DEVOPS_PROJECT_ROLES_DESC:
     '成员角色定义了在当前 DevOps 工程下用户所拥有的权限。',

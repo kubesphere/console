@@ -17,17 +17,18 @@
  */
 
 module.exports = {
-  'Federated Schedule': 'Despliegue federal',
   'Set Replicas': 'Número fijo de copias',
-  Federated_Schedule_Text:
+  SPECIFY_REPLICAS: 'Specify Replicas',
+  SPECIFY_WEIGHTS: 'Specify Weights',
+  SPECIFY_WEIGHTS_DESC:
     'El número total de copias establecido se asignará a los grupos seleccionados de acuerdo con los pesos establecidos, y las copias de los grupos no disponibles se migrarán automáticamente a los grupos disponibles.',
-  Fixed_Deploy_text:
+  SPECIFY_REPLICAS_DESC:
     'Especifique claramente la cantidad de réplicas que se implementarán para cada clúster.',
   'Total Replicas Number': 'Número total de copias',
-  Weight: 'Peso',
+  WEIGHT: 'Peso',
   TOTAL_REPLICAS: 'Número total de copias',
-  'replicas input invalid': 'La entrada de copia es ilegal',
-  'Please input total replicas num': 'Ingrese el número total de copias',
+  ENTER_POSITIVE_INTEGER_DESC: 'La entrada de copia es ilegal',
+  TOTAL_REPLICAS_EMPTY_DESC: 'Ingrese el número total de copias',
   'Storage Function Manage':
     'Gestión de la función de volumen de almacenamiento',
   'Volume Clone': 'Clon de volumen de almacenamiento',

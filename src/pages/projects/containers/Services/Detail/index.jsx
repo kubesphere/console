@@ -94,7 +94,7 @@ export default class ServiceDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: this.fetchData,
         }),
@@ -152,7 +152,7 @@ export default class ServiceDetail extends React.Component {
       action: 'delete',
       onClick: () =>
         this.trigger('service.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),

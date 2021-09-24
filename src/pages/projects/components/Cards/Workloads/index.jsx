@@ -96,7 +96,7 @@ export default class WorkloadsCard extends React.Component {
     if (isEmpty(workloads) && !isLoading) {
       return (
         <div className={styles.empty}>
-          {t('NOT_AVAILABLE', { resource: t('Workload') })}
+          {t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('Workload') })}
         </div>
       )
     }

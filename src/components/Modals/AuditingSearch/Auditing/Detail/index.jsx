@@ -146,7 +146,7 @@ export default class Detail extends React.PureComponent {
       className: styles.namespacecol,
     },
     {
-      thead: t('Reason'),
+      thead: t('REASON'),
       key: 'reason',
       hidden: true,
       content: ({ ResponseStatus }) => get(ResponseStatus, 'reason'),

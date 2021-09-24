@@ -44,7 +44,7 @@ export default {
     {
       icon: 'group',
       name: 'deploymentMode',
-      title: 'Deployment Mode',
+      title: 'REPLICA_SCHEDULING_MODE',
       component: Affinity,
     },
   ],

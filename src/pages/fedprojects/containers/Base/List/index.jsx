@@ -44,7 +44,7 @@ export default class FederatedProjectLayout extends Component {
       <div className="ks-page">
         <div className="ks-page-side">
           <Selector
-            title={t('Multi-cluster Projects')}
+            title={t('MULTI_CLUSTER_PROJECT_SCAP')}
             type="federatedprojects"
             detail={detail}
             workspace={match.params.workspace}

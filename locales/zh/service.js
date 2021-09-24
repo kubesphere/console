@@ -133,7 +133,6 @@ module.exports = {
   'Creation failed, please delete and try again': '创建失败，请删除后重试',
 
   ADD_ROUTING_RULE: '添加路由规则',
-  EDIT_ROUTING_RULE: '编辑路由规则',
 
   VIRTUAL_IP_TITLE: '虚拟 IP 地址',
   VIRTUAL_IP_DESC:
@@ -188,7 +187,7 @@ module.exports = {
   SERVICE_TYPE_STATELESSSERVICE: '无状态服务',
   SERVICE_TYPE_EXTERNALSERVICE: '映射外部服务',
 
-  SERVICE_PORTS_DESC: '设置用于访问容器的端口以及服务端口。',
+  SERVICE_PORTS_DESC: '设置容器端口和服务端口。',
 
   EIP_POOL_DESC: '集群内部访问方式(DNS)',
 
@@ -197,7 +196,6 @@ module.exports = {
 
   // Services
   WORKLOAD_SELECTOR: '工作负载选择器',
-  NONE: '无',
   UNKNOWN_SERVICE_TYPE: '未知服务类型',
   HEADLESS: 'Headless',
   EXTERNALNAME: 'ExternalName',
@@ -205,5 +203,5 @@ module.exports = {
   EXTERNAL_SERVICE_ADDRESS_DESC: '输入外部服务的域名。',
   UNKNOWN: '未知',
   EXTERNALNAME_EXAMPLE: '例如：',
-  PORTS: '端口',
+  PORT_PL: '端口',
 }

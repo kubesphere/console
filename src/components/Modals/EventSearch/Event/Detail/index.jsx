@@ -149,14 +149,14 @@ export default class Detail extends React.PureComponent {
       className: styles.kindcol,
     },
     {
-      thead: t('Reason'),
+      thead: t('REASON'),
       key: 'reason',
       hidden: false,
       content: ({ reason }) => reason,
       className: styles.reasoncol,
     },
     {
-      thead: t('Message'),
+      thead: t('MESSAGE'),
       key: 'message',
       hidden: false,
       content: this.renderHightLightMatchTd,

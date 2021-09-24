@@ -69,7 +69,7 @@ export default class FedWorkloadStatus extends Component {
           })}
         </div>
         <p>
-          {t('REPLICAS_AVAILABLE')}/{t('REPLICAS_EXPECTED')}
+          {t('REPLICAS_CURRENT')}/{t('REPLICAS_DESIRED')}
         </p>
       </div>
     )

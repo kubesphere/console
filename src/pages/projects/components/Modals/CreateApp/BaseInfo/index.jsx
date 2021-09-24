@@ -169,6 +169,7 @@ export default class BaseInfo extends React.Component {
           >
             <Select
               name="metadata.annotations['servicemesh.kubesphere.io/enabled']"
+              placeholder=" "
               options={this.governances}
               onChange={this.handleGovernanceChange}
               disabled={!serviceMeshEnable}

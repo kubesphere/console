@@ -126,7 +126,7 @@ module.exports = {
     '企业空间中的部门是用来管理权限的逻辑单元。您可以在部门中设置企业空间角色、多个项目角色以及多个 DevOps 工程角色，还可以将用户分配到部门中以批量管理用户权限。',
   DEPARTMENT_EMPTY_DESC: '没有可用部门',
   WORKSPACE_GROUP_USER_EMPTY_DESC: '暂时没有可分配的成员',
-  WORKSPACE_QUOTA_MANAGE_DESC:
+  WORKSPACE_QUOTAS_DESC:
     '企业空间配额用于管理企业空间中所有项目和 DevOps 工程的总资源用量。',
 
   DELETE_WORKSPACE_PROJECTS_DESC: '删除企业空间中的项目。',

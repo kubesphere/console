@@ -61,7 +61,7 @@ export default class StatefulSets extends React.Component {
         },
         {
           value: 'daemonsets',
-          label: t('STATEFULSETS'),
+          label: t('DAEMONSETS'),
         },
       ],
     }

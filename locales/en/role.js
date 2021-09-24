@@ -30,11 +30,10 @@ module.exports = {
   APP_TEMPLATES_VIEW: 'App Template Viewing',
   APPLICATION_WORKLOADS_MANAGEMENT: 'Application Workload Management',
   APPLICATION_WORKLOADS_VIEW: 'Application Workload Viewing',
-  'Authorization List': 'Permissions',
-  PERMISSIONS: 'Permissions',
+  PERMISSION_PL: 'Permissions',
   'Authorization Settings': 'Authorization Settings',
   'Authorized Actions': 'Authorized Actions',
-  'Authorized Users': 'Authorized Users',
+  AUTHORIZED_USER_PL: 'Authorized Users',
   CONFIGMAPS_MANAGEMENT: 'ConfigMap Management',
   CONFIGMAPS_VIEW: 'ConfigMap Viewing',
   SERVICEACCOUNT_MANAGEMENT: 'Service Account Management',
@@ -58,7 +57,7 @@ module.exports = {
   'Create Cluster Role': 'Create Cluster Role',
   'Create Project Role': 'Create Project Role',
   CREATE_ROLE: 'Create Role',
-  'Credentials View': 'Credential Viewing',
+  CREDENTIALS_VIEW: 'Credential Viewing',
   'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
     'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.',
   DEPENDS_ON: 'Depends on: ',
@@ -82,19 +81,19 @@ module.exports = {
   MODULES: 'Modules',
   'Network Policies Management': 'Network Policy Management',
   'Network Policies View': 'Network Policy Viewing',
-  'No Authorization': 'No Permission',
+  NO_PERMISSION: 'No Permission',
   'Nodes View': 'Node Viewing',
-  PIPELINE_MANAGEMENT: 'Pipeline Management',
-  'Pipelines View': 'Pipeline Viewing',
+  PIPELINES_MANAGEMENT: 'Pipeline Management',
+  PIPELINES_VIEW: 'Pipeline Viewing',
   PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
   ROLE_NAME_EMPTY_DESC: 'Please enter a role name.',
   'Please specify role authorization': 'Specify the role permissions.',
   'Project Details': 'Project Details',
-  PROJECT_MEMBERS_MANAGEMENT: 'Project Member Management',
-  PROJECT_MEMBERS_VIEW: 'Project Member Viewing',
+  PROJECT_MEMBERS_MANAGEMENT: 'Member Management',
+  PROJECT_MEMBERS_VIEW: 'Member Viewing',
   PROJECT_RESOURCES_MANAGEMENT: 'Project Resource Management',
-  PROJECT_ROLES_MANAGEMENT: 'Project Role Management',
-  PROJECT_ROLES_VIEW: 'Project Role Viewing',
+  PROJECT_ROLES_MANAGEMENT: 'Role Management',
+  PROJECT_ROLES_VIEW: 'Role Viewing',
   PROJECTS_CREATE: 'Project Creation',
   PROJECTS_MANAGEMENT: 'Project Management',
   PROJECTS_VIEW: 'Project Viewing',
@@ -233,16 +232,15 @@ module.exports = {
   PIPELINES_MANAGEMENT_DESC:
     'Create, edit, and delete DevOps project pipelines.',
   PIPELINES_VIEW_DESC: 'View DevOps project pipelines and download artifacts.',
-  CREDENTIALS_MANAGEMENT_DESC: 'Create, edit, and delete project credentials.',
-  CREDENTIALS_VIEW_DESC: 'View and use credentials.',
+  CREDENTIALS_MANAGEMENT_DESC: 'Create, edit, and delete DevOps credentials.',
+  CREDENTIALS_VIEW_DESC: 'View and use DevOps credentials.',
   DEVOPS_ROLES_VIEW_DESC: 'View DevOps project roles.',
   DEVOPS_ROLES_MANAGEMENT_DESC:
     'Create, edit, and delete DevOps project roles except preset roles.',
   DEVOPS_MEMBERS_VIEW_DESC: 'View DevOps project members.',
   DEVOPS_MEMBERS_MANAGEMENT_DESC:
     'Invite, edit, and remove DevOps project members.',
-  DEVOPS_SETTINGS_DESC:
-    'Manage DevOps project settings and edit DevOps project information.',
+  DEVOPS_SETTINGS_DESC: 'Manage DevOps project settings.',
 
   CLUSTER_MEMBERS_MANAGEMENT_DESC: 'Invite, edit, and remove cluster members.',
   CLUSTER_MEMBERS_VIEW_DESC: 'View cluster members.',
@@ -364,15 +362,15 @@ module.exports = {
     'Project operator who can manage resources other than users and roles in the project.',
 
   ROLE_DEVOPS_ADMIN:
-    'Administrator who has full control over all resources in the DevOps project.',
+    'DevOps project administrator who has full control over all resources in the DevOps project.',
   ROLE_DEVOPS_REGULAR:
-    'Regular user who can manage resources other than users and roles in the DevOps project.',
+    'DevOps project operator who can manage pipelines and credentials and view members and roles in the DevOps project.',
   ROLE_DEVOPS_VIEWER:
-    'Viewer who can view all resources in the DevOps project.',
+    'DevOps project viewer who can view all resources in the DevOps project.',
   ROLE_DEVOPS_OPERATOR:
     'Operator who can create pipeline credentials in the DevOps project.',
 
-  NO_AUTHORIZED_USERS: 'No user is bound to this role.',
+  NO_AUTHORIZED_USER_DESC: 'This role has not been assigned to any user.',
 
   DESELECT_RESOURCE_FIRST: 'Please deselect {resource} first.',
 }

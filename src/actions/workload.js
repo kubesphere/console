@@ -101,7 +101,7 @@ export default {
 
       if (isFederated) {
         steps.push({
-          title: 'Diff Settings',
+          title: 'CLUSTER_DIFF',
           icon: 'blue-green-deployment',
           component: withProps(ClusterDiffSettings, {
             withService: module === 'statefulsets',

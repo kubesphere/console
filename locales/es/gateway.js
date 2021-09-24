@@ -39,9 +39,8 @@ module.exports = {
   'Use default annotations': 'Use default annotations',
   GATEWAY_IP: 'Access address',
   UPDATE_GATEWAY_DESC: 'The current gateway can be upgraded',
-  DISK_LOG_COLLECTION_TITLE: 'Order log',
   DISK_LOG_COLLECTION_DESC:
-    'The placing logs in the container are collected and forwarded to the standard output, and then collected by the log collection system. ',
+    'The Log Collection function allows the system to collect container logs saved on volumes. To use this function, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
   UPDATED_GATEWAY_DESC:
     'Please operate during the low peak period of the business. The upgrade process may cause a short business interruption. ',
   UPDATED_GATEWAY_TITLE: 'Confirm to upgrade the gateway?',

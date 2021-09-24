@@ -170,7 +170,9 @@ module.exports = {
 
   // Grayscale release version tab
   GRAY_DEPLOY_VERSION_TIP: '部署 {name} 已存在，请输入不同的版本号。',
-  INIT_CONTAINER: 'Init 容器',
+  INIT_CONTAINER: '初始化容器',
+  INIT_CONTAINER_VALUE: '初始化容器：{value}',
+  CONTAINER_VALUE: '容器：{value}',
   GRAYSCALE_IMAGE: '镜像：{image}',
 
   // Grayscale strategy configurations tab

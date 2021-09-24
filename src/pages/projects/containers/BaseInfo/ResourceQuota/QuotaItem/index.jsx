@@ -116,8 +116,8 @@ const QuotaItem = ({ name, total, used }) => {
     <div className={styles.quota}>
       <Icon name={ICON_TYPES[name] || 'resource'} size={40} />
       <div className={styles.item}>
-        <div>{t(name)}</div>
-        <p>{t('RESOURCE_TYPE')}</p>
+        <div>{t(name.replace(/[. ]/g, '_').toUpperCase())}</div>
+        <p>{t('RESOURCE_TYPE_SCAP')}</p>
       </div>
       <div className={styles.item}>
         <div>{handleUsedValue(used)}</div>

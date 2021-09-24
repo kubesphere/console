@@ -177,7 +177,7 @@ export default class App extends React.Component {
         <div className="h6 margin-b12">{t('Keywords')}</div>
         <div>
           {keywords.length === 0
-            ? t('None')
+            ? t('NONE')
             : keywords.map((v, idx) => (
                 <Tag key={idx} type="secondary">
                   {v}

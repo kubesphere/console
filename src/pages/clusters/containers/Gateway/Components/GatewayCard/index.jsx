@@ -346,7 +346,7 @@ class InternetAccess extends React.Component {
         })}
 
         <div className={styles.annotations}>
-          <p>{t('ANNOTATIONS')}</p>
+          <p>{t('ANNOTATION_PL')}</p>
           <ul>
             {Object.entries(this.gateway.annotations).map(([key, value]) => (
               <li key={key}>

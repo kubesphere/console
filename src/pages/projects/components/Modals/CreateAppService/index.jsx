@@ -181,7 +181,7 @@ export default class ServiceCreateModal extends React.Component {
 
         if (isFederated) {
           steps.push({
-            title: 'DIFFERENTIATED_SETTINGS',
+            title: 'CLUSTER_DIFF',
             icon: 'blue-green-deployment',
             component: withProps(ClusterDiffSettings, { withService: true }),
           })
@@ -245,7 +245,7 @@ export default class ServiceCreateModal extends React.Component {
 
         if (isFederated) {
           steps.push({
-            title: 'DIFFERENTIATED_SETTINGS',
+            title: 'CLUSTER_DIFF',
             icon: 'blue-green-deployment',
             component: withProps(ClusterDiffSettings, { withService: true }),
           })

@@ -26,12 +26,16 @@ module.exports = {
   WORKLOAD_PL: '工作負載',
   WORKLOAD_LOW: '工作負載',
   Workloads: '工作負載',
-  IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} 層',
-  IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} 層',
+  IMAGE_TIME_SIZE_LAYER_PL: 'Updated {time}, {size}, {layer} layer',
+  IMAGE_TIME_SIZE_LAYER_SI: 'Updated {time}, {size}, {layer} layers',
   CPU_REQUEST: 'CPU 預留',
   CPU_LIMIT: 'CPU 限制',
+  CPU_REQUEST_SCAP: 'CPU 預留',
+  CPU_LIMIT_SCAP: 'CPU 限制',
   MEMORY_REQUEST: '記憶體預留',
   MEMORY_LIMIT: '記憶體限制',
+  MEMORY_REQUEST_SCAP: '記憶體預留',
+  MEMORY_LIMIT_SCAP: '記憶體限制',
   ADD_PROBE: '添加檢查器',
   LABEL_TYPE: '{label} <span style="{style}">（{type}）</span>',
   SELINUX_CONTEXT: 'SELinux 上下文',
@@ -41,6 +45,7 @@ module.exports = {
   MOUNT_PATH_EMPTY: '請輸入掛載路徑。',
   CONFIGMAP: '配置字典',
   CONFIGMAP_PL: 'ConfigMaps',
+  CONFIGMAPS: 'ConfigMaps',
   CONFIGMAP_LOW: 'ConfigMap',
   DEPLOYMENT_EMPTY_DESC: 'Please create a Deployment.',
   STATEFULSET_EMPTY_DESC: 'Please create a StatefulSet.',
@@ -57,7 +62,7 @@ module.exports = {
   EDIT_YAML: '編輯配置文件',
   YAML_FILE: 'YAML File',
   'Add Labels': '添加標籤',
-  'Edit Labels': '編輯標籤',
+  EDIT_LABEL: '編輯標籤',
   POD_REPLICAS: '容器組副本數量',
   DEFAULT_RULES: 'Default Rules',
   DEFAULT_RULES_DESC:
@@ -69,10 +74,11 @@ module.exports = {
   'Container Setting': '容器設置',
   'Pods List': '容器組列表',
   POD_SCALE_DESC: '可以彈性擴展容器組實例數量',
-  'Container Logs': '容器紀錄',
+  CONTAINER_LOGS: '容器紀錄',
   'Resource Info': '資源資訊',
   'Node Name': '主機名稱',
   POD_IP_ADDRESS: '容器組 IP',
+  POD_IP_ADDRESS_SCAP: 'Pod IP address',
   POD_IP_TCAP: '容器組 IP',
   IMAGE: '鏡像',
   IMAGE_VALUE: '鏡像：{value}',
@@ -108,9 +114,8 @@ module.exports = {
   'New Volume': '新建儲存卷',
   EXISTING_VOLUME: '已有儲存卷',
   VOLUME_NAME: '儲存卷名稱',
-  'Diff Settings': '差異化配置',
-  DIFFERENTIATED_SETTINGS: 'Differentiated Settings',
-  'Deployment Mode': '部署模式',
+  CLUSTER_DIFF: 'Cluster Differences',
+  REPLICA_SCHEDULING_MODE: '部署模式',
   POD_SCHEDULING_RULES: '容器组调度策略',
   CUSTOM_RULES: 'Custom Rules',
   CUSTOM_RULES_DESC:
@@ -121,7 +126,10 @@ module.exports = {
 
   NO_REQUEST: '不預留',
   NO_LIMIT: '不限制',
-
+  NO_REQUEST_TCAP: '不預留',
+  NO_LIMIT_TCAP: '不限制',
+  GPU_TYPE: 'GPU Type',
+  GPU_LIMIT: 'GPU Limit',
   'Not Limited': '未限制',
   Cost: '占用',
   PROJECT_REMAINING_QUOTAS: '項目剩餘配額',
@@ -137,6 +145,7 @@ module.exports = {
   NO_RESOURCE_LIMIT: '無資源限制',
 
   'Job Settings': '任務設置',
+  STRATEGY_SETTINGS: 'Strategy Settings',
   'CronJob Settings': '定時任務設置',
   'Job Template': '任務模板',
 
@@ -161,6 +170,11 @@ module.exports = {
   SELECT_NODES_DESC: '可以讓容器組副本在指定的節點運行',
   WORKLOAD_SPECIFY_NODE_DESC: '可以讓容器組副本在指定的節點運行',
   ADD_METADATA_DESC: '對資源進行額外的元數據設置，例如 Label 和 Annotation',
+  ROUTE_ADD_METADATA_DESC: 'Add metadata to the Route.',
+  SERVICE_ADD_METADATA_DESC: 'Add metadata to the Service.',
+  VOLUME_ADD_METADATA_DESC: 'Add metadata to the volume.',
+  WORKLOAD_ADD_METADATA_DESC: 'Add metadata to the workload.',
+  POD_ADD_METADATA_DESC: 'Add metadata to the Pod replicas.',
 
   LOCATION: '位置',
 
@@ -197,7 +211,7 @@ module.exports = {
     '要從私有鏡像倉庫部署，需要先<a href={link} target="_blank">創建鏡像倉庫密鑰</a>，然後拉取鏡像。',
   'Replicas Number': '副本數量',
   'Specify Replicas Number': '指定副本數量',
-  'Replica Status': '副本運行狀態',
+  REPLICA_STATUS: '副本運行狀態',
   REPLICAS_DESC: '{module}將會被創建，由它維護集群中容器組的所需數量',
   'Strategy Type': '策略類型',
   'Update Strategy': '更新策略',
@@ -206,17 +220,17 @@ module.exports = {
   SIMULTANEOUS_UPDATE: '替換升級',
   RollingUpdate: '滾動更新',
   ROLLING_UPDATE_RECOMMENDED: '滾動更新(推薦)',
-  'Restart Count': '重啟次數',
+  RESTART_PL: '重啟次數',
   RESOURCE_REQUESTS: '資源預留',
   RESOURCE_LIMITS: '資源限制',
   'Image Pull Policy': '鏡像拉取策略',
   Privileged: '特權模式',
   'Desired Replicas': '期望副本',
-  'Current Replicas': '實際運行副本',
+  REPLICAS_CURRENT: '實際運行副本',
   PARTITION_ORDINAL: 'Ordinal for Dividing Pod Replicas',
   PARTITION_ORDINAL_DESC:
-    'Ordinal that divides the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
-  REPLICAS_SCALE_NOTIFY_TITLE: '立即生效？',
+    'Set an ordinal to divide the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
+  ADJUST_REPLICAS: '立即生效？',
   REPLICAS_SCALE_NOTIFY_CONTENT:
     '您已將工作負載的副本數調整為 <strong>{num}</strong>, 您也可以繼續調整副本數量，或者您可以使它立即生效。',
   REPLICAS_SCALE_NOTIFY_CONFIRM: '立即生效({seconds}s)',
@@ -248,7 +262,7 @@ module.exports = {
   'UI Mode': '界面模式',
   'Coding Mode': '代碼模式',
 
-  LABEL_EXIST_DESC: 'The label already exsists. Please use another label.',
+  LABEL_EXIST_DESC: 'The label already exists. Please enter another label.',
   EMPTY_LABEL_DESC: '請添加標籤。',
   DUPLICATE_LABELS: '標籤組重複',
   'Labels cannot be empty': '標籤不能為空',
@@ -372,28 +386,28 @@ module.exports = {
   EVERY_MONTH: '0 0 1 * * (every month)',
   EVERY_WEEK: '0 0 * * 0 (every week)',
   Schedule: '定時計畫',
-  'Revision Records': '版本記錄',
+  REVISION_RECORDS: '版本記錄',
   'Revision Rollback': '版本回退',
   'Rollback Revisions': '回退版本',
   'Current Revision': '目前版本',
   'Execution Records': '執行記錄',
   'Cluster Resource Status': '集群資源狀態',
-  'Resource Status': '資源狀態',
+  RESOURCE_STATUS: '資源狀態',
   RESOURCE_NAME: '資源名稱',
   'Config Template': '配置模板',
   'Edit Config Template': '編輯配置模板',
-  'Environment Variables': '環境變量',
-  ENVIRONMENT_VARIABLES: '環境變量',
+  ENVIRONMENT_VARIABLE_PL: '環境變量',
+  ENVIRONMENT_VARIABLE: '環境變量',
   'File List': '文件列表',
   RERUN: '重新執行',
-  ENTER_SCHEDULE_TIP: '請輸入定時計畫。',
+  ENTER_SCHEDULE_TIP: '請选择定時計畫。',
 
   'Please select rollback revision': '請選擇回退版本',
 
-  'Horizontal Pod Autoscaling': '彈性伸縮',
+  HORIZONTAL_POD_AUTOSCALING: '彈性伸縮',
   'Container Config': '容器配置',
   EDGENODE_CONFIG_COMMAND: '添加命令',
-  Probe: '探針',
+  PROBE_PL: '探針',
   'Add Probe': '添加探針',
   'Initial Delay': '初始延遲',
   INITIAL_DELAY_S: '初始延遲（s）',
@@ -408,10 +422,13 @@ module.exports = {
   WORKER_CONTAINER: '工作容器',
   'Request Type': '請求類型',
 
-  STARTING_DEADLINE: 'Job Starting Deadline (s)',
-  SUCCESSFUL_JOBS_HISTORY_LIMIT: '保留完成任务數',
-  FAILED_JOBS_HISTORY_LIMIT: '保留失敗任务數',
+  MAXIMUM_DELAY: 'Maximum Start Delay (s)',
+  SUCCESSFUL_JOBS_RETAINED: '保留完成任务數',
+  FAILED_JOBS_RETAINED: '保留失敗任务數',
   CONCURRENCY_POLICY: '並發策略',
+  RUN_JOBS_CONCURRENTLY: 'Run Jobs concurrently',
+  SKIP_NEW_JOB: 'Skip new Job',
+  SKIP_OLD_JOB: 'Skip old Job',
 
   'Select resource': '選擇資源',
   RESTART_POLICY: '重啟策略',
@@ -435,9 +452,9 @@ module.exports = {
   REVISION_TITLE: '{name}版本',
   'is running': '正在運行',
   PROBE_TIME: '初始延時: {delay}s 超時時間:{timeout}s',
-  'Readiness Probe': '就緒探針',
-  'Liveness Probe': '存活探針',
-  'Startup Probe': '啟動探針',
+  READINESS_PROBE: '就緒探針',
+  LIVENESS_PROBE: '存活探針',
+  STARTUP_PROBE: '啟動探針',
 
   INITIAL_DELAY_DESC: '在檢查其運行狀況之前，容器啟動後需要等待多長時間。',
   TIMEOUT_PERIOD_DESC:
@@ -460,23 +477,23 @@ module.exports = {
   DAEMONSETS_REPLICA_DESC:
     '守護進程集 (DaemonSet) 可以確保集群中的每個節點運行一個副本，當有節點加入集群或者离開集群的時候，會自動地調整副本的數量來保證副本的數量與集群的節點數量一致。您可以使用守護進程集來運行儲存服務，如 GlusterFS，Ceph 等；運行紀錄搜集服務，如 Fluentd，Logstash 等；運行監控服務等。',
 
-  FAILED_JOBS_DESC: '允許保留的失敗的任務個數。',
-  SUCCESSFUL_JOBS_DESC: '允許保留的成功的任務個數。',
+  FAILED_JOBS_RETAINED_DESC: '允許保留的失敗的任務個數。',
+  SUCCESSFUL_JOBS_RETAINED_DESC: '允許保留的成功的任務個數。',
   CONCURRENCY_POLICY_DESC:
     'Select a concurrency policy of a Job created by the CronJob.',
   'Can be found by node IP or node name': '可以通過節點 IP 或者節點名稱查找',
-  START_DEADLINE_SECONDS_DESC:
+  MAXIMUM_DELAY_DESC:
     'Deadline for starting the Job if the scheduled run is missed for any reason.',
   'Container CPU Resource Request, 1 Core = 1000m':
     '容器的 CPU 資源請求值, 1核 = 1000m',
   'Container Memory Resource Request': '容器的 記憶體 資源請求值',
   'The minimum of the replicas that can be set by HPA':
     '彈性伸縮可以設置的副本數量的下限',
-  'Min Replicas Number': '最小副本數',
-  'Max Replicas Number': '最大副本數',
+  MINIMUM_REPLICAS: '最小副本數',
+  MAXIMUM_REPLICAS: '最大副本數',
   'Maximum number of replicas': '副本數量的上限',
-  'Target Utilization': '目標使用率',
-  'Target Usage': '目標使用量',
+  TARGET_CPU_USAGE: '目標使用率',
+  TARGET_MEMORY_USAGE: '目標使用量',
   'Current Utilization': '目前使用率',
   'CPU Target Utilization': 'CPU 目標使用率',
   'Memory Target Utilization': '記憶體目標使用率',
@@ -525,18 +542,18 @@ module.exports = {
     '臨時儲存卷隨 Pod 被分配在主機上。當 Pod（不管任何原因）從主機上被刪除時，臨時儲存卷也同時會刪除，儲存卷的數據也將永久刪除。<br />注：刪除容器不影響臨時儲存卷。',
   SELECT_VOLUME_TYPE_DESC: '您可以根據需要選擇適合您的儲存卷類型進行添加',
 
-  BACK_OFF_LIMIT: '最大重試次數',
-  JOB_PARALLELISM_LABEL: '並行數',
-  JOB_COMPLETION_LABEL: '完成數',
-  JOB_ACTIVE_DEADLINE: '退出超時時限（s）',
+  MAXIMUM_RETRIES: '最大重試次數',
+  PARALLEL_PODS: '並行數',
+  COMPLETE_PODS: '完成數',
+  MAXIMUM_DURATION: '退出超時時限（s）',
 
-  BACK_OFF_LIMIT_DESC:
-    'Maximum number of retries before marking the Job as failed. The default value is 6.',
-  JOB_PARALLELISM_DESC: 'Number of Pods that run concurrently.',
-  JOB_COMPLETION_DESC:
+  MAXIMUM_RETRIES_DESC:
+    'Maximum number of retries before the Job is marked as failed. The default value is 6.',
+  PARALLEL_PODS_DESC: 'Number of Pods that run concurrently.',
+  COMPLETE_PODS_DESC:
     'Number of Pods that complete successfully required for the Job to be marked as complete.',
-  JOB_ACTIVE_DEADLINE_DESC:
-    'Maximum duration of the Job. The Job is terminated after reaching the specific timeout.',
+  MAXIMUM_DURATION_DESC:
+    'Maximum duration of the Job. The Job is terminated when it reaches the specified deadline.',
 
   RESTART_POLICY_NEVER_DESC: 'Never（容器組出現故障時創建新的容器組）',
   RESTART_POLICY_ONFAILURE_DESC: 'On failure（容器組出現故障時内部重啟容器）',
@@ -573,7 +590,7 @@ module.exports = {
   VOLUME_OR_TEMPLATE_EMPTY:
     '您已開啟落盤紀錄收集，請至少添加一個儲存卷並指定紀錄所在目錄',
   VOLUME_EMPTY: '您已開啟落盤紀錄收集，請至少添加一個儲存卷並指定紀錄所在目錄',
-  COLLECT_FILE_LOG_TIP:
+  COLLECT_LOGS_ON_VOLUMES_DESC:
     'After you add a volume (ReadAndWrite mode), you can collect logs inside the volume. When you enable disk log collection, the Filebeat image will be used as a sidecar pattern and injected into the Pod to collect logs.',
 
   PROJECT_COLLECT_SAVED_DISABLED_DESC:
@@ -744,7 +761,7 @@ module.exports = {
     '請設置容器的資源限制與資源預留，這將能夠幫助系統更好地調度容器，提高穩定性。您也可在【項目設置】中，通過【基本資訊】->【項目管理】->【編輯資源預設請求】，來統一設置預設值。',
 
   REPLICAS_AVAILABLE: '實際副本',
-  REPLICAS_EXPECTED: '期望副本',
+  REPLICAS_DESIRED: '期望副本数',
 
   SYNC_HOST_TIMEZONE_DESC: '時區與主機同步後，容器内的時區將與主機節點一致。',
   HOSTPATH_TIP:
@@ -763,6 +780,7 @@ module.exports = {
 
   // Jobs
   JOB_PL: 'Jobs',
+  JOBS: 'Jobs',
   NUMBER_OF_JOBS: 'Number of Jobs',
   JOB_LOW: 'Job',
   CRONJOBS: 'CronJobs',
@@ -770,6 +788,6 @@ module.exports = {
 
   // CronJobs
   ADD_VOLUME: 'Add Volume',
-  RESTART_POLICY_DESC: 'The Pod restart policy.',
+  RESTART_POLICY_DESC: 'Set the Pod restart policy.',
   MOUNT_VOLUMES: 'Mount Volumes',
 }

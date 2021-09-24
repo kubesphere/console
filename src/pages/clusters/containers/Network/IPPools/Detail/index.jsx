@@ -66,7 +66,7 @@ export default class IPPoolDetail extends React.Component {
   }
 
   getOperations = () => {
-    const type = t(this.name)
+    const type = this.name
     const detail = toJS(this.store.detail)
     return [
       {

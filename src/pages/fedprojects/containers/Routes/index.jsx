@@ -75,7 +75,7 @@ export default class Routers extends React.Component {
       {
         key: 'editRules',
         icon: 'firewall',
-        text: t('Edit Rules'),
+        text: t('EDIT_ROUTING_RULE'),
         action: 'edit',
         onClick: async item => {
           const detail = await this.props.store.fetchDetail(item)
@@ -89,7 +89,7 @@ export default class Routers extends React.Component {
       {
         key: 'editAnnotations',
         icon: 'firewall',
-        text: t('Edit Annotations'),
+        text: t('EDIT_ANNOTATION'),
         action: 'edit',
         onClick: async item => {
           const detail = await this.props.store.fetchDetail(item)
@@ -139,7 +139,7 @@ export default class Routers extends React.Component {
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         width: '22%',

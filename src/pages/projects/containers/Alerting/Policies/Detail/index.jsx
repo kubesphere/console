@@ -108,7 +108,7 @@ export default class AlertPolicyDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -147,7 +147,7 @@ export default class AlertPolicyDetail extends React.Component {
         ),
       },
       {
-        name: t('Health Status'),
+        name: t('HEALTH_STATUS'),
         value: <Health detail={detail} />,
       },
       {

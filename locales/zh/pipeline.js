@@ -64,7 +64,7 @@ module.exports = {
   CREDENTIAL_PL: '凭证',
   CREDENTIAL: '凭证',
   CREDENTIAL_SI: '凭证',
-  'Credentials Management': '凭证管理',
+  CREDENTIALS_MANAGEMENT: '凭证管理',
   'Add Parallel Stage': '添加并行阶段',
   'Add Step': '添加步骤',
   'Pipeline Configuration': '编辑流水线',

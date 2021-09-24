@@ -151,7 +151,7 @@ export default class ServiceSettings extends React.Component {
 
   renderPorts() {
     return (
-      <Form.Group label={t('PORTS')} desc={t('SERVICE_PORTS_DESC')}>
+      <Form.Group label={t('PORT_PL')} desc={t('SERVICE_PORTS_DESC')}>
         <Form.Item
           rules={[
             { required: true, message: t('PORT_EMPTY') },

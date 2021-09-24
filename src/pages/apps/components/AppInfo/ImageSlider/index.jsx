@@ -150,7 +150,7 @@ export default class ImageSlider extends React.PureComponent {
     const picLeft = currentIdx * (imgWidth + imgMargin)
 
     if (!images.length) {
-      return <div className={styles.slider}>{t('None')}</div>
+      return <div className={styles.slider}>{t('NONE')}</div>
     }
 
     return (

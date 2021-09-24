@@ -95,7 +95,7 @@ export default class PodDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -141,7 +141,7 @@ export default class PodDetail extends React.Component {
         value: detail.nodeIp,
       },
       {
-        name: `${t('Restart Count')}(${t('Total')})`,
+        name: `${t('RESTART_PL')}(${t('Total')})`,
         value: restarts,
       },
       {

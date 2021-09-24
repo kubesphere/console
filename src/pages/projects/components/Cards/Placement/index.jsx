@@ -51,12 +51,8 @@ export default class Placement extends Component {
     }
 
     return (
-      <Panel title={t('Project Placement')}>
-        <Alert
-          type="warning"
-          message={t('MULTI_CLUSER_RESOURCE_TIP')}
-          hideIcon
-        />
+      <Panel title={t('CLUSTER_PL')}>
+        <Alert type="info" message={t('MULTI_CLUSTER_RESOURCE_TIP')} hideIcon />
         <div className={styles.clusters}>
           {clusters.map(cluster => {
             if (!clusterMap[cluster.name]) {

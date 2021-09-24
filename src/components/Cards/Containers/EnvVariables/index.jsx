@@ -80,7 +80,9 @@ export default class ContainerItem extends React.Component {
     return (
       <div className={styles.title}>
         <Icon name="docker" size={20} />
-        {type === 'init' ? t('INIT_CONTAINER') : t('Container')}: {name}
+        {type === 'init'
+          ? t('INIT_CONTAINER_VALUE', { value: name })
+          : t('CONTAINER_VALUE', { value: name })}
       </div>
     )
   }
@@ -129,7 +131,7 @@ export default class ContainerItem extends React.Component {
         })}
         title={this.renderTitle()}
         operations={this.renderOperations()}
-        empty={t('NOT_AVAILABLE', { resource: t('environment variables') })}
+        empty={t('EMPTY_WRAPPER', { resource: t('ENVIRONMENT_VARIABLE') })}
         loading={this.props.loading}
         onClick={this.handleExpand}
       >

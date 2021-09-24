@@ -31,7 +31,7 @@ export default class PhysicalResourceItem extends React.Component {
     const config = getAreaChartOps({
       title,
       unitType: type,
-      legend: ['COUNT'],
+      legend: ['VALUE'],
       data: metrics,
       xFormatter: value =>
         getLocalTime(Number(value) * 1000).format(

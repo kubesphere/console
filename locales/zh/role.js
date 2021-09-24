@@ -30,9 +30,8 @@ module.exports = {
   'Edit Role': '编辑角色',
   'Project Details': '项目详情',
   'Cluster Role': '集群角色',
-  'Authorization List': '权限列表',
-  PERMISSIONS: '权限',
-  'Authorized Users': '授权用户',
+  PERMISSION_PL: '权限',
+  AUTHORIZED_USER_PL: '授权用户',
   'Authorization Settings': '权限设置',
   Cluster: '集群',
   Member: '成员',
@@ -56,7 +55,7 @@ module.exports = {
   'Role name exists': '角色名已存在',
   MODULES: '功能模块',
   'Authorized Actions': '可执行操作',
-  'No Authorization': '暂无权限规则',
+  NO_PERMISSION: '暂无权限',
   'Invited Successfully': '邀请成功',
   NO_AVAILABLE_ROLE: '当前项目无可用角色',
   JOIN_PROJECT_PLACEHOLDER: '输入用户名或者邮箱邀请用户加入到项目中',
@@ -186,8 +185,8 @@ module.exports = {
   PROJECT_ROLES_MANAGEMENT: '角色管理',
   PROJECT_ROLES_VIEW_DESC: '查看项目角色。',
   PROJECT_ROLES_MANAGEMENT_DESC: '创建、编辑和删除系统预置角色以外的项目角色。',
-  PROJECT_MEMBERS_VIEW: '项目成员查看',
-  PROJECT_MEMBERS_MANAGEMENT: '项目成员管理',
+  PROJECT_MEMBERS_VIEW: '成员查看',
+  PROJECT_MEMBERS_MANAGEMENT: '成员管理',
   PROJECT_MEMBERS_VIEW_DESC: '查看项目成员。',
   PROJECT_MEMBERS_MANAGEMENT_DESC: '邀请、编辑和移除项目成员。',
   PROJECT_SETTINGS_DESC:
@@ -227,32 +226,30 @@ module.exports = {
   CLUSTER_MEMBERS_VIEW_DESC: '查看集群成员',
   CLUSTER_MEMBERS_MANAGEMENT_DESC: '邀请/编辑/移除集群成员',
 
-  PIPELINE_MANAGEMENT: '流水线管理',
-  'Pipelines View': '流水线查看',
-  PIPELINES_MANAGEMENT_DESC:
-    '管理 DevOps 工程流水线，包含 创建/编辑/删除 等操作.',
-  PIPELINES_VIEW_DESC: '查看 DevOps 工程流水线，下载制品等.',
-  'Credentials View': '凭证查看',
-  CREDENTIALS_MANAGEMENT_DESC:
-    '管理 DevOps 工程凭证，包含 创建/编辑/删除 等操作.',
-  CREDENTIALS_VIEW_DESC: '查看与使用凭证',
+  PIPELINES_MANAGEMENT: '流水线管理',
+  PIPELINES_VIEW: '流水线查看',
+  PIPELINES_MANAGEMENT_DESC: '创建、编辑和删除 DevOps 工程流水线。',
+  PIPELINES_VIEW_DESC: '查看 DevOps 工程流水线和下载制品。',
+  CREDENTIALS_VIEW: '凭证查看',
+  CREDENTIALS_MANAGEMENT_DESC: '创建、编辑和删除 DevOps 凭证。',
+  CREDENTIALS_VIEW_DESC: '查看和使用 DevOps 凭证。',
 
   'DevOps Roles View': '角色查看',
   'DevOps Roles Management': '角色管理',
-  DEVOPS_ROLES_VIEW_DESC: '查看 DevOps 工程角色',
+  DEVOPS_ROLES_VIEW_DESC: '查看 DevOps 工程角色。',
   DEVOPS_ROLES_MANAGEMENT_DESC:
     '可以 创建/编辑/删除  DevOps 工程角色，系统预置角色无法删除',
   'DevOps Members View': '成员查看',
   'DevOps Members Management': '成员管理',
-  DEVOPS_MEMBERS_VIEW_DESC: '查看 DevOps 工程成员',
+  DEVOPS_MEMBERS_VIEW_DESC: '查看 DevOps 工程成员。',
   DEVOPS_MEMBERS_MANAGEMENT_DESC: '邀请/编辑/移除 DevOps 工程成员',
   DEVOPS_SETTINGS: 'DevOps 工程设置',
-  DEVOPS_SETTINGS_DESC: '管理 DevOps 工程设置，编辑 DevOps 工程信息',
+  DEVOPS_SETTINGS_DESC: '管理 DevOps 工程的设置。',
 
   'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
     '默认用户角色，仅允许对自己创建或受邀加入的项目中的资源进行管理，无权操作集群范围内其他资源。',
 
-  NO_AUTHORIZED_USERS: '目前没有用户被授权此角色',
+  NO_AUTHORIZED_USER_DESC: '此角色尚未授权给任何用户。',
 
   'Unable to delete preset role': '无法删除预置角色',
 
@@ -276,10 +273,10 @@ module.exports = {
   ROLE_PROJECT_OPERATOR: '项目操作员，可以管理项目中除用户和角色之外的资源。',
   ROLE_PROJECT_VIEWER: '项目观察员，可以查看项目中的所有资源。',
 
-  ROLE_DEVOPS_ADMIN: 'DevOps 工程管理员，可以管理 DevOps 工程下所有的资源。',
+  ROLE_DEVOPS_ADMIN: 'DevOps 工程管理员，可以管理 DevOps 工程中的所有资源。',
   ROLE_DEVOPS_OPERATOR:
-    'DevOps 工程普通成员，可以在 DevOps 工程下创建流水线凭证等。',
-  ROLE_DEVOPS_VIEWER: 'DevOps 工程观察者，可以查看 DevOps 工程下所有的资源。',
+    'DevOps 工程操作员，可以管理 DevOps 凭证和流水线以及查看 DevOps 工程中成员和角色。',
+  ROLE_DEVOPS_VIEWER: 'DevOps 工程观察员，可以查看 DevOps 工程中的所有资源。',
 
   ACCOUNT_ROLE_DESC: '帐户角色可以定义平台内的帐户拥有的权限',
   ACCOUNT_ROLE_CREATE_DESC: '帐户角色可以定义平台内的帐户拥有的权限',

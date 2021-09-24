@@ -81,8 +81,8 @@ export default class AuthorizedUsers extends React.Component {
   get emptyProps() {
     return {
       icon: 'human',
-      name: 'Users',
-      desc: t('NO_AUTHORIZED_USERS'),
+      name: 'USER',
+      desc: t('NO_AUTHORIZED_USER_DESC'),
       className: styles.table,
     }
   }
@@ -93,7 +93,7 @@ export default class AuthorizedUsers extends React.Component {
     const pagination = { total, page, limit }
 
     return (
-      <Panel title={t('Authorized Users')}>
+      <Panel title={t('AUTHORIZED_USER_PL')}>
         <Table
           className={styles.table}
           data={data}

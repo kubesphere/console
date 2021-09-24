@@ -159,7 +159,7 @@ export default class Projects extends React.Component {
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('LOCATION'),
+        title: t('CLUSTER'),
         dataIndex: 'clusters',
         isHideable: true,
         render: clusters => (

@@ -206,7 +206,7 @@ export default class BaseForm extends Component {
           loading={isSubmitting}
           onClick={this.handleSubmit}
         >
-          {t('Save')}
+          {t('SAVE')}
         </Button>
       </div>
     )

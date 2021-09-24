@@ -39,7 +39,7 @@ module.exports = {
   'Mount Status': 'Mount Status',
   // Volumes List Page
   MOUNT_STATUS: 'Mount Status',
-  MOUNTED_TCAP: 'Mounted',
+  MOUNTED: 'Mounted',
   'Mounted Pods': 'Mounted Pods',
   NOT_MOUNTED: 'Not mounted',
   Parameters: 'Parameters',
@@ -85,13 +85,13 @@ module.exports = {
   VOLUMES: 'Volumes',
   VOLUME_PL: 'Volumes',
   NUMBER_OF_VOLUMES: 'Number of volumes',
-  VOLUME_LOW: 'volumes',
+  VOLUME_LOW: 'volume',
   'The volume name exists': 'The volume name exists',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
   VOLUME_NAME_EXIST: 'The volume name already exists.',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
-  'Volume Template Settings': 'Volume Template Settings',
+  VOLUME_TEMPLATE_SETTINGS: 'Volume Template Settings',
   'Volume Usage': 'Volume Usage',
   VOLUME_DESC:
     'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
@@ -152,13 +152,13 @@ module.exports = {
   VOLUME_BASEINFO_TIP:
     'The volume is provisioned through dynamic volume provisioning which allows storage volumes to be created on-demand. The volume is used for persisting data, and has explict lifecycle independent of any individual pod that uses it. At lease one StorageClass must be configured by adminstrators before creating a volume.',
 
-  WHAT_IS_STORAGE_CLASS_Q: 'What is a Storage Class?',
+  WHAT_IS_STORAGE_CLASS_Q: 'What is a storage class?',
   WHAT_IS_STORAGE_CLASS_A:
-    'A Storage Class represents a kind of storage configured by the cluster administrator. Different Storage Classes provide cluster users with different kinds of volumes.',
+    'A storage class is a storage type configured by the cluster administrator. Different storage classes provide cluster users with different types of volumes.',
 
-  WHAT_IS_LOCAL_VOLUME_Q: 'What is a Local Volume?',
+  WHAT_IS_LOCAL_VOLUME_Q: 'What is a local volume?',
   WHAT_IS_LOCAL_VOLUME_A:
-    'A Local Volume is a mounted local storage device, such as a disk, partition, or directory.',
+    'A local volume is a volume created in the local file system of the cluster.',
   CHOOSE_STORAGE_SYSTEM_TIP: 'Select Storage System',
   PROVISIONER_DEPENDENCE_DESC:
     'You need to deploy a plugin in your storage system before it provides services.',
@@ -230,7 +230,7 @@ module.exports = {
   WHAT_IS_VOLUME_SNAPSHOTS: 'What are volume snapshots?',
 
   CLUSTER_VOLUME_DIFF_DESC:
-    'You can specify different storage classes for different clusters.',
+    'Select different storage classes for different clusters.',
 
   VOLUME_MONITORING_TIP:
     'Kubernetes collects volume usage data, excluding data from unmounted volumes. For path-based volumes such as OpenEBS/Local PV and NFS, the data collected may be different from the actual amount. For detailed information, see <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">volume monitoring data analysis</a>.',

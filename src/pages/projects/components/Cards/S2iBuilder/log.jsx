@@ -184,7 +184,7 @@ export default class Log extends React.Component {
     if (this.state.isContainerPending) {
       return (
         <div className={styles.logContainer}>
-          <Empty desc={'CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS'} />
+          <Empty desc={'CONTAINER_LOGS_NOT_SUPPORTED'} />
         </div>
       )
     }

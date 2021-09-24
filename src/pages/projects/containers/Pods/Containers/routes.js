@@ -38,13 +38,13 @@ export default path => [
   },
   {
     path: `${path}/env`,
-    title: 'Environment Variables',
+    title: 'ENVIRONMENT_VARIABLE_PL',
     component: EnvVariables,
     exact: true,
   },
   {
     path: `${path}/logs`,
-    title: 'Container Logs',
+    title: 'CONTAINER_LOGS',
     component: Logs,
     exact: true,
   },

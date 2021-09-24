@@ -88,7 +88,7 @@ export default class Overview extends React.Component {
               detail={detail}
               workspace={this.workspace}
             />
-            {this.enabledActions.includes('edit') && (
+            {/* this.enabledActions.includes('edit') */ true && (
               <LimitRange match={this.props.match} />
             )}
             <ResourceUsage match={this.props.match} {...clusterProps} />

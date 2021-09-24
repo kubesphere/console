@@ -21,12 +21,14 @@ module.exports = {
   ROUTE: '应用路由',
   ROUTE_PL: '应用路由',
   ROUTE_LOW: '应用路由',
-  EDIT_RULE: 'Edit Rule',
+  EDIT_ROUTING_RULE: '编辑路由规则',
+  EDIT_ROUTING_RULES: '编辑路由规则',
   'Create Route': '创建应用路由',
   PATH_EMPTY_DESC: '请添加至少一个路径。',
   Rules: '规则',
   EDIT_RULES_TCAP: '编辑规则',
   EDIT_ANNOTATION: '编辑注解',
+  EDIT_ANNOTATIONS: '编辑注解',
   ROUTING_RULES: '路由规则',
   GATEWAY_ADDRESS_TCAP: '网关地址',
   DOMAIN_NAME_EMPTY_DESC: '请输入一个域名。',
@@ -71,8 +73,8 @@ module.exports = {
   GATEWAY_APPLICATION_GOVERNANCE_TIP:
     '如您不需要使用应用治理的功能，无需打开此项；如果您需要使用应用治理的 Tracing 功能，请打开此项。打开此项后，如果您的应用路由无法访问，请检查应用路由中是否添加 `nginx.ingress.kubernetes.io/service-upstream: true` 注解，如无，请手动添加。',
 
-  ADD_ROUTING_RULE_DESC: '添加一个路由规则将域名映射至服务。',
-
+  ADD_ROUTING_RULE_DESC: '添加一个路由规则将域名路径映射至服务。',
+  ROUTING_RULE_EMPTY_DESC: '请添加至少一个路由规则。',
   UNABLE_TO_ACCESS_TIP:
     '● 请确保您设置的域名可以解析到访问入口的 IP 地址;<br/>● 如果在私有云环境中，请修改本地的 host 文件，并通过<strong>域名+节点端口</strong>的方式来访问;<br/>● 通过通配 DNS 访问，将域名修改为 hostname + 网关地址 + nip.io，然后可以通过<strong>hostname.网关地址.nip.io:节点端口</strong>的形式来访问服务;<br/>● 如果通过域名访问被拦截，请确认您的域名是真实而且已经备案。',
 

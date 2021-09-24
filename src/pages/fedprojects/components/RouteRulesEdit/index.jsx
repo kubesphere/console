@@ -148,10 +148,10 @@ class RouteRulesEdit extends React.Component {
     return (
       <Modal
         width={960}
-        title={t('Edit Rules')}
+        title={t('EDIT_ROUTING_RULES')}
         icon="firewall"
         onOk={this.handleOk}
-        okText={!isEmpty(subRoute) ? t('Save') : t('Update')}
+        okText={!isEmpty(subRoute) ? t('SAVE') : t('Update')}
         cancelText={!isEmpty(subRoute) ? t('PREVIOUS') : null}
         onCancel={this.handleCancel}
         visible={visible}

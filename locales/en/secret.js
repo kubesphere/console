@@ -41,6 +41,7 @@ module.exports = {
   Secret: 'Secret',
   SECRET: 'Secret',
   CODE_REPOSITORY_KEY: 'Code Repository Key',
+  SECRETS: 'Secret',
   SECRET_PL: 'Secrets',
   SECRET_LOW: 'Secret',
   SECRET_SETTINGS_TCAP: 'Secret Settings',

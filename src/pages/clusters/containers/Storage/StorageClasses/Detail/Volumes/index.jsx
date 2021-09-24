@@ -122,7 +122,7 @@ export default class Volumes extends React.Component {
       <Card
         title={t('Volumes')}
         loading={isLoading}
-        empty={t('NOT_AVAILABLE', { resource: t('volumes') })}
+        empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('volumes') })}
       >
         <BaseTable
           className={styles.table}

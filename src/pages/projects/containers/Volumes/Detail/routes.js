@@ -32,7 +32,7 @@ export default PATH => [
   },
   {
     path: `${PATH}/metadata`,
-    title: 'Metadata',
+    title: 'METADATA',
     component: Metadata,
     exact: true,
   },

@@ -21,11 +21,11 @@ module.exports = {
   ConfigMaps: '配置字典',
   ConfigMap: '配置字典',
   'ConfigMap Settings': '配置设置',
-  CONFIG_FIELD: '配置项',
+  FIELDS: '字段',
   CONFIGMAP_DESC:
     '配置字典（ConfigMap）常用于存储工作负载所需的配置信息，许多应用程序会从配置文件、命令行参数或环境变量中读取配置信息。',
   CONFIGMAP_EMPTY_DESC: '请创建一个配置字典。',
-  MODIFY_CONFIG: '修改配置',
+  EDIT_CONFIGMAP: '编辑配置字典',
   CONFIG_FIELD_DESC: '此配置项映射条目的唯一 key 值。',
   ENTER_CONFIG_VALUE_DESC:
     '配置项用于存储通用的配置变量，使用户可以将分布式系统中用于不同模块的环境变量统一到一个对象中进行管理。',

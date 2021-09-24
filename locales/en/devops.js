@@ -56,6 +56,8 @@ module.exports = {
 
   DEVOPS_PROJECT_CREDENTIALS_DESC:
     'Credentials are objects that contain sensitive data, such as usernames and passwords, SSH keys, and tokens, to provide authentication for pulling code, pushing or pulling images, executing SSH scripts, and so on when a pipeline is running.',
+  DEVOPS_CREDENTIALS_DESC:
+    'Credentials are objects that contain some sensitive data, such as username and password, SSH key and Token. They are used to provide authentication for pulling code, pushing/pulling images, executing SSH scripts, etc. when a pipeline is running.',
 
   DEVOPS_PROJECT_ROLES_DESC:
     'The project roles define the permissions that users have under the current DevOps project.',

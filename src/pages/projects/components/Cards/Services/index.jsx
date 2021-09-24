@@ -67,7 +67,7 @@ export default class ServicesCard extends React.Component {
     if (isEmpty(data) && !isLoading) {
       return (
         <div className={styles.empty}>
-          {t('NOT_AVAILABLE', { resource: t('Service') })}
+          {t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('Service') })}
         </div>
       )
     }

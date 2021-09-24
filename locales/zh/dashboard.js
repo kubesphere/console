@@ -75,7 +75,7 @@ module.exports = {
   USAGE_RATE: '使用率',
   NO_PROJECT: '暂时没有找到可用项目',
   NO_POD_MONITOR_DATA: '暂时没有容器组监控数据',
-  RESOURCE_WARNING_TIPS: '有 {warnNum} 个{tipName}状态异常',
+  RESOURCE_WARNING_TIPS: '异常{tipName}：{warnNum}',
 
   USER_DASHBOARD_EMPTY_TITLE: '您暂时不属于任何企业空间',
   USER_DASHBOARD_EMPTY_DESC:

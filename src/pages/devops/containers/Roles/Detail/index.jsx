@@ -75,11 +75,11 @@ export default class RoleDetail extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_INFO'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: () =>
           this.trigger('resource.baseinfo.edit', {
-            type: t(this.name),
+            type: this.name,
             detail: toJS(this.store.detail),
             success: this.fetchData,
           }),
@@ -87,7 +87,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSION'),
         action: 'edit',
         show: this.showEdit,
         onClick: () =>
@@ -108,7 +108,7 @@ export default class RoleDetail extends React.Component {
         onClick: () =>
           this.trigger('role.delete', {
             detail,
-            type: t(this.name),
+            type: this.name,
             cluster: this.props.match.params.cluster,
             namespace: this.props.match.params.namespace,
             success: () => this.routing.push(this.listUrl),
@@ -127,7 +127,7 @@ export default class RoleDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -143,7 +143,7 @@ export default class RoleDetail extends React.Component {
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('CREATOR'),
+        name: t('CREATED_BY'),
         value: detail.creator,
       },
     ]
@@ -164,7 +164,7 @@ export default class RoleDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('DevOps Roles'),
+          label: t('DEVOPS_PROJECT_ROLE_PL'),
           url: this.listUrl,
         },
       ],

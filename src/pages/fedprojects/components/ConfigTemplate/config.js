@@ -46,11 +46,11 @@ export default {
     {
       icon: 'group',
       name: 'deploymentMode',
-      title: 'Deployment Mode',
+      title: 'REPLICA_SCHEDULING_MODE',
       component: Affinity,
     },
     {
-      title: 'Diff Settings',
+      title: 'CLUSTER_DIFF',
       icon: 'blue-green-deployment',
       name: 'Diff Settings',
       component: ClusterDiffSettings,
@@ -76,7 +76,7 @@ export default {
       component: VolumeSettings,
     },
     {
-      title: 'Diff Settings',
+      title: 'CLUSTER_DIFF',
       icon: 'blue-green-deployment',
       name: 'Diff Settings',
       component: ClusterDiffSettings,
@@ -90,7 +90,7 @@ export default {
       component: ServiceSetting,
     },
     {
-      title: 'Diff Settings',
+      title: 'CLUSTER_DIFF',
       icon: 'blue-green-deployment',
       name: 'Diff Settings',
       component: ClusterDiffSettings,

@@ -25,9 +25,9 @@ import styles from './index.scss'
 
 const Item = ({ onSelect, onDelete, disabled, ...params }) => {
   const effects = [
-    { label: t('NOSCHEDULE_OPTION'), value: 'NoSchedule' },
-    { label: t('PREFER_NOSCHEDULE_OPTION'), value: 'PreferNoSchedule' },
-    { label: t('NOEXECUTE_OPTION'), value: 'NoExecute' },
+    { label: t('NOSCHEDULE'), value: 'NoSchedule' },
+    { label: t('PREFER_NOSCHEDULE'), value: 'PreferNoSchedule' },
+    { label: t('NOEXECUTE'), value: 'NoExecute' },
   ]
 
   return (

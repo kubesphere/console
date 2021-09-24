@@ -218,12 +218,12 @@ class ScheduleInfo extends React.Component {
           </p>
           {condition.reason && (
             <p>
-              {t('Reason')}: {t(condition.reason)}
+              {t('REASON')}: {t(condition.reason)}
             </p>
           )}
           {condition.message && (
             <p>
-              {t('Message')}: {condition.message}
+              {t('MESSAGE')}: {condition.message}
             </p>
           )}
           <p>

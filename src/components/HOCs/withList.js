@@ -70,7 +70,7 @@ export default function withList(options) {
             action: 'delete',
             onClick: item =>
               this.trigger('resource.delete', {
-                type: t(this.name),
+                type: this.name,
                 resource: item.name,
                 detail: item,
                 success: this.routing.query,

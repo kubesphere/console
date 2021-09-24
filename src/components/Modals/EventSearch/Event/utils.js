@@ -28,7 +28,7 @@ export function toArray(data = {}, level = 0) {
 export const dropDownItems = {
   message_search: {
     icon: 'magnifier',
-    text: t('Message'),
+    text: t('MESSAGE'),
   },
   workspace_filter: {
     icon: 'appcenter',
@@ -48,7 +48,7 @@ export const dropDownItems = {
   },
   reason_filter: {
     icon: 'resource',
-    text: t('Reason'),
+    text: t('REASON'),
   },
   type_filter: {
     icon: 'cardview',
@@ -75,7 +75,7 @@ export const getSecond = step => {
 export const supportQueryParams = [
   {
     icon: 'magnifier',
-    title: t('Search Events by', { field: t('Message') }),
+    title: t('Search Events by', { field: t('MESSAGE') }),
     tips: t('Message Event Query Tip'),
     key: 'message_search',
   },
@@ -105,7 +105,7 @@ export const supportQueryParams = [
   },
   {
     icon: 'resource',
-    title: t('Search Events by', { field: t('Reason') }),
+    title: t('Search Events by', { field: t('REASON') }),
     tips: t('Reason Event Query Tip'),
     key: 'reason_filter',
   },

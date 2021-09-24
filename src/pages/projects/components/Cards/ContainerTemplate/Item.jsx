@@ -47,17 +47,17 @@ export default class ContainerItem extends React.Component {
       <div className={styles.probe}>
         {this.renderProbeRecord({
           probe: readinessProbe,
-          title: t('Readiness Probe'),
+          title: t('READINESS_PROBE'),
           tagType: 'primary',
         })}
         {this.renderProbeRecord({
           probe: livenessProbe,
-          title: t('Liveness Probe'),
+          title: t('LIVENESS_PROBE'),
           tagType: 'warning',
         })}
         {this.renderProbeRecord({
           probe: startupProbe,
-          title: t('Startup Probe'),
+          title: t('STARTUP_PROBE'),
           tagType: 'info',
         })}
       </div>
@@ -142,7 +142,7 @@ export default class ContainerItem extends React.Component {
             )}
             {hasProbe && (
               <Tooltip content={this.renderProbe()}>
-                <Tag className="margin-l8">{t('Probe')}</Tag>
+                <Tag className="margin-l8">{t('PROBE_PL')}</Tag>
               </Tooltip>
             )}
           </div>

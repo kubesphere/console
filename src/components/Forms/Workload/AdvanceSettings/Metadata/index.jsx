@@ -72,7 +72,7 @@ export default class Metadata extends React.Component {
     return (
       <>
         <Form.Item
-          label={t('LABELS')}
+          label={t('LABEL_PL')}
           rules={[{ validator: this.labelsValidator }]}
         >
           <PropertiesInput
@@ -81,7 +81,7 @@ export default class Metadata extends React.Component {
             onChange={this.handleLabelsChange}
           />
         </Form.Item>
-        <Form.Item label={t('ANNOTATIONS')}>
+        <Form.Item label={t('ANNOTATION_PL')}>
           <PropertiesInput
             name="metadata.annotations"
             addText={t('ADD')}
