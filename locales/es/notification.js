@@ -45,6 +45,7 @@ module.exports = {
   'Please select a regex filter':
     'Seleccione un filtro de expresiones regulares',
   'Invalid notification condition': 'Condición de notificación no válida',
+  TAG_INPUT_PLACEHOLDER: 'Ingrese el valor y presione Enter para confirmar',
 
   SEND_TEST_MESSAGE: 'Enviar mensaje de prueba',
   NOTIFICATION_CONFIGRATION_SEND_TEST_MESSAGE_DESC:
@@ -56,7 +57,7 @@ module.exports = {
   'SMTP Server Address': 'Dirección del servidor SMTP',
   'Use SSL Secure Connection': 'Usar conexión segura SSL',
 
-  MAIL_DESC:
+  MAIL_SETTING_DESC:
     'Puede recibir notificaciones de la plataforma por correo y debe configurar el servidor de envío de correo.',
   SENDER_MAIL: 'Correo del remitente',
   MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP:
@@ -89,8 +90,9 @@ module.exports = {
   MAX_CID_COUNT: 'Agrega un máximo de {count} ID de conversación',
   MAX_KEYWORD_COUNT: 'Agregue como máximo {count} palabras clave',
   EMPTY_KEYWORDS_DESC: 'No se agregaron palabras clave',
+  DINGTALK_SETTING_TIP: 'Configura una conversación o un robot grupal',
 
-  DINGTALK_DESC:
+  DINGTALK_SETTING_DESC:
     'Puede recibir notificaciones de la plataforma a través de Dingding y debe configurar el servidor de envío de Dingding.',
   DINGTALK_KEYWORDS_DESC:
     'Palabras clave personalizadas de ChatBot, si necesita más de una, sepárelas con "," ',
@@ -132,7 +134,7 @@ module.exports = {
   MAX_TOPARTY_COUNT: 'Agregue hasta {count} departamentos',
   MAX_TOTAG_COUNT: 'Agregar hasta {count} etiquetas',
 
-  WECOM_DESC:
+  WECOM_SETTING_DESC:
     'Puede recibir notificaciones de la plataforma a través de Enterprise WeChat y debe configurar el servidor de envío de WeChat empresarial.',
   WECOM_SETTINGS_CHANGE_NEED_SAVE_TIP:
     'Su configuración corporativa actual de WeChat ha cambiado, guarde la configuración o cancele la modificación',
@@ -148,7 +150,7 @@ module.exports = {
   'Please add the receiver channel': 'Por favor, agregue un canal receptor',
   MAX_CHANNEL_COUNT: 'Agregar hasta {count} canales',
 
-  SLACK_DESC:
+  SLACK_SETTING_DESC:
     'Puede recibir notificaciones de la plataforma a través de Slack y debe configurar el servidor de envío de Slack.',
   SLACK_SETTINGS_CHANGE_NEED_SAVE_TIP:
     'Su configuración actual de holgura ha cambiado, guarde la configuración o cancele la modificación',
@@ -167,4 +169,6 @@ module.exports = {
     'Puede recibir notificaciones de la plataforma a través de webhook y debe configurar el servidor de envío de webhook.',
   WEBHOOK_SETTINGS_CHANGE_NEED_SAVE_TIP:
     'Su configuración actual de webhook ha cambiado, guarde la configuración o cancele la modificación',
+
+  PLEASE_ENTER_VALUE_CUSTOM: 'Ingrese un {value}.',
 }

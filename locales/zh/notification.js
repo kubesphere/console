@@ -41,6 +41,7 @@ module.exports = {
   'Please select a tag': '请选择标签',
   'Please select a regex filter': '请选择过滤规则',
   'Invalid notification condition': '请填写正确的通知条件',
+  TAG_INPUT_PLACEHOLDER: '请输入值后回车确认',
 
   SEND_TEST_MESSAGE: '发送测试信息',
   NOTIFICATION_CONFIGRATION_SEND_TEST_MESSAGE_DESC:
@@ -51,7 +52,7 @@ module.exports = {
   'SMTP Server Address': 'SMTP 服务器地址',
   'Use SSL Secure Connection': '使用 SSL 安全连接',
 
-  MAIL_DESC: '可以通过邮件接收平台的通知，需要配置邮件发送服务器。',
+  MAIL_SETTING_DESC: '可以通过邮件接收平台的通知，需要配置邮件发送服务器。',
   SENDER_MAIL: '发件人邮箱',
   MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP:
     '您当前的邮件设置已发生变化，请保存配置，或者取消修改',
@@ -81,8 +82,9 @@ module.exports = {
   MAX_CID_COUNT: '最多添加 {count} 个会话 ID',
   MAX_KEYWORD_COUNT: '最多添加 {count} 个关键字',
   EMPTY_KEYWORDS_DESC: '未添加任何关键字',
+  DINGTALK_SETTING_TIP: '请设置会话或者群机器人。',
 
-  DINGTALK_DESC: '可以通过钉钉接收平台的通知，需要配置钉钉发送服务器。',
+  DINGTALK_SETTING_DESC: '可以通过钉钉接收平台的通知，需要配置钉钉发送服务器。',
   DINGTALK_KEYWORDS_DESC: 'ChatBot 的自定义关键字, 如需多个请以 "," 分隔',
   DINGTALK_SETTINGS_CHANGE_NEED_SAVE_TIP:
     '您当前的钉钉设置已发生变化，请保存设置，或者取消修改',
@@ -118,7 +120,8 @@ module.exports = {
   MAX_TOPARTY_COUNT: '最多添加 {count} 个部门',
   MAX_TOTAG_COUNT: '最多添加 {count} 个标签',
 
-  WECOM_DESC: '可以通过企业微信接收平台的通知，需要配置企业微信发送服务器。',
+  WECOM_SETTING_DESC:
+    '可以通过企业微信接收平台的通知，需要配置企业微信发送服务器。',
   WECOM_SETTINGS_CHANGE_NEED_SAVE_TIP:
     '您当前的企业微信设置已发生变化，请保存设置，或者取消修改',
 
@@ -133,7 +136,8 @@ module.exports = {
   'Please add the receiver channel': '请添加接收频道',
   MAX_CHANNEL_COUNT: '最多添加 {count} 个频道',
 
-  SLACK_DESC: '可以通过 slack 接收平台的通知，需要配置 slack 发送服务器。',
+  SLACK_SETTING_DESC:
+    '可以通过 slack 接收平台的通知，需要配置 slack 发送服务器。',
   SLACK_SETTINGS_CHANGE_NEED_SAVE_TIP:
     '您当前的 slack 设置已发生变化，请保存设置，或者取消修改',
 
@@ -151,4 +155,6 @@ module.exports = {
     '可以通过 webhook 接收平台的通知，需要配置 webhook 发送服务器。',
   WEBHOOK_SETTINGS_CHANGE_NEED_SAVE_TIP:
     '您当前的 webhook 设置已发生变化，请保存设置，或者取消修改',
+
+  PLEASE_ENTER_VALUE_CUSTOM: '请输入{value}。',
 }
