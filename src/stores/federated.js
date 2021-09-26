@@ -18,7 +18,7 @@
 
 import { set, get, keyBy, findKey, cloneDeep } from 'lodash'
 import { action, observable } from 'mobx'
-import { withDryRun } from 'utils'
+import { withDryRun, getGpuFromRes } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
@@ -209,6 +209,8 @@ export default class FederatedStore extends Base {
       module: module || this.module,
       ...ObjectMapper.federated(this.mapper)(item),
     }))
+
+    getGpuFromRes(data)
 
     this.list.update({
       data,

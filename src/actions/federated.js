@@ -131,7 +131,7 @@ export default {
     },
   },
   'federated.workload.template.edit': {
-    on({ store, detail, success, module, ...props }) {
+    on({ store, detail, success, module, supportGpuSelect = false, ...props }) {
       const modal = Modal.open({
         onOk: data => {
           const containers = get(
@@ -166,6 +166,7 @@ export default {
         type: detail.type,
         workloadStore: store,
         isEdit: true,
+        supportGpuSelect,
         ...props,
       })
     },

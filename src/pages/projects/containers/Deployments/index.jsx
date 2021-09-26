@@ -211,6 +211,7 @@ export default class Deployments extends React.Component {
       projectDetail: projectStore.detail,
       namespace: match.params.namespace,
       cluster: match.params.cluster,
+      supportGpuSelect: true,
     })
   }
 

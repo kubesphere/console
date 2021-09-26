@@ -16,9 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, get, isEmpty, omit } from 'lodash'
+import { get, isEmpty, omit } from 'lodash'
 import { toJS } from 'mobx'
-import { withProps, JobGpuLimitCancel } from 'utils'
+import { withProps, omitJobGpuLimit } from 'utils'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -60,6 +60,7 @@ export default {
       success,
       isFederated,
       renderScheduleTab = false,
+      supportGpuSelect = false,
       ...props
     }) {
       const kind = MODULE_KIND_MAP[module]
@@ -115,12 +116,12 @@ export default {
       const modal = Modal.open({
         onOk: newObject => {
           if (kind === 'CronJob') {
-            JobGpuLimitCancel(
+            omitJobGpuLimit(
               newObject[kind],
               'spec.jobTemplate.spec.template.spec.containers'
             )
           } else if (kind === 'Job') {
-            JobGpuLimitCancel(newObject[kind], 'spec.template.spec.containers')
+            omitJobGpuLimit(newObject[kind], 'spec.template.spec.containers')
           }
 
           const omitArr = [
@@ -181,6 +182,7 @@ export default {
         formTemplate,
         modal: CreateModal,
         store,
+        supportGpuSelect,
         ...props,
       })
     },
@@ -267,14 +269,10 @@ export default {
     },
   },
   'workload.template.edit': {
-    on({ store, detail, success, ...props }) {
+    on({ store, detail, success, supportGpuSelect = false, ...props }) {
       const modal = Modal.open({
         onOk: data => {
-          const containers = get(data, 'spec.template.spec.containers', [])
-          const newContainers = containers.map(item =>
-            omit(item, 'resources.gpu')
-          )
-          set(data, 'spec.template.spec.containers', newContainers)
+          omitJobGpuLimit(data, 'spec.template.spec.containers')
           const customMode = get(data, 'spec.template.spec.customMode', {})
           if (!isEmpty(customMode)) {
             delete data.spec.template.spec.customMode
@@ -297,6 +295,7 @@ export default {
         module: store.module,
         detail: toJS(detail._originData),
         modal: EditConfigTemplateModal,
+        supportGpuSelect,
         ...props,
       })
     },

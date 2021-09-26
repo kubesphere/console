@@ -137,6 +137,7 @@ export default {
         detail,
         store: quotaStore,
         modal: QuotaEditModal,
+        supportGpuSelect: true,
         ...props,
       })
     },
@@ -214,6 +215,7 @@ export default {
         modal: DefaultResourceEditModal,
         store,
         detail,
+        supportGpuSelect: true,
         ...props,
       })
     },

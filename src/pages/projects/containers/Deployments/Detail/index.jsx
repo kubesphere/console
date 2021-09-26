@@ -130,6 +130,7 @@ export default class DeploymentDetail extends React.Component {
           detail: this.store.detail,
           ...this.props.match.params,
           success: this.fetchData,
+          supportGpuSelect: true,
         }),
     },
     {

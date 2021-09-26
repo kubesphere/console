@@ -228,6 +228,7 @@ export default class QuotaEditModal extends React.Component {
       onError: error => {
         this.setState({ error })
       },
+      supportGpuSelect: this.props.supportGpuSelect,
     }
   }
 

@@ -16,19 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {
-  concat,
-  get,
-  set,
-  unset,
-  isEmpty,
-  omit,
-  omitBy,
-  has,
-  pick,
-} from 'lodash'
+import { concat, get, set, unset, isEmpty, omit, omitBy, has } from 'lodash'
 import React from 'react'
-import { generateId } from 'utils'
+import { generateId, getContainerGpu } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import { getLeftQuota } from 'utils/workload'
 
@@ -391,25 +381,11 @@ export default class ContainerSetting extends React.Component {
     })
 
     _initContainers.forEach(item => {
-      if (!isEmpty(get(item, 'resources', undefined))) {
-        const gpu = get(item, 'resources.gpu', { type: '', value: '' })
-        item.resources.limits = pick(item.resources.limits, ['cpu', 'memory'])
-        if (gpu.type !== '') {
-          set(item, `resources.limits["${gpu.type}"]`, gpu.value)
-          set(item, `resources.requests["${gpu.type}"]`, gpu.value)
-        }
-      }
+      getContainerGpu(item)
     })
 
     _containers.forEach(item => {
-      if (!isEmpty(get(item, 'resources', undefined))) {
-        const gpu = get(item, 'resources.gpu', { type: '', value: '' })
-        item.resources.limits = pick(item.resources.limits, ['cpu', 'memory'])
-        if (gpu.type !== '') {
-          set(item, `resources.limits["${gpu.type}"]`, gpu.value)
-          set(item, `resources.requests["${gpu.type}"]`, gpu.value)
-        }
-      }
+      getContainerGpu(item)
     })
 
     set(this.fedFormTemplate, `${this.prefix}spec.containers`, _containers)
@@ -443,7 +419,7 @@ export default class ContainerSetting extends React.Component {
   }
 
   renderContainerForm(data) {
-    const { withService, isFederated, cluster } = this.props
+    const { withService, isFederated, cluster, supportGpuSelect } = this.props
     const { limitRange, imageRegistries } = this.state
     const type = !data.image ? 'Add' : 'Edit'
     const params = {
@@ -463,6 +439,7 @@ export default class ContainerSetting extends React.Component {
         isFederated={isFederated}
         workspaceQuota={this.workspaceQuota}
         cluster={cluster}
+        supportGpuSelect={supportGpuSelect}
         {...params}
       />
     )

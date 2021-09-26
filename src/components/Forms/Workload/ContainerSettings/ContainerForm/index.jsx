@@ -169,6 +169,7 @@ export default class ContaineForm extends React.Component {
       imageRegistries,
       namespace,
       withService,
+      supportGpuSelect,
     } = this.props
     const { containerType, formData } = this.state
 
@@ -189,6 +190,7 @@ export default class ContaineForm extends React.Component {
             defaultContainerType={containerType}
             onContainerTypeChange={this.handleContainerTypeChange}
             workspaceQuota={this.props.workspaceQuota}
+            supportGpuSelect={supportGpuSelect}
           />
           <Ports withService={containerType !== 'init' ? withService : false} />
           <ImagePullPolicy />

@@ -49,6 +49,7 @@ export default class ContainerSetting extends React.Component {
     return {
       requests: limitRange.defaultRequest || {},
       limits: limitRange.default || {},
+      gpu: limitRange.gpu || {},
     }
   }
 
@@ -148,7 +149,11 @@ export default class ContainerSetting extends React.Component {
   }
 
   renderAdvancedSettings() {
-    const { defaultContainerType, onContainerTypeChange } = this.props
+    const {
+      defaultContainerType,
+      onContainerTypeChange,
+      supportGpuSelect,
+    } = this.props
     const defaultResourceLimit = this.defaultResourceLimit
 
     return (
@@ -201,6 +206,7 @@ export default class ContainerSetting extends React.Component {
               defaultValue={defaultResourceLimit}
               onError={this.handleError}
               workspaceLimitProps={this.workspaceLimitProps}
+              supportGpuSelect={supportGpuSelect}
             />
           </Form.Item>
         </>
