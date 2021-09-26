@@ -142,7 +142,7 @@ export default class VolumeDetail extends React.Component {
         value: storageProvisioner,
       },
       {
-        name: t('RECLAMATION_POLICY'),
+        name: t('RECLAIM_POLICY'),
         value: persistentVolumeReclaimPolicy,
       },
       {
