@@ -190,7 +190,7 @@ export default class ConditionSelect extends React.Component {
     return (
       <TagInput
         name="values"
-        placeholder={t('Please input value')}
+        placeholder={t('TAG_INPUT_PLACEHOLDER')}
         value={values}
         onChange={this.handleValueChange}
       />

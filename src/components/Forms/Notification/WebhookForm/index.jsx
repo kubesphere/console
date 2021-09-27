@@ -31,6 +31,11 @@ export default class WebhookForm extends Component {
       'receiver.metadata.annotations["kubesphere.io/verify-type"]',
       ''
     ),
+    enabled: get(
+      this.props.data,
+      `receiver.spec.webhook.httpConfig.tlsConfig.insecureSkipVerify`,
+      false
+    ),
   }
 
   get options() {
@@ -65,9 +70,12 @@ export default class WebhookForm extends Component {
     this.setState({ type })
   }
 
+  handleChangeCheck = enabled => {
+    this.setState({ enabled })
+  }
+
   renderServiceSetting() {
-    const { data } = this.props
-    const { type } = this.state
+    const { type, enabled } = this.state
 
     return (
       <div className={styles.row}>
@@ -90,6 +98,7 @@ export default class WebhookForm extends Component {
           >
             <Select
               name="receiver.metadata.annotations['kubesphere.io/verify-type']"
+              value={type}
               options={this.options}
               onChange={this.handleTypeChange}
             />
@@ -118,10 +127,8 @@ export default class WebhookForm extends Component {
           <Form.Item>
             <Checkbox
               name="receiver.spec.webhook.httpConfig.tlsConfig.insecureSkipVerify"
-              checked={get(
-                data,
-                'receiver.spec.webhook.httpConfig.tlsConfig.insecureSkipVerify'
-              )}
+              checked={enabled}
+              onChange={this.handleChangeCheck}
             >
               {t('Skip TLS Certification')}
             </Checkbox>

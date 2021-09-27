@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty, get, set, cloneDeep } from 'lodash'
+import { isEmpty, get, set, unset, cloneDeep } from 'lodash'
 
 import { Notify } from '@kube-design/components'
 import { Panel } from 'components/Base'
@@ -96,17 +96,21 @@ export default class Webhook extends React.Component {
       receiver,
       'metadata.annotations["kubesphere.io/verify-type"]'
     )
-    const password = safeBtoa(get(secret, 'data.password'))
-    const token = safeBtoa(get(secret, 'data.token'))
+    const username = get(receiver, 'spec.webhook.httpConfig.basicAuth.username')
+    const { password, token } = get(secret, 'data', {})
 
-    if (type === 'basic') {
+    unset(receiver, 'spec.webhook.httpConfig.bearerToken')
+    unset(receiver, 'spec.webhook.httpConfig.basicAuth')
+
+    if (type === 'basic' && password) {
       set(
         receiver,
         'spec.webhook.httpConfig.basicAuth.password.value',
         password
       )
+      set(receiver, 'spec.webhook.httpConfig.basicAuth.username"', username)
     }
-    if (type === 'token') {
+    if (type === 'token' && token) {
       set(receiver, 'spec.webhook.httpConfig.bearerToken.value', token)
     }
 
@@ -120,33 +124,43 @@ export default class Webhook extends React.Component {
       receiver,
       'metadata.annotations["kubesphere.io/verify-type"]'
     )
+    const username = get(receiver, 'spec.webhook.httpConfig.basicAuth.username')
     const password = safeBtoa(get(secret, 'data.password'))
     const token = safeBtoa(get(secret, 'data.token'))
     const secretData = {}
     let message
 
+    unset(receiver, 'spec.webhook.httpConfig.bearerToken')
+    unset(receiver, 'spec.webhook.httpConfig.basicAuth')
+
     if (type === 'basic') {
       set(secretData, 'password', password)
-    }
-    if (type === 'token') {
-      set(secretData, 'token', token)
+
+      set(receiver, 'spec.webhook.httpConfig.basicAuth.username', username)
+      set(
+        receiver,
+        'spec.webhook.httpConfig.basicAuth.password.key',
+        'password'
+      )
+      set(
+        receiver,
+        'spec.webhook.httpConfig.basicAuth.password.name',
+        SECRET_NAME
+      )
     }
 
-    set(receiver, 'spec.webhook.httpConfig.basicAuth.password.key', 'password')
-    set(
-      receiver,
-      'spec.webhook.httpConfig.basicAuth.password.name',
-      SECRET_NAME
-    )
-    set(receiver, 'spec.webhook.httpConfig.bearerToken.key', 'token')
-    set(receiver, 'spec.webhook.httpConfig.bearerToken.name', SECRET_NAME)
+    if (type === 'token') {
+      set(secretData, 'token', token)
+      set(receiver, 'spec.webhook.httpConfig.bearerToken.key', 'token')
+      set(receiver, 'spec.webhook.httpConfig.bearerToken.name', SECRET_NAME)
+    }
 
     if (formStatus === 'create') {
       await this.secretStore.create(
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('Added Successfully')
+      message = t('CREATE_SUCCESSFUL')
     } else {
       await this.secretStore.update(
         { name: SECRET_NAME },

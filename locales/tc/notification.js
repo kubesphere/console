@@ -41,6 +41,7 @@ module.exports = {
   'Please select a tag': '請選擇標簽',
   'Please select a regex filter': '請選擇過濾規則',
   'Invalid notification condition': '請填寫正確的通知條件',
+  TAG_INPUT_PLACEHOLDER: '請輸入值後回車確認',
 
   SEND_TEST_MESSAGE: '發送測試信息',
   NOTIFICATION_CONFIGRATION_SEND_TEST_MESSAGE_DESC:
@@ -51,7 +52,7 @@ module.exports = {
   'SMTP Server Address': 'SMTP 服務器地址',
   'Use SSL Secure Connection': '使用 SSL 安全連接',
 
-  MAIL_DESC: '可以通過郵件接收平臺的通知，需要配置郵件發送服務器。',
+  MAIL_SETTING_DESC: '可以通過郵件接收平臺的通知，需要配置郵件發送服務器。',
   SENDER_MAIL: '發件人郵箱',
   MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP:
     '您當前的郵件設置已發生變化，請保存配置，或者取消修改',
@@ -81,8 +82,9 @@ module.exports = {
   MAX_CID_COUNT: '最多添加 {count} 個會話 ID',
   MAX_KEYWORD_COUNT: '最多添加 {count} 個關鍵字',
   EMPTY_KEYWORDS_DESC: '未添加任何關鍵字',
+  DINGTALK_SETTING_TIP: '請設置會話或者群機器人。',
 
-  DINGTALK_DESC: '可以通過釘釘接收平臺的通知，需要配置釘釘發送服務器。',
+  DINGTALK_SETTING_DESC: '可以通過釘釘接收平臺的通知，需要配置釘釘發送服務器。',
   DINGTALK_KEYWORDS_DESC: 'ChatBot 的自定義關鍵字, 如需多個請以 "," 分隔',
   DINGTALK_SETTINGS_CHANGE_NEED_SAVE_TIP:
     '您當前的釘釘設置已發生變化，請保存設置，或者取消修改',
@@ -118,7 +120,8 @@ module.exports = {
   MAX_TOPARTY_COUNT: '最多添加 {count} 個部門',
   MAX_TOTAG_COUNT: '最多添加 {count} 個標簽',
 
-  WECOM_DESC: '可以通過企業微信接收平臺的通知，需要配置企業微信發送服務器。',
+  WECOM_SETTING_DESC:
+    '可以通過企業微信接收平臺的通知，需要配置企業微信發送服務器。',
   WECOM_SETTINGS_CHANGE_NEED_SAVE_TIP:
     '您當前的企業微信設置已發生變化，請保存設置，或者取消修改',
 
@@ -133,7 +136,8 @@ module.exports = {
   'Please add the receiver channel': '請添加接收頻道',
   MAX_CHANNEL_COUNT: '最多添加 {count} 個頻道',
 
-  SLACK_DESC: '可以通過 slack 接收平臺的通知，需要配置 slack 發送服務器。',
+  SLACK_SETTING_DESC:
+    '可以通過 slack 接收平臺的通知，需要配置 slack 發送服務器。',
   SLACK_SETTINGS_CHANGE_NEED_SAVE_TIP:
     '您當前的 slack 設置已發生變化，請保存設置，或者取消修改',
 
@@ -151,4 +155,6 @@ module.exports = {
     '可以通過 webhook 接收平臺的通知，需要配置 webhook 發送服務器。',
   WEBHOOK_SETTINGS_CHANGE_NEED_SAVE_TIP:
     '您當前的 webhook 設置已發生變化，請保存設置，或者取消修改',
+
+  PLEASE_ENTER_VALUE_CUSTOM: '請輸入{value}。',
 }

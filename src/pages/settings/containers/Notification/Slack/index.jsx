@@ -128,7 +128,7 @@ export default class Slack extends React.Component {
       await this.configStore.create(config)
       await this.secretStore.create(secret)
       await this.receiverStore.create(receiver)
-      message = t('Added Successfully')
+      message = t('CREATE_SUCCESSFUL')
     } else {
       await this.secretStore.update({ name: SECRET_NAME }, secret)
       await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)

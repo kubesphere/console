@@ -42,6 +42,7 @@ module.exports = {
   'Please select a tag': 'Please select a tag',
   'Please select a regex filter': 'Please select a regex filter',
   'Invalid notification condition': 'Invalid notification condition',
+  TAG_INPUT_PLACEHOLDER: 'Please enter the value and press Enter to confirm',
 
   SEND_TEST_MESSAGE: 'Send Test Message',
   NOTIFICATION_CONFIGRATION_SEND_TEST_MESSAGE_DESC:
@@ -53,7 +54,7 @@ module.exports = {
   'SMTP Server Address': 'SMTP Server Address',
   'Use SSL Secure Connection': 'Use SSL Secure Connection',
 
-  MAIL_DESC:
+  MAIL_SETTING_DESC:
     'You can receive email notifications from the platform after configuring the outgoing mail server.',
   SENDER_MAIL: 'Sender Email Address',
   MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP:
@@ -85,8 +86,9 @@ module.exports = {
   MAX_CID_COUNT: 'Add a maximum of {count} conversation IDs',
   MAX_KEYWORD_COUNT: 'Add at most {count} keywords',
   EMPTY_KEYWORDS_DESC: 'No keywords added',
+  DINGTALK_SETTING_TIP: 'Please set up a conversation or group chatbot',
 
-  DINGTALK_DESC:
+  DINGTALK_SETTING_DESC:
     'You can receive DingTalk notifications from the platform after configuring the DingTalk server.',
   DINGTALK_KEYWORDS_DESC:
     'Separate multiple customized Chatbot keywords with commas.',
@@ -127,7 +129,7 @@ module.exports = {
   MAX_TOPARTY_COUNT: 'Add up to {count} departments',
   MAX_TOTAG_COUNT: 'Add up to {count} Tags',
 
-  WECOM_DESC:
+  WECOM_SETTING_DESC:
     'You can receive WeCom notifications from the platform after configuring the WeCom server.',
   WECOM_SETTINGS_CHANGE_NEED_SAVE_TIP:
     'Your current WeCom settings have changed. Please save the settings or cancel the changes.',
@@ -143,7 +145,7 @@ module.exports = {
   'Please add the receiver channel': 'Please add the receiver channel',
   MAX_CHANNEL_COUNT: 'Add up to {count} channels',
 
-  SLACK_DESC:
+  SLACK_SETTING_DESC:
     'You can receive Slack notifications from the platform after configuring the Slack server.',
   SLACK_SETTINGS_CHANGE_NEED_SAVE_TIP:
     'Your current Slack settings have changed. Please save the settings or cancel the changes.',
@@ -162,4 +164,6 @@ module.exports = {
     'You can receive platform notifications through webhooks after configuring the webhook server.',
   WEBHOOK_SETTINGS_CHANGE_NEED_SAVE_TIP:
     'Your current webhook settings have changed. Please save the settings or cancel the changes.',
+
+  PLEASE_ENTER_VALUE_CUSTOM: 'Please enter a {value}.',
 }

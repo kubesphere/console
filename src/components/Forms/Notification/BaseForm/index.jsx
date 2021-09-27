@@ -62,12 +62,17 @@ export default class BaseForm extends Component {
   }
 
   handleVerify = () => {
-    const { user, getVerifyFormTemplate } = this.props
+    const { user, getVerifyFormTemplate, onVerify } = this.props
     const form = this.formRef.current
     form &&
       form.validate(() => {
+        const data = form.getData()
         const template = FORM_TEMPLATES['notificationVerify']({ user })
-        const { config, receiver } = getVerifyFormTemplate(form.getData())
+        const { config, receiver } = getVerifyFormTemplate(data)
+
+        if (onVerify && !onVerify(data)) {
+          return
+        }
 
         set(template, 'config.spec', get(config, 'spec', {}))
         set(template, 'receiver.spec', get(receiver, 'spec', {}))
@@ -122,7 +127,7 @@ export default class BaseForm extends Component {
           className={styles.title}
           icon={name}
           title={t(module)}
-          description={t(`${module.toUpperCase()}_DESC`)}
+          description={t(`${module.toUpperCase()}_SETTING_DESC`)}
         />
         <div className={styles.action}>
           <Form.Item>
