@@ -29,6 +29,7 @@ import {
   trimStart,
   isNumber,
   omit,
+  pick,
 } from 'lodash'
 import generate from 'nanoid/generate'
 import moment from 'moment-mini'
@@ -620,18 +621,62 @@ export const compareVersion = (v1 = '', v2 = '') => {
   return 0
 }
 
-export const JobGpuLimitCancel = (data, path) => {
+export const getContainerGpu = item => {
+  if (!isEmpty(get(item, 'resources', undefined))) {
+    const gpu = get(item, 'resources.gpu', { type: '', value: '' })
+    item.resources.limits = pick(item.resources.limits, ['cpu', 'memory'])
+    if (gpu.type !== '') {
+      const value = isUndefined(gpu.value) ? '' : gpu.value
+      set(item, `resources.limits["${gpu.type}"]`, value)
+      set(item, `resources.requests["${gpu.type}"]`, value)
+    }
+  }
+}
+
+export const omitJobGpuLimit = (data, path) => {
   const containers = get(data, path, [])
   if (containers.length > 0) {
     const newContainer = containers.map(item => {
-      let newItem = {}
       const gpu = get(item, 'resources.gpu', {})
-      newItem = omit(item, 'resources.gpu')
-      set(newItem, `resources.limits["${gpu.type}"]`, gpu.value)
-      set(newItem, `resources.requests["${gpu.type}"]`, gpu.value)
-      return newItem
+      if (isEmpty(gpu)) {
+        return item
+      }
+      if (
+        isEmpty(gpu.type) ||
+        isEmpty(gpu.value) ||
+        isUndefined(gpu.type) ||
+        isUndefined(gpu.value)
+      ) {
+        const limits = get(item, 'resources.limits', {})
+        const requests = get(item, 'resources.requests', {})
+        set(item, 'resources.limits', omit(limits, `${gpu.type}`))
+        set(item, 'resources.requests', omit(requests, `${gpu.type}`))
+      }
+      return omit(item, 'resources.gpu')
     })
     set(data, path, newContainer)
+  }
+}
+
+export const getGpuFromRes = data => {
+  if (data.length > 0) {
+    const gpu = omit(data[0].limit.default, ['cpu', 'memory'])
+    const gpuKey = Object.keys(gpu)[0]
+    if (isEmpty(gpu)) {
+      set(data[0].limit, 'gpu', {
+        type: '',
+        value: '',
+      })
+    } else {
+      data[0] = omit(data[0], [
+        `limit.default['${gpuKey}']`,
+        `limit.defaultRequest['${gpuKey}']`,
+      ])
+      set(data[0].limit, 'gpu', {
+        type: gpuKey,
+        value: Object.values(gpu)[0],
+      })
+    }
   }
 }
 

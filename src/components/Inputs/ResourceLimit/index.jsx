@@ -50,6 +50,7 @@ export default class ResourceLimit extends React.Component {
     defaultValue: PropTypes.object,
     onChange: PropTypes.func,
     onError: PropTypes.func,
+    supportGpuSelect: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -58,6 +59,7 @@ export default class ResourceLimit extends React.Component {
     onError() {},
     cpuProps: {},
     memoryProps: {},
+    supportGpuSelect: false,
   }
 
   constructor(props) {
@@ -182,14 +184,14 @@ export default class ResourceLimit extends React.Component {
     const defaultValue = get(props, 'defaultValue', {})
     if (!isEmpty(value)) {
       return {
-        type: get(value, 'gpu.type'),
-        value: get(value, 'gpu.value'),
+        type: get(value, 'gpu.type', ''),
+        value: get(value, 'gpu.value', ''),
       }
     }
     if (!isEmpty(defaultValue)) {
       return {
-        type: get(defaultValue, 'gpu.type'),
-        value: get(defaultValue, 'gpu.value'),
+        type: get(defaultValue, 'gpu.type', ''),
+        value: get(defaultValue, 'gpu.value', ''),
       }
     }
     return {
@@ -215,11 +217,11 @@ export default class ResourceLimit extends React.Component {
   }
 
   static getWorkspaceRequestLimit(props, key) {
-    return get(props, `workspaceLimitProps.requests.${key}`)
+    return get(props, `workspaceLimitProps.requests.${key}`, 0)
   }
 
   static getWorkspaceLimitValue(props, key) {
-    return get(props, `workspaceLimitProps.limits.${key}`)
+    return get(props, `workspaceLimitProps.limits.${key}`, 0)
   }
 
   cpuFormatter = value => {
@@ -572,8 +574,37 @@ export default class ResourceLimit extends React.Component {
     return true
   }
 
+  renderGpuSelect = () => {
+    return (
+      <Column>
+        <div className={styles.inputGroup}>
+          <img src="/assets/GPU.svg" size={48} />
+          <div className={classnames(styles.input)}>
+            <span className={styles.label}>{t('GPU_TYPE')}:</span>
+            <Select
+              options={this.gpuOption}
+              value={this.state.gpu.type}
+              onChange={this.gpuSelectChange}
+              placeholder=" "
+            ></Select>
+          </div>
+          <div className={classnames(styles.input)}>
+            <span className={styles.label}>{t('RESOURCE_LIMIT')}:</span>
+            <Input
+              name="gpu.value"
+              value={this.state.gpu.value}
+              onChange={this.handleGpuInputChange}
+              placeholder={t('NO_LIMIT')}
+            />
+          </div>
+        </div>
+      </Column>
+    )
+  }
+
   render() {
     const { cpuError, memoryError, workspaceLimitCheck: limit } = this.state
+    const { supportGpuSelect } = this.props
     const outWorkSpaceLimit = this.getWorkspaceCheckError()
 
     return (
@@ -656,37 +687,7 @@ export default class ResourceLimit extends React.Component {
                 </div>
               </div>
             </Column>
-            <Column>
-              <div className={styles.inputGroup}>
-                <img src="/assets/GPU.svg" size={48} />
-                <div
-                  className={classnames(styles.input, {
-                    [styles.error]: memoryError || limit.requestMemoryError,
-                  })}
-                >
-                  <span className={styles.label}>{t('GPU_TYPE')}:</span>
-                  <Select
-                    options={this.gpuOption}
-                    value={this.state.gpu.type}
-                    onChange={this.gpuSelectChange}
-                    placeholder=" "
-                  ></Select>
-                </div>
-                <div
-                  className={classnames(styles.input, {
-                    [styles.error]: memoryError || limit.limitMemoryError,
-                  })}
-                >
-                  <span className={styles.label}>{t('RESOURCE_LIMIT')}:</span>
-                  <Input
-                    name="gpu.value"
-                    value={this.state.gpu.value}
-                    onChange={this.handleGpuInputChange}
-                    placeholder={t('NO_LIMIT')}
-                  />
-                </div>
-              </div>
-            </Column>
+            {supportGpuSelect && this.renderGpuSelect()}
           </Columns>
         </div>
         {this.ifRenderTip() && this.renderTip()}

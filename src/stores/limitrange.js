@@ -18,7 +18,7 @@
 
 import Base from 'stores/base'
 import { action } from 'mobx'
-import { omit, set, isEmpty } from 'lodash'
+import { getGpuFromRes } from 'utils'
 
 export default class LimitRangeStore extends Base {
   module = 'limitranges'
@@ -43,7 +43,7 @@ export default class LimitRangeStore extends Base {
       ...this.mapper(item),
     }))
 
-    this.cancelGpuSetting(data)
+    getGpuFromRes(data)
 
     this.list.update({
       data,
@@ -52,27 +52,5 @@ export default class LimitRangeStore extends Base {
     })
 
     return data
-  }
-
-  cancelGpuSetting(data) {
-    if (data.length > 0) {
-      const gpu = omit(data[0].limit.default, ['cpu', 'memory'])
-      const gpuKey = Object.keys(gpu)[0]
-      if (isEmpty(gpu)) {
-        set(data[0].limit, 'gpu', {
-          type: '',
-          value: '',
-        })
-      } else {
-        data[0] = omit(data[0], [
-          `limit.default['${gpuKey}']`,
-          `limit.defaultRequest['${gpuKey}']`,
-        ])
-        set(data[0].limit, 'gpu', {
-          type: gpuKey,
-          value: Object.values(gpu)[0],
-        })
-      }
-    }
   }
 }

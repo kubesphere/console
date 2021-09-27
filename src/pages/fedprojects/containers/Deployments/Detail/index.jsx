@@ -98,6 +98,7 @@ export default class DeploymentDetail extends React.Component {
           ...this.props.match.params,
           success: this.fetchData,
           isFederated: true,
+          supportGpuSelect: true,
         }),
     },
     {

@@ -178,6 +178,7 @@ export default class Deployments extends React.Component {
       projectDetail: projectStore.detail,
       namespace: match.params.namespace,
       renderScheduleTab: true,
+      supportGpuSelect: true,
     })
   }
 

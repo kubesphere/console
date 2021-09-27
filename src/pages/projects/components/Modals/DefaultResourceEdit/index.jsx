@@ -104,6 +104,7 @@ export default class DefaultResourceEditModal extends React.Component {
           defaultValue={this.resourceLimit}
           onChange={this.handleChange}
           onError={this.handleError}
+          supportGpuSelect={this.props.supportGpuSelect || false}
         />
       </Modal>
     )
