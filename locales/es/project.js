@@ -63,7 +63,7 @@ module.exports = {
     '¿Cómo configurar la puerta de enlace del proyecto?',
   'Invalid project name': 'Nombre de proyecto inválido',
   'Invite Member': 'Miembro invitado',
-  'Invite Members to the DevOps Project': 'Invitar miembros al proyecto DevOps',
+  INVITE_DEVOPS_MEMBER: 'Invitar miembros al proyecto DevOps',
   'Invite Members to the Project': 'Invitar miembros al proyecto',
   jobs: 'trabajos',
   'limits.cpu': 'limit.cpu',
@@ -157,8 +157,8 @@ module.exports = {
   INVITE_MEMBER_DESC:
     'You can invite members who belong to the workspace to the project.',
   INVITE_MEMBER_DESC_DEVOPS:
-    'Puedes invitar a nuevos miembros para que ayuden en tu proyecto DevOps.',
-  INVITE_MEMBER_SEARCH_PLACEHODLER:
+    'You can invite members who belong to the workspace to the DevOps project.',
+  INVITE_MEMBER_SEARCH_PLACEHOLDER:
     'Introduce una dirección de correo electrónico para invitar miembros',
   ASSIGN_ROLE: 'Assign a Role to the Member',
   DELETE_MEMBER_TIP:

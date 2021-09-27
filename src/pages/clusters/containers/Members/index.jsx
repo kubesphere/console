@@ -115,7 +115,7 @@ export default class Members extends React.Component {
               roleModule: this.roleStore.module,
               title: t('Invite members to the cluster'),
               desc: t('INVITE_CLUSTER_MEMBER_DESC'),
-              searchPlaceholder: t('INVITE_MEMBER_SEARCH_PLACEHODLER'),
+              searchPlaceholder: t('INVITE_MEMBER_SEARCH_PLACEHOLDER'),
               success: routing.query,
             }),
         },
@@ -124,7 +124,7 @@ export default class Members extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Remove Members'),
+          text: t('REMOVE_MEMBER_PL'),
           action: 'delete',
           onClick: () =>
             trigger('member.remove.batch', {

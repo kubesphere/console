@@ -136,7 +136,7 @@ export default class Authorization extends Component {
       case 'bearerTokenSecret':
         content = (
           <div>
-            <Form.Item label={'Token'}>
+            <Form.Item label={'TOKEN'}>
               <SecretSelect name="bearerTokenSecret" secrets={this.secrets} />
             </Form.Item>
           </div>

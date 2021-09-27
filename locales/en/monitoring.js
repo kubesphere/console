@@ -237,7 +237,6 @@ module.exports = {
   ACCOUNTS: 'Accounts',
   PROJECT_PL: 'Projects',
   PROJECT_LOW: 'project',
-  DEVOPS_PROJECT: 'DevOps Project',
   DEVOPS_PROJECT_PL: 'DevOps Projects',
   DEVOPS_PROJECT_TCAP: 'DevOps project',
   DEVOPS_PROJECT_TCAP_PL: 'DevOps projects',

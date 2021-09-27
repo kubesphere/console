@@ -30,7 +30,7 @@ module.exports = {
   PRIVATE_KEY_TCAP: '私钥',
   IMAGE_REGISTRY_SECRET_SCAP: '镜像仓库保密字典',
   IMAGE_REGISTRY_SECRET_TCAP: '镜像仓库保密字典',
-  ENTER_CREDENTIAL_TIP: '请输入凭证。',
+  ENTER_CREDENTIAL_TIP: '请输入凭证 ID。',
   ENTER_PRIVATE_KEY_DESC: '请输入私钥。',
   ENTER_DATA_DESC: '请添加数据。',
   Unverified: '镜像仓库保密字典验证失败。',

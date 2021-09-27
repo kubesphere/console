@@ -65,20 +65,20 @@ export default class SvnForm extends React.Component {
     return (
       <div className={styles.card}>
         <Form data={formData} ref={formRef}>
-          <Form.Item label={t('type')}>
+          <Form.Item label={t('TYPE')}>
             <Select
               name="svn_source.type"
               disabled={enableTypeChange === false}
               onChange={this.handleTypeChange}
               options={[
-                { label: t('single Svn'), value: 'single_svn' },
-                { label: 'svn', value: 'svn' },
+                { label: t('SINGLE_SVN'), value: 'single_svn' },
+                { label: t('SVN'), value: 'svn' },
               ]}
               defaultValue={'svn'}
             />
           </Form.Item>
           <Form.Item
-            label={t('Remote Repository URL')}
+            label={t('REMOTE_REPOSITORY_URL')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Input name="svn_source.remote" />
@@ -92,7 +92,7 @@ export default class SvnForm extends React.Component {
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_A_CREDENTIAL')}
                 </span>
               </p>
             }
@@ -106,19 +106,20 @@ export default class SvnForm extends React.Component {
               onFetch={this.getCredentialsListData}
               optionRenderer={this.optionRender}
               valueRenderer={this.optionRender}
+              placeholder=" "
               searchable
               clearable
             />
           </Form.Item>
           {this.state.type !== 'single_svn' ? (
             <React.Fragment>
-              <Form.Item label={t('Branch Included')}>
+              <Form.Item label={t('BRANCH_INCLUDED')}>
                 <Input
                   name="svn_source.includes"
                   defaultValue="trunk,branches/*,tags/*,sandbox/*"
                 />
               </Form.Item>
-              <Form.Item label={t('Branch Excluded')}>
+              <Form.Item label={t('BRANCH_EXCLUDED')}>
                 <Input name="svn_source.excludes" />
               </Form.Item>
             </React.Fragment>

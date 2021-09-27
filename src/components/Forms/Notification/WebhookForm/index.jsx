@@ -110,7 +110,7 @@ export default class WebhookForm extends Component {
           )}
           {type === 'token' && (
             <>
-              <Form.Item label={t('Token')}>
+              <Form.Item label={t('TOKEN')}>
                 <Input name="secret.data.token" />
               </Form.Item>
             </>

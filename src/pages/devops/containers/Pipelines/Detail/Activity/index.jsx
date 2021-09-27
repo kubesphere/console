@@ -240,7 +240,7 @@ export default class Activity extends React.Component {
       ),
     },
     {
-      title: t('Run'),
+      title: t('RUN'),
       width: '10%',
       key: 'run',
       render: record => (
@@ -334,7 +334,7 @@ export default class Activity extends React.Component {
           {
             type: 'control',
             key: 'run',
-            text: t('Run'),
+            text: t('RUN'),
             action: 'edit',
             onClick: this.handleRunning,
           },

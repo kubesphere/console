@@ -21,52 +21,46 @@ module.exports = {
   'Discover pull requests from origin': '發現原始儲存庫與目標儲存庫相同的 PR',
   'Discover pull requests from forks': '發現 Fork 儲存庫與目標儲存庫相同的 PR',
   'User types that can trigger builds': '可以觸發構建的用戶類型',
-  'If you check this option, you cannot run multiple builds concurrently.':
-    '如果勾選此選項，則不能同時運行多個 build.',
-  'Parametric Build': '參數化構建',
-  'Build Trigger': '構建觸發器',
-  'Scheduled build': '定時構建',
-  'Trigger a remote build (for example, using a script)':
-    '觸發遠程構建 (例如，使用腳本)',
+  NO_CONCURRENT_BUILD_DESC: '如果勾選此選項，則不能同時運行多個構建。',
+  PARAMETERIZED_BUILD: '參數化構建',
+  BUILD_TRIGGER: '構建觸發器',
+  SCHEDULED_BUILD: '定時構建',
+  TRIGGER_REMOTE_BUILD: '觸發遠程構建（例如，使用腳本）',
   'Authentication Token': '身份驗證令牌',
   'Use the following URL to remotely triggerworkbench the build':
     '使用以下 URL 遠程觸發構建',
-  'Behavioral strategy': '行為策略',
-  'Specify the location of the Jenkinsfile in the source code repository':
-    '指定 Jenkinsfile 在源代碼倉庫的位置',
-  'Scan Repo Trigger': '掃描 Repo Trigger',
-  'If not, scan regularly': '如果沒有掃描觸發，則定期掃描',
-  'Scan interval': '掃描時間間隔',
-  'Push message to': '推送訊息到',
+  BEHAVIORAL_STRATEGY: '行為策略',
+  SCRIPT_PATH_DESC: '指定 Jenkinsfile 在源代碼倉庫的位置。',
+  REPO_SCAN_TRIGGER: '倉庫掃描觸發器',
+  SCAN_REGULARLY: '如果沒有掃描觸發，則定期掃描',
+  SCAN_INTERVAL: '掃描時間間隔',
+  WEBHOOK_PUSH_URL: 'Webhook 推送 URL',
   BUILD_SETTINGS: '構建設置',
-  'Branch Settings': ' 分支設置',
-  'The name of the pipeline. Pipelines in the same project must have different names.':
-    'Pipeline 的名稱，同一個項目内 Pipeline 不能重名',
-  'It specifies the default value of the field, allowing the user to save the typed actual value.':
-    '指定字段的預設值，允許用戶保存鍵入實際值。',
-  'Comment information': '註解資訊',
-  'Alternate options, one per line. The first line will be used as the default option.':
-    '備用選擇，每行一個。第一行的將作為預設選項。',
+  BRANCH_SETTINGS: ' 分支設置',
+  PIPELINE_NAME_DESC: '流水線的名稱，同一個項目内 Pipeline 不能重名。',
+  PIPELINE_PARAM_DEFAULT_DESC:
+    '指定字段的預設值，您也可以在手動運行流水線前修改預設值。',
+  PARAM_DESC: '參數的描述。',
+  CHOICE_PARAM_OPTION_DESC: '備用選擇，每行一個。第一行的將作為預設選項。',
   'No need': '不需要',
-  'Any repository containing Jenkinsfile will be built automatically.':
-    '任何包含 Jenkinsfile 的倉庫將會自動構建',
+  GIT_REPO_DESC: '請使用包含 Jenkinsfile 的倉庫。',
   ADD_NEW_CREDENTIAL_DESC:
-    '獲取倉庫代碼可能需要憑證, 選擇已有憑證或添加一個新的憑證',
+    '獲取倉庫代碼可能需要憑證, 選擇已有憑證或添加一個新的憑證。',
   'For accessing GitHub': '用於獲取 GitHub',
-  'Branch Count': '分支數量',
+  BRANCH_COUNT: '分支數量',
   PIPELINE: '流水線',
   PIPELINE_PL: '流水線',
   'Pipeline List': '流水線列表',
-  'Edit Pipeline': '編輯流水線',
+  EDIT_PIPELINE: '編輯流水線',
   'Edit Jenkinsfile': '編輯 Jenkinsfile',
-  Run: '運行',
+  RUN: '運行',
   Commit: '提交',
   BRANCH_SI: '分支',
   CODE_REPOSITORY_BRANCH: '分支',
   'Last Message': '最後訊息',
   Duration: '持續時間',
   TaskStatus: '運行狀態',
-  WeatherScore: '健康狀態',
+  HEALTH: '健康狀態',
   CREDENTIAL_PL: '憑證',
   CREDENTIAL: '憑證',
   CREDENTIAL_SI: '憑證',
@@ -75,53 +69,52 @@ module.exports = {
   'Add Step': '添加步驟',
   'Pipeline Configuration': '編輯流水線',
   'Show Logs': '查看紀錄',
-  'Code Repository': '代碼倉庫',
-  'Discard old builds': '丢棄舊的構建',
-  'Discard old branches': '丢棄舊的分支',
-  'Days to keep builds': '保留構建的天數',
-  'Maximum number of builds to keep': '保留構建的最大個數',
-  'Days to keep old branches': '保留分支的天數',
-  'Max number of branches to keep': '保留分支的最大個數',
-  'Old builds will be deleted after this number of days.':
-    '如果構建達到保留的天數將進行刪除',
-  'No concurrent builds': '不允許並發構建',
-  'Please input pipeline name': '請輸入流水線名稱',
-  'Create Pipeline': '創建流水線',
-  'Old builds will be discarded after the build number exceeds the maximum amount.':
-    '如果構建超過一定的數量將丢棄舊的構建',
+  CODE_REPOSITORY: '代碼倉庫',
+  DISCARD_OLD_BUILDS: '丢棄舊的構建',
+  DISCARD_OLD_BRANCHES: '丢棄舊的分支',
+  DAYS_TO_KEEP_BUILDS: '保留構建的天數',
+  MAXIMUM_NUMBER_OF_BUILDS_TO_KEEP: '保留構建的最大個數',
+  DAYS_TO_KEEP_BRANCHES: '保留分支的天數',
+  MAXIMUM_NUMBER_OF_BRANCHES_TO_KEEP: '保留分支的最大個數',
+  DAYS_TO_KEEP_BUILDS_DESC: '達到保留天數的構建將被刪除，默認值為 7。',
+  NO_CONCURRENT_BUILDS: '不允許並發構建',
+  PIPELINE_NAME_TIP: '請輸入流水線名稱。',
+  CREATE_PIPELINE: '創建流水線',
+  MAXIMUM_NUMBER_OF_BUILDS_TO_KEEP_DESC:
+    '如果構建超過保留的最大數量，將丟棄舊的構建。默認值為 10。',
   'Scan Repository': '掃描遠程分支',
   'Press enter for the next': '按Enter鍵以進行下一步',
   'Wrong Token': 'Token 錯誤',
-  'Select Code Repository': '選擇代碼倉庫',
-  'Repository Url': '倉庫 URL',
-  'Repository Name': '倉庫名稱',
+  SELECT_CODE_REPOSITORY: '選擇代碼倉庫',
+  REPOSITORY_URL: '倉庫 URL',
+  REPOSITORY_NAME: '倉庫名稱',
   'get token': '獲取 Token',
-  PIPELINE_DESC: `Pipeline 是一系列的插件集合，可以通過組合它們來實現持續集成和持續交付的功能。
-    Pipeline DSL 為我們提供了一個可擴展的工具集，讓我們可以將簡單到複雜的邏輯通過代碼實現。`,
-  'Create Credential': '創建憑證',
-  'Credential ID': '憑證 ID',
+  PIPELINE_DESC: `流水線是一組可擴展的工具，可以通過組合它們來實現持續集成和持續交付。
+    您可以在此頁面創建並管理流水線。`,
+  CREATE_CREDENTIAL: '創建憑證',
+  CREDENTIAL_ID: '憑證 ID',
   username_password: '帳戶憑證',
   login_Plateform: '登入平台',
-  'Script Path': '腳本路徑',
-  'Webhook Push': 'webhook 推送',
+  SCRIPT_PATH: '腳本路徑',
+  WEBHOOK_PUSH: 'Webhook 推送',
   'Discover Tag Branches': '發現 Tag 分支',
   'Discover Branches': '發現分支',
   'Discover PR from Origin': '以原倉庫中發現 PR',
   'Discover PR from Forks': '以 Fork 倉庫中發現 PR',
-  'Pull Strategy': '拉取策略',
-  'Trusted User': '可信任用戶',
-  'Add Action': '添加操作',
-  'All branches': '所有分支',
-  'Enable Discover Tag Branches': '啟用發現 Tag 分支',
-  'Disable Discover Tag Branches': '停用發現 Tag 分支',
-  'Exclude branches that are also filed as PRs': '排除也作為 PR 提交的分支',
-  'Only branches that are also filed as PRs': '只有被提交為 PR 的分支',
+  PULL_STRATEGY: '拉取策略',
+  TRUSTED_USER: '可信任用戶',
+  ADD_ACTION: '添加操作',
+  ALL_BRANCHES: '所有分支',
+  ENABLE_TAG_BRANCH_DISCOVERY: '啟用發現 Tag 分支',
+  DISABLE_TAG_BRANCH_DISCOVERY: '停用發現 Tag 分支',
+  EXCLUDE_PR_BRANCHES: '排除作為 PR 提交的分支',
+  ONLY_PR_BRANCHES: '只有被提交為 PR 的分支',
   OPTIONS_PR_PARAMS_1: 'PR 與目標分支合併後的源代碼版本',
   OPTIONS_PR_PARAMS_2: 'PR 本身的源代碼版本',
   OPTIONS_PR_PARAMS_3: `當 PR 被發現時會創建兩個流水線，
     一個流水線使用 PR 本身的源代碼版本，
     一個流水線使用 PR 與目標分支合併後的源代碼版本`,
-  'From users with Admin or Write permission': '管理員或有編輯權限的用戶',
+  USERS_WITH_PERMISSION: '管理員或有編輯權限的用戶',
   Normal: '通用',
   'Run Pipeline': '運行流水線',
   Artifacts: '成品',
@@ -138,10 +131,10 @@ module.exports = {
     用於在 Pipeline 運行時, 為拉取代碼、push/pull 鏡像、SSH 執行腳本等過程提供認證`,
   'Credential Id': '憑證 ID',
   'No artifacts records': '沒有成品紀錄',
-  'Select This Repository': '選擇此倉庫',
+  SELECT_THIS_REPOSITORY: '選擇此倉庫',
   'Scan repo success': '掃描倉庫觸發成功',
   'Pipeline Run Logs': '流水線運行紀錄',
-  'Download Logs': '下载紀錄',
+  DOWNLOAD_LOGS: '下载紀錄',
   'Time Used': '用時',
   'not run': '未運行',
   'Not Build': '未執行',
@@ -149,43 +142,44 @@ module.exports = {
   commit: '提交',
   'Please input images name': '請輸入鏡像名稱',
   'defaultValue -1 means not to discard': '預設值 -1: 不會丢棄紀錄',
-  'no status': '沒有狀態',
+  NO_STATUS: '沒有狀態',
   Skipped: '已跳過',
-  'Sub-healthy': '亞健康',
+  SUB_HEALTHY: '亞健康',
   'Stop Job Successfully, Status updated later': '任務已停止，狀態稍後更新',
   'Scan Repository Logs': '掃描倉庫紀錄',
   'Started By': '實施者',
-  Rescan: '重新掃描',
-  'Logs Scanned Successfully': '掃描紀錄成功',
+  RESCAN: '重新掃描',
+  LOGS_SCANNED_SUCCESSFULLY: '掃描紀錄成功。',
   'Configuration error': '配置資訊錯誤',
   'branch success': '分支成功',
-  tips_Parametric_build: `參數化構建過程允許您在進行構建時傳入一個或多個參數。
-  例如：您可能有一個進行發佈軟體的流水線，並且希望一起進行上傳發行說明。這可以通過在此處添加文本參數來完成。
-  每個參數都有一個 Name 和某種 Value，Value 的值取決於參數類型。在 Pipeline 當中可以使用
+  PARAMETERIZED_BUILD_TIP: `參數化構建過程可以在進行構建時傳入一個或多個參數。
+  例如：如果您有一個進行發佈軟體的流水線，並且希望一起上傳發行說明，這可以通過在此處添加文本參數來完成。
+  每個參數都有一個 Name 和某種 Value，Value 的值取決於參數類型。在流水線當中可以使用
     params.Name
-  或 Name 訪問這些值。這意味著此處定義的每個參數應具有唯一的名稱。
-  當參數化項目時，構建會被替換為參數化構建，其中將提示用戶為每個定義的參數輸入值。
-  如果他们選擇不輸入任何内容，則構建以每個參數的預設值進行。
+  或 Name 訪問這些值。請註意，此處定義的每個參數應具有唯一的名稱。
+  當參數化項目時，構建會被替換為參數化構建，並將提示用戶為每個定義好的參數輸入值。
+  如果沒有輸入值，則構建以每個參數的預設值進行。
   如果項目的構建是自動啟動，例如，由定時觸發器啟動，這時將使用參數的預設值進行觸發。`,
-  tips_Authentication_token: `如果需要通過訪問預定義 URL 開觸發構建，請啟用此選項。
+  AUTHENTICATION_TOKEN_TIP: `如果需要通過訪問預定義 URL 開觸發構建，請啟用此選項。
     此功能的的一個典型用法是通過源代碼管理系統的鉤子腳本來進行觸發。
     您需要提供一個字符串形式的授權令牌，以便只有擁有授權令牌的人才能觸發遠程構建。`,
-  tips_disable_concurrent:
-    '這將確定何時應丢棄項目的構建紀錄。構建紀錄包括控制台輸出，存檔工件以及與特定構建相關的其他元數據。\n' +
+  DISABLE_CONCURRENT_TIP:
+    '這將確定何時應丢棄流水線的構建紀錄。構建紀錄包括控制台輸出，存檔製品以及與特定構建相關的其他元數據。\n' +
     '保留較少的構建可以節省 Jenkins 所使用的硬碟空間。\n' +
-    '我们提供了兩個選項來確定應何時丢棄舊的構建：\n' +
+    'KubeSphere 提供了兩個選項來確定應何時丢棄舊的構建：\n' +
     '1. 保留構建的天數：如果構建達到一定的天數，則丢棄構建。\n' +
-    '2. 保留構建的個數：如果已經存在一定數量的構建，則丢棄最舊的構建。\n' +
+    '2. 保留構建的最大個數：至多保留一定數量的構建，並丟棄最舊的構建。\n' +
     '這兩個選項可以同時對構建進行作用，如果超出任一限制，則將丢棄超出該限制的任何構建。',
-  tips_disable_concurrent_withscm: `這將确定何時應丢棄分支以及分支下的所有構建紀錄。構建紀錄包括控制台輸出，
-    存檔工件以及與特定構建相關的其他元數據。保留較少的構建可以節省Jenkins所使用的硬碟空間。
-    我们提供了兩個選項来確定應何時丢棄舊的分支： 1. 保留分支的天數：如果分支達到一定的天數，則丢棄分支。
-    2. 保留分支的個數：如果已經存在一定數量的分支，則丢棄最舊的分支。這兩個選項可以同時對分支進行作用，
+  DISABLE_CONCURRENT_SCM_TIP: `這將确定何時應丢棄分支以及分支下的所有構建紀錄。構建紀錄包括控制台輸出、
+    存檔製品以及與特定構建相關的其他元數據。保留較少的構建可以節省 Jenkins 所使用的硬碟空間。
+    KubeSphere 提供了兩個選項来確定應何時丢棄舊的分支：1. 保留分支的天數：如果分支達到一定的天數，則丢棄分支。
+    2. 保留分支的最大個數：至多保留一定數量的分支，並丟棄最舊的分支。這兩個選項可以同時對分支進行作用，
     如果超出任一限制，則將丢棄超出該限制的任何分支。`,
-  tips_Timing_build: '提供類似 cron 的功能來定期執行此項目',
-  tips_days_keep_withscm: '如果不為空，則舊分支僅保留此天數',
-  tips_numbers_keep_withscm: '如果不為空，則僅保留最多此數量的舊分支',
-  tips_timer_trigger:
+  SCHEDULED_BUILD_TIP: '提供類似 cron 的功能來定期執行此流水線。',
+  DAYS_TO_KEEP_BRANCHES_DESC: '達到保留天數的分支將被刪除，默認值為 7。',
+  MAXIMUM_NUMBER_OF_BRANCHES_TO_KEEP_DESC:
+    '如果分支數量超過保留的最大數量，將丟棄舊的分支。默認值為 5。',
+  CRON_TIP:
     '該字段遵循 cron 的語法 (略有不同)。具体來說，每行包含由製表符或空格分隔的 5 個字段。\n' +
     '分鐘: 一個小時中的第幾分鐘 (0-59)\n' +
     '小時: 一天中的第幾小時 (0-23)\n' +
@@ -205,14 +199,13 @@ module.exports = {
   'Not fail build': '失敗不影響運行',
   submitter: '審核者',
   submitterParameter: '提交參數',
-  'Private key': '私鑰',
-  Passphrase: '密碼',
+  PRIVATE_KEY: '私鑰',
+  PASSPHRASE: '密碼短語',
   'This name has been used.': '此名稱已被使用',
   'Automatically generated by GitHub': '由 GitHub 自動生成',
   ENTER_PARAMETERS: '輸入參數',
   "Missing one or more required properties: 'name'": 'name 不能為空',
   'Please add at least one step.': '至少添加一個步驟',
-  'This name has existed.': '此名稱已存在',
   'Please input the credential name.': '請輸入憑證名稱',
   SCM: '代碼倉庫',
   'No commit records': '沒有提交紀錄',
@@ -236,19 +229,18 @@ module.exports = {
   PRIVATE_IMAGE_DESC:
     '要從私有鏡像倉庫部署，需要先創建鏡像倉庫，然後拉取鏡像。',
   AGENT_TYPE_DESC: `Agent 部分指定整個 Pipeline 或特定階段將在 Jenkins 還境中執行的位置，
-    具體取決於該 agent 部分的放置位置。該部分必須在 Pipeline 塊内的頂層定義，但 stage 級使用是可選的。`,
+    具體取決於該 agent 部分的放置位置。該部分必須在流水線塊内的頂層定義，但 stage 級使用是可選的。`,
   AUTHENTICATION_TOKEN_DESC: `使用以下 URL 遠程觸發構建：
     JENKINS_URL / job / JOB_NAME / build？token =TOKEN_NAME
     或者/ buildWithParameters？token = TOKEN_NAME 可選擇附加＆cause =原因提供將包含在紀錄的構建原因中的文本。`,
-  'Please select a code repository as the code source for the pipeline.':
-    '請選擇一個代碼倉庫作為 Pipeline 的代碼來源',
-  'Pipeline config file not found': '未找到 Pipeline 配置文件',
+  SELECT_CODE_REPO_DESC: '請選擇一個代碼倉庫作為流水線的代碼來源。',
+  'Pipeline config file not found': '未找到流水線配置文件',
   ACTIVITY_EMPTY_TIP: '目前 Pipeline 還沒有運行',
   PIPELINE_NO_CONFIG: '目前 Pipeline 中並沒有找到相關配置文件',
   NOT_VALID_JENKINS_FILE:
     '目前 Jenkinsfile 不是標準的聲明式 Jenkinsfile，無法進行圖形化顯示',
-  PIPELINE_CRONJOB_CRON_DESC: `Every hour, on the hour 語法參照
-    <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">CRON</a>`,
+  PIPELINE_CRONJOB_CRON_DESC: `語法請參照
+    <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">CRON</a>。`,
   'passphrase Variable': '密碼變量',
   'show yaml editor': '用 YAML 編輯器編輯',
   'Enable Variable Substitution in Config': '在配置中啟用變量替換',
@@ -261,21 +253,20 @@ module.exports = {
   'Config File Path': '配置文件路徑',
   'Add another credential': '增加一個憑證',
   'Deploy resources to the Kubernetes cluster': '將資源部署到 kubernetes 集群',
-  'Create a credential': '新建憑證',
-  'Remote Repository URL': '遠程倉庫地址',
-  'Branch Included': '包括分支',
-  'Branch Excluded': '排除分支',
-  "The default value here is the current user's kubeconfig.":
-    '這裡的預設值為目前用户的 kubeconfig',
+  CREATE_A_CREDENTIAL: '新建憑證',
+  REMOTE_REPOSITORY_URL: '遠程倉庫地址',
+  BRANCH_INCLUDED: '包括分支',
+  BRANCH_EXCLUDED: '排除分支',
+  KUBE_CONTENT_TIP: '預設內容為目前用户的 kubeconfig。',
   'The label on which to run the Pipeline or individual stage':
     '流水線或單個階段的標籤',
-  'single Svn': '單分支 SVN',
+  SINGLE_SVN: '單分支 SVN',
+  SVN: 'SVN',
   WEBHOOK_DESC: '推送訊息到此 URL 以觸發倉庫的重新索引。',
   TIME_TRIGGER_DESC: `某些類型的項目會在收到外部推送消息會自動重新索引。但在某些情况下，訊息通知可能失敗。
     這個選項將檢查指定時間間隔内是否執行了索引，如果沒有則觸發索引。`,
   'Are you sure to close this pipeline Editor ?': '確定關閉流水線編輯？',
-  'Are you sure to close this jenkinsfile Editor ?':
-    '確定關閉 jenkinsfile 編輯？',
+  CLOSE_JENKINSFILE_EDITOR_TIP: '確定關閉 Jenkinsfile 編輯器？',
   KUBERNETES_DEPLOY_DESC: `在 kubernetes 集群中進行部署，在持續集成/持續部署的環境當中，
     只有那些需要定期更新的資源才應該放到部署步驟當中，所以此步驟大多數時間都在處理部署這類資源.`,
   KUBERNETES_DEPLOY_DESC_MORE: `<br />
@@ -309,8 +300,8 @@ module.exports = {
   'Chinese is not allowed in the pipeline configuration':
     '配置中不允許含有中文',
   'Edit Credential': '編輯憑證',
-  EDIT_CREDENTIAL_DESC: '下列表單不會顯示原有憑證資訊，重新輸入會將其覆蓋',
-  'Token / Password': 'token / 密碼',
+  EDIT_CREDENTIAL_DESC: '下列表單不會顯示原有憑證資訊，重新輸入會將其覆蓋。',
+  TOKEN_PASSWORD: '令牌/密碼',
   "Sorry, you don't have the permission to do this.":
     '抱歉，您沒有權限進行此操作',
   'Drag and drop tasks to sort': '可以拖放任務進行排序',
@@ -378,13 +369,13 @@ module.exports = {
   TIMEOUT_VALUE: '超時：{value}',
   withSonarQubeEnv: 'Sonarqube 配置',
   sh: 'shell 腳本',
-  'Git Clone Options': 'Git 克隆參數',
-  'clone depth': '克隆深度',
-  'Regex filter': '過濾規則',
+  GIT_CLONE_OPTIONS: 'Git 克隆參數',
+  CLONE_DEPTH: '克隆深度',
+  REGEX_FILTER: '過濾規則',
   REG_FILTER_DESC:
     '啟用正則表達式，將忽略與提供的正則表達式不匹配的名稱（包括分支與PR等)',
-  'Whether to enable shallow clone': '是否開啟淺克隆',
-  'Pipeline clone timeout (in minutes)': '流水線 clone 超時時間 (單位: 分鐘)',
+  ENABLE_SHALLOW_CLONE: '開啟淺克隆',
+  PIPELINE_CLONE_TIMEOUT: '流水線克隆超時時間（單位：分鐘）',
   'config name': '配置名稱',
   waitForQualityGate_desc:
     '代碼質量檢查標準來源於SonarQube的 Quality Gate (質量閥)，如果需要自定義檢查標準請前往 SonarQube 設置',
@@ -447,26 +438,26 @@ module.exports = {
   >
     獲取 Token
   </a>`,
-  bitbucket_server_ACCESSTOKEN_PLACEHOLDER: '請輸入 BitBucket 帳號資訊',
-  github_ACCESSTOKEN_PLACEHOLDER: '請輸入 GitHub access token',
+  bitbucket_server_ACCESSTOKEN_PLACEHOLDER: '請輸入 BitBucket 帳號資訊。',
+  github_ACCESSTOKEN_PLACEHOLDER: '請輸入 GitHub 訪問令牌。',
   'url is invalid': 'url 不合法',
   'pipeline syntax error': '流水線語法錯誤',
   PIPELINES_FOOTER_SEE_MORE: '前往分支詳情頁查看更多 →',
-  CRON_DESC: '上次運行時間 {lastTime}, 下次運行時間 {nextTime}.',
+  CRON_DESC: '上次運行時間 {lastTime}，下次運行時間 {nextTime}。',
   'not support edit nested stage': '暫不支持編輯嵌套階段',
   JENKINS_LINS_ERROR: '第 {line} 行有語法錯誤',
   'Delete all resources of the deployment file': '刪除部署文件所對應的所有資源',
-  'Pipeline event trigger': '流水線事件觸發',
-  'When Create Pipeline': '創建流水線',
-  'When Delete Pipeline': '當刪除流水線',
+  PIPELINE_EVENT_TRIGGER: '流水線事件觸發器',
+  WHEN_CREATE_PIPELINE: '創建流水線',
+  WHEN_DELETE_PIPELINE: '當刪除流水線',
   WHEN_DELETE_PIPELINE_DESC:
     '當有流水線被刪除時，將自動觸發指定流水線中的任務。',
   WHEN_CREATE_PIPELINE_DESC:
-    '當有創建新的流水線時，將自動觸發指定流水線中的任務。',
-  'select a pipeline': '選擇一個流水線',
+    '當創建新的流水線時，將自動觸發指定流水線中的任務。',
+  SELECT_A_PIPELINE: '選擇一個流水線。',
   timer: '定時器',
   'Started By {name}': '由{name}觸發掃描',
-  'Credential ID exists': '憑證 ID 已存在',
+  CREDENTIAL_ID_TIP: '憑證 ID 已存在。',
   'Invalid credential ID': '憑證 ID 格式不合法',
   CI: '持續集成 (CI)',
   CI_DESC:
@@ -476,15 +467,27 @@ module.exports = {
     '持續部署（CD）是指能夠自動提供持續交付管道中發布版本給最終用戶使用的想法。根據用戶的安裝方式，在雲環境中自動部署、app 升級（如手機上的應用程序）、更新網站或只更新可用版本列表。 ',
   CUSTOM_PIPELIEN: '自定義流水線',
   CUSTOM_PIPELIEN_DESC: '您可以選擇您需要的任務自定義流水線的工作內容',
-  'Copy Pipeline': '複製流水線',
+  COPY_PIPELINE: '複製流水線',
   'Batch Run Start': '批量運行開始',
   'Batch Run Success': '批量運行完成',
   'Batch Run Fail': '批量運行失敗',
   'Run Start': '運行開始',
-  'GitLab Server': 'Gitlab 服務',
-  'GitLab Owner': '項目所屬組',
+  GITLAB_SERVER: 'Gitlab 服務',
+  GITLAB_PROJECT_OWNER: 'GitLab 項目所屬組',
   CREATE_PIPELINE_DESC: '使用流水線進行構建，測試和部署',
   'Choose a Pipeline Template': '選擇流水線模板',
-  BATCH_RUN_DESC: '多分支不支持批量運行',
+  BATCH_RUN_DESC: '多分支流水線不支持批量運行。',
   'Sync Status': '同步狀態',
+
+  // Pipeline List Page
+  PULL_REQUEST_PL: '拉取請求',
+  HEALTHY: '健康',
+
+  // Pipeline Creation Page
+  DEVOPS_PROJECT: 'DevOps 工程',
+  DEVOPS_PROJECT_DESC:
+    'DevOps 工程用於對資源進行分組管理以及控製不同用戶的資源管理權限。',
+  CODE_REPOSITORY_OPTIONAL: '代碼倉庫（可選）',
+  TOKEN: '令牌',
+  OPTIONS: '備用選項',
 }

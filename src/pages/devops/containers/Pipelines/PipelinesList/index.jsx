@@ -130,7 +130,7 @@ export default class PipelinesList extends React.Component {
       {
         key: 'run',
         icon: 'triangle-right',
-        text: t('Run'),
+        text: t('RUN'),
         action: 'edit',
         onClick: record => {
           this.handleRun(record)
@@ -139,7 +139,7 @@ export default class PipelinesList extends React.Component {
       {
         key: 'activity',
         icon: 'calendar',
-        text: t('Activity'),
+        text: t('ACTIVITY'),
         action: 'view',
         onClick: record => {
           this.props.rootStore.routing.push(
@@ -159,7 +159,7 @@ export default class PipelinesList extends React.Component {
       {
         key: 'copy',
         icon: 'copy',
-        text: t('Copy Pipeline'),
+        text: t('COPY_PIPELINE'),
         action: 'edit',
         onClick: record => {
           this.handleCopy(record.name)
@@ -243,7 +243,7 @@ export default class PipelinesList extends React.Component {
 
     trigger('pipeline.create', {
       module,
-      title: t('Create Pipeline'),
+      title: t('CREATE_PIPELINE'),
       formTemplate: this.formTemplate,
       devops: this.devops,
       cluster: this.cluster,
@@ -259,7 +259,7 @@ export default class PipelinesList extends React.Component {
     const formData = await this.getCRDDetail(name)
 
     trigger('pipeline.copy', {
-      title: t('Copy Pipeline'),
+      title: t('COPY_PIPELINE'),
       formTemplate: formData,
       devops: this.devops,
       cluster: this.cluster,
@@ -288,7 +288,7 @@ export default class PipelinesList extends React.Component {
     const formData = await this.getCRDDetail(name)
 
     this.props.trigger('pipeline.advance.edit', {
-      title: t('Edit Pipeline'),
+      title: t('EDIT_PIPELINE'),
       formTemplate: formData,
       cluster: this.cluster,
       devops: this.devops,
@@ -315,7 +315,7 @@ export default class PipelinesList extends React.Component {
     },
 
     {
-      title: t('WeatherScore'),
+      title: t('HEALTH'),
       dataIndex: 'weatherScore',
       width: '30%',
       isHideable: true,
@@ -330,7 +330,7 @@ export default class PipelinesList extends React.Component {
         totalNumberOfBranches === undefined ? '-' : totalNumberOfBranches,
     },
     {
-      title: t('PullRequest'),
+      title: t('PULL_REQUEST_PL'),
       dataIndex: 'totalNumberOfPullRequests',
       width: '20%',
       isHideable: true,
@@ -394,7 +394,7 @@ export default class PipelinesList extends React.Component {
           action={
             showCreate ? (
               <Button onClick={showCreate} type="control">
-                {t('Create')}
+                {t('CREATE')}
               </Button>
             ) : null
           }
@@ -412,7 +412,7 @@ export default class PipelinesList extends React.Component {
         {
           key: 'run',
           type: 'primary',
-          text: t('Run'),
+          text: t('RUN'),
           action: 'delete',
           onClick: this.handleMultiBatchRun,
         },

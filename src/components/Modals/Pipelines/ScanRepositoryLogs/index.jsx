@@ -108,7 +108,7 @@ export default class ScanRepositoryLogs extends React.Component {
     await this.props.store.getRepoScanLogs(params)
 
     Notify.success({
-      content: t('Logs Scanned Successfully'),
+      content: t('LOGS_SCANNED_SUCCESSFULLY'),
     })
   }
 
@@ -135,9 +135,9 @@ export default class ScanRepositoryLogs extends React.Component {
             <Icon name="human" size={20} />
             {this.startBy}
             <Button onClick={this.handleDownloadLogs}>
-              {t('Download Logs')}
+              {t('DOWNLOAD_LOGS')}
             </Button>
-            <Button onClick={this.handleFetch}>{t('Rescan')}</Button>
+            <Button onClick={this.handleFetch}>{t('RESCAN')}</Button>
           </div>
           <pre className={styles.pre}>{repositoryLog}</pre>
         </div>

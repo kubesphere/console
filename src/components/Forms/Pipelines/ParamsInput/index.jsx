@@ -85,7 +85,7 @@ export default class ParamsInput extends React.Component {
             trigger="click"
             placement="bottomRight"
           >
-            <Button type="control">{t('Add Parameter')}</Button>
+            <Button type="control">{t('ADD_PARAMETER')}</Button>
           </Dropdown>
         </div>
         <div className={styles.content}>

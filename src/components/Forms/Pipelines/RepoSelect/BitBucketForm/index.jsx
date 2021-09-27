@@ -137,6 +137,7 @@ export default class BitBucketForm extends GitHubForm {
             <Select
               name="apiUrl"
               options={this.state.bitbucketList}
+              placeholder=" "
               searchable
             />
           </Form.Item>
@@ -152,7 +153,7 @@ export default class BitBucketForm extends GitHubForm {
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_A_CREDENTIAL')}
                 </span>
               </p>
             }
@@ -165,6 +166,7 @@ export default class BitBucketForm extends GitHubForm {
               onFetch={this.getCredentialsListData}
               optionRenderer={this.optionRender}
               valueRenderer={this.optionRender}
+              placeholder=" "
               searchable
               clearable
             />

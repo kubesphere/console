@@ -92,7 +92,7 @@ export default class ImageBuilderDetail extends React.Component {
   getOperations = () => [
     {
       key: 'Run',
-      text: t('Run'),
+      text: t('RUN'),
       action: 'edit',
       type: 'control',
       onClick: () =>

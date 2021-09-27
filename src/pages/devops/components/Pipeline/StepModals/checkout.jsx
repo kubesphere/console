@@ -131,7 +131,7 @@ export default class Checkout extends React.Component {
       >
         <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item
-            label={t('Credential ID')}
+            label={t('CREDENTIAL_ID')}
             desc={
               <p>
                 {t('ADD_NEW_CREDENTIAL_DESC')}
@@ -139,7 +139,7 @@ export default class Checkout extends React.Component {
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_A_CREDENTIAL')}
                 </span>
               </p>
             }
@@ -157,7 +157,7 @@ export default class Checkout extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('Remote Repository URL')}
+            label={t('REMOTE_REPOSITORY_URL')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Input name="remote" />

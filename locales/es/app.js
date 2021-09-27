@@ -26,7 +26,7 @@ module.exports = {
   'Adjust Successfully': 'Ajuste Satisfactorio',
   'All Categories': 'Todas las Categorias',
   APP_CATEGORY_PL: 'Categorias de Aplicación',
-  'App Category': 'Categoria de Aplicación',
+  APP_CATEGORY: 'Categoria de Aplicación',
   'App Config': 'Configuración de Aplicación',
   APP_SETTINGS: 'App Settings',
   'Current App Config': 'Current App Config',
@@ -54,7 +54,7 @@ module.exports = {
   'Business introduction': 'Introducción comercial',
   'Cancel Successfully': 'Cancelado Satisfactoriamente',
   'Category Name': 'Nombre de Categoría',
-  'Change Category': 'Cambiar Categoría',
+  CHANGE_CATEGORY: 'Cambiar Categoría',
   CHART_FILES: 'Ficheros del Chart',
   'Company website': 'Sitio web de la Compañía',
   'Config File': 'Fichero de configuración',
@@ -193,7 +193,7 @@ module.exports = {
   APP_CATEGORIES_DESC:
     'Este módulo te permite crear, editar y eliminar categorías; así como clasificar las aplicaciones activas de la Tienda.',
   APP_CATEGORIES_CREATE_DESC:
-    'No hay datos de aplicación disponibles para la categoría.',
+    'No hay aplicación disponibles para la categoría.',
   ADJUST_CATEGORY_DESC:
     'La clasificación de la aplicación determinará la clasificación de la aplicación en la Tienda de Aplicaciones.',
   DELETE_CATEGORY_WARNING:

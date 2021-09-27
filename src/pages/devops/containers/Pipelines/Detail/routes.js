@@ -44,13 +44,13 @@ const PATH_NO_BRANCH = `${PATH}/run/:runId`
 const PIPELINE_ROUTES = [
   { name: 'pipeline', title: 'Pipeline', component: Pipeline },
   { name: 'code-quality', title: 'Code Quality', component: CodeQuality },
-  { name: 'activity', title: 'Activity', component: Activity },
+  { name: 'activity', title: 'ACTIVITY', component: Activity },
   { name: 'branch', title: 'Branches', component: Branch },
   { name: 'pull-request', title: 'Pull Requestes', component: PullRequest },
 ]
 
 const PIPELINE_BRANCH_ROUTES = [
-  { name: 'activity', title: 'Activity', component: Activity },
+  { name: 'activity', title: 'ACTIVITY', component: Activity },
   { name: 'code-quality', title: 'Code Quality', component: CodeQuality },
 ]
 

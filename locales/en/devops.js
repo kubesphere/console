@@ -17,17 +17,17 @@
  */
 
 module.exports = {
-  'Create DevOps Project': 'Create DevOps Project',
-  'Delete DevOps Project': 'Delete DevOps Project',
+  CREATE_DEVOPS_PROJECT: 'Create DevOps Project',
+  DELETE_DEVOPS_PROJECT: 'Delete DevOps Project',
   'DevOps Basic Info': 'DevOps Basic Information',
-  DEVOPS_CREDENTIAL_PL: 'DevOps Credentials',
+  DEVOPS_PROJECT_CREDENTIAL_PL: 'DevOps Project Credentials',
   DEVOPS_CREDENTIAL_EMPTY_DESC: 'Please create a DevOps credential.',
   DEVOPS_CREDENTIAL: 'DevOps Credential',
   DEVOPS_CREDENTIAL_LOW: 'DevOps credential',
   'DevOps Member': 'DevOps Member',
   'DevOps Members': 'DevOps Members',
-  'DevOps Name': 'DevOps Name',
-  'DevOps Project': 'DevOps Project',
+  DEVOPS_NAME: 'Name',
+  DEVOPS_PROJECT: 'DevOps Project',
   'DevOps Project Manager': 'DevOps Project Manager',
   'DevOps Role': 'DevOps Role',
   'DevOps Roles': 'DevOps Roles',
@@ -43,24 +43,23 @@ module.exports = {
     'Please input the basic information of the DevOps project',
 
   DEVOPS_DESCRIPTION:
-    'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines themselves (for example, project type and organization type).',
+    'A DevOps project is a separate namespace where a set of pipelines is defined. Users can group their pipelines themselves (for example, project type and organization type).',
   DEVOPS_PROJECT_CREATE_DESC:
     'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines themselves (for example, project type and organization type).',
   DEVOPS_PROJECT_EMPTY_DESC: 'Please create a DevOps project.',
   PIPELINE_EMPTY_DESC: 'Please create a pipeline.',
-  DEVOPS_ADMIN_DESC:
-    'You can specify a member of the project as an administrator',
+  DEVOPS_ADMIN_DESC: 'Specify a member of the project as an administrator.',
 
   NO_RELATE_DEVOPS_TITLE: 'No DevOps project associated with you',
   NO_RELATE_DEVOPS_DESC:
     'You can create or contact the project manager to invite you to the DevOps project to start your work.',
 
   DEVOPS_PROJECT_CREDENTIALS_DESC:
-    'Credentials are objects that contain some sensitive data, such as username and password, SSH key and Token. They are used to provide authentication for pulling code, pushing/pulling images, executing SSH scripts, etc. when a pipeline is running.',
+    'Credentials are objects that contain sensitive data, such as usernames and passwords, SSH keys, and tokens, to provide authentication for pulling code, pushing or pulling images, executing SSH scripts, and so on when a pipeline is running.',
 
   DEVOPS_PROJECT_ROLES_DESC:
     'The project roles define the permissions that users have under the current DevOps project.',
-  DEVOPS_PROJECT_MEM_DESC: 'Manage and assign roles to project members',
+  DEVOPS_PROJECT_MEM_DESC: 'Manage and assign roles to project members.',
 
   DELETE_DEVOPS_TIP:
     'Are you sure you want to delete the DevOps project <strong>{resource}</strong>? After the deletion, you will not be able to recover it, and the resources in the DevOps project will also be removed.',
@@ -74,4 +73,10 @@ module.exports = {
     'Pipelines support code repositories of Git, GitHub, Gitlab, SVN, and Bitbucket.',
 
   NO_DEVOPS_INSTALL: 'DevOps not installed',
+
+  // Credentials Creation Page
+  SECRET_DEVOPS: 'Secret',
+  CONTENT: 'Content',
+  INVALID_ID_TIP:
+    'The ID can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
 }

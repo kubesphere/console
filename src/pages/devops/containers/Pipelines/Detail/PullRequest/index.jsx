@@ -134,7 +134,7 @@ export default class Pullrequest extends React.Component {
       ),
     },
     {
-      title: t('WeatherScore'),
+      title: t('HEALTH'),
       dataIndex: 'weatherScore',
       width: '15%',
       render: weatherScore => <Health score={weatherScore} />,

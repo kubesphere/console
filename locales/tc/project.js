@@ -162,11 +162,11 @@ module.exports = {
   PROJECT_ASSIGN_DESC: '項目一旦被分配到企業空間後將不允許修改企業空間',
 
   'Invite Members to the Project': '邀請成員到該項目',
-  'Invite Members to the DevOps Project': '邀請成員到該工程',
+  INVITE_DEVOPS_MEMBER: '邀請成員到該 DevOps 工程',
   INVITE_MEMBER_DESC:
     'You can invite members who belong to the workspace to the project.',
-  INVITE_MEMBER_DESC_DEVOPS: '您可以邀請新的成員來協助您的工程',
-  INVITE_MEMBER_SEARCH_PLACEHODLER: '輸入郵箱邀請項目成員',
+  INVITE_MEMBER_DESC_DEVOPS: '您可以邀請當前企業空間成員至該 DevOps 工程。',
+  INVITE_MEMBER_SEARCH_PLACEHOLDER: '輸入用戶名邀請項目成員',
   ASSIGN_ROLE: 'Assign a Role to the Member',
   PROJECT_ADMIN_DESC: '可以指定項目内一個成員為管理員',
 

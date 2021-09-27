@@ -102,7 +102,7 @@ export default class BranchDetailLayout extends React.Component {
     {
       key: 'run',
       type: 'control',
-      text: t('Run'),
+      text: t('RUN'),
       action: 'edit',
       onClick: this.handleRun,
     },
@@ -114,7 +114,7 @@ export default class BranchDetailLayout extends React.Component {
 
     return [
       {
-        name: t('DevOps Project'),
+        name: t('DEVOPS_PROJECT'),
         value: devopsName,
       },
       {

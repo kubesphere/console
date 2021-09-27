@@ -33,7 +33,7 @@ export default [
   },
   {
     path: `${PATH}/activity`,
-    title: 'Activity',
+    title: 'ACTIVITY',
     component: Activity,
     exact: true,
   },

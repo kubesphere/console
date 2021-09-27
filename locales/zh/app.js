@@ -67,7 +67,7 @@ module.exports = {
   'Platform App Store Management': '平台级应用商店管理',
 
   APP_STORE_DESC: '对已上架、已下架的应用进行管理',
-  'App Category': '应用分类',
+  APP_CATEGORY: '应用分类',
   'Release / Suspended Time': '上架(下架)时间',
 
   APP_REVIEW: '应用审核',
@@ -97,15 +97,16 @@ module.exports = {
   'Reject Reason': '拒绝原因',
   REJECT_REASON_DESC: '请填写拒绝审核的原因',
   'Please input reject reason': '请填写拒绝原因',
-  APP_CATEGORIES_DESC: '对已上架的应用分类管理',
+  APP_CATEGORIES_DESC:
+    '您可以在此页面创建、编辑、删除分类，对已上架的应用进行分类管理。',
   AUDIT_RECORD_CREATE_DESC: '暂无相关的审核记录数据',
 
   APP_CATEGORY_PL: '应用分类',
-  APP_CATEGORIES_CREATE_DESC: '该分类暂无绑定的应用数据',
+  APP_CATEGORIES_CREATE_DESC: '该分类暂无绑定的应用。',
   'All Categories': '全部分类',
   'Adjust App Category': '调整应用分类',
   ADJUST_CATEGORY_DESC: '应用分类将决定该应用在应用商店中的分类',
-  'Change Category': '调整分类',
+  CHANGE_CATEGORY: '调整分类',
   DELETE_CATEGORY_WARNING:
     '该分类绑定了<strong>{total}</strong>个应用，请先将这些应用调整到其它分类后才能删除',
   DELETE_CATEGORY_DESC: '你确定要删除分类【{name}】吗?',

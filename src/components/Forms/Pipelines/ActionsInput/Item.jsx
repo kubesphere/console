@@ -87,18 +87,18 @@ export default class Item extends React.Component {
 
     return (
       <div>
-        <Form.Item label={t('Strategy')}>
+        <Form.Item label={t('STRATEGY')}>
           <Select
             name="discover_tags"
             defaultValue={value.discover_tags}
             onChange={this.handleChange('discover_tags')}
             options={[
               {
-                label: t('Enable Discover Tag Branches'),
+                label: t('ENABLE_TAG_BRANCH_DISCOVERY'),
                 value: true,
               },
               {
-                label: t('Disable Discover Tag Branches'),
+                label: t('DISABLE_TAG_BRANCH_DISCOVERY'),
                 value: false,
               },
             ]}
@@ -112,21 +112,21 @@ export default class Item extends React.Component {
     const { value } = this.props
     return (
       <div>
-        <Form.Item label={t('Strategy')}>
+        <Form.Item label={t('STRATEGY')}>
           <Select
             name="discover_branches"
             defaultValue={value.discover_branches}
             onChange={this.handleChange('discover_branches')}
             options={[
               {
-                label: t('Exclude branches that are also filed as PRs'),
+                label: t('EXCLUDE_PR_BRANCHES'),
                 value: 1,
               },
               {
-                label: t('Only branches that are also filed as PRs'),
+                label: t('ONLY_PR_BRANCHES'),
                 value: 2,
               },
-              { label: t('All branches'), value: 3 },
+              { label: t('ALL_BRANCHES'), value: 3 },
             ]}
           />
         </Form.Item>
@@ -138,7 +138,7 @@ export default class Item extends React.Component {
     const { value } = this.props
     return (
       <div>
-        <Form.Item label={t('Pull Strategy')}>
+        <Form.Item label={t('PULL_STRATEGY')}>
           <Select
             name="discover_pr_from_origin"
             defaultValue={value.discover_pr_from_origin}
@@ -170,7 +170,7 @@ export default class Item extends React.Component {
       <div>
         <Columns>
           <Column>
-            <Form.Item label={t('Pull Strategy')}>
+            <Form.Item label={t('PULL_STRATEGY')}>
               <Select
                 name="discover_pr_from_forks.strategy"
                 defaultValue={
@@ -196,7 +196,7 @@ export default class Item extends React.Component {
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('Trusted User')}>
+            <Form.Item label={t('TRUSTED_USER')}>
               <Select
                 name="discover_pr_from_forks.trust"
                 defaultValue={
@@ -206,19 +206,19 @@ export default class Item extends React.Component {
                 onChange={this.handleChange('discover_pr_from_forks.trust')}
                 options={[
                   {
-                    label: t('Contributors'),
+                    label: t('CONTRIBUTORS'),
                     value: 1,
                   },
                   {
-                    label: t('Everyone'),
+                    label: t('EVERYONE'),
                     value: 2,
                   },
                   {
-                    label: t('From users with Admin or Write permission'),
+                    label: t('USERS_WITH_PERMISSION'),
                     value: 3,
                   },
                   {
-                    label: t('Nobody'),
+                    label: t('NOBODY'),
                     value: 4,
                   },
                 ]}

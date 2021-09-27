@@ -237,7 +237,6 @@ module.exports = {
   ACCOUNTS: '帐户',
   PROJECT_PL: '项目',
   PROJECT_LOW: '项目',
-  DEVOPS_PROJECT: 'DevOps 工程',
   DEVOPS_PROJECT_TCAP: 'DevOps 工程',
   DEVOPS_PROJECT_PL: 'DevOps 工程',
   DEVOPS_PROJECT_TCAP_PL: 'DevOps 工程',

@@ -60,7 +60,7 @@ class DevOpsListLayout extends Component {
         <div className="ks-page-side">
           <Selector
             type="devops"
-            title={t('DevOps Project')}
+            title={t('DEVOPS_PROJECT')}
             detail={detail}
             onChange={this.handleChange}
             workspace={this.workspace}

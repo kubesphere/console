@@ -151,12 +151,12 @@ export default class Pipeline extends React.Component {
         )}
         {editable && (
           <Button onClick={this.handlePipelineModal}>
-            {t('Edit Pipeline')}
+            {t('EDIT_PIPELINE')}
           </Button>
         )}
         {editable && (
           <Button type="control" onClick={this.handleRunning}>
-            {t('Run')}
+            {t('RUN')}
           </Button>
         )}
       </div>
@@ -181,7 +181,7 @@ export default class Pipeline extends React.Component {
         <EmptyCard desc={t('PIPELINE_NO_CONFIG')}>
           {editable && (
             <Button type="control" onClick={this.handlePipelineModal}>
-              {t('Edit Pipeline')}
+              {t('EDIT_PIPELINE')}
             </Button>
           )}
           {editable && (
@@ -203,7 +203,7 @@ export default class Pipeline extends React.Component {
           )}
           {editable && (
             <Button type="control" onClick={this.handleRunning}>
-              {t('Run')}
+              {t('RUN')}
             </Button>
           )}
         </EmptyCard>

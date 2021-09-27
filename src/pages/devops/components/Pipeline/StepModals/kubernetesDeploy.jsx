@@ -363,7 +363,7 @@ export default class KubernetesDeploy extends React.Component {
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_A_CREDENTIAL')}
                 </span>
               </p>
             }

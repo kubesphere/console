@@ -230,7 +230,7 @@ export default class PipelineDetailLayout extends React.Component {
 
     return [
       {
-        name: t('DevOps Project'),
+        name: t('DEVOPS_PROJECT'),
         value: devopsName,
       },
       {

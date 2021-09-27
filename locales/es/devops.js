@@ -17,16 +17,16 @@
  */
 
 module.exports = {
-  'Create DevOps Project': 'Crear Proyecto DevOps',
-  'Delete DevOps Project': 'Eliminar Proyecto DevOps',
+  CREATE_DEVOPS_PROJECT: 'Crear Proyecto DevOps',
+  DELETE_DEVOPS_PROJECT: 'Eliminar Proyecto DevOps',
   'DevOps Basic Info': 'Información básica de DevOps',
-  DEVOPS_CREDENTIAL_PL: 'Credenciales de DevOps',
+  DEVOPS_PROJECT_CREDENTIAL_PL: 'Credenciales de Proyecto DevOps',
   DEVOPS_CREDENTIAL_EMPTY_DESC: 'Please create a DevOps credential.',
   DEVOPS_CREDENTIAL_LOW: 'DevOps credential',
   'DevOps Member': 'Miembro de DevOps',
   'DevOps Members': 'Miembros de DevOps',
-  'DevOps Name': 'Nombre de DevOps',
-  'DevOps Project': 'Proyecto DevOps',
+  DEVOPS_NAME: 'Nombre',
+  DEVOPS_PROJECT: 'Proyecto DevOps',
   'DevOps Project Manager': 'Gestor de Proyecto DevOps',
   'DevOps Role': 'Rol de DevOps',
   'DevOps Roles': 'Roles de DevOps',
@@ -64,4 +64,10 @@ module.exports = {
   DEVOPS_TIP_TYPE_A:
     'Pipeline admite repositorios de código Git, GitHub, Gitlab, SVN y Bitbucket.',
   NO_DEVOPS_INSTALL: 'DevOps no instalado',
+
+  // Credentials Creation Page
+  SECRET_DEVOPS: 'Secreto',
+  CONTENT: 'Content',
+  INVALID_ID_TIP:
+    'The ID can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
 }

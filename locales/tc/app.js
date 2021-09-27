@@ -66,7 +66,7 @@ module.exports = {
 
   APP_STORE_DESC: '對已上架、已下架的應用進行管理',
   PROVIDER: '服務商',
-  'App Category': '應用分類',
+  APP_CATEGORY: '應用分類',
   'Release / Suspended Time': '上架 (下架) 時間',
 
   APP_REVIEW: '應用審核',
@@ -97,15 +97,16 @@ module.exports = {
   REJECT_REASON_DESC: '請填寫拒絕審核的原因',
   'Please input reject reason': '請填寫拒絕原因',
   'Please input version number': '請輸入版本號',
-  APP_CATEGORIES_DESC: '對已上架的應用分類管理',
+  APP_CATEGORIES_DESC:
+    '您可以在此頁面創建、編輯、刪除分類，對已上架的應用進行分類管理。',
   AUDIT_RECORD_CREATE_DESC: '暫無相關的審核紀錄數據',
 
   APP_CATEGORY_PL: '應用分類',
-  APP_CATEGORIES_CREATE_DESC: '該分類暫無綁定的應用數據',
+  APP_CATEGORIES_CREATE_DESC: '該分類暫無綁定的應用。',
   'All Categories': '全部分類',
   'Adjust App Category': '調整應用分類',
   ADJUST_CATEGORY_DESC: '應用分類將決定該應用在應用商店中的分類',
-  'Change Category': '調整分類',
+  CHANGE_CATEGORY: '調整分類',
   DELETE_CATEGORY_WARNING:
     '該分類綁定了 <strong>{total}</strong> 個應用，請先將這些應用調整到其它分類後才能刪除',
   DELETE_CATEGORY_DESC: '您確定要刪除分類 【{name}】 嗎？',

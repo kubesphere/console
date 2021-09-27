@@ -131,7 +131,7 @@ export default class RoleDetail extends React.Component {
         value: cluster,
       },
       {
-        name: t('DevOps Project'),
+        name: t('DEVOPS_PROJECT'),
         value: namespace,
       },
       {

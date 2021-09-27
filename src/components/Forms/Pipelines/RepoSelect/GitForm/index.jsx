@@ -55,10 +55,8 @@ export default class GitForm extends React.Component {
       <div className={styles.card}>
         <Form data={formData} ref={formRef}>
           <Form.Item
-            label={t('Repository Url')}
-            desc={t(
-              'Any repository containing Jenkinsfile will be built automatically.'
-            )}
+            label={t('REPOSITORY_URL')}
+            desc={t('GIT_REPO_DESC')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Input name="git_source.url" />
@@ -72,7 +70,7 @@ export default class GitForm extends React.Component {
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_A_CREDENTIAL')}
                 </span>
               </p>
             }
@@ -85,6 +83,7 @@ export default class GitForm extends React.Component {
               onFetch={this.getCredentialsListData}
               optionRenderer={this.optionRender}
               valueRenderer={this.optionRender}
+              placeholder=" "
               searchable
               clearable
             />
