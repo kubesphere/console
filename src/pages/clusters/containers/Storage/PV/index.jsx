@@ -39,6 +39,8 @@ import { Avatar, Status } from 'components/Base'
 export default class PV extends React.Component {
   showAction = record => !record.isFedManaged
 
+  cantDelete = record => ['Failed', 'Bound'].findIndex(record.status.phase) > -1
+
   get itemActions() {
     const { trigger } = this.props
 
@@ -49,6 +51,7 @@ export default class PV extends React.Component {
         text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
+        disabled: this.cantDelete,
         onClick: item =>
           trigger('pv.delete', { ...this.props.tableProps, detail: item }),
       },
