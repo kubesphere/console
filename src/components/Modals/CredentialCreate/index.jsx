@@ -177,7 +177,7 @@ export default class CredentialModal extends React.Component {
       .then(resp => {
         if (resp.exist) {
           return callback({
-            message: t('Credential ID exists'),
+            message: t('CREDENTIAL_ID_TIP'),
             field: rule.field,
           })
         }
@@ -190,13 +190,13 @@ export default class CredentialModal extends React.Component {
       case 'ssh':
         return (
           <React.Fragment>
-            <Form.Item label={t('Username')}>
+            <Form.Item label={t('USERNAME')}>
               <Input name="ssh.username" />
             </Form.Item>
-            <Form.Item label={t('Private key')}>
+            <Form.Item label={t('PRIVATE_KEY')}>
               <TextArea name="ssh.private_key" />
             </Form.Item>
-            <Form.Item label={t('Passphrase')}>
+            <Form.Item label={t('PASSPHRASE')}>
               <Input type="password" name="ssh.passphrase" />
             </Form.Item>
           </React.Fragment>
@@ -204,7 +204,7 @@ export default class CredentialModal extends React.Component {
       case 'username_password':
         return (
           <React.Fragment>
-            <Form.Item label={t('Username')}>
+            <Form.Item label={t('USERNAME')}>
               <Input
                 name="username_password.username"
                 disabled={
@@ -212,7 +212,7 @@ export default class CredentialModal extends React.Component {
                 }
               />
             </Form.Item>
-            <Form.Item label={t('Token / Password')}>
+            <Form.Item label={t('TOKEN_PASSWORD')}>
               <Input name="username_password.password" type="password" />
             </Form.Item>
           </React.Fragment>
@@ -220,7 +220,7 @@ export default class CredentialModal extends React.Component {
       case 'secret_text':
         return (
           <React.Fragment>
-            <Form.Item label={t('Secret')}>
+            <Form.Item label={t('SECRET_DEVOPS')}>
               <TextArea name="secret_text.secret" />
             </Form.Item>
           </React.Fragment>
@@ -229,8 +229,8 @@ export default class CredentialModal extends React.Component {
         return (
           <Form.Item
             className={styles.narrowItem}
-            label={t('Content')}
-            desc={t("The default value here is the current user's kubeconfig.")}
+            label={t('CONTENT')}
+            desc={t('KUBE_CONTENT_TIP')}
           >
             {this.isGetConfigLoading ? (
               <Loading>
@@ -264,16 +264,16 @@ export default class CredentialModal extends React.Component {
         visible={visible}
         closable={false}
         isSubmitting={this.isSubmitting}
-        title={title || t('Create Credential')}
+        title={title || t('CREATE_CREDENTIAL')}
       >
         <Form data={this.formData} ref={this.formRef}>
           <Form.Item
-            label={t('Credential ID')}
+            label={t('CREDENTIAL_ID')}
             rules={[
               { required: true, message: t('ENTER_CREDENTIAL_TIP') },
               {
                 pattern: PATTERN_NAME,
-                message: `${t('Invalid credential ID')}, ${t('NAME_DESC')}`,
+                message: t('INVALID_ID_TIP'),
               },
               { validator: this.nameValidator },
             ]}

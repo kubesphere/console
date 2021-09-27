@@ -77,7 +77,7 @@ export default class BaseInfo extends React.Component {
         if (resp.exist) {
           return callback({
             field: rule.field,
-            message: t('This name has existed.'),
+            message: t('NAME_EXIST_DESC'),
           })
         }
         callback()
@@ -111,11 +111,9 @@ export default class BaseInfo extends React.Component {
           <Column>
             <Form.Item
               label={t('NAME')}
-              desc={t(
-                'The name of the pipeline. Pipelines in the same project must have different names.'
-              )}
+              desc={t('PIPELINE_NAME_DESC')}
               rules={[
-                { required: true, message: t('Please input pipeline name') },
+                { required: true, message: t('PIPELINE_NAME_TIP') },
                 {
                   pattern: PATTERN_NAME,
                   message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
@@ -130,12 +128,15 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('PROJECT')} desc={t('PROJECT_DESC')}>
+            <Form.Item
+              label={t('DEVOPS_PROJECT')}
+              desc={t('DEVOPS_PROJECT_DESC')}
+            >
               <Input name="devopsName" disabled />
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={`${t('Code Repository')} (${t('optional')})`}>
+        <Form.Item label={t('CODE_REPOSITORY_OPTIONAL')}>
           <RepoSelect
             name="multi_branch_pipeline"
             ref={this.scmRef}

@@ -26,7 +26,7 @@ module.exports = {
   'Adjust Successfully': 'Adjusted Successfully',
   'All Categories': 'All Categories',
   APP_CATEGORY_PL: 'App Categories',
-  'App Category': 'App Category',
+  APP_CATEGORY: 'App Category',
   'App Config': 'App Configurations',
   APP_SETTINGS: 'App Settings',
   'Current App Config': 'Current App Configurations',
@@ -54,7 +54,7 @@ module.exports = {
   'Business introduction': 'Business introduction',
   'Cancel Successfully': 'Cancelled Successfully',
   'Category Name': 'Category Name',
-  'Change Category': 'Change Category',
+  CHANGE_CATEGORY: 'Change Category',
   CHART_FILES: 'Chart Files',
   'Company website': 'Company website',
   'Config File': 'Config File',
@@ -186,8 +186,8 @@ module.exports = {
   REJECT_REASON_DESC: 'Please fill in the reasons for refusal of review.',
 
   APP_CATEGORIES_DESC:
-    'This module allows you to create, edit, and delete categories, and to classify active apps of the App Store.',
-  APP_CATEGORIES_CREATE_DESC: 'No application data available for the category.',
+    'You can create, edit, and delete categories on this page to classify active apps of the App Store.',
+  APP_CATEGORIES_CREATE_DESC: 'No application available for the category.',
   ADJUST_CATEGORY_DESC:
     'Application classification will determine the classification of the application in the application store',
   DELETE_CATEGORY_WARNING:

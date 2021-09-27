@@ -122,7 +122,7 @@ class BaseInfo extends React.Component {
         key: 'delete',
         icon: 'trash',
         action: 'delete',
-        text: t('Delete DevOps Project'),
+        text: t('DELETE_DEVOPS_PROJECT'),
       },
     ]
   }
@@ -205,12 +205,12 @@ class BaseInfo extends React.Component {
     const memberCount = this.memberStore.list.total
 
     return (
-      <Panel className={styles.wrapper} title={t('Basic Info')}>
+      <Panel className={styles.wrapper} title={t('BASIC_INFORMATION')}>
         <div className={styles.header}>
           <Icon name="strategy-group" size={40} />
           <div className={styles.item}>
             <div>{getDisplayName(detail)}</div>
-            <p>{t('DevOps Project')}</p>
+            <p>{t('DEVOPS_PROJECT')}</p>
           </div>
           <div className={styles.item}>
             <div>
@@ -269,7 +269,7 @@ class BaseInfo extends React.Component {
     return (
       <div>
         <Banner
-          title={t('DevOps Basic Info')}
+          title={t('BASIC_INFORMATION')}
           icon="cdn"
           description={t('DEVOPS_DESCRIPTION')}
           module={this.module}

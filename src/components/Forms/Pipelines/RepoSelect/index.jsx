@@ -51,11 +51,7 @@ export default class valueSelect extends React.Component {
     const { onClick } = this.props
     return (
       <div className={styles.empty} onClick={onClick}>
-        <p>
-          {t(
-            'Please select a code repository as the code source for the pipeline.'
-          )}
-        </p>
+        <p>{t('SELECT_CODE_REPO_DESC')}</p>
       </div>
     )
   }
@@ -97,7 +93,7 @@ export default class valueSelect extends React.Component {
             <div className={styles.desc}>{data.description || '-'}</div>
           </div>
           <div className={styles.action}>
-            <Button onClick={this.props.onClick}>{t('Reselect')}</Button>
+            <Button onClick={this.props.onClick}>{t('RESELECT')}</Button>
             {this.props.handleDeleteSource ? (
               <span
                 onClick={this.handleDeleteSource}

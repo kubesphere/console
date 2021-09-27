@@ -58,14 +58,14 @@ class Nav extends Component {
           <div className={styles.dashboardValue}>
             <Health score={detail.weatherScore} />
           </div>
-          <div className={styles.dashboardLable}>{t('Health Status')}</div>
+          <div className={styles.dashboardLable}>{t('HEALTH')}</div>
         </Column>
         <Column className={styles.baseInfo__item}>
           <div className={styles.dashboardValue}>
             <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
             {detail.totalNumberOfBranches || '-'}
           </div>
-          <div className={styles.dashboardLable}>{t('Branch Count')}</div>
+          <div className={styles.dashboardLable}>{t('BRANCH_COUNT')}</div>
         </Column>
         <Column className={styles.baseInfo__item} />
       </Columns>

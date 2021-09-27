@@ -62,8 +62,7 @@ module.exports = {
   HOW_TO_SET_PROJECT_GATEWAY: 'How do I set the project gateway?',
   'Invalid project name': 'Invalid project name',
   'Invite Member': 'Invite Member',
-  'Invite Members to the DevOps Project':
-    'Invite Members to the DevOps Project',
+  INVITE_DEVOPS_MEMBER: 'Invite Members to the DevOps Project',
   'Invite Members to the Project': 'Invite Members to the Project',
   jobs: 'jobs',
   'limits.cpu': 'limits.cpu',
@@ -161,8 +160,8 @@ module.exports = {
   INVITE_MEMBER_DESC:
     'You can invite members who belong to the workspace to the project.',
   INVITE_MEMBER_DESC_DEVOPS:
-    'You can invite new members to assist your DevOps project.',
-  INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter a username to invite members',
+    'You can invite members who belong to the workspace to the DevOps project.',
+  INVITE_MEMBER_SEARCH_PLACEHOLDER: 'Enter a username to invite members',
   ASSIGN_ROLE: 'Assign a Role to the Member',
   DELETE_MEMBER_TIP:
     'Are you sure about deleting the member <strong>{name}</strong>? The member cannot access this project once removed.',

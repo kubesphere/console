@@ -164,7 +164,7 @@ export default class Branch extends React.Component {
       ),
     },
     {
-      title: t('WeatherScore'),
+      title: t('HEALTH'),
       dataIndex: 'weatherScore',
       width: '20%',
       render: weatherScore => <Health score={weatherScore} />,

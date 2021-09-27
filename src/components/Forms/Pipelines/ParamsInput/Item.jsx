@@ -91,10 +91,8 @@ export default class ParamsInput extends React.Component {
           </Column>
           <Column>
             <Form.Item
-              label={t('Default Value')}
-              desc={t(
-                'It specifies the default value of the field, allowing the user to save the typed actual value.'
-              )}
+              label={t('DEFAULT_VALUE')}
+              desc={t('PIPELINE_PARAM_DEFAULT_DESC')}
             >
               <Input
                 name={`${this.props.prefix}.default_value`}
@@ -103,7 +101,7 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('DESCRIPTION')} desc={t('Comment information')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('PARAM_DESC')}>
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.description`}
@@ -125,14 +123,14 @@ export default class ParamsInput extends React.Component {
         >
           <Input name={`${this.props.prefix}.name`} defaultValue={value.name} />
         </Form.Item>
-        <Form.Item label={t('Default Value')}>
+        <Form.Item label={t('DEFAULT_VALUE')}>
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.default_value`}
             defaultValue={value.default_value || ''}
           />
         </Form.Item>
-        <Form.Item label={t('DESCRIPTION')} desc={t('Comment information')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('PARAM_DESC')}>
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.description`}
@@ -161,7 +159,7 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('Default Value')}>
+            <Form.Item label={t('DEFAULT_VALUE')}>
               <RadioGroup
                 name={`${this.props.prefix}.default_value`}
                 defaultValue={JSON.parse(value.default_value || 'true')}
@@ -172,7 +170,7 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('DESCRIPTION')} desc={t('Comment information')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('PARAM_DESC')}>
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.description`}
@@ -202,10 +200,8 @@ export default class ParamsInput extends React.Component {
           </Column>
           <Column>
             <Form.Item
-              label={t('Options')}
-              desc={t(
-                'Alternate options, one per line. The first line will be used as the default option.'
-              )}
+              label={t('OPTIONS')}
+              desc={t('CHOICE_PARAM_OPTION_DESC')}
             >
               <TextArea
                 className="max-width-full"
@@ -215,7 +211,7 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('DESCRIPTION')} desc={t('Comment information')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('PARAM_DESC')}>
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.description`}
@@ -253,7 +249,7 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('DESCRIPTION')} desc={t('Comment information')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('PARAM_DESC')}>
           <TextArea
             name={`${this.props.prefix}.description`}
             defaultValue={value.description}

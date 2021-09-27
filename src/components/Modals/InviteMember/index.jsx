@@ -136,7 +136,7 @@ export default class InviteMemberModal extends React.Component {
           <div className={styles.content}>
             <InputSearch
               placeholder={
-                searchPlaceholder || t('INVITE_MEMBER_SEARCH_PLACEHODLER')
+                searchPlaceholder || t('INVITE_MEMBER_SEARCH_PLACEHOLDER')
               }
               onSearch={this.handleSearch}
             />

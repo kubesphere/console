@@ -181,7 +181,7 @@ export default class RunDetailLayout extends React.Component {
 
     return [
       {
-        name: t('Activity'),
+        name: t('ACTIVITY'),
         value: runDetail.id,
       },
       {
@@ -221,9 +221,9 @@ export default class RunDetailLayout extends React.Component {
         {
           label: branch
             ? runId
-              ? t('Activity')
+              ? t('ACTIVITY')
               : t('BRANCH_SI')
-            : t('Activity'),
+            : t('ACTIVITY'),
           url: branch
             ? `${this.listUrl}/${name}/branch/${branch}/activity`
             : `${this.listUrl}/${name}/activity`,

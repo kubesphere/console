@@ -191,7 +191,7 @@ export default class GitHubForm extends React.Component {
           ref={this.tokenFormRef}
         >
           <Form.Item
-            label={t('Token')}
+            label={t('TOKEN')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             error={
               isAccessTokenWrong
@@ -213,7 +213,7 @@ export default class GitHubForm extends React.Component {
                     })
                   }}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_A_CREDENTIAL')}
                 </span>
               </p>
             }
@@ -226,6 +226,7 @@ export default class GitHubForm extends React.Component {
               onFetch={this.getCredentialsListData}
               optionRenderer={this.optionRender}
               valueRenderer={this.optionRender}
+              placeholder=" "
               searchable
               clearable
               onChange={value => {
@@ -272,7 +273,7 @@ export default class GitHubForm extends React.Component {
         <EmptyList
           className={styles.empty}
           icon="exclamation"
-          title={t('No Data')}
+          title={t('NO_DATA')}
           desc={t('RESOURCE_NOT_FOUND')}
         />
       )
@@ -300,7 +301,7 @@ export default class GitHubForm extends React.Component {
               onClick={this.handleSubmit}
               data-repo-index={index}
             >
-              <Button type="control">{t('Select This Repository')}</Button>
+              <Button type="control">{t('SELECT_THIS_REPOSITORY')}</Button>
             </div>
           </div>
         ))}
@@ -344,7 +345,7 @@ export default class GitHubForm extends React.Component {
         className={classNames(styles.repo, styles.loadMore)}
         onClick={this.handleGetRepoList}
       >
-        {t('Load more')}
+        {t('LOAD_MORE')}
       </div>
     ) : null
   }

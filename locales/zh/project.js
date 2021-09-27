@@ -167,10 +167,10 @@ module.exports = {
   PROJECT_ASSIGN_DESC: '项目被分配到企业空间后不允许变更项目所属的企业空间。',
 
   'Invite Members to the Project': '邀请成员到该项目',
-  'Invite Members to the DevOps Project': '邀请成员到该工程',
+  INVITE_DEVOPS_MEMBER: '邀请成员到该 DevOps 工程',
   INVITE_MEMBER_DESC: '您可以邀请当前企业空间成员至该项目。',
-  INVITE_MEMBER_DESC_DEVOPS: '您可以邀请新的成员来协助您的工程',
-  INVITE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请项目成员',
+  INVITE_MEMBER_DESC_DEVOPS: '您可以邀请当前企业空间成员至该 DevOps 工程。',
+  INVITE_MEMBER_SEARCH_PLACEHOLDER: '输入用户名邀请项目成员',
   ASSIGN_ROLE: '为成员分配角色',
   PROJECT_ADMIN_DESC: '可以指定项目内一个成员为管理员',
 

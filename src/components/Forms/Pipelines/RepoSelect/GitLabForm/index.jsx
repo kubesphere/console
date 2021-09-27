@@ -110,17 +110,18 @@ export default class GitLabForm extends React.Component {
       <div className={styles.card}>
         <Form data={formData} ref={formRef}>
           <Form.Item
-            label={t('GitLab Server')}
+            label={t('GITLAB_SERVER')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Select
               name="gitlab_source.server_name"
               options={serverList}
               onChange={this.getProjectListByServerName}
+              placeholder=" "
             />
           </Form.Item>
           <Form.Item
-            label={t('GitLab Owner')}
+            label={t('GITLAB_PROJECT_OWNER')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Input
@@ -137,7 +138,7 @@ export default class GitLabForm extends React.Component {
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_A_CREDENTIAL')}
                 </span>
               </p>
             }
@@ -150,15 +151,20 @@ export default class GitLabForm extends React.Component {
               onFetch={this.getCredentialsListData}
               optionRenderer={this.optionRender}
               valueRenderer={this.optionRender}
+              placeholder=" "
               searchable
               clearable
             />
           </Form.Item>
           <Form.Item
-            label={t('Repository Name')}
+            label={t('REPOSITORY_NAME')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
-            <Select name="gitlab_source.repo" options={projectList} />
+            <Select
+              name="gitlab_source.repo"
+              options={projectList}
+              placeholder=" "
+            />
           </Form.Item>
         </Form>
       </div>

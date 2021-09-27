@@ -103,7 +103,7 @@ export default class EditPipelineConfig extends React.Component {
         onOk={this.handleOk}
         visible={visible}
         closable={false}
-        title={t('Edit Pipeline')}
+        title={t('EDIT_PIPELINE')}
       >
         <FormSetting
           type="edit"

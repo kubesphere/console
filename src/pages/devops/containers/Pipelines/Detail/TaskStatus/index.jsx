@@ -212,7 +212,7 @@ export default class TaskStatus extends React.Component {
             ) : null}
             <div className={style.pipelineCard__btnGroup}>
               <Button onClick={this.handleDownloadLogs}>
-                {t('Download Logs')}
+                {t('DOWNLOAD_LOGS')}
               </Button>
             </div>
           </div>

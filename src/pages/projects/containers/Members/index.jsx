@@ -127,7 +127,7 @@ export default class Members extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Remove Members'),
+          text: t('REMOVE_MEMBER_PL'),
           action: 'delete',
           onClick: () =>
             trigger('member.remove.batch', {

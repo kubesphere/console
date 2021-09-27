@@ -87,14 +87,14 @@ export default class Store extends React.Component {
       width: '16%',
     },
     {
-      title: t('App Category'),
+      title: t('APP_CATEGORY'),
       dataIndex: 'category_set',
       isHideable: true,
       width: '17%',
       render: categories => getAppCategoryNames(categories),
     },
     {
-      title: t('Release / Suspended Time'),
+      title: t('UPDATED_AT'),
       dataIndex: 'status_time',
       isHideable: true,
       width: '17%',

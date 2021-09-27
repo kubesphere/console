@@ -173,7 +173,7 @@ export default class BaseInfoModal extends React.Component {
             <TextArea name="description" defaultValue={description} />
           </Form.Item>
           {formTemplate.multi_branch_pipeline ? (
-            <Form.Item label={t('Code Repository')}>
+            <Form.Item label={t('CODE_REPOSITORY')}>
               <RepoSelect
                 name="multi_branch_pipeline"
                 ref={this.scmRef}

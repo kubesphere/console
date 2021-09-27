@@ -204,7 +204,7 @@ export default class PipelineLog extends React.Component {
               this.activeStage.durationInMillis
             )}`}</span>
             <Button onClick={this.handleDownloadLogs}>
-              {t('Download Logs')}
+              {t('DOWNLOAD_LOGS')}
             </Button>
             <Button onClick={this.handleVisableLog}>{t('Show Logs')}</Button>
             <Button onClick={this.handleRefresh}>{t('Refresh')}</Button>
