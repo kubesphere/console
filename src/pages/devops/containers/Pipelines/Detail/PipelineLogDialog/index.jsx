@@ -18,7 +18,7 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { throttle, isEmpty } from 'lodash'
+import { throttle, isEmpty, isArray } from 'lodash'
 import { action, observable, computed, toJS, reaction } from 'mobx'
 import { observer } from 'mobx-react'
 import { Button } from '@kube-design/components'
@@ -59,9 +59,8 @@ export default class PipelineLog extends React.Component {
   @computed
   get activeStage() {
     const { nodes } = this.props
-
-    const activeStageTemp = nodes[this.activeNodeIndex[0]]
-    return activeStageTemp.length !== undefined
+    const activeStageTemp = toJS(nodes[this.activeNodeIndex[0]])
+    return isArray(activeStageTemp) && !isEmpty(activeStageTemp)
       ? activeStageTemp[this.activeNodeIndex[1]]
       : activeStageTemp
   }
@@ -99,7 +98,7 @@ export default class PipelineLog extends React.Component {
     const errorNodeIdex =
       Array.isArray(nodes) && nodes.findIndex(item => item.result !== 'SUCCESS')
 
-    if (errorNodeIdex > -1) {
+    if (errorNodeIdex > 0) {
       if (nodes[errorNodeIdex].steps) {
         const subStepIdex = nodes[errorNodeIdex].steps.findIndex(
           item => item.result !== 'SUCCESS'
@@ -118,7 +117,7 @@ export default class PipelineLog extends React.Component {
   renderLeftTab(stage, index) {
     if (Array.isArray(stage)) {
       return (
-        <div key={stage.id} className={styles.stageContainer}>
+        <div key={stage.id} key={index} className={styles.stageContainer}>
           <div className={styles.cutTitle}>{t('Stage')}</div>
           {stage.map((_stage, _index) => (
             <div
@@ -193,6 +192,8 @@ export default class PipelineLog extends React.Component {
       )
     }
 
+    const time = this.activeStage.durationInMillis || ''
+
     return (
       <div className={styles.container}>
         <div className={styles.left}>
@@ -200,9 +201,9 @@ export default class PipelineLog extends React.Component {
         </div>
         <div className={styles.right}>
           <div className={styles.header}>
-            <span>{`${t('Time Used')} ${formatUsedTime(
-              this.activeStage.durationInMillis
-            )}`}</span>
+            <span>{`${t('Time Used')} ${
+              time ? formatUsedTime(time) : '-'
+            }`}</span>
             <Button onClick={this.handleDownloadLogs}>
               {t('DOWNLOAD_LOGS')}
             </Button>

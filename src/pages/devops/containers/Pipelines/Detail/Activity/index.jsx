@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { get, omit, debounce, isArray, isUndefined, isEmpty } from 'lodash'
+import { get, omit, debounce, isUndefined, isEmpty } from 'lodash'
 import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
 import { parse } from 'qs'
@@ -50,7 +50,7 @@ export default class Activity extends React.Component {
 
   store = this.props.detailStore || {}
 
-  refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+  refreshTimer = setInterval(() => this.getData(), 4000)
 
   get enabledActions() {
     const { devops, cluster } = this.props.match.params
@@ -120,6 +120,7 @@ export default class Activity extends React.Component {
   }
 
   refreshHandler = () => {
+    // The data of the current list is asynchronous, so there is no need to state as a judgment condition
     if (this.isRuning) {
       this.getData()
     } else {
@@ -160,13 +161,9 @@ export default class Activity extends React.Component {
   handleReplay = record => async () => {
     const { params } = this.props.match
 
-    const url = `devops/${params.devops}/pipelines/${
-      params.name
-    }${this.getActivityDetailLinks(record)}`
-
     await this.props.detailStore.handleActivityReplay({
-      url,
-      cluster: params.cluster,
+      ...params,
+      url: this.getActivityDetailLinks(record),
     })
 
     Notify.success({ content: `${t('Run Start')}` })
@@ -195,13 +192,9 @@ export default class Activity extends React.Component {
   handleStop = record => async () => {
     const { params } = this.props.match
 
-    const url = `devops/${params.devops}/pipelines/${
-      params.name
-    }${this.getActivityDetailLinks(record)}`
-
     await this.props.detailStore.handleActivityStop({
-      url,
-      cluster: params.cluster,
+      url: this.getActivityDetailLinks(record),
+      ...params,
     })
 
     Notify.success({
@@ -212,19 +205,22 @@ export default class Activity extends React.Component {
   }
 
   getActivityDetailLinks = record => {
-    const branchName = record?.branch?.url
+    const branchName = get(record, '_originData.spec.scm.refName')
+
     if (branchName) {
       // multi-branch
-      return `/branches/${encodeURIComponent(branchName)}/runs/${record.id}`
+      return `branches/${encodeURIComponent(branchName)}/runs/${record.id}`
     }
-    return `/runs/${record.id}`
+    return `runs/${record.id}`
   }
 
   getRunhref = record => {
-    const branchName = record?.branch?.url
+    const branchName = get(record, '_originData.spec.scm.refName')
+
     if (branchName && !this.isAtBranchDetailPage) {
       return `${this.prefix}/branch/${record.pipeline}/run/${record.id}`
     }
+
     return `${this.prefix}/run/${record.id}`
   }
 
@@ -263,17 +259,16 @@ export default class Activity extends React.Component {
             width: '15%',
             key: 'branch',
             render: record => {
-              const matchArray = get(record, '_links.self.href', '').match(
-                /\/pipelines\/\S*?(?=\/)\/branches\/(\S*?(?=\/)?)\//
-              )
-              if (isArray(matchArray)) {
+              const branchName = get(record, '_originData.spec.scm.refName', '')
+
+              if (branchName) {
                 return (
                   <Link
                     className="item-name"
-                    to={`${this.prefix}/branch/${record.pipeline}/activity`}
+                    to={`${this.prefix}/branch/${branchName}/activity`}
                   >
                     <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
-                    {decodeURIComponent(record.pipeline)}
+                    {decodeURIComponent(branchName)}
                   </Link>
                 )
               }
@@ -402,13 +397,11 @@ export default class Activity extends React.Component {
       )
     }
 
-    const rowKey = get(data[0], 'time') ? 'time' : 'endTime'
-
     return (
       <Table
         data={toJS(data)}
         columns={this.getColumns()}
-        rowKey={rowKey}
+        rowKey="uid"
         filters={omitFilters}
         pagination={pagination}
         isLoading={isLoading}

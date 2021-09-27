@@ -42,7 +42,7 @@ const RUN_PATH = `${BRANCH_PATH}/run/:runId`
 const PATH_NO_BRANCH = `${PATH}/run/:runId`
 
 const PIPELINE_ROUTES = [
-  { name: 'pipeline', title: 'Pipeline', component: Pipeline },
+  { name: 'pipeline', title: 'PIPELINE', component: Pipeline },
   { name: 'code-quality', title: 'Code Quality', component: CodeQuality },
   { name: 'activity', title: 'ACTIVITY', component: Activity },
   { name: 'branch', title: 'Branches', component: Branch },
