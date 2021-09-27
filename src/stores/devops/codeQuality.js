@@ -19,7 +19,7 @@
 import { isArray } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
-import BaseStore from './base'
+import BaseStore from '../devops'
 
 export default class CodeQualityStore extends BaseStore {
   @observable
@@ -34,16 +34,16 @@ export default class CodeQualityStore extends BaseStore {
     if (branch) {
       url = `${this.getDevopsUrlV2({
         cluster,
-      })}${devops}/pipelines/${name}/branches/${encodeURIComponent(
-        branch
-      )}/sonarstatus `
+        devops,
+      })}pipelines/${name}/branches/${encodeURIComponent(branch)}/sonarstatus `
     } else {
       url = `${this.getDevopsUrlV2({
         cluster,
-      })}${devops}/pipelines/${name}/sonarstatus`
+        devops,
+      })}pipelines/${name}/sonarstatus`
     }
     this.isLoading = true
-    const result = await this.request
+    const result = await request
       .get(url, null, null, () => 'no  sonarqube')
       .finally(() => {
         this.isLoading = false

@@ -20,8 +20,10 @@ import { omit, isArray, get } from 'lodash'
 import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
 import { Notify } from '@kube-design/components'
+import { safeParseJSON } from 'utils'
 
-import BaseStore from './base'
+import BaseStore from '../devops'
+
 import PipelineStore from './pipelines'
 
 const TABLE_LIMIT = 10
@@ -34,6 +36,9 @@ export default class PipelineRunStore extends BaseStore {
 
   @observable
   detail = {}
+
+  @observable
+  runName = ''
 
   @observable
   devops = ''
@@ -78,6 +83,19 @@ export default class PipelineRunStore extends BaseStore {
   @observable
   runDetailLogs = ''
 
+  getUrl({ cluster, devops, name }) {
+    return `${this.getDevopsUrlV2({
+      cluster,
+      devops,
+    })}pipelines/${decodeURIComponent(name)}/`
+  }
+
+  getRunUrl({ cluster, devops, name, branch, runId }) {
+    return `${this.getUrl({ cluster, devops, name })}${
+      branch ? `branches/${encodeURIComponent(branch)}/` : ''
+    }runs/${runId}/`
+  }
+
   @action
   async getCommits({
     name,
@@ -93,10 +111,8 @@ export default class PipelineRunStore extends BaseStore {
     const { page } = filters
 
     this.commitsList.isLoading = true
-    const result = await this.request.get(
-      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}${
-        branch ? `/branches/${encodeURIComponent(branch)}` : ''
-      }/runs/${runId}/`,
+    const result = await request.get(
+      `${this.getRunUrl({ cluster, devops, name, branch, runId })}`,
       {
         start: (page - 1) * TABLE_LIMIT || 0,
         limit: TABLE_LIMIT,
@@ -150,10 +166,14 @@ export default class PipelineRunStore extends BaseStore {
     const { page } = filters
 
     this.artifactsList.isLoading = true
-    const result = await this.request.get(
-      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}${
-        branch ? `/branches/${encodeURIComponent(branch)}` : ''
-      }/runs/${runId}/artifacts/`,
+    const result = await request.get(
+      `${this.getRunUrl({
+        cluster,
+        devops,
+        name,
+        branch,
+        runId,
+      })}artifacts/`,
       {
         start: (page - 1) * TABLE_LIMIT || 0,
         limit: TABLE_LIMIT,
@@ -177,24 +197,20 @@ export default class PipelineRunStore extends BaseStore {
 
     this.getNodesStatusLoading = true
 
-    const result = await this.request.get(
-      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}${
-        branch ? `/branches/${encodeURIComponent(branch)}` : ''
-      }/runs/${runId}/nodesdetail/?limit=10000`
+    const stages = JSON.parse(
+      get(
+        this.runDetail,
+        '_originData.metadata.annotations["devops.kubesphere.io/jenkins-pipelinerun-stages-status"]',
+        '[]'
+      )
     )
 
-    if (!isArray(result)) {
-      this.getNodesStatusLoading = false
-      return
-    }
-
-    const hasStep = result.some(stage => stage.steps && stage.steps.length)
-    if (hasStep) {
+    if (stages) {
       // format to tree structure
-      this.nodesStatus = result.reduce((_arr, stage, index) => {
+      this.nodesStatus = stages.reduce((_arr, stage, index) => {
         stage.causeOfBlockage = this.runDetail.causeOfBlockage
         if (stage.type === 'STAGE') {
-          if (result[index + 1] && result[index + 1].type === 'PARALLEL') {
+          if (stages[index + 1] && stages[index + 1].type === 'PARALLEL') {
             const arr = []
             _arr.push(arr)
             return _arr
@@ -211,53 +227,92 @@ export default class PipelineRunStore extends BaseStore {
       this.nodesStatus = []
     }
 
-    if (!result.length || !hasStep) {
+    if (!stages || stages.length < 1) {
       this.getRunStatusLogs({ devops, name, branch, runId, cluster })
     }
     this.getNodesStatusLoading = false
   }
 
   @action
+  async getRunName({ devops, name, branch, runId, cluster }) {
+    const activitiesList = await this.pipelineStore.getActivities({
+      cluster,
+      devops,
+      name,
+      backward: false,
+      page: -1,
+    })
+
+    const runDetail =
+      isArray(activitiesList) &&
+      activitiesList.filter(item => {
+        const branchName = get(item, '_originData.spec.scm.refName', '')
+        const _branch = branch || ''
+
+        if (item.id === runId && _branch === branchName) {
+          return true
+        }
+        return false
+      })[0]
+
+    this.runName = get(runDetail, '_originData.metadata.name')
+  }
+
+  @action
   async getRunDetail(params) {
-    const { devops, name, branch, runId, cluster } = params
-    const result = await this.request.get(
-      `${this.getDevopsUrlV2({
+    const { devops, cluster } = params
+
+    const runDetail = await request.get(
+      `${this.getBaseUrl({
         cluster,
-      })}${devops}/pipelines/${decodeURIComponent(name)}${
-        branch ? `/branches/${encodeURIComponent(branch)}` : ''
-      }/runs/${runId}/`,
+        namespace: devops,
+      })}pipelineruns/${this.runName}`,
       null,
       null,
-      async resp => {
-        if (resp.status === 404) {
+      async res => {
+        if (res.status === 404) {
           const pipelineDetail = await this.pipelineStore.fetchDetail(params)
           this.runDetail = pipelineDetail.latestRun || {}
           return toJS(this.runDetail)
         }
       }
     )
-    this.runDetail = result
-    this.isLoading = false
+
+    this.runDetail = {
+      ...safeParseJSON(
+        get(
+          runDetail,
+          "metadata.annotations.['devops.kubesphere.io/jenkins-pipelinerun-status']"
+        )
+      ),
+      _originData: runDetail,
+    }
   }
 
   async replay(params, _runId) {
     const { devops, name, branch, runId, cluster } = params
-    return await this.request.post(
-      `${this.getDevopsUrlV2({
+    return await request.post(
+      `${this.getRunUrl({
         cluster,
-      })}${devops}/pipelines/${decodeURIComponent(name)}${
-        branch ? `/branches/${encodeURIComponent(branch)}` : ''
-      }/runs/${_runId || runId}/replay`
+        devops,
+        name,
+        branch,
+        runId: _runId || runId,
+      })}replay`
     )
   }
 
   @action
   async getRunStatusLogs({ devops, name, branch, runId, cluster }) {
     // TODO: use response headers offset
-    const result = await this.request.get(
-      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}${
-        branch ? `/branches/${encodeURIComponent(branch)}` : ''
-      }/runs/${runId}/log/?start=0`
+    const result = await request.get(
+      `${this.getRunUrl({
+        cluster,
+        devops,
+        name,
+        branch,
+        runId,
+      })}log/?start=0`
     )
     this.runDetailLogs = result
   }
@@ -290,10 +345,14 @@ export default class PipelineRunStore extends BaseStore {
     stepId,
     inputId,
   }) {
-    return await this.request.post(
-      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}/${
-        branch ? `branches/${encodeURIComponent(branch)}/` : ''
-      }runs/${runId}/nodes/${nodeId}/steps/${stepId}/`,
+    return await request.post(
+      `${this.getRunUrl({
+        cluster,
+        devops,
+        name,
+        branch,
+        runId,
+      })}nodes/${nodeId}/steps/${stepId}/`,
       {
         id: inputId,
         parameters,
@@ -320,10 +379,14 @@ export default class PipelineRunStore extends BaseStore {
     inputId,
     cluster,
   }) {
-    return await this.request.post(
-      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}/${
-        branch ? `branches/${encodeURIComponent(branch)}/` : ''
-      }runs/${runId}/nodes/${nodeId}/steps/${stepId}/`,
+    return await request.post(
+      `${this.getRunUrl({
+        cluster,
+        devops,
+        name,
+        branch,
+        runId,
+      })}nodes/${nodeId}/steps/${stepId}/`,
       {
         id: inputId,
         abort: true,

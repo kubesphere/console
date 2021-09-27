@@ -51,7 +51,8 @@ export default class RunDetailLayout extends React.Component {
     return `/${workspace}/clusters/${cluster}/devops/${devops}/pipelines`
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.getRunName()
     this.fetchData()
   }
 
@@ -76,6 +77,11 @@ export default class RunDetailLayout extends React.Component {
     this.store.getRunDetail(params)
   }
 
+  getRunName = async () => {
+    const { params } = this.props.match
+    await this.store.getRunName(params)
+  }
+
   componentDidUpdate(prevProps) {
     const { runDetail } = this.store
     const {
@@ -88,6 +94,7 @@ export default class RunDetailLayout extends React.Component {
     const { params: lastParams } = prevProps.match
 
     if (runId !== lastParams.runId) {
+      this.getRunName(lastParams)
       clearInterval(this.refreshTimer)
       this.refreshTimer = setInterval(this.refreshHandler, 4000)
     }
@@ -99,6 +106,7 @@ export default class RunDetailLayout extends React.Component {
         }/run/${runDetail.id}`
       )
     }
+
     if (!this.refreshTimer && this.hasRuning) {
       this.refreshTimer = setInterval(this.refreshHandler, 4000)
     }
@@ -120,6 +128,7 @@ export default class RunDetailLayout extends React.Component {
     const { params } = this.props.match
 
     const result = await this.store.replay(params)
+
     this.routing.push(
       `/${params.workspace}/clusters/${params.cluster}/devops/${
         params.devops
@@ -172,7 +181,7 @@ export default class RunDetailLayout extends React.Component {
       type: 'control',
       text: t('RERUN'),
       action: 'edit',
-      onClick: this.rePlay,
+      onClick: () => this.rePlay(),
     },
   ]
 

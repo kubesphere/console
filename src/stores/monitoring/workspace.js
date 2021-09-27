@@ -66,7 +66,7 @@ export default class WorkspaceMonitor extends Base {
   async getDevopsCount(workspace) {
     const devopsStore = new Devops()
 
-    const result = await request.get(devopsStore.getDevOpsUrl({ workspace }), {
+    const result = await request.get(devopsStore.getBaseUrl({ workspace }), {
       paging: 'limit=Infinity',
     })
 

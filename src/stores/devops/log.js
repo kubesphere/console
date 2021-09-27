@@ -19,7 +19,7 @@
 import { get } from 'lodash'
 import { action, observable } from 'mobx'
 
-import BaseStore from './base'
+import BaseStore from '../devops'
 
 export default class PipelineRunStore extends BaseStore {
   @observable stepLogData = {
@@ -32,7 +32,8 @@ export default class PipelineRunStore extends BaseStore {
     const result = await request.defaults({
       url: `${this.getDevopsUrlV2({
         cluster,
-      })}${devops}/pipelines/${decodeURIComponent(name)}${
+        devops,
+      })}pipelines/${decodeURIComponent(name)}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${runId}/nodes/${nodeId}/steps/${stepId}/log/?start=${this
         .stepLogData.start || 0}`,
