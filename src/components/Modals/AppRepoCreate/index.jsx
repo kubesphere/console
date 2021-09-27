@@ -18,9 +18,11 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { get } from 'lodash'
 
 import { Form, Input, TextArea } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import TimeInput from './time.input'
 import UrlInput from './url.input'
 
 import styles from './index.scss'
@@ -72,6 +74,7 @@ export default class AddRepoModal extends Component {
     const data = {
       type,
       name: '',
+      sync_period: get(detail, 'sync_period', '0s'),
       repoType: 'Helm',
       visibility: 'public',
       credential: '{}',
@@ -80,6 +83,38 @@ export default class AddRepoModal extends Component {
     }
 
     return data
+  }
+
+  getSeconds = timeStr => {
+    const unit = timeStr.slice(-1)
+    const value = parseFloat(timeStr)
+
+    switch (unit) {
+      default:
+      case 's':
+        return value
+      case 'm':
+        return value * 60
+      case 'h':
+        return value * 60 * 60
+    }
+  }
+
+  timeValidator = (rule, value, callback) => {
+    const data = this.getSeconds(value)
+    const time = /^[0-9]*$/
+
+    if (!data) {
+      return callback()
+    }
+    if (!time.test(data)) {
+      return callback({ message: t('SYNC_PERIOD_INVALID') })
+    }
+
+    if (data !== 0 && (data > 86400 || data < 180)) {
+      return callback({ message: t('SYNC_PERIOD_DESC') })
+    }
+    callback()
   }
 
   handleSubmit = data => {
@@ -126,6 +161,16 @@ export default class AddRepoModal extends Component {
           onValidate={this.handleUrlValidate}
           isSubmitting={this.props.isSubmitting}
         />
+        <Form.Item
+          label={t('SYNC_PERIOD')}
+          desc={t('SYNC_PERIOD_DESC')}
+          rules={[
+            { required: true, message: t('SYNC_PERIOD_EMPTY_DESC') },
+            { validator: this.timeValidator },
+          ]}
+        >
+          <TimeInput name="sync_period" />
+        </Form.Item>
         <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
           <TextArea name="description" maxLength={256} />
         </Form.Item>
