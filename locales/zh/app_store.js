@@ -26,6 +26,9 @@ module.exports = {
   Categories: '分类',
   Developer: '开发者',
   DEVELOPER_VALUE: '开发者：{value}',
+  MAINTAINER_VALUE: '维护者：{value}',
+  MAINTAINERS_VALUE: '维护者：{value} 等等',
+  SOURCE_CODE_ADDRESS: '源代码地址',
   LATEST_VALUE: '最新：{value}',
   Latest: '最新',
   Back: '返回',
@@ -41,10 +44,10 @@ module.exports = {
   'Install and Deploy': '安装部署',
   Keywords: '关键字',
 
-  'App Deploy Agreement': '应用部署须知',
-  APP_DEPLOY_AGREEMENT_1: '1. 您会遵守该应用的开源协议',
-  APP_DEPLOY_AGREEMENT_2:
-    '2. 您部署该应用导致的任何后果将由您自行承担，如果需要相关支持服务请联系 <a href="https://kubesphere.cloud/" target="_blank">kubesphere.cloud</a>',
-  APP_DEPLOY_AGREEMENT_CHEKC: '已阅读上述说明并同意部署应用。',
-  CHECK_APP_DEPLOY_AGREEMENT_TIP: '请阅读并同意应用部署须知',
+  AGREE: '同意',
+  APP_DEPLOY_AGREEMENT: '应用部署须知',
+  APP_DEPLOY_AGREEMENT_DESC_1: '您会遵守该应用的开源协议。',
+  APP_DEPLOY_AGREEMENT_DESC_2:
+    '您部署该应用导致的任何后果将由您自行承担，如果需要相关支持服务请联系相关开发者。',
+  DO_NOT_REMIND_AGAIN: '不再提示',
 }

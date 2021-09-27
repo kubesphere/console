@@ -230,7 +230,7 @@ module.exports = {
   'Log Search': 'Búsqueda de logs',
   LOGGING: 'Logging',
   logging: 'logging',
-  Maintainers: 'Mantenedores',
+  MAINTAINERS: 'Mantenedores',
   MEMORY: 'Memoria',
   memory: 'memoria',
   message: 'mensaje',

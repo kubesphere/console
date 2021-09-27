@@ -63,11 +63,13 @@ $card-height: 152px;
 
     .vendor {
       float: left;
+      @include ellipsis;
+      max-width: 140px;
     }
     .version {
       @include ellipsis;
       float: right;
-      max-width: 150px;
+      max-width: 120px;
     }
   }
 }
