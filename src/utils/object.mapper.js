@@ -511,9 +511,10 @@ const PVMapper = item => {
     storageClassName: get(item, 'spec.storageClassName'),
     capacity: get(
       item,
-      'status.capacity.storage',
+      'spec.capacity.storage',
       get(item, 'spec.resources.requests.storage')
     ),
+    volumeHandle: get(item, 'spec.csi.volumeHandle'),
     inUse: get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true',
     type: 'pvc',
     persistentVolumeReclaimPolicy: get(
