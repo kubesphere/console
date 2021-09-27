@@ -24,12 +24,12 @@ import { PropTypes } from 'prop-types'
 import { safeParseJSON } from 'utils'
 import { ACCESS_MODES } from 'utils/constants'
 import { Form, Select } from '@kube-design/components'
-import { AccessModes, UnitSlider } from 'components/Inputs'
+import { UnitSlider } from 'components/Inputs'
 
 import StorageClassStore from 'stores/storageClass'
 
 const STORAGE_CLASSES_KEY = 'spec.storageClassName'
-const ACCESSMODE_KEY = 'spec.accessModes[0]'
+const ACCESSMODE_KEY = 'spec.accessModes'
 
 export default class VolumeSettings extends React.Component {
   static contextTypes = {
@@ -167,8 +167,16 @@ export default class VolumeSettings extends React.Component {
     const { storageClass, isLoading } = this.state
     const { editModalTitle, tabTitle } = this.props
     const storageClasses = this.getStorageClasses()
-    const supportedAccessModes = this.getSupportedAccessModes()
     const storageClassesList = this.store.list || {}
+
+    const supportedAccessModes =
+      this.getSupportedAccessModes() ?? Object.keys(ACCESS_MODES)
+    const supportedAccessModesSelectOptions = supportedAccessModes.map(
+      mode => ({
+        value: mode,
+        label: `${mode}: ${t(`ACCESS_MODE_${ACCESS_MODES[mode]}`)}`,
+      })
+    )
 
     return (
       <>
@@ -194,14 +202,14 @@ export default class VolumeSettings extends React.Component {
           <Form.Item
             label={t('ACCESS_MODE')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            desc={t('ACCESS_MODES_DESC')}
           >
-            <AccessModes
+            <Select
               name={ACCESSMODE_KEY}
-              defaultValue={
-                get(supportedAccessModes, '[0]') || Object.keys(ACCESS_MODES)[0]
-              }
-              supportedAccessModes={supportedAccessModes}
+              options={supportedAccessModesSelectOptions}
               loading={isLoading}
+              defaultValue={[]}
+              multi
             />
           </Form.Item>
         ) : (
