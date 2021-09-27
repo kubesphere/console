@@ -108,7 +108,7 @@ export default class Routes extends React.Component {
       const template = isFederated ? get(ingress, 'spec.template') : ingress
       const serviceName = get(
         template,
-        'spec.rules[0].http.paths[0].backend.serviceName'
+        'spec.rules[0].http.paths[0].backend.service.name'
       )
       if (serviceName) {
         set(

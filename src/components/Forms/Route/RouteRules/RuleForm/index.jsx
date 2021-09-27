@@ -117,7 +117,7 @@ export default class RuleForm extends React.Component {
     }
 
     const { gateway } = this.props
-    const service = get(data, 'http.paths[0].backend.serviceName')
+    const service = get(data, 'http.paths[0].backend.service.name')
     const _host = gateway.isHostName
       ? gateway.defaultIngress
       : `${service}.${namespace}.${gateway.defaultIngress}.nip.io`
@@ -130,7 +130,7 @@ export default class RuleForm extends React.Component {
     item.path &&
     item.backend &&
     item.backend.service.name &&
-    item.backend.service.port.number
+    item.backend.service.port
 
   pathValidator = (rule, value, callback) => {
     if (!value) {
