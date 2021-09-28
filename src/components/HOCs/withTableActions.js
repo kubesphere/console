@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty, isFunction } from 'lodash'
+import { isEmpty, isFunction, get } from 'lodash'
 
 import { Button, Menu, Icon, Dropdown } from '@kube-design/components'
 
@@ -117,10 +117,12 @@ function withTableActions(WrappedComponent) {
         const show = isFunction(action.show)
           ? action.show(record)
           : action.show || true
+        const disabled = get(action, 'disabled', false)
+
         if (!show) return null
 
         return (
-          <Menu.MenuItem key={action.key}>
+          <Menu.MenuItem key={action.key} disabled={disabled}>
             <Icon name={action.icon} />{' '}
             <span data-test={`table-item-${action.key}`}>{action.text}</span>
           </Menu.MenuItem>
