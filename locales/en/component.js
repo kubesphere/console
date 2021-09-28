@@ -21,10 +21,10 @@ module.exports = {
   components: 'components',
   Components: 'Components',
   'Installed Components': 'Installed Components',
-  'Instance Count': 'Instance Count',
+  INSTANCE_COUNT: 'Instances',
   'Not Installed Components': 'Not Installed Components',
-  'Running Status': 'Running Status',
-  'Service Details': 'Service Details',
+  RUNNING_STATUS: 'Running Status',
+  SERVICE_DETAILS: 'Service Details',
 
   SERVICE_COMPONENTS_DESC:
     'System components are software components in the KubeSphere system, which provide various functions. You can view the running status of services components on this page.',

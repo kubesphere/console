@@ -179,7 +179,7 @@ class Credential extends React.Component {
         <Banner
           title={t('DEVOPS_PROJECT_CREDENTIAL_PL')}
           icon="key"
-          description={t('DEVOPS_PROJECT_CREDENTIALS_DESC')}
+          description={t('DEVOPS_CREDENTIALS_DESC')}
           module={this.module}
         />
         {this.renderContent()}

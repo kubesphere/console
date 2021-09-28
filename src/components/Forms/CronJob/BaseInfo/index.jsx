@@ -77,9 +77,9 @@ export default class BaseInfo extends React.Component {
   }
 
   getConcurrencyPolicyOptions = () => [
-    { label: 'Allow', value: 'Allow' },
-    { label: 'Forbid', value: 'Forbid' },
-    { label: 'Replace', value: 'Replace' },
+    { label: t('RUN_JOBS_CONCURRENTLY'), value: 'Allow' },
+    { label: t('SKIP_NEW_JOB'), value: 'Forbid' },
+    { label: t('SKIP_OLD_JOB'), value: 'Replace' },
   ]
 
   render() {
@@ -164,8 +164,8 @@ export default class BaseInfo extends React.Component {
           <Columns className="margin-t8">
             <Column>
               <Form.Item
-                label={t('STARTING_DEADLINE')}
-                desc={t('START_DEADLINE_SECONDS_DESC')}
+                label={t('MAXIMUM_DELAY')}
+                desc={t('MAXIMUM_DELAY_DESC')}
               >
                 <NumberInput
                   min={0}
@@ -174,8 +174,8 @@ export default class BaseInfo extends React.Component {
                 />
               </Form.Item>
               <Form.Item
-                label={t('FAILED_JOBS_HISTORY_LIMIT')}
-                desc={t('FAILED_JOBS_DESC')}
+                label={t('FAILED_JOBS_RETAINED')}
+                desc={t('FAILED_JOBS_RETAINED_DESC')}
               >
                 <NumberInput
                   min={0}
@@ -186,8 +186,8 @@ export default class BaseInfo extends React.Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('SUCCESSFUL_JOBS_HISTORY_LIMIT')}
-                desc={t('SUCCESSFUL_JOBS_DESC')}
+                label={t('SUCCESSFUL_JOBS_RETAINED')}
+                desc={t('SUCCESSFUL_JOBS_RETAINED_DESC')}
               >
                 <NumberInput
                   min={0}

@@ -28,20 +28,20 @@ const PATH = '/clusters/:cluster/projects/:namespace'
 export default [
   {
     path: `${PATH}/overview`,
-    title: 'Project Overview',
+    title: 'OVERVIEW',
     component: Overview,
     exact: true,
   },
-  { path: `${PATH}/pods`, title: 'Pods', component: Pods, exact: true },
+  { path: `${PATH}/pods`, title: 'POD_PL', component: Pods, exact: true },
   {
     path: `${PATH}/gateway`,
-    title: 'Gateway Info',
+    title: 'GATEWAY',
     component: Gateway,
     exact: true,
   },
   {
     path: `${PATH}/quota`,
-    title: 'PROJECT_QUOTA',
+    title: 'QUOTA_PL',
     component: Quota,
     exact: true,
   },

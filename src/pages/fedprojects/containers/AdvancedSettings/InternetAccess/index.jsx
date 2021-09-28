@@ -27,7 +27,7 @@ export default class InternetAccess extends Component {
     const { clusters, actions } = this.props
     return (
       <div>
-        <div className={styles.title}>{t('Internet Access')}</div>
+        <div className={styles.title}>{t('EXTERNAL_ACCESS')}</div>
         {clusters.map(cluster => (
           <Access
             key={cluster.name}

@@ -127,15 +127,11 @@ export default class ReplicasControl extends React.Component {
     return (
       <>
         <Tabs type="button" onChange={this.switchMode}>
-          <TabPanel
-            label={`${t('Fixed Replicas')}`}
-            name="Normal"
-            icon="cluster"
-          >
+          <TabPanel label={t('SPECIFY_REPLICAS')} name="Normal" icon="cluster">
             {this.renderPlacement(clusters)}
           </TabPanel>
           <TabPanel
-            label={`${t('Federated Schedule')}`}
+            label={t('SPECIFY_WEIGHTS')}
             name="Scheduling"
             icon="cluster"
           >

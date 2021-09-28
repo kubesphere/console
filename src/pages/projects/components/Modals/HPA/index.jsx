@@ -138,7 +138,7 @@ export default class HPAModal extends React.Component {
     return (
       <Modal
         width={691}
-        title={t('Horizontal Pod Autoscaling')}
+        title={t('HORIZONTAL_POD_AUTOSCALING')}
         icon="firewall"
         onOk={this.handleOk}
         onCancel={onCancel}
@@ -185,7 +185,7 @@ export default class HPAModal extends React.Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('Min Replicas Number')}
+              label={t('MINIMUM_REPLICAS')}
               desc={t('MIN_REPLICAS_DESC')}
             >
               <NumberInput
@@ -197,7 +197,7 @@ export default class HPAModal extends React.Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('Max Replicas Number')}
+              label={t('MAXIMUM_REPLICAS')}
               desc={t('MAX_REPLICAS_DESC')}
             >
               <NumberInput

@@ -123,8 +123,8 @@ module.exports = {
   TOTAL_LOGS:
     'A total of <span class={className}> {logs} </span> logs from<br/> <span class={className}>{containers}</span> containers were collected.',
   TIME_S: '{num} s',
-  CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS:
-    'The container does not support real-time logs in the current state, please try again later.',
+  CONTAINER_LOGS_NOT_SUPPORTED:
+    'The container does not support real-time logs currently. Please try again later.',
   TOTAL_LOGS_TODAY:
     'A total of <span class={className}> {logs} </span> logs from <span class={className}>{containers}</span> containers were collected today.',
   TOTAL_EVENTS_TODAY:
@@ -193,6 +193,6 @@ module.exports = {
   EXAMPLE: 'Example: ',
   PORT_NUMBER_EMPTY: 'Please enter a port number.',
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
-  EVENTS: 'Events',
+  EVENT_PL: 'Events',
   CREATION_TIME: 'Creation time',
 }

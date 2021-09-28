@@ -21,6 +21,8 @@ module.exports = {
   DELETE_DEVOPS_PROJECT: 'Eliminar Proyecto DevOps',
   'DevOps Basic Info': 'Información básica de DevOps',
   DEVOPS_PROJECT_CREDENTIAL_PL: 'Credenciales de Proyecto DevOps',
+  DEVOPS_CREDENTIAL: 'DevOps Credential',
+  DEVOPS_CREDENTIAL_PL: 'Credenciales de DevOps',
   DEVOPS_CREDENTIAL_EMPTY_DESC: 'Please create a DevOps credential.',
   DEVOPS_CREDENTIAL_LOW: 'DevOps credential',
   'DevOps Member': 'Miembro de DevOps',
@@ -48,7 +50,7 @@ module.exports = {
   NO_RELATE_DEVOPS_TITLE: 'No hay ningún proyecto DevOps asociado a ti',
   NO_RELATE_DEVOPS_DESC:
     'Puedes crear un proyecto o ponerte en contacto con el gestor del proyecto para que te invite al proyecto DevOps y comenzar tu trabajo.',
-  DEVOPS_PROJECT_CREDENTIALS_DESC:
+  DEVOPS_CREDENTIALS_DESC:
     'La credencial es un objeto que contiene datos confidenciales, como por ejemplo un nombre de usuario y contraseña, una clave SSH o un token. Se utiliza para proporcionar autenticación en el proceso de descarga de código, push / pull de imágenes, ejecución de scripts SSH, etc., cuando se está ejecutando una pipeline.',
   DEVOPS_PROJECT_ROLES_DESC:
     'Los roles de proyecto definen los permisos que los usuarios tienen en el proyecto DevOps actual.',

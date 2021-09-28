@@ -25,12 +25,16 @@ module.exports = {
   WORKLOAD_PL: '工作负载',
   WORKLOAD_LOW: '工作负载',
   Workloads: '工作负载',
-  IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} 层',
-  IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} 层',
+  IMAGE_TIME_SIZE_LAYER_PL: '更新于 {time}，{size}，{layer} 层',
+  IMAGE_TIME_SIZE_LAYER_SI: '更新于 {time}，{size}，{layer} 层',
   CPU_REQUEST: 'CPU 预留',
   CPU_LIMIT: 'CPU 限制',
+  CPU_REQUEST_SCAP: 'CPU 预留',
+  CPU_LIMIT_SCAP: 'CPU 限制',
   MEMORY_REQUEST: '内存预留',
   MEMORY_LIMIT: '内存限制',
+  MEMORY_REQUEST_SCAP: '内存预留',
+  MEMORY_LIMIT_SCAP: '内存限制',
   ADD_PROBE: '添加探针',
   LABEL_TYPE: '{label} <span style="{style}">（{type}）</span>',
   SELINUX_CONTEXT: 'SELinux 上下文',
@@ -40,16 +44,18 @@ module.exports = {
   MOUNT_PATH_EMPTY: '请输入挂载路径。',
   CONFIGMAP: '配置字典',
   CONFIGMAP_PL: '配置字典',
+  CONFIGMAPS: '配置字典',
   CONFIGMAP_LOW: '配置字典',
   PARTITION_ORDINAL: '容器组副本分组序号',
   PARTITION_ORDINAL_DESC:
-    '容器组副本按序号分成两组。更新有状态副本集时，只有序号大于分组序号的容器组副本会被更新。',
+    '设置一个分组序号以将容器组副本分成两组。更新有状态副本集时，只有序号大于或等于分组序号的容器组副本会被更新。',
   DEPLOYMENT_EMPTY_DESC: '请创建一个部署。',
   STATEFULSET_EMPTY_DESC: '请创建一个有状态副本集。',
   DAEMONSET_EMPTY_DESC: '请创建一个守护进程集。',
   JOB_EMPTY_DESC: '请创建一个任务。',
   CRONJOB_EMPTY_DESC: '请创建一个定时任务。',
-  GPU_TYPE: 'GPU类型：',
+  GPU_TYPE: 'GPU 类型',
+  GPU_LIMIT: 'GPU 限制',
   'Service Configuration': '服务配置',
 
   'Available number of nodes scheduled': '可用节点数',
@@ -59,7 +65,7 @@ module.exports = {
   EDIT_YAML: '编辑配置文件',
   YAML_FILE: 'YAML 文件',
   'Add Labels': '添加标签',
-  'Edit Labels': '编辑标签',
+  EDIT_LABEL: '编辑标签',
   POD_REPLICAS: '容器组副本数量',
   DEFAULT_RULES: '默认规则',
   DEFAULT_RULES_DESC: '按照默认的规则将容器组副本调度到节点。',
@@ -70,10 +76,11 @@ module.exports = {
   'Container Setting': '容器设置',
   'Pods List': '容器组列表',
   POD_SCALE_DESC: '可以弹性扩展容器组实例数量',
-  'Container Logs': '容器日志',
+  CONTAINER_LOGS: '容器日志',
   'Resource Info': '资源信息',
   'Node Name': '节点名称',
-  POD_IP_ADDRESS: '容器组 IP',
+  POD_IP_ADDRESS: '容器组 IP 地址',
+  POD_IP_ADDRESS_SCAP: 'Pod IP address',
   IMAGE: '镜像',
   IMAGE_VALUE: '镜像：{value}',
   'Image ID': '镜像 ID',
@@ -109,9 +116,8 @@ module.exports = {
   'New Volume': '新建存储卷',
   EXISTING_VOLUME: '现有存储卷',
   VOLUME_NAME: '存储卷名称',
-  'Diff Settings': '差异化设置',
-  DIFFERENTIATED_SETTINGS: '差异化设置',
-  'Deployment Mode': '部署模式',
+  CLUSTER_DIFF: '集群差异设置',
+  REPLICA_SCHEDULING_MODE: '副本调度模式',
   POD_SCHEDULING_RULES: '容器组调度规则',
   ADD_RULE: '添加规则',
   POD_SCHEDULING_RULES_DESC: '设置容器组副本调度到节点的规则。',
@@ -120,6 +126,8 @@ module.exports = {
   'No Request': '不预留',
   NO_REQUEST: '不预留',
   NO_LIMIT: '不限制',
+  NO_REQUEST_TCAP: '不预留',
+  NO_LIMIT_TCAP: '不限制',
   'Not Limited': '未限制',
   Cost: '占用',
   PROJECT_REMAINING_QUOTAS: '项目剩余配额',
@@ -135,6 +143,7 @@ module.exports = {
   NO_RESOURCE_LIMIT: '无资源限制',
 
   'Job Settings': '任务设置',
+  STRATEGY_SETTINGS: '策略设置',
   'CronJob Settings': '定时任务设置',
   'Job Template': '任务模板',
 
@@ -155,6 +164,11 @@ module.exports = {
     '将容器组副本分配给特定的节点。您可以使用标签选择节点或手动指定节点。',
   WORKLOAD_SPECIFY_NODE_DESC: '将容器副本分配给特定节点。',
   ADD_METADATA_DESC: '为资源添加元数据。',
+  ROUTE_ADD_METADATA_DESC: '为路由添加元数据。',
+  SERVICE_ADD_METADATA_DESC: '为服务添加元数据。',
+  VOLUME_ADD_METADATA_DESC: '为存储卷添加元数据。',
+  WORKLOAD_ADD_METADATA_DESC: '为工作负载添加元数据。',
+  POD_ADD_METADATA_DESC: '为容器组副本添加元数据。',
 
   'Additional metadata settings for resources.': '对资源进行额外的元数据设置',
 
@@ -168,7 +182,7 @@ module.exports = {
   SELECT_VOLUME_DESC: '选择现有的存储卷以将其挂载到容器。',
 
   REQUEST_EXCCED: '资源预留不能超过资源限制',
-  REQUEST_EXCEED_WORKSPACE: '资源设置不能超过企业空间资源上限。',
+  REQUEST_EXCEED_WORKSPACE: '资源设置不能超过企业空间资源限制。',
   REQUEST_EXCEED_LIMIT: '资源预留不能超过资源限制。',
 
   WORKLOAD_DESC:
@@ -191,7 +205,7 @@ module.exports = {
     '如需使用私有镜像仓库，您需要先创建镜像仓库密钥。<a href={link} target="_blank">了解更多</a>',
   'Replicas Number': '副本数量',
   'Specify Replicas Number': '指定副本数量',
-  'Replica Status': '副本运行状态',
+  REPLICA_STATUS: '副本运行状态',
   REPLICAS_DESC: '{module}将会被创建，由它维护集群中容器组的所需数量',
   'Strategy Type': '策略类型',
   'Update Strategy': '更新策略',
@@ -200,20 +214,20 @@ module.exports = {
   SIMULTANEOUS_UPDATE: '同时更新',
   RollingUpdate: '滚动更新',
   ROLLING_UPDATE_RECOMMENDED: '滚动更新（推荐）',
-  'Restart Count': '重启次数',
+  RESTART_PL: '重启次数',
   RESOURCE_REQUESTS: '资源预留',
   RESOURCE_LIMITS: '资源限制',
   'Image Pull Policy': '镜像拉取策略',
   Privileged: '特权模式',
   'Desired Replicas': '期望副本',
-  'Current Replicas': '实际运行副本',
+  REPLICAS_CURRENT: '当前副本数',
   MIN_READY_SECONDS: '容器组就绪最短运行时长（s）',
 
-  REPLICAS_SCALE_NOTIFY_TITLE: '立即生效？',
+  ADJUST_REPLICAS: '调整副本数量',
   REPLICAS_SCALE_NOTIFY_CONTENT:
-    '您已将工作负载的副本数调整为 <strong>{num}</strong>, 您也可以继续调整副本数量，或者您可以使它立即生效。',
-  REPLICAS_SCALE_NOTIFY_CONFIRM: '立即生效({seconds}s)',
-  REPLICAS_SCALE_NOTIFY_CANCEL: '放弃更改',
+    '您确定将容器组副本数量调整为 <strong>{num}</strong> 吗？',
+  REPLICAS_SCALE_NOTIFY_CONFIRM: '确定（{seconds}s）',
+  REPLICAS_SCALE_NOTIFY_CANCEL: '取消',
 
   ROLLING_UPDATE_SETTINGS: '滚动更新设置',
   MAX_UNAVAILABLE_PODS: '最大不可用容器组数量',
@@ -245,7 +259,7 @@ module.exports = {
   'UI Mode': '界面模式',
   'Coding Mode': '代码模式',
 
-  LABEL_EXIST_DESC: '标签已存在。请使用其他标签。',
+  LABEL_EXIST_DESC: '标签已存在，请输入其他标签。',
   EMPTY_LABEL_DESC: '请添加标签。',
   DUPLICATE_LABELS: '无法添加重复标签。',
   'Labels cannot be empty': '标签不能为空',
@@ -302,7 +316,7 @@ module.exports = {
   PROBE_COMMAND_EMPTY: '请输入至少一条命令。',
   VOLUME_NAME_EMPTY: '请为存储卷设置名称。',
 
-  PORT_INPUT_DESC: '端口名称已存在。请输入其他名称。',
+  PORT_INPUT_DESC: '端口名称已存在，请输入其他名称。',
 
   PORT_NAME_DESC:
     '端口名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
@@ -366,33 +380,33 @@ module.exports = {
   NUMBER_OF_CRONJOBS: '定时任务数量',
   CRONJOB_LOW: '定时任务',
   Revision: '版本',
-  EVERY_DAY: '0 0 * * * (每天))',
-  EVERY_HOUR: '0 * * * * (每小时))',
-  EVERY_MONTH: '0 0 1 * * (每月)',
-  EVERY_WEEK: '0 0 * * 0 (每周)',
+  EVERY_DAY: '0 0 * * * （每天）',
+  EVERY_HOUR: '0 * * * * （每小时）',
+  EVERY_MONTH: '0 0 1 * * （每月）',
+  EVERY_WEEK: '0 0 * * 0 （每周）',
   Schedule: '定时计划',
-  'Revision Records': '版本记录',
+  REVISION_RECORDS: '修改记录',
   'Revision Rollback': '版本回退',
   'Rollback Revisions': '回退版本',
   'Current Revision': '当前版本',
   'Execution Records': '执行记录',
   'Cluster Resource Status': '集群资源状态',
-  'Resource Status': '资源状态',
+  RESOURCE_STATUS: '资源状态',
   RESOURCE_NAME: '资源名称',
   'Config Template': '配置模板',
   'Edit Config Template': '编辑配置模板',
-  'Environment Variables': '环境变量',
-  ENVIRONMENT_VARIABLES: '环境变量',
+  ENVIRONMENT_VARIABLE_PL: '环境变量',
+  ENVIRONMENT_VARIABLE: '环境变量',
   'File List': '文件列表',
   RERUN: '重新执行',
-  ENTER_SCHEDULE_TIP: '请输入定时计划。',
+  ENTER_SCHEDULE_TIP: '请选择定时计划。',
 
   'Please select rollback revision': '请选择回退版本',
 
-  'Horizontal Pod Autoscaling': '弹性伸缩',
+  HORIZONTAL_POD_AUTOSCALING: '容器组水平自动扩缩',
   'Container Config': '容器配置',
   EDGENODE_CONFIG_COMMAND: '边缘节点配置命令',
-  Probe: '探针',
+  PROBE_PL: '探针',
   'Add Probe': '添加探针',
   'Initial Delay': '初始延迟',
   INITIAL_DELAY_S: '初始延迟（s）',
@@ -407,10 +421,13 @@ module.exports = {
   WORKER_CONTAINER: '工作容器',
   'Request Type': '请求类型',
 
-  STARTING_DEADLINE: '启动任务的截止期限（s）',
-  SUCCESSFUL_JOBS_HISTORY_LIMIT: '保留完成任务数',
-  FAILED_JOBS_HISTORY_LIMIT: '保留失败任务数',
+  MAXIMUM_DELAY: '启动延后最大时间（s）',
+  SUCCESSFUL_JOBS_RETAINED: '保留成功任务数量',
+  FAILED_JOBS_RETAINED: '保留失败任务数量',
   CONCURRENCY_POLICY: '并发策略',
+  RUN_JOBS_CONCURRENTLY: '同时运行任务',
+  SKIP_NEW_JOB: '跳过新任务',
+  SKIP_OLD_JOB: '跳过旧任务',
 
   'Select resource': '选择资源',
   RESTART_POLICY: '重启策略',
@@ -434,9 +451,9 @@ module.exports = {
   REVISION_TITLE: '{name}版本',
   'is running': '正在运行',
   PROBE_TIME: '初始延时: {delay}s 超时时间:{timeout}s',
-  'Readiness Probe': '就绪探针',
-  'Liveness Probe': '存活探针',
-  'Startup Probe': '启动探针',
+  READINESS_PROBE: '就绪探针',
+  LIVENESS_PROBE: '存活探针',
+  STARTUP_PROBE: '启动探针',
 
   INITIAL_DELAY_DESC: '容器启动后探针启动前的延迟时间。',
   TIMEOUT_PERIOD_DESC:
@@ -460,22 +477,22 @@ module.exports = {
   DAEMONSETS_REPLICA_DESC:
     '守护进程集 (DaemonSet) 可以确保集群中的每个节点运行一个副本，当有节点加入集群或者离开集群的时候，会自动地调整副本的数量来保证副本的数量与集群的节点数量一致。您可以使用守护进程集来运行存储服务，如 GlusterFS，Ceph 等；运行日志搜集服务，如 Fluentd，Logstash 等；运行监控服务等。',
 
-  FAILED_JOBS_DESC: '允许保留的失败任务的个数。',
-  SUCCESSFUL_JOBS_DESC: '允许保留的成功任务的个数。',
-  CONCURRENCY_POLICY_DESC: '为定时任务所创建的任务选择并发策略。',
+  FAILED_JOBS_RETAINED_DESC: '允许保留的失败任务的个数。默认值为 1。',
+  SUCCESSFUL_JOBS_RETAINED_DESC: '允许保留的成功任务的个数。默认值为 3。',
+  CONCURRENCY_POLICY_DESC: '定时任务创建的多个任务发生重叠时，系统采取的策略。',
   'Can be found by node IP or node name': '可以通过节点 IP 或者节点名称查找',
-  START_DEADLINE_SECONDS_DESC:
-    '因为某种原因任务未能按定时计划执行，启动该任务的截止期限。',
+  MAXIMUM_DELAY_DESC:
+    '由于某种原因未能按计划启动任务时，任务启动的最大延后时间。',
   'Container CPU Resource Request, 1 Core = 1000m':
-    '容器的 CPU 资源请求值, 1核 = 1000m',
-  'Container Memory Resource Request': '容器的 内存 资源请求值',
+    '容器的 CPU 资源预留值, 1核 = 1000m',
+  'Container Memory Resource Request': '容器的 内存 资源预留值',
   'The minimum of the replicas that can be set by HPA':
     '弹性伸缩可以设置的副本数量的下限',
-  'Min Replicas Number': '最小副本数',
-  'Max Replicas Number': '最大副本数',
+  MINIMUM_REPLICAS: '最小副本数',
+  MAXIMUM_REPLICAS: '最大副本数',
   'Maximum number of replicas': '副本数量的上限',
-  'Target Utilization': '目标使用率',
-  'Target Usage': '目标使用量',
+  TARGET_CPU_USAGE: '目标 CPU 用量',
+  TARGET_MEMORY_USAGE: '目标内存用量',
   'Current Utilization': '当前使用率',
   'CPU Target Utilization': 'CPU 目标使用率',
   'Memory Target Utilization': '内存目标使用率',
@@ -496,7 +513,7 @@ module.exports = {
   'Please select a configmap': '请选择配置文件',
   'Please select a secret': '请选择密钥',
   COLLECT_LOGS_ON_VOLUMES_Q: '如何收集存储卷上的日志？',
-  MOUNT_PATH_IN_USE: '挂载路径已被使用，请使用其他挂载路径。',
+  MOUNT_PATH_IN_USE: '挂载路径已被使用，请输入其他挂载路径。',
   READ_WRITE_MOUNT_EMPTY: '请指定读写方式及挂载路径。',
   MOUNT_VOLUME: '挂载存储卷',
   MOUNT_VOLUME_OR_TEMPLATE: '挂载存储卷或存储卷模板',
@@ -523,25 +540,24 @@ module.exports = {
     '临时存储卷随 Pod 被分配在主机上。当 Pod（不管任何原因）从主机上被删除时，临时存储卷也同时会删除，存储卷的数据也将永久删除。<br />注：删除容器不影响临时存储卷。',
   SELECT_VOLUME_TYPE_DESC: '您可以根据需要选择适合您的存储卷类型进行添加',
 
-  BACK_OFF_LIMIT: '最大重试次数',
-  JOB_PARALLELISM_LABEL: '并行数',
-  JOB_COMPLETION_LABEL: '完成数',
-  JOB_ACTIVE_DEADLINE: '退出超时时限（s）',
+  MAXIMUM_RETRIES: '最大重试次数',
+  PARALLEL_PODS: '并行容器组数量',
+  COMPLETE_PODS: '容器组完成数量',
+  MAXIMUM_DURATION: '最大运行时间（s）',
 
-  BACK_OFF_LIMIT_DESC: '将任务标记为失败之前的最大重试次数。默认值为 6。',
-  JOB_PARALLELISM_DESC: '并行运行的容器组数量。',
-  JOB_COMPLETION_DESC: '将任务标记为结束需要成功运行的容器组数量。',
-  JOB_ACTIVE_DEADLINE_DESC:
-    '任务的最大持续时间。任务达到指定超时时限后就会结束。',
+  MAXIMUM_RETRIES_DESC: '将任务标记为失败前的最大重试次数。默认值为 6。',
+  PARALLEL_PODS_DESC: '并行运行的容器组数量。',
+  COMPLETE_PODS_DESC: '将任务标记为完成所需成功运行的容器组数量。',
+  MAXIMUM_DURATION_DESC: '任务的最大运行时间。任务达到最大运行时间时将被结束。',
 
-  RESTART_POLICY_NEVER_DESC: 'Never（容器组出现故障时创建新的容器组）',
-  RESTART_POLICY_ONFAILURE_DESC: 'On failure（容器组出现故障时内部重启容器）',
+  RESTART_POLICY_NEVER_DESC: '重新创建容器组',
+  RESTART_POLICY_ONFAILURE_DESC: '重启容器',
 
   RESTART_POLICY_TIP:
     'RestartPolicy 只能指定 Never 或 OnFailure，当任务未完成的情况下：<br/>* 如果 RestartPolicy 指定 Never，则任务会在容器组出现故障时创建新的容器组，且故障容器组不会消失。<br/>* 如果 RestartPolicy 指定 OnFailure，则任务会在容器组出现故障时其内部重启容器，而不是创建容器组。',
 
   MONITORING_ALERT_DESC:
-    '当前监控最多可显示五个副本的运行状态监控，当超过五个副本时，可以单击具体监控项的「查看全部副本」，查看更多的副本监控。',
+    '默认最多显示五个容器组副本的信息。您可以点击查看所有副本以查看所有容器组副本的信息。',
 
   CONTAINER_CPU_DESC:
     '作为容器调度时资源分配的判断依赖。只有当节点上可分配CPU总量 ≥ 容器CPU最小使用值时，才允许将容器调度到该节点。单位换算规则: 1核 = 1000m',
@@ -572,7 +588,7 @@ module.exports = {
     '您已启用收集存储卷上的日志，请至少挂载一个存储卷或存储卷模板并指定日志所在的目录。',
   VOLUME_EMPTY:
     '您已启用收集存储卷上的日志，请至少挂载一个存储卷并指定日志所在的目录。',
-  COLLECT_FILE_LOG_TIP:
+  COLLECT_LOGS_ON_VOLUMES_DESC:
     '允许系统收集保存在存储卷上的容器日志。如需使用此功能，请为容器挂载读写模式的存储卷并设置容器将日志导出到存储卷。',
 
   PROJECT_COLLECT_SAVED_DISABLED_DESC:
@@ -616,7 +632,7 @@ module.exports = {
   'Scheduled to node': '调度至节点',
   'How pods are assinged to nodes?': '容器组如何被调度至节点?',
   'Pod CPU Request': '容器组CPU请求',
-  'Pod Memory Request': '容器组内存请求',
+  'Pod Memory Request': '容器组内存预留',
 
   SYNC_HOST_TIMEZONE: '同步主机时区',
 
@@ -765,7 +781,7 @@ module.exports = {
     '设置容器的资源限制与资源预留，以将容器调度到合适的节点上。',
 
   REPLICAS_AVAILABLE: '实际副本',
-  REPLICAS_EXPECTED: '期望副本',
+  REPLICAS_DESIRED: '期望副本数',
 
   DEPLOY_PLACEMENT_TIP_TITLE: '什么是部署位置？',
   DEPLOY_PLACEMENT_TIP_VALUE:
@@ -781,6 +797,7 @@ module.exports = {
 
   // Jobs
   JOB_PL: '任务',
+  JOBS: '任务',
   NUMBER_OF_JOBS: '任务数量',
   JOB_LOW: '任务',
   CRONJOBS: '定时任务',
@@ -788,6 +805,6 @@ module.exports = {
 
   // CronJobs
   ADD_VOLUME: '添加存储卷',
-  RESTART_POLICY_DESC: '容器组的重启策略。',
+  RESTART_POLICY_DESC: '选择容器组中的容器异常退出时，系统采取的策略。',
   MOUNT_VOLUMES: '挂载存储卷',
 }

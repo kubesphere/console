@@ -67,7 +67,7 @@ export default class LoginHistory extends React.Component {
       dataIndex: 'spec.sourceIP',
     },
     {
-      title: t('Reason'),
+      title: t('REASON'),
       dataIndex: 'spec.reason',
     },
   ]

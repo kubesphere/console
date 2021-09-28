@@ -190,7 +190,7 @@ export default class VolumeSettings extends React.Component {
           />
         </Form.Item>
         {editModalTitle !== 'Edit Config Template' &&
-        tabTitle !== 'Diff Settings' ? (
+        tabTitle !== 'CLUSTER_DIFF' ? (
           <Form.Item
             label={t('ACCESS_MODE')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}

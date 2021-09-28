@@ -33,7 +33,7 @@ module.exports = {
   EDIT_USER: 'Edit User',
   EMAIL: 'Email',
   EMAIL_EXISTS:
-    'The email address already exists. Please use another email address.',
+    'The email address already exists. Please enter another email address.',
   USERNAME_INVALID: 'Invalid username. {message}',
   'Last Login Time': 'Last Login',
   'Login History': 'Login History',
@@ -61,7 +61,8 @@ module.exports = {
   User: 'User',
   USER: 'User',
   'User Management': 'User Management',
-  USERNAME_EXISTS: 'The username already exists. Please use another username.',
+  USERNAME_EXISTS:
+    'The username already exists. Please enter another username.',
   users: 'users',
   'You must enter the correct current password to change to a new password.':
     'Enter the current password.',

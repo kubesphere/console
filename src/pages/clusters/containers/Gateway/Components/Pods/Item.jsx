@@ -210,12 +210,10 @@ export default class PodItem extends React.PureComponent {
   renderMonitorings() {
     const { metrics = {}, isExpand, loading } = this.props
 
-    if (loading) return <div className={styles.monitors}>{t('Loading')}</div>
+    if (loading) return <div className={styles.monitors}>{t('LOADING')}</div>
 
     if (isEmpty(metrics.cpu) && isEmpty(metrics.memory))
-      return (
-        <div className={styles.monitors}>{t('NO_MONITORING_DATA_FOUND')}</div>
-      )
+      return <div className={styles.monitors}>{t('NO_MONITORING_DATA')}</div>
 
     const configs = this.getMonitoringCfgs(metrics)
 
@@ -293,7 +291,7 @@ export default class PodItem extends React.PureComponent {
     return (
       <div className={styles.itemExtra}>
         <div className="margin-b8">
-          <strong>{t('Containers')}</strong>
+          <strong>{t('CONTAINER_PL')}</strong>
         </div>
         <div className={styles.containers}>
           {containers.map(container => (

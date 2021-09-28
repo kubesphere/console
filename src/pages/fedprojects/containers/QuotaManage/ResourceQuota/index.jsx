@@ -115,7 +115,7 @@ export default class ResourceQuota extends React.Component {
               icon={isFold ? 'chevron-down' : 'chevron-up'}
               onClick={this.toggleFold}
             >
-              {isFold ? t('Unfold') : t('Fold')}
+              {isFold ? t('UNFOLD') : t('FOLD')}
             </Button>
           </div>
         )}

@@ -40,8 +40,8 @@ export default class JobSettings extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('BACK_OFF_LIMIT')}
-              desc={t('BACK_OFF_LIMIT_DESC')}
+              label={t('MAXIMUM_RETRIES')}
+              desc={t('MAXIMUM_RETRIES_DESC')}
             >
               <NumberInput
                 min={0}
@@ -50,22 +50,22 @@ export default class JobSettings extends React.Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('JOB_PARALLELISM_LABEL')}
-              desc={t('JOB_PARALLELISM_DESC')}
+              label={t('PARALLEL_PODS')}
+              desc={t('PARALLEL_PODS_DESC')}
             >
               <NumberInput min={0} name={`${this.prefix}parallelism`} integer />
             </Form.Item>
           </Column>
           <Column>
             <Form.Item
-              label={t('JOB_COMPLETION_LABEL')}
-              desc={t('JOB_COMPLETION_DESC')}
+              label={t('COMPLETE_PODS')}
+              desc={t('COMPLETE_PODS_DESC')}
             >
               <NumberInput min={0} name={`${this.prefix}completions`} integer />
             </Form.Item>
             <Form.Item
-              label={t('JOB_ACTIVE_DEADLINE')}
-              desc={t('JOB_ACTIVE_DEADLINE_DESC')}
+              label={t('MAXIMUM_DURATION')}
+              desc={t('MAXIMUM_DURATION_DESC')}
             >
               <NumberInput
                 min={0}

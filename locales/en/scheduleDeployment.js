@@ -17,17 +17,19 @@
  */
 
 module.exports = {
-  'Federated Schedule': 'Federal deployment',
   'Set Replicas': 'Fixed number of replicas',
-  Federated_Schedule_Text:
-    'The set total number of copies will be allocated to the selected clusters according to the set weights, and the copies of the unavailable clusters will be automatically migrated to the available clusters.',
-  Fixed_Deploy_text:
-    'Clearly specify the number of replicas to be deployed for each cluster.',
+  SPECIFY_REPLICAS: 'Specify Replicas',
+  SPECIFY_WEIGHTS: 'Specify Weights',
+  SPECIFY_WEIGHTS_DESC:
+    'Set the total number of Pod replicas and a weight for each cluster. The Pod replicas will be scheduled to the clusters according to the weights.',
+  SPECIFY_REPLICAS_DESC:
+    'Manually set the number of Pod replicas in each cluster.',
   'Total Replicas Number': 'Total number of replicas',
-  Weight: 'weight',
+  WEIGHT: 'weight',
   TOTAL_REPLICAS: 'Total Replicas',
-  'replicas input invalid': 'Replicas input invalid.',
-  'Please input total replicas num': 'Please input total replicas num.',
+  ENTER_POSITIVE_INTEGER_DESC: 'Please enter a positive integer.',
+  TOTAL_REPLICAS_EMPTY_DESC:
+    'Please enter the total number of Pod replicas in all clusters.',
   'Storage Function Manage': 'Storage volume function management',
   'Volume Clone': 'Storage volume clone',
   Volume_Clone_Des: 'Create an identical storage volume.',

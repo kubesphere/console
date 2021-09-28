@@ -40,7 +40,7 @@ module.exports = {
   'Mount Status': 'Estado de montaje',
   // Volumes List Page
   MOUNT_STATUS: 'Montar',
-  MOUNTED_TCAP: 'Montado',
+  MOUNTED: 'Montado',
   'Mounted Pods': 'Pods montados',
   NOT_MOUNTED: 'No montado',
   Parameters: 'Parámetros',
@@ -87,13 +87,13 @@ module.exports = {
   VOLUMES: 'Volumes',
   VOLUME_PL: 'Recuento de volumen',
   NUMBER_OF_VOLUMES: 'Number of volumes',
-  VOLUME_LOW: 'volumes',
+  VOLUME_LOW: 'volume',
   'The volume name exists': 'nombre de volumen existe',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
   VOLUME_NAME_EXIST: 'nombre de volumen existe',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
-  'Volume Template Settings': 'Volume Template Settings',
+  VOLUME_TEMPLATE_SETTINGS: 'Volume Template Settings',
   'Volume Usage': 'Uso de volumen',
   VOLUME_DESC:
     'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',

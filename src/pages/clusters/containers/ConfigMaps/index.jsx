@@ -66,7 +66,7 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'editConfigMap',
         icon: 'pen',
-        text: t('MODIFY_CONFIG'),
+        text: t('EDIT_CONFIGMAP'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -127,7 +127,7 @@ export default class ConfigMaps extends React.Component {
         ),
       },
       {
-        title: t('CONFIG_FIELD'),
+        title: t('FIELDS'),
         dataIndex: 'data',
         isHideable: true,
         width: '33%',

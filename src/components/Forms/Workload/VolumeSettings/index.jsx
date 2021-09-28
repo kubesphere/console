@@ -500,7 +500,7 @@ class VolumeSettings extends React.Component {
   renderToolTipContent() {
     return (
       <div>
-        <p>{t('COLLECT_FILE_LOG_TIP')}</p>
+        <p>{t('COLLECT_LOGS_ON_VOLUMES_DESC')}</p>
       </div>
     )
   }

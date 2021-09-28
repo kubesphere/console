@@ -91,7 +91,7 @@ export default {
         store,
         modal: DeleteModal,
         resource: detail.name,
-        type: t('Multi-cluster Project'),
+        type: 'MULTI_CLUSTER_PROJECT',
         isLoading: projectStore.isLoading,
         ...props,
       })

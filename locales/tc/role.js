@@ -30,9 +30,8 @@ module.exports = {
   'Edit Role': '編輯角色',
   'Project Details': '項目詳情',
   'Cluster Role': '集群角色',
-  'Authorization List': '權限列表',
-  PERMISSIONS: 'Permissions',
-  'Authorized Users': '授權用戶',
+  PERMISSION_PL: '權限列表',
+  AUTHORIZED_USER_PL: '授權用戶',
   'Authorization Settings': '權限設置',
   Cluster: '集群',
   Member: '成員',
@@ -56,7 +55,7 @@ module.exports = {
   'Role name exists': '角色名稱已存在',
   MODULES: '功能模組',
   'Authorized Actions': '可執行操作',
-  'No Authorization': '暫無權限規則',
+  NO_PERMISSION: '暫無權限規則',
   NO_AVAILABLE_ROLE: '目前項目無可用角色',
   JOIN_PROJECT_PLACEHOLDER: '輸入用戶名稱或者郵箱邀請用戶加入到項目中',
   ROLE_DELETE_TIP: '目前角色已有用戶綁定，請解綁後重試',
@@ -225,12 +224,12 @@ module.exports = {
   CLUSTER_MEMBERS_VIEW_DESC: '查看集群成員',
   CLUSTER_MEMBERS_MANAGEMENT_DESC: '邀請/編輯/移除集群成員',
 
-  PIPELINE_MANAGEMENT: '流水線管理',
-  'Pipelines View': '流水線查看',
+  PIPELINES_MANAGEMENT: '流水線管理',
+  PIPELINES_VIEW: '流水線查看',
   PIPELINES_MANAGEMENT_DESC:
     '授予管理 DevOps 工程流水線的權限，包含 創建/編輯/刪除 等操作.',
   PIPELINES_VIEW_DESC: '授予查看 DevOps 工程流水線的權限，下載成品等.',
-  'Credentials View': '憑證查看',
+  CREDENTIALS_VIEW: '憑證查看',
   CREDENTIALS_MANAGEMENT_DESC:
     '管理 DevOps 工程憑證，包含 創建/編輯/刪除 等操作.',
   CREDENTIALS_VIEW_DESC: '查看與使用憑證',
@@ -250,7 +249,7 @@ module.exports = {
   'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
     '預設用戶角色，僅允許對自己創建或受邀加入的項目中的資源進行管理，無權操作集群範圍内其他資源。',
 
-  NO_AUTHORIZED_USERS: '目前沒有用戶被授權此角色',
+  NO_AUTHORIZED_USER_DESC: '目前沒有用戶被授權此角色',
 
   'Unable to delete preset role': '無法刪除預設角色',
 

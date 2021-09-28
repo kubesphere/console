@@ -147,7 +147,7 @@ export default class Nodes extends React.Component {
         {
           key: 'taint',
           type: 'default',
-          text: t('MANAGE_TAINT'),
+          text: t('EDIT_TAINT'),
           action: 'edit',
           onClick: () =>
             trigger('node.taint.batch', {

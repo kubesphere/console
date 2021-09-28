@@ -103,7 +103,7 @@ export default class LogCollectionDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -127,7 +127,7 @@ export default class LogCollectionDetail extends React.Component {
     const collection = this.store.detail
     const collectionType = get(collection, 'type', '')
     const Icon = get(collectionConfig, `${collectionType}.ICON`)
-    const name = get(collectionConfig, `${collectionType}.title`, t('Loading'))
+    const name = get(collectionConfig, `${collectionType}.title`, t('LOADING'))
     const icon = Icon ? (
       <Icon className={styles.icon} width={32} height={32} />
     ) : (

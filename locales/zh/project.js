@@ -41,8 +41,8 @@ module.exports = {
   'Project Overview': '项目预览',
   'Members Management': '成员管理',
   PROJECT_ADMINISTRATOR: '项目管理员',
-  'Manage Project': '项目管理',
-  RESOURCE_QUOTAS: '资源配额',
+  MANAGE_PROJECT: '管理项目',
+  RESOURCE_QUOTA_PL: '资源配额',
   PROJECT_NAME: '项目名称',
   PROJECT_MEMBER_PL: '项目成员',
   PROJECT_RESOURCE_QUOTAS: '项目资源配额',
@@ -54,7 +54,7 @@ module.exports = {
   'Remove Members': '移除成员',
   REMOVE_MEMBER: '移除成员',
   'Invite Member': '邀请成员',
-  'Gateway Info': '网关信息',
+  GATEWAY: '网关',
   SET_GATEWAY: '设置网关',
 
   GATEWAY_NOT_SET: '网关未设置',
@@ -64,15 +64,17 @@ module.exports = {
   EDIT_PROJECT_QUOTAS: '编辑项目配额',
   'Quota Management': '配额管理',
   WORKSPACE_QUOTA_PL: '企业空间配额',
+  PROJECT_QUOTA_PL: '项目配额',
 
   PROJECT_QUOTAS_NOT_SET: '未设置项目配额',
-  DEFAULT_CONTAINER_QUOTAS_NOT_SET: '容器资源默认请求未设置',
+  DEFAULT_CONTAINER_QUOTAS_NOT_SET: '默认容器配额未设置',
 
   'Project Placement': '项目位置',
 
   'Multi-cluster Project': '多集群项目',
   MULTI_CLUSTER_PROJECT: '多集群项目',
   MULTI_CLUSTER_PROJECT_LOW: '多集群项目',
+  MULTI_CLUSTER_PROJECT_SCAP: '多集群项目',
   MULTI_CLUSTER_PROJECT_PL: '多集群项目',
   'Multi-cluster Projects': '多集群项目',
 
@@ -104,17 +106,19 @@ module.exports = {
   cronjobs: '定时任务',
   pods: '容器组',
 
-  'requests.cpu': 'CPU 需求',
-  'limits.cpu': 'CPU 限额',
-  'requests.memory': '内存需求',
-  'limits.memory': '内存限额',
+  REQUESTS_CPU: 'CPU 预留',
+  LIMITS_CPU: 'CPU 限制',
+  REQUESTS_MEMORY: '内存预留',
+  LIMITS_MEMORY: '内存限制',
 
-  DEFAULT_CONTAINER_QUOTAS: '默认容器配额',
+  DEFAULT_CONTAINER_QUOTA_PL: '默认容器配额',
+  EDIT_DEFAULT_CONTAINER_QUOTA: '编辑默认容器配额',
   EDIT_DEFAULT_CONTAINER_QUOTAS: '编辑默认容器配额',
   'Edit Resource Default Request': '编辑资源默认请求',
-  EDIT_PROJECT_RESOURCE_QUOTAS: '编辑项目资源配额',
+  EDIT_PROJECT_QUOTA: '编辑项目配额',
 
   RESOURCE_TYPE: '资源类型',
+  RESOURCE_TYPE_SCAP: '资源类型',
 
   'Help Information': '帮助信息',
 
@@ -134,10 +138,10 @@ module.exports = {
 
   DISK_LOG_COLLECTION: '落盘日志收集',
   COLLECT_LOGS_ON_VOLUMES: '收集存储卷上的日志',
+  LOG_COLLECTION_ENABLED_DESC:
+    '启用或停用此功能后，您需要重启容器组副本才能使修改生效。',
 
   DISABLE_LOG_COLLECTION: '停用日志收集',
-  'Disk Log Collection of the project is about to be disabled.':
-    '项目的落盘日志收集即将关闭.',
 
   SELECT_CLUSTER_DESC: '选择要创建项目的集群。',
   CLUSTER_EMPTY_DESC: '请选择一个集群。',
@@ -148,8 +152,8 @@ module.exports = {
 
   FEDPROJECT_CANNOT_ADD_CLUSTER: '没有可添加的集群。',
 
-  CLOSE_FILE_LOG_TIP:
-    '您确定停用日志收集吗？停用后，已启用日志收集的服务在容器组副本在重启前将继续收集存储卷上的日志。如需再次收集存储卷上的日志，请启用日志收集并重启容器组副本。',
+  DISABLE_LOG_COLLECTION_TIP:
+    '您确定停用日志收集吗？您需要重启容器组副本才能使修改生效。',
 
   Usage: '使用情况',
   USAGE: '用量',
@@ -194,10 +198,10 @@ module.exports = {
     '最低保证可以使用的内存不应大于限制使用的内存',
 
   'Empty value means no limit, CPU 1 Core = 1000m':
-    '值为空表示无限制, CPU 1核 = 1000m',
+    '值为空表示不限制, CPU 1核 = 1000m',
 
   PROJECT_NAME_EXISTS_IN_HOST:
-    '项目名称在主集群中已经存在，请使用其他项目名称。',
+    '项目名称在主集群中已经存在，请输入其他项目名称。',
 
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
     '删除多集群项目同时也会删除依赖于 Host 集群上的同名项目,</br>请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
@@ -209,8 +213,7 @@ module.exports = {
   QUOTA_EDIT_TIP: '值为空时将不限制配额',
 
   PROJECT_BASIC_INFO_DESC:
-    '基本信息提供项目的信息概览，您可以查看项目的信息以及资源配额。',
-  PROJECT_QUOTA_MANAGE_DESC: '管理项目的配额',
+    '基本信息提供项目的信息概览，您可以查看项目的信息以及默认容器配额。',
   PROJECT_ADVANCED_SETTINGS_DESC:
     '高级设置用于配置项目的外网访问、应用治理以及日志收集功能。',
   PROJECT_MEMBERS_DESC: '对项目内的成员进行管理及角色分配',
@@ -222,13 +225,13 @@ module.exports = {
   HOW_TO_USE_QUOTA_A:
     '资源配额是用来限制资源用量的一种机制，您可以通过<b>编辑项目</b>来编辑项目资源配额和默认容器配额。',
   PROJECT_QUOTAS_DESC:
-    '项目配额用于指定项目中可用的 CPU 和内存资源数量和允许的容器组、部署和服务的最大数量。',
+    '项目配额用于指定项目中可用的 CPU 和内存资源数量和容器组、部署、服务等应用资源的最大数量。',
   DEFAULT_CONTAINER_QUOTAS_DESC:
     '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 限制、内存预留和内存限制。',
 
-  WHAT_IS_LIMIT_RANGE_Q: '什么是默认容器配额?',
-  WHAT_IS_LIMIT_RANGE_A:
-    '默认容器配额是用于限制项目中容器资源分配的一种策略，您可以设置容器的 CPU、内存和 GPU 配额。',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q: '什么是默认容器配额?',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A:
+    '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 限制、内存预留和内存限制。',
 
   WHAT_IS_INTERNET_GATEWAY: '什么是外网访问网关?',
   COLLECT_LOGS_ON_VOLUMES_A:
@@ -240,7 +243,7 @@ module.exports = {
 
   HOW_TO_INVITE_USERS: '如何邀请用户到当前项目中？',
   HOW_TO_SET_PROJECT_GATEWAY: '如何设置项目网关？',
-  RESOURCE_QUANTITY_LIMIT: '资源数量上限',
+  RESOURCE_QUANTITY_LIMIT: '资源数量限制',
 
   PROJECT_TYPES_Q: '项目中的服务如何通过外网访问？',
   PROJECT_TYPES_A:
@@ -251,13 +254,13 @@ module.exports = {
   NETWORK_ISOLATED_DESC: '设置网络隔离策略',
 
   PROJECT_NAME_EXISTS_IN_CLUSTER:
-    '项目名称在在 {cluster} 集群中已存在，请使用其他项目名称。',
+    '项目名称在在 {cluster} 集群中已存在，请输入其他项目名称。',
 
   MULTI_CLUSER_PROJECT_TIP:
-    '当前项目为多集群项目，项目将分布在不同集群中共同来构成多集群项目，您可以切换到不同集群查看项目在该集群中的设置。',
+    '当前项目跨多个集群部署。您可以点击一个集群以查看项目在该集群中的设置。',
 
-  MULTI_CLUSER_RESOURCE_TIP:
-    '当前资源为多集群资源，资源将分布在不同集群中共同来构成多集群资源，您可以切换到不同集群查看资源在该集群中的设置。',
+  MULTI_CLUSTER_RESOURCE_TIP:
+    '当前资源跨多个集群部署。您可以点击一个集群以查看资源在该集群中的设置。',
 
   FEDPROJECT_RESOURCE_TIP:
     '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作。',
@@ -295,7 +298,6 @@ module.exports = {
   NUMBER_OF_ROUTES: '应用路由数量',
   NUMBER_OF_SECRETS: '保密字典数量',
   NUMBER_OF_CONFIGMAPS: '配置字典数量',
-  GPU_LIMIT: 'GPU 限制',
 
   // Project Members
   PROJECT_MEMBER: '项目成员',

@@ -25,7 +25,8 @@ module.exports = {
   ASSIGN_WORKSPACE: 'Assign Workspace',
   SELECT_WORKSPACE_DESC: 'Select a workspace.',
   Closed: 'Closed',
-  DEFAULT_CONTAINER_QUOTAS: 'Default Container Quotas',
+  DEFAULT_CONTAINER_QUOTA_PL: 'Default Container Quotas',
+  EDIT_DEFAULT_CONTAINER_QUOTA: 'Edit Default Container Quota',
   EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
   CREATE_MULTI_CLUSTER_PROJECT: 'Create Multi-cluster Project',
   CREATE_PROJECT: 'Create Project',
@@ -45,17 +46,17 @@ module.exports = {
   'DevOps Projects': 'DevOps Projects',
   DISK_LOG_COLLECTION: 'Disk Log Collection',
   COLLECT_LOGS_ON_VOLUMES: 'Collect Logs on Volumes',
-  'Disk Log Collection of the project is about to be disabled.':
-    'Disk Log Collection of the project is about to be disabled.',
+  LOG_COLLECTION_ENABLED_DESC:
+    'After this function is enabled or disabled, you need to restart the Pod replicas to make the change take effect.',
   EDIT_PROJECT: 'Edit Project',
-  EDIT_PROJECT_RESOURCE_QUOTAS: 'Edit Project Resource Quotas',
+  EDIT_PROJECT_QUOTA: 'Edit Project Quota',
   'Empty value means no limit, CPU 1 Core = 1000m':
     'Empty value means no limit, CPU 1 Core = 1000m',
   'Enter DevOps Project': 'Enter DevOps Project',
   'Enter Project': 'Enter Project',
   FED_HOST_NAMESPACE_TIP:
     'Do not change resources in this project because it is related to a multi-cluster project.',
-  'Gateway Info': 'Gateway Info',
+  GATEWAY: 'Gateway',
   GATEWAY_NOT_SET: 'Gateway Not Set',
   'Help Information': 'Help Information',
   HOW_TO_INVITE_USERS: 'How do I invite users to the current project?',
@@ -65,10 +66,10 @@ module.exports = {
   INVITE_DEVOPS_MEMBER: 'Invite Members to the DevOps Project',
   'Invite Members to the Project': 'Invite Members to the Project',
   jobs: 'jobs',
-  'limits.cpu': 'limits.cpu',
-  'limits.memory': 'limits.memory',
+  LIMITS_CPU: 'CPU Limit',
+  LIMITS_MEMORY: 'Memory Limit',
   LoadBalancer: 'LoadBalancer',
-  'Manage Project': 'Manage Project',
+  MANAGE_PROJECT: 'Manage Project',
   'Member Name': 'Member Name',
   Members: 'Members',
   'Members Management': 'Members Management',
@@ -77,6 +78,7 @@ module.exports = {
   'Multi-cluster Project': 'Multi-cluster Project',
   MULTI_CLUSTER_PROJECT: 'Multi-cluster Project',
   MULTI_CLUSTER_PROJECT_LOW: 'multi-cluster project',
+  MULTI_CLUSTER_PROJECT_SCAP: 'Multi-cluster project',
   MULTI_CLUSTER_PROJECT_PL: 'Multi-cluster Projects',
   'Multi-cluster Projects': 'Multi-cluster Projects',
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
@@ -91,10 +93,10 @@ module.exports = {
   'Project Member': 'Project Member',
   PROJECT_MEMBER_PL: 'Project Members',
   'project members': 'project members',
-  PROJECT_NAME: 'Project Name',
+  PROJECT_NAME: 'Project name',
   'Project name exists': 'Project name exists',
   PROJECT_NAME_EXISTS_IN_HOST:
-    'The project name already exists in the host cluster. Please use another project name.',
+    'The project name already exists in the host cluster. Please enter another project name.',
   'Project Overview': 'Project Overview',
   'Project Placement': 'Project Placement',
   PROJECT_QUOTA: 'Project Quota',
@@ -111,13 +113,15 @@ module.exports = {
   'Quota Management': 'Quota Management',
   REMOVE_MEMBER: 'Remove Member',
   WORKSPACE_QUOTA_PL: 'Workspace Quotas',
+  PROJECT_QUOTA_PL: 'Project Quotas',
   'Remove Member': 'Remove Member',
   'Remove Members': 'Remove Members',
-  'requests.cpu': 'requests.cpu',
-  'requests.memory': 'requests.memory',
-  RESOURCE_QUOTAS: 'Resource Quotas',
+  REQUESTS_CPU: 'CPU Request',
+  REQUESTS_MEMORY: 'Memory Request',
+  RESOURCE_QUOTA_PL: 'Resource Quotas',
   PROJECT_RESOURCE_QUOTAS: 'Project Resource Quotas',
   RESOURCE_TYPE: 'Resource Type',
+  RESOURCE_TYPE_SCAP: 'Resource type',
   PROJECT_ADMINISTRATOR_DESC:
     'Select a user in the workspace as the project administrator.',
   'Select Project Type': 'Select Project Type',
@@ -134,7 +138,7 @@ module.exports = {
   'Number of volumes': 'Number of volumes',
   RESOURCE_QUANTITY_LIMIT: 'Resource quantity limit',
 
-  FEDPROJECT_CANNOT_ADD_CLUSTER: 'No cluster can be added.',
+  FEDPROJECT_CANNOT_ADD_CLUSTER: 'No cluster is available.',
 
   PROJECTS_DESC:
     'A project is a Kubernetes namespace in KubeSphere, which provides a mechanism to organize resources in a workspace.',
@@ -194,11 +198,11 @@ module.exports = {
   HOW_TO_USE_QUOTA_A:
     'Resource quotas are a mechanism used to limit the resource usage. You can edit project resource quotas and default container quotas by clicking <b>Edit Project</b>.',
   PROJECT_QUOTAS_DESC:
-    'Project quotas specify the number of available CPU and memory resources and the maximum number of Pods, Deployments, and Services allowed in the project.',
+    'Project quotas specify the number of available CPU and memory resources and the maximum number of application resources such as Pods, Deployments, and Services allowed in the project.',
 
-  WHAT_IS_LIMIT_RANGE_Q: 'What are default container quotas?',
-  WHAT_IS_LIMIT_RANGE_A:
-    'Default container quotas are a policy used to constrain resource allocations to containers in a project. You can set CPU, memory, and GPU quotas for the container.',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q: 'What are default container quotas?',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A:
+    'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
   DEFAULT_CONTAINER_QUOTAS_DESC:
     'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
   WHAT_IS_INTERNET_GATEWAY: 'What is a network access gateway?',
@@ -209,19 +213,18 @@ module.exports = {
   HOW_TO_INVITE_MEMBER_A:
     'The project administrator or users who have permission to invite project members can invite workspace members to the project.',
 
-  CLOSE_FILE_LOG_TIP:
-    'Are you sure you want to disable log collection? After it is disabled, services that have enabled log collection will continue to collect logs saved in the volumes before the Pod replicas are restarted. If you need to collect the logs again, please enable log collection and restart the Pod replicas.',
+  DISABLE_LOG_COLLECTION_TIP:
+    'Are you sure you want to disable log collection? You need to restart the Pod replicas to make the change take effect.',
   COLLECTING_FILE_LOG_DESC:
     'Disk logs in the container will be collected and exported to stdout, which will then be collected by the system log collector together.',
 
   PROJECT_BASIC_INFO_DESC:
-    'Basic information provides an overview of the project. You can view the project information and resource quotas.',
-  PROJECT_QUOTA_MANAGE_DESC: 'This module allows you to manage project quotas.',
+    'Basic information provides an overview of the project. You can view the project information and default container quotas.',
   PROJECT_ROLE_DESC:
     'Project roles define the permissions users have in the current project.',
   PROJECT_MEMBERS_DESC: 'Manage and assign roles for project members.',
   PROJECT_ADVANCED_SETTINGS_DESC:
-    'Advanced settings are used to configure network access, application governance, and log collection in the project.',
+    'Advanced settings are used to configure external access, application governance, and log collection in the project.',
 
   PROJECT_TYPES_Q:
     'How can the services in the project be accessed through the external network?',
@@ -229,7 +232,7 @@ module.exports = {
     'The project gateway is responsible for creating the corresponding application routing controller to forward the request to the corresponding backend Service. After the project gateway is opened, the service can be exposed to the external network through Ingress.',
 
   PROJECT_NAME_EXISTS_IN_CLUSTER:
-    'The project name already exists in the {cluster} cluster. Please use another project name.',
+    'The project name already exists in the {cluster} cluster. Please enter another project name.',
 
   PROJECT_CLUSTER_SETTINGS_DESC:
     'Select at least one cluster for the project. If you select multiple clusters, a project with the same name will be created in the host cluster.',
@@ -240,10 +243,10 @@ module.exports = {
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP:
     'The app cannot be deployed in a multi-cluster project.',
   MULTI_CLUSER_PROJECT_TIP:
-    'The current multi-cluster project runs on different clusters. You can switch between clusters to check the setting of this project in each of them.',
+    'The current project is deployed across multiple clusters. You can click a cluster to view the project settings in the cluster.',
 
-  MULTI_CLUSER_RESOURCE_TIP:
-    'The current multi-cluster resource runs on different clusters. You can switch between clusters to check the setting of this resource in each of them.',
+  MULTI_CLUSTER_RESOURCE_TIP:
+    'The current resource is deployed across multiple clusters. You can click a cluster to view the resource settings in the cluster.',
 
   CREATE_MULTI_CLUSTER_PROJECT_DESC:
     'A multi-cluster project runs across different clusters, which helps you to build a container environment for rapid iteration of applications and achieve high availability.',
@@ -271,10 +274,9 @@ module.exports = {
   WS_RESOURCE_REQUESTS: 'Resource requests:',
   WS_RESOURCE_LIMITS: 'Resource limits:',
   SELECT_RESOURCE_TIP: 'Select a resource or enter a resource name',
-  NUMBER_OF_ROUTES: 'Number of routes',
+  NUMBER_OF_ROUTES: 'Number of Routes',
   NUMBER_OF_SECRETS: 'Number of Secrets',
   NUMBER_OF_CONFIGMAPS: 'Number of ConfigMaps',
-  GPU_LIMIT: 'GPU Limit',
   USAGE: 'Usage',
 
   // Project Members

@@ -79,7 +79,7 @@ export default class Metadata extends React.Component {
     return (
       <>
         <Form.Item
-          label={t('LABELS')}
+          label={t('LABEL_PL')}
           rules={[
             { required: true, message: t('EMPTY_LABEL_DESC') },
             { validator: this.labelsValidator },

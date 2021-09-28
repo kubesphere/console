@@ -118,8 +118,7 @@ module.exports = {
   FLUENTD_DESC: 'Fluentd 是提供統一紀錄處理層的開源數據收集器',
   LOG_COLLECTION_ENABLE_TIPS: '新的狀態需 1 分鐘左右生效',
   'Passwords must be at least 6 characters long': '密碼至少 6 個字元',
-  CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS:
-    '容器在目前狀態下不支持實時紀錄，請稍後再試',
+  CONTAINER_LOGS_NOT_SUPPORTED: '容器在目前狀態下不支持實時紀錄，請稍後再試',
   TOTAL_LOGS_TODAY:
     '今日總共收錄了 <span class={className}>{containers}</span> 個容器<br/> <span class={className}> {logs} </span> 條紀錄資訊',
   START_REAL_TIME_LOG: '開始實時紀錄',
@@ -164,6 +163,6 @@ module.exports = {
   EXAMPLE: 'Example: ',
   PORT_NUMBER_EMPTY: 'Please enter a port number.',
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
-  EVENTS: 'Events',
+  EVENT_PL: 'Events',
   CREATION_TIME: 'Creation time',
 }

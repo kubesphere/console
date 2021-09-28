@@ -138,7 +138,6 @@ module.exports = {
   'Creation failed, please delete and try again': '創建失敗，請刪除後重試',
 
   ADD_ROUTING_RULE: '添加路由規則',
-  EDIT_ROUTING_RULE: 'Edit Routing Rule',
 
   VIRTUAL_IP_TITLE: 'Virtual IP Address',
   VIRTUAL_IP_DESC:
@@ -193,8 +192,7 @@ module.exports = {
   SERVICE_TYPE_STATELESSSERVICE: '無狀態服務',
   SERVICE_TYPE_EXTERNALSERVICE: '映射外部服務',
 
-  SERVICE_PORTS_DESC:
-    'Set the ports used to access the container and the service ports.',
+  SERVICE_PORTS_DESC: 'Set the container ports and Service ports.',
 
   EIP_POOL_DESC: '集群内部訪問方式(DNS)',
 
@@ -203,7 +201,6 @@ module.exports = {
 
   // Services
   WORKLOAD_SELECTOR: 'Workload Selector',
-  NONE: 'None',
   UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
   HEADLESS: 'Headless',
   EXTERNALNAME: 'ExternalName',
@@ -212,5 +209,5 @@ module.exports = {
     'Enter the domain name of an external Service.',
   UNKNOWN: 'Unknown',
   EXTERNALNAME_EXAMPLE: 'Example: ',
-  PORTS: 'Ports',
+  PORT_PL: 'Ports',
 }

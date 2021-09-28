@@ -66,7 +66,7 @@ export default class ProjectInfo extends React.Component {
             <div>
               {getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`)}
             </div>
-            <p>{t('CREATED_AT')}</p>
+            <p>{t('CREATION_TIME')}</p>
           </div>
           {!isEmpty(actions) && (
             <div className={classNames(styles.item, 'text-right')}>
@@ -76,7 +76,7 @@ export default class ProjectInfo extends React.Component {
                 trigger="click"
                 placement="bottomRight"
               >
-                <Button>{t('Manage Project')}</Button>
+                <Button>{t('MANAGE_PROJECT')}</Button>
               </Dropdown>
             </div>
           )}

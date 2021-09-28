@@ -17,15 +17,15 @@
  */
 
 module.exports = {
-  'Running Status': '運行狀態',
+  RUNNING_STATUS: '運行狀態',
   'All Components': '全部服務組件',
   components: '服務組件',
   Components: '服務組件',
   'Installed Components': '已安裝組件',
   'Not Installed Components': '未安裝組件',
-  'Instance Count': '實例數量',
+  INSTANCE_COUNT: '實例數量',
 
-  'Service Details': '服務詳情',
+  SERVICE_DETAILS: '服務詳情',
 
   SERVICE_COMPONENTS_DESC:
     '服務組件提供 KubeSphere、Kubernetes 和 OpenPitrix 集群内各項服務組件的健康狀態監控，可以查看目前集群的健康狀態和運行時間，能夠幫助用戶監測集群的狀況和即時定位問題。',

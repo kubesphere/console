@@ -17,15 +17,15 @@
  */
 
 module.exports = {
-  'Federated Schedule': '联邦部署',
-  'Fixed Replicas': '固定副本部署',
-  Federated_Schedule_Text:
-    '设定的总副本数将按照设定的权重分配到选择的集群中，非可用集群的副本会自动迁移到可用集群上。',
-  Fixed_Deploy_text: '明确指定各集群所需部署的副本数。',
-  Weight: '权重',
-  TOTAL_REPLICAS: '总副本数',
-  'Please input total replicas num': '请输入副本总数',
-  'replicas input invalid': '请输入正确的副本数',
+  SPECIFY_REPLICAS: '指定副本数',
+  SPECIFY_WEIGHTS: '指定权重',
+  SPECIFY_WEIGHTS_DESC:
+    '设置容器组副本总数和每个集群的权重。容器组副本将根据权重调度到每个集群。',
+  SPECIFY_REPLICAS_DESC: '手动设置每个集群的容器组副本数。',
+  WEIGHT: '权重',
+  TOTAL_REPLICAS: '副本总数',
+  TOTAL_REPLICAS_EMPTY_DESC: '请输入所有集群容器组副本的总数。',
+  ENTER_POSITIVE_INTEGER_DESC: '请输入一个正整数。',
   'Storage Function Manage': '存储卷功能管理',
   'Volume Clone': '存储卷克隆',
   Volume_Clone_Des: '创建一个相同的存储卷。',

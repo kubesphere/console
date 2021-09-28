@@ -164,7 +164,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'deployments',
         icon: ICON_TYPES['deployments'],
-        name: 'Deployments',
+        name: 'DEPLOYMENT',
         routeName: 'deployments',
         num: used['count/deployments.apps'],
         warnNum: status.deployments,
@@ -173,7 +173,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'statefulsets',
         icon: ICON_TYPES['statefulsets'],
-        name: 'StatefulSets',
+        name: 'STATEFULSET',
         routeName: 'statefulsets',
         num: used['count/statefulsets.apps'],
         warnNum: status.statefulsets,
@@ -182,7 +182,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'volumes',
         icon: ICON_TYPES['volumes'],
-        name: 'Volumes',
+        name: 'VOLUME',
         routeName: 'volumes',
         num:
           used.persistentvolumeclaims || used['count/persistentvolumeclaims'],
@@ -192,7 +192,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'services',
         icon: ICON_TYPES['services'],
-        name: 'Services',
+        name: 'SERVICE',
         routeName: 'services',
         num: used['count/services'],
         metric: 'namespace_service_count',
@@ -200,7 +200,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'ingresses',
         icon: ICON_TYPES['ingresses'],
-        name: 'Routes',
+        name: 'ROUTE',
         routeName: 'ingresses',
         num: used['count/ingresses.extensions'],
         metric: 'namespace_ingresses_extensions_count',
@@ -262,14 +262,14 @@ class ResourceUsage extends React.Component {
       <div>
         <PhysicalResourceItem
           type="cpu"
-          title={`${t('CPU Usage')} (${range.label})`}
+          title={t('CPU_USAGE_TIME', { time: range.label })}
           metrics={get(metrics, `namespace_cpu_usage.data.result`)}
           isLoading={isMetricsLoading || isRefreshing}
           showDay={range.value >= 172800}
         />
         <PhysicalResourceItem
           type="memory"
-          title={`${t('Memory Usage')} (${range.label})`}
+          title={t('MEMORY_USAGE_TIME', { time: range.label })}
           metrics={get(metrics, `namespace_memory_usage_wo_cache.data.result`)}
           isLoading={isMetricsLoading || isRefreshing}
           showDay={range.value >= 172800}
@@ -289,9 +289,11 @@ class ResourceUsage extends React.Component {
           size="small"
         >
           <RadioButton value="application">
-            {t('Application Resources')}
+            {t('APPLICATION_RESOURCE_PL')}
           </RadioButton>
-          <RadioButton value="physical">{t('Physical Resources')}</RadioButton>
+          <RadioButton value="physical">
+            {t('PHYSICAL_RESOURCE_PL')}
+          </RadioButton>
         </RadioGroup>
 
         <Select
@@ -314,7 +316,7 @@ class ResourceUsage extends React.Component {
   render() {
     const { resourceType } = this.state
     return (
-      <Panel className={styles.wrapper} title={t('Resource Status')}>
+      <Panel className={styles.wrapper} title={t('RESOURCE_STATUS')}>
         {this.renderHeader()}
         {resourceType === 'application'
           ? this.renderApplicationResource()

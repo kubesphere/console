@@ -190,8 +190,7 @@ module.exports = {
 
   SPECIFY_WORKLOAD_DESC:
     'Create a Service by using one or more existing workloads.',
-  SERVICE_PORTS_DESC:
-    'Set the ports used to access the container and the service ports.',
+  SERVICE_PORTS_DESC: 'Set the container ports and Service ports.',
   SELECT_WORKLOAD_DESC: 'Use labels of a workload as the selector.',
 
   SPECIFY_NODE_DESC:
@@ -204,7 +203,6 @@ module.exports = {
 
   // Services
   WORKLOAD_SELECTOR: 'Workload Selector',
-  NONE: 'None',
   UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
   HEADLESS: 'Headless',
   EXTERNALNAME: 'ExternalName',
@@ -213,5 +211,5 @@ module.exports = {
     'Enter the domain name of an external Service.',
   UNKNOWN: 'Unknown',
   EXTERNALNAME_EXAMPLE: 'Example: ',
-  PORTS: 'Ports',
+  PORT_PL: 'Ports',
 }

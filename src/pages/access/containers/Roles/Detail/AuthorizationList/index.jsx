@@ -41,8 +41,8 @@ export default class AuthorizationList extends React.Component {
 
     return (
       <Card
-        title={t('Authorization List')}
-        empty={t('No Authorization')}
+        title={t('PERMISSION_PL')}
+        empty={t('NO_PERMISSION')}
         loading={isLoading}
         isEmpty={Object.keys(templates).length <= 0}
       >

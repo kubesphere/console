@@ -58,7 +58,7 @@ class Nav extends Component {
           <div className={styles.dashboardValue}>
             <Health score={detail.weatherScore} />
           </div>
-          <div className={styles.dashboardLable}>{t('HEALTH')}</div>
+          <div className={styles.dashboardLable}>{t('HEALTH_STATUS')}</div>
         </Column>
         <Column className={styles.baseInfo__item}>
           <div className={styles.dashboardValue}>

@@ -263,7 +263,7 @@ export default class PodsCard extends React.Component {
     const content = (
       <div className={styles.body}>
         {isEmpty(data) ? (
-          <div className={styles.empty}>{t('RESOURCE_NOT_FOUND')}</div>
+          <div className={styles.empty}>{t('NO_RESOURCE_FOUND')}</div>
         ) : (
           data.map(pod => (
             <PodItem
@@ -312,7 +312,7 @@ export default class PodsCard extends React.Component {
       <Panel
         className={classnames(styles.main, className)}
         title={t(title)}
-        empty={t('NOT_AVAILABLE', { resource: t('Pod') })}
+        empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('Pod') })}
         isEmpty={isEmpty(data)}
       >
         {!hideHeader && this.renderHeader()}

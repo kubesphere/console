@@ -72,7 +72,7 @@ export default class JobDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -112,7 +112,7 @@ export default class JobDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -154,15 +154,15 @@ export default class JobDetail extends React.Component {
         value: spec.schedule,
       },
       {
-        name: t('STARTING_DEADLINE'),
+        name: t('MAXIMUM_DELAY'),
         value: spec.startingDeadlineSeconds,
       },
       {
-        name: t('SUCCESSFUL_JOBS_HISTORY_LIMIT'),
+        name: t('SUCCESSFUL_JOBS_RETAINED'),
         value: spec.successfulJobsHistoryLimit,
       },
       {
-        name: t('FAILED_JOBS_HISTORY_LIMIT'),
+        name: t('FAILED_JOBS_RETAINED'),
         value: spec.failedJobsHistoryLimit,
       },
       {

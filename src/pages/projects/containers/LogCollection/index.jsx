@@ -70,7 +70,7 @@ class LogCollection extends React.Component {
       <div>
         <Banner
           icon="log"
-          title={t('DISK_LOG_COLLECTION_TITLE')}
+          title={t('LOG_COLLECTION')}
           description={t('DISK_LOG_COLLECTION_DESC')}
           tips={this.tips}
         />

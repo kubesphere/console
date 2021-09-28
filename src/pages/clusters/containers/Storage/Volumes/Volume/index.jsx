@@ -110,7 +110,7 @@ export default class Volumes extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -207,7 +207,7 @@ export default class Volumes extends React.Component {
         dataIndex: 'inUse',
         isHideable: true,
         width: '7.74%',
-        render: inUse => (inUse ? t('MOUNTED_TCAP') : t('NOT_MOUNTED')),
+        render: inUse => (inUse ? t('MOUNTED') : t('NOT_MOUNTED')),
       },
       {
         title: t('CREATED_AT'),

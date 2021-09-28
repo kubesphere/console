@@ -33,7 +33,7 @@ export default class ContainerLogModal extends React.Component {
     if (!get(this.props, 'container.containerID')) {
       return (
         <Card>
-          <Empty desc={'CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS'} />
+          <Empty desc={'CONTAINER_LOGS_NOT_SUPPORTED'} />
         </Card>
       )
     }
@@ -56,7 +56,7 @@ export default class ContainerLogModal extends React.Component {
     return (
       <Modal
         bodyClassName={styles.body}
-        title={t('Container Logs')}
+        title={t('CONTAINER_LOGS')}
         visible={visible}
         onCancel={onCancel}
         fullScreen

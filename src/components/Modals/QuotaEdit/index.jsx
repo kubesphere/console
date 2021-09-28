@@ -273,7 +273,7 @@ export default class QuotaEditModal extends React.Component {
     return (
       <Modal.Form
         width={960}
-        title={t('EDIT_PROJECT_RESOURCE_QUOTAS')}
+        title={t('EDIT_PROJECT_QUOTAS')}
         icon="pen"
         data={this.state.formTemplate}
         onOk={onOk}

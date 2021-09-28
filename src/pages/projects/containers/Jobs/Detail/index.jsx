@@ -78,7 +78,7 @@ export default class JobDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -109,7 +109,7 @@ export default class JobDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -143,19 +143,19 @@ export default class JobDetail extends React.Component {
         value: t(status),
       },
       {
-        name: t('BACK_OFF_LIMIT'),
+        name: t('MAXIMUM_RETRIES'),
         value: spec.backoffLimit,
       },
       {
-        name: t('JOB_COMPLETION_LABEL'),
+        name: t('COMPLETE_PODS'),
         value: spec.completions,
       },
       {
-        name: t('JOB_PARALLELISM_LABEL'),
+        name: t('PARALLEL_PODS'),
         value: spec.parallelism,
       },
       {
-        name: t('JOB_ACTIVE_DEADLINE'),
+        name: t('MAXIMUM_DURATION'),
         value: spec.activeDeadlineSeconds,
       },
       {

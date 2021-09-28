@@ -60,7 +60,7 @@ export default class Events extends React.Component {
       render: status => <Status type={status} name={t(status)} />,
     },
     {
-      title: t('Message'),
+      title: t('MESSAGE'),
       dataIndex: 'result',
       render: result => result || '-',
     },

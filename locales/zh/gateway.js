@@ -38,9 +38,8 @@ module.exports = {
   'Use default annotations': '使用默认注解',
   GATEWAY_IP: '访问地址',
   UPDATE_GATEWAY_DESC: '当前网关可升级',
-  DISK_LOG_COLLECTION_TITLE: '落盘日志',
   DISK_LOG_COLLECTION_DESC:
-    '容器内的落盘日志进行收集，并转发到标准输出，然后由日志收集系统统一采集。',
+    '日志收集功能允许系统收集保存在存储卷上的容器日志，并将日志发送到标准输出。',
   UPDATED_GATEWAY_DESC: '请在业务低峰期操作，升级过程可能会造成业务短暂中断。',
   UPDATED_GATEWAY_TITLE: '升级网关确认?',
   CLUSTER_GATEWAY_GUIDE_DESC:

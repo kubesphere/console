@@ -99,7 +99,7 @@ export default class ReplicasInput extends Component {
         <NotifyConfirm
           visible={showConfirm}
           width={400}
-          title={t('REPLICAS_SCALE_NOTIFY_TITLE')}
+          title={t('ADJUST_REPLICAS')}
           content={t.html('REPLICAS_SCALE_NOTIFY_CONTENT', {
             num: Number(desire),
           })}

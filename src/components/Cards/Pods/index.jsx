@@ -329,7 +329,7 @@ export default class PodsCard extends React.Component {
         <InputSearch
           className={styles.search}
           name="search"
-          placeholder={t('Filter by keyword')}
+          placeholder={t('SEARCH_BY_NAME')}
           onSearch={this.handleSearch}
         />
         <div className={styles.actions}>
@@ -347,7 +347,7 @@ export default class PodsCard extends React.Component {
     const content = (
       <div className={styles.body}>
         {isEmpty(data) ? (
-          <div className={styles.empty}>{t('RESOURCE_NOT_FOUND')}</div>
+          <div className={styles.empty}>{t('NO_RESOURCE_FOUND')}</div>
         ) : (
           data.map(pod => (
             <PodItem
@@ -396,7 +396,7 @@ export default class PodsCard extends React.Component {
       <Panel
         className={classnames(styles.main, className)}
         title={t(title)}
-        empty={t('NOT_AVAILABLE', { resource: t('Pod') })}
+        empty={t('EMPTY_WRAPPER', { resource: t('POD') })}
         isEmpty={isEmpty(data)}
       >
         {!hideHeader && this.renderHeader()}

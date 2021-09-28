@@ -432,10 +432,17 @@ const EventsMapper = item => {
 
   const age =
     item.count > 1
-      ? `${moment(item.lastTimestamp).to(now, true)} (x${
-          item.count
-        } over ${moment(item.firstTimestamp).to(now, true)})`
-      : moment(item.firstTimestamp).to(now, true)
+      ? item.count === 2
+        ? t.html('EVENT_AGE_DATA_TWICE', {
+            lastTime: moment(item.lastTimestamp).fromNow(),
+            duration: moment(item.firstTimestamp).to(now, true),
+          })
+        : t.html('EVENT_AGE_DATA', {
+            lastTime: moment(item.lastTimestamp).fromNow(),
+            count: item.count,
+            duration: moment(item.firstTimestamp).to(now, true),
+          })
+      : moment(item.firstTimestamp).fromNow()
 
   return {
     ...getBaseInfo(item),

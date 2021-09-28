@@ -152,7 +152,7 @@ export default class EditAuthorizationModal extends React.Component {
 
     return (
       <div className={styles.content}>
-        <div className={styles.title}>{t('PERMISSIONS')}</div>
+        <div className={styles.title}>{t('PERMISSION_PL')}</div>
         <div className={styles.contentWrapper}>
           {templates.map(item => (
             <CheckItem

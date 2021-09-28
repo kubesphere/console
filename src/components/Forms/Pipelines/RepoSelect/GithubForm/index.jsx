@@ -274,7 +274,7 @@ export default class GitHubForm extends React.Component {
           className={styles.empty}
           icon="exclamation"
           title={t('NO_DATA')}
-          desc={t('RESOURCE_NOT_FOUND')}
+          desc={t('NO_RESOURCE_FOUND')}
         />
       )
     }

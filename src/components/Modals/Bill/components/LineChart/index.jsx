@@ -134,7 +134,7 @@ export default class LineChart extends React.Component {
               className="no-shadow"
               icon="exclamation"
               title={t('No Data')}
-              desc={t('RESOURCE_NOT_FOUND')}
+              desc={t('NO_RESOURCE_FOUND')}
             />
           ) : isEmpty(this.priceConfig) ? (
             this.renderNoPriceChart()

@@ -39,7 +39,7 @@ export default path => [
   },
   {
     path: `${path}/metadata`,
-    title: 'Metadata',
+    title: 'METADATA',
     component: Metadata,
     exact: true,
   },
@@ -51,7 +51,7 @@ export default path => [
   },
   {
     path: `${path}/env`,
-    title: 'Environment Variables',
+    title: 'ENVIRONMENT_VARIABLE_PL',
     component: EnvVariables,
     exact: true,
   },

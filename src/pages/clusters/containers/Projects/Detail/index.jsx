@@ -55,7 +55,7 @@ export default class ProjectDetail extends React.Component {
   }
 
   get name() {
-    return 'Project'
+    return 'PROJECT'
   }
 
   get listUrl() {
@@ -80,14 +80,14 @@ export default class ProjectDetail extends React.Component {
   }
 
   getOperations = () => {
-    const type = t(this.name)
+    const type = this.name
     const detail = toJS(this.store.detail)
     const limitRanges = this.limitRangeStore.list.data
     return [
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_INFO'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         type: 'control',
         onClick: () =>
@@ -100,7 +100,7 @@ export default class ProjectDetail extends React.Component {
       {
         key: 'editQuota',
         icon: 'pen',
-        text: t('EDIT_QUOTA'),
+        text: t('EDIT_PROJECT_QUOTA'),
         action: 'edit',
         onClick: () =>
           this.trigger('project.quota.edit', {
@@ -113,7 +113,7 @@ export default class ProjectDetail extends React.Component {
         key: 'edit-default-resource',
         icon: 'pen',
         action: 'edit',
-        text: t('EDIT_PROJECT_RESOURCE_QUOTAS'),
+        text: t('EDIT_DEFAULT_CONTAINER_QUOTA'),
         onClick: () =>
           this.trigger('project.default.resource', {
             ...this.props.match.params,
@@ -152,7 +152,7 @@ export default class ProjectDetail extends React.Component {
         value: <Status type={detail.status} name={t(detail.status)} />,
       },
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: this.props.match.params.cluster,
       },
       {
@@ -164,7 +164,7 @@ export default class ProjectDetail extends React.Component {
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('CREATOR'),
+        name: t('CREATED_BY'),
         value: detail.creator || '-',
       },
     ]

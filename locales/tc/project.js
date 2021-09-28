@@ -40,8 +40,8 @@ module.exports = {
   'Project Overview': '項目預覽',
   'Members Management': '成員管理',
   PROJECT_ADMINISTRATOR: '項目管理員',
-  'Manage Project': '項目管理',
-  RESOURCE_QUOTAS: '資源配額',
+  MANAGE_PROJECT: '項目管理',
+  RESOURCE_QUOTA_PL: '資源配額',
   PROJECT_NAME: '項目名稱',
   PROJECT_MEMBER_PL: '項目成員',
   PROJECT_RESOURCE_QUOTAS: 'Project Resource Quotas',
@@ -53,7 +53,7 @@ module.exports = {
   'Remove Members': '移除成員',
   REMOVE_MEMBER: '移除成員',
   'Invite Member': '邀請成員',
-  'Gateway Info': '網關資訊',
+  GATEWAY: '網關資訊',
   SET_GATEWAY: '設置網關',
 
   GATEWAY_NOT_SET: '網關未設置',
@@ -63,12 +63,14 @@ module.exports = {
   EDIT_PROJECT_QUOTAS: 'Edit Project Quotas',
   'Quota Management': '配額管理',
   WORKSPACE_QUOTA_PL: 'Workspace Quotas',
+  PROJECT_QUOTA_PL: 'Project Quotas',
 
   'Project Placement': '項目位置',
 
   'Multi-cluster Project': '多集群項目',
   MULTI_CLUSTER_PROJECT: '多集群項目',
   MULTI_CLUSTER_PROJECT_LOW: '多集群項目',
+  MULTI_CLUSTER_PROJECT_SCAP: '多集群項目',
   MULTI_CLUSTER_PROJECT_PL: '多集群項目',
   'Multi-cluster Projects': '多集群項目',
 
@@ -92,7 +94,7 @@ module.exports = {
   'Select Project Type': '選擇項目類型',
 
   ADD_QUOTA: '添加配額項目',
-  EDIT_PROJECT_RESOURCE_QUOTAS: 'Edit Project Resource Quotas',
+  EDIT_PROJECT_QUOTA: 'Edit Project Quota',
 
   deployments: '部署',
   statefulsets: '有狀態副本集',
@@ -101,16 +103,18 @@ module.exports = {
   cronjobs: '定時任務',
   pods: '容器組',
 
-  'requests.cpu': 'CPU 需求',
-  'limits.cpu': 'CPU 限額',
-  'requests.memory': '記憶體需求',
-  'limits.memory': '記憶體限額',
+  REQUESTS_CPU: 'CPU 需求',
+  LIMITS_CPU: 'CPU 限額',
+  REQUESTS_MEMORY: '記憶體需求',
+  LIMITS_MEMORY: '記憶體限額',
 
+  EDIT_DEFAULT_CONTAINER_QUOTA: 'Edit Default Container Quota',
   EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
   'Edit Resource Default Request': '編輯資源預設請求',
-  DEFAULT_CONTAINER_QUOTAS: 'Default Container Quotas',
+  DEFAULT_CONTAINER_QUOTA_PL: 'Default Container Quotas',
 
   RESOURCE_TYPE: '資源類型',
+  RESOURCE_TYPE_SCAP: '資源類型',
 
   'Help Information': '幫助資訊',
 
@@ -130,6 +134,8 @@ module.exports = {
 
   DISK_LOG_COLLECTION: '落盤紀錄收集',
   COLLECT_LOGS_ON_VOLUMES: '落盤紀錄收集',
+  LOG_COLLECTION_ENABLED_DESC:
+    'After this function is enabled or disabled, you need to restart the Pod replicas to make the change take effect.',
 
   'Are you sure to close ?': '確認關閉？',
   "The project's file log collection is about to close.":
@@ -144,7 +150,7 @@ module.exports = {
 
   FEDPROJECT_CANNOT_ADD_CLUSTER: '無法添加新的集羣',
 
-  CLOSE_FILE_LOG_TIP:
+  DISABLE_LOG_COLLECTION_TIP:
     'Are you sure you want to disable log collection? After it is disabled, services that have enabled log collection will continue to collect logs saved in the volumes before the Pod replicas are restarted. If you need to collect the logs again, please enable log collection and restart the Pod replicas.',
 
   Usage: '用量',
@@ -200,9 +206,8 @@ module.exports = {
 
   PROJECT_BASIC_INFO_DESC:
     'Basic information provides an overview of the project. You can view the project information and resource quotas.',
-  PROJECT_QUOTA_MANAGE_DESC: '管理項目的配額',
   PROJECT_ADVANCED_SETTINGS_DESC:
-    'Advanced settings are used to configure network access, application governance, and log collection in the project.',
+    'Advanced settings are used to configure external access, application governance, and log collection in the project.',
   PROJECT_MEMBERS_DESC: '對項目内的成員進行管理及角色分配',
   PROJECT_ROLE_DESC: '項目角色定義了在目前項目下用戶所擁有的權限',
   COLLECTING_FILE_LOG_DESC:
@@ -212,12 +217,12 @@ module.exports = {
   HOW_TO_USE_QUOTA_A:
     'Resource quotas are a mechanism used to limit the resource usage. You can edit project resource quotas and default container quotas by clicking <b>Edit Project</b>.',
 
-  WHAT_IS_LIMIT_RANGE_Q: 'What are default container quotas?',
-  WHAT_IS_LIMIT_RANGE_A:
-    'Default container quotas are a policy used to constrain resource allocations to containers in a project. You can set CPU, memory, and GPU quotas for the container.',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q: 'What are default container quotas?',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A:
+    'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
 
   PROJECT_QUOTAS_DESC:
-    'Project quotas specify the number of available CPU and memory resources and the maximum number of Pods, Deployments, and Services in the project.',
+    'Project quotas specify the number of available CPU and memory resources and the maximum number of application resources such as Pods, Deployments, and Services in the project.',
   DEFAULT_CONTAINER_QUOTAS_DESC:
     'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
   WHAT_IS_INTERNET_GATEWAY: '什麼是外網訪問網關?',
@@ -237,7 +242,6 @@ module.exports = {
   PROJECT_TYPES_Q: '項目中的服務如何通過外網訪問？',
   PROJECT_TYPES_A:
     '項目網關負責創建對應的應用路由控制器，用來負責將請求轉發到對應的後端服務；開啟項目網關後可以將服務通過 Ingress 暴露给外網訪問。',
-
   PROJECT_CLUSTER_SETTINGS_DESC:
     '選擇要創建項目的集群. 當選擇了多個集群時, 將創建聯邦項目',
   NETWORK_ISOLATED_DESC: '設置網路隔離策略',
@@ -247,7 +251,7 @@ module.exports = {
   MULTI_CLUSER_PROJECT_TIP:
     '目前項目為多集群項目，項目將分布在不同集群中共同來構成多集群項目，您可以切換到不同集群查看項目在該集群中的設置。',
 
-  MULTI_CLUSER_RESOURCE_TIP:
+  MULTI_CLUSTER_RESOURCE_TIP:
     '目前資源為多集群資源，資源將分布在不同集群中共同來構成多集群資源，您可以切換到不同集群查看資源在該集群中的設置。',
 
   FEDPROJECT_RESOURCE_TIP:
@@ -291,10 +295,9 @@ module.exports = {
   WS_RESOURCE_REQUESTS: 'Resource requests:',
   WS_RESOURCE_LIMITS: 'Resource limits:',
   SELECT_RESOURCE_TIP: 'Select a resource or enter a resource name',
-  NUMBER_OF_ROUTES: 'Number of routes',
+  NUMBER_OF_ROUTES: 'Number of Routes',
   NUMBER_OF_SECRETS: 'Number of Secrets',
   NUMBER_OF_CONFIGMAPS: 'Number of ConfigMaps',
-  GPU_LIMIT: 'GPU Limit',
   USAGE: 'Usage',
 
   // Project Members

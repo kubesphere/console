@@ -132,7 +132,7 @@ export default class AppReview extends Component {
               ))}
             </ul>
           ) : (
-            <p>{t('None')}</p>
+            <p>{t('NONE')}</p>
           )}
         </div>
       </>

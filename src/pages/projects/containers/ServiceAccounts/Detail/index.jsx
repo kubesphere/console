@@ -84,7 +84,7 @@ export default class ServiceAccountDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('serviceaccount.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
           ...this.props.match.params,
@@ -121,7 +121,7 @@ export default class ServiceAccountDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),

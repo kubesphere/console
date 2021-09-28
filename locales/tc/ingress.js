@@ -26,13 +26,15 @@ module.exports = {
   Rules: '規則',
   EDIT_RULES_TCAP: '編輯規則',
   EDIT_ANNOTATION: '編輯注解',
+  EDIT_ANNOTATIONS: '編輯注解',
   ROUTING_RULES: '路由規則',
   GATEWAY_ADDRESS_TCAP: '網關地址',
   DOMAIN_NAME_EMPTY_DESC: '請輸入域名。',
   'Click to visit': '點擊訪問',
   PATH_SERVICE_TIP: '服務',
   ADD_PATH_TCAP: '添加路径',
-  EDIT_RULE: 'Edit Rule',
+  EDIT_ROUTING_RULE: 'Edit Routing Rule',
+  EDIT_ROUTING_RULES: 'Edit Routing Rules',
   'Please select a service': '請選擇一個服務',
   'Add Path': '添加 Path',
   ADD_ANNOTATION: '添加注解',
@@ -73,7 +75,7 @@ module.exports = {
     '如果您不需要使用應用治理的功能，無需打開此項；如果您需要使用應用治理的 Tracing 功能，請打開開此項。打開此項後，如果您的應用路由無法訪問，請檢查應用路由中是否添加 `nginx.ingress.kubernetes.io/service-upstream: true` 注解，如無，請手動添加。',
 
   ADD_ROUTING_RULE_DESC: '添加一個路由規則將域名映射至服務。',
-
+  ROUTING_RULE_EMPTY_DESC: 'Please add at least one routing rule.',
   UNABLE_TO_ACCESS_TIP:
     '● 請確保您設置的域名可以解析到訪問入口的 IP 地址;<br/>● 如果在私有雲環境中，請修改本地的 host 檔案，並通過 域名+節點端口 的方式來訪問;<br/>● 通過配置 DNS 訪問，將域名修改為 hostname + 網關地址 + nip.io，然後可以通過 hostname.網關地址.nip.io:節點端口 的形式來訪問服務;<br/>● 如果通過域名訪問被拒絕，請確認您的域名是真實而且已經申請通過。',
 

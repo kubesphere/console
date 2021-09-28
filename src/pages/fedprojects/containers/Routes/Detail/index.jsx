@@ -83,7 +83,7 @@ export default class RouteDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -102,7 +102,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'editRules',
       icon: 'firewall',
-      text: t('Edit Rules'),
+      text: t('EDIT_ROUTING_RULE'),
       action: 'edit',
       onClick: () =>
         this.trigger('fedproject.router.rules.edit', {
@@ -131,7 +131,7 @@ export default class RouteDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),

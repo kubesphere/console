@@ -157,9 +157,7 @@ export default class Resources extends React.Component {
         <Icon name={this.icon} size={16} />
         <div className={styles.itemInfo}>
           <strong title={name}>{name}</strong>
-          <p>
-            {t('Current')}: {currentValue}
-          </p>
+          <p>{t('CURRENT_VALUE', { value: currentValue })}</p>
         </div>
       </div>
     )
@@ -176,9 +174,9 @@ export default class Resources extends React.Component {
     return (
       <div className={styles.resources}>
         <div className={styles.title}>
-          <strong>{t(name)}</strong>
+          <strong>{t(name.toUpperCase())}</strong>
           <Checkbox checked={showChecked} onChange={this.toggleChecked}>
-            {t('Only Show Selected')}
+            {t('SHOW_SELECTED_ONLY')}
           </Checkbox>
         </div>
         <div className={styles.content}>

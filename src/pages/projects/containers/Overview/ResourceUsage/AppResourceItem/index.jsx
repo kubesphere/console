@@ -114,7 +114,7 @@ export default class ResourceCard extends React.Component {
             className={styles.tips}
             content={t('RESOURCE_WARNING_TIPS', {
               warnNum,
-              tipName: t(name),
+              tipName: t(`${name}_PL`),
             })}
           >
             <div onClick={this.handleWarnClick}>{warnText}</div>

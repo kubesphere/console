@@ -90,7 +90,7 @@ export default class SchedulePlacement extends Component {
           />
           <span className={styles.value}>
             {weight}
-            <span> {t('Weight')}</span>
+            <span> {t('WEIGHT')}</span>
           </span>
           <Icon
             name="add"

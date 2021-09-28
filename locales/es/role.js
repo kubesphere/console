@@ -47,10 +47,10 @@ module.exports = {
   'App Templates View': 'Vista de plantillas de aplicaciones',
   APPLICATION_WORKLOADS_MANAGEMENT: 'Gestión de workload de aplicaciones',
   APPLICATION_WORKLOADS_VIEW: 'Vista de workload de aplicaciones',
-  'Authorization List': 'Lista de autorizaciones',
+  PERMISSION_PL: 'Lista de autorizaciones',
   'Authorization Settings': 'Configuración de autorización',
   'Authorized Actions': 'Acciones autorizadas',
-  'Authorized Users': 'Usuarios autorizados',
+  AUTHORIZED_USER_PL: 'Usuarios autorizados',
   CUSTOM_MONITORING_VIEW: 'Custom Monitoring View',
   CUSTOM_MONITORING_MANAGEMENT: 'Custom Monitoring Management',
   Cluster: 'Clúster',
@@ -72,7 +72,7 @@ module.exports = {
   'Create Cluster Role': 'Crear rol de clúster',
   'Create Project Role': 'Crear rol de proyecto',
   'Create Role': 'Crear rol',
-  'Credentials View': 'Vista de credenciales',
+  CREDENTIALS_VIEW: 'Vista de credenciales',
   'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
     'Rol de usuario predeterminado que permite a un usuario administrar recursos dentro de los proyectos creados por el propio usuario o invitados por otros. No permite al usuario administrar recursos no autorizados en el clúster.',
   'Depend on': 'Depender de',
@@ -96,10 +96,10 @@ module.exports = {
   MODULES: 'Módulos',
   'Network Policies Management': 'Gestión de políticas de red',
   'Network Policies View': 'Vista de políticas de red',
-  'No Authorization': 'Sin autorización',
+  NO_PERMISSION: 'Sin autorización',
   'Nodes View': 'Vista de nodos',
-  'Pipelines Management': 'Gestión de pipelines',
-  'Pipelines View': 'Vista de pipelines',
+  PIPELINES_MANAGEMENT: 'Gestión de pipelines',
+  PIPELINES_VIEW: 'Vista de pipelines',
   'Platform Settings Management': 'Gestión de configuración de plataforma',
   ROLE_NAME_EMPTY: 'Por favor, introduce el nombre del rol',
   'Please specify role authorization':
@@ -379,7 +379,7 @@ module.exports = {
     'Permite el acceso de lectura para ver todos los recursos en el proyecto DevOps.',
   ROLE_DEVOPS_OPERATOR:
     'Usuario normal en un proyecto DevOps, que puede crear credenciales para las pipelines en el proyecto DevOps.',
-
+  NO_AUTHORIZED_USER_DESC: 'This role has not been assigned to any user.',
   WORKSPACE_SETTINGS_VIEW: 'vista de configuración del espacio de trabajo',
   WORKSPACE_SETTINGS_MANAGEMENT:
     'gestión de la configuración del espacio de trabajo',

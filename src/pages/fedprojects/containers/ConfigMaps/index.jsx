@@ -60,7 +60,7 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'editConfigMap',
         icon: 'pen',
-        text: t('MODIFY_CONFIG'),
+        text: t('EDIT_CONFIGMAP'),
         action: 'edit',
         onClick: item =>
           trigger('configmap.edit', {
@@ -106,7 +106,7 @@ export default class ConfigMaps extends React.Component {
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('CONFIG_FIELD'),
+        title: t('FIELDS'),
         dataIndex: 'data',
         isHideable: true,
         width: '33%',

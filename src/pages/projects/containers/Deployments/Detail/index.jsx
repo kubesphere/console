@@ -93,7 +93,7 @@ export default class DeploymentDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -112,7 +112,7 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'editHpa',
       icon: 'firewall',
-      text: t('Horizontal Pod Autoscaling'),
+      text: t('HORIZONTAL_POD_AUTOSCALING'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.hpa.edit', {
@@ -162,7 +162,7 @@ export default class DeploymentDetail extends React.Component {
       action: 'delete',
       onClick: () =>
         this.trigger('workload.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -179,7 +179,7 @@ export default class DeploymentDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -187,7 +187,7 @@ export default class DeploymentDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: detail.app,
       },
       {
@@ -199,7 +199,7 @@ export default class DeploymentDetail extends React.Component {
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('CREATOR'),
+        name: t('CREATED_BY'),
         value: detail.creator,
       },
     ]
@@ -220,7 +220,7 @@ export default class DeploymentDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('DEPLOYMENTS'),
+          label: t('DEPLOYMENT_PL'),
           url: this.listUrl,
         },
       ],

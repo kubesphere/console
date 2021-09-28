@@ -174,7 +174,7 @@ export default class ScheduleCluster extends Component {
           />
           <span className={styles.value}>
             <span className={styles.spanText}>{this.getWeight}</span>
-            <span className={styles.subText}> {t('Weight')}</span>
+            <span className={styles.subText}> {t('WEIGHT')}</span>
           </span>
           <Icon
             name="substract"

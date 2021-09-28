@@ -206,7 +206,7 @@ export default class GatewaySettingModal extends React.Component {
                 {get(this.template, 'spec.service.type') === 'LoadBalancer' && (
                   <>
                     {this.renderLoadBalancerSupport()}
-                    <Form.Item label={t('ANNOTATIONS')}>
+                    <Form.Item label={t('ANNOTATION_PL')}>
                       <PropertiesInput
                         controlled
                         className={styles.objectBg}

@@ -17,15 +17,15 @@
  */
 
 module.exports = {
-  'Running Status': '运行状态',
+  RUNNING_STATUS: '运行状态',
   'All Components': '全部服务组件',
   components: '服务组件',
   Components: '服务组件',
   'Installed Components': '已安装组件',
   'Not Installed Components': '未安装组件',
-  'Instance Count': '实例数量',
+  INSTANCE_COUNT: '实例数量',
 
-  'Service Details': '服务详情',
+  SERVICE_DETAILS: '服务详情',
 
   SERVICE_COMPONENTS_DESC:
     '系统组件是 KubeSphere 系统中提供各种功能的软件组件，您可以在此页面查看系统组件的运行状态。',

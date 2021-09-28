@@ -46,7 +46,9 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
           title={rule.host}
           description={
             <div className={styles.description}>
-              <span>{t('PROTOCOL_VALUE', { value: protocol })}</span>
+              <span>
+                {t('PROTOCOL_VALUE', { value: protocol.toUpperCase() })}
+              </span>
               {protocol === 'https' && (
                 <span>
                   {t('CERTIFICATE_VALUE', { value: tlsItem.secretName })}
@@ -63,7 +65,7 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
                 clustersDetail={projectDetail.clusters}
               />
             }
-            description={t('LOCATION')}
+            description={t('CLUSTER')}
           />
         )}
       </div>
@@ -83,7 +85,9 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
               </Column>
               <Column>
                 <span>
-                  {t('PORT_VALUE', { value: get(path, 'backend.service.port.number') })}
+                  {t('PORT_VALUE', {
+                    value: get(path, 'backend.service.port.number'),
+                  })}
                 </span>
               </Column>
             </Columns>

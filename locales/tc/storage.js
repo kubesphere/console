@@ -52,7 +52,7 @@ module.exports = {
   'Mount Info': '掛載資訊',
   // Volumes List Page
   MOUNT_STATUS: '掛載',
-  MOUNTED_TCAP: '已掛載',
+  MOUNTED: '已掛載',
   NOT_MOUNTED: '未掛載',
   Scalable: '可擴容性',
   CREATE: '創建',

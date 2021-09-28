@@ -23,12 +23,13 @@ module.exports = {
   AUTO_GENERATE_TCAP: 'Auto Generate',
   ADD_ROUTING_RULE: 'Add Routing Rule',
   EDIT_ROUTING_RULE: 'Edit Routing Rule',
+  EDIT_ROUTING_RULES: 'Edit Routing Rules',
   'Add Path': 'Add Path',
   'Auto Generate': 'Auto Generate',
   'Click to visit': 'Click to visit',
   'Create Route': 'Create Route',
   EDIT_ANNOTATION: 'Edit Annotation',
-  EDIT_RULE: 'Edit Rule',
+  EDIT_ANNOTATIONS: 'Edit Annotations',
   GATEWAY_ADDRESS_TCAP: 'Gateway Address',
   'Gateway IP': 'Gateway IP',
   'Gateway Type': 'Gateway Type',
@@ -40,7 +41,8 @@ module.exports = {
   PATH_SI: 'Path',
   PATH_VALUE: 'Path: {value}',
   ADD_ROUTING_RULE_DESC:
-    'Add a routing rule to map a domain name to a Service.',
+    'Add a routing rule to map domain name paths to Services.',
+  ROUTING_RULE_EMPTY_DESC: 'Please add at least one routing rule.',
   DOMAIN_NAME_EMPTY_DESC: 'Please enter a domain name.',
   PATH_SERVICE_TIP: 'Service',
   Route: 'Route',
@@ -54,7 +56,7 @@ module.exports = {
   'Unable to access': 'Unable to access',
 
   ROUTE_DESC:
-    'A route provides a way to aggregate Services. You can expose the internal Services outside the cluster through an externally accessible IP address.',
+    'A Route provides a way to aggregate Services. You can expose the internal Services outside the cluster through an externally accessible IP address.',
   ROUTE_EMPTY_DESC: 'Please create a Route.',
   ROUTE_ANNOTATION_DESC:
     'You can set route behavior by adding annotations to the route. See <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">Annotations</a> for the detailed list of available annotations.',
@@ -82,11 +84,11 @@ module.exports = {
   UNABLE_TO_ACCESS_TIP:
     '● Make sure that the domain name you set can be resolved to the IP address of the access portal. <br/>● If you are in a private cloud environment, modify the local host file and then access it via {$domain name}:{$node port}.<br/>● By configuring DNS access, you need to modify the domain name to {$hostname} + {$gateway address} + nip.io, and then access the service via {$hostname}.{$gateway address} .nip.io:{$NodePort}. <br/>● If the access is blocked when you use the domain name, please confirm if your domain name exists and has been registered.',
 
-  PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using routes?',
+  PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using Routes?',
   PREREQUESTS_FOR_USE_ROUTE_A:
-    'To use a route, the project administrator needs to set the gateway for the current project.',
+    'To use Routes, you need to contact the project administrator to set the gateway for the project.',
 
-  ACCESS_TYPES_OF_ROUTE_Q: 'What are the access methods a route supports?',
+  ACCESS_TYPES_OF_ROUTE_Q: 'What are the external access methods of Routes?',
   ACCESS_TYPES_OF_ROUTE_A:
-    'KubeSphere routes support NodePort access method and LoadBalancer access method.',
+    'KubeSphere Routes support the NodePort and LoadBalancer external access methods.',
 }

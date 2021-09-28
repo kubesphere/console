@@ -21,10 +21,10 @@ module.exports = {
   components: 'componentes',
   Components: 'Componentes',
   'Installed Components': 'Componentes instalados',
-  'Instance Count': 'Recuento de instancias',
+  INSTANCE_COUNT: 'Recuento de instancias',
   'Not Installed Components': 'Componentes no instalados',
-  'Running Status': 'Estado de ejecución',
-  'Service Details': 'Detalles del servicio',
+  RUNNING_STATUS: 'Estado de ejecución',
+  SERVICE_DETAILS: 'Detalles del servicio',
   SERVICE_COMPONENTS_DESC:
     'Este módulo monitorea el estado de varios componentes del servicio en KubeSphere, Kubernetes, OpenPitrix, etc. Muestra el estado de mantenimiento y el tiempo de ejecución del clúster actual, y ayuda a los usuarios a monitorear el estado del clúster y localizar problemas a tiempo.',
   KS_ACCOUNT_DESC:

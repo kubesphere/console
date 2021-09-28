@@ -97,7 +97,7 @@ export default class ResourceCard extends React.Component {
             className={styles.tips}
             content={t('RESOURCE_WARNING_TIPS', {
               warnNum,
-              tipName: t(name),
+              tipName: t(`${name}_PL`),
             })}
           >
             <div onClick={this.handleWarnClick}>{warnText}</div>
@@ -140,7 +140,7 @@ export default class ResourceCard extends React.Component {
           onClick={this.handleClick}
         >
           <strong>{num}</strong>
-          <span>{t(name)}</span>
+          <span>{num === '1' ? t(name) : t(`${name}_PL`)}</span>
         </div>
         <TinyArea width={330} height={44} bgColor="transparent" {...config} />
       </div>

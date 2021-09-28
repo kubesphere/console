@@ -66,18 +66,18 @@ export default class NodeDetail extends React.Component {
       {
         key: 'cordon',
         type: unschedulable ? 'control' : 'danger',
-        text: unschedulable ? t('Uncordon') : t('Cordon'),
+        text: unschedulable ? t('UNCORDON') : t('CORDON'),
         action: 'edit',
         onClick: this.handleCordon,
       },
       {
         key: 'eidtLabel',
         icon: 'pen',
-        text: t('Edit Labels'),
+        text: t('EDIT_LABEL'),
         action: 'edit',
         onClick: () =>
           this.trigger('node.labels', {
-            title: t('LABELS'),
+            title: t('LABEL_PL'),
             detail: this.store.detail,
             success: this.fetchData,
           }),
@@ -85,7 +85,7 @@ export default class NodeDetail extends React.Component {
       {
         key: 'taintManagement',
         icon: 'wrench',
-        text: t('MANAGE_TAINT'),
+        text: t('EDIT_TAINT'),
         action: 'edit',
         onClick: () =>
           this.trigger('node.taint', {
@@ -119,44 +119,47 @@ export default class NodeDetail extends React.Component {
         value: status,
       },
       {
-        name: t('IP'),
+        name: t('IP_ADDRESS'),
         value: address,
       },
       {
-        name: t('Unschedulable'),
-        value: detail.unschedulable ? 'true' : 'false',
+        name: t('SCHEDULABLE'),
+        value: detail.unschedulable ? t('NO') : t('YES'),
       },
       {
-        name: t('Role'),
-        value: getNodeRoles(detail.labels).join(', ') || '-',
+        name: t('ROLE'),
+        value:
+          getNodeRoles(detail.labels)
+            .map(role => t(role.replace(/[- ]/g, '_').toUpperCase()))
+            .join('/') || '-',
       },
       {
-        name: t('OsImage'),
+        name: t('OS_VERSION'),
         value: nodeInfo.osImage,
       },
       {
-        name: t('OperatingSystem'),
-        value: nodeInfo.operatingSystem,
+        name: t('OS_TYPE'),
+        value: t(nodeInfo.operatingSystem.toUpperCase()),
       },
       {
-        name: t('KernelVersion'),
+        name: t('KERNEL_VERSION'),
         value: nodeInfo.kernelVersion,
       },
       {
-        name: t('ContainerRuntimeVersion'),
+        name: t('CONTAINER_RUNTIME'),
         value: nodeInfo.containerRuntimeVersion,
       },
       {
-        name: t('Kubelet Version'),
+        name: t('KUBELET_VERSION'),
         value: nodeInfo.kubeletVersion,
       },
       {
-        name: t('Kube-Proxy Version'),
+        name: t('KUBE_PROXY_VERSION'),
         value: nodeInfo.kubeProxyVersion,
       },
       {
-        name: t('Architecture'),
-        value: nodeInfo.architecture,
+        name: t('ARCHITECTURE'),
+        value: nodeInfo.architecture.toUpperCase(),
       },
       {
         name: t('CREATED_AT'),

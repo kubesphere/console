@@ -29,14 +29,14 @@ const PATH = '/clusters/:cluster/nodes/:node'
 export default [
   {
     path: `${PATH}/status`,
-    title: 'Running Status',
+    title: 'RUNNING_STATUS',
     component: RunningStatus,
     exact: true,
   },
   { path: `${PATH}/pods`, title: 'Pods', component: Pods, exact: true },
   {
     path: `${PATH}/metadata`,
-    title: 'Metadata',
+    title: 'METADATA',
     component: Metadata,
     exact: true,
   },

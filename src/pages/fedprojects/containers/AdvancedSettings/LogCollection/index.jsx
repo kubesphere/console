@@ -21,7 +21,7 @@ import classNames from 'classnames'
 import { get, set } from 'lodash'
 
 import { observer } from 'mobx-react'
-import { Alert, Icon } from '@kube-design/components'
+import { Icon } from '@kube-design/components'
 import { Switch, Panel, Modal } from 'components/Base'
 
 import FederatedStore from 'stores/federated'
@@ -110,21 +110,20 @@ class LogCollection extends React.Component {
           <div className={styles.header}>
             <Icon name="log" size={40} />
             <div className={styles.item}>
-              <div>{isOpen ? t('Opened') : t('Closed')}</div>
-              <p>{t('COLLECT_LOGS_ON_VOLUMES')}</p>
+              <div>{isOpen ? t('ENABLED') : t('DISABLED')}</div>
+              <p>{t('LOG_COLLECTION_ENABLED_DESC')}</p>
             </div>
             {this.canEdit && (
               <div className={classNames(styles.item, 'text-right')}>
                 <Switch
                   type="control"
-                  text={isOpen ? t('Opened') : t('Closed')}
+                  text={isOpen ? t('ENABLED') : t('DISABLED')}
                   onChange={this.handleSwitch}
                   checked={isOpen}
                 />
               </div>
             )}
           </div>
-          <Alert message={t('COLLECT_FILE_LOG_TIP')} hideIcon />
         </Panel>
         {this.canEdit && (
           <Modal
@@ -145,14 +144,9 @@ class LogCollection extends React.Component {
               />
               <div className={styles.title}>
                 <div>{t('DISABLE_LOG_COLLECTION')}</div>
-                <p>
-                  {t(
-                    'Disk Log Collection of the project is about to be disabled.'
-                  )}
-                </p>
               </div>
             </div>
-            <div>{t('CLOSE_FILE_LOG_TIP')}</div>
+            <div>{t('DISABLE_LOG_COLLECTION_TIP')}</div>
           </Modal>
         )}
       </>

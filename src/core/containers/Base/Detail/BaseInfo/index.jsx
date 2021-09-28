@@ -46,7 +46,6 @@ class BaseInfo extends React.Component {
 
   renderNav() {
     const { breadcrumbs } = this.props
-
     if (isEmpty(breadcrumbs)) {
       return null
     }
@@ -95,7 +94,7 @@ class BaseInfo extends React.Component {
 
     return (
       <div className={styles.labels} data-test="detail-labels">
-        <div className="h6">{t('LABELS')}</div>
+        <div className="h6">{t('LABEL_PL')}</div>
         <div className={styles.labelList}>
           {Object.entries(labels).map(([name, value]) => (
             <Label key={name} name={name} value={value} />

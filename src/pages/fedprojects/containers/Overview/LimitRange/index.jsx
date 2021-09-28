@@ -71,11 +71,11 @@ export default class LimitRange extends Component {
         <Text
           className={styles.text}
           icon="exclamation"
-          title={t('Resource Default Request Not Set')}
-          description={t('WHAT_IS_LIMIT_RANGE_A')}
+          title={t('DEFAULT_CONTAINER_QUOTAS_NOT_SET')}
+          description={t('DEFAULT_CONTAINER_QUOTAS_DESC')}
         />
         <Button type="control" onClick={this.showSetting}>
-          {t('Set')}
+          {t('EDIT_QUOTA')}
         </Button>
       </Panel>
     )

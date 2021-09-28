@@ -75,7 +75,7 @@ export default class VolumeDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -100,7 +100,7 @@ export default class VolumeDetail extends React.Component {
       disabled: get(this.store.detail, 'phase') === 'Bound',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.returnTolist,
         }),

@@ -152,7 +152,7 @@ class Clusters extends React.Component {
           </div>
           <div className={styles.noData}>
             <img src="/assets/empty-card.svg" alt="" />
-            <p>{t('RESOURCE_NOT_FOUND')}</p>
+            <p>{t('NO_RESOURCE_FOUND')}</p>
           </div>
         </>
       )

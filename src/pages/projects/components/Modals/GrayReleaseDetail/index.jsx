@@ -528,13 +528,13 @@ export default class GatewaySettingModal extends React.Component {
         <NotifyConfirm
           visible={ratio !== originRatio}
           width={400}
-          title={t('REPLICAS_SCALE_NOTIFY_TITLE')}
+          title={t('ADJUST_REPLICAS')}
           content={t.html('RATIO_MODIFY_NOTIFY_CONTENT', {
             version: detail.newVersion,
             ratio,
           })}
           cancelText={t('RESET')}
-          confirmText={t('Save')}
+          confirmText={t('SAVE')}
           isSubmitting={this.store.isSubmitting}
           onCancel={this.handleResetRatio}
           onConfirm={this.handleConfirmSaveRatio}

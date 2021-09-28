@@ -81,9 +81,9 @@ export default class ObjectEditModal extends React.Component {
       <Modal.Form
         width={1162}
         bodyClassName={styles.body}
-        title={`${t('Edit ')}${title}`}
+        title={t('EDIT_TITLE', { title })}
         icon="pen"
-        okText={t('Save')}
+        okText={t('SAVE')}
         onOk={this.handleOk}
         disableOk={!enableSave}
         {...rest}
@@ -94,7 +94,7 @@ export default class ObjectEditModal extends React.Component {
             <Form.Item>
               <PropertiesInput
                 className={styles.inputs}
-                addText={`${t('Add ')}${title}`}
+                addText={t('ADD')}
                 value={value}
                 onChange={this.handleChange}
                 onError={this.handleError}

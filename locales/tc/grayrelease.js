@@ -174,6 +174,8 @@ module.exports = {
   GRAY_DEPLOY_VERSION_TIP:
     'Deployment {name} exists. Please enter another version number.',
   INIT_CONTAINER: 'Init 容器',
+  INIT_CONTAINER_VALUE: 'Init Container: {value}',
+  CONTAINER_VALUE: 'Container: {value}',
   GRAYSCALE_IMAGE: '鏡像：{image}',
 
   // Grayscale strategy configurations tab

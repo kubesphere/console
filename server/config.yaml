@@ -419,7 +419,7 @@ client:
               }
             - {
                 name: log-collections,
-                title: DISK_LOG_COLLECTION_TITLE,
+                title: LOG_COLLECTION,
                 authKey: "project-settings",
               }
 
@@ -453,7 +453,7 @@ client:
             - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
             - {
                 name: quota,
-                title: QUOTA_MANAGEMENT,
+                title: PROJECT_QUOTA_PL,
                 authKey: "project-settings",
               }
             - {

@@ -66,7 +66,7 @@ export default class Routers extends React.Component {
       {
         key: 'editRules',
         icon: 'firewall',
-        text: t('EDIT_RULE'),
+        text: t('EDIT_ROUTING_RULE'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>

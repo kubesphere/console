@@ -220,7 +220,7 @@ class InternetAccess extends React.Component {
           </div>
           {gateway.type === 'LoadBalancer' && (
             <div className={styles.annotations}>
-              <p>{t('ANNOTATIONS')}</p>
+              <p>{t('ANNOTATION_PL')}</p>
               <ul>
                 {Object.entries(gateway.annotations).map(([key, value]) => (
                   <li key={key}>

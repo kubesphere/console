@@ -127,15 +127,15 @@ export default class PodItem extends React.PureComponent {
       type: 'cpu',
       title: 'CPU',
       unitType: 'cpu',
-      legend: ['Used'],
+      legend: ['USED'],
       data: [metrics.cpu],
       bgColor: 'transparent',
     },
     {
       type: 'memory',
-      title: 'Memory',
+      title: 'MEMORY',
       unitType: 'memory',
-      legend: ['Used'],
+      legend: ['USED'],
       data: [metrics.memory],
       bgColor: 'transparent',
     },
@@ -179,12 +179,8 @@ export default class PodItem extends React.PureComponent {
         content={
           <div className={styles.statusTip}>
             <strong>{name}</strong>
-            <p>
-              {t('Ready')}: {readyCount}/{total}
-            </p>
-            <p>
-              {t('STATUS')}: {t(statusStr)}
-            </p>
+            <p>{t('READY_VALUE', { readyCount, total })}</p>
+            <p>{t('STATUS_VALUE', { value: t(statusStr) })}</p>
           </div>
         }
       >
@@ -210,12 +206,10 @@ export default class PodItem extends React.PureComponent {
   renderMonitorings() {
     const { metrics = {}, isExpand, loading } = this.props
 
-    if (loading) return <div className={styles.monitors}>{t('Loading')}</div>
+    if (loading) return <div className={styles.monitors}>{t('LOADING')}</div>
 
     if (isEmpty(metrics.cpu) && isEmpty(metrics.memory))
-      return (
-        <div className={styles.monitors}>{t('NO_MONITORING_DATA_FOUND')}</div>
-      )
+      return <div className={styles.monitors}>{t('NO_MONITORING_DATA')}</div>
 
     const configs = this.getMonitoringCfgs(metrics)
 
@@ -264,7 +258,7 @@ export default class PodItem extends React.PureComponent {
         {!location.pathname.indexOf('/nodes') !== -1 && (
           <div className={styles.text}>
             <div>{this.getNodeContent()}</div>
-            <p>{t('Node')}</p>
+            <p>{t('NODE')}</p>
           </div>
         )}
         <div className={styles.text}>
@@ -276,7 +270,7 @@ export default class PodItem extends React.PureComponent {
               </Tooltip>
             )}
           </div>
-          <p>{t('POD_IP_ADDRESS')}</p>
+          <p>{t('POD_IP_ADDRESS_SCAP')}</p>
         </div>
         {this.renderMonitorings()}
         <div className={styles.arrow}>
@@ -300,7 +294,7 @@ export default class PodItem extends React.PureComponent {
     return (
       <div className={styles.itemExtra}>
         <div className="margin-b8">
-          <strong>{t('Containers')}</strong>
+          <strong>{t('CONTAINER_PL')}</strong>
         </div>
         <div className={styles.containers}>
           {containers.map(container => (

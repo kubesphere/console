@@ -80,7 +80,7 @@ export default class RoleDetail extends React.Component {
         show: this.showEdit,
         onClick: () =>
           this.trigger('resource.baseinfo.edit', {
-            type: t(this.name),
+            type: this.name,
             detail: toJS(this.store.detail),
             success: this.fetchData,
           }),
@@ -109,7 +109,7 @@ export default class RoleDetail extends React.Component {
         onClick: () =>
           this.trigger('role.delete', {
             detail,
-            type: t(this.name),
+            type: this.name,
             cluster: this.props.match.params.cluster,
             namespace: this.props.match.params.namespace,
             success: () => this.routing.push(this.listUrl),

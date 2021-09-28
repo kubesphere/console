@@ -81,8 +81,8 @@ class BaseInfo extends React.Component {
         description: t.html('HOW_TO_USE_QUOTA_A'),
       },
       {
-        title: t('WHAT_IS_LIMIT_RANGE_Q'),
-        description: t('WHAT_IS_LIMIT_RANGE_A'),
+        title: t('WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q'),
+        description: t('WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A'),
       },
     ]
   }
@@ -137,7 +137,7 @@ class BaseInfo extends React.Component {
         key: 'edit-default-resource',
         icon: 'pen',
         action: 'edit',
-        text: t('EDIT_DEFAULT_CONTAINER_QUOTAS'),
+        text: t('EDIT_DEFAULT_CONTAINER_QUOTA'),
         onClick: () =>
           this.trigger('project.default.resource', {
             ...this.props.match.params,
@@ -173,7 +173,7 @@ class BaseInfo extends React.Component {
         key: 'edit-quota',
         icon: 'pen',
         action: 'edit',
-        text: t('EDIT_PROJECT_RESOURCE_QUOTAS'),
+        text: t('EDIT_PROJECT_QUOTA'),
         onClick: () =>
           this.trigger('project.quota.edit', {
             detail,
