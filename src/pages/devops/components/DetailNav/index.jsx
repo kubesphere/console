@@ -60,13 +60,16 @@ class Nav extends Component {
           </div>
           <div className={styles.dashboardLable}>{t('HEALTH_STATUS')}</div>
         </Column>
-        <Column className={styles.baseInfo__item}>
-          <div className={styles.dashboardValue}>
-            <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
-            {detail.totalNumberOfBranches || '-'}
-          </div>
-          <div className={styles.dashboardLable}>{t('BRANCH_COUNT')}</div>
-        </Column>
+        {this.isMultibranch ? (
+          <Column className={styles.baseInfo__item}>
+            <div className={styles.dashboardValue}>
+              <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
+              {detail.totalNumberOfBranches || '-'}
+            </div>
+            <div className={styles.dashboardLable}>{t('BRANCH_COUNT')}</div>
+          </Column>
+        ) : null}
+
         <Column className={styles.baseInfo__item} />
       </Columns>
     )
