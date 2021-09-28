@@ -296,7 +296,7 @@ class ResourceUsage extends React.Component {
 
         <Select
           className={styles.timeSelect}
-          value={this.state.range}
+          defaultValue={this.state.range}
           options={this.timeOptions}
           onChange={this.handleRangeChange}
         />
