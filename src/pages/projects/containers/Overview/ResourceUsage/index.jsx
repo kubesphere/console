@@ -320,7 +320,7 @@ class ResourceUsage extends React.Component {
         </RadioGroup>
         <Select
           className={styles.timeSelect}
-          value={this.state.range}
+          defaultValue={this.state.range}
           options={this.timeOptions}
           onChange={this.handleRangeChange}
         />
