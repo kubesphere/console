@@ -204,7 +204,7 @@ export default class ResourceLimit extends React.Component {
     return get(
       props,
       `value.requests.${key}`,
-      get(props, `defaultValue.requests.${key}`)
+      get(props, `defaultValue.requests.${key}`, 0)
     )
   }
 
@@ -212,7 +212,7 @@ export default class ResourceLimit extends React.Component {
     return get(
       props,
       `value.limits.${key}`,
-      get(props, `defaultValue.limits.${key}`)
+      get(props, `defaultValue.limits.${key}`, 0)
     )
   }
 
