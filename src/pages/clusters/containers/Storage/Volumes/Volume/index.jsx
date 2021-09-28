@@ -144,7 +144,20 @@ export default class Volumes extends React.Component {
     const { getSortOrder, getFilteredValue } = this.props
     const { cluster } = this.props.match.params
 
-    return [
+    const pvColumn = {
+      title: t('VOLUME_BACKEND_TCAP'),
+      dataIndex: '_originData',
+      isHideable: true,
+      search: false,
+      width: '28.5%',
+      render: _ => (
+        <Link to={`/clusters/${cluster}/pv/${_.spec.volumeName}`}>
+          {_.spec.volumeName}
+        </Link>
+      ),
+    }
+
+    const allColumns = [
       {
         title: t('NAME'),
         dataIndex: 'name',
@@ -169,25 +182,13 @@ export default class Volumes extends React.Component {
         search: true,
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
-        width: '10.56%',
+        width: '8.8%',
         render: (_, { phase }) => (
           <Status
             type={phase}
             name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)}
             flicker
           />
-        ),
-      },
-      {
-        title: t('VOLUME_BACKEND_TCAP'),
-        dataIndex: '_originData',
-        isHideable: true,
-        search: false,
-        width: '28.5%',
-        render: _ => (
-          <Link to={`/clusters/${cluster}/pv/${_.spec.volumeName}`}>
-            {_.spec.volumeName}
-          </Link>
         ),
       },
       {
@@ -218,6 +219,12 @@ export default class Volumes extends React.Component {
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm'),
       },
     ]
+
+    if (this.props.store.supportPv) {
+      allColumns.splice(2, 0, pvColumn)
+    }
+
+    return allColumns
   }
 
   showCreate = () => {

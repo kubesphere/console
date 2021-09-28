@@ -48,6 +48,17 @@ export default class BaseStore {
     return ObjectMapper[this.module] || (data => data)
   }
 
+  get supportPv() {
+    const ksVersion = globals.ksConfig.ksVersion.replace(/[^\d.]/g, '')
+    const version = Number(
+      ksVersion
+        .split('.')
+        .slice(0, 2)
+        .join('.')
+    )
+    return version >= 3.2
+  }
+
   getPath({ cluster, namespace } = {}) {
     let path = ''
     if (cluster) {

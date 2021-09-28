@@ -140,11 +140,22 @@ export default class PV extends React.Component {
         ),
       },
       {
-        title: t('ACCESS_MODE_TCAP'),
+        title: t('CAPACITY'),
         dataIndex: 'capacity',
         isHideable: true,
+        width: '7%',
+        render: (_, { capacity }) => (
+          <div>
+            <p>{capacity}</p>
+          </div>
+        ),
+      },
+      {
+        title: t('ACCESS_MODE_TCAP'),
+        dataIndex: 'accessMode',
+        isHideable: true,
         width: '12.32%',
-        render: (capacity, { accessMode }) => (
+        render: (_, { accessMode }) => (
           <div>
             <p>{accessMode}</p>
           </div>
@@ -156,6 +167,17 @@ export default class PV extends React.Component {
         isHideable: true,
         width: '7.74%',
         render: _ => _.spec.persistentVolumeReclaimPolicy,
+      },
+      {
+        title: t('volumeHandle'),
+        dataIndex: 'volumeHandle',
+        isHideable: true,
+        width: '9.8%',
+        render: (_, { volumeHandle }) => (
+          <div>
+            <p>{volumeHandle}</p>
+          </div>
+        ),
       },
       {
         title: t('CREATED_AT'),
