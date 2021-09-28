@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import { Toggle } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
-import { get } from 'lodash'
+import { get, isUndefined, isString } from 'lodash'
 import { observer } from 'mobx-react'
 import styles from './index.scss'
 
@@ -50,15 +50,27 @@ export default class SetDefaultStorageClassModal extends React.Component {
       allowClone: get(
         detail.annotations,
         'storageclass.kubesphere.io/allow-clone',
-        false
+        undefined
       ),
       allowSnapshot: get(
         detail.annotations,
         'storageclass.kubesphere.io/allow-snapshot',
-        false
+        undefined
       ),
-      allowVolumeExpansion: get(detail, 'allowVolumeExpansion', false),
+      allowVolumeExpansion: get(detail, 'allowVolumeExpansion', undefined),
     }
+  }
+
+  get onOkState() {
+    return {
+      allowClone: this.dataUndefined(this.state.allowClone),
+      allowSnapshot: this.dataUndefined(this.state.allowSnapshot),
+      allowVolumeExpansion: this.dataUndefined(this.state.allowVolumeExpansion),
+    }
+  }
+
+  dataUndefined = data => {
+    return isUndefined(data) ? false : isString(data) ? JSON.parse(data) : data
   }
 
   get Items() {
@@ -106,12 +118,14 @@ export default class SetDefaultStorageClassModal extends React.Component {
       >
         <div className={styles.body}>
           {this.Items.map(item => {
-            const checked = JSON.parse(this.state[item.key])
+            const status = this.state[item.key]
+            const checked = this.dataUndefined(status)
             return (
               <div className={styles.Item} key={item.title}>
                 <div className={styles.icon}>
                   <Toggle
                     checked={checked}
+                    disabled={isUndefined(status)}
                     onChange={() => item.onclick(checked)}
                   ></Toggle>
                 </div>

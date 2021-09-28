@@ -63,6 +63,10 @@ export default class Volumes extends React.Component {
       }))
   }
 
+  componentDidMount() {
+    this.pv.checkSupportPv(this.props.match.params)
+  }
+
   renderBanner() {
     if (this.pv.supportPv) {
       return (
