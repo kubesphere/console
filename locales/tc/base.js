@@ -103,7 +103,7 @@ module.exports = {
   Terminal: '終端',
   COMMAND: '命令',
   COMMANDS: '命令',
-  Maintainers: '維護者',
+  MAINTAINERS: '維護者',
   CREATOR: '創建者',
   POD: '容器組',
   Pods: '容器組',

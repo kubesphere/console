@@ -17,35 +17,53 @@
  */
 
 import React from 'react'
+import { isEmpty } from 'lodash'
 
 import { Image } from 'components/Base'
 
+import { safeParseJSON } from 'utils'
+
 import styles from './index.scss'
 
-const AppCard = ({ app }) => (
-  <div className={styles.wrapper}>
-    <div className={styles.title}>
-      <span className={styles.icon}>
-        <Image iconSize={48} src={app.icon} iconLetter={app.name} alt="" />
-      </span>
-      <div className={styles.text}>
-        <p>
-          <strong>{app.name || '-'}</strong>
-        </p>
-        <p className={styles.desc} title={app.description || ''}>
-          {app.description || '-'}
-        </p>
-      </div>
-    </div>
-    <div className={styles.bottom}>
-      <span className={styles.vendor}>
-        {t('DEVELOPER_VALUE', { value: app.owner || '-' })}
-      </span>
-      <span className={styles.version} title={app.latest_app_version.name}>
-        {t('LATEST_VALUE', { value: app.latest_app_version.name || '-' })}
-      </span>
-    </div>
-  </div>
-)
+export default class AppCard extends React.Component {
+  renderVendor() {
+    const { app } = this.props
+    const maintainers = safeParseJSON(
+      app.latest_app_version.maintainers,
+      []
+    ).map(item => item.name)
+    if (!isEmpty(maintainers)) {
+      return maintainers.length === 1
+        ? t('MAINTAINER_VALUE', { value: maintainers[0] })
+        : t('MAINTAINERS_VALUE', { value: maintainers[0] })
+    }
+    return t('DEVELOPER_VALUE', { value: app.owner || '-' })
+  }
 
-export default AppCard
+  render() {
+    const { app } = this.props
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles.title}>
+          <span className={styles.icon}>
+            <Image iconSize={48} src={app.icon} iconLetter={app.name} alt="" />
+          </span>
+          <div className={styles.text}>
+            <p>
+              <strong>{app.name || '-'}</strong>
+            </p>
+            <p className={styles.desc} title={app.description || ''}>
+              {app.description || '-'}
+            </p>
+          </div>
+        </div>
+        <div className={styles.bottom}>
+          <span className={styles.vendor}>{this.renderVendor()}</span>
+          <span className={styles.version} title={app.latest_app_version.name}>
+            {t('LATEST_VALUE', { value: app.latest_app_version.name || '-' })}
+          </span>
+        </div>
+      </div>
+    )
+  }
+}

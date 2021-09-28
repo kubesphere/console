@@ -101,7 +101,7 @@ module.exports = {
   Terminal: '终端',
   COMMAND: '命令',
   COMMANDS: '命令',
-  Maintainers: '维护者',
+  MAINTAINERS: '维护者',
   CREATOR: '创建者',
   POD: '容器组',
   Pods: '容器组',

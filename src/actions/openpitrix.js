@@ -34,6 +34,7 @@ import AppReviewModal from 'apps/components/Modals/AppReview'
 import RejectModal from 'apps/components/Modals/ReviewReject'
 import CategoryCreateModal from 'apps/components/Modals/CategoryCreate'
 import AdjustCategoryModal from 'apps/components/Modals/CategoryAdjust'
+import AppAgreementModal from 'apps/components/Modals/AppAgreement'
 
 import { HANDLE_TYPE_TO_SHOW } from 'configs/openpitrix/version'
 
@@ -362,6 +363,18 @@ export default {
         icon: 'tag',
         modal: AdjustCategoryModal,
         store,
+        ...props,
+      })
+    },
+  },
+  'openpitrix.app.agreement': {
+    on({ success, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+          success && success()
+        },
+        modal: AppAgreementModal,
         ...props,
       })
     },
