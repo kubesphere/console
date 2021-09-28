@@ -36,24 +36,11 @@ export default class VolumeSettings extends React.Component {
 
     return (
       <Form data={this.formTemplate} ref={formRef}>
-        {/* <Form.Item label={t('ACCESS_MODE_TCAP')} rules={[{ required: true }]}>
+        <Form.Item label={t('ACCESS_MODE_TCAP')} rules={[{ required: true }]}>
           <AccessModes
             name={ACCESSMODE_KEY}
             defaultValue={get(supportedAccessModes, '[0]', '')}
             supportedAccessModes={supportedAccessModes}
-          />
-        </Form.Item> */}
-
-        <Form.Item label={t('ACCESS_MODE')} desc={t('ACCESS_MODES_DESC')}>
-          <Select
-            name={'spec.accessModes'}
-            options={[
-              { label: 'ReadWriteOnce', value: 'ReadWriteOnce' },
-              { label: 'ReadOnlyMany', value: 'ReadOnlyMany' },
-              { label: 'ReadWriteMany', value: 'ReadWriteMany' },
-            ]}
-            defaultValue={['ReadWriteOnce', 'ReadOnlyMany', 'ReadWriteMany']}
-            multi
           />
         </Form.Item>
       </Form>
