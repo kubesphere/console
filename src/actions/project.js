@@ -77,7 +77,7 @@ export default {
             'requests.memory',
           ])
           const gpu = get(data, 'spec.gpu')
-          if (gpu.type !== '') {
+          if (gpu.type !== '' && gpu.value !== '') {
             set(data, `spec.hard["requests.${gpu.type}"]`, gpu.value)
           }
           data = omit(data, 'spec.gpu')
@@ -109,6 +109,7 @@ export default {
           data.spec = {
             hard: omitBy(spec, v => (!v ? !v : isEmpty(v.toString()))),
           }
+
           const resp = await quotaStore.checkName(params)
 
           if (resp.exist) {
@@ -158,12 +159,15 @@ export default {
           const gpu = get(data, 'gpu', {})
           data = omit(data, 'gpu')
           detail = omit(detail, 'limit.gpu')
-          if (
-            !isUndefined(data.default) &&
-            !isEmpty(gpu) &&
-            gpu.type !== '' &&
-            gpu.value !== ''
-          ) {
+          Object.keys(data).forEach(key => {
+            if (isUndefined(data[key])) {
+              data[key] = {
+                cpu: 0,
+                memory: 0,
+              }
+            }
+          })
+          if (!isEmpty(gpu) && gpu.type !== '' && gpu.value !== '') {
             data.default[`${gpu.type}`] = Number(gpu.value)
           }
           if (isEmpty(detail)) {
