@@ -216,12 +216,13 @@ export default class Activity extends React.Component {
 
   getRunhref = record => {
     const branchName = get(record, '_originData.spec.scm.refName')
+    const runName = get(record, '_originData.metadata.name')
 
     if (branchName && !this.isAtBranchDetailPage) {
-      return `${this.prefix}/branch/${record.pipeline}/run/${record.id}`
+      return `${this.prefix}/branch/${record.pipeline}/run/${runName}`
     }
 
-    return `${this.prefix}/run/${record.id}`
+    return `${this.prefix}/run/${runName}`
   }
 
   getColumns = () => [
@@ -229,21 +230,27 @@ export default class Activity extends React.Component {
       title: t('STATUS'),
       width: '15%',
       key: 'status',
-      render: record => (
-        <Link className="item-name" to={this.getRunhref(record)}>
+      render: record =>
+        record.result === 'ABORTED' ? (
           <Status {...getPipelineStatus(record)} />
-        </Link>
-      ),
+        ) : (
+          <Link className="item-name" to={this.getRunhref(record)}>
+            <Status {...getPipelineStatus(record)} />
+          </Link>
+        ),
     },
     {
       title: t('RUN'),
       width: '10%',
       key: 'run',
-      render: record => (
-        <Link className="item-name" to={this.getRunhref(record)}>
-          {record.id}
-        </Link>
-      ),
+      render: record =>
+        record.result === 'ABORTED' ? (
+          <span>{record.id}</span>
+        ) : (
+          <Link className="item-name" to={this.getRunhref(record)}>
+            {record.id}
+          </Link>
+        ),
     },
     {
       title: t('Commit'),

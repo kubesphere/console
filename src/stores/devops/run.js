@@ -38,9 +38,6 @@ export default class PipelineRunStore extends BaseStore {
   detail = {}
 
   @observable
-  runName = ''
-
-  @observable
   devops = ''
 
   @observable
@@ -97,22 +94,20 @@ export default class PipelineRunStore extends BaseStore {
   }
 
   @action
-  async getCommits({
-    name,
-    branch,
-    runId,
-    devops,
-    workspace,
-    cluster,
-    ...filters
-  }) {
+  async getCommits({ name, branch, devops, workspace, cluster, ...filters }) {
     name = decodeURIComponent(name)
 
     const { page } = filters
 
     this.commitsList.isLoading = true
     const result = await request.get(
-      `${this.getRunUrl({ cluster, devops, name, branch, runId })}`,
+      `${this.getRunUrl({
+        cluster,
+        devops,
+        name,
+        branch,
+        runId: this.runDetail.id,
+      })}`,
       {
         start: (page - 1) * TABLE_LIMIT || 0,
         limit: TABLE_LIMIT,
@@ -153,15 +148,7 @@ export default class PipelineRunStore extends BaseStore {
   }
 
   @action
-  async getArtifacts({
-    devops,
-    name,
-    branch,
-    runId,
-    cluster,
-    workspace,
-    ...filters
-  }) {
+  async getArtifacts({ devops, name, branch, cluster, workspace, ...filters }) {
     name = decodeURIComponent(name)
     const { page } = filters
 
@@ -172,7 +159,7 @@ export default class PipelineRunStore extends BaseStore {
         devops,
         name,
         branch,
-        runId,
+        runId: this.runDetail.id,
       })}artifacts/`,
       {
         start: (page - 1) * TABLE_LIMIT || 0,
@@ -192,25 +179,30 @@ export default class PipelineRunStore extends BaseStore {
   }
 
   @action
-  async getNodesStatus({ devops, name, branch, runId, cluster }) {
+  async getNodesStatus({ devops, name, branch, cluster }) {
     name = decodeURIComponent(name)
 
     this.getNodesStatusLoading = true
 
-    const stages = JSON.parse(
-      get(
-        this.runDetail,
-        '_originData.metadata.annotations["devops.kubesphere.io/jenkins-pipelinerun-stages-status"]',
-        '[]'
-      )
+    const result = await request.get(
+      `${this.getDevopsUrlV2({ cluster, devops })}pipelines/${name}${
+        branch ? `/branches/${encodeURIComponent(branch)}` : ''
+      }/runs/${this.runDetail.id}/nodesdetail/?limit=10000`
     )
 
-    if (stages) {
+    if (!isArray(result)) {
+      this.getNodesStatusLoading = false
+      return
+    }
+
+    const hasStep = result.some(stage => stage.steps && stage.steps.length)
+
+    if (hasStep) {
       // format to tree structure
-      this.nodesStatus = stages.reduce((_arr, stage, index) => {
+      this.nodesStatus = result.reduce((_arr, stage, index) => {
         stage.causeOfBlockage = this.runDetail.causeOfBlockage
         if (stage.type === 'STAGE') {
-          if (stages[index + 1] && stages[index + 1].type === 'PARALLEL') {
+          if (result[index + 1] && result[index + 1].type === 'PARALLEL') {
             const arr = []
             _arr.push(arr)
             return _arr
@@ -227,46 +219,27 @@ export default class PipelineRunStore extends BaseStore {
       this.nodesStatus = []
     }
 
-    if (!stages || stages.length < 1) {
-      this.getRunStatusLogs({ devops, name, branch, runId, cluster })
+    if (!result || result.length < 1) {
+      this.getRunStatusLogs({
+        devops,
+        name,
+        branch,
+        runId: this.runDetail.id,
+        cluster,
+      })
     }
     this.getNodesStatusLoading = false
   }
 
   @action
-  async getRunName({ devops, name, branch, runId, cluster }) {
-    const activitiesList = await this.pipelineStore.getActivities({
-      cluster,
-      devops,
-      name,
-      backward: false,
-      page: -1,
-    })
-
-    const runDetail =
-      isArray(activitiesList) &&
-      activitiesList.filter(item => {
-        const branchName = get(item, '_originData.spec.scm.refName', '')
-        const _branch = branch || ''
-
-        if (item.id === runId && _branch === branchName) {
-          return true
-        }
-        return false
-      })[0]
-
-    this.runName = get(runDetail, '_originData.metadata.name')
-  }
-
-  @action
   async getRunDetail(params) {
-    const { devops, cluster } = params
+    const { devops, cluster, runName } = params
 
     const runDetail = await request.get(
       `${this.getBaseUrl({
         cluster,
         namespace: devops,
-      })}pipelineruns/${this.runName}`,
+      })}pipelineruns/${runName}`,
       null,
       null,
       async res => {
@@ -285,19 +258,20 @@ export default class PipelineRunStore extends BaseStore {
           "metadata.annotations.['devops.kubesphere.io/jenkins-pipelinerun-status']"
         )
       ),
+      name: get(runDetail, 'metadata.name'),
       _originData: runDetail,
     }
   }
 
   async replay(params, _runId) {
-    const { devops, name, branch, runId, cluster } = params
+    const { devops, name, branch, cluster } = params
     return await request.post(
       `${this.getRunUrl({
         cluster,
         devops,
         name,
         branch,
-        runId: _runId || runId,
+        runId: _runId || this.runDetail.id,
       })}replay`
     )
   }
@@ -317,13 +291,13 @@ export default class PipelineRunStore extends BaseStore {
     this.runDetailLogs = result
   }
 
-  async handleDownloadLogs({ devops, name, branch, runId, cluster }) {
+  async handleDownloadLogs({ devops, name, branch, cluster }) {
     name = decodeURIComponent(name)
     await this.getRunStatusLogs({
       devops,
       name,
       branch,
-      runId,
+      runId: this.runDetail.id,
       cluster,
     })
     this.saveAsFile(this.runDetailLogs, 'log.txt')

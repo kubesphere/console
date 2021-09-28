@@ -87,7 +87,6 @@ export default class LogItem extends React.Component {
   @action
   getLog() {
     const { step, params, nodeId } = this.props
-
     this.store.getStepLog({ ...params, nodeId, stepId: step.id })
   }
 

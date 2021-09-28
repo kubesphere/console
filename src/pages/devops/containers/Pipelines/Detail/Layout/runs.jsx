@@ -51,8 +51,7 @@ export default class RunDetailLayout extends React.Component {
     return `/${workspace}/clusters/${cluster}/devops/${devops}/pipelines`
   }
 
-  async componentDidMount() {
-    await this.getRunName()
+  componentDidMount() {
     this.fetchData()
   }
 
@@ -86,24 +85,23 @@ export default class RunDetailLayout extends React.Component {
     const { runDetail } = this.store
     const {
       devops,
-      runId,
+      runName,
       branch,
       workspace,
       cluster,
     } = this.props.match.params
     const { params: lastParams } = prevProps.match
 
-    if (runId !== lastParams.runId) {
-      this.getRunName(lastParams)
+    if (runName !== lastParams.runName) {
       clearInterval(this.refreshTimer)
       this.refreshTimer = setInterval(this.refreshHandler, 4000)
     }
 
-    if (runDetail.id && runDetail.id !== runId) {
+    if (runDetail.name && runDetail.name !== runName) {
       this.routing.push(
         `/${workspace}/clusters/${cluster}devops/${devops}/pipelines/${name}${
           branch ? `/branch/${branch}` : ''
-        }/run/${runDetail.id}`
+        }/run/${runDetail.name}`
       )
     }
 

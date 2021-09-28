@@ -65,9 +65,7 @@ export default class CredentialStore extends BaseStore {
   }
 
   getResourceUrl = (params = {}) => {
-    const path = `${this.apiVersion}${this.getPath(params)}/devops/${
-      params.devops
-    }/credentials`
+    const path = `${this.getBaseUrl(params)}credentials`
 
     return params.name ? `${path}/${params.name}` : path
   }

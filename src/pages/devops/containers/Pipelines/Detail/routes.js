@@ -37,9 +37,9 @@ const PATH = '/:workspace/clusters/:cluster/devops/:devops/pipelines/:name'
 
 const BRANCH_PATH = `${PATH}/branch/:branch`
 
-const RUN_PATH = `${BRANCH_PATH}/run/:runId`
+const RUN_PATH = `${BRANCH_PATH}/run/:runName`
 
-const PATH_NO_BRANCH = `${PATH}/run/:runId`
+const PATH_NO_BRANCH = `${PATH}/run/:runName`
 
 const PIPELINE_ROUTES = [
   { name: 'pipeline', title: 'PIPELINE', component: Pipeline },

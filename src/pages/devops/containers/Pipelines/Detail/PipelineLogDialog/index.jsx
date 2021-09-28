@@ -60,6 +60,7 @@ export default class PipelineLog extends React.Component {
   get activeStage() {
     const { nodes } = this.props
     const activeStageTemp = toJS(nodes[this.activeNodeIndex[0]])
+
     return isArray(activeStageTemp) && !isEmpty(activeStageTemp)
       ? activeStageTemp[this.activeNodeIndex[1]]
       : activeStageTemp
@@ -68,6 +69,11 @@ export default class PipelineLog extends React.Component {
   @computed
   get isEmptySteps() {
     return isEmpty(this.activeStage.steps)
+  }
+
+  get params() {
+    const { params, runId } = this.props
+    return { ...params, runId }
   }
 
   @observable
@@ -85,8 +91,7 @@ export default class PipelineLog extends React.Component {
 
   @action
   async getPipelineIndexLog() {
-    const { params } = this.props
-    await this.store.getRunStatusLogs(params)
+    await this.store.getRunStatusLogs(this.params)
   }
 
   handleDownloadLogs = () => {
@@ -157,7 +162,6 @@ export default class PipelineLog extends React.Component {
   }
 
   renderLogContent() {
-    const { params } = this.props
     const { runDetailLogs } = this.store
 
     if (this.isEmptySteps) {
@@ -171,14 +175,14 @@ export default class PipelineLog extends React.Component {
         key={step.id}
         step={step}
         nodeId={this.activeStage.id}
-        params={params}
+        params={this.params}
         refreshFlag={this.refreshFlag}
       />
     ))
   }
 
   render() {
-    const { nodes, params } = this.props
+    const { nodes } = this.props
     const _nodes = toJS(nodes)
 
     if (this.isShowLog) {
@@ -186,7 +190,7 @@ export default class PipelineLog extends React.Component {
         <FullLogs
           store={this.store}
           isShowLog={this.isShowLog}
-          params={params}
+          params={this.params}
           handleVisableLog={this.handleVisableLog}
         />
       )

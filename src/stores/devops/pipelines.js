@@ -405,24 +405,6 @@ export default class PipelineStore extends BaseStore {
     }
   }
 
-  async replay(params, _runId) {
-    const { devops, name, branch, runId, cluster } = params
-    return await request.post(
-      `${this.getPipelineUrl({ cluster, name, devops })}${
-        branch ? `branches/${encodeURIComponent(branch)}/` : ''
-      }runs/${_runId || runId}/replay`
-    )
-  }
-
-  async stop(params, _runId) {
-    const { devops, name, branch, runId, cluster } = params
-    return await request.post(
-      `${this.getPipelineUrl({ cluster, name, devops })}${
-        branch ? `branches/${encodeURIComponent(branch)}/` : ''
-      }runs/${_runId || runId}/replay/`
-    )
-  }
-
   async handleActivityReplay({ url, devops, name, cluster }) {
     return await request.post(
       `${this.getPipelineUrl({ cluster, devops, name })}${url}/replay/`
