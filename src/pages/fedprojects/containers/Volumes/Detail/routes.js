@@ -26,7 +26,7 @@ import VolumeMounts from './VolumeMounts'
 export default PATH => [
   {
     path: `${PATH}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     exact: true,
     component: ResourceStatus,
   },

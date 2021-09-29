@@ -25,7 +25,7 @@ const PATH = '/clusters/:cluster/log-collections/:component/:name'
 export default [
   {
     path: `${PATH}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     component: ResourceStatus,
     exact: true,
   },
