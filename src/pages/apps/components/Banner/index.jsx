@@ -77,7 +77,7 @@ export default class Banner extends React.PureComponent {
               <div className={styles.back}>
                 <a className="custom-icon" href="#" onClick={onBack}>
                   <BackIcon />
-                  <span>{t('Back')}</span>
+                  <span>{t('BACK')}</span>
                 </a>
               </div>
               {this.renderTopIntro()}

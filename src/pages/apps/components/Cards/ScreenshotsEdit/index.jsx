@@ -90,7 +90,7 @@ export default class Screenshots extends React.Component {
     const len = screenshots.length
     return (
       <div>
-        <div className={styles.title}>{t('App Screenshots')}</div>
+        <div className={styles.title}>{t('APP_SCREENSHOTS')}</div>
         <div className={styles.screenshot}>
           <ul className={styles.pictures}>
             {screenshots.map((item, index) => (

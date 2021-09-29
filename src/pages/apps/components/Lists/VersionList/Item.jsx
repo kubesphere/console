@@ -190,11 +190,11 @@ export default class VersionItem extends React.PureComponent {
         </dl>
         <dl>
           <dt>{detail.name}</dt>
-          <dd>{t('App Version')}</dd>
+          <dd>{t('APP_VERSION')}</dd>
         </dl>
         <dl>
           <dt>{detail.owner}</dt>
-          <dd>{t('Developer')}</dd>
+          <dd>{t('DEVELOPER')}</dd>
         </dl>
         <dl>
           <dt>

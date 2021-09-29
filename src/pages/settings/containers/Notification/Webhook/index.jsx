@@ -160,7 +160,7 @@ export default class Webhook extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('CREATE_SUCCESSFUL')
+      message = t('ADDED_SUCCESS_DESC')
     } else {
       await this.secretStore.update(
         { name: SECRET_NAME },

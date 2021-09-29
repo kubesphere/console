@@ -174,7 +174,7 @@ export default class App extends React.Component {
 
     return (
       <div className={styles.keywords}>
-        <div className="h6 margin-b12">{t('Keywords')}</div>
+        <div className="h6 margin-b12">{t('KEYWORDS')}</div>
         <div>
           {keywords.length === 0
             ? t('NONE')
@@ -224,12 +224,12 @@ export default class App extends React.Component {
             </Column>
           </Columns>
         </TabPanel>
-        <TabPanel label={t('App Details')} name="appDetails">
+        <TabPanel label={t('APP_DETAILS')} name="appDetails">
           {this.renderDeployButton()}
           <Columns>
             <Column className="is-8">{this.renderAppFilePreview()}</Column>
             <Column>
-              <div className="h6 margin-b12">{t('Versions')}</div>
+              <div className="h6 margin-b12">{t('VERSIONS')}</div>
               <TypeSelect
                 value={this.state.selectAppVersion}
                 options={this.versionOptions}

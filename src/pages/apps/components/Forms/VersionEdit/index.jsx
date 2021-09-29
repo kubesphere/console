@@ -46,7 +46,7 @@ export default class VersionEdit extends React.Component {
     return (
       <Form data={formData} ref={formRef} className={styles.editForm}>
         <Form.Item
-          label={t('Version Number')}
+          label={t('VERSION_NUMBER')}
           rules={[
             { required: true, message: t('Please input version number') },
             {
@@ -62,7 +62,7 @@ export default class VersionEdit extends React.Component {
             onChange={value => this.handleChange(value, 'name')}
           />
         </Form.Item>
-        <Form.Item label={t('Update Log')} desc={t('UPDATE_LOG_DESC')}>
+        <Form.Item label={t('UPDATE_LOG')} desc={t('UPDATE_LOG_DESC')}>
           <TextArea
             name="description"
             onChange={value => this.handleChange(value, 'description')}

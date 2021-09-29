@@ -46,7 +46,7 @@ export default class DingTalkForm extends Component {
     const count = globals.config.notification.dingtalk['max_number_of_cid']
     if (!value) {
       Notify.error({
-        content: t('Please enter a conversation ID'),
+        content: t('ENTER_CONVERSATION_ID_DESC'),
         durantion: 1000,
       })
       return
@@ -60,7 +60,7 @@ export default class DingTalkForm extends Component {
     }
     if (data.includes(value)) {
       Notify.error({
-        content: t(`This conversation ID has existed`),
+        content: t(`CONVERSATION_ID_EXISTS`),
         duration: 1000,
       })
       return
@@ -78,7 +78,7 @@ export default class DingTalkForm extends Component {
     const count = globals.config.notification.dingtalk['max_number_of_keyword']
     if (!value) {
       Notify.error({
-        content: t('Please enter a keyword'),
+        content: t('ENTER_KEYWORD_DESC'),
         durantion: 1000,
       })
       return
@@ -92,7 +92,7 @@ export default class DingTalkForm extends Component {
     }
     if (data.includes(value)) {
       Notify.error({
-        content: t(`This keyword has existed`),
+        content: t(`KEYWORD_EXISTS`),
         duration: 1000,
       })
       return
@@ -104,7 +104,7 @@ export default class DingTalkForm extends Component {
   renderLabel() {
     return (
       <div className={styles.labelWrapper}>
-        <span>{t('Conversation ID')}</span>
+        <span>{t('CONVERSATION_ID')}</span>
         {this.props.user && (
           <Tooltip content={t('CONVERSATION_ID_TIP')}>
             <Icon className={styles.tip} name="question" />
@@ -117,7 +117,7 @@ export default class DingTalkForm extends Component {
   renderServiceSetting() {
     return (
       <div className={styles.row}>
-        <div className={styles.title}>{t('Conversation Settings')}</div>
+        <div className={styles.title}>{t('CONVERSATION_SETTINGS')}</div>
         <div className={styles.item}>
           <Form.Item label={t('AppKey')}>
             <Input name="secret.data.appkey" />
@@ -135,15 +135,15 @@ export default class DingTalkForm extends Component {
     return (
       <div className={styles.row}>
         <div className={styles.title}>
-          <span>{t('Recipient Settings')}</span>
+          <span>{t('RECIPIENT_SETTINGS')}</span>
         </div>
         <div className={styles.item}>
           <Form.Item label={this.renderLabel()}>
             <Item
               className={wrapperClassName}
               name="receiver.spec.dingtalk.conversation.chatids"
-              title={t('Conversation ID')}
-              placeholder={t('Please enter a conversation ID')}
+              title={t('CONVERSATION_ID')}
+              placeholder=" "
               validate={this.validateCid}
             />
           </Form.Item>
@@ -157,13 +157,13 @@ export default class DingTalkForm extends Component {
     return (
       <div className={styles.row}>
         <div className={styles.title}>
-          <span>{t('DingTalk Chatbot')}</span>
+          <span>{t('CHATBOT_SETTINGS')}</span>
         </div>
         <div className={styles.item}>
           <Form.Item label={t('Webhook URL')}>
             <Input name="secret.data.webhook" />
           </Form.Item>
-          <Form.Item label={t('Secret')}>
+          <Form.Item label={t('DINGTALK_SECRET')}>
             <Input name="secret.data.chatbotsecret" />
           </Form.Item>
           <Form.Item>
@@ -191,13 +191,13 @@ export default class DingTalkForm extends Component {
         {...rest}
       >
         <Tabs type="button">
-          <TabPanel label={t('Conversation Settings')} name="conversation">
+          <TabPanel label={t('CONVERSATION_SETTINGS')} name="conversation">
             <>
               {!user && this.renderServiceSetting()}
               {this.renderReceiverSetting()}
             </>
           </TabPanel>
-          <TabPanel label={t('DingTalk Chatbot')} name="chatbot">
+          <TabPanel label={t('CHATBOT_SETTINGS')} name="chatbot">
             {this.renderChatSetting()}
           </TabPanel>
         </Tabs>

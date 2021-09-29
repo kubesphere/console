@@ -81,7 +81,7 @@ export default class Cates extends Component {
         <Card className={styles.categories}>
           <div className={styles.title}>
             <label>
-              {t('All Categories')} ({list.total})
+              {t('ALL_CATEGORIES')} ({list.total})
             </label>
             <label className={styles.add}>
               <Icon onClick={this.showEdit} name={'add'} size={20} />

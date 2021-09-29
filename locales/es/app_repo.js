@@ -42,7 +42,7 @@ module.exports = {
   'Missing secret access key': 'Falta la clave de acceso secreta',
   'Please input access key ID and secret access key':
     'Introduce la ID de la clave de acceso y la clave de acceso secreta',
-  'Please input URL': 'Por favor introduce URL',
+  WEBHOOK_URL_DESC: 'Please enter a webhook URL.',
   'S3 access denied': 'Acceso S3 denegado',
   Synchronize: 'Sincronizar',
   syncing: 'syncing',

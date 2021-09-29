@@ -52,7 +52,7 @@ module.exports = {
   EXTERNAL_IP_ADDRESS: 'External IP Address',
   'External Service': 'Servicio externo',
   'Internal access': 'Acceso interno',
-  INVALID_PORT_DESC: 'Please enter a valid protocol or port number.',
+  INVALID_PORT_DESC: 'Please enter a valid port number.',
   INVALID_PORT: 'Puerto inválido',
   LANGUAGE_TYPE_VALUE: 'Tipo de idioma: {value}',
   ARTIFACT_TYPE_VALUE: 'Artifact Type: {value}',

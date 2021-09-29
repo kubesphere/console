@@ -103,7 +103,7 @@ module.exports = {
   APPLICATION_WORKLOAD_PL: 'Workload de aplicaciones',
   APPLICATION_WORKLOADS: 'Workload de aplicaciones',
   Apply: 'Aplicar',
-  'Data Updated': 'Fecha actual',
+  LAST_UPDATE_TIME: 'Last update time',
   auditing: 'auditando',
   Auditing: 'Auditando',
   'Auditing Operating': 'Auditoría Operativa',
@@ -119,7 +119,7 @@ module.exports = {
   Certificate: 'Certificado',
   'clear search conditions': 'borrar filtros',
   CLOSE: 'Cerca',
-  'Cluster Number': 'Cantidad de clústers',
+  CLUSTER_COUNT: 'Cluster',
   Collapse: 'Colapsar',
   COMMAND: 'Comando',
   COMMANDS: 'Comando',
@@ -310,12 +310,12 @@ module.exports = {
   pending: 'pendiente',
   Platform: 'Plataforma',
   platform: 'plataforma',
-  'Platform Description': 'Descripción de la plataforma',
+  PLATFORM_DESCRIPTION: 'Descripción de la plataforma',
   PLATFORM_INFORMATION: 'Información de la plataforma',
-  'Platform Status': 'Estado de ejecución de la plataforma',
-  'Platform Title': 'Título de plataforma',
-  'Platform URL': 'URL de plataforma',
-  'Platform Version': 'Versión de plataforma',
+  PLATFORM_RESOURCE: 'Platform Resource',
+  PLATFORM_TITLE: 'Título de plataforma',
+  PLATFORM_ADDRESS: 'Platform address',
+  PLATFORM_VERSION: 'Versión de plataforma',
   'Platform-level Access Control': 'Control de acceso a nivel de plataforma',
   'Filter by keyword': 'Introduce una palabra clave para filtrar',
   'Search by keyword': 'Introduce una palabra clave para buscar',
@@ -354,6 +354,8 @@ module.exports = {
   reason: 'motivo',
   REASON: 'Motivo',
   'Recent Visit': 'Visita reciente',
+  Reason: 'Motivo',
+  RECENT_ACCESS: 'Visita reciente',
   Record: 'Registro',
   Records: 'Registros',
   Refresh: 'Refrescar',
@@ -568,7 +570,7 @@ module.exports = {
   TOOLBOX_DESC:
     'La caja de herramientas proporciona búsqueda de registros y herramientas operativas de cli',
   PATTERN_NAME_INVALID_TIP:
-    'Invalid name, only support lowercase letters, numbers, and underlines(_).',
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-).',
   CONTENT_NOT_SAVED_TIPS: 'el contenido ha sido modificado pero no guardado',
   SAVE_EDIT_HINTS:
     'confirma que el contenido modificado es correcto, puedes guardar la configuración o cancelar la configuración.',
@@ -618,7 +620,7 @@ module.exports = {
   EVENT_SEARCH_DESC:
     'Una herramienta de búsqueda de eventos multidimensional para espacios de trabajo, proyectos y recursos.',
   PLATFORM_INFO_DESC:
-    'Ver título de la plataforma, descripción y otra información',
+    'Overview of the platform information. You can view and customize the platform information.',
   HOW_TO_MODIFY_PLATFORM_INFO:
     '¿Cómo modificar la información de la plataforma?',
   PLATFORM_SETTINGS_SELECTOR_DESC:
@@ -627,10 +629,8 @@ module.exports = {
     'Una herramienta de búsqueda de auditoría multidimensional para espacios de trabajo, proyectos y recursos.',
   FILE_OVERSIZED_TIP: '¡El archivo cargado debe ser inferior a 2M!',
   MULTI_CLUSTER_PROJECT_TIP: 'El recurso se implementa en varios grupos.',
-  NO_HISTORY_TITLE:
-    'Tu navegador web no ha registrado ningún historial de acceso a clústeres o espacios de trabajo.',
-  NO_HISTORY_DESC:
-    'Puedes intentar acceder a recursos, como espacios de trabajo, clústeres o proyectos.',
+  NO_HISTORY_TITLE: 'No Recently Accessed Resource Found',
+  NO_HISTORY_DESC: 'You can access platform resources.',
   USER_GUIDES_DESC: 'La guía de usuario más completa de KubeSphere.',
   DEVELOPER_DESC:
     'Haz una pregunta en la comunidad de desarrolladores para obtener ayuda.',
@@ -645,4 +645,11 @@ module.exports = {
 
   Bill: 'Medição e faturamento',
   BILLING_OPERATING_DESC: 'Track resource consumption.',
+
+  // Workbench
+  CLUSTER_COUNT_SI: 'Cluster',
+  CLUSTER_COUNT_PL: 'Clusters',
+  LAST_LOGIN_TIME: 'Last Login: ',
+  APP_TEMPLATE_SCAP_PL: 'App templates',
+  ACCOUNT_PL: 'Accounts',
 }

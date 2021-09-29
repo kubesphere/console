@@ -160,7 +160,6 @@ module.exports = {
   'Workspace Groups': '部门管理',
   NOT_ASSIGNED_TCAP: '未分配',
   ASSIGNED: '已分配',
-  ADDED_SUCCESS_TIP: '添加成功。',
   WORKSPACE_ROLE: '企业空间角色',
   PROJECT_VALUE: '项目：{value}',
   PROJECT_ROLE_VALUE: '项目角色：{value}',

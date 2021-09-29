@@ -124,13 +124,13 @@ module.exports = {
 
   Platform: '平台管理',
   PLATFORM_INFORMATION: '平台信息',
-  'Platform Version': '平台版本',
-  'Platform URL': '平台地址',
-  'Platform Title': '平台标题',
-  'Platform Description': '平台描述',
-  'Cluster Number': '集群数量',
-  'Platform Status': '平台运行状态',
-  'Data Updated': '统计截止时间',
+  PLATFORM_VERSION: '平台版本',
+  PLATFORM_ADDRESS: '平台地址',
+  PLATFORM_TITLE: '平台标题',
+  PLATFORM_DESCRIPTION: '平台描述',
+  CLUSTER_COUNT: '集群数量',
+  PLATFORM_RESOURCE: '平台资源',
+  LAST_UPDATE_TIME: '最后更新时间',
   Workbench: '工作台',
   'Access Control': '访问控制',
   ACCESS_CONTROL: '访问控制',
@@ -153,7 +153,7 @@ module.exports = {
 
   History: '历史记录',
 
-  'Recent Visit': '最近访问',
+  RECENT_ACCESS: '最近访问',
 
   CLUSTERS_MANAGE_DESC:
     '对多集群以及每个集群的基础资源、服务组件和应用资源等的统一管理',
@@ -594,7 +594,8 @@ module.exports = {
   NOT_RUNNING_YET: '未运行',
   successful: '成功',
   Tag: '标签',
-  PATTERN_NAME_INVALID_TIP: '名称无效，仅支持小写字母、数字、下划线。',
+  PATTERN_NAME_INVALID_TIP:
+    '名称无效。名称只能包含小写字母、数字、或连字符（-）。',
   NO_MATCHING_RESULT_FOUND: '没有找到匹配的结果',
   'You can try to': '您可以尝试',
   'clear search conditions': '清空搜索条件。',
@@ -647,8 +648,8 @@ module.exports = {
   'User Guides': '用户指南',
   'Quick Support': '快速获取帮助',
   'Developer Community': '开发者社区',
-  NO_HISTORY_TITLE: '浏览器暂未收录到您对集群或者企业空间等区域的访问记录',
-  NO_HISTORY_DESC: '您可以尝试对企业空间或者集群、项目等资源的访问',
+  NO_HISTORY_TITLE: '没有找到最近访问的资源',
+  NO_HISTORY_DESC: '您可以对平台资源进行访问。',
   USER_GUIDES_DESC: '最详尽的 KubeSphere 用户指南文档',
   DEVELOPER_DESC: '通过在开发者社区提出问题获得帮助',
   API_DOCS_DESC: '最详尽的 KubeSphere API 文档',
@@ -659,8 +660,8 @@ module.exports = {
   ENV_TESTING: '测试环境',
   ENV_DEMO: '演示环境',
 
-  HOW_TO_MODIFY_PLATFORM_INFO: '如何修改平台信息?',
-  PLATFORM_INFO_DESC: '查看平台标题及描述等信息',
+  HOW_TO_MODIFY_PLATFORM_INFO: '如何定制化平台信息?',
+  PLATFORM_INFO_DESC: '平台的信息概览，您可以查看和定制化平台信息。',
   PLATFORM_SETTINGS_SELECTOR_DESC: '定制化平台的系统配置',
 
   EVENT_AGE: '发生时间',
@@ -671,4 +672,11 @@ module.exports = {
   CREATE_BY_YAML_DESC: '在 YAML 文件中自定义应用的设置。',
   Bill: '资源消费统计',
   BILLING_OPERATING_DESC: '查看消费情况',
+
+  // Workbench
+  CLUSTER_COUNT_SI: '集群数量',
+  CLUSTER_COUNT_PL: '集群数量',
+  LAST_LOGIN_TIME: '最后登录时间：',
+  APP_TEMPLATE_SCAP_PL: '应用模板',
+  ACCOUNT_PL: '账户',
 }

@@ -191,12 +191,12 @@ export default class UploadInfo extends Component {
             )}
           </div>
           <div className={styles.description}>
-            {t('UPDATED_AT')}:&nbsp;
+            {t('UPDATED_AT_SCAP')}
             {getLocalTime(updateTime).format('YYYY-MM-DD HH:mm:ss')}
           </div>
         </div>
         <Button onClick={this.downloadPackage} type="default">
-          {t('Download')}
+          {t('DOWNLOAD')}
         </Button>
         <Upload
           ref={node => {

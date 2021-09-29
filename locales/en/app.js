@@ -23,8 +23,8 @@ module.exports = {
   'Add Version': 'Add Version',
   ADD_VERSION_SUCCESSFUL: 'Version added successfully.',
   'Adjust App Category': 'Adjust App Category',
-  'Adjust Successfully': 'Adjusted Successfully',
-  'All Categories': 'All Categories',
+  CHANGED_SUCCESSFULLY: 'Changed successfully.',
+  ALL_CATEGORIES: 'All Categories',
   APP_CATEGORY_PL: 'App Categories',
   APP_CATEGORY: 'App Category',
   'App Config': 'App Configurations',
@@ -32,15 +32,15 @@ module.exports = {
   'Current App Config': 'Current App Configurations',
   'New App Config': 'New App Configurations',
   'App Deploy': 'App Deploy',
-  'App Details': 'App Details',
+  APP_DETAILS: 'App Details',
   'App Home': 'Homepage',
   APP_INFORMATION: 'App Information',
   'App Introduction': 'App Introduction',
   'App Name': 'App Name',
   'App Number': 'App Number',
   APP_REVIEW: 'App Review',
-  'App Reviews': 'App Reviews',
-  'App Screenshots': 'App Screenshots',
+  APP_REVIEWS: 'App Reviews',
+  APP_SCREENSHOTS: 'App Screenshots',
   APP_STORE_MANAGEMENT: 'App Store Management',
   'App Version': 'App Version',
   'Current App Version': 'Current App Version',
@@ -78,14 +78,14 @@ module.exports = {
   'Instance Name': 'Instance Name',
   Introduction: 'Introduction',
   MODIFY_SUCCESSFUL: 'Modified successfully.',
-  'New Apps': 'New Apps',
+  NEW_APPS: 'New Apps',
   'New Version': 'New Version',
-  'No update log': 'No update log',
+  NO_UPDATE_LOG_DESC: 'No update log is found.',
   Note: 'Note',
   Operator: 'Operator',
   'Package problems': 'Package problems',
   'Pass Successfully': 'Pass Successfully',
-  'Platform App Store Management': 'Platform App Store Management',
+  PLATFORM_APP_STORE_MANAGEMENT: 'Platform App Store Management',
   'Please input category name': 'Please input category name',
   'Please input reject reason': 'Please input reject reason',
   'Please input version number': 'Please input version number',
@@ -98,7 +98,7 @@ module.exports = {
   'Please select a DevOps project role': 'Please select a DevOps project role',
   'Please select icon': 'Please select icon',
   'please upload again': 'please upload again',
-  Processed: 'Processed',
+  REVIEWED: 'Reviewed',
   PROVIDER: 'Provider',
   'Re-upload': 'Re-upload',
   'Recover Successfully': 'Recover Successfully',
@@ -106,8 +106,8 @@ module.exports = {
   'Reject Successfully': 'Reject Successfully',
   'Release / Suspended Time': 'Released / Suspended',
   'Release Successfully': 'Release Successfully',
-  'Request for Approval': 'Request for Approval',
-  'Review Content': 'Review Content',
+  APP_PUBLISHING: 'App publishing',
+  REVIEW_CONTENT: 'Review Content',
   'Review Object': 'Review Object',
   'Review Status': 'Review Status',
   Screenshot: 'Screenshot',
@@ -127,7 +127,7 @@ module.exports = {
   'Test Deployment': 'Test Deployment',
   'Time of entry': 'Time of entry',
   Uncategorized: 'Uncategorized',
-  Unprocessed: 'Unprocessed',
+  UNREVIEWED: 'Unreviewed',
   'Update Log': 'Update Log',
   'Upload again': 'Upload again',
   'Upload Icon': 'Upload Icon',
@@ -177,7 +177,7 @@ module.exports = {
   APP_STORE_DESC: 'Manage apps of the App Store.',
 
   APP_REVIEW_DESC:
-    'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
+    'KubeSphere supports reviewing the contents of applications to be published. You can view the contents and approve or reject to publish the applications.',
   APP_REVIEW_EMPTY_DESC: 'No app to be reviewed is found.',
   APP_REVIEWS_CREATE_DESC:
     'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
@@ -188,8 +188,8 @@ module.exports = {
   APP_CATEGORIES_DESC:
     'You can create, edit, and delete categories on this page to classify active apps of the App Store.',
   APP_CATEGORIES_CREATE_DESC: 'No application available for the category.',
-  ADJUST_CATEGORY_DESC:
-    'Application classification will determine the classification of the application in the application store',
+  CHANGE_CATEGORY_DESC:
+    'Application classification will determine the classification of the application in the application store.',
   DELETE_CATEGORY_WARNING:
     'This category binds <strong>{total}</strong> applications. Please' +
     ' choose to adjust these applications to other categories before deleting them',
@@ -241,7 +241,7 @@ module.exports = {
   FILE_FORMAT_SCREENSHOTS: 'Screen format supports png and jpg',
   FILE_MAX_PACKAGE: 'Configuration package size should not exceed 2M',
   FILE_MAX_ICON: 'Icon size should not exceed 20KB',
-  FILE_MAX_SIZE_ICON: 'Icon size should not exceed 96px',
+  FILE_MAX_SIZE_ICON: 'The icon size cannot exceed 96 px.',
   FILE_MAX_SCREENSHOTS: 'Image size should not exceed 2M',
 
   UPLOAD_PACKAGE_OK_NOTE:
@@ -263,8 +263,8 @@ module.exports = {
   DELETE_APP_TEMPLATE_TIP:
     'Before deleting an application template, you need to delete all versions.',
 
-  UNPROCESSED_APP_REVIEW: 'Unprocessed App Review',
-  PROCESSED_APP_REVIEW: 'Processed App Review',
+  UNPROCESSED_APP_REVIEW: 'Pending App Review',
+  PROCESSED_APP_REVIEW: 'Complete App Review',
   ALL_APP_REVIEW: 'App Review',
 
   'APP_CATE_MESSAGE QUEUEING': 'Message Queuing',
@@ -274,4 +274,34 @@ module.exports = {
   APP_CATE_NETWORKING: 'Networking',
   'APP_CATE_DATABASE & CACHE': 'Database & Cache',
   APP_CATE_STORAGE: 'Storage',
+
+  // App Reviews
+  REVIEW: 'Review',
+  OPERATOR: 'Operator',
+  PENDING_REVIEW: 'Pending',
+  COMPLETE_REVIEW: 'Complete',
+  REJECT: 'Reject',
+  PASS: 'Pass',
+  INTRODUCTION: 'Introduction',
+  UPDATE_LOG: 'Update Log',
+  SERVICE_PROVIDER_WEBSITE: 'Service provider website',
+  SERVICE_PROVIDER: 'Service provider',
+  APP_DESCRIPTION: 'App Description',
+  DOCUMENTATION: 'Documentation',
+  BACK: 'Back',
+  NOTIFICATION_EMAIL: 'Email',
+
+  // App Store
+  DISCOVER: 'Discover',
+  CATEGORIES: 'Categories',
+  CATEGORY_COLON: 'Category:',
+  HOMEPAGE_COLON: 'Homepage:',
+  RELEASE_DATE_COLON: 'Release Date:',
+  APP_ID_COLON: 'App ID:',
+  APP_VERSIONS_TITLE:
+    'Versions (only the latest 10 versions will be displayed)',
+  VERSIONS: 'Versions',
+  APP_CONFIGURATIONS: 'App Configurations',
+  UPDATED_AT_SCAP: 'Updated at: ',
+  DEVELOPER: 'Developer',
 }

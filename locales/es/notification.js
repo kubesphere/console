@@ -21,137 +21,137 @@ module.exports = {
   'Notification Management': 'Gestión de notificaciones',
   NOTIFICATION_CONFIGURATION: 'Configuración de la notificación',
   'Notification Configuration': 'Configuración de la notificación',
-  'Server Settings': 'Configuración del servidor',
-  'Recipient Settings': 'Configuración del receptor',
+  SERVER_SETTINGS: 'Configuración del servidor',
+  RECIPIENT_SETTINGS: 'Configuración del receptor',
   'Receive Notification': 'Recibir notificación',
 
   NOTIFICATION_CONFIGURATION_DESC:
-    'Puede recibir notificaciones de la plataforma a través de correo electrónico, dingtalk, wecom, slack y webhook. Necesita configurar el servidor de envío ',
+    'KubeSphere supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
 
   'Notification On': 'Notificación activada',
   'Notification Off': 'Notificación desactivada',
 
-  'Notification Condition Settings':
-    'Configuración de condición de notificación',
+  NOTIFICATION_CONDITIONS: 'Notification Conditions',
+  NOTIFICATION_CONDITION_SETTING_TIP:
+    'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use colons to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
   NOTIFICATION_CONDITION_SETTINGS_DESC:
-    'Solo recibirás notificaciones que cumplan con los criterios del filtro',
-  NOTIFICATION_CONDITION_SETTING_ANNOTATION:
-    'Incluir valor clave: la etiqueta de la notificación recibida tendrá el valor seleccionado; incluir clave: la notificación recibida tendrá la etiqueta seleccionada. ',
-  'Include key values': 'Incluir valores clave',
-  'Not include key value': 'No incluir valores clave',
-  'Exists key': 'Exists key',
-  'Does not exist key': 'No existe clave',
+    'You will receive only notifications that meet the conditions.',
+  INCLUDES_VALUES: 'Includes values',
+  DOES_NOT_INCLUDE_VALUES: 'Does not include values',
+  EXISTS: 'Exists',
+  DOES_NOT_EXIST: 'Does not exist',
   'Please select a tag': 'Seleccione una etiqueta',
   'Please select a regex filter':
     'Seleccione un filtro de expresiones regulares',
   'Invalid notification condition': 'Condición de notificación no válida',
   TAG_INPUT_PLACEHOLDER: 'Ingrese el valor y presione Enter para confirmar',
+  INVALID_NOTIFICATION_CONDITION:
+    'Please enter a correct notification condition.',
 
   SEND_TEST_MESSAGE: 'Enviar mensaje de prueba',
-  NOTIFICATION_CONFIGRATION_SEND_TEST_MESSAGE_DESC:
-    'Después de establecer la configuración relevante, puede enviar información de prueba para verificar su configuración.',
+  SEND_TEST_MESSAGE_DESC:
+    'After the configurations are complete, you can send a test message for verification.',
   SEND_TEST_MESSAGE_SUCCESS_DESC:
-    'La verificación se realizó correctamente, se le envió un mensaje de prueba, verifíquelo',
+    'Verified successfully. A test message has been sent to you , please check it out.',
 
   Mail: 'Correo',
-  'SMTP Server Address': 'Dirección del servidor SMTP',
-  'Use SSL Secure Connection': 'Usar conexión segura SSL',
+  SMTP_SERVER_ADDRESS: 'Dirección del servidor SMTP',
+  USE_SSL_SECURE_CONNECTION: 'Use SSL secure connection.',
 
   MAIL_SETTING_DESC:
     'Puede recibir notificaciones de la plataforma por correo y debe configurar el servidor de envío de correo.',
   SENDER_MAIL: 'Correo del remitente',
+  MAIL_DESC:
+    'Configure email notifications by setting a server and recipients.',
+  SENDER_EMAIL: 'Correo del remitente',
   MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP:
     'Su configuración de correo actual ha cambiado, guarde la configuración o cancele la modificación',
 
-  'Please enter the SMTP username': 'Por favor ingrese el usuario SMTP',
   'Please enter an email address': 'Ingrese un correo electrónico para agregar',
   'This email address has existed': 'Este correo electrónico ha existido',
-  'Invalid address': 'Dirección no válida',
+  INVALID_ADDRESS_DESC: 'Please enter a valid address.',
   INVALID_EMAIL: 'Email inválido',
   'Please add the recipient email address':
     'Por favor, agregue el correo electrónico del destinatario',
-  MAX_EAMIL_COUNT: 'Agregue hasta {count} buzones de correo',
+  MAX_EAMIL_COUNT: 'You can add a maximum of {count} emails.',
 
   DingTalk: 'DingTalk',
-  'Conversation Settings': 'Configuración de conversación',
-  'Conversation ID': 'ID de conversación',
-  'DingTalk Chatbot': 'Chatbot de DingTalk',
-  'Webhook URL': 'URL del webhook',
+  CONVERSATION_SETTINGS: 'Configuración de conversación',
+  CONVERSATION_ID: 'ID de conversación',
+  CHATBOT_SETTINGS: 'Chatbot de DingTalk',
   keywords: 'palabras clave',
-  'Keywords Set': 'Conjunto de palabras clave',
+  KEYWORDS_LIST: 'Keyword List',
   CONVERSATION_ID_TIP:
     'El administrador del sistema debe configurar el ID de conversación para obtenerlo. Si necesita configurarlo, comuníquese con el administrador del sistema.',
 
-  'Please enter a conversation ID':
-    'Ingrese un ID de conversación para agregar',
-  'Please enter a keyword': 'Ingrese una palabra clave para agregar',
-  'This conversation ID has existed': 'Este ID de conversación ha existido',
-  'This keyword has existed': 'Esta palabra clave ha existido',
-  MAX_CID_COUNT: 'Agrega un máximo de {count} ID de conversación',
-  MAX_KEYWORD_COUNT: 'Agregue como máximo {count} palabras clave',
-  EMPTY_KEYWORDS_DESC: 'No se agregaron palabras clave',
+  ENTER_CONVERSATION_ID_DESC: 'Please enter a conversation ID.',
+  ENTER_KEYWORD_DESC: 'Please enter a keyword.',
+  CONVERSATION_ID_EXISTS:
+    'The conversation ID already exists. Please add another conversation ID.',
+  KEYWORD_EXISTS: 'The keyword already exists. Please add another keyword.',
+  MAX_CID_COUNT: 'You can add a maximum of {count} conversation IDs.',
+  MAX_KEYWORD_COUNT: 'You can add a maximum of {count} keywords.',
+  EMPTY_KEYWORDS_DESC: 'No keyword is added.',
   DINGTALK_SETTING_TIP: 'Configura una conversación o un robot grupal',
 
-  DINGTALK_SETTING_DESC:
-    'Puede recibir notificaciones de la plataforma a través de Dingding y debe configurar el servidor de envío de Dingding.',
+  DINGTALK_DESC:
+    'Configure DingTalk notifications by setting a conversation or chatbot.',
   DINGTALK_KEYWORDS_DESC:
     'Palabras clave personalizadas de ChatBot, si necesita más de una, sepárelas con "," ',
   DINGTALK_SETTINGS_CHANGE_NEED_SAVE_TIP:
     'Su configuración actual de Dingding ha sido cambiada, guarde la configuración o cancele la modificación',
 
   WeCom: 'WeCom',
-  'WeChat API Corp ID': 'ID de Wechat Api Corp',
-  'WeChat API Agent ID': 'ID de agente de Wechat Api',
-  'WeChat API Secret': 'El secreto de Wechat Api',
-  'User ID': 'ID de usuario',
-  'Party ID': 'ID de departamento',
-  'Tag ID': 'ID de etiqueta',
-  'User Set': 'Conjunto de usuario',
-  'Party Set': 'Conjunto de departamentos',
-  'Tag Set': 'Conjunto de etiquetas',
-  WECOM_RECEIVER_TOUSER_INPUT_PLACEHOLDER:
-    'Ingrese el ID de usuario para agregar',
-  WECOM_RECEIVER_TOPARTY_INPUT_PLACEHOLDER:
-    'Por favor ingrese el ID de departamento para agregar',
-  WECOM_RECEIVER_TOTAG_INPUT_PLACEHOLDER: 'Ingrese la etiqueta para agregar',
+  WECOM_CORP_ID: 'Corporation ID',
+  WECOM_AGENT_ID: 'App AgentId',
+  WECOM_SECRET: 'App Secret',
+  USER_ID: 'ID de usuario',
+  DEPARTMENT_ID: 'ID de departamento',
+  TAG_ID: 'ID de etiqueta',
+  TOUSER_LIST: 'Added User IDs',
+  TOPARTY_LIST: 'Added Department IDs',
+  TOTAG_LIST: 'Added Tag IDs',
+  WECOM_TOUSER_PLACEHOLDER: 'User ID',
+  WECOM_TOPARTY_PLACEHOLDER: 'Department ID',
+  WECOM_TOTAG_PLACEHOLDER: 'Tag ID',
   RECIPIENT_SETTINGS_TIP:
-    'Se debe configurar al menos un elemento para recibir notificaciones',
-  EMPTY_TOUSER_DESC: 'No se agregó ningún usuario',
-  EMPTY_TOPARTY_DESC: 'No se agregó ningún departamento',
-  EMPTY_TOTAG_DESC: 'No se agregó ninguna etiqueta',
+    'At least one item needs to be configured to receive notifications.',
+  EMPTY_TOUSER_DESC: 'No user ID is added.',
+  EMPTY_TOPARTY_DESC: 'No department ID is added.',
+  EMPTY_TOTAG_DESC: 'No tag ID is added.',
 
-  'Please enter the WeChat API Corp ID': 'Por favor ingrese wechat api corp id',
-  'Please enter the WeChat API Agent ID':
-    'Por favor ingrese la identificación del agente de wechat api',
-  'Please enter the WeChat API Secret': 'Por favor ingrese wechat api secreto',
+  ENTER_WECOM_CORP_ID_DESC: 'Please enter a corporation ID.',
+  ENTER_WECOM_AGENT_ID_DESC: 'Please enter an applicaiton AgentId.',
+  ENTER_WECOM_SECRET_DESC: 'Please enter an application Secret.',
   'Please enter a user': 'Por favor ingrese un usuario',
   'Please enter a department': 'Por favor ingrese un departamento',
   'Please enter a tag': 'Ingrese una etiqueta',
-  'This toUser has existed': 'Este usuario ha existido',
-  'This toParty has existed': 'Este departamento ha existido',
-  'This toTag has existed': 'Esta etiqueta ha existido',
-  MAX_TOUSER_COUNT: 'Agregue hasta {count} usuarios',
-  MAX_TOPARTY_COUNT: 'Agregue hasta {count} departamentos',
-  MAX_TOTAG_COUNT: 'Agregar hasta {count} etiquetas',
+  TOUSER_EXISTS: 'The user ID already exists. Please enter another user ID.',
+  TOPARTY_EXISTS:
+    'The department ID already exists. Please enter another department ID.',
+  TOTAG_EXISTS: 'The tag ID already exists. Please enter another tag ID.',
+  MAX_TOUSER_COUNT: 'You can add a maximum of {count} users.',
+  MAX_TOPARTY_COUNT: 'You can add a maximum of {count} departments.',
+  MAX_TOTAG_COUNT: 'You can add a maximum of {count} tags.',
 
-  WECOM_SETTING_DESC:
-    'Puede recibir notificaciones de la plataforma a través de Enterprise WeChat y debe configurar el servidor de envío de WeChat empresarial.',
+  WECOM_DESC:
+    'Configure WeCom notifications by setting a server and recipients.',
   WECOM_SETTINGS_CHANGE_NEED_SAVE_TIP:
     'Su configuración corporativa actual de WeChat ha cambiado, guarde la configuración o cancele la modificación',
 
   Channel: 'Canal',
-  'Channel Settings': 'Configuración de canal',
-  'Channel Set': 'Conjunto de canales',
-  EMPTY_CHANNEL_DESC: 'No se agregó ningún canal',
+  CHANNEL_SETTINGS: 'Configuración de canal',
+  ADDED_CHANNELS: 'Added Channels',
+  EMPTY_CHANNEL_DESC: 'No channel is added.',
 
-  'Please enter the Slack token': 'Ingrese el token de holgura',
-  'Please enter a channel': 'Ingrese un canal para agregar',
-  'This channel has existed': 'Este canal ha existido',
-  'Please add the receiver channel': 'Por favor, agregue un canal receptor',
-  MAX_CHANNEL_COUNT: 'Agregar hasta {count} canales',
+  SLACK_TOKEN_DESC: 'Please enter a Slack token.',
+  ADD_CHANNEL_DESC: 'Please add a channel.',
+  CHANNEL_EXISTS: 'The channel already exists. Please add another channel.',
+  CHANNEL_SETTINGS_DESC: 'Please add a channel.',
+  MAX_CHANNEL_COUNT: 'You can add a maximum of {count} channels.',
 
-  SLACK_SETTING_DESC:
-    'Puede recibir notificaciones de la plataforma a través de Slack y debe configurar el servidor de envío de Slack.',
+  SLACK_DESC:
+    'Configure Slack notifications by setting a server and Slack channels.',
   SLACK_SETTINGS_CHANGE_NEED_SAVE_TIP:
     'Su configuración actual de holgura ha cambiado, guarde la configuración o cancele la modificación',
 
@@ -161,9 +161,9 @@ module.exports = {
   'Root CA': 'CA raíz',
   'Client Certificate Cert': 'Certificado de certificado de cliente',
   'Client Certificate Key': 'Clave de certificado de cliente',
-  'Verification Type': 'Verificar tipo',
-  'Skip TLS Certification': 'Omitir la certificación TLS',
-  'Please select a verification type': 'Please select a verification type',
+  VERIFICATION_TYPE: 'Verificar tipo',
+  SKIP_TLS_VERFICATION: 'Skip TLS verification.',
+  VERIFICATION_TYPE_DESC: 'Please select a verification type.',
 
   WEBHOOK_SETTING_DESC:
     'Puede recibir notificaciones de la plataforma a través de webhook y debe configurar el servidor de envío de webhook.',
@@ -171,4 +171,34 @@ module.exports = {
     'Su configuración actual de webhook ha cambiado, guarde la configuración o cancele la modificación',
 
   PLEASE_ENTER_VALUE_CUSTOM: 'Ingrese un {value}.',
+  // Notification Configuration
+  CONTAINER: 'Container',
+  VALUES: 'Values',
+  LABEL: 'Label',
+  CONDITION_OPERATOR: 'Operator',
+  SMTP_USER: 'SMTP Username',
+  SMTP_PASSWORD: 'SMTP Password',
+  ENTER_PASSWORD_TIP: 'Please enter the password.',
+  ENTER_RECIPIENT_EMAIL_DESC:
+    'Please add at lease one email address of a recipient.',
+  INVALID_EMAIL_ADDRESS_DESC:
+    'The email format is incorrect. Please enter a correct email address.',
+  SMTP_USER_EMPTY_DESC: 'Please enter a SMTP username.',
+  DINGTALK_SECRET: 'Secret',
+  MAIL_TITLE: 'Email',
+  DINGTALK_TITLE: 'DingTalk',
+  WECOM_TITLE: 'WeCom',
+  SLACK_TITLE: 'Slack',
+  WEBHOOK_TITLE: 'Webhook',
+
+  // Notification Configuration
+  ENTER_TOUSER_TIP: 'Please enter a user ID.',
+  ENTER_TOPARTY_TIP: 'Please enter a department ID.',
+  ENTER_TOTAG_TIP: 'Please enter a tag ID.',
+  SLACK_TOKEN: 'Slack Token',
+  SLACK_CHANNEL: 'Slack channel',
+  TOKEN: 'Token',
+  BASIC_AUTH: 'Basic authentication',
+  NO_AUTH: 'No authentication',
+  BEARER_TOKEN: 'Bearer token',
 }

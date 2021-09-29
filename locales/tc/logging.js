@@ -91,7 +91,7 @@ module.exports = {
   ENTER_SERVICE_ADDRESS: '請輸入服務地址。',
 
   URL_SYNTAX_ERROR: 'URL 語法錯誤',
-  'Please enter the address': '請輸入地址',
+  ADDRESS_EMPTY_DESC: 'Please enter an address.',
   LOG_COLLECTION_ES_URL_TIPS:
     'The built-in Elasticsearch service is used by default. You can also enter the IP address of Elasticsearch independently deployed inside or outside the cluster.',
   LOG_COLLECTION_ES_INDEX_TIPS:

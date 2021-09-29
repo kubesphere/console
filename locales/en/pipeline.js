@@ -420,8 +420,9 @@ module.exports = {
     and cannot be graphically displayed`,
   PIPELINE_CRONJOB_CRON_DESC: `For syntax reference, refer to
     <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">CRON</a>.`,
-  WEBHOOK_DESC:
+  WEBHOOK_PUSH_DESC:
     'Push a message to this URL to trigger a reindexing of the repository. ',
+  WEBHOOK_DESC: 'Configure webhook notifications by setting a webhook server.',
   TIME_TRIGGER_DESC: `Some types of items will automatically re-index
     when they receive an external push message.
     However, in some cases, message notifications may fail.

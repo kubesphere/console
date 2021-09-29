@@ -122,7 +122,7 @@ export default class AppReview extends Component {
       <>
         <BaseInfo detail={appDetail} versionName={versionDetail.name} />
         <div className={styles.screenshots}>
-          <div className={styles.title}>{t('App Screenshots')}</div>
+          <div className={styles.title}>{t('APP_SCREENSHOTS')}</div>
           {len > 0 ? (
             <ul>
               {screenshots.map((item, index) => (
@@ -165,7 +165,7 @@ export default class AppReview extends Component {
     return (
       <div className={styles.footer}>
         <Button type="danger" onClick={onReject}>
-          {t('Reject')}
+          {t('REJECT')}
         </Button>
         <Button
           type="control"
@@ -173,7 +173,7 @@ export default class AppReview extends Component {
           disabled={isSubmitting}
           onClick={onOk}
         >
-          {t('Pass')}
+          {t('PASS')}
         </Button>
       </div>
     )
@@ -200,13 +200,13 @@ export default class AppReview extends Component {
           <TabPanel label={t('APP_INFORMATION')} name="appInfo">
             {this.renderBaseInfo()}
           </TabPanel>
-          <TabPanel label={t('Introduction')} name="readme">
+          <TabPanel label={t('DOCUMENTATION')} name="readme">
             <AppReadme readme={readme} />
           </TabPanel>
           <TabPanel label={t('CHART_FILES')} name="configFiles">
             {this.renderConfigFiles()}
           </TabPanel>
-          <TabPanel label={t('Update Log')} name="updateLog">
+          <TabPanel label={t('UPDATE_LOG')} name="updateLog">
             <UpdateLog description={versionDetail.description} />
           </TabPanel>
         </Tabs>

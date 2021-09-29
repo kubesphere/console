@@ -66,7 +66,7 @@ module.exports = {
   'App Repositories': '应用仓库',
   USER_PL: '用户',
 
-  DASHBOARD_TITLE: '你好 {username}',
+  DASHBOARD_TITLE: '您好 {username}',
   DASHBOARD_BANNER_TITLE: '平台运行概览',
   DASHBOARD_BANNER_DESC: '集合了当前平台运行中资源和用量的统计信息',
   DASHBOARD_DESC: 'Dashboard 提供了当前集群下各种资源的使用情况。',

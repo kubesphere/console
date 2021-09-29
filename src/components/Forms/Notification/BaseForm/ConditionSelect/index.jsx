@@ -63,7 +63,7 @@ export default class ConditionSelect extends React.Component {
         value: 'pod',
       },
       {
-        label: t('Container'),
+        label: t('CONTAINER'),
         value: 'container',
       },
     ]
@@ -72,19 +72,19 @@ export default class ConditionSelect extends React.Component {
   get operators() {
     return [
       {
-        label: t('Include key values'),
+        label: t('INCLUDES_VALUES'),
         value: 'In',
       },
       {
-        label: t('Not include key values'),
+        label: t('DOES_NOT_INCLUDE_VALUES'),
         value: 'NotIn',
       },
       {
-        label: t('Exists key'),
+        label: t('EXISTS'),
         value: 'Exists',
       },
       {
-        label: t('Does not exist key'),
+        label: t('DOES_NOT_EXIST'),
         value: 'DoesNotExist',
       },
     ]
@@ -184,13 +184,14 @@ export default class ConditionSelect extends React.Component {
           options={this.severities}
           multi
           onChange={this.handleValueChange}
+          placeholder={t('VALUES')}
         />
       )
     }
     return (
       <TagInput
         name="values"
-        placeholder={t('TAG_INPUT_PLACEHOLDER')}
+        placeholder={t('VALUES')}
         value={values}
         onChange={this.handleValueChange}
       />
@@ -206,7 +207,7 @@ export default class ConditionSelect extends React.Component {
           name="key"
           value={key}
           options={keyItems}
-          placeholder={t('Please select a tag')}
+          placeholder={t('LABEL')}
           onChange={this.handleKeyChange}
           dorpdownRender={this.dorpdownRender}
         />
@@ -215,6 +216,7 @@ export default class ConditionSelect extends React.Component {
           value={operator}
           options={this.operators}
           onChange={this.handleOperatorChange}
+          placeholder={t('CONDITION_OPERATOR')}
         />
         {this.renderValues()}
       </div>

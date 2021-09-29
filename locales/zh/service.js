@@ -66,7 +66,7 @@ module.exports = {
   CREATE_EXTERNAL_SERVICE: '创建外部服务',
   'Add Selector': '添加选择器',
 
-  INVALID_PORT_DESC: '请输入有效协议或端口号。',
+  INVALID_PORT_DESC: '请输入有效端口号。',
   'Please input ExternalName': '请输入 ExternalName',
   'Specify Workload': '指定工作负载',
 

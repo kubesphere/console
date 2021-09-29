@@ -262,7 +262,9 @@ module.exports = {
     '流水线或单个阶段的标签',
   SINGLE_SVN: '单分支 SVN',
   SVN: 'SVN',
-  WEBHOOK_DESC: '推送消息到此 URL 以触发仓库的重新索引。',
+  WEBHOOK_PUSH_DESC: '推送消息到此 URL 以触发仓库的重新索引。',
+  'single Svn': '单分支 SVN',
+  WEBHOOK_DESC: '通过设置 Webhook 服务器以配置 Webhook 通知。',
   TIME_TRIGGER_DESC: `某些类型的项目会在收到外部推送消息会自动重新索引。但在某些情况下，消息通知可能失败。
     这个选项将检查指定时间间隔内是否执行了索引，如果没有则触发索引。`,
   'Are you sure to close this pipeline Editor ?': '确定关闭流水线编辑？',

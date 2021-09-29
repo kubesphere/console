@@ -272,7 +272,6 @@ module.exports = {
     '您可以创建多集群项目，让项目运行在多个集群中，为应用提供快速迭代开发的容器环境并实现高可用。',
 
   // Jobs
-  MESSAGE: '消息',
   running: '运行中',
 
   // Custom Monotoring

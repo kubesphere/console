@@ -251,9 +251,6 @@ module.exports = {
   CREATE_MULTI_CLUSTER_PROJECT_DESC:
     'A multi-cluster project runs across different clusters, which helps you to build a container environment for rapid iteration of applications and achieve high availability.',
 
-  // Jobs
-  MESSAGE: 'Message',
-
   // Custom Monotoring
   CUSTOM_MONITORING_DASHBOARD_LOW: 'custom monitoring dashbord',
 

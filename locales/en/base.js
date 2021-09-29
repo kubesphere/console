@@ -104,7 +104,7 @@ module.exports = {
   APPLICATION_WORKLOAD_PL: 'Application Workloads',
   APPLICATION_WORKLOADS: 'Application Workloads',
   Apply: 'Apply',
-  'Data Updated': 'Data Updated',
+  LAST_UPDATE_TIME: 'Last update time',
   auditing: 'auditing',
   Auditing: 'Auditing',
   'Auditing Operating': 'Auditing Operating',
@@ -121,7 +121,7 @@ module.exports = {
   CERTIFICATE_VALUE: 'Certificate: {value}',
   'clear search conditions': 'clear search conditions.',
   CLOSE: 'Close',
-  'Cluster Number': 'Cluster Number',
+  CLUSTER_COUNT: 'Cluster',
   Collapse: 'Collapse',
   COMMAND: 'Command',
   COMMANDS: 'Commands',
@@ -306,13 +306,13 @@ module.exports = {
   pending: 'pending',
   Platform: 'Platform',
   platform: 'platform',
-  'Platform Description': 'Platform Description',
+  PLATFORM_DESCRIPTION: 'Platform description',
   PLATFORM_INFORMATION: 'Platform Information',
-  'Platform Status': 'Platform Status',
-  'Platform Title': 'Platform Title',
-  'Platform URL': 'Platform URL',
-  'Platform Version': 'Platform Version',
-  'Platform-level Access Control': 'Platform-level',
+  PLATFORM_RESOURCE: 'Platform Resource',
+  PLATFORM_TITLE: 'Platform title',
+  PLATFORM_ADDRESS: 'Platform address',
+  PLATFORM_VERSION: 'Platform version',
+  'Platform-level Access Control': 'Platform-Level',
   'Filter by keyword': 'Filter by keyword',
   'Search by keyword': 'Search by keyword',
   SEARCH_BY_NAME: 'Search by name',
@@ -350,6 +350,8 @@ module.exports = {
   reason: 'reason',
   REASON: 'Reason',
   'Recent Visit': 'Recent Visit',
+  Reason: 'Reason',
+  RECENT_ACCESS: 'Recent Access',
   Record: 'Record',
   Records: 'Records',
   Refresh: 'Refresh',
@@ -573,13 +575,13 @@ module.exports = {
     '🙇 Sorry, no related resources were found. Back to <a href="{link}">{title}</a>.',
   TOOLBOX_DESC: 'Provide log search, metering information and kubectl.',
   PATTERN_NAME_INVALID_TIP:
-    'Invalid name, only support lowercase letters, numbers, and underlines(_).',
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-).',
   CONTENT_NOT_SAVED_TIPS: 'content has been modified but not saved',
   SAVE_EDIT_HINTS:
     'please confirm that the modified content is correct, you can save the settings or cancel the settings.',
 
   KS_DESCRIPTION:
-    'KubeSphere is an open source project aiming to provide enterprise-grade multi-tenant container platform on top of Kubernetes, the current mainstream container orchestration platform. It provides easy-to-use interface and wizard-style operations, reducing the learning curve and operating cost of Kubernetes in terms of the daily work of development, test and maintenance.',
+    'KubeSphere is an open-source project aiming to provide enterprise-grade multi-tenant container platform on top of Kubernetes, the current mainstream container orchestration platform. It provides easy-to-use interface and wizard-style operations, reducing the learning curve and operating cost of Kubernetes in terms of the daily work of development, test and maintenance.',
 
   REPS_ADDRESS: 'GitHub',
   ISSUE_FEEDBACK: 'Feedback',
@@ -640,8 +642,9 @@ module.exports = {
   EVENT_AGE_DATA_TWICE: '{lastTime}<br/>(twice over {duration})',
   SOURCE: 'Source',
 
-  PLATFORM_INFO_DESC: 'View platform title, description and other information',
-  HOW_TO_MODIFY_PLATFORM_INFO: 'How do I modify platform information?',
+  PLATFORM_INFO_DESC:
+    'Overview of the platform information. You can view and customize the platform information.',
+  HOW_TO_MODIFY_PLATFORM_INFO: 'How do I customize platform information?',
   PLATFORM_SETTINGS_SELECTOR_DESC: 'Customized Platform Settings',
 
   AUDITING_OPERATING_DESC:
@@ -652,10 +655,8 @@ module.exports = {
   MULTI_CLUSTER_PROJECT_TIP:
     'The project is deployed across multiple clusters.',
 
-  NO_HISTORY_TITLE:
-    'Your web browser has not recorded any history of you accessing clusters or workspaces.',
-  NO_HISTORY_DESC:
-    'You can try to access resources, such as workspaces, clusters or projects.',
+  NO_HISTORY_TITLE: 'No Recently Accessed Resource Found',
+  NO_HISTORY_DESC: 'You can access platform resources.',
 
   USER_GUIDES_DESC: 'The most comprehensive user guide of KubeSphere.',
   DEVELOPER_DESC: 'Raise a question in the developer community to get help.',
@@ -665,4 +666,11 @@ module.exports = {
   CREATE_BY_YAML_DESC: 'Customize the app settings in the YAML file.',
   Bill: 'Metering and Billing',
   BILLING_OPERATING_DESC: 'Track resource consumption.',
+
+  // Workbench
+  CLUSTER_COUNT_SI: 'Cluster',
+  CLUSTER_COUNT_PL: 'Clusters',
+  LAST_LOGIN_TIME: 'Last Login: ',
+  APP_TEMPLATE_SCAP_PL: 'App templates',
+  ACCOUNT_PL: 'Accounts',
 }

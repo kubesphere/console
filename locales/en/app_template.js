@@ -21,8 +21,8 @@ module.exports = {
   'Configuration Files': 'Configuration Files',
   'Deploy Successfully': 'Deploy Successfully',
   'Edit by YAML': 'Edit by YAML',
-  'The app has no chart file.': 'The app has no chart file.',
-  'The app has no documentation.': 'The app has no documentation.',
+  NO_CHART_FILE_FOUND: 'No chart file is found.',
+  NO_DOCUMENT_DESC: 'No documentation is found.',
   VERSION_INTRO_EMPTY_DESC: 'No introduction to this version is found.',
   'Update Successfully': 'Update Successfully',
 

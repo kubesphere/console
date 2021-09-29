@@ -126,13 +126,13 @@ module.exports = {
 
   Platform: '平台管理',
   PLATFORM_INFORMATION: '平台資訊',
-  'Platform Version': '平台版本',
-  'Platform URL': '平台地址',
-  'Platform Title': '平台標題',
-  'Platform Description': '平台描述',
-  'Cluster Number': '集群數量',
-  'Platform Status': '平台運行狀態',
-  'Data Updated': '統計截止時間',
+  PLATFORM_VERSION: '平台版本',
+  PLATFORM_ADDRESS: '平台地址',
+  PLATFORM_TITLE: '平台標題',
+  PLATFORM_DESCRIPTION: '平台描述',
+  CLUSTER_COUNT: '集群數量',
+  PLATFORM_RESOURCE: 'Platform Resource',
+  LAST_UPDATE_TIME: 'Last update time',
   Workbench: '工作台',
   'Access Control': '訪問控制',
   ACCESS_CONTROL: '訪問控制',
@@ -154,7 +154,7 @@ module.exports = {
 
   History: '歷史紀錄',
 
-  'Recent Visit': '最近訪問',
+  RECENT_ACCESS: '最近訪問',
 
   CLUSTERS_MANAGE_DESC:
     '對多集群以及每個集群的基礎資源、服務组件和應用資源等的統一管理',
@@ -597,7 +597,8 @@ module.exports = {
   NOT_RUNNING_YET: '未運行',
   successful: '成功',
   Tag: '標籤',
-  PATTERN_NAME_INVALID_TIP: '名稱無效，僅支持小寫字母、數字、底線。',
+  PATTERN_NAME_INVALID_TIP:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-).',
   NO_MATCHING_RESULT_FOUND: '暫時沒有找到符合過濾條件的資源',
   'You can try to': '您可以嘗試',
   'clear search conditions': '清空過濾條件',
@@ -650,8 +651,8 @@ module.exports = {
   'User Guides': '用戶指南',
   'Quick Support': '快速獲取幫助',
   'Developer Community': '開發者社區',
-  NO_HISTORY_TITLE: '瀏覽器暫未收錄到您對集群或者企業空間等區域的訪問紀錄',
-  NO_HISTORY_DESC: '您可以嘗試對企業空間或者集群、項目等資源的訪問',
+  NO_HISTORY_TITLE: 'No Recently Accessed Resource Found',
+  NO_HISTORY_DESC: 'You can access platform resources.',
   USER_GUIDES_DESC: '最詳盡的 KubeSphere 用戶指南文件',
   DEVELOPER_DESC: '透過在開發者社區提出問題獲得幫助',
   API_DOCS_DESC: '最詳盡的 KubeSphere API 文件',
@@ -663,7 +664,8 @@ module.exports = {
   ENV_DEMO: '示範環境',
 
   HOW_TO_MODIFY_PLATFORM_INFO: '如何修改平台資訊？',
-  PLATFORM_INFO_DESC: '查看平台標題及描述等資訊',
+  PLATFORM_INFO_DESC:
+    'Overview of the platform information. You can view and customize the platform information.',
   PLATFORM_SETTINGS_SELECTOR_DESC: '客製化平台的系統配置',
 
   EVENT_AGE: '發生時間',
@@ -673,4 +675,11 @@ module.exports = {
 
   Bill: '資源消費統計',
   BILLING_OPERATING_DESC: '查看消費情况',
+
+  // Workbench
+  CLUSTER_COUNT_SI: 'Cluster',
+  CLUSTER_COUNT_PL: 'Clusters',
+  LAST_LOGIN_TIME: 'Last Login: ',
+  APP_TEMPLATE_SCAP_PL: 'App templates',
+  ACCOUNT_PL: 'Accounts',
 }

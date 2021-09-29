@@ -50,7 +50,7 @@ module.exports = {
     'Las contraseñas deben tener al menos 6 caracteres.',
   'Please enter a filter to search for logs.':
     'Introduce un filtro para buscar en los logs.',
-  'Please enter the address': 'Por favor introduce la ruta',
+  ADDRESS_EMPTY_DESC: 'Please enter an address.',
   ENTER_SERVICE_ADDRESS: 'Por favor introduce la dirección del servicio',
   'Real-Time Data': 'Datos en tiempo real',
   'Recently Configured Updated': 'Actualizado y configurado recientemente',

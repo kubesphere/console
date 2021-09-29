@@ -26,9 +26,9 @@ module.exports = {
 
   'App README': '应用介绍',
 
-  'The app has no documentation.': '该应用没有说明文档',
+  NO_DOCUMENT_DESC: '没有找到说明文档。',
   VERSION_INTRO_EMPTY_DESC: '没有找到该版本的介绍。',
-  'The app has no chart file.': '该应用没有配置文件',
+  NO_CHART_FILE_FOUND: '没有找到配置文件。',
 
   TOTAL_APP_REPOS: '共计 {num} 个应用仓库',
 

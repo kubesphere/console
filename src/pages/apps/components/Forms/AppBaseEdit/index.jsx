@@ -170,7 +170,7 @@ export default class AppBaseEdit extends React.Component {
             {this.renderIcon()}
           </Form.Item>
           <Form.Item
-            label={t('Categories')}
+            label={t('CATEGORIES')}
             desc={t('CHOOSE_APP_CATEGORY_DESC')}
           >
             <Select

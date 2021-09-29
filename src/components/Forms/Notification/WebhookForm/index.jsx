@@ -41,15 +41,15 @@ export default class WebhookForm extends Component {
   get options() {
     return [
       {
-        label: 'No Auth',
+        label: t('NO_AUTH'),
         value: 'no',
       },
       {
-        label: 'Bearer Token',
+        label: t('BEARER_TOKEN'),
         value: 'token',
       },
       {
-        label: 'Basic Auth',
+        label: t('BASIC_AUTH'),
         value: 'basic',
       },
     ]
@@ -79,20 +79,20 @@ export default class WebhookForm extends Component {
 
     return (
       <div className={styles.row}>
-        <div className={styles.title}>{t('Server Settings')}</div>
+        <div className={styles.title}>{t('SERVER_SETTINGS')}</div>
         <div className={styles.item}>
           <Form.Item
-            label={t('Webhook Setting')}
-            rules={[{ required: true, message: t('Please input URL') }]}
+            label={t('Webhook URL')}
+            rules={[{ required: true, message: t('WEBHOOK_URL_DESC') }]}
           >
             <Input name="receiver.spec.webhook.url" />
           </Form.Item>
           <Form.Item
-            label={t('Verification Type')}
+            label={t('VERIFICATION_TYPE')}
             rules={[
               {
                 required: true,
-                message: t('Please select a verification type'),
+                message: t('VERIFICATION_TYPE_DESC'),
               },
             ]}
           >
@@ -130,7 +130,7 @@ export default class WebhookForm extends Component {
               checked={enabled}
               onChange={this.handleChangeCheck}
             >
-              {t('Skip TLS Certification')}
+              {t('SKIP_TLS_VERFICATION')}
             </Checkbox>
           </Form.Item>
         </div>

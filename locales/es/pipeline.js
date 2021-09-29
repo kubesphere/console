@@ -380,8 +380,9 @@ module.exports = {
     'El Jenkinsfile actual no es un Jenkinsfile declarativo estándar y no se puedes mostrar gráficamente',
   PIPELINE_CRONJOB_CRON_DESC: `For syntax reference, refer to
     <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">CRON</a>.`,
-  WEBHOOK_DESC:
+  WEBHOOK_PUSH_DESC:
     'Empuje un mensaje a esta URL para activar una reindexación del repositorio.',
+  WEBHOOK_DESC: 'Configure webhook notifications by setting a webhook server.',
   TIME_TRIGGER_DESC:
     'Algunos tipos de elementos se volverán a indexar automáticamente cuando reciban un mensaje push externo. Sin embargo, en algunos casos, las notificaciones de mensajes pueden fallar. Esta opción verificará si el índice se ha ejecutado dentro del intervalo de tiempo especificado y, si no, activará el índice.',
   KUBERNETES_DEPLOY_DESC:

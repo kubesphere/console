@@ -28,13 +28,11 @@ export default class SlackForm extends Component {
   renderServiceSetting() {
     return (
       <div className={styles.row}>
-        <div className={styles.title}>{t('Server Settings')}</div>
+        <div className={styles.title}>{t('SERVER_SETTINGS')}</div>
         <div className={styles.item}>
           <Form.Item
-            label={t('Slack Token')}
-            rules={[
-              { required: true, message: t('Please enter the Slack token') },
-            ]}
+            label={t('SLACK_TOKEN')}
+            rules={[{ required: true, message: t('SLACK_TOKEN_DESC') }]}
           >
             <Input name="secret.data.token" />
           </Form.Item>
@@ -47,13 +45,13 @@ export default class SlackForm extends Component {
     const { wrapperClassName } = this.props
     return (
       <div className={styles.row}>
-        <div className={styles.title}>{t('Channel Settings')}</div>
+        <div className={styles.title}>{t('CHANNEL_SETTINGS')}</div>
         <div className={styles.item}>
           <Form.Item
             rules={[
               {
                 required: true,
-                message: t('Please add the receiver channel'),
+                message: t('CHANNEL_SETTINGS_DESC'),
               },
             ]}
           >

@@ -23,8 +23,8 @@ module.exports = {
   'Add Version': 'Añadir Versión',
   ADD_VERSION_SUCCESSFUL: 'Versión Añadida Satisfactoriamente',
   'Adjust App Category': 'Ajustar Categoría de la Aplicación',
-  'Adjust Successfully': 'Ajuste Satisfactorio',
-  'All Categories': 'Todas las Categorias',
+  CHANGED_SUCCESSFULLY: 'Changed successfully.',
+  ALL_CATEGORIES: 'Todas las Categorias',
   APP_CATEGORY_PL: 'Categorias de Aplicación',
   APP_CATEGORY: 'Categoria de Aplicación',
   'App Config': 'Configuración de Aplicación',
@@ -32,15 +32,15 @@ module.exports = {
   'Current App Config': 'Current App Config',
   'New App Config': 'New App Config',
   'App Deploy': 'Despliegue de Aplicación',
-  'App Details': 'Detalles de Aplicación',
+  APP_DETAILS: 'Detalles de Aplicación',
   'App Home': 'Hogar de Aplicación (Home)',
   APP_INFORMATION: 'Info de Aplicación',
   'App Introduction': 'Introducción de Aplicación',
   'App Name': 'Nombre de Aplicación',
   'App Number': 'Número de Aplicación',
   APP_REVIEW: 'Revisión de Aplicación',
-  'App Reviews': 'Revisiones de Aplicación',
-  'App Screenshots': 'Capturas de pantalla de Aplicación',
+  APP_REVIEWS: 'Revisiones de Aplicación',
+  APP_SCREENSHOTS: 'Capturas de pantalla de Aplicación',
   APP_STORE_MANAGEMENT: 'Gestión de la Tienda de Aplicacines',
   'App Version': 'Versión de Aplicación',
   'Current App Version': 'Versión actual de la aplicación',
@@ -78,14 +78,14 @@ module.exports = {
   'Instance Name': 'Nombre de Instancia',
   Introduction: 'Introducción',
   MODIFY_SUCCESSFUL: 'Modificado Satisfactoriamente',
-  'New Apps': 'Nuevas Aplicaciones',
+  NEW_APPS: 'New Apps',
   'New Version': 'Nueva Versión',
-  'No update log': 'Sin registro de actualización',
+  NO_UPDATE_LOG_DESC: 'No update log is found.',
   Note: 'Nota',
   Operator: 'Operador',
   'Package problems': 'Problemas de Paquetes',
   'Pass Successfully': 'Pasado Satisfactoriamente',
-  'Platform App Store Management':
+  PLATFORM_APP_STORE_MANAGEMENT:
     'Gestión de la tienda de aplicaciones de la plataforma',
   'Please input category name': 'Introduce el nombre de categría, por favor',
   'Please input reject reason': 'Introduce un motivo de rechazo, por favor',
@@ -101,7 +101,7 @@ module.exports = {
   WORKSPACE_EMPTY_DESC: 'Selecciona un espacio de trabajo, por favor',
   'Please select icon': 'Selecciona un icono, por favor',
   'please upload again': 'Vuelve a subirlo, por favor',
-  Processed: 'Procesado',
+  REVIEWED: 'Reviewed',
   PROVIDER: 'Proveedor',
   'Re-upload': 'Re-subir',
   'Recover Successfully': 'Recuperado Satisfactoriamente',
@@ -109,8 +109,8 @@ module.exports = {
   'Reject Successfully': 'Rechazado Satisfactoriamente',
   'Release / Suspended Time': 'Momento de lanzamiento / suspensión',
   'Release Successfully': 'Lanzado Satisfactoriamente',
-  'Request for Approval': 'Solicitud de aprobación',
-  'Review Content': 'Revisar Contenido',
+  APP_PUBLISHING: 'App publishing',
+  REVIEW_CONTENT: 'Revisar Contenido',
   'Review Object': 'Revisar Objecto',
   'Review Status': 'Revisar Estado',
   Screenshot: 'Captura de pantalla',
@@ -130,7 +130,7 @@ module.exports = {
   'Test Deployment': 'Probar Despliegue',
   'Time of entry': 'Momento de Entrada',
   Uncategorized: 'Sin Categorizar',
-  Unprocessed: 'Sin Procesar',
+  UNREVIEWED: 'Unreviewed',
   'Update Log': 'Actualizar registro',
   'Upload again': 'Subir otra vez',
   'Upload Icon': 'Subir Icono',
@@ -181,7 +181,7 @@ module.exports = {
   APP_STORE_DESC: 'Gestionar aplicaciones de la Tienda.',
 
   APP_REVIEW_DESC:
-    'Certifique a los proveedores de servicios y revise las aplicaciones para aprobar o rechazar las aplicaciones que se mostrarán o no en la tienda.',
+    'KubeSphere supports reviewing the contents of applications to be published. You can view the contents and approve or reject to publish the applications.',
   APP_REVIEW_EMPTY_DESC: 'No app to be reviewed is found.',
   APP_REVIEWS_CREATE_DESC:
     'Certifique a los proveedores de servicios y revise las aplicaciones para aprobar o rechazar las aplicaciones que se mostrarán o no en la tienda.',
@@ -194,7 +194,7 @@ module.exports = {
     'Este módulo te permite crear, editar y eliminar categorías; así como clasificar las aplicaciones activas de la Tienda.',
   APP_CATEGORIES_CREATE_DESC:
     'No hay aplicación disponibles para la categoría.',
-  ADJUST_CATEGORY_DESC:
+  CHANGE_CATEGORY_DESC:
     'La clasificación de la aplicación determinará la clasificación de la aplicación en la Tienda de Aplicaciones.',
   DELETE_CATEGORY_WARNING:
     'Esta categoría está ligada a <strong>{total}</strong> aplicaciones. Por favor' +
@@ -249,7 +249,7 @@ module.exports = {
     'Los formatos de captura de pantalla soportados son png y jpg',
   FILE_MAX_PACKAGE: 'El tamaño del paquete de configuración no debe exceder 2M',
   FILE_MAX_ICON: 'El tamaño del icono no debe exceder 20KB',
-  FILE_MAX_SIZE_ICON: 'Icon size should not exceed 96px',
+  FILE_MAX_SIZE_ICON: 'The icon size cannot exceed 96 px.',
   FILE_MAX_SCREENSHOTS: 'El tamaño de la imagen no debe exceder 2M',
 
   UPLOAD_PACKAGE_OK_NOTE:
@@ -272,8 +272,8 @@ module.exports = {
   DELETE_APP_TEMPLATE_TIP:
     'Before deleting an application template, you need to delete all versions.',
 
-  UNPROCESSED_APP_REVIEW: 'Unprocessed App Review',
-  PROCESSED_APP_REVIEW: 'Processed App Review',
+  UNPROCESSED_APP_REVIEW: 'Pending App Review',
+  PROCESSED_APP_REVIEW: 'Complete App Review',
   ALL_APP_REVIEW: 'App Review',
 
   'APP_CATE_MESSAGE QUEUEING': 'Message Queuing',
@@ -283,4 +283,34 @@ module.exports = {
   APP_CATE_NETWORKING: 'Networking',
   'APP_CATE_DATABASE & CACHE': 'Database & Cache',
   APP_CATE_STORAGE: 'Storage',
+
+  // App Reviews
+  REVIEW: 'Review',
+  OPERATOR: 'Operator',
+  PENDING_REVIEW: 'Pending',
+  COMPLETE_REVIEW: 'Complete',
+  REJECT: 'Reject',
+  PASS: 'Pass',
+  INTRODUCTION: 'Introduction',
+  UPDATE_LOG: 'Update Log',
+  SERVICE_PROVIDER_WEBSITE: 'Service provider website',
+  SERVICE_PROVIDER: 'Service provider',
+  APP_DESCRIPTION: 'App Description',
+  DOCUMENTATION: 'Documentation',
+  BACK: 'Back',
+  NOTIFICATION_EMAIL: 'Email',
+
+  // App Store
+  DISCOVER: 'Discover',
+  CATEGORIES: 'Categories',
+  CATEGORY_COLON: 'Category:',
+  HOMEPAGE_COLON: 'Homepage:',
+  RELEASE_DATE_COLON: 'Release Date:',
+  APP_ID_COLON: 'App ID:',
+  APP_VERSIONS_TITLE:
+    'Versions (only the latest 10 versions will be displayed)',
+  VERSIONS: 'Versions',
+  APP_CONFIGURATIONS: 'App Configurations',
+  UPDATED_AT_SCAP: 'Updated at: ',
+  DEVELOPER: 'Developer',
 }
