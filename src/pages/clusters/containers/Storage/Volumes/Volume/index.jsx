@@ -200,9 +200,11 @@ export default class Volumes extends React.Component {
         dataIndex: 'capacity',
         isHideable: true,
         width: '12.32%',
-        render: (capacity, { accessMode }) => (
+        render: (capacity, { accessModes }) => (
           <div>
-            <p>{accessMode}</p>
+            {accessModes.map(mode => (
+              <p> {mode} </p>
+            ))}
           </div>
         ),
       },

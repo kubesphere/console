@@ -24,12 +24,13 @@ import { PropTypes } from 'prop-types'
 import { safeParseJSON } from 'utils'
 import { ACCESS_MODES } from 'utils/constants'
 import { Form, Select } from '@kube-design/components'
-import { AccessModes, UnitSlider } from 'components/Inputs'
+import { UnitSlider } from 'components/Inputs'
 
 import StorageClassStore from 'stores/storageClass'
 
 const STORAGE_CLASSES_KEY = 'spec.storageClassName'
-const ACCESSMODE_KEY = 'spec.accessModes[0]'
+const ACCESSMODE_KEY = 'spec.accessModes'
+const PREFERABLE_DEFAULT_ACCESS_MODE = 'ReadWriteOnce'
 
 export default class VolumeSettings extends React.Component {
   static contextTypes = {
@@ -167,8 +168,25 @@ export default class VolumeSettings extends React.Component {
     const { storageClass, isLoading } = this.state
     const { editModalTitle, tabTitle } = this.props
     const storageClasses = this.getStorageClasses()
-    const supportedAccessModes = this.getSupportedAccessModes()
     const storageClassesList = this.store.list || {}
+
+    // If annotations cannot be found or the number of modes is 0:
+    // Think that all three modes are available
+    const supportedAccessModes =
+      this.getSupportedAccessModes() ?? Object.keys(ACCESS_MODES)
+    const supportedAccessModesSelectOptions = supportedAccessModes.map(
+      mode => ({
+        value: mode,
+        label: mode,
+      })
+    )
+
+    // If there is "ReadWriteOnce", "ReadWriteOnce"is checked by default,
+    // otherwise, the first value in the list is checked by default.
+    const defaultAccessModes =
+      PREFERABLE_DEFAULT_ACCESS_MODE in supportedAccessModes
+        ? [PREFERABLE_DEFAULT_ACCESS_MODE]
+        : supportedAccessModes.slice(0, 1)
 
     return (
       <>
@@ -194,14 +212,14 @@ export default class VolumeSettings extends React.Component {
           <Form.Item
             label={t('ACCESS_MODE')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            desc={t('ACCESS_MODES_DESC')}
           >
-            <AccessModes
+            <Select
               name={ACCESSMODE_KEY}
-              defaultValue={
-                get(supportedAccessModes, '[0]') || Object.keys(ACCESS_MODES)[0]
-              }
-              supportedAccessModes={supportedAccessModes}
+              options={supportedAccessModesSelectOptions}
               loading={isLoading}
+              defaultValue={defaultAccessModes}
+              multi
             />
           </Form.Item>
         ) : (
