@@ -43,7 +43,7 @@ export default class Branch extends React.Component {
 
   store = this.props.detailStore || {}
 
-  refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+  refreshTimer = setInterval(() => this.getData(), 4000)
 
   get enabledActions() {
     const { cluster, devops } = this.props.match.params
@@ -79,6 +79,7 @@ export default class Branch extends React.Component {
   }
 
   refreshHandler = () => {
+    // The data of the current list is asynchronous, so there is no need to state as a judgment condition
     if (this.isRuning) {
       this.getData()
     } else {

@@ -179,7 +179,6 @@ export default class AdvanceSettings extends React.Component {
   renderNoSource() {
     const { formTemplate } = this.props
     const enable_timer_trigger = get(formTemplate, 'enable_timer_trigger')
-    const enable_remote_trigger = get(formTemplate, 'enable_remote_trigger')
     const htmlDes = t.html('PIPELINE_CRONJOB_CRON_DESC')
 
     return (
@@ -232,29 +231,6 @@ export default class AdvanceSettings extends React.Component {
                 </Form.Item>
               </Column>
             </Columns>
-          </div>
-        )}
-        <Form.Item>
-          <Checkbox
-            name="enable_remote_trigger"
-            checked={enable_remote_trigger}
-            onChange={this.handleChange('enable_remote_trigger')}
-          >
-            {t('TRIGGER_REMOTE_BUILD')}
-          </Checkbox>
-        </Form.Item>
-        {enable_remote_trigger && (
-          <div className={styles.wrapper}>
-            <Form.Item
-              label={t('Authentication Token')}
-              desc={t('AUTHENTICATION_TOKEN_DESC')}
-              tip={t('AUTHENTICATION_TOKEN_TIP')}
-            >
-              <Input
-                name={`${this.prefix}.remote_trigger.token`}
-                placeholder=" "
-              />
-            </Form.Item>
           </div>
         )}
       </div>

@@ -253,6 +253,7 @@ export default class TaskStatus extends React.Component {
           <PipelineLog
             handleDownloadLogs={this.handleDownloadLogs}
             params={this.props.match.params}
+            runId={this.store.runDetail.id}
             nodes={nodesStatus}
           />
         </Modal>

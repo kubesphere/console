@@ -39,7 +39,7 @@ export default class Pullrequest extends React.Component {
 
   store = this.props.detailStore || {}
 
-  refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+  refreshTimer = setInterval(() => this.getDate(), 4000)
 
   get isRuning() {
     const data = get(toJS(this.store), 'pullRequestList.data', [])
@@ -65,6 +65,7 @@ export default class Pullrequest extends React.Component {
   }
 
   refreshHandler = () => {
+    // The data of the current list is asynchronous, so there is no need to state as a judgment condition
     if (this.isRuning) {
       this.getData()
     } else {

@@ -53,7 +53,7 @@ export default class DevOpsStore extends Base {
   @observable
   devopsName = ''
 
-  getPath({ cluster, namespace, workspace } = {}) {
+  getPath({ cluster, namespace, workspace, devops } = {}) {
     let path = ''
     if (cluster) {
       path += `/klusters/${cluster}`
@@ -64,29 +64,21 @@ export default class DevOpsStore extends Base {
     if (namespace) {
       path += `/namespaces/${namespace}`
     }
+    if (devops) {
+      path += `/devops/${devops}`
+    }
     return path
   }
 
-  getBaseUrlV2 = params =>
+  getDevopsUrlV2 = params =>
     `kapis/devops.kubesphere.io/v1alpha2${this.getPath(params)}/`
 
-  getBaseUrlV3 = params =>
+  getDevopsTenantUrl = params =>
     `kapis/tenant.kubesphere.io/v1alpha2${this.getPath(params)}/devops`
 
-  getDevopsUrlV2 = params => `${this.getBaseUrlV2(params)}devops/`
-
-  getDevOpsUrlV3 = params =>
-    `kapis/devops.kubesphere.io/v1alpha3${this.getPath(params)}/`
-
-  getResourceUrl = ({ workspace }) =>
-    `${this.getBaseUrlV2({ workspace })}devops`
+  getResourceUrl = params => `${this.getDevopsUrlV2(params)}`
 
   getBaseUrl = params => `${this.apiVersion}${this.getPath(params)}/`
-
-  getDevOpsUrl = params => `${this.getBaseUrl(params)}devops`
-
-  getDevOpsDetailUrl = ({ workspace, cluster, devops }) =>
-    `${this.getDevOpsUrl({ cluster, workspace })}/${devops}`
 
   getWatchListUrl = ({ workspace, ...params }) => {
     return `apis/devops.kubesphere.io/v1alpha3/watch${this.getPath(
@@ -114,7 +106,7 @@ export default class DevOpsStore extends Base {
 
     const result =
       (await request
-        .get(this.getBaseUrlV3({ cluster, workspace }), params)
+        .get(this.getDevopsTenantUrl({ cluster, workspace }), params)
         .catch(() => {})) || {}
 
     const items = Array.isArray(get(result, 'items'))
@@ -146,7 +138,7 @@ export default class DevOpsStore extends Base {
     data.apiVersion = 'devops.kubesphere.io/v1alpha3'
     data.metadata.labels = { 'kubesphere.io/workspace': workspace }
     return this.submitting(
-      request.post(this.getDevOpsUrl({ cluster, workspace }), data)
+      request.post(this.getBaseUrl({ cluster, workspace }), data)
     )
   }
 
@@ -170,7 +162,7 @@ export default class DevOpsStore extends Base {
 
       return this.submitting(
         request.put(
-          `${this.getDevOpsDetailUrl({ cluster, workspace, devops })}`,
+          `${this.getBaseUrl({ cluster, workspace, devops })}`,
           data,
           {
             headers: {
@@ -185,9 +177,7 @@ export default class DevOpsStore extends Base {
   @action
   delete({ devops, cluster, workspace }) {
     return this.submitting(
-      request.delete(
-        `${this.getDevOpsDetailUrl({ workspace, cluster, devops })}`
-      )
+      request.delete(`${this.getBaseUrl({ workspace, cluster, devops })}`)
     )
   }
 
@@ -198,7 +188,7 @@ export default class DevOpsStore extends Base {
       Promise.all(
         rowKeys.map(devopsName =>
           request.delete(
-            `${this.getDevOpsDetailUrl({
+            `${this.getBaseUrl({
               workspace,
               cluster,
               devops: this.list.find(value => value.name === devopsName).devops,
@@ -212,7 +202,7 @@ export default class DevOpsStore extends Base {
   @action
   async fetchDetail({ cluster, devops, workspace }) {
     const result = await request.get(
-      this.getDevOpsDetailUrl({ workspace, cluster, devops }),
+      this.getBaseUrl({ workspace, cluster, devops }),
       null,
       null,
       res => {
