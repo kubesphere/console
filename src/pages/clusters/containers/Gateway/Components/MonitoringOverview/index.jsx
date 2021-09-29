@@ -24,6 +24,7 @@ import { ReactComponent as Alarm } from 'assets/alarm-object.svg'
 import GatewayMonitor from 'stores/monitoring/gateway'
 
 import { isEmpty, get } from 'lodash'
+import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
 import TimeSelector from '../TimeSelector'
 import styles from './index.scss'
 
@@ -54,7 +55,7 @@ export default class MonitoringOverview extends React.Component {
   monitorStore = new GatewayMonitor({ cluster: this.cluster })
 
   componentDidMount() {
-    this.fetchMetrics(this.props.match.params)
+    this.fetchData(this.props.match.params)
   }
 
   get detail() {
@@ -63,7 +64,7 @@ export default class MonitoringOverview extends React.Component {
 
   handleChange = duration => {
     this.setState({ duration }, () => {
-      this.fetchMetrics()
+      this.fetchData()
     })
   }
 
@@ -71,7 +72,7 @@ export default class MonitoringOverview extends React.Component {
     this.setState({ errorType: value })
   }
 
-  fetchMetrics = async params => {
+  fetchData = async params => {
     const { duration } = this.state
 
     this.setState({ isLoading: true })
@@ -109,6 +110,17 @@ export default class MonitoringOverview extends React.Component {
         })
       return data
     }
+  }
+
+  handleAutoRefresh = () => {
+    this.setState({ autoRefresh: !this.state.autoRefresh }, () => {
+      const { autoRefresh } = this.state
+      autoRefresh ? startAutoRefresh(this) : stopAutoRefresh(this)
+    })
+  }
+
+  handleRefresh = () => {
+    this.fetchData()
   }
 
   renderAutoRefresh = () => {
