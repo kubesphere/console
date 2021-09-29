@@ -91,6 +91,7 @@ export default class WebhookForm extends Component {
               value={type}
               options={this.options}
               onChange={this.handleTypeChange}
+              placeholder=" "
             />
           </Form.Item>
           {type === 'basic' && (

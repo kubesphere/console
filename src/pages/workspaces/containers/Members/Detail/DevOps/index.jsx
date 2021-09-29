@@ -107,7 +107,7 @@ export default class MemberDevOpsProjects extends React.Component {
     const pagination = { page, limit, total }
 
     return (
-      <Card title={t('DevOps Projects')}>
+      <Card title={t('DEVOPS_PROJECTS')}>
         <Table
           className={styles.table}
           data={data}

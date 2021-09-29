@@ -30,12 +30,11 @@ module.exports = {
   ENTER_POSITIVE_INTEGER_DESC: 'Please enter a positive integer.',
   TOTAL_REPLICAS_EMPTY_DESC:
     'Please enter the total number of Pod replicas in all clusters.',
-  'Storage Function Manage': 'Storage volume function management',
-  'Volume Clone': 'Storage volume clone',
-  Volume_Clone_Des: 'Create an identical storage volume.',
-  Volume_SnapShot_Des:
-    'Create a storage volume snapshot, which can be used to create other storage volumes.',
+  STORAGE_MANAGEMENT_SCAP: 'Volume management',
+  VOLUME_CLONE: 'Storage volume clone',
+  ALLOW_VOLUME_CLONE_DESC: 'Allows users to clone volumes.',
+  ALLOW_VOLUME_SNAPSHOT_DESC: 'Allows users to create volume snapshots.',
   'Volume Expansion': 'Storage volume expansion',
-  Volume_Expansion_Des:
-    'Increase the capacity of the storage volume. The capacity of the storage volume cannot be reduced on the console because data may be lost.',
+  ALLOW_VOLUME_EXPANSION_DESC:
+    'Allows users to extend volumes. Volumes can only be extended and cannot be shrunk.',
 }

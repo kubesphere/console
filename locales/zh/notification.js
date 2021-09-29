@@ -32,7 +32,7 @@ module.exports = {
 
   NOTIFICATION_CONDITIONS: '通知条件',
   NOTIFICATION_CONDITION_SETTING_TIP:
-    '操作符<b>包含值</b>和<b>不包含值</b>需要添加一个或多个标签值。使用半角分号（;）分隔多个值。</br>操作符<b>存在</b>和<b>不存在</b>判断某个标签是否存在，无需设置标签值。',
+    '操作符<b>包含值</b>和<b>不包含值</b>需要添加一个或多个标签值。使用回车分隔多个值。</br>操作符<b>存在</b>和<b>不存在</b>判断某个标签是否存在，无需设置标签值。',
   NOTIFICATION_CONDITION_SETTINGS_DESC: '您只会接收到符合条件的通知。',
   INCLUDES_VALUES: '包含值',
   DOES_NOT_INCLUDE_VALUES: '不包含值',
@@ -51,7 +51,7 @@ module.exports = {
 
   Mail: '邮件',
   SMTP_SERVER_ADDRESS: 'SMTP 服务器地址',
-  USE_SSL_SECURE_CONNECTION: '使用 SSL 安全连接。',
+  USE_SSL_SECURE_CONNECTION: '使用 SSL 安全连接',
 
   MAIL_SETTING_DESC: '可以通过邮件接收平台的通知，需要配置邮件发送服务器。',
   SENDER_MAIL: '发件人邮箱',
@@ -150,9 +150,9 @@ module.exports = {
   'Root CA': '根证书',
   'Client Certificate Cert': '客户端证书 Cert',
   'Client Certificate Key': '客户端证书 Key',
-  VERIFICATION_TYPE: '验证类型',
-  SKIP_TLS_VERFICATION: '跳过 TLS 认证。',
-  VERIFICATION_TYPE_DESC: '请选择验证类型。',
+  VERIFICATION_TYPE: '认证类型',
+  SKIP_TLS_VERFICATION: '跳过 TLS 认证（不安全）',
+  VERIFICATION_TYPE_DESC: '请选择认证类型。',
 
   WEBHOOK_SETTING_DESC:
     '可以通过 webhook 接收平台的通知，需要配置 webhook 发送服务器。',

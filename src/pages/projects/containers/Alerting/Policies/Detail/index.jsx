@@ -96,7 +96,7 @@ export default class AlertPolicyDetail extends React.Component {
           detail: toJS(this.store.detail),
           module: this.store.module,
           cluster: this.props.match.params.cluster,
-          title: `${t('Edit ')}${t('alerting policy')}`,
+          title: t('EDIT_ALERTING_POLICY'),
           success: this.fetchData,
         }),
     },
@@ -151,7 +151,7 @@ export default class AlertPolicyDetail extends React.Component {
         value: <Health detail={detail} />,
       },
       {
-        name: t('Alerting Duration'),
+        name: t('THRESHOLD_DURATION'),
         value: detail.duration,
       },
       {

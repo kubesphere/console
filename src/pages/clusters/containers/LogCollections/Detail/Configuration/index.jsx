@@ -44,7 +44,7 @@ export default class Configuration extends React.Component {
           )}
           <Attributes.Item
             className={styles.item}
-            name={t('Address')}
+            name={t('ADDRESS')}
             value={address}
           />
           {type === 'es' && (

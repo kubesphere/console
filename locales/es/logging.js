@@ -23,7 +23,7 @@ module.exports = {
   Address: 'Dirección',
   'Auditing statistics': 'Estadísticas de auditoría',
   'Back to previous': 'Volver al anterior',
-  'Change Status': 'Cambiar Estado',
+  CHANGE_STATUS: 'Cambiar Estado',
   Collecting: 'Recolectar',
   'Current Statistics Start Time': 'Hora actual de inicio de estadísticas',
   'Delete Log Receiver': 'Delete Log Receiver',
@@ -138,20 +138,19 @@ module.exports = {
   LOG_EXPORT: 'Exportar logs',
   CREATE_CUSTOM_MONITORING_DASHBOARD:
     'Crear un panel de monitoreo personalizado',
-  SELECT_MONITORING_TEMPLATE: 'Selecciona la plantilla de monitoreo adecuada',
+  MONITORING_TEMPLATE: 'Monitoring Template',
   CUSTON_MONITORING_TEMPLATE_DESC:
-    'Select a default template or customize a template to generate a custom monitoring dashboard.',
+    'Select a default template, upload a template, or customize a template to generate a custom monitoring dashboard.',
   CUSTOM_MONITORING_DASHBOARD: 'Panel de control personalizado',
 
-  IMPORT_GRAFANA_DASHBOARD: 'Import Grafana dashboard',
+  UPLOAD_GRAFANA_DASHBOARD: 'Upload Grafana Dashboard',
   IMPORT_GRAFANA_JSON_FILE: 'Import Grafana JSON Files',
-  IMPORT_GRAFANA_URL: 'Import using Grafana dashboard URL',
-  SUPPORT_JSON_FILE: 'Only supports JSON files',
-  'Click or drag files to this area to upload':
-    'Click or drag files to this area to upload',
-  'Only one file can be uploaded': 'Only one file can be uploaded',
-  'Need to upload a file': 'Need to upload a file',
-  'Need to a URL': 'the Grafana Url is required',
+  UPLOAD_GRAFANA_URL: 'Upload a Grafana dashboard from URL.',
+  SUPPORT_JSON_FILE: 'Only files in JSON format are supported.',
+  UPLOAD_FROM_LOCAL_TITLE: 'Select or Drag a File',
+  FILE_UPLOAD_ERROR: 'Only one file can be uploaded.',
+  UPLOAD_FILE_TIP: 'Please upload a file.',
+  ENTER_GRAFANA_URL: 'Please enter a Grafana dashboard URL.',
 
   CUSTOMMONITORDASHBOARD: 'Panel de control personalizado',
   CUSTOMMONITORDASHBOARD_PL: 'Custom Monitoring Dashboards',
@@ -198,4 +197,10 @@ module.exports = {
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
   EVENT_PL: 'Events',
   CREATION_TIME: 'Creation time',
+
+  // Log Collection > Details
+  ADDRESS: 'Address',
+  CHANGE_STATUS_LOW: 'Change status',
+  EVENTS: 'Events',
+  SELECT_STATUS_TIP: 'Select a status',
 }

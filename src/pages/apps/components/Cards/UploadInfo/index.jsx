@@ -169,7 +169,7 @@ export default class UploadInfo extends Component {
         </div>
         <div className={styles.description}>
           {t(uploadStatusWord[status], { file: missFile })}
-          {status === 'error' && <label>, {t('please upload again')}</label>}
+          {status === 'error' && <label>, {t('UPLOAD_AGAIN_TIP')}</label>}
         </div>
       </div>
     )

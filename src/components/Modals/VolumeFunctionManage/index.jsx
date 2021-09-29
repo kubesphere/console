@@ -76,8 +76,8 @@ export default class SetDefaultStorageClassModal extends React.Component {
   get Items() {
     return [
       {
-        title: t('Volume Clone'),
-        des: t('Volume_Clone_Des'),
+        title: t('VOLUME_CLONE'),
+        des: t('ALLOW_VOLUME_CLONE_DESC'),
         key: 'allowClone',
         onclick: checked =>
           this.setState({
@@ -85,14 +85,14 @@ export default class SetDefaultStorageClassModal extends React.Component {
           }),
       },
       {
-        title: t('Volume Snapshot'),
-        des: t('Volume_SnapShot_Des'),
+        title: t('VOLUME_SNAPSHOT'),
+        des: t('ALLOW_VOLUME_SNAPSHOT_DESC'),
         key: 'allowSnapshot',
         onclick: checked => this.setState({ allowSnapshot: !checked }),
       },
       {
-        title: t('Volume Expansion'),
-        des: t('Volume_Expansion_Des'),
+        title: t('VOLUME_EXPANSION'),
+        des: t('ALLOW_VOLUME_EXPANSION_DESC'),
         key: 'allowVolumeExpansion',
         onclick: checked =>
           this.setState({
@@ -110,10 +110,10 @@ export default class SetDefaultStorageClassModal extends React.Component {
         onOk={() => onOk(this.state)}
         onCancel={onCancel}
         visible={visible}
-        title={t('Storage Function Manage')}
+        title={t('VOLUME_MANAGEMENT')}
         icon="slider"
-        okText={t('Confirm')}
-        cancelText={t('Cancel')}
+        okText={t('OK')}
+        cancelText={t('CANCEL')}
         isSubmitting={isSubmitting}
       >
         <div className={styles.body}>

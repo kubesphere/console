@@ -130,7 +130,7 @@ module.exports = {
   'Image Size': '鏡像大小',
   'Published Time': '發佈時間',
   UPLOAD_ARTIFACT_TIP: '請上傳一個檔案。',
-  FILE_UPLOAD_FAILED: '檔案上傳失敗。',
+  UPLOAD_FAILED: 'Upload failed.',
   binary: '二進制檔案',
   BUILD_IMAGE_FOR_SERVICE: '為 {service} 服務構建鏡像。',
   CLICK_UPLOAD_ARTIFACT: '點擊上傳成品檔案',
@@ -167,7 +167,7 @@ module.exports = {
   // Image Builder List Page
 
   // Creation Page
-  UPLOADED: '已上傳：{percent}%',
+  UPLOAD_PERCENT: '已上傳：{percent}%',
   UPLOAD_FULLY: '已上傳：100%',
   FILE_SIZE: '檔案大小：{size}',
   S2I_SECRET: '密鑰',

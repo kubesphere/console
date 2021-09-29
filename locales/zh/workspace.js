@@ -165,4 +165,7 @@ module.exports = {
   PROJECT_ROLE_VALUE: '项目角色：{value}',
   DEVOPS_VALUE: 'DevOps 工程：{value}',
   DEVOPS_PROJECT_ROLES_VALUE: 'DevOps 工程角色：{value}',
+
+  // Workspace Members > Details
+  REMOVE_MEMBER_PL: '移除成员',
 }

@@ -198,7 +198,7 @@ export default {
           const { namespace, cluster, workspace, ...rest } = params
           await store.deploy(rest, { workspace, namespace, cluster })
           Modal.close(modal)
-          Notify.success({ content: `${t('Deploy Successfully')}` })
+          Notify.success({ content: `${t('INSTALLED_SUCCESSFULLY')}` })
           success && success()
         },
         store,
@@ -264,7 +264,7 @@ export default {
           const { app_id, version_id } = detail
           await store.handle({ app_id, version_id, action: 'pass' })
           Modal.close(modal)
-          Notify.success(t('Pass Successfully'))
+          Notify.success(t('PASS_SUCCESSFUL'))
           success && success()
         },
         onReject: () => {
@@ -294,11 +294,11 @@ export default {
             ...params,
           })
           Modal.close(modal)
-          Notify.success(t('Reject Successfully'))
+          Notify.success(t('REJECT_SUCCESSFUL'))
           success && success()
         },
         icon: 'safe-notice',
-        title: t('Reject Reason'),
+        title: t('REJECTION_REASON'),
         description: t('REJECT_REASON_DESC'),
         canHandle: type === 'unprocessed',
         versionId: detail.version_id || '',
@@ -343,7 +343,7 @@ export default {
           Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
           success && success()
         },
-        desc: t('DELETE_CATEGORY_DESC', { name: detail.name }),
+        desc: t.html('DELETE_CATEGORY_DESC', { name: detail.name }),
         modal: DeleteModal,
         store,
         ...props,

@@ -65,8 +65,8 @@ export default class LogCollectionDetail extends React.Component {
       {
         name: t('STATUS'),
         value: get(this.store, 'detail.enabled')
-          ? t('Collecting')
-          : t('Stopped'),
+          ? t('LOG_COLLECTING')
+          : t('LOG_DISABLED'),
       },
     ]
   }
@@ -84,7 +84,7 @@ export default class LogCollectionDetail extends React.Component {
     },
     {
       key: 'changeStatus',
-      text: t('Change Status'),
+      text: t('CHANGE_STATUS'),
       icon: 'pin',
       action: 'edit',
       onClick: () =>
@@ -97,7 +97,7 @@ export default class LogCollectionDetail extends React.Component {
     },
     {
       key: 'delete',
-      text: t('Delete Log Receiver'),
+      text: t('DELETE'),
       icon: 'trash',
       action: 'delete',
       type: 'danger',
@@ -146,7 +146,7 @@ export default class LogCollectionDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: `${t('Log Collections')}(${t(this.component)})`,
+          label: t(this.component.toUpperCase()),
           url: this.listUrl,
         },
       ],

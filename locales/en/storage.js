@@ -36,7 +36,6 @@ module.exports = {
   IN_USER: 'In use',
   'Mount Info': 'Mount Info',
   'Mount Options': 'Mount Options',
-  'Mount Status': 'Mount Status',
   // Volumes List Page
   MOUNT_STATUS: 'Mount Status',
   MOUNTED: 'Mounted',
@@ -49,7 +48,7 @@ module.exports = {
   RECLAIM_POLICY: 'Reclaim Policy',
   CREATE: 'Create',
   Scalable: 'Scalable',
-  'Set as default storage class': 'Set as default storage class',
+  SET_AS_DEFAULT_STORAGE_CLASS: 'Set as Default Storage Class',
   'Snapshot Message': 'Snapshot Message',
   'Snapshots Message': 'Snapshot Message',
   'Storage Class': 'Storage Class',
@@ -143,7 +142,7 @@ module.exports = {
     'The storage type records the configuration information of a certain type of storage provided by the administrator. Before creating a specific type of storage volume, the corresponding storage type must be configured.',
 
   STORAGE_CLASS_SET_DEFAULT_DESC:
-    'After the default storage class is set, the system will create volumes of this class by default if no special requirement is added. Only one default storage class is allowed in a Kubernetes cluster.',
+    'After the default storage class is set, the system will create volumes of this class by default if no special requirement is added. Only one default storage class is allowed in a KubeSphere cluster.',
 
   STORAGECLASSES_BASEINFO_DESC:
     'A StorageClass provides a way for administrators to configure the "classes" of storage they offer. Different classes might map to quality-of-service levels, or to backup policies, or to arbitrary policies determined by the cluster administrators. You need to create a StorageClass before users can create volume (i.e., PVC) based on the StorageClass.',
@@ -255,4 +254,11 @@ module.exports = {
   IMMEDIATE_BINDING: 'Immediate binding',
   BINDING_WAIT: 'Delayed binding',
   DEFAULT_STORAGE_CLASS: 'Default Storage Class',
+
+  // Storage Class > Detail
+  STORAGE_CLASS_SCAP: 'Storage class',
+  APPLY: 'Apply',
+  VOLUME_MANAGEMENT: 'Volume Management',
+  SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
+  VOLUME_COUNT: 'Volumes',
 }

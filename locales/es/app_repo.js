@@ -48,11 +48,11 @@ module.exports = {
   syncing: 'syncing',
   'Unrecognized URL': 'URL no reconocida',
   VALIDATE: 'Validar',
-  SYNC_PERIOD: 'Período de sincronización',
-  SYNC_PERIOD_DESC:
-    'El valor predeterminado es 0, sin sincronización; el período de tiempo más corto es de 3 minutos y el más largo es de 24 horas.',
-  SYNC_PERIOD_EMPTY_DESC: 'Ingrese el período de sincronización.',
-  SYNC_PERIOD_INVALID:
+  SYNC_INTERVAL: 'Syncronization Interval',
+  SYNC_INTERVAL_DESC:
+    'Set a synchronization interval. The value range is 180 to 86400 seconds, and the default value is 0.',
+  SYNC_PERIOD_EMPTY_DESC: 'Please set a synchronization interval.',
+  SYNC_INTERVAL_INVALID:
     'El valor no es válido, ingrese 0 o un número entero positivo.',
   'App Repositorys': 'Repositorios de aplicaciones',
   APP_REPO_URL_DESC:
@@ -64,4 +64,11 @@ module.exports = {
   HOW_TO_USE_APP_REPO_Q: '¿Cómo usar un repositorio de aplicaciones?',
   HOW_TO_USE_APP_REPO_A:
     'You need to go to your project in the workspace. When you deploy a new app, select <b>From App Template</b> and then choose an app repository in the drop-down list to deploy an app in the repository.',
+
+  // App Repositories > Details
+  SYNC_INTERVAL_TIP:
+    'The value range is 180 to 86400 seconds. Please set a valid value.',
+  SECONDS: 'Seconds',
+  MINUTES: 'Minutes',
+  HOURS: 'Hours',
 }

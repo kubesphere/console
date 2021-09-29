@@ -26,10 +26,12 @@ export default class Nofiticaction extends Component {
     return (
       <div className={styles.notify}>
         <div className={styles.title}>
-          {t('NOTIFICATION_SUMMARY')}: {summary}
+          {t('NOTIFICATION_SUMMARY_COLON')}
+          {summary}
         </div>
         <div className={styles.content}>
-          {t('MESSAGE')}: {message}
+          {t('MESSAGE_COLON')}
+          {message}
         </div>
       </div>
     )

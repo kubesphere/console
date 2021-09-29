@@ -93,14 +93,14 @@ export default class ConfigFile extends React.Component {
     if (!detail.description) {
       return (
         <div className={styles.updateInfo}>
-          <pre>{t('No version information')}</pre>
+          <pre>{t('NO_VERSION_INFO_DESC')}</pre>
         </div>
       )
     }
 
     return (
       <div className={styles.updateInfo}>
-        <div className={styles.title}>{t('Version Update Info')}</div>
+        <div className={styles.title}>{t('VERSION_INFO')}</div>
         <pre>{detail.description}</pre>
       </div>
     )

@@ -87,7 +87,7 @@ export default class RoleDetail extends React.Component {
     {
       key: 'editRole',
       icon: 'pen',
-      text: t('Edit Authorization'),
+      text: t('EDIT_PERMISSION'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>
@@ -149,7 +149,7 @@ export default class RoleDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Account Roles'),
+          label: t('PLATFORM_ROLE_PL'),
           url: this.listUrl,
         },
       ],

@@ -80,7 +80,7 @@ export default class AccountDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_USER'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>
@@ -92,7 +92,7 @@ export default class AccountDetail extends React.Component {
     {
       key: 'modifyPassword',
       icon: 'pen',
-      text: t('Change Password'),
+      text: t('CHANGE_PASSWORD_LOW'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>
@@ -126,7 +126,7 @@ export default class AccountDetail extends React.Component {
 
     return [
       {
-        name: t('Account Role'),
+        name: t('PLATFORM_ROLE'),
         value: detail.globalrole,
       },
       {
@@ -158,7 +158,7 @@ export default class AccountDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('NAV_ACCOUNTS'),
+          label: t('USER_PL'),
           url: this.listUrl,
         },
       ],

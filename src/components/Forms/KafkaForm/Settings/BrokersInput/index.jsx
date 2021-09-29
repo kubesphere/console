@@ -53,7 +53,7 @@ export default class BrokersInput extends React.Component {
           <Input
             name="host"
             className={styles.host}
-            placeholder={`${t('EXAMPLE')} 192.168.1.10`}
+            placeholder={`${t('EXAMPLE')}192.168.1.10`}
           />
           <NumberInput
             className={styles.port}

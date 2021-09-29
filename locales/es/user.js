@@ -88,4 +88,12 @@ module.exports = {
   CLUSTER_ROLE_DESC:
     'Este módulo le permite administrar el acceso de los usuarios dentro de un clúster.',
   NOT_LOGIN_YET: 'Not Logged in yet',
+
+  // Users > Details
+  SOURCE_IP_ADDRESS: 'Source IP Address',
+  LOGIN_HISTORY: 'Login History',
+  NO_LOGIN_HISTORY: 'No login history is found.',
+  CHANGE_PASSWORD_LOW: 'Change password',
+  SUCCESSFUL: 'Successful',
+  FAILED: 'Failed',
 }

@@ -124,7 +124,7 @@ module.exports = {
   'Image Size': '镜像大小',
   'Published Time': '发布时间',
   UPLOAD_ARTIFACT_TIP: '请上传一个制品。',
-  FILE_UPLOAD_FAILED: '文件上传失败。',
+  UPLOAD_FAILED: '上传失败。',
   binary: '二进制文件',
   BUILD_IMAGE_FOR_SERVICE: '为 {service} 服务构建镜像。',
   CLICK_UPLOAD_ARTIFACT: '点击上传制品文件',
@@ -161,7 +161,7 @@ module.exports = {
   // Image Builder List Page
 
   // Creation Page
-  UPLOADED: '已上传：{percent}%',
+  UPLOAD_PERCENT: '已上传：{percent}%',
   UPLOAD_FULLY: '已上传：100%',
   FILE_SIZE: '文件大小：{size}',
   S2I_SECRET: '密钥',

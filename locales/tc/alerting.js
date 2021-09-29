@@ -204,4 +204,11 @@ module.exports = {
   DEPLOYMENTS_VALUE: 'Deployments: {value}',
   STATEFULSETS_VALUE: 'StatefulSets: {value}',
   DAEMONSETS_VALUE: 'DaemonSets: {value}',
+
+  // Alerting Policies > Details
+  NOTIFICATION_SUMMARY_COLON: 'Summary: ',
+  MESSAGE_COLON: 'Message: ',
+  MONITORING_TARGETS_LOW: 'Monitoring targets',
+  ALERTING_RULE_LOW: 'Alerting rule',
+  THRESHOLD_DURATION: 'Threshold Duration',
 }

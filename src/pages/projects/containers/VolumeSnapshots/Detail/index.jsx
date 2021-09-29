@@ -76,7 +76,7 @@ export default class VolumeSnapshotDetail extends React.Component {
     {
       key: 'apply',
       icon: 'storage',
-      text: t('Apply'),
+      text: t('APPLY'),
       show: this.showApply() && this.store.detail.backupStatus === 'success',
       onClick: () => {
         const { cluster, namespace } = this.props.match.params
@@ -187,7 +187,7 @@ export default class VolumeSnapshotDetail extends React.Component {
       icon: 'snapshot',
       breadcrumbs: [
         {
-          label: t('Volume Snapshot'),
+          label: t('VOLUME_SNAPSHOT_PL'),
           url: this.listUrl,
         },
       ],

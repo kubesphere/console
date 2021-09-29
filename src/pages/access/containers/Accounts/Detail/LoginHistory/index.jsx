@@ -48,7 +48,7 @@ export default class LoginHistory extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Time'),
+      title: t('TIME'),
       dataIndex: 'createTime',
       render: time => getLocalTime(time).format(`YYYY-MM-DD HH:mm:ss`),
     },
@@ -58,12 +58,12 @@ export default class LoginHistory extends React.Component {
       render: success => (
         <div className={styles.status}>
           <Indicator type={success ? 'success' : 'failed'} />{' '}
-          <span>{success ? t('Success') : t('Failed')}</span>
+          <span>{success ? t('SUCCESSFUL') : t('FAILED')}</span>
         </div>
       ),
     },
     {
-      title: t('Source IP'),
+      title: t('SOURCE_IP_ADDRESS'),
       dataIndex: 'spec.sourceIP',
     },
     {
@@ -88,7 +88,7 @@ export default class LoginHistory extends React.Component {
   render() {
     const { page, total, limit } = this.store.records
     return (
-      <Card title={t('Login History')} empty={t('No Login History')}>
+      <Card title={t('LOGIN_HISTORY')} empty={t('NO_LOGIN_HISTORY')}>
         {this.renderContent()}
         {total > limit && (
           <div className="margin-t12 text-right">

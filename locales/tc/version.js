@@ -18,14 +18,14 @@
 
 module.exports = {
   'Submit for Review': '提交審核',
-  'Cancel Review': '取消審核',
+  CANCEL_REVIEW: '取消審核',
   'Release to Store': '發佈到商店',
   'View in Store': '在商店查看',
-  'Suspend Version': '下架版本',
-  'Activate Version': '上架版本',
+  SUSPEND_VERSION: '下架版本',
+  ACTIVATE_VERSION: '上架版本',
   'Delete Version': '刪除版本',
-  'Suspend App': '下架應用',
-  'Activate App': '上架應用',
+  SUSPEND_APP: '下架應用',
+  ACTIVATE_APP: '上架應用',
 
   VERSION_DELETE_TIP: '確定要刪除版本 <strong>{name}</strong> 嗎? ',
   VERSION_SUBMIT_TIP: '確定要提交版本 <strong>{name}</strong> 去審核?',
@@ -64,7 +64,7 @@ module.exports = {
   NOTES_FILE_DESC: '使用指南',
 
   'Version Update Info': '版本更新說明',
-  'No version information': '暫無更新說明',
+  NO_VERSION_INFO_DESC: 'No version information is found.',
 
   developer: '開發者',
   isv: '應用服務商',
@@ -117,4 +117,15 @@ module.exports = {
   UPDATE_LOG_DESC: '用於詳細描述此次更新的具體内容',
 
   'Wrong version number format': '版本號的格式錯誤',
+
+  // App Templates > Details
+  APP_INSTANCES: 'App Instances',
+  UPLOAD_NEW_VERSION: 'Upload New Version',
+  UPLOAD_NEW_VERSION_DESC: 'Upload a new version of the app.',
+  APP_VERSION_LOW: 'App version',
+  UPDATE_TIME_LOW: 'Update time',
+  TEST_INSTALLATION: 'Test Installation',
+  SUBMIT_FOR_REVIEW: 'Submit for Review',
+  VERSION_INFO: 'Version Information',
+  INSTALL: 'Install',
 }

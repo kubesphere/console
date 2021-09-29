@@ -26,11 +26,11 @@ module.exports = {
   TOTAL_REPLICAS: '副本总数',
   TOTAL_REPLICAS_EMPTY_DESC: '请输入所有集群容器组副本的总数。',
   ENTER_POSITIVE_INTEGER_DESC: '请输入一个正整数。',
-  'Storage Function Manage': '存储卷功能管理',
-  'Volume Clone': '存储卷克隆',
-  Volume_Clone_Des: '创建一个相同的存储卷。',
-  Volume_SnapShot_Des: '创建一个存储卷快照，可用于创建其他存储卷。',
+  STORAGE_MANAGEMENT_SCAP: '存储卷管理',
+  VOLUME_CLONE: '存储卷克隆',
+  ALLOW_VOLUME_CLONE_DESC: '允许用户克隆存储卷。',
+  ALLOW_VOLUME_SNAPSHOT_DESC: '允许用户创建存储卷快照。',
   'Volume Expansion': '存储卷扩容',
-  Volume_Expansion_Des:
-    '增加存储卷的容量。无法在控制台上减少存储卷的容量，因为数据可能会因此丢失。',
+  ALLOW_VOLUME_EXPANSION_DESC:
+    '允许用户对存储卷扩容。存储卷容量只能增加，不能减少。',
 }

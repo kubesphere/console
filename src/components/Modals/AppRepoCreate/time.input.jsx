@@ -34,15 +34,15 @@ export default class TimeInput extends React.Component {
   get options() {
     return [
       {
-        label: t('Seconds'),
+        label: t('SECONDS'),
         value: 's',
       },
       {
-        label: t('Minutes'),
+        label: t('MINUTES'),
         value: 'm',
       },
       {
-        label: t('Hours'),
+        label: t('HOURS'),
         value: 'h',
       },
     ]

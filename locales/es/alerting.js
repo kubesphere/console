@@ -146,7 +146,7 @@ module.exports = {
   ALERT_RULE_INACTIVE: 'Inactive',
   ALERT_RULE_PENDING: 'Pending',
   ALERT_RULE_FIRING: 'Firing',
-  ALERT_RULE_HEALTH_OK: 'Health',
+  ALERT_RULE_HEALTH_OK: 'Healthy',
   ALERT_RULE_HEALTH_ERR: 'Error',
   ALERT_RULE_HEALTH_UNKNOWN: 'UnKnown',
 
@@ -170,4 +170,11 @@ module.exports = {
   DEPLOYMENTS_VALUE: 'Deployments: {value}',
   STATEFULSETS_VALUE: 'StatefulSets: {value}',
   DAEMONSETS_VALUE: 'DaemonSets: {value}',
+
+  // Alerting Policies > Details
+  NOTIFICATION_SUMMARY_COLON: 'Summary: ',
+  MESSAGE_COLON: 'Message: ',
+  MONITORING_TARGETS_LOW: 'Monitoring targets',
+  ALERTING_RULE_LOW: 'Alerting rule',
+  THRESHOLD_DURATION: 'Threshold Duration',
 }

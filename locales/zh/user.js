@@ -85,4 +85,12 @@ module.exports = {
   'Password Strength': '密码强度',
   'Avoid using the password that has already been used on other websites or the one that can be easily guessed.':
     '避免使用您在其它网站上的密码，或者是其他人很容易猜到的密码',
+
+  // Users > Details
+  SOURCE_IP_ADDRESS: '源 IP 地址',
+  LOGIN_HISTORY: '登录历史',
+  NO_LOGIN_HISTORY: '没有找到登录历史。',
+  CHANGE_PASSWORD_LOW: '修改密码',
+  SUCCESSFUL: '成功',
+  FAILED: '失败',
 }

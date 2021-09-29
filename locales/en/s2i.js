@@ -103,7 +103,7 @@ module.exports = {
   HEALTH_CHECKER_DESC:
     'Add probes to check the container health status regularly.',
   UPLOAD_ARTIFACT: 'Upload Artifact',
-  FILE_UPLOAD_FAILED: 'Upload file failed.',
+  UPLOAD_FAILED: 'Upload failed.',
   CODE_RELATIVE_PATH_DESC:
     'Specify the relative path of the code in the code repository. The default path is /.',
   STARTUP_COMMAND: 'Start Command',
@@ -187,7 +187,7 @@ module.exports = {
   // Image Builder List Page
 
   // Creation Page
-  UPLOADED: 'Uploaded: {percent}%',
+  UPLOAD_PERCENT: 'Uploaded: {percent}%',
   UPLOAD_FULLY: 'Uploaded: 100%',
   FILE_SIZE: 'File size: {size}',
   S2I_SECRET: 'Secret',

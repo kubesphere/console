@@ -29,13 +29,11 @@ module.exports = {
   TOTAL_REPLICAS: 'Número total de copias',
   ENTER_POSITIVE_INTEGER_DESC: 'La entrada de copia es ilegal',
   TOTAL_REPLICAS_EMPTY_DESC: 'Ingrese el número total de copias',
-  'Storage Function Manage':
-    'Gestión de la función de volumen de almacenamiento',
-  'Volume Clone': 'Clon de volumen de almacenamiento',
-  Volume_Clone_Des: 'Crea un volumen de almacenamiento idéntico.',
-  Volume_SnapShot_Des:
-    'Cree una instantánea del volumen de almacenamiento, que se puede utilizar para crear otros volúmenes de almacenamiento.',
+  STORAGE_MANAGEMENT_SCAP: 'Gestión de la función de volumen de almacenamiento',
+  VOLUME_CLONE: 'Clon de volumen de almacenamiento',
+  ALLOW_VOLUME_CLONE_DESC: 'Allows users to clone volumes.',
+  ALLOW_VOLUME_SNAPSHOT_DESC: 'Allows users to create volume snapshots.',
   'Volume Expansion': 'Expansión del volumen de almacenamiento',
-  Volume_Expansion_Des:
-    'Aumente la capacidad del volumen de almacenamiento. La capacidad del volumen de almacenamiento no se puede reducir en la consola porque se pueden perder datos.',
+  ALLOW_VOLUME_EXPANSION_DESC:
+    'Allows users to extend volumes. Volumes can only be extended and cannot be shrunk.',
 }

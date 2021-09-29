@@ -45,7 +45,7 @@ export default {
         store,
         width: 497,
         icon: 'timed-task',
-        title: t('Change Status'),
+        title: t('CHANGE_STATUS'),
         children: <EnableForm />,
         ...props,
       })
@@ -77,7 +77,7 @@ export default {
         data,
         width: 691,
         icon: 'timed-task',
-        title: t('Log Collections'),
+        title: t('LOG_COLLECTION'),
         children: <EditForm />,
         store,
         ...props,

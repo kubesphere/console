@@ -55,11 +55,11 @@ module.exports = {
   'Please input access key ID and secret access key':
     '請輸入 Access key ID 和 Secret access key',
 
-  SYNC_PERIOD: '時間周期',
-  SYNC_PERIOD_DESC:
-    '默認為 0，不進行同步；時間周期最短是 3 分鐘，最長是 24 小時。',
-  SYNC_PERIOD_EMPTY_DESC: '請輸入時間周期。',
-  SYNC_PERIOD_INVALID: '數值無效，請輸入 0 或正整數。',
+  SYNC_INTERVAL: 'Syncronization Interval',
+  SYNC_INTERVAL_DESC:
+    'Set a synchronization interval. The value range is 180 to 86400 seconds, and the default value is 0.',
+  SYNC_PERIOD_EMPTY_DESC: 'Please set a synchronization interval.',
+  SYNC_INTERVAL_INVALID: '數值無效，請輸入 0 或正整數。',
 
   'App Repos': '應用倉庫',
   ADD_APP_REPO: 'Add App Repository',
@@ -68,4 +68,11 @@ module.exports = {
   HOW_TO_USE_APP_REPO_Q: '如何使用應用倉庫？',
   HOW_TO_USE_APP_REPO_A:
     'You need to go to your project in the workspace. When you deploy a new app, select <b>From App Template</b> and then choose an app repository in the drop-down list to deploy an app in the repository.',
+
+  // App Repositories > Details
+  SYNC_INTERVAL_TIP:
+    'The value range is 180 to 86400 seconds. Please set a valid value.',
+  SECONDS: 'Seconds',
+  MINUTES: 'Minutes',
+  HOURS: 'Hours',
 }

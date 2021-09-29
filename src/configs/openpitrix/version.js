@@ -61,12 +61,12 @@ export const HANDLE_TYPE_TO_SHOW = {
 }
 
 export const ACTION_TO_NAME = {
-  submit: 'Submit for Review',
-  cancel: 'Cancel Review',
+  submit: 'SUBMIT_OR_REVIEW',
+  cancel: 'CANCEL_REVIEW',
   release: 'Release to Store',
   view: 'View in Store',
-  suspend: 'Suspend Version',
-  recover: 'Activate Version',
+  suspend: 'SUSPEND_VERSION',
+  recover: 'ACTIVATE_VERSION',
 }
 
 export const REVIEW_PASS_ACTIONS = [
