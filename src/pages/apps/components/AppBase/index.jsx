@@ -41,10 +41,14 @@ export default class AppBase extends React.PureComponent {
     const { className, app } = this.props
 
     const maintainers = safeParseJSON(
-      app.latest_app_version.maintainers,
+      get(app, 'latest_app_version.maintainers', []),
       []
     ).map(item => item.name)
-    const sources = safeParseJSON(app.latest_app_version.sources)
+
+    const sources = safeParseJSON(
+      get(app, 'latest_app_version.sources', []),
+      []
+    )
 
     return (
       <div className={classnames(styles.appBase, className)}>

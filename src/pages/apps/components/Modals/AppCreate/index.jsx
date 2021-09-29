@@ -69,9 +69,7 @@ export default class AppCreate extends Component {
             <Button type={'control'} onClick={onOk}>
               {t('UPLOAD')}
             </Button>
-            <div className={styles.note}>
-              💁‍♂️ {` ${htmlLinkControl(htmlDes)}`}
-            </div>
+            <div className={styles.note}>💁‍♂️ {htmlLinkControl(htmlDes)}</div>
           </div>
         </ToggleView>
       </Modal>
