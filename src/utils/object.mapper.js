@@ -990,11 +990,9 @@ const ImageDetailMapper = detail => {
     message: get(detail, 'message', ''),
     registry: get(detail, 'registry', ''),
     layers: layers.length,
-    createTime: get(detail, 'imageBlob.created', ''),
+    createTime: get(detail, 'created', ''),
     size,
-    exposedPorts: Object.keys(
-      get(detail, 'imageBlob.container_config.ExposedPorts', {})
-    ),
+    exposedPorts: Object.keys(get(detail, 'config.ExposedPorts', {})),
     status: get(detail, 'status', ''),
     slug: get(detail, 'slug', ''),
   }

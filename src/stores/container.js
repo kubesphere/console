@@ -178,11 +178,11 @@ export default class ContainerStore {
     )
 
   @action
-  getImageDetail = async ({ cluster, ...params }) => {
+  getImageDetail = async ({ cluster, namespace, ...params }) => {
     const result = await request.get(
-      `kapis/resources.kubesphere.io/v1alpha2${this.getPath({
+      `kapis/resources.kubesphere.io/v1alpha3${this.getPath({
         cluster,
-      })}/registry/blob`,
+      })}/namespaces/${namespace}/imageconfig`,
       params,
       null,
       (e, data) => data

@@ -23,7 +23,7 @@ import classnames from 'classnames'
 import moment from 'moment-mini'
 import { Form, Button, Icon, Loading, Tooltip } from '@kube-design/components'
 
-import { getDocsUrl, formatSize, learnMoreTip } from 'utils'
+import { getDocsUrl, learnMoreTip } from 'utils'
 
 import { PATTERN_IMAGE, PATTERN_IMAGE_TAG } from 'utils/constants'
 
@@ -205,15 +205,14 @@ export default class ImageSearch extends Component {
 
       const {
         image,
-        size,
-        layers,
         createTime,
         exposedPorts = [],
-        registry,
         logo,
         short_description,
       } = this.selectedImage
 
+      const registry =
+        image.indexOf('/') > -1 ? image.split('/')[0] : 'docker.io'
       const ports = exposedPorts.join('; ')
       const _message = message || short_description
 
@@ -228,17 +227,9 @@ export default class ImageSearch extends Component {
             <div className={styles.imageInfo}>
               <p className={styles.title}>{image}</p>
               <p className={styles.desc}>
-                {layers === 1
-                  ? t('IMAGE_TIME_SIZE_LAYER_SI', {
-                      time: moment(createTime).fromNow(),
-                      size: formatSize(size),
-                      layer: layers,
-                    })
-                  : t('IMAGE_TIME_SIZE_LAYER_PL', {
-                      time: moment(createTime).fromNow(),
-                      size: formatSize(size),
-                      layer: layers,
-                    })}
+                {t('IMAGE_TIME_SIZE_LAYER', {
+                  time: moment(createTime).fromNow(),
+                })}
               </p>
             </div>
             {this.state.showPortsTips ? (
