@@ -25,7 +25,7 @@ import ResourceStatus from './ResourceStatus'
 export default PATH => [
   {
     path: `${PATH}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     exact: true,
     component: ResourceStatus,
   },

@@ -38,7 +38,7 @@ export default PATH => [
   },
   {
     path: `${PATH}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     component: ResourceStatus,
     exact: true,
   },

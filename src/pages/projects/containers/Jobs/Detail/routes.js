@@ -33,7 +33,7 @@ export default path => [
   },
   {
     path: `${path}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     component: ResourceStatus,
     exact: true,
   },

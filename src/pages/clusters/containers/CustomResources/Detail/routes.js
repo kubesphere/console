@@ -25,7 +25,7 @@ const PATH = '/clusters/:cluster/customresources/:name'
 export default [
   {
     path: `${PATH}/resources`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     component: ResourceStatus,
     exact: true,
   },
