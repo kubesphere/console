@@ -69,6 +69,10 @@ export default class Volumes extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.store.checkSupportPv(this.props.match.params)
+  }
+
   handleTabChange = () => {
     const { cluster } = this.props.match.params
     this.props.rootStore.routing.push(`/clusters/${cluster}/PV`)
