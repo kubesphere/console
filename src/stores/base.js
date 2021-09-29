@@ -36,6 +36,9 @@ export default class BaseStore {
   @observable
   isSubmitting = false
 
+  @observable
+  supportPv = false
+
   constructor(module) {
     this.module = module
   }
@@ -46,17 +49,6 @@ export default class BaseStore {
 
   get mapper() {
     return ObjectMapper[this.module] || (data => data)
-  }
-
-  get supportPv() {
-    const ksVersion = globals.ksConfig.ksVersion.replace(/[^\d.]/g, '')
-    const version = Number(
-      ksVersion
-        .split('.')
-        .slice(0, 2)
-        .join('.')
-    )
-    return version >= 3.2
   }
 
   getPath({ cluster, namespace } = {}) {
@@ -273,5 +265,23 @@ export default class BaseStore {
   reject = res => {
     this.isSubmitting = false
     window.onunhandledrejection(res)
+  }
+
+  async checkSupportPv(params) {
+    let result
+    if (globals.ksConfig.multicluster) {
+      result = await request.get(`/kapis/clusters/${params.cluster}/version`)
+    } else {
+      result = await request.get(`/kapis/version`)
+    }
+    const ksVersion = result.gitVersion.replace(/[^\d.]/g, '')
+    const version = Number(
+      ksVersion
+        .split('.')
+        .slice(0, 2)
+        .join('.')
+    )
+    this.supportPv = version >= 3.2
+    return this.supportPv
   }
 }

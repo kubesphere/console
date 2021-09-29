@@ -39,7 +39,7 @@ import { Avatar, Status } from 'components/Base'
 export default class PV extends React.Component {
   showAction = record => !record.isFedManaged
 
-  cantDelete = record => ['Failed', 'Bound'].findIndex(record.status.phase) > -1
+  cantDelete = record => record.phase === 'Bound'
 
   get itemActions() {
     const { trigger } = this.props
@@ -134,7 +134,7 @@ export default class PV extends React.Component {
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
         width: '10.56%',
-        render: (_, { phase }) => (
+        render: ({ phase }) => (
           <Status
             type={phase}
             name={t(`PV_STATUS_${phase.toUpperCase()}`)}
@@ -147,7 +147,7 @@ export default class PV extends React.Component {
         dataIndex: 'capacity',
         isHideable: true,
         width: '7%',
-        render: (_, { capacity }) => (
+        render: capacity => (
           <div>
             <p>{capacity}</p>
           </div>
@@ -158,7 +158,7 @@ export default class PV extends React.Component {
         dataIndex: 'accessMode',
         isHideable: true,
         width: '12.32%',
-        render: (_, { accessMode }) => (
+        render: accessMode => (
           <div>
             <p>{accessMode}</p>
           </div>
@@ -176,7 +176,7 @@ export default class PV extends React.Component {
         dataIndex: 'volumeHandle',
         isHideable: true,
         width: '9.8%',
-        render: (_, { volumeHandle }) => (
+        render: volumeHandle => (
           <div>
             <p>{volumeHandle}</p>
           </div>
