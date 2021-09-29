@@ -39,7 +39,7 @@ import { Avatar, Status } from 'components/Base'
 export default class PV extends React.Component {
   showAction = record => !record.isFedManaged
 
-  cantDelete = record => record.phase === 'Bound'
+  cantDelete = record => record.status.phase === 'Bound'
 
   get itemActions() {
     const { trigger } = this.props
