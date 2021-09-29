@@ -704,6 +704,9 @@ const IngressMapper = item => ({
 })
 
 const GatewayMapper = item => {
+  item.apiVersion = 'gateway.kubesphere.io/v1alpha1'
+  item.kind = 'Gateway'
+
   const loadBalancerIngress = get(item, 'status.loadBalancer.ingress', [])
   return {
     ...getBaseInfo(item),

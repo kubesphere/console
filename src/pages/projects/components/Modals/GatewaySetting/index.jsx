@@ -66,8 +66,8 @@ export default class GatewaySettingModal extends React.Component {
 
     this.form = React.createRef()
     this.state = {
-      isChecked: get(
-        props.template,
+      isChecked: !!get(
+        this.template,
         'spec.deployment.annotations["servicemesh.kubesphere.io/enabled"]'
       ),
     }

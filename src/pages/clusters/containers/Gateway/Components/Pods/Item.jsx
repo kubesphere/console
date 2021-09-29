@@ -303,6 +303,7 @@ export default class PodItem extends React.PureComponent {
               cluster={cluster}
               onContainerClick={this.handleLinkClick}
               isCreating={this.isCreating}
+              hideterminal
             />
           ))}
           {initContainers.map(container => (
@@ -315,6 +316,7 @@ export default class PodItem extends React.PureComponent {
               onContainerClick={this.handleLinkClick}
               isCreating={this.isCreating}
               isInit
+              hideterminal
             />
           ))}
         </div>

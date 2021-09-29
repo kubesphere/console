@@ -25,7 +25,7 @@ import ContainerPortsCard from 'components/Cards/Containers/Ports'
 import ReplicaCard from 'projects/components/Cards/Replica'
 import Placement from 'projects/components/Cards/Placement'
 import PodsCard from 'clusters/containers/Gateway/Components/Pods'
-
+import { Provider } from './context'
 import styles from './index.scss'
 
 class ResourceStatus extends React.Component {
@@ -54,6 +54,11 @@ class ResourceStatus extends React.Component {
     return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}`
   }
 
+  getGatewayDetail() {
+    const { cluster, namespace } = this.props.match.params
+    this.props.detailStore.getGateway({ cluster, namespace })
+  }
+
   get enabledActions() {
     return globals.app.getActions({
       module: this.module,
@@ -79,9 +84,11 @@ class ResourceStatus extends React.Component {
     this.setState({ pods: result.length })
   }
 
-  handleScale = newReplicas => {
+  handleScale = async newReplicas => {
     const { cluster, namespace } = this.props.match.params
-    this.store.scale({ cluster, namespace }, newReplicas)
+    await this.store.scale({ cluster, namespace }, newReplicas)
+    this.getGatewayDetail()
+    this.fetchData()
   }
 
   renderPlacement() {
@@ -127,13 +134,17 @@ class ResourceStatus extends React.Component {
   }
 
   renderPods() {
+    const { namespace } = this.props.match.params
+
     return (
-      <PodsCard
-        prefix={this.prefix}
-        detail={this.detail}
-        store={this.store}
-        params={this.props.match.params}
-      />
+      <Provider value={{ gatewayName: this.detail.name, gatewayNs: namespace }}>
+        <PodsCard
+          prefix={this.prefix}
+          detail={this.detail}
+          store={this.store}
+          params={this.props.match.params}
+        />
+      </Provider>
     )
   }
 

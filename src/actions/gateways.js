@@ -65,6 +65,8 @@ export default {
         },
         modal: GatewaySettingModal,
         detail,
+        cluster,
+        namespace,
         store,
         ...props,
       })
@@ -83,6 +85,8 @@ export default {
         store,
         modal: DeleteModal,
         resource: detail.name,
+        cluster,
+        namespace,
         ...props,
       })
     },
@@ -100,6 +104,8 @@ export default {
         modal: UpdateGatewayModal,
         detail,
         store,
+        cluster,
+        namespace,
         ...props,
       })
     },

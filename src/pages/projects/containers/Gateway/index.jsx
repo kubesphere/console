@@ -22,7 +22,7 @@ import { trigger } from 'utils/action'
 import Banner from 'components/Cards/Banner'
 
 import GatewayCard from 'clusters/containers/Gateway/Components/GatewayCard'
-import { Tooltip, Icon, Loading } from '@kube-design/components'
+import { Tooltip, Icon, Loading, Button } from '@kube-design/components'
 import GatewayStore from 'stores/gateway'
 import { observable } from 'mobx'
 
@@ -92,6 +92,18 @@ export default class Getway extends React.Component {
     return <div className={styles.title}>{t('PROJECT_GATEWAY')}</div>
   }
 
+  renderOperations = url => {
+    return (
+      <Button
+        onClick={() => {
+          this.props.rootStore.routing.push(url)
+        }}
+      >
+        {t('View Gateway')}
+      </Button>
+    )
+  }
+
   renderGatewayCard = () => {
     return this.gatewayList.map((item, index) => {
       const isCluster = index === 0
@@ -110,6 +122,7 @@ export default class Getway extends React.Component {
               : this.renderProjectTitle()
           }
           prefix={isCluster ? null : this.prefix}
+          renderOperations={isCluster ? this.renderOperations : null}
         />
       ) : null
     })
@@ -124,7 +137,9 @@ export default class Getway extends React.Component {
           description={t('GATEWAY_DESC')}
           tabs={this.tabs}
         />
-        <Loading spinning={this.isLoading}>{this.renderGatewayCard()}</Loading>
+        <Loading spinning={this.isLoading}>
+          <>{this.renderGatewayCard()}</>
+        </Loading>
       </>
     )
   }

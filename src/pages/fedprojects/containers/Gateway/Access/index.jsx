@@ -153,6 +153,18 @@ class InternetAccess extends React.Component {
     )
   }
 
+  renderOperations = url => {
+    return (
+      <Button
+        onClick={() => {
+          this.props.rootStore.routing.push(url)
+        }}
+      >
+        {t('View Gateway')}
+      </Button>
+    )
+  }
+
   renderInternetAccess(data) {
     const { cluster } = this.props
     return (
@@ -181,6 +193,7 @@ class InternetAccess extends React.Component {
                   : this.renderProjectTitle()
               }
               prefix={isCluster ? null : this.prefix}
+              renderOperations={isCluster ? this.renderOperations : null}
             />
           ) : null
         })}

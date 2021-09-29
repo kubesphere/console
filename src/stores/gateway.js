@@ -33,6 +33,12 @@ export default class Gateway extends Base {
     `kapis/resources.kubesphere.io/v1alpha2${this.getPath(params)}/router`
 
   gatewayUrl = ({ cluster, namespace, gatewayName = '' }) =>
+    `${this.apiVersion}${this.getPath({
+      namespace: namespace || 'kubesphere-system',
+      cluster,
+    })}/${this.module}${this.isCluster(namespace) ? `/${gatewayName}` : ''}`
+
+  gatewayeditUrl = ({ cluster, namespace, gatewayName = '' }) =>
     `/${
       this.isCluster(namespace) ? 'k' : ''
     }apis/gateway.kubesphere.io/v1alpha1${this.getPath({
@@ -45,7 +51,7 @@ export default class Gateway extends Base {
     }`
 
   gatewayPodsUrl = ({ cluster, namespace, gatewayName = '' }) =>
-    `kapis/gateway.kubesphere.io/v1alpha1${this.getPath({
+    `${this.apiVersion}${this.getPath({
       namespace: namespace || 'kubesphere-system',
       cluster,
     })}/${this.module}${
@@ -86,7 +92,7 @@ export default class Gateway extends Base {
 
         data = gatewayData
       } else {
-        data = ObjectMapper.gateway(result)
+        data = ObjectMapper.gateway(result[0])
       }
     }
     this.detail = data
@@ -97,27 +103,34 @@ export default class Gateway extends Base {
 
   @action
   async addGateway(params, data) {
-    return this.submitting(request.post(this.gatewayUrl(params), data))
+    return this.submitting(request.post(this.gatewayeditUrl(params), data))
   }
 
   @action
   async editGateway(params, data) {
-    return this.submitting(request.put(this.gatewayUrl(params), data))
+    return this.submitting(request.put(this.gatewayeditUrl(params), data))
   }
 
   @action
   async deleteGateway(params) {
-    return this.submitting(request.delete(this.gatewayUrl(params)))
+    return this.submitting(request.delete(this.gatewayeditUrl(params)))
   }
 
   @action
   async updateGateway(params, data) {
-    const url = `${this.gatewayUrl(params)}/upgrade`
+    const url = `${this.gatewayeditUrl(params)}/upgrade`
     return this.submitting(request.post(url, data))
   }
 
   @action
-  async getGatewayLogs({ cluster, namespace, gatewayName, more, ...params }) {
+  async getGatewayLogs({
+    cluster,
+    namespace,
+    gatewayName,
+    component,
+    more,
+    ...params
+  }) {
     this.logs.isLoading = true
 
     if (!params.sortBy && params.ascending === undefined) {
@@ -181,6 +194,7 @@ export default class Gateway extends Base {
     namespace,
     workspace,
     more,
+    component,
     ...params
   }) {
     this.podList.isLoading = true
@@ -249,7 +263,7 @@ export default class Gateway extends Base {
     params.limit = params.limit || 10
 
     const result = await request.get(
-      `/kapis/gateway.kubesphere.io/v1alpha1/${this.getPath({
+      `${this.apiVersion}${this.getPath({
         cluster,
       })}/gateways`,
       {

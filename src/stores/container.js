@@ -42,11 +42,19 @@ export default class ContainerStore {
 
   module = 'containers'
 
-  getDetailUrl = ({ cluster, namespace, podName }) => {
+  getDetailUrl = ({ cluster, namespace, podName, gateways }) => {
     let path = `api/v1`
 
     if (cluster) {
       path += `/klusters/${cluster}`
+    }
+
+    if (gateways) {
+      const ns =
+        namespace === 'kubesphere-controls-system' || !namespace
+          ? 'kubesphere-system'
+          : namespace
+      return `kapis/gateway.kubesphere.io/v1alpha1/namespaces/${ns}/gateways/${gateways}/pods/${podName}`
     }
 
     return `${path}/namespaces/${namespace}/pods/${podName}`
@@ -86,7 +94,7 @@ export default class ContainerStore {
 
   @action
   async watchLogs(
-    { cluster, namespace, podName, silent, ...params },
+    { cluster, namespace, podName, gateways, silent, ...params },
     callback
   ) {
     if (!silent) {
@@ -95,7 +103,7 @@ export default class ContainerStore {
 
     if (params.follow) {
       this.watchHandler = request.watch(
-        `${this.getDetailUrl({ cluster, namespace, podName })}/log`,
+        `${this.getDetailUrl({ cluster, namespace, podName, gateways })}/log`,
         params,
         data => {
           this.logs = {
@@ -107,7 +115,7 @@ export default class ContainerStore {
       )
     } else {
       const result = await request.get(
-        `${this.getDetailUrl({ cluster, namespace, podName })}/log`,
+        `${this.getDetailUrl({ cluster, namespace, podName, gateways })}/log`,
         params
       )
 
