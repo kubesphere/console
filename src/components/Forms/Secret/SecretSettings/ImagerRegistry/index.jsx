@@ -92,7 +92,9 @@ export default class ImageRegistry extends Component {
     if (this.validate()) {
       this.setState({ isValidating: true })
       const result =
-        (await this.store.validateImageRegistrySecret(this.state)) || {}
+        (await this.store.validateImageRegistrySecret({
+          fedFormTemplate: this.props.fedFormTemplate,
+        })) || {}
 
       this.setState({
         validate: result.validate || false,
