@@ -34,7 +34,7 @@ import styles from './index.scss'
 @inject('rootStore')
 @observer
 @trigger
-class InternetAccess extends React.Component {
+class GatewayCard extends React.Component {
   static defaultProps = {
     type: 'cluster',
   }
@@ -67,6 +67,7 @@ class InternetAccess extends React.Component {
         key: 'view',
         icon: 'eye',
         text: t('View Gateway'),
+        disabled: this.gateway.createTime == null,
       },
       {
         key: 'edit',
@@ -234,7 +235,10 @@ class InternetAccess extends React.Component {
         {
           key: 'edit',
           component: renderOperations ? (
-            renderOperations(this.linkUrl)
+            renderOperations({
+              url: this.linkUrl,
+              disabled: isEmpty(createTime),
+            })
           ) : (
             <Dropdown
               theme="dark"
@@ -342,7 +346,7 @@ class InternetAccess extends React.Component {
               [styles.bgWhite]: isFederated,
             })}
           >
-            <p>{t('ANNOTATIONS')}</p>
+            <p>{t('ANNOTATION_PL')}</p>
 
             <ul>
               {isEmpty(this.gateway.annotations) ? (
@@ -388,4 +392,4 @@ class InternetAccess extends React.Component {
   }
 }
 
-export default InternetAccess
+export default GatewayCard

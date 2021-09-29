@@ -92,9 +92,10 @@ export default class Getway extends React.Component {
     return <div className={styles.title}>{t('PROJECT_GATEWAY')}</div>
   }
 
-  renderOperations = url => {
+  renderOperations = ({ url, disabled }) => {
     return (
       <Button
+        disabled={disabled}
         onClick={() => {
           this.props.rootStore.routing.push(url)
         }}
