@@ -47,7 +47,7 @@ module.exports = {
     'Passwords must be at least 6 characters long',
   'Please enter a filter to search for logs.':
     'Please enter a filter to search for logs.',
-  'Please enter the address': 'Please enter the address',
+  ADDRESS_EMPTY_DESC: 'Please enter an address.',
   ENTER_SERVICE_ADDRESS: 'Please enter a service address.',
   'Real-Time Data': 'Real-Time Data',
   'Recently Configured Updated': 'Recently Configured Updated',

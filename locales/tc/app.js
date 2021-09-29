@@ -38,7 +38,7 @@ module.exports = {
 
   APP_INFORMATION: '應用資訊',
   'Base Info': '基本資訊',
-  'App Details': '應用詳情',
+  APP_DETAILS: '應用詳情',
   'App Config': '應用配置',
   APP_SETTINGS: 'App Settings',
   'Current App Config': '當前應用配置',
@@ -48,7 +48,7 @@ module.exports = {
   'Config File': '配置文件',
   CHART_FILES: '配置文件',
   'Update Log': '更新紀錄',
-  'No update log': '暫無更新紀錄',
+  NO_UPDATE_LOG_DESC: 'No update log is found.',
   Note: '提示',
   APP_NAME_DESC: '應用的重要商標，最長 20 個字元',
   'Select file': '選擇檔案',
@@ -62,7 +62,7 @@ module.exports = {
   APP_ICON_SIZE: '圖形大小: 96px * 96px',
   'Start editing': '開始編輯',
   File: '檔案',
-  'Platform App Store Management': '平台級應用商店管理',
+  PLATFORM_APP_STORE_MANAGEMENT: '平台級應用商店管理',
 
   APP_STORE_DESC: '對已上架、已下架的應用進行管理',
   PROVIDER: '服務商',
@@ -70,20 +70,21 @@ module.exports = {
   'Release / Suspended Time': '上架 (下架) 時間',
 
   APP_REVIEW: '應用審核',
-  'App Reviews': '應用審核',
-  APP_REVIEW_DESC: '對應用上架提供審核功能',
+  APP_REVIEWS: '應用審核',
+  APP_REVIEW_DESC:
+    'KubeSphere supports reviewing the contents of applications to be published. You can view the contents and approve or reject to publish the applications.',
   APP_REVIEW_EMPTY_DESC: 'No app to be reviewed is found.',
   APP_REVIEWS_CREATE_DESC: '對應用上架提供審核功能',
-  Unprocessed: '待處理',
-  Processed: '已處理',
+  UNREVIEWED: 'Unreviewed',
+  REVIEWED: 'Reviewed',
   'Review Object': '審核對象',
-  'Request for Approval': '應用上架',
+  APP_PUBLISHING: '應用上架',
   Operator: '操作者',
   'Apply No / Reject Reason': '申請編號 / 拒絕原因',
   'Review Status': '審核狀態',
   Submitter: '提交者',
   Handle: '處理',
-  'Review Content': '審核内容',
+  REVIEW_CONTENT: '審核内容',
   REVIEW_CONTENT_DESC:
     '以下資訊必須真實準確，關鍵的操作說明需要描述詳情，對於條款中的權利與義務需要描述清楚。',
   SUBMIT_REVIEW_DESC: '提交應用至應用商店，審核通過後將出現在應用商店中',
@@ -103,14 +104,14 @@ module.exports = {
 
   APP_CATEGORY_PL: '應用分類',
   APP_CATEGORIES_CREATE_DESC: '該分類暫無綁定的應用。',
-  'All Categories': '全部分類',
+  ALL_CATEGORIES: '全部分類',
   'Adjust App Category': '調整應用分類',
-  ADJUST_CATEGORY_DESC: '應用分類將決定該應用在應用商店中的分類',
+  CHANGE_CATEGORY_DESC: '應用分類將決定該應用在應用商店中的分類',
   CHANGE_CATEGORY: '調整分類',
   DELETE_CATEGORY_WARNING:
     '該分類綁定了 <strong>{total}</strong> 個應用，請先將這些應用調整到其它分類後才能刪除',
   DELETE_CATEGORY_DESC: '您確定要刪除分類 【{name}】 嗎？',
-  'Adjust Successfully': '調整成功',
+  CHANGED_SUCCESSFULLY: 'Changed successfully.',
 
   APP_TEMPLATES_DESC:
     'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
@@ -158,7 +159,7 @@ module.exports = {
   FILE_FORMAT_SCREENSHOTS: '截圖格式支持 png 和 jpg',
   FILE_MAX_PACKAGE: '配置包大小不能超過 2M',
   FILE_MAX_ICON: '圖示大小不能超過 20KB',
-  FILE_MAX_SIZE_ICON: '圖示尺寸大小不能超過 96px',
+  FILE_MAX_SIZE_ICON: '圖示尺寸大小不能超過 96px。',
   FILE_MAX_SCREENSHOTS: '截圖大小不能超過 2M',
   UPLOAD_PACKAGE_OK_NOTE: '請上傳配置包或上傳的配置包不正確',
   'Delete picture': '刪除圖片',
@@ -168,7 +169,7 @@ module.exports = {
   'App Name': '應用名稱',
   'App Home': '應用首頁',
   'Select File': '選擇檔案',
-  'App Screenshots': '應用截圖',
+  APP_SCREENSHOTS: '應用截圖',
   'Upload Screenshots': '上傳截圖',
 
   'Edit App Information': '編輯應用資訊',
@@ -189,7 +190,7 @@ module.exports = {
   'Company website': '公司官網',
   'Time of entry': '入駐時間',
   Discoveries: '發現',
-  'New Apps': '最新上架',
+  NEW_APPS: '最新上架',
   screenshots: '張截圖',
   'Delete all': '刪除全部',
   'A general introduction to the application': '對應用的概括性介紹',
@@ -230,9 +231,9 @@ module.exports = {
 
   DELETE_APP_TEMPLATE_TIP: '刪除應用模板前，需要先刪除所有版本。',
 
-  UNPROCESSED_APP_REVIEW: '未處理的應用審核',
-  PROCESSED_APP_REVIEW: '已處理的應用審核',
-  ALL_APP_REVIEW: '應用審核',
+  UNPROCESSED_APP_REVIEW: 'Pending App Review',
+  PROCESSED_APP_REVIEW: 'Complete App Review',
+  ALL_APP_REVIEW: 'App Review',
 
   'APP_CATE_MESSAGE QUEUEING': '消息佇列',
   'APP_CATE_IMAGE REGISTRY': '鏡像倉庫',
@@ -241,4 +242,34 @@ module.exports = {
   APP_CATE_NETWORKING: '網路',
   'APP_CATE_DATABASE & CACHE': '資料庫和緩存',
   APP_CATE_STORAGE: '存儲',
+
+  // App Reviews
+  REVIEW: 'Review',
+  OPERATOR: 'Operator',
+  PENDING_REVIEW: 'Pending',
+  COMPLETE_REVIEW: 'Complete',
+  REJECT: 'Reject',
+  PASS: 'Pass',
+  INTRODUCTION: 'Introduction',
+  UPDATE_LOG: 'Update Log',
+  SERVICE_PROVIDER_WEBSITE: 'Service provider website',
+  SERVICE_PROVIDER: 'Service provider',
+  APP_DESCRIPTION: 'App Description',
+  DOCUMENTATION: 'Documentation',
+  BACK: 'Back',
+  NOTIFICATION_EMAIL: 'Email',
+
+  // App Store
+  DISCOVER: 'Discover',
+  CATEGORIES: 'Categories',
+  CATEGORY_COLON: 'Category:',
+  HOMEPAGE_COLON: 'Homepage:',
+  RELEASE_DATE_COLON: 'Release Date:',
+  APP_ID_COLON: 'App ID:',
+  APP_VERSIONS_TITLE:
+    'Versions (only the latest 10 versions will be displayed)',
+  VERSIONS: 'Versions',
+  APP_CONFIGURATIONS: 'App Configurations',
+  UPDATED_AT_SCAP: 'Updated at: ',
+  DEVELOPER: 'Developer',
 }

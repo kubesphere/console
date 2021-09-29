@@ -55,12 +55,12 @@ export default class KeyWords extends React.Component {
       <div className={classnames(styles.wrapper, className)}>
         <BoxInput
           className={styles.wrapper}
-          title={t('Keywords')}
-          placeholder={t('Please enter a keyword')}
+          title={t('KEYWORDS')}
+          placeholder=" "
           validate={validate}
           onAdd={this.handleAdd}
         />
-        <p className="margin-t8">{t('Keywords Set')}</p>
+        <p className="margin-t8">{t('KEYWORDS_LIST')}</p>
         <div className={styles.boxWrapper}>
           {isEmpty(value) ? (
             <div className={styles.empty}>{t('EMPTY_KEYWORDS_DESC')}</div>

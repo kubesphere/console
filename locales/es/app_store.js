@@ -23,7 +23,7 @@ module.exports = {
   'App Store Settings': 'Configuración de la tienda de aplicaciones',
   Back: 'Atrás',
   Categories: 'Categorías',
-  'Change Log': 'Cambiar registro',
+  CHANGE_LOG: 'Cambiar registro',
   'Config files': 'Ficheros de configuración',
   Contact: 'Contacto',
   Developer: 'Desarrollador',
@@ -34,21 +34,30 @@ module.exports = {
   LATEST_VALUE: 'Latest: {value}',
   'Find an app': 'Encuentra la aplicación',
   'Install and Deploy': 'Instalar y desplegar',
-  Keywords: 'Palabras clave',
+  KEYWORDS: 'Palabras clave',
   Latest: 'Último',
   RELEASE_DATE: 'Fecha de Publicación',
   Screenshots: 'Capturas de pantalla',
-  'Version Number': 'Número de versión',
+  VERSION_NUMBER: 'Número de versión',
   VERSION_LIST_DES: 'Only display the last 10 versions',
-  TOTAL_CATE_COUNT: '{total} Aplicaciones en total',
+  TOTAL_CATE_COUNT: 'Total Apps: {total}',
   HOME_APP_STORE_DESC:
     'La App Store oficial de KubeSphere proporciona características de despliegue y administración que permiten a los usuarios desplegar aplicaciones rápidamente con un solo click en base a plantillas de aplicaciones.',
 
   AGREE: 'De acuerdo',
   APP_DEPLOY_AGREEMENT: 'Acuerdo de implementación de la aplicación',
   APP_DEPLOY_AGREEMENT_DESC_1:
-    'Cumplirá con el acuerdo de código abierto de la aplicación.',
+    'You must abide by the open-source agreement of the application.',
   APP_DEPLOY_AGREEMENT_DESC_2:
-    'Implementa las consecuencias resultantes de la aplicación bajo su propio riesgo, si necesita servicios de soporte relacionados, comuníquese con el desarrollador.',
+    'Any consequences arising from your deployment of the application shall be borne by you. For support services, please contact the developer.',
   DO_NOT_REMIND_AGAIN: 'No recordar de nuevo',
+  APP_DEPLOYMENT_AGREEMENT: 'Acuerdo de implementación de aplicaciones',
+  APP_DEPLOY_AGREEMENT_1:
+    '1. You must abide by the open-source agreement of the application.',
+  APP_DEPLOY_AGREEMENT_2:
+    '2. Any consequences arising from your deployment of the application shall be borne by you. For support services, please contact <a href="https://kubesphere.cloud/en/" target="_blank">kubesphere.cloud</a>.',
+  APP_DEPLOY_AGREEMENT_CHECK:
+    'I have read <b>App Deployment Agreement</b> and agree to deploy the app.',
+  CHECK_APP_DEPLOY_AGREEMENT_TIP:
+    'Lea y acepte las instrucciones de implementación de la aplicación.',
 }

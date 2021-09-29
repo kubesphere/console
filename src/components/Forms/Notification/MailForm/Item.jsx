@@ -48,7 +48,7 @@ export default class Item extends React.Component {
     const { value } = this.props
     const count = globals.config.notification.wecom['max_number_of_email']
     if (!email) {
-      Notify.error({ content: t('Please input email'), duration: 1000 })
+      Notify.error({ content: t('EMAIL_EMPTY_DESC'), duration: 1000 })
       return
     }
     if (value.length > count - 1) {
@@ -60,7 +60,7 @@ export default class Item extends React.Component {
     }
     if (value.some(item => item === email)) {
       Notify.error({
-        content: t('This email address has existed'),
+        content: t('EMAIL_EXISTS'),
         duration: 1000,
       })
       return
@@ -89,7 +89,7 @@ export default class Item extends React.Component {
     return (
       <div className={classnames(styles.wrapper, className)}>
         <BoxInput
-          placeholder={t('Please enter an email address')}
+          placeholder="user@example.com"
           validate={this.validateMail}
           onAdd={this.handleAdd}
         />

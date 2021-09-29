@@ -272,7 +272,7 @@ export default {
           onReject()
         },
         icon: 'safe-notice',
-        title: t('Review Content'),
+        title: t('REVIEW_CONTENT'),
         description: t('REVIEW_CONTENT_DESC'),
         canHandle: type === 'unprocessed',
         modal: AppReviewModal,
@@ -356,10 +356,10 @@ export default {
         onOk: async params => {
           await store.adjustCategory(params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Adjust Successfully')}` })
+          Notify.success({ content: `${t('CHANGED_SUCCESSFULLY')}` })
           success && success()
         },
-        title: t('Adjust App Category'),
+        title: t('CHANGE_CATEGORY'),
         icon: 'tag',
         modal: AdjustCategoryModal,
         store,

@@ -162,7 +162,6 @@ module.exports = {
   'Workspace Groups': 'Department Mangement',
   NOT_ASSIGNED_TCAP: 'Not Assigned',
   ASSIGNED: 'Assigned',
-  ADDED_SUCCESS_TIP: 'Added successfully.',
   WORKSPACE_ROLE: 'Workspace Role',
   PROJECT_VALUE: 'Project: {value}',
   PROJECT_ROLE_VALUE: 'Project role: {value}',

@@ -107,7 +107,7 @@ export default class TextPreview extends React.Component {
 
   render() {
     if (!this.selectFile) {
-      return <p>{t('The app has no chart file.')}</p>
+      return <p>{t('NO_CHART_FILE_FOUND')}</p>
     }
 
     return (

@@ -63,26 +63,26 @@ export default class AdminDashboard extends React.Component {
           <Panel className={styles.info} title={t('PLATFORM_INFORMATION')}>
             <Text
               title={get(globals, 'config.version.kubesphere')}
-              description={t('Platform Version')}
+              description={t('PLATFORM_VERSION')}
             />
             {globals.app.isMultiCluster ? (
               <Text
                 title={clusterCount}
-                description={t('Cluster Number')}
+                description={t('CLUSTER_COUNT_PL')}
                 onClick={this.handleClusterClick}
               />
             ) : (
               <Text
                 title={1}
-                description={t('Cluster Number')}
+                description={t('CLUSTER_COUNT_SI')}
                 onClick={this.handleClusterClick}
               />
             )}
           </Panel>
-          <Panel className={styles.status} title={t('Platform Status')}>
+          <Panel className={styles.status} title={t('PLATFORM_RESOURCE')}>
             <PlatformStatus metrics={this.monitorStore.data} />
           </Panel>
-          <Panel title={t('Recent Visit')}>
+          <Panel title={t('RECENT_ACCESS')}>
             <History />
           </Panel>
         </>

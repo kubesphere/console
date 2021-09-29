@@ -137,7 +137,7 @@ export default class WeCom extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('CREATE_SUCCESSFUL')
+      message = t('ADDED_SUCCESS_DESC')
     } else {
       await this.configStore.update({ name: CONFIG_NAME }, config)
       await this.secretStore.update(

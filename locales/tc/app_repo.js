@@ -51,7 +51,7 @@ module.exports = {
   INVALID_URL_DESC: 'Invalid URL.',
   VALID_URL_DESC: 'URL 驗證通过。',
 
-  'Please input URL': '請輸入 URL',
+  WEBHOOK_URL_DESC: 'Please enter a webhook URL.',
   'Please input access key ID and secret access key':
     '請輸入 Access key ID 和 Secret access key',
 

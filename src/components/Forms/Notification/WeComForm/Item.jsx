@@ -55,11 +55,11 @@ export default class Item extends Component {
     return (
       <div className={classnames(styles.wrapper, className)}>
         <BoxInput
-          placeholder={t(`WECOM_RECEIVER_${text}_INPUT_PLACEHOLDER`)}
+          placeholder={t(`WECOM_${text.toUpperCase()}_PLACEHOLDER`)}
           validate={validate}
           onAdd={this.handleAdd}
         />
-        <p className="margin-t8">{t(`${type.replace('to', '')} Set`)}</p>
+        <p className="margin-t8">{t(`${type.toUpperCase()}_LIST`)}</p>
         <div className={classnames(styles.boxWrapper, className)}>
           {isEmpty(value) ? (
             <div className={styles.empty}>{t(`EMPTY_${text}_DESC`)}</div>

@@ -34,7 +34,7 @@ export default class Resource extends Component {
         <Text
           icon={data.icon}
           title={count || 0}
-          description={t(data.name)}
+          description={count === '1' ? t(data.name) : t(`${data.name}_PL`)}
           onClick={data.link ? this.handleClick : null}
         />
       </div>

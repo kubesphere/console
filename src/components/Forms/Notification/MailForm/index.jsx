@@ -43,16 +43,16 @@ export default class MailForm extends Component {
 
     return (
       <div className={styles.row}>
-        <div className={styles.title}>{t('Server Settings')}</div>
+        <div className={styles.title}>{t('SERVER_SETTINGS')}</div>
         <div className={styles.item}>
-          <Form.Item label={t('SMTP Server Address')}>
+          <Form.Item label={t('SMTP_SERVER_ADDRESS')}>
             <UrlInput
               className={styles.urlInput}
               portName="config.spec.email.smartHost.port"
               hostName="config.spec.email.smartHost.host"
               hostRules={[
-                { required: true, message: t('Please enter the address') },
-                { pattern: PATTERN_HOST, message: t('Invalid address') },
+                { required: true, message: t('ADDRESS_EMPTY_DESC') },
+                { pattern: PATTERN_HOST, message: t('INVALID_ADDRESS_DESC') },
               ]}
               portRules={[
                 { required: true, message: t('ENTER_PORT_NUMBER') },
@@ -68,15 +68,15 @@ export default class MailForm extends Component {
               checked={checked}
               onChange={this.handleChangeCheck}
             >
-              {t('Use SSL Secure Connection')}
+              {t('USE_SSL_SECURE_CONNECTION')}
             </Checkbox>
           </Form.Item>
           <Form.Item
-            label={`SMTP ${t('User')}`}
+            label={t('SMTP_USER')}
             rules={[
               {
                 required: true,
-                message: t('Please enter the SMTP username'),
+                message: t('SMTP_USER_EMPTY_DESC'),
               },
             ]}
           >
@@ -86,8 +86,8 @@ export default class MailForm extends Component {
             />
           </Form.Item>
           <Form.Item
-            label={`SMTP ${t('PASSWORD')}`}
-            rules={[{ required: true, message: t('PASSWORD_EMPTY_DESC') }]}
+            label={t('SMTP_PASSWORD')}
+            rules={[{ required: true, message: t('ENTER_PASSWORD_TIP') }]}
           >
             <InputPassword
               name="secret.data.authPassword"
@@ -96,10 +96,10 @@ export default class MailForm extends Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('SENDER_MAIL')}
+            label={t('SENDER_EMAIL')}
             rules={[
               { required: true, message: t('EMAIL_EMPTY_DESC') },
-              { type: 'email', message: t('INVALID_EMAIL') },
+              { type: 'email', message: t('INVALID_EMAIL_ADDRESS_DESC') },
             ]}
           >
             <Input
@@ -117,13 +117,13 @@ export default class MailForm extends Component {
 
     return (
       <div className={styles.row}>
-        <div className={styles.title}>{t('Recipient Settings')}</div>
+        <div className={styles.title}>{t('RECIPIENT_SETTINGS')}</div>
         <div className={styles.item}>
           <Form.Item
             rules={[
               {
                 required: true,
-                message: t('Please add the recipient email address'),
+                message: t('ENTER_RECIPIENT_EMAIL_DESC'),
               },
             ]}
           >

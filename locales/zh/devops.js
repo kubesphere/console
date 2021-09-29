@@ -81,7 +81,6 @@ module.exports = {
   // Credentials Creation Page
   SECRET_DEVOPS: '密钥',
   CONTENT: '内容',
-  INVITE_DEVOPS_MEMBER: 'Invite Members to the Project',
   INVALID_ID_TIP:
     'ID 只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
 }

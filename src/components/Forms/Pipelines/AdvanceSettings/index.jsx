@@ -301,7 +301,7 @@ export default class AdvanceSettings extends React.Component {
           </Checkbox>
         </Form.Item>
         <div className="h6">{t('WEBHOOK_PUSH')}</div>
-        <Form.Item label={t('WEBHOOK_PUSH_URL')} tip={t('WEBHOOK_DESC')}>
+        <Form.Item label={t('WEBHOOK_PUSH_URL')} tip={t('WEBHOOK_PUSH_DESC')}>
           <Input value={this.webhookUrl} disabled />
         </Form.Item>
       </>

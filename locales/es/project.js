@@ -237,9 +237,6 @@ module.exports = {
   PROJECT_QUOTAS_NOT_SET: 'Project Quota Not Set',
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: 'Resource Default Request Not Set',
 
-  // Jobs
-  MESSAGE: 'Message',
-
   // Custom Monotoring
   CUSTOM_MONITORING_DASHBOARD_LOW: 'custom monitoring dashbord',
 

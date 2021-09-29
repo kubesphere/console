@@ -69,13 +69,13 @@ export default class App extends React.Component {
   get steps() {
     return [
       {
-        title: 'Basic Info',
+        title: 'BASIC_INFORMATION',
         component: BasicInfo,
         required: true,
         isForm: true,
       },
       {
-        title: 'App Config',
+        title: 'APP_CONFIGURATIONS',
         component: AppConfig,
         required: true,
       },

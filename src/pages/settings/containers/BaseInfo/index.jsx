@@ -46,12 +46,12 @@ export default class BaseInfo extends Component {
           title={t('PLATFORM_INFORMATION')}
           description={t('PLATFORM_INFO_DESC')}
         />
-        <Panel title={t('Basic Info')}>
+        <Panel title={t('BASIC_INFORMATION')}>
           <div className={styles.header}>
             <Text
               icon="image"
               title={location.host}
-              description={t('Platform URL')}
+              description={t('PLATFORM_ADDRESS')}
             />
             <a
               href={`${getDocsUrl('custom_console')}`}
@@ -71,11 +71,11 @@ export default class BaseInfo extends Component {
             <div className={styles.info}>
               <Text
                 title={globals.config.title}
-                description={t('Platform Title')}
+                description={t('PLATFORM_TITLE')}
               />
               <Text
                 title={globals.config.description || t('KS_DESCRIPTION')}
-                description={t('Platform Description')}
+                description={t('PLATFORM_DESCRIPTION')}
               />
             </div>
           </div>

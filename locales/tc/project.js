@@ -272,9 +272,6 @@ module.exports = {
   PROJECT_QUOTAS_NOT_SET: '項目配額未設置',
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: '容器資源預設請求未設置',
 
-  // Jobs
-  MESSAGE: 'Message',
-
   // Custom Monotoring
   CUSTOM_MONITORING_DASHBOARD_LOW: 'custom monitoring dashbord',
 

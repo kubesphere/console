@@ -76,7 +76,7 @@ module.exports = {
 
   AUTO_REFRESH: '自动',
 
-  INVALID_PORT_DESC: 'Please enter a valid protocol or port number.',
+  INVALID_PORT_DESC: 'Please enter a valid port number.',
   INVALID_PORT: '端口無效。',
   'Not Associate': '不關聯',
 

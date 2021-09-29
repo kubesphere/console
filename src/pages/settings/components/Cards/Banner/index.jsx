@@ -27,7 +27,7 @@ export default class BaseBanner extends React.PureComponent {
       value: this.props.type,
       onChange: this.handleTabChange,
       options: [
-        { value: 'mail', label: t('Mail') },
+        { value: 'mail', label: t('NOTIFICATION_EMAIL') },
         { value: 'dingtalk', label: t('DingTalk') },
         { value: 'wecom', label: t('WeCom') },
         { value: 'slack', label: t('Slack') },
@@ -44,7 +44,7 @@ export default class BaseBanner extends React.PureComponent {
     return (
       <Banner
         module="notification"
-        title={t('Notification Configuration')}
+        title={t('NOTIFICATION_CONFIGURATION')}
         description={t('NOTIFICATION_CONFIGURATION_DESC')}
         tabs={this.tabs}
       />
