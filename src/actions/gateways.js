@@ -95,11 +95,16 @@ export default {
     on({ store, detail, cluster, namespace, success, ...props }) {
       const modal = Modal.open({
         onOk: () => {
-          store.updateGateway({ cluster, namespace }).then(() => {
-            Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}` })
-            success && success()
-          })
+          store
+            .updateGateway(
+              { cluster, namespace, gatewayName: detail.metadata.name },
+              detail
+            )
+            .then(() => {
+              Modal.close(modal)
+              Notify.success({ content: `${t('Updated Successfully')}` })
+              success && success()
+            })
         },
         modal: UpdateGatewayModal,
         detail,

@@ -153,9 +153,10 @@ class InternetAccess extends React.Component {
     )
   }
 
-  renderOperations = url => {
+  renderOperations = ({ url, disabled }) => {
     return (
       <Button
+        disabled={disabled}
         onClick={() => {
           this.props.rootStore.routing.push(url)
         }}
