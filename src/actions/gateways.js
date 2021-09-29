@@ -18,7 +18,7 @@
 
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
-import { set } from 'lodash'
+import { set, isEmpty } from 'lodash'
 import GatewaySettingModal from 'projects/components/Modals/GatewaySetting'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
@@ -76,11 +76,17 @@ export default {
     on({ store, detail, cluster, namespace, success, ...props }) {
       const modal = Modal.open({
         onOk: () => {
-          store.deleteGateway({ cluster, namespace }).then(() => {
-            Modal.close(modal)
-            Notify.success({ content: `${t('Deleted Successfully')}` })
-            success && success()
-          })
+          store
+            .deleteGateway({
+              cluster,
+              namespace,
+              isOld: isEmpty(detail.createTime),
+            })
+            .then(() => {
+              Modal.close(modal)
+              Notify.success({ content: `${t('Deleted Successfully')}` })
+              success && success()
+            })
         },
         store,
         modal: DeleteModal,

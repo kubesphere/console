@@ -112,8 +112,15 @@ export default class Gateway extends Base {
   }
 
   @action
-  async deleteGateway(params) {
-    return this.submitting(request.delete(this.gatewayeditUrl(params)))
+  async deleteGateway({ cluster, namespace, isOld }) {
+    if (isOld) {
+      return this.submitting(
+        request.delete(this.getOldGatewayUrl({ cluster, namespace }))
+      )
+    }
+    return this.submitting(
+      request.delete(this.gatewayeditUrl({ cluster, namespace }))
+    )
   }
 
   @action
