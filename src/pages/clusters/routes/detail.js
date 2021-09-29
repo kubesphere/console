@@ -33,7 +33,6 @@ import Volume from 'projects/containers/Volumes/Detail'
 import VolumeSnapshotsDetail from 'projects/containers/VolumeSnapshots/Detail'
 import AlertPolicyDetail from 'projects/containers/Alerting/Policies/Detail'
 import PV from '../containers/Storage/PV/detail'
-
 import ProjectLayout from '../layouts/Project'
 
 import NodeDetail from '../containers/Nodes/Detail'
@@ -81,6 +80,10 @@ export default [
     component: ComponentDetail,
   },
   {
+    path: `${PATH}/gateways/:component/:gatewayName`,
+    component: GatewayDetail,
+  },
+  {
     path: `${PATH}/storageclasses/:name`,
     component: StorageClassDetail,
   },
@@ -91,11 +94,6 @@ export default [
   {
     path: `${PATH}/pv/:name`,
     component: PV,
-  },
-
-  {
-    path: `${PATH}/gateways/:component/:gatewayName`,
-    component: GatewayDetail,
   },
   {
     path: `${PATH}/projects/:namespace`,

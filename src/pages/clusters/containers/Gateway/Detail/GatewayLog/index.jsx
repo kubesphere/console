@@ -16,10 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-import { InputSearch } from '@kube-design/components'
-import { observer, inject } from 'mobx-react'
 
+import { observer, inject } from 'mobx-react'
 import { ScrollLoad } from 'components/Base'
+import EmptyList from 'components/Cards/EmptyList'
+import SearchInput from 'components/Modals/LogSearch/Logging/SearchInput'
 import styles from './index.scss'
 
 @inject('detailStore')
@@ -31,15 +32,60 @@ export default class GatewayLog extends React.Component {
 
   getLogs = params => {
     const { cluster, namespace, gatewayName } = this.props.match.params
-    this.store.getGatewayLogs({ cluster, namespace, gatewayName, ...params })
+    this.store.getGatewayLogs({
+      cluster,
+      namespace,
+      gatewayName,
+      pod: 'kubesphere-router-proj1-6d5d785cc4-8tr5k',
+      ...params,
+    })
   }
 
   render() {
     const { data, total, page, isLoading } = this.store.logs
+
+    if (!globals.app.hasKSModule('logging')) {
+      return (
+        <EmptyList
+          className="no-shadow"
+          icon="cluster"
+          title={t('NO_AVAILABLE_CLUSTER')}
+          desc={t('No cluster with logging module enabled')}
+        />
+      )
+    }
+
     return (
       <div>
         <div className={styles.title}>
-          <InputSearch />
+          <SearchInput
+            className={styles.searchInput}
+            onChange={this.onSearchParamsChange}
+            params={this.props.searchInputState}
+            dropDownItems={{
+              log_query: {
+                icon: 'magnifier',
+                text: t('Keyword'),
+              },
+              namespace_query: {
+                icon: 'project',
+                text: t('PROJECT'),
+              },
+              workload_query: {
+                icon: 'backup',
+                text: t('Workload'),
+              },
+              pod_query: {
+                icon: 'pod',
+                text: t('Pod'),
+              },
+              container_query: {
+                icon: 'docker',
+                text: t('Container'),
+              },
+            }}
+          />
+          {/* <TimeSelector /> */}
         </div>
         <div className={styles.body}>
           <ScrollLoad

@@ -29,18 +29,21 @@ import { withProjectList, ListPage } from 'components/HOCs/withList'
 import { getLocalTime, getDisplayName, getDocsUrl } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
+import GatewayStore from 'stores/gateway'
 
 import styles from './index.scss'
 
 @withProjectList({
-  store: new RouterStore(),
+  store: new IngressStore(),
   module: 'ingresses',
   name: 'ROUTE',
 })
 export default class Routers extends React.Component {
+  gatewayStore = new GatewayStore()
+
   componentDidMount() {
-    this.props.store.getGateway(this.props.match.params)
+    this.gatewayStore.getGateway(this.props.match.params)
   }
 
   get canSetGateway() {
@@ -179,11 +182,12 @@ export default class Routers extends React.Component {
   }
 
   showAddGateway = () => {
-    const { store, trigger, match } = this.props
-    trigger('project.gateway.edit', {
-      detail: toJS(store.gateway.data),
+    const { trigger, match } = this.props
+    trigger('gateways.edit', {
+      detail: toJS(this.gatewayStore.gateway.data._originData),
       ...this.props.match.params,
-      success: () => store.getGateway(match.params),
+      store: this.gatewayStore,
+      success: () => this.gatewayStore.getGateway(match.params),
     })
   }
 
@@ -213,7 +217,7 @@ export default class Routers extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
-    const { data, isLoading } = this.props.store.gateway
+    const { data, isLoading } = this.gatewayStore.gateway
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tips={this.tips} />

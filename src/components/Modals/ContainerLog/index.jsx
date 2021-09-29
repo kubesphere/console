@@ -22,6 +22,7 @@ import { get } from 'lodash'
 import { Modal, Card, Empty } from 'components/Base'
 
 import ContainerLog from 'components/Cards/ContainerLog'
+import { Consumer } from 'clusters/containers/Gateway/Detail/ResourceStatus/context'
 
 import styles from './index.scss'
 
@@ -39,14 +40,20 @@ export default class ContainerLogModal extends React.Component {
     }
 
     return (
-      <ContainerLog
-        className={styles.containerLog}
-        contentClassName={styles.containerLogContent}
-        namespace={namespace}
-        podName={podName}
-        cluster={cluster}
-        containerName={name}
-      />
+      <Consumer>
+        {({ gatewayName, gatewayNs }) => (
+          <ContainerLog
+            className={styles.containerLog}
+            contentClassName={styles.containerLogContent}
+            namespace={namespace}
+            podName={podName}
+            cluster={cluster}
+            containerName={name}
+            gatewayName={gatewayName}
+            gatewayNamespace={gatewayNs}
+          />
+        )}
+      </Consumer>
     )
   }
 

@@ -66,8 +66,8 @@ export default class GatewaySettingModal extends React.Component {
 
     this.form = React.createRef()
     this.state = {
-      isChecked: get(
-        props.template,
+      isChecked: !!get(
+        this.template,
         'spec.deployment.annotations["servicemesh.kubesphere.io/enabled"]'
       ),
     }
@@ -102,15 +102,18 @@ export default class GatewaySettingModal extends React.Component {
   }
 
   handleTypeChange = type => {
-    const annotations = get(this.template, 'spec.service.annotations')
-    if (type === 'LoadBalancer' && isEmpty(annotations)) {
+    const annotations = get(this.template, 'spec.service.annotations', {})
+
+    if (type === 'LoadBalancer') {
       set(
         this.template,
         'spec.service.annotations',
-        globals.config.loadBalancerDefaultAnnotations
+        isEmpty(annotations)
+          ? globals.config.loadBalancerDefaultAnnotations
+          : annotations
       )
-    } else if (annotations) {
-      set(this.template, 'spec.service.annotations', '')
+    } else {
+      set(this.template, 'spec.service.annotations', {})
     }
 
     this.setState({ type })
@@ -129,6 +132,7 @@ export default class GatewaySettingModal extends React.Component {
 
   initAnnotations = (value = globals.config.loadBalancerDefaultAnnotations) => {
     set(this.template, 'spec.service.annotations', value)
+    this.forceUpdate()
   }
 
   renderLoadBalancerSupport = () => {
@@ -228,14 +232,6 @@ export default class GatewaySettingModal extends React.Component {
           </div>
         </div>
         <div className={styles.footer}>
-          <Button onClick={onCancel}>{t('Cancel')}</Button>
-          <Button
-            onClick={onCancel}
-            loading={isSubmitting}
-            disabled={isSubmitting}
-          >
-            {t('Cancel')}
-          </Button>
           <Button
             onClick={onCancel}
             loading={isSubmitting}

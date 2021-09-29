@@ -75,15 +75,15 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
               <span>
                 {t('Service')}:{' '}
                 <strong>
-                  <Link to={`${prefix}/services/${path.backend.serviceName}`}>
-                    {path.backend.serviceName}
+                  <Link to={`${prefix}/services/${path.backend.service.name}`}>
+                    {path.backend.service.ame}
                   </Link>
                 </strong>
               </span>
             </Column>
             <Column>
               <span>
-                {t('PORT')}: <strong>{path.backend.servicePort}</strong>
+                {t('PORT')}: <strong>{path.backend.service.port}</strong>
               </span>
             </Column>
             <Column>

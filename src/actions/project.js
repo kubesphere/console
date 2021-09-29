@@ -32,7 +32,6 @@ import QuotaEditModal from 'components/Modals/QuotaEdit'
 import ProjectCreateModal from 'components/Modals/ProjectCreate'
 import AssignWorkspaceModal from 'components/Modals/AssignWorkspace'
 import DefaultResourceEditModal from 'projects/components/Modals/DefaultResourceEdit'
-import GatewaySettingModal from 'projects/components/Modals/GatewaySetting'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 import QuotaStore from 'stores/quota'
@@ -252,24 +251,6 @@ export default {
         },
         modal: AssignWorkspaceModal,
         store,
-        ...props,
-      })
-    },
-  },
-  'project.gateway.edit': {
-    on({ store, detail, cluster, namespace, success, ...props }) {
-      const modal = Modal.open({
-        onOk: data => {
-          store.addGateway({ cluster, namespace }, data).then(() => {
-            Modal.close(modal)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
-            success && success()
-          })
-        },
-        modal: GatewaySettingModal,
-        store,
-        detail,
-        cluster,
         ...props,
       })
     },

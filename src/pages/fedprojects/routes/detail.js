@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import GatewayDetail from 'clusters/containers/Gateway/Detail'
 import AppDetail from '../containers/Applications/Detail'
 import DeploymentDetail from '../containers/Deployments/Detail'
 import StatefulSetDetail from '../containers/StatefulSets/Detail'
@@ -57,5 +58,9 @@ export default PATH => [
   {
     path: `${PATH}/applications/:name`,
     component: AppDetail,
+  },
+  {
+    path: `${PATH}/gateways/:gatewayName`,
+    component: GatewayDetail,
   },
 ]

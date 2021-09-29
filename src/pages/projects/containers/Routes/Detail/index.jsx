@@ -24,7 +24,7 @@ import { Loading } from '@kube-design/components'
 
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -34,7 +34,7 @@ import getRoutes from './routes'
 @observer
 @trigger
 export default class RouteDetail extends React.Component {
-  store = new RouterStore()
+  store = new IngressStore()
 
   componentDidMount() {
     this.fetchData()

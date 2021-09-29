@@ -26,7 +26,8 @@ export default class GatewayMonitor extends Base {
   resourceName = 'gateways'
 
   getApi = ({ namespace }) =>
-    `${this.apiVersion}/namespaces/${namespace}/ingresses`
+    `${this.apiVersion}/namespaces/${namespace ||
+      'kubesphere-controls-system'}/ingresses`
 
   getGatewayParams = ({ resources = [], metrics = [], ...rest } = {}) => {
     const params = {

@@ -40,6 +40,10 @@ const MetricTypes = {
     'ingress_request_duration_95percentage',
   ingress_request_duration_99percentage:
     'ingress_request_duration_99percentage',
+  ingress_request_volume: 'ingress_request_volume',
+  ingress_request_volume_by_ingress: 'ingress_request_volume_by_ingress',
+  ingress_request_network_sent: 'ingress_request_network_sent',
+  ingress_request_network_received: 'ingress_request_network_received',
 }
 
 @inject('detailStore')
@@ -114,80 +118,102 @@ class Monitorings extends React.Component {
     return podsName
   }
 
-  getMonitoringCfgs = () => [
-    {
-      title: 'Request Count',
-      unit: '',
-      legend: ['Utilization'],
-      data: get(
-        this.metrics,
-        `${MetricTypes.ingress_request_count}.data.result`,
-        {}
-      ),
-    },
-    {
-      title: 'Active Connections',
-      unit: '',
-      legend: ['Utilization'],
-      data: get(
-        this.metrics,
-        `${MetricTypes.ingress_active_connections}.data.result`,
-        {}
-      ),
-    },
+  getMonitoringCfgs = () => {
+    const requestVolumeData = get(
+      this.metrics,
+      `${MetricTypes.ingress_request_volume_by_ingress}.data.result`,
+      []
+    )
+    const volumeLegend = requestVolumeData.map(item => item.metric.ingress)
 
-    {
-      title: 'Request Duration',
-      legend: [
-        t('Duration 50percentage'),
-        t('Duration 95percentage'),
-        t('Duration 99percentage'),
-        t('Duration Average'),
-      ],
+    return [
+      {
+        title: 'Request Count',
+        unit: '',
+        legend: volumeLegend,
+        data: requestVolumeData,
+      },
+      {
+        title: 'Active Connections',
+        unit: '',
+        legend: ['Utilization'],
+        data: get(
+          this.metrics,
+          `${MetricTypes.ingress_active_connections}.data.result`,
+          {}
+        ),
+      },
 
-      data: [
-        get(
-          this.metrics,
-          `${MetricTypes.ingress_request_duration_50percentage}.data.result[0]`,
-          {}
-        ),
-        get(
-          this.metrics,
-          `${MetricTypes.ingress_request_duration_95percentage}.data.result[0]`,
-          {}
-        ),
-        get(
-          this.metrics,
-          `${MetricTypes.ingress_request_duration_99percentage}.data.result[0]`,
-          {}
-        ),
-        get(
-          this.metrics,
-          `${MetricTypes.ingress_request_duration_average}.data.result[0]`,
-          {}
-        ),
-      ],
-      dot: 4,
-    },
+      {
+        title: 'Request Duration',
+        legend: [
+          t('Duration 50percentage'),
+          t('Duration 95percentage'),
+          t('Duration 99percentage'),
+          t('Duration Average'),
+        ],
 
-    {
-      title: 'Request Error',
-      unit: '',
-      legend: [t('Request 4xx'), t('Request 5xx')],
-      data: [
-        get(
-          this.metrics,
-          `${MetricTypes.ingress_request_4xx_count}.data.result[0]`,
-          {}
-        ),
-        get(
-          this.metrics,
-          `${MetricTypes.ingress_request_5xx_count}.data.result[0]`,
-          {}
-        ),
-      ],
-    },
-  ]
+        data: [
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_duration_50percentage}.data.result[0]`,
+            {}
+          ),
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_duration_95percentage}.data.result[0]`,
+            {}
+          ),
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_duration_99percentage}.data.result[0]`,
+            {}
+          ),
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_duration_average}.data.result[0]`,
+            {}
+          ),
+        ],
+        dot: 4,
+      },
+      {
+        title: 'Request Error',
+        unit: '',
+        legend: [t('Request 4xx'), t('Request 5xx')],
+        data: [
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_4xx_count}.data.result[0]`,
+            {}
+          ),
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_5xx_count}.data.result[0]`,
+            {}
+          ),
+        ],
+      },
+      {
+        title: 'Network I/O Pressure',
+        unit: '',
+        unitType: 'traffic',
+        legend: [t('Net Received'), t('Net Transmitted')],
+        data: [
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_network_received}.data.result[0]`,
+            {}
+          ),
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_network_sent}.data.result[0]`,
+            {}
+          ),
+        ],
+      },
+    ]
+  }
 
   render() {
     const { createTime } = this.store.detail

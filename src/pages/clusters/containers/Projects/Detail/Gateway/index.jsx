@@ -18,10 +18,144 @@
 
 import React from 'react'
 
-import InternetAccess from 'projects/containers/LogCollection/InternetAccess'
+import GatewayCard from 'clusters/containers/Gateway/Components/GatewayCard'
+import { Icon, Loading, Button } from '@kube-design/components'
+import GatewayStore from 'stores/gateway'
+import { observable, toJS } from 'mobx'
 
+import { observer, inject } from 'mobx-react'
+import { isEmpty } from 'lodash'
+import { Panel } from 'components/Base'
+import styles from './index.scss'
+
+@inject('detailStore', 'rootStore')
+@observer
 export default class Gateway extends React.Component {
+  store = new GatewayStore()
+
+  @observable
+  gatewayList = []
+
+  @observable
+  isLoading = false
+
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
+  get namespace() {
+    return this.props.match.params.namespace
+  }
+
+  get prefix() {
+    const workspace = this.props.detailStore.detail.workspace
+    return `/${workspace}/clusters/${this.cluster}/projects/${this.namespace}/gateways`
+  }
+
+  get enableActions() {
+    return globals.app.getActions({
+      module: 'project-settings',
+      ...this.props.match.params,
+      project: this.namespace,
+    })
+  }
+
+  getHostGateway = () => {
+    return this.store.getGateway({ cluster: this.cluster })
+  }
+
+  getProjectGateway = () => {
+    const params = { ...this.props.match.params }
+    return this.store.getGateway({ ...params, cluster: this.cluster })
+  }
+
+  getInitGateway = async () => {
+    this.isLoading = true
+    const dataList = await Promise.all([
+      this.getHostGateway(),
+      this.getProjectGateway(),
+    ])
+    this.gatewayList = dataList
+    this.isLoading = false
+  }
+
+  componentDidMount() {
+    this.getInitGateway()
+  }
+
+  renderClusterGatewayTitle = () => (
+    <div className="title">{t('CLUSTER_GATEWAY')}</div>
+  )
+
+  renderProjectTitle = () => {
+    return <div className="title">{t('PROJECT_GATEWAY')}</div>
+  }
+
+  renderEmpty() {
+    return (
+      <Panel className="margin-t12 margin-b12">
+        <div className={styles.empty}>
+          <div className={styles.icon}>
+            <Icon name="loadbalancer" size={40} />
+          </div>
+          <div className={styles.text}>
+            <div>{t('GATEWAY_NOT_SET')}</div>
+            <p>{t('SET_GATEWAY_TIP')}</p>
+          </div>
+        </div>
+      </Panel>
+    )
+  }
+
+  renderOperations = url => {
+    return (
+      <Button
+        onClick={() => {
+          this.props.rootStore.routing.push(url)
+        }}
+      >
+        {t('View Gateway')}
+      </Button>
+    )
+  }
+
+  renderGatewayCard = () => {
+    const isEmptyData = this.gatewayList.every(item => isEmpty(toJS(item)))
+
+    if (isEmptyData) {
+      return this.renderEmpty()
+    }
+
+    return this.gatewayList.map((item, index) => {
+      const isCluster = index === 0
+      return item ? (
+        <GatewayCard
+          key={index}
+          type={isCluster ? 'cluster' : 'project'}
+          detail={item}
+          actions={this.enableActions}
+          {...this.props}
+          store={this.store}
+          getData={this.getInitGateway}
+          title={
+            isCluster
+              ? this.renderClusterGatewayTitle()
+              : this.renderProjectTitle()
+          }
+          prefix={isCluster ? '' : this.prefix}
+          renderOperations={url => this.renderOperations(url)}
+        />
+      ) : null
+    })
+  }
+
   render() {
-    return <InternetAccess match={this.props.match} actions={[]} />
+    return (
+      <div>
+        <Loading spinning={this.isLoading}>
+          <div>{this.renderGatewayCard()}</div>
+        </Loading>
+      </div>
+    )
   }
 }

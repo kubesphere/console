@@ -25,7 +25,7 @@ import { Loading } from '@kube-design/components'
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import FederatedStore from 'stores/federated'
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -35,7 +35,7 @@ import getRoutes from './routes'
 @observer
 @trigger
 export default class RouteDetail extends React.Component {
-  store = new FederatedStore(new RouterStore())
+  store = new FederatedStore(new IngressStore())
 
   componentDidMount() {
     this.fetchData()

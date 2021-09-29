@@ -50,14 +50,18 @@ export default class ContainerItem extends React.Component {
   }
 
   get canViewTerminal() {
-    const { cluster } = this.props
+    const { cluster, hideterminal } = this.props
     const { namespace } = this.props.detail
-    return globals.app.hasPermission({
-      module: 'pods',
-      project: namespace,
-      action: 'edit',
-      cluster,
-    })
+
+    return (
+      !hideterminal &&
+      globals.app.hasPermission({
+        module: 'pods',
+        project: namespace,
+        action: 'edit',
+        cluster,
+      })
+    )
   }
 
   getLink = name => `${this.props.prefix}/containers/${name}`

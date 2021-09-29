@@ -462,9 +462,9 @@ client:
                 authKey: "project-settings",
               }
             - {
-                name: advanced,
-                title: ADVANCED_SETTINGS,
-                AUTHKEY: "project-settings",
+                name: log-collections,
+                title: DISK_LOG_COLLECTION_TITLE,
+                authKey: "project-settings",
               }
 
   # devops page navigations

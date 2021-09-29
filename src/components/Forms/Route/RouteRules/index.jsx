@@ -25,7 +25,7 @@ import { joinSelector } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import SecretStore from 'stores/secret'
 import ServiceStore from 'stores/service'
-import RouterStore from 'stores/router'
+import GatewayStore from 'stores/gateway'
 import FederatedStore from 'stores/federated'
 
 import RuleList from './RuleList'
@@ -42,7 +42,7 @@ class RouteRules extends React.Component {
 
     this.secretStore = new SecretStore()
     this.serviceStore = new ServiceStore()
-    this.routerStore = new RouterStore()
+    this.gatewayStore = new GatewayStore()
 
     if (props.isFederated) {
       this.secretStore = new FederatedStore({ module: this.secretStore.module })
@@ -65,10 +65,10 @@ class RouteRules extends React.Component {
       labelSelector: joinSelector(this.props.selector),
     })
     !this.props.isFederated &&
-      this.routerStore
+      this.gatewayStore
         .getGateway({ namespace: this.namespace, cluster: this.cluster })
         .then(() => {
-          const { data } = toJS(this.routerStore.gateway)
+          const { data } = toJS(this.gatewayStore.gateway)
           if (data.serviceMeshEnable) {
             set(
               this.formTemplate,
@@ -209,7 +209,7 @@ class RouteRules extends React.Component {
     const { isFederated, projectDetail } = this.props
     const services = toJS(this.services)
     const { data: secrets } = toJS(this.secretStore.list)
-    const { data: gateway } = toJS(this.routerStore.gateway)
+    const { data: gateway } = toJS(this.gatewayStore.gateway)
 
     const data = get(this.fedFormTemplate, `spec.rules[${index}]`, {})
 
@@ -230,7 +230,7 @@ class RouteRules extends React.Component {
   render() {
     const { formRef, isFederated, projectDetail } = this.props
     const { showRule, selectRuleIndex } = this.state
-    const { data, isLoading } = toJS(this.routerStore.gateway)
+    const { data, isLoading } = toJS(this.gatewayStore.gateway)
 
     if (showRule) {
       return this.renderRuleForm(selectRuleIndex)

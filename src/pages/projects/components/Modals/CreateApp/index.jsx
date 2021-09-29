@@ -25,7 +25,7 @@ import { Modal, Switch } from 'components/Base'
 import { mergeLabels, updateFederatedAnnotations } from 'utils'
 import FORM_TEMPLATES from 'utils/form.templates'
 
-import RouterStore from 'stores/router'
+import GatewayStore from 'stores/gateway'
 
 import Steps from './Steps'
 import BaseInfo from './BaseInfo'
@@ -70,7 +70,7 @@ export default class ServiceDeployAppModal extends React.Component {
     this.formRef = React.createRef()
     this.codeRef = React.createRef()
 
-    this.routerStore = new RouterStore()
+    this.gatewayStore = new GatewayStore()
   }
 
   componentDidMount() {
@@ -184,8 +184,8 @@ export default class ServiceDeployAppModal extends React.Component {
 
   async fetchData() {
     const { cluster, namespace } = this.props
-    await this.routerStore.getGateway({ cluster, namespace })
-    const gateway = toJS(this.routerStore.gateway.data)
+    await this.gatewayStore.getGateway({ cluster, namespace })
+    const gateway = toJS(this.gatewayStore.gateway.data)
     const isGovernance = !!(this.serviceMeshEnable && gateway.serviceMeshEnable)
     set(
       this.state.formData.application,

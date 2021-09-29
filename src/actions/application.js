@@ -31,7 +31,7 @@ import CreateAppModal from 'projects/components/Modals/CreateApp'
 import CreateAppServiceModal from 'projects/components/Modals/CreateAppService'
 import ServiceMonitorModal from 'projects/components/Modals/ServiceMonitor'
 
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
 import ServiceMonitorStore from 'stores/monitoring/service.monitor'
 
 export default {
@@ -122,8 +122,8 @@ export default {
   },
   'crd.app.addroute': {
     on({ store, detail, cluster, namespace, success, ...props }) {
-      const routerStore = new RouterStore()
-      const module = routerStore.module
+      const ingressStore = new IngressStore()
+      const module = ingressStore.module
       const kind = MODULE_KIND_MAP[module]
       const formTemplate = {
         [kind]: FORM_TEMPLATES[module]({
@@ -162,7 +162,7 @@ export default {
             updateFederatedAnnotations(_data)
           }
 
-          await routerStore.create(_data, { cluster, namespace })
+          await ingressStore.create(_data, { cluster, namespace })
 
           Modal.close(modal)
           Notify.success({ content: `${t('Add Route Successfully')}` })
@@ -172,7 +172,7 @@ export default {
         namespace,
         formTemplate,
         module,
-        store: routerStore,
+        store: ingressStore,
         steps: ROUTER_FORM_STEPS,
         modal: CreateModal,
         okBtnText: t('Add'),

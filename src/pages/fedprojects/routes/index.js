@@ -31,7 +31,8 @@ import BaseInfo from '../containers/BaseInfo'
 import ConfigMaps from '../containers/ConfigMaps'
 import Secrets from '../containers/Secrets'
 import QuotaManage from '../containers/QuotaManage'
-import AdvancedSettings from '../containers/AdvancedSettings'
+import LogCollection from '../containers/LogCollection'
+import Gateway from '../containers/Gateway'
 
 import getDetailPath from './detail'
 
@@ -70,7 +71,12 @@ export default [
       { path: `${PATH}/configmaps`, component: ConfigMaps, exact: true },
       { path: `${PATH}/secrets`, component: Secrets, exact: true },
       { path: `${PATH}/quota`, component: QuotaManage, exact: true },
-      { path: `${PATH}/advanced`, component: AdvancedSettings, exact: true },
+      { path: `${PATH}/gateways`, component: Gateway, exact: true },
+      {
+        path: `${PATH}/log-collections`,
+        component: LogCollection,
+        exact: true,
+      },
       getIndexRoute({
         path: `${PATH}/workloads`,
         to: `${PATH}/deployments`,

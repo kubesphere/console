@@ -20,12 +20,11 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 import Banner from 'components/Cards/Banner'
-import InternetAccess from './InternetAccess'
-import LogCollection from './LogCollection'
+import LogCollectionDetail from './LogCollection'
 
 @inject('rootStore', 'projectStore')
 @observer
-class AdvancedSettings extends React.Component {
+class LogCollection extends React.Component {
   get store() {
     return this.props.projectStore
   }
@@ -59,10 +58,6 @@ class AdvancedSettings extends React.Component {
   get tips() {
     return [
       {
-        title: t('WHAT_IS_INTERNET_GATEWAY'),
-        description: t('PROJECT_INTERNET_ACCESS_DESC'),
-      },
-      {
         title: t('COLLECT_LOGS_ON_VOLUMES_Q'),
         description: t('COLLECT_LOGS_ON_VOLUMES_A'),
       },
@@ -70,26 +65,22 @@ class AdvancedSettings extends React.Component {
   }
 
   render() {
-    const { clusters, name } = this.store.detail
+    const { name } = this.store.detail
     return (
       <div>
         <Banner
-          icon="cogwheel"
-          title={t('ADVANCED_SETTINGS')}
-          description={t('PROJECT_ADVANCED_SETTINGS_DESC')}
+          icon="log"
+          title={t('DISK_LOG_COLLECTION_TITLE')}
+          description={t('DISK_LOG_COLLECTION_DESC')}
           tips={this.tips}
         />
-        <InternetAccess
-          match={this.props.match}
-          actions={this.enableActions}
-          clusters={clusters}
-        />
+
         {!this.disabledLoggingSideCar && (
-          <LogCollection namespace={name} actions={this.enableActions} />
+          <LogCollectionDetail namespace={name} actions={this.enableActions} />
         )}
       </div>
     )
   }
 }
 
-export default AdvancedSettings
+export default LogCollection

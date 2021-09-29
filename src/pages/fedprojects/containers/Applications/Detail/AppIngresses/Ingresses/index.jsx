@@ -25,7 +25,8 @@ import { Loading } from '@kube-design/components'
 import { Panel, Text } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 
-import RouterStore from 'stores/router'
+import GatewayStore from 'stores/gateway'
+import IngressStore from 'stores/ingress'
 
 import IngressCard from './IngressCard'
 
@@ -34,7 +35,9 @@ import styles from './index.scss'
 @inject('projectStore')
 @observer
 export default class Components extends Component {
-  routerStore = new RouterStore()
+  gatewayStore = new GatewayStore()
+
+  ingressStore = new IngressStore()
 
   get prefix() {
     const { workspace, namespace } = this.props
@@ -55,9 +58,10 @@ export default class Components extends Component {
         labelSelector: joinSelector(selector),
       }
 
-      this.routerStore.fetchListByK8s(params)
+      this.ingressStore.fetchListByK8s(params)
     }
-    this.routerStore.getGateway({
+
+    this.gatewayStore.getGateway({
       cluster,
       ...detail,
     })
@@ -85,7 +89,7 @@ export default class Components extends Component {
 
   render() {
     const { cluster } = this.props
-    const { data, isLoading } = this.routerStore.list
+    const { data, isLoading } = this.ingressStore.list
     const gateway = this.routerStore.gateway.data
     const clusters = keyBy(this.props.projectStore.detail.clusters, 'name')
 

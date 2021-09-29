@@ -20,7 +20,9 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { trigger } from 'utils/action'
 import Banner from 'components/Cards/Banner'
-
+import GatewayStore from 'stores/gateway'
+import { observable } from 'mobx'
+import { Loading } from '@kube-design/components'
 import GatewayCard from './Components/GatewayCard'
 import ProjectGatewayList from './Components/ProjectGatewayList'
 
@@ -28,12 +30,24 @@ import ProjectGatewayList from './Components/ProjectGatewayList'
 @observer
 @trigger
 export default class Getway extends React.Component {
+  store = new GatewayStore()
+
+  @observable
+  hostGateway = {}
+
+  @observable
+  isLoading = false
+
   get component() {
     return this.props.match.params.component
   }
 
   get cluster() {
     return this.props.match.params.cluster
+  }
+
+  get prefix() {
+    return this.props.match.url
   }
 
   get tabs() {
@@ -60,6 +74,24 @@ export default class Getway extends React.Component {
     })
   }
 
+  getData = async () => {
+    this.isLoading = true
+    const { cluster } = this.props.match.params
+    this.hostGateway = await this.store.getGateway({ cluster })
+    this.isLoading = false
+  }
+
+  componentDidMount() {
+    this.getData()
+  }
+
+  componentDidUpdate(prevProps) {
+    const component = prevProps.match.params.component
+    if (component !== this.component && this.component === 'cluster') {
+      this.getData()
+    }
+  }
+
   handleTabChange = component => {
     this.props.rootStore.routing.push(
       `/clusters/${this.cluster}/gateways/${component}`
@@ -68,11 +100,17 @@ export default class Getway extends React.Component {
 
   renderGatewayCard = () => {
     return this.component === 'cluster' ? (
-      <GatewayCard
-        type="cluster"
-        {...this.props}
-        actions={this.enabledActions}
-      />
+      <Loading spinning={this.isLoading}>
+        <GatewayCard
+          type="cluster"
+          {...this.props}
+          actions={this.enabledActions}
+          prefix={this.prefix}
+          detail={this.hostGateway}
+          store={this.store}
+          getData={this.getData}
+        />
+      </Loading>
     ) : (
       <ProjectGatewayList {...this.props} />
     )

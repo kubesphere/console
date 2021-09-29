@@ -62,6 +62,7 @@ export default class ProjectGatewayCard extends React.Component {
         icon: 'pen',
         text: t('EDIT'),
         action: 'edit',
+        show: item => item.createTime,
         onClick: item => {
           trigger('gateways.edit', {
             detail: item._originData,
@@ -181,7 +182,7 @@ export default class ProjectGatewayCard extends React.Component {
         dataIndex: 'replicas',
       },
       {
-        title: t('Application Governance'),
+        title: t('APPLICATION_GOVERNANCE'),
         dataIndex: 'serviceMeshEnable',
         render: serviceMeshEnable =>
           serviceMeshEnable

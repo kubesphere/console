@@ -26,7 +26,7 @@ import { Button, Dropdown, Menu, Icon } from '@kube-design/components'
 import { Panel } from 'components/Base'
 import GatewaySettingModal from 'projects/components/Modals/GatewaySetting'
 import DeleteModal from 'components/Modals/Delete'
-import RouterStore from 'stores/router'
+import GatewayStore from 'stores/gateway'
 
 import styles from './index.scss'
 
@@ -41,7 +41,7 @@ class InternetAccess extends React.Component {
       showDelete: false,
     }
 
-    this.store = new RouterStore()
+    this.store = new GatewayStore()
   }
 
   componentDidMount() {
