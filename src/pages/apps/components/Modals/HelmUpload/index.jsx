@@ -165,7 +165,7 @@ export default class HelmUpload extends Component {
             <div className={styles.configMask} />
           )}
         </div>
-        <div className={styles.note}>💁‍♂️ {` ${htmlLinkControl(htmlDes)}`}</div>
+        <div className={styles.note}>💁‍♂️ {htmlLinkControl(htmlDes)}</div>
       </div>
     )
   }
