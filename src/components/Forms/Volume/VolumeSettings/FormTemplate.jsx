@@ -30,6 +30,7 @@ import StorageClassStore from 'stores/storageClass'
 
 const STORAGE_CLASSES_KEY = 'spec.storageClassName'
 const ACCESSMODE_KEY = 'spec.accessModes'
+const PREFERABLE_DEFAULT_ACCESS_MODE = 'ReadWriteOnce'
 
 export default class VolumeSettings extends React.Component {
   static contextTypes = {
@@ -169,14 +170,23 @@ export default class VolumeSettings extends React.Component {
     const storageClasses = this.getStorageClasses()
     const storageClassesList = this.store.list || {}
 
+    // If annotations cannot be found or the number of modes is 0:
+    // Think that all three modes are available
     const supportedAccessModes =
       this.getSupportedAccessModes() ?? Object.keys(ACCESS_MODES)
     const supportedAccessModesSelectOptions = supportedAccessModes.map(
       mode => ({
         value: mode,
-        label: `${mode}: ${t(`ACCESS_MODE_${ACCESS_MODES[mode]}`)}`,
+        label: mode,
       })
     )
+
+    // If there is "ReadWriteOnce", "ReadWriteOnce"is checked by default,
+    // otherwise, the first value in the list is checked by default.
+    const defaultAccessModes =
+      PREFERABLE_DEFAULT_ACCESS_MODE in supportedAccessModes
+        ? [PREFERABLE_DEFAULT_ACCESS_MODE]
+        : supportedAccessModes.slice(0, 1)
 
     return (
       <>
@@ -208,7 +218,7 @@ export default class VolumeSettings extends React.Component {
               name={ACCESSMODE_KEY}
               options={supportedAccessModesSelectOptions}
               loading={isLoading}
-              defaultValue={[]}
+              defaultValue={defaultAccessModes}
               multi
             />
           </Form.Item>
