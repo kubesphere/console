@@ -36,6 +36,7 @@ class DefaultResource extends React.Component {
     const memoryRequest = memoryFormat(
       get(detail, 'limit.defaultRequest.memory')
     )
+    const gpu = get(detail, 'limit.gpu', {})
 
     return (
       <Panel title={t('DEFAULT_CONTAINER_QUOTA_PL')}>
@@ -76,6 +77,17 @@ class DefaultResource extends React.Component {
                   : t('NO_LIMIT')}
               </div>
               <p>{t('MEMORY_LIMIT_LOW')}</p>
+            </div>
+          </div>
+          <div className={styles.contentItem}>
+            <img src="/assets/GPU.svg" size={48} />
+            <div className={styles.item}>
+              <div>{gpu.type ? gpu.type : t('NO_REQUEST')}</div>
+              <p>{t('GPU_TYPE')}</p>
+            </div>
+            <div className={styles.item}>
+              <div>{gpu.value ? gpu.value : t('NO_LIMIT')}</div>
+              <p>{t('RESOURCE_LIMIT')}</p>
             </div>
           </div>
         </div>
