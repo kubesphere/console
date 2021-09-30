@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
-import { get, set, isEmpty, omit } from 'lodash'
+import { get, set, isEmpty, omit, pick } from 'lodash'
 import { Form, Input } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
@@ -27,6 +27,7 @@ import { ResourceLimit } from 'components/Inputs'
 import QuotaStore from 'stores/quota'
 import WorkSpaceStore from 'stores/workspace.quota'
 import { getLeftQuota } from 'utils/workload'
+import { gpuTypeArr } from 'utils'
 
 import Quotas from './Quotas'
 
@@ -234,19 +235,16 @@ export default class QuotaEditModal extends React.Component {
 
   cancelGpuSetting = formTemplate => {
     const hard = get(formTemplate, 'spec.hard', {})
+    set(formTemplate, 'spec.hard', omit(hard, gpuTypeArr))
+    // omit gpu params in spec.hard
+    // gpu just one type now,if it's type more in feature,gpuTypeArr need change
     if (!isEmpty(hard)) {
-      const gpuObj = omit(hard, [
-        'limits.cpu',
-        'limits.memory',
-        'requests.cpu',
-        'requests.memory',
-      ])
-
-      if (!isEmpty(gpuObj)) {
-        const type = Object.keys(gpuObj)[0].split('.')
+      const gpu = pick(hard, gpuTypeArr)
+      if (!isEmpty(gpu)) {
+        const type = Object.keys(gpu)[0].split('.')
         set(formTemplate, 'spec.gpu', {
           type: type.slice(1).join('.'),
-          value: Object.values(gpuObj)[0],
+          value: Object.values(gpu)[0],
         })
       }
     } else {

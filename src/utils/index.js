@@ -709,3 +709,12 @@ export function learnMoreTip(item) {
   }
   return item
 }
+
+export const resourceLimitKey = [
+  'limits.cpu',
+  'limits.memory',
+  'requests.cpu',
+  'requests.memory',
+]
+
+export const gpuTypeArr = ['requests.nvidia.com/gpu', 'limits.nvidia.com/gpu']
