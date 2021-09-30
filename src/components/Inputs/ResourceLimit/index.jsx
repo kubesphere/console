@@ -369,9 +369,12 @@ export default class ResourceLimit extends React.Component {
   }
 
   checkNumOutLimit = (num, limit) => {
-    return limit && isFinite(Number(num)) && Number(num) > limit
-      ? 'workspaceRequestExceed'
-      : ''
+    if (limit > 0) {
+      return limit && isFinite(Number(num)) && Number(num) > limit
+        ? 'workspaceRequestExceed'
+        : ''
+    }
+    return ''
   }
 
   triggerChange = () => {
