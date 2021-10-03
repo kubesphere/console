@@ -73,6 +73,10 @@ export default class Activity extends React.Component {
     return this.props.match.params.branch
   }
 
+  get isMultiBranch() {
+    return this.store.detail.branchNames
+  }
+
   get prefix() {
     const { url } = this.props.match
     const _arr = url.split('/')
@@ -132,10 +136,9 @@ export default class Activity extends React.Component {
   handleRunning = debounce(async () => {
     const { detail } = this.store
     const { params } = this.props.match
-    const isMultibranch = detail.branchNames
     const hasParameters = detail.parameters && detail.parameters.length
 
-    if (isMultibranch || hasParameters) {
+    if (this.isMultiBranch || hasParameters) {
       this.trigger('pipeline.params', {
         devops: params.devops,
         cluster: params.cluster,
@@ -258,7 +261,9 @@ export default class Activity extends React.Component {
       width: '10%',
       render: commitId => (commitId && commitId.slice(0, 6)) || '-',
     },
-    ...(this.props.match.params.branch
+    // when it's in branch detail page, the branch column should be hidden
+    // when it's a non-multi-branch Pipeline, the branch column should be hidden
+    ...(this.isAtBranchDetailPage || !this.isMultiBranch
       ? []
       : [
           {
@@ -343,11 +348,10 @@ export default class Activity extends React.Component {
         ]
 
   renderFooter = () => {
-    const { detail, activityList } = this.store
+    const { activityList } = this.store
     const { total, limit } = activityList
-    const isMultibranch = detail.branchNames
 
-    if (!isMultibranch || this.isAtBranchDetailPage) {
+    if (!this.isMultiBranch || this.isAtBranchDetailPage) {
       return null
     }
 
