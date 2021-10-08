@@ -143,18 +143,17 @@ client:
                 clusterModule: "network.ippool",
               }
         # Contains dangerous operations, only available for platform-admin.
-        - {
-            name: customresources,
-            title: CRD_PL,
-            icon: select,
-            admin: true,
-          }
+        - { name: customresources, title: CRD_PL, icon: select, admin: true }
         - name: storage
           title: STORAGE
           icon: database
           children:
             - { name: volumes, title: VOLUME_PL }
-            - { name: volume-snapshots, title: VOLUME_SNAPSHOT_PL, authKey: volumes }
+            - {
+                name: volume-snapshots,
+                title: VOLUME_SNAPSHOT_PL,
+                authKey: volumes,
+              }
             - { name: storageclasses, title: STORAGE_CLASS_PL }
         - name: monitoring-alerting
           title: MONITORING_AND_ALERTING
@@ -247,11 +246,15 @@ client:
           children:
             - name: notification-configuration
               title: NOTIFICATION_CONFIGURATION
-              tabs: 
+              tabs:
                 - { name: mail, title: Mail, authKey: platform-settings }
-                - { name: dingtalk, title: DingTalk, authKey: platform-settings}
-                - { name: wecom, title: WeCom, authKey: platform-settings}
-                - { name: slack, title: Slack, authKey: platform-settings}
+                - {
+                    name: dingtalk,
+                    title: DingTalk,
+                    authKey: platform-settings,
+                  }
+                - { name: wecom, title: WeCom, authKey: platform-settings }
+                - { name: slack, title: Slack, authKey: platform-settings }
                 - { name: webhook, title: Webhook, authKey: platform-settings }
 
   # workspace page navigations
@@ -463,7 +466,7 @@ client:
               }
             - {
                 name: log-collections,
-                title: DISK_LOG_COLLECTION_TITLE,
+                title: LOG_COLLECTION,
                 authKey: "project-settings",
               }
 

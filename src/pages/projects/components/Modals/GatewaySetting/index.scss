@@ -73,10 +73,16 @@
 
 .loadBalancer {
   display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
   :global {
     .select {
       width: 396px;
       margin-right: 12px;
     }
+  }
+  .lbB {
+    margin-top: 22px;
   }
 }

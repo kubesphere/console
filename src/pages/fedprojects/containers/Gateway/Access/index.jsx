@@ -123,18 +123,20 @@ class InternetAccess extends React.Component {
             title={
               <span>
                 {t('Gateway Not Set')}
-                <Tooltip
-                  content={t('CLUSTER_UPGRADE_REQUIRED', { version: '3.2' })}
-                  placement="top"
-                >
-                  <Icon
-                    name="update"
-                    color={{
-                      primary: '#ffc781',
-                      secondary: '#f5a623',
-                    }}
-                  />
-                </Tooltip>
+                {isDisable ? (
+                  <Tooltip
+                    content={t('CLUSTER_UPGRADE_REQUIRED', { version: '3.2' })}
+                    placement="top"
+                  >
+                    <Icon
+                      name="update"
+                      color={{
+                        primary: '#ffc781',
+                        secondary: '#f5a623',
+                      }}
+                    />
+                  </Tooltip>
+                ) : null}
               </span>
             }
             description={t('PROJECT_INTERNET_ACCESS_DESC')}
@@ -168,6 +170,7 @@ class InternetAccess extends React.Component {
 
   renderInternetAccess(data) {
     const { cluster } = this.props
+
     return (
       <div className={styles.container}>
         <div className={styles.cluster}>
@@ -203,7 +206,7 @@ class InternetAccess extends React.Component {
   }
 
   renderContent() {
-    if (isEmpty(this.gatewayList[0])) {
+    if (isEmpty(this.gatewayList)) {
       return this.renderEmpty()
     }
 

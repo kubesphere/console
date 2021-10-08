@@ -27,6 +27,7 @@ import { getLocalTime } from 'utils'
 
 import { ReactComponent as AppGoverIcon } from 'assets/app_gover.svg'
 import { trigger } from 'utils/action'
+import { CLUSTER_PROVIDERS } from 'utils/constants'
 import GatewayEmpty from '../GatewayEmpty'
 
 import styles from './index.scss'
@@ -203,6 +204,7 @@ class GatewayCard extends React.Component {
       ports,
       loadBalancerIngress,
       serviceMeshEnable,
+      lb,
     } = this.gateway
 
     const { renderOperations } = this.props
@@ -214,6 +216,8 @@ class GatewayCard extends React.Component {
     const gateway_ip = isEmpty(loadBalancerIngress)
       ? '-'
       : loadBalancerIngress.join(';')
+
+    const lbIcon = lb && CLUSTER_PROVIDERS.find(item => item.value === lb).icon
 
     return [
       [
@@ -258,12 +262,19 @@ class GatewayCard extends React.Component {
           title: type,
           desc: t('ACCESS_MODE'),
         },
-        {
-          key: 'ip',
-          icon: 'ip',
-          title: gateway_ip,
-          desc: t('GATEWAY_ADDRESS_TCAP'),
-        },
+        lb
+          ? {
+              key: 'lb',
+              icon: lbIcon,
+              title: lb,
+              desc: t('LoadBalancer Support'),
+            }
+          : {
+              key: 'ip',
+              icon: 'ip',
+              title: gateway_ip,
+              desc: t('GATEWAY_ADDRESS_TCAP'),
+            },
         {
           key: 'earth',
           icon: 'earth',

@@ -24,15 +24,15 @@ import { INGRESS_ANNOTATIONS } from 'utils/constants'
 import styles from './index.scss'
 
 export default class AnnotationsInput extends React.Component {
-  itemProps = {
-    keyProps: {
-      component: AutoComplete,
-      className: styles.dropdown,
-      options: INGRESS_ANNOTATIONS,
-    },
-  }
-
   render() {
-    return <PropertiesInput {...this.props} itemProps={this.itemProps} />
+    const itemProps = {
+      keyProps: {
+        component: AutoComplete,
+        className: styles.dropdown,
+        options: this.props.options || INGRESS_ANNOTATIONS,
+      },
+    }
+
+    return <PropertiesInput {...this.props} itemProps={itemProps} />
   }
 }

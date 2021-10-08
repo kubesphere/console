@@ -708,6 +708,12 @@ const GatewayMapper = item => {
   item.kind = 'Gateway'
 
   const loadBalancerIngress = get(item, 'status.loadBalancer.ingress', [])
+  const lbSupport = get(
+    item,
+    "metadata.annotations['kubesphere.io/annotations']",
+    ''
+  )
+
   return {
     ...getBaseInfo(item),
     namespace: get(item, 'metadata.namespace'), // it's not metadata.namespace
@@ -730,6 +736,7 @@ const GatewayMapper = item => {
     replicas: get(item, 'spec.deployment.replicas'),
     type: get(item, 'spec.service.type'),
     config: get(item, 'spec.controller.config', {}),
+    lb: lbSupport,
     _originData: item,
   }
 }
