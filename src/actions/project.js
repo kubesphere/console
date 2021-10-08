@@ -33,6 +33,7 @@ import ProjectCreateModal from 'components/Modals/ProjectCreate'
 import AssignWorkspaceModal from 'components/Modals/AssignWorkspace'
 import DefaultResourceEditModal from 'projects/components/Modals/DefaultResourceEdit'
 import FORM_TEMPLATES from 'utils/form.templates'
+import { resourceLimitKey } from 'utils'
 
 import QuotaStore from 'stores/quota'
 import UserStore from 'stores/user'
@@ -69,26 +70,25 @@ export default {
       const quotaStore = new QuotaStore()
       const modal = Modal.open({
         onOk: async data => {
-          data.spec.hard = pick(data.spec.hard, [
-            'limits.cpu',
-            'limits.memory',
-            'requests.cpu',
-            'requests.memory',
-          ])
-          const gpu = get(data, 'spec.gpu')
-          if (gpu.type !== '' && gpu.value !== '') {
+          const spec = get(data, 'spec.hard', {})
+          const units = ['ki', 'mi', 'gi', 'ti']
+
+          // set gpu parameters and delete extra gpu parameters
+          const gpu = get(data, 'spec.gpu', {})
+          if (!isEmpty(gpu) && gpu.type !== '') {
             set(data, `spec.hard["requests.${gpu.type}"]`, gpu.value)
           }
           data = omit(data, 'spec.gpu')
+
           const params = {
             name: data.name,
             namespace: detail.name,
             cluster: detail.cluster,
           }
 
-          const spec = get(data, 'spec.hard', {})
-          const units = ['ki', 'mi', 'gi', 'ti']
-          Object.keys(spec).forEach(key => {
+          // deal with the cpu and memory number as '2.'
+          const cpuAndMemory = pick(spec.hard, resourceLimitKey)
+          Object.keys(cpuAndMemory).forEach(key => {
             const value = spec[key]
             if (value === Infinity) {
               spec[key] = ''
