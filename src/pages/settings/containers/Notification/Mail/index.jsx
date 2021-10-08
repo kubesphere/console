@@ -170,7 +170,7 @@ export default class Mail extends React.Component {
             onCancel={this.onFormClose}
             onSubmit={this.handleSubmit}
             getVerifyFormTemplate={this.getVerifyFormTemplate}
-            isSubmitting={this.configStore.isSubmitting}
+            isSubmitting={this.receiverStore.isSubmitting}
           />
         </Panel>
       </div>

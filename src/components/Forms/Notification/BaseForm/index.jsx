@@ -103,7 +103,7 @@ export default class BaseForm extends Component {
   }
 
   renderEnableService() {
-    const { user, name, module } = this.props
+    const { user, name, module, icon } = this.props
     const { enabled } = this.state
 
     if (user) {
@@ -125,7 +125,7 @@ export default class BaseForm extends Component {
       <div className={styles.header}>
         <Text
           className={styles.title}
-          icon={name}
+          icon={icon}
           title={t(`${module.toUpperCase()}_TITLE`)}
           description={t(`${module.toUpperCase()}_DESC`)}
         />
@@ -147,7 +147,9 @@ export default class BaseForm extends Component {
     return (
       <div className={styles.annotation}>
         <Icon name="question" />
-        <p>{t.html('NOTIFICATION_CONDITION_SETTING_TIP')}</p>
+        <p className={styles.desc}>
+          {t.html('NOTIFICATION_CONDITION_SETTING_TIP')}
+        </p>
       </div>
     )
   }

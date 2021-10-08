@@ -22,10 +22,6 @@
   @include vertical-center;
 }
 
-.add {
-  margin-top: 12px;
-}
-
 .desc {
   color: $second-text-color;
 }
@@ -34,4 +30,5 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 12px;
 }

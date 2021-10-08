@@ -141,6 +141,7 @@ export default class MailForm extends Component {
       <BaseForm
         name="email"
         module="mail"
+        icon="email"
         data={data}
         onChange={onChange}
         hideFooter={hideFooter}

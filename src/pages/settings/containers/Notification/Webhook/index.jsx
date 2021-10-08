@@ -46,6 +46,7 @@ export default class Webhook extends React.Component {
       secret: this.secretTemplate,
     },
     formStatus: 'create',
+    isLoading: false,
   }
 
   formData = {
@@ -69,6 +70,7 @@ export default class Webhook extends React.Component {
   }
 
   fetchData = async () => {
+    this.setState({ isLoading: true })
     const results = await this.receiverStore.fetchList({ type: 'webhook' })
     const receivers = results.find(
       item => get(item, 'metadata.name') === RECEIVER_NAME
@@ -88,6 +90,7 @@ export default class Webhook extends React.Component {
         formStatus: 'update',
       })
     }
+    this.setState({ isLoading: false })
   }
 
   getVerifyFormTemplate = data => {
@@ -181,14 +184,13 @@ export default class Webhook extends React.Component {
   }
 
   render() {
-    const { formData, formStatus } = this.state
+    const { formData, isLoading } = this.state
 
     return (
       <div>
         <BaseBanner type="webhook" />
-        <Panel loading={this.receiverStore.list.isLoading}>
+        <Panel loading={isLoading}>
           <WebhookForm
-            formStatus={formStatus}
             data={formData}
             onCancel={this.onFormClose}
             onSubmit={this.handleSubmit}

@@ -45,7 +45,6 @@
 }
 
 .annotation {
-  display: flex;
   padding-left: 12px;
   color: $dark-color06;
 
@@ -53,6 +52,9 @@
     .icon {
       margin-right: 6px;
     }
+  }
+  .desc {
+    display: inline-flex;
   }
 }
 

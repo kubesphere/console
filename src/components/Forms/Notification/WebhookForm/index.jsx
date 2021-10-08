@@ -20,6 +20,7 @@ import React, { Component } from 'react'
 import { get } from 'lodash'
 
 import { Form, Input, Select, Checkbox } from '@kube-design/components'
+import { InputPassword } from 'components/Inputs'
 
 import BaseForm from '../BaseForm'
 import styles from './index.scss'
@@ -53,17 +54,6 @@ export default class WebhookForm extends Component {
         value: 'basic',
       },
     ]
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.data !== this.props.data) {
-      this.setState({
-        type: get(
-          this.props.data,
-          'receiver.metadata.annotations["kubesphere.io/verify-type"]'
-        ),
-      })
-    }
   }
 
   handleTypeChange = type => {
@@ -109,7 +99,7 @@ export default class WebhookForm extends Component {
                 <Input name="receiver.spec.webhook.httpConfig.basicAuth.username" />
               </Form.Item>
               <Form.Item label={t('PASSWORD')}>
-                <Input
+                <InputPassword
                   name="secret.data.password"
                   type="password"
                   autoComplete="new-password"
@@ -144,6 +134,7 @@ export default class WebhookForm extends Component {
       <BaseForm
         name="webhook"
         module="webhook"
+        icon="webhook"
         data={data}
         onChange={onChange}
         hideFooter={hideFooter}

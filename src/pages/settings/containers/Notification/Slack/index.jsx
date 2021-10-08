@@ -51,6 +51,7 @@ export default class Slack extends React.Component {
       secret: this.secretTemplate,
     },
     formStatus: 'create',
+    isLoading: false,
   }
 
   formData = {
@@ -79,6 +80,7 @@ export default class Slack extends React.Component {
   }
 
   fetchData = async () => {
+    this.setState({ isLoading: true })
     const results = await this.configStore.fetchList({ type: 'slack' })
     const config = results.find(
       item => get(item, 'metadata.name') === CONFIG_NAME
@@ -106,6 +108,7 @@ export default class Slack extends React.Component {
         formStatus: 'update',
       })
     }
+    this.setState({ isLoading: false })
   }
 
   getVerifyFormTemplate = data => {
@@ -146,19 +149,18 @@ export default class Slack extends React.Component {
   }
 
   render() {
-    const { formData, formStatus } = this.state
+    const { formData, isLoading } = this.state
 
     return (
       <div>
         <BaseBanner type="slack" />
-        <Panel loading={this.configStore.list.isLoading}>
+        <Panel loading={isLoading}>
           <SlackForm
-            formStatus={formStatus}
             data={formData}
             onCancel={this.onFormClose}
             onSubmit={this.handleSubmit}
             getVerifyFormTemplate={this.getVerifyFormTemplate}
-            isSubmitting={this.configStore.isSubmitting}
+            isSubmitting={this.receiverStore.isSubmitting}
           />
         </Panel>
       </div>

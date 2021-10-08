@@ -71,6 +71,7 @@ export default class SlackForm extends Component {
       <BaseForm
         name="slack"
         module="slack"
+        icon="slack"
         data={data}
         onChange={onChange}
         hideFooter={hideFooter}
