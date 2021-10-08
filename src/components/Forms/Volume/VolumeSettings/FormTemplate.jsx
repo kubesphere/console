@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isNaN, unset, pick } from 'lodash'
+import { get, isNaN, unset, pick, isUndefined, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 
@@ -128,9 +128,9 @@ export default class VolumeSettings extends React.Component {
 
   getSupportedAccessModes = () => {
     const { storageClass } = this.state
-
+    let support = null
     if (storageClass) {
-      return safeParseJSON(
+      support = safeParseJSON(
         get(
           storageClass,
           'annotations["storageclass.kubesphere.io/supported-access-modes"]',
@@ -138,8 +138,7 @@ export default class VolumeSettings extends React.Component {
         )
       )
     }
-
-    return null
+    return isUndefined(support) ? [] : support
   }
 
   handleStorageClassChange = value => {
@@ -170,10 +169,11 @@ export default class VolumeSettings extends React.Component {
     const storageClasses = this.getStorageClasses()
     const storageClassesList = this.store.list || {}
 
-    // If annotations cannot be found or the number of modes is 0:
-    // Think that all three modes are available
-    const supportedAccessModes =
-      this.getSupportedAccessModes() ?? Object.keys(ACCESS_MODES)
+    const supportMode = this.getSupportedAccessModes()
+    const supportedAccessModes = !isEmpty(supportMode)
+      ? supportMode
+      : Object.keys(ACCESS_MODES)
+
     const supportedAccessModesSelectOptions = supportedAccessModes.map(
       mode => ({
         value: mode,
@@ -181,8 +181,6 @@ export default class VolumeSettings extends React.Component {
       })
     )
 
-    // If there is "ReadWriteOnce", "ReadWriteOnce"is checked by default,
-    // otherwise, the first value in the list is checked by default.
     const defaultAccessModes =
       PREFERABLE_DEFAULT_ACCESS_MODE in supportedAccessModes
         ? [PREFERABLE_DEFAULT_ACCESS_MODE]
