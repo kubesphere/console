@@ -21,8 +21,8 @@ import { observer, inject } from 'mobx-react'
 
 import { keyBy } from 'lodash'
 import { Alert } from '@kube-design/components'
-import { htmlLinkControl } from 'utils'
 import UsageCard from './UsageCard'
+
 import styles from './index.scss'
 
 @inject('detailStore', 'projectStore')
@@ -38,13 +38,13 @@ class ResourceStatus extends React.Component {
 
   render() {
     const { clusters } = this.store.detail
-    const htmlMes = t.html('VOLUME_MONITORING_TIP')
+
     return (
       <div className={styles.main}>
         <Alert
           type="warning"
           className="margin-b12"
-          message={htmlLinkControl(htmlMes)}
+          message={t.html('VOLUME_MONITORING_TIP')}
         />
         {clusters.map(cluster => (
           <UsageCard

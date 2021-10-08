@@ -487,7 +487,6 @@ client:
 
   # system workspace rules control
   systemWorkspace: system-workspace
-  showOutSiteLink: true
   systemWorkspaceRules:
     devops: []
     members: [manage]

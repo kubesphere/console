@@ -20,7 +20,7 @@ import React from 'react'
 import { get, set } from 'lodash'
 import classnames from 'classnames'
 import { Alert, Form, Input, Select } from '@kube-design/components'
-import { getDisplayName, getDocsUrl, htmlLinkControl } from 'utils'
+import { getDisplayName, getDocsUrl } from 'utils'
 import SecretStore from 'stores/secret'
 import BuilderStore from 'stores/s2i/builder'
 import S2IEnviroment from 'components/Inputs/S2iEnviroment'
@@ -142,9 +142,6 @@ export default class S2IForm extends React.Component {
   }
 
   renderAdvancedSetting() {
-    const htmlDesInfo = t.html('S2I_ENVIRONMENT_DESC', {
-      link: this.state.docUrl || getDocsUrl('s2i_template'),
-    })
     return (
       <React.Fragment>
         <Form.Item
@@ -165,7 +162,9 @@ export default class S2IForm extends React.Component {
 
         <Alert
           className={styles.environment_info}
-          message={htmlLinkControl(htmlDesInfo)}
+          message={t.html('S2I_ENVIRONMENT_DESC', {
+            link: this.state.docUrl || getDocsUrl('s2i_template'),
+          })}
           type="info"
         />
         <Form.Item>
@@ -180,9 +179,6 @@ export default class S2IForm extends React.Component {
 
   render() {
     const { formTemplate, formRef, mode, prefix } = this.props
-    const htmlDesImage = t.html('S2I_TARGET_IMAGE_REPOSITORY_DESC', {
-      link: getDocsUrl('secrets'),
-    })
     return (
       <Form ref={formRef} data={formTemplate}>
         <Form.Item
@@ -238,7 +234,9 @@ export default class S2IForm extends React.Component {
           <div className="is-half">
             <Form.Item
               label={t('TARGET_IMAGE_REPOSITORY')}
-              desc={htmlLinkControl(htmlDesImage)}
+              desc={t.html('S2I_TARGET_IMAGE_REPOSITORY_DESC', {
+                link: getDocsUrl('secrets'),
+              })}
               rules={[
                 {
                   required: true,

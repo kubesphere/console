@@ -23,7 +23,7 @@ import classnames from 'classnames'
 import moment from 'moment-mini'
 import { Form, Button, Icon, Loading, Tooltip } from '@kube-design/components'
 
-import { getDocsUrl, learnMoreTip } from 'utils'
+import { getDocsUrl } from 'utils'
 
 import { PATTERN_IMAGE, PATTERN_IMAGE_TAG } from 'utils/constants'
 
@@ -277,14 +277,13 @@ export default class ImageSearch extends Component {
   }
 
   render() {
-    const htmlDes = t.html('IMAGE_DESC', {
-      link: getDocsUrl('imageregistry'),
-    })
     return (
       <>
         <Form.Item
           label={t('IMAGE')}
-          desc={learnMoreTip(htmlDes)}
+          desc={t.html('IMAGE_DESC', {
+            link: getDocsUrl('imageregistry'),
+          })}
           rules={[
             { required: true, message: t('IMAGE_EMPTY') },
             { pattern: PATTERN_IMAGE, message: t('INVALID_IMAGE') },

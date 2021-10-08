@@ -21,7 +21,6 @@ import { get, set, omit } from 'lodash'
 import { Form } from '@kube-design/components'
 import CardSelect from 'components/Inputs/CardSelect'
 import { MODULE_KIND_MAP, PROVISIONERS } from 'utils/constants'
-import { hrefControl } from 'utils'
 
 import styles from './index.scss'
 
@@ -72,7 +71,7 @@ export default class ProvisionerSettings extends React.Component {
     const { provisioner } = this.state
     const { description } =
       PROVISIONERS.find(({ value }) => value === provisioner) || {}
-    const htmlDes = t(description)
+
     return (
       <Form data={this.formTemplate} ref={formRef}>
         <Form.Item
@@ -92,7 +91,7 @@ export default class ProvisionerSettings extends React.Component {
         <p
           className={styles.description}
           dangerouslySetInnerHTML={{
-            __html: hrefControl(htmlDes),
+            __html: t(description),
           }}
         />
       </Form>
