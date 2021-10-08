@@ -594,7 +594,6 @@ export default class ResourceLimit extends React.Component {
               name="gpu.value"
               value={this.state.gpu.value}
               onChange={this.handleGpuInputChange}
-              placeholder={t('NO_LIMIT')}
             />
           </div>
         </div>
