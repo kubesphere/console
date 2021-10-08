@@ -138,7 +138,7 @@ export default class DevOpsStore extends Base {
     data.apiVersion = 'devops.kubesphere.io/v1alpha3'
     data.metadata.labels = { 'kubesphere.io/workspace': workspace }
     return this.submitting(
-      request.post(this.getBaseUrl({ cluster, workspace }), data)
+      request.post(`${this.getBaseUrl({ cluster, workspace })}devops`, data)
     )
   }
 
