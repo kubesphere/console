@@ -184,6 +184,7 @@ export default class DingTalkForm extends Component {
       <BaseForm
         name="dingtalk"
         module="DingTalk"
+        icon="dingtalk"
         data={data}
         onChange={onChange}
         hideFooter={hideFooter}

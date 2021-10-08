@@ -157,8 +157,9 @@ export default class WeComForm extends Component {
     const { user, data, onChange, hideFooter, ...rest } = this.props
     return (
       <BaseForm
-        name="wecom"
+        name="wechat"
         module="WeCom"
+        icon="wecom"
         data={data}
         onChange={onChange}
         hideFooter={hideFooter}

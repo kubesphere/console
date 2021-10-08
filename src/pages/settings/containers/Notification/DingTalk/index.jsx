@@ -51,6 +51,7 @@ export default class DingTalk extends React.Component {
       secret: this.secretTemplate,
     },
     formStatus: 'create',
+    isLoading: false,
   }
 
   formData = {
@@ -79,6 +80,7 @@ export default class DingTalk extends React.Component {
   }
 
   fetchData = async () => {
+    this.setState({ isLoading: true })
     const results = await this.configStore.fetchList({ type: 'dingtalk' })
     const config = results.find(
       item => get(item, 'metadata.name') === CONFIG_NAME
@@ -94,7 +96,11 @@ export default class DingTalk extends React.Component {
 
       this.formData = {
         config,
-        receiver: set(this.receiverFormTemplate, 'spec', receivers[0].spec),
+        receiver: set(
+          this.receiverFormTemplate,
+          'spec',
+          get(receivers, '[0].spec', {})
+        ),
         secret: set(this.secretTemplate, 'data', get(secrets, '[0].data', {})),
       }
       this.setState({
@@ -102,6 +108,7 @@ export default class DingTalk extends React.Component {
         formStatus: 'update',
       })
     }
+    this.setState({ isLoading: false })
   }
 
   getVerifyFormTemplate = data => {
@@ -214,6 +221,10 @@ export default class DingTalk extends React.Component {
       unset(receiver, 'spec.dingtalk.chatbot.secret')
     }
 
+    if (isEmpty(get(receiver, 'spec.dingtalk.chatbot'))) {
+      unset(receiver, 'spec.dingtalk.chatbot')
+    }
+
     if (formStatus === 'create') {
       await this.configStore.create(config)
       await this.secretStore.create(
@@ -242,20 +253,19 @@ export default class DingTalk extends React.Component {
   }
 
   render() {
-    const { formData, formStatus } = this.state
+    const { formData, isLoading } = this.state
 
     return (
       <div>
         <BaseBanner type="dingtalk" />
-        <Panel loading={this.configStore.list.isLoading}>
+        <Panel loading={isLoading}>
           <DingTalkForm
-            formStatus={formStatus}
             data={formData}
             onCancel={this.onFormClose}
             onSubmit={this.handleSubmit}
             onVerify={this.handleVerify}
             getVerifyFormTemplate={this.getVerifyFormTemplate}
-            isSubmitting={this.configStore.isSubmitting}
+            isSubmitting={this.receiverStore.isSubmitting}
           />
         </Panel>
       </div>
