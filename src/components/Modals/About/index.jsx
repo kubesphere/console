@@ -35,7 +35,8 @@ export default class AboutModal extends Component {
   }
 
   render() {
-    const { issueUrl, reposUrl, version, slackUrl } = globals.config
+    const { issueUrl, reposUrl, slackUrl } = globals.config
+    const { ksVersion } = globals.ksConfig
     return (
       <Modal
         bodyClassName={styles.body}
@@ -51,7 +52,7 @@ export default class AboutModal extends Component {
           </div>
           <p>{t('KS_DESCRIPTION')}</p>
           <strong>
-            KubeSphere {t('VERSION')} : {version.kubesphere}
+            KubeSphere {t('VERSION')} : {ksVersion}
           </strong>
         </div>
 
