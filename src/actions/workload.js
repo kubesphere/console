@@ -139,15 +139,7 @@ export default {
           if (!isEmpty(customMode)) {
             delete data.spec.template.spec.customMode
           }
-          const deploymentMode = get(
-            data[kind],
-            "spec.template.metadata.annotations['deployment.kubernetes.io/deploymentMode']"
-          )
-          if (deploymentMode) {
-            delete data[kind].spec.template.metadata.annotations[
-              'deployment.kubernetes.io/deploymentMode'
-            ]
-          }
+
           if (kind) {
             if (Object.keys(newObject).length === 1 && newObject[kind]) {
               data = newObject[kind]
@@ -274,18 +266,11 @@ export default {
         onOk: data => {
           omitJobGpuLimit(data, 'spec.template.spec.containers')
           const customMode = get(data, 'spec.template.spec.customMode', {})
+
           if (!isEmpty(customMode)) {
             delete data.spec.template.spec.customMode
           }
-          const deploymentMode = get(
-            data,
-            "spec.template.metadata.annotations['deployment.kubernetes.io/deploymentMode']"
-          )
-          if (deploymentMode) {
-            delete data.spec.template.metadata.annotations[
-              'deployment.kubernetes.io/deploymentMode'
-            ]
-          }
+
           store.update(detail, data).then(() => {
             Modal.close(modal)
             success && success()
