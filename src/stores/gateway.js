@@ -98,6 +98,7 @@ export default class Gateway extends Base {
         data = ObjectMapper.gateway(result[0])
       }
     }
+
     this.detail = data
     this.gateway.data = data
     this.gateway.isLoading = false

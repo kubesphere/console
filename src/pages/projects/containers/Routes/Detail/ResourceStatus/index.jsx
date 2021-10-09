@@ -32,7 +32,9 @@ import styles from './index.scss'
 class ResourceStatus extends React.Component {
   constructor(props) {
     super(props)
-
+    this.state = {
+      gateway: {},
+    }
     this.store = props.detailStore
     this.gatewayStore = new GatewayStore()
     this.module = this.store.module
@@ -40,7 +42,27 @@ class ResourceStatus extends React.Component {
 
   componentDidMount() {
     const detail = toJS(this.store.detail)
-    this.gatewayStore.getGateway(detail)
+    this.getInitGateway(detail)
+  }
+
+  getHostGateway = detail => {
+    return this.gatewayStore.getGateway({ cluster: detail.cluster })
+  }
+
+  getProjectGateway = detail => {
+    return this.gatewayStore.getGateway({
+      namespace: detail.namespace,
+      cluster: detail.cluster,
+    })
+  }
+
+  getInitGateway = async detail => {
+    const dataList = await Promise.all([
+      this.getHostGateway(detail),
+      this.getProjectGateway(detail),
+    ])
+    const gateway = dataList[1] || dataList[0]
+    this.setState({ gateway })
   }
 
   renderPlacement() {
@@ -56,7 +78,7 @@ class ResourceStatus extends React.Component {
 
   renderRules() {
     const detail = toJS(this.store.detail)
-    const gateway = toJS(this.gatewayStore.gateway.data)
+
     const tls = detail.tls || []
 
     if (isEmpty(detail.rules)) {
@@ -72,7 +94,7 @@ class ResourceStatus extends React.Component {
             key={rule.host}
             tls={tls}
             rule={rule}
-            gateway={gateway}
+            gateway={this.state.gateway}
             prefix={`${
               workspace ? `/${workspace}` : ''
             }/clusters/${cluster}/projects/${namespace}`}
