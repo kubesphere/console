@@ -33,14 +33,14 @@ module.exports = {
   NETWORK: '網路',
   NETWORK_RESOURCE_PL: 'Network Resources',
 
-  'First Available': '第一個可用',
-  'Last Available': '最後可用',
+  STARTING_IP_ADDRESS: '起始 IP 地址',
+  ENDING_IP_ADDRESS: '結束 IP 地址',
   AVAILABLE_ADDRESSES: '可用數量',
 
   POD_IP_POOL: '容器組 IP 地址範圍',
-  POD_IP_POOL_PL: 'Pod IP Pools',
-  POD_IP_POOL_LOW: 'Pod IP pool',
-  POD_IP_POOL_EMPTY_DESC: 'Please create a Pod IP pool.',
+  POD_IP_POOL_PL: '容器組 IP 池',
+  POD_IP_POOL_LOW: '容器組 IP 池',
+  POD_IP_POOL_EMPTY_DESC: '請創建一個容器組 IP 池。',
 
   NUMBER_OF_CREATION_TCAP: '創建數量',
   'Pod IP Pools to be created': '即將創建的容器組 IP 地址範圍',

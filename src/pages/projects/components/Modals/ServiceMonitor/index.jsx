@@ -123,7 +123,7 @@ export default class ServiceMonitor extends Component {
     return (
       <Modal.Form
         icon="linechart"
-        title={t('Service Monitoring Exporter')}
+        title={t('SERVICE_MONITORING_EXPORTER')}
         width={960}
         data={formTemplate}
         visible={visible}
@@ -132,14 +132,14 @@ export default class ServiceMonitor extends Component {
         isSubmitting={isSubmitting}
       >
         <div className={styles.wrapper}>
-          <Form.Item label={t('Exporter Service Ports')}>
+          <Form.Item label={t('EXPORTER_SERVICE_PORTS')}>
             <ArrayInput
               className={styles.endpoints}
               name="spec.endpoints"
               defaultValue={this.defaultEndpoints}
               checkItemValid={this.checkItemValid}
               itemType="object"
-              addText={t('Add')}
+              addText={t('ADD')}
             >
               <Endpoint
                 detail={detail}
@@ -154,7 +154,7 @@ export default class ServiceMonitor extends Component {
             <Columns>
               <Column>
                 <Form.Item
-                  label={t('Scrap Interval(min)')}
+                  label={t('SCRAPE_INTERVAL_MIN')}
                   desc={t('SCRAP_INTERVAL_DESC')}
                 >
                   <NumberInput

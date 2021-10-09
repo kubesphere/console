@@ -44,7 +44,7 @@ export default PATH => [
   },
   {
     path: `${PATH}/snapshot`,
-    title: 'Snapshots Message',
+    title: 'SNAPSHOT_INFORMATION',
     exact: true,
     component: Snapshots,
   },

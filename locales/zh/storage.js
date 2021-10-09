@@ -67,14 +67,14 @@ module.exports = {
   'Mount Options': '挂载选项',
   VOLUME_EXPANSION: '存储卷扩容',
   'Mount Status': '挂载状态',
-  'Mounted Pods': '已挂载容器组',
+  MOUNTED_PODS: '已挂载容器组',
   AVAILABLE: '可用',
   IN_USER: '使用中',
 
   VOLUME_NAME_EXIST: '存储卷名称已存在。',
 
   'Used Capacity': '已分配存储',
-  'Available Capacity': '剩余存储',
+  AVAILABLE_CAPACITY: '剩余存储',
 
   PersistentVolumes: '持久化存储卷',
 
@@ -115,7 +115,7 @@ module.exports = {
     '设置为默认存储类型后，如果没有特殊指定，系统将默认创建该类型的存储卷。一个 KubeSphere 集群中仅允许设置一个默认存储类型。',
 
   PROVISIONER_DESC: '提供后端存储',
-
+  INODE_USAGE_RATE: 'Inode 使用率',
   VOLUME_STORAGE_CLASS_DESC: '选择一个存储类型来创建具体种类的存储卷。',
 
   ACCESS_MODES_DESC: '选择存储类型支持的访问模式。',
@@ -129,7 +129,7 @@ module.exports = {
   CHOOSE_STORAGE_SYSTEM_TIP: '选择存储系统',
   PROVISIONER_DEPENDENCE_DESC: '您需要先在存储系统中部署相关插件才能提供服务。',
 
-  'Expand Volume': '存储卷扩容',
+  EXPAND_VOLUME: '存储卷扩容',
   VOLUME_EXPAND_TIPS:
     '当前存储卷已挂载至工作负载，因此扩容会导致工作负载重启，并产生新的版本。可能业务会短暂的中断。',
   Expand: '扩容',
@@ -183,8 +183,8 @@ module.exports = {
 
   CREATE_VOLUME_WITH_SNAPSHOT: '基于快照创建存储卷',
 
-  'Create Snapshot': '创建快照',
-  'Clone Volume': '存储卷克隆',
+  CREATE_SNAPSHOT: '创建快照',
+  CLONE_VOLUME: '存储卷克隆',
   ALLOW_VOLUME_SNAPSHOT: '允许存储卷快照',
   ALLOW_VOLUME_CLONE: '允许存储卷克隆',
   ALLOW_VOLUME_EXPANSION: '允许存储卷扩容',
@@ -202,8 +202,7 @@ module.exports = {
   VOLUME_SNAPSHOT_STATUS_FAILED: '创建失败',
   VOLUME_SNAPSHOT_STATUS_DELETING: '删除中',
 
-  'Snapshot Message': '快照信息',
-  'Snapshots Message': '快照信息',
+  SNAPSHOT_INFORMATION: '快照信息',
 
   VolumeSnapshots: '存储卷快照',
   VOLUME_SNAPSHOT_DESC:
@@ -219,7 +218,7 @@ module.exports = {
   CLUSTER_VOLUME_DIFF_DESC: '为不同的集群选择不同的存储类型。',
 
   VOLUME_MONITORING_TIP:
-    'Kubernetes 采集的是存储卷的设备用量数据，未挂载的存储卷暂时采集不到，并且对于如 OpenEBS/Local PV、NFS 等路径型存储卷通常与实际用量有一定出入。详见<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">存储卷监控数据分析</a>。',
+    'KubeSphere 采集的是存储卷的设备用量数据，未挂载的存储卷暂时采集不到，并且对于如 OpenEBS/Local PV、NFS 等路径型存储卷通常与实际用量有一定出入。详见<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">存储卷监控数据分析</a>。',
 
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',

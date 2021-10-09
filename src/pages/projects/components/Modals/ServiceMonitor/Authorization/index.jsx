@@ -44,10 +44,10 @@ export default class Authorization extends Component {
 
   get authTypes() {
     return [
-      { label: 'No Auth', value: '' },
-      { label: 'TLSConfig', value: 'tlsConfig' },
-      { label: 'BearerTokenSecret', value: 'bearerTokenSecret' },
-      { label: 'BasicAuth', value: 'basicAuth' },
+      { label: t('NO_AUTHENTICATION_TCAP'), value: '' },
+      { label: t('TLS_SETTINGS_TCAP'), value: 'tlsConfig' },
+      { label: t('BEARER_TOKEN_TCAP'), value: 'bearerTokenSecret' },
+      { label: t('BASIC_AUTHENTICATION_TCAP'), value: 'basicAuth' },
     ]
   }
 
@@ -110,24 +110,24 @@ export default class Authorization extends Component {
       case 'tlsConfig':
         content = (
           <div>
-            <Form.Item label={'CA'}>
+            <Form.Item label={t('CERTIFICATE_AUTHORITY')}>
               <SecretSelect name="tlsConfig.ca.secret" secrets={this.secrets} />
             </Form.Item>
-            <Form.Item label={'Cert'}>
+            <Form.Item label={t('CERTIFICATE')}>
               <SecretSelect
                 name="tlsConfig.cert.secret"
                 secrets={this.secrets}
               />
             </Form.Item>
-            <Form.Item label={'key'}>
+            <Form.Item label={t('ENCRYPTION_KEY')}>
               <SecretSelect name="tlsConfig.keySecret" secrets={this.secrets} />
             </Form.Item>
-            <Form.Item label={'Server Name'}>
+            <Form.Item label={t('SERVER_NAME')}>
               <Input name="tlsConfig.serverName" />
             </Form.Item>
             <Form.Item>
               <Checkbox name="tlsConfig.insecretSkipVerify">
-                {t('Insecret Skip Verify')}
+                {t('SKIP_TLS_VERFICATION')}
               </Checkbox>
             </Form.Item>
           </div>
@@ -136,7 +136,7 @@ export default class Authorization extends Component {
       case 'bearerTokenSecret':
         content = (
           <div>
-            <Form.Item label={'TOKEN'}>
+            <Form.Item label={t('TOKEN')}>
               <SecretSelect name="bearerTokenSecret" secrets={this.secrets} />
             </Form.Item>
           </div>
@@ -164,7 +164,7 @@ export default class Authorization extends Component {
   renderFormFooter() {
     return (
       <div className={styles.footer}>
-        <Button onClick={this.hideForm}>{t('Cancel')}</Button>
+        <Button onClick={this.hideForm}>{t('CANCEL')}</Button>
         <Button type="control" onClick={this.handleSubmit}>
           {t('OK')}
         </Button>
@@ -180,8 +180,8 @@ export default class Authorization extends Component {
         <div className={styles.form}>
           <Text
             className="margin-b12"
-            title={t('Choose Authentication Method')}
-            description={t('Port connection authentication')}
+            title={t('SELECT_AUTHENTICATION_METHOD')}
+            description={t('PORT_CONNECTION_AUTHENTICATION')}
           />
           <div className="margin-b12">
             <RadioGroup
@@ -203,10 +203,10 @@ export default class Authorization extends Component {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t('Create a new secret')}
+                      {t('CREATE_A_NEW_SECRET')}
                     </a>{' '}
                     or{' '}
-                    <a onClick={this.refreshSecrets}>{t('refresh secrets')}</a>
+                    <a onClick={this.refreshSecrets}>{t('REFRESH_SECRETS')}</a>
                   </div>
                 }
               />

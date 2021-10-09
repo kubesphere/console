@@ -44,12 +44,12 @@ export default class Item extends React.Component {
         <Text
           icon="monitor"
           title={detail.name}
-          description={t('Monitoring Exporter')}
+          description={t('MONITORING_EXPORTER')}
         />
 
         <Text title={detail.port} description={t('PORT')} />
         <Text title={detail.path} description={t('PATH')} />
-        <Text title={detail.interval} description={t('Scrap Interval(min)')} />
+        <Text title={detail.interval} description={t('SCRAPE_INTERVAL_MIN')} />
         <Text
           title={detail.scrapeTimeout}
           description={t('TIMEOUT_PERIOD_S')}

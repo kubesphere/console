@@ -21,7 +21,7 @@ module.exports = {
   routes: '應用路由',
   Ports: '端口',
   selector: '選擇器',
-  Selector: '選擇器',
+  SELECTOR: '選擇器',
   EXTERNAL_IP_ADDRESS: '外部 IP 地址',
   'LoadBalancer IP': '負載平衡 IP',
   CREATE_SERVICE: '創建服務',
@@ -152,7 +152,7 @@ module.exports = {
   SERVICE_EXTERNAL_ACCESS_DESC: '將服務暴露给外網',
 
   SERVICE_NODE_PORT_DESC:
-    '如果您目前的網路與集群節點在同一網路内，那麼您可以透通集群IP地址+節點端口號進行訪問，或者通過節點 IP+節點端口進行訪問',
+    '如果您目前的網路與集群節點在同一網路内，那麼您可以透通<集群 IP 地址>:<NodePort>進行訪問，或者通過<節點 IP 地址>:<NodePort>進行訪問。',
 
   SERVICE_TYPE: 'Service Type',
   SELECT_SERVICE_TYPE: 'Select Service Type',
@@ -210,4 +210,5 @@ module.exports = {
   UNKNOWN: 'Unknown',
   EXTERNALNAME_EXAMPLE: 'Example: ',
   PORT_PL: 'Ports',
+  ENDPOINT: 'Endpoint',
 }

@@ -30,8 +30,8 @@ module.exports = {
   NETWORK: '网络',
   NETWORK_RESOURCE_PL: '网络资源',
 
-  'First Available': '第一个可用',
-  'Last Available': '最后可用',
+  STARTING_IP_ADDRESS: '起始 IP 地址',
+  ENDING_IP_ADDRESS: '结束 IP 地址',
   AVAILABLE_ADDRESSES: '可用地址数量',
 
   POD_IP_POOL: '容器组 IP 池',

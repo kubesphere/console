@@ -135,7 +135,7 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'clone',
       type: 'control',
-      text: t('Clone Volume'),
+      text: t('CLONE_VOLUME'),
       icon: 'copy',
       action: 'create',
       disabled: this.allowClone,
@@ -146,7 +146,7 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'snapshot',
       type: 'control',
-      text: t('Create Snapshot'),
+      text: t('CREATE_SNAPSHOT'),
       icon: 'copy',
       action: 'create',
       disabled: this.allowSnapshot,
@@ -158,7 +158,7 @@ export default class VolumeDetail extends React.Component {
     },
     {
       key: 'expand',
-      text: t('Expand Volume'),
+      text: t('EXPAND_VOLUME'),
       icon: 'scaling',
       action: 'edit',
       disabled: !get(this.storageclass.detail, 'allowVolumeExpansion', false),

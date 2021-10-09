@@ -24,14 +24,17 @@ module.exports = {
   SERVICE_ACCOUNT_LOW: 'service account',
   'Edit Service Account': 'Edit Service Account',
   CHANGE_ROLE: 'Change Role',
-  'Secret Detail': 'Secret Detail',
+  SECRET_DETAILS: 'Secret Details',
   SERVICE_ACCOUNT_DESC:
     'A Service Account provides the processes that run in a Pod with an identity that can be used to access the API server.',
 
-  'Invalid configuration file format': 'Invalid configuration file format',
+  INVALID_YAML_FILE_FORMAT: 'Invalid YAML file format.',
 
   SELECT_PROJECT_ROLE_DESC: 'Select a project role to specify permissions.',
 
   SERVICEACCOUNT_KUBECONFIG_DESC:
-    'KubeConfig configuration method please refer to <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">official documents</a> After downloading, please modify the service address to the external address of the Kubernetes API',
+    'To configure kubeconfig, please refer to <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">the official documentation</a>. After downloading the file, please modify the service address to the external address of the Kubernetes API.',
+
+  // Service Account Detail Page
+  SECRET_VALUE: 'Secret: {value}',
 }

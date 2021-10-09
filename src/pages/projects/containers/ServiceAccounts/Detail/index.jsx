@@ -138,7 +138,7 @@ export default class ServiceAccountDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -146,7 +146,7 @@ export default class ServiceAccountDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Role'),
+        name: t('ROLE'),
         value: detail.role,
       },
       {
@@ -175,7 +175,7 @@ export default class ServiceAccountDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('ServiceAccounts'),
+          label: t('SERVICE_ACCOUNT_PL'),
           url: this.listUrl,
         },
       ],

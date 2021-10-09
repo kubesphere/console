@@ -56,7 +56,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
   return (
     <div className={styles.card}>
       <span className={styles.tip}>
-        {t('Unable to access')}
+        {t('UNABLE_TO_ACCESS')}
         &nbsp;&nbsp;
         <Tooltip content={t.html('UNABLE_TO_ACCESS_TIP')}>
           <Icon name="question" />
@@ -67,9 +67,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
         <div key={path.path} className={styles.path}>
           <Columns>
             <Column>
-              <span>
-                {t('PATH_SI')}: <strong>{path.path}</strong>
-              </span>
+              <span>{t.html('ROUTE_PATH_VALUE', { value: path.path })}</span>
             </Column>
             <Column>
               <span>
@@ -83,7 +81,9 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
             </Column>
             <Column>
               <span>
-                {t('PORT')}: <strong>{path.backend.service.port}</strong>
+                {t.html('ROUTE_PORT_VALUE', {
+                  value: path.backend.service.port,
+                })}
               </span>
             </Column>
             <Column>
@@ -92,7 +92,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <Button className={styles.access}>{t('Click to visit')}</Button>
+                <Button className={styles.access}>{t('ACCESS_SERVICE')}</Button>
               </a>
             </Column>
           </Columns>

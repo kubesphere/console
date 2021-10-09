@@ -66,14 +66,14 @@ module.exports = {
   'Mount Options': '掛載選項',
   VOLUME_EXPANSION: '儲存卷擴容',
   'Mount Status': '掛載狀態',
-  'Mounted Pods': '已掛載容器組',
+  MOUNTED_PODS: '已掛載容器組',
   AVAILABLE: '閒置',
   IN_USER: '使用中',
 
   VOLUME_NAME_EXIST: '儲存卷名稱已使用',
 
   'Used Capacity': '已分配儲存容量',
-  'Available Capacity': '剩餘儲存容量',
+  AVAILABLE_CAPACITY: '剩餘儲存容量',
 
   PersistentVolumes: '持久化儲存卷',
 
@@ -116,7 +116,7 @@ module.exports = {
     '設置為預設儲存類型後，如果沒有特殊指定，系統將預設創建該類型的儲存卷。一個 KubeSphere 集群中僅允許設置一個預設儲存類型',
 
   PROVISIONER_DESC: '提供後端儲存',
-
+  INODE_USAGE_RATE: 'Inode 使用率',
   VOLUME_STORAGE_CLASS_DESC: '選擇一個存儲類型來創建具體種類的存儲卷。',
 
   ACCESS_MODES_DESC: '選擇儲存類型支持的訪問模式',
@@ -132,7 +132,7 @@ module.exports = {
   PROVISIONER_DEPENDENCE_DESC:
     'You need to deploy a plugin in your storage system before it provides services.',
 
-  'Expand Volume': '儲存卷擴容',
+  EXPAND_VOLUME: '儲存卷擴容',
   VOLUME_EXPAND_TIPS:
     '当前儲存卷已掛載至工作負載，因此擴容會導致工作負載重啟，並產生新的版本。可能業務會短暫的中斷。',
   Expand: '擴容',
@@ -187,8 +187,8 @@ module.exports = {
 
   CREATE_VOLUME_WITH_SNAPSHOT: '基於快照創建儲存卷',
 
-  'Create Snapshot': '創建快照',
-  'Clone Volume': '儲存卷克隆',
+  CREATE_SNAPSHOT: '創建快照',
+  CLONE_VOLUME: '儲存卷克隆',
   ALLOW_VOLUME_SNAPSHOT: '允許存儲卷快照',
   ALLOW_VOLUME_CLONE: '允許存儲卷克隆',
   ALLOW_VOLUME_EXPANSION: '允許存儲卷擴容',
@@ -206,8 +206,7 @@ module.exports = {
   VOLUME_SNAPSHOT_STATUS_FAILED: '創建失敗',
   VOLUME_SNAPSHOT_STATUS_DELETING: '刪除中',
 
-  'Snapshot Message': '快照資訊',
-  'Snapshots Message': '快照資訊',
+  SNAPSHOT_INFORMATION: '快照資訊',
 
   VolumeSnapshots: '儲存卷快照',
   VOLUME_SNAPSHOT_DESC:
@@ -224,7 +223,7 @@ module.exports = {
   CLUSTER_VOLUME_DIFF_DESC: '可針對不同集群，選擇不同的儲存類型',
 
   VOLUME_MONITORING_TIP:
-    'Kubernetes 採集的是儲存卷的設備用量數據，未掛載的儲存卷暫時採集不到，並且對於如 OpenEBS/Local PV、NFS 等路徑型儲存卷通常與實際用量有一定出入。詳見<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">儲存卷監控數據分析</a>。',
+    'KubeSphere 採集的是儲存卷的設備用量數據，未掛載的儲存卷暫時採集不到，並且對於如 OpenEBS/Local PV、NFS 等路徑型儲存卷通常與實際用量有一定出入。詳見<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">儲存卷監控數據分析</a>。',
 
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',

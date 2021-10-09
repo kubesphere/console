@@ -472,7 +472,7 @@ module.exports = {
   'Params Configuration': '參數配置',
   ADD_PARAMETER: '添加參數',
   'Add Param': '添加參數',
-  'No parameters': '暫無參數',
+  NO_PARAMETERS: '暫無參數。',
   'Back To List': '返回列表',
   SERVICE_LIST: '列表',
   'Time Range': '時間範圍',
@@ -518,6 +518,7 @@ module.exports = {
   PARAM_REQUIRED: '此參數不能為空。',
   Images: '鏡像',
   filename: '文件名稱',
+  DETAILS: '詳情',
   NODES: '節點',
   FILE_OVERSIZED_TIP: '文件過大，超過 2M 不能上傳！',
   'Load more': '載入更多',
@@ -682,4 +683,9 @@ module.exports = {
   LAST_LOGIN_TIME: 'Last Login: ',
   APP_TEMPLATE_SCAP_PL: 'App templates',
   ACCOUNT_PL: 'Accounts',
+
+  // Container Details Page
+  CONTAINER_DETAILS_PAGE_SCAP: '容器詳情頁。',
+  CPU_VALUE: 'CPU：{value}',
+  MEMORY_VALUE: 'Memory：{value}',
 }

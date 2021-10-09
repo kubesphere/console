@@ -68,7 +68,7 @@ export default class CustomResourceDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: this.props.match.params.cluster,
       },
       {

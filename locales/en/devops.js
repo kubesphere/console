@@ -21,7 +21,7 @@ module.exports = {
   DELETE_DEVOPS_PROJECT: 'Delete DevOps Project',
   'DevOps Basic Info': 'DevOps Basic Information',
   DEVOPS_PROJECT_CREDENTIAL_PL: 'DevOps Project Credentials',
-  DEVOPS_CREDENTIAL_EMPTY_DESC: 'Please create a DevOps credential.',
+  DEVOPS_CREDENTIAL_EMPTY_DESC: 'Please create a DevOps project credential.',
   DEVOPS_CREDENTIAL: 'DevOps Credential',
   DEVOPS_CREDENTIAL_LOW: 'DevOps credential',
   'DevOps Member': 'DevOps Member',

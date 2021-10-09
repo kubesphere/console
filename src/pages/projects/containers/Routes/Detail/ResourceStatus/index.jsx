@@ -66,7 +66,7 @@ class ResourceStatus extends React.Component {
     const { workspace, cluster, namespace } = this.props.match.params
 
     return (
-      <Panel title={t('Rules')}>
+      <Panel title={t('RULES')}>
         {detail.rules.map(rule => (
           <Rule
             key={rule.host}

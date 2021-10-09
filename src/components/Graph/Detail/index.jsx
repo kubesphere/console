@@ -79,7 +79,7 @@ export default class AppDetail extends React.Component {
             <Icon name="network-router" size={32} />
             <div>
               <div className="h5">{data.name}</div>
-              <p>{t('Service')}</p>
+              <p>{t('SERVICE')}</p>
             </div>
           </div>
           <Collapse
@@ -87,7 +87,7 @@ export default class AppDetail extends React.Component {
             onChange={this.handleCollapseChange}
             accordion
           >
-            <CollapseItem label={t('Traffic Monitoring')} key="monitor">
+            <CollapseItem label={t('TRAFFIC_MONITORING')} key="monitor">
               <Monitors
                 detail={data}
                 store={this.props.store}

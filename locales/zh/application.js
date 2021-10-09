@@ -76,7 +76,7 @@ module.exports = {
   'Service components should not be empty': '服务组件不能为空',
   'Please finish the sub form first': '请完成子表单的编辑',
 
-  'Service Ports': '服务端口',
+  SERVICE_PORTS: '服务端口',
   'Traffic Entry': '流量入口',
 
   'App Description': '应用描述',

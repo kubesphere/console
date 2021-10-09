@@ -135,7 +135,7 @@ export default class SecretDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -172,7 +172,7 @@ export default class SecretDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Secrets'),
+          label: t('SECRET_PL'),
           url: this.listUrl,
         },
       ],

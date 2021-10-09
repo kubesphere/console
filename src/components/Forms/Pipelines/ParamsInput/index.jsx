@@ -90,7 +90,7 @@ export default class ParamsInput extends React.Component {
         </div>
         <div className={styles.content}>
           {isEmpty(this.value) && (
-            <p className="text-center padding-12">{t('No parameters')}</p>
+            <p className="text-center padding-12">{t('NO_PARAMETERS')}</p>
           )}
           {isArray(this.value) &&
             this.value.map((item, index) => (

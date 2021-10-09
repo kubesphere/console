@@ -87,7 +87,7 @@ export default class UsageCard extends Component {
         <Loading spinning={isLoading}>
           <div data-refreshing={isRefreshing}>
             <Alert
-              type="warning"
+              type="info"
               className="margin-b12"
               message={htmlLinkControl(htmlMes)}
             />
@@ -130,7 +130,7 @@ export default class UsageCard extends Component {
             {available.count}
             <small>{available.unit}</small>
           </h3>
-          <p>{t('Available Capacity')}</p>
+          <p>{t('AVAILABLE_CAPACITY')}</p>
         </div>
         <div className={styles.description}>
           <h3>
@@ -151,7 +151,7 @@ export default class UsageCard extends Component {
     const total = get(data, `${METRICS.inodeTotal}.data.result[0].values`, [])
 
     const config = getAreaChartOps({
-      title: `Inode ${t('USAGE_RATE')}`,
+      title: t('INODE_USAGE_RATE'),
       unit: '%',
       legend: ['UTILIZATION'],
       data: usageRate,

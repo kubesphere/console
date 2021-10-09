@@ -38,7 +38,7 @@ export default class ServiceSettingsForm extends Base {
     const selectors = get(this.props.formTemplate, 'spec.selector', {})
 
     return (
-      <Form.Item label={t('Selector')}>
+      <Form.Item label={t('SELECTOR')}>
         <div className={styles.selectors}>
           {Object.keys(selectors).map(key => (
             <Label key={key} name={key} value={selectors[key]} />

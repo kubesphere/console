@@ -60,7 +60,7 @@ export default class ServiceItem extends React.Component {
               <Link to={`${prefix}/services/${detail.name}`}>{detailName}</Link>
               {serviceMonitor && (
                 <Tooltip
-                  content={`${t('Monitoring Exporter')}: ${serviceMonitor}`}
+                  content={`${t('MONITORING_EXPORTER')}: ${serviceMonitor}`}
                 >
                   <Icon className="margin-l8" name="monitor" size={20} />
                 </Tooltip>
@@ -73,8 +73,8 @@ export default class ServiceItem extends React.Component {
           title={
             get(detail, 'annotations["servicemesh.kubesphere.io/enabled"]') ===
             'true'
-              ? t('On')
-              : t('Off')
+              ? t('ON')
+              : t('OFF')
           }
           description={t('APPLICATION_GOVERNANCE')}
         />

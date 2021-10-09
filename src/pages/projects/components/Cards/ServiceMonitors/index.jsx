@@ -99,8 +99,8 @@ export default class ServiceMonitors extends React.Component {
     return (
       <Panel
         className={className}
-        title={`${t('Service Monitoring Exporter')} (${t(
-          'Exporter Service Ports'
+        title={`${t('SERVICE_MONITORING_EXPORTER')} (${t(
+          'EXPORTER_SERVICE_PORTS'
         )})`}
       >
         {content}

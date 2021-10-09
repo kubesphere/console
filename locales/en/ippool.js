@@ -30,8 +30,8 @@ module.exports = {
   NETWORK: 'Network',
   NETWORK_RESOURCE_PL: 'Network Resources',
 
-  'First Available': 'First Available',
-  'Last Available': 'Last Available',
+  STARTING_IP_ADDRESS: 'Starting IP Address',
+  ENDING_IP_ADDRESS: 'Ending IP Address',
   AVAILABLE_ADDRESSES: 'Available addresses',
 
   POD_IP_POOL: 'Pod IP Pool',

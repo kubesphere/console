@@ -112,7 +112,7 @@ export default {
           Modal.close(modal)
           Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
         },
-        title: t('Clone Volume'),
+        title: t('CLONE_VOLUME'),
         modal: NameModal,
         store,
         ...props,
@@ -141,7 +141,7 @@ export default {
           Modal.close(modal)
           Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
         },
-        title: t('Create Snapshot'),
+        title: t('CREATE_SNAPSHOT'),
         modal: SnapshotModal,
         store,
         options,

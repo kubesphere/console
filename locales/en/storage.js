@@ -18,8 +18,8 @@
 
 module.exports = {
   VOLUME_EXPANSION: 'Volume Expansion',
-  'Available Capacity': 'Available Capacity',
-  'Create Snapshot': 'Create Snapshot',
+  AVAILABLE_CAPACITY: 'Available Capacity',
+  CREATE_SNAPSHOT: 'Create Snapshot',
   'Create Storage Class': 'Create Storage Class',
   'Create Volume': 'Create Volume',
   CREATE_VOLUME_WITH_SNAPSHOT: 'Create volume based on snapshots',
@@ -31,7 +31,7 @@ module.exports = {
   'Disable Volume Snapshot': 'Disable Volume Snapshot',
   'Apply immediately': 'Apply immediately',
   Expand: 'Expand',
-  'Expand Volume': 'Expand Volume',
+  EXPAND_VOLUME: 'Expand Volume',
   AVAILABLE: 'Available',
   IN_USER: 'In use',
   'Mount Info': 'Mount Info',
@@ -39,7 +39,7 @@ module.exports = {
   // Volumes List Page
   MOUNT_STATUS: 'Mount Status',
   MOUNTED: 'Mounted',
-  'Mounted Pods': 'Mounted Pods',
+  MOUNTED_PODS: 'Mounted Pods',
   NOT_MOUNTED: 'Not mounted',
   Parameters: 'Parameters',
   'Parameters (key-value pairs)': 'Parameters (key-value pairs)',
@@ -51,6 +51,8 @@ module.exports = {
   SET_AS_DEFAULT_STORAGE_CLASS: 'Set as Default Storage Class',
   'Snapshot Message': 'Snapshot Message',
   'Snapshots Message': 'Snapshot Message',
+  'Set as default storage class': 'Set as default storage class',
+  SNAPSHOT_INFORMATION: 'Snapshot Information',
   'Storage Class': 'Storage Class',
   STORAGE_CLASS: 'Storage Class',
   STORAGE_CLASS_PL: 'Storage Classes',
@@ -79,7 +81,7 @@ module.exports = {
   ACCESS_MODE: 'Access Mode',
   ACCESS_MODE_SCAP: 'Access mode',
   'Used Capacity': 'Used Capacity',
-  'Clone Volume': 'Clone Volume',
+  CLONE_VOLUME: 'Clone Volume',
   VOLUME: 'Volume',
   VOLUMES: 'Volumes',
   VOLUME_PL: 'Volumes',
@@ -122,6 +124,7 @@ module.exports = {
     'Select a storage class to create a specific type of volume.',
 
   PROVISIONER_DESC: 'Provide backend storage',
+  INODE_USAGE_RATE: 'Inode Usage',
 
   // Volume Pages
   ACCESS_MODE_TCAP: 'Access Mode',
@@ -232,7 +235,7 @@ module.exports = {
     'Select different storage classes for different clusters.',
 
   VOLUME_MONITORING_TIP:
-    'Kubernetes collects volume usage data, excluding data from unmounted volumes. For path-based volumes such as OpenEBS/Local PV and NFS, the data collected may be different from the actual amount. For detailed information, see <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">volume monitoring data analysis</a>.',
+    'KubeSphere collects volume usage data except for data from unmounted volumes. For path-based volumes such as OpenEBS, Local PV, and NFS, the data collected may be different from the actual amount. For detailed information, see <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">volume monitoring data analysis</a>.',
 
   // Storage Classes
   RESTURL: 'REST URL',

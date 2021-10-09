@@ -132,7 +132,7 @@ export default class Secret extends React.Component {
     return (
       <div className={styles.secretWrapper}>
         <div className={styles.title}>
-          <div className="h6">{t('Secret Detail')}</div>
+          <div className="h6">{t('SECRET_DETAILS')}</div>
           {this.renderOperations()}
         </div>
         <div className={styles.defaultWrapper}>
@@ -169,7 +169,7 @@ export default class Secret extends React.Component {
     return (
       <div className={styles.configWrapper}>
         <div className={styles.title}>
-          <div className="h6">{t('KubeConfig')}</div>
+          <div className="h6">{t('Kubeconfig')}</div>
           <p className="text-desc">{htmlLinkControl(htmlDes)}</p>
         </div>
         <div className={styles.codeEditor}>
@@ -198,7 +198,7 @@ export default class Secret extends React.Component {
 
   render() {
     return (
-      <Panel title={`${t('Secret')}: ${this.secret}`}>
+      <Panel title={t('SECRET_VALUE', { value: this.secret })}>
         {this.renderSecretContent()}
         {this.renderConfigContent()}
       </Panel>

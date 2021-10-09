@@ -79,7 +79,7 @@ export default class ResourceStatus extends React.Component {
         : {
             key: 'viewYaml',
             icon: 'eye',
-            text: t('View YAML'),
+            text: t('VIEW_YAML'),
             action: 'view',
             onClick: item =>
               this.trigger('resource.yaml.edit', {

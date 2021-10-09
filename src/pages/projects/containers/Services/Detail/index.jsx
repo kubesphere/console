@@ -125,7 +125,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'serviceMonitor',
       icon: 'linechart',
-      text: t('Service Monitoring Exporter'),
+      text: t('SERVICE_MONITORING_EXPORTER'),
       action: 'edit',
       onClick: () =>
         this.trigger('service.monitor.edit', {
@@ -184,7 +184,7 @@ export default class ServiceDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -200,12 +200,12 @@ export default class ServiceDetail extends React.Component {
                 ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
                 : t('CUSTOM_SERVICE')
             }`}
-            <span className="text-desc"> ({detail.type})</span>
+            <span className="text-desc"> ({t(detail.type)})</span>
           </span>
         ),
       },
       {
-        name: t('Application'),
+        name: t('APPLICATION'),
         value: detail.app,
       },
       {
@@ -217,11 +217,11 @@ export default class ServiceDetail extends React.Component {
         value: externalIP,
       },
       {
-        name: t('Session Affinity'),
+        name: t('SESSION_AFFINITY'),
         value: detail.sessionAffinity,
       },
       {
-        name: t('Selector'),
+        name: t('SELECTOR'),
         value: joinSelector(detail.selector),
       },
       {
@@ -229,7 +229,7 @@ export default class ServiceDetail extends React.Component {
         value: this.renderDNS(),
       },
       {
-        name: t('Endpoint'),
+        name: t('ENDPOINT'),
         value: this.renderEndpoints(),
       },
       {

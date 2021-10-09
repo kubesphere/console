@@ -178,7 +178,7 @@ export default class SecretDetail extends React.Component {
     return (
       <div>
         {this.renderPlacement()}
-        <Card title={t('Secret')} operations={this.renderOperations()}>
+        <Card title={t('SECRET')} operations={this.renderOperations()}>
           {this.renderContent(detail)}
         </Card>
       </div>

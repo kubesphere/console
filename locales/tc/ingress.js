@@ -23,8 +23,8 @@ module.exports = {
   ROUTE_LOW: 'Route',
   'Create Route': '創建應用路由',
   PATH_EMPTY_DESC: '請添加至少一個路徑。',
-  Rules: '規則',
-  EDIT_RULES_TCAP: '編輯規則',
+  RULES: '規則',
+  EDIT_RULES: '編輯規則',
   EDIT_ANNOTATION: '編輯注解',
   EDIT_ANNOTATIONS: '編輯注解',
   ROUTING_RULES: '路由規則',
@@ -44,7 +44,7 @@ module.exports = {
   AUTO_GENERATE_TCAP: '自動生成',
   SPECIFY_DOMAIN_TCAP: '指定域名',
 
-  'Unable to access': '無法訪問',
+  UNABLE_TO_ACCESS: '無法訪問服務',
 
   INVALID_DOMAIN_DESC: '域名格式錯誤',
 
@@ -77,7 +77,7 @@ module.exports = {
   ADD_ROUTING_RULE_DESC: '添加一個路由規則將域名映射至服務。',
   ROUTING_RULE_EMPTY_DESC: 'Please add at least one routing rule.',
   UNABLE_TO_ACCESS_TIP:
-    '● 請確保您設置的域名可以解析到訪問入口的 IP 地址;<br/>● 如果在私有雲環境中，請修改本地的 host 檔案，並通過 域名+節點端口 的方式來訪問;<br/>● 通過配置 DNS 訪問，將域名修改為 hostname + 網關地址 + nip.io，然後可以通過 hostname.網關地址.nip.io:節點端口 的形式來訪問服務;<br/>● 如果通過域名訪問被拒絕，請確認您的域名是真實而且已經申請通過。',
+    '● 請確保您設置的域名可以解析到訪問入口的 IP 地址;<br/>● 如果在私有雲環境中，請修改本地的 host 檔案，並通過&lt域名&gt:&ltNodePort&gt的方式來訪問;<br/>● 通過配置 DNS 訪問，將域名修改為&ltHostname&gt.&lt網關地址&gt.nip.io，然後可以通過&ltHostname&gt.&lt網關地址&gt.nip.io:&ltNodePort&gt的形式來訪問服務;<br/>● 如果通過域名訪問被拒絕，請確認您的域名是真實域名而且已經申請通過。',
 
   NO_GATEWAY_DESC:
     '若要使用自動生成模式，請聯系項目管理員在此項目的高級設置中設置網關訪問方式。',
@@ -96,4 +96,10 @@ module.exports = {
   ACCESS_TYPES_OF_ROUTE_Q: '應用路由支持的訪問方式?',
   ACCESS_TYPES_OF_ROUTE_A:
     'KubeSphere 應用路由支持 NodePort 訪問方式以及 LoadBalancer 訪問方式。',
+
+  // Route Detail Page
+  ROUTE_PATH_VALUE: '路徑：<strong>{value}</strong>',
+  ROUTE_SERVICE_VALUE: '服務：<strong>{value}</strong>',
+  ROUTE_PORT_VALUE: '端口：<strong>{value}</strong>',
+  ACCESS_SERVICE: '訪問服務',
 }
