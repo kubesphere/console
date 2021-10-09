@@ -84,10 +84,10 @@ export default class EditServiceAccountModal extends React.Component {
       <Modal.Form
         data={formData}
         width={691}
-        title={t('EDIT_INFO')}
+        title={t('EDIT_INFORMATION')}
         icon="pen"
         onOk={this.handleOk}
-        okText={t('Update')}
+        okText={t('OK')}
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}

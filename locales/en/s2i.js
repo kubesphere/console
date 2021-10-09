@@ -54,7 +54,7 @@ module.exports = {
   'Image Artifacts': 'Image Artifacts',
   'Image Builder': 'Image Builder',
   IMAGE_BUILDER: 'Image Builder',
-  IMAGE_BUILDER_PL: 'Image Builder',
+  IMAGE_BUILDER_PL: 'Image Builders',
   'Image Building': 'Image Building',
   'Image building failed': 'Image building failed',
   'Image building succeeded': 'Image building succeeded',
@@ -66,7 +66,7 @@ module.exports = {
   IMAGE_TAG: 'Image Tag',
   ImageName: 'ImageName',
   'is Failed': 'is Failed',
-  'Job Records': 'Job Records',
+  JOB_RECORDS: 'Job Records',
   'Last build environment': 'Last build environment',
   'The logging module is not installed.':
     'The logging module is not installed.',

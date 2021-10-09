@@ -70,7 +70,7 @@ module.exports = {
   DEVOPS_SETTINGS: 'DevOps Settings',
   DEVOPS_VIEW: 'DevOps Project Viewing',
   'Edit Account Role': 'Edit Account Role',
-  EDIT_PERMISSION: 'Edit Permission',
+  EDIT_PERMISSIONS: 'Edit Permissions',
   'Edit Cluster Role': 'Edit Cluster Role',
   'Edit Project Role': 'Edit Project Role',
   'Edit Role': 'Edit Role',

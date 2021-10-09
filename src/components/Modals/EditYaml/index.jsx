@@ -104,7 +104,7 @@ export default class YamlEditModal extends React.Component {
 
   render() {
     const { readOnly, visible, onCancel, isSubmitting } = this.props
-    const title = readOnly ? t('View YAML') : t('EDIT_YAML')
+    const title = readOnly ? t('VIEW_YAML') : t('EDIT_YAML')
     const icon = readOnly ? 'eye' : 'pen'
 
     return (
@@ -116,7 +116,7 @@ export default class YamlEditModal extends React.Component {
         })}
         onOk={this.handleOk}
         onCancel={onCancel}
-        okText={t('Update')}
+        okText={t('OK')}
         visible={visible}
         closable={readOnly}
         hideFooter={readOnly}

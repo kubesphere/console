@@ -63,7 +63,7 @@ class ResourceStatus extends React.Component {
   }
 
   get volumesTitle() {
-    return t('Storage Device')
+    return t('STORAGE_DEVICES')
   }
 
   get enableScaleReplica() {

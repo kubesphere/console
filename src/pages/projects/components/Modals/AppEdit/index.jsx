@@ -51,10 +51,10 @@ export default class AppEditModal extends React.Component {
       <Modal.Form
         data={detail}
         width={691}
-        title={t('EDIT_INFO')}
+        title={t('EDIT_INFORMATION')}
         icon="pen"
         onOk={this.handleOk}
-        okText={t('Update')}
+        okText={t('OK')}
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}

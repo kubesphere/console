@@ -46,7 +46,7 @@ export default class ServiceDetail extends React.Component {
   }
 
   get name() {
-    return 'Service'
+    return 'SERVICE'
   }
 
   get routing() {
@@ -76,7 +76,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -88,7 +88,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'editConfigTemplate',
       icon: 'storage',
-      text: t('Edit Config Template'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('federated.workload.template.edit', {
@@ -188,7 +188,7 @@ export default class ServiceDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(`${this.name}s`),
+          label: t(`${this.name}_PL`),
           url: this.listUrl,
         },
       ],

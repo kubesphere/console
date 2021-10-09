@@ -38,7 +38,7 @@ export default path => [
   },
   {
     path: `${path}/monitors`,
-    title: 'Monitoring',
+    title: 'MONITORING',
     component: Monitoring,
     exact: true,
   },

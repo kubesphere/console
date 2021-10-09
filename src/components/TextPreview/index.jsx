@@ -178,7 +178,7 @@ export default class TextPreview extends React.Component {
   render() {
     const { selectFile } = this.state
     if (!selectFile) {
-      return <p>{t('NO_CHART_FILE_FOUND')}</p>
+      return <p>{t('NO_APP_CHART_FILE_FOUND')}</p>
     }
 
     return (

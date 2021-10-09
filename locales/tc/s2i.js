@@ -52,7 +52,7 @@ module.exports = {
   IMAGE_TAG: 'Image Tag',
   BuilderPullPolicy: '鏡像拉取策略',
   builderPullPolicy: '鏡像拉取策略',
-  'Job Records': '任務紀錄',
+  JOB_RECORDS: '任務紀錄',
   'Source to image jobs': 'S2I 任務',
   S2IJobs: 'S2I 任務',
   'Repo url': '倉庫地址',

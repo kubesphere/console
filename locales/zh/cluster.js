@@ -42,16 +42,14 @@ module.exports = {
   'Kubernetes Settings': 'Kubernetes 设置',
   'Connection Method': '连接方式',
 
-  'Host Cluster': 'Host 集群',
+  'Host Cluster': '主集群',
   HOST_CLUSTER: '主集群',
-  'Host Clusters': 'Host 集群',
-  'Member Cluster': 'Member 集群',
-  'Member Clusters': 'Member 集群',
+  'Host Clusters': '主集群',
+  'Member Cluster': '成员集群',
+  'Member Clusters': '成员集群',
 
   KUBERNETES_VERSION: 'Kubernetes 版本',
   KUBESPHERE_VERSION: 'KubeSphere 版本',
-
-  EDIT_INFORMATION: '编辑信息',
 
   'Cluster List': '集群列表',
   CLUSTER_INFORMATION: '集群信息',
@@ -239,7 +237,7 @@ module.exports = {
   SELECT_HOST_CLUSTER_WARNING:
     '当前系统为多集群系统，请尽量避免在主集群上创建资源。主集群负载过高会导致多集群系统稳定性下降。',
   HOST_CLUSTER_VISIBILITY_WARNING:
-    '请谨慎将 Host 集群授权给企业空间，Host 集群负载过高会导致多集群稳定性下降。',
+    '请谨慎将主集群授权给企业空间，主集群负载过高会导致多集群系统稳定性下降。',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
     '移除集群对企业空间的授权后，该企业空间在当前集群下的所有资源将被删除。',
 

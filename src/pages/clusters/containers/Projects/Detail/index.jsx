@@ -100,7 +100,7 @@ export default class ProjectDetail extends React.Component {
       {
         key: 'editQuota',
         icon: 'pen',
-        text: t('EDIT_PROJECT_QUOTA'),
+        text: t('EDIT_PROJECT_QUOTAS'),
         action: 'edit',
         onClick: () =>
           this.trigger('project.quota.edit', {
@@ -113,7 +113,7 @@ export default class ProjectDetail extends React.Component {
         key: 'edit-default-resource',
         icon: 'pen',
         action: 'edit',
-        text: t('EDIT_DEFAULT_CONTAINER_QUOTA'),
+        text: t('EDIT_DEFAULT_CONTAINER_QUOTAS'),
         onClick: () =>
           this.trigger('project.default.resource', {
             ...this.props.match.params,

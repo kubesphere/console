@@ -40,7 +40,6 @@ module.exports = {
   'Connection Method': 'Método de conexión',
   'Copy successfully': 'Copia realizada con éxito',
   'Custom Resources': 'CRDs',
-  EDIT_INFORMATION: 'Edit Information',
   EDIT_VISIBILITY: 'Editar visibilidad',
   'Enter the project': 'Entrar al proyecto',
   'Go back': 'Atrás',

@@ -66,7 +66,7 @@ module.exports = {
   IMAGE_TAG: 'Image Tag',
   ImageName: 'Image Name',
   'is Failed': 'falló',
-  'Job Records': 'Registros de trabajos',
+  JOB_RECORDS: 'Registros de trabajos',
   'Last build environment': 'Último entorno de compilación',
   'The logging module is not installed.':
     'The logging module is not installed.',

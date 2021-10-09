@@ -48,6 +48,7 @@ module.exports = {
   STORAGE_CLASS: '儲存類型',
   STORAGE_CLASS_PL: 'Storage Classes',
   STORAGE_CLASS_LOW: 'storage class',
+  STORAGE_CLASS_VALUE: 'Storage class: {value}',
   STORAGE_CLASS_SETTINGS: '儲存類型設置',
   'Mount Info': '掛載資訊',
   // Volumes List Page
@@ -56,6 +57,7 @@ module.exports = {
   NOT_MOUNTED: '未掛載',
   Scalable: '可擴容性',
   CREATE: '創建',
+  UPDATE: 'Update',
   RECLAIM_POLICY: '回收機制',
   DELETE_STORAGE_TIP: '如果儲存卷正在被掛載時，等待工作負載被刪除時一同刪除。',
   SRORAGE_SETTING_DESC:

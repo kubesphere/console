@@ -54,7 +54,7 @@ export default class Services extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -74,7 +74,7 @@ export default class Services extends React.Component {
       {
         key: 'editConfigTemplate',
         icon: 'storage',
-        text: t('Edit Config Template'),
+        text: t('EDIT_SETTINGS'),
         action: 'edit',
         onClick: async item => {
           const detail = await this.props.store.fetchDetail(item)

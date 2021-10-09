@@ -159,7 +159,7 @@ export default class BaseInfoModal extends React.Component {
     return (
       <Modal
         width={691}
-        title={t('EDIT_INFO')}
+        title={t('EDIT_INFORMATION')}
         icon="pen"
         onOk={this.handleOk}
         onCancel={onCancel}

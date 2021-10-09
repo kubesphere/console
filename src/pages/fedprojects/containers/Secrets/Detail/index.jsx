@@ -46,7 +46,7 @@ export default class SecretDetail extends React.Component {
   }
 
   get name() {
-    return 'Secret'
+    return 'SECRET'
   }
 
   get routing() {
@@ -71,7 +71,7 @@ export default class SecretDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -94,7 +94,7 @@ export default class SecretDetail extends React.Component {
     {
       key: 'editSecret',
       icon: 'pen',
-      text: t('EDIT_SECRET'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('secret.edit', {
@@ -167,7 +167,7 @@ export default class SecretDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Secrets'),
+          label: t('SECRET_PL'),
           url: this.listUrl,
         },
       ],

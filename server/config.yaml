@@ -211,7 +211,7 @@ client:
             # - { name: roles, title: Cluster Roles }
             - {
                 name: log-collections,
-                title: LOG_COLLECTION,
+                title: LOG_RECEIVER_PL,
                 icon: file,
                 authKey: cluster-settings,
                 clusterModule: logging|events|auditing,
@@ -375,7 +375,7 @@ client:
           }
         - {
             name: s2ibuilders,
-            title: IMAGE_BUILDER,
+            title: IMAGE_BUILDER_PL,
             icon: vnas,
             clusterModule: devops,
           }

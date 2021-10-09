@@ -103,9 +103,7 @@ class ScheduleInfo extends React.Component {
   renderNodeScheduleTip() {
     return (
       <div>
-        <div className="tooltip-title">
-          {t('How pods are assinged to nodes?')}
-        </div>
+        <div className="tooltip-title">{t('POD_SCHEDULING_METHOD')}</div>
         <p className="tooltip-desc">{t('POD_ASSIGNED_DESC')}</p>
       </div>
     )
@@ -166,7 +164,7 @@ class ScheduleInfo extends React.Component {
       ) || {}
 
     return (
-      <Panel title={t('Node Scheduling Info')}>
+      <Panel title={t('SCHEDULING_RESULT')}>
         <div className={styles.wrapper}>
           <div>
             <Text
@@ -174,7 +172,9 @@ class ScheduleInfo extends React.Component {
               icon="nodes"
               title={
                 <div>
-                  {t('Scheduled to node')} {detail.node}
+                  {detail.node
+                    ? t('SCHEDULED_TO_NODE', { value: detail.node })
+                    : t('SCHEDULING_NOT_SUCCESSFUL')}
                   <Tooltip content={this.renderNodeScheduleTip()}>
                     <Icon className="margin-l8" name="question" size={20} />
                   </Tooltip>
@@ -214,23 +214,25 @@ class ScheduleInfo extends React.Component {
         </div>
         <div className="tooltip-desc">
           <p>
-            {t('STATUS')}: {condition.status}
+            {t('STATUS_VALUE', {
+              value:
+                condition.status === 'True'
+                  ? t('SUCCESSFUL')
+                  : t('NOT_SUCCESSFUL'),
+            })}
           </p>
           {condition.reason && (
-            <p>
-              {t('REASON')}: {t(condition.reason)}
-            </p>
+            <p>{t('REASON_VALUE', { value: t(condition.reason) })}</p>
           )}
           {condition.message && (
-            <p>
-              {t('MESSAGE')}: {condition.message}
-            </p>
+            <p>{t('MESSAGE_VALUE', { value: condition.message })}</p>
           )}
           <p>
-            {t('UPDATED_AT')}:{' '}
-            {getLocalTime(condition.lastTransitionTime).format(
-              'YYYY-MM-DD HH:mm:ss'
-            )}
+            {t('UPDATED_AT_VALUE', {
+              value: getLocalTime(condition.lastTransitionTime).format(
+                'YYYY-MM-DD HH:mm:ss'
+              ),
+            })}
           </p>
         </div>
       </div>
@@ -242,13 +244,13 @@ class ScheduleInfo extends React.Component {
     const conditions = get(detail, 'status.conditions', [])
     const phase = get(detail, 'status.phase', '')
     return (
-      <Panel title={t('Pod Status Analysis')}>
+      <Panel title={t('STATUS_INFORMATION')}>
         <div className={styles.header}>
           <Text
             className={styles.info}
             icon="pod"
             title={t(phase)}
-            description={t('Current Stage(phase)')}
+            description={t('CURRENT_STATUS')}
             extra={
               <Status status={phase === 'Running' ? 'success' : 'warning'} />
             }

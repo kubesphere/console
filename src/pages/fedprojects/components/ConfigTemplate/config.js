@@ -28,25 +28,25 @@ export default {
     {
       icon: 'dashboard',
       name: 'updateStrategy',
-      title: 'Update Strategy',
+      title: 'UPDATE_STRATEGY',
       component: UpdateStrategy,
     },
     {
       icon: 'container',
       name: 'podTemplate',
-      title: 'Pod Template',
+      title: 'CONTAINER_PL',
       component: PodTemplate,
     },
     {
       icon: 'storage',
       name: 'volumeSettings',
-      title: 'Volume',
+      title: 'VOLUME_PL',
       component: VolumeSettings,
     },
     {
       icon: 'group',
       name: 'deploymentMode',
-      title: 'REPLICA_SCHEDULING_MODE',
+      title: 'POD_SCHEDULING_RULES',
       component: Affinity,
     },
     {
@@ -60,19 +60,19 @@ export default {
     {
       icon: 'dashboard',
       name: 'updateStrategy',
-      title: 'Update Strategy',
+      title: 'UPDATE_STRATEGY',
       component: UpdateStrategy,
     },
     {
       icon: 'container',
       name: 'podTemplate',
-      title: 'Pod Template',
+      title: 'CONTAINER_PL',
       component: PodTemplate,
     },
     {
       icon: 'storage',
       name: 'volumeSettings',
-      title: 'Volume',
+      title: 'VOLUME_PL',
       component: VolumeSettings,
     },
     {
@@ -86,7 +86,7 @@ export default {
     {
       icon: 'network-router',
       name: 'editService',
-      title: 'EDIT_SERVICE',
+      title: 'SERVICE_SETTINGS',
       component: ServiceSetting,
     },
     {

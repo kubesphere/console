@@ -173,7 +173,7 @@ export default class Overview extends React.Component {
             />
             {actions.includes('edit') && globals.app.isMultiCluster && (
               <Button className={styles.action} onClick={this.showEdit}>
-                {t('EDIT_INFO')}
+                {t('EDIT_INFORMATION')}
               </Button>
             )}
           </div>

@@ -45,7 +45,7 @@ export default class ConfigMapDetail extends React.Component {
   }
 
   get name() {
-    return 'ConfigMap'
+    return 'CONFIGMAP'
   }
 
   get routing() {
@@ -78,7 +78,7 @@ export default class ConfigMapDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -101,7 +101,7 @@ export default class ConfigMapDetail extends React.Component {
     {
       key: 'editConfigMap',
       icon: 'pen',
-      text: t('EDIT_CONFIGMAP'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('configmap.edit', {
@@ -167,7 +167,7 @@ export default class ConfigMapDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('CONFIGMAPS'),
+          label: t('CONFIGMAP_PL'),
           url: this.listUrl,
         },
       ],

@@ -65,7 +65,7 @@ export default class ModalForm extends React.Component {
                 onClick={onCancel}
                 data-test="modal-cancel"
               >
-                {cancelText || t('Cancel')}
+                {cancelText || t('CANCEL')}
               </Button>
               <Button
                 type="control"

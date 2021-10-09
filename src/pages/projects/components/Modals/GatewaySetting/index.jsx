@@ -253,7 +253,7 @@ export default class GatewaySettingModal extends React.Component {
             loading={isSubmitting}
             disabled={isSubmitting}
           >
-            {t('Cancel')}
+            {t('CANCEL')}
           </Button>
           <Button
             type="control"

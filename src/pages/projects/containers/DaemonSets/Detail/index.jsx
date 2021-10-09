@@ -45,7 +45,7 @@ export default class DaemonSetDetail extends React.Component {
   }
 
   get name() {
-    return 'DaemonSet'
+    return 'DAEMONSET'
   }
 
   get routing() {
@@ -68,7 +68,7 @@ export default class DaemonSetDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -80,7 +80,7 @@ export default class DaemonSetDetail extends React.Component {
     {
       key: 'rollBack',
       icon: 'timed-task',
-      text: t('Revision Rollback'),
+      text: t('ROLL_BACK'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.revision.rollback', {
@@ -91,7 +91,7 @@ export default class DaemonSetDetail extends React.Component {
     {
       key: 'editConfigTemplate',
       icon: 'storage',
-      text: t('Edit Config Template'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.template.edit', {
@@ -114,7 +114,7 @@ export default class DaemonSetDetail extends React.Component {
     {
       key: 'redeploy',
       icon: 'restart',
-      text: t('REDEPLOY'),
+      text: t('RECREATE'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.redeploy', {
@@ -146,7 +146,7 @@ export default class DaemonSetDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -162,7 +162,7 @@ export default class DaemonSetDetail extends React.Component {
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('CREATOR'),
+        name: t('CREATED_BY'),
         value: detail.creator,
       },
     ]
@@ -183,7 +183,7 @@ export default class DaemonSetDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('STATEFULSETS'),
+          label: t('DAEMONSET_PL'),
           url: this.listUrl,
         },
       ],

@@ -55,7 +55,7 @@ export default function withList(options) {
           {
             key: 'edit',
             icon: 'pen',
-            text: t('EDIT'),
+            text: t('EDIT_INFORMATION'),
             action: 'edit',
             onClick: item =>
               this.trigger('resource.baseinfo.edit', {

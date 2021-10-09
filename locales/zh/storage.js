@@ -29,7 +29,7 @@ module.exports = {
   VOLUME_STATUS_TERMINATING: '删除中',
   VOLUME_STATUS_UPDATING: '更新中',
   CREATE: '创建',
-
+  UPDATE: '更新',
   VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: '硬盘扩容中(FilesystemSizePending)',
 
   volumes: '存储卷',
@@ -49,6 +49,7 @@ module.exports = {
   STORAGE_CLASS: '存储类型',
   STORAGE_CLASS_PL: '存储类型',
   STORAGE_CLASS_LOW: '存储类型',
+  STORAGE_CLASS_VALUE: '存储类型：{value}',
   'Storage Classs': '存储类型',
   STORAGE_CLASS_SETTINGS: '存储类型设置',
   'Mount Info': '挂载信息',
@@ -116,7 +117,8 @@ module.exports = {
 
   PROVISIONER_DESC: '提供后端存储',
   INODE_USAGE_RATE: 'Inode 使用率',
-  VOLUME_STORAGE_CLASS_DESC: '选择一个存储类型来创建具体种类的存储卷。',
+
+  VOLUME_STORAGE_CLASS_DESC: '选择一个存储类型来创建特定种类的存储卷。',
 
   ACCESS_MODES_DESC: '选择存储类型支持的访问模式。',
 

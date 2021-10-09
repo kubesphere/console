@@ -23,6 +23,7 @@ module.exports = {
   SCRAPE_INTERVAL_MIN: '采集间隔（分钟）',
   'View Monitor': '查看监控',
   MONITORING_EXPORTER: '监控导出器',
+  MONITORING_EXPORTER_VALUE: '监控导出器：{value}',
 
   SELECT_AUTHENTICATION_METHOD: '选择认证方式',
   PORT_CONNECTION_AUTHENTICATION: '端口连接认证。',

@@ -14,7 +14,7 @@
 
     .name {
       float: left;
-      width: 108px;
+      width: 140px;
       padding: 0 5px 0 0;
       color: #5f708a;
       vertical-align: top;
@@ -30,7 +30,7 @@
 
     .value {
       display: block;
-      margin-left: 111px;
+      margin-left: 140px;
       color: $text-color;
       @include break-all;
       white-space: pre-wrap;

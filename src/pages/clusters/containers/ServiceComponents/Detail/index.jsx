@@ -34,7 +34,7 @@ export default class ComponentDetail extends React.Component {
   store = new ComponentStore()
 
   get name() {
-    return 'Service Component'
+    return 'SYSTEM_COMPONENT'
   }
 
   get module() {
@@ -100,7 +100,7 @@ export default class ComponentDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Components'),
+          label: t('SYSTEM_COMPONENT_PL'),
           url: this.listUrl,
         },
       ],

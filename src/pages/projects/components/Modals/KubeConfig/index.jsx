@@ -88,7 +88,7 @@ export default class KubeConfigModal extends React.Component {
         </div>
         <div className={styles.footer}>
           <Button type="default" onClick={onCancel}>
-            {t('Cancel')}
+            {t('CANCEL')}
           </Button>
           <CopyToClipboard text={data} onCopy={this.handleCopy}>
             <Button type="control">{t('COPY')}</Button>

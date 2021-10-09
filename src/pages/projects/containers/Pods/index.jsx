@@ -49,7 +49,7 @@ export default class Pods extends React.Component {
       {
         key: 'viewYaml',
         icon: 'eye',
-        text: t('View YAML'),
+        text: t('VIEW_YAML'),
         action: 'view',
         onClick: item =>
           trigger('resource.yaml.edit', {

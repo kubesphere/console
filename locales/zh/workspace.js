@@ -45,7 +45,7 @@ module.exports = {
 
   'Project Number': '项目数量',
   'DevOps Project Number': 'DevOps 工程数量',
-  EDIT_QUOTA: '编辑配额',
+  EDIT_QUOTAS: '编辑配额',
 
   EDIT_WORKSPACE_QUOTA: '编辑企业空间配额',
   'Edit Workspace Quota': '企业空间配额',

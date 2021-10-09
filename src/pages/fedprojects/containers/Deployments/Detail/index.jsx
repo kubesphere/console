@@ -46,7 +46,7 @@ export default class DeploymentDetail extends React.Component {
   }
 
   get name() {
-    return 'Deployment'
+    return 'DEPLOYMENT'
   }
 
   get listUrl() {
@@ -76,7 +76,7 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -88,7 +88,7 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'editConfigTemplate',
       icon: 'storage',
-      text: t('Edit Config Template'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('federated.workload.template.edit', {
@@ -173,7 +173,7 @@ export default class DeploymentDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('DEPLOYMENTS'),
+          label: t('DEPLOYMENT_PL'),
           url: this.listUrl,
         },
       ],

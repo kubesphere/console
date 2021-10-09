@@ -28,7 +28,7 @@ const PATH = '/:workspace/federatedprojects/:namespace/applications/:name'
 export default [
   {
     path: `${PATH}/components`,
-    title: 'Application Components',
+    title: 'RESOURCE_STATUS',
     component: AppComponents,
     exact: true,
   },

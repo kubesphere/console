@@ -79,7 +79,7 @@ export default class DevOpsEditModal extends React.Component {
     return (
       <Modal.Form
         width={691}
-        title={t('EDIT_INFO')}
+        title={t('EDIT_INFORMATION')}
         icon="pen"
         data={detail}
         onOk={this.handleOk}

@@ -116,7 +116,7 @@ class BaseInfo extends React.Component {
         key: 'edit',
         icon: 'pen',
         action: 'edit',
-        text: t('EDIT_INFO'),
+        text: t('EDIT_INFORMATION'),
       },
       {
         key: 'delete',

@@ -126,7 +126,7 @@ export default class EditBasicInfoModal extends React.Component {
         description={t('EDIT_CLUSTER_INFO_DESC')}
         icon="cluster"
         onOk={this.handleOk}
-        okText={t('Update')}
+        okText={t('OK')}
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}

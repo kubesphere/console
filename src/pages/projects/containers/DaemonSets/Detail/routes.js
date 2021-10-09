@@ -34,7 +34,7 @@ export default path => [
   },
   {
     path: `${path}/revision-control`,
-    title: 'Revision Records',
+    title: 'REVISION_RECORDS',
     component: RevisionControl,
     exact: true,
   },
@@ -46,7 +46,7 @@ export default path => [
   },
   {
     path: `${path}/monitors`,
-    title: 'Monitoring',
+    title: 'MONITORING',
     component: Monitoring,
     exact: true,
   },

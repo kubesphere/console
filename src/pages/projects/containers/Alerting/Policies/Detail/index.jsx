@@ -50,7 +50,7 @@ export default class AlertPolicyDetail extends React.Component {
   }
 
   get name() {
-    return 'alerting policy'
+    return 'ALERTING_POLICY'
   }
 
   get type() {
@@ -176,7 +176,7 @@ export default class AlertPolicyDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('ALERTING_POLICIES'),
+          label: t('ALERTING_POLICY_PL'),
           url: this.listUrl,
         },
       ],

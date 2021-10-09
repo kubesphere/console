@@ -23,8 +23,8 @@ module.exports = {
   GRAY_RELEASE_STRATEGY_SI: 'Grayscale Release Strategy',
   TOTAL_GRAY_RELEASE_JOB: '共計 {num} 個灰度任務',
   TOTAL_GRAY_RELEASE_JOBS: '共計 {num} 個灰度任務',
-  NO_GRAY_RELEASE_JOBS_TIP: '沒有找到灰度發佈任務',
-  NO_GRAY_RELEASE_JOBS_TIP_2: '請創建一個灰度發布任務。',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND: '沒有找到灰度發佈任務',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: '請創建一個灰度發布任務。',
 
   BLUE_GREEN_DEPLOYMENT: '藍綠部署',
   CANARY_RELEASE: '金絲雀發佈',
@@ -137,8 +137,6 @@ module.exports = {
     '您需要選擇一個下線版本，系統會保留一個可用版本並且自動將流量全部切換至該可用版本，保證服務正常運行。',
   JOB_OFFLINE_INFO: '現在可下線任務, 版本 {version} 將被移除。',
 
-  GRAY_RELEASE_DESC:
-    'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
   GRAYSCALE_RELEASE_DESC:
     'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
 

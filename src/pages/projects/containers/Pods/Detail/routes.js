@@ -34,7 +34,7 @@ export default path => [
   },
   {
     path: `${path}/schedule`,
-    title: 'Scheduling Info',
+    title: 'SCHEDULING_INFORMATION',
     component: ScheduleInfo,
   },
   {
@@ -45,7 +45,7 @@ export default path => [
   },
   {
     path: `${path}/monitors`,
-    title: 'Monitoring',
+    title: 'MONITORING',
     component: Monitoring,
     exact: true,
   },

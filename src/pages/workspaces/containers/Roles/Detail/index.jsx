@@ -50,7 +50,7 @@ export default class RoleDetail extends React.Component {
   }
 
   get name() {
-    return 'Workspace Role'
+    return 'WORKSPACE_ROLE'
   }
 
   get listUrl() {
@@ -77,7 +77,7 @@ export default class RoleDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>

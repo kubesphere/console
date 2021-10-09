@@ -36,7 +36,7 @@ module.exports = {
   Cluster: '集群',
   Member: '成员',
 
-  EDIT_PERMISSION: '编辑权限',
+  EDIT_PERMISSIONS: '编辑权限',
   WORKSPACE_ROLE_NAME_TIP: '角色的名称将作为角色的唯一标识符。',
 
   'Create Project Role': '创建项目角色',

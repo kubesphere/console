@@ -515,7 +515,7 @@ export default class StepsEditor extends React.Component {
           )}
         </div>
         <div className={styles.footer}>
-          <Button onClick={this.cancelFocus}>{t('Confirm')}</Button>
+          <Button onClick={this.cancelFocus}>{t('OK')}</Button>
         </div>
         {isAddingStep ? (
           <StepsSelector

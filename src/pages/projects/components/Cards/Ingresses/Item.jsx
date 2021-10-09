@@ -51,7 +51,11 @@ const Card = ({ detail, gateway, prefix }) => {
         <Icon name="loadbalancer" size={40} />
         <div className={styles.text}>
           <Link to={`${prefix}/ingresses/${detail.name}`}>{detailName}</Link>
-          <p>hostname: {detail.rules.map(rule => rule.host).join(', ')}</p>
+          <p>
+            {t('DOMAIN_NAME_VALUE', {
+              value: detail.rules.map(rule => rule.host).join(', '),
+            })}
+          </p>
         </div>
       </div>
       <ul className={styles.rules}>
@@ -65,10 +69,7 @@ const Card = ({ detail, gateway, prefix }) => {
 
           return rule.http.paths.map(path => (
             <li key={`${rule.host}${path.path}`}>
-              <span>
-                {t('Url')}
-                :&nbsp;&nbsp;&nbsp;&nbsp;
-              </span>
+              <span>URL:&nbsp;&nbsp;</span>
               <span>
                 <strong>
                   {host}

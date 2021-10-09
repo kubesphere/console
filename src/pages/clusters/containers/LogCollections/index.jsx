@@ -99,17 +99,17 @@ export default class LogCollection extends React.Component {
       options: [
         {
           value: 'logging',
-          label: t('LOGGING'),
+          label: t('CONTAINER_LOGS'),
           hidden: !globals.app.hasClusterModule(this.cluster, 'logging'),
         },
         {
           value: 'events',
-          label: t('EVENT_PL'),
+          label: t('RESOURCE_EVENTS'),
           hidden: !globals.app.hasClusterModule(this.cluster, 'events'),
         },
         {
           value: 'auditing',
-          label: t('AUDITING'),
+          label: t('AUDIT_LOGS'),
           hidden: !globals.app.hasClusterModule(this.cluster, 'auditing'),
         },
       ],
@@ -235,7 +235,7 @@ export default class LogCollection extends React.Component {
         <Banner
           className={styles.header}
           icon="file"
-          title={t('LOG_COLLECTION')}
+          title={t('LOG_RECEIVER_PL')}
           description={t('LOG_COLLECTION_DESC')}
           tabs={this.tabs}
           extra={

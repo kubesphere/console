@@ -73,7 +73,7 @@ export default class StatefulSets extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -93,7 +93,7 @@ export default class StatefulSets extends React.Component {
       {
         key: 'redeploy',
         icon: 'restart',
-        text: t('REDEPLOY'),
+        text: t('RECREATE'),
         action: 'edit',
         onClick: item =>
           trigger('workload.redeploy', {

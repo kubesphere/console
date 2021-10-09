@@ -198,7 +198,7 @@ export default {
             })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('Redeploy Successfully')}` })
+              Notify.success({ content: t('RECREATE_SUCCESS_DESC') })
             })
         },
         detail,

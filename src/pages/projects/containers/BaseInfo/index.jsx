@@ -126,7 +126,7 @@ class BaseInfo extends React.Component {
         key: 'edit',
         icon: 'pen',
         action: 'edit',
-        text: t('EDIT_INFO'),
+        text: t('EDIT_INFORMATION'),
         onClick: () =>
           this.trigger('resource.baseinfo.edit', {
             detail,
@@ -137,7 +137,7 @@ class BaseInfo extends React.Component {
         key: 'edit-default-resource',
         icon: 'pen',
         action: 'edit',
-        text: t('EDIT_DEFAULT_CONTAINER_QUOTA'),
+        text: t('EDIT_DEFAULT_CONTAINER_QUOTAS'),
         onClick: () =>
           this.trigger('project.default.resource', {
             ...this.props.match.params,
@@ -173,7 +173,7 @@ class BaseInfo extends React.Component {
         key: 'edit-quota',
         icon: 'pen',
         action: 'edit',
-        text: t('EDIT_PROJECT_QUOTA'),
+        text: t('EDIT_PROJECT_QUOTAS'),
         onClick: () =>
           this.trigger('project.quota.edit', {
             detail,

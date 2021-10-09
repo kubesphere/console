@@ -49,7 +49,7 @@ export default class OPAppDetail extends React.Component {
   }
 
   get name() {
-    return 'Application'
+    return 'APP'
   }
 
   get listUrl() {
@@ -71,7 +71,7 @@ export default class OPAppDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('openpitrix.app.edit', {
@@ -83,7 +83,7 @@ export default class OPAppDetail extends React.Component {
     {
       key: 'editTemplate',
       icon: 'pen',
-      text: t('EDIT_TEMPLATE'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('openpitrix.app.template.edit', {
@@ -117,7 +117,7 @@ export default class OPAppDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -129,7 +129,7 @@ export default class OPAppDetail extends React.Component {
         value: this.renderStatus(),
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: get(detail, 'app.name', '-'),
       },
       {
@@ -149,7 +149,7 @@ export default class OPAppDetail extends React.Component {
         ),
       },
       {
-        name: t('CREATOR'),
+        name: t('CREATED_BY'),
         value: detail.owner,
       },
     ]

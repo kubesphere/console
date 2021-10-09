@@ -92,8 +92,9 @@ module.exports = {
     'Este método es muy útil para comprender si las actualizaciones o mejoras del producto han cumplido con las expectativas. Se puede usar cuando surgen nuevas necesidades y no afectará la estabilidad del negocio.',
   NO_SERVICE_MESH_TIP:
     'Las aplicaciones que no están habilitadas para el Application Governance no se pueden publicar en Grayscale.',
-  NO_GRAY_RELEASE_JOBS_TIP: 'No Grayscale Release Job Found',
-  NO_GRAY_RELEASE_JOBS_TIP_2: 'Please create a grayscale release job.',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND: 'No Grayscale Release Job Found',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC:
+    'Please create a grayscale release job.',
   TOTAL_GRAY_RELEASE_JOB:
     '{num} total de trabajos de liberación en Grayscale Release',
   TOTAL_GRAY_RELEASE_JOBS:
@@ -104,8 +105,6 @@ module.exports = {
     'Introducir la nueva versión en el service-mesh de aplicación existente',
   POLICY_CONFIG_DESC:
     'Versión basada en el ratio de tráfico: de acuerdo con la regla de configuración del ratio de tráfico, la proporción especificada de tráfico se dividirá de la versión original a la versión en Grayscale Release.',
-  GRAY_RELEASE_DESC:
-    'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
   GRAYSCALE_RELEASE_DESC:
     'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
   GRAY_RELEASE_BY_CONTENT_TIP:

@@ -59,7 +59,7 @@ export default class CodeMode extends React.Component {
           <EditMode ref={this.editor} value={formTemplate} />
         </div>
         <div className={styles.footer}>
-          <Button onClick={onCancel}>{t('Cancel')}</Button>
+          <Button onClick={onCancel}>{t('CANCEL')}</Button>
           <Button
             type="control"
             onClick={this.handleCreate}

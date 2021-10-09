@@ -27,7 +27,7 @@ import ExcuteRecords from 'projects/containers/Jobs/Detail/ExcuteRecords'
 export default path => [
   {
     path: `${path}/records`,
-    title: 'Execution Records',
+    title: 'JOB_RECORDS',
     component: ExcuteRecords,
     exact: true,
   },
@@ -49,6 +49,6 @@ export default path => [
     component: EnvVariables,
     exact: true,
   },
-  { path: `${path}/events`, title: 'Events', component: Events, exact: true },
+  { path: `${path}/events`, title: 'EVENT_PL', component: Events, exact: true },
   getIndexRoute({ path, to: `${path}/records`, exact: true }),
 ]

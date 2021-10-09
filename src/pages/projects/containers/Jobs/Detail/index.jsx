@@ -51,7 +51,7 @@ export default class JobDetail extends React.Component {
   }
 
   get name() {
-    return 'Job'
+    return 'JOB'
   }
 
   get routing() {
@@ -74,7 +74,7 @@ export default class JobDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -163,7 +163,7 @@ export default class JobDetail extends React.Component {
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('CREATOR'),
+        name: t('CREATED_BY'),
         value: detail.creator,
       },
     ]
@@ -188,7 +188,7 @@ export default class JobDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(`${this.name}s`),
+          label: t(`${this.name}_PL`),
           url: this.listUrl,
         },
       ],

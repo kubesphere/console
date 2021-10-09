@@ -66,7 +66,7 @@ export default class ServiceCard extends React.Component {
               {name}
             </Link>
           }
-          description={service.type}
+          description={t(service.type)}
         />
       </div>
     )
@@ -74,7 +74,7 @@ export default class ServiceCard extends React.Component {
 
   render() {
     const { className } = this.props
-    const title = this.props.title || t('Service')
+    const title = this.props.title || t('SERVICE_PL')
 
     return (
       <Panel className={classnames(styles.main, className)} title={title}>

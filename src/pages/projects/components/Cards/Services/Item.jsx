@@ -60,7 +60,9 @@ export default class ServiceItem extends React.Component {
               <Link to={`${prefix}/services/${detail.name}`}>{detailName}</Link>
               {serviceMonitor && (
                 <Tooltip
-                  content={`${t('MONITORING_EXPORTER')}: ${serviceMonitor}`}
+                  content={t('MONITORING_EXPORTER_VALUE', {
+                    value: serviceMonitor,
+                  })}
                 >
                   <Icon className="margin-l8" name="monitor" size={20} />
                 </Tooltip>

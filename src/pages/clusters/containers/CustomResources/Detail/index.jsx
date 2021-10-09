@@ -45,7 +45,7 @@ export default class CustomResourceDetail extends React.Component {
   }
 
   get name() {
-    return 'Custom Resource Definition'
+    return 'CRD'
   }
 
   get listUrl() {
@@ -101,7 +101,7 @@ export default class CustomResourceDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(`${this.name}s`),
+          label: t(`${this.name}_PL`),
           url: this.listUrl,
         },
       ],

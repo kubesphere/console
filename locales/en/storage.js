@@ -47,6 +47,7 @@ module.exports = {
   PersistentVolumes: 'PersistentVolumes',
   RECLAIM_POLICY: 'Reclaim Policy',
   CREATE: 'Create',
+  UPDATE: 'Update',
   Scalable: 'Scalable',
   SET_AS_DEFAULT_STORAGE_CLASS: 'Set as Default Storage Class',
   'Snapshot Message': 'Snapshot Message',
@@ -121,7 +122,7 @@ module.exports = {
   VOLUME_SETTINGS_DESC:
     'Fill in the capacity of the volume as needed, and the volume size and access mode must be compatible with the storage class and storage server capabilities. The access mode is usually selected as RWO.',
   VOLUME_STORAGE_CLASS_DESC:
-    'Select a storage class to create a specific type of volume.',
+    'Select a storage class to create a specific type of volumes.',
 
   PROVISIONER_DESC: 'Provide backend storage',
   INODE_USAGE_RATE: 'Inode Usage',

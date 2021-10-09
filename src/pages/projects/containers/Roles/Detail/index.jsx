@@ -46,7 +46,7 @@ export default class RoleDetail extends React.Component {
   }
 
   get name() {
-    return 'Project Role'
+    return 'PROJECT_ROLE'
   }
 
   get routing() {
@@ -75,7 +75,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_INFO'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showEdit,
         onClick: () =>

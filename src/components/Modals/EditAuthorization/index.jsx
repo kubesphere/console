@@ -173,7 +173,7 @@ export default class EditAuthorizationModal extends React.Component {
 
     return (
       <Modal
-        title={title || t('EDIT_PERMISSION')}
+        title={title || t('EDIT_PERMISSIONS')}
         icon="role"
         onCancel={onCancel}
         onOk={this.handleOk}

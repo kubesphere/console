@@ -462,7 +462,7 @@ export default class PolicyForm extends React.Component {
         {this.renderPool()}
         {this.renderCircuit()}
         <div className="text-right margin-t12">
-          <Button onClick={this.handleCancel}>{t('Cancel')}</Button>
+          <Button onClick={this.handleCancel}>{t('CANCEL')}</Button>
           <Button
             type="primary"
             htmlType="submit"

@@ -65,7 +65,6 @@ class PodsResourceStatus extends React.Component {
 
     return (
       <VolumesCard
-        title={t('Storage Device')}
         volumes={volumes}
         containers={containers}
         loading={this.store.isLoading}

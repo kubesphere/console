@@ -239,8 +239,8 @@ export default class Routes extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.step}>
-          <div>{t('EXTERNAL_ACCESS')}</div>
-          <p>{t('EXTERNAL_ACCESS_DESC')}</p>
+          <div>{t('ROUTE_SETTINGS')}</div>
+          <p>{t('ROUTE_SETTINGS_DESC')}</p>
         </div>
         <div className={styles.title}>{t('ROUTING_RULES')}</div>
         <div className={styles.rules}>

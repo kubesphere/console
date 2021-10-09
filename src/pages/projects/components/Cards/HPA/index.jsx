@@ -179,14 +179,14 @@ export default class HPACard extends React.Component {
 
   render() {
     const { className, loading } = this.props
-    const title = this.props.title || t('HORIZONTAL_POD_AUTOSCALING')
+    const title = this.props.title || t('AUTOSCALING')
 
     return (
       <Card
         className={classnames(styles.main, className)}
         title={title}
         operations={this.renderOperations()}
-        empty={t('NOT_ENABLE', { resource: t('HORIZONTAL_POD_AUTOSCALING') })}
+        empty={t('NOT_ENABLE', { resource: t('AUTOSCALING') })}
         loading={loading}
       >
         {this.renderContent()}

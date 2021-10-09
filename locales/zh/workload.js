@@ -26,6 +26,8 @@ module.exports = {
   WORKLOAD_LOW: '工作负载',
   Workloads: '工作负载',
   IMAGE_TIME_SIZE_LAYER: '更新于 {time}',
+  IMAGE_TIME_SIZE_LAYER_PL: '更新于 {time}，{size}，{layer} 层',
+  IMAGE_TIME_SIZE_LAYER_SI: '更新于 {time}，{size}，{layer} 层',
   CPU_REQUEST: 'CPU 预留',
   CPU_LIMIT: 'CPU 限制',
   CPU_REQUEST_SCAP: 'CPU 预留',
@@ -60,11 +62,11 @@ module.exports = {
   'Available number of nodes scheduled': '可用节点数',
   'Desired number of nodes scheduled': '期望节点数',
   'Current number of nodes scheduled': '当前节点数',
-  'View YAML': '查看配置文件',
-  EDIT_YAML: '编辑配置文件',
+  VIEW_YAML: '查看 YAML',
+  EDIT_YAML: '编辑 YAML',
   YAML_FILE: 'YAML 文件',
   'Add Labels': '添加标签',
-  EDIT_LABEL: '编辑标签',
+  EDIT_LABELS: '编辑标签',
   POD_REPLICAS: '容器组副本数量',
   DEFAULT_RULES: '默认规则',
   DEFAULT_RULES_DESC: '按照默认的规则将容器组副本调度到节点。',
@@ -78,6 +80,7 @@ module.exports = {
   CONTAINER_LOGS: '容器日志',
   'Resource Info': '资源信息',
   'Node Name': '节点名称',
+  NODE_NAME: '节点名称',
   POD_IP_ADDRESS: '容器组 IP 地址',
   POD_IP_ADDRESS_SCAP: '容器组 IP 地址',
   IMAGE: '镜像',
@@ -132,6 +135,7 @@ module.exports = {
   PROJECT_REMAINING_QUOTAS: '项目剩余配额',
   WORKSPACE_REMAINING_QUOTAS: '企业空间剩余配额',
   QUOTA_OVERCOST_TIP: '当前资源占用已超过剩余配额',
+  QOS_CLASS: 'QoS 类别',
 
   'Resource Request': '资源预留',
   'Resource Limit': '资源限制',
@@ -285,6 +289,7 @@ module.exports = {
   SCHEDULE_AWAY_FROM_TARGET: '远离目标调度',
   RULE_NOT_COMPLETE: '请设置完整规则。',
   SESSION_AFFINITY: '会话亲和性',
+  SELECTOR: '选择器',
   'environment variables': '环境变量',
   ADD_ENVIRONMENT_VARIABLE: '添加环境变量',
   'Read Write Mode': '读写模式',
@@ -323,12 +328,12 @@ module.exports = {
   WORKLOAD_PORT_NAME_DESC:
     '端口名称只能包含小写字母、数字及分隔符（-），且必须以小写字母或数字开头及结尾，最长 15 个字符。',
 
-  CPU_REQUEST_TARGET_DESC:
-    '当 CPU 使用率超过或低于此目标值时，将添加或删除副本',
-  MEMORY_REQUEST_TARGET_DESC:
-    '当内存使用量超过或低于此目标值时，将添加或删除副本',
-  MIN_REPLICAS_DESC: '弹性伸缩可以设置的副本数量的下限',
-  MAX_REPLICAS_DESC: '副本数量的上限',
+  TARGET_CPU_USAGE_DESC:
+    '当实际 CPU 用量大于/小于目标值时，系统自动减少/增加容器组副本数量。',
+  TARGET_MEMORY_USAGE_DESC:
+    '当实际内存用量大于/小于目标值时，系统自动减少/增加容器组副本数量。',
+  MINIMUM_REPLICAS_DESC: '设置允许的最小容器组副本数量，默认值为 1。',
+  MAXIMUM_REPLICAS_DESC: '设置允许的最大容器组副本数量，默认值为 1。',
   REPLICAS_PLACEHOLDER: '默认值: 1',
 
   DEPLOYMENTS_BASEINFO_DESC:
@@ -389,20 +394,29 @@ module.exports = {
   'Rollback Revisions': '回退版本',
   'Current Revision': '当前版本',
   'Execution Records': '执行记录',
+  REVISION_RECORD: '修改记录',
+  ROLL_BACK: '回退',
+  EDIT_AUTOSCALING: '编辑自动伸缩',
+  TARGET_REVISION_RECORD: '目标修改记录',
+  CURRENT_REVISION_RECORD: '当前修改记录',
+  RUNNING_RECORDS: '运行记录',
   'Cluster Resource Status': '集群资源状态',
   RESOURCE_STATUS: '资源状态',
   RESOURCE_NAME: '资源名称',
   'Config Template': '配置模板',
   'Edit Config Template': '编辑配置模板',
+  EDIT_SETTINGS: '编辑设置',
+  EDIT_APP_SETTINGS: '编辑应用设置',
   ENVIRONMENT_VARIABLE_PL: '环境变量',
   ENVIRONMENT_VARIABLE: '环境变量',
   'File List': '文件列表',
   RERUN: '重新执行',
   ENTER_SCHEDULE_TIP: '请选择定时计划。',
 
-  'Please select rollback revision': '请选择回退版本',
+  TARGET_REVISION_EMPTY_DESC: '请选择目标修改记录。',
 
   HORIZONTAL_POD_AUTOSCALING: '容器组水平自动扩缩',
+  AUTOSCALING: '自动伸缩',
   'Container Config': '容器配置',
   EDGENODE_CONFIG_COMMAND: '边缘节点配置命令',
   PROBE_PL: '探针',
@@ -420,9 +434,9 @@ module.exports = {
   WORKER_CONTAINER: '工作容器',
   'Request Type': '请求类型',
 
-  MAXIMUM_DELAY: '启动延后最大时间（s）',
-  SUCCESSFUL_JOBS_RETAINED: '保留成功任务数量',
-  FAILED_JOBS_RETAINED: '保留失败任务数量',
+  MAXIMUM_DELAY: '最大启动延后时间（s）',
+  SUCCESSFUL_JOBS_RETAINED: '成功任务保留数量',
+  FAILED_JOBS_RETAINED: '失败任务保留数量',
   CONCURRENCY_POLICY: '并发策略',
   RUN_JOBS_CONCURRENTLY: '同时运行任务',
   SKIP_NEW_JOB: '跳过新任务',
@@ -437,14 +451,13 @@ module.exports = {
   READINESS_CHECK: '就绪检查',
   STARTUP_CHECK: '启动检查',
 
-  REDEPLOY: '重新部署',
-  'Redeploy Successfully': '重新部署成功',
+  RECREATE: '重新创建',
+  RECREATE_SUCCESS_DESC: '重新创建成功。',
 
-  REDEPLOY_CONFIRM_DESC:
-    '您确定重新部署{type} {resource} 吗？容器组副本将根据更新策略重新部署，同时相关业务将会中断。',
+  RECREATE_CONFIRM_DESC:
+    '您确定重新创建{type} {resource} 吗？容器组副本将会根据更新策略更新，同时相关业务将会中断。',
 
   MORE: '更多操作',
-  VIEW_YAML: '查看 YAML 文件',
 
   REVISION_ROLLBACK_SELECT: '请选择要回退的版本',
   REVISION_TITLE: '{name}版本',
@@ -463,8 +476,8 @@ module.exports = {
   FAILURE_THRESHOLD_DESC:
     '检查成功后再次被视为失败所需的最小连续失败次数。最小值为 1。',
 
-  HPA_MSG:
-    '根据 CPU 和内存使用情况自动伸缩副本。如果同时指定 CPU 和内存，则满足任一条件后即添加或删除副本',
+  CONFIGURE_AUTOSCALING_DESC:
+    '设置系统根据目标 CPU 和内存用量自动调整容器组副本数量。',
   PROBE_MSG:
     'Readiness Probe 检查容器是否准备好处理请求。失败意味着容器不应从代理接收任何流量，即使它正在运行。Liveness Probe 检查配置它的容器是否仍在运行。如果活态探测器失败，则会杀死容器，容器将遵循其重启策略',
   WORKLOAD_REPLICA_MSG:
@@ -493,9 +506,9 @@ module.exports = {
   TARGET_CPU_USAGE: '目标 CPU 用量',
   TARGET_MEMORY_USAGE: '目标内存用量',
   'Current Utilization': '当前使用率',
-  'CPU Target Utilization': 'CPU 目标使用率',
+  TARGET_CPU_USAGE_UNIT: '目标 CPU 用量（%）',
+  TARGET_MEMORY_USAGE_UNIT: '目标内存用量（MiB）',
   'Memory Target Utilization': '内存目标使用率',
-  'Memory Target Usage': '内存目标使用量',
 
   'min replicas number should not be greater than max replicas number':
     '最大副本数应不小于最小副本数',
@@ -624,33 +637,34 @@ module.exports = {
   CENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到同一节点上',
   ADD_CONTAINER_DESC: '自定义容器的设置以创建容器。',
 
-  'Scheduling Info': '调度信息',
-  'Node Scheduling Info': '节点调度信息',
-  'Pod Status Analysis': '容器状态分析',
-  'Current Stage(phase)': '当前阶段(phase)',
-  'Scheduled to node': '调度至节点',
-  'How pods are assinged to nodes?': '容器组如何被调度至节点?',
+  SCHEDULING_INFORMATION: '调度信息',
+  SCHEDULING_RESULT: '调度结果',
+  POD_STATUS_ANALYSIS: '容器状态分析',
+  CURRENT_STATUS: '当前状态',
+  SCHEDULED_TO_NODE: '调度至 {value}',
+  SCHEDULING_NOT_SUCCESSFUL: '调度未成功',
+  POD_SCHEDULING_METHOD: '容器组调度方式',
   'Pod CPU Request': '容器组CPU请求',
   'Pod Memory Request': '容器组内存预留',
 
   SYNC_HOST_TIMEZONE: '同步主机时区',
 
-  POD_CONDITION_INITIALIZED: '初始化完成（Initialized）',
-  POD_CONDITION_INITIALIZED_DESC: '所有 Init 容器都已成功启动',
-  POD_CONDITION_READY: '开始运行（Ready）',
-  POD_CONDITION_READY_DESC: '容器组已经开始运行，并可以通过服务进行访问',
-  POD_CONDITION_CONTAINERSREADY: '容器准备就绪（Containers Ready）',
-  POD_CONDITION_CONTAINERSREADY_DESC: '容器组内容器准备就绪',
-  POD_CONDITION_PODSCHEDULED: '调度成功（Pod Scheduled）',
-  POD_CONDITION_PODSCHEDULED_DESC: '容器组已经被调度到一个节点中',
+  POD_CONDITION_INITIALIZED: '初始化完成',
+  POD_CONDITION_INITIALIZED_DESC: '启动所有初始化容器。',
+  POD_CONDITION_READY: '容器组就绪',
+  POD_CONDITION_READY_DESC: '开始运行并允访问容器组。',
+  POD_CONDITION_CONTAINERSREADY: '所有容器就绪',
+  POD_CONDITION_CONTAINERSREADY_DESC: '启动容器组中的所有容器。',
+  POD_CONDITION_PODSCHEDULED: '容器组调度完成',
+  POD_CONDITION_PODSCHEDULED_DESC: '将容器组调度到集群中的一个节点。',
 
-  POD_REASON_FAILEDCREATE: '创建失败(FailedCreate)',
-  POD_REASON_SUCCESSFULCREATE: '创建成功(SuccessfulCreate)',
-  POD_REASON_FAILEDDELETE: '删除失败(FailedDelete)',
-  POD_REASON_SUCCESSFULDELETE: '删除成功(SuccessfulDelete)',
+  POD_REASON_FAILEDCREATE: '创建失败',
+  POD_REASON_SUCCESSFULCREATE: '创建成功',
+  POD_REASON_FAILEDDELETE: '删除失败',
+  POD_REASON_SUCCESSFULDELETE: '删除成功',
 
   POD_ASSIGNED_DESC:
-    '根据容器组中容器设置的请求值 (即 Request) 作为容器调度时资源分配的判断依据。只有节点上可分配总量 ≥ 容器请求值时，才允许将容器调度到该节点。',
+    '系统根据容器组的资源预留值将容器组调度到具有足够可用资源的节点上。',
 
   CrashLoopBackOff: '容器退出，kubelet 正在将它重启',
   InvalidImageName: '无法解析镜像名称',
@@ -679,22 +693,19 @@ module.exports = {
   ISTIO_PROTOCOL_TIP:
     '选择服务实际使用的协议以充分利用应用治理功能。例如，为 HTTP 服务选择 HTTP 协议。',
 
-  WORKLOAD_CONDITIONS: '状态分析（Conditions）',
-  WORKLOAD_CONDITION_AVAILABLE: '可用性(Available)',
-  WORKLOAD_CONDITION_PROGRESSING: '创建进度(Progressing)',
-  WORKLOAD_REASON_REPLICASETUPDATED: '副本已更新(ReplicaSetUpdated)',
-  WORKLOAD_REASON_REPLICASETCREATEERROR: '新建副本错误(ReplicaSetCreateError)',
-  WORKLOAD_REASON_NEWREPLICASETCREATED: '已创建新副本(NewReplicaSetCreated)',
-  WORKLOAD_REASON_FOUNDNEWREPLICASET: '发现新副本(FoundNewReplicaSet)',
-  WORKLOAD_REASON_NEWREPLICASETAVAILABLE: '可用新副本(NewReplicaSetAvailable)',
-  WORKLOAD_REASON_PROGRESSDEADLINEEXCEEDED:
-    '处理超时(ProgressDeadlineExceeded)',
-  WORKLOAD_REASON_DEPLOYMENTPAUSED: '部署中止(DeploymentPaused)',
-  WORKLOAD_REASON_DEPLOYMENTRESUMED: '部署已恢复(DeploymentResumed)',
-  WORKLOAD_REASON_MINIMUMREPLICASAVAILABLE:
-    '最小副本可用(MinimumReplicasAvailable)',
-  WORKLOAD_REASON_MINIMUMREPLICASUNAVAILABLE:
-    '最小副本不可用(MinimumReplicasUnavailable)',
+  STATUS_INFORMATION: '状态信息',
+  WORKLOAD_CONDITION_AVAILABLE: '可用',
+  WORKLOAD_CONDITION_PROGRESSING: '进行中',
+  WORKLOAD_REASON_REPLICASETUPDATED: '副本集已更新',
+  WORKLOAD_REASON_REPLICASETCREATEERROR: '副本集创建错误',
+  WORKLOAD_REASON_NEWREPLICASETCREATED: '已创建副本集',
+  WORKLOAD_REASON_FOUNDNEWREPLICASET: '发现新副本集',
+  WORKLOAD_REASON_NEWREPLICASETAVAILABLE: '新副本集可用',
+  WORKLOAD_REASON_PROGRESSDEADLINEEXCEEDED: '进程超时',
+  WORKLOAD_REASON_DEPLOYMENTPAUSED: '部署中止',
+  WORKLOAD_REASON_DEPLOYMENTRESUMED: '部署已恢复',
+  WORKLOAD_REASON_MINIMUMREPLICASAVAILABLE: '达到最小可用副本数量',
+  WORKLOAD_REASON_MINIMUMREPLICASUNAVAILABLE: '未达到最小可用副本数量',
   WORKLOAD_REASON_FAILEDCREATE: '创建失败(FailedCreate)',
 
   ReplicaSetUpdated: '副本已更新',
@@ -767,9 +778,9 @@ module.exports = {
   RUN_AS_USER_GROUP_DESC:
     '执行容器进程入口点的 GID。默认为容器运行时的默认 GID',
 
-  COMPARE_WITH: '与上一个版本 {version} 的对比',
-  REVISION_DESC:
-    '对工作负载的资源模板进行修改后会生成一个新的记录并重新调度 容器组（Pod）进行版本的迭代，默认保存10个最近的版本。您可以根据修改记录进行重新部署。',
+  COMPARE_WITH: '与上一个记录 {version} 对比',
+  REVISION_RECORDS_DESC:
+    '系统在工作负载创建或修改后将生成修改记录，可用于回退工作负载设置。最多可保留 10 条修改记录。',
 
   CLUSTER_DIFF_CONTAINER_SETTINGS_DESC: '在不同的集群中使用不同的容器设置。',
   CLUSTER_DIFF_PORT_SETTINGS_DESC: '为不同集群中的容器设置不同的端口。',

@@ -43,7 +43,7 @@ export default class VolumeSnapshotDetail extends React.Component {
   }
 
   get name() {
-    return 'Volume Snapshot'
+    return 'VOLUME_SNAPSHOT'
   }
 
   get module() {

@@ -24,9 +24,10 @@ module.exports = {
     'Add an Internet access rule for the app.',
   'Add New Component': 'Add New Component',
   ADD_SERVICE: 'Add Service',
+  ADD_ROUTE: 'Add Route',
   APP_CREATE_SERVICE_DESC: 'Create a Service for the composed app.',
   CREATE_SERVICE_DESC: 'Select a Service creation method.',
-  'App Description': 'App Description',
+  APP_DESCRIPTION: 'App Description',
   APP_INTRODUCTION: 'App Introduction',
   'App store deployment': 'App store deployment',
   'App Template': 'App Template',
@@ -41,7 +42,7 @@ module.exports = {
     'Click to upload the app icon with a maximum size of 120px * 120px.',
   application: 'application',
   'Application Component': 'Application Component',
-  'Application Components': 'Application Components',
+  APP_COMPONENT_PL: 'Application Components',
   'Application components combine workloads and services as components in applications':
     'Application components combine workloads and services as components in applications',
   APPLICATION_GOVERNANCE: 'Application Governance',
@@ -121,7 +122,11 @@ module.exports = {
   APP_LOW: 'app',
   'Please input component version': 'Please input component version',
   SAVE_FORM_TIP: 'Please save the current settings first.',
-  'Please try other query conditions': 'Please try other query conditions',
+  TRACING_NO_DATA_DESC: 'Please change the search conditions and try again.',
+  NUM_SPAN_SI: '{num} span',
+  NUM_SPAN_PL: '{num} spans',
+  NUM_ERROR_SI: '{num} error',
+  NUM_ERROR_PL: '{num} errors',
   'Pod isolation ratio (unit: %)': 'Pod isolation ratio (unit: %)',
   Process: 'Process',
   Receive: 'Receive',
@@ -142,9 +147,8 @@ module.exports = {
   TCP_OUTBOUND_TRAFFIC: 'TCP: Outbound Traffic',
   'TCP connection timeout.': 'TCP connection timeout.',
   'Temporarily unable to use tracing': 'Tracing is not available now',
-  'Temporarily unable to use traffic management':
-    'Traffic management is not available now',
-  'The app has not received the request for a long time, please visit the app and try traffic management':
+  TRAFFIC_MONITORING_UNAVAILABLE: 'Traffic Monitoring Available',
+  TRAFFIC_MONITORING_UNAVAILABLE_DESC:
     'The app has not received requests for a long time. Please try again later.',
   'The maximum number of HTTP1 or TCP connections to the target host.':
     'The maximum number of HTTP1 or TCP connections to the target host.',
@@ -157,7 +161,7 @@ module.exports = {
   TOTAL_COLLECTIONS: 'Total {num} receivers',
   Traffic: 'Traffic',
   'Traffic (requests per second)': 'Traffic (requests per second)',
-  'Traffic Entry': 'Traffic Entry',
+  TRAFFIC_ENTRY: 'Traffic Entry',
   'Traffic Management': 'Traffic Management',
   'Traffic Monitoring': 'Traffic Monitoring',
   Upgrade: 'Upgrade',
@@ -202,7 +206,7 @@ module.exports = {
   CIRCUIT_DESC:
     'The circuit breaking is a microservice connection protection mechanism that addresses the avalanche effect. When a microservice of the fan-out connection is unavailable or the response time is too long, the service will be downgraded, and the call of the microservice of the node will be broken, and the error response is quickly returned. After detectin the microservice response is normal, the connection will be resumed. ',
 
-  'Last {num} records': 'Last {num} records',
+  LAST_NUM_RECORDS: 'Last {num} records',
   'Last {hour} hour': 'Last {hour} hour',
   'Last {hour} hours': 'Last {hour} hours',
   'Last {day} days': 'Last {day} days',
@@ -239,7 +243,6 @@ module.exports = {
 
   APPLICATION_SERVICE_DESC:
     'Add stateful or stateless Services to the app based on your requirements.',
-
-  EXTERNAL_ACCESS_DESC:
-    'Set routing rules for the app so that the app can be accessed from outside the cluster.',
+  ROUTE_SETTINGS: 'Route Settings',
+  ROUTE_SETTINGS_DESC: 'Set routing rules for the app.',
 }

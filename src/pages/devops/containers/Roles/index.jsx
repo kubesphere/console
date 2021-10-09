@@ -67,7 +67,7 @@ export default class Secrets extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -79,7 +79,7 @@ export default class Secrets extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('EDIT_PERMISSION'),
+        text: t('EDIT_PERMISSIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>

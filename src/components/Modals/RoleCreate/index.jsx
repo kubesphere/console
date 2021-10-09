@@ -128,7 +128,7 @@ export default class CreateModal extends React.Component {
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.showEditAuthorization}
-        okText={t('EDIT_PERMISSION')}
+        okText={t('EDIT_PERMISSIONS')}
         visible={visible}
       >
         <Form.Item

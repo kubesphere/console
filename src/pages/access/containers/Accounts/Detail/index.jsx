@@ -49,7 +49,7 @@ export default class AccountDetail extends React.Component {
   }
 
   get name() {
-    return 'Account'
+    return 'USER'
   }
 
   get listUrl() {
@@ -80,7 +80,7 @@ export default class AccountDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_USER'),
+      text: t('EDIT'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>

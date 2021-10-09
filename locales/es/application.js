@@ -24,9 +24,10 @@ module.exports = {
     'Agregar regla de acceso a Internet para la aplicación',
   'Add New Component': 'Agregar nuevo componente',
   ADD_SERVICE: 'Agregar servicio',
+  ADD_ROUTE: 'Add Route',
   APP_CREATE_SERVICE_DESC: 'Agregar servicios con o sin estado',
   CREATE_SERVICE_DESC: 'Select a Service creation method.',
-  'App Description': 'Descripción de la aplicación',
+  APP_DESCRIPTION: 'Descripción de la aplicación',
   APP_INTRODUCTION: 'App Introduction',
   'App store deployment': 'Despliegue desde la tienda de aplicaciones',
   'App Template': 'Plantilla de la aplicación',
@@ -41,7 +42,7 @@ module.exports = {
     'Click to upload the app icon with a maximum size of 120px * 120px.',
   application: 'aplicación',
   'Application Component': 'Componente de aplicación',
-  'Application Components': 'Componentes de la aplicación',
+  APP_COMPONENT_PL: 'Componentes de la aplicación',
   'Application components combine workloads and services as components in applications':
     'Los componentes de la aplicación combinan workload y servicios como componentes en las aplicaciones.',
   APPLICATION_GOVERNANCE: 'Gestión de aplicación',
@@ -126,8 +127,11 @@ module.exports = {
   'Please input component version':
     'Por favor introduce la versión del componente',
   SAVE_FORM_TIP: 'Por favor guarda el formulario actual primero',
-  'Please try other query conditions':
-    'Por favor prueba otras condiciones en la consulta',
+  TRACING_NO_DATA_DESC: 'Por favor prueba otras condiciones en la consulta',
+  NUM_SPAN_SI: '{num} span',
+  NUM_SPAN_PL: '{num} spans',
+  NUM_ERROR_SI: '{num} error',
+  NUM_ERROR_PL: '{num} errors',
   'Pod isolation ratio (unit: %)': 'Relación de aislamiento del Pod (unidad:%)',
   Process: 'Proceso',
   Receive: 'Recibir',
@@ -149,9 +153,9 @@ module.exports = {
   'TCP connection timeout.': 'Tiempo de espera de conexión TCP.',
   'Temporarily unable to use tracing':
     'No se puede usar el servicio de tracing temporalmente',
-  'Temporarily unable to use traffic management':
+  TRAFFIC_MONITORING_UNAVAILABLE:
     'No se puede utilizar la gestión del tráfico temporalmente.',
-  'The app has not received the request for a long time, please visit the app and try traffic management':
+  TRAFFIC_MONITORING_UNAVAILABLE_DESC:
     'La aplicación no ha recibido una solicitud durante mucho tiempo, visita la aplicación y prueba el gestor de tráfico',
   'The maximum number of HTTP1 or TCP connections to the target host.':
     'El número máximo de conexiones HTTP1 o TCP al host de destino.',
@@ -164,7 +168,7 @@ module.exports = {
   TOTAL_COLLECTIONS: 'Total {num} receivers',
   Traffic: 'Tráfico',
   'Traffic (requests per second)': 'Tráfico (solicitudes por segundo)',
-  'Traffic Entry': 'Entrada de tráfico',
+  TRAFFIC_ENTRY: 'Entrada de tráfico',
   'Traffic Management': 'Gestión del tráfico',
   'Traffic Monitoring': 'Monitorización de tráfico',
   Upgrade: 'Subir de versión',
@@ -199,7 +203,7 @@ module.exports = {
     'Duración mínima de expulsión. Un host permanecerá expulsado durante un período igual al producto de la duración mínima de expulsión, y la cantidad de veces que se expulsó el host.',
   CIRCUIT_DESC:
     'El corte del circuito es un mecanismo de protección de conexión de microservicio que aborda el efecto de avalancha. Cuando un microservicio del abanico de conexiones no está disponible, o el tiempo de respuesta es demasiado largo, el servicio se degradará y la llamada al microservicio del nodo se interrumpirá y la respuesta de error se devolverá rápidamente. Después de detectar que la respuesta del microservicio es normal, se reanudará la conexión.',
-  'Last {num} records': 'Últimos {num} registros',
+  LAST_NUM_RECORDS: 'Últimos {num} registros',
   'Last {hour} hour': 'Última {hour} hora',
   'Last {hour} hours': 'Últimas {hour} horas',
   'Last {day} days': 'Últimos {day} días',
@@ -231,6 +235,7 @@ module.exports = {
     'El servicio de tracing depende del módulo de microservicios, el clúster actual no tiene habilitado dicho módulo',
   APPLICATION_SERVICE_DESC:
     'Puedes configurar diferentes componentes de servicio basándote en el tipo de servicio dentro de una aplicación. Tanto los servicios con estado como los sin estado están soportados.',
-  EXTERNAL_ACCESS_DESC:
+  ROUTE_SETTINGS_DESC:
     'Puedes definir las reglas de acceso a internet para la aplicación (Ingress).',
+  ROUTE_SETTINGS: 'Route Settings',
 }

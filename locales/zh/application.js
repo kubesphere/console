@@ -42,7 +42,7 @@ module.exports = {
 
   APP_VERSION: '应用版本',
   APPLICATION_GOVERNANCE: '应用治理',
-  'Application Components': '应用组件',
+  APP_COMPONENT_PL: '应用组件',
   'Application Component': '应用组件',
   'Application Route': '应用路由',
   'Traffic Management': '流量治理',
@@ -62,6 +62,7 @@ module.exports = {
     '示例应用可以帮助您快速入手应用创建, 以及应用治理功能',
 
   ADD_SERVICE: '添加服务',
+  ADD_ROUTE: '添加应用路由',
   'Add Component': '添加组件',
   'Edit Component': '编辑组件',
   'Add New Component': '添加新组件',
@@ -78,8 +79,10 @@ module.exports = {
 
   SERVICE_PORTS: '服务端口',
   'Traffic Entry': '流量入口',
+  'Service Ports': '服务端口',
+  TRAFFIC_ENTRY: '流量入口',
 
-  'App Description': '应用描述',
+  APP_DESCRIPTION: '应用描述',
   APP_INTRODUCTION: '应用介绍',
 
   COMPOSED_APP_PL: '自制应用',
@@ -152,7 +155,7 @@ module.exports = {
   LB_LEAST_CONN: '最小连接数(LEAST_CONN)',
   LB_RANDOM: '随机(RANDOM)',
 
-  'Last {num} records': '最近 {num} 条记录',
+  LAST_NUM_RECORDS: '最近 {num} 条记录',
   'Last {hour} hour': '最近 {hour} 小时',
   'Last {hour} hours': '最近 {hour} 小时',
   'Last {day} days': '最近 {day} 天',
@@ -161,19 +164,20 @@ module.exports = {
 
   SERVICE_DEPLOYMENT: '无状态服务（部署）',
   SERVICE_STATEFULSET: '有状态服务（有状态副本集）',
-
-  'Temporarily unable to use traffic management': '暂时无法使用流量治理',
+  TRAFFIC_MONITORING_UNAVAILABLE: '流量监控不可用',
   'Temporarily unable to use tracing': '暂时无法使用 Tracing',
-  'The app has not received the request for a long time, please visit the app and try traffic management':
-    '应用长时间未收到请求，请访问应用后尝试流量治理',
+  TRAFFIC_MONITORING_UNAVAILABLE_DESC: '应用长时间未收到请求，请稍后重试。',
   'Application components combine workloads and services as components in applications':
     '应用组件组合了工作负载和服务作为应用中的组件',
   'If you need to access applications by application route, add routing rules':
     '如果您需要将应用通过应用路由的方式进行访问，请添加路由规则',
 
   'No result found': '未查询到结果',
-  'Please try other query conditions': '请尝试其它查询条件',
-
+  TRACING_NO_DATA_DESC: '请修改搜索条件后重试。',
+  NUM_SPAN_SI: '{num} span',
+  NUM_SPAN_PL: '{num} spans',
+  NUM_ERROR_SI: '{num} 错误',
+  NUM_ERROR_PL: '{num} 错误',
   'Deploy sample app Bookinfo': '部署示例应用 Bookinfo',
   SAVE_FORM_TIP: '请先保存当前设置。',
   'Add Component Successfully': '添加组件成功',
@@ -246,8 +250,8 @@ module.exports = {
   APP_CREATE_SERVICE_DESC: '为自制应用创建一个服务。',
   CREATE_SERVICE_DESC: '选择创建服务的方式。',
   'Add an Internet access rule for the application': '为应用添加外网访问规则',
-
-  EXTERNAL_ACCESS_DESC: '为应用设置路由规则以从集群外访问应用。',
+  ROUTE_SETTINGS: '路由设置',
+  ROUTE_SETTINGS_DESC: '为应用设置路由规则。',
 
   'Microservice enabled': '微服务已启用',
   'Microservice not enabled': '微服务未启用',

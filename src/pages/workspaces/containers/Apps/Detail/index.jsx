@@ -61,7 +61,7 @@ export default class RoleDetail extends React.Component {
   }
 
   get name() {
-    return 'Apps'
+    return 'APP'
   }
 
   get workspace() {
@@ -86,7 +86,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'editApp',
         type: 'control',
-        text: t('EDIT_INFO'),
+        text: t('EDIT'),
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.edit', {

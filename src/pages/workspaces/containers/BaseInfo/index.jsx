@@ -222,7 +222,7 @@ class BaseInfo extends React.Component {
           />
           {this.enabledActions.includes('manage') && (
             <Button className={styles.action} onClick={this.showEdit}>
-              {t('EDIT_INFO')}
+              {t('EDIT_INFORMATION')}
             </Button>
           )}
         </div>

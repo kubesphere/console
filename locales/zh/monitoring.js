@@ -126,6 +126,8 @@ module.exports = {
   AVERAGE: '平均值',
   TOTAL_AVERAGE: '总均值',
   SUCCESS: '成功',
+  SUCCESSFUL: '未成功',
+  NOT_SUCCESSFUL: '未成功',
   ERROR: '错误',
   FAILURE: '失败',
   ETCD_NODE_TITLE: 'ETCD节点',
@@ -233,7 +235,8 @@ module.exports = {
   WARNING: '异常',
   REST_CREATE: 'CREATE',
   REST_DELETE: 'DELETE',
-  NODE_IP_ADDRESS: '节点 IP 地址：{value}',
+  NODE_IP_ADDRESS_VALUE: '节点 IP 地址：{value}',
+  NODE_IP_ADDRESS: '节点 IP 地址',
 
   // Application Resources
   WORKSPACES: '企业空间',

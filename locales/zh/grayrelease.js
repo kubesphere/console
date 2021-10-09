@@ -23,8 +23,8 @@ module.exports = {
   GRAY_RELEASE_STRATEGY_SI: '灰度策略',
   TOTAL_GRAY_RELEASE_JOB: '共计 {num} 个灰度任务',
   TOTAL_GRAY_RELEASE_JOBS: '共计 {num} 个灰度任务',
-  NO_GRAY_RELEASE_JOBS_TIP: '没有找到灰度发布任务',
-  NO_GRAY_RELEASE_JOBS_TIP_2: '请创建一个灰度发布任务。',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND: '没有找到灰度发布任务',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: '请创建一个灰度发布任务。',
 
   BLUE_GREEN_DEPLOYMENT: '蓝绿部署',
   CANARY_RELEASE: '金丝雀发布',
@@ -92,7 +92,7 @@ module.exports = {
   UNSUPPORTED_WORKLOAD_TYPE: '不支持该工作负载类型',
   NO_WORKLOAD_FOUND_TIP: '未找到工作负载',
 
-  CREATE_GRAYSCALE_RELEASE_JOB: '创建灰度任务',
+  CREATE_GRAYSCALE_RELEASE_JOB: '创建灰度发布任务',
 
   GRAYSCALE_ACCESS_RULE: '灰度版本访问规则',
 
@@ -136,11 +136,8 @@ module.exports = {
     '您需要选择一个下线版本，系统会保留一个可用版本并且自动将流量全部切换至该可用版本，保证服务正常运行。',
   JOB_OFFLINE_INFO: '现在可下线任务, 版本 {version} 将被移除。',
 
-  GRAY_RELEASE_DESC:
-    '灰度发布是在生产环境进行应用迭代的一种重要方式。您可以选择不同的发布方法，在应用升级至新版本的过程中实现平滑过渡。',
   GRAYSCALE_RELEASE_DESC:
     '灰度发布是在生产环境进行应用迭代的一种重要方式。您可以选择不同的发布方法，在应用升级至新版本的过程中实现平滑过渡。',
-
   GRAY_RELEASE_BY_CONTENT_TIP:
     '根据请求内容配置规则，只有请求内容中满足特定条件的流量会切分到灰度版本上。该策略只对直接访问入口服务有效。',
 

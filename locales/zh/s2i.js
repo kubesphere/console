@@ -50,7 +50,7 @@ module.exports = {
   IMAGE_TAG: '镜像标签',
   BuilderPullPolicy: '镜像拉取策略',
   builderPullPolicy: '镜像拉取策略',
-  'Job Records': '任务记录',
+  JOB_RECORDS: '任务记录',
   'Source to image jobs': 'S2I 任务',
   S2IJobs: 'S2I 任务',
   'Repo url': '仓库地址',

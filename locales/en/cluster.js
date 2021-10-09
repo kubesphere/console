@@ -40,7 +40,6 @@ module.exports = {
   'Copy successfully': 'Copy successfully',
   'Custom Resources': 'CRDs',
   EDIT_CLUSTER_INFO_DESC: 'Edit basic information of the cluster.',
-  EDIT_INFORMATION: 'Edit Information',
   EDIT_VISIBILITY: 'Edit Visibility',
   'Enter the project': 'Enter the project',
   'Go back': 'Go back',
@@ -123,8 +122,8 @@ module.exports = {
   CHOOSE_PROVIDER_DESC:
     'KubeSphere provides a solution for quickly deploying Kubernetes clusters among mainstream service providers',
 
-  VISIBILITY_PARTIAL: 'Visible to some workspaces',
-  VISIBILITY_PUBLIC: 'Visible to all workspaces',
+  VISIBILITY_PARTIAL: 'Visible to Some Workspaces',
+  VISIBILITY_PUBLIC: 'Visible to All Workspaces',
 
   MULTI_CLUSTER: 'Multi-Clusters',
 
@@ -199,7 +198,7 @@ module.exports = {
   SELECT_HOST_CLUSTER_WARNING:
     'The current system is a multi-cluster system. Please avoid creating resources in the host cluster if possible. Excessive loads in the host cluster will decrease the stability of the multi-cluster system.',
   HOST_CLUSTER_VISIBILITY_WARNING:
-    'The visibility of the multi-cluster environment will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
+    'The stability of the multi-cluster system will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
     'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
 

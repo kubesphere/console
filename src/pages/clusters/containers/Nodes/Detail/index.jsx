@@ -47,7 +47,7 @@ export default class NodeDetail extends React.Component {
   }
 
   get name() {
-    return 'Node'
+    return 'CLUSTER_NODE'
   }
 
   get listUrl() {
@@ -74,7 +74,7 @@ export default class NodeDetail extends React.Component {
       {
         key: 'eidtLabel',
         icon: 'pen',
-        text: t('EDIT_LABEL'),
+        text: t('EDIT_LABELS'),
         action: 'edit',
         onClick: () =>
           this.trigger('node.labels', {
@@ -86,7 +86,7 @@ export default class NodeDetail extends React.Component {
       {
         key: 'taintManagement',
         icon: 'wrench',
-        text: t('EDIT_TAINT'),
+        text: t('EDIT_TAINTS'),
         action: 'edit',
         onClick: () =>
           this.trigger('node.taint', {

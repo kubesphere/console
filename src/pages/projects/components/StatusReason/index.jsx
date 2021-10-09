@@ -43,7 +43,7 @@ export default function StatusReason({
 }) {
   const conditions = (
     <div>
-      <div className="tooltip-title">{t('WORKLOAD_CONDITIONS')}</div>
+      <div className="tooltip-title">{t('STATUS_INFORMATION')}</div>
       <div>
         {get(data, 'status.conditions', []).map(cd => (
           <div key={cd.type} className={styles.condition}>
@@ -65,16 +65,24 @@ export default function StatusReason({
                 })}
               </span>
             </div>
-            {cd.status && <p>{`${t('STATUS')}: ${cd.status}`}</p>}
-            {cd.reason && (
-              <p>{`${t('REASON')}: ${t(
-                `${type.toUpperCase()}_REASON_${cd.reason.toUpperCase()}`,
-                {
-                  defaultValue: cd.reason,
-                }
-              )}`}</p>
+            {cd.status && (
+              <p>
+                {t('STATUS_VALUE', {
+                  value: cd.status === 'True' ? 'True' : 'False',
+                })}
+              </p>
             )}
-            {cd.message && <p>{`${t('MESSAGE')}: ${cd.message}`}</p>}
+            {cd.reason && (
+              <p>
+                {t('REASON_VALUE', {
+                  value: t(
+                    `${type.toUpperCase()}_REASON_${cd.reason.toUpperCase()}`,
+                    { defaultValue: cd.reason }
+                  ),
+                })}
+              </p>
+            )}
+            {cd.message && <p>{t('MESSAGE_VALUE', { value: cd.message })}</p>}
           </div>
         ))}
       </div>

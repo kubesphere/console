@@ -23,6 +23,8 @@ module.exports = {
   REPLICA_LOW_SI: 'replica',
   REPLICA_LOW_PL: 'replicas',
   IMAGE_TIME_SIZE_LAYER: 'Updated {time}',
+  IMAGE_TIME_SIZE_LAYER_PL: 'Updated {time}, {size}, {layer} layers',
+  IMAGE_TIME_SIZE_LAYER_SI: 'Updated {time}, {size}, {layer} layer',
   CPU_REQUEST: 'CPU Request',
   CPU_LIMIT: 'CPU Limit',
   CPU_REQUEST_SCAP: 'CPU request',
@@ -54,6 +56,7 @@ module.exports = {
   CLUSTER_DIFF: 'Cluster Differences',
   PARTITION_ORDINAL_DESC:
     'Set an ordinal to divide the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
+  QOS_CLASS: 'QoS Class',
   'Access Mode': 'Access Mode',
   'Add argument': 'Add argument',
   EDGENODE_CONFIG_COMMAND: 'Edge Node Configuration Command',
@@ -124,7 +127,7 @@ module.exports = {
   ContainerNotReady: 'ContainerNotReady',
   ContainersNotInitialized: 'ContainersNotInitialized',
   ContainersNotReady: 'ContainersNotReady',
-  'CPU Target Utilization': 'CPU Target Utilization',
+  TARGET_CPU_USAGE_UNIT: 'Target CPU Usage (%)',
   'CPU(m)': 'CPU(m)',
   CrashLoopBackOff: 'CrashLoopBackOff',
   CreateContainerConfigError: 'CreateContainerConfigError',
@@ -140,6 +143,8 @@ module.exports = {
   REPLICAS_CURRENT: 'Current',
   'Current Revision': 'Current Revision',
   'Current Stage(phase)': 'Current Stage(phase)',
+  CURRENT_REVISION_RECORD: 'Current Revision Record',
+  CURRENT_STATUS: 'Current status',
   'Current Utilization': 'Current Utilization',
   LOCATION: 'Location',
   REPLICA_SCHEDULING_MODE: 'Replica Scheduling Mode',
@@ -151,9 +156,10 @@ module.exports = {
   'Desired number of nodes scheduled': 'Desired number of nodes scheduled',
   'Desired Replicas': 'Desired Replicas',
   DockerDaemonNotReady: 'DockerDaemonNotReady',
-  'Edit Config Template': 'Edit Config Template',
+  EDIT_SETTINGS: 'Edit Settings',
+  EDIT_APP_SETTINGS: 'Edit App Settings',
   EDIT_CONTAINER: 'Edit Container',
-  EDIT_LABEL: 'Edit Label',
+  EDIT_LABELS: 'Edit Labels',
   EDIT_YAML: 'Edit YAML',
   YAML_FILE: 'YAML File',
   EmptyDir: 'EmptyDir',
@@ -172,7 +178,7 @@ module.exports = {
   'Every Hour': 'Every Hour',
   'Every Month': 'Every Month',
   'Every Week': 'Every Week',
-  'Execution Records': 'Execution Records',
+  RUNNING_RECORDS: 'Running Records',
   EXISTING_VOLUME: 'Existing Volume',
   FailedCreate: 'FailedCreate',
   FailedDelete: 'FailedDelete',
@@ -182,10 +188,11 @@ module.exports = {
   'for example': 'for example',
   FoundNewReplicaSet: 'FoundNewReplicaSet',
   HORIZONTAL_POD_AUTOSCALING: 'Horizontal Pod Autoscaling',
+  AUTOSCALING: 'Autoscaling',
   HPA_SET_TIP: 'Horizontal Pod autoscaling has been set.',
   'Host Path': 'Host Path',
   'Host Port': 'Host Port',
-  'How pods are assinged to nodes?': 'How pods are assinged to nodes?',
+  POD_SCHEDULING_METHOD: 'Pod Scheduling Method',
   HTTP_REQUEST: 'HTTP Request',
   HTTP_PATH_EMPTY: 'Please set a path for the HTTP check.',
   IMAGE: 'Image',
@@ -227,7 +234,7 @@ module.exports = {
   MAXIMUM_REPLICAS: 'Maximum Replicas',
   MAX_SURGE_POD_VALIDATOR: 'MAX_SURGE_POD_VALIDATOR',
   'Maximum number of replicas': 'Maximum number of replicas',
-  'Memory Target Usage': 'Memory Target Usage',
+  TARGET_MEMORY_USAGE_UNIT: 'Target Memory Usage (MiB)',
   'Memory Target Utilization': 'Memory Target Utilization',
   MINIMUM_REPLICAS: 'Minimum Replicas',
   'min replicas number should not be greater than max replicas number':
@@ -262,8 +269,8 @@ module.exports = {
   NO_RESOURCE_LIMIT: 'No resource limit',
   'No Request': 'No Request',
   'No resource limits': 'No resource limits',
-  'Node Name': 'Node Name',
-  'Node Scheduling Info': 'Node Scheduling Information',
+  NODE_NAME: 'Node Name',
+  SCHEDULING_RESULT: 'Scheduling Result',
   NO_IMAGE_FOUND: 'No Image Found',
   ONDELETE: 'Update on Deletion',
   CHECK_INTERVAL_S: 'Check Interval (s)',
@@ -287,7 +294,7 @@ module.exports = {
   CONTAINER_NOT_SELECTED: 'Please mount the volume to at least one container.',
   SET_IMAGE_DESC: 'Set an image for the container.',
   'Please select protocol': 'Please select protocol',
-  'Please select rollback revision': 'Please select rollback revision',
+  TARGET_REVISION_EMPTY_DESC: 'Please select a target revision record.',
   'Please specify an image': 'Please specify an image',
   READ_WRITE_MOUNT_EMPTY:
     'Please specify the volume access mode and mount path.',
@@ -320,7 +327,7 @@ module.exports = {
     'Schedules the Pod replicas to the same node if possible.',
   POD_SECURITY_CONTEXT: 'Pod Security Context',
   'Pod Status': 'Pod Status',
-  'Pod Status Analysis': 'Pod Status Analysis',
+  POD_STATUS_ANALYSIS: 'Pod Status Analysis',
   POD_REASON_FAILEDCREATE: 'Creation failed',
   POD_REASON_FAILEDDELETE: 'Deletion failed',
   POD_REASON_SUCCESSFULCREATE: 'Creation succeeded',
@@ -340,8 +347,8 @@ module.exports = {
   'Read Write Mode': 'Read Write Mode',
   READINESS_PROBE: 'Readiness Probe',
   SIMULTANEOUS_UPDATE: 'Simultaneous Update',
-  REDEPLOY: 'Redeploy',
-  'Redeploy Successfully': 'Redeploy Successfully',
+  RECREATE: 'Re-create',
+  RECREATE_SUCCESS_DESC: 'Re-created successfully.',
   REGISTRY: 'Registry',
   RegistryUnavailable: 'RegistryUnavailable',
   REPLICA_STATUS: 'Replica Status',
@@ -369,18 +376,24 @@ module.exports = {
   REVISION_RECORDS: 'Revision Records',
   'Revision Rollback': 'Revision Rollback',
   'Rollback Revisions': 'Rollback Revisions',
+  REVISION_RECORD: 'Revision record',
+  ROLL_BACK: 'Roll Back',
+  EDIT_AUTOSCALING: 'Edit Autoscaling',
+  TARGET_REVISION_RECORD: 'Target Revision Record',
   RollingUpdate: 'RollingUpdate',
   ROLLING_UPDATE_RECOMMENDED: 'Rolling Update (recommended)',
   RunContainerError: 'RunContainerError',
   Schedule: 'Schedule',
-  'Scheduled to node': 'Scheduled to node',
-  'Scheduling Info': 'Scheduling Information',
+  SCHEDULED_TO_NODE: 'Scheduled to {value}',
+  SCHEDULING_NOT_SUCCESSFUL: 'Scheduling Not Successful',
+  SCHEDULING_INFORMATION: 'Scheduling Information',
   'Select by Node': 'Select by Node',
   RESOURCE: 'Resource',
   SELECT_SPECIFIC_KEYS: 'Select Specific Keys',
   'Service Configuration': 'Service Configuration',
   'Service Labels': 'Service Labels',
   SESSION_AFFINITY: 'Session Affinity',
+  SELECTOR: 'Selector',
   'Set Mount Path': 'Set Mount Path',
   SELECT_NODES: 'Select Nodes',
   'Specify Replicas Number': 'Specify Replicas Number',
@@ -427,7 +440,7 @@ module.exports = {
   USE_DEFAULT_PORT: 'Use Default Port',
   USER_AND_USER_GROUP: 'User and User Group',
   USER_GROUP: 'User Group',
-  'View YAML': 'View YAML',
+  VIEW_YAML: 'View YAML',
   VOLUME_CAPACITY_TCAP: 'Volume Capacity',
   'Volume Name': 'Volume Name',
   'Volume Source': 'Volume Source',
@@ -459,7 +472,7 @@ module.exports = {
   WORKLOAD_REASON_NEWREPLICASETAVAILABLE: 'New ReplicaSet available',
   WORKLOAD_REASON_NEWREPLICASETCREATED: 'New ReplicaSet created',
   WORKLOAD_REASON_PROGRESSDEADLINEEXCEEDED: 'Process timed out',
-  WORKLOAD_REASON_REPLICASETCREATEERROR: 'New ReplicaSet creation error',
+  WORKLOAD_REASON_REPLICASETCREATEERROR: 'ReplicaSet creation error',
   WORKLOAD_REASON_REPLICASETUPDATED: 'ReplicaSet updated',
   Workloads: 'Workloads',
   SELECT_NODES_DESC:
@@ -528,7 +541,7 @@ module.exports = {
   VOLUME_SUB_TEXT: 'Volumes used by the containers of the workload',
   EMPTYDIR_DESC: 'Temporary storage created for the workload',
   HOSTPATH_DESC:
-    'A hostPath volume mounts a file or directory from the host node’s filesystem into your Pod.',
+    'A HostPath volume mounts a file or directory from the host node’s filesystem into your Pod.',
   PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
   PORT_NAME_DESC:
     'The port name can contain only lowercase letters, numbers, and hyphens (-) and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
@@ -609,19 +622,20 @@ module.exports = {
   MOUNT_VOLUME_DESC:
     'For persistent storage volumes, select a volume that supports multi-node read-write mode (ROX or RWX). Otherwise, the pods update may fail because the pods are not on the same node. If you choose a single-node read-write (RWO) mode volume, you can also schedule the pods on the same node by node selection to avoid update errors.',
 
-  CPU_REQUEST_TARGET_DESC:
-    'Replicas will be increased when CPU usage exceeds this target value, on the contrary it will be decreased.',
-  MEMORY_REQUEST_TARGET_DESC:
-    'Replicas will be increased when memory usage exceeds this target value, on the contrary it will be decreased.',
-  MIN_REPLICAS_DESC: 'Minimum value of the number of replicas',
-  MAX_REPLICAS_DESC: 'Maximum value of the number of replicas',
+  TARGET_CPU_USAGE_DESC:
+    'The system automatically decreases/increases the number of Pod replicas when the actual CPU usage is higher/lower than the target.',
+  TARGET_MEMORY_USAGE_DESC:
+    'The system automatically decreases/increases the number of Pod replicas when the actual memory usage is higher/lower than the target.',
+  MINIMUM_REPLICAS_DESC:
+    'Set the minimum number of Pod replicas allowed. The default value is 1.',
+  MAXIMUM_REPLICAS_DESC:
+    'Set the maximum number of Pod replicas allowed. The default value is 1.',
   REPLICAS_PLACEHOLDER: 'Default: 1',
 
   ADD_VOLUME_TEMPLATE_DESC:
     'Use a volume template to mount a volume with the same lifecycle as the Pod.',
 
   MORE: 'More',
-  VIEW_YAML: 'View YAML',
 
   REVISION_ROLLBACK_SELECT: 'Please select the version to be rolled back',
   REVISION_TITLE: '{name} revision',
@@ -637,8 +651,8 @@ module.exports = {
   FAILURE_THRESHOLD_DESC:
     'Minimum number of consecutive failures for the probe to be considered failed after having succeeded. The minimum value is 1.',
 
-  HPA_MSG:
-    'Automatically autoscale the replicas according to CPU and memory usage. If both CPU and memory are specified, the replicas is added or deleted after any of the conditions are met.',
+  CONFIGURE_AUTOSCALING_DESC:
+    'Set the system to automatically adjust the number of Pod replicas based on target CPU usage and target memory usage.',
   PROBE_MSG:
     'Readiness Probe checks whether the container is ready to handle requests. Failure means the container should not receive any traffic from the agent even if it were running. Liveness Probe checks whether the container that configures it is running. If the Probe fails, the container will be killed and the restart policy will be implemented for the container.',
   WORKLOAD_REPLICA_MSG:
@@ -678,18 +692,17 @@ module.exports = {
   STARTUP_CHECK_TIP: 'Kubernetes v1.18 or later is required.',
 
   POD_CONDITION_INITIALIZED: 'Initialized',
-  POD_CONDITION_INITIALIZED_DESC:
-    'All Init containers have started successfully.',
-  POD_CONDITION_READY: 'Ready',
+  POD_CONDITION_INITIALIZED_DESC: 'Starts all init containers in the Pod.',
+  POD_CONDITION_READY: 'Pod Ready',
   POD_CONDITION_READY_DESC:
-    'The Pod is already running and can be accessed through the Service.',
+    'Starts running the Pod and allow the Pod to be accessed.',
   POD_CONDITION_CONTAINERSREADY: 'Containers Ready',
-  POD_CONDITION_CONTAINERSREADY_DESC: 'Containers in the Pod are ready.',
+  POD_CONDITION_CONTAINERSREADY_DESC: 'Starts all containers in the Pod.',
   POD_CONDITION_PODSCHEDULED: 'Pod Scheduled',
   POD_CONDITION_PODSCHEDULED_DESC:
-    'The Pod has been successfully assigned to a node.',
+    'Schedules the Pod to a node in the cluster.',
   POD_ASSIGNED_DESC:
-    "The request value (namely, Request) set by the containers in the Pod is used as the basis for determining the resource allocation. Only when the amount available for allocation in the node is greater than or equal to the Pod's request value can the Pod be allocated to this node.",
+    'The system schedules a Pod to a node with sufficient available resources based on the resource requests of the Pod.',
   POD_DESC:
     'A Pod is the basic execution unit of a Kubernetes application, representing the smallest and simplest unit in the Kubernetes object model that you create or deploy.',
   POD_EMPTY_DESC: 'Please create a Pod.',
@@ -703,7 +716,7 @@ module.exports = {
   REQUEST_EXCEED_LIMIT:
     'Resource requests cannot be greater than resource limits.',
 
-  WORKLOAD_CONDITIONS: 'Conditions',
+  STATUS_INFORMATION: 'Status Information',
   WORKLOAD_CONDITION_AVAILABLE: 'Available',
   WORKLOAD_CONDITION_PROGRESSING: 'Progressing',
 
@@ -731,8 +744,8 @@ module.exports = {
   SELECT_VOLUME_DESC:
     'Select an existing volume and mount it to the containers.',
 
-  REDEPLOY_CONFIRM_DESC:
-    'Are you sure you want to redeploy the {type} {resource}? The Pod replicas will be redeployed according to the update strategy and the service will be interrupted.',
+  RECREATE_CONFIRM_DESC:
+    'Are you sure you want to re-create the {type} {resource}? The Pod replicas will be updated according to the update strategy and the service will be interrupted.',
 
   CONTAINER_SECURITY_CONTEXT_DESC:
     'Customize the privilege settings of the container.',
@@ -763,9 +776,9 @@ module.exports = {
   CONTAINER_RESOURCE_LIMIT_TIP:
     'Set the resource limits and requests of the container so that the container is scheduled to appropriate nodes.',
 
-  COMPARE_WITH: 'Comparison with the previous version {version}',
-  REVISION_DESC:
-    'After the resource template of workload is changed, a new log will be generated and Pods will be rescheduled for version update. The latest 10 versions will be saved by default. You can implement a redeployment based on the change log.',
+  COMPARE_WITH: 'Compared with the previous record {version}',
+  REVISION_RECORDS_DESC:
+    'A revision record is generated after the workload is created or modified, which can be used to roll back the workload settings. A maximum of 10 revision records can be retained.',
 
   CLUSTER_DIFF_CONTAINER_SETTINGS_DESC:
     'Use different container settings in different clusters.',

@@ -61,7 +61,7 @@ export default class AppDetail extends React.Component {
   }
 
   get name() {
-    return 'App'
+    return 'APP'
   }
 
   get listUrl() {

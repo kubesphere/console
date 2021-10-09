@@ -116,8 +116,8 @@ class Jobs extends React.Component {
     return (
       <EmptyList
         icon="istio"
-        title={t('NO_GRAY_RELEASE_JOBS_TIP')}
-        desc={t('NO_GRAY_RELEASE_JOBS_TIP_2')}
+        title={t('NO_GRAYSCALE_RELEASE_TASK_FOUND')}
+        desc={t('NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC')}
         actions={
           this.canCreate ? (
             <Button type="control" onClick={this.showCreateGrayReleaseJob}>

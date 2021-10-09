@@ -325,7 +325,7 @@ export default class MountConfig extends React.Component {
           keepDataWhenUncheck
         >
           <Form.Item>
-            <ArrayInput name="items" itemType="object" addText={t('Add')}>
+            <ArrayInput name="items" itemType="object" addText={t('ADD')}>
               <ObjectInput>
                 <Select
                   name="key"

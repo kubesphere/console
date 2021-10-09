@@ -20,9 +20,13 @@ module.exports = {
   'App README': 'App README',
   'Configuration Files': 'Configuration Files',
   INSTALLED_SUCCESSFULLY: 'Installed successfully.',
+  CONFIG_FILES: 'Configuration Files',
+  'Deploy Successfully': 'Deploy Successfully',
   'Edit by YAML': 'Edit by YAML',
   NO_CHART_FILE_FOUND: 'No chart file is found.',
   NO_DOCUMENT_DESC: 'No documentation is found.',
+  NO_APP_CHART_FILE_FOUND: 'No chart file of the app is found.',
+  NO_APP_DESC_FOUND: 'No app description found.',
   VERSION_INTRO_EMPTY_DESC: 'No introduction to this version is found.',
   'Update Successfully': 'Update Successfully',
 

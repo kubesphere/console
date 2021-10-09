@@ -46,7 +46,7 @@ export default class RouteDetail extends React.Component {
   }
 
   get name() {
-    return 'Route'
+    return 'ROUTE'
   }
 
   get routing() {
@@ -79,7 +79,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -102,7 +102,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'editRules',
       icon: 'firewall',
-      text: t('EDIT_ROUTING_RULE'),
+      text: t('EDIT_ROUTING_RULES'),
       action: 'edit',
       onClick: () =>
         this.trigger('fedproject.router.rules.edit', {
@@ -115,7 +115,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'editAnnotations',
       icon: 'firewall',
-      text: t('EDIT_ANNOTATION'),
+      text: t('EDIT_ANNOTATIONS'),
       action: 'edit',
       onClick: () =>
         this.trigger('router.annotations.edit', {
@@ -181,7 +181,7 @@ export default class RouteDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(`${this.name}s`),
+          label: t(`${this.name}_PL`),
           url: this.listUrl,
         },
       ],

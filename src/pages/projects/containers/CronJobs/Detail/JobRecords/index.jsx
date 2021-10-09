@@ -76,7 +76,7 @@ class JobRecords extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Job'),
+      title: t('JOB'),
       dataIndex: 'name',
       width: '19%',
       render: name => (
@@ -141,7 +141,7 @@ class JobRecords extends React.Component {
 
   render() {
     return (
-      <Card className={styles.main} title={t('Job Records')}>
+      <Card className={styles.main} title={t('JOB_RECORDS')}>
         <div className={styles.content}>{this.renderTable()}</div>
       </Card>
     )
