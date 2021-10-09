@@ -29,12 +29,12 @@ import {
   Toggle,
 } from '@kube-design/components'
 import { Modal } from 'components/Base'
-import { PropertiesInput } from 'components/Inputs'
+import { PropertiesInput, AnnotationsInput } from 'components/Inputs'
 import Title from 'components/Forms/Base/Title'
 
 import { CLUSTER_PROVIDERS } from 'utils/constants'
 
-import { observable } from 'mobx'
+import { observable, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { CLUSTER_PROVIDERS_ANNOTATIONS } from './contants'
 
@@ -60,6 +60,9 @@ export default class GatewaySettingModal extends React.Component {
 
   @observable
   template = this.props.detail || {}
+
+  @observable
+  options = []
 
   constructor(props) {
     super(props)
@@ -131,28 +134,36 @@ export default class GatewaySettingModal extends React.Component {
   )
 
   handleAnnotations = value => {
-    this.initAnnotations(CLUSTER_PROVIDERS_ANNOTATIONS[value])
+    this.options = Object.keys(CLUSTER_PROVIDERS_ANNOTATIONS[value])
+    this.setAnnotations({})
   }
 
   initAnnotations = (value = globals.config.loadBalancerDefaultAnnotations) => {
+    set(this.template, 'spec.service.annotations', value)
+    set(this.template, "metadata.annotations['kubesphere.io/annotations']", '')
+    this.forceUpdate()
+  }
+
+  setAnnotations = value => {
     set(this.template, 'spec.service.annotations', value)
     this.forceUpdate()
   }
 
   renderLoadBalancerSupport = () => {
     return (
-      <Form.Item label={t('LoadBalancer Support')}>
-        <div className={styles.loadBalancer}>
+      <div className={styles.loadBalancer}>
+        <Form.Item label={t('LoadBalancer Support')}>
           <Select
             options={CLUSTER_PROVIDERS}
             optionRenderer={this.providerOptionRenderer}
             onChange={this.handleAnnotations}
+            name="metadata.annotations['kubesphere.io/annotations']"
           ></Select>
-          <Button onClick={() => this.initAnnotations()}>
-            {t('Use default annotations')}
-          </Button>
-        </div>
-      </Form.Item>
+        </Form.Item>
+        <Button className={styles.lbB} onClick={() => this.initAnnotations()}>
+          {t('Use default annotations')}
+        </Button>
+      </div>
     )
   }
 
@@ -215,8 +226,9 @@ export default class GatewaySettingModal extends React.Component {
                   <>
                     {this.renderLoadBalancerSupport()}
                     <Form.Item label={t('ANNOTATION_PL')}>
-                      <PropertiesInput
+                      <AnnotationsInput
                         controlled
+                        options={toJS(this.options)}
                         className={styles.objectBg}
                         name="spec.service.annotations"
                         addText={t('ADD')}

@@ -235,7 +235,11 @@ const getIngressTemplate = ({ namespace }) => ({
 const getGatewayTemplate = () => ({
   apiVersion: 'gateway.kubesphere.io/v1alpha1',
   kind: 'Gateway',
-  metadata: {},
+  metadata: {
+    annotations: {
+      'kubesphere.io/annotations': '',
+    },
+  },
   spec: {
     controller: {
       replicas: 1,

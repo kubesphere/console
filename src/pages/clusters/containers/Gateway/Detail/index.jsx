@@ -69,6 +69,7 @@ export default class NodeDetail extends React.Component {
   getOperations = () => {
     const { cluster, namespace } = this.props.match.params
     const detail = toJS(this.detail)
+
     return [
       {
         key: 'edit',
@@ -104,11 +105,13 @@ export default class NodeDetail extends React.Component {
         text: t('DELETE'),
         action: 'delete',
         onClick: () =>
-          trigger('gateways.delete', {
+          this.trigger('gateways.delete', {
             cluster,
             namespace,
             detail: toJS(this.detail),
-            success: this.getData,
+            success: () => {
+              location.replace(this.listUrl)
+            },
           }),
       },
     ]

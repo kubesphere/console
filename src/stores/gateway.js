@@ -87,6 +87,9 @@ export default class Gateway extends Base {
     if (result && !isEmpty(result)) {
       if (this.isCluster(params.namespace)) {
         const gatewayData = result
+          .filter(
+            item => item.metadata.name !== 'kubesphere-router-kubesphere-system'
+          )
           .map(item => ObjectMapper.gateway(item))
           .find(item => item.name.indexOf(params.namespace) > -1)
 
