@@ -66,14 +66,14 @@ export default class Uploader extends React.Component {
     const length = Object.keys(this.state.files).length
 
     if (length > 0) {
-      Notify.error(t('Only one file can be uploaded'))
-      return Promise.reject(t('Only one file can be uploaded'))
+      Notify.error(t('FILE_UPLOAD_ERROR'))
+      return Promise.reject(t('FILE_UPLOAD_ERROR'))
     }
 
     const extensionName = file.name.slice(file.name.lastIndexOf('.') + 1)
     if (extensionName !== 'json') {
-      Notify.error(t('WRONG_FILE_EXTENSION_NAME', { type: 'json' }))
-      return Promise.reject(t('WRONG_FILE_EXTENSION_NAME', { type: 'json' }))
+      Notify.error(t('WRONG_FILE_EXTENSION_NAME', { type: 'JSON' }))
+      return Promise.reject(t('WRONG_FILE_EXTENSION_NAME', { type: 'JSON' }))
     }
   }
 
@@ -118,7 +118,7 @@ export default class Uploader extends React.Component {
     })
 
     Notify.success({
-      content: t('FILE_UPLOADED_TIP'),
+      content: t('UPLOAD_SUCCESS'),
     })
   }
 
@@ -130,7 +130,7 @@ export default class Uploader extends React.Component {
       status: 'exception',
     })
     Notify.error({
-      content: t('FILE_UPLOAD_FAILED'),
+      content: t('UPLOAD_FAILED'),
     })
   }
 
@@ -152,7 +152,7 @@ export default class Uploader extends React.Component {
         <p className={styles.fileInfo}>
           <span className={styles.fileName}>{file.name}</span>
           <span className={styles.uploadText}>
-            {t('UPLOADED', { percent: file.percentage })}
+            {t('UPLOAD_PERCENT', { percent: file.percentage })}
           </span>
           <span className={styles.uploadText}>
             {t('FILE_SIZE', { size: formatSize(file.size) })}
@@ -209,9 +209,7 @@ export default class Uploader extends React.Component {
           >
             <div className={classnames(styles.selectContainer, {})}>
               <Icon className={styles.icon} size={40} name="upload" />
-              <p className={styles.title}>
-                {t('Click or drag files to this area to upload')}
-              </p>
+              <p className={styles.title}>{t('UPLOAD_FROM_LOCAL_TITLE')}</p>
               <p className={styles.desc}>{t(`SUPPORT_JSON_FILE`)}</p>
             </div>
           </Upload>

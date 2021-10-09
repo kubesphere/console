@@ -103,7 +103,7 @@ module.exports = {
   HEALTH_CHECKER_DESC:
     'La salud del contenedor se verificará periódicamente de acuerdo con las necesidades del usuario.',
   UPLOAD_ARTIFACT: 'Subir artefactos',
-  FILE_UPLOAD_FAILED: 'Error al cargar el archivo',
+  UPLOAD_FAILED: 'Upload failed.',
   CODE_RELATIVE_PATH_DESC:
     'Especifica un directorio relativo dentro de la aplicación. (Valor por defecto /)',
   STARTUP_COMMAND: 'Comando de inicio',
@@ -184,7 +184,7 @@ module.exports = {
   // Image Builder List Page
 
   // Creation Page
-  UPLOADED: 'Uploaded: {percent}%',
+  UPLOAD_PERCENT: 'Uploaded: {percent}%',
   UPLOAD_FULLY: 'Uploaded: 100%',
   FILE_SIZE: 'File size: {size}',
   S2I_SECRET: 'Secret',

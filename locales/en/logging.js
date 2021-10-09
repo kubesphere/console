@@ -23,7 +23,7 @@ module.exports = {
   Address: 'Address',
   'Auditing statistics': 'Auditing statistics',
   'Back to previous': 'Back to previous',
-  'Change Status': 'Change Status',
+  CHANGE_STATUS: 'Change Status',
   Collecting: 'Collecting',
   'Current Statistics Start Time': 'Current Statistics Start Time',
   'Delete Log Receiver': 'Delete Log Receiver',
@@ -80,7 +80,7 @@ module.exports = {
   LOG_COLLECTION_DESC:
     'The system collects standard output (stdout) and standard error (stderr) logs from each container and sends them to one or more target services.',
   LOG_COLLECTION_ENABLE_TIPS:
-    'The new status takes about 1 minute to take effect.',
+    'The new status requires about 1 minute to take effect.',
   LOG_COLLECTION_FLUENTD_URL_TIPS:
     'Enter the address of the Fluentd service that receives logs.',
   EMPTY_LOG_COLLECTIONS:
@@ -135,20 +135,19 @@ module.exports = {
   LOG_EXPORT: 'Log Export',
 
   CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create Custom Monitoring Dashboard',
-  SELECT_MONITORING_TEMPLATE: 'Select Monitoring Template',
+  MONITORING_TEMPLATE: 'Monitoring Template',
   CUSTON_MONITORING_TEMPLATE_DESC:
-    'Select a default template or customize a template to generate a custom monitoring dashboard.',
+    'Select a default template, upload a template, or customize a template to generate a custom monitoring dashboard.',
   CUSTOM_MONITORING_DASHBOARD: 'Custom Monitoring Dashboard',
 
-  IMPORT_GRAFANA_DASHBOARD: 'Import Grafana dashboard',
-  SUPPORT_JSON_FILE: 'Only supports JSON files',
+  UPLOAD_GRAFANA_DASHBOARD: 'Upload Grafana Dashboard',
+  SUPPORT_JSON_FILE: 'Only files in JSON format are supported.',
   IMPORT_GRAFANA_JSON_FILE: 'Import Grafana JSON Files',
-  IMPORT_GRAFANA_URL: 'Import using Grafana dashboard URL',
-  'Click or drag files to this area to upload':
-    'Click or drag files to this area to upload',
-  'Only one file can be uploaded': 'Only one file can be uploaded',
-  'Need to upload a file': 'Need to upload a file',
-  'Need to a URL': 'the Grafana Url is required',
+  UPLOAD_GRAFANA_URL: 'Upload a Grafana dashboard from URL.',
+  UPLOAD_FROM_LOCAL_TITLE: 'Select or Drag a File',
+  FILE_UPLOAD_ERROR: 'Only one file can be uploaded.',
+  UPLOAD_FILE_TIP: 'Please upload a file.',
+  ENTER_GRAFANA_URL: 'Please enter a Grafana dashboard URL.',
 
   CUSTOMMONITORDASHBOARD: 'Custom Monitoring Dashboard',
   CUSTOM_MONITORING_DASHBOARD_PL: 'Custom Monitoring Dashboards',
@@ -195,4 +194,10 @@ module.exports = {
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
   EVENT_PL: 'Events',
   CREATION_TIME: 'Creation time',
+
+  // Log Collection > Details
+  ADDRESS: 'Address',
+  CHANGE_STATUS_LOW: 'Change status',
+  EVENTS: 'Events',
+  SELECT_STATUS_TIP: 'Select a status',
 }

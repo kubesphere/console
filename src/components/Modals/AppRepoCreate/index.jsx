@@ -108,11 +108,11 @@ export default class AddRepoModal extends Component {
       return callback()
     }
     if (!time.test(data)) {
-      return callback({ message: t('SYNC_PERIOD_INVALID') })
+      return callback({ message: t('SYNC_INTERVAL_INVALID') })
     }
 
     if (data !== 0 && (data > 86400 || data < 180)) {
-      return callback({ message: t('SYNC_PERIOD_DESC') })
+      return callback({ message: t('SYNC_INTERVAL_TIP') })
     }
     callback()
   }
@@ -162,8 +162,8 @@ export default class AddRepoModal extends Component {
           isSubmitting={this.props.isSubmitting}
         />
         <Form.Item
-          label={t('SYNC_PERIOD')}
-          desc={t('SYNC_PERIOD_DESC')}
+          label={t('SYNC_INTERVAL')}
+          desc={t('SYNC_INTERVAL_DESC')}
           rules={[
             { required: true, message: t('SYNC_PERIOD_EMPTY_DESC') },
             { validator: this.timeValidator },

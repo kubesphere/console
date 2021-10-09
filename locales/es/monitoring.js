@@ -251,4 +251,6 @@ module.exports = {
   CUSTOM_MONITOR_DASHBOARD: 'Custom Monitoring Dashboard',
   CUSTOM_MONITOR_DASHBOARD_CREATE_DESC:
     'You can customize application monitoring dashboards based on your needs.',
+  UPLOAD_FROM_LOCAL_STORAGE: 'Upload from Local Storage',
+  UPLOAD_FROM_URL: 'Upload from URL',
 }

@@ -50,16 +50,17 @@ module.exports = {
   'Update Log': '更新紀錄',
   NO_UPDATE_LOG_DESC: 'No update log is found.',
   Note: '提示',
-  APP_NAME_DESC: '應用的重要商標，最長 20 個字元',
+  APP_NAME_DESC: 'Name of the app. The maximum length is 20 characters.',
   'Select file': '選擇檔案',
   'Application Name': '應用名稱',
   'Application Version': '應用版本',
-  APP_ABSTRACTION_DESC: '對應用的概括性介紹，最長 120 個字元',
+  APP_DESCRIPTION_DESC:
+    'Description of the app. The maximum length is 120 characters.',
   APP_DETAIL_DESC: '在用戶搜索應用時會非常有幫助',
   'Upload Icon': '上傳圖標',
   APP_ICON_NOTE: '96px * 96px 以内 JPG 或者 PNG',
   APP_ICON_FORMAT: '格式: PNG 背景透明最佳',
-  APP_ICON_SIZE: '圖形大小: 96px * 96px',
+  APP_ICON_SIZE: 'Icon size: 96x96 pixels',
   'Start editing': '開始編輯',
   File: '檔案',
   PLATFORM_APP_STORE_MANAGEMENT: '平台級應用商店管理',
@@ -87,7 +88,7 @@ module.exports = {
   REVIEW_CONTENT: '審核内容',
   REVIEW_CONTENT_DESC:
     '以下資訊必須真實準確，關鍵的操作說明需要描述詳情，對於條款中的權利與義務需要描述清楚。',
-  SUBMIT_REVIEW_DESC: '提交應用至應用商店，審核通過後將出現在應用商店中',
+  SUBMIT_REVIEW_DESC: 'Submit the app for app review.',
   REVIEWS_CREATE_DESC: '暫時沒有相關的應用審核數據',
 
   'App Version': '應用版本',
@@ -96,8 +97,8 @@ module.exports = {
   'App Introduction': '應用介紹',
   'Reject Reason': '拒絕原因',
   REJECT_REASON_DESC: '請填寫拒絕審核的原因',
-  'Please input reject reason': '請填寫拒絕原因',
-  'Please input version number': '請輸入版本號',
+  REJECT_REASON_TIP: '請填寫拒絕原因',
+  ENTER_VERSION_NUMBER_TIP: 'Please enter a version number.',
   APP_CATEGORIES_DESC:
     '您可以在此頁面創建、編輯、刪除分類，對已上架的應用進行分類管理。',
   AUDIT_RECORD_CREATE_DESC: '暫無相關的審核紀錄數據',
@@ -110,7 +111,8 @@ module.exports = {
   CHANGE_CATEGORY: '調整分類',
   DELETE_CATEGORY_WARNING:
     '該分類綁定了 <strong>{total}</strong> 個應用，請先將這些應用調整到其它分類後才能刪除',
-  DELETE_CATEGORY_DESC: '您確定要刪除分類 【{name}】 嗎？',
+  DELETE_CATEGORY_DESC:
+    'Are you sure you want to delete the category <b>{name}</b>?',
   CHANGED_SUCCESSFULLY: 'Changed successfully.',
 
   APP_TEMPLATES_DESC:
@@ -119,7 +121,7 @@ module.exports = {
   UPLOAD_HELM_CHART_DESC: '上傳已有的 Helm chart ',
   'Edit App Informatio': '編輯應用資訊',
   EDIT_APP_DESC: '對應用的基本資訊進行設置',
-  'App Number': '應用編號',
+  APP_ID: '應用編號',
   'App Version Types': '交付類型',
   'Create Time': '創建時間',
   'Add Version': '添加版本',
@@ -131,8 +133,8 @@ module.exports = {
   'Submit Successfully': '提交成功',
   'Cancel Successfully': '取消成功',
   'Release Successfully': '發佈成功',
-  'Pass Successfully': '通過成功',
-  'Reject Successfully': '拒絕成功',
+  PASS_SUCCESSFUL: '通過成功',
+  REJECT_SUCCESSFUL: '拒絕成功',
   'Suspend Successfully': '下架成功',
   'Recover Successfully': '上架成功',
   'Activate Successfully': '上架成功',
@@ -153,21 +155,22 @@ module.exports = {
   UPLOAD_SUPPORT_FORMAT: '文件格式支持 tar.gz 和 tgz',
   UPLOADING: '正在上傳',
   UPLOAD_SUCCESS: '上傳成功',
-  'please upload again': '請重新上傳',
+  UPLOAD_AGAIN_TIP: 'An error occurred in the upload. Please try again.',
   FILE_FORMAT_PACKAGE: '文件格式支持 tar.gz 和 tgz',
   FILE_FORMAT_ICON: '圖示格式支持 png 和 jpg',
   FILE_FORMAT_SCREENSHOTS: '截圖格式支持 png 和 jpg',
   FILE_MAX_PACKAGE: '配置包大小不能超過 2M',
   FILE_MAX_ICON: '圖示大小不能超過 20KB',
-  FILE_MAX_SIZE_ICON: '圖示尺寸大小不能超過 96px。',
+  FILE_MAX_SIZE_ICON: 'The maximum size of the icon is 96x96 pixels.',
   FILE_MAX_SCREENSHOTS: '截圖大小不能超過 2M',
-  UPLOAD_PACKAGE_OK_NOTE: '請上傳配置包或上傳的配置包不正確',
+  UPLOAD_PACKAGE_OK_NOTE:
+    'The version already exists. Please upload another version.',
   'Delete picture': '刪除圖片',
   'Re-upload': '重新上傳',
   'Package problems': '文件有問題',
   'Upload again': '重新上傳',
   'App Name': '應用名稱',
-  'App Home': '應用首頁',
+  APP_HOME: '應用首頁',
   'Select File': '選擇檔案',
   APP_SCREENSHOTS: '應用截圖',
   'Upload Screenshots': '上傳截圖',
@@ -175,11 +178,13 @@ module.exports = {
   'Edit App Information': '編輯應用資訊',
   Uncategorized: '未分類',
   'Category Name': '分類名稱',
-  CATEGORY_NAME_DESC: '建議不超過 8 個字元，最多能輸入 20 個字元',
-  'Please input category name': '請輸入分類名稱',
+  CATEGORY_NAME_DESC:
+    'The name can contain any characters and the maximum length is 20 characters.',
+  ENTER_CATEGORY_NAME_TIP: '請輸入分類名稱。',
   ICON_DESC: '請選擇一個圖示來標示分類',
   'Please select icon': '請選擇圖示',
-  'Wrong website format': '輸入的網站格式錯誤',
+  WRONG_ADDRESS_TIP:
+    'Incorrect format. Please enter a correct website address.',
 
   Screenshot: '截圖',
   'Version No': '版本號碼',
@@ -199,9 +204,10 @@ module.exports = {
   Icon: '圖示',
   'Format png/svg background transparency is the best':
     '格式： png/svg 背景透明最佳',
-  CHOOSE_APP_CATEGORY_DESC: '選擇適合的應用分類，便於用戶更快發現您的應用',
+  CHOOSE_APP_CATEGORY_DESC: 'Select a category for the app.',
   'Service Provider Website': '服務商網站',
-  "Service provider's official website address": '服務商的官方網站地址',
+  SERVICE_PROVIDER_WEBSITE_DESC:
+    'Official website address of the service provider.',
   MODIFY_VERSION_TIPS: '每次修改的内容都將跟随下一次版本上架而真正生效。',
   UNDER_REVIEW_TIPS: '目前應用有版本正在審核中，以下資訊暫時不可更改',
 
@@ -210,7 +216,7 @@ module.exports = {
 
   NO_DEPLOY_RUNTIME_NOTE: '項目中沒有可用的部署運行環境',
 
-  'Upload icon': '上傳圖示',
+  UPLOAD_ICON: '上傳圖示',
 
   APP_CATE_All: '全部',
 
@@ -243,7 +249,7 @@ module.exports = {
   'APP_CATE_DATABASE & CACHE': '資料庫和緩存',
   APP_CATE_STORAGE: '存儲',
 
-  // App Reviews
+  // App Review
   REVIEW: 'Review',
   OPERATOR: 'Operator',
   PENDING_REVIEW: 'Pending',
@@ -258,6 +264,7 @@ module.exports = {
   DOCUMENTATION: 'Documentation',
   BACK: 'Back',
   NOTIFICATION_EMAIL: 'Email',
+  NO_DOCUMENT_FOUND: 'No Documentation Found',
 
   // App Store
   DISCOVER: 'Discover',
@@ -269,7 +276,17 @@ module.exports = {
   APP_VERSIONS_TITLE:
     'Versions (only the latest 10 versions will be displayed)',
   VERSIONS: 'Versions',
-  APP_CONFIGURATIONS: 'App Configurations',
   UPDATED_AT_SCAP: 'Updated at: ',
   DEVELOPER: 'Developer',
+
+  // App Store > Details
+  REJECTION_REASON: 'Rejection Reason',
+
+  // App Categories
+  ICON: 'Icon',
+  CREATE_CATEGORY: 'Create Category',
+  APP_NOTE: 'Note',
+
+  // App Templates > Details
+  SERVICE_PROVIDER_WEBSITE_SCAP: 'Service Provider Website',
 }

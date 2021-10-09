@@ -32,7 +32,7 @@ module.exports = {
 
   NOTIFICATION_CONDITIONS: 'Notification Conditions',
   NOTIFICATION_CONDITION_SETTING_TIP:
-    'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use colons to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
+    'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use a carriage return to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
   NOTIFICATION_CONDITION_SETTINGS_DESC:
     'You will receive only notifications that meet the conditions.',
   INCLUDES_VALUES: '包含值',
@@ -51,7 +51,7 @@ module.exports = {
 
   Mail: '郵件',
   SMTP_SERVER_ADDRESS: 'SMTP 服務器地址',
-  USE_SSL_SECURE_CONNECTION: 'Use SSL secure connection.',
+  USE_SSL_SECURE_CONNECTION: 'Use SSL secure connection',
 
   MAIL_SETTING_DESC: '可以通過郵件接收平臺的通知，需要配置郵件發送服務器。',
   SENDER_MAIL: '發件人郵箱',
@@ -157,7 +157,7 @@ module.exports = {
   'Client Certificate Cert': '客戶端證書 Cert',
   'Client Certificate Key': '客戶端證書 Key',
   VERIFICATION_TYPE: '驗證類型',
-  SKIP_TLS_VERFICATION: 'Skip TLS verification.',
+  SKIP_TLS_VERFICATION: 'Skip TLS verification (insecure)',
   VERIFICATION_TYPE_DESC: '請選擇驗證類型。',
 
   WEBHOOK_SETTING_DESC:

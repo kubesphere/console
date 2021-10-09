@@ -82,7 +82,7 @@ export default class StorageClassDetail extends React.Component {
     {
       key: 'setDefault',
       icon: 'pen',
-      text: t('Set as default storage class'),
+      text: t('SET_AS_DEFAULT_STORAGE_CLASS'),
       action: 'edit',
       onClick: () =>
         this.trigger('storageclass.set.default', {
@@ -94,7 +94,7 @@ export default class StorageClassDetail extends React.Component {
     {
       key: 'funcManage',
       icon: 'slider',
-      text: t('Storage Function Manage'),
+      text: t('STORAGE_MANAGEMENT'),
       action: 'edit',
       onClick: () =>
         this.trigger('storageclass.volume.function.update', {
@@ -129,12 +129,12 @@ export default class StorageClassDetail extends React.Component {
         value: detail.provisioner,
       },
       {
-        name: t('Default Storage Class'),
-        value: detail.default ? t('True') : t('False'),
+        name: t('DEFAULT_STORAGE_CLASS'),
+        value: detail.default ? t('YES') : '-',
       },
       {
-        name: t('Scalable'),
-        value: detail.allowVolumeExpansion ? t('True') : t('False'),
+        name: t('ALLOW_VOLUME_EXPANSION'),
+        value: detail.allowVolumeExpansion ? t('TRUE') : t('FALSE'),
       },
       {
         name: t('RECLAIM_POLICY'),
@@ -142,7 +142,7 @@ export default class StorageClassDetail extends React.Component {
       },
       {
         name: t('ALLOW_VOLUME_SNAPSHOT'),
-        value: detail.supportSnapshot ? t('True') : t('False'),
+        value: detail.supportSnapshot ? t('TRUE') : t('FALSE'),
       },
     ]
   }
@@ -166,7 +166,7 @@ export default class StorageClassDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Storage Classes'),
+          label: t('STORAGE_CLASS_PL'),
           url: this.listUrl,
         },
       ],

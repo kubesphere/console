@@ -190,7 +190,7 @@ export default class VersionItem extends React.PureComponent {
         </dl>
         <dl>
           <dt>{detail.name}</dt>
-          <dd>{t('APP_VERSION')}</dd>
+          <dd>{t('APP_VERSION_LOW')}</dd>
         </dl>
         <dl>
           <dt>{detail.owner}</dt>
@@ -202,7 +202,7 @@ export default class VersionItem extends React.PureComponent {
               'YYYY-MM-DD HH:mm:ss'
             )}
           </dt>
-          <dd>{t('UPDATED_AT')}</dd>
+          <dd>{t('UPDATE_TIME_LOW')}</dd>
         </dl>
         <dl className={styles.more}>
           <Icon name="chevron-down" size={20} />
@@ -226,12 +226,12 @@ export default class VersionItem extends React.PureComponent {
       <div className={styles.actions}>
         {CAN_DELETE_STATUS.includes(status) && !isAdmin && (
           <Button onClick={this.showDeleteModel} type={'danger'}>
-            {t('Delete Version')}
+            {t('DELETE')}
           </Button>
         )}
         {!isAdmin && (
           <Button onClick={this.showDeploy} type="default">
-            {t('Test Deployment')}
+            {t('TEST_INSTALLATION')}
           </Button>
         )}
         {handleType && (
@@ -257,12 +257,12 @@ export default class VersionItem extends React.PureComponent {
               appName={appDetail.name}
             />
           </TabPanel>
-          <TabPanel label={t('Audit Records')} name="auditRecord">
+          <TabPanel label={t('APP_REVIEW')} name="auditRecord">
             <AuditRecord appId={detail.app_id} versionId={detail.version_id} />
           </TabPanel>
-          <TabPanel label={t('Deployed Instances')} name="deployInstances">
+          <TabPanel label={t('APP_INSTANCES')} name="deployInstances">
             <InstanceList
-              title={t('Deployed Instances')}
+              title={t('APP_INSTANCES')}
               className={styles.instances}
               appId={appDetail.app_id}
               versionId={detail.version_id}

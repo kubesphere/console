@@ -159,4 +159,11 @@ module.exports = {
   DEPLOYMENTS_VALUE: '部署数量：{value}',
   STATEFULSETS_VALUE: '有状态副本集数量：{value}',
   DAEMONSETS_VALUE: '守护进程集数量：{value}',
+
+  // Alerting Policies > Details
+  NOTIFICATION_SUMMARY_COLON: '概括：',
+  MESSAGE_COLON: '消息：',
+  MONITORING_TARGETS_LOW: '监控目标',
+  ALERTING_RULE_LOW: '告警规则',
+  THRESHOLD_DURATION: '告警持续时间',
 }

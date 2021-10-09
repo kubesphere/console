@@ -59,11 +59,11 @@ export default class ConfirmModal extends React.Component {
         <Icon name={icon || 'question'} size={description ? 40 : 32} />
         {description ? (
           <div className={styles.description}>
-            <h3>{title || t('Note')}</h3>
+            <h3>{title || t('APP_NOTE')}</h3>
             <small>{description}</small>
           </div>
         ) : (
-          <div className={styles.name}>{title || t('Note')}</div>
+          <div className={styles.name}>{title || t('APP_NOTE')}</div>
         )}
       </div>
     )
@@ -86,7 +86,7 @@ export default class ConfirmModal extends React.Component {
           <div className={styles.content}>{content}</div>
         </div>
         <div className={styles.footer}>
-          <Button onClick={onCancel}>{t('Cancel')}</Button>
+          <Button onClick={onCancel}>{t('CANCEL')}</Button>
           <Button
             type="control"
             disabled={isSubmitting}

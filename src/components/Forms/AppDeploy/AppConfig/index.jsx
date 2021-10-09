@@ -138,7 +138,7 @@ export default class AppConfig extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.title}>
-          <div>{t('APP_CONFIGURATIONS')}</div>
+          <div>{t('APP_SETTINGS')}</div>
           {valuesSchema && (
             <Switch
               className={styles.switch}

@@ -75,7 +75,7 @@ export default class App extends React.Component {
         isForm: true,
       },
       {
-        title: 'APP_CONFIGURATIONS',
+        title: 'APP_SETTINGS',
         component: AppConfig,
         required: true,
       },

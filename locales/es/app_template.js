@@ -19,7 +19,7 @@
 module.exports = {
   'App README': 'LEEME (README) de Aplicación',
   'Configuration Files': 'Ficheros de Configuración',
-  'Deploy Successfully': 'Desplegado Satisfactoriamente',
+  INSTALLED_SUCCESSFULLY: 'Installed successfully.',
   'Edit by YAML': 'Editar YAML',
   NO_CHART_FILE_FOUND: 'No chart file is found.',
   NO_DOCUMENT_DESC: 'No documentation is found.',

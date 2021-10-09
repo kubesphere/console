@@ -148,4 +148,7 @@ module.exports = {
   PROJECT_ROLE_VALUE: 'Project role: {value}',
   DEVOPS_VALUE: 'DevOps project: {value}',
   DEVOPS_PROJECT_ROLES_VALUE: 'DevOps project role: {value}',
+
+  // Workspace Members > Details
+  REMOVE_MEMBER_PL: 'Remove Members',
 }

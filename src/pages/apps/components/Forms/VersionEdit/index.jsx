@@ -48,7 +48,7 @@ export default class VersionEdit extends React.Component {
         <Form.Item
           label={t('VERSION_NUMBER')}
           rules={[
-            { required: true, message: t('Please input version number') },
+            { required: true, message: t('ENTER_VERSION_NUMBER_TIP') },
             {
               pattern: PATTERN_APPTEMPLATE_VERSION,
               message: t('INVALID_VERSION_TIP'),

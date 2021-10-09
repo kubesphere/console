@@ -17,15 +17,15 @@
  */
 
 module.exports = {
-  'Activate App': 'Activate App',
-  'Activate Version': 'Activate Version',
+  ACTIVATE_APP: 'Activate App',
+  ACTIVATE_VERSION: 'Activate Version',
   Activated: 'Activated',
   admin: 'admin',
   'App Information': 'App Information',
   'App Instances': 'App Instances',
   'Audit Records': 'App Review',
   business: 'business',
-  'Cancel Review': 'Cancel Review',
+  CANCEL_REVIEW: 'Cancel Review',
   creating: 'creating',
   'Delete Version': 'Delete Version',
   deleting: 'deleting',
@@ -39,7 +39,7 @@ module.exports = {
   'in-review': 'in-review',
   'In-review': 'In-review',
   isv: 'isv',
-  'No version information': 'No version information',
+  NO_VERSION_INFO_DESC: 'No version information is found.',
   Pass: 'Pass',
   Passed: 'Passed',
   'Pending-review': 'Pending-review',
@@ -56,8 +56,8 @@ module.exports = {
   Submit: 'Submit',
   'Submit for Review': 'Submit for Review',
   Submitted: 'Submitted',
-  'Suspend App': 'Suspend App',
-  'Suspend Version': 'Suspend Version',
+  SUSPEND_APP: 'Suspend App',
+  SUSPEND_VERSION: 'Suspend Version',
   Suspended: 'Suspended',
   technical: 'technical',
   'Test Steps': 'Test Steps',
@@ -75,16 +75,16 @@ module.exports = {
   VERSION_CANCEL_TIP:
     'Are you sure you want to cancel the review of the version <strong>{name}</strong>?',
   VERSION_RELEASE_TIP:
-    'Users can view and deploy the version <strong>{name}</strong> in the App Store after released. Are you sure you want to release it now?',
+    'Users can view and deploy the version <strong>{name}</strong> in the App Store after it is released. Are you sure you want to release it?',
   VERSION_SUSPEND_TIP:
-    'The version <strong>{name}</strong > will not be displayed in the App Store after suspended. Are you sure you want to suspend it now?',
+    'The version <strong>{name}</strong > will not be displayed in the App Store after it is suspended. Are you sure you want to suspend it?',
   VERSION_RECOVER_TIP:
-    'The version <strong>{name}</strong> will be displayed again in the App Store. Are you sure you want to activate it now?',
+    'The version <strong>{name}</strong> will be displayed in the App Store. Are you sure you want to activate it?',
 
   APP_SUSPEND_TIP:
-    "The app <strong>{name}</strong> can't be deployed from the App Store after suspended. Are you sure you want to suspend it now?",
+    'The app <strong>{name}</strong> cannot be deployed from the App Store after it is suspended. Are you sure you want to suspend it?',
   APP_RECOVER_TIP:
-    'The app <strong>{name}</strong> and the suspended version will be displayed again in the App Store. Are you sure you want to activate it now?',
+    'The app <strong>{name}</strong> and the suspended versions will be displayed again in the App Store. Are you sure you want to activate it now?',
 
   PACKAGE_FILE_DESC:
     'Package.json file, which describes the basic information of an application or version, such as the name and version number.',
@@ -117,4 +117,15 @@ module.exports = {
   VERSION_SUBMIT_DOC: 'For a more comprehensive test manual, see ',
 
   UPDATE_LOG_DESC: 'Used to describe the details of this update.',
+
+  // App Templates > Details
+  APP_INSTANCES: 'App Instances',
+  UPLOAD_NEW_VERSION: 'Upload New Version',
+  UPLOAD_NEW_VERSION_DESC: 'Upload a new version of the app.',
+  APP_VERSION_LOW: 'App version',
+  UPDATE_TIME_LOW: 'Update time',
+  TEST_INSTALLATION: 'Test Installation',
+  SUBMIT_FOR_REVIEW: 'Submit for Review',
+  VERSION_INFO: 'Version Information',
+  INSTALL: 'Install',
 }

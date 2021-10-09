@@ -50,7 +50,7 @@ export default class AuditRecord extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Time'),
+      title: t('TIME'),
       dataIndex: 'status_time',
       width: '20%',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -69,14 +69,14 @@ export default class AuditRecord extends React.Component {
       width: '15%',
     },
     {
-      title: t('Rejection Reason'),
+      title: t('REJECTION_REASON'),
       key: 'reject',
       isHideable: true,
       width: '40%',
       render: (reviewId, item) => item.message || '-',
     },
     {
-      title: t('Operator'),
+      title: t('OPERATOR'),
       dataIndex: 'operator',
       isHideable: true,
       width: '10%',
@@ -87,7 +87,7 @@ export default class AuditRecord extends React.Component {
     const { tableProps } = this.props
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
-        <div className={styles.title}>{t('Audit Records')}</div>
+        <div className={styles.title}>{t('APP_REVIEW')}</div>
         <Table
           {...tableProps}
           tableActions={this.tableActions}

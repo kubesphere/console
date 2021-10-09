@@ -126,16 +126,16 @@ export default class CategoryCreate extends Component {
           }}
         >
           <Form.Item
-            label={t('Category Name')}
+            label={t('NAME')}
             desc={t('CATEGORY_NAME_DESC')}
             rules={[
-              { required: true, message: t('Please input category name') },
+              { required: true, message: t('ENTER_CATEGORY_NAME_TIP') },
               { validator: this.nameValidator },
             ]}
           >
             <Input name="name" onChange={this.changeName} maxLength={20} />
           </Form.Item>
-          <Form.Item label={t('Icon')}>
+          <Form.Item label={t('ICON')}>
             <div
               name="description"
               className={styles.icons}

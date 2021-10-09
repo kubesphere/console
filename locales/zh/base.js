@@ -560,7 +560,7 @@ module.exports = {
   'rules text': '如何定义操作审计收集规则？ 🤔',
   'rules desc':
     'KubeSphere可以根据您设置的规则进行操作审计的收集，点击查看如何定义规则。',
-  CATEGORY: '类别',
+  CATEGORY: '分类',
   Resource: '资源',
   'Earliest start time': '最早发生时间',
   'Most recent start time': '最近发生时间',

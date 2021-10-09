@@ -101,19 +101,19 @@ export default class HelmUpload extends Component {
       <div>
         <dl>
           <dt>{createInfo.name || '-'}</dt>
-          <dd>{t('App Name')}</dd>
+          <dd>{t('NAME')}</dd>
         </dl>
         <dl>
           <dt>{createInfo.version_name || '-'}</dt>
-          <dd>{t('App Version')}</dd>
+          <dd>{t('APP_VERSION')}</dd>
         </dl>
         <dl>
           <dt>{createInfo.home || '-'}</dt>
-          <dd>{t('App Home')}</dd>
+          <dd>{t('APP_HOME')}</dd>
         </dl>
         <dl>
           <dt>{createInfo.description || '-'}</dt>
-          <dd>{t('App Description')}</dd>
+          <dd>{t('APP_DESCRIPTION')}</dd>
         </dl>
       </div>
     )
@@ -142,7 +142,7 @@ export default class HelmUpload extends Component {
                   iconLetter={createInfo.name}
                 />
               </div>
-              <label className={styles.uploadIcon}>{t('Upload icon')}</label>
+              <label className={styles.uploadIcon}>{t('UPLOAD_ICON')}</label>
               <p className={styles.note}>{t('APP_ICON_NOTE')}</p>
             </div>
           </Upload>
@@ -150,7 +150,7 @@ export default class HelmUpload extends Component {
         </div>
         {error && (
           <div className={styles.error}>
-            {t(error)}, {t('please upload again')}
+            {t(error)}, {t('UPLOAD_AGAIN_TIP')}
           </div>
         )}
       </div>

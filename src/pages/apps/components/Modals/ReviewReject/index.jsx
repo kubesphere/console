@@ -76,9 +76,7 @@ export default class ReviewReject extends Component {
           className={styles.rejectForm}
         >
           <Form.Item
-            rules={[
-              { required: true, message: t('Please input reject reason') },
-            ]}
+            rules={[{ required: true, message: t('REJECT_REASON_TIP') }]}
           >
             <TextArea name="message" onChange={this.changeMessage} />
           </Form.Item>

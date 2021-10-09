@@ -28,11 +28,11 @@ module.exports = {
   TOTAL_REPLICAS: '副本總數',
   ENTER_POSITIVE_INTEGER_DESC: '副本輸入不合法',
   TOTAL_REPLICAS_EMPTY_DESC: '請輸入副本總數',
-  'Storage Function Manage': '存儲卷功能管理',
-  'Volume Clone': '存儲卷克隆',
-  Volume_Clone_Des: '創建一個相同的存儲卷',
-  Volume_SnapShot_Des: '創建一個存儲卷快照，可用於創建其他存儲卷',
+  STORAGE_MANAGEMENT_SCAP: '存儲卷管理',
+  VOLUME_CLONE: '存儲卷克隆',
+  ALLOW_VOLUME_CLONE_DESC: 'Allows users to clone volumes.',
+  ALLOW_VOLUME_SNAPSHOT_DESC: 'Allows users to create volume snapshots.',
   'Volume Expansion': '存儲卷擴容',
-  Volume_Expansion_Des:
-    '增加存儲卷的容量。無法在控制台上減少存儲卷的容量，因為數據可能會因此丟失。',
+  ALLOW_VOLUME_EXPANSION_DESC:
+    'Allows users to extend volumes. Volumes can only be extended and cannot be shrunk.',
 }

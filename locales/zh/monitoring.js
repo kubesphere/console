@@ -256,4 +256,6 @@ module.exports = {
   CUSTOM_MONITOR_DASHBOARD: '自定义监控面板',
   CUSTOM_MONITOR_DASHBOARD_CREATE_DESC: '您可以根据需求自定义应用监控面板。',
   'Custom Monitoring Dashboards': '自定义监控',
+  UPLOAD_FROM_LOCAL_STORAGE: '从本地上传',
+  UPLOAD_FROM_URL: '通过 URL 上传',
 }

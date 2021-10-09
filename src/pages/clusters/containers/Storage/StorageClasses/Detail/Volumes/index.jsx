@@ -87,10 +87,10 @@ export default class Volumes extends React.Component {
       render: capacity => capacity || '-',
     },
     {
-      title: t('Mount Status'),
+      title: t('MOUNT_STATUS'),
       dataIndex: 'inUse',
       width: '16%',
-      render: inUse => (inUse ? t('Mounted') : t('Not Mounted')),
+      render: inUse => (inUse ? t('MOUNTED') : t('NOT_MOUNTED')),
     },
     {
       title: t('PROJECT'),
@@ -120,9 +120,9 @@ export default class Volumes extends React.Component {
 
     return (
       <Card
-        title={t('Volumes')}
+        title={t('VOLUMES')}
         loading={isLoading}
-        empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('volumes') })}
+        empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('VOLUME') })}
       >
         <BaseTable
           className={styles.table}

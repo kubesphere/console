@@ -77,7 +77,7 @@ module.exports = {
 
   PersistentVolumes: '持久化儲存卷',
 
-  'Set as default storage class': '設為預設儲存類型',
+  SET_AS_DEFAULT_STORAGE_CLASS: '設為預設儲存類型',
   'Storage Class Name': '儲存類型名稱',
   DEFAULT: '預設',
   StorageClasses: '儲存類型',
@@ -113,7 +113,7 @@ module.exports = {
     '儲存類型記錄管理員所提供的某類儲存的配置資訊，創建特定類型的儲存卷之前必須已配置相應的儲存類型。',
 
   STORAGE_CLASS_SET_DEFAULT_DESC:
-    '設置為預設儲存類型後，如果沒有特殊指定，系統將預設創建該類型的儲存卷。一個 Kubernetes 集群中僅允許設置一個預設儲存類型',
+    '設置為預設儲存類型後，如果沒有特殊指定，系統將預設創建該類型的儲存卷。一個 KubeSphere 集群中僅允許設置一個預設儲存類型',
 
   PROVISIONER_DESC: '提供後端儲存',
 
@@ -246,4 +246,11 @@ module.exports = {
   IMMEDIATE_BINDING: 'Immediate binding',
   BINDING_WAIT: 'Delayed binding',
   DEFAULT_STORAGE_CLASS: 'Default Storage Class',
+
+  // Storage Class > Detail
+  STORAGE_CLASS_SCAP: 'Storage class',
+  APPLY: 'Apply',
+  VOLUME_MANAGEMENT: 'Volume Management',
+  SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
+  VOLUME_COUNT: 'Volumes',
 }

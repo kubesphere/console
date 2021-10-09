@@ -91,7 +91,7 @@ export default class RoleDetail extends React.Component {
         onClick: () =>
           this.trigger('openpitrix.template.edit', {
             detail,
-            title: t('Edit App Information'),
+            title: t('EDIT_INFO'),
             description: t('EDIT_APP_DESC'),
             icon: 'pen',
             success: () => this.fetchData(),
@@ -111,12 +111,12 @@ export default class RoleDetail extends React.Component {
       {
         key: 'addVersion',
         icon: 'tag',
-        text: t('New Version'),
+        text: t('UPLOAD_NEW_VERSION'),
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.addVersion', {
-            title: t('UPLOAD_HELM_TITLE'),
-            description: t('New Version'),
+            title: t('UPLOAD_NEW_VERSION'),
+            description: t('UPLOAD_NEW_VERSION_DESC'),
             icon: 'templet',
             appId: detail.app_id,
             type: 'ADD_VERSION',
@@ -146,7 +146,7 @@ export default class RoleDetail extends React.Component {
 
     return [
       {
-        name: t('App Number'),
+        name: t('APP_ID'),
         value: detail.app_id,
       },
       {
@@ -158,7 +158,7 @@ export default class RoleDetail extends React.Component {
         value: getAppCategoryNames(get(detail, 'category_set', [])),
       },
       {
-        name: t('App Version Types'),
+        name: t('TYPE'),
         value: getVersionTypesName(get(detail, 'app_version_types', '')),
       },
       {
@@ -203,7 +203,7 @@ export default class RoleDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('App Templates'),
+          label: t('APP_TEMPLATE_PL'),
           url: this.listUrl,
         },
       ],

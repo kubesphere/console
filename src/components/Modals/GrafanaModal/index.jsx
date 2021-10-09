@@ -69,7 +69,7 @@ export default class GrafanaModal extends React.Component {
     this.type === 'json' ? (
       <Form.Item
         label={t('SUPPORT_JSON_FILE')}
-        rules={[{ required: true, message: t('Need to upload a file') }]}
+        rules={[{ required: true, message: t('UPLOAD_FILE_TIP') }]}
       >
         <Uploader name="grafanaDashboardContent" />
       </Form.Item>
@@ -78,12 +78,12 @@ export default class GrafanaModal extends React.Component {
   renderUrl = () =>
     this.type === 'json' ? null : (
       <Form.Item
-        label={t('IMPORT_GRAFANA_URL')}
+        label={t('UPLOAD_GRAFANA_URL')}
         rules={[
-          { required: true, message: t('Need to a URL') },
+          { required: true, message: t('ENTER_GRAFANA_URL') },
           {
             pattern: PATTERN_URL,
-            message: t('Invalid URL'),
+            message: t('INVALID_URL_DESC'),
           },
         ]}
       >
@@ -99,7 +99,7 @@ export default class GrafanaModal extends React.Component {
         visible
         width={600}
         onCancel={onCancel}
-        title={t('IMPORT_GRAFANA_DASHBOARD')}
+        title={t('UPLOAD_GRAFANA_DASHBOARD')}
         onOk={this.handleSave}
       >
         <div className={styles.container}>
@@ -110,10 +110,10 @@ export default class GrafanaModal extends React.Component {
               onChange={this.handleTypeChange}
               size="small"
             >
-              <RadioButton value="json">{t('Dashboard JSON')}</RadioButton>
-              <RadioButton value="url">
-                {t('Grafana dashboard URL')}
+              <RadioButton value="json">
+                {t('UPLOAD_FROM_LOCAL_STORAGE')}
               </RadioButton>
+              <RadioButton value="url">{t('UPLOAD_FROM_URL')}</RadioButton>
             </RadioGroup>
             {this.renderUpload()}
             {this.renderUrl()}

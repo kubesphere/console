@@ -33,7 +33,7 @@ module.exports = {
 
   NOTIFICATION_CONDITIONS: 'Notification Conditions',
   NOTIFICATION_CONDITION_SETTING_TIP:
-    'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use colons to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
+    'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use a carriage return to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
   NOTIFICATION_CONDITION_SETTINGS_DESC:
     'You will receive only notifications that meet the conditions.',
   INCLUDES_VALUES: 'Includes values',
@@ -56,7 +56,7 @@ module.exports = {
 
   Mail: 'Correo',
   SMTP_SERVER_ADDRESS: 'Dirección del servidor SMTP',
-  USE_SSL_SECURE_CONNECTION: 'Use SSL secure connection.',
+  USE_SSL_SECURE_CONNECTION: 'Use SSL secure connection',
 
   MAIL_SETTING_DESC:
     'Puede recibir notificaciones de la plataforma por correo y debe configurar el servidor de envío de correo.',
@@ -162,7 +162,7 @@ module.exports = {
   'Client Certificate Cert': 'Certificado de certificado de cliente',
   'Client Certificate Key': 'Clave de certificado de cliente',
   VERIFICATION_TYPE: 'Verificar tipo',
-  SKIP_TLS_VERFICATION: 'Skip TLS verification.',
+  SKIP_TLS_VERFICATION: 'Skip TLS verification (insecure)',
   VERIFICATION_TYPE_DESC: 'Please select a verification type.',
 
   WEBHOOK_SETTING_DESC:

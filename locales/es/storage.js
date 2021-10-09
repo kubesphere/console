@@ -50,8 +50,7 @@ module.exports = {
   RECLAIM_POLICY: 'Reclaim Policy',
   CREATE: 'Create',
   Scalable: 'Escalable',
-  'Set as default storage class':
-    'Establecer como clase de almacenamiento predeterminada',
+  SET_AS_DEFAULT_STORAGE_CLASS: 'Set as Default Storage Class',
   'Snapshot Message': 'Mensaje de snapshot',
   'Snapshots Message': 'Mensaje de snapshots',
   'Storage Class': 'Clase de almacenamiento',
@@ -144,7 +143,7 @@ module.exports = {
   STORAGE_CLASS_SETTING_DESC:
     'El tipo de almacenamiento registra la información de configuración de un cierto tipo de almacenamiento proporcionado por el administrador. Antes de crear un tipo específico de volumen de almacenamiento, se debe configurar el tipo de almacenamiento correspondiente.',
   STORAGE_CLASS_SET_DEFAULT_DESC:
-    'Una vez establecida la clase de almacenamiento predeterminada, el sistema creará volúmenes de esta clase de forma predeterminada si no se agrega ningún requisito especial. Solo se permite una clase de almacenamiento predeterminada en un clúster de Kubernetes.',
+    'Una vez establecida la clase de almacenamiento predeterminada, el sistema creará volúmenes de esta clase de forma predeterminada si no se agrega ningún requisito especial. Solo se permite una clase de almacenamiento predeterminada en un clúster de KubeSphere.',
   STORAGECLASSES_BASEINFO_DESC:
     'Una StorageClass proporciona una forma para que los administradores configuren las "clases" de almacenamiento que ofrecen. Las diferentes clases pueden asignarse a niveles de calidad de servicio o a políticas de respaldo o a políticas arbitrarias determinadas por los administradores del clúster. Debes crear una StorageClass antes de que los usuarios puedan crear un volumen (es decir, PVC) basado en StorageClass.',
   STORAGECLASS_PARAMETER_TIP:
@@ -245,4 +244,11 @@ module.exports = {
   IMMEDIATE_BINDING: 'Immediate binding',
   BINDING_WAIT: 'Delayed binding',
   DEFAULT_STORAGE_CLASS: 'Default Storage Class',
+
+  // Storage Class > Detail
+  STORAGE_CLASS_SCAP: 'Storage class',
+  APPLY: 'Apply',
+  VOLUME_MANAGEMENT: 'Volume Management',
+  SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
+  VOLUME_COUNT: 'Volumes',
 }

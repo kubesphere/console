@@ -33,11 +33,11 @@ module.exports = {
   'New App Config': 'New App Configurations',
   'App Deploy': 'App Deploy',
   APP_DETAILS: 'App Details',
-  'App Home': 'Homepage',
+  APP_HOME: 'Homepage',
   APP_INFORMATION: 'App Information',
   'App Introduction': 'App Introduction',
   'App Name': 'App Name',
-  'App Number': 'App Number',
+  APP_ID: 'App Number',
   APP_REVIEW: 'App Review',
   APP_REVIEWS: 'App Reviews',
   APP_SCREENSHOTS: 'App Screenshots',
@@ -46,7 +46,7 @@ module.exports = {
   'Current App Version': 'Current App Version',
   'App Version Types': 'App Version Types',
   'Application Name': 'App Name',
-  'Rejection Reason': 'Rejection Reason',
+  REJECTION_REASON: 'Rejection Reason',
   'Application Version': 'App Version',
   APPS_MANAGEMENT: 'App Management',
   'App Management': 'App Management',
@@ -84,11 +84,11 @@ module.exports = {
   Note: 'Note',
   Operator: 'Operator',
   'Package problems': 'Package problems',
-  'Pass Successfully': 'Pass Successfully',
+  PASS_SUCCESSFUL: 'Passed successfully.',
   PLATFORM_APP_STORE_MANAGEMENT: 'Platform App Store Management',
-  'Please input category name': 'Please input category name',
-  'Please input reject reason': 'Please input reject reason',
-  'Please input version number': 'Please input version number',
+  ENTER_CATEGORY_NAME_TIP: 'Please enter a category name.',
+  REJECT_REASON_TIP: 'Please enter a rejection reason.',
+  ENTER_VERSION_NUMBER_TIP: 'Please enter a version number.',
   'Please select a cluster': 'Please select a cluster',
   'Please select a project': 'Please select a project',
   'Please select a project to deploy': 'Please select a project to deploy',
@@ -97,13 +97,13 @@ module.exports = {
   'Please select a DevOps project': 'Please select a DevOps project',
   'Please select a DevOps project role': 'Please select a DevOps project role',
   'Please select icon': 'Please select icon',
-  'please upload again': 'please upload again',
+  UPLOAD_AGAIN_TIP: 'An error occurred in the upload. Please try again.',
   REVIEWED: 'Reviewed',
   PROVIDER: 'Provider',
   'Re-upload': 'Re-upload',
   'Recover Successfully': 'Recover Successfully',
   'Reject Reason': 'Reject Reason',
-  'Reject Successfully': 'Reject Successfully',
+  REJECT_SUCCESSFUL: 'Rejected successfully.',
   'Release / Suspended Time': 'Released / Suspended',
   'Release Successfully': 'Release Successfully',
   APP_PUBLISHING: 'App publishing',
@@ -116,11 +116,11 @@ module.exports = {
   'Select File': 'Select File',
   'Service Provider': 'Service Provider',
   'Service Provider Website': 'Service Provider Website',
-  "Service provider's official website address":
-    "Service provider's official website address",
+  SERVICE_PROVIDER_WEBSITE_DESC:
+    'Official website address of the service provider.',
   'Start Create': 'Start Creating',
   'Start editing': 'Start editing',
-  'Submit Successfully': 'Submitted Successfully',
+  'Submit Successfully': 'Submitted successfully.',
   Submitter: 'Submitter',
   'Suspend Successfully': 'Suspended Successfully',
   'Terms of service': 'Terms of service',
@@ -131,7 +131,7 @@ module.exports = {
   'Update Log': 'Update Log',
   'Upload again': 'Upload again',
   'Upload Icon': 'Upload Icon',
-  'Upload icon': 'Upload icon',
+  UPLOAD_ICON: 'Upload Icon',
   'Upload Screenshots': 'Upload Screenshots',
   UPLOAD_SUCCESS: 'Uploaded successfully.',
   UPLOAD_TEMPLATE: 'Upload Template',
@@ -139,7 +139,8 @@ module.exports = {
   'Version No': 'Version No',
   'Very helpful when users search for apps':
     'Very helpful when users search for apps',
-  'Wrong website format': 'Wrong website format',
+  WRONG_ADDRESS_TIP:
+    'Incorrect format. Please enter a correct website address.',
 
   FILE_UPLOAD_MAX: 'The file size cannot exceed 2M.',
 
@@ -163,16 +164,15 @@ module.exports = {
   APPS_CREATE_DESC:
     'KubeSphere provides lifecycle management of app templates. You can upload or create new app templates and test them quickly. In addition, you can publish your app templates to the App Store so that other users can deploy them.',
 
-  APP_NAME_DESC:
-    'Important Identification of Applications.The maximum length is 20 characters.',
+  APP_NAME_DESC: 'Name of the app. The maximum length is 20 characters.',
 
-  APP_ABSTRACTION_DESC:
-    'A general introduction to applications.The maximum length is 120 characters.',
+  APP_DESCRIPTION_DESC:
+    'Description of the app. The maximum length is 120 characters.',
 
   APP_DETAIL_DESC: 'Very helpful when searching applications',
 
-  APP_ICON_FORMAT: 'Format: png; transparent background preferred',
-  APP_ICON_SIZE: 'Image size: 96px*96px',
+  APP_ICON_FORMAT: 'Format: PNG; transparent background preferred',
+  APP_ICON_SIZE: 'Icon size: 96x96 pixels',
 
   APP_STORE_DESC: 'Manage apps of the App Store.',
 
@@ -182,26 +182,26 @@ module.exports = {
   APP_REVIEWS_CREATE_DESC:
     'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
   REVIEW_CONTENT_DESC:
-    'The following information must be true and accurate. Key instructions must be given in detail. Terms and Conditions are required to be stated clearly.',
-  REJECT_REASON_DESC: 'Please fill in the reasons for refusal of review.',
+    'The following information must be true and accurate, the key operating instructions need to be described in detail, and the rights and obligations in the terms and conditions need to be described clearly.',
+  REJECT_REASON_DESC: 'Please fill in the reason for rejection.',
 
   APP_CATEGORIES_DESC:
     'You can create, edit, and delete categories on this page to classify active apps of the App Store.',
   APP_CATEGORIES_CREATE_DESC: 'No application available for the category.',
   CHANGE_CATEGORY_DESC:
-    'Application classification will determine the classification of the application in the application store.',
+    'The app category determines the classification of the app in the App Store.',
   DELETE_CATEGORY_WARNING:
     'This category binds <strong>{total}</strong> applications. Please' +
     ' choose to adjust these applications to other categories before deleting them',
-  DELETE_CATEGORY_DESC: 'Are you sure to delete the category [{name}] ?',
-  CHOOSE_APP_CATEGORY_DESC:
-    'Choose the appropriate application categories to facilitate users to find your applications faster',
+  DELETE_CATEGORY_DESC:
+    'Are you sure you want to delete the category <b>{name}</b>?',
+  CHOOSE_APP_CATEGORY_DESC: 'Select a category for the app.',
 
   UPLOAD_HELM_TITLE: 'Upload Helm Chart Package',
   UPLOAD_HELM_CHART_DESC: 'Upload an existing Helm chart.',
   HELM_CHART_FORMAT_DESC: 'Supports tar.gz and tgz formats.',
 
-  EDIT_APP_DESC: 'Set up the basic information of the application',
+  EDIT_APP_DESC: 'Edit the basic information of the app template.',
   CREATE_APP_TEMPLATE_DESC:
     'The lightweight, portable, and self-contained software packaging technology enables applications to run almost anywhere in the same way.',
 
@@ -215,7 +215,7 @@ module.exports = {
   HELM_DEVELOP_GUIDE: ' Helm Specifications.',
 
   CATEGORY_NAME_DESC:
-    'No more than 8 characters is recommended; the name cannot exceed 20 characters.',
+    'The name can contain any characters and the maximum length is 20 characters.',
   APP_CATE_All: 'All',
   APP_CATE_UNCATEGORIZED: 'Uncategorized',
 
@@ -228,9 +228,7 @@ module.exports = {
     'The current version of the application is under review,' +
     ' and the following information is temporarily unalterable',
 
-  SUBMIT_REVIEW_DESC:
-    'Submit the application to the App Store and it will' +
-    ' appear in the App Store after approval',
+  SUBMIT_REVIEW_DESC: 'Submit the app for app review.',
 
   AUDIT_RECORD_CREATE_DESC: 'No relevant review record',
 
@@ -241,11 +239,11 @@ module.exports = {
   FILE_FORMAT_SCREENSHOTS: 'Screen format supports png and jpg',
   FILE_MAX_PACKAGE: 'Configuration package size should not exceed 2M',
   FILE_MAX_ICON: 'Icon size should not exceed 20KB',
-  FILE_MAX_SIZE_ICON: 'The icon size cannot exceed 96 px.',
+  FILE_MAX_SIZE_ICON: 'The maximum size of the icon is 96x96 pixels.',
   FILE_MAX_SCREENSHOTS: 'Image size should not exceed 2M',
 
   UPLOAD_PACKAGE_OK_NOTE:
-    'Please upload the configuration package or upload the configuration package incorrectly',
+    'The version already exists. Please upload another version.',
 
   REVIEWS_CREATE_DESC: 'There is no relevant application review data',
 
@@ -275,7 +273,7 @@ module.exports = {
   'APP_CATE_DATABASE & CACHE': 'Database & Cache',
   APP_CATE_STORAGE: 'Storage',
 
-  // App Reviews
+  // App Review
   REVIEW: 'Review',
   OPERATOR: 'Operator',
   PENDING_REVIEW: 'Pending',
@@ -290,6 +288,7 @@ module.exports = {
   DOCUMENTATION: 'Documentation',
   BACK: 'Back',
   NOTIFICATION_EMAIL: 'Email',
+  NO_DOCUMENT_FOUND: 'No Documentation Found',
 
   // App Store
   DISCOVER: 'Discover',
@@ -301,7 +300,14 @@ module.exports = {
   APP_VERSIONS_TITLE:
     'Versions (only the latest 10 versions will be displayed)',
   VERSIONS: 'Versions',
-  APP_CONFIGURATIONS: 'App Configurations',
   UPDATED_AT_SCAP: 'Updated at: ',
   DEVELOPER: 'Developer',
+
+  // App Categories
+  ICON: 'Icon',
+  CREATE_CATEGORY: 'Create Category',
+  APP_NOTE: 'Note',
+
+  // App Templates > Details
+  SERVICE_PROVIDER_WEBSITE_SCAP: 'Service Provider Website',
 }
