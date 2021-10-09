@@ -660,7 +660,8 @@ export const omitJobGpuLimit = (data, path) => {
 
 export const getGpuFromRes = data => {
   if (data.length > 0) {
-    const gpu = omit(data[0].limit.default, ['cpu', 'memory'])
+    const gpuDefault = get(data, '[0].limit.default', {})
+    const gpu = isEmpty(gpuDefault) ? {} : omit(gpuDefault, ['cpu', 'memory'])
     const gpuKey = Object.keys(gpu)[0]
     if (isEmpty(gpu)) {
       set(data[0].limit, 'gpu', {
