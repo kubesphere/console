@@ -469,7 +469,7 @@ module.exports = {
   'Params Configuration': '参数配置',
   ADD_PARAMETER: '添加参数',
   'Add Param': '添加参数',
-  'No parameters': '暂无参数',
+  NO_PARAMETERS: '暂无参数。',
   'Back To List': '返回列表',
   SERVICE_LIST: '服务列表',
   'Time Range': '时间范围',
@@ -515,6 +515,7 @@ module.exports = {
   PARAM_REQUIRED: '此参数不能为空。',
   Images: '镜像',
   filename: '文件名',
+  DETAILS: '详情',
   NODES: '节点',
   FILE_OVERSIZED_TIP: '文件过大，超过 2M 不能上传！',
   'Load more': '加载更多',
@@ -679,4 +680,9 @@ module.exports = {
   LAST_LOGIN_TIME: '最后登录时间：',
   APP_TEMPLATE_SCAP_PL: '应用模板',
   ACCOUNT_PL: '账户',
+
+  // Container Details Page
+  CONTAINER_DETAILS_PAGE_SCAP: '容器详情页。',
+  CPU_VALUE: 'CPU：{value}',
+  MEMORY_VALUE: '内存：{value}',
 }

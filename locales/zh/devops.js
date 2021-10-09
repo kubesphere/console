@@ -26,7 +26,7 @@ module.exports = {
   DEVOPS_PROJECT_CREDENTIAL_PL: 'DevOps 工程凭证',
   DEVOPS_CREDENTIAL: ' DevOps 凭证',
   DEVOPS_CREDENTIAL_PL: 'DevOps 凭证',
-  DEVOPS_CREDENTIAL_EMPTY_DESC: '请创建一个 DevOps 凭证。',
+  DEVOPS_CREDENTIAL_EMPTY_DESC: '请创建一个 DevOps 工程凭证。',
   DEVOPS_CREDENTIAL_LOW: 'DevOps 凭证',
   'DevOps Basic Info': '基本信息',
   DEVOPS_PROJECT_MANAGEMENT: '工程管理',

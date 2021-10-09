@@ -19,10 +19,9 @@
 module.exports = {
   'Network Policy': '網路策略',
   NETWORK_POLICY: '網路策略',
-  NETWORK_POLICY_PL: 'Network Policies',
-  NETWORK_POLICY_LOW: 'network policy',
-  NETWORK_POLICY_EMPTY_DESC: 'Please create a network policy.',
-  'Network Policys': '網路策略',
+  NETWORK_POLICY_PL: '網路策略',
+  NETWORK_POLICY_LOW: '網路策略',
+  NETWORK_POLICY_EMPTY_DESC: '請創建一個網路策略。',
   NETWORK_ISOLATION: '網路隔離',
   CREATE_NETWORK_POLICY_TCAP: '創建網路策略',
   // Network Policies Page
@@ -30,8 +29,10 @@ module.exports = {
   ADD_ALLOWLIST: '添加白名單',
   EGRESS: '出口',
   Ingress: '入口',
-  'Traffic Egress': '流量出口',
-  'Traffic Ingress': '流量入口',
+  EGRESS_TRAFFIC: '流量出口',
+  INGRESS_TRAFFIC: '流量入口',
+  DESTINATION: '目的地',
+
   RULE_DIRECTION: '规则方向',
   NETWORK_POLICY_DESC:
     '通過配置網路策略，允許在同個集群内時現網路的隔離，也就是可以在某些實例（Pod）之間架起防火牆。',

@@ -93,7 +93,7 @@ class ResourceStatus extends React.Component {
         {this.renderPlacement()}
         <UsageCard title={t('VOLUME')} store={this.monitor} />
         <PodsCard
-          title={t('Mounted Pods')}
+          title={t('MOUNTED_PODS')}
           detail={detail}
           prefix={this.prefix}
         />

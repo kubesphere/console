@@ -144,7 +144,7 @@ export default class NetworkpoliciesDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: this.name,
+          label: t('NETWORK_POLICY_PL'),
           url: `/clusters/${this.cluster}/networkpolicies`,
         },
       ],

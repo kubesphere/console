@@ -80,7 +80,7 @@ const Card = ({ detail, gateway, prefix }) => {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <Button className={styles.access}>{t('Click to visit')}</Button>
+                <Button className={styles.access}>{t('ACCESS_SERVICE')}</Button>
               </a>
             </li>
           ))

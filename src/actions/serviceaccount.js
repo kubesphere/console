@@ -40,7 +40,7 @@ export default {
           const data = get(newObject, kind)
 
           if (!data) {
-            Notify.error({ content: t('Invalid configuration file format') })
+            Notify.error({ content: t('INVALID_YAML_FILE_FORMAT') })
             return
           }
 

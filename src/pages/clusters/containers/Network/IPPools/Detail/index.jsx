@@ -85,7 +85,7 @@ export default class IPPoolDetail extends React.Component {
       {
         key: 'viewYaml',
         icon: 'eye',
-        text: t('View YAML'),
+        text: t('VIEW_YAML'),
         action: 'view',
         onClick: () =>
           this.trigger('resource.yaml.edit', {
@@ -142,11 +142,11 @@ export default class IPPoolDetail extends React.Component {
         value: block.base,
       },
       {
-        name: t('First Available'),
+        name: t('STARTING_IP_ADDRESS'),
         value: block.base,
       },
       {
-        name: t('Last Available'),
+        name: t('ENDING_IP_ADDRESS'),
         value: block.last,
       },
       {
@@ -175,7 +175,7 @@ export default class IPPoolDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Pod IP Pools'),
+          label: t('POD_IP_POOL_PL'),
           url: this.listUrl,
         },
       ],

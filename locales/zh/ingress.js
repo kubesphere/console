@@ -25,8 +25,8 @@ module.exports = {
   EDIT_ROUTING_RULES: '编辑路由规则',
   'Create Route': '创建应用路由',
   PATH_EMPTY_DESC: '请添加至少一个路径。',
-  Rules: '规则',
-  EDIT_RULES_TCAP: '编辑规则',
+  RULES: '规则',
+  EDIT_RULES: '编辑规则',
   EDIT_ANNOTATION: '编辑注解',
   EDIT_ANNOTATIONS: '编辑注解',
   ROUTING_RULES: '路由规则',
@@ -44,7 +44,7 @@ module.exports = {
   AUTO_GENERATE_TCAP: '自动生成',
   SPECIFY_DOMAIN_TCAP: '指定域名',
 
-  'Unable to access': '无法访问',
+  UNABLE_TO_ACCESS: '无法访问服务',
 
   INVALID_DOMAIN_DESC: '域名格式错误。',
 
@@ -76,7 +76,7 @@ module.exports = {
   ADD_ROUTING_RULE_DESC: '添加一个路由规则将域名路径映射至服务。',
   ROUTING_RULE_EMPTY_DESC: '请添加至少一个路由规则。',
   UNABLE_TO_ACCESS_TIP:
-    '● 请确保您设置的域名可以解析到访问入口的 IP 地址;<br/>● 如果在私有云环境中，请修改本地的 host 文件，并通过<strong>域名+节点端口</strong>的方式来访问;<br/>● 通过通配 DNS 访问，将域名修改为 hostname + 网关地址 + nip.io，然后可以通过<strong>hostname.网关地址.nip.io:节点端口</strong>的形式来访问服务;<br/>● 如果通过域名访问被拦截，请确认您的域名是真实而且已经备案。',
+    '● 请确保您设置的域名可以解析到访问入口的 IP 地址;<br/>● 如果在私有云环境中，请修改本地的 host 文件，并通过&lt域名&gt:&ltNodePort&gt的方式来访问;<br/>● 通过通配 DNS 访问，将域名修改为&ltHostname&gt.&lt网关地址&gt.nip.io，然后可以通过&ltHostname&gt.&lt网关地址&gt.nip.io:&ltNodePort&gt的形式来访问服务;<br/>● 如果通过域名访问被拦截，请确认您的域名是真实域名而且已经备案。',
 
   NO_GATEWAY_DESC:
     '如需使用自动生成模式，请联系项目管理员在此项目的高级设置中设置网关访问方式。',
@@ -98,4 +98,10 @@ module.exports = {
   ACCESS_TYPES_OF_ROUTE_Q: '应用路由支持的访问方式？',
   ACCESS_TYPES_OF_ROUTE_A:
     'KubeSphere 应用路由支持 NodePort 访问方式以及 LoadBalancer 访问方式。',
+
+  // Route Detail Page
+  ROUTE_PATH_VALUE: '路径：<strong>{value}</strong>',
+  ROUTE_SERVICE_VALUE: '服务：<strong>{value}</strong>',
+  ROUTE_PORT_VALUE: '端口：<strong>{value}</strong>',
+  ACCESS_SERVICE: '访问服务',
 }

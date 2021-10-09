@@ -30,6 +30,7 @@ module.exports = {
   'Create Route': 'Crear ruta',
   EDIT_ANNOTATION: 'Editar annotation',
   EDIT_ANNOTATIONS: 'Edit Annotations',
+  EDIT_RULES: 'Editar reglas',
   GATEWAY_ADDRESS_TCAP: 'Dirección del gateway',
   'Gateway IP': 'IP del gateway',
   'Gateway Type': 'Tipo de gateway',
@@ -50,10 +51,10 @@ module.exports = {
   ROUTE_PL: 'Routes',
   ROUTE_LOW: 'Route',
   ROUTING_RULES: 'Reglas de ruta',
-  Rules: 'Reglas',
+  RULES: 'Reglas',
   SET_ROUTING_RULES: 'Establecer regla de ruta',
   SPECIFY_DOMAIN_TCAP: 'Especificar dominio',
-  'Unable to access': 'No es posible acceder',
+  UNABLE_TO_ACCESS: 'Unable to access Service',
   ROUTE_DESC:
     'Una ruta proporciona una forma de agregar servicios, y puede exponer los servicios internos del clúster al exterior a través de una dirección IP accesible desde el exterior.',
   ROUTE_EMPTY_DESC:
@@ -75,7 +76,7 @@ module.exports = {
   GATEWAY_APPLICATION_GOVERNANCE_TIP:
     'Necesitas habilitar Application Governance si deseas utilizar la función de Tracing. Una vez que Application Governance esté habilitado, verifica si se ha agregado una annotation como "nginx.ingress.kubernetes.io/service-upstream: true" para la ruta de la aplicación si la ruta es inaccesible. Si no existe el annotation, agrégalo.',
   UNABLE_TO_ACCESS_TIP:
-    '● Asegúrate de que el nombre de dominio establecido pueda resolverse en la dirección IP del portal de acceso. <br/>Si se encuentra en un entorno de nube privada, modifica el archivo de host local y luego accede a través de {$domain name}:{$node port}. <br/> ● Al configurar el acceso DNS, modifica el nombre de dominio a {$hostname} + {$gateway address} + nip.io, y luego acceda al servicio a través de {$hostname}.{$gateway address} .nip.io:{$NodePort}. <br/> ● Si el acceso está bloqueado cuando se usa el nombre de dominio, confirma si tu nombre de dominio existe y se ha registrado.',
+    '● Asegúrate de que el nombre de dominio establecido pueda resolverse en la dirección IP del portal de acceso. <br/>Si se encuentra en un entorno de nube privada, modifica el archivo de host local y luego accede a través de &ltDomain name&gt:&ltNodePort&gt. <br/> ● Al configurar el acceso DNS, modifica el nombre de dominio a &ltHostname&gt.&ltGateway address&gt.nip.io, y luego acceda al servicio a través de &ltHostname&gt.&ltGateway address&gt.nip.io:&ltNodePort&gt. <br/> ● Si el acceso está bloqueado cuando se usa el nombre de dominio, confirma si tu nombre de dominio existe y se ha registrado.',
   PREREQUESTS_FOR_USE_ROUTE_Q:
     '¿Cuales son los requisitos para poder usar rutas?',
   PREREQUESTS_FOR_USE_ROUTE_A:
@@ -83,4 +84,10 @@ module.exports = {
   ACCESS_TYPES_OF_ROUTE_Q: '¿Qué tipos de acceso admite la ruta?',
   ACCESS_TYPES_OF_ROUTE_A:
     'Las rutas de KubeSphere admiten nombres de dominio personalizados (HostName) y así como wildcards DNS.',
+
+  // Route Detail Page
+  ROUTE_PATH_VALUE: 'Path: <strong>{value}</strong>',
+  ROUTE_SERVICE_VALUE: 'Servicio: <strong>{value}</strong>',
+  ROUTE_PORT_VALUE: 'Port: <strong>{value}</strong>',
+  ACCESS_SERVICE: 'Access Service',
 }

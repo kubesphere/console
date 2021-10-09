@@ -79,7 +79,7 @@ module.exports = {
   'Please select Service': 'Por favor selecciona Servicio',
   Ports: 'Puertos',
   routes: 'rutas',
-  Selector: 'Selector',
+  SELECTOR: 'Selector',
   selector: 'selector',
   'Service Access': 'Acceso al servicio',
   'Service Mesh': 'Malla de servicio',
@@ -147,7 +147,7 @@ module.exports = {
   ACCESS_NODEPORT_TIP: 'Use a port of the cluster nodes to access the Service.',
   ACCESS_LOADBALANCER_TIP: 'Use a load balancer to access the Service.',
   SERVICE_NODE_PORT_DESC:
-    'Si su red actual está en la misma red que el nodo del clúster, puedes acceder a ella a través de la dirección IP del clúster + número de puerto del nodo o a través del puerto del nodo IP + nodo.',
+    'If your current network is on the same network as the cluster node, you can access it through <Cluster IP address>:<NodePort> or through <Node IP address>:<NodePort>.',
   SERVICE_TYPE: 'Service Type',
   SELECT_SERVICE_TYPE: 'Select Service Type',
   SERVICE_TYPES_Q: 'Tipos de servicio',
@@ -201,4 +201,5 @@ module.exports = {
   UNKNOWN: 'Unknown',
   EXTERNALNAME_EXAMPLE: 'Example: ',
   PORT_PL: 'Ports',
+  ENDPOINT: 'Endpoint',
 }

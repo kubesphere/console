@@ -23,7 +23,6 @@ module.exports = {
   SECRET: '保密字典',
   CODE_REPOSITORY_KEY: '代码仓库密钥',
   SECRET_PL: '保密字典',
-  SECRETS: '保密字典',
   SECRET_LOW: '保密字典',
   SECRET_FIELD_COUNT: '字段数量',
   EDIT_SECRET: '编辑保密字典',

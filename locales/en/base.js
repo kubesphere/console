@@ -266,7 +266,7 @@ module.exports = {
   No: 'No',
   NO_AVAILABLE_RESOURCE: 'No Available Resource',
   'No Data': 'No Data',
-  'No parameters': 'No parameters',
+  NO_PARAMETERS: 'No parameters.',
   'No Relevant Data': 'No Relevant Data',
   NO_MATCHING_RESULT_FOUND: 'No Matching Result Found',
   NO_RELEVANT_DATA: 'No Relevant Data Found',
@@ -673,4 +673,9 @@ module.exports = {
   LAST_LOGIN_TIME: 'Last Login: ',
   APP_TEMPLATE_SCAP_PL: 'App templates',
   ACCOUNT_PL: 'Accounts',
+
+  // Container Details Page
+  CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
+  CPU_VALUE: 'CPU: {value}',
+  MEMORY_VALUE: 'Memory: {value}',
 }

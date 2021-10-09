@@ -30,9 +30,10 @@ module.exports = {
   NETWORK_POLICY_PL: 'Network Policies',
   NETWORK_POLICY_LOW: 'network policy',
   NETWORK_POLICY_EMPTY_DESC: 'Please create a network policy.',
-  'Traffic Egress': 'Salida de tráfico',
-  'Traffic Ingress': 'Entrada de Tráfico',
-  'Network Policys': 'Políticas de red',
+  EGRESS_TRAFFIC: 'Salida de tráfico',
+  INGRESS_TRAFFIC: 'Entrada de Tráfico',
+  DESTINATION: 'Destination',
+
   NETWORK_POLICY_DESC:
     'La configuración de la política de red permite el aislamiento de la red dentro del mismo clúster, lo que significa que se pueden configurar cortafuegos entre ciertas instancias (Pods).',
   NETWORK_ISOLATION_DESC:

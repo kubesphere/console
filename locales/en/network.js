@@ -30,10 +30,10 @@ module.exports = {
   NETWORK_POLICY_PL: 'Network Policies',
   NETWORK_POLICY_LOW: 'network policy',
   NETWORK_POLICY_EMPTY_DESC: 'Please create a network policy.',
-  'Traffic Egress': 'Traffic Egress',
-  'Traffic Ingress': 'Traffic Ingress',
+  EGRESS_TRAFFIC: 'Egress Traffic',
+  INGRESS_TRAFFIC: 'Ingress Traffic',
+  DESTINATION: 'Destination',
 
-  'Network Policys': 'Network Policies',
   NETWORK_POLICY_DESC:
     'The network policy configuration allows network isolation within the same cluster, which means firewalls can be set up between certain instances (Pods).',
   NETWORK_ISOLATION_DESC:

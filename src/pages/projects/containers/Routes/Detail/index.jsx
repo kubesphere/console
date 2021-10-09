@@ -95,7 +95,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'editRules',
       icon: 'firewall',
-      text: t('EDIT_ROUTING_RULE'),
+      text: t('EDIT_ROUTING_RULES'),
       action: 'edit',
       onClick: () =>
         this.trigger('router.rules.edit', {
@@ -139,7 +139,7 @@ export default class RouteDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -147,7 +147,7 @@ export default class RouteDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Application'),
+        name: t('APPLICATION'),
         value: detail.app,
       },
       {

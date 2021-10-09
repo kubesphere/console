@@ -75,7 +75,7 @@ export default class Ports extends Component {
                     rel="noreferrer noopener"
                   >
                     <Button className={styles.access}>
-                      {t('Click to visit')}
+                      {t('ACCESS_SERVICE')}
                     </Button>
                   </a>
                 )}

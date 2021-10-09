@@ -17,22 +17,31 @@
  */
 
 module.exports = {
-  'Service Monitoring Exporter': '服務監控導出器',
+  SERVICE_MONITORING_EXPORTER: '服務監控導出器',
   'Target Service': '目標服務',
-  'Exporter Service Ports': '導出服務端口',
-  'Scrap Interval(min)': '採集間隔(分鐘)',
+  EXPORTER_SERVICE_PORTS: '導出服務端口',
+  SCRAPE_INTERVAL_MIN: '採集間隔（分鐘）',
   'View Monitor': '查看監控',
-  'Monitoring Exporter': '監控導出器',
+  MONITORING_EXPORTER: '監控導出器',
 
-  'Choose Authentication Method': '選擇授權方式',
-  'Port connection authentication': '端口連接授權',
-  'No Auth': '無須認證',
+  SELECT_AUTHENTICATION_METHOD: '選擇認證方式',
+  PORT_CONNECTION_AUTHENTICATION: '端口連接認證。',
+  NO_AUTH: '無須認證',
 
-  'Create a new secret': '建創新密鑰',
-  'refresh secrets': '刷新密鑰',
+  CREATE_A_NEW_SECRET: '建創新保密字典',
+  REFRESH_SECRETS: '刷新保密字典。',
 
-  NO_AUTH_TIP: '接口可直接連接，無須授權',
+  NO_AUTH_TIP: '接口可直接連接，無須認證。',
 
   SCRAP_INTERVAL_DESC: '監控數據採集區間隔，默認為 1 分鐘',
   SCRAP_TIMEOUT_DESC: '超時，默認值 10 秒',
+
+  // Service Monitoring Exporter Form
+  CERTIFICATE_AUTHORITY: 'Certificate Authority',
+  ENCRYPTION_KEY: 'Encryption Key',
+  SERVER_NAME: 'Server Name',
+  NO_AUTHENTICATION_TCAP: 'No Authentication',
+  TLS_SETTINGS_TCAP: 'TLS Settings',
+  BEARER_TOKEN_TCAP: 'Bearer Token',
+  BASIC_AUTHENTICATION_TCAP: 'Basic Authentication',
 }

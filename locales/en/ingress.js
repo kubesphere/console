@@ -30,6 +30,7 @@ module.exports = {
   'Create Route': 'Create Route',
   EDIT_ANNOTATION: 'Edit Annotation',
   EDIT_ANNOTATIONS: 'Edit Annotations',
+  EDIT_RULES: 'Edit Rules',
   GATEWAY_ADDRESS_TCAP: 'Gateway Address',
   'Gateway IP': 'Gateway IP',
   'Gateway Type': 'Gateway Type',
@@ -50,10 +51,10 @@ module.exports = {
   ROUTE_PL: 'Routes',
   ROUTE_LOW: 'Route',
   ROUTING_RULES: 'Routing Rules',
-  Rules: 'Rules',
+  RULES: 'Rules',
   SET_ROUTING_RULES: 'Set Route Rules',
   SPECIFY_DOMAIN_TCAP: 'Specify Domain',
-  'Unable to access': 'Unable to access',
+  UNABLE_TO_ACCESS: 'Unable to access Service',
 
   ROUTE_DESC:
     'A Route provides a way to aggregate Services. You can expose the internal Services outside the cluster through an externally accessible IP address.',
@@ -82,7 +83,7 @@ module.exports = {
     'You don\'t need to enable Application Governance if you don\'t use the Tracing feature. Once Application Governance is enabled, please check if an annotation like "nginx.ingress.kubernetes.io/service-upstream: true" is added for the application route when the route is inaccessible. If not, please add one.',
 
   UNABLE_TO_ACCESS_TIP:
-    '● Make sure that the domain name you set can be resolved to the IP address of the access portal. <br/>● If you are in a private cloud environment, modify the local host file and then access it via {$domain name}:{$node port}.<br/>● By configuring DNS access, you need to modify the domain name to {$hostname} + {$gateway address} + nip.io, and then access the service via {$hostname}.{$gateway address} .nip.io:{$NodePort}. <br/>● If the access is blocked when you use the domain name, please confirm if your domain name exists and has been registered.',
+    '● Make sure that the domain name you set can be resolved to the IP address of the access portal. <br/>● If you are in a private cloud environment, modify the local host file and then access it through &ltDomain name&gt:&ltNodePort&gt.<br/>● By configuring DNS access, you need to modify the domain name to &ltHostname&gt.&ltGateway address&gt.nip.io, and then access the Service through &ltHostname&gt.&ltGateway address&gt.nip.io:&ltNodePort&gt. <br/>● If the access is blocked when you use the domain name, please confirm if your domain name exists and has been registered.',
 
   PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using Routes?',
   PREREQUESTS_FOR_USE_ROUTE_A:
@@ -91,4 +92,10 @@ module.exports = {
   ACCESS_TYPES_OF_ROUTE_Q: 'What are the external access methods of Routes?',
   ACCESS_TYPES_OF_ROUTE_A:
     'KubeSphere Routes support the NodePort and LoadBalancer external access methods.',
+
+  // Route Detail Page
+  ROUTE_PATH_VALUE: 'Path: <strong>{value}</strong>',
+  ROUTE_SERVICE_VALUE: 'Service: <strong>{value}</strong>',
+  ROUTE_PORT_VALUE: 'Port: <strong>{value}</strong>',
+  ACCESS_SERVICE: 'Access Service',
 }

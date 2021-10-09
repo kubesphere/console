@@ -18,8 +18,8 @@
 
 module.exports = {
   VOLUME_EXPANSION: 'Volume Expansion',
-  'Available Capacity': 'Capacidad disponible',
-  'Create Snapshot': 'Crear snapshot',
+  AVAILABLE_CAPACITY: 'Capacidad disponible',
+  CREATE_SNAPSHOT: 'Crear snapshot',
   'Create Storage Class': 'Crear clase de almacenamiento',
   'Create Volume': 'Crear volumen',
   CREATE_VOLUME_WITH_SNAPSHOT: 'CREATE_VOLUME_WITH_SNAPSHOT',
@@ -32,7 +32,7 @@ module.exports = {
   'Apply immediately': 'Efecto inmediato',
   'Enable Volume Snapshot': 'Habilitar snapshot de volumen',
   Expand: 'Expandir',
-  'Expand Volume': 'Ampliar volumen',
+  EXPAND_VOLUME: 'Ampliar volumen',
   AVAILABLE: 'En desuso',
   IN_USER: 'En uso',
   'Mount Info': 'Información de montaje',
@@ -41,7 +41,7 @@ module.exports = {
   // Volumes List Page
   MOUNT_STATUS: 'Montar',
   MOUNTED: 'Montado',
-  'Mounted Pods': 'Pods montados',
+  MOUNTED_PODS: 'Pods montados',
   NOT_MOUNTED: 'No montado',
   Parameters: 'Parámetros',
   'Parameters (key-value pairs)': 'Parámetros (pares clave-valor)',
@@ -53,6 +53,9 @@ module.exports = {
   SET_AS_DEFAULT_STORAGE_CLASS: 'Set as Default Storage Class',
   'Snapshot Message': 'Mensaje de snapshot',
   'Snapshots Message': 'Mensaje de snapshots',
+  'Set as default storage class':
+    'Establecer como clase de almacenamiento predeterminada',
+  SNAPSHOT_INFORMATION: 'Snapshot Information',
   'Storage Class': 'Clase de almacenamiento',
   STORAGE_CLASS: 'Clase de almacenamiento',
   STORAGE_CLASS_PL: 'Storage Classes',
@@ -77,11 +80,10 @@ module.exports = {
   PV_STATUS_TERMINATING: 'Terminando',
   'Bound Volume': 'Límite de volumen de almacenamiento',
   RECYCLING_MECHANISM: 'Mecanismo de reciclaje',
-
   ACCESS_MODE: 'Modo de acceso admitido',
   ACCESS_MODE_SCAP: 'Modo de acceso admitido',
   'Used Capacity': 'Capacidad utilizada',
-  'Clone Volume': 'Clon del volumen',
+  CLONE_VOLUME: 'Clon del volumen',
   VOLUME: 'Volumen',
   VOLUMES: 'Volumes',
   VOLUME_PL: 'Recuento de volumen',
@@ -126,6 +128,7 @@ module.exports = {
   VOLUME_STORAGE_CLASS_DESC:
     'Selecciona clase de almacenamiento para crear un tipo específico de volumen.',
   PROVISIONER_DESC: 'Proporciona el backend de almacenamiento',
+  INODE_USAGE_RATE: 'Inode Usage',
   ACCESS_MODES_DESC:
     'Selecciona el modo de acceso compatible con la clase de almacenamiento.',
   DELETE_STORAGE_TIP:
@@ -222,7 +225,7 @@ module.exports = {
     'You can specify different storage classes for different clusters.',
 
   VOLUME_MONITORING_TIP:
-    'Kubernetes collects volume usage data, excluding data from unmounted volumes. For path-based volumes such as OpenEBS/Local PV and NFS, the data collected may be different from the actual amount. For detailed information, see <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">volume monitoring data analysis</a>.',
+    'KubeSphere collects volume usage data, excluding data from unmounted volumes. For path-based volumes such as OpenEBS/Local PV and NFS, the data collected may be different from the actual amount. For detailed information, see <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">volume monitoring data analysis</a>.',
 
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',

@@ -137,7 +137,7 @@ module.exports = {
   Send: 'Enviar',
   'Service components should not be empty':
     'Los componentes de servicio no deben estar vacíos.',
-  'Service Ports': 'Puertos de servicio',
+  SERVICE_PORTS: 'Puertos de servicio',
   SERVICE_PORT_NAME_DESC:
     'The port name must follow the format: <protocol>[-<suffix>]. http, http2, grpc, mongo or redis can be used as <protocol> so that you can use Istio’s routing features. For example, name: http2-foo and name: http are valid names while name: http2foo is invalid.',
   'Services & Operations': 'Servicios y operaciones',

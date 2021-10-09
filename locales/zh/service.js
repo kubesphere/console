@@ -21,7 +21,7 @@ module.exports = {
   routes: '应用路由',
   Ports: '端口',
   selector: '选择器',
-  Selector: '选择器',
+  SELECTOR: '选择器',
   EXTERNAL_IP_ADDRESS: '外部 IP 地址',
   'LoadBalancer IP': '负载均衡 IP',
   CREATE_SERVICE: '创建服务',
@@ -147,7 +147,7 @@ module.exports = {
   SERVICE_EXTERNAL_ACCESS_DESC: '设置从集群外访问服务的方式。',
 
   SERVICE_NODE_PORT_DESC:
-    '如果您当前的网络与集群节点在同一网络内，那么您可以通集群IP地址+节点端口号进行访问，或者通过节点 IP+节点端口进行访问',
+    '如果您当前的网络与集群节点在同一网络内，那么您可以通过<集群 IP 地址>:<NodePort>进行访问，或者通过<节点 IP 地址>:<NodePort>进行访问。',
 
   SERVICE_TYPE: '服务类型',
   SELECT_SERVICE_TYPE: '选择服务类型',
@@ -204,4 +204,5 @@ module.exports = {
   UNKNOWN: '未知',
   EXTERNALNAME_EXAMPLE: '例如：',
   PORT_PL: '端口',
+  ENDPOINT: '端点',
 }

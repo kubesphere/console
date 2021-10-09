@@ -80,7 +80,7 @@ module.exports = {
   'Please select Service': 'Please select Service',
   Ports: 'Ports',
   routes: 'routes',
-  Selector: 'Selector',
+  SELECTOR: 'Selector',
   selector: 'selector',
   'Service Access': 'Service Access',
   'Service Mesh': 'Service Mesh',
@@ -150,7 +150,7 @@ module.exports = {
   ACCESS_LOADBALANCER_TIP: 'Use a load balancer to access the Service.',
 
   SERVICE_NODE_PORT_DESC:
-    'If your current network is on the same network as the cluster node, you can access it through the cluster IP address + node port number or through the node IP + node port.',
+    'If your current network is on the same network as the cluster node, you can access it through <Cluster IP address>:<NodePort> or through <Node IP address>:<NodePort>.',
 
   SERVICE_TYPE: 'Service Type',
   SELECT_SERVICE_TYPE: 'Select Service Type',
@@ -159,7 +159,7 @@ module.exports = {
     'KubeSphere supports stateless Services and stateful Services. Pod replicas in a stateless Service share the same volume, while each Pod replica in a stateful Service has an independent volume.',
 
   SCENARIOS_FOR_SERVICES_Q:
-    'What are the application scenarios of stateless Services and stateful Services?',
+    'What are the use cases of stateless Services and stateful Services?',
   SCENARIOS_FOR_SERVICES_A:
     'Stateless Services applies to scenarios where data persistence is not required, such as Nginx and Tomcat. Stateful Services applies to scenarios where data persistence is required, such as MySQL databases, Kafka, and Zookeeper.',
   DELETE_SERVICE_DESC:
@@ -212,4 +212,5 @@ module.exports = {
   UNKNOWN: 'Unknown',
   EXTERNALNAME_EXAMPLE: 'Example: ',
   PORT_PL: 'Ports',
+  ENDPOINT: 'Endpoint',
 }
