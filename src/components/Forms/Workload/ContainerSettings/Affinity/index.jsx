@@ -124,8 +124,7 @@ export default class AffinityForm extends React.Component {
     this.state = {
       mode: 'default',
     }
-    this.deploymentMode =
-      "spec.template.metadata.annotations['deployment.kubernetes.io/deploymentMode']"
+
     this.store = new WorkloadStore(props.module)
   }
 
@@ -135,33 +134,34 @@ export default class AffinityForm extends React.Component {
     if (!isEmpty(affinity)) {
       const options = this.replicasPolicyOptions
       const equalItem = options.find(item => isEqual(item.affinity, affinity))
+
       if (equalItem) {
         this.setState({ mode: equalItem.value })
-        set(this.props.data, this.deploymentMode, equalItem.value)
         delete this.props.data.spec.template.spec.customMode
       } else {
-        this.setState({ mode: 'custom' })
-        const modes = Object.keys(affinity).map(item => {
-          const type = Object.keys(affinity[item])[0]
-          const target = get(
-            affinity,
-            type === 'requiredDuringSchedulingIgnoredDuringExecution'
-              ? `[${item}][${type}][0]["labelSelector"]["matchExpressions"][0]["values"][0]`
-              : `[${item}][${type}][0]["podAffinityTerm"]["labelSelector"]["matchExpressions"][0]["values"][0]`,
-            ''
-          )
-          return {
-            policy: item,
-            type,
-            target,
-          }
+        this.setState({ mode: 'custom' }, () => {
+          const modes = Object.keys(affinity).map(item => {
+            const type = Object.keys(affinity[item])[0]
+            const target = get(
+              affinity,
+              type === 'requiredDuringSchedulingIgnoredDuringExecution'
+                ? `[${item}][${type}][0]["labelSelector"]["matchExpressions"][0]["values"][0]`
+                : `[${item}][${type}][0]["podAffinityTerm"]["labelSelector"]["matchExpressions"][0]["values"][0]`,
+              ''
+            )
+            return {
+              policy: item,
+              type,
+              target,
+            }
+          })
+          set(this.props.data, 'spec.template.spec.customMode', modes)
         })
-        set(this.props.data, this.deploymentMode, 'custom')
-        set(this.props.data, 'spec.template.spec.customMode', modes)
       }
     } else {
-      set(this.props.data, this.deploymentMode, 'default')
+      this.setState({ mode: 'default' })
     }
+
     const { cluster, namespace } = this.props
     this.store.fetchList({ cluster, namespace, limit: Infinity })
   }
@@ -169,6 +169,7 @@ export default class AffinityForm extends React.Component {
   handleAffinityChange = mode => {
     const item = this.replicasPolicyOptions.find(key => key.value === mode)
     set(this.props.data, 'spec.template.spec.affinity', item.affinity)
+
     if (mode === 'custom') {
       set(this.props.data, 'spec.template.spec.customMode', [{}])
     } else {
@@ -258,7 +259,7 @@ export default class AffinityForm extends React.Component {
       <>
         <Form.Item>
           <TypeSelect
-            name={this.deploymentMode}
+            value={mode}
             options={options}
             onChange={this.handleAffinityChange}
             defaultValue={options[0].value}
