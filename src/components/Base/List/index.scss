@@ -14,8 +14,10 @@
     margin-bottom: 0;
   }
 
-  &.withIcon {
-    padding-left: 64px;
+  .wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
   }
 
   &:hover {
@@ -47,12 +49,8 @@
 }
 
 .icon {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 12px;
-  left: 12px;
-
+  position: relative;
+  margin-right: 12px;
   & > img {
     width: 40px;
     height: 40px;
@@ -60,8 +58,8 @@
 
   .indicator {
     position: absolute;
-    right: 0px;
-    bottom: 0px;
+    right: -1px;
+    bottom: -1px;
     width: 8px;
     height: 8px;
   }
