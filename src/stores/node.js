@@ -85,7 +85,7 @@ export default class NodeStore extends Base {
     params.limit = params.limit || 10
 
     const result = await request.get(
-      this.getResourceUrl({ cluster, workspace, namespace, devops }),
+      this.getResourceUrl({ cluster, workspace, devops }),
       this.withTypeSelectParams(params, type)
     )
 
