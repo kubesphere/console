@@ -184,15 +184,29 @@ export default class ServiceDeployAppModal extends React.Component {
 
   async fetchData() {
     const { cluster, namespace } = this.props
-    await this.gatewayStore.getGateway({ cluster, namespace })
-    const gateway = toJS(this.gatewayStore.gateway.data)
+
+    const getHostGateway = () => {
+      return this.gatewayStore.getGateway({ cluster })
+    }
+
+    const getProjectGateway = () => {
+      return this.gatewayStore.getGateway({
+        namespace,
+        cluster,
+      })
+    }
+
+    const dataList = await Promise.all([getHostGateway(), getProjectGateway()])
+    const gateway = dataList[1] || dataList[0]
     const isGovernance = !!(this.serviceMeshEnable && gateway.serviceMeshEnable)
+
     set(
       this.state.formData.application,
       'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
       String(isGovernance)
     )
-    this.setState({ gateway, isGovernance })
+
+    this.setState({ gateway: toJS(gateway), isGovernance })
   }
 
   handleOk = () => {

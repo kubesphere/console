@@ -208,10 +208,14 @@ class GatewayCard extends React.Component {
     } = this.gateway
 
     const { renderOperations } = this.props
-
     const gatewayPort = isEmpty(ports)
       ? '-'
-      : ports.map(item => `${item.name}:${item.nodePort}`).join(';')
+      : ports
+          .map(
+            item =>
+              `${item.name}:${type === 'NodePort' ? item.nodePort : item.port}`
+          )
+          .join(';')
 
     const gateway_ip = isEmpty(loadBalancerIngress)
       ? '-'

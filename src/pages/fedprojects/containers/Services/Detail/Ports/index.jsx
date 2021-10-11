@@ -68,7 +68,7 @@ export default class Ports extends Component {
                     </Tooltip>
                   </div>
                 </div>
-                {gateway.defaultIngress && (
+                {gateway && gateway.defaultIngress && (
                   <a
                     href={`http://${gateway.defaultIngress}:${port.nodePort}`}
                     target="_blank"
