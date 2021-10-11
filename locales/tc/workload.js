@@ -18,7 +18,7 @@
 
 module.exports = {
   SELECT_PROJECT_DESC: '選擇一個項目。',
-  PROJECT_EMPTY_DESC: '請選擇一個項目。',
+  PROJECT_NOT_SELECT_DESC: '請選擇一個項目。',
   REPLICA_LOW_SI: '副本',
   REPLICA_LOW_PL: '副本',
   Workload: '工作負載',
@@ -88,7 +88,8 @@ module.exports = {
   'Port(s)': '端口',
   Port: '端口',
   EDIT_CONTAINER: '編輯容器',
-  'Host Port': '主機端口',
+  NODE_PORTS: '主機端口',
+  NODE_PORTS_SCAP: 'Node ports',
   ADD_PORT: '添加端口',
   'target port': '目標端口',
   Environment: '環境變量',
@@ -725,7 +726,7 @@ module.exports = {
   FailedDelete: '刪除失敗',
   SuccessfulDelete: '刪除成功',
 
-  USE_DEFAULT_PORT: '使用預設端口',
+  USE_DEFAULT_PORTS: '使用預設端口',
 
   CONTAINER_NOT_SELECTED: '請至少選擇一個容器進行掛載',
   'Sure to delete the workload(s)?': '確認刪除工作負載',

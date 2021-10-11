@@ -60,7 +60,7 @@ export default class ClusterRoles extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>

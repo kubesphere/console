@@ -19,6 +19,8 @@
 module.exports = {
   DEVOPS_NAME: 'DevOps 工程名稱',
   DEVOPS_PROJECT: 'DevOps 工程',
+  DEVOPS_PROJECT_MEMBER_EMPTY_DESC:
+    'Please invite a member of the current workspace to the DevOps project.',
   'DevOps Role': '成員角色',
   'DevOps Roles': '成員角色',
   'DevOps Member': '工程成員',
@@ -63,13 +65,14 @@ module.exports = {
     '成員角色定義了在目前 DevOps 工程下用戶所擁有的權限。',
 
   DEVOPS_PROJECT_MEM_DESC: '對工程内的成員進行管理及角色分配。',
+  DEVOPS_PROJECT_ROLE_EMPTY_DESC: 'Please create a DevOps project role.',
 
   DELETE_DEVOPS_TIP:
     '確定刪除 DevOps 工程 <strong>{resource}</strong> ? 刪除後將無法恢復, 工程下的資源也同時會被銷毀。',
 
-  DEVOPS_TIP_GITOPS_Q: '如何落地 GitOps？',
+  DEVOPS_TIP_GITOPS_Q: '如何落地 DevOps？',
   DEVOPS_TIP_GITOPS_A:
-    '創建關聯代碼倉庫的流水線，並積極使用部署 Kubernetes 部署步驟，就可以實現 GitOps 了。',
+    '創建關聯代碼倉庫的流水線，並積極使用部署 Kubernetes 部署步驟，就可以實現 DevOps 了。',
 
   DEVOPS_TIP_TYPE_Q: '流水線 (Pipeline) 支持哪些代碼倉庫類別？',
   DEVOPS_TIP_TYPE_A:

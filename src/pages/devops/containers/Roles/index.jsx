@@ -172,7 +172,7 @@ export default class Secrets extends React.Component {
     })
 
   get emptyProps() {
-    return { desc: t('DEVOPS_PROJECT_ROLES_DESC') }
+    return { desc: t('DEVOPS_PROJECT_ROLE_EMPTY_DESC') }
   }
 
   render() {

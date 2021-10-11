@@ -100,7 +100,7 @@ export default class Getway extends React.Component {
           this.props.rootStore.routing.push(url)
         }}
       >
-        {t('View Gateway')}
+        {t('VIEW_DETAILS')}
       </Button>
     )
   }
@@ -134,7 +134,7 @@ export default class Getway extends React.Component {
       <>
         <Banner
           icon="loadbalancer"
-          title={t('GATEWAY_SETTING')}
+          title={t('GATEWAY_SETTINGS')}
           description={t('GATEWAY_DESC')}
           tabs={this.tabs}
         />

@@ -161,20 +161,21 @@ module.exports = {
   PROJECT_ASSIGN_DESC:
     'After the project is assigned to a workspace, the workspace cannot be changed.',
 
-  INVITE_MEMBER_DESC:
-    'You can invite members who belong to the workspace to the project.',
+  INVITE_MEMBER_DESC: 'Invite members of the current workspace to the project.',
+  PROJECT_MEMBER_EMPTY_DESC:
+    'Please invite a member of the current workspace to the project.',
   INVITE_MEMBER_DESC_DEVOPS:
-    'You can invite members who belong to the workspace to the DevOps project.',
+    'Invite members of the current workspace to the DevOps project.',
   INVITE_MEMBER_SEARCH_PLACEHOLDER: 'Enter a username to invite members',
-  ASSIGN_ROLE: 'Assign a Role to the Member',
+  ASSIGN_ROLE: 'Assign Role',
   DELETE_MEMBER_TIP:
     'Are you sure about deleting the member <strong>{name}</strong>? The member cannot access this project once removed.',
 
   PROJECT_ADMIN_DESC:
     'You can specify a member of the project as an administrator.',
 
-  PROJECT_INTERNET_ACCESS_DESC:
-    'Before creating a route, you need to enable the Internet access portal (i.e. the gateway). This step is to create a corresponding routing controller to forward the request to the corresponding backend Service.',
+  SET_GATEWAY_DESC:
+    'Set a gateway controller to forward traffic to different Services based on domain names and paths configured in Routes.',
   DELETE_INTERNET_ACCESS_TITLE: 'Remove Network Access Settings',
   DELETE_INTERNET_ACCESS_DESC:
     'Are you sure you want to remove network access settings? You can reset the network access after the settings are removed.',
@@ -223,6 +224,7 @@ module.exports = {
   PROJECT_ROLE_DESC:
     'Project roles define the permissions users have in the current project.',
   PROJECT_MEMBERS_DESC: 'Manage and assign roles for project members.',
+  PROJECT_ROLE_EMPTY_DESC: 'Please create a project role.',
   PROJECT_ADVANCED_SETTINGS_DESC:
     'Advanced settings are used to configure external access, application governance, and log collection in the project.',
 
@@ -290,8 +292,8 @@ module.exports = {
 
   // Network Isolation
   INGRESS: 'Ingress',
-  INTERNAL_RULE_DIRECTION_DESC:
-    'Specifies the direction of allowed access to and from different projects and services.',
+  INTERNAL_TRAFFIC_DIRECTION_DESC:
+    'Egress indicates the direction from the current project to other projects. Ingress indicates the direction from other projects to the current project.',
   NETWORK_SEGMENT_EXAMPLE: 'Example: 10.0.0.0',
   PORT_EXAMPLE: 'Example: 80',
 }

@@ -27,7 +27,7 @@ module.exports = {
   SECRET_DETAILS: '保密字典詳情',
   SERVICE_ACCOUNT_DESC:
     '服務帳戶（Service Account）為 Pod 中運行的進程提供了壹個標識，用於訪問 API Server。',
-
+  SERVICE_ACCOUNT_EMPTY_DESC: 'Please create a service account.',
   INVALID_YAML_FILE_FORMAT: 'YAML 文件格式錯誤。',
 
   SELECT_PROJECT_ROLE_DESC: '選擇一個項目角色以指定權限。',

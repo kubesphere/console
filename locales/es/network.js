@@ -17,11 +17,11 @@
  */
 
 module.exports = {
-  ADD_ALLOWLIST: 'Agregar lista de permitidos',
+  ADD_ALLOWLIST_ENTRY: 'Agregar lista de permitidos',
   CREATE_NETWORK_POLICY_TCAP: 'Crear política de red',
   // Network Policies Page
   CREATE_BTN: 'Crear',
-  RULE_DIRECTION: 'Rule Direction',
+  TRAFFIC_DIRECTION: 'Traffic Direction',
   EGRESS: 'Salida',
   Ingress: 'Entrada',
   NETWORK_ISOLATION: 'Aislamiento de red',
@@ -52,9 +52,13 @@ module.exports = {
   NETWORK_POLICY_EMP_DESC:
     'After the project network access is enabled, other projects will be unable to access the project. But you can allow projects, Services, and external IP addresses to access this project based on your needs.',
   PROJECT_NETWORK_ISOLATION: 'Aislamiento de red de proyecto',
-  NETWORK_POLICY_EGRESS_DESC:
+  EXTERNAL_EGRESS_DESC:
+    'Pods in the current project are allowed to access the following network segments and ports.',
+  EXTERNAL_INGRESS_DESC:
+    'Pods in the current project are allowed to be accessed by the following network segments and ports.',
+  INTERNAL_EGRESS_DESC:
     'Allows access to resources that match any of the following network policies.',
-  NETWORK_POLICY_INGRESS_DESC:
+  INTERNAL_INGRESS_DESC:
     'Allows access from resources that match any of the following network policies.',
   INTERNAL_ALLOWLIST: 'Internal Allowlist',
   INTERNAL_ALLOWLIST_DESC:
@@ -66,14 +70,14 @@ module.exports = {
     'Specifies the allowed access to and from network segments outside the cluster.',
   EXTERNAL_ALLOWLIST_TIP:
     'Add network segments outside the cluster to the allowlist.',
-  EXTERNAL_RULE_DIRECTION_DESC:
-    'Specify the direction of allowed access to or from different network segments.',
+  EXTERNAL_TRAFFIC_DIRECTION_DESC:
+    'Egress indicates the direction from the current project to outside the cluster. Ingress indicates the direction from outside the cluster to the current project.',
   NETWORK_SEGMENT_DESC: 'Set a network segment (CIDR is supported).',
   CREATE_NETWORK_POLICY_DESC:
     'La política de red está configurada para permitir el aislamiento de la red dentro del mismo clúster, es decir, la capacidad de construir un cortafuegos entre ciertas instancias (pods).',
   CIDR_DESC: 'Basado en la dirección del tráfico',
-  SELECT_RULE_DIRECTION_TIP: 'Please select a rule direction.',
-  ENTER_VALID_ADDRESS_DESC: 'Please enter a valid address.',
+  SELECT_RULE_DIRECTION_TIP: 'Please select a traffic direction.',
+  ENTER_VALID_SEGMENT_DESC: 'Please enter a valid network segment.',
   ENTER_VALID_PORT_NUMBER_DESC: 'Please enter a valid port number.',
-  EMPTY_RESOURCE_DESC: 'Please select at least one project or service.',
+  EMPTY_RESOURCE_DESC: 'Please select at least one project or Service.',
 }

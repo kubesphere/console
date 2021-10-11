@@ -20,6 +20,7 @@ module.exports = {
   users: '用户',
   User: '用户',
   USER: '用户',
+  USER_EMPTY_DESC: '请创建一个用户。',
   Accounts: '帐户',
   'User Management': '用户管理',
   'Authorized Projects': '授权项目',
@@ -90,7 +91,7 @@ module.exports = {
   SOURCE_IP_ADDRESS: '源 IP 地址',
   LOGIN_HISTORY: '登录历史',
   NO_LOGIN_HISTORY: '没有找到登录历史。',
-  CHANGE_PASSWORD_LOW: '修改密码',
+  CHANGE_PASSWORD: '修改密码',
   SUCCESSFUL: '成功',
   FAILED: '失败',
 }

@@ -58,6 +58,7 @@ module.exports = {
   CONTROL_PLANE: '控制平面',
   AGENT: '代理',
   EDGE: '边缘节点',
+  EDGE_NODE: '边缘节点',
   ALLOCATED_CPU: '已分配 CPU',
   ALLOCATED_MEMORY: '已分配内存',
   CPU_LIMIT_SI: '资源限制：{core} 核（{percent}）',
@@ -92,6 +93,7 @@ module.exports = {
   TYPE_EMPTYDIR: '类型：EmptyDir',
   TYPE_HOSTPATH: '类型：HostPath',
   PROJECT: '项目',
+  PROJECT_EMPTY_DESC: '请创建一个项目。',
   Service: '服务',
   SERVICE: '服务',
   SERVICE_VALUE: '服务：{value}',
@@ -445,8 +447,7 @@ module.exports = {
   DELETE_MULTIPLE_SERVICES: '批量删除服务',
   DELETE_WORKLOAD: '删除工作负载',
   DELETE_MULTIPLE_WORKLOADS: '批量删除工作负载',
-  DELETE_DESC:
-    '确定删除{type} <strong>{resource}</strong> ? {type}删除后将无法恢复。',
+  DELETE_DESC: '您确定删除该资源吗？资源删除后将无法恢复。',
   DELETE_RESOURCE_TYPE_DESC:
     '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
   DELETE_RESOURCE_TYPE_DESC_SI:

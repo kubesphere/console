@@ -17,26 +17,26 @@
  */
 
 module.exports = {
-  GATEWAY_SETTING: 'Gateway Settings',
+  GATEWAY_SETTINGS: 'Gateway Settings',
   GATEWAY_DESC:
     'Set up and manage the configuration of the external network access gateway and service management in the cluster and project',
   CLUSTER_GATEWAY: 'Cluster Gateway',
   PROJECT_GATEWAY: 'Project Gateway',
-  CLUSTER_GATEWAYS_SETTING_DESC:
+  CLUSTER_SET_GATEWAY_DESC:
     'Before creating an application route, you need to enable the external network access portal, that is, the gateway. This step is to create the corresponding application routing controller, which is responsible for forwarding the request to the corresponding back-end service. ',
-  PROJECT_GATEWAYS_SETTING_DESC:
+  PROJECT_SET_GATEWAY_DESC:
     'The cluster management page does not support the setting of the project gateway. If you need to set it, you need to go to the corresponding project to set it. ',
-  'Cluster Gateway Not Set': 'Cluster Gateway Not Set',
-  'Project Gateway Not Set': 'Project Gateway Not Set',
+  CLUSTER_GATEWAY_NOT_SET: 'Cluster Gateway Not Set',
+  PROJECT_GATEWAY_NOT_SET: 'Project Gateway Not Set',
   'Gateway Not Set': 'Gateway Not Set',
-  'View Gateway': 'View Gateway',
   'Set Gateway': 'Set Gateway',
-  'Edit Gateway': 'Edit Gateway',
+  EDIT_GATEWAY: 'Edit Gateway',
   'Update Gateway': 'Update Gateway',
-  'Gateway Config': 'Gateway Config',
+  CONFIGURATION_OPTIONS: 'Gateway Config',
   'Add Gateway Config': 'Add Gateway Config',
-  'LoadBalancer Support': 'LoadBalancer Provider',
-  'Use default annotations': 'Use default annotations',
+  LOAD_BALANCER_PROVIDER: 'LoadBalancer Provider',
+  LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
+  USE_DEFAULT_ANNOTATIONS: 'Use Default Annotations',
   GATEWAY_IP: 'Access address',
   UPDATE_GATEWAY_DESC: 'The current gateway can be upgraded',
   DISK_LOG_COLLECTION_DESC:

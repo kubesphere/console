@@ -172,14 +172,15 @@ module.exports = {
 
   'Invite Members to the Project': '邀请成员到该项目',
   INVITE_DEVOPS_MEMBER: '邀请成员到该 DevOps 工程',
-  INVITE_MEMBER_DESC: '您可以邀请当前企业空间成员至该项目。',
-  INVITE_MEMBER_DESC_DEVOPS: '您可以邀请当前企业空间成员至该 DevOps 工程。',
+  INVITE_MEMBER_DESC: '邀请当前企业空间的成员到当前项目。',
+  PROJECT_MEMBER_EMPTY_DESC: '请邀请当前企业空间的成员到当前项目。',
+  INVITE_MEMBER_DESC_DEVOPS: '邀请当前企业空间的成员到当前 DevOps 工程。',
   INVITE_MEMBER_SEARCH_PLACEHOLDER: '输入用户名邀请项目成员',
-  ASSIGN_ROLE: '为成员分配角色',
+  ASSIGN_ROLE: '分配角色',
   PROJECT_ADMIN_DESC: '可以指定项目内一个成员为管理员',
 
-  PROJECT_INTERNET_ACCESS_DESC:
-    '在创建应用路由之前，需要先启用外网访问入口，即网关。这一步是创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务。',
+  SET_GATEWAY_DESC:
+    '设置网关控制器以根据应用路由中配置的域名和路径将流量转发给不同的服务。',
 
   DELETE_INTERNET_ACCESS_TITLE: '删除外网访问设置',
   DELETE_INTERNET_ACCESS_DESC:
@@ -218,6 +219,7 @@ module.exports = {
     '高级设置用于配置项目的外网访问、应用治理以及日志收集功能。',
   PROJECT_MEMBERS_DESC: '对项目内的成员进行管理及角色分配',
   PROJECT_ROLE_DESC: '项目角色定义了在当前项目下用户所拥有的权限。',
+  PROJECT_ROLE_EMPTY_DESC: '请创建一个项目角色。',
   COLLECTING_FILE_LOG_DESC:
     '对容器内的落盘日志进行收集，并转发到标准输出，然后由日志收集系统统一采集。',
 
@@ -311,8 +313,9 @@ module.exports = {
   SET_GATEWAY_TIP: '请设置网关。',
 
   // Network Isolation
-  INGRESS: '入口',
-  INTERNAL_RULE_DIRECTION_DESC: '指定去往和来自不同项目和服务的访问方向。',
+  INGRESS: '入站',
+  INTERNAL_TRAFFIC_DIRECTION_DESC:
+    '出站表示从当前项目到其他项目的方向。入站表示从其他项目到当前项目的方向。',
   NETWORK_SEGMENT_EXAMPLE: '例如：10.0.0.0',
   PORT_EXAMPLE: '例如：80',
 }

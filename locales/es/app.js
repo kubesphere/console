@@ -192,8 +192,7 @@ module.exports = {
 
   APP_CATEGORIES_DESC:
     'Este módulo te permite crear, editar y eliminar categorías; así como clasificar las aplicaciones activas de la Tienda.',
-  APP_CATEGORIES_CREATE_DESC:
-    'No hay aplicación disponibles para la categoría.',
+  APP_CATEGORY_EMPTY_DESC: 'No hay aplicación disponibles para la categoría.',
   CHANGE_CATEGORY_DESC:
     'La clasificación de la aplicación determinará la clasificación de la aplicación en la Tienda de Aplicaciones.',
   DELETE_CATEGORY_WARNING:

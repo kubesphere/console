@@ -27,7 +27,7 @@ module.exports = {
   SECRET_DETAILS: 'Detalle secreto',
   SERVICE_ACCOUNT_DESC:
     'La cuenta de servicio proporciona una identidad para los procesos que se ejecutan en un pod que se puede usar para acceder al servidor de API',
-
+  SERVICE_ACCOUNT_EMPTY_DESC: 'Please create a service account.',
   INVALID_YAML_FILE_FORMAT: 'Formato de archivo YAML no válido.',
 
   SELECT_PROJECT_ROLE_DESC:

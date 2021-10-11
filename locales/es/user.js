@@ -54,6 +54,7 @@ module.exports = {
   'Unable to delete itself': 'No se puedes eliminar',
   User: 'Usuario',
   USER: 'Usuario',
+  USER_EMPTY_DESC: 'Please create a user.',
   'User Management': 'Gestión de usuarios',
   USERNAME_EXISTS: 'El ombre de usuario ya existe',
   users: 'usuarios',
@@ -93,7 +94,7 @@ module.exports = {
   SOURCE_IP_ADDRESS: 'Source IP Address',
   LOGIN_HISTORY: 'Login History',
   NO_LOGIN_HISTORY: 'No login history is found.',
-  CHANGE_PASSWORD_LOW: 'Change password',
+  CHANGE_PASSWORD: 'Change Password',
   SUCCESSFUL: 'Successful',
   FAILED: 'Failed',
 }

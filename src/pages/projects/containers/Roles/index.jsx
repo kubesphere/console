@@ -59,7 +59,7 @@ export default class Roles extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -97,7 +97,7 @@ export default class Roles extends React.Component {
   }
 
   get emptyProps() {
-    return { desc: t('PROJECT_ROLE_DESC') }
+    return { desc: t('PROJECT_ROLE_EMPTY_DESC') }
   }
 
   getColumns = () => {

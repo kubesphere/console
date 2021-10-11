@@ -107,6 +107,7 @@ module.exports = {
   RevisionId: '修訂版本號碼',
   'Image Builder': '構建鏡像',
   IMAGE_BUILDER: '構建鏡像',
+  IMAGE_BUILDER_LOW: 'image builder',
   'Last build environment': '最後一次構建環境',
   'Build Times': '構建次數',
   ImageName: '鏡像名稱',

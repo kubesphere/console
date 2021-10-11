@@ -101,6 +101,7 @@ module.exports = {
   RevisionId: '修订版本号',
   'Image Builder': '镜像构建器',
   IMAGE_BUILDER: '镜像构建器',
+  IMAGE_BUILDER_LOW: '镜像构建器',
   'Last build environment': '最后一次构建环境',
   'Build Times': '构建次数',
   ImageName: '镜像名称',

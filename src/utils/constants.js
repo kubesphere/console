@@ -971,7 +971,7 @@ export const CLUSTER_PROVIDER_ICON = {
 
 export const CLUSTER_PROVIDERS = [
   {
-    label: 'Aliyun ACK',
+    label: 'Alibaba Cloud ACK',
     value: 'Aliyun ACK',
     icon: 'aliyun',
   },

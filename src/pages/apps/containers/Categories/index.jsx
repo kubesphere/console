@@ -100,7 +100,7 @@ export default class AppCategories extends React.Component {
 
   get emptyProps() {
     return {
-      desc: t('APP_CATEGORIES_CREATE_DESC'),
+      desc: t('APP_CATEGORY_EMPTY_DESC'),
     }
   }
 

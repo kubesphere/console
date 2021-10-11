@@ -36,6 +36,7 @@ module.exports = {
   ARCHITECTURE: 'Arquitectura',
   'Cluster Node': 'Nodo de clúster',
   CLUSTER_NODE_PL: 'Nodo de clúster',
+  CLUSTER_NODE: 'Cluster Node',
   'Cluster Nodes': 'Nodo de clúster',
   'Edge Node': 'Nó de Borda',
   EDGE_NODE_PL: 'Nó de Borda',

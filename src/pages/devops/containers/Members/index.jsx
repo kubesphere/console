@@ -142,7 +142,7 @@ export default class Members extends React.Component {
         {
           key: 'invite',
           type: 'control',
-          text: t('INVITE_MEMBER'),
+          text: t('INVITE'),
           action: 'create',
           onClick: () =>
             trigger('member.invite', {

@@ -26,14 +26,14 @@ module.exports = {
   CREATE_NETWORK_POLICY_TCAP: '創建網路策略',
   // Network Policies Page
   CREATE_BTN: '創建',
-  ADD_ALLOWLIST: '添加白名單',
+  ADD_ALLOWLIST_ENTRY: '添加白名單',
   EGRESS: '出口',
   Ingress: '入口',
   EGRESS_TRAFFIC: '流量出口',
   INGRESS_TRAFFIC: '流量入口',
   DESTINATION: '目的地',
 
-  RULE_DIRECTION: '规则方向',
+  TRAFFIC_DIRECTION: '流量方向',
   NETWORK_POLICY_DESC:
     '通過配置網路策略，允許在同個集群内時現網路的隔離，也就是可以在某些實例（Pod）之間架起防火牆。',
   NETWORK_ISOLATION_DESC:
@@ -53,9 +53,13 @@ module.exports = {
   NETWORK_POLICY_EMP_DESC:
     'After the project network access is enabled, other projects will be unable to access the project. But you can allow projects, Services, and external IP addresses to access this project based on your needs.',
   PROJECT_NETWORK_ISOLATION: '項目網路隔離',
-  NETWORK_POLICY_EGRESS_DESC:
+  EXTERNAL_EGRESS_DESC:
+    'Pods in the current project are allowed to access the following network segments and ports.',
+  EXTERNAL_INGRESS_DESC:
+    'Pods in the current project are allowed to be accessed by the following network segments and ports.',
+  INTERNAL_EGRESS_DESC:
     'Allows access to resources that match any of the following network policies.',
-  NETWORK_POLICY_INGRESS_DESC:
+  INTERNAL_INGRESS_DESC:
     'Allows access from resources that match any of the following network policies.',
   INTERNAL_ALLOWLIST: '内部白名單',
   INTERNAL_ALLOWLIST_DESC:
@@ -67,13 +71,13 @@ module.exports = {
     'Specifies the allowed access to and from network segments outside the cluster.',
   EXTERNAL_ALLOWLIST_TIP:
     'Add network segments outside the cluster to the allowlist.',
-  EXTERNAL_RULE_DIRECTION_DESC:
-    'Specify the direction of allowed access to or from different network segments.',
+  EXTERNAL_TRAFFIC_DIRECTION_DESC:
+    'Egress indicates the direction from the current project to outside the cluster. Ingress indicates the direction from outside the cluster to the current project.',
   NETWORK_SEGMENT_DESC: 'Set a network segment (CIDR is supported).',
 
   CIDR_DESC: '將根據流量的方向',
-  SELECT_RULE_DIRECTION_TIP: 'Please select a rule direction.',
-  ENTER_VALID_ADDRESS_DESC: 'Please enter a valid address.',
+  SELECT_RULE_DIRECTION_TIP: 'Please select a traffic direction.',
+  ENTER_VALID_SEGMENT_DESC: 'Please enter a valid network segment.',
   ENTER_VALID_PORT_NUMBER_DESC: 'Please enter a valid port number.',
-  EMPTY_RESOURCE_DESC: 'Please select at least one project or service.',
+  EMPTY_RESOURCE_DESC: 'Please select at least one project or Service.',
 }

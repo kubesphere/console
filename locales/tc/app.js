@@ -108,7 +108,7 @@ module.exports = {
   AUDIT_RECORD_CREATE_DESC: '暫無相關的審核紀錄數據',
 
   APP_CATEGORY_PL: '應用分類',
-  APP_CATEGORIES_CREATE_DESC: '該分類暫無綁定的應用。',
+  APP_CATEGORY_EMPTY_DESC: '該分類暫無綁定的應用。',
   ALL_CATEGORIES: '全部分類',
   'Adjust App Category': '調整應用分類',
   CHANGE_CATEGORY_DESC: '應用分類將決定該應用在應用商店中的分類',

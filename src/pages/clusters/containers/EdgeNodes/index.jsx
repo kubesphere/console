@@ -114,7 +114,7 @@ export default class EdgeNodes extends React.Component {
     actions.push({
       key: 'add',
       type: 'control',
-      text: t('ADD_NODE'),
+      text: t('ADD'),
       action: 'create',
       onClick: () =>
         trigger('node.edge.add', {

@@ -17,11 +17,11 @@
  */
 
 module.exports = {
-  ADD_ALLOWLIST: 'Add Allowlist',
+  ADD_ALLOWLIST_ENTRY: 'Add Allowlist Entry',
   CREATE_NETWORK_POLICY_TCAP: 'Create Network Policy',
   // Network Policies Page
   CREATE_BTN: 'Create',
-  RULE_DIRECTION: 'Rule Direction',
+  TRAFFIC_DIRECTION: 'Traffic Direction',
   EGRESS: 'Egress',
   Ingress: 'Ingress',
   NETWORK_ISOLATION: 'Network Isolation',
@@ -52,28 +52,32 @@ module.exports = {
   NETWORK_POLICY_EMP_DESC:
     'After the project network access is enabled, other projects will be unable to access the project. But you can allow projects, Services, and external IP addresses to access this project based on your needs.',
   PROJECT_NETWORK_ISOLATION: 'Project network isolation',
-  NETWORK_POLICY_EGRESS_DESC:
-    'Allows access to resources that match any of the following network policies.',
-  NETWORK_POLICY_INGRESS_DESC:
-    'Allows access from resources that match any of the following network policies.',
+  EXTERNAL_EGRESS_DESC:
+    'Pods in the current project are allowed to access the following network segments and ports.',
+  EXTERNAL_INGRESS_DESC:
+    'Pods in the current project are allowed to be accessed by the following network segments and ports.',
+  INTERNAL_EGRESS_DESC:
+    'Pods in the current project are allowed to access Pods of the following Services and projects.',
+  INTERNAL_INGRESS_DESC:
+    'Pods in the current project are allowed to be accessed by Pods of the following Services and projects.',
   INTERNAL_ALLOWLIST: 'Internal Allowlist',
   INTERNAL_ALLOWLIST_DESC:
-    'Specifies the allowed access to and from projects and services in the cluster.',
+    'Allow Pods in the current project to communicate with Pods in other projects of the current cluster.',
   INTERNAL_ALLOWLIST_TIP:
-    'Add projects and services in the cluster to the allowlist.',
+    'Add projects and Services in the cluster to the allowlist.',
   EXTERNAL_ALLOWLIST: 'External Allowlist',
   EXTERNAL_ALLOWLIST_DESC:
-    'Specifies the allowed access to and from network segments outside the cluster.',
+    'Allow Pods in the current project to communicate with specific network segments and ports outside the cluster.',
   EXTERNAL_ALLOWLIST_TIP:
-    'Add network segments outside the cluster to the allowlist.',
-  EXTERNAL_RULE_DIRECTION_DESC:
-    'Specify the direction of allowed access to or from different network segments.',
+    'Add network segments and ports outside the cluster to the allowlist.',
+  EXTERNAL_TRAFFIC_DIRECTION_DESC:
+    'Egress indicates the direction from the current project to outside the cluster. Ingress indicates the direction from outside the cluster to the current project.',
   NETWORK_SEGMENT_DESC: 'Set a network segment (CIDR is supported).',
   CREATE_NETWORK_POLICY_DESC:
     'The network policy is configured to allow network isolation within the same cluster, namely, the ability to build a firewall between certain instances (Pods).',
   CIDR_DESC: 'Based on the traffic direction',
-  SELECT_RULE_DIRECTION_TIP: 'Please select a rule direction.',
-  ENTER_VALID_ADDRESS_DESC: 'Please enter a valid address.',
+  SELECT_RULE_DIRECTION_TIP: 'Please select a traffic direction.',
+  ENTER_VALID_SEGMENT_DESC: 'Please enter a valid network segment.',
   ENTER_VALID_PORT_NUMBER_DESC: 'Please enter a valid port number.',
-  EMPTY_RESOURCE_DESC: 'Please select at least one project or service.',
+  EMPTY_RESOURCE_DESC: 'Please select at least one project or Service.',
 }

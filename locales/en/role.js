@@ -19,6 +19,7 @@
 module.exports = {
   'Account Role': 'Account Role',
   PLATFORM_ROLE: 'Platform Role',
+  PLATFORM_ROLE_EMPTY_DESC: 'Please create a platform role.',
   PLATFORM_ROLE_PL: 'Platform Roles',
   'Platform Roles': 'Platform Roles',
   'Account Roles': 'Account Roles',

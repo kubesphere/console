@@ -287,7 +287,7 @@ export default class RuleInfo extends React.Component {
             <div>{t('INTERNAL_ALLOWLIST_TIP')}</div>
             {canEdit && (
               <Button type="control" onClick={this.addAllowList}>
-                {t('ADD_ALLOWLIST')}
+                {t('ADD_ALLOWLIST_ENTRY')}
               </Button>
             )}
           </div>
@@ -298,9 +298,7 @@ export default class RuleInfo extends React.Component {
               })}
             >
               <div className={styles.subtitle}>{t('EGRESS')}</div>
-              <div className={styles.disp}>
-                {t('NETWORK_POLICY_EGRESS_DESC')}
-              </div>
+              <div className={styles.disp}>{t('INTERNAL_EGRESS_DESC')}</div>
               {this.renderRules(innerEgressData, 'egress')}
             </div>
             <div
@@ -309,9 +307,7 @@ export default class RuleInfo extends React.Component {
               })}
             >
               <div className={styles.subtitle}>{t('INGRESS')}</div>
-              <div className={styles.disp}>
-                {t('NETWORK_POLICY_INGRESS_DESC')}
-              </div>
+              <div className={styles.disp}>{t('INTERNAL_INGRESS_DESC')}</div>
               {this.renderRules(innerIngressData, 'ingress')}
             </div>
           </div>
@@ -321,7 +317,7 @@ export default class RuleInfo extends React.Component {
             <div>{t('EXTERNAL_ALLOWLIST_TIP')}</div>
             {canEdit && (
               <Button type="control" onClick={this.addIpBlock}>
-                {t('ADD_ALLOWLIST')}
+                {t('ADD_ALLOWLIST_ENTRY')}
               </Button>
             )}
           </div>
@@ -332,9 +328,7 @@ export default class RuleInfo extends React.Component {
               })}
             >
               <div className={styles.subtitle}>{t('EGRESS')}</div>
-              <div className={styles.disp}>
-                {t('NETWORK_POLICY_EGRESS_DESC')}
-              </div>
+              <div className={styles.disp}>{t('EXTERNAL_EGRESS_DESC')}</div>
               {this.renderIpRules(outerEgressData, 'egress')}
             </div>
             <div
@@ -343,9 +337,7 @@ export default class RuleInfo extends React.Component {
               })}
             >
               <div className={styles.subtitle}>{t('INGRESS')}</div>
-              <div className={styles.disp}>
-                {t('NETWORK_POLICY_INGRESS_DESC')}
-              </div>
+              <div className={styles.disp}>{t('EXTERNAL_INGRESS_DESC')}</div>
               {this.renderIpRules(outerIngressData, 'ingress')}
             </div>
           </div>

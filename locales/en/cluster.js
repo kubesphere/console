@@ -284,7 +284,7 @@ module.exports = {
     'Depending on the cluster size and infrastructure environment, cluster creation may take 30 to 60 minutes.',
 
   CLUSTER_UPGRADE_REQUIRED:
-    'The cluster verison does not support this function. Please upgrade the cluster to {version} or later.',
+    'The current KubeSphere version does not support this function. Please upgrade KubeSphere to {version} or later.',
   MEMBER_CLUSTER_UPGRADE_TIP:
     'Member clusters with versions earlier than {version} do not support this function. Please upgrade the member clusters to {version} or later.',
 

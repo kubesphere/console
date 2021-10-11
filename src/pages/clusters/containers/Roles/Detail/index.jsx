@@ -88,7 +88,7 @@ export default class RoleDetail extends React.Component {
     {
       key: 'editRole',
       icon: 'pen',
-      text: t('Edit Authorization'),
+      text: t('EDIT_PERMISSIONS'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>

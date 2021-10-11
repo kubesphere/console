@@ -486,7 +486,6 @@ module.exports = {
   HEALTHY: '健康',
 
   // Pipeline Creation Page
-  DEVOPS_PROJECT: 'DevOps 工程',
   DEVOPS_PROJECT_DESC:
     'DevOps 工程用於對資源進行分組管理以及控製不同用戶的資源管理權限。',
   CODE_REPOSITORY_OPTIONAL: '代碼倉庫（可選）',

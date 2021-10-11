@@ -39,7 +39,7 @@ export default class GatewayConfig extends React.Component {
   render() {
     const config = this.detail.config
     return (
-      <Panel title={t('Gateway Config')}>
+      <Panel title={t('CONFIGURATION_OPTIONS')}>
         <div className={styles.container}>
           <ul>
             {isEmpty(config) ? (

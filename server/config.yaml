@@ -218,7 +218,7 @@ client:
               }
             - {
                 name: gateways,
-                title: GATEWAY_SETTING,
+                title: GATEWAY_SETTINGS,
                 authKey: cluster-settings,
               }
 
@@ -417,7 +417,7 @@ client:
             - { name: members, title: PROJECT_MEMBER_PL }
             - {
                 name: gateways,
-                title: GATEWAY_SETTING,
+                title: GATEWAY_SETTINGS,
                 authKey: "project-settings",
               }
             - {
@@ -461,7 +461,7 @@ client:
               }
             - {
                 name: gateways,
-                title: GATEWAY_SETTING,
+                title: GATEWAY_SETTINGS,
                 authKey: "project-settings",
               }
             - {

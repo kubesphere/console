@@ -106,7 +106,7 @@ export default class Detail extends React.PureComponent {
   @observable
   tableCols = [
     {
-      thead: t('Time'),
+      thead: t('TIME'),
       key: 'time',
       content: ({ lastTimestamp }) =>
         `[${moment(lastTimestamp).format('YYYY-MM-DD HH:mm:ss')}]`,

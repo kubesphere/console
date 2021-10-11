@@ -188,7 +188,7 @@ module.exports = {
 
   APP_CATEGORIES_DESC:
     'You can create, edit, and delete categories on this page to classify active apps of the App Store.',
-  APP_CATEGORIES_CREATE_DESC: 'No application available for the category.',
+  APP_CATEGORY_EMPTY_DESC: 'No app belongs to the category.',
   CHANGE_CATEGORY_DESC:
     'The app category determines the classification of the app in the App Store.',
   DELETE_CATEGORY_WARNING:

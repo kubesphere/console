@@ -88,7 +88,7 @@ export default class AppRepos extends React.Component {
         {
           key: 'create',
           type: 'control',
-          text: t('ADD_APP_REPO'),
+          text: t('ADD'),
           action: 'manage',
           onClick: () =>
             trigger('openpitrix.repo.add', {

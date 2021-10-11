@@ -26,6 +26,7 @@ module.exports = {
 
   'Cluster Node': '集群節點',
   CLUSTER_NODE_PL: '集群節點',
+  CLUSTER_NODE: 'Cluster Node',
   'Cluster Nodes': '集群節點',
 
   'Edge Node': '邊緣節點',

@@ -24,6 +24,7 @@ module.exports = {
   NO_DEPARTMENT_TIP:
     'No department available. Please create a department on the right.',
   WORKSPACE_ROLE: 'rol del espacio de trabajo',
+  WORKSPACE_MEMBER_EMPTY_DESC: 'Please invite a user to the workspace.',
   PROJECT_ROLE: 'Project Role',
   ADD_PROJECT: 'Agregar proyecto',
   'project roles': 'roles de proyecto',

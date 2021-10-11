@@ -253,7 +253,9 @@ export default class Placement extends Component {
             <Column>
               <Form.Item
                 label={t('PROJECT')}
-                rules={[{ required: true, message: t('PROJECT_EMPTY_DESC') }]}
+                rules={[
+                  { required: true, message: t('PROJECT_NOT_SELECT_DESC') },
+                ]}
               >
                 <Select
                   name="namespace"
@@ -302,7 +304,7 @@ export default class Placement extends Component {
             {initializing ? (
               <Loading className="text-center" />
             ) : (
-              t('PROJECT_EMPTY_DESC')
+              t('PROJECT_NOT_SELECT_DESC')
             )}
           </div>
         ) : (

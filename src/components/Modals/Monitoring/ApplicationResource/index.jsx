@@ -278,10 +278,7 @@ export default class ResourceMonitorModal extends React.Component {
         title: t('TIME'),
         dataIndex: 'time',
         width: '30%',
-        render: time =>
-          `${getLocalTime(time).format(t('MMMM Do YYYY'))} ${getLocalTime(
-            time
-          ).format('HH:mm')}`,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         key: 'usage',
@@ -289,7 +286,6 @@ export default class ResourceMonitorModal extends React.Component {
         dataIndex: 'value',
       },
     ]
-
     return (
       <div className={styles.table}>
         <div className={styles.box}>

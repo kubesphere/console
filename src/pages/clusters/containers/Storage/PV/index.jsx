@@ -33,7 +33,7 @@ import { Avatar, Status } from 'components/Base'
 @withList({
   store: new PvStore(),
   module: 'persistentvolumes',
-  name: 'PV',
+  name: 'VOLUME_INSTANCE',
   rowKey: 'uid',
 })
 export default class PV extends React.Component {

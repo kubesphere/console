@@ -139,7 +139,7 @@ class InternetAccess extends React.Component {
                 ) : null}
               </span>
             }
-            description={t('PROJECT_INTERNET_ACCESS_DESC')}
+            description={t('SET_GATEWAY_DESC')}
           />
           {this.canEdit && (
             <Button
@@ -163,7 +163,7 @@ class InternetAccess extends React.Component {
           this.props.rootStore.routing.push(url)
         }}
       >
-        {t('View Gateway')}
+        {t('VIEW_DETAILS')}
       </Button>
     )
   }

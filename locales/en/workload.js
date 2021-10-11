@@ -19,7 +19,7 @@
 module.exports = {
   SELECT_PROJECT_DESC:
     'Select a project in which the resource is to be created.',
-  PROJECT_EMPTY_DESC: 'Please select a project.',
+  PROJECT_NOT_SELECT_DESC: 'Please select a project.',
   REPLICA_LOW_SI: 'replica',
   REPLICA_LOW_PL: 'replicas',
   IMAGE_TIME_SIZE_LAYER: 'Updated {time}',
@@ -191,7 +191,8 @@ module.exports = {
   AUTOSCALING: 'Autoscaling',
   HPA_SET_TIP: 'Horizontal Pod autoscaling has been set.',
   'Host Path': 'Host Path',
-  'Host Port': 'Host Port',
+  NODE_PORTS: 'Node Ports',
+  NODE_PORTS_SCAP: 'Node ports',
   POD_SCHEDULING_METHOD: 'Pod Scheduling Method',
   HTTP_REQUEST: 'HTTP Request',
   HTTP_PATH_EMPTY: 'Please set a path for the HTTP check.',
@@ -437,7 +438,7 @@ module.exports = {
   'Update Strategy': 'Update Strategy',
   UPDATE_STRATEGY: 'Update Strategy',
   USE_CONFIGMAP_OR_SECRET: 'Use ConfigMap or Secret',
-  USE_DEFAULT_PORT: 'Use Default Port',
+  USE_DEFAULT_PORTS: 'Use Default Ports',
   USER_AND_USER_GROUP: 'User and User Group',
   USER_GROUP: 'User Group',
   VIEW_YAML: 'View YAML',

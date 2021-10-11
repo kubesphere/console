@@ -311,7 +311,7 @@ module.exports = {
     '取决于集群规模和基础设施环境，集群创建可能需要 30 到 60 分钟。',
 
   CLUSTER_UPGRADE_REQUIRED:
-    '该集群版本不支持此功能，请将集群升级到 {version} 或以上版本。',
+    '当前 KubeSphere 版本不支持此功能，请将 KubeSphere 升级到 {version} 或以上版本。',
   MEMBER_CLUSTER_UPGRADE_TIP:
     '低于 {version} 版本的成员集群不支持此功能, 请将成员集群升级到 {version} 或以上版本。',
 

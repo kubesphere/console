@@ -55,6 +55,7 @@ module.exports = {
   'Image Builder': 'Image Builder',
   IMAGE_BUILDER: 'Image Builder',
   IMAGE_BUILDER_PL: 'Image Builders',
+  IMAGE_BUILDER_LOW: 'image builder',
   'Image Building': 'Image Building',
   'Image building failed': 'Image building failed',
   'Image building succeeded': 'Image building succeeded',

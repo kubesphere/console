@@ -85,6 +85,7 @@ module.exports = {
     '请尽量保持名称简短，比如用企业名称的缩写或者大家经常的称呼，无需使用企业的完整名称或者营业执照上的注册名称。',
 
   WORKSPACE_ROLE_DESC: '企业空间角色定义了在当前企业空间下用户所拥有的权限。',
+  WORKSPACE_ROLE_EMPTY_DESC: '请创建一个企业空间角色。',
   WORKSPACE_LOGO_PLACEHOLDER:
     '企业标志尺寸必须小于 200px X 200px，支持 png，jpg 格式。建议从上传透明背景的 PNG 格式图片以达到最佳展示效果。',
 
@@ -154,6 +155,7 @@ module.exports = {
   // Worksapce Members
   CHANGE_MEMBER_ROLE: '修改成员角色',
   INVITE_MEMBER: '邀请成员',
+  INVITE: '邀请',
   WORKSPACE_MEMBERS: '企业空间成员',
 
   // Department Management
@@ -161,6 +163,7 @@ module.exports = {
   NOT_ASSIGNED_TCAP: '未分配',
   ASSIGNED: '已分配',
   WORKSPACE_ROLE: '企业空间角色',
+  WORKSPACE_MEMBER_EMPTY_DESC: '请邀请一个用户到当前企业空间。',
   PROJECT_VALUE: '项目：{value}',
   PROJECT_ROLE_VALUE: '项目角色：{value}',
   DEVOPS_VALUE: 'DevOps 工程：{value}',

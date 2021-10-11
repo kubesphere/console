@@ -237,7 +237,7 @@ export default class ImageSearch extends Component {
                 className={styles.defaultPortButtons}
                 onClick={this.handleFillPorts}
               >
-                👉 {t('USE_DEFAULT_PORT')}
+                👉 {t('USE_DEFAULT_PORTS')}
               </Button>
             ) : null}
           </div>

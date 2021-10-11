@@ -518,7 +518,6 @@ module.exports = {
   HEALTHY: 'Healthy',
 
   // Pipeline Creation Page
-  DEVOPS_PROJECT: 'DevOps Proyecto',
   DEVOPS_PROJECT_DESC:
     'DevOps projects are used to group resources and control the resource management permissions of different users.',
   CODE_REPOSITORY_OPTIONAL: 'Repositorio de Código (Opcional)',

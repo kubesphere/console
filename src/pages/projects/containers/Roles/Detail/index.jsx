@@ -88,7 +88,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSIONS'),
         action: 'edit',
         show: this.showEdit,
         onClick: () =>
@@ -128,7 +128,7 @@ export default class RoleDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -144,7 +144,7 @@ export default class RoleDetail extends React.Component {
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('CREATOR'),
+        name: t('CREATED_BY'),
         value: detail.creator,
       },
     ]

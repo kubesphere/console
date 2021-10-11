@@ -19,6 +19,8 @@
 module.exports = {
   DEVOPS_NAME: 'DevOps 工程名称',
   DEVOPS_PROJECT: 'DevOps 工程',
+  DEVOPS_PROJECT_MEMBER_EMPTY_DESC:
+    '请邀请当前企业空间的成员到当前 DevOps 工程。',
   'DevOps Role': '成员角色',
   'DevOps Roles': '成员角色',
   'DevOps Member': '工程成员',
@@ -64,13 +66,14 @@ module.exports = {
     '成员角色定义了在当前 DevOps 工程下用户所拥有的权限。',
 
   DEVOPS_PROJECT_MEM_DESC: '对工程内的成员进行管理及角色分配。',
+  DEVOPS_PROJECT_ROLE_EMPTY_DESC: '请创建一个 DevOps 工程角色。',
 
   DELETE_DEVOPS_TIP:
     '确定删除 DevOps 工程 <strong>{resource}</strong> ? 删除后将无法恢复, 工程下的资源也同时会被销毁。',
 
-  DEVOPS_TIP_GITOPS_Q: '如何落地 GitOps？',
+  DEVOPS_TIP_GITOPS_Q: '如何落地 DevOps？',
   DEVOPS_TIP_GITOPS_A:
-    '创建关联代码仓库的流水线，并积极使用部署 Kubernetes 部署步骤，就可以实现 GitOps 了。',
+    '创建关联代码仓库的流水线，并积极使用部署 Kubernetes 部署步骤，就可以实现 DevOps 了。',
 
   DEVOPS_TIP_TYPE_Q: '流水线 (Pipeline) 支持哪些代码仓库类？',
   DEVOPS_TIP_TYPE_A:
