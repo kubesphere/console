@@ -685,7 +685,7 @@ export const hrefControl = href => (globals.config.showOutSiteLink ? href : '')
 const html_key = 'props.dangerouslySetInnerHTML.__html'
 
 export function htmlLinkControl(item) {
-  const a_reg = /(?<=href=").*?(=")/g
+  const a_reg = new RegExp('(?<=href=").*?(=")', 'g')
   const text = get(item, html_key, undefined)
   if (!globals.config.showOutSiteLink) {
     if (!isUndefined(text) && a_reg.test(text)) {
@@ -700,7 +700,7 @@ export function htmlLinkControl(item) {
 }
 
 export function learnMoreTip(item) {
-  const reg = /<a.+?>(.+)<\/a>/g
+  const reg = new RegExp('<a.+?>(.+)</a>', 'g')
   const text = get(item, html_key, undefined)
   if (!globals.config.showOutSiteLink) {
     if (!isUndefined(text) && reg.test(text)) {
