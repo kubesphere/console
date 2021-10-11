@@ -29,7 +29,6 @@ import {
 import { NumberInput, ProjectSelect } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 import { MODULE_KIND_MAP, PATTERN_NAME } from 'utils/constants'
-import { learnMoreTip } from 'utils'
 
 export default class BaseInfo extends React.Component {
   get formTemplate() {
@@ -84,7 +83,7 @@ export default class BaseInfo extends React.Component {
 
   render() {
     const { formRef } = this.props
-    const htmlDes = t.html('CRONJOB_CRON_DESC')
+
     return (
       <Form data={this.formTemplate} ref={formRef}>
         <Columns>
@@ -139,7 +138,7 @@ export default class BaseInfo extends React.Component {
           <Column className="is-6">
             <Form.Item
               label={t('SCHEDULE')}
-              desc={learnMoreTip(htmlDes)}
+              desc={t.html('CRONJOB_CRON_DESC')}
               rules={[{ required: true, message: t('ENTER_SCHEDULE_TIP') }]}
             >
               <Select

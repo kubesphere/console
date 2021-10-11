@@ -20,7 +20,7 @@ import React from 'react'
 import { Form, Icon, Select } from '@kube-design/components'
 import { Text, CodeEditor } from 'components/Base'
 import { getDocsUrl } from 'utils'
-import classnames from 'classnames'
+
 import { get } from 'lodash'
 import Title from '../Title'
 import styles from './index.scss'
@@ -90,9 +90,7 @@ export default class Confiuguration extends React.Component {
                   <Icon name="kubernetes" size={20} />
                   <span>{t('INPUT_KUBECONFIG')}</span>
                   <a
-                    className={classnames(styles.link, {
-                      [styles.banLink]: !globals.config.showOutSiteLink,
-                    })}
+                    className={styles.link}
                     href={getDocsUrl('kube_config')}
                     target="_blank"
                     rel="noreferrer noopener"

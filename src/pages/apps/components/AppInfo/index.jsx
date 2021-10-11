@@ -82,6 +82,21 @@ export default class AppInfo extends React.PureComponent {
     )
   }
 
+  renderAppDeployAgreement() {
+    const { isCheck, onChange } = this.props
+    return (
+      <div className={styles.agree}>
+        <p>{t('APP_DEPLOY_AGREEMENT_1')}</p>
+        <p>{t.html('APP_DEPLOY_AGREEMENT_2')}</p>
+        <div className="margin-t12">
+          <Checkbox checked={isCheck} onChange={onChange}>
+            {t('APP_DEPLOY_AGREEMENT_CHEKC')}
+          </Checkbox>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     const { className, app } = this.props
     const { abstraction, screenshots } = app

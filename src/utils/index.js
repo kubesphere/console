@@ -414,7 +414,7 @@ export const getDocsUrl = module => {
   const { url: prefix } = globals.config.documents
   const docUrl = get(globals.config, `resourceDocs[${module}]`, '')
 
-  if (!docUrl || !globals.config.showOutSiteLink) {
+  if (!docUrl) {
     return ''
   }
 
@@ -679,36 +679,6 @@ export const getGpuFromRes = data => {
       })
     }
   }
-}
-
-export const hrefControl = href => (globals.config.showOutSiteLink ? href : '')
-
-const html_key = 'props.dangerouslySetInnerHTML.__html'
-
-export function htmlLinkControl(item) {
-  const a_reg = /(?<=href=").*?(=")/g
-  const text = get(item, html_key, undefined)
-  if (!globals.config.showOutSiteLink) {
-    if (!isUndefined(text) && a_reg.test(text)) {
-      set(
-        item,
-        html_key,
-        text.replace(a_reg, `" style="pointer-events: none;" target="`)
-      )
-    }
-  }
-  return item
-}
-
-export function learnMoreTip(item) {
-  const reg = /<a.+?>(.+)<\/a>/g
-  const text = get(item, html_key, undefined)
-  if (!globals.config.showOutSiteLink) {
-    if (!isUndefined(text) && reg.test(text)) {
-      set(item, html_key, text.replace(reg, ''))
-    }
-  }
-  return item
 }
 
 export const resourceLimitKey = [

@@ -18,9 +18,9 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
+
 import { Modal } from 'components/Base'
-import { hrefControl } from 'utils'
+
 import styles from './index.scss'
 
 export default class AboutModal extends Component {
@@ -59,27 +59,13 @@ export default class AboutModal extends Component {
         <div className={styles.links}>
           <div className={styles.left}>
             <span>
-              <a
-                href={hrefControl(reposUrl)}
-                className={classnames({
-                  [styles.banLink]: !globals.config.showOutSiteLink,
-                })}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
+              <a href={reposUrl} target="_blank" rel="noreferrer noopener">
                 <img src="/assets/github.svg" alt="github" />
                 <strong>{t('REPS_ADDRESS')}</strong>
               </a>
             </span>
             <span>
-              <a
-                href={hrefControl(issueUrl)}
-                target="_blank"
-                className={classnames({
-                  [styles.banLink]: !globals.config.showOutSiteLink,
-                })}
-                rel="noreferrer noopener"
-              >
+              <a href={issueUrl} target="_blank" rel="noreferrer noopener">
                 <img src="/assets/bug.svg" alt="bug" />
                 <strong>{t('ISSUE_FEEDBACK')}</strong>
               </a>
@@ -87,40 +73,19 @@ export default class AboutModal extends Component {
           </div>
           <div className={styles.right}>
             <span>
-              <a
-                href={hrefControl(slackUrl)}
-                target="_blank"
-                className={classnames({
-                  [styles.banLink]: !globals.config.showOutSiteLink,
-                })}
-                rel="noreferrer noopener"
-              >
+              <a href={slackUrl} target="_blank" rel="noreferrer noopener">
                 <img src="/assets/slack.svg" alt="slack" />
                 <strong>{t('PART_IN_DISCUSSION')}</strong>
               </a>
             </span>
             <span>
-              <a
-                href={hrefControl(reposUrl)}
-                target="_blank"
-                className={classnames({
-                  [styles.banLink]: !globals.config.showOutSiteLink,
-                })}
-                rel="noreferrer noopener"
-              >
+              <a href={reposUrl} target="_blank" rel="noreferrer noopener">
                 <img src="/assets/blue-theme-git.svg" alt="git" />
                 <strong>{t('CODE_CONTRIBUTE')}</strong>
               </a>
             </span>
             <span>
-              <a
-                href={hrefControl(reposUrl)}
-                className={classnames({
-                  [styles.banLink]: !globals.config.showOutSiteLink,
-                })}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
+              <a href={reposUrl} target="_blank" rel="noreferrer noopener">
                 <img src="/assets/star.svg" alt="star" />
                 <strong>{t('GITHUB_STAR')}</strong>
               </a>

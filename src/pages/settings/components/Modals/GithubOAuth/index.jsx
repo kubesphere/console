@@ -19,10 +19,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import copy from 'fast-copy'
-import classnames from 'classnames'
+
 import { Column, Columns, Form, Input } from '@kube-design/components'
 import { Modal } from 'components/Base'
-import { hrefControl } from 'utils'
+
 import styles from './index.scss'
 
 export default class GithubOAuthModal extends React.Component {
@@ -84,12 +84,7 @@ export default class GithubOAuthModal extends React.Component {
               rules={[{ required: true, message: t('Please input client id') }]}
               desc={
                 <a
-                  href={hrefControl(
-                    'https://github.com/settings/applications/new'
-                  )}
-                  className={classnames({
-                    [styles.banLink]: !globals.config.showOutSiteLink,
-                  })}
+                  href="https://github.com/settings/applications/new"
                   target="_blank"
                   rel="noreferrer noopener"
                 >

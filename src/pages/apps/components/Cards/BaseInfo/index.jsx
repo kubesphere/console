@@ -19,9 +19,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
-import classnames from 'classnames'
+
 import { Image, Markdown } from 'components/Base'
-import { hrefControl } from 'utils'
+
 import styles from './index.scss'
 
 @observer
@@ -59,14 +59,7 @@ export default class BaseInfo extends React.Component {
             </dl>
             <dl>
               <dd>
-                <a
-                  href={hrefControl(url)}
-                  target="_blank"
-                  className={classnames({
-                    [styles.banLink]: !globals.config.showOutSiteLink,
-                  })}
-                  rel="noopener noreferrer"
-                >
+                <a href={url} target="_blank" rel="noopener noreferrer">
                   {detail.home}
                 </a>
                 {!detail.home && <span>-</span>}

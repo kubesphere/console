@@ -23,7 +23,7 @@ import PropTypes from 'prop-types'
 import VersionStore from 'stores/openpitrix/version'
 import FileStore from 'stores/openpitrix/file'
 import { getDocsUrl } from 'utils'
-import classnames from 'classnames'
+
 import styles from './index.scss'
 
 @observer
@@ -60,9 +60,6 @@ export default class TestSteps extends React.Component {
           {t('VERSION_SUBMIT_DOC')}
           <a
             href={getDocsUrl('helm_developer_guide')}
-            className={classnames({
-              [styles.banLink]: !globals.config.showOutSiteLink,
-            })}
             target="_blank"
             rel="noreferrer noopener"
           >
