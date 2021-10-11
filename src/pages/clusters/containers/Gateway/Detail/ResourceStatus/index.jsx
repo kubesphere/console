@@ -25,15 +25,27 @@ import ContainerPortsCard from 'components/Cards/Containers/Ports'
 import ReplicaCard from 'projects/components/Cards/Replica'
 import Placement from 'projects/components/Cards/Placement'
 import PodsCard from 'clusters/containers/Gateway/Components/Pods'
-import { Provider } from './context'
+import PropTypes from 'prop-types'
 import styles from './index.scss'
 
 class ResourceStatus extends React.Component {
+  static childContextTypes = {
+    gatewayName: PropTypes.string,
+    gatewayNs: PropTypes.string,
+  }
+
   constructor(props) {
     super(props)
 
     this.state = {
       pods: 0,
+    }
+  }
+
+  getChildContext() {
+    return {
+      gatewayName: this.detail.name,
+      gatewayNs: this.props.match.params.namespace,
     }
   }
 
@@ -134,17 +146,13 @@ class ResourceStatus extends React.Component {
   }
 
   renderPods() {
-    const { namespace } = this.props.match.params
-
     return (
-      <Provider value={{ gatewayName: this.detail.name, gatewayNs: namespace }}>
-        <PodsCard
-          prefix={this.prefix}
-          detail={this.detail}
-          store={this.store}
-          params={this.props.match.params}
-        />
-      </Provider>
+      <PodsCard
+        prefix={this.prefix}
+        detail={this.detail}
+        store={this.store}
+        params={this.props.match.params}
+      />
     )
   }
 
