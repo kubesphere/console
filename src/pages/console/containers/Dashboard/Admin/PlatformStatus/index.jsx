@@ -39,7 +39,7 @@ export default class PlatformStatus extends Component {
       },
       {
         icon: 'human',
-        name: 'ACCOUNT',
+        name: 'User',
         link: '/access/accounts',
         metric: 'kubesphere_user_count',
       },

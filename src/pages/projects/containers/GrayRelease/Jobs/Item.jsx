@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, has } from 'lodash'
+import { get } from 'lodash'
 import React from 'react'
 import isEqual from 'react-fast-compare'
 import { Icon } from '@kube-design/components'
@@ -79,22 +79,16 @@ export default class Item extends React.Component {
 
     const { newMetrics, oldMetrics } = this.state
     const request_count = [
-      getMetricData(
-        get(newMetrics, 'metrics.request_count.matrix[0].values', []),
-        0
-      ),
-      getMetricData(
-        get(oldMetrics, 'metrics.request_count.matrix[0].values', []),
-        0
-      ),
+      getMetricData(get(newMetrics, 'request_count[0].datapoints', []), 0),
+      getMetricData(get(oldMetrics, 'request_count[0].datapoints', []), 0),
     ]
     const request_error_count = [
       getMetricData(
-        get(newMetrics, 'metrics.request_error_count.matrix[0].values', []),
+        get(newMetrics, 'request_error_count[0].datapoints', []),
         0
       ),
       getMetricData(
-        get(oldMetrics, 'metrics.request_error_count.matrix[0].values', []),
+        get(oldMetrics, 'request_error_count[0].datapoints', []),
         0
       ),
     ]
@@ -117,46 +111,16 @@ export default class Item extends React.Component {
         : NaN,
     ]
 
-    let request_duration = []
-    if (has(newMetrics, 'histograms.request_duration_millis')) {
-      request_duration = [
-        getMetricData(
-          get(
-            newMetrics,
-            'histograms.request_duration_millis["avg"].matrix[0].values',
-            []
-          ),
-          NaN
-        ),
-        getMetricData(
-          get(
-            oldMetrics,
-            'histograms.request_duration_millis["avg"].matrix[0].values',
-            []
-          ),
-          NaN
-        ),
-      ]
-    } else {
-      request_duration = [
-        getMetricData(
-          get(
-            newMetrics,
-            'histograms.request_duration["avg"].matrix[0].values',
-            []
-          ),
-          NaN
-        ) * 1000,
-        getMetricData(
-          get(
-            oldMetrics,
-            'histograms.request_duration["avg"].matrix[0].values',
-            []
-          ),
-          NaN
-        ) * 1000,
-      ]
-    }
+    const request_duration = [
+      getMetricData(
+        get(newMetrics, 'request_duration_millis[0].datapoints', []),
+        NaN
+      ),
+      getMetricData(
+        get(oldMetrics, 'request_duration_millis[0].datapoints', []),
+        NaN
+      ),
+    ]
 
     return [
       {
@@ -196,25 +160,13 @@ export default class Item extends React.Component {
     const { newMetrics, oldMetrics } = this.state
 
     const received = [
-      getMetricData(
-        get(newMetrics, 'metrics.tcp_received.matrix[0].values', []),
-        0
-      ),
-      getMetricData(
-        get(oldMetrics, 'metrics.tcp_received.matrix[0].values', []),
-        0
-      ),
+      getMetricData(get(newMetrics, 'tcp_received[0].datapoints', []), 0),
+      getMetricData(get(oldMetrics, 'tcp_received[0].datapoints', []), 0),
     ]
 
     const sent = [
-      getMetricData(
-        get(newMetrics, 'metrics.tcp_sent.matrix[0].values', []),
-        0
-      ),
-      getMetricData(
-        get(oldMetrics, 'metrics.tcp_sent.matrix[0].values', []),
-        0
-      ),
+      getMetricData(get(newMetrics, 'tcp_sent[0].datapoints', []), 0),
+      getMetricData(get(oldMetrics, 'tcp_sent[0].datapoints', []), 0),
     ]
 
     return [
