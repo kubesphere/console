@@ -172,11 +172,13 @@ module.exports = {
   INVITE_MEMBER_DESC:
     'You can invite members who belong to the workspace to the project.',
   INVITE_MEMBER_DESC_DEVOPS: '您可以邀請當前企業空間成員至該 DevOps 工程。',
+  PROJECT_MEMBER_EMPTY_DESC:
+    'Please invite a member of the current workspace to the project.',
   INVITE_MEMBER_SEARCH_PLACEHOLDER: '輸入用戶名邀請項目成員',
-  ASSIGN_ROLE: 'Assign a Role to the Member',
+  ASSIGN_ROLE: 'Assign Role',
   PROJECT_ADMIN_DESC: '可以指定項目内一個成員為管理員',
 
-  PROJECT_INTERNET_ACCESS_DESC:
+  SET_GATEWAY_DESC:
     '在創建應用路由之前，需要先啟用外網訪問入口，即網關。這一步是創建對應的應用路由控制器，用來負責將請求轉發到對應的後端服務。',
 
   DELETE_INTERNET_ACCESS_TITLE: 'Remove Network Access Settings',
@@ -210,6 +212,7 @@ module.exports = {
     'Advanced settings are used to configure external access, application governance, and log collection in the project.',
   PROJECT_MEMBERS_DESC: '對項目内的成員進行管理及角色分配',
   PROJECT_ROLE_DESC: '項目角色定義了在目前項目下用戶所擁有的權限',
+  PROJECT_ROLE_EMPTY_DESC: 'Please create a project role.',
   COLLECTING_FILE_LOG_DESC:
     '對容器内的落盤紀錄進行收集，並轉發到標準輸出，然後由紀錄收集系統統一採集。',
 
@@ -312,8 +315,8 @@ module.exports = {
 
   // Network Isolation
   INGRESS: 'Ingress',
-  INTERNAL_RULE_DIRECTION_DESC:
-    'Specifies the direction of allowed access to and from different projects and services.',
+  INTERNAL_TRAFFIC_DIRECTION_DESC:
+    'Egress indicates the direction from the current project to other projects. Ingress indicates the direction from other projects to the current project.',
   NETWORK_SEGMENT_EXAMPLE: 'Example: 10.0.0.0',
   PORT_EXAMPLE: 'Example: 80',
 }

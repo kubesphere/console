@@ -17,27 +17,25 @@
  */
 
 module.exports = {
-  GATEWAY_SETTING: '网关设置',
+  GATEWAY_SETTINGS: '网关设置',
   GATEWAY_DESC: '对集群和项目中的外网访问网关以及服务治理等配置进行设置和管理',
   CLUSTER_GATEWAY: '集群网关',
   PROJECT_GATEWAY: '项目网关',
-  CLUSTER_GATEWAYS_SETTING_DESC:
-    '创建应用路由之前，需要先启用外网访问入口，即网关。这一步是创建对应的应用路由控制器，负责将请求转发到对应的后端服务。',
-  PROJECT_GATEWAYS_SETTING_DESC:
-    '集群管理页面不支持项目网关的设置，如需设置需要转到对应项目下进行设置。',
-  'Cluster Gateway Not Set': '集群网关未设置',
-  'Project Gateway Not Set': '没有找到 项目网关',
+  CLUSTER_SET_GATEWAY_DESC: '请设置集群网关。',
+  PROJECT_SET_GATEWAY_DESC: '请设置项目网关。',
+  CLUSTER_GATEWAY_NOT_SET: '集群网关未设置',
+  PROJECT_GATEWAY_NOT_SET: '项目网关未设置',
   'Gateway Not Set': '网关未设置',
-  'View Gateway': '查看网关',
   'Set Gateway': '设置网关',
-  'Edit Gateway': '编辑网关',
+  EDIT_GATEWAY: '编辑网关',
   'Update Gateway': '更新网关',
-  'Gateway Config': '网关配置',
+  CONFIGURATION_OPTIONS: '配置选项',
   'Add Gateway Config': '添加网关配置',
-  'LoadBalancer Support': 'LoadBalancer提供商',
-  'Use default annotations': '使用默认注解',
+  LOAD_BALANCER_PROVIDER: '负载均衡器提供商',
+  LOAD_BALANCER_PROVIDER_SCAP: '负载均衡器提供商',
+  USE_DEFAULT_ANNOTATIONS: '使用默认注解',
   GATEWAY_IP: '访问地址',
-  UPDATE_GATEWAY_DESC: '当前网关可升级',
+  UPDATE_GATEWAY_DESC: '当前网关可更新。',
   DISK_LOG_COLLECTION_DESC:
     '日志收集功能允许系统收集保存在存储卷上的容器日志，并将日志发送到标准输出。',
   UPDATED_GATEWAY_DESC: '请在业务低峰期操作，升级过程可能会造成业务短暂中断。',

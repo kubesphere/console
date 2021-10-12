@@ -115,7 +115,7 @@ export default class Gateway extends React.Component {
           this.props.rootStore.routing.push(url)
         }}
       >
-        {t('View Gateway')}
+        {t('VIEW_DETAILS')}
       </Button>
     )
   }

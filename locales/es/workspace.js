@@ -83,6 +83,7 @@ module.exports = {
   WORKSPACE_ROLE_DESC:
     'El rol del espacio de trabajo determina los permisos del rol en el espacio de trabajo actual.',
   SEARCH_WORKSPACE_TIP: 'Introduce el nombre del espacio de trabajo a buscar',
+  WORKSPACE_ROLE_EMPTY_DESC: 'Please create a workspace role.',
   NO_CLUSTER_AVAILABLE_DESC:
     'No hay clústeres públicos disponibles, solicita autorización para clúster al administrador de la plataforma o al administrador del clúster después de crear el espacio de trabajo',
   WORKSPACE_NO_CLUSTER_TIP:
@@ -138,6 +139,7 @@ module.exports = {
   // Worksapce Members
   CHANGE_MEMBER_ROLE: 'Change Member Role',
   INVITE_MEMBER: 'Invite Member',
+  INVITE: 'Invite',
   WORKSPACE_MEMBERS: 'Workspace Members',
 
   // Department Management

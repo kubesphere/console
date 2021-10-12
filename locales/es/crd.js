@@ -17,8 +17,9 @@
  */
 
 module.exports = {
-  CRD: 'Custom Resource Definition',
+  CRD: 'CRD',
   CRD_PL: 'CRDs',
+  CRD_EMPTY_DESC: 'Please create a CRD.',
   CUSTOM_RESOURCE_DEFINITION_LOW: 'custom resource definition',
   'Custom Resource Definition': 'Custom Resource Definition',
   'Custom Resource Definitions': 'Custom Resource Definitions',

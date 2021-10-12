@@ -152,16 +152,17 @@ export default class GatewaySettingModal extends React.Component {
   renderLoadBalancerSupport = () => {
     return (
       <div className={styles.loadBalancer}>
-        <Form.Item label={t('LoadBalancer Support')}>
+        <Form.Item label={t('LOAD_BALANCER_PROVIDER')}>
           <Select
             options={CLUSTER_PROVIDERS}
+            placeholder=" "
             optionRenderer={this.providerOptionRenderer}
             onChange={this.handleAnnotations}
             name="metadata.annotations['kubesphere.io/annotations']"
           ></Select>
         </Form.Item>
         <Button className={styles.lbB} onClick={() => this.initAnnotations()}>
-          {t('Use default annotations')}
+          {t('USE_DEFAULT_ANNOTATIONS')}
         </Button>
       </div>
     )
@@ -186,14 +187,11 @@ export default class GatewaySettingModal extends React.Component {
         hideFooter
       >
         <div className={styles.body}>
-          <Title
-            title={t('SET_GATEWAY')}
-            desc={t('PROJECT_INTERNET_ACCESS_DESC')}
-          />
+          <Title title={t('SET_GATEWAY')} desc={t('SET_GATEWAY_DESC')} />
           <div className={styles.wrapper}>
             <div className={styles.content}>
               <Form ref={this.form} data={this.template}>
-                <Form.Item label={t('ACCESS_METHOD')} className={styles.types}>
+                <Form.Item label={t('ACCESS_MODE')} className={styles.types}>
                   <RadioGroup
                     name="spec.service.type"
                     mode="button"
@@ -236,11 +234,11 @@ export default class GatewaySettingModal extends React.Component {
                     </Form.Item>
                   </>
                 )}
-                <Form.Item label={t('Gateway Config')}>
+                <Form.Item label={t('CONFIGURATION_OPTIONS')}>
                   <PropertiesInput
                     className={styles.objectBg}
                     name="spec.controller.config"
-                    addText={t('Add Gateway Config')}
+                    addText={t('ADD')}
                   />
                 </Form.Item>
               </Form>

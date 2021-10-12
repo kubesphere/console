@@ -32,7 +32,7 @@ import { getLocalTime } from 'utils'
   store: new UserStore(),
   module: 'users',
   authKey: 'members',
-  name: 'MEMBER',
+  name: 'WORKSPACE_MEMBER',
 })
 export default class Accounts extends React.Component {
   roleStore = new RoleStore('workspaceroles')
@@ -98,7 +98,7 @@ export default class Accounts extends React.Component {
         {
           key: 'invite',
           type: 'control',
-          text: t('INVITE_MEMBER'),
+          text: t('INVITE'),
           action: 'create',
           onClick: () =>
             trigger('member.invite', {
@@ -130,7 +130,7 @@ export default class Accounts extends React.Component {
         name: record.name,
       }),
       emptyProps: {
-        desc: t('INVITE_WORKSPACE_MEMBER_DESC'),
+        desc: t('WORKSPACE_MEMBER_EMPTY_DESC'),
       },
     }
   }

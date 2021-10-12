@@ -42,6 +42,7 @@ module.exports = {
 
   APP_VERSION: '应用版本',
   APPLICATION_GOVERNANCE: '应用治理',
+  APPLICATION_GOVERNANCE_SCAP: '应用治理',
   APP_COMPONENT_PL: '应用组件',
   'Application Component': '应用组件',
   'Application Route': '应用路由',

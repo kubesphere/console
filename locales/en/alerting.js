@@ -119,7 +119,8 @@ module.exports = {
     'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
   ALERT_MESSAGE_DESC:
     'Alert messages display details of triggered alerts that have met the conditions of the alert rules.',
-
+  ALERTING_MESSAGE_EMPTY_DESC:
+    'No alerting message is found in the current project.',
   ALERTING_POLICY_EMPTY_DESC: 'Please create an alerting policy.',
   ALERTING_POLICY_CREATE_DESC:
     'You can create alerting policies to detect abnormal resources in real time.',

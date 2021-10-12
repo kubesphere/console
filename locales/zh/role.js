@@ -23,6 +23,7 @@ module.exports = {
   'Role Management': '角色管理',
   'Account Role': '帐户角色',
   PLATFORM_ROLE: '平台角色',
+  PLATFORM_ROLE_EMPTY_DESC: '请创建一个平台角色。',
   PLATFORM_ROLE_PL: '平台角色',
   'Platform Roles': '平台角色',
   'Account Roles': '帐户角色',

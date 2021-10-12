@@ -67,19 +67,19 @@ class GatewayCard extends React.Component {
       {
         key: 'view',
         icon: 'eye',
-        text: t('View Gateway'),
+        text: t('VIEW_DETAILS'),
         disabled: this.gateway.createTime == null,
       },
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit Gateway'),
+        text: t('EDIT_GATEWAY'),
         disabled: this.canEdit || this.gateway.createTime == null,
       },
       {
         key: 'update',
         icon: 'update',
-        text: t('Update Gateway'),
+        text: t('UPDATE'),
         disabled: this.canEdit || this.gateway.createTime != null,
       },
       {
@@ -213,9 +213,9 @@ class GatewayCard extends React.Component {
       : ports
           .map(
             item =>
-              `${item.name}:${type === 'NodePort' ? item.nodePort : item.port}`
+              `${item.name.toUpperCase()}: ${type === 'NodePort' ? item.nodePort : item.port}`
           )
-          .join(';')
+          .join('/')
 
     const gateway_ip = isEmpty(loadBalancerIngress)
       ? '-'
@@ -230,7 +230,7 @@ class GatewayCard extends React.Component {
           icon: 'loadbalancer',
           title: this.title(),
 
-          desc: t('Gateway Type'),
+          desc: t('TYPE'),
         },
         { key: 'author', title: creator || '-', desc: t('CREATOR') },
         {
@@ -238,7 +238,7 @@ class GatewayCard extends React.Component {
           title: createTime
             ? getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss')
             : '-',
-          desc: t('Create Time'),
+          desc: t('CREATION_TIME'),
         },
         {
           key: 'edit',
@@ -254,7 +254,7 @@ class GatewayCard extends React.Component {
               trigger="click"
               placement="bottomRight"
             >
-              <Button>{t('More')}</Button>
+              <Button>{t('MORE')}</Button>
             </Dropdown>
           ),
         },
@@ -264,35 +264,33 @@ class GatewayCard extends React.Component {
           key: 'method',
           icon: 'eip-group',
           title: type,
-          desc: t('ACCESS_MODE'),
+          desc: t('ACCESS_MODE_SCAP'),
         },
         lb
           ? {
               key: 'lb',
               icon: lbIcon,
               title: lb,
-              desc: t('LoadBalancer Support'),
+              desc: t('LOAD_BALANCER_PROVIDER_SCAP'),
             }
           : {
               key: 'ip',
               icon: 'ip',
               title: gateway_ip,
-              desc: t('GATEWAY_ADDRESS_TCAP'),
+              desc: t('GATEWAY_ADDRESS_SCAP'),
             },
         {
           key: 'earth',
           icon: 'earth',
           title: gatewayPort,
-          desc: t('Host Port'),
+          desc: t('NODE_PORTS_SCAP'),
         },
         { key: 'pod', icon: 'pod', title: replicas, desc: t('REPLICAS') },
         {
           key: 'appGover',
           icon: <AppGoverIcon />,
-          title: serviceMeshEnable
-            ? t('GATEWAY_SERVICE_MESH_STATUS_ON')
-            : t('GATEWAY_SERVICE_MESH_STATUS_OFF'),
-          desc: t('APPLICATION_GOVERNANCE'),
+          title: serviceMeshEnable ? t('ON') : t('OFF'),
+          desc: t('APPLICATION_GOVERNANCE_SCAP'),
         },
       ],
     ]

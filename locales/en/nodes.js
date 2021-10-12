@@ -25,6 +25,7 @@ module.exports = {
   WORKER_NODE_PL: 'Worker nodes',
 
   CLUSTER_NODE_PL: 'Cluster Nodes',
+  CLUSTER_NODE: 'Cluster Node',
   'Cluster Nodes': 'Cluster Nodes',
 
   ADD_NODE: 'Add Node',

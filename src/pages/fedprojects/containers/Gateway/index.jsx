@@ -51,7 +51,7 @@ export default class Getway extends React.Component {
       <>
         <Banner
           icon="loadbalancer"
-          title={t('GATEWAY_SETTING')}
+          title={t('GATEWAY_SETTINGS')}
           description={t('GATEWAY_DESC')}
           tabs={this.tabs}
         />

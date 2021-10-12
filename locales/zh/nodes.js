@@ -26,6 +26,7 @@ module.exports = {
 
   'Cluster Node': '集群节点',
   CLUSTER_NODE_PL: '集群节点',
+  CLUSTER_NODE: '集群节点',
   'Cluster Nodes': '集群节点',
 
   'Node Role': '节点角色',

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  PROJECT_EMPTY_DESC: '请选择一个项目。',
+  PROJECT_NOT_SELECT_DESC: '请选择一个项目。',
   SELECT_PROJECT_DESC: '选择将要创建资源的项目。',
   REPLICA_LOW_SI: '副本',
   REPLICA_LOW_PL: '副本',
@@ -90,7 +90,8 @@ module.exports = {
   Port: '端口',
   SERVICE_TOPOLOGY: '服务拓扑',
   EDIT_CONTAINER: '编辑容器',
-  'Host Port': '节点端口',
+  NODE_PORTS: '节点端口',
+  NODE_PORTS_SCAP: 'Node ports',
   ADD_PORT: '添加端口',
   'target port': '目标端口',
   Environment: '环境变量',
@@ -727,7 +728,7 @@ module.exports = {
   HOSTPATH_TIP:
     '使用 HostPath 存储卷将主机文件系统中的文件或目录挂载到容器中。',
 
-  USE_DEFAULT_PORT: '使用默认端口',
+  USE_DEFAULT_PORTS: '使用默认端口',
 
   CONTAINER_NOT_SELECTED: '请将存储卷挂载到至少一个容器组。',
   'Sure to delete the workload(s)?': '确认删除工作负载',

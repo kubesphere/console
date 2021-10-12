@@ -106,7 +106,7 @@ module.exports = {
   AUDIT_RECORD_CREATE_DESC: '暂无相关的审核记录数据',
 
   APP_CATEGORY_PL: '应用分类',
-  APP_CATEGORIES_CREATE_DESC: '该分类暂无绑定的应用。',
+  APP_CATEGORY_EMPTY_DESC: '没有属于当前分类的应用。',
   ALL_CATEGORIES: '全部分类',
   'Adjust App Category': '调整应用分类',
   CHANGE_CATEGORY_DESC: '应用分类将决定该应用在应用商店中的分类。',

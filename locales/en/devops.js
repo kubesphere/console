@@ -28,6 +28,9 @@ module.exports = {
   'DevOps Members': 'DevOps Members',
   DEVOPS_NAME: 'Name',
   DEVOPS_PROJECT: 'DevOps Project',
+  DEVOPS_PROJECT_MEMBER: 'DevOps Project Member',
+  DEVOPS_PROJECT_MEMBER_EMPTY_DESC:
+    'Please invite a member of the current workspace to the DevOps project.',
   'DevOps Project Manager': 'DevOps Project Manager',
   'DevOps Role': 'DevOps Role',
   'DevOps Roles': 'DevOps Roles',
@@ -62,13 +65,14 @@ module.exports = {
   DEVOPS_PROJECT_ROLES_DESC:
     'The project roles define the permissions that users have under the current DevOps project.',
   DEVOPS_PROJECT_MEM_DESC: 'Manage and assign roles to project members.',
+  DEVOPS_PROJECT_ROLE_EMPTY_DESC: 'Please create a DevOps project role.',
 
   DELETE_DEVOPS_TIP:
     'Are you sure you want to delete the DevOps project <strong>{resource}</strong>? After the deletion, you will not be able to recover it, and the resources in the DevOps project will also be removed.',
 
-  DEVOPS_TIP_GITOPS_Q: 'How do I get started with GitOps?',
+  DEVOPS_TIP_GITOPS_Q: 'How do I get started with DevOps?',
   DEVOPS_TIP_GITOPS_A:
-    'You can start using GitOps by creating a pipeline that is associated with the code repository and deploying steps with Kubernetes.',
+    'You can start using DevOps by creating a pipeline that is associated with the code repository and deploying steps with Kubernetes.',
 
   DEVOPS_TIP_TYPE_Q: 'Which code repositories are supported by pipelines?',
   DEVOPS_TIP_TYPE_A:

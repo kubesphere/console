@@ -151,7 +151,7 @@ export default class Roles extends React.Component {
 
   get emptyProps() {
     return {
-      desc: t('WORKSPACE_ROLE_DESC'),
+      desc: t('WORKSPACE_ROLE_EMPTY_DESC'),
     }
   }
 

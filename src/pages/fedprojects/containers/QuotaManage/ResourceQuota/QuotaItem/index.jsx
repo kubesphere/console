@@ -63,7 +63,7 @@ const QuotaItem = ({ name, total, used }) => {
         <p>{t('RESOURCE_LIMIT')}</p>
       </div>
       <div className={styles.item} style={{ flex: 3 }}>
-        <div>{t('Usage')}</div>
+        <div>{t('USAGE')}</div>
         <Bar
           value={Math.min(ratio, 1)}
           className={styles.bar}

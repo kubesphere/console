@@ -160,16 +160,18 @@ module.exports = {
     'Una vez que el proyecto se asigna a un espacio de trabajo ya no se puedes cambiar.',
   INVITE_MEMBER_DESC:
     'You can invite members who belong to the workspace to the project.',
+  PROJECT_MEMBER_EMPTY_DESC:
+    'Please invite a member of the current workspace to the project.',
   INVITE_MEMBER_DESC_DEVOPS:
     'You can invite members who belong to the workspace to the DevOps project.',
   INVITE_MEMBER_SEARCH_PLACEHOLDER:
     'Introduce una dirección de correo electrónico para invitar miembros',
-  ASSIGN_ROLE: 'Assign a Role to the Member',
+  ASSIGN_ROLE: 'Assign Role',
   DELETE_MEMBER_TIP:
     '¿Estás seguro de eliminar el miembro <strong>{name}</strong> ? El miembro no podrá acceder a este proyecto una vez eliminado.',
   PROJECT_ADMIN_DESC:
     'Puedes especificar un miembro del proyecto como administrador.',
-  PROJECT_INTERNET_ACCESS_DESC:
+  SET_GATEWAY_DESC:
     'Antes de crear una ruta, debe habilitar el portal de acceso a Internet (es decir, la puerta de enlace). Este paso crea un controlador de enrutamiento correspondiente para reenviar la solicitud al servicio de back-end correspondiente.',
   DELETE_INTERNET_ACCESS_TITLE: 'Remove Network Access Settings',
   DELETE_INTERNET_ACCESS_DESC:
@@ -211,6 +213,7 @@ module.exports = {
     'Basic information provides an overview of the project. You can view the project information and resource quotas.',
   PROJECT_ROLE_DESC:
     'Los roles de proyecto definen la autorización que los usuarios tienen en el proyecto actual.',
+  PROJECT_ROLE_EMPTY_DESC: 'Please create a project role.',
   PROJECT_MEMBERS_DESC:
     'Gestionar y asignar roles para los miembros del proyecto.',
   PROJECT_ADVANCED_SETTINGS_DESC:
@@ -276,8 +279,8 @@ module.exports = {
 
   // Network Isolation
   INGRESS: 'Ingress',
-  INTERNAL_RULE_DIRECTION_DESC:
-    'Specifies the direction of allowed access to and from different projects and services.',
+  INTERNAL_TRAFFIC_DIRECTION_DESC:
+    'Egress indicates the direction from the current project to other projects. Ingress indicates the direction from other projects to the current project.',
   NETWORK_SEGMENT_EXAMPLE: 'Example: 10.0.0.0',
   PORT_EXAMPLE: 'Example: 80',
 }

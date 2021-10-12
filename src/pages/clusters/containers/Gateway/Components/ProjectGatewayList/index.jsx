@@ -169,7 +169,7 @@ export default class ProjectGatewayCard extends React.Component {
         dataIndex: 'defaultIngress',
       },
       {
-        title: t('Host Port'),
+        title: t('NODE_PORTS'),
         dataIndex: 'ports',
         render: ports => {
           return isEmpty(ports)

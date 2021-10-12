@@ -152,7 +152,7 @@ export default class BasicInfo extends React.Component {
                 rules={[
                   {
                     required: true,
-                    message: t('PROJECT_EMPTY_DESC'),
+                    message: t('PROJECT_NOT_SELECT_DESC'),
                   },
                 ]}
               >

@@ -151,7 +151,7 @@ export default class Pullrequest extends React.Component {
       render: record => get(record, 'pullRequest.author', ''),
     },
     {
-      title: t('Time'),
+      title: t('TIME'),
       dataIndex: 'latestRun',
       width: '20%',
       render: latestRun =>

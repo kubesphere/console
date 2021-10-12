@@ -50,7 +50,7 @@ export default class Volumes extends React.Component {
       className: 'margin-b12',
       description: t('VOLUME_DESC'),
       module: 'persistentvolumeclaims',
-      title: t('VOLUME'),
+      title: t('VOLUME_PL'),
     }
   }
 

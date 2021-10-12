@@ -17,25 +17,25 @@
  */
 
 module.exports = {
-  GATEWAY_SETTING: '網關設置',
+  GATEWAY_SETTINGS: '網關設置',
   GATEWAY_DESC: '對集群和項目中的外網訪問網關以及服務治理等配置進行設置和管理',
   CLUSTER_GATEWAY: '集群網關',
   PROJECT_GATEWAY: '項目網關',
-  CLUSTER_GATEWAYS_SETTING_DESC:
+  CLUSTER_SET_GATEWAY_DESC:
     '創建應用路由之前，需要先啟用外網訪問入口，即網關。這一步是創建對應的應用路由控制器，負責將請求轉發到對應的後端服務。 ',
-  PROJECT_GATEWAYS_SETTING_DESC:
+  PROJECT_SET_GATEWAY_DESC:
     '集群管理頁面不支持項目網關的設置，如需設置需要轉到對應項目下進行設置。 ',
-  'Cluster Gateway Not Set': '集群網關未設置',
-  'Project Gateway Not Set': '沒有找到 項目網關',
+  CLUSTER_GATEWAY_NOT_SET: '集群網關未設置',
+  PROJECT_GATEWAY_NOT_SET: '沒有找到 項目網關',
   'Gateway Not Set': '網關未設置',
-  'View Gateway': '查看網關',
   'Set Gateway': '設置網關',
-  'Edit Gateway': '編輯網關',
+  EDIT_GATEWAY: '編輯網關',
   'Update Gateway': '更新網關',
-  'Gateway Config': '網關配置',
+  CONFIGURATION_OPTIONS: '網關配置',
   'Add Gateway Config': '添加網關配置',
-  'LoadBalancer Support': 'LoadBalancer提供商',
-  'Use default annotations': '使用默認註解',
+  LOAD_BALANCER_PROVIDER: 'LoadBalancer提供商',
+  LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
+  USE_DEFAULT_ANNOTATIONS: '使用默認註解',
   GATEWAY_IP: '訪問地址',
   UPDATE_GATEWAY_DESC: '當前網關可升級',
   DISK_LOG_COLLECTION_DESC:

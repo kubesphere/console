@@ -46,6 +46,7 @@ module.exports = {
   'Application components combine workloads and services as components in applications':
     'Los componentes de la aplicación combinan workload y servicios como componentes en las aplicaciones.',
   APPLICATION_GOVERNANCE: 'Gestión de aplicación',
+  APPLICATION_GOVERNANCE_SCAP: 'Application governance',
   'Application governance is not enabled':
     'La gestión de la aplicación no está habilitado',
   'Application Icon': 'Ícono de aplicación',

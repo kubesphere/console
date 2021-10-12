@@ -74,6 +74,8 @@ module.exports = {
   ALERT_MESSAGE_DESC:
     'Alert messages display details of triggered alerts that have met the conditions of the alert rules.',
   ALERT_POLICY_TRIGGER_RULE: '觸發規則： 滿足以下任意條件',
+  ALERTING_MESSAGE_EMPTY_DESC:
+    'No alerting message is found in the current project.',
   ALERT_METRIC_NAME: '告警指標名稱',
   ALERT_COMMENT: '處理意見',
   ALERT_COMMENT_DESC:

@@ -177,7 +177,7 @@ export default class VolumeDetail extends React.Component {
       icon: 'storage',
       breadcrumbs: [
         {
-          label: t('STORAGE_INSTANCE_PL'),
+          label: t('VOLUME_INSTANCE_PL'),
           url: this.listUrl,
         },
       ],

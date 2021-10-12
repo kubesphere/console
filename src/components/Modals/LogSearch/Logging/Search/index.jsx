@@ -73,7 +73,7 @@ export default class LogSearchModal extends React.Component {
   @observable
   tableCols = [
     {
-      thead: t('Time'),
+      thead: t('TIME'),
       key: 'time',
       content: data => `[${moment(data.time).format('YYYY-MM-DD HH:mm:ss')}]`,
       hidden: false,

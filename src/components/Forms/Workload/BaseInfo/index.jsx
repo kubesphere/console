@@ -164,7 +164,7 @@ export default class BaseInfo extends React.Component {
                 label={t('PROJECT')}
                 desc={t('SELECT_PROJECT_DESC')}
                 rules={[
-                  { required: true, message: t('PROJECT_EMPTY_DESC') },
+                  { required: true, message: t('PROJECT_NOT_SELECT_DESC') },
                   { validator: this.projectValidator },
                 ]}
               >

@@ -168,20 +168,20 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
       <Modal.Form
         width={600}
         icon="add"
-        title={t('ADD_ALLOWLIST')}
+        title={t('ADD_ALLOWLIST_ENTRY')}
         closable={true}
         {...rest}
         onOk={this.handleSave}
       >
         <Form.Item
-          label={t('RULE_DIRECTION')}
+          label={t('TRAFFIC_DIRECTION')}
           desc={
             specType === false ? (
               <span className={styles.errColor}>
                 {t('SELECT_RULE_DIRECTION_TIP')}
               </span>
             ) : (
-              t('EXTERNAL_RULE_DIRECTION_DESC')
+              t('EXTERNAL_TRAFFIC_DIRECTION_DESC')
             )
           }
         >
@@ -233,7 +233,7 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
               }
             >
               {cidr.ip.valid === false || cidr.mask.valid === false
-                ? t('ENTER_VALID_ADDRESS_DESC')
+                ? t('ENTER_VALID_SEGMENT_DESC')
                 : t('NETWORK_SEGMENT_DESC')}
             </div>
           </>

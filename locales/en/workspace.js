@@ -75,7 +75,7 @@ module.exports = {
 
   WORKSPACE_ROLE_DESC:
     'The role of a workspace member determines the permissions of the member in the workspace.',
-
+  WORKSPACE_ROLE_EMPTY_DESC: 'Please create a workspace role.',
   SEARCH_WORKSPACE_TIP: 'Enter a workspace name.',
 
   NO_CLUSTER_AVAILABLE_DESC:
@@ -137,6 +137,7 @@ module.exports = {
   // Worksapce Members
   CHANGE_MEMBER_ROLE: 'Change Member Role',
   INVITE_MEMBER: 'Invite Member',
+  INVITE: 'Invite',
   WORKSPACE_MEMBERS: 'Workspace Members',
 
   // Department Management

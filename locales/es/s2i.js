@@ -54,6 +54,7 @@ module.exports = {
   'Image Artifacts': 'Image Artifacts',
   'Image Builder': 'Image Builder',
   IMAGE_BUILDER: 'Image Builder',
+  IMAGE_BUILDER_LOW: 'image builder',
   IMAGE_BUILDER_PL: 'Image Builders',
   'Image Building': 'Construcción de la imagen',
   'Image building failed': 'La construcción de la imagen falló',

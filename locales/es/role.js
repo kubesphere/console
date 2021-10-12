@@ -37,6 +37,7 @@ module.exports = {
   CLUSTERS_VIEW: 'Cluster Viewing',
   CREATE_ROLE: 'Create Role',
   PLATFORM_ROLE: 'Platform Role',
+  PLATFORM_ROLE_EMPTY_DESC: 'Please create a platform role.',
   PLATFORM_ROLE_PL: 'Platform Roles',
   'Platform Roles': 'Platform Roles',
   'Account Roles': 'Roles de cuenta',

@@ -125,7 +125,9 @@ export default class BaseInfo extends React.Component {
               <Form.Item
                 label={t('PROJECT')}
                 desc={t('PROJECT_DESC')}
-                rules={[{ required: true, message: t('PROJECT_EMPTY_DESC') }]}
+                rules={[
+                  { required: true, message: t('PROJECT_NOT_SELECT_DESC') },
+                ]}
               >
                 <ProjectSelect
                   name="metadata.namespace"
