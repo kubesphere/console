@@ -61,7 +61,7 @@ export default class Item extends React.Component {
     const { workspace, namespace, detail } = this.props
     const gateway = toJS(this.store.gateway.data)
 
-    if (!detail || isEmpty(detail.rules)) {
+    if (!detail || isEmpty(detail.rules) || isEmpty(gateway)) {
       return t('No Data')
     }
 
@@ -98,7 +98,7 @@ export default class Item extends React.Component {
 
   render() {
     const { cluster } = this.props
-    const gateway = toJS(this.store.gateway.data)
+    const gateway = toJS(this.store.gateway.data) || {}
 
     return (
       <Panel>

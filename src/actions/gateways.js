@@ -42,7 +42,7 @@ export default {
 
           store.addGateway({ cluster, namespace }, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Created Successfully')}` })
+            Notify.success({ content: t('CREATE_SUCCESSFUL') })
             success && success()
           })
         },
@@ -59,7 +59,7 @@ export default {
         onOk: data => {
           store.editGateway({ cluster, namespace }, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}` })
+            Notify.success({ content: t('UPDATED_SUCCESS_DESC') })
             success && success()
           })
         },
@@ -84,7 +84,7 @@ export default {
             })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('Deleted Successfully')}` })
+              Notify.success({ content: t('DELETE_SUCCESS_DESC') })
               success && success()
             })
         },
@@ -108,7 +108,7 @@ export default {
             )
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('Updated Successfully')}` })
+              Notify.success({ content: t('UPDATED_SUCCESS_DESC') })
               success && success()
             })
         },
@@ -155,7 +155,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}` })
+          Notify.success({ content: t('DELETE_SUCCESS_DESC') })
           store.setSelectRowKeys([])
           success && success()
         },

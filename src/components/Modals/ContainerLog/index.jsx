@@ -29,12 +29,14 @@ export default class ContainerLogModal extends React.Component {
   static contextTypes = {
     gatewayName: PropTypes.string,
     gatewayNs: PropTypes.string,
+    cluster: PropTypes.string,
   }
 
   renderContent() {
     const { namespace, name } = this.props.container
-    const { cluster, podName } = this.props
-    const { gatewayName, gatewayNs } = this.context
+    const { podName } = this.props
+    const { gatewayName, gatewayNs, cluster } = this.context
+    const _cluster = cluster || this.props.cluster
 
     if (!get(this.props, 'container.containerID')) {
       return (
@@ -50,7 +52,7 @@ export default class ContainerLogModal extends React.Component {
         contentClassName={styles.containerLogContent}
         namespace={namespace}
         podName={podName}
-        cluster={cluster}
+        cluster={_cluster}
         containerName={name}
         gatewayName={gatewayName}
         gatewayNamespace={gatewayNs}

@@ -93,6 +93,7 @@ class GatewayCard extends React.Component {
 
   get linkUrl() {
     const { prefix } = this.props
+
     return prefix
       ? `${prefix}/${this.gateway.name}`
       : `/clusters/${this.cluster}/gateways/cluster/${this.gateway.name}`
@@ -100,7 +101,11 @@ class GatewayCard extends React.Component {
 
   handleMoreMenuClick = (e, key) => {
     const { namespace } = this.props.match.params
-    const { type } = this.props
+    const { type, isFederated } = this.props
+
+    if (isFederated) {
+      localStorage.setItem('federated-cluster', this.cluster)
+    }
 
     switch (key) {
       case 'view':

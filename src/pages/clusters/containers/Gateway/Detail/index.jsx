@@ -46,7 +46,18 @@ export default class NodeDetail extends React.Component {
   }
 
   get detail() {
-    return this.store.gateway.data
+    return this.store.gateway.data || {}
+  }
+
+  get cluster() {
+    const { cluster, workspace } = this.props.match.params
+    return workspace && !cluster
+      ? localStorage.getItem('federated-cluster')
+      : cluster
+  }
+
+  get namespace() {
+    return this.props.match.params.namespace
   }
 
   get listUrl() {
@@ -62,12 +73,10 @@ export default class NodeDetail extends React.Component {
   }
 
   fetchData = () => {
-    const { cluster, namespace } = this.props.match.params
-    this.store.getGateway({ cluster, namespace })
+    this.store.getGateway({ cluster: this.cluster, namespace: this.namespace })
   }
 
   getOperations = () => {
-    const { cluster, namespace } = this.props.match.params
     const detail = toJS(this.detail)
 
     return [
@@ -79,8 +88,8 @@ export default class NodeDetail extends React.Component {
 
         onClick: () =>
           this.trigger('gateways.edit', {
-            cluster,
-            namespace,
+            cluster: this.cluster,
+            namespace: this.namespace,
             detail: toJS(this.detail._originData),
             success: this.fetchData,
           }),
@@ -93,8 +102,8 @@ export default class NodeDetail extends React.Component {
         disabled: !isEmpty(detail.createTime),
         onClick: () =>
           this.trigger('gateways.edit', {
-            cluster,
-            namespace,
+            cluster: this.cluster,
+            namespace: this.namespace,
             detail: toJS(this.detail._originData),
             success: this.fetchData,
           }),
@@ -106,8 +115,8 @@ export default class NodeDetail extends React.Component {
         action: 'delete',
         onClick: () =>
           this.trigger('gateways.delete', {
-            cluster,
-            namespace,
+            cluster: this.cluster,
+            namespace: this.namespace,
             detail: toJS(this.detail),
             success: () => {
               location.replace(this.listUrl)
@@ -118,8 +127,7 @@ export default class NodeDetail extends React.Component {
   }
 
   getAttrs = () => {
-    const detail = toJS(this.detail)
-    const { cluster } = this.props.match.params
+    const detail = toJS(this.detail) || {}
 
     if (isEmpty(detail)) {
       return
@@ -128,7 +136,7 @@ export default class NodeDetail extends React.Component {
     return [
       {
         name: t('CLUSTER'),
-        value: cluster,
+        value: this.cluster,
       },
       {
         name: t('Create Time'),
