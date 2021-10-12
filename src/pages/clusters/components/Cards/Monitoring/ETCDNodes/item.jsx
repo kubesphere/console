@@ -21,13 +21,20 @@ import { Link } from 'react-router-dom'
 
 import { ICON_TYPES } from 'utils/constants'
 
-import { Icon } from '@kube-design/components'
+import { Icon, Tag } from '@kube-design/components'
 import { Status } from 'components/Base'
 
 import styles from './index.scss'
 
 const Item = ({ prefix = '', data = {} }) => {
-  const { node_name, node_ip, isOnline, hasLeader, leaderChanges } = data
+  const {
+    node_name,
+    node_ip,
+    isOnline,
+    hasLeader,
+    isLeader,
+    leaderChanges,
+  } = data
   const isExternal = !node_name
   const type = isOnline ? 'running' : 'error'
 
@@ -45,6 +52,7 @@ const Item = ({ prefix = '', data = {} }) => {
             ) : (
               <Link to={`${prefix}/${node_name}`}>{node_name}</Link>
             )}
+            {isLeader && <Tag className={styles.tag}>{t('Leader')}</Tag>}
           </strong>
           <span>{t('NODE_IP_ADDRESS_VALUE', { value: node_ip || '-' })}</span>
         </p>
