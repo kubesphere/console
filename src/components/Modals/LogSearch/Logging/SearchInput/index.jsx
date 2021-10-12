@@ -250,6 +250,7 @@ export default class SearchBar extends React.Component {
           times={this.durationTimes}
           onSubmit={this.handleTimeChange}
           onCancel={this.cancelChangeTime}
+          showStep={this.props.showStep}
         />
       </div>
     )

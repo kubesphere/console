@@ -431,6 +431,7 @@ export default class GatewayLog extends React.Component {
               iconThem="light"
               enableClear
               dropDownItems={this.dropDownContent}
+              showStep={false}
             />
             <Icon
               className={classnames(styles.clearIcon, {

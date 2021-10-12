@@ -130,7 +130,11 @@ export default class CustomRange extends React.Component {
               />
             </Form.Item>
           )}
-          <div className={styles.actions}>
+          <div
+            className={classnames(styles.actions, {
+              [styles.bottom10]: !this.props.showStep,
+            })}
+          >
             <Button onClick={onCancel}>{t('CANCEL')}</Button>
             <Button type="control" onClick={this.handleOk}>
               {t('OK')}
