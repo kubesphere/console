@@ -32,6 +32,8 @@ module.exports = {
   EDIT_GATEWAY: '編輯網關',
   'Update Gateway': '更新網關',
   CONFIGURATION_OPTIONS: '網關配置',
+  'Gateway Config': '網關配置',
+  'Gateway Log': '網關日志',
   'Add Gateway Config': '添加網關配置',
   LOAD_BALANCER_PROVIDER: 'LoadBalancer提供商',
   LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',

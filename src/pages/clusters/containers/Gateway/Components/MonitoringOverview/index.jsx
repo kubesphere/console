@@ -237,7 +237,9 @@ export default class MonitoringOverview extends React.Component {
               width={200}
               height={200}
               title=""
-              value={this.getMetricsData('ingress_success_rate') * 100}
+              value={`${(
+                this.getMetricsData('ingress_success_rate') * 100
+              ).toFixed(2)}`}
               total={100}
               unit="%"
               innerRadius="80%"

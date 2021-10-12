@@ -23,6 +23,7 @@ import { action, observable } from 'mobx'
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
 import ObjectMapper from 'utils/object.mapper'
 
+import { stringify } from 'qs'
 import Base from './base'
 import List from './base.list'
 
@@ -139,26 +140,20 @@ export default class Gateway extends Base {
     namespace,
     gatewayName,
     component,
-    more,
     ...params
   }) {
     this.logs.isLoading = true
 
-    if (!params.sortBy && params.ascending === undefined) {
-      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
-    }
-
-    if (params.limit === Infinity || params.limit === -1) {
-      params.limit = -1
-      params.page = 1
-    }
-
-    params.limit = params.limit || 10
-
     const result = await request.get(
-      `${this.gatewayUrl({ cluster, namespace, gatewayName })}/log`,
+      `${this.gatewayPodsUrl({ cluster, namespace, gatewayName })}/logs`,
       {
         ...params,
+        start_time: params.start_time
+          ? Math.floor(params.start_time / 1000)
+          : undefined,
+        end_time: params.end_time
+          ? Math.floor(params.end_time / 1000)
+          : undefined,
       },
       {},
       () => {
@@ -166,23 +161,41 @@ export default class Gateway extends Base {
       }
     )
 
-    const data = (get(result, 'items') || []).map(item => ({
-      cluster,
-      namespace: item.metadata.name.split('kubesphere-router-')[1],
-      ...ObjectMapper.pods(item),
-    }))
+    const data = get(result, 'query.records') || []
 
-    this.logs.update({
-      data: more ? [...this.list.data, ...data] : data,
-      total: result.totalItems || result.total_count || data.length || 0,
+    this.logs = {
+      data,
+      total: result.query.total || data.length || 0,
       ...params,
-      limit: Number(params.limit) || 10,
-      page: Number(params.page) || 1,
+      size: Number(params.size) || 10,
+      from: Number(params.from) || 0,
       isLoading: false,
-      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
-    })
+    }
 
-    return []
+    return data
+  }
+
+  exportLinkFactory({
+    cluster,
+    namespace,
+    gatewayName,
+    start_time,
+    end_time,
+    ...params
+  }) {
+    const api = `${this.gatewayPodsUrl({
+      cluster,
+      namespace,
+      gatewayName,
+    })}/logs`
+
+    return `/${api}?${stringify({
+      sort: 'asc',
+      ...params,
+      start_time: Math.floor(start_time / 1000),
+      end_time: Math.floor(end_time / 1000),
+      operation: 'export',
+    })}`
   }
 
   @action

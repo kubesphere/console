@@ -22,6 +22,7 @@ import Metadata from 'core/containers/Base/Detail/Metadata'
 import Monitoring from './Monitoring'
 import ResourceStatus from './ResourceStatus'
 import GatewayConfig from './GatewayConfig'
+import GatewayLog from './GatewayLog'
 
 export default PATH => [
   {
@@ -34,6 +35,12 @@ export default PATH => [
     path: `${PATH}/gateway-configs`,
     title: 'Gateway Config',
     component: GatewayConfig,
+    exact: true,
+  },
+  {
+    path: `${PATH}/logs`,
+    title: 'Gateway Log',
+    component: GatewayLog,
     exact: true,
   },
   {

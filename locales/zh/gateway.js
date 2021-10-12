@@ -30,6 +30,8 @@ module.exports = {
   EDIT_GATEWAY: '编辑网关',
   'Update Gateway': '更新网关',
   CONFIGURATION_OPTIONS: '配置选项',
+  'Gateway Config': '网关配置',
+  'Gateway Log': '网关日志',
   'Add Gateway Config': '添加网关配置',
   LOAD_BALANCER_PROVIDER: '负载均衡器提供商',
   LOAD_BALANCER_PROVIDER_SCAP: '负载均衡器提供商',
