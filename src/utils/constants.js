@@ -507,7 +507,7 @@ export const PATTERN_IMAGE = /^\S+$/
 export const PATTERN_PORT_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_COMPONENT_VERSION = /^[a-z0-9]+$/
 export const PATTERN_PIPELINE_NAME = /[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/
-export const PATTERN_HOST = /^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/
+export const PATTERN_HOST = /^(?=^.{3,255}$)[*a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/
 
 export const PATTERN_URL = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
 export const PATTERN_EMAIL = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
