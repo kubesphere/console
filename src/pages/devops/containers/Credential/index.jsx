@@ -137,7 +137,7 @@ class Credential extends React.Component {
       width: '25%',
     },
     {
-      title: t('CREATED_AT'),
+      title: t('CREATION_TIME_TCAP'),
       dataIndex: 'createTime',
       width: '20%',
       render: createTime =>
@@ -177,7 +177,7 @@ class Credential extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Banner
-          title={t('DEVOPS_PROJECT_CREDENTIAL_PL')}
+          title={t('CREDENTIAL_PL')}
           icon="key"
           description={t('DEVOPS_CREDENTIALS_DESC')}
           module={this.module}

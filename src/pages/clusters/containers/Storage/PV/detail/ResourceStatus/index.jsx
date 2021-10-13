@@ -48,17 +48,17 @@ class ResourceStatus extends React.Component {
           <div className={styles.rightBox}>
             <span className={styles.title}>{detail.name}</span>
             <span className={styles.type}>
-              {`${t('Storage Classes')}: ${detail.storageClassName}`}
+              {t('STORAGE_CLASS_VALUE', { value: detail.storageClassName })}
             </span>
           </div>
         </div>
         <div className={styles.titleBox}>
           <span className={styles.title}>{detail.capacity}</span>
-          <span className={styles.type}>{t('capacity')}</span>
+          <span className={styles.type}>{t('CAPACITY')}</span>
         </div>
         <div className={styles.titleBox}>
           <span className={styles.title}>{detail.accessMode}</span>
-          <span className={styles.type}>{t('Access Mode')}</span>
+          <span className={styles.type}>{t('ACCESS_MODE_SCAP')}</span>
         </div>
       </div>
     )
@@ -67,7 +67,7 @@ class ResourceStatus extends React.Component {
   render() {
     const { detail, isLoading } = this.store
     return (
-      <Panel title={t('Bound Volume')}>
+      <Panel title={t('VOLUME_PL')}>
         {!isEmpty(detail) && (
           <Loading spinning={isLoading}>{this.renderItem()}</Loading>
         )}

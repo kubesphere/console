@@ -103,7 +103,7 @@ export default class Overview extends React.Component {
         dataIndex: 'manager',
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         width: '20%',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),

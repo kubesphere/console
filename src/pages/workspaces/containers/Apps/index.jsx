@@ -133,7 +133,7 @@ export default class Apps extends React.Component {
       width: '20%',
     },
     {
-      title: t('UPDATED_AT'),
+      title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'update_time',
       isHideable: true,
       width: '120',

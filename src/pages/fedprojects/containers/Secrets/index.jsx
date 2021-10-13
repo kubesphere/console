@@ -121,7 +121,7 @@ export default class Secrets extends React.Component {
         render: data => Object.keys(data).length,
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 150,

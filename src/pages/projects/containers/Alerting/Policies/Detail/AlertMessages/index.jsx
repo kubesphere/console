@@ -134,7 +134,7 @@ export default class AlertHistory extends React.Component {
       },
     },
     {
-      title: t('ACTIVATED_AT'),
+      title: t('ACTIVATION_TIME'),
       dataIndex: 'activeAt',
       isHideable: true,
       width: 200,

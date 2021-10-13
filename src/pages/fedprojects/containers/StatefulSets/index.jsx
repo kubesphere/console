@@ -180,7 +180,7 @@ export default class StatefulSets extends React.Component {
         width: '22%',
       },
       {
-        title: t('UPDATED_AT'),
+        title: t('UPDATE_TIME_TCAP'),
         dataIndex: 'updateTime',
         isHideable: true,
         width: 150,

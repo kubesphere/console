@@ -130,7 +130,7 @@ module.exports = {
   WORKSPACE_QUOTAS_DESC:
     '企业空间配额用于管理企业空间中所有项目和 DevOps 工程的总资源用量。',
 
-  DELETE_WORKSPACE_PROJECTS_DESC: '删除企业空间中的项目。',
+  DELETE_WORKSPACE_PROJECTS_DESC: '删除企业空间中的项目',
   DELETE_WORDSPACE_RELATED_RESOURCES_DESC: '删除该企业空间关联项目',
 
   // App Repositories

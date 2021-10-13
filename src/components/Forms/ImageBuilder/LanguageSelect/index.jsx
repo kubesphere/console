@@ -117,7 +117,7 @@ export default class LanguageSelect extends React.Component {
               onClick={this.handleLanguageSelect(type, 's2i')}
             >
               <Icon name={getLanguageIcon(type, 'radio')} size={48} />
-              <p>{type}</p>
+              <p>{t(type.toUpperCase())}</p>
             </li>
           ))}
         </ul>
@@ -136,7 +136,7 @@ export default class LanguageSelect extends React.Component {
               onClick={this.handleLanguageSelect(type, 'b2i')}
             >
               <Icon name={getLanguageIcon(type, 'radio')} size={48} />
-              <p>{type}</p>
+              <p>{t(type.toUpperCase())}</p>
             </li>
           ))}
         </ul>

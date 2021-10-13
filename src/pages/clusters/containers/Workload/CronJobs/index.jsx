@@ -188,7 +188,7 @@ export default class CronJobs extends React.Component {
         width: '15%',
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

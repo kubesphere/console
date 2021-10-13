@@ -92,7 +92,7 @@ export default class CRDApps extends React.Component {
         width: '20%',
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

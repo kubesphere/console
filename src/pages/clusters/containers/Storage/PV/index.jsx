@@ -169,14 +169,14 @@ export default class PV extends React.Component {
         ),
       },
       {
-        title: t('RECYCLING_MECHANISM'),
+        title: t('RECYCLING_STRATEGY'),
         dataIndex: '_originData',
         isHideable: true,
         width: '7.74%',
         render: _ => _.spec.persistentVolumeReclaimPolicy,
       },
       {
-        title: t('volumeHandle'),
+        title: t('BACKEND_IDENTIFIER'),
         dataIndex: 'volumeHandle',
         isHideable: true,
         width: '9.8%',
@@ -187,7 +187,7 @@ export default class PV extends React.Component {
         ),
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

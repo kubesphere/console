@@ -94,7 +94,7 @@ export default class Store extends React.Component {
       render: categories => getAppCategoryNames(categories),
     },
     {
-      title: t('UPDATED_AT'),
+      title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'status_time',
       isHideable: true,
       width: '17%',

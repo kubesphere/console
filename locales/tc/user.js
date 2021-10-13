@@ -20,6 +20,7 @@ module.exports = {
   users: '用戶',
   User: '用戶',
   USER: '用戶',
+  USER_LOW: 'user',
   USER_EMPTY_DESC: 'Please create a user.',
   Accounts: '帳號',
   'User Management': '用戶管理',

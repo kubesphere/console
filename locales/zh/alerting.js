@@ -37,6 +37,7 @@ module.exports = {
   ALERTING_HISTORY: '告警历史',
   'alerting rule': '告警规则',
   ALERTING_RULE: '告警规则',
+  RULE_SETTINGS: '规则设置',
   ALERTING_STATUS: '告警状态',
   ALERTING_SEVERITY: '告警级别',
   ALERTING_TYPE: '告警类型',
@@ -55,7 +56,7 @@ module.exports = {
   'Edit Rule': '编辑规则',
   'Rule Name': '规则名称',
   VIEW_DETAILS: '查看详情',
-  ACTIVATED_AT: '告警激活时间',
+  ACTIVATION_TIME: '告警激活时间',
   SET_RULE_DESC: '请设置告警规则。',
   'Please input the threshold': '请输入阈值',
   CRITICAL_ALERT: '危险告警',
@@ -71,7 +72,7 @@ module.exports = {
   INVALID_TIME_DESC:
     '数值无效。请从下拉列表中选择一个数值，或者输入 0 或正整数。',
   ALIAS: '别名',
-  THRESHOLD_DURATION_MIN: '告警持续时间（分钟）',
+  THRESHOLD_DURATION_MIN: '阈值时间（分钟）',
 
   ENTER_RULE_EXPRESSION: '请输入告警规则表达式。',
   ALERT_FUNCTIONS: '函数',
@@ -131,7 +132,8 @@ module.exports = {
   HOW_TO_SUPRESS_AN_ALARM_A:
     '您可以对每条告警策略进行多级别的设置，每个级别对应不同的告警周期。',
 
-  ALERT_DURATION: '告警持续时间达到预设值后，告警将变为触发中状态。',
+  ALERT_DURATION:
+    '告警规则中设置的情形持续时间达到该阈值后，告警策略将变为触发中状态。',
   ALERT_RULE_INACTIVE: '未触发',
   ALERT_RULE_PENDING: '待触发',
   ALERT_RULE_FIRING: '触发中',
@@ -149,7 +151,7 @@ module.exports = {
 
   // Alerting Policies
   ALERTING_POLICIES: '告警策略',
-  NOTIFICATION_SETTINGS: '通知设置',
+  MESSAGE_SETTINGS: '消息设置',
   DEPLOYMENT: '部署',
   DEPLOYMENT_PL: '部署',
   STATEFULSET: '有状态副本集',
@@ -162,7 +164,7 @@ module.exports = {
 
   // Alerting Policies > Details
   NOTIFICATION_SUMMARY_COLON: '概括：',
-  MESSAGE_COLON: '消息：',
+  MESSAGE_COLON: '详情：',
   MONITORING_TARGETS_LOW: '监控目标',
   ALERTING_RULE_LOW: '告警规则',
   THRESHOLD_DURATION: '告警持续时间',

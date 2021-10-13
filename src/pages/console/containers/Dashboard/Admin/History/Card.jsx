@@ -62,7 +62,7 @@ export default class Card extends Component {
               })}
             </Tag>
           )}
-          {data.isHost && <Tag type="warning">{t('Host Cluster')}</Tag>}
+          {data.isHost && <Tag type="warning">{t('HOST_CLUSTER')}</Tag>}
         </>
       )
     }
@@ -97,7 +97,9 @@ export default class Card extends Component {
           className={styles.text}
           icon={this.getIcon()}
           title={getDisplayName(data)}
-          description={t(data.type)}
+          description={t(
+            `WORKBENCH_${data.type.replace(/[-\s+]/g, '_').toUpperCase()}`
+          )}
           ellipsis
         />
         <span className={styles.tagWrapper}>{this.renderTags()}</span>

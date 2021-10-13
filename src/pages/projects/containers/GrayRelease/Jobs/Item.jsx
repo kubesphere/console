@@ -242,7 +242,7 @@ export default class Item extends React.Component {
               {data.newVersion}
               &nbsp;
               <span>
-                ({t('REPLICAS')}:{' '}
+                ({t('REPLICA_COUNT')}:{' '}
                 {get(newHealth, 'workloadStatus.available') ||
                   get(newHealth, 'workloadStatus.availableReplicas')}
                 /
@@ -255,7 +255,7 @@ export default class Item extends React.Component {
               {data.oldVersion}
               &nbsp;
               <span>
-                ({t('REPLICAS')}:{' '}
+                ({t('REPLICA_COUNT')}:{' '}
                 {get(oldHealth, 'workloadStatus.available') ||
                   get(oldHealth, 'workloadStatus.availableReplicas')}
                 /

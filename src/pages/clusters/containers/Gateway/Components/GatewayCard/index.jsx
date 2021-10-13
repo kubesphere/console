@@ -73,7 +73,7 @@ class GatewayCard extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_GATEWAY'),
+        text: t('EDIT'),
         disabled: this.canEdit || this.gateway.createTime == null,
       },
       {
@@ -132,6 +132,7 @@ class GatewayCard extends React.Component {
       case 'delete':
         this.trigger('gateways.delete', {
           cluster: this.cluster,
+          type: 'CLUSTER_GATEWAY',
           namespace,
           detail: toJS(this.gateway),
           store: this.store,
@@ -292,7 +293,12 @@ class GatewayCard extends React.Component {
           title: gatewayPort,
           desc: t('NODE_PORTS_SCAP'),
         },
-        { key: 'pod', icon: 'pod', title: replicas, desc: t('REPLICAS') },
+        {
+          key: 'pod',
+          icon: 'pod',
+          title: replicas,
+          desc: replicas === 1 ? t('REPLICA') : t('REPLICA_PL'),
+        },
         {
           key: 'appGover',
           icon: <AppGoverIcon />,

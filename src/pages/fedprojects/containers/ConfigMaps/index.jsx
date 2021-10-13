@@ -113,7 +113,7 @@ export default class ConfigMaps extends React.Component {
         render: data => Object.keys(data).join(','),
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 150,

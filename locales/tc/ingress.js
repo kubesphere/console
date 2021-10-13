@@ -31,6 +31,7 @@ module.exports = {
   EDIT_ANNOTATIONS: '編輯注解',
   ROUTING_RULES: '路由規則',
   GATEWAY_ADDRESS_TCAP: '網關地址',
+  GATEWAY_ADDRESS_SCAP: 'Gateway address',
   DOMAIN_NAME_EMPTY_DESC: '請輸入域名。',
   VISIT: '點擊訪問',
   PATH_SERVICE_TIP: '服務',

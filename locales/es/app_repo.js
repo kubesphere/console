@@ -48,7 +48,7 @@ module.exports = {
   syncing: 'syncing',
   'Unrecognized URL': 'URL no reconocida',
   VALIDATE: 'Validar',
-  SYNC_INTERVAL: 'Syncronization Interval',
+  SYNC_INTERVAL: 'Synchronization Interval',
   SYNC_INTERVAL_DESC:
     'Set a synchronization interval. The value range is 180 to 86400 seconds, and the default value is 0.',
   SYNC_PERIOD_EMPTY_DESC: 'Please set a synchronization interval.',

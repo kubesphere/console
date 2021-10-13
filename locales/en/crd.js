@@ -17,6 +17,9 @@
  */
 
 module.exports = {
+  CUSTOM_RESOURCE: 'Custom Resource',
+  CUSTOM_RESOURCE_LOW: 'custom resource',
+  CUSTOM_RESOURCE_PL: 'Custom Resources',
   CRD: 'CRD',
   CRD_PL: 'CRDs',
   CRD_EMPTY_DESC: 'Please create a CRD.',

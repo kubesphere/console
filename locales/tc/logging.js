@@ -132,7 +132,7 @@ module.exports = {
     'Please create a custom monitoring dashboard.',
   CREATE_CUSTOM_MONITORING_DASHBOARD: '創建自定義監控面板',
   MONITORING_TEMPLATE: '監控模板',
-  CUSTON_MONITORING_TEMPLATE_DESC:
+  CUSTOM_MONITORING_TEMPLATE_DESC:
     'Select a default template, upload a template, or customize a template to generate a custom monitoring dashboard.',
   SERVICE_BUILT_INTERFACE: '服務已内置監控數據抓取介面',
   TOTAL_EVENTS_TODAY:

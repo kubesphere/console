@@ -92,7 +92,7 @@ export default class WorkspaceCard extends React.Component {
                       : '-'}
                   </strong>
                 </p>
-                <p>{t('CREATED_AT')}</p>
+                <p>{t('CREATION_TIME_TCAP')}</p>
               </div>
             </Column>
           </Columns>

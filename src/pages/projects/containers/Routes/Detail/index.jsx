@@ -155,7 +155,7 @@ export default class RouteDetail extends React.Component {
         value: detail.loadBalancerIngress.join('\r\n'),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

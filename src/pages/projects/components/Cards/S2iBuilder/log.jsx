@@ -174,9 +174,7 @@ export default class Log extends React.Component {
       return <p className={styles.noneLogDesc}>{t('No log records')}</p>
     }
     return (
-      <pre ref={this.LogContent}>
-        {noModuleMsg || log || t('Log is loading...')}
-      </pre>
+      <pre ref={this.LogContent}>{noModuleMsg || log || t('LOADING_DOTS')}</pre>
     )
   }
 

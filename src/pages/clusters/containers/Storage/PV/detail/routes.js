@@ -37,7 +37,7 @@ export default PATH => [
   },
   {
     path: `${PATH}/events`,
-    title: 'Events',
+    title: 'EVENT_PL',
     exact: true,
     component: Events,
   },

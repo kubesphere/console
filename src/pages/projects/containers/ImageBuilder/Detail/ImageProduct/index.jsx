@@ -29,7 +29,7 @@ class ImageArtifacts extends React.Component {
     const { params } = this.props.match
 
     return (
-      <Card className={styles.main} title={t('Image Artifacts')}>
+      <Card className={styles.main} title={t('IMAGE_ARTIFACTS')}>
         <ImageArtifactsCard params={params} />
       </Card>
     )

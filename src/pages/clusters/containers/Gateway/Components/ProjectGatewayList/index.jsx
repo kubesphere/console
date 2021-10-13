@@ -91,6 +91,7 @@ export default class ProjectGatewayCard extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('gateways.delete', {
+            type: this.props.name,
             detail: item,
             ...this.getGatewayResource(item),
             resource: item.name,
@@ -112,7 +113,7 @@ export default class ProjectGatewayCard extends React.Component {
           action: 'delete',
           onClick: () =>
             trigger('gateways.batch.delete', {
-              type: this.name,
+              type: this.props.name,
               rowKey: 'name',
               success: this.routing.query,
             }),
@@ -166,7 +167,7 @@ export default class ProjectGatewayCard extends React.Component {
         dataIndex: 'type',
       },
       {
-        title: t('GATEWAY_IP'),
+        title: t('IP_ADDRESS'),
         dataIndex: 'defaultIngress',
       },
       {
@@ -175,11 +176,13 @@ export default class ProjectGatewayCard extends React.Component {
         render: ports => {
           return isEmpty(ports)
             ? '-'
-            : ports.map(item => `${item.name}:${item.nodePort}`).join(';')
+            : ports
+                .map(item => `${item.name.toUpperCase()}: ${item.nodePort}`)
+                .join('/')
         },
       },
       {
-        title: t('REPLICAS'),
+        title: t('REPLICA_COUNT'),
         dataIndex: 'replicas',
       },
       {

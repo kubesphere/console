@@ -139,7 +139,7 @@ module.exports = {
   CREATE_CUSTOM_MONITORING_DASHBOARD:
     'Crear un panel de monitoreo personalizado',
   MONITORING_TEMPLATE: 'Monitoring Template',
-  CUSTON_MONITORING_TEMPLATE_DESC:
+  CUSTOM_MONITORING_TEMPLATE_DESC:
     'Select a default template, upload a template, or customize a template to generate a custom monitoring dashboard.',
   CUSTOM_MONITORING_DASHBOARD: 'Panel de control personalizado',
 

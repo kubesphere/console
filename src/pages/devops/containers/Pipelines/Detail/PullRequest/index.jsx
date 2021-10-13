@@ -141,7 +141,7 @@ export default class Pullrequest extends React.Component {
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
-      title: t('Last Message'),
+      title: t('LAST_MESSAGE'),
       width: '20%',
       render: record => get(record, 'pullRequest.title', ''),
     },

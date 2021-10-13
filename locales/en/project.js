@@ -57,6 +57,8 @@ module.exports = {
   FED_HOST_NAMESPACE_TIP:
     'Do not change resources in this project because it is related to a multi-cluster project.',
   GATEWAY: 'Gateway',
+  GATEWAY_PL: 'Gateways',
+  GATEWAY_LOW: 'gateway',
   GATEWAY_NOT_SET: 'Gateway Not Set',
   'Help Information': 'Help Information',
   HOW_TO_INVITE_USERS: 'How do I invite users to the current project?',

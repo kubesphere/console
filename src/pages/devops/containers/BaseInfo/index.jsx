@@ -226,7 +226,7 @@ class BaseInfo extends React.Component {
             <div>
               {getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`)}
             </div>
-            <p>{t('CREATED_AT')}</p>
+            <p>{t('CREATION_TIME_TCAP')}</p>
           </div>
           {!isEmpty(this.enabledItemActions) && (
             <div className={classNames(styles.item, 'text-right')}>

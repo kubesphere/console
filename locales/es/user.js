@@ -54,6 +54,7 @@ module.exports = {
   'Unable to delete itself': 'No se puedes eliminar',
   User: 'Usuario',
   USER: 'Usuario',
+  USER_LOW: 'user',
   USER_EMPTY_DESC: 'Please create a user.',
   'User Management': 'Gestión de usuarios',
   USERNAME_EXISTS: 'El ombre de usuario ya existe',

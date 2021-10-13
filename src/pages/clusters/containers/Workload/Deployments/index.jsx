@@ -188,7 +188,7 @@ export default class Deployments extends React.Component {
         ),
       },
       {
-        title: t('UPDATED_AT'),
+        title: t('UPDATE_TIME_TCAP'),
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),

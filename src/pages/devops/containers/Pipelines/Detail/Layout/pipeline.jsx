@@ -242,7 +242,7 @@ export default class PipelineDetailLayout extends React.Component {
         value: <Status {...this.getPipelineStatus(syncStatus)} />,
       },
       {
-        name: t('UPDATED_AT'),
+        name: t('UPDATE_TIME_TCAP'),
         value: this.getUpTime(),
       },
     ]

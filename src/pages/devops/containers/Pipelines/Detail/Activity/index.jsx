@@ -289,7 +289,7 @@ export default class Activity extends React.Component {
           },
         ]),
     {
-      title: t('Last Message'),
+      title: t('LAST_MESSAGE'),
       dataIndex: 'causes',
       width: '25%',
       render: causes => get(causes, '[0].shortDescription', ''),
@@ -302,7 +302,7 @@ export default class Activity extends React.Component {
         durationInMillis ? formatUsedTime(durationInMillis) : '-',
     },
     {
-      title: t('UPDATED_AT'),
+      title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'startTime',
       width: '20%',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),

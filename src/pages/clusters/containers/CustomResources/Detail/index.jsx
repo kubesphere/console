@@ -76,7 +76,7 @@ export default class CustomResourceDetail extends React.Component {
         value: detail.scope,
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

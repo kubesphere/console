@@ -42,7 +42,7 @@ export default class VolumeDetail extends React.Component {
   }
 
   get name() {
-    return 'PV'
+    return 'VOLUME_INSTANCE'
   }
 
   get module() {
@@ -134,7 +134,7 @@ export default class VolumeDetail extends React.Component {
         value: accessMode,
       },
       {
-        name: t('Storage Classes'),
+        name: t('STORAGE_CLASS'),
         value: storageClassName,
       },
       {
@@ -146,7 +146,7 @@ export default class VolumeDetail extends React.Component {
         value: persistentVolumeReclaimPolicy,
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

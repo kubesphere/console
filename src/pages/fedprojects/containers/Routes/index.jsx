@@ -145,7 +145,7 @@ export default class Routers extends React.Component {
         width: '22%',
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 150,

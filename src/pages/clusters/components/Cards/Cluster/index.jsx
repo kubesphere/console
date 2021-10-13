@@ -57,7 +57,7 @@ export default class ClusterCard extends React.Component {
               title={getLocalTime(data.createTime).format(
                 `YYYY-MM-DD HH:mm:ss`
               )}
-              description={t('CREATED_AT')}
+              description={t('CREATION_TIME_TCAP')}
             />
           </Column>
         </Columns>

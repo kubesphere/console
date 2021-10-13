@@ -50,7 +50,7 @@ export default class WorkspaceCard extends React.Component {
         title: data.createTime
           ? getLocalTime(data.createTime).format(`YYYY-MM-DD HH:mm:ss`)
           : '-',
-        description: t('CREATED_AT'),
+        description: t('CREATION_TIME_TCAP'),
       },
     ]
 

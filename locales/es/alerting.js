@@ -34,6 +34,7 @@ module.exports = {
   ALERTING_RESOURCE: 'Alerting Resource',
   'alerting rule': 'regla de alerta',
   ALERTING_RULE: 'Regla de Alerta',
+  RULE_SETTINGS: 'Rule Settings',
   ALERTING_STATUS: 'Estado de Alerta',
   'Alerting Duration': 'Alerting Duration',
   ALERTING_SEVERITY: 'Gravedad de alerta',
@@ -72,7 +73,7 @@ module.exports = {
   'Please input the threshold': 'Por favor, introduce el umbral',
   ABNORMAL_PODS: 'Relación anormal pod',
   POD_USAGE_SCAP: 'ratio de utilización de pod',
-  ACTIVATED_AT: 'Activated At',
+  ACTIVATION_TIME: 'Activation Time',
   'Recent Notification': 'Notificación reciente',
   'Recovery Time': 'Tiempo de Recuperación',
   'Repeat Rule': 'Regla de Repetición',
@@ -161,7 +162,7 @@ module.exports = {
 
   // Alerting Policies
   ALERTING_POLICIES: 'Alerting Policies',
-  NOTIFICATION_SETTINGS: 'Notification Settings',
+  MESSAGE_SETTINGS: 'Message Settings',
   DEPLOYMENT: 'Deployment',
   DEPLOYMENT_PL: 'Deployments',
   STATEFULSET: 'StatefulSet',
@@ -174,7 +175,7 @@ module.exports = {
 
   // Alerting Policies > Details
   NOTIFICATION_SUMMARY_COLON: 'Summary: ',
-  MESSAGE_COLON: 'Message: ',
+  MESSAGE_COLON: 'Details: ',
   MONITORING_TARGETS_LOW: 'Monitoring targets',
   ALERTING_RULE_LOW: 'Alerting rule',
   THRESHOLD_DURATION: 'Threshold Duration',

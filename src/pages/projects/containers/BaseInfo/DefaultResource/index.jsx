@@ -47,7 +47,7 @@ class DefaultResource extends React.Component {
               <div>
                 {cpuRequest
                   ? t('CPU_REQUEST_CORE', { value: cpuRequest })
-                  : t('NO_REQUEST')}
+                  : t('NO_REQUEST_TCAP')}
               </div>
               <p>{t('CPU_REQUEST_LOW')}</p>
             </div>
@@ -55,7 +55,7 @@ class DefaultResource extends React.Component {
               <div>
                 {cpuLimit
                   ? t('CPU_LIMIT_CORE', { value: cpuLimit })
-                  : t('NO_LIMIT')}
+                  : t('NO_LIMIT_TCAP')}
               </div>
               <p>{t('CPU_LIMIT_LOW')}</p>
             </div>
@@ -66,7 +66,7 @@ class DefaultResource extends React.Component {
               <div>
                 {memoryRequest
                   ? t('MEMORY_REQUEST_MIB', { value: memoryRequest })
-                  : t('NO_REQUEST')}
+                  : t('NO_REQUEST_TCAP')}
               </div>
               <p>{t('MEMORY_REQUEST_LOW')}</p>
             </div>
@@ -74,7 +74,7 @@ class DefaultResource extends React.Component {
               <div>
                 {memoryLimit
                   ? t('MEMORY_LIMIT_MIB', { value: memoryLimit })
-                  : t('NO_LIMIT')}
+                  : t('NO_LIMIT_TCAP')}
               </div>
               <p>{t('MEMORY_LIMIT_LOW')}</p>
             </div>
@@ -82,12 +82,12 @@ class DefaultResource extends React.Component {
           <div className={styles.contentItem}>
             <img src="/assets/GPU.svg" size={48} />
             <div className={styles.item}>
-              <div>{gpu.type ? gpu.type : t('NO_REQUEST')}</div>
-              <p>{t('GPU_TYPE')}</p>
+              <div>{gpu.type ? gpu.type : t('NONE')}</div>
+              <p>{t('GPU_TYPE_LOW')}</p>
             </div>
             <div className={styles.item}>
               <div>{gpu.value ? gpu.value : t('NO_LIMIT')}</div>
-              <p>{t('RESOURCE_LIMIT')}</p>
+              <p>{t('GPU_LIMIT_LOW')}</p>
             </div>
           </div>
         </div>

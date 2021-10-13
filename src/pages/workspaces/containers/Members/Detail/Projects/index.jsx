@@ -70,7 +70,7 @@ export default class MemberProjects extends React.Component {
       render: (name, record) => getDisplayName(record),
     },
     {
-      title: t('CREATED_AT'),
+      title: t('CREATION_TIME_TCAP'),
       dataIndex: 'createTime',
       width: '33%',
       render: createTime => (

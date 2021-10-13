@@ -270,6 +270,8 @@ module.exports = {
   NO_REQUEST_TCAP: 'No Request',
   NO_LIMIT_TCAP: 'No Limit',
   GPU_TYPE: 'GPU Type',
+  GPU_TYPE_LOW: 'GPU type',
+  GPU_LIMIT_LOW: 'GPU limit',
   GPU_LIMIT: 'GPU Limit',
   'Node Name': 'Nombre del nodo',
   'Node Scheduling Info': 'Información de programación de nodos',

@@ -155,7 +155,7 @@ export default class AlertPolicyDetail extends React.Component {
         value: detail.duration,
       },
       {
-        name: t('ACTIVATED_AT'),
+        name: t('ACTIVATION_TIME'),
         value: time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-',
       },
     ]

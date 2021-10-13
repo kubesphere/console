@@ -87,7 +87,7 @@ export default class RoleDetail extends React.Component {
     {
       key: 'editRole',
       icon: 'pen',
-      text: t('EDIT_PERMISSION'),
+      text: t('EDIT_PERMISSIONS'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>
@@ -123,7 +123,7 @@ export default class RoleDetail extends React.Component {
 
     return [
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`),
       },
       {

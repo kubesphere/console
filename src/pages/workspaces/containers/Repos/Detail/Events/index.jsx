@@ -47,7 +47,7 @@ export default class Events extends React.Component {
 
   getColumns = () => [
     {
-      title: t('CREATED_AT'),
+      title: t('CREATION_TIME_TCAP'),
       dataIndex: 'create_time',
       width: '24%',
       render: create_time =>

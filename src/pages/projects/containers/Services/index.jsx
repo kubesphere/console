@@ -209,7 +209,7 @@ export default class Services extends React.Component {
         render: (_, record) => <ServiceAccess data={record} />,
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

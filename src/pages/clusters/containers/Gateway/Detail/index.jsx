@@ -145,7 +145,7 @@ export default class NodeDetail extends React.Component {
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('UPDATED_AT'),
+        name: t('UPDATE_TIME_TCAP'),
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

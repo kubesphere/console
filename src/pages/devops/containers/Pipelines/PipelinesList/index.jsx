@@ -423,7 +423,7 @@ export default class PipelinesList extends React.Component {
           action: 'delete',
           onClick: () =>
             this.props.trigger('pipeline.batch.delete', {
-              type: t('PIPELINE'),
+              type: 'PIPELINE',
               rowKey: 'name',
               devops: this.devops,
               cluster: this.cluster,
