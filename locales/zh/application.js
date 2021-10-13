@@ -65,7 +65,7 @@ module.exports = {
   ADD_SERVICE: '添加服务',
   ADD_ROUTE: '添加应用路由',
   'Add Component': '添加组件',
-  'Edit Component': '编辑组件',
+  EDIT_GRAYSCALE_RELEASE_JOB: '编辑灰度发布任务',
   'Add New Component': '添加新组件',
 
   'Application Icon': '应用图标',
@@ -101,8 +101,8 @@ module.exports = {
   'Traffic (requests per second)': '流量(每秒请求)',
   'HTTP - Inbound Traffic': 'HTTP - 入站流量',
   'HTTP - Outbound Traffic': 'HTTP - 出站流量',
-  TCP_INBOUND_TRAFFIC: 'TCP：入站流量',
-  TCP_OUTBOUND_TRAFFIC: 'TCP：出站流量',
+  TCP_INBOUND_TRAFFIC: 'TCP 入站流量',
+  TCP_OUTBOUND_TRAFFIC: 'TCP 出站流量',
 
   'Connection timeout': '连接超时时间',
   'TCP connection timeout.': 'TCP连接超时时间。',
@@ -163,8 +163,8 @@ module.exports = {
 
   APP_WORKLOAD_TYPE_DESC: '支持无状态服务(部署)及有状态服务(有状态副本集)',
 
-  SERVICE_DEPLOYMENT: '无状态服务（部署）',
-  SERVICE_STATEFULSET: '有状态服务（有状态副本集）',
+  TYPE_SERVICE_DEPLOYMENT: '类型：无状态服务（部署）',
+  TYPE_SERVICE_STATEFULSET: '类型：有状态服务（有状态副本集）',
   TRAFFIC_MONITORING_UNAVAILABLE: '流量监控不可用',
   'Temporarily unable to use tracing': '暂时无法使用 Tracing',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC: '应用长时间未收到请求，请稍后重试。',

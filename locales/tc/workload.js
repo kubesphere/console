@@ -216,7 +216,7 @@ module.exports = {
   IMAGE_DESC:
     '要從私有鏡像倉庫部署，需要先<a href={link} target="_blank">創建鏡像倉庫密鑰</a>，然後拉取鏡像。',
   'Replicas Number': '副本數量',
-  'Specify Replicas Number': '指定副本數量',
+  GRAYSCALE_REPLICAS_DESC: '指定副本數量',
   REPLICA_STATUS: '副本運行狀態',
   REPLICAS_DESC: '{module}將會被創建，由它維護集群中容器組的所需數量',
   'Strategy Type': '策略類型',
@@ -237,6 +237,7 @@ module.exports = {
   PARTITION_ORDINAL_DESC:
     'Set an ordinal to divide the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
   ADJUST_REPLICAS: '立即生效？',
+  ADJUST_TRAFFIC_DISTRIBUTION: 'Adjust Traffic Distribution',
   REPLICAS_SCALE_NOTIFY_CONTENT:
     '您已將工作負載的副本數調整為 <strong>{num}</strong>, 您也可以繼續調整副本數量，或者您可以使它立即生效。',
   REPLICAS_SCALE_NOTIFY_CONFIRM: '立即生效({seconds}s)',
@@ -461,6 +462,7 @@ module.exports = {
     '您即將重新部署工作負載 {resource} ({type}) , 容器組將根據更新策略進行重新部署，您的業務可能會被暫時中斷。',
 
   MORE: '更多操作',
+  ACTIONS: '操作',
 
   REVISION_ROLLBACK_SELECT: '請選擇要回退的版本',
   REVISION_TITLE: '{name}版本',

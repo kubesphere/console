@@ -132,7 +132,7 @@ module.exports = {
     'Customize the command run by the container upon startup. By default, the container runs the default image command.',
   CONTAINER_COMMAND_DESC: 'Startup command of the container.',
   CONTAINER_ARGUMENT_DESC:
-    'Arguments of the startup command. Use commas to separate multiple arguments.',
+    'Parameters of the startup command. Use commas to separate multiple parameters.',
   CONTAINER_ENVIRONMENT_DESC: 'Add environment variables to the container.',
   IMAGE_PULL_POLICY_DESC:
     'By default, the image is pulled only if it is not already present locally.',

@@ -399,7 +399,7 @@ module.exports = {
   SELECTOR: 'Selector',
   'Set Mount Path': 'Set Mount Path',
   SELECT_NODES: 'Select Nodes',
-  'Specify Replicas Number': 'Specify Replicas Number',
+  GRAYSCALE_REPLICAS_DESC: 'Pod replicas in the new version',
   SYNC_HOST_TIMEZONE: 'Synchronize Host Timezone',
   MAXIMUM_DELAY: 'Maximum Start Delay (s)',
   STARTUP_PROBE: 'Startup Probe',
@@ -503,6 +503,7 @@ module.exports = {
   CRONJOB_NAME_TOO_LONG: 'The value can contain a maximum of 52 characters.',
 
   ADJUST_REPLICAS: 'Adjust Replicas',
+  ADJUST_TRAFFIC_DISTRIBUTION: 'Adjust Traffic Distribution',
   REPLICAS_SCALE_NOTIFY_CONTENT:
     'Are you sure you want to change the number of Pod replicas to {num}?',
   REPLICAS_SCALE_NOTIFY_CONFIRM: 'OK ({seconds}s)',
@@ -639,6 +640,7 @@ module.exports = {
     'Use a volume template to mount a volume with the same lifecycle as the Pod.',
 
   MORE: 'More',
+  ACTIONS: 'Actions',
 
   REVISION_ROLLBACK_SELECT: 'Please select the version to be rolled back',
   REVISION_TITLE: '{name} revision',

@@ -63,7 +63,7 @@ module.exports = {
   ADD_SERVICE: '添加服務',
   ADD_ROUTE: 'Add Route',
   'Add Component': '添加組件',
-  'Edit Component': '編輯組件',
+  EDIT_GRAYSCALE_RELEASE_JOB: '編輯組件',
   'Add New Component': '添加新組件',
 
   'Application Icon': '應用圖示',
@@ -97,8 +97,8 @@ module.exports = {
   'Traffic Monitoring': '流量監測',
 
   'Traffic (requests per second)': '流量(每秒請求)',
-  TCP_INBOUND_TRAFFIC: 'TCP：入站流量',
-  TCP_OUTBOUND_TRAFFIC: 'TCP：出站流量',
+  TCP_INBOUND_TRAFFIC: 'TCP 入站流量',
+  TCP_OUTBOUND_TRAFFIC: 'TCP 出站流量',
 
   'Connection timeout': '連接超時時間',
   'TCP connection timeout.': 'TCP 連接超時時間。',
@@ -160,8 +160,8 @@ module.exports = {
 
   APP_WORKLOAD_TYPE_DESC: '支持無狀態服務(部署)及有狀態服務(有狀態副本集)',
 
-  SERVICE_DEPLOYMENT: '無狀態服務（部署）',
-  SERVICE_STATEFULSET: '有狀態服務（有狀態副本集）',
+  TYPE_SERVICE_DEPLOYMENT: '無狀態服務（部署）',
+  TYPE_SERVICE_STATEFULSET: '有狀態服務（有狀態副本集）',
   TRAFFIC_MONITORING_UNAVAILABLE: '暫時無法使用流量治理',
   'Temporarily unable to use tracing': '暫時無法使用 Tracing',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC:

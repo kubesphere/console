@@ -122,7 +122,7 @@ module.exports = {
     'You can view related event information according to the pod name.',
   TOTAL_LOGS:
     'A total of <span class={className}> {logs} </span> logs from<br/> <span class={className}>{containers}</span> containers were collected.',
-  TIME_S: '{num} s',
+  TIME_S: '{num}s',
   CONTAINER_LOGS_NOT_SUPPORTED:
     'The container does not support real-time logs currently. Please try again later.',
   TOTAL_LOGS_TODAY:

@@ -37,7 +37,7 @@ module.exports = {
   'Workspaces Manager': '企业空间管理员',
   CREATE_WORKSPACE: '创建企业空间',
   DEPARTMENT_MANAGEMENT: '部门管理',
-  SET_DEPARTMENT: '设置部门',
+  SET_DEPARTMENTS: '设置部门',
   DEPARTMENT_PL: '部门管理',
   'Maintain Organization': '维护组织结构',
 
@@ -47,7 +47,7 @@ module.exports = {
   'DevOps Project Number': 'DevOps 工程数量',
   EDIT_QUOTAS: '编辑配额',
 
-  EDIT_WORKSPACE_QUOTA: '编辑企业空间配额',
+  EDIT_WORKSPACE_QUOTAS: '编辑企业空间配额',
   'Edit Workspace Quota': '企业空间配额',
 
   'View Workspace': '进入企业空间',
@@ -143,6 +143,8 @@ module.exports = {
   SURE_TO_DELETE_WORKSPACE: '您确定删除企业空间吗？',
   ON: '开启',
   OFF: '关闭',
+  ONLINE: '上线',
+  OFFLINE: '下线',
   WS_MEMBER_LOW: '企业空间成员',
   WS_MEMBER_LOW_PL: '企业空间成员',
 

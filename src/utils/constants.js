@@ -486,13 +486,13 @@ export const GRAY_RELEASE_CATEGORIES = [
     icon: 'bird',
     type: 'Canary',
     title: 'CANARY_RELEASE',
-    desc: 'CANARY_RELEASES_DESC',
+    desc: 'CANARY_RELEASE_DESC',
   },
   {
     icon: 'mirroring',
     type: 'Mirror',
     title: 'TRAFFIC_MIRRORING',
-    desc: 'TRAFFIC_MIRROR_DESC',
+    desc: 'TRAFFIC_MIRRORING_DESC',
   },
 ]
 

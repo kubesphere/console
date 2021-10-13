@@ -84,7 +84,7 @@ module.exports = {
   'The current cluster is public': '目前集群處於公開狀態',
 
   AVAILABLE_CLUSTERS: '可用集群',
-  SELECT_CLUSTER: '集群選擇',
+  SELECT_CLUSTERS: '集群選擇',
   EDIT_CLUSTER_INFO_DESC: '編輯集群基礎資訊',
 
   SCHEDULING_OPERATIONS: '排程器調度次數',

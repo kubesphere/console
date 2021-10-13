@@ -395,7 +395,7 @@ module.exports = {
   SELECTOR: 'Selector',
   'Set Mount Path': 'Establecer punto de montaje',
   SELECT_NODES: 'Establecer política de programación de nodos',
-  'Specify Replicas Number': 'Especificar el número de réplicas',
+  GRAYSCALE_REPLICAS_DESC: 'Especificar el número de réplicas',
   MAXIMUM_DELAY: 'Maximum Start Delay (s)',
   'Storage Size': 'Tamaño de almacenamiento',
   'Strategy Type': 'Tipo de estrategia',
@@ -507,6 +507,7 @@ module.exports = {
     'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 52.',
   CRONJOB_NAME_TOO_LONG: 'La longitud máxima de caracteres se establece en 52.',
   ADJUST_REPLICAS: '¿Tiene efecto de inmediato?',
+  ADJUST_TRAFFIC_DISTRIBUTION: 'Adjust Traffic Distribution',
   REPLICAS_SCALE_NOTIFY_CONTENT:
     'Va a cambiar las réplicas de su carga de trabajo a {num}. Puede continuar cambiando el número de réplicas o puede hacer que el cambio surta efecto de inmediato.',
   REPLICAS_SCALE_NOTIFY_CONFIRM: 'Aplicar cambios ({segundos} s)',
@@ -639,6 +640,7 @@ module.exports = {
   ADD_VOLUME_TEMPLATE_DESC:
     'El ciclo de vida del volumen será el mismo que el del pod.',
   MORE: 'Más',
+  ACTIONS: 'Actions',
   REVISION_ROLLBACK_SELECT: 'Por favor selecciona la versión a revertir',
   REVISION_TITLE: '{nombre} revisión',
   PROBE_TIME: '{delay} s delay, {timeout} s timeout',

@@ -130,12 +130,12 @@ export default class Component extends React.Component {
       <Menu onClick={this.handleMoreMenuClick}>
         {type === 'new' && (
           <Menu.MenuItem key="edit">
-            <Icon name="update" type="light" /> {t('Edit Component')}
+            <Icon name="update" type="light" /> {t('EDIT')}
           </Menu.MenuItem>
         )}
         {!isGovernor && isFunction(onTakeover) && (
           <Menu.MenuItem key="takeover">
-            <Icon name="linechart" type="light" /> {t('Take Over')}
+            <Icon name="linechart" type="light" /> {t('TAKE_OVER')}
           </Menu.MenuItem>
         )}
       </Menu>
@@ -195,8 +195,8 @@ export default class Component extends React.Component {
                 >
                   <span className="ks-tag ks-tag-disable">
                     {jobDetail.type === 'Mirror'
-                      ? t('Mirrored traffic')
-                      : t('Not online')}
+                      ? t('MIRRORED_TRAFFIC')
+                      : t('OFFLINE')}
                   </span>
                 </Tooltip>
               )}

@@ -89,7 +89,7 @@ export default class CookieMatch extends React.Component {
         />
         <Input
           value={value}
-          placeholder={this.props.placeholder || 'key=value'}
+          placeholder={this.props.placeholder || t('KEY_EQ_VALUE')}
           onChange={this.handleValueChange}
         />
       </div>

@@ -58,11 +58,11 @@ module.exports = {
   INTERNAL_INGRESS_DESC: '当前项目中的容器组可以被以下服务和项目的容器组访问。',
   INTERNAL_ALLOWLIST: '内部白名单',
   INTERNAL_ALLOWLIST_DESC:
-    '允许当前项目中的服务与当前集群其他项目中的服务进行通信。',
+    '允许当前项目中的容器组与当前集群其他项目中的服务进行通信。',
   INTERNAL_ALLOWLIST_TIP: '将集群内部的项目和服务添加到白名单。',
   EXTERNAL_ALLOWLIST: '外部白名单',
   EXTERNAL_ALLOWLIST_DESC:
-    '允许当前项目中的服务与集群外部的特定网段和端口进行通信。',
+    '允许当前项目中的容器组与集群外部的特定网段和端口进行通信。',
   EXTERNAL_ALLOWLIST_TIP: '将集群外部的网段和端口添加到白名单。',
   EXTERNAL_TRAFFIC_DIRECTION_DESC:
     '出站表示从当前项目到集群外的方向。入站表示从集群外到当前项目的方向。',

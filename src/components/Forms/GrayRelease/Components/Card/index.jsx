@@ -96,11 +96,11 @@ export default class Card extends React.PureComponent {
         </div>
         <div className={styles.text}>
           <div className="h6">{component.name}</div>
-          <p>{`${t('GRAY_WORKLOAD_TYPE')}${
-            component.workloadType
-              ? t(`SERVICE_${component.workloadType.toUpperCase()}`)
-              : ''
-          }`}</p>
+          <p>
+            {component.workloadType
+              ? t(`TYPE_SERVICE_${component.workloadType.toUpperCase()}`)
+              : ''}
+          </p>
         </div>
         <div className={styles.version}>
           <strong>{versions.join(',') || '-'}</strong>

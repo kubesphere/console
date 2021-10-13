@@ -23,13 +23,13 @@ export default [
   {
     icon: 'appcenter',
     name: 'grayReleaseComponent',
-    title: 'GRAYSCALE_RELEASE_COMPONENT',
+    title: 'NEW_VERSION_SETTINGS',
     component: GrayReleaseComponent,
   },
   {
     icon: 'appcenter',
     name: 'grayReleaseStrategy',
-    title: 'GRAY_RELEASE_STRATEGY_SI',
+    title: 'STRATEGY_SETTINGS',
     component: GrayReleaseStrategy,
   },
 ]
