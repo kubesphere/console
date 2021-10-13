@@ -65,8 +65,10 @@ class Monitorings extends React.Component {
   }
 
   get cluster() {
-    const { cluster, workspace } = this.props.match.params
-    return workspace && !cluster
+    const { cluster } = this.props.match.params
+    const url = this.props.location.pathname
+
+    return url.indexOf('federatedprojects') > -1
       ? localStorage.getItem('federated-cluster')
       : cluster
   }
