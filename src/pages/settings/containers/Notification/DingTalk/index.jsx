@@ -142,6 +142,8 @@ export default class DingTalk extends React.Component {
       unset(receiver, 'spec.dingtalk.chatbot')
     }
 
+    unset(receiver, 'spec.dingtalk.alertSelector')
+
     if (!appkey && !appsecret) {
       return { receiver, secret }
     }

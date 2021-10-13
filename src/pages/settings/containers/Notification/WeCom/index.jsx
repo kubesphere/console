@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty, get, set, cloneDeep } from 'lodash'
+import { isEmpty, get, set, unset, cloneDeep } from 'lodash'
 
 import { Notify } from '@kube-design/components'
 import { Panel } from 'components/Base'
@@ -118,6 +118,7 @@ export default class WeCom extends React.Component {
       'spec.wechat.wechatApiSecret.value',
       get(secret, 'data.appsecret')
     )
+    unset(receiver, 'spec.wechat.alertSelector')
     return { config, receiver, secret }
   }
 

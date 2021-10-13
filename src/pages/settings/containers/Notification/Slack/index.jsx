@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty, get, set, cloneDeep } from 'lodash'
+import { isEmpty, get, set, unset, cloneDeep } from 'lodash'
 
 import { Notify } from '@kube-design/components'
 import { Panel } from 'components/Base'
@@ -114,6 +114,7 @@ export default class Slack extends React.Component {
   getVerifyFormTemplate = data => {
     const { config, receiver, secret } = cloneDeep(data)
     set(config, 'spec.slack.slackTokenSecret.value', get(secret, 'data.token'))
+    unset(receiver, 'spec.slack.alertSelector')
     return { config, receiver, secret }
   }
 
