@@ -2,7 +2,7 @@
   display: flex;
 
   & > div {
-    width: 120px;
+    min-width: 120px;
     margin-right: 9px;
   }
 }
