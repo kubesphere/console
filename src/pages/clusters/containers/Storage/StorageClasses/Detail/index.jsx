@@ -77,6 +77,7 @@ export default class StorageClassDetail extends React.Component {
         this.trigger('resource.yaml.edit', {
           detail: toJS(this.store.detail),
           readOnly: false,
+          success: this.fetchData,
         }),
     },
     {
