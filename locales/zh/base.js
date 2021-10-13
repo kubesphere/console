@@ -369,6 +369,8 @@ module.exports = {
   HOUR_TIME: '{count} 小时',
   MINUTE_AGO: '{count} 分钟前',
   MINUTE_TIME: '{count} 分钟',
+  SECOND_AGO: '{count} 秒前',
+  SECOND_TIME: '{count} 秒',
 
   NAME_DESC:
     '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
