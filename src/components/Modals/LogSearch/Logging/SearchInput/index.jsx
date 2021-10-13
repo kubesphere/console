@@ -250,6 +250,7 @@ export default class SearchBar extends React.Component {
           times={this.durationTimes}
           onSubmit={this.handleTimeChange}
           onCancel={this.cancelChangeTime}
+          showStep={this.props.showStep}
         />
       </div>
     )
@@ -315,9 +316,14 @@ export default class SearchBar extends React.Component {
   }
 
   renderDropdownContent() {
-    const { dropDownItems, enableTimeDuration } = this.props
+    const {
+      dropDownItems,
+      enableTimeDuration,
+      dropdownClass,
+      iconThem,
+    } = this.props
     return (
-      <div className={styles.dropdown}>
+      <div className={classnames(styles.dropdown, dropdownClass)}>
         {Object.entries(dropDownItems).map(([query, options]) => (
           <div
             className={styles.dropdownItem}
@@ -329,7 +335,7 @@ export default class SearchBar extends React.Component {
               {options.imgUrl ? (
                 <img height="100%" src={options.imgUrl} />
               ) : (
-                <Icon name={options.icon} />
+                <Icon name={options.icon} type={iconThem || 'dark'} />
               )}
             </span>
             <span>{options.text}</span>

@@ -98,7 +98,7 @@ export default class Item extends React.Component {
 
   render() {
     const { cluster } = this.props
-    const gateway = toJS(this.store.gateway.data)
+    const gateway = toJS(this.store.gateway.data) || {}
 
     return (
       <Panel>

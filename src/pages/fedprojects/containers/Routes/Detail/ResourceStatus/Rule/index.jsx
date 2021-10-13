@@ -30,6 +30,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
   let host = rule.host
   if (gateway && gateway.ports && gateway.type === 'NodePort') {
     const _port = gateway.ports.find(item => item.name === protocol)
+
     if (
       _port &&
       ((protocol === 'http' && _port.nodePort !== 80) ||
@@ -74,7 +75,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
                 {t('Service')}:{' '}
                 <strong>
                   <Link to={`${prefix}/services/${path.backend.service.name}`}>
-                    {path.backend.service.ame}
+                    {path.backend.service.name}
                   </Link>
                 </strong>
               </span>
@@ -82,7 +83,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
             <Column>
               <span>
                 {t.html('ROUTE_PORT_VALUE', {
-                  value: path.backend.service.port,
+                  value: path.backend.service.port.number,
                 })}
               </span>
             </Column>

@@ -61,11 +61,20 @@ class Monitorings extends React.Component {
   }
 
   get detail() {
-    return this.store.gateway.data
+    return this.store.gateway.data || {}
   }
 
   get cluster() {
-    return this.props.match.params.cluster
+    const { cluster } = this.props.match.params
+    const url = this.props.location.pathname
+
+    return url.indexOf('federatedprojects') > -1
+      ? localStorage.getItem('federated-cluster')
+      : cluster
+  }
+
+  get namespace() {
+    return this.props.match.params.namespace
   }
 
   get metrics() {
@@ -73,7 +82,6 @@ class Monitorings extends React.Component {
   }
 
   fetchData = async params => {
-    const { namespace } = this.props.match.params
     const { name } = this.detail
     const podName = await this.getGatewayPods()
 
@@ -81,7 +89,7 @@ class Monitorings extends React.Component {
       resources: [],
       metrics: Object.values(MetricTypes),
       job: `${name}-metrics`,
-      namespace,
+      namespace: this.namespace,
       pod: podName,
       fillZero: true,
       ...params,
@@ -90,14 +98,13 @@ class Monitorings extends React.Component {
   }
 
   handlePodName = value => {
-    const { namespace } = this.props.match.params
     const { name } = this.detail
     const { timeParams } = this.state
     this.monitorStore.fetchMetrics({
       resources: [],
       metrics: Object.values(MetricTypes),
       job: `${name}-metrics`,
-      namespace,
+      namespace: this.namespace,
       pod: value,
       ...timeParams,
     })
@@ -106,7 +113,10 @@ class Monitorings extends React.Component {
   }
 
   getGatewayPods = async () => {
-    const result = await this.store.getGatewayPods(this.props.match.params)
+    const result = await this.store.getGatewayPods({
+      ...this.props.match.params,
+      cluster: this.cluster,
+    })
     let podsName = ''
     const options = !isEmpty(result)
       ? result.map(item => {
@@ -216,7 +226,7 @@ class Monitorings extends React.Component {
   }
 
   render() {
-    const { createTime } = this.store.detail
+    const createTime = get(this.store.detail, 'createTime')
     const { isLoading, isRefreshing } = this.monitorStore
     const { podsName, options } = this.state
     const configs = this.getMonitoringCfgs()

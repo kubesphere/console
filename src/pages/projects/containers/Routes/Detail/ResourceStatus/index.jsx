@@ -23,6 +23,7 @@ import { observer, inject } from 'mobx-react'
 import { Panel } from 'components/Base'
 import Placement from 'projects/components/Cards/Placement'
 import GatewayStore from 'stores/gateway'
+import EmptyCard from 'devops/components/Cards/EmptyCard'
 import Rule from './Rule'
 
 import styles from './index.scss'
@@ -82,16 +83,16 @@ class ResourceStatus extends React.Component {
     const tls = detail.tls || []
 
     if (isEmpty(detail.rules)) {
-      return null
+      return <EmptyCard desc={t('NO_DATA')} />
     }
 
     const { workspace, cluster, namespace } = this.props.match.params
 
     return (
       <Panel title={t('RULES')}>
-        {detail.rules.map(rule => (
+        {detail.rules.map((rule, i) => (
           <Rule
-            key={rule.host}
+            key={`${rule.host}-${i}`}
             tls={tls}
             rule={rule}
             gateway={this.state.gateway}

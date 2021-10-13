@@ -32,6 +32,7 @@ class ResourceStatus extends React.Component {
   static childContextTypes = {
     gatewayName: PropTypes.string,
     gatewayNs: PropTypes.string,
+    cluster: PropTypes.string,
   }
 
   constructor(props) {
@@ -46,6 +47,7 @@ class ResourceStatus extends React.Component {
     return {
       gatewayName: this.detail.name,
       gatewayNs: this.props.match.params.namespace,
+      cluster: this.cluster,
     }
   }
 
@@ -61,14 +63,23 @@ class ResourceStatus extends React.Component {
     return this.store.gateway.data
   }
 
+  get cluster() {
+    const { cluster } = this.props.match.params
+    const url = this.props.location.pathname
+
+    return url.indexOf('federatedprojects') > -1
+      ? localStorage.getItem('federated-cluster')
+      : cluster
+  }
+
   get prefix() {
-    const { workspace, cluster } = this.props.match.params
-    return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}`
+    const { workspace } = this.props.match.params
+    return `${workspace ? `/${workspace}` : ''}/clusters/${this.cluster}`
   }
 
   getGatewayDetail() {
-    const { cluster, namespace } = this.props.match.params
-    this.props.detailStore.getGateway({ cluster, namespace })
+    const { namespace } = this.props.match.params
+    this.props.detailStore.getGateway({ cluster: this.cluster, namespace })
   }
 
   get enabledActions() {
@@ -97,8 +108,8 @@ class ResourceStatus extends React.Component {
   }
 
   handleScale = async newReplicas => {
-    const { cluster, namespace } = this.props.match.params
-    await this.store.scale({ cluster, namespace }, newReplicas)
+    const { namespace } = this.props.match.params
+    await this.store.scale({ cluster: this.cluster, namespace }, newReplicas)
     this.getGatewayDetail()
     this.fetchData()
   }
@@ -146,12 +157,13 @@ class ResourceStatus extends React.Component {
   }
 
   renderPods() {
+    const params = { ...this.props.match.params, cluster: this.cluster }
     return (
       <PodsCard
         prefix={this.prefix}
         detail={this.detail}
         store={this.store}
-        params={this.props.match.params}
+        params={params}
       />
     )
   }

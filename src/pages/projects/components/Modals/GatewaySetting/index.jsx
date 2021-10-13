@@ -80,8 +80,9 @@ export default class GatewaySettingModal extends React.Component {
     }
 
     const annotations = get(this.template, 'spec.service.annotations')
+    const type = get(this.template, 'spec.service.type')
 
-    if (isEmpty(annotations)) {
+    if (isEmpty(annotations) && type === 'LoadBalancer') {
       set(
         this.template,
         'spec.service.annotations',
