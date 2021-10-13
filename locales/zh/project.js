@@ -264,6 +264,9 @@ module.exports = {
   MULTI_CLUSTER_RESOURCE_TIP:
     '当前资源跨多个集群部署。您可以点击一个集群以查看资源在该集群中的设置。',
 
+  PROJECT_GATEWAY_IP_TIP:
+    '在集群网关和项目网关同时开启的条件下，Ingress status 的 IP 会在集群网关和项目网关反复切换。',
+
   FEDPROJECT_RESOURCE_TIP:
     '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作。',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目中部署应用。',

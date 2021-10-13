@@ -22,9 +22,10 @@ import { trigger } from 'utils/action'
 import Banner from 'components/Cards/Banner'
 
 import GatewayCard from 'clusters/containers/Gateway/Components/GatewayCard'
-import { Tooltip, Icon, Loading, Button } from '@kube-design/components'
+import { Tooltip, Icon, Loading, Button, Alert } from '@kube-design/components'
 import GatewayStore from 'stores/gateway'
 import { observable } from 'mobx'
+import { isEmpty } from 'lodash'
 
 import styles from './index.scss'
 
@@ -130,6 +131,8 @@ export default class Getway extends React.Component {
   }
 
   render() {
+    const bothHasGateway =
+      this.gatewayList.length && this.gatewayList.every(item => !isEmpty(item))
     return (
       <>
         <Banner
@@ -139,7 +142,16 @@ export default class Getway extends React.Component {
           tabs={this.tabs}
         />
         <Loading spinning={this.isLoading}>
-          <>{this.renderGatewayCard()}</>
+          <>
+            {bothHasGateway ? (
+              <Alert
+                type="warning"
+                message={t('MULTI_CLUSTER_RESOURCE_TIP')}
+                hideIcon
+              />
+            ) : null}
+            {this.renderGatewayCard()}
+          </>
         </Loading>
       </>
     )

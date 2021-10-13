@@ -218,7 +218,9 @@ class GatewayCard extends React.Component {
       : ports
           .map(
             item =>
-              `${item.name.toUpperCase()}: ${type === 'NodePort' ? item.nodePort : item.port}`
+              `${item.name.toUpperCase()}: ${
+                type === 'NodePort' ? item.nodePort : item.port
+              }`
           )
           .join('/')
 
