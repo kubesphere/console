@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty, get, set, unset, cloneDeep } from 'lodash'
+import { isArray, isEmpty, get, set, unset, cloneDeep } from 'lodash'
 
 import { Notify } from '@kube-design/components'
 import { Panel } from 'components/Base'
@@ -113,10 +113,12 @@ export default class DingTalk extends React.Component {
 
   getVerifyFormTemplate = data => {
     const { config, receiver, secret } = cloneDeep(data)
-    const appkey = get(secret, 'data.appkey')
-    const appsecret = get(secret, 'data.appsecret')
-    const webhook = get(secret, 'data.webhook')
-    const chatbotsecret = get(secret, 'data.chatbotsecret')
+    const keywords = get(receiver, 'spec.dingtalk.chatbot.keywords')
+    const { appkey, appsecret, webhook, chatbotsecret } = get(
+      secret,
+      'data',
+      {}
+    )
 
     set(config, 'spec.dingtalk.conversation.appkey.value', appkey)
     set(config, 'spec.dingtalk.conversation.appsecret.value', appsecret)
@@ -131,44 +133,47 @@ export default class DingTalk extends React.Component {
       unset(config, 'spec.dingtalk.conversation.appsecret')
     }
 
-    if (!webhook) {
-      unset(receiver, 'spec.dingtalk.chatbot.webhook')
-    }
-    if (!chatbotsecret) {
-      unset(receiver, 'spec.dingtalk.chatbot.secret')
+    if (isEmpty(get(receiver, 'spec.dingtalk.conversation.chatids'))) {
+      unset(receiver, 'spec.dingtalk.conversation')
     }
 
-    if (isEmpty(get(receiver, 'spec.dingtalk.chatbot'))) {
+    if (!webhook && !chatbotsecret && isEmpty(keywords)) {
       unset(receiver, 'spec.dingtalk.chatbot')
     }
 
     if (!appkey && !appsecret) {
       return { receiver, secret }
     }
+
     return { config, receiver, secret }
   }
 
   handleVerify = ({ receiver, secret }) => {
-    const webhook = get(receiver, 'spec.dingtalk.chatbot.webhook.value')
     const keywords = get(receiver, 'spec.dingtalk.chatbot.keywords')
     const chatids = get(receiver, 'spec.dingtalk.conversation.chatids')
-    const { appkey, appsecret } = get(secret, 'data', {})
+    const { appkey, appsecret, webhook, chatbotsecret } = get(
+      secret,
+      'data',
+      {}
+    )
 
-    if (!webhook && !appkey) {
+    if (
+      [
+        appkey,
+        appsecret,
+        chatids,
+        webhook,
+        chatbotsecret,
+        keywords,
+      ].every(item => (isArray(item) ? isEmpty(item) : !item))
+    ) {
       Notify.error({
         content: t('DINGTALK_SETTING_TIP'),
       })
       return false
     }
 
-    if (!isEmpty(keywords) && !webhook) {
-      Notify.error({
-        content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('Webhook URL') }),
-      })
-      return false
-    }
-
-    if (!isEmpty(chatids)) {
+    if (appkey || appsecret || !isEmpty(chatids)) {
       if (!appkey) {
         Notify.error({
           content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('AppKey') }),
@@ -181,6 +186,35 @@ export default class DingTalk extends React.Component {
         })
         return false
       }
+      if (isEmpty(chatids)) {
+        Notify.error({
+          content: t('PLEASE_ENTER_VALUE_CUSTOM', {
+            value: t('CONVERSATION_ID'),
+          }),
+        })
+        return false
+      }
+    }
+
+    if (webhook || chatbotsecret || !isEmpty(keywords)) {
+      if (!webhook) {
+        Notify.error({
+          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('Webhook URL') }),
+        })
+        return false
+      }
+      if (!chatbotsecret) {
+        Notify.error({
+          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('secret') }),
+        })
+        return false
+      }
+      if (isEmpty(keywords)) {
+        Notify.error({
+          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('KEYWORDS') }),
+        })
+        return false
+      }
     }
 
     return true
@@ -190,6 +224,10 @@ export default class DingTalk extends React.Component {
     const { config, receiver, secret } = cloneDeep(data)
     const { formStatus } = this.state
     let message
+
+    if (!this.handleVerify(data)) {
+      return
+    }
 
     const secretData = get(secret, 'data', {})
     Object.keys(secretData).forEach(key => {
@@ -219,6 +257,14 @@ export default class DingTalk extends React.Component {
     }
     if (!secretData.chatbotsecret) {
       unset(receiver, 'spec.dingtalk.chatbot.secret')
+    }
+
+    if (isEmpty(get(receiver, 'spec.dingtalk.conversation.chatids'))) {
+      unset(receiver, 'spec.dingtalk.conversation')
+    }
+
+    if (isEmpty(get(receiver, 'spec.dingtalk.chatbot.keywords'))) {
+      unset(receiver, 'spec.dingtalk.chatbot.keywords')
     }
 
     if (isEmpty(get(receiver, 'spec.dingtalk.chatbot'))) {

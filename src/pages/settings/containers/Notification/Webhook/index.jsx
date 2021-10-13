@@ -111,7 +111,7 @@ export default class Webhook extends React.Component {
         'spec.webhook.httpConfig.basicAuth.password.value',
         password
       )
-      set(receiver, 'spec.webhook.httpConfig.basicAuth.username"', username)
+      set(receiver, 'spec.webhook.httpConfig.basicAuth.username', username)
     }
     if (type === 'token' && token) {
       set(receiver, 'spec.webhook.httpConfig.bearerToken.value', token)
