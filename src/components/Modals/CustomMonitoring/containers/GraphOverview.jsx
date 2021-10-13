@@ -20,6 +20,7 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import { computed } from 'mobx'
 
+import { isEmpty } from 'lodash'
 import GraphList from './GraphList'
 import GraphRowsEditor from './GraphRowsEditor'
 import GraphOverviewLayout from '../components/GraphOverviewLayout'
@@ -93,12 +94,14 @@ export default class GraphOverview extends Component {
     return {
       id: monitor.config.id,
       title: monitor.config.title,
-      metrics: monitor.stats.map(stat => ({
-        title: stat.name,
-        id: stat.id,
-        color: stat.color,
-        value: stat.stat,
-      })),
+      metrics: !isEmpty(monitor.stats)
+        ? monitor.stats.map(stat => ({
+            title: stat.name,
+            id: stat.id,
+            color: stat.color,
+            value: stat.stat,
+          }))
+        : [],
     }
   }
 
