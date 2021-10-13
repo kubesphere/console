@@ -53,7 +53,11 @@ export default class PV extends React.Component {
         show: this.showAction,
         disabled: this.cantDelete,
         onClick: item =>
-          trigger('pv.delete', { ...this.props.tableProps, detail: item }),
+          trigger('pv.delete', {
+            ...this.props.tableProps,
+            detail: item,
+            success: this.props.getData(),
+          }),
       },
     ]
   }
