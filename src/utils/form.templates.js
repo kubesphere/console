@@ -563,7 +563,7 @@ const getNameSpaceNetworkPoliciesTemplate = ({ namespace }) => ({
 })
 
 const getDashboardTemplate = ({ namespace }) => ({
-  apiVersion: 'monitoring.kubesphere.io/v1alpha1',
+  apiVersion: 'monitoring.kubesphere.io/v1alpha2',
   kind: 'Dashboard',
   metadata: {
     namespace,
@@ -572,7 +572,7 @@ const getDashboardTemplate = ({ namespace }) => ({
 })
 
 const getClusterDashboardTemplate = () => ({
-  apiVersion: 'monitoring.kubesphere.io/v1alpha1',
+  apiVersion: 'monitoring.kubesphere.io/v1alpha2',
   kind: 'ClusterDashboard',
   metadata: {},
   spec: {},

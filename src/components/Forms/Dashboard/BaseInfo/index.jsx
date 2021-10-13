@@ -78,6 +78,7 @@ export default class BaseInfo extends React.Component {
 
   handleTemplateChange = key => {
     set(this.formTemplate, 'spec', get(templateSettings, `${key}.settings`, {}))
+    this.forceUpdate()
   }
 
   render() {

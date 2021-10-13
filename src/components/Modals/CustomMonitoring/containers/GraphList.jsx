@@ -40,10 +40,14 @@ export default class GraphList extends Component {
             {row.monitors.map(monitor => {
               const { id, title, description, type } = monitor.config || {}
               const View = COMPONENT_MAP[type]
+              const isComponent = Object.prototype.toString.call(View)
+
               return (
                 <ErrorContainer key={id} errorMessage={monitor.errorMessage}>
                   <GraphContainer title={title} description={description}>
-                    {View ? <View monitor={monitor} /> : null}
+                    {isComponent !== '[object Function]' && View ? (
+                      <View monitor={monitor} />
+                    ) : null}
                   </GraphContainer>
                 </ErrorContainer>
               )
