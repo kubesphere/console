@@ -180,6 +180,11 @@ class Overview extends React.Component {
         icon: '/assets/logging.svg',
         disabled: !globals.app.hasClusterModule(this.cluster, 'logging'),
       },
+      {
+        type: 'devops',
+        icon: '/assets/dev-ops.svg',
+        disabled: !globals.app.hasClusterModule(this.cluster, 'devops'),
+      },
     ]
 
     return (
