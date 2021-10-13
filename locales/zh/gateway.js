@@ -18,9 +18,15 @@
 
 module.exports = {
   GATEWAY_SETTINGS: '网关设置',
-  GATEWAY_DESC: '对集群和项目中的外网访问网关以及服务治理等配置进行设置和管理',
+  CLUSTER_GATEWAY_DESC:
+    '对集群中的外网访问网关以及服务治理等配置进行设置和管理。',
+  PROJECT_GATEWAY_DESC:
+    '对项目中的外网访问网关以及服务治理等配置进行设置和管理。',
   CLUSTER_GATEWAY: '集群网关',
   PROJECT_GATEWAY: '项目网关',
+  CLUSTER_GATEWAY_LOW: '集群网关',
+  PROJECT_GATEWAY_PL: '项目网关',
+  PROJECT_GATEWAY_LOW: '项目网关',
   CLUSTER_SET_GATEWAY_DESC: '请设置集群网关。',
   PROJECT_SET_GATEWAY_DESC: '请设置项目网关。',
   CLUSTER_GATEWAY_NOT_SET: '集群网关未设置',

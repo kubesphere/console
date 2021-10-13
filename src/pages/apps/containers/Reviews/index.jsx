@@ -171,7 +171,7 @@ export default class Reviews extends React.Component {
       },
     },
     {
-      title: t('UPDATED_AT'),
+      title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'status_time',
       isHideable: true,
       width: '15%',

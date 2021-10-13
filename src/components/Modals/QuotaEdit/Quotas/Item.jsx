@@ -63,17 +63,13 @@ export default class QuotaItem extends React.Component {
         <NumberInput
           name="value"
           className="margin-l12"
-          placeholder={t('RESOURCE_QUANTITY_LIMIT')}
+          placeholder={t('QUOTA')}
           integer
         />
       )
     }
     return (
-      <Input
-        name="value"
-        className="margin-l12"
-        placeholder={t('RESOURCE_QUANTITY_LIMIT')}
-      />
+      <Input name="value" className="margin-l12" placeholder={t('QUOTA')} />
     )
   }
 

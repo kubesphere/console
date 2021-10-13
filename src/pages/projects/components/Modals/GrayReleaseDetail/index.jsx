@@ -741,7 +741,7 @@ export default class GatewaySettingModal extends React.Component {
                     <strong>{detail.hosts}</strong>
                   </div>
                   <p>
-                    {t('REPLICAS')}: <strong>{newData.available}</strong>/
+                    {t('REPLICA_COUNT')}: <strong>{newData.available}</strong>/
                     {newData.desire}
                   </p>
                 </div>

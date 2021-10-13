@@ -82,14 +82,14 @@ module.exports = {
   'Version Off': 'Version Off',
 
   GRAY_RELEASE_CATEGORIES: 'Strategies',
-  GRAY_RELEASE_STRATEGY_SI: 'Grayscale Release Strategy',
+  GRAY_RELEASE_STRATEGY_SI: 'Grayscale Release Strategy',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
-    'Blue-green deployment deploys the new version while retaining the old version to ensure zero downtime. At any time, only one of the versions is active serving all the traffic and the other one remains idle. If anything goes wrong, you can quickly roll back to the old version.',
+    'Switch service traffic between the new version and old version. At any time, only one version receives service traffic and the other one remains idle.',
   CANARY_RELEASES_DESC:
-    'Canary release brings part of the actual traffic into a new version to test its performance and reliability. It can help detect potential problems in the actual environment with no impact on the overall system stability.',
+    'Allocate service traffic among the new version and old version to both test the new version and ensure service continuity.',
   TRAFFIC_MIRROR_DESC:
-    'Traffic mirroring provides a more accurate way to test new versions and detect problems in advance with no impact on the production environment. It serves as a more secure and reliable method for version releases.',
+    'Forward a copy of real service traffic to the new version for testing without actually exposing the new version.',
   AB_TESTING_DESC:
     'This method is very helpful to understand whether product updates or improvements have met expectations. It can be used when new needs arise and it will not affect the business stability.',
 

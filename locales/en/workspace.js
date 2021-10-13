@@ -110,7 +110,7 @@ module.exports = {
   WORKSPACE_QUOTAS_DESC:
     'Workspace quotas are used to control the total resource usage of all projects and DevOps projects in a workspace.',
 
-  DELETE_WORKSPACE_PROJECTS_DESC: 'Delete projects in the workspace.',
+  DELETE_WORKSPACE_PROJECTS_DESC: 'Delete projects in the workspace',
   DELETE_WORDSPACE_RELATED_RESOURCES_DESC:
     'Delete the project associated with the workspace',
 

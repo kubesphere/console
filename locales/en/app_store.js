@@ -37,6 +37,7 @@ module.exports = {
   KEYWORDS: 'Keywords',
   Latest: 'Latest',
   RELEASE_DATE: 'Release Date',
+  RELEASE_TIME_SCAP: 'Release time',
   Screenshots: 'Screenshots',
   VERSION_NUMBER: 'Version Number',
   VERSION_LIST_DES: 'Only display the last 10 versions',

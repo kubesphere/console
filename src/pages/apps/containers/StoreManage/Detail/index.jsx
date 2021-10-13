@@ -138,7 +138,7 @@ export default class AppDetail extends React.Component {
         value: get(detail, 'isv', '-'),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]

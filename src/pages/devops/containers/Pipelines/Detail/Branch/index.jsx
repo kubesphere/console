@@ -171,13 +171,13 @@ export default class Branch extends React.Component {
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
-      title: t('Last Message'),
+      title: t('LAST_MESSAGE'),
       dataIndex: 'latestRun',
       width: '20%',
       render: latestRun => result(latestRun, 'causes[0].shortDescription', ''),
     },
     {
-      title: t('UPDATED_AT'),
+      title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'updateTime',
       width: '20%',
       render: (updateTime, record) =>

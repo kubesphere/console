@@ -124,8 +124,8 @@ const QuotaItem = ({ name, total, used }) => {
         <p>{t('USED')}</p>
       </div>
       <div className={styles.item}>
-        <div>{isUndefined(total) ? t('NO_LIMIT') : total}</div>
-        <p>{t('RESOURCE_LIMIT')}</p>
+        <div>{isUndefined(total) ? t('NO_LIMIT_TCAP') : total}</div>
+        <p>{t('QUOTA')}</p>
       </div>
       <div className={styles.item} style={{ flex: 3 }}>
         <div>{t('USAGE')}</div>

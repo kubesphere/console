@@ -35,6 +35,7 @@ module.exports = {
   'Alerting Resource': 'Alerting Resource',
   'alerting rule': 'alerting rule',
   ALERTING_RULE: 'Alerting Rule',
+  RULE_SETTINGS: 'Rule Settings',
   ALERTING_STATUS: 'Status',
   'Alerting Duration': 'Duration',
   ALERTING_SEVERITY: 'Alert severity',
@@ -74,7 +75,7 @@ module.exports = {
   'Please input the threshold': 'Please input the threshold',
   ABNORMAL_PODS: 'Abnormal Pods',
   POD_USAGE_SCAP: 'Pod usage',
-  ACTIVATED_AT: 'Activated At',
+  ACTIVATION_TIME: 'Activation Time',
   'Recent Notification': 'Recent Notification',
   'Recovery Time': 'Recovery Time',
   Rule: 'Rule',
@@ -144,7 +145,7 @@ module.exports = {
   DELETE_TCAP: 'Delete',
 
   ALERT_DURATION:
-    'An alert is firing when the threshold duration reaches the preset value.',
+    'The status of the alerting policy becomes Firing when the duration of the condition configured in the alerting rule reaches the threshold.',
   ALERT_RULE_INACTIVE: 'Inactive',
   ALERT_RULE_PENDING: 'Pending',
   ALERT_RULE_FIRING: 'Firing',
@@ -163,7 +164,7 @@ module.exports = {
 
   // Alerting Policies
   ALERTING_POLICIES: 'Alerting Policies',
-  NOTIFICATION_SETTINGS: 'Notification Settings',
+  MESSAGE_SETTINGS: 'Message Settings',
   DEPLOYMENT: 'Deployment',
   DEPLOYMENT_PL: 'Deployments',
   STATEFULSET: 'StatefulSet',
@@ -176,7 +177,7 @@ module.exports = {
 
   // Alerting Policies > Details
   NOTIFICATION_SUMMARY_COLON: 'Summary: ',
-  MESSAGE_COLON: 'Message: ',
+  MESSAGE_COLON: 'Details: ',
   MONITORING_TARGETS_LOW: 'Monitoring targets',
   ALERTING_RULE_LOW: 'Alerting rule',
   THRESHOLD_DURATION: 'Threshold Duration',

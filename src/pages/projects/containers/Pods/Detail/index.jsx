@@ -149,7 +149,7 @@ export default class PodDetail extends React.Component {
         value: get(detail, 'status.qosClass'),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]

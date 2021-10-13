@@ -481,7 +481,7 @@ client:
           open: true
           children:
             - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
-            - { name: credentials, title: DEVOPS_PROJECT_CREDENTIAL_PL }
+            - { name: credentials, title: CREDENTIAL_PL }
             - { name: roles, title: DEVOPS_PROJECT_ROLE_PL }
             - { name: members, title: DEVOPS_PROJECT_MEMBER_PL }
 

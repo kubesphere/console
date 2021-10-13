@@ -100,7 +100,7 @@ export default class Volumes extends React.Component {
       customizable: true,
     },
     {
-      title: t('CREATED_AT'),
+      title: t('CREATION_TIME_TCAP'),
       dataIndex: 'createTime',
       width: '16%',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),

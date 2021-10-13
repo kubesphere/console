@@ -21,6 +21,9 @@ module.exports = {
   'Custom Resource Definitions': '定制资源定义',
   CRD: '定制资源定义',
   CRD_PL: 'CRD',
+  CUSTOM_RESOURCE: '自定义资源',
+  CUSTOM_RESOURCE_LOW: '自定义资源',
+  CUSTOM_RESOURCE_PL: '自定义资源',
   CRD_EMPTY_DESC: '请创建一个 CRD。',
   CUSTOM_RESOURCE_DEFINITION_LOW: '定制资源定义',
 

@@ -175,11 +175,11 @@ export default class JobDetail extends React.Component {
             : t('SKIP_OLD_JOB'),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('CREATED_BY'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]

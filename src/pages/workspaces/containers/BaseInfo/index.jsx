@@ -161,7 +161,7 @@ class BaseInfo extends React.Component {
   handleDelete = () => {
     const { detail } = this.store
     this.trigger('workspace.delete', {
-      type: t('WORKSPACE'),
+      type: 'WORKSPACE',
       resource: detail.name,
       detail,
       success: () => this.props.rootStore.routing.push('/'),
@@ -274,7 +274,7 @@ class BaseInfo extends React.Component {
       const networkIsolation = workspace.networkIsolation || false
 
       return (
-        <Panel className={styles.network} title={t('NETWORK_POLICY')}>
+        <Panel className={styles.network} title={t('NETWORK_ISOLATION')}>
           <div className={styles.item}>
             <Text
               icon="firewall"
@@ -297,7 +297,7 @@ class BaseInfo extends React.Component {
     const { data, isLoading } = toJS(this.store.clusters)
 
     return (
-      <Panel className={styles.network} title={t('NETWORK_POLICY')}>
+      <Panel className={styles.network} title={t('NETWORK_ISOLATION')}>
         {isEmpty(data) && !isLoading && (
           <div className={styles.empty}>{t('NO_AVAILABLE_CLUSTER')}</div>
         )}

@@ -18,9 +18,15 @@
 
 module.exports = {
   GATEWAY_SETTINGS: '網關設置',
-  GATEWAY_DESC: '對集群和項目中的外網訪問網關以及服務治理等配置進行設置和管理',
+  CLUSTER_GATEWAY_DESC:
+    '對集群和項目中的外網訪問網關以及服務治理等配置進行設置和管理',
+  PROJECT_GATEWAY_DESC:
+    '對集群和項目中的外網訪問網關以及服務治理等配置進行設置和管理',
   CLUSTER_GATEWAY: '集群網關',
   PROJECT_GATEWAY: '項目網關',
+  CLUSTER_GATEWAY_LOW: 'cluster gateway',
+  PROJECT_GATEWAY_PL: 'Project Gateways',
+  PROJECT_GATEWAY_LOW: 'project gateway',
   CLUSTER_SET_GATEWAY_DESC:
     '創建應用路由之前，需要先啟用外網訪問入口，即網關。這一步是創建對應的應用路由控制器，負責將請求轉發到對應的後端服務。 ',
   PROJECT_SET_GATEWAY_DESC:

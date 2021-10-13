@@ -150,7 +150,7 @@ export default class IPPoolDetail extends React.Component {
         value: block.last,
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

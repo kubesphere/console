@@ -30,6 +30,7 @@ module.exports = {
   EDIT_ANNOTATIONS: 'Edit Annotations',
   EDIT_RULES: 'Editar reglas',
   GATEWAY_ADDRESS_TCAP: 'Dirección del gateway',
+  GATEWAY_ADDRESS_SCAP: 'Gateway address',
   'Gateway IP': 'IP del gateway',
   'Gateway Type': 'Tipo de gateway',
   DOMAIN_NAME_TCAP: 'Domain Name',

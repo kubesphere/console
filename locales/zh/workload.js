@@ -56,6 +56,8 @@ module.exports = {
   JOB_EMPTY_DESC: '请创建一个任务。',
   CRONJOB_EMPTY_DESC: '请创建一个定时任务。',
   GPU_TYPE: 'GPU 类型',
+  GPU_TYPE_LOW: 'GPU 类型',
+  GPU_LIMIT_LOW: 'GPU limit',
   GPU_LIMIT: 'GPU 限制',
   'Service Configuration': '服务配置',
 
@@ -91,7 +93,7 @@ module.exports = {
   SERVICE_TOPOLOGY: '服务拓扑',
   EDIT_CONTAINER: '编辑容器',
   NODE_PORTS: '节点端口',
-  NODE_PORTS_SCAP: 'Node ports',
+  NODE_PORTS_SCAP: '节点端口',
   ADD_PORT: '添加端口',
   'target port': '目标端口',
   Environment: '环境变量',
@@ -736,9 +738,9 @@ module.exports = {
   'No related resources found with the current workload(s)':
     '当前工作负载下没有关联的资源',
   DELETE_WORKLOAD_DESC_SI:
-    '您即将删除工作负载 {resource}.<br/>请确认是否同时删除以下工作负载相关资源。',
+    '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下工作负载相关资源。',
   DELETE_WORKLOAD_DESC_PL:
-    '您即将删除工作负载 {resource}.<br/>请确认是否同时删除以下工作负载相关资源。',
+    '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下工作负载相关资源。',
 
   'Container Security Context': '容器 Security Context',
   'Pod Security Context': '容器组 Security Context',

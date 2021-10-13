@@ -249,7 +249,7 @@ export default class VolumeDetail extends React.Component {
         value: get(detail, '_originData.spec.volumeName', ''),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

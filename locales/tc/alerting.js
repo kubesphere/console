@@ -37,6 +37,7 @@ module.exports = {
   ALERTING_HISTORY: '告警歷史',
   'alerting rule': '告警規則',
   ALERTING_RULE: '告警規則',
+  RULE_SETTINGS: 'Rule Settings',
   ALERTING_STATUS: '告警狀態',
   ALERTING_SEVERITY: '告警級別',
   ALERTING_TYPE: '告警類別',
@@ -56,7 +57,7 @@ module.exports = {
   'Edit Rule': '編輯規則',
   'Rule Name': '規則名稱',
   VIEW_DETAILS: '查看詳情',
-  ACTIVATED_AT: '告警激活時間',
+  ACTIVATION_TIME: '告警激活時間',
   SET_RULE_DESC: '請輸入告警規則。',
   'Please input the threshold': '請輸入臨界值',
 
@@ -196,7 +197,7 @@ module.exports = {
 
   // Alerting Policies
   ALERTING_POLICIES: 'Alerting Policies',
-  NOTIFICATION_SETTINGS: 'Notification Settings',
+  MESSAGE_SETTINGS: 'Message Settings',
   DEPLOYMENT: 'Deployment',
   DEPLOYMENT_PL: 'Deployments',
   STATEFULSET: 'StatefulSet',
@@ -209,7 +210,7 @@ module.exports = {
 
   // Alerting Policies > Details
   NOTIFICATION_SUMMARY_COLON: 'Summary: ',
-  MESSAGE_COLON: 'Message: ',
+  MESSAGE_COLON: 'Details: ',
   MONITORING_TARGETS_LOW: 'Monitoring targets',
   ALERTING_RULE_LOW: 'Alerting rule',
   THRESHOLD_DURATION: 'Threshold Duration',

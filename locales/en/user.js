@@ -60,6 +60,7 @@ module.exports = {
   'Unable to delete itself': 'Unable to delete itself.',
   User: 'User',
   USER: 'User',
+  USER_LOW: 'user',
   USER_EMPTY_DESC: 'Please create a user.',
   'User Management': 'User Management',
   USERNAME_EXISTS:

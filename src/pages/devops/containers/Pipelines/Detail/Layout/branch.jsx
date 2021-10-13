@@ -130,7 +130,7 @@ export default class BranchDetailLayout extends React.Component {
         ),
       },
       {
-        name: t('UPDATED_AT'),
+        name: t('UPDATE_TIME_TCAP'),
         value: this.updateTime,
       },
     ]

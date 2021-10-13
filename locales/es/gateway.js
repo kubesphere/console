@@ -18,10 +18,15 @@
 
 module.exports = {
   GATEWAY_SETTINGS: 'Gateway Settings',
-  GATEWAY_DESC:
+  CLUSTER_GATEWAY_DESC:
+    'Set up and manage the configuration of the external network access gateway and service management in the cluster and project',
+  PROJECT_GATEWAY_DESC:
     'Set up and manage the configuration of the external network access gateway and service management in the cluster and project',
   CLUSTER_GATEWAY: 'Cluster Gateway',
   PROJECT_GATEWAY: 'Project Gateway',
+  CLUSTER_GATEWAY_LOW: 'cluster gateway',
+  PROJECT_GATEWAY_PL: 'Project Gateways',
+  PROJECT_GATEWAY_LOW: 'project gateway',
   CLUSTER_SET_GATEWAY_DESC:
     'Before creating an application route, you need to enable the external network access portal, that is, the gateway. This step is to create the corresponding application routing controller, which is responsible for forwarding the request to the corresponding back-end service. ',
   PROJECT_SET_GATEWAY_DESC:

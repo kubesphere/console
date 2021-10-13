@@ -29,7 +29,7 @@ import styles from './index.scss'
 export default class ImageRunRecords extends React.Component {
   handleCopy = () => {
     Notify.success({
-      content: t('Copy Successfully'),
+      content: t('COPY_SUCCESSFUL'),
     })
   }
 
@@ -51,11 +51,11 @@ export default class ImageRunRecords extends React.Component {
         <Icon name="cdn" size={40} />
         <li>
           <div className={styles.value}>{imageName}</div>
-          <div className={styles.label}>{t('ImageName')}</div>
+          <div className={styles.label}>{t('IMAGE_NAME_SCAP')}</div>
         </li>
         <li>
           <div className={styles.value}>{formatSize(imageSize)}</div>
-          <div className={styles.label}>{t('Image Size')}</div>
+          <div className={styles.label}>{t('IMAGE_SIZE_SCAP')}</div>
         </li>
         <li>
           <div className={styles.value}>
@@ -64,13 +64,13 @@ export default class ImageRunRecords extends React.Component {
               <Icon className={styles.copyIcon} name="copy" changeable />
             </CopyToClipboard>
           </div>
-          <div className={styles.label}>{t('Pull Command')}</div>
+          <div className={styles.label}>{t('PULL_COMMAND_SCAP')}</div>
         </li>
         <li>
           <div className={styles.value}>
             {getLocalTime(imageCreated).format('YYYY-MM-DD HH:mm:ss')}
           </div>
-          <div className={styles.label}>{t('Publish Time')}</div>
+          <div className={styles.label}>{t('RELEASE_TIME_SCAP')}</div>
         </li>
       </ul>
     )

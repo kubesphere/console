@@ -171,11 +171,11 @@ export default class ImageBuilderDetail extends React.Component {
         value: detail.namespace,
       },
       {
-        name: t('type'),
+        name: t('TYPE'),
         value: t(detail.type),
       },
       {
-        name: t('BuilderImage'),
+        name: t('BUILDER_IMAGE'),
         value: get(spec, 'config.builderImage', '-'),
       },
       {
@@ -183,11 +183,11 @@ export default class ImageBuilderDetail extends React.Component {
         value: get(spec, 'config.imageName', '-'),
       },
       {
-        name: t('BuilderPullPolicy'),
+        name: t('PULL_POLICY'),
         value: get(spec, 'config.builderPullPolicy', '-'),
       },
       {
-        name: t('SourceUrl'),
+        name: t('SOURCE_URL'),
         value: isBinaryURL ? (
           <a href={downLoadUrl} download>
             {binaryName}
@@ -197,7 +197,7 @@ export default class ImageBuilderDetail extends React.Component {
         ),
       },
       {
-        name: t('Remote Trigger Link'),
+        name: t('REMOTE_TRIGGER'),
         value: (
           <>
             <span>{triggerLink}</span>
@@ -208,7 +208,7 @@ export default class ImageBuilderDetail extends React.Component {
         ),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

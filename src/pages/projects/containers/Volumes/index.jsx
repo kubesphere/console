@@ -176,7 +176,7 @@ export default class Volumes extends React.Component {
         render: inUse => (inUse ? t('MOUNTED') : t('NOT_MOUNTED')),
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

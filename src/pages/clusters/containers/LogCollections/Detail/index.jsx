@@ -146,7 +146,7 @@ export default class LogCollectionDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(this.component.toUpperCase()),
+          label: t('LOG_RECEIVER_PL'),
           url: this.listUrl,
         },
       ],

@@ -39,7 +39,7 @@ export default path => [
   },
   {
     path: `${path}/image-artifacts`,
-    title: 'Image Artifacts',
+    title: 'IMAGE_ARTIFACTS',
     component: ImageArtifacts,
     excat: true,
   },
@@ -49,6 +49,6 @@ export default path => [
     component: Env,
     excat: true,
   },
-  { path: `${path}/events`, title: 'Events', component: Events, excat: true },
+  { path: `${path}/events`, title: 'EVENT_PL', component: Events, excat: true },
   getIndexRoute({ path, to: `${path}/records`, exact: true }),
 ]

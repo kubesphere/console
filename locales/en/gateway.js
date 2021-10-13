@@ -18,9 +18,14 @@
 
 module.exports = {
   GATEWAY_SETTINGS: 'Gateway Settings',
-  GATEWAY_DESC:
-    'Set up and manage the configuration of the external network access gateway and service management in the cluster and project',
+  CLUSTER_GATEWAY_DESC:
+    'Set up and manage the configuration of the external network access gateway and service management in the cluster.',
+  PROJECT_GATEWAY_DESC:
+    'Set up and manage the configuration of the external network access gateway and service management in the project',
   CLUSTER_GATEWAY: 'Cluster Gateway',
+  CLUSTER_GATEWAY_LOW: 'cluster gateway',
+  PROJECT_GATEWAY_PL: 'Project Gateways',
+  PROJECT_GATEWAY_LOW: 'project gateway',
   PROJECT_GATEWAY: 'Project Gateway',
   CLUSTER_SET_GATEWAY_DESC: 'Please set the cluster gateway.',
   PROJECT_SET_GATEWAY_DESC: 'Please set the project gateway.',

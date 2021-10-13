@@ -70,7 +70,7 @@ export default class AlertRules extends React.Component {
         <Panel title={t('ALERT_MONITORING')}>
           <Monitoring detail={detail} store={this.store} />
         </Panel>
-        <Panel title={t('NOTIFICATION_SETTINGS')}>
+        <Panel title={t('ALERTING_MESSAGE')}>
           <Notification summary={summary} message={message} />
         </Panel>
       </>

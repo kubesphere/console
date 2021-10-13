@@ -122,7 +122,7 @@ export default class Pods extends React.Component {
         width: '15%',
       },
       {
-        title: t('UPDATED_AT'),
+        title: t('UPDATE_TIME_TCAP'),
         dataIndex: 'startTime',
         sorter: true,
         sortOrder: getSortOrder('startTime'),

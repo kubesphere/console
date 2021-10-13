@@ -132,7 +132,6 @@ export default {
         })
 
       const selectNames = selectValues.map(item => item.name)
-
       const modal = Modal.open({
         onOk: async () => {
           const reqs = []

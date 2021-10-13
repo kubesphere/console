@@ -38,6 +38,7 @@ module.exports = {
   CHANGE_LOG: '更新紀錄',
   Contact: '聯絡方式',
   RELEASE_DATE: '上架時間',
+  RELEASE_TIME_SCAP: 'Release time',
   APP_ID: '應用編號',
   'App Readme': '應用描述',
   'Config files': '配置文件',

@@ -202,7 +202,8 @@ export default class Component extends React.Component {
               )}
             </div>
             <p>
-              {t('REPLICAS')}: <strong>{data.available}</strong>/{data.desire}
+              {t('REPLICA_COUNT')}: <strong>{data.available}</strong>/
+              {data.desire}
             </p>
           </div>
           {!hideDropDown && (

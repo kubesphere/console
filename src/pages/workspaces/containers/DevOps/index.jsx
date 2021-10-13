@@ -112,7 +112,7 @@ export default class DevOps extends React.Component {
           action: 'delete',
           onClick: () => {
             trigger('devops.batch.delete', {
-              type: t(tableProps.name),
+              type: tableProps.name,
               rowKey: tableProps.rowKey,
             })
           },
@@ -182,7 +182,7 @@ export default class DevOps extends React.Component {
       render: creator => creator || '-',
     },
     {
-      title: t('CREATED_AT'),
+      title: t('CREATION_TIME_TCAP'),
       dataIndex: 'createTime',
       isHideable: true,
       sorter: true,

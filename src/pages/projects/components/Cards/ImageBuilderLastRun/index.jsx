@@ -56,7 +56,7 @@ export default class BuilderInfo extends React.Component {
             <p className={styles.value} title={builderImage}>
               {builderImage}
             </p>
-            <p className={styles.name}>{t('builderImage')}</p>
+            <p className={styles.name}>{t('BUILDER_IMAGE_SCAP')}</p>
           </div>
         </li>
         <li className={styles.downloadContent}>
@@ -69,7 +69,7 @@ export default class BuilderInfo extends React.Component {
                 {binaryName}
               </p>
               <p className={styles.name}>
-                {`${t('File Size')}: ${formatSize(binarySize)}`}
+                {t('FILE_SIZE_VALUE', { value: formatSize(binarySize) })}
               </p>
             </div>
           </a>
@@ -102,7 +102,7 @@ export default class BuilderInfo extends React.Component {
             <p className={styles.value} title={builderImage}>
               {builderImage}
             </p>
-            <p className={styles.name}>{t('builderImage')}</p>
+            <p className={styles.name}>{t('BUILDER_IMAGE_SCAP')}</p>
           </div>
         </li>
         <li>
@@ -113,7 +113,7 @@ export default class BuilderInfo extends React.Component {
             <p className={styles.value} title={sourceUrl}>
               {sourceUrl}
             </p>
-            <p className={styles.name}>{t('sourceUrl')}</p>
+            <p className={styles.name}>{t('SOURCE_URL')}</p>
           </div>
         </li>
         <li>

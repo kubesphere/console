@@ -56,7 +56,7 @@ const Card = ({ cluster, component = {} }) => {
         <Column className="is-2">
           <Text
             title={`${component.healthyBackends}/${component.totalBackends}`}
-            description={t('REPLICAS')}
+            description={t('REPLICA_COUNT')}
           />
         </Column>
         <Column className="is-2">
