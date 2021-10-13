@@ -33,6 +33,7 @@ module.exports = {
   CONFIGURATION_OPTIONS: 'Configuration Options',
   'Gateway Config': 'Gateway Config',
   'Gateway Log': 'Gateway Log',
+  GATEWAY_LOW: 'Gateway',
   'Add Gateway Config': 'Add Gateway Config',
   LOAD_BALANCER_PROVIDER: 'Load Balancer Provider',
   LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',

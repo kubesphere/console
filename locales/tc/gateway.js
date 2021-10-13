@@ -34,6 +34,7 @@ module.exports = {
   CONFIGURATION_OPTIONS: '網關配置',
   'Gateway Config': '網關配置',
   'Gateway Log': '網關日志',
+  GATEWAY_LOW: '網關',
   'Add Gateway Config': '添加網關配置',
   LOAD_BALANCER_PROVIDER: 'LoadBalancer提供商',
   LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
