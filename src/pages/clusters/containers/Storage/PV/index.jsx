@@ -91,7 +91,7 @@ export default class PV extends React.Component {
   }
 
   getCheckboxProps = record => ({
-    disabled: record.isFedManaged,
+    disabled: record.isFedManaged || record.phase === 'Bound',
     name: record.name,
   })
 
