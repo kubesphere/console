@@ -73,7 +73,7 @@ export default {
     },
   },
   'gateways.delete': {
-    on({ store, detail, cluster, namespace, success, ...props }) {
+    on({ store, resource, detail, cluster, namespace, success, ...props }) {
       const modal = Modal.open({
         onOk: () => {
           store
@@ -90,7 +90,8 @@ export default {
         },
         store,
         modal: DeleteModal,
-        resource: detail.name,
+        type: 'GATEWAY',
+        resource,
         cluster,
         namespace,
         ...props,

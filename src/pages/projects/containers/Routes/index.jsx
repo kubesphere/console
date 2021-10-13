@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
 import { isEmpty } from 'lodash'
 
 import { Button, Icon } from '@kube-design/components'
@@ -42,8 +41,22 @@ import styles from './index.scss'
 export default class Routers extends React.Component {
   gatewayStore = new GatewayStore()
 
+  state = {
+    clusterGateway: '',
+    projectGateway: '',
+  }
+
   componentDidMount() {
-    this.gatewayStore.getGateway(this.props.match.params)
+    this.getGateway()
+  }
+
+  getGateway = async () => {
+    const { cluster, namespace } = this.props.match.params
+    const [clusterGateway, projectGateway] = await Promise.all([
+      this.gatewayStore.getGateway({ cluster }),
+      this.gatewayStore.getGateway({ cluster, namespace }),
+    ])
+    this.setState({ clusterGateway, projectGateway })
   }
 
   get canSetGateway() {
@@ -183,11 +196,12 @@ export default class Routers extends React.Component {
 
   showAddGateway = () => {
     const { trigger, match } = this.props
-    trigger('gateways.edit', {
-      detail: toJS(this.gatewayStore.gateway.data._originData),
-      ...this.props.match.params,
+    trigger('gateways.create', {
+      name: '',
+      namespace: match.params.namespace,
+      cluster: match.params.cluster,
       store: this.gatewayStore,
-      success: () => this.gatewayStore.getGateway(match.params),
+      success: this.getGateway,
     })
   }
 
@@ -217,11 +231,13 @@ export default class Routers extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
-    const { data, isLoading } = this.gatewayStore.gateway
+    const { clusterGateway, projectGateway } = this.state
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tips={this.tips} />
-        {isEmpty(data) && !isLoading && this.renderCreateGateway()}
+        {isEmpty(clusterGateway) &&
+          isEmpty(projectGateway) &&
+          this.renderCreateGateway()}
         <Table
           {...tableProps}
           itemActions={this.itemActions}

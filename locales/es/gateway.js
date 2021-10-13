@@ -32,6 +32,7 @@ module.exports = {
   'Set Gateway': 'Set Gateway',
   EDIT_GATEWAY: 'Edit Gateway',
   'Update Gateway': 'Update Gateway',
+  GATEWAY_LOW: 'Gateway',
   CONFIGURATION_OPTIONS: 'Gateway Config',
   'Gateway Config': 'Gateway Config',
   'Gateway Log': 'Gateway Log',

@@ -93,6 +93,7 @@ export default class ProjectGatewayCard extends React.Component {
           trigger('gateways.delete', {
             detail: item,
             ...this.getGatewayResource(item),
+            resource: item.name,
             success: this.routing.query,
           }),
       },
