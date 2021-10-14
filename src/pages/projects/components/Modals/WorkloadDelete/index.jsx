@@ -147,8 +147,14 @@ export default class WorkloadDeleteModal extends React.Component {
     })
 
     const results = await Promise.all(requests)
-    const scheduleData = await store.getAllScheduleProject({ namespace })
-    allScheduleProject = scheduleData.items.map(item => item.metadata.name)
+    if (store.module === 'deployments') {
+      const scheduleData =
+        (await store.getAllScheduleProject?.({ namespace })) ?? []
+      if (scheduleData.length > 0) {
+        allScheduleProject = scheduleData.items.map(item => item.metadata.name)
+      }
+    }
+
     this.setState({
       relatedResources: uniqBy(flatten(results), 'uid'),
       isLoading: false,
