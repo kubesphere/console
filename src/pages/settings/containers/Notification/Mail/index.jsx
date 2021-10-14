@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty, get, set, cloneDeep } from 'lodash'
+import { isEmpty, get, set, unset, cloneDeep } from 'lodash'
 
 import { Notify } from '@kube-design/components'
 import { Panel } from 'components/Base'
@@ -114,6 +114,7 @@ export default class Mail extends React.Component {
       'spec.email.authPassword.value',
       get(secret, 'data.authPassword')
     )
+    unset(receiver, 'spec.email.alertSelector')
 
     return { config, receiver, secret }
   }

@@ -117,6 +117,8 @@ export default class Webhook extends React.Component {
       set(receiver, 'spec.webhook.httpConfig.bearerToken.value', token)
     }
 
+    unset(receiver, 'spec.webhook.alertSelector')
+
     return { receiver }
   }
 
