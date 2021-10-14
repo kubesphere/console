@@ -1126,9 +1126,41 @@ const DevOpsMapper = item => {
   }
 }
 
-const PipelinesMapper = item => ({
-  ...getBaseInfo(item),
-})
+const PipelinesMapper = item => {
+  const jenkinsKey =
+    'metadata.annotations["pipeline.devops.kubesphere.io/jenkins-metadata"]'
+
+  const pipelineObject = safeParseJSON(get(item, jenkinsKey), {})
+  const ns = get(item, 'metadata.namespace')
+  const name = get(item, 'metadata.name')
+
+  return {
+    ...getBaseInfo(item),
+    annotations: omit(get(item, 'metadata.annotations'), jenkinsKey),
+    displayName: get(item, 'metadata.name'),
+    fullDisplayName: `${ns}/${name}`,
+    fullName: `${ns}/${name}`,
+    status: get(
+      item,
+      'metadata.annotations["pipeline.devops.kubesphere.io/syncstatus"]'
+    ),
+    name,
+    numberOfPipelines: 0,
+    numberOfFolders: 0,
+    pipelineFolderNames: [],
+    totalNumberOfBranches: 0,
+    numberOfFailingBranches: 0,
+    numberOfSuccessfulBranches: 0,
+    numberOfFailingPullRequests: 0,
+    numberOfSuccessfulPullRequests: 0,
+    branchNames: [],
+    parameters: [],
+    disabled: false,
+    scmSource: {},
+    weatherScore: 100,
+    ...pipelineObject,
+  }
+}
 
 const CRDMapper = item => {
   const versions = get(item, 'spec.versions', [])

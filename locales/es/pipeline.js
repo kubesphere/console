@@ -432,6 +432,7 @@ module.exports = {
   BUG: 'Insecto',
   VULNERABILITY: 'Vulnerabilidad',
   SECURITY_HOTSPOT: 'Punto de acceso de seguridad',
+  REG_FILTER_TITLE: 'Filter by name (with regular expression)',
   REG_FILTER_DESC:
     'Habilite las expresiones regulares, ignorando los nombres que no coinciden con la expresión regular proporcionada (incluidas las ramas y PR, etc.)',
   waitForQualityGate_desc:

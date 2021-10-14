@@ -291,27 +291,34 @@ export default class AdvanceSettings extends React.Component {
     const { enable_regex_filter } = formTemplate
 
     return (
-      <>
-        <Form.Item>
-          <Checkbox
-            checked={enable_regex_filter}
-            name="enable_regex_filter"
-            onChange={this.handleChange('enable_regex_filter')}
-          >
-            {t('REG_FILTER_DESC')}
-          </Checkbox>
-        </Form.Item>
-        {enable_regex_filter && (
-          <div className={styles.wrapper}>
-            <Form.Item label={t('REGEX_FILTER')}>
-              <Input
-                name={`${this.scmPrefix}.regex_filter`}
-                defaultValue=".*"
-              />
-            </Form.Item>
+      <div className={styles.content}>
+        <div className={styles.itemWrapper}>
+          <div className={styles.itemTitle}>
+            <p>
+              <strong>{t('REG_FILTER_TITLE')}</strong>
+            </p>
           </div>
-        )}
-      </>
+          <Form.Item>
+            <Checkbox
+              checked={enable_regex_filter}
+              name="enable_regex_filter"
+              onChange={this.handleChange('enable_regex_filter')}
+            >
+              {t('REG_FILTER_DESC')}
+            </Checkbox>
+          </Form.Item>
+          {enable_regex_filter && (
+            <div className={styles.wrapper}>
+              <Form.Item label={t('REGEX_FILTER')}>
+                <Input
+                  name={`${this.scmPrefix}.regex_filter`}
+                  defaultValue=".*"
+                />
+              </Form.Item>
+            </div>
+          )}
+        </div>
+      </div>
     )
   }
 
@@ -344,12 +351,15 @@ export default class AdvanceSettings extends React.Component {
         {source_type !== 'git' && source_type !== 'svn' ? (
           <React.Fragment>
             <div className="h6">{t('BEHAVIORAL_STRATEGY')}</div>
-            <Form.Item>
-              <ActionsInput
-                sourceType={source_type}
-                name={`multi_branch_pipeline.${source_type}_source`}
-              />
-            </Form.Item>
+            <div className={styles.wrapper}>
+              <Form.Item>
+                <ActionsInput
+                  sourceType={source_type}
+                  name={`multi_branch_pipeline.${source_type}_source`}
+                />
+              </Form.Item>
+              {isShowRepoTrigger ? this.renderRegFilter() : null}
+            </div>
           </React.Fragment>
         ) : null}
         <div className="h6">{t('SCRIPT_PATH')}</div>
@@ -360,7 +370,6 @@ export default class AdvanceSettings extends React.Component {
           />
         </Form.Item>
         <div className="h6">{t('REPO_SCAN_TRIGGER')}</div>
-        {isShowRepoTrigger ? this.renderRegFilter() : null}
         <Form.Item>
           <Checkbox
             checked={enable_timer_trigger}

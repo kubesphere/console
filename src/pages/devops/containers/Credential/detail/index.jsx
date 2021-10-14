@@ -100,7 +100,6 @@ export default class CredentialDetail extends React.Component {
     const { params } = this.props.match
     this.store.setParams(params)
     this.store.fetchDetail()
-    this.store.getUsageDetail()
   }
 
   getOperations = () => [
@@ -154,7 +153,7 @@ export default class CredentialDetail extends React.Component {
   }
 
   getAttrs = () => {
-    const { detail, usage } = this.store
+    const { detail } = this.store
     const status = get(
       detail,
       'annotations["credential.devops.kubesphere.io/syncstatus"]'
@@ -168,10 +167,6 @@ export default class CredentialDetail extends React.Component {
       {
         name: t('DESCRIPTION'),
         value: detail.description,
-      },
-      {
-        name: t('Domain'),
-        value: usage.domain,
       },
       {
         name: t('Sync Status'),

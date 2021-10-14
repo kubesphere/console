@@ -116,7 +116,7 @@ export default class ActionsInput extends React.Component {
     const { name, value } = this.props
 
     return (
-      <div className={styles.wrapper}>
+      <div>
         <div className={styles.header}>
           <Dropdown
             theme="dark"

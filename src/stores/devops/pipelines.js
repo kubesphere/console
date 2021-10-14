@@ -137,37 +137,30 @@ export default class PipelineStore extends BaseStore {
     this.list.isLoading = true
 
     const { page, limit, name, filter } = filters
-
-    const searchWord = name ? `*${encodeURIComponent(name)}*` : ''
-
-    const url = `${this.getDevopsUrlV2({ cluster })}search`
+    const nameKey = name ? `${encodeURIComponent(name)}` : undefined
+    const url = `${this.getBaseUrl({ cluster, devops })}pipelines`
 
     const result = await request.get(
       url,
       {
-        start: (page - 1) * TABLE_LIMIT || 0,
-        limit: TABLE_LIMIT,
-        q: `type:pipeline;organization:jenkins;pipeline:${devops}/${searchWord ||
-          '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject`,
-        filter: `${filter || 'no-folders'}`,
+        page: page || 1,
+        limit: 10,
+        name: nameKey,
+        filter: filter || undefined,
       },
       { params: { ...filters } }
     )
 
-    result.items.forEach(item => {
-      item.status = get(
-        item,
-        'annotations["pipeline.devops.kubesphere.io/syncstatus"]',
-        'successful'
-      )
+    const data = result.items.map(item => {
+      return { ...this.mapper(item) }
     })
 
     this.setDevops(devops)
     this.devopsName = devopsName
 
     this.list = {
-      data: result.items || [],
-      total: result.total_count || 0,
+      data: data || [],
+      total: result.totalItems || 0,
       limit: parseInt(limit, 10) || 10,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
@@ -182,12 +175,16 @@ export default class PipelineStore extends BaseStore {
       this.isLoading = true
     }
 
-    const result = await request.get(
-      this.getPipelineUrl({ cluster, name, devops })
-    )
-
     const resultKub = await request.get(
       `${this.getBaseUrl({ devops, cluster })}${this.module}/${name}`
+    )
+
+    const result = safeParseJSON(
+      get(
+        resultKub,
+        'metadata.annotations["pipeline.devops.kubesphere.io/jenkins-metadata"]'
+      ),
+      {}
     )
 
     this.setPipelineConfig(resultKub)
@@ -516,13 +513,7 @@ export default class PipelineStore extends BaseStore {
 
   @action
   async scanRepository({ devops, name, cluster }) {
-    if (globals.user.crumb === undefined) {
-      await this.getCrumb({ cluster })
-    }
     const options = {}
-    if (globals.user.crumb) {
-      set(options, 'headers.Jenkins-Crumb', globals.user.crumb)
-    }
 
     return await request.defaults({
       method: 'POST',

@@ -17,3 +17,18 @@
   border-radius: 4px;
   background-color: $lightest;
 }
+
+.content {
+  padding: 0 12px;
+}
+
+.itemWrapper {
+  padding: 10px 12px 20px 12px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px $light-color03;
+}
+.itemTitle {
+  position: relative;
+  margin-bottom: 10px;
+}

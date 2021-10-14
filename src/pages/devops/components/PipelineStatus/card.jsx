@@ -145,7 +145,7 @@ export default class PipelineCard extends React.Component {
         )
       }
 
-      const hasAuthority = get(hasInputStep, 'aprovable')
+      const hasAuthority = get(hasInputStep, 'approvable')
 
       return (
         <div
