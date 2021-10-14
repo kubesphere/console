@@ -1161,7 +1161,7 @@
 
 "@kube-design/components@^1.2.1":
   version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@kube-design/components/-/components-1.2.1.tgz#2ba076281f7534077bbd4d9b0417cf784d8f08b6"
+  resolved "https://registry.npmjs.org/@kube-design/components/-/components-1.2.1.tgz#2ba076281f7534077bbd4d9b0417cf784d8f08b6"
   integrity sha512-VLN8F8bKa6sF7bgWqkKGP5s2Bh3Q5B4QbGKE78PAZm+dw4mQlcKs5+tRv1S8f4q6u3AX8j0R39v2G4fX/9T18w==
   dependencies:
     "@babel/runtime" "^7.11.2"
