@@ -210,7 +210,7 @@ module.exports = {
   IMAGE_DESC:
     '如需使用私有镜像仓库，您需要先创建镜像仓库密钥。<a href={link} target="_blank">了解更多</a>',
   'Replicas Number': '副本数量',
-  'Specify Replicas Number': '指定副本数量',
+  GRAYSCALE_REPLICAS_DESC: '新版本容器组副本数量',
   REPLICA_STATUS: '副本运行状态',
   REPLICAS_DESC: '{module}将会被创建，由它维护集群中容器组的所需数量',
   'Strategy Type': '策略类型',
@@ -230,6 +230,7 @@ module.exports = {
   MIN_READY_SECONDS: '容器组就绪最短运行时长（s）',
 
   ADJUST_REPLICAS: '调整副本数量',
+  ADJUST_TRAFFIC_DISTRIBUTION: '调整流量分配',
   REPLICAS_SCALE_NOTIFY_CONTENT:
     '您确定将容器组副本数量调整为 <strong>{num}</strong> 吗？',
   REPLICAS_SCALE_NOTIFY_CONFIRM: '确定（{seconds}s）',
@@ -461,6 +462,7 @@ module.exports = {
     '您确定重新创建{type} {resource} 吗？容器组副本将会根据更新策略更新，同时相关业务将会中断。',
 
   MORE: '更多操作',
+  ACTIONS: '操作',
 
   REVISION_ROLLBACK_SELECT: '请选择要回退的版本',
   REVISION_TITLE: '{name}版本',

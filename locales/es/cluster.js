@@ -72,7 +72,7 @@ module.exports = {
   SCHEDULING_OPERATION: 'Scheduling operation',
   SCHEDULING_FAILURES: 'Programar pods fallidos',
   SCHEDULING_FAILURE: 'Scheduling failure',
-  SELECT_CLUSTER: 'Seleccionar clústeres',
+  SELECT_CLUSTERS: 'Seleccionar clústeres',
   SET_PUBLIC_CLUSTER: 'Set as Public Cluster',
   STORAGE: 'Storage',
   SYSTEM_PROJECTS: 'Proyectos de Sistema',

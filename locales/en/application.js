@@ -84,7 +84,7 @@ module.exports = {
   CREATE_APP: 'Create App',
   'Deploy sample app Bookinfo': 'Deploy sample app Bookinfo',
   DEPLOYED_APPS: 'Deployed Apps',
-  'Edit Component': 'Edit Component',
+  EDIT_GRAYSCALE_RELEASE_JOB: 'Edit Grayscale Release Job',
   FROM_APP_STORE: 'From App Store',
   FROM_APP_TEMPLATE: 'From App Template',
   'From third party Helm': 'From third party Helm',
@@ -144,8 +144,8 @@ module.exports = {
   'Session retention': 'Session retention',
   'Success rate': 'Success rate',
   Tags: 'Tags',
-  TCP_INBOUND_TRAFFIC: 'TCP: Inbound Traffic',
-  TCP_OUTBOUND_TRAFFIC: 'TCP: Outbound Traffic',
+  TCP_INBOUND_TRAFFIC: 'TCP Inbound Traffic',
+  TCP_OUTBOUND_TRAFFIC: 'TCP Outbound Traffic',
   'TCP connection timeout.': 'TCP connection timeout.',
   'Temporarily unable to use tracing': 'Tracing is not available now',
   TRAFFIC_MONITORING_UNAVAILABLE: 'Traffic Monitoring Available',
@@ -191,8 +191,8 @@ module.exports = {
   APP_WORKLOAD_TYPE_DESC:
     'Support stateless Services (Deployment) and stateful Services (StatefulSet)',
 
-  SERVICE_DEPLOYMENT: 'Stateless Service (Deployment)',
-  SERVICE_STATEFULSET: 'Stateful Service (StatefulSet)',
+  TYPE_SERVICE_DEPLOYMENT: 'Type: stateless Service (Deployment)',
+  TYPE_SERVICE_STATEFULSET: 'Type: stateful Service (StatefulSet)',
 
   CONNECTION_POOL_TIP:
     'A fixed number of connection objects will be created for the application and stored in the connection pool for reuse. The existing pool is available for each access, and each connection object will be returned to the pool after use.',

@@ -65,7 +65,7 @@ export default class BaseInfo extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('GRAY_RELEASE_JOB_NAME')}
+              label={t('NAME')}
               desc={t('LONG_NAME_DESC')}
               rules={[
                 { required: true, message: t('NAME_EMPTY_DESC') },

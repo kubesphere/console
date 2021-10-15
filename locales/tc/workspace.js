@@ -37,7 +37,7 @@ module.exports = {
   'Workspaces Manager': '企業空間管理員',
   CREATE_WORKSPACE: '創建企業空間',
   DEPARTMENT_MANAGEMENT: 'Department Management',
-  SET_DEPARTMENT: 'Set Department',
+  SET_DEPARTMENTS: 'Set Departments',
   DEPARTMENT_PL: '企業組織',
   'Maintain Organization': '維護組織結構',
 
@@ -50,7 +50,7 @@ module.exports = {
   'View Workspace': '進入企業空間',
   DELETE_WORKSPACE: '刪除企業空間',
 
-  EDIT_WORKSPACE_QUOTA: 'Edit Workspace Quota',
+  EDIT_WORKSPACE_QUOTAS: 'Edit Workspace Quotas',
   'Edit Workspace Quota': '企業空間配額',
 
   WORKSPACE_INFO: '企業空間資訊',
@@ -143,6 +143,8 @@ module.exports = {
   SURE_TO_DELETE_WORKSPACE: 'Are you sure you want to delete the workspace?',
   ON: 'On',
   OFF: 'Off',
+  ONLINE: 'Online',
+  OFFLINE: 'Offline',
   NETWORK_POLICY_UNINSATLLED_DESC:
     'The network policy component is not installed in this cluster.',
   WS_MEMBER_LOW: 'Workspace member',

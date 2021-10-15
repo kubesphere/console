@@ -17,8 +17,10 @@
  */
 
 module.exports = {
-  ADD_MEMBER_TIP:
+  ADD_MEMBER_TIP_SI:
     'Are you sure you want to assign the user to <strong>{group}</strong>?',
+  ADD_MEMBER_TIP_PL:
+    'Are you sure you want to assign the users to the department <strong>{group}</strong>?',
   principal: 'persona a cargo',
   CREATE_DEPARTMENT: 'Create Department',
   NO_DEPARTMENT_TIP:

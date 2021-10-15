@@ -116,7 +116,7 @@ export default class MemberProjects extends React.Component {
           onFetch={this.getData}
           pagination={pagination}
           {...this.clusterProps}
-          name="Projects"
+          name="PROJECT"
           hideSearch
           hideCustom
         />

@@ -39,9 +39,9 @@ export default class ReplicasInput extends React.Component {
         <span className={styles.value}>{value}</span>
         <span className={styles.text}>
           <p>
-            <strong>{t('REPLICA_COUNT')}</strong>
+            <strong>{t(value === 1 ? 'REPLICA' : 'REPLICA_PL')}</strong>
           </p>
-          <p>{t('Specify Replicas Number')}</p>
+          <p>{t('GRAYSCALE_REPLICAS_DESC')}</p>
         </span>
         {onChange && (
           <span className={styles.buttons}>

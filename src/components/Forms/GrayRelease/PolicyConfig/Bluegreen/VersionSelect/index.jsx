@@ -74,7 +74,7 @@ export default class VersionSelect extends React.Component {
                 data-version={option.name}
                 onClick={this.handleTakeOver}
               >
-                {t('TAKE_OVER_ALL_TRAFFIC')}
+                {t('TAKE_OVER')}
               </Button>
             ) : (
               <Button
@@ -82,7 +82,7 @@ export default class VersionSelect extends React.Component {
                 data-version={option.name}
                 onClick={this.handleOffline}
               >
-                {t('VERSION_OFFLINE')}
+                {t('TAKE_OFFLINE')}
               </Button>
             )}
           </li>

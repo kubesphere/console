@@ -207,7 +207,7 @@ export default class Groups extends React.Component {
             <Icon name="refresh" />
           </Button>
           <Button type="control" onClick={this.showEditModal}>
-            {t('SET_DEPARTMENT')}
+            {t('SET_DEPARTMENTS')}
           </Button>
         </LevelRight>
       </Level>
@@ -218,7 +218,9 @@ export default class Groups extends React.Component {
     return (
       <Level>
         <LevelLeft>
-          {t.html('ADD_MEMBER_TIP', { group: this.state.groupTitle })}
+          {this.state.selectUserKeys.length === 1
+            ? t.html('ADD_MEMBER_TIP_SI', { group: this.state.groupTitle })
+            : t.html('ADD_MEMBER_TIP_PL', { group: this.state.groupTitle })}
         </LevelLeft>
         <LevelRight>
           <Button type="primary" onClick={this.handleAddGroup}>
@@ -264,7 +266,7 @@ export default class Groups extends React.Component {
         {showModal && (
           <EditGroupModal
             visible={showModal}
-            title={t('SET_DEPARTMENT')}
+            title={t('SET_DEPARTMENTS')}
             treeData={treeData}
             rowTreeData={rowTreeData}
             store={this.store}

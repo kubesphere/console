@@ -133,7 +133,7 @@ export default class Categories extends React.Component {
                     data-type={item.type}
                     onClick={this.showCreate}
                   >
-                    {t('CREATE_GRAYSCALE_RELEASE_JOB')}
+                    {t('CREATE')}
                   </Button>
                 )}
               </div>
@@ -141,7 +141,7 @@ export default class Categories extends React.Component {
           ))}
         </ul>
         <CreateModal
-          title={t(cate.title)}
+          title={t(`CREATE_${cate.title}_JOB`)}
           module={`grayreleases_${cate.type}`}
           formTemplate={this.formTemplate}
           cluster={this.cluster}

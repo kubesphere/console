@@ -110,7 +110,7 @@ class Jobs extends React.Component {
     return (
       <EmptyList
         icon="istio"
-        title={t('NO_GRAYSCALE_RELEASE_TASK_FOUND')}
+        title={t('NO_GRAYSCALE_RELEASE_JOB_FOUND')}
         desc={t('NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC')}
         actions={
           this.canCreate ? (
@@ -152,11 +152,7 @@ class Jobs extends React.Component {
     const { total } = this.store.list
     return (
       <div className={styles.footer}>
-        <p>
-          {total === 1
-            ? t('TOTAL_GRAY_RELEASE_JOB', { num: total })
-            : t('TOTAL_GRAY_RELEASE_JOBS', { num: total })}
-        </p>
+        <p>{t('TOTAL_ITEMS', { num: total })}</p>
       </div>
     )
   }

@@ -30,7 +30,7 @@ export default class BaseInfo extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.step}>
-          <div>{t('SELECT_CLUSTER')}</div>
+          <div>{t('CLUSTER_SETTINGS')}</div>
           <p>{t('SELECT_CLUSTERS_DESC')}</p>
         </div>
         <Form data={formTemplate} ref={formRef}>
