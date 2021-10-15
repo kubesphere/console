@@ -64,8 +64,8 @@ const Card = ({ gateway, rule, tls = [], prefix }) => {
           </div>
         </div>
       </div>
-      {rule.http.paths.map(path => (
-        <div key={path.path} className={styles.path}>
+      {rule.http.paths.map((path, i) => (
+        <div key={`${path.path}-${i}`} className={styles.path}>
           <Columns>
             <Column>
               <span>{t.html('ROUTE_PATH_VALUE', { value: path.path })}</span>
