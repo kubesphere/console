@@ -80,7 +80,7 @@ export default {
     },
   },
   'router.rules.edit': {
-    on({ store, detail, success, ...props }) {
+    on({ store, namespace, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
@@ -93,12 +93,13 @@ export default {
         detail,
         cluster: detail.cluster,
         store,
+        namespace,
         ...props,
       })
     },
   },
   'fedproject.router.rules.edit': {
-    on({ store, detail, success, ...props }) {
+    on({ store, namespace, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
@@ -110,6 +111,7 @@ export default {
         modal: FedprojectEditRouteRulesModal,
         detail,
         cluster: detail.cluster,
+        namespace,
         store,
         ...props,
       })

@@ -253,7 +253,7 @@ const getGatewayTemplate = () => ({
     },
     service: {
       annotations: {},
-      type: 'LoadBalancer',
+      type: 'NodePort',
     },
   },
 })

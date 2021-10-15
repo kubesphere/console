@@ -61,7 +61,7 @@ module.exports = {
   DOMAIN_NAME_VALUE: 'Domain Name: {value}',
 
   INVALID_PATH_DESC: '請填寫正確路徑。',
-
+  PATH_EXIST: 'PATH 重複，請重新輸入。',
   ROUTE_DESC:
     '應用路由提供一種聚合服務的方式，您可以將集群的内部服務通過一個外部可訪問的 IP 地址暴露給集群外部。',
   ROUTE_EMPTY_DESC:

@@ -116,12 +116,17 @@ export default class RuleForm extends React.Component {
       return 'auto'
     }
 
-    const { gateway } = this.props
+    const { gateway, projectDetail, namespace: ns } = this.props
     const service = get(data, 'http.paths[0].backend.service.name')
+    const namespace =
+      get(
+        projectDetail,
+        '_originData.metadata.labels["kubesphere.io/namespace"]'
+      ) || ns
+
     const _host = gateway.isHostName
       ? gateway.defaultIngress
       : `${service}.${namespace}.${gateway.defaultIngress}.nip.io`
-    const namespace = gateway.namespace
 
     return host === _host ? 'auto' : 'specify'
   }
@@ -141,7 +146,38 @@ export default class RuleForm extends React.Component {
       return callback({ message: t('INVALID_PATH_DESC'), field: rule.field })
     }
 
+    const isExist = this.handlePathExistValidator(value)
+
+    if (isExist) {
+      return callback({ message: t('PATH_EXIST'), field: rule.field })
+    }
+
     callback()
+  }
+
+  handlePathExistValidator = value => {
+    const pathList = value.map(item => item.path)
+    let isExist = false
+
+    pathList.forEach(item => {
+      const length = pathList.length
+      let i = 0
+      let count = 0
+
+      while (i <= length) {
+        if (item === pathList[i]) {
+          count++
+        }
+
+        if (count > 1) {
+          isExist = true
+          break
+        }
+
+        i++
+      }
+    })
+    return isExist
   }
 
   handleGoBack = () => {
@@ -168,9 +204,13 @@ export default class RuleForm extends React.Component {
       form.validate(() => {
         const data = form.getData()
         if (this.state.type === 'auto') {
-          const { gateway } = this.props
+          const { gateway, projectDetail, namespace: ns } = this.props
           const service = get(data, 'http.paths[0].backend.service.name')
-          const namespace = gateway.namespace
+          const namespace =
+            get(
+              projectDetail,
+              '_originData.metadata.labels["kubesphere.io/namespace"]'
+            ) || ns
           onSave({
             ...data,
             protocol: 'http',

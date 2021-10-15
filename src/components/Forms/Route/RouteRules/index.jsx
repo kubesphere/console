@@ -228,7 +228,7 @@ class RouteRules extends React.Component {
   }
 
   renderRuleForm(index) {
-    const { isFederated, projectDetail } = this.props
+    const { isFederated, projectDetail, namespace } = this.props
     const services = toJS(this.services)
     const { data: secrets } = toJS(this.secretStore.list)
 
@@ -242,6 +242,7 @@ class RouteRules extends React.Component {
         services={services}
         isFederated={isFederated}
         projectDetail={projectDetail}
+        namespace={namespace}
         onSave={this.handleRule}
         onCancel={this.hideRule}
       />

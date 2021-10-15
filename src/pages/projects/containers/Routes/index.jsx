@@ -84,6 +84,8 @@ export default class Routers extends React.Component {
 
   get itemActions() {
     const { trigger, name } = this.props
+    const { namespace } = this.props.match.params
+
     return [
       {
         key: 'edit',
@@ -113,6 +115,7 @@ export default class Routers extends React.Component {
         onClick: item =>
           trigger('router.rules.edit', {
             detail: item,
+            namespace,
           }),
       },
       {

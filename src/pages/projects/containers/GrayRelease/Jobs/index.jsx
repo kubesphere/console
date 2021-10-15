@@ -24,7 +24,6 @@ import { observer, inject } from 'mobx-react'
 import EmptyList from 'components/Cards/EmptyList'
 import GrayReleaseDetail from 'projects/components/Modals/GrayReleaseDetail'
 import GrayReleaseStore from 'stores/grayrelease'
-import GatewayStore from 'stores/gateway'
 
 import Item from './Item'
 
@@ -40,12 +39,10 @@ class Jobs extends React.Component {
     }
 
     this.store = new GrayReleaseStore()
-    this.gatewayStore = new GatewayStore()
   }
 
   componentDidMount() {
     this.getData()
-    this.gatewayStore.getGateway(this.props.match.params)
   }
 
   get namespace() {
@@ -70,10 +67,7 @@ class Jobs extends React.Component {
   }
 
   get serviceMeshEnable() {
-    return (
-      globals.app.hasClusterModule(this.cluster, 'servicemesh') &&
-      this.gatewayStore.gateway.data.serviceMeshEnable
-    )
+    return globals.app.hasClusterModule(this.cluster, 'servicemesh')
   }
 
   getData() {

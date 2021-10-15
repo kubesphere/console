@@ -61,6 +61,7 @@ module.exports = {
   DOMAIN_NAME_VALUE: '域名：{value}',
 
   INVALID_PATH_DESC: '路径不正确。',
+  PATH_EXIST: 'PATH 重复，请重新输入。',
 
   ROUTE_DESC:
     '应用路由提供一种聚合服务的方式，您可以通过一个外部可访问的 IP 地址将集群的内部服务暴露给外部。',
