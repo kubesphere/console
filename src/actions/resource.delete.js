@@ -19,6 +19,7 @@
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
+import ServiceStore from 'stores/service'
 
 export default {
   'resource.delete': {
@@ -40,6 +41,7 @@ export default {
   },
   'resource.batch.delete': {
     on({ store, success, rowKey, ...props }) {
+      const serviceStore = new ServiceStore()
       const { data, selectedRowKeys } = store.list
       const selectValues = data
         .filter(item => selectedRowKeys.includes(item[rowKey]))
@@ -61,6 +63,11 @@ export default {
 
             if (selectValue) {
               reqs.push(store.delete(item))
+              if (store.module === 'statefulsets') {
+                reqs.push(
+                  serviceStore.delete({ ...item, name: item.spec.serviceName })
+                )
+              }
             }
           })
 
