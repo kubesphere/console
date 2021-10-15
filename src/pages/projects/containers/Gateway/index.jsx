@@ -146,7 +146,7 @@ export default class Getway extends React.Component {
             {bothHasGateway ? (
               <Alert
                 type="warning"
-                message={t('MULTI_CLUSTER_RESOURCE_TIP')}
+                message={t('PROJECT_GATEWAY_IP_TIP')}
                 hideIcon
               />
             ) : null}

@@ -149,7 +149,7 @@ export default class RuleForm extends React.Component {
     const isExist = this.handlePathExistValidator(value)
 
     if (isExist) {
-      return callback({ message: t('path 重复'), field: rule.field })
+      return callback({ message: t('PATH_EXIST'), field: rule.field })
     }
 
     callback()

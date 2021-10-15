@@ -37,6 +37,7 @@ module.exports = {
   DOMAIN_NAME_VALUE: 'Domain Name: {value}',
   INVALID_DOMAIN_DESC: 'Invalid domain name',
   INVALID_PATH_DESC: 'Establezca una ruta correcta',
+  PATH_EXIST: 'PATH is duplicated, please re-enter。',
   MODE_TCAP: 'Modo',
   PATH_PL: 'Rutas',
   PATH_SI: 'Ruta',
