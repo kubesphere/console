@@ -291,34 +291,28 @@ export default class AdvanceSettings extends React.Component {
     const { enable_regex_filter } = formTemplate
 
     return (
-      <div className={styles.content}>
-        <div className={styles.itemWrapper}>
-          <div className={styles.itemTitle}>
-            <p>
-              <strong>{t('REG_FILTER_TITLE')}</strong>
-            </p>
+      <>
+        <div className="h6">{t('REG_FILTER_TITLE')}</div>
+        <Form.Item>
+          <Checkbox
+            checked={enable_regex_filter}
+            name="enable_regex_filter"
+            onChange={this.handleChange('enable_regex_filter')}
+          >
+            {t('REG_FILTER_DESC')}
+          </Checkbox>
+        </Form.Item>
+        {enable_regex_filter && (
+          <div className={styles.wrapper}>
+            <Form.Item label={t('REGEX_FILTER')}>
+              <Input
+                name={`${this.scmPrefix}.regex_filter`}
+                defaultValue=".*"
+              />
+            </Form.Item>
           </div>
-          <Form.Item>
-            <Checkbox
-              checked={enable_regex_filter}
-              name="enable_regex_filter"
-              onChange={this.handleChange('enable_regex_filter')}
-            >
-              {t('REG_FILTER_DESC')}
-            </Checkbox>
-          </Form.Item>
-          {enable_regex_filter && (
-            <div className={styles.wrapper}>
-              <Form.Item label={t('REGEX_FILTER')}>
-                <Input
-                  name={`${this.scmPrefix}.regex_filter`}
-                  defaultValue=".*"
-                />
-              </Form.Item>
-            </div>
-          )}
-        </div>
-      </div>
+        )}
+      </>
     )
   }
 
@@ -358,10 +352,10 @@ export default class AdvanceSettings extends React.Component {
                   name={`multi_branch_pipeline.${source_type}_source`}
                 />
               </Form.Item>
-              {isShowRepoTrigger ? this.renderRegFilter() : null}
             </div>
           </React.Fragment>
         ) : null}
+        {isShowRepoTrigger ? this.renderRegFilter() : null}
         <div className="h6">{t('SCRIPT_PATH')}</div>
         <Form.Item label={t('PATH')} desc={t('SCRIPT_PATH_DESC')}>
           <Input

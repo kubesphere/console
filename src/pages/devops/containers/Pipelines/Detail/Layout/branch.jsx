@@ -111,6 +111,7 @@ export default class BranchDetailLayout extends React.Component {
   getAttrs = () => {
     const { detail, activityList } = this.store
     const { devopsName } = this.props.devopsStore
+    const { branch } = this.props.match.params
 
     return [
       {
@@ -119,7 +120,7 @@ export default class BranchDetailLayout extends React.Component {
       },
       {
         name: t('PIPELINE'),
-        value: detail.displayName,
+        value: `${detail.name}/${decodeURIComponent(branch)}`,
       },
       {
         name: t('STATUS'),
