@@ -16,16 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {
-  get,
-  set,
-  omitBy,
-  isEmpty,
-  isString,
-  omit,
-  pick,
-  isUndefined,
-} from 'lodash'
+import { get, set, omitBy, isEmpty, isString, omit, pick } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import QuotaEditModal from 'components/Modals/QuotaEdit'
@@ -33,7 +24,7 @@ import ProjectCreateModal from 'components/Modals/ProjectCreate'
 import AssignWorkspaceModal from 'components/Modals/AssignWorkspace'
 import DefaultResourceEditModal from 'projects/components/Modals/DefaultResourceEdit'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { resourceLimitKey } from 'utils'
+import { resourceLimitKey, limits_Request_EndsWith_Dot } from 'utils'
 
 import QuotaStore from 'stores/quota'
 import UserStore from 'stores/user'
@@ -158,17 +149,24 @@ export default {
           const gpu = get(data, 'gpu', {})
           data = omit(data, 'gpu')
           detail = omit(detail, 'limit.gpu')
-          Object.keys(data).forEach(key => {
-            if (isUndefined(data[key])) {
-              data[key] = {
-                cpu: 0,
-                memory: 0,
-              }
-            }
-          })
-          if (!isEmpty(gpu) && gpu.type !== '' && gpu.value !== '') {
-            data.default[`${gpu.type}`] = Number(gpu.value)
+
+          // if requests and limits is unsetted, they will be undefined
+          // for set gpu params, it should be an object
+          if (isEmpty(data.default) && isEmpty(data.defaultRequest)) {
+            data = { ...data, default: {}, defaultRequest: {} }
           }
+          if (!isEmpty(gpu) && gpu.type !== '' && gpu.value !== '') {
+            set(data, `default["${gpu.type}"]`, Number(gpu.value))
+          }
+
+          // deal with the case that input number as 4.
+          const { limits, requests } = limits_Request_EndsWith_Dot({
+            limits: data.default,
+            requests: data.defaultRequest || {},
+          })
+          data.default = { ...data.default, ...limits }
+          data.defaultRequest = { ...data.defaultRequest, ...requests }
+
           if (isEmpty(detail)) {
             let formTemplate = FORM_TEMPLATES.limitRange()
 

@@ -30,6 +30,8 @@ import {
   isNumber,
   omit,
   pick,
+  replace,
+  merge as _merge,
 } from 'lodash'
 import generate from 'nanoid/generate'
 import moment from 'moment-mini'
@@ -662,10 +664,12 @@ export const getGpuFromRes = data => {
   if (data.length > 0) {
     const limits = get(data, '[0].limit.default', {})
     const requests = get(data, '[0].limit.defaultRequest', {})
-    const limitCpu = get(limits, 'cpu', 0)
-    const reqCpu = get(requests, 'cpu', 1)
-    if (limitCpu === reqCpu) {
+    const limitItem = key => get(limits, key, 0)
+    const reqItem = key => get(requests, key, 1)
+    if (limitItem('cpu') === reqItem('cpu')) {
       set(data[0].limit, 'defaultRequest.cpu', undefined)
+    }
+    if (limitItem('memory') === reqItem('memory')) {
       set(data[0].limit, 'defaultRequest.memory', undefined)
     }
     const gpu = isEmpty(limits) ? {} : omit(limits, ['cpu', 'memory'])
@@ -686,6 +690,25 @@ export const getGpuFromRes = data => {
       })
     }
   }
+}
+
+export const limits_Request_EndsWith_Dot = ({ limits, requests }) => {
+  const arr = [limits, requests]
+  const result = []
+  arr.forEach((item, index) => {
+    const tmp = {}
+    if (!isUndefined(get(item, 'cpu', undefined)) && item.cpu.endsWith('.')) {
+      set(tmp, 'cpu', trimEnd(item.cpu, '.'))
+    }
+    if (
+      !isUndefined(get(item, 'memory', undefined)) &&
+      item.memory.slice(0, item.memory.length - 2).endsWith('.')
+    ) {
+      set(tmp, 'memory', replace(item.memory, '.', ''))
+    }
+    result[index] = _merge(item, tmp)
+  })
+  return { limits: result[0], requests: result[1] }
 }
 
 export const resourceLimitKey = [
