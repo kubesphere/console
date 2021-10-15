@@ -154,6 +154,7 @@ export default class Gateway extends Base {
         end_time: params.end_time
           ? Math.floor(params.end_time / 1000)
           : undefined,
+        container_query: 'controller',
       },
       {},
       () => {

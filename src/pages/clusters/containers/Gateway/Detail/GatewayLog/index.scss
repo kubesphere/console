@@ -4,7 +4,7 @@
 .title {
   position: relative;
   width: 100%;
-  height: 52px;
+  min-height: 52px;
   padding: 10px 20px;
   background-color: $light-color01;
   letter-spacing: normal;
@@ -19,9 +19,9 @@
 
   .search {
     display: flex;
-    flex: 1 1 auto;
+    flex: 1 1;
     padding: 6px 12px;
-    height: 32px;
+    min-height: 32px;
     margin-right: 12px;
     background: $light-color02;
     border-radius: 18px;
@@ -68,6 +68,7 @@
       display: grid;
       grid-gap: 12px;
       grid-template-columns: repeat(4, auto);
+      height: 32px;
 
       @at-root {
         .filterButton {
