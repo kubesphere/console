@@ -18,7 +18,7 @@
 
 import { isEmpty, get } from 'lodash'
 import React from 'react'
-import { observable } from 'mobx'
+import { observable, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Tooltip, Icon, Button } from '@kube-design/components'
 
@@ -206,7 +206,8 @@ class InternetAccess extends React.Component {
   }
 
   renderContent() {
-    if (isEmpty(this.gatewayList)) {
+    const isEmptyGateway = this.gatewayList.every(item => isEmpty(toJS(item)))
+    if (isEmptyGateway) {
       return this.renderEmpty()
     }
 
