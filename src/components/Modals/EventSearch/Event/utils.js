@@ -58,7 +58,7 @@ export const dropDownItems = {
 
 export const queryModeOptions = [1, 0].map(mode => ({
   value: mode,
-  label: mode ? t('Exact Query') : t('Fuzzy Query'),
+  label: mode ? t('EXACT_QUERY') : t('FUZZY_QUERY'),
 }))
 
 export const getSecond = step => {
@@ -75,44 +75,44 @@ export const getSecond = step => {
 export const supportQueryParams = [
   {
     icon: 'magnifier',
-    title: t('Search Events by', { field: t('MESSAGE') }),
-    tips: t('Message Event Query Tip'),
+    title: t('SEARCH_BY_MESSAGE'),
+    tips: t('RESOURCE_EVENT_MESSAGE_TIP'),
     key: 'message_search',
   },
   {
     icon: 'appcenter',
-    title: t('Search Events by', { field: t('WORKSPACE') }),
-    tips: t('Workspace Event Query Tip'),
+    title: t('SEARCH_BY_WORKSPACE'),
+    tips: t('RESOURCE_EVENT_WORKSPACE_TIP'),
     key: 'workspace_filter',
   },
   {
     icon: 'project',
-    title: t('Search Events by', { field: t('PROJECT') }),
-    tips: t('Project Event Query Tip'),
+    title: t('SEARCH_BY_PROJECT'),
+    tips: t('RESOURCE_EVENT_PROJECT_TIP'),
     key: 'involved_object_namespace_filter',
   },
   {
     icon: 'vnc',
-    title: t('Search Events by', { field: t('RESOURCE_TYPE') }),
-    tips: t('Resource Type Event Query Tip'),
+    title: t('SEARCH_BY_RESOURCE_TYPE'),
+    tips: t('RESOURCE_EVENT_RESOURCE_TYPE_TIP'),
     key: 'involved_object_kind_filter',
   },
   {
     icon: 'strategy-group',
-    title: t('Search Events by', { field: t('RESOURCE_NAME') }),
-    tips: t('Resource Name Event Query Tip'),
+    title: t('SEARCH_BY_RESOURCE_NAME'),
+    tips: t('RESOURCE_EVENT_RESOURCE_NAME_TIP'),
     key: 'involved_object_name_filter',
   },
   {
     icon: 'resource',
-    title: t('Search Events by', { field: t('REASON') }),
-    tips: t('Reason Event Query Tip'),
+    title: t('SEARCH_BY_REASON'),
+    tips: t('RESOURCE_EVENT_REASON_TIP'),
     key: 'reason_filter',
   },
   {
     icon: 'cardview',
-    title: t('Search Events by', { field: t('CATEGORY') }),
-    tips: t('Category Event Query Tip'),
+    title: t('SEARCH_BY_CATEGORY'),
+    tips: t('RESOURCE_EVENT_CATEGORY_TIP'),
     key: 'type_filter',
   },
 ]

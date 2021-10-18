@@ -261,7 +261,7 @@ export default class SearchBar extends React.Component {
     return start ? (
       <span className={styles.param} key={'_duration'}>
         <span>
-          {t('Time Range')}:
+          {t('TIME_RANGE')}:
           {durationAlias
             ? `${t('Last')} ${getTimeLabel(durationAlias)}`
             : `${getDateStr(start)} ~ ${getDateStr(end)}`}
@@ -301,7 +301,7 @@ export default class SearchBar extends React.Component {
         {this.renderFilterKey()}
         <input
           type="text"
-          placeholder={t('Please enter a filter to search for logs.')}
+          placeholder={t('SEARCH')}
           value={this.searchWord}
           ref={this.inputRef}
           disabled={this.showDurationDropDown}
@@ -350,7 +350,7 @@ export default class SearchBar extends React.Component {
             <span className={styles.icon}>
               <Icon name="clock" />
             </span>
-            <span>{t('Time Range')}</span>
+            <span>{t('TIME_RANGE')}</span>
           </div>
         )}
       </div>

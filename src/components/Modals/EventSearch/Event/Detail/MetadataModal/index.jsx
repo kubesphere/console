@@ -63,7 +63,7 @@ export default class MetadataModal extends React.Component {
           </div>
         </div>
         <div className={styles.row}>
-          <div className={styles.rowTitle}>{t('Resource')}</div>
+          <div className={styles.rowTitle}>{t('RESOURCE')}</div>
           <div className={styles.rowDesc}>
             <span>{`[${involvedObject.kind}]`}</span>
             <span className={styles.namespace}>{involvedObject.name}</span>
@@ -82,21 +82,21 @@ export default class MetadataModal extends React.Component {
           </div>
         </div>
         <div className={styles.row}>
-          <div className={styles.rowTitle}>{t('Count')}</div>
+          <div className={styles.rowTitle}>{t('COUNT')}</div>
           <div className={styles.rowDesc}>{count || 0}</div>
         </div>
         <div className={styles.row}>
-          <div className={styles.rowTitle}>{t('Source')}</div>
+          <div className={styles.rowTitle}>{t('SOURCE')}</div>
           <div className={styles.rowDesc}>{t(source.component) || '-'}</div>
         </div>
         <div className={styles.row}>
-          <div className={styles.rowTitle}>{t('Earliest start time')}</div>
+          <div className={styles.rowTitle}>{t('EARLIEST_START_TIME')}</div>
           <div className={styles.rowDesc}>
             {getLocalTime(firstTimestamp).format(`YYYY-MM-DD HH:mm:ss`)}
           </div>
         </div>
         <div className={styles.row}>
-          <div className={styles.rowTitle}>{t('Most recent start time')}</div>
+          <div className={styles.rowTitle}>{t('LATEST_START_TIME')}</div>
           <div className={styles.rowDesc}>
             {getLocalTime(lastTimestamp).format(`YYYY-MM-DD HH:mm:ss`)}
           </div>
@@ -110,10 +110,12 @@ export default class MetadataModal extends React.Component {
     return (
       <div className={styles.bottom}>
         <div className={styles.reason}>
-          {t('reason')}: {reason}
+          {t('REASON_COLON')}
+          {reason}
         </div>
         <div className={styles.message}>
-          {t('message')}: {message}
+          {t('MESSAGE_COLON')}
+          {message}
         </div>
       </div>
     )
@@ -124,13 +126,13 @@ export default class MetadataModal extends React.Component {
       <Tabs direction="vertical" className={styles.tabs}>
         <TabPanel label={<Icon name="resource" size={16} />} name="resource">
           <div className={styles.content}>
-            {this.renderHeader('Event metadata')}
+            {this.renderHeader('METADATA')}
             {this.renderEventMetadata()}
           </div>
         </TabPanel>
         <TabPanel label={<Icon name="cloud" size={16} />} name="cloud">
           <div className={styles.content}>
-            {this.renderHeader('Operation details')}
+            {this.renderHeader('DETAILS')}
             {this.renderDetail()}
             {this.renderFooter()}
           </div>

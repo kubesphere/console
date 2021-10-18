@@ -564,11 +564,11 @@ module.exports = {
     '🙇 对不起没有找到相关资源，系统将在 {time}s 后返回 <a href="{link}">工作台</a>',
   DETAIL_NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，返回 <a href="{link}">{title}</a>',
-  Toolbox: '工具箱',
-  TOOLBOX_DESC: '提供日志、事件、审计等相关查询工具',
+  TOOLBOX: '工具箱',
+  TOOLBOX_DESC: '提供日志、事件、审计等相关查询工具。',
   'Analysis Tools': '分析工具',
   'Control Tools': '控制工具',
-  'Third-party Tools': '第三方工具',
+  THIRD_PARTY_TOOLS: '第三方工具',
 
   LOGGING: '日志',
   RESOURCE_EVENTS: '资源事件',
@@ -576,8 +576,8 @@ module.exports = {
   logging: '日志',
   Auditing: '审计',
   auditing: '审计',
-  'Log Search': '日志查询',
-  LOG_SEARCH_DESC: '针对企业空间、项目、资源等多维度的日志查询工具。',
+  LOG_SEARCH: '日志查询',
+  CONTAINER_LOG_SEARCH_DESC: '针对集群资源的多维度容器日志查询工具。',
   KUBECTL_DESC: '命令行工具，用于控制当前集群。',
   TOOLBOX_KUBECTL_DESC: '操作多集群的客户端命令行工具',
 
@@ -586,8 +586,8 @@ module.exports = {
   event: '事件',
   events: '事件',
   EVENT_CREATE_DESC: '您可以改变搜索条件重新查询',
-  'Event Search': '事件查询',
-  EVENT_SEARCH_DESC: '针对企业空间、项目、资源等多维度的事件查询工具。',
+  EVENT_SEARCH: '事件查询',
+  RESOURCE_EVENT_SEARCH_DESC: '针对集群资源的多维度资源事件查询工具。',
   EVENT_DESC: '事件查询（Event）是KubeSphere提供的平台内资源的历史事件查询',
   'Search By Condition': '根据条件进行查找',
   'search condition': '搜索条件',
@@ -601,15 +601,14 @@ module.exports = {
     'KubeSphere可以根据您设置的规则进行操作审计的收集，点击查看如何定义规则。',
   CATEGORY: '分类',
   Resource: '资源',
-  'Earliest start time': '最早发生时间',
-  'Most recent start time': '最近发生时间',
+  EARLIEST_START_TIME: '最早发生时间',
+  LATEST_START_TIME: '最近发生时间',
   'Related resources': '关联资源',
-  'Operation details': '操作详情',
+  OPERATION_DETAILS: '操作详情',
   'Event metadata': '事件元数据',
 
   'Auditing Operating': '操作审计',
-  AUDITING_OPERATING_DESC:
-    '针对企业空间、项目、资源等多维度的操作审计查询工具。',
+  AUDIT_LOG_DESC: '针对集群资源的多维度审计日志查询工具。',
   verb: '操作行为',
   'Operation Account': '操作帐户',
   'Source IP': '来源 IP',
@@ -709,8 +708,8 @@ module.exports = {
   SOURCE: '来源',
 
   CREATE_BY_YAML_DESC: '在 YAML 文件中自定义应用的设置。',
-  Bill: '资源消费统计',
-  BILLING_OPERATING_DESC: '查看消费情况',
+  METERING_AND_BILLING: '资源消费统计',
+  METERING_AND_BILLING_DESC: '查看消费情况',
 
   // Workbench
   CLUSTER_COUNT_SI: '集群数量',
@@ -723,4 +722,9 @@ module.exports = {
   CONTAINER_DETAILS_PAGE_SCAP: '容器详情页。',
   CPU_VALUE: 'CPU：{value}',
   MEMORY_VALUE: '内存：{value}',
+
+  // Container Log Search
+  CONTAINER_LOG_SEARCH: '容器日志查询',
+  RESOURCE_EVENT_SEARCH: '资源事件查询',
+  AUDIT_LOG_SEARCH: '审计日志查询',
 }

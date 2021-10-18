@@ -180,7 +180,7 @@ module.exports = {
   Draining: 'Drenando',
   KEY_EXIST_DESC: 'The key already exists.',
   DUPLICATE_KEYS: 'Calves duplicadas',
-  'Earliest start time': 'Hora de inicio más temprana',
+  EARLIEST_START_TIME: 'Hora de inicio más temprana',
   EDIT: 'Editar',
   EDIT_TITLE: 'Edit {title}',
   'Edit ': 'Editar',
@@ -201,7 +201,7 @@ module.exports = {
   TIPS: 'Tips',
   event: 'evento',
   'Event metadata': 'Metadatos de eventos',
-  'Event Search': 'Búsqueda de eventos',
+  EVENT_SEARCH: 'Búsqueda de eventos',
   EVENT_DESC: 'EVENT_DESC',
   Events: 'Eventos',
   events: 'eventos',
@@ -247,7 +247,7 @@ module.exports = {
   'Load more': 'Cargar más',
   LOADING: 'Cargando',
   'Log Out': 'Cerrar sesión',
-  'Log Search': 'Búsqueda de logs',
+  LOG_SEARCH: 'Búsqueda de logs',
   LOGGING: 'Logging',
   RESOURCE_EVENTS: 'Resource Events',
   AUDIT_LOGS: 'Audit Logs',
@@ -265,7 +265,7 @@ module.exports = {
   'MONITORING_&_ALERTING': 'Monitorización y alertas',
   Monitors: 'Monitores',
   More: 'Más',
-  'Most recent start time': 'Hora de inicio más reciente',
+  LATEST_START_TIME: 'Hora de inicio más reciente',
   MULTI_CLUSTER_DEPLOYMENT: 'Despliegue de multi-cluster',
   name: 'nombre',
   NAME_VALIDATION_FAILED:
@@ -298,7 +298,7 @@ module.exports = {
   'Official Document': 'Documento oficial',
   OK: 'Okay',
   'Operation Account': 'Cuenta de operación',
-  'Operation details': 'Detalles de la operación',
+  OPERATION_DETAILS: 'Detalles de la operación',
   OPTIONAL: 'Opcional',
   Optional: 'Opcional',
   or: 'o',
@@ -455,7 +455,7 @@ module.exports = {
   Task: 'Tarea',
   TERMINAL: 'Terminal',
   terminated: 'terminado',
-  'Third-party Tools': 'Herramientas de terceros',
+  THIRD_PARTY_TOOLS: 'Herramientas de terceros',
   PARAM_REQUIRED: 'Este parámetro es obligatorio',
   time: 'hora',
   SAMPLING_INTERVAL: 'Sampling Interval',
@@ -463,7 +463,7 @@ module.exports = {
   To: 'A',
   to: 'a',
   IGNORE_AND_RETRY: 'para volver a intentarlo',
-  Toolbox: 'Caja de herramientas',
+  TOOLBOX: 'Caja de herramientas',
   Total: 'Total',
   TOTAL: 'Total',
   total: 'total',
@@ -647,9 +647,9 @@ module.exports = {
   PLATFORM_SETTINGS_DESC:
     'Configuración de plataforma personalizada, que incluye información básica y recopilador de registros',
   DATA_SOURCE: 'Fuente de datos',
-  LOG_SEARCH_DESC:
+  CONTAINER_LOG_SEARCH_DESC:
     'Una herramienta de búsqueda de registros multidimensional para espacios de trabajo, proyectos y recursos.',
-  EVENT_SEARCH_DESC:
+  RESOURCE_EVENT_SEARCH_DESC:
     'Una herramienta de búsqueda de eventos multidimensional para espacios de trabajo, proyectos y recursos.',
   PLATFORM_INFO_DESC:
     'Overview of the platform information. You can view and customize the platform information.',
@@ -657,7 +657,7 @@ module.exports = {
     '¿Cómo modificar la información de la plataforma?',
   PLATFORM_SETTINGS_SELECTOR_DESC:
     'Configuraciones de plataforma personalizadas',
-  AUDITING_OPERATING_DESC:
+  AUDIT_LOG_DESC:
     'Una herramienta de búsqueda de auditoría multidimensional para espacios de trabajo, proyectos y recursos.',
   FILE_OVERSIZED_TIP: '¡El archivo cargado debe ser inferior a 2M!',
   MULTI_CLUSTER_PROJECT_TIP: 'El recurso se implementa en varios grupos.',
@@ -675,8 +675,8 @@ module.exports = {
   EVENT_AGE_DATA_TWICE: '{lastTime}<br/>(twice over {duration})',
   SOURCE: 'Source',
 
-  Bill: 'Medição e faturamento',
-  BILLING_OPERATING_DESC: 'Track resource consumption.',
+  METERING_AND_BILLING: 'Medição e faturamento',
+  METERING_AND_BILLING_DESC: 'Track resource consumption.',
 
   // Workbench
   CLUSTER_COUNT_SI: 'Cluster',
@@ -689,4 +689,9 @@ module.exports = {
   CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
   CPU_VALUE: 'CPU: {value}',
   MEMORY_VALUE: 'Memory: {value}',
+
+  // Container Log Search
+  CONTAINER_LOG_SEARCH: 'Container Log Search',
+  RESOURCE_EVENT_SEARCH: 'Resource Event Search',
+  AUDIT_LOG_SEARCH: 'Audit Log Search',
 }

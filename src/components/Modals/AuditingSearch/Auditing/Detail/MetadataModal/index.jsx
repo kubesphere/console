@@ -29,7 +29,7 @@ export default class MetadataModal extends React.Component {
       <Tabs direction="vertical" className={styles.tabs}>
         <TabPanel label={<Icon name="resource" size={16} />} name="resource">
           <div className={styles.content}>
-            {this.renderHeader('Event metadata')}
+            {this.renderHeader('METADATA')}
             {this.renderEventMetadata()}
           </div>
         </TabPanel>

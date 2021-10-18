@@ -409,7 +409,7 @@ export default class GatewayLog extends React.Component {
         <EmptyList
           className="no-shadow"
           icon="cluster"
-          title={t('No cluster with logging module enabled')}
+          title={t('LOGGING_NOT_ENABLED_DESC')}
         />
       )
     }
