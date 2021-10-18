@@ -39,6 +39,10 @@ export default class Components extends Component {
 
   ingressStore = new IngressStore()
 
+  state = {
+    gateway: {},
+  }
+
   get prefix() {
     const { workspace, namespace } = this.props
     return `/${workspace}/federatedprojects/${namespace}`
@@ -48,7 +52,7 @@ export default class Components extends Component {
     this.getData()
   }
 
-  getData() {
+  async getData() {
     const { cluster, namespace, detail } = this.props
     const { selector } = detail
     if (selector) {
@@ -60,11 +64,17 @@ export default class Components extends Component {
 
       this.ingressStore.fetchListByK8s(params)
     }
+    await this.getGateway()
+  }
 
-    this.gatewayStore.getGateway({
-      cluster,
-      ...detail,
-    })
+  async getGateway() {
+    const { cluster, namespace } = this.props
+
+    const datalist = await Promise.all([
+      this.gatewayStore.getGateway({ cluster }),
+      this.gatewayStore.getGateway({ cluster, namespace }),
+    ])
+    this.setState({ gateway: datalist[1] || datalist[0] })
   }
 
   getNodePorts(gateway) {
@@ -90,7 +100,7 @@ export default class Components extends Component {
   render() {
     const { cluster } = this.props
     const { data, isLoading } = this.ingressStore.list
-    const gateway = this.routerStore.gateway.data
+    const { gateway } = this.state
     const clusters = keyBy(this.props.projectStore.detail.clusters, 'name')
 
     return (
