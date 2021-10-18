@@ -87,7 +87,7 @@ export default class AddVolume extends React.Component {
 
     if (volume.emptyDir) {
       type = 'temp'
-    } else if (volume.HostPath) {
+    } else if (volume.hostPath) {
       type = 'host'
     }
 

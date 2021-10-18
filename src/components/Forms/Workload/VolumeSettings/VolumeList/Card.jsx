@@ -37,10 +37,10 @@ const Card = ({ volume, onDelete, onEdit }) => {
   let icon = 'storage'
   let description
   let details
-  if (volume.HostPath) {
+  if (volume.hostPath) {
     description = `${t('TYPE')}: ${t('HostPath')}`
     details = [
-      { title: get(volume, 'HostPath.path', '-'), description: t('Host Path') },
+      { title: get(volume, 'hostPath.path', '-'), description: t('Host Path') },
     ]
   } else if (volume.emptyDir) {
     description = `${t('TYPE')}: ${t('EmptyDir')}`
