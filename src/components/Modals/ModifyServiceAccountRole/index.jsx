@@ -95,7 +95,10 @@ export default class ModifyModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('PROJECT_ROLE_SI')} desc={t('PROJECT_ROLE_DESC')}>
+        <Form.Item
+          label={t('PROJECT_ROLE_SI')}
+          desc={t('SERVICE_ACCOUNT_PROJECT_ROLE_DESC')}
+        >
           <RoleSelect
             name="metadata.annotations['iam.kubesphere.io/role']"
             cluster={cluster}

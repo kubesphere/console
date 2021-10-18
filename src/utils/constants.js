@@ -415,10 +415,10 @@ export const TIMETRIGGERINTERVALS = [
 ]
 
 export const SECRET_TYPES = {
-  Opaque: 'Default',
-  'kubernetes.io/tls': 'TLS',
-  'kubernetes.io/dockerconfigjson': 'IMAGE_REGISTRY_SECRET_TCAP',
-  'kubernetes.io/basic-auth': 'ACCOUNT_PASSWORD_SECRET_TCAP',
+  Opaque: 'DEFAULT',
+  'kubernetes.io/tls': 'TLS_INFORMATION',
+  'kubernetes.io/dockerconfigjson': 'IMAGE_REGISTRY_INFORMATION',
+  'kubernetes.io/basic-auth': 'USERNAME_AND_PASSWORD',
 }
 
 export const STRATEGIES = {

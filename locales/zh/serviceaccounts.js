@@ -33,7 +33,7 @@ module.exports = {
   SELECT_PROJECT_ROLE_DESC: '选择一个项目角色以指定权限。',
 
   SERVICEACCOUNT_KUBECONFIG_DESC:
-    'Kubeconfig 配置方法请参照 <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">官方文档</a> ，下载后请将服务地址修改为 Kubernetes API 的外部地址。',
+    '下载 kubeconfig.yaml 文件供其他应用使用，从而为其他应用访问提供可访问当前项目的帐户。如果使用 kubeconfig.yaml 文件的应用部署在当前集群外，您需要将 clusters:cluster:server 参数的值修改为对外暴露的 Kubernetes API 服务器地址。<a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">了解更多</a>',
 
   // Service Account Detail Page
   SECRET_VALUE: '保密字典：{value}',

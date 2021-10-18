@@ -23,7 +23,7 @@ import SecretDetail from './SecretDetail'
 export default path => [
   {
     path: `${path}/detail`,
-    title: 'DETAILS',
+    title: 'DATA',
     component: SecretDetail,
     exact: true,
   },

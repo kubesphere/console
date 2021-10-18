@@ -33,7 +33,7 @@ module.exports = {
   SELECT_PROJECT_ROLE_DESC: 'Select a project role to specify permissions.',
 
   SERVICEACCOUNT_KUBECONFIG_DESC:
-    'To configure kubeconfig, please refer to <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">the official documentation</a>. After downloading the file, please modify the service address to the external address of the Kubernetes API.',
+    'Download the kubeconfig.yaml file to provide other apps with a account that can access the current project. If the apps to use the kubeconfig.yaml file are deployed outside the current cluster, you need to change the value of clusters:cluster:server to the Kubernetes API server address exposed to the outside. <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">Learn More</a>',
 
   // Service Account Detail Page
   SECRET_VALUE: 'Secret: {value}',

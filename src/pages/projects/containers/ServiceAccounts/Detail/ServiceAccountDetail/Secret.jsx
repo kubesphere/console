@@ -132,7 +132,7 @@ export default class Secret extends React.Component {
     return (
       <div className={styles.secretWrapper}>
         <div className={styles.title}>
-          <div className="h6">{t('SECRET_DETAILS')}</div>
+          <div className="h6">{t('SECRET_SETTINGS_TCAP')}</div>
           {this.renderOperations()}
         </div>
         <div className={styles.defaultWrapper}>
@@ -168,7 +168,7 @@ export default class Secret extends React.Component {
     return (
       <div className={styles.configWrapper}>
         <div className={styles.title}>
-          <div className="h6">{t('KubeConfig')}</div>
+          <div className="h6">{t('KUBECONFIG_SETTINGS')}</div>
           <p className="text-desc">
             {t.html('SERVICEACCOUNT_KUBECONFIG_DESC')}
           </p>

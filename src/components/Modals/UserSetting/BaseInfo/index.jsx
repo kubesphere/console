@@ -66,7 +66,7 @@ export default class BaseInfo extends React.Component {
     const { formRef } = this.props
     return (
       <div className={styles.wrapper}>
-        <div className="h4">{t('Basic Info')}</div>
+        <div className="h4">{t('BASIC_INFORMATION')}</div>
         <Form
           ref={formRef}
           data={this.state.formData}

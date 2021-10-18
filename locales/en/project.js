@@ -223,8 +223,9 @@ module.exports = {
 
   PROJECT_BASIC_INFO_DESC:
     'Basic information provides an overview of the project. You can view the project information and default container quotas.',
-  PROJECT_ROLE_DESC:
-    'Project roles define the permissions users have in the current project.',
+  PROJECT_ROLE_DESC: 'Project roles define the permissions of project members.',
+  SERVICE_ACCOUNT_PROJECT_ROLE_DESC:
+    'Select the role of the service account in the current project.',
   PROJECT_MEMBERS_DESC: 'Manage and assign roles for project members.',
   PROJECT_ROLE_EMPTY_DESC: 'Please create a project role.',
   PROJECT_ADVANCED_SETTINGS_DESC:

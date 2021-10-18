@@ -63,13 +63,13 @@ export default class SecretSettings extends React.Component {
 
   getTypeOptions = () => [
     { label: t('DEFAULT'), value: 'Opaque' },
-    { label: t('TLS'), value: 'kubernetes.io/tls' },
+    { label: t('TLS_INFORMATION'), value: 'kubernetes.io/tls' },
     {
-      label: t('IMAGE_REGISTRY_SECRET_SCAP'),
+      label: t('IMAGE_REGISTRY_INFORMATION'),
       value: 'kubernetes.io/dockerconfigjson',
     },
     {
-      label: t('ACCOUNT_PASSWORD_SECRET_SCAP'),
+      label: t('USERNAME_PASSWORD'),
       value: 'kubernetes.io/basic-auth',
     },
   ]
@@ -259,9 +259,6 @@ export default class SecretSettings extends React.Component {
     return content
   }
 
-  valueRenderer = option =>
-    t('SECRET_VALUE_LABEL', { value: option.value, label: option.label })
-
   render() {
     const { formRef, disableSelect } = this.props
     const { state } = this.state
@@ -279,11 +276,8 @@ export default class SecretSettings extends React.Component {
           <Select
             name="type"
             options={this.getTypeOptions()}
-            valueRenderer={this.valueRenderer}
-            optionRenderer={this.valueRenderer}
             onChange={this.handleTypeChange}
             placeholder=" "
-            searchable
             disabled={disableSelect}
           />
         </Form.Item>

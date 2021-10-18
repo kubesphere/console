@@ -19,7 +19,7 @@
 module.exports = {
   'A/B Testing': 'A/B Testing',
   ALLOCATE_TRAFFIC_DESC:
-    'Set the proportion of traffic sent to the new version and that sent to the old version.',
+    'Move the slider to set the proportion of traffic sent to the new version and that sent to the old version.',
   BLUE_GREEN_DEPLOYMENT: 'Blue-Green Deployment',
   CREATE_BLUE_GREEN_DEPLOYMENT_JOB: 'Create Blue-Green Deployment Job',
   CREATE_CANARY_RELEASE_JOB: 'Create Canary Release Job',
@@ -67,10 +67,13 @@ module.exports = {
   SELECT_GRAY_COMPONENT_TIP: 'Please select a Service.',
   STRATEGY_CONFIGURATIONS_TCAP: 'Strategy Configurations',
   POLICY_REQUEST_CONTENT_TIP:
-    'Specify Request Parameters supports only HTTP, HTTPS, and gRPG requests.',
+    'The Specify Request Parameters function supports only HTTP, HTTPS, and gRPG requests.',
   PREFIX_MATCH: 'Prefix match',
   REAL_TIME_TRAFFIC_DIST_TCAP: 'Real-Time Traffic Distribution',
-  REAL_TIME_TRAFFIC_RATIO: 'Real-time traffic ratio.',
+  TRAFFIC_MIRRORING_TRAFFIC_DISTRI_DESC:
+    'A copy of traffic is sent to the new version for testing.',
+  BLUE_GREEN_TRAFFIC_DISTRI_DESC:
+    'The new version or old version receives all traffic.',
   RESTORE: 'Restore',
   REGEX_MATCH: 'Regex match',
   GRAY_RELEASE_JOB_NAME: 'Grayscale Release Job Name',
@@ -150,9 +153,9 @@ module.exports = {
     'The gateway for application governance is not found in the current project, so you cannot deploy the sample app. Please contact your project administrator to turn it on in [Advanced Settings].',
 
   PREREQUEST_FOR_USE_GRAYRELEASE_Q:
-    'What are the requirements for implementing grayscale release?',
+    'What are the prerequisites for implementing grayscale release?',
   PREREQUEST_FOR_USE_GRAYRELEASE_A:
-    'You need to create a composed app and enable the application governance feature before you implement grayscale release.',
+    'Before implementing grayscale release, you need to create a composed app and enable application governance for the app.',
 
   DELETE_GRAYSCALE_RELEASE_JOB_DESC:
     'Please select a version to take over all traffic before deleting the grayscale release job.',
@@ -164,6 +167,7 @@ module.exports = {
   GRAY_COMPONENT_DESC:
     'Information about the new version being tested and the old version.',
   TRAFFIC_LOW: 'traffic',
+  VERSION_TRAFFIC_PERCENT: '{version} traffic {percent}%',
 
   // Grayscale release components tab
   GRAY_APP_NAME: 'App: {name}',
