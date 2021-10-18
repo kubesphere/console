@@ -105,12 +105,12 @@ export default class CircleChart extends React.Component {
           <div>
             <span className={styles.tag}>
               {isNaN(data0)
-                ? t('No Data')
+                ? t('NO_DATA_SCAP')
                 : `${getSuitableValue(data0, unit)} ${unit}`}
             </span>
             <span className={styles.tag}>
               {isNaN(data1)
-                ? t('No Data')
+                ? t('NO_DATA_SCAP')
                 : `${getSuitableValue(data1, unit)} ${unit}`}
             </span>
           </div>

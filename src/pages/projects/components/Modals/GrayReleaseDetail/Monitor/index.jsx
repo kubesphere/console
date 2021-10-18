@@ -121,7 +121,7 @@ export default class Monitor extends React.Component {
     return [
       {
         type: 'traffic-in',
-        title: t('TRAFFIC_MONITORING'),
+        title: t('TRAFFIC'),
         legendData: [detail.newVersion, detail.oldVersion],
         data: request_count,
         unit: 'RPS',

@@ -17,6 +17,7 @@
  */
 
 module.exports = {
+  TIME_S: '{num}s',
   'Log Management': '紀錄管理',
   'Search Rule': '查詢規則',
   TOTAL_LOGS:

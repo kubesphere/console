@@ -132,7 +132,10 @@ class GatewayCard extends React.Component {
       case 'delete':
         this.trigger('gateways.delete', {
           cluster: this.cluster,
-          type: 'CLUSTER_GATEWAY',
+          type:
+            this.props.type === 'cluster'
+              ? 'CLUSTER_GATEWAY'
+              : 'PROJECT_GATEWAY',
           namespace,
           detail: toJS(this.gateway),
           store: this.store,
@@ -262,7 +265,7 @@ class GatewayCard extends React.Component {
               trigger="click"
               placement="bottomRight"
             >
-              <Button>{t('MORE')}</Button>
+              <Button>{t('ACTIONS')}</Button>
             </Dropdown>
           ),
         },

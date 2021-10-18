@@ -93,7 +93,7 @@ module.exports = {
   'The current cluster is public': '当前集群处于公开状态',
 
   AVAILABLE_CLUSTERS: '可用集群',
-  SELECT_CLUSTER: '集群选择',
+  SELECT_CLUSTERS: '选择集群',
   EDIT_CLUSTER_INFO_DESC: '编辑集群基本信息。',
 
   SCHEDULING_OPERATIONS: '调度次数',

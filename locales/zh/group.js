@@ -17,7 +17,8 @@
  */
 
 module.exports = {
-  ADD_MEMBER_TIP: '您确定添加该成员到 <strong>{group}<strong> 吗？',
+  ADD_MEMBER_TIP_SI: '您确定添加成员到部门 <strong>{group}<strong> 吗？',
+  ADD_MEMBER_TIP_PL: '您确定添加成员到部门 <strong>{group}<strong> 吗？',
   principal: '负责人',
   CREATE_DEPARTMENT: '创建部门',
   NO_DEPARTMENT_TIP: '没有可用部门，请在右侧创建部门。',

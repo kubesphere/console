@@ -86,7 +86,7 @@ module.exports = {
   CREATE_APP: 'Desplegar nueva aplicación',
   'Deploy sample app Bookinfo': 'Desplegar la aplicación de ejemplo Bookinfo',
   DEPLOYED_APPS: 'Aplicaciones desplegadas',
-  'Edit Component': 'Editar componente',
+  EDIT_GRAYSCALE_RELEASE_JOB: 'Editar componente',
   FROM_APP_STORE: 'Desde la tienda de aplicaciones',
   FROM_APP_TEMPLATE: 'Desde plantillas de aplicaciones',
   'From third party Helm': 'Desde Helm de terceros',
@@ -192,8 +192,8 @@ module.exports = {
     'Para gestión, ayudándote a distinguir entre componentes. Solo puede contener letras minúsculas y números. La longitud máxima de caracteres se establece en 16.',
   APP_WORKLOAD_TYPE_DESC:
     'Admite servicios sin estado (Deployment) y servicios con estado (StatefulSet)',
-  SERVICE_DEPLOYMENT: 'Servicio sin estado (Deployment)',
-  SERVICE_STATEFULSET: 'Servicio con estado (StatefulSet)',
+  TYPE_SERVICE_DEPLOYMENT: 'Servicio sin estado (Deployment)',
+  TYPE_SERVICE_STATEFULSET: 'Servicio con estado (StatefulSet)',
   CONNECTION_POOL_TIP:
     'Crea un número fijo de objetos de conexión para la aplicación y guárdalos en el grupo para su reutilización. El grupo existente estará disponible para cada acceso, y cada objeto de conexión volverá al grupo después de su uso.',
   APPLICATION_GOVERNANCE_DESC:

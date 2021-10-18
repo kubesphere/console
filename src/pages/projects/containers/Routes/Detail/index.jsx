@@ -99,6 +99,7 @@ export default class RouteDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('router.rules.edit', {
+          namespace: this.props.match.params.namespace,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),

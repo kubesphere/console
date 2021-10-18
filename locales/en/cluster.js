@@ -70,7 +70,7 @@ module.exports = {
   SCHEDULING_OPERATION: 'Scheduling operation',
   SCHEDULING_FAILURES: 'Scheduling failures',
   SCHEDULING_FAILURE: 'Scheduling failure',
-  SELECT_CLUSTER: 'Select Clusters',
+  SELECT_CLUSTERS: 'Select Clusters',
   SET_PUBLIC_CLUSTER: 'Set as Public Cluster',
   STORAGE: 'Storage',
   SYSTEM_PROJECTS: 'System Projects',

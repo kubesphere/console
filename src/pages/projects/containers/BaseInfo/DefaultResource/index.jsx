@@ -86,7 +86,7 @@ class DefaultResource extends React.Component {
               <p>{t('GPU_TYPE_LOW')}</p>
             </div>
             <div className={styles.item}>
-              <div>{gpu.value ? gpu.value : t('NO_LIMIT')}</div>
+              <div>{gpu.value ? gpu.value : t('NO_LIMIT_TCAP')}</div>
               <p>{t('GPU_LIMIT_LOW')}</p>
             </div>
           </div>

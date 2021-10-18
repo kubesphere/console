@@ -125,7 +125,7 @@ export default class Item extends React.Component {
     return [
       {
         type: 'traffic',
-        name: t('TRAFFIC_MONITORING'),
+        name: t('TRAFFIC'),
         legendData: [data.newVersion, data.oldVersion],
         data: request_count,
         unit: 'RPS',
@@ -222,27 +222,27 @@ export default class Item extends React.Component {
           <div className={styles.title}>
             <div className="h5">{data.name}</div>
             <p>
-              <span>{t('Application')}</span>:{' '}
+              <span>{t('APP')}</span>:{' '}
               {get(data, 'labels["app.kubernetes.io/name"]')}
             </p>
             <p>
-              <span>{t('GRAYSCALE_JOB_STRATEGY')}</span>: {t(cate.title)}
+              <span>{t('RELEASE_MODE')}</span>: {t(`${cate.title}_LOW`)}
             </p>
             <p>
-              <span>{t('GRAYSCALE_JOB_COMPONENT')}</span>: {data.hosts}
+              <span>{t('SERVICE')}</span>: {data.hosts}
             </p>
           </div>
         </div>
         <div className={styles.right}>
           <div className={styles.versions}>
             <p>
-              <strong>{t('VERSION_COMPARISON')}</strong>
+              <strong>{t('VERSIONS')}</strong>
             </p>
             <p className={styles.tag}>
               {data.newVersion}
               &nbsp;
               <span>
-                ({t('REPLICA_COUNT')}:{' '}
+                ({t('REPLICA_COUNT_LOW')}:{' '}
                 {get(newHealth, 'workloadStatus.available') ||
                   get(newHealth, 'workloadStatus.availableReplicas')}
                 /
@@ -255,7 +255,7 @@ export default class Item extends React.Component {
               {data.oldVersion}
               &nbsp;
               <span>
-                ({t('REPLICA_COUNT')}:{' '}
+                ({t('REPLICA_COUNT_LOW')}:{' '}
                 {get(oldHealth, 'workloadStatus.available') ||
                   get(oldHealth, 'workloadStatus.availableReplicas')}
                 /

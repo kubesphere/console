@@ -139,12 +139,6 @@ export default class GatewaySettingModal extends React.Component {
     this.setAnnotations({})
   }
 
-  initAnnotations = (value = globals.config.loadBalancerDefaultAnnotations) => {
-    set(this.template, 'spec.service.annotations', value)
-    set(this.template, "metadata.annotations['kubesphere.io/annotations']", '')
-    this.forceUpdate()
-  }
-
   setAnnotations = value => {
     set(this.template, 'spec.service.annotations', value)
     this.forceUpdate()
@@ -162,9 +156,6 @@ export default class GatewaySettingModal extends React.Component {
             name="metadata.annotations['kubesphere.io/annotations']"
           ></Select>
         </Form.Item>
-        <Button className={styles.lbB} onClick={() => this.initAnnotations()}>
-          {t('USE_DEFAULT_ANNOTATIONS')}
-        </Button>
       </div>
     )
   }

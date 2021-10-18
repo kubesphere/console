@@ -17,6 +17,7 @@
  */
 
 module.exports = {
+  TIME_S: '{num}s',
   'Log Management': '日志管理',
   'Search Rule': '查询规则',
   TOTAL_LOGS:

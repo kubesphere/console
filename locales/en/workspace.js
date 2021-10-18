@@ -53,9 +53,9 @@ module.exports = {
   Workspaces: 'Workspaces',
   'Workspaces Manager': 'Workspace Manager',
   devops: 'DevOps Projects',
-  EDIT_WORKSPACE_QUOTA: 'Edit Workspace Quota',
+  EDIT_WORKSPACE_QUOTAS: 'Edit Workspace Quotas',
   'Edit Workspace Quota': 'Edit Workspace Quota',
-  SET_DEPARTMENT: 'Set Department',
+  SET_DEPARTMENTS: 'Set Departments',
 
   WORKSPACE_OVERVIEW_DESC: 'View the resource status of the workspace.',
   WORKSPACE_DESC:
@@ -124,6 +124,8 @@ module.exports = {
   SURE_TO_DELETE_WORKSPACE: 'Are you sure you want to delete the workspace?',
   ON: 'On',
   OFF: 'Off',
+  ONLINE: 'Online',
+  OFFLINE: 'Offline',
   NETWORK_POLICY_UNINSATLLED_DESC:
     'The network policy component is not installed in this cluster.',
   WS_MEMBER_LOW: 'Workspace member',

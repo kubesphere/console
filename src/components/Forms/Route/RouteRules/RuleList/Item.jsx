@@ -70,8 +70,8 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
         )}
       </div>
       <div className={styles.paths}>
-        {rule.http.paths.map(path => (
-          <div key={path.path} className={styles.path}>
+        {rule.http.paths.map((path, i) => (
+          <div key={`${path.path}-${i}`} className={styles.path}>
             <Columns>
               <Column>
                 <span>{t('PATH_VALUE', { value: path.path })}</span>

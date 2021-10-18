@@ -72,6 +72,7 @@ export default class Routers extends React.Component {
         onClick: item =>
           trigger('router.rules.edit', {
             detail: item,
+            namespace: item.namespace,
           }),
       },
       {

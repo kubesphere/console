@@ -160,9 +160,10 @@ export default class GatewaySettingModal extends React.Component {
     if (governor) {
       this.setState({
         tipType: 'info',
-        tipInfo: t('JOB_OFFLINE_INFO', {
-          version: governor === oldVersion ? newVersion : oldVersion,
-        }),
+        tipInfo:
+          governor === oldVersion
+            ? t.html('OLD_VERSION_TAKEOVER_DESC', { newVersion, oldVersion })
+            : t.html('NEW_VERSION_TAKEOVER_DESC', { newVersion, oldVersion }),
       })
     } else {
       this.setState({ tipInfo: '' })
@@ -391,7 +392,10 @@ export default class GatewaySettingModal extends React.Component {
       return
     }
 
-    this.setState({ tipType: 'warning', tipInfo: t('JOB_OFFLINE_WARNING') })
+    this.setState({
+      tipType: 'warning',
+      tipInfo: t('DELETE_GRAYSCALE_RELEASE_JOB_DESC'),
+    })
   }
 
   handleTakeover = type => {
@@ -430,10 +434,10 @@ export default class GatewaySettingModal extends React.Component {
         <div className={styles.text}>
           <div className="h4">{detail.name}</div>
           <p>
-            {t('Grayscale Release Strategy')}: <strong>{t(cate.title)}</strong>
+            {t('RELEASE_MODE')}: <strong>{t(`${cate.title}_LOW`)}</strong>
           </p>
         </div>
-        <Button onClick={this.handleOffline}>{t('JOB_OFFLINE')}</Button>
+        <Button onClick={this.handleOffline}>{t('DELETE')}</Button>
       </div>
     )
   }
@@ -447,7 +451,7 @@ export default class GatewaySettingModal extends React.Component {
       return (
         <div>
           <div className={styles.sectionTitle}>
-            <div>{t('GRAYSCALE_RELEASE_COMPONENT_PL')}</div>
+            <div>{t('VERSIONS')}</div>
             <p>{t('GRAY_COMPONENT_DESC')}</p>
           </div>
           <Loading spinning={isLoading} className={styles.loading} />
@@ -475,7 +479,7 @@ export default class GatewaySettingModal extends React.Component {
     return (
       <div>
         <div className={styles.sectionTitle}>
-          <div>{t('GRAYSCALE_RELEASE_COMPONENT_PL')}</div>
+          <div>{t('VERSIONS')}</div>
           <p>{t('GRAY_COMPONENT_DESC')}</p>
         </div>
         <Columns>
@@ -514,7 +518,7 @@ export default class GatewaySettingModal extends React.Component {
     return (
       <>
         <div className={styles.sectionTitle}>
-          <div>{t('REAL_TIME_TRAFFIC_DIST_TCAP')}</div>
+          <div>{t('TRAFFIC_DISTRIBUTION')}</div>
           <p>{t('ALLOCATE_TRAFFIC_DESC')}</p>
         </div>
         <TrafficSlider
@@ -528,13 +532,15 @@ export default class GatewaySettingModal extends React.Component {
         <NotifyConfirm
           visible={ratio !== originRatio}
           width={400}
-          title={t('ADJUST_REPLICAS')}
-          content={t.html('RATIO_MODIFY_NOTIFY_CONTENT', {
-            version: detail.newVersion,
-            ratio,
+          title={t('ADJUST_TRAFFIC_DISTRIBUTION')}
+          content={t.html('ADJUST_TRAFFIC_DISTRIBUTION_DESC', {
+            newVersion: detail.newVersion,
+            oldVersion: detail.oldVersion,
+            ratioNew: ratio,
+            ratioOld: 100 - ratio,
           })}
-          cancelText={t('RESET')}
-          confirmText={t('SAVE')}
+          cancelText={t('CANCEL')}
+          confirmText={t('OK')}
           isSubmitting={this.store.isSubmitting}
           onCancel={this.handleResetRatio}
           onConfirm={this.handleConfirmSaveRatio}
@@ -553,7 +559,7 @@ export default class GatewaySettingModal extends React.Component {
     return (
       <>
         <div className={styles.sectionTitle}>
-          <div>{t('REAL_TIME_TRAFFIC_DIST_TCAP')}</div>
+          <div>{t('TRAFFIC_DISTRIBUTION')}</div>
           <p>{t('REAL_TIME_TRAFFIC_RATIO')}</p>
         </div>
         <div className={styles.barWrapper}>
@@ -575,7 +581,7 @@ export default class GatewaySettingModal extends React.Component {
     return (
       <>
         <div className={styles.sectionTitle}>
-          <div>{t('REAL_TIME_TRAFFIC_DIST_TCAP')}</div>
+          <div>{t('TRAFFIC_DISTRIBUTION')}</div>
           <p>{t('REAL_TIME_TRAFFIC_RATIO')}</p>
         </div>
         <div className={styles.mirror}>
@@ -618,8 +624,8 @@ export default class GatewaySettingModal extends React.Component {
       return (
         <div>
           <div className={styles.sectionTitle}>
-            <div>{t('TRAFFIC_CONTROL')}</div>
-            <p>{t('TRAFFIC_CONTROL_DESC')}</p>
+            <div>{t('REQUEST_PARAMETERS')}</div>
+            <p>{t('SPECIFY_REQUEST_PARAMETERS_DESC')}</p>
           </div>
           <Loading spinning={isLoading} className={styles.loading} />
         </div>
@@ -665,8 +671,8 @@ export default class GatewaySettingModal extends React.Component {
     return (
       <>
         <div className={styles.sectionTitle}>
-          <div>{t('TRAFFIC_CONTROL')}</div>
-          <p>{t('TRAFFIC_CONTROL_DESC')}</p>
+          <div>{t('REQUEST_PARAMETERS')}</div>
+          <p>{t('SPECIFY_REQUEST_PARAMETERS_DESC')}</p>
         </div>
         <div className={styles.matchWrapper}>
           {detail.governor && (
@@ -676,14 +682,12 @@ export default class GatewaySettingModal extends React.Component {
                   <Icon name="appcenter" size={40} />
                 </div>
                 <div>
-                  <span className="ks-tag">{detail.governor}</span>
+                  {t.html('SERVICE_VERSION_RECEIVE_ALL_TRAFFIC', {
+                    version: detail.governor,
+                  })}
                 </div>
                 <div>
-                  <strong>{detail.hosts}</strong>
-                </div>
-                <p>{t('Has taken over all traffic')}</p>
-                <div>
-                  <Button onClick={this.handleRecover}>{t('Recover')}</Button>
+                  <Button onClick={this.handleRecover}>{t('RESTORE')}</Button>
                 </div>
               </div>
             </div>
@@ -693,32 +697,34 @@ export default class GatewaySettingModal extends React.Component {
               <ul>
                 <li>
                   <Icon name="earth" size={24} />
-                  <strong>{`${t('Cookie Content')}${
-                    cookieMatchType
-                      ? `(${t(MATCH_TYPES[cookieMatchType])})`
-                      : ''
-                  }`}</strong>
+                  <strong>
+                    {cookieMatchType
+                      ? t(`COOKIE_${MATCH_TYPES[cookieMatchType]}`)
+                      : t('COOKIE')}
+                  </strong>
                   {cookieMatchValue}
                 </li>
                 <li>
                   <Icon name="image" size={24} />
-                  <strong>{t('Operating System')}</strong>
+                  <strong>{t('OS')}</strong>
                   {osMatchValue}
                 </li>
                 <li>
                   <Icon name="pen" size={24} />
-                  <strong>{`${t('CUSTOM_HEADER')}${
-                    customHeaderMatchType
-                      ? `(${t(MATCH_TYPES[customHeaderMatchType])})`
-                      : ''
-                  }`}</strong>
+                  <strong>
+                    {customHeaderMatchType
+                      ? t(`HEADER_${MATCH_TYPES[customHeaderMatchType]}`)
+                      : t(`HEADER`)}
+                  </strong>
                   {customKey ? `${customKey}: ${customHeaderMatchValue}` : ''}
                 </li>
                 <li>
                   <Icon name="ip" size={24} />
-                  <strong>{`${t('URI')}${
-                    uriMatchType ? `(${t(MATCH_TYPES[uriMatchType])})` : ''
-                  }`}</strong>
+                  <strong>
+                    {uriMatchType
+                      ? t(`URL_${MATCH_TYPES[uriMatchType]}`)
+                      : t('URL')}
+                  </strong>
                   {uriMatchValue}
                 </li>
               </ul>
