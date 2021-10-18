@@ -481,6 +481,7 @@ module.exports = {
   BUG: 'Bug',
   VULNERABILITY: 'Vulnerability',
   SECURITY_HOTSPOT: 'Security Hotspot',
+  REG_FILTER_TITLE: 'Filter by name (with regular expression)',
   REG_FILTER_DESC:
     'Enable regular expressions, ignoring names that do not match the provided regular expression (including branches and PRs)',
   waitForQualityGate_desc:

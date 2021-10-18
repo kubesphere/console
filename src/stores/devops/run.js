@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { omit, isArray, get } from 'lodash'
+import { omit, isArray, get, isEmpty } from 'lodash'
 import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
 import { Notify } from '@kube-design/components'
@@ -185,9 +185,10 @@ export default class PipelineRunStore extends BaseStore {
     this.getNodesStatusLoading = true
 
     const result = await request.get(
-      `${this.getDevopsUrlV2({ cluster, devops })}pipelines/${name}${
-        branch ? `/branches/${encodeURIComponent(branch)}` : ''
-      }/runs/${this.runDetail.id}/nodesdetail/?limit=10000`
+      `${this.getBaseUrl({
+        cluster,
+        namespace: devops,
+      })}pipelineruns/${this.runDetail.name}/nodedetails`
     )
 
     if (!isArray(result)) {
@@ -195,7 +196,7 @@ export default class PipelineRunStore extends BaseStore {
       return
     }
 
-    const hasStep = result.some(stage => stage.steps && stage.steps.length)
+    const hasStep = !isEmpty(result)
 
     if (hasStep) {
       // format to tree structure
@@ -312,7 +313,6 @@ export default class PipelineRunStore extends BaseStore {
     parameters,
     devops,
     name,
-    runId,
     nodeId,
     branch,
     cluster,
@@ -325,7 +325,7 @@ export default class PipelineRunStore extends BaseStore {
         devops,
         name,
         branch,
-        runId,
+        runId: this.runDetail.id,
       })}nodes/${nodeId}/steps/${stepId}/`,
       {
         id: inputId,
@@ -346,7 +346,6 @@ export default class PipelineRunStore extends BaseStore {
   async handleBreak({
     devops,
     name,
-    runId,
     nodeId,
     branch,
     stepId,
@@ -359,7 +358,7 @@ export default class PipelineRunStore extends BaseStore {
         devops,
         name,
         branch,
-        runId,
+        runId: this.runDetail.id,
       })}nodes/${nodeId}/steps/${stepId}/`,
       {
         id: inputId,

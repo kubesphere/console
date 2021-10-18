@@ -17,18 +17,12 @@
  */
 
 import React from 'react'
-import { get, omit, debounce, isUndefined, isEmpty } from 'lodash'
+import { get, omit, debounce, isEmpty } from 'lodash'
 import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
 import { parse } from 'qs'
 import { observer, inject } from 'mobx-react'
-import {
-  Button,
-  Notify,
-  Level,
-  LevelLeft,
-  LevelRight,
-} from '@kube-design/components'
+import { Button, Notify } from '@kube-design/components'
 
 import { getLocalTime, formatUsedTime } from 'utils'
 
@@ -39,8 +33,6 @@ import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 import { trigger } from 'utils/action'
 import Table from 'components/Tables/List'
 import EmptyCard from 'devops/components/Cards/EmptyCard'
-
-import styles from './index.scss'
 
 @inject('rootStore', 'detailStore')
 @observer
@@ -74,7 +66,7 @@ export default class Activity extends React.Component {
   }
 
   get isMultiBranch() {
-    return this.store.detail.branchNames
+    return !isEmpty(toJS(this.store.detail.branchNames))
   }
 
   get prefix() {
@@ -136,9 +128,10 @@ export default class Activity extends React.Component {
   handleRunning = debounce(async () => {
     const { detail } = this.store
     const { params } = this.props.match
-    const hasParameters = detail.parameters && detail.parameters.length
+    const hasParameters = !isEmpty(toJS(detail.parameters))
+    const hasBranches = !isEmpty(toJS(detail.branchNames))
 
-    if (this.isMultiBranch || hasParameters) {
+    if (hasBranches || hasParameters) {
       this.trigger('pipeline.params', {
         devops: params.devops,
         cluster: params.cluster,
@@ -347,32 +340,6 @@ export default class Activity extends React.Component {
           },
         ]
 
-  renderFooter = () => {
-    const { activityList } = this.store
-    const { total, limit } = activityList
-
-    if (!this.isMultiBranch || this.isAtBranchDetailPage) {
-      return null
-    }
-
-    if (total < limit) {
-      return null
-    }
-
-    return () => (
-      <Level>
-        {!isUndefined(total) && (
-          <LevelLeft>{t('TOTAL_ITEMS', { num: total })}</LevelLeft>
-        )}
-        <LevelRight>
-          <Link className={styles.clickable} to="./branch">
-            {t('PIPELINES_FOOTER_SEE_MORE')}
-          </Link>
-        </LevelRight>
-      </Level>
-    )
-  }
-
   render() {
     const { activityList } = this.store
     const { data, isLoading, total, page, limit, filters } = activityList
@@ -383,7 +350,7 @@ export default class Activity extends React.Component {
     if (isEmptyList) {
       const { detail } = this.store
       const runnable = this.enabledActions.includes('edit')
-      const isMultibranch = detail.branchNames
+      const isMultibranch = !isEmpty(toJS(detail.branchNames))
       const isBranchInRoute = get(this.props, 'match.params.branch')
 
       if (isMultibranch && !isEmpty(isMultibranch) && !isBranchInRoute) {
@@ -418,7 +385,6 @@ export default class Activity extends React.Component {
         isLoading={isLoading}
         onFetch={this.handleFetch}
         actions={this.getActions()}
-        footer={this.renderFooter()}
         hideSearch
         enabledActions={this.enabledActions}
       />

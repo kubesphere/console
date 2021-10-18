@@ -377,8 +377,9 @@ module.exports = {
   GIT_CLONE_OPTIONS: 'Git 克隆参数',
   CLONE_DEPTH: '克隆深度',
   REGEX_FILTER: '过滤规则',
+  REG_FILTER_TITLE: '根据名称过滤（正则匹配）',
   REG_FILTER_DESC:
-    '启用正则表达式，将忽略与提供的正则表达式不匹配的名称（包括分支与PR等)',
+    '启用正则表达式，将忽略与提供的正则表达式不匹配的名称（包括分支与PR等）',
   ENABLE_SHALLOW_CLONE: '开启浅克隆',
   PIPELINE_CLONE_TIMEOUT: '流水线克隆超时时间（单位：分钟）',
   'config name': '配置名称',
@@ -492,6 +493,5 @@ module.exports = {
   DEVOPS_PROJECT_DESC:
     'DevOps 工程用于对资源进行分组管理以及控制不同用户的资源管理权限。',
   CODE_REPOSITORY_OPTIONAL: '代码仓库（可选）',
-  TOKEN: '令牌',
   OPTIONS: '备用选项',
 }

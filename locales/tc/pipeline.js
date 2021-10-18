@@ -377,6 +377,7 @@ module.exports = {
   GIT_CLONE_OPTIONS: 'Git 克隆參數',
   CLONE_DEPTH: '克隆深度',
   REGEX_FILTER: '過濾規則',
+  REG_FILTER_TITLE: '根據名稱過濾（正則匹配）',
   REG_FILTER_DESC:
     '啟用正則表達式，將忽略與提供的正則表達式不匹配的名稱（包括分支與PR等)',
   ENABLE_SHALLOW_CLONE: '開啟淺克隆',

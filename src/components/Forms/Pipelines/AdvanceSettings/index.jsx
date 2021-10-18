@@ -292,6 +292,7 @@ export default class AdvanceSettings extends React.Component {
 
     return (
       <>
+        <div className="h6">{t('REG_FILTER_TITLE')}</div>
         <Form.Item>
           <Checkbox
             checked={enable_regex_filter}
@@ -344,14 +345,17 @@ export default class AdvanceSettings extends React.Component {
         {source_type !== 'git' && source_type !== 'svn' ? (
           <React.Fragment>
             <div className="h6">{t('BEHAVIORAL_STRATEGY')}</div>
-            <Form.Item>
-              <ActionsInput
-                sourceType={source_type}
-                name={`multi_branch_pipeline.${source_type}_source`}
-              />
-            </Form.Item>
+            <div className={styles.wrapper}>
+              <Form.Item>
+                <ActionsInput
+                  sourceType={source_type}
+                  name={`multi_branch_pipeline.${source_type}_source`}
+                />
+              </Form.Item>
+            </div>
           </React.Fragment>
         ) : null}
+        {isShowRepoTrigger ? this.renderRegFilter() : null}
         <div className="h6">{t('SCRIPT_PATH')}</div>
         <Form.Item label={t('PATH')} desc={t('SCRIPT_PATH_DESC')}>
           <Input
@@ -360,7 +364,6 @@ export default class AdvanceSettings extends React.Component {
           />
         </Form.Item>
         <div className="h6">{t('REPO_SCAN_TRIGGER')}</div>
-        {isShowRepoTrigger ? this.renderRegFilter() : null}
         <Form.Item>
           <Checkbox
             checked={enable_timer_trigger}

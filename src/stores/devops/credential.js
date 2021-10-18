@@ -50,9 +50,6 @@ export default class CredentialStore extends BaseStore {
   detail = {}
 
   @observable
-  usage = {}
-
-  @observable
   params = {}
 
   @action
@@ -175,20 +172,6 @@ export default class CredentialStore extends BaseStore {
 
     this.detail = data
     this.isLoading = false
-  }
-
-  @action
-  async getUsageDetail() {
-    const { devops, credential_id, cluster } = this.params
-
-    const usage = await request.get(
-      `${this.getDevopsUrlV2({
-        cluster,
-        devops,
-      })}credentials/${credential_id}/usage`
-    )
-
-    this.usage = usage
   }
 
   @action

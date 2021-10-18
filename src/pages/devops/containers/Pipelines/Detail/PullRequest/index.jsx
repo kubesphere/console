@@ -120,17 +120,17 @@ export default class Pullrequest extends React.Component {
     },
     {
       title: t('NAME'),
-      dataIndex: 'displayName',
+      dataIndex: 'name',
       width: '15%',
-      render: (displayName, record) => (
+      render: (name, record) => (
         <Link
           className={classNames('item-name', {
             [styles.itemNameDisabled]: record.disabled,
           })}
-          to={`${this.prefix}/branch/${displayName}/`}
+          to={`${this.prefix}/branch/${name}/`}
           disabled={record.disabled}
         >
-          {displayName}
+          {name}
         </Link>
       ),
     },
