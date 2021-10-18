@@ -69,7 +69,7 @@ module.exports = {
   IMAGE_NAME_SCAP: 'Image name',
   IMAGE_NAME_EMPTY_DESC: 'Please enter an image name.',
   IMAGE_TAG_EMPTY_DESC: 'Please enter an image tag.',
-  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Please set a target image repository.',
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Please set a target image registry.',
   IMAGE_TAG: 'Image Tag',
   ImageName: 'ImageName',
   'is Failed': 'is Failed',
@@ -104,7 +104,7 @@ module.exports = {
   S2I_RELATIVE_PATH_TIP:
     'Specify a relative directory inside the application. (Default value /)',
   StartTime: 'StartTime',
-  TARGET_IMAGE_REPOSITORY: 'Target Image Repository',
+  TARGET_IMAGE_REPOSITORY: 'Target Image Registry',
   S2I_NO_SECRET: 'The current code repository does not require a secret.',
   UPLOAD_ARTIFACT_TIP: 'Please upload an artifact.',
   HEALTH_CHECKER_DESC:
@@ -168,7 +168,7 @@ module.exports = {
   S2I_IMAGE_NAME_DESC:
     'The name can contain only lowercase letters, numbers, hyphens (-), dots (.), slashes (/), and colons (:), and must start and end with a lowercase letter or number.',
   S2I_TARGET_IMAGE_REPOSITORY_DESC:
-    'Select an image repository for storing the image to be created. If no image repository is available, you need to create an image repository Secret. <br/><a href={link} target="_blank">Learn More</a>',
+    'Select an image registry for storing the image to be created. If no image registry is available, you need to create an image registry Secret. <br/><a href={link} target="_blank">Learn More</a>',
   S2I_BUILDERNAME_DESC:
     'Select the editing environment, you can also view the <a href={link} target="_blank">corresponding compilation template</a>',
   'Build image for service x': 'Build image for service {service}',

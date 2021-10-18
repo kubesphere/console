@@ -219,6 +219,7 @@ module.exports = {
     '高级设置用于配置项目的外网访问、应用治理以及日志收集功能。',
   PROJECT_MEMBERS_DESC: '对项目内的成员进行管理及角色分配',
   PROJECT_ROLE_DESC: '项目角色定义了在当前项目下用户所拥有的权限。',
+  SERVICE_ACCOUNT_PROJECT_ROLE_DESC: '选择服务帐户在当前项目中的角色。',
   PROJECT_ROLE_EMPTY_DESC: '请创建一个项目角色。',
   COLLECTING_FILE_LOG_DESC:
     '对容器内的落盘日志进行收集，并转发到标准输出，然后由日志收集系统统一采集。',

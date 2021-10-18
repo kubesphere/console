@@ -91,7 +91,10 @@ module.exports = {
   JOB_OFFLINE_SUCCESSFULLY: '任務下線成功。',
 
   REAL_TIME_TRAFFIC_DIST_TCAP: '實時流量分布',
-  REAL_TIME_TRAFFIC_RATIO: '流量實時配比。',
+  TRAFFIC_MIRRORING_TRAFFIC_DISTRI_DESC:
+    'A copy of traffic is sent to the new version for testing.',
+  BLUE_GREEN_TRAFFIC_DISTRI_DESC:
+    'The new version or old version receives all traffic.',
   ALLOCATE_TRAFFIC_DESC: '將所有流量按比例分配給灰度組件。',
 
   SERVICE_VERSION_RECEIVE_ALL_TRAFFIC:
@@ -184,6 +187,7 @@ module.exports = {
   GRAY_COMPONENT_DESC:
     'The grayscale release components used to serve the traffic.',
   TRAFFIC_LOW: '流量',
+  VERSION_TRAFFIC_PERCENT: '{version} traffic {percent}%',
 
   // Grayscale release components tab
   GRAY_APP_NAME: '應用：{name}',

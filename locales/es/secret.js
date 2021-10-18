@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  ACCOUNT_PASSWORD_SECRET_SCAP: 'Secreto de contraseña de cuenta',
+  USERNAME_PASSWORD: 'Secreto de contraseña de cuenta',
   ACCOUNT_PASSWORD_SECRET_TCAP: 'Secreto de contraseña de cuenta',
   ADD_DATA_TCAP: 'Agregar datos',
   ADD_DATA_DESC: 'Agregar datos de par clave / valor',
@@ -27,7 +27,8 @@ module.exports = {
   EDIT_SECRET: 'Editar secreto',
   REGISTRY_ADDRESS_TIP:
     'Establezca una dirección de registro, por ejemplo, docker.io.',
-  IMAGE_REGISTRY_SECRET_SCAP: 'Secreto del repositorio de imágenes',
+  IMAGE_REGISTRY_INFORMATION: 'Secreto del repositorio de imágenes',
+  TLS_INFORMATION: 'TLS information',
   IMAGE_REGISTRY_SECRET_TCAP: 'Secreto del repositorio de imágenes',
   IMAGE_REGISTRY_REQUIRED_DESC:
     'Establezca la dirección de registro, el nombre de usuario y la contraseña.',
@@ -46,6 +47,7 @@ module.exports = {
   SECRET_PL: 'Secrets',
   SECRET_LOW: 'Secret',
   SECRET_SETTINGS_TCAP: 'Configuraciones secretas',
+  KUBECONFIG_SETTINGS: 'kubeconfig Settings',
   secrets: 'secretos',
   Secrets: 'Secretos',
   Unverified: 'Sin verificar',

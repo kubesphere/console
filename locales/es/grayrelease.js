@@ -70,7 +70,10 @@ module.exports = {
     'Forwarding by request content is unavailable if port protocol is not HTTP, HTTP2, or gRPC.',
   PREFIX_MATCH: 'Coincidencia de prefijo',
   REAL_TIME_TRAFFIC_DIST_TCAP: 'Distribución de tráfico en tiempo real.',
-  REAL_TIME_TRAFFIC_RATIO: 'Ratio de tráfico en tiempo real',
+  TRAFFIC_MIRRORING_TRAFFIC_DISTRI_DESC:
+    'A copy of traffic is sent to the new version for testing.',
+  BLUE_GREEN_TRAFFIC_DISTRI_DESC:
+    'The new version or old version receives all traffic.',
   RESTORE: 'Recuperar',
   REGEX_MATCH: 'Coincidencia regex',
   GRAY_RELEASE_JOB_NAME: 'Liberar nombre del job',
@@ -153,6 +156,7 @@ module.exports = {
   GRAY_COMPONENT_DESC:
     'The grayscale release components used to serve the traffic.',
   TRAFFIC_LOW: 'tráfico',
+  VERSION_TRAFFIC_PERCENT: '{version} traffic {percent}%',
 
   // Grayscale release components tab
   GRAY_APP_NAME: 'App: {name}',

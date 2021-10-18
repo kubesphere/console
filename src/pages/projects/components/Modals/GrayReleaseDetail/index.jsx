@@ -510,9 +510,6 @@ export default class GatewaySettingModal extends React.Component {
     const detail = toJS(this.store.detail)
     const { ratio } = this.state
 
-    const leftContent = `${detail.newVersion} ${t('TRAFFIC_LOW')}`
-    const rightContent = `${detail.oldVersion} ${t('TRAFFIC_LOW')}`
-
     const originRatio = get(detail, 'newRoute.weight')
 
     return (
@@ -525,8 +522,8 @@ export default class GatewaySettingModal extends React.Component {
           min={0}
           max={100}
           value={ratio}
-          leftContent={leftContent}
-          rightContent={rightContent}
+          leftContent={detail.newVersion}
+          rightContent={detail.oldVersion}
           onChange={this.handleRatioChange}
         />
         <NotifyConfirm
@@ -560,11 +557,14 @@ export default class GatewaySettingModal extends React.Component {
       <>
         <div className={styles.sectionTitle}>
           <div>{t('TRAFFIC_DISTRIBUTION')}</div>
-          <p>{t('REAL_TIME_TRAFFIC_RATIO')}</p>
+          <p>{t('BLUE_GREEN_TRAFFIC_DISTRI_DESC')}</p>
         </div>
         <div className={styles.barWrapper}>
           <div className={styles.bar}>
-            {`${selectVersion} ${t('TRAFFIC_LOW')} 100%`}
+            {t('VERSION_TRAFFIC_PERCENT', {
+              version: selectVersion,
+              percent: '100',
+            })}
           </div>
         </div>
       </>
@@ -582,7 +582,7 @@ export default class GatewaySettingModal extends React.Component {
       <>
         <div className={styles.sectionTitle}>
           <div>{t('TRAFFIC_DISTRIBUTION')}</div>
-          <p>{t('REAL_TIME_TRAFFIC_RATIO')}</p>
+          <p>{t('TRAFFIC_MIRRORING_TRAFFIC_DISTRI_DESC')}</p>
         </div>
         <div className={styles.mirror}>
           <div className={styles.barWrapper}>
@@ -591,7 +591,10 @@ export default class GatewaySettingModal extends React.Component {
                 [styles.mirrorBar]: selectVersion !== detail.newVersion,
               })}
             >
-              {`${detail.newVersion} ${t('TRAFFIC_LOW')} 100%`}
+              {t('VERSION_TRAFFIC_PERCENT', {
+                version: detail.newVersion,
+                percent: '100',
+              })}
             </div>
           </div>
           <div
@@ -607,7 +610,10 @@ export default class GatewaySettingModal extends React.Component {
                 [styles.mirrorBar]: selectVersion !== detail.oldVersion,
               })}
             >
-              {`${detail.oldVersion} ${t('TRAFFIC_LOW')} 100%`}
+              {t('VERSION_TRAFFIC_PERCENT', {
+                version: detail.oldVersion,
+                percent: '100',
+              })}
             </div>
           </div>
         </div>

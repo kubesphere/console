@@ -212,6 +212,8 @@ module.exports = {
     'Advanced settings are used to configure external access, application governance, and log collection in the project.',
   PROJECT_MEMBERS_DESC: '對項目内的成員進行管理及角色分配',
   PROJECT_ROLE_DESC: '項目角色定義了在目前項目下用戶所擁有的權限',
+  SERVICE_ACCOUNT_PROJECT_ROLE_DESC:
+    'Select the role of the service account in the current project.',
   PROJECT_ROLE_EMPTY_DESC: 'Please create a project role.',
   COLLECTING_FILE_LOG_DESC:
     '對容器内的落盤紀錄進行收集，並轉發到標準輸出，然後由紀錄收集系統統一採集。',

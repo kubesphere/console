@@ -92,8 +92,10 @@ module.exports = {
   JOB_OFFLINE_SUCCESSFULLY: '任务下线成功。',
 
   REAL_TIME_TRAFFIC_DIST_TCAP: '实时流量分布',
-  REAL_TIME_TRAFFIC_RATIO: '流量实时配比。',
-  ALLOCATE_TRAFFIC_DESC: '设置发送给新版本的流量比例和发送给旧版本的流量比例。',
+  TRAFFIC_MIRRORING_TRAFFIC_DISTRI_DESC: '将流量的副本发送给新版本进行测试。',
+  BLUE_GREEN_TRAFFIC_DISTRI_DESC: '新版本或旧版本接收全部流量。',
+  ALLOCATE_TRAFFIC_DESC:
+    '拖动滑块设置发送给新版本的流量比例和发送给旧版本的流量比例。',
 
   SERVICE_VERSION_RECEIVE_ALL_TRAFFIC: '版本 <b>{version}</b> 已接管所有流量。',
 
@@ -128,7 +130,8 @@ module.exports = {
 
   'Deploy sample application': '部署示例应用',
   DEPLOY_SAMPLE_APP: '部署示例应用',
-  POLICY_REQUEST_CONTENT_TIP: '指定请求参数仅支持 HTTP、HTTP2 和 gRPC 请求。',
+  POLICY_REQUEST_CONTENT_TIP:
+    '指定请求参数功能仅支持 HTTP、HTTP2 和 gRPC 请求。',
 
   NO_SERVICE_MESH_TIP: '未开启应用治理的应用无法使用灰度发布。',
 
@@ -172,13 +175,14 @@ module.exports = {
   DEPLOY_SAMPLE_NO_INTERNET_ACCESS_TIP:
     '当前项目中没有找到已开启应用治理的网关，因此您无法部署示例应用。请联系您的项目管理员在【高级设置】中设置外网访问方式',
 
-  PREREQUEST_FOR_USE_GRAYRELEASE_Q: '使用灰度发布的前提条件?',
+  PREREQUEST_FOR_USE_GRAYRELEASE_Q: '使用灰度发布功能有哪些前提条件？',
   PREREQUEST_FOR_USE_GRAYRELEASE_A:
-    '使用灰度发布功能前，您需要创建自制应用并且开启应用治理功能。',
+    '使用灰度发布功能前，您需要创建自制应用并且为自制应用启用应用治理功能。',
 
   // Grayscale release detail page
   GRAY_COMPONENT_DESC: '测试中的新版本和旧版本的相关信息。',
   TRAFFIC_LOW: '流量',
+  VERSION_TRAFFIC_PERCENT: '{version} 流量 {percent}%',
 
   // Grayscale release components tab
   GRAY_APP_NAME: '应用：{name}',

@@ -69,7 +69,7 @@ module.exports = {
   IMAGE_NAME_SCAP: 'Image name',
   IMAGE_NAME_EMPTY_DESC: 'Please enter an image name.',
   IMAGE_TAG_EMPTY_DESC: 'Please enter an image tag.',
-  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Please set a target image repository.',
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Please set a target image registry.',
   IMAGE_TAG: 'Image Tag',
   ImageName: 'Image Name',
   'is Failed': 'falló',

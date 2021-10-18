@@ -128,7 +128,6 @@ export default class SecretDetail extends React.Component {
   getAttrs = () => {
     const detail = toJS(this.store.detail)
     const { cluster, namespace } = this.props.match.params
-
     if (isEmpty(detail)) {
       return
     }

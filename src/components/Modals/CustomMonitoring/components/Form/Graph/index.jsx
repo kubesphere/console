@@ -50,7 +50,7 @@ export default class Graph extends Component {
     const { supportMetrics, labelsets, onLabelSearch } = this.props
     return (
       <div className={styles.wrapper}>
-        <FormGroupCard label={t('Basic Info')}>
+        <FormGroupCard label={t('BASIC_INFORMATION')}>
           <Form.Item>
             <Columns>
               <Column>
