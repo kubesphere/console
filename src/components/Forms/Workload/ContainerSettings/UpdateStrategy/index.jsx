@@ -29,14 +29,6 @@ import { NumberInput } from 'components/Inputs'
 
 import styles from './index.scss'
 
-const getStrategy = (props = {}) =>
-  get(
-    props.data,
-    `${props.isFederated && props.isEdit ? 'spec.template.' : ''}${
-      STRATEGIES_PREFIX[props.module]
-    }.type`
-  )
-
 @observer
 export default class UpdateStrategyForm extends React.Component {
   static propTypes = {
@@ -55,12 +47,15 @@ export default class UpdateStrategyForm extends React.Component {
     onChange() {},
   }
 
-  state = {
-    strategy: getStrategy(this.props),
+  constructor(props) {
+    super(props)
+    this.state = {
+      strategy: this.getStrategy(props),
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const strategy = getStrategy(this.props)
+    const strategy = this.getStrategy(this.props)
     if (strategy !== prevState.strategy) {
       this.setState({ strategy })
     }
@@ -70,11 +65,19 @@ export default class UpdateStrategyForm extends React.Component {
     return this.state.strategy === 'RollingUpdate'
   }
 
-  get rollingUpdatePrefix() {
-    const { isFederated, isEdit } = this.props
+  get prefix() {
+    const { isFederated, module, isEdit } = this.props
     return `${isFederated && isEdit ? 'spec.template.' : ''}${
-      STRATEGIES_PREFIX[this.props.module]
-    }.rollingUpdate`
+      STRATEGIES_PREFIX[module]
+    }`
+  }
+
+  get rollingUpdatePrefix() {
+    return `${this.prefix}.rollingUpdate`
+  }
+
+  getStrategy = props => {
+    return get(props.data, `${this.prefix}.type`)
   }
 
   get strategyOptions() {
@@ -252,13 +255,11 @@ export default class UpdateStrategyForm extends React.Component {
   }
 
   render() {
-    const { module } = this.props
-
     return (
       <>
         <Form.Item label={t('UPDATE_STRATEGY')}>
           <TypeSelect
-            name={`${STRATEGIES_PREFIX[module]}.type`}
+            name={`${this.prefix}.type`}
             onChange={this.handleStrategyChange}
             defaultValue="RollingUpdate"
             options={this.strategyOptions}
