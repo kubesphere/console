@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { get } from 'lodash'
 import { Link } from 'react-router-dom'
 
 import { Avatar } from 'components/Base'
@@ -66,6 +67,23 @@ export default class Deployments extends React.Component {
   }
 
   showAction = record => !record.isFedManaged
+
+  get selectActions() {
+    const { tableProps, trigger, name, rootStore } = this.props
+    return [
+      ...get(tableProps, 'tableActions.selectActions', {}),
+      {
+        key: 'stop',
+        text: t('STOP'),
+        onClick: () =>
+          trigger('resource.batch.stop', {
+            type: name,
+            rowKey: 'uid',
+            success: rootStore.routing.query(),
+          }),
+      },
+    ]
+  }
 
   get itemActions() {
     const { module, name, trigger } = this.props
@@ -217,6 +235,7 @@ export default class Deployments extends React.Component {
         <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}
+          selectActions={this.selectActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           cluster={match.params.cluster}

@@ -33,6 +33,7 @@ module.exports = {
   POD_LOW: 'Pod',
   LEARN_MORE: 'Learn More',
   DELETE: 'Delete',
+  STOP: 'Stop',
   DELETE_PROJECT: 'Delete Project',
   LOGS: 'Logs',
   NO_DATA: 'No Data',
@@ -161,6 +162,7 @@ module.exports = {
   deleted: 'deleted',
   Deleted: 'Deleted',
   DELETE_SUCCESS_DESC: 'Deleted successfully.',
+  STOP_SUCCESS_DESC: 'Stopped successfully.',
   DESCRIPTION: 'Description',
   DESELECT: 'Deselect',
   Destroy: 'Destroy',
@@ -544,12 +546,15 @@ module.exports = {
 
   DELETE_TITLE_SI: 'Delete {type}',
   DELETE_TITLE_PL: 'Delete Multiple {type}',
+  STOP_TITLE_SI: 'Stop {type}',
+  STOP_TITLE_PL: 'Stop Multiple {type}',
   DELETE_SERVICE: 'Delete Service',
   DELETE_MULTIPLE_SERVICES: 'Delete Multiple Services',
   DELETE_WORKLOAD: 'Delete Workload',
   DELETE_MULTIPLE_WORKLOADS: 'Delete Multiple Workloads',
   DELETE_DESC:
     'Are you sure you want to delete the resource? The resource cannot be restored after it is deleted.',
+  STOP_DESC: 'Are you sure you want to stop the resource?',
   DELETE_RESOURCE_TYPE_DESC:
     'Enter the {type} name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   DELETE_RESOURCE_TYPE_DESC_SI:
@@ -558,6 +563,8 @@ module.exports = {
     'Enter the {type} names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   DELETE_APP_RESOURCE_TIP:
     'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is deleted. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
+  STOP_APP_RESOURCE_TIP:
+    'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is stopped. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
 
   DELETE_RESOURCE_TITLE: 'Warning',
   DELETE_RESOURCE_TIP:
