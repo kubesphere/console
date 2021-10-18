@@ -38,11 +38,11 @@ export default {
           if (data.type === 'grafana') {
             delete data.type
 
-            request
-              .post(
-                `/kapis/monitoring.kubesphere.io/v1alpha3/clusterdashboards/${data.grafanaDashboardName}/template`,
-                data
-              )
+            store
+              .createGrafana(data, {
+                cluster,
+                namespace: namespace || get(data, 'metadata.namespace'),
+              })
               .then(() => {
                 Modal.close(modal)
                 Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
