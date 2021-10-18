@@ -179,13 +179,7 @@ export default class PipelineStore extends BaseStore {
       `${this.getBaseUrl({ devops, cluster })}${this.module}/${name}`
     )
 
-    const result = safeParseJSON(
-      get(
-        resultKub,
-        'metadata.annotations["pipeline.devops.kubesphere.io/jenkins-metadata"]'
-      ),
-      {}
-    )
+    const result = this.mapper(resultKub)
 
     this.setPipelineConfig(resultKub)
     this.detail = result
@@ -258,20 +252,25 @@ export default class PipelineStore extends BaseStore {
     }
 
     const result = await request.get(
-      `${this.getPipelineUrl({ cluster, name, devops })}branches/`,
+      `${this.getBaseUrl({
+        cluster,
+        namespace: devops,
+      })}pipelines/${decodeURIComponent(name)}/branches`,
       {
         filter: 'pull-requests',
-        start: (page - 1) * TABLE_LIMIT || 0,
+        page: page || 1,
         limit: TABLE_LIMIT,
       }
     )
-    result.forEach(item => {
-      item.id = item.latestRun.endTime
-    })
+
+    Array.isArray(result.items) &&
+      result.items.forEach(item => {
+        item.id = item.latestRun.endTime
+      })
 
     this.pullRequestList = {
-      data: result || [],
-      total: this.detail.totalNumberOfPullRequests || 0,
+      data: result.items || [],
+      total: result.totalItems || 0,
       limit: TABLE_LIMIT,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
@@ -290,19 +289,22 @@ export default class PipelineStore extends BaseStore {
     }
 
     const result = await request.get(
-      `${this.getPipelineUrl({ cluster, name, devops })}branches/`,
+      `${this.getBaseUrl({
+        cluster,
+        namespace: devops,
+      })}pipelines/${decodeURIComponent(name)}/branches`,
       {
         filter: 'origin',
-        start: (page - 1) * TABLE_LIMIT || 0,
+        page: page || 1,
         limit: TABLE_LIMIT,
         branch,
       }
     )
 
     this.branchList = {
-      data: result || [],
+      data: result.items || [],
       limit: TABLE_LIMIT,
-      total: this.detail.totalNumberOfBranches || 0,
+      total: result.totalItems || 0,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
       isLoading: false,
@@ -386,11 +388,13 @@ export default class PipelineStore extends BaseStore {
     const { devops, cluster, name, branch } = params
     try {
       const result = await request.get(
-        `${this.getPipelineUrl({
+        `${this.getBaseUrl({
           cluster,
-          name,
-          devops,
-        })}branches/${encodeURIComponent(branch)}/`
+
+          namespace: devops,
+        })}pipelines/${decodeURIComponent(name)}/branches/${decodeURIComponent(
+          branch
+        )}`
       )
 
       if (result.name) {
