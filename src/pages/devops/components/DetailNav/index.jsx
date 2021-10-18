@@ -18,7 +18,6 @@
 
 import React, { Component } from 'react'
 import { toJS } from 'mobx'
-import { isEmpty } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { NavLink } from 'react-router-dom'
 import { Columns, Column } from '@kube-design/components'
@@ -45,8 +44,7 @@ class Nav extends Component {
 
   get isMultibranch() {
     const { detailStore } = this.props
-    const scmSource = toJS(detailStore.detail.scmSource)
-    return !isEmpty(scmSource)
+    return toJS(detailStore.detail.isMultiBranch)
   }
 
   renderBaseInfo() {

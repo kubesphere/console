@@ -156,7 +156,7 @@ export default class PipelineDetailLayout extends React.Component {
           })
         },
       },
-      ...(!isEmpty(detail.scmSource)
+      ...(detail.isMultiBranch
         ? [
             {
               key: 'scan',

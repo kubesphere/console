@@ -307,7 +307,7 @@ export default class PipelinesList extends React.Component {
         const url = `/${this.workspace}/clusters/${this.cluster}/devops/${
           this.devops
         }/pipelines/${encodeURIComponent(record.name)}${
-          !isEmpty(record.scmSource) ? '/activity' : ''
+          record.isMultiBranch ? '/activity' : ''
         }`
 
         return <Avatar to={this.isRuning ? null : url} title={name} />

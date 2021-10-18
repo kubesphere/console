@@ -47,8 +47,7 @@ export default class Pipeline extends React.Component {
 
   get isMultibranch() {
     const { detailStore } = this.props
-    const scmSource = toJS(detailStore.detail.scmSource)
-    return !isEmpty(scmSource)
+    return toJS(detailStore.detail.isMultiBranch)
   }
 
   handlePipelineModal = () => {

@@ -1145,6 +1145,7 @@ const PipelinesMapper = item => {
       'metadata.annotations["pipeline.devops.kubesphere.io/syncstatus"]'
     ),
     name,
+    isMultiBranch: get(item, 'spec.type', '') === 'multi-branch-pipeline',
     numberOfPipelines: 0,
     numberOfFolders: 0,
     pipelineFolderNames: [],
@@ -1156,9 +1157,9 @@ const PipelinesMapper = item => {
     branchNames: [],
     parameters: [],
     disabled: false,
-    scmSource: {},
     weatherScore: 100,
     ...pipelineObject,
+    _originData: getOriginData(item),
   }
 }
 
