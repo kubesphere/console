@@ -33,6 +33,7 @@ module.exports = {
   POD_LOW: '容器组',
   LEARN_MORE: '了解更多',
   DELETE: '删除',
+  STOP: '停止',
   DELETE_PROJECT: '删除项目',
   LOGS: '日志',
   NO_DATA: '暂无数据',
@@ -453,11 +454,14 @@ module.exports = {
 
   DELETE_TITLE_SI: '删除{type}',
   DELETE_TITLE_PL: '批量删除{type}',
+  STOP_TITLE_SI: '停止{type}',
+  STOP_TITLE_PL: '批量停止{type}',
   DELETE_SERVICE: '删除服务',
   DELETE_MULTIPLE_SERVICES: '批量删除服务',
   DELETE_WORKLOAD: '删除工作负载',
   DELETE_MULTIPLE_WORKLOADS: '批量删除工作负载',
   DELETE_DESC: '您确定删除该资源吗？资源删除后将无法恢复。',
+  STOP_DESC: '您确定停止该资源吗？',
   DELETE_RESOURCE_TYPE_DESC:
     '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
   DELETE_RESOURCE_TYPE_DESC_SI:
@@ -466,6 +470,8 @@ module.exports = {
     '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
   DELETE_APP_RESOURCE_TIP:
     '资源被应用 <strong>{app}</strong> 管理, 删除后可能影响此应用的正常使用。请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
+  STOP_APP_RESOURCE_TIP:
+    '资源被应用 <strong>{app}</strong> 管理, 停止后可能影响此应用的正常使用。请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
 
   REMOVE_USER_TIP: '确定移除用户 <strong>{username}</strong> ? ',
 
@@ -480,6 +486,7 @@ module.exports = {
   CREATE_SUCCESSFUL: '创建成功。',
   UPDATED_SUCCESS_DESC: '更新成功。',
   DELETE_SUCCESS_DESC: '删除成功。',
+  STOP_SUCCESS_DESC: '停止成功。',
   'Canceled Successfully': '取消成功',
 
   EVENT_NORMAL: '正常',
