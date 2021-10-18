@@ -18,7 +18,7 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
-import Metadata from 'core/containers/Base/Detail/Metadata'
+import Metadata from './AnnotationsCard'
 import Monitoring from './Monitoring'
 import ResourceStatus from './ResourceStatus'
 import GatewayConfig from './GatewayConfig'
