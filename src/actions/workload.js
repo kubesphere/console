@@ -122,6 +122,11 @@ export default {
             )
           } else if (kind === 'Job') {
             omitJobGpuLimit(newObject[kind], 'spec.template.spec.containers')
+          } else if (kind === 'Deployment') {
+            omitJobGpuLimit(
+              newObject[kind],
+              'spec.template.spec.template.spec.containers'
+            )
           }
 
           const omitArr = [

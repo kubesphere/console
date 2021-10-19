@@ -27,6 +27,7 @@ import {
   isEmpty,
   isNaN,
   isUndefined,
+  omit,
 } from 'lodash'
 
 import {
@@ -191,6 +192,13 @@ export default class ResourceLimit extends React.Component {
     const value = get(props, 'value', {})
     const defaultValue = get(props, 'defaultValue', {})
     if (!isEmpty(value)) {
+      const gpuInfo = omit(value.limits, ['cpu', 'memory'])
+      if (!isEmpty(gpuInfo)) {
+        return {
+          type: Object.keys(gpuInfo)[0],
+          value: Object.values(gpuInfo)[0],
+        }
+      }
       return {
         type: get(value, 'gpu.type', ''),
         value: get(value, 'gpu.value', ''),
