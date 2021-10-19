@@ -22,7 +22,7 @@ import { get, omitBy, isEmpty } from 'lodash'
 import CreateModal from 'workspaces/components/Modals/WorkspaceCreate'
 import WorkspaceQuotaEditModal from 'workspaces/components/Modals/QuotaEdit'
 import DeleteModal from 'workspaces/components/Modals/WorkspaceDelete'
-
+import { quota_limits_requests_Dot } from 'utils'
 import QuotaStore from 'stores/workspace.quota'
 
 export default {
@@ -60,7 +60,7 @@ export default {
 
           const spec = get(data, 'spec.quota.hard', {})
           const resp = await quotaStore.checkName(params)
-
+          quota_limits_requests_Dot(spec)
           const template = {
             apiVersion: 'quota.kubesphere.io/v1alpha2',
             kind: 'ResourceQuota',

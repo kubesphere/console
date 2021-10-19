@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, omitBy, isEmpty, isString, omit, pick } from 'lodash'
+import { get, set, omitBy, isEmpty, omit } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import QuotaEditModal from 'components/Modals/QuotaEdit'
@@ -24,7 +24,7 @@ import ProjectCreateModal from 'components/Modals/ProjectCreate'
 import AssignWorkspaceModal from 'components/Modals/AssignWorkspace'
 import DefaultResourceEditModal from 'projects/components/Modals/DefaultResourceEdit'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { resourceLimitKey, limits_Request_EndsWith_Dot } from 'utils'
+import { quota_limits_requests_Dot, limits_Request_EndsWith_Dot } from 'utils'
 
 import QuotaStore from 'stores/quota'
 import UserStore from 'stores/user'
@@ -61,10 +61,9 @@ export default {
       const quotaStore = new QuotaStore()
       const modal = Modal.open({
         onOk: async data => {
-          const spec = get(data, 'spec.hard', {})
-          const units = ['ki', 'mi', 'gi', 'ti']
+          const hard = get(data, 'spec.hard', {})
 
-          // set gpu parameters and delete extra gpu parameters
+          // set gpu parameters into requests and delete extra gpu parameters
           const gpu = get(data, 'spec.gpu', {})
           if (!isEmpty(gpu) && gpu.type !== '') {
             set(data, `spec.hard["requests.${gpu.type}"]`, gpu.value)
@@ -78,26 +77,10 @@ export default {
           }
 
           // deal with the cpu and memory number as '2.'
-          const cpuAndMemory = pick(spec.hard, resourceLimitKey)
-          Object.keys(cpuAndMemory).forEach(key => {
-            const value = spec[key]
-            if (value === Infinity) {
-              spec[key] = ''
-            }
-            if (!isString(value)) {
-              return
-            }
-            if (value.slice(-1) === '.') {
-              spec[key] = value.slice(0, -1)
-            }
-            const keyUnit = value.slice(-2).toLowerCase()
-            if (value.slice(-3, -2) === '.' && units.indexOf(keyUnit) > -1) {
-              spec[key] = `${value.slice(0, -3)}${value.slice(-2)}`
-            }
-          })
+          quota_limits_requests_Dot(hard)
 
           data.spec = {
-            hard: omitBy(spec, v => (!v ? !v : isEmpty(v.toString()))),
+            hard: omitBy(hard, v => (!v ? !v : isEmpty(v.toString()))),
           }
 
           const resp = await quotaStore.checkName(params)
