@@ -55,13 +55,13 @@ export default class Card extends React.PureComponent {
           <Icon name="check" size={16} />{' '}
           {!isNaN(request_success_rate)
             ? `${request_success_rate}%`
-            : t('NO_DATA')}
+            : t('NO_DATA_SCAP')}
         </p>
         <p>
           <Icon name="timed-task" size={16} />{' '}
           {!isNaN(request_duration) && request_duration !== '0'
             ? `${request_duration} ms`
-            : t('NO_DATA')}
+            : t('NO_DATA_SCAP')}
         </p>
         <p>
           <Icon name="pod" size={16} />{' '}
@@ -85,11 +85,11 @@ export default class Card extends React.PureComponent {
       <div className={styles.detail}>
         <p>
           <Icon name="next" size={16} />{' '}
-          {!isNaN(requestIn) ? `${requestIn} B/s` : t('NO_DATA')}
+          {!isNaN(requestIn) ? `${requestIn} B/s` : t('NO_DATA_SCAP')}
         </p>
         <p>
           <Icon name="previous" size={16} />{' '}
-          {!isNaN(requestOut) ? `${requestOut} B/s` : t('NO_DATA')}
+          {!isNaN(requestOut) ? `${requestOut} B/s` : t('NO_DATA_SCAP')}
         </p>
         <p>
           <Icon name="pod" size={16} />{' '}

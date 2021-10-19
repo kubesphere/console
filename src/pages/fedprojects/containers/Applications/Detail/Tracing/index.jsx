@@ -185,9 +185,7 @@ export default class Tracing extends React.Component {
   }
 
   serviceRenderer = option => (
-    <span>
-      {t('Service')}: {option.label}
-    </span>
+    <span>{t('SERVICE_VALUE', { value: option.label })}</span>
   )
 
   renderOperations() {
@@ -228,7 +226,7 @@ export default class Tracing extends React.Component {
       return (
         <EmptyList
           image="/assets/traffic-management.svg"
-          title={t('Temporarily unable to use tracing')}
+          title={t('TRACING_UNAVAILABLE')}
           desc={t('TRACING_NO_MICROSERVICE_TIP')}
         />
       )
@@ -269,8 +267,8 @@ export default class Tracing extends React.Component {
         &nbsp;
         <span>
           {isServiceMeshEnabled
-            ? t('Microservice enabled')
-            : t('Microservice not enabled')}
+            ? t('APPLICATION_GOVERNANCE_ENABLED')
+            : t('APPLICATION_GOVERNANCE_DISABLED')}
         </span>
       </span>
     )

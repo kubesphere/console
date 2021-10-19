@@ -211,7 +211,7 @@ export default class GatewaySettingModal extends React.Component {
                 {globals.app.hasClusterModule(cluster, 'servicemesh') && (
                   <>
                     <div className={styles.toggle}>
-                      {t('APPLICATION_GOVERNANCE')}
+                      {t('TRACING')}
                       <Toggle
                         checked={isChecked}
                         onChange={this.handleToggleChange}

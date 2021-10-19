@@ -87,7 +87,7 @@ export default class TracingCard extends React.Component {
     return (
       <div className={styles.cardHeader}>
         {operations && <div className={styles.operations}>{operations}</div>}
-        {t('Tracing')}
+        {t('TRACING')}
       </div>
     )
   }

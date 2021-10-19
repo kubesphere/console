@@ -25,7 +25,12 @@ import VolumeSettings from 'components/Forms/Workload/VolumeSettings'
 import AdvanceSettings from 'components/Forms/Workload/AdvanceSettings'
 
 export default [
-  { title: 'Basic Info', icon: 'cdn', component: BaseInfo, required: true },
+  {
+    title: 'BASIC_INFORMATION',
+    icon: 'cdn',
+    component: BaseInfo,
+    required: true,
+  },
   {
     title: 'STRATEGY_SETTINGS',
     icon: 'cron-job',

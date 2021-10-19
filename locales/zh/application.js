@@ -46,12 +46,13 @@ module.exports = {
   APP_COMPONENT_PL: '应用组件',
   'Application Component': '应用组件',
   'Application Route': '应用路由',
-  'Traffic Management': '流量治理',
+  TRAFFIC_MANAGEMENT: '流量管理',
+  NETWORK_TRAFFIC: '网络流量',
 
   'No Components': '暂无组件',
   'Cluster Select': '集群选择',
 
-  'Application governance is not enabled': '应用治理未启用',
+  'Application governance is not enabled': '应用治理未开启',
 
   'Build an app by services': '通过服务构建应用',
   'Build an app by app template': '应用模板部署',
@@ -121,6 +122,7 @@ module.exports = {
   'Session retention': '会话保持',
 
   METHOD: '方式',
+  CREATION_METHOD: '创建方式',
   'According to the HTTP header': '根据 HTTP header',
 
   On: '开启',
@@ -138,7 +140,7 @@ module.exports = {
     '应用为用户提供完整的业务功能，由一个或多个特定功能的组件组成。',
   CREATE_APP_DESC: '从 KubeSphere 应用商店或应用模板创建应用。',
   APPLICATION_GOVERNANCE_DESC:
-    '开启应用治理后，istio-proxy 容器将以 Sidecar 方式注入到自制应用的每个服务中。<a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">了解更多</a>',
+    '开启应用治理后可以对应用使用流量监控、灰度发布和链路追踪功能。',
 
   VERSION_DESC: '版本只能包含小写字母和数字，最长 16 个字符。',
 
@@ -165,8 +167,7 @@ module.exports = {
 
   TYPE_SERVICE_DEPLOYMENT: '类型：无状态服务（部署）',
   TYPE_SERVICE_STATEFULSET: '类型：有状态服务（有状态副本集）',
-  TRAFFIC_MONITORING_UNAVAILABLE: '流量监控不可用',
-  'Temporarily unable to use tracing': '暂时无法使用 Tracing',
+  TRACING_UNAVAILABLE: '暂时无法使用链路追踪',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC: '应用长时间未收到请求，请稍后重试。',
   'Application components combine workloads and services as components in applications':
     '应用组件组合了工作负载和服务作为应用中的组件',
@@ -175,6 +176,7 @@ module.exports = {
 
   'No result found': '未查询到结果',
   TRACING_NO_DATA_DESC: '请修改搜索条件后重试。',
+  TRACING: '链路追踪',
   NUM_SPAN_SI: '{num} span',
   NUM_SPAN_PL: '{num} spans',
   NUM_ERROR_SI: '{num} 错误',
@@ -226,7 +228,7 @@ module.exports = {
   APP_BASIC_INFORMATION_DESC: '设置应用的基本信息。',
 
   HOW_TO_USE_APP_GOVERN_Q: '如何使用应用治理功能?',
-  HOW_TO_USE_APP_GOVERN_A: '您可以在创建自制应用时启用应用治理功能。',
+  HOW_TO_USE_APP_GOVERN_A: '您可以在创建自制应用时开启应用治理功能。',
 
   'App Types': '应用的类型',
   TIP_APP_TYPE:
@@ -254,11 +256,10 @@ module.exports = {
   ROUTE_SETTINGS: '路由设置',
   ROUTE_SETTINGS_DESC: '为应用设置路由规则。',
 
-  'Microservice enabled': '微服务已启用',
-  'Microservice not enabled': '微服务未启用',
+  APPLICATION_GOVERNANCE_ENABLED: '应用治理已开启',
+  APPLICATION_GOVERNANCE_DISABLED: '应用治理已关闭',
 
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
-    '流量治理依赖于微服务模块, 当前集群未启用微服务模块',
-  TRACING_NO_MICROSERVICE_TIP:
-    'Tracing 依赖于微服务模块, 当前集群未启用微服务模块',
+    '流量治理依赖于微服务模块, 当前集群未开启微服务模块',
+  TRACING_NO_MICROSERVICE_TIP: '请在当前集群中开启应用治理组件。',
 }

@@ -138,15 +138,15 @@ class Monitorings extends React.Component {
 
     return [
       {
-        title: 'Request Count',
+        title: 'REQUEST_COUNT',
         unit: '',
         legend: volumeLegend,
         data: requestVolumeData,
       },
       {
-        title: 'Active Connections',
+        title: 'CONNECTION_COUNT',
         unit: '',
-        legend: ['Utilization'],
+        legend: ['CONNECTION_COUNT'],
         data: get(
           this.metrics,
           `${MetricTypes.ingress_active_connections}.data.result`,
@@ -155,12 +155,12 @@ class Monitorings extends React.Component {
       },
 
       {
-        title: 'Request Duration',
+        title: 'REQUEST_LATENCY_MS',
         legend: [
-          t('Duration 50percentage'),
-          t('Duration 95percentage'),
-          t('Duration 99percentage'),
-          t('Duration Average'),
+          t('P_FIFTY_LATENCY'),
+          t('P_NINETY_FIVE_LATENCY'),
+          t('P_NINETY_NINE_LATENCY'),
+          t('AVERAGE_LATENCY'),
         ],
 
         data: [
@@ -188,9 +188,9 @@ class Monitorings extends React.Component {
         dot: 4,
       },
       {
-        title: 'Request Error',
+        title: 'FAILED_REQUEST_COUNT',
         unit: '',
-        legend: [t('Request 4xx'), t('Request 5xx')],
+        legend: [t('FOUR_XX_REQUEST_COUNT'), t('FIVE_XX_REQUEST_COUNT')],
         data: [
           get(
             this.metrics,
@@ -205,10 +205,10 @@ class Monitorings extends React.Component {
         ],
       },
       {
-        title: 'Network I/O Pressure',
+        title: 'NETWORK_TRAFFIC',
         unit: '',
         unitType: 'traffic',
-        legend: [t('Net Received'), t('Net Transmitted')],
+        legend: [t('INBOUND_TRAFFIC'), t('INBOUND_TRAFFIC')],
         data: [
           get(
             this.metrics,
@@ -230,7 +230,6 @@ class Monitorings extends React.Component {
     const { isLoading, isRefreshing } = this.monitorStore
     const { podsName, options } = this.state
     const configs = this.getMonitoringCfgs()
-
     return (
       <div>
         <MonitoringOverview {...this.props} />

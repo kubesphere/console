@@ -49,7 +49,7 @@ export default [
   },
   {
     path: `${PATH}/tracing`,
-    title: 'Tracing',
+    title: 'TRACING',
     component: Tracing,
     clusterModule: 'servicemesh',
     exact: true,

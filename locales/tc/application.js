@@ -47,7 +47,8 @@ module.exports = {
   APP_COMPONENT_PL: '應用組件',
   'Application Component': '應用組件',
   'Application Route': '應用路由',
-  'Traffic Management': '流量管理',
+  TRAFFIC_MANAGEMENT: '流量管理',
+  NETWORK_TRAFFIC: 'Network Traffic',
 
   'Application governance is not enabled': '應用治理未啟用',
 
@@ -117,6 +118,7 @@ module.exports = {
   'Session retention': '會話保持',
 
   METHOD: '方式',
+  CREATION_METHOD: 'Creation Method',
   'According to the HTTP header': '根據 HTTP header',
 
   On: '開啟',
@@ -135,7 +137,7 @@ module.exports = {
   CREATE_APP_DESC:
     '輕量化、可移植、自包含的軟體封裝技術，使應用可以在幾乎任何地方以相同的方式運行。',
   APPLICATION_GOVERNANCE_DESC:
-    '開啟應用治理後會在每個組件中以 SideCar 的方式注入 Istio-proxy 容器 <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">了解更多</a>',
+    'Enable Application Governace to use the Traffic Monitoring, Grayscale Release, and Tracing features for the app.',
 
   VERSION_DESC: '最長 16 個字元，只能包含小寫字母及數字',
 
@@ -162,8 +164,7 @@ module.exports = {
 
   TYPE_SERVICE_DEPLOYMENT: '無狀態服務（部署）',
   TYPE_SERVICE_STATEFULSET: '有狀態服務（有狀態副本集）',
-  TRAFFIC_MONITORING_UNAVAILABLE: '暫時無法使用流量治理',
-  'Temporarily unable to use tracing': '暫時無法使用 Tracing',
+  TRACING_UNAVAILABLE: '暫時無法使用 Tracing',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC:
     '應用長時間未收到請求，請訪問應用後嘗試流量治理',
   'Application components combine workloads and services as components in applications':
@@ -173,6 +174,7 @@ module.exports = {
 
   'No result found': '未查詢到結果',
   TRACING_NO_DATA_DESC: '請嘗試其它查詢條件',
+  TRACING: 'Tracing',
   NUM_SPAN_SI: '{num} span',
   NUM_SPAN_PL: '{num} spans',
   NUM_ERROR_SI: '{num} error',
@@ -257,8 +259,8 @@ module.exports = {
   ROUTE_SETTINGS: 'Route Settings',
   ROUTE_SETTINGS_DESC: '可以設置應用的外網訪問規則 (Ingress)',
 
-  'Microservice enabled': '微服務已啟用',
-  'Microservice not enabled': '微服務未啟用',
+  APPLICATION_GOVERNANCE_ENABLED: '微服務已啟用',
+  APPLICATION_GOVERNANCE_DISABLED: '微服務未啟用',
 
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
     '流量治理依賴於微服務模組，目前集群未啟用微服務模組',

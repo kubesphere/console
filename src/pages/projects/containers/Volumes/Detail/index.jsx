@@ -135,7 +135,7 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'clone',
       type: 'control',
-      text: t('CLONE_VOLUME'),
+      text: t('CLONE'),
       icon: 'copy',
       action: 'create',
       disabled: this.allowClone,
@@ -158,7 +158,7 @@ export default class VolumeDetail extends React.Component {
     },
     {
       key: 'expand',
-      text: t('EXPAND_VOLUME'),
+      text: t('EXPAND'),
       icon: 'scaling',
       action: 'edit',
       disabled: !get(this.storageclass.detail, 'allowVolumeExpansion', false),
@@ -233,7 +233,7 @@ export default class VolumeDetail extends React.Component {
         value: accessMode,
       },
       {
-        name: t('Storage Class'),
+        name: t('STORAGE_CLASS'),
         value: storageClassName,
       },
       {
@@ -245,7 +245,7 @@ export default class VolumeDetail extends React.Component {
         ),
       },
       {
-        name: t('VOLUME_BACKEND_TCAP'),
+        name: t('VOLUME_INSTANCE'),
         value: get(detail, '_originData.spec.volumeName', ''),
       },
       {

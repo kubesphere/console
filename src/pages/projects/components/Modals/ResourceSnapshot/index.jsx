@@ -67,10 +67,10 @@ export default class ResourceSnapshot extends React.Component {
           <Input name="name" maxLength={253} />
         </Form.Item>
         <Form.Item
-          label={t('SNAPSHOT_TYPE')}
+          label={t('VOLUME_SNAPSHOT_CLASS')}
           rules={[{ required: true, message: t('SNAPSHOT_EMPTY_TIP') }]}
         >
-          <Select name="type" options={options} />
+          <Select name="type" options={options} placeholder=" " />
         </Form.Item>
       </Modal.Form>
     )

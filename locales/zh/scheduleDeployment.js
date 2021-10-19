@@ -17,7 +17,8 @@
  */
 
 module.exports = {
-  SPECIFY_REPLICAS: '指定副本数',
+  SPECIFY_REPLICAS: '指定副本数量',
+  WEIGHTS: '权重',
   SPECIFY_WEIGHTS: '指定权重',
   SPECIFY_WEIGHTS_DESC:
     '设置容器组副本总数和每个集群的权重。容器组副本将根据权重调度到每个集群。',

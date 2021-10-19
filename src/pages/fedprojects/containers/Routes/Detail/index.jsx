@@ -152,7 +152,7 @@ export default class RouteDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: detail.app,
       },
       {

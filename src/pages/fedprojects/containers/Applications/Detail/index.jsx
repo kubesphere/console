@@ -122,7 +122,7 @@ export default class AppDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: appName,
       },
       {

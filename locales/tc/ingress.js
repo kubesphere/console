@@ -50,8 +50,8 @@ module.exports = {
 
   INVALID_DOMAIN_DESC: '域名格式錯誤',
 
-  'Gateway IP': '網關 IP',
-  'Gateway Type': '網關類型',
+  GATEWAY_IP_ADDRESS: '網關 IP',
+  GATEWAY_ACCESS_MODE: '網關類型',
 
   MODE_TCAP: '模式',
   PATH_PL: '路徑',

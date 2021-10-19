@@ -24,6 +24,7 @@ module.exports = {
   'Total Replicas Number': '總副本數',
   WEIGHT: '權重',
   SPECIFY_REPLICAS: 'Specify Replicas',
+  WEIGHTS: 'Weights',
   SPECIFY_WEIGHTS: 'Specify Weights',
   TOTAL_REPLICAS: '副本總數',
   ENTER_POSITIVE_INTEGER_DESC: '副本輸入不合法',

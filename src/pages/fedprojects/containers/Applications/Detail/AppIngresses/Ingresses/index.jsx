@@ -82,7 +82,9 @@ export default class Components extends Component {
       return '-'
     }
 
-    return gateway.ports.map(port => `${port.name}:${port.nodePort}`).join('; ')
+    return gateway.ports
+      .map(port => `${port.name.toUpperCase()}: ${port.nodePort}`)
+      .join('/')
   }
 
   getExternalIP(gateway) {
@@ -116,23 +118,23 @@ export default class Components extends Component {
           <Text
             icon="eip-pool"
             title={gateway.type}
-            description={t('Gateway Type')}
+            description={t('GATEWAY_ACCESS_MODE')}
           />
           {gateway.type === 'NodePort' ? (
             <>
               <Text
                 title={gateway.loadBalancerIngress || '-'}
-                description={t('Gateway IP')}
+                description={t('GATEWAY_IP_ADDRESS')}
               />
               <Text
                 title={this.getNodePorts(gateway)}
-                description={t('NodePort')}
+                description={t('NODE_PORTS_SCAP')}
               />
             </>
           ) : (
             <Text
               title={this.getExternalIP(gateway)}
-              description={t('EXTERNAL_IP_ADDRESS')}
+              description={t('LOAD_BALANCER_SCAP')}
             />
           )}
         </div>

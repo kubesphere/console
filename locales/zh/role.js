@@ -134,18 +134,18 @@ module.exports = {
   PROJECTS_VIEW: '项目查看',
   'Federated Projects Management': '联邦项目管理',
   PROJECTS_CREATE: '项目创建',
-  DEVOPS_MANAGEMENT: 'DevOps 工程管理',
-  DEVOPS_VIEW: 'DevOps 工程查看',
-  DEVOPS_CREATE: 'DevOps 工程创建',
+  DEVOPS_MANAGEMENT: 'DevOps 项目管理',
+  DEVOPS_VIEW: 'DevOps 项目查看',
+  DEVOPS_CREATE: 'DevOps 项目创建',
 
   PROJECTS_MANAGEMENT_DESC: '创建、编辑和删除企业空间中的项目。',
   PROJECTS_CREATE_DESC: '创建项目。项目的管理员为项目的创建者。',
   PROJECTS_VIEW_DESC: '查看企业空间中的所有项目。',
   FEDERATED_PROJECTS_MANAGEMENT_DESC:
     '管理企业空间里的所有多集群项目，可以 创建/编辑/删除 多集群项目',
-  DEVOPS_MANAGEMENT_DESC: '创建、编辑和删除企业空间中的 DevOps 工程。',
-  DEVOPS_CREATE_DESC: '创建 DevOps 工程。DevOps 工程的管理员为工程的创建者。',
-  DEVOPS_VIEW_DESC: '查看企业空间中的所有 DevOps 工程。',
+  DEVOPS_MANAGEMENT_DESC: '创建、编辑和删除企业空间中的 DevOps 项目。',
+  DEVOPS_CREATE_DESC: '创建 DevOps 项目。DevOps 项目的管理员为项目的创建者。',
+  DEVOPS_VIEW_DESC: '查看企业空间中的所有 DevOps 项目。',
 
   APPLICATION_WORKLOADS_VIEW: '应用负载查看',
   APPLICATION_WORKLOADS_MANAGEMENT: '应用负载管理',
@@ -197,7 +197,7 @@ module.exports = {
   PROJECT_RESOURCES_MANAGEMENT: '项目资源管理',
   'Nodes View': '节点查看',
   NODES_VIEW_DESC: '查看节点信息',
-  NODES_MANAGEMENT_DESC: '管理节点，停用/启用、污点管理等',
+  NODES_MANAGEMENT_DESC: '管理节点，停用/开启、污点管理等',
   'Components Management': '服务组件管理',
   COMPONENTS_MANAGEMENT_DESC: '管理集群的服务组件',
   'CRD Management': '自定义资源(CRD)管理',
@@ -229,23 +229,23 @@ module.exports = {
 
   PIPELINES_MANAGEMENT: '流水线管理',
   PIPELINES_VIEW: '流水线查看',
-  PIPELINES_MANAGEMENT_DESC: '创建、编辑和删除 DevOps 工程流水线。',
-  PIPELINES_VIEW_DESC: '查看 DevOps 工程流水线和下载制品。',
+  PIPELINES_MANAGEMENT_DESC: '创建、编辑和删除 DevOps 项目流水线。',
+  PIPELINES_VIEW_DESC: '查看 DevOps 项目流水线和下载制品。',
   CREDENTIALS_VIEW: '凭证查看',
   CREDENTIALS_MANAGEMENT_DESC: '创建、编辑和删除 DevOps 凭证。',
   CREDENTIALS_VIEW_DESC: '查看和使用 DevOps 凭证。',
 
   'DevOps Roles View': '角色查看',
   'DevOps Roles Management': '角色管理',
-  DEVOPS_ROLES_VIEW_DESC: '查看 DevOps 工程角色。',
+  DEVOPS_ROLES_VIEW_DESC: '查看 DevOps 项目角色。',
   DEVOPS_ROLES_MANAGEMENT_DESC:
-    '可以 创建/编辑/删除  DevOps 工程角色，系统预置角色无法删除',
+    '可以 创建/编辑/删除  DevOps 项目角色，系统预置角色无法删除',
   'DevOps Members View': '成员查看',
   'DevOps Members Management': '成员管理',
-  DEVOPS_MEMBERS_VIEW_DESC: '查看 DevOps 工程成员。',
-  DEVOPS_MEMBERS_MANAGEMENT_DESC: '邀请/编辑/移除 DevOps 工程成员',
-  DEVOPS_SETTINGS: 'DevOps 工程设置',
-  DEVOPS_SETTINGS_DESC: '管理 DevOps 工程的设置。',
+  DEVOPS_MEMBERS_VIEW_DESC: '查看 DevOps 项目成员。',
+  DEVOPS_MEMBERS_MANAGEMENT_DESC: '邀请/编辑/移除 DevOps 项目成员',
+  DEVOPS_SETTINGS: 'DevOps 项目设置',
+  DEVOPS_SETTINGS_DESC: '管理 DevOps 项目的设置。',
 
   'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
     '默认用户角色，仅允许对自己创建或受邀加入的项目中的资源进行管理，无权操作集群范围内其他资源。',
@@ -268,16 +268,16 @@ module.exports = {
   ROLE_WORKSPACE_REGULAR: '企业空间普通成员，可以查看企业空间设置。',
   ROLE_WORKSPACE_VIEWER: '企业空间观察员，可以查看企业空间中的所有资源。',
   ROLE_WORKSPACE_SELF_PROVISIONER:
-    '企业空间普通成员，可以查看企业设置、管理应用模板、创建项目和 DevOps 工程。',
+    '企业空间普通成员，可以查看企业设置、管理应用模板、创建项目和 DevOps 项目。',
 
   ROLE_PROJECT_ADMIN: '项目管理员，可以管理项目中的所有资源。',
   ROLE_PROJECT_OPERATOR: '项目操作员，可以管理项目中除用户和角色之外的资源。',
   ROLE_PROJECT_VIEWER: '项目观察员，可以查看项目中的所有资源。',
 
-  ROLE_DEVOPS_ADMIN: 'DevOps 工程管理员，可以管理 DevOps 工程中的所有资源。',
+  ROLE_DEVOPS_ADMIN: 'DevOps 项目管理员，可以管理 DevOps 项目中的所有资源。',
   ROLE_DEVOPS_OPERATOR:
-    'DevOps 工程操作员，可以管理 DevOps 凭证和流水线以及查看 DevOps 工程中成员和角色。',
-  ROLE_DEVOPS_VIEWER: 'DevOps 工程观察员，可以查看 DevOps 工程中的所有资源。',
+    'DevOps 项目操作员，可以管理 DevOps 凭证和流水线以及查看 DevOps 项目中成员和角色。',
+  ROLE_DEVOPS_VIEWER: 'DevOps 项目观察员，可以查看 DevOps 项目中的所有资源。',
 
   ACCOUNT_ROLE_DESC: '帐户角色可以定义平台内的帐户拥有的权限',
   ACCOUNT_ROLE_CREATE_DESC: '帐户角色可以定义平台内的帐户拥有的权限',

@@ -58,7 +58,7 @@ module.exports = {
   STORAGE_CLASS_VALUE: '存储类型：{value}',
   'Storage Classs': '存储类型',
   STORAGE_CLASS_SETTINGS: '存储类型设置',
-  'Mount Info': '挂载信息',
+  MOUNT_INFORMATION: '挂载信息',
   // Volumes List Page
   MOUNT_STATUS: '挂载',
   MOUNTED: '已挂载',
@@ -81,7 +81,7 @@ module.exports = {
   VOLUME_NAME_EXIST: '存储卷名称已存在。',
 
   'Used Capacity': '已分配存储',
-  AVAILABLE_CAPACITY: '剩余存储',
+  AVAILABLE_CAPACITY: '剩余容量',
 
   PersistentVolumes: '持久化存储卷',
 
@@ -122,7 +122,6 @@ module.exports = {
     '设置为默认存储类型后，如果没有特殊指定，系统将默认创建该类型的存储卷。一个 KubeSphere 集群中仅允许设置一个默认存储类型。',
 
   PROVISIONER_DESC: '提供后端存储',
-  INODE_USAGE_RATE: 'Inode 使用率',
 
   VOLUME_STORAGE_CLASS_DESC: '选择一个存储类型来创建特定种类的存储卷。',
 
@@ -137,7 +136,8 @@ module.exports = {
   CHOOSE_STORAGE_SYSTEM_TIP: '选择存储系统',
   PROVISIONER_DEPENDENCE_DESC: '您需要先在存储系统中部署相关插件才能提供服务。',
 
-  EXPAND_VOLUME: '存储卷扩容',
+  EXPAND_VOLUME: '扩容存储卷',
+  EXPAND: '扩容',
   VOLUME_EXPAND_TIPS:
     '当前存储卷已挂载至工作负载，因此扩容会导致工作负载重启，并产生新的版本。可能业务会短暂的中断。',
   Expand: '扩容',
@@ -163,7 +163,7 @@ module.exports = {
   GLUSTERFS_RESTURL_DESC:
     '供应存储卷的 Heketi REST URL，例如，<Heketi 服务集群 IP 地址>:<Heketi 服务端口号>。',
   GLUSTERFS_ID_DESC: 'Gluster 集群 ID。',
-  GLUSTERFS_RESTAUTHENABLED_DESC: ' Gluster 启用对 REST 服务器的认证。',
+  GLUSTERFS_RESTAUTHENABLED_DESC: ' Gluster 开启对 REST 服务器的认证。',
   GLUSTERFS_RESTUSER_DESC: 'Gluster REST 服务或 Heketi 服务的用户名。',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Heketi 用户密钥的所属项目。',
   GLUSTERFS_SECRET_NAME_DESC: 'Heketi 用户密钥的名称。',
@@ -193,6 +193,7 @@ module.exports = {
 
   CREATE_SNAPSHOT: '创建快照',
   CLONE_VOLUME: '存储卷克隆',
+  CLONE: '克隆',
   ALLOW_VOLUME_SNAPSHOT: '允许存储卷快照',
   ALLOW_VOLUME_CLONE: '允许存储卷克隆',
   ALLOW_VOLUME_EXPANSION: '允许存储卷扩容',
@@ -210,7 +211,7 @@ module.exports = {
   VOLUME_SNAPSHOT_STATUS_FAILED: '创建失败',
   VOLUME_SNAPSHOT_STATUS_DELETING: '删除中',
 
-  SNAPSHOT_INFORMATION: '快照信息',
+  SNAPSHOT_PL: '快照',
 
   VolumeSnapshots: '存储卷快照',
   VOLUME_SNAPSHOT_DESC:
@@ -218,20 +219,20 @@ module.exports = {
   VOLUME_SNAPSHOT_EMPTY_DESC: '请前往存储卷详情页面创建一个存储卷快照。',
   WHAT_IS_VOLUME_SNAPSHOTS: '什么是存储卷快照',
 
-  CREATE_VOLUME_BY_STORAGE_CLASS: '通过存储类型',
+  CREATE_VOLUME_BY_STORAGE_CLASS: '通过存储类型创建',
   CREATE_VOLUME_BY_SNAPSHOT: '通过存储卷快照创建',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: '选择已有的存储卷快照来创建存储卷。',
   SELECT_STORAGE_CLASS_CREATE_VOLUME: '选择已有的存储类型来创建存储卷。',
 
-  CLUSTER_VOLUME_DIFF_DESC: '为不同的集群选择不同的存储类型。',
+  CLUSTER_VOLUME_DIFF_DESC: '在不同的集群中使用不同的存储设置。',
 
   VOLUME_MONITORING_TIP:
-    'KubeSphere 采集的是存储卷的设备用量数据，未挂载的存储卷暂时采集不到，并且对于如 OpenEBS/Local PV、NFS 等路径型存储卷通常与实际用量有一定出入。详见<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">存储卷监控数据分析</a>。',
+    '目前仅支持采集已挂载存储卷的用量数据，并且 OpenEBS、Local PV、NFS 等路径型存储卷的用量数据通常与实际值有一定出入。<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">了解更多</a>',
 
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',
   CLUSTER_ID: '集群 ID',
-  REST_AUTH_ENABLED: '启用 REST 认证',
+  REST_AUTH_ENABLED: '开启 REST 认证',
   REST_USER: 'REST 用户',
   VOLUME_TYPE: '存储卷类型',
   SECRET_NAME: '密钥名称',
@@ -242,7 +243,7 @@ module.exports = {
   GID_MAX: 'GID 最大值',
   CUSTOM: '自定义',
   PARAMETERS: '参数',
-  SNAPSHOT_TYPE: '快照类型',
+  VOLUME_SNAPSHOT_CLASS: '快照类型',
   SNAPSHOT_EMPTY_TIP: '请选择一个快照类型。',
   VOLUME_BINDING_MODE: '存储卷绑定模式',
   IMMEDIATE_BINDING: '立即绑定',
@@ -251,7 +252,7 @@ module.exports = {
 
   // Storage Class > Detail
   STORAGE_CLASS_SCAP: '存储类型',
-  APPLY: '应用',
+  CREATE_VOLUME: '创建存储卷',
   VOLUME_MANAGEMENT: '存储卷管理',
   SET_DEFAULT_STORAGE_CLASS_TITLE: '设为默认存储类型',
   VOLUME_COUNT: '存储卷数量',

@@ -19,6 +19,7 @@
 module.exports = {
   'Set Replicas': 'Fixed number of replicas',
   SPECIFY_REPLICAS: 'Specify Replicas',
+  WEIGHTS: 'Weights',
   SPECIFY_WEIGHTS: 'Specify Weights',
   SPECIFY_WEIGHTS_DESC:
     'Set the total number of Pod replicas and a weight for each cluster. The Pod replicas will be scheduled to the clusters according to the weights.',

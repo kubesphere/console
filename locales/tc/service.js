@@ -21,12 +21,11 @@ module.exports = {
   routes: '應用路由',
   Ports: '端口',
   selector: '選擇器',
-  SELECTOR: '選擇器',
   EXTERNAL_IP_ADDRESS: '外部 IP 地址',
+  EXTERNAL_IP_ADDRESS_SCAP: 'External IP address',
   'LoadBalancer IP': '負載平衡 IP',
   CREATE_SERVICE: '創建服務',
   'Delete Service': '刪除服務',
-  ACCESS_METHOD: '訪問方式',
   'Target Port': '目標端口',
   CONTAINER_PORT: '容器端口',
   CONTAINER_PORT_SCAP: 'Container port',
@@ -42,6 +41,7 @@ module.exports = {
   'Please select Service': '請選擇 Service',
   'Path is Required': '請填寫 Path',
   VIRTUAL_IP: '虛擬 IP',
+  VIRTUAL_IP_ADDRESS: 'Virtual IP address',
 
   SERVICE_TYPE_TCAP: '服務類型',
   SERVICE_TYPE_DESC: 'Select a Service type.',
@@ -52,7 +52,7 @@ module.exports = {
   NODEJS: 'Node.js',
   PYTHON: 'Python',
   BINARY: 'Binary',
-  'Service Access': '服務訪問',
+  ACCESS_INFORMATION: '服務訪問',
   STATELESS_SERVICE: '無狀態服務',
   STATEFUL_SERVICE: '有狀態服務',
   EXTERNAL_SERVICE: '外部服務',
@@ -62,7 +62,7 @@ module.exports = {
 
   'Internal access': '内部訪問',
   ACCESS_TYPE: '訪問類型',
-  INTERNAL_ACCESS_METHOD: 'Internal Access Method',
+  INTERNAL_ACCESS_MODE: 'Internal Access Mode',
 
   'Service Name': '服務名稱',
   'Please input service name': '請輸入服務名稱',
@@ -91,7 +91,7 @@ module.exports = {
   'Sure to delete the service(s)?': '確認刪除服務',
   NO_SERVICE_RELATED_RESOURCE_DESC: '目前服務下沒有關聯的資源',
   NO_WORKLOAD_RELATED_RESOURCE_DESC:
-    'No resources related to the workload is found.',
+    'No resource related to the workload is found.',
 
   'Automatically assign Service IP': '自動分配服務 IP',
   'Do not assign Service IP': '不分配服務 IP',
@@ -194,10 +194,13 @@ module.exports = {
   SERVICE_TYPE_STATEFULSERVICE: '有狀態服務',
   SERVICE_TYPE_STATELESSSERVICE: '無狀態服務',
   SERVICE_TYPE_EXTERNALSERVICE: '映射外部服務',
+  SERVICE_TYPE_STATEFULSERVICE_SCAP: 'Stateful service',
+  SERVICE_TYPE_STATELESSSERVICE_SCAP: 'Stateless service',
+  SERVICE_TYPE_EXTERNALSERVICE_SCAP: 'External service',
 
   SERVICE_PORTS_DESC: 'Set the container ports and Service ports.',
 
-  EIP_POOL_DESC: '集群内部訪問方式(DNS)',
+  INTERNAL_DOMAIN_NAME_SCAP: '集群内部訪問方式(DNS)',
 
   MAXIMUM_STICKINESS_DURATION_DESC:
     'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',

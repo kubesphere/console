@@ -101,7 +101,7 @@ module.exports = {
 
   TRAFFIC_MONITORING: '流量监控',
   TRAFFIC: '流量',
-  REQUEST_SUCCESS_RATE: '请求成功率',
+  SUCCESSFUL_REQUEST_RATE: '请求成功率',
 
   TRAFFIC_IN_LAST_FIVE_MINUTES: '最近五分钟的流量。',
 
@@ -133,7 +133,7 @@ module.exports = {
   POLICY_REQUEST_CONTENT_TIP:
     '指定请求参数功能仅支持 HTTP、HTTP2 和 gRPC 请求。',
 
-  NO_SERVICE_MESH_TIP: '未开启应用治理的应用无法使用灰度发布。',
+  NO_SERVICE_MESH_TIP: '该应用未开启应用治理，无法使用灰度发布功能。',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
     '将业务流量发送给新版本进行测试。如果新版本运行不正常，可立即将业务流量切换给旧版本。',
@@ -177,7 +177,7 @@ module.exports = {
 
   PREREQUEST_FOR_USE_GRAYRELEASE_Q: '使用灰度发布功能有哪些前提条件？',
   PREREQUEST_FOR_USE_GRAYRELEASE_A:
-    '使用灰度发布功能前，您需要创建自制应用并且为自制应用启用应用治理功能。',
+    '使用灰度发布功能前，您需要创建自制应用并且为自制应用开启应用治理功能。',
 
   // Grayscale release detail page
   GRAY_COMPONENT_DESC: '测试中的新版本和旧版本的相关信息。',

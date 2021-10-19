@@ -90,7 +90,7 @@ module.exports = {
   DELETE_MEMBER_TIP:
     '確定移除成員 <strong>{name}</strong> ? 移除後該成員將無法訪問此項目。',
 
-  'DevOps Projects': 'DevOps 工程',
+  'DevOps Projects': 'DevOps 项目',
   'Select Project Type': '選擇項目類型',
 
   ADD_QUOTA: '添加配額項目',
@@ -119,8 +119,8 @@ module.exports = {
   'Help Information': '幫助資訊',
 
   'Enter Project': '進入項目',
-  'Enter DevOps Project': '進入工程',
-  Project_Admin: '工程管理員',
+  'Enter DevOps Project': '進入项目',
+  Project_Admin: '项目管理員',
   'No Platform Manage Authorization': '無平台管理權限',
 
   'Default limit resource': '預設最大使用資源',
@@ -162,16 +162,16 @@ module.exports = {
   PROJECT_TYPES_PROJECT_TITLE: '創建資源類型項目',
   PROJECT_TYPES_PROJECT_DESC:
     'KubeSphere 中的項目對應的是 Kubernetes 的 namespace，是對一組資源和對象的抽象集合，可以根據不同的業務部門或者產品項目進行資源分組。',
-  PROJECT_TYPES_DEVOPS_TITLE: '創建一個 DevOps 工程',
+  PROJECT_TYPES_DEVOPS_TITLE: '創建一個 DevOps 项目',
   PROJECT_TYPES_DEVOPS_DESC: '持續、自動地構建/測試軟體項目。',
 
   PROJECT_ASSIGN_DESC: '項目一旦被分配到企業空間後將不允許修改企業空間',
 
   'Invite Members to the Project': '邀請成員到該項目',
-  INVITE_DEVOPS_MEMBER: '邀請成員到該 DevOps 工程',
+  INVITE_DEVOPS_MEMBER: '邀請成員到該 DevOps 项目',
   INVITE_MEMBER_DESC:
     'You can invite members who belong to the workspace to the project.',
-  INVITE_MEMBER_DESC_DEVOPS: '您可以邀請當前企業空間成員至該 DevOps 工程。',
+  INVITE_MEMBER_DESC_DEVOPS: '您可以邀請當前企業空間成員至該 DevOps 项目。',
   PROJECT_MEMBER_EMPTY_DESC:
     'Please invite a member of the current workspace to the project.',
   INVITE_MEMBER_SEARCH_PLACEHOLDER: '輸入用戶名邀請項目成員',
@@ -258,9 +258,6 @@ module.exports = {
 
   MULTI_CLUSTER_RESOURCE_TIP:
     '目前資源為多集群資源，資源將分佈在不同集群中共同來構成多集群資源，您可以切換到不同集群查看資源在該集群中的設置。',
-
-  PROJECT_GATEWAY_IP_TIP:
-    '在集群网关和项目网关同时开启的条件下，Ingress status 的 IP 会在集群网关和项目网关反复切换。',
 
   FEDPROJECT_RESOURCE_TIP:
     '無法在集群管理内創建多集群項目的資源, 請到多集群項目頁面内進行操作.',

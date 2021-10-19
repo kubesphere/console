@@ -237,9 +237,6 @@ module.exports = {
   MULTI_CLUSTER_RESOURCE_TIP:
     'El recurso multi-clúster actual se ejecuta en distintos clústers. Puedes saltar entre clústers para comprobar los parámetros de este recurso en cada uno de ellos.',
 
-  PROJECT_GATEWAY_IP_TIP:
-    'Currently, the resources are multi-cluster resources. The resources will be distributed in different clusters to form multi-cluster resources. You can switch to a different cluster to view the resource settings in that cluster.',
-
   CREATE_MULTI_CLUSTER_PROJECT_DESC:
     'Un proyecto multi-clúster se ejecuta sobre distintos clústers a la vez, lo que ayuda a que puedas construir un entorno de contenedores para una rápida iteración de aplicaciones y conseguir alta disponibilidad.',
 

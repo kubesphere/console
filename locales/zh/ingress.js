@@ -50,8 +50,8 @@ module.exports = {
 
   INVALID_DOMAIN_DESC: '域名格式错误。',
 
-  'Gateway IP': '网关 IP',
-  'Gateway Type': '网关类型',
+  GATEWAY_IP_ADDRESS: '网关 IP 地址',
+  GATEWAY_ACCESS_MODE: '网关访问模式',
 
   MODE_TCAP: '模式',
   PATH_PL: '路径',
@@ -80,10 +80,10 @@ module.exports = {
   ADD_ROUTING_RULE_DESC: '添加一个路由规则将域名路径映射至服务。',
   ROUTING_RULE_EMPTY_DESC: '请添加至少一个路由规则。',
   UNABLE_TO_ACCESS_TIP:
-    '● 请确保您设置的域名可以解析到访问入口的 IP 地址;<br/>● 如果在私有云环境中，请修改本地的 host 文件，并通过&lt域名&gt:&ltNodePort&gt的方式来访问;<br/>● 通过通配 DNS 访问，将域名修改为&ltHostname&gt.&lt网关地址&gt.nip.io，然后可以通过&ltHostname&gt.&lt网关地址&gt.nip.io:&ltNodePort&gt的形式来访问服务;<br/>● 如果通过域名访问被拦截，请确认您的域名是真实域名而且已经备案。',
+    '* 如果域名由系统自动生成，请确保您的客户机可以访问 nip.io。<br/>* 如果域名由用户手动指定，请确保您的 DNS 服务器或客户机的本地 hosts 文件中已配置了域名解析策略。',
 
   NO_GATEWAY_DESC:
-    '如需使用自动生成模式，请联系项目管理员在此项目的高级设置中设置网关访问方式。',
+    '如需使用自动生成模式，请联系项目管理员在此项目的高级设置中设置网关访问模式。',
   UNABLE_CREATE_ROUTE_TIP:
     '当前项目中没有找到可用的网关地址，无法创建应用路由。',
 
@@ -99,9 +99,9 @@ module.exports = {
   PREREQUESTS_FOR_USE_ROUTE_A:
     '使用应用路由需要由项目管理员对当前项目设置网关。',
 
-  ACCESS_TYPES_OF_ROUTE_Q: '应用路由支持的访问方式？',
+  ACCESS_TYPES_OF_ROUTE_Q: '应用路由支持哪些的访问模式？',
   ACCESS_TYPES_OF_ROUTE_A:
-    'KubeSphere 应用路由支持 NodePort 访问方式以及 LoadBalancer 访问方式。',
+    'KubeSphere 应用路由支持 NodePort 访问模式以及 LoadBalancer 访问模式。',
 
   // Route Detail Page
   ROUTE_PATH_VALUE: '路径：<strong>{value}</strong>',

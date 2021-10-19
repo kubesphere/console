@@ -267,7 +267,7 @@ export default class PodItem extends React.PureComponent {
               </Tooltip>
             )}
           </div>
-          <p>{t('POD_IP_ADDRESS')}</p>
+          <p>{t('POD_IP_ADDRESS_SCAP')}</p>
         </div>
         {this.renderMonitorings()}
         <div className={styles.arrow}>

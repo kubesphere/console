@@ -92,9 +92,12 @@ export default class ClusterService extends Component {
           <Text
             icon="eip-pool"
             title={`${detail.name}.${detail.namespace}.svc`}
-            description={t('EIP_POOL_DESC')}
+            description={t('INTERNAL_DOMAIN_NAME_SCAP')}
           />
-          <Text title={detail.clusterIP} description={t('VIRTUAL_IP')} />
+          <Text
+            title={detail.clusterIP}
+            description={t('VIRTUAL_IP_ADDRESS')}
+          />
           <MoreActions
             className={styles.more}
             options={this.getEnabledOperations()}
