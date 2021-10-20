@@ -30,7 +30,7 @@ export default class Nofiticaction extends Component {
           {summary}
         </div>
         <div className={styles.content}>
-          {t('MESSAGE_COLON')}
+          {t('DETAILS_COLON')}
           {message}
         </div>
       </div>

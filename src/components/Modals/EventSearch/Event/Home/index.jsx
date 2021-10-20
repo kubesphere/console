@@ -83,7 +83,7 @@ export default class HomeModal extends React.Component {
         <div className={styles.tips}>
           <div className={styles.pane}>
             {this.renderSearchBar()}
-            <h3 className={styles.rule}>{t('Search Rule')}:</h3>
+            <h3 className={styles.rule}>{t('QUERYING_RULES')}</h3>
             {this.renderRecentLogs()}
             {this.renderQueryItems()}
           </div>
@@ -108,12 +108,12 @@ export default class HomeModal extends React.Component {
                     events: histogramTodayData.events,
                     className: styles.count,
                   })
-                : t('NO_EVENTS_TODAY')}
+                : t('NO_RESOURCE_EVENTS_TODAY')}
             </h3>
             {histogramTodayData.events ? (
               <p>
                 <Icon name="clock" />
-                {t('Current Statistics Start Time')}:
+                {t('START_TIME_COLON')}
                 {moment(new Date()).format(`${t('EVENT_DATE')}`)}
               </p>
             ) : null}
@@ -160,13 +160,13 @@ export default class HomeModal extends React.Component {
         <div className={classnames(styles.card, styles.recent)}>
           <div className={styles.recentSummary}>
             <h2 className={styles.count}>{total || 0}</h2>
-            <p>{t('Event trends in the last 12 hours')}</p>
+            <p>{t('RESOURCE_EVENT_TRENDS_12H')}</p>
           </div>
           <div className={styles.chart}>
             <TimeBar
               xKey={'time'}
               data={toJS(histogramData.buckets || [])}
-              legend={[['count', t('Event statistics')]]}
+              legend={[['count', t('RESOURCE_EVENT_COUNT')]]}
               interval={interval || '30m'}
               onBarClick={this.selectedDurationParameter}
             />

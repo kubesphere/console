@@ -137,7 +137,7 @@ export default class BillModal extends React.Component {
             height: '20px',
           }}
         >
-          {t('Bill')}
+          {t('METERING_AND_BILLING')}
         </span>
       </div>
     )

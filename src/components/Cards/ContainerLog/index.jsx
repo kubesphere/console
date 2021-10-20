@@ -169,7 +169,11 @@ export default class ContainerLog extends React.Component {
     return (
       <div className={styles.operations}>
         <Tooltip
-          content={t(isRealtime ? 'STOP_REAL_TIME_LOG' : 'START_REAL_TIME_LOG')}
+          content={t(
+            isRealtime
+              ? 'STOP_REAL_TIME_CONTAINER_LOG'
+              : 'START_REAL_TIME_CONTAINER_LOG'
+          )}
         >
           <Icon
             name={isRealtime ? 'stop' : 'start'}
