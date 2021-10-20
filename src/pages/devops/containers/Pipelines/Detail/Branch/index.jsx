@@ -174,14 +174,21 @@ export default class Branch extends React.Component {
       title: t('LAST_MESSAGE'),
       dataIndex: 'latestRun',
       width: '20%',
-      render: latestRun => result(latestRun, 'causes[0].shortDescription', ''),
+      render: latestRun => result(latestRun, 'causes[0].shortDescription', '-'),
     },
     {
       title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'updateTime',
       width: '20%',
-      render: (updateTime, record) =>
-        getLocalTime(record.latestRun.startTime).format('YYYY-MM-DD HH:mm:ss'),
+      render: (updateTime, record) => {
+        // TOOD Change startTime field to durationInMillis
+        if (record?.latestRun?.startTime) {
+          return getLocalTime(record.latestRun.startTime).format(
+            'YYYY-MM-DD HH:mm:ss'
+          )
+        }
+        return '-'
+      },
     },
   ]
 
