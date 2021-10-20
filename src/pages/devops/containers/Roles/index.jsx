@@ -102,7 +102,6 @@ export default class Secrets extends React.Component {
             type: name,
             namespace: this.devops,
             cluster: this.cluster,
-            workspace: this.props.match.params.workspace,
             success: routing.query,
           }),
       },
