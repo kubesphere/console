@@ -21,7 +21,7 @@ import { reaction, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { isEmpty, has, get, throttle } from 'lodash'
+import { isEqual, isEmpty, has, get, throttle } from 'lodash'
 import {
   Button,
   Icon,
@@ -133,10 +133,19 @@ export default class PodsCard extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { detail, details, isFederated } = this.props
+    const needUpdate = !isEqual(
+      Object.keys(details).map(item => details[item]['name']),
+      Object.keys(prevProps.details).map(
+        item => prevProps.details[item]['name']
+      )
+    )
+
     if (
       detail !== prevProps.detail ||
       (isFederated &&
-        Object.keys(details).length !== Object.keys(prevProps.details).length)
+        Object.keys(details).length !==
+          Object.keys(prevProps.details).length) ||
+      needUpdate
     ) {
       const selectCluster = isFederated
         ? get(this.props, 'clusters[0]')

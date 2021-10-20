@@ -71,6 +71,16 @@ export default class ServiceSettings extends React.Component {
     })
   }
 
+  handleLabelsChange = value => {
+    const { formTemplate } = this.props
+    set(formTemplate, 'metadata.labels', value)
+    set(
+      formTemplate,
+      'metadata.annotations["kubesphere.io/workloadName"]',
+      `${value.app}-${value.version}`
+    )
+  }
+
   portsValidator = (rule, value, callback) => {
     if (!value) {
       return callback()
@@ -147,6 +157,7 @@ export default class ServiceSettings extends React.Component {
           namespace={this.namespace}
           addText={t('ADD')}
           isFederated={isFederated}
+          onChange={this.handleLabelsChange}
         />
       </Form.Item>
     )
