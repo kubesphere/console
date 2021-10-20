@@ -419,7 +419,13 @@ export default class ContainerSetting extends React.Component {
   }
 
   renderContainerForm(data) {
-    const { withService, isFederated, cluster, supportGpuSelect } = this.props
+    const {
+      withService,
+      isFederated,
+      cluster,
+      supportGpuSelect,
+      projectDetail,
+    } = this.props
     const { limitRange, imageRegistries } = this.state
     const type = !data.image ? 'Add' : 'Edit'
     const params = {
@@ -433,6 +439,7 @@ export default class ContainerSetting extends React.Component {
         module={this.module}
         namespace={this.namespace}
         data={data}
+        projectDetail={projectDetail}
         onSave={this.handleContainer}
         onCancel={this.hideContainer}
         withService={withService}
