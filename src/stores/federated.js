@@ -142,12 +142,14 @@ export default class FederatedStore extends Base {
 
     if (this.resourceStore.getResourceUrl) {
       const clusterNamesMap = {}
+
       data.forEach(item => {
         item.clusters.forEach(({ name: cluster }) => {
           clusterNamesMap[cluster] = clusterNamesMap[cluster] || []
           clusterNamesMap[cluster].push(item.name)
         })
       })
+
       const resources = await Promise.all(
         Object.entries(clusterNamesMap).map(([cluster, names]) =>
           request.get(
@@ -158,14 +160,17 @@ export default class FederatedStore extends Base {
           )
         )
       )
+
       const clusters = Object.keys(clusterNamesMap)
       const dataMap = keyBy(data, 'name')
+
       resources.forEach((resource, index) => {
         const cluster = clusters[index]
         if (resource && resource.items) {
           resource.items.forEach(item => {
             const itemData = this.mapper(item)
             const itemName = itemData.name
+
             if (dataMap[itemName]) {
               dataMap[itemName].resources = dataMap[itemName].resources || {}
               dataMap[itemName].resources[cluster] = {
