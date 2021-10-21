@@ -100,19 +100,24 @@ export default class PipelineLog extends React.Component {
 
   handleExpandErrorStep = () => {
     const nodes = toJS(this.props.nodes)
-    const errorNodeIdex =
-      Array.isArray(nodes) && nodes.findIndex(item => item.result !== 'SUCCESS')
+    const errorNodeIdex = [0]
 
-    if (errorNodeIdex > 0) {
-      if (nodes[errorNodeIdex].steps) {
-        const subStepIdex = nodes[errorNodeIdex].steps.findIndex(
-          item => item.result !== 'SUCCESS'
-        )
-        this.activeNodeIndex = [errorNodeIdex, subStepIdex]
-      } else {
-        this.activeNodeIndex = [errorNodeIdex]
-      }
+    if (isArray(nodes)) {
+      nodes.forEach((item, index) => {
+        if (isArray(item)) {
+          const a = item.findIndex(_item => _item.result !== 'SUCCESS')
+          errorNodeIdex[0] = index
+          errorNodeIdex[1] = a > -1 ? a : 0
+          return false
+        }
+        if (item.result !== 'SUCCESS') {
+          errorNodeIdex[0] = index
+          return false
+        }
+      })
     }
+
+    this.activeNodeIndex = [...errorNodeIdex]
   }
 
   handleRefresh = throttle(() => {
@@ -196,7 +201,7 @@ export default class PipelineLog extends React.Component {
       )
     }
 
-    const time = this.activeStage.durationInMillis || ''
+    const time = this.activeStage?.durationInMillis ?? ''
 
     return (
       <div className={styles.container}>
