@@ -176,7 +176,9 @@ export default class AffinityForm extends React.Component {
       delete this.props.data.spec.template.spec.customMode
     }
 
-    this.setState({ mode })
+    this.setState({ mode }, () => {
+      this.props.formProps.onChange()
+    })
   }
 
   handleChange = values => {
