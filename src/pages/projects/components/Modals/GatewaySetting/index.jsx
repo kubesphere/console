@@ -120,8 +120,20 @@ export default class GatewaySettingModal extends React.Component {
           ? globals.config.loadBalancerDefaultAnnotations
           : annotations
       )
+
+      set(
+        this.template,
+        "metadata.annotations['kubesphere.io/annotations']",
+        'QingCloud Kubernetes Engine'
+      )
     } else {
       set(this.template, 'spec.service.annotations', {})
+
+      set(
+        this.template,
+        "metadata.annotations['kubesphere.io/annotations']",
+        ''
+      )
     }
 
     this.setState({ type })
