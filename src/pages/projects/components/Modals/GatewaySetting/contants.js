@@ -82,11 +82,48 @@ const aliyun = {
   'service.beta.kubernetes.io/alibaba-cloud-loadbalancer-name	': '',
 }
 
+const EKS = {
+  'service.beta.kubernetes.io/load-balancer-source-ranges': '',
+  'service.beta.kubernetes.io/aws-load-balancer-type	': '',
+  'service.beta.kubernetes.io/aws-load-balancer-nlb-target-type': '',
+  'service.beta.kubernetes.io/aws-load-balancer-name	': '',
+  'service.beta.kubernetes.io/aws-load-balancer-internal': '',
+  'service.beta.kubernetes.io/aws-load-balancer-scheme': '',
+  'service.beta.kubernetes.io/aws-load-balancer-proxy-protocol': '',
+  'service.beta.kubernetes.io/aws-load-balancer-ip-address-type': '',
+  'service.beta.kubernetes.io/aws-load-balancer-access-log-enabled': '',
+  'service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name': '',
+  'service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-prefix':
+    '',
+  'service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled':
+    '',
+  'service.beta.kubernetes.io/aws-load-balancer-ssl-cert': '',
+  'service.beta.kubernetes.io/aws-load-balancer-ssl-ports': '',
+  'service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy': '',
+  'service.beta.kubernetes.io/aws-load-balancer-backend-protocol': '',
+  'service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags': '',
+  'service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold':
+    '',
+  'service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold':
+    '',
+  'service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout': '',
+  'service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval': '',
+  'service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol': '',
+  'service.beta.kubernetes.io/aws-load-balancer-healthcheck-port	': '',
+  'service.beta.kubernetes.io/aws-load-balancer-healthcheck-path': '',
+  'service.beta.kubernetes.io/aws-load-balancer-eip-allocations': '',
+  'service.beta.kubernetes.io/aws-load-balancer-private-ipv4-addresses	': '',
+  'service.beta.kubernetes.io/aws-load-balancer-target-group-attributes': '',
+  'service.beta.kubernetes.io/aws-load-balancer-subnets': '',
+  'service.beta.kubernetes.io/aws-load-balancer-alpn-policy': '',
+  'service.beta.kubernetes.io/aws-load-balancer-target-node-labels': '',
+}
+
 export const CLUSTER_PROVIDERS_ANNOTATIONS = {
   'Aliyun ACK': aliyun,
   'Aure Kubernetes Service': microsoft,
   'Huawei Cloud CCE': Huawei,
-  'Amazon EKS': {},
+  'Amazon EKS': EKS,
   'Google Kubernetes Engine': GoogleKubernetesEngine,
   'QingCloud Kubernetes Engine': QingCloud,
   'Tencent Kubernetes Engine': TencentKubernetesEngine,
