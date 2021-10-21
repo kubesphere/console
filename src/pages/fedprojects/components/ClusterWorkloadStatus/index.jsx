@@ -30,8 +30,12 @@ import styles from './index.scss'
 export default class ClusterWorkloadStatus extends Component {
   getWeight = name => {
     const { store } = this.props
-    const clusters = get(store.deployedScheduleTemplate, 'spec.clusters')
-    return clusters[name].weight
+    const weight = get(
+      store.deployedScheduleTemplate,
+      `spec.clusters.${name}.weight`,
+      0
+    )
+    return weight
   }
 
   get getTotalReplicas() {
