@@ -689,3 +689,12 @@ export const resourceLimitKey = [
 ]
 
 export const gpuTypeArr = ['requests.nvidia.com/gpu', 'limits.nvidia.com/gpu']
+
+const accessModeMapper = {
+  ReadWriteOnce: 'RWO',
+  ReadOnlyMany: 'ROM',
+  ReadWriteMany: 'RWM',
+}
+
+export const map_accessModes = accessModes =>
+  accessModes.map(item => accessModeMapper[item])

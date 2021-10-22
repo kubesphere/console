@@ -528,6 +528,7 @@ const PVMapper = item => {
       item,
       'spec.persistentVolumeReclaimPolicy'
     ),
+    volumeMode: get(item, 'spec.volumeMode'),
     _originData: getOriginData(item),
   }
 }

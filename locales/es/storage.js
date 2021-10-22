@@ -80,7 +80,6 @@ module.exports = {
   PV_STATUS_BOUND: 'Ligado',
   PV_STATUS_RELEASED: 'Liberado',
   PV_STATUS_FAILED: 'indisponible',
-  PV_STATUS_TERMINATING: 'Terminando',
   'Bound Volume': 'Límite de volumen de almacenamiento',
   RECYCLING_STRATEGY: 'Mecanismo de reciclaje',
   ACCESS_MODE: 'Modo de acceso admitido',

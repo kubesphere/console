@@ -86,7 +86,7 @@ export default class UsageCard extends Component {
         <Loading spinning={isLoading}>
           <div data-refreshing={isRefreshing}>
             <Alert
-              type="info"
+              type="warning"
               className="margin-b12"
               message={t.html('VOLUME_MONITORING_TIP')}
             />

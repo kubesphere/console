@@ -18,13 +18,23 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Icon, Loading } from '@kube-design/components'
+import { Icon, Loading, Tooltip } from '@kube-design/components'
 import { Panel } from 'components/Base'
 import Volume from 'stores/volume'
+import { getLocalTime, map_accessModes } from 'utils'
+import { toJS } from 'mobx'
 
 import { isEmpty } from 'lodash'
 import styles from './index.scss'
 
+const renderModeTip = (
+  <div>
+    <div>{t('ACCESS_MODE_TCAP')}:</div>
+    <div>RWO (ReadWriteOnce)：{t('ACCESS_MODE_RWO')}</div>
+    <div>ROX (ReadOnlyMany)：{t('ACCESS_MODE_ROX')}</div>
+    <div>RWX (ReadWriteMany)：{t('ACCESS_MODE_RWX')}</div>
+  </div>
+)
 @inject('detailStore')
 @observer
 class ResourceStatus extends React.Component {
@@ -42,25 +52,73 @@ class ResourceStatus extends React.Component {
   renderItem = () => {
     const { detail } = this.store
     return (
-      <div className={styles.ItemBox}>
-        <div className={styles.leftBox}>
-          <Icon name="storage" size="40"></Icon>
-          <div className={styles.rightBox}>
-            <span className={styles.title}>{detail.name}</span>
-            <span className={styles.type}>
-              {t('STORAGE_CLASS_VALUE', { value: detail.storageClassName })}
+      <div>
+        <div className={styles.ItemBox}>
+          <div className={styles.leftBox}>
+            <Icon name="storage" size="40"></Icon>
+            <div className={styles.rightBox}>
+              <span className={styles.title}>{detail.name}</span>
+              <span className={styles.des}>
+                {t('STORAGE_CLASS_VALUE', { value: detail.storageClassName })}
+              </span>
+            </div>
+          </div>
+          <div className={styles.titleBox}>
+            <span className={styles.title}>
+              {getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss')}
             </span>
+            <span className={styles.des}>{t('CREATION_TIME_TCAP')}</span>
           </div>
         </div>
-        <div className={styles.titleBox}>
-          <span className={styles.title}>{detail.capacity}</span>
-          <span className={styles.type}>{t('CAPACITY')}</span>
-        </div>
-        <div className={styles.titleBox}>
-          <span className={styles.title}>{detail.accessMode}</span>
-          <span className={styles.type}>{t('ACCESS_MODE_SCAP')}</span>
+        <div className={styles.IconLine}>
+          <div className={styles.cardBox}>
+            <Icon name="bm" size={30}></Icon>
+            <div className={styles.text}>
+              <span className={styles.title}>{detail.storageProvisioner}</span>
+              <span className={styles.des}>{t('PROVISIONER')}</span>
+            </div>
+          </div>
+          <div className={styles.cardBox}>
+            <img src="/assets/Accessmodes.svg" size={48} />
+            <div className={styles.text}>
+              <span className={styles.title}>
+                {this.mapperAccessMode(toJS(detail.accessModes))}
+              </span>
+              <span className={styles.des}>{this.renderAccessTitle()}</span>
+            </div>
+          </div>
+          <div className={styles.cardBox}>
+            <Icon name="database" size={30}></Icon>
+            <div className={styles.text}>
+              <span className={styles.title}>{detail.capacity}</span>
+              <span className={styles.des}>{t('capacity')}</span>
+            </div>
+          </div>
         </div>
       </div>
+    )
+  }
+
+  renderAccessTitle = () => {
+    return (
+      <div className={styles.mode_title}>
+        {t('ACCESS_MODE_TCAP')}
+        <Tooltip content={renderModeTip}>
+          <Icon name="question" size={16} className={styles.toolTip}></Icon>
+        </Tooltip>
+      </div>
+    )
+  }
+
+  mapperAccessMode = accessModes => {
+    const modes = map_accessModes(accessModes)
+    return (
+      <>
+        <span>{modes.join(',')}</span>
+        <Tooltip content={renderModeTip}>
+          <Icon name="question" size={16} className={styles.toolTip}></Icon>
+        </Tooltip>
+      </>
     )
   }
 
