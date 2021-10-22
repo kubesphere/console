@@ -34,6 +34,7 @@ export default {
             name,
             creator: globals.user.username,
             createTime: new Date(),
+            annotations: { ...data.metadata.annotations },
           })
 
           if (namespace !== 'kubesphere-controls-system') {
