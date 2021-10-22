@@ -198,12 +198,11 @@ module.exports = {
   ALLOW_VOLUME_CLONE: '允许存储卷克隆',
   ALLOW_VOLUME_EXPANSION: '允许存储卷扩容',
   PV: '存储卷后端',
-  VOLUME_BACKEND_TCAP: '存储卷后端',
+  VOLUME_BACKEND_TCAP: '存储卷实例',
   PV_STATUS_AVAILABLE: '可用',
   PV_STATUS_BOUND: '已绑定',
-  PV_STATUS_RELEASED: '已释放',
-  PV_STATUS_FAILED: '不可用',
-  PV_STATUS_TERMINATING: '删除中',
+  PV_STATUS_RELEASED: '删除中',
+  PV_STATUS_FAILED: '失败',
   'Bound Volume': '已绑定存储卷',
   RECYCLING_STRATEGY: '回收策略',
   VOLUME_SNAPSHOT_STATUS_CREATING: '创建中',
@@ -229,6 +228,8 @@ module.exports = {
   VOLUME_MONITORING_TIP:
     '目前仅支持采集已挂载存储卷的用量数据，并且 OpenEBS、Local PV、NFS 等路径型存储卷的用量数据通常与实际值有一定出入。<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">了解更多</a>',
 
+  VOLUME_FUNCTION_MANAGEMENT_TIP:
+    '存储卷功能管理只是控制是否在ks console中启用这项功能，并不表示存储系统支持这项功能，设置前需要和管理员确认。',
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',
   CLUSTER_ID: '集群 ID',

@@ -73,12 +73,11 @@ module.exports = {
   ALLOW_VOLUME_CLONE: 'Volume Clone Allowed',
   ALLOW_VOLUME_EXPANSION: 'Volume Expansion Allowed',
   PV: 'Volume Backend',
-  VOLUME_BACKEND_TCAP: 'Volume Backend',
+  VOLUME_BACKEND_TCAP: 'Volume Instance',
   PV_STATUS_AVAILABLE: 'Available',
   PV_STATUS_BOUND: 'Bound',
-  PV_STATUS_RELEASED: 'Released',
+  PV_STATUS_RELEASED: 'Terminating',
   PV_STATUS_FAILED: 'Failed',
-  PV_STATUS_TERMINATING: 'Terminating',
   'Bound Volume': 'Storage volume bound',
   RECYCLING_STRATEGY: 'Recycling Strategy',
   ACCESS_MODE: 'Access Mode',
@@ -245,6 +244,8 @@ module.exports = {
   VOLUME_MONITORING_TIP:
     'Currently, only usage data of mounted volumes can be collected. Usage data of path-based volumes such as OpenEBS, Local PV, and NFS volumes may be inaccurate. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">Learn More</a>',
 
+  VOLUME_FUNCTION_MANAGEMENT_TIP:
+    '存储卷功能管理只是控制是否在ks console中启用这项功能，并不表示存储系统支持这项功能，设置前需要和管理员确认。',
   // Storage Classes
   RESTURL: 'REST URL',
   CLUSTER_ID: 'Cluster ID',

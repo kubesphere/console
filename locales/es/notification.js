@@ -93,6 +93,7 @@ module.exports = {
   MAX_KEYWORD_COUNT: 'You can add a maximum of {count} keywords.',
   EMPTY_KEYWORDS_DESC: 'No keyword is added.',
   DINGTALK_SETTING_TIP: 'Configura una conversación o un robot grupal',
+  DINGTALK_CHATBOT_SECURITY_TIP: 'Please enter a secret or keywords',
 
   DINGTALK_DESC:
     'Configure DingTalk notifications by setting a conversation or chatbot.',
