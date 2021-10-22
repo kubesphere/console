@@ -36,6 +36,7 @@ class Affinity extends React.Component {
       <div className="margin-t12">
         <Form data={formTemplate} ref={formRef} {...formProps}>
           <AffinityForm
+            formProps={formProps}
             data={formTemplate}
             module={module}
             cluster={cluster}
