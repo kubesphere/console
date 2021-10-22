@@ -183,7 +183,9 @@ export default class Monitorings extends React.Component {
         refreshing={isRefreshing}
         isEmpty={isEmpty(this.metrics)}
       >
-        {isMore && <Alert message={t('MONITORING_ALERT_DESC')} type="info" />}
+        {isMore && (
+          <Alert message={t.html('MONITORING_ALERT_DESC')} type="info" />
+        )}
         {configs.map(item => {
           item.data = get(this.metrics, `${item.metricType}.data.result`) || []
           item.legend = item.data.map((record, index) =>

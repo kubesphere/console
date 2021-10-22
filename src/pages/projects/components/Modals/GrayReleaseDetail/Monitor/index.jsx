@@ -129,7 +129,7 @@ export default class Monitor extends React.Component {
       },
       {
         type: 'request_success_rate',
-        title: t('REQUEST_SUCCESS_RATE'),
+        title: t('SUCCESSFUL_REQUEST_RATE'),
         legendData: [detail.newVersion, detail.oldVersion],
         data: request_success_rate,
         unit: '%',

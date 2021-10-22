@@ -285,6 +285,7 @@ export default class SecretSettings extends React.Component {
             onChange={this.handleTypeChange}
             placeholder=" "
             disabled={disableSelect}
+            searchable
           />
         </Form.Item>
         {this.renderContent()}

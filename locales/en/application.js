@@ -111,8 +111,9 @@ module.exports = {
   'Maximum pending requests': 'Maximum pending requests',
   'Maximum requests': 'Maximum requests',
   METHOD: 'Method',
-  'Microservice enabled': 'Microservice enabled',
-  'Microservice not enabled': 'Microservice not enabled',
+  CREATION_METHOD: 'Creation Method',
+  APPLICATION_GOVERNANCE_ENABLED: 'Application governance enabled',
+  APPLICATION_GOVERNANCE_DISABLED: 'Application governance disabled',
   'No Components': 'No Components',
   'No result found': 'No result found',
   Off: 'Off',
@@ -124,6 +125,7 @@ module.exports = {
   'Please input component version': 'Please input component version',
   SAVE_FORM_TIP: 'Please save the current settings first.',
   TRACING_NO_DATA_DESC: 'Please change the search conditions and try again.',
+  TRACING: 'Tracing',
   NUM_SPAN_SI: '{num} span',
   NUM_SPAN_PL: '{num} spans',
   NUM_ERROR_SI: '{num} error',
@@ -147,8 +149,7 @@ module.exports = {
   TCP_INBOUND_TRAFFIC: 'TCP Inbound Traffic',
   TCP_OUTBOUND_TRAFFIC: 'TCP Outbound Traffic',
   'TCP connection timeout.': 'TCP connection timeout.',
-  'Temporarily unable to use tracing': 'Tracing is not available now',
-  TRAFFIC_MONITORING_UNAVAILABLE: 'Traffic Monitoring Available',
+  TRACING_UNAVAILABLE: 'Tracing Unavailable',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC:
     'The app has not received requests for a long time. Please try again later.',
   'The maximum number of HTTP1 or TCP connections to the target host.':
@@ -163,7 +164,8 @@ module.exports = {
   Traffic: 'Traffic',
   'Traffic (requests per second)': 'Traffic (requests per second)',
   TRAFFIC_ENTRY: 'Traffic Entry',
-  'Traffic Management': 'Traffic Management',
+  TRAFFIC_MANAGEMENT: 'Traffic Management',
+  NETWORK_TRAFFIC: 'Network Traffic',
   'Traffic Monitoring': 'Traffic Monitoring',
   Upgrade: 'Upgrade',
   'Workload Type': 'Workload Type',
@@ -198,7 +200,7 @@ module.exports = {
     'A fixed number of connection objects will be created for the application and stored in the connection pool for reuse. The existing pool is available for each access, and each connection object will be returned to the pool after use.',
 
   APPLICATION_GOVERNANCE_DESC:
-    'After Application Governance is enabled, the istio-proxy container will be injected as a sidecar into each Service of the composed app. <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">Learn More</a>',
+    'Enable Application Governace to use the Traffic Monitoring, Grayscale Release, and Tracing features for the app.',
 
   POD_ISOLATION_RATIO_DESC:
     'Maximum % of Pod for the upstream service that can be ejected. It uses up rounding, when set to 13% it will isolate up to 2 instances if 10 instances exist.',
@@ -240,7 +242,7 @@ module.exports = {
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
     'Traffic governance depends on the microservices module. The current cluster has not enabled the microservices module.',
   TRACING_NO_MICROSERVICE_TIP:
-    'Tracing depends on the microservices module. The current cluster has not enabled the microservices module.',
+    'Please enable the Application Governance component in the current cluster.',
 
   APPLICATION_SERVICE_DESC:
     'Add stateful or stateless Services to the app based on your requirements.',

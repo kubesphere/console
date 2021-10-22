@@ -75,7 +75,7 @@ module.exports = {
   Price: '价格',
   PRICE_CONFIG_DESC: '暂未配置价格信息',
   METER_RESOURCE_DESC: '最近1小时的消费统计',
-  'No cluster with metering module enabled': '暂无启用计量模块的集群',
+  'No cluster with metering module enabled': '暂无开启计量模块的集群',
 
   INVALID_METERING: '未开启消费统计',
   NO_METER_DATA: '新创建的资源，需要等待一小时后才能查看数据',

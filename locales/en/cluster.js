@@ -92,7 +92,7 @@ module.exports = {
     'Please add at least one cluster node',
   NODE_ROLE_EMPTY_DESC: 'Please set the role of the node in the cluster.',
   'Add node to the cluster': 'Add node to the cluster',
-  INTERNAL_IP: 'Internal IP Address',
+  INTERNAL_IP_ADDRESS: 'Internal IP Address',
   PORT: 'Port',
   PORT_VALUE: 'Port: {value}',
   EXTERNAL_IP: 'External IP Address',

@@ -74,7 +74,7 @@ export default class ProjectGatewayCard extends React.Component {
       {
         key: 'update',
         icon: 'update',
-        text: t('Update Gateway'),
+        text: t('UPDATE'),
         action: 'manage',
         show: item => !item.createTime,
         onClick: item =>
@@ -149,7 +149,7 @@ export default class ProjectGatewayCard extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('PROJECT_GATEWAY'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -186,12 +186,9 @@ export default class ProjectGatewayCard extends React.Component {
         dataIndex: 'replicas',
       },
       {
-        title: t('APPLICATION_GOVERNANCE'),
+        title: t('TRACING'),
         dataIndex: 'serviceMeshEnable',
-        render: serviceMeshEnable =>
-          serviceMeshEnable
-            ? t('GATEWAY_SERVICE_MESH_STATUS_ON')
-            : t('GATEWAY_SERVICE_MESH_STATUS_OFF'),
+        render: serviceMeshEnable => (serviceMeshEnable ? t('ON') : t('OFF')),
       },
     ]
   }

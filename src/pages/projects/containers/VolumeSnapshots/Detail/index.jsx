@@ -76,7 +76,7 @@ export default class VolumeSnapshotDetail extends React.Component {
     {
       key: 'apply',
       icon: 'storage',
-      text: t('APPLY'),
+      text: t('CREATE_VOLUME'),
       show: this.showApply() && this.store.detail.backupStatus === 'success',
       onClick: () => {
         const { cluster, namespace } = this.props.match.params

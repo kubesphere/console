@@ -42,7 +42,7 @@ class ResourceStatus extends React.Component {
     return (
       <div className={styles.main}>
         <Alert
-          type="warning"
+          type="info"
           className="margin-b12"
           message={t.html('VOLUME_MONITORING_TIP')}
         />

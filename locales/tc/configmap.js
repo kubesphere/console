@@ -20,7 +20,6 @@ module.exports = {
   configmaps: '配置字典',
   ConfigMaps: '配置字典',
   ConfigMap: '配置字典',
-  'ConfigMap Settings': '配置設置',
   FIELDS: '配置項',
   CONFIGMAP_DESC:
     '配置字典常用於儲存工作負載所需的配置資訊，許多應用程序會從配置文件、命令行參數或環境變量中讀取配置資訊。',

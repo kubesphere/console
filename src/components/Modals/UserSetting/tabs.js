@@ -23,7 +23,7 @@ export default [
   {
     icon: 'paper',
     name: 'basicInfo',
-    title: 'Basic Info',
+    title: 'BASIC_INFORMATION',
     component: BaseInfo,
   },
   {

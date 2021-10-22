@@ -33,7 +33,7 @@ module.exports = {
   FUZZY_QUERY: 'Consulta difusa',
   HIDE_HELP_INFORMATION: 'Ocultar información de ayuda',
   INDEX_PREFIX: 'Index Prefix',
-  Keyword: 'Palabra clave',
+  KEYWORD: 'Palabra clave',
   'Log Collections': 'Colecciones de logs',
   'Log Receiver': 'Log Receiver',
   'Log Management': 'Gestión de logs',
@@ -44,6 +44,11 @@ module.exports = {
     'No hay clúster con módulo de auditoría habilitado',
   EVENT_NOT_ENABLED_DESC: 'No hay clúster con consulta de eventos habilitada',
   LOGGING_NOT_ENABLED_DESC: 'No hay clúster con módulo de registro habilitado',
+  'No cluster with event query enabled':
+    'No hay clúster con consulta de eventos habilitada',
+  'No cluster with logging module enabled':
+    'No hay clúster con módulo de registro habilitado',
+  LOGGING_DISABLED: 'Logging Disabled',
   'Passwords must be at least 6 characters long':
     'Las contraseñas deben tener al menos 6 caracteres.',
   'Please enter a filter to search for logs.':
@@ -56,6 +61,9 @@ module.exports = {
   'Refresh Interval': 'Intervalo de actualización',
   REFRESH_RATE_COLON: 'Frecuencia de actualización: ',
   CONTAINER_LOG_SOURCE: 'Container Log Source',
+  REFRESH_INTERVAL_VALUE: 'Refresh interval: {value}s',
+  'Refresh Rate': 'Frecuencia de actualización',
+  'Region Data': 'Datos de región',
   'Release Collection': 'Colección de releases',
   RESOURCE_NAME_AND_TYPE: 'Nombre y tipo de recurso',
   SEARCH_RESULTS: 'Resultados de búsqueda',
@@ -133,7 +141,7 @@ module.exports = {
   NO_RESOURCE_EVENTS_TODAY: 'Eventos no encontrados hoy',
   START_REAL_TIME_LOG: 'activar el registro de logs en tiempo real',
   STOP_REAL_TIME_LOG: 'desactivar el registro de logs en tiempo real',
-  LOG_EXPORT: 'Exportar logs',
+  EXPORT_LOGS: 'Exportar logs',
   CREATE_CUSTOM_MONITORING_DASHBOARD:
     'Crear un panel de monitoreo personalizado',
   MONITORING_TEMPLATE: 'Monitoring Template',

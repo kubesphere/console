@@ -42,7 +42,9 @@ export default class Item extends React.Component {
       return '-'
     }
 
-    return gateway.ports.map(port => `${port.name}:${port.nodePort}`).join('; ')
+    return gateway.ports
+      .map(port => `${port.name.toUpperCase()}: ${port.nodePort}`)
+      .join('/')
   }
 
   getExternalIP(gateway) {
@@ -62,7 +64,7 @@ export default class Item extends React.Component {
     const gateway = toJS(this.store.gateway.data)
 
     if (!detail || isEmpty(detail.rules)) {
-      return t('No Data')
+      return t('NO_DATA')
     }
 
     const tls = detail.tls || []
@@ -113,17 +115,17 @@ export default class Item extends React.Component {
           <Text
             icon="eip-pool"
             title={gateway.type}
-            description={t('Gateway Type')}
+            description={t('GATEWAY_ACCESS_MODE')}
           />
           {gateway.type === 'NodePort' ? (
             <>
               <Text
                 title={gateway.loadBalancerIngress || '-'}
-                description={t('Gateway IP')}
+                description={t('GATEWAY_IP_ADDRESS')}
               />
               <Text
                 title={this.getNodePorts(gateway)}
-                description={t('NodePort')}
+                description={t('NODE_PORTS_SCAP')}
               />
             </>
           ) : (

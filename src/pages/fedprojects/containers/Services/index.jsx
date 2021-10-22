@@ -166,7 +166,7 @@ export default class Services extends React.Component {
         ),
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         width: '22%',

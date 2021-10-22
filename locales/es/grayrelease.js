@@ -77,7 +77,7 @@ module.exports = {
   RESTORE: 'Recuperar',
   REGEX_MATCH: 'Coincidencia regex',
   GRAY_RELEASE_JOB_NAME: 'Liberar nombre del job',
-  REQUEST_SUCCESS_RATE: 'Tasa de éxito de solicitud',
+  SUCCESSFUL_REQUEST_RATE: 'Tasa de éxito de solicitud',
   RULE_DESCRIPTION: 'Descripción de la regla',
   'Take Over': 'Tomar el control',
   TAKE_ONLINE: 'Tomar el control de todo el tráfico',

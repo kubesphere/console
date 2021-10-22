@@ -42,6 +42,6 @@ export default path => [
     component: Monitoring,
     exact: true,
   },
-  { path: `${path}/events`, title: 'Events', component: Events, exact: true },
+  { path: `${path}/events`, title: 'EVENT_PL', component: Events, exact: true },
   getIndexRoute({ path, to: `${path}/resource-status`, exact: true }),
 ]

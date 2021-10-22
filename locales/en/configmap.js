@@ -19,7 +19,6 @@
 module.exports = {
   FIELDS: 'Fields',
   ConfigMap: 'ConfigMap',
-  'ConfigMap Settings': 'ConfigMap Settings',
   configmaps: 'configmaps',
   ConfigMaps: 'ConfigMaps',
   ENTER_CONFIG_VALUE_DESC:

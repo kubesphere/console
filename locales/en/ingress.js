@@ -31,8 +31,8 @@ module.exports = {
   EDIT_RULES: 'Edit Rules',
   GATEWAY_ADDRESS_TCAP: 'Gateway Address',
   GATEWAY_ADDRESS_SCAP: 'Gateway address',
-  'Gateway IP': 'Gateway IP',
-  'Gateway Type': 'Gateway Type',
+  GATEWAY_IP_ADDRESS: 'Gateway IP address',
+  GATEWAY_ACCESS_MODE: 'Gateway access mode',
   DOMAIN_NAME_TCAP: 'Domain Name',
   DOMAIN_NAME_VALUE: 'Domain Name: {value}',
   INVALID_DOMAIN_DESC: 'Invalid domain name.',
@@ -76,7 +76,7 @@ module.exports = {
     'To use QingCloud LoadBalancer as a service gateway, please deploy the QingCloud Cloud Controller Manager plugin first.',
 
   NO_GATEWAY_DESC:
-    'To use Auto Generate, please contact the project administrator to set the gateway access method in Advanced Settings of the project.',
+    'To use Auto Generate, please contact the project administrator to set the gateway access mode in Advanced Settings of the project.',
   UNABLE_CREATE_ROUTE_TIP:
     'The available gateway address is not found in the current project so the application route cannot be created.',
 
@@ -84,15 +84,15 @@ module.exports = {
     'You don\'t need to enable Application Governance if you don\'t use the Tracing feature. Once Application Governance is enabled, please check if an annotation like "nginx.ingress.kubernetes.io/service-upstream: true" is added for the application route when the route is inaccessible. If not, please add one.',
 
   UNABLE_TO_ACCESS_TIP:
-    '● Make sure that the domain name you set can be resolved to the IP address of the access portal. <br/>● If you are in a private cloud environment, modify the local host file and then access it through &ltDomain name&gt:&ltNodePort&gt.<br/>● By configuring DNS access, you need to modify the domain name to &ltHostname&gt.&ltGateway address&gt.nip.io, and then access the Service through &ltHostname&gt.&ltGateway address&gt.nip.io:&ltNodePort&gt. <br/>● If the access is blocked when you use the domain name, please confirm if your domain name exists and has been registered.',
+    '* If the domain name is automatically generated, make sure that your client machine can access nip.io.<br/>* If the domain name is manually specified, make sure that domain name resolution policies have be configured in your DNS server or the hosts file of your client machine.',
 
   PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using Routes?',
   PREREQUESTS_FOR_USE_ROUTE_A:
     'To use Routes, you need to contact the project administrator to set the gateway for the project.',
 
-  ACCESS_TYPES_OF_ROUTE_Q: 'What are the external access methods of Routes?',
+  ACCESS_TYPES_OF_ROUTE_Q: 'What are the external access modes of Routes?',
   ACCESS_TYPES_OF_ROUTE_A:
-    'KubeSphere Routes support the NodePort and LoadBalancer external access methods.',
+    'KubeSphere Routes support the NodePort and LoadBalancer external access modes.',
 
   // Route Detail Page
   ROUTE_PATH_VALUE: 'Path: <strong>{value}</strong>',

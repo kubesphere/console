@@ -89,6 +89,7 @@ module.exports = {
   Port: '端口',
   EDIT_CONTAINER: '編輯容器',
   NODE_PORTS: '主機端口',
+  NODE_PORT_SCAP: 'Node port',
   NODE_PORTS_SCAP: 'Node ports',
   ADD_PORT: '添加端口',
   'target port': '目標端口',
@@ -108,6 +109,7 @@ module.exports = {
   PROVISIONER: '供應者',
   'Volume Source': '儲存卷來源',
   VOLUME_CAPACITY: '儲存卷容量',
+  TOTAL_CAPACITY: 'Total capacity',
   Provisioner: '供應者',
   mounted: '已掛載',
   created: '已創建',
@@ -156,6 +158,7 @@ module.exports = {
   'Job Template': '任務模板',
 
   VOLUME_SETTINGS: '掛載儲存',
+  STORAGE_SETTINGS: 'Storage Settings',
 
   'Add Volume': '添加儲存卷',
   MOUNT_CONFIGMAP_OR_SECRET: '掛載配置文件或密鑰',
@@ -462,7 +465,7 @@ module.exports = {
     '您即將重新部署工作負載 {resource} ({type}) , 容器組將根據更新策略進行重新部署，您的業務可能會被暫時中斷。',
 
   MORE: '更多操作',
-  ACTIONS: '操作',
+  OPERATIONS: '操作',
 
   REVISION_ROLLBACK_SELECT: '請選擇要回退的版本',
   REVISION_TITLE: '{name}版本',

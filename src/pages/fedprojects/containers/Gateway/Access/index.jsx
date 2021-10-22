@@ -122,7 +122,7 @@ class InternetAccess extends React.Component {
             className={styles.desc}
             title={
               <span>
-                {t('Gateway Not Set')}
+                {t('GATEWAY_NOT_SET')}
                 {isDisable ? (
                   <Tooltip
                     content={t('CLUSTER_UPGRADE_REQUIRED', { version: '3.2' })}
@@ -139,7 +139,7 @@ class InternetAccess extends React.Component {
                 ) : null}
               </span>
             }
-            description={t('SET_GATEWAY_DESC')}
+            description={t('SET_GATEWAY_TIP')}
           />
           {this.canEdit && (
             <Button
@@ -147,7 +147,7 @@ class InternetAccess extends React.Component {
               onClick={this.showGatewaySetting}
               disabled={isDisable}
             >
-              {t('Set Gateway')}
+              {t('SET_GATEWAY')}
             </Button>
           )}
         </div>

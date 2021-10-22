@@ -44,7 +44,7 @@ module.exports = {
   CODE_REPOSITORY_KEY: 'Code Repository Key',
   SECRET_PL: 'Secrets',
   SECRET_LOW: 'Secret',
-  SECRET_SETTINGS_TCAP: 'Secret Settings',
+  DATA_SETTINGS: 'Data Settings',
   KUBECONFIG_SETTINGS: 'kubeconfig Settings',
   secrets: 'secrets',
   Secrets: 'Secrets',

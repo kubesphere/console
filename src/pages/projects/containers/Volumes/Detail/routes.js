@@ -38,13 +38,13 @@ export default PATH => [
   },
   {
     path: `${PATH}/events`,
-    title: 'Events',
+    title: 'EVENT_PL',
     exact: true,
     component: Events,
   },
   {
     path: `${PATH}/snapshot`,
-    title: 'SNAPSHOT_INFORMATION',
+    title: 'SNAPSHOT_PL',
     exact: true,
     component: Snapshots,
   },

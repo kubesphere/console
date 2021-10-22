@@ -97,7 +97,7 @@ export default class InternetAccess extends React.Component {
 
     return (
       <>
-        <Form.Item label={t('ACCESS_METHOD')}>
+        <Form.Item label={t('ACCESS_MODE')}>
           <Select
             name={`Service.${this.fedPreifx}spec.type`}
             options={this.accessModes}

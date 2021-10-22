@@ -253,9 +253,6 @@ module.exports = {
   MULTI_CLUSTER_RESOURCE_TIP:
     'The current resource is deployed across multiple clusters. You can click a cluster to view the resource settings in the cluster.',
 
-  PROJECT_GATEWAY_IP_TIP:
-    'Currently, the resources are multi-cluster resources. The resources will be distributed in different clusters to form multi-cluster resources. You can switch to a different cluster to view the resource settings in that cluster.',
-
   CREATE_MULTI_CLUSTER_PROJECT_DESC:
     'A multi-cluster project runs across different clusters, which helps you to build a container environment for rapid iteration of applications and achieve high availability.',
 

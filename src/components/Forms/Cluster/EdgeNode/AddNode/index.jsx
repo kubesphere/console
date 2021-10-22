@@ -194,7 +194,7 @@ export default class AddEdgeModal extends Component {
 
           <div className={styles.column}>
             <Form.Item
-              label={t('INTERNAL_IP')}
+              label={t('INTERNAL_IP_ADDRESS')}
               desc={t('EDGENODE_INTERNAL_IP_DESC')}
               rules={[
                 {

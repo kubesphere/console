@@ -32,7 +32,7 @@ export default PATH => [
   },
   {
     path: `${PATH}/volume-mounts`,
-    title: 'Mount Info',
+    title: 'MOUNT_INFORMATION',
     exact: true,
     component: VolumeMounts,
   },
@@ -44,7 +44,7 @@ export default PATH => [
   },
   {
     path: `${PATH}/events`,
-    title: 'Events',
+    title: 'EVENT_PL',
     exact: true,
     component: Events,
   },

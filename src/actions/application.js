@@ -175,7 +175,7 @@ export default {
         store: ingressStore,
         steps: ROUTER_FORM_STEPS,
         modal: CreateModal,
-        okBtnText: t('ADD'),
+        okBtnText: t('CREATE'),
         selector: detail.selector,
         ...props,
         name: 'Route',

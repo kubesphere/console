@@ -91,7 +91,7 @@ export default class SearchBar extends React.Component {
   get currentParamText() {
     const { dropDownItems, params } = this.props
     return params.nextParamsKey === '_time'
-      ? t('Time Range')
+      ? t('TIME_RANGE_SCAP')
       : get(dropDownItems, `${params.nextParamsKey}.text`)
   }
 
@@ -261,10 +261,12 @@ export default class SearchBar extends React.Component {
     return start ? (
       <span className={styles.param} key={'_duration'}>
         <span>
-          {t('TIME_RANGE')}:
           {durationAlias
-            ? `${t('Last')} ${getTimeLabel(durationAlias)}`
-            : `${getDateStr(start)} ~ ${getDateStr(end)}`}
+            ? t('TIME_RANGE_LAST', { value: getTimeLabel(durationAlias) })
+            : t('TIME_RANGE_RANGE', {
+                startTime: getDateStr(start),
+                endTime: getDateStr(end),
+              })}
         </span>
         <span onClick={this.removeParamsDuration}>
           <Icon name="close" className={styles.removeParam} type="light" />
@@ -322,6 +324,7 @@ export default class SearchBar extends React.Component {
       dropdownClass,
       iconThem,
     } = this.props
+
     return (
       <div className={classnames(styles.dropdown, dropdownClass)}>
         {Object.entries(dropDownItems).map(([query, options]) => (
@@ -350,7 +353,7 @@ export default class SearchBar extends React.Component {
             <span className={styles.icon}>
               <Icon name="clock" />
             </span>
-            <span>{t('TIME_RANGE')}</span>
+            <span>{t('TIME_RANGE_SCAP')}</span>
           </div>
         )}
       </div>

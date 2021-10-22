@@ -33,13 +33,13 @@ export default PATH => [
   },
   {
     path: `${PATH}/gateway-configs`,
-    title: 'Gateway Config',
+    title: 'CONFIGURATION_OPTIONS',
     component: GatewayConfig,
     exact: true,
   },
   {
     path: `${PATH}/logs`,
-    title: 'Gateway Log',
+    title: 'GATEWAY_LOGS',
     component: GatewayLog,
     exact: true,
   },

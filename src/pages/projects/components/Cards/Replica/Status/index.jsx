@@ -42,7 +42,7 @@ export default class ReplicaStatus extends React.Component {
 
   static defaultProps = {
     theme: 'dark',
-    name: 'REPLICA_STATUS',
+    name: 'REPLICA_PL',
     current: 0,
     desire: 0,
     onScale: null,
