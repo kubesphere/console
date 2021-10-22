@@ -23,12 +23,14 @@ import withList, { ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
 
 import PvStore from 'stores/pv'
-import { getLocalTime } from 'utils'
+import { getLocalTime, map_accessModes } from 'utils'
+import { Icon, Tooltip } from '@kube-design/components'
 import { getVolumeStatus } from 'utils/status'
 import { PV_STATUS } from 'utils/constants'
 import StatusReason from 'projects/components/StatusReason'
 
 import { Avatar, Status } from 'components/Base'
+import styles from './index.scss'
 
 @withList({
   store: new PvStore(),
@@ -39,12 +41,35 @@ import { Avatar, Status } from 'components/Base'
 export default class PV extends React.Component {
   showAction = record => !record.isFedManaged
 
-  cantDelete = record => record.status.phase === 'Bound'
+  cantDelete = ({ status }) => ['Bound', 'Released'].indexOf(status.phase) > -1
 
   get itemActions() {
     const { trigger } = this.props
 
     return [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('EDIT'),
+        action: 'edit',
+        onClick: item =>
+          trigger('resource.yaml.edit', {
+            detail: item,
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'editYaml',
+        icon: 'eye',
+        text: t('VIEW_YAML'),
+        action: 'view',
+        show: this.showAction,
+        onClick: item =>
+          trigger('resource.yaml.edit', {
+            detail: item,
+            readOnly: true,
+          }),
+      },
       {
         key: 'delete',
         icon: 'trash',
@@ -95,7 +120,9 @@ export default class PV extends React.Component {
   }
 
   getCheckboxProps = record => ({
-    disabled: record.isFedManaged || record.phase === 'Bound',
+    disabled:
+      record.isFedManaged ||
+      ['Bound', 'Released'].indexOf(record.status.phase) > -1,
     name: record.name,
   })
 
@@ -158,15 +185,11 @@ export default class PV extends React.Component {
         ),
       },
       {
-        title: t('ACCESS_MODE_TCAP'),
-        dataIndex: 'accessMode',
-        isHideable: true,
+        title: this.renderAccessTitle(),
+        dataIndex: 'accessModes',
+        isHideable: false,
         width: '12.32%',
-        render: accessMode => (
-          <div>
-            <p>{accessMode}</p>
-          </div>
-        ),
+        render: accessModes => this.mapperAccessMode(accessModes),
       },
       {
         title: t('RECYCLING_STRATEGY'),
@@ -174,17 +197,6 @@ export default class PV extends React.Component {
         isHideable: true,
         width: '7.74%',
         render: _ => _.spec.persistentVolumeReclaimPolicy,
-      },
-      {
-        title: t('BACKEND_IDENTIFIER'),
-        dataIndex: 'volumeHandle',
-        isHideable: true,
-        width: '9.8%',
-        render: volumeHandle => (
-          <div>
-            <p>{volumeHandle}</p>
-          </div>
-        ),
       },
       {
         title: t('CREATION_TIME_TCAP'),
@@ -196,6 +208,30 @@ export default class PV extends React.Component {
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm'),
       },
     ]
+  }
+
+  renderAccessTitle = () => {
+    const renderModeTip = (
+      <div>
+        <div>{t('ACCESS_MODE_TCAP')}:</div>
+        <div>RWO (ReadWriteOnce)：{t('ACCESS_MODE_RWO')}</div>
+        <div>ROX (ReadOnlyMany)：{t('ACCESS_MODE_ROX')}</div>
+        <div>RWX (ReadWriteMany)：{t('ACCESS_MODE_RWX')}</div>
+      </div>
+    )
+    return (
+      <div className={styles.mode_title}>
+        {t('ACCESS_MODE_TCAP')}
+        <Tooltip content={renderModeTip}>
+          <Icon name="question" size={16} className={styles.question}></Icon>
+        </Tooltip>
+      </div>
+    )
+  }
+
+  mapperAccessMode = accessModes => {
+    const modes = map_accessModes(accessModes)
+    return <span>{modes.join(',')}</span>
   }
 
   render() {
