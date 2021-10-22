@@ -78,8 +78,13 @@ export default class RuleForm extends React.Component {
   componentDidMount() {
     const { registerSubRoute } = this.context
     const { onCancel } = this.props
-
-    registerSubRoute && registerSubRoute(this.handleSubmit, onCancel)
+    registerSubRoute &&
+      registerSubRoute(this.handleSubmit, () => {
+        if (this.handleValidator()) {
+          return onCancel
+        }
+        return false
+      })
   }
 
   get protocols() {
@@ -184,8 +189,9 @@ export default class RuleForm extends React.Component {
     const { resetSubRoute } = this.context
 
     resetSubRoute && resetSubRoute()
-
-    this.props.onCancel()
+    if (this.handleValidator()) {
+      this.props.onCancel()
+    }
   }
 
   handleProtocolChange = value => {
@@ -223,6 +229,16 @@ export default class RuleForm extends React.Component {
         }
         callback && callback()
       })
+  }
+
+  handleValidator = () => {
+    let isValidate = false
+    const form = this.formRef.current
+    form &&
+      form.validate(() => {
+        isValidate = true
+      })
+    return isValidate
   }
 
   renderForm() {

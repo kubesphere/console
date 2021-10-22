@@ -281,7 +281,8 @@ module.exports = {
   DISABLED: 'Disabled',
   ENABLE: 'Enable',
   DISABLE: 'Disable',
-  SET_GATEWAY_TIP: 'Please set a gateway.',
+  SET_GATEWAY_TIP:
+    'To use the gateway, please configure the gateway in the cluster or the project.',
 
   // Network Isolation
   INGRESS: 'Ingress',
