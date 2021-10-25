@@ -313,7 +313,7 @@ module.exports = {
   ENABLE: 'Enable',
   DISABLE: 'Disable',
   DISABLE_LOG_COLLECTION: 'Disable Log Collection',
-  SET_GATEWAY_TIP: 'Please set a gateway.',
+  SET_GATEWAY_TIP: '要使用網關，請在集群或項目中配置網關',
 
   // Network Isolation
   INGRESS: 'Ingress',

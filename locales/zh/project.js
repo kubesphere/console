@@ -311,7 +311,7 @@ module.exports = {
   DISABLED: '未开启',
   ENABLE: '开启',
   DISABLE: '关闭',
-  SET_GATEWAY_TIP: '请设置网关。',
+  SET_GATEWAY_TIP: '要使用网关，请在集群或项目中配置网关',
 
   // Network Isolation
   INGRESS: '入站',

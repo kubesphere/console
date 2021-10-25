@@ -24,6 +24,7 @@ import { Panel, Text } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 import Annotations from 'projects/components/Cards/Annotations'
 import GatewayStore from 'stores/gateway'
+
 import Rule from '../Rule'
 
 import styles from './index.scss'
@@ -32,9 +33,22 @@ import styles from './index.scss'
 export default class Item extends React.Component {
   store = new GatewayStore()
 
+  state = {
+    gateway: {},
+  }
+
   componentDidMount() {
+    this.getGateway()
+  }
+
+  async getGateway() {
     const { cluster, namespace } = this.props
-    this.store.getGateway({ cluster: cluster.name, namespace })
+
+    const datalist = await Promise.all([
+      this.store.getGateway({ cluster: cluster.name }),
+      this.store.getGateway({ cluster: cluster.name, namespace }),
+    ])
+    this.setState({ gateway: datalist[1] || datalist[0] })
   }
 
   getNodePorts(gateway) {
@@ -61,7 +75,7 @@ export default class Item extends React.Component {
 
   renderRules() {
     const { workspace, namespace, detail } = this.props
-    const gateway = toJS(this.store.gateway.data)
+    const gateway = toJS(this.state.gateway)
 
     if (!detail || isEmpty(detail.rules)) {
       return t('NO_DATA')
@@ -100,7 +114,7 @@ export default class Item extends React.Component {
 
   render() {
     const { cluster } = this.props
-    const gateway = toJS(this.store.gateway.data) || {}
+    const gateway = toJS(this.state.gateway) || {}
 
     return (
       <Panel>
