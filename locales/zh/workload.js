@@ -57,7 +57,7 @@ module.exports = {
   CRONJOB_EMPTY_DESC: '请创建一个定时任务。',
   GPU_TYPE: 'GPU 类型',
   GPU_TYPE_LOW: 'GPU 类型',
-  GPU_LIMIT_LOW: 'GPU limit',
+  GPU_LIMIT_LOW: 'GPU 限制',
   GPU_LIMIT: 'GPU 限制',
   'Service Configuration': '服务配置',
 
@@ -93,6 +93,7 @@ module.exports = {
   SERVICE_TOPOLOGY: '服务拓扑',
   EDIT_CONTAINER: '编辑容器',
   NODE_PORTS: '节点端口',
+  NODE_PORT_SCAP: '节点端口',
   NODE_PORTS_SCAP: '节点端口',
   ADD_PORT: '添加端口',
   'target port': '目标端口',
@@ -111,6 +112,7 @@ module.exports = {
   PROVISIONER: '供应者',
   'Volume Source': '存储卷来源',
   VOLUME_CAPACITY: '存储卷容量',
+  TOTAL_CAPACITY: '总容量',
   'Access Mode': '访问模式',
   Provisioner: '供应者',
   mounted: '已挂载',
@@ -154,6 +156,7 @@ module.exports = {
   'Job Template': '任务模板',
 
   VOLUME_SETTINGS: '存储卷设置',
+  STORAGE_SETTINGS: '存储设置',
 
   'Add Volume': '添加存储卷',
   MOUNT_CONFIGMAP_OR_SECRET: '挂载配置字典或保密字典',
@@ -462,7 +465,7 @@ module.exports = {
     '您确定重新创建{type} {resource} 吗？容器组副本将会根据更新策略更新，同时相关业务将会中断。',
 
   MORE: '更多操作',
-  ACTIONS: '操作',
+  OPERATIONS: '操作',
 
   REVISION_ROLLBACK_SELECT: '请选择要回退的版本',
   REVISION_TITLE: '{name}版本',
@@ -574,7 +577,7 @@ module.exports = {
     'RestartPolicy 只能指定 Never 或 OnFailure，当任务未完成的情况下：<br/>* 如果 RestartPolicy 指定 Never，则任务会在容器组出现故障时创建新的容器组，且故障容器组不会消失。<br/>* 如果 RestartPolicy 指定 OnFailure，则任务会在容器组出现故障时其内部重启容器，而不是创建容器组。',
 
   MONITORING_ALERT_DESC:
-    '默认最多显示五个容器组副本的信息。您可以点击查看所有副本以查看所有容器组副本的信息。',
+    '默认最多显示五个容器组副本的信息。您可以点击<b>查看所有副本</b>以查看所有容器组副本的信息。',
 
   CONTAINER_CPU_DESC:
     '作为容器调度时资源分配的判断依赖。只有当节点上可分配CPU总量 ≥ 容器CPU最小使用值时，才允许将容器调度到该节点。单位换算规则: 1核 = 1000m',
@@ -602,14 +605,14 @@ module.exports = {
   STARTUP_CHECK_TIP: '需要 Kubernetes v1.18 或以上版本。',
 
   VOLUME_OR_TEMPLATE_EMPTY:
-    '您已启用收集存储卷上的日志，请至少挂载一个存储卷或存储卷模板并指定日志所在的目录。',
+    '您已开启收集存储卷上的日志，请至少挂载一个存储卷或存储卷模板并指定日志所在的目录。',
   VOLUME_EMPTY:
-    '您已启用收集存储卷上的日志，请至少挂载一个存储卷并指定日志所在的目录。',
+    '您已开启收集存储卷上的日志，请至少挂载一个存储卷并指定日志所在的目录。',
   COLLECT_LOGS_ON_VOLUMES_DESC:
     '允许系统收集保存在存储卷上的容器日志。如需使用此功能，请为容器挂载读写模式的存储卷并设置容器将日志导出到存储卷。',
 
   PROJECT_COLLECT_SAVED_DISABLED_DESC:
-    '如需启用此功能，您需要在项目设置中启用收集存储卷上的日志。',
+    '如需开启此功能，您需要在项目设置中开启收集存储卷上的日志。',
 
   ADD_VOLUME_TEMPLATE_DESC:
     '添加存储卷模板，存储卷的生命周期将随容器组的生命周期存在',
@@ -736,13 +739,13 @@ module.exports = {
 
   CONTAINER_NOT_SELECTED: '请将存储卷挂载到至少一个容器组。',
   'Sure to delete the workload(s)?': '确认删除工作负载',
-  NO_RELATED_RESOURCE_FOUND: '没有相关的资源',
+  NO_RELATED_RESOURCE_FOUND: '没有关联的资源',
   'No related resources found with the current workload(s)':
     '当前工作负载下没有关联的资源',
   DELETE_WORKLOAD_DESC_SI:
-    '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下工作负载相关资源。',
+    '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下与工作负载关联的资源。',
   DELETE_WORKLOAD_DESC_PL:
-    '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下工作负载相关资源。',
+    '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下与工作负载关联的资源。',
 
   'Container Security Context': '容器 Security Context',
   'Pod Security Context': '容器组 Security Context',

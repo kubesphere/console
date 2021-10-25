@@ -18,7 +18,7 @@
 
 module.exports = {
   VOLUME_EXPANSION: 'Volume Expansion',
-  AVAILABLE_CAPACITY: 'Available Capacity',
+  AVAILABLE_CAPACITY: 'Available capacity',
   CREATE_SNAPSHOT: 'Create Snapshot',
   'Create Storage Class': 'Create Storage Class',
   'Create Volume': 'Create Volume',
@@ -32,9 +32,10 @@ module.exports = {
   'Apply immediately': 'Apply immediately',
   Expand: 'Expand',
   EXPAND_VOLUME: 'Expand Volume',
+  EXPAND: 'Expand',
   AVAILABLE: 'Available',
   IN_USER: 'In use',
-  'Mount Info': 'Mount Info',
+  MOUNT_INFORMATION: 'Mount Information',
   'Mount Options': 'Mount Options',
   // Volumes List Page
   MOUNT_STATUS: 'Mount Status',
@@ -53,7 +54,7 @@ module.exports = {
   'Snapshot Message': 'Snapshot Message',
   'Snapshots Message': 'Snapshot Message',
   'Set as default storage class': 'Set as default storage class',
-  SNAPSHOT_INFORMATION: 'Snapshot Information',
+  SNAPSHOT_PL: 'Snapshots',
   'Storage Class': 'Storage Class',
   STORAGE_CLASS: 'Storage Class',
   STORAGE_CLASS_PL: 'Storage Classes',
@@ -72,18 +73,18 @@ module.exports = {
   ALLOW_VOLUME_CLONE: 'Volume Clone Allowed',
   ALLOW_VOLUME_EXPANSION: 'Volume Expansion Allowed',
   PV: 'Volume Backend',
-  VOLUME_BACKEND_TCAP: 'Volume Backend',
+  VOLUME_BACKEND_TCAP: 'Volume Instance',
   PV_STATUS_AVAILABLE: 'Available',
   PV_STATUS_BOUND: 'Bound',
-  PV_STATUS_RELEASED: 'Released',
+  PV_STATUS_RELEASED: 'Terminating',
   PV_STATUS_FAILED: 'Failed',
-  PV_STATUS_TERMINATING: 'Terminating',
   'Bound Volume': 'Storage volume bound',
   RECYCLING_STRATEGY: 'Recycling Strategy',
   ACCESS_MODE: 'Access Mode',
   ACCESS_MODE_SCAP: 'Access mode',
   'Used Capacity': 'Used Capacity',
   CLONE_VOLUME: 'Clone Volume',
+  CLONE: 'Clone',
   VOLUME: 'Volume',
   BACKEND_IDENTIFIER: 'Backend Identifier',
   VOLUMES: 'Volumes',
@@ -95,7 +96,7 @@ module.exports = {
   VOLUME_INSTANCE_LOW: 'volume instance',
   VOLUME_INSTANCE_EMPTY_DESC: 'Please bind a volume to a workload.',
   'The volume name exists': 'The volume name exists',
-  VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
+  VOLUME_SIZE_TIP: 'The volume capacity must be greater than 0.',
   VOLUME_NAME_EXIST: 'The volume name already exists.',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
@@ -128,15 +129,14 @@ module.exports = {
   VOLUME_SETTINGS_DESC:
     'Fill in the capacity of the volume as needed, and the volume size and access mode must be compatible with the storage class and storage server capabilities. The access mode is usually selected as RWO.',
   VOLUME_STORAGE_CLASS_DESC:
-    'Select a storage class to create a specific type of volumes.',
+    'Select a storage class to create a volume of a specific type.',
 
   PROVISIONER_DESC: 'Provide backend storage',
-  INODE_USAGE_RATE: 'Inode Usage',
 
   // Volume Pages
   ACCESS_MODE_TCAP: 'Access Mode',
 
-  ACCESS_MODES_DESC: 'Select the access mode supported by the storage class.',
+  ACCESS_MODES_DESC: 'Select an access mode supported by the storage class.',
 
   DELETE_STORAGE_TIP:
     'If the storage volume is being mounted, delete it when the workload is deleted.',
@@ -227,8 +227,8 @@ module.exports = {
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
     'Make sure if there are resources dependent on the storage class. If there are, you need to disable the resources before it the resource functions are affected.',
 
-  CREATE_VOLUME_BY_STORAGE_CLASS: 'Create a Volume from Storage Class',
-  CREATE_VOLUME_BY_SNAPSHOT: 'Create a Volume from Volume Snapshot',
+  CREATE_VOLUME_BY_STORAGE_CLASS: 'From Storage Class',
+  CREATE_VOLUME_BY_SNAPSHOT: 'From Volume Snapshot',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select a snapshot to create a volume.',
   SELECT_STORAGE_CLASS_CREATE_VOLUME:
     'Select a storage class to create a volume.',
@@ -239,11 +239,13 @@ module.exports = {
   WHAT_IS_VOLUME_SNAPSHOTS: 'What are volume snapshots?',
 
   CLUSTER_VOLUME_DIFF_DESC:
-    'Select different storage classes for different clusters.',
+    'Use different storage settings in different clusters.',
 
   VOLUME_MONITORING_TIP:
-    'KubeSphere collects volume usage data except for data from unmounted volumes. For path-based volumes such as OpenEBS, Local PV, and NFS, the data collected may be different from the actual amount. For detailed information, see <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">volume monitoring data analysis</a>.',
+    'Currently, only usage data of mounted volumes can be collected. Usage data of path-based volumes such as OpenEBS, Local PV, and NFS volumes may be inaccurate. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">Learn More</a>',
 
+  VOLUME_FUNCTION_MANAGEMENT_TIP:
+    '存储卷功能管理只是控制是否在ks console中启用这项功能，并不表示存储系统支持这项功能，设置前需要和管理员确认。',
   // Storage Classes
   RESTURL: 'REST URL',
   CLUSTER_ID: 'Cluster ID',
@@ -258,7 +260,7 @@ module.exports = {
   GID_MAX: 'Maximum GID',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
-  SNAPSHOT_TYPE: 'Volume Snapshot Class',
+  VOLUME_SNAPSHOT_CLASS: 'Volume Snapshot Class',
   SNAPSHOT_EMPTY_TIP: 'Please select a volume snapshot class.',
   VOLUME_BINDING_MODE: 'Volume Binding Mode',
   IMMEDIATE_BINDING: 'Immediate binding',
@@ -267,7 +269,7 @@ module.exports = {
 
   // Storage Class > Detail
   STORAGE_CLASS_SCAP: 'Storage class',
-  APPLY: 'Apply',
+  CREATE_VOLUME: 'Create Volume',
   VOLUME_MANAGEMENT: 'Volume Management',
   SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
   VOLUME_COUNT: 'Volumes',

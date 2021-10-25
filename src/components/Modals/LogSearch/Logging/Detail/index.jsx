@@ -70,7 +70,7 @@ export default class DetailModal extends React.Component {
   logWindow = React.createRef()
 
   pollingFrequencyOpts = [5, 10, 15].map(second => ({
-    label: `${t('Refresh Rate')}: ${t('TIME_S', { num: second })}`,
+    label: `${t('REFRESH_RATE_COLON')}${t('TIME_S', { num: second })}`,
     value: second * 1000,
   }))
 
@@ -108,7 +108,7 @@ export default class DetailModal extends React.Component {
   @computed
   get PodOpts() {
     return this.podStore.list.data.map(pod => ({
-      label: pod.name || t('All'),
+      label: pod.name || t('ALL'),
       value: pod.name || '',
     }))
   }
@@ -372,7 +372,7 @@ export default class DetailModal extends React.Component {
     return (
       <a href={link} download>
         <div className={styles.pollingBtn}>
-          <Tooltip content={t('LOG_EXPORT')}>
+          <Tooltip content={t('EXPORT')}>
             <Icon name={'export'} type="light" />
           </Tooltip>
         </div>
@@ -485,10 +485,10 @@ export default class DetailModal extends React.Component {
         <div className={styles.header}>
           <div className={styles.pre} onClick={this.pre}>
             <BackIcon width={16} height={22} />
-            <span>{t('Back to previous')}</span>
+            <span>{t('BACK')}</span>
           </div>
         </div>
-        <h3>{t('Region Data')}</h3>
+        <h3>{t('CONTAINER_LOG_SOURCE')}</h3>
         <div className={styles.dataList}>
           <div>
             <h4>{t('PROJECT')}</h4>
@@ -499,7 +499,7 @@ export default class DetailModal extends React.Component {
             </p>
           </div>
           <div>
-            <h4>{t('Pod')}</h4>
+            <h4>{t('POD')}</h4>
             <div className={styles.selectContainer}>
               <Select
                 prefixIcon={<Icon name="pod" />}
@@ -516,7 +516,7 @@ export default class DetailModal extends React.Component {
             </div>
           </div>
           <div>
-            <h4>{t('Container')}</h4>
+            <h4>{t('CONTAINER')}</h4>
             <div className={styles.selectContainer}>
               <Select
                 prefixIcon={<Icon name="docker" />}

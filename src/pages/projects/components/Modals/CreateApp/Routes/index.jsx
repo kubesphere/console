@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, omit } from 'lodash'
+import { get, set, omit, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 
@@ -192,28 +192,39 @@ export default class Routes extends React.Component {
     const { isFederated, projectDetail } = this.props
     const { ingress } = this.state
     const template = isFederated ? get(ingress, 'spec.template') : ingress
+
     const annotations = get(template, 'metadata.annotations', [])
     const rules = get(template, 'spec.rules', [])
     const tls = get(template, 'spec.tls', [])
     const clusters = get(projectDetail, 'clusters', [])
 
     clusters.forEach(cluster => {
+      const overrideData = data =>
+        data
+          .filter(item => item.clusters.includes(cluster.name))
+          .map(item => omit(item, 'clusters'))
+
+      const clusterOverrides = [
+        {
+          path: '/spec/rules',
+          value: overrideData(rules),
+        },
+        {
+          path: '/spec/tls',
+          value: overrideData(tls),
+        },
+      ]
+
+      if (!isEmpty(annotations)) {
+        clusterOverrides.unshift({
+          path: '/metadata/annotations',
+          value: annotations,
+        })
+      }
+
       overrides.push({
         clusterName: cluster.name,
-        clusterOverrides: [
-          {
-            path: '/metadata/annotations',
-            value: annotations,
-          },
-          {
-            path: '/spec/rules',
-            value: rules.filter(rule => rule.clusters.includes(cluster.name)),
-          },
-          {
-            path: '/spec/tls',
-            value: tls.filter(item => item.clusters.includes(cluster.name)),
-          },
-        ],
+        clusterOverrides,
       })
     })
 

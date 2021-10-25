@@ -106,7 +106,11 @@ export default class LogItem extends React.Component {
           />
           {step.displayName}
           <span className={styles.logitem_status}>
-            <span>{formatUsedTime(step.durationInMillis)}</span>
+            <span>
+              {step.durationInMillis
+                ? formatUsedTime(step.durationInMillis)
+                : '-'}
+            </span>
             <Status {...getPipelineStatus(step)} />
           </span>
         </div>

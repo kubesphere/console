@@ -42,14 +42,10 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
 
   const description = (
     <>
-      <span>
-        {t('PROTOCOL')}: {protocol}
-      </span>
+      <span>{t('PROTOCOL_VALUE', { value: protocol.toUpperCase() })}</span>
       &nbsp;&nbsp;
       {protocol === 'https' && (
-        <span>
-          {t('CERTIFICATE')}: {tls.secretName}
-        </span>
+        <span>{t('CERTIFICATE_VALUE', { value: tls.secretName })}</span>
       )}
     </>
   )
@@ -72,7 +68,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
             </Column>
             <Column>
               <span>
-                {t('Service')}:{' '}
+                {t('SERVICE')}:{' '}
                 <strong>
                   <Link to={`${prefix}/services/${path.backend.service.name}`}>
                     {path.backend.service.name}

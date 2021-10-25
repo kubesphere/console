@@ -25,7 +25,7 @@ import Base from './ServiceSettingsForm'
 export default class ServiceSettingsForm extends Base {
   renderTypeSelect() {
     return (
-      <Form.Item label={t('INTERNAL_ACCESS_METHOD')}>
+      <Form.Item label={t('INTERNAL_ACCESS_MODE')}>
         <TypeSelect
           className="margin-b12"
           value={this.state.serviceType}

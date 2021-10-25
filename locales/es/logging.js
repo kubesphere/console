@@ -21,7 +21,7 @@ module.exports = {
   ADD_LOG_RECEIVER: 'Add Log Receiver',
   'Add Service Address': 'Agregar dirección de servicio',
   Address: 'Dirección',
-  'Auditing statistics': 'Estadísticas de auditoría',
+  AUDIT_LOG_COUNT: 'Estadísticas de auditoría',
   'Back to previous': 'Volver al anterior',
   CHANGE_STATUS: 'Cambiar Estado',
   Collecting: 'Recolectar',
@@ -29,23 +29,26 @@ module.exports = {
   'Delete Log Receiver': 'Delete Log Receiver',
   'Display Content': 'Mostrar el contenido',
   'Event statistics': 'Estadísticas de eventos',
-  'Exact Query': 'Consulta exacta',
-  'Fuzzy Query': 'Consulta difusa',
+  EXACT_QUERY: 'Consulta exacta',
+  FUZZY_QUERY: 'Consulta difusa',
   HIDE_HELP_INFORMATION: 'Ocultar información de ayuda',
   INDEX_PREFIX: 'Index Prefix',
-  Keyword: 'Palabra clave',
+  KEYWORD: 'Palabra clave',
   'Log Collections': 'Colecciones de logs',
   'Log Receiver': 'Log Receiver',
   'Log Management': 'Gestión de logs',
   'Log Query': 'Consulta de logs',
   'Log Start Time': 'Hora de inicio del log',
-  'Log statistics': 'Estadísticas de logs',
-  'No cluster with auditing module enabled':
+  CONTAINER_LOG_COUNT: 'Estadísticas de logs',
+  AUDITING_NOT_ENABLED_DESC:
     'No hay clúster con módulo de auditoría habilitado',
+  EVENT_NOT_ENABLED_DESC: 'No hay clúster con consulta de eventos habilitada',
+  LOGGING_NOT_ENABLED_DESC: 'No hay clúster con módulo de registro habilitado',
   'No cluster with event query enabled':
     'No hay clúster con consulta de eventos habilitada',
   'No cluster with logging module enabled':
     'No hay clúster con módulo de registro habilitado',
+  LOGGING_DISABLED: 'Logging Disabled',
   'Passwords must be at least 6 characters long':
     'Las contraseñas deben tener al menos 6 caracteres.',
   'Please enter a filter to search for logs.':
@@ -56,20 +59,23 @@ module.exports = {
   'Recently Configured Updated': 'Actualizado y configurado recientemente',
   'Recently Updated': 'Recientemente actualizado',
   'Refresh Interval': 'Intervalo de actualización',
+  REFRESH_RATE_COLON: 'Frecuencia de actualización: ',
+  CONTAINER_LOG_SOURCE: 'Container Log Source',
+  REFRESH_INTERVAL_VALUE: 'Refresh interval: {value}s',
   'Refresh Rate': 'Frecuencia de actualización',
   'Region Data': 'Datos de región',
   'Release Collection': 'Colección de releases',
-  'Resource Name & Type': 'Nombre y tipo de recurso',
-  'Search Result': 'Resultados de búsqueda',
-  'Search Rule': 'Regla de búsqueda',
+  RESOURCE_NAME_AND_TYPE: 'Nombre y tipo de recurso',
+  SEARCH_RESULTS: 'Resultados de búsqueda',
+  QUERYING_RULES: 'Regla de búsqueda',
   SERVICE_ADDRESS: 'Dirección de Servicio',
-  'Time topology': 'Topología de tiempo',
+  TIME_TOPOLOGY: 'Topología de tiempo',
   TOPIC: 'tema',
   'Auditing log trends in the last 12 hours':
     'Tendencias en el número total de registros de auditoría en las últimas 12 horas',
-  'Event trends in the last 12 hours':
+  RESOURCE_EVENT_TRENDS_12H:
     'Tendencias en el número total de eventos en las últimas 12 horas.',
-  'Log trends in the last 12 hours':
+  CONTAINER_LOG_TRENDS_12H:
     'Tendencias en el número total de registros en las últimas 12 horas.',
   LOG_DATE: 'DD/MM/YYYY HH:mm',
   EVENT_DATE: 'DD/MM/YYYY 00:00',
@@ -96,30 +102,30 @@ module.exports = {
   LOG_COLLECTION_ES_INDEX_TIPS:
     'Use the index prefix to speed up queries. The index prefix is automatically generated in <Index prefix>-<Year-month-date> format.',
   'Search Logs by': 'Buscar logs por {field}',
-  'KeyWord Log Query Tip':
+  CONTAINER_LOG_KEYWORD_TIP:
     'Introduce la palabra clave para encontrar el log. También puedes encontrar el log de errores por palabras clave como "Error", "Fail", "Fatal", "Exception" y "Warning".',
-  'Project Log Query Tip':
+  CONTAINER_LOG_PROJECT_TIP:
     'Puedes ver la información de log relacionada de acuerdo con el nombre del proyecto.',
-  'Workload Log Query Tip':
+  CONTAINER_LOG_WORKLOAD_TIP:
     'Puedes ver la información de log relacionada de acuerdo con el nombre de la carga de trabajo.',
-  'Container Log Query Tip':
+  CONTAINER_LOG_CONTAINER_TIP:
     'Puedes ver la información de log relacionada de acuerdo con el nombre del contenedor.',
-  'Pod Log Query Tip':
+  CONTAINER_LOG_POD_TIP:
     'Puedes ver la información de log relacionada de acuerdo con el nombre del pod.',
   'Search Events by': 'Buscar eventos por {field}',
-  'Workspace Event Query Tip':
+  RESOURCE_EVENT_WORKSPACE_TIP:
     'Puedes ver información de eventos relacionados de acuerdo con el espacio de trabajo.',
-  'Project Event Query Tip':
+  RESOURCE_EVENT_PROJECT_TIP:
     'Puedes ver información de eventos relacionados de acuerdo con el proyecto.',
-  'Resource Type Event Query Tip':
+  RESOURCE_EVENT_RESOURCE_TYPE_TIP:
     'Puedes ver información de eventos relacionados según el tipo de recurso.',
-  'Resource Name Event Query Tip':
+  RESOURCE_EVENT_RESOURCE_NAME_TIP:
     'Puedes ver información de eventos relacionados de acuerdo con el nombre del recurso.',
-  'Message Event Query Tip':
+  RESOURCE_EVENT_MESSAGE_TIP:
     'Puedes ver información de eventos relacionados de acuerdo con el mensaje.',
-  'Category Event Query Tip':
+  RESOURCE_EVENT_CATEGORY_TIP:
     'Puedes ver información relacionada del evento según la categoría.',
-  'Reason Event Query Tip':
+  RESOURCE_EVENT_REASON_TIP:
     'Puedes ver información relacionada con el evento según el motivo.',
   'Pod Event Query Tip':
     'Puedes ver información de eventos relacionados de acuerdo con el nombre del pod.',
@@ -132,10 +138,10 @@ module.exports = {
     'Hoy se recolectó un total de <span class={className}>{logs}</span> logs de <span class={className}>{contenedores}</span> contenedores.',
   TOTAL_EVENTS_TODAY:
     'Hoy se recopilaron un total de <span class={className}>{events}</span> eventos.',
-  NO_EVENTS_TODAY: 'Eventos no encontrados hoy',
+  NO_RESOURCE_EVENTS_TODAY: 'Eventos no encontrados hoy',
   START_REAL_TIME_LOG: 'activar el registro de logs en tiempo real',
   STOP_REAL_TIME_LOG: 'desactivar el registro de logs en tiempo real',
-  LOG_EXPORT: 'Exportar logs',
+  EXPORT_LOGS: 'Exportar logs',
   CREATE_CUSTOM_MONITORING_DASHBOARD:
     'Crear un panel de monitoreo personalizado',
   MONITORING_TEMPLATE: 'Monitoring Template',
@@ -162,25 +168,25 @@ module.exports = {
   SERVICE_BUILT_INTERFACE:
     'la supervisión del servicio se genera con la captura de datos de interfaz',
   'Search Auditing Logs by': 'Auditoría de búsqueda por {field}',
-  'Workspace Auditing Query Tip':
+  AUDIT_LOG_WORKSPACE_TIP:
     'Puedes ver información de eventos relacionados de acuerdo con el espacio de trabajo.',
-  'Project Auditing Query Tip':
+  AUDIT_LOG_PROJECT_TIP:
     'Puedes ver información de eventos relacionados de acuerdo con el proyecto.',
-  'Resource Name Auditing Query Tip':
+  AUDIT_LOG_RESOURCE_NAME_TIP:
     'Puedes ver información de eventos relacionados de acuerdo con el nombre del recurso.',
-  'Resource Type Auditing Query Tip':
+  AUDIT_LOG_RESOURCE_TYPE_TIP:
     'Puedes ver información de eventos relacionados según el tipo de recurso.',
-  'Verb Auditing Query Tip':
+  AUDIT_LOG_VERB_TIP:
     'Puedes ver información de eventos relacionados de acuerdo con el verbo.',
-  'Status Code Auditing Query Tip':
+  AUDIT_LOG_STATUS_CODE_TIP:
     'Puedes ver información de eventos relacionados de acuerdo con el código de estado.',
-  'Operation Account Auditing Query Tip':
+  AUDIT_LOG_OPERATOR_TIP:
     'Puedes ver información de eventos relacionados de acuerdo con la cuenta de operación.',
-  'Source IP Auditing Query Tip':
+  AUDIT_LOG_SOURCE_IP_ADDRESS_TIP:
     'Puedes ver información de eventos relacionados de acuerdo con la IP de origen.',
   TOTAL_AUDITING_TODAY:
     'Hoy se han recopilado un total de <span class={className}>{auditing}</span> registros de auditoría.',
-  NO_AUDITING_TODAY: 'Registros de auditoría no encontrados hoy',
+  NO_AUDIT_LOG_TODAY: 'Registros de auditoría no encontrados hoy',
   LOGGING_LOG_COLLECTOR: 'Log Receiver',
   EVENTS_LOG_COLLECTOR: 'Events Log Receiver',
   AUDITING_LOG_COLLECTOR: 'Auditing Log Receiver',
@@ -204,4 +210,42 @@ module.exports = {
   CHANGE_STATUS_LOW: 'Change status',
   EVENTS: 'Events',
   SELECT_STATUS_TIP: 'Select a status',
+
+  // Container Log Search
+  LOG_EXPORT_SCAP: 'Log export',
+  SEARCH_BY_KEYWORD: 'Search by Keyword',
+  SEARCH_BY_PROJECT: 'Search by Project',
+  SEARCH_BY_WORKLOAD: 'Search by Workload',
+  SEARCH_BY_POD: 'Search by Pod',
+  SEARCH_BY_CONTAINER: 'Search by Container',
+  START_TIME_COLON: 'Start Time: ',
+  KEYWORD: 'Keyword',
+  TIME_RANGE: 'Time Range',
+  LOG: 'Log',
+  DISPLAY: 'Display',
+  HIDE: 'Hide',
+  STOP_REAL_TIME_CONTAINER_LOG: 'Pause real-time container logs',
+  START_REAL_TIME_CONTAINER_LOG: 'View real-time container logs',
+  REASON_COLON: 'Reason: ',
+  MESSAGE_COLON: 'Message: ',
+
+  // Resource Event Search
+  STOP_REAL_TIME_RESOURCE_EVENT: 'Pause real-time resource events',
+  START_REAL_TIME_RESOURCE_EVENT: 'View real-time resource events',
+  RESOURCE_EVENT_COUNT: 'Resource Events',
+  SEARCH_BY_MESSAGE: 'Search by Message',
+  SEARCH_BY_WORKSPACE: 'Search by Workspace',
+  SEARCH_BY_RESOURCE_TYPE: 'Search by Resource Type',
+  SEARCH_BY_RESOURCE_NAME: 'Search by Resource Name',
+  SEARCH_BY_REASON: 'Search by Reason',
+  SEARCH_BY_CATEGORY: 'Search by Category',
+
+  // Audit Log Search
+  VERB: 'Verb',
+  STATUS_CODE: 'Status Code',
+  SUBRESOURCE: 'Subresource',
+  SEARCH_BY_VERB: 'Search by Verb',
+  SEARCH_BY_STATUS_CODE: 'Search by Status Code',
+  SEARCH_BY_OPERATOR: 'Search by Operator',
+  SEARCH_BY_SOURCE_IP_ADDRESS: 'Search by Source IP Address',
 }

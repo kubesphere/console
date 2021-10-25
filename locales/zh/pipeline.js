@@ -37,7 +37,7 @@ module.exports = {
   WEBHOOK_PUSH_URL: 'Webhook 推送 URL',
   BUILD_SETTINGS: '构建设置',
   BRANCH_SETTINGS: ' 分支设置',
-  PIPELINE_NAME_DESC: '流水线的名称，同一个工程内流水线不能重名。',
+  PIPELINE_NAME_DESC: '流水线的名称，同一个项目内流水线不能重名。',
   PIPELINE_PARAM_DEFAULT_DESC:
     '指定字段的默认值，您也可以在手动运行流水线前修改默认值。',
   PARAM_DESC: '参数的描述。',
@@ -108,7 +108,7 @@ module.exports = {
   TRUSTED_USER: '可信用户',
   ADD_ACTION: '添加操作',
   ALL_BRANCHES: '所有分支',
-  ENABLE_TAG_BRANCH_DISCOVERY: '启用发现 Tag 分支',
+  ENABLE_TAG_BRANCH_DISCOVERY: '开启发现 Tag 分支',
   DISABLE_TAG_BRANCH_DISCOVERY: '停用发现 Tag 分支',
   EXCLUDE_PR_BRANCHES: '排除作为 PR 提交的分支',
   ONLY_PR_BRANCHES: '只有被提交为 PR 的分支',
@@ -163,7 +163,7 @@ module.exports = {
   当参数化项目时，构建会被替换为参数化构建，并将提示用户为每个定义好的参数输入值。
   如果没有输入值，则构建以每个参数的默认值进行。
   如果项目的构建是自动启动，例如，由定时触发器启动，这时将使用参数的默认值进行触发。`,
-  AUTHENTICATION_TOKEN_TIP: `如果需要通过访问预定义 URL 开触发构建，请启用此选项。
+  AUTHENTICATION_TOKEN_TIP: `如果需要通过访问预定义 URL 开触发构建，请开启此选项。
     此功能的的一个典型用法是通过源代码管理系统的钩子脚本来进行触发。
     您需要提供一个字符串形式的授权令牌，以便只有拥有授权令牌的人才能触发远程构建。`,
   DISABLE_CONCURRENT_TIP:
@@ -192,7 +192,7 @@ module.exports = {
   'Edit Config': '编辑配置',
   PIPELINES_BASEINFO_DESC: '请输入流水线的基本信息',
   PIPELINE_ADVANCE_SETTINGS_DESC: '	为流水线配置复杂行为策略（可选）',
-  CREDENTIALS_CREATE_DESC: '创建用于 DevOps 工程中的凭证',
+  CREDENTIALS_CREATE_DESC: '创建用于 DevOps 项目中的凭证',
   'Wait for interactive input': '等待输入',
   Break: '终止',
   Proceed: '继续',
@@ -246,7 +246,7 @@ module.exports = {
     <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">CRON</a>。`,
   'passphrase Variable': '密码变量',
   'show yaml editor': '用 YAML 编辑器编辑',
-  'Enable Variable Substitution in Config': '在配置中启用变量替换',
+  'Enable Variable Substitution in Config': '在配置中开启变量替换',
   'Kubernetes Secrets': 'Kubernetes 密钥',
   'Kubernetes Namespace for Secret': 'Kubernetes 密钥命名空间',
   'Docker Container Registry Credentials': 'Docker 容器仓库凭证',
@@ -379,7 +379,7 @@ module.exports = {
   REGEX_FILTER: '过滤规则',
   REG_FILTER_TITLE: '根据名称过滤（正则匹配）',
   REG_FILTER_DESC:
-    '启用正则表达式，将忽略与提供的正则表达式不匹配的名称（包括分支与PR等）',
+    '开启正则表达式，将忽略与提供的正则表达式不匹配的名称（包括分支与PR等）',
   ENABLE_SHALLOW_CLONE: '开启浅克隆',
   PIPELINE_CLONE_TIMEOUT: '流水线克隆超时时间（单位：分钟）',
   'config name': '配置名称',
@@ -405,14 +405,14 @@ module.exports = {
   PIPELINE_QUEUED_TITLE: '流水线即将进行初始化',
   PIPELINE_QUEUED_DESC:
     '您需要等待 agent 启动并执行流水线（注：如 agent 长时间没有启动请检查 agent 配置和集群资源情况）',
-  pipeline_owner: 'DevOps 工程的所有者，可以进行 DevOps 工程的所有操作',
+  pipeline_owner: 'DevOps 项目的所有者，可以进行 DevOps 项目的所有操作',
   pipeline_maintainer:
-    'DevOps 工程的主要维护者，可以进行工程内的凭证配置、流水线配置等操作',
-  pipeline_developer: 'DevOps 工程的开发者，可以进行流水线的触发以及查看',
-  pipeline_reporter: 'DevOps 工程的观察者，可以查看流水线的运行情况',
+    'DevOps 项目的主要维护者，可以进行项目内的凭证配置、流水线配置等操作',
+  pipeline_developer: 'DevOps 项目的开发者，可以进行流水线的触发以及查看',
+  pipeline_reporter: 'DevOps 项目的观察者，可以查看流水线的运行情况',
   'sonar is the default config name.': '默认配置名称是 sonar',
   credentialsId: '凭证 ID',
-  enableConfigSubstitution: '启用变量替换',
+  enableConfigSubstitution: '开启变量替换',
   configs: '配置',
   secretNamespace: '密钥命名空间',
   secretName: '秘钥名称',
@@ -491,7 +491,7 @@ module.exports = {
 
   // Pipeline Creation Page
   DEVOPS_PROJECT_DESC:
-    'DevOps 工程用于对资源进行分组管理以及控制不同用户的资源管理权限。',
+    'DevOps 项目用于对资源进行分组管理以及控制不同用户的资源管理权限。',
   CODE_REPOSITORY_OPTIONAL: '代码仓库（可选）',
   OPTIONS: '备用选项',
 }

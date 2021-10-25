@@ -174,7 +174,7 @@ export default class StatefulSets extends React.Component {
           ),
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         width: '22%',

@@ -77,7 +77,7 @@ module.exports = {
   RESTORE: 'Restore',
   REGEX_MATCH: 'Regex match',
   GRAY_RELEASE_JOB_NAME: 'Grayscale Release Job Name',
-  REQUEST_SUCCESS_RATE: 'Request Success Rate',
+  SUCCESSFUL_REQUEST_RATE: 'Successful Request Rate',
   RULE_DESCRIPTION: 'Rule Description',
   'Take Over': 'Take Over',
   TAKE_ONLINE: 'Take Online',
@@ -116,11 +116,11 @@ module.exports = {
     'This method is very helpful to understand whether product updates or improvements have met expectations. It can be used when new needs arise and it will not affect the business stability.',
 
   NO_SERVICE_MESH_TIP:
-    'Applications that are not enabled for application governance cannot be published in grayscale.',
+    'Application governance is disabled for the app and grayscale release is unavailable.',
 
   NO_GRAYSCALE_RELEASE_JOB_FOUND: 'No Grayscale Release Job Found',
   NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC:
-    'Please create a grayscale release task.',
+    'Please create a grayscale release job.',
   TOTAL_GRAY_RELEASE_JOB: '{num} grayscale release job in total',
   TOTAL_GRAY_RELEASE_JOBS: '{num} grayscale release jobs in total',
 

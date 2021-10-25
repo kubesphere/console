@@ -169,7 +169,7 @@ export default class Routers extends React.Component {
         render: loadBalancerIngress => loadBalancerIngress.join('; '),
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         search: true,

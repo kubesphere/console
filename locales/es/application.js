@@ -113,8 +113,9 @@ module.exports = {
   'Maximum pending requests': 'Máximo de solicitudes pendientes',
   'Maximum requests': 'Solicitudes máximas',
   METHOD: 'Método',
-  'Microservice enabled': 'Microservicio habilitado',
-  'Microservice not enabled': 'Microservicio no habilitado',
+  CREATION_METHOD: 'Creation Method',
+  APPLICATION_GOVERNANCE_ENABLED: 'Microservicio habilitado',
+  APPLICATION_GOVERNANCE_DISABLED: 'Microservicio no habilitado',
   'No Components': 'Sin componentes',
   'No result found': 'No se han encontrado resultados',
   Off: 'Off',
@@ -129,6 +130,7 @@ module.exports = {
     'Por favor introduce la versión del componente',
   SAVE_FORM_TIP: 'Por favor guarda el formulario actual primero',
   TRACING_NO_DATA_DESC: 'Por favor prueba otras condiciones en la consulta',
+  TRACING: 'Tracing',
   NUM_SPAN_SI: '{num} span',
   NUM_SPAN_PL: '{num} spans',
   NUM_ERROR_SI: '{num} error',
@@ -152,10 +154,7 @@ module.exports = {
   TCP_INBOUND_TRAFFIC: 'TCP - Tráfico entrante',
   TCP_OUTBOUND_TRAFFIC: 'TCP - Tráfico saliente',
   'TCP connection timeout.': 'Tiempo de espera de conexión TCP.',
-  'Temporarily unable to use tracing':
-    'No se puede usar el servicio de tracing temporalmente',
-  TRAFFIC_MONITORING_UNAVAILABLE:
-    'No se puede utilizar la gestión del tráfico temporalmente.',
+  TRACING_UNAVAILABLE: 'No se puede usar el servicio de tracing temporalmente',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC:
     'La aplicación no ha recibido una solicitud durante mucho tiempo, visita la aplicación y prueba el gestor de tráfico',
   'The maximum number of HTTP1 or TCP connections to the target host.':
@@ -170,7 +169,8 @@ module.exports = {
   Traffic: 'Tráfico',
   'Traffic (requests per second)': 'Tráfico (solicitudes por segundo)',
   TRAFFIC_ENTRY: 'Entrada de tráfico',
-  'Traffic Management': 'Gestión del tráfico',
+  TRAFFIC_MANAGEMENT: 'Gestión del tráfico',
+  NETWORK_TRAFFIC: 'Network Traffic',
   'Traffic Monitoring': 'Monitorización de tráfico',
   Upgrade: 'Subir de versión',
   'Workload Type': 'Tipo de carga de trabajo',
@@ -197,7 +197,7 @@ module.exports = {
   CONNECTION_POOL_TIP:
     'Crea un número fijo de objetos de conexión para la aplicación y guárdalos en el grupo para su reutilización. El grupo existente estará disponible para cada acceso, y cada objeto de conexión volverá al grupo después de su uso.',
   APPLICATION_GOVERNANCE_DESC:
-    'Si la gestión de aplicación está habilitada, el contenedor Istio-proxy se inyectará como SideCar en cada componente. <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">LEER MAS</a>',
+    'Enable Application Governace to use the Traffic Monitoring, Grayscale Release, and Tracing features for the app.',
   POD_ISOLATION_RATIO_DESC:
     '% Máximo de Pods que se pueden expulsar del servicio de upstream. Utiliza redondeo hacia arriba. Por ejemplo: Si existen 10 instancias y se establece en 13%, aislará hasta 2 instancias.',
   BASE_EJECTION_TIME_DESC:

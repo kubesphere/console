@@ -220,6 +220,7 @@ export default class Gateway extends Base {
     workspace,
     more,
     component,
+    search,
     ...params
   }) {
     this.podList.isLoading = true
@@ -234,11 +235,11 @@ export default class Gateway extends Base {
     }
 
     params.limit = params.limit || 10
-
     const result = await request.get(
       `${this.gatewayPodsUrl({ cluster, namespace, gatewayName })}/pods`,
       {
         ...params,
+        name: search,
       },
       {},
       () => {

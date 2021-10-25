@@ -205,7 +205,7 @@ export default class MonitoringOverview extends React.Component {
             <div className={styles.item}>
               <Icon name="gateway" size={56}></Icon>
               <div>
-                <p>{t('Total Requests')}</p>
+                <p>{t('TOTAL_REQUESTS')}</p>
                 <span>{this.getMetricsData('ingress_request_count')}</span>
               </div>
             </div>
@@ -217,11 +217,11 @@ export default class MonitoringOverview extends React.Component {
                   value={errorType}
                   options={[
                     {
-                      label: t('Request 4xx'),
+                      label: t('FOUR_XX_REQUEST_COUNT'),
                       value: 'ingress_request_4xx_count',
                     },
                     {
-                      label: t('Request 5xx'),
+                      label: t('FIVE_XX_REQUEST_COUNT'),
                       value: 'ingress_request_5xx_count',
                     },
                   ]}
@@ -243,13 +243,13 @@ export default class MonitoringOverview extends React.Component {
               total={100}
               unit="%"
               innerRadius="80%"
-              legend={['Request Success', 'Total']}
+              legend={['SUCCESSFUL_REQUESTS', 'TOTAL']}
               showCenter={true}
               showRate={false}
               areaColors={['#55BC8A', '#E3E9EF']}
               renderCustomCenter={({ value }) => (
                 <div className={styles.simpleContent}>
-                  <p>{t('REQUEST_SUCCESS_RATE')}</p>
+                  <p>{t('SUCCESSFUL_REQUESTS')}</p>
                   <span>{value}%</span>
                 </div>
               )}
@@ -261,28 +261,36 @@ export default class MonitoringOverview extends React.Component {
                 <Alarm />
               </span>
               <div>
-                <p>{t('Duration Average')}</p>
+                <p>{t('AVERAGE_LATENCY')}</p>
                 <span>
-                  {this.getMetricsData('ingress_request_duration_average')}
+                  {`${this.getMetricsData(
+                    'ingress_request_duration_average'
+                  )} ms`}
                 </span>
               </div>
             </div>
             <div className={styles.itemSmall}>
-              <span>{t('Duration 50percentage')}</span>
+              <span>{t('P_FIFTY_LATENCY')}</span>
               <span>
-                {this.getMetricsData('ingress_request_duration_50percentage')}
+                {`${this.getMetricsData(
+                  'ingress_request_duration_50percentage'
+                )} ms`}
               </span>
             </div>
             <div className={styles.itemSmall}>
-              <span>{t('Duration 95percentage')}</span>
+              <span>{t('P_NINETY_FIVE_LATENCY')}</span>
               <span>
-                {this.getMetricsData('ingress_request_duration_95percentage')}
+                {`${this.getMetricsData(
+                  'ingress_request_duration_95percentage'
+                )} ms`}
               </span>
             </div>
             <div className={styles.itemSmall}>
-              <span>{t('Duration 99percentage')}</span>
+              <span>{t('P_NINETY_NINE_LATENCY')}</span>
               <span>
-                {this.getMetricsData('ingress_request_duration_99percentage')}
+                {`${this.getMetricsData(
+                  'ingress_request_duration_99percentage'
+                )} ms`}
               </span>
             </div>
           </div>

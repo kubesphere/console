@@ -265,7 +265,7 @@ class GatewayCard extends React.Component {
               trigger="click"
               placement="bottomRight"
             >
-              <Button>{t('ACTIONS')}</Button>
+              <Button>{t('OPERATIONS')}</Button>
             </Dropdown>
           ),
         },
@@ -306,7 +306,7 @@ class GatewayCard extends React.Component {
           key: 'appGover',
           icon: <AppGoverIcon />,
           title: serviceMeshEnable ? t('ON') : t('OFF'),
-          desc: t('APPLICATION_GOVERNANCE_SCAP'),
+          desc: t('TRACING'),
         },
       ],
     ]

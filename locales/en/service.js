@@ -18,9 +18,8 @@
 
 module.exports = {
   ' has no corresponding workload.': ' has no corresponding workload.',
-  ACCESS_METHOD: 'Access Method',
   ACCESS_TYPE: 'Access Type',
-  INTERNAL_ACCESS_METHOD: 'Internal Access Method',
+  INTERNAL_ACCESS_MODE: 'Internal Access Mode',
   'Add Route Rule': 'Add Route Rule',
   'Add Selector': 'Add Selector',
   'Associated Application': 'Associated Application',
@@ -51,6 +50,7 @@ module.exports = {
   'External Address': 'External Address',
   EXTERNAL_SERVICE: 'External Service',
   EXTERNAL_IP_ADDRESS: 'External IP Address',
+  EXTERNAL_IP_ADDRESS_SCAP: 'External IP address',
   'External Service': 'External Service',
   'Internal access': 'Internal access',
   INVALID_PORT_DESC: 'Please enter a valid port number.',
@@ -63,9 +63,9 @@ module.exports = {
   'No related resources found with current service(s)':
     'No related resources found with current service(s)',
   NO_SERVICE_RELATED_RESOURCE_DESC:
-    'No resources related to the Service is found.',
+    'No resource related to the Service is found.',
   NO_WORKLOAD_RELATED_RESOURCE_DESC:
-    'No resources related to the workload is found.',
+    'No resource related to the workload is found.',
   'Node Port': 'Node Port',
   'Node Port(s)': 'Node Port(s)',
   'Not Associate': 'Not Associate',
@@ -83,9 +83,8 @@ module.exports = {
   'Please select Service': 'Please select Service',
   Ports: 'Ports',
   routes: 'routes',
-  SELECTOR: 'Selector',
   selector: 'selector',
-  'Service Access': 'Service Access',
+  ACCESS_INFORMATION: 'Access Information',
   'Service Mesh': 'Service Mesh',
   'Service Name': 'Service Name',
   SERVICE_PORT: 'Service Port',
@@ -117,6 +116,7 @@ module.exports = {
   STICKY_SESSION_DESC:
     'Set the system to forward all requests from the same client to the same Pod within a specified duration.',
   VIRTUAL_IP: 'VirtualIP',
+  VIRTUAL_IP_ADDRESS: 'Virtual IP address',
 
   CREATE_EXTERNAL_SERVICE_DESC:
     'Create a Service and map it to an external Service.',
@@ -153,7 +153,7 @@ module.exports = {
   ACCESS_LOADBALANCER_TIP: 'Use a load balancer to access the Service.',
 
   SERVICE_NODE_PORT_DESC:
-    'If your current network is on the same network as the cluster node, you can access it through <Cluster IP address>:<NodePort> or through <Node IP address>:<NodePort>.',
+    'If your client machine is on the same network as the cluster, you can use <Node IP address>:<Node port> to access the Service.',
 
   SERVICE_TYPE: 'Service Type',
   SELECT_SERVICE_TYPE: 'Select Service Type',
@@ -188,6 +188,9 @@ module.exports = {
   SERVICE_TYPE_STATEFULSERVICE: 'Stateful Service',
   SERVICE_TYPE_STATELESSSERVICE: 'Stateless Service',
   SERVICE_TYPE_EXTERNALSERVICE: 'External Service',
+  SERVICE_TYPE_STATEFULSERVICE_SCAP: 'Stateful service',
+  SERVICE_TYPE_STATELESSSERVICE_SCAP: 'Stateless service',
+  SERVICE_TYPE_EXTERNALSERVICE_SCAP: 'External service',
   STATEFUL_SERVICE_DESC: 'Create a Service and a StatefulSet.',
   STATELESS_SERVICE_DESC: 'Create a Service and a Deployment.',
 
@@ -199,7 +202,7 @@ module.exports = {
   SPECIFY_NODE_DESC:
     'Specify a node that needs to be associated with the service.',
 
-  EIP_POOL_DESC: 'Access method within the cluster (DNS)',
+  INTERNAL_DOMAIN_NAME_SCAP: 'Internal domain name',
 
   MAXIMUM_STICKINESS_DURATION_DESC:
     'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',

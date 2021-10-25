@@ -19,6 +19,7 @@
 module.exports = {
   'Set Replicas': 'Número fijo de copias',
   SPECIFY_REPLICAS: 'Specify Replicas',
+  WEIGHTS: 'Weights',
   SPECIFY_WEIGHTS: 'Specify Weights',
   SPECIFY_WEIGHTS_DESC:
     'El número total de copias establecido se asignará a los grupos seleccionados de acuerdo con los pesos establecidos, y las copias de los grupos no disponibles se migrarán automáticamente a los grupos disponibles.',

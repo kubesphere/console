@@ -116,7 +116,7 @@ module.exports = {
 
   'Add node to the cluster': '添加節點到集群中',
 
-  INTERNAL_IP: '節點內網 IP 地址',
+  INTERNAL_IP_ADDRESS: '節點內網 IP 地址',
   PORT: '端口',
   PORT_VALUE: '端口：{value}',
   EXTERNAL_IP: '外網 IP 地址',

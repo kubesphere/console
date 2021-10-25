@@ -405,11 +405,11 @@ module.exports = {
   PIPELINE_QUEUED_TITLE: 'Pipeline 即將進行初始化',
   PIPELINE_QUEUED_DESC:
     '您需要等待 agent 啟動並執行流水線（注：如 agent 長時間沒有啟動請檢查 agent 配置和集群資源情況）',
-  pipeline_owner: 'DevOps 工程的所有者，可以進行 DevOps 工程的所有操作',
+  pipeline_owner: 'DevOps 项目的所有者，可以進行 DevOps 项目的所有操作',
   pipeline_maintainer:
-    'DevOps 工程的主要維護者，可以進行項目内的憑證配置、Pipeline 配置等操作',
-  pipeline_developer: 'DevOps 工程的開發者，可以進行 Pipeline 的觸發以及查看',
-  pipeline_reporter: 'DevOps 工程的觀察者，可以查看 Pipeline 的運行情况',
+    'DevOps 项目的主要維護者，可以進行項目内的憑證配置、Pipeline 配置等操作',
+  pipeline_developer: 'DevOps 项目的開發者，可以進行 Pipeline 的觸發以及查看',
+  pipeline_reporter: 'DevOps 项目的觀察者，可以查看 Pipeline 的運行情况',
   'sonar is the default config name.': '預設配置名稱是 sonar',
   credentialsId: '憑證 ID',
   enableConfigSubstitution: '啟用變量替換',
@@ -491,7 +491,7 @@ module.exports = {
 
   // Pipeline Creation Page
   DEVOPS_PROJECT_DESC:
-    'DevOps 工程用於對資源進行分組管理以及控製不同用戶的資源管理權限。',
+    'DevOps 项目用於對資源進行分組管理以及控製不同用戶的資源管理權限。',
   CODE_REPOSITORY_OPTIONAL: '代碼倉庫（可選）',
   TOKEN: '令牌',
   OPTIONS: '備用選項',

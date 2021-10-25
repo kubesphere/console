@@ -71,6 +71,16 @@ export default class ServiceSettings extends React.Component {
     })
   }
 
+  handleLabelsChange = value => {
+    const { formTemplate } = this.props
+    set(formTemplate, 'metadata.labels', value)
+    set(
+      formTemplate,
+      'metadata.annotations["kubesphere.io/workloadName"]',
+      `${value.app}-${value.version}`
+    )
+  }
+
   portsValidator = (rule, value, callback) => {
     if (!value) {
       return callback()
@@ -119,7 +129,7 @@ export default class ServiceSettings extends React.Component {
 
   renderTypeSelect() {
     return (
-      <Form.Item label={t('INTERNAL_ACCESS_METHOD')}>
+      <Form.Item label={t('INTERNAL_ACCESS_MODE')}>
         <TypeSelect
           className="margin-b12"
           value={this.state.serviceType}
@@ -147,6 +157,7 @@ export default class ServiceSettings extends React.Component {
           namespace={this.namespace}
           addText={t('ADD')}
           isFederated={isFederated}
+          onChange={this.handleLabelsChange}
         />
       </Form.Item>
     )

@@ -56,8 +56,6 @@ export default class PodsCard extends React.Component {
     hideHeader: PropTypes.bool,
     hideFooter: PropTypes.bool,
     isFederated: PropTypes.bool,
-    onSearch: PropTypes.func,
-    onRefresh: PropTypes.func,
     onPage: PropTypes.func,
     limit: PropTypes.number,
   }
@@ -69,8 +67,6 @@ export default class PodsCard extends React.Component {
     hideHeader: false,
     hideFooter: false,
     isFederated: false,
-    onSearch() {},
-    onRefresh() {},
     onPage() {},
   }
 
@@ -183,19 +179,13 @@ export default class PodsCard extends React.Component {
   handleSearch = value => {
     this.searchValue = value
     this.fetchData({
-      name: value,
-    }).then(() => {
-      this.props.onSearch(value)
+      search: value,
     })
   }
 
   handleRefresh = () => {
-    const params = this.searchValue ? { name: this.searchValue } : {}
-
-    this.fetchData(params).then(() => {
-      const { onSearch, onRefresh } = this.props
-      isEmpty(params) ? onRefresh() : onSearch(this.searchValue)
-    })
+    const params = this.searchValue ? { search: this.searchValue } : {}
+    this.fetchData(params)
   }
 
   handlePage = page => {

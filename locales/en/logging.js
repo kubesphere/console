@@ -21,7 +21,7 @@ module.exports = {
   ADD_LOG_RECEIVER: 'Add Log Receiver',
   ADD_SERVICE_ADDRESS: 'Add',
   Address: 'Address',
-  'Auditing statistics': 'Auditing statistics',
+  AUDIT_LOG_COUNT: 'Audit Logs',
   'Back to previous': 'Back to previous',
   CHANGE_STATUS: 'Change Status',
   Collecting: 'Collecting',
@@ -29,20 +29,25 @@ module.exports = {
   'Delete Log Receiver': 'Delete Log Receiver',
   'Display Content': 'Display Content',
   'Event statistics': 'Event statistics',
-  'Exact Query': 'Exact Query',
-  'Fuzzy Query': 'Fuzzy Query',
+  EXACT_QUERY: 'Exact Query',
+  FUZZY_QUERY: 'Fuzzy Query',
   HIDE_HELP_INFORMATION: 'Hide Help Information',
   INDEX_PREFIX: 'Index Prefix',
-  Keyword: 'Keyword',
+  KEYWORD: 'Keyword',
   'Log Collections': 'Log Collection',
   'Log Receiver': 'Log Receiver',
   'Log Management': 'Log Management',
   'Log Query': 'Log Query',
   'Log Start Time': 'Log Start Time',
+  CONTAINER_LOG_COUNT: 'Container Logs',
+  AUDITING_NOT_ENABLED_DESC: 'No cluster has Auditing enabled.',
+  EVENT_NOT_ENABLED_DESC: 'No cluster has Events enabled.',
+  LOGGING_NOT_ENABLED_DESC: 'No cluster has Logging enabled.',
   'Log statistics': 'Log statistics',
   'No cluster with auditing module enabled': 'No cluster has Auditing enabled.',
   'No cluster with event query enabled': 'No cluster has Events enabled.',
   'No cluster with logging module enabled': 'No cluster has Logging enabled.',
+  LOGGING_DISABLED: 'Logging Disabled',
   'Passwords must be at least 6 characters long':
     'Passwords must be at least 6 characters long',
   'Please enter a filter to search for logs.':
@@ -53,19 +58,22 @@ module.exports = {
   'Recently Configured Updated': 'Recently Configured Updated',
   'Recently Updated': 'Recently Updated',
   'Refresh Interval': 'Refresh Interval',
+  REFRESH_RATE_COLON: 'Refresh Rate: ',
+  CONTAINER_LOG_SOURCE: 'Container Log Source',
+  REFRESH_INTERVAL_VALUE: 'Refresh interval: {value}s',
   'Refresh Rate': 'Refresh Rate',
   'Region Data': 'Region Data',
   'Release Collection': 'Release Collection',
-  'Resource Name & Type': 'Resource Name & Type',
-  'Search Result': 'Search Result',
-  'Search Rule': 'Search Rule',
+  RESOURCE_NAME_AND_TYPE: 'Resource Type & Name',
+  SEARCH_RESULTS: 'Search Results',
+  QUERYING_RULES: 'Querying Rules',
   SERVICE_ADDRESS: 'Service Address',
-  'Time topology': 'Time topology',
+  TIME_TOPOLOGY: 'Time Topology ',
   TOPIC: 'Topic',
   'Auditing log trends in the last 12 hours':
     'Auditing log trends in the last 12 hours',
-  'Event trends in the last 12 hours': 'Event trends in the last 12 hours',
-  'Log trends in the last 12 hours': 'Log trends in the last 12 hours',
+  RESOURCE_EVENT_TRENDS_12H: 'Resource event trends in 12 h',
+  CONTAINER_LOG_TRENDS_12H: 'Container log trends in 12 h',
 
   LOG_DATE: 'YYYY/MM/DD HH:mm',
   EVENT_DATE: 'YYYY/MM/DD 00:00',
@@ -93,46 +101,43 @@ module.exports = {
   LOG_COLLECTION_ES_INDEX_TIPS:
     'Use the index prefix to speed up queries. The index prefix is automatically generated in <Index prefix>-<Year-month-date> format.',
   'Search Logs by': 'Search Logs by {field}',
-  'KeyWord Log Query Tip':
-    'Please enter the keyword to find the log. You can also find the error log by keywords such as “Error”, “Fail”, “Fatal”, “Exception” and “Warning”.',
-  'Project Log Query Tip':
-    'You can view related log information according to the project name.',
-  'Workload Log Query Tip':
-    'You can view related log information according to the workload name.',
-  'Container Log Query Tip':
-    'You can view related log information according to the container name.',
-  'Pod Log Query Tip':
-    'You can view related log information according to the Pod name.',
+  CONTAINER_LOG_KEYWORD_TIP: 'Enter a keyword to search for container logs.',
+  CONTAINER_LOG_PROJECT_TIP:
+    'Enter a project name to search for container logs.',
+  CONTAINER_LOG_WORKLOAD_TIP:
+    'Enter a workload name to search for container logs.',
+  CONTAINER_LOG_CONTAINER_TIP:
+    'Enter a container name to search for container logs.',
+  CONTAINER_LOG_POD_TIP: 'Enter a Pod name to search for container logs.',
   'Search Events by': 'Search Events by {field}',
-  'Workspace Event Query Tip':
-    'You can view related event information according to the workspace.',
-  'Project Event Query Tip':
-    'You can view related event information according to the project.',
-  'Resource Type Event Query Tip':
-    'You can view related event information according to the resource type.',
-  'Resource Name Event Query Tip':
-    'You can view related event information according to the resource name.',
-  'Message Event Query Tip':
-    'You can view related event information according to the message.',
-  'Category Event Query Tip':
-    'You can view related event information according to the category.',
-  'Reason Event Query Tip':
-    'You can view related event information according to the reason.',
-  'Pod Event Query Tip':
-    'You can view related event information according to the pod name.',
+  RESOURCE_EVENT_WORKSPACE_TIP:
+    'Enter a workspace name to search for container logs.',
+  RESOURCE_EVENT_PROJECT_TIP:
+    'Enter a project name to search for container logs.',
+  RESOURCE_EVENT_RESOURCE_TYPE_TIP:
+    'Enter a resource type to search for container logs.',
+  RESOURCE_EVENT_RESOURCE_NAME_TIP:
+    'Enter a resource name to search for container logs.',
+  RESOURCE_EVENT_MESSAGE_TIP: 'Enter a message to search for resource events.',
+  RESOURCE_EVENT_CATEGORY_TIP:
+    'Enter a category name to search for container logs.',
+  RESOURCE_EVENT_REASON_TIP: 'Enter a reason to search for container logs.',
+  'Pod Event Query Tip': 'Enter a Pod name to search for container logs.',
   TOTAL_LOGS:
-    'A total of <span class={className}> {logs} </span> logs from<br/> <span class={className}>{containers}</span> containers were collected.',
+    'A total of <span class={className}> {logs} </span> log entries from<br/> <span class={className}>{containers}</span> containers have been collected.',
   TIME_S: '{num}s',
   CONTAINER_LOGS_NOT_SUPPORTED:
     'The container does not support real-time logs currently. Please try again later.',
   TOTAL_LOGS_TODAY:
-    'A total of <span class={className}> {logs} </span> logs from <span class={className}>{containers}</span> containers were collected today.',
+    'A total of <span class={className}> {logs} </span> log entries from <span class={className}>{containers}</span> containers have been collected today.',
   TOTAL_EVENTS_TODAY:
-    'A total of <span class={className}> {events} </span> events were collected today.',
-  NO_EVENTS_TODAY: 'Events not found today',
+    'A total of <span class={className}> {events} </span> resource events were collected today.',
+  NO_RESOURCE_EVENTS_TODAY: 'No Resource Events Collected Today',
   START_REAL_TIME_LOG: 'Enable real-time logging',
-  STOP_REAL_TIME_LOG: 'Disable real-time logging',
+  STOP_REAL_TIME_LOG: 'Disable real-time container logs',
   LOG_EXPORT: 'Log Export',
+  STOP_REAL_TIME_LOG: 'Disable real-time logging',
+  EXPORT_LOGS: 'Export Logs',
 
   CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create Custom Monitoring Dashboard',
   MONITORING_TEMPLATE: 'Monitoring Template',
@@ -159,25 +164,20 @@ module.exports = {
   SERVICE_BUILT_INTERFACE: 'service monitoring is built interface data capture',
 
   'Search Auditing Logs by': 'Search Auditing Logs by {field}',
-  'Workspace Auditing Query Tip':
-    'You can view related event information according to the workspace.',
-  'Project Auditing Query Tip':
-    'You can view related event information according to the project.',
-  'Resource Name Auditing Query Tip':
-    'You can view related event information according to the resource name.',
-  'Resource Type Auditing Query Tip':
-    'You can view related event information according to the resource type.',
-  'Verb Auditing Query Tip':
-    'You can view related event information according to the verb.',
-  'Status Code Auditing Query Tip':
-    'You can view related event information according to the status code.',
-  'Operation Account Auditing Query Tip':
-    'You can view related event information according to the operation account.',
-  'Source IP Auditing Query Tip':
-    'You can view related event information according to the source IP.',
+  AUDIT_LOG_WORKSPACE_TIP: 'Enter a workspace name to search for audit logs.',
+  AUDIT_LOG_PROJECT_TIP: 'Enter a project name to search for audit logs.',
+  AUDIT_LOG_RESOURCE_NAME_TIP:
+    'Enter a resource name to search for audit logs.',
+  AUDIT_LOG_RESOURCE_TYPE_TIP:
+    'Enter a resource type to search for audit logs.',
+  AUDIT_LOG_VERB_TIP: 'Enter a verb to search for audit logs.',
+  AUDIT_LOG_STATUS_CODE_TIP: 'Enter a status code to search for audit logs.',
+  AUDIT_LOG_OPERATOR_TIP: 'Enter an operator to search for audit logs.',
+  AUDIT_LOG_SOURCE_IP_ADDRESS_TIP:
+    'Enter a source IP address to search for audit logs.',
   TOTAL_AUDITING_TODAY:
-    'A total of <span class={className}> {auditing} </span> auditing logs were collected today.',
-  NO_AUDITING_TODAY: 'Auditing logs not found today',
+    'A total of <span class={className}> {auditing} </span> audit log entries have been collected today.',
+  NO_AUDIT_LOG_TODAY: 'No Audit Log Collected Today',
 
   LOGGING_LOG_COLLECTOR: 'Log Receiver',
   EVENTS_LOG_COLLECTOR: 'Events Log Receiver',
@@ -201,4 +201,44 @@ module.exports = {
   CHANGE_STATUS_LOW: 'Change status',
   EVENTS: 'Events',
   SELECT_STATUS_TIP: 'Select a status',
+
+  // Container Log Search
+  LOG_EXPORT_SCAP: 'Log export',
+  SEARCH_BY_KEYWORD: 'Search by Keyword',
+  SEARCH_BY_PROJECT: 'Search by Project',
+  SEARCH_BY_WORKLOAD: 'Search by Workload',
+  SEARCH_BY_POD: 'Search by Pod',
+  SEARCH_BY_CONTAINER: 'Search by Container',
+  START_TIME_COLON: 'Start Time: ',
+  KEYWORD: 'Keyword',
+  TIME_RANGE: 'Time Range',
+  LOG: 'Log',
+  DISPLAY: 'Display',
+  HIDE: 'Hide',
+  STOP_REAL_TIME_CONTAINER_LOG: 'Pause real-time container logs',
+  START_REAL_TIME_CONTAINER_LOG: 'View real-time container logs',
+  REASON_COLON: 'Reason: ',
+  MESSAGE_COLON: 'Message: ',
+
+  // Resource Event Search
+  STOP_REAL_TIME_RESOURCE_EVENT: 'Pause real-time resource events',
+  START_REAL_TIME_RESOURCE_EVENT: 'View real-time resource events',
+  RESOURCE_EVENT_COUNT: 'Resource Events',
+  SEARCH_BY_MESSAGE: 'Search by Message',
+  SEARCH_BY_WORKSPACE: 'Search by Workspace',
+  SEARCH_BY_RESOURCE_TYPE: 'Search by Resource Type',
+  SEARCH_BY_RESOURCE_NAME: 'Search by Resource Name',
+  SEARCH_BY_REASON: 'Search by Reason',
+  SEARCH_BY_CATEGORY: 'Search by Category',
+
+  // Audit Log Search
+  VERB: 'Verb',
+  STATUS_CODE: 'Status Code',
+  SUBRESOURCE: 'Subresource',
+  START_REAL_TIME_AUDIT_LOG: 'Pause real-time audit logs',
+  STOP_REAL_TIME_AUDIT_LOG: 'View real-time audit logs',
+  SEARCH_BY_VERB: 'Search by Verb',
+  SEARCH_BY_STATUS_CODE: 'Search by Status Code',
+  SEARCH_BY_OPERATOR: 'Search by Operator',
+  SEARCH_BY_SOURCE_IP_ADDRESS: 'Search by Source IP Address',
 }

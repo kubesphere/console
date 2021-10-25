@@ -121,7 +121,7 @@ export default class Pods extends React.Component {
         width: '15%',
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         search: true,

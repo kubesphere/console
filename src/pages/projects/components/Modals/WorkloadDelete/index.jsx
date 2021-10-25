@@ -150,7 +150,7 @@ export default class WorkloadDeleteModal extends React.Component {
     if (store.module === 'deployments') {
       const scheduleData =
         (await store.getAllScheduleProject?.({ namespace })) ?? []
-      if (scheduleData.length > 0) {
+      if (!isEmpty(scheduleData)) {
         allScheduleProject = scheduleData.items.map(item => item.metadata.name)
       }
     }

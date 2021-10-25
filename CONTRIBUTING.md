@@ -56,8 +56,8 @@ Follow the [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v
 
 Follow the [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript#table-of-contents).
 
-This project use Eslint to format code. Check the rules in [.eslintrc.js](../.eslintrc.js)
+This project use Eslint to format code. Check the rules in [.eslintrc.js](./.eslintrc.js)
 
 ### CSS, SCSS Styleguide
 
-Using Prettier to format css and scss files. Check the rules in [.prettierrc](../.prettierrc)
+Using Prettier to format css and scss files. Check the rules in [.prettierrc](./.prettierrc)

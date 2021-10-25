@@ -26,7 +26,7 @@ module.exports = {
   SECRET_LOW: '保密字典',
   SECRET_FIELD_COUNT: '字段數量',
   EDIT_SECRET: '編輯保密字典',
-  SECRET_SETTINGS_TCAP: '密鑰設置',
+  DATA_SETTINGS: 'Data Settings',
   KUBECONFIG_SETTINGS: 'kubeconfig Settings',
   PRIVATE_KEY_TCAP: '私鑰',
   IMAGE_REGISTRY_INFORMATION: '鏡像倉庫保密字典',

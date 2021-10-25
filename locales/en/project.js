@@ -253,9 +253,6 @@ module.exports = {
   MULTI_CLUSTER_RESOURCE_TIP:
     'The current resource is deployed across multiple clusters. You can click a cluster to view the resource settings in the cluster.',
 
-  PROJECT_GATEWAY_IP_TIP:
-    'Currently, the resources are multi-cluster resources. The resources will be distributed in different clusters to form multi-cluster resources. You can switch to a different cluster to view the resource settings in that cluster.',
-
   CREATE_MULTI_CLUSTER_PROJECT_DESC:
     'A multi-cluster project runs across different clusters, which helps you to build a container environment for rapid iteration of applications and achieve high availability.',
 
@@ -294,7 +291,8 @@ module.exports = {
   DISABLED: 'Disabled',
   ENABLE: 'Enable',
   DISABLE: 'Disable',
-  SET_GATEWAY_TIP: 'Please set a gateway.',
+  SET_GATEWAY_TIP:
+    'To use the gateway, please configure the gateway in the cluster or the project.',
 
   // Network Isolation
   INGRESS: 'Ingress',

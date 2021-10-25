@@ -191,13 +191,19 @@ export default class SecretSettings extends React.Component {
   }
 
   renderImage() {
+    const { cluster, isFederated } = this.props
+    const { name, namespace } = get(this.formTemplate, 'metadata')
+
     return (
       <div key="image" className="margin-t8">
         <Form.Item rules={[{ validator: this.imageValidator }]}>
           <Base64Wrapper name="data['.dockerconfigjson']">
             <ImagerRegistry
               fedFormTemplate={this.fedFormTemplate}
-              namespac={this.props.namespac}
+              cluster={cluster}
+              namespace={namespace}
+              isFederated={isFederated}
+              screatName={name}
               ref={this.imageRegistryRef}
             />
           </Base64Wrapper>
@@ -279,6 +285,7 @@ export default class SecretSettings extends React.Component {
             onChange={this.handleTypeChange}
             placeholder=" "
             disabled={disableSelect}
+            searchable
           />
         </Form.Item>
         {this.renderContent()}

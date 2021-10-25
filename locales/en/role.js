@@ -261,9 +261,9 @@ module.exports = {
   CLUSTER_MONITORING_VIEW_DESC:
     'View cluster physical resources and monitoring data of application resources.',
   APPLICATION_WORKLOADS_VIEW_DESC:
-    'View resources such as applications, Services, workloads, Jobs, grayscale release tasks, and image builders in the project.',
+    'View resources such as applications, Services, workloads, Jobs, grayscale release jobs, and image builders in the project.',
   APPLICATION_WORKLOADS_MANAGEMENT_DESC:
-    'Create, edit, and delete resources such as applications, Services, workloads, Jobs, grayscale release tasks, and image builders in the project.',
+    'Create, edit, and delete resources such as applications, Services, workloads, Jobs, grayscale release jobs, and image builders in the project.',
   VOLUMES_VIEW_DESC: 'View volumes in the project.',
   VOLUMES_MANAGEMENT_DESC: 'Create, edit, and delete volumes in the project.',
   SECRETS_VIEW_DESC: 'View Secrets in the project.',

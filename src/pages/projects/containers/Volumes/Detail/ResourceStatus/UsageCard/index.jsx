@@ -86,7 +86,7 @@ export default class UsageCard extends Component {
         <Loading spinning={isLoading}>
           <div data-refreshing={isRefreshing}>
             <Alert
-              type="info"
+              type="warning"
               className="margin-b12"
               message={t.html('VOLUME_MONITORING_TIP')}
             />
@@ -136,7 +136,7 @@ export default class UsageCard extends Component {
             {total.count}
             <small>{total.unit}</small>
           </h3>
-          <p>{t('VOLUME_CAPACITY')}</p>
+          <p>{t('TOTAL_CAPACITY')}</p>
         </div>
       </header>
     )
@@ -150,19 +150,19 @@ export default class UsageCard extends Component {
     const total = get(data, `${METRICS.inodeTotal}.data.result[0].values`, [])
 
     const config = getAreaChartOps({
-      title: t('INODE_USAGE_RATE'),
+      title: t('INODE_USAGE'),
       unit: '%',
-      legend: ['UTILIZATION'],
+      legend: ['USAGE'],
       data: usageRate,
       renderTooltip: () => {
         const usageData = getChartData({
           unit: '',
-          legend: ['UTILIZATION'],
+          legend: ['USAGE'],
           valuesData: [usage],
         })
         const totalData = getChartData({
           unit: '',
-          legend: ['UTILIZATION'],
+          legend: ['USAGE'],
           valuesData: [total],
         })
 

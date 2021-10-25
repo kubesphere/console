@@ -87,6 +87,7 @@ module.exports = {
   'This conversation ID has existed': 'This conversation ID has existed',
   'This keyword has existed': 'This keyword has existed',
   DINGTALK_SETTING_TIP: 'Please set up a conversation or group chatbot',
+  DINGTALK_CHATBOT_SECURITY_TIP: 'Please enter a secret or keywords',
 
   DINGTALK_SETTING_DESC:
     'You can receive DingTalk notifications from the platform after configuring the DingTalk server.',

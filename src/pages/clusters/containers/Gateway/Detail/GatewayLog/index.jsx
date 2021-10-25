@@ -95,7 +95,7 @@ export default class GatewayLog extends React.Component {
     return {
       log_query: {
         icon: 'magnifier',
-        text: t('Keyword'),
+        text: t('KEYWORD'),
       },
       pod_query: {
         icon: 'pod',
@@ -119,7 +119,7 @@ export default class GatewayLog extends React.Component {
   @observable
   tableCols = [
     {
-      thead: t('Time'),
+      thead: t('TIME'),
       key: 'time',
       dataIndex: 'time',
       mustShow: true,
@@ -136,7 +136,7 @@ export default class GatewayLog extends React.Component {
       }),
     },
     {
-      thead: t('Log'),
+      thead: t('MESSAGE'),
       key: 'log',
       dataIndex: 'log',
       className: styles.logItem,
@@ -332,7 +332,7 @@ export default class GatewayLog extends React.Component {
 
   renderOperation() {
     const intervalOpts = [5, 10, 20].map(second => ({
-      label: `${t('Refresh Interval')} ${second}s`,
+      label: t('REFRESH_INTERVAL_VALUE', { value: second }),
       value: second * 1000,
     }))
 
@@ -356,7 +356,7 @@ export default class GatewayLog extends React.Component {
 
         <a href={this.store.exportLinkFactory(params)} download>
           <span className={classnames(styles.filterButton, styles.exportBtn)}>
-            <Tooltip content={t('LOG_EXPORT')}>
+            <Tooltip content={t('EXPORT_LOGS')}>
               <Icon name={'export'} type="light" />
             </Tooltip>
           </span>
@@ -409,7 +409,7 @@ export default class GatewayLog extends React.Component {
         <EmptyList
           className="no-shadow"
           icon="cluster"
-          title={t('No cluster with logging module enabled')}
+          title={t('LOGGING_DISABLED')}
         />
       )
     }

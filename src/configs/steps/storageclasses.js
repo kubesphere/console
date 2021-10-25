@@ -21,7 +21,11 @@ import ProvisionerSettings from 'components/Forms/StorageClass/ProvisionerSettin
 import StorageClassSettings from 'components/Forms/StorageClass/StorageClassSettings'
 
 export default [
-  { title: 'Basic Info', component: StorageClassBaseInfo, required: true },
+  {
+    title: 'BASIC_INFORMATION',
+    component: StorageClassBaseInfo,
+    required: true,
+  },
   {
     title: 'STORAGE_SYSTEM',
     component: ProvisionerSettings,

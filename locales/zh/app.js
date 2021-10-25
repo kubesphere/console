@@ -228,8 +228,8 @@ module.exports = {
   'Please select a cluster': '请选择集群',
   'Please select a project': '请选择项目',
   'Please select a project role': '请选择项目角色',
-  'Please select a DevOps project': '请选择 DevOps 工程',
-  'Please select a DevOps project role': '请选择工程角色',
+  'Please select a DevOps project': '请选择 DevOps 项目',
+  'Please select a DevOps project role': '请选择项目角色',
 
   HELM_APP_SCHEMA_FORM_TIP:
     '您可以通过图形化表单或 YAML 文件对应用进行设置。图形化表单和 YAML 文件中的设置相互独立。',

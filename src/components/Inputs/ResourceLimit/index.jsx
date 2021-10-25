@@ -88,10 +88,14 @@ export default class ResourceLimit extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (!isEqual(props.defaultValue, state.defaultValue)) {
+    if (
+      !isEqual(props.defaultValue, state.defaultValue) ||
+      !isEqual(props.workspaceLimitProps, state.workspaceLimitProps)
+    ) {
       return {
         ...ResourceLimit.getValue(props),
         defaultValue: props.defaultValue,
+        workspaceLimitProps: props.workspaceLimitProps,
       }
     }
 
@@ -99,6 +103,9 @@ export default class ResourceLimit extends React.Component {
   }
 
   static allowInputDot(formatNum, unit, formatFn, isMemory = false) {
+    if (formatNum === Infinity) {
+      return formatNum
+    }
     const inputNum = formatNum && isMemory ? formatNum.slice(0, -2) : formatNum
     if (inputNum && String(inputNum).endsWith('.')) {
       const number = formatFn(formatNum, unit)
@@ -116,38 +123,39 @@ export default class ResourceLimit extends React.Component {
     const cpuUnit = get(props, 'cpuProps.unit', 'Core')
     const memoryUnit = get(props, 'memoryProps.unit', 'Mi')
 
-    const cpuRequests = ResourceLimit.allowInputDot(
-      ResourceLimit.getDefaultRequestValue(props, 'cpu'),
-      cpuUnit,
-      cpuFormat
-    )
+    const requestCpu = ResourceLimit.getDefaultRequestValue(props, 'cpu')
+    const requestMeo = ResourceLimit.getDefaultRequestValue(props, 'memory')
+    const limitCpu = ResourceLimit.getDefaultLimitValue(props, 'cpu')
+    const limitMeo = ResourceLimit.getDefaultLimitValue(props, 'memory')
 
-    const cpuLimits = ResourceLimit.allowInputDot(
-      ResourceLimit.getDefaultLimitValue(props, 'cpu'),
+    const cpuRequests = ResourceLimit.allowInputDot(
+      requestCpu,
       cpuUnit,
       cpuFormat
     )
 
     const memoryRequests = ResourceLimit.allowInputDot(
-      ResourceLimit.getDefaultRequestValue(props, 'memory'),
+      requestMeo,
       memoryUnit,
       memoryFormat,
       true
     )
+
+    const cpuLimits = ResourceLimit.allowInputDot(limitCpu, cpuUnit, cpuFormat)
 
     const memoryLimits = ResourceLimit.allowInputDot(
-      ResourceLimit.getDefaultLimitValue(props, 'memory'),
+      limitMeo,
       memoryUnit,
       memoryFormat,
       true
     )
 
-    const requestMeo = memoryFormat(
+    const workspaceReqMeo = memoryFormat(
       `${ResourceLimit.getWorkspaceRequestLimit(props, 'memory')}Mi`,
       memoryUnit
     )
 
-    const limitMeo = memoryFormat(
+    const workspaceLimitMeo = memoryFormat(
       `${ResourceLimit.getWorkspaceLimitValue(props, 'memory')}Mi`,
       memoryUnit
     )
@@ -166,14 +174,14 @@ export default class ResourceLimit extends React.Component {
           ResourceLimit.getWorkspaceRequestLimit(props, 'cpu'),
           cpuUnit
         ),
-        memory: isNaN(requestMeo) ? undefined : requestMeo,
+        memory: isNaN(workspaceReqMeo) ? undefined : workspaceReqMeo,
       },
       workspaceLimits: {
         cpu: cpuFormat(
           ResourceLimit.getWorkspaceLimitValue(props, 'cpu'),
           cpuUnit
         ),
-        memory: isNaN(limitMeo) ? undefined : limitMeo,
+        memory: isNaN(workspaceLimitMeo) ? undefined : workspaceLimitMeo,
       },
       gpu: ResourceLimit.gpuSetting(props),
     }
@@ -204,7 +212,7 @@ export default class ResourceLimit extends React.Component {
     return get(
       props,
       `value.requests.${key}`,
-      get(props, `defaultValue.requests.${key}`, 0)
+      get(props, `defaultValue.requests.${key}`) ?? 0
     )
   }
 
@@ -212,7 +220,7 @@ export default class ResourceLimit extends React.Component {
     return get(
       props,
       `value.limits.${key}`,
-      get(props, `defaultValue.limits.${key}`, 0)
+      get(props, `defaultValue.limits.${key}`) ?? Infinity
     )
   }
 
@@ -313,11 +321,11 @@ export default class ResourceLimit extends React.Component {
   }
 
   getLimit(value) {
-    return value === Infinity ? t('NO_LIMIT') : value || ''
+    return isFinite(Number(value)) ? value : ''
   }
 
   getRequest(value) {
-    return value === 0 ? t('NO_REQUEST') : value || ''
+    return value === 0 ? '' : value
   }
 
   checkError = state => {
@@ -464,7 +472,7 @@ export default class ResourceLimit extends React.Component {
     const name = e.target.name
     const maxiNum = this.getInputMaxiNum(name)
     if (value === '') {
-      inputNum = 0
+      inputNum = ''
     } else if (value > maxiNum) {
       value = 'infinity'
     } else {
@@ -509,6 +517,10 @@ export default class ResourceLimit extends React.Component {
     )
   }
 
+  renderLimitTip = (value, unit) => {
+    return value > 0 ? `${value} ${unit}` : t('Not Limited')
+  }
+
   renderTip() {
     const { workspaceLimits: wsL, workspaceRequests: wsR } = this.state
     const { limitType } = this.props.workspaceLimitProps
@@ -538,11 +550,9 @@ export default class ResourceLimit extends React.Component {
             <span>{t('WS_RESOURCE_LIMITS')}</span>
             <span>
               CPU&nbsp;
-              {wsL.cpu}&nbsp;
-              {cpuUnit},&nbsp;
+              {this.renderLimitTip(wsL.cpu, cpuUnit)},&nbsp;
               {t('MEMORY')}&nbsp;
-              {wsL.memory}&nbsp;
-              {memoryUnit}
+              {this.renderLimitTip(wsL.memory, memoryUnit)}
             </span>
           </div>
         </div>

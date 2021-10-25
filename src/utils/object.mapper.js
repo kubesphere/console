@@ -44,7 +44,7 @@ import { getWorkloadUpdateTime, getJobUpdateTime } from 'utils/workload'
 import { getServiceType } from 'utils/service'
 import { getNodeRoles } from 'utils/node'
 import { getPodStatusAndRestartCount } from 'utils/status'
-import { FED_ACTIVE_STATUS } from 'utils/constants'
+import { FED_ACTIVE_STATUS, SERVICE_TYPES } from 'utils/constants'
 import moment from 'moment-mini'
 
 const getOriginData = item =>
@@ -528,6 +528,7 @@ const PVMapper = item => {
       item,
       'spec.persistentVolumeReclaimPolicy'
     ),
+    volumeMode: get(item, 'spec.volumeMode'),
     _originData: getOriginData(item),
   }
 }
@@ -1087,6 +1088,11 @@ const FederatedMapper = resourceMapper => item => {
     }
   })
 
+  const type =
+    get(template, 'spec.clusterIP') === 'None'
+      ? SERVICE_TYPES.Headless
+      : SERVICE_TYPES.VirtualIP
+
   const resourceInfo = omitBy(
     resourceMapper(merge(template, { metadata: item.metadata })),
     isUndefined
@@ -1099,6 +1105,7 @@ const FederatedMapper = resourceMapper => item => {
     template,
     clusters,
     clusterTemplates,
+    type,
     isFedManaged: true,
     namespace: get(item, 'metadata.namespace'),
     labels: get(item, 'metadata.labels', {}),

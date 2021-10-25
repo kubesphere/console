@@ -43,8 +43,12 @@ export default class ScheduleCluster extends Component {
 
   get getWeight() {
     const { store, cluster } = this.props
-    const clusters = get(store.deployedScheduleTemplate, 'spec.clusters')
-    return clusters[cluster.name].weight
+    const weight = get(
+      store.deployedScheduleTemplate,
+      `spec.clusters.${cluster.name}.weight`,
+      0
+    )
+    return weight
   }
 
   componentDidUpdate(prevProps) {

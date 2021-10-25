@@ -62,7 +62,7 @@ export default class Components extends Component {
   renderServices() {
     const { data } = this.serviceStore.list
     if (isEmpty(data)) {
-      return <div className={styles.empty}>{t('No Components')}</div>
+      return <div className={styles.empty}>{t('NO_SERVICE_FOUND')}</div>
     }
 
     return (

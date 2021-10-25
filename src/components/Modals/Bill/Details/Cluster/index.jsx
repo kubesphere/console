@@ -1116,7 +1116,6 @@ export default class ClusterDetails extends React.Component {
         </div>
       )
     }
-
     return (
       <div className={styles.billDetail}>
         <div

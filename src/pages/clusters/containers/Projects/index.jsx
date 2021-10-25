@@ -169,7 +169,7 @@ export default class Projects extends React.Component {
             to={record.status === 'Terminating' ? null : `${prefix}/${name}`}
             icon="project"
             iconSize={40}
-            isMultiCluster={record.isFedManaged}
+            isMultiCluster={record.isFedHostNamespace}
             desc={record.description || '-'}
             title={getDisplayName(record)}
           />
