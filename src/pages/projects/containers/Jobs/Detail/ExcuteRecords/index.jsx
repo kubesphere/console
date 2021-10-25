@@ -163,6 +163,7 @@ class ExcuteRecords extends React.Component {
 
     return (
       <Table
+        rowKey="uid"
         className={styles.table}
         dataSource={data}
         columns={this.getColumns()}
