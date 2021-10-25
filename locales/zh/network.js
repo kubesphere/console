@@ -73,4 +73,6 @@ module.exports = {
   ENTER_VALID_SEGMENT_DESC: '请输入一个有效的网段。',
   ENTER_VALID_PORT_NUMBER_DESC: '请输入有效端口号。',
   EMPTY_RESOURCE_DESC: '请选择至少一个项目或服务。',
+  ALLOWLIST_ENTRY: '白名单条目',
+  ALLOWLIST_ENTRY_LOW: '白名单条目',
 }
