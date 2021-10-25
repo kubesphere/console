@@ -119,7 +119,7 @@ export default class Volumes extends React.Component {
 
     return (
       <Card
-        title={t('VOLUMES')}
+        title={t('VOLUME_PL')}
         loading={isLoading}
         empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('VOLUME') })}
       >

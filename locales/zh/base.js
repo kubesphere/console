@@ -567,7 +567,7 @@ module.exports = {
   DETAIL_NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，返回 <a href="{link}">{title}</a>',
   TOOLBOX: '工具箱',
-  TOOLBOX_DESC: '提供日志、事件、审计等相关查询工具。',
+  TOOLBOX_DESC: '提供集群分析和控制工具。',
   'Analysis Tools': '分析工具',
   'Control Tools': '控制工具',
   THIRD_PARTY_TOOLS: '第三方工具',
@@ -710,8 +710,8 @@ module.exports = {
   SOURCE: '来源',
 
   CREATE_BY_YAML_DESC: '在 YAML 文件中自定义应用的设置。',
-  METERING_AND_BILLING: '资源消费统计',
-  METERING_AND_BILLING_DESC: '查看消费情况',
+  RESOURCE_CONSUMPTION_STATISTICS: '资源消费统计',
+  METERING_AND_BILLING_DESC: '查看集群和企业空间的资源消费情况。',
 
   // Workbench
   CLUSTER_COUNT_SI: '集群数量',
@@ -729,4 +729,8 @@ module.exports = {
   CONTAINER_LOG_SEARCH: '容器日志查询',
   RESOURCE_EVENT_SEARCH: '资源事件查询',
   AUDIT_LOG_SEARCH: '审计日志查询',
+
+  // Toolbox
+  CONTROL_TOOL: '控制工具',
+  ANALYSIS_TOOLS: '分析工具',
 }

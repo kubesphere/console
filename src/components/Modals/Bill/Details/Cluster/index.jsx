@@ -1058,7 +1058,7 @@ export default class ClusterDetails extends React.Component {
     return (
       <>
         <div className={styles.subTitle}>
-          {t('Current Resources Included')}
+          {t('CURRENT_RESOURCE_CONSUMPTION')}
           <Tooltip content={t('METER_RESOURCE_DESC')} placement="top">
             <Icon name="question" size={20} />
           </Tooltip>
@@ -1087,7 +1087,7 @@ export default class ClusterDetails extends React.Component {
         <EmptyList
           className={styles.emptyCard}
           icon={ICON_TYPES[this.active.type]}
-          title={t('No Data')}
+          title={t('NO_DATA_DESC')}
           desc={t('NO_METER_DATA')}
         />
       </div>
@@ -1109,7 +1109,7 @@ export default class ClusterDetails extends React.Component {
               className={styles.emptyCard}
               icon="cluster"
               title={t('NO_AVAILABLE_CLUSTER')}
-              desc={t('No cluster with metering module enabled')}
+              desc={t('METERING_NOT_ENABLED_DESC')}
               actions={<Button onClick={this.props.handleBack}>返回</Button>}
             />
           </Loading>
@@ -1165,7 +1165,7 @@ export default class ClusterDetails extends React.Component {
                     className={styles.toothbg}
                     title={
                       <>
-                        <span>{t(RESOURCE_TITLE[type])}</span>
+                        <span>{t(RESOURCE_TITLE[type].toUpperCase().replace(/\s+/g, '_'))}</span>
                         <strong>{name}</strong>
                       </>
                     }
@@ -1173,7 +1173,7 @@ export default class ClusterDetails extends React.Component {
                     {...this.currentMeterData}
                   />
                   <div className={styles.subTitle}>
-                    {t('Consumption by Yesterday')}
+                    {t('CONSUMPTION_HISTORY')}
                   </div>
                   <div className={styles.info}>
                     {!isEmpty(toJS(this.timeRange)) ? (

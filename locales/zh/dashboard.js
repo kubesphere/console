@@ -77,7 +77,6 @@ module.exports = {
   NO_POD_MONITOR_DATA: '暂时没有容器组监控数据',
   RESOURCE_WARNING_TIPS: '异常{tipName}：{warnNum}',
 
-  USER_DASHBOARD_EMPTY_TITLE: '您暂时不属于任何企业空间',
-  USER_DASHBOARD_EMPTY_DESC:
-    '您可以联系某个企业空间的管理员邀请您加入企业空间中',
+  USER_DASHBOARD_EMPTY_TITLE: '您不属于任何企业空间',
+  USER_DASHBOARD_EMPTY_DESC: '请联系企业空间管理员邀请您加入企业空间中。',
 }

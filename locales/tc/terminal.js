@@ -18,7 +18,7 @@
 
 module.exports = {
   'Launch kubectl': '啟動 kubectl',
-  'Copy Successfully': '複製成功',
+  COPIED_SUCCESSFUL: '複製成功',
   Copy: '複製',
   Disconnect: '斷開連接',
   connected: '已連接',

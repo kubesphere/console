@@ -29,8 +29,8 @@ module.exports = {
   ADD_ALLOWLIST_ENTRY: '添加白名单条目',
   EGRESS: '出站',
   Ingress: '入口',
-  EGRESS_TRAFFIC: '流量出口',
-  INGRESS_TRAFFIC: '流量入口',
+  EGRESS_TRAFFIC: '出站流量',
+  INGRESS_TRAFFIC: '入站流量',
   DESTINATION: '目的地',
 
   TRAFFIC_DIRECTION: '流量方向',

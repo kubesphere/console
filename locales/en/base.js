@@ -617,7 +617,7 @@ module.exports = {
     '🙇 Sorry, no related resources were found. The system will return to <a href="{link}">Workbench</a> in {time}s.',
   DETAIL_NOT_FOUND_DESC:
     '🙇 Sorry, no related resources were found. Back to <a href="{link}">{title}</a>.',
-  TOOLBOX_DESC: 'Provide log search, metering information and kubectl.',
+  TOOLBOX_DESC: 'Provides cluster analysis and control tools.',
   PATTERN_NAME_INVALID_TIP:
     'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-).',
   CONTENT_NOT_SAVED_TIPS: 'content has been modified but not saved',
@@ -709,8 +709,9 @@ module.exports = {
   GITHUB_ISSUES_DESC: 'Raise an issue in GitHub to get help.',
 
   CREATE_BY_YAML_DESC: 'Customize the app settings in the YAML file.',
-  METERING_AND_BILLING: 'Metering and Billing',
-  METERING_AND_BILLING_DESC: 'Track resource consumption.',
+  RESOURCE_CONSUMPTION_STATISTICS: 'Resource Consumption Statistics',
+  METERING_AND_BILLING_DESC:
+    'View resource consumption of clusters and workspaces.',
 
   // Workbench
   CLUSTER_COUNT_SI: 'Cluster',
@@ -728,4 +729,8 @@ module.exports = {
   CONTAINER_LOG_SEARCH: 'Container Log Search',
   RESOURCE_EVENT_SEARCH: 'Resource Event Search',
   AUDIT_LOG_SEARCH: 'Audit Log Search',
+
+  // Toolbox
+  CONTROL_TOOL: 'Control Tool',
+  ANALYSIS_TOOLS: 'Analysis Tools',
 }

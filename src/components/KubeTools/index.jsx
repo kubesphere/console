@@ -71,7 +71,7 @@ export default class KubeTools extends React.Component {
   get toolList() {
     return [
       {
-        group: 'Analysis Tools',
+        group: 'ANALYSIS_TOOLS',
         data: [
           {
             icon: 'file',
@@ -104,7 +104,7 @@ export default class KubeTools extends React.Component {
           },
           {
             icon: 'wallet',
-            title: t('METERING_AND_BILLING'),
+            title: t('RESOURCE_CONSUMPTION_STATISTICS'),
             description: t('METERING_AND_BILLING_DESC'),
             link: '/bill',
             hidden: !this.isHideMeterModal,
@@ -121,13 +121,13 @@ export default class KubeTools extends React.Component {
         ],
       },
       {
-        group: 'Control Tools',
+        group: 'CONTROL_TOOL',
         data: [
           {
             icon: 'terminal',
             link: '/terminal/kubectl',
-            title: 'Kubectl',
-            description: t('TOOLBOX_KUBECTL_DESC'),
+            title: 'kubectl',
+            description: t('KUBECTL_DESC'),
             hidden: !globals.app.isPlatformAdmin,
             action: 'toolbox.kubectl',
           },

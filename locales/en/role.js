@@ -153,7 +153,7 @@ module.exports = {
     'The role is bound to <strong>{count}</strong> department. Please unbind the department first.',
 
   RULE_WORKSPACES: 'Workspaces',
-  RULE_KUBECTL: 'Kubectl',
+  RULE_KUBECTL: 'kubectl',
   RULE_MONITORING: 'Monitoring Management',
   RULE_PROJECTS: 'Project Management',
   RULE_USERS: 'User Management',

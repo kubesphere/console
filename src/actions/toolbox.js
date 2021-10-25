@@ -98,7 +98,7 @@ export default {
           Modal.close(modal)
         },
         modal: KubeCtlModal,
-        title: 'Kubectl',
+        title: 'kubectl',
         ...props,
       })
     },

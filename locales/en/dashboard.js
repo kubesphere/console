@@ -76,7 +76,7 @@ module.exports = {
   RESOURCE_WARNING_TIPS: 'Abnormal {tipName}: {warnNum}',
   CPU_AVERAGE_LOAD: 'Load Average',
 
-  USER_DASHBOARD_EMPTY_TITLE: 'You do not belong to any workspaces currently.',
+  USER_DASHBOARD_EMPTY_TITLE: 'You do not belong to any workspace.',
   USER_DASHBOARD_EMPTY_DESC:
-    'You can contact a workspace administrator to invite you to join a workspace.',
+    'Please contact a workspace administrator to invite you to join a workspace.',
 }

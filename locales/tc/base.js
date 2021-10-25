@@ -708,7 +708,7 @@ module.exports = {
   EVENT_AGE_DATA_TWICE: '{lastTime}<br/>(twice over {duration})',
   SOURCE: '來源',
 
-  METERING_AND_BILLING: '資源消費統計',
+  RESOURCE_CONSUMPTION_STATISTICS: '資源消費統計',
   METERING_AND_BILLING_DESC: '查看消費情况',
 
   // Workbench
@@ -727,4 +727,8 @@ module.exports = {
   CONTAINER_LOG_SEARCH: 'Container Log Search',
   RESOURCE_EVENT_SEARCH: 'Resource Event Search',
   AUDIT_LOG_SEARCH: 'Audit Log Search',
+
+  // Toolbox
+  CONTROL_TOOL: 'Control Tool',
+  ANALYSIS_TOOLS: 'Analysis Tools',
 }

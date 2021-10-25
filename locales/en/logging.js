@@ -40,9 +40,12 @@ module.exports = {
   'Log Query': 'Log Query',
   'Log Start Time': 'Log Start Time',
   CONTAINER_LOG_COUNT: 'Container Logs',
-  AUDITING_NOT_ENABLED_DESC: 'No cluster has Auditing enabled.',
-  EVENT_NOT_ENABLED_DESC: 'No cluster has Events enabled.',
-  LOGGING_NOT_ENABLED_DESC: 'No cluster has Logging enabled.',
+  AUDITING_NOT_ENABLED_DESC:
+    'The component is not enabled. <a href="https://v3-1.docs.kubesphere.io/docs/pluggable-components/auditing-logs/" target="_blank">Learn More</a>',
+  EVENT_NOT_ENABLED_DESC:
+    'The component is not enabled. <a href="https://v3-1.docs.kubesphere.io/docs/pluggable-components/events/" target="_blank">Learn More</a>',
+  LOGGING_NOT_ENABLED_DESC:
+    'The component is not enabled. <a href="https://v3-1.docs.kubesphere.io/docs/pluggable-components/logging/" target="_blank">Learn More</a>',
   'Log statistics': 'Log statistics',
   'No cluster with auditing module enabled': 'No cluster has Auditing enabled.',
   'No cluster with event query enabled': 'No cluster has Events enabled.',
@@ -83,7 +86,7 @@ module.exports = {
   FLUENTD_DESC:
     'Fluentd is an open-source data collector for unified logging layer.',
   TOOLBOX_SHIFT_TIPS:
-    ' 👻 You can open the page in a new window with "SHIFT + LEFT CLICK".',
+    ' 👻 Press "shift+left click" to open kubectl in a new browser window.',
 
   LOG_COLLECTION_DESC:
     'The system collects standard output (stdout) and standard error (stderr) logs from each container and sends them to one or more target services.',
@@ -136,7 +139,6 @@ module.exports = {
   START_REAL_TIME_LOG: 'Enable real-time logging',
   STOP_REAL_TIME_LOG: 'Disable real-time container logs',
   LOG_EXPORT: 'Log Export',
-  STOP_REAL_TIME_LOG: 'Disable real-time logging',
   EXPORT_LOGS: 'Export Logs',
 
   CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create Custom Monitoring Dashboard',
@@ -210,7 +212,6 @@ module.exports = {
   SEARCH_BY_POD: 'Search by Pod',
   SEARCH_BY_CONTAINER: 'Search by Container',
   START_TIME_COLON: 'Start Time: ',
-  KEYWORD: 'Keyword',
   TIME_RANGE: 'Time Range',
   LOG: 'Log',
   DISPLAY: 'Display',
