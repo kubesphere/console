@@ -81,6 +81,7 @@ export default class EnvironmentInput extends React.Component {
   }
 
   handleAddRef = () => {
+    this.handleGetResource()
     const { value, onChange } = this.props
     if (isEmpty(value)) {
       return onChange([{ name: '', valueFrom: {} }])

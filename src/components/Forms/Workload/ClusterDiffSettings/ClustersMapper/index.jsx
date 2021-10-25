@@ -72,6 +72,7 @@ export default class ClustersMapper extends Component {
               <div>
                 {children({
                   namespace,
+                  clusters,
                   cluster: clusterDetail.name,
                   selected: clusterDetail.name === selectCluster,
                   onSelect: this.handleSelect,

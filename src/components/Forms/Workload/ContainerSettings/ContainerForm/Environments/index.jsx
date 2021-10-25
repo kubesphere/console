@@ -55,6 +55,7 @@ export default class Environments extends React.Component {
       cluster,
       projectDetail,
     } = this.props
+
     return (
       <Form.Group
         label={t('ENVIRONMENT_VARIABLE_PL')}
