@@ -623,7 +623,7 @@ export const compareVersion = (v1 = '', v2 = '') => {
   return 0
 }
 
-const cancel_Num_Dot = (spec, hard) => {
+export const cancel_Num_Dot = (spec, hard) => {
   const units = ['ki', 'mi', 'gi', 'ti']
   Object.keys(spec).forEach(key => {
     const value = hard[key]
