@@ -123,38 +123,39 @@ export default class ResourceLimit extends React.Component {
     const cpuUnit = get(props, 'cpuProps.unit', 'Core')
     const memoryUnit = get(props, 'memoryProps.unit', 'Mi')
 
-    const cpuRequests = ResourceLimit.allowInputDot(
-      ResourceLimit.getDefaultRequestValue(props, 'cpu'),
-      cpuUnit,
-      cpuFormat
-    )
+    const requestCpu = ResourceLimit.getDefaultRequestValue(props, 'cpu')
+    const requestMeo = ResourceLimit.getDefaultRequestValue(props, 'memory')
+    const limitCpu = ResourceLimit.getDefaultLimitValue(props, 'cpu')
+    const limitMeo = ResourceLimit.getDefaultLimitValue(props, 'memory')
 
-    const cpuLimits = ResourceLimit.allowInputDot(
-      ResourceLimit.getDefaultLimitValue(props, 'cpu'),
+    const cpuRequests = ResourceLimit.allowInputDot(
+      requestCpu,
       cpuUnit,
       cpuFormat
     )
 
     const memoryRequests = ResourceLimit.allowInputDot(
-      ResourceLimit.getDefaultRequestValue(props, 'memory'),
+      requestMeo,
       memoryUnit,
       memoryFormat,
       true
     )
+
+    const cpuLimits = ResourceLimit.allowInputDot(limitCpu, cpuUnit, cpuFormat)
 
     const memoryLimits = ResourceLimit.allowInputDot(
-      ResourceLimit.getDefaultLimitValue(props, 'memory'),
+      limitMeo,
       memoryUnit,
       memoryFormat,
       true
     )
 
-    const requestMeo = memoryFormat(
+    const workspaceReqMeo = memoryFormat(
       `${ResourceLimit.getWorkspaceRequestLimit(props, 'memory')}Mi`,
       memoryUnit
     )
 
-    const limitMeo = memoryFormat(
+    const workspaceLimitMeo = memoryFormat(
       `${ResourceLimit.getWorkspaceLimitValue(props, 'memory')}Mi`,
       memoryUnit
     )
@@ -173,14 +174,14 @@ export default class ResourceLimit extends React.Component {
           ResourceLimit.getWorkspaceRequestLimit(props, 'cpu'),
           cpuUnit
         ),
-        memory: isNaN(requestMeo) ? undefined : requestMeo,
+        memory: isNaN(workspaceReqMeo) ? undefined : workspaceReqMeo,
       },
       workspaceLimits: {
         cpu: cpuFormat(
           ResourceLimit.getWorkspaceLimitValue(props, 'cpu'),
           cpuUnit
         ),
-        memory: isNaN(limitMeo) ? undefined : limitMeo,
+        memory: isNaN(workspaceLimitMeo) ? undefined : workspaceLimitMeo,
       },
       gpu: ResourceLimit.gpuSetting(props),
     }
