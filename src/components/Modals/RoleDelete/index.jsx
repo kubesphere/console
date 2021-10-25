@@ -112,14 +112,22 @@ export default class RoleDeleteModal extends React.Component {
         hideHeader
       >
         <div className={styles.body}>
-          <div className="h5">{t('Sure to delete')}</div>
+          <div className="h5">{t('DELETE_ROLE')}</div>
           <p>
             {!isLoading && users.length
-              ? t.html(`ROLE_USER${users.length > 1 ? 'S' : ''}_TIP`, {
-                  count: users.length,
-                })
+              ? t.html(
+                  `DELETE_ROLE_USER_TIP${users.length === 1 ? '' : '_PL'}`,
+                  {
+                    count: users.length,
+                  }
+                )
               : groups.totalItems
-              ? t.html('ROLE_USER_GROUPS_TIP', { count: groups.totalItems })
+              ? t.html(
+                  `DELETE_ROLE_DEPARTMENT_TIP${
+                    groups.totalItems === 1 ? '' : '_PL'
+                  }`,
+                  { count: groups.totalItems }
+                )
               : t.html('DELETE_ROLE_TIP', { resource: detail.name })}
           </p>
         </div>

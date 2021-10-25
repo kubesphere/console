@@ -45,7 +45,12 @@ module.exports = {
   MANAGER: '管理員',
   'DevOps Project Manager': 'DevOps 项目管理員',
   CREATE_DEVOPS_PROJECT: '創建 DevOps 项目',
+  DELETE_MULTIPLE_DEVOPS_PROJECTS: 'Delete Multiple DevOps Projects',
   DELETE_DEVOPS_PROJECT: '刪除 DevOps 项目',
+  DELETE_DEVOPS_PROJECT_TIP:
+    'Enter the DevOps project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
+  DELETE_DEVOPS_PROJECT_TIP_PL:
+    'Enter the DevOps project names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 
   DEVOPS_BASEINFO_DESC: '請輸入 DevOps 项目的基本資訊',
 

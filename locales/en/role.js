@@ -143,15 +143,17 @@ module.exports = {
   ROLE_NO_AVAILABLE_TIP: 'No role is available in the current project.',
   ROLE_TYPE_DESC:
     'The role types are classified into cluster and project, the current role is authorized as the project scope.',
+  DELETE_ROLE: 'Delete Role',
   DELETE_ROLE_TIP:
     'Are you sure you want to delete the role <strong>{resource}</strong>?',
-  ROLE_USERS_TIP:
-    'The role is bound to <strong>{count}</strong> users. Please unbind the users first.',
-  ROLE_USER_TIP:
-    'The role is bound to <strong>{count}</strong> user. Please unbind the user first.',
-  ROLE_USER_GROUPS_TIP:
-    'The role is bound to <strong>{count}</strong> department. Please unbind the department first.',
-
+  DELETE_ROLE_USER_TIP_PL:
+    'The role is authorized to <strong>{count}</strong> users. Please delete the users or change the roles of the user first.',
+  DELETE_ROLE_USER_TIP:
+    'The role is authorized to <strong>{count}</strong> user. Please delete the user or change the role of the user first.',
+  DELETE_ROLE_DEPARTMENT_TIP_PL:
+    'The role is authorized to <strong>{count}</strong> departments. Please delete the departments or change the roles of the departments first.',
+  DELETE_ROLE_DEPARTMENT_TIP:
+    'The role is authorized to <strong>{count}</strong> department. Please delete the department or change the role of the department first.',
   RULE_WORKSPACES: 'Workspaces',
   RULE_KUBECTL: 'kubectl',
   RULE_MONITORING: 'Monitoring Management',
@@ -213,7 +215,7 @@ module.exports = {
   COMPONENTS_MANAGEMENT_DESC: 'Manage cluster components.',
   CLUSTERS_VIEW_DESC: 'View all clusters and cluster resources.',
   CLUSTERS_MANAGEMENT_DESC:
-    'Create and delete clusters, and manage resources in all clusters.',
+    'Create clusters, delete clusters, and manage resources in all clusters.',
   WORKSPACES_VIEW_DESC: 'View workspaces.',
   ROLES_VIEW_DESC: 'View platform roles.',
   USERS_VIEW_DESC: 'View users.',
@@ -225,7 +227,7 @@ module.exports = {
   APP_TEMPLATES_MANAGEMENT_DESC:
     'Manage the platform App Store and life cycles of cloud-native applications.',
   PLATFORM_SETTINGS_MANAGEMENT_DESC:
-    'Manage settings of the KubeSphere platform.',
+    'View and edit settings of the KubeSphere platform.',
   ACCOUNT_ROLE_DESC:
     'The role of an account defines the permissions of the account on the KubeSphere platform.',
   ACCOUNT_ROLE_CREATE_DESC:

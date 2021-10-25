@@ -54,7 +54,7 @@ module.exports = {
   'Pipeline List': '流水线列表',
   EDIT_PIPELINE: '编辑流水线',
   EDIT_JENKINSFILE: '编辑 Jenkinsfile',
-  RUN: '运行次数',
+  RUN: '运行',
   COMMIT_PL: '提交',
   BRANCH_SI: '分支',
   BRANCH_PL: '分支',
@@ -106,10 +106,6 @@ module.exports = {
   CREDENTIAL_TYPE_SSH: 'SSH 密钥',
   CREDENTIAL_TYPE_SECRET_TEXT: '访问令牌',
   CREDENTIAL_TYPE_KUBECONFIG: 'kubeconfig',
-  CREDENTIAL_TYPE_USERNAME_PASSWORD_SCAP: 'Username and password',
-  CREDENTIAL_TYPE_SSH_SCAP: 'SSH key',
-  CREDENTIAL_TYPE_SECRET_TEXT_SCAP: 'Access token',
-  CREDENTIAL_TYPE_KUBECONFIG_SCAP: 'kubeconfig',
   login_Plateform: '登录平台',
   SCRIPT_PATH: '脚本路径',
   WEBHOOK_PUSH: 'Webhook 推送',
@@ -144,7 +140,7 @@ module.exports = {
   CREDENTIALS_DESC: `凭证是包含了一些敏感数据的对象，如用户名密码，SSH 密钥和 Token 等,
     用于在流水线运行时, 为拉取代码、push/pull 镜像、SSH 执行脚本等过程提供认证`,
   'Credential Id': '凭证 ID',
-  NO_ARTIFACT_FOUND_TIP: '暂无制品。',
+  NO_ARTIFACT_FOUND_TIP: '未发现制品。',
   SELECT_THIS_REPOSITORY: '选择此仓库',
   SCAN_REPO_SUCCESS: '仓库扫描触发成功。',
   PIPELINE_RUN_LOGS: '流水线运行日志',
@@ -175,7 +171,7 @@ module.exports = {
     此功能的的一个典型用法是通过源代码管理系统的钩子脚本来进行触发。
     您需要提供一个字符串形式的授权令牌，以便只有拥有授权令牌的人才能触发远程构建。`,
   DELETE_OUTDATED_BUILD_RECORDS_TIP:
-    '设置系统自动删除控制台输出、归档制品、元数据等过期构建记录以节省磁盘空间。',
+    '设置系统自动删除过期的控制台输出、归档制品、元数据等构建记录以节省磁盘空间。',
   DELETE_OUTDATED_BRANCHES_TIP: '设置系统自动删除过期分支以节省磁盘空间。',
   BUILD_PERIODICALLY_TIP: '设置流水线定期执行构建任务。',
   BRANCH_RETENTION_PERIOD_DAYS_DESC: '超过保留期限的分支将被删除。默认值为 7。',
@@ -210,7 +206,7 @@ module.exports = {
   'Please add at least one step.': '至少添加一个步骤',
   'Please input the credential name.': '请输入凭证名称。',
   SCM: '代码仓库',
-  NO_COMMIT_FOUND: '暂无提交记录',
+  NO_COMMIT_FOUND: '未发现提交记录',
   'Clean Workspace': '清理企业空间',
   'Save Artifact': '保存制品',
   'Change Current Directory': '更改当前目录',
@@ -238,7 +234,7 @@ module.exports = {
   SELECT_CODE_REPO_DESC: '选择流水线使用的代码仓库。',
   NO_PIPELINE_CONFIG_FILE_TIP: '未发现流水线配置文件。',
   ACTIVITY_EMPTY_TIP: '流水线尚未运行。',
-  PIPELINE_NO_CONFIG: '当前流水线中并没有找到相关配置文件',
+  PIPELINE_NO_CONFIG: '当前流水线中并未发现相关配置文件',
   INVALID_JENKINSFILE_TIP:
     '当前 Jenkinsfile 不是标准的声明式 Jenkinsfile，图形化显示不可用。',
   PIPELINE_SCHEDULE_DESC:
@@ -500,6 +496,7 @@ module.exports = {
 
   // Pipeline List Page
   PULL_REQUEST_PL: '拉取请求',
+  PULL_REQUEST_COUNT: '拉取请求数量',
   HEALTHY: '健康',
 
   // Pipeline Creation Page

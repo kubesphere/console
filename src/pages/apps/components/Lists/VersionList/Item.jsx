@@ -230,7 +230,7 @@ export default class VersionItem extends React.PureComponent {
         )}
         {!isAdmin && (
           <Button onClick={this.showDeploy} type="default">
-            {t('DEPLOY')}
+            {t('INSTALL')}
           </Button>
         )}
         {handleType && (

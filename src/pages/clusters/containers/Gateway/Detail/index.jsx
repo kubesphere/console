@@ -113,7 +113,7 @@ export default class NodeDetail extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('DELETE'),
+        text: t('DISABLE'),
         action: 'delete',
         onClick: () =>
           this.trigger('gateways.delete', {

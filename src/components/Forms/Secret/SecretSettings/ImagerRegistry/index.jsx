@@ -152,7 +152,7 @@ export default class ImageRegistry extends Component {
       )
     }
 
-    return <Alert type="warning" message={t('IMAGE_REGISTRY_VALIDATE_TIP')} />
+    return <Alert type="info" message={t('IMAGE_REGISTRY_VALIDATE_TIP')} />
   }
 
   render() {

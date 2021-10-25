@@ -87,7 +87,7 @@ export default class ProjectGatewayCard extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('DELETE'),
+        text: t('DISABLE'),
         action: 'delete',
         onClick: item =>
           trigger('gateways.delete', {

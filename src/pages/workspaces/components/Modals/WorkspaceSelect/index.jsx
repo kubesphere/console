@@ -88,7 +88,7 @@ export default class WorkspaceSelectModal extends React.Component {
         onCancel={onCancel}
         width={960}
         icon="enterprise"
-        title={t('WORKSPACE')}
+        title={t('WORKSPACE_PL')}
         description={t('WORKSPACE_DESC')}
         hideFooter
       >

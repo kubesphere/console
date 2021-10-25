@@ -56,7 +56,7 @@ module.exports = {
   'Edit Rule': '编辑规则',
   'Rule Name': '规则名称',
   VIEW_DETAILS: '查看详情',
-  ACTIVATION_TIME: '告警激活时间',
+  ACTIVATION_TIME: '触发时间',
   SET_RULE_DESC: '请设置告警规则。',
   'Please input the threshold': '请输入阈值',
   CRITICAL_ALERT: '危险告警',
@@ -146,7 +146,7 @@ module.exports = {
 
   // Alerting Messages
   ALERTING_MESSAGE_PL: '告警消息',
-  NO_DATA_DESC: '没有找到数据',
+  NO_DATA_DESC: '未发现数据',
   MONITORING_TARGET: '监控目标',
 
   // Alerting Policies
@@ -158,7 +158,7 @@ module.exports = {
   STATEFULSET_PL: '有状态副本集',
   DAEMONSET: '守护进程集',
   DAEMONSET_PL: '守护进程集',
-  DEPLOYMENTS_VALUE: '部署数量：{value}',
+  DEPLOYMENTS_VALUE: '部署：{value}',
   STATEFULSETS_VALUE: '有状态副本集数量：{value}',
   DAEMONSETS_VALUE: '守护进程集数量：{value}',
 

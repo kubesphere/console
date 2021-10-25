@@ -76,7 +76,7 @@ export default class ProjectInfo extends React.Component {
                 trigger="click"
                 placement="bottomRight"
               >
-                <Button>{t('MANAGE_PROJECT')}</Button>
+                <Button>{t('MANAGE')}</Button>
               </Dropdown>
             </div>
           )}

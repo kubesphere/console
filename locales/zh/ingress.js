@@ -75,7 +75,7 @@ module.exports = {
     '如需使用 QingCloud LoadBalancer 作为服务网关，需要部署 QingCloud Cloud Controller Manager 插件。',
 
   GATEWAY_TRACING_TIP:
-    '如果启用<b>链路追踪</b>后路由无法访问，请在路由中添加注解 <b>nginx.ingress.kubernetes.io/service-upstream: true</b>。',
+    '如果开启<b>链路追踪</b>后路由无法访问，请在路由中添加注解 <b>nginx.ingress.kubernetes.io/service-upstream: true</b>。',
 
   ADD_ROUTING_RULE_DESC: '添加一个路由规则将域名路径映射至服务。',
   ROUTING_RULE_EMPTY_DESC: '请添加至少一个路由规则。',
@@ -84,8 +84,7 @@ module.exports = {
 
   NO_GATEWAY_DESC:
     '如需使用自动生成模式，请联系项目管理员在此项目的高级设置中设置网关访问模式。',
-  UNABLE_CREATE_ROUTE_TIP:
-    '当前项目中没有找到可用的网关地址，无法创建应用路由。',
+  UNABLE_CREATE_ROUTE_TIP: '当前项目中未发现可用的网关地址，无法创建应用路由。',
 
   RULE_SETTING_MODE_AUTO:
     '系统将自动按照 &lt服务名称&gt.&lt项目名称&gt.&lt网关地址&gt.nip.io 格式生成域名，该域名将由 nip.io 自动解析为网关 IP 地址。此模式仅支持 HTTP 协议。',

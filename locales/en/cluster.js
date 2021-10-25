@@ -45,6 +45,8 @@ module.exports = {
   'Go back': 'Go back',
   'Host Cluster': 'Host Cluster',
   HOST_CLUSTER: 'Host cluster',
+  HOST_CLUSTER_TCAP: 'Host Cluster',
+  HOST_CLUSTER_PL_TCAP: 'Host Clusters',
   'Host Clusters': 'Host Clusters',
   Import: 'Import',
   'Import Kubernetes Cluster': 'Import Kubernetes Cluster',

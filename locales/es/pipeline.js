@@ -364,14 +364,10 @@ module.exports = {
     to achieve continuous integration and continuous delivery.
     You can create and manage pipelines on this page.`,
   username_password: 'Credenciales de cuenta',
-  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'username and password',
+  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'Username and password',
   CREDENTIAL_TYPE_SSH: 'SSH key',
-  CREDENTIAL_TYPE_SECRET_TEXT: 'access token',
+  CREDENTIAL_TYPE_SECRET_TEXT: 'Access token',
   CREDENTIAL_TYPE_KUBECONFIG: 'kubeconfig',
-  CREDENTIAL_TYPE_USERNAME_PASSWORD_SCAP: 'Username and password',
-  CREDENTIAL_TYPE_SSH_SCAP: 'SSH key',
-  CREDENTIAL_TYPE_SECRET_TEXT_SCAP: 'Access token',
-  CREDENTIAL_TYPE_KUBECONFIG_SCAP: 'kubeconfig',
   login_Plateform: 'Plataforma de inicio de sesión',
   CREDENTIALS_DESC:
     'La credencial es un objeto que contiene algunos datos confidenciales, como nombre de usuario y contraseña, clave SSH y token. Se utiliza para proporcionar autenticación para el proceso de extraer código empujar / extraer imágenes, ejecutar scripts SSH, etc. cuando se está ejecutando una pipeline.',
@@ -555,6 +551,7 @@ module.exports = {
 
   // Pipeline List Page
   PULL_REQUEST_PL: 'Pull Requests',
+  PULL_REQUEST_COUNT: 'Pull Requests',
   HEALTHY: 'Healthy',
 
   // Pipeline Creation Page

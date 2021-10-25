@@ -82,7 +82,7 @@ module.exports = {
     '系统将收集每个容器的标准输出和标准错误输出日志，并将其发送到一个或多个目标服务。',
   ADD_LOG_RECEIVER: '添加日志接收器',
   EMPTY_LOG_COLLECTIONS:
-    '没有找到日志接收器。您可以添加日志接收器将日志发送到外部日志接收器中。',
+    '未发现日志接收器。您可以添加日志接收器将日志发送到外部日志接收器中。',
   LOG_COLLECTION_TIPS: '每种类型的日志收集器只能添加一个。',
 
   Address: '地址',
@@ -149,15 +149,15 @@ module.exports = {
   ENTER_GRAFANA_URL: '请输入 Grafana 监控面板 URL。',
   UPLOAD_FROM_LOCAL_TITLE: '选择或拖动文件',
   EVENT_NOT_ENABLED_DESC:
-    '当前组件尚未启用。<a href="https://v3-1.docs.kubesphere.io/zh/docs/pluggable-components/events/" target="_blank">了解更多</a>',
+    '当前组件尚未开启。<a href="https://v3-1.docs.kubesphere.io/zh/docs/pluggable-components/events/" target="_blank">了解更多</a>',
   AUDITING_NOT_ENABLED_DESC:
-    '当前组件尚未启用。<a href="https://v3-1.docs.kubesphere.io/zh/docs/pluggable-components/auditing-logs/" target="_blank">了解更多</a>',
+    '当前组件尚未开启。<a href="https://v3-1.docs.kubesphere.io/zh/docs/pluggable-components/auditing-logs/" target="_blank">了解更多</a>',
   LOGGING_NOT_ENABLED_DESC:
-    '当前组件尚未启用。<a href="https://v3-1.docs.kubesphere.io/zh/docs/pluggable-components/logging/" target="_blank">了解更多</a>',
-  'No cluster with event query enabled': '暂无开启事件查询的集群',
-  'No cluster with auditing module enabled': '暂无开启审计模块的集群',
-  'No cluster with logging module enabled': '暂无开启日志模块的集群',
-  LOGGING_DISABLED: '日志组件未启用',
+    '当前组件尚未开启。<a href="https://v3-1.docs.kubesphere.io/zh/docs/pluggable-components/logging/" target="_blank">了解更多</a>',
+  'No cluster with event query enabled': '未发现开启事件查询的集群',
+  'No cluster with auditing module enabled': '未发现开启审计模块的集群',
+  'No cluster with logging module enabled': '未发现开启日志模块的集群',
+  LOGGING_DISABLED: '日志组件未开启',
 
   LOGGING_LOG_COLLECTOR: '日志接收器',
   EVENTS_LOG_COLLECTOR: '事件日志接收器',

@@ -52,7 +52,7 @@ module.exports = {
   CONFIG_FILE: '配置文件',
   CHART_FILES: 'Chart 文件',
   'Update Log': '更新日志',
-  NO_UPDATE_LOG_DESC: '没有找到更新日志。',
+  NO_UPDATE_LOG_DESC: '未发现更新日志。',
   Note: '提示',
   APP_NAME_DESC: '应用的名称，最长 20 个字符。',
   'Select file': '选择文件',
@@ -77,7 +77,7 @@ module.exports = {
   APP_REVIEWS: '应用审核',
   APP_RELEASE_DESC:
     '管理待发布到应用商店中的应用。您可以查看应用详情并批准或拒绝应用发布。',
-  APP_REVIEW_EMPTY_DESC: '没有找到未发布的应用。',
+  APP_REVIEW_EMPTY_DESC: '请在企业空间中创建应用模板并提交发布。',
   APP_REVIEWS_CREATE_DESC: '对应用上架提供审核功能',
   UNREVIEWED: '待审核',
   REVIEWED: '已审核',
@@ -91,7 +91,7 @@ module.exports = {
   REVIEW_CONTENT: '审核内容',
   APP_DETAILS_DESC: '查看待发布的应用的详情。',
   SUBMIT_REVIEW_DESC: '提交应用进行发布。',
-  REVIEWS_CREATE_DESC: '暂时没有相关的应用审核数据',
+  REVIEWS_CREATE_DESC: '未发现相关的应用审核数据',
 
   'App Version': '应用版本',
   CURRENT_APP_VERSION: '当前应用版本',
@@ -103,7 +103,7 @@ module.exports = {
   REJECT_REASON_TIP: '请填写至少一条拒绝原因。',
   APP_CATEGORIES_DESC:
     '对应用商店中已上架的应用进行分类管理。您可以创建、编辑、删除和调整应用分类。',
-  AUDIT_RECORD_CREATE_DESC: '暂无相关的审核记录数据',
+  AUDIT_RECORD_CREATE_DESC: '未发现相关的审核记录数据',
 
   APP_CATEGORY_PL: '应用分类',
   APP_CATEGORY_EMPTY_DESC: '没有属于当前分类的应用。',
@@ -219,7 +219,7 @@ module.exports = {
 
   APP_CATE_UNCATEGORIZED: '未分类',
 
-  MISS_FILE_NOTE: '文件{file}没有找到',
+  MISS_FILE_NOTE: '文件{file}未发现',
 
   'Please select a project to deploy': '请选择项目部署',
   WORKSPACE_EMPTY_DESC: '请选择企业空间',
@@ -236,8 +236,8 @@ module.exports = {
   DELETE_APP_TEMPLATE_VERSIONS_DESC:
     '请输入应用模板名称 <b>{resource}</b> 以确认您了解此操作的风险。删除应用模板前，您必须先删除该应用模板的所有版本。',
 
-  UNPROCESSED_APP_RELEASE: '未发布的应用',
-  PROCESSED_APP_RELEASE: '已发布的应用',
+  UNPROCESSED_APP_RELEASE: '待发布应用',
+  PROCESSED_APP_RELEASE: '已发布应用',
   ALL_APP_RELEASE: '发布记录',
 
   'APP_CATE_MESSAGE QUEUEING': '消息队列',
@@ -263,7 +263,7 @@ module.exports = {
   DOCUMENTATION: '说明文档',
   BACK: '返回',
   NOTIFICATION_EMAIL: '邮件',
-  NO_DOCUMENT_FOUND: '没有找到说明文档',
+  NO_DOCUMENT_FOUND: '未发现说明文档',
 
   // App Store
   DISCOVER: '发现',
@@ -304,7 +304,7 @@ module.exports = {
   DEPLOYED_SUCCESSFUL: '部署成功。',
   VIEW_IN_STORE: '在商店中查看',
   RELEASE_TO_STORE: '发布到商店',
-  AUDIT_EMPTY_DESC: '没有找到应用审核记录。',
+  AUDIT_EMPTY_DESC: '未发现应用审核记录。',
   APP_STATUS_SUBMITTED: '已提交',
   APP_STATUS_PASSED: '已通过',
   APP_STATUS_SUSPENDED: '已下架',
@@ -318,8 +318,8 @@ module.exports = {
   APP_STATUS_IN_REVIEW: '审核中',
   APP_STATUS_DEVELOPING: '开发中',
   APPS: '应用',
-  UNRELEASED: '未发布',
+  UNRELEASED: '待发布',
   RELEASED: '已发布',
   RELEASE_RECORD: '发布记录',
-  RELEASE_RECORD_EMPTY_DESC: '没有找到发布记录。',
+  RELEASE_RECORD_EMPTY_DESC: '未发现发布记录。',
 }

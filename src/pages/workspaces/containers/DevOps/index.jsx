@@ -55,6 +55,8 @@ export default class DevOps extends React.Component {
         action: 'delete',
         onClick: item => {
           trigger('resource.delete', {
+            title: t('DELETE_DEVOPS_PROJECT'),
+            desc: t.html('DELETE_DEVOPS_PROJECT_TIP', { resource: item.name }),
             type: name,
             resource: item.name,
             detail: item,

@@ -88,7 +88,7 @@ export default class DevOpsEditModal extends React.Component {
         visible={visible}
       >
         <Form.Item
-          label={t('DEVOPS_NAME')}
+          label={t('NAME')}
           desc={t('NAME_DESC')}
           rules={[
             { required: true, message: t('NAME_EMPTY_DESC') },

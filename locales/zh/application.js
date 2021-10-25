@@ -27,7 +27,7 @@ module.exports = {
   APP_TEMPLATE: '应用模板',
   APP_TEMPLATE_PL: '应用模板',
   TEMPLATE_BASED_APP_PL: '基于模板的应用',
-  NO_TEMPLATE_BASED_APP_FOUND: '没有找到基于模板的应用',
+  NO_TEMPLATE_BASED_APP_FOUND: '未发现基于模板的应用',
   TEMPLATE_BASED_APP_EMPTY_DESC: '请从 KubeSphere 应用商店或应用模板创建应用。',
   APP_TEMPLATE_LOW: '应用模板',
   APP_TEMPLATE_EMPTY_DESC: '请创建一个应用模板。',
@@ -49,7 +49,7 @@ module.exports = {
   TRAFFIC_MANAGEMENT: '流量管理',
   NETWORK_TRAFFIC: '网络流量',
 
-  'No Components': '暂无组件',
+  'No Components': '未发现组件',
   'Cluster Select': '集群选择',
 
   'Application governance is not enabled': '应用治理未开启',
@@ -87,7 +87,7 @@ module.exports = {
   APP_INTRODUCTION: '应用介绍',
 
   COMPOSED_APP_PL: '自制应用',
-  NO_COMPOSED_APP_FOUND: '没有找到自制应用',
+  NO_COMPOSED_APP_FOUND: '未发现自制应用',
   'Composing App': '自制应用',
 
   'Workload Type': '负载类型',
