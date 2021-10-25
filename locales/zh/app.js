@@ -170,7 +170,6 @@ module.exports = {
   'Package problems': '文件有问题',
   'Upload again': '重新上传',
   'App Name': '应用名称',
-  HOMEPAGE: '主页',
   'Select File': '选择文件',
   APP_SCREENSHOTS: '应用截图',
   'Upload Screenshots': '上传截图',
@@ -232,8 +231,10 @@ module.exports = {
 
   HELM_APP_SCHEMA_FORM_TIP:
     '您可以通过图形化表单或 YAML 文件对应用进行设置。图形化表单和 YAML 文件中的设置相互独立。',
-
-  DELETE_APP_TEMPLATE_TIP: '删除应用模板前，需要先删除所有版本。',
+  DELETE_APP_TEMPLATE_DESC:
+    '请输入应用模板名称 <b>{resource}</b> 以确认您了解此操作的风险。',
+  DELETE_APP_TEMPLATE_VERSIONS_DESC:
+    '请输入应用模板名称 <b>{resource}</b> 以确认您了解此操作的风险。删除应用模板前，您必须先删除该应用模板的所有版本。',
 
   UNPROCESSED_APP_RELEASE: '未发布的应用',
   PROCESSED_APP_RELEASE: '已发布的应用',

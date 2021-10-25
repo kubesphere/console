@@ -74,8 +74,8 @@ module.exports = {
   INGRESS_CONTROLLER_LOADBALANCER_DESC:
     '如需使用 QingCloud LoadBalancer 作为服务网关，需要部署 QingCloud Cloud Controller Manager 插件。',
 
-  GATEWAY_APPLICATION_GOVERNANCE_TIP:
-    '如您不需要使用应用治理的功能，无需打开此项；如果您需要使用应用治理的 Tracing 功能，请打开此项。打开此项后，如果您的应用路由无法访问，请检查应用路由中是否添加 `nginx.ingress.kubernetes.io/service-upstream: true` 注解，如无，请手动添加。',
+  GATEWAY_TRACING_TIP:
+    '如果启用<b>链路追踪</b>后路由无法访问，请在路由中添加注解 <b>nginx.ingress.kubernetes.io/service-upstream: true</b>。',
 
   ADD_ROUTING_RULE_DESC: '添加一个路由规则将域名路径映射至服务。',
   ROUTING_RULE_EMPTY_DESC: '请添加至少一个路由规则。',

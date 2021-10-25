@@ -309,7 +309,8 @@ module.exports = {
   'Invalid name': '名稱格式不合法。{message}',
   'Invalid pod': '容器組數量格式不合法',
   SET_IMAGE_DESC: '請選擇鏡像',
-  INVALID_NAME_DESC: '名稱格式不合法。{message}',
+  INVALID_NAME_DESC:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
   'Service Labels': '服務標籤',
 
   'Add Existing Volume': '添加已有儲存卷',
@@ -465,7 +466,7 @@ module.exports = {
     '您即將重新部署工作負載 {resource} ({type}) , 容器組將根據更新策略進行重新部署，您的業務可能會被暫時中斷。',
 
   MORE: '更多操作',
-  OPERATIONS: '操作',
+  MANAGE: '管理',
 
   REVISION_ROLLBACK_SELECT: '請選擇要回退的版本',
   REVISION_TITLE: '{name}版本',

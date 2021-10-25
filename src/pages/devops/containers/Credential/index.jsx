@@ -100,7 +100,7 @@ class Credential extends React.Component {
   }
 
   get name() {
-    return 'DEVOPS_CREDENTIAL'
+    return 'CREDENTIAL'
   }
 
   handleCreate = () => {

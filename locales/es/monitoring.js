@@ -129,7 +129,6 @@ module.exports = {
   AVERAGE: 'Promedio',
   TOTAL_AVERAGE: 'Total',
   SUCCESS: 'Success',
-  SUCCESSFUL: 'Successful',
   NOT_SUCCESSFUL: 'Not successful',
   ERROR: 'Error',
   FAILURE: 'Failure',

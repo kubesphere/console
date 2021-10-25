@@ -61,7 +61,7 @@ class CodeQualityIssues extends React.Component {
     const { critical, major, minor, info, blocker } = this.props.detail
     return (
       <div className={styles.header}>
-        <span className={styles.title}>{t('Issues')}</span>
+        <span className={styles.title}>{t('ISSUE_PL')}</span>
         <div className={styles.details}>
           <span>
             <Status errorClass="blocker" />
@@ -111,8 +111,8 @@ class CodeQualityIssues extends React.Component {
     }
     return (
       <p className={styles.titleShowMore}>
-        {t('Show only the last 10')},
-        <span onClick={this.showMore}>{t('Display All')}</span>
+        {t('DISPLAY_ONLY_LAST_TEN')},
+        <span onClick={this.showMore}>{t('DISPLAY_ALL')}</span>
       </p>
     )
   }
@@ -134,7 +134,7 @@ class CodeQualityIssues extends React.Component {
           {issues.map((issue, index) => this.renderIssue(issue, index))}
           {!this.state.showMore ? (
             <div className={styles.displayAll} onClick={this.showMore}>
-              {t('Display All')}
+              {t('DISPLAY_ALL')}
             </div>
           ) : null}
         </div>

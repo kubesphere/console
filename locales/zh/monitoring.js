@@ -128,7 +128,6 @@ module.exports = {
   AVERAGE: '平均值',
   TOTAL_AVERAGE: '总均值',
   SUCCESS: '成功',
-  SUCCESSFUL: '未成功',
   NOT_SUCCESSFUL: '未成功',
   ERROR: '错误',
   FAILURE: '失败',

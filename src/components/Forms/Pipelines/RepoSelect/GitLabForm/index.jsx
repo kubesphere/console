@@ -96,7 +96,7 @@ export default class GitLabForm extends React.Component {
     <span style={{ display: 'flex', alignItem: 'center' }}>
       {label}&nbsp;&nbsp;
       <Tag type={disabled ? '' : 'warning'}>
-        {type === 'ssh' ? 'SSH' : t(type)}
+        {type && t(`CREDENTIAL_TYPE_${type.toUpperCase()}`)}
       </Tag>
     </span>
   )
@@ -110,8 +110,8 @@ export default class GitLabForm extends React.Component {
       <div className={styles.card}>
         <Form data={formData} ref={formRef}>
           <Form.Item
-            label={t('GITLAB_SERVER')}
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            label={t('GITLAB_SERVER_ADDRESS')}
+            rules={[{ required: true, message: t('GITLAB_SERVER_EMPTY_TIP') }]}
           >
             <Select
               name="gitlab_source.server_name"
@@ -121,8 +121,10 @@ export default class GitLabForm extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('GITLAB_PROJECT_OWNER')}
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            label={t('PROJECT_GROUP_OWNER')}
+            rules={[
+              { required: true, message: t('PROJECT_GROUP_OWNER_EMPTY_TIP') },
+            ]}
           >
             <Input
               name="gitlab_source.owner"
@@ -133,12 +135,12 @@ export default class GitLabForm extends React.Component {
             label={t('CREDENTIAL_SI')}
             desc={
               <p>
-                {t('ADD_NEW_CREDENTIAL_DESC')}
+                {t('SELECT_CREDENTIAL_DESC')}
                 <span
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('CREATE_A_CREDENTIAL')}
+                  {t('CREATE_CREDENTIAL')}
                 </span>
               </p>
             }
@@ -158,7 +160,9 @@ export default class GitLabForm extends React.Component {
           </Form.Item>
           <Form.Item
             label={t('REPOSITORY_NAME')}
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            rules={[
+              { required: true, message: t('REPOSITORY_NAME_EMPTY_TIP') },
+            ]}
           >
             <Select
               name="gitlab_source.repo"

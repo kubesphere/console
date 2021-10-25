@@ -19,6 +19,7 @@
 module.exports = {
   DEVOPS_NAME: 'DevOps 项目名称',
   DEVOPS_PROJECT: 'DevOps 项目',
+  DEVOPS_PROJECT_SCAP: 'DevOps 项目',
   DEVOPS_PROJECT_MEMBER_EMPTY_DESC:
     '请邀请当前企业空间的成员到当前 DevOps 项目。',
   'DevOps Role': '成员角色',
@@ -28,14 +29,18 @@ module.exports = {
   DEVOPS_PROJECT_CREDENTIAL_PL: 'DevOps 项目凭证',
   DEVOPS_CREDENTIAL: ' DevOps 凭证',
   DEVOPS_CREDENTIAL_PL: 'DevOps 凭证',
-  DEVOPS_CREDENTIAL_EMPTY_DESC: '请创建一个 DevOps 项目凭证。',
+  CREDENTIAL_EMPTY_DESC: '请创建一个凭证。',
+  PIPELINE_CREDENTIAL_EMPTY_TIP: '请选择一个凭证。',
   DEVOPS_CREDENTIAL_LOW: 'DevOps 凭证',
   'DevOps Basic Info': '基本信息',
   DEVOPS_PROJECT_MANAGEMENT: '项目管理',
   DEVOPS_PROJECT_SETTINGS: 'DevOps 项目设置',
   MANAGE_DEVOPS_PROJECT: '管理 DevOps 项目',
   DEVOPS_PROJECT_MEMBER_PL: 'DevOps 项目成员',
+  DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps 项目成员',
+  DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps 项目成员',
   DEVOPS_PROJECT_ROLE_PL: 'DevOps 项目角色',
+  DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps 项目角色',
 
   MANAGER: '管理员',
   Administrator: '管理员',
@@ -51,7 +56,7 @@ module.exports = {
     'DevOps 是一个独立的命名空间，其中定义了一组的流水线；用户可以按照自己的方式对流水线进行分组 (例如：项目类型、组织类型)。',
   DEVOPS_PROJECT_EMPTY_DESC: '请创建一个 DevOps 项目。',
   PIPELINE_EMPTY_DESC: '请创建一个流水线。',
-  DEVOPS_ADMIN_DESC: '指定项目内一个成员为管理员。',
+  DEVOPS_ADMIN_DESC: '选择一个项目成员作为项目管理员。',
 
   NO_RELATE_DEVOPS_TITLE: '没有找到与您相关联的 DevOps 项目',
   NO_RELATE_DEVOPS_DESC:
@@ -67,9 +72,8 @@ module.exports = {
 
   DEVOPS_PROJECT_MEM_DESC: '对项目内的成员进行管理及角色分配。',
   DEVOPS_PROJECT_ROLE_EMPTY_DESC: '请创建一个 DevOps 项目角色。',
-
   DELETE_DEVOPS_TIP:
-    '确定删除 DevOps 项目 <strong>{resource}</strong> ? 删除后将无法恢复, 项目下的资源也同时会被销毁。',
+    '请输入 DevOps 项目名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
 
   DEVOPS_TIP_GITOPS_Q: '如何落地 DevOps？',
   DEVOPS_TIP_GITOPS_A:
@@ -82,7 +86,6 @@ module.exports = {
   NO_DEVOPS_INSTALL: '未安装 DevOps',
 
   // Credentials Creation Page
-  SECRET_DEVOPS: '密钥',
   CONTENT: '内容',
   INVALID_ID_TIP:
     'ID 只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',

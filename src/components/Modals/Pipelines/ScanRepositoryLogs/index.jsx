@@ -92,14 +92,14 @@ export default class ScanRepositoryLogs extends React.Component {
     const name = parser[2]
 
     if (firstLine && isUser) {
-      return `${t('Started By')}: ${name}`
+      return t('STARTED_BY_NAME', { name })
     }
 
     if (firstLine && !isUser) {
-      return t('Started By {name}', { name: t(name) })
+      return t('STARTED_BY_NAME', { name: t(name) })
     }
 
-    return `${t('Started By')}: -`
+    return t('STARTED_BY_NAME', { name: '-' })
   }
 
   handleFetch = async () => {
@@ -108,7 +108,7 @@ export default class ScanRepositoryLogs extends React.Component {
     await this.props.store.getRepoScanLogs(params)
 
     Notify.success({
-      content: t('LOGS_SCANNED_SUCCESSFULLY'),
+      content: t('LOGS_OBTAINED_SUCCESSFULLY'),
     })
   }
 
@@ -128,15 +128,14 @@ export default class ScanRepositoryLogs extends React.Component {
         onCancel={onCancel}
         visible={visible}
         closable={false}
-        title={t('Scan Repository Logs')}
+        title={t('REPOSITORY_SCAN_LOGS')}
+        cancelText={t('CLOSE')}
       >
         <div className={styles.content}>
           <div className={styles.btn_group}>
             <Icon name="human" size={20} />
             {this.startBy}
-            <Button onClick={this.handleDownloadLogs}>
-              {t('DOWNLOAD_LOGS')}
-            </Button>
+            <Button onClick={this.handleDownloadLogs}>{t('DOWNLOAD')}</Button>
             <Button onClick={this.handleFetch}>{t('RESCAN')}</Button>
           </div>
           <pre className={styles.pre}>{repositoryLog}</pre>

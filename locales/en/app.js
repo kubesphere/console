@@ -33,7 +33,6 @@ module.exports = {
   'New App Config': 'New App Configurations',
   'App Deploy': 'App Deploy',
   APP_DETAILS: 'App Details',
-  HOMEPAGE: 'Homepage',
   APP_INFORMATION: 'App Information',
   'App Introduction': 'App Introduction',
   'App Name': 'App Name',
@@ -257,9 +256,10 @@ module.exports = {
 
   HELM_APP_SCHEMA_FORM_TIP:
     'You can customize the app settings in a GUI form or a YAML file. Settings in the GUI form and those in the YAML file are independent of each other.',
-
-  DELETE_APP_TEMPLATE_TIP:
-    'Before deleting an application template, you need to delete all versions.',
+  DELETE_APP_TEMPLATE_DESC:
+    'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation.',
+  DELETE_APP_TEMPLATE_VERSIONS_DESC:
+    'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation. Before deleting the app template, you must delete all versions of the template.',
 
   UNPROCESSED_APP_RELEASE: 'Unreleased App',
   PROCESSED_APP_RELEASE: 'Released App',

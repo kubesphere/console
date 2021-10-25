@@ -45,12 +45,12 @@ class Events extends React.Component {
 
   getColumns = () => [
     {
-      title: t('name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '50%',
     },
     {
-      title: t('Record'),
+      title: t('RECORD'),
       width: '50%',
       render: record => {
         if (record.ranges) {
@@ -79,7 +79,7 @@ class Events extends React.Component {
   render() {
     const { usage, isLoading } = this.props.detailStore
     return (
-      <Card title={t('Events')}>
+      <Card title={t('EVENT_PL')}>
         <Table
           className={styles.table}
           dataSource={toJS(get(usage, 'fingerprint.usage', [])) || []}

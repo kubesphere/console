@@ -27,7 +27,6 @@ module.exports = {
 
   SELECT_AUTHENTICATION_METHOD: '选择认证方式',
   PORT_CONNECTION_AUTHENTICATION: '端口连接认证。',
-  NO_AUTH: '无需认证',
 
   CREATE_A_NEW_SECRET: '创建新保密字典',
   REFRESH_SECRETS: '刷新保密字典。',

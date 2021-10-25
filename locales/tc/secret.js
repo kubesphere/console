@@ -32,7 +32,7 @@ module.exports = {
   IMAGE_REGISTRY_INFORMATION: '鏡像倉庫保密字典',
   TLS_INFORMATION: 'TLS information',
   IMAGE_REGISTRY_SECRET_TCAP: '鏡像倉庫保密字典',
-  ENTER_CREDENTIAL_TIP: '請輸入憑證 ID。',
+  CREDENTIAL_NAME_EMPTY_DESC: '請輸入憑證 ID。',
   ENTER_PRIVATE_KEY_DESC: '請輸入私鑰。',
   ENTER_DATA_DESC: '請添加數據。',
   Unverified: '鏡像倉庫密鑰驗證失敗。',

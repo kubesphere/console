@@ -41,7 +41,7 @@ module.exports = {
   isv: 'isv',
   NO_VERSION_INFO_DESC: 'No version information is found.',
   Pass: 'Pass',
-  Passed: 'Passed',
+  PASSED: 'Passed',
   'Pending-review': 'Pending-review',
   Published: 'Published',
   Recall: 'Recall',

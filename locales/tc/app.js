@@ -172,7 +172,6 @@ module.exports = {
   'Package problems': '文件有問題',
   'Upload again': '重新上傳',
   'App Name': '應用名稱',
-  HOMEPAGE: '應用首頁',
   'Select File': '選擇檔案',
   APP_SCREENSHOTS: '應用截圖',
   'Upload Screenshots': '上傳截圖',
@@ -236,8 +235,10 @@ module.exports = {
 
   HELM_APP_SCHEMA_FORM_TIP:
     '此應用支持表單模式，可選擇通過表單或 YAML 編輯器來修改預設應用配置。注意：不同模式之間數據獨立。',
-
-  DELETE_APP_TEMPLATE_TIP: '刪除應用模板前，需要先刪除所有版本。',
+  DELETE_APP_TEMPLATE_DESC:
+    'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation.',
+  DELETE_APP_TEMPLATE_VERSIONS_DESC:
+    'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation. Before deleting the app template, you must delete all versions of the template.',
 
   UNPROCESSED_APP_RELEASE: 'Unreleased App',
   PROCESSED_APP_RELEASE: 'Released App',
