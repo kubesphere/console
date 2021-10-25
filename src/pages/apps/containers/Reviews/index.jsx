@@ -133,13 +133,6 @@ export default class Reviews extends React.Component {
       ),
     },
     {
-      title: t('TYPE'),
-      dataIndex: 'type',
-      isHideable: true,
-      width: '15%',
-      render: () => t('APP_RELEASE'),
-    },
-    {
       title: t('WORKSPACE'),
       dataIndex: 'app_id',
       isHideable: true,

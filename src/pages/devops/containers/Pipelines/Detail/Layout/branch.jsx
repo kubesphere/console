@@ -56,9 +56,7 @@ export default class BranchDetailLayout extends React.Component {
   }
 
   get createTime() {
-    return moment(this.store.detail.createTime).format(
-      `${t('MMMM Do YYYY')} HH:mm`
-    )
+    return moment(this.store.detail.createTime).format('YYYY-MM-DD HH:mm:ss')
   }
 
   get updateTime() {
@@ -67,7 +65,7 @@ export default class BranchDetailLayout extends React.Component {
     if (!updateTime) {
       return '-'
     }
-    return moment(updateTime).format(`${t('MMMM Do YYYY')} HH:mm`)
+    return moment(updateTime).format('YYYY-MM-DD HH:mm:ss')
   }
 
   get enabledActions() {
@@ -123,7 +121,7 @@ export default class BranchDetailLayout extends React.Component {
         value: `${detail.name}/${decodeURIComponent(branch)}`,
       },
       {
-        name: t('STATUS'),
+        name: t('TASK_STATUS'),
         value: (
           <Status
             {...getPipelineStatus(get(toJS(activityList.data), '[0]', {}))}
@@ -151,12 +149,12 @@ export default class BranchDetailLayout extends React.Component {
         branches: this.isAtBranchDetailPage ? null : [toJS(branchDetail.name)],
         parameters: toJS(branchDetail.parameters),
         success: () => {
-          Notify.success({ content: `${t('Run Start')}` })
+          Notify.success({ content: t('PIPELINE_RUN_START_SI') })
           this.handleFetch()
         },
       })
     } else {
-      Notify.success({ content: `${t('Run Start')}` })
+      Notify.success({ content: t('PIPELINE_RUN_START_SI') })
       await this.store.runBranch(params)
       this.handleFetch()
     }
@@ -203,7 +201,7 @@ export default class BranchDetailLayout extends React.Component {
       module: this.module,
       breadcrumbs: [
         {
-          label: t('BRANCH_SI'),
+          label: t('BRANCH_PL'),
           url: `/${workspace}/clusters/${cluster}/devops/${devops}/pipelines/${name}/branch`,
         },
       ],

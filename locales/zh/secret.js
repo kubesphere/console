@@ -32,7 +32,7 @@ module.exports = {
   IMAGE_REGISTRY_INFORMATION: '镜像仓库信息',
   TLS_INFORMATION: 'TLS 信息',
   IMAGE_REGISTRY_SECRET_TCAP: '镜像仓库保密字典',
-  ENTER_CREDENTIAL_TIP: '请输入凭证 ID。',
+  CREDENTIAL_NAME_EMPTY_DESC: '请输入凭证名称。',
   ENTER_PRIVATE_KEY_DESC: '请输入私钥。',
   ENTER_DATA_DESC: '请添加数据。',
   Unverified: '镜像仓库保密字典验证失败。',

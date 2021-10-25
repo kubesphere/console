@@ -23,12 +23,14 @@ module.exports = {
   DEVOPS_PROJECT_CREDENTIAL_PL: 'Credenciales de Proyecto DevOps',
   DEVOPS_CREDENTIAL: 'DevOps Credential',
   DEVOPS_CREDENTIAL_PL: 'Credenciales de DevOps',
-  DEVOPS_CREDENTIAL_EMPTY_DESC: 'Please create a DevOps project credential.',
+  CREDENTIAL_EMPTY_DESC: 'Please create a DevOps project credential.',
+  PIPELINE_CREDENTIAL_EMPTY_TIP: 'Please select a credential.',
   DEVOPS_CREDENTIAL_LOW: 'DevOps credential',
   'DevOps Member': 'Miembro de DevOps',
   'DevOps Members': 'Miembros de DevOps',
   DEVOPS_NAME: 'Nombre',
   DEVOPS_PROJECT: 'Proyecto DevOps',
+  DEVOPS_PROJECT_SCAP: 'DevOps project',
   DEVOPS_PROJECT_MEMBER_EMPTY_DESC:
     'Please invite a member of the current workspace to the DevOps project.',
   'DevOps Project Manager': 'Gestor de Proyecto DevOps',
@@ -39,7 +41,10 @@ module.exports = {
   DEVOPS_PROJECT_SETTINGS: 'Gestión de proyectos',
   MANAGE_DEVOPS_PROJECT: 'Manage DevOps Project',
   DEVOPS_PROJECT_MEMBER_PL: 'Miembros del proyecto',
+  DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps project member',
+  DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps project members',
   DEVOPS_PROJECT_ROLE_PL: 'Roles del proyecto',
+  DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps project roles',
   DEVOPS_BASEINFO_DESC: 'Introduce la información básica del proyecto DevOps',
   DEVOPS_DESCRIPTION:
     'DevOps es un namespace separado que define un conjunto de pipelines. Los usuarios pueden agrupar sus pipelines ellos mismos (por ejemplo, por tipo de proyecto y tipo de organización).',
@@ -71,7 +76,6 @@ module.exports = {
   NO_DEVOPS_INSTALL: 'DevOps no instalado',
 
   // Credentials Creation Page
-  SECRET_DEVOPS: 'Secreto',
   CONTENT: 'Content',
   INVALID_ID_TIP:
     'The ID can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',

@@ -27,13 +27,13 @@ const PATH =
 export default [
   {
     path: `${PATH}/detail`,
-    title: 'Detail',
+    title: 'DETAILS',
     component: CredentialDetail,
     exact: true,
   },
   {
     path: `${PATH}/activity`,
-    title: 'ACTIVITY',
+    title: 'EVENT_PL',
     component: Activity,
     exact: true,
   },

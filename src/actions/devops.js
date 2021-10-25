@@ -32,7 +32,7 @@ export default {
 
           store.create(data, { cluster, workspace }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+            Notify.success({ content: t('CREATE_SUCCESS') })
             success && success(cluster)
           })
         },
@@ -51,7 +51,7 @@ export default {
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESS') })
             success && success()
           })
         },
@@ -82,7 +82,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESS') })
           store.setSelectRowKeys([])
           success && success()
         },

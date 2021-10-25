@@ -128,7 +128,7 @@ export default class PipelineLog extends React.Component {
     if (Array.isArray(stage)) {
       return (
         <div key={stage.id} key={index} className={styles.stageContainer}>
-          <div className={styles.cutTitle}>{t('Stage')}</div>
+          <div className={styles.cutTitle}>{t('STAGE')}</div>
           {stage.map((_stage, _index) => (
             <div
               key={_stage.id}
@@ -148,7 +148,7 @@ export default class PipelineLog extends React.Component {
     }
     return (
       <div key={stage.id} className={styles.stageContainer}>
-        <div className={styles.cutTitle}>{t('Stage')}</div>
+        <div className={styles.cutTitle}>{t('STAGE')}</div>
         <div
           className={classNames(styles.leftTab, {
             [styles.leftTab__active]: this.activeNodeIndex[0] === index,
@@ -210,14 +210,16 @@ export default class PipelineLog extends React.Component {
         </div>
         <div className={styles.right}>
           <div className={styles.header}>
-            <span>{`${t('Time Used')} ${
-              time ? formatUsedTime(time) : '-'
-            }`}</span>
+            <span>
+              {t('DURATION_VALUE', {
+                value: time ? formatUsedTime(time) : '-',
+              })}
+            </span>
             <Button onClick={this.handleDownloadLogs}>
               {t('DOWNLOAD_LOGS')}
             </Button>
-            <Button onClick={this.handleVisableLog}>{t('Show Logs')}</Button>
-            <Button onClick={this.handleRefresh}>{t('Refresh')}</Button>
+            <Button onClick={this.handleVisableLog}>{t('VIEW_LOGS')}</Button>
+            <Button onClick={this.handleRefresh}>{t('REFRESH')}</Button>
           </div>
           <div className={styles.logContainer}>{this.renderLogContent()}</div>
         </div>

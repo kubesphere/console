@@ -32,7 +32,7 @@ module.exports = {
   IMAGE_REGISTRY_SECRET_TCAP: 'Secreto del repositorio de imágenes',
   IMAGE_REGISTRY_REQUIRED_DESC:
     'Establezca la dirección de registro, el nombre de usuario y la contraseña.',
-  ENTER_CREDENTIAL_TIP: 'Por favor introduce la credencial',
+  CREDENTIAL_NAME_EMPTY_DESC: 'Por favor introduce la credencial',
   ENTER_DATA_DESC: 'Por favor introduce los datos',
   ENTER_PRIVATE_KEY_DESC: 'Por favor introduce la clave privada',
   'Please input the registry address':

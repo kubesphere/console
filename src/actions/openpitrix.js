@@ -58,7 +58,7 @@ export default {
         onOk: data => {
           store.patch(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESS') })
             success && success()
           })
         },
@@ -75,7 +75,7 @@ export default {
         onOk: data => {
           store.upgrade(data, detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESS') })
             success && success()
           })
         },
@@ -208,14 +208,13 @@ export default {
   },
   'openpitrix.template.delete': {
     on({ store, detail, versions, success, ...props }) {
-      const type = t('App Templates')
+      const type = 'APP_TEMPLATE'
       const resource = detail.name
-      let desc = t.html('DELETE_RESOURCE_TYPE_DESC', { type, resource })
+      let desc = t.html('DELETE_APP_TEMPLATE_DESC', { resource })
       if (versions.length) {
         desc = (
           <span>
-            {desc}
-            <span>{t('DELETE_APP_TEMPLATE_TIP')}</span>
+            {t.html('DELETE_APP_TEMPLATE_VERSIONS_DESC', { resource })}
           </span>
         )
       }
@@ -223,7 +222,7 @@ export default {
         onOk: async () => {
           await store.delete(detail)
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESS') })
           success && success()
         },
         store,
@@ -317,7 +316,7 @@ export default {
             content = `${t('MODIFY_SUCCESSFUL')}`
           } else {
             await store.create(params)
-            content = `${t('CREATE_SUCCESSFUL')}`
+            content = t('CREATE_SUCCESS')
           }
           Modal.close(modal)
           Notify.success({ content })
@@ -339,7 +338,7 @@ export default {
         onOk: async () => {
           await store.delete(detail)
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESS') })
           success && success()
         },
         desc: t.html('DELETE_CATEGORY_DESC', { name: detail.name }),

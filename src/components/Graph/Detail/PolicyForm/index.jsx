@@ -168,7 +168,7 @@ export default class PolicyForm extends React.Component {
 
     const callback = () => {
       this.getData(this.props)
-      Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+      Notify.success({ content: t('UPDATE_SUCCESS') })
     }
 
     if (!isEmpty(this.detail)) {

@@ -174,14 +174,13 @@ export default class GitHubForm extends React.Component {
     <span style={{ display: 'flex', alignItem: 'center' }}>
       {label}&nbsp;&nbsp;
       <Tag type={disabled ? '' : 'warning'}>
-        {type === 'ssh' ? 'SSH' : t(type)}
+        {type && t(`CREDENTIAL_TYPE_${type.toUpperCase()}`)}
       </Tag>
     </span>
   )
 
   renderAccessTokenForm() {
     const { tokenFormData, credentials, isAccessTokenWrong } = this.props.store
-
     return (
       <div className={styles.card}>
         <Form
@@ -191,18 +190,20 @@ export default class GitHubForm extends React.Component {
           ref={this.tokenFormRef}
         >
           <Form.Item
-            label={t('TOKEN')}
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            label={t('CREDENTIAL')}
+            rules={[
+              { required: true, message: t('PIPELINE_CREDENTIAL_EMPTY_TIP') },
+            ]}
             error={
               isAccessTokenWrong
                 ? {
-                    message: { message: t.html('WRONG_GITHUB_TOKEN_DESC') },
+                    message: { message: t.html('INCORRECT_GITHUB_TOKEN_DESC') },
                   }
                 : undefined
             }
             desc={
               <p>
-                {t('ADD_NEW_CREDENTIAL_DESC')}
+                {t('SELECT_CREDENTIAL_DESC')}
                 <span
                   className={styles.clickable}
                   onClick={() => {
@@ -213,7 +214,7 @@ export default class GitHubForm extends React.Component {
                     })
                   }}
                 >
-                  {t('CREATE_A_CREDENTIAL')}
+                  {t('CREATE_CREDENTIAL')}
                 </span>
               </p>
             }
@@ -274,7 +275,7 @@ export default class GitHubForm extends React.Component {
           className={styles.empty}
           icon="exclamation"
           title={t('NO_DATA')}
-          desc={t('NO_RESOURCE_FOUND')}
+          desc={t('NO_REPO_FOUND_DESC')}
         />
       )
     }
@@ -301,7 +302,7 @@ export default class GitHubForm extends React.Component {
               onClick={this.handleSubmit}
               data-repo-index={index}
             >
-              <Button type="control">{t('SELECT_THIS_REPOSITORY')}</Button>
+              <Button type="control">{t('SELECT')}</Button>
             </div>
           </div>
         ))}
@@ -364,7 +365,7 @@ export default class GitHubForm extends React.Component {
           <div className={styles.placeHolder}>
             <img src="/assets/empty-card.svg" alt="" />
             <p className={styles.title}>
-              {t(`${this.scmType}_ACCESSTOKEN_PLACEHOLDER`)}
+              {t(`${this.scmType.toUpperCase()}_CREDENTIAL_EMPTY`)}
             </p>
           </div>
         </div>

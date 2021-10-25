@@ -160,7 +160,7 @@ export default class TaskStatus extends React.Component {
         <span onClick={this.handleEnterFullScreen}>
           <Button icon="maximize" type="flat" />
         </span>
-        <Button onClick={this.showLog}>{t('Show Logs')}</Button>
+        <Button onClick={this.showLog}>{t('VIEW_LOGS')}</Button>
       </div>
     )
   }
@@ -170,10 +170,10 @@ export default class TaskStatus extends React.Component {
       <div>
         <span className={classNames(style.runningIcon, style.icon)} />
       </div>
-      <div className={style.title}>{t('Pipeline initialization')}</div>
-      <div className={style.desc}>{t('PIPELINE_DESC')}</div>
+      <div className={style.title}>{t('INITIALIZING_PIPELINE')}</div>
+      <div className={style.desc}>{t('INITIALIZING_PIPELINE_DESC')}</div>
       <div className={style.btn}>
-        <Button onClick={this.showErrorLog}>{t('Show Logs')}</Button>
+        <Button onClick={this.showErrorLog}>{t('VIEW_LOGS')}</Button>
       </div>
     </div>
   )
@@ -185,7 +185,7 @@ export default class TaskStatus extends React.Component {
       </div>
       <div className={style.title}>{t('PIPELINE_QUEUED_TITLE')}</div>
       <div className={style.desc}>
-        {get(runDetail, 'causeOfBlockage') || t('PIPELINE_QUEUED_DESC')}
+        {get(runDetail, 'causeOfBlockage') || t('INITIALIZING_PIPELINE_DESC')}
       </div>
     </div>
   )
@@ -207,7 +207,7 @@ export default class TaskStatus extends React.Component {
             {this.hasRuning ? (
               <span className={style.running_tips}>
                 <Status hasLabel={false} {...getPipelineStatus(runDetail)} />
-                {t('PIPELINE_PREPAIR_DESC')}
+                {t('PIPELINE_PREPARE_DESC')}
               </span>
             ) : null}
             <div className={style.pipelineCard__btnGroup}>
@@ -245,7 +245,7 @@ export default class TaskStatus extends React.Component {
         <Modal
           width={1162}
           onCancel={this.hideLog}
-          title={t('Pipeline Run Logs')}
+          title={t('PIPELINE_RUN_LOGS')}
           visible={showLog}
           closable={false}
           cancelText={t('CLOSE')}

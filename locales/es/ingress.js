@@ -74,7 +74,7 @@ module.exports = {
     'Para usar la generación automática, comuníquese con el administrador del proyecto para configurar el método de acceso a la puerta de enlace en la configuración avanzada del proyecto.',
   UNABLE_CREATE_ROUTE_TIP:
     'No se puede crear la ruta de la aplicación puesto que la dirección de gateway disponible no se encuentra en el proyecto actual.',
-  GATEWAY_APPLICATION_GOVERNANCE_TIP:
+  GATEWAY_TRACING_TIP:
     'Necesitas habilitar Application Governance si deseas utilizar la función de Tracing. Una vez que Application Governance esté habilitado, verifica si se ha agregado una annotation como "nginx.ingress.kubernetes.io/service-upstream: true" para la ruta de la aplicación si la ruta es inaccesible. Si no existe el annotation, agrégalo.',
   UNABLE_TO_ACCESS_TIP:
     '● Asegúrate de que el nombre de dominio establecido pueda resolverse en la dirección IP del portal de acceso. <br/>Si se encuentra en un entorno de nube privada, modifica el archivo de host local y luego accede a través de &ltDomain name&gt:&ltNodePort&gt. <br/> ● Al configurar el acceso DNS, modifica el nombre de dominio a &ltHostname&gt.&ltGateway address&gt.nip.io, y luego acceda al servicio a través de &ltHostname&gt.&ltGateway address&gt.nip.io:&ltNodePort&gt. <br/> ● Si el acceso está bloqueado cuando se usa el nombre de dominio, confirma si tu nombre de dominio existe y se ha registrado.',

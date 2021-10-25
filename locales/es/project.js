@@ -115,6 +115,9 @@ module.exports = {
   projects: 'proyectos',
   'Quota Management': 'Gestión de cuotas',
   REMOVE_MEMBER: 'Eliminar miembro',
+  REMOVE_MULTIPLE_MEMBERS: 'Remove Multiple Members',
+  REMOVE_MULTIPLE_MEMBERS_TIP:
+    'Enter the usernames <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   WORKSPACE_QUOTA_PL: 'Workspace Quotas',
   PROJECT_QUOTA_PL: 'Project Quotas',
   'Remove Member': 'Eliminar miembro',

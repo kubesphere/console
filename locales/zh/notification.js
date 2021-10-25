@@ -18,6 +18,7 @@
 
 module.exports = {
   NOTIFICATION_MANAGEMENT: '通知管理',
+  NO_AUTH: '无需认证',
   'Notification Management': '通知管理',
   NOTIFICATION_CONFIGURATION: '通知配置',
   'Notification Configuration': '通知配置',

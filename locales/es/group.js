@@ -31,6 +31,7 @@ module.exports = {
   ADD_PROJECT: 'Agregar proyecto',
   'project roles': 'roles de proyecto',
   DEVOPS_PROJECT_ROLE: 'DevOps Project Role',
+  DEVOPS_PROJECT_ROLE_SCAP: 'DevOps project role',
   ADD_DEVOPS_PROJECT: 'Agregar proyecto DevOps',
   SELECT_ROLE_TIP: 'Please select a role.',
   DEPARTMENT: 'Department',

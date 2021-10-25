@@ -74,7 +74,7 @@ export default class MemberDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('REMOVE_MEMBER'),
+      text: t('REMOVE'),
       action: 'delete',
       type: 'danger',
       show: this.store.detail.name !== globals.user.username,

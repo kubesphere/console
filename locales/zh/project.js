@@ -53,6 +53,9 @@ module.exports = {
   'Modify Members Role': '修改成员角色',
   'Remove Members': '移除成员',
   REMOVE_MEMBER: '移除成员',
+  REMOVE_MULTIPLE_MEMBERS: '指移除成员',
+  REMOVE_MULTIPLE_MEMBERS_TIP:
+    '请输入用户名 <strong>{resource}</strong> 以确认您了解此操作的风险。',
   'Invite Member': '邀请成员',
   GATEWAY: '网关',
   SET_GATEWAY: '设置网关',

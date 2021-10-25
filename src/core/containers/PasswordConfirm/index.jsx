@@ -90,7 +90,7 @@ export default class PasswordConfirm extends Component {
         <div className={styles.login}>
           <div className={styles.header}>{t('Please reset your password')}</div>
           <div className={styles.divider}></div>
-          <Alert className="margin-b12" message={t('CONFIRM_PASSWORD_TIP')} />
+          <Alert className="margin-b12" message={t('CHANGE_PASSWORD_TIP')} />
           <Form data={formData} onSubmit={this.handleSubmit}>
             <Form.Item
               label={t('PASSWORD')}

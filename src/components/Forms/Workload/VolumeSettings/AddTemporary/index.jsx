@@ -135,7 +135,7 @@ export default class AddTemporary extends React.Component {
               { required: true, message: t('VOLUME_NAME_EMPTY') },
               {
                 pattern: PATTERN_NAME,
-                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC'),
               },
               { validator: this.nameValidator },
             ]}

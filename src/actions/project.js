@@ -43,7 +43,7 @@ export default {
           await store.create(data, params)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+          Notify.success({ content: t('CREATE_SUCCESS') })
           success && success(selectCluster)
         },
         hideCluster: !globals.app.isMultiCluster || !!cluster,
@@ -193,7 +193,7 @@ export default {
           }
 
           Modal.close(modal)
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESS') })
           success && success()
         },
         modal: DefaultResourceEditModal,
@@ -227,7 +227,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESS') })
           success && success()
         },
         modal: AssignWorkspaceModal,

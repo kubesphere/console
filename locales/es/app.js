@@ -33,7 +33,6 @@ module.exports = {
   'New App Config': 'New App Config',
   'App Deploy': 'Despliegue de Aplicación',
   APP_DETAILS: 'Detalles de Aplicación',
-  HOMEPAGE: 'Hogar de Aplicación (Home)',
   APP_INFORMATION: 'Info de Aplicación',
   'App Introduction': 'Introducción de Aplicación',
   'App Name': 'Nombre de Aplicación',
@@ -263,9 +262,10 @@ module.exports = {
 
   HELM_APP_SCHEMA_FORM_TIP:
     'The app configuration can be displayed in a form. You can modify the default app configuration through either the form or YAML editor. Note: app data stored in different patterns are independent of each other.',
-
-  DELETE_APP_TEMPLATE_TIP:
-    'Before deleting an application template, you need to delete all versions.',
+  DELETE_APP_TEMPLATE_DESC:
+    'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation.',
+  DELETE_APP_TEMPLATE_VERSIONS_DESC:
+    'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation. Before deleting the app template, you must delete all versions of the template.',
 
   UNPROCESSED_APP_RELEASE: 'Unreleased App',
   PROCESSED_APP_RELEASE: 'Released App',

@@ -53,7 +53,7 @@ export default class SvnForm extends React.Component {
     <span style={{ display: 'flex', alignItem: 'center' }}>
       {label}&nbsp;&nbsp;
       <Tag type={disabled ? '' : 'warning'}>
-        {type === 'ssh' ? 'SSH' : t(type)}
+        {type && t(`CREDENTIAL_TYPE_${type.toUpperCase()}`)}
       </Tag>
     </span>
   )
@@ -78,8 +78,13 @@ export default class SvnForm extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('REMOTE_REPOSITORY_URL')}
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            label={t('CODE_REPOSITORY_ADDRESS')}
+            rules={[
+              {
+                required: true,
+                message: t('CODE_REPOSITORY_ADDRESS_EMPTY_TIP'),
+              },
+            ]}
           >
             <Input name="svn_source.remote" />
           </Form.Item>
@@ -87,16 +92,18 @@ export default class SvnForm extends React.Component {
             label={t('CREDENTIAL_SI')}
             desc={
               <p>
-                {t('ADD_NEW_CREDENTIAL_DESC')}
+                {t('SELECT_CREDENTIAL_DESC')}
                 <span
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('CREATE_A_CREDENTIAL')}
+                  {t('CREATE_CREDENTIAL')}
                 </span>
               </p>
             }
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            rules={[
+              { required: true, message: t('PIPELINE_CREDENTIAL_EMPTY_TIP') },
+            ]}
           >
             <Select
               name="svn_source.credential_id"

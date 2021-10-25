@@ -84,7 +84,6 @@ module.exports = {
   'Service Ports': '服务端口',
   TRAFFIC_ENTRY: '流量入口',
 
-  APP_DESCRIPTION: '应用描述',
   APP_INTRODUCTION: '应用介绍',
 
   COMPOSED_APP_PL: '自制应用',

@@ -63,7 +63,7 @@ export default {
             .then(() => {
               Modal.close(modal)
 
-              Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+              Notify.success({ content: t('CREATE_SUCCESS') })
               success && success(data)
 
               formPersist.delete(`${module}_create_form`)
