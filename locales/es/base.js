@@ -677,7 +677,7 @@ module.exports = {
   EVENT_AGE_DATA_TWICE: '{lastTime}<br/>(twice over {duration})',
   SOURCE: 'Source',
 
-  METERING_AND_BILLING: 'Medição e faturamento',
+  RESOURCE_CONSUMPTION_STATISTICS: 'Medição e faturamento',
   METERING_AND_BILLING_DESC: 'Track resource consumption.',
 
   // Workbench
@@ -696,4 +696,8 @@ module.exports = {
   CONTAINER_LOG_SEARCH: 'Container Log Search',
   RESOURCE_EVENT_SEARCH: 'Resource Event Search',
   AUDIT_LOG_SEARCH: 'Audit Log Search',
+
+  // Toolbox
+  CONTROL_TOOL: 'Control Tool',
+  ANALYSIS_TOOLS: 'Analysis Tools',
 }

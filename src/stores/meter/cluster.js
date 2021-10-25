@@ -222,7 +222,7 @@ export default class ClusterMeter extends Base {
               icon,
               name,
               status: _status,
-              desc: t(desc),
+              desc,
               labelSelector: item.selector,
               type,
               _origin: { ...item },

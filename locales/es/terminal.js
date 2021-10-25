@@ -19,7 +19,7 @@
 module.exports = {
   connected: 'conectado',
   COPY: 'Copiar',
-  'Copy Successfully': 'Copia con éxito',
+  COPIED_SUCCESSFUL: 'Copia con éxito',
   Disconnect: 'Desconectar',
   disconnected: 'desconectado',
   'Download File': 'Descargar archivo',

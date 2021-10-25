@@ -90,7 +90,7 @@ module.exports = {
   CLONE: 'Clone',
   VOLUME: 'Volumen',
   BACKEND_IDENTIFIER: 'Backend Identifier',
-  VOLUMES: 'Volumes',
+  VOLUMES: 'Volume',
   VOLUME_PL: 'Recuento de volumen',
   NUMBER_OF_VOLUMES: 'Number of volumes',
   VOLUME_LOW: 'volume',

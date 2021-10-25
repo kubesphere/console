@@ -30,7 +30,7 @@ export default class BillModal extends React.Component {
     return (
       <Modal
         icon="wallet"
-        title={t('METERING_AND_BILLING')}
+        title={t('RESOURCE_CONSUMPTION_STATISTICS')}
         match={this.props.match}
         onCancel={this.pageClose}
       />
