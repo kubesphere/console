@@ -158,14 +158,17 @@ module.exports = {
   ROLE_NO_AVAILABLE_TIP: 'No hay roles disponibles para el proyecto actual.',
   ROLE_TYPE_DESC:
     'Los tipos de roles se clasifican entre clúster y proyecto, el rol actual está autorizado con alcance a nivel de proyecto.',
+  DELETE_ROLE: 'Delete Role',
   DELETE_ROLE_TIP:
-    '¿Estás seguro de eliminar la función <strong>{resource}</strong> ?',
-  ROLE_USERS_TIP:
-    'El rol actual tiene <strong>{count}</strong> usuarios autorizados, elimínalos primero.',
-  ROLE_USER_TIP:
-    'El rol actual tiene <strong>{count}</strong> usuarios autorizados, elimínalos primero.',
-  ROLE_USER_GROUPS_TIP:
-    'El rol está vinculado al departamento <strong> {count} </strong>. Desvincula el departamento primero. ',
+    'Are you sure you want to delete the role <strong>{resource}</strong>?',
+  DELETE_ROLE_USER_TIP_PL:
+    'The role is authorized to <strong>{count}</strong> users. Please delete the users or change the roles of the user first.',
+  DELETE_ROLE_USER_TIP:
+    'The role is authorized to <strong>{count}</strong> user. Please delete the user or change the role of the user first.',
+  DELETE_ROLE_DEPARTMENT_TIP_PL:
+    'The role is authorized to <strong>{count}</strong> departments. Please delete the departments or change the roles of the departments first.',
+  DELETE_ROLE_DEPARTMENT_TIP:
+    'The role is authorized to <strong>{count}</strong> department. Please delete the department or change the role of the department first.',
   RULE_WORKSPACES: 'Espacios de trabajo',
   RULE_KUBECTL: 'KubeCtl',
   RULE_MONITORING: 'Gestión de monitorización',

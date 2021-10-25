@@ -419,7 +419,7 @@ module.exports = {
   ENVIRONMENT_VARIABLE_PL: '环境变量',
   ENVIRONMENT_VARIABLE: '环境变量',
   'File List': '文件列表',
-  RERUN: '重新执行',
+  RERUN: '重新运行',
   ENTER_SCHEDULE_TIP: '请选择定时计划。',
 
   TARGET_REVISION_EMPTY_DESC: '请选择目标修改记录。',

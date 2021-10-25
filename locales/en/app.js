@@ -178,7 +178,8 @@ module.exports = {
 
   APP_RELEASE_DESC:
     'Manages apps to be released to the App Store. You can view app details and approve or reject app releases.',
-  APP_REVIEW_EMPTY_DESC: 'No unreleased app is found.',
+  APP_REVIEW_EMPTY_DESC:
+    'Please create an app template in a workspace and submit the app template for release.',
   APP_REVIEWS_CREATE_DESC:
     'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
   APP_DETAILS_DESC: 'View details of the app to be released.',

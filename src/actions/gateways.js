@@ -85,12 +85,14 @@ export default {
             })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: t('DELETE_SUCCESS') })
+              Notify.success({ content: t('DISABLE_SUCCESS') })
               success && success()
             })
         },
         store,
         modal: DeleteModal,
+        title: t('DISABLE_GATEWAY'),
+        desc: t('DISABLE_GATEWAY_TIP'),
         type: 'GATEWAY',
         resource,
         cluster,

@@ -835,11 +835,11 @@ export const MAX_SIZE_UPLOAD = 2 * 1024 * 1024
 
 export const SCHEME_OPTIONS = [
   {
-    label: 'HTTP://',
+    label: 'http://',
     value: 'http://',
   },
   {
-    label: 'HTTPS://',
+    label: 'https://',
     value: 'https://',
   },
 ]

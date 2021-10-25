@@ -18,6 +18,9 @@
 
 module.exports = {
   GATEWAY_SETTINGS: '网关设置',
+  DISABLE_GATEWAY: '关闭网关',
+  DISABLE_GATEWAY_TIP: '您确定关闭网关吗？',
+  DISABLE_SUCCESS: '关闭成功。',
   CLUSTER_GATEWAY_DESC:
     '对集群中的外网访问网关以及服务治理等配置进行设置和管理。',
   PROJECT_GATEWAY_DESC:
@@ -27,10 +30,10 @@ module.exports = {
   CLUSTER_GATEWAY_LOW: '集群网关',
   PROJECT_GATEWAY_PL: '项目网关',
   PROJECT_GATEWAY_LOW: '项目网关',
-  CLUSTER_SET_GATEWAY_DESC: '请设置集群网关。',
-  PROJECT_SET_GATEWAY_DESC: '请设置项目网关。',
-  CLUSTER_GATEWAY_NOT_SET: '集群网关未设置',
-  PROJECT_GATEWAY_NOT_SET: '项目网关未设置',
+  CLUSTER_ENABLE_GATEWAY_DESC: '请开启集群网关。',
+  PROJECT_ENABLE_GATEWAY_DESC: '请开启项目网关。',
+  CLUSTER_GATEWAY_NOT_ENABLED: '集群网关未开启',
+  PROJECT_GATEWAY_NOT_ENABLED: '项目网关未开启',
   'Gateway Not Set': '网关未设置',
   'Set Gateway': '设置网关',
   EDIT_GATEWAY: '编辑网关',
@@ -52,7 +55,7 @@ module.exports = {
   UPDATED_GATEWAY_DESC: '请在业务低峰期操作，升级过程可能会造成业务短暂中断。',
   UPDATED_GATEWAY_TITLE: '升级网关确认?',
   CLUSTER_GATEWAY_GUIDE_DESC:
-    '如果同时存在集群网关和项目网关，项目网关关闭后无法再次启用。建议仅使用集群网关或仅使用项目网关。',
+    '如果同时存在集群网关和项目网关，项目网关关闭后无法再次开启。建议仅使用集群网关或仅使用项目网关。',
   'Request Count': '请求量',
   CONNECTION_COUNT: '连接数量',
   FAILED_REQUEST_COUNT: '失败请求数量',

@@ -18,6 +18,9 @@
 
 module.exports = {
   GATEWAY_SETTINGS: 'Gateway Settings',
+  DISABLE_GATEWAY: 'Disable Gateway',
+  DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
+  DISABLE_SUCCESS: 'Disabled successfully.',
   CLUSTER_GATEWAY_DESC:
     'Set up and manage the configuration of the external network access gateway and service management in the cluster.',
   PROJECT_GATEWAY_DESC:
@@ -27,10 +30,10 @@ module.exports = {
   PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_LOW: 'project gateway',
   PROJECT_GATEWAY: 'Project Gateway',
-  CLUSTER_SET_GATEWAY_DESC: 'Please set the cluster gateway.',
-  PROJECT_SET_GATEWAY_DESC: 'Please set the project gateway.',
-  CLUSTER_GATEWAY_NOT_SET: 'Cluster Gateway Not Set',
-  PROJECT_GATEWAY_NOT_SET: 'Project Gateway Not Set',
+  CLUSTER_ENABLE_GATEWAY_DESC: 'Please enable the cluster gateway.',
+  PROJECT_ENABLE_GATEWAY_DESC: 'Please enable the project gateway.',
+  CLUSTER_GATEWAY_NOT_ENABLED: 'Cluster Gateway Not Enabled',
+  PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',
   'Gateway Not Set': 'Gateway Not Set',
   'Set Gateway': 'Set Gateway',
   EDIT_GATEWAY: 'Edit Gateway',

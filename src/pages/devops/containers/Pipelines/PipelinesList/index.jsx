@@ -325,7 +325,7 @@ export default class PipelinesList extends React.Component {
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
-      title: t('BRANCH_SI'),
+      title: t('BRANCH_COUNT'),
       dataIndex: 'totalNumberOfBranches',
       width: '25%',
       isHideable: true,
@@ -333,7 +333,7 @@ export default class PipelinesList extends React.Component {
         totalNumberOfBranches === undefined ? '-' : totalNumberOfBranches,
     },
     {
-      title: t('PULL_REQUEST_PL'),
+      title: t('PULL_REQUEST_COUNT'),
       dataIndex: 'totalNumberOfPullRequests',
       width: '20%',
       isHideable: true,

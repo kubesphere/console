@@ -56,7 +56,7 @@ module.exports = {
   'Role name exists': '角色名已存在',
   MODULES: '功能模块',
   'Authorized Actions': '可执行操作',
-  NO_PERMISSION: '暂无权限',
+  NO_PERMISSION: '未发现权限',
   'Invited Successfully': '邀请成功',
   NO_AVAILABLE_ROLE: '当前项目无可用角色',
   JOIN_PROJECT_PLACEHOLDER: '输入用户名或者邮箱邀请用户加入到项目中',
@@ -65,40 +65,40 @@ module.exports = {
   ROLE_PROJECTS_JOIN_TIP: '输入用户名或者邮箱邀请用户加入到项目中',
   ROLE_TYPE_DESC:
     '角色类型根据权限范围分为集群、项目两类，当前角色的授权为该项目范围。',
-
-  DELETE_ROLE_TIP: '确定删除角色 <strong>{resource}</strong>?',
-  ROLE_USERS_TIP:
-    '当前角色有 <strong>{count}</strong> 名授权用户，请先移除授权用户或更改角色后再删除。',
-  ROLE_USER_TIP:
-    '当前角色有 <strong>{count}</strong> 名授权用户，请先移除授权用户或更改角色后再删除。',
-  ROLE_USER_GROUPS_TIP:
-    '当前角色已被分配给 <strong>{count}</strong> 个部门，请先移除授权部门或更改角色后再删除。',
+  DELETE_ROLE: '删除角色',
+  DELETE_ROLE_TIP: '您确定删除角色 <strong>{resource}</strong> 吗？',
+  DELETE_ROLE_USER_TIP_PL:
+    '当前角色已授权给 <strong>{count}</strong> 名用户，请先删除用户或更改用户的角色。',
+  DELETE_ROLE_USER_TIP:
+    '当前角色已授权给 <strong>{count}</strong> 名用户，请先删除用户或更改用户的角色。',
+  DELETE_ROLE_DEPARTMENT_TIP_PL:
+    '当前角色已授权给 <strong>{count}</strong> 个部门，请先删除部门或更改部门的角色。',
+  DELETE_ROLE_DEPARTMENT_TIP:
+    '当前角色已授权给 <strong>{count}</strong> 个部门，请先删除部门或更改部门的角色。',
   DEPENDS_ON: '依赖于：',
   'Clusters Management': '集群管理',
   CLUSTERS_MANAGEMENT: '集群管理',
-  CLUSTERS_MANAGEMENT_DESC: '创建删除集群，管理所有集群下的资源',
+  CLUSTERS_MANAGEMENT_DESC: '创建集群、删除集群和管理集群中的所有资源。',
   CLUSTERS_VIEW: '集群查看',
-  CLUSTERS_VIEW_DESC: '查看 KubeSphere 平台中所有的集群及集群中所有的资源',
-  USERS_MANAGEMENT: '帐户管理',
-  USERS_MANAGEMENT_DESC: '支持帐户的管理，包括添加/删除/更新帐户信息',
-  USERS_VIEW: '帐户查看',
-  USERS_VIEW_DESC: '可以查看当前平台有哪些用户',
+  CLUSTERS_VIEW_DESC: '查看 KubeSphere 平台的所有集群及集群中的所有资源。',
+  USERS_MANAGEMENT: '用户管理',
+  USERS_MANAGEMENT_DESC: '创建、编辑和删除用户。',
+  USERS_VIEW: '用户查看',
+  USERS_VIEW_DESC: '查看 KubeSphere 平台的所有用户。',
   ROLES_MANAGEMENT: '角色管理',
-  ROLES_MANAGEMENT_DESC: '支持平台角色的管理，包括添加/删除/更新平台角色。',
+  ROLES_MANAGEMENT_DESC: '创建、编辑和删除角色。',
   ROLES_VIEW: '角色查看',
-  ROLES_VIEW_DESC: '可以查看当前平台有哪些角色',
+  ROLES_VIEW_DESC: '查看 KubeSphere 平台的所有角色。',
   WORKSPACES_MANAGEMENT: '企业空间管理',
-  WORKSPACES_MANAGEMENT_DESC:
-    '支持企业空间的管理，包括添加/删除/编辑企业空间，查看平台的所有企业空间。',
+  WORKSPACES_MANAGEMENT_DESC: '创建、编辑和删除企业空间。',
   WORKSPACES_VIEW: '企业空间查看',
-  WORKSPACES_VIEW_DESC: '可以查看用户当前授权的企业空间',
+  WORKSPACES_VIEW_DESC: '查看用户被授权的企业空间。',
   APP_TEMPLATES_VIEW: '应用商店查看',
-  APP_TEMPLATES_VIEW_DESC: '查看平台级别的应用商店',
+  APP_TEMPLATES_VIEW_DESC: '查看 KubeSphere 平台的应用商店。',
   APP_TEMPLATES_MANAGEMENT: '应用商店管理',
-  APP_TEMPLATES_MANAGEMENT_DESC:
-    '管理平台级别的应用商店，对云原生应用的上架、下架以及审核等应用全生命周期的统一管理。',
+  APP_TEMPLATES_MANAGEMENT_DESC: '管理 KubeSphere 平台的应用商店。',
   PLATFORM_SETTINGS_MANAGEMENT: '平台设置管理',
-  PLATFORM_SETTINGS_MANAGEMENT_DESC: '管理平台设置',
+  PLATFORM_SETTINGS_MANAGEMENT_DESC: '查看和编辑 KubeSphere平台的设置。',
 
   WORKSPACE_GROUPS_MANAGEMENT: '部门管理',
   WORKSPACE_GROUPS_MANAGEMENT_DESC: '管理企业空间部门的结构、成员和权限。',
@@ -255,7 +255,7 @@ module.exports = {
   'Unable to delete preset role': '无法删除预置角色',
 
   ROLE_PLATFORM_ADMIN: '管理 KubeSphere 平台上的所有资源。',
-  ROLE_PLATFORM_REGULAR: '被邀请加入企业空间之前没有任何资源操作权限。',
+  ROLE_PLATFORM_REGULAR: '被邀请加入企业空间之前无法访问任何资源。',
   ROLE_USERS_MANAGER: '管理 KubeSphere 平台上的所有用户。',
   ROLE_WORKSPACES_MANAGER: '管理 KubeSphere 平台上的所有企业空间。',
 

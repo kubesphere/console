@@ -44,6 +44,8 @@ module.exports = {
 
   'Host Cluster': '主集群',
   HOST_CLUSTER: '主集群',
+  HOST_CLUSTER_TCAP: '主集群',
+  HOST_CLUSTER_PL_TCAP: '主集群',
   'Host Clusters': '主集群',
   'Member Cluster': '成员集群',
   'Member Clusters': '成员集群',

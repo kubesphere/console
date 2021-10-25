@@ -286,16 +286,16 @@ export default class CredentialModal extends React.Component {
             <Select
               options={[
                 {
-                  label: t('CREDENTIAL_TYPE_USERNAME_PASSWORD_SCAP'),
+                  label: t('CREDENTIAL_TYPE_USERNAME_PASSWORD'),
                   value: 'username_password',
                 },
-                { label: t('CREDENTIAL_TYPE_SSH_SCAP'), value: 'ssh' },
+                { label: t('CREDENTIAL_TYPE_SSH'), value: 'ssh' },
                 {
-                  label: t('CREDENTIAL_TYPE_SECRET_TEXT_SCAP'),
+                  label: t('CREDENTIAL_TYPE_SECRET_TEXT'),
                   value: 'secret_text',
                 },
                 {
-                  label: t('CREDENTIAL_TYPE_KUBECONFIG_SCAP'),
+                  label: t('CREDENTIAL_TYPE_KUBECONFIG'),
                   value: 'kubeconfig',
                 },
               ]}

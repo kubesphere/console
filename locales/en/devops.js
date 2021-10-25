@@ -18,7 +18,12 @@
 
 module.exports = {
   CREATE_DEVOPS_PROJECT: 'Create DevOps Project',
+  DELETE_MULTIPLE_DEVOPS_PROJECTS: 'Delete Multiple DevOps Projects',
   DELETE_DEVOPS_PROJECT: 'Delete DevOps Project',
+  DELETE_DEVOPS_PROJECT_TIP:
+    'Enter the DevOps project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
+  DELETE_DEVOPS_PROJECT_TIP_PL:
+    'Enter the DevOps project names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   'DevOps Basic Info': 'DevOps Basic Information',
   DEVOPS_PROJECT_CREDENTIAL_PL: 'DevOps Project Credentials',
   CREDENTIAL_EMPTY_DESC: 'Please create a credential.',

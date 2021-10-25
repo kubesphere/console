@@ -58,9 +58,9 @@ module.exports = {
     '请输入用户名 <strong>{resource}</strong> 以确认您了解此操作的风险。',
   'Invite Member': '邀请成员',
   GATEWAY: '网关',
-  SET_GATEWAY: '设置网关',
+  ENABLE_GATEWAY: '开启网关',
 
-  GATEWAY_NOT_SET: '网关未设置',
+  GATEWAY_NOT_ENABLED: '网关未开启',
 
   PROJECT_INFO: '项目信息',
   PROJECT_QUOTA: '项目配额',
@@ -69,7 +69,7 @@ module.exports = {
   WORKSPACE_QUOTA_PL: '企业空间配额',
   PROJECT_QUOTA_PL: '项目配额',
 
-  PROJECT_QUOTAS_NOT_SET: '未设置项目配额',
+  PROJECT_QUOTAS_NOT_SET: '项目配额未设置',
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: '默认容器配额未设置',
 
   'Project Placement': '项目位置',
@@ -182,14 +182,14 @@ module.exports = {
   ASSIGN_ROLE: '分配角色',
   PROJECT_ADMIN_DESC: '可以指定项目内一个成员为管理员',
 
-  SET_GATEWAY_DESC:
-    '在创建应用路由之前，需要先启用外网访问入口，即网关。这一步是创建对应的应用路由控制器，负责将请求转发到对应的后端服务。',
+  ENABLE_GATEWAY_DESC:
+    '在创建应用路由之前，需要先开启外网访问入口，即网关。这一步是创建对应的应用路由控制器，负责将请求转发到对应的后端服务。',
 
   DELETE_INTERNET_ACCESS_TITLE: '删除外网访问设置',
   DELETE_INTERNET_ACCESS_DESC:
     '您确定删除外网访问设置吗？删除设置后，您可以重新设置外网访问。',
 
-  NO_RELATE_PROJECTS_TITLE: '没有找到与您相关联的项目',
+  NO_RELATE_PROJECTS_TITLE: '未发现与您相关联的项目',
   NO_RELATE_PROJECTS_DESC:
     '您可以创建或者联系项目管理员将您邀请到项目中开始您的工作',
 
@@ -310,11 +310,11 @@ module.exports = {
     '项目成员可以查看或管理项目资源。项目管理员可以邀请企业空间成员至该项目并对项目成员进行管理。',
 
   // Advanced Settings
-  REMOVE: '删除',
+  REMOVE: '移除',
   DISABLED: '未开启',
   ENABLE: '开启',
   DISABLE: '关闭',
-  SET_GATEWAY_TIP: '要使用网关，请在集群或项目中配置网关',
+  ENABLE_GATEWAY_TIP: '要使用网关，请在集群或项目中配置网关',
 
   // Network Isolation
   INGRESS: '入站',
