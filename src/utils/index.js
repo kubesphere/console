@@ -623,8 +623,33 @@ export const compareVersion = (v1 = '', v2 = '') => {
   return 0
 }
 
+const cancel_Num_Dot = (spec, hard) => {
+  const units = ['ki', 'mi', 'gi', 'ti']
+  Object.keys(spec).forEach(key => {
+    const value = hard[key]
+    if (isNull(value)) {
+      hard[key] = ''
+    }
+    if (!isString(value)) {
+      return
+    }
+    if (value.slice(-1) === '.') {
+      hard[key] = value.slice(0, -1)
+    }
+    const keyUnit = value.slice(-2).toLowerCase()
+    if (value.slice(-3, -2) === '.' && units.indexOf(keyUnit) > -1) {
+      hard[key] = `${value.slice(0, -3)}${value.slice(-2)}`
+    }
+  })
+}
+
+const deal_With_Dot = hard => {
+  const cpuAndMemory = pick(hard, resourceLimitKey)
+  cancel_Num_Dot(cpuAndMemory, hard)
+}
+
 export const getContainerGpu = item => {
-  if (!isEmpty(get(item, 'resources', undefined))) {
+  if (!isEmpty(get(item, 'resources', {}))) {
     const gpu = get(item, 'resources.gpu', { type: '', value: '' })
     item.resources.limits = pick(item.resources.limits, ['cpu', 'memory'])
     if (gpu.type !== '') {
@@ -632,6 +657,10 @@ export const getContainerGpu = item => {
       set(item, `resources.limits["${gpu.type}"]`, value)
       set(item, `resources.requests["${gpu.type}"]`, value)
     }
+    const cpuAndMemory = pick(item.resources, ['requests', 'limits'])
+    Object.keys(cpuAndMemory).forEach(key => {
+      cancel_Num_Dot(cpuAndMemory[key], item.resources[key])
+    })
   }
 }
 
@@ -728,3 +757,5 @@ const accessModeMapper = {
 
 export const map_accessModes = accessModes =>
   accessModes.map(item => accessModeMapper[item])
+
+export const quota_limits_requests_Dot = deal_With_Dot
