@@ -80,4 +80,6 @@ module.exports = {
   ENTER_VALID_SEGMENT_DESC: 'Please enter a valid network segment.',
   ENTER_VALID_PORT_NUMBER_DESC: 'Please enter a valid port number.',
   EMPTY_RESOURCE_DESC: 'Please select at least one project or Service.',
+  ALLOWLIST_ENTRY: '白名單條目',
+  ALLOWLIST_ENTRY_LOW: '白名單條目',
 }
