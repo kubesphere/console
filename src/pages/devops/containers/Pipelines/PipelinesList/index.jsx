@@ -304,13 +304,16 @@ export default class PipelinesList extends React.Component {
       dataIndex: 'name',
       width: '20%',
       render: (name, record) => {
+        const isRun =
+          record.status !== 'failed' && record.status !== 'successful'
+
         const url = `/${this.workspace}/clusters/${this.cluster}/devops/${
           this.devops
         }/pipelines/${encodeURIComponent(record.name)}${
           record.isMultiBranch ? '/activity' : ''
         }`
 
-        return <Avatar to={this.isRuning ? null : url} title={name} />
+        return <Avatar to={isRun ? null : url} title={name} />
       },
     },
 
