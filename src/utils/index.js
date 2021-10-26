@@ -705,7 +705,7 @@ export const getGpuFromRes = data => {
     const gpuKey = Object.keys(gpu)[0]
     if (isEmpty(gpu)) {
       set(data[0].limit, 'gpu', {
-        type: '',
+        type: supportGpuType[0],
         value: '',
       })
     } else {
@@ -748,6 +748,8 @@ export const resourceLimitKey = [
 ]
 
 export const gpuTypeArr = ['requests.nvidia.com/gpu', 'limits.nvidia.com/gpu']
+
+export const supportGpuType = ['nvidia.com/gpu']
 
 const accessModeMapper = {
   ReadWriteOnce: 'RWO',

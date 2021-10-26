@@ -39,7 +39,7 @@ import {
   Select,
 } from '@kube-design/components'
 
-import { cpuFormat, memoryFormat } from 'utils'
+import { cpuFormat, memoryFormat, supportGpuType } from 'utils'
 
 import Slider from './Slider'
 
@@ -188,6 +188,25 @@ export default class ResourceLimit extends React.Component {
     }
   }
 
+  static getGpuFromProps(value) {
+    const defaultGpuType = supportGpuType[0]
+    const gpuValue = get(value, 'gpu.value', '')
+    const gpuType =
+      get(value, 'gpu.type', '') === ''
+        ? defaultGpuType
+        : get(value, 'gpu.type')
+    if (!value) {
+      return {
+        type: defaultGpuType,
+        value: '',
+      }
+    }
+    return {
+      value: gpuValue,
+      type: gpuType,
+    }
+  }
+
   static gpuSetting(props) {
     const value = get(props, 'value', {})
     const defaultValue = get(props, 'defaultValue', {})
@@ -199,21 +218,12 @@ export default class ResourceLimit extends React.Component {
           value: Object.values(gpuInfo)[0],
         }
       }
-      return {
-        type: get(value, 'gpu.type', ''),
-        value: get(value, 'gpu.value', ''),
-      }
+      return ResourceLimit.getGpuFromProps(value)
     }
     if (!isEmpty(defaultValue)) {
-      return {
-        type: get(defaultValue, 'gpu.type', ''),
-        value: get(defaultValue, 'gpu.value', ''),
-      }
+      return ResourceLimit.getGpuFromProps(defaultValue)
     }
-    return {
-      type: '',
-      value: '',
-    }
+    return ResourceLimit.defaultValue()
   }
 
   static getDefaultRequestValue(props, key) {
@@ -273,12 +283,16 @@ export default class ResourceLimit extends React.Component {
   }
 
   get gpuOption() {
-    return [
-      {
-        label: 'nvidia.com/gpu',
-        value: 'nvidia.com/gpu',
-      },
-    ]
+    return supportGpuType.reduce(
+      (prev, value) => [
+        ...prev,
+        {
+          value,
+          label: value,
+        },
+      ],
+      []
+    )
   }
 
   get gpuType() {
@@ -580,21 +594,29 @@ export default class ResourceLimit extends React.Component {
         <div className={styles.inputGroup}>
           <img src="/assets/GPU.svg" size={48} />
           <div className={classnames(styles.input)}>
-            <span className={styles.label}>{t('GPU_TYPE')}</span>
-            <Select
-              options={this.gpuOption}
-              value={this.state.gpu.type}
-              onChange={this.gpuSelectChange}
-              placeholder=" "
-            ></Select>
+            <div className={styles.label}>
+              <span>{t('GPU_TYPE')}:</span>
+            </div>
+            <div className={styles.inputBox}>
+              <Select
+                options={this.gpuOption}
+                value={this.state.gpu.type}
+                onChange={this.gpuSelectChange}
+                placeholder=" "
+              ></Select>
+            </div>
           </div>
           <div className={classnames(styles.input)}>
-            <span className={styles.label}>{t('GPU_LIMIT')}</span>
-            <Input
-              name="gpu.value"
-              value={this.state.gpu.value}
-              onChange={this.handleGpuInputChange}
-            />
+            <div className={styles.label}>
+              <span>{t('GPU_LIMIT')}:</span>
+            </div>
+            <div className={styles.inputBox}>
+              <Input
+                name="gpu.value"
+                value={this.state.gpu.value}
+                onChange={this.handleGpuInputChange}
+              />
+            </div>
           </div>
         </div>
       </Column>
@@ -628,7 +650,7 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: cpuError || limit.requestCpuError,
                   })}
                 >
-                  <span className={styles.label}>{t('CPU_REQUEST')}</span>
+                  <span className={styles.label}>{t('CPU_REQUEST')}:</span>
                   <div className={styles.inputBox}>
                     <Input
                       name="requests.cpu"
@@ -644,7 +666,7 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: cpuError || limit.limitCpuError,
                   })}
                 >
-                  <span className={styles.label}>{t('CPU_LIMIT')}</span>
+                  <span className={styles.label}>{t('CPU_LIMIT')}:</span>
                   <div className={styles.inputBox}>
                     <Input
                       name="limits.cpu"
@@ -665,7 +687,7 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: memoryError || limit.requestMemoryError,
                   })}
                 >
-                  <span className={styles.label}>{t('MEMORY_REQUEST')}</span>
+                  <span className={styles.label}>{t('MEMORY_REQUEST')}:</span>
                   <div className={styles.inputBox}>
                     <Input
                       name="requests.memory"
@@ -681,7 +703,7 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: memoryError || limit.limitMemoryError,
                   })}
                 >
-                  <span className={styles.label}>{t('MEMORY_LIMIT')}</span>
+                  <span className={styles.label}>{t('MEMORY_LIMIT')}:</span>
                   <div className={styles.inputBox}>
                     <Input
                       name="limits.memory"
