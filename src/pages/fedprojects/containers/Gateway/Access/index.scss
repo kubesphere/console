@@ -17,6 +17,19 @@
 
   .desc {
     flex: 1;
+    .descTitle {
+      align-items: center;
+
+      & > span {
+        margin-right: 4px;
+      }
+
+      :global {
+        .icon {
+          margin-top: -2px;
+        }
+      }
+    }
   }
 
   & > button {
