@@ -103,7 +103,7 @@ export default class Login extends Component {
           <img src="/assets/logo.svg" alt="" />
         </a>
         <div className={styles.login}>
-          <div className={styles.header}>{t('Please Log In')}</div>
+          <div className={styles.header}>{t('WELCOME')}</div>
           <div className={styles.divider}></div>
           {get(globals, 'oauthServers', []).map(server => (
             <div
@@ -112,7 +112,7 @@ export default class Login extends Component {
               data-url={server.url}
               onClick={this.handleOAuthLogin(server)}
             >
-              <span>{t('Log In with {title}', { title: server.title })}</span>
+              <span>{t('LOG_IN_WITH_TITLE', { title: server.title })}</span>
             </div>
           ))}
           {errorMessage && (
@@ -124,15 +124,15 @@ export default class Login extends Component {
           )}
           <Form data={formData} onSubmit={this.handleSubmit}>
             <Form.Item
-              label={t('Username or Email')}
+              label={t('USERNAME_OR_EMAIL')}
               rules={[
                 {
                   required: true,
-                  message: t('Please input username or email'),
+                  message: t('INPUT_USERNAME_OR_EMAIL_TIP'),
                 },
               ]}
             >
-              <Input name="username" placeholder="User@example.com" />
+              <Input name="username" placeholder="user@example.com" />
             </Form.Item>
             <Form.Item
               label={t('PASSWORD')}
@@ -142,7 +142,7 @@ export default class Login extends Component {
             </Form.Item>
             <div className={styles.footer}>
               <Button type="control" htmlType="submit" loading={isSubmmiting}>
-                {t('Log In')}
+                {t('LOG_IN')}
               </Button>
             </div>
           </Form>

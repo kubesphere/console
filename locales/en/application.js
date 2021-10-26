@@ -101,7 +101,7 @@ module.exports = {
   'If you need to access applications by application route, add routing rules':
     'If you need to access applications by application route, add routing rules',
   'Inspection period (unit: s)': 'Inspection period (unit: s)',
-  INVALID_VERSION_TIP: 'Invalid version.',
+  INVALID_VERSION_TIP: 'Please enter a correct version number.',
   'Load balance algorithm': 'Load balance algorithm',
   Log: 'Log',
   'Max number of connections': 'Max number of connections',

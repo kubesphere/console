@@ -113,7 +113,7 @@ export default class EventSearch extends React.Component {
           className="no-shadow"
           icon="cluster"
           title={t('NO_AVAILABLE_CLUSTER')}
-          desc={t('EVENT_NOT_ENABLED_DESC')}
+          desc={t.html('EVENT_NOT_ENABLED_DESC')}
         />
       )
     }

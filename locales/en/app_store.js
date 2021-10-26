@@ -46,12 +46,12 @@ module.exports = {
     'The official App Store of KubeSphere provides deployment and management features that allow users to quickly deploy apps with one click based on app templates.',
 
   AGREE: 'Agree',
-  APP_DEPLOY_AGREEMENT: 'App Deploy Agreement',
+  APP_DEPLOY_AGREEMENT: 'Deployment Agreement',
   APP_DEPLOY_AGREEMENT_DESC_1:
     'You must abide by the open-source agreement of the application.',
   APP_DEPLOY_AGREEMENT_DESC_2:
     'Any consequences arising from your deployment of the application shall be borne by you. For support services, please contact the developer.',
-  DO_NOT_REMIND_AGAIN: 'Do not remind me again.',
+  DO_NOT_REMIND_AGAIN: 'Do not remind me again',
   APP_DEPLOYMENT_AGREEMENT: 'App Deployment Agreement',
   APP_DEPLOY_AGREEMENT_CHECK:
     'I have read <b>App Deployment Agreement</b> and agree to deploy the app.',

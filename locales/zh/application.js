@@ -218,7 +218,7 @@ module.exports = {
     '熔断机制是应对雪崩效应的一种微服务链路保护机制。当算出链路的某个微服务不可用或者响应时间太长时，会进行服务的降级，进而熔断该节点微服务的调用，快速返回错误的响应信息。当检测到该节点微服务调用响应正常后，恢复调用链路。',
 
   'Please input component version': '请输入组件版本',
-  INVALID_VERSION_TIP: '无效版本格式。',
+  INVALID_VERSION_TIP: '请输入正确的版本号。',
   WORKLOAD_NAME_EXIST: '工作负载 {name} 已存在',
 
   APP_TYPES_A:

@@ -103,7 +103,7 @@ export default class Screenshots extends React.Component {
                     }}
                   >
                     <Icon name="trash" size={20} className={styles.icon} />
-                    {t('Delete picture')}
+                    {t('DELETE')}
                   </label>
                 </div>
               </li>
@@ -128,8 +128,9 @@ export default class Screenshots extends React.Component {
             <div className={styles.error}>{t(this.state.error)}</div>
           ) : (
             <div className={styles.words}>
-              {len}/{SCREENSHOTS_LIMIT} {t('screenshots')} (
-              {t('FILE_MAX_SCREENSHOTS')})
+              {t('SCREENSHOTS_COLON')}
+              {len}/{SCREENSHOTS_LIMIT}
+              {t('FILE_MAX_SCREENSHOTS')}
               {len > 0 ? (
                 <label
                   className={styles.deleteAll}
@@ -137,13 +138,13 @@ export default class Screenshots extends React.Component {
                     this.deleteScreenshot(-1, detail)
                   }}
                 >
-                  {t('Delete all')}
+                  {t('DELETE_ALL')}
                 </label>
               ) : (
                 <label
                   className={classnames(styles.deleteAll, styles.disabled)}
                 >
-                  {t('Delete all')}
+                  {t('DELETE_ALL')}
                 </label>
               )}
             </div>

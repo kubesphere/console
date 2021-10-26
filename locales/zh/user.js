@@ -33,13 +33,13 @@ module.exports = {
   NOT_LOGIN_YET: '尚未登录',
   NOT_LOGGED_IN: '尚未登录',
   'Change Password': '修改密码',
-  'Password Setting': '密码设置',
+  PASSWORD_SETTINGS: '密码设置',
   EMAIL: '邮箱',
   USER_AVATAR_TIP: '头像尺寸必须小于 120px X 120px，支持 png，jpg 格式。',
   EMAIL_DESC: '邮箱地址可用于登录 KubeSphere Web 控制台。',
   USERNAME_DESC:
     '用户名只能包含小写字母、数字、连字符（-）和句点（.），必须以小写字母或数字开头及结尾，最长 32 个字符。',
-  USER_SETTING_EMAIL_DESC: '邮箱可作为登录帐户',
+  USER_SETTING_EMAIL_DESC: '邮箱地址可用于登录 KubeSphere Web 控制台。',
   PASSWORD_DESC: '密码必须包含数字和大小写字母，长度为 6 至 64 个字符。',
   PASSWORD_INVALID_DESC:
     '密码无效。密码必须包含数字和大小写字母，长度为 6 至 64 个字符。',
@@ -48,8 +48,8 @@ module.exports = {
   USERNAME_EMPTY_DESC: '请输入用户名。',
   EMAIL_EMPTY_DESC: '请输入一个邮箱地址。',
   'Please repeat the new password': '请重复新的密码',
-  'Please input current password': '请输入当前密码',
-  'The password entered twice must be the same': '两次输入的密码必须一致',
+  ENTER_CURRENT_PASSWORD_TIP: '请输入当前密码。',
+  PASSWORD_NOT_SAME_DESC: '两次输入的密码必须一致。',
   'Please select role': '请选择角色',
   USERNAME_INVALID: '用户名无效。{message}',
   USERNAME_EXISTS: '用户名已存在，请输入其他用户名。',
@@ -58,7 +58,7 @@ module.exports = {
   'Login History': '登录历史',
   Time: '时间',
   TIME: '时间',
-  'Repeat the New Password': '重复新的密码',
+  CONFIRM_PASSWORD: '确认密码',
 
   USER_ACTIVE: '活跃',
   USER_AUTHLIMITEXCEEDED: '限制登录',
@@ -76,10 +76,9 @@ module.exports = {
 
   'A built-in cluster administrator': '默认创建的管理员帐户。',
 
-  'Current Password': '当前密码',
+  CURRENT_PASSWORD: '当前密码',
 
-  'You must enter the correct current password to change to a new password.':
-    '您必须输入正确的当前密码才可更改为新的密码',
+  ENTER_CURRENT_PASSWORD_DESC: '您必须输入当前密码才能修改密码。',
 
   'At least 1 uppercase and lowercase letter': '至少 1 个大写和小写字母',
   'At least 1 number': '至少 1 个数字',
@@ -95,4 +94,12 @@ module.exports = {
   CHANGE_PASSWORD: '修改密码',
   SUCCESSFUL: '成功',
   FAILED: '失败',
+  NEW_PASSWORD: '新的密码',
+  CONFIRM_PASSWORD_TIP: '请再次输入新的密码。',
+  LANGUAGE: '语言',
+  USER_SETTINGS: '用户设置',
+  LOG_OUT: '登出',
+  ABOUT: '关于',
+  USERNAME_OR_EMAIL: '用户名或邮箱',
+  WELCOME: '欢迎登录',
 }
