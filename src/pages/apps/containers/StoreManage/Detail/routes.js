@@ -28,25 +28,25 @@ const PATH = '/apps-manage/store/:appId'
 export default [
   {
     path: `${PATH}/versions`,
-    title: 'Versions',
+    title: 'VERSIONS',
     component: VersionManage,
     exact: true,
   },
   {
     path: `${PATH}/app-information`,
-    title: 'App Information',
+    title: 'APP_INFORMATION',
     component: AppInformation,
     exact: true,
   },
   {
     path: `${PATH}/audit-records`,
-    title: 'Audit Records',
+    title: 'APP_RELEASE',
     component: AuditRecord,
     exact: true,
   },
   {
     path: `${PATH}/app-instances`,
-    title: 'App Instances',
+    title: 'APP_INSTANCES',
     component: AppInstances,
     exact: true,
   },

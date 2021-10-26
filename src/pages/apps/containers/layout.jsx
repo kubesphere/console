@@ -40,7 +40,6 @@ export default class AppsLayout extends Component {
             </div>
             <div className={styles.text}>
               <div className="h6">{t('APP_STORE_MANAGEMENT')}</div>
-              <p>{t('PLATFORM_APP_STORE_MANAGEMENT')}</p>
             </div>
           </div>
           <Nav

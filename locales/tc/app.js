@@ -75,23 +75,22 @@ module.exports = {
 
   APP_REVIEW: '應用審核',
   APP_REVIEWS: '應用審核',
-  APP_REVIEW_DESC:
-    'KubeSphere supports reviewing the contents of applications to be published. You can view the contents and approve or reject to publish the applications.',
-  APP_REVIEW_EMPTY_DESC: 'No app to be reviewed is found.',
+  APP_RELEASE_DESC:
+    'KubeSphere supports reviewing the contents of applications to be released. You can view the contents and approve or reject to publish the applications.',
+  APP_REVIEW_EMPTY_DESC: 'No unreleased app is found.',
   APP_REVIEWS_CREATE_DESC: '對應用上架提供審核功能',
   UNREVIEWED: 'Unreviewed',
   REVIEWED: 'Reviewed',
   'Review Object': '審核對象',
-  APP_PUBLISHING: '應用上架',
+  APP_RELEASE: '應用上架',
   Operator: '操作者',
   'Apply No / Reject Reason': '申請編號 / 拒絕原因',
   'Review Status': '審核狀態',
   Submitter: '提交者',
   Handle: '處理',
   REVIEW_CONTENT: '審核内容',
-  REVIEW_CONTENT_DESC:
-    '以下資訊必須真實準確，關鍵的操作說明需要描述詳情，對於條款中的權利與義務需要描述清楚。',
-  SUBMIT_REVIEW_DESC: 'Submit the app for app review.',
+  APP_DETAILS_DESC: 'View details of the app to be released.',
+  SUBMIT_REVIEW_DESC: 'Submit the app for release.',
   REVIEWS_CREATE_DESC: '暫時沒有相關的應用審核數據',
 
   'App Version': '應用版本',
@@ -109,7 +108,7 @@ module.exports = {
 
   APP_CATEGORY_PL: '應用分類',
   APP_CATEGORY_EMPTY_DESC: '該分類暫無綁定的應用。',
-  ALL_CATEGORIES: '全部分類',
+  ALL_CATEGORIES_VALUE: 'All Categories ({value})',
   'Adjust App Category': '調整應用分類',
   CHANGE_CATEGORY_DESC: '應用分類將決定該應用在應用商店中的分類',
   CHANGE_CATEGORY: '調整分類',
@@ -125,7 +124,6 @@ module.exports = {
   UPLOAD_HELM_CHART_DESC: '上傳已有的 Helm chart ',
   'Edit App Informatio': '編輯應用資訊',
   EDIT_APP_DESC: '對應用的基本資訊進行設置',
-  APP_ID: '應用編號',
   'App Version Types': '交付類型',
   'Create Time': '創建時間',
   'Add Version': '添加版本',
@@ -159,7 +157,7 @@ module.exports = {
   UPLOAD_SUPPORT_FORMAT: '文件格式支持 tar.gz 和 tgz',
   UPLOADING: '正在上傳',
   UPLOAD_SUCCESS: '上傳成功',
-  UPLOAD_AGAIN_TIP: 'An error occurred in the upload. Please try again.',
+  UPLOAD_AGAIN_TIP: 'Please try again.',
   FILE_FORMAT_PACKAGE: '文件格式支持 tar.gz 和 tgz',
   FILE_FORMAT_ICON: '圖示格式支持 png 和 jpg',
   FILE_FORMAT_SCREENSHOTS: '截圖格式支持 png 和 jpg',
@@ -174,7 +172,7 @@ module.exports = {
   'Package problems': '文件有問題',
   'Upload again': '重新上傳',
   'App Name': '應用名稱',
-  APP_HOME: '應用首頁',
+  HOMEPAGE: '應用首頁',
   'Select File': '選擇檔案',
   APP_SCREENSHOTS: '應用截圖',
   'Upload Screenshots': '上傳截圖',
@@ -241,9 +239,9 @@ module.exports = {
 
   DELETE_APP_TEMPLATE_TIP: '刪除應用模板前，需要先刪除所有版本。',
 
-  UNPROCESSED_APP_REVIEW: 'Pending App Review',
-  PROCESSED_APP_REVIEW: 'Complete App Review',
-  ALL_APP_REVIEW: 'App Review',
+  UNPROCESSED_APP_RELEASE: 'Unreleased App',
+  PROCESSED_APP_RELEASE: 'Released App',
+  ALL_APP_RELEASE: 'Release Record',
 
   'APP_CATE_MESSAGE QUEUEING': '消息佇列',
   'APP_CATE_IMAGE REGISTRY': '鏡像倉庫',
@@ -280,7 +278,7 @@ module.exports = {
   APP_VERSIONS_TITLE:
     'Versions (only the latest 10 versions will be displayed)',
   VERSIONS: 'Versions',
-  UPDATED_AT_SCAP: 'Updated at: ',
+  UPDATE_TIME_COLON: 'Updated Time: ',
   DEVELOPER: 'Developer',
 
   // App Store > Details
@@ -293,4 +291,43 @@ module.exports = {
 
   // App Templates > Details
   SERVICE_PROVIDER_WEBSITE_SCAP: 'Service Provider Website',
+
+  // App Templates
+  FILE: 'File',
+  INCORRECT_FILE: 'Incorrect files? ',
+  TRY_AGAIN: 'Try Again',
+  FILE_MAX_ICON_DESC:
+    'The icon size should not exceed 20 KB. Please try again.',
+  START_EDITING: 'Start editing...',
+  SCREENSHOTS_COLON: 'Screenshots: ',
+  DELETE_ALL: 'Delete All',
+  APP_LEARN_MORE:
+    '<a href="https://v3-1.docs.kubesphere.io/docs/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Learn More</a>',
+  ACTIVATE_SUCCESSFUL: 'Activated successfully.',
+  CANCEL_SUCCESSFUL: 'Canceled successfully.',
+  RECOVER_SUCCESSFUL: 'Recovered successfully.',
+  RELEASE_SUCCESSFUL: 'Released successfully.',
+  SUBMIT_SUCCESSFUL: 'Submitted successfully.',
+  SUSPEND_SUCCESSFUL: 'Suspended successfully.',
+  DEPLOYED_SUCCESSFUL: 'Deployed successfully.',
+  VIEW_IN_STORE: 'View in Store',
+  RELEASE_TO_STORE: 'Release to Store',
+  AUDIT_EMPTY_DESC: 'No app review record is found.',
+  APP_STATUS_SUBMITTED: 'Submitted',
+  APP_STATUS_PASSED: 'Passed',
+  APP_STATUS_SUSPENDED: 'Suspended',
+  APP_STATUS_REJECTED: 'Rejected',
+  APP_STATUS_ACTIVE: 'Activated',
+  APP_STATUS_PUBLISHED: 'Released',
+  APP_STATUS_RECALLED: 'Suspended',
+  APP_STATUS_RECALL: 'Recall',
+  APP_STATUS_DRAFT: 'To be submitted',
+  APP_STATUS_PENDING_REVIEW: 'To be released',
+  APP_STATUS_IN_REVIEW: 'Reviewing',
+  APP_STATUS_DEVELOPING: 'Developing',
+  APPS: 'Apps',
+  UNRELEASED: 'Unreleased',
+  RELEASED: 'Released',
+  RELEASE_RECORD: 'Release Record',
+  RELEASE_RECORD_EMPTY_DESC: 'No release record is found.',
 }
