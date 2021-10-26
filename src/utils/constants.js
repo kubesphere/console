@@ -572,9 +572,9 @@ export const GRAY_RELEASE_CANARY_CONTENT = [
     value: '(Windows NT ([\\d.])+)',
   },
   { label: 'Linux', icon: 'ubuntu', value: '(Linux )' },
-  { label: 'macOS', icon: 'windows', value: '( Mac OS X ([\\d.])+)' },
-  { label: 'Android', icon: 'windows', value: '(Android)' },
-  { label: 'iOS', icon: 'windows', value: '(OS [\\d.]+)' },
+  { label: 'macOS', icon: 'macos', value: '( Mac OS X ([\\d.])+)' },
+  { label: 'Android', icon: 'android', value: '(Android)' },
+  { label: 'iOS', icon: 'ios', value: '(OS [\\d.]+)' },
 ]
 
 export const S2IPULLPOLICY_MAP = {

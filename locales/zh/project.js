@@ -180,7 +180,7 @@ module.exports = {
   PROJECT_ADMIN_DESC: '可以指定项目内一个成员为管理员',
 
   SET_GATEWAY_DESC:
-    '设置网关控制器以根据应用路由中配置的域名和路径将流量转发给不同的服务。',
+    '在创建应用路由之前，需要先启用外网访问入口，即网关。这一步是创建对应的应用路由控制器，负责将请求转发到对应的后端服务。',
 
   DELETE_INTERNET_ACCESS_TITLE: '删除外网访问设置',
   DELETE_INTERNET_ACCESS_DESC:

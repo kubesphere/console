@@ -155,8 +155,8 @@ export default class ConditionSelect extends React.Component {
     const { keyName } = this.state
 
     return (
-      <div>
-        {options}
+      <div className={styles.optionsContainer}>
+        <div className={styles.optionsList}>{options}</div>
         <div className={styles.customSelect}>
           <Input
             className={styles.customInput}

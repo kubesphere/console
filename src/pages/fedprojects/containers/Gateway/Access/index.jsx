@@ -121,8 +121,8 @@ class InternetAccess extends React.Component {
           <Text
             className={styles.desc}
             title={
-              <span>
-                {t('GATEWAY_NOT_SET')}
+              <p className={styles.descTitle}>
+                <span>{t('GATEWAY_NOT_SET')}</span>
                 {isDisable ? (
                   <Tooltip
                     content={t('CLUSTER_UPGRADE_REQUIRED', { version: '3.2' })}
@@ -130,14 +130,15 @@ class InternetAccess extends React.Component {
                   >
                     <Icon
                       name="update"
+                      size={20}
                       color={{
-                        primary: '#ffc781',
-                        secondary: '#f5a623',
+                        primary: '#f5a623 ',
+                        secondary: '#ffe1be',
                       }}
                     />
                   </Tooltip>
                 ) : null}
-              </span>
+              </p>
             }
             description={t('SET_GATEWAY_TIP')}
           />

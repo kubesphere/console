@@ -185,6 +185,7 @@ export default class EnvironmentInput extends React.Component {
 
     return (
       <ArrayInput
+        className={styles.wrapper}
         itemType="object"
         checkItemValid={this.checkItemValid}
         addText={t('ADD_ENVIRONMENT_VARIABLE')}

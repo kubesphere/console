@@ -1,5 +1,11 @@
 @import '~scss/variables';
 
+.wrapper {
+  & > div:last-child {
+    display: block !important;
+  }
+}
+
 .desc {
   float: left;
   margin-top: 6px;
