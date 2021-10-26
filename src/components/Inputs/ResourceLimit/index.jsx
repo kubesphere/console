@@ -457,32 +457,11 @@ export default class ResourceLimit extends React.Component {
     )
   }
 
-  getInputMaxiNum(name) {
-    let maxiNum
-    if (!isEmpty(this.props.cpuProps)) {
-      if (name.indexOf('cpu') > -1) {
-        const marks = this.props.cpuProps.marks
-        maxiNum = marks[marks.length - 2].value
-      } else if (name.indexOf('memory') > -1) {
-        const memoryMarks = this.props.memoryProps.marks
-        maxiNum = memoryMarks[memoryMarks.length - 2].value
-      }
-    } else if (name.indexOf('cpu') > -1) {
-      maxiNum = 4
-    } else if (name.indexOf('memory') > -1) {
-      maxiNum = 8000
-    }
-    return maxiNum
-  }
-
   handleInputChange = (e, value) => {
     let inputNum
     const name = e.target.name
-    const maxiNum = this.getInputMaxiNum(name)
     if (value === '') {
       inputNum = ''
-    } else if (value > maxiNum) {
-      value = 'infinity'
     } else {
       const number = /^(([1-9]{1}\d*)|(0{1}))(\.\d{0,2})?$/.exec(value)
       inputNum = number == null ? get(this.state, name, null) : number[0]
@@ -499,7 +478,7 @@ export default class ResourceLimit extends React.Component {
     if (value === '') {
       inputNum = ''
     } else {
-      const number = /^(([1-9]{1}\d*)|(0{1}))(\.\d{0,2})?$/.exec(value)
+      const number = /^[0-9]*$/.exec(value)
       inputNum = number == null ? get(this.state, 'gpu.value', '') : number[0]
     }
     this.setState(
