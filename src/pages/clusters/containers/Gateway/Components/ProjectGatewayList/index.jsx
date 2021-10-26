@@ -132,10 +132,11 @@ export default class ProjectGatewayCard extends React.Component {
       return (
         <Tooltip content={t('UPDATE_GATEWAY_DESC')} placement="top">
           <Icon
+            size={20}
             name="update"
             color={{
-              primary: '#ffc781',
-              secondary: '#f5a623',
+              primary: '#f5a623 ',
+              secondary: '#ffe1be',
             }}
           />
         </Tooltip>
@@ -155,10 +156,14 @@ export default class ProjectGatewayCard extends React.Component {
         sortOrder: getSortOrder('name'),
         render: (name, record) => {
           return (
-            <span>
-              {name}
+            <>
+              <span
+                style={{ fontWeight: 700, cursor: 'auto', marginRight: '4px' }}
+              >
+                {name}
+              </span>
               {this.renderDisabledTip(record)}
-            </span>
+            </>
           )
         },
       },

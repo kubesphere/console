@@ -27,8 +27,8 @@ const GatewayEmpty = ({ component, type, handleCreateGateway, cluster }) => {
               <Icon
                 name="update"
                 color={{
-                  primary: '#ffc781',
-                  secondary: '#f5a623',
+                  primary: '#f5a623 ',
+                  secondary: '#ffe1be',
                 }}
               />
             </p>

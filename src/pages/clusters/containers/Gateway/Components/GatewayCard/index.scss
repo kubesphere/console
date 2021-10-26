@@ -8,6 +8,8 @@
     flex: 1;
     padding: 12px;
     margin-right: 12px;
+    align-items: center;
+
     & > div {
       @include TypographyTitleH6($dark-color07);
     }
@@ -17,6 +19,8 @@
 
     &:last-child {
       flex: 2;
+      margin-right: 0;
+      padding-right: 0;
     }
   }
 
@@ -25,11 +29,19 @@
     margin-right: 12px;
     padding: 12px;
     flex: 1;
+    border-radius: 4px;
+    align-items: center;
+
+    &:last-child {
+      margin-right: 0;
+    }
 
     .item {
       margin-left: 12px;
+
       & > div {
         @include TypographyTitleH6($dark-color07);
+        word-break: break-all;
       }
       & > p {
         @include TypographyParagraph($dark-color01);
