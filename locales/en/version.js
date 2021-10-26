@@ -23,7 +23,6 @@ module.exports = {
   'App Instances': 'App Instances',
   'Audit Records': 'App Review',
   business: 'business',
-
   creating: 'creating',
   'Delete Version': 'Delete Version',
   deleting: 'deleting',
@@ -39,7 +38,6 @@ module.exports = {
   isv: 'isv',
 
   Pass: 'Pass',
-
   'Pending-review': 'Pending-review',
   Published: 'Published',
   Recall: 'Recall',

@@ -22,7 +22,6 @@ module.exports = {
   EDIT_SECRET: 'Edit Secret',
 
   IMAGE_REGISTRY_SECRET_TCAP: 'Image Registry Secret',
-
   'Please input the registry address': 'Please input the registry address',
 
   Secret: 'Secret',

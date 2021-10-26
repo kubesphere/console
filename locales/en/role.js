@@ -83,7 +83,6 @@ module.exports = {
   ROLE_NO_AVAILABLE_TIP: 'No role is available in the current project.',
   ROLE_TYPE_DESC:
     'The role types are classified into cluster and project, the current role is authorized as the project scope.',
-
   RULE_WORKSPACES: 'Workspaces',
   RULE_KUBECTL: 'kubectl',
   RULE_MONITORING: 'Monitoring Management',
@@ -139,7 +138,6 @@ module.exports = {
   NODES_MANAGEMENT_DESC: 'Manage nodes and taints.',
   CRD_MANAGEMENT_DESC: 'View, modify, and delete cluster CRDs.',
   COMPONENTS_MANAGEMENT_DESC: 'Manage cluster components.',
-
   ACCOUNT_ROLE_DESC:
     'The role of an account defines the permissions of the account on the KubeSphere platform.',
   ACCOUNT_ROLE_CREATE_DESC:

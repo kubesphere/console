@@ -142,7 +142,6 @@ module.exports = {
 
   'Invalid name': 'Invalid name. {message}',
   'Invalid pod': 'Invalid value',
-
   InvalidImageName: 'InvalidImageName',
   'is running': 'is running',
   Job: 'Job',
@@ -434,7 +433,6 @@ module.exports = {
     "It's used as the judgment of resource allocation when scheduling containers. The container is allowed to be scheduled to the node only if the total amount of CPU that can be allocated on the node is equal or greater than the request value of the container CPU.",
   CONTAINER_MEMORY_DESC:
     "It's used as the judgment of resource allocation when scheduling containers. The container is allowed to be scheduled to the node only if the total amount of memory that can be allocated on the node is equal or greater than the request value of the container memory.",
-
   FILL_IMAGE_DEFAULT_PORTS_DESC:
     'Whether to expose the default port of the image?',
 
@@ -462,4 +460,13 @@ module.exports = {
   ADD_VOLUME: 'Add Volume',
 
   MOUNT_VOLUMES: 'Mount Volumes',
+
+  // Workload
+  NETWORK_SEGMENT_SCAP: 'Network segment',
+  JOB_COMPLETED: 'Completed',
+  JOB_FAILED: 'Failed',
+  JOB_RUNNING: 'Running',
+  CRONJOB_PAUSED: 'Paused',
+  CRONJOB_RUNNING: 'Running',
+  CRONJOB_FAILED: 'Failed',
 }

@@ -92,7 +92,6 @@ module.exports = {
   MONITORING_PHYSICAL_DESC: 'Monitor the status of the physical resources',
 
   AVERAGE: 'Average',
-
   ETCD_NODE_TITLE: 'etcd Node',
 
   PROPOSAL_COMMITTED: 'Committed',

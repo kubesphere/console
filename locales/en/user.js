@@ -29,7 +29,6 @@ module.exports = {
     'Avoid using weak passwords and setting the same password for multiple accounts.',
   'Change Password': 'Change Password',
   'Create User': 'Create User',
-
   'Last Login Time': 'Last Login',
   'Login History': 'Login History',
   'New Password': 'New Password',
@@ -55,7 +54,6 @@ module.exports = {
   users: 'users',
 
   user_active: 'Active',
-
   USER_CREATE_DESC:
     'This module allows the system admin to manage accounts, such as creating/updating/reading/deleting an account. The admin can also manage the role of each account. Users can log in the platform through their account name or email address.',
   ROLE_BASEINFO_DESC: '',

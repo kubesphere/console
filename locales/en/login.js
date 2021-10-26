@@ -22,7 +22,6 @@ module.exports = {
   'Username or Email': 'Username or Email',
   Captcha: 'Captcha',
   'User does not exist': 'User does not exist',
-
   'Unable to access the backend services':
     'Unable to access the backend services',
   'Unable to access the api server': 'Unable to access the api server',
@@ -35,7 +34,6 @@ module.exports = {
 
   'Too many failed login attempts, please wait!':
     'Too many failed login attempts, please wait!',
-
   'Please input captch': 'Please enter the captcha.',
   'Please confirm your account info': 'Please confirm your account information',
   'Please input username': 'Please enter your username.',
