@@ -116,7 +116,9 @@ export default class ClusterTitle extends Component {
           </div>
           <div className={styles.description}>
             {isReady || noStatus ? (
-              <p className="ellipsis">{cluster.description || '-'}</p>
+              <p className={classNames('ellipsis', styles.ellipsis)}>
+                {cluster.description || '-'}
+              </p>
             ) : (
               <StatusReason data={cluster} />
             )}

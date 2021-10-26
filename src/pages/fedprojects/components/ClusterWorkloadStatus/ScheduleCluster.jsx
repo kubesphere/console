@@ -127,7 +127,7 @@ export default class ScheduleCluster extends Component {
     )
 
     return (
-      <div className={classNames(styles.cluster, styles.scheduleCluster)}>
+      <div className={classNames(styles.scheduleCluster)}>
         <ClusterTitle cluster={cluster} tagClass="float-right" theme="light" />
         <div className={styles.bottom}>
           <div className={styles.replicas}>
