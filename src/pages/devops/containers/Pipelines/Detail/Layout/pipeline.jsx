@@ -185,6 +185,7 @@ export default class PipelineDetailLayout extends React.Component {
           this.trigger('resource.delete', {
             devops,
             cluster,
+            type: this.name,
             detail: { devops, cluster, name: this.store.detail.name },
             success: () => {
               this.routing.push(
