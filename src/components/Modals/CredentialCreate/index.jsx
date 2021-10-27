@@ -157,6 +157,7 @@ export default class CredentialModal extends React.Component {
   handleTypeChange = type => {
     this.type = type
     this.formData[type] = { id: get(this.formData, 'id', '') }
+
     if (!this.kubeconfig && this.type === 'kubeconfig') {
       this.fetchKubeConfig()
     }
@@ -207,6 +208,7 @@ export default class CredentialModal extends React.Component {
             <Form.Item label={t('USERNAME')}>
               <Input
                 name="username_password.username"
+                defaultValue="admin"
                 disabled={
                   this.props.sourceType && this.props.sourceType === 'github'
                 }
