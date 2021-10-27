@@ -72,7 +72,13 @@ export default class ContainerImages extends Component {
   }
 
   render() {
-    const { cluster, namespace, formData, containerType } = this.props
+    const {
+      cluster,
+      namespace,
+      formData,
+      containerType,
+      supportGpuSelect,
+    } = this.props
     const { quota, limitRanges, imageRegistries } = this.state
 
     return (
@@ -89,6 +95,7 @@ export default class ContainerImages extends Component {
           limitRanges={limitRanges}
           imageRegistries={imageRegistries}
           defaultContainerType={containerType}
+          supportGpuSelect={supportGpuSelect}
         />
       </EditForm>
     )

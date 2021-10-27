@@ -82,7 +82,7 @@ class DefaultResource extends React.Component {
           <div className={styles.contentItem}>
             <img src="/assets/GPU.svg" size={48} />
             <div className={styles.item}>
-              <div>{gpu.type ? gpu.type : t('NONE')}</div>
+              <div>{gpu.value ? gpu.type : t('NONE')}</div>
               <p>{t('GPU_TYPE_LOW')}</p>
             </div>
             <div className={styles.item}>

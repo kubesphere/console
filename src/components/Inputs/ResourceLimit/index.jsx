@@ -223,7 +223,7 @@ export default class ResourceLimit extends React.Component {
     if (!isEmpty(defaultValue)) {
       return ResourceLimit.getGpuFromProps(defaultValue)
     }
-    return ResourceLimit.defaultValue()
+    return ResourceLimit.getGpuFromProps()
   }
 
   static getDefaultRequestValue(props, key) {
