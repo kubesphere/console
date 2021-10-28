@@ -30,7 +30,7 @@ import styles from './index.scss'
 @withList({
   store: new AuditStore(),
   module: 'apps',
-  name: 'AUDIT',
+  name: 'RELEASE_RECORD',
   rowKey: 'status_time',
 })
 export default class AuditRecord extends React.Component {
@@ -87,7 +87,7 @@ export default class AuditRecord extends React.Component {
     const { tableProps } = this.props
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
-        <div className={styles.title}>{t('APP_REVIEW')}</div>
+        <div className={styles.title}>{t('APP_RELEASE')}</div>
         <Table
           {...tableProps}
           tableActions={this.tableActions}

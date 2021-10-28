@@ -105,15 +105,15 @@ export default class HelmUpload extends Component {
         </dl>
         <dl>
           <dt>{createInfo.version_name || '-'}</dt>
-          <dd>{t('APP_VERSION')}</dd>
+          <dd>{t('VERSION')}</dd>
         </dl>
         <dl>
           <dt>{createInfo.home || '-'}</dt>
-          <dd>{t('APP_HOME')}</dd>
+          <dd>{t('HOMEPAGE')}</dd>
         </dl>
         <dl>
           <dt>{createInfo.description || '-'}</dt>
-          <dd>{t('APP_DESCRIPTION')}</dd>
+          <dd>{t('DESCRIPTION')}</dd>
         </dl>
       </div>
     )
@@ -148,11 +148,7 @@ export default class HelmUpload extends Component {
           </Upload>
           {this.renderInfo()}
         </div>
-        {error && (
-          <div className={styles.error}>
-            {t(error)}, {t('UPLOAD_AGAIN_TIP')}
-          </div>
-        )}
+        {error && <div className={styles.error}>{t(`${error}_DESC`)}</div>}
       </div>
     )
   }

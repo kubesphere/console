@@ -143,7 +143,7 @@ export default class LogSearchModal extends React.Component {
           className="no-shadow"
           icon="cluster"
           title={t('NO_AVAILABLE_CLUSTER')}
-          desc={t('LOGGING_NOT_ENABLED_DESC')}
+          desc={t.html('LOGGING_NOT_ENABLED_DESC')}
         />
       )
     }

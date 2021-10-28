@@ -274,7 +274,7 @@ export default class UserSettingModal extends React.Component {
     return (
       <Modal
         bodyClassName={styles.body}
-        title={t('User Settings')}
+        title={t('USER_SETTINGS')}
         icon="wrench"
         width={1162}
         hideFooter

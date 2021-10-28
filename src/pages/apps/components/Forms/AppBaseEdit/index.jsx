@@ -122,11 +122,11 @@ export default class AppBaseEdit extends React.Component {
               beforeUpload={this.checkPackage}
               accept={UPLOAD_FILE_TYPES.icon}
             >
-              <Button>{t('UPLOAD_ICON')}</Button>
+              <Button>{t('UPLOAD')}</Button>
             </Upload>
           </div>
         </div>
-        {error && <div className={styles.error}>{t(error)}</div>}
+        {error && <div className={styles.error}>{t(`${error}_DESC`)}</div>}
       </>
     )
   }
@@ -156,10 +156,7 @@ export default class AppBaseEdit extends React.Component {
               maxLength={20}
             />
           </Form.Item>
-          <Form.Item
-            label={t('APP_DESCRIPTION')}
-            desc={t('APP_DESCRIPTION_DESC')}
-          >
+          <Form.Item label={t('DESCRIPTION')} desc={t('APP_DESCRIPTION_DESC')}>
             <TextArea
               name="description"
               maxLength={120}

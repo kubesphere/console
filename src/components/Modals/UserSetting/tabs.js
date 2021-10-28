@@ -29,7 +29,7 @@ export default [
   {
     icon: 'ssh',
     name: 'passwordSetting',
-    title: 'Password Setting',
+    title: 'PASSWORD_SETTINGS',
     component: PasswordSetting,
   },
 ]
