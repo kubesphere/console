@@ -49,6 +49,7 @@ module.exports = {
   GPU_TYPE_LOW: 'GPU type',
   GPU_LIMIT: 'GPU Limit',
   GPU_LIMIT_LOW: 'GPU limit',
+  GPU_SETTING_TIP: 'Set the GPU limit to blank and cancel the limit.',
   CONFIGMAP: 'ConfigMap',
   CONFIGMAP_PL: 'ConfigMaps',
   CONFIGMAPS: 'ConfigMaps',

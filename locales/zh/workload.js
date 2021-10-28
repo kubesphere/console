@@ -59,6 +59,7 @@ module.exports = {
   GPU_TYPE_LOW: 'GPU 类型',
   GPU_LIMIT_LOW: 'GPU 限制',
   GPU_LIMIT: 'GPU限制',
+  GPU_SETTING_TIP: '设置GPU限制为空即为取消该限制。',
   'Service Configuration': '服务配置',
 
   'Available number of nodes scheduled': '可用节点数',
