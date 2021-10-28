@@ -26,7 +26,7 @@ import FedProjectAddClusterModal from 'workspaces/components/Modals/FedProjectAd
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 import FED_TEMPLATES from 'utils/fed.templates'
-import { cancel_Num_Dot } from 'utils'
+import { multiCluster_overrides_gpu } from 'utils'
 
 import FederatedStore from 'stores/federated'
 import ProjectStore from 'stores/project'
@@ -150,21 +150,7 @@ export default {
           )
 
           const overrides = get(data, 'spec.overrides', [])
-          overrides.forEach(clusterOverride => {
-            clusterOverride.clusterOverrides.forEach(item => {
-              if (item.path.endsWith('resources')) {
-                const gpu = get(item.value, 'gpu', {})
-                if (!isEmpty(gpu) && gpu.type !== '' && gpu.value !== '') {
-                  set(item.value, `limits["${gpu.type}"]`, gpu.value)
-                  set(item.value, `requests["${gpu.type}"]`, gpu.value)
-                }
-                item.value = omit(item.value, 'gpu')
-                Object.keys(item.value).forEach(key => {
-                  cancel_Num_Dot(item.value[key], item.value[key])
-                })
-              }
-            })
-          })
+          multiCluster_overrides_gpu(overrides)
 
           const customMode = get(data, 'spec.template.spec.customMode', {})
           if (!isEmpty(customMode)) {
