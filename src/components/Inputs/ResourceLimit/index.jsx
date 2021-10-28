@@ -719,6 +719,13 @@ export default class ResourceLimit extends React.Component {
             {supportGpuSelect && this.renderGpuSelect()}
           </Columns>
         </div>
+        {supportGpuSelect && (
+          <Alert
+            type="info"
+            className="margin-t12"
+            message={t('GPU_SETTING_TIP')}
+          ></Alert>
+        )}
         {this.ifRenderTip() && this.renderTip()}
         {(cpuError || memoryError) && (
           <Alert
