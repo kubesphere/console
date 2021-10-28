@@ -97,7 +97,7 @@ export default class BaseInfoModal extends React.Component {
               { required: true, message: t('PIPELINE_NAME_TIP') },
               {
                 pattern: PATTERN_NAME,
-                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC'),
               },
               { validator: this.validator },
             ]}

@@ -42,22 +42,22 @@ const RUN_PATH = `${BRANCH_PATH}/run/:runName`
 const PATH_NO_BRANCH = `${PATH}/run/:runName`
 
 const PIPELINE_ROUTES = [
-  { name: 'pipeline', title: 'PIPELINE', component: Pipeline },
-  { name: 'code-quality', title: 'Code Quality', component: CodeQuality },
-  { name: 'activity', title: 'ACTIVITY', component: Activity },
-  { name: 'branch', title: 'Branches', component: Branch },
-  { name: 'pull-request', title: 'Pull Requestes', component: PullRequest },
+  { name: 'pipeline', title: 'TASK_STATUS', component: Pipeline },
+  { name: 'code-quality', title: 'CODE_CHECK', component: CodeQuality },
+  { name: 'activity', title: 'RUN_RECORDS', component: Activity },
+  { name: 'branch', title: 'BRANCH_PL', component: Branch },
+  { name: 'pull-request', title: 'PULL_REQUEST_PL', component: PullRequest },
 ]
 
 const PIPELINE_BRANCH_ROUTES = [
-  { name: 'activity', title: 'ACTIVITY', component: Activity },
-  { name: 'code-quality', title: 'Code Quality', component: CodeQuality },
+  { name: 'activity', title: 'RUN_RECORDS', component: Activity },
+  { name: 'code-quality', title: 'CODE_CHECK', component: CodeQuality },
 ]
 
 const PIPELINE_RUN_ROUTES = [
-  { name: 'task-status', title: 'TaskStatus', component: TaskStatus },
-  { name: 'commit', title: 'Commit', component: Commit },
-  { name: 'artifacts', title: 'Artifacts', component: Artifacts },
+  { name: 'task-status', title: 'TASK_STATUS', component: TaskStatus },
+  { name: 'commit', title: 'COMMIT_PL', component: Commit },
+  { name: 'artifacts', title: 'ARTIFACT_PL', component: Artifacts },
 ]
 
 export default [

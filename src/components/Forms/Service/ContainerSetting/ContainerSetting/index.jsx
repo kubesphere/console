@@ -174,7 +174,7 @@ export default class ContainerSetting extends React.Component {
             { required: true, message: t('NAME_EMPTY_DESC') },
             {
               pattern: PATTERN_NAME,
-              message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
+              message: t('INVALID_NAME_DESC'),
             },
           ]}
         >

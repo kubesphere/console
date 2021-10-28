@@ -19,6 +19,7 @@
 module.exports = {
   BASIC_INFORMATION: '基本信息',
   NAME: '名称',
+  RECORD: 'Record',
   NAME_VALUE: '名称：{value}',
   ROLE: '角色',
   ROLE_PL: '角色',
@@ -57,6 +58,7 @@ module.exports = {
   DROP: '移除',
   BASE: '目标',
   STRATEGY: '策略',
+  STRATEGY_PL: '策略',
 
   // Cluster Node List
   MASTER: '主节点',
@@ -94,6 +96,7 @@ module.exports = {
   UPDATED_AGO: '更新于 {value}',
   STATUS: '状态',
   TYPE: '类型',
+  TYPE_VALUE: '类型：{value}',
   TYPE_CONFIGMAP: '存储卷类型：配置字典',
   TYPE_SECRET: '存储卷类型：保密字典',
   TYPE_EMPTYDIR: '存储卷类型：EmptyDir',
@@ -190,7 +193,6 @@ module.exports = {
   Active: '活跃',
   Running: '运行中',
   Succeeded: '运行中',
-  'Not Running': '未运行',
   Updating: '更新中',
   Warning: '异常',
   Draining: '疏散中',
@@ -253,6 +255,7 @@ module.exports = {
   LATEST_VERSION_SCAP: '最新版本',
   Source: '来源',
   HEALTH_STATUS: '健康状态',
+  HEALTH_STATUS_SCAP: '健康状态',
 
   EDIT_INFORMATION: '编辑信息',
   OK: '确定',
@@ -290,6 +293,7 @@ module.exports = {
   RESOURCE_NOT_FOUND: '没有找到资源。',
   NO_AVAILABLE_RESOURCE_VALUE: '暂时无可用{resource}',
   NO_RESOURCE_FOUND: '暂无资源',
+  NO_REPO_FOUND_DESC: '没有找到代码仓库。',
   NO_SERVICE_FOUND: '暂无服务',
   NO_AVAILABLE_RESOURCE: '暂无可用资源',
   'No Data': '暂无数据',
@@ -350,6 +354,7 @@ module.exports = {
 
   Add: '添加',
   ADD: '添加',
+  ADD_STRATEGY: '添加策略',
   'Add ': '添加',
   'Edit ': '编辑',
   Set: '设置',
@@ -401,6 +406,7 @@ module.exports = {
   DESCRIPTION: '描述',
 
   NAME_EMPTY_DESC: '请设置一个名称。',
+  PARAMETER_NAME_EMPTY_DESC: '请设置参数的名称。',
   ENTER_INTEGER_OR_PERCENTAGE: '请输入整数或百分比。',
   MAX_UNAVAILABLE_EMPTY:
     '请设置更新过程中允许的不可用容器组副本的最大数量或百分比。',
@@ -422,7 +428,7 @@ module.exports = {
 
   'Log Out': '登出',
   About: '关于',
-  'User Settings': '个人设置',
+  'User Settings': '用户设置',
   Language: '语言',
 
   READ: '读',
@@ -479,7 +485,8 @@ module.exports = {
 
   REMOVE_USER_TIP: '确定移除用户 <strong>{username}</strong> ? ',
 
-  REMOVE_MEMBER_TIP: '确定移除成员 <strong>{resource}</strong> ?',
+  REMOVE_MEMBER_TIP:
+    '请输入用户名 <strong>{resource}</strong> 以确认您了解此操作的风险。',
 
   REMOVE_GROUP_TIP: '确定移除组织 <strong>{resource}</strong> ?',
 
@@ -487,9 +494,9 @@ module.exports = {
   TIPS: '帮助信息',
 
   ADDED_SUCCESS_DESC: '添加成功。',
-  CREATE_SUCCESSFUL: '创建成功。',
-  UPDATED_SUCCESS_DESC: '更新成功。',
-  DELETE_SUCCESS_DESC: '删除成功。',
+  CREATE_SUCCESS: '创建成功。',
+  UPDATE_SUCCESS: '更新成功。',
+  DELETE_SUCCESS: '删除成功。',
   STOP_SUCCESS_DESC: '停止成功。',
   'Canceled Successfully': '取消成功',
 
@@ -514,12 +521,15 @@ module.exports = {
   'Sure to delete': '确认删除',
   'Sure to remove': '确认移除',
   ACTIVITY: '活动',
+  RUN_RECORDS: '运行记录',
+  VIEW_RECORDS: '查看记录',
   Task: '任务',
+  STEPS_COMPLETE_TOTAL: '步骤：{complete}/{total}',
   Success: '成功',
   description: '描述',
   Agent: '代理',
   Confirm: '确认',
-  Stage: '阶段',
+  STAGE: '阶段',
   DEFAULT_VALUE: '默认值',
   Username: '用户名',
   'Unknown User': '未知用户',
@@ -541,15 +551,14 @@ module.exports = {
   platform: '平台',
   RESELECT: '重新选择',
   body: '内容',
-  Author: '作者',
-  Size: '大小',
+  AUTHOR: '作者',
+  SIZE: '大小',
   password: '密码',
   NONE: '无',
   To: '至',
   to: '至',
   Download: '下载',
-  Aborted: '已取消',
-  Paused: '已暂停',
+  PAUSED: '已暂停',
   PARAM_REQUIRED: '此参数不能为空。',
   Images: '镜像',
   filename: '文件名',
@@ -560,7 +569,7 @@ module.exports = {
 
   'Resource List': '资源列表',
 
-  'Platform-level Access Control': '平台级',
+  PLATFORM_LEVEL_ACCESS_CONTROL: '平台级访问控制',
 
   NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，系统将在 {time}s 后返回 <a href="{link}">工作台</a>',

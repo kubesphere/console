@@ -128,7 +128,7 @@ export default class JobDetail extends React.Component {
   getAttrs = () => {
     const { detail } = this.store
     const { spec = {} } = detail
-    const status = this.suspend ? t('Suspend') : t('Running')
+    const status = this.suspend ? t('Suspend') : t('RUNNING')
 
     const { cluster, namespace } = this.props.match.params
 

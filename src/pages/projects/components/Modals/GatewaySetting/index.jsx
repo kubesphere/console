@@ -229,7 +229,7 @@ export default class GatewaySettingModal extends React.Component {
                       {t('TRACING')}
                     </div>
                     <div className={styles.toggleTip}>
-                      {t('GATEWAY_APPLICATION_GOVERNANCE_TIP')}
+                      {t.html('GATEWAY_TRACING_TIP')}
                     </div>
                   </div>
                 )}

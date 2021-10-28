@@ -45,7 +45,7 @@ export default {
               })
               .then(() => {
                 Modal.close(modal)
-                Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+                Notify.success({ content: t('CREATE_SUCCESS') })
                 success && success()
               })
           } else {
@@ -56,7 +56,7 @@ export default {
               })
               .then(() => {
                 Modal.close(modal)
-                Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+                Notify.success({ content: t('CREATE_SUCCESS') })
                 success && success()
               })
           }
@@ -77,7 +77,7 @@ export default {
         onOk: data => {
           set(data, 'metadata.resourceVersion', detail.resourceVersion)
           store.update(detail, data).then(() => {
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESS') })
             success && success()
           })
         },

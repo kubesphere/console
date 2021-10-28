@@ -106,7 +106,7 @@ export default class PipelineCard extends React.Component {
                   style.content__status__quene
                 )}
               >
-                {t('Aborted')}
+                {t('ABORTED')}
               </div>
             </div>
           </div>
@@ -129,7 +129,7 @@ export default class PipelineCard extends React.Component {
             <div className={style.pipelineCard__content}>
               <div className={style.pipelineCard__item}>
                 <p className={style.content__title__paused}>
-                  {t('Wait for interactive input')}
+                  {t('WAITING_FOR_INPUT')}
                 </p>
                 <div
                   className={classNames(
@@ -137,7 +137,7 @@ export default class PipelineCard extends React.Component {
                     style.content__status__quene
                   )}
                 >
-                  {t('Task failed, not operational')}
+                  {t('TASK_FAILED_NOT_OPERATIONAL')}
                 </div>
               </div>
             </div>
@@ -158,7 +158,7 @@ export default class PipelineCard extends React.Component {
           <div className={style.pipelineCard__content}>
             <div className={style.pipelineCard__item}>
               <p className={style.content__title__paused}>
-                {t('Wait for interactive input')}
+                {t('WAITING_FOR_INPUT')}
               </p>
               <p className={style.content__title__paused}>
                 {get(hasInputStep, 'input.message')}
@@ -177,7 +177,7 @@ export default class PipelineCard extends React.Component {
                     onClick={this.handleProceed(hasInputStep, node.id)}
                     disabled={!hasAuthority}
                   >
-                    {t(get(hasInputStep, 'input.ok') || 'Proceed')}
+                    {t(get(hasInputStep, 'input.ok') || 'PROCEED')}
                   </Button>
                   <Button
                     size="small"
@@ -186,7 +186,7 @@ export default class PipelineCard extends React.Component {
                     onClick={this.handleBreak(hasInputStep, node.id)}
                     disabled={!hasAuthority}
                   >
-                    {t('Break')}
+                    {t('BREAK')}
                   </Button>
                 </React.Fragment>
               </div>
@@ -207,9 +207,12 @@ export default class PipelineCard extends React.Component {
         <div className={style.pipelineCard__content}>
           <div className={style.pipelineCard__item}>
             {!isQueue ? (
-              <div className={style.content__title}>{`${t('Task')} (${
-                successIndex === '' ? 0 : successIndex + 1
-              } / ${steps.length})`}</div>
+              <div className={style.content__title}>
+                {t('STEPS_COMPLETE_TOTAL', {
+                  complete: successIndex === '' ? 0 : successIndex + 1,
+                  total: steps.length,
+                })}
+              </div>
             ) : null}
             {isQueue && node.causeOfBlockage ? (
               <p className={style.errorMessage}>{node.causeOfBlockage}</p>
@@ -233,37 +236,37 @@ export default class PipelineCard extends React.Component {
 
   renderStatus(node, hasError) {
     if (!node.state || node.state === 'QUEUED') {
-      return t('Queue')
+      return t('QUEUED')
     }
     if (node.state === 'NOT_BUILT') {
-      return t('Not Build')
+      return t('NOT_BUILT')
     }
     if (node.state === 'SKIPPED') {
-      return t('Skipped')
+      return t('SKIPPED')
     }
     if (node.state === 'PAUSED') {
-      return t('Paused')
+      return t('PAUSED')
     }
     if (node.result === 'ABORTED') {
-      return t('Aborted')
+      return t('ABORTED')
     }
     if (hasError || node.result === 'FAILURE') {
       const errorMessage = get(hasError, 'displayName', '')
       if (errorMessage === 'Wait for interactive input') {
         return (
-          <span className={style.errorMessage}>{t('Cancelled in review')}</span>
+          <span className={style.errorMessage}>{t('CANCELLED_IN_REVIEW')}</span>
         )
       }
       return (
         errorMessage || (
-          <span className={style.errorMessage}>{t('Failure')}</span>
+          <span className={style.errorMessage}>{t('FAILED')}</span>
         )
       )
     }
     if (node.state !== 'FINISHED') {
-      return t('Running')
+      return t('RUNNING')
     }
-    return t('Success')
+    return t('SUCCESSFUL')
   }
 
   render() {

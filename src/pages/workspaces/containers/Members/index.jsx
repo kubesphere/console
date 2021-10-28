@@ -62,7 +62,7 @@ export default class Accounts extends React.Component {
       {
         key: 'modify',
         icon: 'pen',
-        text: t('CHANGE_MEMBER_ROLE'),
+        text: t('CHANGE_ROLE'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -77,7 +77,7 @@ export default class Accounts extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('REMOVE_MEMBER'),
+        text: t('REMOVE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
@@ -116,7 +116,7 @@ export default class Accounts extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('REMOVE_MEMBER_PL'),
+          text: t('REMOVE'),
           action: 'delete',
           onClick: () =>
             trigger('member.remove.batch', {

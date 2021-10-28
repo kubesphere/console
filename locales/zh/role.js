@@ -254,30 +254,28 @@ module.exports = {
 
   'Unable to delete preset role': '无法删除预置角色',
 
-  ROLE_PLATFORM_ADMIN: '平台管理员，可以管理 KubeSphere 平台上的所有资源。',
-  ROLE_PLATFORM_REGULAR:
-    '平台普通用户，在被邀请加入企业空间之前没有任何资源操作权限。',
-  ROLE_USERS_MANAGER: '平台用户管理员，可以管理 KubeSphere 平台上的所有用户。',
-  ROLE_WORKSPACES_MANAGER:
-    '平台企业空间管理员，可以管理 KubeSphere 平台上的所有企业空间。',
+  ROLE_PLATFORM_ADMIN: '管理 KubeSphere 平台上的所有资源。',
+  ROLE_PLATFORM_REGULAR: '被邀请加入企业空间之前没有任何资源操作权限。',
+  ROLE_USERS_MANAGER: '管理 KubeSphere 平台上的所有用户。',
+  ROLE_WORKSPACES_MANAGER: '管理 KubeSphere 平台上的所有企业空间。',
 
-  ROLE_CLUSTER_ADMIN: '集群管理员，可以管理集群中所有的资源。',
-  ROLE_CLUSTER_VIEWER: '集群观察者，可以查看集群下所有的资源。',
+  ROLE_CLUSTER_ADMIN: '管理集群中的所有资源。',
+  ROLE_CLUSTER_VIEWER: '查看集群中的所有资源。',
 
-  ROLE_WORKSPACE_ADMIN: '企业空间管理员，可以管理企业空间中的所有资源。',
-  ROLE_WORKSPACE_REGULAR: '企业空间普通成员，可以查看企业空间设置。',
-  ROLE_WORKSPACE_VIEWER: '企业空间观察员，可以查看企业空间中的所有资源。',
+  ROLE_WORKSPACE_ADMIN: '管理企业空间中的所有资源。',
+  ROLE_WORKSPACE_REGULAR: '查看企业空间设置。',
+  ROLE_WORKSPACE_VIEWER: '查看企业空间中的所有资源。',
   ROLE_WORKSPACE_SELF_PROVISIONER:
-    '企业空间普通成员，可以查看企业设置、管理应用模板、创建项目和 DevOps 项目。',
+    '查看企业设置、管理应用模板、创建项目和 DevOps 项目。',
 
-  ROLE_PROJECT_ADMIN: '项目管理员，可以管理项目中的所有资源。',
-  ROLE_PROJECT_OPERATOR: '项目操作员，可以管理项目中除用户和角色之外的资源。',
-  ROLE_PROJECT_VIEWER: '项目观察员，可以查看项目中的所有资源。',
+  ROLE_PROJECT_ADMIN: '管理项目中的所有资源。',
+  ROLE_PROJECT_OPERATOR: '管理项目中除用户和角色之外的资源。',
+  ROLE_PROJECT_VIEWER: '查看项目中的所有资源。',
 
-  ROLE_DEVOPS_ADMIN: 'DevOps 项目管理员，可以管理 DevOps 项目中的所有资源。',
+  ROLE_DEVOPS_ADMIN: '管理 DevOps 项目中的所有资源。',
   ROLE_DEVOPS_OPERATOR:
-    'DevOps 项目操作员，可以管理 DevOps 凭证和流水线以及查看 DevOps 项目中成员和角色。',
-  ROLE_DEVOPS_VIEWER: 'DevOps 项目观察员，可以查看 DevOps 项目中的所有资源。',
+    '管理 DevOps 凭证和流水线以及查看 DevOps 项目中成员和角色。',
+  ROLE_DEVOPS_VIEWER: '查看 DevOps 项目中的所有资源。',
 
   ACCOUNT_ROLE_DESC: '帐户角色可以定义平台内的帐户拥有的权限',
   ACCOUNT_ROLE_CREATE_DESC: '帐户角色可以定义平台内的帐户拥有的权限',

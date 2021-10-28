@@ -65,7 +65,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+          Notify.success({ content: t('CREATE_SUCCESS') })
           success && success()
         },
         cluster,
@@ -85,7 +85,7 @@ export default {
         onOk: () => {
           projectStore.delete({ name: detail.name }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+            Notify.success({ content: t('DELETE_SUCCESS') })
             success && success()
           })
         },
@@ -119,7 +119,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESS') })
           store.setSelectRowKeys([])
           success && success()
         },
@@ -158,7 +158,7 @@ export default {
           }
 
           store.update(detail, data).then(() => {
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESS') })
             Modal.close(modal)
             success && success()
           })
@@ -180,7 +180,7 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           store.patch(detail, data).then(() => {
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESS') })
             Modal.close(modal)
             success && success()
           })

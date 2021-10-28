@@ -331,45 +331,33 @@ module.exports = {
   WORKSPACE_SETTINGS_MANAGEMENT_DESC:
     'Manage workspace settings and edit workspace information and network policies.',
 
-  ROLE_PLATFORM_ADMIN:
-    'Platform administrator who can manage all resources on the KubeSphere platform.',
+  ROLE_PLATFORM_ADMIN: 'Manage all resources on the KubeSphere platform.',
   ROLE_PLATFORM_REGULAR:
-    'Platform regular user who has no access to any resources before joining a workspace.',
+    'Cannot access any resources before joining a workspace.',
 
-  ROLE_CLUSTER_ADMIN:
-    'Administrator who has full control over all resources in the cluster.',
-  ROLE_CLUSTER_VIEWER: 'Viewer who can view all resources in the cluster.',
-  ROLE_USERS_MANAGER:
-    'Platform user manager who can manage all users on the KubeSphere platform.',
-  ROLE_WORKSPACES_MANAGER:
-    'Platform workspace manager who can manage all workspaces on the KubeSphere platform.',
+  ROLE_CLUSTER_ADMIN: 'Control all resources in the cluster.',
+  ROLE_CLUSTER_VIEWER: 'View all resources in the cluster.',
+  ROLE_USERS_MANAGER: 'Manage all users on the KubeSphere platform.',
+  ROLE_WORKSPACES_MANAGER: 'Manage all workspaces on the KubeSphere platform.',
 
-  ROLE_WORKSPACE_ADMIN:
-    'Workspace administrator who has full control over all resources in the workspace.',
-  ROLE_WORKSPACE_REGULAR:
-    'Workspace regular member who can view workspace settings.',
-  ROLE_WORKSPACE_VIEWER:
-    'Workspace viewer who can view all resources in the workspace.',
+  ROLE_WORKSPACE_ADMIN: 'Control all resources in the workspace.',
+  ROLE_WORKSPACE_REGULAR: 'View workspace settings.',
+  ROLE_WORKSPACE_VIEWER: 'View all resources in the workspace.',
   ROLE_WORKSPACE_SELF_PROVISIONER:
-    'Workspace regular member who can view workspace settings, manage app templates, and create projects and DevOps projects.',
+    'View workspace settings, manage app templates, and create projects and DevOps projects.',
 
-  ROLE_PROJECT_ADMIN:
-    'Project administrator who has full control over all resources in the project.',
+  ROLE_PROJECT_ADMIN: 'Control all resources in the project.',
   ROLE_PROJECT_REGULAR:
-    'Project regular user who can manage resources other than users and roles in the project.',
-  ROLE_PROJECT_VIEWER:
-    'Project viewer who can view all resources in the project.',
+    'Manage resources other than users and roles in the project.',
+  ROLE_PROJECT_VIEWER: 'View all resources in the project.',
   ROLE_PROJECT_OPERATOR:
-    'Project operator who can manage resources other than users and roles in the project.',
+    'Manage resources other than users and roles in the project.',
 
-  ROLE_DEVOPS_ADMIN:
-    'DevOps project administrator who has full control over all resources in the DevOps project.',
+  ROLE_DEVOPS_ADMIN: 'Control all resources in the DevOps project.',
   ROLE_DEVOPS_REGULAR:
-    'DevOps project operator who can manage pipelines and credentials and view members and roles in the DevOps project.',
-  ROLE_DEVOPS_VIEWER:
-    'DevOps project viewer who can view all resources in the DevOps project.',
-  ROLE_DEVOPS_OPERATOR:
-    'Operator who can create pipeline credentials in the DevOps project.',
+    'Manage pipelines and credentials and view members and roles in the DevOps project.',
+  ROLE_DEVOPS_VIEWER: 'View all resources in the DevOps project.',
+  ROLE_DEVOPS_OPERATOR: 'Create credentials in the DevOps project.',
 
   NO_AUTHORIZED_USER_DESC: 'This role has not been assigned to any user.',
 

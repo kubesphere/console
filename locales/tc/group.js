@@ -30,6 +30,7 @@ module.exports = {
   ADD_PROJECT: '添加項目',
   'project roles': '項目角色',
   DEVOPS_PROJECT_ROLE: 'DevOps 项目角色',
+  DEVOPS_PROJECT_ROLE_SCAP: 'DevOps 项目角色',
   ADD_DEVOPS_PROJECT: '添加 DevOps 项目',
   SELECT_ROLE_TIP: 'Please select a role.',
   DEPARTMENT: 'Department',

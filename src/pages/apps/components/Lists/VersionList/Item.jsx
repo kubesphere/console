@@ -139,7 +139,7 @@ export default class VersionItem extends React.PureComponent {
     this.store.delete({ app_id, version_id }).then(() => {
       this.hideHandleModal()
       Notify.success({
-        content: `${t('DELETE_SUCCESS_DESC')}`,
+        content: t('DELETE_SUCCESS'),
       })
       this.store.fetchList({ app_id })
     })

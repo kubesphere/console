@@ -149,9 +149,7 @@ export default class RunDetailLayout extends React.Component {
   }
 
   get createTime() {
-    return moment(this.store.detail.createTime).format(
-      `${t('MMMM Do YYYY')} HH:mm`
-    )
+    return moment(this.store.detail.createTime).format('YYYY-MM-DD HH:mm:ss')
   }
 
   get updateTime() {
@@ -160,7 +158,7 @@ export default class RunDetailLayout extends React.Component {
     if (!updateTime) {
       return '-'
     }
-    return moment(updateTime).format(`${t('MMMM Do YYYY')} HH:mm`)
+    return moment(updateTime).format('YYYY-MM-DD HH:mm:ss')
   }
 
   get enabledActions() {
@@ -188,11 +186,11 @@ export default class RunDetailLayout extends React.Component {
 
     return [
       {
-        name: t('ACTIVITY'),
+        name: t('RUN_COUNT'),
         value: runDetail.id,
       },
       {
-        name: t('STATUS'),
+        name: t('TASK_STATUS'),
         value: <Status {...getPipelineStatus(runDetail)} />,
       },
       {
@@ -228,9 +226,9 @@ export default class RunDetailLayout extends React.Component {
         {
           label: branch
             ? runId
-              ? t('ACTIVITY')
-              : t('BRANCH_SI')
-            : t('ACTIVITY'),
+              ? t('BRANCH_PL')
+              : t('RUN_RECORDS')
+            : t('RUN_RECORDS'),
           url: branch
             ? `${this.listUrl}/${name}/branch/${branch}/activity`
             : `${this.listUrl}/${name}/activity`,

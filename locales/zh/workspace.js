@@ -100,7 +100,7 @@ module.exports = {
   WORKSPACE_MEMBER_DESC:
     '企业空间成员可以查看或管理企业空间资源。您可以管理企业空间中的成员并控制成员权限。',
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请企业空间成员',
-  INVITE_WORKSPACE_MEMBER_DESC: '您可以邀请成员至该企业空间。',
+  INVITE_WORKSPACE_MEMBER_DESC: '邀请用户到当前企业空间。',
 
   DELETE_WORKSPACE_TIP:
     '确定删除企业空间 <strong>{resource}</strong> ? 删除后将无法恢复, 企业空间下的资源也同时会被销毁。',

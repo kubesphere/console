@@ -116,13 +116,13 @@ class BaseInfo extends React.Component {
         key: 'edit',
         icon: 'pen',
         action: 'edit',
-        text: t('EDIT_INFORMATION'),
+        text: t('EDIT'),
       },
       {
         key: 'delete',
         icon: 'trash',
         action: 'delete',
-        text: t('DELETE_DEVOPS_PROJECT'),
+        text: t('DELETE'),
       },
     ]
   }
@@ -148,7 +148,7 @@ class BaseInfo extends React.Component {
       )
       .then(() => {
         this.hideEdit()
-        Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+        Notify.success({ content: t('UPDATE_SUCCESS') })
         this.store.fetchDetail({
           workspace: this.workspace,
           ...this.props.match.params,
@@ -210,7 +210,7 @@ class BaseInfo extends React.Component {
           <Icon name="strategy-group" size={40} />
           <div className={styles.item}>
             <div>{getDisplayName(detail)}</div>
-            <p>{t('DEVOPS_PROJECT')}</p>
+            <p>{t('DEVOPS_PROJECT_SCAP')}</p>
           </div>
           <div className={styles.item}>
             <div>
@@ -226,7 +226,7 @@ class BaseInfo extends React.Component {
             <div>
               {getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`)}
             </div>
-            <p>{t('CREATION_TIME_TCAP')}</p>
+            <p>{t('CREATION_TIME')}</p>
           </div>
           {!isEmpty(this.enabledItemActions) && (
             <div className={classNames(styles.item, 'text-right')}>
@@ -236,7 +236,7 @@ class BaseInfo extends React.Component {
                 trigger="click"
                 placement="bottomRight"
               >
-                <Button>{t('MANAGE_DEVOPS_PROJECT')}</Button>
+                <Button>{t('MANAGE')}</Button>
               </Dropdown>
             </div>
           )}
@@ -247,14 +247,22 @@ class BaseInfo extends React.Component {
               <Icon name="role" size={40} />
               <div className={styles.item}>
                 <div>{roleCount}</div>
-                <p>{t('DEVOPS_PROJECT_ROLE_PL')}</p>
+                <p>
+                  {roleCount === 1
+                    ? t('DEVOPS_PROJECT_ROLE_SCAP')
+                    : t('DEVOPS_PROJECT_ROLE_PL_SCAP')}
+                </p>
               </div>
             </div>
             <div className={styles.contentItem}>
               <Icon name="group" size={40} />
               <div className={styles.item}>
                 <div>{memberCount}</div>
-                <p>{t('DEVOPS_PROJECT_MEMBER_PL')}</p>
+                <p>
+                  {memberCount === 1
+                    ? t('DEVOPS_PROJECT_MEMBER_SCAP')
+                    : t('DEVOPS_PROJECT_MEMBER_PL_SCAP')}
+                </p>
               </div>
             </div>
           </div>
@@ -285,6 +293,7 @@ class BaseInfo extends React.Component {
         />
         <DeleteModal
           detail={data}
+          title={t('DELETE_DEVOPS_PROJECT')}
           desc={t.html('DELETE_DEVOPS_TIP', {
             resource: data.name,
           })}

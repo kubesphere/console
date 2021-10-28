@@ -191,7 +191,6 @@ module.exports = {
   SEARCH_BY_CONTAINER: '按容器搜索',
   START_TIME_COLON: '开始时间：',
   KEYWORD: '关键词',
-  TIME_RANGE: '时间范围',
   LOG: '日志',
   DISPLAY: '显示',
   HIDE: '隐藏',

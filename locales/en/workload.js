@@ -217,7 +217,8 @@ module.exports = {
   'Invalid name': 'Invalid name. {message}',
   'Invalid pod': 'Invalid value',
   INVALID_IMAGE: 'Invalid image.',
-  INVALID_NAME_DESC: 'Invalid name. {message}',
+  INVALID_NAME_DESC:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
   InvalidImageName: 'InvalidImageName',
   'is running': 'is running',
   Job: 'Job',
@@ -644,7 +645,7 @@ module.exports = {
     'Use a volume template to mount a volume with the same lifecycle as the Pod.',
 
   MORE: 'More',
-  OPERATIONS: 'Operations',
+  MANAGE: 'Manage',
 
   REVISION_ROLLBACK_SELECT: 'Please select the version to be rolled back',
   REVISION_TITLE: '{name} revision',

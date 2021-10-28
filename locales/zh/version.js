@@ -74,7 +74,7 @@ module.exports = {
 
   DOWNLOAD_SUCCESSFUL: '下载成功。',
 
-  Passed: '已通过',
+  PASSED: '已通过',
   Rejected: '已拒绝',
   Draft: '待提交',
   Suspended: '已下架',

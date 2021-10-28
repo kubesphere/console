@@ -169,7 +169,6 @@ export default class RoleDetail extends React.Component {
         },
       ],
     }
-
     return (
       <DetailPage
         stores={stores}

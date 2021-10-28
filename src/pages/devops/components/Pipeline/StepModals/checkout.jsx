@@ -131,15 +131,15 @@ export default class Checkout extends React.Component {
       >
         <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item
-            label={t('CREDENTIAL_ID')}
+            label={t('CREDENTIAL_NAME')}
             desc={
               <p>
-                {t('ADD_NEW_CREDENTIAL_DESC')}
+                {t('SELECT_CREDENTIAL_DESC')}
                 <span
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('CREATE_A_CREDENTIAL')}
+                  {t('CREATE_CREDENTIAL')}
                 </span>
               </p>
             }

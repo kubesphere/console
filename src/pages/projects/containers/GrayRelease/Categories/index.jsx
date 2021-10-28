@@ -98,7 +98,7 @@ export default class Categories extends React.Component {
     const { workspace, cluster, namespace } = this.props.match.params
     this.store.create(data, { cluster, namespace }).then(() => {
       this.hideCreate()
-      Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+      Notify.success({ content: t('CREATE_SUCCESS') })
       this.routing.push(
         `/${workspace}/clusters/${cluster}/projects/${namespace}/grayrelease/jobs`
       )

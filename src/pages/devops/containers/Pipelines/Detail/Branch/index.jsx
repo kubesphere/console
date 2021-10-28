@@ -126,7 +126,7 @@ export default class Branch extends React.Component {
     this.store.fetchDetail(params)
 
     Notify.success({
-      content: t('Scan repo success'),
+      content: t('SCAN_REPO_SUCCESS'),
     })
   }
 
@@ -165,7 +165,7 @@ export default class Branch extends React.Component {
       ),
     },
     {
-      title: t('HEALTH'),
+      title: t('HEALTH_STATUS'),
       dataIndex: 'weatherScore',
       width: '20%',
       render: weatherScore => <Health score={weatherScore} />,
@@ -204,10 +204,10 @@ export default class Branch extends React.Component {
 
     if (isEmptyList && !filters.page) {
       return (
-        <EmptyCard desc={t('No branches found')}>
+        <EmptyCard desc={t('NO_BRANCHES_FOUND')}>
           {runnable && (
             <Button type="control" onClick={this.handleScanRepository}>
-              {t('Scan Repository')}
+              {t('SCAN_REPOSITORY')}
             </Button>
           )}
         </EmptyCard>

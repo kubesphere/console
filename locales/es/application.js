@@ -27,7 +27,6 @@ module.exports = {
   ADD_ROUTE: 'Add Route',
   APP_CREATE_SERVICE_DESC: 'Agregar servicios con o sin estado',
   CREATE_SERVICE_DESC: 'Select a Service creation method.',
-  APP_DESCRIPTION: 'Descripción de la aplicación',
   APP_INTRODUCTION: 'App Introduction',
   'App store deployment': 'Despliegue desde la tienda de aplicaciones',
   'App Template': 'Plantilla de la aplicación',

@@ -265,7 +265,7 @@ class GatewayCard extends React.Component {
               trigger="click"
               placement="bottomRight"
             >
-              <Button>{t('OPERATIONS')}</Button>
+              <Button>{t('MANAGE')}</Button>
             </Dropdown>
           ),
         },

@@ -22,7 +22,7 @@ module.exports = {
   'Username or Email': '用户名或者邮箱',
   Captcha: '验证码',
   'User does not exist': '用户名不存在',
-  'Wrong username or password, please try again': '用户名或密码错误',
+  INCORRECT_USERNAME_OR_PASSWORD: '用户名或密码错误。',
   'Unable to access the backend services': '无法访问后端服务',
   'Unable to access the api server': '无法访问 API 服务器',
 
@@ -38,7 +38,8 @@ module.exports = {
   LOG_IN_WITH_TITLE: '通过 {title} 登录',
 
   INPUT_USERNAME_OR_EMAIL_TIP: '请输入用户名或邮箱。',
-  PASSWORD_EMPTY_DESC: '请设置一个密码。',
+  'Please input username or email': '请输入用户名或邮箱',
+  PASSWORD_EMPTY_DESC: '请输入一个密码。',
   'Please input captch': '请输入验证码',
   'Please confirm your account info': '请确认您的帐户信息',
   'Please input username': '请输入用户名',
@@ -50,7 +51,7 @@ module.exports = {
   'Your password must meet the following requirements':
     '您的密码必须符合如下要求',
 
-  CONFIRM_PASSWORD_TIP: '由于您是第一次登录，出于安全考虑请重置您的密码',
+  CHANGE_PASSWORD_TIP: '由于您是第一次登录，出于安全考虑请重置您的密码',
 
   // Login
   LOG_IN: '登录',

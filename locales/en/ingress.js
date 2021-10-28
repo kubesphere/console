@@ -80,8 +80,8 @@ module.exports = {
   UNABLE_CREATE_ROUTE_TIP:
     'The available gateway address is not found in the current project so the application route cannot be created.',
 
-  GATEWAY_APPLICATION_GOVERNANCE_TIP:
-    'You don\'t need to enable Application Governance if you don\'t use the Tracing feature. Once Application Governance is enabled, please check if an annotation like "nginx.ingress.kubernetes.io/service-upstream: true" is added for the application route when the route is inaccessible. If not, please add one.',
+  GATEWAY_TRACING_TIP:
+    'If Routes cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the route.',
 
   UNABLE_TO_ACCESS_TIP:
     '* If the domain name is automatically generated, make sure that your client machine can access nip.io.<br/>* If the domain name is manually specified, make sure that domain name resolution policies have be configured in your DNS server or the hosts file of your client machine.',

@@ -216,7 +216,8 @@ module.exports = {
   'Invalid name': 'Nombre inválido. {message}',
   'Invalid pod': 'Pod inválido',
   INVALID_IMAGE: 'Imagen inválida.',
-  INVALID_NAME_DESC: 'Nombre inválido. {message}',
+  INVALID_NAME_DESC:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
   InvalidImageName: 'InvalidImageName',
   'is running': 'En ejecución',
   Job: 'Trabajo',
@@ -643,7 +644,7 @@ module.exports = {
   ADD_VOLUME_TEMPLATE_DESC:
     'El ciclo de vida del volumen será el mismo que el del pod.',
   MORE: 'Más',
-  OPERATIONS: 'Operations',
+  MANAGE: 'Manage',
   REVISION_ROLLBACK_SELECT: 'Por favor selecciona la versión a revertir',
   REVISION_TITLE: '{nombre} revisión',
   PROBE_TIME: '{delay} s delay, {timeout} s timeout',

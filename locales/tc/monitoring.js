@@ -127,7 +127,6 @@ module.exports = {
   AVERAGE: '平均值',
   TOTAL_AVERAGE: '總平均值',
   SUCCESS: '成功',
-  SUCCESSFUL: 'Successful',
   NOT_SUCCESSFUL: 'Not successful',
   ERROR: '錯誤',
   FAILURE: '失敗',

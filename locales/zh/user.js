@@ -45,7 +45,7 @@ module.exports = {
     '密码无效。密码必须包含数字和大小写字母，长度为 6 至 64 个字符。',
   PLATFORM_ROLE_DESC: '设置用户在 KubeSphere 平台的角色。',
   'New Password': '新的密码',
-  USERNAME_EMPTY_DESC: '请输入用户名。',
+  USERNAME_EMPTY_DESC: '请输入一个用户名。',
   EMAIL_EMPTY_DESC: '请输入一个邮箱地址。',
   'Please repeat the new password': '请重复新的密码',
   ENTER_CURRENT_PASSWORD_TIP: '请输入当前密码。',

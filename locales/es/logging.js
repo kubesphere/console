@@ -219,7 +219,6 @@ module.exports = {
   SEARCH_BY_POD: 'Search by Pod',
   SEARCH_BY_CONTAINER: 'Search by Container',
   START_TIME_COLON: 'Start Time: ',
-  TIME_RANGE: 'Time Range',
   LOG: 'Log',
   DISPLAY: 'Display',
   HIDE: 'Hide',

@@ -145,7 +145,7 @@ export default class Pipeline extends React.Component {
       <div className={style.pipelineCard__btnGroup}>
         {editable && (
           <Button onClick={this.handleJenkinsFileModal}>
-            {t('Edit Jenkinsfile')}
+            {t('EDIT_JENKINSFILE')}
           </Button>
         )}
         {editable && (
@@ -177,7 +177,7 @@ export default class Pipeline extends React.Component {
 
     if (isEmpty(toJS(pipelineJson))) {
       return (
-        <EmptyCard desc={t('PIPELINE_NO_CONFIG')}>
+        <EmptyCard desc={t('NO_PIPELINE_CONFIG_FILE_TIP')}>
           {editable && (
             <Button type="control" onClick={this.handlePipelineModal}>
               {t('EDIT_PIPELINE')}
@@ -185,7 +185,7 @@ export default class Pipeline extends React.Component {
           )}
           {editable && (
             <Button onClick={this.handleJenkinsFileModal}>
-              {t('Edit Jenkinsfile')}
+              {t('EDIT_JENKINSFILE')}
             </Button>
           )}
         </EmptyCard>
@@ -194,10 +194,10 @@ export default class Pipeline extends React.Component {
 
     if (pipelineJson.result === 'failure') {
       return (
-        <EmptyCard desc={t('NOT_VALID_JENKINS_FILE')}>
+        <EmptyCard desc={t('INVALID_JENKINSFILE_TIP')}>
           {editable && (
             <Button onClick={this.handleJenkinsFileModal}>
-              {t('Edit Jenkinsfile')}
+              {t('EDIT_JENKINSFILE')}
             </Button>
           )}
           {editable && (
