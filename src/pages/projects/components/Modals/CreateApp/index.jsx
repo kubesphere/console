@@ -81,6 +81,14 @@ export default class ServiceDeployAppModal extends React.Component {
           this.fecthSampleData(sampleApp)
         }
       })
+    } else {
+      set(
+        this.state.formData.application,
+        'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
+        'false'
+      )
+
+      this.setState({ isGovernance: false })
     }
   }
 
