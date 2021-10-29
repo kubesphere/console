@@ -88,7 +88,7 @@ class ExcuteRecords extends React.Component {
       render: (status, record) => (
         <Status
           type={status}
-          name={t(status)}
+          name={t(`JOB_${status.toUpperCase()}`)}
           ready={record.succeed}
           total={record.desire}
         />

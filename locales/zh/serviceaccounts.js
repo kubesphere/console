@@ -26,7 +26,7 @@ module.exports = {
   CHANGE_ROLE: '修改角色',
   SECRET_DETAILS: '保密字典详情',
   SERVICE_ACCOUNT_DESC:
-    '服务帐户（Service Account）为 Pod 中运行的进程提供了一个标识，用于访问 API Server。',
+    '服务帐户（Service Account）为容器组中运行的进程提供了一个标识，用于访问 API Server。',
   SERVICE_ACCOUNT_EMPTY_DESC: '请创建一个服务帐户。',
   INVALID_YAML_FILE_FORMAT: 'YAML 文件格式错误。',
 

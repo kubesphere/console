@@ -89,4 +89,7 @@ module.exports = {
   CONTENT: '内容',
   INVALID_ID_TIP:
     'ID 只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
+
+  // CRDs > Details
+  PROJECT_DEVOPS_PROJECT: '项目/DevOps 项目',
 }

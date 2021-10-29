@@ -120,7 +120,7 @@ export default class ResourceStatus extends React.Component {
       ...(scope === 'Namespaced'
         ? [
             {
-              title: t('Namespace'),
+              title: t('PROJECT_DEVOPS_PROJECT'),
               dataIndex: 'namespace',
             },
           ]
