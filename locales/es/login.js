@@ -38,9 +38,9 @@ module.exports = {
     'An unepected error seems to have occurred. Please refresh your page.',
   'Too many failed login attempts, please wait!':
     'Too many failed login attempts, please wait!',
-  'Log In with {title}': 'Log In with {title}',
+  LOG_IN_WITH_TITLE: 'Log in with {title}',
 
-  'Please input username or email': 'Please input username or email',
+  INPUT_USERNAME_OR_EMAIL_TIP: 'Please input username or email',
   PASSWORD_EMPTY_DESC: 'Please enter a password.',
   'Please input captch': 'Please input captch',
   'Please confirm your account info': 'Please confirm your account info',
@@ -55,4 +55,7 @@ module.exports = {
 
   CONFIRM_PASSWORD_TIP:
     'Since you are logging in for the first time, please reset your password.',
+
+  // Login
+  LOG_IN: 'Log In',
 }

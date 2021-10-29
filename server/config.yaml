@@ -316,9 +316,9 @@ client:
   manageAppNavs:
     - cate: "apps"
       items:
-        - { name: store, title: APP_STORE, icon: appcenter }
+        - { name: store, title: APPS, icon: appcenter }
         - { name: categories, title: APP_CATEGORY_PL, icon: tag }
-        - { name: reviews, title: APP_REVIEW, icon: safe-notice }
+        - { name: reviews, title: APP_RELEASE, icon: safe-notice }
 
   # project page navigations
   projectNavs:

@@ -29,7 +29,7 @@ module.exports = {
     'Avoid using weak passwords and setting the same password for multiple accounts.',
   'Change Password': 'Change Password',
   'Create User': 'Create User',
-  'Current Password': 'Current Password',
+  CURRENT_PASSWORD: 'Current Password',
   EDIT_USER: 'Edit User',
   EMAIL: 'Email',
   EMAIL_EXISTS:
@@ -45,16 +45,15 @@ module.exports = {
   'Invalid user name': 'Invalid username. {message}',
   NOT_LOGGED_IN: 'Not logged in',
   'Password length is at least 6 characters': '6 to 64 characters',
-  'Password Setting': 'Password Settings',
+  PASSWORD_SETTINGS: 'Password Settings',
   'Password Strength': 'Password Strength',
-  'Please input current password': 'Enter the current password.',
+  ENTER_CURRENT_PASSWORD_TIP: 'Please enter the current password.',
   EMAIL_EMPTY_DESC: 'Please enter an email address.',
   USERNAME_EMPTY_DESC: 'Please enter a username.',
   'Please repeat the new password': 'Enter the new password again.',
   'Please select role': 'Select a role.',
-  'Repeat the New Password': 'Confirm Password',
-  'The password entered twice must be the same':
-    'New Password and Confirm Password must be the same.',
+  CONFIRM_PASSWORD: 'Confirm Password',
+  PASSWORD_NOT_SAME_DESC: 'New Password and Confirm Password must be the same.',
   Time: 'Time',
   TIME: 'Time',
   'Unable to delete itself': 'Unable to delete itself.',
@@ -66,8 +65,8 @@ module.exports = {
   USERNAME_EXISTS:
     'The username already exists. Please enter another username.',
   users: 'users',
-  'You must enter the correct current password to change to a new password.':
-    'Enter the current password.',
+  ENTER_CURRENT_PASSWORD_DESC:
+    'To change the password, you must first enter the current password.',
 
   user_active: 'Active',
   USER_ACTIVE: 'Active',
@@ -79,7 +78,7 @@ module.exports = {
   EMAIL_DESC:
     'The email address can be used to log in to the KubeSphere web console.',
   USER_SETTING_EMAIL_DESC:
-    'The email address can be used to log in to the system.',
+    'The email address can be used to log in to the KubeSphere web console.',
   PASSWORD_DESC:
     'The password must contain at least one number, one lowercase letter, and one uppercase letter. The length must be 6 to 64 characters.',
   PASSWORD_INVALID_DESC:
@@ -104,4 +103,12 @@ module.exports = {
   CHANGE_PASSWORD: 'Change Password',
   SUCCESSFUL: 'Successful',
   FAILED: 'Failed',
+  NEW_PASSWORD: 'New Password',
+  CONFIRM_PASSWORD_TIP: 'Please enter the new password again.',
+  LANGUAGE: 'Language',
+  USER_SETTINGS: 'User Settings',
+  LOG_OUT: 'Log Out',
+  ABOUT: 'About',
+  USERNAME_OR_EMAIL: 'Username or Email',
+  WELCOME: 'Welcome',
 }

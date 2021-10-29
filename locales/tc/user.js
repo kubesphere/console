@@ -33,7 +33,7 @@ module.exports = {
   NOT_LOGIN_YET: '尚未登入',
   NOT_LOGGED_IN: '尚未登入',
   'Change Password': '修改密碼',
-  'Password Setting': '密碼設置',
+  PASSWORD_SETTINGS: '密碼設置',
   EMAIL: '郵箱',
   USER_AVATAR_TIP: '頭像尺寸必須小於 120px X 120px，支持 png，jpg 格式。',
   EMAIL_DESC: '郵箱可作為登入帳號',
@@ -48,8 +48,8 @@ module.exports = {
   USERNAME_EMPTY_DESC: '請輸入用戶名稱',
   EMAIL_EMPTY_DESC: '請輸入郵箱',
   'Please repeat the new password': '請重複新的密碼',
-  'Please input current password': '請輸入目前密碼',
-  'The password entered twice must be the same': '兩次輸入的密碼必須一致',
+  ENTER_CURRENT_PASSWORD_TIP: '請輸入目前密碼',
+  PASSWORD_NOT_SAME_DESC: '兩次輸入的密碼必須一致',
   'Please select role': '請選擇角色',
   USERNAME_INVALID: '用戶名稱格式不合法。{message}',
   USERNAME_EXISTS: '用戶名稱已存在',
@@ -58,7 +58,7 @@ module.exports = {
   'Login History': '登入歷史',
   Time: '時間',
   TIME: '時間',
-  'Repeat the New Password': '重複新的密碼',
+  CONFIRM_PASSWORD: '重複新的密碼',
 
   USER_ACTIVE: '活躍',
   USER_AUTHLIMITEXCEEDED: '限制登入',
@@ -76,10 +76,9 @@ module.exports = {
 
   'A built-in cluster administrator': '預設創建的管理員帳戶。',
 
-  'Current Password': '目前密碼',
+  CURRENT_PASSWORD: '目前密碼',
 
-  'You must enter the correct current password to change to a new password.':
-    '您必須輸入正確的目前密碼才可更改為新的密碼',
+  ENTER_CURRENT_PASSWORD_DESC: '您必須輸入正確的目前密碼才可更改為新的密碼',
 
   'At least 1 uppercase and lowercase letter': '至少 1 個大寫和小寫字母',
   'At least 1 number': '至少 1 個數字',
@@ -95,4 +94,12 @@ module.exports = {
   CHANGE_PASSWORD: 'Change Password',
   SUCCESSFUL: 'Successful',
   FAILED: 'Failed',
+  NEW_PASSWORD: 'New Password',
+  CONFIRM_PASSWORD_TIP: 'Please enter the new password again.',
+  LANGUAGE: 'Language',
+  USER_SETTINGS: 'User Settings',
+  LOG_OUT: 'Log Out',
+  ABOUT: 'About',
+  USERNAME_OR_EMAIL: 'Username or Email',
+  WELCOME: 'Welcome',
 }

@@ -18,7 +18,7 @@
 
 module.exports = {
   'Submit for Review': '提交審核',
-  CANCEL_REVIEW: '取消審核',
+  CANCEL_SUBMISSION: '取消審核',
   'Release to Store': '發佈到商店',
   'View in Store': '在商店查看',
   SUSPEND_VERSION: '下架版本',
@@ -122,10 +122,10 @@ module.exports = {
   APP_INSTANCES: 'App Instances',
   UPLOAD_NEW_VERSION: 'Upload New Version',
   UPLOAD_NEW_VERSION_DESC: 'Upload a new version of the app.',
-  APP_VERSION_LOW: 'App version',
+  APP_VERSION_SCAP: 'App version',
   UPDATE_TIME_LOW: 'Update time',
   TEST_INSTALLATION: 'Test Installation',
-  SUBMIT_FOR_REVIEW: 'Submit for Review',
+  SUBMIT_FOR_RELEASE: 'Submit for Release',
   VERSION_INFO: 'Version Information',
   INSTALL: 'Install',
 }

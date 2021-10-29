@@ -194,7 +194,7 @@ export default class Home extends React.Component {
           </ul>
         </div>
         <div className={styles.group}>
-          <p className={styles.title}>{t('CATEGORIES')}</p>
+          <p className={styles.title}>{t('APP_CATEGORY_PL')}</p>
           <ul className={styles.menu}>
             {data.map(({ category_id, name, description }, idx) => (
               <li

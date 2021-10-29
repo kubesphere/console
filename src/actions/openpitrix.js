@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-import { capitalize } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -198,7 +197,7 @@ export default {
           const { namespace, cluster, workspace, ...rest } = params
           await store.deploy(rest, { workspace, namespace, cluster })
           Modal.close(modal)
-          Notify.success({ content: `${t('INSTALLED_SUCCESSFULLY')}` })
+          Notify.success({ content: `${t('DEPLOYED_SUCCESSFUL')}` })
           success && success()
         },
         store,
@@ -244,7 +243,7 @@ export default {
           const type = HANDLE_TYPE_TO_SHOW[handleType] || handleType
           Modal.close(modal)
           Notify.success({
-            content: `${t(`${capitalize(type)} Successfully`)}`,
+            content: `${t(`${type.toUpperCase()}_SUCCESSFUL`)}`,
           })
           success && success()
         },
@@ -272,8 +271,8 @@ export default {
           onReject()
         },
         icon: 'safe-notice',
-        title: t('REVIEW_CONTENT'),
-        description: t('REVIEW_CONTENT_DESC'),
+        title: t('APP_DETAILS'),
+        description: t('APP_DETAILS_DESC'),
         canHandle: type === 'unprocessed',
         modal: AppReviewModal,
         detail,

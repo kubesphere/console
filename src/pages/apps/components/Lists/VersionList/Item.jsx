@@ -22,7 +22,6 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { inject } from 'mobx-react'
 import { Button, Notify, Icon, Tabs } from '@kube-design/components'
-import { capitalize } from 'lodash'
 
 import DeleteModal from 'components/Modals/Delete'
 import Confirm from 'apps/components/Modals/Confirm'
@@ -160,7 +159,7 @@ export default class VersionItem extends React.PureComponent {
       const type = HANDLE_TYPE_TO_SHOW[handleType] || handleType
       this.hideHandleModal()
       Notify.success({
-        content: `${t(`${capitalize(type)} Successfully`)}`,
+        content: `${t(`${type.toUpperCase()}_SUCCESSFUL`)}`,
       })
       const status = isAdmin ? STORE_QUERY_STATUS : this.store.defaultStatus
 
@@ -190,7 +189,7 @@ export default class VersionItem extends React.PureComponent {
         </dl>
         <dl>
           <dt>{detail.name}</dt>
-          <dd>{t('APP_VERSION_LOW')}</dd>
+          <dd>{t('VERSION')}</dd>
         </dl>
         <dl>
           <dt>{detail.owner}</dt>
@@ -231,7 +230,7 @@ export default class VersionItem extends React.PureComponent {
         )}
         {!isAdmin && (
           <Button onClick={this.showDeploy} type="default">
-            {t('TEST_INSTALLATION')}
+            {t('DEPLOY')}
           </Button>
         )}
         {handleType && (
@@ -257,7 +256,7 @@ export default class VersionItem extends React.PureComponent {
               appName={appDetail.name}
             />
           </TabPanel>
-          <TabPanel label={t('APP_REVIEW')} name="auditRecord">
+          <TabPanel label={t('APP_RELEASE')} name="auditRecord">
             <AuditRecord appId={detail.app_id} versionId={detail.version_id} />
           </TabPanel>
           <TabPanel label={t('APP_INSTANCES')} name="deployInstances">

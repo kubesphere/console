@@ -28,7 +28,7 @@ export default [
     required: true,
   },
   {
-    title: 'Update Log',
+    title: 'UPDATE_LOG',
     icon: 'update',
     component: VersionEdit,
     value: 'updateLog',
