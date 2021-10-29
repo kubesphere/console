@@ -177,7 +177,7 @@ module.exports = {
 
   UNBIND_CLUSTER_DESC:
     'After the cluster is unbound, KubeSphere will not be able to manage the cluster. The Kubernetes resources on the cluster will not be deleted.',
-  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation.',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation',
 
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
     'Clusters can be assigned to workspaces through authorization.',

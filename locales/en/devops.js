@@ -88,4 +88,7 @@ module.exports = {
   CONTENT: 'Content',
   INVALID_ID_TIP:
     'The ID can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
+
+  // CRDs > Details
+  PROJECT_DEVOPS_PROJECT: 'Project/DevOps Project',
 }

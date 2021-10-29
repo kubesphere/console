@@ -32,7 +32,7 @@ module.exports = {
   TOTAL_REPLICAS_EMPTY_DESC:
     'Please enter the total number of Pod replicas in all clusters.',
   STORAGE_MANAGEMENT_SCAP: 'Volume management',
-  VOLUME_CLONE: 'Storage volume clone',
+  VOLUME_CLONE: 'Volume Clone',
   ALLOW_VOLUME_CLONE_DESC: 'Allows users to clone volumes.',
   ALLOW_VOLUME_SNAPSHOT_DESC: 'Allows users to create volume snapshots.',
   'Volume Expansion': 'Storage volume expansion',

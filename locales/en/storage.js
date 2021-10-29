@@ -245,7 +245,7 @@ module.exports = {
     'Currently, only usage data of mounted volumes can be collected. Usage data of path-based volumes such as OpenEBS, Local PV, and NFS volumes may be inaccurate. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">Learn More</a>',
 
   VOLUME_FUNCTION_MANAGEMENT_TIP:
-    '存储卷功能管理只是控制是否在ks console中启用这项功能，并不表示存储系统支持这项功能，设置前需要和管理员确认。',
+    'Volume Management only controls whether the following features are enabled in the KubeSphere web console. Before the features are enabled, contact your system administrator to confirm that they are supported by the storage system.',
   // Storage Classes
   RESTURL: 'REST URL',
   CLUSTER_ID: 'Cluster ID',

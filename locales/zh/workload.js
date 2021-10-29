@@ -59,7 +59,7 @@ module.exports = {
   GPU_TYPE_LOW: 'GPU 类型',
   GPU_LIMIT_LOW: 'GPU 限制',
   GPU_LIMIT: 'GPU限制',
-  GPU_SETTING_TIP: '设置GPU限制为空即为取消该限制。',
+  GPU_SETTING_TIP: '设置 GPU 限制为空即为取消该限制。',
   'Service Configuration': '服务配置',
 
   'Available number of nodes scheduled': '可用节点数',
@@ -161,7 +161,7 @@ module.exports = {
 
   'Add Volume': '添加存储卷',
   MOUNT_CONFIGMAP_OR_SECRET: '挂载配置字典或保密字典',
-  USE_CONFIGMAP_OR_SECRET: '引用配置文件或密钥',
+  USE_CONFIGMAP_OR_SECRET: '引用配置字典或保密字典',
 
   'Collecting file log': '收集落盘日志',
 
@@ -188,7 +188,7 @@ module.exports = {
   SELECT_SECRET_DESC: '将保密字典挂载到容器。',
 
   SELECT_VOLUME: '选择存储卷',
-  SELECT_TYPE: '選擇{type}',
+  SELECT_TYPE: '选择{type}',
   SELECT_VOLUME_DESC: '选择现有的存储卷以将其挂载到容器。',
 
   REQUEST_EXCCED: '资源预留不能超过资源限制',
@@ -212,7 +212,7 @@ module.exports = {
   IMAGE_EMPTY: '请设置镜像。',
   IMAGE_REGISTRY_PLACEHOLDER: '请选择镜像仓库密钥',
   IMAGE_DESC:
-    '如需使用私有镜像仓库，您需要先创建镜像仓库密钥。<a href={link} target="_blank">了解更多</a>',
+    '如需使用私有镜像仓库，您需要先创建镜像仓库保密字典。<a href={link} target="_blank">了解更多</a>',
   'Replicas Number': '副本数量',
   GRAYSCALE_REPLICAS_DESC: '新版本容器组副本数量',
   REPLICA_STATUS: '副本运行状态',
@@ -320,7 +320,7 @@ module.exports = {
   WORKLOAD_MOUNT_VOLUME_DESC:
     '为容器挂载现有存储卷、临时存储卷或 HostPath 存储卷。',
 
-  MOUNT_CONFIGMAP_OR_SECRET_DESC: '将配置文件或密钥挂载至指定目录',
+  MOUNT_CONFIGMAP_OR_SECRET_DESC: '为容器挂载配置字典或保密字典。',
 
   'Please specify an image': '请指定镜像',
 
@@ -617,7 +617,7 @@ module.exports = {
     '如需开启此功能，您需要在项目设置中开启收集存储卷上的日志。',
 
   ADD_VOLUME_TEMPLATE_DESC:
-    '添加存储卷模板，存储卷的生命周期将随容器组的生命周期存在',
+    '添加存储卷模板以挂载与容器组具有相同生命周期的存储卷。',
 
   CONTAINER_LOG_PATH_TIP:
     '容器日志的路径，相对于存储卷的挂载路径，支持通配符，可使用半角逗号（,）分隔多个路径。例如，当存储卷挂载路径为 /data 时，log/*.log 表示日志文件为 /data/log 目录下所有 .log 格式的文件。',
@@ -644,7 +644,7 @@ module.exports = {
   'Pod replicas will be deployed according to user customization.':
     '容器组副本将根据用户自定义规则部署',
   DECENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到不同的节点上。',
-  CENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到同一节点上',
+  CENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到同一节点上。',
   ADD_CONTAINER_DESC: '自定义容器的设置以创建容器。',
 
   SCHEDULING_INFORMATION: '调度信息',
@@ -786,7 +786,7 @@ module.exports = {
     '启动容器之前检查容器是否将以 root 用户运行。如果容器将以 root 用户运行则不启动容器。',
   RUN_AS_USER_DESC: '执行容器进程入口点的 UID。默认为镜像元数据中指定的 GID。',
   RUN_AS_USER_GROUP_DESC:
-    '执行容器进程入口点的 GID。默认为容器运行时的默认 GID',
+    '执行容器进程入口点的 GID。默认为容器运行时的默认 GID。',
 
   COMPARE_WITH: '与上一个记录 {version} 对比',
   REVISION_RECORDS_DESC:
@@ -827,4 +827,13 @@ module.exports = {
   ADD_VOLUME: '添加存储卷',
   RESTART_POLICY_DESC: '选择容器组中的容器异常退出时，系统采取的策略。',
   MOUNT_VOLUMES: '挂载存储卷',
+
+  // Workload
+  NETWORK_SEGMENT_SCAP: '网段',
+  JOB_COMPLETED: '已完成',
+  JOB_FAILED: '失败',
+  JOB_RUNNING: '运行中',
+  CRONJOB_PAUSED: '已暂停',
+  CRONJOB_RUNNING: '运行中',
+  CRONJOB_FAILED: '失败',
 }

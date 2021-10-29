@@ -169,7 +169,7 @@ export default class AppDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('APP_STORE'),
+          label: t('APPS'),
           url: this.listUrl,
         },
       ],

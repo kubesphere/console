@@ -811,4 +811,14 @@ module.exports = {
   ADD_VOLUME: 'Add Volume',
   RESTART_POLICY_DESC: 'Set the Pod restart policy.',
   MOUNT_VOLUMES: 'Mount Volumes',
+
+  // Workload
+  GPU_SETTING_TIP: 'Set the GPU Limit to null means no limit.',
+  NETWORK_SEGMENT_SCAP: 'Network segment',
+  JOB_COMPLETED: 'Completed',
+  JOB_FAILED: 'Failed',
+  JOB_RUNNING: 'Running',
+  CRONJOB_PAUSED: 'Paused',
+  CRONJOB_RUNNING: 'Running',
+  CRONJOB_FAILED: 'Failed',
 }

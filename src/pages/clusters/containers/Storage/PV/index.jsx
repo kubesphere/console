@@ -213,7 +213,7 @@ export default class PV extends React.Component {
   renderAccessTitle = () => {
     const renderModeTip = (
       <div>
-        <div>{t('ACCESS_MODE_TCAP')}:</div>
+        <div>{t('ACCESS_MODE_TCAP')}</div>
         <div>RWO (ReadWriteOnce)：{t('ACCESS_MODE_RWO')}</div>
         <div>ROX (ReadOnlyMany)：{t('ACCESS_MODE_ROX')}</div>
         <div>RWX (ReadWriteMany)：{t('ACCESS_MODE_RWX')}</div>

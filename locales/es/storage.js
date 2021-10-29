@@ -255,6 +255,8 @@ module.exports = {
   IMMEDIATE_BINDING: 'Immediate binding',
   BINDING_WAIT: 'Delayed binding',
   DEFAULT_STORAGE_CLASS: 'Default Storage Class',
+  VOLUME_FUNCTION_MANAGEMENT_TIP:
+    'Volume Management only controls whether the following features are enabled in the KubeSphere web console. Before the features are enabled, contact your system administrator to confirm that they are supported by the storage system.',
 
   // Storage Class > Detail
   STORAGE_CLASS_SCAP: 'Storage class',

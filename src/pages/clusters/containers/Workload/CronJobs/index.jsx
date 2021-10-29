@@ -167,7 +167,9 @@ export default class CronJobs extends React.Component {
         width: '15%',
         render: (_, record) => {
           const { status } = getWorkloadStatus(record, module)
-          return <Status type={status} name={t(status)} />
+          return (
+            <Status type={status} name={t(`CRONJOB_${status.toUpperCase()}`)} />
+          )
         },
       },
       {

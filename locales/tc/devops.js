@@ -88,4 +88,7 @@ module.exports = {
   CONTENT: '內容',
   INVALID_ID_TIP:
     'ID 最長 63 個字元，只能包含小寫字母、數字及分隔符號（-），且必須以小寫字母或數字開頭及結尾。',
+
+  // CRDs > Details
+  PROJECT_DEVOPS_PROJECT: 'Project/DevOps Project',
 }

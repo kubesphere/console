@@ -300,7 +300,7 @@ module.exports = {
   APP_VERSIONS_TITLE:
     'Versions (only the latest 10 versions will be displayed)',
   VERSIONS: 'Versions',
-  UPDATE_TIME_COLON: 'Updated Time: ',
+  UPDATE_TIME_COLON: 'Update time: ',
   DEVELOPER: 'Developer',
 
   // App Categories

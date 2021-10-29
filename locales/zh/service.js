@@ -93,7 +93,7 @@ module.exports = {
   'Do not assign Service IP': '不分配服务 IP',
   'Map Services outside the cluster': '映射集群外部的服务',
   ENTER_PORT_NUMBER: '请输入端口号。',
-  PORT_EMPTY: '请设置端口。',
+  PORT_EMPTY: '请设置至少一个端口。',
   'Please select a workload': '请选择一个工作负载',
   ENTER_SELECTOR_TIP: '请设置工作负载选择器。',
   TOTAL_WORKLOADS_VALUE: '工作负载总数：{count}',

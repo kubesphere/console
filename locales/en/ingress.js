@@ -84,7 +84,7 @@ module.exports = {
     'If Routes cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the route.',
 
   UNABLE_TO_ACCESS_TIP:
-    '* If the domain name is automatically generated, make sure that your client machine can access nip.io.<br/>* If the domain name is manually specified, make sure that domain name resolution policies have be configured in your DNS server or the hosts file of your client machine.',
+    '* If the domain name is automatically generated, make sure that your client machine can access nip.io.<br/>* If the domain name is manually specified, make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
 
   PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using Routes?',
   PREREQUESTS_FOR_USE_ROUTE_A:
