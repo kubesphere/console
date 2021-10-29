@@ -40,7 +40,7 @@ module.exports = {
   POD_IP_POOL_EMPTY_DESC: 'Please create a Pod IP pool.',
 
   NUMBER_OF_CREATION_TCAP: 'Number of Creation',
-  IP_POOL_CREATE_DESC: 'Pod IP pools to be created.',
+  IP_POOL_CREATE_DESC: 'Pod IP Pools to be Created',
   'Set to be globally available': 'Set to be globally available',
 
   IP_ADDRESS_EMPTY_DESC: 'Please enter an IP address.',

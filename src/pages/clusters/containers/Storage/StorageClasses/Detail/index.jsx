@@ -95,7 +95,7 @@ export default class StorageClassDetail extends React.Component {
     {
       key: 'funcManage',
       icon: 'slider',
-      text: t('STORAGE_MANAGEMENT'),
+      text: t('VOLUME_MANAGEMENT'),
       action: 'edit',
       onClick: () =>
         this.trigger('storageclass.volume.function.update', {

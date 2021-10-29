@@ -186,7 +186,7 @@ module.exports = {
 
   UNBIND_CLUSTER_DESC:
     '解綁集群後，KubeSphere 將無法再對該集群進行管理。 解綁後，該集群内的 Kubernetes 資源不會被刪除。',
-  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation.',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation',
 
   'Invite members to the cluster': '邀請成員到該集群',
   INVITE_CLUSTER_MEMBER_DESC: '您可以邀請新的成員來此集群',

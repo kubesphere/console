@@ -156,7 +156,7 @@ export default class CreateIPPoolModal extends Component {
             rules={[{ validator: this.validator }]}
           >
             <ObjectInput className={styles.item} name={`cidrs[${index}]`}>
-              <Input name="cidr" placeholder={t('NETWORK_SEGMENT')} />
+              <Input name="cidr" placeholder={t('NETWORK_SEGMENT_SCAP')} />
               <Input
                 name="name"
                 defaultValue={`ippool-${this.random}-${index}`}

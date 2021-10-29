@@ -169,7 +169,7 @@ module.exports = {
   HOW_TO_GET_KUBECONFIG: '¿Cómo obtener KubeConfig?',
   UNBIND_CLUSTER_DESC:
     'Una vez que el clúster no está vinculado, KubeSphere no podrá administrar el clúster y los recursos de Kubernetes dentro del clúster no se eliminarán.',
-  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation.',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation',
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
     'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
   PUBLIC_CLUSTER_DESC:

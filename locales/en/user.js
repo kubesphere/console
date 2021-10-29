@@ -84,7 +84,7 @@ module.exports = {
   PASSWORD_INVALID_DESC:
     'Invalid password. The password must contain at least one number, one lowercase letter, and one uppercase letter. The length must be 6 to 64 characters.',
   PLATFORM_ROLE_DESC: 'Set the role of the user on the KubeSphere platform.',
-  USER_DESC: 'Manage accounts and their roles.',
+  USER_DESC: 'Manage users and their roles.',
   USER_CREATE_DESC:
     'This module allows the system admin to manage accounts, such as creating/updating/reading/deleting an account. The admin can also manage the role of each account. Users can log in the platform through their account name or email address.',
   ROLE_BASEINFO_DESC: '',

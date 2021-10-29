@@ -665,15 +665,15 @@ module.exports = {
   ENV_DEMO: 'Demo',
 
   CLUSTERS_MANAGE_DESC:
-    'Unified management of multiple clusters and their basic resources, components and application resources',
+    'Unified management of multiple clusters and their basic resources, components, and application resources.',
 
-  ACCESS_CONTROL_DESC: 'Unified management of workspaces, accounts and roles',
+  ACCESS_CONTROL_DESC: 'Unified management of workspaces, users, and roles.',
 
   APP_STORE_MANAGEMENT_DESC:
-    'Unified lifecycle management of cloud native applications including their release, removal and review',
+    'Unified lifecycle management of cloud native applications including their release, activation, and suspension.',
 
   PLATFORM_SETTINGS_DESC:
-    'Customized platform settings including basic information and notification channels',
+    'Customized platform settings including basic information and notification configurations.',
 
   DATA_SOURCE: 'Data Source',
 

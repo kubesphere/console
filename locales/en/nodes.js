@@ -117,18 +117,18 @@ module.exports = {
   EDGE_NODE_EMPTY_DESC: 'Please add an edge node to the cluster.',
   NODE_NETWORKUNAVAILABLE: 'Network Availability',
   NODE_NETWORKUNAVAILABLE_DESC:
-    'Check if the network configuration on the node is available',
+    'Check if the network configuration on the node is available.',
   NODE_OUTOFDISK: 'OutOfDisk',
   NODE_OUTOFDISK_DESC: 'Check if there is space on the node to add a new pod',
   NODE_MEMORYPRESSURE: 'Memory Pressure',
   NODE_MEMORYPRESSURE_DESC:
-    'If the memory usage pressure on the node is too high, the scheduling fails',
+    'If the memory usage pressure on the node is too high, the scheduling fails.',
   NODE_DISKPRESSURE: 'Disk Pressure',
   NODE_DISKPRESSURE_DESC:
-    'If pressure exists on the disk size–that is, if the disk capacity is low',
+    'If pressure exists on the disk size–that is, if the disk capacity is low.',
   NODE_PIDPRESSURE: 'PID Pressure',
   NODE_PIDPRESSURE_DESC:
-    'If pressure exists on the processes—that is, if there are too many processes on the node',
+    'If pressure exists on the processes—that is, if there are too many processes on the node.',
   NODE_READY: 'Node Readiness',
   NODE_READY_DESC: 'Whether the node is ready to accept new Pods.',
 
