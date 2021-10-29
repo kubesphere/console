@@ -19,16 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import {
-  get,
-  set,
-  isEqual,
-  isFinite,
-  isEmpty,
-  isNaN,
-  isUndefined,
-  omit,
-} from 'lodash'
+import { get, set, isEqual, isFinite, isEmpty, isNaN, omit } from 'lodash'
 
 import {
   Icon,
@@ -524,14 +515,10 @@ export default class ResourceLimit extends React.Component {
 
   renderTip() {
     const { workspaceLimits: wsL, workspaceRequests: wsR } = this.state
-    const { limitType } = this.props.workspaceLimitProps
     const memoryUnit = this.memoryUnit
     const cpuUnit = this.cpuUnit
 
-    const title =
-      limitType === 'workspace'
-        ? t('WORKSPACE_REMAINING_QUOTAS')
-        : t('PROJECT_REMAINING_QUOTAS')
+    const title = t('WORKLOAD_AVAILABLE_QUOTAS')
 
     const message = () => (
       <>
@@ -575,16 +562,6 @@ export default class ResourceLimit extends React.Component {
     if (isEmpty(workspaceLimitProps)) {
       return false
     }
-    const { limits, requests } = workspaceLimitProps
-    if (
-      isUndefined(limits.cpu) &&
-      isUndefined(limits.memory) &&
-      isUndefined(requests.cpu) &&
-      isUndefined(requests.memory)
-    ) {
-      return false
-    }
-
     return true
   }
 

@@ -60,6 +60,7 @@ module.exports = {
   GPU_LIMIT_LOW: 'GPU 限制',
   GPU_LIMIT: 'GPU限制',
   GPU_SETTING_TIP: '设置 GPU 限制为空即为取消该限制。',
+  WORKLOAD_AVAILABLE_QUOTAS: '剩余可用配额',
   'Service Configuration': '服务配置',
 
   'Available number of nodes scheduled': '可用节点数',
@@ -192,7 +193,7 @@ module.exports = {
   SELECT_VOLUME_DESC: '选择现有的存储卷以将其挂载到容器。',
 
   REQUEST_EXCCED: '资源预留不能超过资源限制',
-  REQUEST_EXCEED_WORKSPACE: '资源设置不能超过企业空间资源限制。',
+  REQUEST_EXCEED_WORKSPACE: '资源设置不能超过剩余可用资源限制。',
   REQUEST_EXCEED_LIMIT: '资源预留不能超过资源限制。',
 
   WORKLOAD_DESC:

@@ -16,7 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { concat, get, set, unset, isEmpty, omit, omitBy, has } from 'lodash'
+import {
+  concat,
+  get,
+  set,
+  unset,
+  isEmpty,
+  omit,
+  omitBy,
+  has,
+  mergeWith,
+  isUndefined,
+} from 'lodash'
 import React from 'react'
 import { generateId, getContainerGpu } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
@@ -108,7 +119,17 @@ export default class ContainerSetting extends React.Component {
   }
 
   get workspaceQuota() {
-    return get(this.state.leftQuota, 'namespace', {})
+    const nsQuota = get(this.state.leftQuota, 'namespace', {})
+    const wsQuota = get(this.state.leftQuota, 'workspace', {})
+    return mergeWith(nsQuota, wsQuota, (ns, ws) => {
+      if (!ns && !ws) {
+        return undefined
+      }
+      if (!isUndefined(ns)) {
+        return ns < 0 ? 0 : ns
+      }
+      return ws
+    })
   }
 
   initService() {

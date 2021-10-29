@@ -144,6 +144,7 @@ class BaseInfo extends React.Component {
             store: this.limitRangeStore,
             detail: limitRanges[0],
             supportGpuSelect: true,
+            project: detail,
             success: () => this.limitRangeStore.fetchListByK8s(this.params),
           }),
       },
