@@ -35,7 +35,7 @@ module.exports = {
 
   TRAFFIC_DIRECTION: '流量方向',
   NETWORK_POLICY_DESC:
-    '通过配置网络策略，允许在同个集群内实现网络的隔离，即可以在某些实例（Pod）之间架起防火墙。',
+    '通过配置网络策略，允许在同个集群内实现网络的隔离，即可以在某些实例（容器组）之间架起防火墙。',
   NETWORK_ISOLATION_DESC:
     '通过配置网络隔离控制同一集群内容器组之间的流量以及来自外部的流量，从而实现隔离应用并增强应用的安全性。',
   CREATE_NETWORK_POLICY_DESC:

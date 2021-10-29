@@ -232,6 +232,8 @@ module.exports = {
 
   VOLUME_MONITORING_TIP:
     'KubeSphere 採集的是儲存卷的設備用量數據，未掛載的儲存卷暫時採集不到，並且對於如 OpenEBS/Local PV、NFS 等路徑型儲存卷通常與實際用量有一定出入。詳見<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">儲存卷監控數據分析</a>。',
+  VOLUME_FUNCTION_MANAGEMENT_TIP:
+    'Volume Management only controls whether the following features are enabled in the KubeSphere web console. Before the features are enabled, contact your system administrator to confirm that they are supported by the storage system.',
 
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',

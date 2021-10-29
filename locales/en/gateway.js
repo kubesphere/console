@@ -66,7 +66,7 @@ module.exports = {
   TOTAL_REQUESTS: 'Total Requests',
   SUCCESSFUL_REQUESTS: 'Successful Requests',
   GATEWAYS_REPLICA_DESC:
-    'Deployment (Deployment) is used to describe the desired target state of the application. It is mainly used to describe the stateless application. The number and state of replicas are maintained by the controller behind it to ensure that the state is consistent with the defined desired state. You can increase the number of replicas to meet higher loads; roll back the deployed version to eliminate erroneous changes to the program; create an autoscaler to flexibly respond to the load in different scenarios. ',
+    'Deployment is used to describe the desired target state of the application. It is mainly used to describe the stateless application. The number and state of replicas are maintained by the controller behind it to ensure that the state is consistent with the defined desired state. You can increase the number of replicas to meet higher loads; roll back the deployed version to eliminate erroneous changes to the program; create an autoscaler to flexibly respond to the load in different scenarios. ',
   PROJECT_GATEWAY_EMPTY_DESC:
     'The cluster management page does not support the setting of the project gateway. If you need to set it, you need to go to the corresponding project to set it.',
 }

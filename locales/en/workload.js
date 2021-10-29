@@ -49,7 +49,7 @@ module.exports = {
   GPU_TYPE_LOW: 'GPU type',
   GPU_LIMIT: 'GPU Limit',
   GPU_LIMIT_LOW: 'GPU limit',
-  GPU_SETTING_TIP: 'Set the GPU limit to blank and cancel the limit.',
+  GPU_SETTING_TIP: 'Set the GPU Limit to null means no limit.',
   CONFIGMAP: 'ConfigMap',
   CONFIGMAP_PL: 'ConfigMaps',
   CONFIGMAPS: 'ConfigMaps',
@@ -641,7 +641,7 @@ module.exports = {
   REPLICAS_PLACEHOLDER: 'Default: 1',
 
   ADD_VOLUME_TEMPLATE_DESC:
-    'Use a volume template to mount a volume with the same lifecycle as the Pod.',
+    'Add a volume template to mount a volume with the same lifecycle as the Pod.',
 
   MORE: 'More',
   OPERATIONS: 'Operations',
@@ -704,7 +704,7 @@ module.exports = {
   POD_CONDITION_INITIALIZED_DESC: 'Starts all init containers in the Pod.',
   POD_CONDITION_READY: 'Pod Ready',
   POD_CONDITION_READY_DESC:
-    'Starts running the Pod and allow the Pod to be accessed.',
+    'Starts running the Pod and allows the Pod to be accessed.',
   POD_CONDITION_CONTAINERSREADY: 'Containers Ready',
   POD_CONDITION_CONTAINERSREADY_DESC: 'Starts all containers in the Pod.',
   POD_CONDITION_PODSCHEDULED: 'Pod Scheduled',
@@ -829,4 +829,13 @@ module.exports = {
   RESTART_POLICY_DESC:
     'Select the policy adopted by the system when a container in the Pod exits abnormally.',
   MOUNT_VOLUMES: 'Mount Volumes',
+
+  // Workload
+  NETWORK_SEGMENT_SCAP: 'Network segment',
+  JOB_COMPLETED: 'Completed',
+  JOB_FAILED: 'Failed',
+  JOB_RUNNING: 'Running',
+  CRONJOB_PAUSED: 'Paused',
+  CRONJOB_RUNNING: 'Running',
+  CRONJOB_FAILED: 'Failed',
 }

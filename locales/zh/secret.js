@@ -62,11 +62,11 @@ module.exports = {
 
   IMAGE_REGISTRY_REQUIRED_DESC: '请设置仓库地址、用户名和密码信息。',
 
-  IMAGE_REGISTRY_VALIDATE_TIP: '创建镜像仓库保密字典前, 请先验证用户名和密码。',
+  IMAGE_REGISTRY_VALIDATE_TIP: '创建镜像仓库保密字典前，请先验证用户名和密码。',
 
   'Please input the registry address': '请输入镜像仓库地址。',
 
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value}（{label}）',
-  CREATE_SECRET: '新建保密字典',
+  CREATE_SECRET: '创建保密字典。',
 }

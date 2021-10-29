@@ -68,4 +68,5 @@ module.exports = {
     'IP 地址範圍已被使用，且已指定具體的企業空間，無法更改目標企業空間',
 
   IPPOOL_WORKSPACE_EMPTY_TIP: '暫無企業空間使用此 IP 地址範圍',
+  IP_POOL_CREATE_DESC: 'Pod IP Pools to be created',
 }
