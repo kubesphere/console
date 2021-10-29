@@ -39,7 +39,7 @@ export default class Pullrequest extends React.Component {
 
   store = this.props.detailStore || {}
 
-  refreshTimer = setInterval(() => this.getDate(), 4000)
+  refreshTimer = setInterval(() => this.getData(), 4000)
 
   get isRuning() {
     const data = get(toJS(this.store), 'pullRequestList.data', [])
@@ -85,7 +85,7 @@ export default class Pullrequest extends React.Component {
     this.unsubscribe && this.unsubscribe()
   }
 
-  getData() {
+  getData = () => {
     const { params } = this.props.match
     const query = parse(location.search.slice(1))
 
