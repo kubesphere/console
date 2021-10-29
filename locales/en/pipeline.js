@@ -52,7 +52,7 @@ module.exports = {
   BRANCH_PL: 'Branches',
   CODE_REPOSITORY_BRANCH: 'Code Repository Branch',
   Branches: 'Branches',
-  BRANCH_COUNT: 'Branch count',
+  BRANCH_COUNT: 'Branches',
   BRANCH_EXCLUDED: 'Excluded Branches',
   BRANCH_INCLUDED: 'Included Branches',
   'branch success': 'branch success',
@@ -353,14 +353,10 @@ module.exports = {
     to achieve continuous integration and continuous delivery.
     You can create and manage pipelines on this page.`,
   username_password: 'Username and password',
-  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'username and password',
+  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'Username and password',
   CREDENTIAL_TYPE_SSH: 'SSH key',
-  CREDENTIAL_TYPE_SECRET_TEXT: 'access token',
+  CREDENTIAL_TYPE_SECRET_TEXT: 'Access token',
   CREDENTIAL_TYPE_KUBECONFIG: 'kubeconfig',
-  CREDENTIAL_TYPE_USERNAME_PASSWORD_SCAP: 'Username and password',
-  CREDENTIAL_TYPE_SSH_SCAP: 'SSH key',
-  CREDENTIAL_TYPE_SECRET_TEXT_SCAP: 'Access token',
-  CREDENTIAL_TYPE_KUBECONFIG_SCAP: 'kubeconfig',
   login_Plateform: 'Login platform',
   CREDENTIALS_DESC: `Credentials are objects that contain some sensitive data,
     such as username and password, SSH key and Token.
@@ -561,6 +557,7 @@ module.exports = {
 
   // Pipeline List Page
   PULL_REQUEST_PL: 'Pull Requests',
+  PULL_REQUEST_COUNT: 'Pull Requests',
   HEALTHY: 'Healthy',
 
   // Pipeline Creation Page

@@ -72,7 +72,7 @@ export default class Selector extends React.Component {
           </div>
           <div className={styles.text}>
             <div className="h6">{value}</div>
-            <p>{t('Cluster Management')}</p>
+            <p>{t('CLUSTER')}</p>
           </div>
         </div>
         <SelectModal

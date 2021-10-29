@@ -155,10 +155,10 @@ module.exports = {
   WAR_DESC: '上传一个 WAR 格式的制品文件。',
   BINARY_DESC: '',
   CODE_REPOSITORY_KEY_NOT_REQUIRED: '当前代码仓库不需要密钥。',
-  'Repository Not Found': '没有找到代码仓库。',
+  'Repository Not Found': '未发现代码仓库。',
   'Currently only supports git repo': '当前仅支持 Git 仓库。',
   'exec: "git": executable file not found in $PATH':
-    '没有找到 URL 对应的代码仓库。',
+    '未发现 URL 对应的代码仓库。',
   TRIGGER_TOKEN: '触发令牌',
   TRIGGER_TOKEN_DESC:
     '设置客户端通过 Webhook 触发 KubeSphere 镜像构建时所使用的认证令牌。令牌只能包含大写字母、小写字母和数字。',

@@ -192,7 +192,7 @@ export default class App extends React.Component {
     return (
       <div className={styles.deployButton}>
         <Button onClick={this.handleDeploy} type="control">
-          {t('DEPLOY')}
+          {t('INSTALL')}
         </Button>
       </div>
     )

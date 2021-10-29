@@ -40,9 +40,10 @@ module.exports = {
   USERNAME_DESC:
     '用户名只能包含小写字母、数字、连字符（-）和句点（.），必须以小写字母或数字开头及结尾，最长 32 个字符。',
   USER_SETTING_EMAIL_DESC: '邮箱地址可用于登录 KubeSphere Web 控制台。',
-  PASSWORD_DESC: '密码必须包含数字和大小写字母，长度为 6 至 64 个字符。',
+  PASSWORD_DESC:
+    '密码必须包含数字、大写字母和小写字母，长度为 6 至 64 个字符。',
   PASSWORD_INVALID_DESC:
-    '密码无效。密码必须包含数字和大小写字母，长度为 6 至 64 个字符。',
+    '密码无效。密码必须包含数字、大写字母和小写字母，长度为 6 至 64 个字符。',
   PLATFORM_ROLE_DESC: '设置用户在 KubeSphere 平台的角色。',
   'New Password': '新的密码',
   USERNAME_EMPTY_DESC: '请输入一个用户名。',
@@ -89,7 +90,7 @@ module.exports = {
   // Users > Details
   SOURCE_IP_ADDRESS: '源 IP 地址',
   LOGIN_HISTORY: '登录历史',
-  NO_LOGIN_HISTORY: '没有找到登录历史。',
+  NO_LOGIN_HISTORY: '未发现登录历史。',
   CHANGE_PASSWORD: '修改密码',
   SUCCESSFUL: '成功',
   FAILED: '失败',

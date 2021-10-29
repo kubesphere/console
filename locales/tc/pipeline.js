@@ -105,14 +105,10 @@ module.exports = {
   CREATE_CREDENTIAL: '創建憑證',
   CREDENTIAL_NAME: '憑證 ID',
   username_password: '帳戶憑證',
-  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'username and password',
+  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'Username and password',
   CREDENTIAL_TYPE_SSH: 'SSH key',
-  CREDENTIAL_TYPE_SECRET_TEXT: 'access token',
+  CREDENTIAL_TYPE_SECRET_TEXT: 'Access token',
   CREDENTIAL_TYPE_KUBECONFIG: 'kubeconfig',
-  CREDENTIAL_TYPE_USERNAME_PASSWORD_SCAP: 'Username and password',
-  CREDENTIAL_TYPE_SSH_SCAP: 'SSH key',
-  CREDENTIAL_TYPE_SECRET_TEXT_SCAP: 'Access token',
-  CREDENTIAL_TYPE_KUBECONFIG_SCAP: 'kubeconfig',
   login_Plateform: '登入平台',
   SCRIPT_PATH: '腳本路徑',
   WEBHOOK_PUSH: 'Webhook 推送',
@@ -525,6 +521,7 @@ module.exports = {
 
   // Pipeline List Page
   PULL_REQUEST_PL: '拉取請求',
+  PULL_REQUEST_COUNT: 'Pull Requests',
   HEALTHY: '健康',
 
   // Pipeline Creation Page

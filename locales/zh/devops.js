@@ -46,7 +46,12 @@ module.exports = {
   Administrator: '管理员',
   'DevOps Project Manager': 'DevOps 项目管理员',
   CREATE_DEVOPS_PROJECT: '创建 DevOps 项目',
+  DELETE_MULTIPLE_DEVOPS_PROJECTS: '批量删除 DevOps 项目',
   DELETE_DEVOPS_PROJECT: '删除 DevOps 项目',
+  DELETE_DEVOPS_PROJECT_TIP:
+    '请输入 DevOps 项目名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
+  DELETE_DEVOPS_PROJECT_TIP_PL:
+    '请输入 DevOps 项目名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
 
   DEVOPS_BASEINFO_DESC: '请输入 DevOps 项目的基本信息',
 
@@ -58,7 +63,7 @@ module.exports = {
   PIPELINE_EMPTY_DESC: '请创建一个流水线。',
   DEVOPS_ADMIN_DESC: '选择一个项目成员作为项目管理员。',
 
-  NO_RELATE_DEVOPS_TITLE: '没有找到与您相关联的 DevOps 项目',
+  NO_RELATE_DEVOPS_TITLE: '未发现与您相关联的 DevOps 项目',
   NO_RELATE_DEVOPS_DESC:
     '您可以创建或者联系项目管理员将您邀请到 DevOps 项目中开始您的工作',
 

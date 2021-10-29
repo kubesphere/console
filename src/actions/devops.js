@@ -86,6 +86,18 @@ export default {
           store.setSelectRowKeys([])
           success && success()
         },
+        title:
+          selectNames.length === 1
+            ? t('DELETE_DEVOPS_PROJECT')
+            : t('DELETE_MULTIPLE_DEVOPS_PROJECTS'),
+        desc:
+          selectNames.length === 1
+            ? t.html('DELETE_DEVOPS_PROJECT_TIP', {
+                resource: selectNames.join(', '),
+              })
+            : t.html('DELETE_DEVOPS_PROJECT_TIP_PL', {
+                resource: selectNames.join(', '),
+              }),
         resource: selectNames.join(', '),
         modal: DeleteModal,
         store,

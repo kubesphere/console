@@ -59,7 +59,7 @@ module.exports = {
   GATEWAY: 'Gateway',
   GATEWAY_PL: 'Gateways',
   GATEWAY_LOW: 'gateway',
-  GATEWAY_NOT_SET: 'Gateway Not Set',
+  GATEWAY_NOT_ENABLED: 'Gateway Not Enabled',
   'Help Information': 'Help Information',
   HOW_TO_INVITE_USERS: 'How do I invite users to the current project?',
   HOW_TO_SET_PROJECT_GATEWAY: 'How do I set the project gateway?',
@@ -133,7 +133,7 @@ module.exports = {
   SELECT_CLUSTER_DESC:
     'Select the cluster in which the project is to be created.',
   CLUSTER_EMPTY_DESC: 'Please select a cluster.',
-  SET_GATEWAY: 'Set Gateway',
+  ENABLE_GATEWAY: 'Enable Gateway',
   StatefulSet: 'StatefulSet',
   statefulsets: 'statefulsets',
   'Target Workspace': 'Target Workspace',
@@ -179,8 +179,8 @@ module.exports = {
   PROJECT_ADMIN_DESC:
     'You can specify a member of the project as an administrator.',
 
-  SET_GATEWAY_DESC:
-    'Set a gateway controller to forward traffic to different Services based on domain names and paths configured in Routes.',
+  ENABLE_GATEWAY_DESC:
+    'Enable the gateway controller to forward traffic to different Services based on domain names and paths configured in Routes.',
   DELETE_INTERNET_ACCESS_TITLE: 'Remove Network Access Settings',
   DELETE_INTERNET_ACCESS_DESC:
     'Are you sure you want to remove network access settings? You can reset the network access after the settings are removed.',
@@ -294,7 +294,7 @@ module.exports = {
   DISABLED: 'Disabled',
   ENABLE: 'Enable',
   DISABLE: 'Disable',
-  SET_GATEWAY_TIP:
+  ENABLE_GATEWAY_TIP:
     'To use the gateway, please configure the gateway in the cluster or the project.',
 
   // Network Isolation

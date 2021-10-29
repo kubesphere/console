@@ -94,7 +94,7 @@ module.exports = {
     '为节点添加污点以避免或尽可能避免容器组调度到节点。为节点设置污点后，您可以为容器组设置容忍度以允许容器组调度到有特定污点的节点。',
   TAINTS_TIPS:
     '如果主机中存在一个或多个影响策略为 NoSchedule 的污点，该容器组不会被调度到该主机<br>如果主机中不存在影响策略为 NoSchedule 的污点，但是存在一个或多个影响策略为 PreferNoSchedule 的污点，该容器组会尽量不调度到该主机<br>如果主机中存在一个或多个影响策略为 NoExecute 的污点，该容器组不会被调度到该主机，并且会驱逐已经调度到该主机的容器组实例',
-  NO_TAINTS_TIPS: '没有找到污点。',
+  NO_TAINTS_TIPS: '未发现污点。',
   TAINT_SELECT_TIPS: '加入公共污点',
   TAINT_DELETE_TIPS: '删除污点',
   ADD_TAINT: '添加污点',

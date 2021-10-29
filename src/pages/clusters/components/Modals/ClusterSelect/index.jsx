@@ -65,7 +65,7 @@ export default class ClusterSelectModal extends React.Component {
         onCancel={onCancel}
         width={960}
         icon="cluster"
-        title={t('Cluster Management')}
+        title={t('CLUSTER_PL')}
         description={t('CLUSTERS_MANAGE_DESC')}
         hideFooter
       >

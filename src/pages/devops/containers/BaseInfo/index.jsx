@@ -294,7 +294,7 @@ class BaseInfo extends React.Component {
         <DeleteModal
           detail={data}
           title={t('DELETE_DEVOPS_PROJECT')}
-          desc={t.html('DELETE_DEVOPS_TIP', {
+          desc={t.html('DELETE_DEVOPS_PROJECT_TIP', {
             resource: data.name,
           })}
           resource={data.name}

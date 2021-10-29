@@ -85,7 +85,7 @@ class GatewayCard extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('DELETE'),
+        text: t('DISABLE'),
         disabled: this.canEdit,
       },
     ]
