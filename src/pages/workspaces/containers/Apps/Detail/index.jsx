@@ -100,7 +100,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'appDeploy',
         icon: 'snapshot',
-        text: t('DEPLOY'),
+        text: t('INSTALL'),
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.deploy', {

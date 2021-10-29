@@ -66,7 +66,7 @@ export default class Branch extends React.Component {
 
   getColumns = () => [
     {
-      title: t('commit'),
+      title: t('COMMIT'),
       dataIndex: 'commitId',
       width: '20%',
       render: (commitId, record) => {
@@ -78,13 +78,13 @@ export default class Branch extends React.Component {
       },
     },
     {
-      title: t('Author'),
+      title: t('AUTHOR'),
       dataIndex: 'author',
       width: '20%',
       render: author => author || '-',
     },
     {
-      title: t('message'),
+      title: t('MESSAGE'),
       dataIndex: 'title',
       width: '40%',
     },
@@ -114,7 +114,7 @@ export default class Branch extends React.Component {
     const omitFilters = omit(filters, 'page')
 
     if (isEmptyList && !filters.page) {
-      return <EmptyCard desc={t('No commit records')} />
+      return <EmptyCard desc={t('NO_COMMIT_FOUND')} />
     }
 
     const pagination = { total, page, limit }

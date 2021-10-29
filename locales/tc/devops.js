@@ -19,6 +19,7 @@
 module.exports = {
   DEVOPS_NAME: 'DevOps 项目名稱',
   DEVOPS_PROJECT: 'DevOps 项目',
+  DEVOPS_PROJECT_SCAP: 'DevOps 项目',
   DEVOPS_PROJECT_MEMBER_EMPTY_DESC:
     'Please invite a member of the current workspace to the DevOps project.',
   'DevOps Role': '成員角色',
@@ -28,19 +29,28 @@ module.exports = {
   DEVOPS_PROJECT_CREDENTIAL_PL: 'DevOps 项目憑證',
   DEVOPS_CREDENTIAL: 'DevOps Credential',
   DEVOPS_CREDENTIAL_PL: 'DevOps 憑證',
-  DEVOPS_CREDENTIAL_EMPTY_DESC: '請創建一個 DevOps 项目憑證。',
+  CREDENTIAL_EMPTY_DESC: '請創建一個 DevOps 项目憑證。',
+  PIPELINE_CREDENTIAL_EMPTY_TIP: 'Please select a credential.',
   DEVOPS_CREDENTIAL_LOW: 'DevOps 憑證',
   'DevOps Basic Info': '基本資訊',
   DEVOPS_PROJECT_MANAGEMENT: '项目管理',
   DEVOPS_PROJECT_SETTINGS: '项目管理',
   MANAGE_DEVOPS_PROJECT: 'Manage DevOps Project',
   DEVOPS_PROJECT_MEMBER_PL: 'DevOps 项目成員',
+  DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps project member',
+  DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps project members',
   DEVOPS_PROJECT_ROLE_PL: 'DevOps 项目角色',
+  DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps 项目角色',
 
   MANAGER: '管理員',
   'DevOps Project Manager': 'DevOps 项目管理員',
   CREATE_DEVOPS_PROJECT: '創建 DevOps 项目',
+  DELETE_MULTIPLE_DEVOPS_PROJECTS: 'Delete Multiple DevOps Projects',
   DELETE_DEVOPS_PROJECT: '刪除 DevOps 项目',
+  DELETE_DEVOPS_PROJECT_TIP:
+    'Enter the DevOps project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
+  DELETE_DEVOPS_PROJECT_TIP_PL:
+    'Enter the DevOps project names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 
   DEVOPS_BASEINFO_DESC: '請輸入 DevOps 项目的基本資訊',
 
@@ -66,7 +76,6 @@ module.exports = {
 
   DEVOPS_PROJECT_MEM_DESC: '對项目内的成員進行管理及角色分配。',
   DEVOPS_PROJECT_ROLE_EMPTY_DESC: 'Please create a DevOps project role.',
-
   DELETE_DEVOPS_TIP:
     '確定刪除 DevOps 项目 <strong>{resource}</strong> ? 刪除後將無法恢復, 项目下的資源也同時會被銷毀。',
 
@@ -81,7 +90,6 @@ module.exports = {
   NO_DEVOPS_INSTALL: '未安裝 DevOps',
 
   // Credentials Creation Page
-  SECRET_DEVOPS: '密鑰',
   CONTENT: '內容',
   INVALID_ID_TIP:
     'ID 最長 63 個字元，只能包含小寫字母、數字及分隔符號（-），且必須以小寫字母或數字開頭及結尾。',

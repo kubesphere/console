@@ -64,14 +64,17 @@ module.exports = {
   ROLE_PROJECTS_JOIN_TIP: '輸入用戶名或者郵箱邀請用戶加入到項目中',
   ROLE_TYPE_DESC:
     '角色類型根據權限範圍分為集群、項目兩類，目前角色的授權為該項目範圍。',
-
-  DELETE_ROLE_TIP: '確定刪除角色 <strong>{resource}</strong>?',
-  ROLE_USERS_TIP:
-    '目前角色有 <strong>{count}</strong> 名授權用戶，請先移除授權用戶或更改角色後再刪除。',
-  ROLE_USER_TIP:
-    '目前角色有 <strong>{count}</strong> 名授權用戶，請先移除授權用戶或更改角色後再刪除。',
-  ROLE_USER_GROUPS_TIP:
-    '當前角色已被分配給 <strong>{count}</strong> 个部門，請先移除授權部門或更改角色後再刪除。',
+  DELETE_ROLE: 'Delete Role',
+  DELETE_ROLE_TIP:
+    'Are you sure you want to delete the role <strong>{resource}</strong>?',
+  DELETE_ROLE_USER_TIP_PL:
+    'The role is authorized to <strong>{count}</strong> users. Please delete the users or change the roles of the user first.',
+  DELETE_ROLE_USER_TIP:
+    'The role is authorized to <strong>{count}</strong> user. Please delete the user or change the role of the user first.',
+  DELETE_ROLE_DEPARTMENT_TIP_PL:
+    'The role is authorized to <strong>{count}</strong> departments. Please delete the departments or change the roles of the departments first.',
+  DELETE_ROLE_DEPARTMENT_TIP:
+    'The role is authorized to <strong>{count}</strong> department. Please delete the department or change the role of the department first.',
 
   DEPENDS_ON: '依賴於',
   'Clusters Management': '集群管理',

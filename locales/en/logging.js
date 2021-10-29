@@ -136,8 +136,8 @@ module.exports = {
   TOTAL_EVENTS_TODAY:
     'A total of <span class={className}> {events} </span> resource events were collected today.',
   NO_RESOURCE_EVENTS_TODAY: 'No Resource Events Collected Today',
-  START_REAL_TIME_LOG: 'Enable real-time logging',
-  STOP_REAL_TIME_LOG: 'Disable real-time container logs',
+  START_REAL_TIME_LOG: 'Enable real-time logs',
+  STOP_REAL_TIME_LOG: 'Disable real-time logs',
   LOG_EXPORT: 'Log Export',
   EXPORT_LOGS: 'Export Logs',
 
@@ -212,7 +212,6 @@ module.exports = {
   SEARCH_BY_POD: 'Search by Pod',
   SEARCH_BY_CONTAINER: 'Search by Container',
   START_TIME_COLON: 'Start Time: ',
-  TIME_RANGE: 'Time Range',
   LOG: 'Log',
   DISPLAY: 'Display',
   HIDE: 'Hide',

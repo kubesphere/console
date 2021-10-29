@@ -81,7 +81,9 @@ export default class ParamsInput extends React.Component {
           <Column>
             <Form.Item
               label={t('NAME')}
-              rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+              rules={[
+                { required: true, message: t('PARAMETER_NAME_EMPTY_DESC') },
+              ]}
             >
               <Input
                 name={`${this.props.prefix}.name`}
@@ -101,7 +103,10 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('DESCRIPTION')} desc={t('PARAM_DESC')}>
+        <Form.Item
+          label={t('DESCRIPTION')}
+          desc={t('PARAMETER_DESCRIPTION_DESC')}
+        >
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.description`}
@@ -119,7 +124,7 @@ export default class ParamsInput extends React.Component {
       <div>
         <Form.Item
           label={t('NAME')}
-          rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+          rules={[{ required: true, message: t('PARAMETER_NAME_EMPTY_DESC') }]}
         >
           <Input name={`${this.props.prefix}.name`} defaultValue={value.name} />
         </Form.Item>
@@ -130,7 +135,10 @@ export default class ParamsInput extends React.Component {
             defaultValue={value.default_value || ''}
           />
         </Form.Item>
-        <Form.Item label={t('DESCRIPTION')} desc={t('PARAM_DESC')}>
+        <Form.Item
+          label={t('DESCRIPTION')}
+          desc={t('PARAMETER_DESCRIPTION_DESC')}
+        >
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.description`}
@@ -150,7 +158,9 @@ export default class ParamsInput extends React.Component {
           <Column>
             <Form.Item
               label={t('NAME')}
-              rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+              rules={[
+                { required: true, message: t('PARAMETER_NAME_EMPTY_DESC') },
+              ]}
             >
               <Input
                 name={`${this.props.prefix}.name`}
@@ -170,7 +180,10 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('DESCRIPTION')} desc={t('PARAM_DESC')}>
+        <Form.Item
+          label={t('DESCRIPTION')}
+          desc={t('PARAMETER_DESCRIPTION_DESC')}
+        >
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.description`}
@@ -190,7 +203,9 @@ export default class ParamsInput extends React.Component {
           <Column>
             <Form.Item
               label={t('NAME')}
-              rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+              rules={[
+                { required: true, message: t('PARAMETER_NAME_EMPTY_DESC') },
+              ]}
             >
               <Input
                 name={`${this.props.prefix}.name`}
@@ -211,7 +226,10 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('DESCRIPTION')} desc={t('PARAM_DESC')}>
+        <Form.Item
+          label={t('DESCRIPTION')}
+          desc={t('PARAMETER_DESCRIPTION_DESC')}
+        >
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.description`}
@@ -249,7 +267,10 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('DESCRIPTION')} desc={t('PARAM_DESC')}>
+        <Form.Item
+          label={t('DESCRIPTION')}
+          desc={t('PARAMETER_DESCRIPTION_DESC')}
+        >
           <TextArea
             name={`${this.props.prefix}.description`}
             defaultValue={value.description}
@@ -266,7 +287,11 @@ export default class ParamsInput extends React.Component {
       <div className={styles.itemWrapper}>
         <div className={styles.itemTitle}>
           <p>
-            <strong>{t(PIPELINE_PARAMS_TYPES[value.type])}</strong>
+            <strong>
+              {PIPELINE_PARAMS_TYPES[value.type] === 'PARAMS_TEXT'
+                ? t('PARAMS_TEXT_TCAP')
+                : t(PIPELINE_PARAMS_TYPES[value.type])}
+            </strong>
           </p>
           <Button
             className={styles.delete}

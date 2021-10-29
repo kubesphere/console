@@ -22,7 +22,7 @@ module.exports = {
   KUBE_OPERATE: '排序',
   KUBE_FILTER: '过滤',
   KUBE_PLEASE_SELECT: '请选择',
-  KUBE_NO_AVAILABLE_DATA: '暂无数据',
+  KUBE_NO_AVAILABLE_DATA: '未发现数据',
   KUBE_SUN: '日',
   KUBE_MON: '一',
   KUBE_TUE: '二',

@@ -136,7 +136,7 @@ export default class Slack extends React.Component {
     } else {
       await this.secretStore.update({ name: SECRET_NAME }, secret)
       await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
-      message = t('UPDATED_SUCCESS_DESC')
+      message = t('UPDATE_SUCCESS')
     }
 
     this.fetchData()

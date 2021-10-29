@@ -27,7 +27,6 @@ module.exports = {
 
   SELECT_AUTHENTICATION_METHOD: 'Select Authentication Method',
   PORT_CONNECTION_AUTHENTICATION: 'Port connection authentication.',
-  NO_AUTH: 'No Authentication',
 
   CREATE_A_NEW_SECRET: 'Create a new Secret',
   REFRESH_SECRETS: 'refresh Secrets.',

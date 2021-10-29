@@ -63,7 +63,7 @@ module.exports = {
   NOTES_FILE_DESC: '使用指南。',
 
   'Version Update Info': '版本更新说明',
-  NO_VERSION_INFO_DESC: '没有找到版本信息。',
+  NO_VERSION_INFO_DESC: '未发现版本信息。',
 
   developer: '开发者',
   isv: '应用服务商',
@@ -74,7 +74,7 @@ module.exports = {
 
   DOWNLOAD_SUCCESSFUL: '下载成功。',
 
-  Passed: '已通过',
+  PASSED: '已通过',
   Rejected: '已拒绝',
   Draft: '待提交',
   Suspended: '已下架',

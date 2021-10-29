@@ -52,11 +52,14 @@ module.exports = {
   'Modify Members Role': '修改成員角色',
   'Remove Members': '移除成員',
   REMOVE_MEMBER: '移除成員',
+  REMOVE_MULTIPLE_MEMBERS: 'Remove Multiple Members',
+  REMOVE_MULTIPLE_MEMBERS_TIP:
+    'Enter the usernames <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   'Invite Member': '邀請成員',
   GATEWAY: '網關資訊',
-  SET_GATEWAY: '設置網關',
+  ENABLE_GATEWAY: '設置網關',
 
-  GATEWAY_NOT_SET: '網關未設置',
+  GATEWAY_NOT_ENABLED: '網關未設置',
 
   PROJECT_INFO: '項目資訊',
   PROJECT_QUOTA: '項目配額',
@@ -178,7 +181,7 @@ module.exports = {
   ASSIGN_ROLE: 'Assign Role',
   PROJECT_ADMIN_DESC: '可以指定項目内一個成員為管理員',
 
-  SET_GATEWAY_DESC:
+  ENABLE_GATEWAY_DESC:
     '在創建應用路由之前，需要先啟用外網訪問入口，即網關。這一步是創建對應的應用路由控制器，用來負責將請求轉發到對應的後端服務。',
 
   DELETE_INTERNET_ACCESS_TITLE: 'Remove Network Access Settings',
@@ -313,7 +316,7 @@ module.exports = {
   ENABLE: 'Enable',
   DISABLE: 'Disable',
   DISABLE_LOG_COLLECTION: 'Disable Log Collection',
-  SET_GATEWAY_TIP: '要使用網關，請在集群或項目中配置網關',
+  ENABLE_GATEWAY_TIP: '要使用網關，請在集群或項目中配置網關',
 
   // Network Isolation
   INGRESS: 'Ingress',

@@ -33,7 +33,6 @@ module.exports = {
   'New App Config': 'New App Configurations',
   'App Deploy': 'App Deploy',
   APP_DETAILS: 'App Details',
-  HOMEPAGE: 'Homepage',
   APP_INFORMATION: 'App Information',
   'App Introduction': 'App Introduction',
   'App Name': 'App Name',
@@ -179,7 +178,8 @@ module.exports = {
 
   APP_RELEASE_DESC:
     'Manages apps to be released to the App Store. You can view app details and approve or reject app releases.',
-  APP_REVIEW_EMPTY_DESC: 'No unreleased app is found.',
+  APP_REVIEW_EMPTY_DESC:
+    'Please create an app template in a workspace and submit the app template for release.',
   APP_REVIEWS_CREATE_DESC:
     'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
   APP_DETAILS_DESC: 'View details of the app to be released.',
@@ -257,9 +257,10 @@ module.exports = {
 
   HELM_APP_SCHEMA_FORM_TIP:
     'You can customize the app settings in a GUI form or a YAML file. Settings in the GUI form and those in the YAML file are independent of each other.',
-
-  DELETE_APP_TEMPLATE_TIP:
-    'Before deleting an application template, you need to delete all versions.',
+  DELETE_APP_TEMPLATE_DESC:
+    'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation.',
+  DELETE_APP_TEMPLATE_VERSIONS_DESC:
+    'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation. Before deleting the app template, you must delete all versions of the template.',
 
   UNPROCESSED_APP_RELEASE: 'Unreleased App',
   PROCESSED_APP_RELEASE: 'Released App',

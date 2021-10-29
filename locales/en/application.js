@@ -27,7 +27,6 @@ module.exports = {
   ADD_ROUTE: 'Add Route',
   APP_CREATE_SERVICE_DESC: 'Create a Service for the composed app.',
   CREATE_SERVICE_DESC: 'Select a Service creation method.',
-  APP_DESCRIPTION: 'App Description',
   APP_INTRODUCTION: 'App Introduction',
   'App store deployment': 'App store deployment',
   'App Template': 'App Template',

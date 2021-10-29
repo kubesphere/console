@@ -180,8 +180,8 @@ export default class GatewaySettingModal extends React.Component {
       <div className={styles.modalTitle}>
         <Icon name="loadbalancer" size={32} />
         <div className={styles.modalTitleContent}>
-          <div>{t('SET_GATEWAY')}</div>
-          <p> {t('SET_GATEWAY_DESC')}</p>
+          <div>{t('ENABLE_GATEWAY')}</div>
+          <p> {t('ENABLE_GATEWAY_DESC')}</p>
         </div>
       </div>
     )
@@ -229,7 +229,7 @@ export default class GatewaySettingModal extends React.Component {
                       {t('TRACING')}
                     </div>
                     <div className={styles.toggleTip}>
-                      {t('GATEWAY_APPLICATION_GOVERNANCE_TIP')}
+                      {t.html('GATEWAY_TRACING_TIP')}
                     </div>
                   </div>
                 )}

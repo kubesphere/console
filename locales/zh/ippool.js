@@ -62,7 +62,7 @@ module.exports = {
   IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING:
     'IP 池已被使用且已指定具体的企业空间，无法更改企业空间。',
 
-  IPPOOL_WORKSPACE_EMPTY_TIP: '暂无企业空间使用此 IP 池',
+  IPPOOL_WORKSPACE_EMPTY_TIP: '未发现企业空间使用此 IP 池',
   // IP Pod Pools List Page
   TOTAL_VALUE: '总计：{value}',
   ALL: '全部',

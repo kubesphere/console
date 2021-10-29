@@ -105,7 +105,8 @@ export default class ActionsInput extends React.Component {
         {!isEmpty(this.menuData) &&
           Object.keys(this.menuData).map(key => (
             <Menu.MenuItem key={key} disabled={valueKey.includes(key)}>
-              <Icon name="ticket" /> {t(this.menuData[key])}
+              <Icon name="ticket" />{' '}
+              {t(this.menuData[key].replace(/\s/g, '_').toUpperCase())}
             </Menu.MenuItem>
           ))}
       </Menu>
@@ -124,7 +125,7 @@ export default class ActionsInput extends React.Component {
             trigger="click"
             placement="bottomRight"
           >
-            <Button type="control">{t('ADD_ACTION')}</Button>
+            <Button type="control">{t('ADD_STRATEGY')}</Button>
           </Dropdown>
         </div>
         <div className={styles.content}>

@@ -99,8 +99,8 @@ export default class Gateway extends React.Component {
             <Icon name="loadbalancer" size={40} />
           </div>
           <div className={styles.text}>
-            <div>{t('GATEWAY_NOT_SET')}</div>
-            <p>{t('SET_GATEWAY_TIP')}</p>
+            <div>{t('GATEWAY_NOT_ENABLED')}</div>
+            <p>{t('ENABLE_GATEWAY_TIP')}</p>
           </div>
         </div>
       </Panel>

@@ -308,7 +308,8 @@ module.exports = {
   'Invalid name': '名称格式不合法。{message}',
   'Invalid pod': '容器组数量格式不合法',
   SET_IMAGE_DESC: '为容器设置镜像。',
-  INVALID_NAME_DESC: '名称无效。{message}',
+  INVALID_NAME_DESC:
+    '名称无效。名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   'Service Labels': '服务标签',
 
   'Add Existing Volume': '添加已有存储卷',
@@ -418,7 +419,7 @@ module.exports = {
   ENVIRONMENT_VARIABLE_PL: '环境变量',
   ENVIRONMENT_VARIABLE: '环境变量',
   'File List': '文件列表',
-  RERUN: '重新执行',
+  RERUN: '重新运行',
   ENTER_SCHEDULE_TIP: '请选择定时计划。',
 
   TARGET_REVISION_EMPTY_DESC: '请选择目标修改记录。',
@@ -466,7 +467,7 @@ module.exports = {
     '您确定重新创建{type} {resource} 吗？容器组副本将会根据更新策略更新，同时相关业务将会中断。',
 
   MORE: '更多操作',
-  OPERATIONS: '操作',
+  MANAGE: '管理',
 
   REVISION_ROLLBACK_SELECT: '请选择要回退的版本',
   REVISION_TITLE: '{name}版本',

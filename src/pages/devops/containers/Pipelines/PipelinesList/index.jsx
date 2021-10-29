@@ -139,7 +139,7 @@ export default class PipelinesList extends React.Component {
       {
         key: 'activity',
         icon: 'calendar',
-        text: t('ACTIVITY'),
+        text: t('VIEW_RECORDS'),
         action: 'view',
         onClick: record => {
           this.props.rootStore.routing.push(
@@ -159,7 +159,7 @@ export default class PipelinesList extends React.Component {
       {
         key: 'copy',
         icon: 'copy',
-        text: t('COPY_PIPELINE'),
+        text: t('COPY'),
         action: 'edit',
         onClick: record => {
           this.handleCopy(record.name)
@@ -325,7 +325,7 @@ export default class PipelinesList extends React.Component {
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
-      title: t('BRANCH_SI'),
+      title: t('BRANCH_COUNT'),
       dataIndex: 'totalNumberOfBranches',
       width: '25%',
       isHideable: true,
@@ -333,7 +333,7 @@ export default class PipelinesList extends React.Component {
         totalNumberOfBranches === undefined ? '-' : totalNumberOfBranches,
     },
     {
-      title: t('PULL_REQUEST_PL'),
+      title: t('PULL_REQUEST_COUNT'),
       dataIndex: 'totalNumberOfPullRequests',
       width: '20%',
       isHideable: true,
@@ -355,7 +355,7 @@ export default class PipelinesList extends React.Component {
     const isMulti = !isEmpty(multiData)
 
     if (isMulti) {
-      Notify.error(t('BATCH_RUN_DESC'))
+      Notify.error(t('BATCH_RUN_UNSUPPORTED_DESC'))
       return false
     }
 
@@ -393,7 +393,7 @@ export default class PipelinesList extends React.Component {
     if (isEmptyList && Object.keys(omitFilters).length <= 0) {
       return (
         <Empty
-          name="Pipeline"
+          name="PIPELINE"
           action={
             showCreate ? (
               <Button onClick={showCreate} type="control">

@@ -167,7 +167,7 @@ export default class SecretSettings extends React.Component {
         <Form.Item
           label={t('CREDENTIAL_SI')}
           rules={[
-            { required: true, message: t('ENTER_CREDENTIAL_TIP') },
+            { required: true, message: t('CREDENTIAL_NAME_EMPTY_DESC') },
             { validator: this.dataValidator },
           ]}
         >

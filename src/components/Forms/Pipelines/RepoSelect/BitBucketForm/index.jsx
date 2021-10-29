@@ -130,9 +130,11 @@ export default class BitBucketForm extends GitHubForm {
           ref={this.tokenFormRef}
         >
           <Form.Item
-            label="Bitbucket Server"
+            label={t('BITBUCKET_SERVER_ADDRESS')}
             error={errorsBody['apiUrl']}
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            rules={[
+              { required: true, message: t('BITBUCKET_SERVER_EMPTY_TIP') },
+            ]}
           >
             <Select
               name="apiUrl"
@@ -144,16 +146,18 @@ export default class BitBucketForm extends GitHubForm {
 
           <Form.Item
             label={t('CREDENTIAL_SI')}
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            rules={[
+              { required: true, message: t('PIPELINE_CREDENTIAL_EMPTY_TIP') },
+            ]}
             error={errorsBody['username'] || errorsBody['password']}
             desc={
               <p>
-                {t('ADD_NEW_CREDENTIAL_DESC')}
+                {t('SELECT_CREDENTIAL_DESC')}
                 <span
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('CREATE_A_CREDENTIAL')}
+                  {t('CREATE_CREDENTIAL')}
                 </span>
               </p>
             }

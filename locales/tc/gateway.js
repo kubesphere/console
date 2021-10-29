@@ -18,6 +18,9 @@
 
 module.exports = {
   GATEWAY_SETTINGS: '網關設置',
+  DISABLE_GATEWAY: 'Disable Gateway',
+  DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
+  DISABLE_SUCCESS: 'Disabled successfully.',
   CLUSTER_GATEWAY_DESC:
     '對集群和項目中的外網訪問網關以及服務治理等配置進行設置和管理',
   PROJECT_GATEWAY_DESC:
@@ -27,12 +30,12 @@ module.exports = {
   CLUSTER_GATEWAY_LOW: 'cluster gateway',
   PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_LOW: 'project gateway',
-  CLUSTER_SET_GATEWAY_DESC:
+  CLUSTER_ENABLE_GATEWAY_DESC:
     '創建應用路由之前，需要先啟用外網訪問入口，即網關。這一步是創建對應的應用路由控制器，負責將請求轉發到對應的後端服務。 ',
-  PROJECT_SET_GATEWAY_DESC:
+  PROJECT_ENABLE_GATEWAY_DESC:
     '集群管理頁面不支持項目網關的設置，如需設置需要轉到對應項目下進行設置。 ',
-  CLUSTER_GATEWAY_NOT_SET: '集群網關未設置',
-  PROJECT_GATEWAY_NOT_SET: '沒有找到 項目網關',
+  CLUSTER_GATEWAY_NOT_ENABLED: '集群網關未設置',
+  PROJECT_GATEWAY_NOT_ENABLED: '沒有找到 項目網關',
   'Gateway Not Set': '網關未設置',
   'Set Gateway': '設置網關',
   EDIT_GATEWAY: '編輯網關',

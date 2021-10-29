@@ -229,7 +229,7 @@ module.exports = {
     '目前仅支持采集已挂载存储卷的用量数据，并且 OpenEBS、Local PV、NFS 等路径型存储卷的用量数据通常与实际值有一定出入。<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">了解更多</a>',
 
   VOLUME_FUNCTION_MANAGEMENT_TIP:
-    '存储卷管理只控制是否在 KubeSphere Web 控制台启用以下功能。启用前，请联系系统管理员确认存储系统是否支持这些功能。',
+    '存储卷管理只控制是否在 KubeSphere Web 控制台启用以下功能。开启前，请联系系统管理员确认存储系统是否支持这些功能。',
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',
   CLUSTER_ID: '集群 ID',

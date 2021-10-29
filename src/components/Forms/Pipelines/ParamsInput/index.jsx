@@ -85,12 +85,12 @@ export default class ParamsInput extends React.Component {
             trigger="click"
             placement="bottomRight"
           >
-            <Button type="control">{t('ADD_PARAMETER')}</Button>
+            <Button type="control">{t('ADD')}</Button>
           </Dropdown>
         </div>
         <div className={styles.content}>
           {isEmpty(this.value) && (
-            <p className="text-center padding-12">{t('NO_PARAMETERS')}</p>
+            <p className="text-center padding-12">{t('NO_DATA')}</p>
           )}
           {isArray(this.value) &&
             this.value.map((item, index) => (

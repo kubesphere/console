@@ -65,7 +65,7 @@ module.exports = {
   'Cluster Authorization Info': '集群授权信息',
   WS_NETWORK_ISOLATION: '企业空间网络隔离',
 
-  NO_AVAILABLE_CLUSTER: '暂时没有可用集群',
+  NO_AVAILABLE_CLUSTER: '未发现可用集群',
   NETWORK_POLICY_UNINSATLLED_DESC: '该集群未安装网络策略组件。',
 
   'All members': '全部成员',
@@ -100,7 +100,7 @@ module.exports = {
   WORKSPACE_MEMBER_DESC:
     '企业空间成员可以查看或管理企业空间资源。您可以管理企业空间中的成员并控制成员权限。',
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请企业空间成员',
-  INVITE_WORKSPACE_MEMBER_DESC: '您可以邀请成员至该企业空间。',
+  INVITE_WORKSPACE_MEMBER_DESC: '邀请用户到当前企业空间。',
 
   DELETE_WORKSPACE_TIP:
     '确定删除企业空间 <strong>{resource}</strong> ? 删除后将无法恢复, 企业空间下的资源也同时会被销毁。',
@@ -119,14 +119,14 @@ module.exports = {
   HOW_TO_APPLY_MORE_CLUSTER_A: '请联系平台管理员或集群管理员以申请更多集群。',
 
   NO_CLUSTER_AVAILABLE_DESC:
-    '没有找到可用的集群。请在企业空间创建完成后，联系平台管理员或集群管理员将一个集群授权给该企业空间。',
+    '未发现可用的集群。请在企业空间创建完成后，联系平台管理员或集群管理员将一个集群授权给该企业空间。',
   WORKSPACE_NO_CLUSTER_TIP:
     '请联系平台管理员或者集群管理员将一个集群授权给企业空间。',
 
   DEPARTMENT_MANAGEMENT_DESC:
     '企业空间中的部门是用来管理权限的逻辑单元。您可以在部门中设置企业空间角色、多个项目角色以及多个 DevOps 项目角色，还可以将用户分配到部门中以批量管理用户权限。',
   DEPARTMENT_EMPTY_DESC: '没有可用部门',
-  WORKSPACE_GROUP_USER_EMPTY_DESC: '暂时没有可分配的成员',
+  WORKSPACE_GROUP_USER_EMPTY_DESC: '未发现可分配的成员',
   WORKSPACE_QUOTAS_DESC:
     '企业空间配额用于管理企业空间中所有项目和 DevOps 项目的总资源用量。',
 
