@@ -16,12 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, isEmpty } from 'lodash'
+import { get, set, isEmpty, omit } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
-import { mergeLabels, updateFederatedAnnotations } from 'utils'
+import { mergeLabels, updateFederatedAnnotations, omitJobGpuLimit } from 'utils'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { MODULE_KIND_MAP } from 'utils/constants'
+import {
+  MODULE_KIND_MAP,
+  MAPPER_GPU_SPEC_PATH,
+  OMIT_TOTAL_REPLICAS,
+} from 'utils/constants'
 
 import ROUTER_FORM_STEPS from 'configs/steps/ingresses'
 
@@ -51,6 +55,18 @@ export default {
     on({ store, cluster, namespace, workspace, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
+          const deployments = omit(data, ['application', 'ingress'])
+          Object.keys(deployments).forEach(name => {
+            omitJobGpuLimit(
+              data,
+              `${name}.${MAPPER_GPU_SPEC_PATH.app_deployment}`
+            )
+            omitJobGpuLimit(
+              data,
+              `${name}.${MAPPER_GPU_SPEC_PATH.app_workload}`
+            )
+            data = omit(data, OMIT_TOTAL_REPLICAS(name))
+          })
           store.create(data, { cluster, namespace }).then(() => {
             Modal.close(modal)
             success && success()
