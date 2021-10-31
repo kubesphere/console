@@ -177,7 +177,7 @@ export default class AffinityForm extends React.Component {
     }
 
     this.setState({ mode }, () => {
-      this.props.formProps.onChange()
+      this.props.formProps && this.props.formProps.onChange()
     })
   }
 
