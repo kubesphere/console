@@ -184,7 +184,7 @@ export default class MountConfig extends React.Component {
           name: get(this.props, 'volume.name', `volume-${generateId()}`),
         }
 
-        if (resource.type) {
+        if (resource.module === 'secrets') {
           volume.secret = { secretName: name, items }
         } else {
           volume.configMap = { name, items }
