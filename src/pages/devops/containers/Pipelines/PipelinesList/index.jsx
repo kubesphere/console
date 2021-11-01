@@ -326,8 +326,11 @@ export default class PipelinesList extends React.Component {
       dataIndex: 'totalNumberOfBranches',
       width: '25%',
       isHideable: true,
-      render: totalNumberOfBranches =>
-        totalNumberOfBranches === undefined ? '-' : totalNumberOfBranches,
+      render: (totalNumberOfBranches, record) =>
+        totalNumberOfBranches === undefined ||
+        (!record.isMultiBranch && totalNumberOfBranches === 0)
+          ? '-'
+          : totalNumberOfBranches,
     },
     {
       title: t('PULL_REQUEST_PL'),
