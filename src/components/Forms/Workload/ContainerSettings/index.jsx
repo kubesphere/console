@@ -29,9 +29,10 @@ import {
   isUndefined,
 } from 'lodash'
 import React from 'react'
-import { generateId, getContainerGpu } from 'utils'
+import { generateId, getContainerGpu, memoryFormat } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import { getLeftQuota } from 'utils/workload'
+import { toJS } from 'mobx'
 
 import SecretStore from 'stores/secret'
 import LimitRangeStore from 'stores/limitrange'
@@ -63,6 +64,7 @@ export default class ContainerSetting extends React.Component {
       imageRegistries: [],
       replicas: this.getReplicas(),
       leftQuota: {},
+      availableQuota: {},
     }
 
     this.module = props.module
@@ -119,8 +121,8 @@ export default class ContainerSetting extends React.Component {
   }
 
   get workspaceQuota() {
-    const nsQuota = get(this.state.leftQuota, 'namespace', {})
-    const wsQuota = get(this.state.leftQuota, 'workspace', {})
+    const nsQuota = get(this.state.availableQuota, 'namespace', {})
+    const wsQuota = get(this.state.availableQuota, 'workspace', {})
     return mergeWith(nsQuota, wsQuota, (ns, ws) => {
       if (!ns && !ws) {
         return undefined
@@ -188,9 +190,28 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
+  leftQuota_memory = (data = {}) => {
+    const newData = { ...data }
+    Object.keys(data)
+      .filter(key => key.endsWith('memory'))
+      .forEach(key => {
+        newData[key] = memoryFormat(data[key])
+      })
+    return newData
+  }
+
   fetchQuota() {
+    let workspace
+    let name
     const { cluster, projectDetail } = this.props
-    const { workspace, name } = projectDetail || {}
+
+    if (!projectDetail) {
+      workspace = this.props.workspace
+      name = this.props.namespace
+    } else {
+      workspace = projectDetail.workspace
+      name = projectDetail.name
+    }
 
     if (workspace && name) {
       Promise.all([
@@ -204,11 +225,19 @@ export default class ContainerSetting extends React.Component {
           cluster,
         }),
       ]).then(() => {
+        const workspaceQuota = toJS(
+          get(this.workspaceQuotaStore.detail, 'status.total.hard')
+        )
+        const namespaceQuota = toJS(this.quotaStore.data.hard)
         this.setState({
           leftQuota: getLeftQuota(
             get(this.workspaceQuotaStore.detail, 'status.total'),
             this.quotaStore.data
           ),
+          availableQuota: {
+            workspace: this.leftQuota_memory(workspaceQuota),
+            namespace: this.leftQuota_memory(namespaceQuota),
+          },
         })
       })
     }

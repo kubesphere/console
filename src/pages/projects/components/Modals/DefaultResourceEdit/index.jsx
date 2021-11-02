@@ -24,7 +24,8 @@ import { Modal } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
 import QuotaStore from 'stores/quota'
 import WorkspaceQuotaStore from 'stores/workspace.quota'
-import { getLeftQuota } from 'utils/workload'
+import { toJS } from 'mobx'
+import { memoryFormat } from 'utils'
 
 export default class DefaultResourceEditModal extends React.Component {
   static propTypes = {
@@ -54,7 +55,7 @@ export default class DefaultResourceEditModal extends React.Component {
     this.state = {
       data: get(props.detail, 'limit', {}),
       error: '',
-      leftQuota: {},
+      availableQuota: {},
     }
   }
 
@@ -90,9 +91,26 @@ export default class DefaultResourceEditModal extends React.Component {
     })
   }
 
+  availableQuota_memory = (data = {}) => {
+    const newData = { ...data }
+    Object.keys(data)
+      .filter(key => key.endsWith('memory'))
+      .forEach(key => {
+        newData[key] = memoryFormat(data[key])
+      })
+    return newData
+  }
+
   fetchQuota() {
+    let name
     const { workspace, project } = this.props
-    const { cluster, name } = project || {}
+    const { cluster } = project || {}
+
+    if (this.props.name) {
+      name = get(this.props, 'name')
+    } else {
+      name = get(project, 'name')
+    }
 
     if (workspace && name) {
       Promise.all([
@@ -106,19 +124,23 @@ export default class DefaultResourceEditModal extends React.Component {
           cluster,
         }),
       ]).then(() => {
+        const workspaceQuota = toJS(
+          get(this.workspaceQuotaStore.detail, 'status.total.hard')
+        )
+        const namespaceQuota = toJS(this.quotaStore.data.hard)
         this.setState({
-          leftQuota: getLeftQuota(
-            get(this.workspaceQuotaStore.detail, 'status.total'),
-            this.quotaStore.data
-          ),
+          availableQuota: {
+            workspace: this.availableQuota_memory(workspaceQuota),
+            namespace: this.availableQuota_memory(namespaceQuota),
+          },
         })
       })
     }
   }
 
   get workspaceQuota() {
-    const nsQuota = get(this.state.leftQuota, 'namespace', {})
-    const wsQuota = get(this.state.leftQuota, 'workspace', {})
+    const nsQuota = get(this.state.availableQuota, 'namespace', {})
+    const wsQuota = get(this.state.availableQuota, 'workspace', {})
     return mergeWith(nsQuota, wsQuota, (ns, ws) => {
       if (!ns && !ws) {
         return undefined
@@ -151,7 +173,6 @@ export default class DefaultResourceEditModal extends React.Component {
         cpu: this.getQuotaInfo('requests.cpu'),
         memory: this.getQuotaInfo('requests.memory'),
       },
-      limitType: 'project',
     }
 
     return (

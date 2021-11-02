@@ -26,8 +26,7 @@ import { ResourceLimit } from 'components/Inputs'
 
 import QuotaStore from 'stores/quota'
 import WorkSpaceStore from 'stores/workspace.quota'
-import { getLeftQuota } from 'utils/workload'
-import { gpuTypeArr } from 'utils'
+import { memoryFormat, gpuTypeArr } from 'utils'
 
 import Quotas from './Quotas'
 
@@ -62,7 +61,7 @@ export default class QuotaEditModal extends React.Component {
     this.state = {
       formTemplate: {},
       error: '',
-      leftQuota: {},
+      availableQuota: {},
     }
   }
 
@@ -102,34 +101,41 @@ export default class QuotaEditModal extends React.Component {
     })
   }
 
+  availableQuota_memory = (data = {}) => {
+    const newData = { ...data }
+    Object.keys(data)
+      .filter(key => key.endsWith('memory'))
+      .forEach(key => {
+        newData[key] = memoryFormat(data[key])
+      })
+    return newData
+  }
+
   fetchQuota() {
-    const { detail } = this.props
-    const { workspace, name, cluster } = detail || {}
+    const { name, cluster, workspace } = this.props?.detail || {}
 
     if (workspace && name) {
       Promise.all([
-        this.store.fetch({
-          cluster,
-          namespace: name,
-        }),
         this.workspaceQuotaStore.fetchDetail({
           workspace,
           name: workspace,
           cluster,
         }),
       ]).then(() => {
+        const workspaceQuota = toJS(
+          get(this.workspaceQuotaStore.detail, 'status.total.hard', {})
+        )
         this.setState({
-          leftQuota: getLeftQuota(
-            get(this.workspaceQuotaStore.detail, 'status.total'),
-            this.store.data
-          ),
+          availableQuota: {
+            workspace: this.availableQuota_memory(workspaceQuota),
+          },
         })
       })
     }
   }
 
   get workspaceQuota() {
-    return get(this.state.leftQuota, 'workspace', {})
+    return get(this.state.availableQuota, 'workspace', {})
   }
 
   get resourceLimitProps() {
@@ -146,19 +152,16 @@ export default class QuotaEditModal extends React.Component {
       return value
     }
 
-    const workspaceLimitProps = !isEmpty(workspaceStore)
-      ? {
-          limits: {
-            cpu: get(workspaceStore, 'limits.cpu'),
-            memory: get(workspaceStore, 'limits.memory'),
-          },
-          requests: {
-            cpu: get(workspaceStore, 'requests.cpu'),
-            memory: get(workspaceStore, 'requests.memory'),
-          },
-          limitType: 'workspace',
-        }
-      : {}
+    const workspaceLimitProps = {
+      limits: {
+        cpu: get(workspaceStore, 'limits.cpu', undefined),
+        memory: get(workspaceStore, 'limits.memory', undefined),
+      },
+      requests: {
+        cpu: get(workspaceStore, 'requests.cpu', undefined),
+        memory: get(workspaceStore, 'requests.memory', undefined),
+      },
+    }
 
     return {
       cpuProps: {

@@ -19,7 +19,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get, set, isEqual, isFinite, isEmpty, isNaN, omit } from 'lodash'
+import {
+  get,
+  set,
+  isEqual,
+  isFinite,
+  isEmpty,
+  isNaN,
+  omit,
+  isUndefined,
+} from 'lodash'
 
 import {
   Icon,
@@ -509,11 +518,12 @@ export default class ResourceLimit extends React.Component {
     )
   }
 
-  renderLimitTip = (value, unit) => {
-    return value > 0 ? `${value} ${unit}` : t('Not Limited')
+  renderLimitTip = (originData, value, unit) => {
+    return !isUndefined(originData) ? `${value} ${unit}` : t('Not Limited')
   }
 
-  renderTip() {
+  renderQuotasTip() {
+    const { workspaceLimitProps: pWL } = this.props
     const { workspaceLimits: wsL, workspaceRequests: wsR } = this.state
     const memoryUnit = this.memoryUnit
     const cpuUnit = this.cpuUnit
@@ -527,20 +537,28 @@ export default class ResourceLimit extends React.Component {
             <span>{t('WS_RESOURCE_REQUESTS')}</span>
             <span>
               CPU&nbsp;
-              {wsR.cpu}&nbsp;
-              {cpuUnit},&nbsp;
+              {this.renderLimitTip(get(pWL, 'requests.cpu'), wsR.cpu, cpuUnit)}
+              ,&nbsp;
               {t('MEMORY')}&nbsp;
-              {wsR.memory}&nbsp;
-              {memoryUnit}
+              {this.renderLimitTip(
+                get(pWL, 'requests.memory'),
+                wsR.memory,
+                memoryUnit
+              )}
             </span>
           </div>
           <div className={styles.message}>
             <span>{t('WS_RESOURCE_LIMITS')}</span>
             <span>
               CPU&nbsp;
-              {this.renderLimitTip(wsL.cpu, cpuUnit)},&nbsp;
+              {this.renderLimitTip(get(pWL, 'limits.cpu'), wsL.cpu, cpuUnit)}
+              ,&nbsp;
               {t('MEMORY')}&nbsp;
-              {this.renderLimitTip(wsL.memory, memoryUnit)}
+              {this.renderLimitTip(
+                get(pWL, 'limits.memory'),
+                wsL.memory,
+                memoryUnit
+              )}
             </span>
           </div>
         </div>
@@ -697,7 +715,7 @@ export default class ResourceLimit extends React.Component {
             {supportGpuSelect && this.renderGpuSelect()}
           </Columns>
         </div>
-        {this.ifRenderTip() && this.renderTip()}
+        {this.ifRenderTip() && this.renderQuotasTip()}
         {(cpuError || memoryError) && (
           <Alert
             type="error"
