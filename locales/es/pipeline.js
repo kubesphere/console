@@ -435,8 +435,7 @@ module.exports = {
   OPTIONS_PR_PARAMS_1:
     'Versión del código fuente de PR fusionada con la rama de destino',
   OPTIONS_PR_PARAMS_2: 'Versión del código fuente del propio RP',
-  OPTIONS_PR_PARAMS_3:
-    'Se crean dos pipelines cuando se descubre PR. Una canalización utiliza la versión del código fuente de PR en sí Una versión canalizada del código fuente se fusionó con la rama de destino utilizando PR',
+  OPTIONS_PR_PARAMS_3: 'Se crean dos pipelines cuando se descubre PR',
   SELECT_CREDENTIAL_DESC:
     'La obtención del código del repositorio puedes requerir credenciales. Selecciona una credencial existente o agregue una nueva.',
   PIPELINE_PREPARE_DESC:
