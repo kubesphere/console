@@ -46,9 +46,7 @@ export const updatePipelineParams = (data, isEditor = false) => {
 
   if (multi_branch_pipeline) {
     !isEditor
-      ? rest
-        ? Object.assign(data.multi_branch_pipeline, rest)
-        : null
+      ? rest && Object.assign(data.multi_branch_pipeline, rest)
       : Object.assign(data.multi_branch_pipeline, param)
 
     data.type = 'multi-branch-pipeline'

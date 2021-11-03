@@ -14,7 +14,7 @@
   }
   & > input:focus + .border {
     border-color: rgb(121, 185, 160);
-    box-shadow: 0 1px 3px 0 rgba(121, 185, 160, .4);
+    box-shadow: 0 1px 3px 0 rgba(121, 185, 160, 0.4);
   }
 
   input {
@@ -100,5 +100,4 @@
   background-color: transparent;
   box-shadow: none;
   vertical-align: top;
-  box-shadow: none;
 }

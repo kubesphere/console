@@ -173,10 +173,8 @@ export default class ProjectSelectModal extends React.Component {
       onChange(`/${workspace}/clusters/${cluster}/projects/${item.name}`)
     } else if (this.state.type === 'federatedprojects') {
       onChange(`/${workspace}/federatedprojects/${item.name}`)
-    } else {
-      item.namespace && cluster
-        ? onChange(`/${workspace}/clusters/${cluster}/devops/${item.namespace}`)
-        : null
+    } else if (item.namespace && cluster) {
+      onChange(`/${workspace}/clusters/${cluster}/devops/${item.namespace}`)
     }
   }
 
