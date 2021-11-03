@@ -48,6 +48,9 @@ export default {
           })
         },
         modal: GatewaySettingModal,
+        cluster,
+        namespace,
+        name,
         store,
         detail: FORM_TEMPLATES.gateways(),
         ...props,
