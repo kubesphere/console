@@ -127,7 +127,7 @@ export default class CredentialStore extends BaseStore {
     set(body, 'metadata.name', id)
 
     delete data.description
-    typeDate.id ? delete typeDate.id : null
+    typeDate.id && delete typeDate.id
 
     if (!isEmpty(typeDate) && isObject(typeDate)) {
       Object.keys(typeDate).forEach(key => {

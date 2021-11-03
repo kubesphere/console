@@ -301,7 +301,7 @@ export const getPodStatusAndRestartCount = pod => {
       break
     case 'Succeeded':
       if (readyCondition.reason === 'PodCompleted') {
-        type === 'completed'
+        type = 'completed'
       } else {
         status = readyCondition.reason
       }
