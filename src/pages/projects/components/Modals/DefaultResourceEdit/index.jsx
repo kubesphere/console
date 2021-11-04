@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, mergeWith, isUndefined } from 'lodash'
+import { get, mergeWith, isUndefined, omit, isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -25,7 +25,7 @@ import { ResourceLimit } from 'components/Inputs'
 import QuotaStore from 'stores/quota'
 import WorkspaceQuotaStore from 'stores/workspace.quota'
 import { toJS } from 'mobx'
-import { memoryFormat } from 'utils'
+import { memoryFormat, resourceLimitKey } from 'utils'
 
 export default class DefaultResourceEditModal extends React.Component {
   static propTypes = {
@@ -161,6 +161,22 @@ export default class DefaultResourceEditModal extends React.Component {
 
   getQuotaInfo = path => get(this.workspaceQuota, path, undefined)
 
+  getGpuLimit() {
+    const hard = this.workspaceQuota
+    return !isEmpty(omit(hard, resourceLimitKey))
+      ? {
+          type: Object.keys(omit(hard, resourceLimitKey))[0]
+            .split('.')
+            .slice(1)
+            .join('.'),
+          value: Number(Object.values(omit(hard, resourceLimitKey))[0]),
+        }
+      : {
+          type: '',
+          value: '',
+        }
+  }
+
   render() {
     const { visible, onCancel, isSubmitting } = this.props
     const { error } = this.state
@@ -173,6 +189,7 @@ export default class DefaultResourceEditModal extends React.Component {
         cpu: this.getQuotaInfo('requests.cpu'),
         memory: this.getQuotaInfo('requests.memory'),
       },
+      gpuLimit: this.getGpuLimit(),
     }
 
     return (
