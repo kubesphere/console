@@ -184,6 +184,9 @@ export default class ResourceLimit extends React.Component {
         ),
         memory: isNaN(workspaceLimitMeo) ? undefined : workspaceLimitMeo,
       },
+      workspaceGpuLimits: {
+        value: ResourceLimit.getWorkspaceGpuLimitValue(props, 'value'),
+      },
       gpu: ResourceLimit.gpuSetting(props),
     }
   }
@@ -248,6 +251,10 @@ export default class ResourceLimit extends React.Component {
 
   static getWorkspaceLimitValue(props, key) {
     return get(props, `workspaceLimitProps.limits.${key}`, 0)
+  }
+
+  static getWorkspaceGpuLimitValue(props, key) {
+    return get(props, `workspaceLimitProps.gpuLimit.${key}`, 0)
   }
 
   cpuFormatter = value => {
@@ -378,8 +385,10 @@ export default class ResourceLimit extends React.Component {
     const {
       requests,
       limits,
+      gpu,
       workspaceLimits: wsL,
       workspaceRequests: wsR,
+      workspaceGpuLimits: gpuL,
     } = this.state
 
     this.setState(
@@ -392,6 +401,7 @@ export default class ResourceLimit extends React.Component {
           ),
           limitCpuError: this.checkNumOutLimit(limits.cpu, wsL.cpu),
           limitMemoryError: this.checkNumOutLimit(limits.memory, wsL.memory),
+          gpuLimitError: this.checkNumOutLimit(gpu.value, gpuL.value),
         },
       },
       this.triggerChange
@@ -502,7 +512,7 @@ export default class ResourceLimit extends React.Component {
           value: inputNum,
         },
       },
-      this.triggerChange
+      this.checkAndTrigger
     )
   }
 
@@ -522,7 +532,30 @@ export default class ResourceLimit extends React.Component {
     return value > 0 ? `${value} ${unit}` : t('Not Limited')
   }
 
+  renderGpuTip = () => {
+    const { workspaceLimitProps: pWL } = this.props
+
+    return (
+      <div className={styles.message}>
+        <span>{t('GPU_TYPE')}:</span>
+        <span>
+          {get(pWL, 'gpuLimit.type')
+            ? get(pWL, 'gpuLimit.type')
+            : t('Not Limited')}
+        </span>
+        <br />
+        <span>{t('GPU_LIMIT')}:</span>
+        <span>
+          {get(pWL, 'gpuLimit.value')
+            ? get(pWL, 'gpuLimit.value')
+            : t('Not Limited')}
+        </span>
+      </div>
+    )
+  }
+
   renderQuotasTip() {
+    const { workspaceLimitProps: pWL, supportGpuSelect } = this.props
     const { workspaceLimits: wsL, workspaceRequests: wsR } = this.state
     const memoryUnit = this.memoryUnit
     const cpuUnit = this.cpuUnit
@@ -533,7 +566,7 @@ export default class ResourceLimit extends React.Component {
       <>
         <div>
           <div className={styles.message}>
-            <span>{t('WS_RESOURCE_REQUESTS')}</span>
+            <span>{t('WS_RESOURCE_REQUESTS')}:</span>
             <span>
               CPU&nbsp;
               {wsR.cpu}&nbsp;
@@ -544,7 +577,7 @@ export default class ResourceLimit extends React.Component {
             </span>
           </div>
           <div className={styles.message}>
-            <span>{t('WS_RESOURCE_LIMITS')}</span>
+            <span>{t('WS_RESOURCE_LIMITS')}:</span>
             <span>
               CPU&nbsp;
               {this.renderLimitTip(wsL.cpu, cpuUnit)},&nbsp;
@@ -552,6 +585,7 @@ export default class ResourceLimit extends React.Component {
               {this.renderLimitTip(wsL.memory, memoryUnit)}
             </span>
           </div>
+          {supportGpuSelect && pWL.gpuLimit && this.renderGpuTip()}
         </div>
       </>
     )

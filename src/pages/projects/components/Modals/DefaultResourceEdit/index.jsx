@@ -275,6 +275,7 @@ export default class DefaultResourceEditModal extends React.Component {
   render() {
     const { visible, onCancel, isSubmitting } = this.props
     const { error } = this.state
+
     return (
       <Modal
         width={960}
