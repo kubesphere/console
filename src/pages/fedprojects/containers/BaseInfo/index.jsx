@@ -71,6 +71,10 @@ class BaseInfo extends React.Component {
     })
   }
 
+  get clusters() {
+    return toJS(this.props.projectStore.detail.clusters).map(item => item.name)
+  }
+
   getData = () => {
     const { namespace } = this.params
     this.store.fetchDetail({ namespace, name: namespace })
@@ -116,6 +120,7 @@ class BaseInfo extends React.Component {
             store: this.limitRangeStore,
             detail: get(limitRanges, 0, {}),
             isFederated: true,
+            clusters: this.clusters,
             projectDetail: detail,
             success: () => this.limitRangeStore.fetchListByK8s(this.params),
           }),

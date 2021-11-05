@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, mergeWith, isUndefined, omit, isEmpty } from 'lodash'
+import { get, mergeWith, isUndefined, omit, min, reduce, isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -24,8 +24,7 @@ import { Modal } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
 import QuotaStore from 'stores/quota'
 import WorkspaceQuotaStore from 'stores/workspace.quota'
-import { toJS } from 'mobx'
-import { memoryFormat, resourceLimitKey } from 'utils'
+import { memoryFormat, resourceLimitKey, cpuFormat } from 'utils'
 
 export default class DefaultResourceEditModal extends React.Component {
   static propTypes = {
@@ -101,40 +100,137 @@ export default class DefaultResourceEditModal extends React.Component {
     return newData
   }
 
-  fetchQuota() {
-    let name
-    const { workspace, project } = this.props
-    const { cluster } = project || {}
-
-    if (this.props.name) {
-      name = get(this.props, 'name')
-    } else {
-      name = get(project, 'name')
-    }
-
-    if (workspace && name) {
+  singleClusterQuota = (workspace, namespace, cluster) => {
+    return new Promise(resolve => {
       Promise.all([
         this.quotaStore.fetch({
           cluster,
-          namespace: name,
+          namespace,
         }),
         this.workspaceQuotaStore.fetchDetail({
           name: workspace,
           workspace,
           cluster,
         }),
-      ]).then(() => {
-        const workspaceQuota = toJS(
-          get(this.workspaceQuotaStore.detail, 'status.total.hard')
-        )
-        const namespaceQuota = toJS(this.quotaStore.data.hard)
+      ]).then(result => {
+        const namespaceQuota = get(result[0], 'hard')
+        const workspaceQuota = get(result[1], 'status.total.hard')
+        resolve({ workspaceQuota, namespaceQuota })
+      })
+    })
+  }
+
+  multiClusterQuota = () => {
+    const fetchArr = []
+    const { workspace, namespace, clusters } = this.props
+    const defaults = {
+      'limits.cpu': undefined,
+      'limits.memory': undefined,
+    }
+    clusters.forEach(cluster => {
+      fetchArr.push(this.singleClusterQuota(workspace, namespace, cluster))
+    })
+    Promise.all(fetchArr).then(AllClusterQuota => {
+      const workspaceQuotas = AllClusterQuota.map(item =>
+        get(item, 'workspaceQuota', defaults)
+      )
+      const namespaceQuotas = AllClusterQuota.map(item =>
+        get(item, 'namespaceQuota', defaults)
+      )
+      const gpuQuotas = AllClusterQuota.map(item =>
+        omit(get(item, 'namespaceQuota', {}), resourceLimitKey)
+      )
+
+      this.setState({
+        availableQuota: {
+          workspace: this.transformQuota(workspaceQuotas),
+          namespace: this.transformQuota(namespaceQuotas),
+          gpuLimit: this.transformGpu(gpuQuotas)[0],
+        },
+      })
+    })
+  }
+
+  transformGpu = data => {
+    const gpuQuotas = reduce(
+      data,
+      (total, current) => {
+        const hasKey = get(total, `${Object.keys(current)[0]}`)
+        if (hasKey) {
+          return Number(hasKey) > Number(Object.values(current)[0])
+            ? { ...total, ...current }
+            : { ...total }
+        }
+        return { ...total, ...current }
+      },
+      {}
+    )
+    return Object.keys(gpuQuotas).map(key => ({
+      type: key
+        .split('.')
+        .slice(1)
+        .join('.'),
+      value: gpuQuotas[key],
+    }))
+  }
+
+  transformQuota = data => {
+    return {
+      'limits.cpu': this.findCpuOrMemoryMin(data, 'limits.cpu'),
+      'limits.memory': this.findCpuOrMemoryMin(data, 'limits.memory'),
+      'requests.cpu': this.findCpuOrMemoryMin(data, 'requests.cpu'),
+      'requests.memory': this.findCpuOrMemoryMin(data, 'requests.memory'),
+    }
+  }
+
+  findCpuOrMemoryMin = (dataArr, key) => {
+    const toArr = dataArr.map(item => {
+      const num = get(item, `${key}`, '')
+      if (num !== '' && key.endsWith('cpu')) {
+        return cpuFormat(num)
+      }
+      return num !== '' ? memoryFormat(num) : undefined
+    })
+    return min(toArr)
+  }
+
+  getGpuLimit(namespaceQuota) {
+    return !isEmpty(omit(namespaceQuota, resourceLimitKey))
+      ? {
+          type: Object.keys(omit(namespaceQuota, resourceLimitKey))[0]
+            .split('.')
+            .slice(1)
+            .join('.'),
+          value: Number(
+            Object.values(omit(namespaceQuota, resourceLimitKey))[0]
+          ),
+        }
+      : {
+          type: '',
+          value: '',
+        }
+  }
+
+  fetchQuota = async () => {
+    const { workspace, namespace, cluster, isFederated } = this.props
+
+    if (workspace && namespace) {
+      if (!isFederated) {
+        const {
+          workspaceQuota,
+          namespaceQuota,
+        } = await this.singleClusterQuota(workspace, namespace, cluster)
+
         this.setState({
           availableQuota: {
             workspace: this.availableQuota_memory(workspaceQuota),
             namespace: this.availableQuota_memory(namespaceQuota),
+            gpuLimit: this.getGpuLimit(namespaceQuota),
           },
         })
-      })
+      } else {
+        this.multiClusterQuota()
+      }
     }
   }
 
@@ -146,7 +242,7 @@ export default class DefaultResourceEditModal extends React.Component {
         return undefined
       }
       if (!isUndefined(ns)) {
-        return ns
+        return ns < ws ? ns : ws
       }
       return ws
     })
@@ -161,22 +257,6 @@ export default class DefaultResourceEditModal extends React.Component {
 
   getQuotaInfo = path => get(this.workspaceQuota, path, undefined)
 
-  getGpuLimit() {
-    const hard = this.workspaceQuota
-    return !isEmpty(omit(hard, resourceLimitKey))
-      ? {
-          type: Object.keys(omit(hard, resourceLimitKey))[0]
-            .split('.')
-            .slice(1)
-            .join('.'),
-          value: Number(Object.values(omit(hard, resourceLimitKey))[0]),
-        }
-      : {
-          type: '',
-          value: '',
-        }
-  }
-
   render() {
     const { visible, onCancel, isSubmitting } = this.props
     const { error } = this.state
@@ -189,7 +269,7 @@ export default class DefaultResourceEditModal extends React.Component {
         cpu: this.getQuotaInfo('requests.cpu'),
         memory: this.getQuotaInfo('requests.memory'),
       },
-      gpuLimit: this.getGpuLimit(),
+      gpuLimit: get(this.state.availableQuota, 'gpuLimit'),
     }
 
     return (

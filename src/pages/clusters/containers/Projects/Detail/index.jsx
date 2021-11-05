@@ -83,7 +83,7 @@ export default class ProjectDetail extends React.Component {
     const type = this.name
     const detail = toJS(this.store.detail)
     const limitRanges = this.limitRangeStore.list.data
-    const { name, workspace } = this.store.detail
+
     return [
       {
         key: 'edit',
@@ -120,8 +120,7 @@ export default class ProjectDetail extends React.Component {
             ...this.props.match.params,
             store: this.limitRangeStore,
             detail: limitRanges[0],
-            workspace,
-            name,
+            workspace: this.store.detail.workspace,
             success: () => this.limitRangeStore.fetchListByK8s(this.params),
           }),
       },

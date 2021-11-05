@@ -391,30 +391,34 @@ export default class ResourceLimit extends React.Component {
       workspaceGpuLimits: gpuL,
     } = this.state
 
-    this.setState(
-      {
-        workspaceLimitCheck: {
-          requestCpuError: this.checkNumOutLimit(requests.cpu, wsR.cpu),
-          requestMemoryError: this.checkNumOutLimit(
-            requests.memory,
-            wsR.memory
-          ),
-          limitCpuError: this.checkNumOutLimit(limits.cpu, wsL.cpu),
-          limitMemoryError: this.checkNumOutLimit(limits.memory, wsL.memory),
-          gpuLimitError: this.checkNumOutLimit(gpu.value, gpuL.value),
+    if (isEmpty(this.props.workspaceLimitProps)) {
+      this.triggerChange()
+    } else {
+      this.setState(
+        {
+          workspaceLimitCheck: {
+            requestCpuError: this.checkNumOutLimit(requests.cpu, wsR.cpu),
+            requestMemoryError: this.checkNumOutLimit(
+              requests.memory,
+              wsR.memory
+            ),
+            limitCpuError: this.checkNumOutLimit(limits.cpu, wsL.cpu),
+            limitMemoryError: this.checkNumOutLimit(limits.memory, wsL.memory),
+            gpuLimitError: this.checkNumOutLimit(gpu.value, gpuL.value),
+          },
         },
-      },
-      this.triggerChange
-    )
+        this.triggerChange
+      )
+    }
   }
 
   checkNumOutLimit = (num, limit) => {
-    if (limit > 0) {
+    if (limit > 0 && Number(num)) {
       return limit && isFinite(Number(num)) && Number(num) > limit
         ? 'workspaceRequestExceed'
         : ''
     }
-    return ''
+    return limit && Number(num) > 0 ? 'workspaceRequestExceed' : ''
   }
 
   triggerChange = () => {

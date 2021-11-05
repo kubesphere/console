@@ -29,7 +29,7 @@ import {
   isUndefined,
 } from 'lodash'
 import React from 'react'
-import { generateId, getContainerGpu, memoryFormat } from 'utils'
+import { generateId, getContainerGpu, resourceLimitKey } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import { getLeftQuota } from 'utils/workload'
 import { toJS } from 'mobx'
@@ -64,7 +64,6 @@ export default class ContainerSetting extends React.Component {
       imageRegistries: [],
       replicas: this.getReplicas(),
       leftQuota: {},
-      availableQuota: {},
     }
 
     this.module = props.module
@@ -128,7 +127,7 @@ export default class ContainerSetting extends React.Component {
         return undefined
       }
       if (!isUndefined(ns)) {
-        return ns < 0 ? 0 : ns
+        return ns < ws ? ns : ws
       }
       return ws
     })
@@ -190,16 +189,6 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
-  leftQuota_memory = (data = {}) => {
-    const newData = { ...data }
-    Object.keys(data)
-      .filter(key => key.endsWith('memory'))
-      .forEach(key => {
-        newData[key] = memoryFormat(data[key])
-      })
-    return newData
-  }
-
   fetchQuota() {
     let workspace
     let name
@@ -225,18 +214,20 @@ export default class ContainerSetting extends React.Component {
           cluster,
         }),
       ]).then(() => {
-        const workspaceQuota = toJS(
-          get(this.workspaceQuotaStore.detail, 'status.total.hard')
+        const hard = toJS(this.quotaStore.data.hard)
+        const leftQuota = getLeftQuota(
+          get(this.workspaceQuotaStore.detail, 'status.total'),
+          this.quotaStore.data
         )
-        const namespaceQuota = toJS(this.quotaStore.data.hard)
+        const {
+          namespace: namespaceQuota,
+          workspace: workspaceQuota,
+        } = leftQuota
         this.setState({
-          leftQuota: getLeftQuota(
-            get(this.workspaceQuotaStore.detail, 'status.total'),
-            this.quotaStore.data
-          ),
+          leftQuota,
           availableQuota: {
-            workspace: this.leftQuota_memory(workspaceQuota),
-            namespace: this.leftQuota_memory(namespaceQuota),
+            workspace: workspaceQuota,
+            namespace: { ...namespaceQuota, ...omit(hard, resourceLimitKey) },
           },
         })
       })

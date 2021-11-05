@@ -199,6 +199,9 @@ export default {
         modal: DefaultResourceEditModal,
         store,
         detail,
+        cluster,
+        isFederated,
+        namespace,
         supportGpuSelect: true,
         ...props,
       })
