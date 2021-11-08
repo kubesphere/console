@@ -71,6 +71,7 @@ export default class AdvancedSettings extends React.Component {
                 {containerProps => (
                   <ContainerImage
                     supportGpuSelect={supportGpuSelect}
+                    workspace={projectDetail.workspace}
                     {...containerProps}
                   />
                 )}
