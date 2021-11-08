@@ -117,7 +117,7 @@
 }
 
 @mixin TypographyParagraphCode($color: #363e4a) {
-  font-family: Monaco;
+  font-family: 'Monaco';
   font-size: $size-small;
   font-weight: normal;
   font-style: normal;
