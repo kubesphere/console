@@ -102,6 +102,7 @@ export default class AdvancedSettings extends React.Component {
       formProps,
       module,
       isEdit,
+      workspace,
     } = this.props
 
     const clustersDetail = keyBy(projectDetail.clusters, 'name')
@@ -136,7 +137,11 @@ export default class AdvancedSettings extends React.Component {
                     {...formProps}
                   >
                     {containerProps => (
-                      <ContainerImage isEdit={isEdit} {...containerProps} />
+                      <ContainerImage
+                        isEdit={isEdit}
+                        {...containerProps}
+                        workspace={workspace}
+                      />
                     )}
                   </ContainersMapper>
                 )}
