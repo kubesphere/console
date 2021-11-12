@@ -57,7 +57,7 @@ module.exports = {
 
   SYNC_INTERVAL: 'Synchronization Interval',
   SYNC_INTERVAL_DESC:
-    'Set a synchronization interval. The value range is 3 minutes to 24 hours, and the default value is 0.',
+    'Set a synchronization interval. The value range is 3 minutes to 24 hours. The default value 0 indicates no synchronization.',
   SYNC_PERIOD_EMPTY_DESC: 'Please set a synchronization interval.',
   SYNC_INTERVAL_INVALID: '數值無效，請輸入 0 或正整數。',
 
