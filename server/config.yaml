@@ -46,8 +46,8 @@ client:
   reposUrl: https://github.com/kubesphere/kubesphere
   slackUrl: https://kubesphere.slack.com
   documents:
-    url: https://v3-1.docs.kubesphere.io/docs
-    api: https://v3-1.docs.kubesphere.io/docs/reference/api-docs/
+    url: https://kubesphere.com.cn/en/docs/
+    api: https://kubesphere.com.cn/en/docs/reference/api-docs/
 
   # current support lanaguages
   supportLangs:
