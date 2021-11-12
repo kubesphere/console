@@ -261,10 +261,6 @@ export default class PipelineRunStore extends BaseStore {
   async getRunDetail(params) {
     const { devops, cluster, runName } = params
 
-    if (!isEmpty(toJS(this.runDetail))) {
-      return
-    }
-
     const runDetail = await request.get(
       `${this.getBaseUrl({
         cluster,
