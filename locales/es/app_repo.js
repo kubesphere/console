@@ -50,7 +50,7 @@ module.exports = {
   VALIDATE: 'Validar',
   SYNC_INTERVAL: 'Synchronization Interval',
   SYNC_INTERVAL_DESC:
-    'Set a synchronization interval. The value range is 3 minutes to 24 hours, and the default value is 0.',
+    'Set a synchronization interval. The value range is 3 minutes to 24 hours. The default value 0 indicates no synchronization.',
   SYNC_PERIOD_EMPTY_DESC: 'Please set a synchronization interval.',
   SYNC_INTERVAL_INVALID:
     'El valor no es válido, ingrese 0 o un número entero positivo.',
