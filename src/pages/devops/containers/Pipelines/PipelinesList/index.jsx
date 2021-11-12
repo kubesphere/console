@@ -137,17 +137,6 @@ export default class PipelinesList extends React.Component {
         },
       },
       {
-        key: 'activity',
-        icon: 'calendar',
-        text: t('VIEW_RECORDS'),
-        action: 'view',
-        onClick: record => {
-          this.props.rootStore.routing.push(
-            `${this.prefix}/${encodeURIComponent(record.name)}/activity`
-          )
-        },
-      },
-      {
         key: 'edit',
         icon: 'pen',
         text: t('EDIT'),
