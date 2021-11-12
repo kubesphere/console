@@ -56,7 +56,7 @@ module.exports = {
 
   SYNC_INTERVAL: '同步周期',
   SYNC_INTERVAL_DESC:
-    '设置一个同步周期。取值范围为 180 到 86400 秒，默认值为 0。',
+    '设置一个同步周期。取值范围为 3 分钟到 24 小时，默认值为 0。',
   SYNC_PERIOD_EMPTY_DESC: '请设置同步周期。',
   SYNC_INTERVAL_INVALID: '数值无效，请输入 0 或正整数。',
 
@@ -69,7 +69,7 @@ module.exports = {
     '您需要转到在该企业空间下的项目。在部署新应用时，选择<b>来自应用模板</b>并在下拉列表中选择您的应用仓库，即可部署应用仓库中的应用。',
 
   // App Repositories > Details
-  SYNC_INTERVAL_TIP: '取值范围为 180 到 86400 秒，请输入有效数值。',
+  SYNC_INTERVAL_TIP: '取值范围为 3 分钟到 24 小时，请输入有效数值。',
   SECONDS: '秒',
   MINUTES: '分钟',
   HOURS: '小时',

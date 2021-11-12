@@ -50,7 +50,7 @@ module.exports = {
   VALIDATE: 'Validar',
   SYNC_INTERVAL: 'Synchronization Interval',
   SYNC_INTERVAL_DESC:
-    'Set a synchronization interval. The value range is 180 to 86400 seconds, and the default value is 0.',
+    'Set a synchronization interval. The value range is 3 minutes to 24 hours, and the default value is 0.',
   SYNC_PERIOD_EMPTY_DESC: 'Please set a synchronization interval.',
   SYNC_INTERVAL_INVALID:
     'El valor no es válido, ingrese 0 o un número entero positivo.',
@@ -67,7 +67,7 @@ module.exports = {
 
   // App Repositories > Details
   SYNC_INTERVAL_TIP:
-    'The value range is 180 to 86400 seconds. Please set a valid value.',
+    'The value range is 3 minutes to 24 hours. Please enter a valid value.',
   SECONDS: 'Seconds',
   MINUTES: 'Minutes',
   HOURS: 'Hours',
