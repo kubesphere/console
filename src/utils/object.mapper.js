@@ -1113,6 +1113,10 @@ const FederatedMapper = resourceMapper => item => {
 
 const DevOpsMapper = item => {
   const phase = get(item, 'status.phase')
+  const syncStatus = get(
+    item,
+    'metadata.annotations["devopsproject.devops.kubesphere.io/syncstatus"]'
+  )
   const deletionTimestamp = get(item, 'metadata.deletionTimestamp')
 
   return {
@@ -1121,7 +1125,7 @@ const DevOpsMapper = item => {
     devops: get(item, 'metadata.name'),
     workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
     namespace: get(item, 'status.adminNamespace'),
-    status: deletionTimestamp ? 'Terminating' : phase || 'Active',
+    status: deletionTimestamp ? 'Terminating' : phase || syncStatus || 'Active',
     _originData: getOriginData(item),
   }
 }
