@@ -176,12 +176,12 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
         <Form.Item
           label={t('TRAFFIC_DIRECTION')}
           desc={
-            specType === false ? (
+            specType ? (
+              t('EXTERNAL_TRAFFIC_DIRECTION_DESC')
+            ) : (
               <span className={styles.errColor}>
                 {t('SELECT_RULE_DIRECTION_TIP')}
               </span>
-            ) : (
-              t('EXTERNAL_TRAFFIC_DIRECTION_DESC')
             )
           }
         >

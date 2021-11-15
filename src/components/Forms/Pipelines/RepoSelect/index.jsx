@@ -63,7 +63,6 @@ export default class valueSelect extends React.Component {
         iconName = 'svn'
         break
       case 'bitbucket_server':
-        'bitbucket-server'
         iconName = 'bitbucket'
         break
       default:

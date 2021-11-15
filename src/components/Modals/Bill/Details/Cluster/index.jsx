@@ -650,16 +650,19 @@ export default class ClusterDetails extends React.Component {
       resourceParams.cluster = this.cluster
     }
 
-    labelSelector ? (resourceParams.labelSelector = toJS(labelSelector)) : null
+    if (labelSelector) {
+      resourceParams.labelSelector = toJS(labelSelector)
+    }
 
     let childrenList = []
 
     if (['namespaces', 'services', 'openpitrixs'].includes(currentType)) {
-      currentType === 'namespaces' &&
-      !this.clusterMeterStore.levelMeterData[resourceParams.namespaces]
-        ? await this.clusterMeterStore.fetchLevelMeter({ ...resourceParams })
-        : null
-
+      if (
+        currentType === 'namespaces' &&
+        !this.clusterMeterStore.levelMeterData[resourceParams.namespaces]
+      ) {
+        await this.clusterMeterStore.fetchLevelMeter({ ...resourceParams })
+      }
       childrenList = await this.getTypesListData(currentType, resourceParams)
       return childrenList
     }
@@ -1165,7 +1168,13 @@ export default class ClusterDetails extends React.Component {
                     className={styles.toothbg}
                     title={
                       <>
-                        <span>{t(RESOURCE_TITLE[type].toUpperCase().replace(/\s+/g, '_'))}</span>
+                        <span>
+                          {t(
+                            RESOURCE_TITLE[type]
+                              .toUpperCase()
+                              .replace(/\s+/g, '_')
+                          )}
+                        </span>
                         <strong>{name}</strong>
                       </>
                     }

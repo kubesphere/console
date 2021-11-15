@@ -101,9 +101,9 @@ export default class PipelineDetailLayout extends React.Component {
   }
 
   setBranchNames = (branchNames, params) => {
-    isArray(branchNames) && !isEmpty(branchNames)
-      ? (params.branch = branchNames[0])
-      : null
+    if (isArray(branchNames) && !isEmpty(branchNames)) {
+      params.branch = branchNames[0]
+    }
   }
 
   getSonarqube = () => {

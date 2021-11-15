@@ -56,17 +56,18 @@ export default function Card({
 
   const handleChildrenClick = (e, value) => {
     e.stopPropagation()
-    noIcon === true || loading ? null : getChildrenData(value)
+    if (noIcon !== true || loading) {
+      getChildrenData(value)
+    }
   }
 
   const handleClick = () => {
-    noIcon === true
-      ? null
-      : getCurrentMeterData({
-          name,
-          type,
-          labelSelector,
-        })
+    noIcon !== true &&
+      getCurrentMeterData({
+        name,
+        type,
+        labelSelector,
+      })
   }
 
   const renderCluster = nsname => {
