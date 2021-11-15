@@ -1132,9 +1132,7 @@ const DevOpsMapper = item => {
     devops: get(item, 'metadata.name'),
     workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
     namespace: get(item, 'status.adminNamespace'),
-    status: deletionTimestamp
-      ? 'Terminating'
-      : phase || syncStatus || 'Active',
+    status: deletionTimestamp ? 'Terminating' : phase || syncStatus || 'Active',
     _originData: getOriginData(item),
   }
 }
