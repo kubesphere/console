@@ -19,7 +19,6 @@
 module.exports = {
   FIELDS: 'Fields',
   ConfigMap: 'ConfigMap',
-  'ConfigMap Settings': 'ConfigMap Settings',
   configmaps: 'configmaps',
   ConfigMaps: 'ConfigMaps',
   ENTER_CONFIG_VALUE_DESC:
@@ -33,5 +32,5 @@ module.exports = {
     'A ConfigMap is often used to store configuration information needed for workloads. Many applications will read the information from configuration files, command line parameters, or environment variables.',
   CONFIGMAPS_BASEINFO_DESC: '',
   CONFIGMAP_SETTINGS_DESC: '',
-  CREATE_CONFIG: 'creat a ConfigMap',
+  CREATE_CONFIG: 'create a ConfigMap',
 }

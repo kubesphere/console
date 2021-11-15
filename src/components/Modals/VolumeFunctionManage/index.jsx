@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Toggle } from '@kube-design/components'
+import { Toggle, Alert } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import { get, isUndefined, isString } from 'lodash'
@@ -116,6 +116,11 @@ export default class SetDefaultStorageClassModal extends React.Component {
         cancelText={t('CANCEL')}
         isSubmitting={isSubmitting}
       >
+        <Alert
+          type="warning"
+          className="margin-b12"
+          message={t.html('VOLUME_FUNCTION_MANAGEMENT_TIP')}
+        />
         <div className={styles.body}>
           {this.Items.map(item => {
             const status = this.state[item.key]

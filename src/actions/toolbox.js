@@ -34,7 +34,7 @@ export default {
           Modal.close(modal)
         },
         modal: LogModal,
-        title: t('Log Search'),
+        title: t('CONTAINER_LOG_SEARCH'),
         ...props,
       })
     },
@@ -57,7 +57,7 @@ export default {
                 height: '20px',
               }}
             >
-              {t('Event Search')}
+              {t('RESOURCE_EVENT_SEARCH')}
             </span>
           </div>
         ),
@@ -83,7 +83,7 @@ export default {
                 height: '20px',
               }}
             >
-              {t('Auditing Operating')}
+              {t('AUDIT_LOG_SEARCH')}
             </span>
           </div>
         ),
@@ -98,7 +98,7 @@ export default {
           Modal.close(modal)
         },
         modal: KubeCtlModal,
-        title: 'Kubectl',
+        title: 'kubectl',
         ...props,
       })
     },

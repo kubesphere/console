@@ -82,7 +82,7 @@ export default class ContainerPorts extends React.Component {
 
   render() {
     const { className, loading, ...rest } = this.props
-    const title = this.props.title || t('Ports')
+    const title = this.props.title || t('PORT_PL')
 
     return (
       <Panel

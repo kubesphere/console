@@ -88,7 +88,7 @@ export default class LogSearchModal extends React.Component {
       hidden: false,
     },
     {
-      thead: t('Pod'),
+      thead: t('POD'),
       key: 'pod',
       hidden: false,
       content: this.renderHightLightMatchTd({
@@ -97,7 +97,7 @@ export default class LogSearchModal extends React.Component {
       }),
     },
     {
-      thead: t('Container'),
+      thead: t('CONTAINER'),
       key: 'container',
       hidden: true,
       content: this.renderHightLightMatchTd({
@@ -106,7 +106,7 @@ export default class LogSearchModal extends React.Component {
       }),
     },
     {
-      thead: t('Log'),
+      thead: t('LOG'),
       key: 'log',
       className: styles.logItem,
       content: this.renderHightLightMatchLogTd({
@@ -136,7 +136,7 @@ export default class LogSearchModal extends React.Component {
 
   queryModeOptions = [1, 0].map(mode => ({
     value: mode,
-    label: mode ? t('Exact Query') : t('Fuzzy Query'),
+    label: mode ? t('EXACT_QUERY') : t('FUZZY_QUERY'),
   }))
 
   get defaultDuration() {
@@ -434,7 +434,7 @@ export default class LogSearchModal extends React.Component {
           dropDownItems={{
             log_query: {
               icon: 'magnifier',
-              text: t('Keyword'),
+              text: t('KEYWORD'),
             },
             namespace_query: {
               icon: 'project',
@@ -442,15 +442,15 @@ export default class LogSearchModal extends React.Component {
             },
             workload_query: {
               icon: 'backup',
-              text: t('Workload'),
+              text: t('WORKLOAD'),
             },
             pod_query: {
               icon: 'pod',
-              text: t('Pod'),
+              text: t('POD'),
             },
             container_query: {
               icon: 'docker',
-              text: t('Container'),
+              text: t('CONTAINER'),
             },
           }}
         />
@@ -471,19 +471,19 @@ export default class LogSearchModal extends React.Component {
     return (
       <div className={styles.toolbar}>
         <div>
-          {t('Time topology')}
+          {t('TIME_TOPOLOGY')}
           <span
             className={styles.showHistogramBtn}
             onClick={this.toggleHistogram}
           >
-            {showHistogram ? t('Display') : t('Hidden')}
+            {showHistogram ? t('DISPLAY') : t('HIDE')}
             <Icon name="caret-down" type="light" />
           </span>
         </div>
         <div>
           <a href={this.queryStore.exportLinkFactory(params)} download>
             <span className={styles.exportBtn}>
-              <Tooltip content={t('LOG_EXPORT')}>
+              <Tooltip content={t('EXPORT')}>
                 <Icon name={'export'} type="light" size={16} />
               </Tooltip>
             </span>
@@ -491,14 +491,16 @@ export default class LogSearchModal extends React.Component {
           <span className={styles.pollingBtn} onClick={this.togglePolling}>
             <Tooltip
               content={
-                polling ? t('STOP_REAL_TIME_LOG') : t('START_REAL_TIME_LOG')
+                polling
+                  ? t('STOP_REAL_TIME_CONTAINER_LOG')
+                  : t('START_REAL_TIME_CONTAINER_LOG')
               }
             >
               <Icon name={polling ? 'stop' : 'start'} type="light" size={16} />
             </Tooltip>
           </span>
           <span className={styles.frequencyOpts}>
-            <span> {t('Refresh Rate')}:</span>
+            <span> {t('REFRESH_RATE_COLON')}</span>
             <Select
               value={pollingFrequency}
               onChange={this.changeFrequency}
@@ -516,13 +518,13 @@ export default class LogSearchModal extends React.Component {
       <div className={styles.chartContainer}>
         <div className={styles.recentSummary}>
           <h2 className={styles.count}>{this.histogramStore.logsCount}</h2>
-          <p>{t('Search Result')}</p>
+          <p>{t('SEARCH_RESULTS')}</p>
         </div>
         <div className={styles.chart}>
           <TimeBar
             xKey={'time'}
             data={toJS(this.histogramStore.histograms)}
-            legend={[['count', t('Log statistics')]]}
+            legend={[['count', t('CONTAINER_LOG_COUNT')]]}
             interval={this.histogramStore.interval}
             onBarClick={this.selectedDurationParameter}
           />

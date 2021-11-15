@@ -124,6 +124,8 @@ export default class RuleInfo extends React.Component {
     this.trigger('network.policies.delete', {
       ...this.props,
       ruleName,
+      resource: ruleName,
+      type: 'ALLOWLIST_ENTRY',
       success: this.fetchPolicies,
     })
   }
@@ -170,7 +172,10 @@ export default class RuleInfo extends React.Component {
                 curProjectEl = (
                   <span className={styles.pcell}>
                     <Icon name="project" />
-                    <b>{serviceProjectName}</b>
+                    <b>
+                      {serviceProjectName}
+                      <span>({get(item, 'metadata.name')})</span>
+                    </b>
                     <label>
                       {!isEmpty(projectDescription) &&
                         `(${projectDescription})`}
@@ -181,7 +186,9 @@ export default class RuleInfo extends React.Component {
               return (
                 <span className={styles.cell} key={showName}>
                   <Icon name={iconCls} />
-                  <b>{showName}</b>
+                  <b>
+                    {showName} (<span>{get(item, 'metadata.name')}</span>)
+                  </b>
                   <label>{!isEmpty(description) && `(${description})`}</label>
                   {curProjectEl}
                 </span>

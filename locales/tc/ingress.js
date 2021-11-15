@@ -50,8 +50,8 @@ module.exports = {
 
   INVALID_DOMAIN_DESC: '域名格式錯誤',
 
-  'Gateway IP': '網關 IP',
-  'Gateway Type': '網關類型',
+  GATEWAY_IP_ADDRESS: '網關 IP',
+  GATEWAY_ACCESS_MODE: '網關類型',
 
   MODE_TCAP: '模式',
   PATH_PL: '路徑',
@@ -74,7 +74,7 @@ module.exports = {
   INGRESS_CONTROLLER_LOADBALANCER_DESC:
     '如需使用 QingCloud LoadBalancer 作為服務網關，需要部署 QingCloud Cloud Controller Manager 外掛程式。',
 
-  GATEWAY_APPLICATION_GOVERNANCE_TIP:
+  GATEWAY_TRACING_TIP:
     '如果您不需要使用應用治理的功能，無需打開此項；如果您需要使用應用治理的 Tracing 功能，請打開開此項。打開此項後，如果您的應用路由無法訪問，請檢查應用路由中是否添加 `nginx.ingress.kubernetes.io/service-upstream: true` 注解，如無，請手動添加。',
 
   ADD_ROUTING_RULE_DESC: '添加一個路由規則將域名映射至服務。',

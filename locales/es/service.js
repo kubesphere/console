@@ -19,9 +19,8 @@
 module.exports = {
   ' has no corresponding workload.':
     'no tiene carga de trabajo correspondiente.',
-  ACCESS_METHOD: 'Método de acceso',
   ACCESS_TYPE: 'Tipo de acceso',
-  INTERNAL_ACCESS_METHOD: 'Internal Access Method',
+  INTERNAL_ACCESS_MODE: 'Internal Access Mode',
   'Add Route Rule': 'Agregar regla de ruta',
   'Add Selector': 'Agregar selector',
   'Associated Application': 'Solicitud asociada',
@@ -53,6 +52,7 @@ module.exports = {
   'External Address': 'Dirección Externa',
   EXTERNAL_SERVICE: 'Servicio externo',
   EXTERNAL_IP_ADDRESS: 'External IP Address',
+  EXTERNAL_IP_ADDRESS_SCAP: 'External IP address',
   'External Service': 'Servicio externo',
   'Internal access': 'Acceso interno',
   INVALID_PORT_DESC: 'Please enter a valid port number.',
@@ -65,7 +65,7 @@ module.exports = {
   NO_SERVICE_RELATED_RESOURCE_DESC:
     'No se encontraron recursos relacionados con los servicios actuales',
   NO_WORKLOAD_RELATED_RESOURCE_DESC:
-    'No resources related to the workload is found.',
+    'No resource related to the workload is found.',
   'Node Port': 'Puerto de nodo',
   'Node Port(s)': 'Puerto(s) de nodo',
   'Not Associate': 'No asociado',
@@ -82,9 +82,8 @@ module.exports = {
   'Please select Service': 'Por favor selecciona Servicio',
   Ports: 'Puertos',
   routes: 'rutas',
-  SELECTOR: 'Selector',
   selector: 'selector',
-  'Service Access': 'Acceso al servicio',
+  ACCESS_INFORMATION: 'Acceso al servicio',
   'Service Mesh': 'Malla de servicio',
   'Service Name': 'Nombre del Servicio',
   SERVICE_PORT: 'Puerto de servicio',
@@ -120,6 +119,7 @@ module.exports = {
   STICKY_SESSION_DESC:
     'Set the system to forward all requests from the same client to the same backend within a specified duration.',
   VIRTUAL_IP: 'IP virtual',
+  VIRTUAL_IP_ADDRESS: 'Virtual IP address',
   CREATE_EXTERNAL_SERVICE_DESC:
     'Asigne el servicio al contenido del campo externalName devolviendo un registro CNAME con su valor.',
   TOTAL_WORKLOADS_VALUE: 'Total Workloads: { count }',
@@ -178,6 +178,9 @@ module.exports = {
   SERVICE_TYPE_STATEFULSERVICE: 'Servicio de estado',
   SERVICE_TYPE_STATELESSSERVICE: 'Servicio sin estado',
   SERVICE_TYPE_EXTERNALSERVICE: 'Servicio externo',
+  SERVICE_TYPE_STATEFULSERVICE_SCAP: 'Stateful service',
+  SERVICE_TYPE_STATELESSSERVICE_SCAP: 'Stateless service',
+  SERVICE_TYPE_EXTERNALSERVICE_SCAP: 'External service',
   STATEFUL_SERVICE_DESC:
     'Los servicios con estado o stateful se usan para administrar aplicaciones con estado, asegurando un despliegue y escala ordenada y elegante. También proporcionan almacenamiento persistente estable e identificadores de red.',
   STATELESS_SERVICE_DESC:
@@ -189,7 +192,7 @@ module.exports = {
 
   SPECIFY_NODE_DESC: 'Especifique um nó que precisa ser associado ao serviço.',
 
-  EIP_POOL_DESC: 'Método de acceso dentro del clúster (DNS)',
+  INTERNAL_DOMAIN_NAME_SCAP: 'Método de acceso dentro del clúster (DNS)',
 
   // Services
   WORKLOAD_SELECTOR: 'Workload Selector',

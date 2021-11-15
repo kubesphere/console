@@ -112,7 +112,9 @@ export default class DingTalk extends React.Component {
   }
 
   getVerifyFormTemplate = data => {
-    const { config, receiver, secret } = cloneDeep(data)
+    const template = {}
+    const { receiver, secret } = cloneDeep(data)
+    const chatids = get(receiver, 'spec.dingtalk.conversation.chatids')
     const keywords = get(receiver, 'spec.dingtalk.chatbot.keywords')
     const { appkey, appsecret, webhook, chatbotsecret } = get(
       secret,
@@ -120,34 +122,34 @@ export default class DingTalk extends React.Component {
       {}
     )
 
-    set(config, 'spec.dingtalk.conversation.appkey.value', appkey)
-    set(config, 'spec.dingtalk.conversation.appsecret.value', appsecret)
-    set(receiver, 'spec.dingtalk.chatbot.webhook.value', webhook)
-    set(receiver, 'spec.dingtalk.chatbot.secret.value', chatbotsecret)
-
-    if (!appkey) {
-      unset(config, 'spec.dingtalk.conversation.appkey')
+    if (appkey) {
+      set(template, 'config.spec.dingtalk.conversation.appkey.value', appkey)
+    }
+    if (appsecret) {
+      set(
+        template,
+        'config.spec.dingtalk.conversation.appsecret.value',
+        appsecret
+      )
+    }
+    if (!isEmpty(chatids)) {
+      set(template, 'receiver.spec.dingtalk.conversation.chatids', chatids)
+    }
+    if (webhook) {
+      set(template, 'receiver.spec.dingtalk.chatbot.webhook.value', webhook)
+    }
+    if (chatbotsecret) {
+      set(
+        template,
+        'receiver.spec.dingtalk.chatbot.secret.value',
+        chatbotsecret
+      )
+    }
+    if (!isEmpty(keywords)) {
+      set(template, 'receiver.spec.dingtalk.chatbot.keywords', keywords)
     }
 
-    if (!appsecret) {
-      unset(config, 'spec.dingtalk.conversation.appsecret')
-    }
-
-    if (isEmpty(get(receiver, 'spec.dingtalk.conversation.chatids'))) {
-      unset(receiver, 'spec.dingtalk.conversation')
-    }
-
-    if (!webhook && !chatbotsecret && isEmpty(keywords)) {
-      unset(receiver, 'spec.dingtalk.chatbot')
-    }
-
-    unset(receiver, 'spec.dingtalk.alertSelector')
-
-    if (!appkey && !appsecret) {
-      return { receiver, secret }
-    }
-
-    return { config, receiver, secret }
+    return template
   }
 
   handleVerify = ({ receiver, secret }) => {
@@ -205,16 +207,8 @@ export default class DingTalk extends React.Component {
         })
         return false
       }
-      if (!chatbotsecret) {
-        Notify.error({
-          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('secret') }),
-        })
-        return false
-      }
-      if (isEmpty(keywords)) {
-        Notify.error({
-          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('KEYWORDS') }),
-        })
+      if (!chatbotsecret && isEmpty(keywords)) {
+        Notify.error({ content: t('DINGTALK_CHATBOT_SECURITY_TIP') })
         return false
       }
     }
@@ -279,7 +273,7 @@ export default class DingTalk extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('CREATE_SUCCESSFUL')
+      message = t('CREATE_SUCCESS')
     } else {
       await this.configStore.update({ name: CONFIG_NAME }, config)
       await this.secretStore.update(
@@ -287,7 +281,7 @@ export default class DingTalk extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
-      message = t('UPDATED_SUCCESS_DESC')
+      message = t('UPDATE_SUCCESS')
     }
 
     this.fetchData()

@@ -70,6 +70,7 @@ export default class Item extends Component {
                   {item}
                   <Icon
                     name="close"
+                    type="light"
                     size={12}
                     clickable
                     onClick={() => this.handleDelete(item)}

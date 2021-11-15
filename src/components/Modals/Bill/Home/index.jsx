@@ -47,7 +47,7 @@ export default function Home({ handleSelected, cardConfigRule }) {
         ))}
       </ul>
       <Button type="control" onClick={() => handleSelected(type)}>
-        {t('View Consumption')}
+        {t('VIEW')}
       </Button>
     </>
   )
@@ -56,7 +56,7 @@ export default function Home({ handleSelected, cardConfigRule }) {
       <div className={styles.nav}>
         <Button icon="chevron-left" iconType="light" />
         <Button icon="chevron-right" iconType="light" />
-        <span className={styles.message}>{t('Select View Type')}</span>
+        <span className={styles.message}>{t('RESOURCE_CONSUMPTION_DESC')}</span>
       </div>
     )
   }

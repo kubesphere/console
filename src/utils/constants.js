@@ -47,8 +47,8 @@ export const S2I_STATUS_DESC = {
 }
 
 export const CRONJOB_STATUS = [
-  { text: 'Paused', value: 'paused' },
-  { text: 'Running', value: 'running' },
+  { text: 'CRONJOB_PAUSED', value: 'paused' },
+  { text: 'CRONJOB_RUNNING', value: 'running' },
 ]
 
 export const VOLUME_STATUS = [
@@ -509,7 +509,7 @@ export const PATTERN_COMPONENT_VERSION = /^[a-z0-9]+$/
 export const PATTERN_PIPELINE_NAME = /[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/
 export const PATTERN_HOST = /^(?=^.{3,255}$)[*a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/
 
-export const PATTERN_URL = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
+export const PATTERN_URL = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)\/?$/
 export const PATTERN_EMAIL = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
 export const PATTERN_IP = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/
 export const PATTERN_IP_MASK = /^[1-9][0-9]*$/
@@ -572,9 +572,9 @@ export const GRAY_RELEASE_CANARY_CONTENT = [
     value: '(Windows NT ([\\d.])+)',
   },
   { label: 'Linux', icon: 'ubuntu', value: '(Linux )' },
-  { label: 'macOS', icon: 'windows', value: '( Mac OS X ([\\d.])+)' },
-  { label: 'Android', icon: 'windows', value: '(Android)' },
-  { label: 'iOS', icon: 'windows', value: '(OS [\\d.]+)' },
+  { label: 'macOS', icon: 'macos', value: '( Mac OS X ([\\d.])+)' },
+  { label: 'Android', icon: 'android', value: '(Android)' },
+  { label: 'iOS', icon: 'ios', value: '(OS [\\d.]+)' },
 ]
 
 export const S2IPULLPOLICY_MAP = {
@@ -835,11 +835,11 @@ export const MAX_SIZE_UPLOAD = 2 * 1024 * 1024
 
 export const SCHEME_OPTIONS = [
   {
-    label: 'HTTP://',
+    label: 'http://',
     value: 'http://',
   },
   {
-    label: 'HTTPS://',
+    label: 'https://',
     value: 'https://',
   },
 ]
@@ -1098,3 +1098,22 @@ export const NODE_ROLE_TAG_TYPE = {
   master: 'secondary',
   worker: 'default',
 }
+
+export const MAPPER_GPU_SPEC_PATH = {
+  Deployment: 'spec.template.spec.containers',
+  StatefulSet: 'spec.template.spec.containers',
+  Job: 'spec.template.spec.containers',
+  CronJob: 'spec.jobTemplate.spec.template.spec.containers',
+  Federate_Deployment: 'spec.template.spec.template.spec.containers',
+  Federate_StatefulSet: 'spec.template.spec.template.spec.containers',
+  app_deployment: 'Deployment.spec.template.spec.containers',
+  app_workload: 'workload.spec.template.spec.containers',
+}
+
+export const OMIT_TOTAL_REPLICAS = kind => [
+  `${kind}.spec.template.totalReplicas`,
+  'totalReplicas',
+  `${kind}.totalReplicas`,
+  `${kind}.Deployment.totalReplicas`,
+  `${kind}.workload.totalReplicas`,
+]

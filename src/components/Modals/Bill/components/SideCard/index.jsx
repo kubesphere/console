@@ -123,7 +123,7 @@ export default class SideContainer extends React.Component {
         className={styles.exportContainer}
         style={{ bottom: isTop ? '10px' : '70px' }}
       >
-        <div className={styles.text}>{t('Export Bill')}</div>
+        <div className={styles.text}>{t('EXPORT_BILL')}</div>
         <div
           className={styles.button}
           onClick={this.cancelExportBillReport}

@@ -50,8 +50,8 @@ module.exports = {
   IP_POOL_NUM_TIP: '请输入需要创建的容器组 IP 池数量。',
 
   POD_IP_POOL_DESC:
-    '容器组 IP 池用于规划集群内 Pod 的网络地址空间，您可以按需创建容器组 IP 池。',
-  IP_POOL_CREATE_COUNT_DESC: '可以同时创建多个容器组 IP 池，数量范围为 1～10',
+    '容器组 IP 池用于规划集群内容器组的网络地址空间，您可以按需创建容器组 IP 池。',
+  IP_POOL_CREATE_COUNT_DESC: '最多可同时创建 10 个容器组 IP 池。',
   IPPOOL_USAGE_Q: '如何利用 IP 池规划容器组网络？',
   IPPOOL_USAGE_A:
     'IP 池用于规划 Pod 网络地址空间，每个 IP 池之间地址空间不能重叠。创建工作负载时，可选择特定的 IP 池，这样创建出的容器组将从该 IP 池中分配 IP。',
@@ -62,7 +62,7 @@ module.exports = {
   IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING:
     'IP 池已被使用且已指定具体的企业空间，无法更改企业空间。',
 
-  IPPOOL_WORKSPACE_EMPTY_TIP: '暂无企业空间使用此 IP 池',
+  IPPOOL_WORKSPACE_EMPTY_TIP: '未发现企业空间使用此 IP 池',
   // IP Pod Pools List Page
   TOTAL_VALUE: '总计：{value}',
   ALL: '全部',

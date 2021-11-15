@@ -45,6 +45,8 @@ module.exports = {
   'Go back': 'Atrás',
   'Host Cluster': 'Clúster de host',
   HOST_CLUSTER: 'Clúster de host',
+  HOST_CLUSTER_TCAP: 'Host Cluster',
+  HOST_CLUSTER_PL_TCAP: 'Host Clusters',
   'Host Clusters': 'Clústers de host',
   Import: 'Importar',
   'Import Kubernetes Cluster': 'Importar clúster de Kubernetes',
@@ -94,7 +96,7 @@ module.exports = {
     'Please add at least one cluster node',
   NODE_ROLE_EMPTY_DESC: "Please specify the node's roles",
   'Add node to the cluster': 'Add node to the cluster',
-  INTERNAL_IP: 'Node Internal IP Address',
+  INTERNAL_IP_ADDRESS: 'Node Internal IP Address',
   PORT: 'Port',
   PORT_VALUE: 'Port: {value}',
   EXTERNAL_IP: 'External IP Address',
@@ -169,7 +171,7 @@ module.exports = {
   HOW_TO_GET_KUBECONFIG: '¿Cómo obtener KubeConfig?',
   UNBIND_CLUSTER_DESC:
     'Una vez que el clúster no está vinculado, KubeSphere no podrá administrar el clúster y los recursos de Kubernetes dentro del clúster no se eliminarán.',
-  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation.',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation',
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
     'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
   PUBLIC_CLUSTER_DESC:

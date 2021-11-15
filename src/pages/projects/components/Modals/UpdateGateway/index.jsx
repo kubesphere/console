@@ -65,10 +65,10 @@ export default class UpdateGatewayModal extends React.Component {
       >
         <div className={styles.body}>
           <div className={styles.title}>
-            <Icon name="information" type="light" size={15} />
-            <span>{t('UPDATED_GATEWAY_TITLE')}</span>
+            <Icon name="information" type="light" size={20} />
+            <strong>{t('UPDATED_GATEWAY_TITLE')}</strong>
           </div>
-          {t('UPDATED_GATEWAY_DESC')}
+          <div className={styles.content}>{t('UPDATED_GATEWAY_DESC')}</div>
         </div>
       </Modal>
     )

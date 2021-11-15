@@ -22,7 +22,7 @@ import BaseInfo from 'components/Forms/ServiceAccount/BaseInfo'
 
 export default [
   {
-    title: 'Basic Info',
+    title: 'BASIC_INFORMATION',
     component: withProps(BaseInfo, { maxNameLength: 63 }),
     required: true,
   },

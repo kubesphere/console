@@ -101,7 +101,7 @@ export default class AppRepos extends React.Component {
         {
           key: 'index',
           type: 'primary',
-          text: t('INDEX_REPO'),
+          text: t('UPDATE'),
           action: 'manage',
           onClick: this.handleIndex,
         },
@@ -119,7 +119,7 @@ export default class AppRepos extends React.Component {
         const { message } = resp
 
         if (message === 'success') {
-          Notify.success(t('INDEX_SUCCESS_TIP'))
+          Notify.success(t('UPDATE_SUCCESS'))
         }
       })
     )

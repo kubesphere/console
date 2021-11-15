@@ -135,7 +135,7 @@ export default class BaseInfo extends React.Component {
               },
               {
                 pattern: PATTERN_NAME,
-                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC'),
               },
               { validator: this.nameValidator },
             ]}
@@ -164,7 +164,7 @@ export default class BaseInfo extends React.Component {
           </Form.Item>
           <Form.Item
             label={t('APPLICATION_GOVERNANCE')}
-            desc={t.html('APPLICATION_GOVERNANCE_DESC')}
+            desc={t('APPLICATION_GOVERNANCE_DESC')}
           >
             <Select
               name="metadata.annotations['servicemesh.kubesphere.io/enabled']"

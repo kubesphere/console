@@ -67,7 +67,6 @@ export default class Volumes extends React.Component {
     {
       title: t('NAME'),
       dataIndex: 'name',
-      width: '18%',
       render: (name, record) => (
         <Avatar icon="storage" title={getDisplayName(record)} noLink />
       ),
@@ -75,7 +74,7 @@ export default class Volumes extends React.Component {
     {
       title: t('STATUS'),
       dataIndex: 'phase',
-      width: '16%',
+      width: '13%',
       render: phase => (
         <Status type={phase} name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)} />
       ),
@@ -83,26 +82,26 @@ export default class Volumes extends React.Component {
     {
       title: t('CAPACITY'),
       dataIndex: 'capacity',
-      width: '16%',
+      width: '13%',
       render: capacity => capacity || '-',
     },
     {
       title: t('MOUNT_STATUS'),
       dataIndex: 'inUse',
-      width: '16%',
+      width: '13%',
       render: inUse => (inUse ? t('MOUNTED') : t('NOT_MOUNTED')),
     },
     {
       title: t('PROJECT'),
       dataIndex: 'namespace',
       key: 'namespace',
-      width: '18%',
+      width: '13%',
       customizable: true,
     },
     {
       title: t('CREATION_TIME_TCAP'),
       dataIndex: 'createTime',
-      width: '16%',
+      width: '21%',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
     },
   ]
@@ -120,7 +119,7 @@ export default class Volumes extends React.Component {
 
     return (
       <Card
-        title={t('VOLUMES')}
+        title={t('VOLUME_PL')}
         loading={isLoading}
         empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('VOLUME') })}
       >

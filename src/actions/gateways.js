@@ -34,6 +34,7 @@ export default {
             name,
             creator: globals.user.username,
             createTime: new Date(),
+            annotations: { ...data.metadata.annotations },
           })
 
           if (namespace !== 'kubesphere-controls-system') {
@@ -42,11 +43,14 @@ export default {
 
           store.addGateway({ cluster, namespace }, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: t('CREATE_SUCCESSFUL') })
+            Notify.success({ content: t('CREATE_SUCCESS') })
             success && success()
           })
         },
         modal: GatewaySettingModal,
+        cluster,
+        namespace,
+        name,
         store,
         detail: FORM_TEMPLATES.gateways(),
         ...props,
@@ -59,7 +63,7 @@ export default {
         onOk: data => {
           store.editGateway({ cluster, namespace }, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: t('UPDATED_SUCCESS_DESC') })
+            Notify.success({ content: t('UPDATE_SUCCESS') })
             success && success()
           })
         },
@@ -84,12 +88,14 @@ export default {
             })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: t('DELETE_SUCCESS_DESC') })
+              Notify.success({ content: t('DISABLE_SUCCESS') })
               success && success()
             })
         },
         store,
         modal: DeleteModal,
+        title: t('DISABLE_GATEWAY'),
+        desc: t('DISABLE_GATEWAY_TIP'),
         type: 'GATEWAY',
         resource,
         cluster,
@@ -109,7 +115,7 @@ export default {
             )
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: t('UPDATED_SUCCESS_DESC') })
+              Notify.success({ content: t('UPDATE_SUCCESS') })
               success && success()
             })
         },
@@ -155,7 +161,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_SUCCESS_DESC') })
+          Notify.success({ content: t('DELETE_SUCCESS') })
           store.setSelectRowKeys([])
           success && success()
         },

@@ -107,10 +107,10 @@ export default class PVCSnapshots extends Component {
     const { total, page, limit, data } = this.store.list
 
     return (
-      <Card title={t('SNAPSHOT_INFORMATION')}>
+      <Card title={t('SNAPSHOT_PL')}>
         <div className={styles.snapshotList}>
           {total === 0 ? (
-            <div>{t('NO_RESOURCE', { resource: t('Volume Snapshot') })}</div>
+            <div>{t('EMPTY_WRAPPER', { resource: t('VOLUME_SNAPSHOT') })}</div>
           ) : (
             data.map(this.renderSnapshot, this)
           )}

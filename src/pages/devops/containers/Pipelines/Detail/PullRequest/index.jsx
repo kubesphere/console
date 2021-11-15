@@ -39,7 +39,7 @@ export default class Pullrequest extends React.Component {
 
   store = this.props.detailStore || {}
 
-  refreshTimer = setInterval(() => this.getDate(), 4000)
+  refreshTimer = setInterval(() => this.getData(), 4000)
 
   get isRuning() {
     const data = get(toJS(this.store), 'pullRequestList.data', [])
@@ -85,7 +85,7 @@ export default class Pullrequest extends React.Component {
     this.unsubscribe && this.unsubscribe()
   }
 
-  getData() {
+  getData = () => {
     const { params } = this.props.match
     const query = parse(location.search.slice(1))
 
@@ -135,7 +135,7 @@ export default class Pullrequest extends React.Component {
       ),
     },
     {
-      title: t('HEALTH'),
+      title: t('HEALTH_STATUS'),
       dataIndex: 'weatherScore',
       width: '15%',
       render: weatherScore => <Health score={weatherScore} />,
@@ -146,7 +146,7 @@ export default class Pullrequest extends React.Component {
       render: record => get(record, 'pullRequest.title', ''),
     },
     {
-      title: t('Author'),
+      title: t('AUTHOR'),
       width: '15%',
       render: record => get(record, 'pullRequest.author', ''),
     },

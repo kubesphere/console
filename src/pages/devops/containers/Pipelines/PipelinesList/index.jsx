@@ -137,17 +137,6 @@ export default class PipelinesList extends React.Component {
         },
       },
       {
-        key: 'activity',
-        icon: 'calendar',
-        text: t('ACTIVITY'),
-        action: 'view',
-        onClick: record => {
-          this.props.rootStore.routing.push(
-            `${this.prefix}/${encodeURIComponent(record.name)}/activity`
-          )
-        },
-      },
-      {
         key: 'edit',
         icon: 'pen',
         text: t('EDIT'),
@@ -159,7 +148,7 @@ export default class PipelinesList extends React.Component {
       {
         key: 'copy',
         icon: 'copy',
-        text: t('COPY_PIPELINE'),
+        text: t('COPY'),
         action: 'edit',
         onClick: record => {
           this.handleCopy(record.name)
@@ -304,13 +293,16 @@ export default class PipelinesList extends React.Component {
       dataIndex: 'name',
       width: '20%',
       render: (name, record) => {
+        const isRun =
+          record.status !== 'failed' && record.status !== 'successful'
+
         const url = `/${this.workspace}/clusters/${this.cluster}/devops/${
           this.devops
         }/pipelines/${encodeURIComponent(record.name)}${
           record.isMultiBranch ? '/activity' : ''
         }`
 
-        return <Avatar to={this.isRuning ? null : url} title={name} />
+        return <Avatar to={isRun ? null : url} title={name} />
       },
     },
 
@@ -322,15 +314,18 @@ export default class PipelinesList extends React.Component {
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
-      title: t('BRANCH_SI'),
+      title: t('BRANCH_COUNT'),
       dataIndex: 'totalNumberOfBranches',
       width: '25%',
       isHideable: true,
-      render: totalNumberOfBranches =>
-        totalNumberOfBranches === undefined ? '-' : totalNumberOfBranches,
+      render: (totalNumberOfBranches, record) =>
+        totalNumberOfBranches === undefined ||
+        (!record.isMultiBranch && totalNumberOfBranches === 0)
+          ? '-'
+          : totalNumberOfBranches,
     },
     {
-      title: t('PULL_REQUEST_PL'),
+      title: t('PULL_REQUEST_COUNT'),
       dataIndex: 'totalNumberOfPullRequests',
       width: '20%',
       isHideable: true,
@@ -352,7 +347,7 @@ export default class PipelinesList extends React.Component {
     const isMulti = !isEmpty(multiData)
 
     if (isMulti) {
-      Notify.error(t('BATCH_RUN_DESC'))
+      Notify.error(t('BATCH_RUN_UNSUPPORTED_DESC'))
       return false
     }
 
@@ -390,7 +385,7 @@ export default class PipelinesList extends React.Component {
     if (isEmptyList && Object.keys(omitFilters).length <= 0) {
       return (
         <Empty
-          name="Pipeline"
+          name="PIPELINE"
           action={
             showCreate ? (
               <Button onClick={showCreate} type="control">

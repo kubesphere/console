@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, isEmpty } from 'lodash'
+import { get, set, isEmpty, omit } from 'lodash'
 import React from 'react'
 import { toJS, computed } from 'mobx'
 import { observer } from 'mobx-react'
@@ -201,16 +201,21 @@ class RouteRules extends React.Component {
     const clusters = get(this.props.projectDetail, 'clusters', [])
 
     clusters.forEach(cluster => {
+      const overrideData = data =>
+        data
+          .filter(item => item.clusters.includes(cluster.name))
+          .map(item => omit(item, 'clusters'))
+
       overrides.push({
         clusterName: cluster.name,
         clusterOverrides: [
           {
             path: '/spec/rules',
-            value: rules.filter(rule => rule.clusters.includes(cluster.name)),
+            value: overrideData(rules),
           },
           {
             path: '/spec/tls',
-            value: tls.filter(item => item.clusters.includes(cluster.name)),
+            value: overrideData(tls),
           },
         ],
       })

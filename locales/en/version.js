@@ -25,7 +25,7 @@ module.exports = {
   'App Instances': 'App Instances',
   'Audit Records': 'App Review',
   business: 'business',
-  CANCEL_REVIEW: 'Cancel Review',
+  CANCEL_SUBMISSION: 'Cancel Submission',
   creating: 'creating',
   'Delete Version': 'Delete Version',
   deleting: 'deleting',
@@ -41,7 +41,7 @@ module.exports = {
   isv: 'isv',
   NO_VERSION_INFO_DESC: 'No version information is found.',
   Pass: 'Pass',
-  Passed: 'Passed',
+  PASSED: 'Passed',
   'Pending-review': 'Pending-review',
   Published: 'Published',
   Recall: 'Recall',
@@ -71,15 +71,15 @@ module.exports = {
   VERSION_DELETE_TIP:
     'Are you sure you want to delete the version <strong>{name}</strong>?',
   VERSION_SUBMIT_TIP:
-    'Are you sure you want to submit the version <strong>{name}</strong> for review?',
+    'Are you sure you want to submit the version <strong>{name}</strong> for release?',
   VERSION_CANCEL_TIP:
-    'Are you sure you want to cancel the review of the version <strong>{name}</strong>?',
+    'Are you sure you want to cancel the submission of the version <strong>{name}</strong>?',
   VERSION_RELEASE_TIP:
     'Users can view and deploy the version <strong>{name}</strong> in the App Store after it is released. Are you sure you want to release it?',
   VERSION_SUSPEND_TIP:
     'The version <strong>{name}</strong > will not be displayed in the App Store after it is suspended. Are you sure you want to suspend it?',
   VERSION_RECOVER_TIP:
-    'The version <strong>{name}</strong> will be displayed in the App Store. Are you sure you want to activate it?',
+    'The version <strong>{name}</strong> will be displayed in the App Store after it is recovered. Are you sure you want to recover it?',
 
   APP_SUSPEND_TIP:
     'The app <strong>{name}</strong> cannot be deployed from the App Store after it is suspended. Are you sure you want to suspend it?',
@@ -103,29 +103,29 @@ module.exports = {
   NOTES_FILE_DESC: 'User instructions.',
 
   VERSION_SUBMIT_TEST_STEPS:
-    '1. All dependent charts have been submitted <br/>' +
-    '2. Successful static check(helm lint) <br/>' +
-    '3. Successful start-up of applications(helm install) with default values: All pods are running status, and all service services have at least one endpoint < br/>' +
-    '4. There is no security vulnerability in the mirrors used <br/>' +
-    '5. Support upgrade <br/>' +
-    '6. Support custom application configuration <br/>' +
-    "7. Don't use Kubernetes'alpha function <br/>" +
-    '8. Detailed README files are required, including introduction of applications, preconditions and how to customize configuration parameters <br/>',
+    '1. All dependent charts have been submitted.<br/>' +
+    '2. The static analysis has been passed (helm lint).<br/>' +
+    '3. The app can be started using default values (helm install). All Pods are in running state and all Services have at least one endpoint.<br/>' +
+    '4. The images used have no security vulnerabilities.<br/>' +
+    '5. Upgrade is supported.<br/>' +
+    '6. Custom application configuration is supported.<br/>' +
+    '7. Do not use the alpha features of Kubernetes.<br/>' +
+    '8. Detailed documentation is provided, including app introduction, prereauisites, and custom parameter configurations.<br/>',
 
   VERSION_SUBMIT_NOTE:
-    'Please make sure your app has passed the basic function tests shown below before you submit it for review.',
+    'Please make sure your app has met the following requirements before submission:',
   VERSION_SUBMIT_DOC: 'For a more comprehensive test manual, see ',
 
-  UPDATE_LOG_DESC: 'Used to describe the details of this update.',
+  UPDATE_LOG_DESC: 'Enter detailed information about the app updates.',
 
   // App Templates > Details
   APP_INSTANCES: 'App Instances',
   UPLOAD_NEW_VERSION: 'Upload New Version',
-  UPLOAD_NEW_VERSION_DESC: 'Upload a new version of the app.',
-  APP_VERSION_LOW: 'App version',
+  UPLOAD_NEW_VERSION_DESC: 'Upload a new version of the app template.',
+  APP_VERSION_SCAP: 'App version',
   UPDATE_TIME_LOW: 'Update time',
   TEST_INSTALLATION: 'Test Installation',
-  SUBMIT_FOR_REVIEW: 'Submit for Review',
+  SUBMIT_FOR_RELEASE: 'Submit for Release',
   VERSION_INFO: 'Version Information',
   INSTALL: 'Install',
 }

@@ -52,7 +52,7 @@ export default class AdvancedSettings extends React.Component {
   }
 
   render() {
-    const { formRef, projectDetail, withService } = this.props
+    const { formRef, projectDetail, withService, supportGpuSelect } = this.props
     const clustersDetail = keyBy(projectDetail.clusters, 'name')
     return (
       <Form data={this.formTemplate} ref={formRef}>
@@ -68,7 +68,13 @@ export default class AdvancedSettings extends React.Component {
           >
             {props => (
               <ContainersMapper formTemplate={this.formTemplate} {...props}>
-                {containerProps => <ContainerImage {...containerProps} />}
+                {containerProps => (
+                  <ContainerImage
+                    supportGpuSelect={supportGpuSelect}
+                    workspace={projectDetail.workspace}
+                    {...containerProps}
+                  />
+                )}
               </ContainersMapper>
             )}
           </ClustersMapper>

@@ -24,7 +24,7 @@ module.exports = {
   ADD_VERSION_SUCCESSFUL: 'Versión Añadida Satisfactoriamente',
   'Adjust App Category': 'Ajustar Categoría de la Aplicación',
   CHANGED_SUCCESSFULLY: 'Changed successfully.',
-  ALL_CATEGORIES: 'Todas las Categorias',
+  ALL_CATEGORIES_VALUE: 'All Categories ({value})',
   APP_CATEGORY_PL: 'Categorias de Aplicación',
   APP_CATEGORY: 'Categoria de Aplicación',
   APP_SETTINGS: 'Configuración de Aplicación',
@@ -33,11 +33,9 @@ module.exports = {
   'New App Config': 'New App Config',
   'App Deploy': 'Despliegue de Aplicación',
   APP_DETAILS: 'Detalles de Aplicación',
-  APP_HOME: 'Hogar de Aplicación (Home)',
   APP_INFORMATION: 'Info de Aplicación',
   'App Introduction': 'Introducción de Aplicación',
   'App Name': 'Nombre de Aplicación',
-  APP_ID: 'Número de Aplicación',
   APP_REVIEW: 'Revisión de Aplicación',
   APP_REVIEWS: 'Revisiones de Aplicación',
   APP_SCREENSHOTS: 'Capturas de pantalla de Aplicación',
@@ -100,7 +98,7 @@ module.exports = {
     'Selecciona un proyecto para desplegar, por favor',
   WORKSPACE_EMPTY_DESC: 'Selecciona un espacio de trabajo, por favor',
   'Please select icon': 'Selecciona un icono, por favor',
-  UPLOAD_AGAIN_TIP: 'An error occurred in the upload. Please try again.',
+  UPLOAD_AGAIN_TIP: 'Please try again.',
   REVIEWED: 'Reviewed',
   PROVIDER: 'Proveedor',
   'Re-upload': 'Re-subir',
@@ -109,7 +107,7 @@ module.exports = {
   REJECT_SUCCESSFUL: 'Rechazado Satisfactoriamente',
   'Release / Suspended Time': 'Momento de lanzamiento / suspensión',
   'Release Successfully': 'Lanzado Satisfactoriamente',
-  APP_PUBLISHING: 'App publishing',
+  APP_RELEASE: 'App Release',
   REVIEW_CONTENT: 'Revisar Contenido',
   'Review Object': 'Revisar Objecto',
   'Review Status': 'Revisar Estado',
@@ -180,13 +178,12 @@ module.exports = {
 
   APP_STORE_DESC: 'Gestionar aplicaciones de la Tienda.',
 
-  APP_REVIEW_DESC:
-    'KubeSphere supports reviewing the contents of applications to be published. You can view the contents and approve or reject to publish the applications.',
-  APP_REVIEW_EMPTY_DESC: 'No app to be reviewed is found.',
+  APP_RELEASE_DESC:
+    'KubeSphere supports reviewing the contents of applications to be released. You can view the contents and approve or reject to publish the applications.',
+  APP_REVIEW_EMPTY_DESC: 'No unreleased app is found.',
   APP_REVIEWS_CREATE_DESC:
     'Certifique a los proveedores de servicios y revise las aplicaciones para aprobar o rechazar las aplicaciones que se mostrarán o no en la tienda.',
-  REVIEW_CONTENT_DESC:
-    'La siguiente información debe ser verdadera y precisa. Las instrucciones clave se deben dar en detalle. Se requiere que los Términos y Condiciones se establezcan claramente.',
+  APP_DETAILS_DESC: 'View details of the app to be released.',
   REJECT_REASON_DESC:
     'Complete los motivos de rechazo de la revisión, por favor.',
 
@@ -234,7 +231,7 @@ module.exports = {
     'La versión actual de la aplicación está bajo revisión,' +
     ' y la siguiente información es inalterable temporalmente',
 
-  SUBMIT_REVIEW_DESC: 'Submit the app for app review.',
+  SUBMIT_REVIEW_DESC: 'Submit the app for release.',
 
   AUDIT_RECORD_CREATE_DESC: 'Sin registro de revisión relevante',
 
@@ -265,13 +262,14 @@ module.exports = {
 
   HELM_APP_SCHEMA_FORM_TIP:
     'The app configuration can be displayed in a form. You can modify the default app configuration through either the form or YAML editor. Note: app data stored in different patterns are independent of each other.',
+  DELETE_APP_TEMPLATE_DESC:
+    'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation.',
+  DELETE_APP_TEMPLATE_VERSIONS_DESC:
+    'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation. Before deleting the app template, you must delete all versions of the template.',
 
-  DELETE_APP_TEMPLATE_TIP:
-    'Before deleting an application template, you need to delete all versions.',
-
-  UNPROCESSED_APP_REVIEW: 'Pending App Review',
-  PROCESSED_APP_REVIEW: 'Complete App Review',
-  ALL_APP_REVIEW: 'App Review',
+  UNPROCESSED_APP_RELEASE: 'Unreleased App',
+  PROCESSED_APP_RELEASE: 'Released App',
+  ALL_APP_RELEASE: 'Release Record',
 
   'APP_CATE_MESSAGE QUEUEING': 'Message Queuing',
   'APP_CATE_IMAGE REGISTRY': 'Image Registry',
@@ -308,7 +306,7 @@ module.exports = {
   APP_VERSIONS_TITLE:
     'Versions (only the latest 10 versions will be displayed)',
   VERSIONS: 'Versions',
-  UPDATED_AT_SCAP: 'Updated at: ',
+  UPDATE_TIME_COLON: 'Update time: ',
   DEVELOPER: 'Developer',
 
   // App Categories
@@ -318,4 +316,43 @@ module.exports = {
 
   // App Templates > Details
   SERVICE_PROVIDER_WEBSITE_SCAP: 'Service Provider Website',
+
+  // App Templates
+  FILE: 'File',
+  INCORRECT_FILE: 'Incorrect files? ',
+  TRY_AGAIN: 'Try Again',
+  FILE_MAX_ICON_DESC:
+    'The icon size should not exceed 20 KB. Please try again.',
+  START_EDITING: 'Start editing...',
+  SCREENSHOTS_COLON: 'Screenshots: ',
+  DELETE_ALL: 'Delete All',
+  APP_LEARN_MORE:
+    '<a href="https://v3-1.docs.kubesphere.io/docs/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Learn More</a>',
+  ACTIVATE_SUCCESSFUL: 'Activated successfully.',
+  CANCEL_SUCCESSFUL: 'Canceled successfully.',
+  RECOVER_SUCCESSFUL: 'Recovered successfully.',
+  RELEASE_SUCCESSFUL: 'Released successfully.',
+  SUBMIT_SUCCESSFUL: 'Submitted successfully.',
+  SUSPEND_SUCCESSFUL: 'Suspended successfully.',
+  DEPLOYED_SUCCESSFUL: 'Deployed successfully.',
+  VIEW_IN_STORE: 'View in Store',
+  RELEASE_TO_STORE: 'Release to Store',
+  AUDIT_EMPTY_DESC: 'No app review record is found.',
+  APP_STATUS_SUBMITTED: 'Submitted',
+  APP_STATUS_PASSED: 'Passed',
+  APP_STATUS_SUSPENDED: 'Suspended',
+  APP_STATUS_REJECTED: 'Rejected',
+  APP_STATUS_ACTIVE: 'Activated',
+  APP_STATUS_PUBLISHED: 'Released',
+  APP_STATUS_RECALLED: 'Suspended',
+  APP_STATUS_RECALL: 'Recall',
+  APP_STATUS_DRAFT: 'To be submitted',
+  APP_STATUS_PENDING_REVIEW: 'To be released',
+  APP_STATUS_IN_REVIEW: 'Reviewing',
+  APP_STATUS_DEVELOPING: 'Developing',
+  APPS: 'Apps',
+  UNRELEASED: 'Unreleased',
+  RELEASED: 'Released',
+  RELEASE_RECORD: 'Release Record',
+  RELEASE_RECORD_EMPTY_DESC: 'No release record is found.',
 }

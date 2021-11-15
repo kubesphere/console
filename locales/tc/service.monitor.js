@@ -23,11 +23,10 @@ module.exports = {
   SCRAPE_INTERVAL_MIN: '採集間隔（分鐘）',
   'View Monitor': '查看監控',
   MONITORING_EXPORTER: '監控導出器',
-  MONITORING_EXPORTER_VALUE: 'Monitoring Exporter: {value}',
+  MONITORING_EXPORTER_VALUE: 'Monitoring exporter: {value}',
 
   SELECT_AUTHENTICATION_METHOD: '選擇認證方式',
   PORT_CONNECTION_AUTHENTICATION: '端口連接認證。',
-  NO_AUTH: '無須認證',
 
   CREATE_A_NEW_SECRET: '建創新保密字典',
   REFRESH_SECRETS: '刷新保密字典。',

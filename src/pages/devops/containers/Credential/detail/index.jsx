@@ -143,10 +143,10 @@ export default class CredentialDetail extends React.Component {
 
   getPipelineStatus = status => {
     const CONFIG = {
-      failed: { type: 'failure', label: t('Failure') },
-      pending: { type: 'running', label: t('Running') },
-      working: { type: 'running', label: t('Running') },
-      successful: { type: 'success', label: t('Success') },
+      failed: { type: 'failure', label: t('FAILED') },
+      pending: { type: 'running', label: t('RUNNING') },
+      working: { type: 'running', label: t('RUNNING') },
+      successful: { type: 'success', label: t('SUCCESSFUL') },
     }
 
     return { ...CONFIG[status] }
@@ -169,7 +169,7 @@ export default class CredentialDetail extends React.Component {
         value: detail.description,
       },
       {
-        name: t('Sync Status'),
+        name: t('SYNC_STATUS'),
         value: <Status {...this.getPipelineStatus(status)} />,
       },
     ]

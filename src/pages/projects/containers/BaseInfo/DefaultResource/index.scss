@@ -2,8 +2,8 @@
 @import '~scss/mixins';
 
 .item {
-  min-width: 160px;
   margin-left: 12px;
+  flex: 1;
 
   & > div {
     @include TypographyTitleH6($dark-color07);
@@ -18,8 +18,10 @@
   display: flex;
   justify-content: flex-start;
   padding: 8px 12px;
+  overflow: auto;
 }
 
 .contentItem {
   display: flex;
+  flex: 1;
 }

@@ -56,7 +56,7 @@ module.exports = {
   STORAGE_CLASS_EMPTY_DESC: 'Please create a storage class.',
   STORAGE_CLASS_VALUE: 'Storage class: {value}',
   STORAGE_CLASS_SETTINGS: '儲存類型設置',
-  'Mount Info': '掛載資訊',
+  MOUNT_INFORMATION: '掛載資訊',
   // Volumes List Page
   MOUNT_STATUS: '掛載',
   MOUNTED: '已掛載',
@@ -124,7 +124,6 @@ module.exports = {
     '設置為預設儲存類型後，如果沒有特殊指定，系統將預設創建該類型的儲存卷。一個 KubeSphere 集群中僅允許設置一個預設儲存類型',
 
   PROVISIONER_DESC: '提供後端儲存',
-  INODE_USAGE_RATE: 'Inode 使用率',
   VOLUME_STORAGE_CLASS_DESC: '選擇一個存儲類型來創建具體種類的存儲卷。',
 
   ACCESS_MODES_DESC: '選擇儲存類型支持的訪問模式',
@@ -141,6 +140,7 @@ module.exports = {
     'You need to deploy a plugin in your storage system before it provides services.',
 
   EXPAND_VOLUME: '儲存卷擴容',
+  EXPAND: 'Expand',
   VOLUME_EXPAND_TIPS:
     '当前儲存卷已掛載至工作負載，因此擴容會導致工作負載重啟，並產生新的版本。可能業務會短暫的中斷。',
   Expand: '擴容',
@@ -197,6 +197,7 @@ module.exports = {
 
   CREATE_SNAPSHOT: '創建快照',
   CLONE_VOLUME: '儲存卷克隆',
+  CLONE: 'Clone',
   ALLOW_VOLUME_SNAPSHOT: '允許存儲卷快照',
   ALLOW_VOLUME_CLONE: '允許存儲卷克隆',
   ALLOW_VOLUME_EXPANSION: '允許存儲卷擴容',
@@ -204,9 +205,8 @@ module.exports = {
   VOLUME_BACKEND_TCAP: '存儲卷後端',
   PV_STATUS_AVAILABLE: '可用',
   PV_STATUS_BOUND: '已綁定',
-  PV_STATUS_RELEASED: '已釋放',
-  PV_STATUS_FAILED: '不可用',
-  PV_STATUS_TERMINATING: '刪除中',
+  PV_STATUS_RELEASED: '删除中',
+  PV_STATUS_FAILED: '失败',
   'Bound Volume': '已綁定存儲卷',
   RECYCLING_STRATEGY: '回收機制',
   VOLUME_SNAPSHOT_STATUS_CREATING: '創建中',
@@ -214,7 +214,7 @@ module.exports = {
   VOLUME_SNAPSHOT_STATUS_FAILED: '創建失敗',
   VOLUME_SNAPSHOT_STATUS_DELETING: '刪除中',
 
-  SNAPSHOT_INFORMATION: '快照資訊',
+  SNAPSHOT_PL: '快照資訊',
 
   VolumeSnapshots: '儲存卷快照',
   VOLUME_SNAPSHOT_DESC:
@@ -232,6 +232,8 @@ module.exports = {
 
   VOLUME_MONITORING_TIP:
     'KubeSphere 採集的是儲存卷的設備用量數據，未掛載的儲存卷暫時採集不到，並且對於如 OpenEBS/Local PV、NFS 等路徑型儲存卷通常與實際用量有一定出入。詳見<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">儲存卷監控數據分析</a>。',
+  VOLUME_FUNCTION_MANAGEMENT_TIP:
+    'Volume Management only controls whether the following features are enabled in the KubeSphere web console. Before the features are enabled, contact your system administrator to confirm that they are supported by the storage system.',
 
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',
@@ -247,7 +249,7 @@ module.exports = {
   GID_MAX: 'Maximum GID',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
-  SNAPSHOT_TYPE: '快照類型',
+  VOLUME_SNAPSHOT_CLASS: '快照類型',
   SNAPSHOT_EMPTY_TIP: '請選擇一個快照類型。',
   VOLUME_BINDING_MODE: 'Volume Binding Mode',
   IMMEDIATE_BINDING: 'Immediate binding',
@@ -256,7 +258,7 @@ module.exports = {
 
   // Storage Class > Detail
   STORAGE_CLASS_SCAP: 'Storage class',
-  APPLY: 'Apply',
+  CREATE_VOLUME: 'Create Volume',
   VOLUME_MANAGEMENT: 'Volume Management',
   SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
   VOLUME_COUNT: 'Volumes',

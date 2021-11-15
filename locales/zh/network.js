@@ -29,13 +29,13 @@ module.exports = {
   ADD_ALLOWLIST_ENTRY: '添加白名单条目',
   EGRESS: '出站',
   Ingress: '入口',
-  EGRESS_TRAFFIC: '流量出口',
-  INGRESS_TRAFFIC: '流量入口',
+  EGRESS_TRAFFIC: '出站流量',
+  INGRESS_TRAFFIC: '入站流量',
   DESTINATION: '目的地',
 
   TRAFFIC_DIRECTION: '流量方向',
   NETWORK_POLICY_DESC:
-    '通过配置网络策略，允许在同个集群内实现网络的隔离，即可以在某些实例（Pod）之间架起防火墙。',
+    '通过配置网络策略，允许在同个集群内实现网络的隔离，即可以在某些实例（容器组）之间架起防火墙。',
   NETWORK_ISOLATION_DESC:
     '通过配置网络隔离控制同一集群内容器组之间的流量以及来自外部的流量，从而实现隔离应用并增强应用的安全性。',
   CREATE_NETWORK_POLICY_DESC:
@@ -48,9 +48,9 @@ module.exports = {
   NETWORK_ISOLATION_Q1: 'CNI 插件实现网络隔离需满足哪些必要条件？',
   NETWORK_POLICY_A1:
     'Kubernetes 所使用 CNI 必须支持 Kubernetes 原生<a href="https://kubernetes.io/zh/docs/concepts/services-networking/network-policies/" target="_blank">网络策略</a>，例如 Calico、Cilium、Kube-router、Romana 和 Weave Net。',
-  NETWORK_POLICY_EMP_TITLE: '未启用网络隔离',
+  NETWORK_POLICY_EMP_TITLE: '未开启网络隔离',
   NETWORK_POLICY_EMP_DESC:
-    '启用项目网络隔离后，将禁止其他项目访问当前项目，但您可以按需放行项目、服务以及外部 IP 地址。',
+    '开启项目网络隔离后，将禁止其他项目访问当前项目，但您可以按需放行项目、服务以及外部 IP 地址。',
   PROJECT_NETWORK_ISOLATION: '项目网络隔离',
   EXTERNAL_EGRESS_DESC: '当前项目中的容器组可以访问以下网段和端口。',
   EXTERNAL_INGRESS_DESC: '当前项目中的容器组可以被以下网段和端口访问。',
@@ -73,4 +73,6 @@ module.exports = {
   ENTER_VALID_SEGMENT_DESC: '请输入一个有效的网段。',
   ENTER_VALID_PORT_NUMBER_DESC: '请输入有效端口号。',
   EMPTY_RESOURCE_DESC: '请选择至少一个项目或服务。',
+  ALLOWLIST_ENTRY: '白名单条目',
+  ALLOWLIST_ENTRY_LOW: '白名单条目',
 }

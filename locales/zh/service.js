@@ -21,12 +21,11 @@ module.exports = {
   routes: '应用路由',
   Ports: '端口',
   selector: '选择器',
-  SELECTOR: '选择器',
   EXTERNAL_IP_ADDRESS: '外部 IP 地址',
+  EXTERNAL_IP_ADDRESS_SCAP: '外部 IP 地址',
   'LoadBalancer IP': '负载均衡 IP',
   CREATE_SERVICE: '创建服务',
   'Delete Service': '删除服务',
-  ACCESS_METHOD: '访问方式',
   'Target Port': '目标端口',
   CONTAINER_PORT: '容器端口',
   CONTAINER_PORT_SCAP: '容器端口',
@@ -42,13 +41,14 @@ module.exports = {
   'Please select Service': '请选择 Service',
   'Path is Required': '请填写 Path',
   VIRTUAL_IP: 'VirtualIP',
+  VIRTUAL_IP_ADDRESS: '虚拟 IP 地址',
 
   SERVICE_TYPE_TCAP: '服务类型',
   SERVICE_TYPE_DESC: '选择一个服务类型。',
   SELECT_SERVICE_TYPE_DESC:
     '创建一个无状态或有状态服务，或将一个服务映射到外部服务。',
   APP_SELECT_SERVICE_TYPE_DESC: '创建一个无状态或有状态服务。',
-  'Service Access': '服务访问',
+  ACCESS_INFORMATION: '访问信息',
   STATELESS_SERVICE: '无状态服务',
   STATEFUL_SERVICE: '有状态服务',
   EXTERNAL_SERVICE: '外部服务',
@@ -58,7 +58,7 @@ module.exports = {
 
   'Internal access': '内部访问',
   ACCESS_TYPE: '访问类型',
-  INTERNAL_ACCESS_METHOD: '内部访问方式',
+  INTERNAL_ACCESS_MODE: '内部访问模式',
 
   'Service Name': '服务名称',
   'Please input service name': '请输入服务名称',
@@ -93,7 +93,7 @@ module.exports = {
   'Do not assign Service IP': '不分配服务 IP',
   'Map Services outside the cluster': '映射集群外部的服务',
   ENTER_PORT_NUMBER: '请输入端口号。',
-  PORT_EMPTY: '请设置端口。',
+  PORT_EMPTY: '请设置至少一个端口。',
   'Please select a workload': '请选择一个工作负载',
   ENTER_SELECTOR_TIP: '请设置工作负载选择器。',
   TOTAL_WORKLOADS_VALUE: '工作负载总数：{count}',
@@ -150,7 +150,7 @@ module.exports = {
   SERVICE_EXTERNAL_ACCESS_DESC: '设置从集群外访问服务的方式。',
 
   SERVICE_NODE_PORT_DESC:
-    '如果您当前的网络与集群节点在同一网络内，那么您可以通过<集群 IP 地址>:<NodePort>进行访问，或者通过<节点 IP 地址>:<NodePort>进行访问。',
+    '如果您的客户机与集群在同一网段，您可以使用<节点 IP 地址>:<节点端口>访问服务。',
 
   SERVICE_TYPE: '服务类型',
   SELECT_SERVICE_TYPE: '选择服务类型',
@@ -180,19 +180,22 @@ module.exports = {
   ARTIFACT_TYPE_VALUE: '制品类型：{value}',
   SPECIFY_WORKLOAD_DESC: '使用一个或多个现有的工作负载创建来创建服务。',
   DELETE_SERVICE_DESC_PL:
-    '您即将删除服务 {resource}。<br/>请确认是否同时删除以下服务相关资源。',
+    '您即将删除服务 {resource}。<br/>请确认是否同时删除以下与服务关联的资源。',
   DELETE_SERVICE_DESC_SI:
-    '您即将删除服务 {resource}。<br/>请确认是否同时删除以下服务相关资源。',
+    '您即将删除服务 {resource}。<br/>请确认是否同时删除以下与服务关联的资源。',
 
   CUSTOMIZE_SERVICE_DESC: '通过指定工作负载或编辑 YAML 配置文件来创建服务。',
 
   SERVICE_TYPE_STATEFULSERVICE: '有状态服务',
   SERVICE_TYPE_STATELESSSERVICE: '无状态服务',
-  SERVICE_TYPE_EXTERNALSERVICE: '映射外部服务',
+  SERVICE_TYPE_EXTERNALSERVICE: '外部服务',
+  SERVICE_TYPE_STATEFULSERVICE_SCAP: '有状态服务',
+  SERVICE_TYPE_STATELESSSERVICE_SCAP: '无状态服务',
+  SERVICE_TYPE_EXTERNALSERVICE_SCAP: '外部服务',
 
   SERVICE_PORTS_DESC: '设置容器端口和服务端口。',
 
-  EIP_POOL_DESC: '集群内部访问方式(DNS)',
+  INTERNAL_DOMAIN_NAME_SCAP: '内部域名',
 
   MAXIMUM_STICKINESS_DURATION_DESC:
     '设置最大会话保持时间。取值范围为 0 到 86400，默认值 10800。',

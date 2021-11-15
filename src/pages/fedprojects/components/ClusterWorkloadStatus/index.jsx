@@ -30,8 +30,12 @@ import styles from './index.scss'
 export default class ClusterWorkloadStatus extends Component {
   getWeight = name => {
     const { store } = this.props
-    const clusters = get(store.deployedScheduleTemplate, 'spec.clusters')
-    return clusters[name].weight
+    const weight = get(
+      store.deployedScheduleTemplate,
+      `spec.clusters.${name}.weight`,
+      0
+    )
+    return weight
   }
 
   get getTotalReplicas() {
@@ -104,12 +108,12 @@ export default class ClusterWorkloadStatus extends Component {
     const params = store.isScheduleProject
       ? {
           Icon: 'stretch',
-          title: t('SPECIFY_WEIGHTS'),
+          title: t('WEIGHTS'),
           des: t('SPECIFY_WEIGHTS_DESC'),
         }
       : {
           Icon: 'backup',
-          title: t('SPECIFY_REPLICAS'),
+          title: t('REPLICA_COUNT'),
           des: t('SPECIFY_REPLICAS_DESC'),
         }
 
@@ -147,7 +151,7 @@ export default class ClusterWorkloadStatus extends Component {
     }
 
     return (
-      <Panel title={t('Instance Status')}>
+      <Panel title={t('POD_REPLICAS')}>
         {this.renderTittleText()}
         <div className={styles.wrapper}>
           {store.isScheduleProject && (

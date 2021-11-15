@@ -94,12 +94,25 @@ export default class PipelineRunStore extends BaseStore {
   }
 
   @action
-  async getCommits({ name, branch, devops, workspace, cluster, ...filters }) {
+  async getCommits({
+    name,
+    branch,
+    runName,
+    devops,
+    workspace,
+    cluster,
+    ...filters
+  }) {
     name = decodeURIComponent(name)
 
     const { page } = filters
 
+    if (!this.runDetail.id) {
+      await this.getRunDetail({ devops, cluster, runName })
+    }
+
     this.commitsList.isLoading = true
+
     const result = await request.get(
       `${this.getRunUrl({
         cluster,
@@ -148,9 +161,21 @@ export default class PipelineRunStore extends BaseStore {
   }
 
   @action
-  async getArtifacts({ devops, name, branch, cluster, workspace, ...filters }) {
+  async getArtifacts({
+    devops,
+    name,
+    runName,
+    branch,
+    cluster,
+    workspace,
+    ...filters
+  }) {
     name = decodeURIComponent(name)
     const { page } = filters
+
+    if (!this.runDetail.id) {
+      await this.getRunDetail({ devops, cluster, runName })
+    }
 
     this.artifactsList.isLoading = true
     const result = await request.get(

@@ -30,7 +30,6 @@ import {
 } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { PropertiesInput, AnnotationsInput } from 'components/Inputs'
-import Title from 'components/Forms/Base/Title'
 
 import { CLUSTER_PROVIDERS } from 'utils/constants'
 
@@ -120,8 +119,20 @@ export default class GatewaySettingModal extends React.Component {
           ? globals.config.loadBalancerDefaultAnnotations
           : annotations
       )
+
+      set(
+        this.template,
+        "metadata.annotations['kubesphere.io/annotations']",
+        'QingCloud Kubernetes Engine'
+      )
     } else {
       set(this.template, 'spec.service.annotations', {})
+
+      set(
+        this.template,
+        "metadata.annotations['kubesphere.io/annotations']",
+        ''
+      )
     }
 
     this.setState({ type })
@@ -164,77 +175,91 @@ export default class GatewaySettingModal extends React.Component {
     this.setState({ isChecked: value })
   }
 
+  renderTitle = () => {
+    return (
+      <div className={styles.modalTitle}>
+        <Icon name="loadbalancer" size={32} />
+        <div className={styles.modalTitleContent}>
+          <div>{t('ENABLE_GATEWAY')}</div>
+          <p> {t('ENABLE_GATEWAY_DESC')}</p>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     const { visible, onCancel, cluster, isSubmitting } = this.props
     const { isChecked } = this.state
 
     return (
       <Modal
-        width={1162}
-        title={t('SET_GATEWAY')}
+        width={960}
+        title={this.renderTitle()}
         onCancel={onCancel}
         visible={visible}
         bodyClassName={styles.modalBody}
+        headerClassName={styles.modalHead}
         closable={false}
         hideFooter
       >
         <div className={styles.body}>
-          <Title title={t('SET_GATEWAY')} desc={t('SET_GATEWAY_DESC')} />
           <div className={styles.wrapper}>
-            <div className={styles.content}>
-              <Form ref={this.form} data={this.template}>
-                <Form.Item label={t('ACCESS_MODE')} className={styles.types}>
-                  <RadioGroup
-                    name="spec.service.type"
-                    mode="button"
-                    buttonWidth={155}
-                    onChange={this.handleTypeChange}
-                    size="small"
-                  >
-                    <RadioButton value="NodePort">NodePort</RadioButton>
-                    <RadioButton value="LoadBalancer">LoadBalancer</RadioButton>
-                  </RadioGroup>
-                </Form.Item>
+            <Form ref={this.form} data={this.template}>
+              <Form.Item label={t('ACCESS_MODE')} className={styles.types}>
+                <RadioGroup
+                  name="spec.service.type"
+                  mode="button"
+                  buttonWidth={155}
+                  onChange={this.handleTypeChange}
+                  size="small"
+                >
+                  <RadioButton value="NodePort">NodePort</RadioButton>
+                  <RadioButton value="LoadBalancer">LoadBalancer</RadioButton>
+                </RadioGroup>
+              </Form.Item>
 
+              <div className={styles.content}>
                 {globals.app.hasClusterModule(cluster, 'servicemesh') && (
-                  <>
+                  <div className={styles.wrapperContent}>
                     <div className={styles.toggle}>
-                      {t('APPLICATION_GOVERNANCE')}
                       <Toggle
                         checked={isChecked}
                         onChange={this.handleToggleChange}
-                        onText={t('ENABLE')}
-                        offText={t('DISABLE')}
                       />
+                      {t('TRACING')}
                     </div>
                     <div className={styles.toggleTip}>
-                      {t('GATEWAY_APPLICATION_GOVERNANCE_TIP')}
+                      {t.html('GATEWAY_TRACING_TIP')}
                     </div>
-                  </>
+                  </div>
                 )}
                 {get(this.template, 'spec.service.type') === 'LoadBalancer' && (
                   <>
                     {this.renderLoadBalancerSupport()}
-                    <Form.Item label={t('ANNOTATION_PL')}>
-                      <AnnotationsInput
-                        controlled
-                        options={toJS(this.options)}
-                        className={styles.objectBg}
-                        name="spec.service.annotations"
-                        addText={t('ADD')}
-                      />
-                    </Form.Item>
+                    <div className={styles.wrapperContent}>
+                      <Form.Item label={t('ANNOTATION_PL')}>
+                        <AnnotationsInput
+                          controlled
+                          options={toJS(this.options)}
+                          className={styles.objectBg}
+                          name="spec.service.annotations"
+                          addText={t('ADD')}
+                        />
+                      </Form.Item>
+                    </div>
                   </>
                 )}
-                <Form.Item label={t('CONFIGURATION_OPTIONS')}>
-                  <PropertiesInput
-                    className={styles.objectBg}
-                    name="spec.controller.config"
-                    addText={t('ADD')}
-                  />
-                </Form.Item>
-              </Form>
-            </div>
+                <div className={styles.wrapperContent}>
+                  <Form.Item label={t('CONFIGURATION_OPTIONS')}>
+                    <PropertiesInput
+                      className={styles.objectBg}
+                      name="spec.controller.config"
+                      addText={t('ADD')}
+                    />
+                  </Form.Item>
+                </div>
+              </div>
+            </Form>
           </div>
         </div>
         <div className={styles.footer}>

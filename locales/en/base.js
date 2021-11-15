@@ -19,6 +19,7 @@
 module.exports = {
   BASIC_INFORMATION: 'Basic Information',
   NAME: 'Name',
+  RECORD: 'Record',
   NAME_VALUE: 'Name: {value}',
   ROLE: 'Role',
   ROLE_PL: 'Roles',
@@ -57,6 +58,7 @@ module.exports = {
   DROP: 'Drop',
   TARGET: 'Target',
   STRATEGY: 'Strategy',
+  STRATEGY_PL: 'Strategies',
 
   // Cluster Node List
   MASTER: 'Master',
@@ -85,7 +87,6 @@ module.exports = {
   UNCORDON: 'Uncordon',
   VIEW_LOG: 'View Log',
 
-  Aborted: 'Aborted',
   About: 'About',
   'Access Control': 'Access Control',
   ACCESS_CONTROL: 'Access Control',
@@ -93,8 +94,11 @@ module.exports = {
   active: 'Active',
   Active: 'Active',
   ACTIVITY: 'Activity',
+  RUN_RECORDS: 'Run Records',
+  VIEW_RECORDS: 'View Records',
   Add: 'Add',
   ADD: 'Add',
+  ADD_STRATEGY: 'Add Strategy',
   'Add ': 'Add ',
   'Add Param': 'Add Param',
   ADD_PARAMETER: 'Add Parameter',
@@ -117,7 +121,7 @@ module.exports = {
   auditing: 'auditing',
   Auditing: 'Auditing',
   'Auditing Operating': 'Auditing Operating',
-  Author: 'Author',
+  AUTHOR: 'Author',
   'Back To List': 'Back To List',
   'Basic Info': 'Basic Information',
   'Basic Information': 'Basic Information',
@@ -149,7 +153,7 @@ module.exports = {
   Cordon: 'Cordon',
   Count: 'Count',
   Create: 'Create',
-  CREATE_SUCCESSFUL: 'Created successfully.',
+  CREATE_SUCCESS: 'Created successfully.',
   CREATION_TIME_TCAP: 'Creation Time',
   CREATED_BY: 'Created By',
   CREATOR: 'Creator',
@@ -161,7 +165,7 @@ module.exports = {
   DEFAULT_VALUE: 'Default Value',
   deleted: 'deleted',
   Deleted: 'Deleted',
-  DELETE_SUCCESS_DESC: 'Deleted successfully.',
+  DELETE_SUCCESS: 'Deleted successfully.',
   STOP_SUCCESS_DESC: 'Stopped successfully.',
   DESCRIPTION: 'Description',
   DESELECT: 'Deselect',
@@ -182,7 +186,7 @@ module.exports = {
   Draining: 'Draining',
   KEY_EXIST_DESC: 'The key already exists.',
   DUPLICATE_KEYS: 'The key already exists. Please enter another key.',
-  'Earliest start time': 'Earliest start time',
+  EARLIEST_START_TIME: 'Earliest Start Time',
   EDIT: 'Edit',
   EDIT_TITLE: 'Edit {title}',
   'Edit ': 'Edit ',
@@ -202,7 +206,7 @@ module.exports = {
   TIPS: 'Tips',
   event: 'event',
   'Event metadata': 'Event metadata',
-  'Event Search': 'Event Search',
+  EVENT_SEARCH: 'Event Search',
   EVENT_DESC: 'EVENT_DESC',
   Events: 'Events',
   events: 'events',
@@ -220,6 +224,7 @@ module.exports = {
   'half month ago': 'half month ago',
   HEALTH_CHECK: 'Health Check',
   HEALTH_STATUS: 'Health Status',
+  HEALTH_STATUS_SCAP: 'Health status',
   Healthy: 'Healthy',
   healthy: 'healthy',
   Hidden: 'Hidden',
@@ -246,7 +251,7 @@ module.exports = {
   'Load more': 'Load more',
   LOADING: 'Loading...',
   'Log Out': 'Log Out',
-  'Log Search': 'Log Search',
+  LOG_SEARCH: 'Log Search',
   LOGGING: 'Logging',
   RESOURCE_EVENTS: 'Resource Events',
   AUDIT_LOGS: 'Audit Logs',
@@ -264,7 +269,7 @@ module.exports = {
   'MONITORING_&_ALERTING': 'Monitoring & Alerting',
   Monitors: 'Monitors',
   More: 'More',
-  'Most recent start time': 'Most recent start time',
+  LATEST_START_TIME: 'Latest Start Time',
   MULTI_CLUSTER_DEPLOYMENT: 'Multi-cluster Project',
   name: 'name',
   NAME_VALIDATION_FAILED:
@@ -284,19 +289,18 @@ module.exports = {
   NO_RELEVANT_DATA: 'No Relevant Data Found',
   'No matching resources found.': 'No matching resources found.',
   SN_NO: 'No.',
-  NOBODY: 'Nobody',
+  NOBODY: 'None',
   'Node Selector': 'Node Selector',
   NONE: 'None',
   'Not Enabled': 'Not Enabled',
   NOT_MOUNT: 'Not mounted',
-  'Not Running': 'Not Running',
   NOT_RUNNING_YET: 'Not running yet',
   NOT_SET: 'Not set',
   'Number of events': 'Number of events',
   'Official Document': 'Official Document',
   OK: 'OK',
   'Operation Account': 'Operation Account',
-  'Operation details': 'Operation details',
+  OPERATION_DETAILS: 'Operation Details',
   OPTIONAL: 'Optional',
   Optional: 'Optional',
   or: 'or',
@@ -313,7 +317,7 @@ module.exports = {
   PATH: 'Path',
   HOST_PATH: 'Host Path',
   Pause: 'Pause',
-  Paused: 'Paused',
+  PAUSED: 'Paused',
   Pending: 'Pending',
   pending: 'pending',
   Platform: 'Platform',
@@ -328,11 +332,12 @@ module.exports = {
   'Platform Title': 'Platform Title',
   'Platform URL': 'Platform URL',
   'Platform Version': 'Platform Version',
-  'Platform-level Access Control': 'Platform-level',
+  PLATFORM_LEVEL_ACCESS_CONTROL: 'Platform-level access control',
   'Filter by keyword': 'Filter by keyword',
   'Search by keyword': 'Search by keyword',
   SEARCH_BY_NAME: 'Search by name',
   NAME_EMPTY_DESC: 'Please set a name.',
+  PARAMETER_NAME_EMPTY_DESC: 'Please set the parameter name.',
   'Please input value': 'Please enter the value.',
   'Please input password': 'Please enter the password.',
   ENTER_INTEGER_OR_PERCENTAGE: 'Please enter an integer or percentage.',
@@ -429,10 +434,10 @@ module.exports = {
   CURRENT_VALUE: 'Current: {value}',
   TARGET_CURRENT: '{target} (Current: {current})',
   Settings: 'Settings',
-  Size: 'Size',
+  SIZE: 'Size',
   Source: 'Source',
   'Source IP': 'Source IP',
-  Stage: 'Stage',
+  STAGE: 'Stage',
   START: 'Start',
   START_TIME: 'Start Time',
   START_TIME_SCAP: 'Start time',
@@ -453,17 +458,19 @@ module.exports = {
   Suspend: 'Suspend',
   Tag: 'Tag',
   Task: 'Task',
+  STEPS_COMPLETE_TOTAL: 'Steps: {complete}/{total}',
   TERMINAL: 'Terminal',
   terminated: 'terminated',
-  'Third-party Tools': 'Third-party Tools',
+  THIRD_PARTY_TOOLS: 'Third-party Tools',
   PARAM_REQUIRED: 'This parameter is required.',
   time: 'time',
   SAMPLING_INTERVAL: 'Sampling Interval',
-  'Time Range': 'Time Range',
+  TIME_RANGE: 'Time Range',
+  TIME_RANGE_SCAP: 'Time range',
   To: 'To',
   to: 'to',
   IGNORE_AND_RETRY: 'Ignore and Try Again',
-  Toolbox: 'Toolbox',
+  TOOLBOX: 'Toolbox',
   Total: 'Total',
   TOTAL: 'Total',
   total: 'total',
@@ -472,10 +479,11 @@ module.exports = {
   TRUE: 'True',
   FALSE: 'False',
   TYPE: 'Type',
-  TYPE_CONFIGMAP: 'Type: ConfigMap',
-  TYPE_SECRET: 'Type: Secret',
-  TYPE_EMPTYDIR: 'Type: emptyDir',
-  TYPE_HOSTPATH: 'Type: HostPath',
+  TYPE_VALUE: 'Type: {value}',
+  TYPE_CONFIGMAP: 'Volume type: ConfigMap',
+  TYPE_SECRET: 'Volume type: Secret',
+  TYPE_EMPTYDIR: 'Volume type: emptyDir',
+  TYPE_HOSTPATH: 'Volume type: HostPath',
   type: 'type',
   Uncordon: 'Uncordon',
   Undo: 'Undo',
@@ -491,7 +499,7 @@ module.exports = {
   Update: 'Update',
   'Updated at': 'Updated at',
   'Updated just now': 'Updated just now',
-  UPDATED_SUCCESS_DESC: 'Updated successfully.',
+  UPDATE_SUCCESS: 'Updated successfully.',
   UPDATE_TIME_TCAP: 'Update Time',
   updating: 'updating',
   Updating: 'Updating',
@@ -516,7 +524,7 @@ module.exports = {
   VolumeSnapshot: 'Volume Snapshot',
   VOLUME_SNAPSHOT: 'Volume Snapshot',
   VOLUME_SNAPSHOT_PL: 'Volume Snapshots',
-  VOLUMESNAPSHOT_LOW: 'volume snapshot',
+  VOLUME_SNAPSHOT_LOW: 'volume snapshot',
   waiting: 'waiting',
   warning: 'warning',
   Warning: 'Warning',
@@ -575,7 +583,7 @@ module.exports = {
   add_: 'Add',
 
   REMOVE_MEMBER_TIP:
-    'Are you sure you want to remove the member <strong>{resource}</strong>?',
+    'Enter the username <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 
   REMOVE_GROUP_TIP:
     'Are you sure you want to remove the group <strong>{resource}</strong>?',
@@ -586,6 +594,8 @@ module.exports = {
   NOT_ENABLE: '{resource} Not Enabled',
   NO_AVAILABLE_RESOURCE_VALUE: 'No Available {resource}',
   NO_RESOURCE_FOUND: 'No Resource Found',
+  NO_SERVICE_FOUND: 'No Service Found',
+  NO_REPO_FOUND_DESC: 'No code repository is found.',
 
   CREATED_AGO: 'Created {diff}',
   CREATED_TIME: 'Created at {diff}',
@@ -615,7 +625,7 @@ module.exports = {
     '🙇 Sorry, no related resources were found. The system will return to <a href="{link}">Workbench</a> in {time}s.',
   DETAIL_NOT_FOUND_DESC:
     '🙇 Sorry, no related resources were found. Back to <a href="{link}">{title}</a>.',
-  TOOLBOX_DESC: 'Provide log search, metering information and kubectl.',
+  TOOLBOX_DESC: 'Provides cluster analysis and control tools.',
   PATTERN_NAME_INVALID_TIP:
     'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-).',
   CONTENT_NOT_SAVED_TIPS: 'content has been modified but not saved',
@@ -663,21 +673,23 @@ module.exports = {
   ENV_DEMO: 'Demo',
 
   CLUSTERS_MANAGE_DESC:
-    'Unified management of multiple clusters and their basic resources, components and application resources',
+    'Unified management of multiple clusters and their basic resources, components, and application resources.',
 
-  ACCESS_CONTROL_DESC: 'Unified management of workspaces, accounts and roles',
+  ACCESS_CONTROL_DESC: 'Unified management of workspaces, users, and roles.',
 
   APP_STORE_MANAGEMENT_DESC:
-    'Unified lifecycle management of cloud native applications including their release, removal and review',
+    'Unified lifecycle management of cloud native applications including their release, activation, and suspension.',
 
   PLATFORM_SETTINGS_DESC:
-    'Customized platform settings including basic information and notification channels',
+    'Customized platform settings including basic information and notification configurations.',
 
   DATA_SOURCE: 'Data Source',
 
-  LOG_SEARCH_DESC: 'A multi-dimensional log search tool for resources.',
+  CONTAINER_LOG_SEARCH_DESC:
+    'A multi-dimensional container log search tool for resources.',
 
-  EVENT_SEARCH_DESC: 'A multi-dimensional event search tool for resources.',
+  RESOURCE_EVENT_SEARCH_DESC:
+    'A multi-dimensional resource event search tool for resources.',
 
   EVENT_AGE: 'Occurred',
   EVENT_AGE_DATA: '{lastTime}<br/>({count} times over {duration})',
@@ -689,8 +701,7 @@ module.exports = {
   HOW_TO_MODIFY_PLATFORM_INFO: 'How do I customize platform information?',
   PLATFORM_SETTINGS_SELECTOR_DESC: 'Customized Platform Settings',
 
-  AUDITING_OPERATING_DESC:
-    'A multi-dimensional auditing search tool for resources.',
+  AUDIT_LOG_DESC: 'A multi-dimensional audit log search tool for resources.',
 
   FILE_OVERSIZED_TIP: 'The file uploaded must be less than 2M!',
 
@@ -706,8 +717,9 @@ module.exports = {
   GITHUB_ISSUES_DESC: 'Raise an issue in GitHub to get help.',
 
   CREATE_BY_YAML_DESC: 'Customize the app settings in the YAML file.',
-  Bill: 'Metering and Billing',
-  BILLING_OPERATING_DESC: 'Track resource consumption.',
+  RESOURCE_CONSUMPTION_STATISTICS: 'Resource Consumption Statistics',
+  METERING_AND_BILLING_DESC:
+    'View resource consumption of clusters and workspaces.',
 
   // Workbench
   CLUSTER_COUNT_SI: 'Cluster',
@@ -720,4 +732,13 @@ module.exports = {
   CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
   CPU_VALUE: 'CPU: {value}',
   MEMORY_VALUE: 'Memory: {value}',
+
+  // Container Log Search
+  CONTAINER_LOG_SEARCH: 'Container Log Search',
+  RESOURCE_EVENT_SEARCH: 'Resource Event Search',
+  AUDIT_LOG_SEARCH: 'Audit Log Search',
+
+  // Toolbox
+  CONTROL_TOOL: 'Control Tool',
+  ANALYSIS_TOOLS: 'Analysis Tools',
 }

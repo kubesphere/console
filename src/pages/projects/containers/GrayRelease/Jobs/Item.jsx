@@ -134,7 +134,7 @@ export default class Item extends React.Component {
       },
       {
         type: 'request_success_rate',
-        name: t('REQUEST_SUCCESS_RATE'),
+        name: t('SUCCESSFUL_REQUEST_RATE'),
         legendData: [data.newVersion, data.oldVersion],
         data: request_success_rate,
         icon: 'check',

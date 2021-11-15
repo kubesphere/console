@@ -30,6 +30,8 @@ import {
   isNumber,
   omit,
   pick,
+  replace,
+  merge as _merge,
 } from 'lodash'
 import generate from 'nanoid/generate'
 import moment from 'moment-mini'
@@ -621,15 +623,44 @@ export const compareVersion = (v1 = '', v2 = '') => {
   return 0
 }
 
+export const cancel_Num_Dot = (spec, hard) => {
+  const units = ['ki', 'mi', 'gi', 'ti']
+  Object.keys(spec).forEach(key => {
+    const value = hard[key]
+    if (isNull(value)) {
+      hard[key] = ''
+    }
+    if (!isString(value)) {
+      return
+    }
+    if (value.slice(-1) === '.') {
+      hard[key] = value.slice(0, -1)
+    }
+    const keyUnit = value.slice(-2).toLowerCase()
+    if (value.slice(-3, -2) === '.' && units.indexOf(keyUnit) > -1) {
+      hard[key] = `${value.slice(0, -3)}${value.slice(-2)}`
+    }
+  })
+}
+
+const deal_With_Dot = hard => {
+  const cpuAndMemory = pick(hard, resourceLimitKey)
+  cancel_Num_Dot(cpuAndMemory, hard)
+}
+
 export const getContainerGpu = item => {
-  if (!isEmpty(get(item, 'resources', undefined))) {
+  if (!isEmpty(get(item, 'resources', {}))) {
     const gpu = get(item, 'resources.gpu', { type: '', value: '' })
     item.resources.limits = pick(item.resources.limits, ['cpu', 'memory'])
-    if (gpu.type !== '') {
+    if (gpu.type !== '' && gpu.value !== '') {
       const value = isUndefined(gpu.value) ? '' : gpu.value
       set(item, `resources.limits["${gpu.type}"]`, value)
       set(item, `resources.requests["${gpu.type}"]`, value)
     }
+    const cpuAndMemory = pick(item.resources, ['requests', 'limits'])
+    Object.keys(cpuAndMemory).forEach(key => {
+      cancel_Num_Dot(cpuAndMemory[key], item.resources[key])
+    })
   }
 }
 
@@ -638,7 +669,7 @@ export const omitJobGpuLimit = (data, path) => {
   if (containers.length > 0) {
     const newContainer = containers.map(item => {
       const gpu = get(item, 'resources.gpu', {})
-      if (isEmpty(gpu)) {
+      if (isEmpty(gpu.type)) {
         return item
       }
       if (
@@ -660,12 +691,21 @@ export const omitJobGpuLimit = (data, path) => {
 
 export const getGpuFromRes = data => {
   if (data.length > 0) {
-    const gpuDefault = get(data, '[0].limit.default', {})
-    const gpu = isEmpty(gpuDefault) ? {} : omit(gpuDefault, ['cpu', 'memory'])
+    const limits = get(data, '[0].limit.default', {})
+    const requests = get(data, '[0].limit.defaultRequest', {})
+    const limitItem = key => get(limits, key, 0)
+    const reqItem = key => get(requests, key, 1)
+    if (limitItem('cpu') === reqItem('cpu')) {
+      set(data[0].limit, 'defaultRequest.cpu', undefined)
+    }
+    if (limitItem('memory') === reqItem('memory')) {
+      set(data[0].limit, 'defaultRequest.memory', undefined)
+    }
+    const gpu = isEmpty(limits) ? {} : omit(limits, ['cpu', 'memory'])
     const gpuKey = Object.keys(gpu)[0]
     if (isEmpty(gpu)) {
       set(data[0].limit, 'gpu', {
-        type: '',
+        type: supportGpuType[0],
         value: '',
       })
     } else {
@@ -681,6 +721,43 @@ export const getGpuFromRes = data => {
   }
 }
 
+export const limits_Request_EndsWith_Dot = ({ limits, requests }) => {
+  const arr = [limits, requests]
+  const result = []
+  arr.forEach((item, index) => {
+    const tmp = {}
+    if (!isUndefined(get(item, 'cpu', undefined)) && item.cpu.endsWith('.')) {
+      set(tmp, 'cpu', trimEnd(item.cpu, '.'))
+    }
+    if (
+      !isUndefined(get(item, 'memory', undefined)) &&
+      item.memory.slice(0, item.memory.length - 2).endsWith('.')
+    ) {
+      set(tmp, 'memory', replace(item.memory, '.', ''))
+    }
+    result[index] = _merge(item, tmp)
+  })
+  return { limits: result[0], requests: result[1] }
+}
+
+export const multiCluster_overrides_gpu = overrides => {
+  overrides.forEach(clusterOverride => {
+    clusterOverride.clusterOverrides.forEach(item => {
+      if (item.path.endsWith('resources')) {
+        const gpu = get(item.value, 'gpu', {})
+        if (!isEmpty(gpu) && gpu.type !== '' && gpu.value !== '') {
+          set(item.value, `limits["${gpu.type}"]`, gpu.value)
+          set(item.value, `requests["${gpu.type}"]`, gpu.value)
+        }
+        item.value = omit(item.value, 'gpu')
+        Object.keys(item.value).forEach(key => {
+          cancel_Num_Dot(item.value[key], item.value[key])
+        })
+      }
+    })
+  })
+}
+
 export const resourceLimitKey = [
   'limits.cpu',
   'limits.memory',
@@ -689,3 +766,16 @@ export const resourceLimitKey = [
 ]
 
 export const gpuTypeArr = ['requests.nvidia.com/gpu', 'limits.nvidia.com/gpu']
+
+export const supportGpuType = ['nvidia.com/gpu']
+
+const accessModeMapper = {
+  ReadWriteOnce: 'RWO',
+  ReadOnlyMany: 'ROM',
+  ReadWriteMany: 'RWM',
+}
+
+export const map_accessModes = accessModes =>
+  accessModes.map(item => accessModeMapper[item])
+
+export const quota_limits_requests_Dot = deal_With_Dot

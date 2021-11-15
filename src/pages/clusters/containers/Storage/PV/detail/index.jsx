@@ -81,14 +81,14 @@ export default class VolumeDetail extends React.Component {
         }),
     },
     {
-      key: 'editYaml',
-      icon: 'pen',
-      text: t('EDIT_YAML'),
-      action: 'edit',
+      key: 'viewYaml',
+      icon: 'eye',
+      text: t('VIEW_YAML'),
+      action: 'view',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
           detail: this.store.detail,
-          success: this.fetchData,
+          readOnly: true,
         }),
     },
     {
@@ -97,7 +97,8 @@ export default class VolumeDetail extends React.Component {
       text: t('DELETE'),
       action: 'delete',
       type: 'danger',
-      disabled: get(this.store.detail, 'phase') === 'Bound',
+      disabled:
+        ['Bound', 'Released'].indexOf(get(this.store.detail, 'phase')) > -1,
       onClick: () =>
         this.trigger('resource.delete', {
           type: this.name,
@@ -111,14 +112,15 @@ export default class VolumeDetail extends React.Component {
     const { detail = {} } = this.store
     const {
       createTime,
-      creator,
       phase,
       storageClassName,
-      storageProvisioner,
+      volumeHandle,
       persistentVolumeReclaimPolicy,
-      accessMode = '-',
+      accessModes = ['-'],
+      capacity,
+      volumeMode,
     } = detail
-    if (isEmpty(detail)) return null
+    if (isEmpty(toJS(detail))) return null
 
     return [
       {
@@ -130,28 +132,32 @@ export default class VolumeDetail extends React.Component {
         ),
       },
       {
+        name: t('CAPACITY'),
+        value: capacity,
+      },
+      {
         name: t('ACCESS_MODE_TCAP'),
-        value: accessMode,
+        value: accessModes.join(','),
       },
       {
         name: t('STORAGE_CLASS'),
         value: storageClassName,
       },
       {
-        name: t('PROVISIONER'),
-        value: storageProvisioner,
+        name: t('volumeHandle'),
+        value: volumeHandle,
       },
       {
         name: t('RECLAIM_POLICY'),
         value: persistentVolumeReclaimPolicy,
       },
       {
-        name: t('CREATION_TIME_TCAP'),
-        value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
+        name: t('volumeMode'),
+        value: volumeMode,
       },
       {
-        name: t('CREATOR'),
-        value: creator,
+        name: t('CREATION_TIME_TCAP'),
+        value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
   }

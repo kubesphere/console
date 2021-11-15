@@ -111,12 +111,12 @@ export default class BaseInfo extends React.Component {
           <Column>
             <Form.Item
               label={t('NAME')}
-              desc={t('PIPELINE_NAME_DESC')}
+              desc={t('NAME_DESC')}
               rules={[
-                { required: true, message: t('PIPELINE_NAME_TIP') },
+                { required: true, message: t('NAME_EMPTY_DESC') },
                 {
                   pattern: PATTERN_NAME,
-                  message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
+                  message: t('INVALID_NAME_DESC'),
                 },
                 { validator: this.validator },
               ]}
@@ -130,7 +130,7 @@ export default class BaseInfo extends React.Component {
           <Column>
             <Form.Item
               label={t('DEVOPS_PROJECT')}
-              desc={t('DEVOPS_PROJECT_DESC')}
+              desc={t('PIPELINE_CREATE_DEVOPS_PROJECT_DESC')}
             >
               <Input name="devopsName" disabled />
             </Form.Item>

@@ -252,7 +252,7 @@ export default class PodItem extends React.PureComponent {
           </div>
           {this.getUpdateStatus()}
         </div>
-        {!location.pathname.indexOf('/nodes') !== -1 && (
+        {!(location.pathname.indexOf('/nodes') !== -1) && (
           <div className={styles.text}>
             <div>{this.getNodeContent()}</div>
             <p>{t('Node')}</p>
@@ -267,7 +267,7 @@ export default class PodItem extends React.PureComponent {
               </Tooltip>
             )}
           </div>
-          <p>{t('POD_IP_ADDRESS')}</p>
+          <p>{t('POD_IP_ADDRESS_SCAP')}</p>
         </div>
         {this.renderMonitorings()}
         <div className={styles.arrow}>

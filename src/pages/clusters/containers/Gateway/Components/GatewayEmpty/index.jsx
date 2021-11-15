@@ -20,20 +20,22 @@ const GatewayEmpty = ({ component, type, handleCreateGateway, cluster }) => {
           <Icon name="loadbalancer" size={48} />
         </div>
         <div className={styles.text}>
-          <div>{t(`${capitalize(desc).toUpperCase()}_GATEWAY_NOT_SET`)}</div>
+          <div>
+            {t(`${capitalize(desc).toUpperCase()}_GATEWAY_NOT_ENABLED`)}
+          </div>
           {isDisable ? (
             <p>
               {t('CLUSTER_UPGRADE_REQUIRED', { version: '3.2' })}
               <Icon
                 name="update"
                 color={{
-                  primary: '#ffc781',
-                  secondary: '#f5a623',
+                  primary: '#f5a623 ',
+                  secondary: '#ffe1be',
                 }}
               />
             </p>
           ) : (
-            <p>{t(`${desc.toUpperCase()}_SET_GATEWAY_DESC`)}</p>
+            <p>{t(`${desc.toUpperCase()}_ENABLE_GATEWAY_DESC`)}</p>
           )}
         </div>
 
@@ -43,7 +45,7 @@ const GatewayEmpty = ({ component, type, handleCreateGateway, cluster }) => {
             onClick={handleCreateGateway}
             disabled={isDisable}
           >
-            {t('SET_GATEWAY')}
+            {t('ENABLE_GATEWAY')}
           </Button>
         )}
       </div>

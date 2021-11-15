@@ -89,11 +89,16 @@ export default class ImageRegistry extends Component {
   }
 
   handleValidate = async () => {
+    const { cluster, isFederated, namespace, screatName } = this.props
+
     if (this.validate()) {
       this.setState({ isValidating: true })
       const result =
         (await this.store.validateImageRegistrySecret({
           fedFormTemplate: this.props.fedFormTemplate,
+          name: screatName,
+          namespace,
+          cluster: isFederated ? 'host' : cluster,
         })) || {}
 
       this.setState({
@@ -147,7 +152,7 @@ export default class ImageRegistry extends Component {
       )
     }
 
-    return <Alert type="warning" message={t('IMAGE_REGISTRY_VALIDATE_TIP')} />
+    return <Alert type="info" message={t('IMAGE_REGISTRY_VALIDATE_TIP')} />
   }
 
   render() {

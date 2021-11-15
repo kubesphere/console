@@ -26,13 +26,13 @@ module.exports = {
   SECRET_LOW: '保密字典',
   SECRET_FIELD_COUNT: '字段数量',
   EDIT_SECRET: '编辑保密字典',
-  SECRET_SETTINGS_TCAP: '保密字典设置',
+  DATA_SETTINGS: '数据设置',
   KUBECONFIG_SETTINGS: 'kubeconfig 设置',
   PRIVATE_KEY_TCAP: '私钥',
   IMAGE_REGISTRY_INFORMATION: '镜像仓库信息',
   TLS_INFORMATION: 'TLS 信息',
   IMAGE_REGISTRY_SECRET_TCAP: '镜像仓库保密字典',
-  ENTER_CREDENTIAL_TIP: '请输入凭证 ID。',
+  CREDENTIAL_NAME_EMPTY_DESC: '请输入凭证名称。',
   ENTER_PRIVATE_KEY_DESC: '请输入私钥。',
   ENTER_DATA_DESC: '请添加数据。',
   Unverified: '镜像仓库保密字典验证失败。',
@@ -62,11 +62,11 @@ module.exports = {
 
   IMAGE_REGISTRY_REQUIRED_DESC: '请设置仓库地址、用户名和密码信息。',
 
-  IMAGE_REGISTRY_VALIDATE_TIP: '创建镜像仓库保密字典前, 请先验证用户名和密码。',
+  IMAGE_REGISTRY_VALIDATE_TIP: '创建镜像仓库保密字典前，请先验证用户名和密码。',
 
   'Please input the registry address': '请输入镜像仓库地址。',
 
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value}（{label}）',
-  CREATE_SECRET: '新建保密字典',
+  CREATE_SECRET: '创建保密字典。',
 }

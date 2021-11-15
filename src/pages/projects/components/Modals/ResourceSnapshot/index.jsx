@@ -22,6 +22,7 @@ import PropTypes from 'prop-types'
 import { PATTERN_NAME } from 'utils/constants'
 import { Form, Input, Select } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import styles from './index.scss'
 
 export default class ResourceSnapshot extends React.Component {
   static propTypes = {
@@ -46,7 +47,7 @@ export default class ResourceSnapshot extends React.Component {
     return (
       <Modal.Form
         icon="pen"
-        width={691}
+        width={600}
         title={title}
         onOk={onOk}
         onCancel={onCancel}
@@ -64,13 +65,13 @@ export default class ResourceSnapshot extends React.Component {
           ]}
           desc={t('LONG_NAME_DESC')}
         >
-          <Input name="name" maxLength={253} />
+          <Input name="name" maxLength={253} className={styles.input} />
         </Form.Item>
         <Form.Item
-          label={t('SNAPSHOT_TYPE')}
+          label={t('VOLUME_SNAPSHOT_CLASS')}
           rules={[{ required: true, message: t('SNAPSHOT_EMPTY_TIP') }]}
         >
-          <Select name="type" options={options} />
+          <Select name="type" options={options} placeholder=" "  className={styles.input} />
         </Form.Item>
       </Modal.Form>
     )

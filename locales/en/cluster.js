@@ -45,6 +45,8 @@ module.exports = {
   'Go back': 'Go back',
   'Host Cluster': 'Host Cluster',
   HOST_CLUSTER: 'Host cluster',
+  HOST_CLUSTER_TCAP: 'Host Cluster',
+  HOST_CLUSTER_PL_TCAP: 'Host Clusters',
   'Host Clusters': 'Host Clusters',
   Import: 'Import',
   'Import Kubernetes Cluster': 'Import Kubernetes Cluster',
@@ -92,7 +94,7 @@ module.exports = {
     'Please add at least one cluster node',
   NODE_ROLE_EMPTY_DESC: 'Please set the role of the node in the cluster.',
   'Add node to the cluster': 'Add node to the cluster',
-  INTERNAL_IP: 'Internal IP Address',
+  INTERNAL_IP_ADDRESS: 'Internal IP Address',
   PORT: 'Port',
   PORT_VALUE: 'Port: {value}',
   EXTERNAL_IP: 'External IP Address',
@@ -177,7 +179,7 @@ module.exports = {
 
   UNBIND_CLUSTER_DESC:
     'After the cluster is unbound, KubeSphere will not be able to manage the cluster. The Kubernetes resources on the cluster will not be deleted.',
-  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation.',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation',
 
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
     'Clusters can be assigned to workspaces through authorization.',

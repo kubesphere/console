@@ -18,8 +18,6 @@
 
 import React from 'react'
 
-import { find, capitalize } from 'lodash'
-
 import { Status } from 'components/Base'
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
@@ -51,11 +49,11 @@ export default class Reviews extends React.Component {
       options: [
         {
           value: 'unprocessed',
-          label: t('PENDING_REVIEW'),
+          label: t('UNRELEASED'),
         },
         {
           value: 'processed',
-          label: t('COMPLETE_REVIEW'),
+          label: t('RELEASED'),
         },
         {
           value: 'all',
@@ -83,7 +81,7 @@ export default class Reviews extends React.Component {
       {
         key: 'handle',
         icon: 'eye',
-        text: t(this.type === 'unprocessed' ? 'REVIEW' : 'REVIEW_CONTENT'),
+        text: t('VIEW_DETAILS'),
         onClick: this.showReview,
       },
     ]
@@ -135,13 +133,6 @@ export default class Reviews extends React.Component {
       ),
     },
     {
-      title: t('TYPE'),
-      dataIndex: 'type',
-      isHideable: true,
-      width: '15%',
-      render: () => t('APP_PUBLISHING'),
-    },
-    {
       title: t('WORKSPACE'),
       dataIndex: 'app_id',
       isHideable: true,
@@ -165,7 +156,9 @@ export default class Reviews extends React.Component {
           <Status
             className={styles.status}
             type={transStatus}
-            name={t(capitalize(transStatus))}
+            name={t(
+              `APP_STATUS_${transStatus.toUpperCase().replace(/-/g, '_')}`
+            )}
           />
         )
       },
@@ -183,7 +176,7 @@ export default class Reviews extends React.Component {
     return {
       icon: 'safe-notice',
       title: t('EMPTY_WRAPPER', {
-        resource: t(`${this.type.toUpperCase()}_APP_REVIEW`),
+        resource: t(`${this.type.toUpperCase()}_APP_RELEASE`),
       }),
     }
   }
@@ -196,8 +189,8 @@ export default class Reviews extends React.Component {
           {...bannerProps}
           tabs={this.tabs}
           icon="safe-notice"
-          title={t('APP_REVIEW')}
-          description={t('APP_REVIEW_DESC')}
+          title={t('APP_RELEASE')}
+          description={t('APP_RELEASE_DESC')}
         />
         <Table
           {...tableProps}

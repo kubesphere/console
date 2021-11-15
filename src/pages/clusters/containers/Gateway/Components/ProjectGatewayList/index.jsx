@@ -74,7 +74,7 @@ export default class ProjectGatewayCard extends React.Component {
       {
         key: 'update',
         icon: 'update',
-        text: t('Update Gateway'),
+        text: t('UPDATE'),
         action: 'manage',
         show: item => !item.createTime,
         onClick: item =>
@@ -87,7 +87,7 @@ export default class ProjectGatewayCard extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('DELETE'),
+        text: t('DISABLE'),
         action: 'delete',
         onClick: item =>
           trigger('gateways.delete', {
@@ -132,10 +132,11 @@ export default class ProjectGatewayCard extends React.Component {
       return (
         <Tooltip content={t('UPDATE_GATEWAY_DESC')} placement="top">
           <Icon
+            size={20}
             name="update"
             color={{
-              primary: '#ffc781',
-              secondary: '#f5a623',
+              primary: '#f5a623 ',
+              secondary: '#ffe1be',
             }}
           />
         </Tooltip>
@@ -149,16 +150,20 @@ export default class ProjectGatewayCard extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('PROJECT_GATEWAY'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
         render: (name, record) => {
           return (
-            <span>
-              {name}
+            <>
+              <span
+                style={{ fontWeight: 700, cursor: 'auto', marginRight: '4px' }}
+              >
+                {name}
+              </span>
               {this.renderDisabledTip(record)}
-            </span>
+            </>
           )
         },
       },
@@ -186,12 +191,9 @@ export default class ProjectGatewayCard extends React.Component {
         dataIndex: 'replicas',
       },
       {
-        title: t('APPLICATION_GOVERNANCE'),
+        title: t('TRACING'),
         dataIndex: 'serviceMeshEnable',
-        render: serviceMeshEnable =>
-          serviceMeshEnable
-            ? t('GATEWAY_SERVICE_MESH_STATUS_ON')
-            : t('GATEWAY_SERVICE_MESH_STATUS_OFF'),
+        render: serviceMeshEnable => (serviceMeshEnable ? t('ON') : t('OFF')),
       },
     ]
   }

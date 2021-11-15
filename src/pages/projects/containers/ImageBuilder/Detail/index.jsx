@@ -85,7 +85,7 @@ export default class ImageBuilderDetail extends React.Component {
 
   handleCopy = () => {
     Notify.success({
-      content: t('Copy Successfully'),
+      content: t('COPIED_SUCCESSFUL'),
     })
   }
 

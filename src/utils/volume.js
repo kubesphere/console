@@ -31,7 +31,7 @@ export const getVolumeType = volume => {
 }
 
 export const isNotPersistentVolume = volume =>
-  volume.emptyDir || volume.HostPath || volume.configMap || volume.secret
+  volume.emptyDir || volume.hostPath || volume.configMap || volume.secret
 
 export const findVolume = (volumes, newVolume) => {
   let volume

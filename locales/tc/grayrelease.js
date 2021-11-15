@@ -102,7 +102,7 @@ module.exports = {
 
   TRAFFIC_MONITORING: '流量監控',
   TRAFFIC: 'Traffic',
-  REQUEST_SUCCESS_RATE: '請求成功率',
+  SUCCESSFUL_REQUEST_RATE: '請求成功率',
 
   TRAFFIC_IN_LAST_FIVE_MINUTES: '最近五分鐘流量',
 

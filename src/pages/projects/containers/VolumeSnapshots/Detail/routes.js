@@ -30,7 +30,7 @@ export default PATH => [
   {
     name: 'event',
     path: `${PATH}/event`,
-    title: 'Events',
+    title: 'EVENT_PL',
     component: Events,
   },
   getIndexRoute({ path: PATH, to: `${PATH}/source`, exact: true }),

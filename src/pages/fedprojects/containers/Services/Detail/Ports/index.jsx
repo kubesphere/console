@@ -40,7 +40,7 @@ export default class Ports extends Component {
               <p>
                 <strong>{port.targetPort}</strong>
               </p>
-              <p>{t('CONTAINER_PORT')}</p>
+              <p>{t('CONTAINER_PORT_SCAP')}</p>
             </div>
             <div className={styles.protocol}>→ {port.protocol} → </div>
             <Icon name="network-router" size={40} />
@@ -48,7 +48,7 @@ export default class Ports extends Component {
               <p>
                 <strong>{port.port}</strong>
               </p>
-              <p>{t('SERVICE_PORT')}</p>
+              <p>{t('SERVICE_PORT_SCAP')}</p>
             </div>
             {port.nodePort && (
               <>
@@ -59,7 +59,7 @@ export default class Ports extends Component {
                     <strong>{port.nodePort}</strong>
                   </p>
                   <div>
-                    {t('NodePort')}
+                    {t('NODE_PORT_SCAP')}
                     <Tooltip
                       content={t('SERVICE_NODE_PORT_DESC')}
                       trigger="hover"

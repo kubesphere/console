@@ -18,6 +18,7 @@
 
 module.exports = {
   NOTIFICATION_MANAGEMENT: '通知管理',
+  NO_AUTH: '无需认证',
   'Notification Management': '通知管理',
   NOTIFICATION_CONFIGURATION: '通知配置',
   'Notification Configuration': '通知配置',
@@ -77,6 +78,7 @@ module.exports = {
     '会话 ID 需要系统管理员进行配置才能获取，如需设置请联系系统管理员。',
 
   DINGTALK_SETTING_TIP: '请设置会话或者群机器人。',
+  DINGTALK_CHATBOT_SECURITY_TIP: '请输入密钥或关键词',
 
   DINGTALK_SETTING_DESC: '可以通过钉钉接收平台的通知，需要配置钉钉发送服务器。',
   ENTER_CONVERSATION_ID_DESC: '请输入会话 ID。',
@@ -181,6 +183,5 @@ module.exports = {
   SLACK_CHANNEL: 'Slack 频道',
   TOKEN: '令牌',
   BASIC_AUTH: '基础认证',
-  NO_AUTH: '无需认证',
   BEARER_TOKEN: 'Bearer 令牌',
 }

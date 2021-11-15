@@ -18,7 +18,7 @@
 
 import { get, isEmpty, omit } from 'lodash'
 import { toJS } from 'mobx'
-import { withProps, omitJobGpuLimit } from 'utils'
+import { withProps, omitJobGpuLimit, multiCluster_overrides_gpu } from 'utils'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -30,7 +30,11 @@ import EditConfigTemplateModal from 'projects/components/Modals/ConfigTemplate'
 import EditServiceModal from 'projects/components/Modals/ServiceSetting/StatefulSet'
 import ClusterDiffSettings from 'components/Forms/Workload/ClusterDiffSettings'
 import DeleteModal from 'projects/components/Modals/WorkloadDelete'
-import { MODULE_KIND_MAP } from 'utils/constants'
+import {
+  MODULE_KIND_MAP,
+  MAPPER_GPU_SPEC_PATH,
+  OMIT_TOTAL_REPLICAS,
+} from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
 import DEPLOYMENTS_FORM_STEPS from 'configs/steps/deployments'
@@ -115,21 +119,26 @@ export default {
 
       const modal = Modal.open({
         onOk: newObject => {
-          if (kind === 'CronJob') {
-            omitJobGpuLimit(
-              newObject[kind],
-              'spec.jobTemplate.spec.template.spec.containers'
-            )
-          } else if (kind === 'Job') {
-            omitJobGpuLimit(newObject[kind], 'spec.template.spec.containers')
+          if (isFederated) {
+            MAPPER_GPU_SPEC_PATH[kind] &&
+              omitJobGpuLimit(
+                newObject[kind],
+                MAPPER_GPU_SPEC_PATH[`Federate_${kind}`]
+              )
+            if (module === 'deployments') {
+              multiCluster_overrides_gpu(
+                get(newObject, 'Deployment.spec.overrides', [])
+              )
+            } else if (module === 'statefulsets') {
+              multiCluster_overrides_gpu(
+                get(newObject, 'StatefulSet.spec.overrides', [])
+              )
+            }
+          } else {
+            MAPPER_GPU_SPEC_PATH[kind] &&
+              omitJobGpuLimit(newObject[kind], MAPPER_GPU_SPEC_PATH[kind])
           }
-
-          const omitArr = [
-            `${kind}.spec.template.totalReplicas`,
-            'totalReplicas',
-            `${kind}.totalReplicas`,
-          ]
-          newObject = omit(newObject, omitArr)
+          newObject = omit(newObject, OMIT_TOTAL_REPLICAS(kind))
           let data = newObject
           if (!data) {
             return
@@ -154,7 +163,7 @@ export default {
               await store.switchSchedule(false)
             }
             Modal.close(modal)
-            Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+            Notify.success({ content: t('CREATE_SUCCESS') })
             success && success()
             formPersist.delete(`${module}_create_form`)
           })
@@ -314,7 +323,7 @@ export default {
       const modal = Modal.open({
         onOk: () => {
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESS') })
           success && success()
         },
         store,
@@ -335,7 +344,7 @@ export default {
       const modal = Modal.open({
         onOk: () => {
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESS') })
           success && success()
         },
         modal: DeleteModal,

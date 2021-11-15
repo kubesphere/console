@@ -61,7 +61,7 @@ export default {
 
           store.create(data, params).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+            Notify.success({ content: t('CREATE_SUCCESS') })
             success && success()
             formPersist.delete(`${module}_create_form`)
           })
@@ -85,7 +85,7 @@ export default {
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESS') })
             success && success()
           })
         },
@@ -104,7 +104,7 @@ export default {
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESS') })
             success && success()
           })
         },
@@ -123,7 +123,7 @@ export default {
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESS') })
             success && success()
           })
         },

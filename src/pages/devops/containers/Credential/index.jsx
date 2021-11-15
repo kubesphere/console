@@ -100,7 +100,7 @@ class Credential extends React.Component {
   }
 
   get name() {
-    return 'DEVOPS_CREDENTIAL'
+    return 'CREDENTIAL'
   }
 
   handleCreate = () => {
@@ -128,7 +128,7 @@ class Credential extends React.Component {
       title: t('TYPE'),
       dataIndex: 'type',
       width: '25%',
-      render: type => t(type),
+      render: type => t(`CREDENTIAL_TYPE_${type.toUpperCase()}`),
     },
     {
       title: t('DESCRIPTION'),

@@ -80,9 +80,7 @@ export default class Cates extends Component {
       <Loading spinning={list.isLoading}>
         <Card className={styles.categories}>
           <div className={styles.title}>
-            <label>
-              {t('ALL_CATEGORIES')} ({list.total})
-            </label>
+            <label>{t('ALL_CATEGORIES_VALUE', { value: list.total })}</label>
             <label className={styles.add}>
               <Icon onClick={this.showEdit} name={'add'} size={20} />
             </label>

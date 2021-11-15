@@ -71,7 +71,7 @@ module.exports = {
     'Your account does not belong to any workspace currently. Please create a workspace or contact the administrator to invite you to a workspace.',
   WORKSPACE_MEMBER_DESC:
     'Workspace members can view or manage workspace resources. You can manage members and control their permissions in the workspace.',
-  INVITE_WORKSPACE_MEMBER_DESC: 'You can invite members to the workspace.',
+  INVITE_WORKSPACE_MEMBER_DESC: 'Invite users to the workspace.',
 
   WORKSPACE_ROLE_DESC:
     'The role of a workspace member determines the permissions of the member in the workspace.',

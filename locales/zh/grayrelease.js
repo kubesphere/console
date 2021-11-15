@@ -24,7 +24,7 @@ module.exports = {
   GRAY_RELEASE_STRATEGY_SI: '灰度策略',
   TOTAL_GRAY_RELEASE_JOB: '共计 {num} 个灰度任务',
   TOTAL_GRAY_RELEASE_JOBS: '共计 {num} 个灰度任务',
-  NO_GRAYSCALE_RELEASE_JOB_FOUND: '没有找到灰度发布任务',
+  NO_GRAYSCALE_RELEASE_JOB_FOUND: '未发现灰度发布任务',
   NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: '请创建一个灰度发布任务。',
 
   BLUE_GREEN_DEPLOYMENT: '蓝绿部署',
@@ -101,7 +101,7 @@ module.exports = {
 
   TRAFFIC_MONITORING: '流量监控',
   TRAFFIC: '流量',
-  REQUEST_SUCCESS_RATE: '请求成功率',
+  SUCCESSFUL_REQUEST_RATE: '请求成功率',
 
   TRAFFIC_IN_LAST_FIVE_MINUTES: '最近五分钟的流量。',
 
@@ -133,7 +133,7 @@ module.exports = {
   POLICY_REQUEST_CONTENT_TIP:
     '指定请求参数功能仅支持 HTTP、HTTP2 和 gRPC 请求。',
 
-  NO_SERVICE_MESH_TIP: '未开启应用治理的应用无法使用灰度发布。',
+  NO_SERVICE_MESH_TIP: '该应用未开启应用治理，无法使用灰度发布功能。',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
     '将业务流量发送给新版本进行测试。如果新版本运行不正常，可立即将业务流量切换给旧版本。',
@@ -151,7 +151,7 @@ module.exports = {
     '基于流量比例发布：根据流量比例配置规则，将从原版本中切分指定比例的流量到灰度版本。',
 
   MIRROR_POLICY_DESC:
-    '流量镜像将生产环境的流量复制到灰度版本中，在新版本上线到真实环境之前使用实时用户流量对它进行测试。</br>因此，流量镜像可以降低直接在生产环境进行变更所带来的风险。',
+    '流量镜像将生产环境的流量复制到灰度版本中，在新版本上线到真实环境之前使用实时用户流量对它进行测试。<br/>因此，流量镜像可以降低直接在生产环境进行变更所带来的风险。',
 
   DELETE_GRAYSCALE_RELEASE_JOB_DESC:
     '删除灰度发布任务前，请选择一个版本接管所有流量。',
@@ -173,11 +173,11 @@ module.exports = {
   DEPLOY_APP_TIP: '您即将部署示例应用 {name}',
 
   DEPLOY_SAMPLE_NO_INTERNET_ACCESS_TIP:
-    '当前项目中没有找到已开启应用治理的网关，因此您无法部署示例应用。请联系您的项目管理员在【高级设置】中设置外网访问方式',
+    '当前项目中未发现已开启应用治理的网关，因此您无法部署示例应用。请联系您的项目管理员在【高级设置】中设置外网访问方式',
 
   PREREQUEST_FOR_USE_GRAYRELEASE_Q: '使用灰度发布功能有哪些前提条件？',
   PREREQUEST_FOR_USE_GRAYRELEASE_A:
-    '使用灰度发布功能前，您需要创建自制应用并且为自制应用启用应用治理功能。',
+    '使用灰度发布功能前，您需要创建自制应用并且为自制应用开启应用治理功能。',
 
   // Grayscale release detail page
   GRAY_COMPONENT_DESC: '测试中的新版本和旧版本的相关信息。',

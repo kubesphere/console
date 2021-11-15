@@ -18,6 +18,9 @@
 
 module.exports = {
   GATEWAY_SETTINGS: 'Gateway Settings',
+  DISABLE_GATEWAY: 'Disable Gateway',
+  DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
+  DISABLE_SUCCESS: 'Disabled successfully.',
   CLUSTER_GATEWAY_DESC:
     'Set up and manage the configuration of the external network access gateway and service management in the cluster and project',
   PROJECT_GATEWAY_DESC:
@@ -27,12 +30,12 @@ module.exports = {
   CLUSTER_GATEWAY_LOW: 'cluster gateway',
   PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_LOW: 'project gateway',
-  CLUSTER_SET_GATEWAY_DESC:
+  CLUSTER_ENABLE_GATEWAY_DESC:
     'Before creating an application route, you need to enable the external network access portal, that is, the gateway. This step is to create the corresponding application routing controller, which is responsible for forwarding the request to the corresponding back-end service. ',
-  PROJECT_SET_GATEWAY_DESC:
+  PROJECT_ENABLE_GATEWAY_DESC:
     'The cluster management page does not support the setting of the project gateway. If you need to set it, you need to go to the corresponding project to set it. ',
-  CLUSTER_GATEWAY_NOT_SET: 'Cluster Gateway Not Set',
-  PROJECT_GATEWAY_NOT_SET: 'Project Gateway Not Set',
+  CLUSTER_GATEWAY_NOT_ENABLED: 'Cluster Gateway Not Enabled',
+  PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',
   'Gateway Not Set': 'Gateway Not Set',
   'Set Gateway': 'Set Gateway',
   EDIT_GATEWAY: 'Edit Gateway',
@@ -40,10 +43,12 @@ module.exports = {
   GATEWAY_LOW: 'Gateway',
   CONFIGURATION_OPTIONS: 'Gateway Config',
   'Gateway Config': 'Gateway Config',
-  'Gateway Log': 'Gateway Log',
+  GATEWAY_LOGS: 'Gateway Logs',
   'Add Gateway Config': 'Add Gateway Config',
   LOAD_BALANCER_PROVIDER: 'LoadBalancer Provider',
   LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
+  LOAD_BALANCER_SCAP: 'Load balancer',
+  LOAD_BALANCERS_SCAP: 'Load balancers',
   USE_DEFAULT_ANNOTATIONS: 'Use Default Annotations',
   GATEWAY_IP: 'Access address',
   UPDATE_GATEWAY_DESC: 'The current gateway can be upgraded',
@@ -55,17 +60,16 @@ module.exports = {
   CLUSTER_GATEWAY_GUIDE_DESC:
     'After the cluster gateway is turned on, the project gateway can no longer be set. If the project gateway already exists, it cannot be reset after deleting it. ',
   'Request Count': 'Request Count',
-  'Active Connections': 'Number of connections',
-  'Request Duration': 'Request Duration',
-  'Request Error': 'Request Error',
-  'Duration Average': 'Average Delay',
-  'Duration 50percentage': 'P50 delay',
-  'Duration 95percentage': 'P95 delay',
-  'Duration 99percentage': 'P99 delay',
-  'Request 4xx': '4xx error',
-  'Request 5xx': '5xx error',
-  'Total Requests': 'Total Requests',
-  'Request Success': 'Request Success',
+  CONNECTION_COUNT: 'Connections',
+  FAILED_REQUEST_COUNT: 'Request Error',
+  AVERAGE_LATENCY: 'Average Latency',
+  P_FIFTY_LATENCY: 'P50 Latency',
+  P_NINETY_FIVE_LATENCY: 'P95 Latency',
+  P_NINETY_NINE_LATENCY: 'P99 Latency',
+  FOUR_XX_REQUEST_COUNT: '4xx error',
+  FIVE_XX_REQUEST_COUNT: '5xx error',
+  TOTAL_REQUESTS: 'Total Requests',
+  SUCCESSFUL_REQUESTS: 'Request Success',
   GATEWAYS_REPLICA_DESC:
     'Deployment (Deployment) is used to describe the desired target state of the application. It is mainly used to describe the stateless application. The number and state of replicas are maintained by the controller behind it to ensure that the state is consistent with the defined desired state. You can increase the number of replicas to meet higher loads; roll back the deployed version to eliminate erroneous changes to the program; create an autoscaler to flexibly respond to the load in different scenarios. ',
   PROJECT_GATEWAY_EMPTY_DESC:

@@ -196,7 +196,7 @@ export default class Item extends React.Component {
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('TRUSTED_USER')}>
+            <Form.Item label={t('TRUSTED_USERS')}>
               <Select
                 name="discover_pr_from_forks.trust"
                 defaultValue={
@@ -238,7 +238,9 @@ export default class Item extends React.Component {
       <div className={styles.itemWrapper}>
         <div className={styles.itemTitle}>
           <p>
-            <strong>{t(menuData[type])}</strong>
+            <strong>
+              {t(menuData[type].replace(/\s/g, '_').toUpperCase())}
+            </strong>
           </p>
           <Button
             className={styles.delete}

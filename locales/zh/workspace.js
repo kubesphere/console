@@ -41,10 +41,10 @@ module.exports = {
   DEPARTMENT_PL: '部门管理',
   'Maintain Organization': '维护组织结构',
 
-  devops: 'DevOps 工程',
+  devops: 'DevOps 项目',
 
   'Project Number': '项目数量',
-  'DevOps Project Number': 'DevOps 工程数量',
+  'DevOps Project Number': 'DevOps 项目数量',
   EDIT_QUOTAS: '编辑配额',
 
   EDIT_WORKSPACE_QUOTAS: '编辑企业空间配额',
@@ -65,7 +65,7 @@ module.exports = {
   'Cluster Authorization Info': '集群授权信息',
   WS_NETWORK_ISOLATION: '企业空间网络隔离',
 
-  NO_AVAILABLE_CLUSTER: '暂时没有可用集群',
+  NO_AVAILABLE_CLUSTER: '未发现可用集群',
   NETWORK_POLICY_UNINSATLLED_DESC: '该集群未安装网络策略组件。',
 
   'All members': '全部成员',
@@ -75,7 +75,7 @@ module.exports = {
     '企业空间为 KubeSphere 提供了安全隔离的、具有访问权限控制的工作平台。这里您可以看到当前企业空间内资源运行的概况。',
 
   WORKSPACE_DESC:
-    '企业空间是一个组织您的项目和 DevOps 工程、管理资源访问权限以及在团队内部共享资源等的逻辑单元，可以作为团队工作的独立工作空间。',
+    '企业空间是一个组织您的项目和 DevOps 项目、管理资源访问权限以及在团队内部共享资源等的逻辑单元，可以作为团队工作的独立工作空间。',
 
   WORKSPACE_SEARCH_PLACEHOLDER: '请输入企业空间名称进行查找',
 
@@ -100,7 +100,7 @@ module.exports = {
   WORKSPACE_MEMBER_DESC:
     '企业空间成员可以查看或管理企业空间资源。您可以管理企业空间中的成员并控制成员权限。',
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请企业空间成员',
-  INVITE_WORKSPACE_MEMBER_DESC: '您可以邀请成员至该企业空间。',
+  INVITE_WORKSPACE_MEMBER_DESC: '邀请用户到当前企业空间。',
 
   DELETE_WORKSPACE_TIP:
     '确定删除企业空间 <strong>{resource}</strong> ? 删除后将无法恢复, 企业空间下的资源也同时会被销毁。',
@@ -119,16 +119,16 @@ module.exports = {
   HOW_TO_APPLY_MORE_CLUSTER_A: '请联系平台管理员或集群管理员以申请更多集群。',
 
   NO_CLUSTER_AVAILABLE_DESC:
-    '没有找到可用的集群。请在企业空间创建完成后，联系平台管理员或集群管理员将一个集群授权给该企业空间。',
+    '未发现可用的集群。请在企业空间创建完成后，联系平台管理员或集群管理员将一个集群授权给该企业空间。',
   WORKSPACE_NO_CLUSTER_TIP:
     '请联系平台管理员或者集群管理员将一个集群授权给企业空间。',
 
   DEPARTMENT_MANAGEMENT_DESC:
-    '企业空间中的部门是用来管理权限的逻辑单元。您可以在部门中设置企业空间角色、多个项目角色以及多个 DevOps 工程角色，还可以将用户分配到部门中以批量管理用户权限。',
+    '企业空间中的部门是用来管理权限的逻辑单元。您可以在部门中设置企业空间角色、多个项目角色以及多个 DevOps 项目角色，还可以将用户分配到部门中以批量管理用户权限。',
   DEPARTMENT_EMPTY_DESC: '没有可用部门',
-  WORKSPACE_GROUP_USER_EMPTY_DESC: '暂时没有可分配的成员',
+  WORKSPACE_GROUP_USER_EMPTY_DESC: '未发现可分配的成员',
   WORKSPACE_QUOTAS_DESC:
-    '企业空间配额用于管理企业空间中所有项目和 DevOps 工程的总资源用量。',
+    '企业空间配额用于管理企业空间中所有项目和 DevOps 项目的总资源用量。',
 
   DELETE_WORKSPACE_PROJECTS_DESC: '删除企业空间中的项目',
   DELETE_WORDSPACE_RELATED_RESOURCES_DESC: '删除该企业空间关联项目',
@@ -168,8 +168,8 @@ module.exports = {
   WORKSPACE_MEMBER_EMPTY_DESC: '请邀请一个用户到当前企业空间。',
   PROJECT_VALUE: '项目：{value}',
   PROJECT_ROLE_VALUE: '项目角色：{value}',
-  DEVOPS_VALUE: 'DevOps 工程：{value}',
-  DEVOPS_PROJECT_ROLES_VALUE: 'DevOps 工程角色：{value}',
+  DEVOPS_VALUE: 'DevOps 项目：{value}',
+  DEVOPS_PROJECT_ROLES_VALUE: 'DevOps 项目角色：{value}',
 
   // Workspace Members > Details
   REMOVE_MEMBER_PL: '移除成员',

@@ -18,6 +18,7 @@
 
 module.exports = {
   NOTIFICATION_MANAGEMENT: '通知管理',
+  NO_AUTH: '無須認證',
   'Notification Management': '通知管理',
   NOTIFICATION_CONFIGURATION: '通知配置',
   'Notification Configuration': '通知配置',
@@ -86,6 +87,7 @@ module.exports = {
   MAX_KEYWORD_COUNT: 'You can add a maximum of {count} keywords.',
   EMPTY_KEYWORDS_DESC: 'No keyword is added.',
   DINGTALK_SETTING_TIP: '請設置會話或者群機器人。',
+  DINGTALK_CHATBOT_SECURITY_TIP: 'Please enter a secret or keywords',
 
   DINGTALK_DESC:
     'Configure DingTalk notifications by setting a conversation or chatbot.',
@@ -189,6 +191,5 @@ module.exports = {
   SLACK_CHANNEL: 'Slack channel',
   TOKEN: 'Token',
   BASIC_AUTH: 'Basic authentication',
-  NO_AUTH: 'No authentication',
   BEARER_TOKEN: 'Bearer token',
 }

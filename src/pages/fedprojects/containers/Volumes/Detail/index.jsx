@@ -157,7 +157,7 @@ export default class VolumeDetail extends React.Component {
         value: accessMode,
       },
       {
-        name: t('Storage Class'),
+        name: t('STORAGE_CLASS'),
         value:
           storageClassName ||
           annotations['volume.beta.kubernetes.io/storage-class'],

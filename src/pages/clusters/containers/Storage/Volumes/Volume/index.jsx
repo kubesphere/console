@@ -22,14 +22,17 @@ import { isEmpty } from 'lodash'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
 import ResourceTable from 'clusters/components/ResourceTable'
 import VolumeStore from 'stores/volume'
-import { getLocalTime, getDisplayName } from 'utils'
+import { getLocalTime, getDisplayName, map_accessModes } from 'utils'
 import { getVolumeStatus } from 'utils/status'
 import { VOLUME_STATUS } from 'utils/constants'
 import StatusReason from 'projects/components/StatusReason'
+import { Icon, Tooltip } from '@kube-design/components'
 
 import { Avatar, Status } from 'components/Base'
 
 import { Link } from 'react-router-dom'
+import PvStore from 'stores/pv'
+import styles from './index.scss'
 
 @withClusterList({
   store: new VolumeStore(),
@@ -39,6 +42,8 @@ import { Link } from 'react-router-dom'
   rowKey: 'uid',
 })
 export default class Volumes extends React.Component {
+  pvStore = new PvStore()
+
   get tips() {
     return [
       {
@@ -87,7 +92,7 @@ export default class Volumes extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_INFORMATION'),
+        text: t('EDIT_TCAP'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -155,9 +160,21 @@ export default class Volumes extends React.Component {
       search: false,
       width: '28.5%',
       render: _ => (
-        <Link to={`/clusters/${cluster}/pv/${_.spec.volumeName}`}>
-          {_.spec.volumeName}
-        </Link>
+        <div id="pvColumn" className={styles.pv_content}>
+          <Link to={`/clusters/${cluster}/pv/${_.spec.volumeName}`}>
+            {_.spec.volumeName}
+          </Link>
+          {_.spec.volumeName && (
+            <Tooltip content={t('VIEW_YAML')}>
+              <Icon
+                className={styles.yaml}
+                name="log"
+                size={20}
+                onClick={() => this.pvYamlView(_)}
+              />
+            </Tooltip>
+          )}
+        </div>
       ),
     }
 
@@ -196,17 +213,11 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: t('ACCESS_MODE_TCAP'),
-        dataIndex: 'capacity',
+        title: this.renderAccessTitle(),
+        dataIndex: 'accessModes',
         isHideable: true,
         width: '12.32%',
-        render: (capacity, { accessModes }) => (
-          <div>
-            {accessModes.map(mode => (
-              <p> {mode} </p>
-            ))}
-          </div>
-        ),
+        render: accessModes => this.mapperAccessMode(accessModes),
       },
       {
         title: t('MOUNT_STATUS'),
@@ -231,6 +242,41 @@ export default class Volumes extends React.Component {
     }
 
     return allColumns
+  }
+
+  mapperAccessMode = accessModes => {
+    const modes = map_accessModes(accessModes)
+    return <span>{modes.join(',')}</span>
+  }
+
+  renderAccessTitle = () => {
+    const renderModeTip = (
+      <div>
+        <div>{t('ACCESS_MODE_TCAP')}:</div>
+        <div>RWO (ReadWriteOnce)：{t('ACCESS_MODE_RWO')}</div>
+        <div>ROX (ReadOnlyMany)：{t('ACCESS_MODE_ROX')}</div>
+        <div>RWX (ReadWriteMany)：{t('ACCESS_MODE_RWX')}</div>
+      </div>
+    )
+    return (
+      <div className={styles.mode_title}>
+        {t('ACCESS_MODE_TCAP')}
+        <Tooltip content={renderModeTip}>
+          <Icon name="question" size={16} className={styles.question}></Icon>
+        </Tooltip>
+      </div>
+    )
+  }
+
+  pvYamlView = async item => {
+    const pvName = item.spec.volumeName
+    const { cluster } = this.props.match.params
+    await this.pvStore.fetchDetail({ cluster, name: pvName })
+    return this.props.trigger('resource.yaml.edit', {
+      detail: this.pvStore.detail,
+      yaml: this.pvStore.detail._originData,
+      readOnly: true,
+    })
   }
 
   showCreate = () => {

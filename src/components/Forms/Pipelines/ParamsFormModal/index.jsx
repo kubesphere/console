@@ -274,7 +274,7 @@ export default class ParamsFormModal extends React.Component {
         onOk={this.handleOk}
         visible={visible}
         closable={false}
-        title={t('ENTER_PARAMETERS')}
+        title={t('SET_PARAMETERS')}
       >
         <Form ref={this.formRef}>
           {!isEmpty(branches) ? (

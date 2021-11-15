@@ -20,7 +20,6 @@ module.exports = {
   configmaps: '配置字典',
   ConfigMaps: '配置字典',
   ConfigMap: '配置字典',
-  'ConfigMap Settings': '配置设置',
   FIELDS: '字段',
   CONFIGMAP_DESC:
     '配置字典（ConfigMap）常用于存储工作负载所需的配置信息，许多应用程序会从配置文件、命令行参数或环境变量中读取配置信息。',
@@ -36,5 +35,5 @@ module.exports = {
   'Enter the value of the configuration map entry or use the contents of the file':
     '输入配置项映射条目的值或使用文件的内容',
 
-  CREATE_CONFIG: '新建配置项',
+  CREATE_CONFIG: '创建配置字典',
 }

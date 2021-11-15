@@ -48,7 +48,14 @@ export default class Environments extends React.Component {
   }
 
   render() {
-    const { checkable, namespace, isFederated, cluster } = this.props
+    const {
+      checkable,
+      namespace,
+      isFederated,
+      cluster,
+      projectDetail,
+    } = this.props
+
     return (
       <Form.Group
         label={t('ENVIRONMENT_VARIABLE_PL')}
@@ -62,6 +69,7 @@ export default class Environments extends React.Component {
             namespace={namespace}
             isFederated={isFederated}
             cluster={cluster}
+            projectDetail={projectDetail}
           />
         </Form.Item>
       </Form.Group>

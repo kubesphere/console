@@ -57,7 +57,7 @@ module.exports = {
   FED_HOST_NAMESPACE_TIP:
     'Por favor, no manipules los recursos de este proyecto puesto que pertence a un proyecto multicluster',
   GATEWAY: 'Información de puerta de enlace',
-  GATEWAY_NOT_SET: 'Puerta de enlace no establecida',
+  GATEWAY_NOT_ENABLED: 'Puerta de enlace no establecida',
   'Help Information': 'Información de ayuda',
   HOW_TO_INVITE_USERS: '¿Cómo invitar a otros miembros al proyecto actual?',
   HOW_TO_SET_PROJECT_GATEWAY:
@@ -115,6 +115,9 @@ module.exports = {
   projects: 'proyectos',
   'Quota Management': 'Gestión de cuotas',
   REMOVE_MEMBER: 'Eliminar miembro',
+  REMOVE_MULTIPLE_MEMBERS: 'Remove Multiple Members',
+  REMOVE_MULTIPLE_MEMBERS_TIP:
+    'Enter the usernames <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   WORKSPACE_QUOTA_PL: 'Workspace Quotas',
   PROJECT_QUOTA_PL: 'Project Quotas',
   'Remove Member': 'Eliminar miembro',
@@ -130,7 +133,7 @@ module.exports = {
   'Select Project Type': 'Seleccionar tipo de proyecto',
   SELECT_CLUSTER_DESC: 'Selecciona el clúster para crear el proyecto.',
   CLUSTER_EMPTY_DESC: 'Selecciona un cluster, por favor.',
-  SET_GATEWAY: 'Establecer puerta de enlace',
+  ENABLE_GATEWAY: 'Establecer puerta de enlace',
   StatefulSet: 'StatefulSet',
   statefulsets: 'statefulsets',
   'Target Workspace': 'Espacio de trabajo de destino',
@@ -171,7 +174,7 @@ module.exports = {
     '¿Estás seguro de eliminar el miembro <strong>{name}</strong> ? El miembro no podrá acceder a este proyecto una vez eliminado.',
   PROJECT_ADMIN_DESC:
     'Puedes especificar un miembro del proyecto como administrador.',
-  SET_GATEWAY_DESC:
+  ENABLE_GATEWAY_DESC:
     'Antes de crear una ruta, debe habilitar el portal de acceso a Internet (es decir, la puerta de enlace). Este paso crea un controlador de enrutamiento correspondiente para reenviar la solicitud al servicio de back-end correspondiente.',
   DELETE_INTERNET_ACCESS_TITLE: 'Remove Network Access Settings',
   DELETE_INTERNET_ACCESS_DESC:
@@ -237,9 +240,6 @@ module.exports = {
   MULTI_CLUSTER_RESOURCE_TIP:
     'El recurso multi-clúster actual se ejecuta en distintos clústers. Puedes saltar entre clústers para comprobar los parámetros de este recurso en cada uno de ellos.',
 
-  PROJECT_GATEWAY_IP_TIP:
-    'Currently, the resources are multi-cluster resources. The resources will be distributed in different clusters to form multi-cluster resources. You can switch to a different cluster to view the resource settings in that cluster.',
-
   CREATE_MULTI_CLUSTER_PROJECT_DESC:
     'Un proyecto multi-clúster se ejecuta sobre distintos clústers a la vez, lo que ayuda a que puedas construir un entorno de contenedores para una rápida iteración de aplicaciones y conseguir alta disponibilidad.',
 
@@ -281,7 +281,8 @@ module.exports = {
   DISABLED: 'Disabled',
   ENABLE: 'Enable',
   DISABLE: 'Disable',
-  SET_GATEWAY_TIP: 'Please set a gateway.',
+  ENABLE_GATEWAY_TIP:
+    'To use the gateway, please configure the gateway in the cluster or the project.',
 
   // Network Isolation
   INGRESS: 'Ingress',

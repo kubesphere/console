@@ -116,7 +116,7 @@ module.exports = {
 
   'Add node to the cluster': '添加節點到集群中',
 
-  INTERNAL_IP: '節點內網 IP 地址',
+  INTERNAL_IP_ADDRESS: '節點內網 IP 地址',
   PORT: '端口',
   PORT_VALUE: '端口：{value}',
   EXTERNAL_IP: '外網 IP 地址',
@@ -186,7 +186,7 @@ module.exports = {
 
   UNBIND_CLUSTER_DESC:
     '解綁集群後，KubeSphere 將無法再對該集群進行管理。 解綁後，該集群内的 Kubernetes 資源不會被刪除。',
-  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation.',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation',
 
   'Invite members to the cluster': '邀請成員到該集群',
   INVITE_CLUSTER_MEMBER_DESC: '您可以邀請新的成員來此集群',
@@ -236,6 +236,8 @@ module.exports = {
 
   'Host Cluster': '主集群',
   HOST_CLUSTER: '主集群',
+  HOST_CLUSTER_TCAP: 'Host Cluster',
+  HOST_CLUSTER_PL_TCAP: 'Host Clusters',
   'Host Clusters': '主集群',
   'Member Cluster': '成員集群',
   'Member Clusters': '成員集群',

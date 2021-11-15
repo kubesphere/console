@@ -167,17 +167,24 @@ export default class BaseStore {
 
     const result = await request.get(
       this.getListUrl({ cluster, namespace, module }),
-      params
+      params,
+      {},
+      () => {
+        return { items: [] }
+      }
     )
-    const data = result.items.map(item => ({
-      cluster,
-      module: module || this.module,
-      ...this.mapper(item),
-    }))
+
+    const data = Array.isArray(result.items)
+      ? result.items.map(item => ({
+          cluster,
+          module: module || this.module,
+          ...this.mapper(item),
+        }))
+      : []
 
     this.list.update({
       data,
-      total: result.items.length,
+      total: result.items.length || 0,
       isLoading: false,
     })
 

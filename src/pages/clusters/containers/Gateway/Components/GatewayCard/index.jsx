@@ -85,7 +85,7 @@ class GatewayCard extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('DELETE'),
+        text: t('DISABLE'),
         disabled: this.canEdit,
       },
     ]
@@ -194,8 +194,8 @@ class GatewayCard extends React.Component {
             <Icon
               name="update"
               color={{
-                primary: '#ffc781',
-                secondary: '#f5a623',
+                primary: '#f5a623 ',
+                secondary: '#ffe1be',
               }}
             />
           </Tooltip>
@@ -265,7 +265,7 @@ class GatewayCard extends React.Component {
               trigger="click"
               placement="bottomRight"
             >
-              <Button>{t('ACTIONS')}</Button>
+              <Button>{t('MANAGE')}</Button>
             </Dropdown>
           ),
         },
@@ -306,7 +306,7 @@ class GatewayCard extends React.Component {
           key: 'appGover',
           icon: <AppGoverIcon />,
           title: serviceMeshEnable ? t('ON') : t('OFF'),
-          desc: t('APPLICATION_GOVERNANCE_SCAP'),
+          desc: t('TRACING'),
         },
       ],
     ]
@@ -370,26 +370,29 @@ class GatewayCard extends React.Component {
             )
           })}
 
-          <div
-            className={classNames(styles.annotations, {
-              [styles.bgWhite]: isFederated,
-            })}
-          >
-            <p>{t('ANNOTATION_PL')}</p>
-
-            <ul>
-              {isEmpty(this.gateway.annotations) ? (
-                <li>{t('NO_DATA')}</li>
-              ) : (
-                Object.entries(this.gateway.annotations).map(([key, value]) => (
-                  <li key={key}>
-                    <span className={styles.key}>{key}</span>
-                    <span>{value}</span>
-                  </li>
-                ))
-              )}
-            </ul>
-          </div>
+          {this.gateway.type !== 'NodePort' && (
+            <div
+              className={classNames(styles.annotations, {
+                [styles.bgWhite]: isFederated,
+              })}
+            >
+              <p>{t('ANNOTATION_PL')}</p>
+              <ul>
+                {isEmpty(this.gateway.annotations) ? (
+                  <li>{t('NO_DATA')}</li>
+                ) : (
+                  Object.entries(this.gateway.annotations).map(
+                    ([key, value]) => (
+                      <li key={key}>
+                        <span className={styles.key}>{key}</span>
+                        <span>{value}</span>
+                      </li>
+                    )
+                  )
+                )}
+              </ul>
+            </div>
+          )}
         </Panel>
       </>
     )

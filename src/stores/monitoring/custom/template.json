@@ -1949,6 +1949,231 @@
     "name": "Jenkins",
     "logo": "/assets/jenkins.svg"
   },
+  "GPU Overview": {
+    "settings": {
+      "datasource": "prometheus",
+      "panels": [
+        {
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "id": 12,
+          "legend": ["as_table", "to_the_right", "max", "avg", "current"],
+          "lines": true,
+          "targets": [
+            {
+              "expr": "DCGM_FI_DEV_GPU_TEMP",
+              "legendFormat": "Host {{node}} / Device {{device}} / GPU {{gpu}}",
+              "refId": 1,
+              "step": "1m"
+            }
+          ],
+          "title": "GPU Temperature",
+          "type": "graph",
+          "xaxis": {},
+          "yaxes": [
+            {
+              "format": "none"
+            }
+          ]
+        },
+        {
+          "datasource": "${DS_PROMETHEUS}",
+          "id": 14,
+          "format": "none",
+          "targets": [
+            {
+              "expr": "avg(DCGM_FI_DEV_GPU_TEMP)",
+              "refId": 1,
+              "step": "1m"
+            }
+          ],
+
+          "title": "GPU Avg. Temp",
+          "type": "singlestat"
+        },
+        {
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "id": 10,
+          "legend": ["as_table", "to_the_right", "max", "avg", "current"],
+          "lines": true,
+          "targets": [
+            {
+              "expr": "sum without(Hostname, UUID, service, endpoint, container, job, pod, instance, namespace) (DCGM_FI_DEV_POWER_USAGE * on(pod,namespace) group_left(node) kube_pod_info)",
+              "legendFormat": "Host {{node}} / Device {{device}} / GPU {{gpu}}",
+              "refId": 1,
+              "step": "1m"
+            }
+          ],
+          "title": "GPU Power Usage",
+          "type": "graph",
+          "xaxis": {},
+          "yaxes": [
+            {
+              "format": "none"
+            }
+          ]
+        },
+        {
+          "datasource": "${DS_PROMETHEUS}",
+          "id": 16,
+          "format": "none",
+          "targets": [
+            {
+              "expr": "sum(DCGM_FI_DEV_POWER_USAGE)",
+              "step": "1m"
+            }
+          ],
+          "title": "GPU Power Total",
+          "type": "singlestat"
+        },
+        {
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "id": 2,
+          "legend": ["as_table", "to_the_right", "max", "avg", "current"],
+          "lines": true,
+          "targets": [
+            {
+              "expr": "sum without(Hostname, UUID, service, endpoint, container, job, pod, instance, namespace) (DCGM_FI_DEV_SM_CLOCK * on(pod,namespace) group_left(node) kube_pod_info) * 1000000",
+              "legendFormat": "Host {{node}} / Device {{device}} / GPU {{gpu}}",
+              "refId": 1,
+              "step": "1m"
+            }
+          ],
+          "title": "GPU SM Clocks",
+          "type": "graph",
+          "xaxis": {},
+          "yaxes": [
+            {
+              "format": "none"
+            }
+          ]
+        },
+        {
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "id": 6,
+          "legend": ["as_table", "to_the_right", "max", "avg", "current"],
+          "lines": true,
+          "targets": [
+            {
+              "expr": "sum without(Hostname, UUID, service, endpoint, container, job, pod, instance, namespace) (DCGM_FI_DEV_GPU_UTIL * on(pod,namespace) group_left(node) kube_pod_info)",
+              "legendFormat": "Host {{node}} / Device {{device}} / GPU {{gpu}}",
+              "refId": 1,
+              "step": "1m"
+            }
+          ],
+          "title": "GPU Utilization",
+          "type": "graph",
+          "xaxis": {},
+          "yaxes": [
+            {
+              "format": "percent (0.0-1.0)"
+            }
+          ]
+        },
+        {
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "id": 18,
+          "legend": ["to_the_right", "max", "avg"],
+          "lines": true,
+          "targets": [
+            {
+              "expr": "sum without(Hostname, UUID, service, endpoint, container, job, pod, instance, namespace) (DCGM_FI_DEV_FB_USED * on(pod,namespace) group_left(node) kube_pod_info)",
+              "legendFormat": "Host {{node}} / Device {{device}} / GPU {{gpu}}",
+              "refId": 1,
+              "step": "1m"
+            }
+          ],
+          "title": "GPU Framebuffer Mem Used",
+          "type": "graph",
+          "xaxis": {},
+          "yaxes": [
+            {
+              "format": "none"
+            }
+          ]
+        },
+        {
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "id": 4,
+          "legend": ["as_table", "to_the_right", "max", "avg", "current"],
+          "lines": true,
+          "targets": [
+            {
+              "expr": "sum without(Hostname, UUID, service, endpoint, container, job, pod, instance, namespace) (DCGM_FI_PROF_PIPE_TENSOR_ACTIVE * on(pod,namespace) group_left(node) kube_pod_info)",
+              "legendFormat": "Host {{node}} / Device {{device}} / GPU {{gpu}}",
+              "refId": 1,
+              "step": "1m"
+            }
+          ],
+          "title": "Tensor Core Utilization",
+          "type": "graph",
+          "xaxis": {},
+          "yaxes": [
+            {
+              "format": "percent (0.0-1.0)"
+            }
+          ]
+        }
+      ],
+      "title": "GPU Overview"
+    },
+    "description": " ",
+    "name": "GPU",
+    "logo": "/assets/GPU.svg"
+  },
   "Grafana": {
     "settings": {
       "datasource": "prometheus",

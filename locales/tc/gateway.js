@@ -18,6 +18,9 @@
 
 module.exports = {
   GATEWAY_SETTINGS: '網關設置',
+  DISABLE_GATEWAY: 'Disable Gateway',
+  DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
+  DISABLE_SUCCESS: 'Disabled successfully.',
   CLUSTER_GATEWAY_DESC:
     '對集群和項目中的外網訪問網關以及服務治理等配置進行設置和管理',
   PROJECT_GATEWAY_DESC:
@@ -27,23 +30,25 @@ module.exports = {
   CLUSTER_GATEWAY_LOW: 'cluster gateway',
   PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_LOW: 'project gateway',
-  CLUSTER_SET_GATEWAY_DESC:
+  CLUSTER_ENABLE_GATEWAY_DESC:
     '創建應用路由之前，需要先啟用外網訪問入口，即網關。這一步是創建對應的應用路由控制器，負責將請求轉發到對應的後端服務。 ',
-  PROJECT_SET_GATEWAY_DESC:
+  PROJECT_ENABLE_GATEWAY_DESC:
     '集群管理頁面不支持項目網關的設置，如需設置需要轉到對應項目下進行設置。 ',
-  CLUSTER_GATEWAY_NOT_SET: '集群網關未設置',
-  PROJECT_GATEWAY_NOT_SET: '沒有找到 項目網關',
+  CLUSTER_GATEWAY_NOT_ENABLED: '集群網關未設置',
+  PROJECT_GATEWAY_NOT_ENABLED: '沒有找到 項目網關',
   'Gateway Not Set': '網關未設置',
   'Set Gateway': '設置網關',
   EDIT_GATEWAY: '編輯網關',
   'Update Gateway': '更新網關',
   CONFIGURATION_OPTIONS: '網關配置',
   'Gateway Config': '網關配置',
-  'Gateway Log': '網關日志',
+  GATEWAY_LOGS: '網關日志',
   GATEWAY_LOW: '網關',
   'Add Gateway Config': '添加網關配置',
   LOAD_BALANCER_PROVIDER: 'LoadBalancer提供商',
   LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
+  LOAD_BALANCER_SCAP: 'Load balancer',
+  LOAD_BALANCERS_SCAP: 'Load balancers',
   USE_DEFAULT_ANNOTATIONS: '使用默認註解',
   GATEWAY_IP: '訪問地址',
   UPDATE_GATEWAY_DESC: '當前網關可升級',
@@ -54,17 +59,16 @@ module.exports = {
   CLUSTER_GATEWAY_GUIDE_DESC:
     '開啟集群網關後，無法再設置項目網關。若已存在項目網關，刪除後無法重新設置。 ',
   'Request Count': '請求量',
-  'Active Connections': '連接數',
-  'Request Duration': '請求延遲',
-  'Request Error': '請求錯誤',
-  'Duration Average': '平均延遲',
-  'Duration 50percentage': 'P50 延遲',
-  'Duration 95percentage': 'P95 延遲',
-  'Duration 99percentage': 'P99 延遲',
-  'Request 4xx': '4xx 錯誤',
-  'Request 5xx': '5xx 錯誤',
-  'Total Requests': '總請求數',
-  'Request Success': '請求成功',
+  CONNECTION_COUNT: '連接數',
+  FAILED_REQUEST_COUNT: '請求錯誤',
+  AVERAGE_LATENCY: '平均延遲',
+  P_FIFTY_LATENCY: 'P50 延遲',
+  P_NINETY_FIVE_LATENCY: 'P95 延遲',
+  P_NINETY_NINE_LATENCY: 'P99 延遲',
+  FOUR_XX_REQUEST_COUNT: '4xx 錯誤',
+  FIVE_XX_REQUEST_COUNT: '5xx 錯誤',
+  TOTAL_REQUESTS: '總請求數',
+  SUCCESSFUL_REQUESTS: '請求成功',
   GATEWAYS_REPLICA_DESC:
     '部署 (Deployment) 用來描述期望應用達到的目標狀態，主要用來描述無狀態應用，副本的數量和狀態由其背後的控制器來維護，確保狀態與定義的期望狀態一致。您可以增加副本數量來滿足更高負載；回滾部署的版本來消除程序的錯誤修改；創建自動伸縮器來彈性應對不同場景下的負載。 ',
   PROJECT_GATEWAY_EMPTY_DESC:

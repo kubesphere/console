@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get, capitalize } from 'lodash'
+import { get } from 'lodash'
 import { Loading } from '@kube-design/components'
 
 import { trigger } from 'utils/action'
@@ -91,7 +91,7 @@ export default class RoleDetail extends React.Component {
         onClick: () =>
           this.trigger('openpitrix.template.edit', {
             detail,
-            title: t('EDIT_INFO'),
+            title: t('EDIT_INFORMATION'),
             description: t('EDIT_APP_DESC'),
             icon: 'pen',
             success: () => this.fetchData(),
@@ -100,7 +100,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'appDeploy',
         icon: 'snapshot',
-        text: t('DEPLOY'),
+        text: t('INSTALL'),
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.deploy', {
@@ -151,7 +151,7 @@ export default class RoleDetail extends React.Component {
       },
       {
         name: t('STATUS'),
-        value: t(capitalize(transferAppStatus(detail.status))),
+        value: transferAppStatus(detail.status),
       },
       {
         name: t('CATEGORY'),

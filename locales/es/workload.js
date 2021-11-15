@@ -193,6 +193,7 @@ module.exports = {
   HPA_SET_TIP: 'El Autoscaling Horizontal de Pods ha sido configurado',
   'Host Path': 'Ruta de host',
   NODE_PORTS: 'Puerto host',
+  NODE_PORT_SCAP: 'Node port',
   NODE_PORTS_SCAP: 'Node ports',
   POD_SCHEDULING_METHOD: '¿Cómo se asignan los pods a los nodos?',
   HTTP_REQUEST: 'Comprobación de solicitudes HTTP',
@@ -215,7 +216,8 @@ module.exports = {
   'Invalid name': 'Nombre inválido. {message}',
   'Invalid pod': 'Pod inválido',
   INVALID_IMAGE: 'Imagen inválida.',
-  INVALID_NAME_DESC: 'Nombre inválido. {message}',
+  INVALID_NAME_DESC:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
   InvalidImageName: 'InvalidImageName',
   'is running': 'En ejecución',
   Job: 'Trabajo',
@@ -255,6 +257,7 @@ module.exports = {
     'Monte el configmap o secret en el directorio especificado.',
   'Mount Volume': 'Montar Volúmen',
   VOLUME_SETTINGS: 'Montar Volúmenes',
+  STORAGE_SETTINGS: 'Storage Settings',
   mounted: 'montado',
   NetworkPluginNotReady: 'NetworkPluginNotReady',
   'New Volume': 'Nuevo volumen',
@@ -447,6 +450,7 @@ module.exports = {
   COLLECT_LOGS_ON_VOLUMES_Q: 'How do I collect logs on volumes?',
   'Worker Container': 'Contenedor de trabajo',
   VOLUME_CAPACITY: 'Capacidad de volumen',
+  TOTAL_CAPACITY: 'Total capacity',
   VOLUME_NAME: 'Nombre del volumen',
   'What is Disk Log Collection?':
     '¿Qué es la recopilación de registro de disco?',
@@ -640,7 +644,7 @@ module.exports = {
   ADD_VOLUME_TEMPLATE_DESC:
     'El ciclo de vida del volumen será el mismo que el del pod.',
   MORE: 'Más',
-  ACTIONS: 'Actions',
+  MANAGE: 'Manage',
   REVISION_ROLLBACK_SELECT: 'Por favor selecciona la versión a revertir',
   REVISION_TITLE: '{nombre} revisión',
   PROBE_TIME: '{delay} s delay, {timeout} s timeout',
@@ -809,4 +813,14 @@ module.exports = {
   ADD_VOLUME: 'Add Volume',
   RESTART_POLICY_DESC: 'Set the Pod restart policy.',
   MOUNT_VOLUMES: 'Mount Volumes',
+
+  // Workload
+  GPU_SETTING_TIP: 'Set the GPU Limit to null means no limit.',
+  NETWORK_SEGMENT_SCAP: 'Network segment',
+  JOB_COMPLETED: 'Completed',
+  JOB_FAILED: 'Failed',
+  JOB_RUNNING: 'Running',
+  CRONJOB_PAUSED: 'Paused',
+  CRONJOB_RUNNING: 'Running',
+  CRONJOB_FAILED: 'Failed',
 }

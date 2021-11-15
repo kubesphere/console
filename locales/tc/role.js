@@ -64,14 +64,17 @@ module.exports = {
   ROLE_PROJECTS_JOIN_TIP: '輸入用戶名或者郵箱邀請用戶加入到項目中',
   ROLE_TYPE_DESC:
     '角色類型根據權限範圍分為集群、項目兩類，目前角色的授權為該項目範圍。',
-
-  DELETE_ROLE_TIP: '確定刪除角色 <strong>{resource}</strong>?',
-  ROLE_USERS_TIP:
-    '目前角色有 <strong>{count}</strong> 名授權用戶，請先移除授權用戶或更改角色後再刪除。',
-  ROLE_USER_TIP:
-    '目前角色有 <strong>{count}</strong> 名授權用戶，請先移除授權用戶或更改角色後再刪除。',
-  ROLE_USER_GROUPS_TIP:
-    '當前角色已被分配給 <strong>{count}</strong> 个部門，請先移除授權部門或更改角色後再刪除。',
+  DELETE_ROLE: 'Delete Role',
+  DELETE_ROLE_TIP:
+    'Are you sure you want to delete the role <strong>{resource}</strong>?',
+  DELETE_ROLE_USER_TIP_PL:
+    'The role is authorized to <strong>{count}</strong> users. Please delete the users or change the roles of the user first.',
+  DELETE_ROLE_USER_TIP:
+    'The role is authorized to <strong>{count}</strong> user. Please delete the user or change the role of the user first.',
+  DELETE_ROLE_DEPARTMENT_TIP_PL:
+    'The role is authorized to <strong>{count}</strong> departments. Please delete the departments or change the roles of the departments first.',
+  DELETE_ROLE_DEPARTMENT_TIP:
+    'The role is authorized to <strong>{count}</strong> department. Please delete the department or change the role of the department first.',
 
   DEPENDS_ON: '依賴於',
   'Clusters Management': '集群管理',
@@ -128,9 +131,9 @@ module.exports = {
   PROJECTS_MANAGEMENT: '項目管理',
   PROJECTS_VIEW: '項目查看',
   PROJECTS_CREATE: '項目創建',
-  DEVOPS_MANAGEMENT: 'DevOps 工程管理',
-  DEVOPS_VIEW: 'DevOps 工程查看',
-  DEVOPS_CREATE: 'DevOps 工程創建',
+  DEVOPS_MANAGEMENT: 'DevOps 项目管理',
+  DEVOPS_VIEW: 'DevOps 项目查看',
+  DEVOPS_CREATE: 'DevOps 项目創建',
 
   PROJECTS_MANAGEMENT_DESC:
     '管理企業空間裡的所有項目，可以 創建/編輯/刪除 項目',
@@ -139,10 +142,10 @@ module.exports = {
   FEDERATED_PROJECTS_MANAGEMENT_DESC:
     '管理企業空間裡的所有多集群項目，可以 創建/編輯/刪除 多集群項目',
   DEVOPS_MANAGEMENT_DESC:
-    '管理企業空間裡的所有 DevOps 工程，可以 創建/編輯/刪除 DevOps 工程',
+    '管理企業空間裡的所有 DevOps 项目，可以 創建/編輯/刪除 DevOps 项目',
   DEVOPS_CREATE_DESC:
-    '擁有創建DevOps 工程的權限，DevOps 工程管理員只能為創建者自己',
-  DEVOPS_VIEW_DESC: '可以查看企業空間裡的所有DevOps 工程',
+    '擁有創建DevOps 项目的權限，DevOps 项目管理員只能為創建者自己',
+  DEVOPS_VIEW_DESC: '可以查看企業空間裡的所有DevOps 项目',
 
   APPLICATION_WORKLOADS_VIEW: '應用負載查看',
   APPLICATION_WORKLOADS_MANAGEMENT: '應用負載管理',
@@ -228,24 +231,24 @@ module.exports = {
   PIPELINES_MANAGEMENT: '流水線管理',
   PIPELINES_VIEW: '流水線查看',
   PIPELINES_MANAGEMENT_DESC:
-    '授予管理 DevOps 工程流水線的權限，包含 創建/編輯/刪除 等操作.',
-  PIPELINES_VIEW_DESC: '授予查看 DevOps 工程流水線的權限，下載成品等.',
+    '授予管理 DevOps 项目流水線的權限，包含 創建/編輯/刪除 等操作.',
+  PIPELINES_VIEW_DESC: '授予查看 DevOps 项目流水線的權限，下載成品等.',
   CREDENTIALS_VIEW: '憑證查看',
   CREDENTIALS_MANAGEMENT_DESC:
-    '管理 DevOps 工程憑證，包含 創建/編輯/刪除 等操作.',
+    '管理 DevOps 项目憑證，包含 創建/編輯/刪除 等操作.',
   CREDENTIALS_VIEW_DESC: '查看與使用憑證',
 
   'DevOps Roles View': '角色查看',
   'DevOps Roles Management': '角色管理',
-  DEVOPS_ROLES_VIEW_DESC: '查看 DevOps 工程角色',
+  DEVOPS_ROLES_VIEW_DESC: '查看 DevOps 项目角色',
   DEVOPS_ROLES_MANAGEMENT_DESC:
-    '可以 創建/編輯/刪除  DevOps 工程角色，系統預設角色無法刪除',
+    '可以 創建/編輯/刪除  DevOps 项目角色，系統預設角色無法刪除',
   'DevOps Members View': '成員查看',
   'DevOps Members Management': '成員管理',
-  DEVOPS_MEMBERS_VIEW_DESC: '查看 DevOps 工程成員',
-  DEVOPS_MEMBERS_MANAGEMENT_DESC: '邀請/編輯/移除 DevOps 工程成員',
-  DEVOPS_SETTINGS: 'DevOps 工程設置',
-  DEVOPS_SETTINGS_DESC: '管理 DevOps 工程設置，編輯 DevOps 工程資訊',
+  DEVOPS_MEMBERS_VIEW_DESC: '查看 DevOps 项目成員',
+  DEVOPS_MEMBERS_MANAGEMENT_DESC: '邀請/編輯/移除 DevOps 项目成員',
+  DEVOPS_SETTINGS: 'DevOps 项目設置',
+  DEVOPS_SETTINGS_DESC: '管理 DevOps 项目設置，編輯 DevOps 项目資訊',
 
   'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
     '預設用戶角色，僅允許對自己創建或受邀加入的項目中的資源進行管理，無權操作集群範圍内其他資源。',
@@ -264,19 +267,19 @@ module.exports = {
 
   ROLE_WORKSPACE_ADMIN: '企業空間管理員，可以管理企業空間下所有的資源。',
   ROLE_WORKSPACES_MANAGER: '平台企業空間管理員，管理平台所有企業空間。',
-  ROLE_WORKSPACE_REGULAR: '企業空間普通成員，無法創建 DevOps 工程和項目。',
+  ROLE_WORKSPACE_REGULAR: '企業空間普通成員，無法創建 DevOps 项目和項目。',
   ROLE_WORKSPACE_VIEWER: '企業空間的觀察者，可以查看企業空間下所有的資源資訊。',
   ROLE_WORKSPACE_SELF_PROVISIONER:
-    '企業空間普通成員，可以在企業空間下創建 DevOps 工程和項目。',
+    '企業空間普通成員，可以在企業空間下創建 DevOps 项目和項目。',
 
   ROLE_PROJECT_ADMIN: '項目管理員，可以管理項目下所有的資源。',
   ROLE_PROJECT_OPERATOR: '項目維護者，可以管理項目下除用戶和角色之外的資源。',
   ROLE_PROJECT_VIEWER: '項目觀察者，可以查看項目下所有的資源。',
 
-  ROLE_DEVOPS_ADMIN: 'DevOps 工程管理員，可以管理 DevOps 工程下所有的資源。',
+  ROLE_DEVOPS_ADMIN: 'DevOps 项目管理員，可以管理 DevOps 项目下所有的資源。',
   ROLE_DEVOPS_OPERATOR:
-    'DevOps 工程普通成員，可以在 DevOps 工程下創建流水線憑證等。',
-  ROLE_DEVOPS_VIEWER: 'DevOps 工程觀察者，可以查看 DevOps 工程下所有的資源。',
+    'DevOps 项目普通成員，可以在 DevOps 项目下創建流水線憑證等。',
+  ROLE_DEVOPS_VIEWER: 'DevOps 项目觀察者，可以查看 DevOps 项目下所有的資源。',
 
   ACCOUNT_ROLE_DESC: '帳號角色可以定義平台内的帳號擁有的權限',
   ACCOUNT_ROLE_CREATE_DESC: '帳號角色可以定義平台内的帳號擁有的權限',

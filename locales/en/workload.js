@@ -49,6 +49,7 @@ module.exports = {
   GPU_TYPE_LOW: 'GPU type',
   GPU_LIMIT: 'GPU Limit',
   GPU_LIMIT_LOW: 'GPU limit',
+  GPU_SETTING_TIP: 'Set the GPU Limit to null means no limit.',
   CONFIGMAP: 'ConfigMap',
   CONFIGMAP_PL: 'ConfigMaps',
   CONFIGMAPS: 'ConfigMaps',
@@ -194,6 +195,7 @@ module.exports = {
   HPA_SET_TIP: 'Horizontal Pod autoscaling has been set.',
   'Host Path': 'Host Path',
   NODE_PORTS: 'Node Ports',
+  NODE_PORT_SCAP: 'Node port',
   NODE_PORTS_SCAP: 'Node ports',
   POD_SCHEDULING_METHOD: 'Pod Scheduling Method',
   HTTP_REQUEST: 'HTTP Request',
@@ -215,7 +217,8 @@ module.exports = {
   'Invalid name': 'Invalid name. {message}',
   'Invalid pod': 'Invalid value',
   INVALID_IMAGE: 'Invalid image.',
-  INVALID_NAME_DESC: 'Invalid name. {message}',
+  INVALID_NAME_DESC:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
   InvalidImageName: 'InvalidImageName',
   'is running': 'is running',
   Job: 'Job',
@@ -256,6 +259,7 @@ module.exports = {
     'Mount a ConfigMap or Secret to the containers.',
   'Mount Volume': 'Mount Volume',
   VOLUME_SETTINGS: 'Volume Settings',
+  STORAGE_SETTINGS: 'Storage Settings',
   mounted: 'mounted',
   NetworkPluginNotReady: 'NetworkPluginNotReady',
   'New Volume': 'New Volume',
@@ -452,6 +456,7 @@ module.exports = {
   COLLECT_LOGS_ON_VOLUMES_Q: 'How do I collect logs on volumes?',
   'Worker Container': 'Worker Container',
   VOLUME_CAPACITY: 'Volume Capacity',
+  TOTAL_CAPACITY: 'Total capacity',
   VOLUME_NAME: 'Volume Name',
   WORKER_CONTAINER: 'Worker container',
   Workload: 'Workload',
@@ -637,10 +642,10 @@ module.exports = {
   REPLICAS_PLACEHOLDER: 'Default: 1',
 
   ADD_VOLUME_TEMPLATE_DESC:
-    'Use a volume template to mount a volume with the same lifecycle as the Pod.',
+    'Add a volume template to mount a volume with the same lifecycle as the Pod.',
 
   MORE: 'More',
-  ACTIONS: 'Actions',
+  MANAGE: 'Manage',
 
   REVISION_ROLLBACK_SELECT: 'Please select the version to be rolled back',
   REVISION_TITLE: '{name} revision',
@@ -673,7 +678,7 @@ module.exports = {
   SELECT_SECRET_DESC: 'Mount a Secret to the containers.',
 
   MONITORING_ALERT_DESC:
-    'Information about a maximum of five Pod replicas are displayed by default. You can click View All Replicas to view information about all Pod replicas.',
+    'Information about a maximum of five Pod replicas are displayed by default. You can click <b>View All Replicas</b> to view information about all Pod replicas.',
 
   CONTAINER_CPU_DESC:
     "It's used as the judgment of resource allocation when scheduling containers. The container is allowed to be scheduled to the node only if the total amount of CPU that can be allocated on the node is equal or greater than the request value of the container CPU.",
@@ -700,7 +705,7 @@ module.exports = {
   POD_CONDITION_INITIALIZED_DESC: 'Starts all init containers in the Pod.',
   POD_CONDITION_READY: 'Pod Ready',
   POD_CONDITION_READY_DESC:
-    'Starts running the Pod and allow the Pod to be accessed.',
+    'Starts running the Pod and allows the Pod to be accessed.',
   POD_CONDITION_CONTAINERSREADY: 'Containers Ready',
   POD_CONDITION_CONTAINERSREADY_DESC: 'Starts all containers in the Pod.',
   POD_CONDITION_PODSCHEDULED: 'Pod Scheduled',
@@ -825,4 +830,13 @@ module.exports = {
   RESTART_POLICY_DESC:
     'Select the policy adopted by the system when a container in the Pod exits abnormally.',
   MOUNT_VOLUMES: 'Mount Volumes',
+
+  // Workload
+  NETWORK_SEGMENT_SCAP: 'Network segment',
+  JOB_COMPLETED: 'Completed',
+  JOB_FAILED: 'Failed',
+  JOB_RUNNING: 'Running',
+  CRONJOB_PAUSED: 'Paused',
+  CRONJOB_RUNNING: 'Running',
+  CRONJOB_FAILED: 'Failed',
 }

@@ -53,11 +53,14 @@ module.exports = {
   'Modify Members Role': '修改成员角色',
   'Remove Members': '移除成员',
   REMOVE_MEMBER: '移除成员',
+  REMOVE_MULTIPLE_MEMBERS: '指移除成员',
+  REMOVE_MULTIPLE_MEMBERS_TIP:
+    '请输入用户名 <strong>{resource}</strong> 以确认您了解此操作的风险。',
   'Invite Member': '邀请成员',
   GATEWAY: '网关',
-  SET_GATEWAY: '设置网关',
+  ENABLE_GATEWAY: '开启网关',
 
-  GATEWAY_NOT_SET: '网关未设置',
+  GATEWAY_NOT_ENABLED: '网关未开启',
 
   PROJECT_INFO: '项目信息',
   PROJECT_QUOTA: '项目配额',
@@ -66,7 +69,7 @@ module.exports = {
   WORKSPACE_QUOTA_PL: '企业空间配额',
   PROJECT_QUOTA_PL: '项目配额',
 
-  PROJECT_QUOTAS_NOT_SET: '未设置项目配额',
+  PROJECT_QUOTAS_NOT_SET: '项目配额未设置',
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: '默认容器配额未设置',
 
   'Project Placement': '项目位置',
@@ -93,7 +96,7 @@ module.exports = {
   DELETE_MEMBER_TIP:
     '确定移除成员 <strong>{name}</strong> ? 移除后该成员将无法访问本项目。',
 
-  'DevOps Projects': 'DevOps 工程',
+  'DevOps Projects': 'DevOps 项目',
   'Select Project Type': '选择项目类型',
 
   'Edit Project Quota': '编辑项目配额',
@@ -123,8 +126,8 @@ module.exports = {
   'Help Information': '帮助信息',
 
   'Enter Project': '进入项目',
-  'Enter DevOps Project': '进入工程',
-  Project_Admin: '工程管理员',
+  'Enter DevOps Project': '进入项目',
+  Project_Admin: '项目管理员',
   'No Platform Manage Authorization': '无平台管理权限',
 
   'Default limit resource': '默认最大使用资源',
@@ -139,7 +142,7 @@ module.exports = {
   DISK_LOG_COLLECTION: '落盘日志收集',
   COLLECT_LOGS_ON_VOLUMES: '收集存储卷上的日志',
   LOG_COLLECTION_ENABLED_DESC:
-    '启用或停用此功能后，您需要重启容器组副本才能使修改生效。',
+    '开启或停用此功能后，您需要重启容器组副本才能使修改生效。',
 
   DISABLE_LOG_COLLECTION: '停用日志收集',
 
@@ -165,28 +168,28 @@ module.exports = {
   PROJECT_TYPES_PROJECT_TITLE: '创建资源型项目',
   PROJECT_TYPES_PROJECT_DESC:
     'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，可以根据不同的业务部门或者产品项目进行资源分组。',
-  PROJECT_TYPES_DEVOPS_TITLE: '创建一个 DevOps 工程',
+  PROJECT_TYPES_DEVOPS_TITLE: '创建一个 DevOps 项目',
   PROJECT_TYPES_DEVOPS_DESC: '持续、自动地构建/测试软件项目。',
 
   PROJECT_ASSIGN_DESC: '项目被分配到企业空间后不允许变更项目所属的企业空间。',
 
   'Invite Members to the Project': '邀请成员到该项目',
-  INVITE_DEVOPS_MEMBER: '邀请成员到该 DevOps 工程',
+  INVITE_DEVOPS_MEMBER: '邀请成员到该 DevOps 项目',
   INVITE_MEMBER_DESC: '邀请当前企业空间的成员到当前项目。',
   PROJECT_MEMBER_EMPTY_DESC: '请邀请当前企业空间的成员到当前项目。',
-  INVITE_MEMBER_DESC_DEVOPS: '邀请当前企业空间的成员到当前 DevOps 工程。',
+  INVITE_MEMBER_DESC_DEVOPS: '邀请当前企业空间的成员到当前 DevOps 项目。',
   INVITE_MEMBER_SEARCH_PLACEHOLDER: '输入用户名邀请项目成员',
   ASSIGN_ROLE: '分配角色',
   PROJECT_ADMIN_DESC: '可以指定项目内一个成员为管理员',
 
-  SET_GATEWAY_DESC:
-    '设置网关控制器以根据应用路由中配置的域名和路径将流量转发给不同的服务。',
+  ENABLE_GATEWAY_DESC:
+    '在创建应用路由之前，需要先开启外网访问入口，即网关。这一步是创建对应的应用路由控制器，负责将请求转发到对应的后端服务。',
 
   DELETE_INTERNET_ACCESS_TITLE: '删除外网访问设置',
   DELETE_INTERNET_ACCESS_DESC:
     '您确定删除外网访问设置吗？删除设置后，您可以重新设置外网访问。',
 
-  NO_RELATE_PROJECTS_TITLE: '没有找到与您相关联的项目',
+  NO_RELATE_PROJECTS_TITLE: '未发现与您相关联的项目',
   NO_RELATE_PROJECTS_DESC:
     '您可以创建或者联系项目管理员将您邀请到项目中开始您的工作',
 
@@ -265,9 +268,6 @@ module.exports = {
   MULTI_CLUSTER_RESOURCE_TIP:
     '当前资源跨多个集群部署。您可以点击一个集群以查看资源在该集群中的设置。',
 
-  PROJECT_GATEWAY_IP_TIP:
-    '在集群网关和项目网关同时开启的条件下，Ingress status 的 IP 会在集群网关和项目网关反复切换。',
-
   FEDPROJECT_RESOURCE_TIP:
     '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作。',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目中部署应用。',
@@ -310,11 +310,11 @@ module.exports = {
     '项目成员可以查看或管理项目资源。项目管理员可以邀请企业空间成员至该项目并对项目成员进行管理。',
 
   // Advanced Settings
-  REMOVE: '删除',
-  DISABLED: '未启用',
-  ENABLE: '启用',
+  REMOVE: '移除',
+  DISABLED: '未开启',
+  ENABLE: '开启',
   DISABLE: '关闭',
-  SET_GATEWAY_TIP: '请设置网关。',
+  ENABLE_GATEWAY_TIP: '要使用网关，请在集群或项目中配置网关',
 
   // Network Isolation
   INGRESS: '入站',

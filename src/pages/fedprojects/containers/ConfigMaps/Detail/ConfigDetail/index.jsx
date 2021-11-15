@@ -52,7 +52,7 @@ class ConfigMapDetail extends React.Component {
     const { detail, isLoading } = this.store
 
     return (
-      <Card title={t('FIELDS')} loading={isLoading}>
+      <Card title={t('DATA')} loading={isLoading}>
         {this.renderContent(detail.data)}
       </Card>
     )

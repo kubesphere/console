@@ -115,14 +115,14 @@ export default class Detail extends React.PureComponent {
       className: styles.timecol,
     },
     {
-      thead: t('verb'),
+      thead: t('VERB'),
       key: 'verb',
       hidden: false,
       content: ({ Verb }) => Verb,
       className: styles.Verbcol,
     },
     {
-      thead: t('Status Code'),
+      thead: t('STATUS_CODE'),
       key: 'Status Code',
       hidden: false,
       content: ({ ResponseStatus }) => {
@@ -153,7 +153,7 @@ export default class Detail extends React.PureComponent {
       className: styles.reasoncol,
     },
     {
-      thead: t('Resource Name & Type'),
+      thead: t('RESOURCE_NAME_AND_TYPE'),
       key: 'resources',
       hidden: false,
       content: ({ ObjectRef = {} }) => (
@@ -165,21 +165,21 @@ export default class Detail extends React.PureComponent {
       className: styles.namecol,
     },
     {
-      thead: t('Subresource'),
+      thead: t('SUBRESOURCE'),
       key: 'Subresource',
       hidden: true,
       content: ({ ObjectRef }) => get(ObjectRef, 'Subresource'),
       className: styles.subresourcecol,
     },
     {
-      thead: t('Operation Account'),
+      thead: t('OPERATOR'),
       key: 'Operation Account',
       hidden: false,
       content: ({ User }) => get(User, 'Username'),
       className: styles.usernamecol,
     },
     {
-      thead: t('Source IP'),
+      thead: t('SOURCE_IP_ADDRESS'),
       key: 'sourceIP',
       hidden: true,
       content: ({ SourceIPs }) => SourceIPs,
@@ -365,7 +365,7 @@ export default class Detail extends React.PureComponent {
         )}
         <SearchInput
           className={styles.searchInput}
-          placeholder={t('search condition')}
+          placeholder={t('SEARCH')}
           onChange={this.onSearchParamsChange}
           params={searchInputState}
           dropDownItems={dropDownItems}
@@ -386,12 +386,12 @@ export default class Detail extends React.PureComponent {
     return (
       <div className={styles.toolbar}>
         <div>
-          {t('Time topology')}
+          {t('TIME_TOPOLOGY')}
           <span
             className={styles.showHistogramBtn}
             onClick={this.toggleHistogram}
           >
-            {showHistogram ? t('Display') : t('Hidden')}
+            {showHistogram ? t('DISPLAY') : t('HIDE')}
             <Icon name="caret-down" type="light" />
           </span>
         </div>
@@ -399,14 +399,16 @@ export default class Detail extends React.PureComponent {
           <span className={styles.pollingBtn} onClick={this.togglePolling}>
             <Tooltip
               content={
-                polling ? t('STOP_REAL_TIME_LOG') : t('START_REAL_TIME_LOG')
+                polling
+                  ? t('STOP_REAL_TIME_AUDIT_LOG')
+                  : t('START_REAL_TIME_AUDIT_LOG')
               }
             >
               <Icon name={polling ? 'stop' : 'start'} type="light" size={16} />
             </Tooltip>
           </span>
           <span className={styles.frequencyOpts}>
-            <span> {t('Refresh Rate')}:</span>
+            <span> {t('REFRESH_RATE_COLON')}</span>
             <Select
               value={pollingFrequency}
               onChange={this.changeFrequency}
@@ -426,13 +428,13 @@ export default class Detail extends React.PureComponent {
       <div className={styles.chartContainer}>
         <div className={styles.recentSummary}>
           <h2 className={styles.count}>{logsCount}</h2>
-          <p>{t('Search Result')}</p>
+          <p>{t('SEARCH_RESULTS')}</p>
         </div>
         <div className={styles.chart}>
           <TimeBar
             xKey={'time'}
             data={buckets}
-            legend={[['count', t('Auditing statistics')]]}
+            legend={[['count', t('AUDIT_LOG_COUNT')]]}
             interval={interval}
             onBarClick={this.selectedDurationParameter}
           />

@@ -28,11 +28,11 @@ module.exports = {
 
   'App README': '应用介绍',
 
-  NO_DOCUMENT_DESC: '没有找到说明文档。',
-  VERSION_INTRO_EMPTY_DESC: '没有找到该版本的介绍。',
-  NO_CHART_FILE_FOUND: '没有找到配置文件。',
-  NO_APP_DESC_FOUND: '没有找到应用描述信息。',
-  NO_APP_CHART_FILE_FOUND: '没有找到该应用的 Chart 文件。',
+  NO_DOCUMENT_DESC: '未发现说明文档。',
+  VERSION_INTRO_EMPTY_DESC: '未发现该版本的介绍。',
+  NO_CHART_FILE_FOUND: '未发现配置文件。',
+  NO_APP_DESC_FOUND: '未发现应用描述信息。',
+  NO_APP_CHART_FILE_FOUND: '未发现该应用的 chart 文件。',
 
   TOTAL_APP_REPOS: '共计 {num} 个应用仓库',
 

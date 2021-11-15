@@ -56,7 +56,7 @@ export default class ModifyPasswordModal extends Component {
 
     if (value !== this.state.password) {
       callback({
-        message: t('The password entered twice must be the same'),
+        message: t('PASSWORD_NOT_SAME_DESC'),
         field: rule.field,
       })
     }
@@ -69,7 +69,7 @@ export default class ModifyPasswordModal extends Component {
 
     return (
       <Modal.Form
-        title={t('Change Password')}
+        title={t('CHANGE_PASSWORD')}
         icon="pen"
         width={691}
         data={this.state.formData}
@@ -87,7 +87,7 @@ export default class ModifyPasswordModal extends Component {
         </Form.Item>
         <Form.Item
           className={styles.password}
-          label={t('New Password')}
+          label={t('NEW_PASSWORD')}
           rules={[
             { required: true, message: t('PASSWORD_EMPTY_DESC') },
             { pattern: PATTERN_PASSWORD, message: t('PASSWORD_DESC') },
@@ -102,15 +102,15 @@ export default class ModifyPasswordModal extends Component {
         </Form.Item>
         <Form.Item
           className={styles.password}
-          label={t('Repeat the New Password')}
+          label={t('CONFIRM_PASSWORD')}
           rules={[
-            { required: true, message: t('Please repeat the new password') },
+            { required: true, message: t('CONFIRM_PASSWORD_TIP') },
             { validator: this.passwordValidator },
           ]}
         >
           <InputPassword
             name="rePassword"
-            placeholder={t('Please repeat the new password')}
+            placeholder=" "
             autoComplete="new-password"
           />
         </Form.Item>

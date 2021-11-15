@@ -106,7 +106,7 @@ export default class ConfigMaps extends React.Component {
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('FIELDS'),
+        title: t('DATA'),
         dataIndex: 'data',
         isHideable: true,
         width: '33%',

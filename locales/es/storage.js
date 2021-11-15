@@ -33,9 +33,10 @@ module.exports = {
   'Enable Volume Snapshot': 'Habilitar snapshot de volumen',
   Expand: 'Expandir',
   EXPAND_VOLUME: 'Ampliar volumen',
+  EXPAND: 'Expand',
   AVAILABLE: 'En desuso',
   IN_USER: 'En uso',
-  'Mount Info': 'Información de montaje',
+  MOUNT_INFORMATION: 'Información de montaje',
   'Mount Options': 'Opciones de montaje',
   'Mount Status': 'Estado de montaje',
   // Volumes List Page
@@ -56,7 +57,7 @@ module.exports = {
   'Snapshots Message': 'Mensaje de snapshots',
   'Set as default storage class':
     'Establecer como clase de almacenamiento predeterminada',
-  SNAPSHOT_INFORMATION: 'Snapshot Information',
+  SNAPSHOT_PL: 'Snapshots',
   'Storage Class': 'Clase de almacenamiento',
   STORAGE_CLASS: 'Clase de almacenamiento',
   STORAGE_CLASS_PL: 'Storage Classes',
@@ -80,16 +81,16 @@ module.exports = {
   PV_STATUS_BOUND: 'Ligado',
   PV_STATUS_RELEASED: 'Liberado',
   PV_STATUS_FAILED: 'indisponible',
-  PV_STATUS_TERMINATING: 'Terminando',
   'Bound Volume': 'Límite de volumen de almacenamiento',
   RECYCLING_STRATEGY: 'Mecanismo de reciclaje',
   ACCESS_MODE: 'Modo de acceso admitido',
   ACCESS_MODE_SCAP: 'Modo de acceso admitido',
   'Used Capacity': 'Capacidad utilizada',
   CLONE_VOLUME: 'Clon del volumen',
+  CLONE: 'Clone',
   VOLUME: 'Volumen',
   BACKEND_IDENTIFIER: 'Backend Identifier',
-  VOLUMES: 'Volumes',
+  VOLUMES: 'Volume',
   VOLUME_PL: 'Recuento de volumen',
   NUMBER_OF_VOLUMES: 'Number of volumes',
   VOLUME_LOW: 'volume',
@@ -98,7 +99,7 @@ module.exports = {
   VOLUME_INSTANCE_LOW: 'volume instance',
   VOLUME_INSTANCE_EMPTY_DESC: 'Please bind a volume to a workload.',
   'The volume name exists': 'nombre de volumen existe',
-  VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
+  VOLUME_SIZE_TIP: 'The volume capacity must be greater than 0.',
   VOLUME_NAME_EXIST: 'nombre de volumen existe',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
@@ -136,7 +137,6 @@ module.exports = {
   VOLUME_STORAGE_CLASS_DESC:
     'Selecciona clase de almacenamiento para crear un tipo específico de volumen.',
   PROVISIONER_DESC: 'Proporciona el backend de almacenamiento',
-  INODE_USAGE_RATE: 'Inode Usage',
   ACCESS_MODES_DESC:
     'Selecciona el modo de acceso compatible con la clase de almacenamiento.',
   DELETE_STORAGE_TIP:
@@ -249,16 +249,18 @@ module.exports = {
   GID_MAX: 'Maximum GID',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
-  SNAPSHOT_TYPE: 'Tipo de instantánea',
+  VOLUME_SNAPSHOT_CLASS: 'Tipo de instantánea',
   SNAPSHOT_EMPTY_TIP: 'Seleccione un tipo de instantánea.',
   VOLUME_BINDING_MODE: 'Volume Binding Mode',
   IMMEDIATE_BINDING: 'Immediate binding',
   BINDING_WAIT: 'Delayed binding',
   DEFAULT_STORAGE_CLASS: 'Default Storage Class',
+  VOLUME_FUNCTION_MANAGEMENT_TIP:
+    'Volume Management only controls whether the following features are enabled in the KubeSphere web console. Before the features are enabled, contact your system administrator to confirm that they are supported by the storage system.',
 
   // Storage Class > Detail
   STORAGE_CLASS_SCAP: 'Storage class',
-  APPLY: 'Apply',
+  CREATE_VOLUME: 'Create Volume',
   VOLUME_MANAGEMENT: 'Volume Management',
   SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
   VOLUME_COUNT: 'Volumes',

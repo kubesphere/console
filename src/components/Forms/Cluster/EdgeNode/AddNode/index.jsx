@@ -179,7 +179,7 @@ export default class AddEdgeModal extends Component {
               },
               {
                 pattern: PATTERN_NAME,
-                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC'),
               },
               { validator: this.validator('name') },
             ]}
@@ -194,7 +194,7 @@ export default class AddEdgeModal extends Component {
 
           <div className={styles.column}>
             <Form.Item
-              label={t('INTERNAL_IP')}
+              label={t('INTERNAL_IP_ADDRESS')}
               desc={t('EDGENODE_INTERNAL_IP_DESC')}
               rules={[
                 {

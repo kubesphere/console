@@ -35,6 +35,10 @@ import styles from './index.scss'
 export default class ClusterService extends Component {
   gatewayStore = new GatewayStore()
 
+  state = {
+    gateway: {},
+  }
+
   get cluster() {
     return this.props.cluster.name
   }
@@ -49,8 +53,28 @@ export default class ClusterService extends Component {
   }
 
   componentDidMount() {
+    this.getInitGateway()
+  }
+
+  getHostGateway = () => {
+    return this.gatewayStore.getGateway({ cluster: this.cluster })
+  }
+
+  getProjectGateway = () => {
     const { namespace } = this.props.detail
-    this.gatewayStore.getGateway({ cluster: this.cluster, namespace })
+    return this.gatewayStore.getGateway({
+      namespace,
+      cluster: this.cluster,
+    })
+  }
+
+  getInitGateway = async detail => {
+    const dataList = await Promise.all([
+      this.getHostGateway(detail),
+      this.getProjectGateway(detail),
+    ])
+    const gateway = dataList[1] || dataList[0]
+    this.setState({ gateway })
   }
 
   getOperations = () => [
@@ -72,7 +96,7 @@ export default class ClusterService extends Component {
 
   renderPorts() {
     const { detail } = this.props
-    const gateway = this.gatewayStore.gateway.data
+    const gateway = this.state.gateway
     return <Ports gateway={gateway} detail={detail} />
   }
 
@@ -92,9 +116,12 @@ export default class ClusterService extends Component {
           <Text
             icon="eip-pool"
             title={`${detail.name}.${detail.namespace}.svc`}
-            description={t('EIP_POOL_DESC')}
+            description={t('INTERNAL_DOMAIN_NAME_SCAP')}
           />
-          <Text title={detail.clusterIP} description={t('VIRTUAL_IP')} />
+          <Text
+            title={detail.clusterIP}
+            description={t('VIRTUAL_IP_ADDRESS')}
+          />
           <MoreActions
             className={styles.more}
             options={this.getEnabledOperations()}

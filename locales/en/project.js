@@ -59,7 +59,7 @@ module.exports = {
   GATEWAY: 'Gateway',
   GATEWAY_PL: 'Gateways',
   GATEWAY_LOW: 'gateway',
-  GATEWAY_NOT_SET: 'Gateway Not Set',
+  GATEWAY_NOT_ENABLED: 'Gateway Not Enabled',
   'Help Information': 'Help Information',
   HOW_TO_INVITE_USERS: 'How do I invite users to the current project?',
   HOW_TO_SET_PROJECT_GATEWAY: 'How do I set the project gateway?',
@@ -114,6 +114,9 @@ module.exports = {
   projects: 'projects',
   'Quota Management': 'Quota Management',
   REMOVE_MEMBER: 'Remove Member',
+  REMOVE_MULTIPLE_MEMBERS: 'Remove Multiple Members',
+  REMOVE_MULTIPLE_MEMBERS_TIP:
+    'Enter the usernames <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   WORKSPACE_QUOTA_PL: 'Workspace Quotas',
   PROJECT_QUOTA_PL: 'Project Quotas',
   'Remove Member': 'Remove Member',
@@ -130,7 +133,7 @@ module.exports = {
   SELECT_CLUSTER_DESC:
     'Select the cluster in which the project is to be created.',
   CLUSTER_EMPTY_DESC: 'Please select a cluster.',
-  SET_GATEWAY: 'Set Gateway',
+  ENABLE_GATEWAY: 'Enable Gateway',
   StatefulSet: 'StatefulSet',
   statefulsets: 'statefulsets',
   'Target Workspace': 'Target Workspace',
@@ -176,8 +179,8 @@ module.exports = {
   PROJECT_ADMIN_DESC:
     'You can specify a member of the project as an administrator.',
 
-  SET_GATEWAY_DESC:
-    'Set a gateway controller to forward traffic to different Services based on domain names and paths configured in Routes.',
+  ENABLE_GATEWAY_DESC:
+    'Enable the gateway controller to forward traffic to different Services based on domain names and paths configured in Routes.',
   DELETE_INTERNET_ACCESS_TITLE: 'Remove Network Access Settings',
   DELETE_INTERNET_ACCESS_DESC:
     'Are you sure you want to remove network access settings? You can reset the network access after the settings are removed.',
@@ -253,9 +256,6 @@ module.exports = {
   MULTI_CLUSTER_RESOURCE_TIP:
     'The current resource is deployed across multiple clusters. You can click a cluster to view the resource settings in the cluster.',
 
-  PROJECT_GATEWAY_IP_TIP:
-    'Currently, the resources are multi-cluster resources. The resources will be distributed in different clusters to form multi-cluster resources. You can switch to a different cluster to view the resource settings in that cluster.',
-
   CREATE_MULTI_CLUSTER_PROJECT_DESC:
     'A multi-cluster project runs across different clusters, which helps you to build a container environment for rapid iteration of applications and achieve high availability.',
 
@@ -294,7 +294,8 @@ module.exports = {
   DISABLED: 'Disabled',
   ENABLE: 'Enable',
   DISABLE: 'Disable',
-  SET_GATEWAY_TIP: 'Please set a gateway.',
+  ENABLE_GATEWAY_TIP:
+    'To use the gateway, please configure the gateway in the cluster or the project.',
 
   // Network Isolation
   INGRESS: 'Ingress',

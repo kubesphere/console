@@ -94,7 +94,7 @@ export default class AppDetail extends React.Component {
                 protocol={protocol}
               />
             </CollapseItem>
-            <CollapseItem label={t('Traffic Management')} key="form">
+            <CollapseItem label={t('TRAFFIC_MANAGEMENT')} key="form">
               <PolicyForm
                 detail={data}
                 store={this.props.store}

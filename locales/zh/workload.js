@@ -28,8 +28,8 @@ module.exports = {
   IMAGE_TIME_SIZE_LAYER: '更新于 {time}',
   IMAGE_TIME_SIZE_LAYER_PL: '更新于 {time}，{size}，{layer} 层',
   IMAGE_TIME_SIZE_LAYER_SI: '更新于 {time}，{size}，{layer} 层',
-  CPU_REQUEST: 'CPU 预留',
-  CPU_LIMIT: 'CPU 限制',
+  CPU_REQUEST: '资源预留',
+  CPU_LIMIT: '资源限制',
   CPU_REQUEST_SCAP: 'CPU 预留',
   CPU_LIMIT_SCAP: 'CPU 限制',
   MEMORY_REQUEST: '内存预留',
@@ -55,10 +55,11 @@ module.exports = {
   DAEMONSET_EMPTY_DESC: '请创建一个守护进程集。',
   JOB_EMPTY_DESC: '请创建一个任务。',
   CRONJOB_EMPTY_DESC: '请创建一个定时任务。',
-  GPU_TYPE: 'GPU 类型',
+  GPU_TYPE: 'GPU类型',
   GPU_TYPE_LOW: 'GPU 类型',
-  GPU_LIMIT_LOW: 'GPU limit',
-  GPU_LIMIT: 'GPU 限制',
+  GPU_LIMIT_LOW: 'GPU 限制',
+  GPU_LIMIT: 'GPU限制',
+  GPU_SETTING_TIP: '设置 GPU 限制为空即为取消该限制。',
   'Service Configuration': '服务配置',
 
   'Available number of nodes scheduled': '可用节点数',
@@ -93,6 +94,7 @@ module.exports = {
   SERVICE_TOPOLOGY: '服务拓扑',
   EDIT_CONTAINER: '编辑容器',
   NODE_PORTS: '节点端口',
+  NODE_PORT_SCAP: '节点端口',
   NODE_PORTS_SCAP: '节点端口',
   ADD_PORT: '添加端口',
   'target port': '目标端口',
@@ -111,6 +113,7 @@ module.exports = {
   PROVISIONER: '供应者',
   'Volume Source': '存储卷来源',
   VOLUME_CAPACITY: '存储卷容量',
+  TOTAL_CAPACITY: '总容量',
   'Access Mode': '访问模式',
   Provisioner: '供应者',
   mounted: '已挂载',
@@ -154,10 +157,11 @@ module.exports = {
   'Job Template': '任务模板',
 
   VOLUME_SETTINGS: '存储卷设置',
+  STORAGE_SETTINGS: '存储设置',
 
   'Add Volume': '添加存储卷',
   MOUNT_CONFIGMAP_OR_SECRET: '挂载配置字典或保密字典',
-  USE_CONFIGMAP_OR_SECRET: '引用配置文件或密钥',
+  USE_CONFIGMAP_OR_SECRET: '引用配置字典或保密字典',
 
   'Collecting file log': '收集落盘日志',
 
@@ -184,7 +188,7 @@ module.exports = {
   SELECT_SECRET_DESC: '将保密字典挂载到容器。',
 
   SELECT_VOLUME: '选择存储卷',
-  SELECT_TYPE: '選擇{type}',
+  SELECT_TYPE: '选择{type}',
   SELECT_VOLUME_DESC: '选择现有的存储卷以将其挂载到容器。',
 
   REQUEST_EXCCED: '资源预留不能超过资源限制',
@@ -208,7 +212,7 @@ module.exports = {
   IMAGE_EMPTY: '请设置镜像。',
   IMAGE_REGISTRY_PLACEHOLDER: '请选择镜像仓库密钥',
   IMAGE_DESC:
-    '如需使用私有镜像仓库，您需要先创建镜像仓库密钥。<a href={link} target="_blank">了解更多</a>',
+    '如需使用私有镜像仓库，您需要先创建镜像仓库保密字典。<a href={link} target="_blank">了解更多</a>',
   'Replicas Number': '副本数量',
   GRAYSCALE_REPLICAS_DESC: '新版本容器组副本数量',
   REPLICA_STATUS: '副本运行状态',
@@ -304,7 +308,8 @@ module.exports = {
   'Invalid name': '名称格式不合法。{message}',
   'Invalid pod': '容器组数量格式不合法',
   SET_IMAGE_DESC: '为容器设置镜像。',
-  INVALID_NAME_DESC: '名称无效。{message}',
+  INVALID_NAME_DESC:
+    '名称无效。名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   'Service Labels': '服务标签',
 
   'Add Existing Volume': '添加已有存储卷',
@@ -315,7 +320,7 @@ module.exports = {
   WORKLOAD_MOUNT_VOLUME_DESC:
     '为容器挂载现有存储卷、临时存储卷或 HostPath 存储卷。',
 
-  MOUNT_CONFIGMAP_OR_SECRET_DESC: '将配置文件或密钥挂载至指定目录',
+  MOUNT_CONFIGMAP_OR_SECRET_DESC: '为容器挂载配置字典或保密字典。',
 
   'Please specify an image': '请指定镜像',
 
@@ -414,7 +419,7 @@ module.exports = {
   ENVIRONMENT_VARIABLE_PL: '环境变量',
   ENVIRONMENT_VARIABLE: '环境变量',
   'File List': '文件列表',
-  RERUN: '重新执行',
+  RERUN: '重新运行',
   ENTER_SCHEDULE_TIP: '请选择定时计划。',
 
   TARGET_REVISION_EMPTY_DESC: '请选择目标修改记录。',
@@ -462,7 +467,7 @@ module.exports = {
     '您确定重新创建{type} {resource} 吗？容器组副本将会根据更新策略更新，同时相关业务将会中断。',
 
   MORE: '更多操作',
-  ACTIONS: '操作',
+  MANAGE: '管理',
 
   REVISION_ROLLBACK_SELECT: '请选择要回退的版本',
   REVISION_TITLE: '{name}版本',
@@ -574,7 +579,7 @@ module.exports = {
     'RestartPolicy 只能指定 Never 或 OnFailure，当任务未完成的情况下：<br/>* 如果 RestartPolicy 指定 Never，则任务会在容器组出现故障时创建新的容器组，且故障容器组不会消失。<br/>* 如果 RestartPolicy 指定 OnFailure，则任务会在容器组出现故障时其内部重启容器，而不是创建容器组。',
 
   MONITORING_ALERT_DESC:
-    '默认最多显示五个容器组副本的信息。您可以点击查看所有副本以查看所有容器组副本的信息。',
+    '默认最多显示五个容器组副本的信息。您可以点击<b>查看所有副本</b>以查看所有容器组副本的信息。',
 
   CONTAINER_CPU_DESC:
     '作为容器调度时资源分配的判断依赖。只有当节点上可分配CPU总量 ≥ 容器CPU最小使用值时，才允许将容器调度到该节点。单位换算规则: 1核 = 1000m',
@@ -602,17 +607,17 @@ module.exports = {
   STARTUP_CHECK_TIP: '需要 Kubernetes v1.18 或以上版本。',
 
   VOLUME_OR_TEMPLATE_EMPTY:
-    '您已启用收集存储卷上的日志，请至少挂载一个存储卷或存储卷模板并指定日志所在的目录。',
+    '您已开启收集存储卷上的日志，请至少挂载一个存储卷或存储卷模板并指定日志所在的目录。',
   VOLUME_EMPTY:
-    '您已启用收集存储卷上的日志，请至少挂载一个存储卷并指定日志所在的目录。',
+    '您已开启收集存储卷上的日志，请至少挂载一个存储卷并指定日志所在的目录。',
   COLLECT_LOGS_ON_VOLUMES_DESC:
     '允许系统收集保存在存储卷上的容器日志。如需使用此功能，请为容器挂载读写模式的存储卷并设置容器将日志导出到存储卷。',
 
   PROJECT_COLLECT_SAVED_DISABLED_DESC:
-    '如需启用此功能，您需要在项目设置中启用收集存储卷上的日志。',
+    '如需开启此功能，您需要在项目设置中开启收集存储卷上的日志。',
 
   ADD_VOLUME_TEMPLATE_DESC:
-    '添加存储卷模板，存储卷的生命周期将随容器组的生命周期存在',
+    '添加存储卷模板以挂载与容器组具有相同生命周期的存储卷。',
 
   CONTAINER_LOG_PATH_TIP:
     '容器日志的路径，相对于存储卷的挂载路径，支持通配符，可使用半角逗号（,）分隔多个路径。例如，当存储卷挂载路径为 /data 时，log/*.log 表示日志文件为 /data/log 目录下所有 .log 格式的文件。',
@@ -639,7 +644,7 @@ module.exports = {
   'Pod replicas will be deployed according to user customization.':
     '容器组副本将根据用户自定义规则部署',
   DECENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到不同的节点上。',
-  CENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到同一节点上',
+  CENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到同一节点上。',
   ADD_CONTAINER_DESC: '自定义容器的设置以创建容器。',
 
   SCHEDULING_INFORMATION: '调度信息',
@@ -736,13 +741,13 @@ module.exports = {
 
   CONTAINER_NOT_SELECTED: '请将存储卷挂载到至少一个容器组。',
   'Sure to delete the workload(s)?': '确认删除工作负载',
-  NO_RELATED_RESOURCE_FOUND: '没有相关的资源',
+  NO_RELATED_RESOURCE_FOUND: '没有关联的资源',
   'No related resources found with the current workload(s)':
     '当前工作负载下没有关联的资源',
   DELETE_WORKLOAD_DESC_SI:
-    '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下工作负载相关资源。',
+    '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下与工作负载关联的资源。',
   DELETE_WORKLOAD_DESC_PL:
-    '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下工作负载相关资源。',
+    '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下与工作负载关联的资源。',
 
   'Container Security Context': '容器 Security Context',
   'Pod Security Context': '容器组 Security Context',
@@ -781,7 +786,7 @@ module.exports = {
     '启动容器之前检查容器是否将以 root 用户运行。如果容器将以 root 用户运行则不启动容器。',
   RUN_AS_USER_DESC: '执行容器进程入口点的 UID。默认为镜像元数据中指定的 GID。',
   RUN_AS_USER_GROUP_DESC:
-    '执行容器进程入口点的 GID。默认为容器运行时的默认 GID',
+    '执行容器进程入口点的 GID。默认为容器运行时的默认 GID。',
 
   COMPARE_WITH: '与上一个记录 {version} 对比',
   REVISION_RECORDS_DESC:
@@ -822,4 +827,13 @@ module.exports = {
   ADD_VOLUME: '添加存储卷',
   RESTART_POLICY_DESC: '选择容器组中的容器异常退出时，系统采取的策略。',
   MOUNT_VOLUMES: '挂载存储卷',
+
+  // Workload
+  NETWORK_SEGMENT_SCAP: '网段',
+  JOB_COMPLETED: '已完成',
+  JOB_FAILED: '失败',
+  JOB_RUNNING: '运行中',
+  CRONJOB_PAUSED: '已暂停',
+  CRONJOB_RUNNING: '运行中',
+  CRONJOB_FAILED: '失败',
 }

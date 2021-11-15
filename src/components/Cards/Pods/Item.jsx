@@ -255,7 +255,7 @@ export default class PodItem extends React.PureComponent {
           </div>
           {this.getUpdateStatus()}
         </div>
-        {!location.pathname.indexOf('/nodes') !== -1 && (
+        {!(location.pathname.indexOf('/nodes') !== -1) && (
           <div className={styles.text}>
             <div>{this.getNodeContent()}</div>
             <p>{t('NODE')}</p>

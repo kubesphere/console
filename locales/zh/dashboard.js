@@ -38,8 +38,8 @@ module.exports = {
   'View All Nodes': '查看全部主机',
   'Disk Throughput': '磁盘吞吐',
   'Network Bandwidth': '网络带宽',
-  'Outbound Traffic': '网络流出速率',
-  'Inbound Traffic': '网络流入速率',
+  'Outbound Traffic': '出站流量',
+  'Inbound Traffic': '入站流量',
   'Monitoring Data': '监控数据',
   'Log Data': '日志数据',
 
@@ -73,11 +73,10 @@ module.exports = {
   NODE_UNIT: '台',
   USAGE_VALUE: '使用量',
   USAGE_RATE: '使用率',
-  NO_PROJECT: '暂时没有找到可用项目',
-  NO_POD_MONITOR_DATA: '暂时没有容器组监控数据',
+  NO_PROJECT: '未发现可用项目',
+  NO_POD_MONITOR_DATA: '未发现容器组监控数据',
   RESOURCE_WARNING_TIPS: '异常{tipName}：{warnNum}',
 
-  USER_DASHBOARD_EMPTY_TITLE: '您暂时不属于任何企业空间',
-  USER_DASHBOARD_EMPTY_DESC:
-    '您可以联系某个企业空间的管理员邀请您加入企业空间中',
+  USER_DASHBOARD_EMPTY_TITLE: '您不属于任何企业空间',
+  USER_DASHBOARD_EMPTY_DESC: '请联系企业空间管理员邀请您加入企业空间中。',
 }

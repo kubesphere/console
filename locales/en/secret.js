@@ -31,7 +31,7 @@ module.exports = {
   IMAGE_REGISTRY_SECRET_TCAP: 'Image Registry Secret',
   IMAGE_REGISTRY_REQUIRED_DESC:
     'Please set the registry address, username, and password.',
-  ENTER_CREDENTIAL_TIP: 'Please enter a credential ID.',
+  CREDENTIAL_NAME_EMPTY_DESC: 'Please enter a credential name.',
   ENTER_DATA_DESC: 'Please add data.',
   ENTER_PRIVATE_KEY_DESC: 'Please enter a private key.',
   'Please input the registry address': 'Please input the registry address',
@@ -44,7 +44,7 @@ module.exports = {
   CODE_REPOSITORY_KEY: 'Code Repository Key',
   SECRET_PL: 'Secrets',
   SECRET_LOW: 'Secret',
-  SECRET_SETTINGS_TCAP: 'Secret Settings',
+  DATA_SETTINGS: 'Data Settings',
   KUBECONFIG_SETTINGS: 'kubeconfig Settings',
   secrets: 'secrets',
   Secrets: 'Secrets',
@@ -65,5 +65,5 @@ module.exports = {
   DATA_VALUE: 'Value',
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value} ({label})',
-  CREATE_SECRET: 'create a secret',
+  CREATE_SECRET: 'create a Secret.',
 }

@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import { isEmpty } from 'lodash'
 
 import { Image } from 'components/Base'
 
@@ -32,12 +31,7 @@ export default class AppCard extends React.Component {
       app.latest_app_version.maintainers,
       []
     ).map(item => item.name)
-    if (!isEmpty(maintainers)) {
-      return maintainers.length === 1
-        ? t('MAINTAINER_VALUE', { value: maintainers[0] })
-        : t('MAINTAINERS_VALUE', { value: maintainers[0] })
-    }
-    return t('DEVELOPER_VALUE', { value: app.owner || '-' })
+    return t('MAINTAINER_VALUE', { value: maintainers[0] || '-' })
   }
 
   render() {

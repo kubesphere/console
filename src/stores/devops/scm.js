@@ -51,7 +51,7 @@ export default class SCMStore extends BaseStore {
         if (errorBody.code === 428) {
           this.creatBitBucketServersError = {
             password: {
-              message: t('Wrong username or password, please try again'),
+              message: t('INCORRECT_USERNAME_OR_PASSWORD'),
             },
           }
           return
@@ -267,7 +267,9 @@ export default class SCMStore extends BaseStore {
     if (isEmpty(parseUrl(apiUrl))) {
       this.creatBitBucketServersError = {
         apiUrl: {
-          message: t('url is invalid'),
+          message: isEmpty(apiUrl)
+            ? t('BITBUCKET_ADDRESS_EMPTY_TIP')
+            : t('BITBUCKET_ADDRESS_INVALID_TIP'),
         },
       }
       return

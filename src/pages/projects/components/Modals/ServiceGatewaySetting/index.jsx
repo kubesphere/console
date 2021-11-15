@@ -140,7 +140,7 @@ export default class GatewaySettingModal extends React.Component {
           />
           <div className={styles.wrapper}>
             <div className={styles.contentWrapper}>
-              <Form.Item label={t('ACCESS_METHOD')} className={styles.types}>
+              <Form.Item label={t('ACCESS_MODE')} className={styles.types}>
                 <Select
                   name="spec.type"
                   options={this.accessModes}

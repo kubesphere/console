@@ -99,7 +99,7 @@ export default class NodeDetail extends React.Component {
       {
         key: 'update',
         icon: 'update',
-        text: t('Update Gateway'),
+        text: t('UPDATE'),
         action: 'manage',
         disabled: !isEmpty(detail.createTime),
         onClick: () =>
@@ -113,7 +113,7 @@ export default class NodeDetail extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('DELETE'),
+        text: t('DISABLE'),
         action: 'delete',
         onClick: () =>
           this.trigger('gateways.delete', {
