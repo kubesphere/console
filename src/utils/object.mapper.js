@@ -1122,6 +1122,7 @@ const DevOpsMapper = item => {
   const phase = get(item, 'status.phase')
   const syncStatusKey =
     'metadata.annotations["devopsproject.devops.kubesphere.io/syncstatus"]'
+  const syncStatus = get(item, syncStatusKey)
 
   const deletionTimestamp = get(item, 'metadata.deletionTimestamp')
 
@@ -1133,7 +1134,7 @@ const DevOpsMapper = item => {
     namespace: get(item, 'status.adminNamespace'),
     status: deletionTimestamp
       ? 'Terminating'
-      : phase || get(item, syncStatusKey) || 'Active',
+      : phase || syncStatus || 'Active',
     _originData: getOriginData(item),
   }
 }
