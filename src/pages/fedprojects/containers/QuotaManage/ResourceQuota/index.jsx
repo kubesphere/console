@@ -50,9 +50,9 @@ export default class ResourceQuota extends React.Component {
   }
 
   showEdit = () => {
-    const { namespace, cluster } = this.props
+    const { namespace, cluster, workspace } = this.props
     this.trigger('project.quota.edit', {
-      detail: { name: namespace, namespace, cluster: cluster.name },
+      detail: { name: namespace, namespace, cluster: cluster.name, workspace },
       success: this.fetchData,
       isFederated: true,
     })
