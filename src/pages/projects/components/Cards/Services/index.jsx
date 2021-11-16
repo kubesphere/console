@@ -67,7 +67,7 @@ export default class ServicesCard extends React.Component {
     if (isEmpty(data) && !isLoading) {
       return (
         <div className={styles.empty}>
-          {t('EMTPY_WRAPPER', { resource: t('SERVICE') })}
+          {t('EMPTY_WRAPPER', { resource: t('SERVICE') })}
         </div>
       )
     }

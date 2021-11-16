@@ -178,7 +178,7 @@ module.exports = {
 
   // Log Collection > Details
   ADDRESS: 'Address',
-  CHANGE_STATUS_LOW: 'Change status',
+  CHANGE_STATUS_SCAP: 'Change status',
   EVENTS: 'Events',
   SELECT_STATUS_TIP: 'Select a status',
 

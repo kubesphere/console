@@ -82,9 +82,6 @@ module.exports = {
   NO_UPDATE_LOG_DESC: 'No update log is found.',
   Note: 'Nota',
   Operator: 'Operador',
-  PASS_SUCCESSFUL: 'Pasado Satisfactoriamente',
-  PLATFORM_APP_STORE_MANAGEMENT:
-    'Gestión de la tienda de aplicaciones de la plataforma',
   ENTER_CATEGORY_NAME_TIP: 'Please enter a category name.',
   REJECT_REASON_TIP: 'Introduce un motivo de rechazo, por favor',
   ENTER_VERSION_NUMBER_TIP: 'Please enter a version number.',
@@ -285,7 +282,7 @@ module.exports = {
   PENDING_REVIEW: 'Pending',
   COMPLETE_REVIEW: 'Complete',
   REJECT: 'Reject',
-  PASS: 'Pass',
+  RELEASE: 'Release',
   INTRODUCTION: 'Introduction',
   UPDATE_LOG: 'Update Log',
   SERVICE_PROVIDER_WEBSITE: 'Service provider website',
@@ -315,7 +312,7 @@ module.exports = {
   APP_NOTE: 'Note',
 
   // App Templates > Details
-  SERVICE_PROVIDER_WEBSITE_SCAP: 'Service Provider Website',
+  SERVICE_PROVIDER_WEBSITE_TCAP: 'Service Provider Website',
 
   // App Templates
   FILE: 'File',
@@ -339,7 +336,7 @@ module.exports = {
   RELEASE_TO_STORE: 'Release to Store',
   AUDIT_EMPTY_DESC: 'No app review record is found.',
   APP_STATUS_SUBMITTED: 'Submitted',
-  APP_STATUS_PASSED: 'Passed',
+  APP_STATUS_PASSED: 'Released',
   APP_STATUS_SUSPENDED: 'Suspended',
   APP_STATUS_REJECTED: 'Rejected',
   APP_STATUS_ACTIVE: 'Activated',

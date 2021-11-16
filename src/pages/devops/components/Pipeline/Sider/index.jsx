@@ -191,7 +191,7 @@ export default class Sider extends React.Component {
               type="control"
               onClick={this.handleConfirm}
             >
-              {t('SAVE')}
+              {t('OK')}
             </Button>
           </div>
         </div>

@@ -131,7 +131,7 @@ module.exports = {
   UPLOAD_NEW_VERSION: 'Upload New Version',
   UPLOAD_NEW_VERSION_DESC: 'Upload a new version of the app.',
   APP_VERSION_SCAP: 'App version',
-  UPDATE_TIME_LOW: 'Update time',
+  UPDATE_TIME_SCAP: 'Update time',
   TEST_INSTALLATION: 'Test Installation',
   SUBMIT_FOR_RELEASE: 'Submit for Release',
   VERSION_INFO: 'Version Information',

@@ -21,7 +21,6 @@ module.exports = {
   'App Readme': 'LEEME (README) de la aplicación',
   APP_STORE: 'Tienda de aplicaciones',
   'App Store Settings': 'Configuración de la tienda de aplicaciones',
-  Back: 'Atrás',
   Categories: 'Categorías',
   CHANGE_LOG: 'Cambiar registro',
   'Config files': 'Ficheros de configuración',

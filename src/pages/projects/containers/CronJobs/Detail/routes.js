@@ -25,7 +25,7 @@ import JobRecords from './JobRecords'
 export default path => [
   {
     path: `${path}/records`,
-    title: 'JOB_RECORDS',
+    title: 'RUN_RECORDS',
     component: JobRecords,
     exact: true,
   },

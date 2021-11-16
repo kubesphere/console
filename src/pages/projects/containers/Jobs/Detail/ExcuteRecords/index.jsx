@@ -176,7 +176,7 @@ class ExcuteRecords extends React.Component {
     return (
       <Card
         className={styles.main}
-        title={t('JOB_RECORDS')}
+        title={t('RUN_RECORDS')}
         operations={
           <Button icon="refresh" type="flat" onClick={this.handleRefresh} />
         }

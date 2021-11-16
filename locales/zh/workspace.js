@@ -145,12 +145,11 @@ module.exports = {
   OFF: '关闭',
   ONLINE: '上线',
   OFFLINE: '下线',
-  WS_MEMBER_LOW: '企业空间成员',
-  WS_MEMBER_LOW_PL: '企业空间成员',
+  WS_MEMBER_SCAP: '企业空间成员',
+  WS_MEMBER_SCAP_PL: '企业空间成员',
 
   // Quota Management
   QUOTA_MANAGEMENT: '配额管理',
-  RESOURCE_TYPE_LOW: '资源类型',
   RESOURCE_LIMIT: '资源限制',
   USED_PERCENT: '已使用：{percent}%',
 

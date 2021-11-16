@@ -165,7 +165,7 @@ module.exports = {
   // Alerting Policies > Details
   NOTIFICATION_SUMMARY_COLON: '概括：',
   DETAILS_COLON: '详情：',
-  MONITORING_TARGETS_LOW: '监控目标',
-  ALERTING_RULE_LOW: '告警规则',
+  MONITORING_TARGETS_SCAP: '监控目标',
+  ALERTING_RULE_SCAP: '告警规则',
   THRESHOLD_DURATION: '告警持续时间',
 }
