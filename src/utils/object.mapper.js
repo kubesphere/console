@@ -17,6 +17,7 @@
  */
 
 import {
+  capitalize,
   get,
   set,
   has,
@@ -1122,7 +1123,7 @@ const DevOpsMapper = item => {
   const phase = get(item, 'status.phase')
   const syncStatusKey =
     'metadata.annotations["devopsproject.devops.kubesphere.io/syncstatus"]'
-  const syncStatus = get(item, syncStatusKey)
+  const syncStatus = capitalize(get(item, syncStatusKey))
 
   const deletionTimestamp = get(item, 'metadata.deletionTimestamp')
 
