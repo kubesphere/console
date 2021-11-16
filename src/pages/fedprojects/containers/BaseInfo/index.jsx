@@ -79,7 +79,9 @@ class BaseInfo extends React.Component {
   get itemActions() {
     const { detail } = this.store
     const limitRanges = toJS(this.limitRangeStore.list.data)
-
+    const clusters = toJS(this.props.projectStore.detail.clusters).map(
+      cluster => cluster.name
+    )
     const actions = [
       {
         key: 'edit',
@@ -117,6 +119,7 @@ class BaseInfo extends React.Component {
             detail: get(limitRanges, 0, {}),
             isFederated: true,
             projectDetail: detail,
+            clusters,
             success: () => this.limitRangeStore.fetchListByK8s(this.params),
           }),
       },
