@@ -236,43 +236,47 @@ export default class AdvanceSettings extends React.Component {
 
   renderGitOptions() {
     const { formTemplate } = this.props
+    const enable_shallow_clone_key = `${this.scmPrefix}.git_clone_option.shallow`
+    const enable_shallow_clone_trigger = get(
+      formTemplate,
+      enable_shallow_clone_key
+    )
 
     return (
       <>
         <div className="h6">{t('CLONE_SETTINGS')}</div>
-        <Columns>
-          <Column>
-            <Form.Item label={t('CLONE_DEPTH')}>
-              <NumberInput
-                name={`${this.scmPrefix}.git_clone_option.depth`}
-                defaultValue={1}
-              />
-            </Form.Item>
-          </Column>
-          <Column>
-            <Form.Item label={t('CLONE_TIMEOUT_PERIOD')}>
-              <NumberInput
-                name={`${this.scmPrefix}.git_clone_option.timeout`}
-                defaultValue={20}
-              />
-            </Form.Item>
-          </Column>
-        </Columns>
         <Form.Item>
           <Checkbox
-            checked={get(
-              formTemplate,
-              `${this.scmPrefix}.git_clone_option.shallow`,
-              false
-            )}
-            name={`${this.scmPrefix}.git_clone_option.shallow`}
-            onChange={this.handleChange(
-              `${this.scmPrefix}.git_clone_option.shallow`
-            )}
+            checked={enable_shallow_clone_trigger}
+            name={enable_shallow_clone_key}
+            onChange={this.handleChange(enable_shallow_clone_key)}
           >
             {t('ENABLE_SHALLOW_CLONE')}
           </Checkbox>
         </Form.Item>
+        {enable_shallow_clone_trigger && (
+          <div className={styles.wrapper}>
+            <Columns>
+              <Column>
+                <Form.Item label={t('CLONE_DEPTH')}>
+                  <NumberInput
+                    name={`${this.scmPrefix}.git_clone_option.depth`}
+                    defaultValue={1}
+                  />
+                </Form.Item>
+              </Column>
+              <Column>
+                <Form.Item label={t('CLONE_TIMEOUT_PERIOD')}>
+                  <NumberInput
+                    name={`${this.scmPrefix}.git_clone_option.timeout`}
+                    defaultValue={20}
+                  />
+                </Form.Item>
+              </Column>
+            </Columns>
+          </div>
+        )}
+
         <div className="h6">Webhook</div>
         <Form.Item label={t('WEBHOOK_PUSH_URL')} desc={t('WEBHOOK_PUSH_DESC')}>
           <Input value={this.webhookUrl} disabled />
