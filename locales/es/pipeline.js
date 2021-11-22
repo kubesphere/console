@@ -263,7 +263,7 @@ module.exports = {
   RESCAN: 'Reescanear',
 
   RUN: 'ejecutar',
-  RUN_COUNT: 'Runs',
+  RUN_ID: 'Run ID',
   'Run Pipeline': 'Ejecutar pipeline',
   'Save Artifact': 'Guardar artefacto',
   SCAN_INTERVAL: 'Intervalo de escaneo',
