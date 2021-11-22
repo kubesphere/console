@@ -412,8 +412,14 @@ export const getWebSocketProtocol = protocol => {
   return 'ws'
 }
 
+export const getWebsiteUrl = () => {
+  const useLang = get(globals, 'user.lang', 'en')
+  const lang = useLang === 'zh' ? 'zh' : 'en'
+  return globals.config.documents[lang]
+}
+
 export const getDocsUrl = module => {
-  const { url: prefix } = globals.config.documents
+  const { url: prefix } = getWebsiteUrl()
   const docUrl = get(globals.config, `resourceDocs[${module}]`, '')
 
   if (!docUrl) {

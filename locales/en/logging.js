@@ -41,11 +41,11 @@ module.exports = {
   'Log Start Time': 'Log Start Time',
   CONTAINER_LOG_COUNT: 'Container Logs',
   AUDITING_NOT_ENABLED_DESC:
-    'The component is not enabled. <a href="https://v3-1.docs.kubesphere.io/docs/pluggable-components/auditing-logs/" target="_blank">Learn More</a>',
+    'The component is not enabled. <a href="{docUrl}/pluggable-components/auditing-logs/" target="_blank">Learn More</a>',
   EVENT_NOT_ENABLED_DESC:
-    'The component is not enabled. <a href="https://v3-1.docs.kubesphere.io/docs/pluggable-components/events/" target="_blank">Learn More</a>',
+    'The component is not enabled. <a href="{docUrl}/pluggable-components/events/" target="_blank">Learn More</a>',
   LOGGING_NOT_ENABLED_DESC:
-    'The component is not enabled. <a href="https://v3-1.docs.kubesphere.io/docs/pluggable-components/logging/" target="_blank">Learn More</a>',
+    'The component is not enabled. <a href="{docUrl}/pluggable-components/logging/" target="_blank">Learn More</a>',
   'Log statistics': 'Log statistics',
   'No cluster with auditing module enabled': 'No cluster has Auditing enabled.',
   'No cluster with event query enabled': 'No cluster has Events enabled.',

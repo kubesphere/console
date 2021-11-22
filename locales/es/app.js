@@ -327,7 +327,7 @@ module.exports = {
   SCREENSHOTS_COLON: 'Screenshots: ',
   DELETE_ALL: 'Delete All',
   APP_LEARN_MORE:
-    '<a href="https://v3-1.docs.kubesphere.io/docs/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Learn More</a>',
+    '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Learn More</a>',
   ACTIVATE_SUCCESSFUL: 'Activated successfully.',
   CANCEL_SUCCESSFUL: 'Canceled successfully.',
   RECOVER_SUCCESSFUL: 'Recovered successfully.',

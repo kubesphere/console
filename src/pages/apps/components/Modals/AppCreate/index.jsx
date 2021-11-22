@@ -23,6 +23,7 @@ import classnames from 'classnames'
 import { Button } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import ToggleView from 'apps/components/ToggleView'
+import { getWebsiteUrl } from 'utils'
 
 import styles from './index.scss'
 
@@ -41,6 +42,7 @@ export default class AppCreate extends Component {
 
   render() {
     const { visible, onOk, ...rest } = this.props
+    const { url } = getWebsiteUrl()
 
     return (
       <Modal
@@ -65,7 +67,9 @@ export default class AppCreate extends Component {
             <Button type={'control'} onClick={onOk}>
               {t('UPLOAD')}
             </Button>
-            <div className={styles.note}>💁‍♂️ {t.html('APP_CREATE_GUIDE')}</div>
+            <div className={styles.note}>
+              💁‍♂️ {t.html('APP_CREATE_GUIDE', { docUrl: url })}
+            </div>
           </div>
         </ToggleView>
       </Modal>
