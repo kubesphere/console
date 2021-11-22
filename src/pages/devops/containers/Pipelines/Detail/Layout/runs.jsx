@@ -186,7 +186,7 @@ export default class RunDetailLayout extends React.Component {
 
     return [
       {
-        name: t('RUN_COUNT'),
+        name: t('RUN_ID'),
         value: runDetail.id,
       },
       {

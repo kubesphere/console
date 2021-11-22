@@ -236,7 +236,7 @@ export default class Activity extends React.Component {
         ),
     },
     {
-      title: t('RUN_COUNT'),
+      title: t('RUN_ID'),
       width: '10%',
       key: 'run',
       render: record =>
