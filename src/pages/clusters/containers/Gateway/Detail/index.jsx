@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { isEmpty } from 'lodash'
+import { isEmpty, get } from 'lodash'
 import { Loading } from '@kube-design/components'
 
 import { getLocalTime } from 'utils'
@@ -37,8 +37,13 @@ import getRoutes from './routes'
 export default class NodeDetail extends React.Component {
   store = new GatewayStore()
 
+  state = {
+    isCluster: false,
+  }
+
   componentDidMount() {
     this.fetchData()
+    this.judgeIsCluster()
   }
 
   get module() {
@@ -78,10 +83,17 @@ export default class NodeDetail extends React.Component {
     this.store.getGateway({ cluster: this.cluster, namespace: this.namespace })
   }
 
+  judgeIsCluster = () => {
+    const isCluster = get(this.props.location, 'state.isCluster', false)
+    this.setState({
+      isCluster,
+    })
+  }
+
   getOperations = () => {
     const detail = toJS(this.detail)
 
-    return [
+    const baseOpt = [
       {
         key: 'edit',
         icon: 'pen',
@@ -126,6 +138,10 @@ export default class NodeDetail extends React.Component {
           }),
       },
     ]
+
+    this.state.isCluster && baseOpt.splice(1, 1)
+
+    return baseOpt
   }
 
   getAttrs = () => {
