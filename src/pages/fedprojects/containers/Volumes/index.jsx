@@ -19,7 +19,8 @@
 
 import React from 'react'
 import { get, isEmpty } from 'lodash'
-import { getLocalTime, getDisplayName } from 'utils'
+import { getLocalTime, getDisplayName, map_accessModes } from 'utils'
+import { Icon, Tooltip } from '@kube-design/components'
 import { Avatar, Status } from 'components/Base'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
 import Banner from 'components/Cards/Banner'
@@ -144,16 +145,10 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: t('ACCESS_MODE_TCAP'),
-        dataIndex: 'capacity',
-        isHideable: true,
-        render: (_, record) => (
-          <div className={styles.capacity}>
-            <p>
-              {get(record, '_originData.spec.template.spec.accessModes[0]')}
-            </p>
-          </div>
-        ),
+        title: this.renderAccessTitle(),
+        dataIndex: 'accessModes',
+        isHideable: false,
+        render: accessModes => this.mapperAccessMode(accessModes),
       },
       {
         title: t('CREATION_TIME_TCAP'),
@@ -163,6 +158,30 @@ export default class Volumes extends React.Component {
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm'),
       },
     ]
+  }
+
+  renderAccessTitle = () => {
+    const renderModeTip = (
+      <div>
+        <div>{t('ACCESS_MODE_TCAP')}:</div>
+        <div>RWO (ReadWriteOnce)：{t('ACCESS_MODE_RWO')}</div>
+        <div>ROX (ReadOnlyMany)：{t('ACCESS_MODE_ROX')}</div>
+        <div>RWX (ReadWriteMany)：{t('ACCESS_MODE_RWX')}</div>
+      </div>
+    )
+    return (
+      <div className={styles.mode_title}>
+        {t('ACCESS_MODE_TCAP')}
+        <Tooltip content={renderModeTip}>
+          <Icon name="question" size={16} className={styles.question}></Icon>
+        </Tooltip>
+      </div>
+    )
+  }
+
+  mapperAccessMode = accessModes => {
+    const modes = map_accessModes(accessModes)
+    return <span>{modes.join(',')}</span>
   }
 
   renderStatus = ({ cluster, record }) => {
