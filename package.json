@@ -47,7 +47,7 @@
     "node-cache": "^4.1.1",
     "node-fetch": "^2.6.1",
     "path-to-regexp": "^2.2.1",
-    "prismjs": "^1.22.0",
+    "prismjs": "^1.25.0",
     "prop-types": "^15.6.0",
     "qs": "^6.5.2",
     "react": "^16.6.3",
