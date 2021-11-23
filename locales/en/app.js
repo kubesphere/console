@@ -211,7 +211,7 @@ module.exports = {
     ' create application templates and deploy tests through resource pre-editing',
 
   APP_CREATE_GUIDE:
-    'See the development guide <a href="https://v3-1.docs.kubesphere.io/docs/application-store/app-developer-guide/helm-specification/" target="_blank" rel="noreferrer noopener">Helm Specifications</a>.',
+    'See the development guide <a href="{docUrl}/application-store/app-developer-guide/helm-specification/" target="_blank" rel="noreferrer noopener">Helm Specifications</a>.',
   HELM_DEVELOP_GUIDE: ' Helm Specifications.',
 
   CATEGORY_NAME_DESC:
@@ -322,7 +322,7 @@ module.exports = {
   SCREENSHOTS_COLON: 'Screenshots: ',
   DELETE_ALL: 'Delete All',
   APP_LEARN_MORE:
-    '<a href="https://v3-1.docs.kubesphere.io/docs/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Learn More</a>',
+    '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Learn More</a>',
   ACTIVATE_SUCCESSFUL: 'Activated successfully.',
   CANCEL_SUCCESSFUL: 'Canceled successfully.',
   RECOVER_SUCCESSFUL: 'Recovered successfully.',
