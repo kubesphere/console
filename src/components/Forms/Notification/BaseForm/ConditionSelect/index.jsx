@@ -23,7 +23,7 @@ import { Select, Input, Icon, Notify } from '@kube-design/components'
 import { TagInput } from 'components/Inputs'
 
 import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
-import { PATTERN_NAME } from 'utils/constants'
+import { PATTERN_TAG } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -119,8 +119,8 @@ export default class ConditionSelect extends React.Component {
 
   handleAddItem = () => {
     const { keyItems, keyName } = this.state
-    if (!PATTERN_NAME.test(keyName)) {
-      Notify.error({ content: t('PATTERN_NAME_INVALID_TIP') })
+    if (!PATTERN_TAG.test(keyName)) {
+      Notify.error({ content: t('PATTERN_TAG_INVALID_TIP') })
       return
     }
     this.setState({
@@ -147,7 +147,7 @@ export default class ConditionSelect extends React.Component {
     this.props.onChange({
       key,
       operator,
-      values,
+      values: ['Exists', 'DoesNotExist'].includes(operator) ? [] : values,
     })
   }
 

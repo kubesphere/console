@@ -45,6 +45,8 @@ module.exports = {
     'Seleccione un filtro de expresiones regulares',
   'Invalid notification condition': 'Condición de notificación no válida',
   TAG_INPUT_PLACEHOLDER: 'Ingrese el valor y presione Enter para confirmar',
+  PATTERN_TAG_INVALID_TIP:
+    'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
   INVALID_NOTIFICATION_CONDITION:
     'Please enter a correct notification condition.',
 

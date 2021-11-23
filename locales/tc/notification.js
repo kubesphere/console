@@ -42,6 +42,8 @@ module.exports = {
   DOES_NOT_EXIST: 'Does not exist',
   'Please select a tag': '請選擇標簽',
   'Please select a regex filter': '請選擇過濾規則',
+  PATTERN_TAG_INVALID_TIP:
+    'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
   INVALID_NOTIFICATION_CONDITION: '請填寫正確的通知條件。',
 
   SEND_TEST_MESSAGE: '發送測試信息',
