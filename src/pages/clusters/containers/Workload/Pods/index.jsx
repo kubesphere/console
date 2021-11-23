@@ -27,7 +27,7 @@ import StatusReason from 'projects/components/StatusReason'
 import ResourceTable from 'clusters/components/ResourceTable'
 
 import { getLocalTime } from 'utils'
-import { POD_STATUS, ICON_TYPES } from 'utils/constants'
+import { ICON_TYPES, PODS_STATUS } from 'utils/constants'
 
 import PodStore from 'stores/pod'
 
@@ -73,13 +73,6 @@ export default class Pods extends React.Component {
     ]
   }
 
-  getStatus() {
-    return POD_STATUS.map(status => ({
-      text: t(status.text),
-      value: status.value,
-    }))
-  }
-
   getItemDesc = record => {
     const { status, type } = record.podStatus
     const desc =
@@ -97,6 +90,13 @@ export default class Pods extends React.Component {
     return desc
   }
 
+  getPodsStatus() {
+    return PODS_STATUS.map(status => ({
+      text: t(status.text),
+      value: status.value,
+    }))
+  }
+
   getColumns = () => {
     const { getSortOrder } = this.props
     return [
@@ -107,6 +107,17 @@ export default class Pods extends React.Component {
         sortOrder: getSortOrder('name'),
         search: true,
         render: this.renderAvatar,
+      },
+      {
+        title: t('STATUS'),
+        dataIndex: 'status',
+        filters: this.getPodsStatus(),
+        isHideable: true,
+        search: true,
+        with: '5%',
+        render: (_, { podStatus }) => (
+          <span>{t(podStatus.type.toUpperCase())}</span>
+        ),
       },
       {
         title: t('NODE_SI'),
@@ -184,6 +195,7 @@ export default class Pods extends React.Component {
           {...tableProps}
           itemActions={this.itemActions}
           columns={this.getColumns()}
+          hideColumn={['status']}
           onCreate={null}
           cluster={match.params.cluster}
         />
