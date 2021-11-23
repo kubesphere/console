@@ -243,6 +243,8 @@ export const ICON_TYPES = {
   cluster: 'cluster',
   notification: 'loudspeaker',
   notificationhistory: 'record',
+  gpu: 'gpu',
+  'gpu.limit': 'gpu',
 }
 
 export const MODULE_KIND_MAP = {
