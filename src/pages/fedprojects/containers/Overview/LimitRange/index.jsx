@@ -48,6 +48,12 @@ export default class LimitRange extends Component {
     return get(this.props.match, 'params', {})
   }
 
+  get clusters() {
+    return get(this.props.projectStore, 'detail.clusters', []).map(
+      cluster => cluster.name
+    )
+  }
+
   showSetting = () => {
     const { namespace, workspace } = this.params
     const limitRanges = this.store.list.data
@@ -57,6 +63,7 @@ export default class LimitRange extends Component {
       isFederated: true,
       workspace,
       name: namespace,
+      clusters: this.clusters,
       projectDetail: this.props.projectStore.detail,
       success: () => this.setState({ showTip: false }),
     })
