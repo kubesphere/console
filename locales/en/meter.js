@@ -78,7 +78,7 @@ module.exports = {
   PRICE_CONFIG_DESC: 'The price information has not been configured.',
   METER_RESOURCE_DESC: 'Resource consumption in 1 h',
   METERING_NOT_ENABLED_DESC:
-    'This module is not enabled. <a href="https://v3-1.docs.kubesphere.io/docs/toolbox/metering-and-billing/enable-billing/">Learn More</a>',
+    'This module is not enabled. <a href="{docUrl}/toolbox/metering-and-billing/enable-billing/">Learn More</a>',
   INVALID_METERING: 'invalid metering',
   NO_METER_DATA: 'No resource consumption data is found.',
 

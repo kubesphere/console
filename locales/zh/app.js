@@ -150,7 +150,7 @@ module.exports = {
   UPLOAD: '上传',
   'Start Create': '开始创建',
   APP_CREATE_GUIDE:
-    '请参阅开发指南 <a href="https://v3-1.docs.kubesphere.io/zh/docs/application-store/app-developer-guide/helm-specification/" target="_blank" rel="noreferrer noopener">Helm 规范</a>。',
+    '请参阅开发指南 <a href="{docUrl}/application-store/app-developer-guide/helm-specification/" target="_blank" rel="noreferrer noopener">Helm 规范</a>。',
   HELM_DEVELOP_GUIDE: 'Helm 规范及应用开发',
 
   UPLOAD_SUPPORT_FORMAT: '文件格式支持 tar.gz 和 tgz',
@@ -294,7 +294,7 @@ module.exports = {
   SCREENSHOTS_COLON: '截图数量：',
   DELETE_ALL: '全部删除',
   APP_LEARN_MORE:
-    '<a href="https://v3-1.docs.kubesphere.io/zh/docs/application-store/app-developer-guide/helm-developer-guide/" target="_blank">了解更多</a>',
+    '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">了解更多</a>',
   ACTIVATE_SUCCESSFUL: '上架成功。',
   CANCEL_SUCCESSFUL: '取消成功。',
   RECOVER_SUCCESSFUL: '恢复上架成功。',

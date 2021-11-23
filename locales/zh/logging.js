@@ -149,11 +149,11 @@ module.exports = {
   ENTER_GRAFANA_URL: '请输入 Grafana 监控面板 URL。',
   UPLOAD_FROM_LOCAL_TITLE: '选择或拖动文件',
   EVENT_NOT_ENABLED_DESC:
-    '当前组件尚未开启。<a href="https://v3-1.docs.kubesphere.io/zh/docs/pluggable-components/events/" target="_blank">了解更多</a>',
+    '当前组件尚未开启。<a href="{docUrl}/pluggable-components/events/" target="_blank">了解更多</a>',
   AUDITING_NOT_ENABLED_DESC:
-    '当前组件尚未开启。<a href="https://v3-1.docs.kubesphere.io/zh/docs/pluggable-components/auditing-logs/" target="_blank">了解更多</a>',
+    '当前组件尚未开启。<a href="{docUrl}/pluggable-components/auditing-logs/" target="_blank">了解更多</a>',
   LOGGING_NOT_ENABLED_DESC:
-    '当前组件尚未开启。<a href="https://v3-1.docs.kubesphere.io/zh/docs/pluggable-components/logging/" target="_blank">了解更多</a>',
+    '当前组件尚未开启。<a href="{docUrl}/pluggable-components/logging/" target="_blank">了解更多</a>',
   'No cluster with event query enabled': '未发现开启事件查询的集群',
   'No cluster with auditing module enabled': '未发现开启审计模块的集群',
   'No cluster with logging module enabled': '未发现开启日志模块的集群',

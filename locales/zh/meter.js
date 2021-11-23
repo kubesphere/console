@@ -75,7 +75,7 @@ module.exports = {
   PRICE_CONFIG_DESC: '尚未配置价格信息。',
   METER_RESOURCE_DESC: '1 小时内的资源消费情况',
   METERING_NOT_ENABLED_DESC:
-    '当前模块尚未开启。<a href="https://v3-1.docs.kubesphere.io/zh/docs/toolbox/metering-and-billing/enable-billing/">了解更多</a>',
+    '当前模块尚未开启。<a href="{docUrl}/toolbox/metering-and-billing/enable-billing/">了解更多</a>',
 
   INVALID_METERING: '未开启消费统计',
   NO_METER_DATA: '未发现资源消费数据。',
