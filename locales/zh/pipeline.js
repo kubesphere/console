@@ -162,7 +162,7 @@ module.exports = {
   VIEW_SCAN_LOGS: '查看扫描日志',
   'Started By': '实施者',
   RESCAN: '重新扫描',
-  RUN_COUNT: '运行次数',
+  RUN_ID: '运行 ID',
   LOGS_OBTAINED_SUCCESSFULLY: '日志获取成功。',
   'Configuration error': '配置信息错误',
   'branch success': '分支成功',

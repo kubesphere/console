@@ -57,7 +57,7 @@ module.exports = {
   EDIT_PIPELINE: '編輯流水線',
   EDIT_JENKINSFILE: '編輯 Jenkinsfile',
   RUN: '運行',
-  RUN_COUNT: 'Runs',
+  RUN_ID: 'Run ID',
   COMMIT_PL: '提交',
   BRANCH_SI: '分支',
   BRANCH_PL: 'Branches',
