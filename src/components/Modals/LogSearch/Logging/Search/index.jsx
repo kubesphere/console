@@ -317,14 +317,10 @@ export default class LogSearchModal extends React.Component {
       return (
         <span
           dangerouslySetInnerHTML={{
-            __html: markedResult.map((log, index) =>
-              isString(log) ? (
-                log
-              ) : (
-                <span key={index} className={styles.hightLightMatch}>
-                  {log.hightLighted}
-                </span>
-              )
+            __html: markedResult.map(log =>
+              isString(log)
+                ? log
+                : `<span class="${styles.hightLightMatch}">${log.hightLighted}</span>`
             ),
           }}
         />
