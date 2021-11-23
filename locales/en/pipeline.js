@@ -256,7 +256,7 @@ module.exports = {
   REPOSITORY_NAME_EMPTY_TIP: 'Please enter the name of a code repository.',
   RESCAN: 'Rescan',
   RUN: 'Run',
-  RUN_COUNT: 'Runs',
+  RUN_ID: 'Run ID',
   'Run Pipeline': 'Run Pipeline',
   'Save Artifact': 'Save Artifact',
   SCAN_INTERVAL: 'Scan Interval',
