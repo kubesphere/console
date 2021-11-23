@@ -19,14 +19,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
-import { get, set, isEmpty, omit, pick } from 'lodash'
+import { get, set, isEmpty, omit, pick, mergeWith, add } from 'lodash'
 import { Form, Input } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
 
 import QuotaStore from 'stores/quota'
 import WorkSpaceStore from 'stores/workspace.quota'
-import { getLeftQuota } from 'utils/workload'
+import { getLeftQuota, getUsedQuota } from 'utils/workload'
 import { gpuTypeArr } from 'utils'
 
 import Quotas from './Quotas'
@@ -118,23 +118,26 @@ export default class QuotaEditModal extends React.Component {
           cluster,
         }),
       ]).then(() => {
+        const { workspace: wsQuota } = getLeftQuota(
+          get(this.workspaceQuotaStore.detail, 'status.total'),
+          this.store.data
+        )
+        const nsUsed = getUsedQuota(toJS(this.store.data))
         this.setState({
-          leftQuota: getLeftQuota(
-            get(this.workspaceQuotaStore.detail, 'status.total'),
-            this.store.data
-          ),
+          leftQuota: mergeWith(nsUsed, wsQuota, (ns, ws) => {
+            if (!ws) {
+              return ns
+            }
+            return add(ns, ws)
+          }),
         })
       })
     }
   }
 
-  get workspaceQuota() {
-    return get(this.state.leftQuota, 'workspace', {})
-  }
-
   get resourceLimitProps() {
     const { formTemplate } = this.state
-    const workspaceStore = this.workspaceQuota
+    const workspaceStore = this.state.leftQuota
 
     const memoryFormatter = value => {
       if (value > 0 && value < 1) {

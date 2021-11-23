@@ -49,11 +49,14 @@ export default class LimitRange extends Component {
   }
 
   showSetting = () => {
+    const { namespace, workspace } = this.params
     const limitRanges = this.store.list.data
     this.trigger('project.default.resource', {
       ...this.params,
       detail: limitRanges[0],
       isFederated: true,
+      workspace,
+      name: namespace,
       projectDetail: this.props.projectStore.detail,
       success: () => this.setState({ showTip: false }),
     })
