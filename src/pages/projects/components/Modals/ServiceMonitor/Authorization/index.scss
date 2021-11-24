@@ -72,3 +72,11 @@
     color: $blue-color03;
   }
 }
+
+.dirCheck {
+  :global {
+    label.radio-button {
+      height: 47px;
+    }
+  }
+}
