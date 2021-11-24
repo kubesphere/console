@@ -209,7 +209,7 @@ class VolumeSettings extends React.Component {
     this.checkMaxUnavalable(volumes)
   }
 
-  updateVolumeMounts = newVolumeMounts => {
+  updateVolumeMounts = (newVolumeMounts, omitEditVolume) => {
     const containers = get(
       this.fedFormTemplate,
       `${this.prefix}spec.containers`,
@@ -245,6 +245,12 @@ class VolumeSettings extends React.Component {
           )
         } else {
           container.volumeMounts.push(newVolumeMount)
+        }
+
+        if (omitEditVolume && omitEditVolume.name !== existVolume.name) {
+          container.volumeMounts = container.volumeMounts.filter(
+            item => item.name !== omitEditVolume.name
+          )
         }
 
         container.volumeMounts = container.volumeMounts
@@ -411,7 +417,7 @@ class VolumeSettings extends React.Component {
     )
   }
 
-  handleVolume(newVolume = {}, newVolumeMounts = []) {
+  handleVolume(newVolume = {}, newVolumeMounts = [], omitEditVolume) {
     if (!newVolume.uid) {
       newVolumeMounts.forEach(vm => {
         vm.name = newVolume.name
@@ -419,7 +425,7 @@ class VolumeSettings extends React.Component {
     }
 
     this.updateVolumes(newVolume)
-    this.updateVolumeMounts(newVolumeMounts)
+    this.updateVolumeMounts(newVolumeMounts, omitEditVolume)
     this.updateLogConfigs(newVolumeMounts)
 
     this.resetState()
