@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { isEmpty, flatten, uniqBy } from 'lodash'
+import { isEmpty, flatten, uniqBy, isNil } from 'lodash'
 
 import HpaStore from 'stores/workload/hpa'
 
@@ -183,7 +183,8 @@ class ResourceStatus extends React.Component {
     }
 
     const { isLoading } = this.store
-    const { containers = [] } = toJS(this.store.detail)
+    let { containers } = toJS(this.store.detail)
+    containers = isNil(containers) ? [] : containers
     const ports = uniqBy(
       flatten(
         containers.map(container =>
