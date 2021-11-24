@@ -87,4 +87,6 @@ module.exports = {
 
   // CRDs > Details
   PROJECT_DEVOPS_PROJECT: 'Project/DevOps Project',
+  KUBERNETES_DEPLOY_DEPRECATED_TIP:
+    'This step will be deprecated in subsequent versions, and it is recommended to consider other alternatives.',
 }

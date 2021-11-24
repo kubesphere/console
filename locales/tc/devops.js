@@ -96,4 +96,6 @@ module.exports = {
 
   // CRDs > Details
   PROJECT_DEVOPS_PROJECT: 'Project/DevOps Project',
+  KUBERNETES_DEPLOY_DEPRECATED_TIP:
+    '該步驟會在後續版本中棄用，建議考慮其他替代方案。',
 }
