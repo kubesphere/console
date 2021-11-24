@@ -526,6 +526,7 @@ module.exports = {
   VOLUME_SNAPSHOT_PL: 'Volume Snapshots',
   VOLUME_SNAPSHOT_LOW: 'volume snapshot',
   waiting: 'waiting',
+  WAITING: 'Waiting',
   warning: 'warning',
   Warning: 'Warning',
   Workbench: 'Workbench',
