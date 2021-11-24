@@ -132,10 +132,11 @@ const Card = ({ volume, match, isMultiProject }) => {
     </div>
   )
 
+  const titleName = get(volume, 'mountName', volume.name)
   return (
     <List.Item
       icon={icon}
-      title={volume.name}
+      title={titleName}
       titleClass={styles.title}
       description={description}
       extras={mount}
