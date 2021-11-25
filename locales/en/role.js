@@ -86,6 +86,8 @@ module.exports = {
   'Nodes View': 'Node Viewing',
   PIPELINES_MANAGEMENT: 'Pipeline Management',
   PIPELINES_VIEW: 'Pipeline Viewing',
+  PIPELINERUNS_MANAGEMENT: 'PipelineRun Management',
+  PIPELINERUNS_VIEW: 'PipelineRun Viewing',
   PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
   ROLE_NAME_EMPTY_DESC: 'Please enter a role name.',
   'Please specify role authorization': 'Specify the role permissions.',
@@ -235,6 +237,9 @@ module.exports = {
   PIPELINES_MANAGEMENT_DESC:
     'Create, edit, and delete DevOps project pipelines.',
   PIPELINES_VIEW_DESC: 'View DevOps project pipelines and download artifacts.',
+  PIPELINERUNS_MANAGEMENT_DESC:
+    'Create, edit, and delete DevOps project pipelineruns.',
+  PIPELINERUNS_VIEW_DESC: 'View DevOps project pipelineruns.',
   CREDENTIALS_MANAGEMENT_DESC: 'Create, edit, and delete DevOps credentials.',
   CREDENTIALS_VIEW_DESC: 'View and use DevOps credentials.',
   DEVOPS_ROLES_VIEW_DESC: 'View DevOps project roles.',
