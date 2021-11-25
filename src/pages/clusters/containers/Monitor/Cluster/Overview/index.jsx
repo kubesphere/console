@@ -125,12 +125,17 @@ class Overview extends React.Component {
     }) && this.routing.push(`/clusters/${this.cluster}/nodes`)
   }
 
-  handleComponentsClick = () => {
+  handleComponentsClick = (disabled, type) => {
+    if (type === 'kubeSystem') {
+      type = 'kubernetes'
+    }
     globals.app.hasPermission({
       module: 'monitoring',
       action: 'view',
       cluster: this.cluster,
-    }) && this.routing.push(`/clusters/${this.cluster}/components`)
+    }) &&
+      !disabled &&
+      this.routing.push(`/clusters/${this.cluster}/components?type=${type}`)
   }
 
   renderNodeStatus() {
@@ -188,16 +193,14 @@ class Overview extends React.Component {
     ]
 
     return (
-      <div
-        className={classnames(styles.list, styles.service)}
-        onClick={this.handleComponentsClick}
-      >
+      <div className={classnames(styles.list, styles.service)}>
         {components.map(item => (
           <div
             key={item.type}
             className={classnames(styles.item, {
               [styles.disabled]: item.disabled,
             })}
+            onClick={() => this.handleComponentsClick(item.disabled, item.type)}
           >
             <img src={item.icon} />
             {!item.disabled ? (
