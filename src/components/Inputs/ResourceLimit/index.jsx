@@ -522,16 +522,12 @@ export default class ResourceLimit extends React.Component {
     return value > 0 ? `${value} ${unit}` : t('Not Limited')
   }
 
-  renderTip() {
+  renderQuotasTip() {
     const { workspaceLimits: wsL, workspaceRequests: wsR } = this.state
-    const { limitType } = this.props.workspaceLimitProps
     const memoryUnit = this.memoryUnit
     const cpuUnit = this.cpuUnit
 
-    const title =
-      limitType === 'workspace'
-        ? t('WORKSPACE_REMAINING_QUOTAS')
-        : t('PROJECT_REMAINING_QUOTAS')
+    const title = t('AVAILABLE_QUOTAS')
 
     const message = () => (
       <>
@@ -720,7 +716,7 @@ export default class ResourceLimit extends React.Component {
             {supportGpuSelect && this.renderGpuSelect()}
           </Columns>
         </div>
-        {this.ifRenderTip() && this.renderTip()}
+        {this.ifRenderTip() && this.renderQuotasTip()}
         {(cpuError || memoryError) && (
           <Alert
             type="error"
@@ -732,7 +728,7 @@ export default class ResourceLimit extends React.Component {
           <Alert
             type="error"
             className="margin-t12"
-            message={t('REQUEST_EXCEED_WORKSPACE')}
+            message={t('REQUEST_EXCEED_AVAILABLE_QUOTA')}
           />
         )}
       </div>
