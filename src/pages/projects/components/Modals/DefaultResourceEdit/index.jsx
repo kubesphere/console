@@ -24,7 +24,6 @@ import { Modal } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
 import QuotaStore from 'stores/quota'
 import WorkspaceQuotaStore from 'stores/workspace.quota'
-import { toJS } from 'mobx'
 import { cpuFormat, memoryFormat, resourceLimitKey } from 'utils'
 
 export default class DefaultResourceEditModal extends React.Component {
@@ -123,11 +122,9 @@ export default class DefaultResourceEditModal extends React.Component {
           workspace,
           cluster,
         }),
-      ]).then(() => {
-        const workspaceQuota = toJS(
-          get(this.workspaceQuotaStore.detail, 'status.total.hard')
-        )
-        const namespaceQuota = toJS(this.quotaStore.data.hard)
+      ]).then(dataArr => {
+        const workspaceQuota = get(dataArr[1], 'hard')
+        const namespaceQuota = get(dataArr[0], 'data.hard')
         resolve({
           workspaceQuota: this.availableQuota_memory(workspaceQuota),
           namespaceQuota: this.availableQuota_memory(namespaceQuota),

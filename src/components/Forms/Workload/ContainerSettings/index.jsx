@@ -207,11 +207,11 @@ export default class ContainerSetting extends React.Component {
           workspace,
           cluster,
         }),
-      ]).then(() => {
-        const namespaceQuota = get(this.quotaStore.data, 'hard')
+      ]).then(dataArr => {
+        const namespaceQuota = get(dataArr[0], 'data.hard')
         const { namespace: ns, workspace: ws } = getLeftQuota(
-          get(this.workspaceQuotaStore.detail, 'status.total'),
-          this.quotaStore.data
+          dataArr[1],
+          get(dataArr[0], 'data')
         )
         resolve({
           workspaceQuota: ws,

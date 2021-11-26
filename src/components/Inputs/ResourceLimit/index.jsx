@@ -156,9 +156,19 @@ export default class ResourceLimit extends React.Component {
       memoryUnit
     )
 
-    const workspaceLimitMeo = memoryFormat(
+    const workspaceMeoLimit = memoryFormat(
       `${ResourceLimit.getWorkspaceLimitValue(props, 'memory')}Mi`,
       memoryUnit
+    )
+
+    const workspaceCpuRequests = cpuFormat(
+      ResourceLimit.getWorkspaceRequestLimit(props, 'cpu'),
+      cpuUnit
+    )
+
+    const workspaceCpuLimits = cpuFormat(
+      ResourceLimit.getWorkspaceLimitValue(props, 'cpu'),
+      cpuUnit
     )
 
     return {
@@ -171,18 +181,12 @@ export default class ResourceLimit extends React.Component {
         memory: memoryLimits,
       },
       workspaceRequests: {
-        cpu: cpuFormat(
-          ResourceLimit.getWorkspaceRequestLimit(props, 'cpu'),
-          cpuUnit
-        ),
-        memory: isNaN(workspaceReqMeo) ? undefined : workspaceReqMeo,
+        cpu: isNaN(workspaceCpuRequests) ? 'Not Limited' : workspaceCpuRequests,
+        memory: isNaN(workspaceReqMeo) ? 'Not Limited' : workspaceReqMeo,
       },
       workspaceLimits: {
-        cpu: cpuFormat(
-          ResourceLimit.getWorkspaceLimitValue(props, 'cpu'),
-          cpuUnit
-        ),
-        memory: isNaN(workspaceLimitMeo) ? undefined : workspaceLimitMeo,
+        cpu: isNaN(workspaceCpuLimits) ? 'Not Limited' : workspaceCpuLimits,
+        memory: isNaN(workspaceMeoLimit) ? 'Not Limited' : workspaceMeoLimit,
       },
       workspaceGpuLimits: {
         value: ResourceLimit.getWorkspaceGpuLimitValue(props, 'value'),
@@ -246,15 +250,15 @@ export default class ResourceLimit extends React.Component {
   }
 
   static getWorkspaceRequestLimit(props, key) {
-    return get(props, `workspaceLimitProps.requests.${key}`, 0)
+    return get(props, `workspaceLimitProps.requests.${key}`, 'Not Limited')
   }
 
   static getWorkspaceLimitValue(props, key) {
-    return get(props, `workspaceLimitProps.limits.${key}`, 0)
+    return get(props, `workspaceLimitProps.limits.${key}`, 'Not Limited')
   }
 
   static getWorkspaceGpuLimitValue(props, key) {
-    return get(props, `workspaceLimitProps.gpuLimit.${key}`, 0)
+    return get(props, `workspaceLimitProps.gpuLimit.${key}`, 'Not Limited')
   }
 
   cpuFormatter = value => {
@@ -409,8 +413,8 @@ export default class ResourceLimit extends React.Component {
   }
 
   checkNumOutLimit = (num, limit) => {
-    if (limit > 0) {
-      return limit && isFinite(Number(num)) && Number(num) > limit
+    if (limit !== 'Not Limited') {
+      return isFinite(Number(num)) && Number(num) > limit
         ? 'workspaceRequestExceed'
         : ''
     }
@@ -529,7 +533,7 @@ export default class ResourceLimit extends React.Component {
   }
 
   renderLimitTip = (value, unit) => {
-    return value > 0 ? `${value} ${unit}` : t('Not Limited')
+    return value !== 'Not Limited' ? `${value} ${unit}` : t('Not Limited')
   }
 
   renderGpuTip = () => {
@@ -569,11 +573,9 @@ export default class ResourceLimit extends React.Component {
             <span>{t('WS_RESOURCE_REQUESTS')}:</span>
             <span>
               CPU&nbsp;
-              {wsR.cpu}&nbsp;
-              {cpuUnit},&nbsp;
+              {this.renderLimitTip(wsR.cpu, cpuUnit)},&nbsp;
               {t('MEMORY')}&nbsp;
-              {wsR.memory}&nbsp;
-              {memoryUnit}
+              {this.renderLimitTip(wsR.memory, memoryUnit)}
             </span>
           </div>
           <div className={styles.message}>
