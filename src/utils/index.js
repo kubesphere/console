@@ -237,7 +237,9 @@ export const updateLabels = (template, module, value) => {
     set(formTemplate, 'spec.jobTemplate.metadata.labels', value)
   }
 
-  if (['ingresses', 'persistentvolumeclaims'].indexOf(module) === -1) {
+  if (
+    ['ingresses', 'persistentvolumeclaims', 'services'].indexOf(module) === -1
+  ) {
     set(formTemplate, 'spec.template.metadata.labels', value)
   }
 }
