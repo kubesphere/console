@@ -492,7 +492,7 @@ export default class ResourceLimit extends React.Component {
     if (value === '') {
       inputNum = ''
     } else {
-      const number = /^[0-9]*$/.exec(value)
+      const number = /^(0|[1-9][0-9]*)$/.exec(value)
       inputNum = number == null ? get(this.state, 'gpu.value', '') : number[0]
     }
     this.setState(
