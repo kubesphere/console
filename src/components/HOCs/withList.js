@@ -122,12 +122,15 @@ export default function withList(options) {
         }
 
         silent && (this.list.silent = true)
-        await this.store.fetchList({
+        const paramsObj = {
           ...namespaceParams,
           ...this.props.match.params,
-          searchByApp: this.searchByApp,
           ...params,
-        })
+        }
+        if (this.searchByApp) {
+          paramsObj.searchByApp = this.searchByApp
+        }
+        await this.store.fetchList(paramsObj)
         this.list.silent = false
       }
 
