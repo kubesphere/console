@@ -109,6 +109,10 @@ export default function withList(options) {
         }
       }
 
+      get searchByApp() {
+        return options.searchByApp ?? false
+      }
+
       getData = async ({ silent, ...params } = {}) => {
         this.query = params
 
@@ -121,6 +125,7 @@ export default function withList(options) {
         await this.store.fetchList({
           ...namespaceParams,
           ...this.props.match.params,
+          searchByApp: this.searchByApp,
           ...params,
         })
         this.list.silent = false

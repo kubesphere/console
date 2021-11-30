@@ -35,6 +35,7 @@ import Topology from './Topology'
   store: new ServiceStore(),
   module: 'services',
   name: 'SERVICE',
+  searchByApp: true,
 })
 export default class Services extends React.Component {
   state = {
