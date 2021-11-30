@@ -138,6 +138,7 @@ module.exports = {
   NO_LIMIT_TCAP: '不限制',
   'Not Limited': '未限制',
   Cost: '占用',
+  AVAILABLE_QUOTAS: '可用配额',
   PROJECT_REMAINING_QUOTAS: '项目剩余配额',
   WORKSPACE_REMAINING_QUOTAS: '企业空间剩余配额',
   QUOTA_OVERCOST_TIP: '当前资源占用已超过剩余配额',
@@ -192,7 +193,7 @@ module.exports = {
   SELECT_VOLUME_DESC: '选择现有的存储卷以将其挂载到容器。',
 
   REQUEST_EXCCED: '资源预留不能超过资源限制',
-  REQUEST_EXCEED_WORKSPACE: '资源设置不能超过企业空间资源限制。',
+  REQUEST_EXCEED_AVAILABLE_QUOTA: '资源设置不能超过可用资源限制。',
   REQUEST_EXCEED_LIMIT: '资源预留不能超过资源限制。',
 
   WORKLOAD_DESC:
