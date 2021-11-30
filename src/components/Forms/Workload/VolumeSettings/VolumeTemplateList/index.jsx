@@ -61,7 +61,7 @@ export default class VolumeList extends React.Component {
     return value.map(item => {
       const volumeMounts = []
       containers.forEach(container => {
-        if (container.volumeMounts) {
+        if (get(container, 'volumeMounts', false)) {
           const volumeMount = container.volumeMounts.find(
             vm => vm.name === item.metadata.name
           )
