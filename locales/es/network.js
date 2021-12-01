@@ -50,7 +50,7 @@ module.exports = {
     'Asegúrate de que el plugin de red (CNI) utilizado por el clúster sea compatible con <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/" target="_blank">NetworkPolicy</a>. Existen varios plugins de red (CNI) que soportan NetworkPolicy, incluyendo Calico, Cilium, Kube-router, Romana y Weave Net.',
   NETWORK_POLICY_EMP_TITLE: 'Network Isolation Not Enabled',
   NETWORK_POLICY_EMP_DESC:
-    'After the project network access is enabled, other projects will be unable to access the project. But you can allow projects, Services, and external IP addresses to access this project based on your needs.',
+    'After the project network access is enabled, other projects will be unable to access the project. But you can allow projects, services, and external IP addresses to access this project based on your needs.',
   PROJECT_NETWORK_ISOLATION: 'Aislamiento de red de proyecto',
   EXTERNAL_EGRESS_DESC:
     'Pods in the current project are allowed to access the following network segments and ports.',
@@ -79,7 +79,7 @@ module.exports = {
   SELECT_RULE_DIRECTION_TIP: 'Please select a traffic direction.',
   ENTER_VALID_SEGMENT_DESC: 'Please enter a valid network segment.',
   ENTER_VALID_PORT_NUMBER_DESC: 'Please enter a valid port number.',
-  EMPTY_RESOURCE_DESC: 'Please select at least one project or Service.',
+  EMPTY_RESOURCE_DESC: 'Please select at least one project or service.',
   ALLOWLIST_ENTRY: 'Allowlist Entry',
   ALLOWLIST_ENTRY_LOW: 'allowlist entry',
 }

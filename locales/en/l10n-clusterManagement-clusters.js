@@ -18,4 +18,11 @@
 
 module.exports = {
   NODE_COUNT: 'Nodes',
+  ENV_PRODUCTION: 'Production',
+  ENV_DEVELOPMENT: 'Development',
+  ENV_TESTING: 'Testing',
+  ENV_DEMO: 'Demo',
+  ADD_CLUSTER: 'Add Cluster',
+  HOST_CLUSTER_TCAP: 'Host Cluster',
+  HOST_CLUSTER_PL_TCAP: 'Host Clusters',
 }

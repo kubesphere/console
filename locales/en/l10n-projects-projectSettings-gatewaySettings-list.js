@@ -21,7 +21,7 @@ module.exports = {
   // Project Gateway
   // Project Gateway > Enable Gateway
   ENABLE_GATEWAY_DESC:
-    'Enable the gateway controller to forward traffic to different Services based on domain names and paths configured in Routes.',
+    'Enable the gateway controller to forward traffic to different services based on domain names and paths configured in routes.',
   // Project Gateway > Enable Gateway > NodePort
   // Project Gateway > Enable Gateway > LoadBalancer
   // Manage > View Details

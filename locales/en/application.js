@@ -133,16 +133,16 @@ module.exports = {
   LB_RANDOM: 'RANDOM',
 
   APP_WORKLOAD_TYPE_DESC:
-    'Support stateless Services (Deployment) and stateful Services (StatefulSet)',
+    'Support stateless services (deployment) and stateful services (statefulset)',
 
-  TYPE_SERVICE_DEPLOYMENT: 'Type: stateless Service (Deployment)',
-  TYPE_SERVICE_STATEFULSET: 'Type: stateful Service (StatefulSet)',
+  TYPE_SERVICE_DEPLOYMENT: 'Type: stateless service (deployment)',
+  TYPE_SERVICE_STATEFULSET: 'Type: stateful service (statefulset)',
 
   CONNECTION_POOL_TIP:
     'A fixed number of connection objects will be created for the application and stored in the connection pool for reuse. The existing pool is available for each access, and each connection object will be returned to the pool after use.',
 
   POD_ISOLATION_RATIO_DESC:
-    'Maximum % of Pod for the upstream service that can be ejected. It uses up rounding, when set to 13% it will isolate up to 2 instances if 10 instances exist.',
+    'Maximum % of pod for the upstream service that can be ejected. It uses up rounding, when set to 13% it will isolate up to 2 instances if 10 instances exist.',
   BASE_EJECTION_TIME_DESC:
     'Minimum ejection duration. A host will remain ejected for a period equal to the product of minimum ejection duration and the number of times the host has been ejected.',
   CIRCUIT_DESC:

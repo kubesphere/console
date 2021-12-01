@@ -27,7 +27,7 @@ module.exports = {
 
   // Physical Resources
   PHYSICAL_RESOURCES: 'Physical Resources',
-  CRONJOB: 'CronJob',
+  CRONJOB: 'Cronjob',
   CLUSTER_VALUE: 'Cluster: {value}',
 
   // Physical Resources > Select Time Range

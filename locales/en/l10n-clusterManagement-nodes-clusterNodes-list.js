@@ -26,7 +26,7 @@ module.exports = {
   NODE_TYPES_A: 'Nodes are classified into master nodes and worker nodes.',
   WHAT_IS_NODE_TAINTS_Q: 'What are node taints?',
   WHAT_IS_NODE_TAINTS_A:
-    'Taints allow a node to repel certain Pods. Taints and tolerations work together to ensure that Pods are not scheduled onto inappropriate nodes.',
+    'Taints allow a node to repel certain pods. Taints and tolerations work together to ensure that pods are not scheduled onto inappropriate nodes.',
   LEARN_MORE: 'Learn More',
 
   // Node Count
@@ -75,4 +75,11 @@ module.exports = {
   // List > Edit Taints
   DUPLICATE_KEYS: 'The key already exists. Please enter another key.',
   EMPTY_KEY: 'Please enter a key.',
+
+  // List > Add
+  NODE_ROLE_EMPTY_DESC: 'Please set the role of the node in the cluster.',
+  EXTERNAL_IP: 'External IP Address',
+  SSH_KEY_TCAP: 'SSH Key',
+  SSH_KEY_SCAP: 'SSH key',
+  SSH_AUTH_MODE: 'SSH Authentication Mode',
 }

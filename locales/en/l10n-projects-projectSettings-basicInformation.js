@@ -33,7 +33,7 @@ module.exports = {
   // Manage > Edit Information
   // Manage > Edit Project Quotas
   EDIT_PROJECT_QUOTA: 'Edit Project Quota',
-  NUMBER_OF_CRONJOBS: 'Number of CronJobs',
+  NUMBER_OF_CRONJOBS: 'Number of Cronjobs',
   PROJECT_REMAINING_QUOTAS: 'Project Remaining Quotas',
   WORKSPACE_REMAINING_QUOTAS: 'Workspace Remaining Quotas',
   NUMBER_OF_JOBS: 'Number of Jobs',

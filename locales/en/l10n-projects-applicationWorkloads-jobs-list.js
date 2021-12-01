@@ -20,10 +20,10 @@ module.exports = {
   // Banner
   JOB_PL: 'Jobs',
   JOB_DESC:
-    'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
+    'Jobs are used to perform short-lived, one-off tasks. A job creates one or more pods and ensures that a specific number of pods successfully terminate.',
 
   // List
-  JOB_EMPTY_DESC: 'Please create a Job.',
+  JOB_EMPTY_DESC: 'Please create a job.',
   JOB_COMPLETED: 'Completed',
   JOB_FAILED: 'Failed',
   JOB_RUNNING: 'Running',

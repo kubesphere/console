@@ -19,7 +19,7 @@
 module.exports = {
   // Banner
   NETWORK_ISOLATION_DESC:
-    'By configuring network isolation, users can control traffic between Pods within the same cluster and traffic from outside to implement application isolation and enhance application security.',
+    'By configuring network isolation, users can control traffic between pods within the same cluster and traffic from outside to implement application isolation and enhance application security.',
   NETWORK_ISOLATION_Q: 'How do I use network isolation better?',
   NETWORK_ISOLATION_Q1:
     'What are the requirements on the CNI plugin for implementing network isolation?',
@@ -30,26 +30,26 @@ module.exports = {
   PROJECT_NETWORK_ISOLATION: 'Project network isolation',
   NETWORK_POLICY_EMP_TITLE: 'Network Isolation Not Enabled',
   NETWORK_POLICY_EMP_DESC:
-    'After the project network access is enabled, other projects will be unable to access the project. But you can allow projects, Services, and external IP addresses to access this project based on your needs.',
+    'After the project network access is enabled, other projects will be unable to access the project. But you can allow projects, services, and external IP addresses to access this project based on your needs.',
 
   // Network Isolation > Internal Allowlist
   INTERNAL_ALLOWLIST: 'Internal Allowlist',
   INTERNAL_ALLOWLIST_TIP:
-    'Add projects and Services in the cluster to the allowlist.',
+    'Add projects and services in the cluster to the allowlist.',
   INTERNAL_EGRESS_DESC:
-    'Pods in the current project are allowed to access Pods of the following Services and projects.',
+    'Pods in the current project are allowed to access pods of the following services and projects.',
   INTERNAL_INGRESS_DESC:
-    'Pods in the current project are allowed to be accessed by Pods of the following Services and projects.',
+    'Pods in the current project are allowed to be accessed by pods of the following services and projects.',
   INTERNAL_ALLOWLIST_DESC:
-    'Allow Pods in the current project to communicate with Pods in other projects of the current cluster.',
-  EMPTY_RESOURCE_DESC: 'Please select at least one project or Service.',
+    'Allow pods in the current project to communicate with pods in other projects of the current cluster.',
+  EMPTY_RESOURCE_DESC: 'Please select at least one project or service.',
 
   // Network Isolation > External Allowlist
   EXTERNAL_ALLOWLIST: 'External Allowlist',
   EXTERNAL_ALLOWLIST_TIP:
     'Add network segments and ports outside the cluster to the allowlist.',
   EXTERNAL_ALLOWLIST_DESC:
-    'Allow Pods in the current project to communicate with specific network segments and ports outside the cluster.',
+    'Allow pods in the current project to communicate with specific network segments and ports outside the cluster.',
   NETWORK_SEGMENT_EXAMPLE: 'Example: 10.0.0.0',
   PORT_EXAMPLE: 'Example: 80',
   EXTERNAL_EGRESS_DESC:

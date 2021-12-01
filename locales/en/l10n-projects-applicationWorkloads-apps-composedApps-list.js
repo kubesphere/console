@@ -34,6 +34,7 @@ module.exports = {
 
   // List > Create > Edit YAML
   YAML_FILE: 'YAML File',
+  CREATE_BY_YAML_DESC: 'Customize the settings in the YAML file.',
 
   // List > Create > Basic Information
   APPLICATION_GOVERNANCE: 'Application Governance',
@@ -44,11 +45,11 @@ module.exports = {
   APP_BASIC_INFORMATION_DESC: 'Set the basic information about the app.',
 
   // List > Create > Service Settings
-  APP_SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful Service.',
-  STATEFUL_SERVICE_DESC: 'Create a Service and a StatefulSet.',
-  STATELESS_SERVICE_DESC: 'Create a Service and a Deployment.',
+  APP_SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful service.',
+  STATEFUL_SERVICE_DESC: 'Create a service and a statefulset.',
+  STATELESS_SERVICE_DESC: 'Create a service and a Deployment.',
   APPLICATION_SERVICE_DESC:
-    'Add stateful or stateless Services to the app based on your requirements.',
+    'Add stateful or stateless services to the app based on your requirements.',
 
   // List > Create > Route Settings
   ROUTE_SETTINGS: 'Route Settings',

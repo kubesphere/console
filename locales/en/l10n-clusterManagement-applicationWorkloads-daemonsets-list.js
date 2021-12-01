@@ -28,13 +28,13 @@ module.exports = {
   MAX_UNAVAILABLE_PODS: 'Maximum Unavailable Pods',
   ROLLING_UPDATE_SETTINGS: 'Rolling Update Settings',
   MAX_UNAVAILABLE_PODS_DESC:
-    'Maximum number or percentage of unavailable Pod replicas allowed during the update process.',
+    'Maximum number or percentage of unavailable pod replicas allowed during the update process.',
   MIN_READY_SECONDS_DESC:
-    'Minimum stable running time required for a Pod replica to be considered ready.',
+    'Minimum stable running time required for a pod replica to be considered ready.',
   MIN_READY_SECONDS_EMPTY:
-    'Please set the minimum stable running time required for a Pod replica to be considered ready.',
+    'Please set the minimum stable running time required for a pod replica to be considered ready.',
   MAX_UNAVAILABLE_EMPTY:
-    'Please set the maximum number or percentage of unavailable Pod replicas allowed during the update process.',
+    'Please set the maximum number or percentage of unavailable pod replicas allowed during the update process.',
 
   // List > Create > Pod Settings > Add Container > Health Check > Liveness Check > HTTP Request
   FAILURE_THRESHOLD: 'Failure Threshold',

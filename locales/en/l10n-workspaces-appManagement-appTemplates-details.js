@@ -87,7 +87,7 @@ module.exports = {
   VERSION_SUBMIT_TEST_STEPS:
     '1. All dependent charts have been submitted.<br/>' +
     '2. The static analysis has been passed (helm lint).<br/>' +
-    '3. The app can be started using default values (helm install). All Pods are in running state and all Services have at least one endpoint.<br/>' +
+    '3. The app can be started using default values (helm install). All pods are in running state and all services have at least one endpoint.<br/>' +
     '4. The images used have no security vulnerabilities.<br/>' +
     '5. Upgrade is supported.<br/>' +
     '6. Custom application configuration is supported.<br/>' +

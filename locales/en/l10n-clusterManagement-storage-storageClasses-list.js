@@ -64,7 +64,7 @@ module.exports = {
 
   // List > Create > > GlusterFS > Storage Class Settings
   GLUSTERFS_RESTURL_DESC:
-    'Heketi REST URL that provisions volumes, for example, <Heketi Service cluster IP Address>:<Heketi Service port number>.',
+    'Heketi REST URL that provisions volumes, for example, <Heketi service cluster IP address>:<Heketi service port number>.',
   GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
   GLUSTERFS_RESTAUTHENABLED_DESC:
     'Gluster enables authentication to the REST server.',
@@ -97,7 +97,7 @@ module.exports = {
   CEPHRBD_USERID_DESC:
     'Ceph client ID that is used to map the RBD image. Default is the same as adminId.',
   CEPHRBD_USER_SECRET_NAME_DESC:
-    'The name of Ceph Secret for userId to map RBD image.',
+    'The name of Ceph secret for userId to map RBD image.',
   CEPHRBD_USER_SECRET_NAMESPACE_DESC: 'The namespace for userSecretName',
   CEPHRBD_FS_TYPE_DESC: 'File system type of the storage volume.',
   CEPHRBD_IMAGE_FORMAT_DESC:

@@ -27,9 +27,9 @@ module.exports = {
   COLLECT_LOGS_ON_VOLUMES: 'Collect Logs on Volumes',
   DISABLE_LOG_COLLECTION: 'Disable Log Collection',
   DISABLE_LOG_COLLECTION_TIP:
-    'Are you sure you want to disable log collection? You need to restart the Pod replicas to make the change take effect.',
+    'Are you sure you want to disable log collection? You need to restart the pod replicas to make the change take effect.',
   LOG_COLLECTION_ENABLED_DESC:
-    'After this function is enabled or disabled, you need to restart the Pod replicas to make the change take effect.',
+    'After this function is enabled or disabled, you need to restart the pod replicas to make the change take effect.',
   DISABLED: 'Disabled',
   ENABLED: 'Enabled',
 }

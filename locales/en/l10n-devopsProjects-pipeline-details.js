@@ -98,7 +98,7 @@ module.exports = {
   <li>Replica Set</li>
   <li>
   Replication
-  Controller (rolling updates are not supported, and use Deployment if you want to use rolling updates)
+  Controller (rolling updates are not supported, and use deployment if you want to use rolling updates)
   </li>`,
   STAGE: 'Stage',
 

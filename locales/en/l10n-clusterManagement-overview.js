@@ -18,8 +18,12 @@
 
 module.exports = {
   // Banner
+  HOST_CLUSTER: 'Host cluster',
+
   // Baisc Information
   PROVIDER: 'Provider',
+  KUBERNETES_VERSION: 'Kubernetes version',
+  KUBESPHERE_VERSION: 'KubeSphere version',
 
   // System Components
   // Resource Usage
@@ -32,8 +36,13 @@ module.exports = {
     'File used to configure the access information about the current cluster.',
 
   // Kubernetes Status
+  KUBERNETES_STATUS: 'Kubernetes Status',
   API_REQUESTS_PER_SECOND: 'API requests per second',
   API_REQUEST_LATENCY: 'API request latency',
+  SCHEDULING_OPERATIONS: 'Scheduling operations',
+  SCHEDULING_OPERATION: 'Scheduling operation',
+  SCHEDULING_FAILURES: 'Scheduling failures',
+  SCHEDULING_FAILURE: 'Scheduling failure',
 
   // Nodes
   VIEW_MORE: 'View More',

@@ -31,7 +31,7 @@ module.exports = {
   CLUSTER_NODE_CONSUMPTION_DESC:
     'Consumption of resources such as CPU, memory, and volumes of cluster <strong>nodes</strong>',
   CLUSTER_POD_CONSUMPTION_DESC:
-    'Consumption of CPU and memory of <strong>Pods</strong> in nodes',
+    'Consumption of CPU and memory of <strong>pods</strong> in nodes',
   VIEW: 'View',
 
   // Workspace Recource Consumption
@@ -43,5 +43,5 @@ module.exports = {
   WORKSPACE_PROJECT_CONSUMPTION_DESC:
     'Consumption of resources such as CPU, memory, and volumes of <strong>projects</strong> in workspaces',
   PROJECT_CONSUMPTION_DESC:
-    'Consumption of CPU and memory of <strong>apps</strong>, <strong>Services</strong> and <strong>Pods</strong> in projects',
+    'Consumption of CPU and memory of <strong>apps</strong>, <strong>services</strong> and <strong>pods</strong> in projects',
 }

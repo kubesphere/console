@@ -24,7 +24,7 @@ module.exports = {
   // Cluster Gateway > Enable Gateway
   ENABLE_GATEWAY: 'Enable Gateway',
   GATEWAY_TRACING_TIP:
-    'If Routes cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the Route.',
+    'If routes cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the route.',
 
   // Cluster Gateway > Manage > View Details
   VIEW_DETAILS: 'View Details',

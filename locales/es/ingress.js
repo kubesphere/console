@@ -55,7 +55,7 @@ module.exports = {
   RULES: 'Reglas',
   SET_ROUTING_RULES: 'Establecer regla de ruta',
   SPECIFY_DOMAIN_TCAP: 'Especificar dominio',
-  UNABLE_TO_ACCESS: 'Unable to access Service',
+  UNABLE_TO_ACCESS: 'Unable to access service',
   ROUTE_DESC:
     'Una ruta proporciona una forma de agregar servicios, y puede exponer los servicios internos del clúster al exterior a través de una dirección IP accesible desde el exterior.',
   ROUTE_EMPTY_DESC:
