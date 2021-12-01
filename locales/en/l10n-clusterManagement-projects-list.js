@@ -66,4 +66,6 @@ module.exports = {
     'Enter the {type} name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   DELETE_RESOURCE_TYPE_DESC_PL:
     'Enter the {type} names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
+  DELETE_RESOURCE_TYPE_DESC_GW:
+    'Enter the {type} names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 }

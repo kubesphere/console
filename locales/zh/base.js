@@ -479,6 +479,8 @@ module.exports = {
     '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
   DELETE_RESOURCE_TYPE_DESC_PL:
     '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
+  DELETE_RESOURCE_TYPE_DESC_GW:
+    '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
   DELETE_APP_RESOURCE_TIP:
     '资源被应用 <strong>{app}</strong> 管理, 删除后可能影响此应用的正常使用。请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
   STOP_APP_RESOURCE_TIP:
