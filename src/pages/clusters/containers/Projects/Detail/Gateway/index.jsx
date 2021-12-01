@@ -60,21 +60,14 @@ export default class Gateway extends React.Component {
     })
   }
 
-  getHostGateway = () => {
-    return this.store.getGateway({ cluster: this.cluster })
-  }
-
   getProjectGateway = () => {
     const params = { ...this.props.match.params }
-    return this.store.getGateway({ ...params, cluster: this.cluster })
+    return this.store.getGatewayByProject({ ...params, cluster: this.cluster })
   }
 
   getInitGateway = async () => {
     this.isLoading = true
-    const dataList = await Promise.all([
-      this.getHostGateway(),
-      this.getProjectGateway(),
-    ])
+    const dataList = await this.getProjectGateway()
     this.gatewayList = dataList
     this.isLoading = false
   }
@@ -127,9 +120,9 @@ export default class Gateway extends React.Component {
       return this.renderEmpty()
     }
 
-    return this.gatewayList.map((item, index) => {
+    return this.gatewayList.map((item, index, arr) => {
       const isCluster = index === 0
-      return item ? (
+      return (
         <GatewayCard
           key={index}
           type={isCluster ? 'cluster' : 'project'}
@@ -145,8 +138,9 @@ export default class Gateway extends React.Component {
           }
           prefix={isCluster ? '' : this.prefix}
           renderOperations={url => this.renderOperations(url)}
+          gatewayList={toJS(arr)}
         />
-      ) : null
+      )
     })
   }
 

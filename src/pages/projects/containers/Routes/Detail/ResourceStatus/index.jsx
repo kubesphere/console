@@ -46,22 +46,15 @@ class ResourceStatus extends React.Component {
     this.getInitGateway(detail)
   }
 
-  getHostGateway = detail => {
-    return this.gatewayStore.getGateway({ cluster: detail.cluster })
-  }
-
   getProjectGateway = detail => {
-    return this.gatewayStore.getGateway({
+    return this.gatewayStore.getGatewayByProject({
       namespace: detail.namespace,
       cluster: detail.cluster,
     })
   }
 
   getInitGateway = async detail => {
-    const dataList = await Promise.all([
-      this.getHostGateway(detail),
-      this.getProjectGateway(detail),
-    ])
+    const dataList = await this.getProjectGateway(detail)
     const gateway = dataList[1] || dataList[0]
     this.setState({ gateway })
   }

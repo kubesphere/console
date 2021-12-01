@@ -16,16 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import classNames from 'classnames'
+import { ReactComponent as AppGoverIcon } from 'assets/app_gover.svg'
 import { Button, Dropdown, Menu, Icon, Tooltip } from '@kube-design/components'
 import { Panel } from 'components/Base'
 import { getLocalTime } from 'utils'
+import classNames from 'classnames'
+import { isEmpty, isArray } from 'lodash'
 
-import { ReactComponent as AppGoverIcon } from 'assets/app_gover.svg'
 import { trigger } from 'utils/action'
 import { CLUSTER_PROVIDERS } from 'utils/constants'
 import GatewayEmpty from '../GatewayEmpty'
@@ -53,7 +53,7 @@ class GatewayCard extends React.Component {
   }
 
   get canEdit() {
-    return !this.props.actions.includes('manage')
+    return this.props.actions && !this.props.actions.includes('manage')
   }
 
   get cluster() {
@@ -64,6 +64,7 @@ class GatewayCard extends React.Component {
 
   get itemActions() {
     const { type } = this.props
+
     const baseOpt = [
       {
         key: 'view',
@@ -245,6 +246,12 @@ class GatewayCard extends React.Component {
 
     const lbIcon = lb && CLUSTER_PROVIDERS.find(item => item.value === lb).icon
 
+    const isClusterPermission =
+      globals.app.hasPermission({
+        module: 'clusters',
+        action: 'view',
+      }) && this.props.type === 'cluster'
+
     return [
       [
         {
@@ -267,7 +274,7 @@ class GatewayCard extends React.Component {
           component: renderOperations ? (
             renderOperations({
               url: this.linkUrl,
-              disabled: isEmpty(createTime),
+              disabled: !isClusterPermission || isEmpty(createTime),
             })
           ) : (
             <Dropdown
@@ -411,12 +418,14 @@ class GatewayCard extends React.Component {
 
   render() {
     const { component, namespace } = this.props.match.params
-    const { type, title } = this.props
-
+    const { type, title, gatewayList } = this.props
+    const hasClusterGateway =
+      isArray(gatewayList) && gatewayList[0] && !gatewayList[1]
     return (
       <div>
         {this.isEmptyData ? (
-          namespace && type === 'cluster' ? null : (
+          (namespace && type === 'cluster') ||
+          (hasClusterGateway && namespace && type === 'project') ? null : (
             <>
               {title}
               <GatewayEmpty

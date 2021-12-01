@@ -107,6 +107,36 @@ export default class Gateway extends Base {
   }
 
   @action
+  async getGatewayByProject(params) {
+    this.gateway.isLoading = true
+    const url = this.gatewayUrl(params)
+
+    const result = await request.get(url, null, null, () => {})
+    const dataList = []
+
+    for (let i = 0; i < 2; i++) {
+      const data =
+        result && result[i] ? ObjectMapper.gateway(result[i]) : undefined
+      dataList.push(data)
+    }
+
+    let detailGateway = dataList[0]
+
+    if (get(detailGateway, 'name') !== 'kubesphere-router-kubesphere-system') {
+      const temp = dataList[1]
+      dataList[0] = temp
+      dataList[1] = detailGateway
+    }
+
+    detailGateway = dataList[1] || dataList[0]
+
+    this.detail = detailGateway
+    this.gateway.data = detailGateway
+    this.gateway.isLoading = false
+    return dataList
+  }
+
+  @action
   async addGateway(params, data) {
     return this.submitting(request.post(this.gatewayeditUrl(params), data))
   }

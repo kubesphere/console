@@ -56,23 +56,16 @@ export default class ClusterService extends Component {
     this.getInitGateway()
   }
 
-  getHostGateway = () => {
-    return this.gatewayStore.getGateway({ cluster: this.cluster })
-  }
-
   getProjectGateway = () => {
     const { namespace } = this.props.detail
-    return this.gatewayStore.getGateway({
+    return this.gatewayStore.getGatewayByProject({
       namespace,
       cluster: this.cluster,
     })
   }
 
   getInitGateway = async detail => {
-    const dataList = await Promise.all([
-      this.getHostGateway(detail),
-      this.getProjectGateway(detail),
-    ])
+    const dataList = await this.getProjectGateway(detail)
     const gateway = dataList[1] || dataList[0]
     this.setState({ gateway })
   }
