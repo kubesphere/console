@@ -178,7 +178,7 @@ module.exports = {
 
   // Log Collection > Details
   ADDRESS: '地址',
-  CHANGE_STATUS_LOW: '更改状态',
+  CHANGE_STATUS_SCAP: '更改状态',
   EVENTS: '事件',
   SELECT_STATUS_TIP: '选择一个状态',
 

@@ -192,8 +192,8 @@ class BaseInfo extends React.Component {
       {
         name:
           metrics.workspace_member_count === '1'
-            ? t('WS_MEMBER_LOW')
-            : t('WS_MEMBER_LOW_PL'),
+            ? t('WS_MEMBER_SCAP')
+            : t('WS_MEMBER_SCAP_PL'),
         icon: 'human',
         value: metrics.workspace_member_count,
       },

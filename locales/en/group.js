@@ -17,29 +17,6 @@
  */
 
 module.exports = {
-  ADD_MEMBER_TIP_SI:
-    'Are you sure you want to assign the user to the department <strong>{group}</strong>?',
-  ADD_MEMBER_TIP_PL:
-    'Are you sure you want to assign the users to the department <strong>{group}</strong>?',
   principal: 'principal',
-  CREATE_DEPARTMENT: 'Create Department',
-  NO_DEPARTMENT_TIP:
-    'No department available. Please create a department on the right.',
-  WORKSPACE_ROLE: 'Workspace Role',
-  WORKSPACE_MEMBER_EMPTY_DESC: 'Please invite a user to the workspace.',
-  GROUP_WORKSPACE_ROLE_DESC:
-    'The workspace role will be assigned to all members in the department.',
-  PROJECT_ROLE: 'Project Role',
-  ADD_PROJECT: 'Add Project',
   'project roles': 'project roles',
-  DEVOPS_PROJECT_ROLE: 'DevOps Project Role',
-  DEVOPS_PROJECT_ROLE_SCAP: 'DevOps project role',
-  ADD_DEVOPS_PROJECT: 'Add DevOps Project',
-  SELECT_ROLE_TIP: 'Please select a role.',
-  DEPARTMENT: 'Department',
-
-  DELETE_GROUP_TIP:
-    'Are you sure you want to delete the department <strong>{group_name}</strong>? The associated roles will be unbound from the users.',
-  DELETE_PARENT_GROUP_TIP:
-    'Are you sure you want to delete the department <strong>{group_name}</strong>? Its subdepartments will also be deleted and the associated roles will be unbound from the users.',
 }

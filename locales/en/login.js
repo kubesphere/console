@@ -22,7 +22,7 @@ module.exports = {
   'Username or Email': 'Username or Email',
   Captcha: 'Captcha',
   'User does not exist': 'User does not exist',
-  INCORRECT_USERNAME_OR_PASSWORD: 'Incorrect username or password.',
+
   'Unable to access the backend services':
     'Unable to access the backend services',
   'Unable to access the api server': 'Unable to access the api server',
@@ -33,14 +33,9 @@ module.exports = {
   Reload: 'Reload',
   'Reload Captcha': 'Reload Captcha',
 
-  INTERNAL_SERVER_ERROR_TIP:
-    'An unepected error seems to have occurred. Please refresh your page.',
   'Too many failed login attempts, please wait!':
     'Too many failed login attempts, please wait!',
-  LOG_IN_WITH_TITLE: 'Log in with {title}',
 
-  INPUT_USERNAME_OR_EMAIL_TIP: 'Please enter your username or email.',
-  PASSWORD_EMPTY_DESC: 'Please set a password.',
   'Please input captch': 'Please enter the captcha.',
   'Please confirm your account info': 'Please confirm your account information',
   'Please input username': 'Please enter your username.',
@@ -51,10 +46,4 @@ module.exports = {
 
   'Your password must meet the following requirements':
     'Complexity Requirements',
-
-  CHANGE_PASSWORD_TIP:
-    'Since you are logging in for the first time, please reset your password.',
-
-  // Login
-  LOG_IN: 'Log In',
 }

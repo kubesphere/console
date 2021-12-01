@@ -259,7 +259,7 @@ export default class UserSettingModal extends React.Component {
         {onCancel && <Button onClick={this.handlePrev}>{t('PREVIOUS')}</Button>}
         {onSave && (
           <Button type="control" onClick={this.handleSubFormSave}>
-            {t('SAVE')}
+            {t('OK')}
           </Button>
         )}
         {isEmpty(subRoute) && (

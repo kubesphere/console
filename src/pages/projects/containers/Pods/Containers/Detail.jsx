@@ -120,7 +120,7 @@ export default class ContainerDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('APPLICATION'),
+        name: t('APP'),
         value: detail.app,
       },
       {

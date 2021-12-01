@@ -118,7 +118,7 @@ module.exports = {
   UPLOAD_NEW_VERSION: '上传新版本',
   UPLOAD_NEW_VERSION_DESC: '上传应用模板的新版本。',
   APP_VERSION_SCAP: '应用版本',
-  UPDATE_TIME_LOW: '更新时间',
+  UPDATE_TIME_SCAP: '更新时间',
   TEST_INSTALLATION: '测试安装',
   SUBMIT_FOR_RELEASE: '提交发布',
   VERSION_INFO: '版本信息',

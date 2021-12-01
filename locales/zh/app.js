@@ -66,7 +66,6 @@ module.exports = {
   APP_ICON_SIZE: '大小：96x96 像素',
   'Start editing': '开始编辑',
   File: '文件',
-  PLATFORM_APP_STORE_MANAGEMENT: '平台级应用商店管理',
 
   APP_STORE_DESC:
     '管理应用商店中的应用。您可以查看应用的信息并上架或下架应用。',
@@ -133,7 +132,6 @@ module.exports = {
   'Submit Successfully': '提交成功。',
   'Cancel Successfully': '撤消成功',
   'Release Successfully': '发布成功',
-  PASS_SUCCESSFUL: '通过成功。',
   REJECT_SUCCESSFUL: '拒绝成功。',
   'Suspend Successfully': '下架成功',
   'Recover Successfully': '上架成功',
@@ -163,7 +161,7 @@ module.exports = {
   FILE_MAX_PACKAGE: '配置包大小不能超过 2M',
   FILE_MAX_ICON: '图标大小不能超过 20KB',
   FILE_MAX_SIZE_ICON: '图标的最大尺寸为 96x96 像素。',
-  FILE_MAX_SCREENSHOTS: '（每张图片大小不能超过 2 MB。）',
+  FILE_MAX_SCREENSHOTS: '截图大小不能超过 2 MB。',
   UPLOAD_PACKAGE_OK_NOTE: '该版本已存在，请上传其他版本。',
   'Delete picture': '删除图片',
   'Re-upload': '重新上传',
@@ -219,7 +217,7 @@ module.exports = {
 
   APP_CATE_UNCATEGORIZED: '未分类',
 
-  MISS_FILE_NOTE: '文件{file}未发现',
+  MISS_FILE_NOTE: '未找到文件 {file}。',
 
   'Please select a project to deploy': '请选择项目部署',
   WORKSPACE_EMPTY_DESC: '请选择企业空间',
@@ -254,7 +252,7 @@ module.exports = {
   PENDING_REVIEW: '待处理',
   COMPLETE_REVIEW: '已处理',
   REJECT: '拒绝',
-  PASS: '通过',
+  RELEASE: '发布',
   INTRODUCTION: '介绍',
   UPDATE_LOG: '更新日志',
   SERVICE_PROVIDER_WEBSITE: '服务商网站',
@@ -283,7 +281,7 @@ module.exports = {
   APP_NOTE: '提示',
 
   // App Templates > Details
-  SERVICE_PROVIDER_WEBSITE_SCAP: '服务商网站',
+  SERVICE_PROVIDER_WEBSITE_TCAP: '服务商网站',
 
   // App Templates
   FILE: '文件',
@@ -306,7 +304,7 @@ module.exports = {
   RELEASE_TO_STORE: '发布到商店',
   AUDIT_EMPTY_DESC: '未发现应用审核记录。',
   APP_STATUS_SUBMITTED: '已提交',
-  APP_STATUS_PASSED: '已通过',
+  APP_STATUS_PASSED: '已发布',
   APP_STATUS_SUSPENDED: '已下架',
   APP_STATUS_REJECTED: '已拒绝',
   APP_STATUS_ACTIVE: '已上架',

@@ -64,7 +64,7 @@ export default class AppBase extends React.PureComponent {
           <dd>{app.app_id || '-'}</dd>
           {!isEmpty(maintainers) && (
             <>
-              <dt>{t('MAINTAINERS')}</dt>
+              <dt>{t('MAINTAINER_COLON')}</dt>
               <dd>{maintainers.join('、')}</dd>
             </>
           )}

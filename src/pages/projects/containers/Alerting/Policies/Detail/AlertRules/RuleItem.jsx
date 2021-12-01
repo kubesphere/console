@@ -46,7 +46,7 @@ export default class RuleItem extends React.Component {
 
     return (
       <div className={styles.item}>
-        <Text title={target} description={t('MONITORING_TARGETS_LOW')} />
+        <Text title={target} description={t('MONITORING_TARGETS_SCAP')} />
         <Text
           title={
             <span>
@@ -55,7 +55,7 @@ export default class RuleItem extends React.Component {
               {condtion}
             </span>
           }
-          description={t('ALERTING_RULE_LOW')}
+          description={t('ALERTING_RULE_SCAP')}
         />
       </div>
     )

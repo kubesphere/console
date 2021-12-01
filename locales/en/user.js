@@ -19,7 +19,7 @@
 module.exports = {
   'A built-in cluster administrator': 'A built-in cluster administrator',
   Accounts: 'Accounts',
-  CREATE_USER: 'Create User',
+
   'At least 1 number': 'At least 1 number',
   'At least 1 uppercase and lowercase letter':
     'At least 1 uppercase letter and 1 lowercase letter',
@@ -29,62 +29,33 @@ module.exports = {
     'Avoid using weak passwords and setting the same password for multiple accounts.',
   'Change Password': 'Change Password',
   'Create User': 'Create User',
-  CURRENT_PASSWORD: 'Current Password',
-  EDIT_USER: 'Edit User',
-  EMAIL: 'Email',
-  EMAIL_EXISTS:
-    'The email address already exists. Please enter another email address.',
-  USERNAME_INVALID: 'Invalid username. {message}',
+
   'Last Login Time': 'Last Login',
   'Login History': 'Login History',
   'New Password': 'New Password',
-  NOT_LOGIN_YET: 'Not logged in yet',
+
   'Edit User': 'Edit Account',
   Email: 'Email',
   'Email exists': 'The email already exists.',
   'Invalid user name': 'Invalid username. {message}',
   NOT_LOGGED_IN: 'Not logged in',
   'Password length is at least 6 characters': '6 to 64 characters',
-  PASSWORD_SETTINGS: 'Password Settings',
   'Password Strength': 'Password Strength',
-  ENTER_CURRENT_PASSWORD_TIP: 'Please enter the current password.',
-  EMAIL_EMPTY_DESC: 'Please enter an email address.',
-  USERNAME_EMPTY_DESC: 'Please enter a username.',
+
   'Please repeat the new password': 'Enter the new password again.',
   'Please select role': 'Select a role.',
-  CONFIRM_PASSWORD: 'Confirm Password',
-  PASSWORD_NOT_SAME_DESC: 'New Password and Confirm Password must be the same.',
+
   Time: 'Time',
-  TIME: 'Time',
+
   'Unable to delete itself': 'Unable to delete itself.',
   User: 'User',
-  USER: 'User',
-  USER_LOW: 'user',
-  USER_EMPTY_DESC: 'Please create a user.',
+
   'User Management': 'User Management',
-  USERNAME_EXISTS:
-    'The username already exists. Please enter another username.',
+
   users: 'users',
-  ENTER_CURRENT_PASSWORD_DESC:
-    'To change the password, you must first enter the current password.',
 
   user_active: 'Active',
-  USER_ACTIVE: 'Active',
-  USER_AUTHLIMITEXCEEDED: 'Login restricted',
-  USER_PENDING: 'Pending',
-  USER_DISABLED: 'Disabled',
-  USERNAME_DESC:
-    'The username can contain only lowercase letters, numbers, hyphens (-), and dots (.), and must start and end with a lowercase letter or number. The maximum length is 32 characters.',
-  EMAIL_DESC:
-    'The email address can be used to log in to the KubeSphere web console.',
-  USER_SETTING_EMAIL_DESC:
-    'The email address can be used to log in to the KubeSphere web console.',
-  PASSWORD_DESC:
-    'The password must contain at least one number, one lowercase letter, and one uppercase letter. The length must be 6 to 64 characters.',
-  PASSWORD_INVALID_DESC:
-    'Invalid password. The password must contain at least one number, one lowercase letter, and one uppercase letter. The length must be 6 to 64 characters.',
-  PLATFORM_ROLE_DESC: 'Set the role of the user on the KubeSphere platform.',
-  USER_DESC: 'Manage users and their roles.',
+
   USER_CREATE_DESC:
     'This module allows the system admin to manage accounts, such as creating/updating/reading/deleting an account. The admin can also manage the role of each account. Users can log in the platform through their account name or email address.',
   ROLE_BASEINFO_DESC: '',
@@ -97,18 +68,4 @@ module.exports = {
     'This module allows you to manage the access of users within a cluster.',
 
   // Users > Details
-  SOURCE_IP_ADDRESS: 'Source IP Address',
-  LOGIN_HISTORY: 'Login History',
-  NO_LOGIN_HISTORY: 'No login history is found.',
-  CHANGE_PASSWORD: 'Change Password',
-  SUCCESSFUL: 'Successful',
-  FAILED: 'Failed',
-  NEW_PASSWORD: 'New Password',
-  CONFIRM_PASSWORD_TIP: 'Please enter the new password again.',
-  LANGUAGE: 'Language',
-  USER_SETTINGS: 'User Settings',
-  LOG_OUT: 'Log Out',
-  ABOUT: 'About',
-  USERNAME_OR_EMAIL: 'Username or Email',
-  WELCOME: 'Welcome',
 }
