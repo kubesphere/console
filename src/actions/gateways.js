@@ -78,6 +78,12 @@ export default {
   },
   'gateways.delete': {
     on({ store, resource, detail, cluster, namespace, success, ...props }) {
+      const desc = resource
+        ? t.html('DELETE_RESOURCE_TYPE_DESC_GW', {
+            resource,
+            type: t('GATEWAY_LOW'),
+          })
+        : t('DISABLE_GATEWAY_TIP')
       const modal = Modal.open({
         onOk: () => {
           store
@@ -95,7 +101,7 @@ export default {
         store,
         modal: DeleteModal,
         title: t('DISABLE_GATEWAY'),
-        desc: t('DISABLE_GATEWAY_TIP'),
+        desc,
         type: 'GATEWAY',
         resource,
         cluster,
