@@ -52,10 +52,10 @@ export default class Routers extends React.Component {
 
   getGateway = async () => {
     const { cluster, namespace } = this.props.match.params
-    const [clusterGateway, projectGateway] = await Promise.all([
-      this.gatewayStore.getGateway({ cluster }),
-      this.gatewayStore.getGateway({ cluster, namespace }),
-    ])
+    const [
+      clusterGateway,
+      projectGateway,
+    ] = await this.gatewayStore.getGatewayByProject({ cluster, namespace })
     this.setState({ clusterGateway, projectGateway })
   }
 
