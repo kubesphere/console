@@ -186,7 +186,7 @@ export default class UploadInfo extends Component {
             {packageName}
             {canEdit && (
               <label className={styles.edit} onClick={this.onUploadClick}>
-                「{t('UPLOAD')}」
+                {t('UPLOAD')}
               </label>
             )}
           </div>

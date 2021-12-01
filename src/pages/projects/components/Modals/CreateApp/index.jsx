@@ -193,18 +193,14 @@ export default class ServiceDeployAppModal extends React.Component {
   async fetchData() {
     const { cluster, namespace } = this.props
 
-    const getHostGateway = () => {
-      return this.gatewayStore.getGateway({ cluster })
-    }
-
     const getProjectGateway = () => {
-      return this.gatewayStore.getGateway({
+      return this.gatewayStore.getGatewayByProject({
         namespace,
         cluster,
       })
     }
 
-    const dataList = await Promise.all([getHostGateway(), getProjectGateway()])
+    const dataList = await getProjectGateway()
     const gateway = dataList[1] || dataList[0]
     const isGovernance = !!(this.serviceMeshEnable && gateway.serviceMeshEnable)
 

@@ -170,7 +170,7 @@ export default class FullCreateModal extends React.Component {
         )}
         <Switch
           className={styles.switch}
-          text={t('EDIT_MODE')}
+          text={t('EDIT_YAML')}
           onChange={this.handleModeChange}
           checked={isCodeMode}
         />

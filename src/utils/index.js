@@ -237,7 +237,9 @@ export const updateLabels = (template, module, value) => {
     set(formTemplate, 'spec.jobTemplate.metadata.labels', value)
   }
 
-  if (['ingresses', 'persistentvolumeclaims'].indexOf(module) === -1) {
+  if (
+    ['ingresses', 'persistentvolumeclaims', 'services'].indexOf(module) === -1
+  ) {
     set(formTemplate, 'spec.template.metadata.labels', value)
   }
 }
@@ -778,7 +780,7 @@ export const supportGpuType = ['nvidia.com/gpu']
 const accessModeMapper = {
   ReadWriteOnce: 'RWO',
   ReadOnlyMany: 'ROM',
-  ReadWriteMany: 'RWM',
+  ReadWriteMany: 'RWX',
 }
 
 export const map_accessModes = accessModes =>

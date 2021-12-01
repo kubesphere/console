@@ -134,9 +134,9 @@ module.exports = {
   NO_REQUEST_TCAP: '不預留',
   NO_LIMIT_TCAP: '不限制',
   GPU_TYPE: 'GPU Type',
-  GPU_TYPE_LOW: 'GPU type',
+  GPU_TYPE_SCAP: 'GPU type',
   GPU_LIMIT: 'GPU Limit',
-  GPU_LIMIT_LOW: 'GPU limit',
+  GPU_LIMIT_SCAP: 'GPU limit',
   'Not Limited': '未限制',
   Cost: '占用',
   PROJECT_REMAINING_QUOTAS: '項目剩餘配額',
@@ -195,7 +195,7 @@ module.exports = {
   SELECT_VOLUME_DESC: '請選擇一個已經創建好的持久化儲存卷掛載至容器',
 
   REQUEST_EXCCED: '資源預留不能超過資源限制',
-  REQUEST_EXCEED_WORKSPACE: '資源设置不能大於工作區資源限制',
+  REQUEST_EXCEED_AVAILABLE_QUOTA: '資源设置不能大於可用資源限制',
   REQUEST_EXCEED_LIMIT: '資源預留不能超過資源限制。',
 
   WORKLOAD_DESC:
@@ -230,6 +230,7 @@ module.exports = {
   RollingUpdate: '滾動更新',
   ROLLING_UPDATE_RECOMMENDED: '滾動更新(推薦)',
   RESTART_PL: '重啟次數',
+  RESTART: 'Restart',
   RESOURCE_REQUESTS: '資源預留',
   RESOURCE_LIMITS: '資源限制',
   IMAGE_PULL_POLICY: '鏡像拉取策略',

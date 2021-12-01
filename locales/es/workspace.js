@@ -129,12 +129,11 @@ module.exports = {
   OFFLINE: 'Offline',
   NETWORK_POLICY_UNINSATLLED_DESC:
     'The network policy component is not installed in this cluster.',
-  WS_MEMBER_LOW: 'Workspace member',
-  WS_MEMBER_LOW_PL: 'Workspace members',
+  WS_MEMBER_SCAP: 'Workspace member',
+  WS_MEMBER_SCAP_PL: 'Workspace members',
 
   // Quota Management
   QUOTA_MANAGEMENT: 'Quota Management',
-  RESOURCE_TYPE_LOW: 'Resource type',
   RESOURCE_LIMIT: 'Resource limit',
   USED_PERCENT: 'Used: {percent}%',
 

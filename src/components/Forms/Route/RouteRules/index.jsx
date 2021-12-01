@@ -126,21 +126,14 @@ class RouteRules extends React.Component {
 
   getGateway = async () => {
     if (!this.props.isFederated) {
-      const getHostGateway = () => {
-        return this.gatewayStore.getGateway({ cluster: this.cluster })
-      }
-
       const getProjectGateway = () => {
-        return this.gatewayStore.getGateway({
+        return this.gatewayStore.getGatewayByProject({
           namespace: this.namespace,
           cluster: this.cluster,
         })
       }
       this.setState({ isLoading: true })
-      const dataList = await Promise.all([
-        getHostGateway(),
-        getProjectGateway(),
-      ])
+      const dataList = await getProjectGateway()
 
       const data = dataList[1] || dataList[0]
 

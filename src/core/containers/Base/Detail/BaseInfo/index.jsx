@@ -111,7 +111,7 @@ class BaseInfo extends React.Component {
 
     return (
       <div className={styles.attrs} data-test="detail-attrs">
-        <div className="h6">{t('Details')}</div>
+        <div className="h6">{t('DETAILS')}</div>
         <Attributes>
           {attrs.map(({ name, value, show = true, ...rest }) => {
             if (!show) return null

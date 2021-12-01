@@ -24,7 +24,7 @@ import Banner from 'components/Cards/Banner'
 import GatewayCard from 'clusters/containers/Gateway/Components/GatewayCard'
 import { Tooltip, Icon, Loading, Button } from '@kube-design/components'
 import GatewayStore from 'stores/gateway'
-import { observable } from 'mobx'
+import { observable, toJS } from 'mobx'
 
 import styles from './index.scss'
 
@@ -48,29 +48,26 @@ export default class Getway extends React.Component {
     return this.props.match.url
   }
 
-  get enableActions() {
-    return globals.app.getActions({
-      module: 'project-settings',
-      ...this.props.match.params,
-      project: this.namespace,
-    })
+  get namespace() {
+    return this.props.match.params.namespace
   }
 
-  getHostGateway = () => {
-    return this.store.getGateway({ cluster: this.cluster })
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'project-settings',
+      project: this.namespace,
+      cluster: this.cluster,
+    })
   }
 
   getProjectGateway = () => {
     const params = { ...this.props.match.params }
-    return this.store.getGateway({ ...params, cluster: this.cluster })
+    return this.store.getGatewayByProject({ ...params, cluster: this.cluster })
   }
 
   getInitGateway = async () => {
     this.isLoading = true
-    const dataList = await Promise.all([
-      this.getHostGateway(),
-      this.getProjectGateway(),
-    ])
+    const dataList = await this.getProjectGateway()
     this.gatewayList = dataList
     this.isLoading = false
   }
@@ -106,14 +103,14 @@ export default class Getway extends React.Component {
   }
 
   renderGatewayCard = () => {
-    return this.gatewayList.map((item, index) => {
+    return this.gatewayList.map((item, index, arr) => {
       const isCluster = index === 0
-      return item ? (
+      return (
         <GatewayCard
           key={index}
           type={isCluster ? 'cluster' : 'project'}
           detail={item}
-          actions={this.enableActions}
+          actions={this.enabledActions}
           {...this.props}
           store={this.store}
           getData={this.getInitGateway}
@@ -124,8 +121,9 @@ export default class Getway extends React.Component {
           }
           prefix={isCluster ? null : this.prefix}
           renderOperations={isCluster ? this.renderOperations : null}
+          gatewayList={toJS(arr)}
         />
-      ) : null
+      )
     })
   }
 

@@ -282,8 +282,8 @@ export const getLeftQuota = (wsQuota, nsQuota) => {
 export const getUsedQuota = data => {
   function getQuota(quota, key) {
     let result
-    const used = get(quota, `used["${key}"]`, '0')
-    if (used) {
+    const used = get(quota, `used["${key}"]`)
+    if (used !== '0') {
       if (key.endsWith('cpu')) {
         result = cpuFormat(used)
       } else if (key.endsWith('memory')) {

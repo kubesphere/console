@@ -273,8 +273,8 @@ module.exports = {
   NO_REQUEST_TCAP: 'No Request',
   NO_LIMIT_TCAP: 'No Limit',
   GPU_TYPE: 'GPU Type',
-  GPU_TYPE_LOW: 'GPU type',
-  GPU_LIMIT_LOW: 'GPU limit',
+  GPU_TYPE_SCAP: 'GPU type',
+  GPU_LIMIT_SCAP: 'GPU limit',
   GPU_LIMIT: 'GPU Limit',
   'Node Name': 'Nombre del nodo',
   'Node Scheduling Info': 'Información de programación de nodos',
@@ -373,6 +373,7 @@ module.exports = {
   'Resource requests remaining quota': 'Solicitudes de recursos dejaron cuota',
   RESOURCE_STATUS: 'Estado del recurso',
   RESTART_PL: 'Reiniciar contadores',
+  RESTART: 'Restart',
   RESTART_POLICY: 'Política de reinicio',
   Revision: 'Revisión',
   REVISION_RECORDS: 'Registros de revisión',
@@ -716,7 +717,7 @@ module.exports = {
     'Ya sea para exponer el puerto predeterminado de la imagen?',
   REQUEST_EXCEED_LIMIT:
     'Las solicitudes de recursos no deben ser mayores que los límites de recursos',
-  REQUEST_EXCEED_WORKSPACE:
+  REQUEST_EXCEED_AVAILABLE_QUOTA:
     'Resource setting should not be greater than workspace resource limits.',
   STATUS_INFORMATION: 'Condiciones',
   WORKLOAD_CONDITION_AVAILABLE: 'Disponible',

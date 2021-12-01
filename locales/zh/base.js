@@ -18,6 +18,7 @@
 
 module.exports = {
   BASIC_INFORMATION: '基本信息',
+  LOG_DATA_LOW: '日志信息',
   NAME: '名称',
   RECORD: 'Record',
   NAME_VALUE: '名称：{value}',
@@ -139,7 +140,7 @@ module.exports = {
   TERMINAL: '终端',
   COMMAND: '命令',
   COMMANDS: '命令',
-  MAINTAINERS: '维护者',
+  MAINTAINER_COLON: '维护者：',
   CREATOR: '创建者',
   POD: '容器组',
   Pods: '容器组',
@@ -156,7 +157,7 @@ module.exports = {
   PLATFORM_TITLE: '平台标题',
   PLATFORM_DESCRIPTION: '平台描述',
   CLUSTER_COUNT: '集群数量',
-  PLATFORM_RESOURCE: '平台资源',
+  PLATFORM_RESOURCES: '平台资源',
   LAST_UPDATE_TIME: '最后更新时间',
   Workbench: '工作台',
   'Access Control': '访问控制',
@@ -267,7 +268,6 @@ module.exports = {
   NEXT: '下一步',
   Update: '更新',
   Undo: '撤销',
-  SAVE: '保存',
   Create: '创建',
 
   PATH: '路径',
@@ -719,7 +719,7 @@ module.exports = {
   EVENT_AGE_DATA_TWICE: '{lastTime}<br/>（近 {duration}发生 2 次）',
   SOURCE: '来源',
 
-  CREATE_BY_YAML_DESC: '在 YAML 文件中自定义应用的设置。',
+  CREATE_BY_YAML_DESC: '在 YAML 文件中自定义设置。',
   RESOURCE_CONSUMPTION_STATISTICS: '资源消费统计',
   METERING_AND_BILLING_DESC: '查看集群和企业空间的资源消费情况。',
 

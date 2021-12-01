@@ -201,7 +201,7 @@ export default class VersionItem extends React.PureComponent {
               'YYYY-MM-DD HH:mm:ss'
             )}
           </dt>
-          <dd>{t('UPDATE_TIME_LOW')}</dd>
+          <dd>{t('UPDATE_TIME_SCAP')}</dd>
         </dl>
         <dl className={styles.more}>
           <Icon name="chevron-down" size={20} />

@@ -178,7 +178,7 @@ export default class AppBaseEdit extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('SERVICE_PROVIDER_WEBSITE_SCAP')}
+            label={t('SERVICE_PROVIDER_WEBSITE_TCAP')}
             desc={t('SERVICE_PROVIDER_WEBSITE_DESC')}
             rules={[
               {

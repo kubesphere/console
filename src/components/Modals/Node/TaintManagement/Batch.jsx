@@ -242,7 +242,7 @@ export default class TaintManagementModal extends React.Component {
         bodyClassName={styles.body}
         title={t('EDIT_TAINTS')}
         icon="wrench"
-        okText={t('SAVE')}
+        okText={t('OK')}
         onOk={this.handleSubmit}
         {...rest}
       >

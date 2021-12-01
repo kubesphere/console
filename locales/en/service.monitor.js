@@ -17,33 +17,9 @@
  */
 
 module.exports = {
-  SERVICE_MONITORING_EXPORTER: 'Service Monitoring Exporter',
   'Target Service': 'Target Service',
-  EXPORTER_SERVICE_PORTS: 'Exporter Service Ports',
-  SCRAPE_INTERVAL_MIN: 'Scrape Interval (min)',
+
   'View Monitor': 'View Monitor',
-  MONITORING_EXPORTER: 'Monitoring Exporter',
-  MONITORING_EXPORTER_VALUE: 'Monitoring exporter: {value}',
-
-  SELECT_AUTHENTICATION_METHOD: 'Select Authentication Method',
-  PORT_CONNECTION_AUTHENTICATION: 'Port connection authentication.',
-
-  CREATE_A_NEW_SECRET: 'Create a new Secret',
-  REFRESH_SECRETS: 'refresh Secrets.',
-
-  NO_AUTH_TIP:
-    'The interface can be directly connected without authentication.',
-
-  SCRAP_INTERVAL_DESC:
-    'Monitoring data collection interval. It defaults to 1 minute.',
-  SCRAP_TIMEOUT_DESC: 'Collection timeout. It defaults to 10 seconds.',
 
   // Service Monitoring Exporter Form
-  CERTIFICATE_AUTHORITY: 'Certificate Authority',
-  ENCRYPTION_KEY: 'Encryption Key',
-  SERVER_NAME: 'Server Name',
-  NO_AUTHENTICATION_TCAP: 'No Authentication',
-  TLS_SETTINGS_TCAP: 'TLS Settings',
-  BEARER_TOKEN_TCAP: 'Bearer Token',
-  BASIC_AUTHENTICATION_TCAP: 'Basic Authentication',
 }

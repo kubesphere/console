@@ -83,7 +83,7 @@ export default class ObjectEditModal extends React.Component {
         bodyClassName={styles.body}
         title={t('EDIT_TITLE', { title })}
         icon="pen"
-        okText={t('SAVE')}
+        okText={t('OK')}
         onOk={this.handleOk}
         disableOk={!enableSave}
         {...rest}
