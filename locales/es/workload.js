@@ -716,7 +716,7 @@ module.exports = {
     'Ya sea para exponer el puerto predeterminado de la imagen?',
   REQUEST_EXCEED_LIMIT:
     'Las solicitudes de recursos no deben ser mayores que los límites de recursos',
-  REQUEST_EXCEED_WORKSPACE:
+  REQUEST_EXCEED_AVAILABLE_QUOTA:
     'Resource setting should not be greater than workspace resource limits.',
   STATUS_INFORMATION: 'Condiciones',
   WORKLOAD_CONDITION_AVAILABLE: 'Disponible',

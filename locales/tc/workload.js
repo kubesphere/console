@@ -195,7 +195,7 @@ module.exports = {
   SELECT_VOLUME_DESC: '請選擇一個已經創建好的持久化儲存卷掛載至容器',
 
   REQUEST_EXCCED: '資源預留不能超過資源限制',
-  REQUEST_EXCEED_WORKSPACE: '資源设置不能大於工作區資源限制',
+  REQUEST_EXCEED_AVAILABLE_QUOTA: '資源设置不能大於可用資源限制',
   REQUEST_EXCEED_LIMIT: '資源預留不能超過資源限制。',
 
   WORKLOAD_DESC:

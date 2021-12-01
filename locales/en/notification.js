@@ -43,6 +43,8 @@ module.exports = {
   'Please select a regex filter': 'Please select a regex filter',
   'Invalid notification condition': 'Invalid notification condition',
   TAG_INPUT_PLACEHOLDER: 'Please enter the value and press Enter to confirm',
+  PATTERN_TAG_INVALID_TIP:
+    'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
   INVALID_NOTIFICATION_CONDITION:
     'Please enter a correct notification condition.',
 

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, mergeWith, isUndefined, omit, min, reduce } from 'lodash'
+import { get, mergeWith, isUndefined, omit, min, reduce, isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -24,7 +24,6 @@ import { Modal } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
 import QuotaStore from 'stores/quota'
 import WorkspaceQuotaStore from 'stores/workspace.quota'
-import { toJS } from 'mobx'
 import { cpuFormat, memoryFormat, resourceLimitKey } from 'utils'
 
 export default class DefaultResourceEditModal extends React.Component {
@@ -123,11 +122,9 @@ export default class DefaultResourceEditModal extends React.Component {
           workspace,
           cluster,
         }),
-      ]).then(() => {
-        const workspaceQuota = toJS(
-          get(this.workspaceQuotaStore.detail, 'status.total.hard')
-        )
-        const namespaceQuota = toJS(this.quotaStore.data.hard)
+      ]).then(dataArr => {
+        const workspaceQuota = get(dataArr[1], 'hard')
+        const namespaceQuota = get(dataArr[0], 'data.hard')
         resolve({
           workspaceQuota: this.availableQuota_memory(workspaceQuota),
           namespaceQuota: this.availableQuota_memory(namespaceQuota),
@@ -220,17 +217,42 @@ export default class DefaultResourceEditModal extends React.Component {
   getQuotaInfo = path => get(this.workspaceQuota, path, undefined)
 
   get workspaceQuota() {
-    const nsQuota = get(this.state.availableQuota, 'namespace', {})
-    const wsQuota = get(this.state.availableQuota, 'workspace', {})
+    const nsQuota = get(this.state, 'availableQuota.namespace', {})
+    const wsQuota = get(this.state, 'availableQuota.workspace', {})
     return mergeWith(nsQuota, wsQuota, (ns, ws) => {
       if (!ns && !ws) {
         return undefined
       }
       if (!isUndefined(ns)) {
-        return ns
+        return ns < ws ? ns : ws
       }
       return ws
     })
+  }
+
+  handleOk = () => {
+    const { onOk } = this.props
+    onOk(this.state.data)
+  }
+
+  handleError = error => this.setState({ error })
+
+  getQuotaInfo = path => get(this.workspaceQuota, path, undefined)
+
+  getGpuLimit() {
+    const hard = this.workspaceQuota
+    return !isEmpty(omit(hard, resourceLimitKey))
+      ? {
+          type: Object.keys(omit(hard, resourceLimitKey))[0]
+            .split('.')
+            .slice(1)
+            .join('.'),
+          value: Number(Object.values(omit(hard, resourceLimitKey))[0]),
+        }
+      : {
+          type: '',
+          value: '',
+        }
   }
 
   get workspaceLimitProps() {
@@ -243,12 +265,14 @@ export default class DefaultResourceEditModal extends React.Component {
         cpu: this.getQuotaInfo('requests.cpu'),
         memory: this.getQuotaInfo('requests.memory'),
       },
+      gpuLimit: this.getGpuLimit(),
     }
   }
 
   render() {
     const { visible, onCancel, isSubmitting } = this.props
     const { error } = this.state
+
     return (
       <Modal
         width={960}

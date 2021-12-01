@@ -43,6 +43,8 @@ module.exports = {
   'Please select a regex filter': '请选择过滤规则',
   'Invalid notification condition': '请填写正确的通知条件',
   TAG_INPUT_PLACEHOLDER: '请输入值后回车确认',
+  PATTERN_TAG_INVALID_TIP:
+    '标签无效。标签只能包含字母、数字、连字符（-）、下划线（_）和句点（.），必须以数字或字母开头和结尾。',
   INVALID_NOTIFICATION_CONDITION: '请填写正确的通知条件。',
 
   SEND_TEST_MESSAGE: '发送测试信息',

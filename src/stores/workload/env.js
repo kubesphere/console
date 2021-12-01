@@ -17,7 +17,7 @@
  */
 
 import { action, observable } from 'mobx'
-import { get } from 'lodash'
+import { get, isNil } from 'lodash'
 import { safeAtob } from 'utils/base64'
 
 export default class EnvStore {
@@ -52,7 +52,8 @@ export default class EnvStore {
     initContainers = [],
   }) {
     this.list.isLoading = true
-
+    containers = isNil(containers) ? [] : containers
+    initContainers = isNil(initContainers) ? [] : initContainers
     const mergeContainers = [
       ...initContainers.map(item => ({ ...item, type: 'init' })),
       ...containers.map(item => ({ ...item, type: 'work' })),

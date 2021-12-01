@@ -87,8 +87,12 @@ export default class AddRepoModal extends Component {
 
   getSeconds = timeStr => {
     const unit = timeStr.slice(-1)
+    const number = timeStr.slice(0, -1)
     const value = parseFloat(timeStr)
 
+    if (value.toString() !== number) {
+      return 179
+    }
     switch (unit) {
       default:
       case 's':

@@ -466,6 +466,7 @@ module.exports = {
 
   'Not Limited': 'Not Limited',
   Cost: 'Cost',
+  AVAILABLE_QUOTAS: 'Available Quotas',
   PROJECT_REMAINING_QUOTAS: 'Project Remaining Quotas',
   WORKSPACE_REMAINING_QUOTAS: 'Workspace Remaining Quotas',
   QUOTA_OVERCOST_TIP:
@@ -721,8 +722,8 @@ module.exports = {
 
   REQUEST_EXCCED:
     'Resource requests should not be greater than resource limits.',
-  REQUEST_EXCEED_WORKSPACE:
-    'Resource requests and limits cannot exceed workspace resource limits.',
+  REQUEST_EXCEED_AVAILABLE_QUOTA:
+    'Resource requests and limits cannot exceed available resource limits.',
   REQUEST_EXCEED_LIMIT:
     'Resource requests cannot be greater than resource limits.',
 
