@@ -20,7 +20,7 @@ module.exports = {
   // Banner
   TEMPLATE_BASED_APP_PL: 'Template-Based Apps',
   APPLICATIONS_DESC:
-    'An app provides users with comprehensive business functions in one package. App templates in KubeSphere are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An app is composed of one or more Kubernetes objects including Workloads, Services and Ingress.',
+    'An app provides users with comprehensive business functions in one package. App templates in KubeSphere are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An app is composed of one or more Kubernetes objects including workloads, services and ingresses.',
   APP_PL: 'Apps',
   APP_TYPES_Q: 'What app types does KubeSphere support?',
   APP_TYPES_A:

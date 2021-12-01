@@ -18,7 +18,7 @@
 
 module.exports = {
   // Banner
-  CONFIGMAP_PL: 'ConfigMaps',
+  CONFIGMAP_PL: 'Configmaps',
 
   // List
   // List > Create > Basic Information

@@ -23,15 +23,15 @@ module.exports = {
   // Banner
   SECRET_PL: 'Secrets',
   SECRET_DESC:
-    'A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
+    'A secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
 
   // List
   SECRET_FIELD_COUNT: 'Fields',
-  SECRET_EMPTY_DESC: 'Please create a Secret.',
+  SECRET_EMPTY_DESC: 'Please create a secret.',
 
   // List > Create > Basic Information
   SECRET: 'Secret',
-  // List > Create > Secret Settings
+  // List > Create > Data Settings
   DATA_SETTINGS: 'Data Settings',
   IMAGE_REGISTRY_INFORMATION: 'Image registry information',
   TLS_INFORMATION: 'TLS information',
@@ -49,13 +49,14 @@ module.exports = {
   REGISTRY_SECRET_VER_ERR: 'Registry Verification Failed.',
   REGISTRY_SECRET_VER_SUC: 'Registry Verification Succeeded.',
   SECRET_NO_CHINESE_CODE_DESC:
-    'The key of the Secret must consist of alphanumeric characters, hyphens (-), underscores (_), or periods (.).',
-  SECRET_TYPE_DESC: 'Select a Secret type.',
+    'The key of the secret must consist of alphanumeric characters, hyphens (-), underscores (_), or periods (.).',
+  SECRET_TYPE_DESC: 'Select a secret type.',
   IMAGE_REGISTRY_VALIDATE_TIP:
-    'Please validate the username and password before creating the image registry Secret.',
+    'Please validate the username and password before creating the image registry secret.',
   DATA_KEY: 'Key',
   DATA_VALUE: 'Value',
   DEFAULT: 'Default',
+  USERNAME_AND_PASSWORD: 'Username and password',
 
   // List > Edit Information
   // List > Edit YAML

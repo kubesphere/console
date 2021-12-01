@@ -23,7 +23,7 @@ module.exports = {
   // More > Edit Settings > Containers
   // More > Edit Settings > Containers > Add Container
   // More > Edit Settings > Volumes > Mount Volume
-  // More > Edit Settings > Volumes > Mount ConfigMap or Secret
+  // More > Edit Settings > Volumes > Mount Configmap or Secret
   // Details
   // Resource Status
   // Revision Records

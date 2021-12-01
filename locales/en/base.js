@@ -359,62 +359,22 @@ module.exports = {
   TOOLBOX_KUBECTL_DESC:
     'Command line tool used to control the current cluster.',
 
-  ENV_PRODUCTION: 'Production',
-  ENV_DEVELOPMENT: 'Development',
-  ENV_TESTING: 'Testing',
-  ENV_DEMO: 'Demo',
-
-  RESOURCE_EVENT_SEARCH_DESC:
-    'A multi-dimensional resource event search tool for resources.',
-
-  EVENT_AGE: 'Occurred',
-  EVENT_AGE_DATA: '{lastTime}<br/>({count} times over {duration})',
-  EVENT_AGE_DATA_TWICE: '{lastTime}<br/>(twice over {duration})',
-  SOURCE: 'Source',
-
-  PLATFORM_INFO_DESC:
-    'Overview of the platform information. You can view and customize the platform information.',
-  HOW_TO_MODIFY_PLATFORM_INFO: 'How do I customize platform information?',
   PLATFORM_SETTINGS_SELECTOR_DESC: 'Customized Platform Settings',
 
-  AUDIT_LOG_DESC: 'A multi-dimensional audit log search tool for resources.',
-
   FILE_OVERSIZED_TIP: 'The file uploaded must be less than 2M!',
-
-  MULTI_CLUSTER_PROJECT_TIP:
-    'The project is deployed across multiple clusters.',
-
-  NO_HISTORY_TITLE: 'No Recently Accessed Resource Found',
-  NO_HISTORY_DESC: 'You can access platform resources.',
 
   USER_GUIDES_DESC: 'The most comprehensive user guide of KubeSphere.',
   DEVELOPER_DESC: 'Raise a question in the developer community to get help.',
   API_DOCS_DESC: 'The most comprehensive KubeSphere API documentation.',
   GITHUB_ISSUES_DESC: 'Raise an issue in GitHub to get help.',
 
-  CREATE_BY_YAML_DESC: 'Customize the settings in the YAML file.',
-  RESOURCE_CONSUMPTION_STATISTICS: 'Resource Consumption Statistics',
-  METERING_AND_BILLING_DESC:
-    'View resource consumption of clusters and workspaces.',
-
   // Workbench
-  CLUSTER_COUNT_SI: 'Cluster',
-  CLUSTER_COUNT_PL: 'Clusters',
-  LAST_LOGIN_TIME: 'Last Login: ',
-  APP_TEMPLATE_SCAP_PL: 'App templates',
-  ACCOUNT_PL: 'Accounts',
 
   // Container Details Page
-  CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
   CPU_VALUE: 'CPU: {value}',
   MEMORY_VALUE: 'Memory: {value}',
 
   // Container Log Search
-  CONTAINER_LOG_SEARCH: 'Container Log Search',
-  RESOURCE_EVENT_SEARCH: 'Resource Event Search',
-  AUDIT_LOG_SEARCH: 'Audit Log Search',
 
   // Toolbox
-  CONTROL_TOOL: 'Control Tool',
-  ANALYSIS_TOOLS: 'Analysis Tools',
 }

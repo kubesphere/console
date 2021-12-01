@@ -17,20 +17,15 @@
  */
 
 module.exports = {
-  FIELDS: 'Fields',
-  ConfigMap: 'ConfigMap',
+  ConfigMap: 'Configmap',
   configmaps: 'configmaps',
-  ConfigMaps: 'ConfigMaps',
-  ENTER_CONFIG_VALUE_DESC:
-    'Enter the value of the mapping configuration field or use the content from the file.',
-  EDIT_CONFIGMAP: 'Edit ConfigMap',
-  CONFIG_FIELD_DESC:
-    'The unique value of the key mapped by the configuration field.',
+  ConfigMaps: 'Configmaps',
 
-  CONFIGMAP_EMPTY_DESC: 'Please create a ConfigMap.',
-  CONFIGMAP_DESC:
-    'A ConfigMap is often used to store configuration information needed for workloads. Many applications will read the information from configuration files, command line parameters, or environment variables.',
+  EDIT_CONFIGMAP: 'Edit Configmap',
+
+  CONFIGMAP_EMPTY_DESC: 'Please create a configmap.',
+
   CONFIGMAPS_BASEINFO_DESC: '',
   CONFIGMAP_SETTINGS_DESC: '',
-  CREATE_CONFIG: 'create a ConfigMap',
+  CREATE_CONFIG: 'create a configmap', // Concatenated
 }

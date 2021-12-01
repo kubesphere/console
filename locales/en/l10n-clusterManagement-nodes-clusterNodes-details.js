@@ -39,14 +39,14 @@ module.exports = {
   TAINTS: 'Taints',
   EDIT_TAINTS: 'Edit Taints',
   TAINTS_DESC:
-    'Add taints to nodes so that Pods are not scheduled to the nodes or not scheduled to the nodes if possible. After you add taints to nodes, you can set tolerations on a Pod to allow the Pod to be scheduled to nodes with certain taints.',
+    'Add taints to nodes so that pods are not scheduled to the nodes or not scheduled to the nodes if possible. After you add taints to nodes, you can set tolerations on a pod to allow the pod to be scheduled to nodes with certain taints.',
   ADD_TAINT: 'Add Taint',
   COMMON_TAINTS: 'Common Taints',
   NOSCHEDULE: 'Prevent scheduling',
   PREFER_NOSCHEDULE: 'Prevent scheduling if possible',
-  NOEXECUTE: 'Prevent scheduling and evict existing Pods',
+  NOEXECUTE: 'Prevent scheduling and evict existing pods',
   TAINTS_TIPS:
-    '<b>Prevent scheduling</b><br />Prevents all Pods from being scheduled to the node.<br /><br /><b>Prevent scheduling if possible</b><br />Prevents all Pods from being scheduled to the node if possible.<br /><br /><b>Prevent scheduling and evict existing Pods</b><br />Prevents all Pods from being scheduled to the node and evict all existing Pods on the node.',
+    '<b>Prevent scheduling</b><br />Prevents all pods from being scheduled to the node.<br /><br /><b>Prevent scheduling if possible</b><br />Prevents all pods from being scheduled to the node if possible.<br /><br /><b>Prevent scheduling and evict existing pods</b><br />Prevents all pods from being scheduled to the node and evict all existing pods on the node.',
 
   // Running Status > Resource Usage
   RESOURCE_USAGE: 'Resource Usage',
@@ -77,7 +77,7 @@ module.exports = {
   NODE_PIDPRESSURE_DESC:
     'If pressure exists on the processes—that is, if there are too many processes on the node.',
   NODE_READY: 'Node Readiness',
-  NODE_READY_DESC: 'Whether the node is ready to accept new Pods.',
+  NODE_READY_DESC: 'Whether the node is ready to accept new pods.',
 
   // Running Status > Taints
   NO_TAINTS_TIPS: 'No taint is found.',

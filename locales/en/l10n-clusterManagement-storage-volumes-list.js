@@ -17,6 +17,9 @@
  */
 
 module.exports = {
+  // Navigation pane
+  STORAGE: 'Storage',
+
   // Banner
   VOLUME_DESC:
     'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',

@@ -18,9 +18,9 @@
 
 module.exports = {
   // Banner
-  CRONJOBS: 'CronJobs',
+  CRONJOBS: 'Cronjobs',
   CRONJOB_DESC:
-    'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
+    'Cronjobs manage jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
 
   // List
   CRONJOB_PAUSED: 'Paused',
@@ -31,7 +31,7 @@ module.exports = {
   SCHEDULE: 'Schedule',
   ENTER_SCHEDULE_TIP: 'Please select a schedule.',
   CRONJOB_CRON_DESC:
-    'Set a schedule for the CronJob. KubeSphere uses UTC by default and you need to adjust the schedule according to your time zone. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Learn More</a>',
+    'Set a schedule for the cronjob. KubeSphere uses UTC by default and you need to adjust the schedule according to your time zone. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Learn More</a>',
 
   // List > Create > Advanced settings
   MAXIMUM_DELAY: 'Maximum Start Delay (s)',
@@ -39,27 +39,27 @@ module.exports = {
   FAILED_JOBS_RETAINED: 'Failed Jobs Retained',
   CONCURRENCY_POLICY: 'Concurrency Policy',
   MAXIMUM_DELAY_DESC:
-    'Maximum delay before starting a scheduled Job when the Job is missed for certain reasons.',
+    'Maximum delay before starting a scheduled job when the job is missed for certain reasons.',
   CONCURRENCY_POLICY_DESC:
-    'Policy adopted by the system when multiple Jobs of the CronJob overlap with each other.',
+    'Policy adopted by the system when multiple jobs of the cronjob overlap with each other.',
   FAILED_JOBS_RETAINED_DESC:
-    'Number of failed Jobs allowed to be retained. The default value is 1.',
+    'Number of failed jobs allowed to be retained. The default value is 1.',
   SUCCESSFUL_JOBS_RETAINED_DESC:
-    'Number of successful Jobs allowed to be retained. The default value is 3.',
-  RUN_JOBS_CONCURRENTLY: 'Run Jobs concurrently',
-  SKIP_NEW_JOB: 'Skip new Job',
-  SKIP_OLD_JOB: 'Skip old Job',
+    'Number of successful jobs allowed to be retained. The default value is 3.',
+  RUN_JOBS_CONCURRENTLY: 'Run jobs concurrently',
+  SKIP_NEW_JOB: 'Skip new job',
+  SKIP_OLD_JOB: 'Skip old job',
 
   // List > Create > Strategy Settings
   STRATEGY_SETTINGS: 'Strategy Settings',
   MAXIMUM_RETRIES: 'Maximum Retries',
   MAXIMUM_RETRIES_DESC:
-    'Maximum number of retries before the Job is marked as failed. The default value is 6.',
-  PARALLEL_PODS_DESC: 'Number of Pods that run in parallel in the Job.',
+    'Maximum number of retries before the job is marked as failed. The default value is 6.',
+  PARALLEL_PODS_DESC: 'Number of pods that run in parallel in the job.',
   COMPLETE_PODS_DESC:
-    'Number of complete Pods required for the Job to be marked as complete.',
+    'Number of complete pods required for the job to be marked as complete.',
   MAXIMUM_DURATION_DESC:
-    'Maximum duration of the Job. The Job is terminated when it reaches the maximum duration.',
+    'Maximum duration of the job. The job is terminated when it reaches the maximum duration.',
   PARALLEL_PODS: 'Parallel Pods',
   COMPLETE_PODS: 'Complete Pods',
   MAXIMUM_DURATION: 'Maximum Duration (s)',
@@ -67,7 +67,7 @@ module.exports = {
   // List > Create > Pod Settings
   RESTART_POLICY: 'Restart Policy',
   RESTART_POLICY_DESC:
-    'Select the policy adopted by the system when a container in the Pod exits abnormally.',
+    'Select the policy adopted by the system when a container in the pod exits abnormally.',
 
   // List > Create > Volume Settings
   // List > Create > Advanced Settings

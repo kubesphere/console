@@ -35,6 +35,8 @@ module.exports = {
     'No cluster is available. After the workspace is created, please contact the platform or cluster administrator to authorize a cluster to the workspace.',
   WORKSPACE_NO_CLUSTER_TIP:
     'Please contact the platform or cluster administrator to authorize a cluster to the workspace.',
+  AVAILABLE_CLUSTERS: 'Available Clusters',
+  CLUSTER_SETTINGS: 'Cluster Settings',
 
   // List > Edit Information
   // List > Delete

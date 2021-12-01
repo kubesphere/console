@@ -30,7 +30,7 @@ module.exports = {
   // More > Edit Service > Specify Workload
   // More > Edit External Access > Access Mode
   ACCESS_NONE_TIP:
-    'Internet access is not supported. The Service can be accessed only within the cluster.',
+    'Internet access is not supported. The service can be accessed only within the cluster.',
   EXTERNAL_SERVICE: 'External Service',
 
   // More > Edit Monitoring Exporter
@@ -43,8 +43,8 @@ module.exports = {
   PORT_CONNECTION_AUTHENTICATION: 'Port connection authentication.',
   NO_AUTH_TIP:
     'The interface can be directly connected without authentication.',
-  CREATE_A_NEW_SECRET: 'Create a new Secret',
-  REFRESH_SECRETS: 'refresh Secrets.',
+  CREATE_A_NEW_SECRET: 'Create a new secret',
+  REFRESH_SECRETS: 'refresh secrets.',
   SCRAP_TIMEOUT_DESC: 'Collection timeout. It defaults to 10 seconds.',
   CERTIFICATE_AUTHORITY: 'Certificate Authority',
   ENCRYPTION_KEY: 'Encryption Key',
@@ -63,7 +63,7 @@ module.exports = {
   MONITORING_EXPORTER_VALUE: 'Monitoring exporter: {value}',
   PORT_PL: 'Ports',
   SERVICE_NODE_PORT_DESC:
-    'If your client machine is on the same network as the cluster, you can use <Node IP address>:<Node port> to access the Service.',
+    'If your client machine is on the same network as the cluster, you can use <Node IP address>:<Node port> to access the service.',
   IMAGE_BUILDING_FAILED: 'Image building failed',
   IMAGE_BUILDING_SUCCESSFUL: 'Image building successful',
   BUILDING_IMAGE: 'Building image',

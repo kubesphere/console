@@ -66,7 +66,7 @@ module.exports = {
 
   'Search Events by': 'Search Events by {field}',
 
-  'Pod Event Query Tip': 'Enter a Pod name to search for container logs.',
+  'Pod Event Query Tip': 'Enter a pod name to search for container logs.',
 
   TOTAL_LOGS:
     'A total of <span class={className}> {logs} </span> log entries from<br/> <span class={className}>{containers}</span> containers have been collected.',

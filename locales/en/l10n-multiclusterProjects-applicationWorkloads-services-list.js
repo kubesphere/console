@@ -42,9 +42,9 @@ module.exports = {
     'Specify a node that needs to be associated with the service.',
   MAXIMUM_STICKINESS_DURATION_DESC:
     'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
-  SERVICE_ADD_METADATA_DESC: 'Add metadata to the Service.',
+  SERVICE_ADD_METADATA_DESC: 'Add metadata to the service.',
 
-  // List > Create > sStateful Service > Cluster Differences
+  // List > Create > Stateful Service > Cluster Differences
   // List > Edit Information
   // List > Edit YAML
   // List > Edit Settings

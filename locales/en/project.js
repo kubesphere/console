@@ -24,7 +24,7 @@ module.exports = {
   EDIT_DEFAULT_CONTAINER_QUOTA: 'Edit Default Container Quota',
 
   cronjobs: 'cronjobs',
-  DaemonSet: 'DaemonSet',
+  DaemonSet: 'Daemonset',
   daemonsets: 'daemonsets',
   'Default limit resource': 'Default limit resource',
   'default request CPU should not be greater than default limit CPU':
@@ -87,7 +87,7 @@ module.exports = {
   PROJECT_QUOTA: 'Project Quota',
 
   'Project Role': 'Project Role',
-  // Create ServiceAccount Page
+  // Create Service Account Page
 
   Project_Admin: 'Project_Admin',
   Projects: 'Projects',
@@ -99,7 +99,8 @@ module.exports = {
   REQUESTS_MEMORY: 'Memory Request',
 
   'Select Project Type': 'Select Project Type',
-  StatefulSet: 'StatefulSet',
+
+  StatefulSet: 'Statefulset',
   statefulsets: 'statefulsets',
   'Target Workspace': 'Target Workspace',
   Terminating: 'Terminating',
@@ -157,7 +158,7 @@ module.exports = {
   PROJECT_TYPES_Q:
     'How can the services in the project be accessed through the external network?',
   PROJECT_TYPES_A:
-    'The project gateway is responsible for creating the corresponding application routing controller to forward the request to the corresponding backend Service. After the project gateway is opened, the service can be exposed to the external network through Ingress.',
+    'The project gateway is responsible for creating the corresponding application routing controller to forward the request to the corresponding backend service. After the project gateway is opened, the service can be exposed to the external network through Ingress.',
 
   NETWORK_ISOLATED_DESC: 'Set network isolation strategy',
 

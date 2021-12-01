@@ -38,7 +38,7 @@ module.exports = {
   GATEWAY_SERVICE_MESH_STATUS_ON: 'On',
   GATEWAY_SERVICE_MESH_STATUS_OFF: 'Off',
   INGRESS_CONTROLLER_NODEPORT_DESC:
-    'If the gateway is enabled, the system will automatically assign port numbers of http and https. Application routes can access Services through the reverse proxy.',
+    'If the gateway is enabled, the system will automatically assign port numbers of http and https. Application routes can access services through the reverse proxy.',
   INGRESS_CONTROLLER_LOADBALANCER_DESC:
     'To use QingCloud LoadBalancer as a service gateway, please deploy the QingCloud Cloud Controller Manager plugin first.',
   UNABLE_CREATE_ROUTE_TIP:

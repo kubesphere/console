@@ -44,7 +44,7 @@ module.exports = {
   KUBE_CONTROLLER_MANAGER_DESC:
     'Daemon that embeds the core control loops shipped with Kubernetes.',
   KUBE_SCHEDULER_DESC:
-    'Kubernetes scheduler that assigns Pods to appropriate nodes.',
+    'Kubernetes scheduler that assigns pods to appropriate nodes.',
   METRICS_SERVER_DESC:
     'Kubernetes monitoring component that collects metrics from kubelet of each node.',
   TILLER_DEPLOY_DESC:
@@ -98,7 +98,7 @@ module.exports = {
     'Accepts query requests, retrieves traces from the backend storage system, and displays the data on the web UI.',
 
   KUBE_STATE_METRICS_DESC:
-    'Listens on the Kubernetes API server to obtain the status of cluster API objects such as nodes, workloads, and Pods, and generates monitoring data for Prometheus.',
+    'Listens on the Kubernetes API server to obtain the status of cluster API objects such as nodes, workloads, and pods, and generates monitoring data for Prometheus.',
   NODE_EXPORTER_DESC:
     'Provides monitoring data of all cluster nodes for Prometheus.',
   PROMETHEUS_K8S_DESC:
@@ -115,7 +115,7 @@ module.exports = {
     'Provides Elasticsearch cluster management services.',
 
   LOGSIDECAR_INJECTOR_DESC:
-    'Injects a sidecar container in a Pod for disk log collection',
+    'Injects a sidecar container in a pod for disk log collection',
 
   CONTROLLER_MANAGER_METRICS_SERVICE_DESC:
     'Provides monitoring data for the s2i controller',
@@ -139,7 +139,7 @@ module.exports = {
     'A reliable distributed data store that persistently stores the cluster configuration',
   TOWER_DESC: 'Tool used for network connection between clusters over proxy.',
   KUBE_SCHEDULER_SVC_DESC:
-    'Kubernetes scheduler that assigns Pods to appropriate nodes.',
+    'Kubernetes scheduler that assigns pods to appropriate nodes.',
   KUBE_CONTROLLER_MANAGER_SVC_DESC:
     'Daemon that embeds the core control loops shipped with Kubernetes.',
 
@@ -158,7 +158,7 @@ module.exports = {
     'A component that provides the App Store service for Helm-based applications and lifecycle management of apps',
   JAEGER_OPERATOR_METRICS_DESC: 'Provides monitoring metrics for Operator.',
   LOGSIDECAR_INJECTOR_ADMISSION_DESC:
-    'Automatically injects sidecar containers into Pods for disk log collection.',
+    'Automatically injects sidecar containers into pods for disk log collection.',
   KS_EVENTS_ADMISSION_DESC:
     'Provides the authentication webhook for event rule management.',
   KS_EVENTS_RULER_DESC:

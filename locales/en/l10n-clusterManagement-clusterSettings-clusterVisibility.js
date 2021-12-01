@@ -18,8 +18,14 @@
 
 module.exports = {
   // Banner
+  CLUSTER_VISIBILITY_TCAP: 'Cluster Visibility',
+
   // List
   WORKSPACE: 'Workspace',
+  CLUSTER_VISIBILITY_SCAP: 'Cluster visibility',
 
   // List > Edit Visibility
+  EDIT_VISIBILITY: 'Edit Visibility',
+  AUTHORIZED: 'Authorized',
+  SET_PUBLIC_CLUSTER: 'Set as Public Cluster',
 }

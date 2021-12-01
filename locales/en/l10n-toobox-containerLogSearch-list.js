@@ -37,7 +37,7 @@ module.exports = {
     'Enter a workload name to search for container logs.',
   CONTAINER_LOG_CONTAINER_TIP:
     'Enter a container name to search for container logs.',
-  CONTAINER_LOG_POD_TIP: 'Enter a Pod name to search for container logs.',
+  CONTAINER_LOG_POD_TIP: 'Enter a pod name to search for container logs.',
   SEARCH_BY_KEYWORD: 'Search by Keyword',
   SEARCH_BY_PROJECT: 'Search by Project',
   SEARCH_BY_WORKLOAD: 'Search by Workload',

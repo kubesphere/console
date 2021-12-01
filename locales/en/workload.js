@@ -18,15 +18,12 @@
 
 module.exports = {
   CONTAINER_IMAGE: 'Container Image',
-
   MOUNT_PATH_EMPTY: 'Please enter a mount path.',
   IMAGE_TIME_SIZE_LAYER_PL: 'Updated {time}, {size}, {layer} layers',
   IMAGE_TIME_SIZE_LAYER_SI: 'Updated {time}, {size}, {layer} layer',
-
   HTTP_PATH_EMPTY: 'Please set a path for the HTTP check.',
   DUPLICATE_LABELS: 'Duplicate labels cannot be added.',
   REVISION_RECORD: 'Revision record',
-  WORKLOAD_SPECIFY_NODE_DESC: 'Assign Pod replicas to a specific node.',
   INVALID_PROJECT: 'Invalid project.',
 
   ADD_RULE: 'Add Rule',
@@ -92,9 +89,9 @@ module.exports = {
   CreateContainerConfigError: 'CreateContainerConfigError',
   CreateContainerError: 'CreateContainerError',
   created: 'created',
-  CronJob: 'CronJob',
+  CronJob: 'Cronjob',
 
-  'CronJob Settings': 'CronJob Settings',
+  'CronJob Settings': 'Cronjob Settings',
   'Current number of nodes scheduled': 'Current number of nodes scheduled',
 
   'Current Revision': 'Current Revision',
@@ -333,13 +330,13 @@ module.exports = {
   Workloads: 'Workloads',
 
   DEPLOYMENT_DESC:
-    'Deployment provides fine-grained management of common applications in KubeSphere. Deployment configuration describes the desired state of specific components of an application as Pod templates.',
+    'Deployment provides fine-grained management of common applications in KubeSphere. Deployment configuration describes the desired state of specific components of an application as pod templates.',
 
   STATEFULSET_DESC:
-    'StatefulSet is used to manage stateful applications, manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.',
+    'Statefulset is used to manage stateful applications, manages the deployment and scaling of a set of pods, and provides guarantees about the ordering and uniqueness of these pods.',
 
   DAEMONSET_DESC:
-    'A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. Typically, a DaemonSet is used to running a logs collection, monitoring daemon or other system management applications.',
+    'A daemonset ensures that all (or some) Nodes run a copy of a pod. Typically, a daemonset is used to running a logs collection, monitoring daemon or other system management applications.',
 
   CRONJOB_NAME_DESC:
     'It can only contain lowercase letters, numbers and hyphens("-"), and must start and end with a lowercase letter or a number. The value can contain a maximum of 52 characters.',
@@ -349,13 +346,13 @@ module.exports = {
     'It\'s used to configure the strategy for replacing pods during the upgrade process. <a href="{link}" target="_blank">Learn more.</a>',
 
   MAX_DEPLOY_UNAVAILABLE_POD_DESC:
-    'The maximum number of Pods that can be unavailable during the update.',
+    'The maximum number of pods that can be unavailable during the update.',
 
   ROLLING_UPDATE_POD_TIP:
-    'It limits the minimum and maximum available quantities based on the current replicas when it is in rolling update. The minimum number of replicas cannot exceed the current number of replicas, and the maximum number of Pods cannot exceed 2 times the current replicas.',
+    'It limits the minimum and maximum available quantities based on the current replicas when it is in rolling update. The minimum number of replicas cannot exceed the current number of replicas, and the maximum number of pods cannot exceed 2 times the current replicas.',
 
   STATEFULSET_PARTITION_DESC:
-    'Partition indicates the ordinal at which the StatefulSet should be partitioned. Default value is 0.',
+    'Partition indicates the ordinal at which the statefulset should be partitioned. Default value is 0.',
 
   IMAGE_REGISTRY_PLACEHOLDER: 'Select the registry secret',
 
@@ -363,56 +360,56 @@ module.exports = {
   VOLUME_SUB_TEXT: 'Volumes used by the containers of the workload',
   EMPTYDIR_DESC: 'Temporary storage created for the workload',
   HOSTPATH_DESC:
-    'A HostPath volume mounts a file or directory from the host node’s filesystem into your Pod.',
+    'A HostPath volume mounts a file or directory from the host node’s filesystem into your pod.',
 
   DEPLOYMENTS_BASEINFO_DESC:
     'You can give the deployment a name that is easy to distinguish when you use it.',
   DEPLOYMENT_POD_TEMPLATE_DESC:
-    'The workload can automatically create a specified number of pods based on the Pod template and the number of replicas you set.',
+    'The workload can automatically create a specified number of pods based on the pod template and the number of replicas you set.',
   DEPLOYMENTS_VOLUME_DESC:
     'You can mount the same temporary storage volume or persistent storage volume to each copy of the deployed pods.',
   DEPLOYMENT_LABEL_SETTINGS_DESC:
-    'The labels are one or more key-value pairs that are associated with a resource, such as a Pod. We usually identify, organize, or find resource objects through labels.',
+    'The labels are one or more key-value pairs that are associated with a resource, such as a pod. We usually identify, organize, or find resource objects through labels.',
   DEPLOYMENT_NODE_SELECT_DESC:
-    "By using a selector to dispatch a Pod to a node that is expected to run, these selectors are one or more sets of key-value pairs that match the node's labels.",
+    "By using a selector to dispatch a pod to a node that is expected to run, these selectors are one or more sets of key-value pairs that match the node's labels.",
   DEPLOYMENT_JOB_SETTINGS_DESC:
-    'You can configure the Job Spec template, where the Job Controller is responsible for creating pods based on the Job Spec and keep monitoring the status of the Pod until it completes successfully. If it fails, the RestartPolicy (which supports OnFailure and Never) determines whether to create a new Pod and rerun the job.',
+    'You can configure the Job Spec template, where the Job Controller is responsible for creating pods based on the Job Spec and keep monitoring the status of the pod until it completes successfully. If it fails, the RestartPolicy (which supports OnFailure and Never) determines whether to create a new pod and rerun the job.',
   DEPLOYMENT_CRONJOB_SETTINGS_DESC:
-    'The CronJob settings is the part of template for the CronJob, it has exactly the same schema as a Job, where the Job Controller is responsible for creating pods based on the CronJob Spec and keep monitoring the status of the Pod until it completes successfully. If it fails, the RestartPolicy (which supports OnFailure and Never) determines whether to create a new Pod and rerun the CronJob.',
+    'The cronjob settings is the part of template for the cronjob, it has exactly the same schema as a job, where the job Controller is responsible for creating pods based on the Cronjob Spec and keep monitoring the status of the pod until it completes successfully. If it fails, the RestartPolicy (which supports OnFailure and Never) determines whether to create a new pod and rerun the cronjob.',
 
   STATEFULSETS_VOLUME_TEMPLATE_DESC:
-    'Create a dedicated persistent volume for each Pod of the statefulset and mount it to the appropriate Pod',
+    'Create a dedicated persistent volume for each pod of the statefulset and mount it to the appropriate pod',
 
   STATEFULSETS_BASEINFO_DESC:
-    'StatefulSet is used to manage stateful applications.',
+    'Statefulset is used to manage stateful applications.',
   STATEFULSETS_SERVICE_CONFIG_DESC:
-    "The cluster doesn't generate cluster IP for the service. In another word, a StatefulSet works with a headless service with selector. Therefore, the service is accessed internally through the service's endpoint IPs directly. StatefulSet is used for stateful applications such as master-slave serivces.",
+    "The cluster doesn't generate cluster IP for the service. In another word, a statefulset works with a headless service with selector. Therefore, the service is accessed internally through the service's endpoint IPs directly. Statefulset is used for stateful applications such as master-slave serivces.",
 
   DAEMONSETS_BASEINFO_DESC:
     'The daemonset guarantees that a copy of the container is running on each host, often used to deploy logs, monitoring, or other system management applications for some clusters.',
   DAEMONSETS_VOLUME_DESC:
-    'You can mount a HostPath, temporary volumes, or persistent volumes to a Pod of the daemonset.',
+    'You can mount a HostPath, temporary volumes, or persistent volumes to a pod of the daemonset.',
 
   JOBS_BASEINFO_DESC: '',
-  JOBS_POD_TEMPLATE_DESC: 'Specify the Pod template to run in the job',
+  JOBS_POD_TEMPLATE_DESC: 'Specify the pod template to run in the job',
   JOBS_VOLUME_DESC:
-    'You can mount a temporary volumes, or persistent volumes to a Pod of the job.',
+    'You can mount a temporary volumes, or persistent volumes to a pod of the job.',
 
   RESTART_POLICY_TIP:
-    'RestartPolicy can only specify Never or OnFailure, when the job is not completed:<br/>* If RestartPolicy specifies Never, the job creates a new Pod when the Pod fails, and the failed Pod does not disappear.<br/>* If RestartPolicy specifies OnFailure, the job will internally restart the container when the Pod fails, instead of creating a new Pod.',
+    'RestartPolicy can only specify Never or OnFailure, when the job is not completed:<br/>* If RestartPolicy specifies Never, the job creates a new pod when the pod fails, and the failed pod does not disappear.<br/>* If RestartPolicy specifies OnFailure, the job will internally restart the container when the pod fails, instead of creating a new pod.',
 
   CRONJOBS_BASEINFO_DESC:
-    'Basic information regarding the CronJob. You need to specify the name and schedule',
+    'Basic information regarding the cronjob. You need to specify the name and schedule',
   CRONJOBS_VOLUME_DESC:
-    'You can mount a temporary volumes, or persistent volumes to a Pod of the cronjob.',
+    'You can mount a temporary volumes, or persistent volumes to a pod of the cronjob.',
 
   VOLUME_EMPTY_TIP: 'No created volumes, please',
 
   HOST_PATH_DESC:
-    'HostPath allows you to mount the file system on the host to the Pod. If the Pod needs to use files on the host, you can use HostPath.',
+    'HostPath allows you to mount the file system on the host to the pod. If the pod needs to use files on the host, you can use HostPath.',
 
   EMPTY_DIR_DESC:
-    'Temporary volumes are assigned to the host along with the Pod. When a Pod is deleted from the host, the temporary volume is also deleted and the data of the volume is permanently deleted. <br /> Note: Deleting a container does not affect the temporary volume.',
+    'Temporary volumes are assigned to the host along with the pod. When a pod is deleted from the host, the temporary volume is also deleted and the data of the volume is permanently deleted. <br /> Note: Deleting a container does not affect the temporary volume.',
   SELECT_VOLUME_TYPE_DESC: 'You can choose to an proper volume type to add',
 
   MOUNT_VOLUME_DESC:
@@ -424,13 +421,13 @@ module.exports = {
   PROBE_MSG:
     'Readiness Probe checks whether the container is ready to handle requests. Failure means the container should not receive any traffic from the agent even if it were running. Liveness Probe checks whether the container that configures it is running. If the Probe fails, the container will be killed and the restart policy will be implemented for the container.',
   WORKLOAD_REPLICA_MSG:
-    'In the user-defined scope, if the number of Pods increases, the ReplicationController will terminate the extra Pods. Instead, the RC will create a new Pod that remains in the defined scope. For example, the RC will recreate the Pod on the node after Pod maintenance (such as kernel upgrades).',
+    'In the user-defined scope, if the number of pods increases, the ReplicationController will terminate the extra pods. Instead, the RC will create a new pod that remains in the defined scope. For example, the RC will recreate the pod on the node after pod maintenance (such as kernel upgrades).',
   DEPLOYMENTS_REPLICA_DESC:
     'Deployment is used to describe a desired state that is expected to be reached by the application. It is mainly used to describe stateless applications. The number and state of replicas are maintained by the deployment controller, ensuring the state is consistent with the defined expected state. You can increase the replicas to meet higher loads. Rolling back the deployment version can eliminate program bugs. And you can create an autoscaler to flexibly handle the load in different scenarios.',
   STATEFULSETS_REPLICA_DESC:
-    'StatefulSet is used to describe stateful applications, such as master-slave relations between replicas and persistent data storage. Like a Deployment, a StatefulSet creates identical replicas. The difference is that each replica has a persistent and unique identifier that it maintains across any rescheduling. You can use StatefulSets to achieve ordered deployment, deletion and rolling updates.',
+    'Statefulset is used to describe stateful applications, such as master-slave relations between replicas and persistent data storage. Like a deployment, a statefulset creates identical replicas. The difference is that each replica has a persistent and unique identifier that it maintains across any rescheduling. You can use statefulsets to achieve ordered deployment, deletion and rolling updates.',
   DAEMONSETS_REPLICA_DESC:
-    'DaemonSet ensures that each node in the cluster runs a replica. When a node joins the cluster or leaves, the number of replicas is automatically adjusted to ensure that the number of replicas is the same as the number of nodes in the cluster. You can use DaemonSets to run storage services (GlusterFS, Ceph, etc.), log collection services (Fluentd, Logstash, etc.), and monitoring services.',
+    'Daemonset ensures that each node in the cluster runs a replica. When a node joins the cluster or leaves, the number of replicas is automatically adjusted to ensure that the number of replicas is the same as the number of nodes in the cluster. You can use daemonsets to run storage services (GlusterFS, Ceph, etc.), log collection services (Fluentd, Logstash, etc.), and monitoring services.',
 
   CONTAINER_CPU_DESC:
     "It's used as the judgment of resource allocation when scheduling containers. The container is allowed to be scheduled to the node only if the total amount of CPU that can be allocated on the node is equal or greater than the request value of the container CPU.",
@@ -443,12 +440,12 @@ module.exports = {
     'Resource requests should not be greater than resource limits.',
   REQUEST_EXCEED_AVAILABLE_QUOTA:
     'Resource requests and limits cannot exceed available resource limits.',
-  POD_SCALE_DESC: 'The number of Pod instances that can be scaled',
+  POD_SCALE_DESC: 'The number of pod instances that can be scaled',
   REPLICAS_AVAILABLE: 'Available',
 
-  DEPLOY_PLACEMENT_TIP_TITLE: 'What is Deployment Location?',
+  DEPLOY_PLACEMENT_TIP_TITLE: 'What is deployment location?',
   DEPLOY_PLACEMENT_TIP_VALUE:
-    'You can deploy Pods on different clusters and define the number of replicas deployed. The Federation Controller Manager schedules Pods on different clusters in a unified way and synchronizes status.',
+    'You can deploy pods on different clusters and define the number of replicas deployed. The Federation Controller Manager schedules pods on different clusters in a unified way and synchronizes status.',
 
   DESC_CREATE_CONFIGMAP_SECRET:
     'If there is no suitable configuration file or key reference, you can',
@@ -459,7 +456,7 @@ module.exports = {
 
   JOBS: 'Jobs',
 
-  // CronJobs
+  // Cronjobs
   ADD_VOLUME: 'Add Volume',
 
   MOUNT_VOLUMES: 'Mount Volumes',
