@@ -60,7 +60,7 @@ export default class HPACard extends React.Component {
       }
       case 'statefulsets': {
         status = {
-          current: get(detail, 'status.currentReplicas', detail.readyPodNums),
+          current: detail.readyPodNums || 0,
           desire: detail.podNums || 0,
         }
         break
