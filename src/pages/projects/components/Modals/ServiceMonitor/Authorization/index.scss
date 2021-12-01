@@ -55,6 +55,7 @@
 .form {
   padding: 12px;
   background-color: $white;
+  min-width: 600px;
 
   .formContent {
     padding-bottom: 20px;
@@ -70,13 +71,5 @@
 .secrets {
   a {
     color: $blue-color03;
-  }
-}
-
-.dirCheck {
-  :global {
-    label.radio-button {
-      height: 47px;
-    }
   }
 }

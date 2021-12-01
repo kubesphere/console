@@ -187,7 +187,6 @@ export default class Authorization extends Component {
             <RadioGroup
               mode="button"
               value={authType}
-              wrapClassName={styles.dirCheck}
               options={this.authTypes}
               onChange={this.handleTypeChange}
             />
