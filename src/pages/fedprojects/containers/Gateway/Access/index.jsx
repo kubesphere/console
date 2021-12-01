@@ -57,20 +57,13 @@ class InternetAccess extends React.Component {
   @observable
   gatewayList = []
 
-  getHostGateway = () => {
-    return this.store.getGateway({ cluster: this.cluster })
-  }
-
   getProjectGateway = () => {
     const params = { ...this.props.match.params }
-    return this.store.getGateway({ ...params, cluster: this.cluster })
+    return this.store.getGatewayByProject({ ...params, cluster: this.cluster })
   }
 
   getInitGateway = async () => {
-    const dataList = await Promise.all([
-      this.getHostGateway(),
-      this.getProjectGateway(),
-    ])
+    const dataList = await this.getProjectGateway()
     this.gatewayList = dataList
   }
 
@@ -178,9 +171,9 @@ class InternetAccess extends React.Component {
           <ClusterTitle cluster={cluster} theme="light" />
         </div>
 
-        {data.map((item, index) => {
+        {data.map((item, index, arr) => {
           const isCluster = index === 0
-          return item ? (
+          return (
             <GatewayCard
               type={isCluster ? 'cluster' : 'project'}
               {...this.props}
@@ -199,8 +192,9 @@ class InternetAccess extends React.Component {
               }
               prefix={isCluster ? null : this.prefix}
               renderOperations={isCluster ? this.renderOperations : null}
+              gatewayList={toJS(arr)}
             />
-          ) : null
+          )
         })}
       </div>
     )

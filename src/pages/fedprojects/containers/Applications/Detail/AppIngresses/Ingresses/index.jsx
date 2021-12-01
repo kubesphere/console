@@ -70,10 +70,11 @@ export default class Components extends Component {
   async getGateway() {
     const { cluster, namespace } = this.props
 
-    const datalist = await Promise.all([
-      this.gatewayStore.getGateway({ cluster }),
-      this.gatewayStore.getGateway({ cluster, namespace }),
-    ])
+    const datalist = await this.gatewayStore.getGatewayByProject({
+      cluster,
+      namespace,
+    })
+
     this.setState({ gateway: datalist[1] || datalist[0] })
   }
 
