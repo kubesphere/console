@@ -262,7 +262,7 @@ export default {
           const { app_id, version_id } = detail
           await store.handle({ app_id, version_id, action: 'pass' })
           Modal.close(modal)
-          Notify.success(t('PASS_SUCCESSFUL'))
+          Notify.success(t('RELEASE_SUCCESSFUL'))
           success && success()
         },
         onReject: () => {

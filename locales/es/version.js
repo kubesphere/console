@@ -108,15 +108,15 @@ module.exports = {
     'Despliega el directorio de plantilla de archivo, completa el valor correspondiente en values.yaml y genera el archivo de configuración final de kubernetes',
   NOTES_FILE_DESC: 'Guía de uso',
   VERSION_SUBMIT_TEST_STEPS: `
-    1. Todos los charts dependientes han sido enviados <br/> 
-    2. Verificación estática exitosa (helm lint) <br/> 
+    1. Todos los charts dependientes han sido enviados <br/>
+    2. Verificación estática exitosa (helm lint) <br/>
     3. Inicio exitoso de aplicaciones (helm install) con valores predeterminados: ' +
     'todos los pods están en estado de ejecución y todos los servicios de servicio tienen ' +
-    'al menos un endpoint <br /> 
-    4. No hay vulnerabilidad de seguridad en los mirros utilizados <br/> 
-    5. Admite actualización <br/> 
-    6. Admite la configuración de aplicaciones personalizadas <br/> 
-    7. No usar la función alfa de Kubernetes <br/> 
+    'al menos un endpoint <br />
+    4. No hay vulnerabilidad de seguridad en los mirros utilizados <br/>
+    5. Admite actualización <br/>
+    6. Admite la configuración de aplicaciones personalizadas <br/>
+    7. No usar la función alfa de Kubernetes <br/>
     8. Se requieren archivos README detallados, incluida la introducción de aplicaciones, ' +
     'condiciones previas y cómo personalizar los parámetros de configuración <br/>`,
 
@@ -131,7 +131,7 @@ module.exports = {
   UPLOAD_NEW_VERSION: 'Upload New Version',
   UPLOAD_NEW_VERSION_DESC: 'Upload a new version of the app.',
   APP_VERSION_SCAP: 'App version',
-  UPDATE_TIME_LOW: 'Update time',
+  UPDATE_TIME_SCAP: 'Update time',
   TEST_INSTALLATION: 'Test Installation',
   SUBMIT_FOR_RELEASE: 'Submit for Release',
   VERSION_INFO: 'Version Information',

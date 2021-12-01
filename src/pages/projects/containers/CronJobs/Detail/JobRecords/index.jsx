@@ -141,7 +141,7 @@ class JobRecords extends React.Component {
 
   render() {
     return (
-      <Card className={styles.main} title={t('JOB_RECORDS')}>
+      <Card className={styles.main} title={t('RUN_RECORDS')}>
         <div className={styles.content}>{this.renderTable()}</div>
       </Card>
     )

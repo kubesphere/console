@@ -117,12 +117,12 @@ export default class QuotaEditModal extends React.Component {
           name: workspace,
           cluster,
         }),
-      ]).then(() => {
+      ]).then(dataArr => {
         const { workspace: wsQuota } = getLeftQuota(
-          get(this.workspaceQuotaStore.detail, 'status.total'),
-          this.store.data
+          dataArr[1],
+          get(dataArr[0], 'data')
         )
-        const nsUsed = getUsedQuota(toJS(this.store.data))
+        const nsUsed = getUsedQuota(get(dataArr[0], 'data'))
         this.setState({
           leftQuota: mergeWith(nsUsed, wsQuota, (ns, ws) => {
             if (!ws) {
@@ -159,7 +159,6 @@ export default class QuotaEditModal extends React.Component {
             cpu: get(workspaceStore, 'requests.cpu'),
             memory: get(workspaceStore, 'requests.memory'),
           },
-          limitType: 'workspace',
         }
       : {}
 

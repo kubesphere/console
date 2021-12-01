@@ -182,7 +182,6 @@ export default class CredentialDetail extends React.Component {
     const sideProps = {
       module: this.module,
       name: detail.id,
-      labels: detail.labels,
       desc: detail.description,
       operations: this.getOperations(),
       attrs: this.getAttrs(),

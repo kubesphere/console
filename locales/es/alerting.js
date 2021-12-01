@@ -176,7 +176,7 @@ module.exports = {
   // Alerting Policies > Details
   NOTIFICATION_SUMMARY_COLON: 'Summary: ',
   DETAILS_COLON: 'Details: ',
-  MONITORING_TARGETS_LOW: 'Monitoring targets',
-  ALERTING_RULE_LOW: 'Alerting rule',
+  MONITORING_TARGETS_SCAP: 'Monitoring targets',
+  ALERTING_RULE_SCAP: 'Alerting rule',
   THRESHOLD_DURATION: 'Threshold Duration',
 }

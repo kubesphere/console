@@ -56,8 +56,8 @@ module.exports = {
   JOB_EMPTY_DESC: '请创建一个任务。',
   CRONJOB_EMPTY_DESC: '请创建一个定时任务。',
   GPU_TYPE: 'GPU类型',
-  GPU_TYPE_LOW: 'GPU 类型',
-  GPU_LIMIT_LOW: 'GPU 限制',
+  GPU_TYPE_SCAP: 'GPU 类型',
+  GPU_LIMIT_SCAP: 'GPU 限制',
   GPU_LIMIT: 'GPU限制',
   GPU_SETTING_TIP: '设置 GPU 限制为空即为取消该限制。',
   'Service Configuration': '服务配置',
@@ -138,6 +138,7 @@ module.exports = {
   NO_LIMIT_TCAP: '不限制',
   'Not Limited': '未限制',
   Cost: '占用',
+  AVAILABLE_QUOTAS: '可用配额',
   PROJECT_REMAINING_QUOTAS: '项目剩余配额',
   WORKSPACE_REMAINING_QUOTAS: '企业空间剩余配额',
   QUOTA_OVERCOST_TIP: '当前资源占用已超过剩余配额',
@@ -192,7 +193,7 @@ module.exports = {
   SELECT_VOLUME_DESC: '选择现有的存储卷以将其挂载到容器。',
 
   REQUEST_EXCCED: '资源预留不能超过资源限制',
-  REQUEST_EXCEED_WORKSPACE: '资源设置不能超过企业空间资源限制。',
+  REQUEST_EXCEED_AVAILABLE_QUOTA: '资源设置不能超过可用资源限制。',
   REQUEST_EXCEED_LIMIT: '资源预留不能超过资源限制。',
 
   WORKLOAD_DESC:
@@ -225,6 +226,7 @@ module.exports = {
   RollingUpdate: '滚动更新',
   ROLLING_UPDATE_RECOMMENDED: '滚动更新（推荐）',
   RESTART_PL: '重启次数',
+  RESTART: '重启次数',
   RESOURCE_REQUESTS: '资源预留',
   RESOURCE_LIMITS: '资源限制',
   IMAGE_PULL_POLICY: '镜像拉取策略',

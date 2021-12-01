@@ -200,6 +200,9 @@ export default {
         store,
         detail,
         supportGpuSelect: true,
+        namespace,
+        cluster,
+        isFederated,
         ...props,
       })
     },

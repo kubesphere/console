@@ -66,7 +66,6 @@ module.exports = {
   APP_ICON_SIZE: 'Icon size: 96x96 pixels',
   'Start editing': '開始編輯',
   File: '檔案',
-  PLATFORM_APP_STORE_MANAGEMENT: '平台級應用商店管理',
 
   APP_STORE_DESC: '對已上架、已下架的應用進行管理',
   PROVIDER: '服務商',
@@ -135,7 +134,6 @@ module.exports = {
   'Submit Successfully': '提交成功',
   'Cancel Successfully': '取消成功',
   'Release Successfully': '發佈成功',
-  PASS_SUCCESSFUL: '通過成功',
   REJECT_SUCCESSFUL: '拒絕成功',
   'Suspend Successfully': '下架成功',
   'Recover Successfully': '上架成功',
@@ -258,7 +256,7 @@ module.exports = {
   PENDING_REVIEW: 'Pending',
   COMPLETE_REVIEW: 'Complete',
   REJECT: 'Reject',
-  PASS: 'Pass',
+  RELEASE: 'Release',
   INTRODUCTION: 'Introduction',
   UPDATE_LOG: 'Update Log',
   SERVICE_PROVIDER_WEBSITE: 'Service provider website',
@@ -291,7 +289,7 @@ module.exports = {
   APP_NOTE: 'Note',
 
   // App Templates > Details
-  SERVICE_PROVIDER_WEBSITE_SCAP: 'Service Provider Website',
+  SERVICE_PROVIDER_WEBSITE_TCAP: 'Service Provider Website',
 
   // App Templates
   FILE: 'File',
@@ -315,7 +313,7 @@ module.exports = {
   RELEASE_TO_STORE: 'Release to Store',
   AUDIT_EMPTY_DESC: 'No app review record is found.',
   APP_STATUS_SUBMITTED: 'Submitted',
-  APP_STATUS_PASSED: 'Passed',
+  APP_STATUS_PASSED: 'Released',
   APP_STATUS_SUSPENDED: 'Suspended',
   APP_STATUS_REJECTED: 'Rejected',
   APP_STATUS_ACTIVE: 'Activated',

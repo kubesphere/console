@@ -31,7 +31,6 @@ module.exports = {
   SOURCE_CODE_ADDRESS: '源代码地址',
   LATEST_VALUE: '最新：{value}',
   Latest: '最新',
-  Back: '返回',
   Screenshots: '截图',
   VERSION_LIST_DES: '只显示 10 个最新的版本',
   VERSION_NUMBER: '版本号',

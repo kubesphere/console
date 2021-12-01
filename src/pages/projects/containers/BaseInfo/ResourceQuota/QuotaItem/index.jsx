@@ -112,7 +112,7 @@ const QuotaItem = ({ name, total, used }) => {
 
   ratio = Math.min(Math.max(ratio, 0), 1)
   const labelName = name.indexOf('gpu') > -1 ? 'gpu' : name
-  const labelText = labelName === 'gpu' ? `${labelName}.limit.low` : labelName
+  const labelText = labelName === 'gpu' ? `${labelName}.limit` : labelName
 
   return (
     <div className={styles.quota}>

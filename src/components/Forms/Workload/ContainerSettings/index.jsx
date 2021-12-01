@@ -16,9 +16,22 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { concat, get, set, unset, isEmpty, omit, omitBy, has } from 'lodash'
+import {
+  concat,
+  get,
+  set,
+  unset,
+  isEmpty,
+  omit,
+  omitBy,
+  has,
+  min,
+  reduce,
+  mergeWith,
+  isUndefined,
+} from 'lodash'
 import React from 'react'
-import { generateId, getContainerGpu } from 'utils'
+import { generateId, getContainerGpu, resourceLimitKey } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import { getLeftQuota } from 'utils/workload'
 
@@ -108,7 +121,22 @@ export default class ContainerSetting extends React.Component {
   }
 
   get workspaceQuota() {
-    return get(this.state.leftQuota, 'namespace', {})
+    const nsQuota = get(this.state.availableQuota, 'namespace', {})
+    const wsQuota = get(this.state.availableQuota, 'workspace', {})
+    return mergeWith(nsQuota, wsQuota, (ns, ws) => {
+      if (!ns && !ws) {
+        return undefined
+      }
+      if (!isUndefined(ns)) {
+        return ns < ws ? ns : ws
+      }
+      return ws
+    })
+  }
+
+  get clusters() {
+    const { projectDetail } = this.props
+    return projectDetail.clusters.map(cluster => cluster.name)
   }
 
   initService() {
@@ -167,29 +195,129 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
-  fetchQuota() {
-    const { cluster, projectDetail } = this.props
-    const { workspace, name } = projectDetail || {}
-
-    if (workspace && name) {
+  singleClusterQuota = (workspace, namespace, cluster) => {
+    return new Promise(resolve => {
       Promise.all([
         this.quotaStore.fetch({
           cluster,
-          namespace: name,
+          namespace,
         }),
         this.workspaceQuotaStore.fetchDetail({
           name: workspace,
           workspace,
           cluster,
         }),
-      ]).then(() => {
-        this.setState({
-          leftQuota: getLeftQuota(
-            get(this.workspaceQuotaStore.detail, 'status.total'),
-            this.quotaStore.data
-          ),
+      ]).then(dataArr => {
+        const namespaceQuota = get(dataArr[0], 'data.hard')
+        const { namespace: ns, workspace: ws } = getLeftQuota(
+          dataArr[1],
+          get(dataArr[0], 'data')
+        )
+        resolve({
+          workspaceQuota: ws,
+          namespaceQuota: {
+            ...ns,
+            ...omit(namespaceQuota, resourceLimitKey),
+          },
         })
       })
+    })
+  }
+
+  multiClusterQuota = (workspace, namespace) => {
+    const fetchArr = []
+    const defaults = {
+      'limits.cpu': undefined,
+      'limits.memory': undefined,
+    }
+    this.clusters.forEach(cluster =>
+      fetchArr.push(this.singleClusterQuota(workspace, namespace, cluster))
+    )
+    Promise.all(fetchArr).then(AllClusterQuota => {
+      const workspaceQuotas = AllClusterQuota.map(item =>
+        get(item, 'workspaceQuota', defaults)
+      )
+      const namespaceQuotas = AllClusterQuota.map(item =>
+        get(item, 'namespaceQuota', defaults)
+      )
+      const gpuQuotas = AllClusterQuota.map(item =>
+        omit(get(item, 'namespaceQuota', {}), resourceLimitKey)
+      )
+
+      this.setState({
+        leftQuota: {
+          workspace: this.transformQuota(workspaceQuotas),
+          namespace: this.transformQuota(namespaceQuotas),
+        },
+        availableQuota: {
+          workspace: this.transformQuota(workspaceQuotas),
+          namespace: {
+            ...this.transformQuota(namespaceQuotas),
+            ...this.transformGpu(gpuQuotas),
+          },
+        },
+      })
+    })
+  }
+
+  transformQuota = data => {
+    return {
+      'limits.cpu': this.findCpuOrMemoryMin(data, 'limits.cpu'),
+      'limits.memory': this.findCpuOrMemoryMin(data, 'limits.memory'),
+      'requests.cpu': this.findCpuOrMemoryMin(data, 'requests.cpu'),
+      'requests.memory': this.findCpuOrMemoryMin(data, 'requests.memory'),
+    }
+  }
+
+  findCpuOrMemoryMin = (dataArr, key) => {
+    const toArr = dataArr.map(item => item[key])
+    return min(toArr)
+  }
+
+  transformGpu = data => {
+    return reduce(
+      data,
+      (total, current) => {
+        const hasKey = get(total, `${Object.keys(current)[0]}`)
+        if (hasKey) {
+          return Number(hasKey) > Number(Object.values(current)[0])
+            ? { ...total, ...current }
+            : { ...total }
+        }
+        return { ...total, ...current }
+      },
+      {}
+    )
+  }
+
+  fetchQuota = async () => {
+    let workspace
+    const namespace = this.namespace
+    const { cluster, projectDetail, isFederated } = this.props
+
+    if (!projectDetail) {
+      workspace = this.props.workspace
+    } else {
+      workspace = projectDetail.workspace
+    }
+
+    if (workspace && namespace) {
+      if (!isFederated) {
+        const {
+          workspaceQuota,
+          namespaceQuota,
+        } = await this.singleClusterQuota(workspace, namespace, cluster)
+        const leftQuota = {
+          workspace: workspaceQuota,
+          namespace: namespaceQuota,
+        }
+        this.setState({
+          leftQuota,
+          availableQuota: leftQuota,
+        })
+      } else {
+        this.multiClusterQuota(workspace, namespace)
+      }
     }
   }
 
