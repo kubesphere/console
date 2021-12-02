@@ -17,33 +17,17 @@
  */
 
 module.exports = {
-  GATEWAY_SETTINGS: 'Gateway Settings',
-  DISABLE_GATEWAY: 'Disable Gateway',
-  DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
-  DISABLE_SUCCESS: 'Disabled successfully.',
-  CLUSTER_GATEWAY_DESC:
-    'Set up and manage the configuration of the external network access gateway and service management in the cluster.',
-  PROJECT_GATEWAY_DESC:
-    'Set up and manage the configuration of the external network access gateway and service management in the project',
-  CLUSTER_GATEWAY: 'Cluster Gateway',
   CLUSTER_GATEWAY_LOW: 'cluster gateway',
-  PROJECT_GATEWAY_PL: 'Project Gateways',
-  PROJECT_GATEWAY_LOW: 'project gateway',
-  PROJECT_GATEWAY: 'Project Gateway',
-  CLUSTER_ENABLE_GATEWAY_DESC: 'Please enable the cluster gateway.',
-  PROJECT_ENABLE_GATEWAY_DESC: 'Please enable the project gateway.',
-  CLUSTER_GATEWAY_NOT_ENABLED: 'Cluster Gateway Not Enabled',
-  PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',
+
   'Gateway Not Set': 'Gateway Not Set',
   'Set Gateway': 'Set Gateway',
   EDIT_GATEWAY: 'Edit Gateway',
   'Update Gateway': 'Update Gateway',
-  CONFIGURATION_OPTIONS: 'Configuration Options',
+
   'Gateway Config': 'Gateway Config',
-  GATEWAY_LOGS: 'Gateway Logs',
+
   'Add Gateway Config': 'Add Gateway Config',
-  LOAD_BALANCER_PROVIDER: 'Load Balancer Provider',
-  LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
+
   LOAD_BALANCER_SCAP: 'Load balancer',
   LOAD_BALANCERS_SCAP: 'Load balancers',
   USE_DEFAULT_ANNOTATIONS: 'Use Default Annotations',

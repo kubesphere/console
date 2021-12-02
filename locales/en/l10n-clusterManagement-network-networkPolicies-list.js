@@ -42,4 +42,5 @@ module.exports = {
   // List > Edit YAML
 
   // List > Delete
+  NETWORK_POLICY_LOW: 'network policy',
 }

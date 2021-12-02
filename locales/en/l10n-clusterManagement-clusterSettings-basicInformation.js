@@ -20,6 +20,7 @@ module.exports = {
   // Banner
   // Cluster Information
   NODES: 'Nodes',
+  DISK: 'Disk',
   CLUSTER_INFORMATION: 'Cluster Information',
 
   // Cluster Information > Edit Information

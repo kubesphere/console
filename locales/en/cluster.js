@@ -77,10 +77,7 @@ module.exports = {
   'etcd Backup Period': 'etcd Backup Period',
   'Keep Backup Number': 'Keep Backup Number',
   'KubeSphere Settings': 'KubeSphere Settings',
-  INVALID_IP_DESC: 'Invalid IP address format.',
-  CLUSTER_BASIC_INFO: 'Basic Information',
 
-  NO_CLUSTER_TIP: 'Please add at least one cluster.',
   NO_CLUSTER_TIP_DESC:
     'A cluster is a group of nodes (physical or virtual machines) running Kubernetes, and the function of Kubesphere also depends on the nodes in the cluster.',
   ADD_NEW_CLUSTER_DESC: 'Add a new Kubernetes cluster',

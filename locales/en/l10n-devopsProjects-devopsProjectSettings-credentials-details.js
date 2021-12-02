@@ -21,6 +21,8 @@ module.exports = {
   // Details
   // Edit
   // Delete
+  CREDENTIAL_LOW: 'credential',
+
   // Details > Credential
   TYPE_VALUE: 'Type: {value}',
 

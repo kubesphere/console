@@ -20,12 +20,17 @@ module.exports = {
   // Details
   // More > Update Gateway
   // More > Delete
+  GATEWAY_LOW: 'gateway',
+
   // Monitoring
   REQUEST_COUNT: 'Requests',
   NETWORK_TRAFFIC: 'Network Traffic',
 
   // Configuration Options
+  CONFIGURATION_OPTIONS: 'Configuration Options',
+
   // Gateway Logs
+  GATEWAY_LOGS: 'Gateway Logs',
   LOGGING_DISABLED: 'Logging Disabled',
   REFRESH_INTERVAL_VALUE: 'Refresh interval: {value}s',
   EXPORT_LOGS: 'Export Logs',

@@ -19,8 +19,12 @@
 module.exports = {
   // Banner
   CREDENTIAL_PL: 'Credentials',
+  DEVOPS_CREDENTIALS_DESC:
+    'Credentials are objects that contain some sensitive data, such as username and password, SSH key and Token. They are used to provide authentication for pulling code, pushing/pulling images, executing SSH scripts, etc. when a pipeline is running.',
 
   // List
+  CREDENTIAL_EMPTY_DESC: 'Please create a credential.',
+
   // List > Create
   CREATE_CREDENTIAL: 'Create Credential',
   CREDENTIAL_NAME_EXIST_DESC:
@@ -34,4 +38,5 @@ module.exports = {
   PASSWORD_TOKEN: 'Password/Token',
   KUBECONFIG_CONTENT_DESC:
     'The default content is the kubeconfig settings of the current user.',
+  CONTENT: 'Content',
 }
