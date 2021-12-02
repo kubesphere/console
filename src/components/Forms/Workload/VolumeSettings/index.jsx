@@ -359,7 +359,7 @@ class VolumeSettings extends React.Component {
       this.fedFormTemplate,
       `${this.prefix}spec.containers`,
       []
-    ).map(c => ({ ...c, type: 'work' }))
+    ).map(c => ({ ...c, type: 'worker' }))
     const initContainers = get(
       this.fedFormTemplate,
       `${this.prefix}spec.initContainers`,
