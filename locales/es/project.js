@@ -107,7 +107,7 @@ module.exports = {
   PROJECT_QUOTA: 'Cuota de proyecto',
   EDIT_PROJECT_QUOTAS: 'Edit Project Quotas',
   'Project Role': 'Rol del proyecto',
-  // Create ServiceAccount Page
+  // Create Service Account Page
   PROJECT_ROLE_SI: 'Rol del proyecto',
   PROJECT_ROLE_PL: 'Roles del proyecto',
   Project_Admin: 'Project_Admin',
@@ -196,7 +196,7 @@ module.exports = {
   DEFAULT_CONTAINER_QUOTAS_DESC:
     'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
   PROJECT_QUOTAS_DESC:
-    'Project quotas specify the number of available CPU and memory resources and the maximum number of application resources such as Pods, Deployments, and Services allowed in the project.',
+    'Project quotas specify the number of available CPU and memory resources and the maximum number of application resources such as oods, deployments, and services allowed in the project.',
   WHAT_IS_COLLECT_FILE_LOG_A:
     'La ruta de registro en el volumen montado en el contenedor se da en un patrón global. La ruta de registro se puede configurar en el workload para recopilar registros. El administrador debe habilitar la recopilación de registros de disco de antemano.',
   WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q: 'What are default container quotas?',

@@ -19,7 +19,7 @@
 module.exports = {
   // Banner
   // List
-  HPA_SET_TIP: 'Horizontal Pod autoscaling has been set.',
+  HPA_SET_TIP: 'Horizontal pod autoscaling has been set.',
   WORKLOAD_EMPTY_DESC: 'Please create a workload.',
 
   // List > Create > Basic Information
@@ -37,7 +37,7 @@ module.exports = {
 
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
   MAX_EXTRA_PODS_DESC:
-    'Maximum number or percentage of extra Pods allowed during the update process.',
+    'Maximum number or percentage of extra pods allowed during the update process.',
   MAX_EXTRA_PODS: 'Maximum Extra Pods',
 
   // List > Create > Volume Settings
@@ -66,7 +66,7 @@ module.exports = {
   // List > Edit YAML
   // List > Re-create
   RECREATE_CONFIRM_DESC:
-    'Are you sure you want to re-create the {type} {resource}? The Pod replicas will be updated according to the update strategy and the service will be interrupted.',
+    'Are you sure you want to re-create the {type} {resource}? The pod replicas will be updated according to the update strategy and the service will be interrupted.',
 
   // List > Delete
   NO_WORKLOAD_RELATED_RESOURCE_DESC:

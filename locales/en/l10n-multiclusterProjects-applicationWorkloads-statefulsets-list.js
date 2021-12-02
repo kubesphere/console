@@ -30,14 +30,14 @@ module.exports = {
   POD_SETTINGS: 'Pod Settings',
   POD_REPLICAS: 'Pod Replicas',
   ONDELETE: 'Update on Deletion',
-  ONDELETE_DESC: 'Updates Pod replicas only when they are manually deleted.',
+  ONDELETE_DESC: 'Updates pod replicas only when they are manually deleted.',
   PARTITION_ORDINAL: 'Ordinal for Dividing Pod Replicas',
   PARTITION_ORDINAL_DESC:
-    'Set an ordinal to divide the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
+    'Set an ordinal to divide the pod replicas into two groups. When the statefulset is updated, only pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
 
   // List > Create > Volume Settings > Volume Templates
   ADD_VOLUME_TEMPLATE_DESC:
-    'Add a volume template to mount a volume with the same lifecycle as the Pod.',
+    'Add a volume template to mount a volume with the same lifecycle as the pod.',
   STATEFULSETS_ADD_VOLUME_TEMPLATE_DESC: 'Please add a volume template',
   VOLUME_CAPACITY_TCAP: 'Volume Capacity',
   MOUNT_PATH: 'Mount path',

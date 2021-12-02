@@ -17,9 +17,14 @@
  */
 
 module.exports = {
+  // Initializing
+  WAIT_FOR_CLUSTER: 'Waiting for the cluster to join...',
+
   // Banner
   PROJECT_DESC:
     'Projects are used to group resources and control the resource management permissions of different users.',
+  SYSTEM_PROJECTS: 'System Projects',
+  USER_PROJECTS: 'User Projects',
 
   // List
   EMPTY_WRAPPER: 'No {resource} Found',

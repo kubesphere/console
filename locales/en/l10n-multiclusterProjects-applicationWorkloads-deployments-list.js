@@ -19,7 +19,7 @@
 module.exports = {
   // Banner
   WORKLOAD_DESC:
-    'Workloads are used to handle service requests and can contain one or more Pods. System functions such as logging and monitoring are also implemented by workloads.',
+    'Workloads are used to handle service requests and can contain one or more pods. System functions such as logging and monitoring are also implemented by workloads.',
 
   // List
   DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
@@ -37,9 +37,9 @@ module.exports = {
   WEIGHTS: 'Weights',
   SPECIFY_WEIGHTS: 'Specify Weights',
   SPECIFY_WEIGHTS_DESC:
-    'Set the total number of Pod replicas and a weight for each cluster. The Pod replicas will be scheduled to the clusters according to the weights.',
+    'Set the total number of pod replicas and a weight for each cluster. The pod replicas will be scheduled to the clusters according to the weights.',
   SPECIFY_REPLICAS_DESC:
-    'Manually set the number of Pod replicas in each cluster.',
+    'Manually set the number of pod replicas in each cluster.',
   REPLICA_LOW_SI: 'replica',
   REPLICA_LOW_PL: 'replicas',
   WEIGHT: 'weight',
@@ -51,7 +51,7 @@ module.exports = {
   CONTAINERS: 'Containers',
   IMAGE_TIME_SIZE_LAYER: 'Updated {time}',
   IMAGE_DESC:
-    'To use a private image registry, you need to first create an image registry Secret. <a href={link} target="_blank">Learn More</a>',
+    'To use a private image registry, you need to first create an image registry secret. <a href={link} target="_blank">Learn More</a>',
   IMAGE_PLACEHOLDER: 'Image name or path such as nginx:latest',
   IMAGE_EMPTY: 'Please set an image.',
   ENTER_POSITIVE_INTEGER_DESC: 'Please enter a positive integer.',
@@ -83,7 +83,7 @@ module.exports = {
   IMAGE_PULL_POLICY_ALWAYS: 'Pull Image Always',
   IMAGE_PULL_POLICY_NEVER: 'Use Local Image Only',
   IMAGE_PULL_POLICY_ALWAYS_DESC:
-    'Pulls the image always when the Pod is created or updated.',
+    'Pulls the image always when the pod is created or updated.',
   IMAGE_PULL_POLICY_IFNOTPRESENT_DESC:
     'Pulls the image only when it does not exist locally.',
   IMAGE_PULL_POLICY_NEVER_DESC:
@@ -105,7 +105,7 @@ module.exports = {
 
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: 'Add Environment Variable',
-  USE_CONFIGMAP_OR_SECRET: 'Use ConfigMap or Secret',
+  USE_CONFIGMAP_OR_SECRET: 'Use Configmap or Secret',
   KEY_IN_RESOURCE: 'Key in resource',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
 
@@ -147,35 +147,35 @@ module.exports = {
   ROLLING_UPDATE_RECOMMENDED: 'Rolling Update (recommended)',
   SIMULTANEOUS_UPDATE: 'Simultaneous Update',
   ROLLINGUPDATE_DESC:
-    'Gradually replaces old Pod replicas with new ones. The service is not interrupted during the update process.',
+    'Gradually replaces old pod replicas with new ones. The service is not interrupted during the update process.',
   SIMULTANEOUS_UPDATE_DESC:
-    'Deletes all existing Pod replicas before creating new ones. The service is interrupted during the update process.',
+    'Deletes all existing pod replicas before creating new ones. The service is interrupted during the update process.',
   ENTER_INTEGER_OR_PERCENTAGE: 'Please enter an integer or percentage.',
   MAX_EXTRA_EMPTY:
-    'Please set the maximum number or percentage of extra Pod replicas allowed during the update process.',
+    'Please set the maximum number or percentage of extra pod replicas allowed during the update process.',
 
   // List > Create > Pod Settings > Pod Security Context
   POD_SECURITY_CONTEXT: 'Pod Security Context',
-  POD_SECURITY_CONTEXT_DESC: 'Customize the Pod privilege settings.',
+  POD_SECURITY_CONTEXT_DESC: 'Customize the pod privilege settings.',
   POD_SECURITY_CONTEXT_TIP:
-    'If User, User Group, and SELinux Context settings are defined in both Pod Security Context and Container Security Context, the Container Security Context settings will override the Pod Security Context settings.',
+    'If User, User Group, and SELinux Context settings are defined in both pod Security Context and Container Security Context, the Container Security Context settings will override the Pod Security Context settings.',
 
   // List > Create > Pod Settings > Pod Scheduling Rules
   POD_SCHEDULING_RULES: 'Pod Scheduling Rules',
   POD_SCHEDULING_RULES_DESC:
-    'Specify the rules for scheduling the Pod replicas to nodes.',
+    'Specify the rules for scheduling the pod replicas to nodes.',
   DEFAULT_RULES: 'Default Rules',
   DEFAULT_RULES_DESC:
-    'Schedules the Pod replicas to nodes according to default rules.',
+    'Schedules the pod replicas to nodes according to default rules.',
   DECENTRALIZED_SCHEDULING: 'Decentralized Scheduling',
   CUSTOM_RULES: 'Custom Rules',
   CUSTOM_RULES_DESC:
-    'Schedules the Pod replicas to nodes according to custom rules.',
+    'Schedules the pod replicas to nodes according to custom rules.',
   'Pod IP': 'Pod IP',
   DECENTRALIZED_SCHEDULING_DESC:
-    'Schedules the Pod replicas to different nodes if possible.',
+    'Schedules the pod replicas to different nodes if possible.',
   CENTRALIZED_SCHEDULING_DESC:
-    'Schedules the Pod replicas to the same node if possible.',
+    'Schedules the pod replicas to the same node if possible.',
   CENTRALIZED_SCHEDULING: 'Centralized Scheduling',
   SCHEDULE_WITH_TARGET: 'Schedule with target',
   SCHEDULE_AWAY_FROM_TARGET: 'Schedule away from target',
@@ -186,7 +186,7 @@ module.exports = {
 
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: 'Add Metadata',
-  POD_ADD_METADATA_DESC: 'Add metadata to the Pod replicas.',
+  POD_ADD_METADATA_DESC: 'Add metadata to the pod replicas.',
 
   // List > Create > Volume Settings
   VOLUME_SETTINGS: 'Volume Settings',
@@ -215,31 +215,34 @@ module.exports = {
   READ_AND_WRITE: 'Read and write',
   READ_ONLY: 'Read-only',
 
-  // List > Create > Volume Settings > Mount ConfigMap or Secret
-  MOUNT_CONFIGMAP_OR_SECRET: 'Mount ConfigMap or Secret',
+  // List > Create > Volume Settings > Mount Configmap or Secret
+  MOUNT_CONFIGMAP_OR_SECRET: 'Mount Configmap or Secret',
   MOUNT_CONFIGMAP_OR_SECRET_DESC:
-    'Mount a ConfigMap or Secret to the containers.',
-  CONFIGMAP: 'ConfigMap',
-  SELECT_CONFIGMAP_DESC: 'Mount a ConfigMap to the containers.',
+    'Mount a configmap or secret to the containers.',
+  CONFIGMAP: 'Configmap',
+  SELECT_CONFIGMAP_DESC: 'Mount a configmap to the containers.',
   READ_WRITE_MOUNT_EMPTY:
     'Please specify the volume access mode and mount path.',
   SELECT_SPECIFIC_KEYS: 'Select Specific Keys',
   SELECT_SPECIFIC_KEYS_DESC:
     'Select specific keys to be mounted to the containers.',
-  SELECT_SECRET_DESC: 'Mount a Secret to the containers.',
-  CONFIGMAP_NOT_SELECT: 'Please select a ConfigMap.',
-  SECRET_NOT_SELECT: 'Please select a Secret.',
+  SELECT_SECRET_DESC: 'Mount a secret to the containers.',
+  CONFIGMAP_NOT_SELECT: 'Please select a configmap.',
+  SECRET_NOT_SELECT: 'Please select a secret.',
   NO_AVAILABLE_RESOURCE: 'No Available Resource',
 
   // List > Create > Advanced Settings
   SELECT_NODES: 'Select Nodes',
   SELECT_NODES_DESC:
-    'Assign Pod replicas to specific nodes. You can use labels to select nodes or manually specify a node.',
+    'Assign pod replicas to specific nodes. You can use labels to select nodes or manually specify a node.',
   ADD_NODE_SELECTOR: 'Add Node Selector',
   ADD_METADATA_DESC: 'Add metadata to the resource.',
   KEY: 'Key',
   VALUE: 'Value',
   ADVANCED_SETTINGS: 'Advanced Settings',
+
+  // List > Create > Advanced Settings > Specify Node
+  WORKLOAD_SPECIFY_NODE_DESC: 'Assign pod replicas to a specific node.',
 
   // List > Create > Cluster Differences
   CLUSTER_DIFF: 'Cluster Differences',

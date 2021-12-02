@@ -18,12 +18,15 @@
 
 module.exports = {
   // Head
+  LAST_LOGIN_TIME: 'Last login: ',
+
   // Platform Information
   LAST_UPDATE_TIME: 'Last update time',
   PLATFORM_VERSION: 'Platform version',
 
   // Platform Resources
   PLATFORM_RESOURCES: 'Platform Resources',
+  APP_TEMPLATE_SCAP_PL: 'App templates',
 
   // Recent Access
   RECENT_ACCESS: 'Recent Access',
@@ -35,4 +38,8 @@ module.exports = {
   WORKBENCH_CLUSTER: 'Cluster',
   NOT_FOUND_DESC:
     'The resource was not found. The system will return to <a href="{link}">Workbench</a> in {time}s.',
+  MULTI_CLUSTER_PROJECT_TIP:
+    'The project is deployed across multiple clusters.',
+  NO_HISTORY_TITLE: 'No Recently Accessed Resource Found',
+  NO_HISTORY_DESC: 'You can access platform resources.',
 }

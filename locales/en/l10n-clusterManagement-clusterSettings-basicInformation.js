@@ -20,6 +20,13 @@ module.exports = {
   // Banner
   // Cluster Information
   NODES: 'Nodes',
+  CLUSTER_INFORMATION: 'Cluster Information',
 
   // Cluster Information > Edit Information
+  CLUSTER_NAME: 'Cluster Name',
+  EDIT_CLUSTER_INFO_DESC: 'Edit basic information about the cluster.',
+
+  // Unbind Cluster
+  UNBIND: 'Unbind',
+  UNBIND_CLUSTER: 'Unbind Cluster',
 }

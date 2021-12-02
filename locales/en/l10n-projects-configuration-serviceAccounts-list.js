@@ -20,7 +20,7 @@ module.exports = {
   // Banner
   SERVICE_ACCOUNT_PL: 'Service Accounts',
   SERVICE_ACCOUNT_DESC:
-    'A Service Account provides the processes that run in a Pod with an identity that can be used to access the API server.',
+    'A service account provides the processes that run in a pod with an identity that can be used to access the API server.',
 
   // List
   SERVICE_ACCOUNT_EMPTY_DESC: 'Please create a service account.',

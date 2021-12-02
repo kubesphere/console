@@ -27,7 +27,7 @@ module.exports = {
   NOT_RUNNING_YET: 'Not run yet',
 
   // List > Name (Displayed after you create a service from artifact)
-  BUILD_IMAGE_FOR_SERVICE: 'Build image for Service {service}.',
+  BUILD_IMAGE_FOR_SERVICE: 'Build image for service {service}.',
 
   // List > Create > Build Mode
   BUILD_MODE: 'Build Mode',
@@ -43,14 +43,14 @@ module.exports = {
   CODE_REPOSITORY_URL_DESC:
     'Enter the address of the source code repository. Currently, only Git repositories are supported.',
   CODE_REPOSITORY_KEY_DESC:
-    'Select the Secret that contains the code repository key if a private code repository is used.',
+    'Select the secret that contains the code repository key if a private code repository is used.',
   IMAGE_NAME: 'Image Name',
   IMAGE_TAG: 'Image Tag',
   TARGET_IMAGE_REPOSITORY: 'Target Image Registry',
   S2I_IMAGE_NAME_DESC:
     'The name can contain only lowercase letters, numbers, hyphens (-), dots (.), slashes (/), and colons (:), and must start and end with a lowercase letter or number.',
   S2I_TARGET_IMAGE_REPOSITORY_DESC:
-    'Select an image registry for storing the image to be created. If no image registry is available, you need to create an image registry Secret. <br/><a href={link} target="_blank">Learn More</a>',
+    'Select an image registry for storing the image to be created. If no image registry is available, you need to create an image registry secret. <br/><a href={link} target="_blank">Learn More</a>',
   TRIGGER_TOKEN: 'Trigger Token',
   INVALID_TRIGGER_TOKEN_DESC:
     'Invalid token. The token can contain only uppercase letters, lowercase letters, and numbers.',

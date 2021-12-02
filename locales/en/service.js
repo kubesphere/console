@@ -28,7 +28,7 @@ module.exports = {
   'Add Selector': 'Add Selector',
   'Associated Application': 'Associated Application',
 
-  'Automatically assign Service IP': 'Automatically assign Service IP',
+  'Automatically assign Service IP': 'Automatically assign service IP',
   'Commonly included tags in the current workloads':
     'Commonly included tags in the current workloads',
 
@@ -41,7 +41,7 @@ module.exports = {
     'Creation failed, please delete and try again',
 
   'Delete Service': 'Delete Service',
-  'Do not assign Service IP': 'Do not assign Service IP',
+  'Do not assign Service IP': 'Do not assign service IP',
 
   'External Address': 'External Address',
 
@@ -50,7 +50,7 @@ module.exports = {
   'Internal access': 'Internal access',
 
   'LoadBalancer IP': 'LoadBalancer IP',
-  'Map Services outside the cluster': 'Map Services outside the cluster',
+  'Map Services outside the cluster': 'Map services outside the cluster',
 
   'No related resources found with current service(s)':
     'No related resources found with current service(s)',
@@ -67,7 +67,7 @@ module.exports = {
   'Please input service name': 'Please input service name',
 
   'Please select a workload': 'Please select a workload',
-  'Please select Service': 'Please select Service',
+  'Please select Service': 'Please select service',
 
   routes: 'routes',
   selector: 'selector',
@@ -75,7 +75,7 @@ module.exports = {
   'Service Mesh': 'Service Mesh',
   'Service Name': 'Service Name',
 
-  SERVICE_TYPE_DESC: 'Select a Service type.',
+  SERVICE_TYPE_DESC: 'Select a service type.',
 
   'Simple Service': 'Simple Service',
 

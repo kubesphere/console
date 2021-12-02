@@ -89,9 +89,9 @@ module.exports = {
   SERVICE_PORT: 'Puerto de servicio',
   SERVICE_PORT_VALUE: 'Puerto de servicio: {value}',
   SERVICE_TYPE_TCAP: 'Tipo de servicio',
-  SERVICE_TYPE_DESC: 'Select a Service type.',
+  SERVICE_TYPE_DESC: 'Select a service type.',
   SELECT_SERVICE_TYPE_DESC:
-    'Create a stateless or stateful Service, or map a Service to an external Service.',
+    'Create a stateless or stateful service, or map a service to an external Service.',
   APP_SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful Service.',
   JAVA: 'Java',
   NODEJS: 'Node.js',

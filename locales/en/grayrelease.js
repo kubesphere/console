@@ -64,7 +64,7 @@ module.exports = {
   TAKE_OVER: 'Take Over',
   'Operating System': 'Operating System',
   NEW_VERSION_NUMBER_EMPTY_DESC: 'Please enter a new version number.',
-  SELECT_GRAY_COMPONENT_TIP: 'Please select a Service.',
+  SELECT_GRAY_COMPONENT_TIP: 'Please select a service.',
   STRATEGY_CONFIGURATIONS_TCAP: 'Strategy Configurations',
   POLICY_REQUEST_CONTENT_TIP:
     'The Specify Request Parameters function supports only HTTP, HTTPS, and gRPG requests.',
@@ -144,7 +144,7 @@ module.exports = {
   ADJUST_TRAFFIC_DISTRIBUTION_DESC:
     'Are you sure you want to send {ratioNew}% of traffic to the new version <b>{newVersion}</b> and {ratioOld}% to the old version <b>{oldVersion}</b>?',
   CANARY_BY_TRAFFIC_DESC:
-    '{ratio}% of traffic bound for the Service <b>{component}</b> is sent to the new version <b>{newVersion}</b>.',
+    '{ratio}% of traffic bound for the service <b>{component}</b> is sent to the new version <b>{newVersion}</b>.',
 
   DEPLOY_APP_CONFIRM: 'Sure to deploy sample application?',
   DEPLOY_APP_TIP: 'You are going to deploy the sample app {name}.',

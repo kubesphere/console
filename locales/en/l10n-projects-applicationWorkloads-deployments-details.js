@@ -25,19 +25,19 @@ module.exports = {
 
   // More > Edit Autoscaling
   CONFIGURE_AUTOSCALING_DESC:
-    'Set the system to automatically adjust the number of Pod replicas based on target CPU usage and target memory usage.',
+    'Set the system to automatically adjust the number of pod replicas based on target CPU usage and target memory usage.',
   EDIT_AUTOSCALING: 'Edit Autoscaling',
   TARGET_CPU_USAGE_UNIT: 'Target CPU Usage (%)',
   AUTOSCALING: 'Autoscaling',
   RESOURCE_NAME: 'Resource Name',
   TARGET_CPU_USAGE_DESC:
-    'The system automatically decreases/increases the number of Pod replicas when the actual CPU usage is higher/lower than the target.',
+    'The system automatically decreases/increases the number of pod replicas when the actual CPU usage is higher/lower than the target.',
   TARGET_MEMORY_USAGE_DESC:
-    'The system automatically decreases/increases the number of Pod replicas when the actual memory usage is higher/lower than the target.',
+    'The system automatically decreases/increases the number of pod replicas when the actual memory usage is higher/lower than the target.',
   MINIMUM_REPLICAS_DESC:
-    'Set the minimum number of Pod replicas allowed. The default value is 1.',
+    'Set the minimum number of pod replicas allowed. The default value is 1.',
   MAXIMUM_REPLICAS_DESC:
-    'Set the maximum number of Pod replicas allowed. The default value is 1.',
+    'Set the maximum number of pod replicas allowed. The default value is 1.',
   TARGET_MEMORY_USAGE_UNIT: 'Target Memory Usage (MiB)',
   MINIMUM_REPLICAS: 'Minimum Replicas',
   MAXIMUM_REPLICAS: 'Maximum Replicas',
@@ -48,7 +48,7 @@ module.exports = {
   // More > Edit Settings > Containers
   // More > Edit Settings > Volumes
   // More > Edit Settings > Volumes > Mount Volume
-  // More > Edit Settings > Volumes > Mount ConfigMap or Secret
+  // More > Edit Settings > Volumes > Mount Configmap or Secret
   // More > Edit Settings > Pod Scheduling Rules
   RULE_NOT_COMPLETE: 'Please set a complete rule.',
 
@@ -64,7 +64,7 @@ module.exports = {
   REPLICAS_CURRENT: 'Current',
   ADJUST_REPLICAS: 'Adjust Replicas',
   REPLICAS_SCALE_NOTIFY_CONTENT:
-    'Are you sure you want to change the number of Pod replicas to {num}?',
+    'Are you sure you want to change the number of pod replicas to {num}?',
   REPLICAS_SCALE_NOTIFY_CONFIRM: 'OK ({seconds}s)',
   REPLICAS_SCALE_NOTIFY_CANCEL: 'Cancel',
 
@@ -81,11 +81,15 @@ module.exports = {
   SHOW_SELECTED_ONLY: 'Show Selected Only',
   MONITORING_SELECT_LIMIT_MSG: 'A maximum of 10 resources can be selected.',
   MONITORING_ALERT_DESC:
-    'Information about a maximum of five Pod replicas are displayed by default. You can click <b>View All Replicas</b> to view information about all Pod replicas.',
+    'Information about a maximum of five pod replicas are displayed by default. You can click <b>View All Replicas</b> to view information about all pod replicas.',
   CURRENT_VALUE: 'Current: {value}',
 
   // Environment Variables
   ENVIRONMENT_VARIABLE_PL: 'Environment Variables',
 
   // Events
+  EVENT_AGE: 'Occurred',
+  EVENT_AGE_DATA: '{lastTime}<br/>({count} times over {duration})',
+  EVENT_AGE_DATA_TWICE: '{lastTime}<br/>(twice over {duration})',
+  SOURCE: 'Source',
 }

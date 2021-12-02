@@ -31,22 +31,22 @@ module.exports = {
   SCHEDULING_RESULT: 'Scheduling Result',
   POD_SCHEDULING_METHOD: 'Pod Scheduling Method',
   POD_ASSIGNED_DESC:
-    'The system schedules a Pod to a node with sufficient available resources based on the resource requests of the Pod.',
+    'The system schedules a pod to a node with sufficient available resources based on the resource requests of the Pod.',
   STATUS_INFORMATION: 'Status Information',
   WORKLOAD_CONDITION_AVAILABLE: 'Available',
   WORKLOAD_CONDITION_PROGRESSING: 'Progressing',
   NOT_SUCCESSFUL: 'Not successful',
   CURRENT_STATUS: 'Current status',
   POD_CONDITION_INITIALIZED: 'Initialized',
-  POD_CONDITION_INITIALIZED_DESC: 'Starts all init containers in the Pod.',
+  POD_CONDITION_INITIALIZED_DESC: 'Starts all init containers in the pod.',
   POD_CONDITION_READY: 'Pod Ready',
   POD_CONDITION_READY_DESC:
-    'Starts running the Pod and allows the Pod to be accessed.',
+    'Starts running the pod and allows the pod to be accessed.',
   POD_CONDITION_CONTAINERSREADY: 'Containers Ready',
-  POD_CONDITION_CONTAINERSREADY_DESC: 'Starts all containers in the Pod.',
+  POD_CONDITION_CONTAINERSREADY_DESC: 'Starts all containers in the pod.',
   POD_CONDITION_PODSCHEDULED: 'Pod Scheduled',
   POD_CONDITION_PODSCHEDULED_DESC:
-    'Schedules the Pod to a node in the cluster.',
+    'Schedules the pod to a node in the cluster.',
 
   // Metadata
   // Monitoring

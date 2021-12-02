@@ -42,6 +42,7 @@ module.exports = {
     'Before running the command, you must install a container runtime such as Docker or containerd on your edge node. <a href="https://kubeedge.io/en/docs/" target="_blank">Learn More</a>',
   ADD_DEFAULT_TAINT: 'Add the default taint {params}',
   EDGE_NODE: 'Edge Node',
+  INTERNAL_IP_ADDRESS: 'Internal IP Address',
 
   // List > View Log
   LOGS: 'Logs',

@@ -34,6 +34,7 @@ module.exports = {
   COMMAND: 'Command',
   IMAGE_ID: 'Image ID',
   IMAGE_PULL_POLICY: 'Image Pull Policy',
+  CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
 
   // Resource Status > Details > Container Details > Terminal
   LOADING: 'Loading...',
@@ -58,10 +59,10 @@ module.exports = {
   LOG_DATA_LOW: 'log data',
 
   // Resource Status > Volumes
-  TYPE_CONFIGMAP: 'Volume type: ConfigMap',
-  TYPE_SECRET: 'Volume type: Secret',
+  TYPE_CONFIGMAP: 'Volume type: configmap',
+  TYPE_SECRET: 'Volume type: secret',
   TYPE_EMPTYDIR: 'Volume type: emptyDir',
-  TYPE_HOSTPATH: 'Volume type: HostPath',
+  TYPE_HOSTPATH: 'Volume type: host path',
 
   // Scheduling Information
   REASON_VALUE: 'Reason: {value}',

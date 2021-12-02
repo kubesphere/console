@@ -91,7 +91,7 @@ module.exports = {
   NODE_READY_TIP: 'If the node is healthy and ready to accept pods.',
 
   NODE_TYPE_DESC:
-    'Node types help users to divide nodes into different groups. Users can add the hosting node to a corresponding group by creating nodes of different types that are properly connected with each other. In this way, Pods can be deployed to appropriate physical nodes based on the group. Resource availability and business continuity can also be improved.',
+    'Node types help users to divide nodes into different groups. Users can add the hosting node to a corresponding group by creating nodes of different types that are properly connected with each other. In this way, pods can be deployed to appropriate physical nodes based on the group. Resource availability and business continuity can also be improved.',
   NODE_TYPE_DESCRIPTION_DEC:
     'The description will help users to select nodes types and use the cluster.',
 

@@ -102,7 +102,7 @@ module.exports = {
   S2I_UPDATA_WORKLOAD_DESC:
     'After the image is rebuilt successfully, the image of the relevant workload will be updated and the workload version will be updated.',
   IMAGE_FROM_S2I_DESC:
-    'Get the code from the existing code repository and build the image by way of Source to Image. The process of building the image each time will be done as a Job.',
+    'Get the code from the existing code repository and build the image by way of Source to Image. The process of building the image each time will be done as a job.',
   IMAGE_FROM_EXSIT: 'Select an existing image deployment container',
   IMAGE_FROM_EXSIT_DESC:
     'Pull an image from a public or private image repository',

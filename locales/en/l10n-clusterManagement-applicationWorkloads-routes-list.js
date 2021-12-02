@@ -19,23 +19,23 @@
 module.exports = {
   // Banner
   ROUTE_DESC:
-    'A Route provides a way to aggregate Services. You can expose the internal Services outside the cluster through an externally accessible IP address.',
-  PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using Routes?',
+    'A route provides a way to aggregate services. You can expose the internal services outside the cluster through an externally accessible IP address.',
+  PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using routes?',
   PREREQUESTS_FOR_USE_ROUTE_A:
-    'To use Routes, you need to contact the project administrator to set the gateway for the project.',
-  ACCESS_TYPES_OF_ROUTE_Q: 'What are the external access modes of Routes?',
+    'To use routes, you need to contact the project administrator to set the gateway for the project.',
+  ACCESS_TYPES_OF_ROUTE_Q: 'What are the external access modes of routes?',
   ACCESS_TYPES_OF_ROUTE_A:
-    'KubeSphere Routes support the NodePort and LoadBalancer external access modes.',
+    'KubeSphere routes support the NodePort and LoadBalancer external access modes.',
   ROUTE_PL: 'Routes',
 
   // List
   GATEWAY_ADDRESS_TCAP: 'Gateway Address',
-  ROUTE_EMPTY_DESC: 'Please create a Route.',
+  ROUTE_EMPTY_DESC: 'Please create a route.',
 
   // List > Create > Basic Information
   // List > Create > Routing Rules
   ADD_ROUTING_RULE_DESC:
-    'Add a routing rule to map domain name paths to Services.',
+    'Add a routing rule to map domain name paths to services.',
   ADD_ROUTING_RULE: 'Add Routing Rule',
   ROUTING_RULE_EMPTY_DESC: 'Please add at least one routing rule.',
   PATH_EMPTY_DESC: 'Please add at least one path.',
@@ -53,6 +53,8 @@ module.exports = {
     'To use Auto Generate, please contact the project administrator to set the gateway access mode in Gateway Settings of the project.',
   PATH: 'Path',
   PROTOCOL: 'Protocol',
+  PORT: 'Port',
+  PORT_VALUE: 'Port: {value}',
 
   // List > Create > Advanced Settings
   // List > Edit Information

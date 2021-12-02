@@ -116,7 +116,7 @@ module.exports = {
     'At least one item needs to be configured to receive notifications.',
   ENTER_WECOM_CORP_ID_DESC: 'Please enter a corporation ID.',
   ENTER_WECOM_AGENT_ID_DESC: 'Please enter an applicaiton AgentId.',
-  ENTER_WECOM_SECRET_DESC: 'Please enter an application Secret.',
+  ENTER_WECOM_SECRET_DESC: 'Please enter an application secret.',
   WECOM_DESC:
     'Configure WeCom notifications by setting a server and recipients.',
 

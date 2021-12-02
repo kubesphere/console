@@ -36,9 +36,9 @@ module.exports = {
   APPLICATION_WORKLOADS_MANAGEMENT: 'Application Workload Management',
   APPLICATION_WORKLOADS_VIEW: 'Application Workload Viewing',
   APPLICATION_WORKLOADS_VIEW_DESC:
-    'View resources such as applications, Services, workloads, Jobs, grayscale release jobs, and image builders in the project.',
+    'View resources such as applications, services, workloads, jobs, grayscale release jobs, and image builders in the project.',
   APPLICATION_WORKLOADS_MANAGEMENT_DESC:
-    'Create, edit, and delete resources such as applications, Services, workloads, Jobs, grayscale release jobs, and image builders in the project.',
+    'Create, edit, and delete resources such as applications, services, workloads, jobs, grayscale release jobs, and image builders in the project.',
 
   // List > Edit Permissions > Storage Management
   VOLUME_SNAPSHOTS_MANAGEMENT: 'Volume Snapshot Management',
@@ -52,17 +52,17 @@ module.exports = {
   VOLUMES_MANAGEMENT_DESC: 'Create, edit, and delete volumes in the project.',
 
   // List > Edit Permissions > Configuration Management
-  CONFIGMAPS_MANAGEMENT: 'ConfigMap Management',
-  CONFIGMAPS_VIEW: 'ConfigMap Viewing',
+  CONFIGMAPS_MANAGEMENT: 'Configmap Management',
+  CONFIGMAPS_VIEW: 'Configmap Viewing',
   SECRETS_MANAGEMENT: 'Secret Management',
   SECRETS_VIEW: 'Secret Viewing',
   SERVICEACCOUNT_MANAGEMENT: 'Service Account Management',
   SERVICEACCOUNT_VIEW: 'Service Account Viewing',
-  SECRETS_VIEW_DESC: 'View Secrets in the project.',
-  SECRETS_MANAGEMENT_DESC: 'Create, edit, and delete Secrets in the project.',
-  CONFIGMAPS_VIEW_DESC: 'View ConfigMaps in the project.',
+  SECRETS_VIEW_DESC: 'View secrets in the project.',
+  SECRETS_MANAGEMENT_DESC: 'Create, edit, and delete secrets in the project.',
+  CONFIGMAPS_VIEW_DESC: 'View configmaps in the project.',
   CONFIGMAPS_MANAGEMENT_DESC:
-    'Create, edit, and delete ConfigMaps in the project.',
+    'Create, edit, and delete configmaps in the project.',
   SERVICEACCOUNT_MANAGEMENT_DESC:
     'Create, edit, and delete service accounts in the project.',
   SERVICEACCOUNT_VIEW_DESC: 'View service accounts in the project.',

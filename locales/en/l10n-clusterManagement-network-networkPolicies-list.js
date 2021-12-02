@@ -35,7 +35,7 @@ module.exports = {
   CREATE_NETWORK_POLICY_TCAP: 'Create Network Policy',
   CREATE_BTN: 'Create',
   CREATE_NETWORK_POLICY_DESC:
-    'The network policy is configured to allow network isolation within the same cluster, namely, the ability to build a firewall between certain instances (Pods).',
+    'The network policy is configured to allow network isolation within the same cluster, namely, the ability to build a firewall between certain instances (pods).',
 
   // List > Edit Information
 
