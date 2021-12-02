@@ -255,7 +255,6 @@ module.exports = {
   total: 'total',
   true: 'true',
   True: 'True',
-
   type: 'type',
   Uncordon: 'Uncordon',
   Undo: 'Undo',

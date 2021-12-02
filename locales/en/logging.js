@@ -103,7 +103,6 @@ module.exports = {
   LOG_EXPORT_SCAP: 'Log export',
 
   START_TIME_COLON: 'Start Time: ',
-
   REASON_COLON: 'Reason: ',
   MESSAGE_COLON: 'Message: ',
 }

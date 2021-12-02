@@ -48,7 +48,6 @@ module.exports = {
 
   GATEWAY_PL: 'Gateways',
   GATEWAY_LOW: 'gateway',
-
   'Help Information': 'Help Information',
 
   'Invalid project name': 'Invalid project name',
@@ -94,7 +93,6 @@ module.exports = {
   Projects: 'Projects',
   projects: 'projects',
   'Quota Management': 'Quota Management',
-
   'Remove Member': 'Remove Member',
   'Remove Members': 'Remove Members',
   REQUESTS_CPU: 'CPU Request',
