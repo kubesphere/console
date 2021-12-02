@@ -17,26 +17,22 @@
  */
 
 module.exports = {
-  DISK: 'Disk',
-  APP_REPO: 'App Repositories',
   'Cluster Status': 'Cluster Status',
   'CPU Load Average': 'CPU Load Average',
   'CPU Usage': 'CPU Usage',
   'CPU Utilization': 'CPU Utilization',
   'create project': 'create project',
   CronJobs: 'Cronjobs',
-  DAEMONSETS: 'Daemonsets',
-  STATEFULSETS: 'Statefulsets',
+
   dashboard: 'dashboard',
   Dashboard: 'Dashboard',
-  DEPLOYMENTS: 'Deployments',
+
   'Disk Throughput': 'Disk Throughput',
   'Disk Utilization': 'Disk Utilization',
   'Inbound Traffic': 'Inbound Traffic',
   'involved project': 'involved project',
   Jobs: 'Jobs',
   'KubeSphere Running Status': 'KubeSphere Running Status',
-  LAST_LOGIN: 'Last Login',
   'Log Data': 'Log Data',
   'Memory Usage': 'Memory Usage',
   'Memory Utilization': 'Memory Utilization',
@@ -49,17 +45,16 @@ module.exports = {
   quota: 'quota',
   'Regular user': 'Regular user',
   'Replica Availability': 'Replica Availability',
-  TOP_5_FOR_RESOURCE_USAGE: 'Top 5 for Resource Usage',
+
   Routes: 'Routes',
   Services: 'Services',
   'Storage Classes': 'Storage Classes',
   'Super administrator': 'Super administrator',
-  USER_PL: 'Users',
+
   Utilization: 'Utilization',
   'View All Nodes': 'View All Nodes',
   Volumes: 'Volumes',
 
-  DASHBOARD_TITLE: 'Hello {username}',
   DASHBOARD_BANNER_TITLE: 'Platform Overview',
   DASHBOARD_BANNER_DESC:
     'Aggregate statistics on running resources and usage of current platform.',
@@ -70,10 +65,6 @@ module.exports = {
   USAGE_RATE: 'Usage',
   NO_PROJECT: 'No available projects have been found.',
   NO_POD_MONITOR_DATA: 'No pods monitoring data',
-  RESOURCE_WARNING_TIPS: 'Abnormal {tipName}: {warnNum}',
-  CPU_AVERAGE_LOAD: 'Load Average',
 
-  USER_DASHBOARD_EMPTY_TITLE: 'You do not belong to any workspace.',
-  USER_DASHBOARD_EMPTY_DESC:
-    'Please contact a workspace administrator to invite you to join a workspace.',
+  CPU_AVERAGE_LOAD: 'Load Average',
 }

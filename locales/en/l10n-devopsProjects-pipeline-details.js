@@ -29,6 +29,7 @@ module.exports = {
   SKIPPED: 'Skipped',
   NOT_BUILT: 'Not built',
   SYNC_STATUS: 'Sync Status',
+  DEVOPS_PROJECT: 'DevOps Project',
 
   // More > Edit Settings
   // More > Scan Repository
@@ -101,6 +102,8 @@ module.exports = {
   Controller (rolling updates are not supported, and use deployment if you want to use rolling updates)
   </li>`,
   STAGE: 'Stage',
+  KUBERNETES_DEPLOY_DEPRECATED_TIP:
+    'This step will be deprecated in subsequent versions, and it is recommended that you consider other alternatives.',
 
   // Task Status > Edit Jenkinsfile
   EDIT_JENKINSFILE: 'Edit Jenkinsfile',

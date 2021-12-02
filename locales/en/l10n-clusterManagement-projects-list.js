@@ -65,6 +65,7 @@ module.exports = {
   DELETE_TITLE_SI: 'Delete {type}',
   DELETE_TITLE_PL: 'Delete Multiple {type}',
   DELETE: 'Delete',
+  PROJECT_LOW: 'project',
   DELETE_SUCCESS: 'Deleted successfully.',
   STOP_SUCCESS_DESC: 'Stopped successfully.',
   DELETE_RESOURCE_TYPE_DESC_SI:

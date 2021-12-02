@@ -18,7 +18,13 @@
 
 module.exports = {
   // Banner
+  DEVOPS_PROJECT_MEMBER_PL: 'DevOps Project Members',
+  DEVOPS_PROJECT_MEM_DESC: 'Manage and assign roles to project members.',
+
   // List
+  DEVOPS_PROJECT_MEMBER_EMPTY_DESC:
+    'Please invite a member of the current workspace to the DevOps project.',
+
   // List > Change Member Role
   // List > Remove Member
   // Invite

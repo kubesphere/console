@@ -19,6 +19,7 @@
 module.exports = {
   // Banner
   USER_DESC: 'Manage users and their roles.',
+  USER_PL: 'Users',
 
   // List
   NOT_LOGIN_YET: 'Not logged in yet',
@@ -27,6 +28,7 @@ module.exports = {
   USER_AUTHLIMITEXCEEDED: 'Login restricted',
   USER_PENDING: 'Pending',
   USER_DISABLED: 'Disabled',
+  LAST_LOGIN: 'Last Login',
 
   // List > Create
   USERNAME_DESC:
