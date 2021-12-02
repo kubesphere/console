@@ -25,4 +25,5 @@ module.exports = {
   // List > Edit Information
   // List > Add Cluster
   // List > Delete
+  MULTI_CLUSTER_PROJECT_LOW: 'multi-cluster project',
 }

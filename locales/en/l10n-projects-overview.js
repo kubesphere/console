@@ -40,6 +40,8 @@ module.exports = {
   RESOURCE_STATUS: 'Resource Status',
 
   // Resource Status > Application Resources
+  RESOURCE_WARNING_TIPS: 'Abnormal {tipName}: {warnNum}',
+
   // Resource Status > Physical Resources
   PHYSICAL_RESOURCE_PL: 'Physical Resources',
   CPU_USAGE_TIME: 'CPU Usage ({time})',
@@ -52,6 +54,7 @@ module.exports = {
 
   // Top 5 for Resource Usage
   TOP_5_FOR_RSC_USAGE: 'Top 5 for Resource Usage',
+  TOP_5_FOR_RESOURCE_USAGE: 'Top 5 for Resource Usage',
   SORT_BY_WORKLOAD_CPU_USAGE: 'Sort by CPU usage',
   SORT_BY_WORKLOAD_MEMORY_USAGE_WO_CACHE: 'Sort by memory usage',
   SORT_BY_WORKLOAD_NET_BYTES_TRANSMITTED: 'Sort by outbound traffic',

@@ -18,8 +18,16 @@
 
 module.exports = {
   // Banner
+  DEVOPS_PROJECT_SETTINGS: 'DevOps Project Settings',
+  DEVOPS_DESCRIPTION:
+    'A DevOps project is a separate namespace where a set of pipelines is defined. Users can group their pipelines themselves (for example, project type and organization type).',
+
   // Basic Information
   DEVOPS_PROJECT_ROLE_SCAP: 'DevOps project role',
+  DEVOPS_PROJECT_SCAP: 'DevOps project',
+  DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps project member',
+  DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps project members',
+  DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps project roles',
 
   // Manage > Edit
   // Manage > Delete

@@ -65,4 +65,5 @@ module.exports = {
   // List > Edit Annotations
   EDIT_ANNOTATIONS: 'Edit Annotations',
   // List > Delete
+  ROUTE_LOW: 'route',
 }

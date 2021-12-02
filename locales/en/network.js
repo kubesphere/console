@@ -23,13 +23,10 @@ module.exports = {
 
   'Network Policy': 'Network Policy',
 
-  NETWORK_POLICY_LOW: 'network policy',
-
   NETWORK_POLICY_DESC:
     'The network policy configuration allows network isolation within the same cluster, which means firewalls can be set up between certain instances (pods).',
 
   CIDR_DESC: 'Based on the traffic direction',
 
   ALLOWLIST_ENTRY: 'Allowlist Entry',
-  ALLOWLIST_ENTRY_LOW: 'allowlist entry',
 }

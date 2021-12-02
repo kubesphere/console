@@ -87,4 +87,7 @@ module.exports = {
   // List > Edit Information
 
   // List > Edit YAMl
+
+  // List > Delete
+  CUSTOM_MONITORING_DASHBOARD_LOW: 'custom monitoring dashbord',
 }

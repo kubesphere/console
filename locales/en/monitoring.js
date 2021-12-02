@@ -134,8 +134,6 @@ module.exports = {
 
   // Application Resources
 
-  PROJECT_LOW: 'project',
-
   SERVICES: 'Services',
   ROUTES: 'Routes',
 

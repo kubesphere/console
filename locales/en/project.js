@@ -47,7 +47,6 @@ module.exports = {
   'Enter Project': 'Enter Project',
 
   GATEWAY_PL: 'Gateways',
-  GATEWAY_LOW: 'gateway',
   'Help Information': 'Help Information',
 
   'Invalid project name': 'Invalid project name',
@@ -64,8 +63,6 @@ module.exports = {
   'Modify Member Role': 'Modify Member Role',
   'Modify Members Role': 'Modify Members Role',
   'Multi-cluster Project': 'Multi-cluster Project',
-
-  MULTI_CLUSTER_PROJECT_LOW: 'multi-cluster project',
 
   'Multi-cluster Projects': 'Multi-cluster Projects',
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
@@ -166,13 +163,12 @@ module.exports = {
     'The current project is deployed across multiple clusters. You can click a cluster to view the project settings in the cluster.',
 
   // Custom Monotoring
-  CUSTOM_MONITORING_DASHBOARD_LOW: 'custom monitoring dashbord',
 
   // Basic Information
   PROJECT_NAME_SCAP: 'Project name',
 
-  WS_RESOURCE_REQUESTS: 'Resource requests',
-  WS_RESOURCE_LIMITS: 'Resource limits',
+  WS_RESOURCE_REQUESTS: 'Resource requests', // Concatenated
+  WS_RESOURCE_LIMITS: 'Resource limits', // Concatenated
 
   USAGE: 'Usage',
 

@@ -43,6 +43,7 @@ module.exports = {
   IP_POOL_NUM_TIP: 'Please enter the number of pod IP pools to be created.',
   IP_POOL_CREATE_COUNT_DESC:
     'Up to 10 pod IP pools can be created at the same time.',
+  INVALID_IP_DESC: 'Invalid IP address format.',
 
   // List > Edit Information
   // List > View YAML
@@ -56,4 +57,5 @@ module.exports = {
   SELECT_WORKSPACE_DESC: 'Select a workspace.',
 
   // List > Delete
+  POD_IP_POOL_LOW: 'pod IP pool',
 }

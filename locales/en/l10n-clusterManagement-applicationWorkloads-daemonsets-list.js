@@ -19,6 +19,7 @@
 module.exports = {
   // Banner
   // List
+  DAEMONSETS: 'Daemonsets',
   DAEMONSET_EMPTY_DESC: 'Please create a daemonset.',
 
   // List > Create > Basic Information

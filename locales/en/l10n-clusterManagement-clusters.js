@@ -25,4 +25,5 @@ module.exports = {
   ADD_CLUSTER: 'Add Cluster',
   HOST_CLUSTER_TCAP: 'Host Cluster',
   HOST_CLUSTER_PL_TCAP: 'Host Clusters',
+  NO_CLUSTER_TIP: 'Please add at least one cluster.',
 }

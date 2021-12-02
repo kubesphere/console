@@ -28,7 +28,6 @@ module.exports = {
   PATH_SI: 'Path',
   Route: 'Route',
 
-  ROUTE_LOW: 'route',
   ROUTE_ANNOTATION_DESC:
     'You can set route behavior by adding annotations to the route. See <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">Annotations</a> for the detailed list of available annotations.',
   RULE_SETTING_MODE_AUTO:
