@@ -28,6 +28,7 @@ module.exports = {
   // More > Delete
   // Workspaces
   WORKSPACES: 'Workspaces',
+  MANAGER: 'Manager',
   IPPOOL_WORKSPACE_EMPTY_TIP: 'No workspace is using this pod IP pool.',
 
   // Pods

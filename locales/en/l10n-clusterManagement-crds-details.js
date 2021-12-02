@@ -20,6 +20,7 @@ module.exports = {
   // Details
   // Resource Status
   CUSTOM_RESOURCE_PL: 'Custom Resources',
+  PROJECT_DEVOPS_PROJECT: 'Project/DevOps Project',
 
   // Resource Status > Edit YAML
   // Resource Status > Delete

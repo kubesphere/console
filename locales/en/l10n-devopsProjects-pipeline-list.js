@@ -27,6 +27,7 @@ module.exports = {
   SUB_HEALTHY: 'Sub-healthy',
   NO_STATUS: 'No status',
   BRANCH_COUNT: 'Branches',
+  PIPELINE_EMPTY_DESC: 'Please create a pipeline.',
 
   // List > Run
   BATCH_RUN_SUCCESS_SI: 'The pipeline was run successfully.',
@@ -56,6 +57,7 @@ module.exports = {
   // List > Create > Basic Information > Code Repository > GitHub
   CREDENTIAL_SI: 'Credential',
   CREDENTIAL: 'Credential',
+  PIPELINE_CREDENTIAL_EMPTY_TIP: 'Please select a credential.',
   SELECT_CREDENTIAL_DESC:
     'Select a credential used to access a code repository.',
   GITHUB_CREDENTIAL_EMPTY: 'Please set a GitHub credential.',

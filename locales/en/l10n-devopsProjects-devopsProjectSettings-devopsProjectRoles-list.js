@@ -18,7 +18,12 @@
 
 module.exports = {
   // Banner
+  DEVOPS_PROJECT_ROLE_PL: 'DevOps Project Roles',
+  DEVOPS_PROJECT_ROLES_DESC:
+    'The project roles define the permissions that users have under the current DevOps project.',
+
   // List
+  DEVOPS_PROJECT_ROLE_EMPTY_DESC: 'Please create a DevOps project role.',
   ROLE_DEVOPS_VIEWER: 'View all resources in the DevOps project.',
   ROLE_DEVOPS_OPERATOR: 'Create credentials in the DevOps project.',
   ROLE_DEVOPS_ADMIN: 'Control all resources in the DevOps project.',

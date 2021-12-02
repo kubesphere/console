@@ -18,7 +18,11 @@
 
 module.exports = {
   // Head
+  DASHBOARD_TITLE: 'Hello {username}',
   LAST_LOGIN_TIME: 'Last login: ',
+  USER_DASHBOARD_EMPTY_TITLE: 'You do not belong to any workspace.',
+  USER_DASHBOARD_EMPTY_DESC:
+    'Please contact a workspace administrator to invite you to join a workspace.',
 
   // Platform Information
   LAST_UPDATE_TIME: 'Last update time',

@@ -66,8 +66,6 @@ module.exports = {
   'credential Id': 'credential Id',
   'Credential Id': 'Credential Id',
 
-  CREDENTIAL_LOW: 'credential',
-
   credentialsId: 'credentialsId',
   critical: 'critical',
   'Current branch name must match the input value':

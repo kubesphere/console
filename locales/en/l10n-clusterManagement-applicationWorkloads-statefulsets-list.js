@@ -19,6 +19,8 @@
 module.exports = {
   // Banner
   // List
+  STATEFULSETS: 'Statefulsets',
+
   // List > Create > Basic Information
   // List > Create > Pod Settings
   // List > Create > Volume Settings

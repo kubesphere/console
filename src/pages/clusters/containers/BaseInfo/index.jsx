@@ -156,7 +156,7 @@ export default class Overview extends React.Component {
       <>
         <Banner
           icon="cluster"
-          title={t('CLUSTER_BASIC_INFO')}
+          title={t('BASIC_INFORMATION')}
           description={t('CLUSTER_BASE_INFO_DESC')}
         />
         <Panel title={t('CLUSTER_INFORMATION')}>

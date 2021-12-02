@@ -22,6 +22,7 @@ module.exports = {
   WORKLOAD_PL: 'Workloads',
 
   // List
+  DEPLOYMENTS: 'Deployments',
   UPDATE_TIME_TCAP: 'Update Time',
 
   // List > Create > Basic Information
