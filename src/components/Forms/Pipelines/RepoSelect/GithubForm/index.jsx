@@ -157,11 +157,13 @@ export default class GitHubForm extends React.Component {
 
   getCredentialsList = () => {
     return [
-      ...this.props.store.credentials.data.map(credential => ({
-        label: credential.name,
-        value: credential.name,
-        type: credential.type,
-      })),
+      ...this.props.store.credentials.data
+        .map(credential => ({
+          label: credential.name,
+          value: credential.name,
+          type: credential.type,
+        }))
+        .filter(credential => credential.type === 'username_password'),
     ]
   }
 
