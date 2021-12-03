@@ -24,6 +24,7 @@ module.exports = {
   // List
   DEPLOYMENTS: 'Deployments',
   UPDATE_TIME_TCAP: 'Update Time',
+  ALL_PROJECTS: 'All projects',
 
   // List > Create > Basic Information
   SELECT_PROJECT_DESC:
@@ -64,7 +65,7 @@ module.exports = {
 
   // List > Create > Advanced Settings > Add Metadata
   ANNOTATION_PL: 'Annotations',
-  CREATE_SUCCESS: 'Created successfully.',
+  CREATE_SUCCESSFUL: 'Created successfully.',
 
   // List > Edit Information
   // List > Edit YAML
