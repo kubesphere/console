@@ -116,6 +116,8 @@ module.exports = {
 
   S2I_BUILDERNAME_DESC:
     'Select the editing environment, you can also view the <a href={link} target="_blank">corresponding compilation template</a>',
+  CONTAINERD_RUNTIME_NOT_SUPPORT:
+    'S2I and B2I do not support the containerd runtime.',
   'Build image for service x': 'Build image for service {service}',
 
   BINARY_DESC: '',
