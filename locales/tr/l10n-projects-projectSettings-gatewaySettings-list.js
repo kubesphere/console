@@ -23,5 +23,12 @@ module.exports = {
   ENABLE_GATEWAY_DESC: 'Enable the gateway controller to forward traffic to different services based on domain names and paths configured in routes.',
   // Project Gateway > Enable Gateway > NodePort
   // Project Gateway > Enable Gateway > LoadBalancer
-  LOAD_BALANCER_PROVIDER: 'Load Balancer Provider'
+  LOAD_BALANCER_PROVIDER: 'Load Balancer Provider',
+  // Manage > View Details
+  // Manage > Edit
+  // Manage > Edit > NodePort
+  // Manage > Edit > LoadBalancer
+  // Manage > Disable
+  // Cluster Gateway (displayed when the cluster gateway and project gateway are both enabled)
+  CLUSTER_GATEWAY_GUIDE_DESC: 'If the cluster gateway and project gateway both exist, the project gateway cannot be enabled after it is disabled. You are advised to used either the cluster gateway or project gateway.'
 };
