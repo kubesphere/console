@@ -20,7 +20,7 @@ module.exports = {
   GATEWAY_SETTINGS: '网关设置',
   DISABLE_GATEWAY: '关闭网关',
   DISABLE_GATEWAY_TIP: '您确定关闭网关吗？',
-  DISABLE_SUCCESS: '关闭成功。',
+  DISABLE_SUCCESSFUL: '关闭成功。',
   CLUSTER_GATEWAY_DESC:
     '对集群中的外网访问网关以及服务治理等配置进行设置和管理。',
   PROJECT_GATEWAY_DESC:

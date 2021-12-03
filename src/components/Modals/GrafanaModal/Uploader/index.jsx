@@ -118,7 +118,7 @@ export default class Uploader extends React.Component {
     })
 
     Notify.success({
-      content: t('UPLOAD_SUCCESS'),
+      content: t('UPLOAD_SUCCESSFUL'),
     })
   }
 
