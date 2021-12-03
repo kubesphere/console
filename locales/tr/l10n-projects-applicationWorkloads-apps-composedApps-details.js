@@ -23,11 +23,18 @@ module.exports = {
   // Details
   // Resource Status
   // Traffic Monitoring
+  TRAFFIC_MONITORING: 'Traffic Monitoring',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC: 'The app has not received requests for a long time. Please try again later.',
   TRAFFIC_ENTRY: 'Traffic Entry',
   NO_DATA: 'No Data',
   REFRESH: 'Refresh',
   // Grayscale Release
+  CREATE_GRAYSCALE_RELEASE_JOB: 'Create Grayscale Release Job',
+  GRAYSCALE_RELEASE_DESC: 'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
+  NO_GRAYSCALE_RELEASE_JOB_FOUND: 'No Grayscale Release Job Found',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: 'Please create a grayscale release job.',
+  TOTAL_GRAY_RELEASE_JOB: '{num} grayscale release job in total',
+  TOTAL_GRAY_RELEASE_JOBS: '{num} grayscale release jobs in total',
   // Tracing
   TRACING: 'Tracing',
   TRACING_NO_DATA_DESC: 'Please change the search conditions and try again.',
