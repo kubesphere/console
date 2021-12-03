@@ -22,6 +22,7 @@ module.exports = {
   // List
   DEPLOYMENTS: 'Deployments',
   UPDATE_TIME_TCAP: 'Update Time',
+  ALL_PROJECTS: 'All projects',
   // List > Create > Basic Information
   SELECT_PROJECT_DESC: 'Select a project in which the resource is to be created.',
   PROJECT_NOT_SELECT_DESC: 'Please select a project.',
@@ -53,7 +54,7 @@ module.exports = {
   SUBPATH: 'Subpath',
   // List > Create > Advanced Settings > Add Metadata
   ANNOTATION_PL: 'Annotations',
-  CREATE_SUCCESS: 'Created successfully.',
+  CREATE_SUCCESSFUL: 'Created successfully.',
   // List > Edit Information
   // List > Edit YAML
   // List > Re-create
