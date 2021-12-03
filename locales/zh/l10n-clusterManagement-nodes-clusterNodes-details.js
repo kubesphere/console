@@ -54,6 +54,7 @@ module.exports = {
   // Running Status > Allocated Resources
   ALLOCATED_RESOURCES: 'Allocated Resources',
   // Running Status > Health Status
+  RUNNING_STATUS: 'Running Status',
   HEALTH_STATUS: 'Health Status',
   NODE_NETWORKUNAVAILABLE: 'Network Availability',
   NODE_NETWORKUNAVAILABLE_DESC: 'Check if the network configuration on the node is available.',
