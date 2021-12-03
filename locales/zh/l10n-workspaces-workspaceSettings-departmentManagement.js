@@ -41,10 +41,12 @@ module.exports = {
   // List > Set Departments > Workspace Role
   WORKSPACE_ROLE: 'Workspace Role',
   GROUP_WORKSPACE_ROLE_DESC: 'The workspace role will be assigned to all members in the department.',
+  MEMBER_CLUSTER_UPGRADE_TIP: 'Member clusters with versions earlier than {version} do not support this function. Please upgrade the member clusters to {version} or later.',
   // List > Set Departments > Project Role
   PROJECT_ROLE: 'Project Role',
   SELECT_ROLE_TIP: 'Please select a role.',
   ADD_PROJECT: 'Add Project',
+  CLUSTER_UPGRADE_REQUIRED: 'The current KubeSphere version does not support this feature. Please upgrade KubeSphere to {version} or later.',
   // List > Set Departments > DevOps Project Role
   DEVOPS_PROJECT_ROLE: 'DevOps Project Role',
   ADD_DEVOPS_PROJECT: 'Add DevOps Project'
