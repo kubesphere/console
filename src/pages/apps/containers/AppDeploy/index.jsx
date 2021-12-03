@@ -110,6 +110,7 @@ export default class App extends React.Component {
       ''
     )
     const { name } = this.appStore.detail
+    await this.fileStore.fetch({ version_id: selectAppVersion })
     this.setState({
       formData: {
         ...this.state.formData,
@@ -120,8 +121,6 @@ export default class App extends React.Component {
         version_id: selectAppVersion,
       },
     })
-
-    this.fileStore.fetch({ version_id: selectAppVersion })
   }
 
   handleOk = () => {
