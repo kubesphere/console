@@ -20,7 +20,7 @@ module.exports = {
   GATEWAY_SETTINGS: '網關設置',
   DISABLE_GATEWAY: 'Disable Gateway',
   DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
-  DISABLE_SUCCESS: 'Disabled successfully.',
+  DISABLE_SUCCESSFUL: 'Disabled successfully.',
   CLUSTER_GATEWAY_DESC:
     '對集群和項目中的外網訪問網關以及服務治理等配置進行設置和管理',
   PROJECT_GATEWAY_DESC:

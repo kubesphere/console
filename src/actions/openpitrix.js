@@ -58,7 +58,7 @@ export default {
         onOk: data => {
           store.patch(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: t('UPDATE_SUCCESS') })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             success && success()
           })
         },
@@ -75,7 +75,7 @@ export default {
         onOk: data => {
           store.upgrade(data, detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: t('UPDATE_SUCCESS') })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             success && success()
           })
         },
@@ -139,7 +139,7 @@ export default {
       const modal = Modal.open({
         onOk: async data => {
           await store.create({ ...data, workspace })
-          Notify.success({ content: t('UPLOAD_SUCCESS') })
+          Notify.success({ content: t('UPLOAD_SUCCESSFUL') })
           Modal.close(modal)
           success && success()
         },
@@ -222,7 +222,7 @@ export default {
         onOk: async () => {
           await store.delete(detail)
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_SUCCESS') })
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
           success && success()
         },
         store,
@@ -316,7 +316,7 @@ export default {
             content = `${t('MODIFY_SUCCESSFUL')}`
           } else {
             await store.create(params)
-            content = t('CREATE_SUCCESS')
+            content = t('CREATE_SUCCESSFUL')
           }
           Modal.close(modal)
           Notify.success({ content })
@@ -338,7 +338,7 @@ export default {
         onOk: async () => {
           await store.delete(detail)
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_SUCCESS') })
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
           success && success()
         },
         desc: t.html('DELETE_CATEGORY_DESC', { name: detail.name }),

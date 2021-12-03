@@ -153,7 +153,7 @@ module.exports = {
 
   UPLOAD_SUPPORT_FORMAT: '文件格式支持 tar.gz 和 tgz',
   UPLOADING: '正在上传',
-  UPLOAD_SUCCESS: '上传成功。',
+  UPLOAD_SUCCESSFUL: '上传成功。',
   UPLOAD_AGAIN_TIP: '出现错误，请重试。',
   FILE_FORMAT_PACKAGE: '文件格式支持 tar.gz 和 tgz',
   FILE_FORMAT_ICON: '图标格式支持 png 和 jpg',

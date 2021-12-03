@@ -20,7 +20,7 @@ module.exports = {
   GATEWAY_SETTINGS: 'Gateway Settings',
   DISABLE_GATEWAY: 'Disable Gateway',
   DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
-  DISABLE_SUCCESS: 'Disabled successfully.',
+  DISABLE_SUCCESSFUL: 'Disabled successfully.',
   CLUSTER_GATEWAY_DESC:
     'Set up and manage the configuration of the external network access gateway and service management in the cluster and project',
   PROJECT_GATEWAY_DESC:

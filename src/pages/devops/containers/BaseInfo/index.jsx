@@ -148,7 +148,7 @@ class BaseInfo extends React.Component {
       )
       .then(() => {
         this.hideEdit()
-        Notify.success({ content: t('UPDATE_SUCCESS') })
+        Notify.success({ content: t('UPDATE_SUCCESSFUL') })
         this.store.fetchDetail({
           workspace: this.workspace,
           ...this.props.match.params,

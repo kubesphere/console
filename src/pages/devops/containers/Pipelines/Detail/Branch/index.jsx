@@ -126,7 +126,7 @@ export default class Branch extends React.Component {
     this.store.fetchDetail(params)
 
     Notify.success({
-      content: t('SCAN_REPO_SUCCESS'),
+      content: t('SCAN_REPO_SUCCESSFUL'),
     })
   }
 

@@ -28,6 +28,7 @@ module.exports = {
   HOW_TO_USE_APP_GOVERN_Q: 'How do I use Application Governance?',
   HOW_TO_USE_APP_GOVERN_A:
     'You can enable Application Governance when you create a composed app.',
+  DEPLOY_SAMPLE_APP: 'Deploy Sample App',
 
   // List
   NO_TEMPLATE_BASED_APP_FOUND: 'No Template-Based App Found',

@@ -130,7 +130,7 @@ export default {
         onOk: nodes => {
           store.batchPatchTaints(nodes).then(() => {
             Modal.close(modal)
-            Notify.success({ content: t('UPDATE_SUCCESS') })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             success && success()
           })
         },

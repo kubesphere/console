@@ -43,7 +43,7 @@ module.exports = {
   DISABLE: 'Disable',
   DISABLE_GATEWAY: 'Disable Gateway',
   DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
-  DISABLE_SUCCESS: 'Disabled successfully.',
+  DISABLE_SUCCESSFUL: 'Disabled successfully.',
 
   // Cluster Gateway > Manage > Edit
   EDIT: 'Edit',
@@ -56,6 +56,7 @@ module.exports = {
   PROJECT_ENABLE_GATEWAY_DESC: 'Please enable the project gateway.',
   REPLICA_COUNT: 'Replicas',
   NODE_PORTS: 'Node Ports',
+  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
 
   // Project Gateway > Delete
   PROJECT_GATEWAY_PL: 'Project Gateways',
