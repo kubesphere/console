@@ -35,6 +35,9 @@ module.exports = {
   ADD_DEFAULT_TAINT: 'Add the default taint {params}',
   EDGE_NODE: 'Edge Node',
   INTERNAL_IP_ADDRESS: 'Internal IP Address',
+  EDGENODE_INTERNAL_IP_DESC: 'Set the internal IP address of the edge node in the KubeSphere cluster.',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC: 'Please set the internal IP address of the edge node in the KubeSphere cluster.',
+  COPY_SUCCESSFUL: 'Copied successfully.',
   // List > View Log
   LOGS: 'Logs',
   VIEW_LOG: 'View Log'
