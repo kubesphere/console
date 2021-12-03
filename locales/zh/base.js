@@ -497,9 +497,9 @@ module.exports = {
   TIPS: '帮助信息',
 
   ADDED_SUCCESS_DESC: '添加成功。',
-  CREATE_SUCCESS: '创建成功。',
-  UPDATE_SUCCESS: '更新成功。',
-  DELETE_SUCCESS: '删除成功。',
+  CREATE_SUCCESSFUL: '创建成功。',
+  UPDATE_SUCCESSFUL: '更新成功。',
+  DELETE_SUCCESSFUL: '删除成功。',
   STOP_SUCCESS_DESC: '停止成功。',
   'Canceled Successfully': '取消成功',
 
@@ -688,7 +688,7 @@ module.exports = {
   VOLUME_SNAPSHOT_LOW: '存储卷快照',
   'Volume Snapshot': '存储卷快照',
 
-  CREATE_STATUS_SUCCESS: '创建成功',
+  CREATE_STATUS_SUCCESSFUL: '创建成功',
   CREATE_STATUS_UPDATING: '创建中',
   CREATE_STATUS_FAILED: '创建失败',
   CREATE_STATUS_DELETING: '删除中',

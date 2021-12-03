@@ -66,10 +66,10 @@ export default {
 
           if (detail) {
             await store.update(detail, params)
-            Notify.success({ content: t('UPDATE_SUCCESS') })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           } else {
             await store.create(params, { cluster, namespace })
-            Notify.success({ content: t('CREATE_SUCCESS') })
+            Notify.success({ content: t('CREATE_SUCCESSFUL') })
           }
 
           Modal.close(modal)

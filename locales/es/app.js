@@ -131,7 +131,7 @@ module.exports = {
   'Upload Icon': 'Subir Icono',
   UPLOAD_ICON: 'Subir icono',
   'Upload Screenshots': 'Subir Capturas de Pantalla',
-  UPLOAD_SUCCESS: 'Subida Satisfactoriamente',
+  UPLOAD_SUCCESSFUL: 'Subida Satisfactoriamente',
   UPLOAD_TEMPLATE: 'Subir Plantilla',
   UPLOADING: 'Subiendo',
   'Version No': 'Version No',

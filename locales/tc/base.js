@@ -489,10 +489,10 @@ module.exports = {
   TIPS: 'Tips',
   CREATE_BY_YAML_DESC: 'Customize the settings in the YAML file.',
   'Added Successfully': '添加成功',
-  CREATE_SUCCESS: '創建成功',
+  CREATE_SUCCESSFUL: '創建成功',
   ADDED_SUCCESS_DESC: '添加成功。',
-  UPDATE_SUCCESS: 'Updated successfully.',
-  DELETE_SUCCESS: '刪除成功。',
+  UPDATE_SUCCESSFUL: 'Updated successfully.',
+  DELETE_SUCCESSFUL: '刪除成功。',
   'Canceled Successfully': '取消成功',
 
   EVENT_NORMAL: '正常',
@@ -681,7 +681,7 @@ module.exports = {
   VOLUME_SNAPSHOT_LOW: 'volume snapshot',
   'Volume Snapshot': '儲存卷快照',
 
-  CREATE_STATUS_SUCCESS: '創建成功',
+  CREATE_STATUS_SUCCESSFUL: '創建成功',
   CREATE_STATUS_UPDATING: '創建中',
   CREATE_STATUS_FAILED: '創建失敗',
   CREATE_STATUS_DELETING: '删除中',

@@ -257,7 +257,7 @@ export default class PipelineDetailLayout extends React.Component {
       cluster: params.cluster,
     })
     Notify.success({
-      content: t('SCAN_REPO_SUCCESS'),
+      content: t('SCAN_REPO_SUCCESSFUL'),
     })
     this.store.fetchDetail(params)
   }

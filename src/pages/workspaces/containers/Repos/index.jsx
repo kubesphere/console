@@ -119,7 +119,7 @@ export default class AppRepos extends React.Component {
         const { message } = resp
 
         if (message === 'success') {
-          Notify.success(t('UPDATE_SUCCESS'))
+          Notify.success(t('UPDATE_SUCCESSFUL'))
         }
       })
     )

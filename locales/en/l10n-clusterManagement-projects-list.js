@@ -17,9 +17,6 @@
  */
 
 module.exports = {
-  // Initializing
-  WAIT_FOR_CLUSTER: 'Waiting for the cluster to join...',
-
   // Banner
   PROJECT_DESC:
     'Projects are used to group resources and control the resource management permissions of different users.',
@@ -66,7 +63,7 @@ module.exports = {
   DELETE_TITLE_PL: 'Delete Multiple {type}',
   DELETE: 'Delete',
   PROJECT_LOW: 'project',
-  DELETE_SUCCESS: 'Deleted successfully.',
+  DELETE_SUCCESSFUL: 'Deleted successfully.',
   STOP_SUCCESS_DESC: 'Stopped successfully.',
   DELETE_RESOURCE_TYPE_DESC_SI:
     'Enter the {type} name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',

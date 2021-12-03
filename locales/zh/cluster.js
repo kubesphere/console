@@ -36,7 +36,6 @@ module.exports = {
   'Network Policies': '网络策略',
   'Network Topology': '网络拓扑',
   CLUSTER_VISIBILITY_SCAP: '集群可见性',
-  CLUSTER_VISIBILITY_TCAP: '集群可见性',
   'Cluster Members': '集群成员',
   'Cluster Roles': '集群角色',
   'Kubernetes Settings': 'Kubernetes 设置',

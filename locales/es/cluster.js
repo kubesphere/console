@@ -36,7 +36,6 @@ module.exports = {
   'Cluster Roles': 'Roles de clúster',
   CLUSTER_SETTINGS: 'Configuraciones de clúster',
   CLUSTER_VISIBILITY_SCAP: 'Visibilidad de clúster',
-  CLUSTER_VISIBILITY_TCAP: 'Visibilidad de clúster',
   'Connection Method': 'Método de conexión',
   'Copy successfully': 'Copia realizada con éxito',
   'Custom Resources': 'CRDs',

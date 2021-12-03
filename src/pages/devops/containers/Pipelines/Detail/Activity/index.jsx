@@ -179,7 +179,7 @@ export default class Activity extends React.Component {
     this.store.fetchDetail(params)
 
     Notify.success({
-      content: t('SCAN_REPO_SUCCESS'),
+      content: t('SCAN_REPO_SUCCESSFUL'),
     })
 
     this.handleFetch()
@@ -194,7 +194,7 @@ export default class Activity extends React.Component {
     })
 
     Notify.success({
-      content: t('STOP_PIPELINE_SUCCESS'),
+      content: t('STOP_PIPELINE_SUCCESSFUL'),
     })
 
     this.handleFetch()

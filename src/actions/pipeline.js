@@ -75,7 +75,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: t('CREATE_SUCCESS') })
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
           success && success()
         },
         store,
@@ -111,7 +111,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_SUCCESS') })
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
           store.setSelectRowKeys([])
           success && success()
         },
@@ -195,7 +195,7 @@ export default {
           await store.updatePipeline({ data, devops, cluster })
 
           Modal.close(modal)
-          Notify.success({ content: t('UPDATE_SUCCESS') })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         store,
@@ -221,7 +221,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: t('UPDATE_SUCCESS') })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         store,
@@ -274,7 +274,7 @@ export default {
         onOk: async jenkinsFile => {
           await store.updateJenkinsFile(jenkinsFile, params)
           Modal.close(modal)
-          Notify.success({ content: t('UPDATE_SUCCESS') })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         modal: JenkinsEdit,
@@ -290,7 +290,7 @@ export default {
         onOk: async jenkinsFile => {
           await store.updateJenkinsFile(jenkinsFile, params)
           Modal.close(modal)
-          Notify.success({ content: t('UPDATE_SUCCESS') })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         modal: PipelineModal,
@@ -325,7 +325,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: t('CREATE_SUCCESS') })
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
           success && success()
         },
         store,

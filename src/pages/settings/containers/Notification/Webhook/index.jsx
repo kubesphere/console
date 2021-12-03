@@ -172,7 +172,7 @@ export default class Webhook extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
-      message = t('UPDATE_SUCCESS')
+      message = t('UPDATE_SUCCESSFUL')
     }
 
     this.fetchData()
