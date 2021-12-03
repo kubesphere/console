@@ -30,4 +30,9 @@ module.exports = {
   // Unbind Cluster
   UNBIND: 'Unbind',
   UNBIND_CLUSTER: 'Unbind Cluster',
+  UNBIND_CLUSTER_DESC:
+    'After the cluster is unbound, KubeSphere will not be able to manage the cluster. The Kubernetes resources on the cluster will not be deleted.',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation',
+  UNBIND_CLUSTER_Q: 'Unbind Cluster',
+  NODE: 'Node',
 }
