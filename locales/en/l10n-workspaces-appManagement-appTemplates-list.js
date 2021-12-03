@@ -47,7 +47,7 @@ module.exports = {
   UPLOAD_HELM_CHART_DESC: 'Upload an existing Helm chart.',
   HELM_CHART_FORMAT_DESC: 'Supports tar.gz and tgz formats.',
   UPLOAD_ICON: 'Upload Icon',
-  UPLOAD_SUCCESS: 'Uploaded successfully.',
+  UPLOAD_SUCCESSFUL: 'Uploaded successfully.',
   UPLOADING: 'Uploading',
   FILE_MAX_SIZE_ICON: 'The maximum size of the icon is 96 x 96 pixels.',
   FILE_MAX_SCREENSHOTS: 'The snapshot size cannot exceed 2 MB.',

@@ -33,7 +33,7 @@ module.exports = {
 
   // More > Edit Settings
   // More > Scan Repository
-  SCAN_REPO_SUCCESS: 'Repository scan was triggered successfully.',
+  SCAN_REPO_SUCCESSFUL: 'Repository scan was triggered successfully.',
 
   // More > View Scan Logs
   VIEW_SCAN_LOGS: 'View Scan Logs',
@@ -127,7 +127,7 @@ module.exports = {
   DURATION: 'Duration',
   LAST_MESSAGE: 'Last Message',
   RUN_ID: 'Run ID',
-  STOP_PIPELINE_SUCCESS: 'The pipeline was stopped successfully.',
+  STOP_PIPELINE_SUCCESSFUL: 'The pipeline was stopped successfully.',
   INVALID_JENKINSFILE_TIP:
     'The current Jenkinsfile is not a standard declarative Jenkinsfile and graphical display is unavailable.',
   PAUSED: 'Paused',

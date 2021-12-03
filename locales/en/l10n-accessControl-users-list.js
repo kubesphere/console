@@ -54,6 +54,7 @@ module.exports = {
 
   // List > Edit
   EDIT_USER: 'Edit User',
+
   // List > Delete
   USER_LOW: 'user',
 }

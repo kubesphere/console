@@ -18,5 +18,8 @@
 
 module.exports = {
   // Details
+  INSTANCE_COUNT: 'Instances',
+
   // Service Details
+  SERVICE_DETAILS: 'Service Details',
 }

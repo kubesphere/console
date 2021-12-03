@@ -154,7 +154,7 @@ module.exports = {
 
   UPLOAD_SUPPORT_FORMAT: '文件格式支持 tar.gz 和 tgz',
   UPLOADING: '正在上傳',
-  UPLOAD_SUCCESS: '上傳成功',
+  UPLOAD_SUCCESSFUL: '上傳成功',
   UPLOAD_AGAIN_TIP: 'Please try again.',
   FILE_FORMAT_PACKAGE: '文件格式支持 tar.gz 和 tgz',
   FILE_FORMAT_ICON: '圖示格式支持 png 和 jpg',

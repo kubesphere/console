@@ -273,7 +273,7 @@ export default class DingTalk extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('CREATE_SUCCESS')
+      message = t('CREATE_SUCCESSFUL')
     } else {
       await this.configStore.update({ name: CONFIG_NAME }, config)
       await this.secretStore.update(
@@ -281,7 +281,7 @@ export default class DingTalk extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
-      message = t('UPDATE_SUCCESS')
+      message = t('UPDATE_SUCCESSFUL')
     }
 
     this.fetchData()

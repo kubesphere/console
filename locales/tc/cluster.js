@@ -36,7 +36,6 @@ module.exports = {
   'Network Policies': '網路策略',
   'Network Topology': '網路拓撲',
   CLUSTER_VISIBILITY_SCAP: '集群能見度',
-  CLUSTER_VISIBILITY_TCAP: '集群能見度',
   'Cluster Members': '集群成員',
   'Cluster Roles': '集群角色',
   'Kubernetes Settings': 'Kubernetes 設置',

@@ -35,7 +35,7 @@ export const CLUSTER_QUERY_STATUS =
 export const UPLOAD_STATUS_WORD = {
   init: 'HELM_CHART_FORMAT_DESC',
   uploading: 'UPLOADING',
-  success: 'UPLOAD_SUCCESS',
+  success: 'UPLOAD_SUCCESSFUL',
 }
 
 export const CATEGORY_ICONS = [

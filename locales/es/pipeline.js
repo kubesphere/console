@@ -268,7 +268,7 @@ module.exports = {
   'Save Artifact': 'Guardar artefacto',
   SCAN_INTERVAL: 'Intervalo de escaneo',
   LOGS_OBTAINED_SUCCESSFULLY: 'Escanear registros correctos',
-  SCAN_REPO_SUCCESS: 'Escanear el repositorio correcto',
+  SCAN_REPO_SUCCESSFUL: 'Escanear el repositorio correcto',
   SCAN_TRIGGER: 'Repository Scan Trigger',
   REPOSITORY_SCAN_LOGS: 'Escanear logs de repositorio',
   VIEW_SCAN_LOGS: 'View Scan Logs',
@@ -304,7 +304,7 @@ module.exports = {
   'Start the follow-up task after the inspection':
     'Inicie la tarea de seguimiento después de la inspección.',
   'Started By': 'Empezado por',
-  STOP_PIPELINE_SUCCESS:
+  STOP_PIPELINE_SUCCESSFUL:
     'Parado de ejecución satisfactorio, se actualizará el estado después',
   SUB_HEALTHY: 'Sub-healthy',
   Subject: 'Tema',

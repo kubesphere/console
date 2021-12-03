@@ -21,32 +21,12 @@ module.exports = {
   components: 'components',
   Components: 'Components',
   'Installed Components': 'Installed Components',
-  INSTANCE_COUNT: 'Instances',
   'Not Installed Components': 'Not Installed Components',
-  RUNNING_STATUS: 'Running Status',
-  SERVICE_DETAILS: 'Service Details',
-
-  SERVICE_COMPONENTS_DESC:
-    'System components are software components in the KubeSphere system, which provide various functions. You can view the running status of services components on this page.',
 
   KS_ACCOUNT_DESC: 'Provides users and authorizations management API',
   KS_APIGATEWAY_DESC:
     'Responsible for processing service requests and handling all tasks in the API call process.',
-  KS_APISERVER_DESC:
-    'Provides REST APIs for cluster management. This component is also used for communication between cluster components and cluster security control.',
-  KS_CONSOLE_DESC: 'Provides KubeSphere console services.',
-  OPENLDAP_DESC: 'Stores and manages user information in a centralized manner.',
-  REDIS_DESC:
-    'Open-source, in-memory data structure store, which is used as a database, cache, and message broker.',
 
-  COREDNS_DESC:
-    'Provides the service discovery function for the Kubernetes cluster.',
-  KUBE_CONTROLLER_MANAGER_DESC:
-    'Daemon that embeds the core control loops shipped with Kubernetes.',
-  KUBE_SCHEDULER_DESC:
-    'Kubernetes scheduler that assigns pods to appropriate nodes.',
-  METRICS_SERVER_DESC:
-    'Kubernetes monitoring component that collects metrics from kubelet of each node.',
   TILLER_DEPLOY_DESC:
     'Helm server, interacts directly with the Kubernetes API server to install, upgrade, query, and remove Kubernetes resources',
   OPENPITRIX_API_GATEWAY_DESC:
@@ -88,31 +68,11 @@ module.exports = {
     'Automatically injects sidecar for configuring the pod',
   ISTIO_TELEMETRY_DESC:
     'Provides Envoy with data reporting and log collection services',
-  JAEGER_COLLECTOR_DESC:
-    'Collects sidecar data. The sidecar of Istio is jaeger-agent.',
-  JAEGER_COLLECTOR_HEADLESS_DESC:
-    'Collects sidecar data. The sidecar of Istio is jaeger-agent.',
   JAEGER_OPERATOR_DESC:
     'Responsible for creating the jaeger service and automatically applying it to the jaeger service when update',
-  JAEGER_QUERY_DESC:
-    'Accepts query requests, retrieves traces from the backend storage system, and displays the data on the web UI.',
 
-  KUBE_STATE_METRICS_DESC:
-    'Listens on the Kubernetes API server to obtain the status of cluster API objects such as nodes, workloads, and pods, and generates monitoring data for Prometheus.',
-  NODE_EXPORTER_DESC:
-    'Provides monitoring data of all cluster nodes for Prometheus.',
-  PROMETHEUS_K8S_DESC:
-    'Provides monitoring data of nodes, workloads, and API objects.',
   PROMETHEUS_K8S_SYSTEM_DESC:
     'Provides monitoring data for Kubernetes components such as etcd, coredns, kube-apiserver, kube-scheduler and kube-controller-manager',
-  PROMETHEUS_OPERATED_DESC:
-    'Service corresponding to all Prometheus instances, which is used internally by Prometheus Operator.',
-  PROMETHEUS_OPERATOR_DESC: 'Manages Prometheus instances.',
-
-  ELASTICSEARCH_LOGGING_DATA_DESC:
-    'Provides Elasticsearch services such as data storage, backup, and searching.',
-  ELASTICSEARCH_LOGGING_DISCOVERY_DESC:
-    'Provides Elasticsearch cluster management services.',
 
   LOGSIDECAR_INJECTOR_DESC:
     'Injects a sidecar container in a pod for disk log collection',
@@ -130,41 +90,14 @@ module.exports = {
     'The s2i controller provides full declaration period management for s2i',
   UC_JENKINS_UPDATE_CENTER_DESC:
     'Jenkins update center that provides installation packages for Jenkins plugins',
-  WEBHOOK_SERVER_SERVICE_DESC:
-    'Provides the default values and authentication webhook for S2I.',
 
   MYSQL_DESC:
     'An open-source database management system that allows users to manage relational databases. Data in these databases are structured or organized in the form of tables or columns, instead of being stored in one big storeroom',
   ETCD_DESC:
     'A reliable distributed data store that persistently stores the cluster configuration',
-  TOWER_DESC: 'Tool used for network connection between clusters over proxy.',
-  KUBE_SCHEDULER_SVC_DESC:
-    'Kubernetes scheduler that assigns pods to appropriate nodes.',
-  KUBE_CONTROLLER_MANAGER_SVC_DESC:
-    'Daemon that embeds the core control loops shipped with Kubernetes.',
 
-  S2IOPERATOR_METRICS_SERVICE_DESC:
-    'S2I monitoring service that provides basic monitoring data.',
   MINIO_DESC:
     'Open-source high performance object storage server ideal for storing massive unstructured data.',
-  ALERTMANAGER_OPERATED_DESC:
-    'Alertmanager service used for integrating Alertmanager with Prometheus.',
-  ALERTMANAGER_MAIN_DESC: 'Alertmanager Web UI service.',
-  NOTIFICATION_MANAGER_SVC_DESC:
-    'Provides interfaces for sending notifications such as emails, WeChat messages, and Slack messages.',
-  NOTIFICATION_MANAGER_CONTROLLER_METRICS_DESC:
-    'Provides internal monitoring data for Notification Manager Controller.',
   HYPERPITRIX_DESC:
     'A component that provides the App Store service for Helm-based applications and lifecycle management of apps',
-  JAEGER_OPERATOR_METRICS_DESC: 'Provides monitoring metrics for Operator.',
-  LOGSIDECAR_INJECTOR_ADMISSION_DESC:
-    'Automatically injects sidecar containers into pods for disk log collection.',
-  KS_EVENTS_ADMISSION_DESC:
-    'Provides the authentication webhook for event rule management.',
-  KS_EVENTS_RULER_DESC:
-    'Event rule engine service that provides filtering and alerting features.',
-  KS_CONTROLLER_MANAGER_DESC:
-    'Implements service logic. This component creates permissions when a workspace is created and generates Istio configuration for service strategies.',
-  KUBE_AUDITING_WEBHOOK_SVC_DESC:
-    'Used for audit collection, comparison, persistence, and alerting.',
 }

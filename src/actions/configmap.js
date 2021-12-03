@@ -63,7 +63,7 @@ export default {
             .then(() => {
               Modal.close(modal)
 
-              Notify.success({ content: t('CREATE_SUCCESS') })
+              Notify.success({ content: t('CREATE_SUCCESSFUL') })
               success && success(data)
 
               formPersist.delete(`${module}_create_form`)
@@ -89,7 +89,7 @@ export default {
           set(data, 'metadata.resourceVersion', detail.resourceVersion)
           store.update(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: t('UPDATE_SUCCESS') })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             success && success()
           })
         },

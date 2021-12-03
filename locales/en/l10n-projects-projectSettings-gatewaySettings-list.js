@@ -35,4 +35,8 @@ module.exports = {
   // Manage > Edit > NodePort
   // Manage > Edit > LoadBalancer
   // Manage > Disable
+
+  // Cluster Gateway (displayed when the cluster gateway and project gateway are both enabled)
+  CLUSTER_GATEWAY_GUIDE_DESC:
+    'If the cluster gateway and project gateway both exist, the project gateway cannot be enabled after it is disabled. You are advised to used either the cluster gateway or project gateway.',
 }
