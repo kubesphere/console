@@ -65,6 +65,8 @@ module.exports = {
   IMAGE_FROM_B2I: '通过制品构建镜像',
   S2I_DESC: '选择代码的开发语言。',
   B2I_DESC: '选择制品的文件类型。',
+  CONTAINERD_RUNTIME_NOT_SUPPORT:
+    'S2I 和 B2I 暂时不支持 containerd 容器运行时。',
   PORT_SETTINGS_DESC: '设置用于访问容器的端口。',
   CONTAINER_SETTINGS_DESC: '设置容器的镜像、名称、类型和计算资源。',
   HEALTH_CHECKER_DESC: '添加探针以定时检查容器健康状态。',
