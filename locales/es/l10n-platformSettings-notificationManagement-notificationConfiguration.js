@@ -62,7 +62,7 @@ module.exports = {
   SMTP_USER_EMPTY_DESC: 'Please enter a SMTP username.',
   ADDED_SUCCESS_DESC: 'Added successfully.',
   POD: 'Pod',
-  UPDATE_SUCCESS: 'Updated successfully.',
+  UPDATE_SUCCESSFUL: 'Updated successfully.',
   PATTERN_NAME_INVALID_TIP: 'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-).',
   // DingTalk
   DINGTALK_TITLE: 'DingTalk',
