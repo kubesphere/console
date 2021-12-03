@@ -33,6 +33,10 @@ module.exports = {
   WORKER_NODE_SI: 'Worker node',
   WORKER_NODE_PL: 'Worker nodes',
   // List
+  KUBE_OPERATE: 'Sort',
+  KUBE_ASCENDING_ORDER: 'Ascending',
+  KUBE_DESCENDING_ORDER: 'Descending',
+  KUBE_FILTER: 'Filter',
   SEARCH: 'Search',
   ADD_NODE: 'Add Node',
   NODE_STATUS_UNSCHEDULABLE: 'Unschedulable',
@@ -68,11 +72,5 @@ module.exports = {
   TOTAL_ITEMS: 'Total: {num}',
   // List > Edit Taints
   DUPLICATE_KEYS: 'The key already exists. Please enter another key.',
-  EMPTY_KEY: 'Please enter a key.',
-  // List > Add
-  NODE_ROLE_EMPTY_DESC: 'Please set the role of the node in the cluster.',
-  EXTERNAL_IP: 'External IP Address',
-  SSH_KEY_TCAP: 'SSH Key',
-  SSH_KEY_SCAP: 'SSH key',
-  SSH_AUTH_MODE: 'SSH Authentication Mode'
+  EMPTY_KEY: 'Please enter a key.'
 };
