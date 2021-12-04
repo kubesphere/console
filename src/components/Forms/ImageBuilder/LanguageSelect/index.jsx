@@ -20,7 +20,7 @@ import React from 'react'
 import { set, get, unset } from 'lodash'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { Form, Icon } from '@kube-design/components'
+import { Form, Icon, Alert } from '@kube-design/components'
 import S2iBuilderStore from 'stores/s2i/builder'
 import { getLanguageIcon } from 'utils/devops'
 
@@ -89,6 +89,18 @@ export default class LanguageSelect extends React.Component {
     this.forceUpdate()
   }
 
+  renderSupportTip = () => {
+    if (globals.runtime.toLowerCase() === 'containerd') {
+      return (
+        <Alert
+          className={styles.margin_b_10}
+          type="warning"
+          message={t('CONTAINERD_RUNTIME_NOT_SUPPORT')}
+        />
+      )
+    }
+  }
+
   render() {
     const { formTemplate, formRef } = this.props
     const languageType = get(
@@ -102,6 +114,7 @@ export default class LanguageSelect extends React.Component {
     )
     return (
       <Form ref={formRef} data={formTemplate}>
+        {this.renderSupportTip()}
         <div className={styles.header}>
           <p>{t('IMAGE_FROM_S2I')}</p>
           <p>{t('S2I_DESC')}</p>
