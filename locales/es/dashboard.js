@@ -15,31 +15,21 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
-  DISK: 'Disk',
-  APP_REPO: 'Repositorios de aplicaciones',
   'Cluster Status': 'Estado del clúster',
   'CPU Load Average': 'Promedio de carga de la CPU',
   'CPU Usage': 'Uso de CPU',
   'CPU Utilization': 'Utilización de CPU',
   'create project': 'crear proyecto',
   CronJobs: 'CronJobs',
-  DAEMONSETS: 'DaemonSets',
-  NUMBER_OF_DAEMONSETS: 'Number of DaemonSets',
-  STATEFULSETS: 'StatefulSets',
-  NUMBER_OF_STATEFULSETS: 'Number of StatefulSets',
   dashboard: 'dashboard',
   Dashboard: 'Dashboard',
-  DEPLOYMENTS: 'Deployments',
-  NUMBER_OF_DEPLOYMENTS: 'Number of Deployments',
   'Disk Throughput': 'Tasa de transferencia de disco',
   'Disk Utilization': 'Utilización de disco',
   'Inbound Traffic': 'Tráfico entrante',
   'involved project': 'proyecto involucrado',
   Jobs: 'Jobs',
   'KubeSphere Running Status': 'Estado de ejecución de KubeSphere',
-  LAST_LOGIN: 'Última hora de inicio de sesión',
   'Log Data': 'Datos de registro',
   'Memory Usage': 'Uso de memoria',
   'Memory Utilization': 'Utilización de memoria',
@@ -52,31 +42,20 @@ module.exports = {
   quota: 'cuota',
   'Regular user': 'Usuario regular',
   'Replica Availability': 'Disponibilidad de réplica',
-  TOP_5_FOR_RESOURCE_USAGE: 'Ranking de uso de recursos',
   Routes: 'Rutas',
   Services: 'Services',
   'Storage Classes': 'Storage Classes',
   'Super administrator': 'Super administrador',
-  USER_PL: 'Usuarios',
   Utilization: 'Utilización',
   'View All Nodes': 'Ver todos los nodos',
   Volumes: 'Volúmenes',
-  DASHBOARD_TITLE: 'Hola {username}',
   DASHBOARD_BANNER_TITLE: 'Visión general de la plataforma',
-  DASHBOARD_BANNER_DESC:
-    'Estadísticas agregadas sobre los recursos en ejecución y el uso de la plataforma actual.',
-  DASHBOARD_DESC:
-    'El dashboard proporciona información sobre el uso de varios recursos en el clúster actual.',
+  DASHBOARD_BANNER_DESC: 'Estadísticas agregadas sobre los recursos en ejecución y el uso de la plataforma actual.',
+  DASHBOARD_DESC: 'El dashboard proporciona información sobre el uso de varios recursos en el clúster actual.',
   NODE_UNIT: 'Nodos',
   USAGE_VALUE: 'Uso',
   USAGE_RATE: 'Uso',
   NO_PROJECT: 'No se han encontrado proyectos disponibles.',
   NO_POD_MONITOR_DATA: 'No hay datos de monitorización de pods',
-  RESOURCE_WARNING_TIPS:
-    'Hay {warnNum} {tipName} que se muestran anormalmente.',
-  CPU_AVERAGE_LOAD: 'Promedio de carga',
-  USER_DASHBOARD_EMPTY_TITLE:
-    'No perteneces a ningún espacio de trabajo actualmente.',
-  USER_DASHBOARD_EMPTY_DESC:
-    'Puedes ponerte en contacto con un administrador del espacio de trabajo para que te invite a unirte.',
-}
+  CPU_AVERAGE_LOAD: 'Promedio de carga'
+};

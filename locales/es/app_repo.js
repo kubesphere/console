@@ -15,17 +15,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
   'Add App Repository': 'Agregar repositorio de aplicaciones',
-  ADD_APP_REPO: 'Add App Repository',
   'App Repos': 'Repositorios de aplicaciones',
   'App Repository': 'Repositorio de aplicaciones',
-  APP_REPOSITORY: 'App Repository',
-  APP_REPOSITORY_PL: 'App Repositories',
-  APP_REPOSITORY_LOW: 'app repository',
-  APP_REPOSITORY_EMPTY_DESC: 'Please add an app repository.',
-  EDIT_APP_REPO: 'Editar repositorio de aplicaciones',
   'HTTP access denied': 'Acceso HTTP denegado',
   INDEX_REPO: 'Indexar repositorio',
   'Invalid format of credential': 'Formato de credencial no válido',
@@ -36,39 +29,13 @@ module.exports = {
   'Invalid Repo URL': 'URL de repositorio no válida',
   'Invalid S3 Scheme': 'Esquema S3 no válido',
   'Invalid type': 'Tipo no válido',
-  INVALID_URL_DESC: 'Invalid URL.',
-  VALID_URL_DESC: 'Valid URL.',
   'Missing access key ID': 'Falta la ID de la clave de acceso',
   'Missing secret access key': 'Falta la clave de acceso secreta',
-  'Please input access key ID and secret access key':
-    'Introduce la ID de la clave de acceso y la clave de acceso secreta',
-  WEBHOOK_URL_DESC: 'Please enter a webhook URL.',
+  'Please input access key ID and secret access key': 'Introduce la ID de la clave de acceso y la clave de acceso secreta',
   'S3 access denied': 'Acceso S3 denegado',
   Synchronize: 'Sincronizar',
   syncing: 'syncing',
   'Unrecognized URL': 'URL no reconocida',
-  VALIDATE: 'Validar',
-  SYNC_INTERVAL: 'Synchronization Interval',
-  SYNC_INTERVAL_DESC:
-    'Set a synchronization interval. The value range is 3 minutes to 24 hours. The default value 0 indicates no synchronization.',
-  SYNC_PERIOD_EMPTY_DESC: 'Please set a synchronization interval.',
-  SYNC_INTERVAL_INVALID:
-    'El valor no es válido, ingrese 0 o un número entero positivo.',
   'App Repositorys': 'Repositorios de aplicaciones',
-  APP_REPO_URL_DESC:
-    'The URL needs to be validated before you add or edit an app repository.',
-  APP_REPOSITORY_CREATE_DESC:
-    'Puedes agregar un repositorio de aplicaciones de terceros que admita aplicaciones Kubernetes basadas en Helm.',
-  APP_REPO_DESC:
-    'An app repository is a repository used to store application templates. You can add an app repository to deploy and manage its applications.',
-  HOW_TO_USE_APP_REPO_Q: '¿Cómo usar un repositorio de aplicaciones?',
-  HOW_TO_USE_APP_REPO_A:
-    'You need to go to your project in the workspace. When you deploy a new app, select <b>From App Template</b> and then choose an app repository in the drop-down list to deploy an app in the repository.',
-
-  // App Repositories > Details
-  SYNC_INTERVAL_TIP:
-    'The value range is 3 minutes to 24 hours. Please enter a valid value.',
-  SECONDS: 'Seconds',
-  MINUTES: 'Minutes',
-  HOURS: 'Hours',
-}
+  APP_REPOSITORY_CREATE_DESC: 'Puedes agregar un repositorio de aplicaciones de terceros que admita aplicaciones Kubernetes basadas en Helm.'
+};
