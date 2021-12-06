@@ -779,7 +779,7 @@ export const supportGpuType = ['nvidia.com/gpu']
 
 const accessModeMapper = {
   ReadWriteOnce: 'RWO',
-  ReadOnlyMany: 'ROM',
+  ReadOnlyMany: 'ROX',
   ReadWriteMany: 'RWX',
 }
 
