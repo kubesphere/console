@@ -139,6 +139,7 @@ export default class RuleForm extends React.Component {
   checkItemValid = item =>
     item.path &&
     item.backend &&
+    item.backend.service &&
     item.backend.service.name &&
     item.backend.service.port
 
