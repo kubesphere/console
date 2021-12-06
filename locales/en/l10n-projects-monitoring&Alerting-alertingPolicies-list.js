@@ -30,6 +30,7 @@ module.exports = {
   // List > Create > Basic Information
   // List > Create > Rule Settings > Rule Template
   SELECT_WORKLOAD_TIP: 'Please select at least one workload.',
+  KUBE_NO_AVAILABLE_DATA: 'No Data',
 
   // List > Create > Message Settings
   // List > Edit
