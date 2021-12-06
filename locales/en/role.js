@@ -55,6 +55,12 @@ module.exports = {
   'Network Policies View': 'Network Policy Viewing',
   'Nodes View': 'Node Viewing',
 
+  PIPELINES_MANAGEMENT: 'Pipeline Management',
+  PIPELINES_VIEW: 'Pipeline Viewing',
+  PIPELINERUNS_MANAGEMENT: 'Pipeline Run Record Management',
+  PIPELINERUNS_VIEW: 'Pipeline Run Record Viewing',
+  PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
+
   ROLE_NAME_EMPTY_DESC: 'Please enter a role name.',
   'Please specify role authorization': 'Specify the role permissions.',
   'Project Details': 'Project Details',
@@ -142,6 +148,15 @@ module.exports = {
     'The role of an account defines the permissions of the account on the KubeSphere platform.',
   ACCOUNT_ROLE_CREATE_DESC:
     'The role of an account defines the permissions of the account on the KubeSphere platform.',
+
+  PIPELINES_MANAGEMENT_DESC:
+    'Create, edit, and delete DevOps project pipelines.',
+  PIPELINES_VIEW_DESC: 'View DevOps project pipelines and download artifacts.',
+  PIPELINERUNS_MANAGEMENT_DESC:
+    'View, edit, and delete pipeline run records in the DevOps project.',
+  PIPELINERUNS_VIEW_DESC: 'View pipeline run records in the DevOps project.',
+  CREDENTIALS_MANAGEMENT_DESC: 'Create, edit, and delete DevOps credentials.',
+  CREDENTIALS_VIEW_DESC: 'View and use DevOps credentials.',
 
   DEVOPS_ROLES_VIEW_DESC: 'View DevOps project roles.',
   DEVOPS_ROLES_MANAGEMENT_DESC:
