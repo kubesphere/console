@@ -297,7 +297,7 @@ export default class PipelineStore extends BaseStore {
         filter: 'origin',
         page: page || 1,
         limit: TABLE_LIMIT,
-        branch,
+        branch: encodeURIComponent(branch),
       }
     )
 
@@ -392,7 +392,7 @@ export default class PipelineStore extends BaseStore {
           cluster,
 
           namespace: devops,
-        })}pipelines/${decodeURIComponent(name)}/branches/${decodeURIComponent(
+        })}pipelines/${decodeURIComponent(name)}/branches/${encodeURIComponent(
           branch
         )}`
       )
