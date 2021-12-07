@@ -47,7 +47,7 @@ export default class TimeSelector extends React.PureComponent {
 
     this.state = {
       visible: false,
-      preDuration: duration,
+      preDuration: '',
       duration: duration || '10m',
     }
   }
