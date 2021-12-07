@@ -24,6 +24,7 @@ module.exports = {
   // Project Gateway > Enable Gateway > NodePort
   // Project Gateway > Enable Gateway > LoadBalancer
   LOAD_BALANCER_PROVIDER: '负载均衡器提供商',
+  GATEWAY_UPDATING_TIP: 'Updating the gateway. Please try again later.',
   // Manage > View Details
   // Manage > Edit
   // Manage > Edit > NodePort
