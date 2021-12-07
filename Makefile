@@ -1,24 +1,34 @@
-REPO?=kubespheredev/ks-console
-TAG?=$(shell git rev-parse --abbrev-ref HEAD | sed -e 's/\//-/g' | sed 's/master/latest/g')-dev
+# Copyright 2021 The KubeSphere Authors. All rights reserved.
+# Use of this source code is governed by a AGPL-3.0 license
+# that can be found in the LICENSE file.
 
-setup:
-	docker volume create nodemodules
+REPO?=kubespheredev
+TAG?=$(shell git rev-parse --abbrev-ref HEAD)
 
-install:
-	docker-compose -f docker-compose.builder.yaml run --rm install
+.PHONY: all
+all: test build serve
 
-dev:
-	docker-compose up
+help:	## Show this help.
+	@grep -hE '^[ a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-23s\033[0m %s\n", $$1, $$2}'
 
-build:
-	docker-compose -f docker-compose.builder.yaml run --rm build
+test:	## Run tests suite.
+	yarn test
 
-yarn-%:
-	docker-compose -f docker-compose.builder.yaml run --rm base yarn $*
+build:	## Build
+	yarn build
 
-image:
-	rm -rf build && mkdir -p build
-	tar --exclude=".git" --exclude='node_modules' --exclude='build' --warning=no-file-changed -czf build/console.tar.gz .
-	docker build build -t $(REPO):$(TAG) -f Dockerfile.multistage
-image-push:
-	docker push $(REPO):$(TAG)
+serve:	## Run console on port :8000
+	npm run serve
+
+container:	## Build the container image
+	DRY_RUN=true hack/docker_build.sh
+
+container-push:	## Build the container and push
+	hack/docker_build.sh
+
+container-cross:	## Build the container for multiple platforms(currently linux/amd64,linux/arm64)
+	DRY_RUN=true hack/docker_build_multiarch.sh
+
+container-cross-push:	## Build the container for multiple platforms and push
+	hack/docker_build_multiarch.sh
