@@ -19,16 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import {
-  get,
-  set,
-  isEqual,
-  isFinite,
-  isEmpty,
-  isNaN,
-  isUndefined,
-  omit,
-} from 'lodash'
+import { get, set, isEqual, isFinite, isEmpty, isNaN, omit } from 'lodash'
 
 import {
   Icon,
@@ -171,6 +162,8 @@ export default class ResourceLimit extends React.Component {
       cpuUnit
     )
 
+    const gpuLimits = ResourceLimit.getWorkspaceGpuLimitValue(props, 'value')
+
     return {
       requests: {
         cpu: cpuRequests,
@@ -189,7 +182,7 @@ export default class ResourceLimit extends React.Component {
         memory: isNaN(workspaceMeoLimit) ? 'Not Limited' : workspaceMeoLimit,
       },
       workspaceGpuLimits: {
-        value: ResourceLimit.getWorkspaceGpuLimitValue(props, 'value'),
+        value: gpuLimits === '' ? 'Not limited' : gpuLimits,
       },
       gpu: ResourceLimit.gpuSetting(props),
     }
@@ -602,22 +595,9 @@ export default class ResourceLimit extends React.Component {
     )
   }
 
-  ifRenderTip() {
+  get ifRenderTip() {
     const { workspaceLimitProps } = this.props
-    if (isEmpty(workspaceLimitProps)) {
-      return false
-    }
-    const { limits, requests } = workspaceLimitProps
-    if (
-      isUndefined(limits.cpu) &&
-      isUndefined(limits.memory) &&
-      isUndefined(requests.cpu) &&
-      isUndefined(requests.memory)
-    ) {
-      return false
-    }
-
-    return true
+    return !isEmpty(workspaceLimitProps)
   }
 
   renderGpuSelect = () => {
@@ -752,7 +732,7 @@ export default class ResourceLimit extends React.Component {
             {supportGpuSelect && this.renderGpuSelect()}
           </Columns>
         </div>
-        {this.ifRenderTip() && this.renderQuotasTip()}
+        {this.ifRenderTip && this.renderQuotasTip()}
         {(cpuError || memoryError) && (
           <Alert
             type="error"
