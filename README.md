@@ -122,3 +122,5 @@ Please submit any KubeSphere Console bugs, issues, and feature requests to [Kube
 ## Contributing to the project
 
 Welcome to contribute to KubeSphere Console, see [Contributing Guide](CONTRIBUTING.md).
+
+The KubeSphere localization project has been launched on Crowdin. You can help localize the KubeSphere web console by referring to the [localization guide](docs/join-the-kubesphere-localization-project.md).
