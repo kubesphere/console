@@ -17,22 +17,22 @@
  */
 module.exports = {
   // Banner
-  SERVICE_TYPES_Q: 'What service types does KubeSphere support?',
-  SERVICE_TYPES_A: 'KubeSphere supports stateless services and stateful services. Pod replicas in a stateless service share the same volume, while each pod replica in a stateful service has an independent volume.',
-  SCENARIOS_FOR_SERVICES_Q: 'What are the use cases of stateless services and stateful services?',
-  SCENARIOS_FOR_SERVICES_A: 'Stateless services applies to scenarios where data persistence is not required, such as Nginx and Tomcat. Stateful services applies to scenarios where data persistence is required, such as MySQL databases, Kafka, and Zookeeper.',
+  SERVICE_TYPES_Q: 'KubeSphere 支持哪些服务类型？',
+  SERVICE_TYPES_A: 'KubeSphere 支持无状态服务和有状态服务。无状态服务中的多个容器组副本共享一个存储卷，有状态服务中的每个容器组副本都拥有独立的存储卷。',
+  SCENARIOS_FOR_SERVICES_Q: '无状态服务和有状态服务分别适用于哪些场景？',
+  SCENARIOS_FOR_SERVICES_A: '无状态服务适用于不需要数据持久化的场景，例如 Nginx 和 Tomcat。有状态服务适用于需要数据持久化的场景，例如 MySQL 数据库、Kafka 和 ZooKeeper。',
   // Service List
-  SERVICE_TYPE: 'Service Type',
-  SERVICE_LIST: 'Service List',
+  SERVICE_TYPE: '服务类型',
+  SERVICE_LIST: '服务列表',
   // List > Create
-  CREATE_SERVICE_DESC: 'Select a service creation method.',
-  SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful service, or map a service to an external service.',
-  SERVICE_FROM_CODE: 'Create Service from Source Code',
-  SERVICE_FROM_ARTIFACT: 'Create Service from Artifact',
-  SERVICE_FROM_CODE_DESC: 'Build an image from existing source code and deploy the image.',
-  SERVICE_FROM_ARTIFACT_DESC: 'Build an image from an existing artifact and deploy the image.',
-  CUSTOMIZE_SERVICE: 'Customize Service',
-  CUSTOMIZE_SERVICE_DESC: 'Specify workloads or edit a YAML configuration file to create a service.',
+  CREATE_SERVICE_DESC: '选择创建服务的方式。',
+  SELECT_SERVICE_TYPE_DESC: '创建一个无状态或有状态服务，或将一个服务映射到外部服务。',
+  SERVICE_FROM_CODE: '通过代码创建服务',
+  SERVICE_FROM_ARTIFACT: '通过制品创建服务',
+  SERVICE_FROM_CODE_DESC: '将现有的代码构建成镜像并部署。',
+  SERVICE_FROM_ARTIFACT_DESC: '将现有的制品构建成镜像并部署。',
+  CUSTOMIZE_SERVICE: '自定义服务',
+  CUSTOMIZE_SERVICE_DESC: '通过指定工作负载或编辑 YAML 配置文件来创建服务。',
   // List > Create > Select Service Type > Stateless Service > Pod Settings > Port Settings
   PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
   PORT_NAME_DESC: 'The port name can contain only lowercase letters, numbers, and hyphens (-) and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
