@@ -61,7 +61,7 @@ module.exports = {
   REQUEST_RATE: '请求 <span>速率</span>',
   SCHEDULE_ATTEMPTS_TCAP: '调度 <span>次数</span>',
   SCHEDULING_RATE_TCAP: '调度 <span>速率</span>',
-  API_SERVER: 'API Server',
+  API_SERVER: 'API 服务器',
   // Physical Resource Monitoring
   SELECT_TIME_RANGE: '选择时间范围',
   LAST_TIME: '最近 {value}',
