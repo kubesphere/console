@@ -12,6 +12,13 @@ The locale files containing UI strings of the KubeSphere web console have been u
 
    ![crowdin-select-langauge](./images/crowdin-select-langauge.png)
 
+3. On the translation editing page, select a UI string, enter your translation, and click **Save** to translate a UI string. Keep HTML tags and words enclosed in braces ({}) unchanged in your translations. Words enclosed in braces are variables and the values are dynamically loaded.
+
+   For example, keep **\<a href="{link}"\>**, **\</a\>**, and **{time}** unchanged in your translation for the following UI string.
+   
+   ![crowdin-html-and-variables](./images/crowdin-html-and-variables.png)
+   
+
 For more information about operations on Crowdin, see the [official Crowdin documentation](https://support.crowdin.com/).
 
 ## Obtain Context and Preview Your Translations
@@ -47,4 +54,4 @@ Translations of the UI strings will be merged into the master branch of the [kub
 
 If you encounter any obstacles in the localization process, feel free to open issues at the [kubesphere/console repository](https://github.com/kubesphere/console/issues).
 
-Join the [KubeSphere #sig-console slack channel](https://kubesphere.slack.com/archives/C010UN5BMRR) to discuss localization issues, share localization skills, or simply tell us how you feel when using the KubeSphere web console.
+Join the [KubeSphere #sig-console Slack channel](https://kubesphere.slack.com/archives/C010UN5BMRR) to discuss localization issues, share localization skills, or simply tell us how you feel when using the KubeSphere web console.
