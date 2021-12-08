@@ -163,6 +163,7 @@ module.exports = {
   BRANCH_PL: 'Branches',
   SCAN_REPOSITORY: 'Scan Repository',
   PIPELINE: 'Pipeline',
+  NO_BRANCHES_FOUND: 'No Branches Found',
 
   // Branches > Code Check
   CODE_CHECK: 'Code Check',
