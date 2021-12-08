@@ -60,14 +60,14 @@
     right: 6px;
     transition: transform 0.5s ease;
     transform-origin: center;
-  
+
     svg {
       color: white;
     }
   }
 
   .rightIcon_toggle {
-    transform: rotate(180deg)
+    transform: rotate(180deg);
   }
 
   &.selected {
