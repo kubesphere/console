@@ -127,7 +127,7 @@ module.exports = {
   DELETE_SERVICE_DESC_PL:
     'You are about to delete the services {resource}.<br/>Do you want to also delete the following resources related to the services?',
   DELETE_SERVICE_DESC_SI:
-    'You are about to delete the ervice {resource}.<br/>Do you want to also delete the following resource related to the service?',
+    'You are about to delete the service {resource}.<br/>Do you want to also delete the following resource related to the service?',
   DELETE_SERVICE: 'Delete Service',
   DELETE_MULTIPLE_SERVICES: 'Delete Multiple Services',
 

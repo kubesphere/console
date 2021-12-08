@@ -57,8 +57,6 @@ module.exports = {
 
   PIPELINES_MANAGEMENT: 'Pipeline Management',
   PIPELINES_VIEW: 'Pipeline Viewing',
-  PIPELINERUNS_MANAGEMENT: 'Pipeline Run Record Management',
-  PIPELINERUNS_VIEW: 'Pipeline Run Record Viewing',
   PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
 
   ROLE_NAME_EMPTY_DESC: 'Please enter a role name.',
