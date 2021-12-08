@@ -61,7 +61,7 @@ module.exports = {
   MINIMUM_USAGE: '最小用量',
   RESOURCE_TYPE: '资源类型',
   // Current Consumption
-  CURRRENT_RESOURCE_CONSUMPTION: 'Current Consumption',
+  CURRRENT_RESOURCE_CONSUMPTION: '当前消费',
   // Current Consumption > Tip
   METER_RESOURCE_DESC: '1 小时内的资源消费情况'
 };
