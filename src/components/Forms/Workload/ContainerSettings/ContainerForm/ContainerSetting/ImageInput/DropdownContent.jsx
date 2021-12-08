@@ -123,6 +123,9 @@ export default class DropdownContent extends React.Component {
   showContent = () => {
     this.setState({ visible: true }, () => {
       document.addEventListener('click', this.handleDOMClick)
+      if (this.hubType !== 'dockerHub') {
+        this.fetchHarborList('', this.state.hubUrl)
+      }
     })
   }
 
@@ -145,7 +148,9 @@ export default class DropdownContent extends React.Component {
       )[0].url
       this.setState({ hubUrl: url })
     }
+
     const { formTemplate } = this.props
+
     set(formTemplate, 'pullSecret', value)
     this.props.onChange(this.registryUrl)
   }
@@ -186,10 +191,10 @@ export default class DropdownContent extends React.Component {
     )
     const url = this.state.hubUrl
     const tag = await this.fetchHarborImageTag(url, projectName, repository)
-    const image = `${url}/${imageDetail.repository_name}:${tag}`
+    const image = `${imageDetail.repository_name}:${tag}`
     const logo = ''
     const short_description = ''
-    this.props.onChange(image)
+    this.props.onChange(`${this.registryUrl}/${image}`)
     this.hideContent()
     this.props.onEnter({ logo, short_description })
   }
@@ -204,6 +209,7 @@ export default class DropdownContent extends React.Component {
 
   fetchDockerList = async keyword => {
     this.setState({ isLoading: true })
+
     const result = await this.store
       .getDockerImagesLists({
         q: keyword,
@@ -214,13 +220,16 @@ export default class DropdownContent extends React.Component {
       .finally(() => {
         !this.isUnMounted && this.setState({ isLoading: false })
       })
+
     !this.isUnMounted &&
       this.setState({ dockerList: get(result, 'summaries', []) })
   }
 
   fetchHarborList = async (keyword, url) => {
     if (!url) return
+
     this.setState({ isLoading: true })
+
     const result = await this.store
       .getHarborImagesLists(
         {
@@ -231,6 +240,7 @@ export default class DropdownContent extends React.Component {
       .finally(() => {
         !this.isUnMounted && this.setState({ isLoading: false })
       })
+
     !this.isUnMounted &&
       this.setState({ harborList: get(result, 'repository', []) })
   }
@@ -256,7 +266,7 @@ export default class DropdownContent extends React.Component {
   }
 
   renderContent = () => {
-    if (this.hubType === 'dockerHub') {
+    if (this.state.visible) {
       return (
         <div
           className={classnames(styles.dropContent, {
@@ -267,35 +277,24 @@ export default class DropdownContent extends React.Component {
           <div className={styles.header}>
             <InputSearch
               className={styles.search}
-              onSearch={this.handleSearchDockerHub}
+              onSearch={
+                this.hubType === 'dockerHub'
+                  ? this.handleSearchDockerHub
+                  : this.handleSearchHarbor
+              }
               placeholder={t('SEARCH')}
             />
             {this.state.isLoading && (
               <Loading className="float-left" size={28} />
             )}
           </div>
-          {this.renderDockerList()}
+          {this.hubType === 'dockerHub'
+            ? this.renderDockerList()
+            : this.renderHarborList()}
         </div>
       )
     }
-    return (
-      <div
-        className={classnames(styles.dropContent, {
-          [styles.dropContent_hide]: !this.state.visible,
-        })}
-        ref={this.dropContentRef}
-      >
-        <div className={styles.header}>
-          <InputSearch
-            className={styles.search}
-            onSearch={this.handleSearchHarbor}
-            placeholder={t('SEARCH')}
-          />
-          {this.state.isLoading && <Loading className="float-left" size={28} />}
-        </div>
-        {this.renderHarborList()}
-      </div>
-    )
+    return null
   }
 
   renderDockerList() {
@@ -305,8 +304,10 @@ export default class DropdownContent extends React.Component {
           <div
             className={classnames(styles.selectedContent, styles.emptyContent)}
           >
-            <Icon name="docker" className={styles.icon} />
-            <p className={styles.desc}>{t('NO_IMAGE_FOUND')}</p>
+            <div>
+              <Icon name="docker" className={styles.icon} />
+              <p className={styles.desc}>{t('NO_IMAGE_FOUND')}</p>
+            </div>
           </div>
         </ul>
       )
@@ -367,8 +368,10 @@ export default class DropdownContent extends React.Component {
           <div
             className={classnames(styles.selectedContent, styles.emptyContent)}
           >
-            <Icon name="docker" className={styles.icon} />
-            <p className={styles.desc}>{t('NO_IMAGE_FOUND')}</p>
+            <div>
+              <Icon name="docker" className={styles.icon} />
+              <p className={styles.desc}>{t('NO_IMAGE_FOUND')}</p>
+            </div>
           </div>
         </ul>
       )

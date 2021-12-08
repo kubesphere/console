@@ -197,8 +197,10 @@ export default class ImageSearch extends Component {
           <div
             className={classnames(styles.selectedContent, styles.emptyContent)}
           >
-            <Icon name="docker" className={styles.icon} />
-            <p className={styles.desc}>{t('NO_IMAGE_FOUND')}</p>
+            <div>
+              <Icon name="docker" className={styles.icon} />
+              <p className={styles.desc}>{t('NO_IMAGE_FOUND')}</p>
+            </div>
           </div>
         )
       }
@@ -270,8 +272,10 @@ export default class ImageSearch extends Component {
     }
     return (
       <div className={classnames(styles.selectedContent, styles.emptyContent)}>
-        <Icon name="docker" className={styles.icon} />
-        <p className={styles.desc}>{t('SET_IMAGE_DESC')}</p>
+        <div>
+          <Icon name="docker" className={styles.icon} />
+          <p className={styles.desc}>{t('SET_IMAGE_DESC')}</p>
+        </div>
       </div>
     )
   }
