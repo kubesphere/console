@@ -34,20 +34,20 @@ module.exports = {
   CUSTOMIZE_SERVICE: '自定义服务',
   CUSTOMIZE_SERVICE_DESC: '通过指定工作负载或编辑 YAML 配置文件来创建服务。',
   // List > Create > Select Service Type > Stateless Service > Pod Settings > Port Settings
-  PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
-  PORT_NAME_DESC: 'The port name can contain only lowercase letters, numbers, and hyphens (-) and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
+  PORT_INPUT_DESC: '端口名称已存在，请输入其他名称。',
+  PORT_NAME_DESC: '端口名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   // List > Create > Select Service Type > Stateful Service
   // List > Create > Select Service Type > External Service
-  CREATE_EXTERNAL_SERVICE_DESC: 'Create a service and map it to an external service.',
-  CREATE_EXTERNAL_SERVICE: 'Create External Service',
-  EXTERNAL_SERVICE_ADDRESS_EMPTY_DESC: 'Please enter the domain name of an external service.',
-  EXTERNAL_SERVICE_ADDRESS: 'External Service Address',
-  EXTERNAL_SERVICE_ADDRESS_DESC: 'Enter the domain name of an external service.',
+  CREATE_EXTERNAL_SERVICE_DESC: '创建一个服务并将其映射到一个外部服务。',
+  CREATE_EXTERNAL_SERVICE: '创建外部服务',
+  EXTERNAL_SERVICE_ADDRESS_EMPTY_DESC: '请输入外部服务的域名。',
+  EXTERNAL_SERVICE_ADDRESS: '外部服务地址',
+  EXTERNAL_SERVICE_ADDRESS_DESC: '输入外部服务的域名。',
   // List > Create > Create Service from Source Code
   JAVA: 'Java',
   NODEJS: 'Node.js',
   PYTHON: 'Python',
-  LANGUAGE_TYPE_VALUE: 'Language Type: {value}',
+  LANGUAGE_TYPE_VALUE: '语言类型：{value}',
   // List > Create > Create Service from Source Code > Java > Basic Information
   // List > Create > Create Service from Source Code > Java > Build Settings
   // List > Create > Create Service from Source Code > Java > Pod Settings
@@ -56,7 +56,7 @@ module.exports = {
   // List > Create > Create Service from Source Code > Node.js > Basic Information
   // List > Create > Create Service from Source Code > Node.js > Build Settings
   // List > Create > Create Service from Source Code > Node.js > Pod Settings
-  CONTAINER_SETTINGS: 'Container Settings',
+  CONTAINER_SETTINGS: '容器设置',
   // List > Create > Create Service from Source Code > Node.js > Volume Settings
   // List > Create > Create Service from Source Code > Node.js > Advanced Settings
   // List > Create > Create Service from Source Code > Python > Basic Information
@@ -65,7 +65,7 @@ module.exports = {
   // List > Create > Create Service from Source Code > Python > Volume Settings
   // List > Create > Create Service from Source Code > Python > Advanced Settings
   // List > Create > Create Service from Artifact
-  ARTIFACT_TYPE_VALUE: 'Artifact Type: {value}',
+  ARTIFACT_TYPE_VALUE: '制品类型：{value}',
   // List > Create > Create Service from Artifact > JAR > Basic Information
   // List > Create > Create Service from Artifact > JAR > Build Settings
   // List > Create > Create Service from Artifact > JAR > Pod Settings
@@ -77,15 +77,15 @@ module.exports = {
   // List > Create > Create Service from Artifact > WAR > Volume Settings
   // List > Create > Create Service from Artifact > WAR > Advanced Settings
   // List > Create > Create Service from Artifact > Binary > Basic Information
-  BINARY: 'Binary',
+  BINARY: '二进制',
   // List > Create > Create Service from Artifact > Binary > Build Settings
   // List > Create > Create Service from Artifact > Binary > Pod Settings
   // List > Create > Create Service from Artifact > Binary > Volume Settings
   // List > Create > Create Service from Artifact > Binary > Advanced Settings
   // List > Create > Customize Service > Specify Workload > Basic Information
-  SPECIFY_WORKLOAD_TO_CREATE_SERVICE: 'Specify Workload to Create Service',
-  EDIT_YAML_TO_CREATE_SERVICE: 'Edit YAML to Create Service',
-  SPECIFY_WORKLOAD_DESC: 'Create a service by using one or more existing workloads.',
+  SPECIFY_WORKLOAD_TO_CREATE_SERVICE: '指定工作负载创建服务',
+  EDIT_YAML_TO_CREATE_SERVICE: '编辑 YAML 创建服务',
+  SPECIFY_WORKLOAD_DESC: '使用一个或多个现有的工作负载创建来创建服务。',
   // List > Create > Customize Service > Specify Workload > Service Settings
   // List > Create > Customize Service > Specify Workload > Advanced Settings
   // List > Edit Information
@@ -93,15 +93,15 @@ module.exports = {
   // List > Edit Service
   // List > Edit External Access
   // List > Delete
-  NO_RELATED_RESOURCE_FOUND: 'No Related Resource Found',
-  NO_SERVICE_RELATED_RESOURCE_DESC: 'No resource related to the service is found.',
-  DELETE_SERVICE_DESC: 'You are about to delete the service(s) {resource}. Please confirm whether to delete the associated resource?',
-  DELETE_SERVICE_DESC_PL: 'You are about to delete the services {resource}.<br/>Do you want to also delete the following resources related to the services?',
-  DELETE_SERVICE_DESC_SI: 'You are about to delete the ervice {resource}.<br/>Do you want to also delete the following resource related to the service?',
-  DELETE_SERVICE: 'Delete Service',
-  DELETE_MULTIPLE_SERVICES: 'Delete Multiple Services',
+  NO_RELATED_RESOURCE_FOUND: '没有关联的资源',
+  NO_SERVICE_RELATED_RESOURCE_DESC: '当前服务没有关联的资源。',
+  DELETE_SERVICE_DESC: '您即将删除服务 {resource}。请确认是否同时删除关联资源？',
+  DELETE_SERVICE_DESC_PL: '您即将删除服务 {resource}。<br/>请确认是否同时删除以下与服务关联的资源？',
+  DELETE_SERVICE_DESC_SI: '您即将删除服务 {resource}。<br/>请确认是否同时删除以下与服务关联的资源？',
+  DELETE_SERVICE: '删除服务',
+  DELETE_MULTIPLE_SERVICES: '批量删除服务',
   // Service Topology
-  SERVICE_TOPOLOGY: 'Service Topology',
-  AUTO_REFRESH: 'Auto Refresh',
-  POD_COUNT_VALUE: 'Pods: {value}'
+  SERVICE_TOPOLOGY: '服务拓扑',
+  AUTO_REFRESH: '自动更新',
+  POD_COUNT_VALUE: '容器组数量：{value}'
 };
