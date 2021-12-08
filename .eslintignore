@@ -1,0 +1,9 @@
+dist/
+build/
+cypress/
+jest/
+scripts/
+node_modules/
+jest.config.js
+babel.config.js
+.eslintrc.js
