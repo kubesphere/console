@@ -65,8 +65,9 @@ export default class Select extends React.Component {
   }
 
   toggleShowOptions = () => {
-    const { showOptions } = this.state
-    this.setState({ showOptions: !showOptions })
+    this.setState(({ showOptions }) => {
+      !showOptions
+    })
   }
 
   handleShowOptions = () => {
