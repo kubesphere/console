@@ -249,6 +249,9 @@ const getKSConfig = async token => {
 const getK8sRuntime = async ctx => {
   const token = ctx.cookies.get('token')
   let resp = 'docker'
+  if (!token) {
+    return resp
+  }
   try {
     const nodeList = await send_gateway_request({
       method: 'GET',
