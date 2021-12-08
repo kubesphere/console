@@ -63,8 +63,7 @@ class GatewayCard extends React.Component {
   }
 
   get itemActions() {
-    const { type } = this.props
-
+    const updateDisable = this.canEdit || this.gateway.createTime != null
     const baseOpt = [
       {
         key: 'view',
@@ -90,10 +89,10 @@ class GatewayCard extends React.Component {
       key: 'update',
       icon: 'update',
       text: t('UPDATE'),
-      disabled: this.canEdit || this.gateway.createTime != null,
+      disabled: updateDisable,
     }
 
-    type !== 'cluster' && baseOpt.splice(2, 0, updateOpt)
+    !updateDisable && baseOpt.splice(2, 0, updateOpt)
 
     return baseOpt
   }
@@ -116,12 +115,7 @@ class GatewayCard extends React.Component {
 
     switch (key) {
       case 'view':
-        this.props.rootStore.routing.push({
-          pathname: this.linkUrl,
-          state: {
-            isCluster: type === 'cluster',
-          },
-        })
+        this.props.rootStore.routing.push(this.linkUrl)
         break
       case 'edit':
         this.trigger('gateways.edit', {
