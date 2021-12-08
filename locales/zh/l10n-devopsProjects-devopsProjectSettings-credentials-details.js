@@ -20,9 +20,9 @@ module.exports = {
   // Details
   // Edit
   // Delete
-  CREDENTIAL_LOW: 'credential',
+  CREDENTIAL_LOW: '凭证',
   // Details > Credential
   TYPE_VALUE: '类型：{value}',
   // Events
-  RECORD: 'Record'
+  RECORD: '记录'
 };
