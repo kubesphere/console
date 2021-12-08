@@ -1,1 +1,0 @@
-docker run --rm -p 8000:8000 -v $(pwd)/server/local_config.yaml:/opt/kubesphere/console/server/local_config.yaml ks-console

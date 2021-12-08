@@ -22,5 +22,4 @@ yarn-error.log*
 /server/local_config.yaml
 
 *.rdb
-/build
 .cache-loader
