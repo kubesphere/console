@@ -57,13 +57,30 @@ client:
   supportLangs:
     - label: "繁體中文"
       value: "tc"
+      recommend: true
     - label: "简体中文"
       value: "zh"
+      recommend: true
     - label: "English"
       value: "en"
+      recommend: true
     - label: "Español"
       value: "es"
+      recommend: true
+    - label: "عربي"
+      value: "ar"
+    - label: "français"
+      value: 'fr'
+    - label: "हिंदी"
+      value: 'hi'
+    - label: "lietuvių"
+      value: 'lt'
+    - label: 'Polskie'
+      value: 'pl'
+    - label: 'Türkiye'
+      value: 'tr'
   defaultLang: "en"
+  showAllLangs: true
 
   # platform management navigations
   globalNavs:
