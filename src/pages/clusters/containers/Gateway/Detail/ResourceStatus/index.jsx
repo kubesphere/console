@@ -77,8 +77,7 @@ class ResourceStatus extends React.Component {
   }
 
   get prefix() {
-    const { workspace } = this.props.match.params
-    return `${workspace ? `/${workspace}` : ''}/clusters/${this.cluster}`
+    return `/clusters/${this.cluster}`
   }
 
   getGatewayDetail() {
@@ -174,6 +173,7 @@ class ResourceStatus extends React.Component {
 
   renderPods() {
     const params = { ...this.props.match.params, cluster: this.cluster }
+
     return (
       <PodsCard
         prefix={this.prefix}

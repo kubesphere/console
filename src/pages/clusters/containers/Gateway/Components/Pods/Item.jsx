@@ -287,6 +287,11 @@ export default class PodItem extends React.PureComponent {
     } = this.props.detail
 
     if (isEmpty(containers)) return null
+    const link =
+      globals.app.hasPermission({ module: 'clusters', action: 'view' }) &&
+      prefix
+        ? this.getLink()
+        : ''
 
     return (
       <div className={styles.itemExtra}>
@@ -297,26 +302,26 @@ export default class PodItem extends React.PureComponent {
           {containers.map(container => (
             <ContainerItem
               key={container.name}
-              prefix={prefix && this.getLink()}
+              prefix={link}
               podName={name}
               detail={container}
               cluster={cluster}
               onContainerClick={this.handleLinkClick}
               isCreating={this.isCreating}
-              hideterminal
+              hideterminal={true}
             />
           ))}
           {initContainers.map(container => (
             <ContainerItem
               key={container.name}
-              prefix={prefix && this.getLink()}
+              prefix={link}
               podName={name}
               detail={container}
               cluster={cluster}
               onContainerClick={this.handleLinkClick}
               isCreating={this.isCreating}
               isInit
-              hideterminal
+              hideterminal={true}
             />
           ))}
         </div>
