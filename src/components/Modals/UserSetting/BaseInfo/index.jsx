@@ -48,6 +48,12 @@ export default class BaseInfo extends React.Component {
     return 'basicInfo'
   }
 
+  get languageOptions() {
+    return globals.config.showAllLangs
+      ? globals.config.supportLangs
+      : globals.config.supportLangs.filter(item => item.recommend)
+  }
+
   getInitialData() {
     return cloneDeep(this.props.formData)
   }
@@ -84,7 +90,7 @@ export default class BaseInfo extends React.Component {
                 <Form.Item label={t('LANGUAGE')}>
                   <Select
                     name="spec.lang"
-                    options={globals.config.supportLangs}
+                    options={this.languageOptions}
                     defaultValue={cookie('lang') || getBrowserLang()}
                   />
                 </Form.Item>
