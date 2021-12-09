@@ -31,7 +31,7 @@ export default class Annotations extends Component {
   }
 
   get detail() {
-    return this.store.gateway.data
+    return this.store.gateway.data || {}
   }
 
   render() {

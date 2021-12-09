@@ -64,7 +64,7 @@ class ResourceStatus extends React.Component {
   }
 
   get detail() {
-    return this.store.gateway.data
+    return this.store.gateway.data || {}
   }
 
   get cluster() {

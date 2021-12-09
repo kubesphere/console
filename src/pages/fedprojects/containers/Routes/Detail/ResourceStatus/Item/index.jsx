@@ -76,7 +76,7 @@ export default class Item extends React.Component {
 
   renderRules() {
     const { workspace, namespace, detail } = this.props
-    const gateway = toJS(this.state.gateway)
+    const gateway = toJS(this.state.gateway) || {}
 
     if (!detail || isEmpty(detail.rules)) {
       return t('NO_DATA')
