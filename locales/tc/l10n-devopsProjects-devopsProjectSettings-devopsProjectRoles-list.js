@@ -35,6 +35,9 @@ module.exports = {
   DEPENDS_ON: '依賴於',
   PIPELINES_MANAGEMENT: '流水線管理',
   PIPELINES_VIEW: '流水線查看',
+  PIPELINERUNS_MANAGEMENT: 'Pipeline Run Record Management',
+  PIPELINERUNS_VIEW: 'Pipeline Run Record Viewing',
+  PIPELINERUNS_VIEW_DESC: 'View pipeline run records in the DevOps project.',
   PIPELINES_MANAGEMENT_DESC: '授予管理 DevOps 项目流水線的權限，包含 創建/編輯/刪除 等操作.',
   PIPELINES_VIEW_DESC: '授予查看 DevOps 项目流水線的權限，下載成品等.',
   // List > Create > Edit Permissions > Credential Management
