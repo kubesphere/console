@@ -23,5 +23,5 @@ module.exports = {
   LOG_COLLECTION_ENABLE_TIPS: 'El nuevo estado tarda aproximadamente 1 minuto en surtir efecto.',
   SELECT_STATUS_TIP: 'Select a status',
   // Resource Status
-  ADRESS: 'Address'
+  ADDRESS: 'Address'
 };
