@@ -119,9 +119,16 @@ export default class PipelineDetailLayout extends React.Component {
     return !updateTime ? '-' : moment(updateTime).format('YYYY-MM-DD HH:mm:ss')
   }
 
+  fetchPipelineConfig = async () => {
+    const { params } = this.props.match
+    await this.store.fetchDetail({ ...params, isSilent: true })
+    await this.getPipeLineConfig()
+  }
+
   getOperations = () => {
     const { detail } = toJS(this.store)
-    const { devops, cluster, workspace, name } = this.props.match.params
+    const { params } = this.props.match
+    const { devops, cluster, workspace, name } = params
 
     return [
       {
@@ -143,8 +150,8 @@ export default class PipelineDetailLayout extends React.Component {
         type: 'control',
         text: t('EDIT_SETTINGS'),
         action: 'edit',
-        onClick: () => {
-          this.getPipeLineConfig()
+        onClick: async () => {
+          await this.fetchPipelineConfig()
           this.trigger('pipeline.advance.edit', {
             devops,
             cluster,
