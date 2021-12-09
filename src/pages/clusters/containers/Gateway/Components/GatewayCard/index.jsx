@@ -176,7 +176,7 @@ class GatewayCard extends React.Component {
       ip = gateway.externalIPs.join('; ')
     }
 
-    return ip || '-'
+    return ip
   }
 
   renderMoreMenu() {

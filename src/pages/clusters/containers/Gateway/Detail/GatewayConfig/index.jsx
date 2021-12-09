@@ -18,7 +18,7 @@
 import React from 'react'
 import { Panel } from 'components/Base'
 import { observer, inject } from 'mobx-react'
-import { isEmpty } from 'lodash'
+import { isEmpty, get } from 'lodash'
 import styles from './index.scss'
 
 @inject('detailStore')
@@ -33,7 +33,7 @@ export default class GatewayConfig extends React.Component {
   }
 
   get detail() {
-    return this.store.gateway.data
+    return get(this.store.gateway, 'data', {})
   }
 
   render() {
