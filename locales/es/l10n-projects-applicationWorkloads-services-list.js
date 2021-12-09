@@ -97,7 +97,7 @@ module.exports = {
   NO_SERVICE_RELATED_RESOURCE_DESC: 'No se encontraron recursos relacionados con los servicios actuales',
   DELETE_SERVICE_DESC: 'Está a punto de eliminar los servicios {resource}. ¿Confirma si desea eliminar el recurso asociado?',
   DELETE_SERVICE_DESC_PL: 'You are about to delete the Services {resource}.<br/>Do you want to also delete the following resources related to the Services?',
-  DELETE_SERVICE_DESC_SI: 'You are about to delete the Service {resource}.<br/>Do you want to also delete the following resource related to the Service?',
+  DELETE_SERVICE_DESC_SI: 'You are about to delete the service {resource}.<br/>Do you want to also delete the following resource related to the service?',
   DELETE_SERVICE: 'Delete Service',
   DELETE_MULTIPLE_SERVICES: 'Delete Multiple Services',
   // Service Topology
