@@ -139,6 +139,7 @@ module.exports = {
   BRANCH_PL: 'Branches',
   SCAN_REPOSITORY: 'Escanear repositorio',
   PIPELINE: 'Pipeline',
+  NO_BRANCHES_FOUND: 'No Branches Found',
   // Branches > Code Check
   CODE_CHECK: 'Código de calidad',
   BUG_PL: 'Bugs',
