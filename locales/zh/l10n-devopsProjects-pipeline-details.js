@@ -134,7 +134,7 @@ module.exports = {
   BRANCH_PL: '分支',
   SCAN_REPOSITORY: '扫描仓库',
   PIPELINE: '流水线',
-  NO_BRANCHES_FOUND: 'No Branches Found',
+  NO_BRANCHES_FOUND: '未找到分支',
   // Branches > Code Check
   CODE_CHECK: '代码检查',
   BUG_PL: '代码错误',
