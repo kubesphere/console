@@ -23,13 +23,11 @@ import classnames from 'classnames'
 import { isEmpty, get } from 'lodash'
 import {
   Button,
-  Icon,
   Level,
   LevelLeft,
   LevelRight,
   Pagination,
   Loading,
-  Select,
   InputSearch,
 } from '@kube-design/components'
 
@@ -55,7 +53,6 @@ export default class PodsCard extends React.Component {
     details: PropTypes.object,
     hideHeader: PropTypes.bool,
     hideFooter: PropTypes.bool,
-    isFederated: PropTypes.bool,
     onPage: PropTypes.func,
     limit: PropTypes.number,
   }
@@ -66,7 +63,6 @@ export default class PodsCard extends React.Component {
     details: {},
     hideHeader: false,
     hideFooter: false,
-    isFederated: false,
     onPage() {},
   }
 
@@ -76,27 +72,18 @@ export default class PodsCard extends React.Component {
     this.store = props.store
     this.monitorStore = new GatewayMonitorStore()
 
-    const selectCluster = props.isFederated
-      ? get(props, 'clusters[0]')
-      : props.detail.cluster || props.params
+    const selectCluster = props.detail.cluster || props.params
 
     this.state = {
       expandItem: '',
-      selectCluster: selectCluster || '',
       params: selectCluster,
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { detail, details, isFederated, params } = this.props
-    if (
-      detail !== prevProps.detail ||
-      (isFederated &&
-        Object.keys(details).length !== Object.keys(prevProps.details).length)
-    ) {
-      const selectCluster = isFederated
-        ? get(this.props, 'clusters[0]')
-        : detail.cluster || params
+    const { detail, params } = this.props
+    if (detail !== prevProps.detail) {
+      const selectCluster = detail.cluster || params
       this.setState(
         {
           expandItem: '',
@@ -218,20 +205,8 @@ export default class PodsCard extends React.Component {
   }
 
   renderHeader = () => {
-    const { isFederated } = this.props
-    const { selectCluster } = this.state
     return (
       <div className={styles.header}>
-        {isFederated && (
-          <Select
-            name="cluster"
-            prefixIcon={<Icon name="cluster" />}
-            className={styles.cluster}
-            value={selectCluster}
-            options={this.getClustersOptions()}
-            onChange={this.handleClusterChange}
-          />
-        )}
         <InputSearch
           className={styles.search}
           name="search"
@@ -246,9 +221,8 @@ export default class PodsCard extends React.Component {
   }
 
   renderContent() {
-    const { prefix, isFederated } = this.props
+    const { prefix } = this.props
     const { data, isLoading, silent } = this.store.podList
-    const { selectCluster } = this.state
 
     const content = (
       <div className={styles.body}>
@@ -258,9 +232,7 @@ export default class PodsCard extends React.Component {
           data.map(pod => (
             <PodItem
               key={pod.uid}
-              prefix={
-                isFederated ? `${prefix}/clusters/${selectCluster}` : prefix
-              }
+              prefix={prefix}
               detail={pod}
               metrics={this.getPodMetrics(pod)}
               loading={this.monitorStore.isLoading}
