@@ -97,7 +97,7 @@ module.exports = {
   NO_SERVICE_RELATED_RESOURCE_DESC: '当前服务没有关联的资源。',
   DELETE_SERVICE_DESC: '您即将删除服务 {resource}。请确认是否同时删除关联资源？',
   DELETE_SERVICE_DESC_PL: '您即将删除服务 {resource}。<br/>请确认是否同时删除以下与服务关联的资源？',
-  DELETE_SERVICE_DESC_SI: 'You are about to delete the service {resource}.<br/>Do you want to also delete the following resource related to the service?',
+  DELETE_SERVICE_DESC_SI: '您即将删除服务 {resource}。<br/>请确认是否同时删除以下与服务关联的资源？',
   DELETE_SERVICE: '删除服务',
   DELETE_MULTIPLE_SERVICES: '批量删除服务',
   // Service Topology
