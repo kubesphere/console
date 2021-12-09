@@ -36,6 +36,9 @@ module.exports = {
   NUMBER_OF_STATEFULSETS: 'Number of Statefulsets',
   NUMBER_OF_DEPLOYMENTS: 'Number of Deployments',
 
+  // Deployed Apps
+  DEPLOYED_APPS: 'Deployed Apps',
+
   // Resource Status
   RESOURCE_STATUS: 'Resource Status',
 

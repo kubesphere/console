@@ -41,6 +41,9 @@ module.exports = {
   DEPENDS_ON: 'Depends on: ',
   PIPELINES_MANAGEMENT: 'Pipeline Management',
   PIPELINES_VIEW: 'Pipeline Viewing',
+  PIPELINERUNS_MANAGEMENT: 'Pipeline Run Record Management',
+  PIPELINERUNS_VIEW: 'Pipeline Run Record Viewing',
+  PIPELINERUNS_VIEW_DESC: 'View pipeline run records in the DevOps project.',
   PIPELINES_MANAGEMENT_DESC:
     'Create, edit, and delete DevOps project pipelines.',
   PIPELINES_VIEW_DESC: 'View DevOps project pipelines and download artifacts.',
