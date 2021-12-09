@@ -307,7 +307,8 @@ export default class Activity extends React.Component {
       render: record => {
         if (
           (record.branch && !record.commitId) ||
-          !this.enabledActions.includes('edit')
+          !this.enabledActions.includes('edit') ||
+          !record.id
         ) {
           return null
         }
