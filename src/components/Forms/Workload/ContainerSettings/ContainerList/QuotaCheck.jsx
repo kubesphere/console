@@ -182,14 +182,23 @@ export default class QuotaCheck extends Component {
     if (isEmpty(containers) && isEmpty(initContainers)) {
       return null
     }
+    const limitUnset = Object.values(checkResult).some(
+      item => item.overcost === 'unset'
+    )
+    const overcost = Object.values(checkResult).some(
+      item => item.overcost === true
+    )
+    const type = overcost || limitUnset ? 'error' : 'info'
+    const title = overcost
+      ? t('QUOTA_OVERCOST_TIP')
+      : limitUnset
+      ? t('QUOTA_UNSET_TIP')
+      : t('Remaining Quota')
 
-    const overcost = Object.values(checkResult).some(item => item.overcost)
-    const type = overcost ? 'error' : 'info'
-    const title = overcost ? t('QUOTA_OVERCOST_TIP') : t('Remaining Quota')
-
-    const message = overcost
-      ? this.renderOverCostMessage(checkResult)
-      : this.renderQuotaMessage(checkResult)
+    const message =
+      overcost || limitUnset
+        ? this.renderOverCostMessage(checkResult)
+        : this.renderQuotaMessage(checkResult)
 
     return (
       <Alert
