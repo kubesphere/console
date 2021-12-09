@@ -135,6 +135,7 @@ module.exports = {
   BRANCH_PL: 'Branches',
   SCAN_REPOSITORY: '掃描遠程分支',
   PIPELINE: '流水線',
+  NO_BRANCHES_FOUND: 'No Branches Found',
   // Branches > Code Check
   CODE_CHECK: '代碼質量',
   BUG_PL: 'Bugs',

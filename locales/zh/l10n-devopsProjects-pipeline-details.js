@@ -110,8 +110,7 @@ module.exports = {
   PAUSED: '已暂停',
   // Run Records > Run
   SET_PARAMETERS: '设置参数',
-  PARAMS_DESC: `The following parameters are generated based on the pipeline settings or
-     the parameters section of the Jenkinsfile, which are entered according to operational requirements.`,
+  PARAMS_DESC: `下列参数是根据流水线设置或 Jenkinsfile 中的 parameters 部分生成的字段，请根据运行需求输入。`,
   PIPELINE_RUN_START_SI: '开始运行流水线...',
   PIPELINE_RUN_START_PL: '开始运行流水线...',
   // Run Records > Run Record Details > Details
@@ -135,6 +134,7 @@ module.exports = {
   BRANCH_PL: '分支',
   SCAN_REPOSITORY: '扫描仓库',
   PIPELINE: '流水线',
+  NO_BRANCHES_FOUND: '未找到分支',
   // Branches > Code Check
   CODE_CHECK: '代码检查',
   BUG_PL: '代码错误',

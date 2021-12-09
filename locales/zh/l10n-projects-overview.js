@@ -32,6 +32,8 @@ module.exports = {
   NUMBER_OF_DAEMONSETS: '守护进程集数量',
   NUMBER_OF_STATEFULSETS: '有状态副本集数量',
   NUMBER_OF_DEPLOYMENTS: '部署数量',
+  // Deployed Apps
+  DEPLOYED_APPS: '已部署应用',
   // Resource Status
   RESOURCE_STATUS: '资源状态',
   // Resource Status > Application Resources

@@ -134,7 +134,7 @@ module.exports = {
   OPTIONS: '备用选项',
   BUILD_SETTINGS: '构建设置',
   DELETE_OUTDATED_BUILD_RECORDS: '删除过期构建记录',
-  DELETE_OUTDATED_BUILD_RECORDS_TIP: `Set the system to automatically delete outdated build records including console output, archived artifacts, and metadata to save disk space.`,
+  DELETE_OUTDATED_BUILD_RECORDS_TIP: `设置系统自动删除过期的控制台输出、归档制品、元数据等构建记录以节省磁盘空间。`,
   BUILD_RECORD_RETENTION_PERIOD_DAYS: '构建记录保留期限（天）',
   BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC: '超过保留期限的构建记录将被删除。默认值为 7。',
   MAXIMUM_BUILD_RECORDS: '构建记录最大数量',

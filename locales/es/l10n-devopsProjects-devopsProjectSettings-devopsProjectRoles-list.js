@@ -35,6 +35,9 @@ module.exports = {
   DEPENDS_ON: 'Depends on: ',
   PIPELINES_MANAGEMENT: 'Gestión de pipelines',
   PIPELINES_VIEW: 'Vista de pipelines',
+  PIPELINERUNS_MANAGEMENT: 'Pipeline Run Record Management',
+  PIPELINERUNS_VIEW: 'Pipeline Run Record Viewing',
+  PIPELINERUNS_VIEW_DESC: 'View pipeline run records in the DevOps project.',
   PIPELINES_MANAGEMENT_DESC: 'Administra las pipelines de proyectos DevOps, incluyendo la creación, edición y eliminación',
   PIPELINES_VIEW_DESC: 'Ver las pipelines de proyectos DevOps y descargar artefactos',
   // List > Create > Edit Permissions > Credential Management

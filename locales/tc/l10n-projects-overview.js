@@ -32,6 +32,8 @@ module.exports = {
   NUMBER_OF_DAEMONSETS: 'Number of DaemonSets',
   NUMBER_OF_STATEFULSETS: 'Number of StatefulSets',
   NUMBER_OF_DEPLOYMENTS: 'Number of Deployments',
+  // Deployed Apps
+  DEPLOYED_APPS: 'Deployed Apps',
   // Resource Status
   RESOURCE_STATUS: '資源狀態',
   // Resource Status > Application Resources
