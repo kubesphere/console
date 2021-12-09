@@ -23,5 +23,5 @@ module.exports = {
   LOG_COLLECTION_ENABLE_TIPS: '新的狀態需 1 分鐘左右生效',
   SELECT_STATUS_TIP: 'Select a status',
   // Resource Status
-  ADRESS: 'Address'
+  ADDRESS: 'Address'
 };
