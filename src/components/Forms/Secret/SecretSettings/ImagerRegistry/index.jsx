@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, debounce } from 'lodash'
+import { get, debounce, set, has } from 'lodash'
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 
@@ -65,6 +65,7 @@ export default class ImageRegistry extends Component {
 
     this.setState({ errorMsg: '' })
     if (url && username && password) {
+      this.handleAnnotationsByUrl(url)
       onChange(
         JSON.stringify({
           auths: {
@@ -86,6 +87,38 @@ export default class ImageRegistry extends Component {
       return false
     }
     return true
+  }
+
+  handleAnnotationsByUrl = url => {
+    const registryUrl = url
+      .replace(/^(http(s)?:\/\/)?(.*)$/, '$1')
+      .replace('://', '')
+
+    if (registryUrl === 'http') {
+      const annotations = get(
+        this.props.fedFormTemplate,
+        'metadata.annotations',
+        {}
+      )
+      set(this.props.fedFormTemplate, 'metadata.annotations', {
+        ...annotations,
+        'secret.kubesphere.io/force-insecure': 'true',
+      })
+    } else {
+      const annotations = get(
+        this.props.fedFormTemplate,
+        'metadata.annotations',
+        {}
+      )
+
+      if (has(annotations, 'secret.kubesphere.io/force-insecure')) {
+        delete annotations['secret.kubesphere.io/force-insecure']
+      }
+
+      set(this.props.fedFormTemplate, 'metadata.annotations', {
+        ...annotations,
+      })
+    }
   }
 
   handleValidate = async () => {
