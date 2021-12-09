@@ -47,7 +47,7 @@ class Header extends React.Component {
   }
 
   renderDocumentList() {
-    const { url, api } = getWebsiteUrl
+    const { url, api } = getWebsiteUrl()
     return (
       <Menu onClick={this.handleDocumentLinkClick} data-test="header-docs">
         <Menu.MenuItem key={url}>
