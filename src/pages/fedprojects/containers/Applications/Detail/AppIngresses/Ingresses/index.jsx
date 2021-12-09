@@ -97,14 +97,14 @@ export default class Components extends Component {
       ip = gateway.externalIPs.join('; ')
     }
 
-    return ip || '-'
+    return ip
   }
 
   render() {
     const { cluster } = this.props
     const { data, isLoading } = this.ingressStore.list
-    const { gateway } = this.state
     const clusters = keyBy(this.props.projectStore.detail.clusters, 'name')
+    const gateway = this.state.gateway || {}
 
     return (
       <Panel>
