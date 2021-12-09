@@ -57,8 +57,6 @@ module.exports = {
 
   PIPELINES_MANAGEMENT: 'Pipeline Management',
   PIPELINES_VIEW: 'Pipeline Viewing',
-  PIPELINERUNS_MANAGEMENT: 'Pipeline Run Record Management',
-  PIPELINERUNS_VIEW: 'Pipeline Run Record Viewing',
   PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
 
   ROLE_NAME_EMPTY_DESC: 'Please enter a role name.',
@@ -154,7 +152,6 @@ module.exports = {
   PIPELINES_VIEW_DESC: 'View DevOps project pipelines and download artifacts.',
   PIPELINERUNS_MANAGEMENT_DESC:
     'View, edit, and delete pipeline run records in the DevOps project.',
-  PIPELINERUNS_VIEW_DESC: 'View pipeline run records in the DevOps project.',
   CREDENTIALS_MANAGEMENT_DESC: 'Create, edit, and delete DevOps credentials.',
   CREDENTIALS_VIEW_DESC: 'View and use DevOps credentials.',
 

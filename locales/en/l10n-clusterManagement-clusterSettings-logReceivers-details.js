@@ -27,5 +27,5 @@ module.exports = {
   SELECT_STATUS_TIP: 'Select a status',
 
   // Resource Status
-  ADRESS: 'Address',
+  ADDRESS: 'Address',
 }
