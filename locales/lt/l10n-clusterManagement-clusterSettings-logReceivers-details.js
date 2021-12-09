@@ -23,5 +23,5 @@ module.exports = {
   LOG_COLLECTION_ENABLE_TIPS: 'The new status requires about 1 minute to take effect.',
   SELECT_STATUS_TIP: 'Select a status',
   // Resource Status
-  ADRESS: 'Address'
+  ADDRESS: 'Address'
 };
