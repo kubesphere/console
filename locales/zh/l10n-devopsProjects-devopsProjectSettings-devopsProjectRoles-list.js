@@ -35,9 +35,9 @@ module.exports = {
   DEPENDS_ON: '依赖于：',
   PIPELINES_MANAGEMENT: '流水线管理',
   PIPELINES_VIEW: '流水线查看',
-  PIPELINERUNS_MANAGEMENT: 'Pipeline Run Record Management',
-  PIPELINERUNS_VIEW: 'Pipeline Run Record Viewing',
-  PIPELINERUNS_VIEW_DESC: 'View pipeline run records in the DevOps project.',
+  PIPELINERUNS_MANAGEMENT: '流水线执行记录管理',
+  PIPELINERUNS_VIEW: '流水线执行记录查看',
+  PIPELINERUNS_VIEW_DESC: '查看 DevOps 项目流水线执行记录。',
   PIPELINES_MANAGEMENT_DESC: '创建、编辑和删除 DevOps 项目流水线。',
   PIPELINES_VIEW_DESC: '查看 DevOps 项目流水线和下载制品。',
   // List > Create > Edit Permissions > Credential Management
