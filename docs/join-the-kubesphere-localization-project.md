@@ -12,7 +12,7 @@ The locale files containing UI strings of the KubeSphere web console have been u
 
    ![crowdin-select-langauge](./images/crowdin-select-langauge.png)
 
-3. On the translation editing page, select a UI string, enter your translation, and click **Save** to translate a UI string. Keep HTML tags and words enclosed in braces ({}) unchanged in your translations. Words enclosed in braces are variables and the values are dynamically loaded.
+3. On the translation editing page, select a UI string, enter your translation, and click **Save** to translate the string. Keep HTML tags and words enclosed in braces ({}) unchanged in your translations. Words enclosed in braces are variables and the values are dynamically loaded.
 
    For example, keep **\<a href="{link}"\>**, **\</a\>**, and **{time}** unchanged in your translation for the following UI string.
    
@@ -25,7 +25,7 @@ For more information about operations on Crowdin, see the [official Crowdin docu
 
 Obtaining necessary context could be crucial for UI localization. To make the localization work easier, the KubeSphere team has set up a KubeSphere demo environment where you can locate the UI strings and preview your translations. The KubeSphere demo environment is synchronized with the locale files on Crowdin about every 1 hour.
 
-1. Visit the KubeSphere demo environment at [https://l10n.kubesphere.io/](https://l10n.kubesphere.io/) and log in with you GitHub account. By default, you are only allowed to view resources in the KubeSphere demo environment. If you require administrator permissions, please send an email to l10n@kubesphere.io and provide the following information:
+1. Visit the KubeSphere demo environment at [https://l10n.kubesphere.io/](https://l10n.kubesphere.io/) and log in with you GitHub account. By default, you are allowed only to view resources in the KubeSphere demo environment. If you require administrator permissions, please send an email to l10n@kubesphere.io and provide the following information:
    
    * Your GitHub username
    * Your GitHub email address
