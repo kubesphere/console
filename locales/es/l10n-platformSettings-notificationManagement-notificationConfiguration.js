@@ -43,6 +43,7 @@ module.exports = {
   DOES_NOT_EXIST: 'Does not exist',
   TAG_INPUT_PLACEHOLDER: 'Ingrese el valor y presione Enter para confirmar',
   PATTERN_TAG_INVALID_TIP: 'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
+  PATTERN_TAG_VALUE_INVALID_TIP: 'Invalid label values. The label values can only contain uppercase and lowercase letters, numbers, hyphens (-), underscores (_) and dots (.) and must begin and end with an uppercase or lowercase letter or number and be a maximum of 63 characters.',
   INVALID_NOTIFICATION_CONDITION: 'Please enter a correct notification condition.',
   SEND_TEST_MESSAGE: 'Enviar mensaje de prueba',
   SEND_TEST_MESSAGE_DESC: 'After the configurations are complete, you can send a test message for verification.',
