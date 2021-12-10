@@ -462,11 +462,4 @@ module.exports = {
   MOUNT_VOLUMES: 'Mount Volumes',
 
   // Workload
-  NETWORK_SEGMENT_SCAP: 'Network segment',
-  JOB_COMPLETED: 'Completed',
-  JOB_FAILED: 'Failed',
-  JOB_RUNNING: 'Running',
-  CRONJOB_PAUSED: 'Paused',
-  CRONJOB_RUNNING: 'Running',
-  CRONJOB_FAILED: 'Failed',
 }
