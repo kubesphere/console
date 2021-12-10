@@ -27,6 +27,8 @@ module.exports = {
   INVALID_NAME_DESC: '名称无效。名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   NO_IMAGE_FOUND: '没有找到镜像',
   CONTAINER_EMPTY_DESC: '请至少添加一个容器。',
+  QUOTA_UNSET_TIP: 'Resource occupation is unset',
+  QUOTA_OVERCOST_TIP: 'The current resource occupation has exceeded the remaining',
   // List > Create > Pod Settings > Port Settings
   WORKLOAD_PORT_NAME_DESC: '端口名称只能包含小写字母、数字及分隔符（-），且必须以小写字母或数字开头及结尾，最长 15 个字符。',
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
