@@ -41,6 +41,7 @@ module.exports = {
   STATEFUL_SERVICE_DESC: '创建一个服务和一个有状态副本集。',
   STATELESS_SERVICE_DESC: '创建一个服务和一个部署。',
   APPLICATION_SERVICE_DESC: '根据需求为应用添加有状态服务或无状态服务。',
+  APP_CREATE_SERVICE_DESC: 'Create a service for the app.',
   // List > Create > Route Settings
   ROUTE_SETTINGS: '路由设置',
   ROUTING_RULES: '路由规则',
