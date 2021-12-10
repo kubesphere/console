@@ -34,7 +34,8 @@ module.exports = {
   'CRD Management': 'Gestión de CRD',
   'Create Cluster Role': 'Crear rol de clúster',
   'Create Project Role': 'Crear rol de proyecto',
-  'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.': 'Rol de usuario predeterminado que permite a un usuario administrar recursos dentro de los proyectos creados por el propio usuario o invitados por otros. No permite al usuario administrar recursos no autorizados en el clúster.',
+  'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
+    'Rol de usuario predeterminado que permite a un usuario administrar recursos dentro de los proyectos creados por el propio usuario o invitados por otros. No permite al usuario administrar recursos no autorizados en el clúster.',
   'DevOps Members Management': 'Gestión de miembros de DevOps',
   'DevOps Members View': 'Vista de miembros de DevOps',
   'DevOps Roles Management': 'Gestión de roles de DevOps',
@@ -50,13 +51,9 @@ module.exports = {
   'Network Policies Management': 'Gestión de políticas de red',
   'Network Policies View': 'Vista de políticas de red',
   'Nodes View': 'Vista de nodos',
-  PIPELINES_MANAGEMENT: 'Pipeline Management',
-  PIPELINES_VIEW: 'Pipeline Viewing',
-  PIPELINERUNS_MANAGEMENT: 'Pipeline Run Record Management',
-  PIPELINERUNS_VIEW: 'Pipeline Run Record Viewing',
-  PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
   ROLE_NAME_EMPTY_DESC: 'Please enter a role name.',
-  'Please specify role authorization': 'Por favor, especifique la autorización del rol',
+  'Please specify role authorization':
+    'Por favor, especifique la autorización del rol',
   'Project Details': 'Detalles de proyecto',
   PROJECT_RESOURCES_MANAGEMENT: 'Project Resource Management',
   Role: 'Rol',
@@ -71,11 +68,15 @@ module.exports = {
   WORKSPACES_MANAGEMENT: 'Workspace Management',
   WORKSPACES_VIEW: 'Workspace Viewing',
   NO_AVAILABLE_ROLE: 'No hay roles disponibles para el proyecto actual.',
-  JOIN_PROJECT_PLACEHOLDER: 'Invita a los miembros por nombre de usuario o correo electrónico para que se unan al proyecto.',
-  ROLE_PROJECTS_JOIN_TIP: 'Introduce el nombre de usuario o la dirección de correo electrónico para invitar a los usuarios al proyecto.',
-  ROLE_DELETE_TIP: 'El rol actual ya está vinculado al usuario, intenta nuevamente después de desvincularlo.',
+  JOIN_PROJECT_PLACEHOLDER:
+    'Invita a los miembros por nombre de usuario o correo electrónico para que se unan al proyecto.',
+  ROLE_PROJECTS_JOIN_TIP:
+    'Introduce el nombre de usuario o la dirección de correo electrónico para invitar a los usuarios al proyecto.',
+  ROLE_DELETE_TIP:
+    'El rol actual ya está vinculado al usuario, intenta nuevamente después de desvincularlo.',
   ROLE_NO_AVAILABLE_TIP: 'No hay roles disponibles para el proyecto actual.',
-  ROLE_TYPE_DESC: 'Los tipos de roles se clasifican entre clúster y proyecto, el rol actual está autorizado con alcance a nivel de proyecto.',
+  ROLE_TYPE_DESC:
+    'Los tipos de roles se clasifican entre clúster y proyecto, el rol actual está autorizado con alcance a nivel de proyecto.',
   RULE_WORKSPACES: 'Espacios de trabajo',
   RULE_KUBECTL: 'KubeCtl',
   RULE_MONITORING: 'Gestión de monitorización',
@@ -127,32 +128,44 @@ module.exports = {
   RULE_ADVANCED: 'Ajustes avanzados',
   RULE_S2IBUILDERS: 'Image Builder',
   NODES_VIEW_DESC: 'Ver información del nodo',
-  NODES_MANAGEMENT_DESC: 'Gestionar / habilitar / deshabilitar nodos, gestionar taints',
-  CRD_MANAGEMENT_DESC: 'Gestionar / ver / modificar / eliminar los CRD de clúster',
+  NODES_MANAGEMENT_DESC:
+    'Gestionar / habilitar / deshabilitar nodos, gestionar taints',
+  CRD_MANAGEMENT_DESC:
+    'Gestionar / ver / modificar / eliminar los CRD de clúster',
   COMPONENTS_MANAGEMENT_DESC: 'Gestionar componentes del clúster',
-  ACCOUNT_ROLE_DESC: 'Los roles de cuenta definen la autorización que tiene una cuenta en la plataforma.',
-  ACCOUNT_ROLE_CREATE_DESC: 'Los roles de cuenta definen la autorización que tiene una cuenta en la plataforma.',
-  PIPELINES_MANAGEMENT_DESC: 'Create, edit, and delete DevOps project pipelines.',
-  PIPELINES_VIEW_DESC: 'View DevOps project pipelines and download artifacts.',
-  PIPELINERUNS_MANAGEMENT_DESC: 'View, edit, and delete pipeline run records in the DevOps project.',
-  PIPELINERUNS_VIEW_DESC: 'View pipeline run records in the DevOps project.',
-  CREDENTIALS_MANAGEMENT_DESC: 'Create, edit, and delete DevOps credentials.',
-  CREDENTIALS_VIEW_DESC: 'View and use DevOps credentials.',
+  ACCOUNT_ROLE_DESC:
+    'Los roles de cuenta definen la autorización que tiene una cuenta en la plataforma.',
+  ACCOUNT_ROLE_CREATE_DESC:
+    'Los roles de cuenta definen la autorización que tiene una cuenta en la plataforma.',
+  PIPELINERUNS_MANAGEMENT_DESC:
+    'View, edit, and delete pipeline run records in the DevOps project.',
   DEVOPS_ROLES_VIEW_DESC: 'Ver los roles de proyecto DevOps',
-  DEVOPS_ROLES_MANAGEMENT_DESC: 'Crear, editar y eliminar roles de proyecto DevOps (los roles preestablecidos del sistema no se pueden eliminar)',
+  DEVOPS_ROLES_MANAGEMENT_DESC:
+    'Crear, editar y eliminar roles de proyecto DevOps (los roles preestablecidos del sistema no se pueden eliminar)',
   DEVOPS_MEMBERS_VIEW_DESC: 'Ver miembros del proyecto DevOps',
-  DEVOPS_MEMBERS_MANAGEMENT_DESC: 'Invitar / editar / eliminar miembros del proyecto DevOps',
-  CLUSTER_MEMBERS_MANAGEMENT_DESC: 'Invitar / editar / eliminar miembros del clúster',
+  DEVOPS_MEMBERS_MANAGEMENT_DESC:
+    'Invitar / editar / eliminar miembros del proyecto DevOps',
+  CLUSTER_MEMBERS_MANAGEMENT_DESC:
+    'Invitar / editar / eliminar miembros del clúster',
   CLUSTER_MEMBERS_VIEW_DESC: 'Ver miembros del clúster',
-  CLUSTER_ROLES_MANAGEMENT_DESC: 'Crear, editar y eliminar roles de clúster (los roles preestablecidos del sistema no se pueden eliminar)',
+  CLUSTER_ROLES_MANAGEMENT_DESC:
+    'Crear, editar y eliminar roles de clúster (los roles preestablecidos del sistema no se pueden eliminar)',
   CLUSTER_ROLES_VIEW_DESC: 'Ver roles de clúster',
-  NETWORK_POLICIES_MANAGEMENT_DESC: 'Crear / editar / eliminar políticas de red de clúster',
+  NETWORK_POLICIES_MANAGEMENT_DESC:
+    'Crear / editar / eliminar políticas de red de clúster',
   NETWORK_POLICIES_VIEW_DESC: 'Ver las políticas de red del clúster',
-  STORAGECLASSES_VIEW_DESC: 'Ver todas las clases de almacenamiento en el clúster',
-  STORAGECLASSES_MANAGEMENT_DESC: 'Crear / editar / eliminar clases de almacenamiento y establecer la clase de almacenamiento predeterminada',
-  CLUSTER_MONITORING_VIEW_DESC: 'Ver los recursos físicos del clúster y los datos de monitorización de los recursos de la aplicación.',
-  FEDERATED_PROJECTS_MANAGEMENT_DESC: 'Gestiona todos los proyectos multi-cluster en el workspace, incluyendo crear/editar/borrar proyectos multi-cluster',
-  ROLE_CLUSTER_ADMIN: 'Permite el acceso de administrador de clúster para realizar cualquier acción en cualquier recurso. Le da control total sobre todos los recursos en el clúster y en todos los espacios de nombres.',
-  ROLE_CLUSTER_VIEWER: 'Permite que cluster-viewer vea todos los recursos en el cluster.',
-  ROLE_DEVOPS_REGULAR: 'El que mantiene el namespace, que puede administrar recursos en el proyecto DevOps excepto usuarios y roles.'
-};
+  STORAGECLASSES_VIEW_DESC:
+    'Ver todas las clases de almacenamiento en el clúster',
+  STORAGECLASSES_MANAGEMENT_DESC:
+    'Crear / editar / eliminar clases de almacenamiento y establecer la clase de almacenamiento predeterminada',
+  CLUSTER_MONITORING_VIEW_DESC:
+    'Ver los recursos físicos del clúster y los datos de monitorización de los recursos de la aplicación.',
+  FEDERATED_PROJECTS_MANAGEMENT_DESC:
+    'Gestiona todos los proyectos multi-cluster en el workspace, incluyendo crear/editar/borrar proyectos multi-cluster',
+  ROLE_CLUSTER_ADMIN:
+    'Permite el acceso de administrador de clúster para realizar cualquier acción en cualquier recurso. Le da control total sobre todos los recursos en el clúster y en todos los espacios de nombres.',
+  ROLE_CLUSTER_VIEWER:
+    'Permite que cluster-viewer vea todos los recursos en el cluster.',
+  ROLE_DEVOPS_REGULAR:
+    'El que mantiene el namespace, que puede administrar recursos en el proyecto DevOps excepto usuarios y roles.',
+}
