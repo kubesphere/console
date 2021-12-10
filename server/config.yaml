@@ -67,17 +67,17 @@ client:
     - label: "Español"
       value: "es"
       recommend: true
-    - label: "عربي"
+    - label: "العربية"
       value: "ar"
-    - label: "français"
+    - label: "Français"
       value: 'fr'
-    - label: "हिंदी"
+    - label: "हिन्दी"
       value: 'hi'
-    - label: "lietuvių"
+    - label: "Lietuvių"
       value: 'lt'
-    - label: 'Polskie'
+    - label: 'Polski'
       value: 'pl'
-    - label: 'Türkiye'
+    - label: 'Türkçe'
       value: 'tr'
   defaultLang: "en"
   showAllLangs: true
