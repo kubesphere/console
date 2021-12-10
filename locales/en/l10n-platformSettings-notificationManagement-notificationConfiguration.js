@@ -49,6 +49,8 @@ module.exports = {
   TAG_INPUT_PLACEHOLDER: 'Please enter the value and press Enter to confirm',
   PATTERN_TAG_INVALID_TIP:
     'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
+  PATTERN_TAG_VALUE_INVALID_TIP:
+    'Invalid label values. The label values can only contain uppercase and lowercase letters, numbers, hyphens (-), underscores (_) and dots (.) and must begin and end with an uppercase or lowercase letter or number and be a maximum of 63 characters.',
   INVALID_NOTIFICATION_CONDITION:
     'Please enter a correct notification condition.',
   SEND_TEST_MESSAGE: 'Send Test Message',

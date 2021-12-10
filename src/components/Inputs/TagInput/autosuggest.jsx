@@ -22,7 +22,7 @@ import { noop } from 'lodash'
 import AutosizeInput from 'react-input-autosize'
 import { Notify } from '@kube-design/components'
 
-import { PATTERN_NAME } from 'utils/constants'
+import { PATTERN_TAG } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -67,8 +67,8 @@ class Autosuggest extends Component {
 
     if (event.key === 'Enter') {
       if (value.trim() !== '') {
-        if (!PATTERN_NAME.test(value)) {
-          Notify.error({ content: t('PATTERN_NAME_INVALID_TIP') })
+        if (!PATTERN_TAG.test(value) || value.length > 63) {
+          Notify.error({ content: t('PATTERN_TAG_VALUE_INVALID_TIP') })
           return
         }
         this.setState({ value: '' }, () => {
