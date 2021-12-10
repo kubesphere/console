@@ -41,6 +41,7 @@ module.exports = {
   STATEFUL_SERVICE_DESC: '有狀態服務用來管理有狀態應用，可以保證部署和擴容縮容的順序，提供了穩定的持久化儲存和網路標識，有序伸縮等',
   STATELESS_SERVICE_DESC: '容器服務中最常用的一種服務，通過定義容器組模板來控制容器組狀態，包括滾動升級和回滾',
   APPLICATION_SERVICE_DESC: '根據應用中服務類型的不同設置不同類型的服務組件，支持無狀態服務和有狀態服務',
+  APP_CREATE_SERVICE_DESC: 'Create a service for the app.',
   // List > Create > Route Settings
   ROUTE_SETTINGS: 'Route Settings',
   ROUTING_RULES: '路由規則',
