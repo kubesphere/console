@@ -16,9 +16,13 @@ For more information about operations on Crowdin, see the [official Crowdin docu
 
 ## Obtain Context and Preview Your Translations
 
-Obtaining necessary context could be crucial for UI localization. To make the localization work easier, the KubeSphere team has set up a KubeSphere demo environment where you can locate the UI strings and preview your translations. The KubeSphere demo environment is synchronized with the locale files on Crowdin about every 10 minutes.
+Obtaining necessary context could be crucial for UI localization. To make the localization work easier, the KubeSphere team has set up a KubeSphere demo environment where you can locate the UI strings and preview your translations. The KubeSphere demo environment is synchronized with the locale files on Crowdin about every 1 hour.
 
-1. Visit the KubeSphere demo environment at [preparing] and log in as the default administrator (**admin**/**P@88w0rd**).
+1. Visit the KubeSphere demo environment at [https://l10n.kubesphere.io/](https://l10n.kubesphere.io/) and log in with you GitHub account. By default, you are only allowed to view resources in the KubeSphere demo environment. If you require administrator permissions, please send an email to l10n@kubesphere.io and provide the following information:
+   
+   * Your GitHub username
+   * Your GitHub email address
+   * Your organization name (if any)
 
 2. On Crowdin, obtain the paths of the UI strings from the locale file names and comments.
 
