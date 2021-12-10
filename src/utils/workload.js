@@ -372,7 +372,10 @@ export const compareQuotaAndResources = (leftQuota, resources) => {
         namespaceQuota === Infinity ? undefined : `${namespaceQuota}${unit}`,
       workspaceQuota:
         workspaceQuota === Infinity ? undefined : `${workspaceQuota}${unit}`,
-      overcost: cost > workspaceQuota || cost > namespaceQuota,
+      overcost:
+        cost === Infinity
+          ? 'unset'
+          : cost > workspaceQuota || cost > namespaceQuota,
     }
   })
 
