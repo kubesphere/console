@@ -34,7 +34,8 @@ module.exports = {
   'CRD Management': '自定义资源(CRD)管理',
   'Create Cluster Role': '创建集群角色',
   'Create Project Role': '创建项目角色',
-  'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.': '默认用户角色，仅允许对自己创建或受邀加入的项目中的资源进行管理，无权操作集群范围内其他资源。',
+  'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
+    '默认用户角色，仅允许对自己创建或受邀加入的项目中的资源进行管理，无权操作集群范围内其他资源。',
   'DevOps Members Management': '成员管理',
   'DevOps Members View': '成员查看',
   'DevOps Roles Management': '角色管理',
@@ -50,11 +51,6 @@ module.exports = {
   'Network Policies Management': '网络策略管理',
   'Network Policies View': '网络策略查看',
   'Nodes View': '节点查看',
-  PIPELINES_MANAGEMENT: 'Pipeline Management',
-  PIPELINES_VIEW: 'Pipeline Viewing',
-  PIPELINERUNS_MANAGEMENT: 'Pipeline Run Record Management',
-  PIPELINERUNS_VIEW: 'Pipeline Run Record Viewing',
-  PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
   ROLE_NAME_EMPTY_DESC: '请输入角色名称',
   'Please specify role authorization': '请选择角色权限',
   'Project Details': '项目详情',
@@ -75,7 +71,8 @@ module.exports = {
   ROLE_PROJECTS_JOIN_TIP: '输入用户名或者邮箱邀请用户加入到项目中',
   ROLE_DELETE_TIP: '当前角色已有用户绑定，请解绑后重试',
   ROLE_NO_AVAILABLE_TIP: '当前项目无可用角色',
-  ROLE_TYPE_DESC: '角色类型根据权限范围分为集群、项目两类，当前角色的授权为该项目范围。',
+  ROLE_TYPE_DESC:
+    '角色类型根据权限范围分为集群、项目两类，当前角色的授权为该项目范围。',
   RULE_WORKSPACES: 'Workspaces',
   RULE_KUBECTL: 'kubectl',
   RULE_MONITORING: 'Monitoring Management',
@@ -132,27 +129,28 @@ module.exports = {
   COMPONENTS_MANAGEMENT_DESC: '管理集群的服务组件',
   ACCOUNT_ROLE_DESC: '帐户角色可以定义平台内的帐户拥有的权限',
   ACCOUNT_ROLE_CREATE_DESC: '帐户角色可以定义平台内的帐户拥有的权限',
-  PIPELINES_MANAGEMENT_DESC: 'Create, edit, and delete DevOps project pipelines.',
-  PIPELINES_VIEW_DESC: 'View DevOps project pipelines and download artifacts.',
-  PIPELINERUNS_MANAGEMENT_DESC: 'View, edit, and delete pipeline run records in the DevOps project.',
-  PIPELINERUNS_VIEW_DESC: 'View pipeline run records in the DevOps project.',
-  CREDENTIALS_MANAGEMENT_DESC: 'Create, edit, and delete DevOps credentials.',
-  CREDENTIALS_VIEW_DESC: 'View and use DevOps credentials.',
+  PIPELINERUNS_MANAGEMENT_DESC:
+    'View, edit, and delete pipeline run records in the DevOps project.',
   DEVOPS_ROLES_VIEW_DESC: '查看 DevOps 项目角色。',
-  DEVOPS_ROLES_MANAGEMENT_DESC: '可以 创建/编辑/删除  DevOps 项目角色，系统预置角色无法删除',
+  DEVOPS_ROLES_MANAGEMENT_DESC:
+    '可以 创建/编辑/删除  DevOps 项目角色，系统预置角色无法删除',
   DEVOPS_MEMBERS_VIEW_DESC: '查看 DevOps 项目成员。',
   DEVOPS_MEMBERS_MANAGEMENT_DESC: '邀请/编辑/移除 DevOps 项目成员',
   CLUSTER_MEMBERS_MANAGEMENT_DESC: '邀请/编辑/移除集群成员',
   CLUSTER_MEMBERS_VIEW_DESC: '查看集群成员',
-  CLUSTER_ROLES_MANAGEMENT_DESC: '可以 创建/编辑/删除 集群角色，系统预置角色无法删除',
+  CLUSTER_ROLES_MANAGEMENT_DESC:
+    '可以 创建/编辑/删除 集群角色，系统预置角色无法删除',
   CLUSTER_ROLES_VIEW_DESC: '查看集群角色',
   NETWORK_POLICIES_MANAGEMENT_DESC: '创建/编辑/删除 集群网络策略',
   NETWORK_POLICIES_VIEW_DESC: ' 查看集群网络策略',
   STORAGECLASSES_VIEW_DESC: '查看集群所有存储类型',
-  STORAGECLASSES_MANAGEMENT_DESC: '创建、编辑和删除存储类型，设置默认存储类型。',
+  STORAGECLASSES_MANAGEMENT_DESC:
+    '创建、编辑和删除存储类型，设置默认存储类型。',
   CLUSTER_MONITORING_VIEW_DESC: '查看集群物力资源，应用资源的监控数据',
-  FEDERATED_PROJECTS_MANAGEMENT_DESC: '管理企业空间里的所有多集群项目，可以 创建/编辑/删除 多集群项目',
+  FEDERATED_PROJECTS_MANAGEMENT_DESC:
+    '管理企业空间里的所有多集群项目，可以 创建/编辑/删除 多集群项目',
   ROLE_CLUSTER_ADMIN: '管理集群中的所有资源。',
   ROLE_CLUSTER_VIEWER: '查看集群中的所有资源。',
-  ROLE_DEVOPS_REGULAR: 'Manage pipelines and credentials and view members and roles in the DevOps project.'
-};
+  ROLE_DEVOPS_REGULAR:
+    'Manage pipelines and credentials and view members and roles in the DevOps project.',
+}
