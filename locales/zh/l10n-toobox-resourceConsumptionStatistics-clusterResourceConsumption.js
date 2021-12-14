@@ -18,7 +18,8 @@
 module.exports = {
   // Title
   // Navigation Pane > Cluster
-  METERING_NOT_ENABLED_DESC: '当前模块尚未开启。<a href="{docUrl}/toolbox/metering-and-billing/enable-billing/">了解更多</a>',
+  METERING_NOT_ENABLED_DESC:
+    '当前模块尚未开启。<a href="{docUrl}/toolbox/metering-and-billing/enable-billing/">了解更多</a>',
   NO_METER_DATA: '未发现资源消费数据。',
   // Navigation Pane > Cluster Node
   // Navigation Pane > Cluster Node > Pod
@@ -55,13 +56,15 @@ module.exports = {
   AVERAGE_USAGE: '平均用量',
   TOTAL_CONSUMPTION: '总消费情况',
   TOTAL_CONSUMPTION_Q: '什么是总消费情况？',
-  TOTAL_CONSUMPTION_A: '总消费情况表示在当前对账周期中每个计费采样点的资源用量之和。',
-  TIMERANGE_MORE_30DAY_MSG: '结束时间与开始时间的间隔大于 30 天时，采样间隔最小为 1 天。',
+  TOTAL_CONSUMPTION_A:
+    '总消费情况表示在当前对账周期中每个计费采样点的资源用量之和。',
+  TIMERANGE_MORE_30DAY_MSG:
+    '结束时间与开始时间的间隔大于 30 天时，采样间隔最小为 1 天。',
   MAXIMUM_USAGE: '最大用量',
   MINIMUM_USAGE: '最小用量',
   RESOURCE_TYPE: '资源类型',
   // Current Consumption
-  CURRRENT_RESOURCE_CONSUMPTION: 'Current Consumption',
+  CURRRENT_RESOURCE_CONSUMPTION: '当前消费',
   // Current Consumption > Tip
-  METER_RESOURCE_DESC: '1 小时内的资源消费情况'
-};
+  METER_RESOURCE_DESC: '1 小时内的资源消费情况',
+}

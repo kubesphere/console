@@ -20,7 +20,8 @@ module.exports = {
   MONITORING_AND_ALERTING: '监控告警',
   // Banner
   CLUSTER_STATUS: '集群状态',
-  MONITORING_CLUSTER_DESC: '集群状态展示集群资源的概览和详情，您可以查看集群资源的监控数据和用量排行情况。',
+  MONITORING_CLUSTER_DESC:
+    '集群状态展示集群资源的概览和详情，您可以查看集群资源的监控数据和用量排行情况。',
   // Overview > Cluster Node Status
   CLUSTER_NODE_STATUS: '集群节点状态',
   ALL_NODES: '全部节点',
@@ -61,7 +62,7 @@ module.exports = {
   REQUEST_RATE: '请求 <span>速率</span>',
   SCHEDULE_ATTEMPTS_TCAP: '调度 <span>次数</span>',
   SCHEDULING_RATE_TCAP: '调度 <span>速率</span>',
-  API_SERVER: 'API Server',
+  API_SERVER: 'API 服务器',
   // Physical Resource Monitoring
   SELECT_TIME_RANGE: '选择时间范围',
   LAST_TIME: '最近 {value}',
@@ -121,5 +122,5 @@ module.exports = {
   SORT_BY_NODE_LOAD1: '按 CPU 平均负载排行',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: '按内存用量排行',
   POD_USAGE: '容器组用量',
-  EXPORT: '导出'
-};
+  EXPORT: '导出',
+}

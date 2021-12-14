@@ -21,9 +21,11 @@ module.exports = {
   QUOTA: '配额',
   NUMBER_OF_VOLUMES: '存储卷数量',
   PROJECT_QUOTAS_NOT_SET: '项目配额未设置',
-  PROJECT_QUOTAS_DESC: '项目配额用于指定项目中可用的 CPU 和内存资源数量和容器组、部署、服务等应用资源的最大数量。',
+  PROJECT_QUOTAS_DESC:
+    '项目配额用于指定项目中可用的 CPU 和内存资源数量和容器组、部署、服务等应用资源的最大数量。',
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: '默认容器配额未设置',
-  DEFAULT_CONTAINER_QUOTAS_DESC: '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 限制、内存预留和内存限制。',
+  DEFAULT_CONTAINER_QUOTAS_DESC:
+    '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 限制、内存预留和内存限制。',
   PROJECT_RESOURCE_QUOTAS: '项目资源配额',
   SELECT_RESOURCE_TIP: '请选择资源或输入资源名称',
   NUMBER_OF_ROUTES: '应用路由数量',
@@ -32,6 +34,8 @@ module.exports = {
   NUMBER_OF_DAEMONSETS: '守护进程集数量',
   NUMBER_OF_STATEFULSETS: '有状态副本集数量',
   NUMBER_OF_DEPLOYMENTS: '部署数量',
+  // Deployed Apps
+  DEPLOYED_APPS: '已部署应用',
   // Resource Status
   RESOURCE_STATUS: '资源状态',
   // Resource Status > Application Resources
@@ -50,5 +54,5 @@ module.exports = {
   SORT_BY_WORKLOAD_CPU_USAGE: '按 CPU 用量排行',
   SORT_BY_WORKLOAD_MEMORY_USAGE_WO_CACHE: '按内存用量排行',
   SORT_BY_WORKLOAD_NET_BYTES_TRANSMITTED: '按出站流量排行',
-  SORT_BY_WORKLOAD_NET_BYTES_RECEIVED: '按入站流量排行'
-};
+  SORT_BY_WORKLOAD_NET_BYTES_RECEIVED: '按入站流量排行',
+}
