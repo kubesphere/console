@@ -32,3 +32,13 @@
   align-items: center;
   margin-top: 12px;
 }
+
+.errorText {
+  padding: 3px 68px 3px 17px;
+  margin-top: 4px;
+  font-family: $font-family;
+  font-size: 12px;
+  line-height: 1.67;
+  letter-spacing: normal;
+  color: $red-color03;
+}
