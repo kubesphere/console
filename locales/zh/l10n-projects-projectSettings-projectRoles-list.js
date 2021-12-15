@@ -21,7 +21,7 @@ module.exports = {
   PROJECT_ROLE_DESC: '项目角色定义了在当前项目下用户所拥有的权限。',
   // List
   ROLE_PROJECT_ADMIN: '管理项目中的所有资源。',
-  ROLE_PROJECT_REGULAR: 'Manage resources other than users and roles in the project.',
+  ROLE_PROJECT_REGULAR: '管理项目中除用户和角色之外的资源。',
   ROLE_PROJECT_VIEWER: '查看项目中的所有资源。',
   ROLE_PROJECT_OPERATOR: '管理项目中除用户和角色之外的资源。',
   PROJECT_ROLE_EMPTY_DESC: '请创建一个项目角色。',
@@ -30,8 +30,10 @@ module.exports = {
   // List > Edit Permissions > Application Workloads
   APPLICATION_WORKLOADS_MANAGEMENT: '应用负载管理',
   APPLICATION_WORKLOADS_VIEW: '应用负载查看',
-  APPLICATION_WORKLOADS_VIEW_DESC: '查看项目中的应用、服务、工作负载、任务、灰度发布任务和镜像构建器等资源。',
-  APPLICATION_WORKLOADS_MANAGEMENT_DESC: '创建、编辑和删除项目中的应用、服务、工作负载、任务、灰度发布任务和镜像构建器等资源。',
+  APPLICATION_WORKLOADS_VIEW_DESC:
+    '查看项目中的应用、服务、工作负载、任务、灰度发布任务和镜像构建器等资源。',
+  APPLICATION_WORKLOADS_MANAGEMENT_DESC:
+    '创建、编辑和删除项目中的应用、服务、工作负载、任务、灰度发布任务和镜像构建器等资源。',
   // List > Edit Permissions > Storage Management
   VOLUME_SNAPSHOTS_MANAGEMENT: '存储卷快照管理',
   VOLUME_SNAPSHOTS_VIEW: '存储卷快照查看',
@@ -77,12 +79,17 @@ module.exports = {
   PROJECT_MEMBERS_VIEW_DESC: '查看项目成员。',
   PROJECT_MEMBERS_MANAGEMENT_DESC: '邀请、编辑和移除项目成员。',
   // List > Edit Permissions > Project Settings
-  PROJECT_SETTINGS_DESC: '管理项目设置，包括项目基本信息、外部访问设置、网络策略、资源配额、日志收集设置等。',
+  PROJECT_SETTINGS_DESC:
+    '管理项目设置，包括项目基本信息、外部访问设置、网络策略、资源配额、日志收集设置等。',
   // List > Delete
   DELETE_ROLE: '删除角色',
   DELETE_ROLE_TIP: '您确定删除角色 <strong>{resource}</strong> 吗？',
-  DELETE_ROLE_USER_TIP_PL: '当前角色已授权给 <strong>{count}</strong> 名用户，请先删除用户或更改用户的角色。',
-  DELETE_ROLE_USER_TIP: '当前角色已授权给 <strong>{count}</strong> 名用户，请先删除用户或更改用户的角色。',
-  DELETE_ROLE_DEPARTMENT_TIP_PL: '当前角色已授权给 <strong>{count}</strong> 个部门，请先删除部门或更改部门的角色。',
-  DELETE_ROLE_DEPARTMENT_TIP: '当前角色已授权给 <strong>{count}</strong> 个部门，请先删除部门或更改部门的角色。'
-};
+  DELETE_ROLE_USER_TIP_PL:
+    '当前角色已授权给 <strong>{count}</strong> 名用户，请先删除用户或更改用户的角色。',
+  DELETE_ROLE_USER_TIP:
+    '当前角色已授权给 <strong>{count}</strong> 名用户，请先删除用户或更改用户的角色。',
+  DELETE_ROLE_DEPARTMENT_TIP_PL:
+    '当前角色已授权给 <strong>{count}</strong> 个部门，请先删除部门或更改部门的角色。',
+  DELETE_ROLE_DEPARTMENT_TIP:
+    '当前角色已授权给 <strong>{count}</strong> 个部门，请先删除部门或更改部门的角色。',
+}

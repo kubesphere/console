@@ -52,9 +52,11 @@ module.exports = {
       具体取决于该 agent 部分的放置位置。该部分必须在流水线块内的顶层定义，但 stage 级使用是可选的。`,
   CREATE_PIPELINE_DESC: '使用流水线进行构建，测试和部署',
   CI: '持续集成 (CI)',
-  CI_DESC: '持续集成（CI）是在源代码变更后自动检测、拉取、构建和（在大多数情况下）进行单元测试的过程。',
+  CI_DESC:
+    '持续集成（CI）是在源代码变更后自动检测、拉取、构建和（在大多数情况下）进行单元测试的过程。',
   CICD: '持续集成&交付 (CI/CD)',
-  CICD_DESC: '持续部署（CD）是指能够自动提供持续交付管道中发布版本给最终用户使用的想法。根据用户的安装方式，在云环境中自动部署、app 升级（如手机上的应用程序）、更新网站或只更新可用版本列表。',
+  CICD_DESC:
+    '持续部署（CD）是指能够自动提供持续交付管道中发布版本给最终用户使用的想法。根据用户的安装方式，在云环境中自动部署、app 升级（如手机上的应用程序）、更新网站或只更新可用版本列表。',
   CUSTOM_PIPELIEN: '自定义流水线',
   CUSTOM_PIPELIEN_DESC: '您可以选择您需要的任务自定义流水线的工作内容',
   CC: '抄送',
@@ -85,7 +87,8 @@ module.exports = {
         Controller (不支持滚动更新，如果要使用滚动更新请使用部署)
       </li>`,
   STAGE: '阶段',
-  KUBERNETES_DEPLOY_DEPRECATED_TIP: '该步骤会在后续版本中弃用，建议考虑其他替代方案。',
+  KUBERNETES_DEPLOY_DEPRECATED_TIP:
+    '该步骤会在后续版本中弃用，建议考虑其他替代方案。',
   // Task Status > Edit Jenkinsfile
   EDIT_JENKINSFILE: '编辑 Jenkinsfile',
   CLOSE_JENKINSFILE_EDITOR_TIP: '确定关闭 Jenkinsfile 编辑器？',
@@ -106,12 +109,12 @@ module.exports = {
   LAST_MESSAGE: '最后消息',
   RUN_ID: '运行 ID',
   STOP_PIPELINE_SUCCESSFUL: '流水线停止成功。',
-  INVALID_JENKINSFILE_TIP: '当前 Jenkinsfile 不是标准的声明式 Jenkinsfile，图形化显示不可用。',
+  INVALID_JENKINSFILE_TIP:
+    '当前 Jenkinsfile 不是标准的声明式 Jenkinsfile，图形化显示不可用。',
   PAUSED: '已暂停',
   // Run Records > Run
   SET_PARAMETERS: '设置参数',
-  PARAMS_DESC: `The following parameters are generated based on the pipeline settings or
-     the parameters section of the Jenkinsfile, which are entered according to operational requirements.`,
+  PARAMS_DESC: `下列参数是根据流水线设置或 Jenkinsfile 中的 parameters 部分生成的字段，请根据运行需求输入。`,
   PIPELINE_RUN_START_SI: '开始运行流水线...',
   PIPELINE_RUN_START_PL: '开始运行流水线...',
   // Run Records > Run Record Details > Details
@@ -135,6 +138,7 @@ module.exports = {
   BRANCH_PL: '分支',
   SCAN_REPOSITORY: '扫描仓库',
   PIPELINE: '流水线',
+  NO_BRANCHES_FOUND: '未找到分支',
   // Branches > Code Check
   CODE_CHECK: '代码检查',
   BUG_PL: '代码错误',
@@ -152,5 +156,5 @@ module.exports = {
   LINE_VALUE: '行：{value}',
   PASSED: '已通过',
   // Pull Requests
-  PULL_REQUEST_PL: '拉取请求'
-};
+  PULL_REQUEST_PL: '拉取请求',
+}

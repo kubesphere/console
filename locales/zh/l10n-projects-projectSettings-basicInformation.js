@@ -20,10 +20,13 @@ module.exports = {
   PROJECT_SETTINGS: '项目设置',
   // Banner
   HOW_TO_USE_QUOTA_Q: '如何使用资源配额?',
-  HOW_TO_USE_QUOTA_A: '资源配额是用来限制资源用量的一种机制，您可以通过<b>编辑项目</b>来编辑项目资源配额和默认容器配额。',
+  HOW_TO_USE_QUOTA_A:
+    '资源配额是用来限制资源用量的一种机制，您可以通过<b>编辑项目</b>来编辑项目资源配额和默认容器配额。',
   WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q: '什么是默认容器配额?',
-  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A: '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 限制、内存预留和内存限制。',
-  PROJECT_BASIC_INFO_DESC: '基本信息提供项目的信息概览，您可以查看项目的信息以及默认容器配额。',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A:
+    '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 限制、内存预留和内存限制。',
+  PROJECT_BASIC_INFO_DESC:
+    '基本信息提供项目的信息概览，您可以查看项目的信息以及默认容器配额。',
   // Manage > Edit Information
   // Manage > Edit Project Quotas
   EDIT_PROJECT_QUOTA: '编辑项目配额',
@@ -34,10 +37,11 @@ module.exports = {
   // Manage > Edit Default Container Quotas
   GPU_TYPE_SCAP: 'GPU 类型',
   GPU_LIMIT_SCAP: 'GPU 限制',
-  REQUEST_EXCEED_WORKSPACE: 'Resource requests and limits cannot exceed workspace resource limits.',
+  REQUEST_EXCEED_WORKSPACE: '资源预留和资源限制均不能超过企业空间资源限制。',
   REQUEST_EXCEED_LIMIT: '资源预留不能超过资源限制。',
   // Mange > Delete
-  DELETE_PROJECT_TIP: '确定删除项目 <strong>{resource}</strong> ? 删除后将无法恢复, 项目下的资源也同时会被销毁。',
+  DELETE_PROJECT_TIP:
+    '确定删除项目 <strong>{resource}</strong> ? 删除后将无法恢复, 项目下的资源也同时会被销毁。',
   // Project Information
   MANAGE: '管理',
   PROJECT_INFO: '项目信息',
@@ -53,5 +57,5 @@ module.exports = {
   LIMITS_MEMORY: '内存限制',
   // Project Quotas
   PROJECT_QUOTA_PL: '项目配额',
-  RESOURCE_TYPE_SCAP: '资源类型'
-};
+  RESOURCE_TYPE_SCAP: '资源类型',
+}
