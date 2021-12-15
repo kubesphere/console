@@ -18,7 +18,7 @@
 module.exports = {
   // Banner
   // List
-  PROJECT_EMPTY_DESC: '请创建一个项目。',
+  PROJECT_EMPTY_DESC: '请创建一个项目角色。',
   // List > Projects > Create
   CREATE_PROJECT: '创建项目',
   // List > Multi-cluster Projects > Create
