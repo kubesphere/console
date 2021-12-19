@@ -620,3 +620,7 @@ client:
       max_number_of_toTag: 20
     slack:
       max_number_of_channel: 20
+  
+  # supported Gpu type
+  supportGpuType:
+    - 'nvidia.com/gpu'

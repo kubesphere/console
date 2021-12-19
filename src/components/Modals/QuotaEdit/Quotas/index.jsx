@@ -39,14 +39,6 @@ import { QUOTAS_KEY_MODULE_MAP } from './constants'
 
 import styles from './index.scss'
 
-const omitKey = [
-  'limits.cpu',
-  'limits.memory',
-  'requests.cpu',
-  'requests.memory',
-  'limits.nvidia.com/gpu',
-  'requests.nvidia.com/gpu',
-]
 export default class Quotas extends React.Component {
   constructor(props) {
     super(props)
@@ -64,8 +56,17 @@ export default class Quotas extends React.Component {
     }
   }
 
+  get omitKeys() {
+    const supportGpu = globals.config.supportGpuType
+    const omitArr = [...resourceLimitKey]
+    supportGpu.forEach(type =>
+      omitArr.push(`limits.${type}`, `requests.${type}`)
+    )
+    return omitArr
+  }
+
   getItems(props) {
-    const hardValues = omit(get(props.data, 'spec.hard', {}), omitKey)
+    const hardValues = omit(get(props.data, 'spec.hard', {}), this.omitKeys)
     const items = []
 
     forOwn(hardValues, (value, key) => {
@@ -94,7 +95,7 @@ export default class Quotas extends React.Component {
   handleAddQuotaItem = items => {
     this.setState({ items }, () => {
       const specHard = get(this.props.data, 'spec.hard')
-      const limits = pick(specHard, [...resourceLimitKey])
+      const limits = pick(specHard, this.omitKeys)
       const template = {}
       items.forEach(({ module, value }) => {
         if (!isUndefined(module)) {

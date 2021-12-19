@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { generateId, resourceLimitKey } from 'utils'
+import { generateId, gpuLimitsArr } from 'utils'
 
 import { PATTERN_NAME } from 'utils/constants'
 
@@ -63,19 +63,7 @@ export default class ContainerSetting extends Base {
   }
 
   getGpuLimit() {
-    const hard = this.workspaceQuota
-    return !isEmpty(omit(hard, resourceLimitKey))
-      ? {
-          type: Object.keys(omit(hard, resourceLimitKey))[0]
-            .split('.')
-            .slice(1)
-            .join('.'),
-          value: Number(Object.values(omit(hard, resourceLimitKey))[0]),
-        }
-      : {
-          type: '',
-          value: '',
-        }
+    return gpuLimitsArr(this.workspaceQuota)
   }
 
   get workspaceLimitProps() {
