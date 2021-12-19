@@ -17,8 +17,8 @@
  */
 
 import React from 'react'
-import { get, isEmpty, omit } from 'lodash'
-import { generateId, parseDockerImage, resourceLimitKey } from 'utils'
+import { get, isEmpty } from 'lodash'
+import { generateId, parseDockerImage, gpuLimitsArr } from 'utils'
 
 import { PATTERN_NAME } from 'utils/constants'
 
@@ -80,19 +80,7 @@ export default class ContainerSetting extends React.Component {
   }
 
   getGpuLimit() {
-    const hard = this.props.workspaceQuota
-    return !isEmpty(omit(hard, resourceLimitKey))
-      ? {
-          type: Object.keys(omit(hard, resourceLimitKey))[0]
-            .split('.')
-            .slice(1)
-            .join('.'),
-          value: Number(Object.values(omit(hard, resourceLimitKey))[0]),
-        }
-      : {
-          type: '',
-          value: '',
-        }
+    return gpuLimitsArr(this.props.workspaceQuota)
   }
 
   get workspaceLimitProps() {
