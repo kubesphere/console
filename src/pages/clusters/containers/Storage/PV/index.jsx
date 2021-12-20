@@ -81,7 +81,7 @@ export default class PV extends React.Component {
           trigger('pv.delete', {
             ...this.props.tableProps,
             detail: item,
-            success: this.props.getData(),
+            success: this.props.getData,
           }),
       },
     ]
@@ -102,6 +102,7 @@ export default class PV extends React.Component {
           onClick: () =>
             trigger('pv.batch.delete', {
               ...this.props.tableProps,
+              success: this.props.getData,
             }),
         },
       ],
@@ -214,9 +215,9 @@ export default class PV extends React.Component {
     const renderModeTip = (
       <div>
         <div>{t('ACCESS_MODE_TCAP')}</div>
-        <div>RWO (ReadWriteOnce)：{t('ACCESS_MODE_RWO')}</div>
-        <div>ROX (ReadOnlyMany)：{t('ACCESS_MODE_ROX')}</div>
-        <div>RWX (ReadWriteMany)：{t('ACCESS_MODE_RWX')}</div>
+        <div>RWO (ReadWriteOnce): {t('ACCESS_MODE_RWO')}</div>
+        <div>ROX (ReadOnlyMany): {t('ACCESS_MODE_ROX')}</div>
+        <div>RWX (ReadWriteMany): {t('ACCESS_MODE_RWX')}</div>
       </div>
     )
     return (
