@@ -29,6 +29,9 @@ module.exports = {
   CONTAINER_EMPTY_DESC: 'Please add at least one container.',
   QUOTA_UNSET_TIP: 'Resource occupation is unset',
   QUOTA_OVERCOST_TIP: 'The current resource occupation has exceeded the remaining',
+  // List > Create > Pod Settings > Add Container > Container Settings > Environment Settings
+  ENVIRONMENT_INVALID_TIP: 'The key of an environment variable can contain only letters, numbers, underscores (_), hyphens (-), and periods (.), and must not start with a number.',
+  ENVIRONMENT_CANNOT_BE_EMPTY: 'Please set a key for the environment variable.',
   // List > Create > Pod Settings > Port Settings
   WORKLOAD_PORT_NAME_DESC: 'The port name can contain only lowercase letters, numbers and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 15 characters.',
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
