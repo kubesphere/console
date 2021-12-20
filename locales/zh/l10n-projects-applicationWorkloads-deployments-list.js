@@ -27,11 +27,11 @@ module.exports = {
   INVALID_NAME_DESC: '名称无效。名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   NO_IMAGE_FOUND: '没有找到镜像',
   CONTAINER_EMPTY_DESC: '请至少添加一个容器。',
-  QUOTA_UNSET_TIP: '资源占用未设置。',
-  QUOTA_OVERCOST_TIP: '当前的资源占用已超过剩余资源。',
+  QUOTA_UNSET_TIP: 'Resource occupation is unset',
+  QUOTA_OVERCOST_TIP: 'The current resource occupation has exceeded the remaining',
   // List > Create > Pod Settings > Add Container > Container Settings > Environment Settings
-  ENVIRONMENT_INVALID_TIP: '环境变量的键只能包含字母、数字、下划线（_）、连字符（-）和句点（.），并且不能以数字开头。',
-  ENVIRONMENT_CANNOT_BE_EMPTY: '请设置环境变量的键。',
+  ENVIRONMENT_INVALID_TIP: 'The key of an environment variable can contain only letters, numbers, underscores (_), hyphens (-), and periods (.), and must not start with a number.',
+  ENVIRONMENT_CANNOT_BE_EMPTY: 'Please set a key for the environment variable.',
   // List > Create > Pod Settings > Port Settings
   WORKLOAD_PORT_NAME_DESC: '端口名称只能包含小写字母、数字及分隔符（-），且必须以小写字母或数字开头及结尾，最长 15 个字符。',
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
