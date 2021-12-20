@@ -186,13 +186,16 @@ export default class ServiceCreateModal extends React.Component {
             component: withProps(ClusterDiffSettings, { withService: true }),
           })
         }
+        const title = isEmpty(detail)
+          ? { name: t('STATELESS_SERVICE') }
+          : { title: t('EDIT_TITLE', { title: t('STATELESS_SERVICE') }) }
 
         content = (
           <CreateModal
             width={960}
             module={module}
             store={this.workloadStore}
-            name={t('STATELESS_SERVICE')}
+            {...title}
             description={t('STATELESS_SERVICE_DESC')}
             visible={visible}
             cluster={cluster}
@@ -225,7 +228,7 @@ export default class ServiceCreateModal extends React.Component {
           component: withProps(steps[0].component, { noApp: true }),
         }
 
-        if (isFederated) {
+        if (isFederated && isEmpty(detail)) {
           Object.keys(formTemplate).forEach(key => {
             formTemplate[key] = FORM_TEMPLATES.federated({
               data: formTemplate[key],
@@ -250,13 +253,16 @@ export default class ServiceCreateModal extends React.Component {
             component: withProps(ClusterDiffSettings, { withService: true }),
           })
         }
+        const title = isEmpty(detail)
+          ? { name: t('STATEFUL_SERVICE') }
+          : { title: t('EDIT_TITLE', { title: t('STATEFUL_SERVICE') }) }
 
         content = (
           <CreateModal
             width={960}
             module={module}
             store={this.workloadStore}
-            name={t('STATEFUL_SERVICE')}
+            {...title}
             description={t('STATEFUL_SERVICE_DESC')}
             visible={visible}
             cluster={cluster}
