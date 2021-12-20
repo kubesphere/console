@@ -23,15 +23,15 @@ module.exports = {
   // List > Create > Basic Information
   // List > Create > Pod Settings
   // List > Create > Pod Settings > Add Container > Container Settings
-  INVALID_IMAGE: 'Geçersiz resim.',
-  INVALID_NAME_DESC: 'Geçersiz isim. Ad yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir ve küçük harf veya sayı ile başlayıp bitmelidir. Maksimum uzunluk 63 karakterdir.',
-  NO_IMAGE_FOUND: 'Görsel bulunamadı',
-  CONTAINER_EMPTY_DESC: 'Lütfen en az bir konteyner ekleyin.',
-  QUOTA_UNSET_TIP: 'Kaynak işgali ayarlanmadı',
-  QUOTA_OVERCOST_TIP: 'Mevcut kaynak işgali kalan miktarı aştı',
+  INVALID_IMAGE: 'Invalid image.',
+  INVALID_NAME_DESC: 'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
+  NO_IMAGE_FOUND: 'No Image Found',
+  CONTAINER_EMPTY_DESC: 'Please add at least one container.',
+  QUOTA_UNSET_TIP: 'Resource occupation is unset',
+  QUOTA_OVERCOST_TIP: 'The current resource occupation has exceeded the remaining',
   // List > Create > Pod Settings > Add Container > Container Settings > Environment Settings
-  ENVIRONMENT_INVALID_TIP: 'Bir ortam değişkeninin anahtarı yalnızca harf, sayı, alt çizgi (_), kısa çizgi (-) ve nokta (.) içerebilir ve bir sayı ile başlamamalıdır.',
-  ENVIRONMENT_CANNOT_BE_EMPTY: 'Lütfen ortam değişkeni için bir anahtar ayarlayın.',
+  ENVIRONMENT_INVALID_TIP: 'The key of an environment variable can contain only letters, numbers, underscores (_), hyphens (-), and periods (.), and must not start with a number.',
+  ENVIRONMENT_CANNOT_BE_EMPTY: 'Please set a key for the environment variable.',
   // List > Create > Pod Settings > Port Settings
   WORKLOAD_PORT_NAME_DESC: 'Bağlantı noktası adı yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir ve küçük harf veya sayı ile başlayıp bitmelidir. Maksimum uzunluk 15 karakterdir.',
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
