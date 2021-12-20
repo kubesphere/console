@@ -80,13 +80,11 @@ export default class BaseStore {
       this.module
     }`
 
-  getFilterParams = (searchByApp, params) => {
+  getFilterParams = params => {
     const result = { ...params }
     if (result.app) {
       result.labelSelector = result.labelSelector || ''
-      result.labelSelector += searchByApp
-        ? `app=${result.app}`
-        : `app.kubernetes.io/name=${result.app}`
+      result.labelSelector += `app.kubernetes.io/name=${result.app}`
       delete result.app
     }
     return result
@@ -119,7 +117,6 @@ export default class BaseStore {
     namespace,
     more,
     devops,
-    searchByApp,
     ...params
   } = {}) {
     this.list.isLoading = true
@@ -137,7 +134,7 @@ export default class BaseStore {
 
     const result = await request.get(
       this.getResourceUrl({ cluster, workspace, namespace, devops }),
-      this.getFilterParams(searchByApp, params)
+      this.getFilterParams(params)
     )
     const data = (get(result, 'items') || []).map(item => ({
       cluster,
