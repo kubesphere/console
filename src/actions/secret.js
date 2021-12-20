@@ -87,8 +87,13 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           set(data, 'metadata.resourceVersion', detail.resourceVersion)
+          if (props.isFederated) {
+            set(data, 'apiVersion', store.version)
+            set(data, 'kind', store.secretKind)
+          }
           store.update(detail, data).then(() => {
             Modal.close(modal)
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             success && success()
           })
         },

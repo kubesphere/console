@@ -66,6 +66,14 @@ export default class FederatedStore extends Base {
     return 'apis/scheduling.kubefed.io/v1alpha1'
   }
 
+  get version() {
+    return 'types.kubefed.io/v1beta1'
+  }
+
+  get secretKind() {
+    return `FederatedSecret`
+  }
+
   getPath({ namespace }) {
     let path = ''
     if (namespace) {
