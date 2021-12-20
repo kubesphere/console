@@ -19,6 +19,7 @@
 import { get, set, isEmpty, has } from 'lodash'
 import { action, observable } from 'mobx'
 import { withDryRun } from 'utils'
+import { LIST_DEFAULT_ORDER } from 'utils/constants'
 import ObjectMapper from 'utils/object.mapper'
 import Base from './base'
 import S2iBuilderStore from './s2i/builder'
@@ -182,5 +183,62 @@ export default class ServiceStore extends Base {
     })
 
     this.workloads.isLoading = false
+  }
+
+  getFilterParams = (searchByApp, params) => {
+    const result = { ...params }
+    if (result.app) {
+      result.labelSelector = result.labelSelector || ''
+      result.labelSelector += searchByApp
+        ? `app=${result.app}`
+        : `app.kubernetes.io/name=${result.app}`
+      delete result.app
+    }
+    return result
+  }
+
+  @action
+  async fetchList({
+    cluster,
+    workspace,
+    namespace,
+    more,
+    devops,
+    searchByApp,
+    ...params
+  } = {}) {
+    this.list.isLoading = true
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
+    }
+
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
+    }
+
+    params.limit = params.limit || 10
+
+    const result = await request.get(
+      this.getResourceUrl({ cluster, workspace, namespace, devops }),
+      this.getFilterParams(searchByApp, params)
+    )
+    const data = (get(result, 'items') || []).map(item => ({
+      cluster,
+      namespace,
+      ...this.mapper(item),
+    }))
+
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
+
+    return data
   }
 }
