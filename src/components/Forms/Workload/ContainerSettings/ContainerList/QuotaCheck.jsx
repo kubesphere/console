@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import isEqual from 'react-fast-compare'
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, isUndefined } from 'lodash'
 
 import { Alert } from '@kube-design/components'
 
@@ -53,6 +53,15 @@ export default class QuotaCheck extends Component {
       replicas
     )
     return compareQuotaAndResources(leftQuota, resourcesCost)
+  }
+
+  get hasLimitQuota() {
+    const { leftQuota } = this.props
+    let hasLimit = false
+    Object.keys(leftQuota).forEach(key => {
+      hasLimit = Object.values(leftQuota[key]).some(item => !isUndefined(item))
+    })
+    return hasLimit
   }
 
   renderOverCostMessage(result) {
@@ -183,20 +192,25 @@ export default class QuotaCheck extends Component {
       return null
     }
     const limitUnset = Object.values(checkResult).some(
-      item => item.overcost === 'unset'
+      item =>
+        (item.namespaceQuota || item.workspaceQuota) &&
+        item.overcost === 'unset'
     )
     const overcost = Object.values(checkResult).some(
       item => item.overcost === true
     )
-    const type = overcost || limitUnset ? 'error' : 'info'
-    const title = overcost
-      ? t('QUOTA_OVERCOST_TIP')
-      : limitUnset
-      ? t('QUOTA_UNSET_TIP')
-      : t('Remaining Quota')
+    const type =
+      (overcost || limitUnset) && this.hasLimitQuota ? 'error' : 'info'
+
+    const title =
+      overcost && this.hasLimitQuota
+        ? t('QUOTA_OVERCOST_TIP')
+        : limitUnset && this.hasLimitQuota
+        ? t('QUOTA_UNSET_TIP')
+        : t('Remaining Quota')
 
     const message =
-      overcost || limitUnset
+      (overcost || limitUnset) && this.hasLimitQuota
         ? this.renderOverCostMessage(checkResult)
         : this.renderQuotaMessage(checkResult)
 
