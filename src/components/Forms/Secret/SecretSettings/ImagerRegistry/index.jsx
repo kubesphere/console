@@ -19,7 +19,7 @@
 import { get, debounce, set, has } from 'lodash'
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-
+import { toJS } from 'mobx'
 import {
   Columns,
   Column,
@@ -34,6 +34,7 @@ import { safeParseJSON } from 'utils'
 import { safeBtoa } from 'utils/base64'
 
 import SecretStore from 'stores/secret'
+import ClusterStore from 'stores/cluster'
 
 import Wrapper from './Wrapper'
 
@@ -53,6 +54,8 @@ export default class ImageRegistry extends Component {
   }
 
   store = new SecretStore()
+
+  hostStore = new ClusterStore()
 
   state = {
     ...this.getStateFromProps(this.props.value),
@@ -121,6 +124,20 @@ export default class ImageRegistry extends Component {
     }
   }
 
+  getHostName = async (params = {}) => {
+    await this.hostStore.fetchList({
+      ...params,
+      labelSelector: 'cluster-role.kubesphere.io/host=',
+      limit: -1,
+    })
+    const host = toJS(this.hostStore.list.data).filter(item =>
+      Object.keys(item.labels).some(key =>
+        key.endsWith('cluster-role.kubesphere.io/host')
+      )
+    )
+    return host[0]?.name ?? 'host'
+  }
+
   handleValidate = async () => {
     const { cluster, isFederated, namespace, screatName } = this.props
 
@@ -131,7 +148,7 @@ export default class ImageRegistry extends Component {
           fedFormTemplate: this.props.fedFormTemplate,
           name: screatName,
           namespace,
-          cluster: isFederated ? 'host' : cluster,
+          cluster: isFederated ? await this.getHostName() : cluster,
         })) || {}
 
       this.setState({
