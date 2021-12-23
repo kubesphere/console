@@ -699,7 +699,7 @@ export const omitJobGpuLimit = (data, path) => {
   }
 }
 
-export const getGpuFromRes = data => {
+export const LimitsEqualRequests = data => {
   if (data.length > 0) {
     const limits = get(data, '[0].limit.default', {})
     const requests = get(data, '[0].limit.defaultRequest', {})
@@ -710,23 +710,6 @@ export const getGpuFromRes = data => {
     }
     if (limitItem('memory') === reqItem('memory')) {
       set(data[0].limit, 'defaultRequest.memory', undefined)
-    }
-    const gpu = isEmpty(limits) ? {} : omit(limits, ['cpu', 'memory'])
-    const gpuKey = Object.keys(gpu)[0]
-    if (isEmpty(gpu)) {
-      set(data[0].limit, 'gpu', {
-        type: supportGpuType[0],
-        value: '',
-      })
-    } else {
-      data[0] = omit(data[0], [
-        `limit.default['${gpuKey}']`,
-        `limit.defaultRequest['${gpuKey}']`,
-      ])
-      set(data[0].limit, 'gpu', {
-        type: gpuKey,
-        value: Object.values(gpu)[0],
-      })
     }
   }
 }
