@@ -82,10 +82,6 @@ export default class DefaultResourceEditModal extends React.Component {
     return {
       requests: get(this.props.detail, 'limit.defaultRequest', {}),
       limits: get(this.props.detail, 'limit.default', {}),
-      gpu: get(this.props.detail, 'limit.gpu', {
-        type: '',
-        value: '',
-      }),
     }
   }
 
@@ -94,7 +90,6 @@ export default class DefaultResourceEditModal extends React.Component {
       data: {
         default: data.limits,
         defaultRequest: data.requests,
-        gpu: data.gpu,
       },
     })
   }
