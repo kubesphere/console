@@ -472,9 +472,11 @@ export default class DetailModal extends React.Component {
 
   renderLink(link, children) {
     return link ? (
-      <a href={link} target="_blank" rel="noopener noreferrer">
-        {children}
-      </a>
+      <Tooltip content={t('VIEW_DETAILS')}>
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          {children}
+        </a>
+      </Tooltip>
     ) : (
       children
     )
