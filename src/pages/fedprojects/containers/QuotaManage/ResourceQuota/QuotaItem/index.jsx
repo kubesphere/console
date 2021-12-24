@@ -46,12 +46,14 @@ const QuotaItem = ({ name, total, used }) => {
   }
 
   ratio = Math.min(Math.max(ratio, 0), 1)
+  const labelName = name.indexOf('gpu') > -1 ? 'gpu' : name
+  const labelText = labelName === 'gpu' ? `${labelName}.limit` : labelName
 
   return (
     <div className={styles.quota}>
       <Icon name={ICON_TYPES[name]} size={40} />
       <div className={styles.item}>
-        <div>{t(name.replace('.', '_').toUpperCase())}</div>
+        <div>{t(labelText.replace(/[. ]/g, '_').toUpperCase())}</div>
         <p>{t('RESOURCE_TYPE_SCAP')}</p>
       </div>
       <div className={styles.item}>

@@ -66,7 +66,19 @@ export default class ResourceQuota extends React.Component {
 
   get items() {
     const detail = this.store.data
-    return Object.entries(QUOTAS_MAP)
+    const supportGpuType = globals.config?.supportGpuType ?? []
+    const gpuType = supportGpuType.filter(type =>
+      Object.keys(get(detail, `hard`, {})).some(key => key.endsWith(type))
+    )
+    const mapObj = !gpuType[0]
+      ? QUOTAS_MAP
+      : {
+          ...QUOTAS_MAP,
+          gpu: {
+            name: `requests.${gpuType[0]}`,
+          },
+        }
+    return Object.entries(mapObj)
       .map(([key, value]) => ({
         key,
         name: key,
