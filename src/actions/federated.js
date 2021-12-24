@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset, cloneDeep, uniqBy, isEmpty, omit } from 'lodash'
+import { get, set, unset, cloneDeep, uniqBy, isEmpty } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import FedProjectCreateModal from 'components/Modals/FedProjectCreate'
@@ -26,7 +26,7 @@ import FedProjectAddClusterModal from 'workspaces/components/Modals/FedProjectAd
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 import FED_TEMPLATES from 'utils/fed.templates'
-import { multiCluster_overrides_gpu } from 'utils'
+import { multiCluster_overrides_Dot } from 'utils'
 
 import FederatedStore from 'stores/federated'
 import ProjectStore from 'stores/project'
@@ -135,22 +135,8 @@ export default {
     on({ store, detail, success, module, supportGpuSelect = false, ...props }) {
       const modal = Modal.open({
         onOk: data => {
-          const containers = get(
-            data,
-            'spec.template.spec.template.spec.containers',
-            []
-          )
-          const newContainers = containers.map(item =>
-            omit(item, 'resources.gpu')
-          )
-          set(
-            data,
-            'spec.template.spec.template.spec.containers',
-            newContainers
-          )
-
           const overrides = get(data, 'spec.overrides', [])
-          multiCluster_overrides_gpu(overrides)
+          multiCluster_overrides_Dot(overrides)
 
           const customMode = get(data, 'spec.template.spec.customMode', {})
           if (!isEmpty(customMode)) {

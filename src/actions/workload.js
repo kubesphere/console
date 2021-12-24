@@ -18,7 +18,7 @@
 
 import { get, isEmpty, omit } from 'lodash'
 import { toJS } from 'mobx'
-import { withProps, omitJobGpuLimit, multiCluster_overrides_gpu } from 'utils'
+import { withProps, multiCluster_overrides_Dot } from 'utils'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -30,11 +30,7 @@ import EditConfigTemplateModal from 'projects/components/Modals/ConfigTemplate'
 import EditServiceModal from 'projects/components/Modals/ServiceSetting/StatefulSet'
 import ClusterDiffSettings from 'components/Forms/Workload/ClusterDiffSettings'
 import DeleteModal from 'projects/components/Modals/WorkloadDelete'
-import {
-  MODULE_KIND_MAP,
-  MAPPER_GPU_SPEC_PATH,
-  OMIT_TOTAL_REPLICAS,
-} from 'utils/constants'
+import { MODULE_KIND_MAP, OMIT_TOTAL_REPLICAS } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
 import DEPLOYMENTS_FORM_STEPS from 'configs/steps/deployments'
@@ -120,23 +116,15 @@ export default {
       const modal = Modal.open({
         onOk: newObject => {
           if (isFederated) {
-            MAPPER_GPU_SPEC_PATH[kind] &&
-              omitJobGpuLimit(
-                newObject[kind],
-                MAPPER_GPU_SPEC_PATH[`Federate_${kind}`]
-              )
             if (module === 'deployments') {
-              multiCluster_overrides_gpu(
+              multiCluster_overrides_Dot(
                 get(newObject, 'Deployment.spec.overrides', [])
               )
             } else if (module === 'statefulsets') {
-              multiCluster_overrides_gpu(
+              multiCluster_overrides_Dot(
                 get(newObject, 'StatefulSet.spec.overrides', [])
               )
             }
-          } else {
-            MAPPER_GPU_SPEC_PATH[kind] &&
-              omitJobGpuLimit(newObject[kind], MAPPER_GPU_SPEC_PATH[kind])
           }
           newObject = omit(newObject, OMIT_TOTAL_REPLICAS(kind))
           let data = newObject
@@ -273,7 +261,6 @@ export default {
     on({ store, detail, success, supportGpuSelect = false, ...props }) {
       const modal = Modal.open({
         onOk: data => {
-          omitJobGpuLimit(data, 'spec.template.spec.containers')
           const customMode = get(data, 'spec.template.spec.customMode', {})
 
           if (!isEmpty(customMode)) {

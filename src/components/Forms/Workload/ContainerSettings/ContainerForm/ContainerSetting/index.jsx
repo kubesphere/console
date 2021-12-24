@@ -48,7 +48,6 @@ export default class ContainerSetting extends React.Component {
     return {
       requests: limitRange.defaultRequest || {},
       limits: limitRange.default || {},
-      gpu: limitRange.gpu || {},
     }
   }
 
