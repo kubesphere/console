@@ -26,7 +26,12 @@ import { ICON_TYPES } from 'utils/constants'
 
 import styles from './index.scss'
 
-const QuotaItem = ({ name, total, used }) => {
+const transformName = (text = '', type) =>
+  type === 'userDefined' && !text.includes('gpu')
+    ? text
+    : t(text.replace(/[. ]/g, '_').toUpperCase())
+
+const QuotaItem = ({ name, total, used, type }) => {
   let ratio = 0
 
   if (name === 'limits.cpu' || name === 'requests.cpu') {
@@ -48,12 +53,16 @@ const QuotaItem = ({ name, total, used }) => {
   ratio = Math.min(Math.max(ratio, 0), 1)
   const labelName = name.indexOf('gpu') > -1 ? 'gpu' : name
   const labelText = labelName === 'gpu' ? `${labelName}.limit` : labelName
+  const iconType =
+    name.indexOf('gpu') > -1
+      ? ICON_TYPES['gpu']
+      : ICON_TYPES[name] ?? 'resource'
 
   return (
     <div className={styles.quota}>
-      <Icon name={ICON_TYPES[name]} size={40} />
+      <Icon name={iconType} size={40} />
       <div className={styles.item}>
-        <div>{t(labelText.replace(/[. ]/g, '_').toUpperCase())}</div>
+        <div>{transformName(labelText, type)}</div>
         <p>{t('RESOURCE_TYPE_SCAP')}</p>
       </div>
       <div className={styles.item}>
