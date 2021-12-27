@@ -30,6 +30,8 @@ import {
   isNumber,
   omit,
   pick,
+  pickBy,
+  endsWith,
   replace,
   merge as _merge,
 } from 'lodash'
@@ -773,14 +775,20 @@ export const resourceLimitKey = [
   'requests.memory',
 ]
 
-export const gpuTypeArr = ['requests.nvidia.com/gpu', 'limits.nvidia.com/gpu']
-
 export const supportGpuType = ['nvidia.com/gpu']
 
 const accessModeMapper = {
   ReadWriteOnce: 'RWO',
   ReadOnlyMany: 'ROX',
   ReadWriteMany: 'RWX',
+}
+
+export const gpuLimitsArr = objData => {
+  const supportGpu = globals.config.supportGpuType
+  const gpusObj = pickBy(objData, (_, key) =>
+    supportGpu.some(type => endsWith(key, type))
+  )
+  return Object.keys(gpusObj).map(key => ({ [key]: gpusObj[key] }))
 }
 
 export const map_accessModes = accessModes =>

@@ -29,6 +29,8 @@ import {
   reduce,
   mergeWith,
   isUndefined,
+  pickBy,
+  endsWith,
 } from 'lodash'
 import React from 'react'
 import { generateId, getContainerGpu, resourceLimitKey } from 'utils'
@@ -275,8 +277,12 @@ export default class ContainerSetting extends React.Component {
   }
 
   transformGpu = data => {
+    const supportGpu = globals.config.supportGpuType
+    const gpuArr = data.map(item =>
+      pickBy(item, (_, key) => supportGpu.some(type => endsWith(key, type)))
+    )
     return reduce(
-      data,
+      gpuArr,
       (total, current) => {
         const hasKey = get(total, `${Object.keys(current)[0]}`)
         if (hasKey) {

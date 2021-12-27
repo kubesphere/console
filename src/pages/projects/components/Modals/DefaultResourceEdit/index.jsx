@@ -16,7 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, mergeWith, isUndefined, omit, min, reduce, isEmpty } from 'lodash'
+import {
+  get,
+  mergeWith,
+  isUndefined,
+  omit,
+  min,
+  reduce,
+  pickBy,
+  endsWith,
+} from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -24,7 +33,7 @@ import { Modal } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
 import QuotaStore from 'stores/quota'
 import WorkspaceQuotaStore from 'stores/workspace.quota'
-import { cpuFormat, memoryFormat, resourceLimitKey } from 'utils'
+import { cpuFormat, memoryFormat, resourceLimitKey, gpuLimitsArr } from 'utils'
 
 export default class DefaultResourceEditModal extends React.Component {
   static propTypes = {
@@ -179,8 +188,14 @@ export default class DefaultResourceEditModal extends React.Component {
   }
 
   transformGpu = data => {
+    // filter other keys,just need gpu field
+    // every namespace has one gpu type
+    const supportGpu = globals.config.supportGpuType
+    const gpuArr = data.map(item =>
+      pickBy(item, (_, key) => supportGpu.some(type => endsWith(key, type)))
+    )
     return reduce(
-      data,
+      gpuArr,
       (total, current) => {
         const hasKey = get(total, `${Object.keys(current)[0]}`)
         if (hasKey) {
@@ -240,19 +255,9 @@ export default class DefaultResourceEditModal extends React.Component {
   getQuotaInfo = path => get(this.workspaceQuota, path, undefined)
 
   getGpuLimit() {
-    const hard = this.workspaceQuota
-    return !isEmpty(omit(hard, resourceLimitKey))
-      ? {
-          type: Object.keys(omit(hard, resourceLimitKey))[0]
-            .split('.')
-            .slice(1)
-            .join('.'),
-          value: Number(Object.values(omit(hard, resourceLimitKey))[0]),
-        }
-      : {
-          type: '',
-          value: '',
-        }
+    // workspaceQuota in multi cluster,
+    // it include more than one type of gpu limit, is an object
+    return gpuLimitsArr(this.workspaceQuota)
   }
 
   get workspaceLimitProps() {
