@@ -130,7 +130,7 @@ export default class NodeStore extends Base {
 
     const masterWorker = resp.items.filter(
       item =>
-        getNodeRoles(item.metadata.labels).filter(role => role !== 'master')
+        getNodeRoles(item.metadata.labels).every(role => role !== 'master')
           .length > 0
     ).length
 
