@@ -75,22 +75,24 @@ export default class VolumeDetail extends React.Component {
   }
 
   get allowClone() {
-    try {
-      const clone = toJS(this.storageclass).detail.annotations[
-        'storageclass.kubesphere.io/allow-clone'
-      ]
-      return isUndefined(clone) ? true : !JSON.parse(clone)
-    } catch (err) {
-      return true
-    }
+    return this.getAllowToDo('storageclass.kubesphere.io/allow-clone')
   }
 
   get allowSnapshot() {
+    return this.getAllowToDo('storageclass.kubesphere.io/allow-snapshot')
+  }
+
+  get allowExpand() {
+    const value = get(this.storageclass.detail, 'allowVolumeExpansion', false)
+    const isPending = this.store.detail.phase === 'Pending'
+    return isPending ? true : !value
+  }
+
+  getAllowToDo = key => {
     try {
-      const snapShot = toJS(this.storageclass).detail.annotations[
-        'storageclass.kubesphere.io/allow-snapshot'
-      ]
-      return isUndefined(snapShot) ? true : !JSON.parse(snapShot)
+      const value = toJS(this.storageclass).detail.annotations[key]
+      const isPending = this.store.detail.phase === 'Pending'
+      return isUndefined(value) || isPending ? true : !JSON.parse(value)
     } catch (err) {
       return true
     }
@@ -161,7 +163,7 @@ export default class VolumeDetail extends React.Component {
       text: t('EXPAND'),
       icon: 'scaling',
       action: 'edit',
-      disabled: !get(this.storageclass.detail, 'allowVolumeExpansion', false),
+      disabled: this.allowExpand,
       onClick: () => {
         const { detail, isSubmitting } = this.store
         const originData = toJS(detail._originData)
