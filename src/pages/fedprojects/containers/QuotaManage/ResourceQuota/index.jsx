@@ -66,13 +66,20 @@ export default class ResourceQuota extends React.Component {
 
   get items() {
     const detail = this.store.data
+    const hard = get(detail, 'hard', {})
+    const quotaMaps = Object.values(QUOTAS_MAP).map(value => value.name)
+    const userDinedKeys = Object.keys(hard)
+      .filter(key => quotaMaps.indexOf(key) === -1)
+      .map(item => [item, { name: item, type: 'userDefined' }])
     return Object.entries(QUOTAS_MAP)
+      .concat(userDinedKeys)
       .map(([key, value]) => ({
         key,
         name: key,
         total: get(detail, `hard["${value.name}"]`),
         used: get(detail, `used["${value.name}"]`, 0),
         left: get(detail, `left["${value.name}"]`),
+        type: value?.type ?? 'system',
       }))
       .filter(({ total, used, name }) => {
         if (!total && !Number(used) && RESERVED_KEYS.indexOf(name) === -1) {
