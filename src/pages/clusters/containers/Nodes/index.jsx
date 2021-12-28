@@ -207,7 +207,7 @@ export default class Nodes extends React.Component {
         Modal.close(modal)
       },
       modal: KubeCtlModal,
-      title: 'kubectl',
+      title: record.name,
       nodename: record.name,
     })
   }
