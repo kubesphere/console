@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, omitBy, isEmpty, omit } from 'lodash'
+import { get, set, omitBy, isEmpty } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import QuotaEditModal from 'components/Modals/QuotaEdit'
@@ -122,19 +122,6 @@ export default {
     }) {
       const modal = Modal.open({
         onOk: async data => {
-          const gpu = get(data, 'gpu', {})
-          data = omit(data, 'gpu')
-          detail = omit(detail, 'limit.gpu')
-
-          // if requests and limits is unsetted, they will be undefined
-          // for set gpu params, it should be an object
-          if (isEmpty(data.default) && isEmpty(data.defaultRequest)) {
-            data = { ...data, default: {}, defaultRequest: {} }
-          }
-          if (!isEmpty(gpu) && gpu.type !== '' && gpu.value !== '') {
-            set(data, `default["${gpu.type}"]`, Number(gpu.value))
-          }
-
           // deal with the case that input number as 4.
           const { limits, requests } = limits_Request_EndsWith_Dot({
             limits: data.default,
