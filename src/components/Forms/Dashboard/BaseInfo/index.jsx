@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { get, set, isEmpty } from 'lodash'
+import { get, set, isEmpty, cloneDeep } from 'lodash'
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
 import CardSelect from 'components/Inputs/CardSelect'
 import { PATTERN_NAME, MODULE_KIND_MAP } from 'utils/constants'
@@ -33,7 +33,7 @@ export default class BaseInfo extends React.Component {
 
     if (isEmpty(this.formTemplate.spec)) {
       const defaultKey = Object.keys(templateSettings)[0]
-      const defaultValue = templateSettings[defaultKey].settings
+      const defaultValue = cloneDeep(templateSettings[defaultKey].settings)
       set(this.formTemplate, 'spec', defaultValue)
     }
   }
