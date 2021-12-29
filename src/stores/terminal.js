@@ -53,7 +53,7 @@ export default class TerminalStore {
     if (nodename) {
       return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
         cluster,
-      })}/nodename/${nodename}/exec`
+      })}/nodes/${nodename}/exec`
     }
 
     const result = await request.get(
