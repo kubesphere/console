@@ -18,9 +18,14 @@
   &:hover {
     border-color: $border-hover-color;
     box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
+    cursor: pointer;
 
     :global .buttons {
       display: block;
+    }
+
+    .clusters {
+      display: none;
     }
   }
 
