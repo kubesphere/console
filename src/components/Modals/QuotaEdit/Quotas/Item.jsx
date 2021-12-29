@@ -58,7 +58,10 @@ export default class QuotaItem extends React.Component {
   renderInputByModule = () => {
     const { value } = this.props
     const mapKey = Object.keys(QUOTAS_MAP)
-    if (mapKey.includes(value.module)) {
+    const itemName = Object.entries(QUOTAS_MAP)
+      .filter(item => item[0] !== value.module)
+      .map(item => item[1].name)
+    if (mapKey.concat(itemName).includes(value.module)) {
       return (
         <NumberInput
           name="value"
