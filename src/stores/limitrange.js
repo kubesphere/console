@@ -18,7 +18,7 @@
 
 import Base from 'stores/base'
 import { action } from 'mobx'
-import { getGpuFromRes } from 'utils'
+import { LimitsEqualRequests } from 'utils'
 
 export default class LimitRangeStore extends Base {
   module = 'limitranges'
@@ -43,7 +43,7 @@ export default class LimitRangeStore extends Base {
       ...this.mapper(item),
     }))
 
-    getGpuFromRes(data)
+    LimitsEqualRequests(data)
 
     this.list.update({
       data,

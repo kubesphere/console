@@ -63,13 +63,6 @@ export default {
         onOk: async data => {
           const hard = get(data, 'spec.hard', {})
 
-          // set gpu parameters into requests and delete extra gpu parameters
-          const gpu = get(data, 'spec.gpu', {})
-          if (!isEmpty(gpu) && gpu.type !== '') {
-            set(data, `spec.hard["requests.${gpu.type}"]`, gpu.value)
-          }
-          data = omit(data, 'spec.gpu')
-
           const params = {
             name: data.name,
             namespace: detail.name,
@@ -105,7 +98,7 @@ export default {
           }
 
           Modal.close(modal)
-
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         detail,

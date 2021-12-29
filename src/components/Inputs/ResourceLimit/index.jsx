@@ -26,7 +26,6 @@ import {
   isFinite,
   isEmpty,
   isNaN,
-  omit,
   isUndefined,
 } from 'lodash'
 
@@ -193,21 +192,21 @@ export default class ResourceLimit extends React.Component {
   }
 
   static getGpuFromProps(value) {
-    const defaultGpuType = globals.config.supportGpuType[0]
-    const gpuValue = get(value, 'gpu.value', '')
-    const gpuType =
-      get(value, 'gpu.type', '') === ''
-        ? defaultGpuType
-        : get(value, 'gpu.type')
+    // get gpu config from requests field
+    const supportGpuType = globals.config.supportGpuType
     if (!value) {
       return {
-        type: defaultGpuType,
+        type: supportGpuType[0],
         value: '',
       }
     }
+    const types = Object.keys(value.requests).filter(key =>
+      supportGpuType.some(item => key.endsWith(item))
+    )
+    const type = !isEmpty(types) ? types[0] : supportGpuType[0]
     return {
-      value: gpuValue,
-      type: gpuType,
+      type,
+      value: !isEmpty(types) ? value.requests[`${type}`] : '',
     }
   }
 
@@ -215,13 +214,6 @@ export default class ResourceLimit extends React.Component {
     const value = get(props, 'value', {})
     const defaultValue = get(props, 'defaultValue', {})
     if (!isEmpty(value)) {
-      const gpuInfo = omit(value.limits, ['cpu', 'memory'])
-      if (!isEmpty(gpuInfo)) {
-        return {
-          type: Object.keys(gpuInfo)[0],
-          value: Object.values(gpuInfo)[0],
-        }
-      }
       return ResourceLimit.getGpuFromProps(value)
     }
     if (!isEmpty(defaultValue)) {
@@ -457,7 +449,10 @@ export default class ResourceLimit extends React.Component {
     if (limits.memory > 0 && limits.memory < Infinity) {
       set(result, 'limits.memory', `${limits.memory}${memoryUnit}`)
     }
-    set(result, 'gpu', gpu)
+
+    // pass gpu input config into limits and requests field
+    set(result, 'limits', { ...result.limits, [`${gpu.type}`]: gpu.value })
+    set(result, 'requests', { ...result.requests, [`${gpu.type}`]: gpu.value })
 
     onChange(result)
   }
@@ -542,9 +537,10 @@ export default class ResourceLimit extends React.Component {
   renderGpuTip = () => {
     const { workspaceLimitProps: pWL } = this.props
     const { gpu } = this.state
-    const findResult = pWL.gpuLimit.filter(item => {
+    const findResult = pWL?.gpuLimit.filter(item => {
       return isEmpty(item) ? item : Object.keys(item)[0].endsWith(gpu.type)
     })[0]
+
     return (
       <div className={styles.message}>
         <span>{t('GPU_TYPE')}:</span>
