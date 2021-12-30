@@ -298,7 +298,8 @@ export default class Activity extends React.Component {
       title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'startTime',
       width: '20%',
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      render: time =>
+        time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-',
     },
     {
       isHideable: false,
