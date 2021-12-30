@@ -106,7 +106,9 @@ export default class S2IForm extends React.Component {
 
   getTemplateList = async () => {
     this.setState({ isGetTemplateListLoading: true })
-    const lists = await this.builderStore.getBuilderTemplate()
+    const lists = await this.builderStore.getBuilderTemplate({
+      cluster: this.props.cluster,
+    })
     this.setState({
       builderTemplateLists: get(lists, 'items', []),
       isGetTemplateListLoading: false,
