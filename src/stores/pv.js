@@ -25,7 +25,8 @@ export default class PvcStore extends Base {
   getDetailUrl = (params = {}) =>
     `${this.getResourceUrl(params)}/${params.name}`
 
-  getKs8Url = (params = {}) => `api/v1/${this.module}/${params.name}`
+  getKs8Url = (params = {}) =>
+    `api/v1${this.getPath(params)}/${this.module}/${params.name}`
 
   @action
   async fetchDetail(params) {
