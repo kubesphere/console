@@ -63,7 +63,7 @@ const renderLogin = async ctx => {
 const renderLoginConfirm = async ctx => {
   await renderIndex(ctx, {
     user: {
-      username: ctx.cookies.get('defaultUser'),
+      username: decodeURIComponent(ctx.cookies.get('defaultUser')),
       email: ctx.cookies.get('defaultEmail'),
     },
   })
