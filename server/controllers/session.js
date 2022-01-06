@@ -118,7 +118,7 @@ const handleLogin = async ctx => {
   ctx.cookies.set('referer', null)
 
   if (user.username === 'system:pre-registration') {
-    ctx.cookies.set('defaultUser', user.extraname)
+    ctx.cookies.set('defaultUser', encodeURIComponent(user.extraname))
     ctx.cookies.set('defaultEmail', user.email)
     return ctx.redirect('/login/confirm')
   }
