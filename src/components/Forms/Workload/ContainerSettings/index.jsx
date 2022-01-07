@@ -33,7 +33,7 @@ import {
   endsWith,
 } from 'lodash'
 import React from 'react'
-import { generateId, getContainerGpu, resourceLimitKey } from 'utils'
+import { generateId, cancelContainerDot, resourceLimitKey } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import { getLeftQuota } from 'utils/workload'
 
@@ -518,11 +518,11 @@ export default class ContainerSetting extends React.Component {
     })
 
     _initContainers.forEach(item => {
-      getContainerGpu(item)
+      cancelContainerDot(item)
     })
 
     _containers.forEach(item => {
-      getContainerGpu(item)
+      cancelContainerDot(item)
     })
 
     set(this.fedFormTemplate, `${this.prefix}spec.containers`, _containers)

@@ -1111,17 +1111,6 @@ export const NODE_ROLE_TAG_TYPE = {
   worker: 'default',
 }
 
-export const MAPPER_GPU_SPEC_PATH = {
-  Deployment: 'spec.template.spec.containers',
-  StatefulSet: 'spec.template.spec.containers',
-  Job: 'spec.template.spec.containers',
-  CronJob: 'spec.jobTemplate.spec.template.spec.containers',
-  Federate_Deployment: 'spec.template.spec.template.spec.containers',
-  Federate_StatefulSet: 'spec.template.spec.template.spec.containers',
-  app_deployment: 'Deployment.spec.template.spec.containers',
-  app_workload: 'workload.spec.template.spec.containers',
-}
-
 export const OMIT_TOTAL_REPLICAS = kind => [
   `${kind}.spec.template.totalReplicas`,
   'totalReplicas',

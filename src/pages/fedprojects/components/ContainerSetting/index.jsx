@@ -29,7 +29,7 @@ import {
   Columns,
   Column,
 } from '@kube-design/components'
-import { omit, isEmpty, get } from 'lodash'
+import { isEmpty, get } from 'lodash'
 import { ResourceLimit } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 
@@ -39,26 +39,14 @@ import styles from './index.scss'
 export default class ContainerSetting extends Base {
   get defaultResourceLimit() {
     const { limitRanges = {} } = this.props
-    const gpu = {
-      type: '',
-      value: '',
-    }
 
     if (!limitRanges.limits && !limitRanges.requests) {
       return undefined
     }
 
-    const gpuInfo = omit(limitRanges.requests, ['cpu', 'memory'])
-
-    if (!isEmpty(gpuInfo)) {
-      gpu.type = Object.keys(gpuInfo)[0]
-      gpu.value = Object.values(gpuInfo)[0]
-    }
-
     return {
       requests: limitRanges.requests || {},
       limits: limitRanges.limits || {},
-      gpu,
     }
   }
 
