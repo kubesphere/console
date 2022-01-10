@@ -20,7 +20,8 @@ module.exports = {
   MONITORING_AND_ALERTING: '监控告警',
   // Banner
   CLUSTER_STATUS: '集群状态',
-  MONITORING_CLUSTER_DESC: '集群状态展示集群资源的概览和详情，您可以查看集群资源的监控数据和用量排行情况。',
+  MONITORING_CLUSTER_DESC:
+    '集群状态展示集群资源的概览和详情，您可以查看集群资源的监控数据和用量排行情况。',
   // Overview > Cluster Node Status
   CLUSTER_NODE_STATUS: '集群节点状态',
   ALL_NODES: '全部节点',
@@ -69,6 +70,7 @@ module.exports = {
   LAST_TIME_H: '最近 {num} 小时',
   LAST_TIME_D: '最近 {num} 天',
   TIMERANGE_SELECTOR_MSG: '结束时间需晚于开始时间。',
+  TIMERANGE_SELECTOR_ERROR_MSG: '请确认选择的时间范围是否合适！',
   PHYSICAL_RESOURCES_MONITORING: '物理资源监控',
   INODE_USAGE: 'Inode 用量',
   DISK_USAGE: '磁盘用量',
@@ -121,5 +123,5 @@ module.exports = {
   SORT_BY_NODE_LOAD1: '按 CPU 平均负载排行',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: '按内存用量排行',
   POD_USAGE: '容器组用量',
-  EXPORT: '导出'
-};
+  EXPORT: '导出',
+}

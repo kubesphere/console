@@ -77,6 +77,10 @@ export default class CustomRange extends React.Component {
 
   handleOk = () => {
     const { step, start, end } = this.formData
+    if (!start[0] || !end[0]) {
+      Notify.error({ content: t('TIMERANGE_SELECTOR_ERROR_MS') })
+      return
+    }
     const startTime = start[0].valueOf() / 1000
     const endTime = end[0].valueOf() / 1000
     const interval = endTime - startTime
