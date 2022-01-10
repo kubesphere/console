@@ -70,7 +70,7 @@ module.exports = {
   LAST_TIME_H: '最近 {num} 小时',
   LAST_TIME_D: '最近 {num} 天',
   TIMERANGE_SELECTOR_MSG: '结束时间需晚于开始时间。',
-  TIMERANGE_SELECTOR_ERROR_MSG: '请确认选择的时间范围是否合适！',
+  TIMERANGE_SELECTOR_ERROR_MSG: 'Please confirm whether the selected time range is appropriate!',
   PHYSICAL_RESOURCES_MONITORING: '物理资源监控',
   INODE_USAGE: 'Inode 用量',
   DISK_USAGE: '磁盘用量',
