@@ -168,7 +168,7 @@ export default class PolicyForm extends React.Component {
 
     const callback = () => {
       this.getData(this.props)
-      Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+      Notify.success({ content: t('UPDATE_SUCCESSFUL') })
     }
 
     if (!isEmpty(this.detail)) {
@@ -462,7 +462,7 @@ export default class PolicyForm extends React.Component {
         {this.renderPool()}
         {this.renderCircuit()}
         <div className="text-right margin-t12">
-          <Button onClick={this.handleCancel}>{t('Cancel')}</Button>
+          <Button onClick={this.handleCancel}>{t('CANCEL')}</Button>
           <Button
             type="primary"
             htmlType="submit"

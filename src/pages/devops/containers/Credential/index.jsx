@@ -100,7 +100,7 @@ class Credential extends React.Component {
   }
 
   get name() {
-    return 'DEVOPS_CREDENTIAL'
+    return 'CREDENTIAL'
   }
 
   handleCreate = () => {
@@ -128,7 +128,7 @@ class Credential extends React.Component {
       title: t('TYPE'),
       dataIndex: 'type',
       width: '25%',
-      render: type => t(type),
+      render: type => t(`CREDENTIAL_TYPE_${type.toUpperCase()}`),
     },
     {
       title: t('DESCRIPTION'),
@@ -137,7 +137,7 @@ class Credential extends React.Component {
       width: '25%',
     },
     {
-      title: t('CREATED_AT'),
+      title: t('CREATION_TIME_TCAP'),
       dataIndex: 'createTime',
       width: '20%',
       render: createTime =>
@@ -177,9 +177,9 @@ class Credential extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Banner
-          title={t('DEVOPS_CREDENTIAL_PL')}
+          title={t('CREDENTIAL_PL')}
           icon="key"
-          description={t('DEVOPS_PROJECT_CREDENTIALS_DESC')}
+          description={t('DEVOPS_CREDENTIALS_DESC')}
           module={this.module}
         />
         {this.renderContent()}

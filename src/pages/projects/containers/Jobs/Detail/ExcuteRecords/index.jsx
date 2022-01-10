@@ -77,7 +77,7 @@ class ExcuteRecords extends React.Component {
 
   getColumns = () => [
     {
-      title: t('No.'),
+      title: t('SN_NO'),
       dataIndex: 'id',
       width: '7%',
     },
@@ -88,7 +88,7 @@ class ExcuteRecords extends React.Component {
       render: (status, record) => (
         <Status
           type={status}
-          name={t(status)}
+          name={t(`JOB_${status.toUpperCase()}`)}
           ready={record.succeed}
           total={record.desire}
         />
@@ -163,6 +163,7 @@ class ExcuteRecords extends React.Component {
 
     return (
       <Table
+        rowKey="uid"
         className={styles.table}
         dataSource={data}
         columns={this.getColumns()}
@@ -175,7 +176,7 @@ class ExcuteRecords extends React.Component {
     return (
       <Card
         className={styles.main}
-        title={t('Execution Records')}
+        title={t('RUN_RECORDS')}
         operations={
           <Button icon="refresh" type="flat" onClick={this.handleRefresh} />
         }

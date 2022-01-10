@@ -79,13 +79,13 @@ export default class Chart extends React.Component {
         </div>
         <div className={styles.chartDetail}>
           <div>
-            {name} {tip && this.renderTip()}
+            <strong>{name}</strong> {tip && this.renderTip()}
           </div>
           <p className={styles.tag}>
-            {isNaN(data[0]) ? t('NO_DATA') : `${data[0]} ${unit}`}
+            {isNaN(data[0]) ? t('NO_DATA_SCAP') : `${data[0]} ${unit}`}
           </p>
           <p className={styles.tag}>
-            {isNaN(data[1]) ? t('NO_DATA') : `${data[1]} ${unit}`}
+            {isNaN(data[1]) ? t('NO_DATA_SCAP') : `${data[1]} ${unit}`}
           </p>
         </div>
       </div>

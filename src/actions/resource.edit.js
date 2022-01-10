@@ -29,7 +29,7 @@ export default {
         onOk: data => {
           store.patch(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             success && success()
           })
         },
@@ -53,7 +53,7 @@ export default {
             set(data, 'metadata.resourceVersion', detail.resourceVersion)
             await store.update(detail, data)
           }
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           Modal.close(modal)
           success && success()
         },

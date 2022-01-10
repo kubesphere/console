@@ -28,8 +28,11 @@ import {
   isEmpty,
   trimStart,
   isNumber,
-  omit,
   pick,
+  pickBy,
+  endsWith,
+  replace,
+  merge as _merge,
 } from 'lodash'
 import generate from 'nanoid/generate'
 import moment from 'moment-mini'
@@ -235,7 +238,9 @@ export const updateLabels = (template, module, value) => {
     set(formTemplate, 'spec.jobTemplate.metadata.labels', value)
   }
 
-  if (['ingresses', 'persistentvolumeclaims'].indexOf(module) === -1) {
+  if (
+    ['ingresses', 'persistentvolumeclaims', 'services'].indexOf(module) === -1
+  ) {
     set(formTemplate, 'spec.template.metadata.labels', value)
   }
 }
@@ -410,11 +415,17 @@ export const getWebSocketProtocol = protocol => {
   return 'ws'
 }
 
+export const getWebsiteUrl = () => {
+  const useLang = get(globals, 'user.lang', 'en')
+  const lang = useLang === 'zh' ? 'zh' : 'en'
+  return globals.config.documents[lang]
+}
+
 export const getDocsUrl = module => {
-  const { url: prefix } = globals.config.documents
+  const { url: prefix } = getWebsiteUrl()
   const docUrl = get(globals.config, `resourceDocs[${module}]`, '')
 
-  if (!docUrl || !globals.config.showOutSiteLink) {
+  if (!docUrl) {
     return ''
   }
 
@@ -436,7 +447,7 @@ export const getBrowserLang = () => {
     return 'en'
   }
 
-  return globals.config.defaultLang || 'en'
+  return get(globals, 'config.defaultLang', 'en')
 }
 
 export const toPromise = func =>
@@ -621,91 +632,108 @@ export const compareVersion = (v1 = '', v2 = '') => {
   return 0
 }
 
-export const getContainerGpu = item => {
-  if (!isEmpty(get(item, 'resources', undefined))) {
-    const gpu = get(item, 'resources.gpu', { type: '', value: '' })
-    item.resources.limits = pick(item.resources.limits, ['cpu', 'memory'])
-    if (gpu.type !== '') {
-      const value = isUndefined(gpu.value) ? '' : gpu.value
-      set(item, `resources.limits["${gpu.type}"]`, value)
-      set(item, `resources.requests["${gpu.type}"]`, value)
+export const cancel_Num_Dot = (spec, hard) => {
+  const units = ['ki', 'mi', 'gi', 'ti']
+  Object.keys(spec).forEach(key => {
+    const value = hard[key]
+    if (isNull(value)) {
+      hard[key] = ''
     }
-  }
+    if (!isString(value)) {
+      return
+    }
+    if (value.slice(-1) === '.') {
+      hard[key] = value.slice(0, -1)
+    }
+    const keyUnit = value.slice(-2).toLowerCase()
+    if (value.slice(-3, -2) === '.' && units.indexOf(keyUnit) > -1) {
+      hard[key] = `${value.slice(0, -3)}${value.slice(-2)}`
+    }
+  })
 }
 
-export const omitJobGpuLimit = (data, path) => {
-  const containers = get(data, path, [])
-  if (containers.length > 0) {
-    const newContainer = containers.map(item => {
-      const gpu = get(item, 'resources.gpu', {})
-      if (isEmpty(gpu)) {
-        return item
-      }
-      if (
-        isEmpty(gpu.type) ||
-        isEmpty(gpu.value) ||
-        isUndefined(gpu.type) ||
-        isUndefined(gpu.value)
-      ) {
-        const limits = get(item, 'resources.limits', {})
-        const requests = get(item, 'resources.requests', {})
-        set(item, 'resources.limits', omit(limits, `${gpu.type}`))
-        set(item, 'resources.requests', omit(requests, `${gpu.type}`))
-      }
-      return omit(item, 'resources.gpu')
+const deal_With_Dot = hard => {
+  const cpuAndMemory = pick(hard, resourceLimitKey)
+  cancel_Num_Dot(cpuAndMemory, hard)
+}
+
+export const cancelContainerDot = item => {
+  if (!isEmpty(get(item, 'resources', {}))) {
+    const cpuAndMemory = pick(item.resources, ['requests', 'limits'])
+    Object.keys(cpuAndMemory).forEach(key => {
+      cancel_Num_Dot(cpuAndMemory[key], item.resources[key])
     })
-    set(data, path, newContainer)
   }
 }
 
-export const getGpuFromRes = data => {
+export const LimitsEqualRequests = data => {
   if (data.length > 0) {
-    const gpu = omit(data[0].limit.default, ['cpu', 'memory'])
-    const gpuKey = Object.keys(gpu)[0]
-    if (isEmpty(gpu)) {
-      set(data[0].limit, 'gpu', {
-        type: '',
-        value: '',
-      })
-    } else {
-      data[0] = omit(data[0], [
-        `limit.default['${gpuKey}']`,
-        `limit.defaultRequest['${gpuKey}']`,
-      ])
-      set(data[0].limit, 'gpu', {
-        type: gpuKey,
-        value: Object.values(gpu)[0],
-      })
+    const limits = get(data, '[0].limit.default', {})
+    const requests = get(data, '[0].limit.defaultRequest', {})
+    const limitItem = key => get(limits, key, 0)
+    const reqItem = key => get(requests, key, 1)
+    if (limitItem('cpu') === reqItem('cpu')) {
+      set(data[0].limit, 'defaultRequest.cpu', undefined)
+    }
+    if (limitItem('memory') === reqItem('memory')) {
+      set(data[0].limit, 'defaultRequest.memory', undefined)
     }
   }
 }
 
-export const hrefControl = href => (globals.config.showOutSiteLink ? href : '')
-
-const html_key = 'props.dangerouslySetInnerHTML.__html'
-
-export function htmlLinkControl(item) {
-  const a_reg = /(?<=href=").*?(=")/g
-  const text = get(item, html_key, undefined)
-  if (!globals.config.showOutSiteLink) {
-    if (!isUndefined(text) && a_reg.test(text)) {
-      set(
-        item,
-        html_key,
-        text.replace(a_reg, `" style="pointer-events: none;" target="`)
-      )
+export const limits_Request_EndsWith_Dot = ({ limits, requests }) => {
+  const arr = [limits, requests]
+  const result = []
+  arr.forEach((item, index) => {
+    const tmp = {}
+    if (!isUndefined(get(item, 'cpu', undefined)) && item.cpu.endsWith('.')) {
+      set(tmp, 'cpu', trimEnd(item.cpu, '.'))
     }
-  }
-  return item
+    if (
+      !isUndefined(get(item, 'memory', undefined)) &&
+      item.memory.slice(0, item.memory.length - 2).endsWith('.')
+    ) {
+      set(tmp, 'memory', replace(item.memory, '.', ''))
+    }
+    result[index] = _merge(item, tmp)
+  })
+  return { limits: result[0], requests: result[1] }
 }
 
-export function learnMoreTip(item) {
-  const reg = /<a.+?>(.+)<\/a>/g
-  const text = get(item, html_key, undefined)
-  if (!globals.config.showOutSiteLink) {
-    if (!isUndefined(text) && reg.test(text)) {
-      set(item, html_key, text.replace(reg, ''))
-    }
-  }
-  return item
+export const multiCluster_overrides_Dot = overrides => {
+  overrides.forEach(clusterOverride => {
+    clusterOverride.clusterOverrides.forEach(item => {
+      if (item.path.endsWith('resources')) {
+        Object.keys(item.value).forEach(key => {
+          cancel_Num_Dot(item.value[key], item.value[key])
+        })
+      }
+    })
+  })
 }
+
+export const resourceLimitKey = [
+  'limits.cpu',
+  'limits.memory',
+  'requests.cpu',
+  'requests.memory',
+]
+
+const accessModeMapper = {
+  ReadWriteOnce: 'RWO',
+  ReadOnlyMany: 'ROX',
+  ReadWriteMany: 'RWX',
+}
+
+export const gpuLimitsArr = objData => {
+  const supportGpu = globals.config.supportGpuType
+  const gpusObj = pickBy(objData, (_, key) =>
+    supportGpu.some(type => endsWith(key, type))
+  )
+  return Object.keys(gpusObj).map(key => ({ [key]: gpusObj[key] }))
+}
+
+export const map_accessModes = accessModes =>
+  accessModes.map(item => accessModeMapper[item])
+
+export const quota_limits_requests_Dot = deal_With_Dot

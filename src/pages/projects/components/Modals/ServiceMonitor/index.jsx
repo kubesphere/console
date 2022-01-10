@@ -58,7 +58,7 @@ export default class ServiceMonitor extends Component {
       .fetchListByK8s({
         cluster,
         namespace,
-        labelSelector: joinSelector(detail.selector),
+        labelSelector: joinSelector(detail.labels),
       })
       .then(() => this.updateFormTemplate())
 
@@ -67,22 +67,32 @@ export default class ServiceMonitor extends Component {
 
   updateFormTemplate = () => {
     const { detail } = this.props
+
     if (this.store.list.data.length > 0) {
       const serviceMontor =
         this.store.list.data.find(item => item.name === detail.name) ||
         this.store.list.data[0]
+
       const formTemplate = toJS(serviceMontor._originData)
-      get(formTemplate, 'spec.endpoints', []).forEach(ep => {
-        if (ep.tlsConfig) {
-          ep.authType = 'tlsConfig'
-        } else if (ep.bearerTokenSecret) {
-          ep.authType = 'bearerTokenSecret'
-        } else if (ep.basicAuth) {
-          ep.authType = 'basicAuth'
-        } else {
-          ep.authType = ''
-        }
-      })
+      const endpoints = get(formTemplate, 'spec.endpoints', [])
+
+      if (endpoints.length > 0) {
+        endpoints.forEach(ep => {
+          if (ep.tlsConfig) {
+            ep.authType = 'tlsConfig'
+          } else if (ep.bearerTokenSecret) {
+            ep.authType = 'bearerTokenSecret'
+          } else if (ep.basicAuth) {
+            ep.authType = 'basicAuth'
+          } else {
+            ep.authType = ''
+          }
+        })
+
+        formTemplate.spec.interval = get(endpoints, '[0].interval')
+        formTemplate.spec.scrapeTimeout = get(endpoints, '[0].scrapeTimeout')
+      }
+
       this.setState({ formTemplate })
     }
   }
@@ -123,7 +133,7 @@ export default class ServiceMonitor extends Component {
     return (
       <Modal.Form
         icon="linechart"
-        title={t('Service Monitoring Exporter')}
+        title={t('SERVICE_MONITORING_EXPORTER')}
         width={960}
         data={formTemplate}
         visible={visible}
@@ -132,14 +142,14 @@ export default class ServiceMonitor extends Component {
         isSubmitting={isSubmitting}
       >
         <div className={styles.wrapper}>
-          <Form.Item label={t('Exporter Service Ports')}>
+          <Form.Item label={t('EXPORTER_SERVICE_PORTS')}>
             <ArrayInput
               className={styles.endpoints}
               name="spec.endpoints"
               defaultValue={this.defaultEndpoints}
               checkItemValid={this.checkItemValid}
               itemType="object"
-              addText={t('Add')}
+              addText={t('ADD')}
             >
               <Endpoint
                 detail={detail}
@@ -154,7 +164,7 @@ export default class ServiceMonitor extends Component {
             <Columns>
               <Column>
                 <Form.Item
-                  label={t('Scrap Interval(min)')}
+                  label={t('SCRAPE_INTERVAL_MIN')}
                   desc={t('SCRAP_INTERVAL_DESC')}
                 >
                   <NumberInput

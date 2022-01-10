@@ -42,7 +42,7 @@ export default class VolumeDetail extends React.Component {
   }
 
   get name() {
-    return 'PV'
+    return 'VOLUME_INSTANCE'
   }
 
   get module() {
@@ -71,24 +71,24 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
     },
     {
-      key: 'editYaml',
-      icon: 'pen',
-      text: t('EDIT_YAML'),
-      action: 'edit',
+      key: 'viewYaml',
+      icon: 'eye',
+      text: t('VIEW_YAML'),
+      action: 'view',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
           detail: this.store.detail,
-          success: this.fetchData,
+          readOnly: true,
         }),
     },
     {
@@ -97,10 +97,11 @@ export default class VolumeDetail extends React.Component {
       text: t('DELETE'),
       action: 'delete',
       type: 'danger',
-      disabled: get(this.store.detail, 'phase') === 'Bound',
+      disabled:
+        ['Bound', 'Released'].indexOf(get(this.store.detail, 'phase')) > -1,
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.returnTolist,
         }),
@@ -111,14 +112,15 @@ export default class VolumeDetail extends React.Component {
     const { detail = {} } = this.store
     const {
       createTime,
-      creator,
       phase,
       storageClassName,
-      storageProvisioner,
+      volumeHandle,
       persistentVolumeReclaimPolicy,
-      accessMode = '-',
+      accessModes = ['-'],
+      capacity,
+      volumeMode,
     } = detail
-    if (isEmpty(detail)) return null
+    if (isEmpty(toJS(detail))) return null
 
     return [
       {
@@ -130,28 +132,32 @@ export default class VolumeDetail extends React.Component {
         ),
       },
       {
-        name: t('ACCESS_MODE_TCAP'),
-        value: accessMode,
+        name: t('CAPACITY'),
+        value: capacity,
       },
       {
-        name: t('Storage Classes'),
+        name: t('ACCESS_MODE_TCAP'),
+        value: accessModes.join(','),
+      },
+      {
+        name: t('STORAGE_CLASS'),
         value: storageClassName,
       },
       {
-        name: t('PROVISIONER'),
-        value: storageProvisioner,
+        name: t('volumeHandle'),
+        value: volumeHandle,
       },
       {
         name: t('RECLAIM_POLICY'),
         value: persistentVolumeReclaimPolicy,
       },
       {
-        name: t('CREATED_AT'),
-        value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
+        name: t('volumeMode'),
+        value: volumeMode,
       },
       {
-        name: t('CREATOR'),
-        value: creator,
+        name: t('CREATION_TIME_TCAP'),
+        value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
   }
@@ -177,7 +183,7 @@ export default class VolumeDetail extends React.Component {
       icon: 'storage',
       breadcrumbs: [
         {
-          label: t('PV'),
+          label: t('VOLUME_INSTANCE_PL'),
           url: this.listUrl,
         },
       ],

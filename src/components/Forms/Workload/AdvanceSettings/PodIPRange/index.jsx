@@ -47,7 +47,7 @@ export default class PodIPRange extends Component {
         details: [
           {
             label: item.cidr,
-            description: t('NETWORK_SEGMENT'),
+            description: t('NETWORK_SEGMENT_SCAP'),
           },
           {
             label: get(item, 'status.unallocated'),

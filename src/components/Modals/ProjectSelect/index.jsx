@@ -99,14 +99,14 @@ export default class ProjectSelectModal extends React.Component {
   get types() {
     const types = [
       {
-        label: t('Projects'),
+        label: t('PROJECT_PL'),
         value: 'projects',
       },
     ]
 
     if (globals.app.isMultiCluster) {
       types.push({
-        label: t('Multi-cluster Projects'),
+        label: t('MULTI_CLUSTER_PROJECT_PL'),
         value: 'federatedprojects',
       })
     }
@@ -173,10 +173,8 @@ export default class ProjectSelectModal extends React.Component {
       onChange(`/${workspace}/clusters/${cluster}/projects/${item.name}`)
     } else if (this.state.type === 'federatedprojects') {
       onChange(`/${workspace}/federatedprojects/${item.name}`)
-    } else {
-      item.namespace && cluster
-        ? onChange(`/${workspace}/clusters/${cluster}/devops/${item.namespace}`)
-        : null
+    } else if (item.namespace && cluster) {
+      onChange(`/${workspace}/clusters/${cluster}/devops/${item.namespace}`)
     }
   }
 

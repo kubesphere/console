@@ -72,7 +72,7 @@ export default class ContainersMapper extends Component {
     onChange()
   }
 
-  getContainer({ port }) {
+  getContainer(port) {
     const { cluster, formTemplate } = this.props
 
     const prefix = `/spec/ports`
@@ -82,7 +82,7 @@ export default class ContainersMapper extends Component {
         item => item.clusterName === cluster
       ) || {}
 
-    const containerTemplate = { path: prefix, value: [port] }
+    const containerTemplate = { path: prefix, value: port }
 
     if (override && !isEmpty(override.clusterOverrides)) {
       override.clusterOverrides.forEach(item => {
@@ -109,27 +109,22 @@ export default class ContainersMapper extends Component {
     return { clusterName: cluster, ports: pots }
   }
 
-  renderContainer = (port, index) => {
+  renderContainer = formData => {
     const { children, selected } = this.props
     const { editContainer } = this.state
-    const containerTemplate = this.getContainer({
-      port,
-    })
 
     return (
       <div
-        key={port.name}
+        key={formData.name}
         className={classNames(styles.wrapper, {
           [styles.selected]: selected,
         })}
       >
         {children({
           ...this.props,
-          index,
-          key: index,
           containerType: 'worker',
-          formData: containerTemplate,
-          isEdit: editContainer === containerTemplate.clusterName,
+          formData,
+          isEdit: editContainer === formData.clusterName,
           showEdit: this.showEdit,
           onEdit: this.handleEdit,
         })}
@@ -141,13 +136,8 @@ export default class ContainersMapper extends Component {
     const { formTemplate } = this.props
 
     const ports = get(formTemplate, 'spec.template.spec.ports', [])
+    const containerPort = this.getContainer(ports)
 
-    return (
-      <>
-        {ports.map((port, index) =>
-          this.renderContainer(port, index, 'worker')
-        )}
-      </>
-    )
+    return <>{this.renderContainer(containerPort, 'worker')}</>
   }
 }

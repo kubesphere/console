@@ -30,6 +30,7 @@ import {
   TextArea,
 } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import { toJS } from 'mobx'
 
 import {
   CLUSTER_GROUP_TAG_TYPE,
@@ -62,7 +63,7 @@ export default class EditBasicInfoModal extends React.Component {
         'metadata.labels["topology.kubernetes.io/region"]',
         ''
       ),
-      formData: copy(props.detail._originData),
+      formData: copy(toJS(props.detail._originData)),
     }
   }
 
@@ -126,7 +127,7 @@ export default class EditBasicInfoModal extends React.Component {
         description={t('EDIT_CLUSTER_INFO_DESC')}
         icon="cluster"
         onOk={this.handleOk}
-        okText={t('Update')}
+        okText={t('OK')}
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}

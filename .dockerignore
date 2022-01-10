@@ -1,4 +1,0 @@
-**
-!dist
-!server/(locales|public|sample|views|config.yaml)
-!package.json

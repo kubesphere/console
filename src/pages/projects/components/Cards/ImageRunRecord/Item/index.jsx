@@ -57,7 +57,7 @@ export default class ImageBuilderLastRun extends React.Component {
       } else {
         this.store.logData.isLoading = false
         this.setState({
-          noModuleMsg: t('The logging module is not installed.'),
+          noModuleMsg: t('LOG_MODULE_NOT_INSTALLED'),
         })
       }
     } else {
@@ -138,7 +138,7 @@ export default class ImageBuilderLastRun extends React.Component {
     return (
       <div className={styles.logContent} onClick={this.stopPropagation}>
         <pre ref={this.LogContent}>
-          {noModuleMsg || log || t('Log is loading...')}
+          {noModuleMsg || log || t('LOADING_DOTS')}
         </pre>
       </div>
     )
@@ -164,7 +164,7 @@ export default class ImageBuilderLastRun extends React.Component {
 
     const content = (
       <div className={styles.artifactContent}>
-        <p className={styles.title}>{'Artifact files'}</p>
+        <p className={styles.title}>{t('ARTIFACT_FILE')}</p>
         <div className={styles.info}>
           <Icon name="file" />
           <p>
@@ -211,7 +211,7 @@ export default class ImageBuilderLastRun extends React.Component {
           <div className={styles.value}>
             #{count} {this.renderDetailInfo()}
           </div>
-          <div className={styles.label}>{t('Build Times')}</div>
+          <div className={styles.label}>{t('SERIAL_NUMBER')}</div>
         </li>
         <li>
           <div className={styles.value}>
@@ -226,19 +226,19 @@ export default class ImageBuilderLastRun extends React.Component {
         </li>
         <li>
           <div className={styles.value}>{imageName}</div>
-          <div className={styles.label}>{t('ImageName')}</div>
+          <div className={styles.label}>{t('IMAGE_NAME_SCAP')}</div>
         </li>
         <li>
           <div className={styles.value}>
             {getLocalTime(startTime).format('YYYY-MM-DD HH:mm:ss')}
           </div>
-          <div className={styles.label}>{t('StartTime')}</div>
+          <div className={styles.label}>{t('START_TIME_SCAP')}</div>
         </li>
         <li>
           <div className={styles.value}>
-            {t(`${t('IMAGE')}: ${name} ${t(`S2I_${status}`)}`)}
+            {t(`IMAGE_NAME_${status.toUpperCase()}`, { name })}
           </div>
-          <div className={styles.label}>{t('Last Message')}</div>
+          <div className={styles.label}>{t('LAST_MESSAGE_SCAP')}</div>
         </li>
         <Icon className={styles.icon} name="chevron-down" />
         {this.renderLog()}

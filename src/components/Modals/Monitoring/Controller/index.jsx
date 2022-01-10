@@ -22,6 +22,8 @@ import PropTypes from 'prop-types'
 import { Controller as Base } from 'components/Cards/Monitoring'
 import { Button, Icon, Loading } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import { get } from 'lodash'
+import { stopAutoRefresh } from 'utils/monitoring'
 
 import styles from './index.scss'
 
@@ -53,6 +55,19 @@ export default class MonitoringModalController extends Base {
 
   init() {
     this.initParams(this.props)
+  }
+
+  handleChange = data => {
+    const updateMonitorOptions = get(this.props, 'updateMonitorOptions', false)
+    this.params = data
+    updateMonitorOptions && this.props.updateMonitorOptions(data)
+
+    const enableAutoRefresh =
+      !data.start && !data.end && this.props.enableAutoRefresh
+    this.setState({ enableAutoRefresh, autoRefresh: false }, () => {
+      stopAutoRefresh(this)
+      this.fetchData()
+    })
   }
 
   renderCustomActions() {

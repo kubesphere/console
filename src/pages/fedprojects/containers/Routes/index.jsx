@@ -26,10 +26,10 @@ import { getLocalTime, getDisplayName, getDocsUrl } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
 import FederatedStore from 'stores/federated'
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
 
 @withProjectList({
-  store: new FederatedStore(new RouterStore()),
+  store: new FederatedStore(new IngressStore()),
   module: 'ingresses',
   name: 'ROUTE',
 })
@@ -54,7 +54,7 @@ export default class Routers extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item => {
           trigger('resource.baseinfo.edit', {
@@ -75,7 +75,7 @@ export default class Routers extends React.Component {
       {
         key: 'editRules',
         icon: 'firewall',
-        text: t('Edit Rules'),
+        text: t('EDIT_ROUTING_RULES'),
         action: 'edit',
         onClick: async item => {
           const detail = await this.props.store.fetchDetail(item)
@@ -89,7 +89,7 @@ export default class Routers extends React.Component {
       {
         key: 'editAnnotations',
         icon: 'firewall',
-        text: t('Edit Annotations'),
+        text: t('EDIT_ANNOTATIONS'),
         action: 'edit',
         onClick: async item => {
           const detail = await this.props.store.fetchDetail(item)
@@ -139,13 +139,13 @@ export default class Routers extends React.Component {
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         width: '22%',
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 150,

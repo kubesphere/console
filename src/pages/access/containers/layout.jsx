@@ -40,8 +40,7 @@ class AccessLayout extends Component {
               <Icon name="key" size={40} type="light" />
             </div>
             <div className={styles.text}>
-              <div className="h6">{t('Access Control')}</div>
-              <p>{t('Platform-level Access Control')}</p>
+              <div className="h6">{t('ACCESS_CONTROL')}</div>
             </div>
           </div>
           <Nav

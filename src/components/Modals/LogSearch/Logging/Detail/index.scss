@@ -96,22 +96,21 @@ $titleHeight: 30px;
       @at-root {
         .toolbar {
           &.pollingMode {
-            grid-template-columns: 1fr 32px 130px 32px;
+            grid-template-columns: 1fr 32px 160px 32px;
           }
           padding: 8px 20px;
           line-height: 32px;
           border-radius: 4px;
           box-shadow: 0 1px 0 0 #182236;
           display: grid;
-          grid-template-columns: 230px 1fr 32px 130px 32px;
+          grid-template-columns: 230px 1fr 32px 160px 32px;
           grid-column-gap: 8px;
           @at-root {
             .frequencyOpts {
-              border: solid 1px #182236;
               border-radius: 3px;
+              background-color: $dark-color06;
               :global {
                 .select-control {
-                  background-color: #242e42;
                   color: inherit;
                   font-weight: 400;
                   border: none;
@@ -131,30 +130,39 @@ $titleHeight: 30px;
                 .select-menu {
                   padding: 0;
                 }
+                .kubed-icon {
+                  color: rgba(255, 255, 255, 0.9);
+                  fill: rgba(255, 255, 255, 0.4);
+                }
               }
             }
             .pollingBtn {
               display: flex;
               align-items: center;
               justify-content: center;
-              border: solid 1px #182236;
-              border-radius: 2px;
-              background-color: #242e42;
+              border-radius: 4px;
+              background-color: $dark-color06;
               width: 32px;
               text-align: center;
               height: 32px;
               cursor: pointer;
+              :global {
+                .tooltip-content {
+                  font-weight: 600;
+                }
+              }
             }
             .duration {
               border-radius: 4px;
-              background-color: #2a354b;
+              background-color: $dark-color06;
+              font-weight: 600;
             }
             .clearQuery {
               cursor: pointer;
             }
             .input {
               border-radius: 4px;
-              background-color: #2a354b;
+              background-color: $dark-color06;
               align-items: center;
               display: flex;
               padding: 0 8px;
@@ -165,6 +173,7 @@ $titleHeight: 30px;
                 outline: none;
                 border: none;
                 flex: 1;
+                font-weight: 600;
               }
             }
           }

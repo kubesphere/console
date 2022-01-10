@@ -93,7 +93,7 @@ export default class WorkloadSelect extends React.Component {
             <RadioButton value="statefulsets">
               {t('STATEFULSET_PL')}
             </RadioButton>
-            <RadioButton value="daemonsets">{t('STATEFULSET_PL')}</RadioButton>
+            <RadioButton value="daemonsets">{t('DAEMONSET_PL')}</RadioButton>
           </RadioGroup>
           <div className={styles.workloads}>
             <ScrollLoad

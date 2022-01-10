@@ -1,3 +1,5 @@
+@import '~scss/variables';
+
 .selectWrapper {
   display: flex;
   align-items: center;
@@ -28,16 +30,25 @@
   }
 }
 
-.customSelect {
-  display: flex;
-  padding: 8px 12px;
-  border-top: 1px solid #36435c;
-  :global {
-    input.input {
-      background-color: transparent;
-      border-color: #36435c;
-      flex: 1;
-      color: #fff;
+.optionsContainer {
+  position: relative;
+
+  .optionsList {
+    max-height: 175px;
+    overflow-y: auto;
+  }
+
+  .customSelect {
+    display: flex;
+    padding: 8px 12px;
+    border-top: 1px solid $dark-color02;
+    :global {
+      input.input {
+        background-color: transparent;
+        border-color: $dark-color04;
+        flex: 1;
+        color: #fff;
+      }
     }
   }
 }
@@ -48,11 +59,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #36435c;
+  border: 1px solid $dark-color04;
   border-radius: 4px;
   margin-left: 8px;
   cursor: pointer;
   &:hover {
-    background-color: #36435c;
+    background-color: $dark-color06;
   }
 }

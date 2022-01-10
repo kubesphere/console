@@ -114,7 +114,7 @@ export default class BoxInput extends React.Component {
         <div className={styles.inputWrapper}>
           {this.renderInput()}
           <Button className="margin-l12" onClick={this.handleAdd}>
-            {t('Add')}
+            {t('ADD')}
           </Button>
         </div>
       </div>

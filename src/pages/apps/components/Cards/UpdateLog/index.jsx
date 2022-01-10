@@ -35,9 +35,9 @@ export default class UpdateLog extends React.PureComponent {
 
     return (
       <div className={styles.main}>
-        <div className={styles.title}>{t('Update Log')}</div>
+        <div className={styles.title}>{t('UPDATE_LOG')}</div>
         <pre className={styles.updateLog}>
-          {description || t('No update log')}
+          {description || t('NO_UPDATE_LOG_DESC')}
         </pre>
       </div>
     )

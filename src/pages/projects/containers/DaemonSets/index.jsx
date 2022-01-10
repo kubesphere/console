@@ -61,7 +61,7 @@ export default class DaemonSets extends React.Component {
         },
         {
           value: 'daemonsets',
-          label: t('STATEFULSETS'),
+          label: t('DAEMONSETS'),
         },
       ],
     }
@@ -73,7 +73,7 @@ export default class DaemonSets extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -93,7 +93,7 @@ export default class DaemonSets extends React.Component {
       {
         key: 'redeploy',
         icon: 'restart',
-        text: t('REDEPLOY'),
+        text: t('RECREATE'),
         action: 'edit',
         onClick: item =>
           trigger('workload.redeploy', {
@@ -185,7 +185,7 @@ export default class DaemonSets extends React.Component {
         ),
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

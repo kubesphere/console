@@ -241,14 +241,14 @@ export default class FormsBox extends React.Component {
     return (
       <div className={styles.footer}>
         <div>
-          <Button onClick={this.props.onCancel}>{t('Cancel')}</Button>
+          <Button onClick={this.props.onCancel}>{t('CANCEL')}</Button>
           <Button
             type="control"
             disabled={isEmpty(updatedTabs)}
             loading={this.props.isSubmitting}
             onClick={this.handleSubmit}
           >
-            {t('Confirm')}
+            {t('OK')}
           </Button>
         </div>
       </div>

@@ -41,7 +41,7 @@ export default class EditConfigTemplateModal extends React.Component {
 
     return (
       <EditModal
-        title="Edit Config Template"
+        title="EDIT_SETTINGS"
         icon="storage"
         module={module}
         forms={this.forms}

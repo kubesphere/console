@@ -24,6 +24,7 @@ import { ReactComponent as Alarm } from 'assets/alarm-object.svg'
 import GatewayMonitor from 'stores/monitoring/gateway'
 
 import { isEmpty, get } from 'lodash'
+import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
 import TimeSelector from '../TimeSelector'
 import styles from './index.scss'
 
@@ -54,7 +55,7 @@ export default class MonitoringOverview extends React.Component {
   monitorStore = new GatewayMonitor({ cluster: this.cluster })
 
   componentDidMount() {
-    this.fetchMetrics(this.props.match.params)
+    this.fetchData(this.props.match.params)
   }
 
   get detail() {
@@ -63,7 +64,7 @@ export default class MonitoringOverview extends React.Component {
 
   handleChange = duration => {
     this.setState({ duration }, () => {
-      this.fetchMetrics()
+      this.fetchData()
     })
   }
 
@@ -71,7 +72,7 @@ export default class MonitoringOverview extends React.Component {
     this.setState({ errorType: value })
   }
 
-  fetchMetrics = async params => {
+  fetchData = async params => {
     const { duration } = this.state
 
     this.setState({ isLoading: true })
@@ -102,11 +103,24 @@ export default class MonitoringOverview extends React.Component {
           const num =
             typeof _num === 'string' && _num.indexOf('.') > -1
               ? Number(_num).toFixed(4)
+              : isNaN(Number(_num))
+              ? 0
               : _num
           data[item['metric_name']] = num
         })
       return data
     }
+  }
+
+  handleAutoRefresh = () => {
+    this.setState({ autoRefresh: !this.state.autoRefresh }, () => {
+      const { autoRefresh } = this.state
+      autoRefresh ? startAutoRefresh(this) : stopAutoRefresh(this)
+    })
+  }
+
+  handleRefresh = () => {
+    this.fetchData()
   }
 
   renderAutoRefresh = () => {
@@ -191,7 +205,7 @@ export default class MonitoringOverview extends React.Component {
             <div className={styles.item}>
               <Icon name="gateway" size={56}></Icon>
               <div>
-                <p>{t('Total Requests')}</p>
+                <p>{t('TOTAL_REQUESTS')}</p>
                 <span>{this.getMetricsData('ingress_request_count')}</span>
               </div>
             </div>
@@ -203,11 +217,11 @@ export default class MonitoringOverview extends React.Component {
                   value={errorType}
                   options={[
                     {
-                      label: t('Request 4xx'),
+                      label: t('FOUR_XX_REQUEST_COUNT'),
                       value: 'ingress_request_4xx_count',
                     },
                     {
-                      label: t('Request 5xx'),
+                      label: t('FIVE_XX_REQUEST_COUNT'),
                       value: 'ingress_request_5xx_count',
                     },
                   ]}
@@ -223,17 +237,19 @@ export default class MonitoringOverview extends React.Component {
               width={200}
               height={200}
               title=""
-              value={this.getMetricsData('ingress_success_rate') * 100}
+              value={`${(
+                this.getMetricsData('ingress_success_rate') * 100
+              ).toFixed(2)}`}
               total={100}
               unit="%"
               innerRadius="80%"
-              legend={['Request Success', 'Total']}
+              legend={['SUCCESSFUL_REQUESTS', 'TOTAL']}
               showCenter={true}
               showRate={false}
               areaColors={['#55BC8A', '#E3E9EF']}
               renderCustomCenter={({ value }) => (
                 <div className={styles.simpleContent}>
-                  <p>{t('Request success rate')}</p>
+                  <p>{t('SUCCESSFUL_REQUESTS')}</p>
                   <span>{value}%</span>
                 </div>
               )}
@@ -245,28 +261,36 @@ export default class MonitoringOverview extends React.Component {
                 <Alarm />
               </span>
               <div>
-                <p>{t('Duration Average')}</p>
+                <p>{t('AVERAGE_LATENCY')}</p>
                 <span>
-                  {this.getMetricsData('ingress_request_duration_average')}
+                  {`${this.getMetricsData(
+                    'ingress_request_duration_average'
+                  )} ms`}
                 </span>
               </div>
             </div>
             <div className={styles.itemSmall}>
-              <span>{t('Duration 50percentage')}</span>
+              <span>{t('P_FIFTY_LATENCY')}</span>
               <span>
-                {this.getMetricsData('ingress_request_duration_50percentage')}
+                {`${this.getMetricsData(
+                  'ingress_request_duration_50percentage'
+                )} ms`}
               </span>
             </div>
             <div className={styles.itemSmall}>
-              <span>{t('Duration 95percentage')}</span>
+              <span>{t('P_NINETY_FIVE_LATENCY')}</span>
               <span>
-                {this.getMetricsData('ingress_request_duration_95percentage')}
+                {`${this.getMetricsData(
+                  'ingress_request_duration_95percentage'
+                )} ms`}
               </span>
             </div>
             <div className={styles.itemSmall}>
-              <span>{t('Duration 99percentage')}</span>
+              <span>{t('P_NINETY_NINE_LATENCY')}</span>
               <span>
-                {this.getMetricsData('ingress_request_duration_99percentage')}
+                {`${this.getMetricsData(
+                  'ingress_request_duration_99percentage'
+                )} ms`}
               </span>
             </div>
           </div>

@@ -20,9 +20,12 @@ export const DEFAULT_QUERY_STATUS =
   'draft|submitted|rejected|in-review|passed|active|suspended'
 
 export const STATUS_TRANSFER_MAP = {
-  active: 'published',
+  active: 'active',
   suspended: 'recalled',
   suspend: 'recall',
+  submitted: 'submitted',
+  passed: 'passed',
+  developing: 'developing',
 }
 
 export const STATUS_TO_ICON = {
@@ -61,12 +64,12 @@ export const HANDLE_TYPE_TO_SHOW = {
 }
 
 export const ACTION_TO_NAME = {
-  submit: 'Submit for Review',
-  cancel: 'Cancel Review',
-  release: 'Release to Store',
-  view: 'View in Store',
-  suspend: 'Suspend Version',
-  recover: 'Activate Version',
+  submit: 'SUBMIT_FOR_RELEASE',
+  cancel: 'CANCEL_SUBMISSION',
+  release: 'RELEASE_TO_STORE',
+  view: 'VIEW_IN_STORE',
+  suspend: 'SUSPEND_VERSION',
+  recover: 'ACTIVATE_VERSION',
 }
 
 export const REVIEW_PASS_ACTIONS = [

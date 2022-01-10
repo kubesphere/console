@@ -74,7 +74,7 @@ export default class MultipleDataModal extends React.Component {
   }
 
   get name() {
-    return 'Pods'
+    return 'POD_PL'
   }
 
   get metrics() {

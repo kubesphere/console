@@ -91,7 +91,7 @@ export default class SearchBar extends React.Component {
   get currentParamText() {
     const { dropDownItems, params } = this.props
     return params.nextParamsKey === '_time'
-      ? t('Time Range')
+      ? t('TIME_RANGE_SCAP')
       : get(dropDownItems, `${params.nextParamsKey}.text`)
   }
 
@@ -250,6 +250,7 @@ export default class SearchBar extends React.Component {
           times={this.durationTimes}
           onSubmit={this.handleTimeChange}
           onCancel={this.cancelChangeTime}
+          showStep={this.props.showStep}
         />
       </div>
     )
@@ -260,10 +261,12 @@ export default class SearchBar extends React.Component {
     return start ? (
       <span className={styles.param} key={'_duration'}>
         <span>
-          {t('Time Range')}:
           {durationAlias
-            ? `${t('Last')} ${getTimeLabel(durationAlias)}`
-            : `${getDateStr(start)} ~ ${getDateStr(end)}`}
+            ? t('TIME_RANGE_LAST', { value: getTimeLabel(durationAlias) })
+            : t('TIME_RANGE_RANGE', {
+                startTime: getDateStr(start),
+                endTime: getDateStr(end),
+              })}
         </span>
         <span onClick={this.removeParamsDuration}>
           <Icon name="close" className={styles.removeParam} type="light" />
@@ -300,7 +303,7 @@ export default class SearchBar extends React.Component {
         {this.renderFilterKey()}
         <input
           type="text"
-          placeholder={t('Please enter a filter to search for logs.')}
+          placeholder={t('SEARCH')}
           value={this.searchWord}
           ref={this.inputRef}
           disabled={this.showDurationDropDown}
@@ -315,9 +318,15 @@ export default class SearchBar extends React.Component {
   }
 
   renderDropdownContent() {
-    const { dropDownItems, enableTimeDuration } = this.props
+    const {
+      dropDownItems,
+      enableTimeDuration,
+      dropdownClass,
+      iconThem,
+    } = this.props
+
     return (
-      <div className={styles.dropdown}>
+      <div className={classnames(styles.dropdown, dropdownClass)}>
         {Object.entries(dropDownItems).map(([query, options]) => (
           <div
             className={styles.dropdownItem}
@@ -329,7 +338,7 @@ export default class SearchBar extends React.Component {
               {options.imgUrl ? (
                 <img height="100%" src={options.imgUrl} />
               ) : (
-                <Icon name={options.icon} />
+                <Icon name={options.icon} type={iconThem || 'dark'} />
               )}
             </span>
             <span>{options.text}</span>
@@ -344,7 +353,7 @@ export default class SearchBar extends React.Component {
             <span className={styles.icon}>
               <Icon name="clock" />
             </span>
-            <span>{t('Time Range')}</span>
+            <span>{t('TIME_RANGE_SCAP')}</span>
           </div>
         )}
       </div>

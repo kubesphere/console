@@ -124,6 +124,8 @@ export default class RuleInfo extends React.Component {
     this.trigger('network.policies.delete', {
       ...this.props,
       ruleName,
+      resource: ruleName,
+      type: 'ALLOWLIST_ENTRY',
       success: this.fetchPolicies,
     })
   }
@@ -170,7 +172,10 @@ export default class RuleInfo extends React.Component {
                 curProjectEl = (
                   <span className={styles.pcell}>
                     <Icon name="project" />
-                    <b>{serviceProjectName}</b>
+                    <b>
+                      {serviceProjectName}
+                      <span>({get(item, 'metadata.name')})</span>
+                    </b>
                     <label>
                       {!isEmpty(projectDescription) &&
                         `(${projectDescription})`}
@@ -181,7 +186,9 @@ export default class RuleInfo extends React.Component {
               return (
                 <span className={styles.cell} key={showName}>
                   <Icon name={iconCls} />
-                  <b>{showName}</b>
+                  <b>
+                    {showName} (<span>{get(item, 'metadata.name')}</span>)
+                  </b>
                   <label>{!isEmpty(description) && `(${description})`}</label>
                   {curProjectEl}
                 </span>
@@ -287,7 +294,7 @@ export default class RuleInfo extends React.Component {
             <div>{t('INTERNAL_ALLOWLIST_TIP')}</div>
             {canEdit && (
               <Button type="control" onClick={this.addAllowList}>
-                {t('ADD_ALLOWLIST')}
+                {t('ADD_ALLOWLIST_ENTRY')}
               </Button>
             )}
           </div>
@@ -298,9 +305,7 @@ export default class RuleInfo extends React.Component {
               })}
             >
               <div className={styles.subtitle}>{t('EGRESS')}</div>
-              <div className={styles.disp}>
-                {t('NETWORK_POLICY_EGRESS_DESC')}
-              </div>
+              <div className={styles.disp}>{t('INTERNAL_EGRESS_DESC')}</div>
               {this.renderRules(innerEgressData, 'egress')}
             </div>
             <div
@@ -309,9 +314,7 @@ export default class RuleInfo extends React.Component {
               })}
             >
               <div className={styles.subtitle}>{t('INGRESS')}</div>
-              <div className={styles.disp}>
-                {t('NETWORK_POLICY_INGRESS_DESC')}
-              </div>
+              <div className={styles.disp}>{t('INTERNAL_INGRESS_DESC')}</div>
               {this.renderRules(innerIngressData, 'ingress')}
             </div>
           </div>
@@ -321,7 +324,7 @@ export default class RuleInfo extends React.Component {
             <div>{t('EXTERNAL_ALLOWLIST_TIP')}</div>
             {canEdit && (
               <Button type="control" onClick={this.addIpBlock}>
-                {t('ADD_ALLOWLIST')}
+                {t('ADD_ALLOWLIST_ENTRY')}
               </Button>
             )}
           </div>
@@ -332,9 +335,7 @@ export default class RuleInfo extends React.Component {
               })}
             >
               <div className={styles.subtitle}>{t('EGRESS')}</div>
-              <div className={styles.disp}>
-                {t('NETWORK_POLICY_EGRESS_DESC')}
-              </div>
+              <div className={styles.disp}>{t('EXTERNAL_EGRESS_DESC')}</div>
               {this.renderIpRules(outerEgressData, 'egress')}
             </div>
             <div
@@ -343,9 +344,7 @@ export default class RuleInfo extends React.Component {
               })}
             >
               <div className={styles.subtitle}>{t('INGRESS')}</div>
-              <div className={styles.disp}>
-                {t('NETWORK_POLICY_INGRESS_DESC')}
-              </div>
+              <div className={styles.disp}>{t('EXTERNAL_INGRESS_DESC')}</div>
               {this.renderIpRules(outerIngressData, 'ingress')}
             </div>
           </div>

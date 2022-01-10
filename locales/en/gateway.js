@@ -17,48 +17,26 @@
  */
 
 module.exports = {
-  GATEWAY_SETTING: 'Gateway Settings',
-  GATEWAY_DESC:
-    'Set up and manage the configuration of the external network access gateway and service management in the cluster and project',
-  CLUSTER_GATEWAY: 'Cluster Gateway',
-  PROJECT_GATEWAY: 'Project Gateway',
-  CLUSTER_GATEWAYS_SETTING_DESC:
-    'Before creating an application route, you need to enable the external network access portal, that is, the gateway. This step is to create the corresponding application routing controller, which is responsible for forwarding the request to the corresponding back-end service. ',
-  PROJECT_GATEWAYS_SETTING_DESC:
-    'The cluster management page does not support the setting of the project gateway. If you need to set it, you need to go to the corresponding project to set it. ',
-  'Cluster Gateway Not Set': 'Cluster Gateway Not Set',
-  'Project Gateway Not Set': 'Project Gateway Not Set',
+  CLUSTER_GATEWAY_LOW: 'cluster gateway',
+
   'Gateway Not Set': 'Gateway Not Set',
-  'View Gateway': 'View Gateway',
   'Set Gateway': 'Set Gateway',
-  'Edit Gateway': 'Edit Gateway',
+  EDIT_GATEWAY: 'Edit Gateway',
   'Update Gateway': 'Update Gateway',
+
   'Gateway Config': 'Gateway Config',
+
   'Add Gateway Config': 'Add Gateway Config',
-  'LoadBalancer Support': 'LoadBalancer Provider',
-  'Use default annotations': 'Use default annotations',
+
+  USE_DEFAULT_ANNOTATIONS: 'Use Default Annotations',
   GATEWAY_IP: 'Access address',
-  UPDATE_GATEWAY_DESC: 'The current gateway can be upgraded',
-  DISK_LOG_COLLECTION_TITLE: 'Order log',
-  DISK_LOG_COLLECTION_DESC:
-    'The placing logs in the container are collected and forwarded to the standard output, and then collected by the log collection system. ',
+
   UPDATED_GATEWAY_DESC:
     'Please operate during the low peak period of the business. The upgrade process may cause a short business interruption. ',
   UPDATED_GATEWAY_TITLE: 'Confirm to upgrade the gateway?',
-  CLUSTER_GATEWAY_GUIDE_DESC:
-    'After the cluster gateway is turned on, the project gateway can no longer be set. If the project gateway already exists, it cannot be reset after deleting it. ',
+
   'Request Count': 'Request Count',
-  'Active Connections': 'Number of connections',
-  'Request Duration': 'Request Duration',
-  'Request Error': 'Request Error',
-  'Duration Average': 'Average Delay',
-  'Duration 50percentage': 'P50 delay',
-  'Duration 95percentage': 'P95 delay',
-  'Duration 99percentage': 'P99 delay',
-  'Request 4xx': '4xx error',
-  'Request 5xx': '5xx error',
-  'Total Requests': 'Total Requests',
-  'Request Success': 'Request Success',
-  GATEWAYS_REPLICA_DESC:
-    'Deployment (Deployment) is used to describe the desired target state of the application. It is mainly used to describe the stateless application. The number and state of replicas are maintained by the controller behind it to ensure that the state is consistent with the defined desired state. You can increase the number of replicas to meet higher loads; roll back the deployed version to eliminate erroneous changes to the program; create an autoscaler to flexibly respond to the load in different scenarios. ',
+
+  PROJECT_GATEWAY_EMPTY_DESC:
+    'The cluster management page does not support the setting of the project gateway. If you need to set it, you need to go to the corresponding project to set it.',
 }

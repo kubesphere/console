@@ -25,6 +25,16 @@ const { get } = require('lodash')
 const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 
 /**
+ * enable dnscache
+ */
+// eslint-disable-next-line no-unused-vars
+const dnscache = require('dnscache')({
+  enable: true,
+  ttl: 300, // ttl in seconds for cache-entries
+  cachesize: 1000, // number of cache entries, defaults to 1000
+})
+
+/**
  * This is our overly complicated isomorphic "request",
  * methods: get, post, put, patch, delete
  * @param url

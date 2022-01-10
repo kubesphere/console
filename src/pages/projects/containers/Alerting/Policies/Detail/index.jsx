@@ -50,7 +50,7 @@ export default class AlertPolicyDetail extends React.Component {
   }
 
   get name() {
-    return 'alerting policy'
+    return 'ALERTING_POLICY'
   }
 
   get type() {
@@ -96,7 +96,7 @@ export default class AlertPolicyDetail extends React.Component {
           detail: toJS(this.store.detail),
           module: this.store.module,
           cluster: this.props.match.params.cluster,
-          title: `${t('Edit ')}${t('alerting policy')}`,
+          title: t('EDIT_ALERTING_POLICY'),
           success: this.fetchData,
         }),
     },
@@ -108,7 +108,7 @@ export default class AlertPolicyDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -147,15 +147,15 @@ export default class AlertPolicyDetail extends React.Component {
         ),
       },
       {
-        name: t('Health Status'),
+        name: t('HEALTH_STATUS'),
         value: <Health detail={detail} />,
       },
       {
-        name: t('Alerting Duration'),
+        name: t('THRESHOLD_DURATION'),
         value: detail.duration,
       },
       {
-        name: t('ACTIVATED_AT'),
+        name: t('ACTIVATION_TIME'),
         value: time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-',
       },
     ]
@@ -176,7 +176,7 @@ export default class AlertPolicyDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('ALERTING_POLICIES'),
+          label: t('ALERTING_POLICY_PL'),
           url: this.listUrl,
         },
       ],

@@ -27,28 +27,28 @@ import ExcuteRecords from 'projects/containers/Jobs/Detail/ExcuteRecords'
 export default path => [
   {
     path: `${path}/records`,
-    title: 'Execution Records',
+    title: 'RUN_RECORDS',
     component: ExcuteRecords,
     exact: true,
   },
   {
     path: `${path}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     component: ResourceStatus,
     exact: true,
   },
   {
     path: `${path}/metadata`,
-    title: 'Metadata',
+    title: 'METADATA',
     component: Metadata,
     exact: true,
   },
   {
     path: `${path}/env`,
-    title: 'Environment Variables',
+    title: 'ENVIRONMENT_VARIABLE_PL',
     component: EnvVariables,
     exact: true,
   },
-  { path: `${path}/events`, title: 'Events', component: Events, exact: true },
+  { path: `${path}/events`, title: 'EVENT_PL', component: Events, exact: true },
   getIndexRoute({ path, to: `${path}/records`, exact: true }),
 ]

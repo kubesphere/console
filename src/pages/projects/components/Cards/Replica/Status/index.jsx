@@ -42,7 +42,7 @@ export default class ReplicaStatus extends React.Component {
 
   static defaultProps = {
     theme: 'dark',
-    name: 'Replica Status',
+    name: 'REPLICA_PL',
     current: 0,
     desire: 0,
     onScale: null,
@@ -145,8 +145,8 @@ export default class ReplicaStatus extends React.Component {
     const { theme, className, name, current } = this.props
     const { showConfirm, seconds, desire } = this.state
     const nameText = t(name)
-    const currentText = t('Current Replicas')
-    const desireText = t('Desired Replicas')
+    const currentText = t('REPLICAS_CURRENT')
+    const desireText = t('REPLICAS_DESIRED')
 
     return (
       <div className={classnames(styles.card, className, styles[theme])}>
@@ -155,7 +155,7 @@ export default class ReplicaStatus extends React.Component {
           <SimpleCircle
             theme={theme}
             title={nameText}
-            legend={[currentText, t('Warning')]}
+            legend={[currentText, desireText]}
             value={current}
             total={desire}
           />
@@ -176,7 +176,7 @@ export default class ReplicaStatus extends React.Component {
         <NotifyConfirm
           visible={showConfirm}
           width={400}
-          title={t('REPLICAS_SCALE_NOTIFY_TITLE')}
+          title={t('ADJUST_REPLICAS')}
           content={t.html('REPLICAS_SCALE_NOTIFY_CONTENT', {
             num: desire,
           })}

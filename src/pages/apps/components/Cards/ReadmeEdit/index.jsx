@@ -71,12 +71,12 @@ export default class ReadmeEdit extends React.Component {
 
     return (
       <>
-        <div className={styles.header}>{t('App Introduction')}</div>
+        <div className={styles.header}>{t('APP_INTRODUCTION')}</div>
         <div className={styles.readmeEdit}>
           <Editor
             value={readme}
             onChange={this.handleChange}
-            placeholder={`${t('Start editing')}...`}
+            placeholder={t('START_EDITING')}
             toolbar={toolbar}
           />
         </div>

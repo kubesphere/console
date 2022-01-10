@@ -32,15 +32,23 @@ export const timeUnitAlias2CompleteTimeMap = {
   w: 'Weeks',
 }
 
+export const timeAlias2CompleteTimeMap = {
+  s: 'SECOND_TIME',
+  m: 'MINUTE_TIME',
+  h: 'HOUR_TIME',
+  d: 'DAY_TIME',
+  w: 'WEEK_TIME',
+}
+
 /**
- * translate '10s' to '10 秒'
+ * translate '10s' to '10 秒', '1h' to '1 Hour'
  * @param {string} timeAlias
  * @returns {string}
  */
 export function translateTimeAlias(timeAlias) {
   try {
     const [, count, unit] = timeAlias.match(/^(\d+)([a-zA-Z])$/)
-    return `${count} ${tranlateTimeUnitAlias(unit)}`
+    return t(timeAlias2CompleteTimeMap[unit], { count })
   } catch (e) {
     console.error(e)
     return 'invalid timeAlias format'

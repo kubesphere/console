@@ -35,6 +35,7 @@ import Topology from './Topology'
   store: new ServiceStore(),
   module: 'services',
   name: 'SERVICE',
+  searchByApp: true,
 })
 export default class Services extends React.Component {
   state = {
@@ -209,7 +210,7 @@ export default class Services extends React.Component {
         render: (_, record) => <ServiceAccess data={record} />,
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

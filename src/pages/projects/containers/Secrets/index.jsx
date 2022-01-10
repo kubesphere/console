@@ -40,7 +40,7 @@ export default class Secrets extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -60,7 +60,7 @@ export default class Secrets extends React.Component {
       {
         key: 'editSecret',
         icon: 'pen',
-        text: t('EDIT_SECRET'),
+        text: t('EDIT_SETTINGS'),
         action: 'edit',
         onClick: item =>
           trigger('secret.edit', {
@@ -116,7 +116,7 @@ export default class Secrets extends React.Component {
         render: data => Object.keys(data).length,
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

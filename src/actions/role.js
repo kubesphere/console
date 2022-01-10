@@ -44,7 +44,7 @@ export default {
             .create(data, { cluster, namespace, workspace, devops })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+              Notify.success({ content: t('CREATE_SUCCESSFUL') })
               success && success()
             })
         },
@@ -88,7 +88,7 @@ export default {
 
           store.update(detail, formTemplate).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             success && success()
           })
         },
@@ -107,7 +107,7 @@ export default {
         onOk: () => {
           store.delete(detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+            Notify.success({ content: t('DELETE_SUCCESSFUL') })
             success && success()
           })
         },

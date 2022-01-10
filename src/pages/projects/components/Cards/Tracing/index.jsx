@@ -73,9 +73,9 @@ export default class TracingCard extends React.Component {
             <Icon name="target" size={40} />
           </div>
           <p>
-            <strong>{t('No result found')}</strong>
+            <strong>{t('NO_DATA')}</strong>
           </p>
-          <p>{t('Please try other query conditions')}</p>
+          <p>{t('TRACING_NO_DATA_DESC')}</p>
         </div>
       </div>
     )
@@ -87,7 +87,7 @@ export default class TracingCard extends React.Component {
     return (
       <div className={styles.cardHeader}>
         {operations && <div className={styles.operations}>{operations}</div>}
-        {t('Tracing')}
+        {t('TRACING')}
       </div>
     )
   }

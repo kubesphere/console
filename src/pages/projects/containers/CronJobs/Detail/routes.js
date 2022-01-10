@@ -25,16 +25,16 @@ import JobRecords from './JobRecords'
 export default path => [
   {
     path: `${path}/records`,
-    title: 'Job Records',
+    title: 'RUN_RECORDS',
     component: JobRecords,
     exact: true,
   },
   {
     path: `${path}/metadata`,
-    title: 'Metadata',
+    title: 'METADATA',
     component: Metadata,
     exact: true,
   },
-  { path: `${path}/events`, title: 'Events', component: Events, exact: true },
+  { path: `${path}/events`, title: 'EVENT_PL', component: Events, exact: true },
   getIndexRoute({ path, to: `${path}/records`, exact: true }),
 ]

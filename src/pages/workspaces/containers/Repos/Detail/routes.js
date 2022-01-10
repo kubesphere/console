@@ -25,7 +25,7 @@ const PATH = '/workspaces/:workspace/repos/:repo_id'
 export default [
   {
     path: `${PATH}/events`,
-    title: 'Events',
+    title: 'EVENT_PL',
     component: Events,
     exact: true,
   },

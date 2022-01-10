@@ -135,7 +135,7 @@ export default class PipelineModal extends React.Component {
     const modalProps = {
       hideHeader: isPipelineModal,
       closable: !isPipelineModal,
-      title: t('Create Pipeline'),
+      title: t('CREATE_PIPELINE'),
       imageIcon: '/assets/pipeline/pipeline-icon-dark.svg',
       description: t('CREATE_PIPELINE_DESC'),
     }

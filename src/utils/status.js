@@ -301,7 +301,7 @@ export const getPodStatusAndRestartCount = pod => {
       break
     case 'Succeeded':
       if (readyCondition.reason === 'PodCompleted') {
-        type === 'completed'
+        type = 'completed'
       } else {
         status = readyCondition.reason
       }
@@ -334,27 +334,27 @@ export const getPipelineStatus = statusDetail => {
   const { state = '', result = '' } = statusDetail || {}
 
   if (state === 'QUEUED') {
-    return { type: 'queued', label: t('Queued') }
+    return { type: 'queued', label: t('QUEUED') }
   }
   if (state === 'RUNNING') {
-    return { type: 'running', label: t('Running') }
+    return { type: 'running', label: t('RUNNING') }
   }
   if (result === 'UNSTABLE') {
-    return { type: 'unstable', label: 'Unstable' }
+    return { type: 'unstable', label: t('UNSTABLE') }
   }
   if (state === 'FINISHED' && result === 'SUCCESS') {
-    return { type: 'success', label: t('Success') }
+    return { type: 'success', label: t('SUCCESSFUL') }
   }
   if (state === 'FINISHED' && result === 'FAILURE') {
-    return { type: 'failure', label: t('Failure') }
+    return { type: 'failure', label: t('FAILED') }
   }
   if (state === 'FINISHED' && result === 'ABORTED') {
-    return { type: 'aborted', label: t('Aborted') }
+    return { type: 'aborted', label: t('ABORTED') }
   }
   if (state === 'PAUSED') {
     return { type: 'paused', label: t('PAUSED') }
   }
-  return { type: 'nostatus', label: t('not run') }
+  return { type: 'nostatus', label: t('NOT_RUNNING') }
 }
 
 export const getComponentStatus = ({ totalBackends, healthyBackends }) => {

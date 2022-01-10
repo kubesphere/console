@@ -102,13 +102,14 @@ export default class AdvancedSettings extends React.Component {
       formProps,
       module,
       isEdit,
+      workspace,
     } = this.props
 
     const clustersDetail = keyBy(projectDetail.clusters, 'name')
     return (
       <div>
         <Form data={this.formTemplate} ref={formRef} {...formProps}>
-          <Form.Group label={t('LOCATION')}>
+          <Form.Group label={t('CLUSTER')}>
             <Form.Item>
               <ClusterSelect
                 name="clusters"
@@ -136,7 +137,11 @@ export default class AdvancedSettings extends React.Component {
                     {...formProps}
                   >
                     {containerProps => (
-                      <ContainerImage isEdit={isEdit} {...containerProps} />
+                      <ContainerImage
+                        isEdit={isEdit}
+                        {...containerProps}
+                        workspace={workspace}
+                      />
                     )}
                   </ContainersMapper>
                 )}
@@ -146,7 +151,7 @@ export default class AdvancedSettings extends React.Component {
 
           {this.showVolumeTemplate && (
             <Form.Group
-              label={t('Volume Template Settings')}
+              label={t('VOLUME_TEMPLATE_SETTINGS')}
               desc={t('CLUSTER_VOLUME_DIFF_DESC')}
               checkable
             >
@@ -201,7 +206,7 @@ export default class AdvancedSettings extends React.Component {
           </Form.Group>
           {module === 'service' && isEdit ? null : (
             <Form.Group
-              label={t('ENVIRONMENT_VARIABLES')}
+              label={t('ENVIRONMENT_VARIABLE_PL')}
               desc={t('CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC')}
               checkable
             >

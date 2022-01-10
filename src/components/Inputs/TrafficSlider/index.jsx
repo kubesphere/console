@@ -65,7 +65,10 @@ export default class TrafficSlider extends React.PureComponent {
             maxWidth: `${value}%`,
           }}
         >
-          {`${leftContent} ${value}%`}
+          {t('VERSION_TRAFFIC_PERCENT', {
+            version: leftContent,
+            percent: value,
+          })}
         </span>
         <span
           className={styles.floatContent}
@@ -74,7 +77,10 @@ export default class TrafficSlider extends React.PureComponent {
             maxWidth: `${100 - value}%`,
           }}
         >
-          {`${rightContent} ${100 - value}%`}
+          {t('VERSION_TRAFFIC_PERCENT', {
+            version: rightContent,
+            percent: 100 - value,
+          })}
         </span>
       </div>
     )

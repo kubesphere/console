@@ -18,8 +18,6 @@
 
 import React from 'react'
 
-import { find, capitalize } from 'lodash'
-
 import { Status } from 'components/Base'
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
@@ -51,15 +49,15 @@ export default class Reviews extends React.Component {
       options: [
         {
           value: 'unprocessed',
-          label: t('Unprocessed'),
+          label: t('UNRELEASED'),
         },
         {
           value: 'processed',
-          label: t('Processed'),
+          label: t('RELEASED'),
         },
         {
           value: 'all',
-          label: t('All'),
+          label: t('ALL'),
         },
       ],
     }
@@ -83,7 +81,7 @@ export default class Reviews extends React.Component {
       {
         key: 'handle',
         icon: 'eye',
-        text: t(this.type === 'unprocessed' ? 'Review' : 'View'),
+        text: t('VIEW_DETAILS'),
         onClick: this.showReview,
       },
     ]
@@ -119,7 +117,7 @@ export default class Reviews extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Review Object'),
+      title: t('NAME'),
       dataIndex: 'review_id',
       width: '30%',
       render: (review_id, item) => (
@@ -135,13 +133,6 @@ export default class Reviews extends React.Component {
       ),
     },
     {
-      title: t('TYPE'),
-      dataIndex: 'type',
-      isHideable: true,
-      width: '15%',
-      render: () => t('Request for Approval'),
-    },
-    {
       title: t('WORKSPACE'),
       dataIndex: 'app_id',
       isHideable: true,
@@ -149,13 +140,13 @@ export default class Reviews extends React.Component {
       render: appId => this.getAppISV(appId),
     },
     {
-      title: t('Operator'),
+      title: t('OPERATOR'),
       dataIndex: 'reviewer',
       isHideable: true,
       width: '10%',
     },
     {
-      title: t('Review Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       width: '15%',
@@ -165,13 +156,15 @@ export default class Reviews extends React.Component {
           <Status
             className={styles.status}
             type={transStatus}
-            name={t(capitalize(transStatus))}
+            name={t(
+              `APP_STATUS_${transStatus.toUpperCase().replace(/-/g, '_')}`
+            )}
           />
         )
       },
     },
     {
-      title: t('UPDATED_AT'),
+      title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'status_time',
       isHideable: true,
       width: '15%',
@@ -183,7 +176,7 @@ export default class Reviews extends React.Component {
     return {
       icon: 'safe-notice',
       title: t('EMPTY_WRAPPER', {
-        resource: t(`${this.type.toUpperCase()}_APP_REVIEW`),
+        resource: t(`${this.type.toUpperCase()}_APP_RELEASE`),
       }),
     }
   }
@@ -196,8 +189,8 @@ export default class Reviews extends React.Component {
           {...bannerProps}
           tabs={this.tabs}
           icon="safe-notice"
-          title={t('App Reviews')}
-          description={t('APP_REVIEW_DESC')}
+          title={t('APP_RELEASE')}
+          description={t('APP_RELEASE_DESC')}
         />
         <Table
           {...tableProps}

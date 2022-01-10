@@ -142,7 +142,7 @@ export default class AdvancedSettings extends React.Component {
         )}
         <Form.Group
           label={t('ADD_METADATA')}
-          desc={t('ADD_METADATA_DESC')}
+          desc={t('SERVICE_ADD_METADATA_DESC')}
           keepDataWhenUnCheck
           checkable
         >

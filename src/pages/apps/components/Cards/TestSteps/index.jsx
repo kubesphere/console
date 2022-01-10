@@ -22,8 +22,8 @@ import PropTypes from 'prop-types'
 
 import VersionStore from 'stores/openpitrix/version'
 import FileStore from 'stores/openpitrix/file'
-import { getDocsUrl } from 'utils'
-import classnames from 'classnames'
+import { getWebsiteUrl } from 'utils'
+
 import styles from './index.scss'
 
 @observer
@@ -50,25 +50,14 @@ export default class TestSteps extends React.Component {
   }
 
   render() {
+    const { url } = getWebsiteUrl()
     return (
       <div className={styles.main}>
-        <p className={styles.note}>{t('VERSION_SUBMIT_NOTE')}：</p>
+        <p className={styles.note}>{t('VERSION_SUBMIT_NOTE')}</p>
         <div className={styles.steps}>
           {t.html('VERSION_SUBMIT_TEST_STEPS')}
         </div>
-        <p>
-          {t('VERSION_SUBMIT_DOC')}
-          <a
-            href={getDocsUrl('helm_developer_guide')}
-            className={classnames({
-              [styles.banLink]: !globals.config.showOutSiteLink,
-            })}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            {t('Develop and test guide')}
-          </a>
-        </p>
+        <p>{t.html('APP_LEARN_MORE', { docUrl: url })}</p>
       </div>
     )
   }

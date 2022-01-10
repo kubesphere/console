@@ -80,10 +80,10 @@ export default class Tracing extends React.Component {
 
   get limitOptions() {
     return [
-      { label: t('Last {num} records', { num: 5 }), value: 5 },
-      { label: t('Last {num} records', { num: 10 }), value: 10 },
-      { label: t('Last {num} records', { num: 20 }), value: 20 },
-      { label: t('Last {num} records', { num: 50 }), value: 50 },
+      { label: t('LAST_NUM_RECORDS', { num: 5 }), value: 5 },
+      { label: t('LAST_NUM_RECORDS', { num: 10 }), value: 10 },
+      { label: t('LAST_NUM_RECORDS', { num: 20 }), value: 20 },
+      { label: t('LAST_NUM_RECORDS', { num: 50 }), value: 50 },
     ]
   }
 
@@ -185,9 +185,7 @@ export default class Tracing extends React.Component {
   }
 
   serviceRenderer = option => (
-    <span>
-      {t('Service')}: {option.label}
-    </span>
+    <span>{t('SERVICE_VALUE', { value: option.label })}</span>
   )
 
   renderOperations() {
@@ -228,7 +226,7 @@ export default class Tracing extends React.Component {
       return (
         <EmptyList
           image="/assets/traffic-management.svg"
-          title={t('Temporarily unable to use tracing')}
+          title={t('TRACING_UNAVAILABLE')}
           desc={t('TRACING_NO_MICROSERVICE_TIP')}
         />
       )
@@ -269,8 +267,8 @@ export default class Tracing extends React.Component {
         &nbsp;
         <span>
           {isServiceMeshEnabled
-            ? t('Microservice enabled')
-            : t('Microservice not enabled')}
+            ? t('APPLICATION_GOVERNANCE_ENABLED')
+            : t('APPLICATION_GOVERNANCE_DISABLED')}
         </span>
       </span>
     )

@@ -28,6 +28,14 @@ export const POD_STATUS = [
   { text: 'Terminated', value: 'terminated' },
 ]
 
+export const PODS_STATUS = [
+  { text: 'Pending', value: 'Pending' },
+  { text: 'Running', value: 'Running' },
+  { text: 'Completed', value: 'Succeeded' },
+  { text: 'Failed', value: 'Failed' },
+  { text: 'Unknown', value: 'Unknown' },
+]
+
 export const JOB_STATUS = [
   { text: 'Failed', value: 'failed' },
   { text: 'Completed', value: 'completed' },
@@ -47,8 +55,8 @@ export const S2I_STATUS_DESC = {
 }
 
 export const CRONJOB_STATUS = [
-  { text: 'Paused', value: 'paused' },
-  { text: 'Running', value: 'running' },
+  { text: 'CRONJOB_PAUSED', value: 'paused' },
+  { text: 'CRONJOB_RUNNING', value: 'running' },
 ]
 
 export const VOLUME_STATUS = [
@@ -243,6 +251,8 @@ export const ICON_TYPES = {
   cluster: 'cluster',
   notification: 'loudspeaker',
   notificationhistory: 'record',
+  gpu: 'gpu',
+  'gpu.limit': 'gpu',
 }
 
 export const MODULE_KIND_MAP = {
@@ -415,10 +425,10 @@ export const TIMETRIGGERINTERVALS = [
 ]
 
 export const SECRET_TYPES = {
-  Opaque: 'Default',
-  'kubernetes.io/tls': 'TLS',
-  'kubernetes.io/dockerconfigjson': 'IMAGE_REGISTRY_SECRET_TCAP',
-  'kubernetes.io/basic-auth': 'ACCOUNT_PASSWORD_SECRET_TCAP',
+  Opaque: 'DEFAULT',
+  'kubernetes.io/tls': 'TLS_INFORMATION',
+  'kubernetes.io/dockerconfigjson': 'IMAGE_REGISTRY_INFORMATION',
+  'kubernetes.io/basic-auth': 'USERNAME_AND_PASSWORD',
 }
 
 export const STRATEGIES = {
@@ -486,13 +496,13 @@ export const GRAY_RELEASE_CATEGORIES = [
     icon: 'bird',
     type: 'Canary',
     title: 'CANARY_RELEASE',
-    desc: 'CANARY_RELEASES_DESC',
+    desc: 'CANARY_RELEASE_DESC',
   },
   {
     icon: 'mirroring',
     type: 'Mirror',
     title: 'TRAFFIC_MIRRORING',
-    desc: 'TRAFFIC_MIRROR_DESC',
+    desc: 'TRAFFIC_MIRRORING_DESC',
   },
 ]
 
@@ -502,14 +512,15 @@ export const PATTERN_IMAGE_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?((\.|\/)[a-z0-9
 export const PATTERN_SERVICE_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_SERVICE_VERSION = /^[a-z0-9]*$/
 export const PATTERN_LABEL = /(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?/
+export const PATTERN_TAG = /^[A-Za-z0-9]([-A-Za-z0-9_.]*[A-Za-z0-9])?$/
 export const PATTERN_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{6,64}$/
 export const PATTERN_IMAGE = /^\S+$/
 export const PATTERN_PORT_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_COMPONENT_VERSION = /^[a-z0-9]+$/
 export const PATTERN_PIPELINE_NAME = /[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/
-export const PATTERN_HOST = /^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/
+export const PATTERN_HOST = /^(?=^.{3,255}$)[*a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/
 
-export const PATTERN_URL = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
+export const PATTERN_URL = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)\/?$/
 export const PATTERN_EMAIL = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
 export const PATTERN_IP = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/
 export const PATTERN_IP_MASK = /^[1-9][0-9]*$/
@@ -517,6 +528,7 @@ export const PATTERN_PORT = /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]
 export const PATTERN_IMAGE_TAG = /^(.*?)([0-9a-zA-Z/]*)(:[-.\w]*[0-9a-zA-Z])*$/
 export const PATTERN_APPTEMPLATE_VERSION = /[a-zA-Z0-9](\.?-?[a-zA-Z0-9])+(\s?\[?[a-zA-Z0-9]+\.?-?\]?)*/
 export const PATTERN_UTC_TIME = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]+Z/
+export const PATTERN_ENV_NAME = /^[^0-9][a-zA-Z0-9_]*$/
 
 export const PIPELINE_TASKS = {
   All: [
@@ -572,9 +584,9 @@ export const GRAY_RELEASE_CANARY_CONTENT = [
     value: '(Windows NT ([\\d.])+)',
   },
   { label: 'Linux', icon: 'ubuntu', value: '(Linux )' },
-  { label: 'macOS', icon: 'windows', value: '( Mac OS X ([\\d.])+)' },
-  { label: 'Android', icon: 'windows', value: '(Android)' },
-  { label: 'iOS', icon: 'windows', value: '(OS [\\d.]+)' },
+  { label: 'macOS', icon: 'macos', value: '( Mac OS X ([\\d.])+)' },
+  { label: 'Android', icon: 'android', value: '(Android)' },
+  { label: 'iOS', icon: 'ios', value: '(OS [\\d.]+)' },
 ]
 
 export const S2IPULLPOLICY_MAP = {
@@ -835,11 +847,11 @@ export const MAX_SIZE_UPLOAD = 2 * 1024 * 1024
 
 export const SCHEME_OPTIONS = [
   {
-    label: 'HTTP://',
+    label: 'http://',
     value: 'http://',
   },
   {
-    label: 'HTTPS://',
+    label: 'https://',
     value: 'https://',
   },
 ]
@@ -879,7 +891,7 @@ export const API_VERSIONS = {
   strategies: 'apis/servicemesh.kubesphere.io/v1alpha2',
   servicepolicies: 'apis/servicemesh.kubesphere.io/v1alpha2',
   horizontalpodautoscalers: 'apis/autoscaling/v2beta2',
-  customresourcedefinitions: 'apis/apiextensions.k8s.io/v1beta1',
+  customresourcedefinitions: 'apis/apiextensions.k8s.io/v1',
   clusters: 'apis/cluster.kubesphere.io/v1alpha1',
   workspaces: 'apis/tenant.kubesphere.io/v1alpha2',
   users: 'apis/iam.kubesphere.io/v1alpha2',
@@ -971,7 +983,7 @@ export const CLUSTER_PROVIDER_ICON = {
 
 export const CLUSTER_PROVIDERS = [
   {
-    label: 'Aliyun ACK',
+    label: 'Alibaba Cloud ACK',
     value: 'Aliyun ACK',
     icon: 'aliyun',
   },
@@ -1050,7 +1062,7 @@ export const DEFAULT_CLUSTER = {
     labels: {
       'cluster.kubesphere.io/visibility': 'public',
     },
-    name: globals.config.defaultClusterName || 'default',
+    name: globals?.config?.defaultClusterName || 'default',
   },
 }
 
@@ -1098,3 +1110,11 @@ export const NODE_ROLE_TAG_TYPE = {
   master: 'secondary',
   worker: 'default',
 }
+
+export const OMIT_TOTAL_REPLICAS = kind => [
+  `${kind}.spec.template.totalReplicas`,
+  'totalReplicas',
+  `${kind}.totalReplicas`,
+  `${kind}.Deployment.totalReplicas`,
+  `${kind}.workload.totalReplicas`,
+]

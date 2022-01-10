@@ -99,7 +99,8 @@ const Card = ({ volume, onDelete, onEdit }) => {
                 <Icon name="mgmt-node" size={20} />
                 <span>{mountPath}</span>
                 <span className="text-secondary">
-                  &nbsp;({readOnly ? t('READ_ONLY') : t('READ_AND_WRITE')})
+                  &nbsp;(
+                  {readOnly ? t('READ_ONLY_LOW') : t('READ_AND_WRITE_LOW')})
                 </span>
               </div>
               {subPath && (

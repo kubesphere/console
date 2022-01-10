@@ -96,7 +96,7 @@ export default class LoginConfirm extends Component {
             >
               <Input
                 name="email"
-                placeholder="User@example.com"
+                placeholder="user@example.com"
                 defaultValue={get(globals, 'user.email')}
               />
             </Form.Item>
@@ -116,7 +116,7 @@ export default class LoginConfirm extends Component {
             >
               <Input
                 name="username"
-                placeholder="User@example.com"
+                placeholder="user@example.com"
                 defaultValue={get(globals, 'user.username')}
                 maxLength={32}
               />

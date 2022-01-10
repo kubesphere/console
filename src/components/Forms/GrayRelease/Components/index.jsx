@@ -269,6 +269,7 @@ export default class Components extends React.Component {
             isLoading={this.appStore.list.isLoading}
             valueRenderer={this.valueRenderer}
             optionRenderer={this.optionRenderer}
+            placeholder=" "
           />
         </div>
         <div className={styles.formWrapper}>{this.renderForm()}</div>

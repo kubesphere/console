@@ -125,7 +125,7 @@ export default class ClusterSelect extends Component {
 
     const valueOption = options.find(item => item.name === value.name)
     return (
-      <Panel title={t('Cluster Select')}>
+      <Panel title={t('CLUSTER')}>
         <div className={styles.wrapper}>
           <div className={styles.value}>{this.renderValue(valueOption)}</div>
           {showOptions && (

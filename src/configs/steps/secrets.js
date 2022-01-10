@@ -23,12 +23,12 @@ import SecretSettings from 'components/Forms/Secret/SecretSettings'
 
 export default [
   {
-    title: 'Basic Info',
+    title: 'BASIC_INFORMATION',
     component: withProps(BaseInfo, { maxNameLength: 63 }),
     required: true,
   },
   {
-    title: 'SECRET_SETTINGS_TCAP',
+    title: 'DATA_SETTINGS',
     component: SecretSettings,
     required: true,
   },

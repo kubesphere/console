@@ -23,13 +23,11 @@ import classnames from 'classnames'
 import { isEmpty, get } from 'lodash'
 import {
   Button,
-  Icon,
   Level,
   LevelLeft,
   LevelRight,
   Pagination,
   Loading,
-  Select,
   InputSearch,
 } from '@kube-design/components'
 
@@ -55,9 +53,6 @@ export default class PodsCard extends React.Component {
     details: PropTypes.object,
     hideHeader: PropTypes.bool,
     hideFooter: PropTypes.bool,
-    isFederated: PropTypes.bool,
-    onSearch: PropTypes.func,
-    onRefresh: PropTypes.func,
     onPage: PropTypes.func,
     limit: PropTypes.number,
   }
@@ -68,9 +63,6 @@ export default class PodsCard extends React.Component {
     details: {},
     hideHeader: false,
     hideFooter: false,
-    isFederated: false,
-    onSearch() {},
-    onRefresh() {},
     onPage() {},
   }
 
@@ -80,27 +72,18 @@ export default class PodsCard extends React.Component {
     this.store = props.store
     this.monitorStore = new GatewayMonitorStore()
 
-    const selectCluster = props.isFederated
-      ? get(props, 'clusters[0]')
-      : props.detail.cluster || props.params
+    const selectCluster = props.detail.cluster || props.params
 
     this.state = {
       expandItem: '',
-      selectCluster: selectCluster || '',
       params: selectCluster,
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { detail, details, isFederated, params } = this.props
-    if (
-      detail !== prevProps.detail ||
-      (isFederated &&
-        Object.keys(details).length !== Object.keys(prevProps.details).length)
-    ) {
-      const selectCluster = isFederated
-        ? get(this.props, 'clusters[0]')
-        : detail.cluster || params
+    const { detail, params } = this.props
+    if (detail !== prevProps.detail) {
+      const selectCluster = detail.cluster || params
       this.setState(
         {
           expandItem: '',
@@ -183,19 +166,13 @@ export default class PodsCard extends React.Component {
   handleSearch = value => {
     this.searchValue = value
     this.fetchData({
-      name: value,
-    }).then(() => {
-      this.props.onSearch(value)
+      search: value,
     })
   }
 
   handleRefresh = () => {
-    const params = this.searchValue ? { name: this.searchValue } : {}
-
-    this.fetchData(params).then(() => {
-      const { onSearch, onRefresh } = this.props
-      isEmpty(params) ? onRefresh() : onSearch(this.searchValue)
-    })
+    const params = this.searchValue ? { search: this.searchValue } : {}
+    this.fetchData(params)
   }
 
   handlePage = page => {
@@ -228,20 +205,8 @@ export default class PodsCard extends React.Component {
   }
 
   renderHeader = () => {
-    const { isFederated } = this.props
-    const { selectCluster } = this.state
     return (
       <div className={styles.header}>
-        {isFederated && (
-          <Select
-            name="cluster"
-            prefixIcon={<Icon name="cluster" />}
-            className={styles.cluster}
-            value={selectCluster}
-            options={this.getClustersOptions()}
-            onChange={this.handleClusterChange}
-          />
-        )}
         <InputSearch
           className={styles.search}
           name="search"
@@ -256,21 +221,18 @@ export default class PodsCard extends React.Component {
   }
 
   renderContent() {
-    const { prefix, isFederated } = this.props
+    const { prefix } = this.props
     const { data, isLoading, silent } = this.store.podList
-    const { selectCluster } = this.state
 
     const content = (
       <div className={styles.body}>
         {isEmpty(data) ? (
-          <div className={styles.empty}>{t('RESOURCE_NOT_FOUND')}</div>
+          <div className={styles.empty}>{t('NO_RESOURCE_FOUND')}</div>
         ) : (
           data.map(pod => (
             <PodItem
               key={pod.uid}
-              prefix={
-                isFederated ? `${prefix}/clusters/${selectCluster}` : prefix
-              }
+              prefix={prefix}
               detail={pod}
               metrics={this.getPodMetrics(pod)}
               loading={this.monitorStore.isLoading}
@@ -312,7 +274,7 @@ export default class PodsCard extends React.Component {
       <Panel
         className={classnames(styles.main, className)}
         title={t(title)}
-        empty={t('NOT_AVAILABLE', { resource: t('Pod') })}
+        empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('Pod') })}
         isEmpty={isEmpty(data)}
       >
         {!hideHeader && this.renderHeader()}

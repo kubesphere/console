@@ -16,10 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, debounce } from 'lodash'
+import { get, debounce, set, has } from 'lodash'
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-
+import { toJS } from 'mobx'
 import {
   Columns,
   Column,
@@ -34,6 +34,7 @@ import { safeParseJSON } from 'utils'
 import { safeBtoa } from 'utils/base64'
 
 import SecretStore from 'stores/secret'
+import ClusterStore from 'stores/cluster'
 
 import Wrapper from './Wrapper'
 
@@ -54,6 +55,8 @@ export default class ImageRegistry extends Component {
 
   store = new SecretStore()
 
+  hostStore = new ClusterStore()
+
   state = {
     ...this.getStateFromProps(this.props.value),
     isValidating: false,
@@ -65,6 +68,7 @@ export default class ImageRegistry extends Component {
 
     this.setState({ errorMsg: '' })
     if (url && username && password) {
+      this.handleAnnotationsByUrl(url)
       onChange(
         JSON.stringify({
           auths: {
@@ -88,11 +92,64 @@ export default class ImageRegistry extends Component {
     return true
   }
 
+  handleAnnotationsByUrl = url => {
+    const registryUrl = url
+      .replace(/^(http(s)?:\/\/)?(.*)$/, '$1')
+      .replace('://', '')
+
+    if (registryUrl === 'http') {
+      const annotations = get(
+        this.props.fedFormTemplate,
+        'metadata.annotations',
+        {}
+      )
+      set(this.props.fedFormTemplate, 'metadata.annotations', {
+        ...annotations,
+        'secret.kubesphere.io/force-insecure': 'true',
+      })
+    } else {
+      const annotations = get(
+        this.props.fedFormTemplate,
+        'metadata.annotations',
+        {}
+      )
+
+      if (has(annotations, 'secret.kubesphere.io/force-insecure')) {
+        delete annotations['secret.kubesphere.io/force-insecure']
+      }
+
+      set(this.props.fedFormTemplate, 'metadata.annotations', {
+        ...annotations,
+      })
+    }
+  }
+
+  getHostName = async (params = {}) => {
+    await this.hostStore.fetchList({
+      ...params,
+      labelSelector: 'cluster-role.kubesphere.io/host=',
+      limit: -1,
+    })
+    const host = toJS(this.hostStore.list.data).filter(item =>
+      Object.keys(item.labels).some(key =>
+        key.endsWith('cluster-role.kubesphere.io/host')
+      )
+    )
+    return host[0]?.name ?? 'host'
+  }
+
   handleValidate = async () => {
+    const { cluster, isFederated, namespace, screatName } = this.props
+
     if (this.validate()) {
       this.setState({ isValidating: true })
       const result =
-        (await this.store.validateImageRegistrySecret(this.state)) || {}
+        (await this.store.validateImageRegistrySecret({
+          fedFormTemplate: this.props.fedFormTemplate,
+          name: screatName,
+          namespace,
+          cluster: isFederated ? await this.getHostName() : cluster,
+        })) || {}
 
       this.setState({
         validate: result.validate || false,
@@ -145,7 +202,7 @@ export default class ImageRegistry extends Component {
       )
     }
 
-    return <Alert type="warning" message={t('IMAGE_REGISTRY_VALIDATE_TIP')} />
+    return <Alert type="info" message={t('IMAGE_REGISTRY_VALIDATE_TIP')} />
   }
 
   render() {

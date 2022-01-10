@@ -41,7 +41,7 @@ export default class Item extends React.Component {
     const { value } = this.props
     const count = globals.config.notification.dingtalk['max_number_of_keyword']
     if (!channel) {
-      Notify.error({ content: t('Please enter a channel'), duration: 1000 })
+      Notify.error({ content: t('ADD_CHANNEL_DESC'), duration: 1000 })
       return
     }
     if (value.length > count - 1) {
@@ -52,7 +52,7 @@ export default class Item extends React.Component {
       return
     }
     if (value.some(item => item === channel)) {
-      Notify.error({ content: t('This channel has existed'), duration: 1000 })
+      Notify.error({ content: t('CHANNEL_EXISTS'), duration: 1000 })
       return
     }
     return true
@@ -76,11 +76,11 @@ export default class Item extends React.Component {
       <div>
         <BoxInput
           className={styles.wrapper}
-          placeholder={t('Please enter a channel')}
+          placeholder={t('SLACK_CHANNEL')}
           onAdd={this.handleAdd}
           validate={this.validateChannel}
         />
-        <p className="margin-t8">{t('Channel Set')}</p>
+        <p className="margin-t8">{t('ADDED_CHANNELS')}</p>
         <div className={classnames(styles.boxWrapper, className)}>
           {isEmpty(value) ? (
             <div className={styles.empty}>{t('EMPTY_CHANNEL_DESC')}</div>

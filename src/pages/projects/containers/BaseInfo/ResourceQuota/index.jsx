@@ -55,7 +55,7 @@ export default function ResourceQuota({ detail }) {
   }, [detail])
 
   return (
-    <Panel className={styles.wrapper} title={t('PROJECT_RESOURCE_QUOTAS')}>
+    <Panel className={styles.wrapper} title={t('PROJECT_QUOTA_PL')}>
       {quotaListKeys.map(({ label, name }) => (
         <QuotaItem
           key={label}

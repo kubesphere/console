@@ -49,7 +49,7 @@ export default class OPAppDetail extends React.Component {
   }
 
   get name() {
-    return 'Application'
+    return 'APP'
   }
 
   get listUrl() {
@@ -71,11 +71,11 @@ export default class OPAppDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('openpitrix.app.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -83,7 +83,7 @@ export default class OPAppDetail extends React.Component {
     {
       key: 'editTemplate',
       icon: 'pen',
-      text: t('EDIT_TEMPLATE'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('openpitrix.app.template.edit', {
@@ -100,7 +100,7 @@ export default class OPAppDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -117,7 +117,7 @@ export default class OPAppDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -129,7 +129,7 @@ export default class OPAppDetail extends React.Component {
         value: this.renderStatus(),
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: get(detail, 'app.name', '-'),
       },
       {
@@ -137,13 +137,13 @@ export default class OPAppDetail extends React.Component {
         value: get(detail, 'version.name', '-'),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(get(detail, 'create_time')).format(
           'YYYY-MM-DD HH:mm:ss'
         ),
       },
       {
-        name: t('UPDATED_AT'),
+        name: t('UPDATE_TIME_TCAP'),
         value: getLocalTime(get(detail, 'status_time')).format(
           'YYYY-MM-DD HH:mm:ss'
         ),

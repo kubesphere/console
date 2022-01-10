@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get, capitalize } from 'lodash'
+import { get } from 'lodash'
 import { Loading } from '@kube-design/components'
 
 import { Image } from 'components/Base'
@@ -61,7 +61,7 @@ export default class AppDetail extends React.Component {
   }
 
   get name() {
-    return 'App'
+    return 'APP'
   }
 
   get listUrl() {
@@ -85,7 +85,7 @@ export default class AppDetail extends React.Component {
           key: 'suspend',
           type: 'control',
           icon: 'sort-descending',
-          text: t('Suspend App'),
+          text: t('SUSPEND_APP'),
           onClick: () =>
             this.trigger('openpitrix.template.action', {
               detail,
@@ -101,7 +101,7 @@ export default class AppDetail extends React.Component {
         key: 'recover',
         type: 'control',
         icon: 'sort-ascending',
-        text: t('Activate App'),
+        text: t('ACTIVATE_APP'),
         onClick: () =>
           this.trigger('openpitrix.template.action', {
             detail,
@@ -118,19 +118,19 @@ export default class AppDetail extends React.Component {
 
     return [
       {
-        name: t('App Number'),
+        name: t('APP_ID'),
         value: detail.app_id,
       },
       {
         name: t('STATUS'),
-        value: t(capitalize(transferAppStatus(detail.status))),
+        value: transferAppStatus(detail.status),
       },
       {
         name: t('CATEGORY'),
         value: getAppCategoryNames(get(detail, 'category_set', [])),
       },
       {
-        name: t('App Version Types'),
+        name: t('TYPE'),
         value: getVersionTypesName(get(detail, 'app_version_types', '')),
       },
       {
@@ -138,7 +138,7 @@ export default class AppDetail extends React.Component {
         value: get(detail, 'isv', '-'),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
@@ -169,7 +169,7 @@ export default class AppDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('APP_STORE'),
+          label: t('APPS'),
           url: this.listUrl,
         },
       ],

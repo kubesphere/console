@@ -23,7 +23,7 @@ import { Button, Icon, Notify } from '@kube-design/components'
 import { saveAs } from 'file-saver'
 
 import { Panel, CodeEditor } from 'components/Base'
-import { htmlLinkControl } from 'utils'
+
 import { getValue } from 'utils/yaml'
 import { copyToClipboard } from 'utils/dom'
 import { safeBtoa } from 'utils/base64'
@@ -132,7 +132,7 @@ export default class Secret extends React.Component {
     return (
       <div className={styles.secretWrapper}>
         <div className={styles.title}>
-          <div className="h6">{t('Secret Detail')}</div>
+          <div className="h6">{t('DATA_SETTINGS')}</div>
           {this.renderOperations()}
         </div>
         <div className={styles.defaultWrapper}>
@@ -164,13 +164,14 @@ export default class Secret extends React.Component {
 
   renderConfigContent() {
     const options = { readOnly: true }
-    const htmlDes = t.html('SERVICEACCOUNT_KUBECONFIG_DESC')
 
     return (
       <div className={styles.configWrapper}>
         <div className={styles.title}>
-          <div className="h6">{t('KubeConfig')}</div>
-          <p className="text-desc">{htmlLinkControl(htmlDes)}</p>
+          <div className="h6">{t('KUBECONFIG_SETTINGS')}</div>
+          <p className="text-desc">
+            {t.html('SERVICEACCOUNT_KUBECONFIG_DESC')}
+          </p>
         </div>
         <div className={styles.codeEditor}>
           <div className={styles.ops}>
@@ -198,7 +199,7 @@ export default class Secret extends React.Component {
 
   render() {
     return (
-      <Panel title={`${t('Secret')}: ${this.secret}`}>
+      <Panel title={t('SECRET_VALUE', { value: this.secret })}>
         {this.renderSecretContent()}
         {this.renderConfigContent()}
       </Panel>

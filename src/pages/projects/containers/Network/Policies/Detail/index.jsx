@@ -67,11 +67,11 @@ export default class NetworkpoliciesDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -95,7 +95,7 @@ export default class NetworkpoliciesDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -119,7 +119,7 @@ export default class NetworkpoliciesDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
@@ -144,7 +144,7 @@ export default class NetworkpoliciesDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(this.name),
+          label: t('NETWORK_POLICY_PL'),
           url: `/clusters/${this.cluster}/networkpolicies`,
         },
       ],

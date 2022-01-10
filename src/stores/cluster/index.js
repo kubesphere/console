@@ -177,8 +177,7 @@ export default class ClusterStore extends Base {
         namespace,
       })}/namespaces`,
       {
-        labelSelector:
-          '!kubesphere.io/kubefed-host-namespace,!kubesphere.io/devopsproject',
+        labelSelector: '!kubesphere.io/devopsproject',
         ...params,
       }
     )

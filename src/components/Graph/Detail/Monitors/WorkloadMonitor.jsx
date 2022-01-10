@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, has } from 'lodash'
+import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'react-fast-compare'
@@ -127,14 +127,10 @@ export default class Monitors extends React.Component {
     }
 
     const { metrics } = this.state
-    const request_count = get(
-      metrics,
-      'metrics.request_count.matrix[0].values',
-      []
-    )
+    const request_count = get(metrics, 'request_count[0].datapoints', [])
     const request_error_count = get(
       metrics,
-      'metrics.request_error_count.matrix[0].values',
+      'request_error_count[0].datapoints',
       []
     )
     const request_success_count = request_count.map((item, index) =>
@@ -157,14 +153,10 @@ export default class Monitors extends React.Component {
     }
 
     const { outMetrics } = this.state
-    const request_count = get(
-      outMetrics,
-      'metrics.request_count.matrix[0].values',
-      []
-    )
+    const request_count = get(outMetrics, 'request_count[0].datapoints', [])
     const request_error_count = get(
       outMetrics,
-      'metrics.request_error_count.matrix[0].values',
+      'request_error_count[0].datapoints',
       []
     )
     const request_success_count = request_count.map((item, index) =>
@@ -188,11 +180,11 @@ export default class Monitors extends React.Component {
 
     const { metrics } = this.state
     const request_count = getMetricData(
-      get(metrics, 'metrics.request_count.matrix[0].values', []),
+      get(metrics, 'request_count[0].datapoints', []),
       NaN
     )
     const request_error_count = getMetricData(
-      get(metrics, 'metrics.request_error_count.matrix[0].values', []),
+      get(metrics, 'request_error_count[0].datapoints', []),
       0
     )
     const request_success_rate =
@@ -200,27 +192,10 @@ export default class Monitors extends React.Component {
         ? ((request_count - request_error_count) * 100) / request_count
         : NaN
 
-    let request_duration
-    if (has(metrics, 'histograms.request_duration_millis')) {
-      request_duration = getMetricData(
-        get(
-          metrics,
-          'histograms.request_duration_millis["avg"].matrix[0].values',
-          []
-        ),
-        NaN
-      )
-    } else {
-      request_duration =
-        getMetricData(
-          get(
-            metrics,
-            'histograms.request_duration["avg"].matrix[0].values',
-            []
-          ),
-          NaN
-        ) * 1000
-    }
+    const request_duration = getMetricData(
+      get(metrics, 'request_duration_millis[0].datapoints', []),
+      NaN
+    )
 
     return [
       {
@@ -252,11 +227,11 @@ export default class Monitors extends React.Component {
 
     const { outMetrics } = this.state
     const request_count = getMetricData(
-      get(outMetrics, 'metrics.request_count.matrix[0].values', []),
+      get(outMetrics, 'request_count[0].datapoints', []),
       NaN
     )
     const request_error_count = getMetricData(
-      get(outMetrics, 'metrics.request_error_count.matrix[0].values', []),
+      get(outMetrics, 'request_error_count[0].datapoints', []),
       0
     )
     const request_success_rate =
@@ -264,27 +239,10 @@ export default class Monitors extends React.Component {
         ? ((request_count - request_error_count) * 100) / request_count
         : NaN
 
-    let request_duration
-    if (has(outMetrics, 'histograms.request_duration_millis')) {
-      request_duration = getMetricData(
-        get(
-          outMetrics,
-          'histograms.request_duration_millis["avg"].matrix[0].values',
-          []
-        ),
-        NaN
-      )
-    } else {
-      request_duration =
-        getMetricData(
-          get(
-            outMetrics,
-            'histograms.request_duration["avg"].matrix[0].values',
-            []
-          ),
-          NaN
-        ) * 1000
-    }
+    const request_duration = getMetricData(
+      get(outMetrics, 'request_duration_millis[0].datapoints', []),
+      NaN
+    )
 
     return [
       {

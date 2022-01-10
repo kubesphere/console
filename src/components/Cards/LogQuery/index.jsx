@@ -239,7 +239,7 @@ class LogCollectionDetailContainers extends Component {
       log_query: this.store.log_query,
     })
     return (
-      <Tooltip content={t('LOG_EXPORT')}>
+      <Tooltip content={t('EXPORT_LOGS')}>
         <a href={link} download>
           <span className={classnames(styles.filterButton, styles.exportBtn)}>
             <Icon name={'export'} />

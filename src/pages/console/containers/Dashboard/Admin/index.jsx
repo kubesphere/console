@@ -57,32 +57,35 @@ export default class AdminDashboard extends React.Component {
       this.monitorStore.data,
       `${MetricTypes.cluster_count}.data.result[0].value[1]`
     )
+    const version = get(globals, 'ksConfig.ksVersion', '')
     return (
       <Loading spinning={isLoading}>
         <>
           <Panel className={styles.info} title={t('PLATFORM_INFORMATION')}>
             <Text
-              title={get(globals, 'config.version.kubesphere')}
-              description={t('Platform Version')}
+              title={version.replace('v', '')}
+              description={t('PLATFORM_VERSION')}
             />
             {globals.app.isMultiCluster ? (
               <Text
                 title={clusterCount}
-                description={t('Cluster Number')}
+                description={
+                  clusterCount === '1' ? t('CLUSTER') : t('CLUSTER_PL')
+                }
                 onClick={this.handleClusterClick}
               />
             ) : (
               <Text
                 title={1}
-                description={t('Cluster Number')}
+                description={t('CLUSTER')}
                 onClick={this.handleClusterClick}
               />
             )}
           </Panel>
-          <Panel className={styles.status} title={t('Platform Status')}>
+          <Panel className={styles.status} title={t('PLATFORM_RESOURCES')}>
             <PlatformStatus metrics={this.monitorStore.data} />
           </Panel>
-          <Panel title={t('Recent Visit')}>
+          <Panel title={t('RECENT_ACCESS')}>
             <History />
           </Panel>
         </>

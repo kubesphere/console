@@ -152,7 +152,7 @@ class Clusters extends React.Component {
           </div>
           <div className={styles.noData}>
             <img src="/assets/empty-card.svg" alt="" />
-            <p>{t('RESOURCE_NOT_FOUND')}</p>
+            <p>{t('NO_RESOURCE_FOUND')}</p>
           </div>
         </>
       )
@@ -163,7 +163,9 @@ class Clusters extends React.Component {
         {!isEmpty(hostClusters) && (
           <div className="margin-b12">
             <div className="h6">
-              {hostClusters.length > 1 ? t('Host Clusters') : t('Host Cluster')}
+              {hostClusters.length === 1
+                ? t('HOST_CLUSTER_TCAP')
+                : t('HOST_CLUSTER_PL_TCAP')}
             </div>
             {hostClusters.map(item => (
               <ClusterCard

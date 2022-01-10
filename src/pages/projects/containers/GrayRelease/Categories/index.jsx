@@ -25,7 +25,7 @@ import FORM_TEMPLATE from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
 
 import GrayReleaseStore from 'stores/grayrelease'
-import RouterStore from 'stores/router'
+import GatewayStore from 'stores/gateway'
 
 import FORM_STEPS from 'configs/steps/grayreleases'
 
@@ -43,7 +43,7 @@ export default class Categories extends React.Component {
     }
 
     this.store = new GrayReleaseStore()
-    this.routerStore = new RouterStore()
+    this.gatewayStore = new GatewayStore()
 
     this.module = 'strategies'
 
@@ -52,7 +52,7 @@ export default class Categories extends React.Component {
   }
 
   componentDidMount() {
-    this.routerStore.getGateway(this.props.match.params)
+    this.gatewayStore.getGateway(this.props.match.params)
   }
 
   get routing() {
@@ -98,7 +98,7 @@ export default class Categories extends React.Component {
     const { workspace, cluster, namespace } = this.props.match.params
     this.store.create(data, { cluster, namespace }).then(() => {
       this.hideCreate()
-      Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+      Notify.success({ content: t('CREATE_SUCCESSFUL') })
       this.routing.push(
         `/${workspace}/clusters/${cluster}/projects/${namespace}/grayrelease/jobs`
       )
@@ -133,7 +133,7 @@ export default class Categories extends React.Component {
                     data-type={item.type}
                     onClick={this.showCreate}
                   >
-                    {t('CREATE_GRAYSCALE_RELEASE_JOB')}
+                    {t('CREATE')}
                   </Button>
                 )}
               </div>
@@ -141,7 +141,7 @@ export default class Categories extends React.Component {
           ))}
         </ul>
         <CreateModal
-          title={t(cate.title)}
+          title={t(`CREATE_${cate.title}_JOB`)}
           module={`grayreleases_${cate.type}`}
           formTemplate={this.formTemplate}
           cluster={this.cluster}

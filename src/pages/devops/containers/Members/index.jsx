@@ -103,7 +103,7 @@ export default class Members extends React.Component {
       {
         key: 'modify',
         icon: 'pen',
-        text: t('CHANGE_MEMBER_ROLE'),
+        text: t('CHANGE_ROLE'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -119,7 +119,7 @@ export default class Members extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('REMOVE_MEMBER'),
+        text: t('REMOVE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
@@ -142,7 +142,7 @@ export default class Members extends React.Component {
         {
           key: 'invite',
           type: 'control',
-          text: t('Invite Member'),
+          text: t('INVITE'),
           action: 'create',
           onClick: () =>
             trigger('member.invite', {
@@ -151,9 +151,9 @@ export default class Members extends React.Component {
               cluster: this.cluster,
               roles: toJS(this.roleStore.list.data),
               roleModule: this.roleStore.module,
-              title: t('Invite Members to the Project'),
-              desc: t('INVITE_MEMBER_DESC'),
-              searchPlaceholder: t('INVITE_MEMBER_SEARCH_PLACEHODLER'),
+              title: t('INVITE_MEMBER'),
+              desc: t('INVITE_MEMBER_DESC_DEVOPS'),
+              searchPlaceholder: t('SEARCH_BY_NAME'),
               success: this.getData,
             }),
         },
@@ -162,7 +162,7 @@ export default class Members extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Remove Members'),
+          text: t('REMOVE'),
           action: 'delete',
           onClick: () =>
             trigger('member.remove.batch', {
@@ -184,7 +184,7 @@ export default class Members extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Member Name'),
+      title: t('NAME'),
       dataIndex: 'username',
       sorter: true,
       render: (name, record) => (
@@ -209,7 +209,7 @@ export default class Members extends React.Component {
       ),
     },
     {
-      title: t('Role'),
+      title: t('ROLE'),
       dataIndex: 'role',
       isHideable: true,
       width: '19%',

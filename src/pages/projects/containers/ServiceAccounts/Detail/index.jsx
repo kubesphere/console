@@ -47,7 +47,7 @@ export default class ServiceAccountDetail extends React.Component {
   }
 
   get name() {
-    return 'ServiceAccount'
+    return 'SERVICE_ACCOUNT'
   }
 
   get routing() {
@@ -80,11 +80,11 @@ export default class ServiceAccountDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('serviceaccount.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
           ...this.props.match.params,
@@ -121,7 +121,7 @@ export default class ServiceAccountDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -138,7 +138,7 @@ export default class ServiceAccountDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -146,11 +146,11 @@ export default class ServiceAccountDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Role'),
+        name: t('ROLE'),
         value: detail.role,
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
@@ -175,7 +175,7 @@ export default class ServiceAccountDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('ServiceAccounts'),
+          label: t('SERVICE_ACCOUNT_PL'),
           url: this.listUrl,
         },
       ],

@@ -29,8 +29,8 @@ it('renders correctly', () => {
   const onchangeCb = jest.fn()
   const wrapper = mount(
     <ObjectInput onChange={onchangeCb} value={defaultData}>
-      <Input name="key" placeholder={t('key')} />
-      <Input name="value" rows="1" placeholder={t('value')} />
+      <Input name="key" placeholder={t('KEY')} />
+      <Input name="value" rows="1" placeholder={t('VALUE')} />
     </ObjectInput>
   )
 
@@ -45,8 +45,8 @@ it('change correctly', () => {
   const onchangeCb = jest.fn()
   const wrapper = mount(
     <ObjectInput onChange={onchangeCb} value={defaultData}>
-      <Input name="key" placeholder={t('key')} />
-      <Input name="value" rows="1" placeholder={t('value')} />
+      <Input name="key" placeholder={t('KEY')} />
+      <Input name="value" rows="1" placeholder={t('VALUE')} />
     </ObjectInput>
   )
 

@@ -22,7 +22,7 @@ import { Notify } from '@kube-design/components'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import moment from 'moment-mini'
-import { get, debounce } from 'lodash'
+import { get, debounce, isEmpty } from 'lodash'
 
 import Status from 'devops/components/Status'
 import CodeQualityStore from 'stores/devops/codeQuality'
@@ -56,9 +56,7 @@ export default class BranchDetailLayout extends React.Component {
   }
 
   get createTime() {
-    return moment(this.store.detail.createTime).format(
-      `${t('MMMM Do YYYY')} HH:mm`
-    )
+    return moment(this.store.detail.createTime).format('YYYY-MM-DD HH:mm:ss')
   }
 
   get updateTime() {
@@ -67,7 +65,7 @@ export default class BranchDetailLayout extends React.Component {
     if (!updateTime) {
       return '-'
     }
-    return moment(updateTime).format(`${t('MMMM Do YYYY')} HH:mm`)
+    return moment(updateTime).format('YYYY-MM-DD HH:mm:ss')
   }
 
   get enabledActions() {
@@ -102,7 +100,7 @@ export default class BranchDetailLayout extends React.Component {
     {
       key: 'run',
       type: 'control',
-      text: t('Run'),
+      text: t('RUN'),
       action: 'edit',
       onClick: this.handleRun,
     },
@@ -111,18 +109,19 @@ export default class BranchDetailLayout extends React.Component {
   getAttrs = () => {
     const { detail, activityList } = this.store
     const { devopsName } = this.props.devopsStore
+    const { branch } = this.props.match.params
 
     return [
       {
-        name: t('DevOps Project'),
+        name: t('DEVOPS_PROJECT'),
         value: devopsName,
       },
       {
         name: t('PIPELINE'),
-        value: detail.displayName,
+        value: `${detail.name}/${decodeURIComponent(branch)}`,
       },
       {
-        name: t('STATUS'),
+        name: t('TASK_STATUS'),
         value: (
           <Status
             {...getPipelineStatus(get(toJS(activityList.data), '[0]', {}))}
@@ -130,7 +129,7 @@ export default class BranchDetailLayout extends React.Component {
         ),
       },
       {
-        name: t('UPDATED_AT'),
+        name: t('UPDATE_TIME_TCAP'),
         value: this.updateTime,
       },
     ]
@@ -139,9 +138,8 @@ export default class BranchDetailLayout extends React.Component {
   handleRun = debounce(async () => {
     const { branchDetail } = this.store
     const { params } = this.props.match
-    const isMultibranch = branchDetail.branchNames
-    const hasParameters =
-      branchDetail.parameters && branchDetail.parameters.length
+    const isMultibranch = !isEmpty(toJS(branchDetail.branchNames))
+    const hasParameters = !isEmpty(toJS(branchDetail.parameters))
 
     if (isMultibranch || hasParameters) {
       this.trigger('pipeline.params', {
@@ -151,12 +149,12 @@ export default class BranchDetailLayout extends React.Component {
         branches: this.isAtBranchDetailPage ? null : [toJS(branchDetail.name)],
         parameters: toJS(branchDetail.parameters),
         success: () => {
-          Notify.success({ content: `${t('Run Start')}` })
+          Notify.success({ content: t('PIPELINE_RUN_START_SI') })
           this.handleFetch()
         },
       })
     } else {
-      Notify.success({ content: `${t('Run Start')}` })
+      Notify.success({ content: t('PIPELINE_RUN_START_SI') })
       await this.store.runBranch(params)
       this.handleFetch()
     }
@@ -203,7 +201,7 @@ export default class BranchDetailLayout extends React.Component {
       module: this.module,
       breadcrumbs: [
         {
-          label: t('BRANCH_SI'),
+          label: t('BRANCH_PL'),
           url: `/${workspace}/clusters/${cluster}/devops/${devops}/pipelines/${name}/branch`,
         },
       ],

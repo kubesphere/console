@@ -131,7 +131,7 @@ export default class BaseInfo extends React.Component {
               { required: true, message: t('Please input cluster name') },
               {
                 pattern: PATTERN_NAME,
-                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC'),
               },
               { validator: this.nameValidator },
             ]}

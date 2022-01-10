@@ -1,7 +1,7 @@
 export const CARD_CONFIG = [
   {
     icon: 'cluster',
-    subTitle: 'Cluster Consumption',
+    subTitle: 'CLUSTER_CONSUMPTION',
     type: 'cluster',
     desc: 'CLUSTER_CONSUMPTION_DESC',
     infos: [
@@ -12,7 +12,7 @@ export const CARD_CONFIG = [
   },
   {
     icon: 'enterprise',
-    subTitle: 'Workspace Consumption',
+    subTitle: 'WORKSPACE_CONSUMPTION',
     type: 'workspaces',
     desc: 'WORKSPACE_CONSUMPTION_DESC',
     infos: [

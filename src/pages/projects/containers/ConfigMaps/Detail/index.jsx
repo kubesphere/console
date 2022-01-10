@@ -45,7 +45,7 @@ export default class ConfigMapDetail extends React.Component {
   }
 
   get name() {
-    return 'ConfigMap'
+    return 'CONFIGMAP'
   }
 
   get routing() {
@@ -78,11 +78,11 @@ export default class ConfigMapDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -101,7 +101,7 @@ export default class ConfigMapDetail extends React.Component {
     {
       key: 'editConfigMap',
       icon: 'pen',
-      text: t('MODIFY_CONFIG'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('configmap.edit', {
@@ -117,7 +117,7 @@ export default class ConfigMapDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -134,7 +134,7 @@ export default class ConfigMapDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -142,7 +142,7 @@ export default class ConfigMapDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
@@ -167,7 +167,7 @@ export default class ConfigMapDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('ConfigMaps'),
+          label: t('CONFIGMAP_PL'),
           url: this.listUrl,
         },
       ],

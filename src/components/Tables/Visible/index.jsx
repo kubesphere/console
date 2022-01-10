@@ -18,9 +18,9 @@
 
 import React from 'react'
 import classnames from 'classnames'
-import { computed, action } from 'mobx'
+import { computed, action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { isUndefined, get } from 'lodash'
+import { isUndefined, get, isEmpty } from 'lodash'
 
 import List from 'react-virtualized/dist/es/List/List'
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer/AutoSizer'
@@ -75,7 +75,7 @@ export default class VisibleTable extends React.Component {
       return
     }
     const data = this.props.data[itemNodeIndex]
-    this.props.onTrClick(data)
+    this.props.onTrClick && this.props.onTrClick(data)
   }
 
   @action
@@ -86,9 +86,15 @@ export default class VisibleTable extends React.Component {
     this.clearMeasurerCache()
   }
 
+  handleRefresh = () => {
+    location.reload()
+  }
+
   render() {
     const { data, body: bodyClassName, tableRef, onScroll } = this.props
+
     const dataLength = data.length
+
     return (
       <div className={styles.table}>
         {this.renderTitle()}
@@ -130,24 +136,26 @@ export default class VisibleTable extends React.Component {
             {col.thead}
           </div>
         ))}
-        <div className={styles.visibleBtn}>
-          <Dropdown
-            content={this.renderDropdownContent()}
-            onOpen={this.handleOpen}
-            onClose={this.handleClose}
-          >
-            <div>
-              {t('Display Content')} <Icon name="cogwheel" />
-            </div>
-          </Dropdown>
-        </div>
+        {isEmpty(toJS(this.dropDownCols)) ? null : (
+          <div className={styles.visibleBtn}>
+            <Dropdown
+              content={this.renderDropdownContent()}
+              onOpen={this.handleOpen}
+              onClose={this.handleClose}
+            >
+              <div>
+                {t('CUSTOM_COLUMNS')} <Icon name="cogwheel" />
+              </div>
+            </Dropdown>
+          </div>
+        )}
       </div>
     )
   }
 
   renderDropdownContent = () => (
     <div className={styles.dropdown}>
-      <h3>{t('Display Content')}</h3>
+      <h3>{t('CUSTOM_COLUMNS')}</h3>
       {this.dropDownCols.map((col, index) => (
         <div
           key={col.thead}

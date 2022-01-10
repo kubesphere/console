@@ -57,8 +57,8 @@ class BaseInfo extends React.Component {
   get tips() {
     return [
       {
-        title: t('WHAT_IS_LIMIT_RANGE_Q'),
-        description: t('WHAT_IS_LIMIT_RANGE_A'),
+        title: t('WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q'),
+        description: t('WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A'),
       },
     ]
   }
@@ -79,13 +79,15 @@ class BaseInfo extends React.Component {
   get itemActions() {
     const { detail } = this.store
     const limitRanges = toJS(this.limitRangeStore.list.data)
-
+    const clusters = toJS(this.props.projectStore.detail.clusters).map(
+      cluster => cluster.name
+    )
     const actions = [
       {
         key: 'edit',
         icon: 'pen',
         action: 'edit',
-        text: t('EDIT_INFO'),
+        text: t('EDIT_INFORMATION'),
         onClick: () =>
           this.trigger('resource.baseinfo.edit', {
             detail,
@@ -109,7 +111,7 @@ class BaseInfo extends React.Component {
         key: 'edit-default-resource',
         icon: 'pen',
         action: 'edit',
-        text: t('EDIT_PROJECT_RESOURCE_QUOTAS'),
+        text: t('EDIT_DEFAULT_CONTAINER_QUOTAS'),
         onClick: () =>
           this.trigger('project.default.resource', {
             ...this.props.match.params,
@@ -117,6 +119,7 @@ class BaseInfo extends React.Component {
             detail: get(limitRanges, 0, {}),
             isFederated: true,
             projectDetail: detail,
+            clusters,
             success: () => this.limitRangeStore.fetchListByK8s(this.params),
           }),
       },
@@ -124,7 +127,7 @@ class BaseInfo extends React.Component {
         key: 'delete',
         icon: 'trash',
         action: 'delete',
-        text: t('DELETE'),
+        text: t('DELETE_PROJECT'),
         onClick: () =>
           this.trigger('federated.project.delete', {
             detail,

@@ -50,10 +50,10 @@ export default class AddExistVolumes extends React.Component {
       label: (
         <span>
           {getDisplayName(volume)}{' '}
-          <Tag>{volume.inUse ? t('IN_USE') : t('AVAILABLE')}</Tag>
+          <Tag>{volume.inUse ? t('IN_USER') : t('AVAILABLE')}</Tag>
         </span>
       ),
-      description: t('STORAGE_CLASS_VALUE', { value: volume.storageClassName }),
+      description: volume.storageClassName,
       value: volume,
       details: [
         { label: volume.capacity, description: t('CAPACITY') },

@@ -16,25 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import classNames from 'classnames'
-import {
-  Button,
-  Dropdown,
-  Menu,
-  Icon,
-  Loading,
-  Tooltip,
-} from '@kube-design/components'
+import { ReactComponent as AppGoverIcon } from 'assets/app_gover.svg'
+import { Button, Dropdown, Menu, Icon, Tooltip } from '@kube-design/components'
 import { Panel } from 'components/Base'
 import { getLocalTime } from 'utils'
+import classNames from 'classnames'
+import { isEmpty, isArray } from 'lodash'
 
-import GatewayStore from 'stores/gateway'
-import { ReactComponent as AppGoverIcon } from 'assets/app_gover.svg'
 import { trigger } from 'utils/action'
+import { CLUSTER_PROVIDERS } from 'utils/constants'
 import GatewayEmpty from '../GatewayEmpty'
 
 import styles from './index.scss'
@@ -42,31 +35,17 @@ import styles from './index.scss'
 @inject('rootStore')
 @observer
 @trigger
-class InternetAccess extends React.Component {
-  store = new GatewayStore()
-
-  componentDidMount() {
-    this.getData()
-  }
-
+class GatewayCard extends React.Component {
   static defaultProps = {
     type: 'cluster',
   }
 
-  getData = () => {
-    const params = { ...this.props.match.params }
-    if (this.props.type === 'cluster') {
-      delete params.namespace
-    }
-    this.store.getGateway(params)
-  }
-
   get gateway() {
-    return this.store.gateway.data
+    return this.props.detail
   }
 
-  get isLoading() {
-    return this.store.gateway.isLoading
+  get store() {
+    return this.props.store
   }
 
   get isEmptyData() {
@@ -74,72 +53,99 @@ class InternetAccess extends React.Component {
   }
 
   get canEdit() {
-    return !this.props.actions.includes('manage')
+    return this.props.actions && !this.props.actions.includes('manage')
+  }
+
+  get cluster() {
+    const { cluster } = this.props.match.params
+    const { isFederated } = this.props
+    return isFederated ? this.props.cluster.name : cluster
   }
 
   get itemActions() {
-    return [
+    const updateDisable = this.canEdit || this.gateway.createTime != null
+    const baseOpt = [
       {
         key: 'view',
         icon: 'eye',
-        text: t('View Gateway'),
+        text: t('VIEW_DETAILS'),
+        disabled: this.gateway.createTime == null,
       },
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit Gateway'),
-        disabled: this.canEdit,
-      },
-      {
-        key: 'update',
-        icon: 'update',
-        text: t('Update Gateway'),
-        disabled: this.canEdit || this.gateway.createTime != null,
+        text: t('EDIT'),
+        disabled: this.canEdit || this.gateway.createTime == null,
       },
       {
         key: 'delete',
         icon: 'trash',
-        text: t('DELETE'),
+        text: t('DISABLE'),
         disabled: this.canEdit,
       },
     ]
+
+    const updateOpt = {
+      key: 'update',
+      icon: 'update',
+      text: t('UPDATE'),
+      disabled: updateDisable,
+    }
+
+    !updateDisable && baseOpt.splice(2, 0, updateOpt)
+
+    return baseOpt
+  }
+
+  get linkUrl() {
+    const { prefix } = this.props
+
+    return prefix
+      ? `${prefix}/${this.gateway.name}`
+      : `/clusters/${this.cluster}/gateways/cluster/${this.gateway.name}`
   }
 
   handleMoreMenuClick = (e, key) => {
-    const { cluster, namespace, workspace } = this.props.match.params
-    const { type } = this.props
+    const { namespace } = this.props.match.params
+    const { type, isFederated } = this.props
 
-    const url =
-      type === 'project'
-        ? `/${workspace}/clusters/${cluster}/projects/${namespace}/gateways/${this.gateway.name}`
-        : `/clusters/${cluster}/gateways/cluster/${this.gateway.name}`
+    if (isFederated) {
+      localStorage.setItem('federated-cluster', this.cluster)
+    }
 
     switch (key) {
       case 'view':
-        this.props.rootStore.routing.push(url)
+        this.props.rootStore.routing.push(this.linkUrl)
         break
       case 'edit':
         this.trigger('gateways.edit', {
-          cluster,
-          namespace,
+          cluster: this.cluster,
+          namespace: type === 'cluster' ? '' : namespace,
           detail: toJS(this.gateway._originData),
-          success: this.getData,
+          store: this.store,
+          success: this.props.getData,
         })
         break
       case 'update':
         this.trigger('gateways.update', {
-          cluster,
+          cluster: this.cluster,
           namespace,
           detail: toJS(this.gateway._originData),
-          success: this.getData,
+          store: this.store,
+          success: this.props.getData,
         })
         break
       case 'delete':
         this.trigger('gateways.delete', {
-          cluster,
+          cluster: this.cluster,
+          type:
+            this.props.type === 'cluster'
+              ? 'CLUSTER_GATEWAY'
+              : 'PROJECT_GATEWAY',
           namespace,
           detail: toJS(this.gateway),
-          success: this.getData,
+          store: this.store,
+          success: this.props.getData,
         })
         break
       default:
@@ -164,7 +170,7 @@ class InternetAccess extends React.Component {
       ip = gateway.externalIPs.join('; ')
     }
 
-    return ip || '-'
+    return ip
   }
 
   renderMoreMenu() {
@@ -179,15 +185,28 @@ class InternetAccess extends React.Component {
     )
   }
 
-  renderOperations() {
+  title = () => {
+    const { createTime } = this.gateway
+
     return (
-      <Dropdown
-        content={this.renderMoreMenu()}
-        trigger="click"
-        placement="bottomRight"
-      >
-        <Button icon="more" type="flat" />
-      </Dropdown>
+      <>
+        <span>
+          {this.props.type === 'project'
+            ? t('PROJECT_GATEWAY')
+            : t('CLUSTER_GATEWAY')}
+        </span>
+        {!createTime ? (
+          <Tooltip content={t('UPDATE_GATEWAY_DESC')} placement="top">
+            <Icon
+              name="update"
+              color={{
+                primary: '#f5a623 ',
+                secondary: '#ffe1be',
+              }}
+            />
+          </Tooltip>
+        ) : null}
+      </>
     )
   }
 
@@ -200,62 +219,65 @@ class InternetAccess extends React.Component {
       ports,
       loadBalancerIngress,
       serviceMeshEnable,
+      lb,
     } = this.gateway
 
+    const { renderOperations } = this.props
     const gatewayPort = isEmpty(ports)
       ? '-'
-      : ports.map(item => `${item.name}:${item.nodePort}`).join(';')
+      : ports
+          .map(
+            item =>
+              `${item.name.toUpperCase()}: ${
+                type === 'NodePort' ? item.nodePort : item.port
+              }`
+          )
+          .join('/')
 
     const gateway_ip = isEmpty(loadBalancerIngress)
       ? '-'
       : loadBalancerIngress.join(';')
 
-    const title = () => (
-      <span>
-        <span>
-          {this.props.type === 'project'
-            ? t('PROJECT_GATEWAY')
-            : t('CLUSTER_GATEWAY')}
-        </span>
-        {!createTime ? (
-          <Tooltip content={t('UPDATE_GATEWAY_DESC')} placement="top">
-            <Icon
-              name="update"
-              color={{
-                primary: '#ffc781',
-                secondary: '#f5a623',
-              }}
-            />
-          </Tooltip>
-        ) : null}
-      </span>
-    )
+    const lbIcon = lb && CLUSTER_PROVIDERS.find(item => item.value === lb).icon
+
+    const isClusterPermission =
+      globals.app.hasPermission({
+        module: 'clusters',
+        action: 'view',
+      }) && this.props.type === 'cluster'
 
     return [
       [
         {
           key: 'clusterType',
           icon: 'loadbalancer',
-          title: title(),
+          title: this.title(),
 
-          desc: t('Gateway Type'),
+          desc: t('TYPE'),
         },
-        { key: 'author', title: creator || '-', desc: t('Creator') },
+        { key: 'author', title: creator || '-', desc: t('CREATOR') },
         {
           key: 'createTime',
-          title: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
-          desc: t('Create Time'),
+          title: createTime
+            ? getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss')
+            : '-',
+          desc: t('CREATION_TIME'),
         },
         {
           key: 'edit',
-          component: (
+          component: renderOperations ? (
+            renderOperations({
+              url: this.linkUrl,
+              disabled: !isClusterPermission || isEmpty(createTime),
+            })
+          ) : (
             <Dropdown
               theme="dark"
               content={this.renderMoreMenu()}
               trigger="click"
               placement="bottomRight"
             >
-              <Button>{t('EDIT')}</Button>
+              <Button>{t('MANAGE')}</Button>
             </Dropdown>
           ),
         },
@@ -265,121 +287,155 @@ class InternetAccess extends React.Component {
           key: 'method',
           icon: 'eip-group',
           title: type,
-          desc: t('ACCESS_MODE'),
+          desc: t('ACCESS_MODE_SCAP'),
         },
-        {
-          key: 'ip',
-          icon: 'ip',
-          title: gateway_ip,
-          desc: t('GATEWAY_ADDRESS_TCAP'),
-        },
+        lb
+          ? {
+              key: 'lb',
+              icon: lbIcon,
+              title: lb,
+              desc: t('LOAD_BALANCER_PROVIDER_SCAP'),
+            }
+          : {
+              key: 'ip',
+              icon: 'ip',
+              title: gateway_ip,
+              desc: t('GATEWAY_ADDRESS_SCAP'),
+            },
         {
           key: 'earth',
           icon: 'earth',
           title: gatewayPort,
-          desc: t('Host Port'),
+          desc: t('NODE_PORTS_SCAP'),
         },
-        { key: 'pod', icon: 'pod', title: replicas, desc: t('REPLICAS') },
+        {
+          key: 'pod',
+          icon: 'pod',
+          title: replicas,
+          desc: replicas === 1 ? t('REPLICA') : t('REPLICA_PL'),
+        },
         {
           key: 'appGover',
           icon: <AppGoverIcon />,
-          title: serviceMeshEnable
-            ? t('GATEWAY_SERVICE_MESH_STATUS_ON')
-            : t('GATEWAY_SERVICE_MESH_STATUS_OFF'),
-          desc: t('Application Governance'),
+          title: serviceMeshEnable ? t('ON') : t('OFF'),
+          desc: t('TRACING'),
         },
       ],
     ]
   }
 
   handleCreateGateway = () => {
-    const { namespace, cluster } = this.props.match.params
-    const { type } = this.props
+    const { namespace } = this.props.match.params
+    const { type, getData } = this.props
 
     this.trigger('gateways.create', {
       name: type === 'cluster' ? 'kubesphere-router-kubesphere-system' : '',
       namespace: type === 'cluster' ? 'kubesphere-controls-system' : namespace,
-      cluster,
+      cluster: this.cluster,
       store: this.store,
-      success: this.getData,
+      success: getData,
     })
   }
 
   renderInternetAccess = () => {
-    return (
-      <Panel className="margin-t12">
-        {this.gatewayConfig.map((item, index) => {
-          return (
-            <div className={styles.container} key={index}>
-              {item.map(detail => {
-                return detail.icon ? (
-                  <div
-                    className={classNames(styles.header, this.props.className)}
-                    key={detail.key}
-                  >
-                    {typeof detail.icon === 'string' ? (
-                      <Icon name={detail.icon} size={40} />
-                    ) : (
-                      <span className={styles.customIcon}>{detail.icon}</span>
-                    )}
-                    <div className={styles.item}>
-                      <div>{detail.title}</div>
-                      <p>{detail.desc}</p>
-                    </div>
-                  </div>
-                ) : detail.component ? (
-                  <div
-                    className={classNames(styles.item, 'text-right')}
-                    key={detail.key}
-                  >
-                    {detail.component}
-                  </div>
-                ) : (
-                  <div className={styles.item} key={detail.key}>
-                    <div>{detail.title}</div>
-                    <p>{t(detail.desc)}</p>
-                  </div>
-                )
-              })}
-            </div>
-          )
-        })}
+    const { isFederated, title } = this.props
 
-        <div className={styles.annotations}>
-          <p>{t('ANNOTATIONS')}</p>
-          <ul>
-            {Object.entries(this.gateway.annotations).map(([key, value]) => (
-              <li key={key}>
-                <span className={styles.key}>{key}</span>
-                <span>{value}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Panel>
+    return (
+      <>
+        {title}
+        <Panel
+          className={classNames('margin-t12', {
+            [styles.federatedContainer]: isFederated,
+          })}
+        >
+          {this.gatewayConfig.map((item, index) => {
+            return (
+              <div className={styles.container} key={index}>
+                {item.map(detail => {
+                  return detail.icon ? (
+                    <div className={styles.header} key={detail.key}>
+                      {typeof detail.icon === 'string' ? (
+                        <Icon name={detail.icon} size={40} />
+                      ) : (
+                        <span className={styles.customIcon}>{detail.icon}</span>
+                      )}
+                      <div className={styles.item}>
+                        <div>{detail.title}</div>
+                        <p>{detail.desc}</p>
+                      </div>
+                    </div>
+                  ) : detail.component ? (
+                    <div
+                      className={classNames(styles.item, 'text-right')}
+                      key={detail.key}
+                    >
+                      {detail.component}
+                    </div>
+                  ) : (
+                    <div className={styles.item} key={detail.key}>
+                      <div>{detail.title}</div>
+                      <p>{t(detail.desc)}</p>
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          })}
+
+          {this.gateway.type !== 'NodePort' && (
+            <div
+              className={classNames(styles.annotations, {
+                [styles.bgWhite]: isFederated,
+              })}
+            >
+              <p>{t('ANNOTATION_PL')}</p>
+              <ul>
+                {isEmpty(this.gateway.annotations) ? (
+                  <li>{t('NO_DATA')}</li>
+                ) : (
+                  Object.entries(this.gateway.annotations).map(
+                    ([key, value]) => (
+                      <li key={key}>
+                        <span className={styles.key}>{key}</span>
+                        <span>{value}</span>
+                      </li>
+                    )
+                  )
+                )}
+              </ul>
+            </div>
+          )}
+        </Panel>
+      </>
     )
   }
 
   render() {
-    const { component } = this.props.match.params
-    const { type } = this.props
-
+    const { component, namespace } = this.props.match.params
+    const { type, title, gatewayList } = this.props
+    const hasClusterGateway =
+      isArray(gatewayList) && gatewayList[0] && !gatewayList[1]
     return (
       <div>
-        <Loading spinning={this.isLoading}>
-          {this.isEmptyData ? (
-            <GatewayEmpty
-              component={component}
-              type={type}
-              handleCreateGateway={this.handleCreateGateway}
-            />
-          ) : (
-            this.renderInternetAccess()
-          )}
-        </Loading>
+        {this.isEmptyData ? (
+          (namespace && type === 'cluster') ||
+          (hasClusterGateway && namespace && type === 'project') ? null : (
+            <>
+              {title}
+              <GatewayEmpty
+                component={component}
+                type={type}
+                handleCreateGateway={this.handleCreateGateway}
+                cluster={this.cluster}
+              />
+            </>
+          )
+        ) : (
+          this.renderInternetAccess()
+        )}
       </div>
     )
   }
 }
 
-export default InternetAccess
+export default GatewayCard

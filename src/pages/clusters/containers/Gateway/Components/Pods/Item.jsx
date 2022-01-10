@@ -110,7 +110,7 @@ export default class PodItem extends React.PureComponent {
 
     return (
       <p>
-        {t('CREATE_TIME', {
+        {t('CREATED_AGO', {
           diff: getLocalTime(this.props.detail.createTime).fromNow(),
         })}
       </p>
@@ -210,12 +210,10 @@ export default class PodItem extends React.PureComponent {
   renderMonitorings() {
     const { metrics = {}, isExpand, loading } = this.props
 
-    if (loading) return <div className={styles.monitors}>{t('Loading')}</div>
+    if (loading) return <div className={styles.monitors}>{t('LOADING')}</div>
 
     if (isEmpty(metrics.cpu) && isEmpty(metrics.memory))
-      return (
-        <div className={styles.monitors}>{t('NO_MONITORING_DATA_FOUND')}</div>
-      )
+      return <div className={styles.monitors}>{t('NO_MONITORING_DATA')}</div>
 
     const configs = this.getMonitoringCfgs(metrics)
 
@@ -254,7 +252,7 @@ export default class PodItem extends React.PureComponent {
           </div>
           {this.getUpdateStatus()}
         </div>
-        {!location.pathname.indexOf('/nodes') !== -1 && (
+        {!(location.pathname.indexOf('/nodes') !== -1) && (
           <div className={styles.text}>
             <div>{this.getNodeContent()}</div>
             <p>{t('Node')}</p>
@@ -269,7 +267,7 @@ export default class PodItem extends React.PureComponent {
               </Tooltip>
             )}
           </div>
-          <p>{t('POD_IP_ADDRESS')}</p>
+          <p>{t('POD_IP_ADDRESS_SCAP')}</p>
         </div>
         {this.renderMonitorings()}
         <div className={styles.arrow}>
@@ -289,34 +287,41 @@ export default class PodItem extends React.PureComponent {
     } = this.props.detail
 
     if (isEmpty(containers)) return null
+    const link =
+      globals.app.hasPermission({ module: 'clusters', action: 'view' }) &&
+      prefix
+        ? this.getLink()
+        : ''
 
     return (
       <div className={styles.itemExtra}>
         <div className="margin-b8">
-          <strong>{t('Containers')}</strong>
+          <strong>{t('CONTAINER_PL')}</strong>
         </div>
         <div className={styles.containers}>
           {containers.map(container => (
             <ContainerItem
               key={container.name}
-              prefix={prefix && this.getLink()}
+              prefix={link}
               podName={name}
               detail={container}
               cluster={cluster}
               onContainerClick={this.handleLinkClick}
               isCreating={this.isCreating}
+              hideterminal={true}
             />
           ))}
           {initContainers.map(container => (
             <ContainerItem
               key={container.name}
-              prefix={prefix && this.getLink()}
+              prefix={link}
               podName={name}
               detail={container}
               cluster={cluster}
               onContainerClick={this.handleLinkClick}
               isCreating={this.isCreating}
               isInit
+              hideterminal={true}
             />
           ))}
         </div>

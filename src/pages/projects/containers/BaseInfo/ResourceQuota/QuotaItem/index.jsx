@@ -88,6 +88,9 @@ const QuotaItem = ({ name, total, used }) => {
     return usedValue
   }
 
+  const transformName = (text = '') =>
+    ICON_TYPES[labelName] ? t(text.replace(/[. ]/g, '_').toUpperCase()) : text
+
   if (name === 'limits.cpu' || name === 'requests.cpu') {
     if (total) {
       ratio = Number(cpuFormat(used)) / Number(cpuFormat(total))
@@ -111,21 +114,23 @@ const QuotaItem = ({ name, total, used }) => {
   }
 
   ratio = Math.min(Math.max(ratio, 0), 1)
+  const labelName = name.indexOf('gpu') > -1 ? 'gpu' : name
+  const labelText = labelName === 'gpu' ? `${labelName}.limit` : labelName
 
   return (
     <div className={styles.quota}>
-      <Icon name={ICON_TYPES[name] || 'resource'} size={40} />
+      <Icon name={ICON_TYPES[labelName] || 'resource'} size={40} />
       <div className={styles.item}>
-        <div>{t(name)}</div>
-        <p>{t('RESOURCE_TYPE')}</p>
+        <div>{transformName(labelText)}</div>
+        <p>{t('RESOURCE_TYPE_SCAP')}</p>
       </div>
       <div className={styles.item}>
         <div>{handleUsedValue(used)}</div>
         <p>{t('USED')}</p>
       </div>
       <div className={styles.item}>
-        <div>{isUndefined(total) ? t('NO_LIMIT') : total}</div>
-        <p>{t('RESOURCE_LIMIT')}</p>
+        <div>{isUndefined(total) ? t('NO_LIMIT_TCAP') : total}</div>
+        <p>{t('QUOTA')}</p>
       </div>
       <div className={styles.item} style={{ flex: 3 }}>
         <div>{t('USAGE')}</div>

@@ -23,13 +23,13 @@ export default [
   {
     icon: 'paper',
     name: 'basicInfo',
-    title: 'Basic Info',
+    title: 'BASIC_INFORMATION',
     component: BaseInfo,
   },
   {
     icon: 'ssh',
     name: 'passwordSetting',
-    title: 'Password Setting',
+    title: 'PASSWORD_SETTINGS',
     component: PasswordSetting,
   },
 ]

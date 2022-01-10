@@ -22,9 +22,13 @@ import { isEmpty } from 'lodash'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
 import VolumeStore from 'stores/volume'
-import { getLocalTime, getDisplayName } from 'utils'
+import { getLocalTime, getDisplayName, map_accessModes } from 'utils'
 import { getVolumeStatus } from 'utils/status'
 import { VOLUME_STATUS } from 'utils/constants'
+import { Icon, Tooltip } from '@kube-design/components'
+import { Link } from 'react-router-dom'
+import PvStore from 'stores/pv'
+
 import StatusReason from 'projects/components/StatusReason'
 
 import { Avatar, Status } from 'components/Base'
@@ -41,6 +45,8 @@ import styles from './index.scss'
   rowKey: 'uid',
 })
 export default class Volumes extends React.Component {
+  pvStore = new PvStore()
+
   get tips() {
     return [
       {
@@ -61,7 +67,7 @@ export default class Volumes extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -92,6 +98,10 @@ export default class Volumes extends React.Component {
     ]
   }
 
+  componentDidMount() {
+    this.props.store.checkSupportPv(this.props.match.params)
+  }
+
   getItemDesc = record => {
     const status = getVolumeStatus(record)
     const desc = !isEmpty(status) ? (
@@ -110,10 +120,71 @@ export default class Volumes extends React.Component {
     }))
   }
 
+  renderAccessTitle = () => {
+    const renderModeTip = (
+      <div>
+        <div>{t('ACCESS_MODE_TCAP')}:</div>
+        <div>RWO (ReadWriteOnce): {t('ACCESS_MODE_RWO')}</div>
+        <div>ROX (ReadOnlyMany): {t('ACCESS_MODE_ROX')}</div>
+        <div>RWX (ReadWriteMany): {t('ACCESS_MODE_RWX')}</div>
+      </div>
+    )
+    return (
+      <div className={styles.mode_title}>
+        {t('ACCESS_MODE_TCAP')}
+        <Tooltip content={renderModeTip}>
+          <Icon name="question" size={16} className={styles.question}></Icon>
+        </Tooltip>
+      </div>
+    )
+  }
+
+  mapperAccessMode = accessModes => {
+    const modes = map_accessModes(accessModes)
+    return <span>{modes.join(',')}</span>
+  }
+
+  pvYamlView = async item => {
+    const pvName = item.spec.volumeName
+    const { cluster } = this.props.match.params
+    await this.pvStore.fetchDetail({ cluster, name: pvName })
+    return this.props.trigger('resource.yaml.edit', {
+      detail: this.pvStore.detail,
+      yaml: this.pvStore.detail._originData,
+      readOnly: true,
+    })
+  }
+
   getColumns() {
     const { getSortOrder, getFilteredValue } = this.props
+    const { cluster } = this.props.match.params
 
-    return [
+    const pvColumn = {
+      title: t('VOLUME_BACKEND_TCAP'),
+      dataIndex: '_originData',
+      isHideable: true,
+      search: false,
+      width: '28.5%',
+      render: _ => (
+        <div id="pvColumn" className={styles.pv_content}>
+          <Link to={`/clusters/${cluster}/pv/${_.spec.volumeName}`}>
+            {_.spec.volumeName}
+          </Link>
+          {_.spec.volumeName && (
+            <Tooltip content={t('VIEW_YAML')}>
+              <Icon
+                className={styles.yaml}
+                name="log"
+                size={20}
+                onClick={() => this.pvYamlView(_)}
+              />
+            </Tooltip>
+          )}
+        </div>
+      ),
+    }
+
+    const allColumns = [
       {
         title: t('NAME'),
         dataIndex: 'name',
@@ -148,33 +219,21 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: t('VOLUME_BACKEND_TCAP'),
-        dataIndex: '_originData',
-        isHideable: true,
-        search: false,
-        width: '28.5%',
-        render: _ => _.spec.volumeName,
-      },
-      {
-        title: t('ACCESS_MODE_TCAP'),
-        dataIndex: 'capacity',
-        isHideable: true,
+        title: this.renderAccessTitle(),
+        dataIndex: 'accessModes',
+        isHideable: false,
         width: '12.3%',
-        render: (capacity, { accessMode }) => (
-          <div className={styles.capacity}>
-            <p>{accessMode}</p>
-          </div>
-        ),
+        render: accessModes => this.mapperAccessMode(accessModes),
       },
       {
         title: t('MOUNT_STATUS'),
         dataIndex: 'inUse',
         isHideable: true,
         width: '7.7%',
-        render: inUse => (inUse ? t('MOUNTED_TCAP') : t('NOT_MOUNTED')),
+        render: inUse => (inUse ? t('MOUNTED') : t('NOT_MOUNTED')),
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),
@@ -183,6 +242,12 @@ export default class Volumes extends React.Component {
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm'),
       },
     ]
+
+    if (this.props.store.supportPv) {
+      allColumns.splice(2, 0, pvColumn)
+    }
+
+    return allColumns
   }
 
   showCreate = () => {

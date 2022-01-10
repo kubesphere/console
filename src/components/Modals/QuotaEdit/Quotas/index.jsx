@@ -17,12 +17,22 @@
  */
 
 import React from 'react'
-import { forOwn, get, isEmpty, set } from 'lodash'
+import {
+  forOwn,
+  get,
+  isEmpty,
+  set,
+  omit,
+  isUndefined,
+  merge,
+  pick,
+} from 'lodash'
 import { Form } from '@kube-design/components'
 
 import { ArrayInput } from 'components/Inputs'
 
 import { QUOTAS_MAP } from 'utils/constants'
+import { resourceLimitKey } from 'utils'
 import QuotaItem from './Item'
 
 import { QUOTAS_KEY_MODULE_MAP } from './constants'
@@ -46,8 +56,17 @@ export default class Quotas extends React.Component {
     }
   }
 
+  get omitKeys() {
+    const supportGpu = globals.config.supportGpuType
+    const omitArr = [...resourceLimitKey]
+    supportGpu.forEach(type =>
+      omitArr.push(`limits.${type}`, `requests.${type}`)
+    )
+    return omitArr
+  }
+
   getItems(props) {
-    const hardValues = get(props.data, 'spec.hard', {})
+    const hardValues = omit(get(props.data, 'spec.hard', {}), this.omitKeys)
     const items = []
 
     forOwn(hardValues, (value, key) => {
@@ -75,12 +94,16 @@ export default class Quotas extends React.Component {
 
   handleAddQuotaItem = items => {
     this.setState({ items }, () => {
-      const hardValue = {}
+      const specHard = get(this.props.data, 'spec.hard')
+      const limits = pick(specHard, this.omitKeys)
+      const template = {}
       items.forEach(({ module, value }) => {
-        const keyModule = get(QUOTAS_MAP, `${module}.name`, module)
-        hardValue[keyModule] = value
+        if (!isUndefined(module)) {
+          const keyModule = get(QUOTAS_MAP, `${module}.name`, module)
+          template[`${keyModule}`] = value
+        }
       })
-      set(this.props.data, `spec.hard`, hardValue)
+      set(this.props.data, 'spec.hard', merge(template, limits))
     })
   }
 

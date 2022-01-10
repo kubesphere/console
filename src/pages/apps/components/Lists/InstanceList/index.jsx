@@ -122,7 +122,7 @@ export default class InstanceList extends React.Component {
       <InputSearch
         className={styles.search}
         name="search"
-        placeholder={t('Filter by keyword')}
+        placeholder={t('SEARCH_BY_NAME')}
         onSearch={this.handleSearch}
       />
       <div className={styles.actions}>
@@ -142,7 +142,7 @@ export default class InstanceList extends React.Component {
     return (
       <div className={styles.body}>
         {isEmpty(data) ? (
-          <div className={styles.empty}>{t('RESOURCE_NOT_FOUND')}</div>
+          <div className={styles.empty}>{t('NO_RESOURCE_FOUND')}</div>
         ) : (
           data.map(item => (
             <InstanceItem
@@ -180,7 +180,7 @@ export default class InstanceList extends React.Component {
     return (
       <Panel
         className={classNames(styles.main, className)}
-        title={title || t('App Instances')}
+        title={title || t('APP_INSTANCES')}
       >
         <div className={styles.inner}>
           {!hideHeader && this.renderHeader()}

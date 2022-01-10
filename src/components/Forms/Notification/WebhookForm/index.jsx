@@ -20,6 +20,7 @@ import React, { Component } from 'react'
 import { get } from 'lodash'
 
 import { Form, Input, Select, Checkbox } from '@kube-design/components'
+import { InputPassword } from 'components/Inputs'
 
 import BaseForm from '../BaseForm'
 import styles from './index.scss'
@@ -41,29 +42,18 @@ export default class WebhookForm extends Component {
   get options() {
     return [
       {
-        label: 'No Auth',
+        label: t('NO_AUTH'),
         value: 'no',
       },
       {
-        label: 'Bearer Token',
+        label: t('BEARER_TOKEN'),
         value: 'token',
       },
       {
-        label: 'Basic Auth',
+        label: t('BASIC_AUTH'),
         value: 'basic',
       },
     ]
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.data !== this.props.data) {
-      this.setState({
-        type: get(
-          this.props.data,
-          'receiver.metadata.annotations["kubesphere.io/verify-type"]'
-        ),
-      })
-    }
   }
 
   handleTypeChange = type => {
@@ -79,20 +69,20 @@ export default class WebhookForm extends Component {
 
     return (
       <div className={styles.row}>
-        <div className={styles.title}>{t('Server Settings')}</div>
+        <div className={styles.title}>{t('SERVER_SETTINGS')}</div>
         <div className={styles.item}>
           <Form.Item
-            label={t('Webhook Setting')}
-            rules={[{ required: true, message: t('Please input URL') }]}
+            label={t('Webhook URL')}
+            rules={[{ required: true, message: t('WEBHOOK_URL_DESC') }]}
           >
             <Input name="receiver.spec.webhook.url" />
           </Form.Item>
           <Form.Item
-            label={t('Verification Type')}
+            label={t('VERIFICATION_TYPE')}
             rules={[
               {
                 required: true,
-                message: t('Please select a verification type'),
+                message: t('VERIFICATION_TYPE_DESC'),
               },
             ]}
           >
@@ -101,6 +91,7 @@ export default class WebhookForm extends Component {
               value={type}
               options={this.options}
               onChange={this.handleTypeChange}
+              placeholder=" "
             />
           </Form.Item>
           {type === 'basic' && (
@@ -109,7 +100,7 @@ export default class WebhookForm extends Component {
                 <Input name="receiver.spec.webhook.httpConfig.basicAuth.username" />
               </Form.Item>
               <Form.Item label={t('PASSWORD')}>
-                <Input
+                <InputPassword
                   name="secret.data.password"
                   type="password"
                   autoComplete="new-password"
@@ -119,7 +110,7 @@ export default class WebhookForm extends Component {
           )}
           {type === 'token' && (
             <>
-              <Form.Item label={t('Token')}>
+              <Form.Item label={t('TOKEN')}>
                 <Input name="secret.data.token" />
               </Form.Item>
             </>
@@ -130,7 +121,7 @@ export default class WebhookForm extends Component {
               checked={enabled}
               onChange={this.handleChangeCheck}
             >
-              {t('Skip TLS Certification')}
+              {t('SKIP_TLS_VERFICATION')}
             </Checkbox>
           </Form.Item>
         </div>
@@ -144,6 +135,7 @@ export default class WebhookForm extends Component {
       <BaseForm
         name="webhook"
         module="webhook"
+        icon="webhook"
         data={data}
         onChange={onChange}
         hideFooter={hideFooter}

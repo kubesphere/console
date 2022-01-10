@@ -31,7 +31,7 @@ export default class BaseInfo extends React.Component {
       <div>
         <Title
           className={styles.devopsTitle}
-          title={t('Basic Info')}
+          title={t('BASIC_INFORMATION')}
           desc={t('DEVOPS_BASEINFO_DESC')}
         />
         <Form className={styles.form} data={formTemplate} ref={formRef}>

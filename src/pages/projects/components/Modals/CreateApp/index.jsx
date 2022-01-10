@@ -25,7 +25,7 @@ import { Modal, Switch } from 'components/Base'
 import { mergeLabels, updateFederatedAnnotations } from 'utils'
 import FORM_TEMPLATES from 'utils/form.templates'
 
-import RouterStore from 'stores/router'
+import GatewayStore from 'stores/gateway'
 
 import Steps from './Steps'
 import BaseInfo from './BaseInfo'
@@ -70,7 +70,7 @@ export default class ServiceDeployAppModal extends React.Component {
     this.formRef = React.createRef()
     this.codeRef = React.createRef()
 
-    this.routerStore = new RouterStore()
+    this.gatewayStore = new GatewayStore()
   }
 
   componentDidMount() {
@@ -81,6 +81,14 @@ export default class ServiceDeployAppModal extends React.Component {
           this.fecthSampleData(sampleApp)
         }
       })
+    } else {
+      set(
+        this.state.formData.application,
+        'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
+        'false'
+      )
+
+      this.setState({ isGovernance: false })
     }
   }
 
@@ -126,7 +134,7 @@ export default class ServiceDeployAppModal extends React.Component {
         required: true,
       },
       {
-        title: 'EXTERNAL_ACCESS',
+        title: 'ROUTE_SETTINGS',
         component: Routes,
         required: true,
       },
@@ -184,15 +192,25 @@ export default class ServiceDeployAppModal extends React.Component {
 
   async fetchData() {
     const { cluster, namespace } = this.props
-    await this.routerStore.getGateway({ cluster, namespace })
-    const gateway = toJS(this.routerStore.gateway.data)
+
+    const getProjectGateway = () => {
+      return this.gatewayStore.getGatewayByProject({
+        namespace,
+        cluster,
+      })
+    }
+
+    const dataList = await getProjectGateway()
+    const gateway = dataList[1] || dataList[0]
     const isGovernance = !!(this.serviceMeshEnable && gateway.serviceMeshEnable)
+
     set(
       this.state.formData.application,
       'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
       String(isGovernance)
     )
-    this.setState({ gateway, isGovernance })
+
+    this.setState({ gateway: toJS(gateway), isGovernance })
   }
 
   handleOk = () => {

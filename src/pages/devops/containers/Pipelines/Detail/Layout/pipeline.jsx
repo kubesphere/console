@@ -52,7 +52,7 @@ export default class PipelineDetailLayout extends React.Component {
   }
 
   get name() {
-    return 'pipelines'
+    return 'PIPELINE'
   }
 
   get routing() {
@@ -101,9 +101,9 @@ export default class PipelineDetailLayout extends React.Component {
   }
 
   setBranchNames = (branchNames, params) => {
-    isArray(branchNames) && !isEmpty(branchNames)
-      ? (params.branch = branchNames[0])
-      : null
+    if (isArray(branchNames) && !isEmpty(branchNames)) {
+      params.branch = branchNames[0]
+    }
   }
 
   getSonarqube = () => {
@@ -116,20 +116,25 @@ export default class PipelineDetailLayout extends React.Component {
   getUpTime = () => {
     const { activityList } = this.store
     const updateTime = get(toJS(activityList.data), '[0].startTime', '')
-    return !updateTime
-      ? '-'
-      : moment(updateTime).format(`${t('MMMM Do YYYY')} HH:mm`)
+    return !updateTime ? '-' : moment(updateTime).format('YYYY-MM-DD HH:mm:ss')
+  }
+
+  fetchPipelineConfig = async () => {
+    const { params } = this.props.match
+    await this.store.fetchDetail({ ...params, isSilent: true })
+    await this.getPipeLineConfig()
   }
 
   getOperations = () => {
     const { detail } = toJS(this.store)
-    const { devops, cluster, workspace, name } = this.props.match.params
+    const { params } = this.props.match
+    const { devops, cluster, workspace, name } = params
 
     return [
       {
         key: 'edit',
         type: 'control',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: () =>
           this.trigger('pipeline.edit', {
@@ -143,10 +148,10 @@ export default class PipelineDetailLayout extends React.Component {
       {
         key: 'editConfig',
         type: 'control',
-        text: t('Edit Config'),
+        text: t('EDIT_SETTINGS'),
         action: 'edit',
-        onClick: () => {
-          this.getPipeLineConfig()
+        onClick: async () => {
+          await this.fetchPipelineConfig()
           this.trigger('pipeline.advance.edit', {
             devops,
             cluster,
@@ -156,17 +161,17 @@ export default class PipelineDetailLayout extends React.Component {
           })
         },
       },
-      ...(!isEmpty(detail.scmSource)
+      ...(detail.isMultiBranch
         ? [
             {
               key: 'scan',
-              text: t('Scan Repository'),
+              text: t('SCAN_REPOSITORY'),
               action: 'edit',
               onClick: this.handleScanRepository,
             },
             {
               key: 'scanLogs',
-              text: t('Scan Repository Logs'),
+              text: t('VIEW_SCAN_LOGS'),
               action: 'edit',
               onClick: () => {
                 this.trigger('pipeline.scanRepositoryLogs', {
@@ -185,6 +190,7 @@ export default class PipelineDetailLayout extends React.Component {
           this.trigger('resource.delete', {
             devops,
             cluster,
+            type: this.name,
             detail: { devops, cluster, name: this.store.detail.name },
             success: () => {
               this.routing.push(
@@ -211,10 +217,10 @@ export default class PipelineDetailLayout extends React.Component {
 
   getPipelineStatus = status => {
     const CONFIG = {
-      failed: { type: 'failure', label: t('Failure') },
-      pending: { type: 'running', label: t('Running') },
-      working: { type: 'running', label: t('Running') },
-      successful: { type: 'success', label: t('Success') },
+      failed: { type: 'failure', label: t('FAILED') },
+      pending: { type: 'running', label: t('RUNNING') },
+      working: { type: 'running', label: t('RUNNING') },
+      successful: { type: 'success', label: t('SUCCESSFUL') },
     }
 
     return { ...CONFIG[status] }
@@ -230,19 +236,19 @@ export default class PipelineDetailLayout extends React.Component {
 
     return [
       {
-        name: t('DevOps Project'),
+        name: t('DEVOPS_PROJECT'),
         value: devopsName,
       },
       {
-        name: t('STATUS'),
+        name: t('TASK_STATUS'),
         value: <Status {...getPipelineStatus(this.getCurrentState())} />,
       },
       {
-        name: t('Sync Status'),
+        name: t('SYNC_STATUS'),
         value: <Status {...this.getPipelineStatus(syncStatus)} />,
       },
       {
-        name: t('UPDATED_AT'),
+        name: t('UPDATE_TIME_TCAP'),
         value: this.getUpTime(),
       },
     ]
@@ -258,7 +264,7 @@ export default class PipelineDetailLayout extends React.Component {
       cluster: params.cluster,
     })
     Notify.success({
-      content: t('Scan repo success'),
+      content: t('SCAN_REPO_SUCCESSFUL'),
     })
     this.store.fetchDetail(params)
   }
@@ -301,7 +307,7 @@ export default class PipelineDetailLayout extends React.Component {
       labels: this.store.detail.labels,
       breadcrumbs: [
         {
-          label: t('Pipeline List'),
+          label: t('PIPELINE_PL'),
           url: `/${workspace}/clusters/${cluster}/devops/${devops}/pipelines`,
         },
       ],

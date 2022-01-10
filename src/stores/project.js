@@ -29,7 +29,7 @@ const withTypeSelectParams = (params, type) => {
     params.labelSelector = 'kubesphere.io/workspace=system-workspace'
   } else if (type === 'user') {
     params.labelSelector =
-      'kubesphere.io/workspace!=system-workspace,!kubesphere.io/kubefed-host-namespace,!kubesphere.io/devopsproject'
+      'kubesphere.io/workspace!=system-workspace,!kubesphere.io/devopsproject'
   } else {
     params.labelSelector =
       params.labelSelector ||

@@ -50,9 +50,9 @@ export default class ResourceQuota extends React.Component {
   }
 
   showEdit = () => {
-    const { namespace, cluster } = this.props
+    const { namespace, cluster, workspace } = this.props
     this.trigger('project.quota.edit', {
-      detail: { name: namespace, namespace, cluster: cluster.name },
+      detail: { name: namespace, namespace, cluster: cluster.name, workspace },
       success: this.fetchData,
       isFederated: true,
     })
@@ -66,13 +66,20 @@ export default class ResourceQuota extends React.Component {
 
   get items() {
     const detail = this.store.data
+    const hard = get(detail, 'hard', {})
+    const quotaMaps = Object.values(QUOTAS_MAP).map(value => value.name)
+    const userDinedKeys = Object.keys(hard)
+      .filter(key => quotaMaps.indexOf(key) === -1)
+      .map(item => [item, { name: item, type: 'userDefined' }])
     return Object.entries(QUOTAS_MAP)
+      .concat(userDinedKeys)
       .map(([key, value]) => ({
         key,
         name: key,
         total: get(detail, `hard["${value.name}"]`),
         used: get(detail, `used["${value.name}"]`, 0),
         left: get(detail, `left["${value.name}"]`),
+        type: value?.type ?? 'system',
       }))
       .filter(({ total, used, name }) => {
         if (!total && !Number(used) && RESERVED_KEYS.indexOf(name) === -1) {
@@ -101,7 +108,7 @@ export default class ResourceQuota extends React.Component {
         </div>
         {canEdit && (
           <div className={styles.actions}>
-            <Button onClick={this.showEdit}>{t('EDIT_QUOTA')}</Button>
+            <Button onClick={this.showEdit}>{t('EDIT_QUOTAS')}</Button>
           </div>
         )}
         <div className={classNames(styles.content, { [styles.fold]: isFold })}>
@@ -115,7 +122,7 @@ export default class ResourceQuota extends React.Component {
               icon={isFold ? 'chevron-down' : 'chevron-up'}
               onClick={this.toggleFold}
             >
-              {isFold ? t('Unfold') : t('Fold')}
+              {isFold ? t('UNFOLD') : t('FOLD')}
             </Button>
           </div>
         )}

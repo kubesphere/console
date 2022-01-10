@@ -18,7 +18,7 @@
 
 import { get, isEmpty, set, merge, isUndefined } from 'lodash'
 
-import { to, cpuFormat, memoryFormat } from 'utils'
+import { to, cpuFormat, memoryFormat, resourceLimitKey } from 'utils'
 import { getVolumeType } from 'utils/volume'
 import ObjectMapper from 'utils/object.mapper'
 
@@ -103,7 +103,7 @@ export const getWorkloadVolumes = async (detail, setDetail = false) => {
         volumeName = volume.persistentVolumeClaim.claimName
         promises.push(to(request.get(`${prefix}/${volumeName}`)))
       } else {
-        volumeName = volume.hostPath ? volume.hostPath.path : volume.name
+        volumeName = volume.HostPath ? volume.HostPath.path : volume.name
       }
 
       return {
@@ -252,13 +252,6 @@ export const getWorkloadReplicaCount = (record, module) => {
 }
 
 export const getLeftQuota = (wsQuota, nsQuota) => {
-  const keys = [
-    'limits.cpu',
-    'limits.memory',
-    'requests.cpu',
-    'requests.memory',
-  ]
-
   function getLeft(quota, key) {
     let left
     const total = get(quota, `hard["${key}"]`)
@@ -275,15 +268,37 @@ export const getLeftQuota = (wsQuota, nsQuota) => {
   }
 
   return {
-    workspace: keys.reduce(
+    workspace: resourceLimitKey.reduce(
       (prev, key) => ({ ...prev, [key]: getLeft(wsQuota, key) }),
       {}
     ),
-    namespace: keys.reduce(
+    namespace: resourceLimitKey.reduce(
       (prev, key) => ({ ...prev, [key]: getLeft(nsQuota, key) }),
       {}
     ),
   }
+}
+
+export const getUsedQuota = data => {
+  function getQuota(quota, key) {
+    let result
+    const used = get(quota, `used["${key}"]`)
+    if (used !== '0') {
+      if (key.endsWith('cpu')) {
+        result = cpuFormat(used)
+      } else if (key.endsWith('memory')) {
+        result = memoryFormat(used)
+      }
+    }
+
+    return result
+  }
+
+  const quotas = resourceLimitKey.reduce(
+    (prev, key) => ({ ...prev, [key]: getQuota(data, key) }),
+    {}
+  )
+  return { ...quotas }
 }
 
 export const getContainersResources = (
@@ -357,7 +372,10 @@ export const compareQuotaAndResources = (leftQuota, resources) => {
         namespaceQuota === Infinity ? undefined : `${namespaceQuota}${unit}`,
       workspaceQuota:
         workspaceQuota === Infinity ? undefined : `${workspaceQuota}${unit}`,
-      overcost: cost > workspaceQuota || cost > namespaceQuota,
+      overcost:
+        cost === Infinity
+          ? 'unset'
+          : cost > workspaceQuota || cost > namespaceQuota,
     }
   })
 

@@ -49,7 +49,7 @@ export default class Scheduling extends Component {
     if (/^\+?[1-9][0-9]*$/.test(value)) {
       callback()
     } else {
-      callback({ message: t('replicas input invalid'), field: rule.field })
+      callback({ message: t('ENTER_POSITIVE_INTEGER_DESC'), field: rule.field })
     }
   }
 
@@ -61,7 +61,7 @@ export default class Scheduling extends Component {
           label={t('TOTAL_REPLICAS')}
           className={styles.InputItem}
           rules={[
-            { required: true, message: t('Please input total replicas num') },
+            { required: true, message: t('TOTAL_REPLICAS_EMPTY_DESC') },
             { validator: this.totalValidator },
           ]}
         >

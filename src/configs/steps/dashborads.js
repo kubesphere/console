@@ -20,7 +20,7 @@ import BaseInfo from 'components/Forms/Dashboard/BaseInfo'
 
 export default [
   {
-    title: 'Basic Info',
+    title: 'BASIC_INFORMATION',
     icon: 'dashboard',
     component: BaseInfo,
     required: true,

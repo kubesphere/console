@@ -20,8 +20,9 @@ import { action, observable } from 'mobx'
 import { isArray, get, isEmpty, set } from 'lodash'
 import { parseUrl, getQueryString, generateId } from 'utils'
 
-import BaseStore from 'stores/devops/base'
 import qs from 'qs'
+import BaseStore from '../devops'
+
 import CredentialStore from './credential'
 
 export default class SCMStore extends BaseStore {
@@ -50,7 +51,7 @@ export default class SCMStore extends BaseStore {
         if (errorBody.code === 428) {
           this.creatBitBucketServersError = {
             password: {
-              message: t('Wrong username or password, please try again'),
+              message: t('INCORRECT_USERNAME_OR_PASSWORD'),
             },
           }
           return
@@ -111,8 +112,8 @@ export default class SCMStore extends BaseStore {
     this.scmType = scmType
     this.orgParams = params
 
-    const result = await this.request.get(
-      `${this.getBaseUrlV2({ cluster })}scms/${scmType ||
+    const result = await request.get(
+      `${this.getDevopsUrlV2({ cluster })}scms/${scmType ||
         'github'}/organizations/?${getQueryString(params, false)}`
     )
 
@@ -154,8 +155,8 @@ export default class SCMStore extends BaseStore {
 
     this.getRepoListLoading = true
 
-    const result = await this.request.get(
-      `${this.getBaseUrlV2({
+    const result = await request.get(
+      `${this.getDevopsUrlV2({
         cluster,
       })}scms/${scmType}/organizations/${organizationName}/repositories/?${getQueryString(
         {
@@ -225,8 +226,8 @@ export default class SCMStore extends BaseStore {
       _type = 'bitbucket_cloud'
     }
 
-    return await this.request.post(
-      `${this.getBaseUrlV2({ cluster })}scms/${_type}/verify/`,
+    return await request.post(
+      `${this.getDevopsUrlV2({ cluster })}scms/${_type}/verify/`,
       rest,
       null,
       this.verifyAccessErrorHandle[scmType]
@@ -266,7 +267,9 @@ export default class SCMStore extends BaseStore {
     if (isEmpty(parseUrl(apiUrl))) {
       this.creatBitBucketServersError = {
         apiUrl: {
-          message: t('url is invalid'),
+          message: isEmpty(apiUrl)
+            ? t('BITBUCKET_ADDRESS_EMPTY_TIP')
+            : t('BITBUCKET_ADDRESS_INVALID_TIP'),
         },
       }
       return
@@ -275,8 +278,8 @@ export default class SCMStore extends BaseStore {
     let result = { id: generateId(4) }
 
     if (!/https:\/\/bitbucket.org\/?/gm.test(`${apiUrl}`)) {
-      result = await this.request.post(
-        `${this.getBaseUrlV2({ cluster })}scms/bitbucket-server/servers`,
+      result = await request.post(
+        `${this.getDevopsUrlV2({ cluster })}scms/bitbucket-server/servers`,
         {
           apiUrl,
           name: credentialId,
@@ -317,8 +320,8 @@ export default class SCMStore extends BaseStore {
   }
 
   getBitbucketList = async ({ cluster }) => {
-    const result = await this.request.get(
-      `${this.getBaseUrlV2({ cluster })}scms/bitbucket-server/servers`
+    const result = await request.get(
+      `${this.getDevopsUrlV2({ cluster })}scms/bitbucket-server/servers`
     )
 
     let bitbucketServerList = []
@@ -347,21 +350,19 @@ export default class SCMStore extends BaseStore {
 
   @action
   checkCronScript = ({ devops, script, pipeline, cluster }) =>
-    this.request.post(
-      `${this.getDevopsUrlV2({ cluster })}${devops}/checkCron`,
-      {
-        cron: script,
-        name: pipeline,
-      }
-    )
+    request.post(`${this.getDevopsUrlV2({ cluster, devops })}checkCron`, {
+      cron: script,
+      name: pipeline,
+    })
 
   @action
   fetchGitLabServerList = async ({ cluster, devops }) => {
     const url = `${this.getDevopsUrlV2({
       cluster,
-    })}${devops}/jenkins/gitlab/serverList`
+      devops,
+    })}jenkins/gitlab/serverList`
 
-    const result = await this.request.post(url, {}, {}, () => {
+    const result = await request.post(url, {}, {}, () => {
       return []
     })
 
@@ -380,11 +381,12 @@ export default class SCMStore extends BaseStore {
   fetchGitLabProjectList = async ({ cluster, devops, server, owner }) => {
     let url = `${this.getDevopsUrlV2({
       cluster,
-    })}${devops}/jenkins/gitlab/projectList`
+      devops,
+    })}jenkins/gitlab/projectList`
 
     url += `?${qs.stringify({ server, owner })}`
 
-    const result = await this.request.post(url, {}, {}, () => {
+    const result = await request.post(url, {}, {}, () => {
       return []
     })
 

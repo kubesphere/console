@@ -43,7 +43,7 @@ export default class AppInformation extends React.Component {
     const versions = get(this.props.versionStore, 'list.data', [])
 
     return (
-      <Panel title={t('App Information')}>
+      <Panel title={t('APP_INFORMATION')}>
         <AppInfo app={app} versions={toJS(versions)} />
       </Panel>
     )

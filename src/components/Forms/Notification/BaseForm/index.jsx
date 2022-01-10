@@ -52,7 +52,7 @@ export default class BaseForm extends Component {
       return callback()
     }
     if (value.some(item => !this.checkItemValid(item))) {
-      return callback({ message: t('Invalid notification condition') })
+      return callback({ message: t('INVALID_NOTIFICATION_CONDITION') })
     }
     callback()
   }
@@ -103,7 +103,7 @@ export default class BaseForm extends Component {
   }
 
   renderEnableService() {
-    const { user, name, module } = this.props
+    const { user, name, module, icon } = this.props
     const { enabled } = this.state
 
     if (user) {
@@ -111,7 +111,7 @@ export default class BaseForm extends Component {
         <div className={styles.contentWrapper}>
           <Form.Item
             className={styles.isHorizon}
-            label={t(`Notification ${enabled ? 'On' : 'Off'}`)}
+            text={t(enabled ? t('ENABLED') : t('DISABLED'))}
           >
             <ToggleField
               name={`receiver.spec.${name}.enabled`}
@@ -125,15 +125,15 @@ export default class BaseForm extends Component {
       <div className={styles.header}>
         <Text
           className={styles.title}
-          icon={name}
-          title={t(module)}
-          description={t(`${module.toUpperCase()}_SETTING_DESC`)}
+          icon={icon}
+          title={t(`${module.toUpperCase()}_TITLE`)}
+          description={t(`${module.toUpperCase()}_DESC`)}
         />
         <div className={styles.action}>
           <Form.Item>
             <Switch
               name={`receiver.spec.${name}.enabled`}
-              text={t(`Notification ${enabled ? 'On' : 'Off'}`)}
+              text={t(enabled ? t('ENABLED') : t('DISABLED'))}
               checked={enabled}
               onChange={this.handleSwitch}
             />
@@ -147,7 +147,9 @@ export default class BaseForm extends Component {
     return (
       <div className={styles.annotation}>
         <Icon name="question" />
-        <p>{t('NOTIFICATION_CONDITION_SETTING_ANNOTATION')}</p>
+        <p className={styles.desc}>
+          {t.html('NOTIFICATION_CONDITION_SETTING_TIP')}
+        </p>
       </div>
     )
   }
@@ -157,7 +159,7 @@ export default class BaseForm extends Component {
 
     return (
       <Form.Group
-        label={t('Notification Condition Settings')}
+        label={t('NOTIFICATION_CONDITIONS')}
         desc={t('NOTIFICATION_CONDITION_SETTINGS_DESC')}
         checkable
       >
@@ -167,7 +169,7 @@ export default class BaseForm extends Component {
           <ArrayInput
             name={`receiver.spec.${name}.alertSelector.matchExpressions`}
             itemType="object"
-            addText={t('Add conditions')}
+            addText={t('ADD')}
             checkItemValid={this.checkItemValid}
             desc={this.renderControlAnnotation()}
           >
@@ -183,7 +185,7 @@ export default class BaseForm extends Component {
 
     return (
       <div className={styles.contentWrapper}>
-        <p>{t('NOTIFICATION_CONFIGRATION_SEND_TEST_MESSAGE_DESC')}</p>
+        <p>{t('SEND_TEST_MESSAGE_DESC')}</p>
         <Button
           className={styles.action}
           onClick={this.handleVerify}
@@ -200,13 +202,13 @@ export default class BaseForm extends Component {
 
     return (
       <div className={styles.footer}>
-        <Button onClick={onCancel}>{t('Cancel')}</Button>
+        <Button onClick={onCancel}>{t('CANCEL')}</Button>
         <Button
           type="control"
           loading={isSubmitting}
           onClick={this.handleSubmit}
         >
-          {t('Save')}
+          {t('OK')}
         </Button>
       </div>
     )

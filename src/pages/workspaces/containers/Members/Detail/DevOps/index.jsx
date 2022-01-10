@@ -70,7 +70,7 @@ export default class MemberDevOpsProjects extends React.Component {
       render: (name, record) => getDisplayName(record),
     },
     {
-      title: t('CREATED_AT'),
+      title: t('CREATION_TIME_TCAP'),
       dataIndex: 'createTime',
       width: '33%',
       render: createTime => (
@@ -107,7 +107,7 @@ export default class MemberDevOpsProjects extends React.Component {
     const pagination = { page, limit, total }
 
     return (
-      <Card title={t('DevOps Projects')}>
+      <Card title={t('DEVOPS_PROJECTS')}>
         <Table
           className={styles.table}
           data={data}
@@ -116,7 +116,7 @@ export default class MemberDevOpsProjects extends React.Component {
           onFetch={this.getData}
           {...this.clusterProps}
           pagination={pagination}
-          name="DevOps"
+          name="DEVOPS_PROJECT"
           hideSearch
           hideCustom
         />

@@ -28,7 +28,6 @@
 
     span + span {
       margin-left: 12px;
-
       &:before {
         content: '|';
         color: $light-color04;
@@ -41,11 +40,9 @@
       display: inline-block;
       line-height: 20px;
       vertical-align: middle;
-
       img {
         margin-right: 4px;
       }
-
       strong,
       img {
         vertical-align: middle;
@@ -55,13 +52,8 @@
     .left {
       float: left;
     }
-
     .right {
       float: right;
     }
   }
-}
-
-.banLink {
-  @include banLink();
 }

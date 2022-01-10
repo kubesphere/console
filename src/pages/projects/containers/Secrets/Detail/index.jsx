@@ -46,7 +46,7 @@ export default class SecretDetail extends React.Component {
   }
 
   get name() {
-    return 'Secret'
+    return 'SECRET'
   }
 
   get routing() {
@@ -79,11 +79,11 @@ export default class SecretDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -102,7 +102,7 @@ export default class SecretDetail extends React.Component {
     {
       key: 'editSecret',
       icon: 'pen',
-      text: t('EDIT_SECRET'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('secret.edit', {
@@ -118,7 +118,7 @@ export default class SecretDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -128,14 +128,13 @@ export default class SecretDetail extends React.Component {
   getAttrs = () => {
     const detail = toJS(this.store.detail)
     const { cluster, namespace } = this.props.match.params
-
     if (isEmpty(detail)) {
       return
     }
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -147,7 +146,7 @@ export default class SecretDetail extends React.Component {
         value: t(SECRET_TYPES[detail.type] || detail.type),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
@@ -172,7 +171,7 @@ export default class SecretDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Secrets'),
+          label: t('SECRET_PL'),
           url: this.listUrl,
         },
       ],

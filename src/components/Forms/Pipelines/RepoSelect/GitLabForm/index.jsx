@@ -96,7 +96,7 @@ export default class GitLabForm extends React.Component {
     <span style={{ display: 'flex', alignItem: 'center' }}>
       {label}&nbsp;&nbsp;
       <Tag type={disabled ? '' : 'warning'}>
-        {type === 'ssh' ? 'SSH' : t(type)}
+        {type && t(`CREDENTIAL_TYPE_${type.toUpperCase()}`)}
       </Tag>
     </span>
   )
@@ -110,18 +110,21 @@ export default class GitLabForm extends React.Component {
       <div className={styles.card}>
         <Form data={formData} ref={formRef}>
           <Form.Item
-            label={t('GitLab Server')}
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            label={t('GITLAB_SERVER_ADDRESS')}
+            rules={[{ required: true, message: t('GITLAB_SERVER_EMPTY_TIP') }]}
           >
             <Select
               name="gitlab_source.server_name"
               options={serverList}
               onChange={this.getProjectListByServerName}
+              placeholder=" "
             />
           </Form.Item>
           <Form.Item
-            label={t('GitLab Owner')}
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            label={t('PROJECT_GROUP_OWNER')}
+            rules={[
+              { required: true, message: t('PROJECT_GROUP_OWNER_EMPTY_TIP') },
+            ]}
           >
             <Input
               name="gitlab_source.owner"
@@ -132,12 +135,12 @@ export default class GitLabForm extends React.Component {
             label={t('CREDENTIAL_SI')}
             desc={
               <p>
-                {t('ADD_NEW_CREDENTIAL_DESC')}
+                {t('SELECT_CREDENTIAL_DESC')}
                 <span
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_CREDENTIAL')}
                 </span>
               </p>
             }
@@ -150,15 +153,22 @@ export default class GitLabForm extends React.Component {
               onFetch={this.getCredentialsListData}
               optionRenderer={this.optionRender}
               valueRenderer={this.optionRender}
+              placeholder=" "
               searchable
               clearable
             />
           </Form.Item>
           <Form.Item
-            label={t('Repository Name')}
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            label={t('REPOSITORY_NAME')}
+            rules={[
+              { required: true, message: t('REPOSITORY_NAME_EMPTY_TIP') },
+            ]}
           >
-            <Select name="gitlab_source.repo" options={projectList} />
+            <Select
+              name="gitlab_source.repo"
+              options={projectList}
+              placeholder=" "
+            />
           </Form.Item>
         </Form>
       </div>

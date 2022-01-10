@@ -64,7 +64,7 @@ export default class Workspaces extends React.Component {
     const workspaces = this.workspaces
 
     return (
-      <Panel title={t('Workspaces')}>
+      <Panel title={t('WORKSPACES')}>
         <div className={styles.wrapper}>
           {isEmpty(workspacesStatus) && (
             <div className={styles.empty}>

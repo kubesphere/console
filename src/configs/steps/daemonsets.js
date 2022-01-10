@@ -22,9 +22,14 @@ import VolumeSettings from 'components/Forms/Workload/VolumeSettings'
 import AdvanceSettings from 'components/Forms/Workload/AdvanceSettings'
 
 export default [
-  { title: 'Basic Info', icon: 'cdn', component: BaseInfo, required: true },
   {
-    title: 'Container Image',
+    title: 'BASIC_INFORMATION',
+    icon: 'cdn',
+    component: BaseInfo,
+    required: true,
+  },
+  {
+    title: 'POD_SETTINGS',
     icon: 'docker',
     component: ContainerSettings,
     required: true,
@@ -36,7 +41,7 @@ export default [
     required: true,
   },
   {
-    title: 'Advanced Settings',
+    title: 'ADVANCED_SETTINGS',
     icon: 'slider',
     component: AdvanceSettings,
     required: true,

@@ -29,8 +29,8 @@ export default class MeterTable extends React.Component {
   renderTooltipContent = () => {
     return (
       <div className={styles.tooltipContent}>
-        <h3>{t('Total Consumer Meaning')}</h3>
-        <p>{t('Total Consumer Desc')}</p>
+        <h3>{t('TOTAL_CONSUMPTION_Q')}</h3>
+        <p>{t('TOTAL_CONSUMPTION_A')}</p>
       </div>
     )
   }
@@ -48,13 +48,15 @@ export default class MeterTable extends React.Component {
                   background: record.color,
                 }}
               />
-              {t(METER_RESOURCE_TITLE[value])}
+              {t(
+                METER_RESOURCE_TITLE[value].toUpperCase().replace(/\s+/g, '_')
+              )}
             </>
           )
         },
       },
       {
-        title: t('Max Usage'),
+        title: t('MAXIMUM_USAGE'),
         dataIndex: 'max_value',
         render: (value, record) => {
           return (
@@ -65,7 +67,7 @@ export default class MeterTable extends React.Component {
         },
       },
       {
-        title: t('Min Usage'),
+        title: t('MINIMUM_USAGE'),
         dataIndex: 'min_value',
         render: (value, record) => {
           return (
@@ -76,7 +78,7 @@ export default class MeterTable extends React.Component {
         },
       },
       {
-        title: t('Average Usage'),
+        title: t('AVERAGE_USAGE'),
         dataIndex: 'avg_value',
         render: (value, record) => {
           return (
@@ -89,7 +91,7 @@ export default class MeterTable extends React.Component {
       {
         title: (
           <div className={styles.question}>
-            {t('Total Consumption')}
+            {t('TOTAL_CONSUMPTION')}
             <Tooltip content={this.renderTooltipContent()} placement="top">
               <Icon name="question" size={16} />
             </Tooltip>

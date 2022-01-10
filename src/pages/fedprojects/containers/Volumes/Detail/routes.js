@@ -26,25 +26,25 @@ import VolumeMounts from './VolumeMounts'
 export default PATH => [
   {
     path: `${PATH}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     exact: true,
     component: ResourceStatus,
   },
   {
     path: `${PATH}/volume-mounts`,
-    title: 'Mount Info',
+    title: 'MOUNT_INFORMATION',
     exact: true,
     component: VolumeMounts,
   },
   {
     path: `${PATH}/metadata`,
-    title: 'Metadata',
+    title: 'METADATA',
     component: Metadata,
     exact: true,
   },
   {
     path: `${PATH}/events`,
-    title: 'Events',
+    title: 'EVENT_PL',
     exact: true,
     component: Events,
   },

@@ -40,7 +40,7 @@ class Events extends React.Component {
       ),
     },
     {
-      title: t('Reason'),
+      title: t('REASON'),
       dataIndex: 'reason',
       width: '16%',
     },
@@ -50,21 +50,20 @@ class Events extends React.Component {
       width: '16%',
     },
     {
-      title: t('EVENT_FROM'),
+      title: t('SOURCE'),
       dataIndex: 'from',
       width: '18%',
     },
     {
-      title: t('Message'),
+      title: t('MESSAGE'),
       dataIndex: 'message',
     },
   ]
 
   render() {
     const { data, loading } = this.props
-
     return (
-      <Panel title={t('Events')}>
+      <Panel title={t('EVENT_PL')}>
         <Table
           className={styles.table}
           dataSource={data}

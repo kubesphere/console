@@ -55,32 +55,32 @@ export default class HomeModal extends React.Component {
   supportQueryParams = [
     {
       icon: 'magnifier',
-      title: t('Search Logs by', { field: t('Keyword') }),
-      tips: t('KeyWord Log Query Tip'),
+      title: t('SEARCH_BY_KEYWORD'),
+      tips: t('CONTAINER_LOG_KEYWORD_TIP'),
       key: 'log_query',
     },
     {
       icon: 'project',
-      title: t('Search Logs by', { field: t('PROJECT') }),
-      tips: t('Project Log Query Tip'),
+      title: t('SEARCH_BY_PROJECT'),
+      tips: t('CONTAINER_LOG_PROJECT_TIP'),
       key: 'namespace_query',
     },
     {
       icon: 'backup',
-      title: t('Search Logs by', { field: t('Workload') }),
-      tips: t('Workload Log Query Tip'),
+      title: t('SEARCH_BY_WORKLOAD'),
+      tips: t('CONTAINER_LOG_WORKLOAD_TIP'),
       key: 'workload_query',
     },
     {
       icon: 'pod',
-      title: t('Search Logs by', { field: t('Pods') }),
-      tips: t('Pod Log Query Tip'),
+      title: t('SEARCH_BY_POD'),
+      tips: t('CONTAINER_LOG_POD_TIP'),
       key: 'pod_query',
     },
     {
       icon: 'docker',
-      title: t('Search Logs by', { field: t('Container') }),
-      tips: t('Container Log Query Tip'),
+      title: t('SEARCH_BY_CONTAINER'),
+      tips: t('CONTAINER_LOG_CONTAINER_TIP'),
       key: 'container_query',
     },
   ]
@@ -128,7 +128,7 @@ export default class HomeModal extends React.Component {
         <div className={styles.tips}>
           <div className={styles.pane}>
             {this.renderSearchBar()}
-            <h3 className={styles.rule}>{t('Search Rule')}:</h3>
+            <h3 className={styles.rule}>{t('QUERYING_RULES')}</h3>
             {this.renderRecentLogs()}
             {this.renderQueryItems()}
           </div>
@@ -154,7 +154,7 @@ export default class HomeModal extends React.Component {
             </h3>
             <p>
               <Icon name="clock" />
-              {t('Current Statistics Start Time')}:
+              {t('START_TIME_COLON')}
               {moment(this.logStatisticsStore.startTime).format(
                 `${t('LOG_DATE')}`
               )}
@@ -187,7 +187,7 @@ export default class HomeModal extends React.Component {
           dropDownItems={{
             log_query: {
               icon: 'magnifier',
-              text: t('Keyword'),
+              text: t('KEYWORD'),
             },
             namespace_query: {
               icon: 'project',
@@ -195,15 +195,15 @@ export default class HomeModal extends React.Component {
             },
             workload_query: {
               icon: 'backup',
-              text: t('Workload'),
+              text: t('WORKLOAD'),
             },
             pod_query: {
               icon: 'pod',
-              text: t('Pod'),
+              text: t('POD'),
             },
             container_query: {
               icon: 'docker',
-              text: t('Container'),
+              text: t('CONTAINER'),
             },
           }}
         />
@@ -217,13 +217,13 @@ export default class HomeModal extends React.Component {
         <div className={classnames(styles.card, styles.recent)}>
           <div className={styles.recentSummary}>
             <h2 className={styles.count}>{this.histogramStore.logsCount}</h2>
-            <p>{t('Log trends in the last 12 hours')}</p>
+            <p>{t('CONTAINER_LOG_TRENDS_12H')}</p>
           </div>
           <div className={styles.chart}>
             <TimeBar
               xKey={'time'}
               data={toJS(this.histogramStore.histograms)}
-              legend={[['count', t('Log statistics')]]}
+              legend={[['count', t('CONTAINER_LOG_COUNT')]]}
               interval={this.histogramStore.interval}
               onBarClick={this.selectedDurationParameter}
             />

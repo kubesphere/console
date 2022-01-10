@@ -26,13 +26,13 @@ export default {
     {
       icon: 'storage',
       name: 'volumeSettings',
-      title: 'Volume Settings',
+      title: 'VOLUME_SETTINGS',
       component: VolumeSettings,
     },
     {
       icon: 'blue-green-deployment',
       name: 'diffSettings',
-      title: 'Diff Settings',
+      title: 'CLUSTER_DIFF',
       component: ClusterDiffSettings,
     },
   ],
@@ -40,13 +40,13 @@ export default {
     {
       icon: 'storage',
       name: 'volumeSettings',
-      title: 'Volume Settings',
+      title: 'VOLUME_SETTINGS',
       component: VolumeSettings,
     },
     {
       icon: 'blue-green-deployment',
       name: 'diffSettings',
-      title: 'Diff Settings',
+      title: 'CLUSTER_DIFF',
       component: withProps(ClusterDiffSettings, { withService: true }),
     },
   ],
@@ -54,13 +54,13 @@ export default {
     {
       icon: 'storage',
       name: 'volumeSettings',
-      title: 'Volume Settings',
+      title: 'VOLUME_SETTINGS',
       component: VolumeSettings,
     },
     {
       icon: 'blue-green-deployment',
       name: 'diffSettings',
-      title: 'Diff Settings',
+      title: 'CLUSTER_DIFF',
       component: withProps(ClusterDiffSettings, { withService: true }),
     },
   ],

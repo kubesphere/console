@@ -133,7 +133,7 @@ export default class ResourceQuota extends React.Component {
         </div>
         {canEdit && (
           <div className={styles.actions}>
-            <Button onClick={this.showEdit}>{t('EDIT_WORKSPACE_QUOTA')}</Button>
+            <Button onClick={this.showEdit}>{t('EDIT_QUOTAS')}</Button>
           </div>
         )}
         <div className={styles.content}>

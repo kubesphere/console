@@ -1,25 +1,33 @@
 @import '~scss/variables';
 @import '~scss/mixins';
 
+@mixin cluster-base {
+  padding: 8px;
+  margin-right: 12px;
+  color: #fff;
+  border-radius: 4px;
+}
+
 .wrapper {
   display: flex;
+  width: 100%;
 }
 
 .cluster,
 .clusterLoading {
   width: 326px;
   height: 108px;
-  padding: 8px;
-  margin-right: 12px;
-  color: #fff;
-  border-radius: 4px;
+  @include cluster-base();
   background-image: url('/assets/cluster-card-bg.svg');
 }
 
 .scheduleCluster {
-  width: 298px;
+  max-width: 298px;
   height: 160px;
   padding: 12px;
+  flex: 1;
+  @include cluster-base();
+  background-image: url('/assets/federate-cluster-card-bg.svg');
 }
 
 .clusterLoading {
@@ -132,7 +140,7 @@
 
     span {
       display: block;
-      font-family: PingFang SC;
+      font-family: 'PingFang SC';
       font-style: normal;
       font-weight: normal;
       font-size: 12px;
@@ -163,7 +171,7 @@
   margin-right: 12px;
 
   .total {
-    font-family: PingFang SC;
+    font-family: 'PingFang SC';
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -190,7 +198,7 @@
 
 .weight {
   display: flex;
-  width: 274px;
+  flex: 1 0 274px;
   height: 32px;
   margin: 0 auto;
   margin-top: 12px;

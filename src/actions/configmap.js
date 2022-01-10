@@ -63,7 +63,7 @@ export default {
             .then(() => {
               Modal.close(modal)
 
-              Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+              Notify.success({ content: t('CREATE_SUCCESSFUL') })
               success && success(data)
 
               formPersist.delete(`${module}_create_form`)
@@ -87,9 +87,13 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           set(data, 'metadata.resourceVersion', detail.resourceVersion)
+          if (props.isFederated) {
+            set(data, 'apiVersion', store.version)
+            set(data, 'kind', 'FederatedConfigMap')
+          }
           store.update(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             success && success()
           })
         },

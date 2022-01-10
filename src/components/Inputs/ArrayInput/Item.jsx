@@ -16,31 +16,44 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Button } from '@kube-design/components'
 
 import styles from './index.scss'
 
 const Item = ({ component, index, value, arrayValue, onChange, onDelete }) => {
+  const [keyErrorTip, setKeyError] = useState('')
+
+  const handleKeyError = info => {
+    const message = info?.message ?? ''
+    setKeyError(message)
+  }
+
   const childNode = React.cloneElement(component, {
     ...component.props,
     index,
     value,
     arrayValue,
     onChange,
+    handleKeyError,
   })
 
   return (
-    <div className={styles.item}>
-      {childNode}
-      <Button
-        type="flat"
-        icon="trash"
-        className={styles.delete}
-        onClick={onDelete}
-      />
-    </div>
+    <>
+      <div className={styles.item}>
+        {childNode}
+        <Button
+          type="flat"
+          icon="trash"
+          className={styles.delete}
+          onClick={onDelete}
+        />
+      </div>
+      {keyErrorTip !== '' && (
+        <div className={styles.errorText}>{keyErrorTip}</div>
+      )}
+    </>
   )
 }
 

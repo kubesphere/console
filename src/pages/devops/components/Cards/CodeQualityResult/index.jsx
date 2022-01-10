@@ -76,8 +76,8 @@ class CodeQualityResult extends React.Component {
             secondary: '#ffffff',
           }}
         />
-        <p>{t('Code Quality Check')}</p>
-        <p>{isPassed ? t('Passed') : t("Did't pass")}</p>
+        <p>{t('CODE_CHECK')}</p>
+        <p>{isPassed ? t('PASSED') : t('FAILED')}</p>
       </div>
     )
   }
@@ -103,37 +103,37 @@ class CodeQualityResult extends React.Component {
     return (
       <div className={styles.otherCards}>
         <StatusCard
-          title={t('Lines of Code')}
+          title={t('CODE_LINE_COUNT')}
           value={totalCode}
           unit={totalCodeUnit}
           url={`${this.sonarqubeOrigin}/component_measures?id=${key}&metric=ncloc`}
         />
         <StatusCard
           hasIcon
-          title={t('Bug')}
+          title={t('BUG_PL')}
           value={bugs}
-          unit={t('NUM_UNIT')}
+          unit=""
           resultClass={bugRating}
           url={`${this.sonarqubeOrigin}/project/issues?id=${key}&resolved=false&types=BUG`}
         />
         <StatusCard
           hasIcon
-          title={t('Code Vulnerability')}
+          title={t('VULNERABILITY_PL')}
           value={vulnerabilities}
-          unit={t('NUM_UNIT')}
+          unit=""
           resultClass={securityRating}
           url={`${this.sonarqubeOrigin}/project/issues?id=${key}&resolved=false&types=VULNERABILITY`}
         />
         <StatusCard
           hasIcon
-          title={t('CodeSmells')}
+          title={t('CODE_SMELL_PL')}
           value={codeSmells}
-          unit={t('Line')}
+          unit=""
           url={`${this.sonarqubeOrigin}/project/issues?id=${key}&resolved=false&types=CODE_SMELL`}
         />
         <StatusCard
           hasIcon
-          title={t('Coverage')}
+          title={t('COVERAGE')}
           value={coverage}
           unit={'%'}
           url={`${this.sonarqubeOrigin}/component_measures?id=${key}&metric=coverage`}
@@ -154,7 +154,7 @@ class CodeQualityResult extends React.Component {
     }
 
     return (
-      <Card title={t('Test Result')} operations={this.renderLogo()}>
+      <Card title={t('TEST_RESULTS')} operations={this.renderLogo()}>
         <div className={styles.content}>
           {this.renderTotalResult()}
           {this.renderOtherResults()}

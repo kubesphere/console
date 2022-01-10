@@ -79,7 +79,7 @@ export default class ResourceStatus extends React.Component {
         : {
             key: 'viewYaml',
             icon: 'eye',
-            text: t('View YAML'),
+            text: t('VIEW_YAML'),
             action: 'view',
             onClick: item =>
               this.trigger('resource.yaml.edit', {
@@ -95,7 +95,7 @@ export default class ResourceStatus extends React.Component {
         action: 'delete',
         onClick: item =>
           this.trigger('resource.delete', {
-            type: t(item.kind),
+            type: 'CUSTOM_RESOURCE',
             detail: item,
             success: this.getData,
           }),
@@ -120,13 +120,13 @@ export default class ResourceStatus extends React.Component {
       ...(scope === 'Namespaced'
         ? [
             {
-              title: t('Namespace'),
+              title: t('PROJECT_DEVOPS_PROJECT'),
               dataIndex: 'namespace',
             },
           ]
         : []),
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
@@ -140,7 +140,7 @@ export default class ResourceStatus extends React.Component {
 
     return (
       <div>
-        <div className={styles.title}>{t('Resource List')}</div>
+        <div className={styles.title}>{t('CUSTOM_RESOURCE_PL')}</div>
         <Table
           data={toJS(data)}
           columns={this.columns}

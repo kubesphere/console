@@ -135,14 +135,14 @@ export default class Projects extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
       },
       {
         key: 'quotaEdit',
         icon: 'pen',
-        text: t('EDIT_QUOTA'),
+        text: t('EDIT_QUOTAS'),
         action: 'edit',
         onClick: item =>
           trigger('project.quota.edit', {
@@ -235,7 +235,7 @@ export default class Projects extends React.Component {
         render: record => this.getLastValue(record, MetricTypes.pod),
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         sorter: true,

@@ -1,25 +1,36 @@
 @import '~scss/variables';
-.title {
-  padding: 20px 0 12px;
-  color: #000;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
 
-  :global {
-    .icon {
-      margin-right: 6px !important;
-      svg {
-        fill: #329dce;
+.modalBody {
+  min-width: 320px;
+  color: $dark;
+  background-color: $white;
+
+  .title {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 8px;
+
+    strong {
+      font-size: $size-normal;
+    }
+
+    :global {
+      .icon {
+        margin-right: 6px !important;
+        svg {
+          fill: #329dce;
+        }
       }
     }
+  }
+  .content {
+    line-height: 1.67;
   }
 }
 
 .footer {
-  background: #eff4f9;
-}
-
-.modalBody {
-  padding-top: 0;
+  padding: 8px 20px;
+  background-color: $light;
 }

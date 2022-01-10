@@ -36,6 +36,9 @@ export default class BaseStore {
   @observable
   isSubmitting = false
 
+  @observable
+  supportPv = false
+
   constructor(module) {
     this.module = module
   }
@@ -164,17 +167,24 @@ export default class BaseStore {
 
     const result = await request.get(
       this.getListUrl({ cluster, namespace, module }),
-      params
+      params,
+      {},
+      () => {
+        return { items: [] }
+      }
     )
-    const data = result.items.map(item => ({
-      cluster,
-      module: module || this.module,
-      ...this.mapper(item),
-    }))
+
+    const data = Array.isArray(result.items)
+      ? result.items.map(item => ({
+          cluster,
+          module: module || this.module,
+          ...this.mapper(item),
+        }))
+      : []
 
     this.list.update({
       data,
-      total: result.items.length,
+      total: result.items.length || 0,
       isLoading: false,
     })
 
@@ -262,5 +272,23 @@ export default class BaseStore {
   reject = res => {
     this.isSubmitting = false
     window.onunhandledrejection(res)
+  }
+
+  async checkSupportPv(params) {
+    let result
+    if (globals.ksConfig.multicluster) {
+      result = await request.get(`/kapis/clusters/${params.cluster}/version`)
+    } else {
+      result = await request.get(`/kapis/version`)
+    }
+    const ksVersion = result.gitVersion.replace(/[^\d.]/g, '')
+    const version = Number(
+      ksVersion
+        .split('.')
+        .slice(0, 2)
+        .join('.')
+    )
+    this.supportPv = version >= 3.2
+    return this.supportPv
   }
 }

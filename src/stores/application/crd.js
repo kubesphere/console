@@ -294,7 +294,7 @@ export default class ApplicationStore extends Base {
       if (isServiceMeshEnable) {
         const serviceName = get(
           ingress,
-          'spec.rules[0].http.paths[0].backend.serviceName'
+          'spec.rules[0].http.paths[0].backend.service.name'
         )
         if (serviceName) {
           set(

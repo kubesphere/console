@@ -22,7 +22,6 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { inject } from 'mobx-react'
 import { Button, Notify, Icon, Tabs } from '@kube-design/components'
-import { capitalize } from 'lodash'
 
 import DeleteModal from 'components/Modals/Delete'
 import Confirm from 'apps/components/Modals/Confirm'
@@ -140,7 +139,7 @@ export default class VersionItem extends React.PureComponent {
     this.store.delete({ app_id, version_id }).then(() => {
       this.hideHandleModal()
       Notify.success({
-        content: `${t('DELETE_SUCCESS_DESC')}`,
+        content: t('DELETE_SUCCESSFUL'),
       })
       this.store.fetchList({ app_id })
     })
@@ -160,7 +159,7 @@ export default class VersionItem extends React.PureComponent {
       const type = HANDLE_TYPE_TO_SHOW[handleType] || handleType
       this.hideHandleModal()
       Notify.success({
-        content: `${t(`${capitalize(type)} Successfully`)}`,
+        content: `${t(`${type.toUpperCase()}_SUCCESSFUL`)}`,
       })
       const status = isAdmin ? STORE_QUERY_STATUS : this.store.defaultStatus
 
@@ -190,11 +189,11 @@ export default class VersionItem extends React.PureComponent {
         </dl>
         <dl>
           <dt>{detail.name}</dt>
-          <dd>{t('App Version')}</dd>
+          <dd>{t('VERSION')}</dd>
         </dl>
         <dl>
           <dt>{detail.owner}</dt>
-          <dd>{t('Developer')}</dd>
+          <dd>{t('DEVELOPER')}</dd>
         </dl>
         <dl>
           <dt>
@@ -202,7 +201,7 @@ export default class VersionItem extends React.PureComponent {
               'YYYY-MM-DD HH:mm:ss'
             )}
           </dt>
-          <dd>{t('UPDATED_AT')}</dd>
+          <dd>{t('UPDATE_TIME_SCAP')}</dd>
         </dl>
         <dl className={styles.more}>
           <Icon name="chevron-down" size={20} />
@@ -226,12 +225,12 @@ export default class VersionItem extends React.PureComponent {
       <div className={styles.actions}>
         {CAN_DELETE_STATUS.includes(status) && !isAdmin && (
           <Button onClick={this.showDeleteModel} type={'danger'}>
-            {t('Delete Version')}
+            {t('DELETE')}
           </Button>
         )}
         {!isAdmin && (
           <Button onClick={this.showDeploy} type="default">
-            {t('Test Deployment')}
+            {t('INSTALL')}
           </Button>
         )}
         {handleType && (
@@ -257,12 +256,12 @@ export default class VersionItem extends React.PureComponent {
               appName={appDetail.name}
             />
           </TabPanel>
-          <TabPanel label={t('Audit Records')} name="auditRecord">
+          <TabPanel label={t('APP_RELEASE')} name="auditRecord">
             <AuditRecord appId={detail.app_id} versionId={detail.version_id} />
           </TabPanel>
-          <TabPanel label={t('Deployed Instances')} name="deployInstances">
+          <TabPanel label={t('APP_INSTANCES')} name="deployInstances">
             <InstanceList
-              title={t('Deployed Instances')}
+              title={t('APP_INSTANCES')}
               className={styles.instances}
               appId={appDetail.app_id}
               versionId={detail.version_id}

@@ -20,7 +20,7 @@ import React, { Component } from 'react'
 import { Panel, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { getDocsUrl } from 'utils'
-import classNames from 'classnames'
+
 import styles from './index.scss'
 
 export default class BaseInfo extends Component {
@@ -46,18 +46,15 @@ export default class BaseInfo extends Component {
           title={t('PLATFORM_INFORMATION')}
           description={t('PLATFORM_INFO_DESC')}
         />
-        <Panel title={t('Basic Info')}>
+        <Panel title={t('BASIC_INFORMATION')}>
           <div className={styles.header}>
             <Text
               icon="image"
               title={location.host}
-              description={t('Platform URL')}
+              description={t('PLATFORM_ADDRESS')}
             />
             <a
               href={`${getDocsUrl('custom_console')}`}
-              className={classNames({
-                [styles.banLink]: !globals.config.showOutSiteLink,
-              })}
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -71,11 +68,11 @@ export default class BaseInfo extends Component {
             <div className={styles.info}>
               <Text
                 title={globals.config.title}
-                description={t('Platform Title')}
+                description={t('PLATFORM_TITLE')}
               />
               <Text
                 title={globals.config.description || t('KS_DESCRIPTION')}
-                description={t('Platform Description')}
+                description={t('PLATFORM_DESCRIPTION')}
               />
             </div>
           </div>

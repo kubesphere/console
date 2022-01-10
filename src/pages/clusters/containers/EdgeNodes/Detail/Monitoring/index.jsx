@@ -116,7 +116,7 @@ class Monitorings extends React.Component {
       type: 'utilisation',
       title: 'inode Utilization',
       unit: '%',
-      legend: ['UTILIZATION'],
+      legend: ['USAGE'],
       data: get(
         this.metrics,
         `${MetricTypes.disk_inode_utilisation}.data.result`
@@ -124,7 +124,7 @@ class Monitorings extends React.Component {
       renderTooltip: () => {
         const usageData = getChartData({
           unit: '',
-          legend: ['UTILIZATION'],
+          legend: ['USAGE'],
           valuesData: [
             get(
               this.metrics,
@@ -135,7 +135,7 @@ class Monitorings extends React.Component {
         })
         const totalData = getChartData({
           unit: '',
-          legend: ['UTILIZATION'],
+          legend: ['USAGE'],
           valuesData: [
             get(
               this.metrics,

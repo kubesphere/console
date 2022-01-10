@@ -50,7 +50,7 @@ class PodsResourceStatus extends React.Component {
       <ContainersCard
         prefix={this.prefix}
         cluster={cluster}
-        title={t('Containers')}
+        title={t('CONTAINER_PL')}
         containers={containers}
         initContainers={initContainers}
         podName={name}
@@ -65,7 +65,6 @@ class PodsResourceStatus extends React.Component {
 
     return (
       <VolumesCard
-        title={t('Storage Device')}
         volumes={volumes}
         containers={containers}
         loading={this.store.isLoading}

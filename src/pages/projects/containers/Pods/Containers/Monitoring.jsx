@@ -56,14 +56,14 @@ class Monitorings extends Base {
       type: 'cpu',
       title: 'CPU Usage',
       unitType: 'cpu',
-      legend: ['Usage'],
+      legend: ['USAGE'],
       data: get(this.metrics, `${MetricTypes.cpu_usage}.data.result`),
     },
     {
       type: 'memory',
       title: 'Memory Usage',
       unitType: 'memory',
-      legend: ['Usage'],
+      legend: ['USAGE'],
       data: get(this.metrics, `${MetricTypes.memory_usage}.data.result`),
     },
   ]

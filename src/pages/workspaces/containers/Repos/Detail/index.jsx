@@ -49,7 +49,7 @@ export default class RepoDetail extends React.Component {
   }
 
   get name() {
-    return 'App Repo'
+    return 'APP_REPOSITORY'
   }
 
   get listUrl() {
@@ -98,7 +98,7 @@ export default class RepoDetail extends React.Component {
       action: 'delete',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: () => this.routing.push(this.listUrl),
         }),
@@ -114,7 +114,7 @@ export default class RepoDetail extends React.Component {
 
     return [
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`),
       },
       {
@@ -140,7 +140,7 @@ export default class RepoDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('App Repos'),
+          label: t('APP_REPOSITORY_PL'),
           url: this.listUrl,
         },
       ],

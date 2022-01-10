@@ -27,17 +27,19 @@ const TaintCard = ({ data }) => (
     <Columns>
       <Column>
         <p>
-          <span>key: </span> {data.key}
+          <span>{t('KEY')}:</span>
+          {data.key}
         </p>
       </Column>
       <Column>
         <p>
-          <span>value: </span> {data.value}
+          <span>{t('VALUE')}:</span>
+          {data.value}
         </p>
       </Column>
       <Column>
         <p>
-          <span>effect: </span> {data.effect}
+          <span>{t('POLICY')}:</span> {t(data.effect.toUpperCase())}
         </p>
       </Column>
     </Columns>

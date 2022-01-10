@@ -27,10 +27,10 @@ import ResourceTable from 'clusters/components/ResourceTable'
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
 
 @withClusterList({
-  store: new RouterStore(),
+  store: new IngressStore(),
   module: 'ingresses',
   name: 'ROUTE',
   rowKey: 'uid',
@@ -44,7 +44,7 @@ export default class Routers extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -66,18 +66,19 @@ export default class Routers extends React.Component {
       {
         key: 'editRules',
         icon: 'firewall',
-        text: t('EDIT_RULE'),
+        text: t('EDIT_ROUTING_RULES'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
           trigger('router.rules.edit', {
             detail: item,
+            namespace: item.namespace,
           }),
       },
       {
         key: 'editAnnotations',
         icon: 'firewall',
-        text: t('EDIT_ANNOTATION'),
+        text: t('EDIT_ANNOTATIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -144,7 +145,7 @@ export default class Routers extends React.Component {
         ),
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

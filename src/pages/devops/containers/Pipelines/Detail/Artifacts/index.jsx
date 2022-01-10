@@ -94,13 +94,13 @@ export default class Artifacts extends React.Component {
       ),
     },
     {
-      title: t('Size'),
+      title: t('SIZE'),
       dataIndex: 'size',
       width: '40%',
       render: size => formatSize(size),
     },
     {
-      title: t('Download'),
+      title: t('DOWNLOAD'),
       width: '20%',
       key: 'download',
       render: record => (
@@ -124,7 +124,7 @@ export default class Artifacts extends React.Component {
     const omitFilters = omit(filters, 'page', 'workspace')
 
     if (isEmptyList && !filters.page) {
-      return <EmptyCard desc={t('No artifacts records')} />
+      return <EmptyCard desc={t('NO_ARTIFACT_FOUND_TIP')} />
     }
 
     const pagination = { total, page, limit }

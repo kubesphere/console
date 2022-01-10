@@ -130,7 +130,7 @@ export default class FullLogs extends React.Component {
 
     return (
       <div className={styles.operations}>
-        <Tooltip content={t('Back')}>
+        <Tooltip content={t('BACK')}>
           <Icon
             name="return"
             color={{ primary: '#fff', secondary: '#fff' }}

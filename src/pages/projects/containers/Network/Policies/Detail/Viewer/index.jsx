@@ -40,21 +40,21 @@ export default class Viewer extends React.Component {
   get columns() {
     return [
       {
-        title: 'Target',
+        title: t('TARGET'),
         children: [
           {
             title: t('PROJECT'),
             dataIndex: 'namespace',
           },
           {
-            title: 'label',
+            title: t('LABEL'),
             dataIndex: 'specPodSelector',
             render: item => this.renderLabels(item),
           },
         ],
       },
       {
-        title: 'Destination',
+        title: t('DESTINATION'),
         children: [
           {
             title: t('PROJECT'),
@@ -69,7 +69,7 @@ export default class Viewer extends React.Component {
             },
           },
           {
-            title: 'label',
+            title: t('LABEL'),
             dataIndex: 'podSelector',
             render: (item, record) => {
               if (isEmpty(get(record, 'ipBlock'))) {
@@ -265,8 +265,8 @@ export default class Viewer extends React.Component {
       <Panel
         title={
           this.direction === 'egress'
-            ? t('Traffic Egress')
-            : t('Traffic Ingress')
+            ? t('EGRESS_TRAFFIC')
+            : t('INGRESS_TRAFFIC')
         }
       >
         <Table

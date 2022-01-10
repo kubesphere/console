@@ -17,7 +17,6 @@
   .column {
     @include column;
   }
-  display: flex;
 
   :global(.is-2) {
     width: 20%;
@@ -48,8 +47,7 @@
 }
 
 .disabled {
-  opacity: .3;
+  opacity: 0.3;
   transition: opacity 1.5 linear;
   pointer-events: none;
 }
-

@@ -15,21 +15,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
+  CRD_LOW: 'CRD',
+  CUSTOM_RESOURCE_LOW: '自定义资源',
+  CRD: 'CRD',
   'Custom Resource Definition': '定制资源定义',
   'Custom Resource Definitions': '定制资源定义',
-  CRD: '定制资源定义',
-  CRD_PL: 'CRD',
-  CUSTOM_RESOURCE_DEFINITION_LOW: '定制资源定义',
-
-  CRD_DESC:
-    '定制资源定义（CRD）是一种 Kubernetes 实现自定义资源类型的扩展方式，您可以像操作内置资源对象一样操作 CRD 对象。',
-  CUSTOM_RESOURCE_DEFINITION_CREATE_DESC:
-    '定制资源定义（CRD）是一种 Kubernetes 实现自定义资源类型的扩展方式，您可以像操作内置资源对象一样操作 CRD 对象。',
-
+  CUSTOM_RESOURCE_DEFINITION_CREATE_DESC: '定制资源定义（CRD）是一种 Kubernetes 实现自定义资源类型的扩展方式，您可以像操作内置资源对象一样操作 CRD 对象。',
   // CRD List Page
-  KIND_TCAP: '类别',
-  SCOPE_TCAP: '作用域',
-  CRDS: '定制资源定义',
-}
+  CRDS: '定制资源定义'
+};

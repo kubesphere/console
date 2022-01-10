@@ -46,7 +46,7 @@ export default class RoleDetail extends React.Component {
   }
 
   get name() {
-    return 'DevOps Role'
+    return 'DEVOPS_PROJECT_ROLE'
   }
 
   get routing() {
@@ -75,11 +75,11 @@ export default class RoleDetail extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_INFO'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: () =>
           this.trigger('resource.baseinfo.edit', {
-            type: t(this.name),
+            type: this.name,
             detail: toJS(this.store.detail),
             success: this.fetchData,
           }),
@@ -87,7 +87,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSIONS'),
         action: 'edit',
         show: this.showEdit,
         onClick: () =>
@@ -108,7 +108,7 @@ export default class RoleDetail extends React.Component {
         onClick: () =>
           this.trigger('role.delete', {
             detail,
-            type: t(this.name),
+            type: this.name,
             cluster: this.props.match.params.cluster,
             namespace: this.props.match.params.namespace,
             success: () => this.routing.push(this.listUrl),
@@ -127,19 +127,19 @@ export default class RoleDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
-        name: t('DevOps Project'),
+        name: t('DEVOPS_PROJECT'),
         value: namespace,
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('UPDATED_AT'),
+        name: t('UPDATE_TIME_TCAP'),
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
@@ -164,12 +164,11 @@ export default class RoleDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('DevOps Roles'),
+          label: t('DEVOPS_PROJECT_ROLE_PL'),
           url: this.listUrl,
         },
       ],
     }
-
     return (
       <DetailPage
         stores={stores}

@@ -63,7 +63,7 @@ class ProjectLayout extends Component {
       <div className="ks-page">
         <div className="ks-page-side">
           <Selector
-            title={t('Projects')}
+            title={t('PROJECT')}
             detail={detail}
             onChange={this.handleChange}
           />

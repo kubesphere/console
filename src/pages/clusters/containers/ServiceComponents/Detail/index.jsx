@@ -34,7 +34,7 @@ export default class ComponentDetail extends React.Component {
   store = new ComponentStore()
 
   get name() {
-    return 'Service Component'
+    return 'SYSTEM_COMPONENT'
   }
 
   get module() {
@@ -67,7 +67,7 @@ export default class ComponentDetail extends React.Component {
         value: <Status type={status} name={t(status)} />,
       },
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: this.props.match.params.cluster,
       },
       {
@@ -75,11 +75,11 @@ export default class ComponentDetail extends React.Component {
         value: detail.namespace,
       },
       {
-        name: t('Instance Count'),
-        value: `${detail.healthyBackends} / ${detail.totalBackends}`,
+        name: t('INSTANCE_COUNT'),
+        value: `${detail.healthyBackends}/${detail.totalBackends}`,
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.startedAt).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
@@ -100,7 +100,7 @@ export default class ComponentDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Components'),
+          label: t('SYSTEM_COMPONENT_PL'),
           url: this.listUrl,
         },
       ],

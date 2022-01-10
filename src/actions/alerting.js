@@ -66,10 +66,10 @@ export default {
 
           if (detail) {
             await store.update(detail, params)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           } else {
             await store.create(params, { cluster, namespace })
-            Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+            Notify.success({ content: t('CREATE_SUCCESSFUL') })
           }
 
           Modal.close(modal)
@@ -85,7 +85,7 @@ export default {
         steps: FORM_STEPS,
         noCodeEdit: true,
         isEdit: !!detail,
-        okBtnText: detail ? t('Update') : t('Create'),
+        okBtnText: detail ? t('OK') : t('Create'),
         store,
         ...props,
       })

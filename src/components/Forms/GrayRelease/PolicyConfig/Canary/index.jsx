@@ -141,10 +141,10 @@ export default class Canary extends React.Component {
             size="small"
           >
             <RadioButton value="traffic">
-              {t('FORWARD_BY_TRAFFIC_RATIO')}
+              {t('SPECIFY_TRAFFIC_DISTRIBUTION')}
             </RadioButton>
             <RadioButton value="content" disabled={this.protocol !== 'http'}>
-              {t('FORWARD_BY_REQUEST_CONTENT')}
+              {t('SPECIFY_REQUEST_PARAMETERS')}
             </RadioButton>
           </RadioGroup>
           {this.protocol && (

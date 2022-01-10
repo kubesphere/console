@@ -28,8 +28,8 @@ server:
   apiServer:
     clientID: kubesphere
     clientSecret: kubesphere
-    url: http://ks-apiserver.kubesphere-system.svc
-    wsUrl: ws://ks-apiserver.kubesphere-system.svc
+    url: http://ks-apiserver
+    wsUrl: ws://ks-apiserver
 
   # docker image search default url
   dockerHubUrl: https://hub.docker.com
@@ -46,20 +46,41 @@ client:
   reposUrl: https://github.com/kubesphere/kubesphere
   slackUrl: https://kubesphere.slack.com
   documents:
-    url: https://v3-1.docs.kubesphere.io/docs
-    api: https://v3-1.docs.kubesphere.io/docs/reference/api-docs/
+    en:
+      url: https://kubesphere.io/docs
+      api: https://kubesphere.io/docs/reference/api-docs/
+    zh:
+      url: https://kubesphere.com.cn/docs
+      api: https://kubesphere.com.cn/docs/reference/api-docs/
 
   # current support lanaguages
   supportLangs:
     - label: "繁體中文"
       value: "tc"
+      recommend: true
     - label: "简体中文"
       value: "zh"
+      recommend: true
     - label: "English"
       value: "en"
+      recommend: true
     - label: "Español"
       value: "es"
+      recommend: true
+    - label: "العربية"
+      value: "ar"
+    - label: "Français"
+      value: 'fr'
+    - label: "हिन्दी"
+      value: 'hi'
+    - label: "Lietuvių"
+      value: 'lt'
+    - label: 'Polski'
+      value: 'pl'
+    - label: 'Türkçe'
+      value: 'tr'
   defaultLang: "en"
+  showAllLangs: true
 
   # platform management navigations
   globalNavs:
@@ -143,18 +164,17 @@ client:
                 clusterModule: "network.ippool",
               }
         # Contains dangerous operations, only available for platform-admin.
-        - {
-            name: customresources,
-            title: CRD_PL,
-            icon: select,
-            admin: true,
-          }
+        - { name: customresources, title: CRD_PL, icon: select, admin: true }
         - name: storage
           title: STORAGE
           icon: database
           children:
             - { name: volumes, title: VOLUME_PL }
-            - { name: volume-snapshots, title: VOLUME_SNAPSHOT_PL, authKey: volumes }
+            - {
+                name: volume-snapshots,
+                title: VOLUME_SNAPSHOT_PL,
+                authKey: volumes,
+              }
             - { name: storageclasses, title: STORAGE_CLASS_PL }
         - name: monitoring-alerting
           title: MONITORING_AND_ALERTING
@@ -212,14 +232,14 @@ client:
             # - { name: roles, title: Cluster Roles }
             - {
                 name: log-collections,
-                title: LOG_COLLECTION,
+                title: LOG_RECEIVER_PL,
                 icon: file,
                 authKey: cluster-settings,
                 clusterModule: logging|events|auditing,
               }
             - {
                 name: gateways,
-                title: GATEWAY_SETTING,
+                title: GATEWAY_SETTINGS,
                 authKey: cluster-settings,
               }
 
@@ -247,11 +267,15 @@ client:
           children:
             - name: notification-configuration
               title: NOTIFICATION_CONFIGURATION
-              tabs: 
+              tabs:
                 - { name: mail, title: Mail, authKey: platform-settings }
-                - { name: dingtalk, title: DingTalk, authKey: platform-settings}
-                - { name: wecom, title: WeCom, authKey: platform-settings}
-                - { name: slack, title: Slack, authKey: platform-settings}
+                - {
+                    name: dingtalk,
+                    title: DingTalk,
+                    authKey: platform-settings,
+                  }
+                - { name: wecom, title: WeCom, authKey: platform-settings }
+                - { name: slack, title: Slack, authKey: platform-settings }
                 - { name: webhook, title: Webhook, authKey: platform-settings }
 
   # workspace page navigations
@@ -313,9 +337,9 @@ client:
   manageAppNavs:
     - cate: "apps"
       items:
-        - { name: store, title: APP_STORE, icon: appcenter }
+        - { name: store, title: APPS, icon: appcenter }
         - { name: categories, title: APP_CATEGORY_PL, icon: tag }
-        - { name: reviews, title: APP_REVIEW, icon: safe-notice }
+        - { name: reviews, title: APP_RELEASE, icon: safe-notice }
 
   # project page navigations
   projectNavs:
@@ -372,7 +396,7 @@ client:
           }
         - {
             name: s2ibuilders,
-            title: IMAGE_BUILDER,
+            title: IMAGE_BUILDER_PL,
             icon: vnas,
             clusterModule: devops,
           }
@@ -414,12 +438,12 @@ client:
             - { name: members, title: PROJECT_MEMBER_PL }
             - {
                 name: gateways,
-                title: GATEWAY_SETTING,
+                title: GATEWAY_SETTINGS,
                 authKey: "project-settings",
               }
             - {
                 name: log-collections,
-                title: DISK_LOG_COLLECTION_TITLE,
+                title: LOG_COLLECTION,
                 authKey: "project-settings",
               }
 
@@ -453,18 +477,18 @@ client:
             - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
             - {
                 name: quota,
-                title: QUOTA_MANAGEMENT,
+                title: PROJECT_QUOTA_PL,
                 authKey: "project-settings",
               }
             - {
                 name: gateways,
-                title: GATEWAY_SETTING,
+                title: GATEWAY_SETTINGS,
                 authKey: "project-settings",
               }
             - {
-                name: advanced,
-                title: ADVANCED_SETTINGS,
-                AUTHKEY: "project-settings",
+                name: log-collections,
+                title: LOG_COLLECTION,
+                authKey: "project-settings",
               }
 
   # devops page navigations
@@ -478,13 +502,12 @@ client:
           open: true
           children:
             - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
-            - { name: credentials, title: DEVOPS_CREDENTIAL_PL }
+            - { name: credentials, title: CREDENTIAL_PL }
             - { name: roles, title: DEVOPS_PROJECT_ROLE_PL }
             - { name: members, title: DEVOPS_PROJECT_MEMBER_PL }
 
   # system workspace rules control
   systemWorkspace: system-workspace
-  showOutSiteLink: true
   systemWorkspaceRules:
     devops: []
     members: [manage]
@@ -597,3 +620,7 @@ client:
       max_number_of_toTag: 20
     slack:
       max_number_of_channel: 20
+  
+  # supported Gpu type
+  supportGpuType:
+    - 'nvidia.com/gpu'

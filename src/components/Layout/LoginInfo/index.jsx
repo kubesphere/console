@@ -70,13 +70,13 @@ export default class LoginInfo extends Component {
     return (
       <Menu onClick={this.handleMoreClick}>
         <Menu.MenuItem key="setting">
-          <Icon name="wrench" /> {t('User Settings')}
+          <Icon name="wrench" /> {t('USER_SETTINGS')}
         </Menu.MenuItem>
         <Menu.MenuItem key="logout">
-          <Icon name="logout" /> {t('Log Out')}
+          <Icon name="logout" /> {t('LOG_OUT')}
         </Menu.MenuItem>
         <Menu.MenuItem key="about">
-          <Icon name="information" /> {t('About')}
+          <Icon name="information" /> {t('ABOUT')}
         </Menu.MenuItem>
       </Menu>
     )

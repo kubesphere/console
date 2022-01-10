@@ -72,8 +72,8 @@ export default class ProjectCreateModal extends React.Component {
 
   get networkOptions() {
     return [
-      { label: t('Off'), value: '' },
-      { label: t('On'), value: 'enabled' },
+      { label: t('OFF'), value: '' },
+      { label: t('ON'), value: 'enabled' },
     ]
   }
 
@@ -175,7 +175,7 @@ export default class ProjectCreateModal extends React.Component {
         <div className={styles.header}>
           <img src="/assets/project-create.svg" alt="" />
           <div className={styles.title}>
-            <div>{t('Create DevOps Project')}</div>
+            <div>{t('CREATE_DEVOPS_PROJECT')}</div>
             <p>{t('DEVOPS_PROJECT_CREATE_DESC')}</p>
           </div>
         </div>

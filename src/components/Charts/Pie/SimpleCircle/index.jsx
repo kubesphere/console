@@ -58,7 +58,7 @@ export default class SimpleCircle extends React.Component {
     width: 100,
     height: 100,
     title: '',
-    legend: ['Used', 'Total'],
+    legend: ['USED', 'TOTAL'],
     value: 0,
     total: 0,
     unit: '',

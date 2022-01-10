@@ -176,23 +176,23 @@ export default class AppDeploy extends React.Component {
 
     return (
       <Modal
-        title={`${t('EDIT')} ${detail.name}`}
+        title={t('EDIT_APP_SETTINGS')}
         {...this.props}
         onOk={this.handleOk}
         width={1280}
-        okText={t('Update')}
+        okText={t('UPDATE')}
       >
         <Columns>
           <Column>
-            <div className={styles.label}>{t('Current App Version')}</div>
+            <div className={styles.label}>{t('CURRENT_APP_VERSION')}</div>
             <Input
               className="margin-b12"
               value={detail.version.name}
               readOnly
             />
-            <div className={styles.label}>{`${t('Current App Config')} (${t(
-              'READ_ONLY'
-            )})`}</div>
+            <div className={styles.label}>
+              {t('CURRENT_APP_SETTINGS_READONLY')}
+            </div>
             <Loading spinning={false}>
               <CodeEditor
                 mode="yaml"
@@ -203,7 +203,7 @@ export default class AppDeploy extends React.Component {
             </Loading>
           </Column>
           <Column>
-            <div className={styles.label}>{t('App Version')}</div>
+            <div className={styles.label}>{t('TARGET_APP_VERSION')}</div>
             <Select
               name="version_id"
               className="margin-b12"
@@ -221,7 +221,7 @@ export default class AppDeploy extends React.Component {
               optionRenderer={this.versionOptionRender}
               valueRenderer={this.versionOptionRender}
             />
-            <div className={styles.label}>{t('New App Config')}</div>
+            <div className={styles.label}>{t('TARGET_APP_SETTINGS')}</div>
             <Loading spinning={loadingFile}>
               <CodeEditor
                 mode="yaml"

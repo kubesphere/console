@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { get, set, isEmpty, isUndefined } from 'lodash'
+import { concat, get, set, isEmpty, isUndefined } from 'lodash'
 import { Columns, Column } from '@kube-design/components'
 import { List } from 'components/Base'
 import { isNotPersistentVolume } from 'utils/volume'
@@ -104,10 +104,19 @@ export default class VolumeList extends React.Component {
   deleteVolumeMounts = name => {
     const { formData } = this.context
 
-    const key = `${this.props.prefix}spec.containers`
-    const containers = get(formData, key, [])
+    const containers = get(
+      formData,
+      `${this.props.prefix}spec.containers`,
+      []
+    ).map(c => ({ ...c, type: 'worker' }))
+    const initContainers = get(
+      formData,
+      `${this.prefix}spec.initContainers`,
+      []
+    ).map(c => ({ ...c, type: 'init' }))
 
-    containers.forEach(container => {
+    const mergedContainers = concat(containers, initContainers)
+    mergedContainers.forEach(container => {
       if (!isEmpty(container.volumeMounts)) {
         container.volumeMounts = container.volumeMounts.filter(
           vm => vm.name !== name
@@ -115,7 +124,19 @@ export default class VolumeList extends React.Component {
       }
     })
 
-    set(formData, key, containers)
+    const _containers = []
+    const _initContainers = []
+    mergedContainers.forEach(item => {
+      if (item.type === 'worker') {
+        delete item.type
+        _containers.push(item)
+      } else {
+        delete item.type
+        _initContainers.push(item)
+      }
+    })
+    set(formData, `${this.props.prefix}spec.containers`, _containers)
+    set(formData, `${this.props.prefix}spec.initContainers`, _initContainers)
   }
 
   handleAddVolume = () => {

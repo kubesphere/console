@@ -48,9 +48,9 @@ export default class RedeployModal extends React.Component {
         <div className={styles.wrapper}>
           <Icon name="question" size={40} />
           <div className={styles.text}>
-            <div>{t('REDEPLOY')}</div>
+            <div>{t('RECREATE')}</div>
             <p>
-              {t('REDEPLOY_CONFIRM_DESC', {
+              {t('RECREATE_CONFIRM_DESC', {
                 resource: detail.name,
                 type: t(type.toUpperCase()),
               })}

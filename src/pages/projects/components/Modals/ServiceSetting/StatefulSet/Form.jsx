@@ -38,7 +38,7 @@ export default class ServiceSettingsForm extends Base {
     const selectors = get(this.props.formTemplate, 'spec.selector', {})
 
     return (
-      <Form.Item label={t('Selector')}>
+      <Form.Item label={t('SELECTOR')}>
         <div className={styles.selectors}>
           {Object.keys(selectors).map(key => (
             <Label key={key} name={key} value={selectors[key]} />
@@ -50,7 +50,7 @@ export default class ServiceSettingsForm extends Base {
 
   renderTypeSelect() {
     return (
-      <Form.Item label={t('INTERNAL_ACCESS_METHOD')}>
+      <Form.Item label={t('INTERNAL_ACCESS_MODE')}>
         <TypeSelect
           className="margin-b12"
           value={this.state.serviceType}

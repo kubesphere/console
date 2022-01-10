@@ -20,11 +20,9 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Icon } from '@kube-design/components'
-import { capitalize } from 'lodash'
 
-import { transferVersionStatus } from 'utils/app'
+import { transferAppStatus } from 'utils/app'
 import { STATUS_TO_ICON } from 'configs/openpitrix/version'
-
 import styles from './index.scss'
 
 export default class VersionStatus extends PureComponent {
@@ -76,14 +74,12 @@ export default class VersionStatus extends PureComponent {
 
   render() {
     const { className, name, type, noIcon, noName } = this.props
-    const statusName = transferVersionStatus(name || type)
+    const status = transferAppStatus(name || type)
 
     return (
       <span className={classNames(styles.status, className)}>
         {!noIcon && <label className={styles.icon}>{this.renderIcon()}</label>}
-        {!noName && (
-          <label className={styles.name}>{t(capitalize(statusName))}</label>
-        )}
+        {!noName && <label className={styles.name}>{status}</label>}
       </span>
     )
   }

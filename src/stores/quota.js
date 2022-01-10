@@ -37,5 +37,7 @@ export default class QuotaStore extends Base {
     this.data = result.data
 
     this.isLoading = false
+
+    return result
   }
 }

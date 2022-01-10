@@ -124,6 +124,23 @@ export default class SecretDetail extends React.Component {
     )
   }
 
+  renderBasicAuth(data = {}) {
+    return (
+      <div className={styles.defaultWrapper}>
+        <ul>
+          {Object.entries(data).map(([key, value]) => (
+            <li key={key}>
+              <span>{t(key.toUpperCase())}:</span>
+              <span>
+                <pre>{this.convert(value)}</pre>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
   renderContent(detail) {
     if (!detail.type) {
       return null
@@ -137,6 +154,9 @@ export default class SecretDetail extends React.Component {
         break
       case 'kubernetes.io/dockerconfigjson':
         content = this.renderImageRepositorySecret(detail.data)
+        break
+      case 'kubernetes.io/basic-auth':
+        content = this.renderBasicAuth(detail.data)
         break
       default:
         content = this.renderDefault(detail.data)
@@ -160,7 +180,7 @@ export default class SecretDetail extends React.Component {
   render() {
     const { detail = {} } = this.store
     return (
-      <Card title={t('Secret')} operations={this.renderOperations()}>
+      <Card title={t('DATA')} operations={this.renderOperations()}>
         {this.renderContent(detail)}
       </Card>
     )

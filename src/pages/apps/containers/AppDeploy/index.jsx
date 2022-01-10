@@ -69,13 +69,13 @@ export default class App extends React.Component {
   get steps() {
     return [
       {
-        title: 'Basic Info',
+        title: 'BASIC_INFORMATION',
         component: BasicInfo,
         required: true,
         isForm: true,
       },
       {
-        title: 'App Config',
+        title: 'APP_SETTINGS',
         component: AppConfig,
         required: true,
       },
@@ -110,6 +110,7 @@ export default class App extends React.Component {
       ''
     )
     const { name } = this.appStore.detail
+    await this.fileStore.fetch({ version_id: selectAppVersion })
     this.setState({
       formData: {
         ...this.state.formData,
@@ -120,8 +121,6 @@ export default class App extends React.Component {
         version_id: selectAppVersion,
       },
     })
-
-    this.fileStore.fetch({ version_id: selectAppVersion })
   }
 
   handleOk = () => {
@@ -207,7 +206,7 @@ export default class App extends React.Component {
             onClick={this.handleOk}
             loading={this.appStore.isSubmitting}
           >
-            {t('DEPLOY')}
+            {t('INSTALL')}
           </Button>
         )}
       </div>

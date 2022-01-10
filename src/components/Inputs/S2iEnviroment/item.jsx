@@ -60,11 +60,11 @@ export default class S2IEnviroment extends React.Component {
     const { value, options } = this.props
     return (
       <ObjectInput value={value} onChange={this.handleChange}>
-        <Select name="name" placeholder={t('key')} options={options} />
+        <Select name="name" placeholder={t('KEY')} options={options} />
         {this.valueType === 'boolean' ? (
-          <BoolSelect name="value" placeholder={t('value')} />
+          <BoolSelect name="value" placeholder={t('VALUE')} />
         ) : (
-          <Input name="value" placeholder={t('value')} />
+          <Input name="value" placeholder={t('VALUE')} />
         )}
       </ObjectInput>
     )

@@ -29,13 +29,13 @@ const PATH =
 export default [
   {
     path: `${PATH}/components`,
-    title: 'Application Components',
+    title: 'RESOURCE_STATUS',
     component: Components,
     exact: true,
   },
   {
     path: `${PATH}/traffic`,
-    title: 'Traffic Management',
+    title: 'TRAFFIC_MONITORING',
     component: TrafficManangement,
     clusterModule: 'servicemesh',
     exact: true,
@@ -49,7 +49,7 @@ export default [
   },
   {
     path: `${PATH}/tracing`,
-    title: 'Tracing',
+    title: 'TRACING',
     component: Tracing,
     clusterModule: 'servicemesh',
     exact: true,

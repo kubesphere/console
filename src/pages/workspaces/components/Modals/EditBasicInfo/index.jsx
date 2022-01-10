@@ -128,10 +128,10 @@ export default class EditBasicInfoModal extends React.Component {
       <Modal.Form
         data={formData}
         width={691}
-        title={t('EDIT_INFO')}
+        title={t('EDIT_INFORMATION')}
         icon="enterprise"
         onOk={this.handleOk}
-        okText={t('Update')}
+        okText={t('OK')}
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}

@@ -156,7 +156,7 @@ export default class Overview extends React.Component {
       <>
         <Banner
           icon="cluster"
-          title={t('CLUSTER_BASIC_INFO')}
+          title={t('BASIC_INFORMATION')}
           description={t('CLUSTER_BASE_INFO_DESC')}
         />
         <Panel title={t('CLUSTER_INFORMATION')}>
@@ -173,7 +173,7 @@ export default class Overview extends React.Component {
             />
             {actions.includes('edit') && globals.app.isMultiCluster && (
               <Button className={styles.action} onClick={this.showEdit}>
-                {t('EDIT_INFO')}
+                {t('EDIT_INFORMATION')}
               </Button>
             )}
           </div>

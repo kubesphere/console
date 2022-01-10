@@ -27,13 +27,13 @@ export default {
         onOk: () => {
           store.delete(detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+            Notify.success({ content: t('DELETE_SUCCESSFUL') })
             success && success()
           })
         },
         store,
         modal: DeleteModal,
-        type: 'PV',
+        type: 'VOLUME_INSTANCE',
         resource: detail.name,
         ...props,
       })
@@ -68,11 +68,12 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
           store.setSelectRowKeys([])
           success && success()
         },
         resource: selectNames.join(', '),
+        type: 'VOLUME_INSTANCE',
         modal: DeleteModal,
         store,
         ...props,
