@@ -96,10 +96,20 @@ export default class WebhookForm extends Component {
           </Form.Item>
           {type === 'basic' && (
             <>
-              <Form.Item label={t('USERNAME')}>
+              <Form.Item
+                label={t('USERNAME')}
+                rules={[
+                  { required: true, message: t('WEBHOOK_USERNAME_EMPTY_DESC') },
+                ]}
+              >
                 <Input name="receiver.spec.webhook.httpConfig.basicAuth.username" />
               </Form.Item>
-              <Form.Item label={t('PASSWORD')}>
+              <Form.Item
+                label={t('PASSWORD')}
+                rules={[
+                  { required: true, message: t('WEBHOOK_PASSWORD_EMPTY_DESC') },
+                ]}
+              >
                 <InputPassword
                   name="secret.data.password"
                   type="password"
@@ -110,7 +120,12 @@ export default class WebhookForm extends Component {
           )}
           {type === 'token' && (
             <>
-              <Form.Item label={t('TOKEN')}>
+              <Form.Item
+                label={t('TOKEN')}
+                rules={[
+                  { required: true, message: t('WEBHOOK_TOKEN_EMPTY_DESC') },
+                ]}
+              >
                 <Input name="secret.data.token" />
               </Form.Item>
             </>
