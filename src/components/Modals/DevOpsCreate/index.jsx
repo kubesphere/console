@@ -133,12 +133,14 @@ export default class ProjectCreateModal extends React.Component {
     const { formTemplate, workspace } = this.props
     const cluster = get(formTemplate, 'spec.placement.cluster')
 
-    this.store.checkName({ name: value, cluster, workspace }).then(resp => {
-      if (resp.exist) {
-        return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
-      }
-      callback()
-    })
+    this.store
+      .checkName({ name: value, cluster, workspace }, { generateName: true })
+      .then(resp => {
+        if (resp.exist) {
+          return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
+        }
+        callback()
+      })
   }
 
   handleClusterChange = () => {
