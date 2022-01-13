@@ -20,16 +20,34 @@ import React from 'react'
 import { Form } from '@kube-design/components'
 import { PropertiesInput } from 'components/Inputs'
 
-export default function Metadata() {
-  return (
-    <>
-      <Form.Item label={t('ANNOTATION_PL')}>
-        <PropertiesInput
-          name="spec.template.metadata.annotations"
-          addText={t('ADD')}
-          hiddenKeys={globals.config.preservedAnnotations}
-        />
-      </Form.Item>
-    </>
-  )
+export default class Metadata extends React.Component {
+  metaError = ''
+
+  handleMetaError = (err = '') => {
+    this.metaError = err
+  }
+
+  metaDataValidator = (rule, value, callback) => {
+    if (this.metaError === '') {
+      callback()
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <Form.Item
+          label={t('ANNOTATION_PL')}
+          rules={[{ validator: this.metaDataValidator }]}
+        >
+          <PropertiesInput
+            name="spec.template.metadata.annotations"
+            addText={t('ADD')}
+            hiddenKeys={globals.config.preservedAnnotations}
+            onError={this.handleMetaError}
+          />
+        </Form.Item>
+      </>
+    )
+  }
 }
