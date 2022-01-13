@@ -54,11 +54,13 @@ export default class EnvironmentInput extends React.Component {
     name: PropTypes.string,
     value: PropTypes.array,
     onChange: PropTypes.func,
+    handleInputError: PropTypes.func,
   }
 
   static defaultProps = {
     name: '',
     onChange() {},
+    handleInputError() {},
   }
 
   componentDidMount() {
