@@ -210,24 +210,25 @@ export default class EnvironmentInputItem extends React.Component {
   }
 
   validEnvKey = debounce((value, target = {}) => {
-    const { handleKeyError } = this.props
+    const { handleKeyError, handleInputError } = this.props
     const status = !PATTERN_ENV_NAME.test(value)
     if (value === '' && target.value === '') {
       handleKeyError()
+      handleInputError()
       this.setState({
         keyError: false,
       })
     } else {
       if (status) {
-        value !== ''
-          ? handleKeyError({
-              message: t('ENVIRONMENT_INVALID_TIP'),
-            })
-          : handleKeyError({
-              message: t('ENVIRONMENT_CANNOT_BE_EMPTY'),
-            })
+        const message =
+          value !== ''
+            ? t('ENVIRONMENT_INVALID_TIP')
+            : t('ENVIRONMENT_CANNOT_BE_EMPTY')
+        handleInputError({ message })
+        handleKeyError({ message })
       } else {
         handleKeyError()
+        handleInputError()
       }
       this.setState({
         keyError: status,
@@ -235,14 +236,17 @@ export default class EnvironmentInputItem extends React.Component {
     }
   }, 300)
 
-  handleValueChange = ({ name, value }) => {
+  handleValueChange = debounce(({ name, value }) => {
     if (name === '' && value === '') {
       this.props.handleKeyError()
+      this.props.handleInputError()
       this.setState({
         keyError: false,
       })
+    } else {
+      this.validEnvKey(name, value)
     }
-  }
+  }, 300)
 
   render() {
     const { value = {}, onChange } = this.props
