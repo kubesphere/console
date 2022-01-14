@@ -200,7 +200,8 @@ export default class ResourceLimit extends React.Component {
         value: '',
       }
     }
-    const types = Object.keys(value.requests).filter(key =>
+    // The value may not have requests field
+    const types = Object.keys(get(value, 'requests', {})).filter(key =>
       supportGpuType.some(item => key.endsWith(item))
     )
     const type = !isEmpty(types) ? types[0] : supportGpuType[0]
