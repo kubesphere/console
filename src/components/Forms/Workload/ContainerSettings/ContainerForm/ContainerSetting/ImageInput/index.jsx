@@ -169,7 +169,7 @@ export default class ImageSearch extends Component {
       const { message, status } = this.selectedImage
 
       if (status === 'failed') {
-        if (message.includes('x509')) {
+        if (message && message.includes('x509')) {
           return (
             <div
               className={classnames(
