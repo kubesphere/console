@@ -128,7 +128,7 @@ export default class Graph extends React.Component {
   }
 
   render() {
-    const { store, loading } = this.props
+    const { store, loading, className } = this.props
     const {
       graph,
       selectedType,
@@ -139,7 +139,7 @@ export default class Graph extends React.Component {
 
     return (
       <div
-        className={classNames(styles.graph, {
+        className={classNames(className, styles.graph, {
           [styles.fullScreen]: fullScreen,
         })}
       >
