@@ -144,5 +144,8 @@ module.exports = {
   BASIC_AUTH: 'Basic authentication',
   NO_AUTH: 'No authentication',
   BEARER_TOKEN: 'Bearer token',
-  TOKEN: 'Token'
+  TOKEN: 'Token',
+  WEBHOOK_USERNAME_EMPTY_DESC: 'Please enter a username.',
+  WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
+  WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
 };
