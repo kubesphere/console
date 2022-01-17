@@ -136,16 +136,16 @@ module.exports = {
   MAX_CHANNEL_COUNT: 'En fazla {count} kanal ekleyebilirsiniz.',
   SLACK_DESC: 'Bir sunucu ve Slack kanalları ayarlayarak Slack bildirimlerini yapılandırın.',
   // Webhook
-  WEBHOOK_TITLE: 'Web kancası',
-  WEBHOOK_URL_DESC: 'Lütfen bir web kancası URL\'si girin.',
-  VERIFICATION_TYPE: 'Doğrulama Tipi',
-  SKIP_TLS_VERFICATION: 'TLS doğrulamasını atla (güvensiz)',
-  VERIFICATION_TYPE_DESC: 'Lütfen bir doğrulama türü seçin.',
-  BASIC_AUTH: 'Temel Kimlik Doğrulama',
-  NO_AUTH: 'Kimlik doğrulama yok',
-  BEARER_TOKEN: 'Bearer Jetonu',
-  TOKEN: 'Jeton',
-  WEBHOOK_USERNAME_EMPTY_DESC: 'Lütfen kullanıcı adınızı girin.',
-  WEBHOOK_PASSWORD_EMPTY_DESC: 'Lütfen bir şifre girin.',
-  WEBHOOK_TOKEN_EMPTY_DESC: 'Lütfen bir jeton girin.'
+  WEBHOOK_TITLE: 'Webhook',
+  WEBHOOK_URL_DESC: 'Please enter a webhook URL.',
+  VERIFICATION_TYPE: 'Verification Type',
+  SKIP_TLS_VERFICATION: 'Skip TLS verification (insecure)',
+  VERIFICATION_TYPE_DESC: 'Please select a verification type.',
+  BASIC_AUTH: 'Basic authentication',
+  NO_AUTH: 'No authentication',
+  BEARER_TOKEN: 'Bearer token',
+  TOKEN: 'Token',
+  WEBHOOK_USERNAME_EMPTY_DESC: 'Please enter a username.',
+  WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
+  WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
 };
