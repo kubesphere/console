@@ -144,5 +144,8 @@ module.exports = {
   BASIC_AUTH: '基础认证',
   NO_AUTH: '无需认证',
   BEARER_TOKEN: 'Bearer 令牌',
-  TOKEN: '令牌'
+  TOKEN: '令牌',
+  WEBHOOK_USERNAME_EMPTY_DESC: 'Please enter a username.',
+  WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
+  WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
 };
