@@ -85,40 +85,37 @@ export default class Containers extends Component {
   }
 
   handleContainerChange = value => {
-    this.setState(
-      {
-        containerName: value,
-      },
-      () => {
-        this.fetchData(value)
-      }
-    )
+    this.setState({
+      containerName: value,
+    })
+    this.fetchData(value)
   }
 
   render() {
     const { isLoading, isRefreshing } = this.monitorStore
+    const { containerName } = this.state
     const containers = get(this.props.detail, 'children', []).filter(item => {
       return item.label === 'Containers'
     })
-
     return (
       <div className={styles.container}>
         <Select
           className={styles.containerSelect}
           options={this.getOptions(containers)}
           onChange={this.handleContainerChange}
+          value={containerName}
         />
         <div>
           <PhysicalResourceItem
             type="cpu"
-            title="CPU Usage"
+            title="CPU Usage(m)"
             metrics={get(this.metrics, `${MetricTypes.cpu_usage}.data.result`)}
             isLoading={isLoading || isRefreshing}
             showDay={172800}
           />
           <PhysicalResourceItem
             type="memory"
-            title="Memory Usage"
+            title="Memory Usage(Mi)"
             metrics={get(
               this.metrics,
               `${MetricTypes.memory_usage}.data.result`

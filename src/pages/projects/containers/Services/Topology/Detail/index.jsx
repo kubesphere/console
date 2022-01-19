@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { Collapse, Icon } from '@kube-design/components'
+import { Button, Collapse, Icon } from '@kube-design/components'
 
 import BaseInfo from './BaseInfo'
 import Connections from './Connections'
@@ -77,7 +77,6 @@ export default class ServiceDetail extends Component {
     const { onClose } = this.props
     const { node = {} } = toJS(this.props.store.detail)
     const { match } = this.props
-
     return (
       <div className={styles.wrapper}>
         <div className={styles.header}>
@@ -85,13 +84,13 @@ export default class ServiceDetail extends Component {
             <Icon name="appcenter" size={40} />
           </div>
           <div className={styles.title}>{node.label}</div>
-          <Icon
+          <Button
             className={styles.close}
-            name="close"
-            type="dark"
-            size={20}
-            clickable
+            icon="close"
+            iconType="light"
+            type="control"
             onClick={onClose}
+            data-test="modal-close"
           />
         </div>
         <div className={styles.content}>

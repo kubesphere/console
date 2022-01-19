@@ -50,8 +50,18 @@
 
 .close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 30px;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 3px !important;
+  :global {
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
 }
 
 .content {
