@@ -21,8 +21,10 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { Button, Loading } from '@kube-design/components'
 import EmptyList from 'components/Cards/EmptyList'
-import Graph from 'components/Graph'
+import TimeSelector from 'components/Cards/Monitoring/Controller/TimeSelector'
+import { getTimeRange, getMinuteValue } from 'stores/monitoring/base'
 
+import Graph from 'components/Graph'
 import styles from './index.scss'
 
 @inject('detailStore')
@@ -33,6 +35,8 @@ class TrafficManangement extends React.Component {
 
     this.state = {
       isGraphLoading: true,
+      duration: 60,
+      autoFetch: false,
     }
 
     this.store = props.detailStore
@@ -40,10 +44,6 @@ class TrafficManangement extends React.Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => {
-      this.getData()
-    }, 10000)
-
     this.getData()
   }
 
@@ -56,20 +56,78 @@ class TrafficManangement extends React.Component {
 
   getData() {
     const { cluster, namespace, name } = this.props.match.params
-
+    const { duration } = this.state
     this.setState({ isGraphLoading: true })
-    this.store.fetchGraph({ cluster, namespace, app: name }).then(() => {
-      if (!this.unmount) {
-        this.setState({ isGraphLoading: false })
-      }
-    })
+    this.store
+      .fetchGraph({ cluster, namespace, app: name, duration })
+      .then(() => {
+        if (!this.unmount) {
+          this.setState({ isGraphLoading: false })
+        }
+      })
   }
 
   handleRefresh = () => {
     this.getData()
   }
 
-  render() {
+  handleAutoFetch = () => {
+    const { autoFetch } = this.state
+    this.setState({ autoFetch: !autoFetch }, () => {
+      if (this.state.autoFetch) {
+        this.interval = setInterval(() => {
+          this.getData()
+        }, 10000)
+      } else {
+        this.interval && clearInterval(this.interval)
+      }
+    })
+  }
+
+  handleLookbackChange = ({ step, times, ...rest }) => {
+    const { start, end } = getTimeRange({ step: getMinuteValue(step), times })
+    const _start = rest.start || start
+    const _end = rest.end || end
+    const duration = Math.floor(_end - _start)
+
+    this.setState({ duration }, () => {
+      this.getData()
+    })
+  }
+
+  operations = () => {
+    const { autoFetch } = this.state
+    return (
+      <div className={styles.operations}>
+        <TimeSelector
+          className={styles.timeSelect}
+          onChange={this.handleLookbackChange}
+          showStep={false}
+          dark
+          arrowIcon="chevron-down"
+          step="1m"
+          times={1}
+        />
+        <Button
+          type="flat"
+          icon={autoFetch ? 'pause' : 'start'}
+          onClick={this.handleAutoFetch}
+        />
+        <Button type="flat" icon="refresh" onClick={this.handleRefresh} />
+      </div>
+    )
+  }
+
+  renderHeader = () => {
+    return (
+      <div className={styles.cardHeader}>
+        {this.operations()}
+        {t('TRAFFIC_MONITORING')}
+      </div>
+    )
+  }
+
+  renderContent() {
     const { isGraphLoading } = this.state
     const { data, health } = this.store.graph
 
@@ -77,6 +135,7 @@ class TrafficManangement extends React.Component {
       return (
         <div className={styles.main}>
           <Graph
+            className={styles.graph}
             data={data}
             health={health}
             store={this.store}
@@ -93,11 +152,20 @@ class TrafficManangement extends React.Component {
 
     return (
       <EmptyList
+        className={styles.emptyList}
         image="/assets/traffic-management.svg"
         title={t('NO_DATA')}
         desc={t('TRAFFIC_MONITORING_UNAVAILABLE_DESC')}
-        actions={<Button onClick={this.handleRefresh}>{t('REFRESH')}</Button>}
       />
+    )
+  }
+
+  render() {
+    return (
+      <>
+        {this.renderHeader()}
+        {this.renderContent()}
+      </>
     )
   }
 }
