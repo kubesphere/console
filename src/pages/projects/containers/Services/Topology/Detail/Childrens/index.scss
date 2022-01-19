@@ -1,0 +1,17 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.pods {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px;
+  position: static;
+  width: 432px;
+  height: 64px;
+  left: 0;
+  top: 0;
+
+  .avatar {
+  }
+}

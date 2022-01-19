@@ -19,6 +19,7 @@
 import React, { Component } from 'react'
 import { get, isEmpty } from 'lodash'
 
+import { Label } from 'components/Base'
 import styles from './index.scss'
 
 export default class Tables extends Component {
@@ -32,12 +33,12 @@ export default class Tables extends Component {
     return tables.map(table => {
       return (
         <div key={table.id} className={styles.info}>
-          <div>{table.label}</div>
           {table.rows.map(item => (
-            <dl key={item.id}>
-              <dt>{item.entries.label}</dt>
-              <dd>{item.entries.value}</dd>
-            </dl>
+            <Label
+              key={item.id}
+              name={item.entries.label}
+              value={item.entries.value}
+            />
           ))}
         </div>
       )
