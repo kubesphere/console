@@ -31,6 +31,7 @@ export default class ArrayInput extends React.Component {
     name: PropTypes.string,
     value: PropTypes.array,
     onChange: PropTypes.func,
+    handleInputError: PropTypes.func,
     addText: PropTypes.string,
     itemType: PropTypes.oneOf(['string', 'object']),
     children: PropTypes.node.isRequired,
@@ -41,6 +42,7 @@ export default class ArrayInput extends React.Component {
     name: '',
     value: [''],
     onChange() {},
+    handleInputError() {},
     addText: t('ADD'),
     itemType: 'string',
   }
@@ -109,7 +111,7 @@ export default class ArrayInput extends React.Component {
   }
 
   renderItems() {
-    const { value, children, id } = this.props
+    const { value, children, id, handleInputError } = this.props
     if (id && id.includes("metadata.annotations['kubesphere.io/")) {
       return value.map((item, index) => (
         <Form.Item
@@ -124,6 +126,7 @@ export default class ArrayInput extends React.Component {
             component={children}
             onChange={this.handleChange.bind(this, index)}
             onDelete={this.handleDelete.bind(this, index)}
+            handleInputError={handleInputError}
           />
         </Form.Item>
       ))
@@ -138,6 +141,7 @@ export default class ArrayInput extends React.Component {
         component={children}
         onChange={this.handleChange.bind(this, index)}
         onDelete={this.handleDelete.bind(this, index)}
+        handleInputError={handleInputError}
       />
     ))
   }

@@ -28,6 +28,7 @@ export default class TerminalStore {
     namespace: '',
     pod: '',
     container: '',
+    nodename: '',
     shell: 'bash',
     isLoading: true,
   }
@@ -47,7 +48,14 @@ export default class TerminalStore {
   }
 
   async kubeWebsocketUrl() {
-    const { cluster, namespace, pod, container, shell = 'sh' } = this.kubectl
+    const { cluster, namespace, nodename, pod, container, shell = 'sh' } = this.kubectl
+
+    if (nodename) {
+      return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
+        cluster,
+      })}/nodes/${nodename}/exec`
+    }
+
     const result = await request.get(
       `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
         cluster,
@@ -85,10 +93,16 @@ export default class TerminalStore {
     )
 
     this.kubectl = {
+      ...this.kubectl,
       cluster,
       ...result,
       isLoading: false,
     }
+  }
+
+  @action
+  setNodename = nodename => {
+     this.kubectl.nodename = nodename
   }
 
   @action

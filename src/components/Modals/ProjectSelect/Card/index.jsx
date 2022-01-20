@@ -55,7 +55,8 @@ export default class ProjectCard extends React.Component {
       icon = 'project'
     }
 
-    const isTerminating = data.status === 'Terminating'
+    const isTerminating =
+      data.status === 'Terminating' || data.status === 'Pending'
     name = (
       <div className={styles.name}>{isTerminating ? name : <a>{name}</a>}</div>
     )

@@ -113,6 +113,8 @@ export default class PropertiesInput extends React.Component {
     let existedKey = false
     let emptyKeyValue = false
 
+    this.props.onError()
+
     const valuePairs = [...hiddenValues, ...readOnlyValues, ...arrayValues]
     const value = valuePairs.reduce((prev, cur) => {
       cur.key = cur.key || ''

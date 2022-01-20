@@ -22,7 +22,15 @@ import { Button } from '@kube-design/components'
 
 import styles from './index.scss'
 
-const Item = ({ component, index, value, arrayValue, onChange, onDelete }) => {
+const Item = ({
+  component,
+  index,
+  value,
+  arrayValue,
+  onChange,
+  onDelete,
+  handleInputError,
+}) => {
   const [keyErrorTip, setKeyError] = useState('')
 
   const handleKeyError = info => {
@@ -37,6 +45,7 @@ const Item = ({ component, index, value, arrayValue, onChange, onDelete }) => {
     arrayValue,
     onChange,
     handleKeyError,
+    handleInputError,
   })
 
   return (

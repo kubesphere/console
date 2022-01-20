@@ -77,6 +77,8 @@ module.exports = {
   LAST_TIME_H: '{num, plural, =1 {Last 1 hour} other{Last # hours}}',
   LAST_TIME_D: '{num, plural, =1 {Last 1 day} other{Last # days}}',
   TIMERANGE_SELECTOR_MSG: 'The end time must be later than the start time.',
+  TIMERANGE_SELECTOR_ERROR_MSG:
+    'Please confirm whether the selected time range is appropriate!',
   PHYSICAL_RESOURCES_MONITORING: 'Physical Resource Monitoring',
   INODE_USAGE: 'Inode Usage',
   DISK_USAGE: 'Disk Usage',

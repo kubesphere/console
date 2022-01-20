@@ -20,7 +20,8 @@ module.exports = {
   MONITORING_AND_ALERTING: 'Monitorización y alertas',
   // Banner
   CLUSTER_STATUS: 'Monitorización de estado del clúster',
-  MONITORING_CLUSTER_DESC: 'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
+  MONITORING_CLUSTER_DESC:
+    'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
   // Overview > Cluster Node Status
   CLUSTER_NODE_STATUS: 'Estado del nodo del clúster',
   ALL_NODES: 'Todos los nodos',
@@ -69,6 +70,8 @@ module.exports = {
   LAST_TIME_H: '{num, plural, =1 {last 1 hour} other{last # hours}}',
   LAST_TIME_D: '{num, plural, =1 {last 1 day} other{last # days}}',
   TIMERANGE_SELECTOR_MSG: 'The end time must be later than the start time.',
+  TIMERANGE_SELECTOR_ERROR_MSG:
+    'Please confirm whether the selected time range is appropriate!',
   PHYSICAL_RESOURCES_MONITORING: 'Monitorización de recursos físicos',
   INODE_USAGE: 'Inode Usage',
   DISK_USAGE: 'Disk Usage',
@@ -121,5 +124,5 @@ module.exports = {
   SORT_BY_NODE_LOAD1: 'Ordenar por promedio de carga',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: 'Ordenar por uso de memoria',
   POD_USAGE: 'Pod Usage',
-  EXPORT: 'Export'
-};
+  EXPORT: 'Export',
+}

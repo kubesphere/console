@@ -76,6 +76,7 @@ export default class GatewaySettingModal extends React.Component {
           false
         )
       ),
+      configError: '',
     }
 
     const annotations = get(this.template, 'spec.service.annotations')
@@ -105,7 +106,9 @@ export default class GatewaySettingModal extends React.Component {
       isChecked ? 'true' : 'false'
     )
 
-    onOk(this.template)
+    this.form.current.validate(() => {
+      onOk(this.template)
+    })
   }
 
   handleTypeChange = type => {
@@ -187,9 +190,13 @@ export default class GatewaySettingModal extends React.Component {
     )
   }
 
+  handleConfigError = (err = '') => {
+    this.setState({ configError: err })
+  }
+
   render() {
     const { visible, onCancel, cluster, isSubmitting } = this.props
-    const { isChecked } = this.state
+    const { isChecked, configError } = this.state
 
     return (
       <Modal
@@ -255,6 +262,7 @@ export default class GatewaySettingModal extends React.Component {
                       className={styles.objectBg}
                       name="spec.controller.config"
                       addText={t('ADD')}
+                      onError={this.handleConfigError}
                     />
                   </Form.Item>
                 </div>
@@ -274,7 +282,7 @@ export default class GatewaySettingModal extends React.Component {
             type="control"
             onClick={this.handleOk}
             loading={isSubmitting}
-            disabled={isSubmitting}
+            disabled={isSubmitting || configError !== ''}
           >
             {t('OK')}
           </Button>

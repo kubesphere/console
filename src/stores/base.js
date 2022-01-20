@@ -246,10 +246,10 @@ export default class BaseStore {
   }
 
   @action
-  checkName(params) {
+  checkName(params, query) {
     return request.get(
       this.getDetailUrl(params),
-      {},
+      { ...query },
       {
         headers: { 'x-check-exist': true },
       }

@@ -134,7 +134,10 @@ class Monitorings extends React.Component {
       `${MetricTypes.ingress_request_volume_by_ingress}.data.result`,
       []
     )
-    const volumeLegend = requestVolumeData.map(item => item.metric.ingress)
+
+    const volumeLegend = requestVolumeData.map(item =>
+      get(item, 'metric.ingress', '')
+    )
 
     return [
       {

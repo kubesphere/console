@@ -30,6 +30,7 @@ class TerminalApp extends Component {
   render() {
     const pathSplit = window.location.pathname.split('/')
     const isKubeCtrl = pathSplit[2] === 'kubectl'
+    const isNode = pathSplit[2] == 'nodename'
     const match = {
       params: {
         containerName: pathSplit[9],
@@ -48,6 +49,15 @@ class TerminalApp extends Component {
         />
       )
     }
+
+    if (isNode) {
+      <KubeModal
+        onCancel={this.pageClose}
+        title={pathSplit[3]}
+        nodename={pathSplit[3]}
+      />
+    }
+
     return <Modal onCancel={this.pageClose} match={match} title="terminal" />
   }
 }
