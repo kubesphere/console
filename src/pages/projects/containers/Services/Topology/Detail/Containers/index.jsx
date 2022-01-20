@@ -41,10 +41,6 @@ export default class Containers extends Component {
     this.monitorStore = new ContainerMonitorStore()
   }
 
-  get metrics() {
-    return this.monitorStore.data
-  }
-
   get podName() {
     const children = get(this.props.detail, 'children', []).filter(
       item => item.label === 'Pods'
@@ -52,12 +48,13 @@ export default class Containers extends Component {
     return children.length > 0 ? children[0].nodes[0].label : ''
   }
 
-  fetchData = value => {
+  fetchData = () => {
+    const { containerName } = this.state
     const { cluster, namespace } = this.props.match.params
     this.monitorStore.fetchMetrics({
       cluster,
       namespace,
-      container: value,
+      container: containerName,
       podName: this.podName,
       metrics: Object.values(MetricTypes),
     })
@@ -85,14 +82,18 @@ export default class Containers extends Component {
   }
 
   handleContainerChange = value => {
-    this.setState({
-      containerName: value,
-    })
-    this.fetchData(value)
+    this.setState(
+      {
+        containerName: value,
+      },
+      () => {
+        this.fetchData()
+      }
+    )
   }
 
   render() {
-    const { isLoading, isRefreshing } = this.monitorStore
+    const { data: metrics, isLoading, isRefreshing } = this.monitorStore
     const { containerName } = this.state
     const containers = get(this.props.detail, 'children', []).filter(item => {
       return item.label === 'Containers'
@@ -109,17 +110,14 @@ export default class Containers extends Component {
           <PhysicalResourceItem
             type="cpu"
             title="CPU Usage(m)"
-            metrics={get(this.metrics, `${MetricTypes.cpu_usage}.data.result`)}
+            metrics={get(metrics, `${MetricTypes.cpu_usage}.data.result`)}
             isLoading={isLoading || isRefreshing}
             showDay={172800}
           />
           <PhysicalResourceItem
             type="memory"
             title="Memory Usage(Mi)"
-            metrics={get(
-              this.metrics,
-              `${MetricTypes.memory_usage}.data.result`
-            )}
+            metrics={get(metrics, `${MetricTypes.memory_usage}.data.result`)}
             isLoading={isLoading || isRefreshing}
             showDay={172800}
           />
