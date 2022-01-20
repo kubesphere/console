@@ -33,10 +33,6 @@ export default class Containers extends Component {
     super(props)
     this.state = {
       containerName: '',
-      metrics: [],
-      step: '30s',
-      times: 60,
-      isLoading: true,
     }
     this.monitorStore = new ContainerMonitorStore()
   }
