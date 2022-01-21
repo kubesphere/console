@@ -19,19 +19,26 @@
 import React, { Component } from 'react'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { Icon } from '@kube-design/components'
+import { Button, Collapse, Icon } from '@kube-design/components'
 
 import BaseInfo from './BaseInfo'
 import Connections from './Connections'
 import Childrens from './Childrens'
+import Containers from './Containers'
 import Tables from './Tables'
 
 import styles from './index.scss'
+
+const { CollapseItem } = Collapse
 
 @observer
 export default class ServiceDetail extends Component {
   static defaultProps = {
     data: {},
+  }
+
+  state = {
+    activeKey: ['Info'],
   }
 
   componentDidMount() {
@@ -60,28 +67,54 @@ export default class ServiceDetail extends Component {
     this.fetchDetail(params.id)
   }
 
+  handleCollapseChange = value => {
+    this.setState({
+      activeKey: value,
+    })
+  }
+
   render() {
     const { onClose } = this.props
     const { node = {} } = toJS(this.props.store.detail)
-
+    const { match } = this.props
     return (
       <div className={styles.wrapper}>
         <div className={styles.header}>
+          <div className={styles.icon}>
+            <Icon name="appcenter" size={40} />
+          </div>
           <div className={styles.title}>{node.label}</div>
-          <Icon
+          <Button
             className={styles.close}
-            name="close"
-            type="light"
-            size={20}
-            clickable
+            icon="close"
+            iconType="light"
+            type="control"
             onClick={onClose}
+            data-test="modal-close"
           />
         </div>
         <div className={styles.content}>
-          <BaseInfo detail={node} />
-          <Connections detail={node} jumpTo={this.handleJump} />
-          <Childrens detail={node} />
-          <Tables detail={node} />
+          <Collapse
+            activeKey={this.state.activeKey}
+            onChange={this.handleCollapseChange}
+            accordion
+          >
+            <CollapseItem label="info" key="info">
+              <BaseInfo detail={node} />
+            </CollapseItem>
+            <CollapseItem label="Traffic" key="traffic">
+              <Connections detail={node} jumpTo={this.handleJump} />
+            </CollapseItem>
+            <CollapseItem label="Pods" key="pods">
+              <Childrens detail={node} />
+            </CollapseItem>
+            <CollapseItem label="Containers" key="containers">
+              <Containers detail={node} match={match} />
+            </CollapseItem>
+            <CollapseItem label="Kubernetes labels" key="labels">
+              <Tables detail={node} />
+            </CollapseItem>
+          </Collapse>
         </div>
       </div>
     )
