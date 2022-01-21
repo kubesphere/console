@@ -1,0 +1,23 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  cursor: pointer;
+
+  &:hover {
+    a {
+      color: $primary;
+    }
+  }
+}
+
+.title {
+  max-width: 180px;
+  overflow: hidden;
+  @include ellipsis;
+  margin-right: 10px;
+}
+
+.texts {
+  min-width: 60px;
+}
