@@ -172,6 +172,54 @@ export default class Monitors extends React.Component {
     })
   }
 
+  get tcpInMetrics() {
+    const { detail } = this.props
+    if (!detail) {
+      return []
+    }
+
+    const { metrics } = this.state
+    const received = get(metrics, 'tcp_received[0].datapoints', [])
+    const sent = get(metrics, 'tcp_sent[0].datapoints', [])
+
+    if (received.length === 0 && sent.length === 0) {
+      return {}
+    }
+
+    return getAreaChartOps({
+      title: 'bandwith',
+      legend: ['Send', 'Receive'],
+      data: [{ values: sent }, { values: received }],
+      unit: 'B/s',
+    })
+  }
+
+  get tcpOutMetrics() {
+    const { detail } = this.props
+    if (!detail) {
+      return {}
+    }
+
+    const { outMetrics } = this.state
+    const received = get(
+      outMetrics,
+      'metrics.tcp_received.matrix[0].values',
+      []
+    )
+    const sent = get(outMetrics, 'tcp_sent[0].datapoints', [])
+
+    if (received.length === 0 && sent.length === 0) {
+      return {}
+    }
+
+    return getAreaChartOps({
+      title: 'bandwith',
+      legend: ['Send', 'Receive'],
+      data: [{ values: sent }, { values: received }],
+      unit: 'B/s',
+    })
+  }
+
   get trafficInMetrics() {
     const { detail } = this.props
     if (!detail) {
@@ -282,6 +330,23 @@ export default class Monitors extends React.Component {
   }
 
   render() {
+    const { protocol } = this.props
+    if (protocol === 'tcp') {
+      return (
+        <>
+          <div className={styles.title}>
+            {t('TCP_INBOUND_TRAFFIC')} {this.renderWorkloadSelect()}
+          </div>
+          <Chart {...this.tcpInMetrics} height={150} />
+          <div className={styles.title}>
+            {t('TCP_OUTBOUND_TRAFFIC')} {this.renderWorkloadSelect()}
+          </div>
+          <Chart {...this.tcpOutMetrics} height={150} />
+        </>
+      )
+    }
+
+    // for http and grpc
     return (
       <>
         <div className={styles.title}>

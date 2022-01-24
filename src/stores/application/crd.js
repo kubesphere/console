@@ -201,10 +201,8 @@ export default class ApplicationStore extends Base {
       duration: 60,
       step: 20,
       rateInterval: '20s',
-      'filters[]': ['request_count', 'request_duration', 'request_error_count'],
       direction: 'inbound',
-      reporter: 'destination',
-      requestProtocol: 'http',
+      reporter: 'source',
       ...options,
     }
     return request.get(
@@ -224,7 +222,6 @@ export default class ApplicationStore extends Base {
       rateInterval: '20s',
       direction: 'inbound',
       reporter: 'source',
-      requestProtocol: 'http',
       ...options,
     }
     return request.get(
