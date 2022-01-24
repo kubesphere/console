@@ -68,12 +68,9 @@ export default class Monitors extends React.Component {
   }
 
   getData() {
-    const { detail, store, protocol } = this.props
+    const { detail, store } = this.props
 
-    const func =
-      protocol === 'tcp'
-        ? this.store.fetchAppMetrics.bind(this.store)
-        : this.store.fetchServiceMetrics.bind(this.store)
+    const func = this.store.fetchServiceMetrics.bind(this.store)
 
     if (detail && detail.name) {
       func(
@@ -138,34 +135,8 @@ export default class Monitors extends React.Component {
     }
 
     const { metrics } = this.state
-    const received = get(metrics, 'metrics.tcp_received.matrix[0].values', [])
-    const sent = get(metrics, 'metrics.tcp_sent.matrix[0].values', [])
-
-    if (received.length === 0 && sent.length === 0) {
-      return {}
-    }
-
-    return getAreaChartOps({
-      title: 'bandwith',
-      legend: ['Send', 'Receive'],
-      data: [{ values: sent }, { values: received }],
-      unit: 'B/s',
-    })
-  }
-
-  get tcpOutMetrics() {
-    const { detail } = this.props
-    if (!detail) {
-      return {}
-    }
-
-    const { outMetrics } = this.state
-    const received = get(
-      outMetrics,
-      'metrics.tcp_received.matrix[0].values',
-      []
-    )
-    const sent = get(outMetrics, 'metrics.tcp_sent.matrix[0].values', [])
+    const received = get(metrics, 'tcp_received[0].datapoints', [])
+    const sent = get(metrics, 'tcp_sent[0].datapoints', [])
 
     if (received.length === 0 && sent.length === 0) {
       return {}
@@ -229,30 +200,23 @@ export default class Monitors extends React.Component {
   render() {
     const { protocol } = this.props
 
-    if (protocol === 'http') {
-      return (
-        <>
-          <div className={styles.title}>
-            {t('Traffic (requests per second)')}
-          </div>
-          <TrafficCard metrics={this.trafficInMetrics} />
-          <div className="margin-b8" />
-          <Chart {...this.requestInMetrics} height={150} />
-        </>
-      )
-    }
-
     if (protocol === 'tcp') {
       return (
         <>
           <div className={styles.title}>{t('TCP_INBOUND_TRAFFIC')}</div>
           <Chart {...this.tcpInMetrics} height={150} />
-          <div className={styles.title}>{t('TCP_OUTBOUND_TRAFFIC')}</div>
-          <Chart {...this.tcpOutMetrics} height={150} />
         </>
       )
     }
 
-    return null
+    // for http and grpc
+    return (
+      <>
+        <div className={styles.title}>{t('Traffic (requests per second)')}</div>
+        <TrafficCard metrics={this.trafficInMetrics} />
+        <div className="margin-b8" />
+        <Chart {...this.requestInMetrics} height={150} />
+      </>
+    )
   }
 }
