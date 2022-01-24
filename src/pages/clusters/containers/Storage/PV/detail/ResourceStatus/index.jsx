@@ -41,11 +41,11 @@ class ResourceStatus extends React.Component {
   store = new Volume()
 
   componentDidMount() {
-    const { _originData, phase } = this.props.detailStore.detail
+    const { _originData, phase, cluster } = this.props.detailStore.detail
     if (phase !== 'Bound') {
       this.store.isLoading = false
     } else {
-      this.store.fetchDetail(_originData.spec.claimRef)
+      this.store.fetchDetail({ cluster, ..._originData.spec.claimRef })
     }
   }
 
