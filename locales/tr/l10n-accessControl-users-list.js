@@ -17,16 +17,16 @@
  */
 module.exports = {
   // Banner
-  USER_DESC: 'Manage users and their roles.',
-  USER_PL: 'Users',
+  USER_DESC: 'Kullanıcıları ve Kullanıcı İzinlerini Yönetin.',
+  USER_PL: 'Kullanıcılar',
   // List
-  NOT_LOGIN_YET: 'Not logged in yet',
-  USER_EMPTY_DESC: 'Please create a user.',
-  USER_ACTIVE: 'Active',
-  USER_AUTHLIMITEXCEEDED: 'Login restricted',
-  USER_PENDING: 'Pending',
-  USER_DISABLED: 'Disabled',
-  LAST_LOGIN: 'Last Login',
+  NOT_LOGIN_YET: 'Henüz oturum açılmadı',
+  USER_EMPTY_DESC: 'Lütfen bir kullanıcı oluşturun.',
+  USER_ACTIVE: 'Aktif',
+  USER_AUTHLIMITEXCEEDED: 'Kısıtlı giriş',
+  USER_PENDING: 'Bekliyor',
+  USER_DISABLED: 'Devre Dışı',
+  LAST_LOGIN: 'Son Giriş',
   // List > Create
   USERNAME_DESC:
     'The username can contain only lowercase letters, numbers, hyphens (-), and dots (.), and must start and end with a lowercase letter or number. The maximum length is 32 characters.',
