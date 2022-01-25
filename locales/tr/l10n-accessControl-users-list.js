@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  USER_DESC: 'Kullanıcıları ve kullanıcı izinlerini yönetin.',
+  USER_DESC: 'Kullanıcıları ve Kullanıcı İzinlerini Yönetin.',
   USER_PL: 'Kullanıcılar',
   // List
   NOT_LOGIN_YET: 'Henüz oturum açılmadı',
