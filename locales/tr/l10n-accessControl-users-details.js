@@ -17,16 +17,16 @@
  */
 module.exports = {
   // More > Change Password
-  CONFIRM_PASSWORD_TIP: 'Please enter the new password again.',
-  CHANGE_PASSWORD: 'Change Password',
-  NEW_PASSWORD: 'New Password',
+  CONFIRM_PASSWORD_TIP: 'Lütfen yeni parolanızı tekrar girin.',
+  CHANGE_PASSWORD: 'Parola Değiştir',
+  NEW_PASSWORD: 'Yeni Parola',
   // More > Delete
   // Details
   // Login History
-  TIME: 'Time',
-  SOURCE_IP_ADDRESS: 'Source IP Address',
-  LOGIN_HISTORY: 'Login History',
-  NO_LOGIN_HISTORY: 'No login history is found.',
-  SUCCESSFUL: 'Successful',
-  FAILED: 'Failed'
+  TIME: 'Zaman',
+  SOURCE_IP_ADDRESS: 'Kaynak IP Adresi',
+  LOGIN_HISTORY: 'Giriş Geçmişi',
+  NO_LOGIN_HISTORY: 'Giriş geçmişinde giriş bulunamadı.',
+  SUCCESSFUL: 'Başarılı',
+  FAILED: 'Başarısız'
 };
