@@ -17,7 +17,7 @@
  */
 
 import React, { Component } from 'react'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 
 import { Form, Input, Notify } from '@kube-design/components'
 import { RadioGroup } from 'components/Base'
@@ -75,6 +75,17 @@ export default class WeComForm extends Component {
       return
     }
     return true
+  }
+
+  receiverValidator = (rule, value, callback) => {
+    if (
+      ['toParty', 'toUser', 'toTag'].every(item =>
+        isEmpty(get(this.props.data, `receiver.spec.wechat.${item}`))
+      )
+    ) {
+      return callback({ message: t('RECIPIENT_SETTINGS_TIP') })
+    }
+    callback()
   }
 
   handleTypeChange = type => {
@@ -140,7 +151,7 @@ export default class WeComForm extends Component {
               options={this.tabs}
             />
           </div>
-          <Form.Item>
+          <Form.Item rules={[{ validator: this.receiverValidator }]}>
             <Item
               name={`receiver.spec.wechat.${type}`}
               className={wrapperClassName}
