@@ -142,6 +142,9 @@ export default class ContaineForm extends React.Component {
             item => item.name && item.containerPort
           )
         }
+        if (isEmpty(data.livenessProbe)) {
+          delete data.livenessProbe
+        }
 
         if (!withService && data.ports) {
           data.ports.forEach(item => {
