@@ -21,8 +21,8 @@ module.exports = {
   ALERT_MESSAGE_DESC: 'Uyarı mesajları, uyarı kurallarının koşullarını karşılayan tetiklenen uyarıların ayrıntılarını görüntüler.',
   // Custom Policies > List
   CUSTOM_POLICIES: 'Özel Politikalar',
-  BUILT_IN_POLICIES: 'Gömülü modüller',
-  ACTIVATION_TIME: 'Aktive etme zamanı',
-  ALERTING_MESSAGE_EMPTY_DESC: 'Mevcut projede hiçbir uyarı mesajı bulunamadı.',
-  MONITORING_TARGET: 'Hedefi İzleme'
+  BUILT_IN_POLICIES: 'Built-in Policies',
+  ACTIVATION_TIME: 'Activation Time',
+  ALERTING_MESSAGE_EMPTY_DESC: 'No alerting message is found in the current project.',
+  MONITORING_TARGET: 'Monitoring Target'
 };
