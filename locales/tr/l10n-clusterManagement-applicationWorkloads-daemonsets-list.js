@@ -18,12 +18,12 @@
 module.exports = {
   // Banner
   // List
-  DAEMONSETS: 'Daemonsets',
-  DAEMONSET_EMPTY_DESC: 'Please create a daemonset.',
+  DAEMONSETS: 'Arka Plan Programı',
+  DAEMONSET_EMPTY_DESC: 'Lütfen bir arka plan programı oluşturun.',
   // List > Create > Basic Information
   // List > Create > Pod Settings
   // List > Create > Pod Settings > Add Container > Update Strategy > Rolling Update Settings
-  MIN_READY_SECONDS: 'Minimum Running Time for Pod Readiness (s)',
+  MIN_READY_SECONDS: 'Pod Hazırlık(lar)ı için Minimum Çalışma Süresi',
   MAX_UNAVAILABLE_PODS: 'Maximum Unavailable Pods',
   ROLLING_UPDATE_SETTINGS: 'Rolling Update Settings',
   MAX_UNAVAILABLE_PODS_DESC: 'Maximum number or percentage of unavailable pod replicas allowed during the update process.',
