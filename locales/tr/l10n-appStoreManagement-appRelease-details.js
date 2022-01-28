@@ -28,10 +28,10 @@ module.exports = {
   NO_DOCUMENT_FOUND: 'Belge Bulunamadı',
   // Chart Files
   // Update Log
-  UPDATE_LOG: 'Günlüğü Güncelle',
-  NO_UPDATE_LOG_DESC: 'No update log is found.',
+  UPDATE_LOG: 'Kaydı Güncelle',
+  NO_UPDATE_LOG_DESC: 'Güncellenecek kayıt  bulunamadı.',
   // Reject
-  REJECT: 'Reject',
+  REJECT: 'Reddetmek',
   REJECT_REASON_DESC: 'Enter reasons for rejection of the app review.',
   REJECT_REASON_TIP: 'Please enter at least one reason for rejection.',
   REJECT_SUCCESSFUL: 'Rejected successfully.',
