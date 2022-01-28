@@ -17,18 +17,18 @@
  */
 module.exports = {
   // Banner
-  APP_DETAILS_DESC: 'View details of the app to be released.',
+  APP_DETAILS_DESC: 'Yayınlanacak uygulamanın ayrıntılarını görüntüleyin.',
   // Description
   // App Information
-  INTRODUCTION: 'Introduction',
-  SERVICE_PROVIDER_WEBSITE: 'Service provider website',
-  APP_DESCRIPTION: 'App Description',
+  INTRODUCTION: 'Giriş',
+  SERVICE_PROVIDER_WEBSITE: 'Servis sağlayıcı web sitesi',
+  APP_DESCRIPTION: 'Uygulama Açıklaması',
   // Documentation
-  DOCUMENTATION: 'Documentation',
-  NO_DOCUMENT_FOUND: 'No Documentation Found',
+  DOCUMENTATION: 'Belgeler',
+  NO_DOCUMENT_FOUND: 'Belge Bulunamadı',
   // Chart Files
   // Update Log
-  UPDATE_LOG: 'Update Log',
+  UPDATE_LOG: 'Günlüğü Güncelle',
   NO_UPDATE_LOG_DESC: 'No update log is found.',
   // Reject
   REJECT: 'Reject',
