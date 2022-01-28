@@ -28,12 +28,9 @@ module.exports = {
   USER_DISABLED: 'Devre Dışı',
   LAST_LOGIN: 'Son Giriş',
   // List > Create
-  USERNAME_DESC:
-    'The username can contain only lowercase letters, numbers, hyphens (-), and dots (.), and must start and end with a lowercase letter or number. The maximum length is 32 characters.',
-  PASSWORD_DESC:
-    'The password must contain at least one number, one lowercase letter, and one uppercase letter. The length must be 8 to 64 characters.',
-  PASSWORD_INVALID_DESC:
-    'Invalid password. The password must contain at least one number, one lowercase letter, and one uppercase letter. The length must be 8 to 64 characters.',
+  USERNAME_DESC: 'Kullanıcı adı yalnızca küçük harf, sayı, tire (-) ve nokta (.) içerebilir ve mutlaka küçük harf ve sayı ile başlamalı ve bitmelidir. En fazla 32 karakter olabilir.',
+  PASSWORD_DESC: 'Parola en az bir sayı, bir küçük harf ve bir büyük harf içermelidir. Parola uzunluğu 6 ila 64 karakter arası olmalıdır.',
+  PASSWORD_INVALID_DESC: 'Geçersiz parola. Parola en az bir sayı, bir küçük harf ve bir büyük harf içermelidir. Parola uzunluğu 6 ila 64 karakter arası olmalıdır.',
   PLATFORM_ROLE_DESC: 'Set the role of the user on the KubeSphere platform.',
   USER_SETTING_EMAIL_DESC: 'The email address can be used to log in to the KubeSphere web console.',
   USERNAME_EXISTS: 'The username already exists. Please enter another username.',
