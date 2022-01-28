@@ -24,12 +24,12 @@ module.exports = {
   // List > Create > Pod Settings
   // List > Create > Pod Settings > Add Container > Update Strategy > Rolling Update Settings
   MIN_READY_SECONDS: 'Pod Hazırlık(lar)ı için Minimum Çalışma Süresi',
-  MAX_UNAVAILABLE_PODS: 'Maksimum Kullanılamayan Pods',
-  ROLLING_UPDATE_SETTINGS: 'Sürekli Güncelleme Ayarları',
-  MAX_UNAVAILABLE_PODS_DESC: 'Güncelleme işlemi sırasında izin verilen maksimum kullanılamayan bölme kopyalarının sayısı veya yüzdesi.',
-  MIN_READY_SECONDS_DESC: 'Bir pod replikasının hazır olarak kabul edilebilmesi için gereken minimum kararlı çalışma süresi.',
-  MIN_READY_SECONDS_EMPTY: 'Lütfen bir pod replikasının hazır kabul edilmesi için gereken minimum kararlı çalışma süresini ayarlayın.',
-  MAX_UNAVAILABLE_EMPTY: 'Lütfen güncelleme işlemi sırasında izin verilen maksimum kullanılamayan pod replikalarının sayısını veya yüzdesini ayarlayın.',
+  MAX_UNAVAILABLE_PODS: 'Maximum Unavailable Pods',
+  ROLLING_UPDATE_SETTINGS: 'Rolling Update Settings',
+  MAX_UNAVAILABLE_PODS_DESC: 'Maximum number or percentage of unavailable pod replicas allowed during the update process.',
+  MIN_READY_SECONDS_DESC: 'Minimum stable running time required for a pod replica to be considered ready.',
+  MIN_READY_SECONDS_EMPTY: 'Please set the minimum stable running time required for a pod replica to be considered ready.',
+  MAX_UNAVAILABLE_EMPTY: 'Please set the maximum number or percentage of unavailable pod replicas allowed during the update process.',
   // List > Create > Pod Settings > Add Container > Health Check > Liveness Check > HTTP Request
   FAILURE_THRESHOLD: 'Başarısızlık Eşiği',
   HTTP_REQUEST: 'HTTP İsteği',
