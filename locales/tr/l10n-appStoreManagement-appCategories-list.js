@@ -18,13 +18,13 @@
 module.exports = {
   // Banner
   APP_CATEGORY_PL: 'Uygulama Kategorisi',
-  APP_CATEGORIES_DESC: 'Uygulama Mağazısı\'nda yayınlanan uygulama kategorilerini yönetin. Uygulama kategorileri oluşturabilir, düzenleyebilir, silebilir ve değiştirebilirsiniz.',
+  APP_CATEGORIES_DESC: 'Manage categories of apps released to the App Store. You can create, edit, delete, and change app categories.',
   // All Categories
   ALL_CATEGORIES_VALUE: 'Bütün Kategoriler ({değer})',
   APP_CATEGORY_EMPTY_DESC: 'Kategoriye ait hiçbir uygulama yok.',
   // All Categories > Add
   ENTER_CATEGORY_NAME_TIP: 'Lütfen bir kategori ismi giriniz.',
-  CATEGORY_NAME_DESC: 'Ad herhangi bir karakter içerebilir ve maksimum uzunluk 20 karakterdir.',
+  CATEGORY_NAME_DESC: 'The name can contain any characters and the maximum length is 20 characters.',
   // All Categories > Eit
   // All Categories > Delete
   DELETE_CATEGORY_DESC: '<b>{name}</b> kategorisini silmek istediğinizden emin misiniz?',
@@ -32,5 +32,5 @@ module.exports = {
   // List > Change Category
   CHANGED_SUCCESSFULLY: 'Değişiklikler kaydedildi.',
   CHANGE_CATEGORY: 'Kategori Değiştir',
-  CHANGE_CATEGORY_DESC: 'Uygulama kategorisi, uygulamanın Uygulama Mağazı\'ndaki sınıflandırmasını belirler.'
+  CHANGE_CATEGORY_DESC: 'The app category determines the classification of the app in the App Store.'
 };
