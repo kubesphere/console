@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Details
-  CREATOR: 'Hazırlayan',
+  CREATOR: 'Oluşturucu',
   NO: 'Hayır',
   // More > Roll Back
   // More > Edit Autoscaling
@@ -40,5 +40,5 @@ module.exports = {
   // Monitoring
   // Environment Variables
   // Events
-  EVENT_PL: 'Etkinlikler'
+  EVENT_PL: 'Olaylar'
 };
