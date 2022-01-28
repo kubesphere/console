@@ -19,12 +19,12 @@ module.exports = {
   // Head
   APP_STORE: 'App Store',
   // Discover
-  DISCOVER: 'Discover',
-  NEW_APPS: 'New Apps',
+  DISCOVER: 'Keşfet',
+  NEW_APPS: 'Yeni Uygulama',
   // App Categories
   // List
   MAINTAINER_VALUE: 'Maintainer: {value}',
   LATEST_VALUE: 'Latest: {value}',
   TOTAL_CATE_COUNT: 'Total Apps: {total}',
-  SEARCH_BY_NAME: 'Search by name'
+  SEARCH_BY_NAME: 'İsme göre ara'
 };
