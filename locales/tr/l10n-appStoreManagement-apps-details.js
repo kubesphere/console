@@ -18,9 +18,9 @@
 module.exports = {
   // Title
   // Suspend App
-  SUSPEND_APP: 'Suspend App',
-  APP_NOTE: 'Note',
-  SUSPEND_SUCCESSFUL: 'Suspended successfully.',
+  SUSPEND_APP: 'Uygulamayı Askıya Al',
+  APP_NOTE: 'Not',
+  SUSPEND_SUCCESSFUL: 'Başarıyla askıya alındı.',
   // Activate App
   ACTIVATE_APP: 'Activate App',
   ACTIVATE_SUCCESSFUL: 'Activated successfully.',
