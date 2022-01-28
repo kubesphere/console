@@ -40,18 +40,18 @@ module.exports = {
   IMAGE: 'Resim',
   IMAGE_VALUE: 'Resim: {değer}',
   // List > Create > Pod Settings > Add Container > Health Check > Readiness Check > TCP Port
-  PORT_NUMBER_EMPTY: 'Please enter a port number.',
-  USER: 'User',
+  PORT_NUMBER_EMPTY: 'Lütfen bir bağlantı noktası numarası girin.',
+  USER: 'Kullanıcı',
   // List > Create > Volume Settings
-  VOLUME_NAME_EXIST: 'The volume name already exists.',
-  SELECT_TYPE: 'Select {type}',
-  SPECIFY_SUBPATH: 'Specify Subpath',
-  SPECIFY_SUBPATH_TIP: 'Specify a volume subpath to be mounted to the container.',
+  VOLUME_NAME_EXIST: 'Dosya adı zaten var.',
+  SELECT_TYPE: 'Türleri seçin',
+  SPECIFY_SUBPATH: 'Alt Yolu Belirtin',
+  SPECIFY_SUBPATH_TIP: 'Kapsayıcıya monte edilecek bir birim alt yolu belirtin.',
   // List > Create > Advanced Settings
-  NETWORK_SEGMENT_SCAP: 'Network segment',
-  AVAILABLE_ADDRESSES: 'Available addresses',
-  POD_IP_POOL: 'Pod IP Pool',
-  SUBPATH: 'Subpath',
+  NETWORK_SEGMENT_SCAP: 'Ağ segmenti',
+  AVAILABLE_ADDRESSES: 'Kullanılabilir adresler',
+  POD_IP_POOL: 'Pod IP Havuzu',
+  SUBPATH: 'Alt yol',
   // List > Create > Advanced Settings > Add Metadata
   ANNOTATION_PL: 'Annotations',
   CREATE_SUCCESSFUL: 'Created successfully.',
