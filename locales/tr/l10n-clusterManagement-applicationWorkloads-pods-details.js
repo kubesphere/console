@@ -22,7 +22,6 @@ module.exports = {
   // Resource Status > Containers
   CONTAINER_PL: 'Konteynerler',
   PROBE_PL: 'İncelemeler',
-  HOOK_PL: 'Kancalar',
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: 'Kapsayıcı şu anda gerçek zamanlı kayıtları desteklemiyor. Lütfen daha sonra tekrar deneyiniz.',
   CONTAINER_LOGS: 'Konteyner Kayıtları',
