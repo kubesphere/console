@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Banner
-  APPLICATION_WORKLOAD_PL: 'Application Workloads',
-  WORKLOAD_PL: 'Workloads',
+  APPLICATION_WORKLOAD_PL: 'Uygulama İş Yükleri',
+  WORKLOAD_PL: 'İş yükleri',
   // List
-  DEPLOYMENTS: 'Deployments',
-  UPDATE_TIME_TCAP: 'Update Time',
-  ALL_PROJECTS: 'All projects',
+  DEPLOYMENTS: 'Dağıtımlar',
+  UPDATE_TIME_TCAP: 'Güncelleme Zamanı',
+  ALL_PROJECTS: 'Bütün projeler',
   // List > Create > Basic Information
   SELECT_PROJECT_DESC: 'Select a project in which the resource is to be created.',
   PROJECT_NOT_SELECT_DESC: 'Please select a project.',
