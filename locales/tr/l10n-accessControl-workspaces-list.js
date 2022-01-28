@@ -20,9 +20,9 @@ module.exports = {
   WORKSPACE_PL: 'Çalışma alanları',
   WORKSPACE_DESC: 'A workspace is an isolated logical unit used to organize projects and DevOps projects, manage resource access, and share information within your team.',
   // List
-  CLUSTER_PL: 'Clusters',
+  CLUSTER_PL: 'Küme',
   // List > Create > Basic Information
-  CREATE_WORKSPACE: 'Create Workspace',
+  CREATE_WORKSPACE: 'Çalışma alanı oluştur',
   WORKSPACE_NAME_EMPTY_DESC: 'Lütfen bir şablon adı girin.',
   WORKSPACE_CREATE_DESC: 'Uygulama hakkında temel bilgileri öğrenin.',
   ADMINISTRATOR: 'Yönetici',
