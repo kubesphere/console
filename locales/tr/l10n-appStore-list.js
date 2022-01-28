@@ -17,14 +17,14 @@
  */
 module.exports = {
   // Head
-  APP_STORE: 'App Store',
+  APP_STORE: 'Uygulama Mağazası',
   // Discover
   DISCOVER: 'Keşfet',
   NEW_APPS: 'Yeni Uygulama',
   // App Categories
   // List
-  MAINTAINER_VALUE: 'Maintainer: {value}',
-  LATEST_VALUE: 'Latest: {value}',
-  TOTAL_CATE_COUNT: 'Total Apps: {total}',
+  MAINTAINER_VALUE: 'Geliştirici: {değer}',
+  LATEST_VALUE: 'Son sürüm: {değer}',
+  TOTAL_CATE_COUNT: 'Toplam Uygulama: {toplam}',
   SEARCH_BY_NAME: 'İsme göre ara'
 };
