@@ -61,6 +61,6 @@ module.exports = {
   SERVICE_EXTERNAL_ACCESS_DESC: 'Hizmete kümenin dışından erişme yöntemini ayarlayın.',
   ACCESS_NODEPORT_TIP: 'Hizmete erişmek için küme düğümlerinin bir bağlantı noktasını kullanın.',
   ACCESS_LOADBALANCER_TIP: 'Hizmete erişmek için bir yük dengeleyici kullanın.',
-  WORKLOAD_ANNOTATIONS: 'Workload Annotations',
-  LABEL_FORMAT_DESC: 'The key and value of a label can contain only letters, numbers, hyphens (-), underscores (_), and dots (.), and must start and end with a letter or number. The maximum length of each key and each label is 63 characters (if the key contains a domain name, the maximum length is 253 characters).'
+  WORKLOAD_ANNOTATIONS: 'İş Yükü Açıklamaları',
+  LABEL_FORMAT_DESC: 'Bir etiketin anahtarı ve değeri yalnızca harf, sayı, kısa çizgi (-), alt çizgi (_) ve nokta (.) içerebilir ve bir harf veya sayı ile başlayıp bitmelidir. Her anahtarın ve her etiketin maksimum uzunluğu 63 karakterdir (anahtar bir alan adı içeriyorsa maksimum uzunluk 253 karakterdir).'
 };
