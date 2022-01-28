@@ -27,8 +27,7 @@ module.exports = {
   // Unbind Cluster
   UNBIND: 'Bağlantı kes',
   UNBIND_CLUSTER: 'Kümenin Bağlantısını Kaldır',
-  UNBIND_CLUSTER_DESC: 'Kümenin bağlantısı kaldırıldıktan sonra KubeSphere kümeyi yönetemez. Kümedeki Kubernetes kaynakları silinmez. İşlemle ilişkili riskleri anladığınızdan emin olmak için lütfen <strong>{name}</strong> küme adını girin.',
-  UNBIND_SUCCESS: 'Bağlantı Kesildi',
+  UNBIND_CLUSTER_DESC: 'Kümenin ilişkisi kaldırıldıktan sonra KubeSphere kümeyi yönetemez. Kümedeki Kubernetes kaynakları silinmez.',
   SURE_TO_UNBIND_CLUSTER: 'Bu operasyonun risklerini anlıyorum.',
   UNBIND_CLUSTER_Q: 'Kümenin Bağlantısını Kaldır',
   NODE: 'Düğüm'
