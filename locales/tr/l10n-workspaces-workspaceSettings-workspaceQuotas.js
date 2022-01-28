@@ -26,7 +26,7 @@ module.exports = {
   // Resource Quotas > Edit Quotas
   EDIT_WORKSPACE_QUOTAS: 'Edit Workspace Quotas',
   CPU_REQUEST: 'CPU Request',
-  CPU_LIMIT: 'CPU Limit',
+  CPU_LIMIT: 'CPU Sınırlayıcı',
   MEMORY_REQUEST: 'Memory Request',
-  MEMORY_LIMIT: 'Memory Limit'
+  MEMORY_LIMIT: 'Bellek sınırı'
 };
