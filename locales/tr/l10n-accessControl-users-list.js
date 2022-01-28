@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  USER_DESC: 'Kullanıcıları ve Kullanıcı İzinlerini Yönetin.',
+  USER_DESC: 'Kullanıcıları ve kullanıcı izinlerini yönetin.',
   USER_PL: 'Kullanıcılar',
   // List
   NOT_LOGIN_YET: 'Henüz oturum açılmadı',
@@ -31,15 +31,15 @@ module.exports = {
   USERNAME_DESC: 'Kullanıcı adı yalnızca küçük harf, sayı, tire (-) ve nokta (.) içerebilir ve mutlaka küçük harf ve sayı ile başlamalı ve bitmelidir. En fazla 32 karakter olabilir.',
   PASSWORD_DESC: 'Parola en az bir sayı, bir küçük harf ve bir büyük harf içermelidir. Parola uzunluğu 6 ila 64 karakter arası olmalıdır.',
   PASSWORD_INVALID_DESC: 'Geçersiz parola. Parola en az bir sayı, bir küçük harf ve bir büyük harf içermelidir. Parola uzunluğu 6 ila 64 karakter arası olmalıdır.',
-  PLATFORM_ROLE_DESC: 'Set the role of the user on the KubeSphere platform.',
-  USER_SETTING_EMAIL_DESC: 'The email address can be used to log in to the KubeSphere web console.',
-  USERNAME_EXISTS: 'The username already exists. Please enter another username.',
-  USERNAME_EMPTY_DESC: 'Lütfen kullanıcı adınızı giriniz.',
+  PLATFORM_ROLE_DESC: ' KubeSphere platformunda kullanıcının rolünü belirleyin.',
+  USER_SETTING_EMAIL_DESC: 'E-posta adresi, KubeSphere web konsolunda oturum açmak için kullanılabilir.',
+  USERNAME_EXISTS: 'Kullanıcı adı zaten mevcut. Lütfen başka bir kullanıcı adı deneyin.',
+  USERNAME_EMPTY_DESC: 'Lütfen kullanıcı adınızı girin.',
   PLATFORM_ROLE: 'Platform Rolleri',
   CREATE_USER: 'Kullanıcı Oluştur',
   EMAIL: 'E-Posta',
   EMAIL_EXISTS: 'E-mail adresi zaten mevcut! Lütfen başka bir e-mail adresi deneyin!',
-  USERNAME_INVALID: 'Invalid username. {message}',
+  USERNAME_INVALID: 'Hatalı kullanıcı adı.',
   USERNAME: 'Kullanıcı Adı',
   PASSWORD: 'Parola',
   // List > Edit
