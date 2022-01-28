@@ -22,7 +22,7 @@ module.exports = {
   // List
   CLUSTER_PL: 'Küme',
   // List > Create > Basic Information
-  CREATE_WORKSPACE: 'Create Workspace',
+  CREATE_WORKSPACE: 'Çalışma alanı oluştur',
   WORKSPACE_NAME_EMPTY_DESC: 'Lütfen bir şablon adı girin.',
   WORKSPACE_CREATE_DESC: 'Uygulama hakkında temel bilgileri öğrenin.',
   ADMINISTRATOR: 'Yönetici',
