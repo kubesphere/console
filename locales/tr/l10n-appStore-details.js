@@ -17,45 +17,45 @@
  */
 module.exports = {
   // Title
-  BACK: 'Back',
+  BACK: 'Geri',
   // Description
   // Install > Deployment Agreement
-  AGREE: 'Agree',
+  AGREE: 'Kabul',
   APP_DEPLOY_AGREEMENT: 'Deployment Agreement',
   APP_DEPLOY_AGREEMENT_DESC_1: 'You must abide by the open-source agreement of the application.',
   APP_DEPLOY_AGREEMENT_DESC_2: 'Any consequences arising from your deployment of the application shall be borne by you. For support services, please contact the developer.',
-  DO_NOT_REMIND_AGAIN: 'Do not remind me again',
+  DO_NOT_REMIND_AGAIN: 'Bir daha hatırlatma',
   // Install > Basic Information
-  LOCATION: 'Location',
+  LOCATION: 'Konum',
   CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 53 characters.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'The app cannot be deployed in a multi-cluster project.',
-  LATEST_VERSION_SCAP: 'Latest version',
-  WORKSPACE_EMPTY_DESC: 'Please select a workspace',
-  VERSION_EMPTY_DESC: 'Please select a version.',
+  LATEST_VERSION_SCAP: 'Son Sürüm',
+  WORKSPACE_EMPTY_DESC: 'Lütfen bir çalışma alanı seçin.',
+  VERSION_EMPTY_DESC: 'Lütfen bir bölge seçin.',
   // Install > App Settings
   HELM_APP_SCHEMA_FORM_TIP: 'You can customize the app settings in a GUI form or a YAML file. Settings in the GUI form and those in the YAML file are independent of each other.',
-  DEPLOYED_SUCCESSFUL: 'Installed successfully.',
+  DEPLOYED_SUCCESSFUL: 'Yükleme Tamamlandı',
   // App Information
-  APP_INFORMATION: 'App Information',
-  VERSION_NUMBER: 'Version Number',
-  APP_SCREENSHOTS: 'App Screenshots',
-  CATEGORY_COLON: 'Category:',
-  HOMEPAGE_COLON: 'Homepage:',
-  RELEASE_DATE_COLON: 'Release Date:',
-  APP_ID_COLON: 'App ID:',
+  APP_INFORMATION: 'Uygulama Bilgisi',
+  VERSION_NUMBER: 'Sürüm Numarası',
+  APP_SCREENSHOTS: 'Ekran görüntüleri',
+  CATEGORY_COLON: 'Kategori:',
+  HOMEPAGE_COLON: 'Ana sayfa:',
+  RELEASE_DATE_COLON: 'Yayın tarihi:',
+  APP_ID_COLON: 'Uygulama Kimliği:',
   APP_VERSIONS_TITLE: 'Versions (only the latest 10 versions will be displayed)',
-  MAINTAINER_COLON: 'Maintainer:',
+  MAINTAINER_COLON: 'Geliştiriciler:',
   // App Details > Verions
-  VERSIONS: 'Versions',
+  VERSIONS: 'Versiyon',
   // APP Details > Keywords
-  KEYWORDS: 'Keywords',
-  NONE: 'None',
+  KEYWORDS: 'Anahtar kelimeler',
+  NONE: 'Hiçbiri',
   // App Details > App Introduction
-  APP_INTRODUCTION: 'App Introduction',
-  APP_DETAILS: 'App Details',
+  APP_INTRODUCTION: 'Giriş',
+  APP_DETAILS: 'Uygulama Detayı',
   NO_DOCUMENT_DESC: 'No documentation is found.',
   VERSION_INTRO_EMPTY_DESC: 'No introduction to this version is found.',
   // App Details > Chart Files
-  CHART_FILES: 'Chart Files',
+  CHART_FILES: 'Harita Dosyaları',
   NO_APP_CHART_FILE_FOUND: 'No chart file of the app is found.'
 };
