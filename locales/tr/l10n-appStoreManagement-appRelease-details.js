@@ -28,8 +28,8 @@ module.exports = {
   NO_DOCUMENT_FOUND: 'Belge Bulunamadı',
   // Chart Files
   // Update Log
-  UPDATE_LOG: 'Kaydı Güncelle',
-  NO_UPDATE_LOG_DESC: 'Güncellenecek kayıt  bulunamadı.',
+  UPDATE_LOG: 'Günlüğü Güncelle',
+  NO_UPDATE_LOG_DESC: 'No update log is found.',
   // Reject
   REJECT: 'Reddetmek',
   REJECT_REASON_DESC: 'Uygulama incelemesinin reddedilme nedenlerini girin. ',
