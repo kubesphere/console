@@ -18,31 +18,31 @@
 module.exports = {
   // Banner
   LOG_RECEIVER_PL: 'Kayıt Alıcıları',
-  LOG_COLLECTION_DESC: 'The system collects standard output (stdout) and standard error (stderr) logs from each container and sends them to one or more target services.',
+  LOG_COLLECTION_DESC: 'Sistem, her bir kapsayıcıdan standart çıktı (stdout) ve standart hata (stderr) günlüklerini toplar ve bunları bir veya daha fazla hedef hizmete gönderir.',
   // Banner > Add Log Receiver
-  ADD_LOG_RECEIVER: 'Add Log Receiver',
-  LOG_COLLECTION_TIPS: 'You can add one log receiver for each type.',
-  ES_DESC: 'Elasticsearch is a distributed, RESTful search and analytics engine.',
-  KAFKA_DESC: 'Kafka is a popular open-source, stream-processing platform.',
-  FLUENTD_DESC: 'Fluentd is an open-source data collector for unified logging layer.',
+  ADD_LOG_RECEIVER: 'Kayıt Alıcısı Ekle',
+  LOG_COLLECTION_TIPS: 'Her tür için bir kayıt alıcısı ekleyebilirsiniz.',
+  ES_DESC: 'Elasticsearch, dağıtılmış, RESTful bir arama ve analiz motorudur.',
+  KAFKA_DESC: 'Kafka, popüler bir açık kaynaklı, akış işleme platformudur.',
+  FLUENTD_DESC: 'Fluentd, birleşik günlük katmanı için açık kaynaklı bir veri toplayıcıdır.',
   // Banner > Add Log Receiver > Elasticsearch
-  LOG_COLLECTION_ES_URL_TIPS: 'The built-in Elasticsearch service is used by default. You can also enter the IP address of Elasticsearch independently deployed inside or outside the cluster.',
-  LOG_COLLECTION_ES_INDEX_TIPS: 'Use the index prefix to speed up queries. The index prefix is automatically generated in <Index prefix>-<Year-month-date> format.',
-  PARAMETER_REQUIRED: 'This parameter is mandatory.',
+  LOG_COLLECTION_ES_URL_TIPS: 'Yerleşik Elasticsearch hizmeti varsayılan olarak kullanılır. Küme içinde veya dışında bağımsız olarak dağıtılan Elasticsearch\'ün IP adresini de girebilirsiniz.',
+  LOG_COLLECTION_ES_INDEX_TIPS: 'Sorguları hızlandırmak için dizin önekini kullanın. Dizin öneki, <Index öneki>-<Yıl-ay-tarihi> biçiminde otomatik olarak oluşturulur.',
+  PARAMETER_REQUIRED: 'Bu çerez zorunludur.',
   // Banner > Add Log Receiver > Kafka
-  TOPIC: 'Topic',
-  ADD_SERVICE_ADDRESS: 'Add',
-  SERVICE_ADDRESS: 'Service Address',
-  ENTER_SERVICE_ADDRESS: 'Please enter a service address.',
-  INVALID_SERVICE_ADDRESS: 'Please enter a correct service address.',
+  TOPIC: 'Konu',
+  ADD_SERVICE_ADDRESS: 'Ekle',
+  SERVICE_ADDRESS: 'Kaynak Adresi',
+  ENTER_SERVICE_ADDRESS: 'Lütfen bir hizmet adresi girin.',
+  INVALID_SERVICE_ADDRESS: 'Lütfen bir hizmet adresi girin.',
   // Banner > Add Log Receiver > Fluentd
-  LOG_COLLECTION_FLUENTD_URL_TIPS: 'Enter the address of the Fluentd service that receives logs.',
+  LOG_COLLECTION_FLUENTD_URL_TIPS: 'Kayıtları alan Fluentd hizmetinin adresini girin.',
   // Container Logs
-  LOG_COLLECTING: 'Collecting',
-  LOG_DISABLED: 'Disabled',
-  EMPTY_LOG_COLLECTIONS: 'No log receiver is found. You can add log receivers and send logs to external log receivers.',
+  LOG_COLLECTING: 'Derlemeler',
+  LOG_DISABLED: 'Devre Dışı',
+  EMPTY_LOG_COLLECTIONS: 'Günlük alıcısı bulunamadı. Günlük alıcıları ekleyebilir ve günlükleri harici günlük alıcılarına gönderebilirsiniz.',
   // Resource Events
-  RESOURCE_EVENTS: 'Resource Events',
+  RESOURCE_EVENTS: 'Özkaynak sınırları',
   // Audit Logs
-  AUDIT_LOGS: 'Audit Logs'
+  AUDIT_LOGS: 'Denetim Günlüğü'
 };
