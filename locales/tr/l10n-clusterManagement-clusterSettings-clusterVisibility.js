@@ -17,24 +17,24 @@
  */
 module.exports = {
   // Banner
-  CLUSTER_VISIBILITY: 'Cluster Visibility',
-  EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
-  UNAUTHORIZED: 'Unauthorized',
-  CLUSTER_VISIBILITY_DESC: 'Cluster visibility controls the cluster authorization to workspaces. After a cluster is authorized to workspaces, you can view and manage the cluster resources in the workspaces.',
-  CLUSTER_VISIBILITY_Q1: 'How do I authorize a cluster to specific workspaces?',
-  CLUSTER_VISIBILITY_A1: 'You can assign a cluster to specific workspaces by clicking Edit Visibility.',
-  CLUSTER_VISIBILITY_Q2: 'What are public clusters?',
-  CLUSTER_VISIBILITY_A2: 'Public clusters can be accessed by all platform users. Users can create and schedule resources on public clusters.',
+  CLUSTER_VISIBILITY: 'Küme Görünürlüğü',
+  EDIT_VISIBILITY_DESC: 'Çalışma alanlarında küme görünürlüğünü düzenleyin.',
+  UNAUTHORIZED: 'İzin Yok',
+  CLUSTER_VISIBILITY_DESC: 'Küme görünürlüğü, çalışma alanları için küme yetkilendirmesini kontrol eder. Bir küme çalışma alanlarına yetkilendirildikten sonra, çalışma alanlarındaki küme kaynaklarını görüntüleyebilir ve yönetebilirsiniz.',
+  CLUSTER_VISIBILITY_Q1: 'Bir kümeyi belirli çalışma alanlarına nasıl yetkilendiririm?',
+  CLUSTER_VISIBILITY_A1: 'Görünürlüğü Düzenle\'yi tıklatarak belirli çalışma alanlarına bir küme atayabilirsiniz.',
+  CLUSTER_VISIBILITY_Q2: 'Genel kümeler nedir?',
+  CLUSTER_VISIBILITY_A2: 'Genel kümelere tüm platform kullanıcıları tarafından erişilebilir. Kullanıcılar, genel kümelerde kaynaklar oluşturabilir ve zamanlayabilir.',
   // List
-  WORKSPACE: 'Workspace',
-  CLUSTER_VISIBILITY_SCAP: 'Cluster visibility',
+  WORKSPACE: 'Çalışma alanları',
+  CLUSTER_VISIBILITY_SCAP: 'Küme Görünürlüğü',
   // List > Edit Visibility
-  EDIT_VISIBILITY: 'Edit Visibility',
-  AUTHORIZED: 'Authorized',
-  SET_PUBLIC_CLUSTER: 'Set as Public Cluster',
-  HOST_CLUSTER_VISIBILITY_WARNING: 'The stability of the multi-cluster system will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
-  CLUSTER_VISIBILITY_REMOVE_WARNING: 'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
-  REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
-  REMOVE_WORKSPACE_CONFIRM_SI: 'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
-  REMOVE_WORKSPACE_CONFIRM_PL: 'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks of this operation.'
+  EDIT_VISIBILITY: 'Görünürlüğü düzenle',
+  AUTHORIZED: 'Yetki',
+  SET_PUBLIC_CLUSTER: 'Genel Küme olarak ayarla',
+  HOST_CLUSTER_VISIBILITY_WARNING: 'Ana bilgisayar kümesi aşırı yüklenirse, çoklu küme sisteminin kararlılığı azalacaktır. Ana bilgisayar kümesini çalışma alanlarına atarken dikkatli olun.',
+  CLUSTER_VISIBILITY_REMOVE_WARNING: 'Bir çalışma alanının kümeyi kullanma yetkisi kaldırıldıktan sonra, kümedeki çalışma alanının tüm kaynakları silinecektir.',
+  REMOVE_WORKSPACE_CONFIRM_TITLE: 'Yetkilendirmeyi Kaldır',
+  REMOVE_WORKSPACE_CONFIRM_SI: 'Bu işlemin risklerini anladığınızı doğrulamak için <strong>{resource}</strong> çalışma alanı adını girin.',
+  REMOVE_WORKSPACE_CONFIRM_PL: 'Bu işlemin risklerini anladığınızı doğrulamak için <strong>{resource}</strong> çalışma alanı adlarını girin.'
 };
