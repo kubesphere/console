@@ -18,10 +18,10 @@
 module.exports = {
   // Details
   // Resource Status
-  CUSTOM_RESOURCE_PL: 'Custom Resources',
-  PROJECT_DEVOPS_PROJECT: 'Project/DevOps Project',
+  CUSTOM_RESOURCE_PL: 'Özel Kaynaklar',
+  PROJECT_DEVOPS_PROJECT: 'Proje/DevOps Projesi',
   // Resource Status > Edit YAML
   // Resource Status > Delete
-  CUSTOM_RESOURCE: 'Custom Resource',
-  CUSTOM_RESOURCE_DEFINITION_LOW: 'custom resource definition'
+  CUSTOM_RESOURCE: 'Özel Kaynaklar',
+  CUSTOM_RESOURCE_DEFINITION_LOW: 'özel kaynak tanımı'
 };
