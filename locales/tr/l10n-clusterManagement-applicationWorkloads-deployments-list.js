@@ -53,15 +53,15 @@ module.exports = {
   POD_IP_POOL: 'Pod IP Havuzu',
   SUBPATH: 'Alt yol',
   // List > Create > Advanced Settings > Add Metadata
-  ANNOTATION_PL: 'Annotations',
-  CREATE_SUCCESSFUL: 'Created successfully.',
+  ANNOTATION_PL: 'Açıklamalar',
+  CREATE_SUCCESSFUL: 'Başarıyla oluşturuldu.',
   // List > Edit Information
   // List > Edit YAML
   // List > Re-create
   // List > Delete
-  WORKLOAD_LOW: 'workload',
+  WORKLOAD_LOW: 'iş yükleri',
   // List > Stop
-  STOP: 'Stop',
-  STOP_TITLE_SI: 'Stop {type}',
-  STOP_TITLE_PL: 'Stop Multiple {type}'
+  STOP: 'Dur',
+  STOP_TITLE_SI: 'Dur {tip}',
+  STOP_TITLE_PL: 'Çoklu {tip} Durdur.'
 };
