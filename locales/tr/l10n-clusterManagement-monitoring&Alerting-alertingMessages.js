@@ -17,10 +17,10 @@
  */
 module.exports = {
   // Banner
-  ALERTING_MESSAGE_PL: 'Alerting Messages',
-  ALERT_MESSAGE_DESC: 'Alert messages display details of triggered alerts that have met the conditions of the alert rules.',
+  ALERTING_MESSAGE_PL: 'Uyarı Mesajı',
+  ALERT_MESSAGE_DESC: 'Uyarı mesajları, uyarı kurallarının koşullarını karşılayan tetiklenen uyarıların ayrıntılarını görüntüler.',
   // Custom Policies > List
-  CUSTOM_POLICIES: 'Custom Policies',
+  CUSTOM_POLICIES: 'Özel Politikalar',
   BUILT_IN_POLICIES: 'Built-in Policies',
   ACTIVATION_TIME: 'Activation Time',
   ALERTING_MESSAGE_EMPTY_DESC: 'No alerting message is found in the current project.',
