@@ -17,37 +17,37 @@
  */
 module.exports = {
   // Navigation Pane
-  GATEWAY_SETTINGS: 'Gateway Settings',
+  GATEWAY_SETTINGS: 'Ağ Geçidi Ayarları',
   // Banner
-  CLUSTER_GATEWAY_DESC: 'Set up and manage the configuration of the external network access gateway and service management in the cluster.',
+  CLUSTER_GATEWAY_DESC: 'Kümede harici ağ erişim ağ geçidi ve hizmet yönetiminin yapılandırmasını kurun ve yönetin.',
   // Cluster Gateway
-  CLUSTER_GATEWAY_NOT_ENABLED: 'Cluster Gateway Not Enabled',
-  CLUSTER_ENABLE_GATEWAY_DESC: 'Please enable the cluster gateway.',
-  CLUSTER_GATEWAY: 'Cluster Gateway',
-  GATEWAY_ADDRESS_SCAP: 'Gateway address',
-  LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
+  CLUSTER_GATEWAY_NOT_ENABLED: 'Küme Ağ Geçidi Etkin Değil',
+  CLUSTER_ENABLE_GATEWAY_DESC: 'Lütfen küme ağ geçidini etkinleştirin.',
+  CLUSTER_GATEWAY: 'Küme Ağ Geçidi',
+  GATEWAY_ADDRESS_SCAP: 'Ağ Geçidi Adresi',
+  LOAD_BALANCER_PROVIDER_SCAP: 'Yük dengeleyici sağlayıcı',
   // Cluster Gateway > Enable Gateway
-  ENABLE_GATEWAY: 'Enable Gateway',
-  GATEWAY_TRACING_TIP: 'If routes cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the route.',
+  ENABLE_GATEWAY: 'Ağ geçidi etkinleştir',
+  GATEWAY_TRACING_TIP: '<b>İzleme</b> etkinleştirildikten sonra rotalara erişilemiyorsa, lütfen rotaya <b>nginx.ingress.kubernetes.io/service-upstream: true </b> ek açıklamasını ekleyin.',
   // Cluster Gateway > Manage > View Details
-  VIEW_DETAILS: 'View Details',
+  VIEW_DETAILS: 'Detayları Göster',
   // Cluster Gateway > Manage > Disable
-  DISABLE: 'Disable',
-  DISABLE_GATEWAY: 'Disable Gateway',
-  DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
-  DISABLE_SUCCESSFUL: 'Disabled successfully.',
+  DISABLE: 'Devre Dışı Bırak',
+  DISABLE_GATEWAY: 'Ağ geçidi etkinleştir',
+  DISABLE_GATEWAY_TIP: 'Bu ağgeçit donanımını kaldırmak istediğinize emin misiniz?',
+  DISABLE_SUCCESSFUL: 'Başarıyla devre dışı bırakıldı.',
   // Cluster Gateway > Manage > Edit
-  EDIT: 'Edit',
-  EDIT_TITLE: 'Edit {title}',
+  EDIT: 'Düzenle',
+  EDIT_TITLE: 'Başlığı Düzenle',
   // Cluster Gateway > Manage > Delete
   // Project Gateway
-  PROJECT_GATEWAY: 'Project Gateway',
-  PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',
-  PROJECT_ENABLE_GATEWAY_DESC: 'Please enable the project gateway.',
-  REPLICA_COUNT: 'Replicas',
-  NODE_PORTS: 'Node Ports',
-  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
+  PROJECT_GATEWAY: 'Proje Ağ Geçidi',
+  PROJECT_GATEWAY_NOT_ENABLED: 'Proje Ağ Geçidi Etkin Değil',
+  PROJECT_ENABLE_GATEWAY_DESC: 'Lütfen proje ağ geçidini etkinleştirin.',
+  REPLICA_COUNT: 'Kopyalar',
+  NODE_PORTS: 'Düğüm Portu',
+  UPDATE_GATEWAY_DESC: 'Geçerli ağ geçidi güncellenebilir.',
   // Project Gateway > Delete
-  PROJECT_GATEWAY_PL: 'Project Gateways',
-  PROJECT_GATEWAY_LOW: 'project gateway'
+  PROJECT_GATEWAY_PL: 'Proje Ağ Geçidi',
+  PROJECT_GATEWAY_LOW: 'proje Ağ Geçidi'
 };
