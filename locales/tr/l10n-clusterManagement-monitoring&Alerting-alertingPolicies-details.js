@@ -17,11 +17,11 @@
  */
 module.exports = {
   // Details
-  THRESHOLD_DURATION: 'Threshold Duration',
+  THRESHOLD_DURATION: 'Eşik Süresi',
   // Alerting Rule
-  ALERTING_RULE: 'Alerting Rule',
-  MONITORING_TARGETS_SCAP: 'Monitoring targets',
-  ALERTING_RULE_SCAP: 'Alerting rule',
+  ALERTING_RULE: 'Uyarı Kuralı',
+  MONITORING_TARGETS_SCAP: 'Hedefi İzleme',
+  ALERTING_RULE_SCAP: 'Uyarı Kuralı',
   // Alerting History
-  NO_DATA_DESC: 'No Data Found'
+  NO_DATA_DESC: 'Veri Bulunamadı'
 };
