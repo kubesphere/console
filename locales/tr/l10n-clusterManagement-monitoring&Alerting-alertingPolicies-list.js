@@ -17,8 +17,8 @@
  */
 module.exports = {
   // Banner
-  ALERTING_POLICY_PL: 'Alerting Policies',
-  ALERT_POLICY_DESC: 'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
+  ALERTING_POLICY_PL: 'Uyarı Politikaları',
+  ALERT_POLICY_DESC: 'Uyarı ilkeleri, küme kaynaklarını izlemek için kullanılan bir dizi koşuldur. Kaynakları izlemek için uyarı ilkeleri oluşturabilirsiniz.',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerting messages generated?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'You need to set an alerting policy for a resource. Alerting messages will be generated when the metric configured in the alerting policy reaches a threshold.',
   // List
