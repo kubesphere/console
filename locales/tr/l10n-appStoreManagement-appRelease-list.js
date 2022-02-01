@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  APP_RELEASE: 'App Release',
+  APP_RELEASE: 'Uygulama Yayınlama',
   APP_RELEASE_DESC: 'App Store\'da yayınlanacak uygulamaları yönetir. Uygulama ayrıntılarını görüntüleyebilir ve uygulama sürümlerini onaylayabilir veya reddedebilirsiniz.',
   // Unreleased
   UNRELEASED: 'Yayınlanmamış',
