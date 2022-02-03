@@ -17,8 +17,8 @@
  */
 module.exports = {
   // Banner
-  WORKSPACE_ROLE_PL: 'Workspace Roles',
-  WORKSPACE_ROLE_DESC: 'The role of a workspace member determines the permissions of the member in the workspace.',
+  WORKSPACE_ROLE_PL: 'Çalışma Alanı Rolleri',
+  WORKSPACE_ROLE_DESC: 'Çalışma alanı üyesinin rolü, üyenin çalışma alanındaki izinlerini belirler.',
   // List
   WORKSPACE_ROLE_EMPTY_DESC: 'Lütfen bir şablon adı girin.',
   ROLE_WORKSPACE_ADMIN: 'Control all resources in the workspace.',
