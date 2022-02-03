@@ -40,5 +40,5 @@ module.exports = {
   POD_CONDITION_CONTAINERSREADY: 'Konteyner Hazır',
   POD_CONDITION_CONTAINERSREADY_DESC: 'Bölmedeki tüm başlatma kapsayıcılarını başlatır.',
   POD_CONDITION_PODSCHEDULED: 'Pod Zamanlama',
-  POD_CONDITION_PODSCHEDULED_DESC: 'Bölmeyi kümedeki bir düğüme zamanlar.'
+  POD_CONDITION_PODSCHEDULED_DESC: 'Schedules the pod to a node in the cluster.'
 };
