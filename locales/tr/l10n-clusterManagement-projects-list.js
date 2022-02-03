@@ -22,8 +22,6 @@ module.exports = {
   USER_PROJECTS: 'Kullanıcı Projeleri',
   // List
   EMPTY_WRAPPER: 'Kaynak Bulunamadı{kaynak}',
-  TERMINATING: 'Yıkılıyor',
-  ACTIVE: 'Aktif',
   // List > Assign Workspace
   PROJECT_ADMINISTRATOR: 'Proje Yöneticisi',
   PROJECT_ADMINISTRATOR_DESC: 'Proje yöneticisi olarak çalışma alanında bir kullanıcı seçin.',
