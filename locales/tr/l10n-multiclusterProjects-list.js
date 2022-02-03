@@ -18,10 +18,10 @@
 module.exports = {
   // Banner
   // List
-  MULTI_CLUSTER_PROJECT_EMPTY_DESC: 'Please create a multi-cluster project.',
+  MULTI_CLUSTER_PROJECT_EMPTY_DESC: 'Lütfen çok kümeli bir proje oluşturun.',
   // List > Create
   // List > Edit Information
   // List > Add Cluster
   // List > Delete
-  MULTI_CLUSTER_PROJECT_LOW: 'multi-cluster project'
+  MULTI_CLUSTER_PROJECT_LOW: 'çok kümeli proje'
 };
