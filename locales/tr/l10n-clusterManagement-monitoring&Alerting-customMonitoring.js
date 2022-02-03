@@ -17,26 +17,26 @@
  */
 module.exports = {
   // Banner
-  CUSTOM_MONITORING: 'Custom Monitoring',
-  CUSTOM_MONITORING_DASHBOARD: 'Custom Monitoring Dashboard',
-  CUSTOM_MONITORING_DASHBOARD_PL: 'Custom Monitoring Dashboards',
-  CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC: 'Please create a custom monitoring dashboard.',
-  CUSTOM_MONITORING_DASHBOARD_DESC: 'Custom monitoring provides application monitoring templates. You can customize monitoring dashboards based on your needs.',
+  CUSTOM_MONITORING: 'Özel İzleme',
+  CUSTOM_MONITORING_DASHBOARD: 'Özel İzleme Panosu',
+  CUSTOM_MONITORING_DASHBOARD_PL: 'Özel İzleme Panosu',
+  CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC: 'Lütfen özel bir izleme panosu oluşturun.',
+  CUSTOM_MONITORING_DASHBOARD_DESC: 'Özel izleme, uygulama izleme şablonları sağlar. İzleme panolarını ihtiyaçlarınıza göre özelleştirebilirsiniz.',
   // List
   // List > Create
-  CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create Custom Monitoring Dashboard',
-  MONITORING_TEMPLATE: 'Monitoring Template',
-  CUSTOM_MONITORING_TEMPLATE_DESC: 'Select a default template, upload a template, or customize a template to generate a custom monitoring dashboard.',
+  CREATE_CUSTOM_MONITORING_DASHBOARD: 'Özel İzleme Panosu Oluşturun',
+  MONITORING_TEMPLATE: 'İzleme Şablonu',
+  CUSTOM_MONITORING_TEMPLATE_DESC: 'Özel bir izleme panosu oluşturmak için varsayılan bir şablon seçin, bir şablon yükleyin veya bir şablonu özelleştirin.',
   // List > Create > Grafana
-  UPLOAD_GRAFANA_DASHBOARD: 'Upload Grafana Dashboard',
-  SUPPORT_JSON_FILE: 'Only files in JSON format are supported.',
-  UPLOAD_GRAFANA_URL: 'Upload a Grafana dashboard from URL.',
-  UPLOAD_FROM_LOCAL_TITLE: 'Select or Drag a File',
-  FILE_UPLOAD_ERROR: 'Only one file can be uploaded.',
-  UPLOAD_FILE_TIP: 'Please upload a file.',
-  ENTER_GRAFANA_URL: 'Please enter a Grafana dashboard URL.',
-  UPLOAD_FROM_LOCAL_STORAGE: 'Upload from Local Storage',
-  UPLOAD_FROM_URL: 'Upload from URL',
+  UPLOAD_GRAFANA_DASHBOARD: 'Grafana Panosu Yükle',
+  SUPPORT_JSON_FILE: 'Yalnızca JSON biçimindeki dosyalar desteklenir.',
+  UPLOAD_GRAFANA_URL: 'URL\'den bir Grafana panosu yükleyin.',
+  UPLOAD_FROM_LOCAL_TITLE: 'Dosya Seçin veya Sürükleyin',
+  FILE_UPLOAD_ERROR: 'Yalnızca bir dosya yüklenebilir.',
+  UPLOAD_FILE_TIP: 'Lütfen bir dosya yükleyin.',
+  ENTER_GRAFANA_URL: 'Lütfen bir Grafana kontrol paneli URL\'si girin.',
+  UPLOAD_FROM_LOCAL_STORAGE: 'Yerel Depolamadan Yükleme',
+  UPLOAD_FROM_URL: 'URL\'den yükle',
   // List > Create > Custom
   ADD_MONITOR_ITEM: 'Add Monitoring Item',
   ADD_MONITOR_ROW: 'Add Monitoring Group',
