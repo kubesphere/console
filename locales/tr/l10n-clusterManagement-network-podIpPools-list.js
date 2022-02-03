@@ -31,21 +31,21 @@ module.exports = {
   NETWORK_SEGMENT: 'Ağ Bölümü',
   USED_IP_ADDRESSES: 'Kullanılan Ip Adresleri',
   NUMBER_OF_CREATION_TCAP: 'Oluşturma sayısı',
-  IP_POOL_CREATE_DESC: 'Pod IP Pools to be Created',
-  IP_ADDRESS_EMPTY_DESC: 'Please enter an IP address.',
-  MASK_TIP: 'Please enter a mask.',
-  ENTER_NETWORK_SEGMENT_TIP: 'Please enter a network segment.',
-  IP_POOL_NUM_TIP: 'Please enter the number of pod IP pools to be created.',
-  IP_POOL_CREATE_COUNT_DESC: 'Up to 10 pod IP pools can be created at the same time.',
-  INVALID_IP_DESC: 'Invalid IP address format.',
+  IP_POOL_CREATE_DESC: 'Oluşturulacak Kapsül IP Havuzları',
+  IP_ADDRESS_EMPTY_DESC: 'Lütfen bir IP adresi girin.',
+  MASK_TIP: 'Lütfen maskeyi girin.',
+  ENTER_NETWORK_SEGMENT_TIP: 'Lütfen bir ağ bölümü girin.',
+  IP_POOL_NUM_TIP: 'Lütfen oluşturulacak Kapsül IP havuzlarının sayısını girin.',
+  IP_POOL_CREATE_COUNT_DESC: 'Aynı anda 10 adede kadar kapsül IP havuzu oluşturulabilir.',
+  INVALID_IP_DESC: 'Geçersiz IP adres biçimi.',
   // List > Edit Information
   // List > View YAML
   // Assign Workspace
-  IPPOOL_ASSIGN_WORKSPACE_DESC: 'Assign the pod IP pool to a workspace.',
-  IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING: 'The pod IP pool is in use and cannot be assigned to another specific workspace.',
-  IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING: 'The pod IP pool is in use with a specific workspace assigned. The workspace cannot be changed.',
-  ASSIGN_WORKSPACE: 'Assign Workspace',
-  SELECT_WORKSPACE_DESC: 'Select a workspace.',
+  IPPOOL_ASSIGN_WORKSPACE_DESC: 'Kapsül IP havuzunu bir çalışma alanına atama.',
+  IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING: 'Kapsül IP havuzu kullanımda ve başka bir çalışma alanına atanamaz.',
+  IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING: 'Kapsül IP havuzu, atanmış belirli bir çalışma alanıyla kullanımda. Çalışma alanı değiştirilemez.',
+  ASSIGN_WORKSPACE: 'Atanmış Çalışma alanı',
+  SELECT_WORKSPACE_DESC: 'Çalışma alanını seçin.',
   // List > Delete
-  POD_IP_POOL_LOW: 'pod IP pool'
+  POD_IP_POOL_LOW: 'kapsül IP Havuzu'
 };
