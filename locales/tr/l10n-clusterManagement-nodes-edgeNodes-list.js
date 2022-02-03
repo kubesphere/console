@@ -17,16 +17,16 @@
  */
 module.exports = {
   // Banner
-  EDGE_NODE_PL: 'Edge Nodes',
-  EDGE_NODE_DESC: 'Edge nodes are servers deployed outside the KubeSphere cluster. You can add edge nodes to the KubeSphere cluster to manage them.',
+  EDGE_NODE_PL: 'Kenar Düğümleri',
+  EDGE_NODE_DESC: 'Kenar düğümler, KubeSphere kümesinin dışına dağıtılan sunuculardır. Bunları yönetmek için KubeSphere kümesine kenar düğümler ekleyebilirsiniz.',
   // Node Count
   // List
-  EDGE_NODE_EMPTY_DESC: 'Please add an edge node to the cluster.',
-  AGENT: 'Agent',
-  EDGE: 'Edge node',
+  EDGE_NODE_EMPTY_DESC: 'Lütfen kümeye bir kenar düğüm ekleyin.',
+  AGENT: 'Ajan',
+  EDGE: 'Kenar Düğümleri',
   // List > Add
-  ADD: 'Add',
-  EDGENODE_CONFIG_COMMAND: 'Edge Node Configuration Command',
+  ADD: 'Ekle',
+  EDGENODE_CONFIG_COMMAND: 'Kenar Düğüm Konfigürasyon Komutu',
   ADD_EDGE_COMMAND: 'Run the above command on your edge node to configure it.',
   IN_USE_Node_IP: 'The IP address {ip} is in use. Please enter another IP address.',
   IN_USE_Node_NAME: 'The node name {name} already exists. Please enter another name.',
