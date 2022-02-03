@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Details
-  INSTANCE_COUNT: 'Instances',
+  INSTANCE_COUNT: 'Örnekler',
   // Service Details
-  SERVICE_DETAILS: 'Service Details'
+  SERVICE_DETAILS: 'Hizmet Detayları'
 };
