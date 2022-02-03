@@ -17,15 +17,15 @@
  */
 module.exports = {
   // Details
-  NETWORK: 'Network',
-  STARTING_IP_ADDRESS: 'Starting IP Address',
-  ENDING_IP_ADDRESS: 'Ending IP Address',
-  MASK: 'Mask',
+  NETWORK: 'Ağ',
+  STARTING_IP_ADDRESS: 'Başlangıc IP Adresi',
+  ENDING_IP_ADDRESS: 'Bitiş IP Adresi',
+  MASK: 'Maske',
   // More > View YAML
   // More > Assign Workspace
   // More > Delete
   // Workspaces
-  WORKSPACES: 'Workspaces',
-  MANAGER: 'Manager',
-  IPPOOL_WORKSPACE_EMPTY_TIP: 'No workspace is using this pod IP pool.'
+  WORKSPACES: 'Çalışma alanları',
+  MANAGER: 'Yönetici',
+  IPPOOL_WORKSPACE_EMPTY_TIP: 'Bu çalışma alanı Kapsül IP havuzunu kullanmıyor.'
 };
