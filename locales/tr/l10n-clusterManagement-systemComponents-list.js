@@ -17,16 +17,16 @@
  */
 module.exports = {
   // Banner
-  SYSTEM_COMPONENT_PL: 'System Components',
-  SERVICE_COMPONENTS_DESC: 'System components are software components in the KubeSphere system, which provide various functions. You can view the running status of services components on this page.',
+  SYSTEM_COMPONENT_PL: 'Sistem bileşenleri',
+  SERVICE_COMPONENTS_DESC: 'Sistem bileşenleri, KubeSphere sistemindeki çeşitli işlevleri sağlayan yazılım bileşenleridir. Servis bileşenlerinin çalışma durumunu bu sayfada görüntüleyebilirsiniz.',
   // KubeSphere
-  RUNNING_TIME: 'Running time',
-  KS_CONSOLE_DESC: 'Provides KubeSphere console services.',
-  KS_APISERVER_DESC: 'Provides REST APIs for cluster management. This component is also used for communication between cluster components and cluster security control.',
-  OPENLDAP_DESC: 'Stores and manages user information in a centralized manner.',
-  REDIS_DESC: 'Open-source, in-memory data structure store, which is used as a database, cache, and message broker.',
-  TOWER_DESC: 'Tool used for network connection between clusters over proxy.',
-  KS_CONTROLLER_MANAGER_DESC: 'Implements service logic. This component creates permissions when a workspace is created and generates Istio configuration for service strategies.',
+  RUNNING_TIME: 'Çalışma süresi',
+  KS_CONSOLE_DESC: 'KubeSphere konsol hizmetleri sağlar.',
+  KS_APISERVER_DESC: 'Küme yönetimi için REST API\'leri sağlar. Bu bileşen ayrıca küme bileşenleri ve küme güvenlik denetimi arasındaki iletişim için de kullanılır.',
+  OPENLDAP_DESC: 'Kullanıcı bilgilerini merkezi bir şekilde depolar ve yönetir.',
+  REDIS_DESC: 'Veritabanı, önbellek ve ileti aracısı olarak kullanılan açık kaynaklı, bellek içi veri yapısı deposu.',
+  TOWER_DESC: 'Proxy üzerinden kümeler arasında ağ bağlantısı için kullanılan araç.',
+  KS_CONTROLLER_MANAGER_DESC: 'Servis mantığını uygular. Bu bileşen, bir çalışma alanı oluşturulduğunda izinler oluşturur ve hizmet stratejileri için Istio yapılandırması oluşturur.',
   // Kubernetes
   COREDNS_DESC: 'Provides the service discovery function for the Kubernetes cluster.',
   METRICS_SERVER_DESC: 'Kubernetes monitoring component that collects metrics from kubelet of each node.',
