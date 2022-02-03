@@ -17,9 +17,9 @@
  */
 module.exports = {
   // Button
-  CREATE_VOLUME: 'Create Volume',
+  CREATE_VOLUME: 'Birim Oluştur',
   // Details
   // Data Source
-  STORAGE_CLASS_SCAP: 'Storage class',
-  DATA_SOURCE: 'Data Source'
+  STORAGE_CLASS_SCAP: 'Depolama Sınıfı',
+  DATA_SOURCE: 'Veri Kaynağı'
 };
