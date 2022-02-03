@@ -51,12 +51,12 @@ module.exports = {
   NOTIFICATION_MANAGER_CONTROLLER_METRICS_DESC: 'Bildirim Yöneticisi Denetleyicisi için dahili izleme verileri sağlar.',
   // Logging
   LOGGING: 'Log kayıtları',
-  ELASTICSEARCH_LOGGING_DATA_DESC: 'Veri depolama, yedekleme ve arama gibi Elasticsearch hizmetleri sağlar.',
-  ELASTICSEARCH_LOGGING_DISCOVERY_DESC: 'Elasticsearch küme yönetimi hizmetleri sağlar.',
-  LOGSIDECAR_INJECTOR_ADMISSION_DESC: 'Disk günlüğü toplama için sepet kaplarını bölmelere otomatik olarak enjekte eder.',
-  KS_EVENTS_ADMISSION_DESC: 'Olay kuralı yönetimi için kimlik doğrulama web kancasını sağlar.',
-  KS_EVENTS_RULER_DESC: 'Filtreleme ve uyarı özellikleri sağlayan olay kuralı motoru hizmeti.',
-  KUBE_AUDITING_WEBHOOK_SVC_DESC: 'Denetim toplama, karşılaştırma, kalıcılık ve uyarı için kullanılır.',
+  ELASTICSEARCH_LOGGING_DATA_DESC: 'Provides Elasticsearch services such as data storage, backup, and searching.',
+  ELASTICSEARCH_LOGGING_DISCOVERY_DESC: 'Provides Elasticsearch cluster management services.',
+  LOGSIDECAR_INJECTOR_ADMISSION_DESC: 'Automatically injects sidecar containers into pods for disk log collection.',
+  KS_EVENTS_ADMISSION_DESC: 'Provides the authentication webhook for event rule management.',
+  KS_EVENTS_RULER_DESC: 'Event rule engine service that provides filtering and alerting features.',
+  KUBE_AUDITING_WEBHOOK_SVC_DESC: 'Used for audit collection, comparison, persistence, and alerting.',
   // DevOps
   S2IOPERATOR_METRICS_SERVICE_DESC: 'Temel izleme verileri sağlayan S2I izleme hizmeti.',
   WEBHOOK_SERVER_SERVICE_DESC: 'S2I için varsayılan değerleri ve kimlik doğrulama web kancasını sağlar.'
