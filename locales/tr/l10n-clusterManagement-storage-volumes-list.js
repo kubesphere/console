@@ -17,19 +17,19 @@
  */
 module.exports = {
   // Navigation pane
-  STORAGE: 'Storage',
+  STORAGE: 'Depolama',
   // Banner
-  VOLUME_DESC: 'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
+  VOLUME_DESC: 'Kullanıcılar tarafından oluşturulan iş yükleri için bir birim kullanılır. İş yüklerinin veri kalıcılığı için bir kaynak nesnesini temsil eder.',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please go to the details page of a volume and create a volume snapshot',
-  VOLUME_STATUS_BOUND: 'Bound',
-  VOLUME_STATUS_LOST: 'Lost',
-  VOLUME_STATUS_PENDING: 'Pending',
-  VOLUME_STATUS_TERMINATING: 'Terminating',
-  VOLUME_STATUS_UPDATING: 'Updating',
-  VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: 'Disk Expanding',
-  VOLUME_EMPTY_DESC: 'Please create a volume.',
-  MOUNT_STATUS: 'Mount Status',
+  VOLUME_SNAPSHOT_EMPTY_DESC: 'Lütfen bir birimin ayrıntılar sayfasına gidin ve bir birim anlık görüntüsü oluşturun',
+  VOLUME_STATUS_BOUND: 'Bağlı',
+  VOLUME_STATUS_LOST: 'Kayıp',
+  VOLUME_STATUS_PENDING: 'Bekliyor',
+  VOLUME_STATUS_TERMINATING: 'Sonlandırma',
+  VOLUME_STATUS_UPDATING: 'Güncelleniyor',
+  VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: 'Disk genişletme',
+  VOLUME_EMPTY_DESC: 'Lütfen bir hacim oluşturun.',
+  MOUNT_STATUS: 'Bağlılık durumu',
   MOUNTED: 'Mounted',
   NOT_MOUNTED: 'Not mounted',
   ACCESS_MODE_TCAP: 'Access Mode',
