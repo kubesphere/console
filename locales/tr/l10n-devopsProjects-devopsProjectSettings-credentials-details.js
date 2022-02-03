@@ -20,9 +20,9 @@ module.exports = {
   // Details
   // Edit
   // Delete
-  CREDENTIAL_LOW: 'credential',
+  CREDENTIAL_LOW: 'kimlik',
   // Details > Credential
-  TYPE_VALUE: 'Type: {value}',
+  TYPE_VALUE: 'Tip:{değer}',
   // Events
-  RECORD: 'Record'
+  RECORD: 'Kayıt'
 };
