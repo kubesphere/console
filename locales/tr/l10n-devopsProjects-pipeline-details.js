@@ -97,8 +97,8 @@ Bu nedenle, bu adım çoğunlukla bu tür kaynakların dağıtımını işlemek 
   // Task Status > View Logs
   PIPELINE_RUN_LOGS: 'İş Hattı Çalışma Günlükleri',
   VIEW_LOGS: 'Günlükleri Görüntüle',
-  DURATION_VALUE: 'Duration: {value}',
-  DOWNLOAD_LOGS: 'Download Logs',
+  DURATION_VALUE: 'Süre:{value}',
+  DOWNLOAD_LOGS: 'Günlükleri İndir',
   // Task Status > View Logs > View Logs
   START_REAL_TIME_LOG: 'Eş zamanlı günlükleri etkinleştir',
   STOP_REAL_TIME_LOG: 'Eş zamanlı günlükleri devre dışı bırak',
