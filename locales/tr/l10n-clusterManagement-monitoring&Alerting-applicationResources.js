@@ -84,7 +84,7 @@ module.exports = {
   OUTBOUND_TRAFFIC: 'Giden Trafik',
   INBOUND_TRAFFIC: 'Gelen Trafik',
   SORT_BY_NAMESPACE_CPU_USAGE: 'CPU kullanımına göre sırala',
-  SORT_BY_NAMESPACE_POD_COUNT: 'Sort by pod count',
-  SORT_BY_NAMESPACE_NET_BYTES_RECEIVED: 'Sort by inbound traffic',
-  SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: 'Sort by outbound traffic'
+  SORT_BY_NAMESPACE_POD_COUNT: 'Kapsül sayısına göre sırala',
+  SORT_BY_NAMESPACE_NET_BYTES_RECEIVED: 'Gelen trafiğe göre sırala',
+  SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: 'Giden trafiğe göre sırala'
 };
