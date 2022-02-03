@@ -17,18 +17,17 @@
  */
 module.exports = {
   // Banner
-  VOLUME_SNAPSHOT_DESC:
-    'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
-  VOLUME_SNAPSHOT_PL: 'Volume Snapshots',
+  VOLUME_SNAPSHOT_DESC: 'Birim anlık görüntüsü, bir birimin belirli bir zaman noktasındaki kopyasıdır. Anlık görüntü tarafından önceden doldurulmuş verilerle yeni bir birim sağlamak veya bir birimi anlık görüntü tarafından yakalanan önceki durumuna geri yüklemek için kullanılabilir.',
+  VOLUME_SNAPSHOT_PL: 'Birim Anlık Görüntüsü',
   // List
-  VOLUME_SNAPSHOT_STATUS_CREATING: 'Creating',
-  VOLUME_SNAPSHOT_STATUS_FAILED: 'Creation failed',
-  VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',
-  VOLUME_SNAPSHOT_STATUS_DELETING: 'Deleting',
-  CREATE_STATUS_SUCCESS: 'Created successfully',
-  CREATE_STATUS_UPDATING: 'Creating',
-  CREATE_STATUS_FAILED: 'Creation failed',
-  CREATE_STATUS_DELETING: 'Deleting',
+  VOLUME_SNAPSHOT_STATUS_CREATING: 'Oluşturuluyor',
+  VOLUME_SNAPSHOT_STATUS_FAILED: 'Oluşturulamadı',
+  VOLUME_SNAPSHOT_STATUS_READY: 'Başarıyla oluşturuldu',
+  VOLUME_SNAPSHOT_STATUS_DELETING: 'Siliniyor',
+  CREATE_STATUS_SUCCESSFUL: 'Başarıyla oluşturuldu',
+  CREATE_STATUS_UPDATING: 'Oluşturuluyor',
+  CREATE_STATUS_FAILED: 'Oluşturulamadı',
+  CREATE_STATUS_DELETING: 'Siliniyor',
   // List > Delete
-  VOLUME_SNAPSHOT_LOW: 'volume snapshot',
-}
+  VOLUME_SNAPSHOT_LOW: 'birim Anlık Görüntüsü'
+};
