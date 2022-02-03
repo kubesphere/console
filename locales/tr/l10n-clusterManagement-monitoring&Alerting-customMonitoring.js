@@ -69,14 +69,14 @@ module.exports = {
   MONITOR_TYPE_NO_SUPPORT: 'Tür şu anda desteklenmiyor',
   MONITOR_METRIC: 'İzleme Metrik',
   METRIC_NAME: 'Metrik Adı',
-  DEBUGB_DATA: 'Debugging Data',
-  TIME_FORMAT: 'Time Format',
-  HIGHT_RULES: 'Highlighting Rules',
-  EDIT_TEMPLATE: 'Edit Template',
-  SAVE_TEMPLATE: 'Save Template',
-  THRESHOLD_FILL: 'Threshold Settings',
+  DEBUGB_DATA: 'Hata ayıklama verisi',
+  TIME_FORMAT: 'Zaman Biçimi',
+  HIGHT_RULES: 'Vurgulama Kuralları',
+  EDIT_TEMPLATE: 'Şablon Düzenle',
+  SAVE_TEMPLATE: 'Şablonu Kaydet',
+  THRESHOLD_FILL: 'Eşik Ayarları',
   // List > Edit Information
   // List > Edit YAMl
   // List > Delete
-  CUSTOM_MONITORING_DASHBOARD_LOW: 'custom monitoring dashbord'
+  CUSTOM_MONITORING_DASHBOARD_LOW: 'özel İzleme Panosu'
 };
