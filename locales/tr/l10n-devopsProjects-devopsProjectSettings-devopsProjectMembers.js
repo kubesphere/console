@@ -17,14 +17,14 @@
  */
 module.exports = {
   // Banner
-  DEVOPS_PROJECT_MEMBER_PL: 'DevOps Project Members',
-  DEVOPS_PROJECT_MEM_DESC: 'Manage and assign roles to project members.',
+  DEVOPS_PROJECT_MEMBER_PL: 'DevOps Proje üyeleri',
+  DEVOPS_PROJECT_MEM_DESC: 'Proje üyelerine rolleri yönetin ve atayın.',
   // List
-  DEVOPS_PROJECT_MEMBER_EMPTY_DESC: 'Please invite a member of the current workspace to the DevOps project.',
+  DEVOPS_PROJECT_MEMBER_EMPTY_DESC: 'Lütfen geçerli çalışma alanının bir üyesini DevOps projesine davet edin.',
   // List > Change Member Role
   // List > Remove Member
   // Invite
-  INVITE_MEMBER_DESC_DEVOPS: 'Invite members of the current workspace to the DevOps project.',
-  HOW_TO_INVITE_MEMBER_Q: 'How do I invite members to the project?',
-  HOW_TO_INVITE_MEMBER_A: 'The project administrator or users who have permission to invite project members can invite workspace members to the project.'
+  INVITE_MEMBER_DESC_DEVOPS: 'Geçerli çalışma alanının üyelerini DevOps projesine davet edin.',
+  HOW_TO_INVITE_MEMBER_Q: 'Üyeleri projeye nasıl davet ederim?',
+  HOW_TO_INVITE_MEMBER_A: 'Proje yöneticisi veya proje üyelerini davet etme iznine sahip kullanıcılar, çalışma alanı üyelerini projeye davet edebilir.'
 };
