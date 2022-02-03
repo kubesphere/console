@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Log in page
-  INPUT_USERNAME_OR_EMAIL_TIP: 'Please enter your username or email.',
-  LOG_IN: 'Log In',
-  LOG_IN_WITH_TITLE: 'Log in with {title}',
-  LOG_OUT: 'Log Out',
-  ABOUT: 'About',
-  USERNAME_OR_EMAIL: 'Username or Email',
-  WELCOME: 'Welcome',
-  INTERNAL_SERVER_ERROR_TIP: 'An unepected error occurred. Please refresh your page.'
+  INPUT_USERNAME_OR_EMAIL_TIP: 'Lütfen kullanıcı adını veya e-posta adresini giriniz.',
+  LOG_IN: 'Giriş Yap',
+  LOG_IN_WITH_TITLE: 'Giriş yap ile {title}',
+  LOG_OUT: 'Çıkış Yap',
+  ABOUT: 'Hakkında',
+  USERNAME_OR_EMAIL: 'Kullanıcı adı veya E-posta',
+  WELCOME: 'Hoşgeldiniz',
+  INTERNAL_SERVER_ERROR_TIP: 'Beklenmeyen hata oluştu. Lütfen sayfayı yenileyin.'
 };
