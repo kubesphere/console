@@ -21,10 +21,10 @@ module.exports = {
   CLUSTER_NODE: 'Küme Düğümü',
   CLUSTER_NODE_DESC: 'Küme düğümleri, KubeSphere kümesinin temel sunucularıdır. Bu sayfada küme düğümlerini yönetebilirsiniz.',
   NODE_TYPES_Q: 'Küme düğümlerinin türleri nelerdir?',
-  NODE_TYPES_A: 'Düğümler, kontrol düzlemi düğümleri ve çalışan düğümleri olarak sınıflandırılır.',
+  NODE_TYPES_A: 'Düğümler, ana düğümler ve çalışan düğümler olarak sınıflandırılır.',
   WHAT_IS_NODE_TAINTS_Q: 'Düğüm Kusurları nelerdir?',
-  WHAT_IS_NODE_TAINTS_A: 'Kusurlar, bir düğümün belirli bölmeleri püskürtmesine izin verir. Kusurlar ve toleranslar, bölmelerin uygun olmayan düğümlere programlanmamasını sağlamak için birlikte çalışır.',
-  LEARN_MORE: 'Daha fazla bilgi edinin',
+  WHAT_IS_NODE_TAINTS_A: 'Taints allow a node to repel certain pods. Taints and tolerations work together to ensure that pods are not scheduled onto inappropriate nodes.',
+  LEARN_MORE: 'Learn More',
   // Node Count
   NODE_SI: 'Düğüm',
   NODE_PL: 'Düğümler',
