@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Banner
-  CLUSTER_NODE_PL: 'Cluster Nodes',
-  CLUSTER_NODE: 'Cluster Node',
-  CLUSTER_NODE_DESC: 'Cluster nodes are basic servers of the KubeSphere cluster. You can manage cluster nodes on this page.',
-  NODE_TYPES_Q: 'What are the types of cluster nodes?',
-  NODE_TYPES_A: 'Nodes are classified into master nodes and worker nodes.',
-  WHAT_IS_NODE_TAINTS_Q: 'What are node taints?',
+  CLUSTER_NODE_PL: 'Küme Düğümleri',
+  CLUSTER_NODE: 'Küme Düğümü',
+  CLUSTER_NODE_DESC: 'Küme düğümleri, KubeSphere kümesinin temel sunucularıdır. Bu sayfada küme düğümlerini yönetebilirsiniz.',
+  NODE_TYPES_Q: 'Küme düğümlerinin türleri nelerdir?',
+  NODE_TYPES_A: 'Düğümler, ana düğümler ve çalışan düğümler olarak sınıflandırılır.',
+  WHAT_IS_NODE_TAINTS_Q: 'Düğüm Kusurları nelerdir?',
   WHAT_IS_NODE_TAINTS_A: 'Taints allow a node to repel certain pods. Taints and tolerations work together to ensure that pods are not scheduled onto inappropriate nodes.',
   LEARN_MORE: 'Learn More',
   // Node Count
