@@ -30,9 +30,9 @@ module.exports = {
   VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: 'Disk genişletme',
   VOLUME_EMPTY_DESC: 'Lütfen bir hacim oluşturun.',
   MOUNT_STATUS: 'Bağlılık durumu',
-  MOUNTED: 'Bağlandı',
-  NOT_MOUNTED: 'Bağlanamadı',
-  ACCESS_MODE_TCAP: 'Erişim modu',
+  MOUNTED: 'Mounted',
+  NOT_MOUNTED: 'Not mounted',
+  ACCESS_MODE_TCAP: 'Access Mode',
   // List > Create > Basic Information
   CREATE: 'Oluştur',
   // List > Create > Volume Settings
