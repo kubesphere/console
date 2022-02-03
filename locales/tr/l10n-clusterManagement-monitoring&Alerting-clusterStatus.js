@@ -17,28 +17,28 @@
  */
 module.exports = {
   // Navigation pane
-  MONITORING_AND_ALERTING: 'Monitoring & Alerting',
+  MONITORING_AND_ALERTING: 'İzleme & Uyarı',
   // Banner
-  CLUSTER_STATUS: 'Cluster Status',
-  MONITORING_CLUSTER_DESC: 'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
+  CLUSTER_STATUS: 'Küme Durumu',
+  MONITORING_CLUSTER_DESC: 'Küme durumu, küme kaynaklarının genel görünümünü ve ayrıntılarını görüntüler. Küme kaynaklarının izleme verilerini ve kullanım sıralamasını görüntüleyebilirsiniz.',
   // Overview > Cluster Node Status
-  CLUSTER_NODE_STATUS: 'Cluster Node Status',
-  ALL_NODES: 'All nodes',
-  ONLINE_NODES: 'Online nodes',
-  NODE_ONLINE_STATUS: 'Node Online Status',
+  CLUSTER_NODE_STATUS: 'Küme Düğümü Durumu',
+  ALL_NODES: 'Tüm düğümler',
+  ONLINE_NODES: 'Çevrimiçi düğümler',
+  NODE_ONLINE_STATUS: 'Düğüm Çevrimiçi Durumu',
   // Overview > Component Status
-  COMPONENT_STATUS: 'Component Status',
-  CONTROLLER_MANAGER: 'Controller Manager',
-  KUBERNETES_SCHEDULER: 'Kubernetes Scheduler',
-  NOT_ENABLED: 'Not enabled',
+  COMPONENT_STATUS: 'Bileşen Durumu',
+  CONTROLLER_MANAGER: 'Denetleyici Yöneticisi',
+  KUBERNETES_SCHEDULER: 'Kubernetes Zamanlayıcı',
+  NOT_ENABLED: 'Etkin değil',
   // Overview > Cluster Resource Usage
-  CLUSTER_RESOURCE_USAGE: 'Cluster Resource Usage',
-  POD_COUNT: 'Pods',
-  COUNT: 'Count',
-  PODS: 'Pods',
+  CLUSTER_RESOURCE_USAGE: 'Küme Kaynak Kullanımı',
+  POD_COUNT: 'Bölmeler',
+  COUNT: 'Saymak',
+  PODS: 'Bölmeler',
   // Overview > etcd Monitoring
-  SERVICE_STATUS: 'Service Status',
-  ETCD_MONITORING: 'etcd Monitoring',
+  SERVICE_STATUS: 'Servis Durumu',
+  ETCD_MONITORING: 'etcd İzleme',
   DB_SIZE: 'DB Size',
   RAFT_PROPOSAL: 'Raft Proposal',
   ETCD_STATUS: 'Service <span>Status</span>',
