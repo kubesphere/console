@@ -62,15 +62,15 @@ module.exports = {
   NODE_MEMORYPRESSURE_DESC: 'Düğüm üzerindeki bellek kullanım baskısı çok yüksekse, zamanlama başarısız olur.',
   NODE_DISKPRESSURE: 'Disk Baskısı',
   NODE_DISKPRESSURE_DESC: 'Disk boyutunda baskı varsa, yani disk kapasitesi düşükse.',
-  NODE_PIDPRESSURE: 'PID Pressure',
-  NODE_PIDPRESSURE_DESC: 'If pressure exists on the processes—that is, if there are too many processes on the node.',
-  NODE_READY: 'Node Readiness',
-  NODE_READY_DESC: 'Whether the node is ready to accept new pods.',
+  NODE_PIDPRESSURE: 'PID Baskısı',
+  NODE_PIDPRESSURE_DESC: 'İşlemler üzerinde baskı varsa, yani düğümde çok fazla işlem varsa.',
+  NODE_READY: 'Düğüm Hazırlığı',
+  NODE_READY_DESC: 'Düğümün yeni bölmeleri kabul etmeye hazır olup olmadığı.',
   // Running Status > Taints
-  NO_TAINTS_TIPS: 'No taint is found.',
-  POLICY: 'Policy',
+  NO_TAINTS_TIPS: 'Herhangi bir kusur bulunamadı.',
+  POLICY: 'Politika',
   // Pods
-  READY_VALUE: 'Ready: {readyCount}/{total}',
-  STATUS_VALUE: 'Status: {value}',
-  CREATED_AGO: 'Created {diff}'
+  READY_VALUE: 'Hazır:{hazırSayısı}/{toplam}',
+  STATUS_VALUE: 'Durum:{değer}',
+  CREATED_AGO: 'Yaratılan {diff}'
 };
