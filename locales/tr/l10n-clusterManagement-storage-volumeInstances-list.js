@@ -17,15 +17,15 @@
  */
 module.exports = {
   // Banner
-  VOLUME_INSTANCE_PL: 'Volume Instances',
+  VOLUME_INSTANCE_PL: 'Birim Örnekleri',
   // List
-  VOLUME_BACKEND_TCAP: 'Volume Instance',
-  PV_STATUS_AVAILABLE: 'Available',
-  PV_STATUS_BOUND: 'Bound',
-  PV_STATUS_RELEASED: 'Terminating',
-  PV_STATUS_FAILED: 'Failed',
-  RECYCLING_STRATEGY: 'Recycling Strategy',
-  VOLUME_INSTANCE_EMPTY_DESC: 'Please bind a volume to a workload.',
+  VOLUME_BACKEND_TCAP: 'Birim Örnekleri',
+  PV_STATUS_AVAILABLE: 'Uygun',
+  PV_STATUS_BOUND: 'Bağlı',
+  PV_STATUS_RELEASED: 'Sonlandırma',
+  PV_STATUS_FAILED: 'Başarısız',
+  RECYCLING_STRATEGY: 'Geri Dönüşüm Stratejisi',
+  VOLUME_INSTANCE_EMPTY_DESC: 'Lütfen bir birimi bir iş yüküne bağlayın.',
   // List > Delete
-  VOLUME_INSTANCE_LOW: 'volume instance'
+  VOLUME_INSTANCE_LOW: 'birim örnekleri'
 };
