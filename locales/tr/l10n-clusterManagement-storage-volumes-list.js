@@ -30,24 +30,24 @@ module.exports = {
   VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: 'Disk genişletme',
   VOLUME_EMPTY_DESC: 'Lütfen bir hacim oluşturun.',
   MOUNT_STATUS: 'Bağlılık durumu',
-  MOUNTED: 'Mounted',
-  NOT_MOUNTED: 'Not mounted',
-  ACCESS_MODE_TCAP: 'Access Mode',
+  MOUNTED: 'Bağlandı',
+  NOT_MOUNTED: 'Bağlanamadı',
+  ACCESS_MODE_TCAP: 'Erişim modu',
   // List > Create > Basic Information
-  CREATE: 'Create',
+  CREATE: 'Oluştur',
   // List > Create > Volume Settings
-  CREATE_VOLUME_BY_STORAGE_CLASS: 'From Storage Class',
-  CREATE_VOLUME_BY_SNAPSHOT: 'From Volume Snapshot',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select a snapshot to create a volume.',
-  SELECT_STORAGE_CLASS_CREATE_VOLUME: 'Select a storage class to create a volume.',
-  VOLUME_CAPACITY: 'Volume Capacity',
-  PARAM_REQUIRED: 'This parameter is required.',
-  VOLUME_SIZE_TIP: 'The volume capacity must be greater than 0.',
-  VOLUME_STORAGE_CLASS_DESC: 'Select a storage class to create a volume of a specific type.',
+  CREATE_VOLUME_BY_STORAGE_CLASS: 'Depolama sınıfından',
+  CREATE_VOLUME_BY_SNAPSHOT: 'Birim anlık görüntüsünden',
+  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Birim oluşturmak için bir anlık görüntü seçin.',
+  SELECT_STORAGE_CLASS_CREATE_VOLUME: 'Birim oluşturmak için bir depolama sınıfı seçin.',
+  VOLUME_CAPACITY: 'Birim Kapasitesi',
+  PARAM_REQUIRED: 'Parametre gereklidir.',
+  VOLUME_SIZE_TIP: 'Hacim kapasitesi 0\'dan büyük olmalıdır.',
+  VOLUME_STORAGE_CLASS_DESC: 'Belirli bir türde birim oluşturmak için bir depolama sınıfı seçin.',
   // List > Advanced Settings
   // List > Edit
-  EDIT_TCAP: 'Edit',
+  EDIT_TCAP: 'Düzenle',
   // List > Edit YAML
   // List > Delete
-  VOLUME_LOW: 'volume'
+  VOLUME_LOW: 'birim'
 };
