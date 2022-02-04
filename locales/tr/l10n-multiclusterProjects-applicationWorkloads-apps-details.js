@@ -21,18 +21,18 @@ module.exports = {
   // More > Delete
   // Details
   // Resource Status
-  APPLICATION_GOVERNANCE_SCAP: 'Application governance',
-  NO_SERVICE_FOUND: 'No Service Found',
+  APPLICATION_GOVERNANCE_SCAP: 'Uygulama Yönetişimi',
+  NO_SERVICE_FOUND: 'Servis Bulunamadı',
   // External Access
-  GATEWAY_IP_ADDRESS: 'Gateway IP address',
-  GATEWAY_ACCESS_MODE: 'Gateway access mode',
-  NODE_PORTS_SCAP: 'Node ports',
-  LOAD_BALANCER_SCAP: 'Load balancer',
-  LOAD_BALANCERS_SCAP: 'Load balancers',
+  GATEWAY_IP_ADDRESS: 'Ağ Geçidi IP adresi',
+  GATEWAY_ACCESS_MODE: 'Ag Geçidi erişim modu',
+  NODE_PORTS_SCAP: 'Düğüm portları',
+  LOAD_BALANCER_SCAP: 'Yük dengeleyici',
+  LOAD_BALANCERS_SCAP: 'Yük dengeleyiciler',
   // Traffic Management
-  TRAFFIC_MANAGEMENT: 'Traffic Management',
+  TRAFFIC_MANAGEMENT: 'Trafik Yönetimi',
   // Tracing
-  APPLICATION_GOVERNANCE_ENABLED: 'Application governance enabled',
-  APPLICATION_GOVERNANCE_DISABLED: 'Application governance disabled',
-  TRACING_UNAVAILABLE: 'Tracing Unavailable'
+  APPLICATION_GOVERNANCE_ENABLED: 'Uygulama Yönetişimi etkinleştirildi',
+  APPLICATION_GOVERNANCE_DISABLED: 'Uygulama yönetişimi devre dışı bırakıldı',
+  TRACING_UNAVAILABLE: 'İzleme Müsait Değil'
 };
