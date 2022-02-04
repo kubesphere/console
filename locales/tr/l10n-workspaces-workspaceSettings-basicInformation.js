@@ -28,11 +28,11 @@ module.exports = {
   WORKSPACE_MEMBER_TCAP_PL: 'Çalışma alanı üyeleri',
   WS_MEMBER_SCAP: 'Çalışma alanı üyesi',
   WS_MEMBER_SCAP_PL: 'Çalışma alanı üyeleri',
-  DEVOPS_PROJECT_TCAP: 'DevOps Projesi',
-  DEVOPS_PROJECT_TCAP_PL: 'DevOps projeleri',
-  DEVOPS_PROJECT_LOW: 'DevOps projesi',
-  DEVOPS_PROJECT_LOW_PL: 'DevOps projeleri',
-  PROJECTS: 'Projeler',
+  DEVOPS_PROJECT_TCAP: 'DevOps project',
+  DEVOPS_PROJECT_TCAP_PL: 'DevOps projects',
+  DEVOPS_PROJECT_LOW: 'DevOps project',
+  DEVOPS_PROJECT_LOW_PL: 'DevOps projects',
+  PROJECTS: 'Projects',
   // Workspace Information > Edit Information
   // Network Isolation
   ON: 'Açık',
