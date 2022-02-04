@@ -17,13 +17,13 @@
  */
 module.exports = {
   // Banner
-  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'How do I receive alerting messages if an alerting policy is triggered?',
-  REQUESTS_FOR_PUSH_AN_ALARM_A: 'The platform administrator needs to select a notification method and configure the server corresponding to the method.',
-  HOW_TO_SUPRESS_AN_ALARM_Q: 'How do I suppress alerting messages?',
-  HOW_TO_SUPRESS_AN_ALARM_A: 'You can set alerting policies at different levels. Each level corresponds to an alerting interval.',
+  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'Bir uyarı politikası tetiklenirse uyarı mesajlarını nasıl alırım?',
+  REQUESTS_FOR_PUSH_AN_ALARM_A: 'Platform yöneticisinin bir bildirim yöntemi seçmesi ve yönteme karşılık gelen sunucuyu yapılandırması gerekir.',
+  HOW_TO_SUPRESS_AN_ALARM_Q: 'Uyarı mesajlarını nasıl bastırırım?',
+  HOW_TO_SUPRESS_AN_ALARM_A: 'Uyarı ilkelerini farklı düzeylerde ayarlayabilirsiniz. Her seviye bir uyarı aralığına karşılık gelir.',
   // List
   // List > Create > Basic Information
   // List > Create > Rule Settings > Rule Template
-  SELECT_WORKLOAD_TIP: 'Please select at least one workload.',
-  KUBE_NO_AVAILABLE_DATA: 'No Data'
+  SELECT_WORKLOAD_TIP: 'Lütfen en az bir iş yükü seçin.',
+  KUBE_NO_AVAILABLE_DATA: 'Veri Yok'
 };
