@@ -17,18 +17,17 @@
  */
 module.exports = {
   // Banner
-  WORKLOAD_DESC:
-    'Workloads are used to handle service requests and can contain one or more pods. System functions such as logging and monitoring are also implemented by workloads.',
+  WORKLOAD_DESC: 'İş yükleri, hizmet isteklerini işlemek için kullanılır ve bir veya daha fazla bölme içerebilir. Günlüğe kaydetme ve izleme gibi sistem işlevleri de iş yükleri tarafından uygulanır.',
   // List
-  DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
+  DEPLOYMENT_EMPTY_DESC: 'Lütfen bir dağıtım oluşturun.',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
   // List > Create
   // List > Create > Basic Information
-  NEXT: 'Next',
+  NEXT: 'Sonraki',
   // List > Create > Pod Settings > Replica Scheduling Mode
-  REPLICA_SCHEDULING_MODE: 'Replica Scheduling Mode',
+  REPLICA_SCHEDULING_MODE: 'Çoğaltma Zamanlama Modu',
   SPECIFY_REPLICAS: 'Specify Replicas',
   WEIGHTS: 'Weights',
   SPECIFY_WEIGHTS: 'Specify Weights',
