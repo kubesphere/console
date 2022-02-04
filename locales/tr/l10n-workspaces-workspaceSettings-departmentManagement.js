@@ -18,7 +18,7 @@
 module.exports = {
   // Banner
   DEPARTMENT_PL: 'Bölüm Yönetimi',
-  DEPARTMENT_MANAGEMENT_DESC: 'Çalışma alanındaki bölümler, yetki denetimi için kullanılan mantıksal birimlerdir. Bir bölüm içerisinde çalışma alanı rolü, birden fazla proje ve DevOps projesi rolü tanımlayabilir, kullanıcıları bu bölüme ekleyerek yetkilerini yığın halde denetim altında tutabilirsiniz.',
+  DEPARTMENT_MANAGEMENT_DESC: 'A department in a workspace is a logical unit used for permission control. You can set a workspace role, multiple project roles, and multiple DevOps project roles in a department, and assign users to the department to control user permissions in batches.',
   // List
   // List > Not Assigned
   NOT_ASSIGNED_TCAP: 'Atanmamış',
