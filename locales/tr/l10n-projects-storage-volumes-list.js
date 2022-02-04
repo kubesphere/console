@@ -17,18 +17,18 @@
  */
 module.exports = {
   // Banner
-  VOLUME_PL: 'Volumes',
-  WHAT_IS_STORAGE_CLASS_Q: 'What is a storage class?',
-  WHAT_IS_STORAGE_CLASS_A: 'A storage class is a storage type configured by the cluster administrator. Different storage classes provide cluster users with different types of volumes.',
-  WHAT_IS_LOCAL_VOLUME_Q: 'What is a local volume?',
-  WHAT_IS_LOCAL_VOLUME_A: 'A local volume is a volume created in the local file system of the cluster.',
+  VOLUME_PL: 'Birimler',
+  WHAT_IS_STORAGE_CLASS_Q: 'Depolama sınıfı nedir?',
+  WHAT_IS_STORAGE_CLASS_A: 'Depolama sınıfı, küme yöneticisi tarafından yapılandırılan bir depolama türüdür. Farklı depolama sınıfları, küme kullanıcılarına farklı türde birimler sağlar.',
+  WHAT_IS_LOCAL_VOLUME_Q: 'Yerel hacim nedir?',
+  WHAT_IS_LOCAL_VOLUME_A: 'Yerel birim, kümenin yerel dosya sisteminde oluşturulan bir birimdir.',
   // List
   // List > Create > Basic Information
   // List > Create > Storage Settings
-  CREATION_METHOD: 'Creation Method',
+  CREATION_METHOD: 'Oluşturma yöntemi',
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
-  VOLUME: 'Volume'
+  VOLUME: 'Birim'
 };
