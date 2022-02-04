@@ -17,16 +17,16 @@
  */
 module.exports = {
   // Banner
-  IMAGE_BUILDER_PL: 'Image Builders',
-  IMAGE_BUILDER_DESC: 'Image Builder is a tool that builds container images from source code or artifacts. You can build container images from source code or artifacts through simple configurations.',
+  IMAGE_BUILDER_PL: 'Görüntü Oluşturucu',
+  IMAGE_BUILDER_DESC: 'Image Builder, kaynak koddan veya yapılardan kapsayıcı görüntüleri oluşturan bir araçtır. Basit yapılandırmalar aracılığıyla kaynak koddan veya yapay yapılardan kapsayıcı görüntüleri oluşturabilirsiniz.',
   // List
-  IMAGE_BUILDER_EMPTY_DESC: 'Please create an image builder.',
-  NOT_RUNNING_YET: 'Not run yet',
+  IMAGE_BUILDER_EMPTY_DESC: 'Lütfen bir resim oluşturucu oluşturun.',
+  NOT_RUNNING_YET: 'Henüz çalıştırılmadı',
   // List > Name (Displayed after you create a service from artifact)
-  BUILD_IMAGE_FOR_SERVICE: 'Build image for service {service}.',
+  BUILD_IMAGE_FOR_SERVICE: '{service} hizmeti için görüntü oluşturun.',
   // List > Create > Build Mode
-  BUILD_MODE: 'Build Mode',
-  S2I_DESC: 'Select a source code language.',
+  BUILD_MODE: 'İnşa Modu',
+  S2I_DESC: 'Bir kaynak kodu dili seçin.',
   IMAGE_FROM_S2I: 'Build Image from Source Code',
   IMAGE_FROM_B2I: 'Build Image from Artifact',
   B2I_DESC: 'Select an artifact file type.',
