@@ -17,25 +17,25 @@
  */
 module.exports = {
   // Banner
-  PROJECT_ROLE_PL: 'Project Roles',
-  PROJECT_ROLE_DESC: 'Project roles define the permissions of project members.',
+  PROJECT_ROLE_PL: 'Proje Rolleri',
+  PROJECT_ROLE_DESC: 'Proje rolleri, proje üyelerinin izinlerini tanımlar.',
   // List
-  ROLE_PROJECT_ADMIN: 'Control all resources in the project.',
-  ROLE_PROJECT_REGULAR: 'Manage resources other than users and roles in the project.',
-  ROLE_PROJECT_VIEWER: 'View all resources in the project.',
-  ROLE_PROJECT_OPERATOR: 'Manage resources other than users and roles in the project.',
-  PROJECT_ROLE_EMPTY_DESC: 'Please create a project role.',
+  ROLE_PROJECT_ADMIN: 'Projedeki tüm kaynakları kontrol edin.',
+  ROLE_PROJECT_REGULAR: 'Projedeki kullanıcılar ve roller dışındaki kaynakları yönetin.',
+  ROLE_PROJECT_VIEWER: 'Projedeki tüm kaynakları görüntüleyin.',
+  ROLE_PROJECT_OPERATOR: 'Projedeki kullanıcılar ve roller dışındaki kaynakları yönetin.',
+  PROJECT_ROLE_EMPTY_DESC: 'Lütfen bir proje rolü oluşturun.',
   // List > Edit Information
   // List > Edit Permissions
   // List > Edit Permissions > Application Workloads
-  APPLICATION_WORKLOADS_MANAGEMENT: 'Application Workload Management',
-  APPLICATION_WORKLOADS_VIEW: 'Application Workload Viewing',
-  APPLICATION_WORKLOADS_VIEW_DESC: 'View resources such as applications, services, workloads, jobs, grayscale release jobs, and image builders in the project.',
-  APPLICATION_WORKLOADS_MANAGEMENT_DESC: 'Create, edit, and delete resources such as applications, services, workloads, jobs, grayscale release jobs, and image builders in the project.',
+  APPLICATION_WORKLOADS_MANAGEMENT: 'Uygulama İş Yükü Yönetimi',
+  APPLICATION_WORKLOADS_VIEW: 'Uygulama İş Yükü Görüntüleme',
+  APPLICATION_WORKLOADS_VIEW_DESC: 'Projedeki uygulamalar, hizmetler, iş yükleri, işler, gri tonlamalı yayın işleri ve görüntü oluşturucular gibi kaynakları görüntüleyin.',
+  APPLICATION_WORKLOADS_MANAGEMENT_DESC: 'Projede uygulamalar, hizmetler, iş yükleri, işler, gri tonlamalı yayın işleri ve görüntü oluşturucular gibi kaynakları oluşturun, düzenleyin ve silin.',
   // List > Edit Permissions > Storage Management
-  VOLUME_SNAPSHOTS_MANAGEMENT: 'Volume Snapshot Management',
-  VOLUME_SNAPSHOTS_VIEW: 'Volume Snapshot Viewing',
-  VOLUMES_MANAGEMENT: 'Volume Management',
+  VOLUME_SNAPSHOTS_MANAGEMENT: 'Birim Anlık Görüntü Yönetimi',
+  VOLUME_SNAPSHOTS_VIEW: 'Hacim Anlık Görüntüsü Görüntüleme',
+  VOLUMES_MANAGEMENT: 'Hacim Yönetimi',
   VOLUMES_VIEW: 'Volume Viewing',
   VOLUME_SNAPSHOTS_VIEW_DESC: 'View volume snapshots in the project.',
   VOLUME_SNAPSHOTS_MANAGEMENT_DESC: 'Create, edit, and delete volume snapshots in the project.',
