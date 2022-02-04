@@ -48,30 +48,30 @@ module.exports = {
   SUBMIT_FOR_RELEASE: 'Yayınlanmak Üzere Gönder',
   DOWNLOAD_SUCCESSFUL: 'Başarılı olarak inidirildi.',
   VERSION_DELETE_TIP: '<strong>{name}</strong> sürümünü silmek istediğinizden emin misiniz?',
-  VERSION_SUBMIT_TIP: 'Are you sure you want to submit the version <strong>{name}</strong> for release?',
-  VERSION_CANCEL_TIP: 'Are you sure you want to cancel the submission of the version <strong>{name}</strong>?',
-  VERSION_RELEASE_TIP: 'Users can view and deploy the version <strong>{name}</strong> in the App Store after it is released. Are you sure you want to release it?',
-  VERSION_SUSPEND_TIP: 'The version <strong>{name}</strong > will not be displayed in the App Store after it is suspended. Are you sure you want to suspend it?',
-  VERSION_RECOVER_TIP: 'The version <strong>{name}</strong> will be displayed in the App Store after it is recovered. Are you sure you want to recover it?',
-  UPDATE_TIME_SCAP: 'Update time',
-  VIEW_IN_STORE: 'View in Store',
-  RELEASE_TO_STORE: 'Release to Store',
+  VERSION_SUBMIT_TIP: '<strong>{name}</strong> sürümünü yayınlanmak üzere göndermek istediğinizden emin misiniz?',
+  VERSION_CANCEL_TIP: '<strong>{name}</strong> sürümünün yayın talebini iptal etmek istediğinizden emin misiniz?',
+  VERSION_RELEASE_TIP: '<strong>{name}</strong> sürümü yayınlandıktan sonra kullanıcılar tarafından App Store\'dan görüntülenebilir ve yüklenebilir. Yayınlamak istediğinizden emin misiniz?',
+  VERSION_SUSPEND_TIP: '<strong>{name}</strong > sürümü, askıya alındıktan sonra App Store\'da görüntülenemeyecek. Askıya almak istediğinizden emin misiniz?',
+  VERSION_RECOVER_TIP: '<strong>{name}</strong> sürümü, kurtarıldıktan sonra App Store\'da görüntülenebilecek. Kurtarmak istediğinizden emin misiniz?',
+  UPDATE_TIME_SCAP: 'Güncelleme zamanı',
+  VIEW_IN_STORE: 'Mağazada Görüntüle',
+  RELEASE_TO_STORE: 'Mağazada Yayınla',
   // Versions > Upload
-  UPLOAD_AGAIN_TIP: 'An error occurred. Please try again.',
+  UPLOAD_AGAIN_TIP: 'Bir hata oluştu. Lütfen tekrar deneyin.',
   // Versions > Submit for Release
-  ENTER_VERSION_NUMBER_TIP: 'Please enter a version number.',
-  SUBMIT_REVIEW_DESC: 'Submit the app for release.',
-  APP_LEARN_MORE: '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Learn More</a>',
-  INVALID_VERSION_TIP: 'Please enter a correct version number.',
+  ENTER_VERSION_NUMBER_TIP: 'Lütfen bir sürüm numarası girin.',
+  SUBMIT_REVIEW_DESC: 'Uygulamayı yayınlanmak üzere gönder.',
+  APP_LEARN_MORE: '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Daha Fazla Bilgi</a>',
+  INVALID_VERSION_TIP: 'Lütfen doğru bir sürüm numarası girin.',
   // Versions > Submit for Release > Test Steps
-  VERSION_SUBMIT_TEST_STEPS: '1. All dependent charts have been submitted.<br/>' + '2. The static analysis has been passed (helm lint).<br/>' + '3. The app can be started using default values (helm install). All pods are in running state and all services have at least one endpoint.<br/>' + '4. The images used have no security vulnerabilities.<br/>' + '5. Upgrade is supported.<br/>' + '6. Custom application configuration is supported.<br/>' + '7. Do not use the alpha features of Kubernetes.<br/>' + '8. Detailed documentation is provided, including app introduction, prereauisites, and custom parameter configurations.<br/>',
-  VERSION_SUBMIT_NOTE: 'Please make sure your app has met the following requirements before submission:',
+  VERSION_SUBMIT_TEST_STEPS: '1. Tüm bağımlı çizelgelerin gönderilmiş olması.<br/>' + '2. Statik analizden geçmiş olması (helm lint).<br/>' + '3. Uygulamanın varsayılan değerler ile başlatılabilir olması (helm install). Tüm pod\'ların çalışır durumda olması ve tüm servislerin en az bir uç noktaya sahip olması.<br/>' + '4. Kullanılan imajların güvenlik zaafiyeti içermemesi.<br/>' + '5. Güncellemenin desteklenmesi.<br/>' + '6. Özel uygulama konfigürasyonunun desteklenmesi<br/>' + '7. Kubernetes alpha yeteneklerinin kullanılmaması<br/>' + '8. Uygulama girizgahını, gereksinimlerini ve özel parametre konfigürasyonlarını da içeren detaylı dökümantasyonun sağlanması.<br/>',
+  VERSION_SUBMIT_NOTE: 'Başvuru iletmeden önce lütfen uygulamanızın sıradaki gereksinimleri sağladığından emin olun:',
   // Versions > Submit for Release > Update Log
-  UPDATE_LOG_DESC: 'Enter detailed information about the app updates.',
-  SUBMIT_SUCCESSFUL: 'Submitted successfully.',
-  CANCEL_SUCCESSFUL: 'Canceled successfully.',
+  UPDATE_LOG_DESC: 'Uygulama güncellemeleri için detaylı bilgi giriniz.',
+  SUBMIT_SUCCESSFUL: 'Başarıyla iletildi.',
+  CANCEL_SUCCESSFUL: 'Başarıyla iptal edildi.',
   // App Information
   // App Release
   // App Instances
-  APP_INSTANCES: 'App Instances'
+  APP_INSTANCES: 'Uygulama Örnekleri'
 };
