@@ -25,7 +25,7 @@ module.exports = {
   ENABLE: 'Etkinleştir',
   PROJECT_NETWORK_ISOLATION: 'Proje ağ izolasyonu',
   NETWORK_POLICY_EMP_TITLE: 'Ağ İzolasyonu Etkin Değil',
-  NETWORK_POLICY_EMP_DESC: 'After the project network access is enabled, other projects will be unable to access the project. But you can allow projects, services, and external IP addresses to access this project based on your needs.',
+  NETWORK_POLICY_EMP_DESC: 'Proje ağ erişimi etkinleştirildikten sonra, diğer projeler projeye erişemez. Ancak ihtiyaçlarınıza göre projelerin, hizmetlerin ve harici IP adreslerinin bu projeye erişmesine izin verebilirsiniz.',
   // Network Isolation > Internal Allowlist
   INTERNAL_ALLOWLIST: 'Dahili İzin Listesi',
   INTERNAL_ALLOWLIST_TIP: 'Kümedeki projeleri ve hizmetleri izin verilenler listesine ekleyin.',
