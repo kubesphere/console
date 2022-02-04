@@ -20,5 +20,5 @@ module.exports = {
   // List
   // List > Create > Basic Information
   // List > Create > Pod Settings > Update Settings > Rolling Update Settings
-  PARTITION_ORDINAL_EMPTY: 'Please set a ordinal for dividing pod replicas.'
+  PARTITION_ORDINAL_EMPTY: 'Lütfen pod replikalarını bölümlemek için bir sıra tanımlayınız.'
 };
