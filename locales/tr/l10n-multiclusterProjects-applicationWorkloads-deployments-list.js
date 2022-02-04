@@ -20,7 +20,6 @@ module.exports = {
   WORKLOAD_DESC: 'İş yükleri, hizmet isteklerini işlemek için kullanılır ve bir veya daha fazla bölme içerebilir. Günlüğe kaydetme ve izleme gibi sistem işlevleri de iş yükleri tarafından uygulanır.',
   // List
   DEPLOYMENT_EMPTY_DESC: 'Lütfen bir dağıtım oluşturun.',
-  UPDATING: 'Güncelleniyor',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
@@ -29,15 +28,17 @@ module.exports = {
   NEXT: 'Sonraki',
   // List > Create > Pod Settings > Replica Scheduling Mode
   REPLICA_SCHEDULING_MODE: 'Çoğaltma Zamanlama Modu',
-  SPECIFY_REPLICAS: 'Kopyaları Belirtin',
-  WEIGHTS: 'Yük',
-  SPECIFY_WEIGHTS: 'Ağırlıkları Belirtin',
-  SPECIFY_WEIGHTS_DESC: 'Toplam bölme çoğaltması sayısını ve her küme için bir ağırlık ayarlayın. Pod replikaları, ağırlıklara göre kümelere programlanacaktır.',
-  SPECIFY_REPLICAS_DESC: 'Her kümedeki bölme çoğaltmalarının sayısını manuel olarak ayarlayın.',
-  REPLICA_LOW_SI: 'kopya',
-  REPLICA_LOW_PL: 'kopyalar',
-  WEIGHT: 'yük',
-  TOTAL_REPLICAS: 'Toplam Kopyalar',
+  SPECIFY_REPLICAS: 'Specify Replicas',
+  WEIGHTS: 'Weights',
+  SPECIFY_WEIGHTS: 'Specify Weights',
+  SPECIFY_WEIGHTS_DESC:
+    'Set the total number of pod replicas and a weight for each cluster. The pod replicas will be scheduled to the clusters according to the weights.',
+  SPECIFY_REPLICAS_DESC:
+    'Manually set the number of pod replicas in each cluster.',
+  REPLICA_LOW_SI: 'replica',
+  REPLICA_LOW_PL: 'replicas',
+  WEIGHT: 'weight',
+  TOTAL_REPLICAS: 'Total Replicas',
   // List > Create > Pod Settings > Add Container > Container Settings
   ADD_CONTAINER: 'Konteyner ekle',
   ADD_CONTAINER_DESC: 'Bir kapsayıcı oluşturmak için kapsayıcı ayarlarını özelleştirin.',
