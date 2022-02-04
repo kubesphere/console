@@ -18,5 +18,5 @@
 module.exports = {
   // Details
   // Events
-  MESSAGE: 'Message'
+  MESSAGE: 'Mesaj'
 };
