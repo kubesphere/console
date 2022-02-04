@@ -17,9 +17,9 @@
  */
 module.exports = {
   // Banner
-  SERVICE_TYPES_Q: 'What service types does KubeSphere support?',
-  SERVICE_TYPES_A: 'KubeSphere supports stateless services and stateful services. Pod replicas in a stateless service share the same volume, while each pod replica in a stateful service has an independent volume.',
-  SCENARIOS_FOR_SERVICES_Q: 'What are the use cases of stateless services and stateful services?',
+  SERVICE_TYPES_Q: 'KubeSphere hangi servis tiplerini destekliyor?',
+  SERVICE_TYPES_A: 'KubeSphere durum bilgili ve durum bilgisiz servisleri destekler. Durum bilgili servislerin kapsül replikalarının her birinin bağımsız bölümleri varken, durum bilgisiz servislerin kapsül replikaları aynı bölüm içerisinde bulunurlar.',
+  SCENARIOS_FOR_SERVICES_Q: 'Durum bilgili ve durum bilgisiz servislerin kullanım senaryoları nelerdir?',
   SCENARIOS_FOR_SERVICES_A: 'Stateless services applies to scenarios where data persistence is not required, such as Nginx and Tomcat. Stateful services applies to scenarios where data persistence is required, such as MySQL databases, Kafka, and Zookeeper.',
   // Service List
   SERVICE_TYPE: 'Service Type',
