@@ -34,20 +34,20 @@ module.exports = {
   CUSTOMIZE_SERVICE: 'Servisi Özelleştir',
   CUSTOMIZE_SERVICE_DESC: 'İşyüklerini belirt veya bir servis oluşturmak için YAML konfigürasyon dosyasını düzenle.',
   // List > Create > Select Service Type > Stateless Service > Pod Settings > Port Settings
-  PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
-  PORT_NAME_DESC: 'The port name can contain only lowercase letters, numbers, and hyphens (-) and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
+  PORT_INPUT_DESC: 'Port adı zaten mevcut. Lütfen başka bir ad girin.',
+  PORT_NAME_DESC: 'Port adı yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir ve küçük harf veya sayı ile başlayıp bitmelidir. Maksimum uzunluk 63 karakterdir.',
   // List > Create > Select Service Type > Stateful Service
   // List > Create > Select Service Type > External Service
-  CREATE_EXTERNAL_SERVICE_DESC: 'Create a service and map it to an external service.',
-  CREATE_EXTERNAL_SERVICE: 'Create External Service',
-  EXTERNAL_SERVICE_ADDRESS_EMPTY_DESC: 'Please enter the domain name of an external service.',
-  EXTERNAL_SERVICE_ADDRESS: 'External Service Address',
-  EXTERNAL_SERVICE_ADDRESS_DESC: 'Enter the domain name of an external service.',
+  CREATE_EXTERNAL_SERVICE_DESC: 'Bir servis oluştur ve onu harici bir servise adresle.',
+  CREATE_EXTERNAL_SERVICE: 'Harici Servis Oluştur',
+  EXTERNAL_SERVICE_ADDRESS_EMPTY_DESC: 'Lütfen harici servisin alan adını giriniz.',
+  EXTERNAL_SERVICE_ADDRESS: 'Harici Servis Adresi',
+  EXTERNAL_SERVICE_ADDRESS_DESC: 'Harici servisin alan adını giriniz.',
   // List > Create > Create Service from Source Code
   JAVA: 'Java',
   NODEJS: 'Node.js',
   PYTHON: 'Python',
-  LANGUAGE_TYPE_VALUE: 'Language Type: {value}',
+  LANGUAGE_TYPE_VALUE: 'Dil Türü: {value}',
   // List > Create > Create Service from Source Code > Java > Basic Information
   // List > Create > Create Service from Source Code > Java > Build Settings
   // List > Create > Create Service from Source Code > Java > Pod Settings
@@ -56,7 +56,7 @@ module.exports = {
   // List > Create > Create Service from Source Code > Node.js > Basic Information
   // List > Create > Create Service from Source Code > Node.js > Build Settings
   // List > Create > Create Service from Source Code > Node.js > Pod Settings
-  CONTAINER_SETTINGS: 'Container Settings',
+  CONTAINER_SETTINGS: 'Konteyner Ayarları',
   // List > Create > Create Service from Source Code > Node.js > Volume Settings
   // List > Create > Create Service from Source Code > Node.js > Advanced Settings
   // List > Create > Create Service from Source Code > Python > Basic Information
@@ -65,7 +65,7 @@ module.exports = {
   // List > Create > Create Service from Source Code > Python > Volume Settings
   // List > Create > Create Service from Source Code > Python > Advanced Settings
   // List > Create > Create Service from Artifact
-  ARTIFACT_TYPE_VALUE: 'Artifact Type: {value}',
+  ARTIFACT_TYPE_VALUE: 'Artifact Türü: {value}',
   // List > Create > Create Service from Artifact > JAR > Basic Information
   // List > Create > Create Service from Artifact > JAR > Build Settings
   // List > Create > Create Service from Artifact > JAR > Pod Settings
@@ -83,9 +83,9 @@ module.exports = {
   // List > Create > Create Service from Artifact > Binary > Volume Settings
   // List > Create > Create Service from Artifact > Binary > Advanced Settings
   // List > Create > Customize Service > Specify Workload > Basic Information
-  SPECIFY_WORKLOAD_TO_CREATE_SERVICE: 'Specify Workload to Create Service',
-  EDIT_YAML_TO_CREATE_SERVICE: 'Edit YAML to Create Service',
-  SPECIFY_WORKLOAD_DESC: 'Create a service by using one or more existing workloads.',
+  SPECIFY_WORKLOAD_TO_CREATE_SERVICE: 'Servis Oluşturmak için İşyükü Belirt',
+  EDIT_YAML_TO_CREATE_SERVICE: 'Servis Oluşturmak için YAML Düzenle',
+  SPECIFY_WORKLOAD_DESC: 'Bir ya da daha fazla mevcut işyükünü kullanarak servis oluştur.',
   // List > Create > Customize Service > Specify Workload > Service Settings
   // List > Create > Customize Service > Specify Workload > Advanced Settings
   // List > Edit Information
@@ -93,15 +93,15 @@ module.exports = {
   // List > Edit Service
   // List > Edit External Access
   // List > Delete
-  NO_RELATED_RESOURCE_FOUND: 'No Related Resource Found',
-  NO_SERVICE_RELATED_RESOURCE_DESC: 'No resource related to the service is found.',
-  DELETE_SERVICE_DESC: 'You are about to delete the service(s) {resource}. Please confirm whether to delete the associated resource?',
-  DELETE_SERVICE_DESC_PL: 'You are about to delete the services {resource}.<br/>Do you want to also delete the following resources related to the services?',
-  DELETE_SERVICE_DESC_SI: 'You are about to delete the service {resource}.<br/>Do you want to also delete the following resource related to the service?',
-  DELETE_SERVICE: 'Delete Service',
-  DELETE_MULTIPLE_SERVICES: 'Delete Multiple Services',
+  NO_RELATED_RESOURCE_FOUND: 'İlişkili Kaynak Bulunamadı',
+  NO_SERVICE_RELATED_RESOURCE_DESC: 'Servis ile ilişkili hiç bir kaynak bulunamadı.',
+  DELETE_SERVICE_DESC: 'Servis(ler)i silmek üzeresiniz {resource}. Lütfen iligli kaynağı silmek istediğinizi teyid ediniz.',
+  DELETE_SERVICE_DESC_PL: 'Servisleri silmek üzeresiniz. {resource}.<br/>Aynı zamanda, servisle ilintili aşağıdaki kaynakları da silmek istiyor musunuz?',
+  DELETE_SERVICE_DESC_SI: 'Servisi silmek üzeresiniz. {resource}.<br/>Aynı zamanda, servisle ilintili aşağıdaki kaynağı da silmek istiyor musunuz?',
+  DELETE_SERVICE: 'Servis Sil',
+  DELETE_MULTIPLE_SERVICES: 'Servisleri Sil',
   // Service Topology
-  SERVICE_TOPOLOGY: 'Service Topology',
-  AUTO_REFRESH: 'Auto Refresh',
-  POD_COUNT_VALUE: 'Pods: {value}'
+  SERVICE_TOPOLOGY: 'Servis Topolojisi',
+  AUTO_REFRESH: 'Otomatik Yenileme',
+  POD_COUNT_VALUE: 'Kapsüller: {value}'
 };
