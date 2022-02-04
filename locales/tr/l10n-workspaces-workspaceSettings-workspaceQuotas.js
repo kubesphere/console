@@ -24,9 +24,9 @@ module.exports = {
   USED_PERCENT: 'Kullanılan: {percent}%',
   RESOURCE_LIMIT: 'Kaynak limiti',
   // Resource Quotas > Edit Quotas
-  EDIT_WORKSPACE_QUOTAS: 'Edit Workspace Quotas',
-  CPU_REQUEST: 'CPU Request',
-  CPU_LIMIT: 'CPU Sınırlayıcı',
-  MEMORY_REQUEST: 'Memory Request',
-  MEMORY_LIMIT: 'Bellek sınırı'
+  EDIT_WORKSPACE_QUOTAS: 'Çalışma Alanı Kotalarını Düzenle',
+  CPU_REQUEST: 'CPU Talebi',
+  CPU_LIMIT: 'CPU Sınırı',
+  MEMORY_REQUEST: 'Bellek Talebi',
+  MEMORY_LIMIT: 'Bellek Sınırı'
 };
