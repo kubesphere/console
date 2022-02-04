@@ -17,26 +17,26 @@
  */
 module.exports = {
   // Head
-  DASHBOARD_TITLE: 'Hello {username}',
-  LAST_LOGIN_TIME: 'Last login: ',
-  USER_DASHBOARD_EMPTY_TITLE: 'You do not belong to any workspace.',
-  USER_DASHBOARD_EMPTY_DESC: 'Please contact a workspace administrator to invite you to join a workspace.',
+  DASHBOARD_TITLE: 'Hoşgeldin, {username}',
+  LAST_LOGIN_TIME: 'Son Giriş: ',
+  USER_DASHBOARD_EMPTY_TITLE: 'Herhangi bir çalışma alanına ait değilsiniz.',
+  USER_DASHBOARD_EMPTY_DESC: 'Lütfen sizi bir çalışma alanına katılmaya davet etmesi için bir çalışma alanı yöneticisiyle iletişime geçin.',
   // Platform Information
-  LAST_UPDATE_TIME: 'Last update time',
-  PLATFORM_VERSION: 'Platform version',
+  LAST_UPDATE_TIME: 'Son güncelleme zamanı',
+  PLATFORM_VERSION: 'Platform sürümü',
   // Platform Resources
-  PLATFORM_RESOURCES: 'Platform Resources',
-  APP_TEMPLATE_SCAP_PL: 'App templates',
+  PLATFORM_RESOURCES: 'Platform Kaynakları',
+  APP_TEMPLATE_SCAP_PL: 'Uygulama Şablonları',
   // Recent Access
-  RECENT_ACCESS: 'Recent Access',
-  MULTI_CLUSTER_DEPLOYMENT: 'Multi-cluster Project',
-  WORKBENCH_PROJECT: 'Project',
-  WORKBENCH_WORKSPACE: 'Workspace',
-  WORKBENCH_DEVOPS: 'DevOps project',
-  WORKBENCH_MULTI_CLUSTER_PROJECT: 'Multi-cluster project',
-  WORKBENCH_CLUSTER: 'Cluster',
-  NOT_FOUND_DESC: 'The resource was not found. The system will return to <a href="{link}">Workbench</a> in {time}s.',
-  MULTI_CLUSTER_PROJECT_TIP: 'The project is deployed across multiple clusters.',
-  NO_HISTORY_TITLE: 'No Recently Accessed Resource Found',
-  NO_HISTORY_DESC: 'You can access platform resources.'
+  RECENT_ACCESS: 'En son Erişim',
+  MULTI_CLUSTER_DEPLOYMENT: 'Çok Kümeli Proje',
+  WORKBENCH_PROJECT: 'Proje',
+  WORKBENCH_WORKSPACE: 'Çalışma alanı',
+  WORKBENCH_DEVOPS: 'DevOps Proje',
+  WORKBENCH_MULTI_CLUSTER_PROJECT: 'Çok kümeli proje',
+  WORKBENCH_CLUSTER: 'Küme',
+  NOT_FOUND_DESC: 'Kaynak bulunamadı. Sistem {time}s içinde <a href="{link}">Workbench</a>\'e dönecektir.',
+  MULTI_CLUSTER_PROJECT_TIP: 'Proje birden çok kümeye dağıtılır.',
+  NO_HISTORY_TITLE: 'Yakın Zamanda Erişilen Kaynak Bulunamadı',
+  NO_HISTORY_DESC: 'Platform kaynaklarına erişebilirsiniz.'
 };
