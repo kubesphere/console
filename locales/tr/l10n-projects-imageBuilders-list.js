@@ -27,9 +27,9 @@ module.exports = {
   // List > Create > Build Mode
   BUILD_MODE: 'İnşa Modu',
   S2I_DESC: 'Bir kaynak kodu dili seçin.',
-  IMAGE_FROM_S2I: 'Build Image from Source Code',
-  IMAGE_FROM_B2I: 'Build Image from Artifact',
-  B2I_DESC: 'Select an artifact file type.',
+  IMAGE_FROM_S2I: 'Kaynak Kodundan Resim Oluştur',
+  IMAGE_FROM_B2I: 'Artifact\'ten Görüntü Oluşturma',
+  B2I_DESC: 'Bir yapıt dosya türü seçin.',
   // List > Create > Java > Build Settings
   CODE_REPOSITORY_URL: 'Kod Depo URL',
   CODE_REPOSITORY_BRANCH: 'Uzak Kod Deposu',
