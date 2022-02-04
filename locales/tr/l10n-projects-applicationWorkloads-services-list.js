@@ -17,22 +17,22 @@
  */
 module.exports = {
   // Banner
-  SERVICE_TYPES_Q: 'KubeSphere hangi servis tiplerini destekliyor?',
+  SERVICE_TYPES_Q: 'KubeSphere hangi servis türlerini destekliyor?',
   SERVICE_TYPES_A: 'KubeSphere durum bilgili ve durum bilgisiz servisleri destekler. Durum bilgili servislerin kapsül replikalarının her birinin bağımsız bölümleri varken, durum bilgisiz servislerin kapsül replikaları aynı bölüm içerisinde bulunurlar.',
   SCENARIOS_FOR_SERVICES_Q: 'Durum bilgili ve durum bilgisiz servislerin kullanım senaryoları nelerdir?',
-  SCENARIOS_FOR_SERVICES_A: 'Stateless services applies to scenarios where data persistence is not required, such as Nginx and Tomcat. Stateful services applies to scenarios where data persistence is required, such as MySQL databases, Kafka, and Zookeeper.',
+  SCENARIOS_FOR_SERVICES_A: 'Durum bilgisiz servisler, Nginx ve Tomcat gibi veri sürerliliğinin gerekmediği senaryolarda uygulanabilir. Durum bilgili servisler ise, MySQL veritabanları, Kafka ve Zookeeper gibi veri sürerliliğinin gerektiği senaryolarda uygulanabilir.',
   // Service List
-  SERVICE_TYPE: 'Service Type',
-  SERVICE_LIST: 'Service List',
+  SERVICE_TYPE: 'Servis Türü',
+  SERVICE_LIST: 'Servis Listesi',
   // List > Create
-  CREATE_SERVICE_DESC: 'Select a service creation method.',
-  SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful service, or map a service to an external service.',
-  SERVICE_FROM_CODE: 'Create Service from Source Code',
-  SERVICE_FROM_ARTIFACT: 'Create Service from Artifact',
-  SERVICE_FROM_CODE_DESC: 'Build an image from existing source code and deploy the image.',
-  SERVICE_FROM_ARTIFACT_DESC: 'Build an image from an existing artifact and deploy the image.',
-  CUSTOMIZE_SERVICE: 'Customize Service',
-  CUSTOMIZE_SERVICE_DESC: 'Specify workloads or edit a YAML configuration file to create a service.',
+  CREATE_SERVICE_DESC: 'Servis oluşturma yöntemini seçiniz.',
+  SELECT_SERVICE_TYPE_DESC: 'Durum bilgili veya durum bilgisiz servis oluştur, veya bir servisi harici bir servise adresle.',
+  SERVICE_FROM_CODE: 'Kaynak Koddan Servis Oluştur',
+  SERVICE_FROM_ARTIFACT: 'Artifact\'den Servis Oluştur',
+  SERVICE_FROM_CODE_DESC: 'Varolan kaynak koddan bir imaj oluştur ve imajı dağıt.',
+  SERVICE_FROM_ARTIFACT_DESC: 'Varolan bir artifact\'den imah oluştur ve imajı dağıt.',
+  CUSTOMIZE_SERVICE: 'Servisi Özelleştir',
+  CUSTOMIZE_SERVICE_DESC: 'İşyüklerini belirt veya bir servis oluşturmak için YAML konfigürasyon dosyasını düzenle.',
   // List > Create > Select Service Type > Stateless Service > Pod Settings > Port Settings
   PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
   PORT_NAME_DESC: 'The port name can contain only lowercase letters, numbers, and hyphens (-) and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
