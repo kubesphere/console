@@ -17,17 +17,17 @@
  */
 module.exports = {
   // Navigation Pane
-  WORKSPACE_SETTINGS: 'Workspace Settings',
+  WORKSPACE_SETTINGS: 'Çalışma Alanı Ayarları',
   // Banner
-  WORKSPACE_BASIC_INFO_DESC: 'Basic information provides the overview of the workspace. You can view the basic information of the workspace.',
-  WORKSPACE_BASE_INFO_Q1: 'How do I apply for more clusters for the workspace?',
-  WORKSPACE_BASE_INFO_A1: 'Contact the platform or cluster administrator to apply for more clusters.',
+  WORKSPACE_BASIC_INFO_DESC: 'Temel bilgiler çalışma alanı hakkında önizleme sağlar. Çalışma alanının temel bilgilerini görüntüleyebilirsiniz.',
+  WORKSPACE_BASE_INFO_Q1: 'Çalışma alanı için daha fazla kümeyi nasıl talep edebilirim?',
+  WORKSPACE_BASE_INFO_A1: 'Daha fazla küme talep etmek için platform veya küme yöneticisi ile iletişime geçiniz.',
   // Workspace Information
-  WORKSPACE_INFO: 'Workspace Information',
-  WORKSPACE_MEMBER_TCAP: 'Workspace member',
-  WORKSPACE_MEMBER_TCAP_PL: 'Workspace members',
-  WS_MEMBER_SCAP: 'Workspace member',
-  WS_MEMBER_SCAP_PL: 'Workspace members',
+  WORKSPACE_INFO: 'Çalışma Alanı Bilgisi',
+  WORKSPACE_MEMBER_TCAP: 'Çalışma alanı üyesi',
+  WORKSPACE_MEMBER_TCAP_PL: 'Çalışma alanı üyeleri',
+  WS_MEMBER_SCAP: 'Çalışma alanı üyesi',
+  WS_MEMBER_SCAP_PL: 'Çalışma alanı üyeleri',
   DEVOPS_PROJECT_TCAP: 'DevOps project',
   DEVOPS_PROJECT_TCAP_PL: 'DevOps projects',
   DEVOPS_PROJECT_LOW: 'DevOps project',
