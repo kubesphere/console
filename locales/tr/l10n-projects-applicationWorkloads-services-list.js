@@ -17,10 +17,10 @@
  */
 module.exports = {
   // Banner
-  SERVICE_TYPES_Q: 'KubeSphere hangi servis tiplerini destekliyor?',
+  SERVICE_TYPES_Q: 'KubeSphere hangi servis türlerini destekliyor?',
   SERVICE_TYPES_A: 'KubeSphere durum bilgili ve durum bilgisiz servisleri destekler. Durum bilgili servislerin kapsül replikalarının her birinin bağımsız bölümleri varken, durum bilgisiz servislerin kapsül replikaları aynı bölüm içerisinde bulunurlar.',
   SCENARIOS_FOR_SERVICES_Q: 'Durum bilgili ve durum bilgisiz servislerin kullanım senaryoları nelerdir?',
-  SCENARIOS_FOR_SERVICES_A: 'Stateless services applies to scenarios where data persistence is not required, such as Nginx and Tomcat. Stateful services applies to scenarios where data persistence is required, such as MySQL databases, Kafka, and Zookeeper.',
+  SCENARIOS_FOR_SERVICES_A: 'Durum bilgisiz servisler, Nginx ve Tomcat gibi veri sürerliliğinin gerekmediği senaryolarda uygulanabilir. Durum bilgili servisler ise, MySQL veritabanları, Kafka ve Zookeeper gibi veri sürerliliğinin gerektiği senaryolarda uygulanabilir.',
   // Service List
   SERVICE_TYPE: 'Servis Türü',
   SERVICE_LIST: 'Servis Listesi',
