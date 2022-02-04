@@ -17,19 +17,19 @@
  */
 module.exports = {
   // Banner
-  SERVICE_ACCOUNT_PL: 'Service Accounts',
-  SERVICE_ACCOUNT_DESC: 'A service account provides the processes that run in a pod with an identity that can be used to access the API server.',
+  SERVICE_ACCOUNT_PL: 'Servis Hesapları',
+  SERVICE_ACCOUNT_DESC: 'Servis hesabı bir pod içerisinde çalışan işlemlere API sunucusuna erişim için kullanılabilecek bir kimlik sağlar.',
   // List
-  SERVICE_ACCOUNT_EMPTY_DESC: 'Please create a service account.',
+  SERVICE_ACCOUNT_EMPTY_DESC: 'Lütfen bir servis hesabı oluşturun.',
   // List > Create
-  INVALID_YAML_FILE_FORMAT: 'Invalid YAML file format.',
+  INVALID_YAML_FILE_FORMAT: 'Geçeriz YAML dosya biçimi.',
   // List > Create > Project Role
-  PROJECT_ROLE_SI: 'Project Role',
-  SELECT_PROJECT_ROLE_DESC: 'Select a project role to specify permissions.',
+  PROJECT_ROLE_SI: 'Proje Rolü',
+  SELECT_PROJECT_ROLE_DESC: 'Yetkileri tanımlamak için bir proje rolü seçiniz.',
   // List > Edit
   // List > Edit YAML
   // List > Change Role
-  CHANGE_ROLE: 'Change Role',
+  CHANGE_ROLE: 'Rolü Değiştir',
   // List > Delete
-  SERVICE_ACCOUNT_LOW: 'service account'
+  SERVICE_ACCOUNT_LOW: 'servis hesabı'
 };
