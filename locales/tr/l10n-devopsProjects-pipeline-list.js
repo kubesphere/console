@@ -17,25 +17,25 @@
  */
 module.exports = {
   // Banner
-  PIPELINE_PL: 'Pipelines',
+  PIPELINE_PL: 'İş hatları',
   // List
-  HEALTH: 'Health',
-  PULL_REQUEST_COUNT: 'Pull Requests',
-  HEALTHY: 'Healthy',
-  SUB_HEALTHY: 'Sub-healthy',
-  NO_STATUS: 'No status',
-  BRANCH_COUNT: 'Branches',
-  PIPELINE_EMPTY_DESC: 'Please create a pipeline.',
+  HEALTH: 'Sağlık',
+  PULL_REQUEST_COUNT: 'Çekme İstekleri',
+  HEALTHY: 'Sağlıklı',
+  SUB_HEALTHY: 'Alt-sağlık',
+  NO_STATUS: 'Durum yok',
+  BRANCH_COUNT: 'Şubeler',
+  PIPELINE_EMPTY_DESC: 'Lütfen bir işhattı oluşturun.',
   // List > Run
-  BATCH_RUN_SUCCESS_SI: 'The pipeline was run successfully.',
-  BATCH_RUN_SUCCESS_PL: 'The pipelines were run successfully.',
-  BATCH_RUN_UNSUPPORTED_DESC: 'Multi-branch pipelines cannot run in a batch.',
+  BATCH_RUN_SUCCESS_SI: 'İş hattı başarıyla çalıştı.',
+  BATCH_RUN_SUCCESS_PL: 'İş hatları başarıyla çalıştırıldı.',
+  BATCH_RUN_UNSUPPORTED_DESC: 'Çok şubeli işlem hatları toplu olarak çalıştırılamaz.',
   // List > Edit
   // List > Copy
-  COPY: 'Copy',
-  COPY_PIPELINE: 'Copy Pipeline',
-  PIPELINE_NAME_DESC: 'The name of the pipeline. Pipelines in the same project must have different names.',
-  PIPELINE_NAME_TIP: 'Please enter a pipeline name.',
+  COPY: 'Kopyala',
+  COPY_PIPELINE: 'İş hattını Kopyala',
+  PIPELINE_NAME_DESC: 'İş hattının adı. Aynı projedeki iş hatlarından farklı adları olmalıdır.',
+  PIPELINE_NAME_TIP: 'Lütfen bir iş hattı adı girin.',
   // List > Delete
   // List > Create
   CREATE_PIPELINE: 'Create Pipeline',
