@@ -24,9 +24,8 @@ module.exports = {
   ROUTE_PATH_VALUE: 'Yol: <strong>{value}</strong>',
   ROUTE_SERVICE_VALUE: 'Servis: <strong>{value}</strong>',
   ROUTE_PORT_VALUE: 'Port: <strong>{value}</strong>',
-  SERVICE_COLON: 'Servis:',
   ACCESS_SERVICE: 'Erişim Servisi',
   UNABLE_TO_ACCESS: 'Servise erişilemiyor',
-  UNABLE_TO_ACCESS_TIP: '* Eğer alan adı otomatik olarak oluşturulduysa, istemcinizden nip.io adresine erişebildiğinizden emin olunuz.<br/> * Eğer alan adı manuel tanımlandıysa, alan adı çözümleme politikalarının DNS sunucunuzda veya istemcinizin hosts dosyasında tanımlandığından emin olunuz.',
-  CERTIFICATE_VALUE: 'Sertifika: {value}'
+  UNABLE_TO_ACCESS_TIP: '* If the domain name is automatically generated, make sure that your client machine can access nip.io.<br/>* If the domain name is manually specified, make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
+  CERTIFICATE_VALUE: 'Certificate: {value}'
 };
