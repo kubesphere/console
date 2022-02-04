@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  DEPARTMENT_PL: 'Department Management',
+  DEPARTMENT_PL: 'Bölüm Yönetimi',
   DEPARTMENT_MANAGEMENT_DESC: 'A department in a workspace is a logical unit used for permission control. You can set a workspace role, multiple project roles, and multiple DevOps project roles in a department, and assign users to the department to control user permissions in batches.',
   // List
   // List > Not Assigned
