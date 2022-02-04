@@ -17,14 +17,14 @@
  */
 module.exports = {
   // Banner
-  NETWORK_ISOLATION_DESC: 'By configuring network isolation, users can control traffic between pods within the same cluster and traffic from outside to implement application isolation and enhance application security.',
-  NETWORK_ISOLATION_Q: 'How do I use network isolation better?',
-  NETWORK_ISOLATION_Q1: 'What are the requirements on the CNI plugin for implementing network isolation?',
+  NETWORK_ISOLATION_DESC: 'Kullanıcılar, ağ yalıtımını yapılandırarak, uygulama yalıtımını uygulamak ve uygulama güvenliğini artırmak için aynı küme içindeki bölmeler arasındaki trafiği ve dışarıdan gelen trafiği kontrol edebilir.',
+  NETWORK_ISOLATION_Q: 'Ağ izolasyonunu nasıl daha iyi kullanırım?',
+  NETWORK_ISOLATION_Q1: 'Ağ izolasyonunu uygulamak için CNI eklentisindeki gereksinimler nelerdir?',
   // Network Isolation
-  NETWORK_ISOLATION: 'Network Isolation',
-  ENABLE: 'Enable',
-  PROJECT_NETWORK_ISOLATION: 'Project network isolation',
-  NETWORK_POLICY_EMP_TITLE: 'Network Isolation Not Enabled',
+  NETWORK_ISOLATION: 'Ağ İzolasyonu',
+  ENABLE: 'Etkinleştir',
+  PROJECT_NETWORK_ISOLATION: 'Proje ağ izolasyonu',
+  NETWORK_POLICY_EMP_TITLE: 'Ağ İzolasyonu Etkin Değil',
   NETWORK_POLICY_EMP_DESC: 'After the project network access is enabled, other projects will be unable to access the project. But you can allow projects, services, and external IP addresses to access this project based on your needs.',
   // Network Isolation > Internal Allowlist
   INTERNAL_ALLOWLIST: 'Internal Allowlist',
