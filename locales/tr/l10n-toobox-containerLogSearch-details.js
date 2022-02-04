@@ -18,21 +18,21 @@
 module.exports = {
   // Title
   // Search Bar
-  KEYWORD: 'Keyword',
-  EXACT_QUERY: 'Exact Query',
-  FUZZY_QUERY: 'Fuzzy Query',
+  KEYWORD: 'Anahtar kelime',
+  EXACT_QUERY: 'Tam Sorgu',
+  FUZZY_QUERY: 'Bulanık Sorgu',
   // Time Topology
-  TIME_TOPOLOGY: 'Time Topology ',
-  SEARCH_RESULTS: 'Search Results',
-  DISPLAY: 'Display',
-  HIDE: 'Hide',
-  STOP_REAL_TIME_CONTAINER_LOG: 'Pause real-time container logs',
-  START_REAL_TIME_CONTAINER_LOG: 'View real-time container logs',
+  TIME_TOPOLOGY: 'Zaman Topolojisi ',
+  SEARCH_RESULTS: 'Arama Sonuçları',
+  DISPLAY: 'Görünüm',
+  HIDE: 'Gizle',
+  STOP_REAL_TIME_CONTAINER_LOG: 'Gerçek zamanlı kapsayıcı günlüklerini duraklat',
+  START_REAL_TIME_CONTAINER_LOG: 'Gerçek zamanlı konteyner günlüklerini görüntüleyin',
   // Time Topology > Histogram
-  CONTAINER_LOG_COUNT: 'Container Logs',
+  CONTAINER_LOG_COUNT: 'Konteyner Kayıtları',
   // List
-  LOG: 'Log',
+  LOG: 'Günlük',
   // List > Container Log Details
   // List > Container Log Details > Container Log Source
-  CONTAINER_LOG_SOURCE: 'Container Log Source'
+  CONTAINER_LOG_SOURCE: 'Konteyner Günlük Kaynağı'
 };
