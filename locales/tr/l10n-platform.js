@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  CLUSTERS_MANAGE_DESC: 'Unified management of multiple clusters and their basic resources, components, and application resources.',
-  ACCESS_CONTROL_DESC: 'Unified management of workspaces, users, and roles.',
-  APP_STORE_MANAGEMENT_DESC: 'Unified lifecycle management of cloud native applications including their release, activation, and suspension.',
-  PLATFORM_SETTINGS_DESC: 'Customized platform settings including basic information and notification configurations.'
+  CLUSTERS_MANAGE_DESC: 'Kümelerin ve onların basit kaynaklarının, bileşenlerin ve uygulama kaynaklarının tek arayüzden yönetimi.',
+  ACCESS_CONTROL_DESC: 'Çalışma alanları, kullanıcılar ve rollerin tek arayüzden yönetimi.',
+  APP_STORE_MANAGEMENT_DESC: 'Bulut uygulamaların; dağıtım, aktivasyon ve askıya alınmasını da içeren yaşam döngüsünün tek arayüzden yönetimi.',
+  PLATFORM_SETTINGS_DESC: 'Temel bilgiler ve bildirim konfigürasyonlarını da içeren özelleştirilmiş platform ayarları.'
 };
