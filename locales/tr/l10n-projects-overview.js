@@ -24,7 +24,7 @@ module.exports = {
   PROJECT_QUOTAS_DESC: 'Proje kotaları, kullanılabilir CPU ve bellek kaynaklarının sayısını ve projede izin verilen bölmeler, dağıtımlar ve hizmetler gibi uygulama kaynaklarının maksimum sayısını belirtir.',
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: 'Varsayılan Konteyner Kotaları Ayarlanmadı',
   DEFAULT_CONTAINER_QUOTAS_DESC: 'Varsayılan konteyner kotaları, projede oluşturulan konteynerlerin varsayılan CPU isteğini, CPU sınırını, bellek isteğini ve bellek sınırını belirtir.',
-  APPLICATION_RESOURCE_COUNT: 'Uygulama Kaynakları',
+  PROJECT_RESOURCE_QUOTAS: 'Proje Kaynak Kotaları',
   SELECT_RESOURCE_TIP: 'Bir kaynak seçin veya bir kaynak adı girin',
   NUMBER_OF_ROUTES: 'Rota Sayısı',
   NUMBER_OF_SECRETS: 'Sır Sayısı',
