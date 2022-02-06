@@ -19,8 +19,8 @@ module.exports = {
   // Banner
   PLATFORM_ROLE_PL: 'Platform Roles',
   // List
-  PLATFORM_ROLE_EMPTY_DESC: 'Please create a platform role.',
-  ROLE_USERS_MANAGER: 'Manage all users on the KubeSphere platform.',
+  PLATFORM_ROLE_EMPTY_DESC: 'कृपया एक प्लेटफ़ॉर्म भूमिका बनाएं',
+  ROLE_USERS_MANAGER: 'KubeSphere प्लेटफॉर्म पर सभी यूजर्स को मैनेज करें।',
   ROLE_WORKSPACES_MANAGER: 'Manage all workspaces on the KubeSphere platform.',
   ROLE_PLATFORM_ADMIN: 'Manage all resources on the KubeSphere platform.',
   ROLE_PLATFORM_REGULAR: 'Cannot access any resources before joining a workspace.',
