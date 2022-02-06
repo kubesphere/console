@@ -20,18 +20,18 @@ module.exports = {
   PLATFORM_ROLE_PL: 'प्लेटफ़ॉर्म भूमिकाएँ',
   // List
   PLATFORM_ROLE_EMPTY_DESC: 'कृपया एक प्लेटफ़ॉर्म भूमिका बनाएं',
-  ROLE_USERS_MANAGER: 'KubeSphere प्लेटफॉर्म पर सभी यूजर्स को मैनेज करें।',
+  ROLE_USERS_MANAGER: 'KubeSphere प्लेटफॉर्म पर सभी यूजर्स का प्रभंधन करें।',
   ROLE_WORKSPACES_MANAGER: 'Manage all workspaces on the KubeSphere platform.',
   ROLE_PLATFORM_ADMIN: 'Manage all resources on the KubeSphere platform.',
-  ROLE_PLATFORM_REGULAR: 'Cannot access any resources before joining a workspace.',
-  CREATION_TIME_TCAP: 'Creation Time',
+  ROLE_PLATFORM_REGULAR: 'बिना किसी वर्कस्पेस से जुड़े कोई भी संसाधन को पहुंच नहीं सकते',
+  CREATION_TIME_TCAP: 'निर्माण का समय',
   // List > Create
   CREATE_PLATFORM_ROLE: 'प्लेटफार्म भूमिका बनाएं',
   // List > Create > Edit Permissions > Cluster Management
   CLUSTERS_MANAGEMENT: 'क्लस्टर प्रभंधन',
-  CLUSTERS_VIEW: 'क्लस्टर देखने हेतु',
-  CLUSTERS_VIEW_DESC: 'सभी क्लस्टर और क्लस्टर संसाधन देखें।',
-  CLUSTERS_MANAGEMENT_DESC: 'क्लस्टर बनाएं, क्लस्टर हटाएं और सभी क्लस्टर में संसाधनों का प्रबंधन करें।',
+  CLUSTERS_VIEW: 'क्लस्टर देखने के लिए',
+  CLUSTERS_VIEW_DESC: 'View all clusters and cluster resources.',
+  CLUSTERS_MANAGEMENT_DESC: 'Create clusters, delete clusters, and manage resources in all clusters.',
   // List > Create > Edit Permissions > Access Control
   USERS_MANAGEMENT: 'यूजर प्रभंधन',
   USERS_VIEW: 'यूजर देखने हेतु',
