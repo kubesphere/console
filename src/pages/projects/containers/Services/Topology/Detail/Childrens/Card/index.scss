@@ -11,13 +11,12 @@
   }
 }
 
-.title {
-  max-width: 180px;
-  overflow: hidden;
-  @include ellipsis;
-  margin-right: 10px;
+.titleClass {
+  width: 140px;
+  margin-left: 10px;
+  white-space: nowrap;
 }
 
-.texts {
+.texts:nth-child(2) {
   min-width: 60px;
 }

@@ -44,13 +44,12 @@ export default class Card extends React.PureComponent {
           <List.Item
             key={item.id}
             className={styles.wrapper}
-            titleClass={styles.title}
+            titleClass={styles.titleClass}
             icon="pod"
             status={item.kubernetes_state.value}
             title={item.label.value}
             description={item.kubernetes_state.value}
             details={this.getDetails(item)}
-            onClick={this.handleClick}
           />
         ))}
       </List>
