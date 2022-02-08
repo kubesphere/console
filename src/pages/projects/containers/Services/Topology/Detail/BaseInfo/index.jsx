@@ -41,7 +41,7 @@ export default class BaseInfo extends Component {
       <div className={styles.info}>
         {metadata.map(item => (
           <dl key={item.id}>
-            <dt>{item.label}</dt>
+            <dd>{item.label}:</dd>
             <dd>{this.getValue(item)}</dd>
           </dl>
         ))}
