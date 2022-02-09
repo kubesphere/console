@@ -185,7 +185,6 @@ export default [
           {
             path: `${PATH}/volume-snapshots`,
             component: VolumeSnapshots,
-            exact: true,
           },
           {
             path: `${PATH}/monitor-cluster`,
