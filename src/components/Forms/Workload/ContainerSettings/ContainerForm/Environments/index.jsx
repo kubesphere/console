@@ -30,6 +30,8 @@ const getActions = lazy(() =>
 export default class Environments extends React.Component {
   rootStore = new RootStore()
 
+  envError = ''
+
   static defaultProps = {
     prefix: '',
     checkable: true,
@@ -47,21 +49,40 @@ export default class Environments extends React.Component {
     )
   }
 
+  handleErrorStatus = (err = '') => {
+    this.envError = err
+  }
+
+  envValidator = (rule, value, callback) => {
+    if (this.envError === '') {
+      callback()
+    }
+  }
+
   render() {
-    const { checkable, namespace, isFederated, cluster } = this.props
+    const {
+      checkable,
+      namespace,
+      isFederated,
+      cluster,
+      projectDetail,
+    } = this.props
+
     return (
       <Form.Group
-        label={t('ENVIRONMENT_VARIABLES')}
+        label={t('ENVIRONMENT_VARIABLE_PL')}
         desc={t('CONTAINER_ENVIRONMENT_DESC')}
         checkable={checkable}
       >
-        <Form.Item>
+        <Form.Item rules={[{ validator: this.envValidator }]}>
           <EnvironmentInput
             rootStore={this.rootStore}
             name={`${this.prefix}env`}
             namespace={namespace}
             isFederated={isFederated}
             cluster={cluster}
+            projectDetail={projectDetail}
+            handleInputError={this.handleErrorStatus}
           />
         </Form.Item>
       </Form.Group>

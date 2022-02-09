@@ -48,12 +48,22 @@ export default class LimitRange extends Component {
     return get(this.props.match, 'params', {})
   }
 
+  get clusters() {
+    return get(this.props.projectStore, 'detail.clusters', []).map(
+      cluster => cluster.name
+    )
+  }
+
   showSetting = () => {
+    const { namespace, workspace } = this.params
     const limitRanges = this.store.list.data
     this.trigger('project.default.resource', {
       ...this.params,
       detail: limitRanges[0],
       isFederated: true,
+      workspace,
+      name: namespace,
+      clusters: this.clusters,
       projectDetail: this.props.projectStore.detail,
       success: () => this.setState({ showTip: false }),
     })
@@ -71,11 +81,11 @@ export default class LimitRange extends Component {
         <Text
           className={styles.text}
           icon="exclamation"
-          title={t('Resource Default Request Not Set')}
-          description={t('WHAT_IS_LIMIT_RANGE_A')}
+          title={t('DEFAULT_CONTAINER_QUOTAS_NOT_SET')}
+          description={t('DEFAULT_CONTAINER_QUOTAS_DESC')}
         />
         <Button type="control" onClick={this.showSetting}>
-          {t('Set')}
+          {t('EDIT_QUOTAS')}
         </Button>
       </Panel>
     )

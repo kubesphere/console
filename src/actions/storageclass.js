@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, set, isUndefined, isBoolean } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -46,7 +46,7 @@ export default {
 
           store.createAlongWithSnapshotClasses(data, { cluster }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+            Notify.success({ content: t('CREATE_SUCCESSFUL') })
             success && success()
             formPersist.delete(`${module}_create_form`)
           })
@@ -103,20 +103,37 @@ export default {
     on({ cluster, store, detail, StorageClassStore, success, ...props }) {
       const modal = Modal.open({
         onOk: async state => {
-          await store.patch(detail, {
-            metadata: {
-              annotations: {
-                'storageclass.kubesphere.io/allow-clone': `${state.allowClone}`,
-                'storageclass.kubesphere.io/allow-snapshot': `${state.allowSnapshot}`,
-              },
-            },
-            allowVolumeExpansion: state.allowVolumeExpansion,
-          })
+          const params = {}
+          const { allowClone, allowSnapshot, allowVolumeExpansion } = state
+          if (!isUndefined(allowClone)) {
+            set(
+              params,
+              `metadata.annotations["storageclass.kubesphere.io/allow-clone"]`,
+              String(allowClone)
+            )
+          }
+          if (!isUndefined(allowSnapshot)) {
+            set(
+              params,
+              `metadata.annotations["storageclass.kubesphere.io/allow-snapshot"]`,
+              String(allowSnapshot)
+            )
+          }
+          if (!isUndefined(allowVolumeExpansion)) {
+            set(
+              params,
+              `allowVolumeExpansion`,
+              isBoolean(allowVolumeExpansion)
+                ? allowVolumeExpansion
+                : JSON.parse(allowVolumeExpansion)
+            )
+          }
+          await store.patch(detail, params)
           await store.fetchDetail({
             name: detail.name,
             cluster: detail.cluster,
           })
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           Modal.close(modal)
           success && success()
         },

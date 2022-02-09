@@ -27,28 +27,28 @@ import ImageArtifacts from './ImageProduct'
 export default path => [
   {
     path: `${path}/records`,
-    title: 'Execution Records',
+    title: 'RUN_RECORDS',
     component: ImageBuildRecords,
     excat: true,
   },
   {
     path: `${path}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     component: ResourceStatus,
     excat: true,
   },
   {
     path: `${path}/image-artifacts`,
-    title: 'Image Artifacts',
+    title: 'IMAGE_ARTIFACTS',
     component: ImageArtifacts,
     excat: true,
   },
   {
     path: `${path}/env`,
-    title: 'Environment Variables',
+    title: 'ENVIRONMENT_VARIABLE_PL',
     component: Env,
     excat: true,
   },
-  { path: `${path}/events`, title: 'Events', component: Events, excat: true },
+  { path: `${path}/events`, title: 'EVENT_PL', component: Events, excat: true },
   getIndexRoute({ path, to: `${path}/records`, exact: true }),
 ]

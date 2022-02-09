@@ -24,7 +24,8 @@ import { Panel } from 'components/Base'
 
 import { joinSelector } from 'utils'
 
-import RouteStore from 'stores/router'
+import IngressStore from 'stores/ingress'
+import GatewayStore from 'stores/gateway'
 
 import Item from './Item'
 
@@ -37,17 +38,23 @@ export default class Routes extends React.Component {
     title: PropTypes.string,
   }
 
+  state = {
+    gateway: {},
+  }
+
   static defaultProps = {
     prefix: '',
   }
 
-  store = new RouteStore()
+  store = new IngressStore()
+
+  gatewayStore = new GatewayStore()
 
   componentDidMount() {
     this.getData()
   }
 
-  getData = () => {
+  getData = async () => {
     const { cluster, namespace, selector } = this.props
 
     if (!isEmpty(selector)) {
@@ -57,7 +64,13 @@ export default class Routes extends React.Component {
         labelSelector: joinSelector(selector),
       }
 
-      this.store.getGateway({ cluster, namespace })
+      const data = await Promise.all([
+        this.gatewayStore.getGateway({ cluster }),
+        this.gatewayStore.getGateway({ cluster, namespace }),
+      ])
+
+      this.setState({ gateway: data[1] || data[0] })
+
       this.store.fetchListByK8s(params)
     }
   }
@@ -65,7 +78,7 @@ export default class Routes extends React.Component {
   renderContent() {
     const { prefix } = this.props
     const { data } = this.store.list
-    const gateway = this.store.gateway.data
+    const { gateway } = this.state
 
     if (isEmpty(data)) {
       return null

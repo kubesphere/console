@@ -246,6 +246,29 @@ const getKSConfig = async token => {
   return resp
 }
 
+const getK8sRuntime = async ctx => {
+  const token = ctx.cookies.get('token')
+  let resp = 'docker'
+  if (!token) {
+    return resp
+  }
+  try {
+    const nodeList = await send_gateway_request({
+      method: 'GET',
+      url: `/api/v1/nodes`,
+      token,
+    })
+    if (nodeList.items) {
+      const runTime = nodeList.items[0].status.nodeInfo.containerRuntimeVersion
+      resp = runTime.split(':')[0]
+    }
+  } catch (error) {
+    console.error(error)
+  }
+
+  return resp
+}
+
 const getCurrentUser = async ctx => {
   const token = ctx.cookies.get('token')
 
@@ -352,5 +375,6 @@ module.exports = {
   getOAuthInfo,
   getNewToken,
   getKSConfig,
+  getK8sRuntime,
   createUser,
 }

@@ -131,16 +131,17 @@ export default class SecretEditModal extends React.Component {
       onCancel,
       isFederated,
       disableSelect,
+      detail,
     } = this.props
 
     return (
       <Modal
         width={960}
-        title={t('EDIT_SECRET')}
+        title={t('EDIT_SETTINGS')}
         icon="pen"
         bodyClassName={styles.body}
         onOk={this.handleOk}
-        okText={t('Update')}
+        okText={t('OK')}
         onCancel={onCancel}
         visible={visible}
         disableSubmit={!isEmpty(subRoute)}
@@ -149,6 +150,7 @@ export default class SecretEditModal extends React.Component {
         <SecretSettings
           formTemplate={formTemplate}
           isFederated={isFederated}
+          cluster={detail.cluster}
           mode="edit"
           disableSelect={disableSelect}
         />

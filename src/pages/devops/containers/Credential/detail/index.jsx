@@ -100,7 +100,6 @@ export default class CredentialDetail extends React.Component {
     const { params } = this.props.match
     this.store.setParams(params)
     this.store.fetchDetail()
-    this.store.getUsageDetail()
   }
 
   getOperations = () => [
@@ -129,7 +128,7 @@ export default class CredentialDetail extends React.Component {
       action: 'delete',
       onClick: () => {
         this.trigger('resource.delete', {
-          type: t('CREDENTIAL_SI'),
+          type: 'CREDENTIAL',
           detail: this.store.detail,
           success: () => {
             const { devops, workspace, cluster } = this.props.match.params
@@ -144,17 +143,17 @@ export default class CredentialDetail extends React.Component {
 
   getPipelineStatus = status => {
     const CONFIG = {
-      failed: { type: 'failure', label: t('Failure') },
-      pending: { type: 'running', label: t('Running') },
-      working: { type: 'running', label: t('Running') },
-      successful: { type: 'success', label: t('Success') },
+      failed: { type: 'failure', label: t('FAILED') },
+      pending: { type: 'running', label: t('RUNNING') },
+      working: { type: 'running', label: t('RUNNING') },
+      successful: { type: 'success', label: t('SUCCESSFUL') },
     }
 
     return { ...CONFIG[status] }
   }
 
   getAttrs = () => {
-    const { detail, usage } = this.store
+    const { detail } = this.store
     const status = get(
       detail,
       'annotations["credential.devops.kubesphere.io/syncstatus"]'
@@ -170,11 +169,7 @@ export default class CredentialDetail extends React.Component {
         value: detail.description,
       },
       {
-        name: t('Domain'),
-        value: usage.domain,
-      },
-      {
-        name: t('Sync Status'),
+        name: t('SYNC_STATUS'),
         value: <Status {...this.getPipelineStatus(status)} />,
       },
     ]
@@ -187,7 +182,6 @@ export default class CredentialDetail extends React.Component {
     const sideProps = {
       module: this.module,
       name: detail.id,
-      labels: detail.labels,
       desc: detail.description,
       operations: this.getOperations(),
       attrs: this.getAttrs(),

@@ -37,7 +37,7 @@ it('renders correctly', () => {
   const routes = [
     {
       name: 'resource-status',
-      title: 'Resource Status',
+      title: 'RESOURCE_STATUS',
       path: '/projects/:namespace/deployments/:name/resource-status',
     },
     {

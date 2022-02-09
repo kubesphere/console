@@ -105,25 +105,25 @@ export const dropDownItems = {
   },
   verb_filter: {
     icon: 'wrench',
-    text: t('verb'),
+    text: t('VERB'),
   },
   response_code_filter: {
     icon: 'logout',
-    text: t('Status Code'),
+    text: t('STATUS_CODE'),
   },
   user_filter: {
     icon: 'human',
-    text: t('Operation Account'),
+    text: t('OPERATOR'),
   },
   source_ip_search: {
     icon: 'ip',
-    text: t('Source IP'),
+    text: t('SOURCE_IP_ADDRESS'),
   },
 }
 
 export const queryModeOptions = [1, 0].map(mode => ({
   value: mode,
-  label: mode ? t('Exact Query') : t('Fuzzy Query'),
+  label: mode ? t('EXACT_QUERY') : t('FUZZY_QUERY'),
 }))
 
 export const getSecond = step => {
@@ -140,50 +140,50 @@ export const getSecond = step => {
 export const supportQueryParams = [
   {
     icon: 'appcenter',
-    title: t('Search Auditing Logs by', { field: t('WORKSPACE') }),
-    tips: t('Workspace Auditing Query Tip'),
+    title: t('SEARCH_BY_WORKSPACE'),
+    tips: t('AUDIT_LOG_WORKSPACE_TIP'),
     key: 'workspace_filter',
   },
   {
     icon: 'project',
-    title: t('Search Auditing Logs by', { field: t('PROJECT') }),
-    tips: t('Project Auditing Query Tip'),
+    title: t('SEARCH_BY_PROJECT'),
+    tips: t('AUDIT_LOG_PROJECT_TIP'),
     key: 'objectref_namespace_filter',
   },
   {
     icon: 'resource',
-    title: t('Search Auditing Logs by', { field: t('RESOURCE_TYPE') }),
-    tips: t('Resource Type Auditing Query Tip'),
+    title: t('SEARCH_BY_RESOURCE_TYPE'),
+    tips: t('AUDIT_LOG_RESOURCE_TYPE_TIP'),
     key: 'objectref_resource_filter',
   },
   {
     icon: 'strategy-group',
-    title: t('Search Auditing Logs by', { field: t('RESOURCE_NAME') }),
-    tips: t('Resource Name Auditing Query Tip'),
+    title: t('SEARCH_BY_RESOURCE_NAME'),
+    tips: t('AUDIT_LOG_RESOURCE_NAME_TIP'),
     key: 'objectref_name_filter',
   },
   {
     icon: 'wrench',
-    title: t('Search Auditing Logs by', { field: t('verb') }),
-    tips: t('Verb Auditing Query Tip'),
+    title: t('SEARCH_BY_VERB'),
+    tips: t('AUDIT_LOG_VERB_TIP'),
     key: 'verb_filter',
   },
   {
     icon: 'logout',
-    title: t('Search Auditing Logs by', { field: t('Status Code') }),
-    tips: t('Status Code Auditing Query Tip'),
+    title: t('SEARCH_BY_STATUS_CODE'),
+    tips: t('AUDIT_LOG_STATUS_CODE_TIP'),
     key: 'response_code_filter',
   },
   {
     icon: 'human',
-    title: t('Search Auditing Logs by', { field: t('Operation Account') }),
-    tips: t('Operation Account Auditing Query Tip'),
+    title: t('SEARCH_BY_OPERATOR'),
+    tips: t('AUDIT_LOG_OPERATOR_TIP'),
     key: 'user_filter',
   },
   {
     icon: 'ip',
-    title: t('Search Auditing Logs by', { field: t('Source IP') }),
-    tips: t('Source IP Auditing Query Tip'),
+    title: t('SEARCH_BY_SOURCE_IP_ADDRESS'),
+    tips: t('AUDIT_LOG_SOURCE_IP_ADDRESS_TIP'),
     key: 'source_ip_search',
   },
 ]

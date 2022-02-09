@@ -75,7 +75,6 @@ export default class DeleteModal extends React.Component {
     const typeKey = type || undefined
     const typeKeyLow = type ? `${type}_LOW` : undefined
     const typeKeyPl = type ? `${type}_PL` : undefined
-
     let tip =
       desc ||
       (resource && type

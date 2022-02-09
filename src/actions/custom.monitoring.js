@@ -38,14 +38,14 @@ export default {
           if (data.type === 'grafana') {
             delete data.type
 
-            request
-              .post(
-                `/kapis/monitoring.kubesphere.io/v1alpha3/clusterdashboards/${data.grafanaDashboardName}/template`,
-                data
-              )
+            store
+              .createGrafana(data, {
+                cluster,
+                namespace: namespace || get(data, 'metadata.namespace'),
+              })
               .then(() => {
                 Modal.close(modal)
-                Notify.success({ content: `${t('Created Successfully')}` })
+                Notify.success({ content: t('CREATE_SUCCESSFUL') })
                 success && success()
               })
           } else {
@@ -56,11 +56,10 @@ export default {
               })
               .then(() => {
                 Modal.close(modal)
-                Notify.success({ content: `${t('Created Successfully')}` })
+                Notify.success({ content: t('CREATE_SUCCESSFUL') })
                 success && success()
               })
           }
-
         },
         module,
         cluster,
@@ -78,7 +77,7 @@ export default {
         onOk: data => {
           set(data, 'metadata.resourceVersion', detail.resourceVersion)
           store.update(detail, data).then(() => {
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             success && success()
           })
         },

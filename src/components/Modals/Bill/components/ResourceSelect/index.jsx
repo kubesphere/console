@@ -44,7 +44,7 @@ export default class ResourceList extends Component {
 
     const options = Object.keys(selectOptions).map(key => {
       return {
-        label: `${t(METER_RESOURCE_TITLE[key])} ${t('Consumption')}`,
+        label: t(METER_RESOURCE_TITLE[key].toUpperCase().replace(/\s+/g, '_')),
         value: key,
       }
     })

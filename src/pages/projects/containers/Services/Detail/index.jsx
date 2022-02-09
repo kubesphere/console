@@ -49,7 +49,7 @@ export default class ServiceDetail extends React.Component {
   }
 
   get name() {
-    return 'Service'
+    return 'SERVICE'
   }
 
   get routing() {
@@ -94,7 +94,7 @@ export default class ServiceDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: this.fetchData,
         }),
@@ -125,7 +125,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'serviceMonitor',
       icon: 'linechart',
-      text: t('Service Monitoring Exporter'),
+      text: t('EDIT_MONITORING_EXPORTER'),
       action: 'edit',
       onClick: () =>
         this.trigger('service.monitor.edit', {
@@ -152,7 +152,7 @@ export default class ServiceDetail extends React.Component {
       action: 'delete',
       onClick: () =>
         this.trigger('service.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -184,7 +184,7 @@ export default class ServiceDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -195,17 +195,15 @@ export default class ServiceDetail extends React.Component {
         name: t('TYPE'),
         value: (
           <span>
-            {`${
-              serviceType
-                ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                : t('CUSTOM_SERVICE')
-            }`}
-            <span className="text-desc"> ({detail.type})</span>
+            {serviceType
+              ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
+              : t('CUSTOM_SERVICE')}
+            <span className="text-desc"> ({t(detail.type)})</span>
           </span>
         ),
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: detail.app,
       },
       {
@@ -217,11 +215,11 @@ export default class ServiceDetail extends React.Component {
         value: externalIP,
       },
       {
-        name: t('Session Affinity'),
+        name: t('SESSION_AFFINITY'),
         value: detail.sessionAffinity,
       },
       {
-        name: t('Selector'),
+        name: t('SELECTOR'),
         value: joinSelector(detail.selector),
       },
       {
@@ -229,15 +227,15 @@ export default class ServiceDetail extends React.Component {
         value: this.renderDNS(),
       },
       {
-        name: t('Endpoint'),
+        name: t('ENDPOINT'),
         value: this.renderEndpoints(),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('UPDATED_AT'),
+        name: t('UPDATE_TIME_TCAP'),
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
@@ -312,7 +310,7 @@ export default class ServiceDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(`${this.name}s`),
+          label: t(`${this.name}_PL`),
           url: this.listUrl,
         },
       ],

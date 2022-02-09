@@ -26,10 +26,11 @@ import { getNodeStatus } from 'utils/node'
 import { getValueByUnit } from 'utils/monitoring'
 import EdgeNodeStore from 'stores/edgenode'
 import NodeMonitoringStore from 'stores/monitoring/node'
+import KubeCtlModal from 'components/Modals/KubeCtl'
 
 import { withClusterList, ListPage } from 'components/HOCs/withList'
 
-import { Avatar, Status, Text } from 'components/Base'
+import { Avatar, Status, Text, Modal } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 
@@ -83,6 +84,16 @@ export default class EdgeNodes extends React.Component {
         onClick: item => store.cordon(item).then(routing.query),
       },
       {
+        key: 'terminal',
+        icon: 'terminal',
+        text: t('TERMINAL'),
+        action: 'edit',
+        show: item =>
+          item.importStatus === 'success' && this.getReady(item),
+        onClick: item => 
+          this.handleOpenTerminal(item),
+      },
+      {
         key: 'logs',
         icon: 'eye',
         text: t('VIEW_LOG'),
@@ -114,7 +125,7 @@ export default class EdgeNodes extends React.Component {
     actions.push({
       key: 'add',
       type: 'control',
-      text: t('ADD_NODE'),
+      text: t('ADD'),
       action: 'create',
       onClick: () =>
         trigger('node.edge.add', {
@@ -130,7 +141,7 @@ export default class EdgeNodes extends React.Component {
         {
           key: 'taint',
           type: 'default',
-          text: t('MANAGE_TAINT'),
+          text: t('EDIT_TAINTS'),
           action: 'edit',
           onClick: () =>
             trigger('node.taint.batch', {
@@ -171,6 +182,25 @@ export default class EdgeNodes extends React.Component {
     return taints.some(
       taint => taint.key === 'node.kubernetes.io/unschedulable'
     )
+  }
+
+  getReady = record => {
+    const conditions = record.conditions
+
+    return conditions.some(
+      condition => condition.type == 'Ready' && condition.status == "True"
+    )
+  }
+
+  handleOpenTerminal= record => {
+    const modal = Modal.open({
+      onOk: () => {
+        Modal.close(modal)
+      },
+      modal: KubeCtlModal,
+      title: record.name,
+      nodename: record.name,
+    })
   }
 
   getLastValue = (node, type, unit) => {

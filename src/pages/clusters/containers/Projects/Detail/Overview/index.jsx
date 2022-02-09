@@ -53,10 +53,10 @@ export default class Overview extends React.Component {
     const { clusters = [], name } = this.fedStore.detail
     const clusterMap = keyBy(this.clusterStore.list.data, 'name')
     return (
-      <Panel title={t('Project Placement')}>
+      <Panel title={t('CLUSTER_PL')}>
         <Alert
           type="warning"
-          message={t('MULTI_CLUSER_PROJECT_TIP')}
+          message={t('MULTI_CLUSTER_PROJECT_TIP')}
           hideIcon
         />
         <div className={styles.clusters}>

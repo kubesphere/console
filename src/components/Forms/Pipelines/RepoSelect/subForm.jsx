@@ -313,7 +313,7 @@ export default class RepoSelectForm extends React.Component {
           <a className="custom-icon" onClick={this.handleGoBack}>
             <BackIcon />
           </a>
-          {t('Select Code Repository')}
+          {t('SELECT_CODE_REPOSITORY')}
         </div>
         <div className={styles.contentWrapper}>
           {this.renderTypes()}

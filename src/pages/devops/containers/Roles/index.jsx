@@ -67,7 +67,7 @@ export default class Secrets extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -79,7 +79,7 @@ export default class Secrets extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -102,7 +102,6 @@ export default class Secrets extends React.Component {
             type: name,
             namespace: this.devops,
             cluster: this.cluster,
-            workspace: this.props.match.params.workspace,
             success: routing.query,
           }),
       },
@@ -150,7 +149,7 @@ export default class Secrets extends React.Component {
         width: '40%',
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),
@@ -172,7 +171,7 @@ export default class Secrets extends React.Component {
     })
 
   get emptyProps() {
-    return { desc: t('DEVOPS_PROJECT_ROLES_DESC') }
+    return { desc: t('DEVOPS_PROJECT_ROLE_EMPTY_DESC') }
   }
 
   render() {

@@ -62,6 +62,7 @@ export default class ResourceMonitorModal extends React.Component {
         ? this.workspaceStore.cluster
         : get(props, 'cluster', ''),
       namespace: get(props.detail, 'namespace', 'all'),
+      ...MonitorOptions,
     }
 
     this.projectStore = new ProjectStore()
@@ -157,12 +158,28 @@ export default class ResourceMonitorModal extends React.Component {
   }
 
   handleSubmit = () => {
+    const { times, step } = this.state
     const formData = this.formRef.current && this.formRef.current.getData()
     this.setState(formData, () => {
       this.fetchData({
         ...formData,
-        ...MonitorOptions,
+        times,
+        step,
       })
+    })
+  }
+
+  onCancel = () => {
+    this.setState({
+      ...MonitorOptions,
+    })
+    this.props.onCancel()
+  }
+
+  updateMonitorOptions = ({ times, step }) => {
+    this.setState({
+      times,
+      step,
     })
   }
 
@@ -278,10 +295,7 @@ export default class ResourceMonitorModal extends React.Component {
         title: t('TIME'),
         dataIndex: 'time',
         width: '30%',
-        render: time =>
-          `${getLocalTime(time).format(t('MMMM Do YYYY'))} ${getLocalTime(
-            time
-          ).format('HH:mm')}`,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         key: 'usage',
@@ -289,7 +303,6 @@ export default class ResourceMonitorModal extends React.Component {
         dataIndex: 'value',
       },
     ]
-
     return (
       <div className={styles.table}>
         <div className={styles.box}>
@@ -307,7 +320,8 @@ export default class ResourceMonitorModal extends React.Component {
   }
 
   render() {
-    const { visible, onCancel } = this.props
+    const { times, step } = this.state
+    const { visible } = this.props
     const { isLoading, isRefreshing } = this.monitorStore.resourceMetrics
 
     if (!visible) return null
@@ -316,10 +330,12 @@ export default class ResourceMonitorModal extends React.Component {
       <ControllerModal
         visible={visible}
         onFetch={this.fetchData}
-        onCancel={onCancel}
+        onCancel={this.onCancel}
         loading={isLoading}
         refreshing={isRefreshing}
-        {...MonitorOptions}
+        times={times}
+        step={step}
+        updateMonitorOptions={this.updateMonitorOptions}
       >
         <div className={styles.content}>
           {this.renderFilterForm()}

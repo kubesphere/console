@@ -247,6 +247,7 @@ export const getAreaChartOps = ({
 }) => {
   const seriesData = isArray(data) ? data : []
   const valuesData = seriesData.map(result => get(result, 'values') || [])
+
   const unit = unitType
     ? getSuitableUnit(flatten(valuesData), unitType)
     : rest.unit

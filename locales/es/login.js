@@ -15,44 +15,23 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
   'Log In': 'Log In',
   'Please Log In': 'Please Log In',
   'Username or Email': 'Username or Email',
   Captcha: 'Captcha',
   'User does not exist': 'User does not exist',
-  'Wrong username or password, please try again':
-    'Wrong username or password, please try again',
-  'Unable to access the backend services':
-    'Unable to access the backend services',
+  'Unable to access the backend services': 'Unable to access the backend services',
   'Unable to access the api server': 'Unable to access the api server',
-
   'Internal Server Error': 'Internal Server Error',
   'Please input the correct captcha': 'Please input the correct captcha',
-
   Reload: 'Reload',
   'Reload Captcha': 'Reload Captcha',
-
-  INTERNAL_SERVER_ERROR_TIP:
-    'An unepected error seems to have occurred. Please refresh your page.',
-  'Too many failed login attempts, please wait!':
-    'Too many failed login attempts, please wait!',
-  'Log In with {title}': 'Log In with {title}',
-
-  'Please input username or email': 'Please input username or email',
-  PASSWORD_EMPTY_DESC: 'Please enter a password.',
+  'Too many failed login attempts, please wait!': 'Too many failed login attempts, please wait!',
   'Please input captch': 'Please input captch',
   'Please confirm your account info': 'Please confirm your account info',
   'Please input username': 'Please enter your username',
-
   'Please reset your password': 'Please reset your password',
-
   'Modify Later': 'Modify Later',
-
-  'Your password must meet the following requirements':
-    'Your password must meet the following requirements',
-
-  CONFIRM_PASSWORD_TIP:
-    'Since you are logging in for the first time, please reset your password.',
-}
+  'Your password must meet the following requirements': 'Your password must meet the following requirements'
+};

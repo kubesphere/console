@@ -69,7 +69,7 @@ export default class Jobs extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_INFO'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -147,7 +147,7 @@ export default class Jobs extends React.Component {
         render: (status, record) => <JobStatus data={record} module={module} />,
       },
       {
-        title: t('UPDATED_AT'),
+        title: t('UPDATE_TIME_TCAP'),
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),

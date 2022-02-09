@@ -28,17 +28,17 @@ export default [
     required: true,
   },
   {
-    title: 'GRAYSCALE_RELEASE_COMPONENT_PL',
+    title: 'SERVICE_SETTINGS',
     component: GrayReleaseComponents,
     required: true,
   },
   {
-    title: 'GRAYSCALE_RELEASE_VERSION_TCAP',
+    title: 'NEW_VERSION_SETTINGS',
     component: GrayReleaseVersion,
     required: true,
   },
   {
-    title: 'STRATEGY_CONFIGURATIONS_TCAP',
+    title: 'STRATEGY_SETTINGS',
     component: PolicyConfig,
     required: true,
   },

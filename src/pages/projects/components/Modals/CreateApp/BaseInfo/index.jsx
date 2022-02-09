@@ -21,7 +21,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Form, Input, Select, TextArea } from '@kube-design/components'
 import { PATTERN_NAME, PATTERN_SERVICE_VERSION } from 'utils/constants'
-import { updateFederatedAnnotations, generateId, learnMoreTip } from 'utils'
+import { updateFederatedAnnotations, generateId } from 'utils'
 
 import styles from './index.scss'
 
@@ -117,7 +117,6 @@ export default class BaseInfo extends React.Component {
 
   render() {
     const { formRef, serviceMeshEnable } = this.props
-    const htmlDes = t.html('APPLICATION_GOVERNANCE_DESC')
 
     return (
       <div className={styles.wrapper}>
@@ -136,7 +135,7 @@ export default class BaseInfo extends React.Component {
               },
               {
                 pattern: PATTERN_NAME,
-                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC'),
               },
               { validator: this.nameValidator },
             ]}
@@ -165,10 +164,11 @@ export default class BaseInfo extends React.Component {
           </Form.Item>
           <Form.Item
             label={t('APPLICATION_GOVERNANCE')}
-            desc={learnMoreTip(htmlDes)}
+            desc={t('APPLICATION_GOVERNANCE_DESC')}
           >
             <Select
               name="metadata.annotations['servicemesh.kubesphere.io/enabled']"
+              placeholder=" "
               options={this.governances}
               onChange={this.handleGovernanceChange}
               disabled={!serviceMeshEnable}

@@ -21,7 +21,7 @@ import { reaction, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { isEmpty, has, get, throttle } from 'lodash'
+import { isEqual, isEmpty, has, get, throttle } from 'lodash'
 import {
   Button,
   Icon,
@@ -133,10 +133,19 @@ export default class PodsCard extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { detail, details, isFederated } = this.props
+    const needUpdate = !isEqual(
+      Object.keys(details).map(item => details[item]['name']),
+      Object.keys(prevProps.details).map(
+        item => prevProps.details[item]['name']
+      )
+    )
+
     if (
       detail !== prevProps.detail ||
       (isFederated &&
-        Object.keys(details).length !== Object.keys(prevProps.details).length)
+        Object.keys(details).length !==
+          Object.keys(prevProps.details).length) ||
+      needUpdate
     ) {
       const selectCluster = isFederated
         ? get(this.props, 'clusters[0]')
@@ -329,7 +338,7 @@ export default class PodsCard extends React.Component {
         <InputSearch
           className={styles.search}
           name="search"
-          placeholder={t('Filter by keyword')}
+          placeholder={t('SEARCH_BY_NAME')}
           onSearch={this.handleSearch}
         />
         <div className={styles.actions}>
@@ -347,7 +356,7 @@ export default class PodsCard extends React.Component {
     const content = (
       <div className={styles.body}>
         {isEmpty(data) ? (
-          <div className={styles.empty}>{t('RESOURCE_NOT_FOUND')}</div>
+          <div className={styles.empty}>{t('NO_RESOURCE_FOUND')}</div>
         ) : (
           data.map(pod => (
             <PodItem
@@ -396,7 +405,7 @@ export default class PodsCard extends React.Component {
       <Panel
         className={classnames(styles.main, className)}
         title={t(title)}
-        empty={t('NOT_AVAILABLE', { resource: t('Pod') })}
+        empty={t('EMPTY_WRAPPER', { resource: t('POD') })}
         isEmpty={isEmpty(data)}
       >
         {!hideHeader && this.renderHeader()}

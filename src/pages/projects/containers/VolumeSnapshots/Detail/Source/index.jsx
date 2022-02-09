@@ -42,7 +42,7 @@ export default class VolumeSnapshotSource extends Component {
               <Attr title={snapshotSourceName} value={t('NAME')} />
             </div>
             <div>
-              <Attr title={snapshotClassName} value={t('Storage Class')} />
+              <Attr title={snapshotClassName} value={t('STORAGE_CLASS_SCAP')} />
             </div>
             <div />
           </div>

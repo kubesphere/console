@@ -54,6 +54,9 @@ export default class Home extends React.Component {
 
     this.cateRef = React.createRef()
     this.appRef = React.createRef()
+    this.state = {
+      tabName: t(`APP_CATE_All`),
+    }
   }
 
   get queryParams() {
@@ -66,7 +69,7 @@ export default class Home extends React.Component {
     await fetchList({ noLimit: true })
     list.data.unshift({
       category_id: 'all',
-      name: t('All'),
+      name: t('ALL'),
       description: 'templet',
     })
     await this.fetchApps()
@@ -141,7 +144,12 @@ export default class Home extends React.Component {
     }
   }
 
-  handleClickCate = category => {
+  handleClickCate = (category, tabName) => {
+    this.setState({
+      tabName: t(`APP_CATE_${tabName.toUpperCase()}`, {
+        defaultValue: tabName,
+      }),
+    })
     this.props.rootStore.query({ category })
   }
 
@@ -164,7 +172,7 @@ export default class Home extends React.Component {
               onSearch={this.handleSearch}
               value={keyword}
               className={styles.search}
-              placeholder={t('Find an app')}
+              placeholder={t('SEARCH_BY_NAME')}
             />
           </LevelRight>
         </Level>
@@ -179,7 +187,7 @@ export default class Home extends React.Component {
     return (
       <div className={styles.cates} ref={this.cateRef}>
         <div className={styles.group}>
-          <p className={styles.title}>{t('Discoveries')}</p>
+          <p className={styles.title}>{t('DISCOVER')}</p>
           <ul className={styles.menu}>
             <li
               key={cateLatest}
@@ -189,12 +197,12 @@ export default class Home extends React.Component {
               onClick={() => this.handleClickCate(cateLatest)}
             >
               <Icon name="cart" size={16} type="dark" className={styles.icon} />
-              <span className={styles.name}>{t('New Apps')}</span>
+              <span className={styles.name}>{t('NEW_APPS')}</span>
             </li>
           </ul>
         </div>
         <div className={styles.group}>
-          <p className={styles.title}>{t('Categories')}</p>
+          <p className={styles.title}>{t('APP_CATEGORY_PL')}</p>
           <ul className={styles.menu}>
             {data.map(({ category_id, name, description }, idx) => (
               <li
@@ -202,7 +210,7 @@ export default class Home extends React.Component {
                 className={classnames(styles.item, {
                   [styles.active]: category === category_id,
                 })}
-                onClick={() => this.handleClickCate(category_id)}
+                onClick={() => this.handleClickCate(category_id, name)}
               >
                 <Icon
                   name={category_id === uncateKey ? 'tag' : description}
@@ -227,6 +235,7 @@ export default class Home extends React.Component {
     const { list, allApps } = this.appStore
     const { isLoading, total } = list
     const { workspace, namespace, cluster } = this.queryParams
+    const { tabName } = this.state
 
     return (
       <div className={styles.wrapper}>
@@ -240,7 +249,7 @@ export default class Home extends React.Component {
           <AppList
             className={styles.apps}
             appRef={this.appRef}
-            title={t('All')}
+            title={tabName}
             apps={allApps.slice()}
             isLoading={isLoading}
             total={total}

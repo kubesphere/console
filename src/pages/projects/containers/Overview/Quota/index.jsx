@@ -71,7 +71,7 @@ export default class Quota extends Component {
           description={t('PROJECT_QUOTAS_DESC')}
         />
         <Button type="control" onClick={this.showSetting}>
-          {t('EDIT_QUOTA')}
+          {t('EDIT_QUOTAS')}
         </Button>
       </Panel>
     )

@@ -18,7 +18,7 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { Icon } from '@kube-design/components'
+import { Icon, Tooltip } from '@kube-design/components'
 import { observable, action } from 'mobx'
 import { observer } from 'mobx-react'
 import { ReactComponent as BackIcon } from 'assets/back.svg'
@@ -395,7 +395,21 @@ export default class StepsEditor extends React.Component {
                 <Icon name={taskIcon[task] || 'cdn'} size={24} />
               </div>
               <div className={styles.taskInfo}>
-                <div className={styles.taskName}>{t(task)}</div>
+                <div className={styles.taskName}>
+                  <span>{t(task)}</span>
+                  {task === 'kubernetesDeploy' && (
+                    <Tooltip content={t('KUBERNETES_DEPLOY_DEPRECATED_TIP')}>
+                      <Icon
+                        name="exclamation"
+                        size={16}
+                        color={{
+                          primary: '#fff',
+                          secondary: '#F5A623',
+                        }}
+                      />
+                    </Tooltip>
+                  )}
+                </div>
                 <div className={styles.desc}>{this.taskDescs[task] || '-'}</div>
               </div>
             </div>

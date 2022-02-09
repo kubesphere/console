@@ -63,7 +63,7 @@ export default class PasswordSetting extends React.Component {
 
     if (value !== this.state.password) {
       callback({
-        message: t('The password entered twice must be the same'),
+        message: t('PASSWORD_NOT_SAME_DESC'),
         field: rule.field,
       })
     }
@@ -79,7 +79,7 @@ export default class PasswordSetting extends React.Component {
     const { formRef } = this.props
     return (
       <div className={styles.wrapper}>
-        <div className="h4">{t('Password Setting')}</div>
+        <div className="h4">{t('PASSWORD_SETTINGS')}</div>
         <Form
           data={this.state.formData}
           ref={formRef}
@@ -93,17 +93,15 @@ export default class PasswordSetting extends React.Component {
           />
           <Form.Item
             className={styles.password}
-            label={t('Current Password')}
-            desc={t(
-              'You must enter the correct current password to change to a new password.'
-            )}
+            label={t('CURRENT_PASSWORD')}
+            desc={t('ENTER_CURRENT_PASSWORD_DESC')}
             rules={[
-              { required: true, message: t('Please input current password') },
+              { required: true, message: t('ENTER_CURRENT_PASSWORD_TIP') },
             ]}
           >
             <InputPassword
               name="currentPassword"
-              placeholder={t('Please input current password')}
+              placeholder=" "
               autoComplete="cur-password"
             />
           </Form.Item>
@@ -114,7 +112,7 @@ export default class PasswordSetting extends React.Component {
           />
           <Form.Item
             className={styles.password}
-            label={t('New Password')}
+            label={t('NEW_PASSWORD')}
             rules={[
               { required: true, message: t('PASSWORD_EMPTY_DESC') },
               {
@@ -125,7 +123,7 @@ export default class PasswordSetting extends React.Component {
           >
             <InputPassword
               name="password"
-              placeholder={t('PASSWORD_EMPTY_DESC')}
+              placeholder=" "
               autoComplete="new-password"
               onChange={this.handlePassswordChange}
               tipClassName={styles.dropdown}
@@ -134,15 +132,15 @@ export default class PasswordSetting extends React.Component {
           </Form.Item>
           <Form.Item
             className={styles.password}
-            label={t('Repeat the New Password')}
+            label={t('CONFIRM_PASSWORD')}
             rules={[
-              { required: true, message: t('Please repeat the new password') },
+              { required: true, message: t('CONFIRM_PASSWORD_TIP') },
               { validator: this.passwordValidator },
             ]}
           >
             <InputPassword
               name="rePassword"
-              placeholder={t('Please repeat the new password')}
+              placeholder=" "
               autoComplete="new-password"
             />
           </Form.Item>

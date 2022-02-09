@@ -119,7 +119,7 @@ export default class ServiceSettings extends React.Component {
 
   renderTypeSelect() {
     return (
-      <Form.Item label={t('INTERNAL_ACCESS_METHOD')}>
+      <Form.Item label={t('INTERNAL_ACCESS_MODE')}>
         <TypeSelect
           className="margin-b12"
           value={this.state.serviceType}
@@ -151,7 +151,7 @@ export default class ServiceSettings extends React.Component {
 
   renderPorts() {
     return (
-      <Form.Group label={t('PORTS')} desc={t('SERVICE_PORTS_DESC')}>
+      <Form.Group label={t('PORT_PL')} desc={t('SERVICE_PORTS_DESC')}>
         <Form.Item
           rules={[
             { required: true, message: t('PORT_EMPTY') },

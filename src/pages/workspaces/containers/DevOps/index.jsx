@@ -55,6 +55,8 @@ export default class DevOps extends React.Component {
         action: 'delete',
         onClick: item => {
           trigger('resource.delete', {
+            title: t('DELETE_DEVOPS_PROJECT'),
+            desc: t.html('DELETE_DEVOPS_PROJECT_TIP', { resource: item.name }),
             type: name,
             resource: item.name,
             detail: item,
@@ -112,7 +114,7 @@ export default class DevOps extends React.Component {
           action: 'delete',
           onClick: () => {
             trigger('devops.batch.delete', {
-              type: t(tableProps.name),
+              type: tableProps.name,
               rowKey: tableProps.rowKey,
             })
           },
@@ -182,7 +184,7 @@ export default class DevOps extends React.Component {
       render: creator => creator || '-',
     },
     {
-      title: t('CREATED_AT'),
+      title: t('CREATION_TIME_TCAP'),
       dataIndex: 'createTime',
       isHideable: true,
       sorter: true,

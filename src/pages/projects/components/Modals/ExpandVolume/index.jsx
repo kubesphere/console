@@ -43,8 +43,8 @@ export default class ExpandVolume extends Component {
     min: 0,
     max: 1024,
     unit: 'Gi',
-    title: 'Expand Volume',
-    okText: 'Expand',
+    title: 'EXPAND_VOLUME',
+    okText: 'OK',
     shouldAlertVisible: false,
   }
 
@@ -90,7 +90,7 @@ export default class ExpandVolume extends Component {
       <Alert
         className={styles.alert}
         type="warning"
-        title={t('Expand Volume')}
+        title={t('EXPAND_VOLUME')}
         icon="exclamation"
         message={t('VOLUME_EXPAND_TIPS')}
       />

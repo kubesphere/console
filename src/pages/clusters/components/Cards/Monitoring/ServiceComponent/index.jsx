@@ -136,7 +136,14 @@ export default class ServiceComponentStatusTab extends React.Component {
         type: 'area',
         title: 'REQUEST_LATENCY',
         unit: 'ms',
-        legend: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT', 'TOTAL_AVERAGE'],
+        legend: [
+          'REST_GET',
+          'REST_POST',
+          'REST_PATCH',
+          'REST_DELETE',
+          'REST_PUT',
+          'TOTAL_AVERAGE',
+        ],
         data: [
           this.getVerbData('GET'),
           this.getVerbData('POST'),

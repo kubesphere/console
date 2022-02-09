@@ -80,7 +80,11 @@ const MeterDetailCard = ({
                 <div>{value}</div>
                 <p>
                   <span>
-                    {t(METER_RESOURCE_TITLE[key])} {t('Consumption')}
+                    {t(
+                      METER_RESOURCE_TITLE[key]
+                        .toUpperCase()
+                        .replace(/\s+/g, '_')
+                    )}
                   </span>
                   <span>({get(data[key], 'unit.label', '-')})</span>
                 </p>

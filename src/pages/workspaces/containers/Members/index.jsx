@@ -32,7 +32,7 @@ import { getLocalTime } from 'utils'
   store: new UserStore(),
   module: 'users',
   authKey: 'members',
-  name: 'MEMBER',
+  name: 'WORKSPACE_MEMBER',
 })
 export default class Accounts extends React.Component {
   roleStore = new RoleStore('workspaceroles')
@@ -62,7 +62,7 @@ export default class Accounts extends React.Component {
       {
         key: 'modify',
         icon: 'pen',
-        text: t('CHANGE_MEMBER_ROLE'),
+        text: t('CHANGE_ROLE'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -77,7 +77,7 @@ export default class Accounts extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('REMOVE_MEMBER'),
+        text: t('REMOVE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
@@ -98,7 +98,7 @@ export default class Accounts extends React.Component {
         {
           key: 'invite',
           type: 'control',
-          text: t('INVITE_MEMBER'),
+          text: t('INVITE'),
           action: 'create',
           onClick: () =>
             trigger('member.invite', {
@@ -116,7 +116,7 @@ export default class Accounts extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Remove Members'),
+          text: t('REMOVE'),
           action: 'delete',
           onClick: () =>
             trigger('member.remove.batch', {
@@ -130,7 +130,7 @@ export default class Accounts extends React.Component {
         name: record.name,
       }),
       emptyProps: {
-        desc: t('INVITE_WORKSPACE_MEMBER_DESC'),
+        desc: t('WORKSPACE_MEMBER_EMPTY_DESC'),
       },
     }
   }

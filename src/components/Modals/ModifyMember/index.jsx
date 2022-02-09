@@ -77,7 +77,7 @@ export default class ModifyMemberModal extends React.Component {
     return (
       <Modal.Form
         width={691}
-        title={t('CHANGE_MEMBER_ROLE')}
+        title={t('CHANGE_ROLE')}
         icon="role"
         onOk={this.handleOk}
         onCancel={onCancel}

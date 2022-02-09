@@ -128,7 +128,7 @@ export default class CreateModal extends React.Component {
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.showEditAuthorization}
-        okText={t('EDIT_PERMISSION')}
+        okText={t('EDIT_PERMISSIONS')}
         visible={visible}
       >
         <Form.Item
@@ -139,7 +139,7 @@ export default class CreateModal extends React.Component {
             { required: true, message: t('NAME_EMPTY_DESC') },
             {
               pattern: PATTERN_NAME,
-              message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
+              message: t('INVALID_NAME_DESC'),
             },
             { validator: this.roleNameValidator },
           ]}

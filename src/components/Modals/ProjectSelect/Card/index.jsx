@@ -55,7 +55,8 @@ export default class ProjectCard extends React.Component {
       icon = 'project'
     }
 
-    const isTerminating = data.status === 'Terminating'
+    const isTerminating =
+      data.status === 'Terminating' || data.status === 'Pending'
     name = (
       <div className={styles.name}>{isTerminating ? name : <a>{name}</a>}</div>
     )
@@ -66,7 +67,7 @@ export default class ProjectCard extends React.Component {
       { title: admin || '-', description: t('CREATOR') },
       {
         title: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
-        description: t('CREATED_AT'),
+        description: t('CREATION_TIME'),
       },
     ]
 

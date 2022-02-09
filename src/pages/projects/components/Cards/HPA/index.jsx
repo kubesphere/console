@@ -73,29 +73,29 @@ export default class HPACard extends React.Component {
     return [
       {
         icon: 'chevron-down',
-        name: t('Min Replicas Number'),
+        name: t('MINIMUM_REPLICAS'),
         value: minReplicas,
       },
       {
         icon: 'chevron-up',
-        name: t('Max Replicas Number'),
+        name: t('MAXIMUM_REPLICAS'),
         value: maxReplicas,
       },
       {
         icon: 'cpu',
-        name: t('Target Utilization'),
+        name: t('TARGET_CPU_USAGE'),
         value:
           isUndefined(cpuTargetUtilization) || cpuTargetUtilization === ''
-            ? t('None')
+            ? t('NONE')
             : `${cpuTargetUtilization}%`,
         current: `${cpuCurrentUtilization}%`,
       },
       {
         icon: 'memory',
-        name: t('Target Usage'),
+        name: t('TARGET_MEMORY_USAGE'),
         value:
           isUndefined(memoryTargetValue) || memoryTargetValue === ''
-            ? t('None')
+            ? t('NONE')
             : memoryTargetValue,
         current: this.getValue(
           String(memoryCurrentValue).endsWith('m')
@@ -111,7 +111,7 @@ export default class HPACard extends React.Component {
     {
       key: 'cancel',
       icon: 'close',
-      text: t('Cancel'),
+      text: t('CANCEL'),
       onClick: this.handleCancel,
     },
   ]
@@ -161,7 +161,7 @@ export default class HPACard extends React.Component {
             {name}
           </div>
           <p className={styles.value}>
-            {value} {current && `(${t('Current')} ${current})`}
+            {current ? t('TARGET_CURRENT', { target: value, current }) : value}
           </p>
         </div>
       </div>
@@ -179,14 +179,14 @@ export default class HPACard extends React.Component {
 
   render() {
     const { className, loading } = this.props
-    const title = this.props.title || t('Horizontal Pod Autoscaling')
+    const title = this.props.title || t('AUTOSCALING')
 
     return (
       <Card
         className={classnames(styles.main, className)}
         title={title}
         operations={this.renderOperations()}
-        empty={t('NOT_ENABLE', { resource: t('Horizontal Pod Autoscaling') })}
+        empty={t('NOT_ENABLE', { resource: t('AUTOSCALING') })}
         loading={loading}
       >
         {this.renderContent()}

@@ -48,7 +48,7 @@ export default class DeploymentDetail extends React.Component {
   }
 
   get name() {
-    return 'Deployment'
+    return 'DEPLOYMENT'
   }
 
   get listUrl() {
@@ -89,11 +89,11 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -101,7 +101,7 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'rollBack',
       icon: 'timed-task',
-      text: t('Revision Rollback'),
+      text: t('ROLL_BACK'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.revision.rollback', {
@@ -112,7 +112,7 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'editHpa',
       icon: 'firewall',
-      text: t('Horizontal Pod Autoscaling'),
+      text: t('EDIT_AUTOSCALING'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.hpa.edit', {
@@ -123,7 +123,7 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'editConfigTemplate',
       icon: 'storage',
-      text: t('Edit Config Template'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.template.edit', {
@@ -147,7 +147,7 @@ export default class DeploymentDetail extends React.Component {
     {
       key: 'redeploy',
       icon: 'restart',
-      text: t('REDEPLOY'),
+      text: t('RECREATE'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.redeploy', {
@@ -162,7 +162,7 @@ export default class DeploymentDetail extends React.Component {
       action: 'delete',
       onClick: () =>
         this.trigger('workload.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -179,7 +179,7 @@ export default class DeploymentDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
@@ -187,15 +187,15 @@ export default class DeploymentDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: detail.app,
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('UPDATED_AT'),
+        name: t('UPDATE_TIME_TCAP'),
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
@@ -220,7 +220,7 @@ export default class DeploymentDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('DEPLOYMENTS'),
+          label: t('DEPLOYMENT_PL'),
           url: this.listUrl,
         },
       ],

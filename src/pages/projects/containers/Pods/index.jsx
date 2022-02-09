@@ -27,7 +27,7 @@ import { withProjectList, ListPage } from 'components/HOCs/withList'
 import StatusReason from 'projects/components/StatusReason'
 
 import { getLocalTime } from 'utils'
-import { POD_STATUS, ICON_TYPES } from 'utils/constants'
+import { POD_STATUS, ICON_TYPES, PODS_STATUS } from 'utils/constants'
 
 import PodStore from 'stores/pod'
 
@@ -49,7 +49,7 @@ export default class Pods extends React.Component {
       {
         key: 'viewYaml',
         icon: 'eye',
-        text: t('View YAML'),
+        text: t('VIEW_YAML'),
         action: 'view',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -96,6 +96,13 @@ export default class Pods extends React.Component {
     return desc
   }
 
+  getPodsStatus() {
+    return PODS_STATUS.map(status => ({
+      text: t(status.text),
+      value: status.value,
+    }))
+  }
+
   getColumns = () => {
     const { getSortOrder } = this.props
     return [
@@ -106,6 +113,16 @@ export default class Pods extends React.Component {
         sortOrder: getSortOrder('name'),
         search: true,
         render: this.renderAvatar,
+      },
+      {
+        title: t('STATUS'),
+        dataIndex: 'status',
+        filters: this.getPodsStatus(),
+        isHideable: true,
+        search: true,
+        render: (_, { podStatus }) => (
+          <span>{t(podStatus.type.toUpperCase())}</span>
+        ),
       },
       {
         title: t('Node'),
@@ -121,14 +138,14 @@ export default class Pods extends React.Component {
         width: '15%',
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         search: true,
         width: '15%',
       },
       {
-        title: t('UPDATED_AT'),
+        title: t('UPDATE_TIME_TCAP'),
         dataIndex: 'startTime',
         sorter: true,
         sortOrder: getSortOrder('startTime'),
@@ -190,6 +207,7 @@ export default class Pods extends React.Component {
           {...tableProps}
           itemActions={this.itemActions}
           columns={this.getColumns()}
+          hideColumn={['status']}
           onCreate={null}
         />
       </ListPage>

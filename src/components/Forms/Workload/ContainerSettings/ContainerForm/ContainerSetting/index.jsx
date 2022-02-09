@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { get, isEmpty } from 'lodash'
-import { generateId, parseDockerImage } from 'utils'
+import { generateId, parseDockerImage, gpuLimitsArr } from 'utils'
 
 import { PATTERN_NAME } from 'utils/constants'
 
@@ -33,7 +33,6 @@ import {
 } from '@kube-design/components'
 import { ResourceLimit } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
-
 import ImageInput from './ImageInput'
 
 import styles from './index.scss'
@@ -49,7 +48,6 @@ export default class ContainerSetting extends React.Component {
     return {
       requests: limitRange.defaultRequest || {},
       limits: limitRange.default || {},
-      gpu: limitRange.gpu || {},
     }
   }
 
@@ -80,6 +78,10 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
+  getGpuLimit() {
+    return gpuLimitsArr(this.props.workspaceQuota)
+  }
+
   get workspaceLimitProps() {
     const { workspaceQuota } = this.props
     return !isEmpty(workspaceQuota)
@@ -92,7 +94,7 @@ export default class ContainerSetting extends React.Component {
             cpu: get(workspaceQuota, 'requests.cpu'),
             memory: get(workspaceQuota, 'requests.memory'),
           },
-          limitType: 'project',
+          gpuLimit: this.getGpuLimit(),
         }
       : {}
   }

@@ -25,16 +25,16 @@ import ResourceStatus from './ResourceStatus'
 export default path => [
   {
     path: `${path}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     component: ResourceStatus,
     exact: true,
   },
   {
     path: `${path}/metadata`,
-    title: 'Metadata',
+    title: 'METADATA',
     component: Metadata,
     exact: true,
   },
-  { path: `${path}/events`, title: 'Events', component: Events, exact: true },
+  { path: `${path}/events`, title: 'EVENT_PL', component: Events, exact: true },
   getIndexRoute({ path, to: `${path}/resource-status`, exact: true }),
 ]

@@ -49,7 +49,7 @@ export default {
           }
 
           Modal.close(modal)
-          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
           success && success(`/clusters/${name}`)
         },
         module,

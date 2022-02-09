@@ -79,7 +79,7 @@ export default class DevOpsEditModal extends React.Component {
     return (
       <Modal.Form
         width={691}
-        title={t('EDIT_INFO')}
+        title={t('EDIT_INFORMATION')}
         icon="pen"
         data={detail}
         onOk={this.handleOk}
@@ -88,7 +88,7 @@ export default class DevOpsEditModal extends React.Component {
         visible={visible}
       >
         <Form.Item
-          label={t('DevOps Name')}
+          label={t('NAME')}
           desc={t('NAME_DESC')}
           rules={[
             { required: true, message: t('NAME_EMPTY_DESC') },

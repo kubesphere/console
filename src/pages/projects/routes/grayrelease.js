@@ -25,8 +25,8 @@ import Jobs from '../containers/GrayRelease/Jobs'
 const PATH = '/:workspace/clusters/:cluster/projects/:namespace/grayrelease'
 
 const ROUTES = [
-  { name: 'cates', title: 'GRAY_RELEASE_CATEGORIES', component: Categories },
-  { name: 'jobs', title: 'JOB_STATUS', component: Jobs },
+  { name: 'cates', title: 'RELEASE_MODE_PL', component: Categories },
+  { name: 'jobs', title: 'RELEASE_JOBS', component: Jobs },
 ]
 
 export default [

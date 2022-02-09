@@ -45,7 +45,7 @@ export default class VolumeDetail extends React.Component {
   }
 
   get name() {
-    return 'Volume'
+    return 'VOLUME'
   }
 
   get module() {
@@ -75,22 +75,24 @@ export default class VolumeDetail extends React.Component {
   }
 
   get allowClone() {
-    try {
-      const clone = toJS(this.storageclass).detail.annotations[
-        'storageclass.kubesphere.io/allow-clone'
-      ]
-      return isUndefined(clone) ? true : !JSON.parse(clone)
-    } catch (err) {
-      return true
-    }
+    return this.getAllowToDo('storageclass.kubesphere.io/allow-clone')
   }
 
   get allowSnapshot() {
+    return this.getAllowToDo('storageclass.kubesphere.io/allow-snapshot')
+  }
+
+  get allowExpand() {
+    const value = get(this.storageclass.detail, 'allowVolumeExpansion', false)
+    const isPending = this.store.detail.phase === 'Pending'
+    return isPending ? true : !value
+  }
+
+  getAllowToDo = key => {
     try {
-      const snapShot = toJS(this.storageclass).detail.annotations[
-        'storageclass.kubesphere.io/allow-snapshot'
-      ]
-      return isUndefined(snapShot) ? true : !JSON.parse(snapShot)
+      const value = toJS(this.storageclass).detail.annotations[key]
+      const isPending = this.store.detail.phase === 'Pending'
+      return isUndefined(value) || isPending ? true : !JSON.parse(value)
     } catch (err) {
       return true
     }
@@ -112,11 +114,11 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -135,7 +137,7 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'clone',
       type: 'control',
-      text: t('Clone Volume'),
+      text: t('CLONE'),
       icon: 'copy',
       action: 'create',
       disabled: this.allowClone,
@@ -146,7 +148,7 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'snapshot',
       type: 'control',
-      text: t('Create Snapshot'),
+      text: t('CREATE_SNAPSHOT'),
       icon: 'copy',
       action: 'create',
       disabled: this.allowSnapshot,
@@ -158,10 +160,10 @@ export default class VolumeDetail extends React.Component {
     },
     {
       key: 'expand',
-      text: t('Expand Volume'),
+      text: t('EXPAND'),
       icon: 'scaling',
       action: 'edit',
-      disabled: !get(this.storageclass.detail, 'allowVolumeExpansion', false),
+      disabled: this.allowExpand,
       onClick: () => {
         const { detail, isSubmitting } = this.store
         const originData = toJS(detail._originData)
@@ -185,7 +187,7 @@ export default class VolumeDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.returnTolist,
         }),
@@ -233,7 +235,7 @@ export default class VolumeDetail extends React.Component {
         value: accessMode,
       },
       {
-        name: t('Storage Class'),
+        name: t('STORAGE_CLASS'),
         value: storageClassName,
       },
       {
@@ -245,11 +247,11 @@ export default class VolumeDetail extends React.Component {
         ),
       },
       {
-        name: t('VOLUME_BACKEND_TCAP'),
+        name: t('VOLUME_INSTANCE'),
         value: get(detail, '_originData.spec.volumeName', ''),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
@@ -276,11 +278,11 @@ export default class VolumeDetail extends React.Component {
       name: getDisplayName(this.store.detail),
       desc: this.store.detail.description,
       attrs: this.getAttrs(),
-      operations: this.isFedManaged ? [] : this.getOperations(),
+      operations: this.getOperations(),
       icon: 'storage',
       breadcrumbs: [
         {
-          label: t('Volumes'),
+          label: t('VOLUME_PL'),
           url: this.listUrl,
         },
       ],

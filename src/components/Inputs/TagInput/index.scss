@@ -17,6 +17,7 @@
   letter-spacing: normal;
   color: $dark-color06;
   outline: none;
+  height: 32px;
 
   :global {
     .tag {
@@ -57,7 +58,6 @@
   letter-spacing: normal;
   color: $dark-color06;
   caret-color: $dark-color06;
-  outline: none;
   cursor: text;
   pointer-events: auto;
   z-index: 1;

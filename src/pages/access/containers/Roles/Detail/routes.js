@@ -26,13 +26,13 @@ const PATH = '/access/roles/:name'
 export default [
   {
     path: `${PATH}/authorizations`,
-    title: 'Authorization List',
+    title: 'PERMISSION_PL',
     component: AuthorizationList,
     exact: true,
   },
   {
     path: `${PATH}/users`,
-    title: 'Authorized Users',
+    title: 'AUTHORIZED_USER_PL',
     component: AuthorizedUsers,
     exact: true,
   },

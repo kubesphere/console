@@ -19,6 +19,7 @@
 const {
   getCurrentUser,
   getKSConfig,
+  getK8sRuntime,
   getOAuthInfo,
 } = require('../services/session')
 
@@ -33,12 +34,13 @@ const { client: clientConfig } = getServerConfig()
 
 const renderView = async ctx => {
   try {
-    const [user, ksConfig] = await Promise.all([
+    const [user, ksConfig, runtime] = await Promise.all([
       getCurrentUser(ctx),
       getKSConfig(),
+      getK8sRuntime(ctx),
     ])
 
-    await renderIndex(ctx, { ksConfig, user })
+    await renderIndex(ctx, { ksConfig, user, runtime })
   } catch (err) {
     renderViewErr(ctx, err)
   }
@@ -87,9 +89,10 @@ const renderIndex = async (ctx, params) => {
 const renderTerminal = async ctx => {
   try {
     const manifest = getManifest('terminalEntry')
-    const [user, ksConfig] = await Promise.all([
+    const [user, ksConfig, runtime] = await Promise.all([
       getCurrentUser(ctx),
       getKSConfig(),
+      getK8sRuntime(ctx),
     ])
     const localeManifest = getLocaleManifest()
 
@@ -102,6 +105,7 @@ const renderTerminal = async ctx => {
         localeManifest,
         user,
         ksConfig,
+        runtime,
       }),
     })
   } catch (err) {

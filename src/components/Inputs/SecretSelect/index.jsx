@@ -80,17 +80,19 @@ export default class EnvironmentInputItem extends React.Component {
           name="name"
           key={`${name}.name`}
           value={value.name}
-          prefixIcon={`${t('Secret')}: `}
+          prefixIcon={`${t('SECRET')}: `}
           options={this.getResourceOptions()}
           onChange={this.handleNameChange}
+          placeholder=" "
         />
         <Select
           name="key"
           key={`${name}.key`}
           value={value.key}
-          prefixIcon={`${t('Key')}: `}
+          prefixIcon={`${t('KEY')}: `}
           options={this.getKeysOptions()}
           onChange={this.handleKeyChange}
+          placeholder=" "
         />
       </div>
     )

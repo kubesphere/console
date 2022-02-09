@@ -128,7 +128,7 @@ export default class Detail extends Component {
 
     this.store.deleteGroup(group_id, { workspace }).then(() => {
       this.setState({ showConfirm: false, deleteKeys: [group_id] })
-      Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+      Notify.success({ content: t('DELETE_SUCCESSFUL') })
     })
   }
 
@@ -172,7 +172,7 @@ export default class Detail extends Component {
     const { workspace } = this.props
     if (detail) {
       await this.store.update(data, detail, { workspace })
-      Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+      Notify.success({ content: t('UPDATE_SUCCESSFUL') })
     } else {
       await this.store.createGroup(data, { workspace })
       Notify.success({ content: `${t('ADDED_SUCCESS_DESC')}` })

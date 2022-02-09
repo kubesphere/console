@@ -28,7 +28,7 @@ import {
   getSuitableUnit,
   getChartData,
 } from 'utils/monitoring'
-import { htmlLinkControl } from 'utils'
+
 import VolumeStatus from 'projects/components/Charts/VolumeUsage'
 import CustomTooltip from 'components/Charts/Custom/Tooltip'
 import { Alert, Loading } from '@kube-design/components'
@@ -80,7 +80,6 @@ export default class UsageCard extends Component {
   render() {
     const { title, store } = this.props
     const { isLoading, isRefreshing } = store
-    const htmlMes = t.html('VOLUME_MONITORING_TIP')
 
     return (
       <Panel title={title}>
@@ -89,7 +88,7 @@ export default class UsageCard extends Component {
             <Alert
               type="warning"
               className="margin-b12"
-              message={htmlLinkControl(htmlMes)}
+              message={t.html('VOLUME_MONITORING_TIP')}
             />
             {this.renderStatus()}
             {this.renderMonitor()}
@@ -130,14 +129,14 @@ export default class UsageCard extends Component {
             {available.count}
             <small>{available.unit}</small>
           </h3>
-          <p>{t('Available Capacity')}</p>
+          <p>{t('AVAILABLE_CAPACITY')}</p>
         </div>
         <div className={styles.description}>
           <h3>
             {total.count}
             <small>{total.unit}</small>
           </h3>
-          <p>{t('VOLUME_CAPACITY')}</p>
+          <p>{t('TOTAL_CAPACITY')}</p>
         </div>
       </header>
     )
@@ -151,19 +150,19 @@ export default class UsageCard extends Component {
     const total = get(data, `${METRICS.inodeTotal}.data.result[0].values`, [])
 
     const config = getAreaChartOps({
-      title: `Inode ${t('USAGE_RATE')}`,
+      title: t('INODE_USAGE'),
       unit: '%',
-      legend: ['UTILIZATION'],
+      legend: ['USAGE'],
       data: usageRate,
       renderTooltip: () => {
         const usageData = getChartData({
           unit: '',
-          legend: ['UTILIZATION'],
+          legend: ['USAGE'],
           valuesData: [usage],
         })
         const totalData = getChartData({
           unit: '',
-          legend: ['UTILIZATION'],
+          legend: ['USAGE'],
           valuesData: [total],
         })
 

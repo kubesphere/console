@@ -17,7 +17,7 @@
  */
 
 import React, { Component } from 'react'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 
 import { Form, Input, Notify } from '@kube-design/components'
 import { RadioGroup } from 'components/Base'
@@ -35,15 +35,15 @@ export default class WeComForm extends Component {
   get tabs() {
     return [
       {
-        label: t('User ID'),
+        label: t('USER_ID'),
         value: 'toUser',
       },
       {
-        label: t('Party ID'),
+        label: t('DEPARTMENT_ID'),
         value: 'toParty',
       },
       {
-        label: t('Tag ID'),
+        label: t('TAG_ID'),
         value: 'toTag',
       },
     ]
@@ -54,7 +54,10 @@ export default class WeComForm extends Component {
     const data = get(this.props.data, `receiver.spec.wechat.${type}`, [])
     const count = globals.config.notification.wecom[`max_number_of_${type}`]
     if (!value) {
-      Notify.error({ content: t(`Please enter a ${type}`), duration: 1000 })
+      Notify.error({
+        content: t(`ENTER_${type.toUpperCase()}_TIP`),
+        duration: 1000,
+      })
       return
     }
     if (data.length > count - 1) {
@@ -66,12 +69,23 @@ export default class WeComForm extends Component {
     }
     if (data.includes(value)) {
       Notify.error({
-        content: t(`This ${type} has existed`),
+        content: t(`${type.toUpperCase()}_EXISTS`),
         duration: 1000,
       })
       return
     }
     return true
+  }
+
+  receiverValidator = (rule, value, callback) => {
+    if (
+      ['toParty', 'toUser', 'toTag'].every(item =>
+        isEmpty(get(this.props.data, `receiver.spec.wechat.${item}`))
+      )
+    ) {
+      return callback({ message: t('RECIPIENT_SETTINGS_TIP') })
+    }
+    callback()
   }
 
   handleTypeChange = type => {
@@ -81,36 +95,36 @@ export default class WeComForm extends Component {
   renderServiceSetting() {
     return (
       <div className={styles.row}>
-        <div className={styles.title}>{t('Server Settings')}</div>
+        <div className={styles.title}>{t('SERVER_SETTINGS')}</div>
         <div className={styles.item}>
           <Form.Item
-            label={t('WeChat API Corp ID')}
+            label={t('WECOM_CORP_ID')}
             rules={[
               {
                 required: true,
-                message: t('Please enter the WeChat API Corp ID'),
+                message: t('ENTER_WECOM_CORP_ID_DESC'),
               },
             ]}
           >
             <Input name="config.spec.wechat.wechatApiCorpId" />
           </Form.Item>
           <Form.Item
-            label={t('WeChat API Agent ID')}
+            label={t('WECOM_AGENT_ID')}
             rules={[
               {
                 required: true,
-                message: t('Please enter the WeChat API Agent ID'),
+                message: t('ENTER_WECOM_AGENT_ID_DESC'),
               },
             ]}
           >
             <Input name="config.spec.wechat.wechatApiAgentId" />
           </Form.Item>
           <Form.Item
-            label={t('WeChat API Secret')}
+            label={t('WECOM_SECRET')}
             rules={[
               {
                 required: true,
-                message: t('Please enter the WeChat API Secret'),
+                message: t('ENTER_WECOM_SECRET_DESC'),
               },
             ]}
           >
@@ -127,7 +141,7 @@ export default class WeComForm extends Component {
 
     return (
       <div className={styles.row}>
-        <div className={styles.title}>{t('Recipient Settings')}</div>
+        <div className={styles.title}>{t('RECIPIENT_SETTINGS')}</div>
         <div className={styles.subTitle}>{t('RECIPIENT_SETTINGS_TIP')}</div>
         <div className={styles.item}>
           <div className="margin-b12">
@@ -137,7 +151,7 @@ export default class WeComForm extends Component {
               options={this.tabs}
             />
           </div>
-          <Form.Item>
+          <Form.Item rules={[{ validator: this.receiverValidator }]}>
             <Item
               name={`receiver.spec.wechat.${type}`}
               className={wrapperClassName}
@@ -154,8 +168,9 @@ export default class WeComForm extends Component {
     const { user, data, onChange, hideFooter, ...rest } = this.props
     return (
       <BaseForm
-        name="wecom"
-        module="wecom"
+        name="wechat"
+        module="WeCom"
+        icon="wecom"
         data={data}
         onChange={onChange}
         hideFooter={hideFooter}

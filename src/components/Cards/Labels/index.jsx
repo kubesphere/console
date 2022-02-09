@@ -29,7 +29,7 @@ export default class Labels extends Component {
     }
 
     return (
-      <Panel title={t('LABELS')}>
+      <Panel title={t('LABEL_PL')}>
         <div>
           {Object.entries(labels).map(([key, value]) => (
             <Label key={key} name={key} value={value} />

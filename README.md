@@ -4,114 +4,86 @@
 ![](https://github.com/kubesphere/console/workflows/Main/badge.svg)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
-KubeSphere Console is the web-based UI for [KubeSphere](https://github.com/kubesphere/kubesphere) clusters.
+KubeSphere console is the web interface for [KubeSphere](https://github.com/kubesphere/kubesphere).
 
 ![KubeSphere Console](docs/images/dashboard-ui.png)
 
 ## Getting Started
 
-A KubeSphere cluster is required before getting started.
+Console should be always used with KubeSphere, you can either use [Kubekey](https://github.com/kubesphere/kubekey) or [ks-installer](https://github.com/kubesphere/ks-installer) to create a KubeSphere cluster.  
+The following will show you how to build console from source code.
 
-Read [Installation](https://github.com/kubesphere/kubesphere#installation) guide to install a cluster.
 
-Read [the guide](https://github.com/kubesphere/kubesphere#to-start-using-kubesphere) to start using KubeSphere.
+### Prerequisite
+#### Node.js
+Console is written using Javascript. If you don't have a Node.js development environment, please [set it up](https://nodejs.org/en/download/). The minimum version required is 12.18.
 
-Features Map:
+#### Yarn
+We use [Yarn](https://yarnpkg.com/) to do package management. If you don't have yarn, use the following to install:
+```
+npm install -g yarn@1.22.4
+```
+The minimum version required is 1.22.4, but you can use a newer version.
 
-![Features Map](docs/images/module-map.jpg)
+#### [Optional]Docker
+This is optional. If you just want to test and build on your local environment, there is no need to install docker. Otherwise, you need to install it.
+[Install on Mac](https://docs.docker.com/desktop/mac/install/)
+[Install on Windows](https://docs.docker.com/desktop/windows/install/)
+[Install on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 
-## Developer Guide
+#### [Optional]Make
+This is optional too, we use `make` to reduce hand work, but it's totally ok without it.
 
-### Preparation
+## How to build
 
-Make sure the following software is installed and added to the \$PATH variable:
-
-- A KubeSphere cluster ([Installation](https://github.com/kubesphere/kubesphere#installation))
-- Node.js 12.18+ ([installation with nvm](https://github.com/creationix/nvm#usage))
-- Yarn 1.22.4+
-
-Install yarn with npm:
-
+Clone the repository, and run `yarn && yarn build`
 ```sh
-npm install -g yarn
+git clone https://github.com/kubesphere/console.git
+cd console/
+yarn && yarn build
+npm run serve
+```
+> If you have trouble downloading the dependencies, try the following
+>
+> `yarn config set registry https://registry.npm.taobao.org`
+
+
+After `npm run serve`, you should see the output like the following
+
+```
+> kubesphere-console@master serve
+> NODE_ENV=production node server/server.js
+
+Dashboard app running at port 8000
+```
+Now, console is up and running. But since there is no backed KubeSphere cluster, you shouldn't be able to login.
+
+## How to debug
+A KubeSphere cluster is required to start debugging. You can refer to [Installation](https://github.com/kubesphere/kubesphere#installation) to create a KubeSphere cluster.
+
+Once the cluster is up, you replace the address of `ks-apiserver` in `server/config.yaml` with your real address. You can refer to [access KubeSphere apiserver](docs/access-backend.md) to expose your cluster `ks-apiserver`.
+```
+  # backend service gateway server
+  apiServer:
+    clientID: kubesphere
+    clientSecret: kubesphere
+    url: http://ks-apiserver
+    wsUrl: ws://ks-apiserver
 ```
 
-Fork the repository, then clone your repository and install the dependencies:
+## How to build container image
 
-```sh
-yarn
+Just run the following command with your real `REPO` address.
+```
+REPO=yourawesomerepo make container
 ```
 
-Note: If you are in China Mainland, execute the following command before running the command above for faster installation.
-
-```sh
-yarn config set registry https://registry.npm.taobao.org
-```
-
-Note: If your Mac is using M1 chip, you need to switch to x86 compatible mode:
-
-```sh
-arch -x86_64 zsh  # return by changing x86_64 to arm64
-```
-
-Alternatively you can start development using docker. See [Development with Docker](/docs/development-with-docker.md).
-
-### Access the backend services of KubeSphere
-
-Follow [the guide](/docs/access-backend.md) to configure the backend services.
-
-### Start KubeSphere Console for development
-
-```sh
-yarn start
-```
-
-Now, you can access http://localhost:8000 to view the console using the default account admin / P@88w0rd.
-
-### Run tests
-
-```sh
-yarn test
-```
-
-### Build KubeSphere Console for production
-
-The project can be built for production by using the following task:
-
-```sh
-yarn build
-```
-
-To build and serve from dist, using the following task:
-
-```sh
-yarn serve
-```
-
-To build KubeSphere console to an image, run the following task after `yarn build`:
-
-```sh
-docker build -t ks-console .
-```
-
-Test KubeSphere console image by run:
-
-```sh
-./docker-run
-```
-
-
-### Build KubeSphere Console Docker Image
-
-If you don't have NodeJs environment, it's also easy to build the Docker image:
-
-`make image image-push -e REPO=kubespheredev/ks-console`
-
-> Please replace the dockerHub repository to your personal account.
-
-## Development Workflow
+## How to submit a PR
 
 Follow [Development Workflow](/docs/development-workflow.md) to commit your codes.
+
+## Features Map:
+![Features Map](docs/images/module-map.jpg)
 
 ## Support, Discussion, and Community
 
@@ -122,3 +94,5 @@ Please submit any KubeSphere Console bugs, issues, and feature requests to [Kube
 ## Contributing to the project
 
 Welcome to contribute to KubeSphere Console, see [Contributing Guide](CONTRIBUTING.md).
+
+The KubeSphere localization project has been launched on Crowdin. You can help localize the KubeSphere web console by referring to the [localization guide](docs/join-the-kubesphere-localization-project.md).

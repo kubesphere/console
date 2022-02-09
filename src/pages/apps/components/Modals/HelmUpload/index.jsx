@@ -24,8 +24,8 @@ import { Icon, Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import UploadInfo from 'apps/components/Cards/UploadInfo'
 import CreateInfo from 'apps/components/Cards/CreateInfo'
-import { getDocsUrl, htmlLinkControl } from 'utils'
 import FileStore from 'stores/openpitrix/file'
+import { getWebsiteUrl } from 'utils'
 
 import typeFiles from './files'
 import styles from './index.scss'
@@ -135,9 +135,7 @@ export default class HelmUpload extends Component {
 
   renderCheckFiles() {
     const { errorFiles } = this.props
-    const htmlDes = t.html('APP_CREATE_GUIDE', {
-      url: getDocsUrl('helm_specification'),
-    })
+    const { url } = getWebsiteUrl()
 
     return (
       <div>
@@ -165,7 +163,9 @@ export default class HelmUpload extends Component {
             <div className={styles.configMask} />
           )}
         </div>
-        <div className={styles.note}>💁‍♂️ {` ${htmlLinkControl(htmlDes)}`}</div>
+        <div className={styles.note}>
+          💁‍♂️ {t.html('APP_CREATE_GUIDE', { docUrl: url })}
+        </div>
       </div>
     )
   }

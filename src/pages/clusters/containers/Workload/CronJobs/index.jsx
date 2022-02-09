@@ -66,7 +66,7 @@ export default class CronJobs extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_INFO'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -167,7 +167,9 @@ export default class CronJobs extends React.Component {
         width: '15%',
         render: (_, record) => {
           const { status } = getWorkloadStatus(record, module)
-          return <Status type={status} name={t(status)} />
+          return (
+            <Status type={status} name={t(`CRONJOB_${status.toUpperCase()}`)} />
+          )
         },
       },
       {
@@ -188,7 +190,7 @@ export default class CronJobs extends React.Component {
         width: '15%',
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

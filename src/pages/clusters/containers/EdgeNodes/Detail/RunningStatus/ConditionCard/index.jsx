@@ -37,8 +37,11 @@ const ConditionCard = ({ data }) => {
       <div className="tooltip-title">{data.reason}</div>
       <p className="tooltip-desc">{data.message}</p>
       <p className="tooltip-desc">
-        {t('lastHeartbeatTime')}:{' '}
-        {getLocalTime(data.lastHeartbeatTime).format('YYYY-MM-DD HH:mm:ss')}
+        {t('LATEST_UPDATE_VALUE', {
+          value: getLocalTime(data.lastHeartbeatTime).format(
+            'YYYY-MM-DD HH:mm:ss'
+          ),
+        })}
       </p>
     </div>
   )

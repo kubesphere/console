@@ -26,7 +26,12 @@ import { ICON_TYPES } from 'utils/constants'
 
 import styles from './index.scss'
 
-const QuotaItem = ({ name, total, used }) => {
+const transformName = (text = '', type) =>
+  type === 'userDefined' && !text.includes('gpu')
+    ? text
+    : t(text.replace(/[. ]/g, '_').toUpperCase())
+
+const QuotaItem = ({ name, total, used, type }) => {
   let ratio = 0
 
   if (name === 'limits.cpu' || name === 'requests.cpu') {
@@ -46,28 +51,34 @@ const QuotaItem = ({ name, total, used }) => {
   }
 
   ratio = Math.min(Math.max(ratio, 0), 1)
+  const labelName = name.indexOf('gpu') > -1 ? 'gpu' : name
+  const labelText = labelName === 'gpu' ? `${labelName}.limit` : labelName
+  const iconType =
+    name.indexOf('gpu') > -1
+      ? ICON_TYPES['gpu']
+      : ICON_TYPES[name] ?? 'resource'
 
   return (
     <div className={styles.quota}>
-      <Icon name={ICON_TYPES[name]} size={40} />
+      <Icon name={iconType} size={40} />
       <div className={styles.item}>
-        <div>{t(name)}</div>
-        <p>{t('RESOURCE_TYPE')}</p>
+        <div>{transformName(labelText, type)}</div>
+        <p>{t('RESOURCE_TYPE_SCAP')}</p>
       </div>
       <div className={styles.item}>
         <div>{used}</div>
-        <p>{t('Used')}</p>
+        <p>{t('USED')}</p>
       </div>
       <div className={styles.item}>
-        <div>{isUndefined(total) ? t('NO_LIMIT') : total}</div>
-        <p>{t('Resource Limit')}</p>
+        <div>{isUndefined(total) ? t('NO_LIMIT_TCAP') : total}</div>
+        <p>{t('RESOURCE_LIMIT')}</p>
       </div>
       <div className={styles.item} style={{ flex: 3 }}>
-        <div>{t('Usage')}</div>
+        <div>{t('USAGE')}</div>
         <Bar
           value={Math.min(ratio, 1)}
           className={styles.bar}
-          rightText={!total ? t('NO_LIMIT') : ''}
+          rightText={!total ? t('NO_LIMIT_TCAP') : ''}
           text={`${t('Used')} ${Number((ratio * 100).toFixed(2))}%`}
         />
       </div>

@@ -77,7 +77,7 @@ export default {
 
           Modal.close(modal)
           success && success()
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
         },
         modal: ClusterVisibility,
         store,

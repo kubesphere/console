@@ -235,7 +235,11 @@ const getIngressTemplate = ({ namespace }) => ({
 const getGatewayTemplate = () => ({
   apiVersion: 'gateway.kubesphere.io/v1alpha1',
   kind: 'Gateway',
-  metadata: {},
+  metadata: {
+    annotations: {
+      'kubesphere.io/annotations': '',
+    },
+  },
   spec: {
     controller: {
       replicas: 1,
@@ -249,7 +253,7 @@ const getGatewayTemplate = () => ({
     },
     service: {
       annotations: {},
-      type: 'LoadBalancer',
+      type: 'NodePort',
     },
   },
 })
@@ -559,7 +563,7 @@ const getNameSpaceNetworkPoliciesTemplate = ({ namespace }) => ({
 })
 
 const getDashboardTemplate = ({ namespace }) => ({
-  apiVersion: 'monitoring.kubesphere.io/v1alpha1',
+  apiVersion: 'monitoring.kubesphere.io/v1alpha2',
   kind: 'Dashboard',
   metadata: {
     namespace,
@@ -568,7 +572,7 @@ const getDashboardTemplate = ({ namespace }) => ({
 })
 
 const getClusterDashboardTemplate = () => ({
-  apiVersion: 'monitoring.kubesphere.io/v1alpha1',
+  apiVersion: 'monitoring.kubesphere.io/v1alpha2',
   kind: 'ClusterDashboard',
   metadata: {},
   spec: {},

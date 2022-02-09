@@ -33,19 +33,19 @@ export default class PlatformStatus extends Component {
     return [
       {
         icon: 'enterprise',
-        name: 'Workspaces',
+        name: 'WORKSPACE',
         link: '/access/workspaces',
         metric: 'kubesphere_workspace_count',
       },
       {
         icon: 'human',
-        name: 'Accounts',
+        name: 'USER',
         link: '/access/accounts',
         metric: 'kubesphere_user_count',
       },
       {
         icon: 'appcenter',
-        name: 'App Templates',
+        name: 'APP_TEMPLATE_SCAP',
         link: '/apps',
         hide: !globals.app.enableAppStore,
         metric: 'kubesphere_app_template_count',
@@ -65,7 +65,7 @@ export default class PlatformStatus extends Component {
           <Text
             icon="blockchain"
             title={getLocalTime(Date.now()).format('YYYY-MM-DD HH:mm:ss')}
-            description={t('Data Updated')}
+            description={t('LAST_UPDATE_TIME')}
           />
         </div>
         {this.resources.map(resource => {

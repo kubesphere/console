@@ -138,7 +138,7 @@ export default class HPAModal extends React.Component {
     return (
       <Modal
         width={691}
-        title={t('Horizontal Pod Autoscaling')}
+        title={t('AUTOSCALING')}
         icon="firewall"
         onOk={this.handleOk}
         onCancel={onCancel}
@@ -150,7 +150,7 @@ export default class HPAModal extends React.Component {
             <Alert
               className={styles.alert}
               type="info"
-              message={t('HPA_MSG')}
+              message={t('CONFIGURE_AUTOSCALING_DESC')}
             />
             <Form.Item
               label={t('RESOURCE_NAME')}
@@ -159,8 +159,8 @@ export default class HPAModal extends React.Component {
               <Input name="metadata.name" disabled />
             </Form.Item>
             <Form.Item
-              label={`${t('CPU Target Utilization')} (${t('Unit')}: %)`}
-              desc={t('CPU_REQUEST_TARGET_DESC')}
+              label={t('TARGET_CPU_USAGE_UNIT')}
+              desc={t('TARGET_CPU_USAGE_DESC')}
             >
               <NumberInput
                 name="metadata.annotations.cpuTargetUtilization"
@@ -172,8 +172,8 @@ export default class HPAModal extends React.Component {
               />
             </Form.Item>
             <Form.Item
-              label={`${t('Memory Target Usage')} (${t('Unit')}: Mi)`}
-              desc={t('MEMORY_REQUEST_TARGET_DESC')}
+              label={t('TARGET_MEMORY_USAGE_UNIT')}
+              desc={t('TARGET_MEMORY_USAGE_DESC')}
             >
               <NumberInput
                 name="metadata.annotations.memoryTargetValue"
@@ -185,24 +185,22 @@ export default class HPAModal extends React.Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('Min Replicas Number')}
-              desc={t('MIN_REPLICAS_DESC')}
+              label={t('MINIMUM_REPLICAS')}
+              desc={t('MINIMUM_REPLICAS_DESC')}
             >
               <NumberInput
                 name="spec.minReplicas"
-                placeholder={t('REPLICAS_PLACEHOLDER')}
                 min={1}
                 integer
                 defaultValue={1}
               />
             </Form.Item>
             <Form.Item
-              label={t('Max Replicas Number')}
-              desc={t('MAX_REPLICAS_DESC')}
+              label={t('MAXIMUM_REPLICAS')}
+              desc={t('MAXIMUM_REPLICAS_DESC')}
             >
               <NumberInput
                 name="spec.maxReplicas"
-                placeholder={t('REPLICAS_PLACEHOLDER')}
                 min={1}
                 integer
                 defaultValue={1}

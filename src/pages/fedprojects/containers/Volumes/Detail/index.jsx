@@ -45,7 +45,7 @@ export default class VolumeDetail extends React.Component {
   }
 
   get name() {
-    return 'Volume'
+    return 'VOLUME'
   }
 
   get module() {
@@ -78,11 +78,11 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -90,7 +90,7 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'editConfigTemplate',
       icon: 'storage',
-      text: t('Edit Config Template'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('volume.template.edit', {
@@ -121,7 +121,7 @@ export default class VolumeDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.returnTolist,
         }),
@@ -157,7 +157,7 @@ export default class VolumeDetail extends React.Component {
         value: accessMode,
       },
       {
-        name: t('Storage Class'),
+        name: t('STORAGE_CLASS'),
         value:
           storageClassName ||
           annotations['volume.beta.kubernetes.io/storage-class'],
@@ -168,7 +168,7 @@ export default class VolumeDetail extends React.Component {
           annotations['volume.beta.kubernetes.io/storage-provisioner'] || '-',
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
@@ -199,7 +199,7 @@ export default class VolumeDetail extends React.Component {
       icon: 'storage',
       breadcrumbs: [
         {
-          label: t('Volumes'),
+          label: t('VOLUME_PL'),
           url: this.listUrl,
         },
       ],

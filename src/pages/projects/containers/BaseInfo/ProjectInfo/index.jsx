@@ -87,7 +87,7 @@ export default class ProjectInfo extends React.Component {
                 trigger="click"
                 placement="bottomRight"
               >
-                <Button>{t('EDIT_PROJECT')}</Button>
+                <Button>{t('MANAGE')}</Button>
               </Dropdown>
             </div>
           )}
@@ -107,8 +107,8 @@ export default class ProjectInfo extends React.Component {
                 <div>{roleCount}</div>
                 <p>
                   {roleCount === '1'
-                    ? t('PROJECT_ROLE_LOW')
-                    : t('PROJECT_ROLE_LOW_PL')}
+                    ? t('PROJECT_ROLE_SCAP')
+                    : t('PROJECT_ROLE_SCAP_PL')}
                 </p>
               </div>
             </div>
@@ -118,8 +118,8 @@ export default class ProjectInfo extends React.Component {
                 <div>{memberCount}</div>
                 <p>
                   {memberCount === 1
-                    ? t('PROJECT_MEMBER_LOW')
-                    : t('PROJECT_MEMBER_LOW_PL')}
+                    ? t('PROJECT_MEMBER_SCAP')
+                    : t('PROJECT_MEMBER_SCAP_PL')}
                 </p>
               </div>
             </div>

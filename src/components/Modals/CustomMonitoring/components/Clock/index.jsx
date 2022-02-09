@@ -41,7 +41,7 @@ export default class Color extends React.Component {
   render() {
     return (
       <>
-        {t('Time')}: {moment(this.state.time).format('YYYY-MM-DD HH:mm:ss')}
+        {t('TIME')}: {moment(this.state.time).format('YYYY-MM-DD HH:mm:ss')}
       </>
     )
   }

@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import { capitalize } from 'lodash'
 
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
@@ -71,7 +70,7 @@ export default class Store extends React.Component {
       isHideable: true,
       width: '10%',
       render: status => (
-        <Status type={status} name={t(capitalize(transferAppStatus(status)))} />
+        <Status type={status} name={transferAppStatus(status)} />
       ),
     },
     {
@@ -87,14 +86,14 @@ export default class Store extends React.Component {
       width: '16%',
     },
     {
-      title: t('App Category'),
+      title: t('APP_CATEGORY'),
       dataIndex: 'category_set',
       isHideable: true,
       width: '17%',
       render: categories => getAppCategoryNames(categories),
     },
     {
-      title: t('Release / Suspended Time'),
+      title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'status_time',
       isHideable: true,
       width: '17%',
@@ -108,7 +107,7 @@ export default class Store extends React.Component {
       <ListPage {...this.props} noWatch>
         <Banner
           {...bannerProps}
-          title={t('APP_STORE')}
+          title={t('APPS')}
           description={t('APP_STORE_DESC')}
         />
         <Table

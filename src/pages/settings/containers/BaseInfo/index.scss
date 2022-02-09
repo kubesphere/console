@@ -39,12 +39,7 @@
 
 .info {
   flex: 1;
-
   & > div + div {
     margin-top: 8px;
   }
-}
-
-.banLink {
-  @include banLink();
 }

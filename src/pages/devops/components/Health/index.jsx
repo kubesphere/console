@@ -31,7 +31,7 @@ export default class Health extends React.Component {
           <span
             className={classNames(styles.icon, styles['nostatus'], className)}
           />
-          {t('no status')}
+          {t('NO_STATUS')}
         </span>
       )
     }
@@ -40,7 +40,7 @@ export default class Health extends React.Component {
       return (
         <span>
           <span className={classNames(styles.icon, styles.error, className)} />
-          {t('Warning')}
+          {t('WARNING')}
         </span>
       )
     }
@@ -50,14 +50,14 @@ export default class Health extends React.Component {
           <span
             className={classNames(styles.icon, styles.subhealth, className)}
           />
-          {t('Sub-healthy')}
+          {t('SUB_HEALTHY')}
         </span>
       )
     }
     return (
       <span>
         <span className={classNames(styles.icon, styles.health, className)} />
-        {t('Healthy')}
+        {t('HEALTHY')}
       </span>
     )
   }

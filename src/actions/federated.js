@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset, cloneDeep, uniqBy, isEmpty, omit } from 'lodash'
+import { get, set, unset, cloneDeep, uniqBy, isEmpty } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import FedProjectCreateModal from 'components/Modals/FedProjectCreate'
@@ -26,6 +26,7 @@ import FedProjectAddClusterModal from 'workspaces/components/Modals/FedProjectAd
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 import FED_TEMPLATES from 'utils/fed.templates'
+import { multiCluster_overrides_Dot } from 'utils'
 
 import FederatedStore from 'stores/federated'
 import ProjectStore from 'stores/project'
@@ -64,7 +65,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
           success && success()
         },
         cluster,
@@ -84,14 +85,14 @@ export default {
         onOk: () => {
           projectStore.delete({ name: detail.name }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+            Notify.success({ content: t('DELETE_SUCCESSFUL') })
             success && success()
           })
         },
         store,
         modal: DeleteModal,
         resource: detail.name,
-        type: t('Multi-cluster Project'),
+        type: 'MULTI_CLUSTER_PROJECT',
         isLoading: projectStore.isLoading,
         ...props,
       })
@@ -118,7 +119,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
           store.setSelectRowKeys([])
           success && success()
         },
@@ -134,19 +135,8 @@ export default {
     on({ store, detail, success, module, supportGpuSelect = false, ...props }) {
       const modal = Modal.open({
         onOk: data => {
-          const containers = get(
-            data,
-            'spec.template.spec.template.spec.containers',
-            []
-          )
-          const newContainers = containers.map(item =>
-            omit(item, 'resources.gpu')
-          )
-          set(
-            data,
-            'spec.template.spec.template.spec.containers',
-            newContainers
-          )
+          const overrides = get(data, 'spec.overrides', [])
+          multiCluster_overrides_Dot(overrides)
 
           const customMode = get(data, 'spec.template.spec.customMode', {})
           if (!isEmpty(customMode)) {
@@ -154,7 +144,7 @@ export default {
           }
 
           store.update(detail, data).then(() => {
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             Modal.close(modal)
             success && success()
           })
@@ -176,7 +166,7 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           store.patch(detail, data).then(() => {
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             Modal.close(modal)
             success && success()
           })

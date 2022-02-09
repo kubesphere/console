@@ -17,10 +17,13 @@
  */
 
 import React, { Component } from 'react'
-import { get, omit } from 'lodash'
+import { get, omit, mergeWith, isUndefined } from 'lodash'
+import { toJS } from 'mobx'
 
 import { observer } from 'mobx-react'
-
+import WorkspaceQuotaStore from 'stores/workspace.quota'
+import { resourceLimitKey } from 'utils'
+import { getLeftQuota } from 'utils/workload'
 import SecretStore from 'stores/secret'
 import QuotaStore from 'stores/quota'
 import LimitRangeStore from 'stores/limitrange'
@@ -34,9 +37,12 @@ export default class ContainerImages extends Component {
     quota: {},
     limitRange: {},
     imageRegistries: [],
+    availableQuota: {},
   }
 
   quotaStore = new QuotaStore()
+
+  workspaceQuotaStore = new WorkspaceQuotaStore()
 
   limitRangeStore = new LimitRangeStore()
 
@@ -44,6 +50,7 @@ export default class ContainerImages extends Component {
 
   componentDidMount() {
     this.fetchData()
+    this.fetchQuota()
   }
 
   fetchData() {
@@ -71,8 +78,61 @@ export default class ContainerImages extends Component {
     onEdit({ index, containerType, data: omit(data, 'type') })
   }
 
+  fetchQuota() {
+    const { cluster, workspace, namespace } = this.props
+
+    if (workspace && namespace) {
+      Promise.all([
+        this.quotaStore.fetch({
+          cluster,
+          namespace,
+        }),
+        this.workspaceQuotaStore.fetchDetail({
+          name: workspace,
+          workspace,
+          cluster,
+        }),
+      ]).then(() => {
+        const hard = toJS(this.quotaStore.data.hard)
+        const {
+          namespace: namespaceQuota,
+          workspace: workspaceQuota,
+        } = getLeftQuota(
+          get(this.workspaceQuotaStore.detail, 'status.total'),
+          this.quotaStore.data
+        )
+        this.setState({
+          availableQuota: {
+            workspace: workspaceQuota,
+            namespace: { ...namespaceQuota, ...omit(hard, resourceLimitKey) },
+          },
+        })
+      })
+    }
+  }
+
+  get workspaceQuota() {
+    const nsQuota = get(this.state.availableQuota, 'namespace', {})
+    const wsQuota = get(this.state.availableQuota, 'workspace', {})
+    return mergeWith(nsQuota, wsQuota, (ns, ws) => {
+      if (!ns && !ws) {
+        return undefined
+      }
+      if (!isUndefined(ns)) {
+        return ns < ws ? ns : ws
+      }
+      return ws
+    })
+  }
+
   render() {
-    const { cluster, namespace, formData, containerType } = this.props
+    const {
+      cluster,
+      namespace,
+      formData,
+      containerType,
+      supportGpuSelect,
+    } = this.props
     const { quota, limitRanges, imageRegistries } = this.state
 
     return (
@@ -89,6 +149,8 @@ export default class ContainerImages extends Component {
           limitRanges={limitRanges}
           imageRegistries={imageRegistries}
           defaultContainerType={containerType}
+          supportGpuSelect={supportGpuSelect}
+          workspaceQuota={this.workspaceQuota}
         />
       </EditForm>
     )

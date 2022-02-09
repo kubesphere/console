@@ -169,7 +169,7 @@ class Uploader extends React.Component {
       status: 'exception',
     })
     Notify.error({
-      content: t('FILE_UPLOAD_FAILED'),
+      content: t('UPLOAD_FAILED'),
     })
   }
 
@@ -191,7 +191,7 @@ class Uploader extends React.Component {
         <p className={styles.fileInfo}>
           <span className={styles.fileName}>{file.name}</span>
           <span className={styles.uploadText}>
-            {t('UPLOADED', { percent: file.percentage })}
+            {t('UPLOAD_PERCENT', { percent: file.percentage })}
           </span>
           <span className={styles.uploadText}>
             {t('FILE_SIZE', { size: formatSize(file.size) })}

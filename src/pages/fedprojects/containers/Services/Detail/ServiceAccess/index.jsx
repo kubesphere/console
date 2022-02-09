@@ -69,7 +69,7 @@ export default class ServiceAccess extends React.Component {
     return (
       <Loading spinning={isResourcesLoading}>
         <div>
-          <div className={styles.title}>{t('Service Access')}</div>
+          <div className={styles.title}>{t('ACCESS_INFORMATION')}</div>
           {Object.keys(resources).map(cluster => (
             <ClusterService
               key={cluster}

@@ -23,7 +23,7 @@ import ConfigDetail from './ConfigDetail'
 export default path => [
   {
     path: `${path}/detail`,
-    title: 'Detail',
+    title: 'DATA',
     component: ConfigDetail,
     exact: true,
   },

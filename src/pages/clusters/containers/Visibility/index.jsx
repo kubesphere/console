@@ -61,10 +61,6 @@ export default class Overview extends React.Component {
         title: t('CLUSTER_VISIBILITY_Q1'),
         description: t('CLUSTER_VISIBILITY_A1'),
       },
-      {
-        title: t('CLUSTER_VISIBILITY_Q2'),
-        description: t('CLUSTER_VISIBILITY_A2'),
-      },
     ]
   }
 
@@ -103,7 +99,7 @@ export default class Overview extends React.Component {
         dataIndex: 'manager',
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         width: '20%',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -159,7 +155,7 @@ export default class Overview extends React.Component {
       <>
         <Banner
           icon="cluster"
-          title={t('CLUSTER_VISIBILITY_TCAP')}
+          title={t('CLUSTER_VISIBILITY')}
           description={t('CLUSTER_VISIBILITY_DESC')}
           tips={this.tips}
         />

@@ -28,33 +28,33 @@ import Monitoring from './Monitoring'
 export default path => [
   {
     path: `${path}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     component: ResourceStatus,
     exact: true,
   },
   {
     path: `${path}/schedule`,
-    title: 'Scheduling Info',
+    title: 'SCHEDULING_INFORMATION',
     component: ScheduleInfo,
   },
   {
     path: `${path}/metadata`,
-    title: 'Metadata',
+    title: 'METADATA',
     component: Metadata,
     exact: true,
   },
   {
     path: `${path}/monitors`,
-    title: 'Monitoring',
+    title: 'MONITORING',
     component: Monitoring,
     exact: true,
   },
   {
     path: `${path}/env`,
-    title: 'Environment Variables',
+    title: 'ENVIRONMENT_VARIABLE_PL',
     component: EnvVariables,
     exact: true,
   },
-  { path: `${path}/events`, title: 'Events', component: Events, exact: true },
+  { path: `${path}/events`, title: 'EVENT_PL', component: Events, exact: true },
   getIndexRoute({ path, to: `${path}/resource-status`, exact: true }),
 ]

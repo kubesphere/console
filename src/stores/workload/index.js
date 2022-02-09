@@ -157,4 +157,18 @@ export default class WorkloadStore extends Base {
       )
     )
   }
+
+  @action
+  stop({ name, cluster, namespace }) {
+    const promises = []
+    promises.push(
+      request.patch(this.getDetailUrl({ name, cluster, namespace }), {
+        spec: {
+          replicas: 0,
+        },
+      })
+    )
+
+    return this.submitting(Promise.all(promises))
+  }
 }

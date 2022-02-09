@@ -366,4 +366,5 @@ spec:
                 name: productpage
                 port:
                   number: 9080
+            pathType: ImplementationSpecific
       host: productpage.servicemesh.139.198.121.92.nip.io

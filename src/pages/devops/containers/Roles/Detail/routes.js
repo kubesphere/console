@@ -24,13 +24,13 @@ import AuthorizedUsers from 'access/containers/Roles/Detail/AuthorizedUsers'
 export default path => [
   {
     path: `${path}/authorizations`,
-    title: 'Authorization List',
+    title: 'PERMISSION_PL',
     component: AuthorizationList,
     exact: true,
   },
   {
     path: `${path}/users`,
-    title: 'Authorized Users',
+    title: 'AUTHORIZED_USER_PL',
     component: AuthorizedUsers,
     exact: true,
   },

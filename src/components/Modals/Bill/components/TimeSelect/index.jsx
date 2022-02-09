@@ -107,7 +107,7 @@ export default class TimeSelect extends React.Component {
     return (
       <ul className={styles.datepicker}>
         <li>
-          <div>{t('Reconciliation Cycle')}</div>
+          <div>{t('BILLING_CYCLE')}</div>
         </li>
         <li>
           <DatePicker

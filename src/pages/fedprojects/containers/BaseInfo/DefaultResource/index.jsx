@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, endsWith, isEmpty } from 'lodash'
 import React from 'react'
 
 import { Icon } from '@kube-design/components'
@@ -36,32 +36,56 @@ class DefaultResource extends React.Component {
     const memoryRequest = memoryFormat(
       get(detail, 'limit.defaultRequest.memory')
     )
+    // get GPU config from the supported type
+    const supportGpu = globals.config.supportGpuType
+    const defaultRequest = get(detail, 'limit.defaultRequest', {})
+    const gpuType = supportGpu.filter(type =>
+      Object.keys(defaultRequest).some(key => endsWith(key, type))
+    )
+    const gpu = isEmpty(gpuType)
+      ? {}
+      : { value: defaultRequest[`${gpuType[0]}`], type: gpuType }
 
     return (
-      <Panel title={t('DEFAULT_CONTAINER_QUOTAS')}>
+      <Panel title={t('DEFAULT_CONTAINER_QUOTA_PL')}>
         <div className={styles.content}>
           <div className={styles.contentItem}>
             <Icon name="cpu" size={40} />
             <div className={styles.item}>
-              <div>{cpuRequest ? `${cpuRequest} Core` : t('NO_REQUEST')}</div>
-              <p>{t('Resource Request')}</p>
+              <div>
+                {cpuRequest ? `${cpuRequest} Core` : t('NO_REQUEST_TCAP')}
+              </div>
+              <p>{t('CPU_REQUEST_SCAP')}</p>
             </div>
             <div className={styles.item}>
-              <div>{cpuLimit ? `${cpuLimit} Core` : t('NO_LIMIT')}</div>
-              <p>{t('Resource Limit')}</p>
+              <div>{cpuLimit ? `${cpuLimit} Core` : t('NO_LIMIT_TCAP')}</div>
+              <p>{t('CPU_LIMIT_SCAP')}</p>
             </div>
           </div>
           <div className={styles.contentItem}>
             <Icon name="memory" size={40} />
             <div className={styles.item}>
               <div>
-                {memoryRequest ? `${memoryRequest} Mi` : t('NO_REQUEST')}
+                {memoryRequest ? `${memoryRequest} Mi` : t('NO_REQUEST_TCAP')}
               </div>
-              <p>{t('Resource Request')}</p>
+              <p>{t('MEMORY_REQUEST_SCAP')}</p>
             </div>
             <div className={styles.item}>
-              <div>{memoryLimit ? `${memoryLimit} Mi` : t('NO_LIMIT')}</div>
-              <p>{t('Resource Limit')}</p>
+              <div>
+                {memoryLimit ? `${memoryLimit} Mi` : t('NO_LIMIT_TCAP')}
+              </div>
+              <p>{t('MEMORY_LIMIT_SCAP')}</p>
+            </div>
+          </div>
+          <div className={styles.contentItem}>
+            <img src="/assets/GPU.svg" size={48} />
+            <div className={styles.item}>
+              <div>{gpu.value ? gpu.type : t('NONE')}</div>
+              <p>{t('GPU_TYPE_SCAP')}</p>
+            </div>
+            <div className={styles.item}>
+              <div>{gpu.value ? gpu.value : t('NO_LIMIT_TCAP')}</div>
+              <p>{t('GPU_LIMIT_SCAP')}</p>
             </div>
           </div>
         </div>

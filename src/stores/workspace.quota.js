@@ -18,6 +18,7 @@
 
 import Base from 'stores/base'
 import { action } from 'mobx'
+import { get } from 'lodash'
 
 export default class QuotaStore extends Base {
   module = 'resourcequotas'
@@ -51,6 +52,6 @@ export default class QuotaStore extends Base {
 
     this.detail = detail
     this.isLoading = false
-    return detail
+    return get(result, 'status.total')
   }
 }

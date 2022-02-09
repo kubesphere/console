@@ -90,8 +90,8 @@ export default class CategoryAdjust extends Component {
           }}
         >
           <Form.Item
-            label={t('Adjust App Category')}
-            desc={t('ADJUST_CATEGORY_DESC')}
+            label={t('CHANGE_CATEGORY')}
+            desc={t('CHANGE_CATEGORY_DESC')}
           >
             <Select
               name="category_id"

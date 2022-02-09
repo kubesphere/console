@@ -80,7 +80,7 @@ export default class AppTemplate extends React.Component {
       )
     }
 
-    return <p>{t('The app has no documentation.')}</p>
+    return <p>{t('NO_APP_DESC_FOUND')}</p>
   }
 
   renderSettings() {
@@ -91,12 +91,12 @@ export default class AppTemplate extends React.Component {
   render() {
     const { tab } = this.state
     return (
-      <Card title={t('App Description')} className={styles.wrapper}>
+      <Card title={t('APP_TEMPLATE')} className={styles.wrapper}>
         <Tabs type="button" activeName={tab} onChange={this.handleTabChange}>
-          <TabPanel label={t('App Description')} name="readme">
+          <TabPanel label={t('APP_DESCRIPTION')} name="readme">
             {this.renderReadme()}
           </TabPanel>
-          <TabPanel label={t('Configuration Files')} name="settings">
+          <TabPanel label={t('CHART_FILES')} name="settings">
             {this.renderSettings()}
           </TabPanel>
         </Tabs>

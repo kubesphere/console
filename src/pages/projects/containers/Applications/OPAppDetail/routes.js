@@ -29,19 +29,19 @@ export default [
   {
     path: `${PATH}/resource-status`,
     name: 'resource-status',
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     component: ResourceStatus,
     exact: true,
   },
   {
     path: `${PATH}/template`,
-    title: 'App Template',
+    title: 'APP_TEMPLATE',
     component: AppTemplate,
     exact: true,
   },
   {
     path: `${PATH}/config`,
-    title: 'App Config',
+    title: 'APP_SETTINGS',
     component: AppConfig,
     exact: true,
   },

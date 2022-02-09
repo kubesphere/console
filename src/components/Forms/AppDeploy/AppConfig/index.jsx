@@ -142,7 +142,7 @@ export default class AppConfig extends React.Component {
           {valuesSchema && (
             <Switch
               className={styles.switch}
-              text="YAML"
+              text={t('EDIT_YAML')}
               onChange={this.handleModeChange}
               checked={isCodeMode}
             />

@@ -21,14 +21,14 @@ import AlertingRule from 'components/Forms/AlertingPolicy/AlertingRule'
 import NotificationRule from 'components/Forms/AlertingPolicy/NotificationRule'
 
 export default [
-  { title: 'Basic Info', component: BaseInfo, required: true },
+  { title: 'BASIC_INFORMATION', component: BaseInfo, required: true },
   {
-    title: 'ALERTING_RULE',
+    title: 'RULE_SETTINGS',
     component: AlertingRule,
     required: true,
   },
   {
-    title: 'NOTIFICATION_SETTINGS',
+    title: 'MESSAGE_SETTINGS',
     component: NotificationRule,
     required: true,
   },

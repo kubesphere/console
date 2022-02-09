@@ -78,6 +78,13 @@
   & > :first-child {
     margin-right: 8px;
   }
+  b {
+    margin-right: 8px;
+    span {
+      padding: 0 2px;
+    }
+  }
+
   :global {
     label {
       color: $dark-color01;

@@ -16,9 +16,24 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { concat, get, set, unset, isEmpty, omit, omitBy, has } from 'lodash'
+import {
+  concat,
+  get,
+  set,
+  unset,
+  isEmpty,
+  omit,
+  omitBy,
+  has,
+  min,
+  reduce,
+  mergeWith,
+  isUndefined,
+  pickBy,
+  endsWith,
+} from 'lodash'
 import React from 'react'
-import { generateId, getContainerGpu } from 'utils'
+import { generateId, cancelContainerDot, resourceLimitKey } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import { getLeftQuota } from 'utils/workload'
 
@@ -108,7 +123,22 @@ export default class ContainerSetting extends React.Component {
   }
 
   get workspaceQuota() {
-    return get(this.state.leftQuota, 'namespace', {})
+    const nsQuota = get(this.state.availableQuota, 'namespace', {})
+    const wsQuota = get(this.state.availableQuota, 'workspace', {})
+    return mergeWith(nsQuota, wsQuota, (ns, ws) => {
+      if (!ns && !ws) {
+        return undefined
+      }
+      if (!isUndefined(ns)) {
+        return ns < ws ? ns : ws
+      }
+      return ws
+    })
+  }
+
+  get clusters() {
+    const { projectDetail } = this.props
+    return projectDetail.clusters.map(cluster => cluster.name)
   }
 
   initService() {
@@ -167,29 +197,133 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
-  fetchQuota() {
-    const { cluster, projectDetail } = this.props
-    const { workspace, name } = projectDetail || {}
-
-    if (workspace && name) {
+  singleClusterQuota = (workspace, namespace, cluster) => {
+    return new Promise(resolve => {
       Promise.all([
         this.quotaStore.fetch({
           cluster,
-          namespace: name,
+          namespace,
         }),
         this.workspaceQuotaStore.fetchDetail({
           name: workspace,
           workspace,
           cluster,
         }),
-      ]).then(() => {
-        this.setState({
-          leftQuota: getLeftQuota(
-            get(this.workspaceQuotaStore.detail, 'status.total'),
-            this.quotaStore.data
-          ),
+      ]).then(dataArr => {
+        const namespaceQuota = get(dataArr[0], 'data.hard')
+        const { namespace: ns, workspace: ws } = getLeftQuota(
+          dataArr[1],
+          get(dataArr[0], 'data')
+        )
+        resolve({
+          workspaceQuota: ws,
+          namespaceQuota: {
+            ...ns,
+            ...omit(namespaceQuota, resourceLimitKey),
+          },
         })
       })
+    })
+  }
+
+  multiClusterQuota = (workspace, namespace) => {
+    const fetchArr = []
+    const defaults = {
+      'limits.cpu': undefined,
+      'limits.memory': undefined,
+    }
+    this.clusters.forEach(cluster =>
+      fetchArr.push(this.singleClusterQuota(workspace, namespace, cluster))
+    )
+    Promise.all(fetchArr).then(AllClusterQuota => {
+      const workspaceQuotas = AllClusterQuota.map(item =>
+        get(item, 'workspaceQuota', defaults)
+      )
+      const namespaceQuotas = AllClusterQuota.map(item =>
+        get(item, 'namespaceQuota', defaults)
+      )
+      const gpuQuotas = AllClusterQuota.map(item =>
+        omit(get(item, 'namespaceQuota', {}), resourceLimitKey)
+      )
+
+      this.setState({
+        leftQuota: {
+          workspace: this.transformQuota(workspaceQuotas),
+          namespace: this.transformQuota(namespaceQuotas),
+        },
+        availableQuota: {
+          workspace: this.transformQuota(workspaceQuotas),
+          namespace: {
+            ...this.transformQuota(namespaceQuotas),
+            ...this.transformGpu(gpuQuotas),
+          },
+        },
+      })
+    })
+  }
+
+  transformQuota = data => {
+    return {
+      'limits.cpu': this.findCpuOrMemoryMin(data, 'limits.cpu'),
+      'limits.memory': this.findCpuOrMemoryMin(data, 'limits.memory'),
+      'requests.cpu': this.findCpuOrMemoryMin(data, 'requests.cpu'),
+      'requests.memory': this.findCpuOrMemoryMin(data, 'requests.memory'),
+    }
+  }
+
+  findCpuOrMemoryMin = (dataArr, key) => {
+    const toArr = dataArr.map(item => item[key])
+    return min(toArr)
+  }
+
+  transformGpu = data => {
+    const supportGpu = globals.config.supportGpuType
+    const gpuArr = data.map(item =>
+      pickBy(item, (_, key) => supportGpu.some(type => endsWith(key, type)))
+    )
+    return reduce(
+      gpuArr,
+      (total, current) => {
+        const hasKey = get(total, `${Object.keys(current)[0]}`)
+        if (hasKey) {
+          return Number(hasKey) > Number(Object.values(current)[0])
+            ? { ...total, ...current }
+            : { ...total }
+        }
+        return { ...total, ...current }
+      },
+      {}
+    )
+  }
+
+  fetchQuota = async () => {
+    let workspace
+    const namespace = this.namespace
+    const { cluster, projectDetail, isFederated } = this.props
+
+    if (!projectDetail) {
+      workspace = this.props.workspace
+    } else {
+      workspace = projectDetail.workspace
+    }
+
+    if (workspace && namespace) {
+      if (!isFederated) {
+        const {
+          workspaceQuota,
+          namespaceQuota,
+        } = await this.singleClusterQuota(workspace, namespace, cluster)
+        const leftQuota = {
+          workspace: workspaceQuota,
+          namespace: namespaceQuota,
+        }
+        this.setState({
+          leftQuota,
+          availableQuota: leftQuota,
+        })
+      } else {
+        this.multiClusterQuota(workspace, namespace)
+      }
     }
   }
 
@@ -233,7 +367,10 @@ export default class ContainerSetting extends React.Component {
     } else {
       volumes = volumes.filter(
         volume =>
-          !(volume.name === 'host-time' && volume.hostPath === '/etc/localtime')
+          !(
+            volume.name === 'host-time' &&
+            volume?.hostPath?.path === '/etc/localtime'
+          )
       )
     }
 
@@ -381,11 +518,11 @@ export default class ContainerSetting extends React.Component {
     })
 
     _initContainers.forEach(item => {
-      getContainerGpu(item)
+      cancelContainerDot(item)
     })
 
     _containers.forEach(item => {
-      getContainerGpu(item)
+      cancelContainerDot(item)
     })
 
     set(this.fedFormTemplate, `${this.prefix}spec.containers`, _containers)
@@ -419,7 +556,13 @@ export default class ContainerSetting extends React.Component {
   }
 
   renderContainerForm(data) {
-    const { withService, isFederated, cluster, supportGpuSelect } = this.props
+    const {
+      withService,
+      isFederated,
+      cluster,
+      supportGpuSelect,
+      projectDetail,
+    } = this.props
     const { limitRange, imageRegistries } = this.state
     const type = !data.image ? 'Add' : 'Edit'
     const params = {
@@ -433,6 +576,7 @@ export default class ContainerSetting extends React.Component {
         module={this.module}
         namespace={this.namespace}
         data={data}
+        projectDetail={projectDetail}
         onSave={this.handleContainer}
         onCancel={this.hideContainer}
         withService={withService}
@@ -448,10 +592,11 @@ export default class ContainerSetting extends React.Component {
   renderDeployPlacementTip() {
     return (
       <div className={styles.tipBox}>
-        <div className={styles.tipTitle}>{t('Fixed Replicas')}:</div>
-        <p>{t('Fixed_Deploy_text')}</p>
-        <div className={styles.tipTitle}>{t('Federated Schedule')}:</div>
-        <p>{t('Federated_Schedule_Text')}</p>
+        <div className={styles.tipTitle}>{t('SPECIFY_REPLICAS')}</div>
+        <p>{t('SPECIFY_REPLICAS_DESC')}</p>
+        <br />
+        <div className={styles.tipTitle}>{t('SPECIFY_WEIGHTS')}</div>
+        <p>{t('SPECIFY_WEIGHTS_DESC')}</p>
       </div>
     )
   }
@@ -481,7 +626,9 @@ export default class ContainerSetting extends React.Component {
     return (
       <div className="margin-b12">
         <div className={styles.formTip}>
-          <span className={styles.tipLabel}>{t('Deployment Mode')}</span>
+          <span className={styles.tipLabel}>
+            {t('REPLICA_SCHEDULING_MODE')}
+          </span>
           <Tooltip placement="right" content={this.renderDeployPlacementTip()}>
             <Icon name="question" size="20"></Icon>
           </Tooltip>
@@ -584,7 +731,7 @@ export default class ContainerSetting extends React.Component {
       <div className="margin-b12">
         <Form.Group
           label={t('ADD_METADATA')}
-          desc={t('ADD_METADATA_DESC')}
+          desc={t('POD_ADD_METADATA_DESC')}
           keepDataWhenUnCheck
           checkable
         >

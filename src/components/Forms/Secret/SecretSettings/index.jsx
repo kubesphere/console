@@ -63,13 +63,13 @@ export default class SecretSettings extends React.Component {
 
   getTypeOptions = () => [
     { label: t('DEFAULT'), value: 'Opaque' },
-    { label: t('TLS'), value: 'kubernetes.io/tls' },
+    { label: t('TLS_INFORMATION'), value: 'kubernetes.io/tls' },
     {
-      label: t('IMAGE_REGISTRY_SECRET_SCAP'),
+      label: t('IMAGE_REGISTRY_INFORMATION'),
       value: 'kubernetes.io/dockerconfigjson',
     },
     {
-      label: t('ACCOUNT_PASSWORD_SECRET_SCAP'),
+      label: t('USERNAME_PASSWORD'),
       value: 'kubernetes.io/basic-auth',
     },
   ]
@@ -167,7 +167,7 @@ export default class SecretSettings extends React.Component {
         <Form.Item
           label={t('CREDENTIAL_SI')}
           rules={[
-            { required: true, message: t('ENTER_CREDENTIAL_TIP') },
+            { required: true, message: t('CREDENTIAL_NAME_EMPTY_DESC') },
             { validator: this.dataValidator },
           ]}
         >
@@ -191,11 +191,21 @@ export default class SecretSettings extends React.Component {
   }
 
   renderImage() {
+    const { cluster, isFederated } = this.props
+    const { name, namespace } = get(this.formTemplate, 'metadata')
+
     return (
       <div key="image" className="margin-t8">
         <Form.Item rules={[{ validator: this.imageValidator }]}>
           <Base64Wrapper name="data['.dockerconfigjson']">
-            <ImagerRegistry ref={this.imageRegistryRef} />
+            <ImagerRegistry
+              fedFormTemplate={this.fedFormTemplate}
+              cluster={cluster}
+              namespace={namespace}
+              isFederated={isFederated}
+              screatName={name}
+              ref={this.imageRegistryRef}
+            />
           </Base64Wrapper>
         </Form.Item>
       </div>
@@ -255,9 +265,6 @@ export default class SecretSettings extends React.Component {
     return content
   }
 
-  valueRenderer = option =>
-    t('SECRET_VALUE_LABEL', { value: option.value, label: option.label })
-
   render() {
     const { formRef, disableSelect } = this.props
     const { state } = this.state
@@ -275,12 +282,10 @@ export default class SecretSettings extends React.Component {
           <Select
             name="type"
             options={this.getTypeOptions()}
-            valueRenderer={this.valueRenderer}
-            optionRenderer={this.valueRenderer}
             onChange={this.handleTypeChange}
             placeholder=" "
-            searchable
             disabled={disableSelect}
+            searchable
           />
         </Form.Item>
         {this.renderContent()}

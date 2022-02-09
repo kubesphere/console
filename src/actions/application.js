@@ -16,12 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, isEmpty } from 'lodash'
+import { get, set, isEmpty, omit } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { mergeLabels, updateFederatedAnnotations } from 'utils'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { MODULE_KIND_MAP } from 'utils/constants'
+import { MODULE_KIND_MAP, OMIT_TOTAL_REPLICAS } from 'utils/constants'
 
 import ROUTER_FORM_STEPS from 'configs/steps/ingresses'
 
@@ -31,7 +31,7 @@ import CreateAppModal from 'projects/components/Modals/CreateApp'
 import CreateAppServiceModal from 'projects/components/Modals/CreateAppService'
 import ServiceMonitorModal from 'projects/components/Modals/ServiceMonitor'
 
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
 import ServiceMonitorStore from 'stores/monitoring/service.monitor'
 
 export default {
@@ -51,6 +51,10 @@ export default {
     on({ store, cluster, namespace, workspace, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
+          const deployments = omit(data, ['application', 'ingress'])
+          Object.keys(deployments).forEach(name => {
+            data = omit(data, OMIT_TOTAL_REPLICAS(name))
+          })
           store.create(data, { cluster, namespace }).then(() => {
             Modal.close(modal)
             success && success()
@@ -122,8 +126,8 @@ export default {
   },
   'crd.app.addroute': {
     on({ store, detail, cluster, namespace, success, ...props }) {
-      const routerStore = new RouterStore()
-      const module = routerStore.module
+      const ingressStore = new IngressStore()
+      const module = ingressStore.module
       const kind = MODULE_KIND_MAP[module]
       const formTemplate = {
         [kind]: FORM_TEMPLATES[module]({
@@ -162,7 +166,7 @@ export default {
             updateFederatedAnnotations(_data)
           }
 
-          await routerStore.create(_data, { cluster, namespace })
+          await ingressStore.create(_data, { cluster, namespace })
 
           Modal.close(modal)
           Notify.success({ content: `${t('Add Route Successfully')}` })
@@ -172,10 +176,10 @@ export default {
         namespace,
         formTemplate,
         module,
-        store: routerStore,
+        store: ingressStore,
         steps: ROUTER_FORM_STEPS,
         modal: CreateModal,
-        okBtnText: t('Add'),
+        okBtnText: t('CREATE'),
         selector: detail.selector,
         ...props,
         name: 'Route',

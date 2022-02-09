@@ -96,7 +96,7 @@ export default class WorkloadsCard extends React.Component {
     if (isEmpty(workloads) && !isLoading) {
       return (
         <div className={styles.empty}>
-          {t('NOT_AVAILABLE', { resource: t('Workload') })}
+          {t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('WORKLOAD') })}
         </div>
       )
     }
@@ -122,7 +122,7 @@ export default class WorkloadsCard extends React.Component {
     return (
       <Panel
         className={classnames(styles.main, className)}
-        title={t('Workloads')}
+        title={t('WORKLOAD_PL')}
       >
         {this.renderContent()}
       </Panel>

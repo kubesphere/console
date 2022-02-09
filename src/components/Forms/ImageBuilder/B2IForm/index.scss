@@ -26,7 +26,6 @@
   .column {
     @include column;
   }
-  display: flex;
 
   :global(.is-2) {
     width: 20%;

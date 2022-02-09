@@ -18,7 +18,6 @@
 .editorTitle {
   margin: 4px 0 12px 0;
   @include TypographyTitleH6($dark-color07);
-
   :global .icon {
     margin-right: 8px;
   }
@@ -45,8 +44,4 @@
   &:hover {
     color: $blue-color04;
   }
-}
-
-.banLink {
-  @include banLink();
 }

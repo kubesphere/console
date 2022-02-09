@@ -62,6 +62,7 @@ export default class ProjectGatewayCard extends React.Component {
         icon: 'pen',
         text: t('EDIT'),
         action: 'edit',
+        show: item => item.createTime,
         onClick: item => {
           trigger('gateways.edit', {
             detail: item._originData,
@@ -73,7 +74,7 @@ export default class ProjectGatewayCard extends React.Component {
       {
         key: 'update',
         icon: 'update',
-        text: t('Update Gateway'),
+        text: t('UPDATE'),
         action: 'manage',
         show: item => !item.createTime,
         onClick: item =>
@@ -86,12 +87,14 @@ export default class ProjectGatewayCard extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('DELETE'),
+        text: t('DISABLE'),
         action: 'delete',
         onClick: item =>
           trigger('gateways.delete', {
+            type: this.props.name,
             detail: item,
             ...this.getGatewayResource(item),
+            resource: item.name,
             success: this.routing.query,
           }),
       },
@@ -110,7 +113,7 @@ export default class ProjectGatewayCard extends React.Component {
           action: 'delete',
           onClick: () =>
             trigger('gateways.batch.delete', {
-              type: t(this.name),
+              type: this.props.name,
               rowKey: 'name',
               success: this.routing.query,
             }),
@@ -129,10 +132,11 @@ export default class ProjectGatewayCard extends React.Component {
       return (
         <Tooltip content={t('UPDATE_GATEWAY_DESC')} placement="top">
           <Icon
+            size={20}
             name="update"
             color={{
-              primary: '#ffc781',
-              secondary: '#f5a623',
+              primary: '#f5a623 ',
+              secondary: '#ffe1be',
             }}
           />
         </Tooltip>
@@ -146,16 +150,20 @@ export default class ProjectGatewayCard extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('PROJECT_GATEWAY'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
         render: (name, record) => {
           return (
-            <span>
-              {name}
+            <>
+              <span
+                style={{ fontWeight: 700, cursor: 'auto', marginRight: '4px' }}
+              >
+                {name}
+              </span>
               {this.renderDisabledTip(record)}
-            </span>
+            </>
           )
         },
       },
@@ -164,29 +172,28 @@ export default class ProjectGatewayCard extends React.Component {
         dataIndex: 'type',
       },
       {
-        title: t('GATEWAY_IP'),
+        title: t('IP_ADDRESS'),
         dataIndex: 'defaultIngress',
       },
       {
-        title: t('Host Port'),
+        title: t('NODE_PORTS'),
         dataIndex: 'ports',
         render: ports => {
           return isEmpty(ports)
             ? '-'
-            : ports.map(item => `${item.name}:${item.nodePort}`).join(';')
+            : ports
+                .map(item => `${item.name.toUpperCase()}: ${item.nodePort}`)
+                .join('/')
         },
       },
       {
-        title: t('REPLICAS'),
+        title: t('REPLICA_COUNT'),
         dataIndex: 'replicas',
       },
       {
-        title: t('Application Governance'),
+        title: t('TRACING'),
         dataIndex: 'serviceMeshEnable',
-        render: serviceMeshEnable =>
-          serviceMeshEnable
-            ? t('GATEWAY_SERVICE_MESH_STATUS_ON')
-            : t('GATEWAY_SERVICE_MESH_STATUS_OFF'),
+        render: serviceMeshEnable => (serviceMeshEnable ? t('ON') : t('OFF')),
       },
     ]
   }

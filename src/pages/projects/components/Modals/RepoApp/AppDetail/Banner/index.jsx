@@ -41,7 +41,7 @@ class Banner extends PureComponent {
       <div className={styles.banner}>
         <div className={styles.back} onClick={this.handleClickBack}>
           <Icon name="return" size={20} />
-          <span>{t('Back')}</span>
+          <span>{t('BACK')}</span>
         </div>
         <div className={styles.intro}>
           <span className={styles.icon}>

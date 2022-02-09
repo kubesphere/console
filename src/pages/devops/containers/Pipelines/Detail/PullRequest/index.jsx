@@ -39,7 +39,7 @@ export default class Pullrequest extends React.Component {
 
   store = this.props.detailStore || {}
 
-  refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+  refreshTimer = setInterval(() => this.getData(), 4000)
 
   get isRuning() {
     const data = get(toJS(this.store), 'pullRequestList.data', [])
@@ -65,6 +65,7 @@ export default class Pullrequest extends React.Component {
   }
 
   refreshHandler = () => {
+    // The data of the current list is asynchronous, so there is no need to state as a judgment condition
     if (this.isRuning) {
       this.getData()
     } else {
@@ -84,7 +85,7 @@ export default class Pullrequest extends React.Component {
     this.unsubscribe && this.unsubscribe()
   }
 
-  getData() {
+  getData = () => {
     const { params } = this.props.match
     const query = parse(location.search.slice(1))
 
@@ -119,38 +120,38 @@ export default class Pullrequest extends React.Component {
     },
     {
       title: t('NAME'),
-      dataIndex: 'displayName',
+      dataIndex: 'name',
       width: '15%',
-      render: (displayName, record) => (
+      render: (name, record) => (
         <Link
           className={classNames('item-name', {
             [styles.itemNameDisabled]: record.disabled,
           })}
-          to={`${this.prefix}/branch/${displayName}/`}
+          to={`${this.prefix}/branch/${name}/`}
           disabled={record.disabled}
         >
-          {displayName}
+          {name}
         </Link>
       ),
     },
     {
-      title: t('WeatherScore'),
+      title: t('HEALTH_STATUS'),
       dataIndex: 'weatherScore',
       width: '15%',
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
-      title: t('Last Message'),
+      title: t('LAST_MESSAGE'),
       width: '20%',
       render: record => get(record, 'pullRequest.title', ''),
     },
     {
-      title: t('Author'),
+      title: t('AUTHOR'),
       width: '15%',
       render: record => get(record, 'pullRequest.author', ''),
     },
     {
-      title: t('Time'),
+      title: t('TIME'),
       dataIndex: 'latestRun',
       width: '20%',
       render: latestRun =>

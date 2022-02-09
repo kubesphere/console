@@ -53,7 +53,7 @@ export default class SvnForm extends React.Component {
     <span style={{ display: 'flex', alignItem: 'center' }}>
       {label}&nbsp;&nbsp;
       <Tag type={disabled ? '' : 'warning'}>
-        {type === 'ssh' ? 'SSH' : t(type)}
+        {type && t(`CREDENTIAL_TYPE_${type.toUpperCase()}`)}
       </Tag>
     </span>
   )
@@ -65,21 +65,26 @@ export default class SvnForm extends React.Component {
     return (
       <div className={styles.card}>
         <Form data={formData} ref={formRef}>
-          <Form.Item label={t('type')}>
+          <Form.Item label={t('TYPE')}>
             <Select
               name="svn_source.type"
               disabled={enableTypeChange === false}
               onChange={this.handleTypeChange}
               options={[
-                { label: t('single Svn'), value: 'single_svn' },
-                { label: 'svn', value: 'svn' },
+                { label: t('SINGLE_SVN'), value: 'single_svn' },
+                { label: t('SVN'), value: 'svn' },
               ]}
               defaultValue={'svn'}
             />
           </Form.Item>
           <Form.Item
-            label={t('Remote Repository URL')}
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            label={t('CODE_REPOSITORY_ADDRESS')}
+            rules={[
+              {
+                required: true,
+                message: t('CODE_REPOSITORY_ADDRESS_EMPTY_TIP'),
+              },
+            ]}
           >
             <Input name="svn_source.remote" />
           </Form.Item>
@@ -87,16 +92,18 @@ export default class SvnForm extends React.Component {
             label={t('CREDENTIAL_SI')}
             desc={
               <p>
-                {t('ADD_NEW_CREDENTIAL_DESC')}
+                {t('SELECT_CREDENTIAL_DESC')}
                 <span
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_CREDENTIAL')}
                 </span>
               </p>
             }
-            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            rules={[
+              { required: true, message: t('PIPELINE_CREDENTIAL_EMPTY_TIP') },
+            ]}
           >
             <Select
               name="svn_source.credential_id"
@@ -106,19 +113,20 @@ export default class SvnForm extends React.Component {
               onFetch={this.getCredentialsListData}
               optionRenderer={this.optionRender}
               valueRenderer={this.optionRender}
+              placeholder=" "
               searchable
               clearable
             />
           </Form.Item>
           {this.state.type !== 'single_svn' ? (
             <React.Fragment>
-              <Form.Item label={t('Branch Included')}>
+              <Form.Item label={t('BRANCH_INCLUDED')}>
                 <Input
                   name="svn_source.includes"
                   defaultValue="trunk,branches/*,tags/*,sandbox/*"
                 />
               </Form.Item>
-              <Form.Item label={t('Branch Excluded')}>
+              <Form.Item label={t('BRANCH_EXCLUDED')}>
                 <Input name="svn_source.excludes" />
               </Form.Item>
             </React.Fragment>

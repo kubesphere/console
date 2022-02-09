@@ -163,7 +163,7 @@ class AppDetail extends Component {
             onChange={this.handleTabChange}
           />
           <Button type="control" onClick={this.showDeploy}>
-            {t('DEPLOY')}
+            {t('INSTALL')}
           </Button>
         </div>
         <div className={styles.content}>

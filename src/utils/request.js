@@ -217,8 +217,7 @@ function formatError(response, data) {
     result.reason = data.reason || data.error
   }
 
-  result.message =
-    data.message || data.message || data.Error || JSON.stringify(data.details)
+  result.message = data.message || data.Error || JSON.stringify(data.details)
 
   return result
 }

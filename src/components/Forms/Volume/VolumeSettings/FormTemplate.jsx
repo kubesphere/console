@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isNaN, unset, pick } from 'lodash'
+import { get, isNaN, unset, pick, isUndefined, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 
@@ -24,12 +24,13 @@ import { PropTypes } from 'prop-types'
 import { safeParseJSON } from 'utils'
 import { ACCESS_MODES } from 'utils/constants'
 import { Form, Select } from '@kube-design/components'
-import { AccessModes, UnitSlider } from 'components/Inputs'
+import { UnitSlider } from 'components/Inputs'
 
 import StorageClassStore from 'stores/storageClass'
 
 const STORAGE_CLASSES_KEY = 'spec.storageClassName'
-const ACCESSMODE_KEY = 'spec.accessModes[0]'
+const ACCESSMODE_KEY = 'spec.accessModes'
+const PREFERABLE_DEFAULT_ACCESS_MODE = 'ReadWriteOnce'
 
 export default class VolumeSettings extends React.Component {
   static contextTypes = {
@@ -127,9 +128,9 @@ export default class VolumeSettings extends React.Component {
 
   getSupportedAccessModes = () => {
     const { storageClass } = this.state
-
+    let support = null
     if (storageClass) {
-      return safeParseJSON(
+      support = safeParseJSON(
         get(
           storageClass,
           'annotations["storageclass.kubesphere.io/supported-access-modes"]',
@@ -137,8 +138,7 @@ export default class VolumeSettings extends React.Component {
         )
       )
     }
-
-    return null
+    return isUndefined(support) ? [] : support
   }
 
   handleStorageClassChange = value => {
@@ -167,8 +167,24 @@ export default class VolumeSettings extends React.Component {
     const { storageClass, isLoading } = this.state
     const { editModalTitle, tabTitle } = this.props
     const storageClasses = this.getStorageClasses()
-    const supportedAccessModes = this.getSupportedAccessModes()
     const storageClassesList = this.store.list || {}
+
+    const supportMode = this.getSupportedAccessModes()
+    const supportedAccessModes = !isEmpty(supportMode)
+      ? supportMode
+      : Object.keys(ACCESS_MODES)
+
+    const supportedAccessModesSelectOptions = supportedAccessModes.map(
+      mode => ({
+        value: mode,
+        label: mode,
+      })
+    )
+
+    const defaultAccessModes =
+      PREFERABLE_DEFAULT_ACCESS_MODE in supportedAccessModes
+        ? [PREFERABLE_DEFAULT_ACCESS_MODE]
+        : supportedAccessModes.slice(0, 1)
 
     return (
       <>
@@ -189,19 +205,18 @@ export default class VolumeSettings extends React.Component {
             clearable
           />
         </Form.Item>
-        {editModalTitle !== 'Edit Config Template' &&
-        tabTitle !== 'Diff Settings' ? (
+        {editModalTitle !== 'EDIT_SETTINGS' && tabTitle !== 'CLUSTER_DIFF' ? (
           <Form.Item
             label={t('ACCESS_MODE')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+            desc={t('ACCESS_MODES_DESC')}
           >
-            <AccessModes
+            <Select
               name={ACCESSMODE_KEY}
-              defaultValue={
-                get(supportedAccessModes, '[0]') || Object.keys(ACCESS_MODES)[0]
-              }
-              supportedAccessModes={supportedAccessModes}
+              options={supportedAccessModesSelectOptions}
               loading={isLoading}
+              defaultValue={defaultAccessModes}
+              multi
             />
           </Form.Item>
         ) : (

@@ -24,7 +24,7 @@ import Switch from './index'
 it('renders correctly', () => {
   const handleChange = jest.fn()
   const wrapper = mount(
-    <Switch text={t('EDIT_MODE')} onChange={handleChange} checked={true} />
+    <Switch text={t('EDIT_YAML')} onChange={handleChange} checked={true} />
   )
 
   const button = wrapper.find('button')
@@ -35,7 +35,7 @@ it('submit correctly', () => {
   const handleChange = jest.fn()
   const data = true
   const wrapper = mount(
-    <Switch text={t('EDIT_MODE')} onChange={handleChange} checked={data} />
+    <Switch text={t('EDIT_YAML')} onChange={handleChange} checked={data} />
   )
 
   const button = wrapper.find('button')

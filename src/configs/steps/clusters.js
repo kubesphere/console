@@ -30,7 +30,7 @@ export const IMPORT_CLUSTER = [
   //   required: true,
   // },
   {
-    title: 'Basic Info',
+    title: 'BASIC_INFORMATION',
     component: BaseInfo,
     required: true,
   },
@@ -49,7 +49,7 @@ export const NEW_CLUSTER = [
     required: true,
   },
   {
-    title: 'Basic Info',
+    title: 'BASIC_INFORMATION',
     component: BaseInfo,
     required: true,
   },
@@ -64,7 +64,7 @@ export const NEW_CLUSTER = [
     required: true,
   },
   {
-    title: 'Advanced Settings',
+    title: 'ADVANCED_SETTINGS',
     component: AdvanceSettings,
     required: true,
   },

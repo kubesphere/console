@@ -43,7 +43,7 @@ export default [
     required: true,
   },
   {
-    title: 'Advanced Settings',
+    title: 'ADVANCED_SETTINGS',
     icon: 'slider',
     component: AdvanceSettings,
     required: true,

@@ -72,7 +72,7 @@ export default class Members extends React.Component {
       {
         key: 'modify',
         icon: 'pen',
-        text: t('CHANGE_MEMBER_ROLE'),
+        text: t('CHANGE_ROLE'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -87,7 +87,7 @@ export default class Members extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('REMOVE_MEMBER'),
+        text: t('REMOVE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
@@ -108,7 +108,7 @@ export default class Members extends React.Component {
         {
           key: 'invite',
           type: 'control',
-          text: t('INVITE_MEMBER'),
+          text: t('INVITE'),
           action: 'create',
           onClick: () =>
             trigger('member.invite', {
@@ -127,7 +127,7 @@ export default class Members extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Remove Members'),
+          text: t('REMOVE'),
           action: 'delete',
           onClick: () =>
             trigger('member.remove.batch', {
@@ -141,7 +141,7 @@ export default class Members extends React.Component {
         name: record.name,
       }),
       emptyProps: {
-        desc: t('INVITE_MEMBER_DESC'),
+        desc: t('PROJECT_MEMBER_EMPTY_DESC'),
       },
     }
   }

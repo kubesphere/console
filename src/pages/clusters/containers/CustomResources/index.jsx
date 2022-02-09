@@ -59,7 +59,7 @@ export default class CustomResources extends React.Component {
         dataIndex: 'scope',
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

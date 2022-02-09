@@ -30,7 +30,7 @@ export default path => [
   },
   {
     path: `${path}/messages`,
-    title: 'ALERTING_MESSAGE_PL',
+    title: 'ALERTING_HISTORY',
     component: AlertingMessages,
     exact: true,
   },

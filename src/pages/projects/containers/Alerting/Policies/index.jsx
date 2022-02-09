@@ -105,7 +105,7 @@ export default class AlertingPolicy extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_ALERTING_POLICY'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('alerting.policy.create', {
@@ -200,7 +200,7 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('ACTIVATED_AT'),
+        title: t('ACTIVATION_TIME'),
         dataIndex: 'alerts',
         isHideable: true,
         width: '16%',

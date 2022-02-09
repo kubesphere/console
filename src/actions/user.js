@@ -43,7 +43,7 @@ export default {
           await store.create(data)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
           success && success()
         },
         modal: CreateModal,
@@ -65,7 +65,7 @@ export default {
           await store.update(detail, data)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         modal: CreateModal,
@@ -98,7 +98,7 @@ export default {
           }
 
           Modal.close(modal)
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         modal: UserSettingModal,
@@ -117,7 +117,7 @@ export default {
           }
           store.modifyPassword(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             success && success()
           })
         },

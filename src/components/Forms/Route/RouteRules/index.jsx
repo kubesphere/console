@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, isEmpty } from 'lodash'
+import { get, set, isEmpty, omit } from 'lodash'
 import React from 'react'
 import { toJS, computed } from 'mobx'
 import { observer } from 'mobx-react'
@@ -25,7 +25,7 @@ import { joinSelector } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import SecretStore from 'stores/secret'
 import ServiceStore from 'stores/service'
-import RouterStore from 'stores/router'
+import GatewayStore from 'stores/gateway'
 import FederatedStore from 'stores/federated'
 
 import RuleList from './RuleList'
@@ -38,11 +38,13 @@ class RouteRules extends React.Component {
     this.state = {
       showRule: false,
       selectRuleIndex: -1,
+      gateway: {},
+      isLoading: false,
     }
 
     this.secretStore = new SecretStore()
     this.serviceStore = new ServiceStore()
-    this.routerStore = new RouterStore()
+    this.gatewayStore = new GatewayStore()
 
     if (props.isFederated) {
       this.secretStore = new FederatedStore({ module: this.secretStore.module })
@@ -64,19 +66,8 @@ class RouteRules extends React.Component {
       limit: -1,
       labelSelector: joinSelector(this.props.selector),
     })
-    !this.props.isFederated &&
-      this.routerStore
-        .getGateway({ namespace: this.namespace, cluster: this.cluster })
-        .then(() => {
-          const { data } = toJS(this.routerStore.gateway)
-          if (data.serviceMeshEnable) {
-            set(
-              this.formTemplate,
-              'metadata.annotations["nginx.ingress.kubernetes.io/service-upstream"]',
-              'true'
-            )
-          }
-        })
+
+    this.getGateway()
   }
 
   get formTemplate() {
@@ -133,6 +124,30 @@ class RouteRules extends React.Component {
     this.hideRule()
   }
 
+  getGateway = async () => {
+    if (!this.props.isFederated) {
+      const getProjectGateway = () => {
+        return this.gatewayStore.getGatewayByProject({
+          namespace: this.namespace,
+          cluster: this.cluster,
+        })
+      }
+      this.setState({ isLoading: true })
+      const dataList = await getProjectGateway()
+
+      const data = dataList[1] || dataList[0]
+
+      if (data.serviceMeshEnable) {
+        set(
+          this.formTemplate,
+          'metadata.annotations["nginx.ingress.kubernetes.io/service-upstream"]',
+          'true'
+        )
+      }
+      this.setState({ gateway: data, isLoading: false })
+    }
+  }
+
   handleDelete = index => {
     const { isFederated } = this.props
     const template = this.fedFormTemplate
@@ -179,16 +194,21 @@ class RouteRules extends React.Component {
     const clusters = get(this.props.projectDetail, 'clusters', [])
 
     clusters.forEach(cluster => {
+      const overrideData = data =>
+        data
+          .filter(item => item.clusters.includes(cluster.name))
+          .map(item => omit(item, 'clusters'))
+
       overrides.push({
         clusterName: cluster.name,
         clusterOverrides: [
           {
             path: '/spec/rules',
-            value: rules.filter(rule => rule.clusters.includes(cluster.name)),
+            value: overrideData(rules),
           },
           {
             path: '/spec/tls',
-            value: tls.filter(item => item.clusters.includes(cluster.name)),
+            value: overrideData(tls),
           },
         ],
       })
@@ -199,28 +219,28 @@ class RouteRules extends React.Component {
 
   rulesValidator = (_, value, callback) => {
     if (isEmpty(value)) {
-      return callback({ message: t('ADD_ROUTING_RULE_DESC') })
+      return callback({ message: t('ROUTING_RULE_EMPTY_DESC') })
     }
 
     callback()
   }
 
   renderRuleForm(index) {
-    const { isFederated, projectDetail } = this.props
+    const { isFederated, projectDetail, namespace } = this.props
     const services = toJS(this.services)
     const { data: secrets } = toJS(this.secretStore.list)
-    const { data: gateway } = toJS(this.routerStore.gateway)
 
     const data = get(this.fedFormTemplate, `spec.rules[${index}]`, {})
 
     return (
       <RuleForm
         data={data}
-        gateway={gateway}
+        gateway={this.state.gateway}
         secrets={secrets}
         services={services}
         isFederated={isFederated}
         projectDetail={projectDetail}
+        namespace={namespace}
         onSave={this.handleRule}
         onCancel={this.hideRule}
       />
@@ -229,14 +249,13 @@ class RouteRules extends React.Component {
 
   render() {
     const { formRef, isFederated, projectDetail } = this.props
-    const { showRule, selectRuleIndex } = this.state
-    const { data, isLoading } = toJS(this.routerStore.gateway)
+    const { showRule, selectRuleIndex, gateway, isLoading } = this.state
 
     if (showRule) {
       return this.renderRuleForm(selectRuleIndex)
     }
 
-    const noGateway = isEmpty(data) && !isLoading
+    const noGateway = isEmpty(gateway) && !isLoading
 
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>

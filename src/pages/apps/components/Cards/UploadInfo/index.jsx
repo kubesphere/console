@@ -169,7 +169,7 @@ export default class UploadInfo extends Component {
         </div>
         <div className={styles.description}>
           {t(uploadStatusWord[status], { file: missFile })}
-          {status === 'error' && <label>, {t('please upload again')}</label>}
+          {status === 'error' && <label>. {t('UPLOAD_AGAIN_TIP')}</label>}
         </div>
       </div>
     )
@@ -186,17 +186,17 @@ export default class UploadInfo extends Component {
             {packageName}
             {canEdit && (
               <label className={styles.edit} onClick={this.onUploadClick}>
-                「{t('File')}」
+                {t('UPLOAD')}
               </label>
             )}
           </div>
           <div className={styles.description}>
-            {t('UPDATED_AT')}:&nbsp;
+            {t('UPDATE_TIME_COLON')}
             {getLocalTime(updateTime).format('YYYY-MM-DD HH:mm:ss')}
           </div>
         </div>
         <Button onClick={this.downloadPackage} type="default">
-          {t('Download')}
+          {t('DOWNLOAD')}
         </Button>
         <Upload
           ref={node => {
@@ -230,7 +230,8 @@ export default class UploadInfo extends Component {
         </div>
         {canCreate && (
           <div onClick={this.onUploadClick} className={styles.reUpload}>
-            👉 {t('Package problems')}? <label>{t('Re-upload')}</label>
+            👉 {t('INCORRECT_FILE')}
+            <label>{t('TRY_AGAIN')}</label>
           </div>
         )}
       </>

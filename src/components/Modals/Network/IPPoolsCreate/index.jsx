@@ -106,7 +106,7 @@ export default class CreateIPPoolModal extends Component {
         {...rest}
       >
         <Form.Item
-          label={t('IP_ADDRESS_TCAP')}
+          label={t('IP_ADDRESS')}
           rules={[
             { required: true, message: t('IP_ADDRESS_EMPTY_DESC') },
             {
@@ -156,7 +156,7 @@ export default class CreateIPPoolModal extends Component {
             rules={[{ validator: this.validator }]}
           >
             <ObjectInput className={styles.item} name={`cidrs[${index}]`}>
-              <Input name="cidr" placeholder={t('NETWORK_SEGMENT')} />
+              <Input name="cidr" placeholder={t('NETWORK_SEGMENT_SCAP')} />
               <Input
                 name="name"
                 defaultValue={`ippool-${this.random}-${index}`}

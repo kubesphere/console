@@ -32,7 +32,7 @@ const Title = ({ type, cluster, clusters, setCluster }) => {
 
   return (
     <div className={styles.title}>
-      <h2>{t('Consumption Bill')}</h2>
+      <h2>{t('RESOURCE_CONSUMPTION_STATISTICS')}</h2>
       {type === 'workspaces' &&
       globals.app.isMultiCluster &&
       clusters.length > 0 ? (

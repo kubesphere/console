@@ -101,7 +101,7 @@ class TrafficManangement extends React.Component {
       return (
         <EmptyList
           image="/assets/traffic-management.svg"
-          title={t('Temporarily unable to use traffic management')}
+          title={t('NO_DATA')}
           desc={t('TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP')}
         />
       )
@@ -128,10 +128,8 @@ class TrafficManangement extends React.Component {
     return (
       <EmptyList
         image="/assets/traffic-management.svg"
-        title={t('Temporarily unable to use traffic management')}
-        desc={t(
-          'The app has not received the request for a long time, please visit the app and try traffic management'
-        )}
+        title={t('NO_DATA')}
+        desc={t('TRAFFIC_MONITORING_UNAVAILABLE_DESC')}
         actions={<Button onClick={this.handleRefresh}>{t('Refresh')}</Button>}
       />
     )
@@ -158,8 +156,8 @@ class TrafficManangement extends React.Component {
         &nbsp;
         <span>
           {isServiceMeshEnabled
-            ? t('Microservice enabled')
-            : t('Microservice not enabled')}
+            ? t('APPLICATION_GOVERNANCE_ENABLED')
+            : t('APPLICATION_GOVERNANCE_DISABLED')}
         </span>
       </span>
     )

@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { get, set, isEmpty } from 'lodash'
+import { get, set, isEmpty, cloneDeep } from 'lodash'
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
 import CardSelect from 'components/Inputs/CardSelect'
 import { PATTERN_NAME, MODULE_KIND_MAP } from 'utils/constants'
@@ -33,7 +33,7 @@ export default class BaseInfo extends React.Component {
 
     if (isEmpty(this.formTemplate.spec)) {
       const defaultKey = Object.keys(templateSettings)[0]
-      const defaultValue = templateSettings[defaultKey].settings
+      const defaultValue = cloneDeep(templateSettings[defaultKey].settings)
       set(this.formTemplate, 'spec', defaultValue)
     }
   }
@@ -55,7 +55,6 @@ export default class BaseInfo extends React.Component {
         return item.label !== 'Grafana'
       }
       return true
-
     })
 
   nameValidator = (rule, value, callback) => {
@@ -79,6 +78,7 @@ export default class BaseInfo extends React.Component {
 
   handleTemplateChange = key => {
     set(this.formTemplate, 'spec', get(templateSettings, `${key}.settings`, {}))
+    this.forceUpdate()
   }
 
   render() {
@@ -95,7 +95,7 @@ export default class BaseInfo extends React.Component {
                 { required: true, message: t('NAME_EMPTY_DESC') },
                 {
                   pattern: PATTERN_NAME,
-                  message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
+                  message: t('INVALID_NAME_DESC'),
                 },
                 { validator: this.nameValidator },
               ]}
@@ -115,8 +115,8 @@ export default class BaseInfo extends React.Component {
         <Form.Item
           label={
             <div className={styles.templateLabel}>
-              <h3>{t('SELECT_MONITORING_TEMPLATE')}</h3>
-              <p>{t('CUSTON_MONITORING_TEMPLATE_DESC')}</p>
+              <h3>{t('MONITORING_TEMPLATE')}</h3>
+              <p>{t('CUSTOM_MONITORING_TEMPLATE_DESC')}</p>
             </div>
           }
         >

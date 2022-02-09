@@ -63,7 +63,7 @@ export default class Mirror extends React.Component {
     const { formRef, formTemplate } = this.props
     return (
       <Form ref={formRef} data={formTemplate}>
-        <Alert type="info" message={t.html('MIRROR_POLICY_DESC')} />
+        <Alert type="info" message={t('MIRROR_POLICY_DESC')} />
       </Form>
     )
   }

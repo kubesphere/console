@@ -19,6 +19,8 @@
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
+import StopModal from 'components/Modals/Stop'
+import ServiceStore from 'stores/service'
 
 export default {
   'resource.delete': {
@@ -27,7 +29,7 @@ export default {
         onOk: () => {
           store.delete(detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+            Notify.success({ content: t('DELETE_SUCCESSFUL') })
             success && success()
           })
         },
@@ -40,6 +42,7 @@ export default {
   },
   'resource.batch.delete': {
     on({ store, success, rowKey, ...props }) {
+      const serviceStore = new ServiceStore()
       const { data, selectedRowKeys } = store.list
       const selectValues = data
         .filter(item => selectedRowKeys.includes(item[rowKey]))
@@ -61,18 +64,63 @@ export default {
 
             if (selectValue) {
               reqs.push(store.delete(item))
+              if (store.module === 'statefulsets') {
+                reqs.push(
+                  serviceStore.delete({ ...item, name: item.spec.serviceName })
+                )
+              }
             }
           })
 
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
           store.setSelectRowKeys([])
           success && success()
         },
         resource: selectNames.join(', '),
         modal: DeleteModal,
+        store,
+        ...props,
+      })
+    },
+  },
+  'resource.batch.stop': {
+    on({ store, success, rowKey, ...props }) {
+      const { data, selectedRowKeys } = store.list
+      const selectValues = data
+        .filter(item => selectedRowKeys.includes(item[rowKey]))
+        .map(item => {
+          return { name: item.name, namespace: item.namespace }
+        })
+
+      const selectNames = selectValues.map(item => item.name)
+
+      const modal = Modal.open({
+        onOk: async () => {
+          const reqs = []
+
+          data.forEach(item => {
+            const selectValue = selectValues.find(
+              value =>
+                value.name === item.name && value.namespace === item.namespace
+            )
+
+            if (selectValue) {
+              reqs.push(store.stop(item))
+            }
+          })
+
+          await Promise.all(reqs)
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('STOP_SUCCESS_DESC')}` })
+          store.setSelectRowKeys([])
+          success && success()
+        },
+        resource: selectNames.join(', '),
+        modal: StopModal,
         store,
         ...props,
       })

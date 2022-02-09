@@ -18,7 +18,6 @@
 
 import React, { Component } from 'react'
 import { toJS } from 'mobx'
-import { isEmpty } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { NavLink } from 'react-router-dom'
 import { Columns, Column } from '@kube-design/components'
@@ -45,8 +44,7 @@ class Nav extends Component {
 
   get isMultibranch() {
     const { detailStore } = this.props
-    const scmSource = toJS(detailStore.detail.scmSource)
-    return !isEmpty(scmSource)
+    return toJS(detailStore.detail.isMultiBranch)
   }
 
   renderBaseInfo() {
@@ -58,15 +56,23 @@ class Nav extends Component {
           <div className={styles.dashboardValue}>
             <Health score={detail.weatherScore} />
           </div>
-          <div className={styles.dashboardLable}>{t('Health Status')}</div>
+          <div className={styles.dashboardLable}>{t('HEALTH_STATUS_SCAP')}</div>
         </Column>
-        <Column className={styles.baseInfo__item}>
-          <div className={styles.dashboardValue}>
-            <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
-            {detail.totalNumberOfBranches || '-'}
-          </div>
-          <div className={styles.dashboardLable}>{t('Branch Count')}</div>
-        </Column>
+        {this.isMultibranch ? (
+          <Column className={styles.baseInfo__item}>
+            <div className={styles.dashboardValue}>
+              <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
+              {detail.totalNumberOfBranches || '-'}
+            </div>
+            <div className={styles.dashboardLable}>
+              {detail.totalNumberOfBranches &&
+              detail.totalNumberOfBranches === 1
+                ? t('BRANCH_SI')
+                : t('BRANCH_PL')}
+            </div>
+          </Column>
+        ) : null}
+
         <Column className={styles.baseInfo__item} />
       </Columns>
     )

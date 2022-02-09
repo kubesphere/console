@@ -18,7 +18,7 @@
 
 import { set, get, keyBy, findKey, cloneDeep } from 'lodash'
 import { action, observable } from 'mobx'
-import { withDryRun, getGpuFromRes } from 'utils'
+import { withDryRun, LimitsEqualRequests } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
@@ -64,6 +64,14 @@ export default class FederatedStore extends Base {
 
   get scheduleApiVersion() {
     return 'apis/scheduling.kubefed.io/v1alpha1'
+  }
+
+  get version() {
+    return 'types.kubefed.io/v1beta1'
+  }
+
+  get secretKind() {
+    return `FederatedSecret`
   }
 
   getPath({ namespace }) {
@@ -142,12 +150,14 @@ export default class FederatedStore extends Base {
 
     if (this.resourceStore.getResourceUrl) {
       const clusterNamesMap = {}
+
       data.forEach(item => {
         item.clusters.forEach(({ name: cluster }) => {
           clusterNamesMap[cluster] = clusterNamesMap[cluster] || []
           clusterNamesMap[cluster].push(item.name)
         })
       })
+
       const resources = await Promise.all(
         Object.entries(clusterNamesMap).map(([cluster, names]) =>
           request.get(
@@ -158,14 +168,17 @@ export default class FederatedStore extends Base {
           )
         )
       )
+
       const clusters = Object.keys(clusterNamesMap)
       const dataMap = keyBy(data, 'name')
+
       resources.forEach((resource, index) => {
         const cluster = clusters[index]
         if (resource && resource.items) {
           resource.items.forEach(item => {
             const itemData = this.mapper(item)
             const itemName = itemData.name
+
             if (dataMap[itemName]) {
               dataMap[itemName].resources = dataMap[itemName].resources || {}
               dataMap[itemName].resources[cluster] = {
@@ -210,7 +223,7 @@ export default class FederatedStore extends Base {
       ...ObjectMapper.federated(this.mapper)(item),
     }))
 
-    getGpuFromRes(data)
+    LimitsEqualRequests(data)
 
     this.list.update({
       data,

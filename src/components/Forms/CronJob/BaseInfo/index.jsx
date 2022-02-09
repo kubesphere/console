@@ -29,7 +29,6 @@ import {
 import { NumberInput, ProjectSelect } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 import { MODULE_KIND_MAP, PATTERN_NAME } from 'utils/constants'
-import { learnMoreTip } from 'utils'
 
 export default class BaseInfo extends React.Component {
   get formTemplate() {
@@ -77,14 +76,14 @@ export default class BaseInfo extends React.Component {
   }
 
   getConcurrencyPolicyOptions = () => [
-    { label: 'Allow', value: 'Allow' },
-    { label: 'Forbid', value: 'Forbid' },
-    { label: 'Replace', value: 'Replace' },
+    { label: t('RUN_JOBS_CONCURRENTLY'), value: 'Allow' },
+    { label: t('SKIP_NEW_JOB'), value: 'Forbid' },
+    { label: t('SKIP_OLD_JOB'), value: 'Replace' },
   ]
 
   render() {
     const { formRef } = this.props
-    const htmlDes = t.html('CRONJOB_CRON_DESC')
+
     return (
       <Form data={this.formTemplate} ref={formRef}>
         <Columns>
@@ -126,7 +125,9 @@ export default class BaseInfo extends React.Component {
               <Form.Item
                 label={t('PROJECT')}
                 desc={t('PROJECT_DESC')}
-                rules={[{ required: true, message: t('PROJECT_EMPTY_DESC') }]}
+                rules={[
+                  { required: true, message: t('PROJECT_NOT_SELECT_DESC') },
+                ]}
               >
                 <ProjectSelect
                   name="metadata.namespace"
@@ -139,7 +140,7 @@ export default class BaseInfo extends React.Component {
           <Column className="is-6">
             <Form.Item
               label={t('SCHEDULE')}
-              desc={learnMoreTip(htmlDes)}
+              desc={t.html('CRONJOB_CRON_DESC')}
               rules={[{ required: true, message: t('ENTER_SCHEDULE_TIP') }]}
             >
               <Select
@@ -164,8 +165,8 @@ export default class BaseInfo extends React.Component {
           <Columns className="margin-t8">
             <Column>
               <Form.Item
-                label={t('STARTING_DEADLINE')}
-                desc={t('START_DEADLINE_SECONDS_DESC')}
+                label={t('MAXIMUM_DELAY')}
+                desc={t('MAXIMUM_DELAY_DESC')}
               >
                 <NumberInput
                   min={0}
@@ -174,8 +175,8 @@ export default class BaseInfo extends React.Component {
                 />
               </Form.Item>
               <Form.Item
-                label={t('FAILED_JOBS_HISTORY_LIMIT')}
-                desc={t('FAILED_JOBS_DESC')}
+                label={t('FAILED_JOBS_RETAINED')}
+                desc={t('FAILED_JOBS_RETAINED_DESC')}
               >
                 <NumberInput
                   min={0}
@@ -186,8 +187,8 @@ export default class BaseInfo extends React.Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('SUCCESSFUL_JOBS_HISTORY_LIMIT')}
-                desc={t('SUCCESSFUL_JOBS_DESC')}
+                label={t('SUCCESSFUL_JOBS_RETAINED')}
+                desc={t('SUCCESSFUL_JOBS_RETAINED_DESC')}
               >
                 <NumberInput
                   min={0}

@@ -40,6 +40,7 @@ import { handleWSChartData, getTimeParams, getRetentionDay } from 'utils/meter'
 import { getTimeStr } from 'components/Cards/Monitoring/Controller/TimeSelector/utils'
 import { COLORS_MAP, DEFAULT_CLUSTER, ICON_TYPES } from 'utils/constants'
 import Button from '@kube-design/components/lib/components/Button'
+import { getWebsiteUrl } from 'utils'
 import { RESOURCES_TYPE, RESOURCE_TITLE, AREA_COLORS } from '../../constats'
 
 import Crumb from '../../components/Crumb'
@@ -650,16 +651,19 @@ export default class ClusterDetails extends React.Component {
       resourceParams.cluster = this.cluster
     }
 
-    labelSelector ? (resourceParams.labelSelector = toJS(labelSelector)) : null
+    if (labelSelector) {
+      resourceParams.labelSelector = toJS(labelSelector)
+    }
 
     let childrenList = []
 
     if (['namespaces', 'services', 'openpitrixs'].includes(currentType)) {
-      currentType === 'namespaces' &&
-      !this.clusterMeterStore.levelMeterData[resourceParams.namespaces]
-        ? await this.clusterMeterStore.fetchLevelMeter({ ...resourceParams })
-        : null
-
+      if (
+        currentType === 'namespaces' &&
+        !this.clusterMeterStore.levelMeterData[resourceParams.namespaces]
+      ) {
+        await this.clusterMeterStore.fetchLevelMeter({ ...resourceParams })
+      }
       childrenList = await this.getTypesListData(currentType, resourceParams)
       return childrenList
     }
@@ -1058,7 +1062,7 @@ export default class ClusterDetails extends React.Component {
     return (
       <>
         <div className={styles.subTitle}>
-          {t('Current Resources Included')}
+          {t('CURRENT_RESOURCE_CONSUMPTION')}
           <Tooltip content={t('METER_RESOURCE_DESC')} placement="top">
             <Icon name="question" size={20} />
           </Tooltip>
@@ -1087,7 +1091,7 @@ export default class ClusterDetails extends React.Component {
         <EmptyList
           className={styles.emptyCard}
           icon={ICON_TYPES[this.active.type]}
-          title={t('No Data')}
+          title={t('NO_DATA_DESC')}
           desc={t('NO_METER_DATA')}
         />
       </div>
@@ -1096,7 +1100,7 @@ export default class ClusterDetails extends React.Component {
 
   render() {
     const { type, name, createTime } = this.active
-
+    const { url } = getWebsiteUrl()
     const noMeterData = Object.values(
       toJS(this.currentMeterData)
     ).every(value => isEmpty(value))
@@ -1109,14 +1113,13 @@ export default class ClusterDetails extends React.Component {
               className={styles.emptyCard}
               icon="cluster"
               title={t('NO_AVAILABLE_CLUSTER')}
-              desc={t('No cluster with metering module enabled')}
+              desc={t.html('METERING_NOT_ENABLED_DESC', { docUrl: url })}
               actions={<Button onClick={this.props.handleBack}>返回</Button>}
             />
           </Loading>
         </div>
       )
     }
-
     return (
       <div className={styles.billDetail}>
         <div
@@ -1166,7 +1169,13 @@ export default class ClusterDetails extends React.Component {
                     className={styles.toothbg}
                     title={
                       <>
-                        <span>{t(RESOURCE_TITLE[type])}</span>
+                        <span>
+                          {t(
+                            RESOURCE_TITLE[type]
+                              .toUpperCase()
+                              .replace(/\s+/g, '_')
+                          )}
+                        </span>
                         <strong>{name}</strong>
                       </>
                     }
@@ -1174,7 +1183,7 @@ export default class ClusterDetails extends React.Component {
                     {...this.currentMeterData}
                   />
                   <div className={styles.subTitle}>
-                    {t('Consumption by Yesterday')}
+                    {t('CONSUMPTION_HISTORY')}
                   </div>
                   <div className={styles.info}>
                     {!isEmpty(toJS(this.timeRange)) ? (

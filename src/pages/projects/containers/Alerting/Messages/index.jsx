@@ -115,7 +115,7 @@ export default class AlertingPolicy extends React.Component {
         selectActions: [],
       },
       emptyProps: {
-        desc: t('ALERT_MESSAGE_DESC'),
+        desc: t('ALERTING_MESSAGE_EMPTY_DESC'),
       },
     }
   }
@@ -232,7 +232,7 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('ACTIVATED_AT'),
+        title: t('ACTIVATION_TIME'),
         dataIndex: 'activeAt',
         isHideable: true,
         width: 200,

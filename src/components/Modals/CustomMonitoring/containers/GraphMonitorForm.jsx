@@ -23,7 +23,7 @@ import { Form } from '@kube-design/components'
 import { TypeSelect } from 'components/Base'
 import { MONITOR_GRAPH_COLORS } from 'utils/constants'
 
-import EditMonitorFormLayou from '../components/EditMonitorFormLayout'
+import EditMonitorFormLayout from '../components/EditMonitorFormLayout'
 import { GraphTextInput, ThemeSelector } from '../components/FormInput'
 
 import FormItemContainer from '../components/Form/ItemContianer'
@@ -80,7 +80,7 @@ export default class GraphMonitorForm extends Component {
     const labelsets = toJS(this.props.labelStore.labelsets)
 
     return (
-      <EditMonitorFormLayou
+      <EditMonitorFormLayout
         preview={
           <ErrorContainer errorMessage={errorMessage}>
             <GraphDescription title={title} description={description}>

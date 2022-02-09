@@ -23,7 +23,7 @@ import classnames from 'classnames'
 import moment from 'moment-mini'
 import { Form, Button, Icon, Loading, Tooltip } from '@kube-design/components'
 
-import { getDocsUrl, formatSize, learnMoreTip } from 'utils'
+import { getDocsUrl } from 'utils'
 
 import { PATTERN_IMAGE, PATTERN_IMAGE_TAG } from 'utils/constants'
 
@@ -169,7 +169,7 @@ export default class ImageSearch extends Component {
       const { message, status } = this.selectedImage
 
       if (status === 'failed') {
-        if (message.includes('x509')) {
+        if (message && message.includes('x509')) {
           return (
             <div
               className={classnames(
@@ -197,23 +197,24 @@ export default class ImageSearch extends Component {
           <div
             className={classnames(styles.selectedContent, styles.emptyContent)}
           >
-            <Icon name="docker" className={styles.icon} />
-            <p className={styles.desc}>{t('NO_IMAGE_FOUND')}</p>
+            <div>
+              <Icon name="docker" className={styles.icon} />
+              <p className={styles.desc}>{t('NO_IMAGE_FOUND')}</p>
+            </div>
           </div>
         )
       }
 
       const {
         image,
-        size,
-        layers,
         createTime,
         exposedPorts = [],
-        registry,
         logo,
         short_description,
       } = this.selectedImage
 
+      const registry =
+        image.indexOf('/') > -1 ? image.split('/')[0] : 'docker.io'
       const ports = exposedPorts.join('; ')
       const _message = message || short_description
 
@@ -228,17 +229,9 @@ export default class ImageSearch extends Component {
             <div className={styles.imageInfo}>
               <p className={styles.title}>{image}</p>
               <p className={styles.desc}>
-                {layers === 1
-                  ? t('IMAGE_TIME_SIZE_LAYER_SI', {
-                      time: moment(createTime).fromNow(),
-                      size: formatSize(size),
-                      layer: layers,
-                    })
-                  : t('IMAGE_TIME_SIZE_LAYER_PL', {
-                      time: moment(createTime).fromNow(),
-                      size: formatSize(size),
-                      layer: layers,
-                    })}
+                {t('IMAGE_TIME_SIZE_LAYER', {
+                  time: moment(createTime).fromNow(),
+                })}
               </p>
             </div>
             {this.state.showPortsTips ? (
@@ -246,7 +239,7 @@ export default class ImageSearch extends Component {
                 className={styles.defaultPortButtons}
                 onClick={this.handleFillPorts}
               >
-                👉 {t('USE_DEFAULT_PORT')}
+                👉 {t('USE_DEFAULT_PORTS')}
               </Button>
             ) : null}
           </div>
@@ -279,21 +272,22 @@ export default class ImageSearch extends Component {
     }
     return (
       <div className={classnames(styles.selectedContent, styles.emptyContent)}>
-        <Icon name="docker" className={styles.icon} />
-        <p className={styles.desc}>{t('SET_IMAGE_DESC')}</p>
+        <div>
+          <Icon name="docker" className={styles.icon} />
+          <p className={styles.desc}>{t('SET_IMAGE_DESC')}</p>
+        </div>
       </div>
     )
   }
 
   render() {
-    const htmlDes = t.html('IMAGE_DESC', {
-      link: getDocsUrl('imageregistry'),
-    })
     return (
       <>
         <Form.Item
           label={t('IMAGE')}
-          desc={learnMoreTip(htmlDes)}
+          desc={t.html('IMAGE_DESC', {
+            link: getDocsUrl('imageregistry'),
+          })}
           rules={[
             { required: true, message: t('IMAGE_EMPTY') },
             { pattern: PATTERN_IMAGE, message: t('INVALID_IMAGE') },

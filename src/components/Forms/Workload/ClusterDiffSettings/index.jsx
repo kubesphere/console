@@ -52,7 +52,7 @@ export default class AdvancedSettings extends React.Component {
   }
 
   render() {
-    const { formRef, projectDetail, withService } = this.props
+    const { formRef, projectDetail, withService, supportGpuSelect } = this.props
     const clustersDetail = keyBy(projectDetail.clusters, 'name')
     return (
       <Form data={this.formTemplate} ref={formRef}>
@@ -68,14 +68,20 @@ export default class AdvancedSettings extends React.Component {
           >
             {props => (
               <ContainersMapper formTemplate={this.formTemplate} {...props}>
-                {containerProps => <ContainerImage {...containerProps} />}
+                {containerProps => (
+                  <ContainerImage
+                    supportGpuSelect={supportGpuSelect}
+                    workspace={projectDetail.workspace}
+                    {...containerProps}
+                  />
+                )}
               </ContainersMapper>
             )}
           </ClustersMapper>
         </Form.Group>
         {this.showVolumeTemplate && (
           <Form.Group
-            label={t('Volume Template Settings')}
+            label={t('VOLUME_TEMPLATE_SETTINGS')}
             desc={t('CLUSTER_VOLUME_DIFF_DESC')}
             checkable
           >
@@ -115,7 +121,7 @@ export default class AdvancedSettings extends React.Component {
           </ClustersMapper>
         </Form.Group>
         <Form.Group
-          label={t('ENVIRONMENT_VARIABLES')}
+          label={t('ENVIRONMENT_VARIABLE_PL')}
           desc={t('CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC')}
           checkable
         >

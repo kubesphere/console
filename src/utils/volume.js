@@ -22,7 +22,7 @@ export const getVolumeType = volume => {
   if (volume.persistentVolumeClaim) {
     return 'Volume'
   }
-  if (volume.hostPath) {
+  if (volume.HostPath) {
     return 'HostPath'
   }
   if (volume.emptyDir) {

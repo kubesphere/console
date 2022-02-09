@@ -46,6 +46,7 @@ export default class Webhook extends React.Component {
       secret: this.secretTemplate,
     },
     formStatus: 'create',
+    isLoading: false,
   }
 
   formData = {
@@ -69,6 +70,7 @@ export default class Webhook extends React.Component {
   }
 
   fetchData = async () => {
+    this.setState({ isLoading: true })
     const results = await this.receiverStore.fetchList({ type: 'webhook' })
     const receivers = results.find(
       item => get(item, 'metadata.name') === RECEIVER_NAME
@@ -88,6 +90,7 @@ export default class Webhook extends React.Component {
         formStatus: 'update',
       })
     }
+    this.setState({ isLoading: false })
   }
 
   getVerifyFormTemplate = data => {
@@ -108,11 +111,13 @@ export default class Webhook extends React.Component {
         'spec.webhook.httpConfig.basicAuth.password.value',
         password
       )
-      set(receiver, 'spec.webhook.httpConfig.basicAuth.username"', username)
+      set(receiver, 'spec.webhook.httpConfig.basicAuth.username', username)
     }
     if (type === 'token' && token) {
       set(receiver, 'spec.webhook.httpConfig.bearerToken.value', token)
     }
+
+    unset(receiver, 'spec.webhook.alertSelector')
 
     return { receiver }
   }
@@ -160,14 +165,14 @@ export default class Webhook extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('CREATE_SUCCESSFUL')
+      message = t('ADDED_SUCCESS_DESC')
     } else {
       await this.secretStore.update(
         { name: SECRET_NAME },
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
-      message = t('UPDATED_SUCCESS_DESC')
+      message = t('UPDATE_SUCCESSFUL')
     }
 
     this.fetchData()
@@ -181,14 +186,13 @@ export default class Webhook extends React.Component {
   }
 
   render() {
-    const { formData, formStatus } = this.state
+    const { formData, isLoading } = this.state
 
     return (
       <div>
         <BaseBanner type="webhook" />
-        <Panel loading={this.receiverStore.list.isLoading}>
+        <Panel loading={isLoading}>
           <WebhookForm
-            formStatus={formStatus}
             data={formData}
             onCancel={this.onFormClose}
             onSubmit={this.handleSubmit}

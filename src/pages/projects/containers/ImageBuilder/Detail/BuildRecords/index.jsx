@@ -41,7 +41,7 @@ class BuildRecords extends React.Component {
 
     return (
       <React.Fragment>
-        <div className={styles.title}>{t('Last build environment')}</div>
+        <div className={styles.title}>{t('LAST_BUILD_ENVIRONMENT')}</div>
         <div className={styles.card}>
           <ImageBuilderLastRun
             isB2i={this.isB2i}
@@ -49,7 +49,7 @@ class BuildRecords extends React.Component {
             params={params}
           />
         </div>
-        <div className={styles.title}>{t('Job Records')}</div>
+        <div className={styles.title}>{t('RUN_RECORDS')}</div>
         <div className={styles.card}>
           <RunRecords isB2i={this.isB2i} params={params} />
         </div>

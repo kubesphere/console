@@ -77,7 +77,7 @@ export default class LineChart extends React.Component {
 
         const legend = data.map(record => get(record, `type`))
         const _result = {
-          title: t('Consumer Trends'),
+          title: t('CONSUMER_TRENDS'),
           unit: this.priceConfig.currency === 'CNY' ? t('￥') : t('$'),
           data,
           legend,
@@ -113,7 +113,11 @@ export default class LineChart extends React.Component {
         icon: METER_ICON[item.title],
         unit: item.unit.value,
         legend: [item.title],
-        title: t(METER_RESOURCE_USAGE_TITLE[item.type]),
+        title: t(
+          METER_RESOURCE_USAGE_TITLE[item.type]
+            .toUpperCase()
+            .replace(/\s+/g, '_')
+        ),
         data: [item],
         yAxis: true,
         titleValue: item.sum_value,
@@ -133,8 +137,8 @@ export default class LineChart extends React.Component {
             <EmptyList
               className="no-shadow"
               icon="exclamation"
-              title={t('No Data')}
-              desc={t('RESOURCE_NOT_FOUND')}
+              title={t('NO_DATA')}
+              desc={t('NO_RESOURCE_FOUND')}
             />
           ) : isEmpty(this.priceConfig) ? (
             this.renderNoPriceChart()

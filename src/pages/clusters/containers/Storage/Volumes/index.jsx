@@ -21,11 +21,17 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import Banner from 'components/Cards/Banner'
 import { renderRoutes } from 'utils/router.config'
+import PVStore from 'stores/pv'
 import routes from './routes'
 
 @inject('rootStore')
 @observer
 export default class Volumes extends React.Component {
+  constructor(props) {
+    super(props)
+    this.pv = new PVStore()
+  }
+
   get tips() {
     return [
       {
@@ -44,7 +50,7 @@ export default class Volumes extends React.Component {
       className: 'margin-b12',
       description: t('VOLUME_DESC'),
       module: 'persistentvolumeclaims',
-      title: t('VOLUME'),
+      title: t('VOLUME_PL'),
     }
   }
 
@@ -57,10 +63,23 @@ export default class Volumes extends React.Component {
       }))
   }
 
+  componentDidMount() {
+    this.pv.checkSupportPv(this.props.match.params)
+  }
+
+  renderBanner() {
+    if (this.pv.supportPv) {
+      return (
+        <Banner {...this.bannerProps} tips={this.tips} routes={this.routes} />
+      )
+    }
+    return <Banner {...this.bannerProps} tips={this.tips} />
+  }
+
   render() {
     return (
       <>
-        <Banner {...this.bannerProps} tips={this.tips} routes={this.routes} />
+        {this.renderBanner()}
         {renderRoutes(routes)}
       </>
     )

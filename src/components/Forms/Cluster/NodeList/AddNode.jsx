@@ -144,7 +144,7 @@ export default class AddNode extends Component {
           />
         </Form.Item>
         <Form.Item
-          label={t('INTERNAL_IP')}
+          label={t('INTERNAL_IP_ADDRESS')}
           desc={t('NODE_INTERNAL_IP_DESC')}
           rules={[
             {

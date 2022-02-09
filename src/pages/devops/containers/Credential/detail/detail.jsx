@@ -35,12 +35,12 @@ class Events extends React.Component {
 
   getColumns = () => [
     {
-      title: t('name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '50%',
     },
     {
-      title: t('Record'),
+      title: t('RECORD'),
       dataIndex: 'record',
       width: '50%',
     },
@@ -50,16 +50,20 @@ class Events extends React.Component {
     const { detail } = this.props.detailStore
 
     return (
-      <Card title={t('Account')}>
+      <Card title={t('CREDENTIAL')}>
         <div className={styles.card_content}>
           <div className={styles.icon}>
             <Icon name="key" size={40} />
           </div>
           <div className={styles.info}>
             <div className={styles.name}>{detail.id || '-'}</div>
-            <div className={styles.desc}>{`${t('type')}: ${t(
-              detail.type
-            )}`}</div>
+            <div className={styles.desc}>
+              {t('TYPE_VALUE', {
+                value: t(
+                  detail.type && `CREDENTIAL_TYPE_${detail.type.toUpperCase()}`
+                ),
+              })}
+            </div>
           </div>
         </div>
       </Card>

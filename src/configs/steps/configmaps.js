@@ -23,12 +23,12 @@ import ConfigMapSettings from 'components/Forms/ConfigMap/ConfigMapSettings'
 
 export default [
   {
-    title: 'Basic Info',
+    title: 'BASIC_INFORMATION',
     component: withProps(BaseInfo, { maxNameLength: 63 }),
     required: true,
   },
   {
-    title: 'ConfigMap Settings',
+    title: 'DATA_SETTINGS',
     component: ConfigMapSettings,
     required: true,
   },

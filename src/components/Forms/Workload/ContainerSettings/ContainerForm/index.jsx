@@ -142,6 +142,9 @@ export default class ContaineForm extends React.Component {
             item => item.name && item.containerPort
           )
         }
+        if (isEmpty(data.livenessProbe)) {
+          delete data.livenessProbe
+        }
 
         if (!withService && data.ports) {
           data.ports.forEach(item => {
@@ -170,6 +173,7 @@ export default class ContaineForm extends React.Component {
       namespace,
       withService,
       supportGpuSelect,
+      projectDetail,
     } = this.props
     const { containerType, formData } = this.state
 
@@ -200,6 +204,7 @@ export default class ContaineForm extends React.Component {
             namespace={namespace}
             isFederated={isFederated}
             cluster={cluster}
+            projectDetail={projectDetail}
           />
           <SecurityContext />
           <SyncTimeZone data={formData} />

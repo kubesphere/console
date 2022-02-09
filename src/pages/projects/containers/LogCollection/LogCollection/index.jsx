@@ -21,7 +21,7 @@ import classNames from 'classnames'
 import { get } from 'lodash'
 
 import { observer } from 'mobx-react'
-import { Alert, Icon } from '@kube-design/components'
+import { Icon } from '@kube-design/components'
 import { Switch, Panel, Modal } from 'components/Base'
 
 import styles from './index.scss'
@@ -92,7 +92,7 @@ class LogCollection extends React.Component {
             <Icon name="log" size={40} />
             <div className={styles.item}>
               <div>{isOpen ? t('ENABLED') : t('DISABLED')}</div>
-              <p>{t('COLLECT_LOGS_ON_VOLUMES')}</p>
+              <p>{t('LOG_COLLECTION_ENABLED_DESC')}</p>
             </div>
             {this.canEdit && (
               <div className={classNames(styles.item, 'text-right')}>
@@ -105,7 +105,6 @@ class LogCollection extends React.Component {
               </div>
             )}
           </div>
-          <Alert message={t('COLLECT_FILE_LOG_TIP')} hideIcon />
         </Panel>
         {this.canEdit && (
           <Modal
@@ -128,7 +127,7 @@ class LogCollection extends React.Component {
                 <div>{t('DISABLE_LOG_COLLECTION')}</div>
               </div>
             </div>
-            <div>{t('CLOSE_FILE_LOG_TIP')}</div>
+            <div>{t('DISABLE_LOG_COLLECTION_TIP')}</div>
           </Modal>
         )}
       </>

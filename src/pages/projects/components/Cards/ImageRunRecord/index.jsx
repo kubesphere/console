@@ -127,7 +127,7 @@ export default class RunsCard extends React.Component {
     const content = (
       <div className={styles.body}>
         {isEmpty(data) ? (
-          <div className={styles.empty}>{t('RESOURCE_NOT_FOUND')}</div>
+          <div className={styles.empty}>{t('NO_DATA')}</div>
         ) : (
           data.map(run => this.renderItem(run))
         )}

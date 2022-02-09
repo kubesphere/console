@@ -21,7 +21,7 @@ import { get, set, unset, isObject, isEmpty, isArray, cloneDeep } from 'lodash'
 import { Notify } from '@kube-design/components'
 
 import CredentialStore from 'stores/devops/credential'
-import BaseStore from 'stores/devops/base'
+import BaseStore from 'stores/devops'
 
 import { generateId } from 'utils'
 
@@ -68,10 +68,7 @@ const formatPipeLineJson = json => {
 }
 
 export default class Store extends BaseStore {
-  constructor() {
-    super()
-    this.credentialStore = new CredentialStore()
-  }
+  credentialStore = new CredentialStore()
 
   get newStage() {
     return {
@@ -264,9 +261,9 @@ export default class Store extends BaseStore {
 
   @action
   async convertJsonToJenkinsFile({ cluster }) {
-    return this.request
+    return request
       .post(
-        `${this.getBaseUrlV2({ cluster })}/tojenkinsfile`,
+        `${this.getDevopsUrlV2({ cluster })}/tojenkinsfile`,
         {
           json: JSON.stringify(formatPipeLineJson(toJS(this.jsonData.json))),
         },
@@ -380,9 +377,10 @@ export default class Store extends BaseStore {
   async fetchLabel({ devops, cluster }) {
     const url = `${this.getDevopsUrlV2({
       cluster,
-    })}${devops}/jenkins/labelsdashboard/labelsData`
+      devops,
+    })}jenkins/labelsdashboard/labelsData`
 
-    const result = await this.request.get(url, {}, {}, () => {
+    const result = await request.get(url, {}, {}, () => {
       this.labelDataList = []
     })
 

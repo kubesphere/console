@@ -26,25 +26,25 @@ import Snapshots from './Snapshots'
 export default PATH => [
   {
     path: `${PATH}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     exact: true,
     component: ResourceStatus,
   },
   {
     path: `${PATH}/metadata`,
-    title: 'Metadata',
+    title: 'METADATA',
     component: Metadata,
     exact: true,
   },
   {
     path: `${PATH}/events`,
-    title: 'Events',
+    title: 'EVENT_PL',
     exact: true,
     component: Events,
   },
   {
     path: `${PATH}/snapshot`,
-    title: 'Snapshots Message',
+    title: 'SNAPSHOT_PL',
     exact: true,
     component: Snapshots,
   },

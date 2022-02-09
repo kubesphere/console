@@ -39,13 +39,13 @@ export default {
           })
           Modal.close(modal)
           success && success()
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
         },
         modal: Modal.Form,
         store,
         width: 497,
         icon: 'timed-task',
-        title: t('Change Status'),
+        title: t('CHANGE_STATUS'),
         children: <EnableForm />,
         ...props,
       })
@@ -71,13 +71,13 @@ export default {
           })
           Modal.close(modal)
           success && success()
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
         },
         modal: Modal.Form,
         data,
         width: 691,
         icon: 'timed-task',
-        title: t('Log Collections'),
+        title: t('LOG_COLLECTION'),
         children: <EditForm />,
         store,
         ...props,

@@ -50,7 +50,7 @@ export default class RoleDetail extends React.Component {
   }
 
   get name() {
-    return 'Account Role'
+    return 'PLATFORM_ROLE'
   }
 
   get listUrl() {
@@ -74,12 +74,12 @@ export default class RoleDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -87,7 +87,7 @@ export default class RoleDetail extends React.Component {
     {
       key: 'editRole',
       icon: 'pen',
-      text: t('Edit Authorization'),
+      text: t('EDIT_PERMISSIONS'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>
@@ -107,7 +107,7 @@ export default class RoleDetail extends React.Component {
       show: this.showEdit,
       onClick: () =>
         this.trigger('role.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: () => this.routing.push(this.listUrl),
         }),
@@ -123,7 +123,7 @@ export default class RoleDetail extends React.Component {
 
     return [
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`),
       },
       {
@@ -149,7 +149,7 @@ export default class RoleDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Account Roles'),
+          label: t('PLATFORM_ROLE_PL'),
           url: this.listUrl,
         },
       ],

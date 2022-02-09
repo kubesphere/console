@@ -71,7 +71,7 @@ export default {
             )
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+              Notify.success({ content: t('UPDATE_SUCCESSFUL') })
               success && success()
             })
         },
@@ -99,7 +99,7 @@ export default {
             .delete({ ...detail, cluster, workspace, namespace, devops })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+              Notify.success({ content: t('DELETE_SUCCESSFUL') })
               success && success()
             })
         },
@@ -124,15 +124,19 @@ export default {
             .batchDelete({ rowKeys, cluster, workspace, namespace, devops })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+              Notify.success({ content: t('DELETE_SUCCESSFUL') })
               success && success()
             })
         },
         modal: DeleteModal,
-        title: t('REMOVE_MEMBER'),
-        desc: t.html('REMOVE_MEMBER_TIP', {
-          resource: usernames,
-        }),
+        title:
+          usernames.split(', ').length === 1
+            ? t('REMOVE_MEMBER')
+            : t('REMOVE_MULTIPLE_MEMBERS'),
+        desc:
+          usernames.split(', ').length === 1
+            ? t.html('REMOVE_MEMBER_TIP', { resource: usernames })
+            : t.html('REMOVE_MULTIPLE_MEMBERS_TIP', { resource: usernames }),
         resource: usernames,
         store,
         ...props,

@@ -19,9 +19,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import moment from 'moment-mini'
 
+import { safeParseJSON } from 'utils'
 import { getAppCategoryNames } from 'utils/app'
 
 import styles from './index.scss'
@@ -39,18 +40,44 @@ export default class AppBase extends React.PureComponent {
   render() {
     const { className, app } = this.props
 
+    const maintainers = safeParseJSON(
+      get(app, 'latest_app_version.maintainers', []),
+      []
+    ).map(item => item.name)
+
+    const sources = safeParseJSON(
+      get(app, 'latest_app_version.sources', []),
+      []
+    )
+
     return (
       <div className={classnames(styles.appBase, className)}>
         <h3>{t('BASIC_INFORMATION')}</h3>
         <dl>
-          <dt>{t('CATEGORY')}</dt>
+          <dt>{t('CATEGORY_COLON')}</dt>
           <dd>{getAppCategoryNames(get(app, 'category_set', []))}</dd>
-          <dt>{t('HOMEPAGE')}</dt>
+          <dt>{t('HOMEPAGE_COLON')}</dt>
           <dd>{app.home || '-'}</dd>
-          <dt>{t('RELEASE_DATE')}</dt>
+          <dt>{t('RELEASE_DATE_COLON')}</dt>
           <dd>{moment(app.status_time).format(t('YYYY-MM-DD'))}</dd>
-          <dt>{t('APP_ID')}</dt>
+          <dt>{t('APP_ID_COLON')}</dt>
           <dd>{app.app_id || '-'}</dd>
+          {!isEmpty(maintainers) && (
+            <>
+              <dt>{t('MAINTAINER_COLON')}</dt>
+              <dd>{maintainers.join('、')}</dd>
+            </>
+          )}
+          {!isEmpty(sources) && (
+            <>
+              <dt>{t('SOURCE_CODE_ADDRESS')}</dt>
+              <dd>
+                {sources.map(item => (
+                  <p>{item}</p>
+                ))}
+              </dd>
+            </>
+          )}
         </dl>
       </div>
     )

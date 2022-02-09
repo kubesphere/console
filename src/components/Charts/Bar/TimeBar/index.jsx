@@ -70,7 +70,7 @@ class TimeBar extends Component {
       ? `${startMomentString} ~ ${endMoment.format(timeFormat)}`
       : `${startMomentString} ~ ${endMomentString}`
 
-    return `${t('Time Range')} : ${range}`
+    return `${t('TIME_RANGE')} : ${range}`
   }
 
   render() {

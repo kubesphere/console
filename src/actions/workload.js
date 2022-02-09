@@ -18,7 +18,7 @@
 
 import { get, isEmpty, omit } from 'lodash'
 import { toJS } from 'mobx'
-import { withProps, omitJobGpuLimit } from 'utils'
+import { withProps, multiCluster_overrides_Dot } from 'utils'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -30,7 +30,7 @@ import EditConfigTemplateModal from 'projects/components/Modals/ConfigTemplate'
 import EditServiceModal from 'projects/components/Modals/ServiceSetting/StatefulSet'
 import ClusterDiffSettings from 'components/Forms/Workload/ClusterDiffSettings'
 import DeleteModal from 'projects/components/Modals/WorkloadDelete'
-import { MODULE_KIND_MAP } from 'utils/constants'
+import { MODULE_KIND_MAP, OMIT_TOTAL_REPLICAS } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
 import DEPLOYMENTS_FORM_STEPS from 'configs/steps/deployments'
@@ -101,7 +101,7 @@ export default {
 
       if (isFederated) {
         steps.push({
-          title: 'Diff Settings',
+          title: 'CLUSTER_DIFF',
           icon: 'blue-green-deployment',
           component: withProps(ClusterDiffSettings, {
             withService: module === 'statefulsets',
@@ -115,21 +115,18 @@ export default {
 
       const modal = Modal.open({
         onOk: newObject => {
-          if (kind === 'CronJob') {
-            omitJobGpuLimit(
-              newObject[kind],
-              'spec.jobTemplate.spec.template.spec.containers'
-            )
-          } else if (kind === 'Job') {
-            omitJobGpuLimit(newObject[kind], 'spec.template.spec.containers')
+          if (isFederated) {
+            if (module === 'deployments') {
+              multiCluster_overrides_Dot(
+                get(newObject, 'Deployment.spec.overrides', [])
+              )
+            } else if (module === 'statefulsets') {
+              multiCluster_overrides_Dot(
+                get(newObject, 'StatefulSet.spec.overrides', [])
+              )
+            }
           }
-
-          const omitArr = [
-            `${kind}.spec.template.totalReplicas`,
-            'totalReplicas',
-            `${kind}.totalReplicas`,
-          ]
-          newObject = omit(newObject, omitArr)
+          newObject = omit(newObject, OMIT_TOTAL_REPLICAS(kind))
           let data = newObject
           if (!data) {
             return
@@ -139,15 +136,7 @@ export default {
           if (!isEmpty(customMode)) {
             delete data.spec.template.spec.customMode
           }
-          const deploymentMode = get(
-            data[kind],
-            "spec.template.metadata.annotations['deployment.kubernetes.io/deploymentMode']"
-          )
-          if (deploymentMode) {
-            delete data[kind].spec.template.metadata.annotations[
-              'deployment.kubernetes.io/deploymentMode'
-            ]
-          }
+
           if (kind) {
             if (Object.keys(newObject).length === 1 && newObject[kind]) {
               data = newObject[kind]
@@ -162,7 +151,7 @@ export default {
               await store.switchSchedule(false)
             }
             Modal.close(modal)
-            Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+            Notify.success({ content: t('CREATE_SUCCESSFUL') })
             success && success()
             formPersist.delete(`${module}_create_form`)
           })
@@ -206,7 +195,7 @@ export default {
             })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('Redeploy Successfully')}` })
+              Notify.success({ content: t('RECREATE_SUCCESS_DESC') })
             })
         },
         detail,
@@ -272,20 +261,12 @@ export default {
     on({ store, detail, success, supportGpuSelect = false, ...props }) {
       const modal = Modal.open({
         onOk: data => {
-          omitJobGpuLimit(data, 'spec.template.spec.containers')
           const customMode = get(data, 'spec.template.spec.customMode', {})
+
           if (!isEmpty(customMode)) {
             delete data.spec.template.spec.customMode
           }
-          const deploymentMode = get(
-            data,
-            "spec.template.metadata.annotations['deployment.kubernetes.io/deploymentMode']"
-          )
-          if (deploymentMode) {
-            delete data.spec.template.metadata.annotations[
-              'deployment.kubernetes.io/deploymentMode'
-            ]
-          }
+
           store.update(detail, data).then(() => {
             Modal.close(modal)
             success && success()
@@ -329,7 +310,7 @@ export default {
       const modal = Modal.open({
         onOk: () => {
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
           success && success()
         },
         store,
@@ -350,7 +331,7 @@ export default {
       const modal = Modal.open({
         onOk: () => {
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
           success && success()
         },
         modal: DeleteModal,

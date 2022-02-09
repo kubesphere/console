@@ -159,7 +159,7 @@ export default class BaseInfoModal extends React.Component {
     return (
       <Modal
         width={691}
-        title={t('EDIT_INFO')}
+        title={t('EDIT_INFORMATION')}
         icon="pen"
         onOk={this.handleOk}
         onCancel={onCancel}
@@ -173,7 +173,7 @@ export default class BaseInfoModal extends React.Component {
             <TextArea name="description" defaultValue={description} />
           </Form.Item>
           {formTemplate.multi_branch_pipeline ? (
-            <Form.Item label={t('Code Repository')}>
+            <Form.Item label={t('CODE_REPOSITORY')}>
               <RepoSelect
                 name="multi_branch_pipeline"
                 ref={this.scmRef}

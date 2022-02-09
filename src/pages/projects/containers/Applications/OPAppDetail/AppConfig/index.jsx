@@ -34,7 +34,7 @@ export default class AppConfig extends React.Component {
     const { isLoading, detail } = this.store
 
     return (
-      <Panel title={t('App Config')} loading={isLoading}>
+      <Panel title={t('APP_SETTINGS')} loading={isLoading}>
         <CodeEditor className={styles.yaml} value={detail.env || ''} />
       </Panel>
     )

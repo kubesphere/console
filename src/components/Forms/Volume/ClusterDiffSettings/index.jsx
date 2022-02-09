@@ -51,7 +51,7 @@ export default class AdvancedSettings extends React.Component {
     return (
       <Form data={this.formTemplate.spec} ref={formRef} {...formProps}>
         <Form.Group
-          label={t('Volume Settings')}
+          label={t('STORAGE_SETTINGS')}
           desc={t('CLUSTER_VOLUME_DIFF_DESC')}
           checkable
         >

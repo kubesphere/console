@@ -53,7 +53,7 @@ export default class ImageBuilderDetail extends React.Component {
   }
 
   get name() {
-    return 's2ibuilders'
+    return 'IMAGE_BUILDER'
   }
 
   get routing() {
@@ -85,14 +85,14 @@ export default class ImageBuilderDetail extends React.Component {
 
   handleCopy = () => {
     Notify.success({
-      content: t('Copy Successfully'),
+      content: t('COPIED_SUCCESSFUL'),
     })
   }
 
   getOperations = () => [
     {
       key: 'Run',
-      text: t('Run'),
+      text: t('RUN'),
       action: 'edit',
       type: 'control',
       onClick: () =>
@@ -104,11 +104,11 @@ export default class ImageBuilderDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -132,7 +132,7 @@ export default class ImageBuilderDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -171,11 +171,11 @@ export default class ImageBuilderDetail extends React.Component {
         value: detail.namespace,
       },
       {
-        name: t('type'),
+        name: t('TYPE'),
         value: t(detail.type),
       },
       {
-        name: t('BuilderImage'),
+        name: t('BUILDER_IMAGE'),
         value: get(spec, 'config.builderImage', '-'),
       },
       {
@@ -183,11 +183,11 @@ export default class ImageBuilderDetail extends React.Component {
         value: get(spec, 'config.imageName', '-'),
       },
       {
-        name: t('BuilderPullPolicy'),
+        name: t('PULL_POLICY'),
         value: get(spec, 'config.builderPullPolicy', '-'),
       },
       {
-        name: t('SourceUrl'),
+        name: t('SOURCE_URL'),
         value: isBinaryURL ? (
           <a href={downLoadUrl} download>
             {binaryName}
@@ -197,7 +197,7 @@ export default class ImageBuilderDetail extends React.Component {
         ),
       },
       {
-        name: t('Remote Trigger Link'),
+        name: t('REMOTE_TRIGGER'),
         value: (
           <>
             <span>{triggerLink}</span>
@@ -208,7 +208,7 @@ export default class ImageBuilderDetail extends React.Component {
         ),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
@@ -237,7 +237,7 @@ export default class ImageBuilderDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Image Builders'),
+          label: t('IMAGE_BUILDER_PL'),
           url: this.listUrl,
         },
       ],

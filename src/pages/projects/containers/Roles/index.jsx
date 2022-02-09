@@ -47,7 +47,7 @@ export default class Roles extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -59,7 +59,7 @@ export default class Roles extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -97,7 +97,7 @@ export default class Roles extends React.Component {
   }
 
   get emptyProps() {
-    return { desc: t('PROJECT_ROLE_DESC') }
+    return { desc: t('PROJECT_ROLE_EMPTY_DESC') }
   }
 
   getColumns = () => {
@@ -125,7 +125,7 @@ export default class Roles extends React.Component {
         width: '40%',
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

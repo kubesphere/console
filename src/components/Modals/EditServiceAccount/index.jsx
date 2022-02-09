@@ -84,10 +84,10 @@ export default class EditServiceAccountModal extends React.Component {
       <Modal.Form
         data={formData}
         width={691}
-        title={t('EDIT_INFO')}
+        title={t('EDIT_INFORMATION')}
         icon="pen"
         onOk={this.handleOk}
-        okText={t('Update')}
+        okText={t('OK')}
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}
@@ -107,11 +107,15 @@ export default class EditServiceAccountModal extends React.Component {
             maxLength={256}
           />
         </Form.Item>
-        <Form.Item label={t('PROJECT_ROLE_SI')} desc={t('PROJECT_ROLE_DESC')}>
+        <Form.Item
+          label={t('PROJECT_ROLE_SI')}
+          desc={t('SERVICE_ACCOUNT_PROJECT_ROLE_DESC')}
+        >
           <RoleSelect
             name="metadata.annotations['iam.kubesphere.io/role']"
             cluster={cluster}
             namespace={namespace}
+            placeholder=" "
           />
         </Form.Item>
       </Modal.Form>

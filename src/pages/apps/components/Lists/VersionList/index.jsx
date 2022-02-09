@@ -137,7 +137,7 @@ export default class VersionList extends React.Component {
   handleCreate = params => {
     this.store.create(params).then(() => {
       this.setState({ uploadModal: false })
-      Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+      Notify.success({ content: t('CREATE_SUCCESSFUL') })
       this.fetchData()
     })
   }
@@ -150,13 +150,15 @@ export default class VersionList extends React.Component {
         <InputSearch
           className={styles.search}
           name="search"
-          placeholder={t('Filter by keyword')}
+          placeholder={t('SEARCH_BY_NAME')}
           onSearch={this.handleSearch}
         />
         <div className={styles.actions}>
           <Button type="flat" icon="refresh" onClick={this.handleRefresh} />
           {!isAdmin && this.enabledActions.includes('manage') && (
-            <Button onClick={this.addVersion}>{t('New Version')} </Button>
+            <Button onClick={this.addVersion}>
+              {t('UPLOAD_NEW_VERSION')}{' '}
+            </Button>
           )}
         </div>
       </div>
@@ -180,7 +182,7 @@ export default class VersionList extends React.Component {
     return (
       <div className={styles.body}>
         {isEmpty(data) ? (
-          <div className={styles.empty}>{t('RESOURCE_NOT_FOUND')}</div>
+          <div className={styles.empty}>{t('NO_RESOURCE_FOUND')}</div>
         ) : (
           data.map(item => (
             <VersionItem
@@ -226,8 +228,8 @@ export default class VersionList extends React.Component {
     return (
       <div>
         <HelmUploadModal
-          title={t('UPLOAD_HELM_TITLE')}
-          description={t('New Version')}
+          title={t('UPLOAD_NEW_VERSION')}
+          description={t('UPLOAD_NEW_VERSION_DESC')}
           icon={'templet'}
           visible={this.state.uploadModal}
           appId={appId}
@@ -245,7 +247,7 @@ export default class VersionList extends React.Component {
     const { hideHeader, hideFooter } = this.props
 
     return (
-      <Panel className={styles.main} title={t('VERSION')}>
+      <Panel className={styles.main} title={t('VERSIONS')}>
         <div className={styles.inner}>
           {!hideHeader && this.renderHeader()}
           {this.renderContent()}

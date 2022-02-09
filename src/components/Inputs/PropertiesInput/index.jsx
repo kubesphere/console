@@ -113,6 +113,8 @@ export default class PropertiesInput extends React.Component {
     let existedKey = false
     let emptyKeyValue = false
 
+    this.props.onError()
+
     const valuePairs = [...hiddenValues, ...readOnlyValues, ...arrayValues]
     const value = valuePairs.reduce((prev, cur) => {
       cur.key = cur.key || ''
@@ -146,12 +148,11 @@ export default class PropertiesInput extends React.Component {
 
     // some key is empty, throw error
     const hasEmptyKey = Object.keys(value).some(key => isEmpty(key))
-    if (hasEmptyKey) {
-      this.props.onError({ message: t('EMPTY_KEY') })
-    }
 
     // has duplicate keys, throw error
-    if (existedKey) {
+    if (hasEmptyKey) {
+      this.props.onError({ message: t('EMPTY_KEY') })
+    } else if (existedKey) {
       this.props.onError({ message: t('DUPLICATE_KEYS') })
     } else {
       this.props.onError()

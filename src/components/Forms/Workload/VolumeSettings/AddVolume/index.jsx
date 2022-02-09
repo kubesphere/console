@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { isEmpty } from 'lodash'
+import { isEmpty, omit, get, set } from 'lodash'
 
 import { RadioGroup, RadioButton } from '@kube-design/components'
 import { ReactComponent as BackIcon } from 'assets/back.svg'
@@ -61,6 +61,7 @@ export default class AddVolume extends React.Component {
 
     this.state = {
       type: this.checkVolumeType(props.volume) || 'exist',
+      editVolume: {},
     }
   }
 
@@ -68,6 +69,41 @@ export default class AddVolume extends React.Component {
     const { onCancel } = this.props
     const { registerSubRoute } = this.context
     registerSubRoute && registerSubRoute(this.handleSubmit, onCancel)
+    this.saveEditVolume()
+  }
+
+  volumeTypeMap = type => {
+    if (type === 'emptyDir') {
+      return 'temp'
+    }
+    if (type === 'hostPath') {
+      return 'host'
+    }
+    return 'exist'
+  }
+
+  saveEditVolume() {
+    const { volume } = this.props
+    if (!isEmpty(volume)) {
+      const type = this.volumeTypeMap(
+        Object.keys(omit(volume, ['name', 'volumeMounts']))[0]
+      )
+      if (type !== 'exist') {
+        this.setState({
+          editVolume: {
+            name: volume.name,
+            type,
+          },
+        })
+      } else {
+        this.setState({
+          editVolume: {
+            name: get(volume, 'specVolume.name', ''),
+            type,
+          },
+        })
+      }
+    }
   }
 
   handleGoBack = () => {
@@ -96,7 +132,7 @@ export default class AddVolume extends React.Component {
 
   handleSubmit = callback => {
     const { onSave } = this.props
-    const { type } = this.state
+    const { type, editVolume } = this.state
     const form = this.formRef.current
 
     form &&
@@ -109,8 +145,8 @@ export default class AddVolume extends React.Component {
         } else if (type === 'temp') {
           volume = { name: data.name, emptyDir: {} }
         } else if (type === 'host') {
-          const { volumeMounts, ...rest } = data
-          volume = rest
+          const { hostPath = {}, name } = data
+          volume = { hostPath, name }
         } else if (type === 'new') {
           const { volumeMounts, ...rest } = data
           volume = ObjectMapeer.volumes(rest)
@@ -124,9 +160,47 @@ export default class AddVolume extends React.Component {
           }))
         }
 
-        onSave(volume, volumeMounts)
+        if (!isEmpty(editVolume)) {
+          if (type === 'temp') {
+            const { newVolume, newMounts } = this.updateVolume(
+              volume,
+              volumeMounts,
+              'hostPath'
+            )
+            volume = newVolume
+            volumeMounts = newMounts
+          }
+          if (type === 'host') {
+            const { newVolume, newMounts } = this.updateVolume(
+              volume,
+              volumeMounts,
+              'emptyDir'
+            )
+            volume = newVolume
+            volumeMounts = newMounts
+          }
+        }
+        onSave(volume, volumeMounts, this.state.editVolume)
         callback && callback()
       })
+  }
+
+  updateVolume = (volume, volumeMounts, omitKey) => {
+    const { editVolume } = this.state
+    const newVolume = omit(volume, omitKey)
+    const otherVolume = volumeMounts.filter(
+      item => item.name !== editVolume.name
+    )
+    const resetVolume = volumeMounts.filter(
+      item => item.name === editVolume.name
+    )
+    if (resetVolume.length > 0) {
+      resetVolume[0].volume = omit(resetVolume[0].volume, omitKey)
+    }
+    return {
+      newVolume,
+      newMounts: [...otherVolume, ...resetVolume],
+    }
   }
 
   handleTypeChange = type => {
@@ -144,6 +218,22 @@ export default class AddVolume extends React.Component {
     let content
 
     const currentName = volume.name
+    const volumeMounts = get(volume, 'volumeMounts', [])
+    if (this.state.type !== 'exist') {
+      const existName = get(volume, 'specVolume.name', false)
+      existName && (volume.name = existName)
+    } else {
+      const tempAndHostName = get(volume, 'name', false)
+      if (tempAndHostName) {
+        volume.name = tempAndHostName
+        set(volume, 'specVolume.name', tempAndHostName)
+      }
+    }
+
+    if (volumeMounts.length > 0) {
+      set(volume, 'volumeMounts[0].name', volume.name)
+    }
+
     switch (this.state.type) {
       case 'temp': {
         content = (

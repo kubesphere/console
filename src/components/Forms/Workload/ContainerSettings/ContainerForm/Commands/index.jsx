@@ -46,7 +46,7 @@ export default class Commands extends React.Component {
             name={`${this.prefix}command`}
           />
         </Form.Item>
-        <Form.Item label={t('ARGUMENTS')} desc={t('CONTAINER_ARGUMENT_DESC')}>
+        <Form.Item label={t('PARAMETERS')} desc={t('CONTAINER_ARGUMENT_DESC')}>
           <StringInput className={styles.input} name={`${this.prefix}args`} />
         </Form.Item>
       </Form.Group>

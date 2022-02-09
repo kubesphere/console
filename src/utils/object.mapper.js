@@ -17,6 +17,7 @@
  */
 
 import {
+  capitalize,
   get,
   set,
   has,
@@ -44,7 +45,7 @@ import { getWorkloadUpdateTime, getJobUpdateTime } from 'utils/workload'
 import { getServiceType } from 'utils/service'
 import { getNodeRoles } from 'utils/node'
 import { getPodStatusAndRestartCount } from 'utils/status'
-import { FED_ACTIVE_STATUS } from 'utils/constants'
+import { FED_ACTIVE_STATUS, SERVICE_TYPES } from 'utils/constants'
 import moment from 'moment-mini'
 
 const getOriginData = item =>
@@ -81,7 +82,7 @@ const getBaseInfo = item => ({
   creator: getResourceCreator(item),
   description: getDescription(item),
   aliasName: getAliasName(item),
-  createTime: get(item, 'metadata.creationTimestamp'),
+  createTime: get(item, 'metadata.creationTimestamp', ''),
   resourceVersion: get(item, 'metadata.resourceVersion'),
   isFedManaged: get(item, 'metadata.labels["kubefed.io/managed"]') === 'true',
 })
@@ -432,10 +433,17 @@ const EventsMapper = item => {
 
   const age =
     item.count > 1
-      ? `${moment(item.lastTimestamp).to(now, true)} (x${
-          item.count
-        } over ${moment(item.firstTimestamp).to(now, true)})`
-      : moment(item.firstTimestamp).to(now, true)
+      ? item.count === 2
+        ? t.html('EVENT_AGE_DATA_TWICE', {
+            lastTime: moment(item.lastTimestamp).fromNow(),
+            duration: moment(item.firstTimestamp).to(now, true),
+          })
+        : t.html('EVENT_AGE_DATA', {
+            lastTime: moment(item.lastTimestamp).fromNow(),
+            count: item.count,
+            duration: moment(item.firstTimestamp).to(now, true),
+          })
+      : moment(item.firstTimestamp).fromNow()
 
   return {
     ...getBaseInfo(item),
@@ -511,15 +519,17 @@ const PVMapper = item => {
     storageClassName: get(item, 'spec.storageClassName'),
     capacity: get(
       item,
-      'status.capacity.storage',
+      'spec.capacity.storage',
       get(item, 'spec.resources.requests.storage')
     ),
+    volumeHandle: get(item, 'spec.csi.volumeHandle'),
     inUse: get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true',
     type: 'pvc',
     persistentVolumeReclaimPolicy: get(
       item,
       'spec.persistentVolumeReclaimPolicy'
     ),
+    volumeMode: get(item, 'spec.volumeMode'),
     _originData: getOriginData(item),
   }
 }
@@ -696,7 +706,16 @@ const IngressMapper = item => ({
 })
 
 const GatewayMapper = item => {
+  item.apiVersion = 'gateway.kubesphere.io/v1alpha1'
+  item.kind = 'Gateway'
+
   const loadBalancerIngress = get(item, 'status.loadBalancer.ingress', [])
+  const lbSupport = get(
+    item,
+    "metadata.annotations['kubesphere.io/annotations']",
+    ''
+  )
+
   return {
     ...getBaseInfo(item),
     namespace: get(item, 'metadata.namespace'), // it's not metadata.namespace
@@ -718,6 +737,8 @@ const GatewayMapper = item => {
       ) === 'true',
     replicas: get(item, 'spec.deployment.replicas'),
     type: get(item, 'spec.service.type'),
+    config: get(item, 'spec.controller.config', {}),
+    lb: lbSupport,
     _originData: item,
   }
 }
@@ -978,11 +999,9 @@ const ImageDetailMapper = detail => {
     message: get(detail, 'message', ''),
     registry: get(detail, 'registry', ''),
     layers: layers.length,
-    createTime: get(detail, 'imageBlob.created', ''),
+    createTime: get(detail, 'created', ''),
     size,
-    exposedPorts: Object.keys(
-      get(detail, 'imageBlob.container_config.ExposedPorts', {})
-    ),
+    exposedPorts: Object.keys(get(detail, 'config.ExposedPorts', {})),
     status: get(detail, 'status', ''),
     slug: get(detail, 'slug', ''),
   }
@@ -1070,6 +1089,11 @@ const FederatedMapper = resourceMapper => item => {
     }
   })
 
+  const type =
+    get(template, 'spec.clusterIP') === 'None'
+      ? SERVICE_TYPES.Headless
+      : SERVICE_TYPES.VirtualIP
+
   const resourceInfo = omitBy(
     resourceMapper(merge(template, { metadata: item.metadata })),
     isUndefined
@@ -1082,6 +1106,7 @@ const FederatedMapper = resourceMapper => item => {
     template,
     clusters,
     clusterTemplates,
+    type,
     isFedManaged: true,
     namespace: get(item, 'metadata.namespace'),
     labels: get(item, 'metadata.labels', {}),
@@ -1096,6 +1121,10 @@ const FederatedMapper = resourceMapper => item => {
 
 const DevOpsMapper = item => {
   const phase = get(item, 'status.phase')
+  const syncStatusKey =
+    'metadata.annotations["devopsproject.devops.kubesphere.io/syncstatus"]'
+  const syncStatus = capitalize(get(item, syncStatusKey))
+
   const deletionTimestamp = get(item, 'metadata.deletionTimestamp')
 
   return {
@@ -1104,14 +1133,47 @@ const DevOpsMapper = item => {
     devops: get(item, 'metadata.name'),
     workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
     namespace: get(item, 'status.adminNamespace'),
-    status: deletionTimestamp ? 'Terminating' : phase || 'Active',
+    status: deletionTimestamp ? 'Terminating' : phase || syncStatus || 'Active',
     _originData: getOriginData(item),
   }
 }
 
-const PipelinesMapper = item => ({
-  ...getBaseInfo(item),
-})
+const PipelinesMapper = item => {
+  const jenkinsKey =
+    'metadata.annotations["pipeline.devops.kubesphere.io/jenkins-metadata"]'
+
+  const pipelineObject = safeParseJSON(get(item, jenkinsKey), {})
+  const ns = get(item, 'metadata.namespace')
+  const name = get(item, 'metadata.name')
+
+  return {
+    ...getBaseInfo(item),
+    annotations: omit(get(item, 'metadata.annotations'), jenkinsKey),
+    displayName: get(item, 'metadata.name'),
+    fullDisplayName: `${ns}/${name}`,
+    fullName: `${ns}/${name}`,
+    status: get(
+      item,
+      'metadata.annotations["pipeline.devops.kubesphere.io/syncstatus"]'
+    ),
+    name,
+    isMultiBranch: get(item, 'spec.type', '') === 'multi-branch-pipeline',
+    numberOfPipelines: 0,
+    numberOfFolders: 0,
+    pipelineFolderNames: [],
+    totalNumberOfBranches: 0,
+    numberOfFailingBranches: 0,
+    numberOfSuccessfulBranches: 0,
+    numberOfFailingPullRequests: 0,
+    numberOfSuccessfulPullRequests: 0,
+    branchNames: [],
+    parameters: [],
+    disabled: false,
+    weatherScore: 100,
+    ...pipelineObject,
+    _originData: getOriginData(item),
+  }
+}
 
 const CRDMapper = item => {
   const versions = get(item, 'spec.versions', [])

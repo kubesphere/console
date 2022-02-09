@@ -122,11 +122,11 @@ export default class AppBaseEdit extends React.Component {
               beforeUpload={this.checkPackage}
               accept={UPLOAD_FILE_TYPES.icon}
             >
-              <Button>{t('Upload Icon')}</Button>
+              <Button>{t('UPLOAD')}</Button>
             </Upload>
           </div>
         </div>
-        {error && <div className={styles.error}>{t(error)}</div>}
+        {error && <div className={styles.error}>{t(`${error}_DESC`)}</div>}
       </>
     )
   }
@@ -138,15 +138,15 @@ export default class AppBaseEdit extends React.Component {
 
     return (
       <div className={styles.wrapper}>
-        <div className="h5">{t('Basic Info')}</div>
+        <div className="h5">{t('BASIC_INFORMATION')}</div>
         <Form data={formData} ref={formRef}>
           <Form.Item
-            label={t('Application Name')}
+            label={t('NAME')}
             desc={t('APP_NAME_DESC')}
             rules={[
               {
                 required: true,
-                message: t('Please input an application name'),
+                message: t('NAME_EMPTY_DESC'),
               },
             ]}
           >
@@ -156,36 +156,34 @@ export default class AppBaseEdit extends React.Component {
               maxLength={20}
             />
           </Form.Item>
-          <Form.Item
-            label={t('App Description')}
-            desc={t('APP_ABSTRACTION_DESC')}
-          >
+          <Form.Item label={t('DESCRIPTION')} desc={t('APP_DESCRIPTION_DESC')}>
             <TextArea
               name="description"
               maxLength={120}
               onChange={value => this.handleAppChange(value, 'description')}
             />
           </Form.Item>
-          <Form.Item label={t('Application Icon')} className={styles.upload}>
+          <Form.Item label={t('ICON')} className={styles.upload}>
             {this.renderIcon()}
           </Form.Item>
           <Form.Item
-            label={t('Categories')}
+            label={t('APP_CATEGORY')}
             desc={t('CHOOSE_APP_CATEGORY_DESC')}
           >
             <Select
               name="category_id"
               options={this.categories}
               onChange={this.handleAppChange}
+              placeholder=" "
             />
           </Form.Item>
           <Form.Item
-            label={t('Service Provider Website')}
-            desc={t("Service provider's official website address")}
+            label={t('SERVICE_PROVIDER_WEBSITE_TCAP')}
+            desc={t('SERVICE_PROVIDER_WEBSITE_DESC')}
             rules={[
               {
                 pattern: PATTERN_URL,
-                message: t('Wrong website format'),
+                message: t('WRONG_ADDRESS_TIP'),
               },
             ]}
           >

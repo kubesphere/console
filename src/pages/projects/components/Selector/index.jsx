@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Tag, Tooltip } from '@kube-design/components'
+import { Icon, Tooltip } from '@kube-design/components'
 import SelectModal from 'components/Modals/ProjectSelect'
 
 import styles from './index.scss'
@@ -58,7 +58,7 @@ export default class Selector extends React.Component {
   }
 
   render() {
-    const { title, type, detail, isFederated } = this.props
+    const { title, type, detail } = this.props
     const { name, description, cluster, workspace } = detail
     const { showSelect } = this.state
 
@@ -78,11 +78,6 @@ export default class Selector extends React.Component {
             </Tooltip>
             <p>{description || title}</p>
           </div>
-          {isFederated && (
-            <Tag className={styles.tag} type="info">
-              {t('MULTI_CLUSTER')}
-            </Tag>
-          )}
         </div>
         <SelectModal
           defaultType={type}

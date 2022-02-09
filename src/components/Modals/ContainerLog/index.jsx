@@ -22,18 +22,26 @@ import { get } from 'lodash'
 import { Modal, Card, Empty } from 'components/Base'
 
 import ContainerLog from 'components/Cards/ContainerLog'
-
+import { PropTypes } from 'prop-types'
 import styles from './index.scss'
 
 export default class ContainerLogModal extends React.Component {
+  static contextTypes = {
+    gatewayName: PropTypes.string,
+    gatewayNs: PropTypes.string,
+    cluster: PropTypes.string,
+  }
+
   renderContent() {
     const { namespace, name } = this.props.container
-    const { cluster, podName } = this.props
+    const { podName } = this.props
+    const { gatewayName, gatewayNs, cluster } = this.context
+    const _cluster = cluster || this.props.cluster
 
     if (!get(this.props, 'container.containerID')) {
       return (
         <Card>
-          <Empty desc={'CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS'} />
+          <Empty desc={'CONTAINER_LOGS_NOT_SUPPORTED'} />
         </Card>
       )
     }
@@ -44,8 +52,10 @@ export default class ContainerLogModal extends React.Component {
         contentClassName={styles.containerLogContent}
         namespace={namespace}
         podName={podName}
-        cluster={cluster}
+        cluster={_cluster}
         containerName={name}
+        gatewayName={gatewayName}
+        gatewayNamespace={gatewayNs}
       />
     )
   }
@@ -56,7 +66,7 @@ export default class ContainerLogModal extends React.Component {
     return (
       <Modal
         bodyClassName={styles.body}
-        title={t('Container Logs')}
+        title={t('CONTAINER_LOGS')}
         visible={visible}
         onCancel={onCancel}
         fullScreen

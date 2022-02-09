@@ -24,19 +24,23 @@ export default class SecretStore extends Base {
   module = 'secrets'
 
   @action
-  async validateImageRegistrySecret(data) {
-    const { url, username, password } = data
-
-    const params = { username, password, serverhost: url }
-
+  async validateImageRegistrySecret({
+    fedFormTemplate,
+    cluster,
+    namespace,
+    name,
+  }) {
     const result = {
       validate: true,
       reason: '',
     }
 
     await request.post(
-      `kapis/resources.kubesphere.io/v1alpha2/registry/verify`,
-      params,
+      ` kapis/resources.kubesphere.io/v1alpha3${this.getPath({
+        namespace,
+        cluster,
+      })}/registrysecrets/${name}/verify`,
+      fedFormTemplate,
       {},
       (_, err) => {
         const msg = get(err, 'message', '')

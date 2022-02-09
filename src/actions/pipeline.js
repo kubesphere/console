@@ -75,7 +75,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
           success && success()
         },
         store,
@@ -111,7 +111,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
           store.setSelectRowKeys([])
           success && success()
         },
@@ -125,8 +125,12 @@ export default {
   'pipeline.batch.run': {
     async on({ store, success, rowKey, devops, cluster }) {
       const { data, selectedRowKeys } = toJS(store.list)
-
-      Notify.success({ content: `${t('Batch Run Start')}` })
+      Notify.success({
+        content:
+          data.length === 1
+            ? t('PIPELINE_RUN_START_SI')
+            : t('PIPELINE_RUN_START_PL'),
+      })
 
       const selectNames = data
         .filter(item => selectedRowKeys.includes(item[rowKey]))
@@ -171,7 +175,12 @@ export default {
 
       await Promise.all(reqlist)
 
-      Notify.success({ content: `${t('Batch Run Success')}` })
+      Notify.success({
+        content:
+          data.length === 1
+            ? t('BATCH_RUN_SUCCESS_SI')
+            : t('BATCH_RUN_SUCCESS_PL'),
+      })
       store.setSelectRowKeys([])
       success && success()
     },
@@ -186,7 +195,7 @@ export default {
           await store.updatePipeline({ data, devops, cluster })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         store,
@@ -212,7 +221,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         store,
@@ -265,7 +274,7 @@ export default {
         onOk: async jenkinsFile => {
           await store.updateJenkinsFile(jenkinsFile, params)
           Modal.close(modal)
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         modal: JenkinsEdit,
@@ -281,7 +290,7 @@ export default {
         onOk: async jenkinsFile => {
           await store.updateJenkinsFile(jenkinsFile, params)
           Modal.close(modal)
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         modal: PipelineModal,
@@ -316,7 +325,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
           success && success()
         },
         store,

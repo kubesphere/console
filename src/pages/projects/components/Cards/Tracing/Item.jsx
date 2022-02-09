@@ -95,13 +95,15 @@ export default class TracingItem extends React.Component {
         <div className={styles.content}>
           <div className={styles.spanWrapper}>
             <div className={styles.spans}>
-              {numSpans} Span
-              {numSpans > 1 && 's'}
+              {numSpans === 1
+                ? t('NUM_SPAN_SI', { num: numSpans })
+                : t('NUM_SPAN_PL', { num: numSpans })}
             </div>
             {numErredSpans > 0 && (
               <div className={styles.errorSpans}>
-                {numErredSpans} Error
-                {numErredSpans > 1 && 's'}
+                {numErredSpans === 1
+                  ? t('NUM_ERROR_SI', { num: numErredSpans })
+                  : t('NUM_ERROR_PL', { num: numErredSpans })}
               </div>
             )}
           </div>
@@ -112,7 +114,7 @@ export default class TracingItem extends React.Component {
                   className={styles.tag}
                   style={{ backgroundColor: serviceColorMap[service.name] }}
                 />
-                {`${service.name}(${service.numberOfSpans})`}
+                {`${service.name} (${service.numberOfSpans})`}
               </li>
             ))}
           </ul>

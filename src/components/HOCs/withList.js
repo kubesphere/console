@@ -55,7 +55,7 @@ export default function withList(options) {
           {
             key: 'edit',
             icon: 'pen',
-            text: t('EDIT'),
+            text: t('EDIT_INFORMATION'),
             action: 'edit',
             onClick: item =>
               this.trigger('resource.baseinfo.edit', {
@@ -70,7 +70,7 @@ export default function withList(options) {
             action: 'delete',
             onClick: item =>
               this.trigger('resource.delete', {
-                type: t(this.name),
+                type: this.name,
                 resource: item.name,
                 detail: item,
                 success: this.routing.query,
@@ -109,6 +109,10 @@ export default function withList(options) {
         }
       }
 
+      get searchByApp() {
+        return options.searchByApp ?? false
+      }
+
       getData = async ({ silent, ...params } = {}) => {
         this.query = params
 
@@ -118,11 +122,15 @@ export default function withList(options) {
         }
 
         silent && (this.list.silent = true)
-        await this.store.fetchList({
+        const paramsObj = {
           ...namespaceParams,
           ...this.props.match.params,
           ...params,
-        })
+        }
+        if (this.searchByApp) {
+          paramsObj.searchByApp = this.searchByApp
+        }
+        await this.store.fetchList(paramsObj)
         this.list.silent = false
       }
 

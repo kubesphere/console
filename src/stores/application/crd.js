@@ -70,30 +70,36 @@ export default class ApplicationStore extends Base {
     isLoading: false,
   }
 
-  getGraphUrl = ({ cluster, namespace }) =>
+  getGraphUrl = ({ cluster, namespace, duration }) =>
     `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
       cluster,
       namespace,
-    })}/graph?duration=60s&graphType=versionedApp&injectServiceNodes=true&groupBy=app&appenders=deadNode,sidecarsCheck,serviceEntry,istio,responseTime`
+    })}/graph?duration=${duration}s&graphType=versionedApp&injectServiceNodes=true&groupBy=app&appenders=deadNode,sidecarsCheck,serviceEntry,istio,responseTime`
 
-  getHealthUrl = ({ cluster, namespace, type }) =>
+  getHealthUrl = ({ cluster, namespace, type, duration }) =>
     `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
       cluster,
       namespace,
-    })}/health?rateInterval=60s&type=${type}`
+    })}/health?rateInterval=${duration}s&type=${type}`
 
   @action
-  async fetchGraph({ cluster, namespace, app } = {}) {
+  async fetchGraph({ cluster, namespace, app, duration } = {}) {
     const [
       result,
       appHealth,
       serviceHealth,
       workloadHealth,
     ] = await Promise.all([
-      request.get(this.getGraphUrl({ cluster, namespace, app })),
-      request.get(this.getHealthUrl({ cluster, namespace, type: 'app' })),
-      request.get(this.getHealthUrl({ cluster, namespace, type: 'service' })),
-      request.get(this.getHealthUrl({ cluster, namespace, type: 'workload' })),
+      request.get(this.getGraphUrl({ cluster, namespace, app, duration })),
+      request.get(
+        this.getHealthUrl({ cluster, namespace, type: 'app', duration })
+      ),
+      request.get(
+        this.getHealthUrl({ cluster, namespace, type: 'service', duration })
+      ),
+      request.get(
+        this.getHealthUrl({ cluster, namespace, type: 'workload', duration })
+      ),
     ])
 
     const serviceNames = this.detail.services || []
@@ -195,10 +201,8 @@ export default class ApplicationStore extends Base {
       duration: 60,
       step: 20,
       rateInterval: '20s',
-      'filters[]': ['request_count', 'request_duration', 'request_error_count'],
       direction: 'inbound',
-      reporter: 'destination',
-      requestProtocol: 'http',
+      reporter: 'source',
       ...options,
     }
     return request.get(
@@ -218,7 +222,6 @@ export default class ApplicationStore extends Base {
       rateInterval: '20s',
       direction: 'inbound',
       reporter: 'source',
-      requestProtocol: 'http',
       ...options,
     }
     return request.get(
@@ -294,7 +297,7 @@ export default class ApplicationStore extends Base {
       if (isServiceMeshEnable) {
         const serviceName = get(
           ingress,
-          'spec.rules[0].http.paths[0].backend.serviceName'
+          'spec.rules[0].http.paths[0].backend.service.name'
         )
         if (serviceName) {
           set(

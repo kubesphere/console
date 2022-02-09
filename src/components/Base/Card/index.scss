@@ -15,6 +15,7 @@
 
     &:hover {
       box-shadow: $card-hover-shadow;
+      z-index: 103;
     }
   }
 

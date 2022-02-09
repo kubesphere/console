@@ -59,7 +59,6 @@
 .tr {
   display: flex;
   line-height: 32px;
-  cursor: pointer;
   &:nth-child(2n) {
     background-color: $lightest;
   }

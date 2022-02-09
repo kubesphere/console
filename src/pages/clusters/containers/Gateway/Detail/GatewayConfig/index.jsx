@@ -18,6 +18,7 @@
 import React from 'react'
 import { Panel } from 'components/Base'
 import { observer, inject } from 'mobx-react'
+import { isEmpty, get } from 'lodash'
 import styles from './index.scss'
 
 @inject('detailStore')
@@ -32,20 +33,25 @@ export default class GatewayConfig extends React.Component {
   }
 
   get detail() {
-    return this.store.gateway.data
+    return get(this.store.gateway, 'data', {})
   }
 
   render() {
+    const config = this.detail.config
     return (
-      <Panel title={t('Gateway Config')}>
+      <Panel title={t('CONFIGURATION_OPTIONS')}>
         <div className={styles.container}>
           <ul>
-            {Object.entries(this.detail.annotations).map(([key, value]) => (
-              <li key={key}>
-                <span className={styles.key}>{key}</span>
-                <span>{value}</span>
-              </li>
-            ))}
+            {isEmpty(config) ? (
+              <li>{t('NO_DATA')}</li>
+            ) : (
+              Object.entries(this.detail.config).map(([key, value]) => (
+                <li key={key}>
+                  <span className={styles.key}>{key}</span>
+                  <span>{value}</span>
+                </li>
+              ))
+            )}
           </ul>
         </div>
       </Panel>

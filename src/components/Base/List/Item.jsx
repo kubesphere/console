@@ -66,30 +66,34 @@ export default class Item extends React.Component {
         onClick={onClick}
         {...rest}
       >
-        <div className={styles.icon} style={{ top: title ? '12px' : '0' }}>
-          {image ? (
-            <img src={image} alt="" />
-          ) : (
-            icon && <Icon name={icon} size={40} />
-          )}
-          {status ? (
-            <Indicator className={styles.indicator} type={status} />
-          ) : null}
-        </div>
-        <div className={styles.texts}>
-          <div className={classNames(styles.text, titleClass)}>
-            <div className={styles.title}>{title}</div>
-            <div className={styles.description}>{description}</div>
+        <div className={styles.wrapper}>
+          <div className={styles.icon}>
+            {image ? (
+              <img src={image} alt="" />
+            ) : (
+              icon && <Icon name={icon} size={40} />
+            )}
+            {status ? (
+              <Indicator className={styles.indicator} type={status} />
+            ) : null}
           </div>
-          {details && this.renderDetail(details)}
+          <div className={styles.texts}>
+            <div className={classNames(styles.text, titleClass)}>
+              <div className={styles.title}>{title}</div>
+              <div className={styles.description}>{description}</div>
+            </div>
+            {details && this.renderDetail(details)}
+          </div>
+          {operations || (
+            <div className="buttons">
+              {onDelete && (
+                <Button type="flat" icon="trash" onClick={onDelete} />
+              )}
+              {onEdit && <Button type="flat" icon="pen" onClick={onEdit} />}
+            </div>
+          )}
         </div>
         {extras}
-        {operations || (
-          <div className="buttons">
-            {onDelete && <Button type="flat" icon="trash" onClick={onDelete} />}
-            {onEdit && <Button type="flat" icon="pen" onClick={onEdit} />}
-          </div>
-        )}
       </div>
     )
   }

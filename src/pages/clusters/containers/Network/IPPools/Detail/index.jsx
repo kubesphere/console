@@ -45,7 +45,7 @@ export default class IPPoolDetail extends React.Component {
   }
 
   get name() {
-    return 'Pod IP Pool'
+    return 'POD_IP_POOL'
   }
 
   get listUrl() {
@@ -66,13 +66,13 @@ export default class IPPoolDetail extends React.Component {
   }
 
   getOperations = () => {
-    const type = t(this.name)
+    const type = this.name
     const detail = toJS(this.store.detail)
     return [
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_INFO'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         type: 'control',
         onClick: () =>
@@ -85,7 +85,7 @@ export default class IPPoolDetail extends React.Component {
       {
         key: 'viewYaml',
         icon: 'eye',
-        text: t('View YAML'),
+        text: t('VIEW_YAML'),
         action: 'view',
         onClick: () =>
           this.trigger('resource.yaml.edit', {
@@ -142,15 +142,15 @@ export default class IPPoolDetail extends React.Component {
         value: block.base,
       },
       {
-        name: t('First Available'),
+        name: t('STARTING_IP_ADDRESS'),
         value: block.base,
       },
       {
-        name: t('Last Available'),
+        name: t('ENDING_IP_ADDRESS'),
         value: block.last,
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
@@ -175,7 +175,7 @@ export default class IPPoolDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Pod IP Pools'),
+          label: t('POD_IP_POOL_PL'),
           url: this.listUrl,
         },
       ],

@@ -137,7 +137,7 @@ export default class BillModal extends React.Component {
             height: '20px',
           }}
         >
-          {t('Bill')}
+          {t('RESOURCE_CONSUMPTION_STATISTICS')}
         </span>
       </div>
     )

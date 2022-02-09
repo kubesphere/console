@@ -63,7 +63,7 @@ export default class AppList extends React.PureComponent {
       return (
         <div className={styles.noApp}>
           <img src="/assets/empty-card.svg" alt="" />
-          <p>{t('RESOURCE_NOT_FOUND')}</p>
+          <p>{t('NO_RESOURCE_FOUND')}</p>
         </div>
       )
     }

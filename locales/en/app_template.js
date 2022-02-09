@@ -19,11 +19,11 @@
 module.exports = {
   'App README': 'App README',
   'Configuration Files': 'Configuration Files',
+  INSTALLED_SUCCESSFULLY: 'Installed successfully.',
+  CONFIG_FILES: 'Configuration Files',
   'Deploy Successfully': 'Deploy Successfully',
   'Edit by YAML': 'Edit by YAML',
-  'The app has no chart file.': 'The app has no chart file.',
-  'The app has no documentation.': 'The app has no documentation.',
-  VERSION_INTRO_EMPTY_DESC: 'No introduction to this version is found.',
+  NO_CHART_FILE_FOUND: 'No chart file is found.',
   'Update Successfully': 'Update Successfully',
 
   APP_TEMPLATE_DESCRIPTION_TITLE: 'Deploy packaged applications',

@@ -22,15 +22,20 @@ import AdvanceSettings from 'components/Forms/Volume/AdvanceSettings'
 import AccessModeSettings from 'components/Forms/Volume/VolumeSettings/AccessModeSelectForm'
 
 export default [
-  { title: 'Basic Info', icon: 'cdn', component: BaseInfo, required: true },
   {
-    title: 'Volume Settings',
+    title: 'BASIC_INFORMATION',
+    icon: 'cdn',
+    component: BaseInfo,
+    required: true,
+  },
+  {
+    title: 'STORAGE_SETTINGS',
     icon: 'storage',
     component: VolumeSettings,
     required: true,
   },
   {
-    title: 'Advanced Settings',
+    title: 'ADVANCED_SETTINGS',
     icon: 'slider',
     component: AdvanceSettings,
     required: true,
@@ -38,15 +43,20 @@ export default [
 ]
 
 export const APPLY_SNAPSHOT_FORM_STEPS = [
-  { title: 'Basic Info', icon: 'cdn', component: BaseInfo, required: true },
   {
-    title: 'Volume Settings',
+    title: 'BASIC_INFORMATION',
+    icon: 'cdn',
+    component: BaseInfo,
+    required: true,
+  },
+  {
+    title: 'VOLUME_SETTINGS',
     icon: 'storage',
     component: AccessModeSettings,
     required: true,
   },
   {
-    title: 'Advanced Settings',
+    title: 'ADVANCED_SETTINGS',
     icon: 'slider',
     component: AdvanceSettings,
     required: true,

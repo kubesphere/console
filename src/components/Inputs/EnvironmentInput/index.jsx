@@ -54,11 +54,13 @@ export default class EnvironmentInput extends React.Component {
     name: PropTypes.string,
     value: PropTypes.array,
     onChange: PropTypes.func,
+    handleInputError: PropTypes.func,
   }
 
   static defaultProps = {
     name: '',
     onChange() {},
+    handleInputError() {},
   }
 
   componentDidMount() {
@@ -81,6 +83,7 @@ export default class EnvironmentInput extends React.Component {
   }
 
   handleAddRef = () => {
+    this.handleGetResource()
     const { value, onChange } = this.props
     if (isEmpty(value)) {
       return onChange([{ name: '', valueFrom: {} }])
@@ -120,13 +123,14 @@ export default class EnvironmentInput extends React.Component {
   }
 
   handleCreateSecrets = () => {
-    const { namespace, cluster, isFederated } = this.props
+    const { namespace, cluster, isFederated, projectDetail } = this.props
 
     this.trigger('secret.create', {
       module: 'secrets',
       namespace,
       cluster,
       isFederated,
+      projectDetail,
       store: this.secretStore,
       success: async data => {
         const secrets = await this.secretStore.fetchListByK8s({
@@ -146,13 +150,14 @@ export default class EnvironmentInput extends React.Component {
   }
 
   handleCreateConfig = () => {
-    const { namespace, cluster, isFederated } = this.props
+    const { namespace, cluster, isFederated, projectDetail } = this.props
 
     this.trigger('configmap.create', {
       module: 'configmaps',
       namespace,
       cluster,
       isFederated,
+      projectDetail,
       store: this.configMapStore,
       success: async data => {
         const configMaps = await this.configMapStore.fetchListByK8s({
@@ -182,6 +187,7 @@ export default class EnvironmentInput extends React.Component {
 
     return (
       <ArrayInput
+        className={styles.wrapper}
         itemType="object"
         checkItemValid={this.checkItemValid}
         addText={t('ADD_ENVIRONMENT_VARIABLE')}

@@ -17,18 +17,83 @@
  */
 
 import React, { Component } from 'react'
-import { get, omit } from 'lodash'
+import { get, omit, mergeWith, isUndefined } from 'lodash'
 
 import { observer } from 'mobx-react'
+import { toJS } from 'mobx'
 
+import QuotaStore from 'stores/quota'
+import WorkspaceQuotaStore from 'stores/workspace.quota'
+import { resourceLimitKey } from 'utils'
+import { getLeftQuota } from 'utils/workload'
 import EditForm from 'components/Forms/Workload/ClusterDiffSettings/EditForm'
 import ContainerSetting from '../ContainerSetting'
 
 @observer
 export default class ContainerImages extends Component {
+  constructor(props) {
+    super(props)
+    this.quotaStore = new QuotaStore()
+    this.workspaceQuotaStore = new WorkspaceQuotaStore()
+    this.state = {
+      availableQuota: {},
+    }
+  }
+
   handleSubmit = data => {
     const { index, containerType, onEdit } = this.props
     onEdit({ index, containerType, data: omit(data, 'type') })
+  }
+
+  componentDidMount() {
+    this.fetchQuota()
+  }
+
+  fetchQuota() {
+    const { cluster, workspace, namespace } = this.props
+
+    if (workspace && namespace) {
+      Promise.all([
+        this.quotaStore.fetch({
+          cluster,
+          namespace,
+        }),
+        this.workspaceQuotaStore.fetchDetail({
+          name: workspace,
+          workspace,
+          cluster,
+        }),
+      ]).then(() => {
+        const hard = toJS(this.quotaStore.data.hard)
+        const {
+          namespace: namespaceQuota,
+          workspace: workspaceQuota,
+        } = getLeftQuota(
+          get(this.workspaceQuotaStore.detail, 'status.total'),
+          this.quotaStore.data
+        )
+        this.setState({
+          availableQuota: {
+            workspace: workspaceQuota,
+            namespace: { ...namespaceQuota, ...omit(hard, resourceLimitKey) },
+          },
+        })
+      })
+    }
+  }
+
+  get workspaceQuota() {
+    const nsQuota = get(this.state.availableQuota, 'namespace', {})
+    const wsQuota = get(this.state.availableQuota, 'workspace', {})
+    return mergeWith(nsQuota, wsQuota, (ns, ws) => {
+      if (!ns && !ws) {
+        return undefined
+      }
+      if (!isUndefined(ns)) {
+        return ns < ws ? ns : ws
+      }
+      return ws
+    })
   }
 
   render() {
@@ -47,6 +112,7 @@ export default class ContainerImages extends Component {
           namespace={namespace}
           limitRanges={limitRanges}
           defaultContainerType={containerType}
+          workspaceQuota={this.workspaceQuota}
           isEdit={isEdit}
         />
       </EditForm>

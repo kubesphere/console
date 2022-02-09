@@ -137,16 +137,16 @@ class RouteRulesEdit extends React.Component {
   }
 
   render() {
-    const { visible, cluster, isSubmitting } = this.props
+    const { visible, cluster, isSubmitting, namespace } = this.props
     const { subRoute, formTemplate } = this.state
 
     return (
       <Modal
         width={960}
-        title={t('Edit Rules')}
+        title={t('EDIT_ROUTING_RULES')}
         icon="firewall"
         onOk={this.handleOk}
-        okText={!isEmpty(subRoute) ? t('Save') : t('Update')}
+        okText={t('OK')}
         cancelText={!isEmpty(subRoute) ? t('PREVIOUS') : null}
         onCancel={this.handleCancel}
         visible={visible}
@@ -158,6 +158,7 @@ class RouteRulesEdit extends React.Component {
             formRef={this.form}
             formTemplate={formTemplate}
             cluster={cluster}
+            namespace={namespace}
           />
         </div>
       </Modal>

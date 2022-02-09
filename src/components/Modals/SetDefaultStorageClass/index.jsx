@@ -46,8 +46,8 @@ export default class SetDefaultStorageClassModal extends React.Component {
         onOk={onOk}
         onCancel={onCancel}
         visible={visible}
-        okText={t('Apply immediately')}
-        cancelText={t('Cancel')}
+        okText={t('OK')}
+        cancelText={t('CANCEL')}
         isSubmitting={isSubmitting}
         hideHeader
       >
@@ -59,7 +59,7 @@ export default class SetDefaultStorageClassModal extends React.Component {
               size={18}
             />
             &nbsp;&nbsp;
-            {t('Set as default storage class')}
+            {t('SET_DEFAULT_STORAGE_CLASS_TITLE')}
           </div>
           <p>{t('STORAGE_CLASS_SET_DEFAULT_DESC')}</p>
         </div>

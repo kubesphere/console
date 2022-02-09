@@ -126,7 +126,15 @@ class RouteRulesEdit extends React.Component {
   handleCancel = () => {
     const { subRoute } = this.state
     if (subRoute.onCancel) {
-      subRoute.onCancel()
+      // get the status of rule form validate
+      const result = subRoute.onCancel()
+
+      // validate failed return false
+      if (!result) return
+
+      // validate success return function
+      result()
+
       this.setState({ subRoute: {} })
       return
     }
@@ -148,10 +156,10 @@ class RouteRulesEdit extends React.Component {
     return (
       <Modal
         width={960}
-        title={t('Edit Rules')}
+        title={t('EDIT_ROUTING_RULES')}
         icon="firewall"
         onOk={this.handleOk}
-        okText={!isEmpty(subRoute) ? t('Save') : t('Update')}
+        okText={t('OK')}
         cancelText={!isEmpty(subRoute) ? t('PREVIOUS') : null}
         onCancel={this.handleCancel}
         visible={visible}

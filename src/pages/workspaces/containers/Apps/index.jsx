@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import { capitalize } from 'lodash'
 
 import { Button } from '@kube-design/components'
 
@@ -122,9 +121,9 @@ export default class Apps extends React.Component {
       dataIndex: 'status',
       isHideable: true,
       width: '20%',
-      render: status => (
-        <Status type={status} name={t(capitalize(transferAppStatus(status)))} />
-      ),
+      render: status => {
+        return <Status type={status} name={transferAppStatus(status)} />
+      },
     },
     {
       title: t('LATEST_VERSION'),
@@ -133,7 +132,7 @@ export default class Apps extends React.Component {
       width: '20%',
     },
     {
-      title: t('UPDATED_AT'),
+      title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'update_time',
       isHideable: true,
       width: '120',

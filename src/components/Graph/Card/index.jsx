@@ -55,13 +55,13 @@ export default class Card extends React.PureComponent {
           <Icon name="check" size={16} />{' '}
           {!isNaN(request_success_rate)
             ? `${request_success_rate}%`
-            : t('No Data')}
+            : t('NO_DATA_SCAP')}
         </p>
         <p>
           <Icon name="timed-task" size={16} />{' '}
           {!isNaN(request_duration) && request_duration !== '0'
             ? `${request_duration} ms`
-            : t('No Data')}
+            : t('NO_DATA_SCAP')}
         </p>
         <p>
           <Icon name="pod" size={16} />{' '}
@@ -85,11 +85,11 @@ export default class Card extends React.PureComponent {
       <div className={styles.detail}>
         <p>
           <Icon name="next" size={16} />{' '}
-          {!isNaN(requestIn) ? `${requestIn} B/s` : t('No Data')}
+          {!isNaN(requestIn) ? `${requestIn} B/s` : t('NO_DATA_SCAP')}
         </p>
         <p>
           <Icon name="previous" size={16} />{' '}
-          {!isNaN(requestOut) ? `${requestOut} B/s` : t('No Data')}
+          {!isNaN(requestOut) ? `${requestOut} B/s` : t('NO_DATA_SCAP')}
         </p>
         <p>
           <Icon name="pod" size={16} />{' '}
@@ -126,7 +126,7 @@ export default class Card extends React.PureComponent {
           data-workload-id={data.id}
           data-group={inGroup}
         >
-          <div className={styles.type}>{t('Traffic Entry')}</div>
+          <div className={styles.type}>{t('TRAFFIC_ENTRY')}</div>
           <div className={styles.wrapper}>
             <div className={styles.gatewayName}>
               <Icon name="project" size={16} />
@@ -150,12 +150,12 @@ export default class Card extends React.PureComponent {
       >
         <div className={styles.type}>
           {data.hasCB && <Icon name="thunder" type="light" />}
-          {t('Deployment')}
+          {t('DEPLOYMENT')}
         </div>
         <div className={styles.wrapper}>
           {this.renderDetail()}
           <div className={styles.workload}>
-            <span>{t('Deployment')}</span> {data.workload}
+            <span>{t('DEPLOYMENT')}</span> {data.workload}
           </div>
         </div>
       </div>

@@ -84,7 +84,7 @@ export default class BaseInfo extends React.Component {
                 { required: true, message: t('NAME_EMPTY_DESC') },
                 {
                   pattern: PATTERN_NAME,
-                  message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
+                  message: t('INVALID_NAME_DESC'),
                 },
                 { validator: this.nameValidator },
               ]}
@@ -107,7 +107,9 @@ export default class BaseInfo extends React.Component {
               <Form.Item
                 label={t('PROJECT')}
                 desc={t('SELECT_PROJECT_DESC')}
-                rules={[{ required: true, message: t('PROJECT_EMPTY_DESC') }]}
+                rules={[
+                  { required: true, message: t('PROJECT_NOT_SELECT_DESC') },
+                ]}
               >
                 <ProjectSelect
                   name="metadata.namespace"

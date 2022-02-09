@@ -20,7 +20,7 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import { computed, toJS } from 'mobx'
 import { get } from 'lodash'
-import EditMonitorFormLayou from '../components/EditMonitorFormLayout'
+import EditMonitorFormLayout from '../components/EditMonitorFormLayout'
 import { GraphTextInput } from '../components/FormInput'
 import { SingleStatGraph } from '../components/Graph'
 import FormGroupCard from '../components/FormGroupCard'
@@ -72,7 +72,7 @@ export default class TextMonitorForm extends Component {
     const labelsets = toJS(this.props.labelStore.labelsets)
 
     return (
-      <EditMonitorFormLayou
+      <EditMonitorFormLayout
         preview={
           <ErrorContainer errorMessage={this.monitor.errorMessage}>
             <SingleStatGraph singleState={singleState} title={title} />

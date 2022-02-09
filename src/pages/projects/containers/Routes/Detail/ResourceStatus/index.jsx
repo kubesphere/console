@@ -22,7 +22,8 @@ import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Panel } from 'components/Base'
 import Placement from 'projects/components/Cards/Placement'
-
+import GatewayStore from 'stores/gateway'
+import EmptyCard from 'devops/components/Cards/EmptyCard'
 import Rule from './Rule'
 
 import styles from './index.scss'
@@ -32,14 +33,30 @@ import styles from './index.scss'
 class ResourceStatus extends React.Component {
   constructor(props) {
     super(props)
-
+    this.state = {
+      gateway: {},
+    }
     this.store = props.detailStore
+    this.gatewayStore = new GatewayStore()
     this.module = this.store.module
   }
 
   componentDidMount() {
     const detail = toJS(this.store.detail)
-    this.store.getGateway(detail)
+    this.getInitGateway(detail)
+  }
+
+  getProjectGateway = detail => {
+    return this.gatewayStore.getGatewayByProject({
+      namespace: detail.namespace,
+      cluster: detail.cluster,
+    })
+  }
+
+  getInitGateway = async detail => {
+    const dataList = await this.getProjectGateway(detail)
+    const gateway = dataList[1] || dataList[0]
+    this.setState({ gateway })
   }
 
   renderPlacement() {
@@ -55,24 +72,23 @@ class ResourceStatus extends React.Component {
 
   renderRules() {
     const detail = toJS(this.store.detail)
-    const gateway = toJS(this.store.gateway.data)
 
     const tls = detail.tls || []
 
     if (isEmpty(detail.rules)) {
-      return null
+      return <EmptyCard desc={t('NO_DATA')} />
     }
 
     const { workspace, cluster, namespace } = this.props.match.params
 
     return (
-      <Panel title={t('Rules')}>
-        {detail.rules.map(rule => (
+      <Panel title={t('RULES')}>
+        {detail.rules.map((rule, i) => (
           <Rule
-            key={rule.host}
+            key={`${rule.host}-${i}`}
             tls={tls}
             rule={rule}
-            gateway={gateway}
+            gateway={this.state.gateway}
             prefix={`${
               workspace ? `/${workspace}` : ''
             }/clusters/${cluster}/projects/${namespace}`}

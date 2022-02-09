@@ -15,26 +15,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
-  'Federated Schedule': 'Despliegue federal',
   'Set Replicas': 'Número fijo de copias',
-  Federated_Schedule_Text:
-    'El número total de copias establecido se asignará a los grupos seleccionados de acuerdo con los pesos establecidos, y las copias de los grupos no disponibles se migrarán automáticamente a los grupos disponibles.',
-  Fixed_Deploy_text:
-    'Especifique claramente la cantidad de réplicas que se implementarán para cada clúster.',
   'Total Replicas Number': 'Número total de copias',
-  Weight: 'Peso',
-  TOTAL_REPLICAS: 'Número total de copias',
-  'replicas input invalid': 'La entrada de copia es ilegal',
-  'Please input total replicas num': 'Ingrese el número total de copias',
-  'Storage Function Manage':
-    'Gestión de la función de volumen de almacenamiento',
-  'Volume Clone': 'Clon de volumen de almacenamiento',
-  Volume_Clone_Des: 'Crea un volumen de almacenamiento idéntico.',
-  Volume_SnapShot_Des:
-    'Cree una instantánea del volumen de almacenamiento, que se puede utilizar para crear otros volúmenes de almacenamiento.',
-  'Volume Expansion': 'Expansión del volumen de almacenamiento',
-  Volume_Expansion_Des:
-    'Aumente la capacidad del volumen de almacenamiento. La capacidad del volumen de almacenamiento no se puede reducir en la consola porque se pueden perder datos.',
-}
+  STORAGE_MANAGEMENT_SCAP: 'Gestión de la función de volumen de almacenamiento'
+};

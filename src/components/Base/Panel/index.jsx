@@ -28,7 +28,7 @@ export default class Panel extends React.Component {
     const { className, title, loading = false, children, extras } = this.props
     const empty = (
       <div className={styles.empty}>
-        {t('NOT_AVAILABLE', { resource: title })}
+        {t('NO_AVAILABLE_RESOURCE_VALUE', { resource: title })}
       </div>
     )
 

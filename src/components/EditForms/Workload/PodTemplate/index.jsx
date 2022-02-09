@@ -46,7 +46,11 @@ export default class PodTemplate extends Base {
     const containers = get(data, 'spec.template.spec.containers', [])
     containers.forEach(item => {
       const container = { ...item }
-      const gpuInfo = omit(container.resources.requests, ['cpu', 'memory'])
+      const requests = get(container, 'resources.requests')
+      const gpuInfo = isEmpty(requests)
+        ? null
+        : omit(requests, ['cpu', 'memory'])
+
       if (!isEmpty(gpuInfo)) {
         const type = Object.keys(gpuInfo)[0]
         const gpu = {

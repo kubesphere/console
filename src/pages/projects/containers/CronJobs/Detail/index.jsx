@@ -45,7 +45,7 @@ export default class JobDetail extends React.Component {
   }
 
   get name() {
-    return 'CronJob'
+    return 'CRONJOB'
   }
 
   get routing() {
@@ -68,11 +68,11 @@ export default class JobDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -112,7 +112,7 @@ export default class JobDetail extends React.Component {
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -128,7 +128,7 @@ export default class JobDetail extends React.Component {
   getAttrs = () => {
     const { detail } = this.store
     const { spec = {} } = detail
-    const status = this.suspend ? t('Suspend') : t('Running')
+    const status = this.suspend ? t('Suspend') : t('RUNNING')
 
     const { cluster, namespace } = this.props.match.params
 
@@ -154,23 +154,28 @@ export default class JobDetail extends React.Component {
         value: spec.schedule,
       },
       {
-        name: t('STARTING_DEADLINE'),
+        name: t('MAXIMUM_DELAY'),
         value: spec.startingDeadlineSeconds,
       },
       {
-        name: t('SUCCESSFUL_JOBS_HISTORY_LIMIT'),
+        name: t('SUCCESSFUL_JOBS_RETAINED'),
         value: spec.successfulJobsHistoryLimit,
       },
       {
-        name: t('FAILED_JOBS_HISTORY_LIMIT'),
+        name: t('FAILED_JOBS_RETAINED'),
         value: spec.failedJobsHistoryLimit,
       },
       {
         name: t('CONCURRENCY_POLICY'),
-        value: spec.concurrencyPolicy,
+        value:
+          spec.concurrencyPolicy === 'Allow'
+            ? t('RUN_JOBS_CONCURRENTLY')
+            : spec.concurrencyPolicy === 'Forbid'
+            ? t('SKIP_NEW_JOB')
+            : t('SKIP_OLD_JOB'),
       },
       {
-        name: t('CREATED_AT'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
@@ -195,7 +200,7 @@ export default class JobDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(`${this.name}s`),
+          label: t(`${this.name}_PL`),
           url: this.listUrl,
         },
       ],

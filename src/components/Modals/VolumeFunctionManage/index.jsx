@@ -18,10 +18,10 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Toggle } from '@kube-design/components'
+import { Toggle, Alert } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
-import { get } from 'lodash'
+import { get, isUndefined, isString } from 'lodash'
 import { observer } from 'mobx-react'
 import styles from './index.scss'
 
@@ -50,22 +50,34 @@ export default class SetDefaultStorageClassModal extends React.Component {
       allowClone: get(
         detail.annotations,
         'storageclass.kubesphere.io/allow-clone',
-        false
+        undefined
       ),
       allowSnapshot: get(
         detail.annotations,
         'storageclass.kubesphere.io/allow-snapshot',
-        false
+        undefined
       ),
-      allowVolumeExpansion: get(detail, 'allowVolumeExpansion', false),
+      allowVolumeExpansion: get(detail, 'allowVolumeExpansion', undefined),
     }
+  }
+
+  get onOkState() {
+    return {
+      allowClone: this.dataUndefined(this.state.allowClone),
+      allowSnapshot: this.dataUndefined(this.state.allowSnapshot),
+      allowVolumeExpansion: this.dataUndefined(this.state.allowVolumeExpansion),
+    }
+  }
+
+  dataUndefined = data => {
+    return isUndefined(data) ? false : isString(data) ? JSON.parse(data) : data
   }
 
   get Items() {
     return [
       {
-        title: t('Volume Clone'),
-        des: t('Volume_Clone_Des'),
+        title: t('VOLUME_CLONE'),
+        des: t('ALLOW_VOLUME_CLONE_DESC'),
         key: 'allowClone',
         onclick: checked =>
           this.setState({
@@ -73,14 +85,14 @@ export default class SetDefaultStorageClassModal extends React.Component {
           }),
       },
       {
-        title: t('Volume Snapshot'),
-        des: t('Volume_SnapShot_Des'),
+        title: t('VOLUME_SNAPSHOT'),
+        des: t('ALLOW_VOLUME_SNAPSHOT_DESC'),
         key: 'allowSnapshot',
         onclick: checked => this.setState({ allowSnapshot: !checked }),
       },
       {
-        title: t('Volume Expansion'),
-        des: t('Volume_Expansion_Des'),
+        title: t('VOLUME_EXPANSION'),
+        des: t('ALLOW_VOLUME_EXPANSION_DESC'),
         key: 'allowVolumeExpansion',
         onclick: checked =>
           this.setState({
@@ -98,20 +110,27 @@ export default class SetDefaultStorageClassModal extends React.Component {
         onOk={() => onOk(this.state)}
         onCancel={onCancel}
         visible={visible}
-        title={t('Storage Function Manage')}
+        title={t('VOLUME_MANAGEMENT')}
         icon="slider"
-        okText={t('Confirm')}
-        cancelText={t('Cancel')}
+        okText={t('OK')}
+        cancelText={t('CANCEL')}
         isSubmitting={isSubmitting}
       >
+        <Alert
+          type="warning"
+          className="margin-b12"
+          message={t.html('VOLUME_FUNCTION_MANAGEMENT_TIP')}
+        />
         <div className={styles.body}>
           {this.Items.map(item => {
-            const checked = JSON.parse(this.state[item.key])
+            const status = this.state[item.key]
+            const checked = this.dataUndefined(status)
             return (
               <div className={styles.Item} key={item.title}>
                 <div className={styles.icon}>
                   <Toggle
                     checked={checked}
+                    disabled={isUndefined(status)}
                     onChange={() => item.onclick(checked)}
                   ></Toggle>
                 </div>

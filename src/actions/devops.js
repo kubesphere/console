@@ -32,7 +32,7 @@ export default {
 
           store.create(data, { cluster, workspace }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+            Notify.success({ content: t('CREATE_SUCCESSFUL') })
             success && success(cluster)
           })
         },
@@ -51,7 +51,7 @@ export default {
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             success && success()
           })
         },
@@ -82,10 +82,22 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
           store.setSelectRowKeys([])
           success && success()
         },
+        title:
+          selectNames.length === 1
+            ? t('DELETE_DEVOPS_PROJECT')
+            : t('DELETE_MULTIPLE_DEVOPS_PROJECTS'),
+        desc:
+          selectNames.length === 1
+            ? t.html('DELETE_DEVOPS_PROJECT_TIP', {
+                resource: selectNames.join(', '),
+              })
+            : t.html('DELETE_DEVOPS_PROJECT_TIP_PL', {
+                resource: selectNames.join(', '),
+              }),
         resource: selectNames.join(', '),
         modal: DeleteModal,
         store,

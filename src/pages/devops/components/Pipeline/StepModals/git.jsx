@@ -134,15 +134,15 @@ export default class Git extends React.Component {
             <Input name="url" />
           </Form.Item>
           <Form.Item
-            label={t('Credential ID')}
+            label={t('CREDENTIAL_NAME')}
             desc={
               <p>
-                {t('ADD_NEW_CREDENTIAL_DESC')}
+                {t('SELECT_CREDENTIAL_DESC')}
                 <span
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_CREDENTIAL')}
                 </span>
               </p>
             }

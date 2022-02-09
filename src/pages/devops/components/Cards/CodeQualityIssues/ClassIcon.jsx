@@ -45,7 +45,7 @@ export default class Status extends PureComponent {
             className
           )}
         />
-        {t(errorClass)}
+        {t(errorClass.toUpperCase())}
       </span>
     )
   }

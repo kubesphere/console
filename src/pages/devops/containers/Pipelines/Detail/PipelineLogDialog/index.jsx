@@ -18,7 +18,7 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { throttle, isEmpty } from 'lodash'
+import { throttle, isEmpty, isArray } from 'lodash'
 import { action, observable, computed, toJS, reaction } from 'mobx'
 import { observer } from 'mobx-react'
 import { Button } from '@kube-design/components'
@@ -59,9 +59,9 @@ export default class PipelineLog extends React.Component {
   @computed
   get activeStage() {
     const { nodes } = this.props
+    const activeStageTemp = toJS(nodes[this.activeNodeIndex[0]])
 
-    const activeStageTemp = nodes[this.activeNodeIndex[0]]
-    return activeStageTemp.length !== undefined
+    return isArray(activeStageTemp) && !isEmpty(activeStageTemp)
       ? activeStageTemp[this.activeNodeIndex[1]]
       : activeStageTemp
   }
@@ -69,6 +69,11 @@ export default class PipelineLog extends React.Component {
   @computed
   get isEmptySteps() {
     return isEmpty(this.activeStage.steps)
+  }
+
+  get params() {
+    const { params, runId } = this.props
+    return { ...params, runId }
   }
 
   @observable
@@ -86,8 +91,7 @@ export default class PipelineLog extends React.Component {
 
   @action
   async getPipelineIndexLog() {
-    const { params } = this.props
-    await this.store.getRunStatusLogs(params)
+    await this.store.getRunStatusLogs(this.params)
   }
 
   handleDownloadLogs = () => {
@@ -96,19 +100,24 @@ export default class PipelineLog extends React.Component {
 
   handleExpandErrorStep = () => {
     const nodes = toJS(this.props.nodes)
-    const errorNodeIdex =
-      Array.isArray(nodes) && nodes.findIndex(item => item.result !== 'SUCCESS')
+    const errorNodeIdex = [0]
 
-    if (errorNodeIdex > -1) {
-      if (nodes[errorNodeIdex].steps) {
-        const subStepIdex = nodes[errorNodeIdex].steps.findIndex(
-          item => item.result !== 'SUCCESS'
-        )
-        this.activeNodeIndex = [errorNodeIdex, subStepIdex]
-      } else {
-        this.activeNodeIndex = [errorNodeIdex]
-      }
+    if (isArray(nodes)) {
+      nodes.forEach((item, index) => {
+        if (isArray(item)) {
+          const a = item.findIndex(_item => _item.result !== 'SUCCESS')
+          errorNodeIdex[0] = index
+          errorNodeIdex[1] = a > -1 ? a : 0
+          return false
+        }
+        if (item.result !== 'SUCCESS') {
+          errorNodeIdex[0] = index
+          return false
+        }
+      })
     }
+
+    this.activeNodeIndex = [...errorNodeIdex]
   }
 
   handleRefresh = throttle(() => {
@@ -118,8 +127,8 @@ export default class PipelineLog extends React.Component {
   renderLeftTab(stage, index) {
     if (Array.isArray(stage)) {
       return (
-        <div key={stage.id} className={styles.stageContainer}>
-          <div className={styles.cutTitle}>{t('Stage')}</div>
+        <div key={stage.id} key={index} className={styles.stageContainer}>
+          <div className={styles.cutTitle}>{t('STAGE')}</div>
           {stage.map((_stage, _index) => (
             <div
               key={_stage.id}
@@ -139,7 +148,7 @@ export default class PipelineLog extends React.Component {
     }
     return (
       <div key={stage.id} className={styles.stageContainer}>
-        <div className={styles.cutTitle}>{t('Stage')}</div>
+        <div className={styles.cutTitle}>{t('STAGE')}</div>
         <div
           className={classNames(styles.leftTab, {
             [styles.leftTab__active]: this.activeNodeIndex[0] === index,
@@ -158,7 +167,6 @@ export default class PipelineLog extends React.Component {
   }
 
   renderLogContent() {
-    const { params } = this.props
     const { runDetailLogs } = this.store
 
     if (this.isEmptySteps) {
@@ -172,14 +180,14 @@ export default class PipelineLog extends React.Component {
         key={step.id}
         step={step}
         nodeId={this.activeStage.id}
-        params={params}
+        params={this.params}
         refreshFlag={this.refreshFlag}
       />
     ))
   }
 
   render() {
-    const { nodes, params } = this.props
+    const { nodes } = this.props
     const _nodes = toJS(nodes)
 
     if (this.isShowLog) {
@@ -187,11 +195,13 @@ export default class PipelineLog extends React.Component {
         <FullLogs
           store={this.store}
           isShowLog={this.isShowLog}
-          params={params}
+          params={this.params}
           handleVisableLog={this.handleVisableLog}
         />
       )
     }
+
+    const time = this.activeStage?.durationInMillis ?? ''
 
     return (
       <div className={styles.container}>
@@ -200,14 +210,16 @@ export default class PipelineLog extends React.Component {
         </div>
         <div className={styles.right}>
           <div className={styles.header}>
-            <span>{`${t('Time Used')} ${formatUsedTime(
-              this.activeStage.durationInMillis
-            )}`}</span>
+            <span>
+              {t('DURATION_VALUE', {
+                value: time ? formatUsedTime(time) : '-',
+              })}
+            </span>
             <Button onClick={this.handleDownloadLogs}>
-              {t('Download Logs')}
+              {t('DOWNLOAD_LOGS')}
             </Button>
-            <Button onClick={this.handleVisableLog}>{t('Show Logs')}</Button>
-            <Button onClick={this.handleRefresh}>{t('Refresh')}</Button>
+            <Button onClick={this.handleVisableLog}>{t('VIEW_LOGS')}</Button>
+            <Button onClick={this.handleRefresh}>{t('REFRESH')}</Button>
           </div>
           <div className={styles.logContainer}>{this.renderLogContent()}</div>
         </div>

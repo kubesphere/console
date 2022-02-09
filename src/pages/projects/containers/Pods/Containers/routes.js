@@ -26,25 +26,25 @@ import Logs from './Logs'
 export default path => [
   {
     path: `${path}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     component: ResourceStatus,
     exact: true,
   },
   {
     path: `${path}/monitors`,
-    title: 'Monitoring',
+    title: 'MONITORING',
     component: Monitoring,
     exact: true,
   },
   {
     path: `${path}/env`,
-    title: 'Environment Variables',
+    title: 'ENVIRONMENT_VARIABLE_PL',
     component: EnvVariables,
     exact: true,
   },
   {
     path: `${path}/logs`,
-    title: 'Container Logs',
+    title: 'CONTAINER_LOGS',
     component: Logs,
     exact: true,
   },

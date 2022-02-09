@@ -57,10 +57,9 @@ class Issue extends React.PureComponent {
             <Status errorClass={severityClass} />
             <span className={styles.type}>
               <Icon name="debug" size={20} />
-              {t(issue.type)}
+              {t(issue.type.toUpperCase())}
             </span>
-            <span>{t('Line number')}: </span>
-            <span>{issue.line}</span>
+            <span>{t('LINE_VALUE', { value: issue.line })}</span>
           </div>
         </div>
       </a>

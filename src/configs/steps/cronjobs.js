@@ -25,15 +25,20 @@ import VolumeSettings from 'components/Forms/Workload/VolumeSettings'
 import AdvanceSettings from 'components/Forms/Workload/AdvanceSettings'
 
 export default [
-  { title: 'Basic Info', icon: 'cdn', component: BaseInfo, required: true },
   {
-    title: 'CronJob Settings',
+    title: 'BASIC_INFORMATION',
+    icon: 'cdn',
+    component: BaseInfo,
+    required: true,
+  },
+  {
+    title: 'STRATEGY_SETTINGS',
     icon: 'cron-job',
     component: withProps(JobSettings, { prefix: 'spec.jobTemplate.spec.' }),
     required: true,
   },
   {
-    title: 'Container Image',
+    title: 'POD_SETTINGS',
     icon: 'docker',
     component: withProps(ContainerSettings, {
       prefix: 'spec.jobTemplate.spec.template.',
@@ -49,7 +54,7 @@ export default [
     required: true,
   },
   {
-    title: 'Advanced Settings',
+    title: 'ADVANCED_SETTINGS',
     icon: 'slider',
     component: withProps(AdvanceSettings, {
       prefix: 'spec.jobTemplate.spec.template.',

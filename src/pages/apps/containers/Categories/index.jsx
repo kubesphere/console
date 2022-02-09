@@ -80,7 +80,7 @@ export default class AppCategories extends React.Component {
         {
           key: 'adjust',
           type: 'primary',
-          text: t('Change Category'),
+          text: t('CHANGE_CATEGORY'),
           onClick: () =>
             trigger('openpitrix.category.ajust', {
               categoryId: this.state.selectCategoryId,
@@ -100,7 +100,7 @@ export default class AppCategories extends React.Component {
 
   get emptyProps() {
     return {
-      desc: t('APP_CATEGORIES_CREATE_DESC'),
+      desc: t('APP_CATEGORY_EMPTY_DESC'),
     }
   }
 

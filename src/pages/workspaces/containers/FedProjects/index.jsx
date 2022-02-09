@@ -77,7 +77,7 @@ export default class Projects extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
       },
@@ -159,7 +159,7 @@ export default class Projects extends React.Component {
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('LOCATION'),
+        title: t('CLUSTER'),
         dataIndex: 'clusters',
         isHideable: true,
         render: clusters => (
@@ -167,7 +167,7 @@ export default class Projects extends React.Component {
         ),
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         sorter: true,

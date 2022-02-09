@@ -36,7 +36,7 @@ class ContainersResourceStatus extends React.Component {
 
     return (
       <VolumesCard
-        title={t('Storage Device')}
+        title={t('STORAGE_DEVICES')}
         volumes={volumes}
         containers={containers}
         loading={this.store.isLoading}

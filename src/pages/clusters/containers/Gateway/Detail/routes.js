@@ -18,10 +18,11 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
-import Metadata from 'core/containers/Base/Detail/Metadata'
+import Metadata from './AnnotationsCard'
 import Monitoring from './Monitoring'
 import ResourceStatus from './ResourceStatus'
 import GatewayConfig from './GatewayConfig'
+import GatewayLog from './GatewayLog'
 
 export default PATH => [
   {
@@ -32,19 +33,25 @@ export default PATH => [
   },
   {
     path: `${PATH}/gateway-configs`,
-    title: 'Gateway Config',
+    title: 'CONFIGURATION_OPTIONS',
     component: GatewayConfig,
     exact: true,
   },
   {
+    path: `${PATH}/logs`,
+    title: 'GATEWAY_LOGS',
+    component: GatewayLog,
+    exact: true,
+  },
+  {
     path: `${PATH}/resource-status`,
-    title: 'Resource Status',
+    title: 'RESOURCE_STATUS',
     component: ResourceStatus,
     exact: true,
   },
   {
     path: `${PATH}/metadata`,
-    title: 'Metadata',
+    title: 'METADATA',
     component: Metadata,
     exact: true,
   },

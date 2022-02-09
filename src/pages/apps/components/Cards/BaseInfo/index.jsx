@@ -19,9 +19,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
-import classnames from 'classnames'
+
 import { Image, Markdown } from 'components/Base'
-import { hrefControl } from 'utils'
+
 import styles from './index.scss'
 
 @observer
@@ -47,7 +47,7 @@ export default class BaseInfo extends React.Component {
 
     return (
       <div className={styles.base}>
-        <div className={styles.title}>{t('Base Info')}</div>
+        <div className={styles.title}>{t('BASIC_INFORMATION')}</div>
         <div className={styles.info}>
           <div className={styles.icon}>
             <Image src={detail.icon} iconLetter={detail.name} iconSize={100} />
@@ -59,41 +59,34 @@ export default class BaseInfo extends React.Component {
             </dl>
             <dl>
               <dd>
-                <a
-                  href={hrefControl(url)}
-                  target="_blank"
-                  className={classnames({
-                    [styles.banLink]: !globals.config.showOutSiteLink,
-                  })}
-                  rel="noopener noreferrer"
-                >
+                <a href={url} target="_blank" rel="noopener noreferrer">
                   {detail.home}
                 </a>
                 {!detail.home && <span>-</span>}
               </dd>
-              <dt>{t('Service Provider Website')}</dt>
+              <dt>{t('SERVICE_PROVIDER_WEBSITE')}</dt>
             </dl>
           </div>
           <div>
             <dl>
               <dd>{versionName}</dd>
-              <dt>{t('App Version')}</dt>
+              <dt>{t('VERSION')}</dt>
             </dl>
             <dl>
               <dd>{detail.isv}</dd>
-              <dt>{t('Service Provider')}</dt>
+              <dt>{t('WORKSPACE')}</dt>
             </dl>
           </div>
         </div>
         <div className={styles.description}>
           <dl>
             <pre>{detail.description || '-'}</pre>
-            <dt>{t('App Introduction')}</dt>
+            <dt>{t('INTRODUCTION')}</dt>
           </dl>
         </div>
-        <div className={styles.title}>{t('App Description')}</div>
+        <div className={styles.title}>{t('APP_DESCRIPTION')}</div>
         <div>
-          <Markdown source={detail.abstraction || t('None')} />
+          <Markdown source={detail.abstraction || t('NONE')} />
         </div>
       </div>
     )

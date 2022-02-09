@@ -22,14 +22,17 @@ import { isEmpty } from 'lodash'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
 import ResourceTable from 'clusters/components/ResourceTable'
 import VolumeStore from 'stores/volume'
-import { getLocalTime, getDisplayName } from 'utils'
+import { getLocalTime, getDisplayName, map_accessModes } from 'utils'
 import { getVolumeStatus } from 'utils/status'
 import { VOLUME_STATUS } from 'utils/constants'
 import StatusReason from 'projects/components/StatusReason'
+import { Icon, Tooltip } from '@kube-design/components'
 
 import { Avatar, Status } from 'components/Base'
 
 import { Link } from 'react-router-dom'
+import PvStore from 'stores/pv'
+import styles from './index.scss'
 
 @withClusterList({
   store: new VolumeStore(),
@@ -39,6 +42,8 @@ import { Link } from 'react-router-dom'
   rowKey: 'uid',
 })
 export default class Volumes extends React.Component {
+  pvStore = new PvStore()
+
   get tips() {
     return [
       {
@@ -69,6 +74,10 @@ export default class Volumes extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.store.checkSupportPv(this.props.match.params)
+  }
+
   handleTabChange = () => {
     const { cluster } = this.props.match.params
     this.props.rootStore.routing.push(`/clusters/${cluster}/PV`)
@@ -83,7 +92,7 @@ export default class Volumes extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_TCAP'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -110,7 +119,7 @@ export default class Volumes extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -144,7 +153,32 @@ export default class Volumes extends React.Component {
     const { getSortOrder, getFilteredValue } = this.props
     const { cluster } = this.props.match.params
 
-    return [
+    const pvColumn = {
+      title: t('VOLUME_BACKEND_TCAP'),
+      dataIndex: '_originData',
+      isHideable: true,
+      search: false,
+      width: '28.5%',
+      render: _ => (
+        <div id="pvColumn" className={styles.pv_content}>
+          <Link to={`/clusters/${cluster}/pv/${_.spec.volumeName}`}>
+            {_.spec.volumeName}
+          </Link>
+          {_.spec.volumeName && (
+            <Tooltip content={t('VIEW_YAML')}>
+              <Icon
+                className={styles.yaml}
+                name="log"
+                size={20}
+                onClick={() => this.pvYamlView(_)}
+              />
+            </Tooltip>
+          )}
+        </div>
+      ),
+    }
+
+    const allColumns = [
       {
         title: t('NAME'),
         dataIndex: 'name',
@@ -169,7 +203,7 @@ export default class Volumes extends React.Component {
         search: true,
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
-        width: '10.56%',
+        width: '8.8%',
         render: (_, { phase }) => (
           <Status
             type={phase}
@@ -179,37 +213,21 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: t('VOLUME_BACKEND_TCAP'),
-        dataIndex: '_originData',
-        isHideable: true,
-        search: false,
-        width: '28.5%',
-        render: _ => (
-          <Link to={`/clusters/${cluster}/pv/${_.spec.volumeName}`}>
-            {_.spec.volumeName}
-          </Link>
-        ),
-      },
-      {
-        title: t('ACCESS_MODE_TCAP'),
-        dataIndex: 'capacity',
+        title: this.renderAccessTitle(),
+        dataIndex: 'accessModes',
         isHideable: true,
         width: '12.32%',
-        render: (capacity, { accessMode }) => (
-          <div>
-            <p>{accessMode}</p>
-          </div>
-        ),
+        render: accessModes => this.mapperAccessMode(accessModes),
       },
       {
         title: t('MOUNT_STATUS'),
         dataIndex: 'inUse',
         isHideable: true,
         width: '7.74%',
-        render: inUse => (inUse ? t('MOUNTED_TCAP') : t('NOT_MOUNTED')),
+        render: inUse => (inUse ? t('MOUNTED') : t('NOT_MOUNTED')),
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),
@@ -218,6 +236,47 @@ export default class Volumes extends React.Component {
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm'),
       },
     ]
+
+    if (this.props.store.supportPv) {
+      allColumns.splice(2, 0, pvColumn)
+    }
+
+    return allColumns
+  }
+
+  mapperAccessMode = accessModes => {
+    const modes = map_accessModes(accessModes)
+    return <span>{modes.join(',')}</span>
+  }
+
+  renderAccessTitle = () => {
+    const renderModeTip = (
+      <div>
+        <div>{t('ACCESS_MODE_TCAP')}:</div>
+        <div>RWO (ReadWriteOnce): {t('ACCESS_MODE_RWO')}</div>
+        <div>ROX (ReadOnlyMany): {t('ACCESS_MODE_ROX')}</div>
+        <div>RWX (ReadWriteMany): {t('ACCESS_MODE_RWX')}</div>
+      </div>
+    )
+    return (
+      <div className={styles.mode_title}>
+        {t('ACCESS_MODE_TCAP')}
+        <Tooltip content={renderModeTip}>
+          <Icon name="question" size={16} className={styles.question}></Icon>
+        </Tooltip>
+      </div>
+    )
+  }
+
+  pvYamlView = async item => {
+    const pvName = item.spec.volumeName
+    const { cluster } = this.props.match.params
+    await this.pvStore.fetchDetail({ cluster, name: pvName })
+    return this.props.trigger('resource.yaml.edit', {
+      detail: this.pvStore.detail,
+      yaml: this.pvStore.detail._originData,
+      readOnly: true,
+    })
   }
 
   showCreate = () => {

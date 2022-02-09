@@ -40,6 +40,10 @@ const MetricTypes = {
     'ingress_request_duration_95percentage',
   ingress_request_duration_99percentage:
     'ingress_request_duration_99percentage',
+  ingress_request_volume: 'ingress_request_volume',
+  ingress_request_volume_by_ingress: 'ingress_request_volume_by_ingress',
+  ingress_request_network_sent: 'ingress_request_network_sent',
+  ingress_request_network_received: 'ingress_request_network_received',
 }
 
 @inject('detailStore')
@@ -57,11 +61,20 @@ class Monitorings extends React.Component {
   }
 
   get detail() {
-    return this.store.gateway.data
+    return this.store.gateway.data || {}
   }
 
   get cluster() {
-    return this.props.match.params.cluster
+    const { cluster } = this.props.match.params
+    const url = this.props.location.pathname
+
+    return url.indexOf('federatedprojects') > -1
+      ? localStorage.getItem('federated-cluster')
+      : cluster
+  }
+
+  get namespace() {
+    return this.props.match.params.namespace
   }
 
   get metrics() {
@@ -69,7 +82,6 @@ class Monitorings extends React.Component {
   }
 
   fetchData = async params => {
-    const { namespace } = this.props.match.params
     const { name } = this.detail
     const podName = await this.getGatewayPods()
 
@@ -77,7 +89,7 @@ class Monitorings extends React.Component {
       resources: [],
       metrics: Object.values(MetricTypes),
       job: `${name}-metrics`,
-      namespace,
+      namespace: this.namespace,
       pod: podName,
       fillZero: true,
       ...params,
@@ -86,14 +98,13 @@ class Monitorings extends React.Component {
   }
 
   handlePodName = value => {
-    const { namespace } = this.props.match.params
     const { name } = this.detail
     const { timeParams } = this.state
     this.monitorStore.fetchMetrics({
       resources: [],
       metrics: Object.values(MetricTypes),
       job: `${name}-metrics`,
-      namespace,
+      namespace: this.namespace,
       pod: value,
       ...timeParams,
     })
@@ -102,7 +113,10 @@ class Monitorings extends React.Component {
   }
 
   getGatewayPods = async () => {
-    const result = await this.store.getGatewayPods(this.props.match.params)
+    const result = await this.store.getGatewayPods({
+      ...this.props.match.params,
+      cluster: this.cluster,
+    })
     let podsName = ''
     const options = !isEmpty(result)
       ? result.map(item => {
@@ -114,87 +128,111 @@ class Monitorings extends React.Component {
     return podsName
   }
 
-  getMonitoringCfgs = () => [
-    {
-      title: 'Request Count',
-      unit: '',
-      legend: ['Utilization'],
-      data: get(
-        this.metrics,
-        `${MetricTypes.ingress_request_count}.data.result`,
-        {}
-      ),
-    },
-    {
-      title: 'Active Connections',
-      unit: '',
-      legend: ['Utilization'],
-      data: get(
-        this.metrics,
-        `${MetricTypes.ingress_active_connections}.data.result`,
-        {}
-      ),
-    },
+  getMonitoringCfgs = () => {
+    const requestVolumeData = get(
+      this.metrics,
+      `${MetricTypes.ingress_request_volume_by_ingress}.data.result`,
+      []
+    )
 
-    {
-      title: 'Request Duration',
-      legend: [
-        t('Duration 50percentage'),
-        t('Duration 95percentage'),
-        t('Duration 99percentage'),
-        t('Duration Average'),
-      ],
+    const volumeLegend = requestVolumeData.map(item =>
+      get(item, 'metric.ingress', '')
+    )
 
-      data: [
-        get(
+    return [
+      {
+        title: 'REQUEST_COUNT',
+        unit: '',
+        legend: volumeLegend,
+        data: requestVolumeData,
+      },
+      {
+        title: 'CONNECTION_COUNT',
+        unit: '',
+        legend: ['CONNECTION_COUNT'],
+        data: get(
           this.metrics,
-          `${MetricTypes.ingress_request_duration_50percentage}.data.result[0]`,
+          `${MetricTypes.ingress_active_connections}.data.result`,
           {}
         ),
-        get(
-          this.metrics,
-          `${MetricTypes.ingress_request_duration_95percentage}.data.result[0]`,
-          {}
-        ),
-        get(
-          this.metrics,
-          `${MetricTypes.ingress_request_duration_99percentage}.data.result[0]`,
-          {}
-        ),
-        get(
-          this.metrics,
-          `${MetricTypes.ingress_request_duration_average}.data.result[0]`,
-          {}
-        ),
-      ],
-      dot: 4,
-    },
+      },
 
-    {
-      title: 'Request Error',
-      unit: '',
-      legend: [t('Request 4xx'), t('Request 5xx')],
-      data: [
-        get(
-          this.metrics,
-          `${MetricTypes.ingress_request_4xx_count}.data.result[0]`,
-          {}
-        ),
-        get(
-          this.metrics,
-          `${MetricTypes.ingress_request_5xx_count}.data.result[0]`,
-          {}
-        ),
-      ],
-    },
-  ]
+      {
+        title: 'REQUEST_LATENCY_MS',
+        legend: [
+          t('P_FIFTY_LATENCY'),
+          t('P_NINETY_FIVE_LATENCY'),
+          t('P_NINETY_NINE_LATENCY'),
+          t('AVERAGE_LATENCY'),
+        ],
+
+        data: [
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_duration_50percentage}.data.result[0]`,
+            {}
+          ),
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_duration_95percentage}.data.result[0]`,
+            {}
+          ),
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_duration_99percentage}.data.result[0]`,
+            {}
+          ),
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_duration_average}.data.result[0]`,
+            {}
+          ),
+        ],
+        dot: 4,
+      },
+      {
+        title: 'FAILED_REQUEST_COUNT',
+        unit: '',
+        legend: [t('FOUR_XX_REQUEST_COUNT'), t('FIVE_XX_REQUEST_COUNT')],
+        data: [
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_4xx_count}.data.result[0]`,
+            {}
+          ),
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_5xx_count}.data.result[0]`,
+            {}
+          ),
+        ],
+      },
+      {
+        title: 'NETWORK_TRAFFIC',
+        unit: '',
+        unitType: 'traffic',
+        legend: [t('INBOUND_TRAFFIC'), t('INBOUND_TRAFFIC')],
+        data: [
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_network_received}.data.result[0]`,
+            {}
+          ),
+          get(
+            this.metrics,
+            `${MetricTypes.ingress_request_network_sent}.data.result[0]`,
+            {}
+          ),
+        ],
+      },
+    ]
+  }
 
   render() {
-    const { createTime } = this.store.detail
+    const createTime = get(this.store.detail, 'createTime')
     const { isLoading, isRefreshing } = this.monitorStore
     const { podsName, options } = this.state
     const configs = this.getMonitoringCfgs()
-
     return (
       <div>
         <MonitoringOverview {...this.props} />

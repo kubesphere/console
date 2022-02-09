@@ -16,17 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, has, isEmpty, set } from 'lodash'
+import { get, has, isEmpty, set, debounce } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
 import { getDisplayName } from 'utils'
-
+import { PATTERN_ENV_NAME } from 'utils/constants'
+import classNames from 'classnames'
 import { Input, Select } from '@kube-design/components'
+import styles from './index.scss'
 
 import ObjectInput from '../ObjectInput'
 
 export default class EnvironmentInputItem extends React.Component {
+  state = {
+    keyError: false,
+  }
+
   static propTypes = {
     value: PropTypes.object,
     onChange: PropTypes.func,
@@ -40,6 +46,13 @@ export default class EnvironmentInputItem extends React.Component {
     onChange() {},
     configMaps: [],
     secrets: [],
+  }
+
+  componentDidMount() {
+    const { value = {} } = this.props
+    if (value.valueFrom) {
+      this.validEnvKey(value.name)
+    }
   }
 
   parseValue(data) {
@@ -196,8 +209,48 @@ export default class EnvironmentInputItem extends React.Component {
     }))
   }
 
+  validEnvKey = debounce((value, target = {}) => {
+    const { handleKeyError, handleInputError } = this.props
+    const status = !PATTERN_ENV_NAME.test(value)
+    if (value === '' && target.value === '') {
+      handleKeyError()
+      handleInputError()
+      this.setState({
+        keyError: false,
+      })
+    } else {
+      if (status) {
+        const message =
+          value !== ''
+            ? t('ENVIRONMENT_INVALID_TIP')
+            : t('ENVIRONMENT_CANNOT_BE_EMPTY')
+        handleInputError({ message })
+        handleKeyError({ message })
+      } else {
+        handleKeyError()
+        handleInputError()
+      }
+      this.setState({
+        keyError: status,
+      })
+    }
+  }, 300)
+
+  handleValueChange = debounce(({ name, value }) => {
+    if (name === '' && value === '') {
+      this.props.handleKeyError()
+      this.props.handleInputError()
+      this.setState({
+        keyError: false,
+      })
+    } else {
+      this.validEnvKey(name, value)
+    }
+  }, 300)
+
   render() {
     const { value = {}, onChange } = this.props
+    const { keyError } = this.state
 
     if (value.valueFrom) {
       const { resourceType, resourceName, resourceKey } = this.parseValue(
@@ -213,7 +266,14 @@ export default class EnvironmentInputItem extends React.Component {
 
       return (
         <ObjectInput value={formatValue} onChange={this.handleChange}>
-          <Input name="name" placeholder={t('KEY')} />
+          <Input
+            name="name"
+            placeholder={t('KEY')}
+            className={classNames({
+              [styles.formError]: keyError,
+            })}
+            onChange={this.validEnvKey}
+          />
           <Select
             name="resource"
             placeholder={t('RESOURCE')}
@@ -233,8 +293,19 @@ export default class EnvironmentInputItem extends React.Component {
 
     return (
       <ObjectInput value={value} onChange={onChange}>
-        <Input name="name" placeholder={t('KEY')} />
-        <Input name="value" placeholder={t('VALUE')} />
+        <Input
+          name="name"
+          placeholder={t('KEY')}
+          className={classNames({
+            [styles.formError]: keyError,
+          })}
+          onChange={v => this.validEnvKey(v, value)}
+        />
+        <Input
+          name="value"
+          placeholder={t('VALUE')}
+          onChange={() => this.handleValueChange(value)}
+        />
       </ObjectInput>
     )
   }

@@ -22,13 +22,15 @@ import cookie from 'utils/cookie'
 import { STATUS_TRANSFER_MAP } from 'configs/openpitrix/version'
 
 export const transferAppStatus = status => {
-  if (cookie('lang') === 'zh') {
-    if (status === 'draft') {
-      return 'developing'
-    }
-    return STATUS_TRANSFER_MAP[status] || status
+  const name = status === 'draft' ? 'developing' : status
+
+  if (STATUS_TRANSFER_MAP[name]) {
+    return t(
+      `APP_STATUS_${STATUS_TRANSFER_MAP[name].toUpperCase().replace(/-/g, '_')}`
+    )
   }
-  return status
+
+  return name
 }
 
 export const transferVersionStatus = status => {

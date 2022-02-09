@@ -109,7 +109,7 @@ export default class StatefulSetServiceEditModal extends React.Component {
         title={t('EDIT_SERVICE')}
         onOk={detail.type !== SERVICE_TYPES.Unknown ? this.handleOk : null}
         onCancel={this.handleCancel}
-        okText={t('Update')}
+        okText={t('OK')}
         visible={visible}
         isSubmitting={isSubmitting}
       >

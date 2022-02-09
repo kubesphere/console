@@ -25,7 +25,20 @@ export default class PvcStore extends Base {
   getDetailUrl = (params = {}) =>
     `${this.getResourceUrl(params)}/${params.name}`
 
-  getKs8Url = (params = {}) => `api/v1/${this.module}/${params.name}`
+  getKs8Url = (params = {}) =>
+    `api/v1${this.getPath(params)}/${this.module}/${params.name}`
+
+  @action
+  async fetchDetail(params) {
+    this.isLoading = true
+
+    const result = await request.get(this.getKs8Url(params))
+    const detail = { ...params, ...this.mapper(result) }
+
+    this.detail = detail
+    this.isLoading = false
+    return detail
+  }
 
   @action
   async update(params, newObject) {

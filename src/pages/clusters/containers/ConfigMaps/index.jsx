@@ -44,7 +44,7 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -66,7 +66,7 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'editConfigMap',
         icon: 'pen',
-        text: t('MODIFY_CONFIG'),
+        text: t('EDIT_SETTINGS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -127,14 +127,14 @@ export default class ConfigMaps extends React.Component {
         ),
       },
       {
-        title: t('CONFIG_FIELD'),
+        title: t('FIELDS'),
         dataIndex: 'data',
         isHideable: true,
         width: '33%',
         render: data => Object.keys(data).join(','),
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

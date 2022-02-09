@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty, get, set, cloneDeep } from 'lodash'
+import { isEmpty, get, set, unset, cloneDeep } from 'lodash'
 
 import { Notify } from '@kube-design/components'
 import { Panel } from 'components/Base'
@@ -51,6 +51,7 @@ export default class WeCom extends React.Component {
       secret: this.secretTemplate,
     },
     formStatus: 'create',
+    isLoading: false,
   }
 
   formData = {
@@ -79,6 +80,7 @@ export default class WeCom extends React.Component {
   }
 
   fetchData = async () => {
+    this.setState({ isLoading: true })
     const results = await this.configStore.fetchList({ type: 'wechat' })
     const config = results.find(
       item => get(item, 'metadata.name') === CONFIG_NAME
@@ -106,6 +108,7 @@ export default class WeCom extends React.Component {
         formStatus: 'update',
       })
     }
+    this.setState({ isLoading: false })
   }
 
   getVerifyFormTemplate = data => {
@@ -115,6 +118,7 @@ export default class WeCom extends React.Component {
       'spec.wechat.wechatApiSecret.value',
       get(secret, 'data.appsecret')
     )
+    unset(receiver, 'spec.wechat.alertSelector')
     return { config, receiver, secret }
   }
 
@@ -137,7 +141,7 @@ export default class WeCom extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('CREATE_SUCCESSFUL')
+      message = t('ADDED_SUCCESS_DESC')
     } else {
       await this.configStore.update({ name: CONFIG_NAME }, config)
       await this.secretStore.update(
@@ -145,7 +149,7 @@ export default class WeCom extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
-      message = t('UPDATED_SUCCESS_DESC')
+      message = t('UPDATE_SUCCESSFUL')
     }
 
     this.fetchData()
@@ -159,19 +163,18 @@ export default class WeCom extends React.Component {
   }
 
   render() {
-    const { formData, formStatus } = this.state
+    const { formData, isLoading } = this.state
 
     return (
       <div>
         <BaseBanner type="wecom" />
-        <Panel loading={this.configStore.list.isLoading}>
+        <Panel loading={isLoading}>
           <WeComForm
-            formStatus={formStatus}
             data={formData}
             onCancel={this.onFormClose}
             onSubmit={this.handleSubmit}
             getVerifyFormTemplate={this.getVerifyFormTemplate}
-            isSubmitting={this.configStore.isSubmitting}
+            isSubmitting={this.receiverStore.isSubmitting}
           />
         </Panel>
       </div>

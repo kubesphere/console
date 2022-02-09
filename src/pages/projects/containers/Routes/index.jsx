@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
 import { isEmpty } from 'lodash'
 
 import { Button, Icon } from '@kube-design/components'
@@ -29,18 +28,35 @@ import { withProjectList, ListPage } from 'components/HOCs/withList'
 import { getLocalTime, getDisplayName, getDocsUrl } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
+import GatewayStore from 'stores/gateway'
 
 import styles from './index.scss'
 
 @withProjectList({
-  store: new RouterStore(),
+  store: new IngressStore(),
   module: 'ingresses',
   name: 'ROUTE',
 })
 export default class Routers extends React.Component {
+  gatewayStore = new GatewayStore()
+
+  state = {
+    clusterGateway: '',
+    projectGateway: '',
+  }
+
   componentDidMount() {
-    this.props.store.getGateway(this.props.match.params)
+    this.getGateway()
+  }
+
+  getGateway = async () => {
+    const { cluster, namespace } = this.props.match.params
+    const [
+      clusterGateway,
+      projectGateway,
+    ] = await this.gatewayStore.getGatewayByProject({ cluster, namespace })
+    this.setState({ clusterGateway, projectGateway })
   }
 
   get canSetGateway() {
@@ -68,11 +84,13 @@ export default class Routers extends React.Component {
 
   get itemActions() {
     const { trigger, name } = this.props
+    const { namespace } = this.props.match.params
+
     return [
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -92,17 +110,18 @@ export default class Routers extends React.Component {
       {
         key: 'editRules',
         icon: 'firewall',
-        text: t('Edit Rules'),
+        text: t('EDIT_ROUTING_RULES'),
         action: 'edit',
         onClick: item =>
           trigger('router.rules.edit', {
             detail: item,
+            namespace,
           }),
       },
       {
         key: 'editAnnotations',
         icon: 'firewall',
-        text: t('EDIT_ANNOTATION'),
+        text: t('EDIT_ANNOTATIONS'),
         action: 'edit',
         onClick: item =>
           trigger('router.annotations.edit', {
@@ -150,14 +169,14 @@ export default class Routers extends React.Component {
         render: loadBalancerIngress => loadBalancerIngress.join('; '),
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         search: true,
         width: '22%',
       },
       {
-        title: t('CREATED_AT'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),
@@ -179,11 +198,13 @@ export default class Routers extends React.Component {
   }
 
   showAddGateway = () => {
-    const { store, trigger, match } = this.props
-    trigger('project.gateway.edit', {
-      detail: toJS(store.gateway.data),
-      ...this.props.match.params,
-      success: () => store.getGateway(match.params),
+    const { trigger, match } = this.props
+    trigger('gateways.create', {
+      name: '',
+      namespace: match.params.namespace,
+      cluster: match.params.cluster,
+      store: this.gatewayStore,
+      success: this.getGateway,
     })
   }
 
@@ -194,8 +215,8 @@ export default class Routers extends React.Component {
           <Icon className="margin-r12" name="loadbalancer" size={40} />
           <Text
             className={styles.text}
-            title={t('GATEWAY_NOT_SET')}
-            description={t('SET_GATEWAY_TIP')}
+            title={t('GATEWAY_NOT_ENABLED')}
+            description={t('ENABLE_GATEWAY_TIP')}
           />
           {this.canSetGateway && (
             <Button
@@ -203,7 +224,7 @@ export default class Routers extends React.Component {
               type="control"
               onClick={this.showAddGateway}
             >
-              {t('SET_GATEWAY')}
+              {t('ENABLE_GATEWAY')}
             </Button>
           )}
         </div>
@@ -213,11 +234,13 @@ export default class Routers extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
-    const { data, isLoading } = this.props.store.gateway
+    const { clusterGateway, projectGateway } = this.state
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tips={this.tips} />
-        {isEmpty(data) && !isLoading && this.renderCreateGateway()}
+        {isEmpty(clusterGateway) &&
+          isEmpty(projectGateway) &&
+          this.renderCreateGateway()}
         <Table
           {...tableProps}
           itemActions={this.itemActions}

@@ -123,25 +123,25 @@ export default class Monitorings extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'cpu',
-      title: 'CPU Usage',
+      title: 'CPU_USAGE',
       unitType: 'cpu',
       metricType: MetricTypes.cpu_usage,
     },
     {
       type: 'memory',
-      title: 'Memory Usage',
+      title: 'MEMORY_USAGE',
       unitType: 'memory',
       metricType: MetricTypes.memory_usage,
     },
     {
       type: 'bandwidth',
-      title: 'Outbound Traffic',
+      title: 'OUTBOUND_TRAFFIC',
       unitType: 'bandwidth',
       metricType: MetricTypes.net_transmitted,
     },
     {
       type: 'bandwidth',
-      title: 'Inbound Traffic',
+      title: 'INBOUND_TRAFFIC',
       unitType: 'bandwidth',
       metricType: MetricTypes.net_received,
     },
@@ -155,7 +155,7 @@ export default class Monitorings extends React.Component {
           showMultipleModal: true,
           selectItem: {
             ...config,
-            legend: ['Usage'],
+            legend: ['USAGE'],
           },
         })
       },
@@ -183,7 +183,9 @@ export default class Monitorings extends React.Component {
         refreshing={isRefreshing}
         isEmpty={isEmpty(this.metrics)}
       >
-        {isMore && <Alert message={t('MONITORING_ALERT_DESC')} type="info" />}
+        {isMore && (
+          <Alert message={t.html('MONITORING_ALERT_DESC')} type="info" />
+        )}
         {configs.map(item => {
           item.data = get(this.metrics, `${item.metricType}.data.result`) || []
           item.legend = item.data.map((record, index) =>
@@ -200,7 +202,7 @@ export default class Monitorings extends React.Component {
                   className={styles.more}
                   onClick={this.showMultipleModal(item)}
                 >
-                  {t('View All Replicas')}
+                  {t('VIEW_ALL_REPLICAS')}
                 </div>
               )}
               <MultiArea width="100%" {...config} />
