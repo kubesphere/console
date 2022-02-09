@@ -45,7 +45,7 @@
     "nanoid": "^1.0.2",
     "netmask": "^2.0.1",
     "node-cache": "^4.1.1",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "path-to-regexp": "^2.2.1",
     "prismjs": "^1.25.0",
     "prop-types": "^15.6.0",
