@@ -18,7 +18,7 @@
 module.exports = {
   // Banner
   SYSTEM_COMPONENT_PL: '系统组件',
-  SERVICE_COMPONENTS_DESC: '系统组件是系统中提供各种功能的软件组件，您可以在此页面查看系统组件的运行状态。',
+  SERVICE_COMPONENTS_DESC: '系统组件是 KubeSphere 系统中提供各种功能的软件组件，您可以在此页面查看系统组件的运行状态。',
   // KubeSphere
   STOPPED: '已停止',
   RUNNING_TIME: '运行时间',
