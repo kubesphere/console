@@ -18,11 +18,11 @@
 module.exports = {
   // Banner
   SYSTEM_COMPONENT_PL: '系统组件',
-  SERVICE_COMPONENTS_DESC: '系统组件是 KubeSphere 系统中提供各种功能的软件组件，您可以在此页面查看系统组件的运行状态。',
+  SERVICE_COMPONENTS_DESC: '系统组件是系统中提供各种功能的软件组件，您可以在此页面查看系统组件的运行状态。',
   // KubeSphere
   STOPPED: '已停止',
   RUNNING_TIME: '运行时间',
-  KS_CONSOLE_DESC: '提供 KubeSphere 的控制台服务。',
+  KS_CONSOLE_DESC: '提供的控制台服务。',
   KS_APISERVER_DESC: '提供用于集群管理的 API 接口。此组件同时也用于集群内部模块通信和集群安全控制。',
   OPENLDAP_DESC: '集中存储和管理用户的帐户信息。',
   REDIS_DESC: '开源内存数据结构化存储组件，用作数据库、缓存和消息中介。',
