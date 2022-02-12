@@ -40,7 +40,7 @@ module.exports = {
   SELECT_APP_REPOSITORY: 'Bir uygulama deposu seçin',
   CURRENT_WORKSPACE: 'Mevcut çalışma alanı',
   FROM_APP_TEMPLATE_DESC: 'Geçerli çalışma alanındaki veya uzak uygulama havuzundaki bir uygulama şablonundan uygulama oluşturun.',
-  APP_TEMPLATES_MODAL_DESC: 'Select the current workspace or a remote app repository from the drop-down list to view the available app templates.',
+  APP_TEMPLATES_MODAL_DESC: 'Kullanılabilir uygulama şablonlarını görüntülemek için açılır listeden geçerli çalışma alanını veya uzak uygulama havuzunu seçin.',
   // List > Create > From App Template > App Information
   // List > Create > From App Template > Chart Files
   // List > Edit
