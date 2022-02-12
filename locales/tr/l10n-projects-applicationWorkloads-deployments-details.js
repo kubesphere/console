@@ -17,13 +17,13 @@
  */
 module.exports = {
   // More > Roll Back
-  ROLL_BACK: 'Roll Back',
-  CURRENT_REVISION_RECORD: 'Current Revision Record',
-  TARGET_REVISION_EMPTY_DESC: 'Please select a target revision record.',
-  TARGET_REVISION_RECORD: 'Target Revision Record',
+  ROLL_BACK: 'Geri Al',
+  CURRENT_REVISION_RECORD: 'Mevcut Revizyon Kaydı',
+  TARGET_REVISION_EMPTY_DESC: 'Lütfen bir hedef revizyon kaydı seçin.',
+  TARGET_REVISION_RECORD: 'Hedef Revizyon Kaydı',
   // More > Edit Autoscaling
-  CONFIGURE_AUTOSCALING_DESC: 'Set the system to automatically adjust the number of pod replicas based on target CPU usage and target memory usage.',
-  EDIT_AUTOSCALING: 'Edit Autoscaling',
+  CONFIGURE_AUTOSCALING_DESC: 'Sistemi, hedef CPU kullanımına ve hedef bellek kullanımına göre bölme kopyalarının sayısını otomatik olarak ayarlayacak şekilde ayarlayın.',
+  EDIT_AUTOSCALING: 'Otomatik Ölçeklendirmeyi Düzenle',
   TARGET_CPU_USAGE_UNIT: 'Target CPU Usage (%)',
   AUTOSCALING: 'Autoscaling',
   RESOURCE_NAME: 'Resource Name',
