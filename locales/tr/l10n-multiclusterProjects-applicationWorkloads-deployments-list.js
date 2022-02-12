@@ -28,14 +28,12 @@ module.exports = {
   NEXT: 'Sonraki',
   // List > Create > Pod Settings > Replica Scheduling Mode
   REPLICA_SCHEDULING_MODE: 'Çoğaltma Zamanlama Modu',
-  SPECIFY_REPLICAS: 'Specify Replicas',
-  WEIGHTS: 'Weights',
-  SPECIFY_WEIGHTS: 'Specify Weights',
-  SPECIFY_WEIGHTS_DESC:
-    'Set the total number of pod replicas and a weight for each cluster. The pod replicas will be scheduled to the clusters according to the weights.',
-  SPECIFY_REPLICAS_DESC:
-    'Manually set the number of pod replicas in each cluster.',
-  REPLICA_LOW_SI: 'replica',
+  SPECIFY_REPLICAS: 'Kopyaları Belirtin',
+  WEIGHTS: 'Yük',
+  SPECIFY_WEIGHTS: 'Ağırlıkları Belirtin',
+  SPECIFY_WEIGHTS_DESC: 'Toplam bölme çoğaltması sayısını ve her küme için bir ağırlık ayarlayın. Pod replikaları, ağırlıklara göre kümelere programlanacaktır.',
+  SPECIFY_REPLICAS_DESC: 'Her kümedeki bölme çoğaltmalarının sayısını manuel olarak ayarlayın.',
+  REPLICA_LOW_SI: 'kopya',
   REPLICA_LOW_PL: 'replicas',
   WEIGHT: 'weight',
   TOTAL_REPLICAS: 'Total Replicas',
