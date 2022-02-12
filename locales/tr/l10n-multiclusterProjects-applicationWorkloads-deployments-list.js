@@ -95,60 +95,46 @@ module.exports = {
   PRIVILEGED_MODE_DESC: 'Ana bilgisayarın kök kullanıcısı olarak kapsayıcı işlemlerini çalıştırır.',
   ALLOW_PRIVILEGE_ESCALATION: 'Ayrıcalık Yükseltmesine İzin Ver',
   ALLOW_PRIVILEGE_ESCALATION_DESC: 'Kapsayıcı işlemlerinin üst süreçten daha fazla ayrıcalık elde etmesine izin verir. Ayrıcalıklı mod etkinleştirildiğinde bu seçenek varsayılan olarak etkindir.',
-  ROOT_DIRECTORY_READONLY: 'Root Directory Read-Only',
-  ROOT_DIRECTORY_READONLY_DESC:
-    'Sets the root directory of the container file system to read-only.',
-  USER_AND_USER_GROUP: 'User and User Group',
-  USER_GROUP: 'User Group',
-  RUN_AS_NON_ROOT: 'Run as Non-root',
-  RUN_AS_NON_ROOT_DESC:
-    'Checks whether the container is to be run by the root user before starting the container. If yes, the container will not be started.',
-  RUN_AS_USER_DESC:
-    'UID to run the entrypoint of the container process. The default value is the UID specified in the image metadata.',
-  RUN_AS_USER_GROUP_DESC:
-    'GID to run the entrypoint of the container process. The default value is the container runtime default GID.',
-  SELINUX_CONTEXT: 'SELinux Context',
-  CAPABILITIES_BETA: 'Capabilities (beta)',
-  DROP: 'Drop',
-  ACCESS_CONTROL: 'Access Control',
-  LEVEL: 'Level',
+  ROOT_DIRECTORY_READONLY: 'Kök Dizin Salt Okunur',
+  ROOT_DIRECTORY_READONLY_DESC: 'Kapsayıcı dosya sisteminin kök dizinini salt okunur olarak ayarlar.',
+  USER_AND_USER_GROUP: 'Kullanıcı ve Kullanıcı Grubu',
+  USER_GROUP: 'Kullanıcı Grubu',
+  RUN_AS_NON_ROOT: 'Kök olmayan olarak çalıştır',
+  RUN_AS_NON_ROOT_DESC: 'Kapsayıcıyı başlatmadan önce kapsayıcının kök kullanıcı tarafından çalıştırılıp çalıştırılmayacağını kontrol eder. Evet ise, konteyner başlatılmayacaktır.',
+  RUN_AS_USER_DESC: 'Kapsayıcı işleminin giriş noktasını çalıştırmak için UID. Varsayılan değer, görüntü meta verilerinde belirtilen UID\'dir.',
+  RUN_AS_USER_GROUP_DESC: 'Kapsayıcı işleminin giriş noktasını çalıştırmak için GID. Varsayılan değer, kapsayıcı çalışma zamanı varsayılan GID\'sidir.',
+  SELINUX_CONTEXT: 'SELinux Bağlamı',
+  CAPABILITIES_BETA: 'Yetenekler (beta)',
+  DROP: 'Bırak',
+  ACCESS_CONTROL: 'Erişim Denetimi',
+  LEVEL: 'Seviye',
   // List > Create > Pod Settings > Add Container > Synchronize Host Timezone
-  SYNC_HOST_TIMEZONE_DESC:
-    'Synchronize the time zone of the container with that of the host.',
-  SYNC_HOST_TIMEZONE: 'Synchronize Host Timezone',
+  SYNC_HOST_TIMEZONE_DESC: 'Kapsayıcının saat dilimini ana bilgisayarınkiyle senkronize edin.',
+  SYNC_HOST_TIMEZONE: 'Ana Bilgisayar Saat Dilimi\'ni Senkronize Et',
   // List > Create > Pod Settings > Update Strategy
-  UPDATE_STRATEGY: 'Update Strategy',
-  ROLLING_UPDATE_RECOMMENDED: 'Rolling Update (recommended)',
-  SIMULTANEOUS_UPDATE: 'Simultaneous Update',
-  ROLLINGUPDATE_DESC:
-    'Gradually replaces old pod replicas with new ones. The service is not interrupted during the update process.',
-  SIMULTANEOUS_UPDATE_DESC:
-    'Deletes all existing pod replicas before creating new ones. The service is interrupted during the update process.',
-  ENTER_INTEGER_OR_PERCENTAGE: 'Please enter an integer or percentage.',
-  MAX_EXTRA_EMPTY:
-    'Please set the maximum number or percentage of extra pod replicas allowed during the update process.',
+  UPDATE_STRATEGY: 'Güncelleme Stratejisi',
+  ROLLING_UPDATE_RECOMMENDED: 'Sürekli Güncelleme (önerilir)',
+  SIMULTANEOUS_UPDATE: 'Eşzamanlı Güncelleme',
+  ROLLINGUPDATE_DESC: 'Yavaş yavaş eski bölme kopyalarını yenileriyle değiştirir. Güncelleme işlemi sırasında hizmet kesintiye uğramaz.',
+  SIMULTANEOUS_UPDATE_DESC: 'Yenilerini oluşturmadan önce mevcut tüm bölme kopyalarını siler. Güncelleme işlemi sırasında hizmet kesintiye uğrar.',
+  ENTER_INTEGER_OR_PERCENTAGE: 'Lütfen bir tam sayı veya yüzde girin.',
+  MAX_EXTRA_EMPTY: 'Lütfen güncelleme işlemi sırasında izin verilen fazladan pod replikalarının maksimum sayısını veya yüzdesini ayarlayın.',
   // List > Create > Pod Settings > Pod Security Context
-  POD_SECURITY_CONTEXT: 'Pod Security Context',
-  POD_SECURITY_CONTEXT_DESC: 'Customize the pod privilege settings.',
-  POD_SECURITY_CONTEXT_TIP:
-    'If User, User Group, and SELinux Context settings are defined in both pod Security Context and Container Security Context, the Container Security Context settings will override the Pod Security Context settings.',
+  POD_SECURITY_CONTEXT: 'Pod Güvenliği Bağlamı',
+  POD_SECURITY_CONTEXT_DESC: 'Bölme ayrıcalığı ayarlarını özelleştirin.',
+  POD_SECURITY_CONTEXT_TIP: 'Kullanıcı, Kullanıcı Grubu ve SELinux Bağlamı ayarları hem pod Güvenlik Bağlamı hem de Kapsayıcı Güvenlik Bağlamı içinde tanımlanmışsa, Kapsayıcı Güvenlik Bağlamı ayarları, Kapsül Güvenlik Bağlamı ayarlarını geçersiz kılar.',
   // List > Create > Pod Settings > Pod Scheduling Rules
-  POD_SCHEDULING_RULES: 'Pod Scheduling Rules',
-  POD_SCHEDULING_RULES_DESC:
-    'Specify the rules for scheduling the pod replicas to nodes.',
-  DEFAULT_RULES: 'Default Rules',
-  DEFAULT_RULES_DESC:
-    'Schedules the pod replicas to nodes according to default rules.',
-  DECENTRALIZED_SCHEDULING: 'Decentralized Scheduling',
-  CUSTOM_RULES: 'Custom Rules',
-  CUSTOM_RULES_DESC:
-    'Schedules the pod replicas to nodes according to custom rules.',
-  'Pod IP': 'Pod IP',
-  DECENTRALIZED_SCHEDULING_DESC:
-    'Schedules the pod replicas to different nodes if possible.',
-  CENTRALIZED_SCHEDULING_DESC:
-    'Schedules the pod replicas to the same node if possible.',
-  CENTRALIZED_SCHEDULING: 'Centralized Scheduling',
+  POD_SCHEDULING_RULES: 'Kapsül Zamanlama Yöntemi',
+  POD_SCHEDULING_RULES_DESC: 'Bölme çoğaltmalarını düğümlere zamanlamak için kuralları belirtin.',
+  DEFAULT_RULES: 'Varsayılan kurallar',
+  DEFAULT_RULES_DESC: 'Pod replikalarını varsayılan kurallara göre düğümlere zamanlar.',
+  DECENTRALIZED_SCHEDULING: 'Merkezi Olmayan Zamanlama',
+  CUSTOM_RULES: 'Özel Kurallar',
+  CUSTOM_RULES_DESC: 'Özel kurallara göre düğümlere bölme çoğaltmalarını zamanlar.',
+  'Pod IP': 'Pod Ip Adresi',
+  DECENTRALIZED_SCHEDULING_DESC: 'Mümkünse, bölme çoğaltmalarını farklı düğümlere zamanlar.',
+  CENTRALIZED_SCHEDULING_DESC: 'Mümkünse bölme çoğaltmalarını aynı düğüme programlar.',
+  CENTRALIZED_SCHEDULING: 'Merkezileştirilmiş Zamanlama',
   SCHEDULE_WITH_TARGET: 'Schedule with target',
   SCHEDULE_AWAY_FROM_TARGET: 'Schedule away from target',
   MATCH_IF_POSSIBLE: 'Match if possible',
