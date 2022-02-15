@@ -22,8 +22,10 @@ module.exports = {
   // Resource Status > Containers
   CONTAINER_PL: 'Containers',
   PROBE_PL: 'Probes',
+  HOOK_PL: 'Hooks',
   // Resource Status > Containers > Container Logs
-  CONTAINER_LOGS_NOT_SUPPORTED: 'The container does not support real-time logs currently. Please try again later.',
+  CONTAINER_LOGS_NOT_SUPPORTED:
+    'The container does not support real-time logs currently. Please try again later.',
   CONTAINER_LOGS: 'Container Logs',
   // Resource Status > Details > Container Details > Details
   COMMAND: 'Command',
@@ -58,5 +60,5 @@ module.exports = {
   UPDATED_AT_VALUE: 'Updated At: {value}',
   // Metadata
   // Monitoring
-  NO_MONITORING_DATA: 'No Monitoring Data'
-};
+  NO_MONITORING_DATA: 'No Monitoring Data',
+}

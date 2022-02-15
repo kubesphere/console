@@ -22,6 +22,7 @@ module.exports = {
   // Resource Status > Containers
   CONTAINER_PL: '容器',
   PROBE_PL: '探針',
+  HOOK_PL: '掛鉤',
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: '容器在目前狀態下不支持實時紀錄，請稍後再試',
   CONTAINER_LOGS: '容器紀錄',
@@ -58,5 +59,5 @@ module.exports = {
   UPDATED_AT_VALUE: 'Updated At: {value}',
   // Metadata
   // Monitoring
-  NO_MONITORING_DATA: 'No Monitoring Data'
-};
+  NO_MONITORING_DATA: 'No Monitoring Data',
+}
