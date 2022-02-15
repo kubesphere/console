@@ -44,7 +44,7 @@ export default class Card extends React.PureComponent {
           <List.Item
             key={item.id}
             className={styles.wrapper}
-            titleClass={styles.titleClass}
+            titleClass={styles.title}
             icon="pod"
             status={item.kubernetes_state.value}
             title={item.label.value}
