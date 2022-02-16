@@ -22,7 +22,7 @@ module.exports = {
   // Resource Status > Containers
   CONTAINER_PL: '容器',
   PROBE_PL: '探针',
-  HOOK_PL: '挂钩',
+  HOOK_PL: 'Hooks',
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: '容器在当前不支持实时日志，请稍后重试。',
   CONTAINER_LOGS: '容器日志',
