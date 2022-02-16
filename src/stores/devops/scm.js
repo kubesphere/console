@@ -202,10 +202,10 @@ export default class SCMStore extends BaseStore {
     return this.orgList
   }
 
-  async putAccessToken({ token, cluster }) {
+  async putAccessName({ secretName, cluster }) {
     this.isAccessTokenWrong = false
     const result = await this.verifyAccessForRepo({
-      accessToken: token,
+      name: secretName,
       scmType: 'github',
       cluster,
     })
