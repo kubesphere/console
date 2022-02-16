@@ -218,7 +218,8 @@ module.exports = {
   Service: 'Servicio',
   NUMBER_OF_SERVICES: 'Number of Services',
   'Service Components': 'Componentes',
-  'Session timeout or this account is logged in elsewhere, please login again': 'Timeout de sesión o se ha iniciado sesión con esta cuenta en otro lugar, vuelve a iniciar sesión',
+  'Session timeout or this account is logged in elsewhere, please login again':
+    'Timeout de sesión o se ha iniciado sesión con esta cuenta en otro lugar, vuelve a iniciar sesión',
   Set: 'Set',
   IN_PROGRESS: 'Ajuste',
   Settings: 'Configuraciones',
@@ -291,15 +292,21 @@ module.exports = {
   NUM_UNIT: '',
   NAME_TOO_LONG: 'La longitud máxima de carácteres se establece en 63.',
   LONG_NAME_TOO_LONG: 'La longitud máxima de carácteres se establece en 253.',
-  DELETE_DESC: '¿Está seguro que deseas eliminar el {type} <strong>{resource}</strong> ? {type} no se podrá recuperar después de eliminarlo.',
+  DELETE_DESC:
+    '¿Está seguro que deseas eliminar el {type} <strong>{resource}</strong> ? {type} no se podrá recuperar después de eliminarlo.',
   STOP_DESC: 'Are you sure you want to stop the resource?',
-  DELETE_RESOURCE_TYPE_DESC: 'Introduce el {type} nombre <strong>{resource}</strong> para asegurarte de comprender los riesgos asociados con la operación.',
-  DELETE_APP_RESOURCE_TIP: '<strong>{App}</strong> administra el recurso, lo que puede afectar el uso normal de esta aplicación si se elimina el recurso. Introduce el {type} nombre <strong>{resource}</strong> para asegurarte de comprender los riesgos asociados con la operación.',
-  STOP_APP_RESOURCE_TIP: 'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is stopped. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
+  DELETE_RESOURCE_TYPE_DESC:
+    'Introduce el {type} nombre <strong>{resource}</strong> para asegurarte de comprender los riesgos asociados con la operación.',
+  DELETE_APP_RESOURCE_TIP:
+    '<strong>{App}</strong> administra el recurso, lo que puede afectar el uso normal de esta aplicación si se elimina el recurso. Introduce el {type} nombre <strong>{resource}</strong> para asegurarte de comprender los riesgos asociados con la operación.',
+  STOP_APP_RESOURCE_TIP:
+    'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is stopped. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
   DELETE_RESOURCE_TITLE: 'Advertencia',
-  DELETE_RESOURCE_TIP: '¿Está seguro de eliminar el recurso <strong>{resource}</strong> ? El recurso no se podrá recuperar después de eliminarlo.',
+  DELETE_RESOURCE_TIP:
+    '¿Está seguro de eliminar el recurso <strong>{resource}</strong> ? El recurso no se podrá recuperar después de eliminarlo.',
   add_: 'Añadir',
-  REMOVE_GROUP_TIP: '¿Seguro que quieres eliminar el grupo? <strong>{resource}</strong> ?',
+  REMOVE_GROUP_TIP:
+    '¿Seguro que quieres eliminar el grupo? <strong>{resource}</strong> ?',
   UPDATE_TIME: '{Diff} actualizado',
   MONTH_AGO: '{count, plural, = 1 {1 mes} other {# meses}}',
   MONTH_TIME: '{count, plural, = 1 {1 mes} other {# meses}}',
@@ -315,23 +322,32 @@ module.exports = {
   SECOND_TIME: '{count, plural, =1 {1 segundo} other {# segundos}}',
   EVENT_NORMAL: 'Normal',
   EVENT_WARNING: 'Advertencia',
-  QUOTA_LIMIT_TIP: 'Esta configuración hace referencia a la gestión de los limits de los recursos de Kubernetes, que se utiliza principalmente para limitar el valor máximo de los recursos del host utilizados por cada contenedor.',
-  DETAIL_NOT_FOUND_DESC: '🙇 Lo sentimos, no se encontraron recursos relacionados, volver a <a href="{link}">{title}</a>',
+  QUOTA_LIMIT_TIP:
+    'Esta configuración hace referencia a la gestión de los limits de los recursos de Kubernetes, que se utiliza principalmente para limitar el valor máximo de los recursos del host utilizados por cada contenedor.',
+  DETAIL_NOT_FOUND_DESC:
+    '🙇 Lo sentimos, no se encontraron recursos relacionados, volver a <a href="{link}">{title}</a>',
   CONDITION_STATUS_ANALYSE: 'Condiciones',
   NAV_PROJECTS: 'Proyectos',
   NAV_ACCOUNTS: 'Cuentas',
-  'rules text': '¿Cómo definir la colección de reglas de operación para los registros de auditoría?',
-  'rules desc': 'KubeSphere puede recopilar registros de auditoría de operación de acuerdo con las reglas que establezcas. Haga clic para ver cómo definir las reglas.',
-  EVENT_CREATE_DESC: 'Puedes cambiar los criterios de búsqueda y buscar nuevamente.',
-  TOOLBOX_KUBECTL_DESC: 'Herramienta de línea de comandos para controlar los grupos de Kubernetes',
-  PLATFORM_SETTINGS_SELECTOR_DESC: 'Configuraciones de plataforma personalizadas',
+  'rules text':
+    '¿Cómo definir la colección de reglas de operación para los registros de auditoría?',
+  'rules desc':
+    'KubeSphere puede recopilar registros de auditoría de operación de acuerdo con las reglas que establezcas. Haga clic para ver cómo definir las reglas.',
+  EVENT_CREATE_DESC:
+    'Puedes cambiar los criterios de búsqueda y buscar nuevamente.',
+  TOOLBOX_KUBECTL_DESC:
+    'Herramienta de línea de comandos para controlar los grupos de Kubernetes',
+  PLATFORM_SETTINGS_SELECTOR_DESC:
+    'Configuraciones de plataforma personalizadas',
   FILE_OVERSIZED_TIP: '¡El archivo cargado debe ser inferior a 2M!',
   USER_GUIDES_DESC: 'La guía de usuario más completa de KubeSphere.',
-  DEVELOPER_DESC: 'Haz una pregunta en la comunidad de desarrolladores para obtener ayuda.',
+  DEVELOPER_DESC:
+    'Haz una pregunta en la comunidad de desarrolladores para obtener ayuda.',
   API_DOCS_DESC: 'La documentación más completa de la API de KubeSphere.',
-  GITHUB_ISSUES_DESC: 'Puedes plantear un problema en GitHub para obtener ayuda.',
+  GITHUB_ISSUES_DESC:
+    'Puedes plantear un problema en GitHub para obtener ayuda.',
   // Workbench
   // Container Details Page
   CPU_VALUE: 'CPU: {value}',
-  MEMORY_VALUE: 'Memory: {value}'
-};
+  MEMORY_VALUE: 'Memory: {value}',
+}

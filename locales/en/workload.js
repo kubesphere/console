@@ -289,6 +289,8 @@ module.exports = {
   'target port': 'target port',
 
   'TCP Port Check': 'TCP Port Check',
+  'TCP Port': 'TCP Port',
+  'Exec Command': 'Exec Command',
   'Temporary Volume': 'Temporary Volume',
 
   'Timeout(s)': 'Timeout(s)',

@@ -218,7 +218,8 @@ module.exports = {
   Service: '服务',
   NUMBER_OF_SERVICES: '服务数量',
   'Service Components': '服务组件',
-  'Session timeout or this account is logged in elsewhere, please login again': '会话超时或此帐户在其它地方登录，请重新登录',
+  'Session timeout or this account is logged in elsewhere, please login again':
+    '会话超时或此帐户在其它地方登录，请重新登录',
   Set: '设置',
   IN_PROGRESS: '设置中',
   Settings: '设置',
@@ -293,11 +294,15 @@ module.exports = {
   LONG_NAME_TOO_LONG: '最长 253 个字符',
   DELETE_DESC: '您确定删除该资源吗？资源删除后将无法恢复。',
   STOP_DESC: '您确定停止该资源吗？',
-  DELETE_RESOURCE_TYPE_DESC: '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
-  DELETE_APP_RESOURCE_TIP: '资源被应用 <strong>{app}</strong> 管理, 删除后可能影响此应用的正常使用。请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
-  STOP_APP_RESOURCE_TIP: '资源被应用 <strong>{app}</strong> 管理, 停止后可能影响此应用的正常使用。请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
+  DELETE_RESOURCE_TYPE_DESC:
+    '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
+  DELETE_APP_RESOURCE_TIP:
+    '资源被应用 <strong>{app}</strong> 管理, 删除后可能影响此应用的正常使用。请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
+  STOP_APP_RESOURCE_TIP:
+    '资源被应用 <strong>{app}</strong> 管理, 停止后可能影响此应用的正常使用。请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
   DELETE_RESOURCE_TITLE: 'Warning',
-  DELETE_RESOURCE_TIP: 'Are you sure about deleting the resource <strong>{resource}</strong> ? The resource cannot be recovered after it is deleted.',
+  DELETE_RESOURCE_TIP:
+    'Are you sure about deleting the resource <strong>{resource}</strong> ? The resource cannot be recovered after it is deleted.',
   add_: 'Add',
   REMOVE_GROUP_TIP: '确定移除组织 <strong>{resource}</strong> ?',
   UPDATE_TIME: '更新于 {diff}',
@@ -315,13 +320,16 @@ module.exports = {
   SECOND_TIME: '{count} 秒',
   EVENT_NORMAL: '正常',
   EVENT_WARNING: '异常',
-  QUOTA_LIMIT_TIP: '这里配置是指 Kubernetes 资源管理中的 Limits, 主要用于限制每个容器使用资源的最大值',
-  DETAIL_NOT_FOUND_DESC: '🙇 对不起未发现相关资源，返回 <a href="{link}">{title}</a>',
+  QUOTA_LIMIT_TIP:
+    '这里配置是指 Kubernetes 资源管理中的 Limits, 主要用于限制每个容器使用资源的最大值',
+  DETAIL_NOT_FOUND_DESC:
+    '🙇 对不起未发现相关资源，返回 <a href="{link}">{title}</a>',
   CONDITION_STATUS_ANALYSE: '状态分析（Conditions）',
   NAV_PROJECTS: '项目',
   NAV_ACCOUNTS: '帐户管理',
   'rules text': '如何定义操作审计收集规则？ 🤔',
-  'rules desc': 'KubeSphere可以根据您设置的规则进行操作审计的收集，点击查看如何定义规则。',
+  'rules desc':
+    'KubeSphere可以根据您设置的规则进行操作审计的收集，点击查看如何定义规则。',
   EVENT_CREATE_DESC: '您可以改变搜索条件重新查询',
   TOOLBOX_KUBECTL_DESC: '操作多集群的客户端命令行工具',
   PLATFORM_SETTINGS_SELECTOR_DESC: '定制化平台的系统配置',
@@ -333,5 +341,5 @@ module.exports = {
   // Workbench
   // Container Details Page
   CPU_VALUE: 'CPU：{value}',
-  MEMORY_VALUE: '内存：{value}'
-};
+  MEMORY_VALUE: '内存：{value}',
+}

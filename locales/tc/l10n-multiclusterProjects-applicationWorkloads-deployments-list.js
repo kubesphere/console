@@ -17,7 +17,8 @@
  */
 module.exports = {
   // Banner
-  WORKLOAD_DESC: '工作負載 (Workload) 通常是訪問服務的實際載體, 也是對節點紀錄收集、監控等系統應用的實際運行載體，是對一組容器組 (Pod) 的抽象模型。',
+  WORKLOAD_DESC:
+    '工作負載 (Workload) 通常是訪問服務的實際載體, 也是對節點紀錄收集、監控等系統應用的實際運行載體，是對一組容器組 (Pod) 的抽象模型。',
   // List
   DEPLOYMENT_EMPTY_DESC: 'Please create a Deployment.',
   // List > Edit Information
@@ -31,7 +32,8 @@ module.exports = {
   SPECIFY_REPLICAS: 'Specify Replicas',
   WEIGHTS: 'Weights',
   SPECIFY_WEIGHTS: 'Specify Weights',
-  SPECIFY_WEIGHTS_DESC: '設定的總副本數將按照設定的權重分配到選擇的集群中，非可用集群的副本會自定遷移到可用集群上。',
+  SPECIFY_WEIGHTS_DESC:
+    '設定的總副本數將按照設定的權重分配到選擇的集群中，非可用集群的副本會自定遷移到可用集群上。',
   SPECIFY_REPLICAS_DESC: '明確指定各集群所需部署的副本數。',
   REPLICA_LOW_SI: '副本',
   REPLICA_LOW_PL: '副本',
@@ -39,10 +41,12 @@ module.exports = {
   TOTAL_REPLICAS: '副本總數',
   // List > Create > Pod Settings > Add Container > Container Settings
   ADD_CONTAINER: '添加容器',
-  ADD_CONTAINER_DESC: 'Kubesphere 支持從鏡像倉庫拉取鏡像以及通過代碼構建新的鏡像並部署',
+  ADD_CONTAINER_DESC:
+    'Kubesphere 支持從鏡像倉庫拉取鏡像以及通過代碼構建新的鏡像並部署',
   CONTAINERS: '容器鏡像',
   IMAGE_TIME_SIZE_LAYER: 'Updated {time}',
-  IMAGE_DESC: '要從私有鏡像倉庫部署，需要先<a href={link} target="_blank">創建鏡像倉庫密鑰</a>，然後拉取鏡像。',
+  IMAGE_DESC:
+    '要從私有鏡像倉庫部署，需要先<a href={link} target="_blank">創建鏡像倉庫密鑰</a>，然後拉取鏡像。',
   IMAGE_PLACEHOLDER: '點擊右側圖標可選擇鏡像，或直接輸入名稱 例：nginx:latest',
   IMAGE_EMPTY: '請設置鏡像',
   ENTER_POSITIVE_INTEGER_DESC: '副本輸入不合法',
@@ -54,7 +58,8 @@ module.exports = {
   REGISTRY: '倉庫',
   SET_IMAGE_DESC: '請選擇鏡像',
   WORKER_CONTAINER: '工作容器',
-  CONTAINER_RESOURCE_LIMIT_TIP: '請設置容器的資源限制與資源預留，這將能夠幫助系統更好地調度容器，提高穩定性。您也可在【項目設置】中，通過【基本資訊】->【項目管理】->【編輯資源預設請求】，來統一設置預設值。',
+  CONTAINER_RESOURCE_LIMIT_TIP:
+    '請設置容器的資源限制與資源預留，這將能夠幫助系統更好地調度容器，提高穩定性。您也可在【項目設置】中，通過【基本資訊】->【項目管理】->【編輯資源預設請求】，來統一設置預設值。',
   GPU_TYPE: 'GPU Type',
   GPU_LIMIT: 'GPU Limit',
   NO_LIMIT: '不限制',
@@ -63,14 +68,16 @@ module.exports = {
   IGNORE_AND_RETRY: '重試',
   // List > Create > Pod Settings > Add Container > Port Settings
   PORT_SETTINGS: '端口設置',
-  ISTIO_PROTOCOL_TIP: 'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
+  ISTIO_PROTOCOL_TIP:
+    'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
   REQUIRED: '必填',
   // List > Create > Pod Settings > Add Container > Use Local Image First
   IMAGE_PULL_POLICY_ALWAYS: '嘗試重新下載鏡像（Always）',
   IMAGE_PULL_POLICY_NEVER: '僅使用本地鏡像（Never）',
   IMAGE_PULL_POLICY_ALWAYS_DESC: '在創建及更新時，每次都會嘗試下載新的鏡像',
   IMAGE_PULL_POLICY_IFNOTPRESENT_DESC: '如果本地存在鏡像就優先使用本地鏡像',
-  IMAGE_PULL_POLICY_NEVER_DESC: '僅會使用本地鏡像，如果本地不存在所需鏡像，則會導致容器異常',
+  IMAGE_PULL_POLICY_NEVER_DESC:
+    '僅會使用本地鏡像，如果本地不存在所需鏡像，則會導致容器異常',
   IMAGE_PULL_POLICY_IFNOTPRESENT: '優先使用本地鏡像（IfNotPresent）',
   // List > Create > Pod Settings > Add Container > Health Check
   LIVENESS_CHECK: '容器存活檢查',
@@ -83,6 +90,16 @@ module.exports = {
   COMMANDS: '命令',
   HEALTH_CHECK: '健康檢查',
   STARTUP_CHECK_TIP: '需要 Kubernetes v1.18 或以上版本。',
+  // List > Create > Pod Settings > Add Container > Life Management
+  LIFE_MANAGEMENT: '生命週期管理',
+  LIFE_MANAGEMENT_DESC:
+    '管理應用容器在運行和關閉前的一些動作，如環境準備，優雅線下等',
+  'Container PostStart': '添加 PostStart 設置',
+  'Container PreStop': '添加 PreStop 設置',
+  PRO_STOP_DESC:
+    '應用容器被終止前的任務，例如優雅關閉應用程序、通知其他系統等。 ',
+  POST_START_DESC:
+    '應用容器創建成功後、運行前的任務，例如資源部署、環境準備等。 ',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: '添加環境變量',
   USE_CONFIGMAP_OR_SECRET: '引用配置文件或密鑰',
@@ -90,19 +107,23 @@ module.exports = {
   LABEL_TYPE: '{label} <span style="{style}">（{type}）</span>',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: '容器 Security Context',
-  CONTAINER_SECURITY_CONTEXT_DESC: 'Security Context的目的是限制不可信容器的行為，保護系統和其他容器不受其影響。',
+  CONTAINER_SECURITY_CONTEXT_DESC:
+    'Security Context的目的是限制不可信容器的行為，保護系統和其他容器不受其影響。',
   PRIVILEGED_MODE: '特權模式',
   PRIVILEGED_MODE_DESC: '此時容器中的進程本質上等價於宿主節點上的 root 用戶。',
   ALLOW_PRIVILEGE_ESCALATION: '允許擴大特權(AllowPrivilegeEscalation)',
-  ALLOW_PRIVILEGE_ESCALATION_DESC: '進程是否可以獲取比父進程更多的特權。當以特權模式運行時，則為允許狀態。',
+  ALLOW_PRIVILEGE_ESCALATION_DESC:
+    '進程是否可以獲取比父進程更多的特權。當以特權模式運行時，則為允許狀態。',
   ROOT_DIRECTORY_READONLY: '文件系統root唯讀(ReadOnlyRootFilesystem)',
   ROOT_DIRECTORY_READONLY_DESC: '該容器的文件系統根路徑是否唯讀。',
   USER_AND_USER_GROUP: '用戶和用戶組',
   USER_GROUP: '用戶組',
   RUN_AS_NON_ROOT: '僅允許非 Root 用戶',
-  RUN_AS_NON_ROOT_DESC: 'Kubernetes 在運行容器之前將執行檢查，以確保容器進程不是以 root 用戶（UID為0）運行，否則將不能啟動容器。',
+  RUN_AS_NON_ROOT_DESC:
+    'Kubernetes 在運行容器之前將執行檢查，以確保容器進程不是以 root 用戶（UID為0）運行，否則將不能啟動容器。',
   RUN_AS_USER_DESC: '執行容器 entrypoint 進程的 UID。預設為 docker 引擎的 GID',
-  RUN_AS_USER_GROUP_DESC: '執行容器 entrypoint 進程的 GID。預設為 docker 引擎的 GID',
+  RUN_AS_USER_GROUP_DESC:
+    '執行容器 entrypoint 進程的 GID。預設為 docker 引擎的 GID',
   SELINUX_CONTEXT: 'SELinux 上下文',
   CAPABILITIES_BETA: '權能（測試中）',
   DROP: '移除',
@@ -115,22 +136,28 @@ module.exports = {
   UPDATE_STRATEGY: '更新策略',
   ROLLING_UPDATE_RECOMMENDED: '滾動更新(推薦)',
   SIMULTANEOUS_UPDATE: '替換升級',
-  ROLLINGUPDATE_DESC: '滾動升級將逐步用新版本的實例替換版本的實例，升級的過程中，業務流量會同時負載平衡分布到新舊的實例上，因此業務不會中斷。',
-  SIMULTANEOUS_UPDATE_DESC: '替換升級會先刪除舊的容器組，再創建新容器組；升級過程中業務會中斷。',
+  ROLLINGUPDATE_DESC:
+    '滾動升級將逐步用新版本的實例替換版本的實例，升級的過程中，業務流量會同時負載平衡分布到新舊的實例上，因此業務不會中斷。',
+  SIMULTANEOUS_UPDATE_DESC:
+    '替換升級會先刪除舊的容器組，再創建新容器組；升級過程中業務會中斷。',
   ENTER_INTEGER_OR_PERCENTAGE: '請輸入值',
-  MAX_EXTRA_EMPTY: 'Please set the maximum number of extra Pod replicas allowed during the update process.',
+  MAX_EXTRA_EMPTY:
+    'Please set the maximum number of extra Pod replicas allowed during the update process.',
   // List > Create > Pod Settings > Pod Security Context
   POD_SECURITY_CONTEXT: '容器組 Security Context',
   POD_SECURITY_CONTEXT_DESC: '自定義容器組的訪問控制和權限設置。',
-  POD_SECURITY_CONTEXT_TIP: '容器組 Security Context 可以為容器組内的容器提供預設的用戶和用戶組設置以及 seLinuxOptions 的參數設置，如果容器中已經對這些參數進行了定義，則優先以容器中的設置為準。',
+  POD_SECURITY_CONTEXT_TIP:
+    '容器組 Security Context 可以為容器組内的容器提供預設的用戶和用戶組設置以及 seLinuxOptions 的參數設置，如果容器中已經對這些參數進行了定義，則優先以容器中的設置為準。',
   // List > Create > Pod Settings > Pod Scheduling Rules
   POD_SCHEDULING_RULES: '容器组调度策略',
   POD_SCHEDULING_RULES_DESC: '您可以为容器組調度指定規則',
   DEFAULT_RULES: 'Default Rules',
-  DEFAULT_RULES_DESC: 'Schedules the Pod replicas to nodes according to default rules.',
+  DEFAULT_RULES_DESC:
+    'Schedules the Pod replicas to nodes according to default rules.',
   DECENTRALIZED_SCHEDULING: '容器組分散部署',
   CUSTOM_RULES: 'Custom Rules',
-  CUSTOM_RULES_DESC: 'Pod replicas are scheduled to nodes according to user-defined rules.',
+  CUSTOM_RULES_DESC:
+    'Pod replicas are scheduled to nodes according to user-defined rules.',
   'Pod IP': 'Pod IP',
   DECENTRALIZED_SCHEDULING_DESC: '容器組副本將會盡量分散在不同的節點中',
   CENTRALIZED_SCHEDULING_DESC: '容器組副本將會盡量部署在同一節點上',
@@ -162,7 +189,8 @@ module.exports = {
   CONTAINER_NOT_SELECTED: '請至少選擇一個容器進行掛載',
   NOT_MOUNT: '不掛載',
   HOSTPATH_VOLUME: 'HostPath 儲存卷',
-  HOSTPATH_TIP: 'HostPath 將主機的文件系統掛載到Pod中，它使一些應用程式能逃出對其做出的隔離限制，請謹慎使用。',
+  HOSTPATH_TIP:
+    'HostPath 將主機的文件系統掛載到Pod中，它使一些應用程式能逃出對其做出的隔離限制，請謹慎使用。',
   HOST_PATH: '主机路徑',
   READ_AND_WRITE: '讀寫',
   READ_ONLY: '只讀',
@@ -173,7 +201,8 @@ module.exports = {
   SELECT_CONFIGMAP_DESC: '將配置中的值添加為卷。',
   READ_WRITE_MOUNT_EMPTY: '請指定讀寫方式及掛載路徑',
   SELECT_SPECIFIC_KEYS: '選擇特定的鍵和路徑',
-  SELECT_SPECIFIC_KEYS_DESC: '選擇要使用的密鑰以及將公開每個密鑰的文件路徑，文件路徑相當於裝載路徑，每個文件的内容都是密鑰的值。',
+  SELECT_SPECIFIC_KEYS_DESC:
+    '選擇要使用的密鑰以及將公開每個密鑰的文件路徑，文件路徑相當於裝載路徑，每個文件的内容都是密鑰的值。',
   SELECT_SECRET_DESC: '將密鑰中的值添加為卷。',
   CONFIGMAP_NOT_SELECT: '請選擇配置文件',
   SECRET_NOT_SELECT: '請選擇密鑰',
@@ -190,7 +219,8 @@ module.exports = {
   WORKLOAD_SPECIFY_NODE_DESC: '可以讓容器組副本在指定的節點運行',
   // List > Create > Cluster Differences
   CLUSTER_DIFF: 'Cluster Differences',
-  CLUSTER_DIFF_CONTAINER_SETTINGS_DESC: '根據不同的需要在不同的集群中設置不同的容器',
+  CLUSTER_DIFF_CONTAINER_SETTINGS_DESC:
+    '根據不同的需要在不同的集群中設置不同的容器',
   CLUSTER_DIFF_PORT_SETTINGS_DESC: '可以在不同集群設置不同的服務端口',
-  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: '可以在不同集群設置不同的環境變量'
-};
+  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: '可以在不同集群設置不同的環境變量',
+}

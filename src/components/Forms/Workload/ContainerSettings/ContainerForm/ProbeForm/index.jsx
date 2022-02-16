@@ -22,25 +22,25 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { cloneDeep } from 'lodash'
 
-import {
-  Columns,
-  Column,
-  RadioButton,
-  RadioGroup,
-  Select,
-  Input,
-  Form,
-} from '@kube-design/components'
+import { RadioButton, RadioGroup, Form } from '@kube-design/components'
 
-import { NumberInput, StringInput, ObjectInput } from 'components/Inputs'
 import Confirm from 'components/Forms/Base/Confirm'
+import ProbeConfig from './ProbeConfig'
 
 import styles from './index.scss'
+import ProbeSection from './ProbeSection'
+
+const PROBE_RADIO_CONFIG = [
+  { value: 'http', desc: 'HTTP_REQUEST' },
+  { value: 'command', desc: 'COMMAND' },
+  { value: 'tcp', desc: 'TCP_PORT' },
+]
 
 @observer
 export default class ProbeForm extends React.Component {
   static propTypes = {
     className: PropTypes.string,
+    componentType: PropTypes.string,
     data: PropTypes.object,
     onSave: PropTypes.func,
     onCancel: PropTypes.func,
@@ -50,6 +50,7 @@ export default class ProbeForm extends React.Component {
     data: {},
     onSave() {},
     onCancel() {},
+    componentType: 'heal',
   }
 
   constructor(props) {
@@ -63,14 +64,6 @@ export default class ProbeForm extends React.Component {
     this.formRef = React.createRef()
   }
 
-  get defaultData() {
-    return {
-      scheme: 'HTTP',
-      path: '/',
-      port: 80,
-    }
-  }
-
   get checkerType() {
     const { data } = this.props
 
@@ -79,19 +72,6 @@ export default class ProbeForm extends React.Component {
     if ('tcpSocket' in data) return 'tcp'
 
     return 'http'
-  }
-
-  get httpRequestTypes() {
-    return [
-      {
-        label: 'HTTP',
-        value: 'HTTP',
-      },
-      {
-        label: 'HTTPS',
-        value: 'HTTPS',
-      },
-    ]
   }
 
   filterData = formData => {
@@ -136,65 +116,8 @@ export default class ProbeForm extends React.Component {
       })
   }
 
-  renderProbeSection() {
-    const { checkerType } = this.state
-
-    if (checkerType === 'command') {
-      return (
-        <Form.Item
-          key={checkerType}
-          label={t('COMMANDS')}
-          desc={t('PROBE_COMMAND_DESC')}
-          rules={[{ required: true, message: t('PROBE_COMMAND_EMPTY') }]}
-        >
-          <StringInput className="max-width-full" name="exec.command" />
-        </Form.Item>
-      )
-    }
-
-    if (checkerType === 'tcp') {
-      return (
-        <Columns>
-          <Column>
-            <Form.Item
-              label={t('PORT')}
-              rules={[{ required: true, message: t('PORT_NUMBER_EMPTY') }]}
-            >
-              <NumberInput
-                name="tcpSocket.port"
-                defaultValue={80}
-                min={0}
-                max={65535}
-                integer
-              />
-            </Form.Item>
-          </Column>
-          <Column />
-        </Columns>
-      )
-    }
-
-    return (
-      <Form.Item
-        key={checkerType}
-        label={t('PATH')}
-        rules={[{ required: true, message: t('HTTP_PATH_EMPTY') }]}
-      >
-        <ObjectInput
-          name="httpGet"
-          className={styles.object}
-          defaultValue={this.defaultData}
-        >
-          <Select name="scheme" options={this.httpRequestTypes} />
-          <Input name="path" />
-          <NumberInput name="port" min={0} max={65535} integer />
-        </ObjectInput>
-      </Form.Item>
-    )
-  }
-
   render() {
-    const { className, probType, onCancel } = this.props
+    const { className, probType, onCancel, componentType = 'heal' } = this.props
     const { formData, checkerType } = this.state
 
     return (
@@ -207,88 +130,18 @@ export default class ProbeForm extends React.Component {
             onChange={this.handleTypeChange}
             size="small"
           >
-            <RadioButton value="http">{t('HTTP_REQUEST')}</RadioButton>
-            <RadioButton value="command">{t('COMMAND')}</RadioButton>
-            <RadioButton value="tcp">{t('TCP_PORT')}</RadioButton>
+            {PROBE_RADIO_CONFIG.map(item => (
+              <RadioButton value={item.value}>{t(item.desc)}</RadioButton>
+            ))}
           </RadioGroup>
         </div>
         <Form ref={this.formRef} type="inner" data={formData}>
-          <div className="margin-b12">{this.renderProbeSection()}</div>
-          <Columns>
-            <Column>
-              <Form.Item
-                label={t('INITIAL_DELAY_S')}
-                desc={t('INITIAL_DELAY_DESC')}
-              >
-                <NumberInput
-                  name="initialDelaySeconds"
-                  defaultValue={0}
-                  min={0}
-                  integer
-                />
-              </Form.Item>
-            </Column>
-            <Column>
-              <Form.Item
-                label={t('TIMEOUT_PERIOD_S')}
-                desc={t('TIMEOUT_PERIOD_DESC')}
-              >
-                <NumberInput
-                  name="timeoutSeconds"
-                  defaultValue={1}
-                  min={1}
-                  integer
-                />
-              </Form.Item>
-            </Column>
-          </Columns>
-          <Columns>
-            <Column>
-              <Form.Item
-                label={t('CHECK_INTERVAL_S')}
-                desc={t('CHECK_INTERVAL_DESC')}
-              >
-                <NumberInput
-                  name="periodSeconds"
-                  defaultValue={10}
-                  min={1}
-                  integer
-                />
-              </Form.Item>
-            </Column>
-            <Column>
-              <Form.Item
-                label={t('SUCCESS_THRESHOLD')}
-                desc={t('SUCCESS_THRESHOLD_DESC')}
-              >
-                <NumberInput
-                  name="successThreshold"
-                  defaultValue={1}
-                  min={1}
-                  readOnly={['livenessProbe', 'startupProbe'].includes(
-                    probType
-                  )}
-                  integer
-                />
-              </Form.Item>
-            </Column>
-          </Columns>
-          <Columns>
-            <Column>
-              <Form.Item
-                label={t('FAILURE_THRESHOLD')}
-                desc={t('FAILURE_THRESHOLD_DESC')}
-              >
-                <NumberInput
-                  name="failureThreshold"
-                  defaultValue={3}
-                  min={1}
-                  integer
-                />
-              </Form.Item>
-            </Column>
-            <Column />
-          </Columns>
+          <div className="margin-b12">
+            <ProbeSection checkerType={checkerType} />
+          </div>
+          {componentType === 'life' ? null : (
+            <ProbeConfig probType={probType} />
+          )}
         </Form>
         <Confirm
           className={styles.confirm}

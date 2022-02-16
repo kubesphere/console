@@ -53,7 +53,8 @@ module.exports = {
   'Published Time': '發佈時間',
   PULL_COMMAND: '拉取命令',
   'Rebuild Image': '重新構建鏡像',
-  'Rebuilt successfully; the image status will be refreshed soon.': '重建成功，鏡像狀態稍後將會更新',
+  'Rebuilt successfully; the image status will be refreshed soon.':
+    '重建成功，鏡像狀態稍後將會更新',
   'Release Time': '發佈時間',
   'Repo reading failed': '讀取倉庫失敗',
   'Repo url': '倉庫地址',
@@ -74,19 +75,26 @@ module.exports = {
   'Upload file failed': '檔案上傳失敗',
   'Upload Percent': '上傳進度',
   SORT_BY: '以{ name }排序',
-  S2I_RELATIVE_PATH_DESC: '源代碼倉庫地址（目前支持 git）並且可以指定代碼分支及在源代碼終端的相對路徑',
+  S2I_RELATIVE_PATH_DESC:
+    '源代碼倉庫地址（目前支持 git）並且可以指定代碼分支及在源代碼終端的相對路徑',
   IMAGE_PULL_POLICY_DESC: '在預設情况下，優先使用本地鏡像',
   S2I_UPDATE_WORKLOAD: '構建成功後更新工作負載',
-  S2I_UPDATA_WORKLOAD_DESC: '重新構建鏡像成功後，將更新相關工作負載的鏡像，同時工作負載的版本也會被更新',
-  IMAGE_FROM_S2I_DESC: 'Get the code from the existing code repository and build the image by way of Source to Image. The process of building the image each time will be done as a job.',
+  S2I_UPDATA_WORKLOAD_DESC:
+    '重新構建鏡像成功後，將更新相關工作負載的鏡像，同時工作負載的版本也會被更新',
+  IMAGE_FROM_S2I_DESC:
+    'Get the code from the existing code repository and build the image by way of Source to Image. The process of building the image each time will be done as a job.',
   IMAGE_FROM_EXSIT: 'Select an existing image deployment container',
-  IMAGE_FROM_EXSIT_DESC: 'Pull an image from a public or private image repository',
+  IMAGE_FROM_EXSIT_DESC:
+    'Pull an image from a public or private image repository',
   S2I_SECRET_DESC: '如果是私有代碼倉庫，請選擇代碼倉庫密鑰。',
-  S2I_IMAGE_REPONSITRY_DESC: '源代碼倉庫地址（目前支持 Git）並且可以指定代碼分支及在源代碼終端的相對路徑。',
+  S2I_IMAGE_REPONSITRY_DESC:
+    '源代碼倉庫地址（目前支持 Git）並且可以指定代碼分支及在源代碼終端的相對路徑。',
   S2I_RELATIVE_PATH: '代碼相對路徑(可選)',
   S2I_IMAGENAME_DESC: '鏡像名稱及標籤，預設為代碼倉庫的項目名稱。',
-  S2I_BUILDERNAME_DESC: '選擇編輯環境，您也可以查看對應的 <a href={link} target="_blank">編譯模板</a>',
-  CONTAINERD_RUNTIME_NOT_SUPPORT: 'S2I and B2I do not support the containerd runtime.',
+  S2I_BUILDERNAME_DESC:
+    '選擇編輯環境，您也可以查看對應的 <a href={link} target="_blank">編譯模板</a>',
+  CONTAINERD_RUNTIME_NOT_SUPPORT:
+    'S2I and B2I do not support the containerd runtime.',
   'Build image for service x': '為 {service} 服務構建鏡像',
   BINARY_DESC: '',
   SECRET_CODE: '觸發令牌',
@@ -95,5 +103,5 @@ module.exports = {
   'Remote Trigger Link': '遠程觸發鏈接',
   // Image Builder List Page
   // Creation Page
-  S2I_SECRET: '密鑰'
-};
+  S2I_SECRET: '密鑰',
+}
