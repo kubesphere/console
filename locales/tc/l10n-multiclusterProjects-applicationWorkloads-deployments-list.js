@@ -91,15 +91,12 @@ module.exports = {
   HEALTH_CHECK: '健康檢查',
   STARTUP_CHECK_TIP: '需要 Kubernetes v1.18 或以上版本。',
   // List > Create > Pod Settings > Add Container > Life Management
-  LIFE_MANAGEMENT: '生命週期管理',
-  LIFE_MANAGEMENT_DESC:
-    '管理應用容器在運行和關閉前的一些動作，如環境準備，優雅線下等',
-  'Container PostStart': '添加 PostStart 設置',
-  'Container PreStop': '添加 PreStop 設置',
-  PRO_STOP_DESC:
-    '應用容器被終止前的任務，例如優雅關閉應用程序、通知其他系統等。 ',
-  POST_START_DESC:
-    '應用容器創建成功後、運行前的任務，例如資源部署、環境準備等。 ',
+  LIFE_MANAGEMENT: 'Lifecycle Management',
+  LIFE_MANAGEMENT_DESC: 'Manage some actions of the application container before running and shutting down, such as environment preparation, graceful offline, etc.',
+  'Container PostStart': 'Add PostStart settings',
+  'Container PreStop': 'Add PreStop settings',
+  PRO_STOP_DESC: ' Tasks before the application container is terminated, such as graceful shutdown of the application, notification to other systems, etc. ',
+  POST_START_DESC: 'The tasks after the application container is successfully created and before running, such as resource deployment, environment preparation, etc. ',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: '添加環境變量',
   USE_CONFIGMAP_OR_SECRET: '引用配置文件或密鑰',
