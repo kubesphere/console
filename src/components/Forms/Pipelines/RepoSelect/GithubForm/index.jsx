@@ -146,8 +146,9 @@ export default class GitHubForm extends React.Component {
 
     if (token) {
       const secretName = get(credentialDetail, 'name')
+      const secretNamespace = get(credentialDetail, 'namespace')
       await this.props.store
-        .putAccessName({ secretName, name, cluster, devops })
+        .putAccessName({ secretName, secretNamespace, name, cluster, devops })
         .finally(() => {
           this.setState({ isLoading: false })
         })
