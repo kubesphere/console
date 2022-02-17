@@ -10,6 +10,8 @@ The locale files containing UI strings of the KubeSphere web console have been u
 
 2. Select a language and a locale file to start translating the UI strings. If your language does not exist in the list, please open an issue at the [kubesphere/console repository](https://github.com/kubesphere/console/issues).
 
+   > **Note**: Chinese (Simplified) is maintained by KubeSphere SIG-Docs and doesn't require localization. If you have any suggestion on the existing UI texts in Chinese (Simplified), you can create an issue to discuss it.
+
    ![crowdin-select-langauge](./images/crowdin-select-langauge.png)
 
 3. On the translation editing page, select a UI string, enter your translation, and click **Save** to translate the string. Keep HTML tags and words enclosed in braces ({}) unchanged in your translations. Words enclosed in braces are variables and the values are dynamically loaded.
