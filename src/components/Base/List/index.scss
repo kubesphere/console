@@ -79,6 +79,7 @@
   }
 
   .title {
+    @include ellipsis;
     @include TypographyTitleH6($dark-color07);
   }
 
