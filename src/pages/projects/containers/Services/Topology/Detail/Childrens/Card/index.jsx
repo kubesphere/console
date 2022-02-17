@@ -15,37 +15,44 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import React, { Component } from 'react'
-import { get, isEmpty } from 'lodash'
-import { getLocalTime } from 'utils'
-
+import React from 'react'
+import { List } from 'components/Base'
 import styles from './index.scss'
 
-export default class BaseInfo extends Component {
-  getValue(item) {
-    if (item.type === 'datetime') {
-      return getLocalTime(item.value).format(`YYYY-MM-DD HH:mm:ss`)
-    }
-    return item.value
+export default class Card extends React.PureComponent {
+  getDetails(item) {
+    const { data } = this.props
+    return [
+      {
+        title: data.length,
+        description: 'Count',
+        className: styles.texts,
+      },
+      {
+        title: item.kubernetes_ip.value || '-',
+        description: 'IP',
+        className: styles.texts,
+      },
+    ]
   }
 
   render() {
-    const metadata = get(this.props.detail, 'metadata', [])
-
-    if (isEmpty(metadata)) {
-      return null
-    }
-
+    const { data } = this.props
     return (
-      <div className={styles.info}>
-        {metadata.map(item => (
-          <dl key={item.id}>
-            <dd>{item.label}:</dd>
-            <dd>{this.getValue(item)}</dd>
-          </dl>
+      <List>
+        {data.map(item => (
+          <List.Item
+            key={item.id}
+            className={styles.wrapper}
+            titleClass={styles.title}
+            icon="pod"
+            status={item.kubernetes_state.value}
+            title={item.label.value}
+            description={item.kubernetes_state.value}
+            details={this.getDetails(item)}
+          />
         ))}
-      </div>
+      </List>
     )
   }
 }

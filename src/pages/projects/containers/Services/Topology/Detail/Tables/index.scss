@@ -3,6 +3,12 @@
 
 .info {
   margin-bottom: 12px;
+  padding: 8px 12px 8px 12px;
+  border: 1px solid $light-color03;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background: #fff;
+
   & > div {
     margin-bottom: 12px;
     @include TypographyTitleH6();
@@ -23,7 +29,7 @@
         content: ':';
       }
     }
-  
+
     & > dd {
       padding-left: 8px;
     }

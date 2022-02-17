@@ -18,8 +18,7 @@
 
 import React, { Component } from 'react'
 import { get, isEmpty } from 'lodash'
-
-import Table from '../Table'
+import Card from './Card'
 
 export default class Childrens extends Component {
   getColumns(child) {
@@ -62,17 +61,15 @@ export default class Childrens extends Component {
 
   render() {
     const children = get(this.props.detail, 'children', [])
-
     if (isEmpty(children)) {
       return null
     }
-
-    return children.map(child => (
-      <Table
-        key={child.topologyId}
-        columns={this.getColumns(child)}
-        data={this.getData(child)}
-      />
-    ))
+    return children
+      .filter(child => {
+        return child.label === 'Pods'
+      })
+      .map(child => {
+        return <Card key={child.topologyId} data={this.getData(child)} />
+      })
   }
 }
