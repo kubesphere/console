@@ -297,14 +297,16 @@ export default class FederatedStore extends Base {
       )
     )
 
+    const resource = {}
+
     result.forEach((item, index) => {
-      Object.assign(this.resources, {
-        [clusters[index]]: {
-          ...this.mapper(item),
-          cluster: clusters[index],
-        },
-      })
+      resource[clusters[index]] = {
+        ...this.mapper(item),
+        cluster: clusters[index],
+      }
     })
+
+    this.resources = resource
     this.isResourcesLoading = false
   }
 
