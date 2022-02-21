@@ -18,6 +18,7 @@
 
 import { observable, action } from 'mobx'
 import { get, assign } from 'lodash'
+import { Notify } from '@kube-design/components'
 
 export default class TerminalStore {
   username = get(globals, 'user.username', '')
@@ -48,7 +49,14 @@ export default class TerminalStore {
   }
 
   async kubeWebsocketUrl() {
-    const { cluster, namespace, nodename, pod, container, shell = 'sh' } = this.kubectl
+    const {
+      cluster,
+      namespace,
+      nodename,
+      pod,
+      container,
+      shell = 'sh',
+    } = this.kubectl
 
     if (nodename) {
       return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
@@ -91,7 +99,12 @@ export default class TerminalStore {
       null,
       this.reject
     )
-
+    if (!result) {
+      Notify.error({
+        content: t('OPEN_TERMINAL_DESC'),
+        duration: 1000,
+      })
+    }
     this.kubectl = {
       ...this.kubectl,
       cluster,
@@ -102,7 +115,7 @@ export default class TerminalStore {
 
   @action
   setNodename = nodename => {
-     this.kubectl.nodename = nodename
+    this.kubectl.nodename = nodename
   }
 
   @action

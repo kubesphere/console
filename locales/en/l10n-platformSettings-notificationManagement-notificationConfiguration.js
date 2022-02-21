@@ -164,7 +164,8 @@ module.exports = {
   MAX_CHANNEL_COUNT: 'You can add a maximum of {count} channels.',
   SLACK_DESC:
     'Configure Slack notifications by setting a server and Slack channels.',
-
+  OPEN_TERMINAL_DESC:
+    'Please ensure that the websocket proxy configuration on your proxy server is correct.',
   // Webhook
   WEBHOOK_TITLE: 'Webhook',
   WEBHOOK_URL_DESC: 'Please enter a webhook URL.',

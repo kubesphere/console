@@ -142,6 +142,7 @@ module.exports = {
   CHANNEL_SETTINGS_DESC: '请添加频道。',
   MAX_CHANNEL_COUNT: '您可以最多添加 {count} 个频道。',
   SLACK_DESC: '通过设置服务器和 Slack 频道以配置 Slack 通知。',
+  OPEN_TERMINAL_DESC: '请确保您代理服务器上的 WebSocket 代理配置无误.',
   // Webhook
   WEBHOOK_TITLE: 'Webhook',
   WEBHOOK_URL_DESC: '请输入 webhook URL。',

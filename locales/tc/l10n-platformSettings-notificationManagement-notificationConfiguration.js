@@ -19,7 +19,8 @@ module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: '通知管理',
   NOTIFICATION_CONFIGURATION: '通知配置',
-  NOTIFICATION_CONFIGURATION_DESC: 'KubeSphere supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
+  NOTIFICATION_CONFIGURATION_DESC:
+    'KubeSphere supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
   NOTIFICATION_EMAIL: 'Email',
   // Email
   MAIL_TITLE: 'Email',
@@ -35,48 +36,60 @@ module.exports = {
   CONTAINER: 'Container',
   VALUES: 'Values',
   CONDITION_OPERATOR: 'Operator',
-  NOTIFICATION_CONDITION_SETTING_TIP: 'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use a carriage return to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
-  NOTIFICATION_CONDITION_SETTINGS_DESC: 'You will receive only notifications that meet the conditions.',
+  NOTIFICATION_CONDITION_SETTING_TIP:
+    'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use a carriage return to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
+  NOTIFICATION_CONDITION_SETTINGS_DESC:
+    'You will receive only notifications that meet the conditions.',
   INCLUDES_VALUES: '包含值',
   DOES_NOT_INCLUDE_VALUES: '不包含值',
   EXISTS: 'Exists',
   DOES_NOT_EXIST: 'Does not exist',
   TAG_INPUT_PLACEHOLDER: 'Please enter the value and press Enter to confirm',
-  PATTERN_TAG_INVALID_TIP: 'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
+  PATTERN_TAG_INVALID_TIP:
+    'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
   INVALID_NOTIFICATION_CONDITION: '請填寫正確的通知條件。',
   SEND_TEST_MESSAGE: '發送測試信息',
-  SEND_TEST_MESSAGE_DESC: 'After the configurations are complete, you can send a test message for verification.',
-  SEND_TEST_MESSAGE_SUCCESS_DESC: '驗證成功。已向您發送了一條測試消息，請查收。',
+  SEND_TEST_MESSAGE_DESC:
+    'After the configurations are complete, you can send a test message for verification.',
+  SEND_TEST_MESSAGE_SUCCESS_DESC:
+    '驗證成功。已向您發送了一條測試消息，請查收。',
   SMTP_SERVER_ADDRESS: 'SMTP 服務器地址',
   USE_SSL_SECURE_CONNECTION: 'Use SSL secure connection',
   SENDER_EMAIL: '發件人郵箱',
   INVALID_EMAIL: '郵箱格式不合法',
-  MAIL_DESC: 'Configure email notifications by setting a server and recipients.',
+  MAIL_DESC:
+    'Configure email notifications by setting a server and recipients.',
   INVALID_ADDRESS_DESC: 'Please enter a valid address.',
   MAX_EAMIL_COUNT: 'You can add a maximum of {count} emails.',
   SMTP_USER: 'SMTP Username',
   SMTP_PASSWORD: 'SMTP Password',
   ENTER_PASSWORD_TIP: 'Please enter the password.',
-  ENTER_RECIPIENT_EMAIL_DESC: 'Please add at lease one email address of a recipient.',
-  INVALID_EMAIL_ADDRESS_DESC: 'The email format is incorrect. Please enter a correct email address.',
+  ENTER_RECIPIENT_EMAIL_DESC:
+    'Please add at lease one email address of a recipient.',
+  INVALID_EMAIL_ADDRESS_DESC:
+    'The email format is incorrect. Please enter a correct email address.',
   SMTP_USER_EMPTY_DESC: 'Please enter a SMTP username.',
   ADDED_SUCCESS_DESC: '添加成功。',
   POD: '容器組',
   UPDATE_SUCCESSFUL: 'Updated successfully.',
-  PATTERN_NAME_INVALID_TIP: 'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-).',
+  PATTERN_NAME_INVALID_TIP:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-).',
   // DingTalk
   DINGTALK_TITLE: 'DingTalk',
   DingTalk: '釘釘',
-  DINGTALK_DESC: 'Configure DingTalk notifications by setting a conversation or chatbot.',
+  DINGTALK_DESC:
+    'Configure DingTalk notifications by setting a conversation or chatbot.',
   PLEASE_ENTER_VALUE_CUSTOM: '請輸入{value}。',
   // DingTalk > Conversation Settings
   CONVERSATION_SETTINGS: '會話設置',
   CONVERSATION_ID: '會話 ID',
-  CONVERSATION_ID_TIP: '會話 ID 需要系統管理員進行配置才能獲取，如需設置請聯系系統管理員。',
+  CONVERSATION_ID_TIP:
+    '會話 ID 需要系統管理員進行配置才能獲取，如需設置請聯系系統管理員。',
   DINGTALK_SETTING_TIP: '請設置會話或者群機器人。',
   ENTER_CONVERSATION_ID_DESC: 'Please enter a conversation ID.',
   MAX_CID_COUNT: 'You can add a maximum of {count} conversation IDs.',
-  CONVERSATION_ID_EXISTS: 'The conversation ID already exists. Please add another conversation ID.',
+  CONVERSATION_ID_EXISTS:
+    'The conversation ID already exists. Please add another conversation ID.',
   // DingTalk > DingTalk Chatbot
   CHATBOT_SETTINGS: '群機器人設置',
   KEYWORDS_LIST: 'Keyword List',
@@ -92,11 +105,13 @@ module.exports = {
   WECOM_CORP_ID: 'Corporation ID',
   WECOM_AGENT_ID: 'App AgentId',
   WECOM_SECRET: 'App Secret',
-  RECIPIENT_SETTINGS_TIP: 'At least one item needs to be configured to receive notifications.',
+  RECIPIENT_SETTINGS_TIP:
+    'At least one item needs to be configured to receive notifications.',
   ENTER_WECOM_CORP_ID_DESC: 'Please enter a corporation ID.',
   ENTER_WECOM_AGENT_ID_DESC: 'Please enter an applicaiton AgentId.',
   ENTER_WECOM_SECRET_DESC: 'Please enter an application Secret.',
-  WECOM_DESC: 'Configure WeCom notifications by setting a server and recipients.',
+  WECOM_DESC:
+    'Configure WeCom notifications by setting a server and recipients.',
   // WeCom > User ID
   USER_ID: '用戶 ID',
   TOUSER_LIST: 'Added User IDs',
@@ -111,7 +126,8 @@ module.exports = {
   TOPARTY_LIST: 'Added Department IDs',
   EMPTY_TOPARTY_DESC: 'No department ID is added.',
   ENTER_TOPARTY_TIP: 'Please enter a department ID.',
-  TOPARTY_EXISTS: 'The department ID already exists. Please enter another department ID.',
+  TOPARTY_EXISTS:
+    'The department ID already exists. Please enter another department ID.',
   MAX_TOPARTY_COUNT: 'You can add a maximum of {count} departments.',
   // WeCom > Tag ID
   TAG_ID: '標簽 ID',
@@ -133,7 +149,11 @@ module.exports = {
   CHANNEL_EXISTS: 'The channel already exists. Please add another channel.',
   CHANNEL_SETTINGS_DESC: 'Please add a channel.',
   MAX_CHANNEL_COUNT: 'You can add a maximum of {count} channels.',
-  SLACK_DESC: 'Configure Slack notifications by setting a server and Slack channels.',
+  SLACK_DESC:
+    'Configure Slack notifications by setting a server and Slack channels.',
+  OPEN_TERMINAL_DESC:
+    'Please ensure that the websocket proxy configuration on your proxy server is correct.',
+
   // Webhook
   WEBHOOK_TITLE: 'Webhook',
   WEBHOOK_URL_DESC: 'Please enter a webhook URL.',
@@ -143,5 +163,5 @@ module.exports = {
   BASIC_AUTH: 'Basic authentication',
   NO_AUTH: '無須認證',
   BEARER_TOKEN: 'Bearer token',
-  TOKEN: 'Token'
-};
+  TOKEN: 'Token',
+}

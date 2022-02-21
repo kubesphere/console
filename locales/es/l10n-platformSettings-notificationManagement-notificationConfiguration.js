@@ -19,7 +19,8 @@ module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: 'Gestión de notificaciones',
   NOTIFICATION_CONFIGURATION: 'Configuración de la notificación',
-  NOTIFICATION_CONFIGURATION_DESC: 'KubeSphere supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
+  NOTIFICATION_CONFIGURATION_DESC:
+    'KubeSphere supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
   NOTIFICATION_EMAIL: 'Email',
   // Email
   MAIL_TITLE: 'Email',
@@ -35,48 +36,61 @@ module.exports = {
   CONTAINER: 'Container',
   VALUES: 'Values',
   CONDITION_OPERATOR: 'Operator',
-  NOTIFICATION_CONDITION_SETTING_TIP: 'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use a carriage return to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
-  NOTIFICATION_CONDITION_SETTINGS_DESC: 'You will receive only notifications that meet the conditions.',
+  NOTIFICATION_CONDITION_SETTING_TIP:
+    'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use a carriage return to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
+  NOTIFICATION_CONDITION_SETTINGS_DESC:
+    'You will receive only notifications that meet the conditions.',
   INCLUDES_VALUES: 'Includes values',
   DOES_NOT_INCLUDE_VALUES: 'Does not include values',
   EXISTS: 'Exists',
   DOES_NOT_EXIST: 'Does not exist',
   TAG_INPUT_PLACEHOLDER: 'Ingrese el valor y presione Enter para confirmar',
-  PATTERN_TAG_INVALID_TIP: 'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
-  INVALID_NOTIFICATION_CONDITION: 'Please enter a correct notification condition.',
+  PATTERN_TAG_INVALID_TIP:
+    'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
+  INVALID_NOTIFICATION_CONDITION:
+    'Please enter a correct notification condition.',
   SEND_TEST_MESSAGE: 'Enviar mensaje de prueba',
-  SEND_TEST_MESSAGE_DESC: 'After the configurations are complete, you can send a test message for verification.',
-  SEND_TEST_MESSAGE_SUCCESS_DESC: 'Verified successfully. A test message has been sent to you , please check it out.',
+  SEND_TEST_MESSAGE_DESC:
+    'After the configurations are complete, you can send a test message for verification.',
+  SEND_TEST_MESSAGE_SUCCESS_DESC:
+    'Verified successfully. A test message has been sent to you , please check it out.',
   SMTP_SERVER_ADDRESS: 'Dirección del servidor SMTP',
   USE_SSL_SECURE_CONNECTION: 'Use SSL secure connection',
   SENDER_EMAIL: 'Correo del remitente',
   INVALID_EMAIL: 'Email inválido',
-  MAIL_DESC: 'Configure email notifications by setting a server and recipients.',
+  MAIL_DESC:
+    'Configure email notifications by setting a server and recipients.',
   INVALID_ADDRESS_DESC: 'Please enter a valid address.',
   MAX_EAMIL_COUNT: 'You can add a maximum of {count} emails.',
   SMTP_USER: 'SMTP Username',
   SMTP_PASSWORD: 'SMTP Password',
   ENTER_PASSWORD_TIP: 'Please enter the password.',
-  ENTER_RECIPIENT_EMAIL_DESC: 'Please add at lease one email address of a recipient.',
-  INVALID_EMAIL_ADDRESS_DESC: 'The email format is incorrect. Please enter a correct email address.',
+  ENTER_RECIPIENT_EMAIL_DESC:
+    'Please add at lease one email address of a recipient.',
+  INVALID_EMAIL_ADDRESS_DESC:
+    'The email format is incorrect. Please enter a correct email address.',
   SMTP_USER_EMPTY_DESC: 'Please enter a SMTP username.',
   ADDED_SUCCESS_DESC: 'Added successfully.',
   POD: 'Pod',
   UPDATE_SUCCESSFUL: 'Updated successfully.',
-  PATTERN_NAME_INVALID_TIP: 'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-).',
+  PATTERN_NAME_INVALID_TIP:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-).',
   // DingTalk
   DINGTALK_TITLE: 'DingTalk',
   DingTalk: 'DingTalk',
-  DINGTALK_DESC: 'Configure DingTalk notifications by setting a conversation or chatbot.',
+  DINGTALK_DESC:
+    'Configure DingTalk notifications by setting a conversation or chatbot.',
   PLEASE_ENTER_VALUE_CUSTOM: 'Ingrese un {value}.',
   // DingTalk > Conversation Settings
   CONVERSATION_SETTINGS: 'Configuración de conversación',
   CONVERSATION_ID: 'ID de conversación',
-  CONVERSATION_ID_TIP: 'El administrador del sistema debe configurar el ID de conversación para obtenerlo. Si necesita configurarlo, comuníquese con el administrador del sistema.',
+  CONVERSATION_ID_TIP:
+    'El administrador del sistema debe configurar el ID de conversación para obtenerlo. Si necesita configurarlo, comuníquese con el administrador del sistema.',
   DINGTALK_SETTING_TIP: 'Configura una conversación o un robot grupal',
   ENTER_CONVERSATION_ID_DESC: 'Please enter a conversation ID.',
   MAX_CID_COUNT: 'You can add a maximum of {count} conversation IDs.',
-  CONVERSATION_ID_EXISTS: 'The conversation ID already exists. Please add another conversation ID.',
+  CONVERSATION_ID_EXISTS:
+    'The conversation ID already exists. Please add another conversation ID.',
   // DingTalk > DingTalk Chatbot
   CHATBOT_SETTINGS: 'Chatbot de DingTalk',
   KEYWORDS_LIST: 'Keyword List',
@@ -92,11 +106,13 @@ module.exports = {
   WECOM_CORP_ID: 'Corporation ID',
   WECOM_AGENT_ID: 'App AgentId',
   WECOM_SECRET: 'App Secret',
-  RECIPIENT_SETTINGS_TIP: 'At least one item needs to be configured to receive notifications.',
+  RECIPIENT_SETTINGS_TIP:
+    'At least one item needs to be configured to receive notifications.',
   ENTER_WECOM_CORP_ID_DESC: 'Please enter a corporation ID.',
   ENTER_WECOM_AGENT_ID_DESC: 'Please enter an applicaiton AgentId.',
   ENTER_WECOM_SECRET_DESC: 'Please enter an application Secret.',
-  WECOM_DESC: 'Configure WeCom notifications by setting a server and recipients.',
+  WECOM_DESC:
+    'Configure WeCom notifications by setting a server and recipients.',
   // WeCom > User ID
   USER_ID: 'ID de usuario',
   TOUSER_LIST: 'Added User IDs',
@@ -111,7 +127,8 @@ module.exports = {
   TOPARTY_LIST: 'Added Department IDs',
   EMPTY_TOPARTY_DESC: 'No department ID is added.',
   ENTER_TOPARTY_TIP: 'Please enter a department ID.',
-  TOPARTY_EXISTS: 'The department ID already exists. Please enter another department ID.',
+  TOPARTY_EXISTS:
+    'The department ID already exists. Please enter another department ID.',
   MAX_TOPARTY_COUNT: 'You can add a maximum of {count} departments.',
   // WeCom > Tag ID
   TAG_ID: 'ID de etiqueta',
@@ -133,7 +150,10 @@ module.exports = {
   CHANNEL_EXISTS: 'The channel already exists. Please add another channel.',
   CHANNEL_SETTINGS_DESC: 'Please add a channel.',
   MAX_CHANNEL_COUNT: 'You can add a maximum of {count} channels.',
-  SLACK_DESC: 'Configure Slack notifications by setting a server and Slack channels.',
+  SLACK_DESC:
+    'Configure Slack notifications by setting a server and Slack channels.',
+  OPEN_TERMINAL_DESC:
+    'Please ensure that the websocket proxy configuration on your proxy server is correct.',
   // Webhook
   WEBHOOK_TITLE: 'Webhook',
   WEBHOOK_URL_DESC: 'Please enter a webhook URL.',
@@ -143,5 +163,5 @@ module.exports = {
   BASIC_AUTH: 'Basic authentication',
   NO_AUTH: 'No authentication',
   BEARER_TOKEN: 'Bearer token',
-  TOKEN: 'Token'
-};
+  TOKEN: 'Token',
+}
