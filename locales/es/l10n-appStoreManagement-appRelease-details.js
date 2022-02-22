@@ -22,7 +22,7 @@ module.exports = {
   // App Information
   INTRODUCTION: 'Introducción',
   SERVICE_PROVIDER_WEBSITE: 'Sitio Web del Proveedor de Servicio',
-  APP_DESCRIPTION: 'Descripción de la aplicación',
+  APP_DESCRIPTION: 'App Description',
   // Documentation
   DOCUMENTATION: 'Documentación',
   NO_DOCUMENT_FOUND: 'No se encontró documentación',
