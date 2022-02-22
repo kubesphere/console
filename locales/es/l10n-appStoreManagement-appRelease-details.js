@@ -17,11 +17,11 @@
  */
 module.exports = {
   // Banner
-  APP_DETAILS_DESC: 'View details of the app to be released.',
+  APP_DETAILS_DESC: 'Ver detalles de la aplicación a ser lanzada.',
   // Description
   // App Information
-  INTRODUCTION: 'Introduction',
-  SERVICE_PROVIDER_WEBSITE: 'Service provider website',
+  INTRODUCTION: 'Introducción',
+  SERVICE_PROVIDER_WEBSITE: 'Sitio Web del Proveedor de Servicio',
   APP_DESCRIPTION: 'App Description',
   // Documentation
   DOCUMENTATION: 'Documentation',
