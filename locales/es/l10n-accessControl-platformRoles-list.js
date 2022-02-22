@@ -17,11 +17,11 @@
  */
 module.exports = {
   // Banner
-  PLATFORM_ROLE_PL: 'Platform Roles',
+  PLATFORM_ROLE_PL: 'Roles de Plataforma',
   // List
-  PLATFORM_ROLE_EMPTY_DESC: 'Please create a platform role.',
-  ROLE_USERS_MANAGER: 'Administrador de usuarios en la plataforma que administra a todos los usuarios.',
-  ROLE_WORKSPACES_MANAGER: 'Administrador del espacio de trabajo en la plataforma que administra todos los espacios de trabajo en la plataforma.',
+  PLATFORM_ROLE_EMPTY_DESC: 'Por favor, cree un rol de plataforma.',
+  ROLE_USERS_MANAGER: 'Maneje todos los usuarios en la plataforma KubeSphere.',
+  ROLE_WORKSPACES_MANAGER: 'Maneje todos los espacios de trabajo en la plataforma KubeSphere.',
   ROLE_PLATFORM_ADMIN: 'Administrador de la plataforma que puede administrar todos los recursos en la plataforma.',
   ROLE_PLATFORM_REGULAR: 'Usuario normal en la plataforma que no tiene acceso a ningún recurso antes de unirse al espacio de trabajo o clúster.',
   CREATION_TIME_TCAP: 'Fecha de creación',
