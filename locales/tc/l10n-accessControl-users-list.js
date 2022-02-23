@@ -17,7 +17,8 @@
  */
 module.exports = {
   // Banner
-  USER_DESC: '系統管理員用此功能模組管理帳號，如創建、更新、讀取、刪除帳號等，同時還能關聯每個帳號的角色；用戶用帳號名稱或郵件地址登入 KubeSphere 平台。',
+  USER_DESC:
+    '系統管理員用此功能模組管理帳號，如創建、更新、讀取、刪除帳號等，同時還能關聯每個帳號的角色；用戶用帳號名稱或郵件地址登入 KubeSphere 平台。',
   USER_PL: '用戶',
   // List
   NOT_LOGIN_YET: '尚未登入',
@@ -28,10 +29,12 @@ module.exports = {
   USER_DISABLED: '已禁用',
   LAST_LOGIN: '最近登入',
   // List > Create
-  USERNAME_DESC: '最長 32 個字元，只能包含小寫字母、數字、點及隔符號("-")，且必須以小寫字母或數字開頭及結尾',
-  PASSWORD_DESC: '密碼必須包含數字和大小寫字母，長度為 6 ~ 64 位',
-  PASSWORD_INVALID_DESC: '密碼必須包含數字和大小寫字母，長度為 6 ~ 64 位',
-  PLATFORM_ROLE_DESC: '角色類型根據權限範圍分為集群和項目兩類，目前角色的授權範圍為整個集群.',
+  USERNAME_DESC:
+    '最長 32 個字元，只能包含小寫字母、數字、點及隔符號("-")，且必須以小寫字母或數字開頭及結尾',
+  PASSWORD_DESC: '密碼必須包含數字和大小寫字母，長度為 8 ~ 64 位',
+  PASSWORD_INVALID_DESC: '密碼必須包含數字和大小寫字母，長度為 8 ~ 64 位',
+  PLATFORM_ROLE_DESC:
+    '角色類型根據權限範圍分為集群和項目兩類，目前角色的授權範圍為整個集群.',
   USER_SETTING_EMAIL_DESC: '郵箱可作為登入帳號',
   USERNAME_EXISTS: '用戶名稱已存在',
   USERNAME_EMPTY_DESC: '請輸入用戶名稱',
@@ -45,5 +48,5 @@ module.exports = {
   // List > Edit
   EDIT_USER: '編輯用戶',
   // List > Delete
-  USER_LOW: 'user'
-};
+  USER_LOW: 'user',
+}

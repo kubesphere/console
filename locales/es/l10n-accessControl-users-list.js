@@ -17,7 +17,8 @@
  */
 module.exports = {
   // Banner
-  USER_DESC: 'Este módulo permite al administrador del sistema administrar cuentas, como crear / actualizar / leer / eliminar una cuenta. El administrador también puedes administrar el rol de cada cuenta. Los usuarios pueden iniciar sesión en la plataforma a través de su nombre de cuenta o dirección de correo electrónico.',
+  USER_DESC:
+    'Este módulo permite al administrador del sistema administrar cuentas, como crear / actualizar / leer / eliminar una cuenta. El administrador también puedes administrar el rol de cada cuenta. Los usuarios pueden iniciar sesión en la plataforma a través de su nombre de cuenta o dirección de correo electrónico.',
   USER_PL: 'Usuarios',
   // List
   NOT_LOGIN_YET: 'Not Logged in yet',
@@ -28,11 +29,16 @@ module.exports = {
   USER_DISABLED: 'Deshabilitado',
   LAST_LOGIN: 'Última hora de inicio de sesión',
   // List > Create
-  USERNAME_DESC: 'Solo puede contener letras minúsculas, números ,puntos y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de carácteres se establece en 32.',
-  PASSWORD_DESC: 'La contraseña debe contener números y letras y debe tener entre 6 y 64 caracteres.',
-  PASSWORD_INVALID_DESC: 'La contraseña debe contener números y letras y debe tener entre 6 y 64 caracteres.',
-  PLATFORM_ROLE_DESC: 'Los tipos de roles se clasifican en clúster y proyecto. La función de tipo de clúster se utiliza para administrar el clúster.',
-  USER_SETTING_EMAIL_DESC: 'El correo electrónico se utiliza para iniciar sesión.',
+  USERNAME_DESC:
+    'Solo puede contener letras minúsculas, números ,puntos y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de carácteres se establece en 32.',
+  PASSWORD_DESC:
+    'La contraseña debe contener números y letras y debe tener entre 8 y 64 caracteres.',
+  PASSWORD_INVALID_DESC:
+    'La contraseña debe contener números y letras y debe tener entre 8 y 64 caracteres.',
+  PLATFORM_ROLE_DESC:
+    'Los tipos de roles se clasifican en clúster y proyecto. La función de tipo de clúster se utiliza para administrar el clúster.',
+  USER_SETTING_EMAIL_DESC:
+    'El correo electrónico se utiliza para iniciar sesión.',
   USERNAME_EXISTS: 'El ombre de usuario ya existe',
   USERNAME_EMPTY_DESC: 'Por favor introduce el nombre de usuario',
   PLATFORM_ROLE: 'Platform Role',
@@ -45,5 +51,5 @@ module.exports = {
   // List > Edit
   EDIT_USER: 'editar usuario',
   // List > Delete
-  USER_LOW: 'user'
-};
+  USER_LOW: 'user',
+}
