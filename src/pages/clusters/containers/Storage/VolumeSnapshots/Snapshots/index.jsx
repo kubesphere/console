@@ -49,7 +49,17 @@ export default class Snapshots extends React.Component {
     })
   }
 
-  showCreate = () => {}
+  showCreate = async () => {
+    const { trigger, store, match } = this.props
+    const { cluster, namespace } = match.params
+
+    trigger('create.snapshot', {
+      store,
+      module: store.module,
+      cluster,
+      namespace,
+    })
+  }
 
   get itemActions() {
     const { trigger, routing, name } = this.props

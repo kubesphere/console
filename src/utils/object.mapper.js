@@ -1029,6 +1029,7 @@ const VolumeSnapshotMapper = detail => {
       : 'updating',
     namespace,
     snapshotSourceName,
+    _originData: getOriginData(detail),
   }
 }
 

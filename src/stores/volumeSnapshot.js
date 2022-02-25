@@ -27,4 +27,25 @@ export default class VolumeSnapshotStore extends Base {
   get apiVersion() {
     return 'apis/snapshot.storage.k8s.io/v1beta1'
   }
+
+  async createSnapshot({ name, type, sourceName, cluster, namespace }) {
+    const path = this.getListUrl({ cluster, namespace })
+
+    const params = {
+      apiVersion: 'snapshot.storage.k8s.io/v1beta1',
+      kind: this.resourceKind,
+      metadata: {
+        name,
+      },
+      spec: {
+        volumeSnapshotClassName: type,
+        source: {
+          kind: this.resourceKind,
+          persistentVolumeClaimName: sourceName,
+        },
+      },
+    }
+
+    await this.submitting(request.post(path, params))
+  }
 }

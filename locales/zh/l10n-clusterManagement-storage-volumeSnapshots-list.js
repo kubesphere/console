@@ -27,6 +27,9 @@ module.exports = {
   WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: 'What is volume snapshot content ?',
   WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A:
     'VolumeSnapshotContent 是一种快照，从管理员已提供的集群中的卷获取。就像持久卷是集群的资源一样，它也是集群中的资源',
+  SELECT_A_VOLUME_DESC: 'Select a Volume to create a snapshot.',
+  SELECT_VOLUME_SNAPSHOT_CLASS_DESC:
+    'Select a snapshot class to create a snapshot of a specific type.',
 
   // List
   VOLUME_SNAPSHOT_STATUS_CREATING: '创建中',
@@ -39,4 +42,8 @@ module.exports = {
   CREATE_STATUS_DELETING: '删除中',
   // List > Delete
   VOLUME_SNAPSHOT_LOW: '存储卷快照',
+
+  // List > Create
+  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT:
+    '该存储卷所属存储类型不允许创建快照，请重新选择。',
 }
