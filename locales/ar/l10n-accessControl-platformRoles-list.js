@@ -43,8 +43,8 @@ module.exports = {
   USERS_VIEW_DESC: 'عرض المستخدمين.',
   // List > Create > Edit Permissions > App Management
   APP_TEMPLATES_VIEW_DESC: 'عرض متجر تطبيقات المنصة.',
-  APP_TEMPLATES_MANAGEMENT_DESC: 'Manage the platform App Store and life cycles of cloud-native applications.',
+  APP_TEMPLATES_MANAGEMENT_DESC: 'إدارة متجر تطبيقات المنصة ودورات حياة التطبيقات السحابية الأصلية.',
   // List > Create > Edit Permissions > Platform Settings
-  PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
-  PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.'
+  PLATFORM_SETTINGS_MANAGEMENT: 'إدارة إعدادات المنصة',
+  PLATFORM_SETTINGS_MANAGEMENT_DESC: 'عرض وتعديل إعدادات منصة KubeSphere.'
 };
