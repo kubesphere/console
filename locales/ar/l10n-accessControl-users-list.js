@@ -28,23 +28,20 @@ module.exports = {
   USER_DISABLED: 'معطَّل',
   LAST_LOGIN: 'آخر تسجيل دخول',
   // List > Create
-  USERNAME_DESC: 'The username can contain only lowercase letters, numbers, hyphens (-), and dots (.), and must start and end with a lowercase letter or number. The maximum length is 32 characters.',
-  PASSWORD_DESC: 'The password must contain at least one number, one lowercase letter, and one uppercase letter. The length must be 8 to 64 characters.',
-  PASSWORD_INVALID_DESC: 'Invalid password. The password must contain at least one number, one lowercase letter, and one uppercase letter. The length must be 8 to 64 characters.',
-  PLATFORM_ROLE_DESC: 'Set the role of the user on the KubeSphere platform.',
-  USER_SETTING_EMAIL_DESC:
-    'The email address can be used to log in to the KubeSphere web console.',
-  USERNAME_EXISTS:
-    'The username already exists. Please enter another username.',
-  USERNAME_EMPTY_DESC: 'Please enter a username.',
-  PLATFORM_ROLE: 'Platform Role',
-  CREATE_USER: 'Create User',
-  EMAIL: 'Email',
-  EMAIL_EXISTS:
-    'The email address already exists. Please enter another email address.',
-  USERNAME_INVALID: 'Invalid username. {message}',
-  USERNAME: 'Username',
-  PASSWORD: 'Password',
+  USERNAME_DESC: 'اسم المستخدم يمكن أن يحتوي فقط على أحرف صغيرة وأرقام ووصلات (-) ونقاط (.) ، ويجب أن تبدأ وتنتهي بحرف صغير أو عدد. أقصى طول هو 32 حرفاً.',
+  PASSWORD_DESC: 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل، وحرف صغير واحد، وحرف كبير واحد. يجب أن يكون الطول 8 إلى 64 حرفاً.',
+  PASSWORD_INVALID_DESC: 'كلمة المرور غير صالحة. يجب أن تحتوي كلمة المرور على رقم واحد على الأقل، وحرف صغير واحد، وحرف كبير واحد. يجب أن يكون الطول 8 إلى 64 حرفاً.',
+  PLATFORM_ROLE_DESC: 'تعيين دور المستخدم على منصة KubeSphere.',
+  USER_SETTING_EMAIL_DESC: 'يمكن استخدام عنوان البريد الإلكتروني لتسجيل الدخول إلى وحدة تحكم KubeSphere.',
+  USERNAME_EXISTS: 'اسم المستخدم موجود بالفعل. الرجاء إدخال اسم مستخدم آخر.',
+  USERNAME_EMPTY_DESC: 'يُرجى إدخال اسم مستخدم.',
+  PLATFORM_ROLE: 'دور المنصة',
+  CREATE_USER: 'إنشاء مستخدم',
+  EMAIL: 'البريد الإلكتروني',
+  EMAIL_EXISTS: 'عنوان البريد الإلكتروني موجود بالفعل. الرجاء إدخال عنوان بريد إلكتروني آخر.',
+  USERNAME_INVALID: 'اسم المستخدم غير صالح. {message}',
+  USERNAME: 'اسم المستخدم',
+  PASSWORD: 'كلمة المرور',
   // List > Edit
   EDIT_USER: 'تعديل المستخدم',
   // List > Delete
