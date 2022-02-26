@@ -17,20 +17,20 @@
  */
 module.exports = {
   // Banner
-  PLATFORM_ROLE_PL: 'Platform Roles',
+  PLATFORM_ROLE_PL: 'أدوار المنصة',
   // List
-  PLATFORM_ROLE_EMPTY_DESC: 'Please create a platform role.',
-  ROLE_USERS_MANAGER: 'Manage all users on the KubeSphere platform.',
-  ROLE_WORKSPACES_MANAGER: 'Manage all workspaces on the KubeSphere platform.',
-  ROLE_PLATFORM_ADMIN: 'Manage all resources on the KubeSphere platform.',
-  ROLE_PLATFORM_REGULAR: 'Cannot access any resources before joining a workspace.',
-  CREATION_TIME_TCAP: 'Creation Time',
+  PLATFORM_ROLE_EMPTY_DESC: 'الرجاء إنشاء دور منصة.',
+  ROLE_USERS_MANAGER: 'إدارة جميع المستخدمين على منصة KubeSphere.',
+  ROLE_WORKSPACES_MANAGER: 'إدارة جميع مساحات العمل على منصة KubeSphere.',
+  ROLE_PLATFORM_ADMIN: 'إدارة جميع الموارد على منصة KubeSphere.',
+  ROLE_PLATFORM_REGULAR: 'لا يمكن الوصول إلى أي موارد قبل الانضمام إلى مساحة العمل.',
+  CREATION_TIME_TCAP: 'وقت الإنشاء',
   // List > Create
-  CREATE_PLATFORM_ROLE: 'Create Platform Role',
+  CREATE_PLATFORM_ROLE: 'إنشاء دور منصة',
   // List > Create > Edit Permissions > Cluster Management
-  CLUSTERS_MANAGEMENT: 'Cluster Management',
-  CLUSTERS_VIEW: 'Cluster Viewing',
-  CLUSTERS_VIEW_DESC: 'View all clusters and cluster resources.',
+  CLUSTERS_MANAGEMENT: 'إدارة المجموعة',
+  CLUSTERS_VIEW: 'عرض المجموعة',
+  CLUSTERS_VIEW_DESC: 'عرض جميع المجموعات وموارد المجموعات.',
   CLUSTERS_MANAGEMENT_DESC: 'Create clusters, delete clusters, and manage resources in all clusters.',
   // List > Create > Edit Permissions > Access Control
   USERS_MANAGEMENT: 'User Management',
