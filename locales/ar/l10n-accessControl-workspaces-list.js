@@ -17,17 +17,17 @@
  */
 module.exports = {
   // Banner
-  WORKSPACE_PL: 'Workspaces',
-  WORKSPACE_DESC: 'A workspace is an isolated logical unit used to organize projects and DevOps projects, manage resource access, and share information within your team.',
+  WORKSPACE_PL: 'مساحات العمل',
+  WORKSPACE_DESC: 'مساحة العمل هي وحدة منطقية منعزلة تستخدم لتنظيم المشاريع ومشاريع DevOps وإدارة الوصول إلى الموارد ومشاركة المعلومات داخل فريقك.',
   // List
-  CLUSTER_PL: 'Clusters',
+  CLUSTER_PL: 'المجموعات',
   // List > Create > Basic Information
-  CREATE_WORKSPACE: 'Create Workspace',
-  WORKSPACE_NAME_EMPTY_DESC: 'Please enter a workspace name.',
-  WORKSPACE_CREATE_DESC: 'Set the basic information about the workspace.',
+  CREATE_WORKSPACE: 'إنشاء مساحة عمل',
+  WORKSPACE_NAME_EMPTY_DESC: 'الرجاء إدخال اسم مساحة عمل.',
+  WORKSPACE_CREATE_DESC: 'عيّن المعلومات الأساسية حول مساحة العمل.',
   ADMINISTRATOR: 'Administrator',
   // List > Create > Cluster Settings
-  SELECT_CLUSTERS_DESC: 'Select clusters to be used in the workspace.',
+  SELECT_CLUSTERS_DESC: 'حدد المجموعات التي سيتم استخدامها في مساحة العمل.',
   NO_CLUSTER_AVAILABLE_DESC: 'No cluster is available. After the workspace is created, please contact the platform or cluster administrator to authorize a cluster to the workspace.',
   WORKSPACE_NO_CLUSTER_TIP: 'Please contact the platform or cluster administrator to authorize a cluster to the workspace.',
   AVAILABLE_CLUSTERS: 'Available Clusters',
