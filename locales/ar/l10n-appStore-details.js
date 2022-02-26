@@ -17,11 +17,11 @@
  */
 module.exports = {
   // Title
-  BACK: 'Back',
+  BACK: 'عودة',
   // Description
   // Install > Deployment Agreement
-  AGREE: 'Agree',
-  APP_DEPLOY_AGREEMENT: 'Deployment Agreement',
+  AGREE: 'موافقة',
+  APP_DEPLOY_AGREEMENT: 'اتفاقية ال Deployment',
   APP_DEPLOY_AGREEMENT_DESC_1: 'You must abide by the open-source agreement of the application.',
   APP_DEPLOY_AGREEMENT_DESC_2: 'Any consequences arising from your deployment of the application shall be borne by you. For support services, please contact the developer.',
   DO_NOT_REMIND_AGAIN: 'Do not remind me again',
