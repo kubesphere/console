@@ -28,11 +28,11 @@ module.exports = {
   ADMINISTRATOR: 'Administrator',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'حدد المجموعات التي سيتم استخدامها في مساحة العمل.',
-  NO_CLUSTER_AVAILABLE_DESC: 'No cluster is available. After the workspace is created, please contact the platform or cluster administrator to authorize a cluster to the workspace.',
-  WORKSPACE_NO_CLUSTER_TIP: 'Please contact the platform or cluster administrator to authorize a cluster to the workspace.',
-  AVAILABLE_CLUSTERS: 'Available Clusters',
-  CLUSTER_SETTINGS: 'Cluster Settings',
-  SELECT_HOST_CLUSTER_WARNING: 'The current system is a multi-cluster system. Please avoid creating resources in the host cluster if possible. Excessive loads in the host cluster will decrease the stability of the multi-cluster system.',
+  NO_CLUSTER_AVAILABLE_DESC: 'لا توجد مجموعة متاحة. بعد إنشاء مساحة العمل، يرجى الاتصال بالمنصة أو مدير المجموعة لتفويض مجموعة إلى مساحة العمل.',
+  WORKSPACE_NO_CLUSTER_TIP: 'الرجاء الاتصال بمسؤول المنصة أو المجموعة لتفويض مجموعة إلى مساحة العمل.',
+  AVAILABLE_CLUSTERS: 'المجموعات المتاحة',
+  CLUSTER_SETTINGS: 'إعدادات المجموعة',
+  SELECT_HOST_CLUSTER_WARNING: 'النظام الحالي هو نظام متعدد المجموعات. يرجى تجنب إنشاء موارد في المجموعة المضيفة إن أمكن. ومن شأن الحمولات المفرطة في المجموعة المضيفة أن تقلل من استقرار النظام المتعدد المجموعات.',
   // List > Edit Information
   // List > Delete
   DELETE_WORKSPACE: 'حذف مساحة العمل',
