@@ -31,7 +31,7 @@ module.exports = {
   CLUSTERS_MANAGEMENT: 'إدارة المجموعة',
   CLUSTERS_VIEW: 'عرض المجموعة',
   CLUSTERS_VIEW_DESC: 'عرض جميع المجموعات وموارد المجموعات.',
-  CLUSTERS_MANAGEMENT_DESC: 'إنشاء مجموعات، حذف المجموعات، وإدارة الموارد في جميع المجموعات.',
+  CLUSTERS_MANAGEMENT_DESC: 'Create clusters, delete clusters, and manage resources in all clusters.',
   // List > Create > Edit Permissions > Access Control
   USERS_MANAGEMENT: 'إدارة المستخدم',
   USERS_VIEW: 'عرض المستخدم',
