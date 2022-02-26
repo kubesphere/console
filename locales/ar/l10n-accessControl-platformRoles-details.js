@@ -17,8 +17,8 @@
  */
 module.exports = {
   // More > Edit Permissions
-  DESELECT_RESOURCE_FIRST: 'Please deselect {resource} first.',
+  DESELECT_RESOURCE_FIRST: 'الرجاء إلغاء اختيار {resource} أولاً.',
   // Permissions
   // Authorized Users
-  NO_AUTHORIZED_USER_DESC: 'This role has not been assigned to any user.'
+  NO_AUTHORIZED_USER_DESC: 'لم يتم تعيين هذا الدور لأي مستخدم.'
 };
