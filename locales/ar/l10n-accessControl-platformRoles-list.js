@@ -31,7 +31,7 @@ module.exports = {
   CLUSTERS_MANAGEMENT: 'إدارة المجموعة',
   CLUSTERS_VIEW: 'عرض المجموعة',
   CLUSTERS_VIEW_DESC: 'عرض جميع المجموعات وموارد المجموعات.',
-  CLUSTERS_MANAGEMENT_DESC: 'Create clusters, delete clusters, and manage resources in all clusters.',
+  CLUSTERS_MANAGEMENT_DESC: 'إنشاء مجموعات، حذف المجموعات، وإدارة الموارد في جميع المجموعات.',
   // List > Create > Edit Permissions > Access Control
   USERS_MANAGEMENT: 'إدارة المستخدم',
   USERS_VIEW: 'عرض المستخدم',
@@ -43,7 +43,7 @@ module.exports = {
   USERS_VIEW_DESC: 'عرض المستخدمين.',
   // List > Create > Edit Permissions > App Management
   APP_TEMPLATES_VIEW_DESC: 'عرض متجر تطبيقات المنصة.',
-  APP_TEMPLATES_MANAGEMENT_DESC: 'إدارة متجر تطبيقات المنصة ودورات حياة التطبيقات السحابية الأصلية.',
+  APP_TEMPLATES_MANAGEMENT_DESC: 'Manage the platform App Store and life cycles of cloud-native applications.',
   // List > Create > Edit Permissions > Platform Settings
   PLATFORM_SETTINGS_MANAGEMENT: 'إدارة إعدادات المنصة',
   PLATFORM_SETTINGS_MANAGEMENT_DESC: 'عرض وتعديل إعدادات منصة KubeSphere.'
