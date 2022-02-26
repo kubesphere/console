@@ -16,10 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  KS_DESCRIPTION: 'KubeSphere is an open-source project aiming to provide enterprise-grade multi-tenant container platform on top of Kubernetes, the current mainstream container orchestration platform. It provides easy-to-use interface and wizard-style operations, reducing the learning curve and operating cost of Kubernetes in terms of the daily work of development, test and maintenance.',
-  REPS_ADDRESS: 'GitHub',
+  KS_DESCRIPTION: 'KubeSphere هو مشروع مفتوح المصدر يهدف إلى توفير منصة حاويات متعددة المستأجرين من الدرجة المؤسسية فوق Kubernetes المنصة السائدة حاليا لتنسيق الحاويات. KubeSphere يوفر واجهة سهلة الاستخدام وعمليات بأسلوب المعالج, تقليل منحنى التعلم وتكلفة التشغيل لـ Kubernetes من حيث العمل اليومي للتطوير والاختبار والصيانة.',
+  REPS_ADDRESS: 'Github',
   ISSUE_FEEDBACK: 'Feedback',
-  PART_IN_DISCUSSION: 'Discussion',
-  CODE_CONTRIBUTE: 'Contribution',
+  PART_IN_DISCUSSION: 'مناقشة',
+  CODE_CONTRIBUTE: 'مساهمة',
   GITHUB_STAR: 'Star'
 };
