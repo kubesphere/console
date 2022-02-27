@@ -18,7 +18,7 @@
 module.exports = {
   // Banner
   // List
-  CRONJOB_EMPTY_DESC: 'Please create a cronjob.',
+  CRONJOB_EMPTY_DESC: 'الرجاء إنشاء cronjob.',
   // List > Create > Basic Information
   EVERY_DAY: '0 0 * * * (every day)',
   EVERY_HOUR: '0 * * * * (every hour)',
