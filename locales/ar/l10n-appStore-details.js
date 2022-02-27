@@ -23,10 +23,10 @@ module.exports = {
   AGREE: 'موافقة',
   APP_DEPLOY_AGREEMENT: 'اتفاقية ال Deployment',
   APP_DEPLOY_AGREEMENT_DESC_1: 'يتوجب عليك الالتزام باتفاق المصدر المفتوح للتطبيق.',
-  APP_DEPLOY_AGREEMENT_DESC_2: 'Any consequences arising from your deployment of the application shall be borne by you. For support services, please contact the developer.',
-  DO_NOT_REMIND_AGAIN: 'Do not remind me again',
+  APP_DEPLOY_AGREEMENT_DESC_2: 'أي عواقب ناجمة عن deployment للتطبيق سوف تتحملها. للحصول على خدمات الدعم، يرجى الاتصال بالمطور.',
+  DO_NOT_REMIND_AGAIN: 'لاتذكرني مرة أخرى',
   // Install > Basic Information
-  LOCATION: 'Location',
+  LOCATION: 'الموقع',
   CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 53 characters.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'The app cannot be deployed in a multi-cluster project.',
   LATEST_VERSION_SCAP: 'Latest version',
