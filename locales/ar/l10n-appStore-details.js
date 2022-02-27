@@ -21,17 +21,17 @@ module.exports = {
   // Description
   // Install > Deployment Agreement
   AGREE: 'موافقة',
-  APP_DEPLOY_AGREEMENT: 'اتفاقية ال Deployment',
+  APP_DEPLOY_AGREEMENT: 'اتفاقية النشر',
   APP_DEPLOY_AGREEMENT_DESC_1: 'يتوجب عليك الالتزام باتفاق المصدر المفتوح للتطبيق.',
-  APP_DEPLOY_AGREEMENT_DESC_2: 'أي عواقب ناجمة عن deployment للتطبيق سوف تتحملها. للحصول على خدمات الدعم، يرجى الاتصال بالمطور.',
+  APP_DEPLOY_AGREEMENT_DESC_2: 'أي عواقب ناجمة عن نشرك للتطبيق ستتحملها من قبلك. للحصول على خدمات الدعم، يرجى الاتصال بالمطور.',
   DO_NOT_REMIND_AGAIN: 'لاتذكرني مرة أخرى',
   // Install > Basic Information
   LOCATION: 'الموقع',
-  CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 53 characters.',
-  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'The app cannot be deployed in a multi-cluster project.',
-  LATEST_VERSION_SCAP: 'Latest version',
-  WORKSPACE_EMPTY_DESC: 'Please select a workspace',
-  VERSION_EMPTY_DESC: 'Please select a version.',
+  CLUSTER_NAME_DESC: 'يمكن أن يحتوي الاسم فقط على أحرف صغيرة وأرقام ووصلات (-)، يجب أن يبدأ بحرف صغير، ويجب أن ينتهي بحرف صغير أو عدد. أقصى طول هو 53 حرفاً.',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'لا يمكن نشر التطبيق في مشروع متعدد المجموعات.',
+  LATEST_VERSION_SCAP: 'أحدث إصدار',
+  WORKSPACE_EMPTY_DESC: 'الرجاء تحديد مساحة عمل',
+  VERSION_EMPTY_DESC: 'الرجاء تحديد إصدار.',
   // Install > App Settings
   HELM_APP_SCHEMA_FORM_TIP: 'يمكنك تعديل إعدادات التطبيق في واجهة المستخدم أو ملف YAML. الإعدادات الموجودة في واجهة المستخدم (GUI) وفي ملف YAML مستقلة عن بعضها البعض.',
   DEPLOYED_SUCCESSFUL: 'تم التثبيت بنجاح.',
