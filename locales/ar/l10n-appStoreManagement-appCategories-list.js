@@ -32,5 +32,5 @@ module.exports = {
   // List > Change Category
   CHANGED_SUCCESSFULLY: 'تم التغيير بنجاح.',
   CHANGE_CATEGORY: 'تغيير الفئة',
-  CHANGE_CATEGORY_DESC: 'تحدد فئة التطبيق تصنيف التطبيق في متجر التطبيقات.'
+  CHANGE_CATEGORY_DESC: 'The app category determines the classification of the app in the App Store.'
 };
