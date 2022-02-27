@@ -37,7 +37,7 @@ export default class BaseStore {
   isSubmitting = false
 
   @observable
-  supportPv = false
+  ksVersion = 3.1
 
   constructor(module) {
     this.module = module
@@ -274,21 +274,31 @@ export default class BaseStore {
     window.onunhandledrejection(res)
   }
 
-  async checkSupportPv(params) {
+  async getKsVersion(params) {
     let result
-    if (globals.ksConfig.multicluster) {
-      result = await request.get(`/kapis/clusters/${params.cluster}/version`)
+    let ksVersion
+    const configVersion = get(
+      globals.clusterConfig,
+      `${params.cluster}.ksVersion`,
+      ''
+    )
+    if (configVersion !== '') {
+      ksVersion = configVersion.replace(/[^\d.]/g, '')
     } else {
-      result = await request.get(`/kapis/version`)
+      if (globals.ksConfig.multicluster) {
+        result = await request.get(`/kapis/clusters/${params.cluster}/version`)
+      } else {
+        result = await request.get(`/kapis/version`)
+      }
+      ksVersion = result.gitVersion.replace(/[^\d.]/g, '')
     }
-    const ksVersion = result.gitVersion.replace(/[^\d.]/g, '')
     const version = Number(
       ksVersion
         .split('.')
         .slice(0, 2)
         .join('.')
     )
-    this.supportPv = version >= 3.2
-    return this.supportPv
+    this.ksVersion = version
+    return version
   }
 }
