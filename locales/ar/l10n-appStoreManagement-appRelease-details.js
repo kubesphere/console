@@ -17,25 +17,25 @@
  */
 module.exports = {
   // Banner
-  APP_DETAILS_DESC: 'View details of the app to be released.',
+  APP_DETAILS_DESC: 'عرض تفاصيل التطبيق المراد إصداره.',
   // Description
   // App Information
-  INTRODUCTION: 'Introduction',
-  SERVICE_PROVIDER_WEBSITE: 'Service provider website',
-  APP_DESCRIPTION: 'App Description',
+  INTRODUCTION: 'المقدمة',
+  SERVICE_PROVIDER_WEBSITE: 'موقع موفر الخدمة',
+  APP_DESCRIPTION: 'وصف التطبيق',
   // Documentation
-  DOCUMENTATION: 'Documentation',
-  NO_DOCUMENT_FOUND: 'No Documentation Found',
+  DOCUMENTATION: 'الوثائق',
+  NO_DOCUMENT_FOUND: 'لم يتم العثور على أي وثائق',
   // Chart Files
   // Update Log
-  UPDATE_LOG: 'Update Log',
-  NO_UPDATE_LOG_DESC: 'No update log is found.',
+  UPDATE_LOG: 'سجل التحديث',
+  NO_UPDATE_LOG_DESC: 'لم يتم العثور على سجل التحديث.',
   // Reject
-  REJECT: 'Reject',
-  REJECT_REASON_DESC: 'Enter reasons for rejection of the app review.',
-  REJECT_REASON_TIP: 'Please enter at least one reason for rejection.',
-  REJECT_SUCCESSFUL: 'Rejected successfully.',
+  REJECT: 'رفض',
+  REJECT_REASON_DESC: 'أدخل أسباب رفض مراجعة التطبيق.',
+  REJECT_REASON_TIP: 'الرجاء إدخال سبب واحد على الأقل للرفض.',
+  REJECT_SUCCESSFUL: 'رُفض بنجاح.',
   // Release
-  RELEASE: 'Release',
-  RELEASE_SUCCESSFUL: 'Released successfully.'
+  RELEASE: 'اصدار',
+  RELEASE_SUCCESSFUL: 'تم الإصدار بنجاح.'
 };
