@@ -17,8 +17,8 @@
  */
 module.exports = {
   // Banner
-  APP_RELEASE: 'App Release',
-  APP_RELEASE_DESC: 'Manages apps to be released to the App Store. You can view app details and approve or reject app releases.',
+  APP_RELEASE: 'إصدار التطبيق',
+  APP_RELEASE_DESC: 'إدارة التطبيقات التي سيتم إصدارها إلى متجر التطبيق. يمكنك عرض تفاصيل التطبيق والموافقة على إصدارات التطبيق أو رفضها.',
   // Unreleased
   UNRELEASED: 'Unreleased',
   APP_REVIEW_EMPTY_DESC: 'Please create an app template in a workspace and submit the app template for release.',
