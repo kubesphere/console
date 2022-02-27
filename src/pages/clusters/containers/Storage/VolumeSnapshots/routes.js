@@ -25,13 +25,13 @@ import Content from './SnapshotContent'
 const PATH = '/clusters/:cluster/volume-snapshots'
 export default [
   {
-    path: `${PATH}/Snapshots`,
+    path: `${PATH}/snapshots`,
     title: 'Volume Snapshot',
     component: Snapshots,
     exact: true,
   },
   {
-    path: `${PATH}/Snapshot-Content`,
+    path: `${PATH}/snapshot-content`,
     title: 'Volume Snapshot Content',
     component: Content,
     exact: true,

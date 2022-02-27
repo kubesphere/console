@@ -21,15 +21,13 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import Banner from 'components/Cards/Banner'
 import { renderRoutes } from 'utils/router.config'
+import VolumeStore from 'stores/volume'
 import routes from './routes'
 
 @inject('rootStore')
 @observer
 export default class VolumesSnapshots extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.pv = new PVStore()
-  // }
+  store = new VolumeStore()
 
   get tips() {
     return [
@@ -63,16 +61,16 @@ export default class VolumesSnapshots extends React.Component {
   }
 
   componentDidMount() {
-    // this.pv.checkSupportPv(this.props.match.params)
+    this.store.getKsVersion(this.props.match.params)
   }
 
   renderBanner() {
-    // if (this.pv.supportPv) {
-    return (
-      <Banner {...this.bannerProps} tips={this.tips} routes={this.routes} />
-    )
-    // }
-    // return <Banner {...this.bannerProps} tips={this.tips} />
+    if (this.store.ksVersion >= 3.3) {
+      return (
+        <Banner {...this.bannerProps} tips={this.tips} routes={this.routes} />
+      )
+    }
+    return <Banner {...this.bannerProps} />
   }
 
   render() {
