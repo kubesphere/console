@@ -20,6 +20,7 @@ import { omit, isArray, get, set, isEmpty, cloneDeep } from 'lodash'
 import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
 import { safeParseJSON } from 'utils'
+import cookie from 'utils/cookie'
 import BaseStore from '../devops'
 
 const TABLE_LIMIT = 10
@@ -574,5 +575,35 @@ export default class PipelineStore extends BaseStore {
         limit: TABLE_LIMIT,
       }
     )
+  }
+
+  async getPipelineTemplateList() {
+    const lang = cookie('lang') === 'zh' ? 'ZH' : 'EN'
+
+    const data = await request.get(`${this.getBaseUrl()}clustertemplates`)
+    const { items = [] } = data
+
+    const templateList = items.map(item => {
+      const template = {}
+
+      template.type = item.metadata.name
+      template.desc =
+        item.metadata.annotations[`devops.kubesphere.io/description${lang}`]
+      template.title =
+        item.metadata.annotations[`devops.kubesphere.io/displayName${lang}`]
+
+      return template
+    })
+
+    return templateList
+  }
+
+  async getTempleJenkins(clustertemplate) {
+    const data = await request.post(
+      `${this.getBaseUrl()}clustertemplates/${clustertemplate}/render`,
+      {}
+    )
+
+    return data?.spec.template ?? ''
   }
 }
