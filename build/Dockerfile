@@ -14,7 +14,7 @@ RUN apk add --no-cache --virtual .build-deps ca-certificates python2 python3 py3
 RUN npm install yarn@${YARN_VERSION}
 
 # If you have trouble downloading the yarn binary, try the following:
-# RUN yarn config set registry https://registry.npm.taobao.org
+# RUN yarn config set registry https://registry.npmmirror.com
 
 RUN yarn && yarn build
 
