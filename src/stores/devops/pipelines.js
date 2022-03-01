@@ -585,12 +585,15 @@ export default class PipelineStore extends BaseStore {
 
     const templateList = items.map(item => {
       const template = {}
+      const annotations = get(item, 'metadata.annotations', {})
 
       template.type = item.metadata.name
-      template.desc =
-        item.metadata.annotations[`devops.kubesphere.io/description${lang}`]
-      template.title =
-        item.metadata.annotations[`devops.kubesphere.io/displayName${lang}`]
+      template.desc = annotations[`devops.kubesphere.io/description${lang}`]
+      template.title = annotations[`devops.kubesphere.io/displayName${lang}`]
+
+      template.image = `/assets/pipeline/${
+        annotations[`devops.kubesphere.io/icon${lang}`]
+      }`
 
       return template
     })
