@@ -205,7 +205,7 @@ export default class SCMStore extends BaseStore {
   async putAccessName({ secretName, secretNamespace, cluster }) {
     this.isAccessTokenWrong = false
     const result = await this.verifySecretForRepo({
-      secret: secretName,
+      secretName,
       secretNamespace,
       scmType: 'github',
       cluster,
@@ -235,9 +235,18 @@ export default class SCMStore extends BaseStore {
     )
   }
 
-  async verifySecretForRepo({ scmType, cluster, devops, ...rest }) {
+  async verifySecretForRepo({
+    scmType,
+    cluster,
+    devops,
+    secretName,
+    secretNamespace,
+    ...rest
+  }) {
     return await request.post(
-      `${this.getDevopsUrlV3({ cluster })}scms/${scmType}/verify/`,
+      `${this.getDevopsUrlV3({
+        cluster,
+      })}scms/${scmType}/verify?secret=${secretName}&secretNamespace=${secretNamespace}`,
       rest,
       null,
       this.verifyAccessErrorHandle[scmType]
