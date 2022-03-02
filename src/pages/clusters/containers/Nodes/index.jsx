@@ -35,7 +35,6 @@ import { Avatar, Status, Panel, Text, Modal } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 
-
 import { toJS } from 'mobx'
 import styles from './index.scss'
 
@@ -107,10 +106,8 @@ export default class Nodes extends React.Component {
         icon: 'terminal',
         text: t('TERMINAL'),
         action: 'edit',
-        show: item =>
-          item.importStatus === 'success' && this.getReady(item),
-        onClick: item => 
-          this.handleOpenTerminal(item),
+        show: item => item.importStatus === 'success' && this.getReady(item),
+        onClick: item => this.handleOpenTerminal(item),
       },
       {
         key: 'logs',
@@ -197,11 +194,11 @@ export default class Nodes extends React.Component {
     const conditions = record.conditions
 
     return conditions.some(
-      condition => condition.type == 'Ready' && condition.status == "True"
+      condition => condition.type === 'Ready' && condition.status === 'True'
     )
   }
 
-  handleOpenTerminal= record => {
+  handleOpenTerminal = record => {
     const modal = Modal.open({
       onOk: () => {
         Modal.close(modal)
@@ -299,7 +296,7 @@ export default class Nodes extends React.Component {
         isHideable: true,
         search: true,
         render: roles =>
-          roles.map(role => t(role.replace('-', '_').toUpperCase())).join('/'),
+          roles.indexOf('master') === -1 ? t('WORKER') : t('MASTER'),
       },
       {
         title: t('CPU_USAGE'),
