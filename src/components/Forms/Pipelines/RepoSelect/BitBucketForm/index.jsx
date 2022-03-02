@@ -83,7 +83,7 @@ export default class BitBucketForm extends GitHubForm {
           devops,
           credentialId: this.credentialId,
           apiUrl: data.apiUrl,
-          ...credentialDetail.data,
+          credentialDetail,
         })
         .finally(() => {
           this.setState({ isLoading: false })

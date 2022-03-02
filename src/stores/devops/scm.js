@@ -113,8 +113,8 @@ export default class SCMStore extends BaseStore {
     this.orgParams = params
 
     const result = await request.get(
-      `${this.getDevopsUrlV2({ cluster })}scms/${scmType ||
-        'github'}/organizations/?${getQueryString(params, false)}`
+      `${this.getDevopsUrlV3({ cluster })}scms/${scmType ||
+        'github'}/organizations?${getQueryString(params, false)}`
     )
 
     if (isArray(result)) {
@@ -156,7 +156,7 @@ export default class SCMStore extends BaseStore {
     this.getRepoListLoading = true
 
     const result = await request.get(
-      `${this.getDevopsUrlV2({
+      `${this.getDevopsUrlV3({
         cluster,
       })}scms/${scmType}/organizations/${organizationName}/repositories/?${getQueryString(
         {
@@ -204,23 +204,24 @@ export default class SCMStore extends BaseStore {
 
   async putAccessName({ secretName, secretNamespace, cluster }) {
     this.isAccessTokenWrong = false
-    const result = await this.verifySecretForRepo({
-      secretName,
-      secretNamespace,
-      scmType: 'github',
-      cluster,
-    })
+    const result = await this.verifySecretForRepo(
+      { secret: secretName, secretNamespace },
+      {
+        scmType: 'github',
+        cluster,
+      }
+    )
 
     if (result && result.credentialId) {
-      this.getOrganizationList(
-        { credentialId: result.credentialId },
+      await this.getOrganizationList(
+        { secret: secretName, secretNamespace },
         'github',
         cluster
       )
     }
   }
 
-  async verifyAccessForRepo({ scmType, cluster, devops, ...rest }) {
+  async verifySecretForRepo(params, { scmType, cluster, devops, ...rest }) {
     let _type = scmType
 
     if (/https:\/\/bitbucket.org\/?/gm.test(`${rest.apiUrl}`)) {
@@ -228,25 +229,9 @@ export default class SCMStore extends BaseStore {
     }
 
     return await request.post(
-      `${this.getDevopsUrlV2({ cluster })}scms/${_type}/verify/`,
-      rest,
-      null,
-      this.verifyAccessErrorHandle[scmType]
-    )
-  }
-
-  async verifySecretForRepo({
-    scmType,
-    cluster,
-    devops,
-    secretName,
-    secretNamespace,
-    ...rest
-  }) {
-    return await request.post(
       `${this.getDevopsUrlV3({
         cluster,
-      })}scms/${scmType}/verify?secret=${secretName}&secretNamespace=${secretNamespace}`,
+      })}scms/${_type}/verify?${getQueryString(params, false)}`,
       rest,
       null,
       this.verifyAccessErrorHandle[scmType]
@@ -274,14 +259,12 @@ export default class SCMStore extends BaseStore {
 
   @action
   creatBitBucketServers = async ({
-    username,
-    password,
     apiUrl,
     credentialId,
     cluster,
+    credentialDetail,
   }) => {
     this.creatBitBucketServersError = {}
-    this.tokenFormData = { username, password, apiUrl, credentialId }
 
     if (isEmpty(parseUrl(apiUrl))) {
       this.creatBitBucketServersError = {
@@ -312,21 +295,22 @@ export default class SCMStore extends BaseStore {
       return
     }
 
-    const verifyResult = await this.verifyAccessForRepo({
-      apiUrl,
-      userName: username,
-      password,
-      scmType: 'bitbucket-server',
-      cluster,
-    })
+    const secretName = get(credentialDetail, 'name')
+    const secretNamespace = get(credentialDetail, 'namespace')
+
+    const verifyResult = await this.verifySecretForRepo(
+      { secret: secretName, secretNamespace },
+      {
+        scmType: 'bitbucket-server',
+        cluster,
+        apiUrl,
+      }
+    )
 
     if (verifyResult && verifyResult.credentialId) {
       this.orgList.isLoading = false
-      this.getOrganizationList(
-        {
-          credentialId: `bitbucket-server:${result.id}`,
-          apiUrl,
-        },
+      await this.getOrganizationList(
+        { secret: secretName, secretNamespace },
         'bitbucket-server',
         cluster
       )
