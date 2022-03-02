@@ -17,10 +17,10 @@
  */
 module.exports = {
   'According to the HTTP header': '根據 HTTP header',
-  'Add Component': '添加組件',
-  'Add Component Successfully': '添加組件成功',
-  'Add an Internet access rule for the application': '為應用添加外網訪問規則',
-  'Add New Component': '添加新組件',
+  'Add Component': '新增組件',
+  'Add Component Successfully': '新增組件成功',
+  'Add an Internet access rule for the application': '為應用新增外網訪問規則',
+  'Add New Component': '新增新組件',
   'App store deployment': '應用商店部署',
   'App Template': '應用模板',
   'App Types': '應用的類型',
@@ -42,7 +42,7 @@ module.exports = {
   'Called Services': '調用服務',
   'Choose existing services or create new service components to build an app': '選擇已有服務或者新建服務組件來構建應用',
   'Circuit Breaker': '熔斷器',
-  'Cluster Select': 'Cluster Select',
+  'Cluster Select': '集群選擇',
   'Cluster Selection': '集群選擇',
   'Component Version': '組件版本',
   'Composing App': '自制應用',
@@ -71,7 +71,7 @@ module.exports = {
   'Maximum pending requests': '最大等待請求數(等待列隊的長度)',
   'Maximum requests': '最大請求數',
   METHOD: '方式',
-  'No Components': 'No Components',
+  'No Components': '未發現組件',
   'No result found': '未查詢到結果',
   Off: '關閉',
   On: '開啟',
@@ -122,5 +122,5 @@ module.exports = {
   TIP_APP_GOVERNANCE: '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
   APP_REPOS_DESC: '應用倉庫來自於第三方的 Helm Chart Repo，通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，用戶可以基於應用倉庫中的模板快速地一鍵部署應用。',
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP: '流量治理依賴於微服務模組，目前集群未啟用微服務模組',
-  TRACING_NO_MICROSERVICE_TIP: 'Tracing 依賴於微服務模組，目前集群未啟用微服務模組'
+  TRACING_NO_MICROSERVICE_TIP: '請在目前集群中開啟應用治理組件。'
 };

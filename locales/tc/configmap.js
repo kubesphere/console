@@ -16,12 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  ConfigMap: '配置字典',
-  configmaps: '配置字典',
-  ConfigMaps: '配置字典',
-  EDIT_CONFIGMAP: '修改配置',
-  CONFIGMAP_EMPTY_DESC: '配置字典是儲存通用的配置變量的，用戶可以將分布式系統中用於不同模組的環境變量統一到一個對象中管理',
+  ConfigMap: '配置映射',
+  configmaps: '配置映射',
+  ConfigMaps: '配置映射',
+  EDIT_CONFIGMAP: '修改配置映射',
+  CONFIGMAP_EMPTY_DESC: '請創建一個配置映射',
   CONFIGMAPS_BASEINFO_DESC: '',
   CONFIGMAP_SETTINGS_DESC: '',
-  CREATE_CONFIG: '新建配置項'
+  CREATE_CONFIG: '新建配置映射'
 };

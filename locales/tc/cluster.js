@@ -78,14 +78,14 @@ module.exports = {
   ADD_NEW_CLUSTER_DESC: '添加新的 Kubernetes 集群',
   CHOOSE_PROVIDER_DESC: 'KubeSphere 提供了在主流服務商中快速部署 Kubernetes 集群的方案',
   MULTI_CLUSTER: '多集群',
-  CLUSTER_INFO_TCAP: 'Cluster Information',
+  CLUSTER_INFO_TCAP: '集群資訊',
   INVITE_CLUSTER_MEMBER_DESC: '您可以邀請新的成員來此集群',
   CLUSTER_API_SERVER_TITLE: '待加入集群的 Kubesphere API Server',
   CLUSTER_API_SERVER_DESC: '需要添加待加入集群的 KubeSphere API Server 地址',
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC: '集群授權可以將集群通過授權的形式指定给企業空間使用該集群',
   PUBLIC_CLUSTER_DESC: '公開狀態的集群意味著平台内的用戶都可以使用該集群，並在集群中創建和調度資源',
   CLUSTER_AUTHORIZATION_DESC: '集群授權可以將集群通過授權的形式指定給企業空間使用該集群',
-  REMOVE_WORKSPACE_CONFIRM_DESC: 'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
+  REMOVE_WORKSPACE_CONFIRM_DESC: '請輸入企業空間名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險',
   K8S_NETWORK_PLUGIN_CALICO: 'Calico 是一個純三層的網路方案，無縫集成 IaaS 雲架構，能夠提供的 VM、容器、實體機之間的 IP 通信',
   K8S_NETWORK_PLUGIN_FLANNEL: 'Flannel 可以讓集群中的不同節點主機創建的 Docker 容器都具有全集群唯一的虛擬 IP 地址',
   K8S_NETWORK_PLUGIN_CILIUM: '基於 eBPF 的網路，具有安全性和可觀察性',
@@ -94,8 +94,8 @@ module.exports = {
   INIT_ETCD_CLUSTER: '初始化 etcd 集群',
   INIT_CONTROL_PLANE: '初始化控制平面',
   JOIN_NODES: '添加節點',
-  INSTALL_ADDONS: '安裝插件',
+  INSTALL_ADDONS: '安裝元件',
   // Unbind Cluster
   // Cluster Visibility
-  AUDITING: 'Auditing'
+  AUDITING: '審計'
 };

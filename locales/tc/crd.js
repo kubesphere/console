@@ -17,7 +17,7 @@
  */
 module.exports = {
   CRD_LOW: 'CRD',
-  CUSTOM_RESOURCE_LOW: 'custom resource',
+  CUSTOM_RESOURCE_LOW: '自定義資源',
   CRD: 'CRD',
   'Custom Resource Definition': '自定義資源',
   'Custom Resource Definitions': '自定義資源',
