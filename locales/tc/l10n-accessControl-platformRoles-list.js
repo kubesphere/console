@@ -19,7 +19,7 @@ module.exports = {
   // Banner
   PLATFORM_ROLE_PL: 'Platform Roles',
   // List
-  PLATFORM_ROLE_EMPTY_DESC: 'Please create a platform role.',
+  PLATFORM_ROLE_EMPTY_DESC: '請創建一個網路策略。',
   ROLE_USERS_MANAGER: '平台用戶管理員，管理平台所有用戶。',
   ROLE_WORKSPACES_MANAGER: '平台企業空間管理員，管理平台所有企業空間。',
   ROLE_PLATFORM_ADMIN: '平台管理員，可以管理平台内的所有資源。',
