@@ -15,17 +15,15 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-module.exports = {
-  VOLUME_SNAPSHOT_CLASSES_PL: 'Volume Snapshot Classes',
-  VOLUME_SNAPSHOT_CLASSES_DESC:
-    'Just like StorageClass provides a way for administrators to describe the "classes" of storage they offer when provisioning a volume, VolumeSnapshotClass provides a way to describe the "classes" of storage when provisioning a volume snapshot.',
 
-  // List > Create
-  SNAPSHOT_CLASS_SETTINGS: 'Snapshot Class Settings',
-  DRIVER: 'Driver',
-  DRIVER_DESC: "Driver name should be the same as StorageClass's provisioner.",
-  DRIVER_EMPTY_DESC: 'Driver is required.',
+import BaseInfo from 'components/Forms/StorageClass/BaseInfo'
+import SnapshotClassSettings from 'components/Forms/VolumeSnapshot/SnapshotClassSettings'
 
-  // List > Delete
-  VOLUME_SNAPSHOT_CLASSES_LOW: 'Volume Snapshot Classes',
-}
+export default [
+  { title: 'BASIC_INFORMATION', component: BaseInfo, required: true },
+  {
+    title: 'SNAPSHOT_CLASS_SETTINGS',
+    component: SnapshotClassSettings,
+    required: true,
+  },
+]

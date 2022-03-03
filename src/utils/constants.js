@@ -297,6 +297,7 @@ export const MODULE_KIND_MAP = {
   s2ibuilders: 'S2iBuilder',
   nodes: 'Node',
   volumesnapshots: 'VolumeSnapshot',
+  volumesnapshotclass: 'VolumeSnapshotClass',
   namespaces: 'Namespace',
   workspaces: 'WorkspaceTemplate',
   clusters: 'Cluster',

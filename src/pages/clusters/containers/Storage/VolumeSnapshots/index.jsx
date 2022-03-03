@@ -65,7 +65,7 @@ export default class VolumesSnapshots extends React.Component {
   }
 
   renderBanner() {
-    if (this.store.ksVersion >= 3.3) {
+    if (this.store.ksVersion >= 3.0) {
       return (
         <Banner {...this.bannerProps} tips={this.tips} routes={this.routes} />
       )

@@ -34,6 +34,7 @@ import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
 import FORM_STEPS, { APPLY_SNAPSHOT_FORM_STEPS } from 'configs/steps/volumes'
+import SnapshotClassSteps from 'configs/steps/volume.snapshot.class'
 
 export default {
   'volume.create': {
@@ -263,6 +264,34 @@ export default {
         store,
         detail,
         modal: EditBasicInfoModal,
+        ...props,
+      })
+    },
+  },
+  'snapshotClasses.create': {
+    on({ store, module, name, detail, cluster, success, ...props }) {
+      const kind = MODULE_KIND_MAP[module]
+      const steps = [...SnapshotClassSteps]
+      const formTemplate = {
+        [kind]: {
+          ...FORM_TEMPLATES.volumesnapshotclass(),
+        },
+      }
+      const modal = Modal.open({
+        onOk: async object => {
+          const data = object[kind]
+          await store.create(data, { cluster })
+          Modal.close(modal)
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
+          success && success()
+        },
+        module,
+        name: kind,
+        store,
+        detail,
+        formTemplate,
+        steps,
+        modal: CreateModal,
         ...props,
       })
     },
