@@ -16,31 +16,31 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import BaseInfo from 'components/Forms/Pipelines/BaseInfo'
-import AdvanceSettings from 'components/Forms/Pipelines/AdvanceSettings'
+import { set } from 'lodash'
+import React from 'react'
+import { observer } from 'mobx-react'
+import { Form } from '@kube-design/components'
+import PipelineTemplate from 'pages/devops/components/Pipeline/PipelineTemplate'
 
-import PipelineTemplate from 'components/Forms/Pipelines/PipelineTemplate'
-import PipelineTemplateParams from 'components/Forms/Pipelines/PipelineTemplateParams'
+@observer
+export default class AdvanceSettings extends React.Component {
+  handleTemplateChange = (value, params) => {
+    set(this.props.formTemplate, 'template', value)
+    set(this.props.formTemplate, 'params', params)
+  }
 
-export const PIPELINE_PROJECT_CREATE_STEPS = [
-  { title: 'BASIC_INFORMATION', component: BaseInfo, required: true },
-  {
-    title: 'ADVANCED_SETTINGS',
-    component: AdvanceSettings,
-    required: true,
-  },
-]
+  render() {
+    const { formRef, formTemplate } = this.props
 
-export const PIPELINE_CREATE_STEPS = [
-  {
-    title: '选择模板',
-    component: PipelineTemplate,
-    require: true,
-  },
-  {
-    title: '参数配置',
-    component: PipelineTemplateParams,
-    require: true,
-    icon: 'slider',
-  },
-]
+    return (
+      <Form data={formTemplate} ref={formRef}>
+        <Form.Item name="template">
+          <PipelineTemplate
+            templateLoading={false}
+            handleTemplateChange={this.handleTemplateChange}
+          />
+        </Form.Item>
+      </Form>
+    )
+  }
+}

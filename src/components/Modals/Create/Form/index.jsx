@@ -171,6 +171,7 @@ export default class FormMode extends React.Component {
 
   renderContent() {
     const { steps, currentStep } = this.state
+    const { contentWidth } = this.props
 
     const Component = get(steps, `[${currentStep}].component`)
 
@@ -180,7 +181,7 @@ export default class FormMode extends React.Component {
 
     return (
       <div className={styles.contentWrapper}>
-        <div className={styles.content}>
+        <div className={styles.content} style={{ width: contentWidth || 920 }}>
           <Component formRef={this.formRef} {...this.props} />
         </div>
       </div>

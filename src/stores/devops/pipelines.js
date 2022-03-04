@@ -595,18 +595,25 @@ export default class PipelineStore extends BaseStore {
         annotations[`devops.kubesphere.io/icon${lang}`]
       }`
 
+      template.parameters = get(item, 'spec.parameters', [])
       return template
     })
 
     return templateList
   }
 
-  async getTempleJenkins(clustertemplate) {
+  async getTempleJenkins(clustertemplate, params) {
     const data = await request.post(
       `${this.getBaseUrl()}clustertemplates/${clustertemplate}/render`,
-      {}
+      params
     )
 
-    return data?.spec.template ?? ''
+    const jenkins = get(
+      data,
+      'metadata.annotations["devops.kubesphere.io/render-result"]',
+      ''
+    )
+
+    return jenkins
   }
 }

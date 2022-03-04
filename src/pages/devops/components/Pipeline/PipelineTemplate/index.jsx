@@ -18,11 +18,11 @@
 
 import React, { useEffect, useState } from 'react'
 import classnames from 'classnames'
-import { Loading } from '@kube-design/components'
 import PipelineStore from 'stores/devops/pipelines'
+import Loading from '@kube-design/components/lib/components/Loading'
 import styles from './index.scss'
 
-const PipelineTemplate = ({ setJsonData, templateLoading }) => {
+const PipelineTemplate = ({ handleTemplateChange }) => {
   const CUSTOM_TEMPLATE = {
     type: 'custom',
     image: '/assets/pipeline/pipeline-icon.svg',
@@ -33,31 +33,44 @@ const PipelineTemplate = ({ setJsonData, templateLoading }) => {
   const store = new PipelineStore()
 
   const [templist, setTemplist] = useState([])
+  const [selected, setSelect] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const getPipelineTemplateList = async () => {
     return await store.getPipelineTemplateList()
   }
 
   useEffect(() => {
-    getPipelineTemplateList().then(data => {
-      data.push(CUSTOM_TEMPLATE)
-      setTemplist(data)
-    })
+    setLoading(true)
+    getPipelineTemplateList()
+      .then(data => {
+        data.push(CUSTOM_TEMPLATE)
+        setTemplist(data)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
 
-  const getTemple = async type => {
-    const jenkins = await store.getTempleJenkins(type)
-    setJsonData(type, jenkins)
+  const getTemple = (type, parameters) => {
+    // const jenkins = await store.getTempleJenkins(type)
+
+    setSelect(type)
+    handleTemplateChange && handleTemplateChange(type, parameters)
   }
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.title}>{t('Choose a Pipeline Template')}</h3>
-      <Loading spinning={templateLoading}>
+      <Loading spinning={loading}>
         <div className={styles.template}>
           {templist &&
             templist.map(data => (
-              <Card key={data.type} {...data} getTemple={getTemple} />
+              <Card
+                key={data.type}
+                isSelected={selected === data.type}
+                {...data}
+                getTemple={getTemple}
+              />
             ))}
         </div>
       </Loading>
@@ -67,9 +80,22 @@ const PipelineTemplate = ({ setJsonData, templateLoading }) => {
 
 export default PipelineTemplate
 
-const Card = ({ type, image, title, desc, getTemple }) => {
+const Card = ({
+  type,
+  image,
+  title,
+  desc,
+  parameters,
+  getTemple,
+  isSelected,
+}) => {
   return (
-    <div className={styles.card} onClick={() => getTemple(type)}>
+    <div
+      className={classnames(styles.card, {
+        [styles.cardSelected]: isSelected,
+      })}
+      onClick={() => getTemple(type, parameters)}
+    >
       <div
         className={classnames(styles.bg, {
           [styles.customIcon]: type === 'custom',

@@ -2,7 +2,7 @@
 @import '~scss/mixins';
 
 .container {
-  padding: 59px 65px 0 55px;
+  padding: 20px 65px 0 55px;
 
   .title {
     line-height: 28px;
@@ -28,6 +28,10 @@
     cursor: pointer;
     transition: all 0.2s ease;
     overflow: hidden;
+
+    &Selected {
+      border: 1px solid $dark-color01;
+    }
 
     &:hover {
       border: 1px solid $dark-color01;

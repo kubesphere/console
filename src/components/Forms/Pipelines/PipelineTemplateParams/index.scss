@@ -1,0 +1,56 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.templateParams {
+  padding: 12px;
+}
+
+.container {
+  padding: 12px;
+  border-radius: 4px;
+  background-color: $lightest;
+
+  .params {
+    min-height: 400px;
+
+    border: 1px solid #ccd3db;
+    padding: 10px;
+    background: #fff;
+    position: relative;
+  }
+}
+
+.itemWrapper {
+  margin-bottom: 20px;
+}
+
+.content {
+  min-height: 400px;
+}
+
+.empty {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+
+  p {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 20px;
+  }
+
+  .icon {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    padding: 6px;
+    border-radius: 100px 0 100px 100px;
+    background-color: $bg-color;
+    img {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}

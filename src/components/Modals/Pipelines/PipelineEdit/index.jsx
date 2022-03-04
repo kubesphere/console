@@ -24,7 +24,6 @@ import ConfirmModal from 'components/Modals/Delete'
 import PipelineContent from 'devops/components/Pipeline'
 import classnames from 'classnames'
 import { isEmpty } from 'lodash'
-import PipelineTemplate from 'devops/components/Pipeline/PipelineTemplate'
 
 import styles from './index.scss'
 
@@ -57,7 +56,6 @@ export default class PipelineModal extends React.Component {
       isshowComfirm: false,
       createPipelineType: !isEmpty(this.props.jsonData) ? 'custom' : undefined,
       jsonData: this.props.jsonData,
-      templateLoading: false,
     }
   }
 
@@ -76,43 +74,9 @@ export default class PipelineModal extends React.Component {
     this.props.onCancel()
   }
 
-  setTempleJsonData = async (type, jenkins) => {
-    if (type !== 'custom') {
-      const { store, params } = this.props
-      const { devops, name, cluster } = params
-
-      this.setState({ templateLoading: true })
-
-      await store.checkScriptCompile({
-        devops,
-        pipeline: name,
-        value: jenkins,
-        cluster,
-      })
-
-      const jenkinsFile = await store.convertJenkinsFileToJson(
-        jenkins,
-        params.cluster
-      )
-
-      this.setState({ jsonData: jenkinsFile, templateLoading: false })
-    }
-
-    this.setState({ createPipelineType: true })
-  }
-
   renderPipelineContent() {
     const { params, isSubmitting, onOk } = this.props
-    const { createPipelineType, templateLoading, jsonData } = this.state
-
-    if (!createPipelineType) {
-      return (
-        <PipelineTemplate
-          templateLoading={templateLoading}
-          setJsonData={this.setTempleJsonData}
-        />
-      )
-    }
+    const { jsonData } = this.state
 
     return (
       <PipelineContent
