@@ -130,9 +130,9 @@ export default class NodeDetail extends React.Component {
       {
         name: t('ROLE'),
         value:
-          getNodeRoles(detail.labels)
-            .map(role => t(role.replace(/[- ]/g, '_').toUpperCase()))
-            .join('/') || '-',
+          getNodeRoles(detail.labels).indexOf('master') === -1
+            ? t('WORKER')
+            : t('MASTER'),
       },
       {
         name: t('OS_VERSION'),
