@@ -41,7 +41,7 @@ module.exports = {
   NOSCHEDULE: '阻止调度',
   PREFER_NOSCHEDULE: '尽可能阻止调度',
   NOEXECUTE: '阻止调度并驱逐现有容器组',
-  TAINTS_TIPS: '如果主机中存在一个或多个影响策略为 NoSchedule 的污点，该容器组不会被调度到该主机<br>如果主机中不存在影响策略为 NoSchedule 的污点，但是存在一个或多个影响策略为 PreferNoSchedule 的污点，该容器组会尽量不调度到该主机<br>如果主机中存在一个或多个影响策略为 NoExecute 的污点，该容器组不会被调度到该主机，并且会驱逐已经调度到该主机的容器组实例',
+  TAINTS_TIPS: '<b>阻止调度</b><br/>阻止容器组调度到节点。<br/><br/><b>尽可能阻止调度</b>尽可能阻止容器组调度到节点。<br/><br/><b>阻止调度并驱逐现有容器组</b>阻止容器组调度到节点并驱逐节点上现有的容器组。',
   // Running Status > Resource Usage
   RESOURCE_USAGE: '资源用量',
   MAXIMUM_PODS: '容器组最大数量',
