@@ -25,6 +25,8 @@ module.exports = {
 
   // List
   EMPTY_WRAPPER: 'No {resource} Found',
+  TERMINATING: 'Terminating',
+  ACTIVE: 'Active',
 
   // List > Assign Workspace
   PROJECT_ADMINISTRATOR: 'Project Administrator',

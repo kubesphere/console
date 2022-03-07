@@ -179,7 +179,9 @@ export default class Projects extends React.Component {
         title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
-        render: status => <Status type={status} name={t(status)} flicker />,
+        render: status => (
+          <Status type={status} name={t(status.toUpperCase())} flicker />
+        ),
       },
       {
         title: t('WORKSPACE'),
@@ -226,7 +228,6 @@ export default class Projects extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     const isLoadingMonitor = this.monitoringStore.isLoading
-
     return (
       <ListPage {...this.props} getData={this.getData} module="namespaces">
         <Banner {...bannerProps} tabs={this.tabs} />

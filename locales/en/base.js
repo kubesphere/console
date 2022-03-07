@@ -27,7 +27,6 @@ module.exports = {
   'Access Control': 'Access Control',
   Account: 'Account',
   active: 'Active',
-  Active: 'Active',
   ACTIVITY: 'Activity',
   VIEW_RECORDS: 'View Records',
   Add: 'Add',

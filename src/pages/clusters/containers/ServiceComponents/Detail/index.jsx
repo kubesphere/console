@@ -75,7 +75,7 @@ export default class ComponentDetail extends React.Component {
         value: detail.namespace,
       },
       {
-        name: t('INSTANCE_COUNT'),
+        name: t('REPLICA_COUNT'),
         value: `${detail.healthyBackends}/${detail.totalBackends}`,
       },
       {

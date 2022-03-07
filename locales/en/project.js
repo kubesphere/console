@@ -100,7 +100,6 @@ module.exports = {
   StatefulSet: 'Statefulset',
   statefulsets: 'statefulsets',
   'Target Workspace': 'Target Workspace',
-  Terminating: 'Terminating',
   Usage: 'Usage',
   Volume: 'Volume',
   'Number of volumes': 'Number of volumes',

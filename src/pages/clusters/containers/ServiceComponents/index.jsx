@@ -76,7 +76,7 @@ export default class ServiceComponents extends React.Component {
     },
     {
       type: 'istio',
-      title: 'Istio',
+      title: t('APPLICATION_GOVERNANCE'),
       icon: '/assets/istio.svg',
       disabled: !globals.app.hasClusterModule(this.cluster, 'servicemesh'),
     },
