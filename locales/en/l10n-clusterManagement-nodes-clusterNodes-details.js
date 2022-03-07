@@ -67,18 +67,18 @@ module.exports = {
   HEALTH_STATUS: 'Health Status',
   NODE_NETWORKUNAVAILABLE: 'Network Availability',
   NODE_NETWORKUNAVAILABLE_DESC:
-    'Check if the network configuration on the node is available.',
+    'Whether the network status of the node is normal.',
   NODE_MEMORYPRESSURE: 'Memory Pressure',
   NODE_MEMORYPRESSURE_DESC:
-    'If the memory usage pressure on the node is too high, the scheduling fails.',
+    'Whether the remaining memory of the node is less than the threshold.',
   NODE_DISKPRESSURE: 'Disk Pressure',
   NODE_DISKPRESSURE_DESC:
-    'If pressure exists on the disk size–that is, if the disk capacity is low.',
+    'Whether the ramaining disk space or inodes of the node is less than the threshold.',
   NODE_PIDPRESSURE: 'PID Pressure',
   NODE_PIDPRESSURE_DESC:
-    'If pressure exists on the processes—that is, if there are too many processes on the node.',
+    'Whether the number of processes allowed to be created on the node is less the threshold.',
   NODE_READY: 'Node Readiness',
-  NODE_READY_DESC: 'Whether the node is ready to accept new pods.',
+  NODE_READY_DESC: 'Whether the node is ready to accept pods.',
 
   // Running Status > Taints
   NO_TAINTS_TIPS: 'No taint is found.',
