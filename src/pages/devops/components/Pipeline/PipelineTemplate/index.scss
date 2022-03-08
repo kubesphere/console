@@ -13,12 +13,13 @@
 
   .template {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .card {
-    width: 400px;
-    height: 372px;
-    margin-right: 20px;
+    width: 24%;
+    height: 348px;
+    margin: 0 1% 1% 0;
     border: 1px solid transparent;
     border-radius: 4px;
     box-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.2);
@@ -93,7 +94,7 @@
         color: $dark-color01;
         line-height: 20px;
         font-size: 12px;
-        @include block-ellipsis(4);
+        @include block-ellipsis(3);
       }
     }
   }

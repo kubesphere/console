@@ -582,20 +582,29 @@ export default class PipelineStore extends BaseStore {
   async getPipelineTemplateList() {
     const lang = cookie('lang') === 'zh' ? 'ZH' : 'EN'
 
-    const data = await request.get(`${this.getBaseUrl()}clustertemplates`)
+    const data = await request.get(
+      `${this.getBaseUrl()}clustertemplates?limit=100`
+    )
     const { items = [] } = data
 
     const templateList = items.map(item => {
       const template = {}
       const annotations = get(item, 'metadata.annotations', {})
+      const imageUrl = annotations[`devops.kubesphere.io/icon${lang}`]
 
       template.type = item.metadata.name
-      template.desc = annotations[`devops.kubesphere.io/description${lang}`]
-      template.title = annotations[`devops.kubesphere.io/displayName${lang}`]
+      template.desc =
+        annotations[`devops.kubesphere.io/description${lang}`] ||
+        annotations['devops.kubesphere.io/descriptionEN']
+      template.title =
+        annotations[`devops.kubesphere.io/displayName${lang}`] ||
+        annotations['devops.kubesphere.io/displayNameEN'] ||
+        annotations.displayNameEN
 
-      template.image = `/assets/pipeline/${
-        annotations[`devops.kubesphere.io/icon${lang}`]
-      }`
+      template.image =
+        imageUrl && imageUrl.indexOf('http') > -1
+          ? imageUrl
+          : `/assets/pipeline/${imageUrl}`
 
       template.parameters = get(item, 'spec.parameters', [])
       return template
