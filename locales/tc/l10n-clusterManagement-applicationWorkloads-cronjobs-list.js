@@ -18,12 +18,12 @@
 module.exports = {
   // Banner
   // List
-  CRONJOB_EMPTY_DESC: 'Please create a CronJob.',
+  CRONJOB_EMPTY_DESC: '請創建一個定時任務。',
   // List > Create > Basic Information
-  EVERY_DAY: '0 0 * * * (every day)',
-  EVERY_HOUR: '0 * * * * (every hour)',
-  EVERY_MONTH: '0 0 1 * * (every month)',
-  EVERY_WEEK: '0 0 * * 0 (every week)',
+  EVERY_DAY: '0 0 * * * （每天）',
+  EVERY_HOUR: '0 * * * * （每小時）',
+  EVERY_MONTH: '0 0 1 * * （每月）',
+  EVERY_WEEK: '0 0 * * 0 （每週）',
   // List > Create > Strategy Settings
   // List > Create > Pod Settings
   // List > Create > Volume Settings
