@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  PLATFORM_ROLE_PL: 'Platform Roles',
+  PLATFORM_ROLE_PL: '平台角色',
   // List
   PLATFORM_ROLE_EMPTY_DESC: '請創建一個網路策略。',
   ROLE_USERS_MANAGER: '平台用戶管理員，管理平台所有用戶。',
@@ -33,8 +33,8 @@ module.exports = {
   CLUSTERS_VIEW_DESC: '查看平台中所有的集群及集群下所有的資源',
   CLUSTERS_MANAGEMENT_DESC: '創建刪除集群，管理所有集群下的資源',
   // List > Create > Edit Permissions > Access Control
-  USERS_MANAGEMENT: '帳戶管理',
-  USERS_VIEW: '帳戶查看',
+  USERS_MANAGEMENT: '用戶管理',
+  USERS_VIEW: '用戶查看',
   WORKSPACES_MANAGEMENT_DESC: '支持企業空間的管理，包括添加/刪除/編輯企業空間，查看平台的所有企業空間。',
   USERS_MANAGEMENT_DESC: '支持帳戶的管理，包括添加/刪除/更新帳戶資訊',
   ROLES_MANAGEMENT_DESC: '支持帳戶角色的管理，包括添加/刪除/更新帳戶角色',
