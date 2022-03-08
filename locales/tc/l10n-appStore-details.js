@@ -42,20 +42,20 @@ module.exports = {
   CATEGORY_COLON: '類別：',
   HOMEPAGE_COLON: '首頁：',
   RELEASE_DATE_COLON: '發布時間：',
-  APP_ID_COLON: '應用程式 ID',
-  APP_VERSIONS_TITLE: 'Versions (only the latest 10 versions will be displayed)',
+  APP_ID_COLON: '應用程式 ID：',
+  APP_VERSIONS_TITLE: '版本（只顯示 10 個最新的版本）',
   MAINTAINER_COLON: '維護者',
   // App Details > Verions
-  VERSIONS: 'Versions',
+  VERSIONS: '版本',
   // APP Details > Keywords
-  KEYWORDS: 'Keywords',
+  KEYWORDS: '關鍵字',
   NONE: '無',
   // App Details > App Introduction
-  APP_INTRODUCTION: 'App Introduction',
-  APP_DETAILS: '應用詳情',
-  NO_DOCUMENT_DESC: 'No documentation is found.',
+  APP_INTRODUCTION: '應用程式介紹',
+  APP_DETAILS: '應用程式詳情',
+  NO_DOCUMENT_DESC: '沒有說明文件',
   VERSION_INTRO_EMPTY_DESC: '該版本沒有說明文件',
   // App Details > Chart Files
   CHART_FILES: '配置文件',
-  NO_APP_CHART_FILE_FOUND: '該應用沒有配置文件'
+  NO_APP_CHART_FILE_FOUND: '該應用程式沒有配置文件'
 };
