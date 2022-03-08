@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  APP_CATEGORY_PL: '應用分類',
+  APP_CATEGORY_PL: '應用類別',
   APP_CATEGORIES_DESC: '您可以在此頁面創建、編輯、刪除分類，對已上架的應用進行分類管理。',
   // All Categories
   ALL_CATEGORIES_VALUE: 'All Categories ({value})',
