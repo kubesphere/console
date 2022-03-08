@@ -42,8 +42,8 @@ module.exports = {
   CATEGORY_COLON: '類別：',
   HOMEPAGE_COLON: '首頁：',
   RELEASE_DATE_COLON: '發布時間：',
-  APP_ID_COLON: '應用程式 ID：',
-  APP_VERSIONS_TITLE: '版本（只顯示 10 個最新的版本）',
+  APP_ID_COLON: '應用程式 ID',
+  APP_VERSIONS_TITLE: 'Versions (only the latest 10 versions will be displayed)',
   MAINTAINER_COLON: '維護者',
   // App Details > Verions
   VERSIONS: '版本',
