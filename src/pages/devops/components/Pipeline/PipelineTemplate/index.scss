@@ -2,8 +2,6 @@
 @import '~scss/mixins';
 
 .container {
-  padding: 20px 65px 0 55px;
-
   .title {
     line-height: 28px;
     font-size: 20px;
@@ -20,7 +18,7 @@
   .card {
     width: 400px;
     height: 372px;
-    margin-right: 40px;
+    margin-right: 20px;
     border: 1px solid transparent;
     border-radius: 4px;
     box-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.2);

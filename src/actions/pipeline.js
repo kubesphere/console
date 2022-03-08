@@ -308,23 +308,18 @@ export default {
     on({ store, rootStore, success, jsonData, params, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
-          Modal.close(modal)
           let jenkinsFile = data.jenkinsFile
 
-          if (data.template !== 'custom' && !jenkinsFile) {
+          if (data.template !== 'custom') {
             const { paramsForm = {} } = data
-
             const postData = Object.keys(paramsForm).reduce((prev, curr) => {
               prev.push({ name: curr, value: paramsForm[curr] })
               return prev
             }, [])
-
             const jenkins = await store.getTempleJenkins(data.template, {
               parameters: postData,
             })
-
             const { devops, name, cluster } = params
-
             await store.checkScriptCompile({
               devops,
               pipeline: name,
@@ -334,7 +329,8 @@ export default {
 
             jenkinsFile = await store.convertJenkinsFileToJson(jenkins, cluster)
           }
-          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+
+          Modal.close(modal)
           success && success(jenkinsFile)
         },
         modal: CreateModal,

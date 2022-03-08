@@ -33,14 +33,14 @@ export const PIPELINE_PROJECT_CREATE_STEPS = [
 
 export const PIPELINE_CREATE_STEPS = [
   {
-    title: '选择模板',
+    title: 'SELECT_TEMPLATE',
     component: PipelineTemplate,
-    require: true,
+    required: true,
   },
   {
-    title: '参数配置',
+    title: 'PARAMETER_CONFIG',
     component: PipelineTemplateParams,
-    require: true,
+    required: true,
     icon: 'slider',
   },
 ]

@@ -43,7 +43,13 @@ export default function ParamsInput({ option }) {
 
   function renderStringFormItems() {
     return (
-      <Form.Item label={option.name} desc={option.description}>
+      <Form.Item
+        label={option.name}
+        desc={option.description}
+        rules={[
+          { required: !option.default, message: t('Please input value') },
+        ]}
+      >
         <Input
           name={`paramsForm.${option.name}`}
           defaultValue={option.default || ''}

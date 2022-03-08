@@ -551,16 +551,18 @@ export default class PipelineStore extends BaseStore {
   }
 
   async checkScriptCompile({ devops, pipeline, value, cluster }) {
-    return await request.post(
-      `${this.getPipelineUrl({
-        cluster,
-        name: pipeline,
-        devops,
-      })}checkScriptCompile`,
-      {
-        value,
-      },
-      FORM_HEAR
+    return this.submitting(
+      request.post(
+        `${this.getPipelineUrl({
+          cluster,
+          name: pipeline,
+          devops,
+        })}checkScriptCompile`,
+        {
+          value,
+        },
+        FORM_HEAR
+      )
     )
   }
 

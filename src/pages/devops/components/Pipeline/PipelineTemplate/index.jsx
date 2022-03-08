@@ -16,13 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import classnames from 'classnames'
 import PipelineStore from 'stores/devops/pipelines'
 import Loading from '@kube-design/components/lib/components/Loading'
 import styles from './index.scss'
 
-const PipelineTemplate = ({ handleTemplateChange }) => {
+const PipelineTemplate = ({ handleTemplateChange, formTemplate }) => {
   const CUSTOM_TEMPLATE = {
     type: 'custom',
     image: '/assets/pipeline/pipeline-icon.svg',
@@ -33,7 +33,7 @@ const PipelineTemplate = ({ handleTemplateChange }) => {
   const store = new PipelineStore()
 
   const [templist, setTemplist] = useState([])
-  const [selected, setSelect] = useState('')
+  const [selected, setSelect] = useState(formTemplate.template)
   const [loading, setLoading] = useState(false)
 
   const getPipelineTemplateList = async () => {
@@ -53,8 +53,6 @@ const PipelineTemplate = ({ handleTemplateChange }) => {
   }, [])
 
   const getTemple = (type, parameters) => {
-    // const jenkins = await store.getTempleJenkins(type)
-
     setSelect(type)
     handleTemplateChange && handleTemplateChange(type, parameters)
   }
@@ -89,6 +87,14 @@ const Card = ({
   getTemple,
   isSelected,
 }) => {
+  const imgRef = useRef()
+  const [imgLoaded, setImgLoaded] = useState(false)
+
+  const handleImg = () => {
+    imgRef.current.src = '/assets/pipeline/pipeline-icon.svg'
+    setImgLoaded(true)
+  }
+
   return (
     <div
       className={classnames(styles.card, {
@@ -98,10 +104,10 @@ const Card = ({
     >
       <div
         className={classnames(styles.bg, {
-          [styles.customIcon]: type === 'custom',
+          [styles.customIcon]: type === 'custom' || imgLoaded,
         })}
       >
-        <img src={image} />
+        <img src={image} ref={imgRef} onError={handleImg} />
       </div>
       <div className={styles.info}>
         <h4 className={styles.subTitle}>{title}</h4>

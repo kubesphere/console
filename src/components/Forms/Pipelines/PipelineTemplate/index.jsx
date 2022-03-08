@@ -21,6 +21,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { Form } from '@kube-design/components'
 import PipelineTemplate from 'pages/devops/components/Pipeline/PipelineTemplate'
+import style from './index.scss'
 
 @observer
 export default class AdvanceSettings extends React.Component {
@@ -33,11 +34,20 @@ export default class AdvanceSettings extends React.Component {
     const { formRef, formTemplate } = this.props
 
     return (
-      <Form data={formTemplate} ref={formRef}>
-        <Form.Item name="template">
+      <Form
+        data={formTemplate}
+        ref={formRef}
+        className={style.pipeline_template_form}
+      >
+        <Form.Item
+          name="template"
+          rules={[{ required: true, message: t('PIPELINE_VALIDATOR_DESC') }]}
+        >
           <PipelineTemplate
+            name="template"
             templateLoading={false}
             handleTemplateChange={this.handleTemplateChange}
+            formTemplate={formTemplate}
           />
         </Form.Item>
       </Form>

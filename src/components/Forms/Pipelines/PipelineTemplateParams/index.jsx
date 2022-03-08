@@ -18,7 +18,7 @@
 
 import React, { useState } from 'react'
 import { Form, Tabs } from '@kube-design/components'
-import PipelineStore from 'stores/devops/pipelines'
+
 import PipelineContent from 'devops/components/Pipeline'
 import { isArray, isEmpty, set } from 'lodash'
 import Loading from '@kube-design/components/lib/components/Loading'
@@ -31,13 +31,13 @@ const { TabPanel } = Tabs
 export default function PipelineTemplateParams({
   formTemplate,
   formRef,
+  store,
   ...props
 }) {
   const { params = [] } = formTemplate
   const [tab, setTab] = useState('params')
   const [loading, setLoading] = useState(false)
   const [jsonData, setJsonData] = useState({})
-  const store = new PipelineStore()
 
   const handleTabChange = async value => {
     if (value === 'view') {
@@ -77,44 +77,46 @@ export default function PipelineTemplateParams({
         <div className={styles.icon}>
           <img src="/assets/pipeline-temp-empty.svg" alt="" />
         </div>
-        <p>该操作无需进行参数配置</p>
+        <p>{t('EMPTY_PARAMS_CONFIG')}</p>
       </div>
     )
   }
 
   return (
     <div className={styles.templateParams}>
-      <Tabs type="button" tabs={tab} onChange={handleTabChange}>
-        <TabPanel label={t('参数配置')} name="params">
-          <div className={styles.container}>
-            <div className={styles.params}>
-              <Form data={formTemplate} ref={formRef}>
-                {isArray(params) && params.length > 0 ? (
-                  <div>
-                    {params.map((item, index) => (
-                      <ParmasItem key={index} option={item} />
-                    ))}
-                  </div>
-                ) : (
-                  renderEmpty()
-                )}
-              </Form>
+      <Loading spinning={store.isSubmitting}>
+        <Tabs type="button" tabs={tab} onChange={handleTabChange}>
+          <TabPanel label={t('PARAMETER_CONFIG')} name="params">
+            <div className={styles.container}>
+              <div className={styles.params}>
+                <Form data={formTemplate} ref={formRef}>
+                  {isArray(params) && params.length > 0 ? (
+                    <div>
+                      {params.map((item, index) => (
+                        <ParmasItem key={index} option={item} />
+                      ))}
+                    </div>
+                  ) : (
+                    renderEmpty()
+                  )}
+                </Form>
+              </div>
             </div>
-          </div>
-        </TabPanel>
-        <TabPanel label={t('预览')} name="view" disabled={isEmpty(params)}>
-          <div className={styles.view}>
-            <Loading spinning={loading}>
-              <Form data={formTemplate} ref={formRef}>
-                <PipelineContent
-                  className={styles.content}
-                  jsonData={jsonData}
-                />
-              </Form>
-            </Loading>
-          </div>
-        </TabPanel>
-      </Tabs>
+          </TabPanel>
+          <TabPanel label={t('PREVIEW')} name="view" disabled={isEmpty(params)}>
+            <div className={styles.view}>
+              <Loading spinning={loading}>
+                <Form data={formTemplate} ref={formRef}>
+                  <PipelineContent
+                    className={styles.content}
+                    jsonData={jsonData}
+                  />
+                </Form>
+              </Loading>
+            </div>
+          </TabPanel>
+        </Tabs>
+      </Loading>
     </div>
   )
 }
