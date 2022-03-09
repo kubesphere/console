@@ -29,6 +29,6 @@ module.exports = {
   UNBIND_CLUSTER: '解綁集群',
   UNBIND_CLUSTER_DESC: '解綁集群後，KubeSphere 將無法再對該集群進行管理。 解綁後，該集群内的 Kubernetes 資源不會被刪除。',
   SURE_TO_UNBIND_CLUSTER: '我已了解操作所带来的風險',
-  UNBIND_CLUSTER_Q: 'Unbind Cluster',
-  NODE: 'Node'
+  UNBIND_CLUSTER_Q: '解綁集群',
+  NODE: '節點'
 };
