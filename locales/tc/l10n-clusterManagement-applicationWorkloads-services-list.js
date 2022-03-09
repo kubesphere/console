@@ -50,17 +50,17 @@ module.exports = {
   NO_WORKLOAD_MATCH_SELECTOR: '没有工作負載匹配目前選擇器。',
   WORKLOADS_MATCH_SELECTOR_SI: '目前選擇器（{selector}）與 {count} 個工作負載匹配。',
   WORKLOADS_MATCH_SELECTOR_PL: '目前選擇器（{selector}）與 {count} 個工作負載匹配。',
-  WORKLOAD_SELECTOR: 'Workload Selector',
+  WORKLOAD_SELECTOR: '工作負載選擇器',
   SERVICE_SETTINGS: '服務設置',
   // List > Create > Service Settings > Workload Selector > View Details
-  TOTAL_WORKLOADS_VALUE: '共 {count} 個工作負載',
+  TOTAL_WORKLOADS_VALUE: '工作負載總數：{count}',
   // List > Create > Advanced Settings
   STICKY_SESSION: '會話保持',
   MAXIMUM_STICKINESS_DURATION: '最大會話保持時間（s）',
-  STICKY_SESSION_DESC: 'Set the system to forward all requests from the same client to the same backend within a specified duration.',
-  SERVICE_EXTERNAL_ACCESS_DESC: '將服務暴露给外網',
-  ACCESS_NODEPORT_TIP: '通過集群節點的對應端口來訪問服務。',
+  STICKY_SESSION_DESC: '設置系統在指定的時間内將同一個會話中来自同一個用戶端的請求全部轉發給同一個容器組。',
+  SERVICE_EXTERNAL_ACCESS_DESC: '設置從集群外訪問服務的方式。',
+  ACCESS_NODEPORT_TIP: '通過集群節點的對應通訊埠來訪問服務。',
   ACCESS_LOADBALANCER_TIP: '通過負載平衡器來訪問服務。',
-  WORKLOAD_ANNOTATIONS: 'Workload Annotations',
-  LABEL_FORMAT_DESC: 'The key and value can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number. The maximum length is 63 characters. If the key contains the domain name, the maximum length is 253 characters.'
+  WORKLOAD_ANNOTATIONS: '工作負載註釋',
+  LABEL_FORMAT_DESC: '標籤的鍵和值只能包含字母、數字、連字號（-）、底線（_）和句點（.），必須以數字或字母開頭和結尾。鍵和值分别最長 63 個字元（如鍵包含域名則最長 253 個字元）。'
 };
