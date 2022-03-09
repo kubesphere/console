@@ -158,5 +158,10 @@ module.exports = {
   PIPELINE_CRON_DESC: 'İşlem hattı bir dahaki sefere {nextTime}\'da çalıştırılacak.',
   PIPELINE_SCHEDULE_DESC: 'Bir program ayarlamak için bir CRON ifadesi girin. <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">Daha Fazla Bilgi Edinin</a>',
   DEFAULT_VALUE: 'Varsayılan Değer',
-  PARAMETER_NAME_EMPTY_DESC: 'Lütfen parametre adını ayarlayın.'
+  PARAMETER_NAME_EMPTY_DESC: 'Lütfen parametre adını ayarlayın.',
+  SELECT_TEMPLATE: 'Select template',
+  PARAMETER_CONFIG: 'Parameter configuration',
+  PREVIEW: 'Preview',
+  EMPTY_PARAMS_CONFIG: 'This operation does not require parameter configuration.',
+  PIPELINE_VALIDATOR_DESC: 'Please select a pipeline template.'
 };
