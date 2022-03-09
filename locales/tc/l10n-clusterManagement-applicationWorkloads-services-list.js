@@ -50,7 +50,7 @@ module.exports = {
   NO_WORKLOAD_MATCH_SELECTOR: '没有工作負載匹配目前選擇器。',
   WORKLOADS_MATCH_SELECTOR_SI: '目前選擇器（{selector}）與 {count} 個工作負載匹配。',
   WORKLOADS_MATCH_SELECTOR_PL: '目前選擇器（{selector}）與 {count} 個工作負載匹配。',
-  WORKLOAD_SELECTOR: 'Workload Selector',
+  WORKLOAD_SELECTOR: '工作負載選擇器',
   SERVICE_SETTINGS: '服務設置',
   // List > Create > Service Settings > Workload Selector > View Details
   TOTAL_WORKLOADS_VALUE: '工作負載總數：{count}',
