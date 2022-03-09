@@ -35,6 +35,8 @@ import style from './index.scss'
 export default class Pipeline extends React.Component {
   store = this.props.detailStore || {}
 
+  formTemplate = {}
+
   get enabledActions() {
     const { cluster, devops } = this.props.match.params
 
@@ -54,7 +56,39 @@ export default class Pipeline extends React.Component {
     const { pipelineJsonData } = this.store
     const { params } = this.props.match
 
-    this.trigger('pipeline.pipeline', {
+    this.trigger('pipeline.pipelineTemplate', {
+      store: this.store,
+      jsonData: toJS(pipelineJsonData.pipelineJson),
+      formTemplate: this.formTemplate,
+      title: t('CREATE_PIPELINE'),
+      imageIcon: '/assets/pipeline/pipeline-icon-dark.svg',
+      description: t('CREATE_PIPELINE_DESC'),
+      width: '1400px',
+      contentWidth: '1400px',
+      noCodeEdit: true,
+      params,
+      success: jenkinsFile => {
+        this.trigger('pipeline.pipelineCreate', {
+          store: this.store,
+          jsonData: jenkinsFile,
+          params,
+          success: () => {
+            const { devops, name } = params
+            localStorage.removeItem(
+              `${globals.user.username}-${devops}-${name}`
+            )
+            this.handleRefresh()
+          },
+        })
+      },
+    })
+  }
+
+  handleEditorPipelineModal = () => {
+    const { pipelineJsonData } = this.store
+    const { params } = this.props.match
+
+    this.trigger('pipeline.pipelineCreate', {
       store: this.store,
       jsonData: toJS(pipelineJsonData.pipelineJson),
       params,
@@ -149,7 +183,7 @@ export default class Pipeline extends React.Component {
           </Button>
         )}
         {editable && (
-          <Button onClick={this.handlePipelineModal}>
+          <Button onClick={this.handleEditorPipelineModal}>
             {t('EDIT_PIPELINE')}
           </Button>
         )}

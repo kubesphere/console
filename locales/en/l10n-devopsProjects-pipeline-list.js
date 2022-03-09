@@ -192,4 +192,10 @@ module.exports = {
     'Enter a CRON expression to set a schedule. <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">Learn More</a>',
   DEFAULT_VALUE: 'Default Value',
   PARAMETER_NAME_EMPTY_DESC: 'Please set the parameter name.',
+  SELECT_TEMPLATE: 'Select template',
+  PARAMETER_CONFIG: 'Parameter configuration',
+  PREVIEW: 'Preview',
+  EMPTY_PARAMS_CONFIG:
+    'This operation does not require parameter configuration.',
+  PIPELINE_VALIDATOR_DESC: 'Please select a pipeline template.',
 }

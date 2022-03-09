@@ -52,7 +52,17 @@ export default class Sider extends React.Component {
     )
 
     this.formData = args.reduce((data, arg) => {
-      data[arg.key] = arg.value.value
+      if (Array.isArray(arg.value)) {
+        const result = arg.value.reduce((_data, _arg) => {
+          const _argObj = {}
+          _argObj[_arg.key] = _arg.value.value
+          _data.push(_argObj)
+          return _data
+        }, [])
+        data[arg.key] = result
+      } else {
+        data[arg.key] = arg.value.value
+      }
       return data
     }, {})
   }
@@ -111,10 +121,29 @@ export default class Sider extends React.Component {
   }
 
   getAgentArguments() {
-    const _arguments = Object.keys(this.formData).map(key => ({
-      key,
-      value: { isLiteral: true, value: this.formData[key] },
-    }))
+    const _arguments = Object.keys(this.formData).map(key => {
+      const value = toJS(this.formData[key])
+
+      if (Array.isArray(value)) {
+        const _value = value.map(item => {
+          const a = Object.keys(item).map(_key => ({
+            key: _key,
+            value: { isLiteral: true, value: item[_key] },
+          }))
+          return a[0]
+        })
+
+        return {
+          key,
+          value: _value,
+        }
+      }
+      return {
+        key,
+        value: { isLiteral: true, value },
+      }
+    })
+
     set(this.props.store.jsonData, 'json.pipeline.agent.arguments', _arguments)
   }
 

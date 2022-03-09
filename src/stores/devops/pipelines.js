@@ -20,6 +20,7 @@ import { omit, isArray, get, set, isEmpty, cloneDeep } from 'lodash'
 import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
 import { safeParseJSON } from 'utils'
+import cookie from 'utils/cookie'
 import BaseStore from '../devops'
 
 const TABLE_LIMIT = 10
@@ -550,16 +551,18 @@ export default class PipelineStore extends BaseStore {
   }
 
   async checkScriptCompile({ devops, pipeline, value, cluster }) {
-    return await request.post(
-      `${this.getPipelineUrl({
-        cluster,
-        name: pipeline,
-        devops,
-      })}checkScriptCompile`,
-      {
-        value,
-      },
-      FORM_HEAR
+    return this.submitting(
+      request.post(
+        `${this.getPipelineUrl({
+          cluster,
+          name: pipeline,
+          devops,
+        })}checkScriptCompile`,
+        {
+          value,
+        },
+        FORM_HEAR
+      )
     )
   }
 
@@ -574,5 +577,54 @@ export default class PipelineStore extends BaseStore {
         limit: TABLE_LIMIT,
       }
     )
+  }
+
+  async getPipelineTemplateList() {
+    const lang = cookie('lang') === 'zh' ? 'ZH' : 'EN'
+
+    const data = await request.get(
+      `${this.getBaseUrl()}clustertemplates?limit=100`
+    )
+    const { items = [] } = data
+
+    const templateList = items.map(item => {
+      const template = {}
+      const annotations = get(item, 'metadata.annotations', {})
+      const imageUrl = annotations[`devops.kubesphere.io/icon${lang}`]
+
+      template.type = item.metadata.name
+      template.desc =
+        annotations[`devops.kubesphere.io/description${lang}`] ||
+        annotations['devops.kubesphere.io/descriptionEN']
+      template.title =
+        annotations[`devops.kubesphere.io/displayName${lang}`] ||
+        annotations['devops.kubesphere.io/displayNameEN'] ||
+        annotations.displayNameEN
+
+      template.image =
+        imageUrl && imageUrl.indexOf('http') > -1
+          ? imageUrl
+          : `/assets/pipeline/${imageUrl}`
+
+      template.parameters = get(item, 'spec.parameters', [])
+      return template
+    })
+
+    return templateList
+  }
+
+  async getTempleJenkins(clustertemplate, params) {
+    const data = await request.post(
+      `${this.getBaseUrl()}clustertemplates/${clustertemplate}/render`,
+      params
+    )
+
+    const jenkins = get(
+      data,
+      'metadata.annotations["devops.kubesphere.io/render-result"]',
+      ''
+    )
+
+    return jenkins
   }
 }

@@ -28,7 +28,10 @@ import CopyModal from 'components/Modals/Pipelines/Copy'
 import ScanRepositoryLogs from 'components/Modals/Pipelines/ScanRepositoryLogs'
 import PipelineModal from 'components/Modals/Pipelines/PipelineEdit'
 
-import FORM_STEPS from 'configs/steps/pipelines'
+import {
+  PIPELINE_PROJECT_CREATE_STEPS,
+  PIPELINE_CREATE_STEPS,
+} from 'configs/steps/pipelines'
 import { updatePipelineParams, updatePipelineParamsInSpec } from 'utils/devops'
 import JenkinsEdit from 'devops/components/Modals/JenkinsEdit'
 import { get, isEmpty } from 'lodash'
@@ -85,7 +88,7 @@ export default {
         devops,
         formTemplate,
         modal: CreateModal,
-        steps: FORM_STEPS,
+        steps: PIPELINE_PROJECT_CREATE_STEPS,
         noCodeEdit: true,
         ...props,
       })
@@ -284,7 +287,7 @@ export default {
       })
     },
   },
-  'pipeline.pipeline': {
+  'pipeline.pipelineCreate': {
     on({ store, rootStore, success, jsonData, params, ...props }) {
       const modal = Modal.open({
         onOk: async jenkinsFile => {
@@ -294,6 +297,44 @@ export default {
           success && success()
         },
         modal: PipelineModal,
+        jsonData,
+        params,
+        store,
+        ...props,
+      })
+    },
+  },
+  'pipeline.pipelineTemplate': {
+    on({ store, rootStore, success, jsonData, params, ...props }) {
+      const modal = Modal.open({
+        onOk: async data => {
+          let jenkinsFile = data.jenkinsFile
+
+          if (data.template !== 'custom') {
+            const { paramsForm = {} } = data
+            const postData = Object.keys(paramsForm).reduce((prev, curr) => {
+              prev.push({ name: curr, value: paramsForm[curr] })
+              return prev
+            }, [])
+            const jenkins = await store.getTempleJenkins(data.template, {
+              parameters: postData,
+            })
+            const { devops, name, cluster } = params
+            await store.checkScriptCompile({
+              devops,
+              pipeline: name,
+              value: jenkins,
+              cluster,
+            })
+
+            jenkinsFile = await store.convertJenkinsFileToJson(jenkins, cluster)
+          }
+
+          Modal.close(modal)
+          success && success(jenkinsFile)
+        },
+        modal: CreateModal,
+        steps: PIPELINE_CREATE_STEPS,
         jsonData,
         params,
         store,

@@ -19,11 +19,28 @@
 import BaseInfo from 'components/Forms/Pipelines/BaseInfo'
 import AdvanceSettings from 'components/Forms/Pipelines/AdvanceSettings'
 
-export default [
+import PipelineTemplate from 'components/Forms/Pipelines/PipelineTemplate'
+import PipelineTemplateParams from 'components/Forms/Pipelines/PipelineTemplateParams'
+
+export const PIPELINE_PROJECT_CREATE_STEPS = [
   { title: 'BASIC_INFORMATION', component: BaseInfo, required: true },
   {
     title: 'ADVANCED_SETTINGS',
     component: AdvanceSettings,
     required: true,
+  },
+]
+
+export const PIPELINE_CREATE_STEPS = [
+  {
+    title: 'SELECT_TEMPLATE',
+    component: PipelineTemplate,
+    required: true,
+  },
+  {
+    title: 'PARAMETER_CONFIG',
+    component: PipelineTemplateParams,
+    required: true,
+    icon: 'slider',
   },
 ]

@@ -97,6 +97,7 @@ export default class JenkinsEdit extends React.Component {
       .finally(() => {
         this.setState({ isLoading: false })
       })
+
     if (res.status === 'fail') {
       this.setState({
         error: {

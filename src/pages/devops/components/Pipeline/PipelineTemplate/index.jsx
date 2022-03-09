@@ -16,66 +16,98 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import classnames from 'classnames'
-import cookie from 'utils/cookie'
-
-import { Loading } from '@kube-design/components'
+import PipelineStore from 'stores/devops/pipelines'
+import Loading from '@kube-design/components/lib/components/Loading'
 import styles from './index.scss'
-import { TEMPLATE_CONFIG } from './templePipeline'
 
-const PipelineTemplate = ({ setJsonData, templateLoading }) => {
-  const lang = cookie('lang') === 'zh' ? 'zh' : 'en'
+const PipelineTemplate = ({ handleTemplateChange, formTemplate }) => {
+  const CUSTOM_TEMPLATE = {
+    type: 'custom',
+    image: '/assets/pipeline/pipeline-icon.svg',
+    title: t('CUSTOM_PIPELIEN'),
+    desc: t('CUSTOM_PIPELIEN_DESC'),
+  }
 
-  const CARD_CONFIG = [
-    {
-      type: 'ci',
-      image: `/assets/pipeline/ci-temple-${lang}.svg`,
-      title: t('CI'),
-      desc: t('CI_DESC'),
-    },
-    {
-      type: 'cicd',
-      image: `/assets/pipeline/cicd-temple-${lang}.svg`,
-      title: t('CICD'),
-      desc: t('CICD_DESC'),
-    },
-    {
-      type: 'custom',
-      image: '/assets/pipeline/pipeline-icon.svg',
-      title: t('CUSTOM_PIPELIEN'),
-      desc: t('CUSTOM_PIPELIEN_DESC'),
-    },
-  ]
+  const store = new PipelineStore()
 
-  const getTemple = type => {
-    setJsonData(type, TEMPLATE_CONFIG[type])
+  const [templist, setTemplist] = useState([])
+  const [selected, setSelect] = useState(formTemplate.template)
+  const [loading, setLoading] = useState(false)
+
+  const getPipelineTemplateList = async () => {
+    return await store.getPipelineTemplateList()
+  }
+
+  useEffect(() => {
+    setLoading(true)
+    getPipelineTemplateList()
+      .then(data => {
+        data.push(CUSTOM_TEMPLATE)
+        setTemplist(data)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }, [])
+
+  const getTemple = (type, parameters) => {
+    setSelect(type)
+    handleTemplateChange && handleTemplateChange(type, parameters)
   }
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.title}>{t('Choose a Pipeline Template')}</h3>
-      <Loading spinning={templateLoading}>
+      <Loading spinning={loading}>
         <div className={styles.template}>
-          {CARD_CONFIG.map(data => (
-            <Card key={data.type} {...data} getTemple={getTemple} />
-          ))}
+          {templist &&
+            templist.map(data => (
+              <Card
+                key={data.type}
+                isSelected={selected === data.type}
+                {...data}
+                getTemple={getTemple}
+              />
+            ))}
         </div>
       </Loading>
     </div>
   )
 }
+
 export default PipelineTemplate
 
-const Card = ({ type, image, title, desc, getTemple }) => {
+const Card = ({
+  type,
+  image,
+  title,
+  desc,
+  parameters,
+  getTemple,
+  isSelected,
+}) => {
+  const imgRef = useRef()
+  const [imgLoaded, setImgLoaded] = useState(false)
+
+  const handleImg = () => {
+    imgRef.current.src = '/assets/pipeline/pipeline-icon.svg'
+    setImgLoaded(true)
+  }
+
   return (
-    <div className={styles.card} onClick={() => getTemple(type)}>
+    <div
+      className={classnames(styles.card, {
+        [styles.cardSelected]: isSelected,
+      })}
+      onClick={() => getTemple(type, parameters)}
+    >
       <div
         className={classnames(styles.bg, {
-          [styles.customIcon]: type === 'custom',
+          [styles.customIcon]: type === 'custom' || imgLoaded,
         })}
       >
-        <img src={image} />
+        <img src={image} ref={imgRef} onError={handleImg} />
       </div>
       <div className={styles.info}>
         <h4 className={styles.subTitle}>{title}</h4>
