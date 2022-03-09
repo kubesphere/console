@@ -18,32 +18,32 @@
 module.exports = {
   // Banner
   SERVICE_PL: '服務',
-  SERVICE_DESC: 'Services provide an abstract way to expose applications running on a Pod as network services.',
+  SERVICE_DESC: '服務（Service）提供一種抽象的方法，將運行在容器组（Pod）上的應用程式公開為網路服務。',
   // List
-  SERVICE_EMPTY_DESC: 'Please create a Service.',
-  UNKNOWN: 'Unknown',
+  SERVICE_EMPTY_DESC: '請創建一個服務。',
+  UNKNOWN: '未知',
   EXTERNAL_ACCESS: '外網訪問',
   // List > Edit YAML
   // List > Edit Service
-  UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
+  UNKNOWN_SERVICE_TYPE: '未知服務類型',
   // List > Delete
   SERVICE: '服務',
   SERVICE_LOW: '服務',
   // List > Create
-  INTERNAL_ACCESS_MODE: 'Internal Access Mode',
+  INTERNAL_ACCESS_MODE: '内部訪問模式',
   CREATE_SERVICE: '創建服務',
   // List > Create > Basic Information
-  SERVICE_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
+  SERVICE_NAME_DESC: '名稱只能包含小寫字母、數字和連字符號（-），必須以小寫字母開頭並以小寫字母或數字结尾，最長 63 個字元。',
   // List > Create > Service Settings
-  VIRTUAL_IP_TITLE: 'Virtual IP Address',
-  INTERNAL_DOMAIN_NAME: 'Internal Domain Name',
-  CONTAINER_PORT: '容器端口',
-  INVALID_PORT: '端口無效。',
-  PORT_EMPTY: '請輸入端口',
-  ENTER_SELECTOR_TIP: 'Please set a workload selector.',
-  Ports: '端口',
+  VIRTUAL_IP_TITLE: '虚擬 IP 地址',
+  INTERNAL_DOMAIN_NAME: '内部域名',
+  CONTAINER_PORT: '容器通訊埠',
+  INVALID_PORT: '通訊埠無效。',
+  PORT_EMPTY: '請輸入通訊埠',
+  ENTER_SELECTOR_TIP: '請設置工作負載選擇器。',
+  Ports: '通訊埠',
   SPECIFY_WORKLOAD: '指定工作負載',
-  SELECT_WORKLOAD_DESC: '將工作負載所創建的容器組副本的 Label 作為預填充内容。',
+  SELECT_WORKLOAD_DESC: '使用工作負載的標籤作為選擇器。',
   VIRTUAL_IP_DESC: 'The cluster generates a unique IP address for the Service and the Service can be accessed within the cluster using this IP address.',
   INTERNAL_DOMAIN_NAME_DESC: 'The cluster does not generate an IP address for the Service and the Service can be directly accessed using the Endpoint IP address of the Service.',
   SERVICE_PORTS_DESC: 'Set the container ports and Service ports.',
