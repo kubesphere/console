@@ -57,10 +57,9 @@ module.exports = {
   REGISTRY: '仓库',
   SET_IMAGE_DESC: '为容器设置镜像。',
   WORKER_CONTAINER: '工作容器',
-  CONTAINER_RESOURCE_LIMIT_TIP:
-    '设置容器的资源限制与资源预留，以将容器调度到合适的节点上。',
-  GPU_TYPE: 'GPU类型',
-  GPU_LIMIT: 'GPU限制',
+  CONTAINER_RESOURCE_LIMIT_TIP: '设置容器的资源限制与资源预留，以将容器调度到合适的节点上。',
+  GPU_TYPE: 'GPU 类型',
+  GPU_LIMIT: 'GPU 限制',
   NO_LIMIT: '不限制',
   NO_REQUEST: '不预留',
   NO_RESOURCE_LIMIT: '无资源限制',
