@@ -25,8 +25,8 @@ module.exports = {
   RESOURCE_LIMIT: '资源限制',
   // Resource Quotas > Edit Quotas
   EDIT_WORKSPACE_QUOTAS: '编辑企业空间配额',
-  CPU_REQUEST: '资源预留',
-  CPU_LIMIT: '资源限制',
+  CPU_REQUEST: 'CPU 预留',
+  CPU_LIMIT: 'CPU 限制',
   MEMORY_REQUEST: '内存预留',
   MEMORY_LIMIT: '内存限制'
 };
