@@ -65,6 +65,7 @@ module.exports = {
   RESOURCE_REQUEST: 'Resource request',
   CORDON: 'Cordon',
   UNCORDON: 'Uncordon',
+  OPEN_TERMINAL: 'Open Terminal',
   CUSTOM_COLUMNS: 'Customize Columns',
   NO_MATCHING_RESULT_FOUND: 'No Matching Result Found',
   STATUS: 'Status',
