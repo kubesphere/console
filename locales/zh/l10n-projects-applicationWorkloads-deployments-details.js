@@ -23,9 +23,9 @@ module.exports = {
   TARGET_REVISION_RECORD: '目标修改记录',
   // More > Edit Autoscaling
   CONFIGURE_AUTOSCALING_DESC: '设置系统根据目标 CPU 和内存用量自动调整容器组副本数量。',
-  EDIT_AUTOSCALING: '编辑自动伸缩',
+  EDIT_AUTOSCALING: '编辑自动扩缩',
   TARGET_CPU_USAGE_UNIT: '目标 CPU 用量（%）',
-  AUTOSCALING: '自动伸缩',
+  AUTOSCALING: '自动扩缩',
   RESOURCE_NAME: '资源名称',
   TARGET_CPU_USAGE_DESC: '当实际 CPU 用量大于/小于目标值时，系统自动减少/增加容器组副本数量。',
   TARGET_MEMORY_USAGE_DESC: '当实际内存用量大于/小于目标值时，系统自动减少/增加容器组副本数量。',
