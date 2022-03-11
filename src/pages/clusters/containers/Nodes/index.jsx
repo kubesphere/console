@@ -104,7 +104,7 @@ export default class Nodes extends React.Component {
       {
         key: 'terminal',
         icon: 'terminal',
-        text: t('TERMINAL'),
+        text: t('OPEN_TERMINAL'),
         action: 'edit',
         show: item => item.importStatus === 'success' && this.getReady(item),
         onClick: item => this.handleOpenTerminal(item),

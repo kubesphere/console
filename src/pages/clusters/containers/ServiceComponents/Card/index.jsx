@@ -49,7 +49,7 @@ const Card = ({ cluster, component = {} }) => {
         </Column>
         <Column className="is-2">
           <Text
-            title={<Status type={status} name={t(status)} />}
+            title={<Status type={status} name={t(status.toUpperCase())} />}
             description={t('STATUS')}
           />
         </Column>

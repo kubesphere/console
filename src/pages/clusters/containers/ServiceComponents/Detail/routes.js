@@ -25,7 +25,7 @@ const PATH = '/clusters/:cluster/components/:namespace/:name'
 export default [
   {
     path: `${PATH}/service-details`,
-    title: 'SERVICE_DETAILS',
+    title: 'POD_PL',
     component: ServiceDetails,
     exact: true,
   },

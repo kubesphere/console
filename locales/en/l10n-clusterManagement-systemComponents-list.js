@@ -23,6 +23,7 @@ module.exports = {
     'System components are software components in the KubeSphere system, which provide various functions. You can view the running status of services components on this page.',
 
   // KubeSphere
+  STOPPED: 'Stopped',
   RUNNING_TIME: 'Running time',
   KS_CONSOLE_DESC: 'Provides KubeSphere console services.',
   KS_APISERVER_DESC:
