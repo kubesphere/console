@@ -17,8 +17,10 @@
  */
 module.exports = {
   // Banner
-  VOLUME_SNAPSHOT_DESC: '存储卷快照是存储卷在特定时间点的副本，可使用快照中的数据预配新存储卷，或者将存储卷恢复至快照捕捉到的先前状态。',
+  VOLUME_SNAPSHOT_DESC:
+    '存储卷快照是存储卷在特定时间点的副本，可使用快照中的数据预配新存储卷，或者将存储卷恢复至快照捕捉到的先前状态。',
   VOLUME_SNAPSHOT_PL: '存储卷快照',
+
   // List
   VOLUME_SNAPSHOT_STATUS_CREATING: '创建中',
   VOLUME_SNAPSHOT_STATUS_FAILED: '创建失败',
@@ -29,5 +31,5 @@ module.exports = {
   CREATE_STATUS_FAILED: '创建失败',
   CREATE_STATUS_DELETING: '删除中',
   // List > Delete
-  VOLUME_SNAPSHOT_LOW: '存储卷快照'
-};
+  VOLUME_SNAPSHOT_LOW: '存储卷快照',
+}

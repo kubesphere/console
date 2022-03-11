@@ -13,39 +13,23 @@
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
+ *
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import Base from './base'
 
-export default class VolumeSnapshotStore extends Base {
-  module = 'volumesnapshots'
+import React from 'react'
 
-  get resourceKind() {
-    return 'VolumeSnapshot'
-  }
+import { withClusterList } from 'components/HOCs/withList'
+import SnapshotStore from 'stores/volumeSnapshot'
 
-  get apiVersion() {
-    return 'apis/snapshot.storage.k8s.io/v1beta1'
-  }
-
-  async createSnapshot({ name, type, sourceName, cluster, namespace }) {
-    const path = this.getListUrl({ cluster, namespace })
-
-    const params = {
-      apiVersion: 'snapshot.storage.k8s.io/v1beta1',
-      kind: this.resourceKind,
-      metadata: {
-        name,
-      },
-      spec: {
-        volumeSnapshotClassName: type,
-        source: {
-          kind: this.resourceKind,
-          persistentVolumeClaimName: sourceName,
-        },
-      },
-    }
-
-    await this.submitting(request.post(path, params))
+@withClusterList({
+  store: new SnapshotStore(),
+  module: 'volume-snapshot-content',
+  name: 'VOLUME_SNAPSHOT_CONTENT',
+  authKey: 'volumes',
+})
+export default class VolumeSnapshotContent extends React.Component {
+  render() {
+    return <></>
   }
 }

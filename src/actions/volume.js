@@ -27,6 +27,7 @@ import SnapshotModal from 'projects/components/Modals/ResourceSnapshot'
 import ExpandModal from 'projects/components/Modals/ExpandVolume'
 import ClusterDiffSettings from 'components/Forms/Volume/ClusterDiffSettings'
 import EditConfigTemplateModal from 'fedprojects/components/VolumeSetting'
+import EditYamlModal from 'components/Modals/EditYaml'
 
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
@@ -149,6 +150,24 @@ export default {
       })
     },
   },
+  'create.snapshot': {
+    on({ store, cluster, namespace, ...props }) {
+      const modal = Modal.open({
+        onOk: async ({ namespace: ns, ...params }) => {
+          await store.createSnapshot({ ...params, cluster, namespace: ns })
+          Modal.close(modal)
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
+        },
+        title: t('CREATE_SNAPSHOT'),
+        modal: SnapshotModal,
+        store,
+        cluster,
+        namespace,
+        volumeSelect: true,
+        ...props,
+      })
+    },
+  },
   'volume.expand': {
     on({ store, ...props }) {
       const modal = Modal.open({
@@ -212,6 +231,22 @@ export default {
         ...props,
         formTemplate,
         isFederated,
+      })
+    },
+  },
+  'volume.snapshot.yaml.edit': {
+    on({ store, detail, success, namespace, cluster, ...props }) {
+      const modal = Modal.open({
+        onOk: async data => {
+          await store.update({ namespace, cluster, ...store.detail }, data)
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+          Modal.close(modal)
+          success && success()
+        },
+        store,
+        modal: EditYamlModal,
+        yaml: detail,
+        ...props,
       })
     },
   },

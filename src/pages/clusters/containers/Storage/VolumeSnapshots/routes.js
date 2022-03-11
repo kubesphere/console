@@ -13,39 +13,32 @@
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
+ *
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import Base from './base'
 
-export default class VolumeSnapshotStore extends Base {
-  module = 'volumesnapshots'
+import { getIndexRoute } from 'utils/router.config'
 
-  get resourceKind() {
-    return 'VolumeSnapshot'
-  }
+import Snapshots from './Snapshots'
+import Content from './SnapshotContent'
 
-  get apiVersion() {
-    return 'apis/snapshot.storage.k8s.io/v1beta1'
-  }
-
-  async createSnapshot({ name, type, sourceName, cluster, namespace }) {
-    const path = this.getListUrl({ cluster, namespace })
-
-    const params = {
-      apiVersion: 'snapshot.storage.k8s.io/v1beta1',
-      kind: this.resourceKind,
-      metadata: {
-        name,
-      },
-      spec: {
-        volumeSnapshotClassName: type,
-        source: {
-          kind: this.resourceKind,
-          persistentVolumeClaimName: sourceName,
-        },
-      },
-    }
-
-    await this.submitting(request.post(path, params))
-  }
-}
+const PATH = '/clusters/:cluster/volume-snapshots'
+export default [
+  {
+    path: `${PATH}/snapshots`,
+    title: 'Volume Snapshot',
+    component: Snapshots,
+    exact: true,
+  },
+  {
+    path: `${PATH}/snapshot-content`,
+    title: 'Volume Snapshot Content',
+    component: Content,
+    exact: true,
+  },
+  getIndexRoute({
+    path: PATH,
+    to: `${PATH}/Snapshots`,
+    exact: true,
+  }),
+]

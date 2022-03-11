@@ -74,6 +74,22 @@ export default class VolumeSnapshotDetail extends React.Component {
 
   getOperations = () => [
     {
+      key: 'edit',
+      text: t('EDIT_YAML'),
+      show: this.store.detail.backupStatus === 'success',
+      onClick: () => {
+        const { cluster, namespace } = this.props.match.params
+        const { detail } = this.store
+        this.trigger('volume.snapshot.yaml.edit', {
+          store: this.store,
+          detail: detail._originData,
+          cluster,
+          namespace,
+          success: this.fetchData,
+        })
+      },
+    },
+    {
       key: 'apply',
       icon: 'storage',
       text: t('CREATE_VOLUME'),
@@ -129,10 +145,15 @@ export default class VolumeSnapshotDetail extends React.Component {
       creator,
       errorMessage,
       namespace,
+      snapshotClassName,
     } = detail
     if (isEmpty(detail)) return null
 
     return [
+      {
+        name: t('PROJECT'),
+        value: namespace,
+      },
       {
         name: t('STATUS'),
         value: (
@@ -154,16 +175,16 @@ export default class VolumeSnapshotDetail extends React.Component {
         value: restoreSize,
       },
       {
-        name: t('CREATOR'),
-        value: creator,
-      },
-      {
-        name: t('PROJECT'),
-        value: namespace,
+        name: t('VOLUME_SNAPSHOT_CLASS'),
+        value: snapshotClassName,
       },
       {
         name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        name: t('CREATOR'),
+        value: creator,
       },
     ]
   }

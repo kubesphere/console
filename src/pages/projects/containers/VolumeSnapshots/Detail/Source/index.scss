@@ -1,24 +1,72 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
-.wrapper {
-  display: flex;
-  & > div {
-    flex: 1
+@mixin item {
+  .title {
+    display: flex;
+    font-size: 12px;
+    line-height: 20px;
+    color: $dark-color07;
+    align-items: center;
+
+    .toolTip {
+      margin-left: 6px;
+    }
   }
 
-  .icon {
-    flex-grow: 0;
+  .des {
+    display: block;
+    font-size: 12px;
+    line-height: 20px;
+    color: $dark-color01;
+
+    .mode_title {
+      display: flex;
+    }
+
+    .toolTip {
+      margin-left: 6px;
+    }
   }
 }
 
-.attr {
-  padding: 12px;
-  padding-top: 0;
-  h3 {
-    color: $dark-color07;
-    font-weight: bold;
+.ItemBox {
+  display: flex;
+
+  .leftBox {
+    min-width: 20%;
+    display: flex;
+
+    .rightBox {
+      margin-left: 12px;
+      @include item();
+    }
   }
-  p {
-    color: $dark-color01;    
+
+  .titleBox {
+    width: 20%;
+    margin-left: 107px;
+    @include item();
+  }
+}
+
+.IconLine {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+
+  .cardBox {
+    width: 32.5%;
+    height: 64px;
+    padding: 17px;
+    background: $light-color01;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+
+    .text {
+      margin-left: 12px;
+      @include item();
+    }
   }
 }

@@ -17,46 +17,132 @@
  */
 
 import React, { Component } from 'react'
+import { observer, inject } from 'mobx-react'
+import { Icon, Loading, Tooltip } from '@kube-design/components'
 import { Panel } from 'components/Base'
-import { Icon } from '@kube-design/components'
-import { inject } from 'mobx-react'
+import Volume from 'stores/volume'
+import { getLocalTime, map_accessModes } from 'utils'
+import { toJS } from 'mobx'
 
+import { isEmpty, isFunction } from 'lodash'
 import styles from './index.scss'
 
+const renderModeTip = (
+  <div>
+    <div>{t('ACCESS_MODE_TCAP')}:</div>
+    <div>RWO (ReadWriteOnce): {t('ACCESS_MODE_RWO')}</div>
+    <div>ROX (ReadOnlyMany): {t('ACCESS_MODE_ROX')}</div>
+    <div>RWX (ReadWriteMany): {t('ACCESS_MODE_RWX')}</div>
+  </div>
+)
 @inject('detailStore')
+@observer
 export default class VolumeSnapshotSource extends Component {
-  render() {
-    const { detailStore } = this.props
-    const { detail } = detailStore
+  store = new Volume()
 
-    const { snapshotClassName, snapshotSourceName } = detail
+  componentDidMount() {
+    const {
+      snapshotSourceName,
+      namespace,
+      backupStatus,
+      cluster,
+    } = this.props.detailStore.detail
+    if (backupStatus !== 'success') {
+      this.store.isLoading = false
+    } else {
+      this.store.fetchDetail({ cluster, name: snapshotSourceName, namespace })
+    }
+  }
 
+  renderItem = () => {
+    const { detail } = this.store
+    return (
+      <div>
+        <div className={styles.ItemBox}>
+          <div className={styles.leftBox}>
+            <Icon name="storage" size="40"></Icon>
+            <div className={styles.rightBox}>
+              <span className={styles.title}>{detail.name}</span>
+              <span className={styles.des}>
+                {t('STORAGE_CLASS_VALUE', { value: detail.storageClassName })}
+              </span>
+            </div>
+          </div>
+          <div className={styles.titleBox}>
+            <span className={styles.title}>
+              {getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss')}
+            </span>
+            <span className={styles.des}>{t('CREATION_TIME_TCAP')}</span>
+          </div>
+        </div>
+        <div className={styles.IconLine}>
+          <CardBox
+            icon="bm"
+            size="30"
+            title={'PROVISIONER'}
+            value={detail.storageProvisioner}
+          />
+          <CardBox
+            icon={() => <img src="/assets/Accessmodes.svg" size={48} />}
+            size="48"
+            title={() => this.renderAccessTitle()}
+            value={() => this.mapperAccessMode(toJS(detail.accessModes))}
+          />
+          <CardBox
+            icon="database"
+            size="30"
+            title={'capacity'}
+            value={detail.capacity}
+          />
+        </div>
+      </div>
+    )
+  }
+
+  renderAccessTitle = () => {
+    return (
+      <div className={styles.mode_title}>
+        {t('ACCESS_MODE_TCAP')}
+        <Tooltip content={renderModeTip}>
+          <Icon name="question" size={16} className={styles.toolTip}></Icon>
+        </Tooltip>
+      </div>
+    )
+  }
+
+  mapperAccessMode = accessModes => {
+    const modes = map_accessModes(accessModes)
     return (
       <>
-        <Panel title={t('DATA_SOURCE')}>
-          <div className={styles.wrapper}>
-            <div className={styles.icon}>
-              <Icon name={'storage'} size={40} />
-            </div>
-            <div>
-              <Attr title={snapshotSourceName} value={t('NAME')} />
-            </div>
-            <div>
-              <Attr title={snapshotClassName} value={t('STORAGE_CLASS_SCAP')} />
-            </div>
-            <div />
-          </div>
-        </Panel>
+        <span>{modes.join(',')}</span>
       </>
+    )
+  }
+
+  render() {
+    const { detail, isLoading } = this.store
+    return (
+      <Panel title={t('VOLUME_PL')}>
+        {!isEmpty(detail) && (
+          <Loading spinning={isLoading}>{this.renderItem()}</Loading>
+        )}
+      </Panel>
     )
   }
 }
 
-function Attr({ title, value }) {
+function CardBox({ icon, size, title, value }) {
   return (
-    <div className={styles.attr}>
-      <h3>{title}</h3>
-      <p>{value}</p>
+    <div className={styles.cardBox}>
+      {isFunction(icon) ? icon() : <Icon name={icon} size={size}></Icon>}
+      <div className={styles.text}>
+        <span className={styles.title}>
+          {isFunction(value) ? value() : value}
+        </span>
+        <span className={styles.des}>
+          {isFunction(title) ? title() : t(`${title}`)}
+        </span>
+      </div>
     </div>
   )
 }

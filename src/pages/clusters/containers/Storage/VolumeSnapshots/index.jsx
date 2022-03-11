@@ -18,139 +18,67 @@
  */
 
 import React from 'react'
-import { isEmpty } from 'lodash'
-import { VOLUME_SNAPSHOT_STATUS } from 'utils/constants'
-
-import { withClusterList, ListPage } from 'components/HOCs/withList'
-import ResourceTable from 'clusters/components/ResourceTable'
-import SnapshotStore from 'stores/volumeSnapshot'
-import { getLocalTime } from 'utils'
-import { Avatar, Status } from 'components/Base'
-
+import { observer, inject } from 'mobx-react'
 import Banner from 'components/Cards/Banner'
-import { Icon, Tooltip } from '@kube-design/components'
+import { renderRoutes } from 'utils/router.config'
+import VolumeStore from 'stores/volume'
+import routes from './routes'
 
-import styles from './index.scss'
+@inject('rootStore')
+@observer
+export default class VolumesSnapshots extends React.Component {
+  store = new VolumeStore()
 
-@withClusterList({
-  store: new SnapshotStore(),
-  module: 'volume-snapshots',
-  name: 'VOLUME_SNAPSHOT',
-  authKey: 'volumes',
-})
-export default class VolumeSnapshot extends React.Component {
-  getStatus() {
-    return VOLUME_SNAPSHOT_STATUS.map(status => ({
-      text: t(status.text),
-      value: status.value,
-    }))
-  }
-
-  get itemActions() {
-    const { trigger, routing, name } = this.props
-
+  get tips() {
     return [
       {
-        key: 'delete',
-        icon: 'trash',
-        text: t('DELETE'),
-        action: 'delete',
-        onClick: item =>
-          trigger('resource.delete', {
-            type: name,
-            detail: item,
-            success: routing.query,
-          }),
+        title: t('WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q'),
+        description: t('WHAT_IS_VOLUME_SNAPSHOT_CLASS_A'),
+      },
+      {
+        title: t('WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q'),
+        description: t('WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A'),
       },
     ]
   }
 
-  getColumns() {
-    const { getSortOrder, getFilteredValue, module } = this.props
-    const { cluster } = this.props.match.params
+  get bannerProps() {
+    return {
+      className: 'margin-b12',
+      description: t('VOLUME_SNAPSHOT_DESC'),
+      module: 'VOLUME_SNAPSHOT',
+      title: t('VOLUME_SNAPSHOT'),
+    }
+  }
 
-    return [
-      {
-        title: t('NAME'),
-        dataIndex: 'name',
-        sortOrder: getSortOrder('name'),
-        search: true,
-        sorter: true,
-        render: (name, record) => (
-          <Avatar
-            icon={'snapshot'}
-            iconSize={40}
-            to={`/clusters/${cluster}/projects/${record.namespace}/${module}/${name}`}
-            title={name}
-            desc={record.snapshotClassName}
-          />
-        ),
-      },
-      {
-        title: t('STATUS'),
-        dataIndex: 'status',
-        isHideable: true,
-        filters: this.getStatus(),
-        filteredValue: getFilteredValue('status'),
-        search: true,
-        render: (_, record) => {
-          const { errorMessage, backupStatus } = record
+  get routes() {
+    return routes
+      .filter(item => !!item.title)
+      .map(item => ({
+        ...item,
+        name: item.path.split('/').pop(),
+      }))
+  }
 
-          return (
-            <div className={styles.status}>
-              <Status
-                type={backupStatus}
-                name={t(`CREATE_STATUS_${backupStatus.toUpperCase()}`)}
-              />{' '}
-              {!isEmpty(errorMessage) && (
-                <Tooltip content={errorMessage}>
-                  <Icon name={'question'} />
-                </Tooltip>
-              )}
-            </div>
-          )
-        },
-      },
-      {
-        title: t('PROJECT'),
-        dataIndex: 'namespace',
-        isHideable: true,
-        render: namespace => <div>{namespace}</div>,
-      },
-      {
-        title: t('CAPACITY'),
-        dataIndex: 'restoreSize',
-        isHideable: true,
-        width: '20%',
-        render: restoreSize => restoreSize || '-',
-      },
-      {
-        title: t('CREATION_TIME_TCAP'),
-        dataIndex: 'createTime',
-        isHideable: true,
-        sorter: true,
-        sortOrder: getSortOrder('createTime'),
-        width: '20%',
-        render: time =>
-          time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-',
-      },
-    ]
+  componentDidMount() {
+    this.store.getKsVersion(this.props.match.params)
+  }
+
+  renderBanner() {
+    if (this.store.ksVersion >= 3.3) {
+      return (
+        <Banner {...this.bannerProps} tips={this.tips} routes={this.routes} />
+      )
+    }
+    return <Banner {...this.bannerProps} />
   }
 
   render() {
-    const { match, bannerProps, tableProps } = this.props
-
     return (
-      <ListPage {...this.props} noWatch>
-        <Banner {...bannerProps} tabs={this.tabs} />
-        <ResourceTable
-          {...tableProps}
-          itemActions={this.itemActions}
-          columns={this.getColumns()}
-          onCreate={this.showCreate}
-          cluster={match.params.cluster}
-        />
-      </ListPage>
+      <>
+        {this.renderBanner()}
+        {renderRoutes(routes)}
+      </>
     )
   }
 }
