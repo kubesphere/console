@@ -1,0 +1,16 @@
+.status__container {
+  display: flex;
+  .warper__container {
+    flex: 1 1;
+    padding: 12px;
+    background: #fff;
+    margin-right: 12px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .warper__item {
+    display: flex;
+  }
+}

@@ -34,15 +34,22 @@ export default class Chart extends React.Component {
   }
 
   render() {
-    const { width, height, data, dataKey } = this.props
+    const {
+      width,
+      height,
+      data,
+      dataKey,
+      innerRadius = '60%',
+      outerRadius = '100%',
+    } = this.props
 
     return (
       <PieChart width={width} height={height}>
         <Pie
           data={data}
           dataKey={dataKey}
-          innerRadius="60%"
-          outerRadius="100%"
+          innerRadius={innerRadius}
+          outerRadius={outerRadius}
           animationDuration={1000}
         >
           {data.map(entry => (

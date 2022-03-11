@@ -21,6 +21,8 @@ import { getIndexRoute } from 'utils/router.config'
 import Layout from '../containers/layout'
 import DevopsListLayout from '../containers/Base/List'
 import PipelinesList from '../containers/Pipelines/PipelinesList'
+import CDList from '../containers/CD/CDList'
+
 import BaseInfo from '../containers/BaseInfo'
 import Roles from '../containers/Roles'
 import Members from '../containers/Members'
@@ -41,6 +43,7 @@ export default [
         component: DevopsListLayout,
         routes: [
           { path: `${PATH}/pipelines`, component: PipelinesList, exact: true },
+          { path: `${PATH}/cd`, component: CDList, exact: true },
           { path: `${PATH}/base-info`, component: BaseInfo, exact: true },
           { path: `${PATH}/roles`, component: Roles, exact: true },
           { path: `${PATH}/members`, component: Members, exact: true },

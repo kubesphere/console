@@ -78,6 +78,21 @@ export const NODE_STATUS = [
   { text: 'NODE_STATUS_WARNING', value: 'warning' },
 ]
 
+export const CD_WEATHER_STATUS = [
+  { text: 'Healthy', value: 'Healthy' },
+  { text: 'Degraded', value: 'Degraded' },
+  { text: 'Progressing', value: 'Progressing' },
+  { text: 'Suspended', value: 'Suspended' },
+  { text: 'Unknown', value: 'Unknown' },
+  { text: 'Missing', value: 'Missing' },
+]
+
+export const CD_SYNC_STATUS = [
+  { text: 'Synced', value: 'Synced' },
+  { text: 'OutOfSync', value: 'OutOfSync' },
+  { text: 'Unknown', value: 'Unknown' },
+]
+
 export const ACCESS_MODES = {
   ReadWriteOnce: 'RWO',
   ReadOnlyMany: 'ROX',
@@ -461,6 +476,19 @@ export const STRATEGIES = {
     },
   ],
 }
+
+export const SYNC_STRATEGY = [
+  {
+    label: 'AUTO_SYNC',
+    value: 'auto',
+    description: 'AUTO_SYNC_DESC',
+  },
+  {
+    label: 'MANUAL_SYNC',
+    value: 'manual',
+    description: 'MANUAL_SYNC_DESC',
+  },
+]
 
 export const PROTOCOLS = [
   { label: 'GRPC', value: 'GRPC' },
