@@ -65,7 +65,7 @@ module.exports = {
   RESOURCE_REQUEST: '资源预留',
   CORDON: '停止调度',
   UNCORDON: '开启调度',
-  OPEN_TERMINAL: '打开终端',
+  OPEN_TERMINAL: 'Open Terminal',
   CUSTOM_COLUMNS: '定制内容',
   NO_MATCHING_RESULT_FOUND: '未发现匹配的结果',
   STATUS: '状态',
