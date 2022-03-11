@@ -65,6 +65,7 @@ module.exports = {
   RESOURCE_REQUEST: '資源預留',
   CORDON: '停止調度',
   UNCORDON: '啟動調度',
+  OPEN_TERMINAL: 'Open Terminal',
   CUSTOM_COLUMNS: '内容自定義',
   NO_MATCHING_RESULT_FOUND: '暫時沒有找到符合過濾條件的資源',
   STATUS: '狀態',
