@@ -64,7 +64,7 @@ module.exports = {
   NODE_DISKPRESSURE_DESC: 'Whether the ramaining disk space or inodes of the node is less than the threshold.',
   NODE_PIDPRESSURE: '进程压力(PIDPressure)',
   NODE_PIDPRESSURE_DESC: 'Whether the number of processes allowed to be created on the node is less the threshold.',
-  NODE_READY: '节点就绪状态',
+  NODE_READY: 'Readiness',
   NODE_READY_DESC: 'Whether the node is ready to accept pods.',
   // Running Status > Taints
   NO_TAINTS_TIPS: '未发现污点。',
