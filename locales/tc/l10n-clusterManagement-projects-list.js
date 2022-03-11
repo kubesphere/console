@@ -22,6 +22,8 @@ module.exports = {
   USER_PROJECTS: '用戶項目',
   // List
   EMPTY_WRAPPER: '未發現{resource}',
+  TERMINATING: 'Terminating',
+  ACTIVE: 'Active',
   // List > Assign Workspace
   PROJECT_ADMINISTRATOR: '項目管理員',
   PROJECT_ADMINISTRATOR_DESC: '選擇企業空間的用戶作為管理員。',
