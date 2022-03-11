@@ -65,6 +65,7 @@ module.exports = {
   RESOURCE_REQUEST: 'Kaynak İstekleri',
   CORDON: 'Kordon',
   UNCORDON: 'Kordonu açmak',
+  OPEN_TERMINAL: 'Open Terminal',
   CUSTOM_COLUMNS: 'Özel sütunlar',
   NO_MATCHING_RESULT_FOUND: 'Eşleşen sonuç bulunamadı',
   STATUS: 'Durum',
