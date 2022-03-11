@@ -22,8 +22,7 @@ module.exports = {
   TARGET_REVISION_EMPTY_DESC: '请选择目标修改记录。',
   TARGET_REVISION_RECORD: '目标修改记录',
   // More > Edit Autoscaling
-  CONFIGURE_AUTOSCALING_DESC:
-    '设置系统根据目标 CPU 和内存用量自动调整容器组副本数量。',
+  CONFIGURE_AUTOSCALING_DESC: '设置系统根据目标 CPU 和内存用量自动调整容器组副本数量。',
   EDIT_AUTOSCALING: '编辑自动扩缩',
   TARGET_CPU_USAGE_UNIT: '目标 CPU 用量（%）',
   AUTOSCALING: '自动扩缩',
