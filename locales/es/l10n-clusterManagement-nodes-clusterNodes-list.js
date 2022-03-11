@@ -65,6 +65,7 @@ module.exports = {
   RESOURCE_REQUEST: 'Solicitud de recursos',
   CORDON: 'Cordon',
   UNCORDON: 'Uncordon',
+  OPEN_TERMINAL: 'Open Terminal',
   CUSTOM_COLUMNS: 'Columnas personalizadas',
   NO_MATCHING_RESULT_FOUND: 'Aún no se han encontrado recursos que coincidan con el filtro',
   STATUS: 'Estado',
