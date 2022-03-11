@@ -20,6 +20,7 @@ module.exports = {
   SYSTEM_COMPONENT_PL: 'Sistem bileşenleri',
   SERVICE_COMPONENTS_DESC: 'Sistem bileşenleri, KubeSphere sistemindeki çeşitli işlevleri sağlayan yazılım bileşenleridir. Servis bileşenlerinin çalışma durumunu bu sayfada görüntüleyebilirsiniz.',
   // KubeSphere
+  STOPPED: 'Stopped',
   RUNNING_TIME: 'Çalışma süresi',
   KS_CONSOLE_DESC: 'KubeSphere konsol hizmetleri sağlar.',
   KS_APISERVER_DESC: 'Küme yönetimi için REST API\'leri sağlar. Bu bileşen ayrıca küme bileşenleri ve küme güvenlik denetimi arasındaki iletişim için de kullanılır.',
