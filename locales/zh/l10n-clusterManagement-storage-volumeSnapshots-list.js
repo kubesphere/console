@@ -20,15 +20,13 @@ module.exports = {
   VOLUME_SNAPSHOT_DESC:
     '存储卷快照是存储卷在特定时间点的副本，可使用快照中的数据预配新存储卷，或者将存储卷恢复至快照捕捉到的先前状态。',
   VOLUME_SNAPSHOT_PL: '存储卷快照',
-  VOLUME_SNAPSHOT_CONTENT_PL: '存储卷快照内容',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: '什么是快照类型 ?',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A:
-    '存储卷快照类型可用于指定存储卷快照的属性。从存储系统的相同存储卷实例创建的快照可能有不同的属性，因此这些属性无法通过相同存储类型生成的存储卷来表示。',
-  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: '什么是存储卷快照内容？',
-  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A:
-    '存储卷快照内容是从集群管理员分配的存储卷创建的快照。与存储卷实例类似，存储卷快照也是集群中的资源。',
-  SELECT_A_VOLUME_DESC: '选择用于创建快照的存储卷。',
-  SELECT_VOLUME_SNAPSHOT_CLASS_DESC: '选择快照类型以创建特定类型的快照。',
+  VOLUME_SNAPSHOT_CONTENT_PL: 'Volume Snapshot Content',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'What is a snapshot class ?',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: 'VolumeSnapshotClass allows the specification of different attributes belonging to a VolumeSnapshot. These properties may differ between snapshots taken from the same volume of a storage system and therefore cannot be represented by using the same StorageClass as PersistentVolumeClaim.',
+  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: 'What is volume snapshot content ?',
+  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: 'VolumeSnapshotContent is a snapshot that is taken from a volume in the cluster that has been provisioned by the administrator. Just as a persistent volume is a resource in the cluster, it is also a resource in the cluster.',
+  SELECT_A_VOLUME_DESC: 'Select a Volume to create a snapshot.',
+  SELECT_VOLUME_SNAPSHOT_CLASS_DESC: 'Select a snapshot class to create a snapshot of a specific type.',
   // List
   VOLUME_SNAPSHOT_STATUS_CREATING: '创建中',
   VOLUME_SNAPSHOT_STATUS_FAILED: '创建失败',
@@ -41,6 +39,5 @@ module.exports = {
   // List > Delete
   VOLUME_SNAPSHOT_LOW: '存储卷快照',
   // List > Create
-  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT:
-    '存储卷的存储类型不支持创建快照，请重新选择。',
-}
+  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: 'The storage type to which this storage volume belongs does not allow snapshots to be created, please reselect it.'
+};
