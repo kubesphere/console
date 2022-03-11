@@ -15,9 +15,4 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-module.exports = {
-  // Details
-  INSTANCE_COUNT: 'Örnekler',
-  // Service Details
-  SERVICE_DETAILS: 'Hizmet Detayları'
-};
+module.exports = {};
