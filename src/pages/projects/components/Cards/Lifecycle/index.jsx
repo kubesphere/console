@@ -89,7 +89,7 @@ export default class LifecycleCard extends React.Component {
 
   render() {
     return (
-      <Panel title={t('LIFE_MANAGEMENT')}>
+      <Panel title={t('LIFECYCLE_MANAGEMENT')}>
         <div className={styles.wrapper}>{this.renderProbe()}</div>
       </Panel>
     )

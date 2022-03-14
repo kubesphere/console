@@ -19,7 +19,6 @@
 module.exports = {
   abortPipeline: 'abortPipeline',
   'Absolute duration': 'Absolute duration',
-  ADD_ACTION: 'Add Action',
   'Add another credential': 'Add another credential',
   'Add conditions': 'Add conditions',
   'Add nesting conditions': 'Add nesting conditions',

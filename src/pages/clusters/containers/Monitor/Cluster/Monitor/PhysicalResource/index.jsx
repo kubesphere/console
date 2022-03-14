@@ -173,7 +173,7 @@ class ClusterMonitorings extends React.Component {
     },
     {
       type: 'bandwidth',
-      title: 'NETWORK_BANDWIDTH',
+      title: 'NETWORK_TRAFFIC',
       unitType: 'bandwidth',
       legend: ['OUT', 'IN'],
       data: [
