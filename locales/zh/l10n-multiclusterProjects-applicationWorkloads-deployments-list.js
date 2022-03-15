@@ -115,11 +115,9 @@ module.exports = {
   USER_AND_USER_GROUP: '用户和用户组',
   USER_GROUP: '用户组',
   RUN_AS_NON_ROOT: '仅允许非 root 用户运行',
-  RUN_AS_NON_ROOT_DESC:
-    '启动容器之前检查容器是否将以 root 用户运行。如果容器将以 root 用户运行则不启动容器。',
-  RUN_AS_USER_DESC: '执行容器进程入口点的 UID。默认为镜像元数据中指定的 GID。',
-  RUN_AS_USER_GROUP_DESC:
-    '执行容器进程入口点的 GID。默认为容器运行时的默认 GID。',
+  RUN_AS_NON_ROOT_DESC: '启动容器之前检查容器是否将以 root 用户运行。如果容器将以 root 用户运行则不启动容器。',
+  RUN_AS_USER_DESC: '执行容器进程入口点的 UID。默认为镜像元数据中指定的 UID。',
+  RUN_AS_USER_GROUP_DESC: '执行容器进程入口点的 GID。默认为容器运行时的默认 GID。',
   SELINUX_CONTEXT: 'SELinux 上下文',
   CAPABILITIES_BETA: '权能（测试中）',
   DROP: '移除',
