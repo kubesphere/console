@@ -25,5 +25,5 @@ module.exports = {
   // Resource Status
   SECRET_VALUE: 'Secreto: {value}',
   // Resource Status > kubeconfig Settings
-  SERVICEACCOUNT_KUBECONFIG_DESC: 'método de configuración kubeconfig, consulte <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black"> la documentación oficial </ a >. Después de la descarga archivo, modifique la dirección del servicio a la dirección externa de la API de Kubernetes'
+  SERVICEACCOUNT_KUBECONFIG_DESC: 'Download the kubeconfig.yaml file to provide other apps with an account that can access the current project. If the apps to use the kubeconfig.yaml file are deployed outside the current cluster, you need to change the value of clusters:cluster:server to the Kubernetes API server address exposed to the outside. <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">Learn More</a>'
 };
