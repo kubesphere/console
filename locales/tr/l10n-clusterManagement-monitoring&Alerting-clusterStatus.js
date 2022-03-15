@@ -75,7 +75,6 @@ module.exports = {
   DISK_USAGE: 'Disk Kullanımı',
   AVERAGE_CPU_LOAD: 'Ortalama CPU Yükü',
   DISK_THROUGHPUT: 'Disk Verimi',
-  NETWORK_BANDWIDTH: 'Ağ Bant genişliği',
   POD_STATUS: 'Kapsül Durumu',
   COMPLETED: 'Tamamlanmış',
   WARNING: 'Uyarı',
