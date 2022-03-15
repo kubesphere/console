@@ -108,8 +108,7 @@ module.exports = {
   PRIVILEGED_MODE: '特权模式',
   PRIVILEGED_MODE_DESC: '以主机上的 root 用户运行容器进程。',
   ALLOW_PRIVILEGE_ESCALATION: '允许特权提升',
-  ALLOW_PRIVILEGE_ESCALATION_DESC:
-    '允许容器进程获取比父进程更多的特权。当特权模式打开时，此选项目默认打开。',
+  ALLOW_PRIVILEGE_ESCALATION_DESC: '允许容器进程获取比父进程更多的特权。当特权模式启用时，此选项目默认启用。',
   ROOT_DIRECTORY_READONLY: '根目录只读',
   ROOT_DIRECTORY_READONLY_DESC: '将容器文件系统的根目录设置为只读。',
   USER_AND_USER_GROUP: '用户和用户组',
