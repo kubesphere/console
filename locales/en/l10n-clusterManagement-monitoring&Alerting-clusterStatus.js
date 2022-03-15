@@ -84,7 +84,6 @@ module.exports = {
   DISK_USAGE: 'Disk Usage',
   AVERAGE_CPU_LOAD: 'Average CPU Load',
   DISK_THROUGHPUT: 'Disk Throughput',
-  NETWORK_BANDWIDTH: 'Network Bandwidth',
   POD_STATUS: 'Pod Status',
   COMPLETED: 'Completed',
   WARNING: 'Warning',

@@ -77,7 +77,7 @@ export default class QuotaCheck extends Component {
             {requestCPUOver && (
               <span>
                 CPU&nbsp;{t('Cost')}&nbsp;
-                {get(result, '["requests.cpu"].cost', t('Not Limited'))}&nbsp;(
+                {get(result, '["requests.cpu"].cost', t('NO_LIMIT'))}&nbsp;(
                 {t('PROJECT_REMAINING_QUOTAS')}:&nbsp;
                 {get(
                   result,
@@ -97,7 +97,7 @@ export default class QuotaCheck extends Component {
               <span>
                 {t('MEMORY')}&nbsp;
                 {t('Cost')}&nbsp;
-                {get(result, '["requests.memory"].cost', t('Not Limited'))}
+                {get(result, '["requests.memory"].cost', t('NO_LIMIT'))}
                 &nbsp;(
                 {t('PROJECT_REMAINING_QUOTAS')}:&nbsp;
                 {get(
@@ -122,7 +122,7 @@ export default class QuotaCheck extends Component {
             {limitCPUOver && (
               <span>
                 CPU&nbsp;{t('Cost')}&nbsp;
-                {get(result, '["limits.cpu"].cost', t('Not Limited'))}&nbsp;(
+                {get(result, '["limits.cpu"].cost', t('NO_LIMIT'))}&nbsp;(
                 {t('PROJECT_REMAINING_QUOTAS')}:&nbsp;
                 {get(result, '["limits.cpu"].namespaceQuota', t('NO_LIMIT'))}
                 ,&nbsp;
@@ -134,7 +134,7 @@ export default class QuotaCheck extends Component {
               <span>
                 {t('MEMORY')}&nbsp;
                 {t('Cost')}&nbsp;
-                {get(result, '["limits.memory"].cost', t('Not Limited'))}&nbsp;(
+                {get(result, '["limits.memory"].cost', t('NO_LIMIT'))}&nbsp;(
                 {t('PROJECT_REMAINING_QUOTAS')}:&nbsp;
                 {get(result, '["limits.memory"].namespaceQuota', t('NO_LIMIT'))}
                 ,&nbsp;{t('WORKSPACE_REMAINING_QUOTAS')}:&nbsp;

@@ -27,7 +27,7 @@ module.exports = {
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: 'Default Container Quotas Not Set',
   DEFAULT_CONTAINER_QUOTAS_DESC:
     'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
-  PROJECT_RESOURCE_QUOTAS: 'Project Resource Quotas',
+  APPLICATION_RESOURCE_COUNT: 'Application Resources',
   SELECT_RESOURCE_TIP: 'Select a resource or enter a resource name',
   NUMBER_OF_ROUTES: 'Number of Routes',
   NUMBER_OF_SECRETS: 'Number of Secrets',

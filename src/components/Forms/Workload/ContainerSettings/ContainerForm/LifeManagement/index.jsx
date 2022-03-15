@@ -37,23 +37,23 @@ export default class HealthChecker extends React.Component {
   render() {
     return (
       <Form.Group
-        label={t('LIFE_MANAGEMENT')}
-        desc={t('LIFE_MANAGEMENT_DESC')}
+        label={t('LIFECYCLE_MANAGEMENT')}
+        desc={t('LIFECYCLE_MANAGEMENT_DESC')}
         checkable
       >
-        <Form.Item className={styles.item} label={t('PostStart')}>
+        <Form.Item className={styles.item} label={t('POSTSTART_ACTION')}>
           <ProbeInput
             name={`${this.prefix}lifecycle.postStart`}
-            type={t('Container PostStart')}
-            description={t('POST_START_DESC')}
+            label={t('ADD_ACTION')}
+            description={t('POSTSTART_ACTION_DESC')}
             componentType="life"
           />
         </Form.Item>
-        <Form.Item className={styles.item} label={t('PreStop')}>
+        <Form.Item className={styles.item} label={t('PRESTOP_ACTION')}>
           <ProbeInput
             name={`${this.prefix}lifecycle.preStop`}
-            type={t('Container PreStop')}
-            description={t('PRO_STOP_DESC')}
+            label={t('ADD_ACTION')}
+            description={t('PRESTOP_ACTION_DESC')}
             componentType="life"
           />
         </Form.Item>

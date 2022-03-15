@@ -296,7 +296,7 @@ export default class QuotaEditModal extends React.Component {
           <Form.Item>
             <ResourceLimit {...this.resourceLimitProps} />
           </Form.Item>
-          <div className={styles.label}>{t('PROJECT_RESOURCE_QUOTAS')}</div>
+          <div className={styles.label}>{t('APPLICATION_RESOURCE_COUNT')}</div>
           <Quotas data={this.state.formTemplate} isFederated={isFederated} />
         </div>
       </Modal.Form>

@@ -30,6 +30,7 @@ import styles from './index.scss'
 export default class ProbeInput extends React.Component {
   static propTypes = {
     name: PropTypes.string,
+    label: PropTypes.string,
     value: PropTypes.object,
     onChange: PropTypes.func,
     onShowForm: PropTypes.func,
@@ -37,6 +38,7 @@ export default class ProbeInput extends React.Component {
 
   static defaultProps = {
     name: '',
+    label: '',
     value: {},
     onChange() {},
     onShowForm() {},
@@ -141,7 +143,7 @@ export default class ProbeInput extends React.Component {
   }
 
   render() {
-    const { description, value, componentType } = this.props
+    const { description, value, componentType, label } = this.props
     const { showForm } = this.state
 
     if (showForm) {
@@ -151,7 +153,7 @@ export default class ProbeInput extends React.Component {
     if (isEmpty(value)) {
       return (
         <div className={classnames(styles.empty)} onClick={this.showForm}>
-          <div>{t('ADD_PROBE')}</div>
+          <div>{label || t('ADD_PROBE')}</div>
           <p className="text-secondary">{description}</p>
         </div>
       )
