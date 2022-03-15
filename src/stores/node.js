@@ -125,14 +125,13 @@ export default class NodeStore extends Base {
   @action
   async fetchCount(params) {
     const resp = await request.get(this.getResourceUrl(params), {
-      labelSelector: 'node-role.kubernetes.io/master=',
+      labelSelector: 'node-role.kubernetes.io/master',
     })
 
-    const masterWorker = resp.items.filter(
-      item =>
-        getNodeRoles(item.metadata.labels).every(role => role !== 'master')
-          .length > 0
-    ).length
+    const masterWorker = resp.items.filter(item => {
+      const labels = getNodeRoles(item.metadata.labels)
+      return !labels.includes('master') && labels.includes('worker')
+    }).length
 
     this.masterCount = resp.totalItems
     this.masterWorkerCount = masterWorker
