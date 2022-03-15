@@ -21,6 +21,7 @@ module.exports = {
     'La carga de trabajo suele ser el operador real para acceder al servicio, y también es el operador real en ejecución para aplicaciones del sistema, como la recopilación y supervisión de registros de nodos. Workload es un modelo abstracto para un grupo de Pods.',
   // List
   DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
+  UPDATING: 'Updating',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
@@ -64,6 +65,7 @@ module.exports = {
     'Set the resource limits and requests of the container so that the container is scheduled to appropriate nodes.',
   GPU_TYPE: 'GPU Type',
   GPU_LIMIT: 'GPU Limit',
+  NVIDIA_COM_GPU: 'NVIDIA GPU',
   NO_LIMIT: 'Ilimitado',
   NO_REQUEST: 'Ninguna solicitud',
   NO_RESOURCE_LIMIT: 'No resource limit',
@@ -98,12 +100,13 @@ module.exports = {
   HEALTH_CHECK: 'Health check',
   STARTUP_CHECK_TIP: 'Kubernetes v1.18 or later is required.',
   // List > Create > Pod Settings > Add Container > Life Management
-  LIFE_MANAGEMENT: 'Lifecycle Management',
-  LIFE_MANAGEMENT_DESC: 'Manage some actions of the application container before running and shutting down, such as environment preparation, graceful offline, etc.',
-  'Container PostStart': 'Add PostStart settings',
-  'Container PreStop': 'Add PreStop settings',
-  PRO_STOP_DESC: ' Tasks before the application container is terminated, such as graceful shutdown of the application, notification to other systems, etc. ',
-  POST_START_DESC: 'The tasks after the application container is successfully created and before running, such as resource deployment, environment preparation, etc. ',
+  LIFECYCLE_MANAGEMENT: 'Lifecycle Management',
+  LIFECYCLE_MANAGEMENT_DESC: 'Add actions to be performed after the container is started or before it is stopped for environment preparation or graceful shutdown.',
+  POSTSTART_ACTION: 'Post-start Action',
+  PRESTOP_ACTION: 'Pre-stop Action',
+  POSTSTART_ACTION_DESC: 'Add an action to be performed after the container is started.',
+  PRESTOP_ACTION_DESC: 'Add an action to be performed before the container is stopped.',
+  ADD_ACTION: 'Add Action',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: 'Agregar variable de entorno',
   USE_CONFIGMAP_OR_SECRET: 'Use ConfigMap o Secret',
