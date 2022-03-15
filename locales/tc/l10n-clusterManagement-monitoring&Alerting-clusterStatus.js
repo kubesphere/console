@@ -20,8 +20,7 @@ module.exports = {
   MONITORING_AND_ALERTING: '監控告警',
   // Banner
   CLUSTER_STATUS: '集群狀態',
-  MONITORING_CLUSTER_DESC:
-    'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
+  MONITORING_CLUSTER_DESC: 'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
   // Overview > Cluster Node Status
   CLUSTER_NODE_STATUS: '集群節點狀態',
   ALL_NODES: '全部節點',
@@ -76,7 +75,6 @@ module.exports = {
   DISK_USAGE: 'Disk Usage',
   AVERAGE_CPU_LOAD: 'Average CPU Load',
   DISK_THROUGHPUT: 'Disk Throughput',
-  NETWORK_BANDWIDTH: 'Network Bandwidth',
   POD_STATUS: 'Pod Status',
   COMPLETED: 'Completed',
   WARNING: 'Warning',
@@ -123,5 +121,5 @@ module.exports = {
   SORT_BY_NODE_LOAD1: '按 CPU 平均負載排行',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: '按記憶體使用量排行',
   POD_USAGE: 'Pod Usage',
-  EXPORT: '匯出',
-}
+  EXPORT: '匯出'
+};
