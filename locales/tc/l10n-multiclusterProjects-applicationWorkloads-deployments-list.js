@@ -21,6 +21,7 @@ module.exports = {
     '工作負載 (Workload) 通常是訪問服務的實際載體, 也是對節點紀錄收集、監控等系統應用的實際運行載體，是對一組容器組 (Pod) 的抽象模型。',
   // List
   DEPLOYMENT_EMPTY_DESC: 'Please create a Deployment.',
+  UPDATING: 'Updating',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
@@ -62,6 +63,7 @@ module.exports = {
     '請設置容器的資源限制與資源預留，這將能夠幫助系統更好地調度容器，提高穩定性。您也可在【項目設置】中，通過【基本資訊】->【項目管理】->【編輯資源預設請求】，來統一設置預設值。',
   GPU_TYPE: 'GPU Type',
   GPU_LIMIT: 'GPU Limit',
+  NVIDIA_COM_GPU: 'NVIDIA GPU',
   NO_LIMIT: '不限制',
   NO_REQUEST: '不預留',
   NO_RESOURCE_LIMIT: '無資源限制',
@@ -91,12 +93,13 @@ module.exports = {
   HEALTH_CHECK: '健康檢查',
   STARTUP_CHECK_TIP: '需要 Kubernetes v1.18 或以上版本。',
   // List > Create > Pod Settings > Add Container > Life Management
-  LIFE_MANAGEMENT: 'Lifecycle Management',
-  LIFE_MANAGEMENT_DESC: 'Manage some actions of the application container before running and shutting down, such as environment preparation, graceful offline, etc.',
-  'Container PostStart': 'Add PostStart settings',
-  'Container PreStop': 'Add PreStop settings',
-  PRO_STOP_DESC: ' Tasks before the application container is terminated, such as graceful shutdown of the application, notification to other systems, etc. ',
-  POST_START_DESC: 'The tasks after the application container is successfully created and before running, such as resource deployment, environment preparation, etc. ',
+  LIFECYCLE_MANAGEMENT: 'Lifecycle Management',
+  LIFECYCLE_MANAGEMENT_DESC: 'Add actions to be performed after the container is started or before it is stopped for environment preparation or graceful shutdown.',
+  POSTSTART_ACTION: 'Post-start Action',
+  PRESTOP_ACTION: 'Pre-stop Action',
+  POSTSTART_ACTION_DESC: 'Add an action to be performed after the container is started.',
+  PRESTOP_ACTION_DESC: 'Add an action to be performed before the container is stopped.',
+  ADD_ACTION: 'Add Action',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: '添加環境變量',
   USE_CONFIGMAP_OR_SECRET: '引用配置文件或密鑰',
