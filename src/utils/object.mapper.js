@@ -1066,6 +1066,23 @@ const VolumeSnapshotContentMapper = detail => {
   }
 }
 
+const VolumeSnapshotClassesMapper = detail => {
+  const { metadata = {}, apiVersion, driver, deletionPolicy, kind } = detail
+  const { deletionTimestamp = '', creationTimestamp = '' } = metadata
+
+  return {
+    ...getBaseInfo(detail),
+    apiVersion,
+    driver,
+    deletionPolicy,
+    kind,
+    count: get(metadata, 'annotations["kubesphere.io/snapshot-count"]', 0),
+    creationTimestamp,
+    deletionTimestamp,
+    _originData: detail,
+  }
+}
+
 const ClusterMapper = item => {
   const conditions = keyBy(get(item, 'status.conditions', []), 'type')
   const configz = get(item, 'status.configz', {})
@@ -1408,6 +1425,7 @@ export default {
   imageBlob: ImageDetailMapper,
   volumesnapshots: VolumeSnapshotMapper,
   volumesnapshotcontents: VolumeSnapshotContentMapper,
+  volumesnapshotclasses: VolumeSnapshotClassesMapper,
   users: UserMapper,
   clusters: ClusterMapper,
   kkclusters: KKClusterMapper,

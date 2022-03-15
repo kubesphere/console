@@ -33,6 +33,7 @@ import Volume from 'projects/containers/Volumes/Detail'
 import VolumeSnapshotsDetail from 'projects/containers/VolumeSnapshots/Detail'
 import AlertPolicyDetail from 'projects/containers/Alerting/Policies/Detail'
 import VolumeSnapshotContent from '../containers/Storage/VolumeSnapshots/SnapshotContent/Detail'
+import SnapshotClassesDetail from '../containers/Storage/VolumeSnapshotClasses/Detail'
 import PV from '../containers/Storage/PV/detail'
 import ProjectLayout from '../layouts/Project'
 
@@ -99,6 +100,10 @@ export default [
   {
     path: `${PATH}/volume-snapshot-content/:name`,
     component: VolumeSnapshotContent,
+  },
+  {
+    path: `${PATH}/volume-snapshot-classes/:name`,
+    component: SnapshotClassesDetail,
   },
   {
     path: `${PATH}/projects/:namespace`,
