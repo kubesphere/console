@@ -24,7 +24,7 @@ module.exports = {
   ROUTE_PATH_VALUE: '路径：<strong>{value}</strong>',
   ROUTE_SERVICE_VALUE: '服务：<strong>{value}</strong>',
   ROUTE_PORT_VALUE: '端口：<strong>{value}</strong>',
-  SERVICE_COLON: '服务：',
+  SERVICE_COLON: 'Service: ',
   ACCESS_SERVICE: '访问服务',
   UNABLE_TO_ACCESS: '无法访问服务',
   UNABLE_TO_ACCESS_TIP:
