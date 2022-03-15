@@ -20,7 +20,7 @@ module.exports = {
   WORKLOAD_DESC: '工作负载（Workload）用于处理业务请求，可包含一个或多个容器组。日志、监控等系统功能也是由工作负载实现的。',
   // List
   DEPLOYMENT_EMPTY_DESC: '请创建一个部署。',
-  UPDATING: '更新中',
+  UPDATING: 'Updating',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
@@ -58,6 +58,7 @@ module.exports = {
   CONTAINER_RESOURCE_LIMIT_TIP: '设置容器的资源限制与资源预留，以将容器调度到合适的节点上。',
   GPU_TYPE: 'GPU 类型',
   GPU_LIMIT: 'GPU 限制',
+  NVIDIA_COM_GPU: 'NVIDIA GPU',
   NO_LIMIT: '不限制',
   NO_REQUEST: '不预留',
   NO_RESOURCE_LIMIT: '无资源限制',
@@ -85,12 +86,13 @@ module.exports = {
   HEALTH_CHECK: '健康检查',
   STARTUP_CHECK_TIP: '需要 Kubernetes v1.18 或以上版本。',
   // List > Create > Pod Settings > Add Container > Life Management
-  LIFE_MANAGEMENT: 'Lifecycle Management',
-  LIFE_MANAGEMENT_DESC: 'Manage some actions of the application container before running and shutting down, such as environment preparation, graceful offline, etc.',
-  'Container PostStart': 'Add PostStart settings',
-  'Container PreStop': 'Add PreStop settings',
-  PRO_STOP_DESC: ' Tasks before the application container is terminated, such as graceful shutdown of the application, notification to other systems, etc. ',
-  POST_START_DESC: 'The tasks after the application container is successfully created and before running, such as resource deployment, environment preparation, etc. ',
+  LIFECYCLE_MANAGEMENT: 'Lifecycle Management',
+  LIFECYCLE_MANAGEMENT_DESC: 'Add actions to be performed after the container is started or before it is stopped for environment preparation or graceful shutdown.',
+  POSTSTART_ACTION: 'Post-start Action',
+  PRESTOP_ACTION: 'Pre-stop Action',
+  POSTSTART_ACTION_DESC: 'Add an action to be performed after the container is started.',
+  PRESTOP_ACTION_DESC: 'Add an action to be performed before the container is stopped.',
+  ADD_ACTION: 'Add Action',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: '添加环境变量',
   USE_CONFIGMAP_OR_SECRET: '引用配置字典或保密字典',
