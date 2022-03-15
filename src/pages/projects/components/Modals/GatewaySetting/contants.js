@@ -119,6 +119,12 @@ const EKS = {
   'service.beta.kubernetes.io/aws-load-balancer-target-node-labels': '',
 }
 
+const OpenELB = {
+  'lb.kubesphere.io/v1alpha1': '',
+  'protocol.openelb.kubesphere.io/v1alpha1': '',
+  'eip.openelb.kubesphere.io/v1alpha2': '',
+}
+
 export const CLUSTER_PROVIDERS_ANNOTATIONS = {
   'Aliyun ACK': aliyun,
   'Aure Kubernetes Service': microsoft,
@@ -127,4 +133,5 @@ export const CLUSTER_PROVIDERS_ANNOTATIONS = {
   'Google Kubernetes Engine': GoogleKubernetesEngine,
   'QingCloud Kubernetes Engine': QingCloud,
   'Tencent Kubernetes Engine': TencentKubernetesEngine,
+  OpenELB,
 }

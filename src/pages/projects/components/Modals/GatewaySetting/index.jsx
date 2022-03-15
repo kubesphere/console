@@ -159,11 +159,20 @@ export default class GatewaySettingModal extends React.Component {
   }
 
   renderLoadBalancerSupport = () => {
+    const options = [
+      ...CLUSTER_PROVIDERS,
+      {
+        label: 'OpenELB',
+        value: 'OpenELB',
+        icon: 'kubernetes',
+      },
+    ]
+
     return (
       <div className={styles.loadBalancer}>
         <Form.Item label={t('LOAD_BALANCER_PROVIDER')}>
           <Select
-            options={CLUSTER_PROVIDERS}
+            options={options}
             placeholder=" "
             optionRenderer={this.providerOptionRenderer}
             onChange={this.handleAnnotations}
