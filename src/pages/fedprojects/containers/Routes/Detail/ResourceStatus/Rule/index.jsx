@@ -68,7 +68,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
             </Column>
             <Column>
               <span>
-                {t('SERVICE')}:{' '}
+                {t('SERVICE_COLON')}
                 <strong>
                   <Link to={`${prefix}/services/${path.backend.service.name}`}>
                     {path.backend.service.name}
