@@ -20,8 +20,7 @@ module.exports = {
   MONITORING_AND_ALERTING: 'Monitoring & Alerting',
   // Banner
   CLUSTER_STATUS: 'Cluster Status',
-  MONITORING_CLUSTER_DESC:
-    'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
+  MONITORING_CLUSTER_DESC: 'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
   // Overview > Cluster Node Status
   CLUSTER_NODE_STATUS: 'Cluster Node Status',
   ALL_NODES: 'All nodes',
@@ -76,7 +75,6 @@ module.exports = {
   DISK_USAGE: 'Disk Usage',
   AVERAGE_CPU_LOAD: 'Average CPU Load',
   DISK_THROUGHPUT: 'Disk Throughput',
-  NETWORK_BANDWIDTH: 'Network Bandwidth',
   POD_STATUS: 'Pod Status',
   COMPLETED: 'Completed',
   WARNING: 'Warning',
@@ -123,5 +121,5 @@ module.exports = {
   SORT_BY_NODE_LOAD1: 'Sort by average CPU load',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: 'Sort by memory usage',
   POD_USAGE: 'Pod Usage',
-  EXPORT: 'Export',
-}
+  EXPORT: 'Export'
+};
