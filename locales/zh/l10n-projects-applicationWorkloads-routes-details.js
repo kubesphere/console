@@ -24,7 +24,7 @@ module.exports = {
   ROUTE_PATH_VALUE: '路径：<strong>{value}</strong>',
   ROUTE_SERVICE_VALUE: '服务：<strong>{value}</strong>',
   ROUTE_PORT_VALUE: '端口：<strong>{value}</strong>',
-  SERVICE_COLON: '服务：',
+  SERVICE_COLON: 'Service: ',
   ACCESS_SERVICE: '访问服务',
   UNABLE_TO_ACCESS: '无法访问服务',
   UNABLE_TO_ACCESS_TIP: '请确保您的 DNS 服务器或客户机的本地 hosts 文件中已配置了域名解析策略。',
