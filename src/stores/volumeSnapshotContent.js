@@ -13,32 +13,31 @@
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- *
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { action } from 'mobx'
+import Base from './base'
 
-import { getIndexRoute } from 'utils/router.config'
+export default class VolumeSnapshotContentStore extends Base {
+  module = 'volumesnapshotcontents'
 
-import Snapshots from './Snapshots'
-import Content from './SnapshotContent'
+  get resourceKind() {
+    return 'VolumeSnapshotContent'
+  }
 
-const PATH = '/clusters/:cluster/volume-snapshots'
-export default [
-  {
-    path: `${PATH}/snapshots`,
-    title: 'Volume Snapshot',
-    component: Snapshots,
-    exact: true,
-  },
-  {
-    path: `${PATH}/snapshot-content`,
-    title: 'Volume Snapshot Content',
-    component: Content,
-    exact: true,
-  },
-  getIndexRoute({
-    path: PATH,
-    to: `${PATH}/snapshots`,
-    exact: true,
-  }),
-]
+  get apiVersion() {
+    return 'apis/snapshot.storage.k8s.io/v1'
+  }
+
+  @action
+  async fetchDetail(params) {
+    this.isLoading = true
+
+    const result = await request.get(this.getDetailUrl(params))
+    const detail = { ...params, ...this.mapper(result) }
+
+    this.detail = detail
+    this.isLoading = false
+    return result
+  }
+}

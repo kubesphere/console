@@ -28,6 +28,7 @@ import ExpandModal from 'projects/components/Modals/ExpandVolume'
 import ClusterDiffSettings from 'components/Forms/Volume/ClusterDiffSettings'
 import EditConfigTemplateModal from 'fedprojects/components/VolumeSetting'
 import EditYamlModal from 'components/Modals/EditYaml'
+import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
@@ -246,6 +247,22 @@ export default {
         store,
         modal: EditYamlModal,
         yaml: detail,
+        ...props,
+      })
+    },
+  },
+  'volume.snapshotContent.baseInfo.edit': {
+    on({ store, detail, cluster, namespace, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async data => {
+          await store.patch({ ...detail, cluster, namespace }, data)
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+          Modal.close(modal)
+          success && success()
+        },
+        store,
+        detail,
+        modal: EditBasicInfoModal,
         ...props,
       })
     },
