@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Banner
-  LOG_RECEIVER_PL: 'Log Receivers',
+  LOG_RECEIVER_PL: '紀錄接收者',
   LOG_COLLECTION_DESC: '系統將收集每個容器的標準輸出和標準錯誤輸出紀錄，並將其發送到一個或多個目標服務',
   // Banner > Add Log Receiver
-  ADD_LOG_RECEIVER: '添加紀錄接收者',
-  LOG_COLLECTION_TIPS: 'You can add one log receiver for each type.',
-  ES_DESC: 'Elasticsearch 是分布式、RESTful 風格的搜索和分析引擎',
+  ADD_LOG_RECEIVER: '添加紀錄接收器',
+  LOG_COLLECTION_TIPS: '每種類型的紀錄收集器只能添加一個。',
+  ES_DESC: 'Elasticsearch 是分布式、RESTful 風格的搜尋和分析引擎',
   KAFKA_DESC: 'Kafka 是流行的開源流處理平台',
   FLUENTD_DESC: 'Fluentd 是提供統一紀錄處理層的開源數據收集器',
   // Banner > Add Log Receiver > Elasticsearch
