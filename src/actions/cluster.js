@@ -24,6 +24,7 @@ import { IMPORT_CLUSTER } from 'configs/steps/clusters'
 import { IMPORT_CLUSTER_SPEC } from 'components/Forms/Cluster/constants'
 import KubeKeyClusterStore from 'stores/cluster/kubekey'
 import { safeParseJSON } from 'utils'
+import DeleteModal from 'components/Modals/Delete'
 
 export default {
   'cluster.add': {
@@ -58,6 +59,25 @@ export default {
         steps: IMPORT_CLUSTER,
         modal: CreateModal,
         store,
+        ...props,
+      })
+    },
+  },
+  'cluster.unbind': {
+    on({ store, detail, success, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          store.delete(detail).then(() => {
+            Modal.close(modal)
+            Notify.success({ content: t('UNBIND_SUCCESS') })
+            success && success()
+          })
+        },
+        store,
+        modal: DeleteModal,
+        title: t('UNBIND_CLUSTER'),
+        resource: detail.name,
+        deleteCluster: true,
         ...props,
       })
     },

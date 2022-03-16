@@ -1,0 +1,29 @@
+@import '~scss/variables';
+
+.manage {
+  width: 92px;
+  height: 32px;
+  border-radius: 16px;
+  border: 1px solid #ccd3db;
+  background: #eff4f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  .button {
+    height: 100%;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      margin-right: 4px;
+    }
+  }
+
+  div {
+    width: 210px;
+  }
+}
