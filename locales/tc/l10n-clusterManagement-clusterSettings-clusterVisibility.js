@@ -18,9 +18,9 @@
 module.exports = {
   // Banner
   CLUSTER_VISIBILITY: '集群能見度',
-  EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
-  UNAUTHORIZED: 'Unauthorized',
-  CLUSTER_VISIBILITY_DESC: 'Cluster visibility controls the cluster authorization to workspaces. After a cluster is authorized to workspaces, you can view and manage the cluster resources in the workspaces.',
+  EDIT_VISIBILITY_DESC: '編輯集群在企業空間中的能見度。',
+  UNAUTHORIZED: '未授權',
+  CLUSTER_VISIBILITY_DESC: '集群能見度控制集群对企业空间的授权。将集群授权给企业空间后，即可在企业空间中查看并管理集群资源。',
   CLUSTER_VISIBILITY_Q1: '如何將集群授權給指定的企業空間使用？',
   CLUSTER_VISIBILITY_A1: 'You can assign a cluster to specific workspaces by clicking Edit Visibility.',
   CLUSTER_VISIBILITY_Q2: '什麼是公開集群?',
