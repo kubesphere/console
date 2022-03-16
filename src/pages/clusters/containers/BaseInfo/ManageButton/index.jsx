@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import styles from './index.scss'
 
 export default function MangeButton({ className = '', content }) {
-  const [down, setDown] = useState(false)
+  const [down, setDown] = useState(true)
 
   return (
     <div className={classnames(styles.manage, className)}>
