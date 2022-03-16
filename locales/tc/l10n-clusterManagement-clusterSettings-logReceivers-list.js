@@ -26,23 +26,23 @@ module.exports = {
   KAFKA_DESC: 'Kafka 是流行的開源流處理平台',
   FLUENTD_DESC: 'Fluentd 是提供統一紀錄處理層的開源數據收集器',
   // Banner > Add Log Receiver > Elasticsearch
-  LOG_COLLECTION_ES_URL_TIPS: 'The built-in Elasticsearch service is used by default. You can also enter the IP address of Elasticsearch independently deployed inside or outside the cluster.',
-  LOG_COLLECTION_ES_INDEX_TIPS: 'Use the index prefix to speed up queries. The index prefix is automatically generated in <Index prefix>-<Year-month-date> format.',
-  PARAMETER_REQUIRED: 'This parameter is mandatory.',
+  LOG_COLLECTION_ES_URL_TIPS: '預設使用系統部署的 Elasticsearch 服務，您也可以輸入在集群内部或外部單獨部署的 Elasticsearch 服務的地址。',
+  LOG_COLLECTION_ES_INDEX_TIPS: '使用索引前綴進行快速搜索。系統以<索引前綴>-<年-月-日>格式自動生成索引前綴。',
+  PARAMETER_REQUIRED: '此參數為必填項。',
   // Banner > Add Log Receiver > Kafka
   TOPIC: '主題',
-  ADD_SERVICE_ADDRESS: '添加',
+  ADD_SERVICE_ADDRESS: '新增',
   SERVICE_ADDRESS: '服務地址',
   ENTER_SERVICE_ADDRESS: '請輸入服務地址。',
-  INVALID_SERVICE_ADDRESS: 'Please enter a correct service address.',
+  INVALID_SERVICE_ADDRESS: '請輸入正確的服務地址。',
   // Banner > Add Log Receiver > Fluentd
-  LOG_COLLECTION_FLUENTD_URL_TIPS: 'Enter the address of the Fluentd service that receives logs.',
+  LOG_COLLECTION_FLUENTD_URL_TIPS: '輸入接收紀錄的 Fluentd 服務的地址。',
   // Container Logs
-  LOG_COLLECTING: 'Collecting',
-  LOG_DISABLED: 'Disabled',
-  EMPTY_LOG_COLLECTIONS: 'No log receiver is found. You can add log receivers and send logs to external log receivers.',
+  LOG_COLLECTING: '收集中',
+  LOG_DISABLED: '關閉',
+  EMPTY_LOG_COLLECTIONS: '未發現紀錄接收器。您可以添加紀錄接收器將記錄發送到外部紀錄接收器中。',
   // Resource Events
-  RESOURCE_EVENTS: 'Resource Events',
+  RESOURCE_EVENTS: '資源事件',
   // Audit Logs
-  AUDIT_LOGS: 'Audit Logs'
+  AUDIT_LOGS: '審計紀錄'
 };
