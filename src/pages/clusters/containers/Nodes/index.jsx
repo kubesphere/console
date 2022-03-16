@@ -206,6 +206,7 @@ export default class Nodes extends React.Component {
       modal: KubeCtlModal,
       title: record.name,
       nodename: record.name,
+      isEdgeNode: true,
     })
   }
 
