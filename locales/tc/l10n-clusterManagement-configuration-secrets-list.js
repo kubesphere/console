@@ -27,9 +27,9 @@ module.exports = {
   // List > Create > Basic Information
   SECRET: '保密字典',
   // List > Create > Data Settings
-  DATA_SETTINGS: 'Data Settings',
-  IMAGE_REGISTRY_INFORMATION: '鏡像倉庫保密字典',
-  TLS_INFORMATION: 'TLS information',
+  DATA_SETTINGS: '數據設置',
+  IMAGE_REGISTRY_INFORMATION: '鏡像倉庫資訊',
+  TLS_INFORMATION: 'TLS 資訊',
   USERNAME_PASSWORD: '帳號密碼保密字典',
   ADD_DATA_TCAP: '添加數據',
   ADD_DATA_DESC: '添加鍵值對數據。',
