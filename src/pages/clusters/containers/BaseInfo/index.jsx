@@ -185,7 +185,7 @@ export default class Overview extends React.Component {
       <Menu onClick={this.manageButtonClick}>
         {action.map(option => (
           <Menu.MenuItem key={option.actionName}>
-            <Icon name={option.icon}></Icon>
+            <Icon name={option.icon} type="light"></Icon>
             {option.text}
           </Menu.MenuItem>
         ))}
