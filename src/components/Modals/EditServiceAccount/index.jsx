@@ -24,7 +24,6 @@ import copy from 'fast-copy'
 
 import { Form, Input, TextArea } from '@kube-design/components'
 import { Modal } from 'components/Base'
-import { RoleSelect } from 'components/Inputs'
 
 import RoleStore from 'stores/role'
 
@@ -77,7 +76,7 @@ export default class EditServiceAccountModal extends React.Component {
   }
 
   render() {
-    const { visible, isSubmitting, onCancel, cluster, namespace } = this.props
+    const { visible, isSubmitting, onCancel } = this.props
     const { formData } = this.state
 
     return (
@@ -105,17 +104,6 @@ export default class EditServiceAccountModal extends React.Component {
           <TextArea
             name="metadata.annotations['kubesphere.io/description']"
             maxLength={256}
-          />
-        </Form.Item>
-        <Form.Item
-          label={t('PROJECT_ROLE_SI')}
-          desc={t('SERVICE_ACCOUNT_PROJECT_ROLE_DESC')}
-        >
-          <RoleSelect
-            name="metadata.annotations['iam.kubesphere.io/role']"
-            cluster={cluster}
-            namespace={namespace}
-            placeholder=" "
           />
         </Form.Item>
       </Modal.Form>
