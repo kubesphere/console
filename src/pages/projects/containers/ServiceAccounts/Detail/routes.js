@@ -23,7 +23,7 @@ import ServiceAccountDetail from './ServiceAccountDetail'
 export default path => [
   {
     path: `${path}/detail`,
-    title: 'RESOURCE_STATUS',
+    title: 'DATA',
     component: ServiceAccountDetail,
     exact: true,
   },
