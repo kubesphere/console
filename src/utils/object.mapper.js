@@ -1268,6 +1268,26 @@ const AlertingRuleMapper = item => {
   }
 }
 
+const CDSMapper = item => {
+  const status = safeParseJSON(get(item, 'status.argoApp', ''), {})
+  const syncStatus = get(status, 'sync.status')
+  const healthStatus = get(status, 'health.status')
+  const devops = get(item, 'metadata.namespace')
+  const repoSource = get(item, 'spec.argoApp.source', {})
+  const destination = get(item, 'spec.destination', {})
+
+  return {
+    ...getBaseInfo(item),
+    syncStatus,
+    healthStatus,
+    status,
+    devops,
+    repoSource,
+    destination,
+    _originData: getOriginData(item),
+  }
+}
+
 export default {
   deployments: WorkLoadMapper,
   daemonsets: WorkLoadMapper,
@@ -1326,4 +1346,5 @@ export default {
   groups: GroupsMapper,
   default: DefaultMapper,
   rules: AlertingRuleMapper,
+  cds: CDSMapper,
 }

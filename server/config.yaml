@@ -496,7 +496,7 @@ client:
     - cate: ""
       items:
         - { name: pipelines, title: PIPELINE_PL, icon: application }
-        - { name: cd, title: CD_PL, icon: application }
+        - { name: cd, title: CD_PL, icon: rocket }
         - name: management
           title: DEVOPS_PROJECT_SETTINGS
           icon: cogwheel

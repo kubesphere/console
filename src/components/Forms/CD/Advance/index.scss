@@ -22,7 +22,7 @@
     display: flex;
 
     .column {
-      flex: 1 1 auto;
+      flex: 1 1;
       padding: 12px;
       border: 1px solid #ccd3db;
       background: #fff;
@@ -40,6 +40,13 @@
     background: #fff;
     border: 1px solid #ccd3db;
     border-radius: 4px;
+
+    :global {
+      .checkbox {
+        margin-top: 2px;
+        height: 20px;
+      }
+    }
 
     .checkbox_item_info {
       font-size: 12px;

@@ -122,10 +122,13 @@ export default class BaseInfo extends React.Component {
                 // { validator: this.validator },
               ]}
             >
-              <Input name="name" maxLength={63} />
+              <Input name="metadata.name" maxLength={63} />
             </Form.Item>
             <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
-              <TextArea name="description" maxLength={256} />
+              <TextArea
+                name="metadata.annotations['kubesphere.io/description']"
+                maxLength={256}
+              />
             </Form.Item>
           </Column>
           <Column>
@@ -134,9 +137,12 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('CODE_REPOSITORY_OPTIONAL')}>
+        <Form.Item
+          label={t('CODE_REPOSITORY_OPTIONAL')}
+          rules={[{ required: true, message: t('REPO_EMPTY_DESC') }]}
+        >
           <RepoSelect
-            name="multi_branch_pipeline"
+            name="sourceRepo"
             ref={this.scmRef}
             onClick={this.showSelectRepo}
             handleDeleteSource={this.handleDeleteSource}

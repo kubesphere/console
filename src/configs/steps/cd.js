@@ -26,7 +26,7 @@ export const CD_FORM = [
     required: true,
   },
   {
-    title: 'Cluster Settings',
+    title: 'DEPLOYMENT_SETTINGS',
     component: Advance,
     required: true,
     isForm: false,

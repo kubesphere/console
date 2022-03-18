@@ -16,21 +16,35 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { PieChart } from 'components/Charts'
 import { Radio } from '@kube-design/components'
 import classnames from 'classnames'
+import { isEmpty } from 'lodash'
 import styles from './index.scss'
 
-export default function ChartCard({ click, item }) {
+export default function ChartCard({ click, item, type, filters }) {
   const [checked, setCheck] = useState(false)
-  const { title, color, used, total, icon } = item
+  const { title, color, used, total, icon, label } = item
 
   const handleClick = () => {
     setCheck(!checked)
-    click(item)
+    click({ [type]: item.title })
   }
+
+  useEffect(() => {
+    if (isEmpty(filters)) {
+      setCheck(false)
+    } else {
+      setCheck(false)
+      Object.keys(filters).forEach(key => {
+        if (type === key && filters[key] === title) {
+          setCheck(true)
+        }
+      })
+    }
+  }, [filters])
 
   return (
     <div
@@ -65,7 +79,7 @@ export default function ChartCard({ click, item }) {
         <img className={styles.innerIcon} src={icon} alt="" />
       </div>
       <div className={styles.info}>
-        <p className={styles.label}>{t('HEALTH_STATUS')}</p>
+        <p className={styles.label}>{t(`${label}`)}</p>
         <Radio
           className={classnames(styles.radio, {
             [styles['radio--show']]: checked,

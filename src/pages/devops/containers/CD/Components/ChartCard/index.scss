@@ -1,13 +1,18 @@
 .content {
   display: flex;
-  width: 170px;
+  max-width: 32.7%;
+  flex: 1 1;
   height: 92px;
   padding: 14px;
   transition: all 0.3s ease;
   border-radius: 4px;
-  flex: 1 1;
-  justify-content: center;
+  margin-right: 0.95%;
   position: relative;
+  justify-content: center;
+
+  &:last-child {
+    margin-right: 0;
+  }
 
   &:hover {
     background: #f9fbfd;
@@ -26,8 +31,8 @@
     z-index: 0;
 
     .innerIcon {
-      width: 18px;
-      height: 18px;
+      width: 24px;
+      height: 24px;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -36,7 +41,6 @@
   }
 
   .info {
-    width: 70px;
     margin-left: 12px;
 
     .radio {

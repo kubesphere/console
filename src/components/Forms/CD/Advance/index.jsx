@@ -17,19 +17,11 @@
  */
 
 import React from 'react'
-import {
-  Form,
-  Input,
-  Column,
-  Columns,
-  Checkbox,
-  Select,
-} from '@kube-design/components'
+import { Form, Input, Column, Columns, Checkbox } from '@kube-design/components'
 
 import { TypeSelect } from 'components/Base'
 import { SYNC_STRATEGY } from 'utils/constants'
 import Placement from 'components/Forms/AppDeploy/BasicInfo/Placement'
-
 import styles from './index.scss'
 
 export default class Advance extends React.Component {
@@ -41,8 +33,6 @@ export default class Advance extends React.Component {
       value,
     }))
   }
-
-  handleSyncChange = () => {}
 
   render() {
     const { formRef, formTemplate } = this.props
@@ -72,25 +62,16 @@ export default class Advance extends React.Component {
           <div className={styles.wrapper_item}>
             <Columns>
               <Column>
-                <Form.Item
-                  label={t('Revision')}
-                  desc={t('设置代码仓库的分支和标签。')}
-                >
-                  <Input
-                    name={`${this.prefix}.discarder.days_to_keep`}
-                    defaultValue="7"
-                  />
+                <Form.Item label={t('Revision')} desc={t('REVISE_DESC')}>
+                  <Input name="source.targetRevision" defaultValue="7" />
                 </Form.Item>
               </Column>
               <Column>
                 <Form.Item
-                  label={t('资源文件路径')}
-                  desc={t('设置资源文件路径。  ')}
+                  label={t('RESOURCE_FILE_PATH')}
+                  desc={t('SET_THE_RESOURCE_FILE_PATH')}
                 >
-                  <Input
-                    name={`${this.prefix}.discarder.num_to_keep`}
-                    defaultValue="10"
-                  />
+                  <Input name="source.path" defaultValue="10" />
                 </Form.Item>
               </Column>
             </Columns>
@@ -100,34 +81,25 @@ export default class Advance extends React.Component {
           <h6>{t('SYNC_STRATEGY')}</h6>
           <div className={styles.wrapper_item}>
             <div className={styles.wrapper_item_com}>
-              <TypeSelect
-                name={`${this.prefix}.type`}
-                onChange={this.handleSyncChange}
-                defaultValue="auto"
-                options={this.syncOptions}
-              />
+              <Form.Item>
+                <TypeSelect
+                  name="syncPolicy.type"
+                  defaultValue="automated"
+                  options={this.syncOptions}
+                />
+              </Form.Item>
             </div>
 
             <div className={styles.columns}>
               <div className={styles.column}>
                 <Form.Item>
-                  <Checkbox
-                    name={`${this.prefix}.discarder.days_to_keep`}
-                    defaultValue="7"
-                  >
-                    Prune Resources
-                  </Checkbox>
+                  <Checkbox name="syncPolicy.prune">Prune Resources</Checkbox>
                 </Form.Item>
               </div>
 
               <div className={styles.column}>
                 <Form.Item>
-                  <Checkbox
-                    name={`${this.prefix}.discarder.num_to_keep`}
-                    defaultValue="10"
-                  >
-                    Self Heal
-                  </Checkbox>
+                  <Checkbox name="syncPolicy.selfHeal">Self Heal</Checkbox>
                 </Form.Item>
               </div>
             </div>
@@ -139,63 +111,40 @@ export default class Advance extends React.Component {
             <div className={`${styles.columns} ${styles.wrapper_item_com}`}>
               <div className={styles.column}>
                 <Form.Item>
-                  <Checkbox
-                    name={`${this.prefix}.discarder.days_to_keep`}
-                    defaultValue="7"
-                  >
+                  <Checkbox name="syncOptions.Validate">
                     Skip Schema Validation
                   </Checkbox>
                 </Form.Item>
               </div>
               <div className={styles.column}>
                 <Form.Item>
-                  <Checkbox
-                    name={`${this.prefix}.discarder.num_to_keep`}
-                    defaultValue="10"
-                  >
+                  <Checkbox name="syncOptions.CreateNamespace">
                     Auto-Create Namespace
                   </Checkbox>
                 </Form.Item>
               </div>
               <div className={styles.column}>
                 <Form.Item>
-                  <Checkbox
-                    name={`${this.prefix}.discarder.num_to_keep`}
-                    defaultValue="10"
-                  >
-                    Prune Last
-                  </Checkbox>
+                  <Checkbox name="syncOptions.PruneLast">Prune Last</Checkbox>
                 </Form.Item>
               </div>
               <div className={styles.column}>
                 <Form.Item>
-                  <Checkbox
-                    name={`${this.prefix}.discarder.num_to_keep`}
-                    defaultValue="10"
-                  >
-                    Apply Out Of Stnc Only
+                  <Checkbox name="syncOptions.ApplyOutOfSyncOnly">
+                    Apply Out Of Sync Only
                   </Checkbox>
                 </Form.Item>
               </div>
             </div>
             <Form.Item label={t('Prune Propagation Policy')}>
-              <Select
-                name={`${this.prefix}.discarder.days_to_keep`}
-                defaultValue="7"
-              />
+              <Input name="syncOptions.PrunePropagationPolicy" />
             </Form.Item>
             <Form.Item>
               <div className={styles.checkbox_item}>
-                <Checkbox
-                  name={`${this.prefix}.discarder.days_to_keep`}
-                  defaultValue="7"
-                ></Checkbox>
+                <Checkbox name="syncOptions.Replace"></Checkbox>
                 <div className={styles.checkbox_item_info}>
-                  <p>放弃 kubectl apply</p>
-                  <span>
-                    资源将使用“kubectl
-                    replace/create”命令进行同步，操作可能会导致资源重新创建。
-                  </span>
+                  <p>{t('ABANDON_KUBECTL_APPLY')}</p>
+                  <span>{t('ABANDON_KUBECTL_APPLY_DESC')}</span>
                 </div>
               </div>
             </Form.Item>

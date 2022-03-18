@@ -17,6 +17,8 @@
  */
 module.exports = {
   CD_PL: 'Continuous Deployment',
+  CD_LOW: 'Continuous Deployment',
+  CD_RESOURCE_PL: 'Continuous deployment of resources',
   CD_DESC:
     'This page allows you to create and manage continuously deployed resources via gitops. ',
   EMPTY_CD_TITLE: 'No continuous deployment resources found',
@@ -29,4 +31,17 @@ module.exports = {
   MANUAL_SYNC: 'Manual sync',
   AUTO_SYNC_DESC: 'Synchronize according to the rules set automatically. ',
   MANUAL_SYNC_DESC: 'Sync according to manually set rules. ',
+  REVISE: 'Revision',
+  REVISE_DESC: 'Set the branch and tag of the code repository. ',
+  RESOURCE_FILE_PATH: 'Resource file path',
+  SET_THE_RESOURCE_FILE_PATH: 'Set the resource file path. ',
+  ABANDON_KUBECTL_APPLY: 'Abandon kubectl apply',
+  ABANDON_KUBECTL_APPLY_DESC:
+    "The resource will be synced using the 'kubectl replace/create' command, which may cause the resource to be recreated.",
+  INFO: 'Information',
+  SYNC_RESULT: 'Synchronization result',
+  SYNC_RESULT_EMPTY_DESC: 'The synchronization result query result is empty',
+  DEPLOYMENT_SETTINGS: 'Deployment settings',
+  LATEST_SYNC_STATUS: 'Latest sync status',
+  REPO_EMPTY_DESC: 'Code repository cannot be empty',
 }

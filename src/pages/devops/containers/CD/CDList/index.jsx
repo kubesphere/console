@@ -18,39 +18,35 @@
 
 import React from 'react'
 
-import { toJS } from 'mobx'
-import { omit } from 'lodash'
+import { toJS, computed } from 'mobx'
+import { getLocalTime } from 'utils'
 
-import { Button } from '@kube-design/components'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import CDStore from 'stores/devops/cd'
+import CDStore from 'stores/cd'
 import Table from 'components/Tables/List'
-import Empty from 'components/Tables/Base/Empty'
-import Health from 'devops/components/Health'
-
-import { withDevOpsList, ListPage } from 'components/HOCs/withList'
+import ClusterWrapper from 'components/Clusters/ClusterWrapper'
+import ClusterStore from 'stores/cluster'
+import withList, { ListPage } from 'components/HOCs/withList'
 import { CD_WEATHER_STATUS, CD_SYNC_STATUS } from 'utils/constants'
+import { omit } from 'lodash'
+import StatusText from '../Components/StatusText'
 import ChartCard from '../Components/ChartCard'
 import styles from './index.scss'
 
-@withDevOpsList({
+@withList({
   store: new CDStore(),
-  module: 'pipelines',
+  module: 'cds',
   name: 'CD',
   rowKey: 'name',
+  authKey: 'pipelines',
 })
 export default class CDList extends React.Component {
-  constructor(props) {
-    super(props)
+  clusterStore = new ClusterStore()
 
-    this.formTemplate = {
-      devopsName: this.devopsName,
-      cluster: this.cluster,
-      devops: this.devops,
-      enable_timer_trigger: false,
-      enable_discarder: true,
-    }
+  @computed
+  get clusters() {
+    return this.clusterStore.list.data
   }
 
   get enabledActions() {
@@ -63,10 +59,6 @@ export default class CDList extends React.Component {
 
   get devops() {
     return this.props.match.params.devops
-  }
-
-  get devopsName() {
-    return this.props.devopsStore.devopsName
   }
 
   get cluster() {
@@ -89,7 +81,7 @@ export default class CDList extends React.Component {
   }
 
   get itemActions() {
-    // const { trigger, name } = this.props
+    const { trigger, routing } = this.props
 
     return [
       {
@@ -104,32 +96,48 @@ export default class CDList extends React.Component {
         icon: 'pen',
         text: t('Edit by YAML'),
         action: 'edit',
-        onClick: () => {},
+        onClick: item => {
+          trigger('resource.yaml.edit', {
+            detail: item,
+            success: routing.query,
+          })
+        },
       },
       {
         key: 'sync',
         icon: 'changing-over',
         text: t('Synchronize'),
         action: 'edit',
-        onClick: () => {},
+        onClick: record => {
+          this.handleSync(record)
+        },
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('DELETE'),
         action: 'delete',
-        onClick: () => {},
+        onClick: record => {
+          trigger('resource.delete', {
+            type: 'CD',
+            detail: record,
+            success: routing.query,
+          })
+        },
       },
     ]
   }
 
-  getData = params => {
-    this.props.store.fetchList({
+  getData = async params => {
+    await this.props.store.fetchList({
       devops: this.devops,
-      devopsName: this.devopsName,
       ...this.props.match.params,
       ...params,
     })
+  }
+
+  componentDidMount() {
+    this.clusterStore.fetchList({ limit: -1 })
   }
 
   handleFetch = (params, refresh) => {
@@ -137,12 +145,27 @@ export default class CDList extends React.Component {
   }
 
   handleCreate = () => {
-    const { trigger, module } = this.props
+    const { trigger } = this.props
 
     trigger('cd.create', {
-      module,
       title: t('CREATE_PIPELINE'),
-      formTemplate: this.formTemplate,
+      devops: this.devops,
+      cluster: this.cluster,
+      module: 'cds',
+      noCodeEdit: true,
+      success: () => {
+        this.getData()
+      },
+    })
+  }
+
+  handleSync = item => {
+    const { trigger, module } = this.props
+
+    trigger('cd.sync', {
+      module,
+      title: t('Synchronize'),
+      formTemplate: item,
       devops: this.devops,
       cluster: this.cluster,
       noCodeEdit: true,
@@ -175,39 +198,46 @@ export default class CDList extends React.Component {
         width: '20%',
         sorter: true,
         sortOrder: getSortOrder('name'),
+        search: true,
         render: name => {
-          const url = '1111'
-          return <Avatar to={url} title={name} />
+          return <Avatar to={`${this.prefix}/${name}`} title={name} />
         },
       },
 
       {
         title: t('HEALTH'),
-        dataIndex: 'weatherStatus',
-        width: '30%',
+        dataIndex: 'healthStatus',
+        width: '20%',
         filters: this.getWeatherStatus(),
-        filteredValue: getFilteredValue('weatherStatus'),
-        isHideable: true,
-        render: weatherScore => <Health score={weatherScore} />,
+        filteredValue: getFilteredValue('healthStatus'),
+        search: true,
+        render: healthStatus => (
+          <StatusText type={healthStatus || 'Healthy'} label={'Healthy'} />
+        ),
       },
       {
         title: t('SYNC_STATUS'),
         dataIndex: 'syncStatus',
-        width: '25%',
         filters: this.getSyncStatus(),
         filteredValue: getFilteredValue('syncStatus'),
-        isHideable: true,
-        render: syncStatus => {
-          return syncStatus
-        },
+        search: true,
+        width: '20%',
+        render: syncStatus => (
+          <StatusText type={syncStatus || 'Synced'} label={'Synced'} />
+        ),
       },
       {
         title: t('DEPLOY_LOCATION'),
         dataIndex: 'placement',
-        width: '25%',
         isHideable: true,
+        width: '20%',
         render: placement => {
-          return placement
+          return (
+            <ClusterWrapper
+              clusters={placement}
+              clustersDetail={this.clusters}
+            />
+          )
         },
       },
       {
@@ -215,64 +245,24 @@ export default class CDList extends React.Component {
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),
-        width: '20%',
         isHideable: true,
-        render: updateTime => {
-          return updateTime
-        },
+        width: '20%',
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
   }
 
   renderContent() {
-    const {
-      data = [],
-      filters,
-      isLoading,
-      total,
-      page,
-      limit,
-      selectedRowKeys,
-    } = toJS(this.props.store.list)
-
-    const isEmptyList = isLoading === false && total === 0
+    const { tableProps } = this.props
+    const { filters, selectedRowKeys, isLoading, total } = toJS(
+      this.props.store.list
+    )
     const omitFilters = omit(filters, ['limit', 'page'])
 
-    const showCreate = this.enabledActions.includes('create')
-      ? this.handleCreate
-      : null
-
-    if (isEmptyList && Object.keys(omitFilters).length <= 0) {
-      return (
-        <Empty
-          name="CD"
-          icon=""
-          title={t('EMPTY_CD_TITLE')}
-          action={
-            showCreate ? (
-              <Button onClick={showCreate} type="control">
-                {t('CREATE')}
-              </Button>
-            ) : null
-          }
-        />
-      )
-    }
-
-    const pagination = { total, page, limit }
-
     const defaultTableProps = {
-      hideCustom: false,
       onSelectRowKeys: this.props.store.setSelectRowKeys,
       selectedRowKeys,
       selectActions: [
-        {
-          key: 'run',
-          type: 'primary',
-          text: t('RUN'),
-          action: 'delete',
-          onClick: this.handleMultiBatchRun,
-        },
         {
           key: 'delete',
           type: 'danger',
@@ -280,7 +270,7 @@ export default class CDList extends React.Component {
           action: 'delete',
           onClick: () =>
             this.props.trigger('pipeline.batch.delete', {
-              type: 'PIPELINE',
+              type: 'CD',
               rowKey: 'name',
               devops: this.devops,
               cluster: this.cluster,
@@ -294,54 +284,126 @@ export default class CDList extends React.Component {
       ],
     }
 
+    const showCreate = this.enabledActions.includes('create')
+      ? this.handleCreate
+      : null
+
+    const showEmpty =
+      isLoading === false && total === 0 && Object.keys(omitFilters).length <= 0
+
     return (
       <Table
         rowKey="name"
-        data={data}
+        {...tableProps}
         columns={this.getColumns()}
-        filters={omitFilters}
-        pagination={pagination}
-        isLoading={isLoading}
-        onFetch={this.handleFetch}
         onCreate={showCreate}
-        searchType="name"
+        onFetch={this.handleFetch}
         tableActions={defaultTableProps}
         itemActions={this.itemActions}
+        isLoading={isLoading}
+        showEmpty={showEmpty}
         enabledActions={this.enabledActions}
       />
     )
   }
 
-  handleFilter = () => {}
+  handleFilter = params => {
+    const { filters } = this.props.store.list
+
+    Object.keys(filters).forEach(key => {
+      if (Object.values(params).includes(filters[key])) {
+        params[key] = ''
+      }
+    })
+
+    this.handleFetch(params)
+  }
 
   renderStatusCard = () => {
+    const { filters } = this.props.store.list
+
     const WEATHER_CONFIG = [
       {
         title: 'Healthy',
         color: '#55BC8A',
         used: 90,
         total: 100,
-        icon: '/assets/health.svg',
+        icon: '/assets/cd/health.svg',
+        label: 'HEALTH_STATUS',
       },
       {
         title: 'Degraded',
         color: '#CA2621',
         used: 40,
         total: 100,
-        icon: '/assets/health-error.svg',
+        icon: '/assets/cd/degraded.svg',
+        label: 'HEALTH_STATUS',
       },
       {
         title: 'Progressing',
         color: '#F5A623',
         used: 10,
         total: 100,
-        icon: '/assets/health.svg',
+        icon: '/assets/cd/progressing.svg',
+        label: 'HEALTH_STATUS',
       },
     ]
     return (
       <div className={styles.warper__item}>
         {WEATHER_CONFIG.map(item => (
-          <ChartCard item={item} key={item.title} click={this.handleFilter} />
+          <ChartCard
+            item={item}
+            key={item.title}
+            type="healthStatus"
+            click={this.handleFilter}
+            label={item.label}
+            filters={filters}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  renderSyncStatusCard = () => {
+    const { filters } = this.props.store.list
+
+    const WEATHER_CONFIG = [
+      {
+        title: 'Synced',
+        color: '#55BC8A',
+        used: 90,
+        total: 100,
+        icon: '/assets/cd/synced.svg',
+        label: 'SYNC_STATUS',
+      },
+      {
+        title: 'OutOfSync',
+        color: '#F5A623',
+        used: 40,
+        total: 100,
+        icon: '/assets/cd/outofsync.svg',
+        label: 'SYNC_STATUS',
+      },
+      {
+        title: 'Unknown',
+        color: '#36435C',
+        used: 10,
+        total: 100,
+        icon: '/assets/cd/unknown.svg',
+        label: 'SYNC_STATUS',
+      },
+    ]
+    return (
+      <div className={styles.warper__item}>
+        {WEATHER_CONFIG.map(item => (
+          <ChartCard
+            item={item}
+            type="syncStatus"
+            key={item.title}
+            click={this.handleFilter}
+            label={item.label}
+            filters={filters}
+          />
         ))}
       </div>
     )
@@ -359,7 +421,7 @@ export default class CDList extends React.Component {
               {this.renderStatusCard()}
             </div>
             <div className={styles.warper__container}>
-              {this.renderStatusCard()}
+              {this.renderSyncStatusCard()}
             </div>
           </div>
 

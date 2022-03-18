@@ -268,6 +268,7 @@ export const ICON_TYPES = {
   notificationhistory: 'record',
   gpu: 'gpu',
   'gpu.limit': 'gpu',
+  cds: 'rocket',
 }
 
 export const MODULE_KIND_MAP = {
@@ -480,7 +481,7 @@ export const STRATEGIES = {
 export const SYNC_STRATEGY = [
   {
     label: 'AUTO_SYNC',
-    value: 'auto',
+    value: 'automated',
     description: 'AUTO_SYNC_DESC',
   },
   {
@@ -935,6 +936,7 @@ export const API_VERSIONS = {
   storageclasscapabilities: 'apis/storage.kubesphere.io/v1alpha1',
   meter: 'kapis/metering.kubesphere.io/v1alpha1',
   gateways: 'kapis/gateway.kubesphere.io/v1alpha1',
+  cds: 'kapis/gitops.kubesphere.io/v1alpha1',
 }
 
 export const MONITOR_GRAPH_COLORS = [

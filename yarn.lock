@@ -1159,10 +1159,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@kube-design/components@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.npmjs.org/@kube-design/components/-/components-1.4.1.tgz#3eefc397d283abfec768487d8fab5f9ba4e0d885"
-  integrity sha512-2DFYEFwpVQSMnDR2NqAVMezPI6zpPZhPpD+b445SC0Luv2naIed42epRfHNmVkyPheB3qdYCvq84qq2qTZ4k4w==
+"@kube-design/components@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.npmjs.org/@kube-design/components/-/components-1.8.0.tgz#ffa5a7200aadcbe4b0318c6dce445d9ca20d54b5"
+  integrity sha512-5zCfEwFZrAb4hvKciyAhDAOK/XJPQtPXhRnL9q7UCYKuF+pWw22U6vIGhSvIaHgFpmqywSiqnlMdKKHYF0M2Yw==
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@pitrix/lego-locale" "^0.1.10"
