@@ -10,6 +10,15 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+
+  :global {
+    .popper.dropdown.is-active {
+      margin-top: 4px;
+    }
+  }
 
   .button {
     height: 100%;
