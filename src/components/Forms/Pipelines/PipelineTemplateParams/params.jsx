@@ -47,7 +47,10 @@ export default function ParamsInput({ option }) {
         label={option.name}
         desc={option.description}
         rules={[
-          { required: !option.default, message: t('Please input value') },
+          {
+            required: option.required ?? false,
+            message: t('Please input value'),
+          },
         ]}
       >
         <Input
