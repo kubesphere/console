@@ -173,7 +173,7 @@ export default class Sider extends React.Component {
         return (
           <Form data={this.formData} ref={this.formRef}>
             <Form.Item label={t('label')} desc={t('')}>
-              <Input name="label" defaultValue="default" />
+              <Input name="label" />
             </Form.Item>
             <Form.Item
               label={t('yaml')}
