@@ -67,24 +67,24 @@ export default class Artifacts extends React.Component {
     this.routing.query(params, refresh)
   }
 
-  getDownloadUrl = url => {
+  getDownloadUrl = (pipeline, pipelineRun, path) => {
     const { params } = this.props.match
 
     return params.cluster === 'default' || !params.cluster
-      ? `/kapis/devops.kubesphere.io/v1alpha2/devops/${params.devops}/jenkins${url}`
-      : `/kapis/clusters/${params.cluster}/devops.kubesphere.io/v1alpha2/devops/${params.devops}/jenkins${url}`
+      ? `/kapis/devops.kubesphere.io/v1alpha3/namespaces/${params.devops}/pipelineruns/${pipelineRun}/artifacts/download?filename=${path}`
+      : `/kapis/clusters/${params.cluster}/devops.kubesphere.io/v1alpha3/namespaces/${params.devops}/pipelineruns/${pipelineRun}/artifacts/download?filename=${path}`
   }
 
   getFilteredValue = dataIndex => this.store.list.filters[dataIndex]
 
-  getColumns = () => [
+  getColumns = (pipeline, pipelineRun) => [
     {
       title: t('NAME'),
       dataIndex: 'path',
       width: '40%',
-      render: (path, record) => (
+      render: path => (
         <a
-          href={this.getDownloadUrl(record.url)}
+          href={this.getDownloadUrl(pipeline, pipelineRun, path)}
           target="_blank"
           download={true}
           rel="noreferrer noopener"
@@ -103,9 +103,9 @@ export default class Artifacts extends React.Component {
       title: t('DOWNLOAD'),
       width: '20%',
       key: 'download',
-      render: record => (
+      render: path => (
         <a
-          href={this.getDownloadUrl(record.url)}
+          href={this.getDownloadUrl(pipeline, pipelineRun, path)}
           target="_blank"
           download={true}
           rel="noreferrer noopener"
@@ -117,9 +117,16 @@ export default class Artifacts extends React.Component {
   ]
 
   render() {
-    const { data, filters, isLoading, total, page, limit } = toJS(
-      this.store.artifactsList
-    )
+    const {
+      data,
+      pipeline,
+      pipelineRun,
+      filters,
+      isLoading,
+      total,
+      page,
+      limit,
+    } = toJS(this.store.artifactsList)
     const isEmptyList = total === 0
     const omitFilters = omit(filters, 'page', 'workspace')
 
@@ -132,7 +139,7 @@ export default class Artifacts extends React.Component {
     return (
       <Table
         data={data}
-        columns={this.getColumns()}
+        columns={this.getColumns(pipeline, pipelineRun)}
         filters={omitFilters}
         rowKey={'path'}
         pagination={pagination}

@@ -194,6 +194,8 @@ export default class PipelineRunStore extends BaseStore {
 
     this.artifactsList = {
       data: result || [],
+      pipeline: name,
+      pipelineRun: runName,
       total: result.length,
       limit: TABLE_LIMIT,
       page: parseInt(page, 10) || 1,
