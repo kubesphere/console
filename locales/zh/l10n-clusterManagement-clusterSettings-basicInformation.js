@@ -27,9 +27,8 @@ module.exports = {
   // Unbind Cluster
   UNBIND: '解绑',
   UNBIND_CLUSTER: '解绑集群',
-  UNBIND_CLUSTER_DESC:
-    '解绑集群后，KubeSphere 将无法管理该集群，但该集群上的 Kubernetes 资源不会被删除。请输入集群名称 <strong>{name}</strong> 确保您已了解操作所带来的风险。',
-  UNBIND_SUCCESS: '解绑成功',
+  UNBIND_CLUSTER_DESC: 'After the cluster is unbound, KubeSphere will not be able to manage the cluster. The Kubernetes resources on the cluster will not be deleted. Please enter the cluster name <strong>{name}</strong> to make sure you understand the risks associated with the operation.',
+  UNBIND_SUCCESS: 'Unbind Successfully',
   SURE_TO_UNBIND_CLUSTER: '我已了解操作所带来的风险',
   UNBIND_CLUSTER_Q: '解绑集群',
   NODE: '节点',
