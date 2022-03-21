@@ -12,6 +12,18 @@
 
 .doc {
   padding: 12px;
+
+  :global {
+    ul {
+      li {
+        padding-left: 14x !important;
+
+        &::before {
+          top: 0px;
+        }
+      }
+    }
+  }
 }
 
 .tipWrapper {

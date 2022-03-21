@@ -39,6 +39,8 @@ export default class SessionTerminal extends Component {
   }
 
   render() {
+    const { isEdgeNode } = this.props
+
     if (!this.props.url) {
       return null
     }
@@ -67,6 +69,7 @@ export default class SessionTerminal extends Component {
               websocketUrl={this.url}
               key={this.url}
               terminalOpts={terminalOpts}
+              isEdgeNode={isEdgeNode}
               ref={ref => {
                 this.terminalRef = ref
               }}

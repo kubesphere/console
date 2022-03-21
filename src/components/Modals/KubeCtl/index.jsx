@@ -120,13 +120,15 @@ export default class KubeCtlModal extends React.Component {
   renderTips() {
     return (
       <div>
-        {!this.props.cluster && globals.app.isMultiCluster && (
-          <TypeSelect
-            options={this.clusters}
-            value={this.state.cluster}
-            onChange={this.handleClusterChange}
-          />
-        )}
+        {!this.props.cluster &&
+          globals.app.isMultiCluster &&
+          !this.props.isEdgeNode && (
+            <TypeSelect
+              options={this.clusters}
+              value={this.state.cluster}
+              onChange={this.handleClusterChange}
+            />
+          )}
         <div className={classnames('markdown-body', styles.doc)}>
           {t.html('KUBECTL_TIP')}
         </div>
@@ -135,12 +137,14 @@ export default class KubeCtlModal extends React.Component {
   }
 
   renderTerminal() {
+    const { isEdgeNode } = this.props
     return (
       <div className={classnames(styles.pane, styles.terminal)}>
         <ContainerTerminal
           isLoading={this.store.kubectl.isLoading}
           url={this.url}
           ref={this.terminalRef}
+          isEdgeNode={isEdgeNode}
         />
       </div>
     )

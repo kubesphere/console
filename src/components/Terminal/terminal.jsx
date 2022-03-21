@@ -44,11 +44,13 @@ export default class ContainerTerminal extends React.Component {
     terminalOpts: PropTypes.object,
     websocketUrl: PropTypes.string,
     initText: PropTypes.string,
+    isEdgeNode: PropTypes.bool,
   }
 
   static defaultProps = {
     terminalOpts: {},
     initText: 'Connecting...',
+    isEdgeNode: false,
   }
 
   get isWsOpen() {
@@ -181,10 +183,12 @@ export default class ContainerTerminal extends React.Component {
   }
 
   fatal = message => {
+    const { isEdgeNode } = this.props
     const first = this.first
     if (!message && first)
-      message =
-        'Could not connect to the container. Do you have sufficient privileges?'
+      message = `Could not connect to the ${
+        isEdgeNode ? 'node' : 'container'
+      }. Do you have sufficient privileges?`
     if (!message) message = 'disconnected'
     if (!first) message = `\r\n${message}`
     if (first) this.term.reset()
