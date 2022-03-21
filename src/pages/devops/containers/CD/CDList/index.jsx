@@ -89,7 +89,12 @@ export default class CDList extends React.Component {
         icon: 'pen',
         text: t('EDIT'),
         action: 'edit',
-        onClick: () => {},
+        onClick: item => {
+          trigger('resource.baseinfo.edit', {
+            detail: item._originData,
+            success: routing.query,
+          })
+        },
       },
       {
         key: 'yaml',
@@ -148,7 +153,7 @@ export default class CDList extends React.Component {
     const { trigger } = this.props
 
     trigger('cd.create', {
-      title: t('CREATE_PIPELINE'),
+      title: t('CREATE_CD'),
       devops: this.devops,
       cluster: this.cluster,
       module: 'cds',

@@ -35,6 +35,9 @@ export default class CDStore extends Base {
   }
 
   @observable
+  clustersList = []
+
+  @observable
   detail = {}
 
   @observable
@@ -92,13 +95,13 @@ export default class CDStore extends Base {
 
     const url = `${this.getResourceUrl({ namespace: devops })}`
 
-    const result = await request.get(url, { ...params }, {}, () => {
-      return { items: [] }
-    })
+    const result = await request.get(url, { ...params }, {}, () => {})
 
-    const data = result.items.map(item => {
-      return { ...this.mapper(item) }
-    })
+    const data = Array.isArray(result.items)
+      ? result.items.map(item => {
+          return { ...this.mapper(item) }
+        })
+      : []
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
@@ -119,6 +122,23 @@ export default class CDStore extends Base {
     return result
   }
 
+  @action
+  async update({ data, devops }) {
+    const url = `${this.getResourceUrl({ namespace: devops })}/${
+      data.metadata.name
+    }`
+    return this.submitting(request.put(url, data))
+  }
+
+  @action
+  patch(params, newObject) {
+    const url = `${this.getResourceUrl({ namespace: params.devops })}/${
+      newObject.metadata.name
+    }`
+    return this.submitting(request.patch(url, newObject))
+  }
+
+  @action
   async fetchDetail({ name, isSilent, devops }) {
     if (!isSilent) {
       this.isLoading = true
@@ -133,5 +153,23 @@ export default class CDStore extends Base {
     this.detail = result
     this.isLoading = false
     return result
+  }
+
+  @action
+  async getClustersList() {
+    const url = `${this.apiVersion}/clusters`
+    const result = await request.get(url, null, null, () => {})
+
+    if (!result) {
+      const clusterName = Object.keys(globals.clusterConfig)[0]
+      this.clustersList = [
+        {
+          server: 'https://kubernetes.default.svc',
+          name: clusterName,
+        },
+      ]
+    } else {
+      this.clustersList = result
+    }
   }
 }

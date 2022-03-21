@@ -29,6 +29,6 @@ export const CD_FORM = [
     title: 'DEPLOYMENT_SETTINGS',
     component: Advance,
     required: true,
-    isForm: false,
+    icon: 'rocket',
   },
 ]

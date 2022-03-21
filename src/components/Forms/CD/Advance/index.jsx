@@ -21,10 +21,16 @@ import { Form, Input, Column, Columns, Checkbox } from '@kube-design/components'
 
 import { TypeSelect } from 'components/Base'
 import { SYNC_STRATEGY } from 'utils/constants'
-import Placement from 'components/Forms/AppDeploy/BasicInfo/Placement'
+import { set } from 'lodash'
+import Placement from './Placement'
 import styles from './index.scss'
 
 export default class Advance extends React.Component {
+  get syncPolicyType() {
+    const { formTemplate } = this.props
+    return formTemplate?.syncPolicy?.type ?? 'automated'
+  }
+
   get syncOptions() {
     return SYNC_STRATEGY.map(({ label, value, description }) => ({
       label: t(label),
@@ -34,8 +40,15 @@ export default class Advance extends React.Component {
     }))
   }
 
+  handleChange = value => {
+    const { formTemplate } = this.props
+    set(formTemplate, 'syncPolicy.type', value)
+    this.forceUpdate()
+  }
+
   render() {
     const { formRef, formTemplate } = this.props
+
     return (
       <Form data={formTemplate} ref={formRef}>
         <div className={styles.wrapper}>
@@ -50,7 +63,8 @@ export default class Advance extends React.Component {
               ]}
             >
               <Placement
-                name="namespace"
+                name="destination"
+                prefix="destination"
                 formData={formTemplate}
                 {...this.props}
               />
@@ -63,7 +77,7 @@ export default class Advance extends React.Component {
             <Columns>
               <Column>
                 <Form.Item label={t('Revision')} desc={t('REVISE_DESC')}>
-                  <Input name="source.targetRevision" defaultValue="7" />
+                  <Input name="source.targetRevision" defaultValue="Header" />
                 </Form.Item>
               </Column>
               <Column>
@@ -71,7 +85,7 @@ export default class Advance extends React.Component {
                   label={t('RESOURCE_FILE_PATH')}
                   desc={t('SET_THE_RESOURCE_FILE_PATH')}
                 >
-                  <Input name="source.path" defaultValue="10" />
+                  <Input name="source.path" defaultValue="" />
                 </Form.Item>
               </Column>
             </Columns>
@@ -86,23 +100,25 @@ export default class Advance extends React.Component {
                   name="syncPolicy.type"
                   defaultValue="automated"
                   options={this.syncOptions}
+                  onChange={this.handleChange}
                 />
               </Form.Item>
             </div>
+            {this.syncPolicyType === 'automated' && (
+              <div className={styles.columns}>
+                <div className={styles.column}>
+                  <Form.Item>
+                    <Checkbox name="syncPolicy.prune">Prune Resources</Checkbox>
+                  </Form.Item>
+                </div>
 
-            <div className={styles.columns}>
-              <div className={styles.column}>
-                <Form.Item>
-                  <Checkbox name="syncPolicy.prune">Prune Resources</Checkbox>
-                </Form.Item>
+                <div className={styles.column}>
+                  <Form.Item>
+                    <Checkbox name="syncPolicy.selfHeal">Self Heal</Checkbox>
+                  </Form.Item>
+                </div>
               </div>
-
-              <div className={styles.column}>
-                <Form.Item>
-                  <Checkbox name="syncPolicy.selfHeal">Self Heal</Checkbox>
-                </Form.Item>
-              </div>
-            </div>
+            )}
           </div>
         </div>
         <div className={styles.wrapper}>

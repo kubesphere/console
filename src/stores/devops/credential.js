@@ -87,15 +87,15 @@ export default class CredentialStore extends BaseStore {
       ...filters,
     })
 
-    result.items = result.items.filter(v =>
-      CREDENTIAL_TYPE_LIST.includes(v.type)
-    )
-
-    const dataList = result.items.map(v => {
-      v = this.mapper(v)
-      v.type = CREDENTIAL_DISPLAY_KEY[v.type.split('/')[1]]
-      return v
-    })
+    const dataList = Array.isArray(result.items)
+      ? result.items
+          .filter(v => CREDENTIAL_TYPE_LIST.includes(v.type))
+          .map(v => {
+            v = this.mapper(v)
+            v.type = CREDENTIAL_DISPLAY_KEY[v.type.split('/')[1]]
+            return v
+          })
+      : []
 
     this.list.update({
       data: more ? [...this.list.data, ...dataList] : dataList,

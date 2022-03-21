@@ -44,4 +44,5 @@ module.exports = {
   DEPLOYMENT_SETTINGS: 'Deployment settings',
   LATEST_SYNC_STATUS: 'Latest sync status',
   REPO_EMPTY_DESC: 'Code repository cannot be empty',
+  CREATE_CD: 'Create continuous deployment',
 }

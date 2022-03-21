@@ -77,12 +77,12 @@ export default class SyncModal extends React.Component {
           <div className={styles.columns}>
             <div className={`${styles.column} ${styles.column_card}`}>
               <Form.Item>
-                <Checkbox name="Prune">Prune</Checkbox>
+                <Checkbox name="operation.sync.prune">Prune</Checkbox>
               </Form.Item>
             </div>
             <div className={`${styles.column} ${styles.column_card}`}>
               <Form.Item>
-                <Checkbox name="DryRun">Dry Run</Checkbox>
+                <Checkbox name="operation.sync.dryRun">Dry Run</Checkbox>
               </Form.Item>
             </div>
             <div className={`${styles.column} ${styles.column_card}`}>
@@ -92,7 +92,9 @@ export default class SyncModal extends React.Component {
             </div>
             <div className={`${styles.column} ${styles.column_card}`}>
               <Form.Item>
-                <Checkbox name="Force">Force</Checkbox>
+                <Checkbox name="operation.sync.syncStrategy.apply.force">
+                  Force
+                </Checkbox>
               </Form.Item>
             </div>
           </div>

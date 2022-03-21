@@ -1273,8 +1273,19 @@ const CDSMapper = item => {
   const syncStatus = get(status, 'sync.status')
   const healthStatus = get(status, 'health.status')
   const devops = get(item, 'metadata.namespace')
-  const repoSource = get(item, 'spec.argoApp.source', {})
-  const destination = get(item, 'spec.destination', {})
+  const argoApp = get(item, 'spec.argoApp', {})
+
+  const repoSource = get(argoApp, 'spec.source', {})
+  const destination = get(argoApp, 'spec.destination', {})
+  const operation = get(argoApp, 'operation', {})
+  let syncOptions = get(argoApp, 'spec.syncPolicy.syncOptions', [])
+
+  if (syncOptions.length > 0) {
+    syncOptions = syncOptions.map(syncOption => {
+      const itemArrayValue = syncOption.split('=')
+      return { [itemArrayValue[0]]: JSON.parse(itemArrayValue[1]) }
+    })
+  }
 
   return {
     ...getBaseInfo(item),
@@ -1284,6 +1295,8 @@ const CDSMapper = item => {
     devops,
     repoSource,
     destination,
+    operation,
+    syncOptions,
     _originData: getOriginData(item),
   }
 }

@@ -43,4 +43,5 @@ module.exports = {
   DEPLOYMENT_SETTINGS: '部署设置',
   LATEST_SYNC_STATUS: '最新同步状态',
   REPO_EMPTY_DESC: '代码仓库不能为空',
+  CREATE_CD: '创建持续部署资源',
 }

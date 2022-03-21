@@ -25,6 +25,7 @@ import { observer, inject } from 'mobx-react'
 import { get } from 'lodash'
 import { getLocalTime } from 'utils'
 import routes from './routes'
+import StatusText from '../Components/StatusText'
 
 @inject('rootStore')
 @observer
@@ -71,7 +72,13 @@ export default class CDDetail extends React.Component {
       type: 'control',
       text: t('EDIT'),
       action: 'edit',
-      onClick: () => {},
+      onClick: () => {
+        trigger('resource.baseinfo.edit', {
+          formTemplate: this.store.detail,
+          detail: this.store.detail,
+          success: this.getData,
+        })
+      },
     },
     {
       key: 'sync',
@@ -84,9 +91,7 @@ export default class CDDetail extends React.Component {
           formTemplate: this.store.detail,
           devops: this.devops,
           noCodeEdit: true,
-          success: () => {
-            this.getData()
-          },
+          success: this.getData,
         })
       },
     },
@@ -123,11 +128,18 @@ export default class CDDetail extends React.Component {
     return [
       {
         name: t('HEALTH_STATUS'),
-        value: t(detail.healthStatus),
+        value: (
+          <StatusText
+            type={detail.healthStatus || 'Healthy'}
+            label={'Healthy'}
+          />
+        ),
       },
       {
         name: t('SYNC_STATUS'),
-        value: detail.syncStatus,
+        value: (
+          <StatusText type={detail.syncStatus || 'Synced'} label={'Synced'} />
+        ),
       },
       {
         name: t('DEPLOY_LOCATION'),

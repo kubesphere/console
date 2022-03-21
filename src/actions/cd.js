@@ -23,7 +23,7 @@ import SyncModal from 'components/Modals/SyncModal'
 import { Notify } from '@kube-design/components'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { set } from 'lodash'
+import { set, isEmpty } from 'lodash'
 
 export default {
   'cd.create': {
@@ -32,37 +32,44 @@ export default {
 
       const modal = Modal.open({
         onOk: async data => {
-          const destination = { namespace: data.namespace, name: cluster }
-          const syncPolicy = {
-            [data.syncPolicy.type]: {
-              prune: data.syncPolicy.prune,
-              selfHeal: data.syncPolicy.selfHeal,
-            },
-          }
+          const syncPolicyType = data.syncPolicy.type
+          const syncPolicy =
+            syncPolicyType === 'automated'
+              ? {
+                  [data.syncPolicy.type]: {
+                    prune: data.syncPolicy.prune,
+                    selfHeal: data.syncPolicy.selfHeal,
+                  },
+                }
+              : undefined
 
           const source = {
-            repoURL:
-              data.sourceRepo[`${data.sourceRepo.source_type}_source`].repo,
+            repoURL: 'https://github.com/kubesphere/devops-python-sample.git',
+            // data.sourceRepo[`${data.sourceRepo.source_type}_source`].repo,
             ...data.source,
           }
 
-          const syncOptions = Object.entries(data.syncOptions).reduce(
-            (pre, current) => {
-              const item = `${current[0]}=${current[1]}`
-              pre.push(item)
-              return pre
-            },
-            []
-          )
+          const syncOptions = !isEmpty(data.syncOptions)
+            ? Object.entries(data.syncOptions).reduce((pre, current) => {
+                const item = `${current[0]}=${current[1]}`
+                pre.push(item)
+                return pre
+              }, [])
+            : undefined
 
           syncPolicy.syncOptions = syncOptions
 
+          const argoApp = {
+            destination: data.destination,
+            source,
+            syncPolicy,
+          }
+
           set(formTemplate, 'metadata', data.metadata)
-          set(formTemplate, 'spec.destination', destination)
-          set(formTemplate, 'spec.source', source)
-          set(formTemplate, 'spec.syncPolicy', syncPolicy)
+          set(formTemplate, 'spec.argoApp.spec', argoApp)
 
           await store.create({ data: formTemplate, devops: props.devops })
+
           Notify.success({ content: t('CREATE_SUCCESSFUL') })
           success && success()
           Modal.close(modal)
@@ -77,27 +84,30 @@ export default {
       })
     },
   },
-  'cd.editor': {
-    on({ store, cluster, workspace, module, success, formTemplate, ...props }) {
-      const modal = Modal.open({
-        onOk: async () => {
-          Modal.close(modal)
-        },
-        store,
-        ...props,
-        module,
-        cluster,
-        formTemplate,
-        modal: CreateModal,
-        steps: CD_FORM,
-        ...props,
-      })
-    },
-  },
+
   'cd.sync': {
     on({ store, cluster, workspace, module, success, formTemplate, ...props }) {
       const modal = Modal.open({
-        onOk: async () => {
+        onOk: async data => {
+          const _data = formTemplate._originData
+
+          const syncOptions = !isEmpty(data.syncOptions)
+            ? Object.entries(data.syncOptions).reduce((pre, current) => {
+                const item = `${current[0]}=${current[1]}`
+                pre.push(item)
+                return pre
+              }, [])
+            : undefined
+
+          syncOptions.syncOptions = syncOptions
+
+          set(_data, 'spec.argoApp.spec.syncPolicy', syncOptions)
+          set(_data, 'spec.argoApp.operation', data.operation)
+
+          await store.update({ data: formTemplate, devops: props.devops })
+
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
+          success && success()
           Modal.close(modal)
         },
         store,
