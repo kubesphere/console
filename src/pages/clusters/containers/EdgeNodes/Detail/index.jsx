@@ -123,10 +123,6 @@ export default class NodeDetail extends React.Component {
         value: address,
       },
       {
-        name: t('SCHEDULABLE'),
-        value: detail.unschedulable ? t('NO') : t('YES'),
-      },
-      {
         name: t('ROLE'),
         value:
           getNodeRoles(detail.labels)
