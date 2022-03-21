@@ -88,3 +88,11 @@
   right: 20px;
   @include TypographyTitleH5($dark-color01);
 }
+
+.manage {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 92px !important;
+  margin: 0px !important;
+}

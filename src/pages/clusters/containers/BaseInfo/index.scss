@@ -34,8 +34,11 @@
   right: 20px;
 }
 
-.action {
+.manage {
   position: absolute;
   top: 4px;
   right: 6px;
+  width: 92px;
+  height: 32px;
+  min-width: 0px !important;
 }

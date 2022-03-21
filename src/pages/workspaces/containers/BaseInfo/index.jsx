@@ -20,11 +20,12 @@ import React from 'react'
 import { get, isEmpty, set } from 'lodash'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { Alert, Button } from '@kube-design/components'
+import { Menu, Icon } from '@kube-design/components'
 import { Text, Panel, Switch } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import EditBasicInfoModal from 'workspaces/components/Modals/EditBasicInfo'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
+import ManageButton from 'pages/clusters/containers/BaseInfo/ManageButton'
 
 import { getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
@@ -200,6 +201,60 @@ class BaseInfo extends React.Component {
     ]
   }
 
+  get enableManageAction() {
+    const actions = this.enabledActions
+    const option = []
+    if (actions.includes('manage')) {
+      option.push({
+        actionName: 'resource.baseinfo.edit',
+        onClick: this.showEdit,
+        icon: 'pen',
+        text: t('EDIT_INFORMATION'),
+      })
+    }
+
+    if (actions.includes('manage')) {
+      option.push({
+        actionName: 'workspace.delete',
+        onClick: this.handleDelete,
+        icon: 'trash',
+        text: t('DELETE_WORKSPACE'),
+      })
+    }
+
+    return option
+  }
+
+  manageButtonClick = (e, actionName) => {
+    const clickItem = this.enableManageAction.filter(
+      item => item.actionName === actionName
+    )[0]
+    clickItem && clickItem.onClick()
+  }
+
+  renderManageButton = () => {
+    const action = this.enableManageAction
+    const content = (
+      <Menu onClick={this.manageButtonClick}>
+        {action.map(option => (
+          <Menu.MenuItem key={option.actionName}>
+            <Icon name={option.icon} type="light"></Icon>
+            {option.text}
+          </Menu.MenuItem>
+        ))}
+      </Menu>
+    )
+
+    return (
+      action.length > 0 && (
+        <ManageButton
+          className={styles.manage}
+          content={content}
+        ></ManageButton>
+      )
+    )
+  }
+
   renderBaseInfo() {
     const { detail } = this.store
     const options = this.getResourceOptions()
@@ -220,11 +275,7 @@ class BaseInfo extends React.Component {
             )}
             description={t('CREATION_TIME')}
           />
-          {this.enabledActions.includes('manage') && (
-            <Button className={styles.action} onClick={this.showEdit}>
-              {t('EDIT_INFORMATION')}
-            </Button>
-          )}
+          {this.renderManageButton()}
         </div>
         {this.canViewWorkspaceProjects && (
           <div className={styles.content}>
@@ -240,26 +291,6 @@ class BaseInfo extends React.Component {
               ))}
           </div>
         )}
-      </Panel>
-    )
-  }
-
-  renderDelete() {
-    return (
-      <Panel title={t('DELETE_WORKSPACE')}>
-        <Alert
-          className={styles.tip}
-          type="error"
-          title={t('SURE_TO_DELETE_WORKSPACE')}
-          message={t('DELETE_WORKSPACE_DESC')}
-        />
-        <Button
-          className={styles.unbind}
-          type="danger"
-          onClick={this.handleDelete}
-        >
-          {t('DELETE')}
-        </Button>
       </Panel>
     )
   }
@@ -351,7 +382,6 @@ class BaseInfo extends React.Component {
         />
         {this.renderBaseInfo()}
         {this.renderNetwork()}
-        {this.enabledActions.includes('manage') && this.renderDelete()}
       </div>
     )
   }

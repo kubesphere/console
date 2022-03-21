@@ -71,6 +71,7 @@ export default class DeleteModal extends React.Component {
       title,
       desc,
       isSubmitting,
+      deleteCluster,
     } = this.props
     const typeKey = type || undefined
     const typeKeyLow = type ? `${type}_LOW` : undefined
@@ -91,6 +92,9 @@ export default class DeleteModal extends React.Component {
 
     if (app) {
       tip = t.html('DELETE_APP_RESOURCE_TIP', { type, resource, app })
+    }
+    if (deleteCluster) {
+      tip = t.html('UNBIND_CLUSTER_DESC', { name: resource })
     }
     return (
       <Modal

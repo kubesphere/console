@@ -19,11 +19,11 @@
 import React from 'react'
 import { get, isEmpty } from 'lodash'
 import { Link } from 'react-router-dom'
-import classNames from 'classnames'
 
-import { Button, Icon, Menu, Dropdown } from '@kube-design/components'
+import { Icon, Menu } from '@kube-design/components'
 import { getLocalTime, getDisplayName } from 'utils'
 import { Panel } from 'components/Base'
+import ManageButton from 'pages/clusters/containers/BaseInfo/ManageButton'
 
 import styles from './index.scss'
 
@@ -69,16 +69,7 @@ export default class ProjectInfo extends React.Component {
             <p>{t('CREATION_TIME')}</p>
           </div>
           {!isEmpty(actions) && (
-            <div className={classNames(styles.item, 'text-right')}>
-              <Dropdown
-                theme="dark"
-                content={this.renderMoreMenu()}
-                trigger="click"
-                placement="bottomRight"
-              >
-                <Button>{t('MANAGE')}</Button>
-              </Dropdown>
-            </div>
+            <ManageButton content={this.renderMoreMenu()}></ManageButton>
           )}
         </div>
       </Panel>
