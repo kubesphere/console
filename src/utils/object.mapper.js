@@ -1272,18 +1272,24 @@ const CDSMapper = item => {
   const status = safeParseJSON(get(item, 'status.argoApp', ''), {})
   const syncStatus = get(status, 'sync.status')
   const healthStatus = get(status, 'health.status')
-  const devops = get(item, 'metadata.namespace')
+  const devops = get(item, 'devops')
   const argoApp = get(item, 'spec.argoApp', {})
 
   const repoSource = get(argoApp, 'spec.source', {})
   const destination = get(argoApp, 'spec.destination', {})
   const operation = get(argoApp, 'operation', {})
-  let syncOptions = get(argoApp, 'spec.syncPolicy.syncOptions', [])
+  const syncOptions = get(argoApp, 'spec.syncPolicy.syncOptions', [])
+  const syncType = Object.keys(get(argoApp, 'spec.syncPolicy', {})).includes(
+    'automated'
+  )
+    ? 'automated'
+    : 'manual'
+  const _syncOptions = {}
 
   if (syncOptions.length > 0) {
-    syncOptions = syncOptions.map(syncOption => {
+    syncOptions.forEach(syncOption => {
       const itemArrayValue = syncOption.split('=')
-      return { [itemArrayValue[0]]: JSON.parse(itemArrayValue[1]) }
+      _syncOptions[itemArrayValue[0]] = JSON.parse(itemArrayValue[1])
     })
   }
 
@@ -1296,8 +1302,9 @@ const CDSMapper = item => {
     repoSource,
     destination,
     operation,
-    syncOptions,
-    _originData: getOriginData(item),
+    syncType,
+    syncOptions: _syncOptions,
+    _originData: getOriginData(omit(item, 'devops')),
   }
 }
 

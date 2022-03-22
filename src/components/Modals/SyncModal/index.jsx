@@ -21,6 +21,7 @@ import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { Input, Form, Checkbox } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import { get, set } from 'lodash'
 import styles from './index.scss'
 
 @observer
@@ -50,6 +51,12 @@ export default class SyncModal extends React.Component {
     onOk(formData)
   }
 
+  handleCheckboxChange = key => value => {
+    const { formTemplate } = this.props
+    set(formTemplate, key, value)
+    this.forceUpdate()
+  }
+
   render() {
     const { title, visible, onCancel, formTemplate } = this.props
 
@@ -65,7 +72,7 @@ export default class SyncModal extends React.Component {
           <div className={styles.columns}>
             <div className={styles.column}>
               <Form.Item label={t('CODE_REPOSITORY_URL')}>
-                <Input name="'repoSource.repoURL" disabled />
+                <Input name="repoSource.repoURL" disabled />
               </Form.Item>
             </div>
             <div className={styles.column}>
@@ -77,22 +84,52 @@ export default class SyncModal extends React.Component {
           <div className={styles.columns}>
             <div className={`${styles.column} ${styles.column_card}`}>
               <Form.Item>
-                <Checkbox name="operation.sync.prune">Prune</Checkbox>
+                <Checkbox
+                  name="operation.sync.prune"
+                  checked={get(formTemplate, 'operation.sync.prune', false)}
+                  onChange={this.handleCheckboxChange('operation.sync.prune')}
+                >
+                  Prune
+                </Checkbox>
               </Form.Item>
             </div>
             <div className={`${styles.column} ${styles.column_card}`}>
               <Form.Item>
-                <Checkbox name="operation.sync.dryRun">Dry Run</Checkbox>
+                <Checkbox
+                  name="operation.sync.dryRun"
+                  checked={get(formTemplate, 'operation.sync.dryRun', false)}
+                  onChange={this.handleCheckboxChange('operation.sync.dryRun')}
+                >
+                  Dry Run
+                </Checkbox>
               </Form.Item>
             </div>
             <div className={`${styles.column} ${styles.column_card}`}>
               <Form.Item>
-                <Checkbox name="ApplyOnly">Apply Only</Checkbox>
+                <Checkbox
+                  name="operation.sync.applyOnly"
+                  checked={get(formTemplate, 'operation.sync.applyOnly', false)}
+                  onChange={this.handleCheckboxChange(
+                    'operation.sync.applyOnly'
+                  )}
+                >
+                  Apply Only
+                </Checkbox>
               </Form.Item>
             </div>
             <div className={`${styles.column} ${styles.column_card}`}>
               <Form.Item>
-                <Checkbox name="operation.sync.syncStrategy.apply.force">
+                <Checkbox
+                  name="operation.sync.syncStrategy.apply.force"
+                  checked={get(
+                    formTemplate,
+                    'operation.sync.syncStrategy.apply.force',
+                    false
+                  )}
+                  onChange={this.handleCheckboxChange(
+                    'operation.sync.syncStrategy.apply.force'
+                  )}
+                >
                   Force
                 </Checkbox>
               </Form.Item>
@@ -105,26 +142,64 @@ export default class SyncModal extends React.Component {
               <div className={`${styles.columns} ${styles.wrapper_item_com}`}>
                 <div className={`${styles.column} ${styles.column_card}`}>
                   <Form.Item>
-                    <Checkbox name="syncOptions.Validate">
+                    <Checkbox
+                      name="syncOptions.Validate"
+                      checked={get(formTemplate, 'syncOptions.Validate', false)}
+                      onChange={this.handleCheckboxChange(
+                        'syncOptions.Validate'
+                      )}
+                    >
                       Skip Schema Validation
                     </Checkbox>
                   </Form.Item>
                 </div>
                 <div className={`${styles.column} ${styles.column_card}`}>
                   <Form.Item>
-                    <Checkbox name="syncOptions.CreateNamespace">
+                    <Checkbox
+                      name="syncOptions.CreateNamespace"
+                      checked={get(
+                        formTemplate,
+                        'syncOptions.CreateNamespace',
+                        false
+                      )}
+                      onChange={this.handleCheckboxChange(
+                        'syncOptions.CreateNamespace'
+                      )}
+                    >
                       Auto-Create Namespace
                     </Checkbox>
                   </Form.Item>
                 </div>
                 <div className={`${styles.column} ${styles.column_card}`}>
                   <Form.Item>
-                    <Checkbox name="syncOptions.PruneLast">Prune Last</Checkbox>
+                    <Checkbox
+                      name="syncOptions.PruneLast"
+                      checked={get(
+                        formTemplate,
+                        'syncOptions.PruneLast',
+                        false
+                      )}
+                      onChange={this.handleCheckboxChange(
+                        'syncOptions.PruneLast'
+                      )}
+                    >
+                      Prune Last
+                    </Checkbox>
                   </Form.Item>
                 </div>
                 <div className={`${styles.column} ${styles.column_card}`}>
                   <Form.Item>
-                    <Checkbox name="syncOptions.ApplyOutOfSyncOnly">
+                    <Checkbox
+                      name="syncOptions.ApplyOutOfSyncOnly"
+                      checked={get(
+                        formTemplate,
+                        'syncOptions.ApplyOutOfSyncOnly',
+                        false
+                      )}
+                      onChange={this.handleCheckboxChange(
+                        'syncOptions.ApplyOutOfSyncOnly'
+                      )}
+                    >
                       Apply Out Of Sync Only
                     </Checkbox>
                   </Form.Item>
@@ -135,7 +210,11 @@ export default class SyncModal extends React.Component {
               </Form.Item>
               <Form.Item>
                 <div className={styles.checkbox_item}>
-                  <Checkbox name="syncOptions.Replace"></Checkbox>
+                  <Checkbox
+                    name="syncOptions.Replace"
+                    checked={get(formTemplate, 'syncOptions.Replace', false)}
+                    onChange={this.handleCheckboxChange('syncOptions.Replace')}
+                  ></Checkbox>
                   <div className={styles.checkbox_item_info}>
                     <p>{t('ABANDON_KUBECTL_APPLY')}</p>
                     <span>{t('ABANDON_KUBECTL_APPLY_DESC')}</span>

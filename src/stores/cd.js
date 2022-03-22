@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { omit } from 'lodash'
 import { action, observable } from 'mobx'
 import Base from 'stores/base'
 
@@ -74,8 +75,7 @@ export default class CDStore extends Base {
   getResourceUrl = (params = {}) =>
     `${this.apiVersion}${this.getPath(params)}/applications`
 
-  getDetailUrl = (params = {}) =>
-    `${this.getListUrl(params)}/applications/${params.name}`
+  getDetailUrl = (params = {}) => `${this.getListUrl(params)}/${params.name}`
 
   @action
   setSelectRowKeys = selectedRowKeys => {
@@ -99,7 +99,7 @@ export default class CDStore extends Base {
 
     const data = Array.isArray(result.items)
       ? result.items.map(item => {
-          return { ...this.mapper(item) }
+          return { ...this.mapper({ ...item, devops }) }
         })
       : []
 
@@ -123,8 +123,16 @@ export default class CDStore extends Base {
   }
 
   @action
-  async update({ data, devops }) {
+  async updateSync({ data, devops }) {
     const url = `${this.getResourceUrl({ namespace: devops })}/${
+      data.metadata.name
+    }`
+    return this.submitting(request.put(url, data))
+  }
+
+  @action
+  async update(detail, data) {
+    const url = `${this.getResourceUrl({ namespace: detail.devops })}/${
       data.metadata.name
     }`
     return this.submitting(request.put(url, data))
@@ -135,7 +143,13 @@ export default class CDStore extends Base {
     const url = `${this.getResourceUrl({ namespace: params.devops })}/${
       newObject.metadata.name
     }`
-    return this.submitting(request.patch(url, newObject))
+    return this.submitting(request.put(url, newObject))
+  }
+
+  @action
+  delete(params) {
+    const _params = omit({ ...params, namespace: params.devops }, 'devops')
+    return this.submitting(request.delete(this.getDetailUrl(_params)))
   }
 
   @action
@@ -148,7 +162,7 @@ export default class CDStore extends Base {
       `${this.getResourceUrl({ namespace: devops })}/${name}`
     )
 
-    const result = this.mapper(resultKub)
+    const result = this.mapper({ ...resultKub, devops })
 
     this.detail = result
     this.isLoading = false

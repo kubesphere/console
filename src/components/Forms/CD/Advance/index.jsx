@@ -77,7 +77,7 @@ export default class Advance extends React.Component {
             <Columns>
               <Column>
                 <Form.Item label={t('Revision')} desc={t('REVISE_DESC')}>
-                  <Input name="source.targetRevision" defaultValue="Header" />
+                  <Input name="source.targetRevision" defaultValue="HEAD" />
                 </Form.Item>
               </Column>
               <Column>

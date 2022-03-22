@@ -33,7 +33,7 @@
     .wrapper_gray {
       display: flex;
       & > div {
-        margin-left: 20px;
+        margin-left: 12px;
       }
     }
 
@@ -45,6 +45,21 @@
 
       &:last-child {
         margin-right: 0;
+      }
+    }
+
+    .wrapper_icon {
+      .syncStatus {
+        position: relative;
+        margin-left: 0;
+        .syncStatus_icon {
+          position: absolute;
+          bottom: 0;
+          right: -2px;
+          & > span > span {
+            margin-right: 0 !important;
+          }
+        }
       }
     }
   }

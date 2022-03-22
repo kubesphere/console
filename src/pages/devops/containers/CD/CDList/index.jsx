@@ -19,17 +19,17 @@
 import React from 'react'
 
 import { toJS, computed } from 'mobx'
-import { getLocalTime } from 'utils'
+import { getLocalTime, getDisplayName } from 'utils'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import CDStore from 'stores/cd'
 import Table from 'components/Tables/List'
-import ClusterWrapper from 'components/Clusters/ClusterWrapper'
 import ClusterStore from 'stores/cluster'
 import withList, { ListPage } from 'components/HOCs/withList'
 import { CD_WEATHER_STATUS, CD_SYNC_STATUS } from 'utils/constants'
-import { omit } from 'lodash'
+import { omit, get } from 'lodash'
+import Destination from '../Components/Destination'
 import StatusText from '../Components/StatusText'
 import ChartCard from '../Components/ChartCard'
 import styles from './index.scss'
@@ -91,7 +91,7 @@ export default class CDList extends React.Component {
         action: 'edit',
         onClick: item => {
           trigger('resource.baseinfo.edit', {
-            detail: item._originData,
+            detail: item,
             success: routing.query,
           })
         },
@@ -182,14 +182,14 @@ export default class CDList extends React.Component {
 
   getWeatherStatus = () => {
     return CD_WEATHER_STATUS.map(status => ({
-      text: t(status.text),
+      text: status.text,
       value: status.value,
     }))
   }
 
   getSyncStatus = () => {
     return CD_SYNC_STATUS.map(status => ({
-      text: t(status.text),
+      text: status.text,
       value: status.value,
     }))
   }
@@ -204,8 +204,14 @@ export default class CDList extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('name'),
         search: true,
-        render: name => {
-          return <Avatar to={`${this.prefix}/${name}`} title={name} />
+        render: (name, record) => {
+          return (
+            <Avatar
+              to={`${this.prefix}/${name}`}
+              desc={record.description}
+              title={getDisplayName(record)}
+            />
+          )
         },
       },
 
@@ -217,7 +223,10 @@ export default class CDList extends React.Component {
         filteredValue: getFilteredValue('healthStatus'),
         search: true,
         render: healthStatus => (
-          <StatusText type={healthStatus || 'Healthy'} label={'Healthy'} />
+          <StatusText
+            type={healthStatus || 'Healthy'}
+            label={healthStatus || 'Healthy'}
+          />
         ),
       },
       {
@@ -228,18 +237,21 @@ export default class CDList extends React.Component {
         search: true,
         width: '20%',
         render: syncStatus => (
-          <StatusText type={syncStatus || 'Synced'} label={'Synced'} />
+          <StatusText
+            type={syncStatus || 'Synced'}
+            label={syncStatus || 'Synced'}
+          />
         ),
       },
       {
         title: t('DEPLOY_LOCATION'),
-        dataIndex: 'placement',
+        dataIndex: 'destination',
         isHideable: true,
         width: '20%',
-        render: placement => {
+        render: destination => {
           return (
-            <ClusterWrapper
-              clusters={placement}
+            <Destination
+              destination={destination}
               clustersDetail={this.clusters}
             />
           )
@@ -252,7 +264,11 @@ export default class CDList extends React.Component {
         sortOrder: getSortOrder('updateTime'),
         isHideable: true,
         width: '20%',
-        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+        render: (updateTime, record) => {
+          return getLocalTime(get(record, 'status.reconciledAt')).format(
+            'YYYY-MM-DD HH:mm:ss'
+          )
+        },
       },
     ]
   }

@@ -37,10 +37,12 @@ export default class Status extends PureComponent {
   }
 
   render() {
-    const { className, type, label, hasLabel } = this.props
+    const { className, type, label, hasLabel, noBolder } = this.props
 
     return (
-      <span className={styles.status}>
+      <span
+        className={classNames(styles.status, { [styles.noBolder]: noBolder })}
+      >
         <span
           className={classNames(
             styles.status_icon,

@@ -23,9 +23,12 @@ import { trigger } from 'utils/action'
 import CDStore from 'stores/cd'
 import { observer, inject } from 'mobx-react'
 import { get } from 'lodash'
-import { getLocalTime } from 'utils'
+import { getLocalTime, getDisplayName } from 'utils'
+import { toJS, computed } from 'mobx'
+import ClusterStore from 'stores/cluster'
 import routes from './routes'
 import StatusText from '../Components/StatusText'
+import Destination from '../Components/Destination'
 
 @inject('rootStore')
 @observer
@@ -39,6 +42,13 @@ export default class CDDetail extends React.Component {
   }
 
   store = new CDStore()
+
+  clusterStore = new ClusterStore()
+
+  @computed
+  get clusters() {
+    return this.clusterStore.list.data
+  }
 
   get listUrl() {
     const { workspace, cluster, devops } = this.props.match.params
@@ -64,6 +74,7 @@ export default class CDDetail extends React.Component {
 
   componentDidMount() {
     this.fetchData()
+    this.clusterStore.fetchList({ limit: -1 })
   }
 
   getOperations = () => [
@@ -73,10 +84,10 @@ export default class CDDetail extends React.Component {
       text: t('EDIT'),
       action: 'edit',
       onClick: () => {
-        trigger('resource.baseinfo.edit', {
+        this.trigger('resource.baseinfo.edit', {
           formTemplate: this.store.detail,
           detail: this.store.detail,
-          success: this.getData,
+          success: this.fetchData,
         })
       },
     },
@@ -88,10 +99,10 @@ export default class CDDetail extends React.Component {
       onClick: () => {
         this.trigger('cd.sync', {
           title: t('Synchronize'),
-          formTemplate: this.store.detail,
+          formTemplate: toJS(this.store.detail),
           devops: this.devops,
           noCodeEdit: true,
-          success: this.getData,
+          success: this.fetchData,
         })
       },
     },
@@ -131,31 +142,41 @@ export default class CDDetail extends React.Component {
         value: (
           <StatusText
             type={detail.healthStatus || 'Healthy'}
-            label={'Healthy'}
+            label={detail.healthStatus || 'Healthy'}
+            noBolder
           />
         ),
       },
       {
         name: t('SYNC_STATUS'),
         value: (
-          <StatusText type={detail.syncStatus || 'Synced'} label={'Synced'} />
+          <StatusText
+            type={detail.syncStatus || 'Synced'}
+            label={detail.syncStatus || 'Synced'}
+            noBolder
+          />
         ),
       },
       {
         name: t('DEPLOY_LOCATION'),
-        value: detail.devops,
+        value: (
+          <Destination
+            destination={detail.destination}
+            clustersDetail={this.clusters}
+          />
+        ),
       },
       {
         name: t('CODE_REPOSITORY_URL'),
-        value: get(detail, 'repoSource.repoURL'),
+        value: get(detail, 'repoSource.repoURL', '-'),
       },
       {
         name: t('REVISE'),
-        value: get(detail, 'repoSource.targetRevision'),
+        value: get(detail, 'repoSource.targetRevision', '-'),
       },
       {
         name: t('CODE_RELATIVE_PATH'),
-        value: get(detail, 'repoSource.path'),
+        value: get(detail, 'repoSource.path', '-'),
       },
       {
         name: t('IMAGE'),
@@ -167,7 +188,9 @@ export default class CDDetail extends React.Component {
       },
       {
         name: t('UPDATE_TIME_SCAP'),
-        value: detail.description,
+        value: getLocalTime(get(detail, 'status.reconciledAt')).format(
+          'YYYY-MM-DD HH:mm:ss'
+        ),
       },
       {
         name: t('CREATED_BY'),
@@ -182,7 +205,7 @@ export default class CDDetail extends React.Component {
 
     const sideProps = {
       module: 'cds',
-      name: detail.name,
+      name: getDisplayName(detail),
       desc: detail.description,
       operations: this.getOperations(),
       attrs: this.getAttrs(),

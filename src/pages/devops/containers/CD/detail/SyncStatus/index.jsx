@@ -23,10 +23,11 @@ import { toJS } from 'mobx'
 
 import PropTypes from 'prop-types'
 import Table from 'components/Tables/List'
-import { omit } from 'lodash'
+import { get } from 'lodash'
 import { Icon } from '@kube-design/components'
 import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 import styles from './index.scss'
+import StatusText from '../../Components/StatusText'
 
 @inject('detailStore')
 @observer
@@ -34,6 +35,10 @@ class SyncStatus extends React.Component {
   static propTypes = {
     data: PropTypes.array,
     loading: PropTypes.bool,
+  }
+
+  get detail() {
+    return toJS(this.props.detailStore.detail)
   }
 
   get cluster() {
@@ -54,20 +59,20 @@ class SyncStatus extends React.Component {
 
       {
         title: t('TYPE'),
-        dataIndex: 'type',
+        dataIndex: 'kind',
         width: '20%',
       },
       {
         title: t('PROJECT_PL'),
-        dataIndex: 'project',
+        dataIndex: 'namespace',
         width: '20%',
       },
       {
         title: t('SYNC_STATUS'),
-        dataIndex: 'syncStatus',
+        dataIndex: 'status',
         width: '20%',
         render: syncStatus => {
-          return syncStatus
+          return <StatusText type={syncStatus} label={syncStatus} />
         },
       },
       {
@@ -78,22 +83,17 @@ class SyncStatus extends React.Component {
   }
 
   renderTable = () => {
-    const { data = [], filters, isLoading, total, page, limit } = toJS(
-      this.props.detailStore.syncResult
-    )
-    const omitFilters = omit(filters, ['limit', 'page'])
-    const pagination = { total, page, limit }
+    const data = get(this.detail, 'status.resources', [])
+    const pagination = { total: data.length, page: 1, limit: 10 }
 
     return (
       <Table
+        hideHeader
         rowKey="name"
         data={data}
         searchType="name"
         columns={this.getColumns()}
-        filters={omitFilters}
         pagination={pagination}
-        isLoading={isLoading}
-        onFetch={this.handleFetch}
         name="sync_result"
       />
     )
@@ -107,9 +107,18 @@ class SyncStatus extends React.Component {
           <div className={styles.info_card}>
             <div className={styles.wrapper}>
               <div className={styles.wrapper_icon}>
-                <Icon name="rocket" size={40} />
+                <div className={styles.syncStatus}>
+                  <Icon name="rocket" size={40} />
+                  <span className={styles.syncStatus_icon}>
+                    <StatusText
+                      type={this.detail.syncStatus}
+                      hasLabel={false}
+                    />
+                  </span>
+                </div>
+
                 <div>
-                  <h4>{t('SYNC_STATUS')}</h4>
+                  <h4>{this.detail.syncStatus}</h4>
                   <p>{t('LATEST_SYNC_STATUS')}</p>
                 </div>
               </div>
@@ -130,14 +139,18 @@ class SyncStatus extends React.Component {
               <div className={styles.wrapper_gray}>
                 <Icon name="timed-task" size={40} />
                 <div>
-                  <h4>{t('AUTO_SYNC')}</h4>
+                  <h4>
+                    {this.detail.syncType === 'automated'
+                      ? t('AUTO_SYNC')
+                      : t('MANUAL_SYNC')}
+                  </h4>
                   <p>{t('SYNC_STRATEGY')}</p>
                 </div>
               </div>
               <div className={styles.wrapper_gray}>
                 <ForkIcon style={{ width: '40px', height: '40px' }} />
                 <div>
-                  <h4>521f989</h4>
+                  <h4>{get(this.detail, 'repoSource.targetRevision', '-')}</h4>
                   <p>{t('REVISE')}</p>
                 </div>
               </div>

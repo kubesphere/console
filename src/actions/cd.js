@@ -23,7 +23,7 @@ import SyncModal from 'components/Modals/SyncModal'
 import { Notify } from '@kube-design/components'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { set, isEmpty } from 'lodash'
+import { get, set, isEmpty } from 'lodash'
 
 export default {
   'cd.create': {
@@ -44,8 +44,8 @@ export default {
               : undefined
 
           const source = {
-            repoURL: 'https://github.com/kubesphere/devops-python-sample.git',
-            // data.sourceRepo[`${data.sourceRepo.source_type}_source`].repo,
+            repoURL:
+              data.sourceRepo[`${data.sourceRepo.source_type}_source`].repo,
             ...data.source,
           }
 
@@ -90,6 +90,7 @@ export default {
       const modal = Modal.open({
         onOk: async data => {
           const _data = formTemplate._originData
+          const syncPolicy = get(_data, 'spec.argoApp.spec.syncPolicy', {})
 
           const syncOptions = !isEmpty(data.syncOptions)
             ? Object.entries(data.syncOptions).reduce((pre, current) => {
@@ -99,14 +100,15 @@ export default {
               }, [])
             : undefined
 
-          syncOptions.syncOptions = syncOptions
+          syncPolicy.syncOptions = syncOptions
 
-          set(_data, 'spec.argoApp.spec.syncPolicy', syncOptions)
+          set(_data, 'spec.argoApp.spec.syncPolicy', syncPolicy)
           set(_data, 'spec.argoApp.operation', data.operation)
+          set(_data, 'spec.argoApp.spec.source', data.repoSource)
 
-          await store.update({ data: formTemplate, devops: props.devops })
+          await store.updateSync({ data: _data, devops: props.devops })
 
-          Notify.success({ content: t('CREATE_SUCCESSFUL') })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
           Modal.close(modal)
         },
