@@ -67,7 +67,7 @@ class ResourceStatus extends React.Component {
             <span className={styles.title}>
               {getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss')}
             </span>
-            <span className={styles.des}>{t('CREATION_TIME_TCAP')}</span>
+            <span className={styles.des}>{t('CREATION_TIME')}</span>
           </div>
         </div>
         <div className={styles.IconLine}>
@@ -91,7 +91,7 @@ class ResourceStatus extends React.Component {
             <Icon name="database" size={30}></Icon>
             <div className={styles.text}>
               <span className={styles.title}>{detail.capacity}</span>
-              <span className={styles.des}>{t('capacity')}</span>
+              <span className={styles.des}>{t('CAPACITY')}</span>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ class ResourceStatus extends React.Component {
   renderAccessTitle = () => {
     return (
       <div className={styles.mode_title}>
-        {t('ACCESS_MODE_TCAP')}
+        {t('ACCESS_MODE')}
         <Tooltip content={renderModeTip}>
           <Icon name="question" size={16} className={styles.toolTip}></Icon>
         </Tooltip>
@@ -115,9 +115,6 @@ class ResourceStatus extends React.Component {
     return (
       <>
         <span>{modes.join(',')}</span>
-        <Tooltip content={renderModeTip}>
-          <Icon name="question" size={16} className={styles.toolTip}></Icon>
-        </Tooltip>
       </>
     )
   }
