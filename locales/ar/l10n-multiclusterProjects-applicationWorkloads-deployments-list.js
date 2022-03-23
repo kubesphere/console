@@ -132,7 +132,7 @@ module.exports = {
   RUN_AS_USER_GROUP_DESC:
     'GID to run the entrypoint of the container process. The default value is the container runtime default GID.',
   SELINUX_CONTEXT: 'SELinux Context',
-  CAPABILITIES_BETA: 'Capabilities (beta)',
+  CAPABILITIES: 'Capabilities',
   DROP: 'Drop',
   ACCESS_CONTROL: 'Access Control',
   LEVEL: 'Level',
