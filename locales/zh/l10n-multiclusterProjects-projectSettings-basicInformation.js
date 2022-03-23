@@ -26,8 +26,8 @@ module.exports = {
   CPU_LIMIT_LOW: 'CPU 限制',
   CPU_REQUEST_CORE: '{value} 核',
   CPU_LIMIT_CORE: '{value} 核',
-  MEMORY_REQUEST_MIB: '{value} Mi',
-  MEMORY_LIMIT_MIB: '{value} Mi',
+  MEMORY_REQUEST_MIB: '{value} MiB',
+  MEMORY_LIMIT_MIB: '{value} MiB',
   // Manage > Edit Information
   // Manage > Add Cluster
   // Manage > Edit Default Container Quotas
