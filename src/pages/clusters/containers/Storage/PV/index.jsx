@@ -193,7 +193,7 @@ export default class PV extends React.Component {
         render: accessModes => this.mapperAccessMode(accessModes),
       },
       {
-        title: t('RECYCLING_STRATEGY'),
+        title: t('RECLAIM_POLICY'),
         dataIndex: '_originData',
         isHideable: true,
         width: '7.74%',
