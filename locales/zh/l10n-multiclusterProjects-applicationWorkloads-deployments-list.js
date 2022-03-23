@@ -121,7 +121,7 @@ module.exports = {
   RUN_AS_USER_DESC: '执行容器进程入口点的 UID。默认为镜像元数据中指定的 UID。',
   RUN_AS_USER_GROUP_DESC: '执行容器进程入口点的 GID。默认为容器运行时的默认 GID。',
   SELINUX_CONTEXT: 'SELinux 上下文',
-  CAPABILITIES_BETA: '权能（测试中）',
+  CAPABILITIES: 'Capabilities',
   DROP: '移除',
   ACCESS_CONTROL: '访问控制',
   LEVEL: '等级',
