@@ -20,7 +20,7 @@ module.exports = {
   WORKLOAD_DESC: '工作负载（Workload）用于处理业务请求，可包含一个或多个容器组。日志、监控等系统功能也是由工作负载实现的。',
   // List
   DEPLOYMENT_EMPTY_DESC: '请创建一个部署。',
-  UPDATING: 'Updating',
+  UPDATING: '更新中',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
