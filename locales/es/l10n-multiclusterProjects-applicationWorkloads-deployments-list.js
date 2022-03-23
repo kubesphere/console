@@ -135,7 +135,7 @@ module.exports = {
   RUN_AS_USER_GROUP_DESC:
     'El GID para ejecutar el punto de entrada del proceso contenedor. Utiliza el tiempo de ejecución predeterminado si no está configurado.',
   SELINUX_CONTEXT: 'SELinux Context',
-  CAPABILITIES_BETA: 'Capabilities (beta)',
+  CAPABILITIES: 'Capabilities',
   DROP: 'Drop',
   ACCESS_CONTROL: 'Control de acceso',
   LEVEL: 'Nivel',
