@@ -125,7 +125,7 @@ module.exports = {
   RUN_AS_USER_GROUP_DESC:
     '執行容器 entrypoint 進程的 GID。預設為 docker 引擎的 GID',
   SELINUX_CONTEXT: 'SELinux 上下文',
-  CAPABILITIES_BETA: '權能（測試中）',
+  CAPABILITIES: 'Capabilities',
   DROP: '移除',
   ACCESS_CONTROL: '訪問控制',
   LEVEL: '等級',
