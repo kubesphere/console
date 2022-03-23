@@ -114,7 +114,7 @@ module.exports = {
   RUN_AS_USER_DESC: 'Kapsayıcı işleminin giriş noktasını çalıştırmak için UID. Varsayılan değer, görüntü meta verilerinde belirtilen UID\'dir.',
   RUN_AS_USER_GROUP_DESC: 'Kapsayıcı işleminin giriş noktasını çalıştırmak için GID. Varsayılan değer, kapsayıcı çalışma zamanı varsayılan GID\'sidir.',
   SELINUX_CONTEXT: 'SELinux Bağlamı',
-  CAPABILITIES_BETA: 'Yetenekler (beta)',
+  CAPABILITIES: 'Capabilities',
   DROP: 'Bırak',
   ACCESS_CONTROL: 'Erişim Denetimi',
   LEVEL: 'Seviye',
