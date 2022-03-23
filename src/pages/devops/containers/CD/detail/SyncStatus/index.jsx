@@ -26,6 +26,7 @@ import Table from 'components/Tables/List'
 import { get } from 'lodash'
 import { Icon } from '@kube-design/components'
 import { ReactComponent as ForkIcon } from 'assets/fork.svg'
+import { getLocalTime } from 'utils'
 import styles from './index.scss'
 import StatusText from '../../Components/StatusText'
 
@@ -100,6 +101,11 @@ class SyncStatus extends React.Component {
   }
 
   render() {
+    let revision = get(this.detail, 'status.sync.revision')
+    revision = revision ? revision.slice(0, 6) : '-'
+    const startTime = get(this.detail, 'status.operationState.startedAt')
+    const endTime = get(this.detail, 'status.operationState.finishedAt')
+
     return (
       <div className={styles.container}>
         <div className={styles.sync_info}>
@@ -124,13 +130,21 @@ class SyncStatus extends React.Component {
               </div>
               <div>
                 <div>
-                  <h4>2022-02-28 15:00:00</h4>
+                  <h4>
+                    {startTime
+                      ? getLocalTime(startTime).format('YYYY-MM-DD HH:mm:ss')
+                      : '-'}
+                  </h4>
                   <p>{t('START_TIME')}</p>
                 </div>
               </div>
               <div>
                 <div>
-                  <h4>2022-02-28 15:00:03</h4>
+                  <h4>
+                    {endTime
+                      ? getLocalTime(endTime).format('YYYY-MM-DD HH:mm:ss')
+                      : '-'}
+                  </h4>
                   <p>{t('END_TIME')}</p>
                 </div>
               </div>
@@ -150,7 +164,7 @@ class SyncStatus extends React.Component {
               <div className={styles.wrapper_gray}>
                 <ForkIcon style={{ width: '40px', height: '40px' }} />
                 <div>
-                  <h4>{get(this.detail, 'repoSource.targetRevision', '-')}</h4>
+                  <h4>{revision}</h4>
                   <p>{t('REVISE')}</p>
                 </div>
               </div>

@@ -85,7 +85,7 @@ export default class Advance extends React.Component {
                   label={t('RESOURCE_FILE_PATH')}
                   desc={t('SET_THE_RESOURCE_FILE_PATH')}
                 >
-                  <Input name="source.path" defaultValue="" />
+                  <Input name="source.path" defaultValue="." />
                 </Form.Item>
               </Column>
             </Columns>
