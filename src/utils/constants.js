@@ -17,29 +17,29 @@
  */
 
 export const WORKLOAD_STATUS = [
-  { text: 'Running', value: 'running' },
-  { text: 'Updating', value: 'updating' },
-  { text: 'Stopped', value: 'stopped' },
+  { text: 'RUNNING', value: 'running' },
+  { text: 'UPDATING', value: 'updating' },
+  { text: 'STOPPED', value: 'stopped' },
 ]
 
 export const POD_STATUS = [
-  { text: 'Running', value: 'running' },
-  { text: 'Waiting', value: 'waiting' },
-  { text: 'Terminated', value: 'terminated' },
+  { text: 'RUNNING', value: 'running' },
+  { text: 'WAITING', value: 'waiting' },
+  { text: 'TERMINATED', value: 'terminated' },
 ]
 
 export const PODS_STATUS = [
-  { text: 'Pending', value: 'Pending' },
-  { text: 'Running', value: 'Running' },
-  { text: 'Completed', value: 'Succeeded' },
-  { text: 'Failed', value: 'Failed' },
-  { text: 'Unknown', value: 'Unknown' },
+  { text: 'PENDING', value: 'Pending' },
+  { text: 'RUNNING', value: 'Running' },
+  { text: 'COMPLETED', value: 'Succeeded' },
+  { text: 'FAILED', value: 'Failed' },
+  { text: 'UNKNOWN', value: 'Unknown' },
 ]
 
 export const JOB_STATUS = [
-  { text: 'Failed', value: 'failed' },
-  { text: 'Completed', value: 'completed' },
-  { text: 'Running', value: 'running' },
+  { text: 'FAILED', value: 'failed' },
+  { text: 'COMPLETED', value: 'completed' },
+  { text: 'RUNNING', value: 'running' },
 ]
 
 export const S2IJOBS_STATUS = [

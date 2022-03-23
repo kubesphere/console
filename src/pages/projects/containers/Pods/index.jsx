@@ -125,7 +125,7 @@ export default class Pods extends React.Component {
         ),
       },
       {
-        title: t('Node'),
+        title: t('NODE'),
         dataIndex: 'node',
         isHideable: true,
         width: '18%',
