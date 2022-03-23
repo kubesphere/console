@@ -166,9 +166,9 @@ module.exports = {
     '输入 CRON 表达式以设置定时计划。<a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">了解更多</a>',
   DEFAULT_VALUE: '默认值',
   PARAMETER_NAME_EMPTY_DESC: '请设置参数的名称。',
-  SELECT_TEMPLATE: 'Select template',
-  PARAMETER_CONFIG: 'Parameter configuration',
-  PREVIEW: 'Preview',
-  EMPTY_PARAMS_CONFIG: 'This operation does not require parameter configuration.',
-  PIPELINE_VALIDATOR_DESC: 'Please select a pipeline template.'
+  SELECT_TEMPLATE: '选择模板',
+  PARAMETER_CONFIG: '参数设置',
+  PREVIEW: '预览',
+  EMPTY_PARAMS_CONFIG: '此操作不需要设置参数。',
+  PIPELINE_VALIDATOR_DESC: '请选择一个流水线模板。'
 };
