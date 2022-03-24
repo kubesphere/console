@@ -145,7 +145,7 @@ module.exports = {
   NO_AUTH: '无需认证',
   BEARER_TOKEN: 'Bearer 令牌',
   TOKEN: '令牌',
-  WEBHOOK_USERNAME_EMPTY_DESC: 'Please enter a username.',
-  WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
-  WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
+  WEBHOOK_USERNAME_EMPTY_DESC: '请输入一个用户名。',
+  WEBHOOK_PASSWORD_EMPTY_DESC: '请输入密码。',
+  WEBHOOK_TOKEN_EMPTY_DESC: '请输入一个令牌。'
 };
