@@ -31,7 +31,7 @@ module.exports = {
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Oluşturulamadı',
   VOLUME_SNAPSHOT_STATUS_READY: 'Başarıyla oluşturuldu',
   VOLUME_SNAPSHOT_STATUS_DELETING: 'Siliniyor',
-  CREATE_STATUS_SUCCESSFUL: 'Başarıyla oluşturuldu',
+  CREATE_STATUS_SUCCESS: 'Created successfully',
   CREATE_STATUS_UPDATING: 'Oluşturuluyor',
   CREATE_STATUS_FAILED: 'Oluşturulamadı',
   CREATE_STATUS_DELETING: 'Siliniyor',
