@@ -43,7 +43,7 @@ module.exports = {
   DOES_NOT_EXIST: '不存在',
   TAG_INPUT_PLACEHOLDER: '请输入值后回车确认',
   PATTERN_TAG_INVALID_TIP: '标签无效。标签只能包含字母、数字、连字符（-）、下划线（_）和句点（.），必须以数字或字母开头和结尾。',
-  PATTERN_TAG_VALUE_INVALID_TIP: 'Invalid label values. The label values can only contain uppercase and lowercase letters, numbers, hyphens (-), underscores (_) and dots (.) and must begin and end with an uppercase or lowercase letter or number and be a maximum of 63 characters.',
+  PATTERN_TAG_VALUE_INVALID_TIP: '标签值无效。标签值只能包含字母、数字、连字符（-）、下划线（_）和句点（.），必须以数字或字母开头和结尾，最长 63 个字符。',
   INVALID_NOTIFICATION_CONDITION: '请填写正确的通知条件。',
   SEND_TEST_MESSAGE: '发送测试信息',
   SEND_TEST_MESSAGE_DESC: '配置完成后，您可以发送测试信息进行验证。',
