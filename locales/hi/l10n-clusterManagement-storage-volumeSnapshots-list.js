@@ -17,17 +17,18 @@
  */
 module.exports = {
   // Banner
-  VOLUME_SNAPSHOT_DESC: 'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
+  VOLUME_SNAPSHOT_DESC:
+    'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
   VOLUME_SNAPSHOT_PL: 'Volume Snapshots',
   // List
   VOLUME_SNAPSHOT_STATUS_CREATING: 'Creating',
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Creation failed',
   VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',
   VOLUME_SNAPSHOT_STATUS_DELETING: 'Deleting',
-  CREATE_STATUS_SUCCESSFUL: 'Created successfully',
+  CREATE_STATUS_SUCCESS: 'Created successfully',
   CREATE_STATUS_UPDATING: 'Creating',
   CREATE_STATUS_FAILED: 'Creation failed',
   CREATE_STATUS_DELETING: 'Deleting',
   // List > Delete
-  VOLUME_SNAPSHOT_LOW: 'volume snapshot'
-};
+  VOLUME_SNAPSHOT_LOW: 'volume snapshot',
+}
