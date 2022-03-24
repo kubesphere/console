@@ -22,7 +22,7 @@ import { observer, inject } from 'mobx-react'
 
 import { joinSelector } from 'utils'
 import EventStore from 'stores/event'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import EventsCard from 'components/Cards/Events'
 
 @inject('rootStore', 'detailStore')
@@ -52,21 +52,22 @@ export default class Events extends React.Component {
 
   fetchData() {
     const { _originData = {} } = this.store.runDetail
+    const namespace = get(_originData, 'metadata.namespace', '')
 
-    const { devops, runName } = this.props.match.params
+    if (!isEmpty(_originData)) {
+      const fields = {
+        'involvedObject.name': get(_originData, 'metadata.name', ''),
+        'involvedObject.namespace': namespace,
+        'involvedObject.kind': _originData.kind,
+        'involvedObject.uid': get(_originData, 'metadata.uid', ''),
+      }
 
-    const fields = {
-      'involvedObject.name': runName,
-      'involvedObject.namespace': devops,
-      'involvedObject.kind': _originData.kind,
-      'involvedObject.uid': get(_originData, 'metadata.uid', ''),
+      this.eventStore.fetchList({
+        namespace,
+        cluster: this.cluster,
+        fieldSelector: joinSelector(fields),
+      })
     }
-
-    this.eventStore.fetchList({
-      namespace: devops,
-      cluster: this.cluster,
-      fieldSelector: joinSelector(fields),
-    })
   }
 
   render() {
