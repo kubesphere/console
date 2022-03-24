@@ -38,8 +38,8 @@ module.exports = {
   // Tracing
   TRACING: '链路追踪',
   TRACING_NO_DATA_DESC: '请修改搜索条件后重试。',
-  NUM_SPAN_SI: '{num} span',
-  NUM_SPAN_PL: '{num} spans',
+  NUM_SPAN_SI: '{num} 跨度',
+  NUM_SPAN_PL: '{num} 跨度',
   NUM_ERROR_SI: '{num} 错误',
   NUM_ERROR_PL: '{num} 错误',
   LAST_NUM_RECORDS: '最近 {num} 条记录'
