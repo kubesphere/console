@@ -44,4 +44,5 @@ module.exports = {
   LATEST_SYNC_STATUS: '最新同步状态',
   REPO_EMPTY_DESC: '代码仓库不能为空',
   CREATE_CD: '创建持续部署资源',
+  CD_SELECT_CODE_REPO_DESC: '选择持续部署使用的代码仓库。',
 }

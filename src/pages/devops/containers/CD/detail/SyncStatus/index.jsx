@@ -23,10 +23,10 @@ import { toJS } from 'mobx'
 
 import PropTypes from 'prop-types'
 import Table from 'components/Tables/List'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { Icon, Tooltip } from '@kube-design/components'
 import { ReactComponent as ForkIcon } from 'assets/fork.svg'
-import { getLocalTime } from 'utils'
+import { getLocalTime, formatUsedTime } from 'utils'
 import styles from './index.scss'
 import StatusText from '../../Components/StatusText'
 
@@ -61,7 +61,7 @@ class SyncStatus extends React.Component {
       {
         title: t('TYPE'),
         dataIndex: 'kind',
-        width: '15%',
+        width: '20%',
       },
       {
         title: t('PROJECT_PL'),
@@ -71,17 +71,9 @@ class SyncStatus extends React.Component {
       {
         title: t('SYNC_STATUS'),
         dataIndex: 'status',
-        width: '15%',
+        width: '10%',
         render: syncStatus => {
           return <StatusText type={syncStatus} label={syncStatus} />
-        },
-      },
-      {
-        title: t('HEALTH_STATUS'),
-        dataIndex: 'health',
-        width: '15%',
-        render: health => {
-          return <StatusText type={health.status} label={health.status} />
         },
       },
       {
@@ -92,7 +84,11 @@ class SyncStatus extends React.Component {
   }
 
   renderTable = () => {
-    const data = get(this.detail, 'status.resources', [])
+    const data = get(
+      this.detail,
+      'status.operationState.syncResult.resources',
+      []
+    )
 
     return (
       <Table
@@ -110,17 +106,35 @@ class SyncStatus extends React.Component {
   renderSyncTip = () => {
     const syncTip = get(this.detail, 'status.conditions[0]', {})
 
-    return (
+    const content = (
       <div className={styles.statusTip}>
         <strong>{syncTip.type}</strong>
         <p>
-          Last Transition Time:
+          Last Transition Time: &nbsp;
           {getLocalTime(syncTip.lastTransitionTime).format(
             'YYYY-MM-DD HH:mm:ss'
           )}
         </p>
         <p>{syncTip.message}</p>
       </div>
+    )
+
+    return isEmpty(syncTip) ? (
+      <div className={styles.syncStatus}>
+        <Icon name="rocket" size={40} />
+        <span className={styles.syncStatus_icon}>
+          <StatusText type={this.detail.syncStatus} hasLabel={false} />
+        </span>
+      </div>
+    ) : (
+      <Tooltip content={content}>
+        <div className={styles.syncStatus}>
+          <Icon name="rocket" size={40} />
+          <span className={styles.syncStatus_icon}>
+            <StatusText type={this.detail.syncStatus} hasLabel={false} />
+          </span>
+        </div>
+      </Tooltip>
     )
   }
 
@@ -129,6 +143,8 @@ class SyncStatus extends React.Component {
     revision = revision ? revision.slice(0, 6) : '-'
     const startTime = get(this.detail, 'status.operationState.startedAt')
     const endTime = get(this.detail, 'status.operationState.finishedAt')
+    const duration = new Date(endTime) - new Date(startTime)
+    const durationTime = isNaN(duration) ? '-' : formatUsedTime(duration)
 
     return (
       <div className={styles.container}>
@@ -137,17 +153,7 @@ class SyncStatus extends React.Component {
           <div className={styles.info_card}>
             <div className={styles.wrapper}>
               <div className={styles.wrapper_icon}>
-                <Tooltip content={this.renderSyncTip}>
-                  <div className={styles.syncStatus}>
-                    <Icon name="rocket" size={40} />
-                    <span className={styles.syncStatus_icon}>
-                      <StatusText
-                        type={this.detail.syncStatus}
-                        hasLabel={false}
-                      />
-                    </span>
-                  </div>
-                </Tooltip>
+                {this.renderSyncTip()}
                 <div>
                   <h4>{this.detail.syncStatus}</h4>
                   <p>{t('LATEST_SYNC_STATUS')}</p>
@@ -193,13 +199,13 @@ class SyncStatus extends React.Component {
                   <p>{t('REVISE')}</p>
                 </div>
               </div>
-              {/* <div className={styles.wrapper_gray}>
+              <div className={styles.wrapper_gray}>
                 <Icon name="druration" size={40} />
                 <div>
-                  <h4>{t('00:03 min')}</h4>
+                  <h4>{durationTime}</h4>
                   <p>{t('DURATION')}</p>
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

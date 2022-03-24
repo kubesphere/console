@@ -95,6 +95,7 @@ export default class BaseInfo extends React.Component {
         onSave={this.handleRepoChange}
         onCancel={this.hideSelectRepo}
         noSVN={true}
+        noJenkins
       />
     )
   }
@@ -147,6 +148,7 @@ export default class BaseInfo extends React.Component {
             onClick={this.showSelectRepo}
             handleDeleteSource={this.handleDeleteSource}
             devops={this.props.devops}
+            type="cd"
           />
         </Form.Item>
       </Form>

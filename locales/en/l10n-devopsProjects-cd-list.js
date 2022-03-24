@@ -45,4 +45,5 @@ module.exports = {
   LATEST_SYNC_STATUS: 'Latest sync status',
   REPO_EMPTY_DESC: 'Code repository cannot be empty',
   CREATE_CD: 'Create continuous deployment',
+  CD_SELECT_CODE_REPO_DESC: 'Select a code repository to be used by CD.',
 }

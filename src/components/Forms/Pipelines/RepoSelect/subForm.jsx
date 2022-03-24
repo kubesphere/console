@@ -238,7 +238,7 @@ export default class RepoSelectForm extends React.Component {
   }
 
   renderForm() {
-    const { devops, enableTypeChange, cluster } = this.props
+    const { devops, enableTypeChange, cluster, noJenkins = false } = this.props
     if (this.source_type === 'github') {
       return (
         <GithubForm
@@ -301,6 +301,7 @@ export default class RepoSelectForm extends React.Component {
         devops={devops}
         cluster={cluster}
         showCredential={this.showCreateCredential}
+        noJenkins={noJenkins}
       />
     )
   }
