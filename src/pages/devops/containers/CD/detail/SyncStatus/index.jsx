@@ -24,7 +24,7 @@ import { toJS } from 'mobx'
 import PropTypes from 'prop-types'
 import Table from 'components/Tables/List'
 import { get } from 'lodash'
-import { Icon } from '@kube-design/components'
+import { Icon, Tooltip } from '@kube-design/components'
 import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 import { getLocalTime } from 'utils'
 import styles from './index.scss'
@@ -61,19 +61,27 @@ class SyncStatus extends React.Component {
       {
         title: t('TYPE'),
         dataIndex: 'kind',
-        width: '20%',
+        width: '15%',
       },
       {
         title: t('PROJECT_PL'),
         dataIndex: 'namespace',
-        width: '20%',
+        width: '15%',
       },
       {
         title: t('SYNC_STATUS'),
         dataIndex: 'status',
-        width: '20%',
+        width: '15%',
         render: syncStatus => {
           return <StatusText type={syncStatus} label={syncStatus} />
+        },
+      },
+      {
+        title: t('HEALTH_STATUS'),
+        dataIndex: 'health',
+        width: '15%',
+        render: health => {
+          return <StatusText type={health.status} label={health.status} />
         },
       },
       {
@@ -85,18 +93,34 @@ class SyncStatus extends React.Component {
 
   renderTable = () => {
     const data = get(this.detail, 'status.resources', [])
-    const pagination = { total: data.length, page: 1, limit: 10 }
 
     return (
       <Table
         hideHeader
+        hideFooter
         rowKey="name"
         data={data}
-        searchType="name"
+        showEmpty={data.length === 0}
         columns={this.getColumns()}
-        pagination={pagination}
         name="sync_result"
       />
+    )
+  }
+
+  renderSyncTip = () => {
+    const syncTip = get(this.detail, 'status.conditions[0]', {})
+
+    return (
+      <div className={styles.statusTip}>
+        <strong>{syncTip.type}</strong>
+        <p>
+          Last Transition Time:
+          {getLocalTime(syncTip.lastTransitionTime).format(
+            'YYYY-MM-DD HH:mm:ss'
+          )}
+        </p>
+        <p>{syncTip.message}</p>
+      </div>
     )
   }
 
@@ -113,16 +137,17 @@ class SyncStatus extends React.Component {
           <div className={styles.info_card}>
             <div className={styles.wrapper}>
               <div className={styles.wrapper_icon}>
-                <div className={styles.syncStatus}>
-                  <Icon name="rocket" size={40} />
-                  <span className={styles.syncStatus_icon}>
-                    <StatusText
-                      type={this.detail.syncStatus}
-                      hasLabel={false}
-                    />
-                  </span>
-                </div>
-
+                <Tooltip content={this.renderSyncTip}>
+                  <div className={styles.syncStatus}>
+                    <Icon name="rocket" size={40} />
+                    <span className={styles.syncStatus_icon}>
+                      <StatusText
+                        type={this.detail.syncStatus}
+                        hasLabel={false}
+                      />
+                    </span>
+                  </div>
+                </Tooltip>
                 <div>
                   <h4>{this.detail.syncStatus}</h4>
                   <p>{t('LATEST_SYNC_STATUS')}</p>
@@ -168,13 +193,13 @@ class SyncStatus extends React.Component {
                   <p>{t('REVISE')}</p>
                 </div>
               </div>
-              <div className={styles.wrapper_gray}>
+              {/* <div className={styles.wrapper_gray}>
                 <Icon name="druration" size={40} />
                 <div>
                   <h4>{t('00:03 min')}</h4>
                   <p>{t('DURATION')}</p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

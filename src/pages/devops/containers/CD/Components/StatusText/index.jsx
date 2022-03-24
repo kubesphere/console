@@ -39,6 +39,8 @@ export default class Status extends PureComponent {
   render() {
     const { className, type, label, hasLabel, noBolder } = this.props
 
+    if (!type) return '-'
+
     return (
       <span
         className={classNames(styles.status, { [styles.noBolder]: noBolder })}

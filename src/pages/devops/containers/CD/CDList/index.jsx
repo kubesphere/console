@@ -223,10 +223,7 @@ export default class CDList extends React.Component {
         filteredValue: getFilteredValue('healthStatus'),
         search: true,
         render: healthStatus => (
-          <StatusText
-            type={healthStatus || 'Healthy'}
-            label={healthStatus || 'Healthy'}
-          />
+          <StatusText type={healthStatus} label={healthStatus} />
         ),
       },
       {
@@ -237,10 +234,7 @@ export default class CDList extends React.Component {
         search: true,
         width: '20%',
         render: syncStatus => (
-          <StatusText
-            type={syncStatus || 'Synced'}
-            label={syncStatus || 'Synced'}
-          />
+          <StatusText type={syncStatus} label={syncStatus} />
         ),
       },
       {

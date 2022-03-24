@@ -141,18 +141,8 @@ export default class CDDetail extends React.Component {
         name: t('HEALTH_STATUS'),
         value: (
           <StatusText
-            type={detail.healthStatus || 'Healthy'}
-            label={detail.healthStatus || 'Healthy'}
-            noBolder
-          />
-        ),
-      },
-      {
-        name: t('SYNC_STATUS'),
-        value: (
-          <StatusText
-            type={detail.syncStatus || 'Synced'}
-            label={detail.syncStatus || 'Synced'}
+            type={detail.healthStatus}
+            label={detail.healthStatus}
             noBolder
           />
         ),

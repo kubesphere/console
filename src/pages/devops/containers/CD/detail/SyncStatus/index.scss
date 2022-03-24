@@ -1,3 +1,5 @@
+@import '~scss/variables';
+
 .sync_info {
   margin-bottom: 12px;
   h3 {
@@ -76,5 +78,11 @@
     font-weight: 600;
     font-size: 12px;
     margin-bottom: 8px;
+  }
+}
+
+.statusTip {
+  p {
+    color: $light-color03 !important;
   }
 }
