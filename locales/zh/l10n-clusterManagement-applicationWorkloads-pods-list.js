@@ -22,5 +22,5 @@ module.exports = {
   // List > View YAML
   // List > Delete
   POD_LOW: '容器组',
-  PENDING: 'Pending'
+  PENDING: '等待中'
 };
