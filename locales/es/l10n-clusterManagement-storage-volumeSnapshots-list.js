@@ -32,7 +32,7 @@ module.exports = {
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Creado sin éxito',
   VOLUME_SNAPSHOT_STATUS_READY: 'Creado con éxito',
   VOLUME_SNAPSHOT_STATUS_DELETING: 'Eliminando',
-  CREATE_STATUS_SUCCESS: 'Creado con éxito',
+  CREATE_STATUS_SUCCESS: 'Created successfully',
   CREATE_STATUS_UPDATING: 'Creando',
   CREATE_STATUS_FAILED: 'Creado sin éxito',
   CREATE_STATUS_DELETING: 'Eliminando',
