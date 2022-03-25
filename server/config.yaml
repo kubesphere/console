@@ -70,15 +70,15 @@ client:
     - label: "العربية"
       value: "ar"
     - label: "Français"
-      value: 'fr'
+      value: "fr"
     - label: "हिन्दी"
-      value: 'hi'
+      value: "hi"
     - label: "Lietuvių"
-      value: 'lt'
-    - label: 'Polski'
-      value: 'pl'
-    - label: 'Türkçe'
-      value: 'tr'
+      value: "lt"
+    - label: "Polski"
+      value: "pl"
+    - label: "Türkçe"
+      value: "tr"
   defaultLang: "en"
   showAllLangs: true
 
@@ -496,6 +496,7 @@ client:
     - cate: ""
       items:
         - { name: pipelines, title: PIPELINE_PL, icon: application }
+        - { name: cd, title: CD_PL, icon: rocket }
         - name: management
           title: DEVOPS_PROJECT_SETTINGS
           icon: cogwheel
@@ -620,7 +621,7 @@ client:
       max_number_of_toTag: 20
     slack:
       max_number_of_channel: 20
-  
+
   # supported Gpu type
   supportGpuType:
-    - 'nvidia.com/gpu'
+    - "nvidia.com/gpu"

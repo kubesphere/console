@@ -48,10 +48,14 @@ export default class valueSelect extends React.Component {
   }
 
   renderEmpty() {
-    const { onClick } = this.props
+    const { onClick, type } = this.props
     return (
       <div className={styles.empty} onClick={onClick}>
-        <p>{t('SELECT_CODE_REPO_DESC')}</p>
+        <p>
+          {type === 'cd'
+            ? t('CD_SELECT_CODE_REPO_DESC')
+            : t('SELECT_CODE_REPO_DESC')}
+        </p>
       </div>
     )
   }

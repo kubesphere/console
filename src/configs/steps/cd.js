@@ -16,28 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import RoleDetail from '../containers/Roles/Detail'
-import CredentialDetail from '../containers/Credential/detail'
-import PipelineDetail from '../containers/Pipelines/Detail/layout'
-import CDDetail from '../containers/CD/detail'
+import BaseInfo from 'components/Forms/CD/BaseInfo'
+import Advance from 'components/Forms/CD/Advance'
 
-const PATH = '/:workspace/clusters/:cluster/devops'
-
-export default [
+export const CD_FORM = [
   {
-    path: `${PATH}/:devops/pipelines/:name`,
-    component: PipelineDetail,
+    title: 'BASIC_INFORMATION',
+    component: BaseInfo,
+    required: true,
   },
   {
-    path: `${PATH}/:devops/credentials/:credential_id`,
-    component: CredentialDetail,
-  },
-  {
-    path: `${PATH}/:devops/cd/:cd`,
-    component: CDDetail,
-  },
-  {
-    path: `${PATH}/:namespace/roles/:name`,
-    component: RoleDetail,
+    title: 'DEPLOYMENT_SETTINGS',
+    component: Advance,
+    required: true,
+    icon: 'rocket',
   },
 ]

@@ -198,7 +198,7 @@ export default class RepoSelectForm extends React.Component {
   }
 
   renderTypes() {
-    const { enableTypeChange, cluster } = this.props
+    const { enableTypeChange, cluster, noSVN } = this.props
     const sourceType =
       this.source_type === 'single_svn' ? 'svn' : this.source_type
     const clusterVersion = globals.app.isMultiCluster
@@ -211,6 +211,7 @@ export default class RepoSelectForm extends React.Component {
       <ul className={styles.repoTypes}>
         {REPO_TYPES.map(type => {
           if (needUpdata < 0 && type.value === 'gitlab') return false
+          if (noSVN && type.value === 'svn') return false
 
           return (
             <li
@@ -237,7 +238,7 @@ export default class RepoSelectForm extends React.Component {
   }
 
   renderForm() {
-    const { devops, enableTypeChange, cluster } = this.props
+    const { devops, enableTypeChange, cluster, noJenkins = false } = this.props
     if (this.source_type === 'github') {
       return (
         <GithubForm
@@ -300,6 +301,7 @@ export default class RepoSelectForm extends React.Component {
         devops={devops}
         cluster={cluster}
         showCredential={this.showCreateCredential}
+        noJenkins={noJenkins}
       />
     )
   }

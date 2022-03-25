@@ -48,10 +48,10 @@
 
 .repoTypes {
   margin-bottom: 20px;
+  display: flex;
   & > li {
     display: inline-block;
-    min-width: 160px;
-    padding: 2px 13px;
+    padding: 4px 13px;
     border-radius: 4px;
     background-color: $light-color03;
     font-family: $font-family-id;
@@ -59,10 +59,12 @@
     font-weight: $font-bold;
     line-height: 1.5;
     cursor: pointer;
+    flex: 1 1;
+    text-align: center;
 
     :global {
       .icon {
-        margin-right: 20px;
+        margin-right: 8px;
       }
     }
 

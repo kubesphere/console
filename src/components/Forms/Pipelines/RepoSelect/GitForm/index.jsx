@@ -50,13 +50,13 @@ export default class GitForm extends React.Component {
 
   render() {
     const { formData, credentials } = this.props.store
-    const { formRef } = this.props
+    const { formRef, noJenkins } = this.props
     return (
       <div className={styles.card}>
         <Form data={formData} ref={formRef}>
           <Form.Item
             label={t('CODE_REPOSITORY_ADDRESS')}
-            desc={t('CODE_REPOSITORY_ADDRESS_DESC')}
+            desc={noJenkins ? '' : t('CODE_REPOSITORY_ADDRESS_DESC')}
             rules={[
               {
                 required: true,

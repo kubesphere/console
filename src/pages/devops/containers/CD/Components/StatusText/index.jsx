@@ -16,51 +16,44 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
-import { PieChart, Pie, Cell } from 'recharts'
+import styles from './index.scss'
 
-export default class Chart extends React.Component {
+export default class Status extends PureComponent {
   static propTypes = {
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    label: PropTypes.string,
+    className: PropTypes.string,
+    type: PropTypes.string,
+    hasLabel: PropTypes.bool,
   }
 
   static defaultProps = {
-    width: 100,
-    height: 100,
-    dataKey: 'value',
+    type: '',
+    label: '',
+    hasLabel: true,
   }
 
   render() {
-    const {
-      width,
-      height,
-      data,
-      dataKey,
-      innerRadius = '60%',
-      outerRadius = '100%',
-    } = this.props
+    const { className, type, label, hasLabel, noBolder } = this.props
+
+    if (!type) return '-'
 
     return (
-      <PieChart width={width} height={height}>
-        <Pie
-          data={data}
-          dataKey={dataKey}
-          innerRadius={innerRadius}
-          outerRadius={outerRadius}
-          animationDuration={1000}
-        >
-          {data.map(entry => (
-            <Cell
-              key={`cell-${entry.name}`}
-              {...entry.itemStyle}
-              strokeWidth={0}
-            />
-          ))}
-        </Pie>
-      </PieChart>
+      <span
+        className={classNames(styles.status, { [styles.noBolder]: noBolder })}
+      >
+        <span
+          className={classNames(
+            styles.status_icon,
+            styles[type.toLowerCase()],
+            className
+          )}
+        />
+        {hasLabel && (label || t(type.toLowerCase()))}
+      </span>
     )
   }
 }

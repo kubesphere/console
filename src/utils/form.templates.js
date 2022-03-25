@@ -680,6 +680,15 @@ const getNotificationVerifyTemplate = ({ user }) => ({
   },
 })
 
+const getCDTemplate = () => ({
+  kind: 'Application',
+  apiVersion: 'gitops.kubesphere.io/v1alpha1',
+  metadata: {},
+  spec: {
+    kind: 'argo-project',
+  },
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   deploymentsSchedule: getScheduleDeploymentTemplate,
@@ -722,6 +731,7 @@ const FORM_TEMPLATES = {
   notificationreceivers: getNotificationReceiverTemplate,
   gateways: getGatewayTemplate,
   notificationVerify: getNotificationVerifyTemplate,
+  cds: getCDTemplate,
 }
 
 export default FORM_TEMPLATES

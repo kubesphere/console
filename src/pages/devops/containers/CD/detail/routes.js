@@ -16,28 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import RoleDetail from '../containers/Roles/Detail'
-import CredentialDetail from '../containers/Credential/detail'
-import PipelineDetail from '../containers/Pipelines/Detail/layout'
-import CDDetail from '../containers/CD/detail'
+import { getIndexRoute } from 'utils/router.config'
 
-const PATH = '/:workspace/clusters/:cluster/devops'
+import SyncStatus from './SyncStatus'
+
+const PATH = '/:workspace/clusters/:cluster/devops/:devops/cd/:cd'
 
 export default [
   {
-    path: `${PATH}/:devops/pipelines/:name`,
-    component: PipelineDetail,
+    path: `${PATH}/syncStatus`,
+    title: 'SYNC_STATUS',
+    component: SyncStatus,
   },
-  {
-    path: `${PATH}/:devops/credentials/:credential_id`,
-    component: CredentialDetail,
-  },
-  {
-    path: `${PATH}/:devops/cd/:cd`,
-    component: CDDetail,
-  },
-  {
-    path: `${PATH}/:namespace/roles/:name`,
-    component: RoleDetail,
-  },
+
+  getIndexRoute({ path: PATH, to: `${PATH}/syncStatus`, exact: true }),
 ]
