@@ -27,7 +27,7 @@ import Status from 'devops/components/Status'
 
 import RunDetailStore from 'stores/devops/run'
 import { trigger } from 'utils/action'
-
+import { Loading } from '@kube-design/components'
 import DetailPage from 'devops/containers/Base/Detail'
 
 @inject('rootStore', 'devopsStore', 'pipelineStore')
@@ -210,6 +210,10 @@ export default class RunDetailLayout extends React.Component {
     } = this.props.match
 
     const stores = { detailStore: this.store }
+
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
 
     const operations = this.getOperations().filter(item =>
       this.enabledActions.includes(item.action)

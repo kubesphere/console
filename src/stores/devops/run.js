@@ -289,6 +289,7 @@ export default class PipelineRunStore extends BaseStore {
       name: get(runDetail, 'metadata.name'),
       _originData: runDetail,
     }
+    this.isLoading = false
   }
 
   async replay(params, _runId) {

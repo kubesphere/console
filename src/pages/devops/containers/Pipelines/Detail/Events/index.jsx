@@ -1,6 +1,6 @@
 /*
  * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * Copyright (C) 2019-2022 The KubeSphere Console Authors.
  *
  * KubeSphere Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -22,12 +22,10 @@ import { observer, inject } from 'mobx-react'
 
 import { joinSelector } from 'utils'
 import EventStore from 'stores/event'
-import { get, isEmpty } from 'lodash'
+import { get } from 'lodash'
 import EventsCard from 'components/Cards/Events'
 
-@inject('rootStore', 'detailStore')
-@observer
-export default class Events extends React.Component {
+class Events extends React.Component {
   constructor(props) {
     super(props)
 
@@ -50,24 +48,22 @@ export default class Events extends React.Component {
     return this.store.module
   }
 
-  fetchData() {
+  async fetchData() {
     const { _originData = {} } = this.store.runDetail
     const namespace = get(_originData, 'metadata.namespace', '')
-
-    if (!isEmpty(_originData)) {
-      const fields = {
-        'involvedObject.name': get(_originData, 'metadata.name', ''),
-        'involvedObject.namespace': namespace,
-        'involvedObject.kind': _originData.kind,
-        'involvedObject.uid': get(_originData, 'metadata.uid', ''),
-      }
-
-      this.eventStore.fetchList({
-        namespace,
-        cluster: this.cluster,
-        fieldSelector: joinSelector(fields),
-      })
+    const fields = {
+      'involvedObject.name': get(_originData, 'metadata.name', ''),
+      'involvedObject.namespace': namespace,
+      'involvedObject.kind': _originData.kind,
+      'involvedObject.uid': get(_originData, 'metadata.uid', ''),
     }
+
+    // TODO: do not use ks api to get events data
+    this.eventStore.fetchList({
+      namespace,
+      cluster: this.cluster,
+      fieldSelector: joinSelector(fields),
+    })
   }
 
   render() {
@@ -76,3 +72,6 @@ export default class Events extends React.Component {
     return <EventsCard data={data} loading={isLoading} />
   }
 }
+
+export default inject('detailStore')(observer(Events))
+export const Component = Events
