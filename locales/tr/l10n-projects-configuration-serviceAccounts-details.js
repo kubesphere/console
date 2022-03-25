@@ -25,5 +25,5 @@ module.exports = {
   // Resource Status
   SECRET_VALUE: 'Gizli Kod: {value}',
   // Resource Status > kubeconfig Settings
-  SERVICEACCOUNT_KUBECONFIG_DESC: 'Download the kubeconfig.yaml file to provide other apps with an account that can access the current project. If the apps to use the kubeconfig.yaml file are deployed outside the current cluster, you need to change the value of clusters:cluster:server to the Kubernetes API server address exposed to the outside. <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">Learn More</a>'
+  SERVICEACCOUNT_KUBECONFIG_DESC: 'Diğer uygulamalara mevcut projeye erişebilecek bir hesap sağlamak için kubeconfig.yaml dosyasını indirin. kubeconfig.yaml dosyasını kullanacak uygulamalar geçerli kümenin dışına dağıtılırsa, clusters:cluster:server değerini dışarıya açık, Kubernetes API sunucu adresi olarak değiştirmeniz gerekir. <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">Daha Fazla Bilgi Edinin</a>'
 };
