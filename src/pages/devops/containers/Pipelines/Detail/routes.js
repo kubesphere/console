@@ -31,6 +31,7 @@ import {
   TaskStatus,
   Commit,
   Artifacts,
+  Events,
 } from './index'
 
 const PATH = '/:workspace/clusters/:cluster/devops/:devops/pipelines/:name'
@@ -58,6 +59,7 @@ const PIPELINE_RUN_ROUTES = [
   { name: 'task-status', title: 'TASK_STATUS', component: TaskStatus },
   { name: 'commit', title: 'COMMIT_PL', component: Commit },
   { name: 'artifacts', title: 'ARTIFACT_PL', component: Artifacts },
+  { name: 'events', title: 'EVENT_PL', component: Events },
 ]
 
 export default [
