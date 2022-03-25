@@ -12,6 +12,21 @@
       padding: 0 12px 12px;
     }
   }
+
+  table {
+    a {
+      color: #242e42;
+    }
+
+    & > thead > tr > th {
+      a {
+        color: #79879c;
+        &:hover {
+          color: #79879c;
+        }
+      }
+    }
+  }
 }
 
 .button {
