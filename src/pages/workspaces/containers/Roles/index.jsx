@@ -24,7 +24,7 @@ import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
 
-import { getLocalTime } from 'utils'
+import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
 import RoleStore from 'stores/role'
@@ -112,11 +112,11 @@ export default class Roles extends React.Component {
         title: t('NAME'),
         dataIndex: 'name',
         width: '25%',
-        render: name => (
+        render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[this.module]}
             to={`/workspaces/${workspace}/roles/${name}`}
-            title={name}
+            title={getDisplayName(record)}
           />
         ),
       },
