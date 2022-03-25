@@ -20,7 +20,7 @@ module.exports = {
   WORKLOAD_DESC: 'İş yükleri, hizmet isteklerini işlemek için kullanılır ve bir veya daha fazla bölme içerebilir. Günlüğe kaydetme ve izleme gibi sistem işlevleri de iş yükleri tarafından uygulanır.',
   // List
   DEPLOYMENT_EMPTY_DESC: 'Lütfen bir dağıtım oluşturun.',
-  UPDATING: 'Updating',
+  UPDATING: 'Güncelleniyor',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
@@ -86,13 +86,13 @@ module.exports = {
   HEALTH_CHECK: 'Sağlık Kontrolü',
   STARTUP_CHECK_TIP: 'Kubernetes v1.18 veya üstü gereklidir.',
   // List > Create > Pod Settings > Add Container > Life Management
-  LIFECYCLE_MANAGEMENT: 'Lifecycle Management',
-  LIFECYCLE_MANAGEMENT_DESC: 'Add actions to be performed after the container is started or before it is stopped for environment preparation or graceful shutdown.',
-  POSTSTART_ACTION: 'Post-start Action',
-  PRESTOP_ACTION: 'Pre-stop Action',
-  POSTSTART_ACTION_DESC: 'Add an action to be performed after the container is started.',
-  PRESTOP_ACTION_DESC: 'Add an action to be performed before the container is stopped.',
-  ADD_ACTION: 'Add Action',
+  LIFECYCLE_MANAGEMENT: 'Yaşam Döngüsü Yönetimi',
+  LIFECYCLE_MANAGEMENT_DESC: 'Kapsayıcı başlatıldıktan sonra veya ortam hazırlığı veya hassas kapatma için durdurulmadan önce gerçekleştirilecek eylemleri ekleyin.',
+  POSTSTART_ACTION: 'Başlangıç Sonrası Eylem',
+  PRESTOP_ACTION: 'Durdurma Öncesi Eylem',
+  POSTSTART_ACTION_DESC: 'Kapsayıcı başlatıldıktan sonra gerçekleştirilecek bir eylem ekleyin.',
+  PRESTOP_ACTION_DESC: 'Kapsayıcı durdurulmadan önce gerçekleştirilecek bir eylem ekleyin.',
+  ADD_ACTION: 'Eylem Ekle',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: 'Ortam Değişkenleri Ekle',
   USE_CONFIGMAP_OR_SECRET: 'Configmap veya Secret kullanın',
@@ -114,7 +114,7 @@ module.exports = {
   RUN_AS_USER_DESC: 'Kapsayıcı işleminin giriş noktasını çalıştırmak için UID. Varsayılan değer, görüntü meta verilerinde belirtilen UID\'dir.',
   RUN_AS_USER_GROUP_DESC: 'Kapsayıcı işleminin giriş noktasını çalıştırmak için GID. Varsayılan değer, kapsayıcı çalışma zamanı varsayılan GID\'sidir.',
   SELINUX_CONTEXT: 'SELinux Bağlamı',
-  CAPABILITIES: 'Capabilities',
+  CAPABILITIES: 'Yetenekler',
   DROP: 'Bırak',
   ACCESS_CONTROL: 'Erişim Denetimi',
   LEVEL: 'Seviye',
