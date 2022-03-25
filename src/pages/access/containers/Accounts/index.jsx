@@ -19,12 +19,12 @@
 import React from 'react'
 
 import UserStore from 'stores/user'
-
+import { Notify } from '@kube-design/components'
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
-
+import { get } from 'lodash'
 import { getLocalTime } from 'utils'
 
 @withList({
@@ -40,8 +40,27 @@ export default class Accounts extends React.Component {
     )
   }
 
+  handleStatus = async item => {
+    const { routing, store } = this.props
+
+    await store.handlechangeStatus(item)
+
+    Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+    routing.query()
+  }
+
+  handleBatchOperation = async type => {
+    const { store, routing } = this.props
+
+    await store.batchChangeStatus(type)
+
+    Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+    routing.query()
+  }
+
   get itemActions() {
     const { name, trigger, getData, routing } = this.props
+
     return [
       {
         key: 'edit',
@@ -54,6 +73,14 @@ export default class Accounts extends React.Component {
             detail: item,
             success: getData,
           }),
+      },
+      {
+        key: 'status',
+        icon: item => (item.status === 'Active' ? 'stop' : 'start'),
+        text: item => (item.status === 'Active' ? t('停用') : t('启用')),
+        action: 'edit',
+        show: this.showAction,
+        onClick: this.handleStatus,
       },
       {
         key: 'delete',
@@ -72,11 +99,51 @@ export default class Accounts extends React.Component {
     ]
   }
 
+  handledisabled = () => {
+    const { tableProps } = this.props
+    const { selectedRowKeys, data } = tableProps
+    const list = data.filter(item => selectedRowKeys.includes(item.name))
+
+    if (list.every(item => item.status === 'Active')) {
+      return { activeStatus: true, disabledStatus: false }
+    }
+
+    if (list.every(item => item.status === 'Disabled')) {
+      return { activeStatus: false, disabledStatus: true }
+    }
+
+    return { activeStatus: false, disabledStatus: false }
+  }
+
   get tableActions() {
     const { tableProps } = this.props
+    const { activeStatus, disabledStatus } = this.handledisabled()
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
+      selectActions: [
+        ...get(tableProps, 'tableActions.selectActions', {}),
+        {
+          key: 'active',
+          type: 'default',
+          text: t('启用'),
+          action: 'edit',
+          disabled: activeStatus,
+          onClick: () => {
+            this.handleBatchOperation('active')
+          },
+        },
+        {
+          key: 'disabled',
+          type: 'default',
+          text: t('停用'),
+          action: 'edit',
+          disabled: disabledStatus,
+          onClick: () => {
+            this.handleBatchOperation('disabled')
+          },
+        },
+      ],
       getCheckboxProps: record => ({
         disabled: !this.showAction(record),
         name: record.name,

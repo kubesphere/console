@@ -263,6 +263,52 @@ export default class UsersStore extends Base {
   }
 
   @action
+  async batchChangeStatus(type) {
+    const list = this.list.data.filter(item =>
+      this.list.selectedRowKeys.includes(item.name)
+    )
+    const requestList = []
+
+    list.forEach(item => {
+      const formtemplate = {
+        apiVersion: 'iam.kubesphere.io/v1alpha2',
+        kind: 'User',
+        ...get(item, '_originData', {}),
+      }
+
+      set(
+        formtemplate,
+        'status.state',
+        type === 'active' ? 'Active' : 'Disabled'
+      )
+
+      set(formtemplate, 'metadata.resourceVersion', item.resourceVersion)
+
+      requestList.push(
+        request.put(this.getDetailUrl({ ...item }), formtemplate)
+      )
+    })
+
+    await this.submitting(Promise.all(requestList))
+    this.list.selectedRowKeys = []
+  }
+
+  @action
+  async handlechangeStatus(item) {
+    const data = {
+      apiVersion: 'iam.kubesphere.io/v1alpha2',
+      kind: 'User',
+      ...get(item, '_originData', {}),
+    }
+
+    set(data, 'status.state', item.status === 'Active' ? 'Disabled' : 'Active')
+    set(data, 'metadata.resourceVersion', item.resourceVersion)
+    return await this.submitting(
+      request.put(this.getDetailUrl({ ...item }), data)
+    )
+  }
+
+  @action
   delete(user) {
     if (user.name === globals.user.username) {
       Notify.error(t('Error Tips'), t('Unable to delete itself'))

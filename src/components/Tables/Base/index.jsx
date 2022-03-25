@@ -210,6 +210,7 @@ export default class WorkloadTable extends React.Component {
             <Button
               key={action.key}
               type={action.type}
+              disabled={action.disabled}
               className={styles.button}
               onClick={action.onClick}
               data-test={`table-${action.key}`}
