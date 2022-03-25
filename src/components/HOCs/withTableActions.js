@@ -117,6 +117,10 @@ function withTableActions(WrappedComponent) {
         const show = isFunction(action.show)
           ? action.show(record)
           : action.show || true
+
+        const icon = isFunction(action.icon) ? action.icon(record) : action.icon
+        const text = isFunction(action.text) ? action.text(record) : action.text
+
         const disabled = get(action, 'disabled', undefined)
 
         if (!show) return null
@@ -126,8 +130,8 @@ function withTableActions(WrappedComponent) {
             key={action.key}
             disabled={isFunction(disabled) ? disabled(record) : false}
           >
-            <Icon name={action.icon} />{' '}
-            <span data-test={`table-item-${action.key}`}>{action.text}</span>
+            <Icon name={icon} />{' '}
+            <span data-test={`table-item-${action.key}`}>{text}</span>
           </Menu.MenuItem>
         )
       })
