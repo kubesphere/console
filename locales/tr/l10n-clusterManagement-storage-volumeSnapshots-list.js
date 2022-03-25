@@ -19,24 +19,24 @@ module.exports = {
   // Banner
   VOLUME_SNAPSHOT_DESC: 'Birim anlık görüntüsü, bir birimin belirli bir zaman noktasındaki kopyasıdır. Anlık görüntü tarafından önceden doldurulmuş verilerle yeni bir birim sağlamak veya bir birimi anlık görüntü tarafından yakalanan önceki durumuna geri yüklemek için kullanılabilir.',
   VOLUME_SNAPSHOT_PL: 'Birim Anlık Görüntüsü',
-  VOLUME_SNAPSHOT_CONTENT_PL: 'Volume Snapshot Content',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'What is a snapshot class ?',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: 'VolumeSnapshotClass allows the specification of different attributes belonging to a VolumeSnapshot. These properties may differ between snapshots taken from the same volume of a storage system and therefore cannot be represented by using the same StorageClass as PersistentVolumeClaim.',
-  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: 'What is volume snapshot content ?',
-  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: 'VolumeSnapshotContent is a snapshot that is taken from a volume in the cluster that has been provisioned by the administrator. Just as a persistent volume is a resource in the cluster, it is also a resource in the cluster.',
-  SELECT_A_VOLUME_DESC: 'Select a Volume to create a snapshot.',
-  SELECT_VOLUME_SNAPSHOT_CLASS_DESC: 'Select a snapshot class to create a snapshot of a specific type.',
+  VOLUME_SNAPSHOT_CONTENT_PL: 'Birim Anlık Görüntü İçeriği',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'Anlık görüntü sınıfı nedir?',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: 'VolumeSnapshotClass, bir VolumeSnapshot\'a ait farklı özniteliklerin belirtilmesine izin verir. Bu özellikler, bir depolama sisteminin aynı biriminden alınan anlık görüntüler arasında farklılık gösterebilir ve bu nedenle PersistentVolumeClaim ile aynı StorageClass kullanılarak temsil edilemez.',
+  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: 'Birim anlık görüntü içeriği nedir?',
+  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: 'VolumeSnapshotContent, yönetici tarafından sağlanan kümedeki bir birimden alınan bir anlık görüntüdür. Kalıcı birim kümedeki bir kaynak olduğu gibi kümedeki bir kaynaktır.',
+  SELECT_A_VOLUME_DESC: 'Anlık görüntü oluşturmak için bir Birim seçin.',
+  SELECT_VOLUME_SNAPSHOT_CLASS_DESC: 'Belirli bir türde anlık görüntü oluşturmak için bir anlık görüntü sınıfı seçin.',
   // List
   VOLUME_SNAPSHOT_STATUS_CREATING: 'Oluşturuluyor',
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Oluşturulamadı',
   VOLUME_SNAPSHOT_STATUS_READY: 'Başarıyla oluşturuldu',
   VOLUME_SNAPSHOT_STATUS_DELETING: 'Siliniyor',
-  CREATE_STATUS_SUCCESS: 'Created successfully',
+  CREATE_STATUS_SUCCESS: 'Başarıyla oluşturuldu',
   CREATE_STATUS_UPDATING: 'Oluşturuluyor',
   CREATE_STATUS_FAILED: 'Oluşturulamadı',
   CREATE_STATUS_DELETING: 'Siliniyor',
   // List > Delete
   VOLUME_SNAPSHOT_LOW: 'birim Anlık Görüntüsü',
   // List > Create
-  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: 'The storage type to which this storage volume belongs does not allow snapshots to be created, please reselect it.'
+  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: 'Bu depolama biriminin ait olduğu depolama türü, anlık görüntülerin oluşturulmasına izin vermiyor, lütfen yeniden seçin.'
 };
