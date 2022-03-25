@@ -17,16 +17,16 @@
  */
 module.exports = {
   // Banner
-  WORKSPACE_QUOTA_PL: 'Workspace Quotas',
-  WORKSPACE_QUOTAS_DESC: 'Workspace quotas are used to control the total resource usage of all projects and DevOps projects in a workspace.',
+  WORKSPACE_QUOTA_PL: 'Çalışma Alanı Kotası',
+  WORKSPACE_QUOTAS_DESC: 'Çalışma alanı kotası, bir çalışma alanındaki tüm projelerin ve DevOps projelerinin toplam kaynak tüketimini kontrol altında tutmak için kullanılır.',
   // Resource Quotas
-  RESOURCE_QUOTA_PL: 'Resource Quotas',
-  USED_PERCENT: 'Used: {percent}%',
-  RESOURCE_LIMIT: 'Resource limit',
+  RESOURCE_QUOTA_PL: 'Kaynak Kotaları',
+  USED_PERCENT: 'Kullanılan: {percent}%',
+  RESOURCE_LIMIT: 'Kaynak limiti',
   // Resource Quotas > Edit Quotas
-  EDIT_WORKSPACE_QUOTAS: 'Edit Workspace Quotas',
-  CPU_REQUEST: 'CPU Request',
-  CPU_LIMIT: 'CPU Limit',
-  MEMORY_REQUEST: 'Memory Request',
-  MEMORY_LIMIT: 'Memory Limit'
+  EDIT_WORKSPACE_QUOTAS: 'Çalışma Alanı Kotalarını Düzenle',
+  CPU_REQUEST: 'CPU Talebi',
+  CPU_LIMIT: 'CPU Sınırı',
+  MEMORY_REQUEST: 'Bellek Talebi',
+  MEMORY_LIMIT: 'Bellek Sınırı'
 };

@@ -17,8 +17,8 @@
  */
 module.exports = {
   // Details
-  CREATOR: 'Creator',
-  NO: 'No',
+  CREATOR: 'Hazırlayan',
+  NO: 'Hayır',
   // More > Roll Back
   // More > Edit Autoscaling
   // More > Edit Settings > Update Strategy
@@ -29,16 +29,16 @@ module.exports = {
   // More > Re-Create
   // More > Delete
   // Resource Status > Clusters
-  MULTI_CLUSTER_RESOURCE_TIP: 'The current resource is deployed across multiple clusters. You can click a cluster to view the resource settings in the cluster.',
+  MULTI_CLUSTER_RESOURCE_TIP: 'Geçerli kaynak birden çok kümeye dağıtılır. Kümedeki kaynak ayarlarını görüntülemek için bir kümeyi tıklatabilirsiniz.',
   // Resource Status > Replica Status
   // Resource Status > Ports
   // Resource Status > Pods
   // Revision Records
-  SERIAL_NUMBER: 'Serial number',
-  CREATED_TIME: 'Created at {diff}',
+  SERIAL_NUMBER: 'Seri numarası',
+  CREATED_TIME: '{diff} tarihinde oluşturuldu.',
   // Metadata
   // Monitoring
   // Environment Variables
   // Events
-  EVENT_PL: 'Events'
+  EVENT_PL: 'Etkinlikler'
 };

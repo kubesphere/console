@@ -17,48 +17,47 @@
  */
 module.exports = {
   // Details
-  NODE_IP_ADDRESS: 'Node IP Address',
-  CLUSTER: 'Cluster',
+  NODE_IP_ADDRESS: 'Kaynak IP Adresi',
+  CLUSTER: 'Küme',
   // Resource Status > Containers
-  CONTAINER_PL: 'Containers',
-  PROBE_PL: 'Probes',
-  HOOK_PL: 'Hooks',
+  CONTAINER_PL: 'Konteynerler',
+  PROBE_PL: 'İncelemeler',
+  HOOK_PL: 'Kancalar',
   // Resource Status > Containers > Container Logs
-  CONTAINER_LOGS_NOT_SUPPORTED:
-    'The container does not support real-time logs currently. Please try again later.',
-  CONTAINER_LOGS: 'Container Logs',
+  CONTAINER_LOGS_NOT_SUPPORTED: 'Kapsayıcı şu anda gerçek zamanlı kayıtları desteklemiyor. Lütfen daha sonra tekrar deneyiniz.',
+  CONTAINER_LOGS: 'Konteyner Kayıtları',
   // Resource Status > Details > Container Details > Details
-  COMMAND: 'Command',
-  IMAGE_ID: 'Image ID',
-  IMAGE_PULL_POLICY: 'Image Pull Policy',
-  CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
+  COMMAND: 'Komut',
+  IMAGE_ID: 'Resim Kimliği',
+  IMAGE_PULL_POLICY: 'Resim Çekme Politikası',
+  CONTAINER_DETAILS_PAGE_SCAP: 'Konteyner ayrıntıları sayfası.',
   // Resource Status > Details > Container Details > Terminal
-  LOADING: 'Loading...',
-  RESOURCE_LIMITS: 'Resource Limits',
-  RESOURCE_REQUESTS: 'Resource Requests',
+  LOADING: 'Yükleniyor...',
+  RESOURCE_LIMITS: 'Özkaynak sınırları',
+  RESOURCE_REQUESTS: 'Kaynak İstekleri',
   TERMINAL: 'Terminal',
   // Resource Status > Details > Container Details > Resource Status
-  RESTART_PL: 'Restarts',
-  RESTART: 'Restart',
-  STORAGE_DEVICES: 'Storage Devices',
+  RESTART_PL: 'Yeniden Başlatmalar',
+  RESTART: 'Yeniden Başlatma',
+  STORAGE_DEVICES: 'Depolama cihazları',
   LIVENESS_PROBE: 'Liveness Probe',
   READINESS_PROBE: 'Readiness Probe',
   STARTUP_PROBE: 'Startup Probe',
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
-  NO_RESOURCE: 'No {resource}.',
-  LOG_DATA_LOW: 'log data',
+  NO_RESOURCE: '{kaynak} yok.',
+  LOG_DATA_LOW: 'kayıt verileri',
   // Resource Status > Volumes
-  TYPE_CONFIGMAP: 'Volume type: configmap',
-  TYPE_SECRET: 'Volume type: secret',
-  TYPE_EMPTYDIR: 'Volume type: emptyDir',
-  TYPE_HOSTPATH: 'Volume type: host path',
+  TYPE_CONFIGMAP: 'Birim türü: configmap',
+  TYPE_SECRET: 'Birim tipi: gizli',
+  TYPE_EMPTYDIR: 'Birim tipi: emptyDir',
+  TYPE_HOSTPATH: 'Birim tipi: host yolu',
   // Scheduling Information
-  REASON_VALUE: 'Reason: {value}',
-  MESSAGE_VALUE: 'Message: {value}',
-  UPDATED_AT_VALUE: 'Updated At: {value}',
+  REASON_VALUE: 'Gerekçe: {değer}',
+  MESSAGE_VALUE: 'Mesaj: {değer}',
+  UPDATED_AT_VALUE: '{değer} tarihinde oluşturuldu.',
   // Metadata
   // Monitoring
-  NO_MONITORING_DATA: 'No Monitoring Data',
-}
+  NO_MONITORING_DATA: 'Veri Yok'
+};

@@ -17,38 +17,38 @@
  */
 module.exports = {
   // Banner
-  DEVOPS_PROJECT_ROLE_PL: 'DevOps Project Roles',
-  DEVOPS_PROJECT_ROLES_DESC: 'The project roles define the permissions that users have under the current DevOps project.',
+  DEVOPS_PROJECT_ROLE_PL: 'DevOps Proje Rolleri',
+  DEVOPS_PROJECT_ROLES_DESC: 'Proje rolleri, mevcut DevOps projesi kapsamında kullanıcıların sahip olduğu izinleri tanımlar.',
   // List
-  DEVOPS_PROJECT_ROLE_EMPTY_DESC: 'Please create a DevOps project role.',
-  ROLE_DEVOPS_VIEWER: 'View all resources in the DevOps project.',
-  ROLE_DEVOPS_OPERATOR: 'Create credentials in the DevOps project.',
-  ROLE_DEVOPS_ADMIN: 'Control all resources in the DevOps project.',
+  DEVOPS_PROJECT_ROLE_EMPTY_DESC: 'Lütfen bir DevOps proje rolü oluşturun.',
+  ROLE_DEVOPS_VIEWER: 'DevOps projesindeki tüm kaynakları görüntüleyin.',
+  ROLE_DEVOPS_OPERATOR: 'DevOps projesinde kimlik bilgileri oluşturun.',
+  ROLE_DEVOPS_ADMIN: 'DevOps projesindeki tüm kaynakları kontrol edin.',
   // List > Edit Information
   // List > Edit Permissions
   // List > Create
-  EDIT_PERMISSIONS: 'Edit Permissions',
-  CREATE_ROLE: 'Create Role',
+  EDIT_PERMISSIONS: 'İzinleri Düzenle',
+  CREATE_ROLE: 'Rol Oluştur',
   // List > Create > Edit Permissions
-  MODULES: 'Modules',
+  MODULES: 'Modüller',
   // List > Create > Edit Permissions > Pipeline Management
-  DEPENDS_ON: 'Depends on: ',
-  PIPELINES_MANAGEMENT: 'Pipeline Management',
-  PIPELINES_VIEW: 'Pipeline Viewing',
-  PIPELINERUNS_MANAGEMENT: 'Pipeline Run Record Management',
-  PIPELINERUNS_VIEW: 'Pipeline Run Record Viewing',
-  PIPELINERUNS_VIEW_DESC: 'View pipeline run records in the DevOps project.',
-  PIPELINES_MANAGEMENT_DESC: 'Create, edit, and delete DevOps project pipelines.',
-  PIPELINES_VIEW_DESC: 'View DevOps project pipelines and download artifacts.',
+  DEPENDS_ON: 'Bağlı olarak: ',
+  PIPELINES_MANAGEMENT: 'Boru Hattı Yönetimi',
+  PIPELINES_VIEW: 'Boru Hattı izleme',
+  PIPELINERUNS_MANAGEMENT: 'Boru hattı çalışması kayıt yönetimi',
+  PIPELINERUNS_VIEW: 'Boru hattı çalışması kayıt izleme',
+  PIPELINERUNS_VIEW_DESC: 'DevOps projesinde işlem hattı çalıştırma kayıtlarını görüntüleyin.',
+  PIPELINES_MANAGEMENT_DESC: 'DevOps proje işlem hatları oluşturun, düzenleyin ve silin.',
+  PIPELINES_VIEW_DESC: 'DevOps proje işlem hatlarını görüntüleyin ve yapıtları indirin.',
   // List > Create > Edit Permissions > Credential Management
-  CREDENTIALS_MANAGEMENT: 'Credential Management',
-  CREDENTIALS_MANAGEMENT_DESC: 'Create, edit, and delete DevOps credentials.',
-  CREDENTIALS_VIEW_DESC: 'View and use DevOps credentials.',
-  CREDENTIALS_VIEW: 'Credential Viewing',
+  CREDENTIALS_MANAGEMENT: 'Kimlik Bilgileri Yönetimi',
+  CREDENTIALS_MANAGEMENT_DESC: 'DevOps kimlik bilgilerini oluşturun, düzenleyin ve silin.',
+  CREDENTIALS_VIEW_DESC: 'DevOps kimlik bilgilerini görüntüleyin ve kullanın.',
+  CREDENTIALS_VIEW: 'Kimlik Bilgileri Görüntüleme',
   // List > Create > Edit Permissions > Access Control
-  ROLES_MANAGEMENT: 'Role Management',
-  ROLES_VIEW: 'Role Viewing',
+  ROLES_MANAGEMENT: 'Rol Yönetimi',
+  ROLES_VIEW: 'Role İzleme',
   // List > Create > Edit Permissions > DevOps Settings
-  DEVOPS_SETTINGS: 'DevOps Settings',
-  DEVOPS_SETTINGS_DESC: 'Manage DevOps project settings.'
+  DEVOPS_SETTINGS: 'DevOps Ayarları',
+  DEVOPS_SETTINGS_DESC: 'DevOps Proje Ayarlarını Yönetin.'
 };

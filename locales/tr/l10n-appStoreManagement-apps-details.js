@@ -18,30 +18,30 @@
 module.exports = {
   // Title
   // Suspend App
-  SUSPEND_APP: 'Suspend App',
-  APP_NOTE: 'Note',
-  SUSPEND_SUCCESSFUL: 'Suspended successfully.',
+  SUSPEND_APP: 'Uygulamayı Askıya Al',
+  APP_NOTE: 'Not',
+  SUSPEND_SUCCESSFUL: 'Başarıyla askıya alındı.',
   // Activate App
-  ACTIVATE_APP: 'Activate App',
-  ACTIVATE_SUCCESSFUL: 'Activated successfully.',
+  ACTIVATE_APP: 'Uygulamayı Etkinleştir',
+  ACTIVATE_SUCCESSFUL: 'Başarıyla etkinleştirildi.',
   // Details
-  APP_ID: 'App ID',
-  CATEGORY: 'Category',
-  TYPE: 'Type',
+  APP_ID: 'Uygulama Kimliği',
+  CATEGORY: 'Kategori',
+  TYPE: 'Tip',
   // Verisons
-  NO_VERSION_INFO_DESC: 'No version information is found.',
-  ACTIVATE_VERSION: 'Activate Version',
-  CANCEL_SUBMISSION: 'Cancel Submission',
-  SUSPEND_VERSION: 'Suspend Version',
-  APP_SUSPEND_TIP: 'The app <strong>{name}</strong> cannot be deployed from the App Store after it is suspended. Are you sure you want to suspend it?',
-  APP_RECOVER_TIP: 'The app <strong>{name}</strong> and the suspended versions will be displayed again in the App Store. Are you sure you want to activate it now?',
+  NO_VERSION_INFO_DESC: 'Sürüm bilgisi bulunamadı.',
+  ACTIVATE_VERSION: 'Sürümü Etkinleştir',
+  CANCEL_SUBMISSION: 'Gönderimi İptal Et',
+  SUSPEND_VERSION: 'Sürümü Askıya Al',
+  APP_SUSPEND_TIP: '<strong>{name}</strong> uygulaması, askıya alındıktan sonra Uygulama Mağazası\'ndan dağıtılamaz. Askıya almak istediğinizden emin misiniz?',
+  APP_RECOVER_TIP: '<strong>{name}</strong> uygulaması ve askıya alınan sürümler, Uygulama Mağazası\'nda tekrar görüntülenecektir. Şimdi etkinleştirmek istediğinizden emin misiniz?',
   // Verisons > Buttons
   // Versions > Chart Files
   // Versions > App Release
   // Versions > App Instances
   // App Information
   // App Release
-  REJECTION_REASON: 'Rejection Reason',
-  RELEASE_RECORD: 'Release Record',
-  RELEASE_RECORD_EMPTY_DESC: 'No release record is found.'
+  REJECTION_REASON: 'Reddetme Nedeni',
+  RELEASE_RECORD: 'Yayın Kaydı',
+  RELEASE_RECORD_EMPTY_DESC: 'Yayın kaydı bulunamadı.'
 };

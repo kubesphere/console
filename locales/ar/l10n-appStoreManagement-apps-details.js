@@ -18,30 +18,30 @@
 module.exports = {
   // Title
   // Suspend App
-  SUSPEND_APP: 'Suspend App',
-  APP_NOTE: 'Note',
-  SUSPEND_SUCCESSFUL: 'Suspended successfully.',
+  SUSPEND_APP: 'تعليق التطبيق',
+  APP_NOTE: 'ملاحظة',
+  SUSPEND_SUCCESSFUL: 'تم التعليق بنجاح.',
   // Activate App
-  ACTIVATE_APP: 'Activate App',
-  ACTIVATE_SUCCESSFUL: 'Activated successfully.',
+  ACTIVATE_APP: 'تفعيل التطبيق',
+  ACTIVATE_SUCCESSFUL: 'تم التفعيل بنجاح.',
   // Details
-  APP_ID: 'App ID',
-  CATEGORY: 'Category',
-  TYPE: 'Type',
+  APP_ID: 'ID التطبيق',
+  CATEGORY: 'الفئة',
+  TYPE: 'نوع',
   // Verisons
-  NO_VERSION_INFO_DESC: 'No version information is found.',
-  ACTIVATE_VERSION: 'Activate Version',
-  CANCEL_SUBMISSION: 'Cancel Submission',
-  SUSPEND_VERSION: 'Suspend Version',
-  APP_SUSPEND_TIP: 'The app <strong>{name}</strong> cannot be deployed from the App Store after it is suspended. Are you sure you want to suspend it?',
-  APP_RECOVER_TIP: 'The app <strong>{name}</strong> and the suspended versions will be displayed again in the App Store. Are you sure you want to activate it now?',
+  NO_VERSION_INFO_DESC: 'لم يتم العثور على معلومات الإصدار.',
+  ACTIVATE_VERSION: 'تفعيل الإصدار',
+  CANCEL_SUBMISSION: 'إلغاء التقديم',
+  SUSPEND_VERSION: 'تعليق الإصدار',
+  APP_SUSPEND_TIP: 'لا يمكن نشر التطبيق <strong>{name}</strong> من متجر التطبيقات بعد تعليقه. هل أنت متأكد من أنك تريد تعليقه؟',
+  APP_RECOVER_TIP: 'سيتم عرض التطبيق <strong>{name}</strong> والإصدارات المعلقة مرة أخرى في متجر التطبيقات. هل أنت متأكد من أنك تريد تفعيله الآن؟',
   // Verisons > Buttons
   // Versions > Chart Files
   // Versions > App Release
   // Versions > App Instances
   // App Information
   // App Release
-  REJECTION_REASON: 'Rejection Reason',
-  RELEASE_RECORD: 'Release Record',
-  RELEASE_RECORD_EMPTY_DESC: 'No release record is found.'
+  REJECTION_REASON: 'سبب الرفض',
+  RELEASE_RECORD: 'سجل الإصدار',
+  RELEASE_RECORD_EMPTY_DESC: 'لم يتم العثور على سجل الإصدار.'
 };

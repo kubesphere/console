@@ -23,7 +23,7 @@ module.exports = {
   // More > Edit YAML
   // More > Delete
   // Resource Status
-  VOLUME_MONITORING_TIP: 'Currently, only usage data of mounted volumes can be collected. Usage data of path-based volumes such as OpenEBS, Local PV, and NFS volumes may be inaccurate. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">Learn More</a>',
+  VOLUME_MONITORING_TIP: 'Şu anda yalnızca monte edilen birimlerin kullanım verileri toplanabilir. OpenEBS, Local PV ve NFS birimleri gibi yola dayalı birimlerin kullanım verileri yanlış olabilir. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">Daha Fazla Bilgi Edinin</a>',
   // Mount Information
-  MOUNT_INFORMATION: 'Mount Information'
+  MOUNT_INFORMATION: 'Montaj Bilgileri'
 };

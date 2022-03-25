@@ -17,9 +17,9 @@
  */
 module.exports = {
   // Banner
-  APPS: 'Apps',
-  APP_STORE_MANAGEMENT: 'App Store Management',
-  APP_STORE_DESC: 'Manage apps in the App Store. You can view app information, release apps, and suspend apps.',
+  APPS: 'التطبيقات',
+  APP_STORE_MANAGEMENT: 'إدارة متجر التطبيقات',
+  APP_STORE_DESC: 'إدارة التطبيقات في متجر التطبيقات. يمكنك عرض معلومات التطبيق، وإصدار التطبيقات، وتعليق التطبيقات.',
   // List
-  APP_CATEGORY: 'App Category'
+  APP_CATEGORY: 'فئة التطبيق'
 };

@@ -17,6 +17,6 @@
  */
 module.exports = {
   // List
-  HOW_TO_APPLY_MORE_CLUSTER_Q: 'How do I apply for more clusters for the workspace?',
-  HOW_TO_APPLY_MORE_CLUSTER_A: 'Contact the platform or cluster administrator to apply for more clusters.'
+  HOW_TO_APPLY_MORE_CLUSTER_Q: 'Çalışma alanı için daha fazla kümeyi nasıl talep edebilirim?',
+  HOW_TO_APPLY_MORE_CLUSTER_A: 'Daha fazla küme talep etmek için platform veya küme yöneticisi ile iletişime geçiniz.'
 };

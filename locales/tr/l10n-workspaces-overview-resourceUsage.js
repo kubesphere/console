@@ -17,13 +17,13 @@
  */
 module.exports = {
   // Banner
-  OVERVIEW: 'Overview',
+  OVERVIEW: 'Genel Bakış',
   // Description
-  WORKSPACE_OVERVIEW_DESC: 'View the resource status of the workspace.',
+  WORKSPACE_OVERVIEW_DESC: 'Çalışma alanının kaynak durumunu görüntüleyin.',
   // Statistics
-  ROLE_PL: 'Roles',
+  ROLE_PL: 'Roller',
   // Physical Resources
-  PHYSICAL_RESOURCES: 'Physical Resources',
+  PHYSICAL_RESOURCES: 'Fiziksel Kaynaklar',
   CRONJOB: 'Cronjob',
-  CLUSTER_VALUE: 'Cluster: {value}'
+  CLUSTER_VALUE: 'Küme: {value}'
 };

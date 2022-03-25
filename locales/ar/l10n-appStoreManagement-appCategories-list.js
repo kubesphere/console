@@ -17,20 +17,20 @@
  */
 module.exports = {
   // Banner
-  APP_CATEGORY_PL: 'App Categories',
-  APP_CATEGORIES_DESC: 'Manage categories of apps released to the App Store. You can create, edit, delete, and change app categories.',
+  APP_CATEGORY_PL: 'فئات التطبيق',
+  APP_CATEGORIES_DESC: 'إدارة فئات التطبيقات الصادرة إلى متجر التطبيقات. يمكنك إنشاء فئات التطبيق وتحريرها وحذفها وتغييرها.',
   // All Categories
-  ALL_CATEGORIES_VALUE: 'All Categories ({value})',
-  APP_CATEGORY_EMPTY_DESC: 'No apps belong to the category.',
+  ALL_CATEGORIES_VALUE: 'جميع الفئات ({value})',
+  APP_CATEGORY_EMPTY_DESC: 'لا توجد تطبيقات تنتمي إلى الفئة.',
   // All Categories > Add
-  ENTER_CATEGORY_NAME_TIP: 'Please enter a category name.',
-  CATEGORY_NAME_DESC: 'The name can contain any characters and the maximum length is 20 characters.',
+  ENTER_CATEGORY_NAME_TIP: 'الرجاء إدخال اسم الفئة.',
+  CATEGORY_NAME_DESC: 'يمكن أن يحتوي الاسم على أي حرف، ويبلغ الحد الأقصى للطول 20 حرفاً.',
   // All Categories > Eit
   // All Categories > Delete
-  DELETE_CATEGORY_DESC: 'Are you sure you want to delete the category <b>{name}</b>?',
+  DELETE_CATEGORY_DESC: 'هل أنت متأكد من أنك تريد حذف الفئة <b>{name}</b>؟',
   // List
   // List > Change Category
-  CHANGED_SUCCESSFULLY: 'Changed successfully.',
-  CHANGE_CATEGORY: 'Change Category',
-  CHANGE_CATEGORY_DESC: 'The app category determines the classification of the app in the App Store.'
+  CHANGED_SUCCESSFULLY: 'تم التغيير بنجاح.',
+  CHANGE_CATEGORY: 'تغيير الفئة',
+  CHANGE_CATEGORY_DESC: 'تحدد فئة التطبيق تصنيف التطبيق في متجر التطبيقات.'
 };

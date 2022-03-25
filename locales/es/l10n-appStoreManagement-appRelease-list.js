@@ -22,19 +22,19 @@ module.exports = {
   // Unreleased
   UNRELEASED: 'Unreleased',
   APP_REVIEW_EMPTY_DESC: 'No unreleased app is found.',
-  APP_STATUS_SUBMITTED: 'Submitted',
+  APP_STATUS_SUBMITTED: 'Sometido',
   APP_STATUS_PASSED: 'Released',
-  APP_STATUS_SUSPENDED: 'Suspended',
+  APP_STATUS_SUSPENDED: 'Suspendido',
   APP_STATUS_REJECTED: 'Rejected',
-  APP_STATUS_ACTIVE: 'Activated',
+  APP_STATUS_ACTIVE: 'Activado',
   APP_STATUS_PUBLISHED: 'Released',
-  APP_STATUS_RECALLED: 'Suspended',
+  APP_STATUS_RECALLED: 'Suspendido',
   APP_STATUS_RECALL: 'Recall',
-  APP_STATUS_DRAFT: 'To be submitted',
+  APP_STATUS_DRAFT: 'A ser sometido',
   APP_STATUS_PENDING_REVIEW: 'To be released',
   APP_STATUS_IN_REVIEW: 'Reviewing',
   APP_STATUS_DEVELOPING: 'Developing',
   // Released
   RELEASED: 'Released',
-  OPERATOR: 'Operator'
+  OPERATOR: 'Operador'
 };

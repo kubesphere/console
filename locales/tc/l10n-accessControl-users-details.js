@@ -17,16 +17,16 @@
  */
 module.exports = {
   // More > Change Password
-  CONFIRM_PASSWORD_TIP: 'Please enter the new password again.',
-  CHANGE_PASSWORD: 'Change Password',
-  NEW_PASSWORD: 'New Password',
+  CONFIRM_PASSWORD_TIP: '請再次輸入新的密碼。',
+  CHANGE_PASSWORD: '修改密碼',
+  NEW_PASSWORD: '新的密碼',
   // More > Delete
   // Details
   // Login History
   TIME: '時間',
-  SOURCE_IP_ADDRESS: 'Source IP Address',
-  LOGIN_HISTORY: 'Login History',
-  NO_LOGIN_HISTORY: 'No login history is found.',
-  SUCCESSFUL: 'Successful',
-  FAILED: 'Failed'
+  SOURCE_IP_ADDRESS: '來源 IP 地址',
+  LOGIN_HISTORY: '登入紀錄',
+  NO_LOGIN_HISTORY: '找不到登入記錄',
+  SUCCESSFUL: '成功',
+  FAILED: '失敗'
 };

@@ -24,7 +24,7 @@ module.exports = {
   PROJECT_QUOTAS_DESC: '项目配额用于指定项目中可用的 CPU 和内存资源数量和容器组、部署、服务等应用资源的最大数量。',
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: '默认容器配额未设置',
   DEFAULT_CONTAINER_QUOTAS_DESC: '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 限制、内存预留和内存限制。',
-  PROJECT_RESOURCE_QUOTAS: '项目资源配额',
+  APPLICATION_RESOURCE_COUNT: '应用资源',
   SELECT_RESOURCE_TIP: '请选择资源或输入资源名称',
   NUMBER_OF_ROUTES: '应用路由数量',
   NUMBER_OF_SECRETS: '保密字典数量',

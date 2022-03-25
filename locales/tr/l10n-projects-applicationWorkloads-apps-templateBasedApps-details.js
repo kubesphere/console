@@ -17,15 +17,15 @@
  */
 module.exports = {
   // More > Edit Settings
-  CURRENT_APP_SETTINGS_READONLY: 'Current App Settings (read-only)',
-  TARGET_APP_SETTINGS: 'Target App Settings',
-  TARGET_APP_VERSION: 'Target App Version',
-  CURRENT_APP_VERSION: 'Current App Version',
-  EDIT_APP_SETTINGS: 'Edit App Settings',
+  CURRENT_APP_SETTINGS_READONLY: 'Mevcut Uygulama Ayarları (salt okunur)',
+  TARGET_APP_SETTINGS: 'Hedef Uygulama Ayarları',
+  TARGET_APP_VERSION: 'Hedef Uygulama Sürümü',
+  CURRENT_APP_VERSION: 'Mevcut Uygulama Sürümü',
+  EDIT_APP_SETTINGS: 'Uygulama Ayarlarını Düzenle',
   // Details
   // Resource Status
-  UPDATED_AGO: 'Updated {value}',
+  UPDATED_AGO: 'Güncelle {value}',
   // App Template > App Description
-  APP_TEMPLATE: 'App Template',
-  NO_APP_DESC_FOUND: 'No app description found.'
+  APP_TEMPLATE: 'Uygulama Şablonu',
+  NO_APP_DESC_FOUND: 'Uygulama açıklaması bulunamadı.'
 };

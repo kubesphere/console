@@ -21,6 +21,7 @@ module.exports = {
     '工作負載 (Workload) 通常是訪問服務的實際載體, 也是對節點紀錄收集、監控等系統應用的實際運行載體，是對一組容器組 (Pod) 的抽象模型。',
   // List
   DEPLOYMENT_EMPTY_DESC: 'Please create a Deployment.',
+  UPDATING: 'Updating',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
@@ -62,6 +63,7 @@ module.exports = {
     '請設置容器的資源限制與資源預留，這將能夠幫助系統更好地調度容器，提高穩定性。您也可在【項目設置】中，通過【基本資訊】->【項目管理】->【編輯資源預設請求】，來統一設置預設值。',
   GPU_TYPE: 'GPU Type',
   GPU_LIMIT: 'GPU Limit',
+  NVIDIA_COM_GPU: 'NVIDIA GPU',
   NO_LIMIT: '不限制',
   NO_REQUEST: '不預留',
   NO_RESOURCE_LIMIT: '無資源限制',
@@ -91,15 +93,13 @@ module.exports = {
   HEALTH_CHECK: '健康檢查',
   STARTUP_CHECK_TIP: '需要 Kubernetes v1.18 或以上版本。',
   // List > Create > Pod Settings > Add Container > Life Management
-  LIFE_MANAGEMENT: '生命週期管理',
-  LIFE_MANAGEMENT_DESC:
-    '管理應用容器在運行和關閉前的一些動作，如環境準備，優雅線下等',
-  'Container PostStart': '添加 PostStart 設置',
-  'Container PreStop': '添加 PreStop 設置',
-  PRO_STOP_DESC:
-    '應用容器被終止前的任務，例如優雅關閉應用程序、通知其他系統等。 ',
-  POST_START_DESC:
-    '應用容器創建成功後、運行前的任務，例如資源部署、環境準備等。 ',
+  LIFECYCLE_MANAGEMENT: 'Lifecycle Management',
+  LIFECYCLE_MANAGEMENT_DESC: 'Add actions to be performed after the container is started or before it is stopped for environment preparation or graceful shutdown.',
+  POSTSTART_ACTION: 'Post-start Action',
+  PRESTOP_ACTION: 'Pre-stop Action',
+  POSTSTART_ACTION_DESC: 'Add an action to be performed after the container is started.',
+  PRESTOP_ACTION_DESC: 'Add an action to be performed before the container is stopped.',
+  ADD_ACTION: 'Add Action',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: '添加環境變量',
   USE_CONFIGMAP_OR_SECRET: '引用配置文件或密鑰',
@@ -125,7 +125,7 @@ module.exports = {
   RUN_AS_USER_GROUP_DESC:
     '執行容器 entrypoint 進程的 GID。預設為 docker 引擎的 GID',
   SELINUX_CONTEXT: 'SELinux 上下文',
-  CAPABILITIES_BETA: '權能（測試中）',
+  CAPABILITIES: 'Capabilities',
   DROP: '移除',
   ACCESS_CONTROL: '訪問控制',
   LEVEL: '等級',

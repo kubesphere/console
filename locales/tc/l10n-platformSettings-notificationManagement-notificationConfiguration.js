@@ -43,6 +43,7 @@ module.exports = {
   DOES_NOT_EXIST: 'Does not exist',
   TAG_INPUT_PLACEHOLDER: 'Please enter the value and press Enter to confirm',
   PATTERN_TAG_INVALID_TIP: 'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
+  PATTERN_TAG_VALUE_INVALID_TIP: 'Invalid label values. The label values can only contain uppercase and lowercase letters, numbers, hyphens (-), underscores (_) and dots (.) and must begin and end with an uppercase or lowercase letter or number and be a maximum of 63 characters.',
   INVALID_NOTIFICATION_CONDITION: '請填寫正確的通知條件。',
   SEND_TEST_MESSAGE: '發送測試信息',
   SEND_TEST_MESSAGE_DESC: 'After the configurations are complete, you can send a test message for verification.',
@@ -143,5 +144,8 @@ module.exports = {
   BASIC_AUTH: 'Basic authentication',
   NO_AUTH: '無須認證',
   BEARER_TOKEN: 'Bearer token',
-  TOKEN: 'Token'
+  TOKEN: 'Token',
+  WEBHOOK_USERNAME_EMPTY_DESC: 'Please enter a username.',
+  WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
+  WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
 };

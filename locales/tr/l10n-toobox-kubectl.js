@@ -17,46 +17,45 @@
  */
 module.exports = {
   // Command Tips
-  HIDE_HELP_INFORMATION: 'Hide Help Information',
+  HIDE_HELP_INFORMATION: 'Yardım Bilgilerini Gizle',
   KUBECTL_TIP: `
-    <h2><a id="KubeCtl_Common_Instructions_0"></a>Command Tips</h2>
-    <p>You can refer to the following kubestl commands. <a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank">Learn More</a></p>
-    <h3><a id="kubectl_output_format_4"></a>Customized Output</h3>
+<h2><a id="KubeCtl_Common_Instructions_0"></a>Komut İpuçları</h2>
+    <p>Aşağıdaki kubestl komutlarına başvurabilirsiniz. <a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank">Daha Fazla Bilgi Edinin</a></p>
+    <h3><a id="kubectl_output_format_4"></a>Özelleştirilmiş Çıktı</h3>
     <ul>
-    <li>View more information about a pod</li>
+    <li>Bir kapsül hakkında daha fazla bilgi görüntüleyin</li>
     </ul>
-    <p><code>kubectl get pod &lt;pod-name&gt; -o wide</code></p>
+    <p><code>kubectl pod &lt;pod-name&gt; -o geniş</code></p>
     <ul>
-    <li>View pod details in YAML format</li>
+    <li>Bölme ayrıntılarını YAML biçiminde görüntüleyin</li>
     </ul>
-    <p><code>kubectl get pod &lt;pod-name&gt; -o yaml</code></p>
-    <h3><a id="kubectl_Operation_14"></a>Operations</h3>
-    <h4><a id="1_Create_a_resource_object_16"></a>Create Resources</h4>
+    <p><code>kubectl pod &lt;pod-name&gt; -o yaml</code></p>
+    <h3><a id="kubectl_Operation_14"></a>İşlemler</h3>
+    <h4><a id="1_Create_a_resource_object_16"></a>Kaynak Oluştur</h4>
     <ul>
-    <li>Create a service by using a YAML configuration file</li>
+    <li>YAML yapılandırma dosyası kullanarak bir hizmet oluşturun</li>
     </ul>
-    <p><code>kubectl create -f my-service.yaml</code></p>
+    <p><code>kubectl -f my-service.yaml oluştur</code></p>
     <ul>
-    <li>Create resources by using all YAML, YML, and JSON files in a directory</li>
+    <li>Bir dizindeki tüm YAML, YML ve JSON dosyalarını kullanarak kaynaklar oluşturun</li>
     </ul>
     <p><code>kubectl create -f &lt;directory&gt;</code></p>
-    <h4><a id="2_View_resource_objects_26"></a>View Resources</h4>
+    <h4><a id="2_View_resource_objects_26"></a>Kaynakları Görüntüle</h4>
     <ul>
-    <li>View all pods</li>
+    <li>Tüm bölmeleri görüntüle</li>
     </ul>
-    <p><code>kubectl get pods</code></p>
+    <p><code>kubectl bölmeleri al</code></p>
     <ul>
-    <li>View all services</li>
+    <li>Tüm hizmetleri görüntüleyin</li>
     </ul>
-    <p><code>kubectl get services</code></p>
-    <h4><a id="3_View_resource_details_36"></a>View Resource Details</h4>
+    <p><code>kubectl hizmet alın</code></p>
+    <h4><a id="3_View_resource_details_36"></a>Kaynak Ayrıntılarını Görüntüle</h4>
     <ul>
-    <li>View node details</li>
+    <li>Düğüm ayrıntılarını görüntüleyin</li>
     </ul>
-    <p><code>kubectl describe nodes &lt;node-name&gt;</code></p>
+    <p><code>kubectl düğümleri tanımlar &lt;düğüm-adı&gt;</code></p>
     <ul>
-    <li>View pod details</li>
+    <li>Bölme ayrıntılarını görüntüleyin</li>
     </ul>
-    <p><code>kubectl describe pods &lt;pod-name&gt;</code></p>
-  `
+    <p><code>kubectl bölmeleri tanımlar &lt;pod-name&gt;</code></p>  `
 };

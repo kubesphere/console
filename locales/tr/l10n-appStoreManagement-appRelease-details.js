@@ -17,25 +17,25 @@
  */
 module.exports = {
   // Banner
-  APP_DETAILS_DESC: 'View details of the app to be released.',
+  APP_DETAILS_DESC: 'Yayınlanacak uygulamanın ayrıntılarını görüntüleyin.',
   // Description
   // App Information
-  INTRODUCTION: 'Introduction',
-  SERVICE_PROVIDER_WEBSITE: 'Service provider website',
-  APP_DESCRIPTION: 'App Description',
+  INTRODUCTION: 'Giriş',
+  SERVICE_PROVIDER_WEBSITE: 'Servis sağlayıcı web sitesi',
+  APP_DESCRIPTION: 'Uygulama Açıklaması',
   // Documentation
-  DOCUMENTATION: 'Documentation',
-  NO_DOCUMENT_FOUND: 'No Documentation Found',
+  DOCUMENTATION: 'Belgeler',
+  NO_DOCUMENT_FOUND: 'Belge Bulunamadı',
   // Chart Files
   // Update Log
-  UPDATE_LOG: 'Update Log',
-  NO_UPDATE_LOG_DESC: 'No update log is found.',
+  UPDATE_LOG: 'Kaydı Güncelle',
+  NO_UPDATE_LOG_DESC: 'Güncellenecek kayıt  bulunamadı.',
   // Reject
-  REJECT: 'Reject',
-  REJECT_REASON_DESC: 'Enter reasons for rejection of the app review.',
-  REJECT_REASON_TIP: 'Please enter at least one reason for rejection.',
-  REJECT_SUCCESSFUL: 'Rejected successfully.',
+  REJECT: 'Reddetmek',
+  REJECT_REASON_DESC: 'Uygulama incelemesinin reddedilme nedenlerini girin. ',
+  REJECT_REASON_TIP: 'Lütfen reddetmek için en az bir neden girin.',
+  REJECT_SUCCESSFUL: 'Başarıyla reddedildi.',
   // Release
-  RELEASE: 'Release',
-  RELEASE_SUCCESSFUL: 'Released successfully.'
+  RELEASE: 'Yayınlamak',
+  RELEASE_SUCCESSFUL: 'Yayınlama başarılı.'
 };

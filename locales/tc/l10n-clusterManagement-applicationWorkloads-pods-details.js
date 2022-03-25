@@ -17,14 +17,14 @@
  */
 module.exports = {
   // Details
-  NODE_IP_ADDRESS: 'Node IP Address',
+  NODE_IP_ADDRESS: '節點 IP 地址',
   CLUSTER: '集群',
   // Resource Status > Containers
   CONTAINER_PL: '容器',
   PROBE_PL: '探針',
-  HOOK_PL: '掛鉤',
+  HOOK_PL: 'Hooks',
   // Resource Status > Containers > Container Logs
-  CONTAINER_LOGS_NOT_SUPPORTED: '容器在目前狀態下不支持實時紀錄，請稍後再試',
+  CONTAINER_LOGS_NOT_SUPPORTED: '容器在目前狀態下不支持即時紀錄，請稍後再試',
   CONTAINER_LOGS: '容器紀錄',
   // Resource Status > Details > Container Details > Details
   COMMAND: '命令',
@@ -32,13 +32,13 @@ module.exports = {
   IMAGE_PULL_POLICY: '鏡像拉取策略',
   CONTAINER_DETAILS_PAGE_SCAP: '容器詳情頁。',
   // Resource Status > Details > Container Details > Terminal
-  LOADING: '載入中',
+  LOADING: '載入中...',
   RESOURCE_LIMITS: '資源限制',
   RESOURCE_REQUESTS: '資源預留',
   TERMINAL: '終端',
   // Resource Status > Details > Container Details > Resource Status
   RESTART_PL: '重啟次數',
-  RESTART: 'Restart',
+  RESTART: '重啟次數',
   STORAGE_DEVICES: '儲存設備',
   LIVENESS_PROBE: '存活探針',
   READINESS_PROBE: '就緒探針',
@@ -46,18 +46,18 @@ module.exports = {
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
-  NO_RESOURCE: '暫時沒有 {resource}。',
+  NO_RESOURCE: '沒有發現 {resource}。',
   LOG_DATA_LOW: '紀錄數據',
   // Resource Status > Volumes
-  TYPE_CONFIGMAP: 'Volume type: ConfigMap',
-  TYPE_SECRET: 'Volume type: Secret',
-  TYPE_EMPTYDIR: 'Volume type: emptyDir',
-  TYPE_HOSTPATH: 'Volume type: HostPath',
+  TYPE_CONFIGMAP: '儲存卷類型：配置設定',
+  TYPE_SECRET: '儲存卷類型：保密設定',
+  TYPE_EMPTYDIR: '儲存卷類型：EmptyDir',
+  TYPE_HOSTPATH: '儲存卷類型：HostPath',
   // Scheduling Information
-  REASON_VALUE: 'Reason: {value}',
-  MESSAGE_VALUE: 'Message: {value}',
-  UPDATED_AT_VALUE: 'Updated At: {value}',
+  REASON_VALUE: '原因：{value}',
+  MESSAGE_VALUE: '訊息：{value}',
+  UPDATED_AT_VALUE: '更新時間 ：{value}',
   // Metadata
   // Monitoring
-  NO_MONITORING_DATA: 'No Monitoring Data',
-}
+  NO_MONITORING_DATA: '未發現監控資料'
+};

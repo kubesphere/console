@@ -17,23 +17,23 @@
  */
 module.exports = {
   // Title
-  TOTAL_EVENTS_TODAY: 'A total of <span class={className}> {events} </span> resource events were collected today.',
-  NO_RESOURCE_EVENTS_TODAY: 'No Resource Events Collected Today',
+  TOTAL_EVENTS_TODAY: 'Bugün toplam <span class={className}> {events} </span> kaynak etkinliği toplandı.',
+  NO_RESOURCE_EVENTS_TODAY: 'Bugün Toplanan Kaynak Etkinliği Yok',
   // Search
-  EVENT_NOT_ENABLED_DESC: 'The component is not enabled. <a href="{docUrl}/pluggable-components/events/" target="_blank">Learn More</a>',
+  EVENT_NOT_ENABLED_DESC: 'Bileşen etkin değil. <a href="{docUrl}/pluggable-components/events/" target="_blank">Daha Fazla Bilgi Edinin</a>',
   // Querying Rules
-  RESOURCE_EVENT_TRENDS_12H: 'Resource event trends in 12 h',
-  RESOURCE_EVENT_WORKSPACE_TIP: 'Enter a workspace name to search for container logs.',
-  RESOURCE_EVENT_PROJECT_TIP: 'Enter a project name to search for container logs.',
-  RESOURCE_EVENT_RESOURCE_TYPE_TIP: 'Enter a resource type to search for container logs.',
-  RESOURCE_EVENT_RESOURCE_NAME_TIP: 'Enter a resource name to search for container logs.',
-  RESOURCE_EVENT_MESSAGE_TIP: 'Enter a message to search for resource events.',
-  RESOURCE_EVENT_CATEGORY_TIP: 'Enter a category name to search for container logs.',
-  RESOURCE_EVENT_REASON_TIP: 'Enter a reason to search for container logs.',
-  SEARCH_BY_MESSAGE: 'Search by Message',
-  SEARCH_BY_WORKSPACE: 'Search by Workspace',
-  SEARCH_BY_RESOURCE_TYPE: 'Search by Resource Type',
-  SEARCH_BY_RESOURCE_NAME: 'Search by Resource Name',
-  SEARCH_BY_REASON: 'Search by Reason',
-  SEARCH_BY_CATEGORY: 'Search by Category'
+  RESOURCE_EVENT_TRENDS_12H: '12 saat içinde kaynak olay eğilimleri',
+  RESOURCE_EVENT_WORKSPACE_TIP: 'Kapsayıcı günlüklerini aramak için bir çalışma alanı adı girin.',
+  RESOURCE_EVENT_PROJECT_TIP: 'Kapsayıcı günlüklerini aramak için bir proje adı girin.',
+  RESOURCE_EVENT_RESOURCE_TYPE_TIP: 'Kapsayıcı günlüklerini aramak için bir kaynak türü girin.',
+  RESOURCE_EVENT_RESOURCE_NAME_TIP: 'Kapsayıcı günlüklerini aramak için bir kaynak adı girin.',
+  RESOURCE_EVENT_MESSAGE_TIP: 'Kaynak olaylarını aramak için bir mesaj girin.',
+  RESOURCE_EVENT_CATEGORY_TIP: 'Kapsayıcı günlüklerini aramak için bir kategori adı girin.',
+  RESOURCE_EVENT_REASON_TIP: 'Kapsayıcı günlüklerini aramak için bir neden girin.',
+  SEARCH_BY_MESSAGE: 'Mesaja göre ara',
+  SEARCH_BY_WORKSPACE: 'Çalışma alanında ara',
+  SEARCH_BY_RESOURCE_TYPE: 'Kaynak Türüne Göre Ara',
+  SEARCH_BY_RESOURCE_NAME: 'Kaynak Adına Göre Ara',
+  SEARCH_BY_REASON: 'Nedene Göre Ara',
+  SEARCH_BY_CATEGORY: 'Kategoriye göre arama'
 };

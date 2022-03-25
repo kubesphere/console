@@ -167,8 +167,8 @@ module.exports = {
   DEFAULT_VALUE: '默认值',
   PARAMETER_NAME_EMPTY_DESC: '请设置参数的名称。',
   SELECT_TEMPLATE: '选择模板',
-  PARAMETER_CONFIG: '参数配置',
+  PARAMETER_CONFIG: '参数设置',
   PREVIEW: '预览',
-  EMPTY_PARAMS_CONFIG: '该操作无需进行参数配置',
-  PIPELINE_VALIDATOR_DESC: '请选择一个流水线模板。',
-}
+  EMPTY_PARAMS_CONFIG: '此操作不需要设置参数。',
+  PIPELINE_VALIDATOR_DESC: '请选择一个流水线模板。'
+};

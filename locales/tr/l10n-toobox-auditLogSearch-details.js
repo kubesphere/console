@@ -19,14 +19,14 @@ module.exports = {
   // Title
   // Search Bar
   // Time Topology
-  START_REAL_TIME_AUDIT_LOG: 'Pause real-time audit logs',
-  STOP_REAL_TIME_AUDIT_LOG: 'View real-time audit logs',
+  START_REAL_TIME_AUDIT_LOG: 'Gerçek zamanlı kapsayıcı günlüklerini duraklat',
+  STOP_REAL_TIME_AUDIT_LOG: 'Gerçek zamanlı konteyner günlüklerini görüntüleyin',
   TIME_S: '{num}s',
   // Time Topology > Histogram
-  AUDIT_LOG_COUNT: 'Audit Logs',
+  AUDIT_LOG_COUNT: 'Denetim Günlüğü',
   // List
-  RESOURCE_NAME_AND_TYPE: 'Resource Type & Name',
-  VERB: 'Verb',
-  STATUS_CODE: 'Status Code',
-  SUBRESOURCE: 'Subresource'
+  RESOURCE_NAME_AND_TYPE: 'Kaynak Tipi ve Adı',
+  VERB: 'Fiil',
+  STATUS_CODE: 'Durum kodu',
+  SUBRESOURCE: 'Altkaynaklar'
 };

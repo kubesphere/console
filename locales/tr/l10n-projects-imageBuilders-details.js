@@ -17,36 +17,36 @@
  */
 module.exports = {
   // Details
-  COPIED_SUCCESSFUL: 'Copied successfully.',
-  BUILDER_IMAGE: 'Builder Image',
-  PULL_POLICY: 'Pull Policy',
-  SOURCE_URL: 'Source URL',
-  REMOTE_TRIGGER: 'Remote Trigger',
+  COPIED_SUCCESSFUL: 'Başarıyla kopyalandı.',
+  BUILDER_IMAGE: 'Oluşturucu Resmi',
+  PULL_POLICY: 'Çekme Politikası',
+  SOURCE_URL: 'Kaynak URL',
+  REMOTE_TRIGGER: 'Uzaktan Tetikleme',
   // Run
-  NEW_TAG_DESC: 'enter tag of the new image',
+  NEW_TAG_DESC: 'yeni görüntünün etiketini girin',
   // More > Edit Information
   // More > Edit YAML
   // More > Delete
-  IMAGE_BUILDER: 'Image Builder',
-  IMAGE_BUILDER_LOW: 'image builder',
+  IMAGE_BUILDER: 'Görüntü Oluşturucu',
+  IMAGE_BUILDER_LOW: 'görüntü Oluşturucu',
   // Run Records
-  JOB_RECORDS: 'Job Records',
-  LAST_BUILD_ENVIRONMENT: 'Last Build Environment',
-  BUILDER_IMAGE_SCAP: 'Builder image',
-  FILE_SIZE: 'File size: {size}',
-  DOWNLOAD_ARTIFACT: 'Download Artifact',
-  ARTIFACT_FILE: 'Artifact File',
-  LOG_MODULE_NOT_INSTALLED: 'The logging module is not installed.',
-  LOADING_DOTS: 'Loading...',
-  IMAGE_NAME_SCAP: 'Image name',
-  IMAGE_SIZE_SCAP: 'Image size',
-  IMAGE_NAME_BUILDING: 'Image: {name}/Building',
-  IMAGE_NAME_FAILED: 'Image: {name}/Failed',
-  IMAGE_NAME_SUCCESSFUL: 'Image: {name}/Successful',
-  LAST_MESSAGE_SCAP: 'Last message',
-  START_TIME_SCAP: 'Start time',
+  JOB_RECORDS: 'İş Kayıtları',
+  LAST_BUILD_ENVIRONMENT: 'Son Yapı Ortamı',
+  BUILDER_IMAGE_SCAP: 'Oluşturucu Resmi',
+  FILE_SIZE: 'Dosya Boyutu:{size}',
+  DOWNLOAD_ARTIFACT: 'Artifacları indir',
+  ARTIFACT_FILE: 'Artifact Dosya',
+  LOG_MODULE_NOT_INSTALLED: 'Günlük modülü kurulu değil.',
+  LOADING_DOTS: 'Yükleniyor...',
+  IMAGE_NAME_SCAP: 'Görsel ismi',
+  IMAGE_SIZE_SCAP: 'Görüntü boyutu',
+  IMAGE_NAME_BUILDING: 'Resim:{name}/Yapı',
+  IMAGE_NAME_FAILED: 'Resim:{name}/Yapılamadı',
+  IMAGE_NAME_SUCCESSFUL: 'Resim:{name}/Başarılı',
+  LAST_MESSAGE_SCAP: 'Son mesaj',
+  START_TIME_SCAP: 'Başlama zamanı',
   // Resource Status
   // Image Artifacts
-  IMAGE_ARTIFACTS: 'Image Artifacts',
-  RELEASE_TIME_SCAP: 'Release time'
+  IMAGE_ARTIFACTS: 'Resim Artifacts',
+  RELEASE_TIME_SCAP: 'Bırakma zamanı'
 };

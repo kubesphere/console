@@ -17,45 +17,45 @@
  */
 module.exports = {
   // Title
-  BACK: 'Back',
+  BACK: 'عودة',
   // Description
   // Install > Deployment Agreement
-  AGREE: 'Agree',
-  APP_DEPLOY_AGREEMENT: 'Deployment Agreement',
-  APP_DEPLOY_AGREEMENT_DESC_1: 'You must abide by the open-source agreement of the application.',
-  APP_DEPLOY_AGREEMENT_DESC_2: 'Any consequences arising from your deployment of the application shall be borne by you. For support services, please contact the developer.',
-  DO_NOT_REMIND_AGAIN: 'Do not remind me again',
+  AGREE: 'موافقة',
+  APP_DEPLOY_AGREEMENT: 'اتفاقية النشر',
+  APP_DEPLOY_AGREEMENT_DESC_1: 'يتوجب عليك الالتزام باتفاق المصدر المفتوح للتطبيق.',
+  APP_DEPLOY_AGREEMENT_DESC_2: 'أي عواقب ناجمة عن نشرك للتطبيق ستتحملها من قبلك. للحصول على خدمات الدعم، يرجى الاتصال بالمطور.',
+  DO_NOT_REMIND_AGAIN: 'لاتذكرني مرة أخرى',
   // Install > Basic Information
-  LOCATION: 'Location',
-  CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 53 characters.',
-  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'The app cannot be deployed in a multi-cluster project.',
-  LATEST_VERSION_SCAP: 'Latest version',
-  WORKSPACE_EMPTY_DESC: 'Please select a workspace',
-  VERSION_EMPTY_DESC: 'Please select a version.',
+  LOCATION: 'الموقع',
+  CLUSTER_NAME_DESC: 'يمكن أن يحتوي الاسم فقط على أحرف صغيرة وأرقام ووصلات (-)، يجب أن يبدأ بحرف صغير، ويجب أن ينتهي بحرف صغير أو عدد. أقصى طول هو 53 حرفاً.',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'لا يمكن نشر التطبيق في مشروع متعدد المجموعات.',
+  LATEST_VERSION_SCAP: 'أحدث إصدار',
+  WORKSPACE_EMPTY_DESC: 'الرجاء تحديد مساحة عمل',
+  VERSION_EMPTY_DESC: 'الرجاء تحديد إصدار.',
   // Install > App Settings
-  HELM_APP_SCHEMA_FORM_TIP: 'You can customize the app settings in a GUI form or a YAML file. Settings in the GUI form and those in the YAML file are independent of each other.',
-  DEPLOYED_SUCCESSFUL: 'Installed successfully.',
+  HELM_APP_SCHEMA_FORM_TIP: 'يمكنك تعديل إعدادات التطبيق في واجهة المستخدم أو ملف YAML. الإعدادات الموجودة في واجهة المستخدم (GUI) وفي ملف YAML مستقلة عن بعضها البعض.',
+  DEPLOYED_SUCCESSFUL: 'تم التثبيت بنجاح.',
   // App Information
-  APP_INFORMATION: 'App Information',
-  VERSION_NUMBER: 'Version Number',
-  APP_SCREENSHOTS: 'App Screenshots',
-  CATEGORY_COLON: 'Category:',
-  HOMEPAGE_COLON: 'Homepage:',
-  RELEASE_DATE_COLON: 'Release Date:',
-  APP_ID_COLON: 'App ID:',
-  APP_VERSIONS_TITLE: 'Versions (only the latest 10 versions will be displayed)',
-  MAINTAINER_COLON: 'Maintainer:',
+  APP_INFORMATION: 'معلومات التطبيق',
+  VERSION_NUMBER: 'رقم الإصدار',
+  APP_SCREENSHOTS: 'صور التطبيق',
+  CATEGORY_COLON: 'الفئة:',
+  HOMEPAGE_COLON: 'الصفحة الرئيسية:',
+  RELEASE_DATE_COLON: 'تاريخ الإصدار:',
+  APP_ID_COLON: 'ID التطبيق:',
+  APP_VERSIONS_TITLE: 'الإصدارات (سيتم عرض أحدث 10 إصدارات فقط)',
+  MAINTAINER_COLON: 'المشرفين:',
   // App Details > Verions
-  VERSIONS: 'Versions',
+  VERSIONS: 'إصدارات',
   // APP Details > Keywords
-  KEYWORDS: 'Keywords',
-  NONE: 'None',
+  KEYWORDS: 'كلمات مفتاحية',
+  NONE: 'لا شَيْء',
   // App Details > App Introduction
-  APP_INTRODUCTION: 'App Introduction',
-  APP_DETAILS: 'App Details',
-  NO_DOCUMENT_DESC: 'No documentation is found.',
-  VERSION_INTRO_EMPTY_DESC: 'No introduction to this version is found.',
+  APP_INTRODUCTION: 'مقدمة التطبيق',
+  APP_DETAILS: 'تفاصيل التطبيق',
+  NO_DOCUMENT_DESC: 'لم يتم العثور على أي وثائق.',
+  VERSION_INTRO_EMPTY_DESC: 'لم يتم العثور على أي مقدمة لهذا الإصدار.',
   // App Details > Chart Files
-  CHART_FILES: 'Chart Files',
-  NO_APP_CHART_FILE_FOUND: 'No chart file of the app is found.'
+  CHART_FILES: 'ملفات ال chart',
+  NO_APP_CHART_FILE_FOUND: 'لم يتم العثور على ملف Chart للتطبيق.'
 };

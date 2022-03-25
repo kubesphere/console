@@ -17,31 +17,31 @@
  */
 module.exports = {
   // Banner
-  HOST_CLUSTER: 'Host cluster',
-  CLUSTER_CONDITIONS: 'Cluster Conditions',
+  HOST_CLUSTER: 'Host Kümesi',
+  CLUSTER_CONDITIONS: 'Küme Koşulları',
   // Baisc Information
-  PROVIDER: 'Provider',
-  KUBERNETES_VERSION: 'Kubernetes version',
-  KUBESPHERE_VERSION: 'KubeSphere version',
-  VISIBILITY_PARTIAL: 'Visible to Some Workspaces',
-  VISIBILITY_PUBLIC: 'Visible to All Workspaces',
-  CLUSTER_BASE_INFO_DESC: 'Basic information provides an overview of the cluster. You can view and edit cluster information.',
+  PROVIDER: 'Sağlayıcı',
+  KUBERNETES_VERSION: 'Kubernetes Sürümü',
+  KUBESPHERE_VERSION: 'KubeSphere sürümü',
+  VISIBILITY_PARTIAL: 'Bazı çalışma alanlarında görünür',
+  VISIBILITY_PUBLIC: 'Tüm çalışma alanlarında görünür',
+  CLUSTER_BASE_INFO_DESC: 'Temel bilgiler, kümeye genel bir bakış sağlar. Küme bilgilerini görüntüleyebilir ve düzenleyebilirsiniz.',
   // System Components
   // Resource Usage
-  MEMORY: 'Memory',
-  TOTAL: 'Total',
-  USED: 'Used',
+  MEMORY: 'Bellek',
+  TOTAL: 'Toplam',
+  USED: 'Kullanılan',
   // Tools
-  KUBECTL_DESC: 'Command line tool used to control the current cluster.',
-  KUBECONFIG_DESC: 'File used to configure the access information about the current cluster.',
+  KUBECTL_DESC: 'Geçerli kümeyi kontrol etmek için kullanılan komut satırı aracı.',
+  KUBECONFIG_DESC: 'Geçerli kümeyle ilgili erişim bilgilerini yapılandırmak için kullanılan dosya.',
   // Kubernetes Status
-  KUBERNETES_STATUS: 'Kubernetes Status',
-  API_REQUESTS_PER_SECOND: 'API requests per second',
-  API_REQUEST_LATENCY: 'API request latency',
-  SCHEDULING_OPERATIONS: 'Scheduling operations',
-  SCHEDULING_OPERATION: 'Scheduling operation',
-  SCHEDULING_FAILURES: 'Scheduling failures',
-  SCHEDULING_FAILURE: 'Scheduling failure',
+  KUBERNETES_STATUS: 'Kubernetes Durumu',
+  API_REQUESTS_PER_SECOND: 'Saniye başına API istekleri',
+  API_REQUEST_LATENCY: 'API isteği gecikmesi',
+  SCHEDULING_OPERATIONS: 'Zamanlama işlemleri',
+  SCHEDULING_OPERATION: 'Zamanlama işlemleri',
+  SCHEDULING_FAILURES: 'Zamanlama hataları',
+  SCHEDULING_FAILURE: 'Zamanlama hataları',
   // Nodes
-  VIEW_MORE: 'View More'
+  VIEW_MORE: 'Daha Fazla Görüntüle'
 };

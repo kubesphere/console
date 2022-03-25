@@ -17,10 +17,10 @@
  */
 module.exports = {
   // Banner
-  CRD_PL: 'CRDs',
-  CRD_DESC: '定製資源定義 (CRD) 是一種 Kubernetes 實現自定義資源類型的擴展方式，您可以如同操作内置資源對象一樣操作 CRD 對象。',
+  CRD_PL: 'CRD',
+  CRD_DESC: '自定義資源定義 (CRD) 是一種 Kubernetes 實現自定義資源類型的擴展方式，您可以如同操作内置資源對象一樣操作 CRD 對象。',
   // List
-  CRD_EMPTY_DESC: 'Please create a CRD.',
+  CRD_EMPTY_DESC: '請創建一個 CRD。',
   KIND_TCAP: '類別',
   SCOPE_TCAP: '作用域'
 };

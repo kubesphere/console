@@ -17,39 +17,33 @@
  */
 module.exports = {
   // Banner
-  USER_DESC: 'Manage users and their roles.',
-  USER_PL: 'Users',
+  USER_DESC: 'Kullanıcıları ve kullanıcı izinlerini yönetin.',
+  USER_PL: 'Kullanıcılar',
   // List
-  NOT_LOGIN_YET: 'Not logged in yet',
-  USER_EMPTY_DESC: 'Please create a user.',
-  USER_ACTIVE: 'Active',
-  USER_AUTHLIMITEXCEEDED: 'Login restricted',
-  USER_PENDING: 'Pending',
-  USER_DISABLED: 'Disabled',
-  LAST_LOGIN: 'Last Login',
+  NOT_LOGIN_YET: 'Henüz oturum açılmadı',
+  USER_EMPTY_DESC: 'Lütfen bir kullanıcı oluşturun.',
+  USER_ACTIVE: 'Aktif',
+  USER_AUTHLIMITEXCEEDED: 'Kısıtlı giriş',
+  USER_PENDING: 'Bekliyor',
+  USER_DISABLED: 'Devre Dışı',
+  LAST_LOGIN: 'Son Giriş',
   // List > Create
-  USERNAME_DESC:
-    'The username can contain only lowercase letters, numbers, hyphens (-), and dots (.), and must start and end with a lowercase letter or number. The maximum length is 32 characters.',
-  PASSWORD_DESC:
-    'The password must contain at least one number, one lowercase letter, and one uppercase letter. The length must be 8 to 64 characters.',
-  PASSWORD_INVALID_DESC:
-    'Invalid password. The password must contain at least one number, one lowercase letter, and one uppercase letter. The length must be 8 to 64 characters.',
-  PLATFORM_ROLE_DESC: 'Set the role of the user on the KubeSphere platform.',
-  USER_SETTING_EMAIL_DESC:
-    'The email address can be used to log in to the KubeSphere web console.',
-  USERNAME_EXISTS:
-    'The username already exists. Please enter another username.',
-  USERNAME_EMPTY_DESC: 'Please enter a username.',
-  PLATFORM_ROLE: 'Platform Role',
-  CREATE_USER: 'Create User',
-  EMAIL: 'Email',
-  EMAIL_EXISTS:
-    'The email address already exists. Please enter another email address.',
-  USERNAME_INVALID: 'Invalid username. {message}',
-  USERNAME: 'Username',
-  PASSWORD: 'Password',
+  USERNAME_DESC: 'Kullanıcı adı yalnızca küçük harf, sayı, tire (-) ve nokta (.) içerebilir ve mutlaka küçük harf ve sayı ile başlamalı ve bitmelidir. En fazla 32 karakter olabilir.',
+  PASSWORD_DESC: 'Parola en az bir sayı, bir küçük harf ve bir büyük harf içermelidir. Parola uzunluğu 8 ila 64 karakter arası olmalıdır.',
+  PASSWORD_INVALID_DESC: 'Geçersiz parola. Parola en az bir sayı, bir küçük harf ve bir büyük harf içermelidir. Parola uzunluğu 8 ila 64 karakter arası olmalıdır.',
+  PLATFORM_ROLE_DESC: ' KubeSphere platformunda kullanıcının rolünü belirleyin.',
+  USER_SETTING_EMAIL_DESC: 'E-posta adresi, KubeSphere web konsolunda oturum açmak için kullanılabilir.',
+  USERNAME_EXISTS: 'Kullanıcı adı zaten mevcut. Lütfen başka bir kullanıcı adı deneyin.',
+  USERNAME_EMPTY_DESC: 'Lütfen kullanıcı adınızı girin.',
+  PLATFORM_ROLE: 'Platform Rolleri',
+  CREATE_USER: 'Kullanıcı Oluştur',
+  EMAIL: 'E-Posta',
+  EMAIL_EXISTS: 'E-mail adresi zaten mevcut! Lütfen başka bir e-mail adresi deneyin!',
+  USERNAME_INVALID: 'Hatalı kullanıcı adı.',
+  USERNAME: 'Kullanıcı Adı',
+  PASSWORD: 'Parola',
   // List > Edit
-  EDIT_USER: 'Edit User',
+  EDIT_USER: 'Kullanıcı Düzenle',
   // List > Delete
-  USER_LOW: 'user',
-}
+  USER_LOW: 'kullanıcı'
+};

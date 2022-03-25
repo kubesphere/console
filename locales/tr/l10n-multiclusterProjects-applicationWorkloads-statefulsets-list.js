@@ -18,31 +18,31 @@
 module.exports = {
   // Banner
   // List
-  STATEFULSET_EMPTY_DESC: 'Please create a statefulset.',
+  STATEFULSET_EMPTY_DESC: 'Lütfen bir statefulset oluşturun.',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
   // List > Create
   // List > Create > Basic Information
   // List > Create > Pod Settings
-  POD_SETTINGS: 'Pod Settings',
-  POD_REPLICAS: 'Pod Replicas',
-  ONDELETE: 'Update on Deletion',
-  ONDELETE_DESC: 'Updates pod replicas only when they are manually deleted.',
-  PARTITION_ORDINAL: 'Ordinal for Dividing Pod Replicas',
-  PARTITION_ORDINAL_DESC: 'Set an ordinal to divide the pod replicas into two groups. When the statefulset is updated, only pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
+  POD_SETTINGS: 'Kapsül Ayarları',
+  POD_REPLICAS: 'Kapsül Replikaları',
+  ONDELETE: 'Güncelleme veya Silme',
+  ONDELETE_DESC: 'Kapsül replikalarını yalnızca manuel olarak silindikleri zaman günceller.',
+  PARTITION_ORDINAL: 'Kapsül Replikalarını Bölmek için Sıra',
+  PARTITION_ORDINAL_DESC: 'Kapsül replikalarını iki gruba bölmek için sıra tanımla. Statefulset güncellendiğinde, yalnızca sıralaması bu değerden eşit veya büyük olan kapsül replikaları güncellenir.',
   // List > Create > Volume Settings > Volume Templates
-  ADD_VOLUME_TEMPLATE_DESC: 'Add a volume template to mount a volume with the same lifecycle as the pod.',
-  STATEFULSETS_ADD_VOLUME_TEMPLATE_DESC: 'Please add a volume template',
-  VOLUME_CAPACITY_TCAP: 'Volume Capacity',
-  MOUNT_PATH: 'Mount path',
-  MOUNT_VOLUME_OR_TEMPLATE: 'Mount Volume or Volume Template',
-  VOLUME_TEMPLATES: 'Volume Templates',
+  ADD_VOLUME_TEMPLATE_DESC: 'Kapsülle aynı yaşam döngüsüne sahip bir bölüm bağlamak için bölüm şablonu ekle.',
+  STATEFULSETS_ADD_VOLUME_TEMPLATE_DESC: 'Lütfen bir bölüm şablonu ekleyiniz',
+  VOLUME_CAPACITY_TCAP: 'Bölüm Kapasitesi',
+  MOUNT_PATH: 'Bağlama yolu',
+  MOUNT_VOLUME_OR_TEMPLATE: 'Bölüm Şablonu veya Bölüm Bağla',
+  VOLUME_TEMPLATES: 'Bölüm Şablonları',
   // List > Create > Advanced Settings
   // List > Create > Cluster Differences
-  SERVICE_PORT: 'Service Port',
-  SERVICE_PORT_VALUE: 'Service Port: {value}',
+  SERVICE_PORT: 'Servis Portu',
+  SERVICE_PORT_VALUE: 'Servis Portu: {value}',
   // List > Create > Cluster Differences (Displayed after you add a volume template)
-  VOLUME_TEMPLATE_SETTINGS: 'Volume Template Settings',
-  CLUSTER_VOLUME_DIFF_DESC: 'Use different storage settings in different clusters.'
+  VOLUME_TEMPLATE_SETTINGS: 'Bölüm Şablonu Ayarları',
+  CLUSTER_VOLUME_DIFF_DESC: 'Farklı kümelerde farklı depolama ayarları kullanınız.'
 };

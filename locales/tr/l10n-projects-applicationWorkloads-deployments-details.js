@@ -17,61 +17,61 @@
  */
 module.exports = {
   // More > Roll Back
-  ROLL_BACK: 'Roll Back',
-  CURRENT_REVISION_RECORD: 'Current Revision Record',
-  TARGET_REVISION_EMPTY_DESC: 'Please select a target revision record.',
-  TARGET_REVISION_RECORD: 'Target Revision Record',
+  ROLL_BACK: 'Geri Al',
+  CURRENT_REVISION_RECORD: 'Mevcut Revizyon Kaydı',
+  TARGET_REVISION_EMPTY_DESC: 'Lütfen bir hedef revizyon kaydı seçin.',
+  TARGET_REVISION_RECORD: 'Hedef Revizyon Kaydı',
   // More > Edit Autoscaling
-  CONFIGURE_AUTOSCALING_DESC: 'Set the system to automatically adjust the number of pod replicas based on target CPU usage and target memory usage.',
-  EDIT_AUTOSCALING: 'Edit Autoscaling',
-  TARGET_CPU_USAGE_UNIT: 'Target CPU Usage (%)',
-  AUTOSCALING: 'Autoscaling',
-  RESOURCE_NAME: 'Resource Name',
-  TARGET_CPU_USAGE_DESC: 'The system automatically decreases/increases the number of pod replicas when the actual CPU usage is higher/lower than the target.',
-  TARGET_MEMORY_USAGE_DESC: 'The system automatically decreases/increases the number of pod replicas when the actual memory usage is higher/lower than the target.',
-  MINIMUM_REPLICAS_DESC: 'Set the minimum number of pod replicas allowed. The default value is 1.',
-  MAXIMUM_REPLICAS_DESC: 'Set the maximum number of pod replicas allowed. The default value is 1.',
-  TARGET_MEMORY_USAGE_UNIT: 'Target Memory Usage (MiB)',
-  MINIMUM_REPLICAS: 'Minimum Replicas',
-  MAXIMUM_REPLICAS: 'Maximum Replicas',
+  CONFIGURE_AUTOSCALING_DESC: 'Sistemi, hedef CPU kullanımına ve hedef bellek kullanımına göre bölme kopyalarının sayısını otomatik olarak ayarlayacak şekilde ayarlayın.',
+  EDIT_AUTOSCALING: 'Otomatik Ölçeklendirmeyi Düzenle',
+  TARGET_CPU_USAGE_UNIT: 'Hedef CPU Kullanımı (%)',
+  AUTOSCALING: 'Otomatik ölçeklendirme',
+  RESOURCE_NAME: 'Kaynak adı',
+  TARGET_CPU_USAGE_DESC: 'Gerçek CPU kullanımı hedeften daha yüksek/düşük olduğunda sistem pod replikalarının sayısını otomatik olarak azaltır/artırır.',
+  TARGET_MEMORY_USAGE_DESC: 'Gerçek bellek kullanımı hedeften daha yüksek/düşük olduğunda sistem pod replikalarının sayısını otomatik olarak azaltır/artırır.',
+  MINIMUM_REPLICAS_DESC: 'İzin verilen minimum bölme kopyası sayısını ayarlayın. Varsayılan değer 1\'dir.',
+  MAXIMUM_REPLICAS_DESC: 'İzin verilen maksimum bölme kopyası sayısını ayarlayın. Varsayılan değer 1\'dir.',
+  TARGET_MEMORY_USAGE_UNIT: 'Hedef Bellek Kullanımı (MiB)',
+  MINIMUM_REPLICAS: 'En az Kopyalar',
+  MAXIMUM_REPLICAS: 'En çok Kopyalar',
   // More > Edit Settings > Update Strategy
-  EDIT_SETTINGS: 'Edit Settings',
+  EDIT_SETTINGS: 'Ayarları Düzenle',
   // More > Edit Settings > Containers
   // More > Edit Settings > Volumes
   // More > Edit Settings > Volumes > Mount Volume
   // More > Edit Settings > Volumes > Mount Configmap or Secret
   // More > Edit Settings > Pod Scheduling Rules
-  RULE_NOT_COMPLETE: 'Please set a complete rule.',
+  RULE_NOT_COMPLETE: 'Lütfen eksiksiz bir kural belirleyin.',
   // Details
   // Revision Records
-  REVISION_RECORDS: 'Revision Records',
-  CONFIG_FILE: 'Configuration File',
-  COMPARE_WITH: 'Compared with the previous record {version}',
+  REVISION_RECORDS: 'Revizyon Kayıtları',
+  CONFIG_FILE: 'Yapılandırma Dosyası',
+  COMPARE_WITH: 'Önceki kayıtla karşılaştırıldığında {sürüm}',
   // Resource Status
-  REPLICAS_DESIRED: 'Desired',
-  REPLICAS_CURRENT: 'Current',
-  ADJUST_REPLICAS: 'Adjust Replicas',
-  REPLICAS_SCALE_NOTIFY_CONTENT: 'Are you sure you want to change the number of pod replicas to {num}?',
-  REPLICAS_SCALE_NOTIFY_CONFIRM: 'OK ({seconds}s)',
-  REPLICAS_SCALE_NOTIFY_CANCEL: 'Cancel',
+  REPLICAS_DESIRED: 'İstenen',
+  REPLICAS_CURRENT: 'Geçerli',
+  ADJUST_REPLICAS: 'Kopyaları Ayarla',
+  REPLICAS_SCALE_NOTIFY_CONTENT: 'Kapsül replikalarının sayısını {num} olarak değiştirmek istediğinizden emin misiniz?',
+  REPLICAS_SCALE_NOTIFY_CONFIRM: 'Tamam ({seconds}s)',
+  REPLICAS_SCALE_NOTIFY_CANCEL: 'İptal',
   // Resource Status > Autoscaling
-  TARGET_MEMORY_USAGE: 'Target Memory Usage',
-  TARGET_CPU_USAGE: 'Target CPU Usage',
+  TARGET_MEMORY_USAGE: 'Hedef Bellek Kullanımı',
+  TARGET_CPU_USAGE: 'Hedef CPU Kullanımı',
   TARGET_CURRENT: '{target} (Current: {current})',
-  NOT_ENABLE: '{resource} Not Enabled',
+  NOT_ENABLE: '{resource} Aktif Edilmedi',
   // Metadata
   // Monitoring
   // Monitoring > View All Replicas (visible only when replicas > 5)
-  VIEW_ALL_REPLICAS: 'View All Replicas',
-  SHOW_SELECTED_ONLY: 'Show Selected Only',
-  MONITORING_SELECT_LIMIT_MSG: 'A maximum of 10 resources can be selected.',
-  MONITORING_ALERT_DESC: 'Information about a maximum of five pod replicas are displayed by default. You can click <b>View All Replicas</b> to view information about all pod replicas.',
-  CURRENT_VALUE: 'Current: {value}',
+  VIEW_ALL_REPLICAS: 'Tüm Kopyaları Görüntüle',
+  SHOW_SELECTED_ONLY: 'Yalnızca Seçilileri Göster',
+  MONITORING_SELECT_LIMIT_MSG: 'En fazla 10 kaynak seçilebilir.',
+  MONITORING_ALERT_DESC: 'Varsayılan olarak en fazla beş bölme kopyası hakkında bilgi görüntülenir. Tüm pod replikalarıyla ilgili bilgileri görüntülemek için <b>Tüm Replikaları Görüntüle</b>\'yi tıklayabilirsiniz.',
+  CURRENT_VALUE: 'Şuan ki:{value}',
   // Environment Variables
-  ENVIRONMENT_VARIABLE_PL: 'Environment Variables',
+  ENVIRONMENT_VARIABLE_PL: 'Ortam Değişkenleri',
   // Events
-  EVENT_AGE: 'Occurred',
+  EVENT_AGE: 'Oluştu',
   EVENT_AGE_DATA: '{lastTime}<br/>({count} times over {duration})',
   EVENT_AGE_DATA_TWICE: '{lastTime}<br/>(twice over {duration})',
-  SOURCE: 'Source'
+  SOURCE: 'Kaynak'
 };

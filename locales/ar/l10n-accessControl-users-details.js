@@ -17,16 +17,16 @@
  */
 module.exports = {
   // More > Change Password
-  CONFIRM_PASSWORD_TIP: 'Please enter the new password again.',
-  CHANGE_PASSWORD: 'Change Password',
-  NEW_PASSWORD: 'New Password',
+  CONFIRM_PASSWORD_TIP: 'الرجاء إدخال كلمة المرور الجديدة مرة أخرى.',
+  CHANGE_PASSWORD: 'تغيير كلمة المرور',
+  NEW_PASSWORD: 'كلمة مرور جديدة',
   // More > Delete
   // Details
   // Login History
-  TIME: 'Time',
-  SOURCE_IP_ADDRESS: 'Source IP Address',
-  LOGIN_HISTORY: 'Login History',
-  NO_LOGIN_HISTORY: 'No login history is found.',
-  SUCCESSFUL: 'Successful',
-  FAILED: 'Failed'
+  TIME: 'الوقت',
+  SOURCE_IP_ADDRESS: 'عنوان IP المصدر',
+  LOGIN_HISTORY: 'سجل الدخول',
+  NO_LOGIN_HISTORY: 'لم يتم العثور على سجل دخول.',
+  SUCCESSFUL: 'تم بنجاح',
+  FAILED: 'فشلت'
 };

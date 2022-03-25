@@ -17,15 +17,15 @@
  */
 module.exports = {
   // Banner
-  CONFIGMAP_DESC: 'A configmap is often used to store configuration information needed for workloads. Many applications will read the information from configuration files, command line parameters, or environment variables.',
+  CONFIGMAP_DESC: 'İş yükleri için gereken yapılandırma bilgilerini depolamak için genellikle bir yapılandırma haritası kullanılır. Birçok uygulama yapılandırma dosyalarından, komut satırı parametrelerinden veya ortam değişkenlerinden bilgileri okuyacaktır.',
   // List
-  FIELDS: 'Fields',
+  FIELDS: 'Alanlar',
   // List > Create > Basic Information
   // List > Create > Data Settings
   // List > Edit Information
   // List > Edit YAML
-  EDIT_YAML: 'Edit YAML',
+  EDIT_YAML: 'Düzenle YAML dosyasını',
   // List > Edit Settings
-  ENTER_CONFIG_VALUE_DESC: 'Enter the value of the mapping configuration field or use the content from the file.',
-  CONFIG_FIELD_DESC: 'The unique value of the key mapped by the configuration field.'
+  ENTER_CONFIG_VALUE_DESC: 'Eşleme yapılandırması alanının değerini girin veya dosyadaki içeriği kullanın.',
+  CONFIG_FIELD_DESC: 'Yapılandırma alanı tarafından eşlenen anahtarın benzersiz değeri.'
 };

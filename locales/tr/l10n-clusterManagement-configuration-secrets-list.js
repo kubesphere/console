@@ -17,41 +17,41 @@
  */
 module.exports = {
   // Navigation pane
-  CONFIGURATION: 'Configuration',
+  CONFIGURATION: 'Yapılandırma',
   // Banner
-  SECRET_PL: 'Secrets',
-  SECRET_DESC: 'A secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
+  SECRET_PL: 'Gizli',
+  SECRET_DESC: 'Gizli anahtar, parola, belirteç veya anahtar gibi az miktarda hassas veri içeren bir nesnedir.',
   // List
-  SECRET_FIELD_COUNT: 'Fields',
-  SECRET_EMPTY_DESC: 'Please create a secret.',
+  SECRET_FIELD_COUNT: 'Alanlar',
+  SECRET_EMPTY_DESC: 'Lütfen bir kullanıcı oluşturun.',
   // List > Create > Basic Information
-  SECRET: 'Secret',
+  SECRET: 'Gizli',
   // List > Create > Data Settings
-  DATA_SETTINGS: 'Data Settings',
-  IMAGE_REGISTRY_INFORMATION: 'Image registry information',
-  TLS_INFORMATION: 'TLS information',
-  USERNAME_PASSWORD: 'Username and password',
-  ADD_DATA_TCAP: 'Add Data',
-  ADD_DATA_DESC: 'Add a key-value pair.',
-  REGISTRY_ADDRESS_TIP: 'Set a registry address, for example, docker.io.',
-  IMAGE_REGISTRY_REQUIRED_DESC: 'Please set the registry address, username, and password.',
-  CREDENTIAL_NAME_EMPTY_DESC: 'Please enter a credential name.',
-  ENTER_PRIVATE_KEY_DESC: 'Please enter a private key.',
-  ENTER_DATA_DESC: 'Please add data.',
-  PRIVATE_KEY_TCAP: 'Private Key',
-  REGISTRY_ADDRESS_TCAP: 'Registry Address',
-  REGISTRY_SECRET_VER_ERR: 'Registry Verification Failed.',
-  REGISTRY_SECRET_VER_SUC: 'Registry Verification Succeeded.',
-  SECRET_NO_CHINESE_CODE_DESC: 'The key of the secret must consist of alphanumeric characters, hyphens (-), underscores (_), or periods (.).',
-  SECRET_TYPE_DESC: 'Select a secret type.',
-  IMAGE_REGISTRY_VALIDATE_TIP: 'Please validate the username and password before creating the image registry secret.',
-  DATA_KEY: 'Key',
-  DATA_VALUE: 'Value',
-  DEFAULT: 'Default',
-  USERNAME_AND_PASSWORD: 'Username and password',
+  DATA_SETTINGS: 'Veri Ayarları',
+  IMAGE_REGISTRY_INFORMATION: 'Görüntü kayıt defteri bilgileri',
+  TLS_INFORMATION: 'TLS Bilgisi',
+  USERNAME_PASSWORD: 'Kullanıcı adı ve parola',
+  ADD_DATA_TCAP: 'Veri ekle',
+  ADD_DATA_DESC: 'Bir anahtar/değer çifti ekleyin.',
+  REGISTRY_ADDRESS_TIP: 'Bir kayıt defteri adresi ayarlayın, örneğin docker.io.',
+  IMAGE_REGISTRY_REQUIRED_DESC: 'Lütfen kayıt defteri adresini, kullanıcı adını ve parolayı ayarlayın.',
+  CREDENTIAL_NAME_EMPTY_DESC: 'Lütfen geçerli bir domain adı giriniz.',
+  ENTER_PRIVATE_KEY_DESC: 'Lütfen özel anahtarınızı girin.',
+  ENTER_DATA_DESC: 'Lütfen veri ekleyin.',
+  PRIVATE_KEY_TCAP: 'Özel Anahtar',
+  REGISTRY_ADDRESS_TCAP: 'Kayıt Adresi',
+  REGISTRY_SECRET_VER_ERR: 'Gönderici doğrulaması başarısız.',
+  REGISTRY_SECRET_VER_SUC: 'Gönderici doğrulaması başarısız.',
+  SECRET_NO_CHINESE_CODE_DESC: 'Gizli anahtarın anahtarı alfasayısal karakterler, kısa çizgiler (-), alt çizgiler (_) veya noktalardan (.) oluşmalıdır.',
+  SECRET_TYPE_DESC: 'Bir kullanıcı tipi seçin.',
+  IMAGE_REGISTRY_VALIDATE_TIP: 'Lütfen görüntü kayıt defteri sırrını oluşturmadan önce kullanıcı adını ve parolayı doğrulayın.',
+  DATA_KEY: 'Anahtar',
+  DATA_VALUE: 'Değer',
+  DEFAULT: 'Varsayılan',
+  USERNAME_AND_PASSWORD: 'Kullanıcı adı ve parola',
   // List > Edit Information
   // List > Edit YAML
   // List > Edit Settings
-  DATA: 'Data',
-  EDIT_DATA_TCAP: 'Edit Data'
+  DATA: 'Veri',
+  EDIT_DATA_TCAP: 'Veri Düzenle'
 };

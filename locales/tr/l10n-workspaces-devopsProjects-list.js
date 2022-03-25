@@ -17,22 +17,22 @@
  */
 module.exports = {
   // Banner
-  DEVOPS_TIP_GITOPS_Q: 'How do I get started with DevOps?',
-  DEVOPS_TIP_GITOPS_A: 'You can start using DevOps by creating a pipeline that is associated with the code repository and deploying steps with Kubernetes.',
-  DEVOPS_TIP_TYPE_Q: 'Which code repositories are supported by pipelines?',
-  DEVOPS_TIP_TYPE_A: 'Pipelines support code repositories of Git, GitHub, Gitlab, SVN, and Bitbucket.',
+  DEVOPS_TIP_GITOPS_Q: 'DevOps\'a nasıl başlayabilirim?',
+  DEVOPS_TIP_GITOPS_A: 'Kod deposu ve Kubernetes dağıtım adımları ile ilişkilendirilmiş bir pipeline oluşturarak DevOps\'a başlayabilirsiniz.',
+  DEVOPS_TIP_TYPE_Q: 'Pipeline\'lar hangi kod depolarını destekliyor?',
+  DEVOPS_TIP_TYPE_A: 'Pipeline\'lar Git, GitHub, Gitlab, SVN ve Bitbucket kod depolarını desteklemektedir.',
   // List
-  DEVOPS_PROJECT_EMPTY_DESC: 'Please create a DevOps project.',
+  DEVOPS_PROJECT_EMPTY_DESC: 'Lütfen bir DevOps projesi oluşturun.',
   // List > Create
-  CREATE_DEVOPS_PROJECT: 'Create DevOps Project',
-  DEVOPS_PROJECT_CREATE_DESC: 'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines themselves (for example, project type and organization type).',
+  CREATE_DEVOPS_PROJECT: 'DevOps Projesi Oluştur',
+  DEVOPS_PROJECT_CREATE_DESC: 'DevOps, bir dizi işlem hattının tanımlandığı ayrı bir ad alanıdır. Kullanıcılar işlem hatlarını kendileri gruplayabilir (örneğin, proje türü ve kuruluş türü).',
   // List > Create > Cluster Settings
-  NO_DEVOPS_INSTALL: 'DevOps not installed',
+  NO_DEVOPS_INSTALL: 'DevOps kurulu değil',
   // List > Edit
-  DEVOPS_ADMIN_DESC: 'Select a project member as the project administrator.',
+  DEVOPS_ADMIN_DESC: 'Proje yöneticisi olarak bir proje üyesi seçiniz.',
   // List > Delete
-  DELETE_MULTIPLE_DEVOPS_PROJECTS: 'Delete Multiple DevOps Projects',
-  DELETE_DEVOPS_PROJECT: 'Delete DevOps Project',
-  DELETE_DEVOPS_PROJECT_TIP: 'Enter the DevOps project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
-  DELETE_DEVOPS_PROJECT_TIP_PL: 'Enter the DevOps project names <strong>{resource}</strong> to confirm that you understand the risks of this operation.'
+  DELETE_MULTIPLE_DEVOPS_PROJECTS: 'DevOps Projelerini Sil',
+  DELETE_DEVOPS_PROJECT: 'DevOps Projesini Sil',
+  DELETE_DEVOPS_PROJECT_TIP: 'Bu işlemin risklerini anladığınızı doğrulamak için <strong>{resource}</strong> DevOps projesi adını girin.',
+  DELETE_DEVOPS_PROJECT_TIP_PL: 'Bu işlemin risklerini anladığınızı doğrulamak için <strong>{resource}</strong> DevOps projelerinin adlarını girin.'
 };

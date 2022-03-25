@@ -18,12 +18,12 @@
 module.exports = {
   // Banner
   // List
-  CRONJOB_EMPTY_DESC: 'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
+  CRONJOB_EMPTY_DESC: 'CronJobs maneja trabajos a base de horarios y puede ser utilizado para llevar a cabo tareas periódicas o recurrentes.',
   // List > Create > Basic Information
-  EVERY_DAY: '0 0 * * * (every day)',
-  EVERY_HOUR: '0 * * * * (every hour)',
-  EVERY_MONTH: '0 0 1 * * (every month)',
-  EVERY_WEEK: '0 0 * * 0 (every week)',
+  EVERY_DAY: '0 0 * * * * (cada día)',
+  EVERY_HOUR: '0 * * * * * (cada hora)',
+  EVERY_MONTH: '0 0 1 * * (cada mes)',
+  EVERY_WEEK: '0 0 * * 0 (cada semana)',
   // List > Create > Strategy Settings
   // List > Create > Pod Settings
   // List > Create > Volume Settings

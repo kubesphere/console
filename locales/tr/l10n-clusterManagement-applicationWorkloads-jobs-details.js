@@ -21,7 +21,7 @@ module.exports = {
   // More > View YAML
   // More > Delete
   // Run Records
-  END_TIME: 'End Time',
-  SN_NO: 'No.',
-  START_TIME: 'Start Time'
+  END_TIME: 'Bitiş Saati',
+  SN_NO: 'Hayır.',
+  START_TIME: 'Başlangıç Zamanı'
 };

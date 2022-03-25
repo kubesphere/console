@@ -23,7 +23,7 @@ module.exports = {
   // More >Delete
   // Details
   // Permissions
-  PERMISSION_PL: 'Permissions',
+  PERMISSION_PL: 'İzinler',
   // Authorized Users
-  AUTHORIZED_USER_PL: 'Authorized Users'
+  AUTHORIZED_USER_PL: 'Yetkili Kullanıcılar'
 };

@@ -23,9 +23,9 @@ module.exports = {
   // Overview > Resource Status > Physical Resources
   // Pods
   // Gateway
-  GATEWAY: 'Gateway',
-  GATEWAY_NOT_ENABLED: 'Gateway Not Enabled',
-  ENABLE_GATEWAY_TIP: 'To use the gateway, please configure the gateway in the cluster or the project.',
+  GATEWAY: 'Ağ geçidi',
+  GATEWAY_NOT_ENABLED: 'Ağ Geçidi Etkin Değil',
+  ENABLE_GATEWAY_TIP: 'Ağ geçidini kullanmak için lütfen ağ geçidini kümede veya projede yapılandırın.',
   // Quotas > Default Container Quotas
-  QUOTA_PL: 'Quotas'
+  QUOTA_PL: 'Kota'
 };

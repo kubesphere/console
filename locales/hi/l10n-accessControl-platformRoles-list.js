@@ -17,34 +17,34 @@
  */
 module.exports = {
   // Banner
-  PLATFORM_ROLE_PL: 'Platform Roles',
+  PLATFORM_ROLE_PL: 'प्लेटफ़ॉर्म भूमिकाएँ',
   // List
-  PLATFORM_ROLE_EMPTY_DESC: 'Please create a platform role.',
-  ROLE_USERS_MANAGER: 'Manage all users on the KubeSphere platform.',
-  ROLE_WORKSPACES_MANAGER: 'Manage all workspaces on the KubeSphere platform.',
-  ROLE_PLATFORM_ADMIN: 'Manage all resources on the KubeSphere platform.',
-  ROLE_PLATFORM_REGULAR: 'Cannot access any resources before joining a workspace.',
-  CREATION_TIME_TCAP: 'Creation Time',
+  PLATFORM_ROLE_EMPTY_DESC: 'कृपया एक प्लेटफ़ॉर्म भूमिका बनाएं',
+  ROLE_USERS_MANAGER: 'KubeSphere प्लेटफॉर्म पर सभी यूजर्स का प्रभंधन करें।',
+  ROLE_WORKSPACES_MANAGER: 'KubeSphere प्लेटफॉर्म पर सभी वर्कस्पेसेस का प्रभंधन करें।',
+  ROLE_PLATFORM_ADMIN: 'KubeSphere प्लेटफॉर्म पर सभी संसाधनों का प्रबंधन करें।',
+  ROLE_PLATFORM_REGULAR: 'बिना किसी वर्कस्पेस से जुड़े कोई भी संसाधन को पहुंच नहीं सकते',
+  CREATION_TIME_TCAP: 'निर्माण का समय',
   // List > Create
-  CREATE_PLATFORM_ROLE: 'Create Platform Role',
+  CREATE_PLATFORM_ROLE: 'प्लेटफार्म भूमिका बनाएं',
   // List > Create > Edit Permissions > Cluster Management
-  CLUSTERS_MANAGEMENT: 'Cluster Management',
-  CLUSTERS_VIEW: 'Cluster Viewing',
-  CLUSTERS_VIEW_DESC: 'View all clusters and cluster resources.',
-  CLUSTERS_MANAGEMENT_DESC: 'Create clusters, delete clusters, and manage resources in all clusters.',
+  CLUSTERS_MANAGEMENT: 'क्लस्टर प्रभंधन',
+  CLUSTERS_VIEW: 'क्लस्टर देखने हेतु',
+  CLUSTERS_VIEW_DESC: 'सभी क्लस्टर और क्लस्टर संसाधन देखें।',
+  CLUSTERS_MANAGEMENT_DESC: 'क्लस्टर बनाएं, क्लस्टर हटाएं और सभी क्लस्टर में संसाधनों का प्रबंधन करें।',
   // List > Create > Edit Permissions > Access Control
-  USERS_MANAGEMENT: 'User Management',
-  USERS_VIEW: 'User Viewing',
-  WORKSPACES_MANAGEMENT_DESC: 'Create, edit, delete, and view workspaces.',
-  USERS_MANAGEMENT_DESC: 'Create, edit, and delete users.',
-  ROLES_MANAGEMENT_DESC: 'Create, edit, and delete platform roles.',
-  WORKSPACES_VIEW_DESC: 'View workspaces.',
-  ROLES_VIEW_DESC: 'View platform roles.',
-  USERS_VIEW_DESC: 'View users.',
+  USERS_MANAGEMENT: 'यूजर प्रभंधन',
+  USERS_VIEW: 'यूजर देखने हेतु',
+  WORKSPACES_MANAGEMENT_DESC: 'वर्कस्पेसेस बनाएं, संपादित करें, हटाएं और देखें।',
+  USERS_MANAGEMENT_DESC: 'यूजर्स बनाएं, संपादित करें, हटाएं और देखें।',
+  ROLES_MANAGEMENT_DESC: 'भूमिकाएं बनाएं, संपादित करें, हटाएं और देखें।',
+  WORKSPACES_VIEW_DESC: 'भूमिकाएं देखें',
+  ROLES_VIEW_DESC: 'भूमिकाएं देखें',
+  USERS_VIEW_DESC: 'यूजर्स देखें',
   // List > Create > Edit Permissions > App Management
-  APP_TEMPLATES_VIEW_DESC: 'View the platform App Store.',
-  APP_TEMPLATES_MANAGEMENT_DESC: 'Manage the platform App Store and life cycles of cloud-native applications.',
+  APP_TEMPLATES_VIEW_DESC: 'प्लेटफार्म एप स्टोर देखें',
+  APP_TEMPLATES_MANAGEMENT_DESC: 'प्लेटफ़ॉर्म ऐप स्टोर और क्लाउड-नेटिव एप्लिकेशन के जीवन चक्र को प्रबंधित करें।',
   // List > Create > Edit Permissions > Platform Settings
-  PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
-  PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.'
+  PLATFORM_SETTINGS_MANAGEMENT: 'प्लेटफार्म सेटिंग्स प्रबंधन',
+  PLATFORM_SETTINGS_MANAGEMENT_DESC: 'KubeSphere प्लेटफॉर्म की सेटिंग्स देखें और संपादित करें।'
 };

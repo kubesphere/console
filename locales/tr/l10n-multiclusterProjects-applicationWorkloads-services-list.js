@@ -18,13 +18,13 @@
 module.exports = {
   // Banner
   // List
-  SERVICE_TYPE_TCAP: 'Service Type',
+  SERVICE_TYPE_TCAP: 'Servis Türü',
   // List > Create
-  SELECT_SERVICE_TYPE: 'Select Service Type',
+  SELECT_SERVICE_TYPE: 'Servis Türü Seçiniz',
   // List > Create > Stateless Service
   // List > Create > Stateless Service > Basic Information
   // List > Create > Stateless Service > Pod Settings
-  ADD_PORT: 'Add Port',
+  ADD_PORT: 'Port Ekle',
   // List > Create > Stateless Service > Volume Settings
   // List > Create > Stateless Service > Advanced Settings
   // List > Create > Stateless Service > Cluster Differences
@@ -32,9 +32,9 @@ module.exports = {
   // List > Create > Stateful Service > Pod Settings
   // List > Create > Stateful Service > Volume Settings
   // List > Create > Stateful Service > Advanced Settings
-  EMPTY_LABEL_DESC: 'Please add a label.',
-  SPECIFY_NODE: 'Specify Node',
-  SPECIFY_NODE_DESC: 'Specify a node that needs to be associated with the service.',
-  MAXIMUM_STICKINESS_DURATION_DESC: 'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
-  SERVICE_ADD_METADATA_DESC: 'Add metadata to the service.'
+  EMPTY_LABEL_DESC: 'Lütfen bir etiket ekleyiniz.',
+  SPECIFY_NODE: 'Düğüm Belirtiniz',
+  SPECIFY_NODE_DESC: 'Servisle ilişkilendirilmesi gereken bir düğüm belirtiniz.',
+  MAXIMUM_STICKINESS_DURATION_DESC: 'Maksimum yapışkanlık süresini ayarlayınız. Değer aralığı 0 ile 86400 arasında olmalıdır ve varsayılan değer 10800\'dür.',
+  SERVICE_ADD_METADATA_DESC: 'Servise üst veri ekle.'
 };

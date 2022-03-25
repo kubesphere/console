@@ -17,20 +17,20 @@
  */
 module.exports = {
   // Banner
-  APP_CATEGORY_PL: '應用分類',
-  APP_CATEGORIES_DESC: '您可以在此頁面創建、編輯、刪除分類，對已上架的應用進行分類管理。',
+  APP_CATEGORY_PL: '應用類別',
+  APP_CATEGORIES_DESC: '您可以在此頁面創建、編輯、刪除類別，對已上架的應用進行類別管理。',
   // All Categories
-  ALL_CATEGORIES_VALUE: 'All Categories ({value})',
-  APP_CATEGORY_EMPTY_DESC: '該分類暫無綁定的應用。',
+  ALL_CATEGORIES_VALUE: '全部類別（{value}）',
+  APP_CATEGORY_EMPTY_DESC: '該類別暫無綁定的應用。',
   // All Categories > Add
-  ENTER_CATEGORY_NAME_TIP: '請輸入分類名稱。',
-  CATEGORY_NAME_DESC: 'The name can contain any characters and the maximum length is 20 characters.',
+  ENTER_CATEGORY_NAME_TIP: '請輸入類別名稱。',
+  CATEGORY_NAME_DESC: '名稱可包含任意字元，最長 20 個字元。',
   // All Categories > Eit
   // All Categories > Delete
-  DELETE_CATEGORY_DESC: 'Are you sure you want to delete the category <b>{name}</b>?',
+  DELETE_CATEGORY_DESC: '您確定要刪除類別 <b>{name}</b> 嗎?',
   // List
   // List > Change Category
-  CHANGED_SUCCESSFULLY: 'Changed successfully.',
-  CHANGE_CATEGORY: '調整分類',
-  CHANGE_CATEGORY_DESC: '應用分類將決定該應用在應用商店中的分類'
+  CHANGED_SUCCESSFULLY: '已更改成功',
+  CHANGE_CATEGORY: '調整類別',
+  CHANGE_CATEGORY_DESC: '應用類別將決定該應用在應用商店中的類別'
 };

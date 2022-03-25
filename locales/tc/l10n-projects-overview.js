@@ -24,7 +24,7 @@ module.exports = {
   PROJECT_QUOTAS_DESC: 'Project quotas specify the number of available CPU and memory resources and the maximum number of application resources such as Pods, Deployments, and Services in the project.',
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: '容器資源預設請求未設置',
   DEFAULT_CONTAINER_QUOTAS_DESC: 'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
-  PROJECT_RESOURCE_QUOTAS: 'Project Resource Quotas',
+  APPLICATION_RESOURCE_COUNT: 'Application Resources',
   SELECT_RESOURCE_TIP: 'Select a resource or enter a resource name',
   NUMBER_OF_ROUTES: 'Number of Routes',
   NUMBER_OF_SECRETS: 'Number of Secrets',

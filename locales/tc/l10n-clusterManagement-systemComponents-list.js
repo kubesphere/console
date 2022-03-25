@@ -20,6 +20,7 @@ module.exports = {
   SYSTEM_COMPONENT_PL: '服務組件',
   SERVICE_COMPONENTS_DESC: '服務組件提供 KubeSphere、Kubernetes 和 OpenPitrix 集群内各項服務組件的健康狀態監控，可以查看目前集群的健康狀態和運行時間，能夠幫助用戶監測集群的狀況和即時定位問題。',
   // KubeSphere
+  STOPPED: 'Stopped',
   RUNNING_TIME: '運行時間',
   KS_CONSOLE_DESC: '提供 KubeSphere 的控制台服務',
   KS_APISERVER_DESC: '整個集群管理的 API 介面和集群内部各個模組之間通信的樞紐，以及集群安全控制',

@@ -17,20 +17,20 @@
  */
 module.exports = {
   // Banner
-  NETWORK_POLICY: 'Network Policy',
-  NETWORK_POLICY_PL: 'Network Policies',
-  NETWORK_POLICY_Q: 'How do I use a network policy better?',
-  NETWORK_POLICY_A: 'We have identified several common use cases based on actual scenarios, and you can refer to the documentation for more information.',
-  NETWORK_POLICY_Q1: 'What are the requirements on the CNI plugin for implementing a network policy?',
-  NETWORK_POLICY_A1: 'Make sure that the CNI network plugin used by the cluster supports <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/" target="_blank">Network Policies</a>. A number of CNI network plugins support Network Policies, including Calico, Cilium, Kube-router, Romana, and Weave Net.',
+  NETWORK_POLICY: 'Ağ Politikası',
+  NETWORK_POLICY_PL: 'Ağ Politikası',
+  NETWORK_POLICY_Q: 'Bir ağ politikasını nasıl daha iyi kullanırım?',
+  NETWORK_POLICY_A: 'Gerçek senaryolara dayalı olarak birkaç yaygın kullanım durumu belirledik ve daha fazla bilgi için belgelere başvurabilirsiniz.',
+  NETWORK_POLICY_Q1: 'Bir ağ politikasını uygulamak için CNI eklentisindeki gereksinimler nelerdir?',
+  NETWORK_POLICY_A1: 'Küme tarafından kullanılan CNI ağ eklentisinin <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/" target="_blank">Ağ Politikalarını</a> desteklediğinden emin olun. Calico, Cilium, Kube-router, Romana ve Weave Net dahil olmak üzere bir dizi CNI ağ eklentisi Ağ İlkelerini destekler.',
   // List
-  NETWORK_POLICY_EMPTY_DESC: 'Please create a network policy.',
+  NETWORK_POLICY_EMPTY_DESC: 'Lütfen bir ağ politikası oluşturun.',
   // List > Create
-  CREATE_NETWORK_POLICY_TCAP: 'Create Network Policy',
-  CREATE_BTN: 'Create',
-  CREATE_NETWORK_POLICY_DESC: 'The network policy is configured to allow network isolation within the same cluster, namely, the ability to build a firewall between certain instances (pods).',
+  CREATE_NETWORK_POLICY_TCAP: 'Ağ Politikası Oluştur',
+  CREATE_BTN: 'Oluştur',
+  CREATE_NETWORK_POLICY_DESC: 'Ağ ilkesi, aynı küme içinde ağ yalıtımına, yani belirli örnekler (kapsüller) arasında bir güvenlik duvarı oluşturma becerisine izin verecek şekilde yapılandırılır.',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
-  NETWORK_POLICY_LOW: 'network policy'
+  NETWORK_POLICY_LOW: 'Ağ Politikası'
 };

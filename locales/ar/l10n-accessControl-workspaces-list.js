@@ -17,24 +17,24 @@
  */
 module.exports = {
   // Banner
-  WORKSPACE_PL: 'Workspaces',
-  WORKSPACE_DESC: 'A workspace is an isolated logical unit used to organize projects and DevOps projects, manage resource access, and share information within your team.',
+  WORKSPACE_PL: 'مساحات العمل',
+  WORKSPACE_DESC: 'مساحة العمل هي وحدة منطقية منعزلة تستخدم لتنظيم المشاريع ومشاريع DevOps وإدارة الوصول إلى الموارد ومشاركة المعلومات داخل فريقك.',
   // List
-  CLUSTER_PL: 'Clusters',
+  CLUSTER_PL: 'المجموعات',
   // List > Create > Basic Information
-  CREATE_WORKSPACE: 'Create Workspace',
-  WORKSPACE_NAME_EMPTY_DESC: 'Please enter a workspace name.',
-  WORKSPACE_CREATE_DESC: 'Set the basic information about the workspace.',
+  CREATE_WORKSPACE: 'إنشاء مساحة عمل',
+  WORKSPACE_NAME_EMPTY_DESC: 'الرجاء إدخال اسم مساحة عمل.',
+  WORKSPACE_CREATE_DESC: 'عيّن المعلومات الأساسية حول مساحة العمل.',
   ADMINISTRATOR: 'Administrator',
   // List > Create > Cluster Settings
-  SELECT_CLUSTERS_DESC: 'Select clusters to be used in the workspace.',
-  NO_CLUSTER_AVAILABLE_DESC: 'No cluster is available. After the workspace is created, please contact the platform or cluster administrator to authorize a cluster to the workspace.',
-  WORKSPACE_NO_CLUSTER_TIP: 'Please contact the platform or cluster administrator to authorize a cluster to the workspace.',
-  AVAILABLE_CLUSTERS: 'Available Clusters',
-  CLUSTER_SETTINGS: 'Cluster Settings',
-  SELECT_HOST_CLUSTER_WARNING: 'The current system is a multi-cluster system. Please avoid creating resources in the host cluster if possible. Excessive loads in the host cluster will decrease the stability of the multi-cluster system.',
+  SELECT_CLUSTERS_DESC: 'حدد المجموعات التي سيتم استخدامها في مساحة العمل.',
+  NO_CLUSTER_AVAILABLE_DESC: 'لا توجد مجموعة متاحة. بعد إنشاء مساحة العمل، يرجى الاتصال بالمنصة أو مدير المجموعة لتفويض مجموعة إلى مساحة العمل.',
+  WORKSPACE_NO_CLUSTER_TIP: 'الرجاء الاتصال بمسؤول المنصة أو المجموعة لتفويض مجموعة إلى مساحة العمل.',
+  AVAILABLE_CLUSTERS: 'المجموعات المتاحة',
+  CLUSTER_SETTINGS: 'إعدادات المجموعة',
+  SELECT_HOST_CLUSTER_WARNING: 'النظام الحالي هو نظام متعدد المجموعات. يرجى تجنب إنشاء موارد في المجموعة المضيفة إن أمكن. ومن شأن الحمولات المفرطة في المجموعة المضيفة أن تقلل من استقرار النظام المتعدد المجموعات.',
   // List > Edit Information
   // List > Delete
-  DELETE_WORKSPACE: 'Delete Workspace',
-  WORKSPACE_LOW: 'workspace'
+  DELETE_WORKSPACE: 'حذف مساحة العمل',
+  WORKSPACE_LOW: 'مساحة عمل'
 };

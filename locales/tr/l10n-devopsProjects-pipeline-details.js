@@ -17,146 +17,146 @@
  */
 module.exports = {
   // Edit Information
-  CODE_REPOSITORY: 'Code Repository',
+  CODE_REPOSITORY: 'Kod Deposu',
   // Details
-  TASK_STATUS: 'Task Status',
-  NOT_RUNNING: 'Not running',
-  QUEUED: 'Queued',
-  ABORTED: 'Aborted',
-  UNSTABLE: 'Unstable',
-  SKIPPED: 'Skipped',
-  NOT_BUILT: 'Not built',
-  SYNC_STATUS: 'Sync Status',
-  DEVOPS_PROJECT: 'DevOps Project',
+  TASK_STATUS: 'Görev Durumu',
+  NOT_RUNNING: 'Çalışmıyor',
+  QUEUED: 'Kuyrukta',
+  ABORTED: 'İptal edildi',
+  UNSTABLE: 'Kararsız',
+  SKIPPED: 'Atlandı',
+  NOT_BUILT: 'Yapılandırılmamış',
+  SYNC_STATUS: 'Eşitleme Durumu',
+  DEVOPS_PROJECT: 'DevOps Proje',
   // More > Edit Settings
   // More > Scan Repository
-  SCAN_REPO_SUCCESSFUL: 'Repository scan was triggered successfully.',
+  SCAN_REPO_SUCCESSFUL: 'Depo taraması başarıyla tetiklendi.',
   // More > View Scan Logs
-  VIEW_SCAN_LOGS: 'View Scan Logs',
-  STARTED_BY_NAME: 'Started By: {name}',
-  REPOSITORY_SCAN_LOGS: 'Repository Scan Logs',
-  RESCAN: 'Rescan',
-  LOGS_OBTAINED_SUCCESSFULLY: 'The logs were obtained successfully.',
+  VIEW_SCAN_LOGS: 'Tarama Günlüklerini Görüntüle',
+  STARTED_BY_NAME: 'Tarafından başlatıldı:{name}',
+  REPOSITORY_SCAN_LOGS: 'Depo Tarama Günlükleri',
+  RESCAN: 'Yeniden tara',
+  LOGS_OBTAINED_SUCCESSFULLY: 'Günlükler başarıyla alındı.',
   // Health Status
-  HEALTH_STATUS_SCAP: 'Health status',
+  HEALTH_STATUS_SCAP: 'Sağlık durumu',
   // Task Status
-  PIPELINE_QUEUED_TITLE: 'About to Complete Initialization',
-  INITIALIZING_PIPELINE: 'Pipeline Initializing',
-  PIPELINE_PREPARE_DESC: 'Preparing the environment...',
-  INITIALIZING_PIPELINE_DESC: 'Please wait until the pipeline initialization is complete.',
-  TASK_FAILED_NOT_OPERATIONAL: 'The stage has failed and is not operational.',
-  NO_PIPELINE_CONFIG_FILE_TIP: 'No pipeline configuration file is found.',
+  PIPELINE_QUEUED_TITLE: 'Başlatmayı Tamamlamak üzere',
+  INITIALIZING_PIPELINE: 'İşlem Hattı Başlatılıyor',
+  PIPELINE_PREPARE_DESC: 'Ortam hazırlanıyor...',
+  INITIALIZING_PIPELINE_DESC: 'Lütfen işlem hattı başlatma tamamlanana kadar bekleyin.',
+  TASK_FAILED_NOT_OPERATIONAL: 'Aşama başarısız oldu ve çalışmıyor.',
+  NO_PIPELINE_CONFIG_FILE_TIP: 'İşlem hattı yapılandırma dosyası bulunamadı.',
   // Task Status > Edit Pipeline
-  EDIT_PIPELINE: 'Edit Pipeline',
-  AGENT_TYPE_DESC: `The agent section specifies
-    where the entire Pipeline or a particular stage will be executed in the Jenkins environment,
-    depending on where the Agent part is placed.
-    This part must be defined at the top level within the pipeline block,
-    but the stage level usage is optional. `,
-  CREATE_PIPELINE_DESC: 'Build, test and deploy with Pipelines',
-  CI: 'Continuous Integration (CI)',
-  CI_DESC: 'Continuous integration (CI) is the process of automatically detecting, pulling, building, and (in most cases) unit testing after source code changes.',
-  CICD: 'Continuous Integration & Delivery (CI/CD)',
-  CICD_DESC: 'Continuous deployment (CD) refers to the idea of automatically providing the release version in the continuous delivery pipeline to end users. According to the user\'s installation method, automatic deployment in the cloud environment, app upgrades (such as apps on mobile phones), website updates, or only the list of available versions.',
-  CUSTOM_PIPELIEN: 'Custom Pipeline',
-  CUSTOM_PIPELIEN_DESC: 'You can select the tasks you need to customize the contents of the pipeline.',
+  EDIT_PIPELINE: 'İş hattını Düzenle',
+  AGENT_TYPE_DESC: `Aracı Bölümü belirtir
+    tüm iş hattı veya belirli bir aşamanın Jenkins ortamında yürütüleceği yer,
+    Agent bölümünün nereye yerleştirildiğine bağlı olarak.
+    Bu kısım, iş hattı bloğu içinde en üst düzeyde tanımlanmalıdır,
+    ancak sahne seviyesi kullanımı isteğe bağlıdır. `,
+  CREATE_PIPELINE_DESC: 'İş hattı ile derleyin, test edin ve devreye alın',
+  CI: 'Sürekli Entegrasyon',
+  CI_DESC: 'Sürekli entegrasyon (CI), kaynak kodu değişikliklerinden sonra otomatik olarak algılama, çekme, oluşturma ve (çoğu durumda) birim testi sürecidir.',
+  CICD: 'Sürekli Entegrasyon ve Teslimat (CI/CD)',
+  CICD_DESC: 'Sürekli dağıtım (CD), yayın sürümünü sürekli teslim hattında son kullanıcılara otomatik olarak sağlama fikrini ifade eder. Kullanıcının yükleme yöntemine, bulut ortamında otomatik dağıtıma, uygulama yükseltmelerine (cep telefonlarındaki uygulamalar gibi), web sitesi güncellemelerine veya yalnızca mevcut sürümlerin listesine göre.',
+  CUSTOM_PIPELIEN: 'Özel İş Hattı',
+  CUSTOM_PIPELIEN_DESC: 'İşlem hattının içeriğini özelleştirmek için ihtiyaç duyduğunuz görevleri seçebilirsiniz.',
   CC: 'CC',
-  CREDENTIAL_NAME: 'Credential Name',
-  REMOTE_REPOSITORY_URL: 'Remote Repository URL',
+  CREDENTIAL_NAME: 'Kimlik Adı',
+  REMOTE_REPOSITORY_URL: 'Uzak Depo URL\'si',
   SCM: 'SCM',
-  INPUT_MESSAGE_DESC: 'This message will be displayed in the pipeline running state.',
-  KUBERNETES_DEPLOY_DESC: `Deploy resources on a Kubernetes cluster.
-    In a continuous integration or continuous deployment environment,
-    only those resources that need to be updated regularly should be placed in the deployment step.
-    Therefore, this step is mostly used to process the deployment of such resources.`,
+  INPUT_MESSAGE_DESC: 'Bu mesaj, işlem hattı çalışır durumdayken görüntülenecektir.',
+  KUBERNETES_DEPLOY_DESC: `Kaynakları bir Kubernetes kümesinde dağıtın.
+Sürekli bir entegrasyon veya sürekli dağıtım ortamında,
+dağıtım adımına yalnızca düzenli olarak güncellenmesi gereken kaynaklar yerleştirilmelidir.
+Bu nedenle, bu adım çoğunlukla bu tür kaynakların dağıtımını işlemek için kullanılır.`,
   KUBERNETES_DEPLOY_DESC_MORE: `<br />
-  <label>This step has the following main features:</label>
-  <li>Distribution without kubectl</li>
-  <li>Variable substitution in Jenkinsfile, Dynamic deployment is possible. </li>
-  <li>Support for pulling docker images from private image repositories</li>
-  <label> Currently this step supports the following resources:</label>
-  <br />
-  <li>Configuration </li>
-  <li>Key</li>
-  <li>Deploy</li>
-  <li>Dave Process Set</li>
-  <li>App Routing</li>
-  <li>Namespace</li>
-  <li>Task</li>
-  <li>Service</li>
-  <li>Replica Set</li>
-  <li>
-  Replication
-  Controller (rolling updates are not supported, and use deployment if you want to use rolling updates)
-  </li>`,
-  STAGE: 'Stage',
-  KUBERNETES_DEPLOY_DEPRECATED_TIP: 'This step will be deprecated in subsequent versions, and it is recommended that you consider other alternatives.',
+   <label>Bu adım aşağıdaki ana özelliklere sahiptir:</label>
+   <li>kubectl olmadan dağıtım</li>
+   <li>Jenkinsfile'de değişken değiştirme, Dinamik dağıtım mümkündür. </li>
+   <li>Özel resim havuzlarından liman işçisi resimlerini çekme desteği</li>
+   <label> Şu anda bu adım aşağıdaki kaynakları desteklemektedir:</label>
+   <br />
+   <li>Yapılandırma </li>
+   <li>Anahtar</li>
+   <li>Dağıtla</li>
+   <li>Dave İşlem Kümesi</li>
+   <li>Uygulama Yönlendirme</li>
+   <li>Ad alanı</li>
+   <li>Görev</li>
+   <li>Hizmet</li>
+   <li>Çoğaltma Kümesi</li>
+   <li>
+   çoğaltma
+   Denetleyici (sürekli güncellemeler desteklenmez ve sürekli güncellemeleri kullanmak istiyorsanız dağıtımı kullanın)
+   </li>`,
+  STAGE: 'Aşama',
+  KUBERNETES_DEPLOY_DEPRECATED_TIP: 'Bu adım sonraki sürümlerde kullanımdan kaldırılacaktır ve diğer alternatifleri değerlendirmeniz önerilir.',
   // Task Status > Edit Jenkinsfile
-  EDIT_JENKINSFILE: 'Edit Jenkinsfile',
-  CLOSE_JENKINSFILE_EDITOR_TIP: 'Are you sure to close the Jenkinsfile editor?',
+  EDIT_JENKINSFILE: 'Jenkinsdosya Düzenle',
+  CLOSE_JENKINSFILE_EDITOR_TIP: 'Jenkinsdosya düzenleyicisini kapattığınızdan emin misiniz?',
   // Task Status > View Logs
-  PIPELINE_RUN_LOGS: 'Pipeline Run Logs',
-  VIEW_LOGS: 'View Logs',
-  DURATION_VALUE: 'Duration: {value}',
-  DOWNLOAD_LOGS: 'Download Logs',
+  PIPELINE_RUN_LOGS: 'İş Hattı Çalışma Günlükleri',
+  VIEW_LOGS: 'Günlükleri Görüntüle',
+  DURATION_VALUE: 'Süre:{value}',
+  DOWNLOAD_LOGS: 'Günlükleri İndir',
   // Task Status > View Logs > View Logs
-  START_REAL_TIME_LOG: 'Enable real-time logs',
-  STOP_REAL_TIME_LOG: 'Disable real-time logs',
+  START_REAL_TIME_LOG: 'Eş zamanlı günlükleri etkinleştir',
+  STOP_REAL_TIME_LOG: 'Eş zamanlı günlükleri devre dışı bırak',
   // Run Records
-  RUN_RECORDS: 'Run Records',
-  RUN: 'Run',
-  ACTIVITY_EMPTY_TIP: 'The pipeline has not been run.',
-  COMMIT: 'Commit',
-  DURATION: 'Duration',
-  LAST_MESSAGE: 'Last Message',
-  RUN_ID: 'Run ID',
-  STOP_PIPELINE_SUCCESSFUL: 'The pipeline was stopped successfully.',
-  INVALID_JENKINSFILE_TIP: 'The current Jenkinsfile is not a standard declarative Jenkinsfile and graphical display is unavailable.',
-  PAUSED: 'Paused',
+  RUN_RECORDS: 'Kayıtları Çalıştır',
+  RUN: 'Çalıştır',
+  ACTIVITY_EMPTY_TIP: 'İş hattı çalışmıyor.',
+  COMMIT: 'Yap',
+  DURATION: 'Süre',
+  LAST_MESSAGE: 'Son Mesaj',
+  RUN_ID: 'Oturum Kimliği',
+  STOP_PIPELINE_SUCCESSFUL: 'İş Hattı başarıyla durduruldu.',
+  INVALID_JENKINSFILE_TIP: 'Geçerli Jenkinsdosyası, standart bir bildirimsel Jenkinsdosya değil ve grafiksel gösterim mevcut değil.',
+  PAUSED: 'Duraklatıldı',
   // Run Records > Run
-  SET_PARAMETERS: 'Set Parameters',
-  PARAMS_DESC: `The following parameters are generated based on the pipeline settings or
-     the parameters section of the Jenkinsfile, which are entered according to operational requirements.`,
-  PIPELINE_RUN_START_SI: 'Starts to run the pipeline...',
-  PIPELINE_RUN_START_PL: 'Starts to run the pipelines...',
+  SET_PARAMETERS: 'Parametre Ayarla',
+  PARAMS_DESC: `Aşağıdaki parametreler, ardışık düzen ayarlarına göre oluşturulur veya
+Jenkinsfile'nin operasyonel gereksinimlere göre girilen parametreler bölümü.`,
+  PIPELINE_RUN_START_SI: 'İş hattını çalıştırmaya başlar...',
+  PIPELINE_RUN_START_PL: 'İş hattını çalıştırmaya başlar...',
   // Run Records > Run Record Details > Details
   // Run Records > Run Record Details > Task Status
-  BREAK: 'Break',
-  PROCEED: 'Proceed',
-  WAITING_FOR_INPUT: 'Waiting for input...',
-  CANCELLED_IN_REVIEW: 'Cancelled in review',
-  STEPS_COMPLETE_TOTAL: 'Steps: {complete}/{total}',
+  BREAK: 'Mola',
+  PROCEED: 'İlerle',
+  WAITING_FOR_INPUT: 'Giriş yapılması için bekleniyor...',
+  CANCELLED_IN_REVIEW: 'Incelemede iptal edildi',
+  STEPS_COMPLETE_TOTAL: 'Adımlar:{complete}/{total}',
   // Run Records > Run Record Details > Commits
-  COMMIT_PL: 'Commits',
-  AUTHOR: 'Author',
-  NO_COMMIT_FOUND: 'No Commit Found.',
+  COMMIT_PL: 'Yap',
+  AUTHOR: 'Yazar',
+  NO_COMMIT_FOUND: 'Taahhüt Bulunamadı.',
   // Run Records > Run Record Details > Artifacts
-  ARTIFACT_PL: 'Artifacts',
-  NO_ARTIFACT_FOUND_TIP: 'No artifact is found.',
-  SIZE: 'Size',
+  ARTIFACT_PL: 'Eserler',
+  NO_ARTIFACT_FOUND_TIP: 'Herhangi bir eser bulunamadı.',
+  SIZE: 'Boyut',
   // Run Records > Run > Set Parameters
   // Branches
-  BRANCH_SI: 'Branch',
-  BRANCH_PL: 'Branches',
-  SCAN_REPOSITORY: 'Scan Repository',
-  PIPELINE: 'Pipeline',
-  NO_BRANCHES_FOUND: 'No Branches Found',
+  BRANCH_SI: 'Şube',
+  BRANCH_PL: 'Şubeler',
+  SCAN_REPOSITORY: 'Kod Deposunu Tara',
+  PIPELINE: 'İş Hattı',
+  NO_BRANCHES_FOUND: 'Şube bulunamadı',
   // Branches > Code Check
-  CODE_CHECK: 'Code Check',
-  BUG_PL: 'Bugs',
-  VULNERABILITY_PL: 'Vulnerabilities',
-  CODE_SMELL_PL: 'Code Smells',
-  CODE_LINE_COUNT: 'Code Lines',
-  COVERAGE: 'Coverage',
-  TEST_RESULTS: 'Results',
-  ISSUE_PL: 'Issues',
-  CRITICAL: 'Critical',
-  MAJOR: 'Major',
-  MINOR: 'Minor',
-  DISPLAY_ALL: 'Display All',
-  DISPLAY_ONLY_LAST_TEN: 'Only the last 10 issues are displayed.',
-  LINE_VALUE: 'Line: {value}',
-  PASSED: 'Passed',
+  CODE_CHECK: 'Kod Kontrol',
+  BUG_PL: 'Hatalar',
+  VULNERABILITY_PL: 'Güvenlik açıkları',
+  CODE_SMELL_PL: 'Kod Korkuları',
+  CODE_LINE_COUNT: 'Kod Kuralları',
+  COVERAGE: 'Kapsama ',
+  TEST_RESULTS: 'Sonuçlar',
+  ISSUE_PL: 'Sorunlar',
+  CRITICAL: 'Kritik',
+  MAJOR: 'Büyük',
+  MINOR: 'Küçük',
+  DISPLAY_ALL: 'Tümünü görüntüle',
+  DISPLAY_ONLY_LAST_TEN: 'Sadece son 10 hatayı görüntüle.',
+  LINE_VALUE: 'Hat: {value}',
+  PASSED: 'Geçti',
   // Pull Requests
-  PULL_REQUEST_PL: 'Pull Requests'
+  PULL_REQUEST_PL: 'Değişiklik İsteği'
 };

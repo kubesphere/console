@@ -17,22 +17,22 @@
  */
 module.exports = {
   // Details
-  TRUE: 'True',
-  FALSE: 'False',
+  TRUE: 'Doğru',
+  FALSE: 'Yanlış',
   // More > Set as Default Storage Class
-  SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
-  SET_AS_DEFAULT_STORAGE_CLASS: 'Set as Default Storage Class',
-  STORAGE_CLASS_SET_DEFAULT_DESC: 'After the default storage class is set, the system will create volumes of this class by default if no special requirement is added. Only one default storage class is allowed in a KubeSphere cluster.',
+  SET_DEFAULT_STORAGE_CLASS_TITLE: 'Varsayılan Depolama Sınıfı Olarak Ayarla',
+  SET_AS_DEFAULT_STORAGE_CLASS: 'Varsayılan Depolama Sınıfı Olarak Ayarla',
+  STORAGE_CLASS_SET_DEFAULT_DESC: 'Varsayılan depolama sınıfı ayarlandıktan sonra, herhangi bir özel gereksinim eklenmemişse, sistem varsayılan olarak bu sınıfın birimlerini oluşturacaktır. KubeSphere kümesinde yalnızca bir varsayılan depolama sınıfına izin verilir.',
   // More > Volume Management
-  VOLUME_MANAGEMENT: 'Volume Management',
-  VOLUME_CLONE: 'Volume Clone',
-  ALLOW_VOLUME_CLONE_DESC: 'Allows users to clone volumes.',
-  ALLOW_VOLUME_SNAPSHOT_DESC: 'Allows users to create volume snapshots.',
-  'Volume Expansion': 'Storage volume expansion',
-  ALLOW_VOLUME_EXPANSION_DESC: 'Allows users to extend volumes. Volumes can only be extended and cannot be shrunk.',
-  VOLUME_FUNCTION_MANAGEMENT_TIP: 'Volume Management only controls whether the following features are enabled in the KubeSphere web console. Before the features are enabled, contact your system administrator to confirm that they are supported by the storage system.',
-  VOLUME_SNAPSHOT: 'Volume Snapshot',
+  VOLUME_MANAGEMENT: 'Hacim Yönetimi',
+  VOLUME_CLONE: 'Hacim Klon',
+  ALLOW_VOLUME_CLONE_DESC: 'Kullanıcıların birimleri klonlamasına izin verir.',
+  ALLOW_VOLUME_SNAPSHOT_DESC: 'Kullanıcıların toplu anlık görüntüler oluşturmasına olanak tanır.',
+  'Volume Expansion': 'Depolama birimi genişletme',
+  ALLOW_VOLUME_EXPANSION_DESC: 'Kullanıcıların birimleri genişletmesine izin verir. Hacimler yalnızca genişletilebilir ve daraltılamaz.',
+  VOLUME_FUNCTION_MANAGEMENT_TIP: 'Birim Yönetimi yalnızca KubeSphere web konsolunda aşağıdaki özelliklerin etkinleştirilip etkinleştirilmediğini kontrol eder. Özellikler etkinleştirilmeden önce, depolama sistemi tarafından desteklendiğini doğrulamak için sistem yöneticinizle iletişime geçin.',
+  VOLUME_SNAPSHOT: 'Birim Anlık Görüntüsü',
   // More > Delete
   // Volumes
-  VOLUME_COUNT: 'Volumes'
+  VOLUME_COUNT: 'Birimler'
 };

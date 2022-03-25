@@ -22,6 +22,8 @@ module.exports = {
   USER_PROJECTS: 'Proyectos de usuario',
   // List
   EMPTY_WRAPPER: 'No se ha encontrado {resource}',
+  TERMINATING: 'Terminating',
+  ACTIVE: 'Active',
   // List > Assign Workspace
   PROJECT_ADMINISTRATOR: 'Gestor de proyecto',
   PROJECT_ADMINISTRATOR_DESC: 'Selecciona un usuario del espacio de trabajo como administrador del proyecto.',

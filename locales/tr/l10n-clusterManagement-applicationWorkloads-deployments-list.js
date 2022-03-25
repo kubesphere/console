@@ -17,51 +17,51 @@
  */
 module.exports = {
   // Banner
-  APPLICATION_WORKLOAD_PL: 'Application Workloads',
-  WORKLOAD_PL: 'Workloads',
+  APPLICATION_WORKLOAD_PL: 'Uygulama İş Yükleri',
+  WORKLOAD_PL: 'İş yükleri',
   // List
-  DEPLOYMENTS: 'Deployments',
-  UPDATE_TIME_TCAP: 'Update Time',
-  ALL_PROJECTS: 'All projects',
+  DEPLOYMENTS: 'Dağıtımlar',
+  UPDATE_TIME_TCAP: 'Güncelleme Zamanı',
+  ALL_PROJECTS: 'Bütün projeler',
   // List > Create > Basic Information
-  SELECT_PROJECT_DESC: 'Select a project in which the resource is to be created.',
-  PROJECT_NOT_SELECT_DESC: 'Please select a project.',
-  BASIC_INFORMATION: 'Basic Information',
-  NAME: 'Name',
-  FEDPROJECT_RESOURCE_TIP: 'To create workload resources in a multi-cluster project, go to the Workloads page in the multi-cluster project.',
-  FINISHED: 'Finished',
-  NOT_SET: 'Not set',
-  CURRENT: 'Current',
-  PROJECT: 'Project',
+  SELECT_PROJECT_DESC: 'Kaynağın oluşturulacağı bir proje seçin.',
+  PROJECT_NOT_SELECT_DESC: 'Lütfen bir proje seçin.',
+  BASIC_INFORMATION: 'Temel Bilgiler',
+  NAME: 'Ad',
+  FEDPROJECT_RESOURCE_TIP: 'Çok kümeli bir projede iş yükü kaynakları oluşturmak için çok kümeli projede İş Yükleri sayfasına gidin.',
+  FINISHED: 'Bitti',
+  NOT_SET: 'Belirlenmemiş',
+  CURRENT: 'Güncel',
+  PROJECT: 'Proje',
   // List > Create > Pod Settings
-  PREVIOUS: 'Previous',
-  NOTE: 'Note',
+  PREVIOUS: 'Önceki',
+  NOTE: 'Not',
   // List > Create > Pod Settings > Add Container > Container Settings
-  IMAGE: 'Image',
-  IMAGE_VALUE: 'Image: {value}',
+  IMAGE: 'Resim',
+  IMAGE_VALUE: 'Resim: {değer}',
   // List > Create > Pod Settings > Add Container > Health Check > Readiness Check > TCP Port
-  PORT_NUMBER_EMPTY: 'Please enter a port number.',
-  USER: 'User',
+  PORT_NUMBER_EMPTY: 'Lütfen bir bağlantı noktası numarası girin.',
+  USER: 'Kullanıcı',
   // List > Create > Volume Settings
-  VOLUME_NAME_EXIST: 'The volume name already exists.',
-  SELECT_TYPE: 'Select {type}',
-  SPECIFY_SUBPATH: 'Specify Subpath',
-  SPECIFY_SUBPATH_TIP: 'Specify a volume subpath to be mounted to the container.',
+  VOLUME_NAME_EXIST: 'Dosya adı zaten var.',
+  SELECT_TYPE: 'Türleri seçin',
+  SPECIFY_SUBPATH: 'Alt Yolu Belirtin',
+  SPECIFY_SUBPATH_TIP: 'Kapsayıcıya monte edilecek bir birim alt yolu belirtin.',
   // List > Create > Advanced Settings
-  NETWORK_SEGMENT_SCAP: 'Network segment',
-  AVAILABLE_ADDRESSES: 'Available addresses',
-  POD_IP_POOL: 'Pod IP Pool',
-  SUBPATH: 'Subpath',
+  NETWORK_SEGMENT_SCAP: 'Ağ segmenti',
+  AVAILABLE_ADDRESSES: 'Kullanılabilir adresler',
+  POD_IP_POOL: 'Pod IP Havuzu',
+  SUBPATH: 'Alt yol',
   // List > Create > Advanced Settings > Add Metadata
-  ANNOTATION_PL: 'Annotations',
-  CREATE_SUCCESSFUL: 'Created successfully.',
+  ANNOTATION_PL: 'Açıklamalar',
+  CREATE_SUCCESSFUL: 'Başarıyla oluşturuldu.',
   // List > Edit Information
   // List > Edit YAML
   // List > Re-create
   // List > Delete
-  WORKLOAD_LOW: 'workload',
+  WORKLOAD_LOW: 'iş yükleri',
   // List > Stop
-  STOP: 'Stop',
-  STOP_TITLE_SI: 'Stop {type}',
-  STOP_TITLE_PL: 'Stop Multiple {type}'
+  STOP: 'Dur',
+  STOP_TITLE_SI: 'Dur {tip}',
+  STOP_TITLE_PL: 'Çoklu {tip} Durdur.'
 };

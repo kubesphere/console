@@ -21,33 +21,33 @@ module.exports = {
   // Banner
   CLUSTER_GATEWAY_DESC: '對集群和項目中的外網訪問網關以及服務治理等配置進行設置和管理',
   // Cluster Gateway
-  CLUSTER_GATEWAY_NOT_ENABLED: '集群網關未設置',
-  CLUSTER_ENABLE_GATEWAY_DESC: '創建應用路由之前，需要先啟用外網訪問入口，即網關。這一步是創建對應的應用路由控制器，負責將請求轉發到對應的後端服務。 ',
+  CLUSTER_GATEWAY_NOT_ENABLED: '集群網關未開啟',
+  CLUSTER_ENABLE_GATEWAY_DESC: '請開啟集群網關。',
   CLUSTER_GATEWAY: '集群網關',
-  GATEWAY_ADDRESS_SCAP: 'Gateway address',
-  LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
+  GATEWAY_ADDRESS_SCAP: '網關地址',
+  LOAD_BALANCER_PROVIDER_SCAP: '負載均衡器供應商',
   // Cluster Gateway > Enable Gateway
-  ENABLE_GATEWAY: '設置網關',
-  GATEWAY_TRACING_TIP: '如果您不需要使用應用治理的功能，無需打開此項；如果您需要使用應用治理的 Tracing 功能，請打開開此項。打開此項後，如果您的應用路由無法訪問，請檢查應用路由中是否添加 `nginx.ingress.kubernetes.io/service-upstream: true` 注解，如無，請手動添加。',
+  ENABLE_GATEWAY: '開啟網關',
+  GATEWAY_TRACING_TIP: '如果開啟<b>鏈路追蹤</b>後路由無法訪問，請在路由中添加註釋 <b>nginx.ingress.kubernetes.io/service-upstream: true</b>。',
   // Cluster Gateway > Manage > View Details
-  VIEW_DETAILS: 'View Details',
+  VIEW_DETAILS: '查看詳情',
   // Cluster Gateway > Manage > Disable
-  DISABLE: 'Disable',
-  DISABLE_GATEWAY: 'Disable Gateway',
-  DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
-  DISABLE_SUCCESSFUL: 'Disabled successfully.',
+  DISABLE: '關閉',
+  DISABLE_GATEWAY: '關閉網關',
+  DISABLE_GATEWAY_TIP: '您確定關閉網關嗎？',
+  DISABLE_SUCCESSFUL: '關閉成功。',
   // Cluster Gateway > Manage > Edit
   EDIT: '編輯',
-  EDIT_TITLE: 'Edit {title}',
+  EDIT_TITLE: '編輯 {title}',
   // Cluster Gateway > Manage > Delete
   // Project Gateway
   PROJECT_GATEWAY: '項目網關',
-  PROJECT_GATEWAY_NOT_ENABLED: '沒有找到 項目網關',
-  PROJECT_ENABLE_GATEWAY_DESC: '集群管理頁面不支持項目網關的設置，如需設置需要轉到對應項目下進行設置。 ',
+  PROJECT_GATEWAY_NOT_ENABLED: '項目網關 未開啟',
+  PROJECT_ENABLE_GATEWAY_DESC: '請開啟項目網關。',
   REPLICA_COUNT: '副本數量',
-  NODE_PORTS: '主機端口',
-  UPDATE_GATEWAY_DESC: '當前網關可升級',
+  NODE_PORTS: '主機通訊埠',
+  UPDATE_GATEWAY_DESC: '目前網關可更新',
   // Project Gateway > Delete
-  PROJECT_GATEWAY_PL: 'Project Gateways',
-  PROJECT_GATEWAY_LOW: 'project gateway'
+  PROJECT_GATEWAY_PL: '項目網關',
+  PROJECT_GATEWAY_LOW: '項目網關'
 };

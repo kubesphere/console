@@ -18,12 +18,12 @@
 module.exports = {
   // Banner
   // Project Information
-  PROJECT_NAME: 'Project name',
+  PROJECT_NAME: 'Proje adı',
   // Default Container Quotas
-  NO_REQUEST_TCAP: 'No Request',
-  NO_LIMIT_TCAP: 'No Limit',
-  CPU_REQUEST_LOW: 'CPU request',
-  CPU_LIMIT_LOW: 'CPU limit',
+  NO_REQUEST_TCAP: 'İstek Yok',
+  NO_LIMIT_TCAP: 'Limit yok',
+  CPU_REQUEST_LOW: 'CPU isteği',
+  CPU_LIMIT_LOW: 'CPU Sınırlayıcı',
   CPU_REQUEST_CORE: '{value} Core',
   CPU_LIMIT_CORE: '{value} Core',
   MEMORY_REQUEST_MIB: '{value} Mi',
@@ -32,5 +32,5 @@ module.exports = {
   // Manage > Add Cluster
   // Manage > Edit Default Container Quotas
   // Manage > Delete Project
-  DELETE_PROJECT: 'Delete Project'
+  DELETE_PROJECT: 'Projeyi sil'
 };

@@ -17,19 +17,19 @@
  */
 module.exports = {
   // Basic Information
-  EMAIL_DESC: 'The email address can be used to log in to the KubeSphere web console.',
-  LANGUAGE: 'Language',
-  USER_SETTINGS: 'User Settings',
-  CLOSE: 'Close',
-  CONTENT_NOT_SAVED_TIPS: 'content has been modified but not saved',
-  SAVE_EDIT_HINTS: 'please confirm that the modified content is correct, you can save the settings or cancel the settings.',
+  EMAIL_DESC: 'E-posta adresi, KubeSphere web konsolunda oturum açmak için kullanılabilir.',
+  LANGUAGE: 'Dil',
+  USER_SETTINGS: 'Kullanıcı Ayarları',
+  CLOSE: 'Kapat',
+  CONTENT_NOT_SAVED_TIPS: 'içerik değiştirildi ancak kaydedilmedi',
+  SAVE_EDIT_HINTS: 'lütfen değiştirilen içeriğin doğru olduğunu onaylayın, ayarları kaydedebilir veya ayarları iptal edebilirsiniz.',
   // Password Settings
-  PASSWORD_SETTINGS: 'Password Settings',
-  PASSWORD_EMPTY_DESC: 'Please set a password.',
-  CHANGE_PASSWORD_TIP: 'Since you are logging in for the first time, please reset your password.',
-  CURRENT_PASSWORD: 'Current Password',
-  ENTER_CURRENT_PASSWORD_TIP: 'Please enter the current password.',
-  CONFIRM_PASSWORD: 'Confirm Password',
-  PASSWORD_NOT_SAME_DESC: 'New Password and Confirm Password must be the same.',
-  ENTER_CURRENT_PASSWORD_DESC: 'To change the password, you must first enter the current password.'
+  PASSWORD_SETTINGS: 'Şifre ayarları',
+  PASSWORD_EMPTY_DESC: 'Lütfen bir şifre ayarlayın.',
+  CHANGE_PASSWORD_TIP: 'İlk kez giriş yaptığınız için lütfen şifrenizi sıfırlayın.',
+  CURRENT_PASSWORD: 'Mevcut Parola',
+  ENTER_CURRENT_PASSWORD_TIP: 'Lütfen mevcut şifrenizi giriniz.',
+  CONFIRM_PASSWORD: 'Şifreyi Onayla',
+  PASSWORD_NOT_SAME_DESC: 'Yeni Parola ve Parolayı Onayla aynı olmalıdır.',
+  ENTER_CURRENT_PASSWORD_DESC: 'Şifreyi değiştirmek için önce mevcut şifreyi girmelisiniz.'
 };

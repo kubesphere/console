@@ -17,11 +17,11 @@
  */
 module.exports = {
   // Details
-  CUSTOM_SERVICE: 'Custom Service',
-  VIRTUAL_IP: 'VirtualIP',
+  CUSTOM_SERVICE: 'Müşteri hizmetleri',
+  VIRTUAL_IP: 'Sanal IP',
   // Resource Status
-  CONTAINER_PORT_SCAP: 'Container port',
-  SERVICE_PORT_SCAP: 'Service port',
-  NO_AVAILABLE_RESOURCE_VALUE: 'No Available {resource}',
-  NO_RESOURCE_FOUND: 'No Resource Found'
+  CONTAINER_PORT_SCAP: 'Konteyner Kayıtları',
+  SERVICE_PORT_SCAP: 'Servis bağlama portu',
+  NO_AVAILABLE_RESOURCE_VALUE: 'mevcut kaynak',
+  NO_RESOURCE_FOUND: 'Kaynak Bulunamadı'
 };

@@ -20,16 +20,16 @@ module.exports = {
   // List
   // List > Create > Basic Information
   // List > Create > Pod Settings
-  CONTAINER_SETTINGS_DESC: 'Set the image, name, type, and computing resources of the container.',
-  PORT_SETTINGS_DESC: 'Set the ports used for accessing the container.',
-  HEALTH_CHECKER_DESC: 'Add probes to check the container health status regularly.',
-  STARTUP_COMMAND: 'Start Command',
-  STARTUP_COMMAND_DESC: 'Customize the command run by the container upon startup. By default, the container runs the default image command.',
-  CONTAINER_COMMAND_DESC: 'Startup command of the container.',
-  CONTAINER_ARGUMENT_DESC: 'Parameters of the startup command. Use commas to separate multiple parameters.',
-  CONTAINER_ENVIRONMENT_DESC: 'Add environment variables to the container.',
-  PROBE_COMMAND_DESC: 'Use commas to separate multiple commands.',
+  CONTAINER_SETTINGS_DESC: 'Kapsayıcının görüntüsünü, adını, türünü ve bilgi işlem kaynaklarını ayarlayın.',
+  PORT_SETTINGS_DESC: 'Kapsayıcıya erişmek için kullanılan bağlantı noktalarını ayarlayın.',
+  HEALTH_CHECKER_DESC: 'Kapsayıcı sağlık durumunu düzenli olarak kontrol etmek için yoklamalar ekleyin.',
+  STARTUP_COMMAND: 'Komutu Başlat',
+  STARTUP_COMMAND_DESC: 'Başlangıçta kapsayıcı tarafından çalıştırılan komutu özelleştirin. Kapsayıcı varsayılan olarak varsayılan görüntü komutunu çalıştırır.',
+  CONTAINER_COMMAND_DESC: 'Konteynerin başlatma komutu.',
+  CONTAINER_ARGUMENT_DESC: 'Başlatma komutunun parametreleri. Birden çok parametreyi ayırmak için virgül kullanın.',
+  CONTAINER_ENVIRONMENT_DESC: 'Kapsayıcıya ortam değişkenleri ekleyin.',
+  PROBE_COMMAND_DESC: 'Birden çok komutu ayırmak için virgül kullanın.',
   // List > Create > Pod Settings > Add Container
-  IGNORE_CERT_WARN_DESC: 'Ignoring certificate verification may cause password disclosure.',
-  CERT_ERROR: 'Certificate error.'
+  IGNORE_CERT_WARN_DESC: 'Sertifika doğrulamasının dikkate alınmaması, parolanın açığa çıkmasına neden olabilir.',
+  CERT_ERROR: 'Sertifika hatası.'
 };

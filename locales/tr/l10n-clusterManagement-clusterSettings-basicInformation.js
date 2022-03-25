@@ -18,17 +18,18 @@
 module.exports = {
   // Banner
   // Cluster Information
-  NODES: 'Nodes',
+  NODES: 'Düğümler',
   DISK: 'Disk',
-  CLUSTER_INFORMATION: 'Cluster Information',
+  CLUSTER_INFORMATION: 'Küme Bilgisi',
   // Cluster Information > Edit Information
-  CLUSTER_NAME: 'Cluster Name',
-  EDIT_CLUSTER_INFO_DESC: 'Edit basic information about the cluster.',
+  CLUSTER_NAME: 'Küme Adı',
+  EDIT_CLUSTER_INFO_DESC: 'Küme hakkında temel bilgileri al.',
   // Unbind Cluster
-  UNBIND: 'Unbind',
-  UNBIND_CLUSTER: 'Unbind Cluster',
-  UNBIND_CLUSTER_DESC: 'After the cluster is unbound, KubeSphere will not be able to manage the cluster. The Kubernetes resources on the cluster will not be deleted.',
-  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation',
-  UNBIND_CLUSTER_Q: 'Unbind Cluster',
-  NODE: 'Node'
+  UNBIND: 'Bağlantı kes',
+  UNBIND_CLUSTER: 'Kümenin Bağlantısını Kaldır',
+  UNBIND_CLUSTER_DESC: 'Kümenin bağlantısı kaldırıldıktan sonra KubeSphere kümeyi yönetemez. Kümedeki Kubernetes kaynakları silinmez. İşlemle ilişkili riskleri anladığınızdan emin olmak için lütfen <strong>{name}</strong> küme adını girin.',
+  UNBIND_SUCCESS: 'Bağlantı Kesildi',
+  SURE_TO_UNBIND_CLUSTER: 'Bu operasyonun risklerini anlıyorum.',
+  UNBIND_CLUSTER_Q: 'Kümenin Bağlantısını Kaldır',
+  NODE: 'Düğüm'
 };

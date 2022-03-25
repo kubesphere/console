@@ -19,8 +19,7 @@ module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: '通知管理',
   NOTIFICATION_CONFIGURATION: '通知配置',
-  NOTIFICATION_CONFIGURATION_DESC:
-    'KubeSphere 支持多种通知渠道的通知配置，您可以进行服务器和接收配置，并开启或关闭通知。',
+  NOTIFICATION_CONFIGURATION_DESC: 'KubeSphere 支持多种通知渠道的通知配置，您可以进行服务器和接收配置，并开启或关闭通知。',
   NOTIFICATION_EMAIL: '邮件',
   // Email
   MAIL_TITLE: '邮件',
@@ -36,23 +35,19 @@ module.exports = {
   CONTAINER: '容器',
   VALUES: '值',
   CONDITION_OPERATOR: '操作符',
-  NOTIFICATION_CONDITION_SETTING_TIP:
-    '操作符<b>包含值</b>和<b>不包含值</b>需要添加一个或多个标签值。使用回车分隔多个值。</br>操作符<b>存在</b>和<b>不存在</b>判断某个标签是否存在，无需设置标签值。',
+  NOTIFICATION_CONDITION_SETTING_TIP: '操作符<b>包含值</b>和<b>不包含值</b>需要添加一个或多个标签值。使用回车分隔多个值。</br>操作符<b>存在</b>和<b>不存在</b>判断某个标签是否存在，无需设置标签值。',
   NOTIFICATION_CONDITION_SETTINGS_DESC: '您只会接收到符合条件的通知。',
   INCLUDES_VALUES: '包含值',
   DOES_NOT_INCLUDE_VALUES: '不包含值',
   EXISTS: '存在',
   DOES_NOT_EXIST: '不存在',
   TAG_INPUT_PLACEHOLDER: '请输入值后回车确认',
-  PATTERN_TAG_INVALID_TIP:
-    '标签无效。标签只能包含字母、数字、连字符（-）、下划线（_）和句点（.），必须以数字或字母开头和结尾。',
-  PATTERN_TAG_VALUE_INVALID_TIP:
-    '标签值无效。标签值只能包含字母、数字、连字符（-）、下划线（_）和句点（.），必须以数字或字母开头和结尾，最长 63 个字符。',
+  PATTERN_TAG_INVALID_TIP: '标签无效。标签只能包含字母、数字、连字符（-）、下划线（_）和句点（.），必须以数字或字母开头和结尾。',
+  PATTERN_TAG_VALUE_INVALID_TIP: '标签值无效。标签值只能包含字母、数字、连字符（-）、下划线（_）和句点（.），必须以数字或字母开头和结尾，最长 63 个字符。',
   INVALID_NOTIFICATION_CONDITION: '请填写正确的通知条件。',
   SEND_TEST_MESSAGE: '发送测试信息',
   SEND_TEST_MESSAGE_DESC: '配置完成后，您可以发送测试信息进行验证。',
-  SEND_TEST_MESSAGE_SUCCESS_DESC:
-    '验证成功。已向您发送了一条测试消息，请注意查收。',
+  SEND_TEST_MESSAGE_SUCCESS_DESC: '验证成功。已向您发送了一条测试消息，请注意查收。',
   SMTP_SERVER_ADDRESS: 'SMTP 服务器地址',
   USE_SSL_SECURE_CONNECTION: '使用 SSL 安全连接',
   SENDER_EMAIL: '发件人邮箱',
@@ -69,8 +64,7 @@ module.exports = {
   ADDED_SUCCESS_DESC: '添加成功。',
   POD: '容器组',
   UPDATE_SUCCESSFUL: '更新成功。',
-  PATTERN_NAME_INVALID_TIP:
-    '名称无效。名称只能包含小写字母、数字、或连字符（-）。',
+  PATTERN_NAME_INVALID_TIP: '名称无效。名称只能包含小写字母、数字、或连字符（-）。',
   // DingTalk
   DINGTALK_TITLE: '钉钉',
   DingTalk: '钉钉',
@@ -79,8 +73,7 @@ module.exports = {
   // DingTalk > Conversation Settings
   CONVERSATION_SETTINGS: '会话设置',
   CONVERSATION_ID: '会话 ID',
-  CONVERSATION_ID_TIP:
-    '会话 ID 需要系统管理员进行配置才能获取，如需设置请联系系统管理员。',
+  CONVERSATION_ID_TIP: '会话 ID 需要系统管理员进行配置才能获取，如需设置请联系系统管理员。',
   DINGTALK_SETTING_TIP: '请设置会话或者群机器人。',
   ENTER_CONVERSATION_ID_DESC: '请输入会话 ID。',
   MAX_CID_COUNT: '您可以最多添加 {count} 个会话 ID。',
@@ -152,4 +145,7 @@ module.exports = {
   NO_AUTH: '无需认证',
   BEARER_TOKEN: 'Bearer 令牌',
   TOKEN: '令牌',
-}
+  WEBHOOK_USERNAME_EMPTY_DESC: '请输入一个用户名。',
+  WEBHOOK_PASSWORD_EMPTY_DESC: '请输入密码。',
+  WEBHOOK_TOKEN_EMPTY_DESC: '请输入一个令牌。'
+};

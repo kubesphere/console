@@ -21,5 +21,6 @@ module.exports = {
   // List
   // List > View YAML
   // List > Delete
-  POD_LOW: 'pod'
+  POD_LOW: 'pod',
+  PENDING: 'Bekliyor'
 };

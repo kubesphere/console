@@ -17,24 +17,24 @@
  */
 module.exports = {
   // Banner
-  APP_RELEASE: 'App Release',
-  APP_RELEASE_DESC: 'Manages apps to be released to the App Store. You can view app details and approve or reject app releases.',
+  APP_RELEASE: 'Uygulama Yayınlama',
+  APP_RELEASE_DESC: 'App Store\'da yayınlanacak uygulamaları yönetir. Uygulama ayrıntılarını görüntüleyebilir ve uygulama sürümlerini onaylayabilir veya reddedebilirsiniz.',
   // Unreleased
-  UNRELEASED: 'Unreleased',
-  APP_REVIEW_EMPTY_DESC: 'Please create an app template in a workspace and submit the app template for release.',
-  APP_STATUS_SUBMITTED: 'Submitted',
-  APP_STATUS_PASSED: 'Released',
-  APP_STATUS_SUSPENDED: 'Suspended',
-  APP_STATUS_REJECTED: 'Rejected',
-  APP_STATUS_ACTIVE: 'Activated',
-  APP_STATUS_PUBLISHED: 'Released',
-  APP_STATUS_RECALLED: 'Suspended',
-  APP_STATUS_RECALL: 'Recall',
-  APP_STATUS_DRAFT: 'To be submitted',
-  APP_STATUS_PENDING_REVIEW: 'To be released',
-  APP_STATUS_IN_REVIEW: 'Reviewing',
-  APP_STATUS_DEVELOPING: 'Developing',
+  UNRELEASED: 'Yayınlanmamış',
+  APP_REVIEW_EMPTY_DESC: 'Lütfen bir çalışma alanında bir uygulama şablonu oluşturun ve uygulama şablonunu yayınlanmak üzere gönderin.',
+  APP_STATUS_SUBMITTED: 'Gönderildi',
+  APP_STATUS_PASSED: 'Yayınlandı',
+  APP_STATUS_SUSPENDED: 'Askıya alındı',
+  APP_STATUS_REJECTED: 'Reddedildi',
+  APP_STATUS_ACTIVE: 'Aktif',
+  APP_STATUS_PUBLISHED: 'Yayınlanmış',
+  APP_STATUS_RECALLED: 'Askıya alındı',
+  APP_STATUS_RECALL: 'Hatırlamak',
+  APP_STATUS_DRAFT: 'Gönderilecek',
+  APP_STATUS_PENDING_REVIEW: 'Yayınlanacak',
+  APP_STATUS_IN_REVIEW: 'Gözden geçirme',
+  APP_STATUS_DEVELOPING: 'Gelişiyor',
   // Released
-  RELEASED: 'Released',
-  OPERATOR: 'Operator'
+  RELEASED: 'Yayınlandı',
+  OPERATOR: 'Operatör'
 };

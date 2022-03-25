@@ -18,19 +18,19 @@
 module.exports = {
   // More > Edit YAML
   // More > Clone
-  CLONE_VOLUME: 'Clone Volume',
-  CLONE: 'Clone',
+  CLONE_VOLUME: 'Bölümü Klonla',
+  CLONE: 'Klon',
   // More > Create Snapshot
-  CREATE_SNAPSHOT: 'Create Snapshot',
-  VOLUME_SNAPSHOT_CLASS: 'Volume Snapshot Class',
-  SNAPSHOT_EMPTY_TIP: 'Please select a volume snapshot class.',
+  CREATE_SNAPSHOT: 'Anlık Görüntü Oluştur',
+  VOLUME_SNAPSHOT_CLASS: 'Bölüm Anlık Görüntü Sınıfı',
+  SNAPSHOT_EMPTY_TIP: 'Lütfen bir bölüm anlık görüntü sınıfı seçiniz.',
   // More > Expand
-  EXPAND_VOLUME: 'Expand Volume',
-  EXPAND: 'Expand',
+  EXPAND_VOLUME: 'Bölüm Genişlet',
+  EXPAND: 'Genişlet',
   // Details
-  PROVISIONER: 'Provisioner',
+  PROVISIONER: 'Sağlayıcı',
   // Resource Status
-  AVAILABLE_CAPACITY: 'Available capacity',
-  POD_IP_ADDRESS_SCAP: 'Pod IP address',
-  TOTAL_CAPACITY: 'Total capacity'
+  AVAILABLE_CAPACITY: 'Kullanılabilir kapasite',
+  POD_IP_ADDRESS_SCAP: 'Kapsül IP adresi',
+  TOTAL_CAPACITY: 'Toplam kapasite'
 };

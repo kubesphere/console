@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  APPS: 'Apps',
+  APPS: 'Aplicaciones',
   APP_STORE_MANAGEMENT: 'Gestión de la Tienda de Aplicacines',
   APP_STORE_DESC: 'Gestionar aplicaciones de la Tienda.',
   // List

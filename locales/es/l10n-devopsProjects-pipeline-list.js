@@ -158,5 +158,10 @@ module.exports = {
   PIPELINE_CRON_DESC: 'Habría corrido por última vez en {lastTime}; se ejecutará a las {nextTime}',
   PIPELINE_SCHEDULE_DESC: 'Enter a CRON expression to set a schedule. <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">Learn More</a>',
   DEFAULT_VALUE: 'Valor por defecto',
-  PARAMETER_NAME_EMPTY_DESC: 'Please set the parameter name.'
+  PARAMETER_NAME_EMPTY_DESC: 'Please set the parameter name.',
+  SELECT_TEMPLATE: 'Select template',
+  PARAMETER_CONFIG: 'Parameter configuration',
+  PREVIEW: 'Preview',
+  EMPTY_PARAMS_CONFIG: 'This operation does not require parameter configuration.',
+  PIPELINE_VALIDATOR_DESC: 'Please select a pipeline template.'
 };

@@ -19,8 +19,8 @@ module.exports = {
   // Details
   // More > Edit YAML
   // More > Edit Routing Rules
-  SERVICE_VALUE: 'Service: {value}',
+  SERVICE_VALUE: 'Hizmet: {değer}',
   // More > Edit Annotations
   // Resource Status
-  PROTOCOL_VALUE: 'Protocol: {value}'
+  PROTOCOL_VALUE: 'Protokol: {değer}'
 };

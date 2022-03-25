@@ -29,16 +29,16 @@ module.exports = {
   // More > Re-Create
   // More > Delete
   // Resource Status > Clusters
-  MULTI_CLUSTER_RESOURCE_TIP: '目前資源為多集群資源，資源將分佈在不同集群中共同來構成多集群資源，您可以切換到不同集群查看資源在該集群中的設置。',
+  MULTI_CLUSTER_RESOURCE_TIP: '目前資源跨多個集群部屬。您可以點擊一個集群以查看資源在該集群中的設置。',
   // Resource Status > Replica Status
   // Resource Status > Ports
   // Resource Status > Pods
   // Revision Records
-  SERIAL_NUMBER: 'Serial number',
+  SERIAL_NUMBER: '序號',
   CREATED_TIME: '創建於 {diff}',
   // Metadata
   // Monitoring
   // Environment Variables
   // Events
-  EVENT_PL: 'Events'
+  EVENT_PL: '事件'
 };

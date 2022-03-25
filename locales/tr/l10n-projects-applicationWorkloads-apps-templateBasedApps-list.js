@@ -17,33 +17,33 @@
  */
 module.exports = {
   // Banner
-  TEMPLATE_BASED_APP_PL: 'Template-Based Apps',
-  APPLICATIONS_DESC: 'An app provides users with comprehensive business functions in one package. App templates in KubeSphere are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An app is composed of one or more Kubernetes objects including workloads, services and ingresses.',
-  APP_PL: 'Apps',
-  APP_TYPES_Q: 'What app types does KubeSphere support?',
-  APP_TYPES_A: 'KubeSphere supports templated-based apps and composed apps. Template-based apps are created from You can deploy apps from the KubeSphere App Store or an app template. Composed apps are customized by users.',
-  HOW_TO_USE_APP_GOVERN_Q: 'How do I use Application Governance?',
-  HOW_TO_USE_APP_GOVERN_A: 'You can enable Application Governance when you create a composed app.',
-  DEPLOY_SAMPLE_APP: 'Deploy Sample App',
+  TEMPLATE_BASED_APP_PL: 'Şablon Tabanlı Uygulamalar',
+  APPLICATIONS_DESC: 'Bir uygulama, kullanıcılara tek bir pakette kapsamlı iş işlevleri sağlar. KubeSphere\'deki uygulama şablonları, Helm paketleme spesifikasyonuna göre oluşturulmuştur. Birleşik bir genel veya özel Helm deposu aracılığıyla teslim edilirler. Bir uygulama, iş yükleri, hizmetler ve girişler dahil olmak üzere bir veya daha fazla Kubernetes nesnesinden oluşur.',
+  APP_PL: 'Uygulamalar',
+  APP_TYPES_Q: 'KubeSphere hangi uygulama türlerini destekler?',
+  APP_TYPES_A: 'KubeSphere, şablon tabanlı uygulamaları ve oluşturulmuş uygulamaları destekler. Şablon tabanlı uygulamalar şuradan oluşturulur: Uygulamaları KubeSphere App Store\'dan veya bir uygulama şablonundan dağıtabilirsiniz. Oluşturulan uygulamalar kullanıcılar tarafından özelleştirilir.',
+  HOW_TO_USE_APP_GOVERN_Q: 'Uygulama Yönetimini nasıl kullanırım?',
+  HOW_TO_USE_APP_GOVERN_A: 'Oluşturulan bir uygulama oluşturduğunuzda Uygulama Yönetimini etkinleştirebilirsiniz.',
+  DEPLOY_SAMPLE_APP: 'Örnek Uygulamayı Dağıt',
   // List
-  NO_TEMPLATE_BASED_APP_FOUND: 'No Template-Based App Found',
-  TEMPLATE_BASED_APP_EMPTY_DESC: 'Please create an app from the KubeSphere App Store or an app template.',
-  APP: 'App',
-  VERSION: 'Version',
+  NO_TEMPLATE_BASED_APP_FOUND: 'Şablon Tabanlı Uygulama Bulunamadı',
+  TEMPLATE_BASED_APP_EMPTY_DESC: 'Lütfen KubeSphere App Store\'dan bir uygulama veya bir uygulama şablonu oluşturun.',
+  APP: 'Uygulama',
+  VERSION: 'Versiyon',
   // List > Create
-  CREATE_APP: 'Create App',
-  CREATE_APP_DESC: 'Create an app from the KubeSphere App Store or an app template.',
-  FROM_APP_STORE: 'From App Store',
-  FROM_APP_TEMPLATE: 'From App Template',
-  FROM_APP_STORE_DESC: 'Create an app from the KubeSphere App Store.',
+  CREATE_APP: 'Uygulama oluştur',
+  CREATE_APP_DESC: 'KubeSphere App Store\'dan veya bir uygulama şablonundan bir uygulama oluşturun.',
+  FROM_APP_STORE: 'Uygulama Mağazasından',
+  FROM_APP_TEMPLATE: 'Uygulama Şablonundan',
+  FROM_APP_STORE_DESC: 'KubeSphere App Store\'dan bir uygulama oluşturun.',
   // List > Create > From App Template
-  SELECT_APP_REPOSITORY: 'Select app repository',
-  CURRENT_WORKSPACE: 'Current workspace',
-  FROM_APP_TEMPLATE_DESC: 'Create an app from an app template in the current workspace or in a remote app repository.',
-  APP_TEMPLATES_MODAL_DESC: 'Select the current workspace or a remote app repository from the drop-down list to view the available app templates.',
+  SELECT_APP_REPOSITORY: 'Bir uygulama deposu seçin',
+  CURRENT_WORKSPACE: 'Mevcut çalışma alanı',
+  FROM_APP_TEMPLATE_DESC: 'Geçerli çalışma alanındaki veya uzak uygulama havuzundaki bir uygulama şablonundan uygulama oluşturun.',
+  APP_TEMPLATES_MODAL_DESC: 'Kullanılabilir uygulama şablonlarını görüntülemek için açılır listeden geçerli çalışma alanını veya uzak uygulama havuzunu seçin.',
   // List > Create > From App Template > App Information
   // List > Create > From App Template > Chart Files
   // List > Edit
   // List > Delete
-  APP_LOW: 'app'
+  APP_LOW: 'Uygulama'
 };

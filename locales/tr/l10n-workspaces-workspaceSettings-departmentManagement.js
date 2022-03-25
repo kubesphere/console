@@ -17,37 +17,37 @@
  */
 module.exports = {
   // Banner
-  DEPARTMENT_PL: 'Department Management',
-  DEPARTMENT_MANAGEMENT_DESC: 'A department in a workspace is a logical unit used for permission control. You can set a workspace role, multiple project roles, and multiple DevOps project roles in a department, and assign users to the department to control user permissions in batches.',
+  DEPARTMENT_PL: 'Bölüm Yönetimi',
+  DEPARTMENT_MANAGEMENT_DESC: 'Çalışma alanındaki bölümler, yetki denetimi için kullanılan mantıksal birimlerdir. Bir bölüm içerisinde çalışma alanı rolü, birden fazla proje ve DevOps projesi rolü tanımlayabilir, kullanıcıları bu bölüme ekleyerek yetkilerini yığın halde denetim altında tutabilirsiniz.',
   // List
   // List > Not Assigned
-  NOT_ASSIGNED_TCAP: 'Not Assigned',
-  ADD_MEMBER_TIP_SI: 'Are you sure you want to assign the user to the department <strong>{group}</strong>?',
-  ADD_MEMBER_TIP_PL: 'Are you sure you want to assign the users to the department <strong>{group}</strong>?',
+  NOT_ASSIGNED_TCAP: 'Atanmamış',
+  ADD_MEMBER_TIP_SI: 'Kullanıcıyı <strong>{group}</strong> bölümüne atamak istediğinizden emin misiniz?',
+  ADD_MEMBER_TIP_PL: 'Kullanıcıyı <strong>{group}</strong> bölümüne atamak istediğinizden emin misiniz?',
   // List > Assigned
-  ASSIGNED: 'Assigned',
-  DEPARTMENT: 'Department',
+  ASSIGNED: 'Atanmış',
+  DEPARTMENT: 'Bölüm',
   // List > Set Departments
-  SET_DEPARTMENTS: 'Set Departments',
-  DEPARTMENT_EMPTY_DESC: 'No Department Available',
-  NO_DEPARTMENT_TIP: 'No department available. Please create a department on the right.',
-  CREATE_DEPARTMENT: 'Create Department',
-  DELETE_GROUP_TIP: 'Are you sure you want to delete the department <strong>{group_name}</strong>? The associated roles will be unbound from the users.',
-  DELETE_PARENT_GROUP_TIP: 'Are you sure you want to delete the department <strong>{group_name}</strong>? Its subdepartments will also be deleted and the associated roles will be unbound from the users.',
-  PROJECT_VALUE: 'Project: {value}',
-  PROJECT_ROLE_VALUE: 'Project role: {value}',
-  DEVOPS_VALUE: 'DevOps project: {value}',
-  DEVOPS_PROJECT_ROLES_VALUE: 'DevOps project role: {value}',
+  SET_DEPARTMENTS: 'Bölümlere Ata',
+  DEPARTMENT_EMPTY_DESC: 'Müsait Bölüm Yok',
+  NO_DEPARTMENT_TIP: 'Müsait bölüm yok. Lütfen sağ taraftan bir bölüm oluşturunuz.',
+  CREATE_DEPARTMENT: 'Bölüm Oluştur',
+  DELETE_GROUP_TIP: '<strong>{group_name}</strong> bölümünü silmek istediğinizden emin misiniz? İlişkilendirilmiş tüm roller kullanıcılardan kaldırılacaktır.',
+  DELETE_PARENT_GROUP_TIP: '<strong>{group_name}</strong> bölümünü silmek istediğinizden emin misiniz? Tüm alt bölümleri de silinecek ve tanımlanmış roller kullanıcılardan kaldırılacaktır.',
+  PROJECT_VALUE: 'Proje: {value}',
+  PROJECT_ROLE_VALUE: 'Proje rolü: {value}',
+  DEVOPS_VALUE: 'DevOps projesi: {value}',
+  DEVOPS_PROJECT_ROLES_VALUE: 'DevOps projesi rolü: {value}',
   // List > Set Departments > Workspace Role
-  WORKSPACE_ROLE: 'Workspace Role',
-  GROUP_WORKSPACE_ROLE_DESC: 'The workspace role will be assigned to all members in the department.',
-  MEMBER_CLUSTER_UPGRADE_TIP: 'Member clusters with versions earlier than {version} do not support this function. Please upgrade the member clusters to {version} or later.',
+  WORKSPACE_ROLE: 'Çalışma Alanı Rolü',
+  GROUP_WORKSPACE_ROLE_DESC: 'Çalışma alanı rolü, bölüm içerisindeki tüm kullanıcılara atanacaktır.',
+  MEMBER_CLUSTER_UPGRADE_TIP: 'Sürüm numarası {version} \'dan küçük olan üye kümeler bu fonksiyonu desteklememektedir. Lütfen üye kümeleri {version} veya daha yüksek bir sürüme yükseltiniz.',
   // List > Set Departments > Project Role
-  PROJECT_ROLE: 'Project Role',
-  SELECT_ROLE_TIP: 'Please select a role.',
-  ADD_PROJECT: 'Add Project',
-  CLUSTER_UPGRADE_REQUIRED: 'The current KubeSphere version does not support this feature. Please upgrade KubeSphere to {version} or later.',
+  PROJECT_ROLE: 'Proje Rolü',
+  SELECT_ROLE_TIP: 'Lütfen rol seçiniz.',
+  ADD_PROJECT: 'Proje Ekle',
+  CLUSTER_UPGRADE_REQUIRED: 'Mevcut KubeSphere sürümü bu fonksiyonu desteklememektedir. Lütfen KubeSphere {version} veya daha yüksek bir sürüme güncelleme yapınız.',
   // List > Set Departments > DevOps Project Role
-  DEVOPS_PROJECT_ROLE: 'DevOps Project Role',
-  ADD_DEVOPS_PROJECT: 'Add DevOps Project'
+  DEVOPS_PROJECT_ROLE: 'DevOps Proje Rolü',
+  ADD_DEVOPS_PROJECT: 'DevOps Projesi Ekle'
 };

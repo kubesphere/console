@@ -18,10 +18,10 @@
 module.exports = {
   // Details
   // Resource Status
-  CUSTOM_RESOURCE_PL: 'Custom Resources',
-  PROJECT_DEVOPS_PROJECT: 'Project/DevOps Project',
+  CUSTOM_RESOURCE_PL: '自定義資源',
+  PROJECT_DEVOPS_PROJECT: '項目/DevOps 項目',
   // Resource Status > Edit YAML
   // Resource Status > Delete
-  CUSTOM_RESOURCE: 'Custom Resource',
-  CUSTOM_RESOURCE_DEFINITION_LOW: 'custom resource definition'
+  CUSTOM_RESOURCE: '自定義資源',
+  CUSTOM_RESOURCE_DEFINITION_LOW: '定制資源定義'
 };

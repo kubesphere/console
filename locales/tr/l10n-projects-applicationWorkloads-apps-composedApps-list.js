@@ -17,33 +17,33 @@
  */
 module.exports = {
   // Banner
-  COMPOSED_APP_PL: 'Composed Apps',
+  COMPOSED_APP_PL: 'Oluşturulan Uygulamalar',
   // List
-  NO_COMPOSED_APP_FOUND: 'No Composed App Found',
-  COMPOSED_APP_EMPTY_DESC: 'Please create a composed app.',
+  NO_COMPOSED_APP_FOUND: 'Oluşturulan Uygulama Bulunamadı',
+  COMPOSED_APP_EMPTY_DESC: 'Lütfen oluşturulmuş bir uygulama oluşturun.',
   // List > Edit Information
   // List > Delete
   // List > Create
-  STATEFUL_SERVICE: 'Stateful Service',
-  STATELESS_SERVICE: 'Stateless Service',
-  CREATE_COMPOSED_APP: 'Create Composed App',
-  SAVE_FORM_TIP: 'Please save the current settings first.',
+  STATEFUL_SERVICE: 'Duruma Dayalı Hizmet',
+  STATELESS_SERVICE: 'Sahipsiz Hizmet',
+  CREATE_COMPOSED_APP: 'Oluşturulmuş Uygulama Oluştur',
+  SAVE_FORM_TIP: 'Lütfen önce mevcut ayarları kaydedin.',
   // List > Create > Edit YAML
-  YAML_FILE: 'YAML File',
-  CREATE_BY_YAML_DESC: 'Customize the settings in the YAML file.',
+  YAML_FILE: 'YAML Dosyası',
+  CREATE_BY_YAML_DESC: 'YAML dosyasındaki ayarları özelleştirin.',
   // List > Create > Basic Information
-  APPLICATION_GOVERNANCE: 'Application Governance',
-  VERSION_DESC: 'The version can contain only lowercase letters and numbers. The maximum length is 16 characters.',
-  APPLICATION_GOVERNANCE_DESC: 'Enable Application Governace to use the Traffic Monitoring, Grayscale Release, and Tracing features for the app.',
-  APP_BASIC_INFORMATION_DESC: 'Set the basic information about the app.',
+  APPLICATION_GOVERNANCE: 'Uygulama Yönetimi',
+  VERSION_DESC: 'Sürüm yalnızca küçük harfler ve sayılar içerebilir. Maksimum uzunluk 16 karakterdir.',
+  APPLICATION_GOVERNANCE_DESC: 'Uygulama için Trafik İzleme, Gri Tonlamalı Yayın ve İzleme özelliklerini kullanmak için Uygulama Yönetimini etkinleştirin.',
+  APP_BASIC_INFORMATION_DESC: 'Uygulamayla ilgili temel bilgileri ayarlayın.',
   // List > Create > Service Settings
-  APP_SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful service.',
-  STATEFUL_SERVICE_DESC: 'Create a service and a statefulset.',
-  STATELESS_SERVICE_DESC: 'Create a service and a Deployment.',
-  APPLICATION_SERVICE_DESC: 'Add stateful or stateless services to the app based on your requirements.',
-  APP_CREATE_SERVICE_DESC: 'Create a service for the app.',
+  APP_SELECT_SERVICE_TYPE_DESC: 'Durum bilgisi olmayan veya durum bilgisi olan bir hizmet oluşturun.',
+  STATEFUL_SERVICE_DESC: 'Bir hizmet ve durum bilgisi kümesi oluşturun.',
+  STATELESS_SERVICE_DESC: 'Bir hizmet ve bir Dağıtım oluşturun.',
+  APPLICATION_SERVICE_DESC: 'Gereksinimlerinize göre uygulamaya durum bilgisi olan veya durum bilgisi olmayan hizmetler ekleyin.',
+  APP_CREATE_SERVICE_DESC: 'Uygulama için bir hizmet oluşturun.',
   // List > Create > Route Settings
-  ROUTE_SETTINGS: 'Route Settings',
-  ROUTING_RULES: 'Routing Rules',
-  ROUTE_SETTINGS_DESC: 'Set routing rules for the app.'
+  ROUTE_SETTINGS: 'Rota Ayarları',
+  ROUTING_RULES: 'Rota Kuralları',
+  ROUTE_SETTINGS_DESC: 'Uygulama için yönlendirme kuralları belirleyin.'
 };

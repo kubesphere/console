@@ -17,41 +17,41 @@
  */
 module.exports = {
   // Navigation pane
-  PROJECT_SETTINGS: 'Project Settings',
+  PROJECT_SETTINGS: 'Proje Ayarları',
   // Banner
-  HOW_TO_USE_QUOTA_Q: 'How do I use resource quotas?',
-  HOW_TO_USE_QUOTA_A: 'Resource quotas are a mechanism used to limit the resource usage. You can edit project resource quotas and default container quotas by clicking <b>Edit Project</b>.',
-  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q: 'What are default container quotas?',
-  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A: 'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
-  PROJECT_BASIC_INFO_DESC: 'Basic information provides an overview of the project. You can view the project information and default container quotas.',
+  HOW_TO_USE_QUOTA_Q: 'Kaynak kotalarını nasıl kullanırım?',
+  HOW_TO_USE_QUOTA_A: 'Kaynak kotaları, kaynak kullanımını sınırlamak için kullanılan bir mekanizmadır. <b>Projeyi Düzenle</b>\'yi tıklayarak proje kaynak kotalarını ve varsayılan kapsayıcı kotalarını düzenleyebilirsiniz.',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q: 'Varsayılan kapsayıcı kotaları nelerdir?',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A: 'Varsayılan kapsayıcı kotaları, projede oluşturulan kapsayıcıların varsayılan CPU isteğini, CPU sınırını, bellek isteğini ve bellek sınırını belirtir.',
+  PROJECT_BASIC_INFO_DESC: 'Temel bilgiler, projeye genel bir bakış sağlar. Proje bilgilerini ve varsayılan konteyner kotalarını görüntüleyebilirsiniz.',
   // Manage > Edit Information
   // Manage > Edit Project Quotas
-  EDIT_PROJECT_QUOTA: 'Edit Project Quota',
-  NUMBER_OF_CRONJOBS: 'Number of Cronjobs',
-  PROJECT_REMAINING_QUOTAS: 'Project Remaining Quotas',
-  WORKSPACE_REMAINING_QUOTAS: 'Workspace Remaining Quotas',
-  NUMBER_OF_JOBS: 'Number of Jobs',
+  EDIT_PROJECT_QUOTA: 'Proje Kotasını Düzenle',
+  NUMBER_OF_CRONJOBS: 'Cronjobs Sayısı',
+  PROJECT_REMAINING_QUOTAS: 'Kalan Proje Kotaları',
+  WORKSPACE_REMAINING_QUOTAS: 'Çalışma Alanında Kalan Kotalar',
+  NUMBER_OF_JOBS: 'İş Sayısı',
   // Manage > Edit Default Container Quotas
-  GPU_TYPE_SCAP: 'GPU type',
-  GPU_LIMIT_SCAP: 'GPU limit',
-  REQUEST_EXCEED_WORKSPACE: 'Resource requests and limits cannot exceed workspace resource limits.',
-  REQUEST_EXCEED_LIMIT: 'Resource requests cannot be greater than resource limits.',
+  GPU_TYPE_SCAP: 'GPU Tipi',
+  GPU_LIMIT_SCAP: 'GPU Sınırı',
+  REQUEST_EXCEED_WORKSPACE: 'Kaynak istekleri ve sınırları, çalışma alanı kaynak sınırlarını aşamaz.',
+  REQUEST_EXCEED_LIMIT: 'Kaynak istekleri, kaynak sınırlarından büyük olamaz.',
   // Mange > Delete
-  DELETE_PROJECT_TIP: 'Are you sure you want to delete the project <strong>{resource}</strong>? After the deletion, you will not be able to recover it, and all project resources will also be destroyed.',
+  DELETE_PROJECT_TIP: '<strong>{resource}</strong> projesini silmek istediğinizden emin misiniz? Silme işleminden sonra onu kurtaramayacaksınız ve tüm proje kaynakları da yok edilecek.',
   // Project Information
-  MANAGE: 'Manage',
-  PROJECT_INFO: 'Project Information',
-  EDIT_PROJECT_QUOTAS: 'Edit Project Quotas',
-  PROJECT_ROLE_SCAP: 'Project role',
-  PROJECT_ROLE_SCAP_PL: 'Project roles',
-  PROJECT_MEMBER_SCAP: 'Project member',
-  PROJECT_MEMBER_SCAP_PL: 'Project members',
+  MANAGE: 'Yönet',
+  PROJECT_INFO: 'Proje Bilgisi',
+  EDIT_PROJECT_QUOTAS: 'Proje Kotasını Düzenle',
+  PROJECT_ROLE_SCAP: 'Proje rolü',
+  PROJECT_ROLE_SCAP_PL: 'Proje Rolleri',
+  PROJECT_MEMBER_SCAP: 'Proje üyeleri',
+  PROJECT_MEMBER_SCAP_PL: 'Proje üyeleri',
   // Default Container Quotas
-  DEFAULT_CONTAINER_QUOTA_PL: 'Default Container Quotas',
-  EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
-  LIMITS_CPU: 'CPU Limit',
-  LIMITS_MEMORY: 'Memory Limit',
+  DEFAULT_CONTAINER_QUOTA_PL: 'Varsayılan Konteyner Kotaları',
+  EDIT_DEFAULT_CONTAINER_QUOTAS: 'Varsayılan Kapsayıcı Kotalarını Düzenle',
+  LIMITS_CPU: 'CPU Sınırı',
+  LIMITS_MEMORY: 'Bellek Sınırı',
   // Project Quotas
-  PROJECT_QUOTA_PL: 'Project Quotas',
-  RESOURCE_TYPE_SCAP: 'Resource type'
+  PROJECT_QUOTA_PL: 'Proje Kotası',
+  RESOURCE_TYPE_SCAP: 'Kaynak Türü'
 };

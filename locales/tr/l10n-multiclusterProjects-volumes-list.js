@@ -25,7 +25,7 @@ module.exports = {
   // List > Create > Basic Information
   // List > Create > Storage Settings
   // List > Create > Advanced Settings
-  VOLUME_ADD_METADATA_DESC: 'Add metadata to the volume.',
+  VOLUME_ADD_METADATA_DESC: 'Birime meta veri ekleyin.',
   // List > Create > Cluster Differences
-  STORAGE_SETTINGS: 'Storage Settings'
+  STORAGE_SETTINGS: 'Depolama Ayarları'
 };

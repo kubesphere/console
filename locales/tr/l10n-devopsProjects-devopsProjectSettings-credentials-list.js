@@ -17,20 +17,20 @@
  */
 module.exports = {
   // Banner
-  CREDENTIAL_PL: 'Credentials',
-  DEVOPS_CREDENTIALS_DESC: 'Credentials are objects that contain some sensitive data, such as username and password, SSH key and Token. They are used to provide authentication for pulling code, pushing/pulling images, executing SSH scripts, etc. when a pipeline is running.',
+  CREDENTIAL_PL: 'Kimlik Bilgileri',
+  DEVOPS_CREDENTIALS_DESC: 'Kimlik bilgileri, kullanıcı adı ve parola, SSH anahtarı ve Token gibi bazı hassas verileri içeren nesnelerdir. Bir işlem hattı çalışırken kod çekme, görüntüleri itme/çekme, SSH komut dosyalarını yürütme vb. için kimlik doğrulama sağlamak için kullanılırlar.',
   // List
-  CREDENTIAL_EMPTY_DESC: 'Please create a credential.',
+  CREDENTIAL_EMPTY_DESC: 'Lütfen bir kimlik bilgisi oluşturun.',
   // List > Create
-  CREATE_CREDENTIAL: 'Create Credential',
-  CREDENTIAL_NAME_EXIST_DESC: 'The credential name already exists. Please enter another name.',
-  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'Username and password',
-  CREDENTIAL_TYPE_SSH: 'SSH key',
-  PRIVATE_KEY: 'Private Key',
-  PASSPHRASE: 'Passphrase',
-  CREDENTIAL_TYPE_SECRET_TEXT: 'Access token',
+  CREATE_CREDENTIAL: 'Kimlik Bilgisi Oluştur',
+  CREDENTIAL_NAME_EXIST_DESC: 'Kimlik bilgisi adı zaten var. Lütfen başka bir ad girin.',
+  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'Kullanıcı adı ve parola',
+  CREDENTIAL_TYPE_SSH: 'SSH anahtarı',
+  PRIVATE_KEY: 'Özel Anahtar',
+  PASSPHRASE: 'Parola',
+  CREDENTIAL_TYPE_SECRET_TEXT: 'Erişim Anahtarları',
   CREDENTIAL_TYPE_KUBECONFIG: 'kubeconfig',
-  PASSWORD_TOKEN: 'Password/Token',
-  KUBECONFIG_CONTENT_DESC: 'The default content is the kubeconfig settings of the current user.',
-  CONTENT: 'Content'
+  PASSWORD_TOKEN: 'Şifre/Anahtar',
+  KUBECONFIG_CONTENT_DESC: 'Varsayılan içerik, geçerli kullanıcının kubeconfig ayarlarıdır.',
+  CONTENT: 'İçerik'
 };

@@ -22,7 +22,7 @@ module.exports = {
   USER_DASHBOARD_EMPTY_TITLE: '您暫時不屬於任何企業空間',
   USER_DASHBOARD_EMPTY_DESC: '您可以聯繫某個企業空間的管理員邀請您加入企業空間中',
   // Platform Information
-  LAST_UPDATE_TIME: 'Last update time',
+  LAST_UPDATE_TIME: '上次更新時間',
   PLATFORM_VERSION: '平台版本',
   // Platform Resources
   PLATFORM_RESOURCES: 'Platform Resource',

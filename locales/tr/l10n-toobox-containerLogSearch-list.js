@@ -17,23 +17,23 @@
  */
 module.exports = {
   // Title
-  TOTAL_LOGS_TODAY: 'A total of <span class={className}> {logs} </span> log entries from <span class={className}>{containers}</span> containers have been collected today.',
+  TOTAL_LOGS_TODAY: 'Bugün <span class={className}>{containers}</span> kapsayıcısından toplam <span class={className}> {logs} </span> günlük girişi toplandı.',
   // Search
-  LOGGING_NOT_ENABLED_DESC: 'The component is not enabled. <a href="{docUrl}/pluggable-components/logging/" target="_blank">Learn More</a>',
-  WORKLOAD: 'Workload',
-  TIME_RANGE_SCAP: 'Time range',
+  LOGGING_NOT_ENABLED_DESC: 'Bileşen etkin değil. <a href="{docUrl}/pluggable-components/logging/" target="_blank">Daha Fazla Bilgi Edinin</a>',
+  WORKLOAD: 'İş Yükü',
+  TIME_RANGE_SCAP: 'Zaman aralığı',
   // Querying Rules
-  QUERYING_RULES: 'Querying Rules',
-  CONTAINER_LOG_TRENDS_12H: 'Container log trends in 12 h',
-  CONTAINER_LOG_KEYWORD_TIP: 'Enter a keyword to search for container logs.',
-  CONTAINER_LOG_PROJECT_TIP: 'Enter a project name to search for container logs.',
-  CONTAINER_LOG_WORKLOAD_TIP: 'Enter a workload name to search for container logs.',
-  CONTAINER_LOG_CONTAINER_TIP: 'Enter a container name to search for container logs.',
-  CONTAINER_LOG_POD_TIP: 'Enter a pod name to search for container logs.',
-  SEARCH_BY_KEYWORD: 'Search by Keyword',
-  SEARCH_BY_PROJECT: 'Search by Project',
-  SEARCH_BY_WORKLOAD: 'Search by Workload',
-  SEARCH_BY_POD: 'Search by Pod',
-  SEARCH_BY_CONTAINER: 'Search by Container',
-  TIME_RANGE: 'Time Range'
+  QUERYING_RULES: 'Sorgulama Kuralları',
+  CONTAINER_LOG_TRENDS_12H: '12 saatte kapsayıcı günlüğü eğilimleri',
+  CONTAINER_LOG_KEYWORD_TIP: 'Kapsayıcı günlüklerini aramak için bir anahtar sözcük girin.',
+  CONTAINER_LOG_PROJECT_TIP: 'Kapsayıcı günlüklerini aramak için bir proje adı girin.',
+  CONTAINER_LOG_WORKLOAD_TIP: 'Kapsayıcı günlüklerini aramak için bir iş yükü adı girin.',
+  CONTAINER_LOG_CONTAINER_TIP: 'Kapsayıcı günlüklerini aramak için bir kapsayıcı adı girin.',
+  CONTAINER_LOG_POD_TIP: 'Kapsayıcı günlüklerini aramak için bir bölme adı girin.',
+  SEARCH_BY_KEYWORD: 'Anahtar kelimeye göre arama',
+  SEARCH_BY_PROJECT: 'Proje Ara',
+  SEARCH_BY_WORKLOAD: 'İş Yüküne Göre Ara',
+  SEARCH_BY_POD: 'Pod a göre Ara',
+  SEARCH_BY_CONTAINER: 'Konteynere göre Ara',
+  TIME_RANGE: 'Zaman Aralığı'
 };

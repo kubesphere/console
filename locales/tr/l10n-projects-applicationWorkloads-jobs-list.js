@@ -17,24 +17,24 @@
  */
 module.exports = {
   // Banner
-  JOB_PL: 'Jobs',
-  JOB_DESC: 'Jobs are used to perform short-lived, one-off tasks. A job creates one or more pods and ensures that a specific number of pods successfully terminate.',
+  JOB_PL: 'İşler',
+  JOB_DESC: 'İşler, kısa ömürlü, tek seferlik görevleri gerçekleştirmek için kullanılır. Bir iş, bir veya daha fazla bölme oluşturur ve belirli sayıda bölmenin başarıyla sonlandırılmasını sağlar.',
   // List
-  JOB_EMPTY_DESC: 'Please create a job.',
-  JOB_COMPLETED: 'Completed',
-  JOB_FAILED: 'Failed',
-  JOB_RUNNING: 'Running',
+  JOB_EMPTY_DESC: 'Lütfen bir iş oluşturun.',
+  JOB_COMPLETED: 'Tamamlandı',
+  JOB_FAILED: 'Başarısız',
+  JOB_RUNNING: 'Çalışıyor',
   // List > Create > Basic Information
   // List > Create > Strategy Settings
   // List > Create > Pod Settings
-  RESTART_POLICY_NEVER_DESC: 'Re-create Pod',
-  RESTART_POLICY_ONFAILURE_DESC: 'Restart container',
+  RESTART_POLICY_NEVER_DESC: 'Kapsül yeniden oluşturuluyor',
+  RESTART_POLICY_ONFAILURE_DESC: 'Konteyneri yeniden başlat',
   // List > Create > Volume Settings
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Rerun
-  RERUN: 'Rerun',
+  RERUN: 'Tekrar çalıştır',
   // List > Delete
-  JOB: 'Job',
-  JOB_LOW: 'job'
+  JOB: 'İş',
+  JOB_LOW: 'iş'
 };

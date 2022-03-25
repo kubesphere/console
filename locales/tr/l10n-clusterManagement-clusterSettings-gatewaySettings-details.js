@@ -19,27 +19,27 @@ module.exports = {
   // Details
   // More > Update Gateway
   // More > Delete
-  GATEWAY_LOW: 'gateway',
+  GATEWAY_LOW: 'Ağ geçidi',
   // Monitoring
-  REQUEST_COUNT: 'Requests',
-  NETWORK_TRAFFIC: 'Network Traffic',
-  CONNECTION_COUNT: 'Connections',
-  FAILED_REQUEST_COUNT: 'Failed Requests',
-  AVERAGE_LATENCY: 'Average Latency',
-  P_FIFTY_LATENCY: 'P50 Latency',
-  P_NINETY_FIVE_LATENCY: 'P95 Latency',
-  P_NINETY_NINE_LATENCY: 'P99 Latency',
-  FOUR_XX_REQUEST_COUNT: '4XX Requests',
-  FIVE_XX_REQUEST_COUNT: '5XX Requests',
-  TOTAL_REQUESTS: 'Total Requests',
-  SUCCESSFUL_REQUESTS: 'Successful Requests',
+  REQUEST_COUNT: 'İstekler',
+  NETWORK_TRAFFIC: 'Ağ trafiği',
+  CONNECTION_COUNT: 'Bağlantılar',
+  FAILED_REQUEST_COUNT: 'Başarısız İstekler',
+  AVERAGE_LATENCY: 'Ortalama Gecikme:',
+  P_FIFTY_LATENCY: 'P50 Gecikme',
+  P_NINETY_FIVE_LATENCY: 'P95 Gecikme',
+  P_NINETY_NINE_LATENCY: 'P99 Gecikme',
+  FOUR_XX_REQUEST_COUNT: '4XX İstekler',
+  FIVE_XX_REQUEST_COUNT: '5XX İstekler',
+  TOTAL_REQUESTS: 'Toplam İstek Sayısı',
+  SUCCESSFUL_REQUESTS: 'Başarılı İstekler',
   // Configuration Options
-  CONFIGURATION_OPTIONS: 'Configuration Options',
+  CONFIGURATION_OPTIONS: 'Yapılandırma Seçenekleri',
   // Gateway Logs
-  GATEWAY_LOGS: 'Gateway Logs',
-  LOGGING_DISABLED: 'Logging Disabled',
-  REFRESH_INTERVAL_VALUE: 'Refresh interval: {value}s',
-  EXPORT_LOGS: 'Export Logs',
+  GATEWAY_LOGS: 'Ağ Geçidi kaydı',
+  LOGGING_DISABLED: 'Oturum Açma Devre Dışı',
+  REFRESH_INTERVAL_VALUE: 'Yenileme aralığı: {değer} s',
+  EXPORT_LOGS: 'Günlüğü Dışa Aktar',
   // Resource Status > Replica Status
-  GATEWAYS_REPLICA_DESC: 'Deployment is used to describe the desired target state of the application. It is mainly used to describe the stateless application. The number and state of replicas are maintained by the controller behind it to ensure that the state is consistent with the defined desired state. You can increase the number of replicas to meet higher loads; roll back the deployed version to eliminate erroneous changes to the program; create an autoscaler to flexibly respond to the load in different scenarios.'
+  GATEWAYS_REPLICA_DESC: 'Dağıtım, uygulamanın istenen hedef durumunu tanımlamak için kullanılır. Esas olarak durum bilgisi olmayan uygulamayı tanımlamak için kullanılır. Durumun tanımlanan istenen durumla tutarlı olmasını sağlamak için, kopyaların sayısı ve durumu, arkasındaki denetleyici tarafından korunur. Daha yüksek yükleri karşılamak için replika sayısını artırabilirsiniz; programdaki hatalı değişiklikleri ortadan kaldırmak için dağıtılan sürümü geri alın; farklı senaryolarda yüke esnek bir şekilde yanıt vermek için bir otomatik ölçekleyici oluşturun.'
 };

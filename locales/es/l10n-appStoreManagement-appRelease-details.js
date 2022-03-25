@@ -17,19 +17,19 @@
  */
 module.exports = {
   // Banner
-  APP_DETAILS_DESC: 'View details of the app to be released.',
+  APP_DETAILS_DESC: 'Ver detalles de la aplicación a ser lanzada.',
   // Description
   // App Information
-  INTRODUCTION: 'Introduction',
-  SERVICE_PROVIDER_WEBSITE: 'Service provider website',
-  APP_DESCRIPTION: 'App Description',
+  INTRODUCTION: 'Introducción',
+  SERVICE_PROVIDER_WEBSITE: 'Sitio Web del Proveedor de Servicio',
+  APP_DESCRIPTION: 'Descripción de la aplicación',
   // Documentation
-  DOCUMENTATION: 'Documentation',
-  NO_DOCUMENT_FOUND: 'No Documentation Found',
+  DOCUMENTATION: 'Documentación',
+  NO_DOCUMENT_FOUND: 'No se encontró documentación',
   // Chart Files
   // Update Log
-  UPDATE_LOG: 'Update Log',
-  NO_UPDATE_LOG_DESC: 'No update log is found.',
+  UPDATE_LOG: 'Registro de actualizaciones',
+  NO_UPDATE_LOG_DESC: 'No se ha encontrado registro de actualizaciones.',
   // Reject
   REJECT: 'Reject',
   REJECT_REASON_DESC: 'Complete los motivos de rechazo de la revisión, por favor.',

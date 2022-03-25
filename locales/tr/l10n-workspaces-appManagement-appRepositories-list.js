@@ -17,35 +17,35 @@
  */
 module.exports = {
   // Banner
-  APP_REPOSITORY_PL: 'App Repositories',
-  APP_REPO: 'App Repositories',
-  HOW_TO_USE_APP_REPO_Q: 'How do I use an app repository?',
-  HOW_TO_USE_APP_REPO_A: 'You need to go to your project in the workspace. When you deploy a new app, select <b>From App Template</b> and then choose an app repository in the drop-down list to deploy an app in the repository.',
-  APP_REPO_DESC: 'An app repository is a repository used to store application templates. You can add an app repository to deploy and manage its applications.',
+  APP_REPOSITORY_PL: 'Uygulama Depoları',
+  APP_REPO: 'Uygulama Depoları',
+  HOW_TO_USE_APP_REPO_Q: 'Bir uygulama deposunu nasıl kullanırım?',
+  HOW_TO_USE_APP_REPO_A: 'Çalışma alanında projenize gitmeniz gerekiyor. Yeni bir uygulama dağıttığınızda, <b>Uygulama Şablonundan</b> öğesini seçin ve ardından havuzda bir uygulama dağıtmak için açılır listeden bir uygulama havuzu seçin.',
+  APP_REPO_DESC: 'Uygulama havuzu, uygulama şablonlarını depolamak için kullanılan bir havuzdur. Uygulamalarını dağıtmak ve yönetmek için bir uygulama havuzu ekleyebilirsiniz.',
   // List
-  APP_REPOSITORY_EMPTY_DESC: 'Please add an app repository.',
+  APP_REPOSITORY_EMPTY_DESC: 'Lütfen bir uygulama deposu ekleyin.',
   // List > Add
-  ADD_APP_REPO: 'Add App Repository',
-  VALIDATE: 'Validate',
-  SYNC_INTERVAL: 'Synchronization Interval',
-  SYNC_INTERVAL_DESC: 'Set a synchronization interval. The value range is 3 minutes to 24 hours. The default value 0 indicates no synchronization.',
-  SYNC_PERIOD_EMPTY_DESC: 'Please set a synchronization interval.',
-  SYNC_INTERVAL_INVALID: 'Invalid value. Please enter 0 or a positive integer. ',
-  APP_REPO_URL_DESC: 'The URL needs to be validated before you add or edit an app repository.',
-  SYNC_INTERVAL_TIP: 'The value range is 3 minutes to 24 hours. Please enter a valid value.',
-  SECONDS: 'Seconds',
-  MINUTES: 'Minutes',
-  HOURS: 'Hours',
+  ADD_APP_REPO: 'Uygulama Deposu Ekle',
+  VALIDATE: 'Doğrula',
+  SYNC_INTERVAL: 'Senkronizasyon Aralığı',
+  SYNC_INTERVAL_DESC: 'Bir senkronizasyon aralığı ayarlayın. Değer aralığı 3 dakika ile 24 saat arasındadır. Varsayılan değer 0, senkronizasyon olmadığını gösterir.',
+  SYNC_PERIOD_EMPTY_DESC: 'Lütfen bir senkronizasyon aralığı belirleyin.',
+  SYNC_INTERVAL_INVALID: 'Geçersiz değer. Lütfen 0 veya pozitif bir tam sayı girin. ',
+  APP_REPO_URL_DESC: 'Bir uygulama deposu eklemeden veya düzenlemeden önce URL\'nin doğrulanması gerekir.',
+  SYNC_INTERVAL_TIP: 'Değer aralığı 3 dakika ile 24 saat arasındadır. Lütfen geçerli bir değer girin.',
+  SECONDS: 'Saniyeler',
+  MINUTES: 'Dakikalar',
+  HOURS: 'Saatler',
   // List > Add > URL > s3://
-  ACCESS_KEY_ID: 'Access Key ID',
-  SECRET_ACCESS_KEY: 'Secret Access Key',
+  ACCESS_KEY_ID: 'Erişim Anahtarı Kimliği',
+  SECRET_ACCESS_KEY: 'Gizli Erişim Anahtarı',
   // List > Edit
-  EDIT_APP_REPO: 'Edit App Repository',
-  INVALID_URL_DESC: 'Invalid URL.',
-  VALID_URL_DESC: 'Valid URL.',
+  EDIT_APP_REPO: 'Uygulama Deposu Düzenle',
+  INVALID_URL_DESC: 'Geçersiz URL.',
+  VALID_URL_DESC: 'Geçerli URL.',
   // List > Delete
-  APP_REPOSITORY: 'App Repository',
-  APP_REPOSITORY_LOW: 'app repository',
+  APP_REPOSITORY: 'Uygulama Deposu',
+  APP_REPOSITORY_LOW: 'uygulama deposu',
   // Checkbox
-  UPDATE: 'Update'
+  UPDATE: 'Güncelle'
 };

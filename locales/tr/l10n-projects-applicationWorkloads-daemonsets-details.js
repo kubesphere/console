@@ -26,9 +26,9 @@ module.exports = {
   // Details
   // Resource Status
   // Revision Records
-  REVISION_RECORDS_DESC: 'A revision record is generated after the workload is created or modified, which can be used to roll back the workload settings. A maximum of 10 revision records can be retained.',
+  REVISION_RECORDS_DESC: 'İş yükü oluşturulduktan veya değiştirildikten sonra, iş yükü ayarlarını geri almak için kullanılabilen bir revizyon kaydı oluşturulur. En fazla 10 revizyon kaydı tutulabilir.',
   // Metadata
   // Monitoring
   // Environment Variables
-  ENVIRONMENT_VARIABLE: 'Environment Variable'
+  ENVIRONMENT_VARIABLE: 'Ortam Değişkenleri'
 };

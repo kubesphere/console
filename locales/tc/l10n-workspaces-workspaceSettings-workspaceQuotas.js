@@ -22,7 +22,7 @@ module.exports = {
   // Resource Quotas
   RESOURCE_QUOTA_PL: '資源配額',
   USED_PERCENT: 'Used: {percent}%',
-  RESOURCE_LIMIT: 'Resource limit',
+  RESOURCE_LIMIT: '資源限制',
   // Resource Quotas > Edit Quotas
   EDIT_WORKSPACE_QUOTAS: 'Edit Workspace Quotas',
   CPU_REQUEST: 'CPU 預留',
