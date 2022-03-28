@@ -55,6 +55,8 @@ client:
 
   # current support lanaguages
   supportLangs:
+    - label: "Türkçe"
+      value: "tr"
     - label: "繁體中文"
       value: "tc"
     - label: "简体中文"
