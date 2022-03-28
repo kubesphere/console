@@ -276,17 +276,20 @@ export default class ResourceSnapshot extends React.Component {
   }
 
   handleOk = () => {
+    let namespace
     const { onOk } = this.props
-    const { allowSnapshot } = this.state
+    const { allowSnapshot, selectedVolume } = this.state
 
     this.form.current.validator(() => {
       if (!allowSnapshot) {
         return
       }
       const { data } = this.form.current.props
-      const namespace = toJS(this.volumeStore.list.data).filter(
-        item => item.name === this.state.selectedVolume
-      )[0].namespace
+      if (selectedVolume !== '') {
+        namespace = toJS(this.volumeStore.list.data).filter(
+          item => item.name === selectedVolume
+        )[0].namespace
+      }
 
       onOk({ ...data, namespace })
     })
