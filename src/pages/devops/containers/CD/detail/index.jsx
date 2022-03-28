@@ -169,10 +169,6 @@ export default class CDDetail extends React.Component {
         value: get(detail, 'repoSource.path', '-'),
       },
       {
-        name: t('IMAGE'),
-        value: detail.image,
-      },
-      {
         name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
