@@ -174,12 +174,11 @@ export default class CDStore extends Base {
     const url = `${this.apiVersion}/clusters`
     const result = await request.get(url, null, null, () => {})
 
-    if (!result) {
-      const clusterName = Object.keys(globals.clusterConfig)[0]
+    if (!result || result.length === 0) {
       this.clustersList = [
         {
           server: 'https://kubernetes.default.svc',
-          name: clusterName,
+          name: 'in-cluster',
         },
       ]
     } else {
