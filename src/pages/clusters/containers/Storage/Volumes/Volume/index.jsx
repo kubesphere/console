@@ -215,7 +215,7 @@ export default class Volumes extends React.Component {
       {
         title: this.renderAccessTitle(),
         dataIndex: 'accessModes',
-        isHideable: true,
+        isHideable: false,
         width: '12.32%',
         render: accessModes => this.mapperAccessMode(accessModes),
       },
