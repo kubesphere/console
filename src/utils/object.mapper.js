@@ -493,7 +493,9 @@ const VolumeMapper = item => {
       'status.capacity.storage',
       get(item, 'spec.resources.requests.storage')
     ),
-    inUse: get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true',
+    inUse:
+      get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true' ||
+      get(item, 'status.phase') === 'Bound',
     type: 'pvc',
     _originData: getOriginData(item),
   }
