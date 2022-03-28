@@ -179,7 +179,7 @@ client:
                 name: volume-snapshot-classes,
                 title: VOLUME_SNAPSHOT_CLASSES_PL,
                 authKey: volumes,
-                # requiredClusterVersion: v3.3.0,
+                requiredClusterVersion: v3.3.0,
               }
             - { name: storageclasses, title: STORAGE_CLASS_PL }
         - name: monitoring-alerting
