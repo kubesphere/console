@@ -139,7 +139,7 @@ export default class BaseInfo extends React.Component {
           </Column>
         </Columns>
         <Form.Item
-          label={t('CODE_REPOSITORY_OPTIONAL')}
+          label={t('CODE_REPOSITORY')}
           rules={[{ required: true, message: t('REPO_EMPTY_DESC') }]}
         >
           <RepoSelect

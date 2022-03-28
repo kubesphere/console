@@ -57,7 +57,9 @@ export default {
               }, [])
             : undefined
 
-          syncPolicy.syncOptions = syncOptions
+          if (syncPolicyType === 'automated') {
+            syncPolicy.syncOptions = syncOptions
+          }
 
           const argoApp = {
             destination: data.destination,
@@ -108,7 +110,7 @@ export default {
 
           await store.updateSync({ data: _data, devops: props.devops })
 
-          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+          Notify.success({ content: t('SYNC_TRIGGERED') })
           success && success()
           Modal.close(modal)
         },

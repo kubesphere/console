@@ -139,10 +139,12 @@ export default class CDList extends React.Component {
       ...this.props.match.params,
       ...params,
     })
+    await this.props.store.fetchStatusSummary({ devops: this.devops })
   }
 
   componentDidMount() {
     this.clusterStore.fetchList({ limit: -1 })
+    this.getData()
   }
 
   handleFetch = (params, refresh) => {
@@ -336,29 +338,30 @@ export default class CDList extends React.Component {
 
   renderStatusCard = () => {
     const { filters } = this.props.store.list
+    const { total = 0, healthStatus = {} } = this.props.store.summary
 
     const WEATHER_CONFIG = [
       {
         title: 'Healthy',
         color: '#55BC8A',
-        used: 90,
-        total: 100,
+        used: healthStatus.Healthy || 0,
+        total,
         icon: '/assets/cd/health.svg',
         label: 'HEALTH_STATUS',
       },
       {
         title: 'Degraded',
         color: '#CA2621',
-        used: 40,
-        total: 100,
+        used: healthStatus.Degraded || 0,
+        total,
         icon: '/assets/cd/degraded.svg',
         label: 'HEALTH_STATUS',
       },
       {
         title: 'Progressing',
         color: '#F5A623',
-        used: 10,
-        total: 100,
+        used: healthStatus.Progressing || 0,
+        total,
         icon: '/assets/cd/progressing.svg',
         label: 'HEALTH_STATUS',
       },
@@ -381,29 +384,30 @@ export default class CDList extends React.Component {
 
   renderSyncStatusCard = () => {
     const { filters } = this.props.store.list
+    const { total = 0, syncStatus = {} } = this.props.store.summary
 
     const WEATHER_CONFIG = [
       {
         title: 'Synced',
         color: '#55BC8A',
-        used: 90,
-        total: 100,
+        used: syncStatus.Synced || 0,
+        total,
         icon: '/assets/cd/synced.svg',
         label: 'SYNC_STATUS',
       },
       {
         title: 'OutOfSync',
         color: '#F5A623',
-        used: 40,
-        total: 100,
+        used: syncStatus.OutOfSync || 0,
+        total,
         icon: '/assets/cd/outofsync.svg',
         label: 'SYNC_STATUS',
       },
       {
         title: 'Unknown',
         color: '#36435C',
-        used: 10,
-        total: 100,
+        used: syncStatus.Unknown || 0,
+        total,
         icon: '/assets/cd/unknown.svg',
         label: 'SYNC_STATUS',
       },
@@ -428,7 +432,7 @@ export default class CDList extends React.Component {
     const { bannerProps } = this.props
 
     return (
-      <ListPage getData={this.getData} {...this.props}>
+      <ListPage {...this.props} getData={this.getData}>
         <Banner {...bannerProps} />
         <div>
           <div className={styles.status__container}>
