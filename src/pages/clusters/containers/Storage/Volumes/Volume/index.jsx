@@ -189,7 +189,11 @@ export default class Volumes extends React.Component {
           <Avatar
             icon={'storage'}
             iconSize={40}
-            to={`/clusters/${cluster}/projects/${record.namespace}/volumes/${name}`}
+            to={
+              record.phase === 'Terminating'
+                ? ''
+                : `/clusters/${cluster}/projects/${record.namespace}/volumes/${name}`
+            }
             isMultiCluster={record.isFedManaged}
             desc={this.getItemDesc(record)}
             title={getDisplayName(record)}

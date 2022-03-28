@@ -150,7 +150,11 @@ export default class PV extends React.Component {
             <Avatar
               icon={'storage'}
               iconSize={40}
-              to={`/clusters/${cluster}/pv/${name}`}
+              to={
+                record.phase === 'Terminating'
+                  ? ''
+                  : `/clusters/${cluster}/pv/${name}`
+              }
               isMultiCluster={record.isFedManaged}
               desc={this.getItemDesc(record)}
               title={getDisplayName(record)}
