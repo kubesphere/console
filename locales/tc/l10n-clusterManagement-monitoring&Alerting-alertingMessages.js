@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  ALERTING_MESSAGE_PL: 'Alerting Messages',
+  ALERTING_MESSAGE_PL: '告警訊息',
   ALERT_MESSAGE_DESC: 'Alert messages display details of triggered alerts that have met the conditions of the alert rules.',
   // Custom Policies > List
   CUSTOM_POLICIES: 'Custom Policies',
