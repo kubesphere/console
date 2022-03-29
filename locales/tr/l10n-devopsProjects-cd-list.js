@@ -18,6 +18,7 @@
 module.exports = {
   CD_PL: 'Sürekli Dağıtım',
   CD_LOW: 'Sürekli Dağıtım',
+  CD: 'Continuous Deployment',
   CD_RESOURCE_PL: 'Kaynakların sürekli dağıtımı',
   CD_DESC: 'Bu sayfa, gitops aracılığıyla sürekli olarak dağıtılan kaynakları oluşturmanıza ve yönetmenize olanak tanır. ',
   EMPTY_CD_TITLE: 'Sürekli dağıtım kaynağı bulunamadı',
@@ -43,5 +44,6 @@ module.exports = {
   LATEST_SYNC_STATUS: 'En son senkronizasyon durumu',
   REPO_EMPTY_DESC: 'Kod deposu boş olamaz',
   CREATE_CD: 'Sürekli dağıtım oluşturun',
-  CD_SELECT_CODE_REPO_DESC: 'CD tarafından kullanılacak bir kod deposu seçin.'
+  CD_SELECT_CODE_REPO_DESC: 'CD tarafından kullanılacak bir kod deposu seçin.',
+  SYNC_TRIGGERED: 'Sync Triggered'
 };
