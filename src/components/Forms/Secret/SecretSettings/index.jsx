@@ -165,7 +165,7 @@ export default class SecretSettings extends React.Component {
     return (
       <div key="tls" className="margin-t8">
         <Form.Item
-          label={t('CREDENTIAL_SI')}
+          label={t('CERTIFICATE')}
           rules={[
             { required: true, message: t('CREDENTIAL_NAME_EMPTY_DESC') },
             { validator: this.dataValidator },

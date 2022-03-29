@@ -110,6 +110,18 @@ export default class ContainerDetail extends React.Component {
 
     const status = detail.state ? Object.keys(detail.state)[0] : ''
 
+    let imagePullPolicy
+
+    if (detail.imagePullPolicy === 'Always') {
+      imagePullPolicy = t('IMAGE_PULL_POLICY_ALWAYS')
+    } else if (detail.imagePullPolicy === 'IfNotPresent') {
+      imagePullPolicy = t('IMAGE_PULL_POLICY_IFNOTPRESENT')
+    } else if (detail.imagePullPolicy === 'Never') {
+      imagePullPolicy = t('IMAGE_PULL_POLICY_NEVER')
+    } else {
+      imagePullPolicy = detail.imagePullPolicy
+    }
+
     return [
       {
         name: t('CLUSTER'),
@@ -153,10 +165,10 @@ export default class ContainerDetail extends React.Component {
       },
       {
         name: t('IMAGE_PULL_POLICY'),
-        value: detail.imagePullPolicy,
+        value: imagePullPolicy,
       },
       {
-        name: `${t('RESTART_PL')}(${t('Total')})`,
+        name: t('RESTARTS_TOTAL'),
         value: detail.restartCount,
       },
     ]

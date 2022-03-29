@@ -207,7 +207,7 @@ export default class ServiceDetail extends React.Component {
         value: detail.app,
       },
       {
-        name: t('VIRTUAL_IP'),
+        name: t('VIRTUAL_IP_ADDRESS'),
         value: detail.clusterIP,
       },
       {
@@ -216,7 +216,7 @@ export default class ServiceDetail extends React.Component {
       },
       {
         name: t('SESSION_AFFINITY'),
-        value: detail.sessionAffinity,
+        value: detail.sessionAffinity === 'None' ? t('DISABLED') : t('ENABLED'),
       },
       {
         name: t('SELECTOR'),

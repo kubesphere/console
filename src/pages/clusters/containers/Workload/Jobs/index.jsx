@@ -156,7 +156,7 @@ export default class Jobs extends React.Component {
         ),
       },
       {
-        title: t('UPDATE_TIME_TCAP'),
+        title: t('LAST_RUN_TIME'),
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),
