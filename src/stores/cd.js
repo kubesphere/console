@@ -180,11 +180,10 @@ export default class CDStore extends Base {
     })
 
     if (isEmpty(result)) {
-      const clusterName = Object.keys(globals.clusterConfig)[0]
       this.clustersList = [
         {
           server: 'https://kubernetes.default.svc',
-          name: clusterName,
+          name: 'in-cluster',
         },
       ]
     } else {
