@@ -36,7 +36,7 @@ module.exports = {
   VOLUME_EXPANSION: '存储卷扩容',
   RECLAIM_POLICY: '回收机制',
   ACCESS_MODE: '访问模式',
-  ACCESS_MODES_DESC: '选择存储类型支持的访问模式。',
+  ACCESS_MODES_DESC: 'Select one or more access modes supported by the storage class.',
   STORAGE_SYSTEM: '存储系统',
   VOLUME_BINDING_MODE: '存储卷绑定模式',
   IMMEDIATE_BINDING: '立即绑定',
