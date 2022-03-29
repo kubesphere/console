@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { omit } from 'lodash'
+import { omit, isEmpty } from 'lodash'
 import { action, observable } from 'mobx'
 import Base from 'stores/base'
 
@@ -49,6 +49,9 @@ export default class CDStore extends Base {
     filters: {},
     isLoading: false,
   }
+
+  @observable
+  summary = {}
 
   getPath({ cluster, namespace, workspace, devops } = {}) {
     let path = ''
@@ -172,9 +175,11 @@ export default class CDStore extends Base {
   @action
   async getClustersList() {
     const url = `${this.apiVersion}/clusters`
-    const result = await request.get(url, null, null, () => {})
+    const result = await request.get(url, null, null, () => {
+      return []
+    })
 
-    if (!result) {
+    if (isEmpty(result)) {
       const clusterName = Object.keys(globals.clusterConfig)[0]
       this.clustersList = [
         {
@@ -185,5 +190,14 @@ export default class CDStore extends Base {
     } else {
       this.clustersList = result
     }
+  }
+
+  @action
+  async fetchStatusSummary({ devops }) {
+    const url = `${this.apiVersion}${this.getPath({
+      namespace: devops,
+    })}/application-summary`
+    const result = await request.get(url)
+    this.summary = result || {}
   }
 }

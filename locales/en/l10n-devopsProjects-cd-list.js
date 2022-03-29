@@ -18,6 +18,7 @@
 module.exports = {
   CD_PL: 'Continuous Deployment',
   CD_LOW: 'Continuous Deployment',
+  CD: 'Continuous Deployment',
   CD_RESOURCE_PL: 'Continuous deployment of resources',
   CD_DESC:
     'This page allows you to create and manage continuously deployed resources via gitops. ',
@@ -46,4 +47,5 @@ module.exports = {
   REPO_EMPTY_DESC: 'Code repository cannot be empty',
   CREATE_CD: 'Create continuous deployment',
   CD_SELECT_CODE_REPO_DESC: 'Select a code repository to be used by CD.',
+  SYNC_TRIGGERED: 'Sync Triggered',
 }
