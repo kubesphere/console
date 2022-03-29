@@ -36,7 +36,7 @@ module.exports = {
   VOLUME_EXPANSION: 'Hacim Genişletme',
   RECLAIM_POLICY: 'Geri alma ilkesi',
   ACCESS_MODE: 'Erişim modu',
-  ACCESS_MODES_DESC: 'Depolama sınıfı tarafından desteklenen bir erişim modu seçin.',
+  ACCESS_MODES_DESC: 'Select one or more access modes supported by the storage class.',
   STORAGE_SYSTEM: 'Depolama Sistemi',
   VOLUME_BINDING_MODE: 'Hacim Bağlama Modu',
   IMMEDIATE_BINDING: 'Anında bağlama',
