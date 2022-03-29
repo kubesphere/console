@@ -192,7 +192,7 @@ export default class StorageClassSetting extends React.Component {
                     message: t('PARAMETER_REQUIRED'),
                   },
                 ]}
-                label={t('STORAGE_SYSTEM')}
+                label={t('PROVISIONER')}
               >
                 <Input name={'provisioner'} />
               </Form.Item>
