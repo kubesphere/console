@@ -36,7 +36,7 @@ module.exports = {
   VOLUME_EXPANSION: 'Volume Expansion',
   RECLAIM_POLICY: 'Reclaim Policy',
   ACCESS_MODE: 'Access Mode',
-  ACCESS_MODES_DESC: 'Select an access mode supported by the storage class.',
+  ACCESS_MODES_DESC: 'Select one or more access modes supported by the storage class.',
   STORAGE_SYSTEM: 'Storage System',
   VOLUME_BINDING_MODE: 'Volume Binding Mode',
   IMMEDIATE_BINDING: 'Immediate binding',
