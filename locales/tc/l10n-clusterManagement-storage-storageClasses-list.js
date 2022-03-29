@@ -36,7 +36,7 @@ module.exports = {
   VOLUME_EXPANSION: '儲存卷擴容',
   RECLAIM_POLICY: '回收機制',
   ACCESS_MODE: '支持的訪問模式',
-  ACCESS_MODES_DESC: '選擇儲存類型支持的訪問模式',
+  ACCESS_MODES_DESC: 'Select one or more access modes supported by the storage class.',
   STORAGE_SYSTEM: '儲存系統',
   VOLUME_BINDING_MODE: 'Volume Binding Mode',
   IMMEDIATE_BINDING: 'Immediate binding',
