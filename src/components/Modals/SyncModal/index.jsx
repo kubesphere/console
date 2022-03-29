@@ -85,9 +85,9 @@ export default class SyncModal extends React.Component {
             <div className={`${styles.column} ${styles.column_card}`}>
               <Form.Item>
                 <Checkbox
-                  name="operation.sync.prune"
-                  checked={get(formTemplate, 'operation.sync.prune', false)}
-                  onChange={this.handleCheckboxChange('operation.sync.prune')}
+                  name="prune"
+                  checked={get(formTemplate, 'prune', false)}
+                  onChange={this.handleCheckboxChange('prune')}
                 >
                   Prune
                 </Checkbox>
@@ -96,9 +96,9 @@ export default class SyncModal extends React.Component {
             <div className={`${styles.column} ${styles.column_card}`}>
               <Form.Item>
                 <Checkbox
-                  name="operation.sync.dryRun"
-                  checked={get(formTemplate, 'operation.sync.dryRun', false)}
-                  onChange={this.handleCheckboxChange('operation.sync.dryRun')}
+                  name="dryRun"
+                  checked={get(formTemplate, 'dryRun', false)}
+                  onChange={this.handleCheckboxChange('dryRun')}
                 >
                   Dry Run
                 </Checkbox>
@@ -107,11 +107,9 @@ export default class SyncModal extends React.Component {
             <div className={`${styles.column} ${styles.column_card}`}>
               <Form.Item>
                 <Checkbox
-                  name="operation.sync.applyOnly"
-                  checked={get(formTemplate, 'operation.sync.applyOnly', false)}
-                  onChange={this.handleCheckboxChange(
-                    'operation.sync.applyOnly'
-                  )}
+                  name="applyOnly"
+                  checked={get(formTemplate, 'applyOnly', false)}
+                  onChange={this.handleCheckboxChange('applyOnly')}
                 >
                   Apply Only
                 </Checkbox>
@@ -120,14 +118,10 @@ export default class SyncModal extends React.Component {
             <div className={`${styles.column} ${styles.column_card}`}>
               <Form.Item>
                 <Checkbox
-                  name="operation.sync.syncStrategy.apply.force"
-                  checked={get(
-                    formTemplate,
-                    'operation.sync.syncStrategy.apply.force',
-                    false
-                  )}
+                  name="syncStrategy.apply.force"
+                  checked={get(formTemplate, 'syncStrategy.apply.force', false)}
                   onChange={this.handleCheckboxChange(
-                    'operation.sync.syncStrategy.apply.force'
+                    'syncStrategy.apply.force'
                   )}
                 >
                   Force

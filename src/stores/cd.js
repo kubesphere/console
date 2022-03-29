@@ -126,11 +126,12 @@ export default class CDStore extends Base {
   }
 
   @action
-  async updateSync({ data, devops }) {
-    const url = `${this.getResourceUrl({ namespace: devops })}/${
-      data.metadata.name
-    }`
-    return this.submitting(request.put(url, data))
+  async updateSync({ data, application, devops }) {
+    const url = `${this.getResourceUrl({
+      namespace: devops,
+    })}/${application}/sync`
+
+    return this.submitting(request.post(url, data))
   }
 
   @action

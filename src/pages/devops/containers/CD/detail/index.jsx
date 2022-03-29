@@ -22,7 +22,7 @@ import DetailPage from 'devops/containers/Base/Detail'
 import { trigger } from 'utils/action'
 import CDStore from 'stores/cd'
 import { observer, inject } from 'mobx-react'
-import { get } from 'lodash'
+import { get, pick } from 'lodash'
 import { getLocalTime, getDisplayName } from 'utils'
 import { toJS, computed } from 'mobx'
 import ClusterStore from 'stores/cluster'
@@ -99,9 +99,10 @@ export default class CDDetail extends React.Component {
       onClick: () => {
         this.trigger('cd.sync', {
           title: t('Synchronize'),
-          formTemplate: toJS(this.store.detail),
+          formTemplate: pick(toJS(this.store.detail), 'repoSource'),
           devops: this.devops,
           noCodeEdit: true,
+          application: this.store.detail.name,
           success: this.fetchData,
         })
       },

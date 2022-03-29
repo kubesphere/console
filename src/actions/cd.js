@@ -23,7 +23,7 @@ import SyncModal from 'components/Modals/SyncModal'
 import { Notify } from '@kube-design/components'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { get, set, isEmpty } from 'lodash'
+import { set, isEmpty } from 'lodash'
 
 export default {
   'cd.create': {
@@ -88,12 +88,18 @@ export default {
   },
 
   'cd.sync': {
-    on({ store, cluster, workspace, module, success, formTemplate, ...props }) {
+    on({
+      store,
+      cluster,
+      workspace,
+      module,
+      success,
+      formTemplate,
+      application,
+      ...props
+    }) {
       const modal = Modal.open({
         onOk: async data => {
-          const _data = formTemplate._originData
-          const syncPolicy = get(_data, 'spec.argoApp.spec.syncPolicy', {})
-
           const syncOptions = !isEmpty(data.syncOptions)
             ? Object.entries(data.syncOptions).reduce((pre, current) => {
                 const item = `${current[0]}=${current[1]}`
@@ -102,13 +108,13 @@ export default {
               }, [])
             : undefined
 
-          syncPolicy.syncOptions = syncOptions
+          set(data, 'syncOptions', syncOptions)
 
-          set(_data, 'spec.argoApp.spec.syncPolicy', syncPolicy)
-          set(_data, 'spec.argoApp.operation', data.operation)
-          set(_data, 'spec.argoApp.spec.source', data.repoSource)
+          set(data, 'revision', data.repoSource.targetRevision)
 
-          await store.updateSync({ data: _data, devops: props.devops })
+          delete data.repoSource
+
+          await store.updateSync({ data, devops: props.devops, application })
 
           Notify.success({ content: t('SYNC_TRIGGERED') })
           success && success()
