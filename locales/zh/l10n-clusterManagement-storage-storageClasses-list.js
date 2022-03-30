@@ -43,7 +43,7 @@ module.exports = {
   BINDING_WAIT: '延迟绑定',
   MAXSIZE: '容量上限',
   MINSIZE: '容量下限',
-  STEPSIZE: '增量值',
+  STEPSIZE: '步长',
   FSTYPE: '文件系统类型',
   TAGS: '标签',
   QINGCLOUD_CSI_TYPE_DESC: '在青云云平台中，0 代表性能型硬盘；2 代表容量型硬盘；3 代表超高性能型硬盘；5 代表企业级分布式 SAN（NeonSAN）型硬盘；100 代表基础型硬盘；200 代表 SSD 企业型硬盘。',
