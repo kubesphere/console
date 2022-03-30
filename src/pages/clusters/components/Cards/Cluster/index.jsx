@@ -17,10 +17,16 @@
  */
 
 import React from 'react'
-import { Columns, Column } from '@kube-design/components'
+import {
+  Columns,
+  Column,
+  Dropdown,
+  Menu,
+  Icon,
+  Button,
+} from '@kube-design/components'
 import { Text } from 'components/Base'
 import { getLocalTime } from 'utils'
-
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 
 import styles from './index.scss'
@@ -31,14 +37,59 @@ export default class ClusterCard extends React.Component {
     onEnter && onEnter(data.name)
   }
 
+  renderMore = item => {
+    if (!this.props.isOperation) {
+      return null
+    }
+
+    const content = this.renderMoreMenu(item)
+
+    return (
+      <Dropdown content={content} trigger="click" placement="bottomRight">
+        <Button icon="more" type="flat" />
+      </Dropdown>
+    )
+  }
+
+  renderMoreMenu = record => {
+    const items = this.props.itemActions.map(action => {
+      return (
+        <Menu.MenuItem key={action.key}>
+          <Icon name={action.icon} />{' '}
+          <span data-test={`table-item-${action.key}`}>{action.text}</span>
+        </Menu.MenuItem>
+      )
+    })
+
+    if (items.every(item => item === null)) {
+      return null
+    }
+
+    return <Menu onClick={this.handleMoreMenuClick(record)}>{items}</Menu>
+  }
+
+  handleMoreMenuClick = item => (e, key) => {
+    const action = this.props.itemActions.find(_action => _action.key === key)
+    if (action && action.onClick) {
+      action.onClick(item)
+    }
+  }
+
   render() {
     const { data } = this.props
+    const expiredDay = data.expiredDay
+    const isExpired = expiredDay && expiredDay < 0
+    const willExpired = expiredDay && expiredDay <= 10 && expiredDay >= 0
 
     return (
       <li className={styles.wrapper} data-test="cluster-item">
         <Columns>
-          <Column className="is-4">
-            <ClusterTitle cluster={data} onClick={this.handleClick} />
+          <Column className="is-3">
+            <ClusterTitle
+              cluster={data}
+              onClick={this.handleClick}
+              isExpired={isExpired}
+            />
           </Column>
           <Column className="is-2">
             <Text title={data.nodeCount} description={t('NODE_COUNT')} />
@@ -53,13 +104,27 @@ export default class ClusterCard extends React.Component {
             <Text title={data.provider} description={t('PROVIDER')} />
           </Column>
           <Column className="is-2">
-            <Text
-              title={getLocalTime(data.createTime).format(
-                `YYYY-MM-DD HH:mm:ss`
-              )}
-              description={t('CREATION_TIME')}
-            />
+            {willExpired ? (
+              <Text
+                title={
+                  <span>
+                    {t.html('LAST_KUBE_CONFIG_EXPIRED', {
+                      count: expiredDay,
+                    })}
+                  </span>
+                }
+                description={t('EXPIRE_DATE')}
+              />
+            ) : (
+              <Text
+                title={getLocalTime(data.createTime).format(
+                  `YYYY-MM-DD HH:mm:ss`
+                )}
+                description={t('CREATION_TIME')}
+              />
+            )}
           </Column>
+          <Column className="is-1">{this.renderMore(data)}</Column>
         </Columns>
       </li>
     )

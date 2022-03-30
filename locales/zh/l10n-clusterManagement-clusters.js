@@ -30,8 +30,10 @@ module.exports = {
   CONNTECT_DIRECT: '直接连接 Kubernetes 集群',
   CONNTECT_PROXY: '集群连接代理',
   INPUT_KUBECONFIG: '请填写目标集群的 KubeConfig',
-  CLUSTER_DIRECT_IMPORT_TIP: 'KubeSphere 多集群控制平面通过提供的 kubeconfig 来直接连接导入集群，此种方式要求当前集群能够通过 kubeconfig 中的 server 地址直接访问待导入集群。 </br></br>通常适用于:</br>1. 当前集群和待导入集群在同一内网网络中</br>2. 当前集群和待导入集群已通过 VPN 或隧道等其它技术连通所在网络</br>3. kubeconfig 的 server 地址可以通过公网访问',
-  CLUSTER_AGENT_IMPORT_TIP: 'KubeSphere 控制平面通过代理方式连接待导入集群，控制平面启动一个公开的代理服务，待导入集群创建相应的客户端组件连接代理服务，与控制平面之间建立一个反向代理。此种方式不需要待导入集群和控制平面在同一网络，也不要求待导入集群暴露集群的 apiserver 地址，但会有一定的网络性能损耗。</br></br>通常适用于:</br>1. 当前集群和待导入集群不在同一网络中<br/>2. 当前集群和待导入集群无法通过 VPN 或隧道等其它技术连通所在网络<br/>3. 对集群间网络性能损耗能容忍',
+  CLUSTER_DIRECT_IMPORT_TIP:
+    'KubeSphere 多集群控制平面通过提供的 kubeconfig 来直接连接导入集群，此种方式要求当前集群能够通过 kubeconfig 中的 server 地址直接访问待导入集群。 </br></br>通常适用于:</br>1. 当前集群和待导入集群在同一内网网络中</br>2. 当前集群和待导入集群已通过 VPN 或隧道等其它技术连通所在网络</br>3. kubeconfig 的 server 地址可以通过公网访问',
+  CLUSTER_AGENT_IMPORT_TIP:
+    'KubeSphere 控制平面通过代理方式连接待导入集群，控制平面启动一个公开的代理服务，待导入集群创建相应的客户端组件连接代理服务，与控制平面之间建立一个反向代理。此种方式不需要待导入集群和控制平面在同一网络，也不要求待导入集群暴露集群的 apiserver 地址，但会有一定的网络性能损耗。</br></br>通常适用于:</br>1. 当前集群和待导入集群不在同一网络中<br/>2. 当前集群和待导入集群无法通过 VPN 或隧道等其它技术连通所在网络<br/>3. 对集群间网络性能损耗能容忍',
   CLUSTER_AGENT_TITLE: '请根据集群中提供的代理连接设置加入集群',
   CLUSTER_AGENT_DESC: '需要在集群中设置下相应的代理 Agent',
   HOW_TO_GET_KUBECONFIG: '如何获取 KubeConfig?',
@@ -42,5 +44,10 @@ module.exports = {
   ENV_PRODUCTION: '生产环境',
   ENV_DEVELOPMENT: '开发环境',
   ENV_TESTING: '测试环境',
-  ENV_DEMO: '演示环境'
-};
+  ENV_DEMO: '演示环境',
+  UPDATE_KUBECONFIG: '更新 KubeConfig',
+  KUBE_CONFIG_IS_EXPIRED: 'KubeConfig 已到期',
+  EXPIRE_DATE: '到期时间',
+  LAST_KUBE_CONFIG_EXPIRED:
+    '<span class="kubeConfig_expired">{count}</span>天后 KubeConfig 到期',
+}

@@ -43,6 +43,15 @@
   }
 }
 
+.isExpired {
+  font-size: 12px;
+  color: #ab2f29 !important;
+  span {
+    margin-right: 3px;
+    margin-top: -2px;
+  }
+}
+
 .light {
   .name {
     color: $white;

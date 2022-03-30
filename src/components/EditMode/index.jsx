@@ -119,6 +119,7 @@ export default class EditMode extends React.Component {
 
   handleChange = value => {
     this.value = value
+    this.props.onChange && this.props.onChange(value)
   }
 
   getData = () => yamlToObject(this.value, !!this.props.value.metadata)
