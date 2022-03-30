@@ -743,6 +743,8 @@ export const PROVISIONERS = [
       {
         key: 'RESTURL',
         type: 'input',
+        placeholder:
+          'https://<Heketi service cluster IP address>:<Heketi service port>',
         desc: 'GLUSTERFS_RESTURL_DESC',
       },
       {
@@ -763,7 +765,7 @@ export const PROVISIONERS = [
       {
         key: 'REST_USER',
         type: 'input',
-        placeholder: 'rbd',
+        placeholder: 'admin',
         desc: 'GLUSTERFS_RESTUSER_DESC',
       },
       {
