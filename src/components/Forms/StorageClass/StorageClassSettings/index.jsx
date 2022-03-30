@@ -202,7 +202,7 @@ export default class StorageClassSetting extends React.Component {
             <Column>
               <Form.Item label={t('VOLUME_BINDING_MODE')}>
                 <Select
-                  name="metadata.VolumeBindingMode"
+                  name="volumeBindingMode"
                   options={this.volumeBindingMode}
                 ></Select>
               </Form.Item>
