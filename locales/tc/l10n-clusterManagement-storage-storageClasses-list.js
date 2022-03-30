@@ -50,10 +50,10 @@ module.exports = {
   CREATE_VOLUME_MAX_SIZE: 'Maximum size of the volume.',
   CREATE_VOLUME_STEP_SIZE: 'Step size of the volume.',
   CREATE_VOLUME_MIN_SIZE: 'Minimum size of the volume.',
-  VOLUME_FS_TYPE: 'Supports ext3, ext4, and XFS. The default type is ext4.',
+  VOLUME_FS_TYPE: 'Supports ext3, ext4, and xfs. The default type is ext4.',
   QINGCLOUD_VOLUME_TAGS_DESC: 'Add tags to the storage volume. Use commas to separate multiple tags.',
   // List > Create > > GlusterFS > Storage Class Settings
-  GLUSTERFS_RESTURL_DESC: 'Heketi REST URL that provisions volumes, for example, <Heketi Service cluster IP Address>:<Heketi Service port number>.',
+  GLUSTERFS_RESTURL_DESC: 'Heketi REST URL that provisions volumes.',
   GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
   GLUSTERFS_RESTAUTHENABLED_DESC: ' Gluster 啟用对 REST 伺服器的認證',
   GLUSTERFS_RESTUSER_DESC: 'Username of Gluster REST service or Heketi service.',
