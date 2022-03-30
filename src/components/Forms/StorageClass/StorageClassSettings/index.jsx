@@ -113,7 +113,7 @@ export default class StorageClassSetting extends React.Component {
               desc={t(left.desc.toUpperCase())}
             >
               <LeftComponent
-                name={`parameters.${left.key}`}
+                name={`parameters.${left.key.toLowerCase()}`}
                 {...omit(left, [
                   'type',
                   'key',
@@ -133,7 +133,7 @@ export default class StorageClassSetting extends React.Component {
                 desc={t(right.desc.toUpperCase())}
               >
                 <RightComponent
-                  name={`parameters.${right.key}`}
+                  name={`parameters.${right.key.toLowerCase()}`}
                   {...omit(right, ['type', 'key', 'desc'])}
                 />
               </Form.Item>
