@@ -214,7 +214,7 @@ export default class SCMStore extends BaseStore {
 
     if (result && result.credentialId) {
       await this.getOrganizationList(
-        { secret: secretName, secretNamespace },
+        { secret: secretName, secretNamespace, includeUser: true },
         'github',
         cluster
       )
