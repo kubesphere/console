@@ -106,7 +106,6 @@ export default class Confiuguration extends React.Component {
                   <EditMode
                     mode="yaml"
                     name="spec.connection.kubeconfig"
-                    className={styles.editor}
                     options={this.editOptions}
                   />
                 </Form.Item>

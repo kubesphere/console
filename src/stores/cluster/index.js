@@ -38,6 +38,9 @@ export default class ClusterStore extends Base {
   isValidating = false
 
   @observable
+  isSubmitting = false
+
+  @observable
   version = ''
 
   module = 'clusters'
@@ -208,10 +211,11 @@ export default class ClusterStore extends Base {
 
   @action
   async updateKubeConfig({ cluster, data }) {
-    const result = await request.put(
-      `/kapis/cluster.kubesphere.io/v1alpha1/clusters/${cluster}/kubeconfig`,
-      data
+    return this.submitting(
+      request.put(
+        `/kapis/cluster.kubesphere.io/v1alpha1/clusters/${cluster}/kubeconfig`,
+        data
+      )
     )
-    return result
   }
 }

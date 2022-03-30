@@ -87,11 +87,11 @@ export default {
     on({ store, detail, cluster, success, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
-          store.updateKubeConfig({ cluster: detail.name, data }).then(() => {
-            Modal.close(modal)
-            Notify.success({ content: t('UPDATE_SUCCESSFUL') })
-            success && success()
-          })
+          set(data, 'kubeconfig', btoa(data.kubeconfig))
+          await store.updateKubeConfig({ cluster: detail.name, data })
+          Modal.close(modal)
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+          success && success()
         },
         store,
         detail,

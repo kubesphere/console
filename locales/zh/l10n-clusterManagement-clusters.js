@@ -29,7 +29,7 @@ module.exports = {
   CLUSTER_CONNECT_METHOD_DESC: '可以直接连接集群或者使用代理',
   CONNTECT_DIRECT: '直接连接 Kubernetes 集群',
   CONNTECT_PROXY: '集群连接代理',
-  INPUT_KUBECONFIG: '请填写目标集群的 KubeConfig',
+  INPUT_KUBECONFIG: '请写目标集群的 KubeConfig',
   CLUSTER_DIRECT_IMPORT_TIP:
     'KubeSphere 多集群控制平面通过提供的 kubeconfig 来直接连接导入集群，此种方式要求当前集群能够通过 kubeconfig 中的 server 地址直接访问待导入集群。 </br></br>通常适用于:</br>1. 当前集群和待导入集群在同一内网网络中</br>2. 当前集群和待导入集群已通过 VPN 或隧道等其它技术连通所在网络</br>3. kubeconfig 的 server 地址可以通过公网访问',
   CLUSTER_AGENT_IMPORT_TIP:

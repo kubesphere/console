@@ -20,3 +20,12 @@
   border: solid 1px $light-color06;
   background-color: #ffffff;
 }
+
+.link {
+  float: right;
+  color: $blue-color04;
+
+  &:hover {
+    color: $blue-color04;
+  }
+}

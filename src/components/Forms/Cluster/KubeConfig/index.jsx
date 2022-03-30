@@ -23,13 +23,14 @@ import EditMode from 'components/EditMode'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 import { Text, Modal } from 'components/Base'
 import PropTypes from 'prop-types'
+import { observer } from 'mobx-react'
 import styles from './index.scss'
 
+@observer
 export default class KubeConfigModal extends React.Component {
   static propTypes = {
     formTemplate: PropTypes.object,
     visible: PropTypes.bool,
-    isSubmitting: PropTypes.bool,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
   }
@@ -37,7 +38,6 @@ export default class KubeConfigModal extends React.Component {
   static defaultProps = {
     formTemplate: {},
     visible: false,
-    isSubmitting: false,
     onOk() {},
     onCancel() {},
   }
@@ -50,12 +50,20 @@ export default class KubeConfigModal extends React.Component {
   }
 
   render() {
-    const { detail, formTemplate, visible, ...res } = this.props
+    const { detail, formTemplate, visible, store, ...res } = this.props
     const expiredDay = detail.expiredDay
     const isExpired = expiredDay && expiredDay < 0
 
     return (
-      <Modal width={1162} visible={visible} {...res} onOk={this.handleSubmit}>
+      <Modal
+        width={960}
+        visible={visible}
+        {...res}
+        onOk={this.handleSubmit}
+        okText={t('UPDATE')}
+        isSubmitting={store.isSubmitting}
+        store={store}
+      >
         <Columns>
           <Column className="is-6">
             <ClusterTitle
@@ -86,11 +94,7 @@ export default class KubeConfigModal extends React.Component {
               rules={[{ required: true, message: t('INPUT_KUBECONFIG') }]}
               unControl
             >
-              <EditMode
-                mode="yaml"
-                name="kubeconfig"
-                className={styles.editor}
-              />
+              <EditMode mode="yaml" name="kubeconfig" />
             </Form.Item>
           </div>
         </Form>
