@@ -160,9 +160,7 @@ export default class CDList extends React.Component {
       cluster: this.cluster,
       module: 'cds',
       noCodeEdit: true,
-      success: () => {
-        this.getData()
-      },
+      success: this.getData,
     })
   }
 
@@ -177,9 +175,7 @@ export default class CDList extends React.Component {
       cluster: this.cluster,
       application: item.name,
       noCodeEdit: true,
-      success: () => {
-        this.getData()
-      },
+      success: this.getData,
     })
   }
 

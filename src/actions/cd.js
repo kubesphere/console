@@ -23,7 +23,7 @@ import SyncModal from 'components/Modals/SyncModal'
 import { Notify } from '@kube-design/components'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { set, isEmpty } from 'lodash'
+import { set, isEmpty, cloneDeep } from 'lodash'
 
 export default {
   'cd.create': {
@@ -100,21 +100,23 @@ export default {
     }) {
       const modal = Modal.open({
         onOk: async data => {
-          const syncOptions = !isEmpty(data.syncOptions)
-            ? Object.entries(data.syncOptions).reduce((pre, current) => {
+          const postData = cloneDeep(data)
+          const syncOptions = !isEmpty(postData.syncOptions)
+            ? Object.entries(postData.syncOptions).reduce((pre, current) => {
                 const item = `${current[0]}=${current[1]}`
                 pre.push(item)
                 return pre
               }, [])
             : undefined
 
-          set(data, 'syncOptions', syncOptions)
+          set(postData, 'syncOptions', syncOptions)
+          set(postData, 'revision', data.repoSource.targetRevision)
 
-          set(data, 'revision', data.repoSource.targetRevision)
-
-          delete data.repoSource
-
-          await store.updateSync({ data, devops: props.devops, application })
+          await store.updateSync({
+            data: postData,
+            devops: props.devops,
+            application,
+          })
 
           Notify.success({ content: t('SYNC_TRIGGERED') })
           success && success()
