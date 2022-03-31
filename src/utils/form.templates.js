@@ -351,11 +351,11 @@ const getStorageClassTemplate = () => ({
   metadata: {
     name: '',
     annotations: {},
-    VolumeBindingMode: 'WaitForFirstConsumer',
   },
   parameters: {},
   reclaimPolicy: 'Delete',
   allowVolumeExpansion: 'false',
+  volumeBindingMode: 'WaitForFirstConsumer',
 })
 
 const getProjectTemplate = () => ({
