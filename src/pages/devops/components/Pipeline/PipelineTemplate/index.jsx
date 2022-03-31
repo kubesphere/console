@@ -25,7 +25,7 @@ import styles from './index.scss'
 const PipelineTemplate = ({ handleTemplateChange, formTemplate }) => {
   const CUSTOM_TEMPLATE = {
     type: 'custom',
-    image: '/assets/pipeline/pipeline-icon.svg',
+    image: '/assets/pipeline/custom.svg',
     title: t('CUSTOM_PIPELIEN'),
     desc: t('CUSTOM_PIPELIEN_DESC'),
   }
@@ -88,11 +88,9 @@ const Card = ({
   isSelected,
 }) => {
   const imgRef = useRef()
-  const [imgLoaded, setImgLoaded] = useState(false)
 
   const handleImg = () => {
-    imgRef.current.src = '/assets/pipeline/pipeline-icon.svg'
-    setImgLoaded(true)
+    imgRef.current.src = '/assets/pipeline/custom.svg'
   }
 
   return (
@@ -102,15 +100,11 @@ const Card = ({
       })}
       onClick={() => getTemple(type, parameters)}
     >
-      <div
-        className={classnames(styles.bg, {
-          [styles.customIcon]: type === 'custom' || imgLoaded,
-        })}
-      >
+      <div className={classnames(styles.bg)}>
         <img src={image} ref={imgRef} onError={handleImg} />
       </div>
       <div className={styles.info}>
-        <h4 className={styles.subTitle}>{title}</h4>
+        <div className={styles.subtitle}>{title}</div>
         <p title={desc} className={styles.desc}>
           {desc}
         </p>
