@@ -307,16 +307,19 @@ export default class RepoSelectForm extends React.Component {
   }
 
   render() {
-    const { devops, cluster } = this.props
+    const { devops, cluster, type } = this.props
 
     return (
       <div className={styles.formWrapper}>
-        <div className="h4">
-          <a className="custom-icon" onClick={this.handleGoBack}>
-            <BackIcon />
-          </a>
-          {t('SELECT_CODE_REPOSITORY')}
-        </div>
+        {type !== 'import' ? (
+          <div className="h4">
+            <a className="custom-icon" onClick={this.handleGoBack}>
+              <BackIcon />
+            </a>
+            {t('SELECT_CODE_REPOSITORY')}
+          </div>
+        ) : null}
+
         <div className={styles.contentWrapper}>
           {this.renderTypes()}
           {this.renderForm()}
