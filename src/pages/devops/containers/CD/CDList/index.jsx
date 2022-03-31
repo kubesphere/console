@@ -28,7 +28,7 @@ import Table from 'components/Tables/List'
 import ClusterStore from 'stores/cluster'
 import withList, { ListPage } from 'components/HOCs/withList'
 import { CD_WEATHER_STATUS, CD_SYNC_STATUS } from 'utils/constants'
-import { omit, get } from 'lodash'
+import { omit, get, pick } from 'lodash'
 import Destination from '../Components/Destination'
 import StatusText from '../Components/StatusText'
 import ChartCard from '../Components/ChartCard'
@@ -160,9 +160,7 @@ export default class CDList extends React.Component {
       cluster: this.cluster,
       module: 'cds',
       noCodeEdit: true,
-      success: () => {
-        this.getData()
-      },
+      success: this.getData,
     })
   }
 
@@ -172,13 +170,12 @@ export default class CDList extends React.Component {
     trigger('cd.sync', {
       module,
       title: t('Synchronize'),
-      formTemplate: item,
+      formTemplate: pick(item, 'repoSource'),
       devops: this.devops,
       cluster: this.cluster,
+      application: item.name,
       noCodeEdit: true,
-      success: () => {
-        this.getData()
-      },
+      success: this.getData,
     })
   }
 
