@@ -48,7 +48,7 @@ it('renders correctly', () => {
   const wrapper = mount(<EnvironmentInput {...props} />)
 
   let items = wrapper.find('EnvironmentInputItem')
-  let button = wrapper.find('button[data-test="add-env-configmap"]')
+  const button = wrapper.find('button[data-test="add-env-configmap"]')
   expect(items).toHaveLength(1)
   expect(items.first().find('input[name="name"]')).toHaveValue('')
   expect(items.first().find('input[name="value"]')).toHaveValue('')
@@ -58,13 +58,6 @@ it('renders correctly', () => {
   items = wrapper.find('EnvironmentInputItem')
   expect(items.first().find('input[name="name"]')).toHaveProp({ value: 'aaa' })
   expect(items.first().find('input[name="value"]')).toHaveProp({ value: 'bbb' })
-
-  button = wrapper.find('Button[data-test="add-env-configmap"]')
-  button.prop('onClick')()
-  expect(props.onChange).toHaveBeenCalledWith([
-    { name: 'aaa', value: 'bbb' },
-    { name: '', valueFrom: {} },
-  ])
 
   wrapper.setProps({
     value: [
@@ -102,7 +95,7 @@ it('renders correctly', () => {
   expect(items).toHaveLength(4)
   expect(items.at(1).find('Input[name="name"]')).toHaveProp({ value: 'xxx' })
   expect(items.at(1).find('Select[name="resource"]')).toHaveProp({
-    value: 'configmap-aaa',
+    value: 'aaa',
   })
   expect(items.at(1).find('Select[name="resourceKey"]')).toHaveProp({
     value: 'aaa',
