@@ -104,10 +104,8 @@ export default class CodeRepoStore extends Base {
   }
 
   @action
-  async update(detail, data) {
-    const url = `${this.getResourceUrl({ namespace: detail.devops })}/${
-      data.metadata.name
-    }`
+  async update({ data, devops, name }) {
+    const url = `${this.getResourceUrl({ namespace: devops })}/${name}`
     return this.submitting(request.put(url, data))
   }
 

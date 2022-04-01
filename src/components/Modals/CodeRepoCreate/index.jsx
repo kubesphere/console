@@ -1,6 +1,6 @@
 /*
  * This file is part of KubeSphere Console.
- * Copyright (C) 2022 The KubeSphere Console Authors.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
  *
  * KubeSphere Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,30 +17,37 @@
  */
 
 import React from 'react'
+import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
+import { PATTERN_NAME } from 'utils/constants'
+import { Modal } from 'components/Base'
+import Confirm from 'components/Forms/Base/Confirm'
+
+import RepoSelect from 'components/Forms/Pipelines/RepoSelect'
 import RepoSelectForm from 'components/Forms/Pipelines/RepoSelect/subForm'
 import PropTypes from 'prop-types'
-import { Modal } from 'components/Base'
-import { set } from 'lodash'
+
+import styles from './index.scss'
 
 export default class BaseInfo extends React.Component {
-  static propTypes = {
-    detail: PropTypes.object,
-    visible: PropTypes.bool,
-    onOk: PropTypes.func,
-    onCancel: PropTypes.func,
-    isSubmitting: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    visible: false,
-    isSubmitting: false,
-    onOk() {},
-    onCancel() {},
+  constructor(props) {
+    super(props)
+    this.state = {
+      showSelectRepo: false,
+    }
+    this.scmRef = React.createRef()
+    this.formRef = React.createRef()
   }
 
   static childContextTypes = {
     registerSubRoute: PropTypes.func,
     resetSubRoute: PropTypes.func,
+  }
+
+  getChildContext() {
+    return {
+      registerSubRoute: this.registerSubRoute,
+      resetSubRoute: this.resetSubRoute,
+    }
   }
 
   resetSubRoute = () => {
@@ -56,64 +63,141 @@ export default class BaseInfo extends React.Component {
     })
   }
 
-  getChildContext() {
-    return {
-      registerSubRoute: this.registerSubRoute,
-      resetSubRoute: this.resetSubRoute,
-    }
+  showSelectRepo = () => {
+    this.setState({
+      showSelectRepo: true,
+    })
   }
 
-  submit = () => {
-    const { onOk } = this.props
+  hideSelectRepo = () => {
+    this.setState({
+      showSelectRepo: false,
+    })
+  }
+
+  handleSubFormSave = () => {
     const { subRoute } = this.state
 
-    if (subRoute.onSave) {
+    if (subRoute && subRoute.onSave) {
       subRoute.onSave(() => {
         this.setState({ subRoute: {} })
       })
     }
-    onOk(this.props.formTemplate)
   }
 
-  handleRepoChange = (type, formData) => {
-    const { formTemplate } = this.props
+  handleSubFormCancel = () => {
+    const { subRoute } = this.state
 
-    const data = {
-      source_type: type,
-      ...formData,
-    }
-    set(formTemplate, 'sources', data)
-
-    if (type === 'github') {
-      this.submit()
+    if (subRoute && subRoute.onCancel) {
+      subRoute.onCancel()
+      this.setState({ subRoute: {} })
     }
   }
 
-  hideSelectRepo = () => {
-    const { onCancel } = this.props
-    onCancel()
+  handleRepoChange = (source_type, formData) => {
+    this.setState(
+      {
+        showSelectRepo: false,
+      },
+      () => {
+        this.scmRef.current.onChange({
+          source_type,
+          ...formData,
+        })
+      }
+    )
+  }
+
+  handleDeleteSource = () => {
+    this.scmRef.current.onChange()
+  }
+
+  renderRepoSelectForm() {
+    const { formTemplate, devops, cluster, ...res } = this.props
+    const { showSelectRepo } = this.state
+
+    return (
+      <Modal width={970} {...res} disableSubmit={showSelectRepo}>
+        <div>
+          <RepoSelectForm
+            sourceData={formTemplate['sources']}
+            devops={devops}
+            name={formTemplate.name}
+            cluster={cluster}
+            onSave={this.handleRepoChange}
+            onCancel={this.hideSelectRepo}
+            noSVN={true}
+            noJenkins
+          />
+          <Confirm
+            className={styles.confirm}
+            onOk={this.handleSubFormSave}
+            onCancel={this.handleSubFormCancel}
+          />
+        </div>
+      </Modal>
+    )
+  }
+
+  submit = () => {
+    const { formTemplate, onOk } = this.props
+    this.formRef.current.validate(() => {
+      onOk(formTemplate)
+    })
   }
 
   render() {
-    const { formTemplate, devops, cluster, onCancel, ...res } = this.props
+    const { formTemplate, isEdit, ...rest } = this.props
+    const { showSelectRepo } = this.state
+    if (showSelectRepo) {
+      return this.renderRepoSelectForm()
+    }
 
     return (
-      <Modal
-        width={970}
-        data={formTemplate}
-        onCancel={onCancel}
-        {...res}
-        onOk={this.submit}
-      >
-        <RepoSelectForm
-          sourceData={formTemplate['multi_branch_pipeline']}
-          devops={devops}
-          name={formTemplate.name}
-          onSave={this.handleRepoChange}
-          onCancel={this.hideSelectRepo}
-          cluster={cluster}
-          type="import"
-        />
+      <Modal width={970} {...rest} onOk={this.submit}>
+        <Form ref={this.formRef} data={formTemplate}>
+          <Columns>
+            <Column>
+              <Form.Item
+                label={t('NAME')}
+                desc={t('NAME_DESC')}
+                rules={[
+                  { required: true, message: t('NAME_EMPTY_DESC') },
+                  {
+                    pattern: PATTERN_NAME,
+                    message: t('INVALID_NAME_DESC'),
+                  },
+                ]}
+              >
+                <Input name="metadata.name" maxLength={63} disabled={isEdit} />
+              </Form.Item>
+              <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
+                <TextArea
+                  name="metadata.annotations['kubesphere.io/description']"
+                  maxLength={256}
+                />
+              </Form.Item>
+            </Column>
+            <Column>
+              <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
+                <Input name="metadata.annotations['kubesphere.io/alias-name']" />
+              </Form.Item>
+            </Column>
+          </Columns>
+          <Form.Item
+            label={t('CODE_REPOSITORY')}
+            rules={[{ required: true, message: t('REPO_EMPTY_DESC') }]}
+          >
+            <RepoSelect
+              name="sources"
+              ref={this.scmRef}
+              onClick={this.showSelectRepo}
+              handleDeleteSource={this.handleDeleteSource}
+              devops={this.props.devops}
+              type="cd"
+            />
+          </Form.Item>
+        </Form>
       </Modal>
     )
   }

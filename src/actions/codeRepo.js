@@ -20,34 +20,33 @@ import { Notify } from '@kube-design/components'
 import DeleteModal from 'components/Modals/Delete'
 import CodeRepoForm from 'components/Modals/CodeRepoCreate'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { get, set } from 'lodash'
+import { cloneDeep, get, set, omit } from 'lodash'
+
+const handleFormData = ({ data, module, devops }) => {
+  const postData = FORM_TEMPLATES[module]({ namespace: devops })
+  const repo = get(data, `sources.${data.sources.source_type}_source`)
+  const repoName = repo.repo || repo.url || repo.remote
+  const spec = {
+    provider: data.sources.source_type,
+    url: repoName,
+    secret: {
+      name: repo.credential_id,
+      namespace: devops,
+    },
+  }
+
+  set(postData, 'metadata.name', repoName)
+  set(postData, 'metadata', data.metadata)
+  set(postData, 'spec', spec)
+  return postData
+}
 
 export default {
   'codeRepo.create': {
     on({ store, cluster, devops, module, success, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
-          const postData = FORM_TEMPLATES[module]({ namespace: devops })
-          const repo = get(data, `sources.${data.sources.source_type}_source`)
-
-          const repoName = repo.repo || repo.url || repo.remote
-
-          const spec = {
-            provider: data.sources.source_type,
-            url: repoName,
-            secret: {
-              name: repo.credential_id,
-              namespace: devops,
-            },
-          }
-
-          set(postData, 'metadata.name', repoName)
-          set(
-            postData,
-            'metadata.annotations["kubesphere.io/description"]',
-            repo.description
-          )
-          set(postData, 'spec', spec)
+          const postData = handleFormData({ data, module, devops })
 
           await store.create({ data: postData, devops })
 
@@ -61,6 +60,44 @@ export default {
         devops,
         formTemplate: {},
         modal: CodeRepoForm,
+        ...props,
+      })
+    },
+  },
+  'codeRepo.edit': {
+    on({ store, cluster, devops, module, detail, success, ...props }) {
+      const template = cloneDeep(detail)
+      const metadata = omit(
+        get(template, '_originData.metadata', {}),
+        'finalizers'
+      )
+      const editTemplate = {
+        metadata,
+        sources: {
+          source_type: template.provider,
+          [`${template.provider}_source`]: {
+            repo: template.repoURL,
+          },
+        },
+      }
+
+      const modal = Modal.open({
+        onOk: async data => {
+          const postData = handleFormData({ data, module, devops })
+
+          await store.update({ data: postData, devops, name: detail.name })
+
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+          success && success()
+          Modal.close(modal)
+        },
+        store,
+        module,
+        cluster,
+        devops,
+        formTemplate: editTemplate,
+        modal: CodeRepoForm,
+        isEdit: true,
         ...props,
       })
     },

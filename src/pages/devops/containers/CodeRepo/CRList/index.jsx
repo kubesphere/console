@@ -26,7 +26,7 @@ import Banner from 'components/Cards/Banner'
 import CDStore from 'stores/codeRepo'
 import Table from 'components/Tables/List'
 
-import { getLocalTime, capitalize } from 'utils'
+import { getLocalTime, capitalize, getDisplayName } from 'utils'
 import { omit } from 'lodash'
 
 import styles from './index.scss'
@@ -74,6 +74,23 @@ export default class CRList extends React.Component {
     const { trigger, routing } = this.props
 
     return [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('EDIT'),
+        action: 'edit',
+        onClick: record => {
+          trigger('codeRepo.edit', {
+            title: t('EDIT_CODE_REPO'),
+            devops: this.devops,
+            cluster: this.cluster,
+            module: 'codeRepos',
+            detail: record,
+            noCodeEdit: true,
+            success: this.getData,
+          })
+        },
+      },
       {
         key: 'delete',
         icon: 'trash',
@@ -134,7 +151,7 @@ export default class CRList extends React.Component {
               icon={record.provider}
               iconSize={40}
               desc={record.description}
-              title={name}
+              title={getDisplayName(record)}
             />
           )
         },

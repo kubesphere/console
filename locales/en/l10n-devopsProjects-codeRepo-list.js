@@ -23,6 +23,7 @@ module.exports = {
     'Code repositories are used to pull code repositories based on GIT or SVN management.',
   CODE_REPO_EMPTY_DESC:
     'Import a code repository, you can select a code repository as the code source and choose GitHub, GitLab, Bitbucket, Git and SVN as code source',
-  IMPORT_CODE_REPO: 'Import Code Repository ',
+  IMPORT_CODE_REPO: 'Import Code Repository',
+  EDIT_CODE_REPO: 'Edit Code Repository',
   REPOSITORIES: 'Repositories',
 }
