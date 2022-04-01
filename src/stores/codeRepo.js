@@ -124,21 +124,4 @@ export default class CodeRepoStore extends Base {
     const _params = omit({ ...params, namespace: params.devops }, 'devops')
     return this.submitting(request.delete(this.getDetailUrl(_params)))
   }
-
-  @action
-  async fetchDetail({ name, isSilent, devops }) {
-    if (!isSilent) {
-      this.isLoading = true
-    }
-
-    const resultKub = await request.get(
-      `${this.getResourceUrl({ namespace: devops })}/${name}`
-    )
-
-    const result = this.mapper({ ...resultKub, devops })
-
-    this.detail = result
-    this.isLoading = false
-    return result
-  }
 }

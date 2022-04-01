@@ -19,13 +19,37 @@ import { Modal } from 'components/Base'
 import { Notify } from '@kube-design/components'
 import DeleteModal from 'components/Modals/Delete'
 import CodeRepoForm from 'components/Modals/CodeRepoCreate'
+import FORM_TEMPLATES from 'utils/form.templates'
+import { get, set } from 'lodash'
 
 export default {
   'codeRepo.create': {
-    on({ store, cluster, workspace, module, success, ...props }) {
+    on({ store, cluster, devops, module, success, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
-          await store.create({ data, devops: props.devops })
+          const postData = FORM_TEMPLATES[module]({ namespace: devops })
+          const repo = get(data, `sources.${data.sources.source_type}_source`)
+
+          const repoName = repo.repo || repo.url || repo.remote
+
+          const spec = {
+            provider: data.sources.source_type,
+            url: repoName,
+            secret: {
+              name: repo.credential_id,
+              namespace: devops,
+            },
+          }
+
+          set(postData, 'metadata.name', repoName)
+          set(
+            postData,
+            'metadata.annotations["kubesphere.io/description"]',
+            repo.description
+          )
+          set(postData, 'spec', spec)
+
+          await store.create({ data: postData, devops })
 
           Notify.success({ content: t('CREATE_SUCCESSFUL') })
           success && success()
@@ -34,6 +58,7 @@ export default {
         store,
         module,
         cluster,
+        devops,
         formTemplate: {},
         modal: CodeRepoForm,
         ...props,
@@ -41,16 +66,17 @@ export default {
     },
   },
   'codeRepo.delete': {
-    on({ store, detail, success, ...props }) {
+    on({ store, detail, devops, success, ...props }) {
       const modal = Modal.open({
-        onOk: () => {
+        onOk: async () => {
+          await store.delete({ ...detail, devops })
           Modal.close(modal)
           Notify.success({ content: t('DELETE_SUCCESSFUL') })
           success && success()
         },
         store,
         modal: DeleteModal,
-        resource: detail,
+        resource: detail.name,
         ...props,
       })
     },

@@ -82,7 +82,11 @@ export default class BaseInfo extends React.Component {
       source_type: type,
       ...formData,
     }
-    set(formTemplate, 'multi_branch_pipeline', data)
+    set(formTemplate, 'sources', data)
+
+    if (type === 'github') {
+      this.submit()
+    }
   }
 
   hideSelectRepo = () => {

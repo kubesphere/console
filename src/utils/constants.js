@@ -940,7 +940,7 @@ export const API_VERSIONS = {
   meter: 'kapis/metering.kubesphere.io/v1alpha1',
   gateways: 'kapis/gateway.kubesphere.io/v1alpha1',
   cds: 'kapis/gitops.kubesphere.io/v1alpha1',
-  codeRepos: 'kapis/gitops.kubesphere.io/v1alpha3',
+  codeRepos: 'kapis/devops.kubesphere.io/v1alpha3',
 }
 
 export const MONITOR_GRAPH_COLORS = [

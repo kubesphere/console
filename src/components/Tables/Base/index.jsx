@@ -285,7 +285,7 @@ export default class WorkloadTable extends React.Component {
   }
 
   renderActions() {
-    const { onCreate, actions } = this.props
+    const { onCreate, createText, actions } = this.props
 
     if (actions) {
       return actions.map(action => (
@@ -312,7 +312,7 @@ export default class WorkloadTable extends React.Component {
         onClick={onCreate}
         data-test="table-create"
       >
-        {t('Create')}
+        {t(createText || 'Create')}
       </Button>
     )
   }

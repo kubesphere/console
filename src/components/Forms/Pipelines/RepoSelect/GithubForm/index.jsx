@@ -64,6 +64,19 @@ export default class GitHubForm extends React.Component {
     return 'github'
   }
 
+  get credentialsList() {
+    return [
+      ...this.props.store.credentials.data
+        .map(credential => ({
+          label: credential.name,
+          value: credential.name,
+          type: credential.type,
+          namespace: credential.namespace,
+        }))
+        .filter(credential => credential.type === 'username_password'),
+    ]
+  }
+
   handleFormChange = () => {
     const { isAccessTokenWrong } = this.props.store
     if (isAccessTokenWrong) {
@@ -136,16 +149,12 @@ export default class GitHubForm extends React.Component {
 
     this.setState({ isLoading: true })
 
-    const credentialDetail = await this.props.store.getCredentialDetail({
-      cluster,
-      devops,
-      credential_id: this.credentialId,
-    })
+    const credentialDetail = this.credentialsList.find(
+      item => item.value === this.credentialId
+    )
 
-    const token = get(credentialDetail, 'data.password')
-
-    if (token) {
-      const secretName = get(credentialDetail, 'name')
+    if (!isEmpty(credentialDetail)) {
+      const secretName = get(credentialDetail, 'value')
       const secretNamespace = get(credentialDetail, 'namespace')
       await this.props.store
         .putAccessName({ secretName, secretNamespace, cluster, devops })
@@ -155,18 +164,6 @@ export default class GitHubForm extends React.Component {
     } else {
       this.setState({ isLoading: false })
     }
-  }
-
-  getCredentialsList = () => {
-    return [
-      ...this.props.store.credentials.data
-        .map(credential => ({
-          label: credential.name,
-          value: credential.name,
-          type: credential.type,
-        }))
-        .filter(credential => credential.type === 'username_password'),
-    ]
   }
 
   getCredentialsListData = params => {
@@ -225,7 +222,7 @@ export default class GitHubForm extends React.Component {
           >
             <Select
               name="credentialId"
-              options={this.getCredentialsList()}
+              options={this.credentialsList}
               pagination={pick(credentials, ['page', 'limit', 'total'])}
               isLoading={credentials.isLoading}
               onFetch={this.getCredentialsListData}

@@ -19,15 +19,17 @@
 import React from 'react'
 
 import { toJS } from 'mobx'
-import { getLocalTime, getDisplayName } from 'utils'
-import { Avatar, Status } from 'components/Base'
+import withList, { ListPage } from 'components/HOCs/withList'
 
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import CDStore from 'stores/codeRepo'
 import Table from 'components/Tables/List'
 
-import withList, { ListPage } from 'components/HOCs/withList'
+import { getLocalTime, capitalize } from 'utils'
 import { omit } from 'lodash'
+
+import styles from './index.scss'
 
 @withList({
   store: new CDStore(),
@@ -69,22 +71,22 @@ export default class CRList extends React.Component {
   }
 
   get itemActions() {
-    // const { trigger, routing } = this.props
+    const { trigger, routing } = this.props
 
     return [
-      {
-        key: 'edit',
-        icon: 'pen',
-        text: t('EDIT'),
-        action: 'edit',
-        onClick: () => {},
-      },
       {
         key: 'delete',
         icon: 'trash',
         text: t('DELETE'),
         action: 'delete',
-        onClick: () => {},
+        onClick: record => {
+          trigger('codeRepo.delete', {
+            type: 'CODE_REPO',
+            detail: record,
+            devops: this.devops,
+            success: routing.query,
+          })
+        },
       },
     ]
   }
@@ -110,9 +112,7 @@ export default class CRList extends React.Component {
       cluster: this.cluster,
       module: 'codeRepos',
       noCodeEdit: true,
-      success: () => {
-        this.getData()
-      },
+      success: this.getData,
     })
   }
 
@@ -120,18 +120,21 @@ export default class CRList extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('NAME'),
+        title: t('REPOSITORIES'),
         dataIndex: 'name',
-        width: '20%',
+        width: '40%',
         sorter: true,
         sortOrder: getSortOrder('name'),
         search: true,
         render: (name, record) => {
           return (
             <Avatar
-              to={`${this.prefix}/${name}`}
+              className={styles.avatar}
+              to={''}
+              icon={record.provider}
+              iconSize={40}
               desc={record.description}
-              title={getDisplayName(record)}
+              title={name}
             />
           )
         },
@@ -141,15 +144,19 @@ export default class CRList extends React.Component {
         dataIndex: 'status',
         isHideable: true,
         width: '20%',
-        render: status => (
-          <Status type={status} name={t(`USER_${status.toUpperCase()}`)} />
-        ),
+        render: status => {
+          const _status = status || 'success'
+          return <Status type={_status} name={t(_status.toUpperCase())} />
+        },
       },
       {
         title: t('Source'),
-        dataIndex: 'source',
+        dataIndex: 'provider',
         isHideable: true,
         width: '20%',
+        render: provider => {
+          return capitalize(provider)
+        },
       },
       {
         title: t('CREATION_TIME'),
@@ -167,35 +174,8 @@ export default class CRList extends React.Component {
 
   renderContent() {
     const { tableProps } = this.props
-    const { filters, selectedRowKeys, isLoading, total } = toJS(
-      this.props.store.list
-    )
+    const { filters, isLoading, total } = toJS(this.props.store.list)
     const omitFilters = omit(filters, ['limit', 'page'])
-
-    const defaultTableProps = {
-      onSelectRowKeys: this.props.store.setSelectRowKeys,
-      selectedRowKeys,
-      selectActions: [
-        {
-          key: 'delete',
-          type: 'danger',
-          text: t('DELETE'),
-          action: 'delete',
-          onClick: () =>
-            this.props.trigger('pipeline.batch.delete', {
-              type: 'CD',
-              rowKey: 'name',
-              devops: this.devops,
-              cluster: this.cluster,
-              success: () => {
-                setTimeout(() => {
-                  this.handleFetch()
-                }, 1000)
-              },
-            }),
-        },
-      ],
-    }
 
     const showCreate = this.enabledActions.includes('create')
       ? this.handleCreate
@@ -211,11 +191,12 @@ export default class CRList extends React.Component {
         columns={this.getColumns()}
         onCreate={showCreate}
         onFetch={this.handleFetch}
-        tableActions={defaultTableProps}
+        tableActions={{}}
         itemActions={this.itemActions}
         isLoading={isLoading}
         showEmpty={showEmpty}
         enabledActions={this.enabledActions}
+        createText="Import"
       />
     )
   }

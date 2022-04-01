@@ -17,10 +17,12 @@
  */
 module.exports = {
   CODE_REPO_PL: 'Code Repository',
+  CODE_REPO_LOW: 'Code Repository',
   CODE_REPO: 'Code Repository',
   CODE_REPO_DESC:
     'Code repositories are used to pull code repositories based on GIT or SVN management.',
   CODE_REPO_EMPTY_DESC:
     'Import a code repository, you can select a code repository as the code source and choose GitHub, GitLab, Bitbucket, Git and SVN as code source',
   IMPORT_CODE_REPO: 'Import Code Repository ',
+  REPOSITORIES: 'Repositories',
 }
