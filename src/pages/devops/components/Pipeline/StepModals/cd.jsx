@@ -53,9 +53,9 @@ const formTemplate = ({
               key: 'script',
               value: {
                 isLiteral: true,
-                value: `ks app update --app-name ${appName} \n --app-namespace ${devops} \n --name ${name} \n --newName ${newName}${
+                value: `ks app update --app-name ${appName} \\\n --app-namespace ${devops} \\\n --name ${name} \\\n --newName ${newName}${
                   tag ? `:${tag}` : ''
-                } \n --git-password $PASS --git-username=$USER \n --git-target-branch ${branch} \n`,
+                } \\\n --git-password $PASS --git-username=$USER \\\n --git-target-branch ${branch}`,
               },
             },
           ],
