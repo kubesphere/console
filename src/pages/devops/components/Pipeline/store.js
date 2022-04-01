@@ -22,6 +22,7 @@ import { Notify } from '@kube-design/components'
 
 import CredentialStore from 'stores/devops/credential'
 import BaseStore from 'stores/devops'
+import CDStore from 'stores/cd'
 
 import { generateId } from 'utils'
 
@@ -69,6 +70,8 @@ const formatPipeLineJson = json => {
 
 export default class Store extends BaseStore {
   credentialStore = new CredentialStore()
+
+  cdStore = new CDStore()
 
   get newStage() {
     return {
@@ -126,6 +129,9 @@ export default class Store extends BaseStore {
 
   @observable
   credentialsList = { data: [] }
+
+  @observable
+  cdList = { data: [] }
 
   handleAddBranch(lineIndex) {
     if (this.jsonData.json.pipeline.stages[lineIndex].parallel) {
@@ -361,6 +367,16 @@ export default class Store extends BaseStore {
       ...params,
     })
     this.credentialsList = this.credentialStore.list
+  }
+
+  @action
+  getCDListData = async params => {
+    await this.cdStore.fetchList({
+      devops: this.params.devops,
+      cluster: this.params.cluster,
+      ...params,
+    })
+    this.cdList = this.cdStore.list
   }
 
   @action

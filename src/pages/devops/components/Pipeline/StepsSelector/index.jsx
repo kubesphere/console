@@ -44,6 +44,7 @@ import {
   WaitForQualityGate,
   Script,
   Mail,
+  CD,
 } from '../StepModals'
 
 import siderStyle from '../Sider/index.scss'
@@ -62,6 +63,7 @@ const taskIcon = {
   container: 'terminal',
   checkout: 'network-router',
   git: 'network-router',
+  cd: 'rocket',
   withCredentials: 'key',
   kubernetesDeploy: 'kubernetes',
   branch: 'network-router',
@@ -104,6 +106,7 @@ export default class StepsEditor extends React.Component {
       withSonarQubeEnv: t('withSonarQubeEnv_DESC'),
       waitForQualityGate: t('waitForQualityGate_DESC'),
       script: t('script_DESC'),
+      cd: t('CD_STEP_DESC'),
     }
     this.state = [...PIPELINE_TASKS.All, ...PIPELINE_CONDITIONS].reduce(
       (prev, taskName) => {
@@ -247,6 +250,14 @@ export default class StepsEditor extends React.Component {
           edittingData={edittingData}
           store={this.props.store}
         />
+        <CD
+          visible={this.state.isShowcd}
+          showCredential={this.handleShowCredential}
+          onAddStep={this.handleAddStep('cd')}
+          onCancel={this.handleCancel('cd')}
+          edittingData={edittingData}
+          store={this.props.store}
+        />
         <Checkout
           visible={this.state.isShowcheckout}
           showCredential={this.handleShowCredential}
@@ -337,9 +348,8 @@ export default class StepsEditor extends React.Component {
             {t('Add conditions')}
           </div>
           <div className={styles.taskList}>
-            {PIPELINE_CONDITIONS.map((task, index) => (
+            {PIPELINE_CONDITIONS.map(task => (
               <div
-                key={index}
                 className={styles.task}
                 key={task}
                 onClick={this.handleAddTask(task)}
