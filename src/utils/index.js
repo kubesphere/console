@@ -77,6 +77,10 @@ export const formatUsedTime = ms => {
   return `${parseFloat(ms / 3600000).toFixed(2)} h`
 }
 
+export const formaDayTime = time => {
+  return `${parseFloat(time / 86400000).toFixed(0)} `
+}
+
 export const formatDuration = (str, targetUnit = 's') => {
   const units = ['d', 'h', 'm', 's', 'ms']
   const unitConvertor = [24, 60, 60, 1000, 1]

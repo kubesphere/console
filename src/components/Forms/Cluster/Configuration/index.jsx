@@ -18,8 +18,9 @@
 
 import React from 'react'
 import { Form, Icon, Select } from '@kube-design/components'
-import { Text, CodeEditor } from 'components/Base'
+import { Text } from 'components/Base'
 import { getDocsUrl } from 'utils'
+import EditMode from 'components/EditMode'
 
 import { get } from 'lodash'
 import Title from '../Title'
@@ -102,10 +103,9 @@ export default class Confiuguration extends React.Component {
                   rules={[{ required: true, message: t('INPUT_KUBECONFIG') }]}
                   unControl
                 >
-                  <CodeEditor
+                  <EditMode
                     mode="yaml"
                     name="spec.connection.kubeconfig"
-                    className={styles.editor}
                     options={this.editOptions}
                   />
                 </Form.Item>

@@ -25,6 +25,7 @@ import { IMPORT_CLUSTER_SPEC } from 'components/Forms/Cluster/constants'
 import KubeKeyClusterStore from 'stores/cluster/kubekey'
 import { safeParseJSON } from 'utils'
 import DeleteModal from 'components/Modals/Delete'
+import KubeConfigModal from 'components/Forms/Cluster/KubeConfig'
 
 export default {
   'cluster.add': {
@@ -78,6 +79,25 @@ export default {
         title: t('UNBIND_CLUSTER'),
         resource: detail.name,
         deleteCluster: true,
+        ...props,
+      })
+    },
+  },
+  'cluster.updateKubeConfig': {
+    on({ store, detail, cluster, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async data => {
+          set(data, 'kubeconfig', btoa(data.kubeconfig))
+          await store.updateKubeConfig({ cluster: detail.name, data })
+          Modal.close(modal)
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+          success && success()
+        },
+        store,
+        detail,
+        title: t('UPDATE_KUBECONFIG'),
+        formTemplate: { kubeconfig: {} },
+        modal: KubeConfigModal,
         ...props,
       })
     },

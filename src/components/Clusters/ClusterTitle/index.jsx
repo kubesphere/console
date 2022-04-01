@@ -53,6 +53,7 @@ export default class ClusterTitle extends Component {
       tagClass,
       noStatus,
       onClick,
+      isExpired = false,
     } = this.props
 
     if (!cluster) {
@@ -78,8 +79,11 @@ export default class ClusterTitle extends Component {
             size={sizeVal}
             type={theme}
           />
-          {!noStatus && isReady && (
-            <Indicator className={styles.indicator} status="ready" />
+          {isExpired ? (
+            <Indicator className={styles.indicator} type="error" />
+          ) : (
+            !noStatus &&
+            isReady && <Indicator className={styles.indicator} status="ready" />
           )}
         </div>
         <div className={styles.title}>
@@ -115,7 +119,16 @@ export default class ClusterTitle extends Component {
             )}
           </div>
           <div className={styles.description}>
-            {isReady || noStatus ? (
+            {isExpired ? (
+              <p className={styles.isExpired}>
+                <Icon
+                  name="information"
+                  size="15"
+                  color={{ primary: '#ffffff', secondary: '#ab2f29' }}
+                />
+                {t('KUBE_CONFIG_IS_EXPIRED')}
+              </p>
+            ) : isReady || noStatus ? (
               <p className={classNames('ellipsis', styles.ellipsis)}>
                 {cluster.description || '-'}
               </p>

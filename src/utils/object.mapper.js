@@ -38,6 +38,8 @@ import {
   getAliasName,
   getResourceCreator,
   replaceToLocalOrigin,
+  getLocalTime,
+  formaDayTime,
 } from 'utils'
 
 import { safeAtob } from 'utils/base64'
@@ -1040,6 +1042,16 @@ const ClusterMapper = item => {
   const configz = get(item, 'status.configz', {})
   configz.ksVersion = get(item, 'status.kubeSphereVersion', '')
 
+  const expiredDate = get(
+    conditions,
+    'KubeConfigCertExpiresInSevenDays.message',
+    undefined
+  )
+
+  const expiredDay = expiredDate
+    ? formaDayTime(new Date() - getLocalTime(expiredDate))
+    : undefined
+
   return {
     ...getBaseInfo(item),
     conditions,
@@ -1049,6 +1061,7 @@ const ClusterMapper = item => {
       get(item, 'metadata.labels', {}),
       'cluster-role.kubesphere.io/host'
     ),
+    expiredDay,
     kkName: get(item, 'metadata.labels["kubekey.kubesphere.io/name"]', ''),
     nodeCount: get(item, 'status.nodeCount'),
     kubernetesVersion: get(item, 'status.kubernetesVersion'),

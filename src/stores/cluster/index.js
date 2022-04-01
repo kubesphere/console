@@ -38,6 +38,9 @@ export default class ClusterStore extends Base {
   isValidating = false
 
   @observable
+  isSubmitting = false
+
+  @observable
   version = ''
 
   module = 'clusters'
@@ -204,5 +207,15 @@ export default class ClusterStore extends Base {
     )
 
     this.version = get(result, 'kubernetes.gitVersion')
+  }
+
+  @action
+  async updateKubeConfig({ cluster, data }) {
+    return this.submitting(
+      request.put(
+        `/kapis/cluster.kubesphere.io/v1alpha1/clusters/${cluster}/kubeconfig`,
+        data
+      )
+    )
   }
 }
