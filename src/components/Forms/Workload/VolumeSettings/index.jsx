@@ -512,7 +512,6 @@ class VolumeSettings extends React.Component {
         containers={mergedContainers}
         cluster={this.cluster}
         namespace={this.namespace}
-        containers={mergedContainers}
         onSave={this.handleVolume}
         onCancel={this.resetState}
         isFederated={isFederated}

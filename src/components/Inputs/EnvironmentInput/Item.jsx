@@ -23,7 +23,7 @@ import PropTypes from 'prop-types'
 import { getDisplayName } from 'utils'
 import { PATTERN_ENV_NAME } from 'utils/constants'
 import classNames from 'classnames'
-import { Input, Select } from '@kube-design/components'
+import { Input, Select, Icon } from '@kube-design/components'
 import styles from './index.scss'
 
 import ObjectInput from '../ObjectInput'
@@ -48,11 +48,37 @@ export default class EnvironmentInputItem extends React.Component {
     secrets: [],
   }
 
-  componentDidMount() {
-    const { value = {} } = this.props
+  static getDerivedStateFromProps(nextProps) {
+    const { value } = nextProps
     if (value.valueFrom) {
-      this.validEnvKey(value.name)
+      return {
+        envType: Object.keys(value.valueFrom)[0],
+      }
     }
+    return {
+      envType: 'customization',
+    }
+  }
+
+  get resourceOptions() {
+    return [
+      {
+        label: t('CUSTOMIZATION'),
+        value: 'customization',
+      },
+      {
+        label: t('REFER_CONFIGMAPS'),
+        value: 'configMapKeyRef',
+      },
+      {
+        label: t('REFER_SECRETS'),
+        value: 'secretKeyRef',
+      },
+    ]
+  }
+
+  componentDidMount() {
+    this.checkName()
   }
 
   parseValue(data) {
@@ -64,30 +90,25 @@ export default class EnvironmentInputItem extends React.Component {
     return { resourceType, resourceName, resourceKey }
   }
 
-  handleResourceValueForm = resource => {
+  handleResourceValueForm = name => {
     const { configMaps, secrets } = this.props
-
-    const resourceType = resource.startsWith('configmap-')
-      ? 'configMapKeyRef'
-      : 'secretKeyRef'
+    const { envType } = this.state
 
     const valueFrom = {}
     let data
 
-    if (resourceType === 'configMapKeyRef') {
-      const name = resource.replace('configmap-', '')
+    if (envType === 'configMapKeyRef') {
       data = configMaps.find(item => item.name === name)
-    } else if (resourceType === 'secretKeyRef') {
-      const name = resource.replace('secret-', '')
+    } else if (envType === 'secretKeyRef') {
       data = secrets.find(item => item.name === name)
     }
 
-    valueFrom[resourceType] = {
+    valueFrom[envType] = {
       name: data ? data.name : '',
       key: '',
     }
 
-    return { valueFrom, resourceType }
+    return { valueFrom, resourceType: envType }
   }
 
   handleChange = value => {
@@ -118,17 +139,6 @@ export default class EnvironmentInputItem extends React.Component {
     onChange(newValue)
   }
 
-  handleResourceData = resource => {
-    const { valueFrom } = this.handleResourceValueForm(resource)
-
-    const newValue = {
-      name: this.props.value.name || '',
-      valueFrom: { ...valueFrom },
-    }
-
-    this.props.onChange(newValue)
-  }
-
   handleKeyData = data => {
     const newValue = { ...this.props.value }
     const key = Object.keys(newValue.valueFrom)
@@ -144,50 +154,40 @@ export default class EnvironmentInputItem extends React.Component {
     this.props.onChange(newValue)
   }
 
-  getResourceOptions() {
+  get getConfigOrSecretOptions() {
     const { configMaps, secrets } = this.props
-    const options = []
-
-    if (!isEmpty(configMaps)) {
-      options.push({
-        label: t('ConfigMap'),
-        options: configMaps.map(item => ({
-          label: getDisplayName(item),
-          value: `configmap-${item.name}`,
-          type: 'ConfigMap',
-        })),
-      })
-    }
-
-    if (!isEmpty(secrets)) {
-      options.push({
-        label: t('Secret'),
-        options: secrets.map(item => ({
-          label: getDisplayName(item),
-          value: `secret-${item.name}`,
-          type: 'Secret',
-        })),
-      })
-    }
-
-    return options
+    const { envType } = this.state
+    return envType === 'configMapKeyRef'
+      ? configMaps.map(config => ({
+          label: getDisplayName(config),
+          value: config.name,
+        }))
+      : secrets.map(secret => ({
+          label: getDisplayName(secret),
+          value: secret.name,
+        }))
   }
 
-  valueRenderer = option => (
-    <p>
-      {isEmpty(option.type) ? (
-        <span style={{ color: '#5f708a', fontWeight: '400' }}>
-          {t('RESOURCE')}
-        </span>
-      ) : (
-        t.html('LABEL_TYPE', {
-          label: option.label,
-          style: 'color: #5f708a; font-weight: 400',
-          type: t(option.type.toUpperCase()),
-        })
-      )}
-    </p>
-  )
+  checkName = () => {
+    const { value = {} } = this.props
+    if (value.valueFrom) {
+      this.validEnvKey(value.name, value)
+    }
+  }
+
+  handleCfOrScChange = cfOrScName => {
+    const { envType } = this.state
+
+    this.props.onChange({
+      name: this.props.value.name || '',
+      valueFrom: {
+        [envType]: {
+          name: cfOrScName || '',
+          key: '',
+        },
+      },
+    })
+  }
 
   getKeysOptions({ resourceType, resourceName }) {
     const { configMaps, secrets } = this.props
@@ -248,51 +248,100 @@ export default class EnvironmentInputItem extends React.Component {
     }
   }, 300)
 
+  handleTypeChange = val => {
+    const { value, onChange } = this.props
+    this.setState(
+      {
+        envType: val,
+      },
+      () => {
+        if (val !== 'customization') {
+          onChange({
+            name: value.name || '',
+            valueFrom: {
+              [val]: {
+                name: '',
+                key: '',
+              },
+            },
+          })
+        } else {
+          onChange({
+            name: value.name || '',
+            value: '',
+          })
+        }
+      }
+    )
+  }
+
+  renderConfigOrSecret = () => {
+    const { value = {} } = this.props
+    const { keyError, envType } = this.state
+
+    const { resourceType, resourceName, resourceKey } = this.parseValue(
+      value.valueFrom
+    )
+
+    const formatValue = {
+      name: value.name,
+      resource: resourceName,
+      resourceKey,
+    }
+
+    return (
+      <ObjectInput value={formatValue} onChange={this.handleChange}>
+        <div className={styles.typeBox}>
+          <Select
+            options={this.resourceOptions}
+            onChange={this.handleTypeChange}
+            value={envType}
+          ></Select>
+        </div>
+        <Input
+          name="name"
+          placeholder={t('KEY')}
+          className={classNames({
+            [styles.formError]: keyError,
+          })}
+          onChange={v => this.validEnvKey(v, value)}
+        />
+        <Select
+          name="resource"
+          placeholder={t('RESOURCE')}
+          prefixIcon={
+            <Icon name={envType === 'configMapKeyRef' ? 'hammer' : 'key'} />
+          }
+          options={this.getConfigOrSecretOptions}
+          onChange={this.handleCfOrScChange}
+        />
+        <Select
+          name="resourceKey"
+          placeholder={t('KEY_IN_RESOURCE')}
+          options={this.getKeysOptions({ resourceType, resourceName })}
+          onChange={this.handleKeyData}
+        />
+      </ObjectInput>
+    )
+  }
+
   render() {
     const { value = {}, onChange } = this.props
-    const { keyError } = this.state
+    const { keyError, envType } = this.state
 
     if (value.valueFrom) {
-      const { resourceType, resourceName, resourceKey } = this.parseValue(
-        value.valueFrom
-      )
-      const formatValue = {
-        name: value.name,
-        resource: `${
-          resourceType === 'configMapKeyRef' ? 'configmap' : 'secret'
-        }-${resourceName}`,
-        resourceKey,
-      }
-
-      return (
-        <ObjectInput value={formatValue} onChange={this.handleChange}>
-          <Input
-            name="name"
-            placeholder={t('KEY')}
-            className={classNames({
-              [styles.formError]: keyError,
-            })}
-            onChange={this.validEnvKey}
-          />
-          <Select
-            name="resource"
-            placeholder={t('RESOURCE')}
-            options={this.getResourceOptions()}
-            valueRenderer={this.valueRenderer}
-            onChange={this.handleResourceData}
-          />
-          <Select
-            name="resourceKey"
-            placeholder={t('KEY_IN_RESOURCE')}
-            options={this.getKeysOptions({ resourceType, resourceName })}
-            onChange={this.handleKeyData}
-          />
-        </ObjectInput>
-      )
+      return this.renderConfigOrSecret()
     }
 
     return (
       <ObjectInput value={value} onChange={onChange}>
+        <div className={styles.typeBox}>
+          <Select
+            options={this.resourceOptions}
+            onChange={this.handleTypeChange}
+            value={envType}
+          ></Select>
+        </div>
         <Input
           name="name"
           placeholder={t('KEY')}

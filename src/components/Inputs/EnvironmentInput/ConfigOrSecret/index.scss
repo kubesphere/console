@@ -1,0 +1,119 @@
+@import '~scss/variables';
+
+.contentBox {
+  display: flex;
+  width: 520px;
+  height: 492px;
+  background: $white;
+  box-shadow: 0px 8px 16px rgba(36, 46, 66, 0.28);
+  border-radius: 4px;
+  flex-direction: column;
+  text-align: left;
+
+  .content {
+    flex: 1;
+    height: 432px;
+    padding: 12px;
+
+    .title {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 20px;
+      color: $dark-color07;
+      display: block;
+    }
+
+    .tip {
+      margin: 12px 0px;
+    }
+
+    .tabs {
+      background: $light-color01;
+      border: 1px solid $light-color07;
+      box-sizing: border-box;
+      border-radius: 16px;
+    }
+
+    .subTitle {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 20px;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+
+      .allChoose {
+        color: $blue-color03;
+        cursor: pointer;
+        user-select: none;
+      }
+    }
+
+    .select {
+      width: 100%;
+      max-width: none;
+
+      :global {
+        .select-options {
+          position: absolute;
+          top: 32px !important;
+          left: 0 !important;
+        }
+      }
+    }
+
+    .table {
+      margin-top: 8px;
+      padding: 12px;
+      background: $light-color01;
+      border-radius: 4px;
+      height: 180px;
+
+      .innerBox {
+        height: 100%;
+
+        .tableItem {
+          width: 100%;
+          background: $white;
+          border-radius: 4px;
+          padding: 8px 12px;
+          margin-bottom: 4px;
+
+          &::after {
+            top: 11.75px;
+            left: 17.25px;
+          }
+
+          &:last-of-type {
+            margin-bottom: 0px;
+          }
+        }
+
+        .checked {
+          background: $dark-color07;
+
+          :global {
+            .label-value {
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .options {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    padding: 14px 20px;
+    justify-content: flex-end;
+    background: $light-color02;
+    border-radius: 0px 0px 4px 4px;
+    box-shadow: inset 0px 1px 0px $light-color06;
+  }
+}
+
+.scroll {
+  overflow-y: scroll;
+}
