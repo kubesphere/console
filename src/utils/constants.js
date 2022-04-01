@@ -269,6 +269,7 @@ export const ICON_TYPES = {
   gpu: 'gpu',
   'gpu.limit': 'gpu',
   cds: 'rocket',
+  codeRepos: 'code',
 }
 
 export const MODULE_KIND_MAP = {
