@@ -1,0 +1,32 @@
+@import '~scss/variables';
+
+.buttonModalBox {
+  position: relative;
+  display: inline-block;
+}
+
+.modal {
+  position: fixed;
+  display: none;
+  z-index: 3000;
+  transform: translateX(-100%);
+}
+
+.triangle {
+  height: 18px;
+  width: 12px;
+  position: fixed;
+  display: none;
+  right: 12px;
+  top: 0px;
+  z-index: 3000;
+  transform: translateX(-100%);
+  border-top: 9px solid transparent;
+  border-right: none;
+  border-bottom: 9px solid transparent;
+  border-left: $white solid 12px;
+}
+
+.showModal {
+  display: block;
+}
