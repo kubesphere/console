@@ -23,6 +23,7 @@ import { isEmpty } from 'lodash'
 import { Loading } from '@kube-design/components'
 
 import { getDisplayName, getLocalTime } from 'utils'
+import { getCronJobStatus } from 'utils/status'
 import { trigger } from 'utils/action'
 import WorkloadStore from 'stores/workload'
 
@@ -128,7 +129,7 @@ export default class JobDetail extends React.Component {
   getAttrs = () => {
     const { detail } = this.store
     const { spec = {} } = detail
-    const status = this.suspend ? t('Suspend') : t('RUNNING')
+    const status = getCronJobStatus(detail)
 
     const { cluster, namespace } = this.props.match.params
 
@@ -147,7 +148,7 @@ export default class JobDetail extends React.Component {
       },
       {
         name: t('STATUS'),
-        value: status,
+        value: t(status),
       },
       {
         name: t('SCHEDULE'),
