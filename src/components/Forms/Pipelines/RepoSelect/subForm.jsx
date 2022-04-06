@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { observable, toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { get, has, isEmpty, omitBy } from 'lodash'
+import { get, has, isEmpty, omitBy, set } from 'lodash'
 import { Icon } from '@kube-design/components'
 import SCMStore from 'stores/devops/scm'
 import { REPO_TYPES, REPO_KEY_MAP } from 'utils/constants'
@@ -93,6 +93,25 @@ export default class RepoSelectForm extends React.Component {
           (value, key) => key && key.startsWith('discover') && isEmpty(value)
         ),
       }
+
+      if (has(sourceData, 'credentialId')) {
+        if (this.source_type === 'github') {
+          this.store.tokenFormData = { credentialId: sourceData.credentialId }
+        }
+
+        if (this.source_type === 'git') {
+          set(
+            this.store.formData,
+            `${REPO_KEY_MAP[this.source_type]}.credential_id`,
+            sourceData.credentialId
+          )
+        }
+
+        if (this.source_type === 'gitlab') {
+          set(this.store.formData, `${REPO_KEY_MAP[this.source_type]}`, {})
+        }
+      }
+
       // initial single_svn type in edit
       if (this.source_type === 'single_svn') {
         this.store.formData = {
@@ -307,16 +326,19 @@ export default class RepoSelectForm extends React.Component {
   }
 
   render() {
-    const { devops, cluster } = this.props
+    const { devops, cluster, type } = this.props
 
     return (
       <div className={styles.formWrapper}>
-        <div className="h4">
-          <a className="custom-icon" onClick={this.handleGoBack}>
-            <BackIcon />
-          </a>
-          {t('SELECT_CODE_REPOSITORY')}
-        </div>
+        {type !== 'import' ? (
+          <div className="h4">
+            <a className="custom-icon" onClick={this.handleGoBack}>
+              <BackIcon />
+            </a>
+            {t('SELECT_CODE_REPOSITORY')}
+          </div>
+        ) : null}
+
         <div className={styles.contentWrapper}>
           {this.renderTypes()}
           {this.renderForm()}

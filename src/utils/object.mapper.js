@@ -1323,6 +1323,19 @@ const CDSMapper = item => {
   }
 }
 
+const CodeRepoMapper = item => {
+  const spec = get(item, 'spec', {})
+
+  return {
+    ...getBaseInfo(item),
+    provider: spec.provider,
+    repoURL: spec.url,
+    secret: spec.secret || {},
+    webhooks: spec.webhooks || [],
+    _originData: getOriginData(omit(item, 'devops')),
+  }
+}
+
 export default {
   deployments: WorkLoadMapper,
   daemonsets: WorkLoadMapper,
@@ -1382,4 +1395,5 @@ export default {
   default: DefaultMapper,
   rules: AlertingRuleMapper,
   cds: CDSMapper,
+  codeRepos: CodeRepoMapper,
 }

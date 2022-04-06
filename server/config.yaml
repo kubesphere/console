@@ -497,6 +497,7 @@ client:
       items:
         - { name: pipelines, title: PIPELINE_PL, icon: application }
         - { name: cd, title: CD_PL, icon: rocket }
+        - { name: code-repo, title: CODE_REPO_PL, icon: code }
         - name: management
           title: DEVOPS_PROJECT_SETTINGS
           icon: cogwheel

@@ -689,6 +689,16 @@ const getCDTemplate = () => ({
   },
 })
 
+const getCodeRepoTemplate = ({ namespace }) => ({
+  kind: 'GitRepository',
+  apiVersion: 'devops.kubesphere.io/v1alpha3',
+  metadata: {
+    name: '',
+    namespace,
+  },
+  spec: {},
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   deploymentsSchedule: getScheduleDeploymentTemplate,
@@ -732,6 +742,7 @@ const FORM_TEMPLATES = {
   gateways: getGatewayTemplate,
   notificationVerify: getNotificationVerifyTemplate,
   cds: getCDTemplate,
+  codeRepos: getCodeRepoTemplate,
 }
 
 export default FORM_TEMPLATES

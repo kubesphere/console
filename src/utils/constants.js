@@ -269,6 +269,7 @@ export const ICON_TYPES = {
   gpu: 'gpu',
   'gpu.limit': 'gpu',
   cds: 'rocket',
+  codeRepos: 'code',
 }
 
 export const MODULE_KIND_MAP = {
@@ -940,6 +941,7 @@ export const API_VERSIONS = {
   meter: 'kapis/metering.kubesphere.io/v1alpha1',
   gateways: 'kapis/gateway.kubesphere.io/v1alpha1',
   cds: 'kapis/gitops.kubesphere.io/v1alpha1',
+  codeRepos: 'kapis/devops.kubesphere.io/v1alpha3',
 }
 
 export const MONITOR_GRAPH_COLORS = [

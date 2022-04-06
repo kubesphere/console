@@ -52,6 +52,16 @@ export default class BitBucketForm extends GitHubForm {
     this.setState({ bitbucketList })
   }
 
+  getCredentialsList = () => {
+    return [
+      ...this.props.store.credentials.data.map(credential => ({
+        label: credential.name,
+        value: credential.name,
+        type: credential.type,
+      })),
+    ]
+  }
+
   handleFormChange = () => {
     const { creatBitBucketServersError: errors = {} } = this.props.store
     if (!isEmpty(errors)) {

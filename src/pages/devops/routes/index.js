@@ -22,6 +22,7 @@ import Layout from '../containers/layout'
 import DevopsListLayout from '../containers/Base/List'
 import PipelinesList from '../containers/Pipelines/PipelinesList'
 import CDList from '../containers/CD/CDList'
+import CRList from '../containers/CodeRepo/CRList'
 
 import BaseInfo from '../containers/BaseInfo'
 import Roles from '../containers/Roles'
@@ -44,6 +45,7 @@ export default [
         routes: [
           { path: `${PATH}/pipelines`, component: PipelinesList, exact: true },
           { path: `${PATH}/cd`, component: CDList, exact: true },
+          { path: `${PATH}/code-repo`, component: CRList, exact: true },
           { path: `${PATH}/base-info`, component: BaseInfo, exact: true },
           { path: `${PATH}/roles`, component: Roles, exact: true },
           { path: `${PATH}/members`, component: Members, exact: true },
