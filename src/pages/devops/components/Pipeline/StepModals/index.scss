@@ -49,6 +49,11 @@
   margin-bottom: 15px;
 }
 
+.columns {
+  max-width: 455px;
+  margin: 12px 0;
+}
+
 :global {
   .mention-input {
     min-height: 140px;
