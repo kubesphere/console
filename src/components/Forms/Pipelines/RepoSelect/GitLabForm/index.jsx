@@ -168,6 +168,7 @@ export default class GitLabForm extends React.Component {
               name="gitlab_source.repo"
               options={projectList}
               placeholder=" "
+              clearable
             />
           </Form.Item>
         </Form>

@@ -71,13 +71,17 @@ export default {
         get(template, '_originData.metadata', {}),
         'finalizers'
       )
+
+      const type = template.provider === 'git' ? 'url' : 'repo'
+
       const editTemplate = {
         metadata,
         sources: {
           source_type: template.provider,
           [`${template.provider}_source`]: {
-            repo: template.repoURL,
+            [type]: template.repoURL,
           },
+          credentialId: template.secret.name,
         },
       }
 
