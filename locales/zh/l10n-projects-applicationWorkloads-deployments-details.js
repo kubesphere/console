@@ -39,15 +39,14 @@ module.exports = {
   // More > Edit Settings > Update Strategy
   EDIT_SETTINGS: '编辑设置',
   // More > Edit Settings > Containers
-  CUSTOMIZATION: '自定义',
-  REFER_CONFIGMAPS: '引用配置字典',
-  REFER_SECRETS: '引用保密字典',
-  BULK_QUOTA: '批量引用',
-  BULK_REFERENCE_CONFIGURATION: '批量引用配置字典或保密字典',
-  BULK_REFERENCE_CONFIGURATION_DES:
-    '根据需要批量引用配置字典或保密字典，自定义类型无法批量添加。',
-  CANCEL_SELECT_ALL: '取消全选',
-  KEY_IN_CONFIGURATION: '配置中的键',
+  CUSTOMIZATION: 'Customization',
+  REFER_CONFIGMAPS: 'Refer ConfigMap',
+  REFER_SECRETS: 'Refer Secret',
+  BULK_QUOTA: 'Bulk quote',
+  BULK_REFERENCE_CONFIGURATION: 'Bulk reference configuration dictionary or confidential dictionary',
+  BULK_REFERENCE_CONFIGURATION_DES: 'Bulk reference configuration dictionaries or confidential dictionaries as needed, custom types cannot be added in bulk.',
+  CANCEL_SELECT_ALL: 'Uncheck all',
+  KEY_IN_CONFIGURATION: 'Keys in the configuration',
   // More > Edit Settings > Volumes
   // More > Edit Settings > Volumes > Mount Volume
   // More > Edit Settings > Volumes > Mount Configmap or Secret
