@@ -213,7 +213,7 @@ class BaseInfo extends React.Component {
       })
     }
 
-    if (actions.includes('manage')) {
+    if (actions.includes('manage') && globals.clusterRole !== 'member') {
       option.push({
         actionName: 'workspace.delete',
         onClick: this.handleDelete,
