@@ -38,6 +38,6 @@ export default class VolumeSnapshotContentStore extends Base {
 
     this.detail = detail
     this.isLoading = false
-    return result
+    return detail
   }
 }

@@ -60,7 +60,7 @@ export default class VolumeSnapshotContent extends React.Component {
           trigger('resource.yaml.edit', {
             readOnly: true,
             detail: item,
-            yaml: data,
+            yaml: data._originData,
           })
         },
       },

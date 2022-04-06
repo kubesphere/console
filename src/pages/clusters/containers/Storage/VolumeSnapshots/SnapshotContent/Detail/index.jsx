@@ -36,10 +36,6 @@ import getRoutes from './routes'
 export default class VolumeDetail extends React.Component {
   store = new VolumeSnapshotContent()
 
-  state = {
-    detail: {},
-  }
-
   componentDidMount() {
     this.fetchData()
   }
@@ -63,15 +59,11 @@ export default class VolumeDetail extends React.Component {
   }
 
   fetchData = async () => {
-    const detail = await this.store.fetchDetail(this.props.match.params)
-    this.setState({
-      detail,
-    })
+    await this.store.fetchDetail(this.props.match.params)
   }
 
   getOperations = () => {
     const { cluster, namespace } = this.props.match.params
-    const { detail } = this.state
 
     return [
       {
@@ -82,8 +74,8 @@ export default class VolumeDetail extends React.Component {
         onClick: async () => {
           this.trigger('resource.yaml.edit', {
             readOnly: true,
-            detail,
-            yaml: detail,
+            detail: this.store.detail,
+            yaml: this.store.detail._originData,
           })
         },
       },
@@ -109,7 +101,7 @@ export default class VolumeDetail extends React.Component {
         onClick: () =>
           this.trigger('resource.delete', {
             type: this.name,
-            detail,
+            detail: this.store.detail,
             success: this.returnTolist,
           }),
       },

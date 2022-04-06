@@ -22,4 +22,7 @@ module.exports = {
   READY_PL: '已就绪',
   UNREADY_PL: '未就绪',
   DELETION_POLICY: '删除策略',
+
+  // List > Detail page
+  SNAPSHOT_HANDLE: 'SnapshotHandle',
 }

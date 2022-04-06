@@ -59,7 +59,7 @@ export default class VolumeSnapshotContentStatus extends Component {
           </div>
           <div className={styles.titleBox}>
             <span className={styles.title}>{detail.snapshotClassName}</span>
-            <span className={styles.des}>{t('VOLUME_SNAPSHOT')}</span>
+            <span className={styles.des}>{t('VOLUME_SNAPSHOT_CLASS')}</span>
           </div>
         </div>
       </div>

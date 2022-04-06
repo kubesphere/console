@@ -22,4 +22,7 @@ module.exports = {
   READY_PL: 'ready',
   UNREADY_PL: 'unready',
   DELETION_POLICY: 'Deletion Policy',
+
+  // List > Detail page
+  SNAPSHOT_HANDLE: 'SnapshotHandle',
 }
