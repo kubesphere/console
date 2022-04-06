@@ -57,8 +57,8 @@ const handleLogin = async ctx => {
       user = await login(params, { 'x-client-ip': ctx.request.ip })
       if (!user) {
         Object.assign(error, {
-          status: 400,
-          reason: 'Internal Server Error',
+          status: 401,
+          reason: 'Unauthorized',
           message: 'Wrong username or password, please try again',
         })
       }
@@ -70,7 +70,7 @@ const handleLogin = async ctx => {
         case 401:
           Object.assign(error, {
             status: err.code,
-            reason: 'User Not Match',
+            reason: 'Unauthorized',
             message: 'Wrong username or password, please try again',
           })
           break
@@ -84,20 +84,20 @@ const handleLogin = async ctx => {
         case 502:
           Object.assign(error, {
             status: err.code,
-            reason: 'Internal Server Error',
+            reason: 'Bad Gateway',
             message: 'Unable to access the backend services',
           })
           break
         case 'ETIMEDOUT':
           Object.assign(error, {
-            status: 400,
+            status: 500,
             reason: 'Internal Server Error',
             message: 'Unable to access the api server',
           })
           break
         default:
           Object.assign(error, {
-            status: err.code,
+            status: 500,
             reason: err.statusText,
             message: err.message,
           })
