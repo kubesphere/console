@@ -170,7 +170,7 @@ const getUserGlobalRules = async (username, token) => {
   return rules
 }
 
-const getUserDetail = async token => {
+const getUserDetail = async (token, clusterRole) => {
   let user = {}
 
   const { username } = jwtDecode(token)
@@ -197,18 +197,27 @@ const getUserDetail = async token => {
   }
 
   try {
-    user.globalRules = await getUserGlobalRules(username, token)
+    const roles = await getUserGlobalRules(username, token)
+    if (clusterRole === 'member') {
+      roles.users = roles.users.filter(role => role !== 'manage')
+      roles.workspaces = roles.workspaces.filter(role => role !== 'manage')
+    }
+    user.globalRules = roles
   } catch (error) {}
 
   return user
 }
 
-const getWorkspaces = async token => {
+const getWorkspaces = async (token, clusterRole) => {
   let workspaces = []
 
+  const url =
+    clusterRole === 'host'
+      ? '/kapis/tenant.kubesphere.io/v1alpha3/workspacetemplates'
+      : '/kapis/tenant.kubesphere.io/v1alpha3/workspaces'
   const resp = await send_gateway_request({
     method: 'GET',
-    url: '/kapis/tenant.kubesphere.io/v1alpha2/workspaces',
+    url,
     params: { limit: 10 },
     token,
   })
@@ -269,7 +278,29 @@ const getK8sRuntime = async ctx => {
   return resp
 }
 
-const getCurrentUser = async ctx => {
+const getClusterRole = async ctx => {
+  const token = ctx.cookies.get('token')
+  let role = 'host'
+  if (!token) {
+    return role
+  }
+  try {
+    const config = await send_gateway_request({
+      method: 'GET',
+      url: `/api/v1/namespaces/kubesphere-system/configmaps/kubesphere-config`,
+      token,
+    })
+    const data = config.data['kubesphere.yaml']
+    const str = /clusterRole:[^\\n]*/g.exec(data)[0]
+    role = str.split(':')[1]
+    role = role.replace(/\s/g, '')
+  } catch (error) {
+    console.error(error)
+  }
+  return role
+}
+
+const getCurrentUser = async (ctx, clusterRole) => {
   const token = ctx.cookies.get('token')
 
   if (!token) {
@@ -280,8 +311,8 @@ const getCurrentUser = async ctx => {
   }
 
   const [userDetail, workspaces] = await Promise.all([
-    getUserDetail(token),
-    getWorkspaces(token),
+    getUserDetail(token, clusterRole),
+    getWorkspaces(token, clusterRole),
   ])
 
   return { ...userDetail, workspaces }
@@ -377,4 +408,5 @@ module.exports = {
   getKSConfig,
   getK8sRuntime,
   createUser,
+  getClusterRole,
 }
