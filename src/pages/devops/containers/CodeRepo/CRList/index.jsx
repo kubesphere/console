@@ -21,7 +21,7 @@ import React from 'react'
 import { toJS } from 'mobx'
 import withList, { ListPage } from 'components/HOCs/withList'
 
-import { Avatar, Status } from 'components/Base'
+import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import CDStore from 'stores/codeRepo'
 import Table from 'components/Tables/List'
@@ -92,6 +92,18 @@ export default class CRList extends React.Component {
         },
       },
       {
+        key: 'editYaml',
+        icon: 'pen',
+        text: t('EDIT_YAML'),
+        action: 'edit',
+        onClick: record => {
+          trigger('resource.yaml.edit', {
+            detail: { ...record, devops: this.devops, cluster: this.cluster },
+            success: routing.query,
+          })
+        },
+      },
+      {
         key: 'delete',
         icon: 'trash',
         text: t('DELETE'),
@@ -139,7 +151,7 @@ export default class CRList extends React.Component {
       {
         title: t('REPOSITORIES'),
         dataIndex: 'name',
-        width: '40%',
+        width: '60%',
         sorter: true,
         sortOrder: getSortOrder('name'),
         search: true,
@@ -154,16 +166,6 @@ export default class CRList extends React.Component {
               title={getDisplayName(record)}
             />
           )
-        },
-      },
-      {
-        title: t('STATUS'),
-        dataIndex: 'status',
-        isHideable: true,
-        width: '20%',
-        render: status => {
-          const _status = status || 'success'
-          return <Status type={_status} name={t(_status.toUpperCase())} />
         },
       },
       {

@@ -20,7 +20,7 @@ import { Notify } from '@kube-design/components'
 import DeleteModal from 'components/Modals/Delete'
 import CodeRepoForm from 'components/Modals/CodeRepoCreate'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { cloneDeep, get, set, omit } from 'lodash'
+import { cloneDeep, get, set } from 'lodash'
 
 const handleFormData = ({ data, module, devops }) => {
   const postData = FORM_TEMPLATES[module]({ namespace: devops })
@@ -67,10 +67,7 @@ export default {
   'codeRepo.edit': {
     on({ store, cluster, devops, module, detail, success, ...props }) {
       const template = cloneDeep(detail)
-      const metadata = omit(
-        get(template, '_originData.metadata', {}),
-        'finalizers'
-      )
+      const metadata = get(template, '_originData.metadata', {})
 
       const type = template.provider === 'git' ? 'url' : 'repo'
 
@@ -89,7 +86,7 @@ export default {
         onOk: async data => {
           const postData = handleFormData({ data, module, devops })
 
-          await store.update({ data: postData, devops, name: detail.name })
+          await store.edit({ data: postData, devops, name: detail.name })
 
           Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()

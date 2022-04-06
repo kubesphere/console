@@ -104,13 +104,13 @@ export default class CodeRepoStore extends Base {
   }
 
   @action
-  async update({ data, devops, name }) {
+  async edit({ data, devops, name }) {
     const url = `${this.getResourceUrl({ namespace: devops })}/${name}`
     return this.submitting(request.put(url, data))
   }
 
   @action
-  patch(params, newObject) {
+  async update(params, newObject) {
     const url = `${this.getResourceUrl({ namespace: params.devops })}/${
       newObject.metadata.name
     }`
@@ -121,5 +121,19 @@ export default class CodeRepoStore extends Base {
   delete(params) {
     const _params = omit({ ...params, namespace: params.devops }, 'devops')
     return this.submitting(request.delete(this.getDetailUrl(_params)))
+  }
+
+  @action
+  async fetchDetail(params) {
+    const url = `${this.getResourceUrl({ namespace: params.devops })}/${
+      params.name
+    }`
+    const result = await this.submitting(request.get(url), null, null, () => {
+      return {}
+    })
+
+    const detail = this.mapper(result)
+    this.detail = detail
+    return detail
   }
 }
