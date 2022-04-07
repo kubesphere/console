@@ -21,10 +21,12 @@ import { observer, inject } from 'mobx-react'
 
 import { getLocalTime, getDisplayName } from 'utils'
 import VolumeStore from 'stores/volume'
-
-import { Avatar, Card, Status } from 'components/Base'
+import { get } from 'lodash'
+import { Icon } from '@kube-design/components'
+import { Panel, Avatar, Card, Status } from 'components/Base'
 import BaseTable from 'components/Tables/Base'
 
+import classnames from 'classnames'
 import styles from './index.scss'
 
 @inject('detailStore')
@@ -106,6 +108,92 @@ export default class Volumes extends React.Component {
     },
   ]
 
+  renderResizeItem = ({ src, title, des, iconName, key }) => {
+    return (
+      <div key={key} className={classnames(styles.item, styles.item_bg)}>
+        {iconName ? (
+          <Icon name={iconName} size={40} />
+        ) : (
+          <img src={src} className={styles.icon}></img>
+        )}
+        <div>
+          <span className={styles.title}>{title}</span>
+          <span className={styles.des}>{des}</span>
+        </div>
+      </div>
+    )
+  }
+
+  renderResize = () => {
+    const { detailStore } = this.props
+    const { annotations } = detailStore.detail
+
+    const resizeEnabled = JSON.parse(
+      get(annotations, 'resize.kubesphere.io/enabled', 'false')
+    )
+
+    const restartEnabled = JSON.parse(
+      get(annotations, 'restart.kubesphere.io/enabled', 'false')
+    )
+
+    const storageLimit = get(
+      annotations,
+      'resize.kubesphere.io/storage-limit',
+      '100Gi'
+    )
+    const Threshold = get(annotations, 'resize.kubesphere.io/threshold', '10%')
+    const increase = get(annotations, 'resize.kubesphere.io/increase', '10%')
+    const maxTime = get(annotations, 'restart.kubesphere.io/max-time', '300')
+    const maxTimeItem = {
+      title: `${maxTime} s(Max time)`,
+      src: '/assets/history_duotone.svg',
+      des: t('AUTOMATIC_RESTART_WORKLOAD'),
+    }
+    const itemArr = [
+      {
+        iconName: 'storage',
+        title: storageLimit,
+        des: t('STORAGE_LIMIT'),
+      },
+      {
+        src: '/assets/chart.svg',
+        title: Threshold,
+        des: 'Threshold',
+      },
+      {
+        iconName: 'stretch',
+        title: increase,
+        des: t('INCREASE'),
+      },
+    ]
+
+    if (restartEnabled) {
+      itemArr.push(maxTimeItem)
+    }
+
+    return (
+      resizeEnabled && (
+        <Panel>
+          <div className={classnames(styles.item, styles.top)}>
+            <img
+              src="/assets/storageclass_autoresizer.svg"
+              className={styles.icon}
+            ></img>
+            <div>
+              <span className={styles.title}>{t('PVC_AUTORESIZER_PL')}</span>
+              <span className={styles.des}>{t('PVC_AUTORESIZER_DESC')}</span>
+            </div>
+          </div>
+          <div className={styles.bottom}>
+            {itemArr.map((item, key) =>
+              this.renderResizeItem({ ...item, key })
+            )}
+          </div>
+        </Panel>
+      )
+    )
+  }
+
   render() {
     const {
       data,
@@ -118,24 +206,27 @@ export default class Volumes extends React.Component {
     const pagination = { total, page, limit }
 
     return (
-      <Card
-        title={t('VOLUME_PL')}
-        loading={isLoading}
-        empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('VOLUME') })}
-      >
-        <BaseTable
-          className={styles.table}
-          data={data}
-          columns={this.getColumns()}
-          searchType="name"
-          keyword={filters.name}
-          filters={filters}
-          placeholder={t('SEARCH_BY_NAME')}
-          pagination={pagination}
-          isLoading={isLoading}
-          onFetch={this.handleFetch}
-        />
-      </Card>
+      <>
+        {this.renderResize()}
+        <Card
+          title={t('VOLUME_PL')}
+          loading={isLoading}
+          empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('VOLUME') })}
+        >
+          <BaseTable
+            className={styles.table}
+            data={data}
+            columns={this.getColumns()}
+            searchType="name"
+            keyword={filters.name}
+            filters={filters}
+            placeholder={t('SEARCH_BY_NAME')}
+            pagination={pagination}
+            isLoading={isLoading}
+            onFetch={this.handleFetch}
+          />
+        </Card>
+      </>
     )
   }
 }
