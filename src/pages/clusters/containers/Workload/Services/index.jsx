@@ -18,12 +18,11 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { Tooltip } from '@kube-design/components'
 import { Avatar, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
 import ResourceTable from 'clusters/components/ResourceTable'
-import ServiceAccess from 'projects/components/ServiceAccess'
 
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES, SERVICE_TYPES } from 'utils/constants'
@@ -107,6 +106,44 @@ export default class Services extends React.Component {
     name: record.name,
   })
 
+  renderExternalService = data => {
+    const text = {
+      des: '-',
+      title: '-',
+    }
+
+    if (data.specType === 'NodePort') {
+      text.des = t('PORT_PL')
+      text.title = data.ports
+        .filter(port => port.nodePort)
+        .map(port => `${port.nodePort}/${port.protocol}`)
+        .join('; ')
+    }
+
+    if (data.specType === 'LoadBalancer') {
+      text.des =
+        data.loadBalancerIngress.length > 1
+          ? t('LOAD_BALANCERS_SCAP')
+          : t('LOAD_BALANCER_SCAP')
+      text.title = data.loadBalancerIngress.join('; ')
+    }
+
+    if (data.externalName) {
+      return (
+        <Text
+          description={text.des}
+          title={() => (
+            <Tooltip content={data.externalName}>
+              <span>{text.title}</span>
+            </Tooltip>
+          )}
+        />
+      )
+    }
+
+    return <Text description={t(`${text.des}`)} title={text.title} />
+  }
+
   getColumns = () => {
     const { getSortOrder, module } = this.props
     const { cluster } = this.props.match.params
@@ -141,19 +178,15 @@ export default class Services extends React.Component {
         ),
       },
       {
-        title: t('SERVICE_TYPE_TCAP'),
+        title: t('INTERNAL_ACCESS_PL'),
         dataIndex: 'annotations["kubesphere.io/serviceType"]',
         isHideable: true,
         width: '16%',
-        render: (serviceType, record) => {
+        render: (_, record) => {
           return (
             <Text
-              title={
-                serviceType
-                  ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                  : t('CUSTOM_SERVICE')
-              }
-              description={t(record.type) || '-'}
+              title={record.clusterIP || ''}
+              description={t(`${record.type}`)}
             />
           )
         },
@@ -163,7 +196,7 @@ export default class Services extends React.Component {
         dataIndex: 'specType',
         isHideable: true,
         width: '20%',
-        render: (_, record) => <ServiceAccess data={record} />,
+        render: (_, record) => this.renderExternalService(record),
       },
       {
         title: t('CREATION_TIME_TCAP'),

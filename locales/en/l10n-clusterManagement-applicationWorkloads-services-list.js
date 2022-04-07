@@ -26,6 +26,7 @@ module.exports = {
   SERVICE_EMPTY_DESC: 'Please create a service.',
   UNKNOWN: 'Unknown',
   EXTERNAL_ACCESS: 'External Access',
+  INTERNAL_ACCESS_PL: 'Internal Access',
 
   // List > Edit YAML
   // List > Edit Service
