@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { isEmpty } from 'lodash'
+import { isEmpty, isFunction } from 'lodash'
 
 import { Button, Icon, Dropdown, Menu } from '@kube-design/components'
 
@@ -88,7 +88,12 @@ export default class BtnGroup extends Component {
       if (!show) return null
       return (
         <Menu.MenuItem {...rest}>
-          {icon && <Icon name={icon} type="light" />}{' '}
+          {icon &&
+            (isFunction(icon) ? (
+              icon()
+            ) : (
+              <Icon name={icon} type="light" />
+            ))}{' '}
           <span data-test={`detail-${rest.key}`}>{text}</span>
         </Menu.MenuItem>
       )

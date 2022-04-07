@@ -227,7 +227,6 @@ export default class StorageClassAutoResizerModal extends React.Component {
         onCancel={onCancel}
         visible={visible}
         title={t('PVC_AUTORESIZER_SETTINGS')}
-        icon="slider"
         okText={t('OK')}
         cancelText={t('CANCEL')}
         isSubmitting={isSubmitting}
@@ -237,7 +236,12 @@ export default class StorageClassAutoResizerModal extends React.Component {
             <div className={styles.wrapper}>
               <Text
                 className={styles.text}
-                icon="slider"
+                icon={() => (
+                  <img
+                    src="/assets/autoscaling.svg"
+                    style={{ width: '32px', marginRight: '16px' }}
+                  />
+                )}
                 title={t('PVC_AUTORESIZER_PL')}
                 description={t('PVC_AUTORESIZER_DESC')}
               />
