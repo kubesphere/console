@@ -18,11 +18,21 @@
 module.exports = {
   // Banner
   DEVOPS_PROJECT_SETTINGS: 'DevOps 项目设置',
-  DEVOPS_DESCRIPTION: 'DevOps 项目是一个独立的命名空间，其中定义了一组流水线。用户可以按照自己的方式对流水线进行分组（例如：项目类型、组织类型）。',
+  DEVOPS_DESCRIPTION:
+    'DevOps 项目是一个独立的命名空间，其中定义了一组流水线。用户可以按照自己的方式对流水线进行分组（例如：项目类型、组织类型）。',
   // Basic Information
   DEVOPS_PROJECT_ROLE_SCAP: 'DevOps 项目角色',
   DEVOPS_PROJECT_SCAP: 'DevOps 项目',
   DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps 项目成员',
   DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps 项目成员',
-  DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps 项目角色'
-};
+  DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps 项目角色',
+  CD_ALLOWLIST: '持续部署白名单',
+  CD_ALLOWLIST_DESC:
+    '将代码仓库和资源目标部署位置添加到白名单，白名单无资源信息则不生效。',
+  DESTINATIONS: '资源目标部署位置',
+  ENABLE_ALLOWLIST: '启用白名单',
+  EDIT_ALLOWLIST: '编辑白名单',
+  EMPTY_ALLOWLIST_TITLE: '未启用持续部署白名单',
+  ALLOWLIST_EMPTY_DESC:
+    '将代码仓库和资源目标部署位置添加到白名单，白名单无资源信息则不生效。',
+}

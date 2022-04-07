@@ -28,6 +28,15 @@ module.exports = {
   DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps project member',
   DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps project members',
   DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps project roles',
+  CD_ALLOWLIST: 'Continuous Deployment Allowlist',
+  CD_ALLOWLIST_DESC:
+    'Add the code repository and resource target deployment location to the allowlist. The allowlist will not take effect without resource information.',
+  DESTINATIONS: 'Resource target deployment location',
+  ENABLE_ALLOWLIST: 'Enable Allowlist',
+  EDIT_ALLOWLIST: 'Edit Allowlist',
+  EMPTY_ALLOWLIST_TITLE: 'Continuous deployment allowlist is not enabled',
+  ALLOWLIST_EMPTY_DESC:
+    'Add the code repository and resource target deployment location to the allowlist. The allowlist will not take effect without resource information.',
 
   // Manage > Edit
   // Manage > Delete

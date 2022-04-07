@@ -16,11 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { cloneDeep, get } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import DevOpsCreateModal from 'components/Modals/DevOpsCreate'
 import EditModal from 'components/Modals/DevOpsEdit'
+import AllowListModal from 'components/Modals/DevOpsAllowList'
 import DeleteModal from 'components/Modals/Delete'
 
 export default {
@@ -58,6 +59,25 @@ export default {
         modal: EditModal,
         detail,
         store,
+        ...props,
+      })
+    },
+  },
+  'devops.edit.allowlist': {
+    on({ store, detail, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async newObject => {
+          const data = cloneDeep(newObject)
+          await store.editAllowlist(detail, data)
+
+          Modal.close(modal)
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+          success && success()
+        },
+        modal: AllowListModal,
+        detail,
+        store,
+        formTemplate: {},
         ...props,
       })
     },

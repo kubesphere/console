@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
+import { isEmpty, cloneDeep } from 'lodash'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
@@ -26,9 +26,12 @@ import { Icon, Button, Notify, Dropdown, Menu } from '@kube-design/components'
 import { Panel } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
 import Banner from 'components/Cards/Banner'
+import Empty from 'components/Tables/Base/Empty'
+
 import EditModal from 'devops/components/Modals/DevOpsEdit'
 
 import { getDisplayName, getLocalTime } from 'utils'
+import { trigger } from 'utils/action'
 
 import UserStore from 'stores/user'
 import RoleStore from 'stores/role'
@@ -36,6 +39,7 @@ import styles from './index.scss'
 
 @inject('rootStore', 'devopsStore')
 @observer
+@trigger
 class BaseInfo extends React.Component {
   state = {
     showEdit: false,
@@ -187,6 +191,22 @@ class BaseInfo extends React.Component {
     }
   }
 
+  handleEditAllowlist = () => {
+    this.trigger('devops.edit.allowlist', {
+      devops: this.devops,
+      store: this.store,
+      cluster: this.cluster,
+      workspace: this.workspace,
+      detail: cloneDeep(this.store.data),
+      success: () => {
+        this.store.fetchDetail({
+          workspace: this.workspace,
+          ...this.props.match.params,
+        })
+      },
+    })
+  }
+
   renderMoreMenu() {
     return (
       <Menu onClick={this.handleMoreMenuClick}>
@@ -271,6 +291,92 @@ class BaseInfo extends React.Component {
     )
   }
 
+  renderEmptyCD() {
+    return (
+      <div className={styles.empty}>
+        <Empty
+          name="ALLOWLIST"
+          module="allowlist"
+          title={t('EMPTY_ALLOWLIST_TITLE')}
+          action={
+            !isEmpty(this.enabledItemActions) && (
+              <Button onClick={this.handleEditAllowlist} type="control">
+                {t('ENABLE_ALLOWLIST')}
+              </Button>
+            )
+          }
+        />
+      </div>
+    )
+  }
+
+  renderCD() {
+    const detail = this.store.data
+
+    return (
+      <Panel className={styles.wrapper} title={t('CD_ALLOWLIST')}>
+        {isEmpty(detail.sourceRepos) && isEmpty(detail.destinations) ? (
+          this.renderEmptyCD()
+        ) : (
+          <>
+            <div className={styles.header}>
+              <Icon name="strategy-group" size={40} />
+              <div className={styles.item}>
+                <div>{t('CD_ALLOWLIST')}</div>
+                <p>{t('CD_ALLOWLIST_DESC')}</p>
+              </div>
+
+              {!isEmpty(this.enabledItemActions) && (
+                <div className={classNames(styles.item, 'text-right')}>
+                  <Button onClick={this.handleEditAllowlist}>
+                    {t('EDIT_ALLOWLIST')}
+                  </Button>
+                </div>
+              )}
+            </div>
+            <div className={styles.content_CD}>
+              <div className={styles.content_item}>
+                <div className={styles.content_item_title}>
+                  {t('CODE_REPOSITORY')}
+                </div>
+                <div className={styles.items}>
+                  {detail.sourceRepos.map(repo => (
+                    <div key={repo} className={styles.item}>
+                      {repo || t('NONE')}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className={styles.content_item}>
+                <div className={styles.content_item_title}>
+                  {t('DESTINATIONS')}
+                </div>
+                <div className={styles.items}>
+                  {detail.destinations.map((destination, index) => (
+                    <div
+                      key={index}
+                      className={`${styles.item} ${styles.item_flex}`}
+                    >
+                      <div>
+                        <Icon name="cluster" size={20} />
+                        <b>{destination.name || t('NONE')}</b>
+                        <span>({destination.server || t('NONE')})</span>
+                      </div>
+                      <div>
+                        <Icon name="enterprise" size={20} />
+                        <b>{destination.namespace || t('NONE')}</b>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </Panel>
+    )
+  }
+
   render() {
     const { data } = toJS(this.store)
 
@@ -283,6 +389,7 @@ class BaseInfo extends React.Component {
           module={this.module}
         />
         {this.renderBaseInfo()}
+        {this.renderCD()}
         <EditModal
           detail={data}
           workspace={this.workspace}
