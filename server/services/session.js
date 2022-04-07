@@ -291,9 +291,11 @@ const getClusterRole = async ctx => {
       token,
     })
     const data = config.data['kubesphere.yaml']
-    const str = /clusterRole:[^\\n]*/g.exec(data)[0]
-    role = str.split(':')[1]
-    role = role.replace(/\s/g, '')
+    const str = /clusterRole:[^\\n]*/g.exec(data)
+    if (str) {
+      role = str[0].split(':')[1]
+      role = role.replace(/\s/g, '')
+    }
   } catch (error) {
     console.error(error)
   }
