@@ -40,6 +40,7 @@ const Unit = {
   G: 1000 ** 3,
   M: 1000 ** 2,
   K: 1000,
+  k: 1000,
   Bytes: 1,
   B: 1,
 }
@@ -72,7 +73,7 @@ const QuotaItem = ({ name, total, used }) => {
       ? [
           unit,
           parseFloat(value) *
-            (ICON_TYPES[name] || !Unit[unit] ? 1 : Unit[unit]),
+            (ICON_TYPES[name] || !Unit[unit] ? Unit[unit] : 1),
         ]
       : ['', parseFloat(value)]
 
@@ -81,7 +82,7 @@ const QuotaItem = ({ name, total, used }) => {
   const handleUsedValue = usedValue => {
     if (totalUnit && !usedUnit) {
       const unitValue =
-        ICON_TYPES[name] || !Unit[totalUnit] ? 1 : Unit[totalUnit]
+        ICON_TYPES[name] || !Unit[totalUnit] ? Unit[totalUnit] : 1
       return `${usedValue / unitValue}${usedValue > 0 ? totalUnit : ''}`
     }
 
