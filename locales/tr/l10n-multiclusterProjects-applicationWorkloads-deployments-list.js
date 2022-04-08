@@ -141,7 +141,6 @@ module.exports = {
   DECENTRALIZED_SCHEDULING: 'Merkezi Olmayan Zamanlama',
   CUSTOM_RULES: 'Özel Kurallar',
   CUSTOM_RULES_DESC: 'Özel kurallara göre düğümlere bölme çoğaltmalarını zamanlar.',
-  'Pod IP': 'Pod Ip Adresi',
   DECENTRALIZED_SCHEDULING_DESC: 'Mümkünse, bölme çoğaltmalarını farklı düğümlere zamanlar.',
   CENTRALIZED_SCHEDULING_DESC: 'Mümkünse bölme çoğaltmalarını aynı düğüme programlar.',
   CENTRALIZED_SCHEDULING: 'Merkezileştirilmiş Zamanlama',
