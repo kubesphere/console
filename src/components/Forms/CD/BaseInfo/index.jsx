@@ -17,95 +17,54 @@
  */
 
 import React from 'react'
-import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
+import CDStore from 'stores/codeRepo'
+
+import {
+  Icon,
+  Column,
+  Columns,
+  Form,
+  Input,
+  TextArea,
+  Select,
+} from '@kube-design/components'
 import { PATTERN_NAME } from 'utils/constants'
 
-import RepoSelect from 'components/Forms/Pipelines/RepoSelect'
-import RepoSelectForm from 'components/Forms/Pipelines/RepoSelect/subForm'
+import styles from './index.scss'
 
 export default class BaseInfo extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showSelectRepo: false,
-    }
-    this.scmRef = React.createRef()
+  codeStore = new CDStore()
+
+  state = {
+    options: [],
   }
 
-  showSelectRepo = () => {
-    this.setState({
-      showSelectRepo: true,
-    })
+  componentDidMount() {
+    this.getRepoList()
   }
 
-  hideSelectRepo = () => {
-    this.setState({
-      showSelectRepo: false,
-    })
-  }
-
-  handleRepoChange = (source_type, formData) => {
-    this.setState(
-      {
-        showSelectRepo: false,
-      },
-      () => {
-        this.scmRef.current.onChange({
-          source_type,
-          ...formData,
-        })
+  getRepoList = async () => {
+    const { devops } = this.props
+    await this.codeStore.fetchList({ devops, limit: -1 })
+    const options = this.codeStore.list.data.map(item => {
+      return {
+        label: item.name,
+        value: item.repoURL,
+        icon: item.provider,
       }
-    )
+    })
+    this.setState({ options })
   }
 
-  handleDeleteSource = () => {
-    this.scmRef.current.onChange()
-  }
-
-  validator = (rule, value, callback) => {
-    if (!value) {
-      return callback()
-    }
-
-    this.props.store
-      .checkPipelineName({
-        name: value,
-        cluster: this.props.cluster,
-        devops: this.props.devops,
-      })
-      .then(resp => {
-        if (resp.exist) {
-          return callback({
-            field: rule.field,
-            message: t('NAME_EXIST_DESC'),
-          })
-        }
-        callback()
-      })
-  }
-
-  renderRepoSelectForm() {
-    const { formTemplate, devops, cluster } = this.props
-    return (
-      <RepoSelectForm
-        sourceData={formTemplate['multi_branch_pipeline']}
-        devops={devops}
-        name={formTemplate.name}
-        cluster={cluster}
-        onSave={this.handleRepoChange}
-        onCancel={this.hideSelectRepo}
-        noSVN={true}
-        noJenkins
-      />
-    )
-  }
+  repoOptionRenderer = option => type => (
+    <span className={styles.option}>
+      <Icon name={option.icon} type={type === 'value' ? 'dark' : 'light'} />
+      {option.label}
+    </span>
+  )
 
   render() {
     const { formRef, formTemplate } = this.props
-    const { showSelectRepo } = this.state
-    if (showSelectRepo) {
-      return this.renderRepoSelectForm()
-    }
 
     return (
       <Form ref={formRef} data={formTemplate}>
@@ -120,7 +79,6 @@ export default class BaseInfo extends React.Component {
                   pattern: PATTERN_NAME,
                   message: t('INVALID_NAME_DESC'),
                 },
-                // { validator: this.validator },
               ]}
             >
               <Input name="metadata.name" maxLength={63} />
@@ -142,13 +100,11 @@ export default class BaseInfo extends React.Component {
           label={t('CODE_REPOSITORY')}
           rules={[{ required: true, message: t('REPO_EMPTY_DESC') }]}
         >
-          <RepoSelect
-            name="sourceRepo"
-            ref={this.scmRef}
-            onClick={this.showSelectRepo}
-            handleDeleteSource={this.handleDeleteSource}
-            devops={this.props.devops}
-            type="cd"
+          <Select
+            name="repoURL"
+            options={this.state.options}
+            valueRenderer={option => this.repoOptionRenderer(option)('value')}
+            optionRenderer={option => this.repoOptionRenderer(option)('option')}
           />
         </Form.Item>
       </Form>

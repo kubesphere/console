@@ -16,32 +16,44 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-import { pick, get, set } from 'lodash'
+import { pick, get, set, isEmpty, isEqual } from 'lodash'
+import { ObjectInput } from 'components/Inputs'
 import ProjectStore from 'stores/project'
 import { Select, Icon } from '@kube-design/components'
-import CDStore from 'stores/cd'
-import { computed } from 'mobx'
+import { action, computed, observable } from 'mobx'
 import { observer } from 'mobx-react'
-import { ObjectInput } from 'components/Inputs'
+import { inCluster2Default } from 'utils'
+
 import styles from './index.scss'
 
 @observer
 export default class Destinations extends React.Component {
-  cdStore = new CDStore()
-
   projectStore = new ProjectStore()
+
+  state = {
+    formData: {},
+  }
+
+  @observable
+  cluster = this.props.formtemplate.name || ''
+
+  @computed
+  get clusters() {
+    return this.props.clusters || []
+  }
+
+  get destinations() {
+    return get(this.props.formtemplate, 'spec.argo.destinations', [])
+  }
 
   componentDidMount() {
     this.init()
   }
 
-  @computed
-  get clusters() {
-    return this.cdStore.clustersList.map(item => ({
-      label: item.name,
-      value: item.name,
-      server: item.server,
-    }))
+  componentDidUpdate(prevProps) {
+    if (!isEqual(prevProps.formtemplate, this.props.formtemplate)) {
+      this.init()
+    }
   }
 
   @computed
@@ -57,38 +69,30 @@ export default class Destinations extends React.Component {
   }
 
   async init() {
-    this.setState({ initializing: true })
+    const { name, namespace, server } =
+      this.destinations[this.props.index] || {}
 
-    const { name, namespace, server } = this.props.value || {}
-
-    await this.fetchClusters()
-
-    if (name && server && namespace) {
+    if (name && server && namespace && this.clusters.length > 0) {
       const clusterInfo = this.clusters.find(item => item.value === name)
 
       set(this.state.formData, `name`, get(this.clusters, clusterInfo.value))
       set(this.state.formData, `server`, get(this.clusters, clusterInfo.server))
 
-      await this.fetchNamespaces(clusterInfo.value)
+      this.cluster = clusterInfo.value
+
+      await this.fetchNamespaces()
 
       const namespaceData =
         this.namespaces.find(item => item.value === namespace) ||
         set(this.state.formData, `namespace`, namespaceData.value || '')
     }
-
-    this.setState({ initializing: false })
   }
 
-  async fetchClusters() {
-    await this.cdStore.getClustersList()
-  }
-
-  fetchNamespaces = async cluster => {
-    const _cluster = cluster === 'in-cluster' ? 'default' : cluster
-
+  fetchNamespaces = async (params = {}) => {
+    const _cluster = inCluster2Default(this.cluster)
     await this.projectStore.fetchList({
       cluster: _cluster,
-      limit: -1,
+      ...params,
       type: 'user',
     })
   }
@@ -109,9 +113,11 @@ export default class Destinations extends React.Component {
     </span>
   )
 
+  @action
   handleClusterChange = async value => {
-    await this.fetchNamespaces(value)
+    await this.fetchNamespaces()
     const server = this.clusters.find(item => item.value === value).server
+    this.cluster = value
     this.props.onChange({ name: value, server })
   }
 
@@ -119,8 +125,13 @@ export default class Destinations extends React.Component {
     this.props.onChange({ ...res })
   }
 
+  checkDestinationsValid = value => {
+    return !isEmpty(value) && value.name && value.namespace && value.server
+  }
+
   render() {
     const { value } = this.props
+
     return (
       <ObjectInput value={value} onChange={this.handleChange}>
         <Select
