@@ -43,9 +43,8 @@ export default {
                 }
               : undefined
 
-          const repo = data.sourceRepo[`${data.sourceRepo.source_type}_source`]
           const source = {
-            repoURL: repo.repo || repo.url || repo.remote,
+            repoURL: data.repoURL,
             ...data.source,
           }
 

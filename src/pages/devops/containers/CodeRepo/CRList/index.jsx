@@ -151,7 +151,7 @@ export default class CRList extends React.Component {
       {
         title: t('REPOSITORIES'),
         dataIndex: 'name',
-        width: '60%',
+        width: '20%',
         sorter: true,
         sortOrder: getSortOrder('name'),
         search: true,
@@ -176,6 +176,12 @@ export default class CRList extends React.Component {
         render: provider => {
           return capitalize(provider)
         },
+      },
+      {
+        title: t('CODE_REPOSITORY_ADDRESS'),
+        dataIndex: 'repoURL',
+        isHideable: true,
+        width: '40%',
       },
       {
         title: t('CREATION_TIME'),

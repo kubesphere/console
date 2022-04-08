@@ -34,6 +34,7 @@ import {
 import { Text } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
 import ProjectStore from 'stores/project'
+import { inCluster2Default } from 'utils'
 
 import styles from './index.scss'
 
@@ -62,7 +63,7 @@ export default class Placement extends Component {
   @computed
   get clusters() {
     return this.cdStore.clustersList.map(item => ({
-      label: item.name,
+      label: inCluster2Default(item.name),
       value: item.name,
       server: item.server,
     }))
@@ -176,10 +177,10 @@ export default class Placement extends Component {
   renderPlacement() {
     const { formData } = this.props
     const data = formData[`${this.prefix}`] || {}
-
+    const cluster = inCluster2Default(data.name)
     return (
       <div className={styles.placement}>
-        <Text icon="cluster" title={data.name} description={t('CLUSTER')} />
+        <Text icon="cluster" title={cluster} description={t('CLUSTER')} />
         <Text
           icon="project"
           title={data.namespace}

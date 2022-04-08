@@ -21,14 +21,14 @@ import { Icon, Tag } from '@kube-design/components'
 import { keyBy } from 'lodash'
 import { CLUSTER_PROVIDER_ICON, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
 
+import { inCluster2Default } from 'utils'
 import styles from './index.scss'
 
 export default class Destination extends Component {
   render() {
     const clusterMap = keyBy(this.props.clustersDetail, 'name')
     const { destination = {} } = this.props
-    const clusterName =
-      destination.name === 'in-cluster' ? 'default' : destination.name
+    const clusterName = inCluster2Default(destination.name)
     const cluster = clusterMap[clusterName] || {}
     const namespace = destination.namespace || ''
 

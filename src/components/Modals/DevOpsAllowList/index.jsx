@@ -20,12 +20,16 @@ import React from 'react'
 import { ArrayInput } from 'components/Inputs'
 
 import PropTypes from 'prop-types'
-import { Form, Input } from '@kube-design/components'
+import { Icon, Form, Select } from '@kube-design/components'
 import { Modal } from 'components/Base'
-import { get, isEmpty } from 'lodash'
+import { get } from 'lodash'
 import DevopsStore from 'stores/devops'
+import CodeStore from 'stores/codeRepo'
+import CDStore from 'stores/cd'
 import { toJS } from 'mobx'
+import { inCluster2Default } from 'utils'
 import Destinations from './Destinations'
+import styles from './index.scss'
 
 export default class CDAllowListModal extends React.Component {
   static propTypes = {
@@ -46,13 +50,48 @@ export default class CDAllowListModal extends React.Component {
 
   state = {
     formTemplate: {},
+    options: [],
+    clusters: [],
   }
 
   store = new DevopsStore()
 
+  codeStore = new CodeStore()
+
+  cdStore = new CDStore()
+
   formRef = React.createRef()
 
   componentDidMount() {
+    this.initFormTemplate()
+    this.fetchClusters()
+    this.getRepoList()
+  }
+
+  getRepoList = async () => {
+    const { devops } = this.props
+    await this.codeStore.fetchList({ devops, limit: -1 })
+    const options = this.codeStore.list.data.map(item => {
+      return {
+        label: item.name,
+        value: item.repoURL,
+        icon: item.provider,
+      }
+    })
+    this.setState({ options })
+  }
+
+  fetchClusters = async () => {
+    await this.cdStore.getClustersList()
+    const clusters = this.cdStore.clustersList.map(item => ({
+      label: inCluster2Default(item.name),
+      value: item.name,
+      server: item.server,
+    }))
+    this.setState({ clusters })
+  }
+
+  initFormTemplate = () => {
     this.store.fetchDetail({ ...this.props }).then(() => {
       const argo = get(toJS(this.store.detail), '_originData.spec.argo', {})
       this.setState({
@@ -63,10 +102,6 @@ export default class CDAllowListModal extends React.Component {
 
   checkItemValid = value => {
     return value !== ''
-  }
-
-  checkDestinationsValid = value => {
-    return !isEmpty(value) && value.name && value.namespace && value.server
   }
 
   sourceReposValidator = (rule, value, callback) => {
@@ -105,6 +140,13 @@ export default class CDAllowListModal extends React.Component {
     callback()
   }
 
+  repoOptionRenderer = option => type => (
+    <span className={styles.option}>
+      <Icon name={option.icon} type={type === 'value' ? 'dark' : 'light'} />
+      {option.label}
+    </span>
+  )
+
   render() {
     const { visible, onCancel, onOk } = this.props
 
@@ -128,7 +170,15 @@ export default class CDAllowListModal extends React.Component {
             itemType="string"
             checkItemValid={this.checkItemValid}
           >
-            <Input placeholder={t('REGISTRY_ADDRESS_TCAP')} />
+            <Select
+              style={{ maxWidth: '100%' }}
+              placeholder={t('REGISTRY_ADDRESS_TCAP')}
+              options={this.state.options}
+              valueRenderer={option => this.repoOptionRenderer(option)('value')}
+              optionRenderer={option =>
+                this.repoOptionRenderer(option)('option')
+              }
+            />
           </ArrayInput>
         </Form.Item>
         <Form.Item
@@ -141,7 +191,10 @@ export default class CDAllowListModal extends React.Component {
             addText={t('ADD')}
             checkItemValid={this.checkDestinationsValid}
           >
-            <Destinations cluster={this.clusters} />
+            <Destinations
+              clusters={this.state.clusters}
+              formtemplate={this.state.formTemplate}
+            />
           </ArrayInput>
         </Form.Item>
       </Modal.Form>

@@ -741,3 +741,6 @@ export const map_accessModes = accessModes =>
   accessModes.map(item => accessModeMapper[item])
 
 export const quota_limits_requests_Dot = deal_With_Dot
+
+export const inCluster2Default = name =>
+  name === 'in-cluster' ? 'default' : name

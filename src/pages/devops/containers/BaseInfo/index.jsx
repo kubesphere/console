@@ -27,10 +27,9 @@ import { Panel } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
 import Banner from 'components/Cards/Banner'
 import Empty from 'components/Tables/Base/Empty'
-
+import { inCluster2Default, getDisplayName, getLocalTime } from 'utils'
 import EditModal from 'devops/components/Modals/DevOpsEdit'
 
-import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 
 import UserStore from 'stores/user'
@@ -359,7 +358,9 @@ class BaseInfo extends React.Component {
                     >
                       <div>
                         <Icon name="cluster" size={20} />
-                        <b>{destination.name || t('NONE')}</b>
+                        <b>
+                          {inCluster2Default(destination.name) || t('NONE')}
+                        </b>
                         <span>({destination.server || t('NONE')})</span>
                       </div>
                       <div>
