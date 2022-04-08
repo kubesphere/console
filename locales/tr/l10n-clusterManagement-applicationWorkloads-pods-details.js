@@ -31,6 +31,7 @@ module.exports = {
   IMAGE_ID: 'Resim Kimliği',
   IMAGE_PULL_POLICY: 'Resim Çekme Politikası',
   CONTAINER_DETAILS_PAGE_SCAP: 'Konteyner ayrıntıları sayfası.',
+  RESTARTS_TOTAL: 'Restarts (Total)',
   // Resource Status > Details > Container Details > Terminal
   LOADING: 'Yükleniyor...',
   RESOURCE_LIMITS: 'Özkaynak sınırları',
@@ -59,5 +60,7 @@ module.exports = {
   UPDATED_AT_VALUE: '{değer} tarihinde oluşturuldu.',
   // Metadata
   // Monitoring
-  NO_MONITORING_DATA: 'Veri Yok'
+  NO_MONITORING_DATA: 'Veri Yok',
+  OUTBOUND: 'Outbound',
+  INBOUND: 'Inbound'
 };
