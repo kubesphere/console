@@ -16,11 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  CD_PL: 'Continuous Deployment',
-  CD_LOW: 'Continuous Deployment',
-  cd: 'Continuous Deployment',
-  CD: 'Continuous Deployment',
-  CD_RESOURCE_PL: 'Continuous deployment of resources',
+  CD_PL: '持续部署',
+  CD_LOW: '持续部署',
+  cd: '持续部署',
+  CD: '持续部署',
+  CD_RESOURCE_PL: '资源持续部署',
   CD_DESC: 'This page allows you to create and manage continuously deployed resources via gitops. ',
   EMPTY_CD_TITLE: 'No continuous deployment resources found',
   CD_EMPTY_DESC: 'Please create a continuous deployment resource. ',
