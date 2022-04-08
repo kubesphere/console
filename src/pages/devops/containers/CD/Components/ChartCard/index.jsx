@@ -86,7 +86,7 @@ export default function ChartCard({ click, item, type, filters }) {
           })}
           checked={checked}
         />
-        <p className={styles.type}>{title}</p>
+        <p className={styles.type}>{t(title)}</p>
         <p className={styles.number}>
           <span className={styles.master}>{used}</span>/<span>{total}</span>
         </p>

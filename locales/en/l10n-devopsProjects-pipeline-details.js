@@ -104,6 +104,11 @@ module.exports = {
   STAGE: 'Stage',
   KUBERNETES_DEPLOY_DEPRECATED_TIP:
     'This step will be deprecated in subsequent versions, and it is recommended that you consider other alternatives.',
+  ORIGINAL_IMAGE_ADDRESS: 'Original Image Address',
+  NEW_IMAGE_ADDRESS: 'New Image Address',
+  NEW_IMAGE_TAG: 'New Image Tag',
+  CD_STEP_DESC: 'Update image information using continuous deployment.',
+  UPDATE_CD_TITLE: 'Continuous Deployment of Updates',
 
   // Task Status > Edit Jenkinsfile
   EDIT_JENKINSFILE: 'Edit Jenkinsfile',

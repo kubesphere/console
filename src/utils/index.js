@@ -69,7 +69,7 @@ export const formatUsedTime = ms => {
     return `${ms} ms`
   }
   if (ms <= 60000) {
-    return `${parseFloat(ms / 1000).toFixed(2)} s`
+    return `${parseFloat(ms / 1000).toFixed(2)}s`
   }
   if (ms <= 3600000) {
     return `${parseFloat(ms / 60000).toFixed(2)} min`

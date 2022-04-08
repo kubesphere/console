@@ -77,7 +77,7 @@ class SyncStatus extends React.Component {
         },
       },
       {
-        title: t('INFO'),
+        title: t('MESSAGE'),
         dataIndex: 'message',
       },
     ]
@@ -149,7 +149,7 @@ class SyncStatus extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.sync_info}>
-          <h3>{t('LATEST_SYNC_STATUS')}</h3>
+          <h3>{t('SYNC_STATUS')}</h3>
           <div className={styles.info_card}>
             <div className={styles.wrapper}>
               <div className={styles.wrapper_icon}>
@@ -166,7 +166,7 @@ class SyncStatus extends React.Component {
                       ? getLocalTime(startTime).format('YYYY-MM-DD HH:mm:ss')
                       : '-'}
                   </h4>
-                  <p>{t('START_TIME')}</p>
+                  <p>{t('START_TIME_SCAP')}</p>
                 </div>
               </div>
               <div>
@@ -176,7 +176,7 @@ class SyncStatus extends React.Component {
                       ? getLocalTime(endTime).format('YYYY-MM-DD HH:mm:ss')
                       : '-'}
                   </h4>
-                  <p>{t('END_TIME')}</p>
+                  <p>{t('END_TIME_SCAP')}</p>
                 </div>
               </div>
             </div>
@@ -196,7 +196,7 @@ class SyncStatus extends React.Component {
                 <ForkIcon style={{ width: '40px', height: '40px' }} />
                 <div>
                   <h4>{revision}</h4>
-                  <p>{t('REVISE')}</p>
+                  <p>{t('REVISION')}</p>
                 </div>
               </div>
               <div className={styles.wrapper_gray}>
@@ -210,7 +210,7 @@ class SyncStatus extends React.Component {
           </div>
         </div>
         <div className={styles.sync_result}>
-          <h3>{t('SYNC_RESULT')}</h3>
+          <h3>{t('SYNC_RESULT_PL')}</h3>
           {this.renderTable()}
         </div>
       </div>

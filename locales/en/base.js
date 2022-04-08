@@ -70,7 +70,6 @@ module.exports = {
   Cordon: 'Cordon',
   Count: 'Count',
   Create: 'Create',
-  CREATED_BY: 'Created By',
   Current: 'Current',
   Custom: 'Custom',
   'Data Sources': 'Data Sources',

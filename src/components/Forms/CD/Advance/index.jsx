@@ -76,14 +76,14 @@ export default class Advance extends React.Component {
           <div className={styles.wrapper_item}>
             <Columns>
               <Column>
-                <Form.Item label={t('Revision')} desc={t('REVISE_DESC')}>
+                <Form.Item label={t('REVISION')} desc={t('REVISION_DESC')}>
                   <Input name="source.targetRevision" defaultValue="HEAD" />
                 </Form.Item>
               </Column>
               <Column>
                 <Form.Item
-                  label={t('RESOURCE_FILE_PATH')}
-                  desc={t('SET_THE_RESOURCE_FILE_PATH')}
+                  label={t('MANIFEST_FILE_PATH')}
+                  desc={t('MANIFEST_FILE_PATH_DESC')}
                 >
                   <Input name="source.path" defaultValue="." />
                 </Form.Item>
@@ -92,7 +92,7 @@ export default class Advance extends React.Component {
           </div>
         </div>
         <div className={styles.wrapper}>
-          <h6>{t('SYNC_STRATEGY')}</h6>
+          <h6>{t('SYNC_STRATEGY_TCAP')}</h6>
           <div className={styles.wrapper_item}>
             <div className={styles.wrapper_item_com}>
               <Form.Item>
@@ -108,13 +108,17 @@ export default class Advance extends React.Component {
               <div className={styles.columns}>
                 <div className={styles.column}>
                   <Form.Item>
-                    <Checkbox name="syncPolicy.prune">Prune Resources</Checkbox>
+                    <Checkbox name="syncPolicy.prune">
+                      {t('PRUNE_RESOURCES')}
+                    </Checkbox>
                   </Form.Item>
                 </div>
 
                 <div className={styles.column}>
                   <Form.Item>
-                    <Checkbox name="syncPolicy.selfHeal">Self Heal</Checkbox>
+                    <Checkbox name="syncPolicy.selfHeal">
+                      {t('SELF_HEAL')}
+                    </Checkbox>
                   </Form.Item>
                 </div>
               </div>
@@ -128,39 +132,41 @@ export default class Advance extends React.Component {
               <div className={styles.column}>
                 <Form.Item>
                   <Checkbox name="syncOptions.Validate">
-                    Skip Schema Validation
+                    {t('SKIP_SCHEMA_VALIDATION')}
                   </Checkbox>
                 </Form.Item>
               </div>
               <div className={styles.column}>
                 <Form.Item>
                   <Checkbox name="syncOptions.CreateNamespace">
-                    Auto-Create Namespace
+                    {t('AUTO_CREATE_PROJECT')}
                   </Checkbox>
                 </Form.Item>
               </div>
               <div className={styles.column}>
                 <Form.Item>
-                  <Checkbox name="syncOptions.PruneLast">Prune Last</Checkbox>
+                  <Checkbox name="syncOptions.PruneLast">
+                    {t('PRUNE_LAST')}
+                  </Checkbox>
                 </Form.Item>
               </div>
               <div className={styles.column}>
                 <Form.Item>
                   <Checkbox name="syncOptions.ApplyOutOfSyncOnly">
-                    Apply Out Of Sync Only
+                    {t('APPLY_OUT_OF_SYNC_ONLY')}
                   </Checkbox>
                 </Form.Item>
               </div>
             </div>
-            <Form.Item label={t('Prune Propagation Policy')}>
+            <Form.Item label={t('PRUNE_PROPAGATION_POLICY')}>
               <Input name="syncOptions.PrunePropagationPolicy" />
             </Form.Item>
             <Form.Item>
               <div className={styles.checkbox_item}>
                 <Checkbox name="syncOptions.Replace"></Checkbox>
                 <div className={styles.checkbox_item_info}>
-                  <p>{t('ABANDON_KUBECTL_APPLY')}</p>
-                  <span>{t('ABANDON_KUBECTL_APPLY_DESC')}</span>
+                  <p>{t('REPLACE_RESOURCE')}</p>
+                  <span>{t('REPLACE_RESOURCE_DESC')}</span>
                 </div>
               </div>
             </Form.Item>

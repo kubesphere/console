@@ -76,7 +76,7 @@ export default class SyncModal extends React.Component {
               </Form.Item>
             </div>
             <div className={styles.column}>
-              <Form.Item label={t('REVISE')} desc={t('REVISE_DESC')}>
+              <Form.Item label={t('REVISION')} desc={t('REVISION_DESC')}>
                 <Input name="repoSource.targetRevision" />
               </Form.Item>
             </div>
@@ -89,7 +89,7 @@ export default class SyncModal extends React.Component {
                   checked={get(formTemplate, 'prune', false)}
                   onChange={this.handleCheckboxChange('prune')}
                 >
-                  Prune
+                  {t('PRUNE')}
                 </Checkbox>
               </Form.Item>
             </div>
@@ -100,7 +100,7 @@ export default class SyncModal extends React.Component {
                   checked={get(formTemplate, 'dryRun', false)}
                   onChange={this.handleCheckboxChange('dryRun')}
                 >
-                  Dry Run
+                  {t('DRY_RUN')}
                 </Checkbox>
               </Form.Item>
             </div>
@@ -111,7 +111,7 @@ export default class SyncModal extends React.Component {
                   checked={get(formTemplate, 'applyOnly', false)}
                   onChange={this.handleCheckboxChange('applyOnly')}
                 >
-                  Apply Only
+                  {t('APPLY_ONLY')}
                 </Checkbox>
               </Form.Item>
             </div>
@@ -124,7 +124,7 @@ export default class SyncModal extends React.Component {
                     'syncStrategy.apply.force'
                   )}
                 >
-                  Force
+                  {t('FORCE')}
                 </Checkbox>
               </Form.Item>
             </div>
@@ -143,7 +143,7 @@ export default class SyncModal extends React.Component {
                         'syncOptions.Validate'
                       )}
                     >
-                      Skip Schema Validation
+                      {t('SKIP_SCHEMA_VALIDATION')}
                     </Checkbox>
                   </Form.Item>
                 </div>
@@ -160,7 +160,7 @@ export default class SyncModal extends React.Component {
                         'syncOptions.CreateNamespace'
                       )}
                     >
-                      Auto-Create Namespace
+                      {t('AUTO_CREATE_PROJECT')}
                     </Checkbox>
                   </Form.Item>
                 </div>
@@ -177,7 +177,7 @@ export default class SyncModal extends React.Component {
                         'syncOptions.PruneLast'
                       )}
                     >
-                      Prune Last
+                      {t('PRUNE_LAST')}
                     </Checkbox>
                   </Form.Item>
                 </div>
@@ -194,12 +194,12 @@ export default class SyncModal extends React.Component {
                         'syncOptions.ApplyOutOfSyncOnly'
                       )}
                     >
-                      Apply Out Of Sync Only
+                      {t('APPLY_OUT_OF_SYNC_ONLY')}
                     </Checkbox>
                   </Form.Item>
                 </div>
               </div>
-              <Form.Item label={t('Prune Propagation Policy')}>
+              <Form.Item label={t('PRUNE_PROPAGATION_POLICY')}>
                 <Input name="syncOptions.PrunePropagationPolicy" />
               </Form.Item>
               <Form.Item>
@@ -210,8 +210,8 @@ export default class SyncModal extends React.Component {
                     onChange={this.handleCheckboxChange('syncOptions.Replace')}
                   ></Checkbox>
                   <div className={styles.checkbox_item_info}>
-                    <p>{t('ABANDON_KUBECTL_APPLY')}</p>
-                    <span>{t('ABANDON_KUBECTL_APPLY_DESC')}</span>
+                    <p>{t('REPLACE_RESOURCE')}</p>
+                    <span>{t('REPLACE_RESOURCE_DESC')}</span>
                   </div>
                 </div>
               </Form.Item>

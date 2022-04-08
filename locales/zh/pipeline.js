@@ -18,7 +18,6 @@
 module.exports = {
   abortPipeline: '检查结果是否影响后续任务',
   'Absolute duration': '代码块所用的绝对时间',
-  ADD_ACTION: '添加操作',
   'Add another credential': '增加一个凭证',
   'Add conditions': '添加条件',
   'Add nesting conditions': '添加嵌套条件',
@@ -41,7 +40,8 @@ module.exports = {
   'Send messages by email': '可以通过邮件发送消息',
   'Send messages in the build': '可以在构建中发送消息',
   'Change Current Directory': '更改当前目录',
-  'Chinese is not allowed in the pipeline configuration': '配置中不允许含有中文',
+  'Chinese is not allowed in the pipeline configuration':
+    '配置中不允许含有中文',
   'Clean when aborted': '清理失败不影响运行',
   'Clean Workspace': '清理企业空间',
   'Code Quality Check': '代码质量检查',
@@ -60,7 +60,7 @@ module.exports = {
   'defaultValue -1 means not to discard': '默认值 -1: 不会丢弃记录',
   'Delete all resources of the deployment file': '删除部署文件所对应的所有资源',
   'Deploy resources to the Kubernetes cluster': '将资源部署到 kubernetes 集群',
-  'Didn\'t pass': '未通过',
+  "Didn't pass": '未通过',
   dir: '切换目录',
   Discard: '忽略',
   'Discover branches from repository': '发现仓库上的分支',
@@ -80,7 +80,8 @@ module.exports = {
   enableConfigSubstitution: '开启变量替换',
   'Enter an expression': '输入一个表达式',
   'Environment name': '环境变量名',
-  'Executes the code inside the block with a determined time out limit.': '使用确定的超时限制执行块内的代码.',
+  'Executes the code inside the block with a determined time out limit.':
+    '使用确定的超时限制执行块内的代码.',
   expression: '表达式',
   Failure: '失败',
   'For accessing GitHub': '用于获取 GitHub',
@@ -89,7 +90,8 @@ module.exports = {
   input: '审核',
   'Inspection results do not affect subsequent tasks': '检查结果不影响后续任务',
   'instance failed to match at least one schema': '至少需要一个嵌套步骤',
-  'Internal nested conditions only need to satisfy one': '内部嵌套的条件只需符合一个',
+  'Internal nested conditions only need to satisfy one':
+    '内部嵌套的条件只需符合一个',
   'Internal nesting conditions must be matched': '内部嵌套的条件需全部满足',
   'Jenkinsfile syntax error, message': 'Jenkinsfile 语法错误，消息',
   'key File Variable': '私钥变量',
@@ -99,11 +101,12 @@ module.exports = {
   'Kubernetes Secrets': 'Kubernetes 密钥',
   Line: '行',
   'Load credentials into environment variables': '加载凭证到环境变量',
-  'Load the sonarqube configuration provided by Jenkins into the Pipeline.': '将 Jenkins 中的 sonarqube 配置加载到流水线中',
+  'Load the sonarqube configuration provided by Jenkins into the Pipeline.':
+    '将 Jenkins 中的 sonarqube 配置加载到流水线中',
   mail: '邮件',
   major: '重要',
   minor: '次要',
-  'Missing one or more required properties: \'name\'': 'name 不能为空',
+  "Missing one or more required properties: 'name'": 'name 不能为空',
   'Negative prefix': '否定前缀',
   NO_BRANCH_FOUND_TIP: '未发现分支。',
   'No need': '不需要',
@@ -139,33 +142,42 @@ module.exports = {
   SELECT_THIS_REPOSITORY: '选择此仓库',
   Sender: '发件人',
   sh: 'shell 脚本',
-  'Shell commands can be executed in the container': '可以在容器中执行 shell 命令',
+  'Shell commands can be executed in the container':
+    '可以在容器中执行 shell 命令',
   'Show Advanced Settings': '展示高级设置',
   'show yaml editor': '用 YAML 编辑器编辑',
   'sonar is the default config name.': '默认配置名称是 sonar',
-  'Sorry, you don\'t have the permission to do this.': '抱歉，您没有权限进行此操作',
-  'Specify a container to add nested tasks to execute inside the container': '指定容器，可添加嵌套任务在容器内执行',
+  "Sorry, you don't have the permission to do this.":
+    '抱歉，您没有权限进行此操作',
+  'Specify a container to add nested tasks to execute inside the container':
+    '指定容器，可添加嵌套任务在容器内执行',
   'Start the follow-up task after the inspection': '检查通过后开始后续任务',
   'Started By': '实施者',
   Subject: '主题',
   submitter: '审核者',
   submitterParameter: '提交参数',
   'Text Variable': '文本变量',
-  'The conditions required to implement the current phase (optional).': '执行当前阶段所需要满足的条件 （可选）',
-  'The environment variable entered before running the pipeline is match the current value.': '运行流水线前输入的环境变量与当前值一致',
-  'The label on which to run the Pipeline or individual stage': '流水线或单个阶段的标签',
+  'The conditions required to implement the current phase (optional).':
+    '执行当前阶段所需要满足的条件 （可选）',
+  'The environment variable entered before running the pipeline is match the current value.':
+    '运行流水线前输入的环境变量与当前值一致',
+  'The label on which to run the Pipeline or individual stage':
+    '流水线或单个阶段的标签',
   'This name has been used.': '此名称已被使用',
   'Time Used': '用时',
   Timeout: '超时',
   TIMEOUT_VALUE: '超时：{value}',
   timeout: '超时',
-  'Timeout after no activity in logs for this block': '此区块代码无日志输出后开始计算超时',
+  'Timeout after no activity in logs for this block':
+    '此区块代码无日志输出后开始计算超时',
   timer: '定时器',
   TRIGGER_REMOTE_BUILD: '触发远程构建（例如，使用脚本）',
   Unnamed: '未命名',
-  'Use the following URL to remotely triggerworkbench the build': '使用以下 URL 远程触发构建',
+  'Use the following URL to remotely triggerworkbench the build':
+    '使用以下 URL 远程触发构建',
   'User types that can trigger builds': '可以触发构建的用户类型',
-  'username or group name, multiple values ​​used, separated': '用户名或组名，多个值使用英文逗号分隔',
+  'username or group name, multiple values ​​used, separated':
+    '用户名或组名，多个值使用英文逗号分隔',
   'Username Variable': '用户名变量',
   usernameVariable: '用户名变量',
   waitForQualityGate: '代码质量检查(SonarQube)',
@@ -173,7 +185,8 @@ module.exports = {
   withCredentials: '添加凭证',
   withSonarQubeEnv: 'Sonarqube 配置',
   'Wrong Token': 'Token 错误',
-  'You can execute shell commands or windows batch commands in the build.': '可以在构建中执行 shell 命令或者 windows 的 batch 命令',
+  'You can execute shell commands or windows batch commands in the build.':
+    '可以在构建中执行 shell 命令或者 windows 的 batch 命令',
   PIPELINE_DESC: `流水线是一组可扩展的工具，可以通过组合它们来实现持续集成和持续交付。
       您可以在此页面创建并管理流水线。`,
   username_password: '帐户凭证',
@@ -208,19 +221,24 @@ module.exports = {
   VULNERABILITY: '代码漏洞',
   SECURITY_HOTSPOT: '安全',
   PIPELINE_CREATE_DESC: '初始化完成后将开始流水线的任务执行',
-  PIPELINE_QUEUED_DESC: '您需要等待 agent 启动并执行流水线（注：如 agent 长时间没有启动请检查 agent 配置和集群资源情况）',
-  waitForQualityGate_desc: '代码质量检查标准来源于SonarQube的 Quality Gate (质量阈)，如果需要自定义检查标准请前往 SonarQube 设置',
+  PIPELINE_QUEUED_DESC:
+    '您需要等待 agent 启动并执行流水线（注：如 agent 长时间没有启动请检查 agent 配置和集群资源情况）',
+  waitForQualityGate_desc:
+    '代码质量检查标准来源于SonarQube的 Quality Gate (质量阈)，如果需要自定义检查标准请前往 SonarQube 设置',
   REVIEW_DESC: '流水线运行至此任务将会暂停，审核后可选择继续或终止',
-  INPUT_DESC: '流水线运行至此任务将会暂停，创建者和被@的人可以选择继续或终止流水线',
+  INPUT_DESC:
+    '流水线运行至此任务将会暂停，创建者和被@的人可以选择继续或终止流水线',
   LoadPrevData_Desc: '检测到此流水线上次未编辑成功，是否加载上次数据继续编辑？',
   withSonarQubeEnv_DESC: '快速的定位代码中潜在的或者明显的错误',
   waitForQualityGate_DESC: '在执行代码分析后执行',
   script_DESC: '执行groovy脚本',
   pipeline_owner: 'DevOps 项目的所有者，可以进行 DevOps 项目的所有操作',
-  pipeline_maintainer: 'DevOps 项目的主要维护者，可以进行项目内的凭证配置、流水线配置等操作',
+  pipeline_maintainer:
+    'DevOps 项目的主要维护者，可以进行项目内的凭证配置、流水线配置等操作',
   pipeline_developer: 'DevOps 项目的开发者，可以进行流水线的触发以及查看',
   pipeline_reporter: 'DevOps 项目的观察者，可以查看流水线的运行情况',
-  PATTERN_PIPELINE_NAME_VALID_NAME_TIP: '名称不合法 （仅支持大小写字母、数字、_、-）',
+  PATTERN_PIPELINE_NAME_VALID_NAME_TIP:
+    '名称不合法 （仅支持大小写字母、数字、_、-）',
   GET_GITHUB_TOKEN_DESC: `用于获取 GitHub 代码仓库
     <a
       class="float-right"
@@ -237,5 +255,6 @@ module.exports = {
   'Run Start': '运行开始',
   'Choose a Pipeline Template': '选择流水线模板',
   // Pipeline Creation Page
-  DEVOPS_PROJECT_DESC: 'DevOps 项目用于对资源进行分组管理以及控制不同用户的资源管理权限。'
-};
+  DEVOPS_PROJECT_DESC:
+    'DevOps 项目用于对资源进行分组管理以及控制不同用户的资源管理权限。',
+}
