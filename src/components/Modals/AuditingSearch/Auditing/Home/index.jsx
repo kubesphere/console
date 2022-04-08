@@ -120,6 +120,16 @@ export default class Home extends React.Component {
                 {moment(new Date()).format(`${t('EVENT_DATE')}`)}
               </p>
             ) : null}
+            <p className={styles.tip}>
+              <Icon
+                name="information"
+                color={{ primary: '#fff', secondary: '#F5A623' }}
+              />
+              {t.html('SETTING_AUDIT_DESC', {
+                link:
+                  ' https://kubesphere.io/docs/toolbox/auditing/auditing-receive-customize/#receive-auditing-logs-from-kubernetes',
+              })}
+            </p>
           </div>
         </Loading>
       </div>
