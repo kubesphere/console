@@ -40,27 +40,18 @@ module.exports = {
   VOLUME_FUNCTION_MANAGEMENT_TIP:
     '存储卷管理只控制是否在 KubeSphere Web 控制台启用以下功能。开启前，请联系系统管理员确认存储系统是否支持这些功能。',
   VOLUME_SNAPSHOT: '存储卷快照',
-
   // More > PVC Autoresizer
-  PVC_AUTORESIZER_PL: 'PVC 容量调节器',
-  PVC_AUTORESIZER_DESC:
-    'PVC 容量调节器在自由存储量低于阈值时调整 PersistentVolumeClaims(PVC) 的大小。',
-  PVC_AUTORESIZER_SETTINGS: 'PVC 容量调节器设置',
-  MAX_SIZE: '最大容量',
-  THRESHOLD_DESC: '当存储卷的自由空间量低于阈值时，存储量会增加。',
-  INCREASE: '增量',
-  INCREMENT_DESC:
-    '请根据StorageClass-CSI的扩容步长设置增量，否则可能出现错误。',
-  INCREASE_DESC:
-    '增加值的计算方法是当前存储值乘以百分比值，如果以百分比形式给出的话。',
-  AUTOMATIC_RESTART_WORKLOAD: '自动重启工作负载',
-  AUTOMATIC_RESTART_WORKLOAD_DESC:
-    'Restarter 通过检查 PVC 的状态来判断需要自动重启的工作负载。',
-  AUTOMATIC_RESTART_WORKLOAD_TIP:
-    '如果PVC自动重启时间超过最大时间，对应的工作负载将会加上"restart.kubesphere.io/skip"注解，如需再次为PVC开启自动重启功能，删除上述注解即可。',
+  PVC_AUTORESIZER_PL: 'PVC Autoresizer',
+  PVC_AUTORESIZER_DESC: 'Pvc-autoresizer resizes PersistentVolumeClaims (PVCs) when the free amount of storage is below the threshold.',
+  PVC_AUTORESIZER_SETTINGS: 'Autoresizer Settings',
+  THRESHOLD_DESC: 'Storage is increased when the amount of free space of the volume is below threshold.',
+  INCREASE: 'Increase',
+  INCREASE_DESC: 'The increase value is calculated as the current storage value multiplied by the percentage value, if given as a percentage.',
+  AUTOMATIC_RESTART_WORKLOAD: 'Automatic restart workload',
+  AUTOMATIC_RESTART_WORKLOAD_DESC: 'The restarter judges the workload that needs to be restarted automatically by checking the status of pvc.',
+  AUTOMATIC_RESTART_WORKLOAD_TIP: 'If the automatic restart time of the PVC exceeds the maximum time, the corresponding workload will be annotated with "restart.kubesphere.io/skip". To enable the automatic restart function for the PVC again, delete the above annotation.',
   MAX_TIME: 'Max Time',
   STORAGE_LIMIT: 'Storage Limit',
-
   // More > Delete
   // Volumes
   VOLUME_COUNT: '存储卷数量',
