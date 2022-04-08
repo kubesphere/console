@@ -22,6 +22,7 @@ import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
 import SetDefaultStorageClassModal from 'components/Modals/SetDefaultStorageClass'
+import StorageclassAutoresizerModal from 'components/Modals/StorageclassAutoresizer'
 import VolumeFunctionManage from 'components/Modals/VolumeFunctionManage'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
@@ -141,6 +142,32 @@ export default {
         store,
         modal: VolumeFunctionManage,
         StorageClassStore,
+        ...props,
+      })
+    },
+  },
+  'storageclass.pvc.autoresizer': {
+    on({ store, cluster, detail, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async annotations => {
+          const params = detail._originData
+          set(params, 'metadata.annotations', {
+            ...params.metadata.annotations,
+            ...annotations,
+          })
+          await store.patch(detail, params)
+          await store.fetchDetail({
+            name: detail.name,
+            cluster: detail.cluster,
+          })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+          Modal.close(modal)
+          success && success()
+        },
+        cluster,
+        store,
+        formData: detail._originData,
+        modal: StorageclassAutoresizerModal,
         ...props,
       })
     },

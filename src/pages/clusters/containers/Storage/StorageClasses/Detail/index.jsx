@@ -105,6 +105,25 @@ export default class StorageClassDetail extends React.Component {
         }),
     },
     {
+      key: 'autoResizer',
+      icon: () => (
+        <>
+          <img
+            src="/assets/storageclass_autoresizer.svg"
+            style={{ width: '16px', marginRight: '12px' }}
+          />
+        </>
+      ),
+      text: t('PVC_AUTORESIZER_PL'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('storageclass.pvc.autoresizer', {
+          detail: toJS(this.store.detail),
+          StorageClassStore: this.store,
+          success: this.fetchData,
+        }),
+    },
+    {
       key: 'delete',
       icon: 'trash',
       text: t('DELETE'),

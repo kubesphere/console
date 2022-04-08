@@ -44,7 +44,12 @@ export default class Text extends React.PureComponent {
         )}
         onClick={onClick}
       >
-        {icon && <Icon className={styles.icon} name={icon} size={40} />}
+        {icon &&
+          (isFunction(icon) ? (
+            icon()
+          ) : (
+            <Icon className={styles.icon} name={icon} size={40} />
+          ))}
         <div className={styles.text}>
           <div>
             {isFunction(title)
