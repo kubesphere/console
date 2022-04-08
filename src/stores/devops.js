@@ -178,6 +178,21 @@ export default class DevOpsStore extends Base {
   }
 
   @action
+  async editAllowlist({ cluster, workspace, devops }, newData) {
+    await this.fetchDetail({ cluster, workspace, devops })
+    const data = cloneDeep(this.itemDetail)
+    set(data, 'spec.argo', get(newData, 'spec.argo'))
+
+    return this.submitting(
+      request.put(`${this.getBaseUrl({ cluster, workspace, devops })}`, data, {
+        headers: {
+          'content-type': 'application/json',
+        },
+      })
+    )
+  }
+
+  @action
   delete({ devops, cluster, workspace }) {
     return this.submitting(
       request.delete(`${this.getBaseUrl({ workspace, cluster, devops })}`)

@@ -28,7 +28,19 @@ module.exports = {
   DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps project member',
   DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps project members',
   DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps project roles',
-
+  CD_ALLOWLIST: 'Continuous Deployment Allowlist',
+  CD_ALLOWLIST_DESC:
+    'Add the code repository and resource target deployment location to the allowlist. The allowlist will not take effect without resource information.',
+  DESTINATIONS: 'Resource target deployment location',
+  ENABLE_ALLOWLIST: 'Enable Allowlist',
+  EDIT_ALLOWLIST: 'Edit Allowlist',
+  EMPTY_ALLOWLIST_TITLE: 'Continuous deployment allowlist is not enabled',
+  ALLOWLIST_EMPTY_DESC:
+    'Add the code repository and resource target deployment location to the allowlist. The allowlist will not take effect without resource information.',
+  SOURCE_REPOS_INPUT_DESC:
+    'The code warehouse address already exists, please enter another code warehouse address.',
+  DESTINATIONS_INPUT_DESC:
+    'The resource target deployment location already exists, please enter another resource target deployment location.',
   // Manage > Edit
   // Manage > Delete
 }
