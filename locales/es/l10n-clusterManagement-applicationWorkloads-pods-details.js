@@ -24,14 +24,14 @@ module.exports = {
   PROBE_PL: 'Investigacion',
   HOOK_PL: 'Hooks',
   // Resource Status > Containers > Container Logs
-  CONTAINER_LOGS_NOT_SUPPORTED:
-    'El contenedor no admite logs en tiempo real en el estado actual, intente nuevamente más tarde.',
+  CONTAINER_LOGS_NOT_SUPPORTED: 'El contenedor no admite logs en tiempo real en el estado actual, intente nuevamente más tarde.',
   CONTAINER_LOGS: 'Registros de contenedores',
   // Resource Status > Details > Container Details > Details
   COMMAND: 'Comando',
   IMAGE_ID: 'ID de imagen',
   IMAGE_PULL_POLICY: 'Política de extracción de imagen',
   CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
+  RESTARTS_TOTAL: 'Restarts (Total)',
   // Resource Status > Details > Container Details > Terminal
   LOADING: 'Cargando',
   RESOURCE_LIMITS: 'Límites de recursos',
@@ -61,4 +61,6 @@ module.exports = {
   // Metadata
   // Monitoring
   NO_MONITORING_DATA: 'No Monitoring Data',
-}
+  OUTBOUND: 'Outbound',
+  INBOUND: 'Inbound'
+};
