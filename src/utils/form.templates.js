@@ -345,6 +345,17 @@ const getVolumeTemplate = ({ namespace }) => ({
   },
 })
 
+const getSnapshotClassTemplate = () => ({
+  apiVersion: 'snapshot.storage.k8s.io/v1beta1',
+  deletionPolicy: 'Delete',
+  driver: '',
+  kind: 'VolumeSnapshotClass',
+  metadata: {
+    name: '',
+    annotations: {},
+  },
+})
+
 const getStorageClassTemplate = () => ({
   apiVersion: 'storage.k8s.io/v1',
   kind: 'StorageClass',
@@ -717,6 +728,7 @@ const FORM_TEMPLATES = {
   globalroles: getGlobalRoleTemplate,
   workspaceroles: getWorkspaceRoleTemplate,
   volumes: getVolumeTemplate,
+  volumesnapshotclass: getSnapshotClassTemplate,
   storageclasses: getStorageClassTemplate,
   project: getProjectTemplate,
   limitRange: getLimitRangeTemplate,
