@@ -86,8 +86,10 @@
           flex: 1 1;
           span {
             color: $dark-color01;
+            margin-top: -2px;
           }
           b {
+            margin: 0 4px 0 8px;
             @include TypographyTitleH6($dark-color07);
           }
         }

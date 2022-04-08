@@ -35,4 +35,7 @@ module.exports = {
   EMPTY_ALLOWLIST_TITLE: '未启用持续部署白名单',
   ALLOWLIST_EMPTY_DESC:
     '将代码仓库和资源目标部署位置添加到白名单，白名单无资源信息则不生效。',
+  SOURCE_REPOS_INPUT_DESC: '代码仓库地址已存在，请输入其他代码仓库地址。',
+  DESTINATIONS_INPUT_DESC:
+    '资源目标部署位置已存在，请输入其他资源目标部署位置。',
 }

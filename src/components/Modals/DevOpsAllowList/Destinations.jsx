@@ -27,8 +27,6 @@ import styles from './index.scss'
 
 @observer
 export default class Destinations extends React.Component {
-  state = { server: '', formData: this.props.value }
-
   cdStore = new CDStore()
 
   projectStore = new ProjectStore()
@@ -61,7 +59,7 @@ export default class Destinations extends React.Component {
   async init() {
     this.setState({ initializing: true })
 
-    const { name, namespace, server } = this.state.formData || {}
+    const { name, namespace, server } = this.props.value || {}
 
     await this.fetchClusters()
 

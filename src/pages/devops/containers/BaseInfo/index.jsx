@@ -296,7 +296,7 @@ class BaseInfo extends React.Component {
       <div className={styles.empty}>
         <Empty
           name="ALLOWLIST"
-          module="allowlist"
+          module="allowlists"
           title={t('EMPTY_ALLOWLIST_TITLE')}
           action={
             !isEmpty(this.enabledItemActions) && (
@@ -320,7 +320,7 @@ class BaseInfo extends React.Component {
         ) : (
           <>
             <div className={styles.header}>
-              <Icon name="strategy-group" size={40} />
+              <Icon name="allowlist" size={40} />
               <div className={styles.item}>
                 <div>{t('CD_ALLOWLIST')}</div>
                 <p>{t('CD_ALLOWLIST_DESC')}</p>

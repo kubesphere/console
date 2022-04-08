@@ -22,7 +22,9 @@ import { ArrayInput } from 'components/Inputs'
 import PropTypes from 'prop-types'
 import { Form, Input } from '@kube-design/components'
 import { Modal } from 'components/Base'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
+import DevopsStore from 'stores/devops'
+import { toJS } from 'mobx'
 import Destinations from './Destinations'
 
 export default class CDAllowListModal extends React.Component {
@@ -46,17 +48,61 @@ export default class CDAllowListModal extends React.Component {
     formTemplate: {},
   }
 
-  store = this.props.store
+  store = new DevopsStore()
 
   formRef = React.createRef()
 
-  prefix = 'spec.argo'
-
   componentDidMount() {
-    const _data = {
-      spec: { argo: get(this.props.detail, '_originData.spec.argo') },
+    this.store.fetchDetail({ ...this.props }).then(() => {
+      const argo = get(toJS(this.store.detail), '_originData.spec.argo', {})
+      this.setState({
+        formTemplate: { spec: { argo } },
+      })
+    })
+  }
+
+  checkItemValid = value => {
+    return value !== ''
+  }
+
+  checkDestinationsValid = value => {
+    return !isEmpty(value) && value.name && value.namespace && value.server
+  }
+
+  sourceReposValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
     }
-    this.setState({ formTemplate: _data })
+
+    if (value.length > 0) {
+      const arr = []
+      value.forEach(item => {
+        if (arr.includes(item)) {
+          return callback({ message: t('SOURCE_REPOS_INPUT_DESC') })
+        }
+        arr.push(item)
+      })
+    }
+
+    callback()
+  }
+
+  destinationsValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    if (value.length > 0) {
+      const data = []
+      value.forEach(item => {
+        if (data.includes(item.namespace)) {
+          return callback({ message: t('DESTINATIONS_INPUT_DESC') })
+        }
+        data.push(item.namespace)
+      })
+    }
+
+    callback()
   }
 
   render() {
@@ -72,20 +118,28 @@ export default class CDAllowListModal extends React.Component {
         visible={visible}
         formRef={this.formRef}
       >
-        <Form.Item label={t('CODE_REPOSITORY')}>
+        <Form.Item
+          label={t('CODE_REPOSITORY')}
+          rules={[{ validator: this.sourceReposValidator }]}
+        >
           <ArrayInput
             name="spec.argo.sourceRepos"
             addText={t('ADD')}
             itemType="string"
+            checkItemValid={this.checkItemValid}
           >
             <Input placeholder={t('REGISTRY_ADDRESS_TCAP')} />
           </ArrayInput>
         </Form.Item>
-        <Form.Item label={t('DESTINATIONS')}>
+        <Form.Item
+          label={t('DESTINATIONS')}
+          rules={[{ validator: this.destinationsValidator }]}
+        >
           <ArrayInput
             name="spec.argo.destinations"
             itemType="object"
             addText={t('ADD')}
+            checkItemValid={this.checkDestinationsValid}
           >
             <Destinations cluster={this.clusters} />
           </ArrayInput>

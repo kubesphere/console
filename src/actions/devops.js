@@ -75,9 +75,7 @@ export default {
           success && success()
         },
         modal: AllowListModal,
-        detail,
         store,
-        formTemplate: {},
         ...props,
       })
     },
