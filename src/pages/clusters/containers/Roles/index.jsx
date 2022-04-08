@@ -17,8 +17,6 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
-
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
@@ -43,7 +41,7 @@ export default class ClusterRoles extends React.Component {
     !globals.config.presetClusterRoles.includes(record.name)
 
   get itemActions() {
-    const { trigger, store, name, module, routing } = this.props
+    const { trigger, name, routing } = this.props
     return [
       {
         key: 'edit',
@@ -54,20 +52,6 @@ export default class ClusterRoles extends React.Component {
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
-            success: routing.query,
-          }),
-      },
-      {
-        key: 'editRole',
-        icon: 'pen',
-        text: t('EDIT_PERMISSIONS'),
-        action: 'edit',
-        show: this.showAction,
-        onClick: item =>
-          trigger('role.edit', {
-            module,
-            detail: item,
-            roleTemplates: toJS(store.roleTemplates.data),
             success: routing.query,
           }),
       },
@@ -92,7 +76,7 @@ export default class ClusterRoles extends React.Component {
     const { tableProps } = this.props
     return {
       ...tableProps.tableActions,
-      onCreate: this.showCreate,
+      onCreate: undefined,
       selectActions: [],
     }
   }
@@ -130,16 +114,6 @@ export default class ClusterRoles extends React.Component {
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
-  }
-
-  showCreate = () => {
-    const { match, store, trigger, getData } = this.props
-    return trigger('role.create', {
-      title: t('Create Cluster Role'),
-      roleTemplates: toJS(store.roleTemplates.data),
-      cluster: match.params.cluster,
-      success: getData,
-    })
   }
 
   get emptyProps() {
