@@ -31,6 +31,7 @@ module.exports = {
   IMAGE_ID: '鏡像 ID',
   IMAGE_PULL_POLICY: '鏡像拉取策略',
   CONTAINER_DETAILS_PAGE_SCAP: '容器詳情頁。',
+  RESTARTS_TOTAL: 'Restarts (Total)',
   // Resource Status > Details > Container Details > Terminal
   LOADING: '載入中...',
   RESOURCE_LIMITS: '資源限制',
@@ -59,5 +60,7 @@ module.exports = {
   UPDATED_AT_VALUE: '更新時間 ：{value}',
   // Metadata
   // Monitoring
-  NO_MONITORING_DATA: '未發現監控資料'
+  NO_MONITORING_DATA: '未發現監控資料',
+  OUTBOUND: 'Outbound',
+  INBOUND: 'Inbound'
 };
