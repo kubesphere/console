@@ -24,10 +24,11 @@ module.exports = {
   JOB_COMPLETED: '已完成',
   JOB_FAILED: '失败',
   JOB_RUNNING: '运行中',
+  LAST_RUN_TIME: 'Last Run Time',
   // List > Create > Basic Information
   // List > Create > Strategy Settings
   // List > Create > Pod Settings
-  RESTART_POLICY_NEVER_DESC: '重新创建容器组',
+  RESTART_POLICY_NEVER_DESC: 'Re-create pod',
   RESTART_POLICY_ONFAILURE_DESC: '重启容器',
   // List > Create > Volume Settings
   // List > Create > Advanced Settings
