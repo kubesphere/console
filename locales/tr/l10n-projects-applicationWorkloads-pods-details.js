@@ -20,7 +20,10 @@ module.exports = {
   QOS_CLASS: 'QoS Sınıfı',
   NODE_NAME: 'Düğüm Adı',
   POD_IP_ADDRESS: 'Kapsül İp Adresi',
+  // Run Records
+  JOB_UNFINISHED: 'Unfinished',
   // Resource Status
+  TERMINATED: 'Terminated',
   // Scheduling Information
   SCHEDULED_TO_NODE: 'Zamanla {value}',
   SCHEDULING_NOT_SUCCESSFUL: 'Zamanlama Başarılı Değil',
