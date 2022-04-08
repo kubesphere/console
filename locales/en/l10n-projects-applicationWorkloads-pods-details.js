@@ -22,7 +22,10 @@ module.exports = {
   NODE_NAME: 'Node Name',
   POD_IP_ADDRESS: 'Pod IP Address',
 
+  // Run Records
+  JOB_UNFINISHED: 'Unfinished',
   // Resource Status
+  TERMINATED: 'Terminated',
 
   // Scheduling Information
   SCHEDULED_TO_NODE: 'Scheduled to {value}',

@@ -62,30 +62,30 @@ class Monitorings extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'cpu',
-      title: 'CPU Usage',
+      title: 'CPU_USAGE',
       unitType: 'cpu',
       legend: ['USAGE'],
       data: get(this.metrics, `${MetricTypes.cpu_usage}.data.result`),
     },
     {
       type: 'memory',
-      title: 'Memory Usage',
+      title: 'MEMORY_USAGE',
       unitType: 'memory',
       legend: ['USAGE'],
       data: get(this.metrics, `${MetricTypes.memory_usage}.data.result`),
     },
     {
       type: 'bandwidth',
-      title: 'Outbound Traffic',
+      title: 'OUTBOUND_TRAFFIC',
       unitType: 'bandwidth',
-      legend: ['Outbound'],
+      legend: ['OUTBOUND'],
       data: get(this.metrics, `${MetricTypes.net_transmitted}.data.result`),
     },
     {
       type: 'bandwidth',
-      title: 'Inbound Traffic',
+      title: 'INBOUND_TRAFFIC',
       unitType: 'bandwidth',
-      legend: ['Inbound'],
+      legend: ['INBOUND'],
       data: get(this.metrics, `${MetricTypes.net_received}.data.result`),
     },
   ]

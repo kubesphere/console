@@ -259,7 +259,7 @@ export default class ContainerItem extends React.Component {
           )}
         </div>
         <div className={styles.text}>
-          <div>{isUndefined(status) ? '-' : t(status)}</div>
+          <div>{isUndefined(status) ? '-' : t(status.toUpperCase())}</div>
           <p>{t('STATUS')}</p>
         </div>
         <div className={styles.text}>

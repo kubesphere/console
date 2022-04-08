@@ -185,7 +185,6 @@ module.exports = {
   CUSTOM_RULES: 'Custom Rules',
   CUSTOM_RULES_DESC:
     'Schedules the pod replicas to nodes according to custom rules.',
-  'Pod IP': 'Pod IP',
   DECENTRALIZED_SCHEDULING_DESC:
     'Schedules the pod replicas to different nodes if possible.',
   CENTRALIZED_SCHEDULING_DESC:

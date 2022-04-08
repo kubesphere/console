@@ -57,19 +57,11 @@ export default class ContainerPorts extends React.Component {
           </thead>
           <tbody>
             {ports.map((item, index) => {
-              let protocol = ''
-              if (item.name && item.name.indexOf('-') !== -1) {
-                protocol = (item.name.split('-')[0] || '').toUpperCase()
-              }
               return (
                 <tr key={index}>
                   {isFederated && <td>{item.cluster}</td>}
                   <td>{item.name}</td>
-                  <td>
-                    {this.protocols.includes(protocol)
-                      ? `${protocol} (${item.protocol})`
-                      : item.protocol}
-                  </td>
+                  <td>{item.protocol}</td>
                   <td>{item.containerPort}</td>
                 </tr>
               )
