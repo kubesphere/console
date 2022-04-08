@@ -16,17 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  VOLUME_SNAPSHOT_CLASS_PL: '存储卷快照类型',
-  VOLUME_SNAPSHOT_CLASS: '存储卷快照类型',
-  VOLUME_SNAPSHOT_CLASS_DESC:
-    '就像StorageClass为管理员提供了一种方法来描述他们在配置卷时提供的存储 "类别"，VolumeSnapshotClass提供了一种方法来描述配置卷快照时的存储 "类别"。',
-  VolumeSnapshotClass: '存储卷快照类型',
-
+  VOLUME_SNAPSHOT_CLASSES_PL: 'Volume Snapshot Classes',
+  VOLUME_SNAPSHOT_CLASSES: 'Volume Snapshot Classes',
+  VOLUME_SNAPSHOT_CLASSES_DESC: 'Just like StorageClass provides a way for administrators to describe the "classes" of storage they offer when provisioning a volume, VolumeSnapshotClass provides a way to describe the "classes" of storage when provisioning a volume snapshot.',
   // List > Create
-  SNAPSHOT_CLASS_SETTINGS: '快照类型设置',
-  DRIVER_DESC: '驱动程序名称应与StorageClass的供应者相同。',
-  DRIVER_EMPTY_DESC: '驱动是必须的。',
-
+  SNAPSHOT_CLASS_SETTINGS: 'Snapshot Class Settings',
+  DRIVER: 'Driver',
+  DRIVER_DESC: 'Driver name should be the same as StorageClass\'s provisioner.',
+  DRIVER_EMPTY_DESC: 'Driver is required.',
   // List > Delete
-  VOLUME_SNAPSHOT_CLASS_LOW: '存储卷快照类型',
-}
+  VOLUME_SNAPSHOT_CLASSES_LOW: 'Volume Snapshot Classes'
+};
