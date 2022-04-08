@@ -20,7 +20,10 @@ module.exports = {
   QOS_CLASS: 'QoS Class',
   NODE_NAME: 'Nombre del nodo',
   POD_IP_ADDRESS: 'IP del POD',
+  // Run Records
+  JOB_UNFINISHED: 'Unfinished',
   // Resource Status
+  TERMINATED: 'Terminated',
   // Scheduling Information
   SCHEDULED_TO_NODE: 'Scheduled to {value}',
   SCHEDULING_NOT_SUCCESSFUL: 'Scheduling Not Successful',
