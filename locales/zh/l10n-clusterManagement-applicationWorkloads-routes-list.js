@@ -47,6 +47,7 @@ module.exports = {
   PROTOCOL: '协议',
   PORT: '端口',
   PORT_VALUE: '端口：{value}',
+  CERTIFICATE: 'Certificate',
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML
