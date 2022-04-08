@@ -73,6 +73,7 @@ module.exports = {
   PHYSICAL_RESOURCES_MONITORING: '物理資源監控',
   INODE_USAGE: 'Inode Usage',
   DISK_USAGE: 'Disk Usage',
+  DISK_USAGE_DETAILS: 'Disk Usage Details',
   AVERAGE_CPU_LOAD: 'Average CPU Load',
   DISK_THROUGHPUT: 'Disk Throughput',
   POD_STATUS: 'Pod Status',
