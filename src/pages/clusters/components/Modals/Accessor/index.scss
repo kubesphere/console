@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  margin: 12px 0;
+  box-shadow: none;
+
+  .text {
+    flex: 1;
+  }
+
+  .switch {
+    width: 111px;
+
+    span {
+      min-width: 39px;
+    }
+  }
+}
+
+.selectBox {
+  background: #f9fbfd;
+  border-radius: 4px;
+  padding: 12px;
+
+  .line {
+    background: #eff4f9;
+    border: 1px solid #ccd3db;
+    border-radius: 22px;
+    padding: 6px 20px 6px 20px;
+    height: 44px;
+    display: flex;
+    margin-bottom: 8px;
+
+    &:last-of-type {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.labelSelect {
+  width: 152px;
+  margin-right: 12px;
+
+  &:last-of-type {
+    flex: 1;
+    margin-right: 0px;
+  }
+}
+
+.operator {
+  width: 112px;
+  margin-right: 12px;
+}

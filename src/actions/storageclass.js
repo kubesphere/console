@@ -24,6 +24,7 @@ import CreateModal from 'components/Modals/Create'
 import SetDefaultStorageClassModal from 'components/Modals/SetDefaultStorageClass'
 import StorageclassAutoresizerModal from 'components/Modals/StorageclassAutoresizer'
 import VolumeFunctionManage from 'components/Modals/VolumeFunctionManage'
+import Accessor from 'clusters/components/Modals/Accessor'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
@@ -169,6 +170,23 @@ export default {
         formData: detail._originData,
         modal: StorageclassAutoresizerModal,
         ...props,
+      })
+    },
+  },
+  'storageclass.accessor': {
+    on({ cluster, store, detail, storageClassName, success }) {
+      const modal = Modal.open({
+        onOk: async newObject => {
+          Modal.close(modal)
+          await store.update({ name: newObject.metadata.name }, newObject)
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+          success && success()
+        },
+        storageClassName,
+        cluster,
+        store,
+        detail,
+        modal: Accessor,
       })
     },
   },

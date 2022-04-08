@@ -710,6 +710,43 @@ const getCodeRepoTemplate = ({ namespace }) => ({
   spec: {},
 })
 
+const getAccessorsTemplate = name => ({
+  apiVersion: 'storage.kubesphere.io/v1alpha1',
+  kind: 'Accessor',
+  metadata: {
+    name: `${name}-accessor`,
+  },
+  spec: {
+    storageClassName: name,
+    namespaceSelector: {
+      fieldSelector: [
+        {
+          fieldExpressions: [
+            {
+              field: 'Name',
+              operator: 'In',
+              values: [],
+            },
+          ],
+        },
+      ],
+    },
+    workspaceSelector: {
+      fieldSelector: [
+        {
+          fieldExpressions: [
+            {
+              field: 'Name',
+              operator: 'In',
+              values: [],
+            },
+          ],
+        },
+      ],
+    },
+  },
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   deploymentsSchedule: getScheduleDeploymentTemplate,
@@ -730,6 +767,7 @@ const FORM_TEMPLATES = {
   volumes: getVolumeTemplate,
   volumesnapshotclass: getSnapshotClassTemplate,
   storageclasses: getStorageClassTemplate,
+  accessors: getAccessorsTemplate,
   project: getProjectTemplate,
   limitRange: getLimitRangeTemplate,
   'alert-policies': getAlertPolicyTemplate,

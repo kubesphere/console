@@ -925,6 +925,7 @@ export const API_VERSIONS = {
   persistentvolumes: 'api/v1',
   nodes: 'api/v1',
   storageclasses: 'apis/storage.k8s.io/v1',
+  accessors: 'apis/storage.kubesphere.io/v1alpha1',
   roles: 'apis/rbac.authorization.k8s.io/v1',
   clusterroles: 'apis/rbac.authorization.k8s.io/v1',
   applications: 'apis/app.k8s.io/v1beta1',
