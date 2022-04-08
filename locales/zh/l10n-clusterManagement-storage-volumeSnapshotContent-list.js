@@ -13,32 +13,16 @@
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- *
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
+module.exports = {
+  // List > Delete
+  VOLUME_SNAPSHOT_CONTENT: 'Volume snapshot content',
+  VOLUME_SNAPSHOT_CONTENT_LOW: 'Volume snapshot content',
+  READY_PL: '已就绪',
+  UNREADY_PL: '未就绪',
+  DELETION_POLICY: '删除策略',
 
-import { getIndexRoute } from 'utils/router.config'
-
-import Snapshots from './Snapshots'
-import Content from './SnapshotContent'
-
-const PATH = '/clusters/:cluster/volume-snapshots'
-export default [
-  {
-    path: `${PATH}/snapshots`,
-    title: 'Volume Snapshot',
-    component: Snapshots,
-    exact: true,
-  },
-  {
-    path: `${PATH}/snapshot-content`,
-    title: 'Volume Snapshot Content',
-    component: Content,
-    exact: true,
-  },
-  getIndexRoute({
-    path: PATH,
-    to: `${PATH}/snapshots`,
-    exact: true,
-  }),
-]
+  // List > Detail page
+  SNAPSHOT_HANDLE: 'SnapshotHandle',
+}

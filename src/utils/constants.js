@@ -117,6 +117,11 @@ export const VOLUME_SNAPSHOT_STATUS = [
   { text: 'VOLUME_SNAPSHOT_STATUS_DELETING', value: 'deleting' },
 ]
 
+export const VOLUME_SNAPSHOT_CLASS_STATUS = [
+  { text: 'READY_PL', value: 'true' },
+  { text: 'UNREADY_PL', value: 'false' },
+]
+
 export const INGRESS_ANNOTATIONS = [
   'nginx.ingress.kubernetes.io/app-root',
   'nginx.ingress.kubernetes.io/affinity',

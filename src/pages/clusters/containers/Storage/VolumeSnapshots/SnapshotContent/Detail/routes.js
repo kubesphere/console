@@ -13,32 +13,33 @@
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- *
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 import { getIndexRoute } from 'utils/router.config'
 
-import Snapshots from './Snapshots'
-import Content from './SnapshotContent'
+import Events from 'core/containers/Base/Detail/Events'
+import Metadata from 'core/containers/Base/Detail/Metadata'
+import ResourceStatus from './ResourceStatus'
 
-const PATH = '/clusters/:cluster/volume-snapshots'
-export default [
+export default PATH => [
   {
-    path: `${PATH}/snapshots`,
-    title: 'Volume Snapshot',
-    component: Snapshots,
+    path: `${PATH}/resource-status`,
+    title: 'RESOURCE_STATUS',
+    exact: true,
+    component: ResourceStatus,
+  },
+  {
+    path: `${PATH}/metadata`,
+    title: 'METADATA',
+    component: Metadata,
     exact: true,
   },
   {
-    path: `${PATH}/snapshot-content`,
-    title: 'Volume Snapshot Content',
-    component: Content,
+    path: `${PATH}/events`,
+    title: 'EVENT_PL',
     exact: true,
+    component: Events,
   },
-  getIndexRoute({
-    path: PATH,
-    to: `${PATH}/snapshots`,
-    exact: true,
-  }),
+  getIndexRoute({ path: PATH, to: `${PATH}/resource-status`, exact: true }),
 ]

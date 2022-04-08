@@ -1037,6 +1037,35 @@ const VolumeSnapshotMapper = detail => {
   }
 }
 
+const VolumeSnapshotContentMapper = detail => {
+  const { spec = {}, status = {}, metadata = {} } = detail
+  const { deletionTimestamp = '', creationTimestamp = '' } = metadata
+  const { error = {}, readyToUse, snapshotHandle } = status
+  const { message } = error
+
+  return {
+    ...getBaseInfo(detail),
+    creationTimestamp,
+    deletionTimestamp,
+    namespace: get(spec, 'volumeSnapshotRef.namespace'),
+    snapshotClassName: get(spec, 'volumeSnapshotClassName', '-'),
+    volumeSnapshot: get(spec, 'volumeSnapshotRef.name'),
+    annotations: get(detail, 'metadata.annotations'),
+    labels: get(detail, 'metadata.labels'),
+    deletionPolicy: get(spec, 'deletionPolicy', '-'),
+    driver: get(spec, 'driver', ''),
+    source: get(spec, 'source', {}),
+    error,
+    errorMessage: message,
+    generating: !readyToUse && isEmpty(error),
+    readyToUse,
+    status: readyToUse ? 'ready' : 'unready',
+    snapshotHandle,
+    restoreSize: get(status, 'restoreSize', 0),
+    _originData: getOriginData(detail),
+  }
+}
+
 const ClusterMapper = item => {
   const conditions = keyBy(get(item, 'status.conditions', []), 'type')
   const configz = get(item, 'status.configz', {})
@@ -1378,6 +1407,7 @@ export default {
   codequality: CodeQualityMapper,
   imageBlob: ImageDetailMapper,
   volumesnapshots: VolumeSnapshotMapper,
+  volumesnapshotcontents: VolumeSnapshotContentMapper,
   users: UserMapper,
   clusters: ClusterMapper,
   kkclusters: KKClusterMapper,
