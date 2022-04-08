@@ -35,6 +35,7 @@ const MetricTypes = {
   memory_utilisation: 'node_memory_utilisation',
   disk_utilisation: 'node_disk_size_utilisation',
   disk_inode_utilisation: 'node_disk_inode_utilisation',
+  device_size_utilisation: 'node_device_size_utilisation',
   disk_inode_usage: 'node_disk_inode_usage',
   disk_inode_total: 'node_disk_inode_total',
   disk_read_iops: 'node_disk_read_iops',
@@ -76,116 +77,139 @@ class Monitorings extends React.Component {
     })
   }
 
-  getMonitoringCfgs = () => [
-    {
-      type: 'utilisation',
-      title: 'CPU_USAGE',
-      unit: '%',
-      legend: ['CPU_USAGE'],
-      data: get(this.metrics, `${MetricTypes.cpu_utilisation}.data.result`),
-    },
-    {
-      type: 'load',
-      title: 'AVERAGE_CPU_LOAD',
-      legend: [
-        t('TIME_M', { num: 1 }),
-        t('TIME_M', { num: 5 }),
-        t('TIME_M', { num: 15 }),
-      ],
-      data: [
-        get(this.metrics, `${MetricTypes.cpu_load1}.data.result[0]`, {}),
-        get(this.metrics, `${MetricTypes.cpu_load5}.data.result[0]`, {}),
-        get(this.metrics, `${MetricTypes.cpu_load15}.data.result[0]`, {}),
-      ],
-    },
-    {
-      type: 'utilisation',
-      title: 'MEMORY_USAGE',
-      unit: '%',
-      legend: ['MEMORY_USAGE'],
-      data: get(this.metrics, `${MetricTypes.memory_utilisation}.data.result`),
-    },
-    {
-      type: 'utilisation',
-      title: 'DISK_USAGE',
-      unit: '%',
-      legend: ['USAGE'],
-      data: get(this.metrics, `${MetricTypes.disk_utilisation}.data.result`),
-    },
-    {
-      type: 'utilisation',
-      title: 'INODE_USAGE',
-      unit: '%',
-      legend: ['INODE_USAGE'],
-      data: get(
-        this.metrics,
-        `${MetricTypes.disk_inode_utilisation}.data.result`
-      ),
-      renderTooltip: () => {
-        const usageData = getChartData({
-          unit: '',
-          legend: ['USAGE'],
-          valuesData: [
-            get(
-              this.metrics,
-              `${MetricTypes.disk_inode_usage}.data.result[0].values`,
-              []
-            ),
-          ],
-        })
-        const totalData = getChartData({
-          unit: '',
-          legend: ['USAGE'],
-          valuesData: [
-            get(
-              this.metrics,
-              `${MetricTypes.disk_inode_total}.data.result[0].values`,
-              []
-            ),
-          ],
-        })
+  getMonitoringCfgs = () => {
+    const deviceUsage = get(
+      this.metrics,
+      `${MetricTypes.device_size_utilisation}.data.result`,
+      []
+    )
+    const legend = deviceUsage && deviceUsage.map(item => item.metric.device)
 
-        return <CustomTooltip usageData={usageData} totalData={totalData} />
+    return [
+      {
+        type: 'utilisation',
+        title: 'CPU_USAGE',
+        unit: '%',
+        legend: ['CPU_USAGE'],
+        data: get(this.metrics, `${MetricTypes.cpu_utilisation}.data.result`),
       },
-    },
-    {
-      type: 'iops',
-      title: 'IOPS',
-      legend: ['READ', 'WRITE'],
-      data: [
-        get(this.metrics, `${MetricTypes.disk_read_iops}.data.result[0]`, {}),
-        get(this.metrics, `${MetricTypes.disk_write_iops}.data.result[0]`, {}),
-      ],
-    },
-    {
-      type: 'throughput',
-      title: 'DISK_THROUGHPUT',
-      unitType: 'throughput',
-      legend: ['READ', 'WRITE'],
-      data: [
-        get(
+      {
+        type: 'load',
+        title: 'AVERAGE_CPU_LOAD',
+        legend: [
+          t('TIME_M', { num: 1 }),
+          t('TIME_M', { num: 5 }),
+          t('TIME_M', { num: 15 }),
+        ],
+        data: [
+          get(this.metrics, `${MetricTypes.cpu_load1}.data.result[0]`, {}),
+          get(this.metrics, `${MetricTypes.cpu_load5}.data.result[0]`, {}),
+          get(this.metrics, `${MetricTypes.cpu_load15}.data.result[0]`, {}),
+        ],
+      },
+      {
+        type: 'utilisation',
+        title: 'MEMORY_USAGE',
+        unit: '%',
+        legend: ['MEMORY_USAGE'],
+        data: get(
           this.metrics,
-          `${MetricTypes.disk_read_throughput}.data.result[0]`,
-          {}
+          `${MetricTypes.memory_utilisation}.data.result`
         ),
-        get(
+      },
+      {
+        type: 'utilisation',
+        title: 'DISK_USAGE_DETAILS',
+        unit: '%',
+        legend: ['AVERAGE_USAGE', ...legend],
+        data: [
+          get(this.metrics, `${MetricTypes.disk_utilisation}.data.result[0]`),
+          ...deviceUsage,
+        ],
+      },
+      {
+        type: 'utilisation',
+        title: 'INODE_USAGE',
+        unit: '%',
+        legend: ['INODE_USAGE'],
+        data: get(
           this.metrics,
-          `${MetricTypes.disk_write_throughput}.data.result[0]`,
-          {}
+          `${MetricTypes.disk_inode_utilisation}.data.result`
         ),
-      ],
-    },
-    {
-      type: 'bandwidth',
-      title: 'NETWORK_TRAFFIC',
-      unitType: 'bandwidth',
-      legend: ['OUT', 'IN'],
-      data: [
-        get(this.metrics, `${MetricTypes.net_transmitted}.data.result[0]`, {}),
-        get(this.metrics, `${MetricTypes.net_received}.data.result[0]`, {}),
-      ],
-    },
-  ]
+        renderTooltip: () => {
+          const usageData = getChartData({
+            unit: '',
+            legend: ['USAGE'],
+            valuesData: [
+              get(
+                this.metrics,
+                `${MetricTypes.disk_inode_usage}.data.result[0].values`,
+                []
+              ),
+            ],
+          })
+          const totalData = getChartData({
+            unit: '',
+            legend: ['USAGE'],
+            valuesData: [
+              get(
+                this.metrics,
+                `${MetricTypes.disk_inode_total}.data.result[0].values`,
+                []
+              ),
+            ],
+          })
+
+          return <CustomTooltip usageData={usageData} totalData={totalData} />
+        },
+      },
+      {
+        type: 'iops',
+        title: 'IOPS',
+        legend: ['READ', 'WRITE'],
+        data: [
+          get(this.metrics, `${MetricTypes.disk_read_iops}.data.result[0]`, {}),
+          get(
+            this.metrics,
+            `${MetricTypes.disk_write_iops}.data.result[0]`,
+            {}
+          ),
+        ],
+      },
+      {
+        type: 'throughput',
+        title: 'DISK_THROUGHPUT',
+        unitType: 'throughput',
+        legend: ['READ', 'WRITE'],
+        data: [
+          get(
+            this.metrics,
+            `${MetricTypes.disk_read_throughput}.data.result[0]`,
+            {}
+          ),
+          get(
+            this.metrics,
+            `${MetricTypes.disk_write_throughput}.data.result[0]`,
+            {}
+          ),
+        ],
+      },
+      {
+        type: 'bandwidth',
+        title: 'NETWORK_TRAFFIC',
+        unitType: 'bandwidth',
+        legend: ['OUT', 'IN'],
+        data: [
+          get(
+            this.metrics,
+            `${MetricTypes.net_transmitted}.data.result[0]`,
+            {}
+          ),
+          get(this.metrics, `${MetricTypes.net_received}.data.result[0]`, {}),
+        ],
+      },
+    ]
+  }
 
   render() {
     const { createTime } = this.store.detail
