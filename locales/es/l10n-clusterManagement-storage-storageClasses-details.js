@@ -32,6 +32,18 @@ module.exports = {
   ALLOW_VOLUME_EXPANSION_DESC: 'Allows users to extend volumes. Volumes can only be extended and cannot be shrunk.',
   VOLUME_FUNCTION_MANAGEMENT_TIP: 'Volume Management only controls whether the following features are enabled in the KubeSphere web console. Before the features are enabled, contact your system administrator to confirm that they are supported by the storage system.',
   VOLUME_SNAPSHOT: 'VolumeSnapshot',
+  // More > PVC Autoresizer
+  PVC_AUTORESIZER_PL: 'PVC Autoresizer',
+  PVC_AUTORESIZER_DESC: 'Pvc-autoresizer resizes PersistentVolumeClaims (PVCs) when the free amount of storage is below the threshold.',
+  PVC_AUTORESIZER_SETTINGS: 'Autoresizer Settings',
+  THRESHOLD_DESC: 'Storage is increased when the amount of free space of the volume is below threshold.',
+  INCREASE: 'Increase',
+  INCREASE_DESC: 'The increase value is calculated as the current storage value multiplied by the percentage value, if given as a percentage.',
+  AUTOMATIC_RESTART_WORKLOAD: 'Automatic restart workload',
+  AUTOMATIC_RESTART_WORKLOAD_DESC: 'The restarter judges the workload that needs to be restarted automatically by checking the status of pvc.',
+  AUTOMATIC_RESTART_WORKLOAD_TIP: 'If the automatic restart time of the PVC exceeds the maximum time, the corresponding workload will be annotated with "restart.kubesphere.io/skip". To enable the automatic restart function for the PVC again, delete the above annotation.',
+  MAX_TIME: 'Max Time',
+  STORAGE_LIMIT: 'Storage Limit',
   // More > Delete
   // Volumes
   VOLUME_COUNT: 'Volumes'
