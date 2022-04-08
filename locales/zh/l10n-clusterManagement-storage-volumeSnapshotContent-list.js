@@ -19,10 +19,9 @@ module.exports = {
   // List > Delete
   VOLUME_SNAPSHOT_CONTENT: 'Volume snapshot content',
   VOLUME_SNAPSHOT_CONTENT_LOW: 'Volume snapshot content',
-  READY_PL: '已就绪',
-  UNREADY_PL: '未就绪',
-  DELETION_POLICY: '删除策略',
-
+  READY_PL: 'ready',
+  UNREADY_PL: 'unready',
+  DELETION_POLICY: 'Deletion Policy',
   // List > Detail page
-  SNAPSHOT_HANDLE: 'SnapshotHandle',
-}
+  SNAPSHOT_HANDLE: 'SnapshotHandle'
+};
