@@ -141,7 +141,6 @@ module.exports = {
   DECENTRALIZED_SCHEDULING: '分散调度',
   CUSTOM_RULES: '自定义规则',
   CUSTOM_RULES_DESC: '按照自定义的规则将容器组副本调度到节点。',
-  'Pod IP': 'Pod IP',
   DECENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到不同的节点上。',
   CENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到同一节点上。',
   CENTRALIZED_SCHEDULING: '集中调度',
