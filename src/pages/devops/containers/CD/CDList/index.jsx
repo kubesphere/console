@@ -37,7 +37,7 @@ import styles from './index.scss'
 @withList({
   store: new CDStore(),
   module: 'cds',
-  name: 'CD',
+  name: 'CONTINUOUS_DEPLOYMENT',
   rowKey: 'name',
   authKey: 'pipelines',
 })
@@ -87,7 +87,7 @@ export default class CDList extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item => {
           trigger('resource.baseinfo.edit', {
@@ -99,7 +99,7 @@ export default class CDList extends React.Component {
       {
         key: 'yaml',
         icon: 'pen',
-        text: t('Edit by YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item => {
           trigger('resource.yaml.edit', {
@@ -111,7 +111,7 @@ export default class CDList extends React.Component {
       {
         key: 'sync',
         icon: 'changing-over',
-        text: t('Synchronize'),
+        text: t('SYNC'),
         action: 'edit',
         onClick: record => {
           this.handleSync(record)
@@ -124,7 +124,7 @@ export default class CDList extends React.Component {
         action: 'delete',
         onClick: record => {
           trigger('resource.delete', {
-            type: 'CD',
+            type: 'CONTINUOUS_DEPLOYMENT',
             detail: record,
             success: routing.query,
           })
@@ -155,7 +155,7 @@ export default class CDList extends React.Component {
     const { trigger } = this.props
 
     trigger('cd.create', {
-      title: t('CREATE_CD'),
+      title: t('CREATE_CONTINUOUS_DEPLOYMENT'),
       devops: this.devops,
       cluster: this.cluster,
       module: 'cds',
@@ -169,7 +169,7 @@ export default class CDList extends React.Component {
 
     trigger('cd.sync', {
       module,
-      title: t('Synchronize'),
+      title: t('SYNC_RESOURCE'),
       formTemplate: pick(item, 'repoSource'),
       devops: this.devops,
       cluster: this.cluster,
@@ -215,14 +215,17 @@ export default class CDList extends React.Component {
       },
 
       {
-        title: t('HEALTH'),
+        title: t('HEALTH_STATUS'),
         dataIndex: 'healthStatus',
         width: '20%',
         filters: this.getWeatherStatus(),
         filteredValue: getFilteredValue('healthStatus'),
         search: true,
         render: healthStatus => (
-          <StatusText type={healthStatus} label={healthStatus} />
+          <StatusText
+            type={healthStatus}
+            label={t(healthStatus.toUpperCase())}
+          />
         ),
       },
       {
@@ -251,7 +254,7 @@ export default class CDList extends React.Component {
         },
       },
       {
-        title: t('UPDATE_TIME_COLON'),
+        title: t('UPDATE_TIME_TCAP'),
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),
@@ -284,7 +287,7 @@ export default class CDList extends React.Component {
           action: 'delete',
           onClick: () =>
             this.props.trigger('pipeline.batch.delete', {
-              type: 'CD',
+              type: 'CONTINUOUS_DEPLOYMENT',
               rowKey: 'name',
               devops: this.devops,
               cluster: this.cluster,
@@ -339,7 +342,7 @@ export default class CDList extends React.Component {
 
     const WEATHER_CONFIG = [
       {
-        title: 'Healthy',
+        title: 'HEALTHY',
         color: '#55BC8A',
         used: healthStatus.Healthy || 0,
         total,
@@ -347,7 +350,7 @@ export default class CDList extends React.Component {
         label: 'HEALTH_STATUS',
       },
       {
-        title: 'Degraded',
+        title: 'DEGRADED',
         color: '#CA2621',
         used: healthStatus.Degraded || 0,
         total,
@@ -355,7 +358,7 @@ export default class CDList extends React.Component {
         label: 'HEALTH_STATUS',
       },
       {
-        title: 'Progressing',
+        title: 'PROGRESSING',
         color: '#F5A623',
         used: healthStatus.Progressing || 0,
         total,
@@ -385,7 +388,7 @@ export default class CDList extends React.Component {
 
     const WEATHER_CONFIG = [
       {
-        title: 'Synced',
+        title: 'SYNCED',
         color: '#55BC8A',
         used: syncStatus.Synced || 0,
         total,
@@ -393,7 +396,7 @@ export default class CDList extends React.Component {
         label: 'SYNC_STATUS',
       },
       {
-        title: 'OutOfSync',
+        title: 'OUTOFSYNC',
         color: '#F5A623',
         used: syncStatus.OutOfSync || 0,
         total,
@@ -401,7 +404,7 @@ export default class CDList extends React.Component {
         label: 'SYNC_STATUS',
       },
       {
-        title: 'Unknown',
+        title: 'UNKNOWN',
         color: '#36435C',
         used: syncStatus.Unknown || 0,
         total,

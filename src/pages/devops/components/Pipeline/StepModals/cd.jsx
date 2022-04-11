@@ -159,7 +159,7 @@ export default class CD extends React.Component {
             <Columns>
               <Column className="is-8">
                 <Form.Item
-                  label={t('CD_RESOURCE_PL')}
+                  label={t('CONTINUOUS_DEPLOYMENT_PL')}
                   rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
                 >
                   <Select

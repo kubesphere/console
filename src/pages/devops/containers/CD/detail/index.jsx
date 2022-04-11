@@ -81,7 +81,7 @@ export default class CDDetail extends React.Component {
     {
       key: 'edit',
       type: 'control',
-      text: t('EDIT'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () => {
         this.trigger('resource.baseinfo.edit', {
@@ -94,11 +94,11 @@ export default class CDDetail extends React.Component {
     {
       key: 'sync',
       icon: 'changing-over',
-      text: t('Synchronize'),
+      text: t('SYNC'),
       action: 'edit',
       onClick: () => {
         this.trigger('cd.sync', {
-          title: t('Synchronize'),
+          title: t('SYNC_RESOURCE'),
           formTemplate: pick(toJS(this.store.detail), 'repoSource'),
           devops: this.devops,
           noCodeEdit: true,
@@ -126,7 +126,7 @@ export default class CDDetail extends React.Component {
       action: 'delete',
       onClick: () => {
         this.trigger('resource.delete', {
-          type: 'CD',
+          type: 'CONTINUOUS_DEPLOYMENT',
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         })
@@ -162,7 +162,7 @@ export default class CDDetail extends React.Component {
         value: get(detail, 'repoSource.repoURL', '-'),
       },
       {
-        name: t('REVISE'),
+        name: t('REVISION'),
         value: get(detail, 'repoSource.targetRevision', '-'),
       },
       {
@@ -174,13 +174,13 @@ export default class CDDetail extends React.Component {
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('UPDATE_TIME_SCAP'),
+        name: t('UPDATE_TIME_TCAP'),
         value: getLocalTime(get(detail, 'status.reconciledAt')).format(
           'YYYY-MM-DD HH:mm:ss'
         ),
       },
       {
-        name: t('CREATED_BY'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]
@@ -198,7 +198,7 @@ export default class CDDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('CD_RESOURCE_PL'),
+          label: t('CONTINUOUS_DEPLOYMENT_PL'),
           url: this.listUrl,
         },
       ],

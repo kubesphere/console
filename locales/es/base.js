@@ -69,7 +69,6 @@ module.exports = {
   Cordon: 'Cordon',
   Count: 'Contar',
   Create: 'Crear',
-  CREATED_BY: 'Created By',
   Current: 'Actual',
   Custom: 'Personalizado',
   'Data Sources': 'Fuentes de datos',

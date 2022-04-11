@@ -149,7 +149,7 @@ export default class CRList extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('REPOSITORIES'),
+        title: t('NAME'),
         dataIndex: 'name',
         width: '20%',
         sorter: true,
@@ -169,7 +169,7 @@ export default class CRList extends React.Component {
         },
       },
       {
-        title: t('Source'),
+        title: t('SOURCE'),
         dataIndex: 'provider',
         isHideable: true,
         width: '20%',
@@ -184,7 +184,7 @@ export default class CRList extends React.Component {
         width: '40%',
       },
       {
-        title: t('CREATION_TIME'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'creationTime',
         sorter: true,
         sortOrder: getSortOrder('creationTime'),

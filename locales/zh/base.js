@@ -69,7 +69,6 @@ module.exports = {
   Cordon: '停止调度',
   Count: '数量',
   Create: '创建',
-  CREATED_BY: '创建者',
   Current: '当前',
   Custom: '自定义',
   'Data Sources': '数据来源: 内置服务',
