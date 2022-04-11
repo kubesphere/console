@@ -23,6 +23,10 @@ module.exports = {
   SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
   SET_AS_DEFAULT_STORAGE_CLASS: '設為預設儲存類型',
   STORAGE_CLASS_SET_DEFAULT_DESC: '設置為預設儲存類型後，如果沒有特殊指定，系統將預設創建該類型的儲存卷。一個 KubeSphere 集群中僅允許設置一個預設儲存類型',
+  // More > StorageClass Accessor
+  STORAGECLASS_ACCESSOR: 'Storageclass Accessor',
+  STORAGECLASS_ACCESSOR_SETTING: 'Storageclass Accessor Settings',
+  STORAGECLASS_ACCESSOR_DES: 'Users can create accessors to achieve namespace-level management on the storage class which provisions PVC.',
   // More > Volume Management
   VOLUME_MANAGEMENT: 'Volume Management',
   VOLUME_CLONE: '存儲卷克隆',
