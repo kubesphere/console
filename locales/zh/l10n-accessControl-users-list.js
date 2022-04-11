@@ -45,5 +45,5 @@ module.exports = {
   // List > Edit
   EDIT_USER: '编辑用户',
   // List > Delete
-  USER_LOW: '用户',
-}
+  USER_LOW: '用户'
+};
