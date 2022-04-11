@@ -23,6 +23,10 @@ module.exports = {
   SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
   SET_AS_DEFAULT_STORAGE_CLASS: 'Set as Default Storage Class',
   STORAGE_CLASS_SET_DEFAULT_DESC: 'After the default storage class is set, the system will create volumes of this class by default if no special requirement is added. Only one default storage class is allowed in a KubeSphere cluster.',
+  // More > StorageClass Accessor
+  STORAGECLASS_ACCESSOR: 'Storageclass Accessor',
+  STORAGECLASS_ACCESSOR_SETTING: 'Storageclass Accessor Settings',
+  STORAGECLASS_ACCESSOR_DES: 'Users can create accessors to achieve namespace-level management on the storage class which provisions PVC.',
   // More > Volume Management
   VOLUME_MANAGEMENT: 'Volume Management',
   VOLUME_CLONE: 'Volume Clone',
