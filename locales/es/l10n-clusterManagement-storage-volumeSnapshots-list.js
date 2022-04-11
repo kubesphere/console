@@ -17,8 +17,7 @@
  */
 module.exports = {
   // Banner
-  VOLUME_SNAPSHOT_DESC:
-    'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
+  VOLUME_SNAPSHOT_DESC: 'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
   VOLUME_SNAPSHOT_PL: 'Volume Snapshots',
   VOLUME_SNAPSHOT_CONTENT_PL: 'Volume Snapshot Content',
   WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'What is a snapshot class ?',
