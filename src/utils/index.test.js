@@ -63,7 +63,7 @@ it('formatSize', () => {
 
 it('formatUsedTime', () => {
   expect(formatUsedTime(900)).toBe('900 ms')
-  expect(formatUsedTime(50000)).toBe('50.00 s')
+  expect(formatUsedTime(50000)).toBe('50.00s')
   expect(formatUsedTime(3000000)).toBe('50.00 min')
   expect(formatUsedTime(30000000)).toBe('8.33 h')
 })
