@@ -18,8 +18,7 @@
 module.exports = {
   // More > Edit YAML
   // More > Change Role
-  SERVICE_ACCOUNT_PROJECT_ROLE_DESC:
-    'Select the role of the service account in the current project.',
+  SERVICE_ACCOUNT_PROJECT_ROLE_DESC: 'Select the role of the service account in the current project.',
   // More > Delete
   SERVICE_ACCOUNT: 'Service Account',
   // Details
