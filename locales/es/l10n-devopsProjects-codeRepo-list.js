@@ -16,12 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  CODE_REPO_PL: 'Code Repository',
-  CODE_REPO_LOW: 'Code Repository',
+  CODE_REPO_PL: 'Code Repositories',
+  CODE_REPO_LOW: 'code cepository',
   CODE_REPO: 'Code Repository',
-  CODE_REPO_DESC: 'Code repositories are used to pull code repositories based on GIT or SVN management.',
-  CODE_REPO_EMPTY_DESC: 'Import a code repository, you can select a code repository as the code source and choose GitHub, GitLab, Bitbucket, Git and SVN as code source',
+  CODE_REPO_DESC: 'Manage code repositories based on Git.',
+  CODE_REPO_EMPTY_DESC: 'Import a code repository from GitHub, GitLab, or Bitbucket. You can also use Git to directly pull source code.',
   IMPORT_CODE_REPO: 'Import Code Repository',
-  EDIT_CODE_REPO: 'Edit Code Repository',
-  REPOSITORIES: 'Repositories'
+  EDIT_CODE_REPO: 'Edit Code Repository'
 };
