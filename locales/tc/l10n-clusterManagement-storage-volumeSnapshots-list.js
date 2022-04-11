@@ -17,8 +17,7 @@
  */
 module.exports = {
   // Banner
-  VOLUME_SNAPSHOT_DESC:
-    '儲存卷快照表示儲存卷的時間點副本。快照可用於配置新卷（預先填充快照數據）或將現有儲存卷還原到先前狀態（由快照表示）',
+  VOLUME_SNAPSHOT_DESC: '儲存卷快照表示儲存卷的時間點副本。快照可用於配置新卷（預先填充快照數據）或將現有儲存卷還原到先前狀態（由快照表示）',
   VOLUME_SNAPSHOT_PL: 'Volume Snapshots',
   VOLUME_SNAPSHOT_CONTENT_PL: 'Volume Snapshot Content',
   WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'What is a snapshot class ?',
