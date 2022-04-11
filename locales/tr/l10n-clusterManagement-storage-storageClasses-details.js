@@ -23,6 +23,10 @@ module.exports = {
   SET_DEFAULT_STORAGE_CLASS_TITLE: 'Varsayılan Depolama Sınıfı Olarak Ayarla',
   SET_AS_DEFAULT_STORAGE_CLASS: 'Varsayılan Depolama Sınıfı Olarak Ayarla',
   STORAGE_CLASS_SET_DEFAULT_DESC: 'Varsayılan depolama sınıfı ayarlandıktan sonra, herhangi bir özel gereksinim eklenmemişse, sistem varsayılan olarak bu sınıfın birimlerini oluşturacaktır. KubeSphere kümesinde yalnızca bir varsayılan depolama sınıfına izin verilir.',
+  // More > StorageClass Accessor
+  STORAGECLASS_ACCESSOR: 'Storageclass Accessor',
+  STORAGECLASS_ACCESSOR_SETTING: 'Storageclass Accessor Settings',
+  STORAGECLASS_ACCESSOR_DES: 'Users can create accessors to achieve namespace-level management on the storage class which provisions PVC.',
   // More > Volume Management
   VOLUME_MANAGEMENT: 'Hacim Yönetimi',
   VOLUME_CLONE: 'Hacim Klon',
