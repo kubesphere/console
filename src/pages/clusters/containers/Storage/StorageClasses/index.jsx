@@ -29,6 +29,7 @@ import { getDisplayName } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
 import StorageClassStore from 'stores/storageClass'
+import AccessorStore from 'stores/accessor'
 
 @withList({
   store: new StorageClassStore(),
@@ -36,6 +37,8 @@ import StorageClassStore from 'stores/storageClass'
   module: 'storageclasses',
 })
 export default class StorageClasses extends React.Component {
+  accessorStore = new AccessorStore()
+
   validateSelect({ callback }) {
     return (...args) => {
       const { selectedRowKeys, data } = this.list
@@ -127,13 +130,73 @@ export default class StorageClasses extends React.Component {
       cluster: this.props.match.params.cluster,
     })
 
+  handleBatchDelete = () => {
+    this.props.trigger('storageclass.batch.delete', {
+      accessorStore: this.accessorStore,
+      ...this.props,
+    })
+  }
+
+  handleDelete = item => {
+    this.props.trigger('storageclass.delete', {
+      detail: item,
+      accessorStore: this.accessorStore,
+      ...this.props,
+    })
+  }
+
+  get tableActions() {
+    const { tableProps } = this.props
+    const selectActions = get(
+      tableProps,
+      'tableActions.selectActions',
+      []
+    ).filter(action => action.key !== 'delete')
+
+    return {
+      ...tableProps.tableActions,
+      selectActions: [
+        ...selectActions,
+        {
+          action: 'delete',
+          key: 'delete',
+          onClick: this.handleBatchDelete,
+          text: t('DELETE'),
+          type: 'danger',
+        },
+      ],
+    }
+  }
+
+  get itemActions() {
+    const { tableProps } = this.props
+    const actions = get(tableProps, 'itemActions', []).filter(
+      action => action.key !== 'delete'
+    )
+
+    return [
+      ...actions,
+      {
+        action: 'delete',
+        key: 'delete',
+        icon: 'trash',
+        onClick: item => this.handleDelete(item),
+        text: t('DELETE'),
+        type: 'danger',
+      },
+    ]
+  }
+
   render() {
     const { bannerProps, tableProps } = this.props
+
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
         <Table
           {...tableProps}
+          itemActions={this.itemActions}
+          tableActions={this.tableActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />

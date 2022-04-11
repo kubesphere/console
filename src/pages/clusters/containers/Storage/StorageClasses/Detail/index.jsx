@@ -169,9 +169,10 @@ export default class StorageClassDetail extends React.Component {
       action: 'delete',
       type: 'danger',
       onClick: () =>
-        this.trigger('resource.delete', {
+        this.trigger('storageclass.delete', {
           type: this.name,
           detail: toJS(this.store.detail),
+          accessorStore: this.accessorStore,
           success: this.returnTolist,
         }),
     },

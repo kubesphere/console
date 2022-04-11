@@ -21,6 +21,7 @@ import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
+import DeleteModal from 'components/Modals/Delete'
 import SetDefaultStorageClassModal from 'components/Modals/SetDefaultStorageClass'
 import StorageclassAutoresizerModal from 'components/Modals/StorageclassAutoresizer'
 import VolumeFunctionManage from 'components/Modals/VolumeFunctionManage'
@@ -187,6 +188,72 @@ export default {
         store,
         detail,
         modal: Accessor,
+      })
+    },
+  },
+  'storageclass.batch.delete': {
+    on({ store, success, rowKey = 'name', accessorStore, ...props }) {
+      const { data, selectedRowKeys } = store.list
+      const selectValues = data
+        .filter(item => selectedRowKeys.includes(item[rowKey]))
+        .map(item => {
+          return { name: item.name, namespace: item.namespace }
+        })
+      const selectNames = selectValues.map(item => item.name)
+      const modal = Modal.open({
+        onOk: async () => {
+          const updateAccessor = []
+          const reqs = []
+
+          // disable it's accessor
+          selectNames.forEach(name => {
+            updateAccessor.push(
+              accessorStore.patch(
+                { name: `${name}-accessor` },
+                {
+                  spec: { storageClassName: `${name}-accessor-disabled` },
+                }
+              )
+            )
+
+            reqs.push(store.delete({ name }))
+          })
+
+          await Promise.all([...updateAccessor, ...reqs])
+
+          Modal.close(modal)
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
+          store.setSelectRowKeys([])
+          success && success()
+        },
+        resource: selectNames.join(', '),
+        type: 'STORAGE_CLASS',
+        modal: DeleteModal,
+        store,
+        ...props,
+      })
+    },
+  },
+  'storageclass.delete': {
+    on({ store, detail, success, accessorStore, ...props }) {
+      const modal = Modal.open({
+        onOk: async () => {
+          await accessorStore.patch(
+            { name: `${detail.name}-accessor` },
+            {
+              spec: { storageClassName: `${detail.name}-accessor-disabled` },
+            }
+          )
+          store.delete(detail).then(() => {
+            Modal.close(modal)
+            Notify.success({ content: t('DELETE_SUCCESSFUL') })
+            success && success()
+          })
+        },
+        store,
+        modal: DeleteModal,
+        resource: detail.name,
+        ...props,
       })
     },
   },
