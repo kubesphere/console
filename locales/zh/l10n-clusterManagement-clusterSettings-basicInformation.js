@@ -31,5 +31,5 @@ module.exports = {
   UNBIND_SUCCESS: '解绑成功。',
   SURE_TO_UNBIND_CLUSTER: '我已了解操作的风险。',
   UNBIND_CLUSTER_Q: '解绑集群',
-  NODE: '节点',
-}
+  NODE: '节点'
+};
