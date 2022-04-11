@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { isEmpty } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
@@ -25,6 +25,8 @@ import { getDisplayName } from 'utils'
 import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
 import StorageClassStore from 'stores/storageClass'
+import AccessorStore from 'stores/accessor'
+import FORM_TEMPLATES from 'utils/form.templates'
 
 import DetailPage from 'clusters/containers/Base/Detail'
 
@@ -35,6 +37,8 @@ import routes from './routes'
 @trigger
 export default class StorageClassDetail extends React.Component {
   store = new StorageClassStore()
+
+  accessorStore = new AccessorStore()
 
   componentDidMount() {
     this.store.fetchList({ limit: -1 })
@@ -62,9 +66,24 @@ export default class StorageClassDetail extends React.Component {
     return `/clusters/${cluster}/storageclasses`
   }
 
-  fetchData = () => {
+  fetchData = async () => {
     const { params } = this.props.match
-    this.store.fetchDetail(params)
+    await this.store.fetchDetail(params)
+    this.checkHasAccessor()
+  }
+
+  checkHasAccessor = async () => {
+    const { params } = this.props.match
+    const storageClassName = get(this.store.detail, 'name')
+    const allAccessors = await this.accessorStore.fetchListByK8s()
+    const hasYaml = allAccessors.filter(
+      item => item.metadata.name === `${storageClassName}-accessor`
+    )
+    if (hasYaml.length === 0) {
+      const template = FORM_TEMPLATES['accessors'](storageClassName)
+      await this.accessorStore.create(template)
+    }
+    await this.accessorStore.fetchDetail({ name: `${params.name}-accessor` })
   }
 
   getOperations = () => [
@@ -89,6 +108,26 @@ export default class StorageClassDetail extends React.Component {
         this.trigger('storageclass.set.default', {
           detail: toJS(this.store.detail),
           defaultStorageClass: this.defaultStorageClass.name,
+          success: this.fetchData,
+        }),
+    },
+    {
+      key: 'accessor',
+      icon: () => (
+        <>
+          <img
+            src="/assets/storageclass-tree.svg"
+            style={{ width: '16px', marginRight: '12px' }}
+          />
+        </>
+      ),
+      text: t('STORAGECLASS_ACCESSOR'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('storageclass.accessor', {
+          storageClassName: get(this.store.detail, 'name'),
+          store: this.accessorStore,
+          detail: toJS(this.accessorStore.detail),
           success: this.fetchData,
         }),
     },
@@ -130,9 +169,10 @@ export default class StorageClassDetail extends React.Component {
       action: 'delete',
       type: 'danger',
       onClick: () =>
-        this.trigger('resource.delete', {
+        this.trigger('storageclass.delete', {
           type: this.name,
           detail: toJS(this.store.detail),
+          accessorStore: this.accessorStore,
           success: this.returnTolist,
         }),
     },
