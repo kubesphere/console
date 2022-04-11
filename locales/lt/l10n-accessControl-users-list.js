@@ -32,21 +32,18 @@ module.exports = {
   PASSWORD_DESC: 'The password must contain at least one number, one lowercase letter, and one uppercase letter. The length must be 8 to 64 characters.',
   PASSWORD_INVALID_DESC: 'Invalid password. The password must contain at least one number, one lowercase letter, and one uppercase letter. The length must be 8 to 64 characters.',
   PLATFORM_ROLE_DESC: 'Set the role of the user on the KubeSphere platform.',
-  USER_SETTING_EMAIL_DESC:
-    'The email address can be used to log in to the KubeSphere web console.',
-  USERNAME_EXISTS:
-    'The username already exists. Please enter another username.',
+  USER_SETTING_EMAIL_DESC: 'The email address can be used to log in to the KubeSphere web console.',
+  USERNAME_EXISTS: 'The username already exists. Please enter another username.',
   USERNAME_EMPTY_DESC: 'Please enter a username.',
   PLATFORM_ROLE: 'Platform Role',
   CREATE_USER: 'Create User',
   EMAIL: 'Email',
-  EMAIL_EXISTS:
-    'The email address already exists. Please enter another email address.',
+  EMAIL_EXISTS: 'The email address already exists. Please enter another email address.',
   USERNAME_INVALID: 'Invalid username. {message}',
   USERNAME: 'Username',
   PASSWORD: 'Password',
   // List > Edit
   EDIT_USER: 'Edit User',
   // List > Delete
-  USER_LOW: 'user',
-}
+  USER_LOW: 'user'
+};
