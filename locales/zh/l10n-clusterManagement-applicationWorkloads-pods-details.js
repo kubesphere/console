@@ -61,6 +61,6 @@ module.exports = {
   // Metadata
   // Monitoring
   NO_MONITORING_DATA: '未发现监控数据',
-  OUTBOUND: 'Outbound',
-  INBOUND: 'Inbound'
+  OUTBOUND: '出站',
+  INBOUND: '入站'
 };
