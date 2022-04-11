@@ -86,6 +86,11 @@ module.exports = {
       </li>`,
   STAGE: '阶段',
   KUBERNETES_DEPLOY_DEPRECATED_TIP: '该步骤会在后续版本中弃用，建议考虑其他替代方案。',
+  ORIGINAL_IMAGE_ADDRESS: 'Original Image Address',
+  NEW_IMAGE_ADDRESS: 'New Image Address',
+  NEW_IMAGE_TAG: 'New Image Tag',
+  CD_STEP_DESC: 'Update image information using continuous deployment.',
+  UPDATE_CD_TITLE: 'Continuous Deployment of Updates',
   // Task Status > Edit Jenkinsfile
   EDIT_JENKINSFILE: '编辑 Jenkinsfile',
   CLOSE_JENKINSFILE_EDITOR_TIP: '确定关闭 Jenkinsfile 编辑器？',
