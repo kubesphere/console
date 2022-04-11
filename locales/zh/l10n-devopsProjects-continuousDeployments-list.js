@@ -59,6 +59,6 @@ module.exports = {
   PRUNE_PROPAGATION_POLICY: '依赖清理策略',
   REPLACE_RESOURCE: '替换资源',
   REPLACE_RESOURCE_DESC: '替换已存在的资源。',
-  EMPTY_CD_TITLE: 'No Continuous Deployment Found',
-  SYNC_TRIGGERED: 'Resource sync was triggered successfully.'
+  EMPTY_CD_TITLE: '未发现持续部署',
+  SYNC_TRIGGERED: '资源同步触发成功。'
 };
