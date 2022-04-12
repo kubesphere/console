@@ -210,11 +210,29 @@ const getUserDetail = async (token, clusterRole) => {
 
 const getWorkspaces = async (token, clusterRole) => {
   let workspaces = []
+  let version = 3.2
 
+  const backendVersion = await send_gateway_request({
+    method: 'GET',
+    url: `/kapis/version`,
+    token,
+  })
+  if (backendVersion) {
+    const _version = backendVersion.gitVersion.replace(/[^\d.]/g, '')
+    version = Number(
+      _version
+        .split('.')
+        .slice(0, 2)
+        .join('.')
+    )
+  }
   const url =
-    clusterRole === 'host'
-      ? '/kapis/tenant.kubesphere.io/v1alpha3/workspacetemplates'
-      : '/kapis/tenant.kubesphere.io/v1alpha3/workspaces'
+    version > 3.2
+      ? clusterRole === 'host'
+        ? '/kapis/tenant.kubesphere.io/v1alpha3/workspacetemplates'
+        : '/kapis/tenant.kubesphere.io/v1alpha3/workspaces'
+      : '/kapis/tenant.kubesphere.io/v1alpha2/workspaces'
+
   const resp = await send_gateway_request({
     method: 'GET',
     url,
