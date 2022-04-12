@@ -121,6 +121,7 @@ export default class Routers extends React.Component {
             icon={ICON_TYPES[module]}
             iconSize={40}
             title={getDisplayName(record)}
+            desc={record.description || '-'}
             isMultiCluster={record.isFedManaged}
             to={`/clusters/${cluster}/projects/${record.namespace}/${module}/${name}`}
           />
