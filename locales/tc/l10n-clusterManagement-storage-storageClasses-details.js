@@ -40,6 +40,7 @@ module.exports = {
   PVC_AUTORESIZER_PL: 'PVC Autoresizer',
   PVC_AUTORESIZER_DESC: 'Pvc-autoresizer resizes PersistentVolumeClaims (PVCs) when the free amount of storage is below the threshold.',
   PVC_AUTORESIZER_SETTINGS: 'Autoresizer Settings',
+  MAX_SIZE: 'Max size',
   THRESHOLD_DESC: 'Storage is increased when the amount of free space of the volume is below threshold.',
   INCREASE: 'Increase',
   INCREASE_DESC: 'The increase value is calculated as the current storage value multiplied by the percentage value, if given as a percentage.',
