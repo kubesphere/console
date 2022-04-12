@@ -221,11 +221,8 @@ export default class CDList extends React.Component {
         filters: this.getWeatherStatus(),
         filteredValue: getFilteredValue('healthStatus'),
         search: true,
-        render: healthStatus => (
-          <StatusText
-            type={healthStatus}
-            label={t(healthStatus.toUpperCase())}
-          />
+        render: (healthStatus = 'Unknown') => (
+          <StatusText type={healthStatus} label={t(healthStatus)} />
         ),
       },
       {
@@ -235,7 +232,7 @@ export default class CDList extends React.Component {
         filteredValue: getFilteredValue('syncStatus'),
         search: true,
         width: '20%',
-        render: syncStatus => (
+        render: (syncStatus = 'Unknown') => (
           <StatusText type={syncStatus} label={syncStatus} />
         ),
       },
