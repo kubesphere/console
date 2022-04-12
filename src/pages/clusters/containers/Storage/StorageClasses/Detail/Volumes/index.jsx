@@ -139,13 +139,13 @@ export default class Volumes extends React.Component {
     const storageLimit = get(
       annotations,
       'resize.kubesphere.io/storage-limit',
-      '100Gi'
+      '10000Gi'
     )
     const Threshold = get(annotations, 'resize.kubesphere.io/threshold', '10%')
     const increase = get(annotations, 'resize.kubesphere.io/increase', '10%')
     const maxTime = get(annotations, 'restart.kubesphere.io/max-time', '300')
     const maxTimeItem = {
-      title: `${maxTime} s(Max time)`,
+      title: `${maxTime} s(${t('timeout')})`,
       src: '/assets/history_duotone.svg',
       des: t('AUTOMATIC_RESTART_WORKLOAD'),
     }
@@ -153,12 +153,12 @@ export default class Volumes extends React.Component {
       {
         iconName: 'storage',
         title: storageLimit,
-        des: t('STORAGE_LIMIT'),
+        des: t('MAX_SIZE'),
       },
       {
         src: '/assets/chart.svg',
         title: Threshold,
-        des: 'Threshold',
+        des: t('THRESHOLD'),
       },
       {
         iconName: 'stretch',

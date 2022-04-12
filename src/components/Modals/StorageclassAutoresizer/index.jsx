@@ -36,7 +36,7 @@ const values = (props, type, key, defaultValue) => {
 }
 
 const sliderSettings = {
-  max: 2048,
+  max: 10000,
   min: 0,
   unit: 'Gi',
 }
@@ -57,7 +57,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
       resize: {
         enabled: JSON.parse(values(props, 'resize', 'enabled', false)),
         increase: values(props, 'resize', 'increase', '10%'),
-        'storage-limit': values(props, 'resize', 'storage-limit', '100Gi'),
+        'storage-limit': values(props, 'resize', 'storage-limit', '10000Gi'),
         threshold: values(props, 'resize', 'threshold', '10%'),
       },
       restart: {
@@ -66,7 +66,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
       },
       fakeIncrease: values(props, 'resize', 'increase', '10%'),
       fakeThreshold: values(props, 'resize', 'threshold', '10%'),
-      fakeLimit: values(props, 'resize', 'storage-limit', '100Gi'),
+      fakeLimit: values(props, 'resize', 'storage-limit', '10000Gi'),
       fakeMaxTime: values(props, 'restart', 'max-time', '300'),
     }
   }
@@ -126,7 +126,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
   handleLimitChange = val => {
     const { resize } = this.state
     const { unit } = sliderSettings
-    const value = /[0-9]+/g.test(val) ? `${val}${unit}` : '100Gi'
+    const value = /[0-9]+/g.test(val) ? `${val}${unit}` : '10000Gi'
     this.setState({
       resize: {
         ...resize,
@@ -187,7 +187,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
       <>
         <Alert type="warning" message={t('AUTOMATIC_RESTART_WORKLOAD_TIP')} />
         <div className={styles.settings}>
-          <Form.Item label={`${t('MAX_TIME')}(s):`}>
+          <Form.Item label={`${t('timeout')}(s):`}>
             <NumberInput
               onChange={this.handleMaxTime}
               value={fakeMaxTime}
@@ -257,7 +257,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
             <div className={styles.title}>{t('PVC_AUTORESIZER_SETTINGS')}</div>
             <div className={styles.container}>
               <div className={styles.limit}>
-                <Form.Item label={`${t('STORAGE_LIMIT')}:`}>
+                <Form.Item label={`${t('MAX_SIZE')}:`}>
                   <Slider
                     size={storageLimit}
                     max={sliderSettings.max}
