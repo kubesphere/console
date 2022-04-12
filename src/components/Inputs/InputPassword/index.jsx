@@ -144,7 +144,7 @@ export default class Password extends React.Component {
           <li>
             <Icon
               className={classNames(styles.icon, {
-                [styles.selected]: value.length >= 6,
+                [styles.selected]: value.length >= 8,
               })}
               name="check"
               size={12}
