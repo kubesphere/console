@@ -74,7 +74,10 @@ export default class PodItem extends React.PureComponent {
       detail: { networksStatus },
     } = this.props
 
-    return networksStatus.reduce((prev, cur) => [...prev, ...cur.ips], [])
+    return networksStatus.reduce(
+      (prev, cur) => (cur.ips ? [...prev, ...cur.ips] : [...prev]),
+      []
+    )
   }
 
   getContainerStatus = () => {
