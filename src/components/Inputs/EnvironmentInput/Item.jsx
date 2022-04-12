@@ -211,7 +211,7 @@ export default class EnvironmentInputItem extends React.Component {
 
   validEnvKey = debounce((value, target = {}) => {
     const { handleKeyError, handleInputError } = this.props
-    const status = !PATTERN_ENV_NAME.test(value)
+    const invalid = !PATTERN_ENV_NAME.test(value)
     if (value === '' && target.value === '') {
       handleKeyError()
       handleInputError()
@@ -219,7 +219,7 @@ export default class EnvironmentInputItem extends React.Component {
         keyError: false,
       })
     } else {
-      if (status) {
+      if (invalid) {
         const message =
           value !== ''
             ? t('ENVIRONMENT_INVALID_TIP')
@@ -231,7 +231,7 @@ export default class EnvironmentInputItem extends React.Component {
         handleInputError()
       }
       this.setState({
-        keyError: status,
+        keyError: invalid,
       })
     }
   }, 300)
