@@ -66,10 +66,17 @@ export default class StorageClassDetail extends React.Component {
     return `/clusters/${cluster}/storageclasses`
   }
 
+  get supportAccessor() {
+    const { params } = this.props.match
+    return this.accessorStore.getKsVersion(params) > 3.2
+  }
+
   fetchData = async () => {
     const { params } = this.props.match
     await this.store.fetchDetail(params)
-    this.checkHasAccessor()
+    if (this.supportAccessor) {
+      this.checkHasAccessor()
+    }
   }
 
   checkHasAccessor = async () => {
@@ -123,6 +130,7 @@ export default class StorageClassDetail extends React.Component {
       ),
       text: t('STORAGECLASS_ACCESSOR'),
       action: 'edit',
+      show: this.supportAccessor,
       onClick: () =>
         this.trigger('storageclass.accessor', {
           storageClassName: get(this.store.detail, 'name'),
