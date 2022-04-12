@@ -74,6 +74,10 @@ export default class ContainerTerminalModal extends React.Component {
       name: podName,
     })
 
+    this.getContainerInfo(containerName)
+  }
+
+  getContainerInfo = async containerName => {
     const container = this.podStore.detail.containers.find(
       item => item.name === containerName
     )
@@ -99,6 +103,7 @@ export default class ContainerTerminalModal extends React.Component {
 
   handleContainerChange = container => {
     this.store.kubectl.container = container.name
+    this.getContainerInfo(container.name)
   }
 
   getResourceInfo = type => {
