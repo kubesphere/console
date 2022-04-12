@@ -565,7 +565,7 @@ export const PATTERN_PORT = /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]
 export const PATTERN_IMAGE_TAG = /^(.*?)([0-9a-zA-Z/]*)(:[-.\w]*[0-9a-zA-Z])*$/
 export const PATTERN_APPTEMPLATE_VERSION = /[a-zA-Z0-9](\.?-?[a-zA-Z0-9])+(\s?\[?[a-zA-Z0-9]+\.?-?\]?)*/
 export const PATTERN_UTC_TIME = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]+Z/
-export const PATTERN_ENV_NAME = /^[^0-9][a-zA-Z0-9_]*$/
+export const PATTERN_ENV_NAME = /^[-._a-zA-Z][-._a-zA-Z0-9]*$/
 
 export const PIPELINE_TASKS = {
   All: [
