@@ -42,12 +42,13 @@ module.exports = {
   VOLUME_SNAPSHOT: '存储卷快照',
 
   // More > PVC Autoresizer
-  PVC_AUTORESIZER_PL: 'PVC 调节器',
+  PVC_AUTORESIZER_PL: 'PVC 容量调节器',
   PVC_AUTORESIZER_DESC:
-    'Pvc-autoresizer 在自由存储量低于阈值时调整 PersistentVolumeClaims(PVC) 的大小。',
-  PVC_AUTORESIZER_SETTINGS: 'PVC 调节器设置',
+    'PVC 容量调节器在自由存储量低于阈值时调整 PersistentVolumeClaims(PVC) 的大小。',
+  PVC_AUTORESIZER_SETTINGS: 'PVC 容量调节器设置',
+  MAX_SIZE: '最大容量',
   THRESHOLD_DESC: '当存储卷的自由空间量低于阈值时，存储量会增加。',
-  INCREASE: 'Increase',
+  INCREASE: '增量',
   INCREASE_DESC:
     '增加值的计算方法是当前存储值乘以百分比值，如果以百分比形式给出的话。',
   AUTOMATIC_RESTART_WORKLOAD: '自动重启工作负载',
