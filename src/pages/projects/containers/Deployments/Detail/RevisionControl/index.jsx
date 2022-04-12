@@ -20,7 +20,7 @@ import React from 'react'
 import { computed, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
-import { get, sortBy } from 'lodash'
+import { sortBy } from 'lodash'
 
 import { getLocalTime } from 'utils'
 import { getValue } from 'utils/yaml'
@@ -150,10 +150,6 @@ class RevisionControl extends React.Component {
         {revision && (
           <Panel>
             <div className={styles.header}>
-              <Text
-                title={get(revision, 'labels.version', '-')}
-                description={t('VERSION')}
-              />
               <Text
                 title={`#${revision.revision}`}
                 description={t('SERIAL_NUMBER')}
