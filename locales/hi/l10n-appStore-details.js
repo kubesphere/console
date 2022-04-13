@@ -17,14 +17,14 @@
  */
 module.exports = {
   // Title
-  BACK: 'Back',
+  BACK: 'वापस जाएं',
   // Description
   // Install > Deployment Agreement
-  AGREE: 'Agree',
-  APP_DEPLOY_AGREEMENT: 'Deployment Agreement',
-  APP_DEPLOY_AGREEMENT_DESC_1: 'You must abide by the open-source agreement of the application.',
-  APP_DEPLOY_AGREEMENT_DESC_2: 'Any consequences arising from your deployment of the application shall be borne by you. For support services, please contact the developer.',
-  DO_NOT_REMIND_AGAIN: 'Do not remind me again',
+  AGREE: 'सहमत',
+  APP_DEPLOY_AGREEMENT: 'परिनियोजन समझौता',
+  APP_DEPLOY_AGREEMENT_DESC_1: 'आपको एप्लिकेशन के ओपन-सोर्स समझौते का पालन करना होगा।',
+  APP_DEPLOY_AGREEMENT_DESC_2: 'आपके द्वारा आवेदन के परिनियोजन से उत्पन्न होने वाले किसी भी परिणाम का वहन आपके द्वारा किया जाएगा। सहायता सेवाओं के लिए, कृपया डेवलपर से संपर्क करें।',
+  DO_NOT_REMIND_AGAIN: 'मुझे फिर से याद न दिलाएं',
   // Install > Basic Information
   LOCATION: 'Location',
   CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 53 characters.',
