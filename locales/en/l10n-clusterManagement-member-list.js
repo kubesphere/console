@@ -17,6 +17,6 @@
  */
 
 module.exports = {
-  CLUSTER_MEMBER_PL: 'Cluster Member',
-  CLUSTER_MEMBERS: 'Cluster Member',
+  CLUSTER_MEMBER_PL: 'Cluster Members',
+  CLUSTER_MEMBER: 'Cluster Member',
 }

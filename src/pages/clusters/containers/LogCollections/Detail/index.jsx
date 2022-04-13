@@ -64,9 +64,7 @@ export default class LogCollectionDetail extends React.Component {
     return [
       {
         name: t('STATUS'),
-        value: get(this.store, 'detail.enabled')
-          ? t('LOG_COLLECTING')
-          : t('LOG_DISABLED'),
+        value: get(this.store, 'detail.enabled') ? t('ENABLED') : t('DISABLED'),
       },
     ]
   }

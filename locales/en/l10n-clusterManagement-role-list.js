@@ -17,6 +17,6 @@
  */
 
 module.exports = {
-  CLUSTER_ROLES: 'Cluster Role',
-  CLUSTER_ROLE_PL: 'Cluster Role',
+  CLUSTER_ROLE: 'Cluster Role',
+  CLUSTER_ROLE_PL: 'Cluster Roles',
 }

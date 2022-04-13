@@ -286,7 +286,7 @@ export default {
           success && success()
         },
         module,
-        name: kind,
+        name,
         store,
         detail,
         formTemplate,

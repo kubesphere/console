@@ -77,7 +77,7 @@ export default {
         data,
         width: 691,
         icon: 'timed-task',
-        title: t('LOG_COLLECTION'),
+        title: t('EDIT_LOG_RECEIVER'),
         children: <EditForm />,
         store,
         ...props,

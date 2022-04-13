@@ -449,8 +449,8 @@ module.exports = {
   DEPLOY_PLACEMENT_TIP_VALUE:
     'You can deploy pods on different clusters and define the number of replicas deployed. The Federation Controller Manager schedules pods on different clusters in a unified way and synchronizes status.',
 
-  DESC_CREATE_CONFIGMAP_SECRET:
-    'If there is no suitable configuration file or key reference, you can',
+  CREATE_CONFIGMAP_SECRET_DESC:
+    'If no configmap or secret meets the requirements, you can',
   // Pods Page
   NODE_IP: '{node} ({ip})',
 

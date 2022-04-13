@@ -63,15 +63,15 @@ export default class EnvironmentInputItem extends React.Component {
   get resourceOptions() {
     return [
       {
-        label: t('CUSTOMIZATION'),
+        label: t('CUSTOM'),
         value: 'customization',
       },
       {
-        label: t('REFER_CONFIGMAPS'),
+        label: t('FROM_CONFIGMAP'),
         value: 'configMapKeyRef',
       },
       {
-        label: t('REFER_SECRETS'),
+        label: t('FROM_SECRET'),
         value: 'secretKeyRef',
       },
     ]

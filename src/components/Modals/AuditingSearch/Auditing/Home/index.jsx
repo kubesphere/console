@@ -125,9 +125,9 @@ export default class Home extends React.Component {
                 name="information"
                 color={{ primary: '#fff', secondary: '#F5A623' }}
               />
-              {t.html('SETTING_AUDIT_DESC', {
+              {t.html('ENABLE_AUDIT_LOG_COLLECTION_DESC', {
                 link:
-                  ' https://kubesphere.io/docs/toolbox/auditing/auditing-receive-customize/#receive-auditing-logs-from-kubernetes',
+                  'https://kubesphere.io/docs/toolbox/auditing/auditing-receive-customize/#receive-auditing-logs-from-kubernetes',
               })}
             </p>
           </div>

@@ -164,12 +164,10 @@ export default class AddConfigOrSecret extends Component {
     return (
       <div className={classNames(className, styles.contentBox)} style={style}>
         <div className={styles.content}>
-          <apn className={styles.title}>
-            {t('BULK_REFERENCE_CONFIGURATION')}
-          </apn>
+          <apn className={styles.title}>{t('BATCH_REFERENCE')}</apn>
           <Alert
             className={styles.tip}
-            message={t('BULK_REFERENCE_CONFIGURATION_DES')}
+            message={t('BATCH_REFERENCE_DESC')}
           ></Alert>
 
           <RadioGroup
@@ -186,9 +184,7 @@ export default class AddConfigOrSecret extends Component {
           </RadioGroup>
 
           <div className={styles.subTitle}>
-            <span>
-              {tab === 'configMaps' ? t('CONFIGMAP_PL') : t('SECRET_PL')}
-            </span>
+            <span>{tab === 'configMaps' ? t('CONFIGMAP') : t('SECRET')}</span>
           </div>
 
           <Select
@@ -200,10 +196,10 @@ export default class AddConfigOrSecret extends Component {
           />
 
           <div className={styles.subTitle}>
-            <span>{t('KEY_IN_CONFIGURATION')}</span>
+            <span>{t('KEY_PL')}</span>
             {list.length > 0 && (
               <span className={styles.allChoose} onClick={this.handleAllChoose}>
-                {allChoose ? t('CANCEL_SELECT_ALL') : t('SELECT_ALL')}
+                {allChoose ? t('DESELECT_ALL') : t('SELECT_ALL')}
               </span>
             )}
           </div>

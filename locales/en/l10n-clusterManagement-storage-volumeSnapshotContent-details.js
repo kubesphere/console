@@ -15,30 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
-  // More > Edit YAML
-  // More > Clone
-  CLONE_VOLUME: 'Clone Volume',
-  CLONE: 'Clone',
-
-  // More > Create Snapshot
-  CREATE_SNAPSHOT: 'Create Snapshot',
-  SNAPSHOT_EMPTY_TIP: 'Please select a volume snapshot class.',
-
-  // More > Expand
-  EXPAND_VOLUME: 'Expand Volume',
-  EXPAND: 'Expand',
-
   // Details
-  PROVISIONER: 'Provisioner',
-
-  // Resource Status
-  AVAILABLE_CAPACITY: 'Available capacity',
-  POD_IP_ADDRESS_SCAP: 'Pod IP address',
-  TOTAL_CAPACITY: 'Total capacity',
-
-  // Metadata
-  // Events
-  // Snapshots
+  SNAPSHOT_HANDLE: 'Snapshot Handle',
 }

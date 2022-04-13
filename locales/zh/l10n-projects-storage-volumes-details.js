@@ -22,7 +22,6 @@ module.exports = {
   CLONE: '克隆',
   // More > Create Snapshot
   CREATE_SNAPSHOT: '创建快照',
-  VOLUME_SNAPSHOT_CLASS: '快照类型',
   SNAPSHOT_EMPTY_TIP: '请选择一个快照类型。',
   // More > Expand
   EXPAND_VOLUME: '扩容存储卷',
@@ -32,5 +31,5 @@ module.exports = {
   // Resource Status
   AVAILABLE_CAPACITY: '剩余容量',
   POD_IP_ADDRESS_SCAP: '容器组 IP 地址',
-  TOTAL_CAPACITY: '总容量'
-};
+  TOTAL_CAPACITY: '总容量',
+}
