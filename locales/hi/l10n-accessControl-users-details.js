@@ -17,16 +17,16 @@
  */
 module.exports = {
   // More > Change Password
-  CONFIRM_PASSWORD_TIP: 'Please enter the new password again.',
-  CHANGE_PASSWORD: 'Change Password',
-  NEW_PASSWORD: 'New Password',
+  CONFIRM_PASSWORD_TIP: 'कृपया एक नया पासवर्ड दोबारा दर्ज करें।',
+  CHANGE_PASSWORD: 'पासवर्ड बदलिए',
+  NEW_PASSWORD: 'नया पासवर्ड',
   // More > Delete
   // Details
   // Login History
-  TIME: 'Time',
+  TIME: 'समय',
   SOURCE_IP_ADDRESS: 'Source IP Address',
   LOGIN_HISTORY: 'Login History',
   NO_LOGIN_HISTORY: 'No login history is found.',
-  SUCCESSFUL: 'Successful',
-  FAILED: 'Failed'
+  SUCCESSFUL: 'सफल!',
+  FAILED: 'असफल'
 };
