@@ -43,7 +43,7 @@ module.exports = {
   USERNAME: 'उपयोगकर्ता नाम।',
   PASSWORD: 'पासवर्ड',
   // List > Edit
-  EDIT_USER: 'Edit User',
+  EDIT_USER: 'उपयोगकर्ता को संपादित करो',
   // List > Delete
-  USER_LOW: 'user'
+  USER_LOW: 'उपयोगकर्ता'
 };
