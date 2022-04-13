@@ -32,5 +32,5 @@ module.exports = {
   // List > Change Category
   CHANGED_SUCCESSFULLY: 'सफलतापूर्वक बदला गया।',
   CHANGE_CATEGORY: 'श्रेणी बदलें',
-  CHANGE_CATEGORY_DESC: 'The app category determines the classification of the app in the App Store.'
+  CHANGE_CATEGORY_DESC: 'ऐप श्रेणी ऐप स्टोर में ऐप के वर्गीकरण को निर्धारित करती है।'
 };
