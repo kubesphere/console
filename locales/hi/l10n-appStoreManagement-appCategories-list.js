@@ -17,20 +17,20 @@
  */
 module.exports = {
   // Banner
-  APP_CATEGORY_PL: 'App Categories',
-  APP_CATEGORIES_DESC: 'Manage categories of apps released to the App Store. You can create, edit, delete, and change app categories.',
+  APP_CATEGORY_PL: 'ऐप श्रेणियाँ',
+  APP_CATEGORIES_DESC: 'ऐप स्टोर पर जारी किए गए ऐप्स की श्रेणियां प्रबंधित करें. आप ऐप श्रेणियां बना सकते हैं, संपादित कर सकते हैं, हटा सकते हैं और बदल सकते हैं।',
   // All Categories
-  ALL_CATEGORIES_VALUE: 'All Categories ({value})',
-  APP_CATEGORY_EMPTY_DESC: 'No apps belong to the category.',
+  ALL_CATEGORIES_VALUE: 'सब श्रेणियाँ ({value})',
+  APP_CATEGORY_EMPTY_DESC: 'कोई भी ऐप श्रेणी से संबंधित नहीं है।',
   // All Categories > Add
-  ENTER_CATEGORY_NAME_TIP: 'Please enter a category name.',
-  CATEGORY_NAME_DESC: 'The name can contain any characters and the maximum length is 20 characters.',
+  ENTER_CATEGORY_NAME_TIP: 'कृपया एक श्रेणी का नाम दर्ज करें।',
+  CATEGORY_NAME_DESC: 'नाम में कोई भी वर्ण हो सकता है और अधिकतम लंबाई 20 वर्ण हो सकती है',
   // All Categories > Eit
   // All Categories > Delete
-  DELETE_CATEGORY_DESC: 'Are you sure you want to delete the category <b>{name}</b>?',
+  DELETE_CATEGORY_DESC: 'क्या आप वाकई श्रेणी <b>{name}</b> को हटाना चाहते हैं?',
   // List
   // List > Change Category
-  CHANGED_SUCCESSFULLY: 'Changed successfully.',
-  CHANGE_CATEGORY: 'Change Category',
+  CHANGED_SUCCESSFULLY: 'सफलतापूर्वक बदला गया।',
+  CHANGE_CATEGORY: 'श्रेणी बदलें',
   CHANGE_CATEGORY_DESC: 'The app category determines the classification of the app in the App Store.'
 };
