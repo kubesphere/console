@@ -57,5 +57,5 @@ module.exports = {
   VERSION_INTRO_EMPTY_DESC: 'कोई दस्तावेज नहीं मिला है।',
   // App Details > Chart Files
   CHART_FILES: 'चार्ट फ़ाइलें',
-  NO_APP_CHART_FILE_FOUND: 'No chart file of the app is found.'
+  NO_APP_CHART_FILE_FOUND: 'ऐप की कोई चार्ट फ़ाइल नहीं मिली।'
 };
