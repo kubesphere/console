@@ -112,12 +112,13 @@ class Clusters extends React.Component {
     this.routing.push(`/clusters/${cluster}/overview`)
   }
 
-  get itemActions() {
-    return [
+  getItemActions = item => {
+    const actions = [
       {
         key: 'pen',
         icon: 'pen',
         text: t('EDIT_INFORMATION'),
+        show: true,
         onClick: record => {
           this.trigger('resource.baseinfo.edit', {
             detail: record,
@@ -130,6 +131,7 @@ class Clusters extends React.Component {
         key: 'data',
         icon: 'data',
         text: t('UPDATE_KUBECONFIG'),
+        show: !item.isHost,
         onClick: record => {
           this.trigger('cluster.updateKubeConfig', {
             detail: record,
@@ -141,6 +143,7 @@ class Clusters extends React.Component {
         key: 'trash',
         icon: 'trash',
         text: t('UNBIND_CLUSTER'),
+        show: !item.isHost,
         onClick: record => {
           this.trigger('cluster.unbind', {
             detail: record,
@@ -149,6 +152,8 @@ class Clusters extends React.Component {
         },
       },
     ]
+
+    return actions.filter(action => action.show)
   }
 
   renderList() {
@@ -223,7 +228,7 @@ class Clusters extends React.Component {
                 data={item}
                 onEnter={this.enterCluster}
                 isOperation={this.isOperation}
-                itemActions={this.itemActions}
+                itemActions={this.getItemActions(item)}
               />
             ))}
           </div>
@@ -240,7 +245,7 @@ class Clusters extends React.Component {
                 data={item}
                 onEnter={this.enterCluster}
                 isOperation={this.isOperation}
-                itemActions={this.itemActions}
+                itemActions={this.getItemActions(item)}
               />
             ))}
             <div className="text-right margin-t12">
