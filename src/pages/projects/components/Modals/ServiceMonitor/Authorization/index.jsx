@@ -45,7 +45,7 @@ export default class Authorization extends Component {
   get authTypes() {
     return [
       { label: t('NO_AUTHENTICATION_TCAP'), value: '' },
-      { label: t('TLS_SETTINGS_TCAP'), value: 'tlsConfig' },
+      { label: t('TLS'), value: 'tlsConfig' },
       { label: t('BEARER_TOKEN_TCAP'), value: 'bearerTokenSecret' },
       { label: t('BASIC_AUTHENTICATION_TCAP'), value: 'basicAuth' },
     ]
@@ -105,7 +105,7 @@ export default class Authorization extends Component {
     let content
     switch (authType) {
       case '':
-        content = <Alert type="info" message={t('NO_AUTH_TIP')} />
+        content = <Alert type="info" message={t('NO_AUTHENTICATION_TIP')} />
         break
       case 'tlsConfig':
         content = (
@@ -119,7 +119,7 @@ export default class Authorization extends Component {
                 secrets={this.secrets}
               />
             </Form.Item>
-            <Form.Item label={t('ENCRYPTION_KEY')}>
+            <Form.Item label={t('PRIVATE_KEY')}>
               <SecretSelect name="tlsConfig.keySecret" secrets={this.secrets} />
             </Form.Item>
             <Form.Item label={t('SERVER_NAME')}>
@@ -181,7 +181,7 @@ export default class Authorization extends Component {
           <Text
             className="margin-b12"
             title={t('SELECT_AUTHENTICATION_METHOD')}
-            description={t('PORT_CONNECTION_AUTHENTICATION')}
+            description={t('SELECT_AUTHENTICATION_METHOD_DESC')}
           />
           <div className="margin-b12">
             <RadioGroup

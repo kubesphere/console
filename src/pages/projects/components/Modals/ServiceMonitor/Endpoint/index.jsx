@@ -39,7 +39,7 @@ export default class Endpoints extends Component {
 
   get ports() {
     return get(this.props, 'detail.ports', []).map(item => ({
-      label: item.name ? `${item.name}(${item.port})` : item.port,
+      label: item.name ? `${item.name} (${item.port})` : item.port,
       value: item.name || item.port,
     }))
   }
@@ -57,6 +57,7 @@ export default class Endpoints extends Component {
           prefixIcon={<Icon name="network-card" />}
           name="port"
           options={this.ports}
+          placeholder=" "
         />
         <Input name="path" defaultValue="/metrics" />
         <Authorization
