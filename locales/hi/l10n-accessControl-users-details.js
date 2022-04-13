@@ -24,9 +24,9 @@ module.exports = {
   // Details
   // Login History
   TIME: 'समय',
-  SOURCE_IP_ADDRESS: 'Source IP Address',
-  LOGIN_HISTORY: 'Login History',
-  NO_LOGIN_HISTORY: 'No login history is found.',
+  SOURCE_IP_ADDRESS: 'स्रोत आई.पी पता',
+  LOGIN_HISTORY: 'लॉगिन इतिहास',
+  NO_LOGIN_HISTORY: 'कोई लॉगिन इतिहास नहीं मिला',
   SUCCESSFUL: 'सफल!',
   FAILED: 'असफल'
 };
