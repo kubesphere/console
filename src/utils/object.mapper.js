@@ -1095,7 +1095,7 @@ const ClusterMapper = item => {
   )
 
   const expiredDay = expiredDate
-    ? formaDayTime(new Date() - getLocalTime(expiredDate))
+    ? formaDayTime(getLocalTime(expiredDate) - new Date())
     : undefined
 
   return {
