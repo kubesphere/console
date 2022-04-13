@@ -21,9 +21,9 @@ module.exports = {
   NODE_NAME: '节点名称',
   POD_IP_ADDRESS: '容器组 IP 地址',
   // Run Records
-  JOB_UNFINISHED: 'Unfinished',
+  JOB_UNFINISHED: '未完成',
   // Resource Status
-  TERMINATED: 'Terminated',
+  TERMINATED: '已终止',
   // Scheduling Information
   SCHEDULED_TO_NODE: '调度至 {value}',
   SCHEDULING_NOT_SUCCESSFUL: '调度未成功',
