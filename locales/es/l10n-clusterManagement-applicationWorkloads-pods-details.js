@@ -31,7 +31,6 @@ module.exports = {
   IMAGE_ID: 'ID de imagen',
   IMAGE_PULL_POLICY: 'Política de extracción de imagen',
   CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
-  RESTARTS_TOTAL: 'Restarts (Total)',
   // Resource Status > Details > Container Details > Terminal
   LOADING: 'Cargando',
   RESOURCE_LIMITS: 'Límites de recursos',
