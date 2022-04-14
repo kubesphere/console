@@ -72,12 +72,12 @@ module.exports = {
   ENTER_RULE_EXPRESSION: '請輸入告警規則表達式。',
   ALERT_RULE_EXPRESSION_DESC: '您可以通過 PromQL 語句來自定義告警規則。<a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">了解更多</a>',
   // List > Create > Message Settings
-  MESSAGE_SETTINGS: 'Message Settings',
-  NOTIFICATION_SUMMARY: 'Summary',
-  NOTIFICATION_DETAILS: 'Details',
+  MESSAGE_SETTINGS: '訊息設置',
+  NOTIFICATION_SUMMARY: '概括',
+  NOTIFICATION_DETAILS: '詳情',
   // List > Edit
-  EDIT_ALERTING_POLICY: 'Edit Alerting Policy',
+  EDIT_ALERTING_POLICY: '編輯告警策略',
   // List > Delete
-  ALERTING_POLICY: 'Alerting Policy',
-  ALERTING_POLICY_LOW: 'alerting policy'
+  ALERTING_POLICY: '告警策略',
+  ALERTING_POLICY_LOW: '告警策略'
 };
