@@ -28,6 +28,7 @@ module.exports = {
   // List
   WORKSPACE: '企业空间',
   CLUSTER_VISIBILITY_SCAP: '集群可见性',
+  AUTHORIZATION_TIME_TCAP: 'Authorization Time',
   // List > Edit Visibility
   EDIT_VISIBILITY: '编辑可见性',
   AUTHORIZED: '已授权',
