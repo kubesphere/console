@@ -16,6 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  CLUSTER_ROLE: 'Cluster Role',
-  CLUSTER_ROLE_PL: 'Cluster Roles'
+  CLUSTER_ROLE: '集群規則',
+  CLUSTER_ROLE_PL: '集群規則'
 };
