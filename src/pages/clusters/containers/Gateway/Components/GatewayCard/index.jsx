@@ -238,7 +238,16 @@ class GatewayCard extends React.Component {
       ? '-'
       : loadBalancerIngress.join(';')
 
-    const lbIcon = lb && CLUSTER_PROVIDERS.find(item => item.value === lb).icon
+    const lbs = [
+      ...CLUSTER_PROVIDERS,
+      {
+        label: 'OpenELB',
+        value: 'OpenELB',
+        icon: 'kubernetes',
+      },
+    ]
+
+    const lbIcon = lb && lbs.find(item => item.value === lb).icon
 
     const isClusterPermission =
       globals.app.hasPermission({
