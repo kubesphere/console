@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set } from 'lodash'
+import { get, isEmpty, set } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
 
@@ -197,6 +197,21 @@ export default class BaseStore {
 
     const result = await request.get(this.getDetailUrl(params))
     const detail = { ...params, ...this.mapper(result) }
+
+    this.detail = detail
+    this.isLoading = false
+    return detail
+  }
+
+  @action
+  async fetchDetailWithoutWarning(params) {
+    this.isLoading = true
+
+    const result = await request.get(this.getDetailUrl(params), {}, {}, () => {
+      return {}
+    })
+
+    const detail = !isEmpty(result) ? { ...params, ...this.mapper(result) } : {}
 
     this.detail = detail
     this.isLoading = false

@@ -26,6 +26,8 @@ import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
 import StorageClassStore from 'stores/storageClass'
 import AccessorStore from 'stores/accessor'
+import ValidateWebhookCFStore from 'stores/validateWebhookCF'
+import CrdStore from 'stores/crd'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 import DetailPage from 'clusters/containers/Base/Detail'
@@ -39,6 +41,14 @@ export default class StorageClassDetail extends React.Component {
   store = new StorageClassStore()
 
   accessorStore = new AccessorStore()
+
+  validateWebhookCFStore = new ValidateWebhookCFStore()
+
+  CrdStore = new CrdStore()
+
+  state = {
+    supportAccessor: true,
+  }
 
   componentDidMount() {
     this.store.fetchList({ limit: -1 })
@@ -68,115 +78,143 @@ export default class StorageClassDetail extends React.Component {
 
   fetchData = async () => {
     const { params } = this.props.match
+    const ksVersion = await this.accessorStore.getKsVersion(params)
     await this.store.fetchDetail(params)
-    this.checkHasAccessor()
+
+    if (ksVersion < 3.3) {
+      // check if k8s supports accessor resource
+      Promise.all([
+        this.validateWebhookCFStore.fetchDetailWithoutWarning({
+          ...params,
+          name: 'storageclass-accessor.storage.kubesphere.io',
+        }),
+        this.CrdStore.fetchDetailWithoutWarning({
+          ...params,
+          name: 'accessors.storage.kubesphere.io',
+        }),
+      ]).then(([validate, crd]) => {
+        if (!isEmpty(validate) && !isEmpty(crd)) {
+          this.checkHasAccessor()
+        } else {
+          this.setState({
+            supportAccessor: false,
+          })
+        }
+      })
+    } else {
+      this.checkHasAccessor()
+    }
   }
 
   checkHasAccessor = async () => {
     const { params } = this.props.match
     const storageClassName = get(this.store.detail, 'name')
-    const allAccessors = await this.accessorStore.fetchListByK8s()
-    const hasYaml = allAccessors.filter(
-      item => item.metadata.name === `${storageClassName}-accessor`
-    )
-    if (hasYaml.length === 0) {
+    const detail = await this.accessorStore.fetchDetailWithoutWarning({
+      ...params,
+      name: `${storageClassName}-accessor`,
+    })
+    if (isEmpty(detail)) {
       const template = FORM_TEMPLATES['accessors'](storageClassName)
       await this.accessorStore.create(template)
+      await this.accessorStore.fetchDetail({ name: `${params.name}-accessor` })
     }
-    await this.accessorStore.fetchDetail({ name: `${params.name}-accessor` })
   }
 
-  getOperations = () => [
-    {
-      key: 'editYaml',
-      type: 'default',
-      text: t('EDIT_YAML'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('resource.yaml.edit', {
-          detail: toJS(this.store.detail),
-          readOnly: false,
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'setDefault',
-      icon: 'pen',
-      text: t('SET_AS_DEFAULT_STORAGE_CLASS'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('storageclass.set.default', {
-          detail: toJS(this.store.detail),
-          defaultStorageClass: this.defaultStorageClass.name,
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'accessor',
-      icon: () => (
-        <>
-          <img
-            src="/assets/storageclass-tree.svg"
-            style={{ width: '16px', marginRight: '12px' }}
-          />
-        </>
-      ),
-      text: t('STORAGECLASS_ACCESSOR'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('storageclass.accessor', {
-          storageClassName: get(this.store.detail, 'name'),
-          store: this.accessorStore,
-          detail: toJS(this.accessorStore.detail),
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'funcManage',
-      icon: 'slider',
-      text: t('VOLUME_MANAGEMENT'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('storageclass.volume.function.update', {
-          detail: toJS(this.store.detail),
-          StorageClassStore: this.store,
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'autoResizer',
-      icon: () => (
-        <>
-          <img
-            src="/assets/storageclass_autoresizer.svg"
-            style={{ width: '16px', marginRight: '12px' }}
-          />
-        </>
-      ),
-      text: t('PVC_AUTORESIZER_PL'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('storageclass.pvc.autoresizer', {
-          detail: toJS(this.store.detail),
-          StorageClassStore: this.store,
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'delete',
-      icon: 'trash',
-      text: t('DELETE'),
-      action: 'delete',
-      type: 'danger',
-      onClick: () =>
-        this.trigger('storageclass.delete', {
-          type: this.name,
-          detail: toJS(this.store.detail),
-          accessorStore: this.accessorStore,
-          success: this.returnTolist,
-        }),
-    },
-  ]
+  getOperations = () => {
+    const { supportAccessor } = this.state
+    return [
+      {
+        key: 'editYaml',
+        type: 'default',
+        text: t('EDIT_YAML'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('resource.yaml.edit', {
+            detail: toJS(this.store.detail),
+            readOnly: false,
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'setDefault',
+        icon: 'pen',
+        text: t('SET_AS_DEFAULT_STORAGE_CLASS'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('storageclass.set.default', {
+            detail: toJS(this.store.detail),
+            defaultStorageClass: this.defaultStorageClass.name,
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'accessor',
+        icon: () => (
+          <>
+            <img
+              src="/assets/storageclass-tree.svg"
+              style={{ width: '16px', marginRight: '12px' }}
+            />
+          </>
+        ),
+        text: t('STORAGECLASS_ACCESSOR'),
+        action: 'edit',
+        show: supportAccessor,
+        onClick: () =>
+          this.trigger('storageclass.accessor', {
+            storageClassName: get(this.store.detail, 'name'),
+            store: this.accessorStore,
+            detail: toJS(this.accessorStore.detail),
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'funcManage',
+        icon: 'slider',
+        text: t('VOLUME_MANAGEMENT'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('storageclass.volume.function.update', {
+            detail: toJS(this.store.detail),
+            StorageClassStore: this.store,
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'autoResizer',
+        icon: () => (
+          <>
+            <img
+              src="/assets/storageclass_autoresizer.svg"
+              style={{ width: '16px', marginRight: '12px' }}
+            />
+          </>
+        ),
+        text: t('PVC_AUTORESIZER_PL'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('storageclass.pvc.autoresizer', {
+            detail: toJS(this.store.detail),
+            StorageClassStore: this.store,
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('DELETE'),
+        action: 'delete',
+        type: 'danger',
+        onClick: () =>
+          this.trigger('storageclass.delete', {
+            type: this.name,
+            detail: toJS(this.store.detail),
+            accessorStore: this.accessorStore,
+            success: this.returnTolist,
+          }),
+      },
+    ]
+  }
 
   getAttrs = () => {
     const { detail = {} } = this.store
