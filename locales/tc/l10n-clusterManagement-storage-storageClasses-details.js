@@ -40,7 +40,7 @@ module.exports = {
   PVC_AUTORESIZER_PL: 'PVC 自動調整器',
   PVC_AUTORESIZER_DESC: '當可用存儲量低於閾值時，PVC 自動調整器調整 PersistentVolumeClaims (PVCs) 。',
   PVC_AUTORESIZER_SETTINGS: '自動調整器設定',
-  MAX_SIZE: '最大尺寸',
+  MAX_SIZE: '容量上限',
   THRESHOLD_DESC: '當儲存卷的可用空間量低於閾值時，存儲會增加。',
   INCREASE: '增加',
   INCREASE_DESC: '增加值計算為當前存儲值乘以百分比值（如果以百分比形式給出）。',
