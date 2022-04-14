@@ -38,8 +38,6 @@ module.exports = {
   // Banner > Add Log Receiver > Fluentd
   LOG_COLLECTION_FLUENTD_URL_TIPS: 'Kayıtları alan Fluentd hizmetinin adresini girin.',
   // Container Logs
-  LOG_COLLECTING: 'Derlemeler',
-  LOG_DISABLED: 'Devre Dışı',
   EMPTY_LOG_COLLECTIONS: 'Günlük alıcısı bulunamadı. Günlük alıcıları ekleyebilir ve günlükleri harici günlük alıcılarına gönderebilirsiniz.',
   // Resource Events
   RESOURCE_EVENTS: 'Özkaynak sınırları',
