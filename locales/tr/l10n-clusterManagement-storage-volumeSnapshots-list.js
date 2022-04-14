@@ -19,7 +19,6 @@ module.exports = {
   // Banner
   VOLUME_SNAPSHOT_DESC: 'Birim anlık görüntüsü, bir birimin belirli bir zaman noktasındaki kopyasıdır. Anlık görüntü tarafından önceden doldurulmuş verilerle yeni bir birim sağlamak veya bir birimi anlık görüntü tarafından yakalanan önceki durumuna geri yüklemek için kullanılabilir.',
   VOLUME_SNAPSHOT_PL: 'Birim Anlık Görüntüsü',
-  VOLUME_SNAPSHOT_CONTENT_PL: 'Birim Anlık Görüntü İçeriği',
   WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'What is a volume snapshot class ?',
   WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: 'A volume snapshot class defines the storage types used to create a volume snapshot.',
   WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: 'What is a volume snapshot content?',
