@@ -24,8 +24,8 @@ module.exports = {
   // Pods
   // Gateway
   GATEWAY: '網關資訊',
-  GATEWAY_NOT_ENABLED: '網關未設置',
+  GATEWAY_NOT_ENABLED: '網關未開啟',
   ENABLE_GATEWAY_TIP: '要使用網關，請在集群或項目中配置網關',
   // Quotas > Default Container Quotas
-  QUOTA_PL: 'Quotas'
+  QUOTA_PL: '配額'
 };
