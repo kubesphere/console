@@ -23,7 +23,7 @@ module.exports = {
   SERVICE_EMPTY_DESC: '請創建一個服務。',
   UNKNOWN: '未知',
   EXTERNAL_ACCESS: '外網訪問',
-  INTERNAL_ACCESS_PL: 'Internal Access',
+  INTERNAL_ACCESS_PL: '內網訪問',
   // List > Edit YAML
   // List > Edit Service
   UNKNOWN_SERVICE_TYPE: '未知服務類型',
