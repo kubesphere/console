@@ -21,7 +21,7 @@ module.exports = {
   // Banner
   VOLUME_DESC: 'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please go to the details page of a volume and create a volume snapshot',
+  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
   VOLUME_STATUS_BOUND: 'Bound',
   VOLUME_STATUS_LOST: 'Lost',
   VOLUME_STATUS_PENDING: 'Pending',
