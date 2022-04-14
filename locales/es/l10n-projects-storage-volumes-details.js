@@ -22,7 +22,6 @@ module.exports = {
   CLONE: 'Clone',
   // More > Create Snapshot
   CREATE_SNAPSHOT: 'Crear snapshot',
-  VOLUME_SNAPSHOT_CLASS: 'Tipo de instantánea',
   SNAPSHOT_EMPTY_TIP: 'Seleccione un tipo de instantánea.',
   // More > Expand
   EXPAND_VOLUME: 'Ampliar volumen',
