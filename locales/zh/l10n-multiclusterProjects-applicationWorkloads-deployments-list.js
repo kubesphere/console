@@ -95,7 +95,6 @@ module.exports = {
   ADD_ACTION: '添加动作',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: '添加环境变量',
-  USE_CONFIGMAP_OR_SECRET: '引用配置字典或保密字典',
   KEY_IN_RESOURCE: '资源中的键',
   LABEL_TYPE: '{label} <span style="{style}">（{type}）</span>',
   // List > Create > Pod Settings > Add Container > Container Security Context
