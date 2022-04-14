@@ -95,7 +95,6 @@ module.exports = {
   ADD_ACTION: 'Add Action',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: 'Agregar variable de entorno',
-  USE_CONFIGMAP_OR_SECRET: 'Use ConfigMap o Secret',
   KEY_IN_RESOURCE: 'Seleccionar clave',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
   // List > Create > Pod Settings > Add Container > Container Security Context
