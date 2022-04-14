@@ -31,7 +31,6 @@ module.exports = {
   IMAGE_ID: 'Resim Kimliği',
   IMAGE_PULL_POLICY: 'Resim Çekme Politikası',
   CONTAINER_DETAILS_PAGE_SCAP: 'Konteyner ayrıntıları sayfası.',
-  RESTARTS_TOTAL: 'Restarts (Total)',
   // Resource Status > Details > Container Details > Terminal
   LOADING: 'Yükleniyor...',
   RESOURCE_LIMITS: 'Özkaynak sınırları',
