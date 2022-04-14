@@ -37,14 +37,12 @@ module.exports = {
   // More > Edit Settings > Update Strategy
   EDIT_SETTINGS: 'Edit Settings',
   // More > Edit Settings > Containers
-  CUSTOMIZATION: 'Customization',
-  REFER_CONFIGMAPS: 'Refer ConfigMap',
-  REFER_SECRETS: 'Refer Secret',
-  BULK_QUOTA: 'Bulk quote',
-  BULK_REFERENCE_CONFIGURATION: 'Bulk reference configuration dictionary or confidential dictionary',
-  BULK_REFERENCE_CONFIGURATION_DES: 'Bulk reference configuration dictionaries or confidential dictionaries as needed, custom types cannot be added in bulk.',
-  CANCEL_SELECT_ALL: 'Uncheck all',
-  KEY_IN_CONFIGURATION: 'Keys in the configuration',
+  FROM_CONFIGMAP: 'From configmap',
+  FROM_SECRET: 'From secret',
+  BATCH_REFERENCE: 'Batch Reference',
+  BATCH_REFERENCE_DESC: 'Reference multiple keys in a configmap or secret.',
+  DESELECT_ALL: 'Deselect all',
+  KEY_PL: 'Keys',
   // More > Edit Settings > Volumes
   // More > Edit Settings > Volumes > Mount Volume
   // More > Edit Settings > Volumes > Mount Configmap or Secret
