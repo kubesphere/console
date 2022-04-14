@@ -121,6 +121,6 @@ module.exports = {
   SORT_BY_NODE_DISK_INODE_UTILISATION: '按 Inode 使用率排行',
   SORT_BY_NODE_LOAD1: '按 CPU 平均負載排行',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: '按記憶體使用量排行',
-  POD_USAGE: 'Pod Usage',
+  POD_USAGE: '容器組用量',
   EXPORT: '匯出'
 };
