@@ -25,7 +25,7 @@ module.exports = {
   KUBESPHERE_VERSION: 'KubeSphere 版本',
   VISIBILITY_PARTIAL: '部分可見',
   VISIBILITY_PUBLIC: '公開',
-  CLUSTER_BASE_INFO_DESC: 'Basic information provides an overview of the cluster. You can view and edit cluster information.',
+  CLUSTER_BASE_INFO_DESC: '基本資訊是目前集群的資訊概覽，您可以查看和編輯集群的基本資訊。',
   // System Components
   // Resource Usage
   MEMORY: '記憶體',
@@ -33,7 +33,7 @@ module.exports = {
   USED: '已使用',
   // Tools
   KUBECTL_DESC: '目前集群客戶端命令行工具',
-  KUBECONFIG_DESC: '用於配置目前集群訪問資訊的文件',
+  KUBECONFIG_DESC: '配置文件，用於配置目前集群的訪問資訊。',
   // Kubernetes Status
   KUBERNETES_STATUS: 'Kubernetes 組件狀態',
   API_REQUESTS_PER_SECOND: '每秒 API 請求數',
