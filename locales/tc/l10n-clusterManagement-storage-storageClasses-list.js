@@ -17,11 +17,11 @@
  */
 module.exports = {
   // Banner
-  STORAGE_CLASS_PL: 'Storage Classes',
+  STORAGE_CLASS_PL: '存儲類型',
   STORAGE_CLASS_DESC: '存儲類型（StorageClass）支持動態卷供應，使管理員能夠按需創建新的存儲卷。',
   // List
-  STORAGE_CLASS_EMPTY_DESC: 'Please create a storage class.',
-  DEFAULT_STORAGE_CLASS: 'Default Storage Class',
+  STORAGE_CLASS_EMPTY_DESC: '請創建一個存儲類型',
+  DEFAULT_STORAGE_CLASS: '預設存儲類型',
   ALLOW_VOLUME_SNAPSHOT: '允許存儲卷快照',
   ALLOW_VOLUME_CLONE: '允許存儲卷克隆',
   ALLOW_VOLUME_EXPANSION: '允許存儲卷擴容',
@@ -29,14 +29,14 @@ module.exports = {
   // List > Create > Basic Information
   // List > Create > Storage System
   CHOOSE_STORAGE_SYSTEM_TIP: '選擇您需要儲存系統',
-  PROVISIONER_DEPENDENCE_DESC: 'You need to deploy a plugin in your storage system before it provides services.',
-  QINGCLOUD_CSI_DESC: 'Use QingCloud CSI as the underlying storage plugin. <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">Learn More</a>',
-  CUSTOM: 'Custom',
+  PROVISIONER_DEPENDENCE_DESC: '您需要先在儲存系統中部署相關插件才能提供服務。',
+  QINGCLOUD_CSI_DESC: '使用 QingCloud CSI 作為底層儲存插件。<a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md">了解更多</a>',
+  CUSTOM: '自定義',
   // List > Create > > QingCloud CSI > Storage Class Settings
   VOLUME_EXPANSION: '儲存卷擴容',
   RECLAIM_POLICY: '回收機制',
   ACCESS_MODE: '支持的訪問模式',
-  ACCESS_MODES_DESC: 'Select one or more access modes supported by the storage class.',
+  ACCESS_MODES_DESC: '選擇儲存類型支持的一種或多種訪問模式。',
   STORAGE_SYSTEM: '儲存系統',
   VOLUME_BINDING_MODE: 'Volume Binding Mode',
   IMMEDIATE_BINDING: 'Immediate binding',
