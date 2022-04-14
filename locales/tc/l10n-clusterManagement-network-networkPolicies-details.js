@@ -22,7 +22,7 @@ module.exports = {
   // Egress Traffic
   EGRESS_TRAFFIC: '流量出口',
   DESTINATION: '目的地',
-  LABEL: 'Label',
+  LABEL: '標籤',
   // Ingress Traffic
   INGRESS_TRAFFIC: '流量入口'
 };
