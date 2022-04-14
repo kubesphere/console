@@ -21,7 +21,7 @@ module.exports = {
   // Banner
   VOLUME_DESC: 'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
+  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
   VOLUME_STATUS_BOUND: 'Enlazado',
   VOLUME_STATUS_LOST: 'Perdido',
   VOLUME_STATUS_PENDING: 'Pendiente',
