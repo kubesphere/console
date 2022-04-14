@@ -18,10 +18,10 @@
 module.exports = {
   // Banner
   APPLICATION_RESOURCE_PL: '應用資源監控',
-  MONITORING_APPLICATION_DESC: 'Application resources provide the monitoring data of application resource usage and usage ranking.',
+  MONITORING_APPLICATION_DESC: '應用資源提供應用資源用量的監控數據以及用量排行情況。',
   // Resource Usage > Cluster Resource Usage
   CUSTOM_TIME_RANGE: '自定義時間範圍',
-  ACCOUNTS: 'Accounts',
+  ACCOUNTS: '帳戶',
   DEVOPS_PROJECT_PL: 'DevOps Projects',
   SAMPLING_INTERVAL: 'Sampling Interval',
   KUBE_SUN: '日',
