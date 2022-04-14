@@ -22,7 +22,6 @@ module.exports = {
   CLONE: 'Clone',
   // More > Create Snapshot
   CREATE_SNAPSHOT: 'Create Snapshot',
-  VOLUME_SNAPSHOT_CLASS: 'Volume Snapshot Class',
   SNAPSHOT_EMPTY_TIP: 'Please select a volume snapshot class.',
   // More > Expand
   EXPAND_VOLUME: 'Expand Volume',
