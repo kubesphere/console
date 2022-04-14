@@ -37,5 +37,5 @@ module.exports = {
   SEARCH_BY_STATUS_CODE: 'Search by Status Code',
   SEARCH_BY_OPERATOR: 'Search by Operator',
   SEARCH_BY_SOURCE_IP_ADDRESS: 'Search by Source IP Address',
-  SETTING_AUDIT_DESC: 'If K8s audit log collection is not enabled, go to <a href="{link}" target="_blank">ks-installer</a> to enable it.'
+  ENABLE_AUDIT_LOG_COLLECTION_DESC: 'You need to enable audit log collection if it is disabled. <a href="{link}" target="_blank">Learn More</a>'
 };
