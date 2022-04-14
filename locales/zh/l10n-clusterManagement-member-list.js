@@ -16,6 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  CLUSTER_MEMBER_PL: '集群成员',
-  CLUSTER_MEMBERS: '集群成员'
+  CLUSTER_MEMBER_PL: 'Cluster Members',
+  CLUSTER_MEMBER: 'Cluster Member'
 };
