@@ -28,6 +28,7 @@ module.exports = {
   // List
   WORKSPACE: 'Çalışma alanları',
   CLUSTER_VISIBILITY_SCAP: 'Küme Görünürlüğü',
+  AUTHORIZATION_TIME_TCAP: 'Authorization Time',
   // List > Edit Visibility
   EDIT_VISIBILITY: 'Görünürlüğü düzenle',
   AUTHORIZED: 'Yetki',
