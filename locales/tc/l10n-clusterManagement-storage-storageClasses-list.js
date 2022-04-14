@@ -82,14 +82,14 @@ module.exports = {
   CEPHRBD_USER_SECRET_NAME_DESC: 'userid 的密鑰名稱',
   CEPHRBD_USER_SECRET_NAMESPACE_DESC: 'userSecret 所在的項目',
   CEPHRBD_FS_TYPE_DESC: '儲存卷的文件系統類型。',
-  CEPHRBD_IMAGE_FORMAT_DESC: 'Option of the Ceph volume. The value can be "1" or "2". imageFeatures needs to be filled when you set imageFormat to "2".',
-  CEPHRBD_IMAGE_FEATURES_DESC: 'Additional function of the Ceph cluster. The value should only be set when you set imageFormat to "2".',
-  CEPH_MONITOR_IP: 'IP address and port number',
+  CEPHRBD_IMAGE_FORMAT_DESC: 'Ceph 卷的選項。該值可為“1”或“2”，選擇“2”後需要填寫 imageFeatures。',
+  CEPHRBD_IMAGE_FEATURES_DESC: 'Ceph 集群的額外功能。僅目前設置 imageFormat 為“2”時，才需要填謝該值。',
+  CEPH_MONITOR_IP: 'IP 位址:連接埠號碼',
   // List > Create > > Custom > Storage Class Settings
   STORAGE_CLASS_SETTINGS: '儲存類型設置',
-  PARAMETERS: 'Parameters',
+  PARAMETERS: '參數',
   // List > Edit Information
   // List > Delete
   STORAGE_CLASS: '儲存類型',
-  STORAGE_CLASS_LOW: 'storage class'
+  STORAGE_CLASS_LOW: '儲存類型'
 };
