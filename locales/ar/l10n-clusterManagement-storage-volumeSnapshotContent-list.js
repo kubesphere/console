@@ -17,11 +17,11 @@
  */
 module.exports = {
   // List > Delete
-  VOLUME_SNAPSHOT_CONTENT: 'Volume snapshot content',
-  VOLUME_SNAPSHOT_CONTENT_LOW: 'Volume snapshot content',
-  READY_PL: 'ready',
-  UNREADY_PL: 'unready',
-  DELETION_POLICY: 'Deletion Policy',
-  // List > Detail page
-  SNAPSHOT_HANDLE: 'SnapshotHandle'
+  VOLUME_SNAPSHOT_CONTENT: 'Volume Snapshot Content',
+  VOLUME_SNAPSHOT_CONTENT_PL: 'Volume Snapshot Contents',
+  VOLUME_SNAPSHOT_CONTENT_LOW: 'volume snapshot content',
+  VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: 'Please create a volume snapshot.',
+  READY: 'Ready',
+  NOT_READY: 'Not ready',
+  DELETION_POLICY: 'Deletion Policy'
 };
