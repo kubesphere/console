@@ -38,8 +38,6 @@ module.exports = {
   // Banner > Add Log Receiver > Fluentd
   LOG_COLLECTION_FLUENTD_URL_TIPS: '输入接收日志的 Fluentd 服务的地址。',
   // Container Logs
-  LOG_COLLECTING: '收集中',
-  LOG_DISABLED: '关闭',
   EMPTY_LOG_COLLECTIONS: '未发现日志接收器。您可以添加日志接收器将日志发送到外部日志接收器中。',
   // Resource Events
   RESOURCE_EVENTS: '资源事件',
