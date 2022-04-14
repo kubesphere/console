@@ -42,8 +42,8 @@ module.exports = {
   PVC_AUTORESIZER_SETTINGS: '自動調整器設定',
   MAX_SIZE: '最大尺寸',
   THRESHOLD_DESC: '當儲存卷的可用空間量低於閾值時，存儲會增加。',
-  INCREASE: 'Increase',
-  INCREASE_DESC: 'The increase value is calculated as the current storage value multiplied by the percentage value, if given as a percentage.',
+  INCREASE: '增加',
+  INCREASE_DESC: '增加值計算為當前存儲值乘以百分比值（如果以百分比形式給出）。',
   AUTOMATIC_RESTART_WORKLOAD: 'Automatic restart workload',
   AUTOMATIC_RESTART_WORKLOAD_DESC: 'The restarter judges the workload that needs to be restarted automatically by checking the status of pvc.',
   AUTOMATIC_RESTART_WORKLOAD_TIP: 'If the automatic restart time of the PVC exceeds the maximum time, the corresponding workload will be annotated with "restart.kubesphere.io/skip". To enable the automatic restart function for the PVC again, delete the above annotation.',
@@ -51,5 +51,5 @@ module.exports = {
   STORAGE_LIMIT: 'Storage Limit',
   // More > Delete
   // Volumes
-  VOLUME_COUNT: 'Volumes'
+  VOLUME_COUNT: '儲存卷數量'
 };
