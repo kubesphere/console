@@ -95,7 +95,6 @@ module.exports = {
   ADD_ACTION: 'Eylem Ekle',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: 'Ortam Değişkenleri Ekle',
-  USE_CONFIGMAP_OR_SECRET: 'Configmap veya Secret kullanın',
   KEY_IN_RESOURCE: 'Kaynakta anahtar',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
   // List > Create > Pod Settings > Add Container > Container Security Context
