@@ -69,8 +69,8 @@ module.exports = {
   // List > Create > Rule Settings > Custom Rule
   CUSTOM_RULE: '自定義規則',
   RULE_EXPRESSION: '告警規則表達式',
-  ENTER_RULE_EXPRESSION: 'Please enter a rule expression.',
-  ALERT_RULE_EXPRESSION_DESC: 'You can define a custom rule using PromQL statements. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Learn More</a>',
+  ENTER_RULE_EXPRESSION: '請輸入告警規則表達式。',
+  ALERT_RULE_EXPRESSION_DESC: '您可以通過 PromQL 語句來自定義告警規則。<a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">了解更多</a>',
   // List > Create > Message Settings
   MESSAGE_SETTINGS: 'Message Settings',
   NOTIFICATION_SUMMARY: 'Summary',
