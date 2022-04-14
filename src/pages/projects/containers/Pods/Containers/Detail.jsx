@@ -168,7 +168,7 @@ export default class ContainerDetail extends React.Component {
         value: imagePullPolicy,
       },
       {
-        name: t('RESTARTS_TOTAL'),
+        name: t('RESTART_PL'),
         value: detail.restartCount,
       },
     ]

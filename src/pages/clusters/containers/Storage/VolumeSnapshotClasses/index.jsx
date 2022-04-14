@@ -12,7 +12,7 @@ import VolumeSnapshotClassesStore from 'stores/volumeSnapshotClasses'
   store: new VolumeSnapshotClassesStore(),
   module: 'volumesnapshotclasses',
   authKey: 'volumes',
-  name: 'VOLUME_SNAPSHOT_CLASSES',
+  name: 'VOLUME_SNAPSHOT_CLASS',
   rowKey: 'uid',
 })
 export default class VolumeSnapshotClasses extends React.Component {
@@ -23,7 +23,7 @@ export default class VolumeSnapshotClasses extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_TCAP'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: async item => {
@@ -87,7 +87,7 @@ export default class VolumeSnapshotClasses extends React.Component {
         ),
       },
       {
-        title: t('VOLUME_SNAPSHOT'),
+        title: t('VOLUME_SNAPSHOT_PL'),
         dataIndex: 'count',
         isHideable: true,
         width: '17.6%',
@@ -117,7 +117,7 @@ export default class VolumeSnapshotClasses extends React.Component {
 
   showCreate = () => {
     this.props.trigger('snapshotClasses.create', {
-      name: 'Snapshot Classes',
+      name: 'VOLUME_SNAPSHOT_CLASS',
       module: 'volumesnapshotclass',
       cluster: this.props.match.params.cluster,
       success: this.props.routing.query,

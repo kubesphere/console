@@ -118,8 +118,8 @@ export const VOLUME_SNAPSHOT_STATUS = [
 ]
 
 export const VOLUME_SNAPSHOT_CLASS_STATUS = [
-  { text: 'READY_PL', value: 'true' },
-  { text: 'UNREADY_PL', value: 'false' },
+  { text: 'READY', value: 'true' },
+  { text: 'NOT_READY', value: 'false' },
 ]
 
 export const INGRESS_ANNOTATIONS = [

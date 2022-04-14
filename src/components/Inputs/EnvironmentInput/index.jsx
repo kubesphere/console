@@ -185,7 +185,7 @@ export default class EnvironmentInput extends React.Component {
         extraAdd={
           <>
             <span className={styles.desc}>
-              {t.html('DESC_CREATE_CONFIGMAP_SECRET')}
+              {t.html('CREATE_CONFIGMAP_SECRET_DESC')}
               <a onClick={this.handleCreateConfig}>{t('CREATE_CONFIG')}</a>
               {t('or')}
               <a onClick={this.handleCreateSecrets}>{t('CREATE_SECRET')}</a>
@@ -194,7 +194,7 @@ export default class EnvironmentInput extends React.Component {
               className={styles.extraBtn}
               dataTest="add-env-configmap"
               onOK={this.handleBulkQuote}
-              text={t('BULK_QUOTA')}
+              text={t('BATCH_REFERENCE')}
               modalWidth={520}
               modalHeight={492}
             >

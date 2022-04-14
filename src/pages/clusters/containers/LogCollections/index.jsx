@@ -201,7 +201,7 @@ export default class LogCollection extends React.Component {
             description={`${t('LOG_ADDRESS')}${address}`}
           />
           <Text
-            title={collection.enabled ? t('LOG_COLLECTING') : t('LOG_DISABLED')}
+            title={collection.enabled ? t('ENABLED') : t('DISABLED')}
             description={t('STATUS')}
           />
           <Text

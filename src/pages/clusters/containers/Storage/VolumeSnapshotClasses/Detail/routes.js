@@ -23,7 +23,7 @@ import VolumeSnapshot from './VolumeSnapshot'
 export default PATH => [
   {
     path: `${PATH}/volume-snapshot`,
-    title: 'VOLUME_SNAPSHOT',
+    title: 'VOLUME_SNAPSHOT_PL',
     exact: true,
     component: VolumeSnapshot,
   },

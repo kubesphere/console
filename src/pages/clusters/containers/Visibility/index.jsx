@@ -99,7 +99,7 @@ export default class Overview extends React.Component {
         dataIndex: 'manager',
       },
       {
-        title: t('CREATION_TIME_TCAP'),
+        title: t('AUTHORIZATION_TIME_TCAP'),
         dataIndex: 'createTime',
         width: '20%',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),

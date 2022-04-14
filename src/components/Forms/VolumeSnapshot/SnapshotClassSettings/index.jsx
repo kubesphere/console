@@ -49,9 +49,14 @@ export default class SnapshotClassSettings extends React.Component {
           <Columns>
             <Column>
               <Form.Item
-                label={t('DRIVER')}
-                desc={t('DRIVER_DESC')}
-                rules={[{ required: true, message: t('DRIVER_EMPTY_DESC') }]}
+                label={t('PROVISIONER')}
+                desc={t('SNAPSHOT_CLASS_PROVISIONER_DESC')}
+                rules={[
+                  {
+                    required: true,
+                    message: t('SNAPSHOT_CLASS_PROVISIONER_EMPTY_DESC'),
+                  },
+                ]}
               >
                 <Input name="driver" autoFocus={true} />
               </Form.Item>

@@ -44,7 +44,7 @@ export default class VolumeDetail extends React.Component {
   }
 
   get name() {
-    return 'VOLUME_SNAPSHOT_CLASSES'
+    return 'VOLUME_SNAPSHOT_CLASS'
   }
 
   get module() {
@@ -109,7 +109,7 @@ export default class VolumeDetail extends React.Component {
         action: 'delete',
         onClick: () =>
           this.trigger('resource.delete', {
-            title: `${t('DELETE')}${t('VOLUME_SNAPSHOT_CLASSES_PL')}`,
+            title: t('DETELE_VOLUME_SNAPSHOT_CLASS'),
             type: this.name,
             detail,
             success: this.returnTolist,
@@ -161,7 +161,7 @@ export default class VolumeDetail extends React.Component {
       icon: 'storage',
       breadcrumbs: [
         {
-          label: t('VOLUME_SNAPSHOT_CLASSES_PL'),
+          label: t('VOLUME_SNAPSHOT_CLASS_PL'),
           url: this.listUrl,
         },
       ],
