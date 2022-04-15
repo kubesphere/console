@@ -292,6 +292,7 @@ export default {
         formTemplate,
         steps,
         modal: CreateModal,
+        cluster,
         ...props,
       })
     },
