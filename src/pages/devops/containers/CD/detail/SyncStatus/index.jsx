@@ -38,6 +38,23 @@ class SyncStatus extends React.Component {
     loading: PropTypes.bool,
   }
 
+  refreshTimer = setInterval(() => this.getDetail(), 4000)
+
+  getDetail = () => {
+    const { params } = this.props.match
+    this.props.detailStore.fetchDetail({
+      name: params.cd,
+      devops: params.devops,
+    })
+  }
+
+  componentWillUnmount() {
+    if (this.refreshTimer) {
+      clearInterval(this.refreshTimer)
+      this.refreshTimer = null
+    }
+  }
+
   get detail() {
     return toJS(this.props.detailStore.detail)
   }
