@@ -45,7 +45,7 @@ npm run serve
 ```
 > If you have trouble downloading the dependencies, try the following
 >
-> `yarn config set registry https://registry.npm.taobao.org`
+> `yarn config set registry https://registry.npmmirror.com`
 
 
 After `npm run serve`, you should see the output like the following
