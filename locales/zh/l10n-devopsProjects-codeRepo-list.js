@@ -16,11 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  CODE_REPO_PL: 'Code Repositories',
-  CODE_REPO_LOW: 'code cepository',
-  CODE_REPO: 'Code Repository',
-  CODE_REPO_DESC: 'Manage code repositories based on Git.',
-  CODE_REPO_EMPTY_DESC: 'Import a code repository from GitHub, GitLab, or Bitbucket. You can also use Git to directly pull source code.',
-  IMPORT_CODE_REPO: 'Import Code Repository',
-  EDIT_CODE_REPO: 'Edit Code Repository'
+  CODE_REPO_PL: '代码仓库',
+  CODE_REPO_LOW: '代码仓库',
+  CODE_REPO: '代码仓库',
+  CODE_REPO_DESC: '基于 Git 管理代码仓库.',
+  CODE_REPO_EMPTY_DESC: '从 GitHub 、 GitLab 或 Bitbucket 导入代码仓库。您也可以使用 Git 直接拉取源代码。',
+  IMPORT_CODE_REPO: '导入代码仓库',
+  EDIT_CODE_REPO: '编辑代码仓库'
 };
