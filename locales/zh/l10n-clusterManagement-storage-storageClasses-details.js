@@ -49,6 +49,8 @@ module.exports = {
   MAX_SIZE: '最大容量',
   THRESHOLD_DESC: '当存储卷的自由空间量低于阈值时，存储量会增加。',
   INCREASE: '增量',
+  INCREMENT_DESC:
+    '请根据StorageClass-CSI的扩容步长设置增量，否则可能出现错误。',
   INCREASE_DESC:
     '增加值的计算方法是当前存储值乘以百分比值，如果以百分比形式给出的话。',
   AUTOMATIC_RESTART_WORKLOAD: '自动重启工作负载',
