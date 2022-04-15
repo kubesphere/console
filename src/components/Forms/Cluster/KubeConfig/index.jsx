@@ -24,6 +24,7 @@ import ClusterTitle from 'components/Clusters/ClusterTitle'
 import { Text, Modal } from 'components/Base'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
+import { isEmpty } from 'lodash'
 import styles from './index.scss'
 
 @observer
@@ -44,9 +45,29 @@ export default class KubeConfigModal extends React.Component {
 
   formRef = React.createRef()
 
+  configValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    if (isEmpty(value)) {
+      return callback({
+        message: t('INPUT_KUBECONFIG'),
+        field: rule.field,
+      })
+    }
+
+    callback()
+  }
+
   handleSubmit = () => {
-    const { formTemplate, onOk } = this.props
-    onOk(formTemplate)
+    const form = this.formRef.current
+
+    form &&
+      form.validate(() => {
+        const { formTemplate, onOk } = this.props
+        onOk(formTemplate)
+      })
   }
 
   render() {
@@ -76,7 +97,7 @@ export default class KubeConfigModal extends React.Component {
             <Text title={detail.provider} description={t('PROVIDER')} />
           </Column>
         </Columns>
-        <Form data={formTemplate} formRef={this.formRef}>
+        <Form data={formTemplate} ref={this.formRef}>
           <div className={styles.editor}>
             <div className={styles.editorTitle}>
               <Icon name="kubernetes" size={20} />
@@ -91,7 +112,10 @@ export default class KubeConfigModal extends React.Component {
               </a>
             </div>
             <Form.Item
-              rules={[{ required: true, message: t('INPUT_KUBECONFIG') }]}
+              rules={[
+                { required: true, message: t('INPUT_KUBECONFIG') },
+                { validator: this.configValidator },
+              ]}
               unControl
             >
               <EditMode mode="yaml" name="kubeconfig" />

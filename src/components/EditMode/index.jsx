@@ -91,6 +91,7 @@ export default class EditMode extends React.Component {
       if (!isEmpty(e.target.result)) {
         this.value = e.target.result
         this.forceUpdate()
+        this.props.onChange && this.props.onChange(this.value)
       }
     }
     reader.readAsText(file[0])
