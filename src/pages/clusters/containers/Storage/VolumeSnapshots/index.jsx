@@ -47,7 +47,7 @@ export default class VolumesSnapshots extends React.Component {
       className: 'margin-b12',
       description: t('VOLUME_SNAPSHOT_DESC'),
       module: 'VOLUME_SNAPSHOT',
-      title: t('VOLUME_SNAPSHOT'),
+      title: t('VOLUME_SNAPSHOT_PL'),
     }
   }
 

@@ -73,7 +73,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
 
   get increaseOptions() {
     return [
-      { label: 'Gi', value: 'Gi' },
+      { label: 'GiB', value: 'Gi' },
       { label: '%', value: '%' },
     ]
   }
@@ -185,9 +185,12 @@ export default class StorageClassAutoResizerModal extends React.Component {
     const { fakeMaxTime } = this.state
     return (
       <>
-        <Alert type="warning" message={t('AUTOMATIC_RESTART_WORKLOAD_TIP')} />
+        <Alert
+          type="warning"
+          message={t('RESTART_WORKLOAD_AUTOMATICALLY_TIP')}
+        />
         <div className={styles.settings}>
-          <Form.Item label={`${t('timeout')}(s):`}>
+          <Form.Item label={t('TIMEOUT_PERIOD_S')}>
             <NumberInput
               onChange={this.handleMaxTime}
               value={fakeMaxTime}
@@ -226,7 +229,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
         onOk={this.handleOk}
         onCancel={onCancel}
         visible={visible}
-        title={t('PVC_AUTORESIZER_SETTINGS')}
+        title={t('SET_AUTO_EXPANSION')}
         okText={t('OK')}
         cancelText={t('CANCEL')}
         isSubmitting={isSubmitting}
@@ -242,22 +245,22 @@ export default class StorageClassAutoResizerModal extends React.Component {
                     style={{ width: '32px', marginRight: '16px' }}
                   />
                 )}
-                title={t('PVC_AUTORESIZER_PL')}
-                description={t('PVC_AUTORESIZER_DESC')}
+                title={t('AUTO_EXPANSION')}
+                description={t('AUTO_EXPANSION_DESC')}
               />
               <Switch
                 className={styles.switch}
-                text={enabled ? t('ENABLE') : t('DISABLE')}
+                text={enabled ? t('ENABLED') : t('DISABLED')}
                 checked={enabled}
                 onChange={this.enable}
               />
             </div>
           </Form.Item>
           <div className={styles.settings}>
-            <div className={styles.title}>{t('PVC_AUTORESIZER_SETTINGS')}</div>
+            <div className={styles.title}>{t('AUTO_EXPANSION_SETTINGS')}</div>
             <div className={styles.container}>
               <div className={styles.limit}>
-                <Form.Item label={`${t('MAX_SIZE')}:`}>
+                <Form.Item label={t('MAXIMUM_SIZE')}>
                   <Slider
                     size={storageLimit}
                     max={sliderSettings.max}
@@ -282,7 +285,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
                 <Column>
                   <Form.Item>
                     <TailItemInput
-                      title={t('INCREASE')}
+                      title={t('INCREMENT')}
                       options={this.increaseOptions}
                       value={increase}
                       unit={this.increaseUnit}
@@ -301,10 +304,10 @@ export default class StorageClassAutoResizerModal extends React.Component {
                   ></Checkbox>
                   <div className={styles.text}>
                     <span className={styles.title}>
-                      {t('AUTOMATIC_RESTART_WORKLOAD')}
+                      {t('RESTART_WORKLOAD_AUTOMATICALLY')}
                     </span>
                     <span className={styles.des}>
-                      {t('AUTOMATIC_RESTART_WORKLOAD_DESC')}
+                      {t('RESTART_WORKLOAD_AUTOMATICALLY_DESC')}
                     </span>
                   </div>
                 </div>

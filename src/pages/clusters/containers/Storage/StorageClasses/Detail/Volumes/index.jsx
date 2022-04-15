@@ -180,8 +180,8 @@ export default class Volumes extends React.Component {
               className={styles.icon}
             ></img>
             <div>
-              <span className={styles.title}>{t('PVC_AUTORESIZER_PL')}</span>
-              <span className={styles.des}>{t('PVC_AUTORESIZER_DESC')}</span>
+              <span className={styles.title}>{t('SET_AUTO_EXPANSION')}</span>
+              <span className={styles.des}>{t('SET_AUTO_EXPANSION_DESC')}</span>
             </div>
           </div>
           <div className={styles.bottom}>

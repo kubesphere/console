@@ -157,7 +157,7 @@ export default class StorageClassDetail extends React.Component {
             />
           </>
         ),
-        text: t('STORAGECLASS_ACCESSOR'),
+        text: t('SET_AUTHORIZATION_RULES'),
         action: 'edit',
         show: supportAccessor,
         onClick: () =>
@@ -171,7 +171,7 @@ export default class StorageClassDetail extends React.Component {
       {
         key: 'funcManage',
         icon: 'slider',
-        text: t('VOLUME_MANAGEMENT'),
+        text: t('SET_VOLUME_PERMISSIONS'),
         action: 'edit',
         onClick: () =>
           this.trigger('storageclass.volume.function.update', {
@@ -190,7 +190,7 @@ export default class StorageClassDetail extends React.Component {
             />
           </>
         ),
-        text: t('PVC_AUTORESIZER_PL'),
+        text: t('SET_AUTO_EXPANSION'),
         action: 'edit',
         onClick: () =>
           this.trigger('storageclass.pvc.autoresizer', {

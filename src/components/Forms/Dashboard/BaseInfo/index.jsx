@@ -115,7 +115,7 @@ export default class BaseInfo extends React.Component {
         <Form.Item
           label={
             <div className={styles.templateLabel}>
-              <h3>{t('MONITORING_TEMPLATE')}</h3>
+              <h3>{t('TEMPLATE')}</h3>
               <p>{t('CUSTOM_MONITORING_TEMPLATE_DESC')}</p>
             </div>
           }
