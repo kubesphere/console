@@ -502,8 +502,18 @@ client:
     - cate: ""
       items:
         - { name: pipelines, title: PIPELINE_PL, icon: application }
-        - { name: cd, title: CONTINUOUS_DEPLOYMENT_PL, icon: rocket }
-        - { name: code-repo, title: CODE_REPO_PL, icon: code }
+        - {
+            name: cd,
+            title: CONTINUOUS_DEPLOYMENT_PL,
+            icon: rocket,
+            authKey: "applications",
+          }
+        - {
+            name: code-repo,
+            title: CODE_REPO_PL,
+            icon: code,
+            authKey: "gitrepositories",
+          }
         - name: management
           title: DEVOPS_PROJECT_SETTINGS
           icon: cogwheel

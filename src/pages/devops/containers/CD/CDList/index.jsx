@@ -39,7 +39,7 @@ import styles from './index.scss'
   module: 'cds',
   name: 'CONTINUOUS_DEPLOYMENT',
   rowKey: 'name',
-  authKey: 'pipelines',
+  authKey: 'applications',
 })
 export default class CDList extends React.Component {
   clusterStore = new ClusterStore()
@@ -51,7 +51,7 @@ export default class CDList extends React.Component {
 
   get enabledActions() {
     return globals.app.getActions({
-      module: 'pipelines',
+      module: 'applications',
       cluster: this.props.match.params.cluster,
       devops: this.devops,
     })

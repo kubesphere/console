@@ -92,6 +92,14 @@ export const ROLE_MODULES = {
       icon: 'application',
     },
     {
+      name: 'Continuous Deployments Management',
+      icon: 'rocket',
+    },
+    {
+      name: 'Code Repositories Management',
+      icon: 'code',
+    },
+    {
       name: 'Credentials Management',
       icon: 'key',
     },
