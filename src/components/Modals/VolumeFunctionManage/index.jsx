@@ -76,8 +76,8 @@ export default class SetDefaultStorageClassModal extends React.Component {
   get Items() {
     return [
       {
-        title: t('VOLUME_CLONE'),
-        des: t('ALLOW_VOLUME_CLONE_DESC'),
+        title: t('VOLUME_CLONING'),
+        des: t('VOLUME_CLONING_DESC'),
         key: 'allowClone',
         onclick: checked =>
           this.setState({
@@ -85,14 +85,14 @@ export default class SetDefaultStorageClassModal extends React.Component {
           }),
       },
       {
-        title: t('VOLUME_SNAPSHOT'),
-        des: t('ALLOW_VOLUME_SNAPSHOT_DESC'),
+        title: t('VOLUME_SNAPSHOT_CREATION'),
+        des: t('VOLUME_SNAPSHOT_CREATION_DESC'),
         key: 'allowSnapshot',
         onclick: checked => this.setState({ allowSnapshot: !checked }),
       },
       {
         title: t('VOLUME_EXPANSION'),
-        des: t('ALLOW_VOLUME_EXPANSION_DESC'),
+        des: t('VOLUME_EXPANSION_DESC'),
         key: 'allowVolumeExpansion',
         onclick: checked =>
           this.setState({
@@ -110,7 +110,7 @@ export default class SetDefaultStorageClassModal extends React.Component {
         onOk={() => onOk(this.state)}
         onCancel={onCancel}
         visible={visible}
-        title={t('VOLUME_MANAGEMENT')}
+        title={t('SET_VOLUME_PERMISSIONS')}
         icon="slider"
         okText={t('OK')}
         cancelText={t('CANCEL')}
@@ -119,7 +119,7 @@ export default class SetDefaultStorageClassModal extends React.Component {
         <Alert
           type="warning"
           className="margin-b12"
-          message={t.html('VOLUME_FUNCTION_MANAGEMENT_TIP')}
+          message={t.html('SET_VOLUME_PERMISSIONS_TIP')}
         />
         <div className={styles.body}>
           {this.Items.map(item => {

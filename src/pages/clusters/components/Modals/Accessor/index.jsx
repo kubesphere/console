@@ -95,11 +95,11 @@ export default class AccessorModal extends Component {
   get operatorOptions() {
     return [
       {
-        label: 'In',
+        label: t('OPERATOR_IN'),
         value: 'In',
       },
       {
-        label: 'Not In',
+        label: t('OPERATOR_NOT_IN'),
         value: 'NotIn',
       },
     ]
@@ -200,7 +200,7 @@ export default class AccessorModal extends Component {
         onOk={this.handleOk}
         onCancel={onCancel}
         visible={visible}
-        title={t('STORAGECLASS_ACCESSOR_SETTING')}
+        title={t('SET_AUTHORIZATION_RULES')}
         okText={t('OK')}
         cancelText={t('CANCEL')}
         isSubmitting={isSubmitting}
@@ -214,12 +214,12 @@ export default class AccessorModal extends Component {
                 style={{ width: '40px', marginRight: '16px' }}
               />
             )}
-            title={t('STORAGECLASS_ACCESSOR')}
-            description={t('STORAGECLASS_ACCESSOR_DES')}
+            title={t('AUTHORIZATION_RULES')}
+            description={t('AUTHORIZATION_RULES_DESC')}
           />
           <Switch
             className={styles.switch}
-            text={enabled ? t('ENABLE') : t('DISABLE')}
+            text={enabled ? t('ENABLED') : t('DISABLED')}
             checked={enabled}
             onChange={this.handleEnable}
           />
@@ -228,7 +228,7 @@ export default class AccessorModal extends Component {
           <div className={styles.line}>
             <Select
               className={styles.labelSelect}
-              options={[{ label: 'namespace', value: 'namespace' }]}
+              options={[{ label: t('PROJECT'), value: 'namespace' }]}
               defaultValue={'namespace'}
               disabled
             />
@@ -250,7 +250,7 @@ export default class AccessorModal extends Component {
           <div className={styles.line}>
             <Select
               className={styles.labelSelect}
-              options={[{ label: 'workspace', value: 'workspace' }]}
+              options={[{ label: t('WORKSPACE'), value: 'workspace' }]}
               defaultValue={'workspace'}
               disabled
             />
