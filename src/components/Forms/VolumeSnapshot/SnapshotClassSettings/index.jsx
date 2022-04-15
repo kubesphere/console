@@ -17,11 +17,17 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
-import { Column, Columns, Form, Input, Select } from '@kube-design/components'
+import { get, uniq } from 'lodash'
+import { Column, Columns, Form, Select } from '@kube-design/components'
 import { MODULE_KIND_MAP } from 'utils/constants'
+import StorageClass from 'stores/storageClass'
+import { toJS } from 'mobx'
+import { observer } from 'mobx-react'
 
+@observer
 export default class SnapshotClassSettings extends React.Component {
+  storageClass = new StorageClass()
+
   get formTemplate() {
     const { formTemplate, module } = this.props
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
@@ -38,6 +44,16 @@ export default class SnapshotClassSettings extends React.Component {
         value: 'Retain',
       },
     ]
+  }
+
+  get provisionerOption() {
+    const data = toJS(this.storageClass.list.data).map(item => item.provisioner)
+    return uniq(data).map(item => ({ label: item, value: item }))
+  }
+
+  componentDidMount() {
+    const { cluster } = this.props
+    this.storageClass.fetchList({ cluster, limit: -1 })
   }
 
   render() {
@@ -58,7 +74,7 @@ export default class SnapshotClassSettings extends React.Component {
                   },
                 ]}
               >
-                <Input name="driver" autoFocus={true} />
+                <Select name="driver" options={this.provisionerOption} />
               </Form.Item>
             </Column>
             <Column>
