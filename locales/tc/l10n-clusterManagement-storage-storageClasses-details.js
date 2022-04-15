@@ -44,6 +44,7 @@ module.exports = {
   AUTO_EXPANSION_SETTINGS: 'Auto Expansion Settings',
   MAXIMUM_SIZE: 'Maximum Size',
   INCREMENT: 'Size Increment',
+  INCREMENT_DESC: 'Please set the increment according to the expansion step size of StorageClass-csi, otherwise it may not work.',
   RESTART_WORKLOAD_AUTOMATICALLY: 'Restart workload automatically',
   RESTART_WORKLOAD_AUTOMATICALLY_DESC: 'The system automatically checks volume status to determine whether the workload needs to be restarted.',
   RESTART_WORKLOAD_AUTOMATICALLY_TIP: 'If the volume is not expanded successfully when the timeout period expires, the system will add the "restart.kubesphere.io/skip" annotation to the workload so that the workload is not restarted any more. To enable the automatic restart function for the workload again, you need to manually delete the annotation on the workload.',
