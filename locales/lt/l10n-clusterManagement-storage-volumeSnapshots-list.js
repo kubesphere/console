@@ -17,9 +17,10 @@
  */
 module.exports = {
   // Banner
-  VOLUME_SNAPSHOT_DESC: 'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
+  VOLUME_SNAPSHOT: 'Volume Snapshot',
   VOLUME_SNAPSHOT_PL: 'Volume Snapshots',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'What is a volume snapshot class ?',
+  VOLUME_SNAPSHOT_DESC: 'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'What is a volume snapshot class?',
   WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: 'A volume snapshot class defines the storage types used to create a volume snapshot.',
   WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: 'What is a volume snapshot content?',
   WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: 'A volume snapshot content is a resource that represents the content of a volume snapshot.',
