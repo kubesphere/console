@@ -106,7 +106,7 @@ export default class Destinations extends React.Component {
       )}
       {option.label}
       {option.isFedManaged && (
-        <Tooltip content={t('FEDPROJECT_CANNOT_DEPLOY_APP_TIP')}>
+        <Tooltip content={t('MULTI_CLUSTER_PROJECT_NOT_FOR_CD')}>
           <Icon className={styles.tip} name="question" />
         </Tooltip>
       )}
@@ -136,14 +136,14 @@ export default class Destinations extends React.Component {
       <ObjectInput value={value} onChange={this.handleChange}>
         <Select
           name="name"
-          placeholder={t('CLUSTER_PL')}
+          placeholder={t('CLUSTER')}
           options={this.clusters}
           onChange={this.handleClusterChange}
           prefixIcon={<Icon name="cluster" size={16} />}
         />
         <Select
           name="namespace"
-          placeholder={t('WORKSPACE_PL')}
+          placeholder={t('WORKSPACE')}
           options={this.namespaces}
           pagination={pick(this.projectStore.list, ['page', 'limit', 'total'])}
           isLoading={this.projectStore.list.isLoading}
