@@ -22,13 +22,28 @@ import CodeRepoForm from 'components/Modals/CodeRepoCreate'
 import FORM_TEMPLATES from 'utils/form.templates'
 import { cloneDeep, get, set } from 'lodash'
 
+const getRepoUrl = (repoType, repo) => {
+  switch (repoType) {
+    case 'github':
+      return `https://github.com/${repo.owner}/${repo.repo}`
+    case 'gitlab':
+      return `${repo.server_name}/${repo.repo}`
+    case 'bitbucket_server':
+      return `${repo.api_uri}/${repo.repo}`
+    default:
+      return repo.repo || repo.url || repo.remote
+  }
+}
+
 const handleFormData = ({ data, module, devops }) => {
   const postData = FORM_TEMPLATES[module]({ namespace: devops })
-  const repo = get(data, `sources.${data.sources.source_type}_source`)
+  const repoType = data.sources.source_type
+  const repo = get(data, `sources.${repoType}_source`)
   const repoName = repo.repo || repo.url || repo.remote
+  const repoURL = getRepoUrl(repoType, repo)
   const spec = {
     provider: data.sources.source_type,
-    url: repoName,
+    url: repoURL,
     secret: {
       name: repo.credential_id,
       namespace: devops,
