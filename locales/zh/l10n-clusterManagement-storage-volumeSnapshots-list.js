@@ -19,11 +19,11 @@ module.exports = {
   // Banner
   VOLUME_SNAPSHOT_DESC: '存储卷快照是存储卷在特定时间点的副本，可使用快照中的数据预配新存储卷，或者将存储卷恢复至快照捕捉到的先前状态。',
   VOLUME_SNAPSHOT_PL: '存储卷快照',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'What is a volume snapshot class ?',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: 'A volume snapshot class defines the storage types used to create a volume snapshot.',
-  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: 'What is a volume snapshot content?',
-  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: 'A volume snapshot content is a resource that represents the content of a volume snapshot.',
-  SELECT_A_VOLUME_DESC: 'Select a volume to create a snapshot.',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: '什么是存储快照类型？',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: '存储卷快照类型定义了用于创建存储卷快照的存储类型。',
+  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: '什么是存储卷快照内容？',
+  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: '存储卷快照内容是一种代表存储卷快照具体内容的资源。',
+  SELECT_A_VOLUME_DESC: '选择用于创建快照的存储卷。',
   SELECT_VOLUME_SNAPSHOT_CLASS_DESC: '选择快照类型以创建特定类型的快照。',
   // List
   VOLUME_SNAPSHOT_STATUS_CREATING: '创建中',
