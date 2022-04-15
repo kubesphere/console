@@ -17,9 +17,10 @@
  */
 module.exports = {
   // Banner
-  VOLUME_SNAPSHOT_DESC: '存储卷快照是存储卷在特定时间点的副本，可使用快照中的数据预配新存储卷，或者将存储卷恢复至快照捕捉到的先前状态。',
+  VOLUME_SNAPSHOT: 'Volume Snapshot',
   VOLUME_SNAPSHOT_PL: '存储卷快照',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: '什么是存储快照类型？',
+  VOLUME_SNAPSHOT_DESC: '存储卷快照是存储卷在特定时间点的副本，可使用快照中的数据预配新存储卷，或者将存储卷恢复至快照捕捉到的先前状态。',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'What is a volume snapshot class?',
   WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: '存储卷快照类型定义了用于创建存储卷快照的存储类型。',
   WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: '什么是存储卷快照内容？',
   WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: '存储卷快照内容是一种代表存储卷快照具体内容的资源。',
