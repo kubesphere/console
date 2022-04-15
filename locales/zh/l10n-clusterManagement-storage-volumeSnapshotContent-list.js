@@ -17,11 +17,11 @@
  */
 module.exports = {
   // List > Delete
-  VOLUME_SNAPSHOT_CONTENT: 'Volume Snapshot Content',
-  VOLUME_SNAPSHOT_CONTENT_PL: 'Volume Snapshot Contents',
-  VOLUME_SNAPSHOT_CONTENT_LOW: 'volume snapshot content',
-  VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: 'Please create a volume snapshot.',
-  READY: 'Ready',
-  NOT_READY: 'Not ready',
-  DELETION_POLICY: 'Deletion Policy'
+  VOLUME_SNAPSHOT_CONTENT: '存储卷快照内容',
+  VOLUME_SNAPSHOT_CONTENT_PL: '存储卷快照内容',
+  VOLUME_SNAPSHOT_CONTENT_LOW: '存储卷快照内容',
+  VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: '请创建一个存储卷快照。',
+  READY: '就绪',
+  NOT_READY: '未就绪',
+  DELETION_POLICY: '删除策略'
 };
