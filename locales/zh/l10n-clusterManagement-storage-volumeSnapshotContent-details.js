@@ -17,5 +17,5 @@
  */
 module.exports = {
   // Details
-  SNAPSHOT_HANDLE: 'Snapshot Handle'
+  SNAPSHOT_HANDLE: '快照句柄'
 };
