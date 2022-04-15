@@ -26,5 +26,5 @@ module.exports = {
   SNAPSHOT_CLASS_PROVISIONER_EMPTY_DESC: '请输入 CSI 插件的名称。',
   // List > Delete
   VOLUME_SNAPSHOT_CLASS_LOW: '存储卷快照类型',
-  DELETE_VOLUME_SNAPSHOT_CLASS: 'Delete Volume Snapshot Class'
+  DELETE_VOLUME_SNAPSHOT_CLASS: '删除存储卷快照类型'
 };
