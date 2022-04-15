@@ -39,12 +39,12 @@ module.exports = {
   // More > Edit Settings > Update Strategy
   EDIT_SETTINGS: '编辑设置',
   // More > Edit Settings > Containers
-  FROM_CONFIGMAP: 'From configmap',
-  FROM_SECRET: 'From secret',
-  BATCH_REFERENCE: 'Batch Reference',
-  BATCH_REFERENCE_DESC: 'Reference multiple keys in a configmap or secret.',
-  DESELECT_ALL: 'Deselect all',
-  KEY_PL: 'Keys',
+  FROM_CONFIGMAP: '来自配置字典',
+  FROM_SECRET: '来自保密字典',
+  BATCH_REFERENCE: '批量引用',
+  BATCH_REFERENCE_DESC: '从配置字典或保密字典中引用多个键。',
+  DESELECT_ALL: '全部取消选择',
+  KEY_PL: '键',
   // More > Edit Settings > Volumes
   // More > Edit Settings > Volumes > Mount Volume
   // More > Edit Settings > Volumes > Mount Configmap or Secret
