@@ -21,7 +21,7 @@ module.exports = {
   // Banner
   VOLUME_DESC: '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
+  VOLUME_SNAPSHOT_EMPTY_DESC: '请创建一个存储卷快照。',
   VOLUME_STATUS_BOUND: '准备就绪',
   VOLUME_STATUS_LOST: '丢失',
   VOLUME_STATUS_PENDING: '等待中',
