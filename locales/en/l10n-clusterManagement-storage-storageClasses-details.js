@@ -54,6 +54,8 @@ module.exports = {
   AUTO_EXPANSION_SETTINGS: 'Auto Expansion Settings',
   MAXIMUM_SIZE: 'Maximum Size',
   INCREMENT: 'Size Increment',
+  INCREMENT_DESC:
+    'Please set the increment according to the expansion step size of StorageClass-csi, otherwise it may not work.',
   RESTART_WORKLOAD_AUTOMATICALLY: 'Restart workload automatically',
   RESTART_WORKLOAD_AUTOMATICALLY_DESC:
     'The system automatically checks volume status to determine whether the workload needs to be restarted.',

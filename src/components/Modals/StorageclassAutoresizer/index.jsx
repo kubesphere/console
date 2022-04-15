@@ -56,7 +56,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
     this.state = {
       resize: {
         enabled: JSON.parse(values(props, 'resize', 'enabled', false)),
-        increase: values(props, 'resize', 'increase', '10%'),
+        increase: values(props, 'resize', 'increase', '10Gi'),
         'storage-limit': values(props, 'resize', 'storage-limit', '10000Gi'),
         threshold: values(props, 'resize', 'threshold', '10%'),
       },
@@ -64,7 +64,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
         enabled: JSON.parse(values(props, 'restart', 'enabled', false)),
         'max-time': values(props, 'restart', 'max-time', '300'),
       },
-      fakeIncrease: values(props, 'resize', 'increase', '10%'),
+      fakeIncrease: values(props, 'resize', 'increase', '10Gi'),
       fakeThreshold: values(props, 'resize', 'threshold', '10%'),
       fakeLimit: values(props, 'resize', 'storage-limit', '10000Gi'),
       fakeMaxTime: values(props, 'restart', 'max-time', '300'),
@@ -108,7 +108,12 @@ export default class StorageClassAutoResizerModal extends React.Component {
         })
         return newItem.annotations
       })
-      this.props.onOk({ ...labels[0], ...labels[1] })
+
+      this.props.onOk({
+        ...labels[0],
+        ...labels[1],
+        'restart.kubesphere.io/online-expansion-support': `${!restart.enabled}`,
+      })
     })
   }
 
@@ -139,6 +144,11 @@ export default class StorageClassAutoResizerModal extends React.Component {
   handleThreshold = val => {
     const { resize } = this.state
     const value = /[0-9]+/g.test(val) ? val : '10%'
+    // invalid input '-'
+    if (!/[0-9]+/g.test(val) && val !== '%') {
+      return
+    }
+
     this.setState({
       resize: {
         ...resize,
@@ -150,7 +160,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
 
   handleIncrease = val => {
     const { resize } = this.state
-    const value = /[0-9]+/g.test(val) ? val : '10%'
+    const value = /[0-9]+/g.test(val) ? val : '10Gi'
     this.setState({
       resize: {
         ...resize,
@@ -277,18 +287,18 @@ export default class StorageClassAutoResizerModal extends React.Component {
                     <TailItemInput
                       title={t('THRESHOLD')}
                       unit={'%'}
+                      max={100}
                       value={threshold}
                       onChange={this.handleThreshold}
                     />
                   </Form.Item>
                 </Column>
                 <Column>
-                  <Form.Item>
+                  <Form.Item desc={t('INCREASE_DESC')}>
                     <TailItemInput
                       title={t('INCREMENT')}
-                      options={this.increaseOptions}
                       value={increase}
-                      unit={this.increaseUnit}
+                      unit={'Gi'}
                       onChange={this.handleIncrease}
                     />
                   </Form.Item>

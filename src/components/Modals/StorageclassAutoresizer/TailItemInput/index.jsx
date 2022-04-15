@@ -29,6 +29,7 @@ export default class TailItemInput extends React.Component {
     options: PropTypes.array,
     value: PropTypes.string,
     min: PropTypes.number,
+    max: PropTypes.number,
     unit: PropTypes.string,
     title: PropTypes.string,
   }
@@ -51,27 +52,13 @@ export default class TailItemInput extends React.Component {
   }
 
   handleSelectChange = val => {
-    this.setState(
-      {
-        unit: val,
-      },
-      () => {
-        const { value, unit } = this.state
-        this.props.onChange(`${value}${unit}`)
-      }
-    )
+    const { unit } = this.state
+    this.props.onChange(`${val}${unit}`)
   }
 
   handleInput = val => {
-    this.setState(
-      {
-        value: val,
-      },
-      () => {
-        const { value, unit } = this.state
-        this.props.onChange(`${value}${unit}`)
-      }
-    )
+    const { unit } = this.state
+    this.props.onChange(`${val}${unit}`)
   }
 
   renderTail = () => {
@@ -92,8 +79,7 @@ export default class TailItemInput extends React.Component {
   }
 
   render() {
-    const { title, min } = this.props
-    const { value } = this.state
+    const { title, min, max, value } = this.props
     return (
       <>
         {title !== '' && <div className={styles.title}>{title}</div>}
@@ -102,6 +88,7 @@ export default class TailItemInput extends React.Component {
             className={styles.input}
             min={min}
             value={value}
+            max={max}
             onChange={this.handleInput}
           ></NumberInput>
           {this.renderTail()}
