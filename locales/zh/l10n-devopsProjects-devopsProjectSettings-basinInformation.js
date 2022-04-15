@@ -26,13 +26,13 @@ module.exports = {
   DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps 项目成员',
   DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps 项目成员',
   DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps 项目角色',
-  CD_ALLOWLIST: 'Continuous Deployment Allowlist',
-  CD_ALLOWLIST_DESC: 'Add the code repository and resource target deployment location to the allowlist. The allowlist will not take effect without resource information.',
-  DESTINATIONS: 'Resource target deployment location',
-  ENABLE_ALLOWLIST: 'Enable Allowlist',
-  EDIT_ALLOWLIST: 'Edit Allowlist',
-  EMPTY_ALLOWLIST_TITLE: 'Continuous deployment allowlist is not enabled',
-  ALLOWLIST_EMPTY_DESC: 'Add the code repository and resource target deployment location to the allowlist. The allowlist will not take effect without resource information.',
-  SOURCE_REPOS_INPUT_DESC: 'The code warehouse address already exists, please enter another code warehouse address.',
-  DESTINATIONS_INPUT_DESC: 'The resource target deployment location already exists, please enter another resource target deployment location.'
+  CD_ALLOWLIST: '持续部署允许列表',
+  CD_ALLOWLIST_DESC: '将代码仓库和资源目标部署位置添加到允许列表。如果没有资源信息，允许列表将不会生效。',
+  DESTINATIONS: '资源目标部位置',
+  ENABLE_ALLOWLIST: '启用允许列表',
+  EDIT_ALLOWLIST: '编辑允许列表',
+  EMPTY_ALLOWLIST_TITLE: '未启用持续部署允许列表。',
+  ALLOWLIST_EMPTY_DESC: '将代码仓库和资源目标部署位置添加到允许列表。如果没有资源信息，允许列表将不会生效。',
+  SOURCE_REPOS_INPUT_DESC: '代码仓库地址已存在，请输入其他代码仓库地址。',
+  DESTINATIONS_INPUT_DESC: '资源目标部署位置已存在，请输入其他资源目标部署位置。'
 };
