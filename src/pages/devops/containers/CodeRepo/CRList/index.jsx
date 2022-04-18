@@ -36,12 +36,12 @@ import styles from './index.scss'
   module: 'codeRepos',
   name: 'CODE_REPO',
   rowKey: 'name',
-  authKey: 'pipelines',
+  authKey: 'gitrepositories',
 })
 export default class CRList extends React.Component {
   get enabledActions() {
     return globals.app.getActions({
-      module: 'pipelines',
+      module: 'gitrepositories',
       cluster: this.props.match.params.cluster,
       devops: this.devops,
     })
