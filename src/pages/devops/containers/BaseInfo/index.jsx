@@ -319,12 +319,6 @@ class BaseInfo extends React.Component {
         ) : (
           <>
             <div className={styles.header}>
-              <Icon name="allowlist" size={40} />
-              <div className={styles.item}>
-                <div>{t('CD_ALLOWLIST')}</div>
-                <p>{t('CD_ALLOWLIST_DESC')}</p>
-              </div>
-
               {!isEmpty(this.enabledItemActions) && (
                 <div className={classNames(styles.item, 'text-right')}>
                   <Button onClick={this.handleEditAllowlist}>
@@ -336,7 +330,7 @@ class BaseInfo extends React.Component {
             <div className={styles.content_CD}>
               <div className={styles.content_item}>
                 <div className={styles.content_item_title}>
-                  {t('CODE_REPOSITORY')}
+                  {t('CODE_REPO_PL')}
                 </div>
                 <div className={styles.items}>
                   {detail.sourceRepos.map(repo => (
@@ -348,7 +342,7 @@ class BaseInfo extends React.Component {
               </div>
               <div className={styles.content_item}>
                 <div className={styles.content_item_title}>
-                  {t('DESTINATIONS')}
+                  {t('DEPLOYMENT_LOCATION_PL')}
                 </div>
                 <div className={styles.items}>
                   {detail.destinations.map((destination, index) => (

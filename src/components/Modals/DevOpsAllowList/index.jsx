@@ -113,7 +113,7 @@ export default class CDAllowListModal extends React.Component {
       const arr = []
       value.forEach(item => {
         if (arr.includes(item)) {
-          return callback({ message: t('SOURCE_REPOS_INPUT_DESC') })
+          return callback({ message: t('CODE_REPOSITORY_EXIST_DESC') })
         }
         arr.push(item)
       })
@@ -131,7 +131,7 @@ export default class CDAllowListModal extends React.Component {
       const data = []
       value.forEach(item => {
         if (data.includes(item.namespace)) {
-          return callback({ message: t('DESTINATIONS_INPUT_DESC') })
+          return callback({ message: t('DEPLOYMENT_LOCATION_EXIST_DESC') })
         }
         data.push(item.namespace)
       })
@@ -161,7 +161,7 @@ export default class CDAllowListModal extends React.Component {
         formRef={this.formRef}
       >
         <Form.Item
-          label={t('CODE_REPOSITORY')}
+          label={t('CODE_REPO_PL')}
           rules={[{ validator: this.sourceReposValidator }]}
         >
           <ArrayInput
@@ -172,7 +172,7 @@ export default class CDAllowListModal extends React.Component {
           >
             <Select
               style={{ maxWidth: '100%' }}
-              placeholder={t('REGISTRY_ADDRESS_TCAP')}
+              placeholder=" "
               options={this.state.options}
               valueRenderer={option => this.repoOptionRenderer(option)('value')}
               optionRenderer={option =>
@@ -182,7 +182,7 @@ export default class CDAllowListModal extends React.Component {
           </ArrayInput>
         </Form.Item>
         <Form.Item
-          label={t('DESTINATIONS')}
+          label={t('DEPLOYMENT_LOCATION_PL')}
           rules={[{ validator: this.destinationsValidator }]}
         >
           <ArrayInput
