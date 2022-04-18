@@ -49,7 +49,7 @@ module.exports = {
   ROLES_MANAGEMENT: '角色管理',
   ROLES_VIEW: '角色查看',
   // List > Create > Edit Permissions > DevOps Settings
-  DEVOPS_SETTINGS: 'Project Settings Management',
+  DEVOPS_SETTINGS: '项目设置管理',
   DEVOPS_SETTINGS_DESC: '管理 DevOps 项目的设置。',
   // List > Create > Edit Permissions > Continuous Deployment Management
   CONTINUOUS_DEPLOYMENTS_VIEW: 'Continuous Deployment Viewing',
