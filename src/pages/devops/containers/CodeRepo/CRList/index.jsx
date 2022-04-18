@@ -185,13 +185,13 @@ export default class CRList extends React.Component {
       },
       {
         title: t('CREATION_TIME_TCAP'),
-        dataIndex: 'creationTime',
+        dataIndex: 'createTime',
         sorter: true,
-        sortOrder: getSortOrder('creationTime'),
+        sortOrder: getSortOrder('createTime'),
         isHideable: true,
         width: '20%',
-        render: creationTime => {
-          return getLocalTime(creationTime).format('YYYY-MM-DD HH:mm:ss')
+        render: createTime => {
+          return getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss')
         },
       },
     ]
