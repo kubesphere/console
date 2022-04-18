@@ -157,6 +157,7 @@ export default {
         workloadStore: store,
         isEdit: true,
         supportGpuSelect,
+        hideVolumeSetting: store.module === 'statefulsets',
         ...props,
       })
     },

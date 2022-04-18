@@ -277,6 +277,7 @@ export default {
         detail: toJS(detail._originData),
         modal: EditConfigTemplateModal,
         supportGpuSelect,
+        hideVolumeSetting: store.module === 'statefulsets',
         ...props,
       })
     },
