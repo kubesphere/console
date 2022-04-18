@@ -47,7 +47,7 @@ export default class StorageClassDetail extends React.Component {
   CrdStore = new CrdStore()
 
   state = {
-    supportAccessor: true,
+    shouldAddCrd: false,
   }
 
   componentDidMount() {
@@ -93,12 +93,14 @@ export default class StorageClassDetail extends React.Component {
           name: 'accessors.storage.kubesphere.io',
         }),
       ]).then(([validate, crd]) => {
-        if (!isEmpty(validate) && !isEmpty(crd)) {
-          this.checkHasAccessor()
-        } else {
+        const { urlNotSupport: u1 } = validate
+        const { urlNotSupport: u2 } = crd
+        if (u1 || u2) {
           this.setState({
-            supportAccessor: false,
+            shouldAddCrd: true,
           })
+        } else if (!isEmpty(validate) && !isEmpty(crd)) {
+          this.checkHasAccessor()
         }
       })
     } else {
@@ -113,7 +115,11 @@ export default class StorageClassDetail extends React.Component {
       ...params,
       name: `${storageClassName}-accessor`,
     })
-    if (isEmpty(detail)) {
+    if (detail.urlNotSupport) {
+      this.setState({
+        shouldAddCrd: true,
+      })
+    } else if (isEmpty(detail)) {
       const template = FORM_TEMPLATES['accessors'](storageClassName)
       await this.accessorStore.create(template)
       await this.accessorStore.fetchDetail({ name: `${params.name}-accessor` })
@@ -121,7 +127,7 @@ export default class StorageClassDetail extends React.Component {
   }
 
   getOperations = () => {
-    const { supportAccessor } = this.state
+    const { shouldAddCrd } = this.state
     return [
       {
         key: 'editYaml',
@@ -159,10 +165,10 @@ export default class StorageClassDetail extends React.Component {
         ),
         text: t('SET_AUTHORIZATION_RULES'),
         action: 'edit',
-        show: supportAccessor,
         onClick: () =>
           this.trigger('storageclass.accessor', {
             storageClassName: get(this.store.detail, 'name'),
+            shouldAddCrd,
             store: this.accessorStore,
             detail: toJS(this.accessorStore.detail),
             success: this.fetchData,

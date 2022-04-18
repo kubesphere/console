@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Modal, Text, Switch } from 'components/Base'
-import { Select } from '@kube-design/components'
+import { Alert, Select } from '@kube-design/components'
 import WorkspaceStore from 'stores/workspace'
 import ProjectStore from 'stores/project'
 import { get, set, cloneDeep } from 'lodash'
@@ -191,7 +191,7 @@ export default class AccessorModal extends Component {
   }
 
   render() {
-    const { visible, onCancel, isSubmitting } = this.props
+    const { visible, onCancel, isSubmitting, shouldAddCrd } = this.props
     const { enabled, nsValues, wsValues, nsOpt, wsOpt } = this.state
 
     return (
@@ -204,7 +204,11 @@ export default class AccessorModal extends Component {
         okText={t('OK')}
         cancelText={t('CANCEL')}
         isSubmitting={isSubmitting}
+        hideFooter={shouldAddCrd}
       >
+        {shouldAddCrd && (
+          <Alert type="warning" message={t.html('AUTHORIZATION_NOT_SUPPORT')} />
+        )}
         <div className={styles.wrapper}>
           <Text
             className={styles.text}
