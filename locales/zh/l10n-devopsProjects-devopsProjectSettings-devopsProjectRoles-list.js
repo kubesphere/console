@@ -52,7 +52,7 @@ module.exports = {
   DEVOPS_SETTINGS: 'DevOps 项目设置',
   DEVOPS_SETTINGS_DESC: '管理 DevOps 项目的设置。',
   // List > Create > Edit Permissions > Continuous Deployments Management
-  CONTINUOUS_DEPLOYMENTS_VIEW: 'Continuous Deployments View',
+  CONTINUOUS_DEPLOYMENTS_VIEW: '持续部署查看',
   CONTINUOUS_DEPLOYMENTS_VIEW_DESC: 'Continuous Deployments View Desc',
   CONTINUOUS_DEPLOYMENTS_MANAGEMENT: 'Continuous Deployments Management',
   CONTINUOUS_DEPLOYMENTS_MANAGEMENT_DESC: 'Continuous Deployments Management Desc',
