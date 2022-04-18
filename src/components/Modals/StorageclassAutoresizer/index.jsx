@@ -294,7 +294,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
                   </Form.Item>
                 </Column>
                 <Column>
-                  <Form.Item desc={t('INCREASE_DESC')}>
+                  <Form.Item desc={t('INCREMENT_DESC')}>
                     <TailItemInput
                       title={t('INCREMENT')}
                       value={increase}
