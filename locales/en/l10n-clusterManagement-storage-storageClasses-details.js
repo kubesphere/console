@@ -32,6 +32,8 @@ module.exports = {
   AUTHORIZATION_RULES: 'Authorization Rules',
   AUTHORIZATION_RULES_DESC:
     'Set authorization rules so that the storage class can be accessed only in specific projects and workspaces.',
+  AUTHORIZATION_NOT_SUPPORT:
+    'Your cluster is lack of accessor custom resources, please upgrade ks-installer to v3.3.0 and above, or install <a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a> component manually',
   OPERATOR_IN: 'In',
   OPERATOR_NOT_IN: 'Not in',
 

@@ -175,7 +175,7 @@ export default {
     },
   },
   'storageclass.accessor': {
-    on({ cluster, store, detail, storageClassName, success }) {
+    on({ cluster, store, detail, storageClassName, success, shouldAddCrd }) {
       const modal = Modal.open({
         onOk: async newObject => {
           Modal.close(modal)
@@ -187,6 +187,7 @@ export default {
         cluster,
         store,
         detail,
+        shouldAddCrd,
         modal: Accessor,
       })
     },

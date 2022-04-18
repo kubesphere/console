@@ -205,11 +205,27 @@ export default class BaseStore {
 
   @action
   async fetchDetailWithoutWarning(params) {
+    let urlNotSupport = false
     this.isLoading = true
 
-    const result = await request.get(this.getDetailUrl(params), {}, {}, () => {
-      return {}
-    })
+    const result = await request.get(
+      this.getDetailUrl(params),
+      {},
+      {},
+      (error, response) => {
+        if (error) {
+          if (error.status === 404) {
+            urlNotSupport = true
+          }
+          return {}
+        }
+        return response
+      }
+    )
+
+    if (urlNotSupport) {
+      return { urlNotSupport }
+    }
 
     const detail = !isEmpty(result) ? { ...params, ...this.mapper(result) } : {}
 
