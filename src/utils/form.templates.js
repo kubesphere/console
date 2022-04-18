@@ -717,7 +717,7 @@ const getAccessorsTemplate = name => ({
     name: `${name}-accessor`,
   },
   spec: {
-    storageClassName: name,
+    storageClassName: `${name}-disabled`,
     namespaceSelector: {
       fieldSelector: [
         {
