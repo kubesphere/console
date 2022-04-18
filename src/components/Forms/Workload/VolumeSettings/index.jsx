@@ -620,7 +620,12 @@ class VolumeSettings extends React.Component {
   }
 
   renderList() {
-    const { formRef, formProps = {}, module } = this.props
+    const {
+      formRef,
+      formProps = {},
+      module,
+      hideVolumeSetting = false,
+    } = this.props
     const { collectSavedLog } = this.state
 
     const volumes = toJS(this.store.list.data)
@@ -662,7 +667,7 @@ class VolumeSettings extends React.Component {
           />
         )}
         <div className={styles.volumes}>
-          {isSTS && (
+          {isSTS && !hideVolumeSetting && (
             <Form.Item label={t('VOLUME_TEMPLATES')}>
               <VolumeTemplateList
                 prefix={this.prefix}
