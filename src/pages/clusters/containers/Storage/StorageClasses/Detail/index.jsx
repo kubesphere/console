@@ -192,6 +192,7 @@ export default class StorageClassDetail extends React.Component {
         ),
         text: t('SET_AUTO_EXPANSION'),
         action: 'edit',
+        disabled: !get(toJS(this.store.detail), 'allowVolumeExpansion', false),
         onClick: () =>
           this.trigger('storageclass.pvc.autoresizer', {
             detail: toJS(this.store.detail),
