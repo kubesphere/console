@@ -25,13 +25,14 @@ module.exports = {
   DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps Proje üyeleri',
   DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps Proje üyeleri',
   DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps Proje Rolleri',
+  // Continuous Deployment Allowlist
   CD_ALLOWLIST: 'Continuous Deployment Allowlist',
-  CD_ALLOWLIST_DESC: 'Add the code repository and resource target deployment location to the allowlist. The allowlist will not take effect without resource information.',
-  DESTINATIONS: 'Resource target deployment location',
+  DEPLOYMENT_LOCATION_PL: 'Deployment Locations',
   ENABLE_ALLOWLIST: 'Enable Allowlist',
   EDIT_ALLOWLIST: 'Edit Allowlist',
-  EMPTY_ALLOWLIST_TITLE: 'Continuous deployment allowlist is not enabled',
-  ALLOWLIST_EMPTY_DESC: 'Add the code repository and resource target deployment location to the allowlist. The allowlist will not take effect without resource information.',
-  SOURCE_REPOS_INPUT_DESC: 'The code warehouse address already exists, please enter another code warehouse address.',
-  DESTINATIONS_INPUT_DESC: 'The resource target deployment location already exists, please enter another resource target deployment location.'
+  EMPTY_ALLOWLIST_TITLE: 'Continuous Deployment Allowlist Disabled',
+  ALLOWLIST_EMPTY_DESC: 'Enable the allowlist so that only specific code repositories and deployment locations can be used for continuous deployment.',
+  MULTI_CLUSTER_PROJECT_NOT_FOR_CD: 'Multi-cluster projects cannot be used for continuous deployment.',
+  CODE_REPOSITORY_EXIST_DESC: 'The code repository already exists. Please select another code repository.',
+  DEPLOYMENT_LOCATION_EXIST_DESC: 'The deployment location already exists. Please set another deployment location.'
 };
