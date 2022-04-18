@@ -26,13 +26,14 @@ module.exports = {
   DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps 项目成员',
   DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps 项目成员',
   DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps 项目角色',
+  // Continuous Deployment Allowlist
   CD_ALLOWLIST: '持续部署允许列表',
-  CD_ALLOWLIST_DESC: '将代码仓库和资源目标部署位置添加到允许列表。如果没有资源信息，允许列表将不会生效。',
-  DESTINATIONS: '资源目标部位置',
+  DEPLOYMENT_LOCATION_PL: 'Deployment Locations',
   ENABLE_ALLOWLIST: '启用允许列表',
   EDIT_ALLOWLIST: '编辑允许列表',
-  EMPTY_ALLOWLIST_TITLE: '未启用持续部署允许列表。',
-  ALLOWLIST_EMPTY_DESC: '将代码仓库和资源目标部署位置添加到允许列表。如果没有资源信息，允许列表将不会生效。',
-  SOURCE_REPOS_INPUT_DESC: '代码仓库地址已存在，请输入其他代码仓库地址。',
-  DESTINATIONS_INPUT_DESC: '资源目标部署位置已存在，请输入其他资源目标部署位置。'
+  EMPTY_ALLOWLIST_TITLE: 'Continuous Deployment Allowlist Disabled',
+  ALLOWLIST_EMPTY_DESC: 'Enable the allowlist so that only specific code repositories and deployment locations can be used for continuous deployment.',
+  MULTI_CLUSTER_PROJECT_NOT_FOR_CD: 'Multi-cluster projects cannot be used for continuous deployment.',
+  CODE_REPOSITORY_EXIST_DESC: 'The code repository already exists. Please select another code repository.',
+  DEPLOYMENT_LOCATION_EXIST_DESC: 'The deployment location already exists. Please set another deployment location.'
 };
