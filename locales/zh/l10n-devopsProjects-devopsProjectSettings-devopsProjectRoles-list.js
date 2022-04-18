@@ -52,13 +52,13 @@ module.exports = {
   DEVOPS_SETTINGS: '项目设置管理',
   DEVOPS_SETTINGS_DESC: '管理 DevOps 项目的设置。',
   // List > Create > Edit Permissions > Continuous Deployment Management
-  CONTINUOUS_DEPLOYMENTS_VIEW: 'Continuous Deployment Viewing',
-  CONTINUOUS_DEPLOYMENTS_VIEW_DESC: 'View continuous deployments in the DevOps project.',
-  CONTINUOUS_DEPLOYMENTS_MANAGEMENT: 'Continuous Deployment Management',
-  CONTINUOUS_DEPLOYMENTS_MANAGEMENT_DESC: 'Manage continuous deployments in the DevOps project.',
+  CONTINUOUS_DEPLOYMENTS_VIEW: '持续部署查看',
+  CONTINUOUS_DEPLOYMENTS_VIEW_DESC: '查看 DevOps 项目中的持续部署。',
+  CONTINUOUS_DEPLOYMENTS_MANAGEMENT: '持续部署管理',
+  CONTINUOUS_DEPLOYMENTS_MANAGEMENT_DESC: '管理 DevOps 项目中的持续部署。',
   // List > Create > Edit Permissions > Code Repository Management
-  CODE_REPOSITORIES_MANAGEMENT: 'Code Repository Management',
-  CODE_REPOSITORIES_MANAGEMENT_DESC: 'Manage code repositories in the DevOps project.',
-  CODE_REPOSITORIES_VIEW: 'Code Repository Viewing',
-  CODE_REPOSITORIES_VIEW_DESC: 'View code repositories in the DevOps project.'
+  CODE_REPOSITORIES_MANAGEMENT: '代码仓库管理',
+  CODE_REPOSITORIES_MANAGEMENT_DESC: '管理 DevOps 项目中的代码仓库。',
+  CODE_REPOSITORIES_VIEW: '代码仓库查看',
+  CODE_REPOSITORIES_VIEW_DESC: '查看 DevOps 项目中的代码仓库。'
 };
