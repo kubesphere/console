@@ -32,10 +32,15 @@ export default class BaseInfo extends React.Component {
     super(props)
 
     if (isEmpty(this.formTemplate.spec)) {
-      const defaultKey = Object.keys(templateSettings)[0]
-      const defaultValue = cloneDeep(templateSettings[defaultKey].settings)
+      const defaultKey = Object.keys(this.templateSettings)[0]
+      const defaultValue = cloneDeep(this.templateSettings[defaultKey].settings)
+
       set(this.formTemplate, 'spec', defaultValue)
     }
+  }
+
+  get templateSettings() {
+    return cloneDeep(templateSettings)
   }
 
   get formTemplate() {
@@ -43,7 +48,7 @@ export default class BaseInfo extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
-  templateSettingsOpts = Object.entries(templateSettings)
+  templateSettingsOpts = Object.entries(this.templateSettings)
     .map(([key, configs]) => ({
       value: key,
       image: configs.logo,
@@ -77,7 +82,11 @@ export default class BaseInfo extends React.Component {
   }
 
   handleTemplateChange = key => {
-    set(this.formTemplate, 'spec', get(templateSettings, `${key}.settings`, {}))
+    set(
+      this.formTemplate,
+      'spec',
+      get(this.templateSettings, `${key}.settings`, {})
+    )
     this.forceUpdate()
   }
 
