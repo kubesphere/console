@@ -27,6 +27,7 @@ module.exports = {
   SET_AUTHORIZATION_RULES: '设置授权规则',
   AUTHORIZATION_RULES: '授权规则',
   AUTHORIZATION_RULES_DESC: '设置授权规则使存储类型只能在特定项目和企业空间访问。',
+  AUTHORIZATION_NOT_SUPPORT: 'Your cluster is lack of accessor custom resources, please upgrade ks-installer to v3.3.0 and above, or install <a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a> component manually',
   OPERATOR_IN: '属于',
   OPERATOR_NOT_IN: '不属于',
   // More > Set Volume Permissions
