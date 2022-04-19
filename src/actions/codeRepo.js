@@ -18,7 +18,7 @@
 import { Modal } from 'components/Base'
 import { Notify } from '@kube-design/components'
 import DeleteModal from 'components/Modals/Delete'
-import CodeRepoForm from 'components/Modals/CodeRepoCreate'
+import CodeRepoModal from 'components/Modals/CodeRepoCreate'
 import FORM_TEMPLATES from 'utils/form.templates'
 import { cloneDeep, get, set } from 'lodash'
 
@@ -35,22 +35,30 @@ const getRepoUrl = (repoType, repo) => {
   }
 }
 
-const handleFormData = ({ data, module, devops }) => {
+const handleFormData = ({ data, module, devops, formTemplate }) => {
   const postData = FORM_TEMPLATES[module]({ namespace: devops })
   const repoType = data.sources.source_type
-  const repo = get(data, `sources.${repoType}_source`)
-  const repoName = repo.repo || repo.url || repo.remote
-  const repoURL = getRepoUrl(repoType, repo)
+  const repo = get(data, `sources.${repoType}_source`, {})
+  const repoURL = repo.repo || repo.url || repo.remote
+  let isEditCodeURl = false
+
+  if (formTemplate) {
+    const editRepo = get(formTemplate, `sources.${repoType}_source`, {})
+    const editRepoURL = editRepo.repo || editRepo.url || editRepo.remote
+    isEditCodeURl = editRepoURL === repoURL
+  }
+
+  const url = !isEditCodeURl ? getRepoUrl(repoType, repo) : repoURL
+
   const spec = {
     provider: data.sources.source_type,
-    url: repoURL,
+    url,
     secret: {
-      name: repo.credential_id,
+      name: repo.credential_id || data.sources.credentialId,
       namespace: devops,
     },
   }
 
-  set(postData, 'metadata.name', repoName)
   set(postData, 'metadata', data.metadata)
   set(postData, 'spec', spec)
   return postData
@@ -74,7 +82,7 @@ export default {
         cluster,
         devops,
         formTemplate: {},
-        modal: CodeRepoForm,
+        modal: CodeRepoModal,
         ...props,
       })
     },
@@ -99,7 +107,12 @@ export default {
 
       const modal = Modal.open({
         onOk: async data => {
-          const postData = handleFormData({ data, module, devops })
+          const postData = handleFormData({
+            data,
+            module,
+            devops,
+            formTemplate: editTemplate,
+          })
 
           await store.edit({ data: postData, devops, name: detail.name })
 
@@ -112,7 +125,7 @@ export default {
         cluster,
         devops,
         formTemplate: editTemplate,
-        modal: CodeRepoForm,
+        modal: CodeRepoModal,
         isEdit: true,
         ...props,
       })
