@@ -17,20 +17,20 @@
  */
 module.exports = {
   // Banner
-  APP_CATEGORY_PL: 'App Categories',
-  APP_CATEGORIES_DESC: 'Manage categories of apps released to the App Store. You can create, edit, delete, and change app categories.',
+  APP_CATEGORY_PL: '앱 카테고리',
+  APP_CATEGORIES_DESC: '앱 스토어에 등록된 앱 카테고리를 관리합니다. 앱 카테고리를 생성, 편집, 삭제 및 변경할 수 있습니다.',
   // All Categories
-  ALL_CATEGORIES_VALUE: 'All Categories ({value})',
-  APP_CATEGORY_EMPTY_DESC: 'No apps belong to the category.',
+  ALL_CATEGORIES_VALUE: '모든 카테고리 ({value})',
+  APP_CATEGORY_EMPTY_DESC: '이 카테고리에 해당하는 앱이 없습니다.',
   // All Categories > Add
-  ENTER_CATEGORY_NAME_TIP: 'Please enter a category name.',
-  CATEGORY_NAME_DESC: 'The name can contain any characters and the maximum length is 20 characters.',
+  ENTER_CATEGORY_NAME_TIP: '카테고리 이름을 입력하세요.',
+  CATEGORY_NAME_DESC: '이름에는 모든 문자를 사용할 수 있으며 최대 길이는 20자입니다.',
   // All Categories > Eit
   // All Categories > Delete
-  DELETE_CATEGORY_DESC: 'Are you sure you want to delete the category <b>{name}</b>?',
+  DELETE_CATEGORY_DESC: '이 카테고리 (<b>{name}</b>) 를 삭제하시겠습니까?',
   // List
   // List > Change Category
-  CHANGED_SUCCESSFULLY: 'Changed successfully.',
-  CHANGE_CATEGORY: 'Change Category',
-  CHANGE_CATEGORY_DESC: 'The app category determines the classification of the app in the App Store.'
+  CHANGED_SUCCESSFULLY: '변경되었습니다.',
+  CHANGE_CATEGORY: '카테고리 변경',
+  CHANGE_CATEGORY_DESC: '앱 카테고리는 앱 스토어에 있는 앱의 분류를 결정합니다.'
 };
