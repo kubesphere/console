@@ -175,6 +175,13 @@ export default class AccessorModal extends Component {
     set(workspaceItem[0], 'fieldExpressions[0].operator', wsOpt)
     set(newObject.spec, 'namespaceSelector.fieldSelector', namespaceItem)
     set(newObject.spec, 'workspaceSelector.fieldSelector', workspaceItem)
+    if (nsValues.length === 0) {
+      delete newObject.spec.namespaceSelector
+    }
+
+    if (wsValues.length === 0) {
+      delete newObject.spec.workspaceSelector
+    }
     onOk(newObject)
   }
 
