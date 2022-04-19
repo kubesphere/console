@@ -47,6 +47,12 @@ module.exports = {
   // List > Delete
   CONTINUOUS_DEPLOYMENT: 'Continuous Deployment',
   CONTINUOUS_DEPLOYMENT_LOW: 'continuous deployment',
+  DELETE_CONTINUOUS_DEPLOYMENT_DESC_SI:
+    'You are about to delete the continuous deployment {resource}. <br/>Please confirm whether to delete the resources associated with the following as well?',
+  DELETE_CONTINUOUS_DEPLOYMENT_DESC_PL:'You are about to delete the continuous deployments {resource}. <br/>Please confirm whether to delete the resources associated with the following as well?',
+  NO_CONTINUOUS_DEPLOYMENT_RELATED_RESOURCE_DESC:'There are currently no resources associated with continuous deployment',
+  DELETE_MULTIPLE_CONTINUOUS_DEPLOYMENT: 'Batch delete continuous deployment',
+  DELETE_CONTINUOUS_DEPLOYMENT: 'Delete Continuous Deployment',
 
   // List > Sync
   SYNC: 'Sync',

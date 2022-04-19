@@ -123,7 +123,7 @@ export default class CDList extends React.Component {
         text: t('DELETE'),
         action: 'delete',
         onClick: record => {
-          trigger('resource.delete', {
+          trigger('cd.delete', {
             type: 'CONTINUOUS_DEPLOYMENT',
             detail: record,
             success: routing.query,
@@ -283,8 +283,7 @@ export default class CDList extends React.Component {
           text: t('DELETE'),
           action: 'delete',
           onClick: () =>
-            this.props.trigger('pipeline.batch.delete', {
-              type: 'CONTINUOUS_DEPLOYMENT',
+            this.props.trigger('cd.batch.delete', {
               rowKey: 'name',
               devops: this.devops,
               cluster: this.cluster,

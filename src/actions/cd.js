@@ -21,9 +21,10 @@ import { CD_FORM } from 'configs/steps/cd'
 import { Modal } from 'components/Base'
 import SyncModal from 'components/Modals/SyncModal'
 import { Notify } from '@kube-design/components'
-import DeleteModal from 'components/Modals/Delete'
+import DeleteModal from 'components/Modals/CDDelete'
 import FORM_TEMPLATES from 'utils/form.templates'
 import { set, isEmpty, cloneDeep } from 'lodash'
+import { toJS } from 'mobx'
 
 export default {
   'cd.create': {
@@ -142,6 +143,31 @@ export default {
         store,
         modal: DeleteModal,
         resource: detail,
+        ...props,
+      })
+    },
+  },
+  'cd.batch.delete': {
+    on({ store, success, rowKey = 'name', ...props }) {
+      const { data, selectedRowKeys } = toJS(store.list)
+
+      const resource = data.filter(item =>
+        selectedRowKeys.includes(item[rowKey])
+      )
+
+      if (isEmpty(resource)) {
+        return
+      }
+
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
+          success && success()
+        },
+        modal: DeleteModal,
+        resource,
+        store,
         ...props,
       })
     },

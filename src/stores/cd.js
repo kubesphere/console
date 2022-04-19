@@ -153,7 +153,13 @@ export default class CDStore extends Base {
   @action
   delete(params) {
     const _params = omit({ ...params, namespace: params.devops }, 'devops')
-    return this.submitting(request.delete(this.getDetailUrl(_params)))
+    return this.submitting(
+      request.delete(
+        `${this.getDetailUrl(_params)}${
+          _params.isRelated ? '/cascade=true' : ''
+        }`
+      )
+    )
   }
 
   @action
