@@ -41,7 +41,7 @@ import './index.scss'
 export default class BranchDetailLayout extends React.Component {
   sonarqubeStore = new CodeQualityStore()
 
-  module = 'pipelines'
+  module = 'pipelineruns'
 
   get store() {
     return this.props.pipelineStore
