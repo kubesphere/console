@@ -18,22 +18,22 @@
 module.exports = {
   // Title
   // Suspend App
-  SUSPEND_APP: 'Suspend App',
-  APP_NOTE: 'Note',
-  SUSPEND_SUCCESSFUL: 'Suspended successfully.',
+  SUSPEND_APP: '앱 비활성화',
+  APP_NOTE: '참고',
+  SUSPEND_SUCCESSFUL: '앱을 비활성화했습니다.',
   // Activate App
-  ACTIVATE_APP: 'Activate App',
-  ACTIVATE_SUCCESSFUL: 'Activated successfully.',
+  ACTIVATE_APP: '앱 활성화',
+  ACTIVATE_SUCCESSFUL: '앱을 활성화했습니다.',
   // Details
-  APP_ID: 'App ID',
-  CATEGORY: 'Category',
-  TYPE: 'Type',
+  APP_ID: '앱 ID',
+  CATEGORY: '카테고리',
+  TYPE: '타입',
   // Verisons
-  NO_VERSION_INFO_DESC: 'No version information is found.',
-  ACTIVATE_VERSION: 'Activate Version',
-  CANCEL_SUBMISSION: 'Cancel Submission',
-  SUSPEND_VERSION: 'Suspend Version',
-  APP_SUSPEND_TIP: 'The app <strong>{name}</strong> cannot be deployed from the App Store after it is suspended. Are you sure you want to suspend it?',
+  NO_VERSION_INFO_DESC: '버전 정보가 없습니다.',
+  ACTIVATE_VERSION: '이 버전 활성화',
+  CANCEL_SUBMISSION: '제출 취소',
+  SUSPEND_VERSION: '이 버전 비활성화',
+  APP_SUSPEND_TIP: '이 앱(<strong>{name}</strong>)을 비활성화하면 앱 스토어에서 설치할 수 없게 됩니다. 정말 비활성화할까요?',
   APP_RECOVER_TIP: 'The app <strong>{name}</strong> and the suspended versions will be displayed again in the App Store. Are you sure you want to activate it now?',
   // Verisons > Buttons
   // Versions > Chart Files
