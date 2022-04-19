@@ -17,25 +17,25 @@
  */
 module.exports = {
   // Banner
-  APP_DETAILS_DESC: 'View details of the app to be released.',
+  APP_DETAILS_DESC: '릴리즈할 앱의 세부 정보 보기',
   // Description
   // App Information
-  INTRODUCTION: 'Introduction',
-  SERVICE_PROVIDER_WEBSITE: 'Service provider website',
-  APP_DESCRIPTION: 'App Description',
+  INTRODUCTION: '개요',
+  SERVICE_PROVIDER_WEBSITE: '서비스 제공자 웹사이트',
+  APP_DESCRIPTION: '앱 설명',
   // Documentation
-  DOCUMENTATION: 'Documentation',
-  NO_DOCUMENT_FOUND: 'No Documentation Found',
+  DOCUMENTATION: '문서',
+  NO_DOCUMENT_FOUND: '문서를 찾지 못했습니다',
   // Chart Files
   // Update Log
-  UPDATE_LOG: 'Update Log',
-  NO_UPDATE_LOG_DESC: 'No update log is found.',
+  UPDATE_LOG: '업데이트 로그',
+  NO_UPDATE_LOG_DESC: '업데이트 로그를 찾지 못했습니다',
   // Reject
-  REJECT: 'Reject',
-  REJECT_REASON_DESC: 'Enter reasons for rejection of the app review.',
-  REJECT_REASON_TIP: 'Please enter at least one reason for rejection.',
-  REJECT_SUCCESSFUL: 'Rejected successfully.',
+  REJECT: '거부',
+  REJECT_REASON_DESC: '앱 심사 "거부" 사유를 입력하세요.',
+  REJECT_REASON_TIP: '"거부" 사유를 하나 이상 입력해야 합니다.',
+  REJECT_SUCCESSFUL: '"거부"하였습니다.',
   // Release
-  RELEASE: 'Release',
-  RELEASE_SUCCESSFUL: 'Released successfully.'
+  RELEASE: '릴리즈',
+  RELEASE_SUCCESSFUL: '앱을 릴리즈하였습니다.'
 };
