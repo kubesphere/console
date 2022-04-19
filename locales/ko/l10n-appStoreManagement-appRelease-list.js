@@ -17,24 +17,24 @@
  */
 module.exports = {
   // Banner
-  APP_RELEASE: 'App Release',
-  APP_RELEASE_DESC: 'Manages apps to be released to the App Store. You can view app details and approve or reject app releases.',
+  APP_RELEASE: '앱 릴리즈',
+  APP_RELEASE_DESC: '앱 스토어에 릴리즈할 앱을 관리합니다. 앱 세부정보를 확인하고 앱 릴리즈를 승인하거나 거부할 수 있습니다.',
   // Unreleased
-  UNRELEASED: 'Unreleased',
-  APP_REVIEW_EMPTY_DESC: 'Please create an app template in a workspace and submit the app template for release.',
-  APP_STATUS_SUBMITTED: 'Submitted',
-  APP_STATUS_PASSED: 'Released',
-  APP_STATUS_SUSPENDED: 'Suspended',
-  APP_STATUS_REJECTED: 'Rejected',
-  APP_STATUS_ACTIVE: 'Activated',
-  APP_STATUS_PUBLISHED: 'Released',
-  APP_STATUS_RECALLED: 'Suspended',
-  APP_STATUS_RECALL: 'Recall',
-  APP_STATUS_DRAFT: 'To be submitted',
-  APP_STATUS_PENDING_REVIEW: 'To be released',
-  APP_STATUS_IN_REVIEW: 'Reviewing',
-  APP_STATUS_DEVELOPING: 'Developing',
+  UNRELEASED: '릴리즈되지 않음',
+  APP_REVIEW_EMPTY_DESC: '워크스페이스에 앱 템플릿을 생성하고, 릴리즈할 앱 템플릿을 제출하세요.',
+  APP_STATUS_SUBMITTED: '제출됨',
+  APP_STATUS_PASSED: '릴리즈됨',
+  APP_STATUS_SUSPENDED: '중단됨',
+  APP_STATUS_REJECTED: '거부됨',
+  APP_STATUS_ACTIVE: '활성화됨',
+  APP_STATUS_PUBLISHED: '릴리즈됨',
+  APP_STATUS_RECALLED: '중단됨',
+  APP_STATUS_RECALL: '재요청됨',
+  APP_STATUS_DRAFT: '제출 예정',
+  APP_STATUS_PENDING_REVIEW: '릴리즈 예정',
+  APP_STATUS_IN_REVIEW: '리뷰 중',
+  APP_STATUS_DEVELOPING: '개발 중',
   // Released
-  RELEASED: 'Released',
-  OPERATOR: 'Operator'
+  RELEASED: '릴리즈됨',
+  OPERATOR: '운영자'
 };
