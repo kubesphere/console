@@ -34,14 +34,14 @@ module.exports = {
   CANCEL_SUBMISSION: '제출 취소',
   SUSPEND_VERSION: '이 버전 비활성화',
   APP_SUSPEND_TIP: '이 앱(<strong>{name}</strong>)을 비활성화하면 앱 스토어에서 설치할 수 없게 됩니다. 정말 비활성화할까요?',
-  APP_RECOVER_TIP: 'The app <strong>{name}</strong> and the suspended versions will be displayed again in the App Store. Are you sure you want to activate it now?',
+  APP_RECOVER_TIP: '이 앱(<strong>{name}</strong>)의 비활성화되었던 버전이 다시 앱 스토어에 표시될 것입니다. 정말 활성화할까요?',
   // Verisons > Buttons
   // Versions > Chart Files
   // Versions > App Release
   // Versions > App Instances
   // App Information
   // App Release
-  REJECTION_REASON: 'Rejection Reason',
-  RELEASE_RECORD: 'Release Record',
-  RELEASE_RECORD_EMPTY_DESC: 'No release record is found.'
+  REJECTION_REASON: '거부 사유',
+  RELEASE_RECORD: '릴리즈 기록',
+  RELEASE_RECORD_EMPTY_DESC: '릴리즈 기록이 없습니다.'
 };
