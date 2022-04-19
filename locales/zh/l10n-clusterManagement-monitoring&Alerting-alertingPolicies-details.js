@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Details
-  THRESHOLD_DURATION: '告警持续时间',
+  THRESHOLD_DURATION: '阈值时间',
   // Alerting Rule
   ALERTING_RULE: '告警规则',
   MONITORING_TARGETS_SCAP: '监控目标',
