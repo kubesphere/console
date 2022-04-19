@@ -17,9 +17,9 @@
  */
 module.exports = {
   // Banner
-  APPS: 'Apps',
-  APP_STORE_MANAGEMENT: 'App Store Management',
-  APP_STORE_DESC: 'Manage apps in the App Store. You can view app information, release apps, and suspend apps.',
+  APPS: '앱',
+  APP_STORE_MANAGEMENT: '앱 스토어 관리',
+  APP_STORE_DESC: '앱 스토어의 앱을 관리합니다. 앱 정보를 확인하거나, 앱을 릴리즈하거나, 앱을 비활성화할 수 있습니다.',
   // List
-  APP_CATEGORY: 'App Category'
+  APP_CATEGORY: '앱 카테고리'
 };
