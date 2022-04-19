@@ -17,8 +17,8 @@
  */
 module.exports = {
   // More > Edit Permissions
-  DESELECT_RESOURCE_FIRST: 'Please deselect {resource} first.',
+  DESELECT_RESOURCE_FIRST: '먼저 {resource}을(를) 선택 해제하세요.',
   // Permissions
   // Authorized Users
-  NO_AUTHORIZED_USER_DESC: 'This role has not been assigned to any user.'
+  NO_AUTHORIZED_USER_DESC: '이 역할은 어떤 사용자에게도 할당되지 않았습니다.'
 };
