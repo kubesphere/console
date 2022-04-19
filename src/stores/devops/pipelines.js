@@ -407,6 +407,22 @@ export default class PipelineStore extends BaseStore {
     }
   }
 
+  @action
+  async getParams(params) {
+    const { devops, cluster, name } = params
+    try {
+      const result = await request.get(
+        `${this.getBaseUrl({
+          cluster,
+          namespace: devops,
+        })}pipelines/${decodeURIComponent(name)}/parameters`
+      )
+      return result
+    } catch (err) {
+      return []
+    }
+  }
+
   async handleActivityReplay({ url, devops, name, cluster }) {
     return await request.post(
       `${this.getPipelineUrl({ cluster, devops, name })}${url}/replay/`

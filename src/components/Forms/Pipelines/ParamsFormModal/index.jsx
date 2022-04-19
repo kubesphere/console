@@ -40,6 +40,14 @@ export default class ParamsFormModal extends React.Component {
     branches: PropTypes.array,
   }
 
+  static defaultProps = {
+    branches: [],
+    visible: false,
+    name: '',
+    onOk() {},
+    onCancel() {},
+  }
+
   constructor(props) {
     super(props)
     this.formRef = React.createRef()
@@ -48,14 +56,6 @@ export default class ParamsFormModal extends React.Component {
       parameters: null,
       currentBranch: this.branch,
     }
-  }
-
-  static defaultProps = {
-    branches: [],
-    visible: false,
-    name: '',
-    onOk() {},
-    onCancel() {},
   }
 
   get branch() {
@@ -118,7 +118,7 @@ export default class ParamsFormModal extends React.Component {
   init = async () => {
     const parameters = this.branch
       ? await this.getParametersFromBranch(this.branch)
-      : this.props.parameters
+      : await this.getParametersFromRequest()
 
     this.setState({
       currentBranch: this.branch,
@@ -261,6 +261,12 @@ export default class ParamsFormModal extends React.Component {
     const { params } = this.props
     const result = await this.store.getBranchDetail({ branch, ...params })
     return get(result, 'parameters', null)
+  }
+
+  getParametersFromRequest = async () => {
+    const { params } = this.props
+    const result = await this.store.getParams({ ...params })
+    return result
   }
 
   render() {
