@@ -65,7 +65,6 @@ export default class BaseInfo extends React.Component {
 
   render() {
     const { formRef, formTemplate } = this.props
-
     return (
       <Form ref={formRef} data={formTemplate}>
         <Columns>
@@ -92,7 +91,10 @@ export default class BaseInfo extends React.Component {
           </Column>
           <Column>
             <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
-              <Input name="metadata.annotations['kubesphere.io/alias-name']" />
+              <Input
+                name="metadata.annotations['kubesphere.io/alias-name']"
+                maxLength={63}
+              />
             </Form.Item>
           </Column>
         </Columns>
