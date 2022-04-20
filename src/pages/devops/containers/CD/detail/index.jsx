@@ -125,7 +125,7 @@ export default class CDDetail extends React.Component {
       text: t('DELETE'),
       action: 'delete',
       onClick: () => {
-        this.trigger('resource.delete', {
+        this.trigger('cd.delete', {
           type: 'CONTINUOUS_DEPLOYMENT',
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
