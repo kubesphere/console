@@ -38,6 +38,7 @@ const debounce = 100
 const defaultTickCount = 5
 const tickWidth = 75
 const defaultAreaOpacity = 0.4
+const barPadding = 30
 
 const generateTimeTick = function({ from, to, count }) {
   const timeDistance = to - from
@@ -116,6 +117,28 @@ export default class ComposeCustomChart extends React.PureComponent {
     }
   }
 
+  get singleBarSize() {
+    const { legends } = this.props
+    const size = this.XAxisShouldPadding
+      ? Math.floor((2 * barPadding) / legends.length)
+      : undefined
+    return size
+  }
+
+  get XAxisShouldPadding() {
+    const { data, timeRange } = this.props
+    const format = 'YYYY-MM-DD HH:mm:ss'
+
+    if (data.length === 1) {
+      const start = moment(timeRange.start).format(format)
+      const end = moment(timeRange.end).format(format)
+      const firstTime = moment(data[0].time).format(format)
+      return firstTime === start || firstTime === end
+    }
+
+    return false
+  }
+
   render() {
     const {
       data,
@@ -161,7 +184,7 @@ export default class ComposeCustomChart extends React.PureComponent {
                   /*
                    * fix the bug when data length is 1 the bar will hidden
                    */
-                  barSize={data.length === 1 ? 20 : undefined}
+                  barSize={this.singleBarSize}
                 />
               ))}
 
@@ -199,6 +222,7 @@ export default class ComposeCustomChart extends React.PureComponent {
     const tickCount = this.getTickCount()
     const ticks = this.getTicks(tickCount)
     const tickFormatter = this.getTickFormatter(tickCount)
+    const padding = this.XAxisShouldPadding ? barPadding : 0
 
     return (
       <XAxis
@@ -211,6 +235,8 @@ export default class ComposeCustomChart extends React.PureComponent {
         domain={domain}
         ticks={ticks}
         tickFormatter={tickFormatter}
+        allowDataOverflow="false"
+        padding={{ left: padding, right: padding }}
       />
     )
   }
