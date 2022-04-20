@@ -115,18 +115,21 @@ export default class ServiceDeleteModal extends React.Component {
 
     if (isArray(resource)) {
       const requests = []
-
       resource.forEach(item => {
-        if (selectedRelatedResourceIds.includes(item.uid)) {
-          requests.push(store.delete({ ...item, isRelated: true }))
-        } else {
-          requests.push(store.delete(item))
-        }
+        requests.push(
+          store.delete({
+            ...item,
+            isRelated: selectedRelatedResourceIds.includes(item.uid),
+          })
+        )
       })
-      await Promise.all(resource.map(item => store.delete(item)))
+      await Promise.all(requests)
       store.list.setSelectRowKeys([])
     } else {
-      await store.delete(resource)
+      await store.delete({
+        ...resource,
+        isRelated: selectedRelatedResourceIds.includes(resource.uid),
+      })
     }
 
     onOk()
@@ -178,7 +181,9 @@ export default class ServiceDeleteModal extends React.Component {
             />
 
             <span className={styles.resourceName}>
-              {getDisplayName(resource)}
+              {t('DELETE_CONTINUOUS_DEPLOYMENT_RELATE_DESC', {
+                resourceName: getDisplayName(resource),
+              })}
             </span>
           </div>
         ))}

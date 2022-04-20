@@ -156,7 +156,7 @@ export default class CDStore extends Base {
     return this.submitting(
       request.delete(
         `${this.getDetailUrl(_params)}${
-          _params.isRelated ? '/cascade=true' : ''
+          _params.isRelated ? '?cascade=true' : ''
         }`
       )
     )
