@@ -47,7 +47,7 @@ export default class Activity extends React.Component {
   get enabledActions() {
     const { devops, cluster } = this.props.match.params
     return globals.app.getActions({
-      module: 'pipelines',
+      module: 'pipelineruns',
       cluster,
       devops,
     })
