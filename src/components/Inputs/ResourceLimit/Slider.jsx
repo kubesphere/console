@@ -52,6 +52,11 @@ export default class Slider extends React.Component {
     this.state = this.getStateFromProps(props)
 
     this.ref = React.createRef()
+
+    this.throttleState = {
+      time: 0,
+      data: -999999,
+    }
   }
 
   getValuePercent(marks, value) {
@@ -131,11 +136,16 @@ export default class Slider extends React.Component {
 
   triggerChange = ({ left, right }) => {
     const { marks, onChange } = this.props
-
-    onChange([
-      this.getValueFromPercent(marks, left),
-      this.getValueFromPercent(marks, right),
-    ])
+    const nowTime = +new Date()
+    const resLeft = this.getValueFromPercent(marks, left)
+    const resRight = this.getValueFromPercent(marks, right)
+    if (this.throttleState.data !== resRight + resLeft) {
+      this.throttleState.data = resRight + resLeft
+      if (nowTime - this.throttleState.time > 100) {
+        this.throttleState.time = nowTime
+        onChange([resLeft, resRight])
+      }
+    }
   }
 
   handleResize = () => {
