@@ -42,7 +42,7 @@ export default class Activity extends React.Component {
 
   store = this.props.detailStore || {}
 
-  refreshTimer = setInterval(() => this.getData(), 4000)
+  refreshTimer = setInterval(() => this.getData({ silent: true }), 4000)
 
   get enabledActions() {
     const { devops, cluster } = this.props.match.params
@@ -105,13 +105,14 @@ export default class Activity extends React.Component {
     this.unsubscribe && this.unsubscribe()
   }
 
-  getData = () => {
+  getData = _params => {
     const { params } = this.props.match
     const query = parse(location.search.slice(1))
 
     this.store.getActivities({
       ...params,
       ...query,
+      ..._params,
     })
   }
 
@@ -344,7 +345,15 @@ export default class Activity extends React.Component {
 
   render() {
     const { activityList } = this.store
-    const { data, isLoading, total, page, limit, filters } = activityList
+    const {
+      data,
+      isLoading,
+      total,
+      page,
+      limit,
+      filters,
+      silent,
+    } = activityList
     const omitFilters = omit(filters, 'page', 'workspace')
     const pagination = { total, page, limit }
     const isEmptyList = total === 0
@@ -389,6 +398,7 @@ export default class Activity extends React.Component {
         actions={this.getActions()}
         hideSearch
         enabledActions={this.enabledActions}
+        silentLoading={silent}
       />
     )
   }

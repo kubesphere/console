@@ -87,7 +87,7 @@ export default class PipelineStatus extends React.Component {
   }
 
   render() {
-    const { isEditMode, jsonData } = this.props
+    const { isEditMode, jsonData, ...res } = this.props
 
     return (
       <React.Fragment>
@@ -110,6 +110,7 @@ export default class PipelineStatus extends React.Component {
           parameters={toJS(this.parameters)}
           onCancel={this.hideProceedModal}
           onOk={this.handleProceed}
+          {...res}
         />
       </React.Fragment>
     )

@@ -239,7 +239,10 @@ export default class TaskStatus extends React.Component {
               this.container = dom
             }}
           >
-            <PipelineContent jsonData={nodesStatus} />
+            <PipelineContent
+              jsonData={nodesStatus}
+              params={this.props.match.params}
+            />
           </div>
         </div>
         <Modal

@@ -134,7 +134,14 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async fetchList({ devops, workspace, devopsName, cluster, ...filters } = {}) {
+  async fetchList({
+    devops,
+    workspace,
+    devopsName,
+    cluster,
+    silent,
+    ...filters
+  } = {}) {
     this.list.isLoading = true
 
     const { page, limit, name, filter } = filters
@@ -167,6 +174,7 @@ export default class PipelineStore extends BaseStore {
       filters: omit(filters, 'devops'),
       selectedRowKeys: [],
       isLoading: false,
+      silent,
     }
   }
 
@@ -243,7 +251,14 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async getPullRequest({ name, devops, workspace, cluster, ...filters }) {
+  async getPullRequest({
+    name,
+    devops,
+    workspace,
+    cluster,
+    silent,
+    ...filters
+  }) {
     const decodeName = decodeURIComponent(name)
 
     const { page } = filters
@@ -277,11 +292,12 @@ export default class PipelineStore extends BaseStore {
       filters: omit(filters, 'devops'),
       isLoading: false,
       selectedRowKeys: [],
+      silent,
     }
   }
 
   @action
-  async getBranches({ cluster, devops, name, branch, ...filters }) {
+  async getBranches({ cluster, devops, name, branch, silent, ...filters }) {
     const decodeName = decodeURIComponent(name)
 
     const { page } = filters
@@ -310,6 +326,7 @@ export default class PipelineStore extends BaseStore {
       filters: omit(filters, 'devops'),
       isLoading: false,
       selectedRowKeys: [],
+      silent,
     }
   }
 
@@ -320,6 +337,7 @@ export default class PipelineStore extends BaseStore {
     devops,
     cluster,
     backward = false,
+    silent,
     ...filters
   }) {
     name = decodeURIComponent(name)
@@ -379,6 +397,7 @@ export default class PipelineStore extends BaseStore {
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
       isLoading: false,
+      silent,
       selectedRowKeys: [],
     }
     return result.items
@@ -414,7 +433,7 @@ export default class PipelineStore extends BaseStore {
       const result = await request.get(
         `${this.getBaseUrl({
           cluster,
-          namespace: devops,
+          devops,
         })}pipelines/${decodeURIComponent(name)}/parameters`
       )
       return result

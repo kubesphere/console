@@ -73,7 +73,7 @@ export default class PipelinesList extends React.Component {
 
   refreshHandler = () => {
     if (this.isRuning) {
-      this.getData()
+      this.getData({ silent: true })
     } else {
       clearInterval(this.refreshTimer)
       this.refreshTimer = null
@@ -373,6 +373,7 @@ export default class PipelinesList extends React.Component {
       page,
       limit,
       selectedRowKeys,
+      silent,
     } = toJS(this.props.store.list)
 
     const isEmptyList = isLoading === false && total === 0
@@ -446,6 +447,7 @@ export default class PipelinesList extends React.Component {
         tableActions={defaultTableProps}
         itemActions={this.itemActions}
         enabledActions={this.enabledActions}
+        silentLoading={silent}
       />
     )
   }

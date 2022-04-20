@@ -39,7 +39,7 @@ export default class Pullrequest extends React.Component {
 
   store = this.props.detailStore || {}
 
-  refreshTimer = setInterval(() => this.getData(), 4000)
+  refreshTimer = setInterval(() => this.getData({ silent: true }), 4000)
 
   get isRuning() {
     const data = get(toJS(this.store), 'pullRequestList.data', [])
@@ -67,7 +67,7 @@ export default class Pullrequest extends React.Component {
   refreshHandler = () => {
     // The data of the current list is asynchronous, so there is no need to state as a judgment condition
     if (this.isRuning) {
-      this.getData()
+      this.getData({ silent: true })
     } else {
       clearInterval(this.refreshTimer)
       this.refreshTimer = null
@@ -85,13 +85,14 @@ export default class Pullrequest extends React.Component {
     this.unsubscribe && this.unsubscribe()
   }
 
-  getData = () => {
+  getData = _params => {
     const { params } = this.props.match
     const query = parse(location.search.slice(1))
 
     this.store.getPullRequest({
       ...params,
       ...query,
+      ..._params,
     })
   }
 
@@ -163,7 +164,15 @@ export default class Pullrequest extends React.Component {
 
   render() {
     const { pullRequestList } = this.store
-    const { data, isLoading, total, page, limit, filters } = pullRequestList
+    const {
+      data,
+      isLoading,
+      total,
+      page,
+      limit,
+      silent,
+      filters,
+    } = pullRequestList
     const isEmptyList = isLoading === false && total === 0 && data.length > 0
     const pagination = { total, page, limit }
     const omitFilters = omit(filters, 'page', 'workspace')
@@ -182,6 +191,7 @@ export default class Pullrequest extends React.Component {
         isLoading={isLoading}
         onFetch={this.handleFetch}
         hideSearch
+        silentLoading={silent}
       />
     )
   }
