@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { omit, isEmpty } from 'lodash'
+import { omit, isEmpty, has, get } from 'lodash'
 import { action, observable } from 'mobx'
 import Base from 'stores/base'
 
@@ -186,16 +186,37 @@ export default class CDStore extends Base {
       return []
     })
 
+    let hostName = 'default'
+
+    if (globals.app.isMultiCluster) {
+      const clusters = await request.get(
+        'kapis/tenant.kubesphere.io/v1alpha2/clusters'
+      )
+
+      const cluster = clusters.items.find(item =>
+        has(item, 'metadata.labels["cluster-role.kubesphere.io/host"]')
+      )
+
+      hostName = get(cluster, 'metadata.name', 'host')
+    }
+
     if (isEmpty(result)) {
       this.clustersList = [
         {
           server: 'https://kubernetes.default.svc',
           name: 'in-cluster',
+          label: hostName,
         },
       ]
     } else {
-      this.clustersList = result
+      this.clustersList = result.map(item => {
+        return {
+          ...item,
+          label: item.name === 'in-cluster' ? hostName : item.name,
+        }
+      })
     }
+    globals.hostClusterName = hostName
   }
 
   @action

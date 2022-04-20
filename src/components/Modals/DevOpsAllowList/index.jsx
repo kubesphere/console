@@ -27,7 +27,6 @@ import DevopsStore from 'stores/devops'
 import CodeStore from 'stores/codeRepo'
 import CDStore from 'stores/cd'
 import { toJS } from 'mobx'
-import { inCluster2Default } from 'utils'
 import Destinations from './Destinations'
 import styles from './index.scss'
 
@@ -84,7 +83,7 @@ export default class CDAllowListModal extends React.Component {
   fetchClusters = async () => {
     await this.cdStore.getClustersList()
     const clusters = this.cdStore.clustersList.map(item => ({
-      label: inCluster2Default(item.name),
+      label: item.label,
       value: item.name,
       server: item.server,
     }))

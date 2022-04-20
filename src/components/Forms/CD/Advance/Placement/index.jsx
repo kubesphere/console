@@ -17,9 +17,9 @@
  */
 
 import React, { Component } from 'react'
-import { computed } from 'mobx'
+import { action, computed, observable, toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { get, set, pick } from 'lodash'
+import { get, set, pick, cloneDeep } from 'lodash'
 import classNames from 'classnames'
 import {
   Icon,
@@ -43,8 +43,11 @@ export default class Placement extends Component {
   state = {
     showForm: false,
     initializing: true,
-    formData: this.props.formData,
+    oldFormDate: {},
   }
+
+  @observable
+  formData = {}
 
   formRef = React.createRef()
 
@@ -63,7 +66,7 @@ export default class Placement extends Component {
   @computed
   get clusters() {
     return this.cdStore.clustersList.map(item => ({
-      label: inCluster2Default(item.name),
+      label: item.label,
       value: item.name,
       server: item.server,
     }))
@@ -84,20 +87,15 @@ export default class Placement extends Component {
   async init() {
     this.setState({ initializing: true })
 
-    const { cluster, server, namespace } =
-      this.state.formData[`${this.prefix}`] || {}
+    const { cluster, server, namespace } = this.formData[`${this.prefix}`] || {}
 
     await this.fetchClusters()
 
     if (!cluster) {
-      set(
-        this.state.formData,
-        `${this.prefix}.name`,
-        get(this.clusters, '[0].value')
-      )
+      set(this.formData, `${this.prefix}.name`, get(this.clusters, '[0].value'))
 
       set(
-        this.state.formData,
+        this.formData,
         `${this.prefix}.server`,
         get(this.clusters, '[0].server')
       )
@@ -105,13 +103,13 @@ export default class Placement extends Component {
       const clusterInfo = this.clusters.find(item => item.value === cluster)
 
       set(
-        this.state.formData,
+        this.formData,
         `${this.prefix}.name`,
         get(this.clusters, clusterInfo.value)
       )
 
       set(
-        this.state.formData,
+        this.formData,
         `${this.prefix}.server`,
         get(this.clusters, clusterInfo.server)
       )
@@ -120,19 +118,22 @@ export default class Placement extends Component {
     await this.fetchNamespaces()
 
     if (!namespace) {
-      const firstValidNamepsace =
+      const firstValidNamespace =
         this.namespaces.find(item => !item.disabled) || {}
 
       set(
-        this.state.formData,
+        this.formData,
         `${this.prefix}.namespace`,
-        firstValidNamepsace.value || ''
+        firstValidNamespace.value || ''
       )
     }
 
-    Object.assign(this.props.formData, this.state.formData)
+    Object.assign(this.props.formData, this.formData)
 
-    this.setState({ initializing: false })
+    this.setState({
+      initializing: false,
+      oldFormDate: cloneDeep(toJS(this.formData)),
+    })
   }
 
   async fetchClusters() {
@@ -140,7 +141,9 @@ export default class Placement extends Component {
   }
 
   fetchNamespaces = async (params = {}) => {
-    const { cluster } = this.state.formData
+    const clusterData = get(this.formData, `${this.prefix}.name`, '')
+    const cluster = inCluster2Default(clusterData)
+
     await this.projectStore.fetchList({
       ...params,
       cluster,
@@ -151,8 +154,8 @@ export default class Placement extends Component {
   handleClusterChange = value => {
     this.fetchNamespaces()
     const server = this.clusters.find(item => item.value === value).server
-    set(this.state.formData, `${this.prefix}.server`, server)
-    set(this.state.formData, `${this.prefix}.namespace`, '')
+    set(this.formData, `${this.prefix}.server`, server)
+    set(this.formData, `${this.prefix}.namespace`, '')
   }
 
   handleSubmit = () => {
@@ -160,9 +163,13 @@ export default class Placement extends Component {
     form &&
       form.validate(() => {
         Object.assign(this.props.formData, {
-          ...this.state.formData,
+          ...this.formData,
         })
-        this.hideForm()
+
+        this.setState({
+          showForm: false,
+          oldFormDate: toJS(this.formData),
+        })
       })
   }
 
@@ -170,8 +177,14 @@ export default class Placement extends Component {
     this.setState({ showForm: true })
   }
 
+  @action
   hideForm = () => {
-    this.setState({ showForm: false })
+    this.setState({ showForm: false }, () => {
+      this.formData = this.state.oldFormDate
+      Object.assign(this.props.formData, {
+        ...this.formData,
+      })
+    })
   }
 
   renderPlacement() {
@@ -210,7 +223,7 @@ export default class Placement extends Component {
   renderForm() {
     return (
       <div className={styles.form}>
-        <Form ref={this.formRef} type="inner" data={this.state.formData}>
+        <Form ref={this.formRef} type="inner" data={this.formData}>
           <Columns>
             <Column>
               <Form.Item label={t('CLUSTER')}>
@@ -261,12 +274,12 @@ export default class Placement extends Component {
   }
 
   render() {
-    const { showForm, formData, initializing } = this.state
+    const { showForm, initializing } = this.state
     if (showForm) {
       return this.renderForm()
     }
 
-    const namespace = get(formData, `${this.prefix}.namespace`, '')
+    const namespace = get(this.formData, `${this.prefix}.namespace`, '')
 
     return (
       <div
