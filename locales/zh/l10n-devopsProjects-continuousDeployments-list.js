@@ -42,6 +42,12 @@ module.exports = {
   // List > Delete
   CONTINUOUS_DEPLOYMENT: '持续部署',
   CONTINUOUS_DEPLOYMENT_LOW: '持续部署',
+  DELETE_CONTINUOUS_DEPLOYMENT_DESC_SI: 'You are about to delete the continuous deployment {resource}. <br/>Please confirm whether to delete resources created by the continuous deployment?',
+  DELETE_CONTINUOUS_DEPLOYMENT_DESC_PL: 'You are about to delete the continuous deployments {resource}. <br/>Please confirm whether to delete resources created by the continuous deployment?',
+  NO_CONTINUOUS_DEPLOYMENT_RELATED_RESOURCE_DESC: 'There are currently no resources associated with continuous deployment',
+  DELETE_MULTIPLE_CONTINUOUS_DEPLOYMENT: 'Batch delete continuous deployment',
+  DELETE_CONTINUOUS_DEPLOYMENT: 'Delete Continuous Deployment',
+  DELETE_CONTINUOUS_DEPLOYMENT_RELATE_DESC: 'Delete resources created by {resourceName}',
   // List > Sync
   SYNC: '同步',
   SYNC_RESOURCE: '同步资源',
