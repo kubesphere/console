@@ -200,17 +200,22 @@ export default class ResourceSnapshot extends React.Component {
     const { volumeInfo } = this.state
     const { storageClassName } = volumeInfo
 
-    await this.storageclass.fetchDetail({
-      cluster,
-      namespace,
-      name: storageClassName,
-    })
+    let allowSnapshot
 
-    const allowSnapshot = get(
-      toJS(this.storageclass).detail.annotations,
-      'storageclass.kubesphere.io/allow-snapshot',
-      'false'
-    )
+    try {
+      await this.storageclass.fetchDetail({
+        cluster,
+        namespace,
+        name: storageClassName,
+      })
+      allowSnapshot = get(
+        toJS(this.storageclass).detail.annotations,
+        'storageclass.kubesphere.io/allow-snapshot',
+        'false'
+      )
+    } catch (err) {
+      allowSnapshot = 'false'
+    }
 
     this.setState(
       {
