@@ -24,6 +24,7 @@ import { Form, Input, Select, Icon, Tooltip } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import VolumeStore from 'stores/volume'
 import StorageClass from 'stores/storageClass'
+import VolumeSnapshotClassStore from 'stores/volumeSnapshotClasses'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { get, isObject } from 'lodash'
@@ -53,6 +54,8 @@ export default class ResourceSnapshot extends React.Component {
   volumeStore = new VolumeStore()
 
   storageclass = new StorageClass()
+
+  snapShotClassStore = new VolumeSnapshotClassStore()
 
   form = React.createRef()
 
@@ -89,6 +92,7 @@ export default class ResourceSnapshot extends React.Component {
     const { volumeSelect } = this.props
     if (volumeSelect) {
       this.fetchList()
+      this.getSnapShotClassList()
     }
   }
 
@@ -114,10 +118,7 @@ export default class ResourceSnapshot extends React.Component {
           sortBy: 'createTime',
         }
 
-        Promise.all([
-          this.volumeStore.fetchList(listParams),
-          this.volumeStore.getSnapshotType(),
-        ]).then(() => {
+        this.volumeStore.fetchList(listParams).then(() => {
           const { total } = this.volumeStore.list
           this.setState({
             pagination: {
@@ -129,6 +130,16 @@ export default class ResourceSnapshot extends React.Component {
         })
       }
     )
+  }
+
+  getSnapShotClassList() {
+    const { namespace, cluster } = this.props
+    const listParams = {
+      namespace,
+      cluster,
+      limit: -1,
+    }
+    this.snapShotClassStore.fetchList(listParams)
   }
 
   volumeChange = value => {
@@ -163,7 +174,7 @@ export default class ResourceSnapshot extends React.Component {
   }
 
   getSnapShotClass() {
-    const { snapshotType } = this.volumeStore
+    const data = toJS(this.snapShotClassStore.list.data)
     const { volumeInfo } = this.state
     const provisioner = get(
       volumeInfo,
@@ -171,11 +182,11 @@ export default class ResourceSnapshot extends React.Component {
       '-'
     )
     const options = []
-    snapshotType.items.forEach(item => {
+    data.forEach(item => {
       if (item.driver === provisioner) {
         options.push({
-          label: item.metadata.name,
-          value: item.metadata.name,
+          label: item.name,
+          value: item.name,
         })
       }
     })
