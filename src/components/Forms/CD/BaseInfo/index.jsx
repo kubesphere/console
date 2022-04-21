@@ -59,7 +59,9 @@ export default class BaseInfo extends React.Component {
   repoOptionRenderer = option => type => (
     <span className={styles.option}>
       <Icon name={option.icon} type={type === 'value' ? 'dark' : 'light'} />
-      {option.label}
+      <span>
+        {option.label} ({option.value})
+      </span>
     </span>
   )
 
