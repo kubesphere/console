@@ -104,6 +104,9 @@ export default class Snapshots extends React.Component {
         icon: 'trash',
         text: t('DELETE'),
         action: 'delete',
+        show: item => {
+          return !(item.backupStatus === 'deleting')
+        },
         onClick: item =>
           trigger('resource.delete', {
             type: name,
