@@ -204,8 +204,13 @@ const handleOAuthLogin = async ctx => {
     return ctx.redirect('/login/confirm')
   }
 
-  if (ctx.query.redirect_url) {
-    ctx.redirect(ctx.query.redirect_url)
+  const redirect_url = ctx.query.redirect_url
+
+  if (redirect_url) {
+    const redirectHost = new URL(redirect_url).host
+    if (redirectHost === ctx.headers.host) {
+      ctx.redirect(redirect_url)
+    }
   } else {
     ctx.redirect('/')
   }
