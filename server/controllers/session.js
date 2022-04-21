@@ -18,6 +18,8 @@
 
 const isEmpty = require('lodash/isEmpty')
 const jwtDecode = require('jwt-decode')
+const omit = require('lodash/omit')
+
 const {
   login,
   oAuthLogin,
@@ -175,9 +177,9 @@ const handleLogout = async ctx => {
 const handleOAuthLogin = async ctx => {
   let user = null
   const error = {}
-
+  const oauthParams = omit(ctx.query, ['redirect_url'])
   try {
-    user = await oAuthLogin({ ...ctx.query, oauthName: ctx.params.name })
+    user = await oAuthLogin({ ...oauthParams, oauthName: ctx.params.name })
   } catch (err) {
     ctx.app.emit('error', err)
     Object.assign(error, {
@@ -202,7 +204,16 @@ const handleOAuthLogin = async ctx => {
     return ctx.redirect('/login/confirm')
   }
 
-  ctx.redirect('/')
+  const redirect_url = ctx.query.redirect_url
+
+  if (redirect_url) {
+    const redirectHost = new URL(redirect_url).host
+    if (redirectHost === ctx.headers.host) {
+      ctx.redirect(redirect_url)
+    }
+  } else {
+    ctx.redirect('/')
+  }
 }
 
 const handleLoginConfirm = async ctx => {
