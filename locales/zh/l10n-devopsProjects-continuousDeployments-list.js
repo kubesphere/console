@@ -47,7 +47,7 @@ module.exports = {
   NO_CONTINUOUS_DEPLOYMENT_RELATED_RESOURCE_DESC: 'There are currently no resources associated with continuous deployment',
   DELETE_MULTIPLE_CONTINUOUS_DEPLOYMENT: 'Batch delete continuous deployment',
   DELETE_CONTINUOUS_DEPLOYMENT: 'Delete Continuous Deployment',
-  DELETE_CONTINUOUS_DEPLOYMENT_RELATE_DESC: 'Delete resources created by {resourceName}',
+  DELETE_CONTINUOUS_DEPLOYMENT_RELATE_DESC: '删除 {resourceName} 创建的资源',
   // List > Sync
   SYNC: '同步',
   SYNC_RESOURCE: '同步资源',
