@@ -55,7 +55,7 @@ export default class RuleItem extends React.Component {
               {condtion}
             </span>
           }
-          description={t('ALERTING_RULE_SCAP')}
+          description={t('TRIGGER_CONDITION')}
         />
       </div>
     )

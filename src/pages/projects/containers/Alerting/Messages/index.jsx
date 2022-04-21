@@ -143,7 +143,7 @@ export default class AlertingPolicy extends React.Component {
     const { getFilteredValue } = this.props
     return [
       {
-        title: t('ALERTING_MESSAGE'),
+        title: t('MESSAGE'),
         dataIndex: 'value',
         render: (value, record) => (
           <Text

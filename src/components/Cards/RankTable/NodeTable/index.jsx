@@ -70,7 +70,7 @@ export default class NodeUsageRank extends React.Component {
                 {node.node}
               </Link>
               {node.role === 'master' && (
-                <span className={styles.label}>Master</span>
+                <span className={styles.label}>{t('CONTROL_PLANE')}</span>
               )}
             </h3>
             <p>{get(node, 'host_ip', '-')}</p>

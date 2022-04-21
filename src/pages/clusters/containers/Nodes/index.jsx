@@ -297,7 +297,7 @@ export default class Nodes extends React.Component {
         isHideable: true,
         search: true,
         render: roles =>
-          roles.indexOf('master') === -1 ? t('WORKER') : t('MASTER'),
+          roles.indexOf('master') === -1 ? t('WORKER') : t('CONTROL_PLANE'),
       },
       {
         title: t('CPU_USAGE'),

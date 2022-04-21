@@ -128,7 +128,7 @@ export default class NodeDetail extends React.Component {
         value:
           getNodeRoles(detail.labels).indexOf('master') === -1
             ? t('WORKER')
-            : t('MASTER'),
+            : t('CONTROL_PLANE'),
       },
       {
         name: t('OS_VERSION'),

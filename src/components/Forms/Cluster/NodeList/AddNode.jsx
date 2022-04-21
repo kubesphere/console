@@ -64,7 +64,7 @@ export default class AddNode extends Component {
     return this.props.addAfterCreate
       ? [{ label: t('WORKER'), value: 'worker' }]
       : [
-          { label: t('MASTER'), value: 'master' },
+          { label: t('CONTROL_PLANE'), value: 'master' },
           { label: t('WORKER'), value: 'worker' },
         ]
   }

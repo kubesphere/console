@@ -83,7 +83,7 @@ export default class AlertHistory extends React.Component {
 
   getColumns = () => [
     {
-      title: t('ALERTING_MESSAGE'),
+      title: t('MESSAGE'),
       dataIndex: 'value',
       render: (value, record) => (
         <Text
@@ -146,7 +146,7 @@ export default class AlertHistory extends React.Component {
     const { data, isLoading, filters } = this.store.list
 
     return (
-      <Panel title={t('ALERTING_HISTORY')} loading={isLoading}>
+      <Panel title={t('ALERTING_MESSAGE_PL')} loading={isLoading}>
         {isEmpty(data) ? (
           <div>{t('NO_DATA_DESC')}</div>
         ) : (
