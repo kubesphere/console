@@ -31,4 +31,21 @@ export default class accessorStore extends Base {
     this.isLoading = false
     return result
   }
+
+  @action
+  silentPatch(params, newObject) {
+    return this.submitting(
+      request.patch(
+        this.getDetailUrl(params),
+        newObject,
+        {},
+        (err, response) => {
+          if (err) {
+            return err
+          }
+          return response
+        }
+      )
+    )
+  }
 }
