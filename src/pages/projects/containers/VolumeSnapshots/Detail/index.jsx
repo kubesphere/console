@@ -27,6 +27,7 @@ import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
 import VolumeSnapshotStore from 'stores/volumeSnapshot'
+import VolumeSnapshotClassStore from 'stores/volumeSnapshotClasses'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -37,6 +38,8 @@ import getRoutes from './routes'
 @trigger
 export default class VolumeSnapshotDetail extends React.Component {
   store = new VolumeSnapshotStore()
+
+  snapshotClass = new VolumeSnapshotClassStore()
 
   componentDidMount() {
     this.fetchData()
@@ -58,18 +61,27 @@ export default class VolumeSnapshotDetail extends React.Component {
     return `/clusters/${cluster}/${this.module}`
   }
 
-  fetchData = () => {
-    this.store.fetchDetail(this.props.match.params)
+  fetchData = async () => {
+    const { params } = this.props.match
+    await this.store.fetchDetail(this.props.match.params)
+    await this.snapshotClass.fetchDetail({
+      cluster: params.cluster,
+      name: this.store.detail.snapshotClassName,
+    })
   }
 
   showApply = () => {
     const { cluster, namespace } = this.props.match.params
-    return globals.app.hasPermission({
-      module: 'volumes',
-      action: 'create',
-      project: namespace,
-      cluster,
-    })
+    const { detail } = toJS(this.snapshotClass)
+    return (
+      !isEmpty(detail) &&
+      globals.app.hasPermission({
+        module: 'volumes',
+        action: 'create',
+        project: namespace,
+        cluster,
+      })
+    )
   }
 
   getOperations = () => [

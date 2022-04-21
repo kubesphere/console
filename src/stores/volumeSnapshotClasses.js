@@ -52,7 +52,7 @@ export default class VolumeSnapshotClassStore extends Base {
       {},
       () => {}
     )
-    const detail = { ...params, ...this.mapper(result) }
+    const detail = result ? { ...params, ...this.mapper(result) } : {}
 
     this.detail = detail
     this.isLoading = false
