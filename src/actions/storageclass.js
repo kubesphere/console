@@ -209,7 +209,7 @@ export default {
           // disable it's accessor
           selectNames.forEach(name => {
             updateAccessor.push(
-              accessorStore.patch(
+              accessorStore.silentPatch(
                 { name: `${name}-accessor` },
                 {
                   spec: { storageClassName: `${name}-accessor-disabled` },
@@ -239,12 +239,13 @@ export default {
     on({ store, detail, success, accessorStore, ...props }) {
       const modal = Modal.open({
         onOk: async () => {
-          await accessorStore.patch(
+          await accessorStore.silentPatch(
             { name: `${detail.name}-accessor` },
             {
               spec: { storageClassName: `${detail.name}-accessor-disabled` },
             }
           )
+
           store.delete(detail).then(() => {
             Modal.close(modal)
             Notify.success({ content: t('DELETE_SUCCESSFUL') })
