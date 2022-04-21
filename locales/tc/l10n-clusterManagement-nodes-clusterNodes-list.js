@@ -48,7 +48,7 @@ module.exports = {
   NODE_NAME_EMPTY_DESC: '請輸入節點名稱',
   CPU_USAGE: 'CPU 使用量',
   MEMORY_USAGE: '記憶體使用量',
-  MASTER: '控制平面節點',
+  CONTROL_PLANE: 'Control plane',
   WORKER: '工作節點',
   ALLOCATED_CPU: '已分配 CPU',
   ALLOCATED_MEMORY: '已分配記憶體',
