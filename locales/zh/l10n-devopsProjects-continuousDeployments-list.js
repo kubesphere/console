@@ -44,9 +44,9 @@ module.exports = {
   CONTINUOUS_DEPLOYMENT_LOW: '持续部署',
   DELETE_CONTINUOUS_DEPLOYMENT_DESC_SI: '您即将删除持续部署 {resource}。 <br/>请确认是否删除由持续部署创建的资源。',
   DELETE_CONTINUOUS_DEPLOYMENT_DESC_PL: '您即将删除持续部署 {resource}。 <br/>请确认是否删除由持续部署创建的资源。',
-  NO_CONTINUOUS_DEPLOYMENT_RELATED_RESOURCE_DESC: 'No resource created by the continuous deployment is found.',
-  DELETE_MULTIPLE_CONTINUOUS_DEPLOYMENT: 'Delete Multiple Continuous Deployments',
-  DELETE_CONTINUOUS_DEPLOYMENT: 'Delete Continuous Deployment',
+  NO_CONTINUOUS_DEPLOYMENT_RELATED_RESOURCE_DESC: '没有找到由持续部署创建的资源。',
+  DELETE_MULTIPLE_CONTINUOUS_DEPLOYMENT: '批量删除持续部署',
+  DELETE_CONTINUOUS_DEPLOYMENT: '删除持续部署',
   DELETE_CONTINUOUS_DEPLOYMENT_RELATE_DESC: '删除 {resourceName} 创建的资源',
   // List > Sync
   SYNC: '同步',
