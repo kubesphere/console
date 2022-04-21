@@ -20,7 +20,6 @@ module.exports = {
   Alerting: '告警',
   NOTIFICATION_MESSAGE: '通知消息',
   'Alerting Detail': '告警详情',
-  ALERTING_HISTORY: '告警历史',
   ALERTING_MESSAGE: '告警消息',
   'Alerting Messages': '告警消息',
   ALERT_MONITORING: '告警监控',
@@ -62,5 +61,5 @@ module.exports = {
   ALERTING_POLICIES: '告警策略',
   // Alerting Policies > Details
   NOTIFICATION_SUMMARY_COLON: '概括：',
-  DETAILS_COLON: '详情：'
-};
+  DETAILS_COLON: '详情：',
+}

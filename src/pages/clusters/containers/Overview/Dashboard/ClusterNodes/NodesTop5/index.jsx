@@ -74,7 +74,7 @@ export default class NodesTop5 extends Component {
                   <Link to={`/clusters/${this.cluster}/nodes/${node.node}`}>
                     {node.node}
                     {node.role === 'master' && (
-                      <span className={styles.label}>{t('MASTER')}</span>
+                      <span className={styles.label}>{t('CONTROL_PLANE')}</span>
                     )}
                   </Link>
                 }

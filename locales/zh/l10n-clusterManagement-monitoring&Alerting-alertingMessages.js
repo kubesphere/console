@@ -22,7 +22,7 @@ module.exports = {
   // Custom Policies > List
   CUSTOM_POLICIES: '自定义策略',
   BUILT_IN_POLICIES: '内置策略',
-  ACTIVATION_TIME: '触发时间',
+  ACTIVATION_TIME: '激活时间',
   ALERTING_MESSAGE_EMPTY_DESC: '没有在当前项目中找到告警消息。',
-  MONITORING_TARGET: '监控目标'
-};
+  MONITORING_TARGET: '监控目标',
+}

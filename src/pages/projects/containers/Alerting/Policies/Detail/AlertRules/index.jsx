@@ -67,7 +67,7 @@ export default class AlertRules extends React.Component {
             <Query query={detail.query} />
           </Panel>
         )}
-        <Panel title={t('ALERT_MONITORING')}>
+        <Panel title={t('METRIC_MONITORING')}>
           <Monitoring detail={detail} store={this.store} />
         </Panel>
         <Panel title={t('ALERTING_MESSAGE')}>

@@ -20,7 +20,6 @@ module.exports = {
   Alerting: 'Alertando',
   NOTIFICATION_MESSAGE: 'Notification Message',
   'Alerting Detail': 'Detalles de alertas',
-  ALERTING_HISTORY: 'Historial de alertas',
   ALERTING_MESSAGE: 'Mensaje de alerta',
   'Alerting Messages': 'Mensajes de alerta',
   ALERT_MONITORING: 'Alerting Monitoring',
@@ -46,15 +45,19 @@ module.exports = {
   Rule: 'Regla',
   RULE: 'Regla',
   'Rule Name': 'Nombre de la Regla',
-  'Unavailable daemonset replicas ratio': 'Ratio de replicas de daemonset no disponibles',
-  'Unavailable deployment replicas ratio': 'Ratio de replicas de despliegues no disponibles',
-  'Unavailable statefulset replicas ratio': 'Ratio de replicas de statefulset no disponibles',
+  'Unavailable daemonset replicas ratio':
+    'Ratio de replicas de daemonset no disponibles',
+  'Unavailable deployment replicas ratio':
+    'Ratio de replicas de despliegues no disponibles',
+  'Unavailable statefulset replicas ratio':
+    'Ratio de replicas de statefulset no disponibles',
   ALERT_FUNCTIONS: 'Functions',
   ALERT_METRICS: 'Metrics',
   ALERT_LABELS: 'Labels',
   ALERT_RATE_RANGES: 'Rate Ranges',
   ALERT_TYPE: 'Alerta {type}',
-  ALERTING_POLICY_CREATE_DESC: 'You can create alerting policies to detect abnormal resources in real time.',
+  ALERTING_POLICY_CREATE_DESC:
+    'You can create alerting policies to detect abnormal resources in real time.',
   DELETE_TCAP: 'Delete',
   // Alerting Messages
   ALERTING_RESOURCE: 'Alerting Resource',
@@ -62,5 +65,5 @@ module.exports = {
   ALERTING_POLICIES: 'Alerting Policies',
   // Alerting Policies > Details
   NOTIFICATION_SUMMARY_COLON: 'Summary: ',
-  DETAILS_COLON: 'Details: '
-};
+  DETAILS_COLON: 'Details: ',
+}

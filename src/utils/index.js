@@ -409,7 +409,7 @@ export const getDisplayName = item => {
     return item.display_name
   }
 
-  return `${item.name}${item.aliasName ? `(${item.aliasName})` : ''}`
+  return `${item.name}${item.aliasName ? ` (${item.aliasName})` : ''}`
 }
 
 export const getWebSocketProtocol = protocol => {
