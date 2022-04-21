@@ -16,7 +16,7 @@ tasks:
       [[ ! -z "${GITHUB_USER}" && ! -z "${GITHUB_TOKEN}" ]] && docker login ghcr.io -u${GITHUB_USER} -p${GITHUB_TOKEN}
       echo kubesphere/console | gh repo fork --remote
 
-      make image image-push
+      make container container-push
 
       cp /home/gitpod/local_config.yaml /workspace/console/server/local_config.yaml
       gp open /workspace/console/server/local_config.yaml
