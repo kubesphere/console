@@ -742,5 +742,7 @@ export const map_accessModes = accessModes =>
 
 export const quota_limits_requests_Dot = deal_With_Dot
 
-export const inCluster2Default = name =>
-  name === 'in-cluster' ? 'default' : name
+export const inCluster2Default = name => {
+  const clusterName = globals.hostClusterName || 'default'
+  return name === 'in-cluster' ? clusterName : name
+}
