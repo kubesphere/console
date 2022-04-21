@@ -22,8 +22,8 @@ module.exports = {
   ALERTING_RULE: '告警规则',
   MONITORING_TARGETS_SCAP: '监控目标',
   ALERTING_RULE_SCAP: '告警规则',
-  TRIGGER_CONDITION: 'Trigger condition',
-  METRIC_MONITORING: 'Metric Monitoring',
+  TRIGGER_CONDITION: '触发条件',
+  METRIC_MONITORING: '指标监控',
   // Alerting History
   NO_DATA_DESC: '未发现数据'
 };
