@@ -48,7 +48,7 @@ module.exports = {
   NODE_NAME_EMPTY_DESC: 'Please set a name for the node.',
   CPU_USAGE: 'CPU Usage',
   MEMORY_USAGE: 'Memory Usage',
-  MASTER: 'Control plane',
+  CONTROL_PLANE: 'Control plane',
   WORKER: 'Worker',
   ALLOCATED_CPU: 'Allocated CPU',
   ALLOCATED_MEMORY: 'Allocated Memory',
