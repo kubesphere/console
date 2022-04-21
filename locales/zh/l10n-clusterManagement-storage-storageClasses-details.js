@@ -27,7 +27,7 @@ module.exports = {
   SET_AUTHORIZATION_RULES: '设置授权规则',
   AUTHORIZATION_RULES: '授权规则',
   AUTHORIZATION_RULES_DESC: '设置授权规则使存储类型只能在特定项目和企业空间访问。',
-  AUTHORIZATION_NOT_SUPPORT: 'Your cluster is lack of accessor custom resources, please upgrade ks-installer to v3.3.0 and above, or install <a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a> component manually',
+  AUTHORIZATION_NOT_SUPPORT: 'The cluster currently does not support this feature. Please upgrade KubeSphere to v3.3.0 or later, or manually install <a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a>.',
   OPERATOR_IN: '属于',
   OPERATOR_NOT_IN: '不属于',
   // More > Set Volume Permissions
@@ -51,5 +51,5 @@ module.exports = {
   RESTART_WORKLOAD_AUTOMATICALLY_TIP: '如果到达超时时间时存储卷仍未扩容成功，系统将在工作负载上添加“restart.kubesphere.io/skip”注解使工作负载不再被重启。如需再次为工作负载启用自动重启功能，您需要在工作负载上手动删除该注解。',
   // More > Delete
   // Volumes
-  VOLUME_COUNT: '存储卷数量',
-}
+  VOLUME_COUNT: '存储卷数量'
+};
