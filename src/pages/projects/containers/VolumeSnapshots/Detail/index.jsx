@@ -41,8 +41,11 @@ export default class VolumeSnapshotDetail extends React.Component {
 
   snapshotClass = new VolumeSnapshotClassStore()
 
-  componentDidMount() {
-    this.fetchData()
+  volumeStore = new VolumeStore()
+
+  async componentDidMount() {
+    await this.fetchData()
+    this.getVolumeInfo()
   }
 
   get name() {
@@ -68,6 +71,12 @@ export default class VolumeSnapshotDetail extends React.Component {
       cluster: params.cluster,
       name: this.store.detail.snapshotClassName,
     })
+  }
+
+  getVolumeInfo = () => {
+    const { params } = this.props.match
+    const name = this.store.detail.snapshotSourceName
+    this.volumeStore.fetchDetail({ ...params, name })
   }
 
   showApply = () => {
@@ -122,7 +131,10 @@ export default class VolumeSnapshotDetail extends React.Component {
                   storage: get(this.store, 'detail.restoreSize'),
                 },
               },
-              storageClassName: get(this.store, 'detail.snapshotClassName'),
+              storageClassName: get(
+                this.volumeStore,
+                'detail.storageClassName'
+              ),
               dataSource: {
                 name: get(this.store, 'detail.name'),
                 kind: 'VolumeSnapshot',
