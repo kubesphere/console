@@ -29,7 +29,7 @@ module.exports = {
   ACCESS_SERVICE: 'Access Service',
   UNABLE_TO_ACCESS: 'Unable to access service',
   UNABLE_TO_ACCESS_TIP:
-    '* If the domain name is automatically generated, make sure that your client machine can access nip.io.<br/>* If the domain name is manually specified, make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
+    'Make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
   CERTIFICATE_VALUE: 'Certificate: {value}',
 
   // Metadata
