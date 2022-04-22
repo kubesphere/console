@@ -22,6 +22,7 @@ import { PieChart } from 'components/Charts'
 import { Radio } from '@kube-design/components'
 import classnames from 'classnames'
 import { isEmpty } from 'lodash'
+import { capitalize } from 'utils'
 import styles from './index.scss'
 
 export default function ChartCard({ click, item, type, filters }) {
@@ -30,7 +31,7 @@ export default function ChartCard({ click, item, type, filters }) {
 
   const handleClick = () => {
     setCheck(!checked)
-    click({ [type]: item.title })
+    click({ [type]: capitalize(item.title) })
   }
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function ChartCard({ click, item, type, filters }) {
     } else {
       setCheck(false)
       Object.keys(filters).forEach(key => {
-        if (type === key && filters[key] === title) {
+        if (type === key && filters[key] === capitalize(title)) {
           setCheck(true)
         }
       })
