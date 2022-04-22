@@ -173,7 +173,7 @@ class SyncStatus extends React.Component {
                 {this.renderSyncTip()}
                 <div>
                   <h4>{this.detail.syncStatus}</h4>
-                  <p>{t('LATEST_SYNC_STATUS')}</p>
+                  <p>{t('CURRENT_SYNC_STATUS')}</p>
                 </div>
               </div>
               <div>

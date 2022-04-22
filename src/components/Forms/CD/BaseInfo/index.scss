@@ -6,10 +6,7 @@
   position: relative;
   width: 100%;
   @include ellipsis;
-  & > span,
-  & > img {
-    display: inline-block;
-    vertical-align: text-bottom;
+  & > span {
     margin-right: 6px;
     width: 16px;
     height: 16px;
