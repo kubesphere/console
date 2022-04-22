@@ -28,7 +28,8 @@ import PropTypes from 'prop-types'
 
 import SnapshotStore from 'stores/volumeSnapshot'
 
-import StorageClassStore from 'stores/storageClass'
+import SnapshotClassStore from 'stores/volumeSnapshotClasses'
+import VolumeStore from 'stores/volume'
 
 import { safeParseJSON } from 'utils'
 import { ACCESS_MODES } from 'utils/constants'
@@ -39,7 +40,9 @@ import styles from './index.scss'
 export default class SanpshotForm extends Component {
   snapshotStore = new SnapshotStore()
 
-  storageClassStore = new StorageClassStore()
+  snapshotClassStore = new SnapshotClassStore()
+
+  volumeStore = new VolumeStore()
 
   static contextTypes = {
     formData: PropTypes.object,
@@ -58,7 +61,7 @@ export default class SanpshotForm extends Component {
   get supportedAccessModes() {
     return safeParseJSON(
       get(
-        this.storageClassStore.detail,
+        this.snapshotClassStore.detail,
         'annotations["storageclass.kubesphere.io/supported-access-modes"]',
         ''
       )
@@ -87,19 +90,25 @@ export default class SanpshotForm extends Component {
   fetchStorageClassDetail = () => {
     if (
       this.storageClassName &&
-      this.storageClassName !== this.storageClassStore.detail.name
+      this.storageClassName !== this.snapshotClassStore.detail.name
     ) {
-      this.storageClassStore.fetchDetail({
+      this.snapshotClassStore.fetchDetail({
         cluster: this.props.cluster,
         name: this.storageClassName,
       })
     }
   }
 
-  handeSnapshotChange = name => {
+  getSnapshotSourceVolumeInfo = name => {
+    const { namespace, cluster } = this.props
+    return this.volumeStore.fetchDetail({ name, namespace, cluster })
+  }
+
+  handeSnapshotChange = async name => {
     const { data } = this.snapshotStore.list
     const selectSnapshot =
       toJS(data).find(snapshot => snapshot.name === name) || {}
+    await this.getSnapshotSourceVolumeInfo(selectSnapshot.snapshotSourceName)
     set(
       this.context.formData,
       'spec.resources.requests.storage',
@@ -108,7 +117,7 @@ export default class SanpshotForm extends Component {
     set(
       this.context.formData,
       'spec.storageClassName',
-      selectSnapshot.snapshotClassName
+      this.volumeStore.detail.storageClassName
     )
     set(this.context.formData, 'spec.dataSource.kind', 'VolumeSnapshot')
     set(
@@ -122,7 +131,7 @@ export default class SanpshotForm extends Component {
 
   render() {
     const { data: snapshots, total, page, isLoading } = this.snapshotStore.list
-    const { isLoading: isStorageClassLoading } = this.storageClassStore
+    const { isLoading: isSnapshotClassLoading } = this.snapshotClassStore
     const supportedAccessModes = this.supportedAccessModes
 
     return (
@@ -144,7 +153,7 @@ export default class SanpshotForm extends Component {
           />
         </Form.Item>
         {this.storageClassName && (
-          <Loading spinning={isStorageClassLoading}>
+          <Loading spinning={isSnapshotClassLoading}>
             <Form.Item
               className="margin-t12"
               label={t('Access Mode')}
