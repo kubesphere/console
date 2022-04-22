@@ -27,6 +27,6 @@ module.exports = {
   SERVICE_COLON: '服务：',
   ACCESS_SERVICE: '访问服务',
   UNABLE_TO_ACCESS: '无法访问服务',
-  UNABLE_TO_ACCESS_TIP: '请确保您的 DNS 服务器或客户机的本地 hosts 文件中已配置了域名解析策略。',
+  UNABLE_TO_ACCESS_TIP: 'Make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
   CERTIFICATE_VALUE: '证书：{value}'
 };
