@@ -18,6 +18,7 @@
 module.exports = {
   // Sync Status
   LATEST_SYNC_STATUS: '最新同步状态',
+  CURRENT_SYNC_STATUS: 'Current sync status',
   SYNC_STRATEGY: '同步策略',
   AUTO_SYNC: '自动同步',
   MANUAL_SYNC: '手动同步',
