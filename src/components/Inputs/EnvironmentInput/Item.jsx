@@ -31,6 +31,7 @@ import ObjectInput from '../ObjectInput'
 export default class EnvironmentInputItem extends React.Component {
   state = {
     keyError: false,
+    envType: 'customization',
   }
 
   static propTypes = {
@@ -48,16 +49,11 @@ export default class EnvironmentInputItem extends React.Component {
     secrets: [],
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    const { value } = nextProps
-    if (value.valueFrom) {
-      return {
-        envType: Object.keys(value.valueFrom)[0],
-      }
-    }
-    return {
-      envType: 'customization',
-    }
+  get envType() {
+    const { envType } = this.state
+    const { value } = this.props
+    const propsEnvType = value.valueFrom && Object.keys(value.valueFrom)[0]
+    return !propsEnvType ? envType : propsEnvType
   }
 
   get resourceOptions() {
@@ -92,23 +88,22 @@ export default class EnvironmentInputItem extends React.Component {
 
   handleResourceValueForm = name => {
     const { configMaps, secrets } = this.props
-    const { envType } = this.state
 
     const valueFrom = {}
     let data
 
-    if (envType === 'configMapKeyRef') {
+    if (this.envType === 'configMapKeyRef') {
       data = configMaps.find(item => item.name === name)
-    } else if (envType === 'secretKeyRef') {
+    } else if (this.envType === 'secretKeyRef') {
       data = secrets.find(item => item.name === name)
     }
 
-    valueFrom[envType] = {
+    valueFrom[this.envType] = {
       name: data ? data.name : '',
       key: '',
     }
 
-    return { valueFrom, resourceType: envType }
+    return { valueFrom, resourceType: this.envType }
   }
 
   handleChange = value => {
@@ -156,8 +151,7 @@ export default class EnvironmentInputItem extends React.Component {
 
   get getConfigOrSecretOptions() {
     const { configMaps, secrets } = this.props
-    const { envType } = this.state
-    return envType === 'configMapKeyRef'
+    return this.envType === 'configMapKeyRef'
       ? configMaps.map(config => ({
           label: getDisplayName(config),
           value: config.name,
@@ -176,12 +170,10 @@ export default class EnvironmentInputItem extends React.Component {
   }
 
   handleCfOrScChange = cfOrScName => {
-    const { envType } = this.state
-
     this.props.onChange({
       name: this.props.value.name || '',
       valueFrom: {
-        [envType]: {
+        [this.envType]: {
           name: cfOrScName || '',
           key: '',
         },
@@ -277,7 +269,7 @@ export default class EnvironmentInputItem extends React.Component {
 
   renderConfigOrSecret = () => {
     const { value = {} } = this.props
-    const { keyError, envType } = this.state
+    const { keyError } = this.state
 
     const { resourceType, resourceName, resourceKey } = this.parseValue(
       value.valueFrom
@@ -295,7 +287,7 @@ export default class EnvironmentInputItem extends React.Component {
           <Select
             options={this.resourceOptions}
             onChange={this.handleTypeChange}
-            value={envType}
+            value={this.envType}
           ></Select>
         </div>
         <Input
@@ -310,7 +302,9 @@ export default class EnvironmentInputItem extends React.Component {
           name="resource"
           placeholder={t('RESOURCE')}
           prefixIcon={
-            <Icon name={envType === 'configMapKeyRef' ? 'hammer' : 'key'} />
+            <Icon
+              name={this.envType === 'configMapKeyRef' ? 'hammer' : 'key'}
+            />
           }
           options={this.getConfigOrSecretOptions}
           onChange={this.handleCfOrScChange}
@@ -327,7 +321,7 @@ export default class EnvironmentInputItem extends React.Component {
 
   render() {
     const { value = {}, onChange } = this.props
-    const { keyError, envType } = this.state
+    const { keyError } = this.state
 
     if (value.valueFrom) {
       return this.renderConfigOrSecret()
@@ -339,7 +333,7 @@ export default class EnvironmentInputItem extends React.Component {
           <Select
             options={this.resourceOptions}
             onChange={this.handleTypeChange}
-            value={envType}
+            value={this.envType}
           ></Select>
         </div>
         <Input
