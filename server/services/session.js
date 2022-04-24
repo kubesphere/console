@@ -320,6 +320,31 @@ const getClusterRole = async ctx => {
   return role
 }
 
+const getSupportGpuList = async ctx => {
+  const token = ctx.cookies.get('token')
+  let gpuKinds = []
+  if (!token) {
+    return []
+  }
+  try {
+    const list = await send_gateway_request({
+      method: 'GET',
+      url: `/kapis/config.kubesphere.io/v1alpha2/configs/gpu/kinds`,
+      token,
+    })
+    const defaultGpu = list
+      .filter(item => item.default)
+      .map(item => item.resourceName)
+    const otherGpus = list
+      .filter(item => !item.default)
+      .map(item => item.resourceName)
+    gpuKinds = [...defaultGpu, ...otherGpus]
+  } catch (error) {
+    console.error(error)
+  }
+  return gpuKinds
+}
+
 const getCurrentUser = async (ctx, clusterRole) => {
   const token = ctx.cookies.get('token')
 
@@ -429,4 +454,5 @@ module.exports = {
   getK8sRuntime,
   createUser,
   getClusterRole,
+  getSupportGpuList,
 }
