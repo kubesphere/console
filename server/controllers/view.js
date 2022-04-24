@@ -22,6 +22,7 @@ const {
   getK8sRuntime,
   getOAuthInfo,
   getClusterRole,
+  getSupportGpuList,
 } = require('../services/session')
 
 const {
@@ -36,13 +37,20 @@ const { client: clientConfig } = getServerConfig()
 const renderView = async ctx => {
   try {
     const clusterRole = await getClusterRole(ctx)
-    const [user, ksConfig, runtime] = await Promise.all([
+    const [user, ksConfig, runtime, supportGpuType] = await Promise.all([
       getCurrentUser(ctx, clusterRole),
       getKSConfig(),
       getK8sRuntime(ctx),
+      getSupportGpuList(ctx),
     ])
 
-    await renderIndex(ctx, { ksConfig, user, runtime, clusterRole })
+    await renderIndex(ctx, {
+      ksConfig,
+      user,
+      runtime,
+      clusterRole,
+      config: { ...clientConfig, supportGpuType },
+    })
   } catch (err) {
     renderViewErr(ctx, err)
   }
