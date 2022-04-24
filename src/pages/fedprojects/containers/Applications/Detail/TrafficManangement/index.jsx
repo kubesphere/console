@@ -23,12 +23,13 @@ import { Button, Loading, Icon } from '@kube-design/components'
 import Graph from 'components/Graph'
 import EmptyList from 'components/Cards/EmptyList'
 import ClusterSelect from 'fedprojects/components/ClusterSelect'
-
+import TimeSelector from 'components/Cards/Monitoring/Controller/TimeSelector'
+import { getTimeRange, getMinuteValue } from 'stores/monitoring/base'
 import styles from './index.scss'
 
 @inject('detailStore', 'projectStore')
 @observer
-class TrafficManangement extends React.Component {
+class TrafficManagement extends React.Component {
   constructor(props) {
     super(props)
 
@@ -41,6 +42,8 @@ class TrafficManangement extends React.Component {
     this.state = {
       cluster: selectCluster,
       isGraphLoading: true,
+      duration: 60,
+      autoFetch: false,
     }
 
     this.store = props.detailStore
@@ -65,7 +68,7 @@ class TrafficManangement extends React.Component {
   getData() {
     const { selector } = this.store.detail
     const { namespace } = this.props.match.params
-    const { cluster } = this.state
+    const { cluster, duration } = this.state
 
     if (!cluster || !get(cluster, 'configz.servicemesh')) {
       return
@@ -74,7 +77,7 @@ class TrafficManangement extends React.Component {
     if (selector) {
       this.setState({ isGraphLoading: true })
       this.store.resourceStore
-        .fetchGraph({ cluster: cluster.name, namespace, selector })
+        .fetchGraph({ cluster: cluster.name, namespace, selector, duration })
         .then(() => {
           if (!this.unmount) {
             this.setState({ isGraphLoading: false })
@@ -91,6 +94,62 @@ class TrafficManangement extends React.Component {
     this.setState({ cluster }, () => {
       this.getData()
     })
+  }
+
+  handleAutoFetch = () => {
+    const { autoFetch } = this.state
+    this.setState({ autoFetch: !autoFetch }, () => {
+      if (this.state.autoFetch) {
+        this.interval = setInterval(() => {
+          this.getData()
+        }, 10000)
+      } else {
+        this.interval && clearInterval(this.interval)
+      }
+    })
+  }
+
+  handleLookbackChange = ({ step, times, ...rest }) => {
+    const { start, end } = getTimeRange({ step: getMinuteValue(step), times })
+    const _start = rest.start || start
+    const _end = rest.end || end
+    const duration = Math.floor(_end - _start)
+
+    this.setState({ duration }, () => {
+      this.getData()
+    })
+  }
+
+  operations = () => {
+    const { autoFetch } = this.state
+    return (
+      <div className={styles.operations}>
+        <TimeSelector
+          className={styles.timeSelect}
+          onChange={this.handleLookbackChange}
+          showStep={false}
+          dark
+          arrowIcon="chevron-down"
+          step="1m"
+          times={1}
+        />
+        <Button
+          type="flat"
+          icon={autoFetch ? 'pause' : 'start'}
+          onClick={this.handleAutoFetch}
+        />
+        <Button type="flat" icon="refresh" onClick={this.handleRefresh} />
+      </div>
+    )
+  }
+
+  renderHeader = () => {
+    return (
+      <div className={styles.cardHeader}>
+        {this.operations()}
+        {t('TRAFFIC_MONITORING')}
+      </div>
+    )
   }
 
   renderContent() {
@@ -173,10 +232,11 @@ class TrafficManangement extends React.Component {
           onChange={this.handleClusterChange}
           extra={this.renderMicroServiceTip}
         />
+        {this.renderHeader()}
         {this.renderContent()}
       </div>
     )
   }
 }
 
-export default TrafficManangement
+export default TrafficManagement

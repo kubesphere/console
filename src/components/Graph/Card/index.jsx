@@ -155,7 +155,8 @@ export default class Card extends React.PureComponent {
         <div className={styles.wrapper}>
           {this.renderDetail()}
           <div className={styles.workload}>
-            <span>{t('DEPLOYMENT')}</span> {data.workload}
+            <span>{t('DEPLOYMENT')}</span>
+            <span>{data.workload}</span>
           </div>
         </div>
       </div>
