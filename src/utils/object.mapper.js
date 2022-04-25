@@ -1352,7 +1352,10 @@ const CDSMapper = item => {
   if (syncOptions.length > 0) {
     syncOptions.forEach(syncOption => {
       const itemArrayValue = syncOption.split('=')
-      _syncOptions[itemArrayValue[0]] = JSON.parse(itemArrayValue[1])
+      _syncOptions[itemArrayValue[0]] = safeParseJSON(
+        itemArrayValue[1],
+        itemArrayValue[1]
+      )
     })
   }
 
