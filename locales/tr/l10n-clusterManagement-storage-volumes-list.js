@@ -46,7 +46,6 @@ module.exports = {
   VOLUME_STORAGE_CLASS_DESC: 'Belirli bir türde birim oluşturmak için bir depolama sınıfı seçin.',
   // List > Advanced Settings
   // List > Edit
-  EDIT_TCAP: 'Düzenle',
   // List > Edit YAML
   // List > Delete
   VOLUME_LOW: 'birim'
