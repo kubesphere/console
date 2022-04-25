@@ -15,8 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
   CLUSTER_MEMBER_PL: '集群成员',
-  CLUSTER_MEMBERS: '集群成员',
-}
+  CLUSTER_MEMBER: '集群成员'
+};

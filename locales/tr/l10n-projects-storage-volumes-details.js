@@ -22,7 +22,6 @@ module.exports = {
   CLONE: 'Klon',
   // More > Create Snapshot
   CREATE_SNAPSHOT: 'Anlık Görüntü Oluştur',
-  VOLUME_SNAPSHOT_CLASS: 'Bölüm Anlık Görüntü Sınıfı',
   SNAPSHOT_EMPTY_TIP: 'Lütfen bir bölüm anlık görüntü sınıfı seçiniz.',
   // More > Expand
   EXPAND_VOLUME: 'Bölüm Genişlet',

@@ -91,8 +91,7 @@ module.exports = {
   BRANCH_RETENTION_PERIOD_DAYS: '分支保留天数（天）',
   MAXIMUM_BRANCHES: '分支最大数量',
   BRANCH_RETENTION_PERIOD_DAYS_DESC: '超过保留期限的分支将被删除。默认值为 7。',
-  MAXIMUM_BRANCHES_DESC:
-    '当构建记录数量超过允许的最大数量，最早的构建记录将被删除。默认值为 5。',
+  MAXIMUM_BRANCHES_DESC: '当构建记录数量超过允许的最大数量，最早的构建记录将被删除。默认值为 5。',
   ADD_STRATEGY: '添加策略',
   DISCOVER_TAG_BRANCHES: '发现标签',
   DISCOVER_BRANCHES: '发现分支',
@@ -115,10 +114,8 @@ module.exports = {
   TIME_TRIGGER_DESC: '定时扫描代码仓库。',
   SCAN_INTERVAL: '扫描时间间隔',
   SELECT_PIPELINE_SCAP: '选择流水线',
-  WHEN_DELETE_PIPELINE_DESC:
-    '当有流水线被删除时，将自动触发指定流水线中的任务。',
-  WHEN_CREATE_PIPELINE_DESC:
-    '当创建新的流水线时，将自动触发指定流水线中的任务。',
+  WHEN_DELETE_PIPELINE_DESC: '当有流水线被删除时，将自动触发指定流水线中的任务。',
+  WHEN_CREATE_PIPELINE_DESC: '当创建新的流水线时，将自动触发指定流水线中的任务。',
   PIPELINE_EVENT_TRIGGER: '通过流水线事件触发',
   WHEN_CREATE_PIPELINE: '创建流水线时触发',
   WHEN_DELETE_PIPELINE: '删除流水线时触发',
@@ -139,18 +136,15 @@ module.exports = {
   DELETE_OUTDATED_BUILD_RECORDS: '删除过期构建记录',
   DELETE_OUTDATED_BUILD_RECORDS_TIP: `设置系统自动删除过期的控制台输出、归档制品、元数据等构建记录以节省磁盘空间。`,
   BUILD_RECORD_RETENTION_PERIOD_DAYS: '构建记录保留期限（天）',
-  BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC:
-    '超过保留期限的构建记录将被删除。默认值为 7。',
+  BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC: '超过保留期限的构建记录将被删除。默认值为 7。',
   MAXIMUM_BUILD_RECORDS: '构建记录最大数量',
-  MAXIMUM_BUILD_RECORDS_DESC:
-    '当构建记录数量超过允许的最大数量，最早的构建记录将被删除。默认值为 10。',
+  MAXIMUM_BUILD_RECORDS_DESC: '当构建记录数量超过允许的最大数量，最早的构建记录将被删除。默认值为 10。',
   NO_CONCURRENT_BUILDS: '不允许并发构建',
   NO_CONCURRENT_BUILD_DESC: '设置流水线一次仅执行一个构建任务。',
   BUILD_PARAMETERS: '构建参数',
   BUILD_PARAMETERS_TIP: '向流水线传入构建参数。',
   PARAMS_STRING: '字符串 ',
-  PIPELINE_PARAM_DEFAULT_DESC:
-    '设置参数的的默认值。您可以在手动运行流水线前修改参数值。',
+  PIPELINE_PARAM_DEFAULT_DESC: '设置参数的的默认值。您可以在手动运行流水线前修改参数值。',
   PARAMS_TEXT: '多行字符串',
   PARAMS_TEXT_TCAP: '多行字符串',
   PARAMETER_DESCRIPTION_DESC: '设置参数的描述。',
@@ -162,8 +156,7 @@ module.exports = {
   BUILD_PERIODICALLY: '定时构建',
   BUILD_PERIODICALLY_TIP: '设置流水线定期执行构建任务。',
   PIPELINE_CRON_DESC: '流水线下次将在 {nextTime} 运行。',
-  PIPELINE_SCHEDULE_DESC:
-    '输入 CRON 表达式以设置定时计划。<a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">了解更多</a>',
+  PIPELINE_SCHEDULE_DESC: '输入 CRON 表达式以设置定时计划。<a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">了解更多</a>',
   DEFAULT_VALUE: '默认值',
   PARAMETER_NAME_EMPTY_DESC: '请设置参数的名称。',
   SELECT_TEMPLATE: '选择模板',

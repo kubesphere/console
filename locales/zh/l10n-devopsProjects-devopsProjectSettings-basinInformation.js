@@ -26,16 +26,14 @@ module.exports = {
   DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps 项目成员',
   DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps 项目成员',
   DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps 项目角色',
-  CD_ALLOWLIST: '持续部署白名单',
-  CD_ALLOWLIST_DESC:
-    '将代码仓库和资源目标部署位置添加到白名单，白名单无资源信息则不生效。',
-  DESTINATIONS: '资源目标部署位置',
-  ENABLE_ALLOWLIST: '启用白名单',
-  EDIT_ALLOWLIST: '编辑白名单',
-  EMPTY_ALLOWLIST_TITLE: '未启用持续部署白名单',
-  ALLOWLIST_EMPTY_DESC:
-    '将代码仓库和资源目标部署位置添加到白名单，白名单无资源信息则不生效。',
-  SOURCE_REPOS_INPUT_DESC: '代码仓库地址已存在，请输入其他代码仓库地址。',
-  DESTINATIONS_INPUT_DESC:
-    '资源目标部署位置已存在，请输入其他资源目标部署位置。',
-}
+  // Continuous Deployment Allowlist
+  CD_ALLOWLIST: '持续部署允许列表',
+  DEPLOYMENT_LOCATION_PL: '部署位置',
+  ENABLE_ALLOWLIST: '启用允许列表',
+  EDIT_ALLOWLIST: '编辑允许列表',
+  EMPTY_ALLOWLIST_TITLE: '未启用持续部署允许列表',
+  ALLOWLIST_EMPTY_DESC: '启用允许列表从而只允许在持续部署中使用特定的代码仓库和部署位置。',
+  MULTI_CLUSTER_PROJECT_NOT_FOR_CD: '多集群项目不能用于持续部署。',
+  CODE_REPOSITORY_EXIST_DESC: '代码仓库已存在，请选择其他代码仓库。',
+  DEPLOYMENT_LOCATION_EXIST_DESC: '部署位置已存在，请设置其他部署位置。'
+};

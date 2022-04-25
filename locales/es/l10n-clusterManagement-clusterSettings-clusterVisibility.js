@@ -28,6 +28,7 @@ module.exports = {
   // List
   WORKSPACE: 'Espacio de trabajo',
   CLUSTER_VISIBILITY_SCAP: 'Visibilidad de clúster',
+  AUTHORIZATION_TIME_TCAP: 'Authorization Time',
   // List > Edit Visibility
   EDIT_VISIBILITY: 'Editar visibilidad',
   AUTHORIZED: 'Autorizado',

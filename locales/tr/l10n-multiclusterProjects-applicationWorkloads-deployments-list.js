@@ -95,7 +95,6 @@ module.exports = {
   ADD_ACTION: 'Eylem Ekle',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: 'Ortam Değişkenleri Ekle',
-  USE_CONFIGMAP_OR_SECRET: 'Configmap veya Secret kullanın',
   KEY_IN_RESOURCE: 'Kaynakta anahtar',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
   // List > Create > Pod Settings > Add Container > Container Security Context
@@ -141,7 +140,6 @@ module.exports = {
   DECENTRALIZED_SCHEDULING: 'Merkezi Olmayan Zamanlama',
   CUSTOM_RULES: 'Özel Kurallar',
   CUSTOM_RULES_DESC: 'Özel kurallara göre düğümlere bölme çoğaltmalarını zamanlar.',
-  'Pod IP': 'Pod Ip Adresi',
   DECENTRALIZED_SCHEDULING_DESC: 'Mümkünse, bölme çoğaltmalarını farklı düğümlere zamanlar.',
   CENTRALIZED_SCHEDULING_DESC: 'Mümkünse bölme çoğaltmalarını aynı düğüme programlar.',
   CENTRALIZED_SCHEDULING: 'Merkezileştirilmiş Zamanlama',

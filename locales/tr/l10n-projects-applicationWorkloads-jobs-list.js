@@ -24,10 +24,11 @@ module.exports = {
   JOB_COMPLETED: 'Tamamlandı',
   JOB_FAILED: 'Başarısız',
   JOB_RUNNING: 'Çalışıyor',
+  LAST_RUN_TIME: 'Last Run Time',
   // List > Create > Basic Information
   // List > Create > Strategy Settings
   // List > Create > Pod Settings
-  RESTART_POLICY_NEVER_DESC: 'Kapsül yeniden oluşturuluyor',
+  RESTART_POLICY_NEVER_DESC: 'Re-create pod',
   RESTART_POLICY_ONFAILURE_DESC: 'Konteyneri yeniden başlat',
   // List > Create > Volume Settings
   // List > Create > Advanced Settings

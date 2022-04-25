@@ -20,7 +20,10 @@ module.exports = {
   QOS_CLASS: 'QoS Class',
   NODE_NAME: '主機名稱',
   POD_IP_ADDRESS: '容器組 IP 地址',
+  // Run Records
+  JOB_UNFINISHED: 'Unfinished',
   // Resource Status
+  TERMINATED: 'Terminated',
   // Scheduling Information
   SCHEDULED_TO_NODE: '調度至 {value}',
   SCHEDULING_NOT_SUCCESSFUL: 'Scheduling Not Successful',

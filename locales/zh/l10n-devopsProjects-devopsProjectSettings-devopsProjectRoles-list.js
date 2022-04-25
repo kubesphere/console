@@ -49,6 +49,16 @@ module.exports = {
   ROLES_MANAGEMENT: '角色管理',
   ROLES_VIEW: '角色查看',
   // List > Create > Edit Permissions > DevOps Settings
-  DEVOPS_SETTINGS: 'DevOps 项目设置',
-  DEVOPS_SETTINGS_DESC: '管理 DevOps 项目的设置。'
+  DEVOPS_SETTINGS: '项目设置管理',
+  DEVOPS_SETTINGS_DESC: '管理 DevOps 项目的设置。',
+  // List > Create > Edit Permissions > Continuous Deployment Management
+  CONTINUOUS_DEPLOYMENTS_VIEW: '持续部署查看',
+  CONTINUOUS_DEPLOYMENTS_VIEW_DESC: '查看 DevOps 项目中的持续部署。',
+  CONTINUOUS_DEPLOYMENTS_MANAGEMENT: '持续部署管理',
+  CONTINUOUS_DEPLOYMENTS_MANAGEMENT_DESC: '管理 DevOps 项目中的持续部署。',
+  // List > Create > Edit Permissions > Code Repository Management
+  CODE_REPOSITORIES_MANAGEMENT: '代码仓库管理',
+  CODE_REPOSITORIES_MANAGEMENT_DESC: '管理 DevOps 项目中的代码仓库。',
+  CODE_REPOSITORIES_VIEW: '代码仓库查看',
+  CODE_REPOSITORIES_VIEW_DESC: '查看 DevOps 项目中的代码仓库。'
 };

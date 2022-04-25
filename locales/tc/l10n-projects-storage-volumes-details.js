@@ -22,7 +22,6 @@ module.exports = {
   CLONE: 'Clone',
   // More > Create Snapshot
   CREATE_SNAPSHOT: '創建快照',
-  VOLUME_SNAPSHOT_CLASS: '快照類型',
   SNAPSHOT_EMPTY_TIP: '請選擇一個快照類型。',
   // More > Expand
   EXPAND_VOLUME: '儲存卷擴容',

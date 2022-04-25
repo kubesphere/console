@@ -19,24 +19,24 @@ module.exports = {
   // Banner
   CUSTOM_MONITORING: '自定義監控',
   CUSTOM_MONITORING_DASHBOARD: '自定義監控面板',
-  CUSTOM_MONITORING_DASHBOARD_PL: 'Custom Monitoring Dashboards',
-  CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC: 'Please create a custom monitoring dashboard.',
-  CUSTOM_MONITORING_DASHBOARD_DESC: 'Custom monitoring provides application monitoring templates. You can customize monitoring dashboards based on your needs.',
+  CUSTOM_MONITORING_DASHBOARD_PL: '自定義監控面板',
+  CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC: '請創建一個自定義監控面板。',
+  CUSTOM_MONITORING_DASHBOARD_DESC: '自定義監控提供應用監控模板，您可以根據需求自定義監控面板。',
   // List
   // List > Create
   CREATE_CUSTOM_MONITORING_DASHBOARD: '創建自定義監控面板',
   MONITORING_TEMPLATE: '監控模板',
-  CUSTOM_MONITORING_TEMPLATE_DESC: 'Select a default template, upload a template, or customize a template to generate a custom monitoring dashboard.',
+  CUSTOM_MONITORING_TEMPLATE_DESC: '選擇預設模板、上傳模板或自定義模板來生成自定義監控面板。',
   // List > Create > Grafana
-  UPLOAD_GRAFANA_DASHBOARD: 'Upload Grafana Dashboard',
-  SUPPORT_JSON_FILE: 'Only files in JSON format are supported.',
-  UPLOAD_GRAFANA_URL: 'Upload a Grafana dashboard from URL.',
-  UPLOAD_FROM_LOCAL_TITLE: 'Select or Drag a File',
-  FILE_UPLOAD_ERROR: 'Only one file can be uploaded.',
-  UPLOAD_FILE_TIP: 'Please upload a file.',
-  ENTER_GRAFANA_URL: 'Please enter a Grafana dashboard URL.',
-  UPLOAD_FROM_LOCAL_STORAGE: 'Upload from Local Storage',
-  UPLOAD_FROM_URL: 'Upload from URL',
+  UPLOAD_GRAFANA_DASHBOARD: '上傳 Grafana 監控面板',
+  SUPPORT_JSON_FILE: '僅支援 JSON 格式的文件。',
+  UPLOAD_GRAFANA_URL: '通過 URL 上傳 Grafana 監控面板。',
+  UPLOAD_FROM_LOCAL_TITLE: '選擇或拖移文件',
+  FILE_UPLOAD_ERROR: '只能上傳一個文件。',
+  UPLOAD_FILE_TIP: '請上傳文件。',
+  ENTER_GRAFANA_URL: '請輸入 Grafana 監控面板 URL。',
+  UPLOAD_FROM_LOCAL_STORAGE: '從本地上傳',
+  UPLOAD_FROM_URL: '通過 URL 上傳',
   // List > Create > Custom
   ADD_MONITOR_ITEM: '添加監控項',
   ADD_MONITOR_ROW: '添加監控組',
@@ -78,5 +78,5 @@ module.exports = {
   // List > Edit Information
   // List > Edit YAMl
   // List > Delete
-  CUSTOM_MONITORING_DASHBOARD_LOW: 'custom monitoring dashbord'
+  CUSTOM_MONITORING_DASHBOARD_LOW: '自定義監控面板'
 };

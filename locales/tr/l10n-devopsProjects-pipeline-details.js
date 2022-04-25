@@ -91,6 +91,11 @@ Bu nedenle, bu adım çoğunlukla bu tür kaynakların dağıtımını işlemek 
    </li>`,
   STAGE: 'Aşama',
   KUBERNETES_DEPLOY_DEPRECATED_TIP: 'Bu adım sonraki sürümlerde kullanımdan kaldırılacaktır ve diğer alternatifleri değerlendirmeniz önerilir.',
+  ORIGINAL_IMAGE_ADDRESS: 'Original Image Address',
+  NEW_IMAGE_ADDRESS: 'New Image Address',
+  NEW_IMAGE_TAG: 'New Image Tag',
+  CD_STEP_DESC: 'Update image information using continuous deployment.',
+  UPDATE_CD_TITLE: 'Continuous Deployment of Updates',
   // Task Status > Edit Jenkinsfile
   EDIT_JENKINSFILE: 'Jenkinsdosya Düzenle',
   CLOSE_JENKINSFILE_EDITOR_TIP: 'Jenkinsdosya düzenleyicisini kapattığınızdan emin misiniz?',

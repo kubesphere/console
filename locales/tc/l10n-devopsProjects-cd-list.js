@@ -18,6 +18,8 @@
 module.exports = {
   CD_PL: 'Continuous Deployment',
   CD_LOW: 'Continuous Deployment',
+  cd: 'Continuous Deployment',
+  CD: 'Continuous Deployment',
   CD_RESOURCE_PL: 'Continuous deployment of resources',
   CD_DESC: 'This page allows you to create and manage continuously deployed resources via gitops. ',
   EMPTY_CD_TITLE: 'No continuous deployment resources found',
@@ -43,5 +45,12 @@ module.exports = {
   LATEST_SYNC_STATUS: 'Latest sync status',
   REPO_EMPTY_DESC: 'Code repository cannot be empty',
   CREATE_CD: 'Create continuous deployment',
-  CD_SELECT_CODE_REPO_DESC: 'Select a code repository to be used by CD.'
+  CD_SELECT_CODE_REPO_DESC: 'Select a code repository to be used by CD.',
+  SYNC_TRIGGERED: 'Sync Triggered',
+  // Step
+  ORIGINAL_IMAGE_ADDRESS: 'Original image address',
+  NEW_IMAGE_ADDRESS: 'New image address',
+  NEW_IMAGE_TAG: 'New image tag',
+  CD_STEP_DESC: 'Update image information with continuous deployment',
+  UPDATE_CD_TITLE: 'Continuous deployment of updates'
 };

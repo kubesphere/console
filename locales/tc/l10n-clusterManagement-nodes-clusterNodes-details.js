@@ -43,9 +43,9 @@ module.exports = {
   NOEXECUTE: '不允許並驅逐已有容器組 (NoExecute)',
   TAINTS_TIPS: '如果主機中存在一個或多個影響策略為 NoSchedule 的汙點，該容器組不會被調度到該主機<br>如果主機中不存在影響策略為 NoSchedule 的汙點，但是存在一個或多個影響策略為 PreferNoSchedule 的汙點，該容器組會盡量不調度到該主機<br>如果主機中存在一個或多個影響策略為 NoExecute 的汙點，該容器組不會被調度到該主機，並且會驅逐已經調度到該主機的容器組實例',
   // Running Status > Resource Usage
-  RESOURCE_USAGE: '資源使用情況',
-  MAXIMUM_PODS: 'Maximum Pods',
-  MAXIMUM_PODS_SCAP: 'Maximum Pods',
+  RESOURCE_USAGE: '資源用量',
+  MAXIMUM_PODS: '容器組最大數量',
+  MAXIMUM_PODS_SCAP: '容器組最大數量',
   // Running Status > Allocated resources
   MEMORY_REQUEST_SCAP: '記憶體預留',
   MEMORY_LIMIT_SCAP: '記憶體限制',
@@ -56,21 +56,21 @@ module.exports = {
   // Running Status > Health Status
   RUNNING_STATUS: '運行狀態',
   HEALTH_STATUS: '健康狀態',
-  NODE_NETWORKUNAVAILABLE: '網路配置 (NetworkUnavailable)',
-  NODE_NETWORKUNAVAILABLE_DESC: 'Whether the network status of the node is normal.',
+  NODE_NETWORKUNAVAILABLE: '網路可用性',
+  NODE_NETWORKUNAVAILABLE_DESC: '節點的網路狀態是否正常。',
   NODE_MEMORYPRESSURE: '記憶體壓力 (MemoryPressure)',
-  NODE_MEMORYPRESSURE_DESC: 'Whether the remaining memory of the node is less than the threshold.',
-  NODE_DISKPRESSURE: '硬碟壓力 (DiskPressure)',
-  NODE_DISKPRESSURE_DESC: 'Whether the ramaining disk space or inodes of the node is less than the threshold.',
+  NODE_MEMORYPRESSURE_DESC: '節點的剩餘記憶體是否小於閾值。',
+  NODE_DISKPRESSURE: '磁碟壓力 (DiskPressure)',
+  NODE_DISKPRESSURE_DESC: '節點的剩餘磁碟空間或 Inode 數量是否小於閾值。',
   NODE_PIDPRESSURE: '進程壓力 (PIDPressure)',
-  NODE_PIDPRESSURE_DESC: 'Whether the number of processes allowed to be created on the node is less the threshold.',
-  NODE_READY: 'Readiness',
-  NODE_READY_DESC: 'Whether the node is ready to accept pods.',
+  NODE_PIDPRESSURE_DESC: '允許在節點上創建的進程數量是否小於閾值。',
+  NODE_READY: '就緒',
+  NODE_READY_DESC: '節點是否可以接收容器組。',
   // Running Status > Taints
-  NO_TAINTS_TIPS: '暫未設置汙點',
-  POLICY: 'Policy',
+  NO_TAINTS_TIPS: '未發現汙點。',
+  POLICY: '策略',
   // Pods
-  READY_VALUE: 'Ready: {readyCount}/{total}',
-  STATUS_VALUE: 'Status: {value}',
+  READY_VALUE: '就緒：{readyCount}/{total}',
+  STATUS_VALUE: '狀態：{value}',
   CREATED_AGO: '創建於 {diff}'
 };

@@ -20,19 +20,36 @@ module.exports = {
   TRUE: '是',
   FALSE: '否',
   // More > Set as Default Storage Class
-  SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
+  SET_DEFAULT_STORAGE_CLASS_TITLE: '設為預設儲存類型',
   SET_AS_DEFAULT_STORAGE_CLASS: '設為預設儲存類型',
   STORAGE_CLASS_SET_DEFAULT_DESC: '設置為預設儲存類型後，如果沒有特殊指定，系統將預設創建該類型的儲存卷。一個 KubeSphere 集群中僅允許設置一個預設儲存類型',
-  // More > Volume Management
-  VOLUME_MANAGEMENT: 'Volume Management',
-  VOLUME_CLONE: '存儲卷克隆',
-  ALLOW_VOLUME_CLONE_DESC: 'Allows users to clone volumes.',
-  ALLOW_VOLUME_SNAPSHOT_DESC: 'Allows users to create volume snapshots.',
-  'Volume Expansion': '存儲卷擴容',
-  ALLOW_VOLUME_EXPANSION_DESC: 'Allows users to extend volumes. Volumes can only be extended and cannot be shrunk.',
-  VOLUME_FUNCTION_MANAGEMENT_TIP: 'Volume Management only controls whether the following features are enabled in the KubeSphere web console. Before the features are enabled, contact your system administrator to confirm that they are supported by the storage system.',
-  VOLUME_SNAPSHOT: '儲存卷快照',
+  // More > Edit Authorization Rules
+  SET_AUTHORIZATION_RULES: 'Set Authorization Rules',
+  AUTHORIZATION_RULES: 'Authorization Rules',
+  AUTHORIZATION_RULES_DESC: 'Set authorization rules so that the storage class can be accessed only in specific projects and workspaces.',
+  AUTHORIZATION_NOT_SUPPORT: 'The cluster currently does not support this feature. Please upgrade KubeSphere to v3.3.0 or later, or manually install <a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a>.',
+  OPERATOR_IN: 'In',
+  OPERATOR_NOT_IN: 'Not in',
+  // More > Set Volume Permissions
+  SET_VOLUME_PERMISSIONS: 'Set Volume Permissions',
+  VOLUME_CLONING: 'Volume Cloning',
+  VOLUME_CLONING_DESC: 'Allow users to clone volumes.',
+  VOLUME_SNAPSHOT_CREATION: 'Volume Snapshot Creation',
+  VOLUME_SNAPSHOT_CREATION_DESC: 'Allow users to create volume snapshots.',
+  VOLUME_EXPANSION_DESC: 'Allow users to expand volumes. Volumes can only be expanded and cannot be shrunk.',
+  SET_VOLUME_PERMISSIONS_TIP: 'The following settings only control whether users are allowed to perform the operations on the web console. Whether volumes created based on the storage class actually support the operations depends on the backend storage system.',
+  // More > Set Auto Expansion
+  SET_AUTO_EXPANSION: 'Set Auto Expansion',
+  AUTO_EXPANSION: 'Auto Expansion',
+  AUTO_EXPANSION_DESC: 'Set the system to automatically expand volumes when the remaining volume space is lower than a threshold.',
+  AUTO_EXPANSION_SETTINGS: 'Auto Expansion Settings',
+  MAXIMUM_SIZE: 'Maximum Size',
+  INCREMENT: 'Increment',
+  INCREMENT_DESC: 'Set the volume size increment according to the CSI pluggin of the storage class.',
+  RESTART_WORKLOAD_AUTOMATICALLY: 'Restart workload automatically',
+  RESTART_WORKLOAD_AUTOMATICALLY_DESC: 'The system automatically checks volume status to determine whether the workload needs to be restarted.',
+  RESTART_WORKLOAD_AUTOMATICALLY_TIP: 'If the volume is not expanded successfully when the timeout period expires, the system will add the "restart.kubesphere.io/skip" annotation to the workload so that the workload is not restarted any more. To enable the automatic restart function for the workload again, you need to manually delete the annotation on the workload.',
   // More > Delete
   // Volumes
-  VOLUME_COUNT: 'Volumes'
+  VOLUME_COUNT: '儲存卷數量'
 };

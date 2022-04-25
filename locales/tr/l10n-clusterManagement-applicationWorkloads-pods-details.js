@@ -59,5 +59,7 @@ module.exports = {
   UPDATED_AT_VALUE: '{değer} tarihinde oluşturuldu.',
   // Metadata
   // Monitoring
-  NO_MONITORING_DATA: 'Veri Yok'
+  NO_MONITORING_DATA: 'Veri Yok',
+  OUTBOUND: 'Outbound',
+  INBOUND: 'Inbound'
 };

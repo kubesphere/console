@@ -36,5 +36,6 @@ module.exports = {
   SEARCH_BY_VERB: 'Search by Verb',
   SEARCH_BY_STATUS_CODE: 'Search by Status Code',
   SEARCH_BY_OPERATOR: 'Search by Operator',
-  SEARCH_BY_SOURCE_IP_ADDRESS: 'Search by Source IP Address'
+  SEARCH_BY_SOURCE_IP_ADDRESS: 'Search by Source IP Address',
+  ENABLE_AUDIT_LOG_COLLECTION_DESC: 'You need to enable audit log collection if it is disabled. <a href="{link}" target="_blank">Learn More</a>'
 };

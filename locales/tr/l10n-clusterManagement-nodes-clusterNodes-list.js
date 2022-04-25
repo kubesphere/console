@@ -48,7 +48,7 @@ module.exports = {
   NODE_NAME_EMPTY_DESC: 'Lütfen düğüm için bir ad belirleyin.',
   CPU_USAGE: 'CPU Kullanımı',
   MEMORY_USAGE: 'Bellek Kullanımı',
-  MASTER: 'Kontrol Paneli',
+  CONTROL_PLANE: 'Control plane',
   WORKER: 'İşçi',
   ALLOCATED_CPU: 'Ayrılmış CPU',
   ALLOCATED_MEMORY: 'Ayrılmış Bellek',

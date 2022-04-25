@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Banner
-  ALERTING_MESSAGE_PL: 'Alerting Messages',
-  ALERT_MESSAGE_DESC: 'Alert messages display details of triggered alerts that have met the conditions of the alert rules.',
+  ALERTING_MESSAGE_PL: '告警訊息',
+  ALERT_MESSAGE_DESC: '告警訊息顯示滿足告警規則後觸發的告警詳細資訊。',
   // Custom Policies > List
-  CUSTOM_POLICIES: 'Custom Policies',
-  BUILT_IN_POLICIES: 'Built-in Policies',
-  ACTIVATION_TIME: 'Activation Time',
-  ALERTING_MESSAGE_EMPTY_DESC: 'No alerting message is found in the current project.',
-  MONITORING_TARGET: 'Monitoring Target'
+  CUSTOM_POLICIES: '自定義策略',
+  BUILT_IN_POLICIES: '内建策略',
+  ACTIVATION_TIME: '觸發時間',
+  ALERTING_MESSAGE_EMPTY_DESC: '没有在目前項目中找到告警訊息。',
+  MONITORING_TARGET: '監控目標'
 };

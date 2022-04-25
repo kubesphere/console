@@ -22,8 +22,7 @@ module.exports = {
   TARGET_REVISION_EMPTY_DESC: '请选择目标修改记录。',
   TARGET_REVISION_RECORD: '目标修改记录',
   // More > Edit Autoscaling
-  CONFIGURE_AUTOSCALING_DESC:
-    '设置系统根据目标 CPU 和内存用量自动调整容器组副本数量。',
+  CONFIGURE_AUTOSCALING_DESC: '设置系统根据目标 CPU 和内存用量自动调整容器组副本数量。',
   EDIT_AUTOSCALING: '编辑自动扩缩',
   TARGET_CPU_USAGE_UNIT: '目标 CPU 用量（%）',
   AUTOSCALING: '自动扩缩',
@@ -40,15 +39,12 @@ module.exports = {
   // More > Edit Settings > Update Strategy
   EDIT_SETTINGS: '编辑设置',
   // More > Edit Settings > Containers
-  CUSTOMIZATION: '自定义',
-  REFER_CONFIGMAPS: '引用配置字典',
-  REFER_SECRETS: '引用保密字典',
-  BULK_QUOTA: '批量引用',
-  BULK_REFERENCE_CONFIGURATION: '批量引用配置字典或保密字典',
-  BULK_REFERENCE_CONFIGURATION_DES:
-    '根据需要批量引用配置字典或保密字典，自定义类型无法批量添加。',
-  CANCEL_SELECT_ALL: '取消全选',
-  KEY_IN_CONFIGURATION: '配置中的键',
+  FROM_CONFIGMAP: '来自配置字典',
+  FROM_SECRET: '来自保密字典',
+  BATCH_REFERENCE: '批量引用',
+  BATCH_REFERENCE_DESC: '从配置字典或保密字典中引用多个键。',
+  DESELECT_ALL: '全部取消选择',
+  KEY_PL: '键',
   // More > Edit Settings > Volumes
   // More > Edit Settings > Volumes > Mount Volume
   // More > Edit Settings > Volumes > Mount Configmap or Secret

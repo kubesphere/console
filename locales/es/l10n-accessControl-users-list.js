@@ -17,8 +17,7 @@
  */
 module.exports = {
   // Banner
-  USER_DESC:
-    'Este módulo permite al administrador del sistema administrar cuentas, como crear / actualizar / leer / eliminar una cuenta. El administrador también puedes administrar el rol de cada cuenta. Los usuarios pueden iniciar sesión en la plataforma a través de su nombre de cuenta o dirección de correo electrónico.',
+  USER_DESC: 'Este módulo permite al administrador del sistema administrar cuentas, como crear / actualizar / leer / eliminar una cuenta. El administrador también puedes administrar el rol de cada cuenta. Los usuarios pueden iniciar sesión en la plataforma a través de su nombre de cuenta o dirección de correo electrónico.',
   USER_PL: 'Usuarios',
   // List
   NOT_LOGIN_YET: 'Not Logged in yet',
@@ -46,5 +45,5 @@ module.exports = {
   // List > Edit
   EDIT_USER: 'editar usuario',
   // List > Delete
-  USER_LOW: 'user',
-}
+  USER_LOW: 'user'
+};

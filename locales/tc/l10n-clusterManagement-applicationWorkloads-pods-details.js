@@ -59,5 +59,7 @@ module.exports = {
   UPDATED_AT_VALUE: '更新時間 ：{value}',
   // Metadata
   // Monitoring
-  NO_MONITORING_DATA: '未發現監控資料'
+  NO_MONITORING_DATA: '未發現監控資料',
+  OUTBOUND: '出站',
+  INBOUND: '入站'
 };

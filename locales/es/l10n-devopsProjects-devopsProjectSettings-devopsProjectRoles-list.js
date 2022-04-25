@@ -49,6 +49,16 @@ module.exports = {
   ROLES_MANAGEMENT: 'Role Management',
   ROLES_VIEW: 'Roles Viewing',
   // List > Create > Edit Permissions > DevOps Settings
-  DEVOPS_SETTINGS: 'DevOps Settings',
-  DEVOPS_SETTINGS_DESC: 'Administra la configuración del proyecto DevOps y edita su información'
+  DEVOPS_SETTINGS: 'Project Settings Management',
+  DEVOPS_SETTINGS_DESC: 'Administra la configuración del proyecto DevOps y edita su información',
+  // List > Create > Edit Permissions > Continuous Deployment Management
+  CONTINUOUS_DEPLOYMENTS_VIEW: 'Continuous Deployment Viewing',
+  CONTINUOUS_DEPLOYMENTS_VIEW_DESC: 'View continuous deployments in the DevOps project.',
+  CONTINUOUS_DEPLOYMENTS_MANAGEMENT: 'Continuous Deployment Management',
+  CONTINUOUS_DEPLOYMENTS_MANAGEMENT_DESC: 'Manage continuous deployments in the DevOps project.',
+  // List > Create > Edit Permissions > Code Repository Management
+  CODE_REPOSITORIES_MANAGEMENT: 'Code Repository Management',
+  CODE_REPOSITORIES_MANAGEMENT_DESC: 'Manage code repositories in the DevOps project.',
+  CODE_REPOSITORIES_VIEW: 'Code Repository Viewing',
+  CODE_REPOSITORIES_VIEW_DESC: 'View code repositories in the DevOps project.'
 };

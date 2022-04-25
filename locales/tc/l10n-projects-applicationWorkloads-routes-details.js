@@ -27,6 +27,6 @@ module.exports = {
   SERVICE_COLON: 'Service: ',
   ACCESS_SERVICE: '訪問服務',
   UNABLE_TO_ACCESS: '無法訪問服務',
-  UNABLE_TO_ACCESS_TIP: '● 請確保您設置的域名可以解析到訪問入口的 IP 地址;<br/>● 如果在私有雲環境中，請修改本地的 host 檔案，並通過&lt域名&gt:&ltNodePort&gt的方式來訪問;<br/>● 通過配置 DNS 訪問，將域名修改為&ltHostname&gt.&lt網關地址&gt.nip.io，然後可以通過&ltHostname&gt.&lt網關地址&gt.nip.io:&ltNodePort&gt的形式來訪問服務;<br/>● 如果通過域名訪問被拒絕，請確認您的域名是真實域名而且已經申請通過。',
+  UNABLE_TO_ACCESS_TIP: 'Make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
   CERTIFICATE_VALUE: 'Certificate: {value}'
 };

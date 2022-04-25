@@ -37,6 +37,12 @@ module.exports = {
   // More > Edit Settings > Update Strategy
   EDIT_SETTINGS: 'Editar plantilla de configuración',
   // More > Edit Settings > Containers
+  FROM_CONFIGMAP: 'From configmap',
+  FROM_SECRET: 'From secret',
+  BATCH_REFERENCE: 'Batch Reference',
+  BATCH_REFERENCE_DESC: 'Reference multiple keys in a configmap or secret.',
+  DESELECT_ALL: 'Deselect all',
+  KEY_PL: 'Keys',
   // More > Edit Settings > Volumes
   // More > Edit Settings > Volumes > Mount Volume
   // More > Edit Settings > Volumes > Mount Configmap or Secret

@@ -38,8 +38,6 @@ module.exports = {
   // Banner > Add Log Receiver > Fluentd
   LOG_COLLECTION_FLUENTD_URL_TIPS: 'Enter the address of the Fluentd service that receives logs.',
   // Container Logs
-  LOG_COLLECTING: 'Collecting',
-  LOG_DISABLED: 'Disabled',
   EMPTY_LOG_COLLECTIONS: 'No log receiver is found. You can add log receivers and send logs to external log receivers.',
   // Resource Events
   RESOURCE_EVENTS: 'Resource Events',

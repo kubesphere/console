@@ -21,7 +21,7 @@ module.exports = {
   // Banner
   VOLUME_DESC: 'Kullanıcılar tarafından oluşturulan iş yükleri için bir birim kullanılır. İş yüklerinin veri kalıcılığı için bir kaynak nesnesini temsil eder.',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Lütfen bir birimin ayrıntılar sayfasına gidin ve bir birim anlık görüntüsü oluşturun',
+  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
   VOLUME_STATUS_BOUND: 'Bağlı',
   VOLUME_STATUS_LOST: 'Kayıp',
   VOLUME_STATUS_PENDING: 'Bekliyor',

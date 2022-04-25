@@ -24,5 +24,15 @@ module.exports = {
   DEVOPS_PROJECT_SCAP: 'DevOps 项目',
   DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps project member',
   DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps project members',
-  DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps 项目角色'
+  DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps 项目角色',
+  // Continuous Deployment Allowlist
+  CD_ALLOWLIST: 'Continuous Deployment Allowlist',
+  DEPLOYMENT_LOCATION_PL: 'Deployment Locations',
+  ENABLE_ALLOWLIST: 'Enable Allowlist',
+  EDIT_ALLOWLIST: 'Edit Allowlist',
+  EMPTY_ALLOWLIST_TITLE: 'Continuous Deployment Allowlist Disabled',
+  ALLOWLIST_EMPTY_DESC: 'Enable the allowlist so that only specific code repositories and deployment locations can be used for continuous deployment.',
+  MULTI_CLUSTER_PROJECT_NOT_FOR_CD: 'Multi-cluster projects cannot be used for continuous deployment.',
+  CODE_REPOSITORY_EXIST_DESC: 'The code repository already exists. Please select another code repository.',
+  DEPLOYMENT_LOCATION_EXIST_DESC: 'The deployment location already exists. Please set another deployment location.'
 };

@@ -22,8 +22,8 @@ module.exports = {
   USER_PROJECTS: '用戶項目',
   // List
   EMPTY_WRAPPER: '未發現{resource}',
-  TERMINATING: 'Terminating',
-  ACTIVE: 'Active',
+  TERMINATING: '刪除中',
+  ACTIVE: '活耀',
   // List > Assign Workspace
   PROJECT_ADMINISTRATOR: '項目管理員',
   PROJECT_ADMINISTRATOR_DESC: '選擇企業空間的用戶作為管理員。',
@@ -48,10 +48,10 @@ module.exports = {
   DELETE_TITLE_SI: '{type} 刪除確認？',
   DELETE_TITLE_PL: '{type} 刪除確認？',
   DELETE: '刪除',
-  PROJECT_LOW: 'project',
+  PROJECT_LOW: '項目',
   DELETE_SUCCESSFUL: '刪除成功。',
-  STOP_SUCCESS_DESC: 'Stopped successfully.',
+  STOP_SUCCESS_DESC: '停止成功。',
   DELETE_RESOURCE_TYPE_DESC_SI: '請輸入 {type} 名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。',
   DELETE_RESOURCE_TYPE_DESC_PL: '請輸入 {type} 名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。',
-  DELETE_RESOURCE_TYPE_DESC_GW: 'Enter the {type} names <strong>{resource}</strong> to confirm that you understand the risks of this operation.'
+  DELETE_RESOURCE_TYPE_DESC_GW: '請輸入 {type} 名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。'
 };

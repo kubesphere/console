@@ -22,7 +22,7 @@ module.exports = {
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'Alarm mesajları nasıl üretilir?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'Bir kaynak için bir uyarı politikası belirlemeniz gerekir. Uyarı politikasında yapılandırılan ölçüm bir eşiğe ulaştığında uyarı mesajları oluşturulur.',
   // List
-  ALERTING_STATUS: 'Durum',
+  ALERTING_STATUS: 'Alerting Status',
   ALERTING_POLICY_EMPTY_DESC: 'Lütfen bir uyarı politikası oluşturun.',
   ALERT_RULE_INACTIVE: 'İnaktif',
   ALERT_RULE_PENDING: 'Bekliyor',

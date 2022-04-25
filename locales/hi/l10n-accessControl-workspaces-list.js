@@ -17,24 +17,24 @@
  */
 module.exports = {
   // Banner
-  WORKSPACE_PL: 'Workspaces',
-  WORKSPACE_DESC: 'A workspace is an isolated logical unit used to organize projects and DevOps projects, manage resource access, and share information within your team.',
+  WORKSPACE_PL: 'कार्यक्षेत्र',
+  WORKSPACE_DESC: 'कार्यक्षेत्र एक अलग तार्किक इकाई है जिसका उपयोग परियोजनाओं और DevOps परियोजनाओं को व्यवस्थित करने, संसाधन पहुँच का प्रबंधन करने और आपकी टीम के भीतर जानकारी साझा करने के लिए किया जाता है।',
   // List
-  CLUSTER_PL: 'Clusters',
+  CLUSTER_PL: 'क्लस्टर',
   // List > Create > Basic Information
-  CREATE_WORKSPACE: 'Create Workspace',
-  WORKSPACE_NAME_EMPTY_DESC: 'Please enter a workspace name.',
-  WORKSPACE_CREATE_DESC: 'Set the basic information about the workspace.',
-  ADMINISTRATOR: 'Administrator',
+  CREATE_WORKSPACE: 'कार्यक्षेत्र बनाएँ',
+  WORKSPACE_NAME_EMPTY_DESC: 'कृपया एक कार्यक्षेत्र का नाम दर्ज करें.',
+  WORKSPACE_CREATE_DESC: 'कार्यक्षेत्र के बारे में बुनियादी जानकारी सेट करें।',
+  ADMINISTRATOR: 'व्यवस्थापक',
   // List > Create > Cluster Settings
-  SELECT_CLUSTERS_DESC: 'Select clusters to be used in the workspace.',
-  NO_CLUSTER_AVAILABLE_DESC: 'No cluster is available. After the workspace is created, please contact the platform or cluster administrator to authorize a cluster to the workspace.',
-  WORKSPACE_NO_CLUSTER_TIP: 'Please contact the platform or cluster administrator to authorize a cluster to the workspace.',
-  AVAILABLE_CLUSTERS: 'Available Clusters',
-  CLUSTER_SETTINGS: 'Cluster Settings',
-  SELECT_HOST_CLUSTER_WARNING: 'The current system is a multi-cluster system. Please avoid creating resources in the host cluster if possible. Excessive loads in the host cluster will decrease the stability of the multi-cluster system.',
+  SELECT_CLUSTERS_DESC: 'कार्यक्षेत्र में उपयोग किए जाने वाले समूहों का चयन करें।',
+  NO_CLUSTER_AVAILABLE_DESC: 'कोई क्लस्टर उपलब्ध नहीं है। कार्यक्षेत्र बनने के बाद, कार्यक्षेत्र के लिए क्लस्टर अधिकृत करने के लिए कृपया प्लेटफ़ॉर्म या क्लस्टर व्यवस्थापक से संपर्क करें।',
+  WORKSPACE_NO_CLUSTER_TIP: 'किसी क्लस्टर को कार्यक्षेत्र के लिए अधिकृत करने के लिए कृपया प्लेटफ़ॉर्म या क्लस्टर व्यवस्थापक से संपर्क करें।',
+  AVAILABLE_CLUSTERS: 'उपलब्ध क्लस्टर',
+  CLUSTER_SETTINGS: 'क्लस्टर सेटिंग्स',
+  SELECT_HOST_CLUSTER_WARNING: 'वर्तमान प्रणाली एक बहु-क्लस्टर प्रणाली है। यदि संभव हो तो कृपया होस्ट क्लस्टर में संसाधन बनाने से बचें। होस्ट क्लस्टर में अत्यधिक लोड मल्टी-क्लस्टर सिस्टम की स्थिरता को कम कर देगा।',
   // List > Edit Information
   // List > Delete
-  DELETE_WORKSPACE: 'Delete Workspace',
-  WORKSPACE_LOW: 'workspace'
+  DELETE_WORKSPACE: 'कार्यक्षेत्र हटाएं',
+  WORKSPACE_LOW: 'कार्यक्षेत्र'
 };

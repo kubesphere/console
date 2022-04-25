@@ -15,8 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
-  CLUSTER_ROLES: '集群角色',
-  CLUSTER_ROLE_PL: '集群角色',
-}
+  CLUSTER_ROLE: '集群角色',
+  CLUSTER_ROLE_PL: '集群角色'
+};

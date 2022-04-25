@@ -95,7 +95,6 @@ module.exports = {
   ADD_ACTION: '添加动作',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: '添加环境变量',
-  USE_CONFIGMAP_OR_SECRET: '引用配置字典或保密字典',
   KEY_IN_RESOURCE: '资源中的键',
   LABEL_TYPE: '{label} <span style="{style}">（{type}）</span>',
   // List > Create > Pod Settings > Add Container > Container Security Context
@@ -141,7 +140,6 @@ module.exports = {
   DECENTRALIZED_SCHEDULING: '分散调度',
   CUSTOM_RULES: '自定义规则',
   CUSTOM_RULES_DESC: '按照自定义的规则将容器组副本调度到节点。',
-  'Pod IP': 'Pod IP',
   DECENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到不同的节点上。',
   CENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到同一节点上。',
   CENTRALIZED_SCHEDULING: '集中调度',

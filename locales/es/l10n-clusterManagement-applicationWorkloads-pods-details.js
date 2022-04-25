@@ -24,8 +24,7 @@ module.exports = {
   PROBE_PL: 'Investigacion',
   HOOK_PL: 'Hooks',
   // Resource Status > Containers > Container Logs
-  CONTAINER_LOGS_NOT_SUPPORTED:
-    'El contenedor no admite logs en tiempo real en el estado actual, intente nuevamente más tarde.',
+  CONTAINER_LOGS_NOT_SUPPORTED: 'El contenedor no admite logs en tiempo real en el estado actual, intente nuevamente más tarde.',
   CONTAINER_LOGS: 'Registros de contenedores',
   // Resource Status > Details > Container Details > Details
   COMMAND: 'Comando',
@@ -61,4 +60,6 @@ module.exports = {
   // Metadata
   // Monitoring
   NO_MONITORING_DATA: 'No Monitoring Data',
-}
+  OUTBOUND: 'Outbound',
+  INBOUND: 'Inbound'
+};
