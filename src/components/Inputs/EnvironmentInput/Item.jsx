@@ -74,7 +74,7 @@ export default class EnvironmentInputItem extends React.Component {
   }
 
   componentDidMount() {
-    this.checkName()
+    this.updateCheckStatus()
   }
 
   parseValue(data) {
@@ -162,10 +162,21 @@ export default class EnvironmentInputItem extends React.Component {
         }))
   }
 
-  checkName = () => {
-    const { value = {} } = this.props
-    if (value.valueFrom) {
-      this.validEnvKey(value.name, value)
+  updateCheckStatus = () => {
+    const { repeatKeyArr = [], index } = this.props
+    if (repeatKeyArr.length > 0) {
+      const myError = repeatKeyArr.includes(`${index}`)
+      if (myError) {
+        this.setState(
+          {
+            keyError: myError,
+          },
+          () => {
+            const message = t('DUPLICATE_KEYS')
+            this.handleError({ message })
+          }
+        )
+      }
     }
   }
 
@@ -201,29 +212,46 @@ export default class EnvironmentInputItem extends React.Component {
     }))
   }
 
-  validEnvKey = debounce((value, target = {}) => {
+  handleError = (text = '') => {
     const { handleKeyError, handleInputError } = this.props
+    handleKeyError(text)
+    handleInputError(text)
+  }
+
+  checkNameRepeat = value => {
+    const { arrayValue, index: position } = this.props
+    if (arrayValue.length > 1) {
+      const repeat = arrayValue.filter(
+        (item, index) => item.name === value && index !== position
+      )
+      return repeat.length > 0
+    }
+    return false
+  }
+
+  validEnvKey = debounce((value, target = {}) => {
     const invalid = !PATTERN_ENV_NAME.test(value)
+    const repeat = this.checkNameRepeat(value)
     if (value === '' && target.value === '') {
-      handleKeyError()
-      handleInputError()
+      this.handleError()
       this.setState({
         keyError: false,
       })
     } else {
-      if (invalid) {
+      if (repeat) {
+        const message = t('DUPLICATE_KEYS')
+        this.handleError({ message })
+      } else if (invalid) {
         const message =
           value !== ''
             ? t('ENVIRONMENT_INVALID_TIP')
             : t('ENVIRONMENT_CANNOT_BE_EMPTY')
-        handleInputError({ message })
-        handleKeyError({ message })
+        this.handleError({ message })
       } else {
-        handleKeyError()
-        handleInputError()
+        this.handleError()
       }
       this.setState({
-        keyError: invalid,
+        keyError: invalid || repeat,
       })
     }
   }, 300)

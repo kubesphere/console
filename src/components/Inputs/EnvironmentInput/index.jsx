@@ -172,8 +172,31 @@ export default class EnvironmentInput extends React.Component {
     onChange([...oldData, ...newData])
   }
 
+  get getRepeat() {
+    const { value = [] } = this.props
+    if (value.length > 1) {
+      const repeatObj = {}
+      value.forEach((item, index) => {
+        const name = item?.name ?? ''
+        if (item.name !== '') {
+          if (repeatObj[name]) {
+            repeatObj[name].push(`${index}`)
+          } else {
+            repeatObj[name] = []
+          }
+        }
+      })
+      const repeatArr = Object.values(repeatObj).reduce(
+        (total, cur) => [...total, ...cur],
+        []
+      )
+      return repeatArr
+    }
+    return []
+  }
+
   render() {
-    const { ...rest } = this.props
+    const { handleInputError, ...rest } = this.props
     const { configMaps, secrets } = this.state
 
     return (
@@ -204,7 +227,12 @@ export default class EnvironmentInput extends React.Component {
         }
         {...rest}
       >
-        <Item configMaps={configMaps} secrets={secrets} />
+        <Item
+          configMaps={configMaps}
+          secrets={secrets}
+          repeatKeyArr={this.getRepeat}
+          handleInputError={handleInputError}
+        />
       </ArrayInput>
     )
   }
