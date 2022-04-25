@@ -29,7 +29,7 @@ module.exports = {
   VOLUME_STATUS_UPDATING: '更新中',
   VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: '硬盘扩容中(FilesystemSizePending)',
   VOLUME_EMPTY_DESC: '请创建一个存储卷。',
-  MOUNT_STATUS: '挂载',
+  MOUNT_STATUS: '挂载状态',
   MOUNTED: '已挂载',
   NOT_MOUNTED: '未挂载',
   ACCESS_MODE_TCAP: '访问模式',
