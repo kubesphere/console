@@ -22,13 +22,13 @@ import Viewer from './Viewer'
 export default path => [
   {
     path: `${path}/egress`,
-    title: t('EGRESS_TRAFFIC'),
+    title: t('EGRESS_RULES'),
     component: Viewer,
     exact: true,
   },
   {
     path: `${path}/ingress`,
-    title: t('INGRESS_TRAFFIC'),
+    title: t('INGRESS_RULES'),
     component: Viewer,
     exact: true,
   },

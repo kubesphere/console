@@ -26,13 +26,13 @@ const PATH = '/clusters/:cluster/volume-snapshots'
 export default [
   {
     path: `${PATH}/snapshots`,
-    title: 'Volume Snapshot',
+    title: 'VOLUME_SNAPSHOT',
     component: Snapshots,
     exact: true,
   },
   {
     path: `${PATH}/snapshot-content`,
-    title: 'Volume Snapshot Content',
+    title: 'VOLUME_SNAPSHOT_CONTENT',
     component: Content,
     exact: true,
   },

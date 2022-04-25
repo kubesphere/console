@@ -142,11 +142,11 @@ export default class IPPoolDetail extends React.Component {
         value: block.base,
       },
       {
-        name: t('STARTING_IP_ADDRESS'),
+        name: t('START_IP_ADDRESS'),
         value: block.base,
       },
       {
-        name: t('ENDING_IP_ADDRESS'),
+        name: t('END_IP_ADDRESS'),
         value: block.last,
       },
       {

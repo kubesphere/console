@@ -264,9 +264,7 @@ export default class Viewer extends React.Component {
     return (
       <Panel
         title={
-          this.direction === 'egress'
-            ? t('EGRESS_TRAFFIC')
-            : t('INGRESS_TRAFFIC')
+          this.direction === 'egress' ? t('EGRESS_RULES') : t('INGRESS_RULES')
         }
       >
         <Table
