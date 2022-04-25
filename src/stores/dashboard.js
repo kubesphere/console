@@ -15,9 +15,21 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
+import { action } from 'mobx'
 import Base from 'stores/base'
 
 export default class DashboardStore extends Base {
   module = 'dashboards'
+
+  @action
+  createGrafana(data, params = {}) {
+    return this.submitting(
+      request.post(
+        `/kapis/monitoring.kubesphere.io/v1alpha3/${this.getPath(
+          params
+        )}/dashboards/${data.grafanaDashboardName}/template`,
+        data
+      )
+    )
+  }
 }
