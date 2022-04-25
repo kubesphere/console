@@ -24,10 +24,10 @@ module.exports = {
   // More > Delete
 
   // Egress Traffic
-  EGRESS_TRAFFIC: 'Egress Traffic',
+  EGRESS_RULES: 'Egress Rules',
   DESTINATION: 'Destination',
   LABEL: 'Label',
 
   // Ingress Traffic
-  INGRESS_TRAFFIC: 'Ingress Traffic',
+  INGRESS_RULES: 'Ingress Rules',
 }

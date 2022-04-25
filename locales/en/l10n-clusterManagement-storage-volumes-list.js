@@ -55,7 +55,6 @@ module.exports = {
 
   // List > Advanced Settings
   // List > Edit
-  EDIT_TCAP: 'Edit',
 
   // List > Edit YAML
   // List > Delete
