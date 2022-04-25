@@ -20,9 +20,9 @@ module.exports = {
   // More > Edit YAML
   // More > Delete
   // Egress Traffic
-  EGRESS_TRAFFIC: 'Çıkış Trafiği',
+  EGRESS_RULES: 'Egress Rules',
   DESTINATION: 'Hedef',
   LABEL: 'Etiket',
   // Ingress Traffic
-  INGRESS_TRAFFIC: 'Çıkış Trafiği'
+  INGRESS_RULES: 'Ingress Rules'
 };
