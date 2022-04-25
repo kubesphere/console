@@ -46,7 +46,6 @@ module.exports = {
   VOLUME_STORAGE_CLASS_DESC: '选择一个存储类型来创建特定种类的存储卷。',
   // List > Advanced Settings
   // List > Edit
-  EDIT_TCAP: '编辑',
   // List > Edit YAML
   // List > Delete
   VOLUME_LOW: '存储卷'
