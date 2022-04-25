@@ -46,7 +46,6 @@ module.exports = {
   VOLUME_STORAGE_CLASS_DESC: 'Selecciona clase de almacenamiento para crear un tipo específico de volumen.',
   // List > Advanced Settings
   // List > Edit
-  EDIT_TCAP: 'Edit',
   // List > Edit YAML
   // List > Delete
   VOLUME_LOW: 'volume'
