@@ -19,10 +19,16 @@
 import { get, omit, isEmpty } from 'lodash'
 import React from 'react'
 import { Column, Columns, Form, Input, Select } from '@kube-design/components'
-import { PropertiesInput } from 'components/Inputs'
+import { PropertiesInput, TailIUnitInput } from 'components/Inputs'
 import { MODULE_KIND_MAP, PROVISIONERS, ACCESS_MODES } from 'utils/constants'
 
-const Components = { input: Input, select: Select }
+const Components = { input: TailIUnitInput, select: Select }
+
+const keyWithUnit = {
+  maxsize: 'GiB',
+  stepsize: 'GiB',
+  minsize: 'GiB',
+}
 
 export default class StorageClassSetting extends React.Component {
   constructor(props) {
@@ -121,6 +127,7 @@ export default class StorageClassSetting extends React.Component {
                   'placeholder',
                   'options',
                 ])}
+                unit={keyWithUnit[left.key.toLowerCase()] ?? null}
                 options={leftOptions}
                 placeholder={t(left.placeholder)}
               />
@@ -134,6 +141,7 @@ export default class StorageClassSetting extends React.Component {
               >
                 <RightComponent
                   name={`parameters.${right.key.toLowerCase()}`}
+                  unit={keyWithUnit[right.key.toLowerCase()] ?? null}
                   {...omit(right, ['type', 'key', 'desc'])}
                 />
               </Form.Item>
