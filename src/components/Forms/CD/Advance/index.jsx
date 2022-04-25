@@ -17,10 +17,20 @@
  */
 
 import React from 'react'
-import { Form, Input, Column, Columns, Checkbox } from '@kube-design/components'
+import {
+  Form,
+  Input,
+  Column,
+  Columns,
+  Checkbox,
+  Select,
+} from '@kube-design/components'
 
 import { TypeSelect } from 'components/Base'
-import { SYNC_STRATEGY } from 'utils/constants'
+import {
+  SYNC_STRATEGY,
+  PRUNE_PROPAGATION_POLICY_OPTIONS,
+} from 'utils/constants'
 import { set } from 'lodash'
 import Placement from './Placement'
 import styles from './index.scss'
@@ -159,7 +169,10 @@ export default class Advance extends React.Component {
               </div>
             </div>
             <Form.Item label={t('PRUNE_PROPAGATION_POLICY')}>
-              <Input name="syncOptions.PrunePropagationPolicy" />
+              <Select
+                name="syncOptions.PrunePropagationPolicy"
+                options={PRUNE_PROPAGATION_POLICY_OPTIONS}
+              />
             </Form.Item>
             <Form.Item>
               <div className={styles.checkbox_item}>

@@ -93,6 +93,12 @@ export const CD_SYNC_STATUS = [
   { text: 'Unknown', value: 'Unknown' },
 ]
 
+export const PRUNE_PROPAGATION_POLICY_OPTIONS = [
+  { label: 'foreground', value: 'foreground' },
+  { label: 'background', value: 'background' },
+  { label: 'orphan', value: 'orphan' },
+]
+
 export const ACCESS_MODES = {
   ReadWriteOnce: 'RWO',
   ReadOnlyMany: 'ROX',

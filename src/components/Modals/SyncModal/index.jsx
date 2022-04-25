@@ -19,9 +19,10 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { Input, Form, Checkbox } from '@kube-design/components'
+import { Input, Form, Checkbox, Select } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { get, set } from 'lodash'
+import { PRUNE_PROPAGATION_POLICY_OPTIONS } from 'utils/constants'
 import styles from './index.scss'
 
 @observer
@@ -200,7 +201,10 @@ export default class SyncModal extends React.Component {
                 </div>
               </div>
               <Form.Item label={t('PRUNE_PROPAGATION_POLICY')}>
-                <Input name="syncOptions.PrunePropagationPolicy" />
+                <Select
+                  name="syncOptions.PrunePropagationPolicy"
+                  options={PRUNE_PROPAGATION_POLICY_OPTIONS}
+                />
               </Form.Item>
               <Form.Item>
                 <div className={styles.checkbox_item}>
