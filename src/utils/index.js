@@ -78,7 +78,7 @@ export const formatUsedTime = ms => {
 }
 
 export const formaDayTime = time => {
-  return `${parseFloat(time / 86400000).toFixed(0)} `
+  return `${parseFloat(time / 86400000)} `
 }
 
 export const formatDuration = (str, targetUnit = 's') => {
