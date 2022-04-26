@@ -72,11 +72,11 @@ export default class AddVolume extends React.Component {
     this.saveEditVolume()
   }
 
-  volumeTypeMap = type => {
-    if (type === 'emptyDir') {
+  volumeTypeMap = typeArr => {
+    if (typeArr.includes('emptyDir')) {
       return 'temp'
     }
-    if (type === 'hostPath') {
+    if (typeArr.includes('hostPath')) {
       return 'host'
     }
     return 'exist'
@@ -86,7 +86,7 @@ export default class AddVolume extends React.Component {
     const { volume } = this.props
     if (!isEmpty(volume)) {
       const type = this.volumeTypeMap(
-        Object.keys(omit(volume, ['name', 'volumeMounts']))[0]
+        Object.keys(omit(volume, ['name', 'volumeMounts']))
       )
       if (type !== 'exist') {
         this.setState({
@@ -219,7 +219,7 @@ export default class AddVolume extends React.Component {
 
     const currentName = volume.name
     const volumeMounts = get(volume, 'volumeMounts', [])
-    if (this.state.type !== 'exist') {
+    if (this.state.type === 'exist') {
       const existName = get(volume, 'specVolume.name', false)
       existName && (volume.name = existName)
     } else {
@@ -231,7 +231,7 @@ export default class AddVolume extends React.Component {
     }
 
     if (volumeMounts.length > 0) {
-      set(volume, 'volumeMounts[0].name', volume.name)
+      volume.volumeMounts.forEach(item => set(item, 'name', volume.name))
     }
 
     switch (this.state.type) {
