@@ -109,7 +109,7 @@ export default class ClusterCard extends React.Component {
                 title={
                   <span>
                     {t.html('LAST_KUBE_CONFIG_EXPIRED', {
-                      count: expiredDay,
+                      count: parseInt(expiredDay, 10),
                     })}
                   </span>
                 }
