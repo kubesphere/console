@@ -17,13 +17,11 @@
  */
 module.exports = {
   // Title
-  TOTAL_AUDITING_TODAY:
-    '今日总共收录了 <span class={className}> {auditing} </span> 条审计日志',
+  TOTAL_AUDITING_TODAY: '今日总共收录了 <span class={className}> {auditing} </span> 条审计日志',
   NO_AUDIT_LOG_TODAY: '今日没有收录的审计日志',
   // Search
   NO_AVAILABLE_CLUSTER: '未发现可用集群',
-  AUDITING_NOT_ENABLED_DESC:
-    '当前组件尚未开启。<a href="{docUrl}/pluggable-components/auditing-logs/" target="_blank">了解更多</a>',
+  AUDITING_NOT_ENABLED_DESC: '当前组件尚未开启。<a href="{docUrl}/pluggable-components/auditing-logs/" target="_blank">了解更多</a>',
   TIME_RANGE_LAST: '时间范围：最近 {value}',
   TIME_RANGE_RANGE: '时间范围：{startTime} – {endTime}',
   // Querying Rules
