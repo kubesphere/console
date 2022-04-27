@@ -42,11 +42,12 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Health Check > Readiness Check > TCP Port
   PORT_NUMBER_EMPTY: '請輸入端口號。',
   USER: '用戶',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   VOLUME_NAME_EXIST: '儲存卷名稱已使用',
   SELECT_TYPE: '選擇{type}',
   SPECIFY_SUBPATH: '點擊指定子路徑',
   SPECIFY_SUBPATH_TIP: '指定需要掛載到容器的儲存卷子路徑。',
+  MOUNT_PATH: 'Mount path',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: '網段',
   AVAILABLE_ADDRESSES: '可用地址數量',
