@@ -152,16 +152,15 @@ module.exports = {
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: '添加元数据',
   POD_ADD_METADATA_DESC: '为容器组副本添加元数据。',
-  // List > Create > Volume Settings
-  VOLUME_SETTINGS: '存储卷设置',
+  // List > Create > Storage Settings
+  STORAGE_SETTINGS: 'Storage Settings',
   READ_ONLY_LOW: '只读',
   READ_AND_WRITE_LOW: '读写',
-  // List > Create > Volume Settings > Mount Volume
+  // List > Create > Storage Settings > Mount Volume
   MOUNT_VOLUME: '挂载存储卷',
-  WORKLOAD_MOUNT_VOLUME_DESC: '为容器挂载现有存储卷、临时存储卷或 HostPath 存储卷。',
-  EXISTING_VOLUME: '现有存储卷',
-  SELECT_VOLUME: '选择存储卷',
-  SELECT_VOLUME_DESC: '选择现有的存储卷以将其挂载到容器。',
+  WORKLOAD_MOUNT_VOLUME_DESC: 'Mount an persistent volume, temporary volume, or HostPath volume to the containers.',
+  SELECT_PERSISITENT_VOLUME_CLAIM: 'Select Persistent Volume Claim',
+  SELECT_PERSISITENT_VOLUME_CLAIM_DESC: 'Mount a persistent volume created according to the persistent volume claim to the containers.',
   CAPACITY: '容量',
   VOLUME_NOT_SELECT: '请选择存储卷。',
   TEMPORARY_VOLUME: '临时存储卷',
@@ -174,7 +173,7 @@ module.exports = {
   HOST_PATH: '主机路径',
   READ_AND_WRITE: '读写',
   READ_ONLY: '只读',
-  // List > Create > Volume Settings > Mount Configmap or Secret
+  // List > Create > Storage Settings > Mount Configmap or Secret
   MOUNT_CONFIGMAP_OR_SECRET: '挂载配置字典或保密字典',
   MOUNT_CONFIGMAP_OR_SECRET_DESC: '为容器挂载配置字典或保密字典。',
   CONFIGMAP: '配置字典',
