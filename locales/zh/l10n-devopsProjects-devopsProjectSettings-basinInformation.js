@@ -18,8 +18,7 @@
 module.exports = {
   // Banner
   DEVOPS_PROJECT_SETTINGS: 'DevOps 项目设置',
-  DEVOPS_DESCRIPTION:
-    'DevOps 项目是一个独立的命名空间，其中定义了一组流水线。用户可以按照自己的方式对流水线进行分组（例如：项目类型、组织类型）。',
+  DEVOPS_DESCRIPTION: 'DevOps 项目是一个独立的命名空间，其中定义了一组流水线。用户可以按照自己的方式对流水线进行分组（例如：项目类型、组织类型）。',
   // Basic Information
   DEVOPS_PROJECT_ROLE_SCAP: 'DevOps 项目角色',
   DEVOPS_PROJECT_SCAP: 'DevOps 项目',
