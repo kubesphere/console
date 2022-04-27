@@ -48,6 +48,6 @@ module.exports = {
   PROBE_COMMAND_EMPTY: '請輸入至少一條指令',
   // List > Create > Pod Settings > Add Container > Health Check > Liveness Check > TCP Port
   TCP_PORT: 'TCP 端口檢查',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   MOUNT_PATH_IN_USE: '掛載路徑已使用，請輸入其他掛載路徑。'
 };
