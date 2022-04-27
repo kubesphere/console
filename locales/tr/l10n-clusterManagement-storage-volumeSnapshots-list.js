@@ -27,6 +27,7 @@ module.exports = {
   SELECT_A_VOLUME_DESC: 'Select a volume to create a snapshot.',
   SELECT_VOLUME_SNAPSHOT_CLASS_DESC: 'Belirli bir türde anlık görüntü oluşturmak için bir anlık görüntü sınıfı seçin.',
   // List
+  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
   VOLUME_SNAPSHOT_STATUS_CREATING: 'Oluşturuluyor',
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Oluşturulamadı',
   VOLUME_SNAPSHOT_STATUS_READY: 'Başarıyla oluşturuldu',
