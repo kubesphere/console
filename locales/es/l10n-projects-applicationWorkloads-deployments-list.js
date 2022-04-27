@@ -37,18 +37,18 @@ module.exports = {
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
   MAX_EXTRA_PODS_DESC: 'El número máximo de pods permitido durante una actualización continua',
   MAX_EXTRA_PODS: 'El número máximo disponible de pods',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   AVAILABLE: 'En desuso',
   IN_USER: 'En uso',
   ACCESS_MODE_SCAP: 'Modo de acceso admitido',
-  VOLUME_OR_TEMPLATE_EMPTY: 'Ha habilitado la opción de recopilar los registros en el disco. Agregue al menos un volumen y especifique el directorio en el que se encuentra el registro.',
-  VOLUME_EMPTY: 'You have enabled Disk Log Collection. Please mount at least one volume and specify the directory of the logs.',
+  PVC_OR_TEMPLATE_EMPTY: 'You have enabled Collect Logs on Volumes. Please bind at least one persistent volume claim or volume claim template and specify the directory of the logs.',
+  PVC_EMPTY: 'You have enabled Collect Logs on Volumes. Please bind at least one persistent claim and specify the directory of the logs.',
   PROJECT_COLLECT_SAVED_DISABLED_DESC: 'Please contact the project administrator to enable disk log collection in <b>Project Settings</b> > <b>Advanced Settings</b>.',
   COLLECT_LOGS_ON_VOLUMES_DESC: 'After you add a volume (ReadAndWrite mode), you can collect logs inside the volume. When you enable disk log collection, the Filebeat image will be used as a sidecar pattern and injected into the Pod to collect logs.',
   // List > Create
-  // List > Create > Volume Settings > Mount Volume
+  // List > Create > Storage Settings > Mount Volume
   CONTAINER_LOG_PATH: 'ruta relativa del registro de contenedor',
-  // List > Create > Volume Settings > Mount Volume > Temporary Volume (Question Mark)
+  // List > Create > Storage Settings > Mount Volume > Temporary Volume
   CONTAINER_LOG_PATH_TIP: 'La ruta relativa del registro del contenedor es la ruta desde la ruta de montaje del módulo, que se puede proporcionar en modo global. Cuando hay varios grupos, sepárelos por comas. Por ejemplo, cuando la ruta de montaje del pod es / data, la ruta relativa del registro de pod se configura como log / *. Log, lo que significa que todos los archivos de sufijos .log en el directorio / data / log coinciden. Si necesita hacer coincidir todos los archivos de sufijos .log en el directorio / data / log y sus subdirectorios, puede configurar la ruta relativa del registro de pod a log / ** / *. Log.',
   // List > Create > Advanced Settings
   // List > Edit Information
