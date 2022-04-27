@@ -31,12 +31,16 @@ module.exports = {
   ONDELETE_DESC: '需要手动删除容器组副本才能对其进行更新。',
   PARTITION_ORDINAL: '容器组副本分组序号',
   PARTITION_ORDINAL_DESC: '设置一个分组序号以将容器组副本分成两组。更新有状态副本集时，只有序号大于或等于分组序号的容器组副本会被更新。',
-  // List > Create > Volume Settings > Volume Templates
-  ADD_VOLUME_TEMPLATE_DESC: '添加存储卷模板以挂载与容器组具有相同生命周期的存储卷。',
-  STATEFULSETS_ADD_VOLUME_TEMPLATE_DESC: '请添加一个存储卷模板',
+  // List > Create > Storage Settings
+  PVC_NAME_PREFIX: 'PVC Name Prefix',
+  PVC_NAME_PREFIX_DESC: 'Prefix of persistent volume claim names. The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 253 characters.',
+  PVC_NAME_PREFIX_EMPTY: 'Please enter the prefix of persistent volume names.',
+  INVALID_PVC_NAME_PREFIX: 'Invalid prefix. The prefix can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 253 characters.',
+  PVC_NAME_PREFIX_EXISTS: 'The prefix already exists. Please enter another prefix.',
+  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE: 'Add Persistent Volume Claim Template',
+  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE_DESC: 'Add a persistent volume claim template to mount a persistent volume to each pod of the statefulset.',
   VOLUME_CAPACITY_TCAP: '存储卷容量',
-  MOUNT_PATH: '挂载路径',
-  MOUNT_VOLUME_OR_TEMPLATE: '挂载存储卷或存储卷模板',
+  MOUNT_PATH_TCAP: 'Mount Path',
   VOLUME_TEMPLATES: '存储卷模板',
   // List > Create > Advanced Settings
   // List > Create > Cluster Differences
