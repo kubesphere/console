@@ -17,18 +17,16 @@
  */
 
 module.exports = {
-  // Banner
-  VOLUME_INSTANCE_PL: 'Volume Instances',
-
-  // List
-  VOLUME_BACKEND_TCAP: 'Volume Instance',
-  PV_STATUS_AVAILABLE: 'Available',
-  PV_STATUS_BOUND: 'Bound',
-  PV_STATUS_RELEASED: 'Terminating',
-  PV_STATUS_FAILED: 'Failed',
-  RECYCLING_STRATEGY: 'Recycling Strategy',
-  VOLUME_INSTANCE_EMPTY_DESC: 'Please bind a volume to a workload.',
-
-  // List > Delete
-  VOLUME_INSTANCE_LOW: 'volume instance',
+  // Details
+  // More > Edit Settings
+  // More > Edit Settings > Volume Settings
+  // More > Edit Settings > Cluster Differences
+  // More > Edit YAML
+  // More > Delete
+  // Resource Status
+  VOLUME_MONITORING_TIP: 'Currently, only usage data of mounted volumes can be collected. Usage data of path-based volumes such as OpenEBS, Local PV, and NFS volumes may be inaccurate. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">Learn More</a>',
+  // Mount Information
+  MOUNT_INFORMATION: 'Mount Information',
+  // Metadata
+  // Events
 }

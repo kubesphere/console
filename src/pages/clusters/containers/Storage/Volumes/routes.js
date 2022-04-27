@@ -26,13 +26,13 @@ const PATH = '/clusters/:cluster/volumes'
 export default [
   {
     path: `${PATH}/Volumes`,
-    title: 'VOLUME_PL',
+    title: 'PERSISTENT_VOLUME_CLAIM_PL',
     component: Volume,
     exact: true,
   },
   {
     path: `${PATH}/PV`,
-    title: 'VOLUME_INSTANCE_PL',
+    title: 'PERSISTENT_VOLUME_PL',
     component: PV,
     exact: true,
   },

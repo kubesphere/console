@@ -26,14 +26,10 @@ module.exports = {
   'Net Received': 'Inbound Traffic',
   'Net Transmitted': 'Outbound Traffic',
 
-  APP_CONSUMPTION_DESC:
-    'Application store template resource consumption statistics',
-  APP_RESOURCE_CONSUMPTION_DESC:
-    'Application store template resource consumption statistics support querying the number of times a template has been deployed on the KubeSphere platform, and support the following queries',
-  APP_WORKSPACE_CONSUMPTION_DESC:
-    'The number of deployments of the application template in the <strong>workspace</strong>',
-  APP_WORKSPACE_PROJECT_CONSUMPTION_DESC:
-    'The number of deployments of the application template in a <strong>project</strong> in the workspace',
+  APP_CONSUMPTION_DESC: 'Application store template resource consumption statistics',
+  APP_RESOURCE_CONSUMPTION_DESC: 'Application store template resource consumption statistics support querying the number of times a template has been deployed on the KubeSphere platform, and support the following queries',
+  APP_WORKSPACE_CONSUMPTION_DESC: 'The number of deployments of the application template in the <strong>workspace</strong>',
+  APP_WORKSPACE_PROJECT_CONSUMPTION_DESC: 'The number of deployments of the application template in a <strong>project</strong> in the workspace',
 
   'Meter CPU Usage': 'CPU Usage',
   'Meter Memory Usage': 'Memory Usage',

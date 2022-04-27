@@ -22,7 +22,6 @@ module.exports = {
   START_IP_ADDRESS: 'Start IP Address',
   END_IP_ADDRESS: 'End IP Address',
   MASK: 'Mask',
-
   // More > View YAML
   // More > Assign Workspace
   // More > Delete
@@ -30,6 +29,5 @@ module.exports = {
   WORKSPACES: 'Workspaces',
   MANAGER: 'Manager',
   IPPOOL_WORKSPACE_EMPTY_TIP: 'No workspace is using this pod IP pool.',
-
   // Pods
 }

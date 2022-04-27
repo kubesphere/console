@@ -22,7 +22,6 @@ module.exports = {
   // Install > Basic Information
   // Install > App Settings
   APP_SETTINGS: 'App Settings',
-
   // Title
   // Description
   // App Information

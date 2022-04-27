@@ -20,7 +20,6 @@ module.exports = {
   'Add App Repository': 'Add App Repository',
   'App Repos': 'App Repositories',
   'App Repository': 'App Repository',
-
   'HTTP access denied': 'HTTP access denied.',
   INDEX_REPO: 'Index Repository',
   'Invalid format of credential': 'Invalid credential format.',
@@ -33,16 +32,12 @@ module.exports = {
   'Invalid type': 'Invalid type.',
   'Missing access key ID': 'Missing access key ID.',
   'Missing secret access key': 'Missing secret access key.',
-  'Please input access key ID and secret access key':
-    'Please enter an access key ID and secret access key.',
+  'Please input access key ID and secret access key': 'Please enter an access key ID and secret access key.',
   'S3 access denied': 'S3 access denied.',
   Synchronize: 'Synchronize',
   syncing: 'syncing',
   'Unrecognized URL': 'Unrecognized URL.',
-
   'App Repositorys': 'App Repositories',
-  APP_REPOSITORY_CREATE_DESC:
-    'You can add third-party repositories that contain Helm-based Kubernetes apps.',
-
+  APP_REPOSITORY_CREATE_DESC: 'You can add third-party repositories that contain Helm-based Kubernetes apps.',
   // App Repositories > Details
 }

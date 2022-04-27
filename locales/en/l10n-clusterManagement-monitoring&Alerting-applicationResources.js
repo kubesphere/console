@@ -19,9 +19,7 @@
 module.exports = {
   // Banner
   APPLICATION_RESOURCE_PL: 'Application Resources',
-  MONITORING_APPLICATION_DESC:
-    'Application resources provide the monitoring data of application resource usage and usage ranking.',
-
+  MONITORING_APPLICATION_DESC: 'Application resources provide the monitoring data of application resource usage and usage ranking.',
   // Resource Usage > Cluster Resource Usage
   CUSTOM_TIME_RANGE: 'Customize Time Range',
   ACCOUNTS: 'Accounts',
@@ -65,7 +63,6 @@ module.exports = {
   KUBE_OCT_LH: 'October',
   KUBE_NOV_LH: 'November',
   KUBE_DEC_LH: 'December',
-
   // Resource Usage > Application Resource Usage
   APPLICATION_RESOURCE_USAGE: 'Application Resource Usage',
   DEPLOYMENT: 'Deployment',
@@ -79,10 +76,8 @@ module.exports = {
   DAEMONSETS_VALUE: 'Daemonsets: {value}',
   RUNNING_PODS: 'Running Pods',
   ROUTE: 'Route',
-
   // Resource Usage > Projects
   PROJECT_PL: 'Projects',
-
   PROJECT_COUNT: 'Projects',
   // Usage Ranking
   USAGE_RANKING: 'Usage Ranking',

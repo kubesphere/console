@@ -22,7 +22,6 @@ module.exports = {
   KEYWORD: 'Keyword',
   EXACT_QUERY: 'Exact Query',
   FUZZY_QUERY: 'Fuzzy Query',
-
   // Time Topology
   TIME_TOPOLOGY: 'Time Topology ',
   SEARCH_RESULTS: 'Search Results',
@@ -30,10 +29,8 @@ module.exports = {
   HIDE: 'Hide',
   STOP_REAL_TIME_CONTAINER_LOG: 'Pause real-time container logs',
   START_REAL_TIME_CONTAINER_LOG: 'View real-time container logs',
-
   // Time Topology > Histogram
   CONTAINER_LOG_COUNT: 'Container Logs',
-
   // List
   LOG: 'Log',
   // List > Container Log Details

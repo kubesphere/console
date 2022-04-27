@@ -33,12 +33,8 @@ module.exports = {
   RELEASE_DATE: 'Release Date',
   Screenshots: 'Screenshots',
   VERSION_LIST_DES: 'Only display the last 10 versions',
-  HOME_APP_STORE_DESC:
-    'The official App Store of KubeSphere provides deployment and management features that allow users to quickly deploy apps with one click based on app templates.',
-
+  HOME_APP_STORE_DESC: 'The official App Store of KubeSphere provides deployment and management features that allow users to quickly deploy apps with one click based on app templates.',
   APP_DEPLOYMENT_AGREEMENT: 'App Deployment Agreement',
-  APP_DEPLOY_AGREEMENT_CHECK:
-    'I have read <b>App Deployment Agreement</b> and agree to deploy the app.',
-  CHECK_APP_DEPLOY_AGREEMENT_TIP:
-    'Please read and agree to <b>App Deployment Agreement</b>.',
+  APP_DEPLOY_AGREEMENT_CHECK: 'I have read <b>App Deployment Agreement</b> and agree to deploy the app.',
+  CHECK_APP_DEPLOY_AGREEMENT_TIP: 'Please read and agree to <b>App Deployment Agreement</b>.',
 }

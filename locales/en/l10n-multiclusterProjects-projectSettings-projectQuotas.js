@@ -21,6 +21,5 @@ module.exports = {
   // Resource Quotas
   FOLD: 'Fold',
   UNFOLD: 'Unfold',
-
   // Edit Quotas
 }

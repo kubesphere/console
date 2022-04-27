@@ -35,7 +35,7 @@ import styles from './index.scss'
 @withList({
   store: new PvStore(),
   module: 'persistentvolumes',
-  name: 'VOLUME_INSTANCE',
+  name: 'PERSISTENT_VOLUME',
   rowKey: 'uid',
 })
 export default class PV extends React.Component {

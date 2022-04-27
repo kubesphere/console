@@ -18,20 +18,10 @@
 
 module.exports = {
   // Details
-  VOLUME_INSTANCE: 'Volume Instance',
-
   // More > Edit YAML
-  // More > Clone Volume
-  // More > Create Snapshot
-  // More > Expand Volume
   // More > Delete
   // Resource Status
-  // Resource Status > Volume
-  // Resource Status > Mounted Pods
-  MOUNTED_PODS: 'Mounted Pods',
-
+  STORAGE_CLASS_VALUE: 'Storage class: {value}',
   // Metadata
   // Events
-  // Snapshot
-  SNAPSHOT_PL: 'Snapshots',
 }

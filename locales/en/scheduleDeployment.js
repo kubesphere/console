@@ -18,8 +18,6 @@
 
 module.exports = {
   'Set Replicas': 'Fixed number of replicas',
-
   'Total Replicas Number': 'Total number of replicas',
-
   STORAGE_MANAGEMENT_SCAP: 'Volume management',
 }

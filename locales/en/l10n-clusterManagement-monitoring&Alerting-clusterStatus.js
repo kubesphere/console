@@ -19,12 +19,9 @@
 module.exports = {
   // Navigation pane
   MONITORING_AND_ALERTING: 'Monitoring & Alerting',
-
   // Banner
   CLUSTER_STATUS: 'Cluster Status',
-  MONITORING_CLUSTER_DESC:
-    'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
-
+  MONITORING_CLUSTER_DESC: 'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
   // Overview > Cluster Node Status
   CLUSTER_NODE_STATUS: 'Cluster Node Status',
   ALL_NODES: 'All nodes',
@@ -35,13 +32,11 @@ module.exports = {
   CONTROLLER_MANAGER: 'Controller Manager',
   KUBERNETES_SCHEDULER: 'Kubernetes Scheduler',
   NOT_ENABLED: 'Not enabled',
-
   // Overview > Cluster Resource Usage
   CLUSTER_RESOURCE_USAGE: 'Cluster Resource Usage',
   POD_COUNT: 'Pods',
   COUNT: 'Count',
   PODS: 'Pods',
-
   // Overview > etcd Monitoring
   SERVICE_STATUS: 'Service Status',
   ETCD_MONITORING: 'etcd Monitoring',
@@ -52,7 +47,6 @@ module.exports = {
   ETCD_DB_SIZE: 'DB <span>Size</span>',
   ETCD_CLIENT_TRAFFIC: 'Client <span>Traffic</span>',
   TITLE_UNIT: '{title} ({unit})',
-
   // Overview > Service Component Monitoring
   SERVICE_COMPONENT_MONITORING: 'Service Component Monitoring',
   SCHEDULE_ATTEMPTS: 'Scheduling Attempts',
@@ -69,7 +63,6 @@ module.exports = {
   SCHEDULE_ATTEMPTS_TCAP: 'Scheduling <span>Attempts</span>',
   SCHEDULING_RATE_TCAP: 'Scheduling <span>Rate</span>',
   API_SERVER: 'API Server',
-
   // Physical Resource Monitoring
   SELECT_TIME_RANGE: 'Select Time Range',
   LAST_TIME: 'Last {value}',
@@ -77,8 +70,7 @@ module.exports = {
   LAST_TIME_H: '{num, plural, =1 {Last 1 hour} other{Last # hours}}',
   LAST_TIME_D: '{num, plural, =1 {Last 1 day} other{Last # days}}',
   TIMERANGE_SELECTOR_MSG: 'The end time must be later than the start time.',
-  TIMERANGE_SELECTOR_ERROR_MSG:
-    'Please confirm whether the selected time range is appropriate!',
+  TIMERANGE_SELECTOR_ERROR_MSG: 'Please confirm whether the selected time range is appropriate!',
   PHYSICAL_RESOURCES_MONITORING: 'Physical Resource Monitoring',
   INODE_USAGE: 'Inode Usage',
   DISK_USAGE: 'Disk Usage',
@@ -92,10 +84,8 @@ module.exports = {
   READ: 'Read',
   WRITE: 'Write',
   RUNNING: 'Running',
-
   // Physical Resource Monitoring > Average CPU Load
   TIME_M: '{num, plural, =1 {1 minute} other{# minutes}}',
-
   // etcd Monitoring
   EXTERNAL_ETCD: 'External etcd',
   DB_FSYNC: 'DB Fsync',
@@ -107,7 +97,6 @@ module.exports = {
   ETCD_LEADER_TITLE: 'Leader exists',
   ETCD_CHANGES_TITLE: 'Leader changes in 1 h',
   NODE_IP_ADDRESS_VALUE: 'Node IP Address: {value}',
-
   // API Server Monitoring
   API_SERVER_MONITORING: 'API Server Monitoring',
   REQUEST_LATENCY: 'Request Latency',
@@ -121,11 +110,9 @@ module.exports = {
   REST_PUT: 'PUT',
   REST_UPDATE: 'UPDATE',
   REST_LIST: 'LIST',
-
   // Scheduler Monitoring
   SCHEDULER_MONITORING: 'Scheduler Monitoring',
   SCHEDULING_LATENCY: 'Scheduling Latency',
-
   // Resource Usage Ranking
   RESOURCE_USAGE_RANKING: 'Resource Usage Ranking',
   SORT_BY_NODE_CPU_UTILISATION: 'Sort by CPU usage',

@@ -92,8 +92,8 @@ export default class VirtualResource extends Base {
     },
     {
       type: 'pvc',
-      title: 'VOLUME',
-      legend: ['VOLUME_PL'],
+      title: 'PERSISTENT_VOLUME_CLAIM',
+      legend: ['PERSISTENT_VOLUME_CLAIM_PL'],
       metricType: MetricTypes.pvc_count,
     },
     {

@@ -143,8 +143,8 @@ class VirtualResource extends React.Component {
     },
     {
       type: 'pvc',
-      title: 'VOLUME',
-      legend: ['VOLUME_PL'],
+      title: 'PERSISTENT_VOLUME_CLAIM',
+      legend: ['PERSISTENT_VOLUME_CLAIM_PL'],
       metricType: MetricTypes.pvc_count,
     },
     {

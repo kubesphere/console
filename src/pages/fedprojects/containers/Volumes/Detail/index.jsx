@@ -45,7 +45,7 @@ export default class VolumeDetail extends React.Component {
   }
 
   get name() {
-    return 'VOLUME'
+    return 'PERSISTENT_VOLUME_CLAIM'
   }
 
   get module() {
@@ -199,7 +199,7 @@ export default class VolumeDetail extends React.Component {
       icon: 'storage',
       breadcrumbs: [
         {
-          label: t('VOLUME_PL'),
+          label: t('PERSISTENT_VOLUME_CLAIM_PL'),
           url: this.listUrl,
         },
       ],

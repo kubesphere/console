@@ -19,14 +19,12 @@
 module.exports = {
   // Details
   THRESHOLD_DURATION: 'Threshold Duration',
-
   // Alerting Rule
   ALERTING_RULE: 'Alerting Rule',
   MONITORING_TARGETS_SCAP: 'Monitoring targets',
   ALERTING_RULE_SCAP: 'Alerting rule',
   TRIGGER_CONDITION: 'Trigger condition',
   METRIC_MONITORING: 'Metric Monitoring',
-
   // Alerting History
   NO_DATA_DESC: 'No Data Found',
 }

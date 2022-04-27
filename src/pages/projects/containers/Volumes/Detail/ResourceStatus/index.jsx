@@ -90,7 +90,7 @@ class ResourceStatus extends React.Component {
 
     return (
       <div className={styles.main}>
-        <UsageCard title={t('VOLUME')} store={this.monitor} />
+        <UsageCard title={t('PERSISTENT_VOLUME_CLAIM')} store={this.monitor} />
         <PodsCard
           title={t('MOUNTED_PODS')}
           detail={detail}

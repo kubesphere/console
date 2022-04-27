@@ -25,9 +25,7 @@ module.exports = {
   'Edit by YAML': 'Edit by YAML',
   NO_CHART_FILE_FOUND: 'No chart file is found.',
   'Update Successfully': 'Update Successfully',
-
   APP_TEMPLATE_DESCRIPTION_TITLE: 'Deploy packaged applications',
-  APP_TEMPLATE_DESCRIPTION_ARTICLE:
-    'KubeSphere visualizes app templates and provides deployment and management function, allowing users to quickly deploy applications with one click based on app templates.',
+  APP_TEMPLATE_DESCRIPTION_ARTICLE: 'KubeSphere visualizes app templates and provides deployment and management function, allowing users to quickly deploy applications with one click based on app templates.',
   TOTAL_APP_REPOS: 'Total {num} app repositories',
 }

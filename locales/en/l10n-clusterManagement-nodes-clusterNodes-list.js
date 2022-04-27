@@ -20,16 +20,12 @@ module.exports = {
   // Banner
   CLUSTER_NODE_PL: 'Cluster Nodes',
   CLUSTER_NODE: 'Cluster Node',
-  CLUSTER_NODE_DESC:
-    'Cluster nodes are basic servers of the KubeSphere cluster. You can manage cluster nodes on this page.',
+  CLUSTER_NODE_DESC: 'Cluster nodes are basic servers of the KubeSphere cluster. You can manage cluster nodes on this page.',
   NODE_TYPES_Q: 'What are the types of cluster nodes?',
-  NODE_TYPES_A:
-    'Nodes are classified into control plane nodes and worker nodes.',
+  NODE_TYPES_A: 'Nodes are classified into control plane nodes and worker nodes.',
   WHAT_IS_NODE_TAINTS_Q: 'What are node taints?',
-  WHAT_IS_NODE_TAINTS_A:
-    'Taints allow a node to repel certain pods. Taints and tolerations work together to ensure that pods are not scheduled onto inappropriate nodes.',
+  WHAT_IS_NODE_TAINTS_A: 'Taints allow a node to repel certain pods. Taints and tolerations work together to ensure that pods are not scheduled onto inappropriate nodes.',
   LEARN_MORE: 'Learn More',
-
   // Node Count
   NODE_SI: 'Node',
   NODE_PL: 'Nodes',
@@ -37,7 +33,6 @@ module.exports = {
   MASTER_NODE_PL: 'Control plane nodes',
   WORKER_NODE_SI: 'Worker node',
   WORKER_NODE_PL: 'Worker nodes',
-
   // List
   KUBE_OPERATE: 'Sort',
   KUBE_ASCENDING_ORDER: 'Ascending',
@@ -76,7 +71,6 @@ module.exports = {
   NO_MATCHING_RESULT_FOUND: 'No Matching Result Found',
   STATUS: 'Status',
   TOTAL_ITEMS: 'Total: {num}',
-
   // List > Edit Taints
   DUPLICATE_KEYS: 'The key already exists. Please enter another key.',
   EMPTY_KEY: 'Please enter a key.',

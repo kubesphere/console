@@ -20,7 +20,6 @@ module.exports = {
   // Banner
   // List
   CREATION_TIME: 'Creation time',
-
   // Enable Gateway
   // Enable Gateway > NodePort
   // Enable Gateway > LoadBalancer

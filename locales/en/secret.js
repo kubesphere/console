@@ -18,18 +18,13 @@
 
 module.exports = {
   ACCOUNT_PASSWORD_SECRET_TCAP: 'Account Password Secret',
-
   EDIT_SECRET: 'Edit Secret',
-
   IMAGE_REGISTRY_SECRET_TCAP: 'Image Registry Secret',
   'Please input the registry address': 'Please input the registry address',
-
   Secret: 'Secret',
-
   secrets: 'secrets',
   Secrets: 'Secrets',
   Unverified: 'Unverified',
-
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value} ({label})',
   CREATE_SECRET: 'create a secret.',

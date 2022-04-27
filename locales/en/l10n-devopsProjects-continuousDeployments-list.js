@@ -18,9 +18,7 @@
 module.exports = {
   // Banner
   CONTINUOUS_DEPLOYMENT_PL: 'Continuous Deployments',
-  CONTINUOUS_DEPLOYMENT_DESC:
-    'Manage continuous deployments to continuously deploy resources by using GitOps. ',
-
+  CONTINUOUS_DEPLOYMENT_DESC: 'Manage continuous deployments to continuously deploy resources by using GitOps. ',
   // List
   CONTINUOUS_DEPLOYMENT_EMPTY_DESC: 'Please create a continuous deployment.',
   DEGRADED: 'Degraded',
@@ -28,11 +26,9 @@ module.exports = {
   SYNCED: 'Synced',
   OUTOFSYNC: 'Out of sync',
   DEPLOY_LOCATION: 'Deployment Location',
-
   // List > Create
   CREATE_CONTINUOUS_DEPLOYMENT: 'Create Continuous Deployment',
-  CD_SELECT_CODE_REPO_DESC:
-    'Select a code repository to be used by the continuous deployment.',
+  CD_SELECT_CODE_REPO_DESC: 'Select a code repository to be used by the continuous deployment.',
   DEPLOYMENT_SETTINGS: 'Deployment Settings',
   CODE_REPOSITORY_SETTINGS: 'Code Repository Settings',
   SYNC_STRATEGY_TCAP: 'Sync Strategy',
@@ -43,18 +39,15 @@ module.exports = {
   MANIFEST_FILE_PATH: 'Manifest File Path',
   MANIFEST_FILE_PATH_DESC: 'Set the manifest file path. ',
   REPO_EMPTY_DESC: 'Please select a code repository.',
-
   // List > Delete
   CONTINUOUS_DEPLOYMENT: 'Continuous Deployment',
   CONTINUOUS_DEPLOYMENT_LOW: 'continuous deployment',
-  DELETE_CONTINUOUS_DEPLOYMENT_DESC_SI:
-    'You are about to delete the continuous deployment {resource}. <br/>Please confirm whether to delete resources created by the continuous deployment.',
+  DELETE_CONTINUOUS_DEPLOYMENT_DESC_SI: 'You are about to delete the continuous deployment {resource}. <br/>Please confirm whether to delete resources created by the continuous deployment.',
   DELETE_CONTINUOUS_DEPLOYMENT_DESC_PL:'You are about to delete the continuous deployments {resource}. <br/>Please confirm whether to delete resources created by the continuous deployments.',
   NO_CONTINUOUS_DEPLOYMENT_RELATED_RESOURCE_DESC:'No resource created by the continuous deployment is found.',
   DELETE_MULTIPLE_CONTINUOUS_DEPLOYMENT: 'Delete Multiple Continuous Deployments',
   DELETE_CONTINUOUS_DEPLOYMENT: 'Delete Continuous Deployment',
   DELETE_CONTINUOUS_DEPLOYMENT_RELATE_DESC:'Delete resources created by {resourceName}',
-
   // List > Sync
   SYNC: 'Sync',
   SYNC_RESOURCE: 'Sync Resource',

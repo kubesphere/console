@@ -38,7 +38,7 @@ export default {
     {
       icon: 'storage',
       name: 'volumeSettings',
-      title: 'VOLUME_PL',
+      title: 'STORAGE',
       component: VolumeSettings,
     },
     {
@@ -64,7 +64,7 @@ export default {
     {
       icon: 'storage',
       name: 'volumeSettings',
-      title: 'VOLUME_PL',
+      title: 'STORAGE',
       component: VolumeSettings,
     },
   ],
@@ -84,7 +84,7 @@ export default {
     {
       icon: 'storage',
       name: 'volumeSettings',
-      title: 'VOLUME_PL',
+      title: 'STORAGE',
       component: VolumeSettings,
     },
   ],

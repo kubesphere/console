@@ -20,7 +20,6 @@ module.exports = {
   // Banner
   // Project Information
   PROJECT_NAME: 'Project name',
-
   // Default Container Quotas
   NO_REQUEST_TCAP: 'No Request',
   NO_LIMIT_TCAP: 'No Limit',
@@ -30,7 +29,6 @@ module.exports = {
   CPU_LIMIT_CORE: '{value} Core',
   MEMORY_REQUEST_MIB: '{value} Mi',
   MEMORY_LIMIT_MIB: '{value} Mi',
-
   // Manage > Edit Information
   // Manage > Add Cluster
   // Manage > Edit Default Container Quotas

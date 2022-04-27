@@ -20,8 +20,6 @@ module.exports = {
   'Pod IP Pool': 'Pod IP Pool',
   'Pod IP Pools': 'Pod IP Pools',
   'Used IP': 'Used IP',
-
   NETWORK_RESOURCE_PL: 'Network Resources',
-
   'Set to be globally available': 'Set to be globally available',
 }
