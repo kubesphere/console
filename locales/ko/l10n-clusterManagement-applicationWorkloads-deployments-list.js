@@ -42,11 +42,12 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Health Check > Readiness Check > TCP Port
   PORT_NUMBER_EMPTY: 'Please enter a port number.',
   USER: 'User',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   VOLUME_NAME_EXIST: 'The volume name already exists.',
   SELECT_TYPE: 'Select {type}',
   SPECIFY_SUBPATH: 'Specify Subpath',
   SPECIFY_SUBPATH_TIP: 'Specify a volume subpath to be mounted to the container.',
+  MOUNT_PATH: 'Mount path',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: 'Network segment',
   AVAILABLE_ADDRESSES: 'Available addresses',
