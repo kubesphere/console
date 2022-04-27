@@ -31,13 +31,13 @@ module.exports = {
   OPERATOR_IN: 'In',
   OPERATOR_NOT_IN: 'Not in',
   // More > Set Volume Permissions
-  SET_VOLUME_PERMISSIONS: 'Set Volume Permissions',
+  SET_PVC_PERMISSIONS: 'Set PVC Permissions',
   VOLUME_CLONING: 'Volume Cloning',
   VOLUME_CLONING_DESC: 'Allow users to clone volumes.',
   VOLUME_SNAPSHOT_CREATION: 'Volume Snapshot Creation',
   VOLUME_SNAPSHOT_CREATION_DESC: 'Allow users to create volume snapshots.',
   VOLUME_EXPANSION_DESC: 'Allow users to expand volumes. Volumes can only be expanded and cannot be shrunk.',
-  SET_VOLUME_PERMISSIONS_TIP: 'The following settings only control whether users are allowed to perform the operations on the web console. Whether volumes created based on the storage class actually support the operations depends on the backend storage system.',
+  SET_PVC_PERMISSIONS_TIP: 'The following settings only control whether users are allowed to perform the operations on the web console. Whether PVCs created based on the storage class actually support the operations depends on the backend storage system.',
   // More > Set Auto Expansion
   SET_AUTO_EXPANSION: 'Set Auto Expansion',
   AUTO_EXPANSION: 'Auto Expansion',
