@@ -17,18 +17,8 @@
  */
 module.exports = {
   // Details
-  VOLUME_INSTANCE: '存储卷实例',
   // More > Edit YAML
-  // More > Clone Volume
-  // More > Create Snapshot
-  // More > Expand Volume
   // More > Delete
   // Resource Status
-  // Resource Status > Volume
-  // Resource Status > Mounted Pods
-  MOUNTED_PODS: '已挂载容器组',
-  // Metadata
-  // Events
-  // Snapshot
-  SNAPSHOT_PL: '快照'
+  STORAGE_CLASS_VALUE: 'Storage class: {value}'
 };
