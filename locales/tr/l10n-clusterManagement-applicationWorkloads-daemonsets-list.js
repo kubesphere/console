@@ -48,6 +48,6 @@ module.exports = {
   PROBE_COMMAND_EMPTY: 'Lütfen en az bir komut girin.',
   // List > Create > Pod Settings > Add Container > Health Check > Liveness Check > TCP Port
   TCP_PORT: 'TCP Bağlantı Noktası',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   MOUNT_PATH_IN_USE: 'Bağlama yolu  zaten kullanımda. Lütfen başka bir bağlama yolu girin.'
 };
