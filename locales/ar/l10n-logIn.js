@@ -14,7 +14,8 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
- */
+
+*/
 module.exports = {
   // Log in page
   INPUT_USERNAME_OR_EMAIL_TIP: 'Please enter your username or email.',
