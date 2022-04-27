@@ -52,7 +52,7 @@ module.exports = {
   // List > Create > Pod Settings
   RESTART_POLICY: 'Política de reinicio',
   RESTART_POLICY_DESC: 'Set the Pod restart policy.',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML
