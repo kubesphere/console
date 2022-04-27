@@ -1,6 +1,6 @@
 /*
  * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * Copyright (C) 2019-2022 The KubeSphere Console Authors.
  *
  * KubeSphere Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,25 +15,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
-  // Banner
-  VOLUME_PL: 'Volumes',
-  WHAT_IS_STORAGE_CLASS_Q: 'What is a storage class?',
-  WHAT_IS_STORAGE_CLASS_A:
-    'A storage class is a storage type configured by the cluster administrator. Different storage classes provide cluster users with different types of volumes.',
-  WHAT_IS_LOCAL_VOLUME_Q: 'What is a local volume?',
-  WHAT_IS_LOCAL_VOLUME_A:
-    'A local volume is a volume created in the local file system of the cluster.',
-
-  // List
-  // List > Create > Basic Information
-  // List > Create > Storage Settings
-  CREATION_METHOD: 'Creation Method',
-
-  // List > Create > Advanced Settings
-  // List > Edit Information
-  // List > Edit YAML
-  // List > Delete
-  VOLUME: 'Volume',
+  CODE_REPO_PL: 'Code Repositories',
+  CODE_REPO_LOW: 'code cepository',
+  CODE_REPO: 'Code Repository',
+  CODE_REPO_DESC: 'Manage code repositories based on Git.',
+  CODE_REPO_EMPTY_DESC: 'Import a code repository from GitHub, GitLab, or Bitbucket. You can also use Git to directly pull source code.',
+  IMPORT_CODE_REPO: 'Import Code Repository',
+  EDIT_CODE_REPO: 'Edit Code Repository',
 }

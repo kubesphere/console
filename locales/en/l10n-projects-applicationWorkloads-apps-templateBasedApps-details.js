@@ -23,15 +23,12 @@ module.exports = {
   TARGET_APP_VERSION: 'Target App Version',
   CURRENT_APP_VERSION: 'Current App Version',
   EDIT_APP_SETTINGS: 'Edit App Settings',
-
   // Details
   // Resource Status
   UPDATED_AGO: 'Updated {value}',
-
   // App Template > App Description
   APP_TEMPLATE: 'App Template',
   NO_APP_DESC_FOUND: 'No app description found.',
-
   // App Template > Chart Files
   // App Settings
 }

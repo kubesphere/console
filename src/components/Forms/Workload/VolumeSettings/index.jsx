@@ -596,7 +596,7 @@ class VolumeSettings extends React.Component {
   renderTitle() {
     return (
       <div className="font-bold margin-b8 relative">
-        <span>{t('VOLUME_SETTINGS')}</span>
+        <span>{t('STORAGE_SETTINGS')}</span>
         {globals.app.hasClusterModule(this.cluster, 'logging') && (
           <div className={styles.toggle}>
             {!this.projectEnableCollectingFileLog ? (
@@ -662,13 +662,12 @@ class VolumeSettings extends React.Component {
             className="margin-b12"
             icon="information"
             type="warning"
-            title={t(isSTS ? 'MOUNT_VOLUME_OR_TEMPLATE' : 'MOUNT_VOLUME')}
-            message={t(isSTS ? 'VOLUME_OR_TEMPLATE_EMPTY' : 'VOLUME_EMPTY')}
+            message={t(isSTS ? 'PVC_OR_TEMPLATE_EMPTY' : 'PVC_EMPTY')}
           />
         )}
         <div className={styles.volumes}>
           {isSTS && !hideVolumeSetting && (
-            <Form.Item label={t('VOLUME_TEMPLATES')}>
+            <Form.Item>
               <VolumeTemplateList
                 prefix={this.prefix}
                 name="spec.volumeClaimTemplates"
@@ -680,7 +679,7 @@ class VolumeSettings extends React.Component {
               />
             </Form.Item>
           )}
-          <Form.Item label={t('VOLUME_PL')}>
+          <Form.Item>
             <VolumeList
               prefix={this.prefix}
               name={`${this.prefix}spec.volumes`}

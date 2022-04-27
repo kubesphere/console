@@ -28,10 +28,8 @@ module.exports = {
   SERVICE_COLON: 'Service: ',
   ACCESS_SERVICE: 'Access Service',
   UNABLE_TO_ACCESS: 'Unable to access service',
-  UNABLE_TO_ACCESS_TIP:
-    'Make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
+  UNABLE_TO_ACCESS_TIP: 'Make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
   CERTIFICATE_VALUE: 'Certificate: {value}',
-
   // Metadata
   // Events
 }

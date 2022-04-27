@@ -25,7 +25,6 @@ module.exports = {
   END_TIME: 'End Time',
   SN_NO: 'No.',
   START_TIME: 'Start Time',
-
   // Resource Status
   // Metadata
   // Environment Variables

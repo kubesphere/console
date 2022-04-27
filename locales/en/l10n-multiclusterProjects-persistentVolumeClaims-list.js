@@ -17,12 +17,16 @@
  */
 
 module.exports = {
-  // Details
-  // More > Edit YAML
-  // More > Delete
-  // Resource Status
-  STORAGE_CLASS_VALUE: 'Storage class: {value}',
-
-  // Metadata
-  // Events
+  // Banner
+  // List
+  // List > Edit Information
+  // List > Edit YAML
+  // List > Delete
+  // List > Create
+  // List > Create > Basic Information
+  // List > Create > Storage Settings
+  // List > Create > Advanced Settings
+  VOLUME_ADD_METADATA_DESC: 'Add metadata to the volume.',
+  // List > Create > Cluster Differences
+  // Customize Columns
 }

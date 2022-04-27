@@ -20,9 +20,7 @@ module.exports = {
   // Banner
   APPS: 'Apps',
   APP_STORE_MANAGEMENT: 'App Store Management',
-  APP_STORE_DESC:
-    'Manage apps in the App Store. You can view app information, release apps, and suspend apps.',
-
+  APP_STORE_DESC: 'Manage apps in the App Store. You can view app information, release apps, and suspend apps.',
   // List
   APP_CATEGORY: 'App Category',
 }

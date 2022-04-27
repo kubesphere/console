@@ -137,8 +137,8 @@ export default class VolumeList extends React.Component {
     return (
       <List.Add
         onClick={this.handleAddVolume}
-        title={t('Add Volume Template')}
-        description={t('ADD_VOLUME_TEMPLATE_DESC')}
+        title={t('ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE')}
+        description={t('ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE_DESC')}
       />
     )
   }

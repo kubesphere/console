@@ -169,7 +169,7 @@ client:
           title: STORAGE
           icon: database
           children:
-            - { name: volumes, title: VOLUME_PL }
+            - { name: volumes, title: PERSISTENT_VOLUME_CLAIM_PL }
             - {
                 name: volume-snapshots,
                 title: VOLUME_SNAPSHOT_PL,
@@ -380,7 +380,7 @@ client:
           title: STORAGE
           icon: database
           children:
-            - { name: volumes, title: VOLUME_PL }
+            - { name: volumes, title: PERSISTENT_VOLUME_CLAIM_PL }
             - { name: volume-snapshots, title: VOLUME_SNAPSHOT_PL }
         - name: config
           title: CONFIGURATION
@@ -469,7 +469,7 @@ client:
                 - { name: deployments, title: DEPLOYMENT_PL }
                 - { name: statefulsets, title: STATEFULSET_PL }
             - { name: ingresses, title: ROUTE_PL }
-        - { name: volumes, title: VOLUME_PL, icon: storage }
+        - { name: volumes, title: PERSISTENT_VOLUME_CLAIM_PL, icon: storage }
         - name: config
           title: CONFIGURATION
           icon: hammer

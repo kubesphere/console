@@ -53,7 +53,6 @@ module.exports = {
   Cancel: '取消',
   'Canceled Successfully': '取消成功',
   Ceased: '已销毁',
-  CERTIFICATE: '证书',
   'clear search conditions': '清空搜索条件。',
   CLUSTER_COUNT: '集群数量',
   Collapse: '收起',

@@ -1,6 +1,6 @@
 /*
  * This file is part of KubeSphere Console.
- * Copyright (C) 2019-2022 The KubeSphere Console Authors.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
  *
  * KubeSphere Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,13 +15,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 module.exports = {
-  CODE_REPO_PL: 'Code Repositories',
-  CODE_REPO_LOW: 'code cepository',
-  CODE_REPO: 'Code Repository',
-  CODE_REPO_DESC: 'Manage code repositories based on Git.',
-  CODE_REPO_EMPTY_DESC:
-    'Import a code repository from GitHub, GitLab, or Bitbucket. You can also use Git to directly pull source code.',
-  IMPORT_CODE_REPO: 'Import Code Repository',
-  EDIT_CODE_REPO: 'Edit Code Repository',
+  // More > Edit YAML
+  // More > Clone
+  CLONE_VOLUME: 'Clone Volume',
+  CLONE: 'Clone',
+  // More > Create Snapshot
+  CREATE_SNAPSHOT: 'Create Snapshot',
+  SNAPSHOT_EMPTY_TIP: 'Please select a volume snapshot class.',
+  // More > Expand
+  EXPAND_VOLUME: 'Expand Volume',
+  EXPAND: 'Expand',
+  // Details
+  PROVISIONER: 'Provisioner',
+  // Resource Status
+  AVAILABLE_CAPACITY: 'Available capacity',
+  POD_IP_ADDRESS_SCAP: 'Pod IP address',
+  TOTAL_CAPACITY: 'Total capacity',
+  // Metadata
+  // Events
+  // Snapshots
 }

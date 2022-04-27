@@ -266,7 +266,7 @@ export default class ResourceSnapshot extends React.Component {
     return (
       <Form.Item
         ref={this.testRef}
-        label={t('VOLUME')}
+        label={t('PERSISTENT_VOLUME_CLAIM')}
         rules={[
           { required: true, message: t('VOLUME_NOT_SELECT') },
           {

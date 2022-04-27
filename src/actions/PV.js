@@ -33,7 +33,7 @@ export default {
         },
         store,
         modal: DeleteModal,
-        type: 'VOLUME_INSTANCE',
+        type: 'PERSISTENT_VOLUME',
         resource: detail.name,
         ...props,
       })
@@ -73,7 +73,7 @@ export default {
           success && success()
         },
         resource: selectNames.join(', '),
-        type: 'VOLUME_INSTANCE',
+        type: 'PERSISTENT_VOLUME',
         modal: DeleteModal,
         store,
         ...props,

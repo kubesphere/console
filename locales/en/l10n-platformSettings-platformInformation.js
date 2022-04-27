@@ -18,9 +18,7 @@
 
 module.exports = {
   // Banner
-  PLATFORM_INFO_DESC:
-    'Overview of the platform information. You can view and customize the platform information.',
-
+  PLATFORM_INFO_DESC: 'Overview of the platform information. You can view and customize the platform information.',
   // Basic Information
   HOW_TO_MODIFY_PLATFORM_INFO: 'How do I customize platform information?',
   PLATFORM_INFORMATION: 'Platform Information',

@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 // Use require.context to require reducers automatically
 // Ref: https://webpack.github.io/docs/context.html
 const context = require.context('./', false, /\.js$/)

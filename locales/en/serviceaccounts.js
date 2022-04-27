@@ -19,10 +19,7 @@
 module.exports = {
   ServiceAccounts: 'Service Accounts',
   ServiceAccount: 'Service Account',
-
   'Edit Service Account': 'Edit Service Account',
-
   SECRET_DETAILS: 'Secret Details',
-
   // Service Account Detail Page
 }

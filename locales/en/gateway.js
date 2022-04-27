@@ -18,25 +18,16 @@
 
 module.exports = {
   CLUSTER_GATEWAY_LOW: 'cluster gateway',
-
   'Gateway Not Set': 'Gateway Not Set',
   'Set Gateway': 'Set Gateway',
   EDIT_GATEWAY: 'Edit Gateway',
   'Update Gateway': 'Update Gateway',
-
   'Gateway Config': 'Gateway Config',
-
   'Add Gateway Config': 'Add Gateway Config',
-
   USE_DEFAULT_ANNOTATIONS: 'Use Default Annotations',
   GATEWAY_IP: 'Access address',
-
-  UPDATED_GATEWAY_DESC:
-    'Please operate during the low peak period of the business. The upgrade process may cause a short business interruption. ',
+  UPDATED_GATEWAY_DESC: 'Please operate during the low peak period of the business. The upgrade process may cause a short business interruption. ',
   UPDATED_GATEWAY_TITLE: 'Confirm to upgrade the gateway?',
-
   'Request Count': 'Request Count',
-
-  PROJECT_GATEWAY_EMPTY_DESC:
-    'The cluster management page does not support the setting of the project gateway. If you need to set it, you need to go to the corresponding project to set it.',
+  PROJECT_GATEWAY_EMPTY_DESC: 'The cluster management page does not support the setting of the project gateway. If you need to set it, you need to go to the corresponding project to set it.',
 }

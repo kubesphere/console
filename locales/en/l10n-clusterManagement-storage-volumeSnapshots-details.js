@@ -19,11 +19,9 @@
 module.exports = {
   // Button
   CREATE_VOLUME: 'Create Volume',
-
   // Details
   // Data Source
   STORAGE_CLASS_SCAP: 'Storage class',
   DATA_SOURCE: 'Data Source',
-
   // Events
 }

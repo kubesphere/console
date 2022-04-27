@@ -44,7 +44,7 @@ export default {
       required: true,
     },
     {
-      title: 'VOLUME_SETTINGS',
+      title: 'STORAGE_SETTINGS',
       icon: 'storage',
       component: VolumeSettings,
       required: true,
@@ -70,7 +70,7 @@ export default {
       required: true,
     },
     {
-      title: 'VOLUME_SETTINGS',
+      title: 'STORAGE_SETTINGS',
       icon: 'storage',
       component: VolumeSettings,
       required: true,
@@ -134,7 +134,7 @@ export default {
       required: true,
     },
     {
-      title: 'VOLUME_SETTINGS',
+      title: 'STORAGE_SETTINGS',
       icon: 'storage',
       component: VolumeSettings,
       required: true,
@@ -169,7 +169,7 @@ export default {
       required: true,
     },
     {
-      title: 'VOLUME_SETTINGS',
+      title: 'STORAGE_SETTINGS',
       icon: 'storage',
       component: VolumeSettings,
       required: true,

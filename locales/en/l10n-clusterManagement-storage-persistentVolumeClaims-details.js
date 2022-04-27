@@ -17,28 +17,18 @@
  */
 
 module.exports = {
-  // More > Edit YAML
-  // More > Clone
-  CLONE_VOLUME: 'Clone Volume',
-  CLONE: 'Clone',
-
-  // More > Create Snapshot
-  CREATE_SNAPSHOT: 'Create Snapshot',
-  SNAPSHOT_EMPTY_TIP: 'Please select a volume snapshot class.',
-
-  // More > Expand
-  EXPAND_VOLUME: 'Expand Volume',
-  EXPAND: 'Expand',
-
   // Details
-  PROVISIONER: 'Provisioner',
-
+  // More > Edit YAML
+  // More > Clone Volume
+  // More > Create Snapshot
+  // More > Expand Volume
+  // More > Delete
   // Resource Status
-  AVAILABLE_CAPACITY: 'Available capacity',
-  POD_IP_ADDRESS_SCAP: 'Pod IP address',
-  TOTAL_CAPACITY: 'Total capacity',
-
+  // Resource Status > Volume
+  // Resource Status > Mounted Pods
+  MOUNTED_PODS: 'Mounted Pods',
   // Metadata
   // Events
-  // Snapshots
+  // Snapshot
+  SNAPSHOT_PL: 'Snapshots',
 }

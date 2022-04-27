@@ -20,59 +20,48 @@ module.exports = {
   // Banner
   APPLICATION_WORKLOAD_PL: 'Application Workloads',
   WORKLOAD_PL: 'Workloads',
-
   // List
   DEPLOYMENTS: 'Deployments',
   UPDATE_TIME_TCAP: 'Update Time',
   ALL_PROJECTS: 'All projects',
-
   // List > Create > Basic Information
-  SELECT_PROJECT_DESC:
-    'Select a project in which the resource is to be created.',
+  SELECT_PROJECT_DESC: 'Select a project in which the resource is to be created.',
   PROJECT_NOT_SELECT_DESC: 'Please select a project.',
   BASIC_INFORMATION: 'Basic Information',
   NAME: 'Name',
-  FEDPROJECT_RESOURCE_TIP:
-    'To create workload resources in a multi-cluster project, go to the Workloads page in the multi-cluster project.',
+  FEDPROJECT_RESOURCE_TIP: 'To create workload resources in a multi-cluster project, go to the Workloads page in the multi-cluster project.',
   FINISHED: 'Finished',
   NOT_SET: 'Not set',
   CURRENT: 'Current',
   PROJECT: 'Project',
-
   // List > Create > Pod Settings
   PREVIOUS: 'Previous',
   NOTE: 'Note',
-
   // List > Create > Pod Settings > Add Container > Container Settings
   IMAGE: 'Image',
   IMAGE_VALUE: 'Image: {value}',
   // List > Create > Pod Settings > Add Container > Health Check > Readiness Check > TCP Port
   PORT_NUMBER_EMPTY: 'Please enter a port number.',
   USER: 'User',
-
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   VOLUME_NAME_EXIST: 'The volume name already exists.',
   SELECT_TYPE: 'Select {type}',
   SPECIFY_SUBPATH: 'Specify Subpath',
-  SPECIFY_SUBPATH_TIP:
-    'Specify a volume subpath to be mounted to the container.',
-
+  SPECIFY_SUBPATH_TIP: 'Specify a volume subpath to be mounted to the container.',
+  MOUNT_PATH: 'Mount path',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: 'Network segment',
   AVAILABLE_ADDRESSES: 'Available addresses',
   POD_IP_POOL: 'Pod IP Pool',
   SUBPATH: 'Subpath',
-
   // List > Create > Advanced Settings > Add Metadata
   ANNOTATION_PL: 'Annotations',
   CREATE_SUCCESSFUL: 'Created successfully.',
-
   // List > Edit Information
   // List > Edit YAML
   // List > Re-create
   // List > Delete
   WORKLOAD_LOW: 'workload',
-
   // List > Stop
   STOP: 'Stop',
   STOP_TITLE_SI: 'Stop {type}',

@@ -19,10 +19,8 @@
 module.exports = {
   // More
   MORE: 'More',
-
   // More > View YAML
   VIEW_YAML: 'View YAML',
-
   // Details
   // Run Records
   // Resource Status

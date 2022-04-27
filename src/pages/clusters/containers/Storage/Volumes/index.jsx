@@ -48,9 +48,9 @@ export default class Volumes extends React.Component {
   get bannerProps() {
     return {
       className: 'margin-b12',
-      description: t('VOLUME_DESC'),
+      description: t('PERSISTENT_VOLUME_CLAIM_DESC'),
       module: 'persistentvolumeclaims',
-      title: t('VOLUME_PL'),
+      title: t('PERSISTENT_VOLUME_CLAIM_PL'),
     }
   }
 

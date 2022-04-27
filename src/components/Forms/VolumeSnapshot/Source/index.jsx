@@ -109,7 +109,7 @@ export default class Source extends React.Component {
           </Form.Item>
 
           <Form.Item
-            label={t('VOLUME')}
+            label={t('PERSISTENT_VOLUME_CLAIM')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Select

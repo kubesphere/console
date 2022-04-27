@@ -20,13 +20,11 @@ module.exports = {
   // Details
   CUSTOM_SERVICE: 'Custom Service',
   VIRTUAL_IP: 'VirtualIP',
-
   // Resource Status
   CONTAINER_PORT_SCAP: 'Container port',
   SERVICE_PORT_SCAP: 'Service port',
   NO_AVAILABLE_RESOURCE_VALUE: 'No Available {resource}',
   NO_RESOURCE_FOUND: 'No Resource Found',
-
   // Scheduling Information
   // Metadata
   // Monitoring

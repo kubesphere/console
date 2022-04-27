@@ -20,17 +20,15 @@ module.exports = {
   // More > Roll Back
   // More > Edit Service
   SELECTOR: 'Selector',
-
   // More > Edit Settings > Update Strategy
   // More > Edit Settings > Containers
-  // More > Edit Settings > Volumes > Add Volume Template
+  // More > Edit Settings > Volumes > Add Persistent Volume Template
   // More > Edit Settings > Volumes > Mount Volume
   // More > Edit Settings > Volumes > Mount Configmap or Secret
   // More > Edit Settings > Pod Scheduling Rules
   // More > Re-Create
   RECREATE: 'Re-create',
   RECREATE_SUCCESS_DESC: 'Re-created successfully.',
-
   // Details
   // Resource Status
   // Revision Records

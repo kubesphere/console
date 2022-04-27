@@ -22,10 +22,8 @@ module.exports = {
   // Edit
   // Delete
   CREDENTIAL_LOW: 'credential',
-
   // Details > Credential
   TYPE_VALUE: 'Type: {value}',
-
   // Events
   RECORD: 'Record',
 }

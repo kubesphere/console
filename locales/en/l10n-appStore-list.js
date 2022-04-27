@@ -19,11 +19,9 @@
 module.exports = {
   // Head
   APP_STORE: 'App Store',
-
   // Discover
   DISCOVER: 'Discover',
   NEW_APPS: 'New Apps',
-
   // App Categories
   // List
   MAINTAINER_VALUE: 'Maintainer: {value}',

@@ -182,7 +182,7 @@ class ResourceUsage extends React.Component {
       {
         key: 'volumes',
         icon: ICON_TYPES['volumes'],
-        name: 'VOLUME',
+        name: 'PERSISTENT_VOLUME_CLAIM',
         routeName: 'volumes',
         num:
           used.persistentvolumeclaims || used['count/persistentvolumeclaims'],

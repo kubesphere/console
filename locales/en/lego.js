@@ -18,7 +18,6 @@
 
 module.exports = {
   KUBE_PLEASE_SELECT: 'Please select',
-
   KUBE_AM: 'AM',
   KUBE_PM: 'PM',
   KUBE_WEEK_ABBREVIATION: 'Wk',

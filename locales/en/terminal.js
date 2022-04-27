@@ -18,7 +18,6 @@
 
 module.exports = {
   connected: 'connected',
-
   Disconnect: 'Disconnect',
   disconnected: 'disconnected',
   'Download File': 'Download File',
@@ -26,6 +25,5 @@ module.exports = {
   'KubeSphere Terminal': 'KubeSphere Terminal',
   'Launch kubectl': 'Launch kubectl',
   'Put this into': 'Put this into',
-  OPEN_TERMINAL_DESC:
-    'Please ensure that the websocket proxy configuration on your proxy server is correct.',
+  OPEN_TERMINAL_DESC: 'Please ensure that the websocket proxy configuration on your proxy server is correct.',
 }

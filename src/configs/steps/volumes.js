@@ -50,7 +50,7 @@ export const APPLY_SNAPSHOT_FORM_STEPS = [
     required: true,
   },
   {
-    title: 'VOLUME_SETTINGS',
+    title: 'STORAGE_SETTINGS',
     icon: 'storage',
     component: AccessModeSettings,
     required: true,

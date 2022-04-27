@@ -20,27 +20,21 @@ module.exports = {
   // Banner
   HOST_CLUSTER: 'Host cluster',
   CLUSTER_CONDITIONS: 'Cluster Conditions',
-
   // Baisc Information
   PROVIDER: 'Provider',
   KUBERNETES_VERSION: 'Kubernetes version',
   KUBESPHERE_VERSION: 'KubeSphere version',
   VISIBILITY_PARTIAL: 'Visible to Some Workspaces',
   VISIBILITY_PUBLIC: 'Visible to All Workspaces',
-  CLUSTER_BASE_INFO_DESC:
-    'Basic information provides an overview of the cluster. You can view and edit cluster information.',
-
+  CLUSTER_BASE_INFO_DESC: 'Basic information provides an overview of the cluster. You can view and edit cluster information.',
   // System Components
   // Resource Usage
   MEMORY: 'Memory',
   TOTAL: 'Total',
   USED: 'Used',
-
   // Tools
   KUBECTL_DESC: 'Command line tool used to control the current cluster.',
-  KUBECONFIG_DESC:
-    'File used to configure the access information about the current cluster.',
-
+  KUBECONFIG_DESC: 'File used to configure the access information about the current cluster.',
   // Kubernetes Status
   KUBERNETES_STATUS: 'Kubernetes Status',
   API_REQUESTS_PER_SECOND: 'API requests per second',
@@ -49,7 +43,6 @@ module.exports = {
   SCHEDULING_OPERATION: 'Scheduling operation',
   SCHEDULING_FAILURES: 'Scheduling failures',
   SCHEDULING_FAILURE: 'Scheduling failure',
-
   // Nodes
   VIEW_MORE: 'View More',
 }

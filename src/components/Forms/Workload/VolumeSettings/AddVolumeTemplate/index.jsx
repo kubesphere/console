@@ -158,14 +158,14 @@ export default class AddVolume extends React.Component {
     const { volume, cluster, namespace, checkVolumeNameExist } = this.props
 
     if (checkVolumeNameExist(value) && volume.metadata.name !== value) {
-      callback({ message: t('VOLUME_NAME_EXIST'), field: rule.field })
+      callback({ message: t('PVC_NAME_PREFIX_EXIST'), field: rule.field })
     } else {
       this.volumeStore
         .checkName({ name: value, cluster, namespace })
         .then(resp => {
           if (resp.exist) {
             return callback({
-              message: t('VOLUME_NAME_EXIST'),
+              message: t('PVC_NAME_PREFIX_EXIST'),
               field: rule.field,
             })
           }
@@ -191,22 +191,20 @@ export default class AddVolume extends React.Component {
           <a className="custom-icon" onClick={this.handleGoBack}>
             <BackIcon />
           </a>
-          {t('VOLUME_PL')}
+          {t('STORAGE_SETTINGS')}
         </div>
         <div className={classNames(styles.contentWrapper, contentClassName)}>
           <div className={styles.card}>
             <Form data={formData} ref={this.formRef}>
               <Form.Item
                 className={styles.name}
-                label={t('VOLUME_NAME')}
-                desc={t('LONG_NAME_DESC')}
+                label={t('PVC_NAME_PREFIX')}
+                desc={t('PVC_NAME_PREFIX_DESC')}
                 rules={[
-                  { required: true, message: t('VOLUME_NAME_EMPTY') },
+                  { required: true, message: t('PVC_NAME_PREFIX_EMPTY') },
                   {
                     pattern: PATTERN_NAME,
-                    message: t('INVALID_NAME_DESC', {
-                      message: t('LONG_NAME_DESC'),
-                    }),
+                    message: t('INVALID_PVC_NAME_PREFIX'),
                   },
                   { validator: this.nameValidator },
                 ]}
@@ -215,7 +213,7 @@ export default class AddVolume extends React.Component {
               </Form.Item>
               <VolumeFormTemplate cluster={cluster} namespace={namespace} />
               <Form.Item
-                label={t('MOUNT_PATH')}
+                label={t('MOUNT_PATH_TCAP')}
                 rules={[{ validator: this.mountValidator }]}
               >
                 <MountInput

@@ -23,7 +23,6 @@ module.exports = {
   PULL_POLICY: 'Pull Policy',
   SOURCE_URL: 'Source URL',
   REMOTE_TRIGGER: 'Remote Trigger',
-
   // Run
   NEW_TAG_DESC: 'enter tag of the new image',
   // More > Edit Information
@@ -31,7 +30,6 @@ module.exports = {
   // More > Delete
   IMAGE_BUILDER: 'Image Builder',
   IMAGE_BUILDER_LOW: 'image builder',
-
   // Run Records
   JOB_RECORDS: 'Job Records',
   LAST_BUILD_ENVIRONMENT: 'Last Build Environment',
@@ -48,12 +46,10 @@ module.exports = {
   IMAGE_NAME_SUCCESSFUL: 'Image: {name}/Successful',
   LAST_MESSAGE_SCAP: 'Last message',
   START_TIME_SCAP: 'Start time',
-
   // Resource Status
   // Image Artifacts
   IMAGE_ARTIFACTS: 'Image Artifacts',
   RELEASE_TIME_SCAP: 'Release time',
-
   // Environment Variables
   // Events
 }

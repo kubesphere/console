@@ -19,7 +19,6 @@
 module.exports = {
   // Banner
   POD_PL: 'Pods',
-
   // List
   // List > View YAML
   // List > Delete

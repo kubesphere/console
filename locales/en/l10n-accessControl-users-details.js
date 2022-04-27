@@ -21,7 +21,6 @@ module.exports = {
   CONFIRM_PASSWORD_TIP: 'Please enter the new password again.',
   CHANGE_PASSWORD: 'Change Password',
   NEW_PASSWORD: 'New Password',
-
   // More > Delete
   // Details
   // Login History

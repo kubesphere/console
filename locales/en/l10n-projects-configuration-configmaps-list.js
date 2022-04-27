@@ -19,7 +19,6 @@
 module.exports = {
   // Banner
   CONFIGMAP_PL: 'Configmaps',
-
   // List
   // List > Create > Basic Information
   // List > Create > Data Settings > Add Data

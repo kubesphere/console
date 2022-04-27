@@ -20,11 +20,8 @@ module.exports = {
   ConfigMap: 'Configmap',
   configmaps: 'configmaps',
   ConfigMaps: 'Configmaps',
-
   EDIT_CONFIGMAP: 'Edit Configmap',
-
   CONFIGMAP_EMPTY_DESC: 'Please create a configmap.',
-
   CONFIGMAPS_BASEINFO_DESC: '',
   CONFIGMAP_SETTINGS_DESC: '',
   CREATE_CONFIG: 'create a configmap', // Concatenated

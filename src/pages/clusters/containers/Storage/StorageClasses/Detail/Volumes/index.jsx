@@ -209,9 +209,11 @@ export default class Volumes extends React.Component {
       <>
         {this.renderResize()}
         <Card
-          title={t('VOLUME_PL')}
+          title={t('PERSISTENT_VOLUME_CLAIM_PL')}
           loading={isLoading}
-          empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('VOLUME') })}
+          empty={t('NO_AVAILABLE_RESOURCE_VALUE', {
+            resource: t('PERSISTENT_VOLUME_CLAIM'),
+          })}
         >
           <BaseTable
             className={styles.table}

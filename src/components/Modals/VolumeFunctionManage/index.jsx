@@ -110,7 +110,7 @@ export default class SetDefaultStorageClassModal extends React.Component {
         onOk={() => onOk(this.state)}
         onCancel={onCancel}
         visible={visible}
-        title={t('SET_VOLUME_PERMISSIONS')}
+        title={t('SET_PVC_PERMISSIONS')}
         icon="slider"
         okText={t('OK')}
         cancelText={t('CANCEL')}
@@ -119,7 +119,7 @@ export default class SetDefaultStorageClassModal extends React.Component {
         <Alert
           type="warning"
           className="margin-b12"
-          message={t.html('SET_VOLUME_PERMISSIONS_TIP')}
+          message={t.html('SET_PVC_PERMISSIONS_TIP')}
         />
         <div className={styles.body}>
           {this.Items.map(item => {

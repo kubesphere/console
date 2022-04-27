@@ -18,8 +18,6 @@
 
 module.exports = {
   'Target Service': 'Target Service',
-
   'View Monitor': 'View Monitor',
-
   // Service Monitoring Exporter Form
 }

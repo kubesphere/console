@@ -31,7 +31,6 @@ module.exports = {
   VIRTUAL_IP_ADDRESS: 'Virtual IP address',
   INTERNAL_DOMAIN_NAME_SCAP: 'Internal domain name',
   NODE_PORT_SCAP: 'Node port',
-
   // Metadata
   // Events
 }

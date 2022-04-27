@@ -53,7 +53,6 @@ module.exports = {
   Cancel: 'Cancelar',
   'Canceled Successfully': 'Cancelado con éxito',
   Ceased: 'Cesado',
-  CERTIFICATE: 'Certificate',
   'clear search conditions': 'borrar filtros',
   CLUSTER_COUNT: 'Cluster',
   Collapse: 'Colapsar',

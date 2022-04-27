@@ -20,19 +20,15 @@ module.exports = {
   // Banner
   VOLUME_SNAPSHOT: 'Volume Snapshot',
   VOLUME_SNAPSHOT_PL: 'Volume Snapshots',
-  VOLUME_SNAPSHOT_DESC:
-    'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
+  VOLUME_SNAPSHOT_DESC: 'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
   WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'What is a volume snapshot class?',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A:
-    'A volume snapshot class defines the storage types used to create a volume snapshot.',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: 'A volume snapshot class defines the storage types used to create a volume snapshot.',
   WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: 'What is a volume snapshot content?',
-  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A:
-    'A volume snapshot content is a resource that represents the content of a volume snapshot.',
+  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: 'A volume snapshot content is a resource that represents the content of a volume snapshot.',
   SELECT_A_VOLUME_DESC: 'Select a volume to create a snapshot.',
-  SELECT_VOLUME_SNAPSHOT_CLASS_DESC:
-    'Select a snapshot class to create a snapshot of a specific type.',
-
+  SELECT_VOLUME_SNAPSHOT_CLASS_DESC: 'Select a snapshot class to create a snapshot of a specific type.',
   // List
+  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
   VOLUME_SNAPSHOT_STATUS_CREATING: 'Creating',
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Creation failed',
   VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',
@@ -41,11 +37,8 @@ module.exports = {
   CREATE_STATUS_UPDATING: 'Creating',
   CREATE_STATUS_FAILED: 'Creation failed',
   CREATE_STATUS_DELETING: 'Deleting',
-
   // List > Delete
   VOLUME_SNAPSHOT_LOW: 'volume snapshot',
-
   // List > Create
-  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT:
-    'The storage type to which this storage volume belongs does not allow snapshots to be created, please reselect it.',
+  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: 'The storage type to which this storage volume belongs does not allow snapshots to be created, please reselect it.',
 }

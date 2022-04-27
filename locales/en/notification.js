@@ -18,65 +18,36 @@
 
 module.exports = {
   'Notification Management': 'Notification Management',
-
   'Notification Configuration': 'Notification Configuration',
-
   'Receive Notification': 'Receive Notifications',
-
   'Notification On': 'Notification On',
   'Notification Off': 'Notification Off',
-
   'Please select a tag': 'Please select a tag',
   'Please select a regex filter': 'Please select a regex filter',
   'Invalid notification condition': 'Invalid notification condition',
-
   Mail: 'Email',
-
-  MAIL_SETTING_DESC:
-    'You can receive email notifications from the platform after configuring the outgoing mail server.',
-
+  MAIL_SETTING_DESC: 'You can receive email notifications from the platform after configuring the outgoing mail server.',
   SENDER_MAIL: 'Sender Email Address',
-
-  MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP:
-    'Your current email settings have changed. Please save the settings or cancel the changes.',
-
+  MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP: 'Your current email settings have changed. Please save the settings or cancel the changes.',
   'Please enter an email address': 'Please enter an email address',
   'This email address has existed': 'This email address has existed',
-
-  'Please add the recipient email address':
-    'Please add the recipient email address',
-
+  'Please add the recipient email address': 'Please add the recipient email address',
   keywords: 'Keywords',
-
   'Please enter a conversation ID': 'Please enter a conversation ID',
   'Please enter a keyword': 'Please enter a keyword',
   'This conversation ID has existed': 'This conversation ID has existed',
   'This keyword has existed': 'This keyword has existed',
-
-  DINGTALK_SETTING_DESC:
-    'You can receive DingTalk notifications from the platform after configuring the DingTalk server.',
-
-  DINGTALK_KEYWORDS_DESC:
-    'Separate multiple customized Chatbot keywords with commas.',
-  DINGTALK_SETTINGS_CHANGE_NEED_SAVE_TIP:
-    'Your current DingTalk settings have changed. Please save the settings or cancel the changes.',
-
-  WECOM_SETTINGS_CHANGE_NEED_SAVE_TIP:
-    'Your current WeCom settings have changed. Please save the settings or cancel the changes.',
-
+  DINGTALK_SETTING_DESC: 'You can receive DingTalk notifications from the platform after configuring the DingTalk server.',
+  DINGTALK_KEYWORDS_DESC: 'Separate multiple customized Chatbot keywords with commas.',
+  DINGTALK_SETTINGS_CHANGE_NEED_SAVE_TIP: 'Your current DingTalk settings have changed. Please save the settings or cancel the changes.',
+  WECOM_SETTINGS_CHANGE_NEED_SAVE_TIP: 'Your current WeCom settings have changed. Please save the settings or cancel the changes.',
   Channel: 'Channel',
-
-  SLACK_SETTINGS_CHANGE_NEED_SAVE_TIP:
-    'Your current Slack settings have changed. Please save the settings or cancel the changes.',
-
+  SLACK_SETTINGS_CHANGE_NEED_SAVE_TIP: 'Your current Slack settings have changed. Please save the settings or cancel the changes.',
   'Webhook Settings': 'Webhook Settings',
   'Server Name': 'Server Name',
   'Root CA': 'Root CA',
   'Client Certificate Cert': 'Client Certificate Cert',
   'Client Certificate Key': 'Client Certificate Key',
-
-  WEBHOOK_SETTING_DESC:
-    'You can receive platform notifications through webhooks after configuring the webhook server.',
-  WEBHOOK_SETTINGS_CHANGE_NEED_SAVE_TIP:
-    'Your current webhook settings have changed. Please save the settings or cancel the changes.',
+  WEBHOOK_SETTING_DESC: 'You can receive platform notifications through webhooks after configuring the webhook server.',
+  WEBHOOK_SETTINGS_CHANGE_NEED_SAVE_TIP: 'Your current webhook settings have changed. Please save the settings or cancel the changes.',
 }

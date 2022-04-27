@@ -34,9 +34,7 @@ module.exports = {
   'cpu usage': 'CPU usage',
   'Edit Rule': 'Edit Rule',
   'memory usage': 'Memory usage',
-  'memory utilisation (including cache)':
-    'Memory utilization (including caches)',
-
+  'memory utilisation (including cache)': 'Memory utilization (including caches)',
   'Monitoring Rules': 'Monitoring Rules',
   'monitoring target': 'monitoring target',
   'Notification Channel': 'Notification Channel',
@@ -48,31 +46,20 @@ module.exports = {
   Rule: 'Rule',
   RULE: 'Rule',
   'Rule Name': 'Rule Name',
-  'Unavailable daemonset replicas ratio':
-    'Unavailable daemonset replicas ratio',
-  'Unavailable deployment replicas ratio':
-    'Unavailable deployment replicas ratio',
-  'Unavailable statefulset replicas ratio':
-    'Unavailable statefulset replicas ratio',
-
+  'Unavailable daemonset replicas ratio': 'Unavailable daemonset replicas ratio',
+  'Unavailable deployment replicas ratio': 'Unavailable deployment replicas ratio',
+  'Unavailable statefulset replicas ratio': 'Unavailable statefulset replicas ratio',
   ALERT_FUNCTIONS: 'Functions',
   ALERT_METRICS: 'Metrics',
   ALERT_LABELS: 'Labels',
   ALERT_RATE_RANGES: 'Rate Ranges',
-
   ALERT_TYPE: '{type} Alert',
-
-  ALERTING_POLICY_CREATE_DESC:
-    'You can create alerting policies to detect abnormal resources in real time.',
-
+  ALERTING_POLICY_CREATE_DESC: 'You can create alerting policies to detect abnormal resources in real time.',
   DELETE_TCAP: 'Delete',
-
   // Alerting Messages
   ALERTING_RESOURCE: 'Alerting Resource',
-
   // Alerting Policies
   ALERTING_POLICIES: 'Alerting Policies',
-
   // Alerting Policies > Details
   NOTIFICATION_SUMMARY_COLON: 'Summary: ',
   DETAILS_COLON: 'Details: ',

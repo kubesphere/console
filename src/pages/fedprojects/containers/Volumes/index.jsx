@@ -39,7 +39,7 @@ import styles from './index.scss'
   store: new FederatedStore(new VolumeStore()),
   module: 'persistentvolumeclaims',
   authKey: 'volumes',
-  name: 'VOLUME',
+  name: 'PERSISTENT_VOLUME_CLAIM',
   rowKey: 'uid',
 })
 export default class Volumes extends React.Component {
