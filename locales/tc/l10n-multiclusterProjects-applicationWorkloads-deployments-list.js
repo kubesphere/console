@@ -152,16 +152,15 @@ module.exports = {
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: '添加元數據',
   POD_ADD_METADATA_DESC: 'Add metadata to the Pod replicas.',
-  // List > Create > Volume Settings
-  VOLUME_SETTINGS: '掛載儲存',
+  // List > Create > Storage Settings
+  STORAGE_SETTINGS: 'Storage Settings',
   READ_ONLY_LOW: 'read-only',
   READ_AND_WRITE_LOW: 'read and write',
-  // List > Create > Volume Settings > Mount Volume
+  // List > Create > Storage Settings > Mount Volume
   MOUNT_VOLUME: '添加儲存卷',
-  WORKLOAD_MOUNT_VOLUME_DESC: '支持臨時儲存卷以及持久化儲存卷',
-  EXISTING_VOLUME: '已有儲存卷',
-  SELECT_VOLUME: '選擇已有儲存卷',
-  SELECT_VOLUME_DESC: '請選擇一個已經創建好的持久化儲存卷掛載至容器',
+  WORKLOAD_MOUNT_VOLUME_DESC: 'Mount an persistent volume, temporary volume, or HostPath volume to the containers.',
+  SELECT_PERSISITENT_VOLUME_CLAIM: 'Select Persistent Volume Claim',
+  SELECT_PERSISITENT_VOLUME_CLAIM_DESC: 'Mount a persistent volume created according to the persistent volume claim to the containers.',
   CAPACITY: '容量',
   VOLUME_NOT_SELECT: '請選擇儲存卷',
   TEMPORARY_VOLUME: '臨時儲存卷',
@@ -174,7 +173,7 @@ module.exports = {
   HOST_PATH: '主机路徑',
   READ_AND_WRITE: '讀寫',
   READ_ONLY: '只讀',
-  // List > Create > Volume Settings > Mount Configmap or Secret
+  // List > Create > Storage Settings > Mount Configmap or Secret
   MOUNT_CONFIGMAP_OR_SECRET: '掛載配置文件或密鑰',
   MOUNT_CONFIGMAP_OR_SECRET_DESC: '將配置文件或密鑰掛載至指定目錄',
   CONFIGMAP: '配置字典',
