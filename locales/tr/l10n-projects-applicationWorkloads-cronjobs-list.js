@@ -52,7 +52,7 @@ module.exports = {
   // List > Create > Pod Settings
   RESTART_POLICY: 'Yeniden Başlatma Politikası',
   RESTART_POLICY_DESC: 'Bölmedeki bir kapsayıcı anormal şekilde çıktığında sistem tarafından benimsenen ilkeyi seçin.',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML
