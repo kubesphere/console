@@ -37,18 +37,18 @@ module.exports = {
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
   MAX_EXTRA_PODS_DESC: 'Maximum number or percentage of extra pods allowed during the update process.',
   MAX_EXTRA_PODS: 'Maximum Extra Pods',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   AVAILABLE: 'Available',
   IN_USER: 'In use',
   ACCESS_MODE_SCAP: 'Access mode',
-  VOLUME_OR_TEMPLATE_EMPTY: 'You have enabled Collect Logs on Volumes. Please mount at least one volume or volume template and specify the directory of the logs.',
-  VOLUME_EMPTY: 'You have enabled Collect Logs on Volumes. Please mount at least one volume and specify the directory of the logs.',
+  PVC_OR_TEMPLATE_EMPTY: 'You have enabled Collect Logs on Volumes. Please bind at least one persistent volume claim or volume claim template and specify the directory of the logs.',
+  PVC_EMPTY: 'You have enabled Collect Logs on Volumes. Please bind at least one persistent claim and specify the directory of the logs.',
   PROJECT_COLLECT_SAVED_DISABLED_DESC: 'To enable this function, you need to enable Collect Logs on Volumes in Project Settings.',
   COLLECT_LOGS_ON_VOLUMES_DESC: 'Allow the system to collect container logs saved on volumes. To use this function, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
   // List > Create
-  // List > Create > Volume Settings > Mount Volume
+  // List > Create > Storage Settings > Mount Volume
   CONTAINER_LOG_PATH: 'Container log path',
-  // List > Create > Volume Settings > Mount Volume > Temporary Volume (Question Mark)
+  // List > Create > Storage Settings > Mount Volume > Temporary Volume
   CONTAINER_LOG_PATH_TIP: 'Container log path relative to the volume mount path. Globbing patterns are supported. You can used commas (,) to separate multiple paths.<br /><br /><b>Example</b><br />When the volume mount path is /data, log/*.log indicates that the container log files are all .log files in the /data/log directory.',
   // List > Create > Advanced Settings
   // List > Edit Information
