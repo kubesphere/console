@@ -152,16 +152,15 @@ module.exports = {
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: 'Agregar metadatos',
   POD_ADD_METADATA_DESC: 'Add metadata to the Pod replicas.',
-  // List > Create > Volume Settings
-  VOLUME_SETTINGS: 'Montar Volúmenes',
+  // List > Create > Storage Settings
+  STORAGE_SETTINGS: 'Storage Settings',
   READ_ONLY_LOW: 'read-only',
   READ_AND_WRITE_LOW: 'read and write',
-  // List > Create > Volume Settings > Mount Volume
+  // List > Create > Storage Settings > Mount Volume
   MOUNT_VOLUME: 'Mount Volume',
-  WORKLOAD_MOUNT_VOLUME_DESC: 'Admite EmptyDir y PersistentVolumeClaim.',
-  EXISTING_VOLUME: 'Volumen existente',
-  SELECT_VOLUME: 'Elige un volumen existente',
-  SELECT_VOLUME_DESC: 'Selecciona un volumen que se haya creado y móntelo en el contenedor.',
+  WORKLOAD_MOUNT_VOLUME_DESC: 'Mount an persistent volume, temporary volume, or HostPath volume to the containers.',
+  SELECT_PERSISITENT_VOLUME_CLAIM: 'Select Persistent Volume Claim',
+  SELECT_PERSISITENT_VOLUME_CLAIM_DESC: 'Mount a persistent volume created according to the persistent volume claim to the containers.',
   CAPACITY: 'Capacidad',
   VOLUME_NOT_SELECT: 'Por favor selecciona un volumen',
   TEMPORARY_VOLUME: 'Volumen Temporal',
@@ -174,7 +173,7 @@ module.exports = {
   HOST_PATH: 'Host Path',
   READ_AND_WRITE: 'Lectura y escritura',
   READ_ONLY: 'Solo lectura',
-  // List > Create > Volume Settings > Mount Configmap or Secret
+  // List > Create > Storage Settings > Mount Configmap or Secret
   MOUNT_CONFIGMAP_OR_SECRET: 'Monte ConfigMap o Secret',
   MOUNT_CONFIGMAP_OR_SECRET_DESC: 'Monte el configmap o secret en el directorio especificado.',
   CONFIGMAP: 'ConfigMap',
