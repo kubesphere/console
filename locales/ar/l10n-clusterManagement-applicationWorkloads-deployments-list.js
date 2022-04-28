@@ -35,7 +35,7 @@ module.exports = {
   PROJECT: 'Project',
   // List > Create > Pod Settings
   PREVIOUS: 'Previous',
-  NOTE: 'Note',
+  NOTE: 'ملاحظة',
   // List > Create > Pod Settings > Add Container > Container Settings
   IMAGE: 'Image',
   IMAGE_VALUE: 'Image: {value}',
