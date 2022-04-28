@@ -28,7 +28,7 @@ module.exports = {
   AUTHORIZATION_RULES: 'Authorization Rules',
   AUTHORIZATION_RULES_DESC: 'Set authorization rules so that the storage class can be accessed only in specific projects and workspaces.',
   AUTHORIZATION_NOT_SUPPORT: 'The cluster currently does not support this feature. Please upgrade KubeSphere to v3.3.0 or later, or manually install <a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a>.',
-  OPERATOR_IN: 'In',
+  OPERATOR_IN: 'İçinde',
   OPERATOR_NOT_IN: 'Not in',
   // More > Set Volume Permissions
   SET_PVC_PERMISSIONS: 'Set PVC Permissions',
@@ -43,7 +43,7 @@ module.exports = {
   AUTO_EXPANSION: 'Auto Expansion',
   AUTO_EXPANSION_DESC: 'Set the system to automatically expand volumes when the remaining volume space is lower than a threshold.',
   AUTO_EXPANSION_SETTINGS: 'Auto Expansion Settings',
-  MAXIMUM_SIZE: 'Maximum Size',
+  MAXIMUM_SIZE: 'En Fazla Boyut',
   INCREMENT: 'Increment',
   INCREMENT_DESC: 'Set the volume size increment according to the CSI pluggin of the storage class.',
   RESTART_WORKLOAD_AUTOMATICALLY: 'Restart workload automatically',
