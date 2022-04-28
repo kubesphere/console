@@ -45,10 +45,10 @@ module.exports = {
   AUTO_EXPANSION_SETTINGS: '自动扩容设置',
   MAXIMUM_SIZE: '最大容量',
   INCREMENT: '增量',
-  INCREMENT_DESC: '根据存储类型的 CSI 插件设置存储卷容量增量。',
+  INCREMENT_DESC: '根据存储类的 CSI 插件设置卷容量增量。',
   RESTART_WORKLOAD_AUTOMATICALLY: '自动重启工作负载',
-  RESTART_WORKLOAD_AUTOMATICALLY_DESC: '该系统自动检查存储卷状态，以确定是否需要重新启动工作负载。',
-  RESTART_WORKLOAD_AUTOMATICALLY_TIP: '如果到达超时时间时存储卷仍未扩容成功，系统将在工作负载上添加“restart.kubesphere.io/skip”注解使工作负载不再被重启。如需再次为工作负载启用自动重启功能，您需要在工作负载上手动删除该注解。',
+  RESTART_WORKLOAD_AUTOMATICALLY_DESC: '该系统自动检查卷状态，以确定是否需要重新启动工作负载。',
+  RESTART_WORKLOAD_AUTOMATICALLY_TIP: '如果到达超时时间时卷仍未扩容成功，系统将在工作负载上添加“restart.kubesphere.io/skip”注解使工作负载不再被重启。如需再次为工作负载启用自动重启功能，您需要在工作负载上手动删除该注解。',
   // More > Delete
   // Volumes
   VOLUME_COUNT: '卷数量'
