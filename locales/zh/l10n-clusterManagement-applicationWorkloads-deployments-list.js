@@ -47,7 +47,7 @@ module.exports = {
   SELECT_TYPE: '选择{type}',
   SPECIFY_SUBPATH: '指定子路径',
   SPECIFY_SUBPATH_TIP: '指定需要挂载到容器的存储卷子路径。',
-  MOUNT_PATH: 'Mount path',
+  MOUNT_PATH: '挂载路径',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: '网段',
   AVAILABLE_ADDRESSES: '可用地址数量',
