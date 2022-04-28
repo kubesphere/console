@@ -28,7 +28,7 @@ module.exports = {
   AUTHORIZATION_RULES: 'Authorization Rules',
   AUTHORIZATION_RULES_DESC: 'Set authorization rules so that the storage class can be accessed only in specific projects and workspaces.',
   AUTHORIZATION_NOT_SUPPORT: 'The cluster currently does not support this feature. Please upgrade KubeSphere to v3.3.0 or later, or manually install <a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a>.',
-  OPERATOR_IN: 'In',
+  OPERATOR_IN: 'En',
   OPERATOR_NOT_IN: 'Not in',
   // More > Set Volume Permissions
   SET_PVC_PERMISSIONS: 'Set PVC Permissions',
