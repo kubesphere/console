@@ -58,7 +58,7 @@ module.exports = {
   // List > Create > Edit Permissions > Access Control
   WORKSPACE_GROUPS_MANAGEMENT: '企業組織管理',
   WORKSPACE_GROUPS_VIEW: '企業組織查看',
-  DEPARTMENT_MANAGEMENT: 'Department Management',
+  DEPARTMENT_MANAGEMENT: '企業組織',
   WORKSPACE_MEMBERS_MANAGEMENT: '企業成員管理',
   WORKSPACE_MEMBERS_VIEW: '企業成員查看',
   WORKSPACE_ROLES_MANAGEMENT: '企业空间角色管理',
