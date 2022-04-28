@@ -16,38 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Navigation pane
-  STORAGE: '儲存管理',
   // Banner
-  VOLUME_DESC: '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
+  PERSISTENT_VOLUME: 'Persistent Volume',
+  PERSISTENT_VOLUME_PL: 'Persistent Volumes',
+  PERSISTENT_VOLUME_LOW: 'persistent volume',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
-  VOLUME_STATUS_BOUND: '準備就緒',
-  VOLUME_STATUS_LOST: '丢失',
-  VOLUME_STATUS_PENDING: '等待中',
-  VOLUME_STATUS_TERMINATING: '刪除中',
-  VOLUME_STATUS_UPDATING: '更新中',
-  VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: '硬碟擴容中(FilesystemSizePending)',
-  VOLUME_EMPTY_DESC: '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
-  MOUNT_STATUS: '掛載',
-  MOUNTED: '已掛載',
-  NOT_MOUNTED: '未掛載',
-  ACCESS_MODE_TCAP: '訪問模式',
-  // List > Create > Basic Information
-  CREATE: '創建',
-  // List > Create > Volume Settings
-  CREATE_VOLUME_BY_STORAGE_CLASS: '通過儲存類型',
-  CREATE_VOLUME_BY_SNAPSHOT: '通過儲存卷快照創建',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: '選擇已有的儲存卷快照來創建存儲卷。',
-  SELECT_STORAGE_CLASS_CREATE_VOLUME: '選擇已有的存儲類型來創建存儲卷。',
-  VOLUME_CAPACITY: '儲存卷容量',
-  PARAM_REQUIRED: '此參數不能為空。',
-  VOLUME_SIZE_TIP: '儲存卷容量必須大於 0。',
-  VOLUME_STORAGE_CLASS_DESC: '選擇一個存儲類型來創建具體種類的存儲卷。',
-  // List > Advanced Settings
-  // List > Edit
-  EDIT_TCAP: 'Edit',
-  // List > Edit YAML
-  // List > Delete
-  VOLUME_LOW: 'volumes'
+  PV_STATUS_AVAILABLE: '閒置',
+  PV_STATUS_BOUND: 'Bound',
+  PV_STATUS_RELEASED: '刪除中',
+  PV_STATUS_FAILED: '失敗',
+  RECYCLING_STRATEGY: 'Recycling Strategy',
+  VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
 };

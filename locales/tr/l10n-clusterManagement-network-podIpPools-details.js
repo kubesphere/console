@@ -18,8 +18,8 @@
 module.exports = {
   // Details
   NETWORK: 'Ağ',
-  STARTING_IP_ADDRESS: 'Başlangıc IP Adresi',
-  ENDING_IP_ADDRESS: 'Bitiş IP Adresi',
+  START_IP_ADDRESS: 'Start IP Address',
+  END_IP_ADDRESS: 'End IP Address',
   MASK: 'Maske',
   // More > View YAML
   // More > Assign Workspace

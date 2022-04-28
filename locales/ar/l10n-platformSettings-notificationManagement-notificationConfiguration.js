@@ -20,9 +20,9 @@ module.exports = {
   NOTIFICATION_MANAGEMENT: 'Notification Management',
   NOTIFICATION_CONFIGURATION: 'Notification Configuration',
   NOTIFICATION_CONFIGURATION_DESC: 'KubeSphere supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
-  NOTIFICATION_EMAIL: 'Email',
+  NOTIFICATION_EMAIL: 'البريد الإلكتروني',
   // Email
-  MAIL_TITLE: 'Email',
+  MAIL_TITLE: 'البريد الإلكتروني',
   INVALID_PORT_DESC: 'Please enter a valid port number.',
   ENTER_PORT_NUMBER: 'Please enter a port number.',
   ALERTING_NAME: 'Alert name',
@@ -34,7 +34,7 @@ module.exports = {
   NOTIFICATION_CONDITIONS: 'Notification Conditions',
   CONTAINER: 'Container',
   VALUES: 'Values',
-  CONDITION_OPERATOR: 'Operator',
+  CONDITION_OPERATOR: 'المشغل',
   NOTIFICATION_CONDITION_SETTING_TIP: 'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use a carriage return to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
   NOTIFICATION_CONDITION_SETTINGS_DESC: 'You will receive only notifications that meet the conditions.',
   INCLUDES_VALUES: 'Includes values',
@@ -145,7 +145,7 @@ module.exports = {
   NO_AUTH: 'No authentication',
   BEARER_TOKEN: 'Bearer token',
   TOKEN: 'Token',
-  WEBHOOK_USERNAME_EMPTY_DESC: 'Please enter a username.',
+  WEBHOOK_USERNAME_EMPTY_DESC: 'يُرجى إدخال اسم مستخدم.',
   WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
   WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
 };

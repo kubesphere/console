@@ -27,11 +27,12 @@ module.exports = {
   SELECT_A_VOLUME_DESC: 'Select a volume to create a snapshot.',
   SELECT_VOLUME_SNAPSHOT_CLASS_DESC: 'Select a snapshot class to create a snapshot of a specific type.',
   // List
+  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
   VOLUME_SNAPSHOT_STATUS_CREATING: '創建中',
   VOLUME_SNAPSHOT_STATUS_FAILED: '創建失敗',
   VOLUME_SNAPSHOT_STATUS_READY: '創建成功',
   VOLUME_SNAPSHOT_STATUS_DELETING: '刪除中',
-  CREATE_STATUS_SUCCESS: 'Created successfully',
+  CREATE_STATUS_SUCCESS: '創建成功',
   CREATE_STATUS_UPDATING: '創建中',
   CREATE_STATUS_FAILED: '創建失敗',
   CREATE_STATUS_DELETING: '删除中',

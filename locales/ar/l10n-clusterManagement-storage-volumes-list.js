@@ -16,38 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Navigation pane
-  STORAGE: 'Storage',
   // Banner
-  VOLUME_DESC: 'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
+  PERSISTENT_VOLUME: 'Persistent Volume',
+  PERSISTENT_VOLUME_PL: 'Persistent Volumes',
+  PERSISTENT_VOLUME_LOW: 'persistent volume',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
-  VOLUME_STATUS_BOUND: 'Bound',
-  VOLUME_STATUS_LOST: 'Lost',
-  VOLUME_STATUS_PENDING: 'Pending',
-  VOLUME_STATUS_TERMINATING: 'Terminating',
-  VOLUME_STATUS_UPDATING: 'Updating',
-  VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: 'Disk Expanding',
-  VOLUME_EMPTY_DESC: 'Please create a volume.',
-  MOUNT_STATUS: 'Mount Status',
-  MOUNTED: 'Mounted',
-  NOT_MOUNTED: 'Not mounted',
-  ACCESS_MODE_TCAP: 'Access Mode',
-  // List > Create > Basic Information
-  CREATE: 'Create',
-  // List > Create > Volume Settings
-  CREATE_VOLUME_BY_STORAGE_CLASS: 'From Storage Class',
-  CREATE_VOLUME_BY_SNAPSHOT: 'From Volume Snapshot',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select a snapshot to create a volume.',
-  SELECT_STORAGE_CLASS_CREATE_VOLUME: 'Select a storage class to create a volume.',
-  VOLUME_CAPACITY: 'Volume Capacity',
-  PARAM_REQUIRED: 'This parameter is required.',
-  VOLUME_SIZE_TIP: 'The volume capacity must be greater than 0.',
-  VOLUME_STORAGE_CLASS_DESC: 'Select a storage class to create a volume of a specific type.',
-  // List > Advanced Settings
-  // List > Edit
-  EDIT_TCAP: 'Edit',
-  // List > Edit YAML
-  // List > Delete
-  VOLUME_LOW: 'volume'
+  PV_STATUS_AVAILABLE: 'Available',
+  PV_STATUS_BOUND: 'Bound',
+  PV_STATUS_RELEASED: 'Terminating',
+  PV_STATUS_FAILED: 'فشلت',
+  RECYCLING_STRATEGY: 'Recycling Strategy',
+  VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
 };

@@ -33,7 +33,7 @@ module.exports = {
   SELECT_GRAY_COMPONENT_TIP: '請選擇一個灰度組件。',
   // Release Modes > Blue-Green Deployment > Create > New Version Settings
   REPLICA: 'Replica',
-  REPLICA_PL: 'Replicas',
+  REPLICA_PL: '副本數量',
   GRAYSCALE_REPLICAS_DESC: '指定副本數量',
   // Release Modes > Blue-Green Deployment > Create > Strategy Settings
   SELECT_VERSION: '流量規則',
@@ -86,7 +86,7 @@ module.exports = {
   TCP_INBOUND_TRAFFIC: 'TCP 入站流量',
   TCP_OUTBOUND_TRAFFIC: 'TCP 出站流量',
   NO_DATA_SCAP: 'No data',
-  REPLICA_COUNT_LOW: 'replicas',
+  REPLICA_COUNT_LOW: '副本',
   MIRROR_POLICY_DESC: '流量鏡像將生產環境的流量復製到灰度版本中，在新版本上線到真實環境之前使用實時用戶流量對它進行測試。</br>因此，流量鏡像可以降低直接在生產環境進行變更所帶來的風險。',
   // Release Jobs > Blue-Green Deployment > Job Status
   BLUE_GREEN_TRAFFIC_DISTRI_DESC: 'The new version or old version receives all traffic.',

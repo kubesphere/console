@@ -37,18 +37,18 @@ module.exports = {
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
   MAX_EXTRA_PODS_DESC: 'Güncelleme işlemi sırasında izin verilen maksimum ek bölme sayısı veya yüzdesi.',
   MAX_EXTRA_PODS: 'Maksimum Ekstra Bölme',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   AVAILABLE: 'Uygun',
   IN_USER: 'Kullanımda',
   ACCESS_MODE_SCAP: 'Erişim modu',
-  VOLUME_OR_TEMPLATE_EMPTY: 'Birimlerde Günlükleri Topla\'yı etkinleştirdiniz. Lütfen en az bir birim veya birim şablonu bağlayın ve günlüklerin dizinini belirtin.',
-  VOLUME_EMPTY: 'Birimlerde Günlükleri Topla\'yı etkinleştirdiniz. Lütfen en az bir birim bağlayın ve günlüklerin dizinini belirtin.',
+  PVC_OR_TEMPLATE_EMPTY: 'You have enabled Collect Logs on Volumes. Please add at least one persistent volume, temperary volume, or persistent volume claim template and specify the path of container logs.',
+  PVC_EMPTY: 'You have enabled Collect Logs on Volumes. Please add at least one persistent volume or temperary volume and specify the path of container logs.',
   PROJECT_COLLECT_SAVED_DISABLED_DESC: 'Bu işlevi etkinleştirmek için Proje Ayarlarında Birimlerdeki Günlükleri Topla\'yı etkinleştirmeniz gerekir.',
   COLLECT_LOGS_ON_VOLUMES_DESC: 'Sistemin birimlere kaydedilen kapsayıcı günlüklerini toplamasına izin verin. Bu işlevi kullanmak için, bir kapsayıcıya okuma ve yazma modunda bir birimi bağlamanız ve kapsayıcıyı, günlükleri birime aktaracak şekilde ayarlamanız gerekir.',
   // List > Create
-  // List > Create > Volume Settings > Mount Volume
+  // List > Create > Storage Settings > Mount Volume
   CONTAINER_LOG_PATH: 'Konteyner Günlük Yolu',
-  // List > Create > Volume Settings > Mount Volume > Temporary Volume (Question Mark)
+  // List > Create > Storage Settings > Mount Volume > Temporary Volume
   CONTAINER_LOG_PATH_TIP: 'Birim bağlama yoluna göre kapsayıcı günlük yolu. Küreleme desenleri desteklenir. Birden çok yolu ayırmak için virgül (,) kullanabilirsiniz.<br /><br /><b>Örnek</b><br />Birim bağlama yolu /data olduğunda, log/*.log, kapsayıcıyı belirtir. günlük dosyalarının tümü /data/log dizinindeki .log dosyalarıdır.',
   // List > Create > Advanced Settings
   // List > Edit Information

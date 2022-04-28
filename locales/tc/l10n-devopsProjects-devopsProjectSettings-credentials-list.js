@@ -24,7 +24,7 @@ module.exports = {
   // List > Create
   CREATE_CREDENTIAL: '創建憑證',
   CREDENTIAL_NAME_EXIST_DESC: '憑證 ID 已存在。',
-  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'Username and password',
+  CREDENTIAL_TYPE_USERNAME_PASSWORD: '用戶名稱與密碼',
   CREDENTIAL_TYPE_SSH: 'SSH key',
   PRIVATE_KEY: '私鑰',
   PASSPHRASE: '密碼短語',

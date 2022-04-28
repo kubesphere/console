@@ -19,7 +19,7 @@ module.exports = {
   // Banner
   TEMPLATE_BASED_APP_PL: 'Template-Based Apps',
   APPLICATIONS_DESC: 'An app provides users with comprehensive business functions in one package. App templates in KubeSphere are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An app is composed of one or more Kubernetes objects including workloads, services and ingresses.',
-  APP_PL: 'Apps',
+  APP_PL: '앱',
   APP_TYPES_Q: 'What app types does KubeSphere support?',
   APP_TYPES_A: 'KubeSphere supports templated-based apps and composed apps. Template-based apps are created from You can deploy apps from the KubeSphere App Store or an app template. Composed apps are customized by users.',
   HOW_TO_USE_APP_GOVERN_Q: 'How do I use Application Governance?',

@@ -49,7 +49,7 @@ module.exports = {
   // Resource Status
   MONITORING_EXPORTER: '監控導出器',
   MONITORING_EXPORTER_VALUE: 'Monitoring exporter: {value}',
-  PORT_PL: 'Ports',
+  PORT_PL: '通訊埠',
   SERVICE_NODE_PORT_DESC: '如果您目前的網路與集群節點在同一網路内，那麼您可以透通<集群 IP 地址>:<NodePort>進行訪問，或者通過<節點 IP 地址>:<NodePort>進行訪問。',
   IMAGE_BUILDING_FAILED: 'Image building failed',
   IMAGE_BUILDING_SUCCESSFUL: 'Image building successful',

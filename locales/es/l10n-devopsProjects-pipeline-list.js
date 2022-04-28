@@ -47,7 +47,7 @@ module.exports = {
   RESELECT: 'Seleccionar de nuevo',
   // List > Create > Basic Information > Code Repository > GitHub
   CREDENTIAL_SI: 'Autentificación',
-  CREDENTIAL: 'Credential',
+  CREDENTIAL: 'Autentificación',
   PIPELINE_CREDENTIAL_EMPTY_TIP: 'Please select a credential.',
   SELECT_CREDENTIAL_DESC: 'La obtención del código del repositorio puedes requerir credenciales. Selecciona una credencial existente o agregue una nueva.',
   GITHUB_CREDENTIAL_EMPTY: 'Introduce su token de acceso de GitHub.',

@@ -30,7 +30,7 @@ module.exports = {
   // List > Create > Pod Settings
   RESTART_POLICY_NEVER_DESC: '重新创建容器组',
   RESTART_POLICY_ONFAILURE_DESC: '重启容器',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Rerun

@@ -52,7 +52,7 @@ module.exports = {
   // List > Create > Pod Settings
   RESTART_POLICY: '重启策略',
   RESTART_POLICY_DESC: '选择容器组中的容器异常退出时，系统采取的策略。',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML

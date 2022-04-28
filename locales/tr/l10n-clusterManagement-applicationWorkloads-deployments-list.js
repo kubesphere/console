@@ -42,11 +42,12 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Health Check > Readiness Check > TCP Port
   PORT_NUMBER_EMPTY: 'Lütfen bir bağlantı noktası numarası girin.',
   USER: 'Kullanıcı',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   VOLUME_NAME_EXIST: 'Dosya adı zaten var.',
   SELECT_TYPE: 'Türleri seçin',
   SPECIFY_SUBPATH: 'Alt Yolu Belirtin',
   SPECIFY_SUBPATH_TIP: 'Kapsayıcıya monte edilecek bir birim alt yolu belirtin.',
+  MOUNT_PATH: 'Mount path',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: 'Ağ segmenti',
   AVAILABLE_ADDRESSES: 'Kullanılabilir adresler',

@@ -16,15 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  VOLUME_SNAPSHOT_CLASS_PL: '存储卷快照类型',
-  VOLUME_SNAPSHOT_CLASS: '快照类型',
-  VOLUME_SNAPSHOT_CLASS_DESC: '管理员可使用存储卷快照类型定义用于存储卷快照的存储类型。',
-  VOLUME_SNAPSHOT_CLASS_EMPTY_DESC: '请创建一个存储卷快照类型。',
+  VOLUME_SNAPSHOT_CLASS_PL: '卷快照类',
+  VOLUME_SNAPSHOT_CLASS: '卷快照类',
+  VOLUME_SNAPSHOT_CLASS_DESC: '管理员可使用卷快照类定义用于卷快照的存储种类。',
+  VOLUME_SNAPSHOT_CLASS_EMPTY_DESC: '请创建一个卷快照类。',
   // List > Create
-  SNAPSHOT_CLASS_SETTINGS: '存储卷快照类型设置',
+  SNAPSHOT_CLASS_SETTINGS: '卷快照类设置',
   SNAPSHOT_CLASS_PROVISIONER_DESC: '输入 CSI 插件的名称。',
   SNAPSHOT_CLASS_PROVISIONER_EMPTY_DESC: '请输入 CSI 插件的名称。',
   // List > Delete
-  VOLUME_SNAPSHOT_CLASS_LOW: '存储卷快照类型',
-  DELETE_VOLUME_SNAPSHOT_CLASS: '删除存储卷快照类型'
+  VOLUME_SNAPSHOT_CLASS_LOW: '卷快照类',
+  DELETE_VOLUME_SNAPSHOT_CLASS: '删除卷快照类'
 };

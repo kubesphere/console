@@ -27,10 +27,8 @@ module.exports = {
   TARGET_CPU_USAGE_UNIT: '目标 CPU 用量（%）',
   AUTOSCALING: '自动扩缩',
   RESOURCE_NAME: '资源名称',
-  TARGET_CPU_USAGE_DESC:
-    '当实际 CPU 用量大于/小于目标值时，系统自动减少/增加容器组副本数量。',
-  TARGET_MEMORY_USAGE_DESC:
-    '当实际内存用量大于/小于目标值时，系统自动减少/增加容器组副本数量。',
+  TARGET_CPU_USAGE_DESC: '当实际 CPU 用量大于/小于目标值时，系统自动减少/增加容器组副本数量。',
+  TARGET_MEMORY_USAGE_DESC: '当实际内存用量大于/小于目标值时，系统自动减少/增加容器组副本数量。',
   MINIMUM_REPLICAS_DESC: '设置允许的最小容器组副本数量，默认值为 1。',
   MAXIMUM_REPLICAS_DESC: '设置允许的最大容器组副本数量，默认值为 1。',
   TARGET_MEMORY_USAGE_UNIT: '目标内存用量（MiB）',
@@ -59,8 +57,7 @@ module.exports = {
   REPLICAS_DESIRED: '期望副本数',
   REPLICAS_CURRENT: '当前副本数',
   ADJUST_REPLICAS: '调整副本数量',
-  REPLICAS_SCALE_NOTIFY_CONTENT:
-    '您确定将容器组副本数量调整为 <strong>{num}</strong> 吗？',
+  REPLICAS_SCALE_NOTIFY_CONTENT: '您确定将容器组副本数量调整为 <strong>{num}</strong> 吗？',
   REPLICAS_SCALE_NOTIFY_CONFIRM: '确定（{seconds}s）',
   REPLICAS_SCALE_NOTIFY_CANCEL: '取消',
   // Resource Status > Autoscaling
@@ -74,8 +71,7 @@ module.exports = {
   VIEW_ALL_REPLICAS: '查看所有副本',
   SHOW_SELECTED_ONLY: '仅显示已选',
   MONITORING_SELECT_LIMIT_MSG: '最多可以选择 10 个资源。',
-  MONITORING_ALERT_DESC:
-    '默认最多显示五个容器组副本的信息。您可以点击<b>查看所有副本</b>以查看所有容器组副本的信息。',
+  MONITORING_ALERT_DESC: '默认最多显示五个容器组副本的信息。您可以点击<b>查看所有副本</b>以查看所有容器组副本的信息。',
   CURRENT_VALUE: '当前：{value}',
   // Environment Variables
   ENVIRONMENT_VARIABLE_PL: '环境变量',
@@ -83,5 +79,5 @@ module.exports = {
   EVENT_AGE: '发生时间',
   EVENT_AGE_DATA: '{lastTime}<br/>（近 {duration}发生 {count} 次)',
   EVENT_AGE_DATA_TWICE: '{lastTime}<br/>（近 {duration}发生 2 次）',
-  SOURCE: '来源',
-}
+  SOURCE: '来源'
+};

@@ -16,38 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Navigation pane
-  STORAGE: 'Depolama',
   // Banner
-  VOLUME_DESC: 'Kullanıcılar tarafından oluşturulan iş yükleri için bir birim kullanılır. İş yüklerinin veri kalıcılığı için bir kaynak nesnesini temsil eder.',
+  PERSISTENT_VOLUME: 'Persistent Volume',
+  PERSISTENT_VOLUME_PL: 'Persistent Volumes',
+  PERSISTENT_VOLUME_LOW: 'persistent volume',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
-  VOLUME_STATUS_BOUND: 'Bağlı',
-  VOLUME_STATUS_LOST: 'Kayıp',
-  VOLUME_STATUS_PENDING: 'Bekliyor',
-  VOLUME_STATUS_TERMINATING: 'Sonlandırma',
-  VOLUME_STATUS_UPDATING: 'Güncelleniyor',
-  VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: 'Disk genişletme',
-  VOLUME_EMPTY_DESC: 'Lütfen bir hacim oluşturun.',
-  MOUNT_STATUS: 'Bağlılık durumu',
-  MOUNTED: 'Bağlandı',
-  NOT_MOUNTED: 'Bağlanamadı',
-  ACCESS_MODE_TCAP: 'Erişim modu',
-  // List > Create > Basic Information
-  CREATE: 'Oluştur',
-  // List > Create > Volume Settings
-  CREATE_VOLUME_BY_STORAGE_CLASS: 'Depolama sınıfından',
-  CREATE_VOLUME_BY_SNAPSHOT: 'Birim anlık görüntüsünden',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Birim oluşturmak için bir anlık görüntü seçin.',
-  SELECT_STORAGE_CLASS_CREATE_VOLUME: 'Birim oluşturmak için bir depolama sınıfı seçin.',
-  VOLUME_CAPACITY: 'Birim Kapasitesi',
-  PARAM_REQUIRED: 'Parametre gereklidir.',
-  VOLUME_SIZE_TIP: 'Hacim kapasitesi 0\'dan büyük olmalıdır.',
-  VOLUME_STORAGE_CLASS_DESC: 'Belirli bir türde birim oluşturmak için bir depolama sınıfı seçin.',
-  // List > Advanced Settings
-  // List > Edit
-  EDIT_TCAP: 'Düzenle',
-  // List > Edit YAML
-  // List > Delete
-  VOLUME_LOW: 'birim'
+  PV_STATUS_AVAILABLE: 'Uygun',
+  PV_STATUS_BOUND: 'Bound',
+  PV_STATUS_RELEASED: 'Yıkılıyor',
+  PV_STATUS_FAILED: 'Başarısız',
+  RECYCLING_STRATEGY: 'Recycling Strategy',
+  VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
 };

@@ -152,18 +152,17 @@ module.exports = {
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: 'Metaveri Ekle',
   POD_ADD_METADATA_DESC: 'Pod replikalarına meta veriler ekleyin.',
-  // List > Create > Volume Settings
-  VOLUME_SETTINGS: 'Volume Ayarları',
+  // List > Create > Storage Settings
+  STORAGE_SETTINGS: 'Storage Settings',
   READ_ONLY_LOW: 'salt-okunur',
   READ_AND_WRITE_LOW: 'okuma ve yazma',
-  // List > Create > Volume Settings > Mount Volume
+  // List > Create > Storage Settings > Mount Volume
   MOUNT_VOLUME: 'Hacmi Monte et',
-  WORKLOAD_MOUNT_VOLUME_DESC: 'Mevcut bir birimi, geçici birimi veya HostPath birimini kapsayıcılara bağlayın.',
-  EXISTING_VOLUME: 'Varolan Hacim',
-  SELECT_VOLUME: 'Hacmi Seçin',
-  SELECT_VOLUME_DESC: 'Mevcut bir birimi seçin ve onu konteynere monte edin.',
+  WORKLOAD_MOUNT_VOLUME_DESC: 'Mount an persistent volume, temporary volume, or HostPath volume to the containers.',
+  SELECT_PERSISITENT_VOLUME_CLAIM: 'Select Persistent Volume Claim',
+  SELECT_PERSISITENT_VOLUME_CLAIM_DESC: 'Mount a persistent volume created according to the persistent volume claim to the containers.',
   CAPACITY: 'Kapasite',
-  VOLUME_NOT_SELECT: 'Lütfen bir hacim seçin.',
+  PVC_NOT_SELECT: 'Please select a persistent volume claim.',
   TEMPORARY_VOLUME: 'Geçici Hacim',
   VOLUME_NAME: 'Hacim Adı',
   VOLUME_NAME_EMPTY: 'Lütfen birim için bir ad belirleyin.',
@@ -174,7 +173,7 @@ module.exports = {
   HOST_PATH: 'Sunucu Yolu',
   READ_AND_WRITE: 'Okuma ve yazma',
   READ_ONLY: 'Salt okunur',
-  // List > Create > Volume Settings > Mount Configmap or Secret
+  // List > Create > Storage Settings > Mount Configmap or Secret
   MOUNT_CONFIGMAP_OR_SECRET: 'Configmap veya Secret bağla',
   MOUNT_CONFIGMAP_OR_SECRET_DESC: 'Konteynerlara bir yapılandırma haritası veya gizli anahtar ekleyin.',
   CONFIGMAP: 'Yapılandırma Haritası',

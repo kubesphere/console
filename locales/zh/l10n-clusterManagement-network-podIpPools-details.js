@@ -18,8 +18,8 @@
 module.exports = {
   // Details
   NETWORK: '网络',
-  STARTING_IP_ADDRESS: '起始 IP 地址',
-  ENDING_IP_ADDRESS: '结束 IP 地址',
+  START_IP_ADDRESS: '起始 IP 地址',
+  END_IP_ADDRESS: '结束 IP 地址',
   MASK: '掩码',
   // More > View YAML
   // More > Assign Workspace

@@ -22,7 +22,7 @@ module.exports = {
   // List
   CRONJOB_PAUSED: 'Paused',
   CRONJOB_RUNNING: 'Running',
-  CRONJOB_FAILED: 'Failed',
+  CRONJOB_FAILED: 'असफल',
   // List > Create > Basic Information
   SCHEDULE: 'Schedule',
   ENTER_SCHEDULE_TIP: 'Please select a schedule.',
@@ -52,7 +52,7 @@ module.exports = {
   // List > Create > Pod Settings
   RESTART_POLICY: 'Restart Policy',
   RESTART_POLICY_DESC: 'Select the policy adopted by the system when a container in the pod exits abnormally.',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML

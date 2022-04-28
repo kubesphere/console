@@ -49,10 +49,10 @@ module.exports = {
   NO_RESOURCE: '未发现{resource}。',
   LOG_DATA_LOW: '日志信息',
   // Resource Status > Volumes
-  TYPE_CONFIGMAP: '存储卷类型：配置字典',
-  TYPE_SECRET: '存储卷类型：保密字典',
-  TYPE_EMPTYDIR: '存储卷类型：EmptyDir',
-  TYPE_HOSTPATH: '存储卷类型：HostPath',
+  TYPE_CONFIGMAP: '卷类型：配置字典',
+  TYPE_SECRET: '卷类型：保密字典',
+  TYPE_EMPTYDIR: '卷类型：EmptyDir',
+  TYPE_HOSTPATH: '卷类型：HostPath',
   // Scheduling Information
   REASON_VALUE: '原因：{value}',
   MESSAGE_VALUE: '消息：{value}',

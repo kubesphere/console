@@ -22,7 +22,7 @@ module.exports = {
   // List
   CONTINUOUS_DEPLOYMENT_EMPTY_DESC: 'Please create a continuous deployment.',
   DEGRADED: 'Degraded',
-  PROGRESSING: 'Progressing',
+  PROGRESSING: 'Progresando',
   SYNCED: 'Synced',
   OUTOFSYNC: 'Out of sync',
   DEPLOY_LOCATION: 'Deployment Location',

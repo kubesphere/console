@@ -24,7 +24,7 @@ module.exports = {
   // List > Create
   CREATE_CREDENTIAL: 'Crear credenciale',
   CREDENTIAL_NAME_EXIST_DESC: 'El ID de credencial ya existe',
-  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'Username and password',
+  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'Secreto de contraseña de cuenta',
   CREDENTIAL_TYPE_SSH: 'SSH key',
   PRIVATE_KEY: 'Llave privada',
   PASSPHRASE: 'Pasphrase',

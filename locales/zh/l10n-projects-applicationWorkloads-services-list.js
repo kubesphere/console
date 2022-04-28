@@ -18,7 +18,7 @@
 module.exports = {
   // Banner
   SERVICE_TYPES_Q: 'KubeSphere 支持哪些服务类型？',
-  SERVICE_TYPES_A: 'KubeSphere 支持无状态服务和有状态服务。无状态服务中的多个容器组副本共享一个存储卷，有状态服务中的每个容器组副本都拥有独立的存储卷。',
+  SERVICE_TYPES_A: 'KubeSphere 支持无状态服务和有状态服务。无状态服务中的多个容器组副本共享一个卷，有状态服务中的每个容器组副本都拥有独立的卷。',
   SCENARIOS_FOR_SERVICES_Q: '无状态服务和有状态服务分别适用于哪些场景？',
   SCENARIOS_FOR_SERVICES_A: '无状态服务适用于不需要数据持久化的场景，例如 Nginx 和 Tomcat。有状态服务适用于需要数据持久化的场景，例如 MySQL 数据库、Kafka 和 ZooKeeper。',
   // Service List

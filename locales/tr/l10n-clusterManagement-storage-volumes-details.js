@@ -17,18 +17,8 @@
  */
 module.exports = {
   // Details
-  VOLUME_INSTANCE: 'Birim Örnekleri',
   // More > Edit YAML
-  // More > Clone Volume
-  // More > Create Snapshot
-  // More > Expand Volume
   // More > Delete
   // Resource Status
-  // Resource Status > Volume
-  // Resource Status > Mounted Pods
-  MOUNTED_PODS: 'Takılı Kapsül',
-  // Metadata
-  // Events
-  // Snapshot
-  SNAPSHOT_PL: 'Görüntüler'
+  STORAGE_CLASS_VALUE: 'Storage class: {value}'
 };

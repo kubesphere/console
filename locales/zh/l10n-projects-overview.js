@@ -19,7 +19,7 @@ module.exports = {
   // Edit Quotas
   EDIT_QUOTAS: '编辑配额',
   QUOTA: '配额',
-  NUMBER_OF_VOLUMES: '存储卷数量',
+  NUMBER_OF_VOLUMES: '卷数量',
   PROJECT_QUOTAS_NOT_SET: '项目配额未设置',
   PROJECT_QUOTAS_DESC: '项目配额用于指定项目中可用的 CPU 和内存资源数量和容器组、部署、服务等应用资源的最大数量。',
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: '默认容器配额未设置',

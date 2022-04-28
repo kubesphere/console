@@ -20,7 +20,7 @@ module.exports = {
   PIPELINE_PL: '流水線',
   // List
   HEALTH: '健康狀態',
-  PULL_REQUEST_COUNT: 'Pull Requests',
+  PULL_REQUEST_COUNT: '拉取請求',
   HEALTHY: '健康',
   SUB_HEALTHY: '亞健康',
   NO_STATUS: '沒有狀態',

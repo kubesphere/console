@@ -25,7 +25,7 @@ module.exports = {
   ALERTING_STATUS: 'Alerting Status',
   ALERTING_POLICY_EMPTY_DESC: 'Please create an alerting policy.',
   ALERT_RULE_INACTIVE: 'Inactive',
-  ALERT_RULE_PENDING: 'Pending',
+  ALERT_RULE_PENDING: 'लंबित',
   ALERT_RULE_FIRING: 'Firing',
   ALERT_RULE_HEALTH_OK: 'Healthy',
   ALERT_RULE_HEALTH_ERR: 'Error',

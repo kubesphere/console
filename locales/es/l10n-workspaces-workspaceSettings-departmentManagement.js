@@ -43,7 +43,7 @@ module.exports = {
   GROUP_WORKSPACE_ROLE_DESC: 'La función del espacio de trabajo se asignará a todos los miembros del departamento.',
   MEMBER_CLUSTER_UPGRADE_TIP: 'Member clusters with versions earlier than {version} do not support this function. Please upgrade the member clusters to {version} or later.',
   // List > Set Departments > Project Role
-  PROJECT_ROLE: 'Project Role',
+  PROJECT_ROLE: 'Rol del proyecto',
   SELECT_ROLE_TIP: 'Please select a role.',
   ADD_PROJECT: 'Agregar proyecto',
   CLUSTER_UPGRADE_REQUIRED: 'The cluster version does not support this function. Please upgrade the cluster to {version} or later.',

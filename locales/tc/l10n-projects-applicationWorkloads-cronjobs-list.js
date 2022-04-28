@@ -20,9 +20,9 @@ module.exports = {
   CRONJOBS: 'CronJobs',
   CRONJOB_DESC: 'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
   // List
-  CRONJOB_PAUSED: 'Paused',
-  CRONJOB_RUNNING: 'Running',
-  CRONJOB_FAILED: 'Failed',
+  CRONJOB_PAUSED: '已暫停',
+  CRONJOB_RUNNING: '運行中',
+  CRONJOB_FAILED: '失敗',
   // List > Create > Basic Information
   SCHEDULE: 'Schedule',
   ENTER_SCHEDULE_TIP: '請选择定時計畫。',
@@ -52,7 +52,7 @@ module.exports = {
   // List > Create > Pod Settings
   RESTART_POLICY: '重啟策略',
   RESTART_POLICY_DESC: 'Set the Pod restart policy.',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML

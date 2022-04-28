@@ -27,6 +27,7 @@ module.exports = {
   SELECT_A_VOLUME_DESC: 'Select a volume to create a snapshot.',
   SELECT_VOLUME_SNAPSHOT_CLASS_DESC: 'Select a snapshot class to create a snapshot of a specific type.',
   // List
+  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
   VOLUME_SNAPSHOT_STATUS_CREATING: 'Creating',
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Creation failed',
   VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',

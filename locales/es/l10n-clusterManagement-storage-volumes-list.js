@@ -16,38 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Navigation pane
-  STORAGE: 'Storage',
   // Banner
-  VOLUME_DESC: 'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
+  PERSISTENT_VOLUME: 'Persistent Volume',
+  PERSISTENT_VOLUME_PL: 'Persistent Volumes',
+  PERSISTENT_VOLUME_LOW: 'persistent volume',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
-  VOLUME_STATUS_BOUND: 'Enlazado',
-  VOLUME_STATUS_LOST: 'Perdido',
-  VOLUME_STATUS_PENDING: 'Pendiente',
-  VOLUME_STATUS_TERMINATING: 'Terminando',
-  VOLUME_STATUS_UPDATING: 'Actualizando',
-  VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: 'Expandiendo disco',
-  VOLUME_EMPTY_DESC: 'Please create a volume.',
-  MOUNT_STATUS: 'Montar',
-  MOUNTED: 'Montado',
-  NOT_MOUNTED: 'No montado',
-  ACCESS_MODE_TCAP: 'Modo de acceso',
-  // List > Create > Basic Information
-  CREATE: 'Create',
-  // List > Create > Volume Settings
-  CREATE_VOLUME_BY_STORAGE_CLASS: 'Crear volumen por clase de almacenamiento',
-  CREATE_VOLUME_BY_SNAPSHOT: 'Crear volumen por snapshot',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Selecciona snapshot para crear volumen.',
-  SELECT_STORAGE_CLASS_CREATE_VOLUME: 'Seleccione una clase de almacenamiento para crear un volumen.',
-  VOLUME_CAPACITY: 'Capacidad de volumen',
-  PARAM_REQUIRED: 'Este parámetro es obligatorio',
-  VOLUME_SIZE_TIP: 'The volume capacity must be greater than 0.',
-  VOLUME_STORAGE_CLASS_DESC: 'Selecciona clase de almacenamiento para crear un tipo específico de volumen.',
-  // List > Advanced Settings
-  // List > Edit
-  EDIT_TCAP: 'Edit',
-  // List > Edit YAML
-  // List > Delete
-  VOLUME_LOW: 'volume'
+  PV_STATUS_AVAILABLE: 'En desuso',
+  PV_STATUS_BOUND: 'Bound',
+  PV_STATUS_RELEASED: 'Terminating',
+  PV_STATUS_FAILED: 'Failed',
+  RECYCLING_STRATEGY: 'Recycling Strategy',
+  VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
 };

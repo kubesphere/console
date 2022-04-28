@@ -22,7 +22,7 @@ module.exports = {
   STOP_REAL_TIME_RESOURCE_EVENT: 'Pause real-time resource events',
   START_REAL_TIME_RESOURCE_EVENT: 'View real-time resource events',
   // Time Topology > Histogram
-  RESOURCE_EVENT_COUNT: 'Resource Events',
+  RESOURCE_EVENT_COUNT: '資源事件',
   // List
   // List > Resource Event Details > Metadata
   METADATA: '元數據',
