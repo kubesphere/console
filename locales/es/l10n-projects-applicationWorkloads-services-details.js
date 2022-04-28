@@ -49,7 +49,7 @@ module.exports = {
   // Resource Status
   MONITORING_EXPORTER: 'Monitoring Exporter',
   MONITORING_EXPORTER_VALUE: 'Monitoring exporter: {value}',
-  PORT_PL: 'Ports',
+  PORT_PL: 'Puertos',
   SERVICE_NODE_PORT_DESC: 'If your current network is on the same network as the cluster node, you can access it through <Cluster IP address>:<NodePort> or through <Node IP address>:<NodePort>.',
   IMAGE_BUILDING_FAILED: 'Image building failed',
   IMAGE_BUILDING_SUCCESSFUL: 'Image building successful',
