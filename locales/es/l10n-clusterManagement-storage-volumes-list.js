@@ -21,7 +21,7 @@ module.exports = {
   PERSISTENT_VOLUME_PL: 'Persistent Volumes',
   PERSISTENT_VOLUME_LOW: 'persistent volume',
   // List
-  PV_STATUS_AVAILABLE: 'Available',
+  PV_STATUS_AVAILABLE: 'En desuso',
   PV_STATUS_BOUND: 'Bound',
   PV_STATUS_RELEASED: 'Terminating',
   PV_STATUS_FAILED: 'Failed',
