@@ -37,12 +37,12 @@ export default {
           const syncPolicy =
             syncPolicyType === 'automated'
               ? {
-                  [data.syncPolicy.type]: {
+                  [syncPolicyType]: {
                     prune: data.syncPolicy.prune,
                     selfHeal: data.syncPolicy.selfHeal,
                   },
                 }
-              : undefined
+              : { [syncPolicyType]: {} }
 
           const source = {
             repoURL: data.repoURL,
@@ -57,9 +57,7 @@ export default {
               }, [])
             : undefined
 
-          if (syncPolicyType === 'automated') {
-            syncPolicy.syncOptions = syncOptions
-          }
+          syncPolicy.syncOptions = syncOptions
 
           const argoApp = {
             destination: data.destination,
