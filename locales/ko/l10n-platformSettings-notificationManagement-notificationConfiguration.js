@@ -34,7 +34,7 @@ module.exports = {
   NOTIFICATION_CONDITIONS: 'Notification Conditions',
   CONTAINER: 'Container',
   VALUES: 'Values',
-  CONDITION_OPERATOR: 'Operator',
+  CONDITION_OPERATOR: '운영자',
   NOTIFICATION_CONDITION_SETTING_TIP: 'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use a carriage return to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
   NOTIFICATION_CONDITION_SETTINGS_DESC: 'You will receive only notifications that meet the conditions.',
   INCLUDES_VALUES: 'Includes values',
