@@ -162,7 +162,7 @@ module.exports = {
   SELECT_PERSISITENT_VOLUME_CLAIM: 'Select Persistent Volume Claim',
   SELECT_PERSISITENT_VOLUME_CLAIM_DESC: 'Mount a persistent volume created according to the persistent volume claim to the containers.',
   CAPACITY: 'Capacity',
-  VOLUME_NOT_SELECT: 'Please select a volume.',
+  PVC_NOT_SELECT: 'Please select a persistent volume claim.',
   TEMPORARY_VOLUME: 'Temporary Volume',
   VOLUME_NAME: 'Volume Name',
   VOLUME_NAME_EMPTY: 'Please set a name for the volume.',
