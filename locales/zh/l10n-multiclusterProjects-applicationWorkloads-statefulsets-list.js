@@ -39,14 +39,14 @@ module.exports = {
   PVC_NAME_PREFIX_EXISTS: '前缀已经存在，请输入其他前缀。',
   ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE: '添加持久卷声明模板',
   ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE_DESC: '添加持久卷声明模板为有状态副本集的每个容器组挂载一个持久卷。',
-  VOLUME_CAPACITY_TCAP: '存储卷容量',
+  VOLUME_CAPACITY_TCAP: '卷容量',
   MOUNT_PATH_TCAP: '挂载路径',
-  VOLUME_TEMPLATES: '存储卷模板',
+  VOLUME_TEMPLATES: '卷模板',
   // List > Create > Advanced Settings
   // List > Create > Cluster Differences
   SERVICE_PORT: '服务端口',
   SERVICE_PORT_VALUE: '服务端口：{value}',
   // List > Create > Cluster Differences (Displayed after you add a volume template)
-  VOLUME_TEMPLATE_SETTINGS: '存储卷模板设置',
+  VOLUME_TEMPLATE_SETTINGS: '卷模板设置',
   CLUSTER_VOLUME_DIFF_DESC: '在不同的集群中使用不同的存储设置。'
 };
