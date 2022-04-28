@@ -22,7 +22,7 @@ module.exports = {
   PERSISTENT_VOLUME_CLAIM_DESC: '持久卷声明定义了存储需求，系统根据持久卷声明创建持久卷。',
   PERSISTENT_VOLUME_CLAIM: '持久卷声明',
   PERSISTENT_VOLUME_CLAIM_PL: '持久卷声明',
-  WHAT_IS_STORAGE_CLASS_Q: '什么是存储类型？',
+  WHAT_IS_STORAGE_CLASS_Q: '什么是存储类？',
   WHAT_IS_STORAGE_CLASS_A: '存储类（Storage Class）由集群管理员配置，不同的存储类为集群用户提供不同类型的卷。',
   WHAT_IS_LOCAL_VOLUME_Q: '什么是本地卷?',
   WHAT_IS_LOCAL_VOLUME_A: '本地卷是创建在集群本地文件系统中的卷。',
@@ -42,7 +42,7 @@ module.exports = {
   CREATE: '创建',
   // List > Create > Storage Settings
   CREATION_METHOD: '创建方式',
-  CREATE_VOLUME_BY_STORAGE_CLASS: '通过存储类型创建',
+  CREATE_VOLUME_BY_STORAGE_CLASS: '通过存储类创建',
   CREATE_VOLUME_BY_SNAPSHOT: '通过卷快照创建',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: '选择卷快照来创建卷。',
   SELECT_STORAGE_CLASS_CREATE_VOLUME: '选择已有的存储类来创建卷。',
