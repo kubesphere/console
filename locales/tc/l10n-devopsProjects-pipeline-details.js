@@ -150,7 +150,7 @@ module.exports = {
   COVERAGE: '覆蓋率',
   TEST_RESULTS: '檢測結果',
   ISSUE_PL: '問題',
-  CRITICAL: 'Critical',
+  CRITICAL: '危險告警',
   MAJOR: 'Major',
   MINOR: 'Minor',
   DISPLAY_ALL: '顯示全部',
