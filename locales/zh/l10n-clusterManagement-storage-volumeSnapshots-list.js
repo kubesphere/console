@@ -21,7 +21,7 @@ module.exports = {
   VOLUME_SNAPSHOT_PL: '卷快照',
   VOLUME_SNAPSHOT_DESC: '卷快照是卷在特定时间点的副本，可使用快照中的数据预配新卷，或者将卷恢复至快照捕捉到的先前状态。',
   WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: '什么是卷快照类？',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: '卷快照类定义了用于创建卷快照的存储类。',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: '卷快照类定义了用于创建卷快照的存储类型。',
   WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: '什么是卷快照内容？',
   WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: '卷快照内容是一种代表卷快照具体内容的资源。',
   SELECT_A_VOLUME_DESC: '选择用于创建快照的卷。',
