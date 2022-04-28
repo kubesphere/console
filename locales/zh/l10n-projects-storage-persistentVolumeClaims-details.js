@@ -18,13 +18,13 @@
 module.exports = {
   // More > Edit YAML
   // More > Clone
-  CLONE_VOLUME: '存储卷克隆',
+  CLONE_VOLUME: '克隆卷',
   CLONE: '克隆',
   // More > Create Snapshot
   CREATE_SNAPSHOT: '创建快照',
   SNAPSHOT_EMPTY_TIP: '请选择一个快照类型。',
   // More > Expand
-  EXPAND_VOLUME: '扩容存储卷',
+  EXPAND_VOLUME: '扩展卷',
   EXPAND: '扩容',
   // Details
   PROVISIONER: '供应者',
