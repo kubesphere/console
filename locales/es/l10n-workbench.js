@@ -30,8 +30,8 @@ module.exports = {
   // Recent Access
   RECENT_ACCESS: 'Visita reciente',
   MULTI_CLUSTER_DEPLOYMENT: 'Despliegue de multi-cluster',
-  WORKBENCH_PROJECT: 'Project',
-  WORKBENCH_WORKSPACE: 'Workspace',
+  WORKBENCH_PROJECT: 'Proyecto',
+  WORKBENCH_WORKSPACE: 'Espacio de trabajo',
   WORKBENCH_DEVOPS: 'DevOps project',
   WORKBENCH_MULTI_CLUSTER_PROJECT: 'Multi-cluster project',
   WORKBENCH_CLUSTER: 'Cluster',
