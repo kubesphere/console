@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Basic Information
-  EMAIL_DESC: 'The email address can be used to log in to the KubeSphere web console.',
+  EMAIL_DESC: 'يمكن استخدام عنوان البريد الإلكتروني لتسجيل الدخول إلى وحدة تحكم KubeSphere.',
   LANGUAGE: 'Language',
   USER_SETTINGS: 'User Settings',
   CLOSE: 'Close',
