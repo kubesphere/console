@@ -22,8 +22,8 @@ module.exports = {
   // Default Container Quotas
   NO_REQUEST_TCAP: '不預留',
   NO_LIMIT_TCAP: '不限制',
-  CPU_REQUEST_LOW: 'CPU request',
-  CPU_LIMIT_LOW: 'CPU limit',
+  CPU_REQUEST_LOW: 'CPU 預留',
+  CPU_LIMIT_LOW: 'CPU 限制',
   CPU_REQUEST_CORE: '{value} Core',
   CPU_LIMIT_CORE: '{value} Core',
   MEMORY_REQUEST_MIB: '{value} Mi',
