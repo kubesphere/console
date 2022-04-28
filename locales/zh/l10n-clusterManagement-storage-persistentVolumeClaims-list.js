@@ -23,9 +23,9 @@ module.exports = {
   PERSISTENT_VOLUME_CLAIM: '持久卷声明',
   PERSISTENT_VOLUME_CLAIM_PL: '持久卷声明',
   WHAT_IS_STORAGE_CLASS_Q: '什么是存储类型？',
-  WHAT_IS_STORAGE_CLASS_A: '存储类型（Storage Class）由集群管理员配置，不同的存储类型为集群用户提供不同类型的存储卷。',
-  WHAT_IS_LOCAL_VOLUME_Q: '什么是本地存储卷?',
-  WHAT_IS_LOCAL_VOLUME_A: '本地存储卷是创建在集群本地文件系统中的存储卷。',
+  WHAT_IS_STORAGE_CLASS_A: '存储类（Storage Class）由集群管理员配置，不同的存储类为集群用户提供不同类型的卷。',
+  WHAT_IS_LOCAL_VOLUME_Q: '什么是本地卷?',
+  WHAT_IS_LOCAL_VOLUME_A: '本地卷是创建在集群本地文件系统中的卷。',
   // List
   VOLUME_STATUS_BOUND: '已绑定',
   VOLUME_STATUS_LOST: '丢失',
@@ -43,13 +43,13 @@ module.exports = {
   // List > Create > Storage Settings
   CREATION_METHOD: '创建方式',
   CREATE_VOLUME_BY_STORAGE_CLASS: '通过存储类型创建',
-  CREATE_VOLUME_BY_SNAPSHOT: '通过存储卷快照创建',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: '选择存储卷快照来创建存储卷。',
-  SELECT_STORAGE_CLASS_CREATE_VOLUME: '选择已有的存储类型来创建存储卷。',
-  VOLUME_CAPACITY: '存储卷容量',
+  CREATE_VOLUME_BY_SNAPSHOT: '通过卷快照创建',
+  SELECT_SNAPSHOT_TO_CREATE_VOLUME: '选择卷快照来创建卷。',
+  SELECT_STORAGE_CLASS_CREATE_VOLUME: '选择已有的存储类来创建卷。',
+  VOLUME_CAPACITY: '卷容量',
   PARAM_REQUIRED: '此参数不能为空。',
-  VOLUME_SIZE_TIP: '存储卷容量必须大于 0。',
-  VOLUME_STORAGE_CLASS_DESC: '选择一个存储类型来创建特定种类的存储卷。',
+  VOLUME_SIZE_TIP: '卷容量必须大于 0。',
+  VOLUME_STORAGE_CLASS_DESC: '选择一个存储类来创建特定种类的卷。',
   // List > Advanced Settings
   // List > Edit
   // List > Edit YAML
