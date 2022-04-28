@@ -23,7 +23,7 @@ module.exports = {
   JOB_EMPTY_DESC: 'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
   JOB_COMPLETED: 'Completed',
   JOB_FAILED: 'Failed',
-  JOB_RUNNING: 'Running',
+  JOB_RUNNING: 'En ejecución',
   LAST_RUN_TIME: 'Last Run Time',
   // List > Create > Basic Information
   // List > Create > Strategy Settings
