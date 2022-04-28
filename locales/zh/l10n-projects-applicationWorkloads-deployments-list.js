@@ -41,15 +41,15 @@ module.exports = {
   AVAILABLE: '可用',
   IN_USER: '使用中',
   ACCESS_MODE_SCAP: '访问模式',
-  PVC_OR_TEMPLATE_EMPTY: '您已开启收集存储卷上的日志，请添加至少一个持久卷、临时卷或持久卷声明模板并指定容器日志所在的路径。',
-  PVC_EMPTY: '您已开启收集存储卷上的日志，请添加至少一个持久卷或临时卷并指定容器日志所在的路径。',
-  PROJECT_COLLECT_SAVED_DISABLED_DESC: '如需开启此功能，您需要在项目设置中开启收集存储卷上的日志。',
-  COLLECT_LOGS_ON_VOLUMES_DESC: '允许系统收集保存在存储卷上的容器日志。如需使用此功能，请为容器挂载读写模式的存储卷并设置容器将日志导出到存储卷。',
+  PVC_OR_TEMPLATE_EMPTY: '您已开启收集卷上的日志，请添加至少一个持久卷、临时卷或持久卷声明模板并指定容器日志所在的路径。',
+  PVC_EMPTY: '您已开启收集卷上的日志，请添加至少一个持久卷或临时卷并指定容器日志所在的路径。',
+  PROJECT_COLLECT_SAVED_DISABLED_DESC: '如需开启此功能，您需要在项目设置中开启收集卷上的日志。',
+  COLLECT_LOGS_ON_VOLUMES_DESC: '允许系统收集保存在卷上的容器日志。如需使用此功能，请为容器挂载读写模式的卷并设置容器将日志导出到卷。',
   // List > Create
   // List > Create > Storage Settings > Mount Volume
   CONTAINER_LOG_PATH: '容器日志路径',
   // List > Create > Storage Settings > Mount Volume > Temporary Volume
-  CONTAINER_LOG_PATH_TIP: '容器日志的路径，相对于存储卷的挂载路径，支持通配符，可使用半角逗号（,）分隔多个路径。例如，当存储卷挂载路径为 /data 时，log/*.log 表示日志文件为 /data/log 目录下所有 .log 格式的文件。',
+  CONTAINER_LOG_PATH_TIP: '容器日志的路径，相对于卷的挂载路径，支持通配符，可使用半角逗号（,）分隔多个路径。<br /><br /><b>示例</b><br />当卷挂载路径为 /data 时，log/*.log 表示日志文件为 /data/log 目录下所有 .log 格式的文件。',
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML
