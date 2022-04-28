@@ -27,7 +27,7 @@ module.exports = {
   SELECT_A_VOLUME_DESC: '选择用于创建快照的存储卷。',
   SELECT_VOLUME_SNAPSHOT_CLASS_DESC: '选择快照类型以创建特定类型的快照。',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
+  VOLUME_SNAPSHOT_EMPTY_DESC: '请创建一个存储卷快照。',
   VOLUME_SNAPSHOT_STATUS_CREATING: '创建中',
   VOLUME_SNAPSHOT_STATUS_FAILED: '创建失败',
   VOLUME_SNAPSHOT_STATUS_READY: '创建成功',
