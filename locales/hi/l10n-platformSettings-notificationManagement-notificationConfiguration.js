@@ -20,9 +20,9 @@ module.exports = {
   NOTIFICATION_MANAGEMENT: 'Notification Management',
   NOTIFICATION_CONFIGURATION: 'Notification Configuration',
   NOTIFICATION_CONFIGURATION_DESC: 'KubeSphere supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
-  NOTIFICATION_EMAIL: 'Email',
+  NOTIFICATION_EMAIL: 'ईमेल',
   // Email
-  MAIL_TITLE: 'Email',
+  MAIL_TITLE: 'ईमेल',
   INVALID_PORT_DESC: 'Please enter a valid port number.',
   ENTER_PORT_NUMBER: 'Please enter a port number.',
   ALERTING_NAME: 'Alert name',
@@ -145,7 +145,7 @@ module.exports = {
   NO_AUTH: 'No authentication',
   BEARER_TOKEN: 'Bearer token',
   TOKEN: 'Token',
-  WEBHOOK_USERNAME_EMPTY_DESC: 'Please enter a username.',
+  WEBHOOK_USERNAME_EMPTY_DESC: 'कृपया उपयोगकर्तानाम डालें।',
   WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
   WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
 };
