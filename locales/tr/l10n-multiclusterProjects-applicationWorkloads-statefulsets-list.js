@@ -33,8 +33,8 @@ module.exports = {
   PARTITION_ORDINAL_DESC: 'Kapsül replikalarını iki gruba bölmek için sıra tanımla. Statefulset güncellendiğinde, yalnızca sıralaması bu değerden eşit veya büyük olan kapsül replikaları güncellenir.',
   // List > Create > Storage Settings
   PVC_NAME_PREFIX: 'PVC Name Prefix',
-  PVC_NAME_PREFIX_DESC: 'Prefix of persistent volume claim names. The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 253 characters.',
-  PVC_NAME_PREFIX_EMPTY: 'Please enter the prefix of persistent volume names.',
+  PVC_NAME_PREFIX_DESC: 'Prefix of persistent volume claim names. The prefix can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 253 characters.',
+  PVC_NAME_PREFIX_EMPTY: 'Please enter the prefix of persistent volume claim names.',
   INVALID_PVC_NAME_PREFIX: 'Invalid prefix. The prefix can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 253 characters.',
   PVC_NAME_PREFIX_EXISTS: 'The prefix already exists. Please enter another prefix.',
   ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE: 'Add Persistent Volume Claim Template',
