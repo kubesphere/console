@@ -162,7 +162,7 @@ module.exports = {
   SELECT_PERSISITENT_VOLUME_CLAIM: 'Select Persistent Volume Claim',
   SELECT_PERSISITENT_VOLUME_CLAIM_DESC: 'Mount a persistent volume created according to the persistent volume claim to the containers.',
   CAPACITY: 'Kapasite',
-  VOLUME_NOT_SELECT: 'Lütfen bir hacim seçin.',
+  PVC_NOT_SELECT: 'Please select a persistent volume claim.',
   TEMPORARY_VOLUME: 'Geçici Hacim',
   VOLUME_NAME: 'Hacim Adı',
   VOLUME_NAME_EMPTY: 'Lütfen birim için bir ad belirleyin.',
