@@ -17,14 +17,14 @@
  */
 module.exports = {
   // Banner
-  PERSISTENT_VOLUME: 'Persistent Volume',
-  PERSISTENT_VOLUME_PL: 'Persistent Volumes',
-  PERSISTENT_VOLUME_LOW: 'persistent volume',
+  PERSISTENT_VOLUME: '持久卷',
+  PERSISTENT_VOLUME_PL: '持久卷',
+  PERSISTENT_VOLUME_LOW: '持久卷',
   // List
-  PV_STATUS_AVAILABLE: 'Available',
-  PV_STATUS_BOUND: 'Bound',
-  PV_STATUS_RELEASED: 'Terminating',
-  PV_STATUS_FAILED: 'Failed',
-  RECYCLING_STRATEGY: 'Recycling Strategy',
-  VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
+  PV_STATUS_AVAILABLE: '可用',
+  PV_STATUS_BOUND: '已绑定',
+  PV_STATUS_RELEASED: '删除中',
+  PV_STATUS_FAILED: '失败',
+  RECYCLING_STRATEGY: '回收策略',
+  VOLUME_EMPTY_DESC: '请将持久卷声明绑到工作负载。'
 };
