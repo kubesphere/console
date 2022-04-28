@@ -20,5 +20,5 @@ module.exports = {
   // More > Edit YAML
   // More > Delete
   // Resource Status
-  STORAGE_CLASS_VALUE: '存储类型：{value}'
+  STORAGE_CLASS_VALUE: '存储类：{value}'
 };
