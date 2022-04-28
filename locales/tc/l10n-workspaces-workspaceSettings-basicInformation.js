@@ -28,11 +28,11 @@ module.exports = {
   WORKSPACE_MEMBER_TCAP_PL: 'Workspace members',
   WS_MEMBER_SCAP: 'Workspace member',
   WS_MEMBER_SCAP_PL: 'Workspace members',
-  DEVOPS_PROJECT_TCAP: 'DevOps project',
+  DEVOPS_PROJECT_TCAP: 'DevOps 项目',
   DEVOPS_PROJECT_TCAP_PL: 'DevOps projects',
-  DEVOPS_PROJECT_LOW: 'DevOps project',
+  DEVOPS_PROJECT_LOW: 'DevOps 项目',
   DEVOPS_PROJECT_LOW_PL: 'DevOps projects',
-  PROJECTS: 'Projects',
+  PROJECTS: '項目',
   // Workspace Information > Edit Information
   // Network Isolation
   ON: 'On',
