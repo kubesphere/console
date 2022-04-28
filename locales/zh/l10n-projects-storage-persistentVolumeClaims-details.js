@@ -24,7 +24,7 @@ module.exports = {
   CREATE_SNAPSHOT: '创建快照',
   SNAPSHOT_EMPTY_TIP: '请选择一个快照类型。',
   // More > Expand
-  EXPAND_VOLUME: '扩展卷',
+  EXPAND_VOLUME: '扩容卷',
   EXPAND: '扩容',
   // Details
   PROVISIONER: '供应者',
