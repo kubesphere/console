@@ -18,7 +18,7 @@
 module.exports = {
   CODE_REPO_PL: 'Code Repositories',
   CODE_REPO_LOW: 'code cepository',
-  CODE_REPO: 'Code Repository',
+  CODE_REPO: '代碼倉庫',
   CODE_REPO_DESC: 'Manage code repositories based on Git.',
   CODE_REPO_EMPTY_DESC: 'Import a code repository from GitHub, GitLab, or Bitbucket. You can also use Git to directly pull source code.',
   IMPORT_CODE_REPO: 'Import Code Repository',
