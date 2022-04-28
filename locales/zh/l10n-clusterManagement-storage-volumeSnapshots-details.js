@@ -20,6 +20,6 @@ module.exports = {
   CREATE_VOLUME: '创建卷',
   // Details
   // Data Source
-  STORAGE_CLASS_SCAP: '存储类型',
+  STORAGE_CLASS_SCAP: '存储类',
   DATA_SOURCE: '数据源'
 };
