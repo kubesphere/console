@@ -41,8 +41,8 @@ module.exports = {
   AVAILABLE: 'Available',
   IN_USER: 'In use',
   ACCESS_MODE_SCAP: 'Access mode',
-  PVC_OR_TEMPLATE_EMPTY: 'You have enabled Collect Logs on Volumes. Please bind at least one persistent volume claim or volume claim template and specify the directory of the logs.',
-  PVC_EMPTY: 'You have enabled Collect Logs on Volumes. Please bind at least one persistent claim and specify the directory of the logs.',
+  PVC_OR_TEMPLATE_EMPTY: 'You have enabled Collect Logs on Volumes. Please add at least one persistent volume, temperary volume, or persistent volume claim template and specify the path of container logs.',
+  PVC_EMPTY: 'You have enabled Collect Logs on Volumes. Please add at least one persistent volume or temperary volume and specify the path of container logs.',
   PROJECT_COLLECT_SAVED_DISABLED_DESC: 'To enable this function, you need to enable Collect Logs on Volumes in Project Settings.',
   COLLECT_LOGS_ON_VOLUMES_DESC: 'Allow the system to collect container logs saved on volumes. To use this function, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
   // List > Create
