@@ -48,7 +48,7 @@ module.exports = {
   DATA_KEY: 'Clave',
   DATA_VALUE: 'Valor',
   DEFAULT: 'Predeterminado',
-  USERNAME_AND_PASSWORD: 'Username and password',
+  USERNAME_AND_PASSWORD: 'Secreto de contraseña de cuenta',
   // List > Edit Information
   // List > Edit YAML
   // List > Edit Settings
