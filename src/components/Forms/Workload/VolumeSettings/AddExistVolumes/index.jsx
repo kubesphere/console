@@ -126,9 +126,7 @@ export default class AddExistVolumes extends React.Component {
     return (
       <div className={classNames(styles.wrapper, className)}>
         <Form data={formData} ref={formRef}>
-          <Form.Item
-            rules={[{ required: true, message: t('VOLUME_NOT_SELECT') }]}
-          >
+          <Form.Item rules={[{ required: true, message: t('PVC_NOT_SELECT') }]}>
             <TypeSelect
               name="volume"
               options={this.volumes}
