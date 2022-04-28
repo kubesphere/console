@@ -128,7 +128,7 @@ module.exports = {
   TRUSTED_USERS: 'Trusted User',
   CONTRIBUTORS: 'Contributors',
   EVERYONE: 'Everyone',
-  NOBODY: 'None',
+  NOBODY: 'لا شَيْء',
   USERS_WITH_PERMISSION: 'Users with the admin or write permission',
   // List > Create > Advanced Settings (no repo specified)
   OPTIONS: 'Options',
@@ -151,7 +151,7 @@ module.exports = {
   PARAMS_BOOLEAN: 'Boolean',
   PARAMS_CHOICE: 'Options',
   CHOICE_PARAM_OPTION_DESC: 'Enter an option in each line. The first line is used as the default option.',
-  PARAMS_PASSWORD: 'Password',
+  PARAMS_PASSWORD: 'كلمة المرور',
   BUILD_TRIGGER: 'Build Trigger',
   BUILD_PERIODICALLY: 'Build periodically',
   BUILD_PERIODICALLY_TIP: 'Set the pipeline to periodically run build tasks.',
