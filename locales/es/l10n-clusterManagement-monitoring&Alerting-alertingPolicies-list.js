@@ -25,7 +25,7 @@ module.exports = {
   ALERTING_STATUS: 'Alerting Status',
   ALERTING_POLICY_EMPTY_DESC: 'You can notice if a resource is abnormal in real time by creating an alerting policy.',
   ALERT_RULE_INACTIVE: 'Inactive',
-  ALERT_RULE_PENDING: 'Pending',
+  ALERT_RULE_PENDING: 'Pendiente',
   ALERT_RULE_FIRING: 'Firing',
   ALERT_RULE_HEALTH_OK: 'Healthy',
   ALERT_RULE_HEALTH_ERR: 'Error',
