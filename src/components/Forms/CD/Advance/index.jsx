@@ -31,7 +31,7 @@ import {
   SYNC_STRATEGY,
   PRUNE_PROPAGATION_POLICY_OPTIONS,
 } from 'utils/constants'
-import { set } from 'lodash'
+import { get, set } from 'lodash'
 import Placement from './Placement'
 import styles from './index.scss'
 
@@ -50,9 +50,20 @@ export default class Advance extends React.Component {
     }))
   }
 
+  get getReplace() {
+    const { formTemplate } = this.props
+    return get(formTemplate, 'syncOptions.Replace', false)
+  }
+
   handleChange = value => {
     const { formTemplate } = this.props
     set(formTemplate, 'syncPolicy.type', value)
+    this.forceUpdate()
+  }
+
+  handleReplace = value => {
+    const { formTemplate } = this.props
+    set(formTemplate, 'syncOptions.Replace', value)
     this.forceUpdate()
   }
 
@@ -176,7 +187,11 @@ export default class Advance extends React.Component {
             </Form.Item>
             <Form.Item>
               <div className={styles.checkbox_item}>
-                <Checkbox name="syncOptions.Replace"></Checkbox>
+                <Checkbox
+                  name="syncOptions.Replace"
+                  checked={this.getReplace}
+                  onChange={this.handleReplace}
+                ></Checkbox>
                 <div className={styles.checkbox_item_info}>
                   <p>{t('REPLACE_RESOURCE')}</p>
                   <span>{t('REPLACE_RESOURCE_DESC')}</span>
