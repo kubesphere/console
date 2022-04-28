@@ -36,11 +36,11 @@ module.exports = {
   PVC_NAME_PREFIX_DESC: '持久卷声明名称的前缀。前缀只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
   PVC_NAME_PREFIX_EMPTY: '请输入持久卷声明名称的前缀。',
   INVALID_PVC_NAME_PREFIX: '前缀无效。前缀只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
-  PVC_NAME_PREFIX_EXISTS: 'The prefix already exists. Please enter another prefix.',
-  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE: 'Add Persistent Volume Claim Template',
-  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE_DESC: 'Add a persistent volume claim template to mount a persistent volume to each pod of the statefulset.',
+  PVC_NAME_PREFIX_EXISTS: '前缀已经存在，请输入其他前缀。',
+  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE: '添加持久卷声明模板',
+  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE_DESC: '添加持久卷声明模板为有状态副本集的每个容器组挂载一个持久卷。',
   VOLUME_CAPACITY_TCAP: '存储卷容量',
-  MOUNT_PATH_TCAP: 'Mount Path',
+  MOUNT_PATH_TCAP: '挂载路径',
   VOLUME_TEMPLATES: '存储卷模板',
   // List > Create > Advanced Settings
   // List > Create > Cluster Differences
