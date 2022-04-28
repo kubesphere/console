@@ -268,7 +268,7 @@ export default class ResourceSnapshot extends React.Component {
         ref={this.testRef}
         label={t('PERSISTENT_VOLUME_CLAIM')}
         rules={[
-          { required: true, message: t('VOLUME_NOT_SELECT') },
+          { required: true, message: t('PVC_NOT_SELECT') },
           {
             validator: this.volumeValidator,
           },
