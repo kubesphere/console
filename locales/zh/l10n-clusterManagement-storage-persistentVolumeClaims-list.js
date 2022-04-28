@@ -19,8 +19,8 @@ module.exports = {
   // Navigation pane
   STORAGE: '存储',
   // Banner
-  PERSISTENT_VOLUME_CLAIM_DESC: 'Persistent volume claims define storage requirements. The system creates persistent volumes according to persistent volume claims.',
-  PERSISTENT_VOLUME_CLAIM: 'Persistent Volume Claim',
+  PERSISTENT_VOLUME_CLAIM_DESC: '持久卷声明定义了存储需求，系统根据持久卷声明创建持久卷。',
+  PERSISTENT_VOLUME_CLAIM: '持久卷声明',
   PERSISTENT_VOLUME_CLAIM_PL: 'Persistent Volume Claims',
   WHAT_IS_STORAGE_CLASS_Q: 'What is a storage class?',
   WHAT_IS_STORAGE_CLASS_A: 'A storage class is a storage type configured by the cluster administrator. Different storage classes provide cluster users with different types of volumes.',
