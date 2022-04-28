@@ -153,14 +153,14 @@ module.exports = {
   ADD_METADATA: '添加元数据',
   POD_ADD_METADATA_DESC: '为容器组副本添加元数据。',
   // List > Create > Storage Settings
-  STORAGE_SETTINGS: 'Storage Settings',
+  STORAGE_SETTINGS: '存储设置',
   READ_ONLY_LOW: '只读',
   READ_AND_WRITE_LOW: '读写',
   // List > Create > Storage Settings > Mount Volume
   MOUNT_VOLUME: '挂载存储卷',
-  WORKLOAD_MOUNT_VOLUME_DESC: 'Mount an persistent volume, temporary volume, or HostPath volume to the containers.',
-  SELECT_PERSISITENT_VOLUME_CLAIM: 'Select Persistent Volume Claim',
-  SELECT_PERSISITENT_VOLUME_CLAIM_DESC: 'Mount a persistent volume created according to the persistent volume claim to the containers.',
+  WORKLOAD_MOUNT_VOLUME_DESC: '为容器挂载持久卷、临时卷或 HostPath 卷。',
+  SELECT_PERSISITENT_VOLUME_CLAIM: '选择持久卷声明',
+  SELECT_PERSISITENT_VOLUME_CLAIM_DESC: '将根据持久卷声明创建的持久卷挂载到容器。',
   CAPACITY: '容量',
   VOLUME_NOT_SELECT: '请选择存储卷。',
   TEMPORARY_VOLUME: '临时存储卷',
