@@ -20,8 +20,8 @@ module.exports = {
   CRONJOBS: 'Cronjobs',
   CRONJOB_DESC: 'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
   // List
-  CRONJOB_PAUSED: 'Paused',
-  CRONJOB_RUNNING: 'Running',
+  CRONJOB_PAUSED: 'Pausado',
+  CRONJOB_RUNNING: 'En ejecución',
   CRONJOB_FAILED: 'Failed',
   // List > Create > Basic Information
   SCHEDULE: 'Schedule',
