@@ -43,10 +43,10 @@ module.exports = {
   PORT_NUMBER_EMPTY: '请输入端口号。',
   USER: '用户',
   // List > Create > Storage Settings
-  VOLUME_NAME_EXIST: '存储卷名称已存在。',
+  VOLUME_NAME_EXIST: '卷名称已存在。',
   SELECT_TYPE: '选择{type}',
   SPECIFY_SUBPATH: '指定子路径',
-  SPECIFY_SUBPATH_TIP: '指定需要挂载到容器的存储卷子路径。',
+  SPECIFY_SUBPATH_TIP: '指定需要挂载到容器的卷子路径。',
   MOUNT_PATH: '挂载路径',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: '网段',
