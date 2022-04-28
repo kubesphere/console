@@ -17,11 +17,11 @@
  */
 module.exports = {
   // Banner
-  STORAGE_CLASS_PL: '存储类型',
+  STORAGE_CLASS_PL: '存储类',
   STORAGE_CLASS_DESC: '存储类（StorageClass）支持动态卷供应，使管理员能够按需创建新的卷。',
   // List
-  STORAGE_CLASS_EMPTY_DESC: '请创建一个存储类型。',
-  DEFAULT_STORAGE_CLASS: '默认存储类型',
+  STORAGE_CLASS_EMPTY_DESC: '请创建一个存储类。',
+  DEFAULT_STORAGE_CLASS: '默认存储类',
   ALLOW_VOLUME_SNAPSHOT: '允许卷快照',
   ALLOW_VOLUME_CLONE: '允许卷克隆',
   ALLOW_VOLUME_EXPANSION: '允许卷扩容',
@@ -36,7 +36,7 @@ module.exports = {
   VOLUME_EXPANSION: '卷扩容',
   RECLAIM_POLICY: '回收机制',
   ACCESS_MODE: '访问模式',
-  ACCESS_MODES_DESC: '选择存储类型支持的一种或多种访问模式。',
+  ACCESS_MODES_DESC: '选择存储类支持的一种或多种访问模式。',
   STORAGE_SYSTEM: '存储系统',
   VOLUME_BINDING_MODE: '卷绑定模式',
   IMMEDIATE_BINDING: '立即绑定',
@@ -86,10 +86,10 @@ module.exports = {
   CEPHRBD_IMAGE_FEATURES_DESC: 'Ceph 集群的额外功能。仅当设置 imageFormat 为“2”时，才需要填写该值。',
   CEPH_MONITOR_IP: 'IP 地址:端口号',
   // List > Create > > Custom > Storage Class Settings
-  STORAGE_CLASS_SETTINGS: '存储类型设置',
+  STORAGE_CLASS_SETTINGS: '存储类设置',
   PARAMETERS: '参数',
   // List > Edit Information
   // List > Delete
-  STORAGE_CLASS: '存储类型',
-  STORAGE_CLASS_LOW: '存储类型'
+  STORAGE_CLASS: '存储类',
+  STORAGE_CLASS_LOW: '存储类'
 };
