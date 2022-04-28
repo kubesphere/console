@@ -26,7 +26,7 @@ module.exports = {
   // More > Edit Authorization Rules
   SET_AUTHORIZATION_RULES: '设置授权规则',
   AUTHORIZATION_RULES: '授权规则',
-  AUTHORIZATION_RULES_DESC: '设置授权规则使存储类只能在特定项目和企业空间访问。',
+  AUTHORIZATION_RULES_DESC: '设置授权规则使用户只能在特定项目和企业空间使用存储类。',
   AUTHORIZATION_NOT_SUPPORT: '当前集群不支持此功能。请升级 KubeSphere 到 v3.3.0 或更高版本，或者手动安装 <a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a>。',
   OPERATOR_IN: '属于',
   OPERATOR_NOT_IN: '不属于',
@@ -37,7 +37,7 @@ module.exports = {
   VOLUME_SNAPSHOT_CREATION: '卷快照创建',
   VOLUME_SNAPSHOT_CREATION_DESC: '允许用户创建卷快照。',
   VOLUME_EXPANSION_DESC: '允许用户对卷进行扩容。卷容量只能增加，不能减少。',
-  SET_PVC_PERMISSIONS_TIP: '以下设置仅控制否允许用户在 Web 控制台执行操作。基于存储类型创建的持久卷声明是否实际支持这些操作取决于后端存储系统。',
+  SET_PVC_PERMISSIONS_TIP: '以下设置仅控制否允许用户在 Web 控制台执行操作。基于存储类创建的持久卷声明是否实际支持这些操作取决于后端存储系统。',
   // More > Set Auto Expansion
   SET_AUTO_EXPANSION: '设置自动扩容',
   AUTO_EXPANSION: '自动扩容',
