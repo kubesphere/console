@@ -41,8 +41,8 @@ module.exports = {
   AVAILABLE: 'En desuso',
   IN_USER: 'En uso',
   ACCESS_MODE_SCAP: 'Modo de acceso admitido',
-  PVC_OR_TEMPLATE_EMPTY: 'You have enabled Collect Logs on Volumes. Please bind at least one persistent volume claim or volume claim template and specify the directory of the logs.',
-  PVC_EMPTY: 'You have enabled Collect Logs on Volumes. Please bind at least one persistent claim and specify the directory of the logs.',
+  PVC_OR_TEMPLATE_EMPTY: 'You have enabled Collect Logs on Volumes. Please add at least one persistent volume, temperary volume, or persistent volume claim template and specify the path of container logs.',
+  PVC_EMPTY: 'You have enabled Collect Logs on Volumes. Please add at least one persistent volume or temperary volume and specify the path of container logs.',
   PROJECT_COLLECT_SAVED_DISABLED_DESC: 'Please contact the project administrator to enable disk log collection in <b>Project Settings</b> > <b>Advanced Settings</b>.',
   COLLECT_LOGS_ON_VOLUMES_DESC: 'After you add a volume (ReadAndWrite mode), you can collect logs inside the volume. When you enable disk log collection, the Filebeat image will be used as a sidecar pattern and injected into the Pod to collect logs.',
   // List > Create
