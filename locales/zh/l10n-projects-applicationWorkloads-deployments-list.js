@@ -41,8 +41,8 @@ module.exports = {
   AVAILABLE: '可用',
   IN_USER: '使用中',
   ACCESS_MODE_SCAP: '访问模式',
-  PVC_OR_TEMPLATE_EMPTY: '您已开启收集卷上的日志，请添加至少一个持久卷、临时卷或持久卷声明模板并指定容器日志所在的路径。',
-  PVC_EMPTY: '您已开启收集卷上的日志，请添加至少一个持久卷或临时卷并指定容器日志所在的路径。',
+  PVC_OR_TEMPLATE_EMPTY: '您已开启收集卷上日志，请添加至少一个持久卷、临时卷或持久卷声明模板并指定容器日志所在的路径。',
+  PVC_EMPTY: '您已开启收集卷上日志，请添加至少一个持久卷、临时卷或持久卷声明模板并指定容器日志所在的路径。',
   PROJECT_COLLECT_SAVED_DISABLED_DESC: '如需开启此功能，您需要在项目设置中开启收集卷上的日志。',
   COLLECT_LOGS_ON_VOLUMES_DESC: '允许系统收集保存在卷上的容器日志。如需使用此功能，请为容器挂载读写模式的卷并设置容器将日志导出到卷。',
   // List > Create
