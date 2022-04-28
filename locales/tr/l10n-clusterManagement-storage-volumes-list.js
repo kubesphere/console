@@ -21,10 +21,10 @@ module.exports = {
   PERSISTENT_VOLUME_PL: 'Persistent Volumes',
   PERSISTENT_VOLUME_LOW: 'persistent volume',
   // List
-  PV_STATUS_AVAILABLE: 'Available',
+  PV_STATUS_AVAILABLE: 'Uygun',
   PV_STATUS_BOUND: 'Bound',
-  PV_STATUS_RELEASED: 'Terminating',
-  PV_STATUS_FAILED: 'Failed',
+  PV_STATUS_RELEASED: 'Yıkılıyor',
+  PV_STATUS_FAILED: 'Başarısız',
   RECYCLING_STRATEGY: 'Recycling Strategy',
   VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
 };
