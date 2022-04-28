@@ -22,7 +22,7 @@ module.exports = {
   SCENARIOS_FOR_SERVICES_Q: '¿Cuáles son los escenarios de aplicación para servicios sin estado y servicios con estado?',
   SCENARIOS_FOR_SERVICES_A: 'Los servicios sin estado son útiles para escenarios en los que los datos persistentes no se almacenan localmente y varias instancias responden a solicitudes uniformes (Nginx, Tomcat, etc.). Los servicios con estado son útiles cuando se trata de almacenamiento de datos, subprocesos múltiples o colas (base de datos MySQL, Kafka, Zookeeper, etc.).',
   // Service List
-  SERVICE_TYPE: 'Service Type',
+  SERVICE_TYPE: 'Tipo de servicio',
   SERVICE_LIST: 'Lista',
   // List > Create
   CREATE_SERVICE_DESC: 'Select a service creation method.',
