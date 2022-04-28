@@ -34,7 +34,7 @@ module.exports = {
   NOTIFICATION_CONDITIONS: 'Notification Conditions',
   CONTAINER: 'Container',
   VALUES: 'Values',
-  CONDITION_OPERATOR: 'Operator',
+  CONDITION_OPERATOR: 'Operador',
   NOTIFICATION_CONDITION_SETTING_TIP: 'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use a carriage return to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
   NOTIFICATION_CONDITION_SETTINGS_DESC: 'You will receive only notifications that meet the conditions.',
   INCLUDES_VALUES: 'Includes values',
@@ -86,7 +86,7 @@ module.exports = {
   MAX_KEYWORD_COUNT: 'You can add a maximum of {count} keywords.',
   KEYWORD_EXISTS: 'The keyword already exists. Please add another keyword.',
   EMPTY_KEYWORDS_DESC: 'No keyword is added.',
-  DINGTALK_SECRET: 'Secret',
+  DINGTALK_SECRET: 'Secreto',
   // WeCom
   WeCom: 'WeCom',
   WECOM_TITLE: 'WeCom',
@@ -101,14 +101,14 @@ module.exports = {
   // WeCom > User ID
   USER_ID: 'ID de usuario',
   TOUSER_LIST: 'Added User IDs',
-  WECOM_TOUSER_PLACEHOLDER: 'User ID',
+  WECOM_TOUSER_PLACEHOLDER: 'ID de usuario',
   EMPTY_TOUSER_DESC: 'No user ID is added.',
   ENTER_TOUSER_TIP: 'Please enter a user ID.',
   TOUSER_EXISTS: 'The user ID already exists. Please enter another user ID.',
   MAX_TOUSER_COUNT: 'You can add a maximum of {count} users.',
   // WeCom > Department ID
   DEPARTMENT_ID: 'ID de departamento',
-  WECOM_TOPARTY_PLACEHOLDER: 'Department ID',
+  WECOM_TOPARTY_PLACEHOLDER: 'ID de departamento',
   TOPARTY_LIST: 'Added Department IDs',
   EMPTY_TOPARTY_DESC: 'No department ID is added.',
   ENTER_TOPARTY_TIP: 'Please enter a department ID.',
@@ -117,7 +117,7 @@ module.exports = {
   // WeCom > Tag ID
   TAG_ID: 'ID de etiqueta',
   TOTAG_LIST: 'Added Tag IDs',
-  WECOM_TOTAG_PLACEHOLDER: 'Tag ID',
+  WECOM_TOTAG_PLACEHOLDER: 'ID de etiqueta',
   EMPTY_TOTAG_DESC: 'No tag ID is added.',
   ENTER_TOTAG_TIP: 'Please enter a tag ID.',
   TOTAG_EXISTS: 'The tag ID already exists. Please enter another tag ID.',
@@ -145,7 +145,7 @@ module.exports = {
   NO_AUTH: 'No authentication',
   BEARER_TOKEN: 'Bearer token',
   TOKEN: 'Token',
-  WEBHOOK_USERNAME_EMPTY_DESC: 'Please enter a username.',
+  WEBHOOK_USERNAME_EMPTY_DESC: 'Por favor introduce el nombre de usuario',
   WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
   WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
 };
