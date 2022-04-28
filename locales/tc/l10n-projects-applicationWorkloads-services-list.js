@@ -22,7 +22,7 @@ module.exports = {
   SCENARIOS_FOR_SERVICES_Q: '無狀態服務和有狀態服務的使用場景?',
   SCENARIOS_FOR_SERVICES_A: '無狀態服務適用於不需要數據持久化的場景，並且多個實例對統一請求的響應式相同的場景(例如 Nginx、Tomcat 等)；有狀態服務適用於需要數據儲存功能的服務、或者指多線程類型的服務，列隊等 (mysql 資料庫、kafka、zookeeper 等)。',
   // Service List
-  SERVICE_TYPE: 'Service Type',
+  SERVICE_TYPE: '服務類型',
   SERVICE_LIST: '列表',
   // List > Create
   CREATE_SERVICE_DESC: 'Select a Service creation method.',
