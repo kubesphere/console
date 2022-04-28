@@ -25,5 +25,5 @@ module.exports = {
   // List > Create > Basic Information
   // List > Create > Storage Settings
   // List > Create > Advanced Settings
-  VOLUME_ADD_METADATA_DESC: '为存储卷添加元数据。'
+  VOLUME_ADD_METADATA_DESC: '为卷添加元数据。'
 };
