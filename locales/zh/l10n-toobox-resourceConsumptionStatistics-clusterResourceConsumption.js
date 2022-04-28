@@ -29,7 +29,7 @@ module.exports = {
   PRICE_CONFIG_DESC: '尚未配置价格信息。',
   METER_CPU_USAGE: 'CPU 用量',
   METER_MEMORY_USAGE: '内存用量',
-  METER_VOLUME_USAGE: '存储卷用量',
+  METER_VOLUME_USAGE: '卷用量',
   METER_NET_RECEIVED_USAGE: '入站流量用量',
   METER_NET_TRANSMITTED_USAGE: '出站流量用量',
   NET_RECEIVED: '入站流量',
