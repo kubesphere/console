@@ -31,13 +31,13 @@ module.exports = {
   OPERATOR_IN: '属于',
   OPERATOR_NOT_IN: '不属于',
   // More > Set Volume Permissions
-  SET_PVC_PERMISSIONS: 'Set PVC Permissions',
+  SET_PVC_PERMISSIONS: '设置 PVC 权限',
   VOLUME_CLONING: '存储卷克隆',
   VOLUME_CLONING_DESC: '允许用户克隆存储卷。',
   VOLUME_SNAPSHOT_CREATION: '存储卷快照创建',
   VOLUME_SNAPSHOT_CREATION_DESC: '允许用户创建存储卷快照。',
   VOLUME_EXPANSION_DESC: '允许用户对存储卷扩容。存储卷容量只能增加，不能减少。',
-  SET_PVC_PERMISSIONS_TIP: 'The following settings only control whether users are allowed to perform the operations on the web console. Whether PVCs created based on the storage class actually support the operations depends on the backend storage system.',
+  SET_PVC_PERMISSIONS_TIP: '以下设置仅控制否允许用户在 Web 控制台执行操作。基于存储类型创建的持久卷声明是否实际支持这些操作取决于后端存储系统。',
   // More > Set Auto Expansion
   SET_AUTO_EXPANSION: '设置自动扩容',
   AUTO_EXPANSION: '自动扩容',
