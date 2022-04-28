@@ -162,7 +162,7 @@ module.exports = {
   SELECT_PERSISITENT_VOLUME_CLAIM: 'Select Persistent Volume Claim',
   SELECT_PERSISITENT_VOLUME_CLAIM_DESC: 'Mount a persistent volume created according to the persistent volume claim to the containers.',
   CAPACITY: '容量',
-  VOLUME_NOT_SELECT: '請選擇儲存卷',
+  PVC_NOT_SELECT: 'Please select a persistent volume claim.',
   TEMPORARY_VOLUME: '臨時儲存卷',
   VOLUME_NAME: '儲存卷名稱',
   VOLUME_NAME_EMPTY: '請輸入儲存卷名稱',
