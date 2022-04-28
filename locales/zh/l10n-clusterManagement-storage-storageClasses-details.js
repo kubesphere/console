@@ -20,13 +20,13 @@ module.exports = {
   TRUE: '是',
   FALSE: '否',
   // More > Set as Default Storage Class
-  SET_DEFAULT_STORAGE_CLASS_TITLE: '设为默认存储类型',
-  SET_AS_DEFAULT_STORAGE_CLASS: '设为默认存储类型',
+  SET_DEFAULT_STORAGE_CLASS_TITLE: '设为默认存储类',
+  SET_AS_DEFAULT_STORAGE_CLASS: '设为默认存储类',
   STORAGE_CLASS_SET_DEFAULT_DESC: '设置为默认存储类后，如果没有特殊指定，系统将使用默认存储类创建卷。一个 KubeSphere 集群中仅允许设置一个默认存储类。',
   // More > Edit Authorization Rules
   SET_AUTHORIZATION_RULES: '设置授权规则',
   AUTHORIZATION_RULES: '授权规则',
-  AUTHORIZATION_RULES_DESC: '设置授权规则使存储类型只能在特定项目和企业空间访问。',
+  AUTHORIZATION_RULES_DESC: '设置授权规则使存储类只能在特定项目和企业空间访问。',
   AUTHORIZATION_NOT_SUPPORT: '当前集群不支持此功能。请升级 KubeSphere 到 v3.3.0 或更高版本，或者手动安装 <a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a>。',
   OPERATOR_IN: '属于',
   OPERATOR_NOT_IN: '不属于',
@@ -35,7 +35,7 @@ module.exports = {
   VOLUME_CLONING: '卷克隆',
   VOLUME_CLONING_DESC: '允许用户克隆卷。',
   VOLUME_SNAPSHOT_CREATION: '卷快照创建',
-  VOLUME_SNAPSHOT_CREATION_DESC: '允许用户创建存储卷快照。',
+  VOLUME_SNAPSHOT_CREATION_DESC: '允许用户创建卷快照。',
   VOLUME_EXPANSION_DESC: '允许用户对卷进行扩容。卷容量只能增加，不能减少。',
   SET_PVC_PERMISSIONS_TIP: '以下设置仅控制否允许用户在 Web 控制台执行操作。基于存储类型创建的持久卷声明是否实际支持这些操作取决于后端存储系统。',
   // More > Set Auto Expansion
