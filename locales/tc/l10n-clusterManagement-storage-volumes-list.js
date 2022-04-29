@@ -23,7 +23,7 @@ module.exports = {
   // List
   PV_STATUS_AVAILABLE: '閒置',
   PV_STATUS_BOUND: 'Bound',
-  PV_STATUS_RELEASED: '刪除中',
+  PV_STATUS_RELEASED: '已發布',
   PV_STATUS_FAILED: '失敗',
   RECYCLING_STRATEGY: 'Recycling Strategy',
   VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
