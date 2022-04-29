@@ -192,7 +192,8 @@ export default class ContainerItem extends React.Component {
     const { showContainerLog } = this.state
     const link = this.getLink(detail.name)
     const { status, reason } = getContainerStatus(detail)
-    const hasProbe = detail.livenessProbe || detail.readinessProbe
+    const hasProbe =
+      detail.livenessProbe || detail.readinessProbe || detail.startupProbe
     const hasLife = detail.lifecycle
 
     return (

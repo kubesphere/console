@@ -149,7 +149,8 @@ export default class ContainerItem extends React.Component {
 
   render() {
     const { className, detail, prefix, podName, isInit, ...rest } = this.props
-    const hasProbe = detail.livenessProbe || detail.readinessProbe
+    const hasProbe =
+      detail.livenessProbe || detail.readinessProbe || detail.startupProbe
     const hasLife = detail.lifecycle
 
     return (
