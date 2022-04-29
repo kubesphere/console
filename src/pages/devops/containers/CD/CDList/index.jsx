@@ -181,14 +181,14 @@ export default class CDList extends React.Component {
 
   getWeatherStatus = () => {
     return CD_WEATHER_STATUS.map(status => ({
-      text: status.text,
+      text: t(status.text),
       value: status.value,
     }))
   }
 
   getSyncStatus = () => {
     return CD_SYNC_STATUS.map(status => ({
-      text: status.text,
+      text: t(status.text),
       value: status.value,
     }))
   }
@@ -392,7 +392,7 @@ export default class CDList extends React.Component {
         label: 'SYNC_STATUS',
       },
       {
-        title: 'OUTOFSYNC',
+        title: 'OUT_OF_SYNC',
         color: '#F5A623',
         used: syncStatus.OutOfSync || 0,
         total,
