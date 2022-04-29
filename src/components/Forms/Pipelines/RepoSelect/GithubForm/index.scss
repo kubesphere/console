@@ -73,7 +73,7 @@
 .orgList {
   flex-basis: 332px;
   min-width: 332px;
-  max-height: 300px;
+  height: 300px;
   overflow: auto;
 
   :global {
@@ -222,12 +222,18 @@
 }
 
 .loadMore {
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-
-  &:hover {
-    cursor: pointer;
+  text-align: center;
+  color: #79879c;
+  margin: 0 auto;
+  display: flex;
+  span {
+    padding: 0 2em;
+  }
+  &:before,
+  &:after {
+    content: '';
+    flex: 1;
+    background: linear-gradient(transparent 50%, #ccc 50%, transparent 54%);
   }
 }
 

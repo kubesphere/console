@@ -20,7 +20,9 @@ import React from 'react'
 import classNames from 'classnames'
 import { action, observable, toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { get, isEmpty, isArray, pick } from 'lodash'
+import { get, isEmpty, pick } from 'lodash'
+import { ScrollLoad } from 'components/Base'
+
 import {
   Form,
   Button,
@@ -49,7 +51,7 @@ export default class GitHubForm extends React.Component {
   repoListData = []
 
   get orgList() {
-    return this.props.store.orgList.data
+    return this.props.store.orgList
   }
 
   get activeRepoIndex() {
@@ -57,7 +59,7 @@ export default class GitHubForm extends React.Component {
   }
 
   get repoList() {
-    return get(this.orgList, `${this.activeRepoIndex}.repositories.items`, [])
+    return this.props.store.repoList
   }
 
   get scmType() {
@@ -85,49 +87,22 @@ export default class GitHubForm extends React.Component {
   }
 
   @action
-  handleActiveRepoChange = async e => {
-    const { repoIndex } = e.currentTarget.dataset
-
-    this.props.store.handleChangeActiveRepoIndex(parseInt(repoIndex, 10))
-
-    const repoList = get(this.orgList, `[${repoIndex}].repositories.items`, [])
-
-    if (!isArray(repoList) || isEmpty(repoList)) {
-      const org = await this.props.store.getRepoList({
-        activeRepoIndex: parseInt(repoIndex, 10),
-        cluster: this.props.cluster,
-      })
-
-      this.repoListData = get(
-        org,
-        `data.${this.activeRepoIndex}.repositories.items`,
-        []
-      )
-    } else {
-      this.repoListData = repoList
-    }
-  }
-
-  handleGetRepoList = async () => {
-    const org = await this.props.store.getRepoList({
+  handleActiveOrgChange = async orgIndex => {
+    this.props.store.handleChangeActiveRepoIndex(parseInt(orgIndex, 10))
+    const repoList = await this.props.store.getRepoList({
+      activeRepoIndex: parseInt(orgIndex, 10),
       cluster: this.props.cluster,
+      more: false,
     })
-
-    this.repoListData = get(
-      org,
-      `data.${this.activeRepoIndex}.repositories.items`,
-      []
-    )
-    this.setState({ searchValue: '' })
+    this.repoListData = [...repoList.data]
   }
 
-  handleSubmit = e => {
-    const index = e.currentTarget.dataset && e.currentTarget.dataset.repoIndex
+  handleSubmit = index => {
     const data = {
       [REPO_KEY_MAP[this.scmType]]: {
         repo: get(this.repoListData, `${index}.name`),
         credential_id: this.credentialId,
-        owner: get(this.orgList[this.activeRepoIndex], 'name'),
+        owner: get(toJS(this.orgList), `data[${this.activeRepoIndex}]`, 'name'),
         discover_branches: 1,
         discover_pr_from_forks: { strategy: 2, trust: 2 },
         discover_pr_from_origin: 2,
@@ -135,6 +110,7 @@ export default class GitHubForm extends React.Component {
         description: get(this.repoListData, `${index}.description`),
       },
     }
+
     this.props.handleSubmit(data)
   }
 
@@ -156,6 +132,7 @@ export default class GitHubForm extends React.Component {
     if (!isEmpty(credentialDetail)) {
       const secretName = get(credentialDetail, 'value')
       const secretNamespace = get(credentialDetail, 'namespace')
+
       await this.props.store
         .putAccessName({ secretName, secretNamespace, cluster, devops })
         .finally(() => {
@@ -248,42 +225,91 @@ export default class GitHubForm extends React.Component {
     )
   }
 
-  renderRepoList() {
-    return (
-      !isEmpty(this.orgList) &&
-      this.orgList.map((repo, index) => (
-        <div
-          key={repo.name}
-          className={classNames(styles.repo, {
-            [styles['repo-active']]: this.activeRepoIndex === index,
-          })}
-          data-repo-index={index}
-          onClick={this.handleActiveRepoChange}
-        >
-          <div className={styles.avatar}>
-            <img src={repo.avatar} alt={repo.name} />
-          </div>
-          <div className={styles.name}>{repo.name}</div>
-        </div>
-      ))
+  handleUpdateOrgList = async params => {
+    const { pagination } = this.orgList
+    await this.props.store.getOrganizationList(
+      {
+        pageNumber: params?.page ?? 1,
+        pageSize: pagination.pageSize,
+        more: params?.more ?? false,
+        ...this.props.store.orgParams,
+      },
+      this.scmType,
+      this.props.cluster
     )
   }
 
   renderOrgList() {
+    const { data, isEnd, pagination = {}, isLoading } = this.orgList
+    return (
+      <ScrollLoad
+        data={toJS(data)}
+        isEnd={isEnd}
+        page={pagination.pageNumber || 1}
+        loading={isLoading}
+        onFetch={this.handleUpdateOrgList}
+        noMount={true}
+      >
+        {!isEmpty(data) &&
+          data.map((repo, index) => (
+            <div
+              key={repo.name}
+              className={classNames(styles.repo, {
+                [styles['repo-active']]: this.activeRepoIndex === index,
+              })}
+              onClick={() => this.handleActiveOrgChange(index)}
+            >
+              <div className={styles.avatar}>
+                <img src={repo.avatar} alt={repo.name} />
+              </div>
+              <div className={styles.name}>{repo.name}</div>
+            </div>
+          ))}
+      </ScrollLoad>
+    )
+  }
+
+  handleUpdateRepoList = async params => {
+    const { pagination } = this.repoList
+    const list = await this.props.store.getRepoList({
+      activeRepoIndex: this.activeRepoIndex,
+      cluster: this.props.cluster,
+      pageNumber: params?.page ?? 1,
+      pageSize: pagination.pageSize,
+      more: params?.more ?? false,
+    })
+
+    this.repoListData = [...list.data]
+  }
+
+  renderRepoList() {
+    const { isEnd, pagination = {}, isLoading } = this.repoList
+
     if (isEmpty(this.repoListData)) {
       return (
-        <EmptyList
-          className={styles.empty}
-          icon="exclamation"
-          title={t('NO_DATA')}
-          desc={t('NO_REPO_FOUND_DESC')}
-        />
+        <Loading spinning={isLoading}>
+          <EmptyList
+            className={styles.empty}
+            icon="exclamation"
+            title={t('NO_DATA')}
+            desc={t('NO_REPO_FOUND_DESC')}
+          />
+        </Loading>
       )
     }
+
     return (
-      <div className={styles.repoListBox}>
+      <ScrollLoad
+        data={toJS(this.repoListData)}
+        isEnd={isEnd}
+        page={pagination.pageNumber || 1}
+        loading={isLoading}
+        onFetch={this.handleUpdateRepoList}
+        wrapperClassName={styles.repoListBox}
+        noMount={true}
+      >
         {this.repoListData.map((repo, index) => (
-          <div className={styles.repo} key={repo.name}>
+          <div className={styles.repo} key={`${repo.name}-${index}`}>
             <div className={styles.icon}>
               <Icon
                 name={
@@ -300,15 +326,14 @@ export default class GitHubForm extends React.Component {
             </div>
             <div
               className={styles.action}
-              onClick={this.handleSubmit}
+              onClick={() => this.handleSubmit(index)}
               data-repo-index={index}
             >
               <Button type="control">{t('SELECT')}</Button>
             </div>
           </div>
         ))}
-        {this.renderMore()}
-      </div>
+      </ScrollLoad>
     )
   }
 
@@ -326,30 +351,14 @@ export default class GitHubForm extends React.Component {
 
   filterResource = value => {
     if (isEmpty(value)) {
-      this.repoListData = [...this.repoList]
+      this.repoListData = [...this.repoList.data]
     } else {
-      this.repoListData = this.repoList.filter(repo =>
+      this.repoListData = this.repoList.data.filter(repo =>
         repo.name.includes(value)
       )
     }
 
     this.setState({ searchValue: value })
-  }
-
-  renderMore = () => {
-    const hasNextPage = get(
-      this.orgList,
-      `${this.activeRepoIndex}.repositories.nextPage`
-    )
-
-    return hasNextPage ? (
-      <div
-        className={classNames(styles.repo, styles.loadMore)}
-        onClick={this.handleGetRepoList}
-      >
-        {t('LOAD_MORE')}
-      </div>
-    ) : null
   }
 
   renderEmpty = _orgList => {
@@ -375,26 +384,16 @@ export default class GitHubForm extends React.Component {
   }
 
   render() {
-    const { orgList, getRepoListLoading } = this.props.store
-
-    if (!orgList.isLoading && isEmpty(toJS(this.orgList))) {
-      return this.renderEmpty(orgList)
+    if (!this.orgList.isLoading && isEmpty(toJS(this.orgList.data))) {
+      return this.renderEmpty(this.orgList.data)
     }
 
     return (
       <div className={styles.tabContent}>
-        <div className={styles.orgList}>
-          <Loading spinning={toJS(orgList.isLoading)}>
-            <>{this.renderRepoList()}</>
-          </Loading>
-        </div>
+        <div className={styles.orgList}>{this.renderOrgList()}</div>
         <div className={styles.repoListContainer}>
           <>{this.renderSearch()}</>
-          <div className={styles.repoList}>
-            <Loading spinning={toJS(getRepoListLoading)}>
-              <>{this.renderOrgList()}</>
-            </Loading>
-          </div>
+          <div className={styles.repoList}>{this.renderRepoList()}</div>
         </div>
       </div>
     )
