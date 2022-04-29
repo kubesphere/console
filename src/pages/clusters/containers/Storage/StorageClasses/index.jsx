@@ -76,7 +76,7 @@ export default class StorageClasses extends React.Component {
         ),
       },
       {
-        title: t('VOLUME_COUNT'),
+        title: t('PVC_COUNT'),
         dataIndex: 'volumeCount',
         isHideable: true,
         render: (count, record) =>
