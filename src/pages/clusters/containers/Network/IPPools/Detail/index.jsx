@@ -147,7 +147,7 @@ export default class IPPoolDetail extends React.Component {
       },
       {
         name: t('END_IP_ADDRESS'),
-        value: block.last,
+        value: block.broadcast,
       },
       {
         name: t('CREATION_TIME_TCAP'),
