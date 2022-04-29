@@ -36,4 +36,8 @@ module.exports = {
   MULTI_CLUSTER_PROJECT_NOT_FOR_CD: 'Multi-cluster projects cannot be used for continuous deployment.',
   CODE_REPOSITORY_EXIST_DESC: 'The code repository already exists. Please select another code repository.',
   DEPLOYMENT_LOCATION_EXIST_DESC: 'The deployment location already exists. Please set another deployment location.',
+  CODE_REPOSITORY_NOT_FOUND:'Code repository is not found',
+  RESOURCE_DEPLOYMENT_LOCATION_NOT_FOUND:'Resource deployment location is not found',
+  ALL_CODE_REPOSITORIES:'all code repositories',
+  ALL_RESOURCE_DEPLOYMENT_LOCATIONS:'All resource deployment locations',
 }
