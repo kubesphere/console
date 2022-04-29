@@ -23,7 +23,7 @@ module.exports = {
   // List
   PV_STATUS_AVAILABLE: 'Uygun',
   PV_STATUS_BOUND: 'Bound',
-  PV_STATUS_RELEASED: 'Yıkılıyor',
+  PV_STATUS_RELEASED: 'Yayınlandı',
   PV_STATUS_FAILED: 'Başarısız',
   RECYCLING_STRATEGY: 'Recycling Strategy',
   VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
