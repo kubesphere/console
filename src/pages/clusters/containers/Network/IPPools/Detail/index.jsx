@@ -134,10 +134,6 @@ export default class IPPoolDetail extends React.Component {
         value: detail.cidr,
       },
       {
-        name: t('MASK'),
-        value: block.mask,
-      },
-      {
         name: t('NETWORK'),
         value: block.base,
       },
