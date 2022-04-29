@@ -32,13 +32,13 @@ module.exports = {
   OPERATOR_IN: 'In',
   OPERATOR_NOT_IN: 'Not in',
   // More > Set Volume Permissions
-  SET_PVC_PERMISSIONS: 'Set PVC Permissions',
+  SET_VOLUME_OPERATIONS: 'Set Volume Operations',
   VOLUME_CLONING: 'Volume Cloning',
   VOLUME_CLONING_DESC: 'Allow users to clone volumes.',
   VOLUME_SNAPSHOT_CREATION: 'Volume Snapshot Creation',
   VOLUME_SNAPSHOT_CREATION_DESC: 'Allow users to create volume snapshots.',
   VOLUME_EXPANSION_DESC: 'Allow users to expand volumes. Volumes can only be expanded and cannot be shrunk.',
-  SET_PVC_PERMISSIONS_TIP: 'The following settings only control whether users are allowed to perform the operations on the web console. Whether PVCs created based on the storage class actually support the operations depends on the backend storage system.',
+  SET_VOLUME_OPERATIONS_TIP: 'The following settings only control whether users are allowed to perform the operations on the web console. Whether persistent volumes created based on the storage class actually support the operations depends on the backend storage system.',
   // More > Set Auto Expansion
   SET_AUTO_EXPANSION: 'Set Auto Expansion',
   AUTO_EXPANSION: 'Auto Expansion',
@@ -52,5 +52,5 @@ module.exports = {
   RESTART_WORKLOAD_AUTOMATICALLY_TIP: 'If the volume is not expanded successfully when the timeout period expires, the system will add the "restart.kubesphere.io/skip" annotation to the workload so that the workload is not restarted any more. To enable the automatic restart function for the workload again, you need to manually delete the annotation on the workload.',
   // More > Delete
   // Volumes
-  VOLUME_COUNT: 'Volumes',
+  PVC_COUNT: 'PVCs',
 }

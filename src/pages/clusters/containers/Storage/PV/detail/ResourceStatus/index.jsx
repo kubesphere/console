@@ -122,7 +122,7 @@ class ResourceStatus extends React.Component {
   render() {
     const { detail, isLoading } = this.store
     return (
-      <Panel title={t('PERSISTENT_VOLUME_CLAIM_PL')}>
+      <Panel title={t('PERSISTENT_VOLUME_CLAIM')}>
         {!isEmpty(detail) && (
           <Loading spinning={isLoading}>{this.renderItem()}</Loading>
         )}
