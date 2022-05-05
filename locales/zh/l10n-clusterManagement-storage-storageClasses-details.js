@@ -31,13 +31,13 @@ module.exports = {
   OPERATOR_IN: '属于',
   OPERATOR_NOT_IN: '不属于',
   // More > Set Volume Permissions
-  SET_VOLUME_OPERATIONS: 'Set Volume Operations',
+  SET_VOLUME_OPERATIONS: '设置卷操作',
   VOLUME_CLONING: '卷克隆',
   VOLUME_CLONING_DESC: '允许用户克隆卷。',
   VOLUME_SNAPSHOT_CREATION: '卷快照创建',
   VOLUME_SNAPSHOT_CREATION_DESC: '允许用户创建卷快照。',
   VOLUME_EXPANSION_DESC: '允许用户对卷进行扩容。卷容量只能增加，不能减少。',
-  SET_VOLUME_OPERATIONS_TIP: 'The following settings only control whether users are allowed to perform the operations on the web console. Whether persistent volumes created based on the storage class actually support the operations depends on the backend storage system.',
+  SET_VOLUME_OPERATIONS_TIP: '以下设置仅控制用户是否被允许在 Web 控制台执行操作。基于存储类型创建的持久卷是否实际支持这些操作取决于后端存储系统。',
   // More > Set Auto Expansion
   SET_AUTO_EXPANSION: '设置自动扩容',
   AUTO_EXPANSION: '自动扩容',
@@ -51,5 +51,5 @@ module.exports = {
   RESTART_WORKLOAD_AUTOMATICALLY_TIP: '如果到达超时时间时卷仍未扩容成功，系统将在工作负载上添加“restart.kubesphere.io/skip”注解使工作负载不再被重启。如需再次为工作负载启用自动重启功能，您需要在工作负载上手动删除该注解。',
   // More > Delete
   // Volumes
-  PVC_COUNT: 'PVCs'
+  PVC_COUNT: '持久卷声明数量'
 };
