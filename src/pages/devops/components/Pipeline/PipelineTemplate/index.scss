@@ -11,33 +11,31 @@
     margin-bottom: 40px;
   }
 
-  .template {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   .card {
-    width: 24%;
+    width: 298px;
     height: 184px;
     padding: 20px;
-    margin: 0 1% 1% 0;
-    border: 1px solid transparent;
+    margin: 0 12px 12px 0;
+    border: 1px solid $light-color06;
     border-radius: 4px;
-    box-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.2);
     background: #ffffff;
     cursor: pointer;
     transition: all 0.2s ease;
     overflow: hidden;
+    box-sizing: border-box;
+    display: inline-block;
 
     &Selected {
       border: 1px solid $dark-color01;
+      box-shadow: 0px 4px 8px rgba(36, 46, 66, 0.2);
     }
 
     &:hover {
       border: 1px solid $dark-color01;
+      box-shadow: 0px 4px 8px rgba(36, 46, 66, 0.2);
     }
 
-    &:last-child {
+    &:nth-child(3n) {
       margin-right: 0;
     }
 

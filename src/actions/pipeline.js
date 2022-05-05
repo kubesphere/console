@@ -82,7 +82,6 @@ export default {
           success && success()
         },
         store,
-        ...props,
         module,
         cluster,
         devops,

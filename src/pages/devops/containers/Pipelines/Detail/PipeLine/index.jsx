@@ -63,8 +63,8 @@ export default class Pipeline extends React.Component {
       title: t('CREATE_PIPELINE'),
       imageIcon: '/assets/pipeline/pipeline-icon-dark.svg',
       description: t('CREATE_PIPELINE_DESC'),
-      width: '1400px',
-      contentWidth: '1400px',
+      width: '960px',
+      contentWidth: '960px',
       noCodeEdit: true,
       params,
       success: jenkinsFile => {

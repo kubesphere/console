@@ -59,7 +59,7 @@ export default function ChartCard({ click, item, type, filters }) {
           width={64}
           height={64}
           innerRadius="75%"
-          outerRadius="120%"
+          outerRadius="115%"
           data={[
             {
               name: 'Used',
