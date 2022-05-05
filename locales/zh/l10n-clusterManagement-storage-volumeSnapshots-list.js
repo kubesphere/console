@@ -24,7 +24,7 @@ module.exports = {
   WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: '卷快照类定义了用于创建卷快照的存储种类。',
   WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: '什么是卷快照内容？',
   WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: '卷快照内容是一种代表卷快照具体内容的资源。',
-  SELECT_A_VOLUME_DESC: 'Select a persistent volume claim to create a snapshot.',
+  SELECT_A_VOLUME_DESC: '选择一个持续卷声明来创建快照。',
   SELECT_VOLUME_SNAPSHOT_CLASS_DESC: '选择卷快照类以创建特定类型的快照。',
   // List
   VOLUME_SNAPSHOT_EMPTY_DESC: '请创建一个卷快照。',
@@ -39,5 +39,5 @@ module.exports = {
   // List > Delete
   VOLUME_SNAPSHOT_LOW: '卷快照',
   // List > Create
-  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: 'The storage class of the persistent volume claim does not support snapshot creation. Please select another persistent volume claim.'
+  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: '持久卷声明的存储类不支持创建快照，请选择其他持久卷声明。'
 };
