@@ -91,7 +91,7 @@ export default function PipelineTemplateParams({
               <div className={styles.params}>
                 <Form data={formTemplate} ref={formRef}>
                   {isArray(params) && params.length > 0 ? (
-                    <div>
+                    <div className={styles.params_container}>
                       {params.map((item, index) => (
                         <ParmasItem key={index} option={item} />
                       ))}

@@ -12,16 +12,22 @@
 
   .params {
     min-height: 400px;
-
     border: 1px solid #ccd3db;
-    padding: 10px;
     background: #fff;
     position: relative;
   }
 }
-
-.itemWrapper {
-  margin-bottom: 20px;
+.params_container {
+  padding: 12px;
+  .itemWrapper {
+    display: inline-block;
+    width: 48.8%;
+    margin-bottom: 12px;
+    margin-right: 20px;
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
 }
 
 .content {
