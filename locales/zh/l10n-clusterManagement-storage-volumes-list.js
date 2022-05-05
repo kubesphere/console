@@ -23,7 +23,7 @@ module.exports = {
   // List
   PV_STATUS_AVAILABLE: '可用',
   PV_STATUS_BOUND: '已绑定',
-  PV_STATUS_RELEASED: '删除中',
+  PV_STATUS_RELEASED: '已发布',
   PV_STATUS_FAILED: '失败',
   RECYCLING_STRATEGY: '回收策略',
   VOLUME_EMPTY_DESC: '请将持久卷声明绑到工作负载。'
