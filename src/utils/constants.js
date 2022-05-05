@@ -79,18 +79,18 @@ export const NODE_STATUS = [
 ]
 
 export const CD_WEATHER_STATUS = [
-  { text: 'Healthy', value: 'Healthy' },
-  { text: 'Degraded', value: 'Degraded' },
-  { text: 'Progressing', value: 'Progressing' },
-  { text: 'Suspended', value: 'Suspended' },
-  { text: 'Unknown', value: 'Unknown' },
-  { text: 'Missing', value: 'Missing' },
+  { text: 'HEALTHY', value: 'Healthy' },
+  { text: 'DEGRADED', value: 'Degraded' },
+  { text: 'PROGRESSING', value: 'Progressing' },
+  { text: 'SUSPENDED', value: 'Suspended' },
+  { text: 'UNKNOWN', value: 'Unknown' },
+  { text: 'MISSING', value: 'Missing' },
 ]
 
 export const CD_SYNC_STATUS = [
-  { text: 'Synced', value: 'Synced' },
-  { text: 'OutOfSync', value: 'OutOfSync' },
-  { text: 'Unknown', value: 'Unknown' },
+  { text: 'SYNCED', value: 'Synced' },
+  { text: 'OUT_OF_SYNC', value: 'OutOfSync' },
+  { text: 'UNKNOWN', value: 'Unknown' },
 ]
 
 export const PRUNE_PROPAGATION_POLICY_OPTIONS = [
