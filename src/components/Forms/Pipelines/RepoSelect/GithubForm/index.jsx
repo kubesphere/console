@@ -102,7 +102,7 @@ export default class GitHubForm extends React.Component {
       [REPO_KEY_MAP[this.scmType]]: {
         repo: get(this.repoListData, `${index}.name`),
         credential_id: this.credentialId,
-        owner: get(toJS(this.orgList), `data[${this.activeRepoIndex}]`, 'name'),
+        owner: get(toJS(this.orgList), `data[${this.activeRepoIndex}].name`),
         discover_branches: 1,
         discover_pr_from_forks: { strategy: 2, trust: 2 },
         discover_pr_from_origin: 2,
