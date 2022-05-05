@@ -24,7 +24,9 @@ module.exports = {
   DEGRADED: 'Degraded',
   PROGRESSING: 'Progresando',
   SYNCED: 'Synced',
-  OUTOFSYNC: 'Out of sync',
+  MISSING: 'Missing',
+  SUSPENDED: 'Suspendido',
+  OUT_OF_SYNC: 'Out of sync',
   DEPLOY_LOCATION: 'Deployment Location',
   // List > Create
   CREATE_CONTINUOUS_DEPLOYMENT: 'Create Continuous Deployment',
