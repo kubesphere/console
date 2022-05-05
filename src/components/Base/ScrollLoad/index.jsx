@@ -19,15 +19,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { isEmpty, get, throttle } from 'lodash'
+import { isEmpty, get, throttle, isUndefined } from 'lodash'
 
 import { Loading } from '@kube-design/components'
 import { Empty } from 'components/Base'
 
 import styles from './index.scss'
 
-const isRemainingData = ({ data, total }) =>
-  !isEmpty(data) && data.length < total
+const isRemainingData = ({ data, total, isEnd }) => {
+  return !isUndefined(isEnd) ? !isEnd : !isEmpty(data) && data.length < total
+}
 
 export default class ScrollLoad extends React.Component {
   static propTypes = {
@@ -56,6 +57,7 @@ export default class ScrollLoad extends React.Component {
     data: [],
     total: 10,
     page: 1,
+    noMount: false,
     onFetch() {},
   }
 
@@ -68,6 +70,7 @@ export default class ScrollLoad extends React.Component {
     }
 
     this.containerRef = React.createRef()
+    this.finish = true
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -87,7 +90,9 @@ export default class ScrollLoad extends React.Component {
   }
 
   componentDidMount() {
-    this.props.onFetch()
+    if (!this.props.noMount) {
+      this.props.onFetch()
+    }
   }
 
   isElementAtBottom = ele =>
@@ -96,10 +101,16 @@ export default class ScrollLoad extends React.Component {
   handleScroll = throttle(() => {
     const ele = get(this.containerRef, 'current', {})
 
-    if (isRemainingData(this.props) && this.isElementAtBottom(ele)) {
-      this.setState({ loadMore: true }, () => {
+    if (
+      isRemainingData(this.props) &&
+      this.isElementAtBottom(ele) &&
+      this.finish
+    ) {
+      this.finish = false
+      this.setState({ loadMore: true }, async () => {
         const { page, onFetch } = this.props
-        onFetch({ more: true, page: page + 1 })
+        await onFetch({ more: true, page: page + 1 })
+        this.finish = true
       })
     }
   }, 300)

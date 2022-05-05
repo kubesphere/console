@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { action, observable } from 'mobx'
-import { isArray, get, isEmpty, set } from 'lodash'
+import { action, observable, toJS } from 'mobx'
+import { isArray, get, isEmpty } from 'lodash'
 import { parseUrl, getQueryString, generateId } from 'utils'
 
 import qs from 'qs'
@@ -92,10 +92,23 @@ export default class SCMStore extends BaseStore {
   orgList = {
     isLoading: false,
     data: [],
+    isEnd: false,
+    pagination: {
+      pageNumber: 1,
+      pageSize: 100,
+    },
   }
 
   @observable
-  getRepoListLoading = false
+  repoList = {
+    isLoading: false,
+    data: [],
+    isEnd: false,
+    pagination: {
+      pageNumber: 1,
+      pageSize: 100,
+    },
+  }
 
   @observable
   activeRepoIndex = ''
@@ -106,22 +119,39 @@ export default class SCMStore extends BaseStore {
   @observable
   creatBitBucketServersError = {}
 
+  @observable
+  orgParams = {}
+
   @action
-  async getOrganizationList(params, scmType, cluster) {
+  async getOrganizationList(
+    { pageNumber = 1, pageSize = 100, more = false, ...params },
+    scmType,
+    cluster
+  ) {
     this.orgList.isLoading = true
     this.scmType = scmType
     this.orgParams = params
 
     const result = await request.get(
       `${this.getDevopsUrlV3({ cluster })}scms/${scmType ||
-        'github'}/organizations?${getQueryString(params, false)}`
+        'github'}/organizations?${getQueryString(
+        { pageNumber, pageSize, ...params },
+        false
+      )}`,
+      null,
+      null,
+      () => {
+        return []
+      }
     )
 
     if (isArray(result)) {
-      this.orgList.data = result
+      this.orgList.data = more ? [...this.orgList.data, ...result] : result
     }
 
     this.orgList.isLoading = false
+    this.orgList.isEnd = result.length < pageSize
+    this.orgList.pagination = { pageSize, pageNumber }
     return this.orgList
   }
 
@@ -136,7 +166,13 @@ export default class SCMStore extends BaseStore {
   }
 
   @action
-  async getRepoList({ activeRepoIndex, cluster }) {
+  async getRepoList({
+    cluster,
+    activeRepoIndex,
+    pageNumber = 1,
+    pageSize = 100,
+    more = false,
+  }) {
     const _activeRepoIndex =
       activeRepoIndex !== undefined
         ? activeRepoIndex
@@ -145,15 +181,13 @@ export default class SCMStore extends BaseStore {
         : this.activeRepoIndex
 
     const scmType = this.scmType || 'github'
-    const pageNumber =
-      get(this.orgList.data[_activeRepoIndex], 'repositories.nextPage') || 1
 
     const organizationName =
       scmType === 'bitbucket-server'
         ? this.orgList.data[_activeRepoIndex].key
         : this.orgList.data[_activeRepoIndex].name
 
-    this.getRepoListLoading = true
+    this.repoList.isLoading = true
 
     const result = await request.get(
       `${this.getDevopsUrlV3({
@@ -162,15 +196,15 @@ export default class SCMStore extends BaseStore {
         {
           ...this.orgParams,
           pageNumber,
-          pageSize: 100,
+          pageSize,
         },
         false
       )}`,
       {},
       null,
       (res, err) => {
-        this.getRepoListLoading = false
-        set(this.orgList, `data[${_activeRepoIndex}].repositories.item`, [])
+        this.repoList.isLoading = false
+        this.repoList.data = []
         if (window.onunhandledrejection) {
           window.onunhandledrejection(err)
         }
@@ -179,27 +213,20 @@ export default class SCMStore extends BaseStore {
     )
 
     if (result.repositories) {
-      const currentRepository = get(
-        this.orgList,
-        `data[${_activeRepoIndex}].repositories`,
-        {}
-      )
       // insert new repolist in current orglist
-      if (isArray(currentRepository.items)) {
-        currentRepository.items = currentRepository.items.concat(
-          result.repositories.items
-        )
-        currentRepository.nextPage = result.repositories.nextPage
+      if (isArray(toJS(this.repoList.data))) {
+        this.repoList.data = more
+          ? [...this.repoList.data, ...result.repositories.items]
+          : [...result.repositories.items]
+        this.repoList.isEnd = result.repositories.items.length < pageSize
+        this.repoList.pagination = { pageSize, pageNumber }
       } else {
-        set(
-          this.orgList,
-          `data[${_activeRepoIndex}].repositories`,
-          result.repositories
-        )
+        this.repoList.data = result.repositories
       }
     }
-    this.getRepoListLoading = false
-    return this.orgList
+    this.repoList.isLoading = false
+
+    return this.repoList
   }
 
   async putAccessName({ secretName, secretNamespace, cluster }) {
@@ -214,7 +241,11 @@ export default class SCMStore extends BaseStore {
 
     if (result && result.credentialId) {
       await this.getOrganizationList(
-        { secret: secretName, secretNamespace, includeUser: true },
+        {
+          secret: secretName,
+          secretNamespace,
+          includeUser: true,
+        },
         'github',
         cluster
       )
@@ -263,6 +294,8 @@ export default class SCMStore extends BaseStore {
     credentialId,
     cluster,
     credentialDetail,
+    pageNumber,
+    pageSize,
   }) => {
     this.creatBitBucketServersError = {}
 
@@ -310,7 +343,7 @@ export default class SCMStore extends BaseStore {
     if (verifyResult && verifyResult.credentialId) {
       this.orgList.isLoading = false
       await this.getOrganizationList(
-        { secret: secretName, secretNamespace },
+        { secret: secretName, secretNamespace, pageNumber, pageSize },
         'bitbucket-server',
         cluster
       )
