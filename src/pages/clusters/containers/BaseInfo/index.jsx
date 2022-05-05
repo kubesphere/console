@@ -19,7 +19,7 @@
 import { get } from 'lodash'
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Menu, Icon } from '@kube-design/components'
+import { Menu, Icon, Button } from '@kube-design/components'
 import { Panel, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import EditBasicInfoModal from 'clusters/components/Modals/EditBasicInfo'
@@ -146,7 +146,15 @@ export default class Overview extends React.Component {
     })
   }
 
+  updateKubeConfig = () => {
+    this.trigger('cluster.updateKubeConfig', {
+      detail: this.store.detail,
+      success: this.fetchClusterDetail,
+    })
+  }
+
   get enableManageAction() {
+    const { isHost = false } = this.store.detail
     const actions = this.enabledActions
     const option = []
     if (actions.includes('edit') && globals.app.isMultiCluster) {
@@ -155,6 +163,14 @@ export default class Overview extends React.Component {
         onClick: this.showEdit,
         icon: 'pen',
         text: t('EDIT_INFORMATION'),
+      })
+    }
+    if (!isHost && actions.includes('edit')) {
+      option.push({
+        actionName: 'cluster.update.kubeconfig',
+        icon: 'data',
+        text: t('UPDATE_KUBECONFIG'),
+        onClick: this.updateKubeConfig,
       })
     }
     if (
@@ -192,12 +208,20 @@ export default class Overview extends React.Component {
       </Menu>
     )
 
-    return (
-      action.length > 0 && (
+    if (action.length > 1) {
+      return (
         <ManageButton
           className={styles.manage}
           content={content}
         ></ManageButton>
+      )
+    }
+
+    return (
+      action.length > 0 && (
+        <Button className={styles.manage} onClick={() => action[0].onClick()}>
+          {action[0].text}
+        </Button>
       )
     )
   }
