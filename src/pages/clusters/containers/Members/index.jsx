@@ -142,7 +142,7 @@ export default class Members extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Member Name'),
+      title: t('USERNAME'),
       dataIndex: 'username',
       sorter: true,
       render: (name, record) => (
@@ -164,7 +164,7 @@ export default class Members extends React.Component {
       ),
     },
     {
-      title: t('Role'),
+      title: t('ROLE'),
       dataIndex: 'clusterrole',
       isHideable: true,
       width: '19%',

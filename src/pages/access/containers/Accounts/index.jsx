@@ -77,7 +77,7 @@ export default class Accounts extends React.Component {
       {
         key: 'status',
         icon: item => (item.status === 'Active' ? 'stop' : 'start'),
-        text: item => (item.status === 'Active' ? t('停用') : t('启用')),
+        text: item => (item.status === 'Active' ? t('ENABLE') : t('DISABLE')),
         action: 'edit',
         show: this.showAction,
         onClick: this.handleStatus,
@@ -126,7 +126,7 @@ export default class Accounts extends React.Component {
         {
           key: 'active',
           type: 'default',
-          text: t('启用'),
+          text: t('ENABLE'),
           action: 'edit',
           disabled: activeStatus,
           onClick: () => {
@@ -136,7 +136,7 @@ export default class Accounts extends React.Component {
         {
           key: 'disabled',
           type: 'default',
-          text: t('停用'),
+          text: t('DISABLE'),
           action: 'edit',
           disabled: disabledStatus,
           onClick: () => {
