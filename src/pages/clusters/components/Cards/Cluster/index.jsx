@@ -28,7 +28,7 @@ import {
 import { Text } from 'components/Base'
 import { getLocalTime } from 'utils'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
-
+import classNames from 'classnames'
 import styles from './index.scss'
 
 export default class ClusterCard extends React.Component {
@@ -124,7 +124,9 @@ export default class ClusterCard extends React.Component {
               />
             )}
           </Column>
-          <Column className="is-1">{this.renderMore(data)}</Column>
+          <Column className={classNames('is-1', styles.options)}>
+            {this.renderMore(data)}
+          </Column>
         </Columns>
       </li>
     )
