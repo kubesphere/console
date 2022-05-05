@@ -19,6 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'react-fast-compare'
+import { throttle } from 'lodash'
 
 import { Tooltip } from '@kube-design/components'
 
@@ -52,6 +53,8 @@ export default class Slider extends React.Component {
     this.state = this.getStateFromProps(props)
 
     this.ref = React.createRef()
+
+    this.throttleState = []
   }
 
   getValuePercent(marks, value) {
@@ -129,14 +132,17 @@ export default class Slider extends React.Component {
     }
   }
 
-  triggerChange = ({ left, right }) => {
+  triggerChange = throttle(({ left, right }) => {
     const { marks, onChange } = this.props
-
-    onChange([
+    const value = [
       this.getValueFromPercent(marks, left),
       this.getValueFromPercent(marks, right),
-    ])
-  }
+    ]
+    if (!isEqual(this.throttleState, value)) {
+      this.throttleState = value
+      onChange(value)
+    }
+  }, 100)
 
   handleResize = () => {
     this.rect = this.ref.current.getBoundingClientRect()
