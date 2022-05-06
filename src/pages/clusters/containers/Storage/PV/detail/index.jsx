@@ -144,7 +144,7 @@ export default class VolumeDetail extends React.Component {
         value: storageClassName,
       },
       {
-        name: t('volumeHandle'),
+        name: t('VOLUME_HANDLE'),
         value: volumeHandle,
       },
       {
@@ -152,8 +152,8 @@ export default class VolumeDetail extends React.Component {
         value: persistentVolumeReclaimPolicy,
       },
       {
-        name: t('volumeMode'),
-        value: volumeMode,
+        name: t('VOLUME_MODE'),
+        value: t(`VOLUME_MODE_${volumeMode.toUpperCase()}`),
       },
       {
         name: t('CREATION_TIME_TCAP'),
