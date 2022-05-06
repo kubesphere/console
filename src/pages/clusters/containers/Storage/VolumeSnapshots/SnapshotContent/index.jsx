@@ -118,7 +118,7 @@ export default class VolumeSnapshotContent extends React.Component {
           const { errorMessage, status } = record
           return (
             <div>
-              <Status type={status} name={t(`${status.toUpperCase()}_PL`)} />{' '}
+              <Status type={status} name={t(status.toUpperCase())} />{' '}
               {!isEmpty(errorMessage) && (
                 <Tooltip content={errorMessage}>
                   <Icon name={'question'} />
