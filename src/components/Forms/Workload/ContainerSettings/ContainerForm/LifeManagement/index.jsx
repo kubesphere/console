@@ -47,6 +47,7 @@ export default class HealthChecker extends React.Component {
             label={t('ADD_ACTION')}
             description={t('POSTSTART_ACTION_DESC')}
             componentType="life"
+            deleteNoObject={true}
           />
         </Form.Item>
         <Form.Item className={styles.item} label={t('PRESTOP_ACTION')}>
@@ -55,6 +56,7 @@ export default class HealthChecker extends React.Component {
             label={t('ADD_ACTION')}
             description={t('PRESTOP_ACTION_DESC')}
             componentType="life"
+            deleteNoObject={true}
           />
         </Form.Item>
       </Form.Group>

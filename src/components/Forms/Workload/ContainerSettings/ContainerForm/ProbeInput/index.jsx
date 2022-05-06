@@ -34,6 +34,7 @@ export default class ProbeInput extends React.Component {
     value: PropTypes.object,
     onChange: PropTypes.func,
     onShowForm: PropTypes.func,
+    deleteNoObject: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -43,6 +44,7 @@ export default class ProbeInput extends React.Component {
     onChange() {},
     onShowForm() {},
     componentType: 'heal',
+    deleteNoObject: false,
   }
 
   state = {
@@ -76,8 +78,8 @@ export default class ProbeInput extends React.Component {
   }
 
   handleDelete = () => {
-    const { onChange } = this.props
-    onChange({})
+    const { onChange, deleteNoObject } = this.props
+    deleteNoObject ? onChange() : onChange({})
   }
 
   renderProbeInfo() {
