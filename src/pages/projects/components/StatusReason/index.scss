@@ -4,6 +4,7 @@
 .reason {
   display: inline-block;
   @include ellipsis;
+  width: 100%;
 
   & > span {
     display: inline-block;
@@ -12,6 +13,8 @@
     &:first-child {
       margin-right: 4px;
     }
+    @include ellipsis;
+    max-width: 90%;
   }
 
   :global {
