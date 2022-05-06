@@ -73,34 +73,23 @@ export default class BitBucketForm extends GitHubForm {
   handlePasswordConfirm = async () => {
     const { cluster, devops } = this.props
     const data = this.tokenFormRef.current.getData()
-
     this.credentialId = data.credentialId
 
     if (isEmpty(data) || !this.credentialId) return false
 
     this.setState({ isLoading: true })
 
-    const credentialDetail = await this.props.store.getCredentialDetail({
-      cluster,
-      devops,
-      credential_id: this.credentialId,
-    })
-
-    if (!isEmpty(credentialDetail)) {
-      await this.props.store
-        .creatBitBucketServers({
-          cluster,
-          devops,
-          credentialId: this.credentialId,
-          apiUrl: data.apiUrl,
-          credentialDetail,
-        })
-        .finally(() => {
-          this.setState({ isLoading: false })
-        })
-    } else {
-      this.setState({ isLoading: false })
-    }
+    await this.props.store
+      .creatBitBucketServers({
+        cluster,
+        devops,
+        apiUrl: data.apiUrl,
+        secretName: this.credentialId,
+        secretNamespace: devops,
+      })
+      .finally(() => {
+        this.setState({ isLoading: false })
+      })
   }
 
   handleSubmit = e => {

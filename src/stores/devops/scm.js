@@ -17,8 +17,8 @@
  */
 
 import { action, observable, toJS } from 'mobx'
-import { isArray, get, isEmpty } from 'lodash'
-import { parseUrl, getQueryString, generateId } from 'utils'
+import { isArray, isEmpty } from 'lodash'
+import { parseUrl, getQueryString } from 'utils'
 
 import qs from 'qs'
 import BaseStore from '../devops'
@@ -290,9 +290,9 @@ export default class SCMStore extends BaseStore {
   @action
   creatBitBucketServers = async ({
     apiUrl,
-    credentialId,
     cluster,
-    credentialDetail,
+    secretName,
+    secretNamespace,
   }) => {
     this.creatBitBucketServersError = {}
 
@@ -307,29 +307,8 @@ export default class SCMStore extends BaseStore {
       return
     }
 
-    let result = { id: generateId(4) }
-
-    if (!/https:\/\/bitbucket.org\/?/gm.test(`${apiUrl}`)) {
-      result = await request.post(
-        `${this.getDevopsUrlV2({ cluster })}scms/bitbucket-server/servers`,
-        {
-          apiUrl,
-          name: credentialId,
-        },
-        null,
-        this.verifyAccessErrorHandle['bitbucket-server']
-      )
-    }
-
-    if (!result || !result.id) {
-      return
-    }
-
-    const secretName = get(credentialDetail, 'name')
-    const secretNamespace = get(credentialDetail, 'namespace')
-
     const verifyResult = await this.verifySecretForRepo(
-      { secret: secretName, secretNamespace },
+      { secret: secretName, secretNamespace, server: apiUrl },
       {
         scmType: 'bitbucket-server',
         cluster,
@@ -337,7 +316,7 @@ export default class SCMStore extends BaseStore {
       }
     )
 
-    if (verifyResult && verifyResult.credentialId) {
+    if (verifyResult && verifyResult.code === 0) {
       this.orgList.isLoading = false
       await this.getOrganizationList(
         {
@@ -348,6 +327,12 @@ export default class SCMStore extends BaseStore {
         'bitbucket-server',
         cluster
       )
+    } else if (verifyResult && verifyResult.code !== 0) {
+      this.creatBitBucketServersError = {
+        apiUrl: {
+          message: verifyResult.message,
+        },
+      }
     }
   }
 
@@ -370,8 +355,8 @@ export default class SCMStore extends BaseStore {
     } else {
       bitbucketServerList = [
         {
-          label: 'bitbucket.org',
-          apiUrl: 'https://bitbucket.org',
+          label: 'https://bitbucket.org',
+          value: 'https://bitbucket.org',
         },
       ]
     }
