@@ -22,6 +22,6 @@ module.exports = {
   VOLUME_SNAPSHOT_CONTENT_LOW: '卷快照内容',
   VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: '请创建一个卷快照。',
   READY: '就绪',
-  UNREADY: 'Unready',
+  UNREADY: '未就绪',
   DELETION_POLICY: '删除策略'
 };
