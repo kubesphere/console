@@ -34,5 +34,9 @@ module.exports = {
   ALLOWLIST_EMPTY_DESC: '启用白名单从而只允许在持续部署中使用特定的代码仓库和部署位置。',
   MULTI_CLUSTER_PROJECT_NOT_FOR_CD: '多集群项目不能用于持续部署。',
   CODE_REPOSITORY_EXIST_DESC: '代码仓库已存在，请选择其他代码仓库。',
-  DEPLOYMENT_LOCATION_EXIST_DESC: '部署位置已存在，请设置其他部署位置。'
+  DEPLOYMENT_LOCATION_EXIST_DESC: '部署位置已存在，请设置其他部署位置。',
+  CODE_REPOSITORY_NOT_FOUND: 'Code repository is not found',
+  RESOURCE_DEPLOYMENT_LOCATION_NOT_FOUND: 'Resource deployment location is not found',
+  ALL_CODE_REPOSITORIES: 'all code repositories',
+  ALL_RESOURCE_DEPLOYMENT_LOCATIONS: 'All resource deployment locations'
 };
