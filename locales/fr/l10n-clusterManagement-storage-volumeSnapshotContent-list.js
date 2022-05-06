@@ -22,6 +22,6 @@ module.exports = {
   VOLUME_SNAPSHOT_CONTENT_LOW: 'volume snapshot content',
   VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: 'Please create a volume snapshot.',
   READY: 'Ready',
-  NOT_READY: 'Not ready',
+  UNREADY: 'Unready',
   DELETION_POLICY: 'Deletion Policy'
 };
