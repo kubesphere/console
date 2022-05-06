@@ -17,10 +17,10 @@
  */
 module.exports = {
   // Details
-  VOLUME_HANDLE: 'Volume Handle',
-  VOLUME_MODE: 'Volume Mode',
-  VOLUME_MODE_FILESYSTEM: 'File system',
-  VOLUME_MODE_BLOCK: 'Block device',
+  VOLUME_HANDLE: '卷句柄',
+  VOLUME_MODE: '卷模式',
+  VOLUME_MODE_FILESYSTEM: '文件系统',
+  VOLUME_MODE_BLOCK: '块设备',
   // More > Edit YAML
   // More > Delete
   // Resource Status
