@@ -132,18 +132,17 @@ export default class SCMStore extends BaseStore {
     this.scmType = scmType
     this.orgParams = params
 
-    const result = await request.get(
-      `${this.getDevopsUrlV3({ cluster })}scms/${scmType ||
-        'github'}/organizations?${getQueryString(
-        { pageNumber, pageSize, ...params },
-        false
-      )}`,
-      null,
-      null,
-      () => {
+    const result = await request
+      .get(
+        `${this.getDevopsUrlV3({ cluster })}scms/${scmType ||
+          'github'}/organizations?${getQueryString(
+          { pageNumber, pageSize, ...params },
+          false
+        )}`
+      )
+      .catch(() => {
         return []
-      }
-    )
+      })
 
     if (isArray(result)) {
       this.orgList.data = more ? [...this.orgList.data, ...result] : result
@@ -294,8 +293,6 @@ export default class SCMStore extends BaseStore {
     credentialId,
     cluster,
     credentialDetail,
-    pageNumber,
-    pageSize,
   }) => {
     this.creatBitBucketServersError = {}
 
@@ -343,7 +340,11 @@ export default class SCMStore extends BaseStore {
     if (verifyResult && verifyResult.credentialId) {
       this.orgList.isLoading = false
       await this.getOrganizationList(
-        { secret: secretName, secretNamespace, pageNumber, pageSize },
+        {
+          secret: secretName,
+          secretNamespace,
+          server: apiUrl,
+        },
         'bitbucket-server',
         cluster
       )
@@ -366,6 +367,13 @@ export default class SCMStore extends BaseStore {
       bitbucketServerList = result.map(item => {
         return { label: item.apiUrl, value: item.apiUrl }
       })
+    } else {
+      bitbucketServerList = [
+        {
+          label: 'bitbucket.org',
+          apiUrl: 'https://bitbucket.org',
+        },
+      ]
     }
 
     return bitbucketServerList
