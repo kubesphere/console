@@ -36,7 +36,11 @@ export default class BaseInfo extends Component {
     if (isEmpty(metadata)) {
       return null
     }
-
+    metadata.forEach(item => {
+      if (item.label === 'Created') {
+        item.value = getLocalTime(item.value).format('YYYY-MM-DD HH:mm:ss')
+      }
+    })
     return (
       <div className={styles.info}>
         {metadata.map(item => (
