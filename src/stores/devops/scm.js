@@ -17,8 +17,8 @@
  */
 
 import { action, observable, toJS } from 'mobx'
-import { isArray, get, isEmpty } from 'lodash'
-import { parseUrl, getQueryString, generateId } from 'utils'
+import { isArray, isEmpty } from 'lodash'
+import { parseUrl, getQueryString } from 'utils'
 
 import qs from 'qs'
 import BaseStore from '../devops'
@@ -132,18 +132,17 @@ export default class SCMStore extends BaseStore {
     this.scmType = scmType
     this.orgParams = params
 
-    const result = await request.get(
-      `${this.getDevopsUrlV3({ cluster })}scms/${scmType ||
-        'github'}/organizations?${getQueryString(
-        { pageNumber, pageSize, ...params },
-        false
-      )}`,
-      null,
-      null,
-      () => {
+    const result = await request
+      .get(
+        `${this.getDevopsUrlV3({ cluster })}scms/${scmType ||
+          'github'}/organizations?${getQueryString(
+          { pageNumber, pageSize, ...params },
+          false
+        )}`
+      )
+      .catch(() => {
         return []
-      }
-    )
+      })
 
     if (isArray(result)) {
       this.orgList.data = more ? [...this.orgList.data, ...result] : result
@@ -182,17 +181,14 @@ export default class SCMStore extends BaseStore {
 
     const scmType = this.scmType || 'github'
 
-    const organizationName =
-      scmType === 'bitbucket-server'
-        ? this.orgList.data[_activeRepoIndex].key
-        : this.orgList.data[_activeRepoIndex].name
+    const organizationName = this.orgList.data[_activeRepoIndex].name
 
     this.repoList.isLoading = true
 
     const result = await request.get(
       `${this.getDevopsUrlV3({
         cluster,
-      })}scms/${scmType}/organizations/${organizationName}/repositories/?${getQueryString(
+      })}scms/${scmType}/organizations/${organizationName}/repositories?${getQueryString(
         {
           ...this.orgParams,
           pageNumber,
@@ -291,11 +287,9 @@ export default class SCMStore extends BaseStore {
   @action
   creatBitBucketServers = async ({
     apiUrl,
-    credentialId,
     cluster,
-    credentialDetail,
-    pageNumber,
-    pageSize,
+    secretName,
+    secretNamespace,
   }) => {
     this.creatBitBucketServersError = {}
 
@@ -310,29 +304,8 @@ export default class SCMStore extends BaseStore {
       return
     }
 
-    let result = { id: generateId(4) }
-
-    if (!/https:\/\/bitbucket.org\/?/gm.test(`${apiUrl}`)) {
-      result = await request.post(
-        `${this.getDevopsUrlV2({ cluster })}scms/bitbucket-server/servers`,
-        {
-          apiUrl,
-          name: credentialId,
-        },
-        null,
-        this.verifyAccessErrorHandle['bitbucket-server']
-      )
-    }
-
-    if (!result || !result.id) {
-      return
-    }
-
-    const secretName = get(credentialDetail, 'name')
-    const secretNamespace = get(credentialDetail, 'namespace')
-
     const verifyResult = await this.verifySecretForRepo(
-      { secret: secretName, secretNamespace },
+      { secret: secretName, secretNamespace, server: apiUrl },
       {
         scmType: 'bitbucket-server',
         cluster,
@@ -340,13 +313,23 @@ export default class SCMStore extends BaseStore {
       }
     )
 
-    if (verifyResult && verifyResult.credentialId) {
+    if (verifyResult && verifyResult.code === 0) {
       this.orgList.isLoading = false
       await this.getOrganizationList(
-        { secret: secretName, secretNamespace, pageNumber, pageSize },
+        {
+          secret: secretName,
+          secretNamespace,
+          server: apiUrl,
+        },
         'bitbucket-server',
         cluster
       )
+    } else if (verifyResult && verifyResult.code !== 0) {
+      this.creatBitBucketServersError = {
+        apiUrl: {
+          message: verifyResult.message,
+        },
+      }
     }
   }
 
@@ -366,6 +349,13 @@ export default class SCMStore extends BaseStore {
       bitbucketServerList = result.map(item => {
         return { label: item.apiUrl, value: item.apiUrl }
       })
+    } else {
+      bitbucketServerList = [
+        {
+          label: 'https://bitbucket.org',
+          value: 'https://bitbucket.org',
+        },
+      ]
     }
 
     return bitbucketServerList
