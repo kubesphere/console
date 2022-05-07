@@ -92,15 +92,14 @@ export default class BitBucketForm extends GitHubForm {
       })
   }
 
-  handleSubmit = e => {
+  handleSubmit = index => {
     const { tokenFormData } = this.props.store
-    const index = e.currentTarget.dataset && e.currentTarget.dataset.repoIndex
 
     const data = {
       [REPO_KEY_MAP[this.scmType]]: {
         repo: get(this.repoListData, `${index}.name`), // repo
         credential_id: this.credentialId,
-        owner: get(this.orgList[this.activeRepoIndex], 'key'),
+        owner: get(toJS(this.orgList), `data[${this.activeRepoIndex}].name`),
         api_uri: get(tokenFormData, 'apiUrl'),
         discover_branches: 1,
         discover_pr_from_forks: { strategy: 2, trust: 2 },

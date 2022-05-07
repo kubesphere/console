@@ -29,7 +29,7 @@ const getRepoUrl = (repoType, repo) => {
     case 'gitlab':
       return `${repo.server_name}/${repo.repo}`
     case 'bitbucket_server':
-      return `${repo.api_uri}/${repo.repo}`
+      return `${repo.api_uri}/${repo.owner}/${repo.repo}`
     default:
       return repo.repo || repo.url || repo.remote
   }

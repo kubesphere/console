@@ -160,7 +160,11 @@ export default class CRList extends React.Component {
             <Avatar
               className={styles.avatar}
               to={''}
-              icon={record.provider}
+              icon={
+                record.provider === 'bitbucket_server'
+                  ? 'bitbucket'
+                  : record.provider
+              }
               iconSize={40}
               desc={record.description}
               title={getDisplayName(record)}
@@ -174,7 +178,9 @@ export default class CRList extends React.Component {
         isHideable: true,
         width: '20%',
         render: provider => {
-          return capitalize(provider)
+          return capitalize(
+            provider === 'bitbucket_server' ? 'bitbucket' : provider
+          )
         },
       },
       {
