@@ -36,6 +36,7 @@ module.exports = {
   // List > Create > Pod Settings
   PREVIOUS: 'Anterior',
   NOTE: 'Advertencia',
+  CREATE_CONFIGMAP_SECRET_DESC: 'If no configmap or secret meets the requirements, you can',
   // List > Create > Pod Settings > Add Container > Container Settings
   IMAGE: 'Imagen',
   IMAGE_VALUE: 'Imagen: {value}',
