@@ -156,7 +156,8 @@ export default class CDAllowListModal extends React.Component {
   repoOptionRenderer = option => type => (
     <span className={styles.option}>
       <Icon name={option.icon} type={type === 'value' ? 'dark' : 'light'} />
-      {`${option.label} (${option.value})`}
+      {option.label}
+      {option.value === '*' ? '' : ` (${option.value})`}
     </span>
   )
 
