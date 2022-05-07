@@ -27,6 +27,7 @@ module.exports = {
   DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps 项目角色',
   // Continuous Deployment Allowlist
   CD_ALLOWLIST: '持续部署白名单',
+  CD_ALLOWLIST_SCAP: 'Continuous deployment allowlist',
   DEPLOYMENT_LOCATION_PL: '部署位置',
   ENABLE_ALLOWLIST: '启用白名单',
   EDIT_ALLOWLIST: '编辑白名单',
@@ -35,8 +36,8 @@ module.exports = {
   MULTI_CLUSTER_PROJECT_NOT_FOR_CD: '多集群项目不能用于持续部署。',
   CODE_REPOSITORY_EXIST_DESC: '代码仓库已存在，请选择其他代码仓库。',
   DEPLOYMENT_LOCATION_EXIST_DESC: '部署位置已存在，请设置其他部署位置。',
-  CODE_REPOSITORY_NOT_FOUND: 'Code repository is not found',
-  RESOURCE_DEPLOYMENT_LOCATION_NOT_FOUND: 'Resource deployment location is not found',
-  ALL_CODE_REPOSITORIES: 'all code repositories',
+  CODE_REPOSITORY_NOT_SELECTED: 'No code repositories are selected.',
+  RESOURCE_DEPLOYMENT_LOCATION_NOT_SELECTED: 'No resource deployment locations are selected.',
+  ALL_CODE_REPOSITORIES: 'All code repositories',
   ALL_RESOURCE_DEPLOYMENT_LOCATIONS: 'All resource deployment locations'
 };
