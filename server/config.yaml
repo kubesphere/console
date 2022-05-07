@@ -174,6 +174,7 @@ client:
           icon: database
           children:
             - { name: volumes, title: PERSISTENT_VOLUME_CLAIM_PL }
+            - { name: storageclasses, title: STORAGE_CLASS_PL }
             - {
                 name: volume-snapshots,
                 title: VOLUME_SNAPSHOT_PL,
@@ -185,7 +186,6 @@ client:
                 authKey: volumes,
                 requiredClusterVersion: v3.3.0,
               }
-            - { name: storageclasses, title: STORAGE_CLASS_PL }
         - name: monitoring-alerting
           title: MONITORING_AND_ALERTING
           icon: monitor

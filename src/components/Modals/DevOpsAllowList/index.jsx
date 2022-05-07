@@ -77,7 +77,14 @@ export default class CDAllowListModal extends React.Component {
         icon: item.provider,
       }
     })
-    this.setState({ options })
+
+    const allItem = {
+      label: t('ALL'),
+      value: '*',
+      icon: 'allowlist',
+    }
+
+    this.setState({ options: [allItem, ...options] })
   }
 
   fetchClusters = async () => {
@@ -87,7 +94,14 @@ export default class CDAllowListModal extends React.Component {
       value: item.name,
       server: item.server,
     }))
-    this.setState({ clusters })
+
+    const allItem = {
+      label: t('ALL'),
+      value: '*',
+      server: '*',
+    }
+
+    this.setState({ clusters: [allItem, ...clusters] })
   }
 
   initFormTemplate = () => {
@@ -142,7 +156,7 @@ export default class CDAllowListModal extends React.Component {
   repoOptionRenderer = option => type => (
     <span className={styles.option}>
       <Icon name={option.icon} type={type === 'value' ? 'dark' : 'light'} />
-      {option.label}
+      {`${option.label} (${option.value})`}
     </span>
   )
 
