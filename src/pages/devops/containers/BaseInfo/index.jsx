@@ -334,9 +334,9 @@ class BaseInfo extends React.Component {
     if (isEmpty(data)) {
       return (
         <div className={styles.item_tag}>
-          {type === 'soreceRepos'
-            ? t('CODE_REPOSITORY_NOT_FOUND')
-            : t('RESOURCE_DEPLOYMENT_LOCATION_NOT_FOUND')}
+          {type === 'sourceRepos'
+            ? t('CODE_REPOSITORY_NOT_SELECTED')
+            : t('RESOURCE_DEPLOYMENT_LOCATION_NOT_SELECTED')}
         </div>
       )
     }
@@ -423,8 +423,8 @@ class BaseInfo extends React.Component {
               <Avatar
                 icon="allowlist"
                 iconSize={40}
-                title={opened ? t('Enabled') : t('Disabled')}
-                desc={t('CD_ALLOWLIST')}
+                title={opened ? t('ENABLED') : t('DISABLED')}
+                desc={t('CD_ALLOWLIST_SCAP')}
               />
 
               {!isEmpty(this.enabledItemActions) && (
