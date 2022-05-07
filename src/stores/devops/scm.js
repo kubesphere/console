@@ -181,17 +181,14 @@ export default class SCMStore extends BaseStore {
 
     const scmType = this.scmType || 'github'
 
-    const organizationName =
-      scmType === 'bitbucket-server'
-        ? this.orgList.data[_activeRepoIndex].key
-        : this.orgList.data[_activeRepoIndex].name
+    const organizationName = this.orgList.data[_activeRepoIndex].name
 
     this.repoList.isLoading = true
 
     const result = await request.get(
       `${this.getDevopsUrlV3({
         cluster,
-      })}scms/${scmType}/organizations/${organizationName}/repositories/?${getQueryString(
+      })}scms/${scmType}/organizations/${organizationName}/repositories?${getQueryString(
         {
           ...this.orgParams,
           pageNumber,
