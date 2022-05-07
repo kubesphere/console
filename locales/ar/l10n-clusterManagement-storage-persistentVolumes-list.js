@@ -16,12 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // List > Delete
-  VOLUME_SNAPSHOT_CONTENT: '卷快照内容',
-  VOLUME_SNAPSHOT_CONTENT_PL: '卷快照内容',
-  VOLUME_SNAPSHOT_CONTENT_LOW: '卷快照内容',
-  VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: '请创建一个卷快照。',
-  READY: '就绪',
-  UNREADY: '未就绪',
-  DELETION_POLICY: '删除策略'
+  // Banner
+  PERSISTENT_VOLUME: 'Persistent Volume',
+  PERSISTENT_VOLUME_PL: 'Persistent Volumes',
+  PERSISTENT_VOLUME_LOW: 'persistent volume',
+  // List
+  PV_STATUS_AVAILABLE: 'Available',
+  PV_STATUS_BOUND: 'Bound',
+  PV_STATUS_RELEASED: 'تم إصداره',
+  PV_STATUS_FAILED: 'فشلت',
+  RECYCLING_STRATEGY: 'Recycling Strategy',
+  VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
 };

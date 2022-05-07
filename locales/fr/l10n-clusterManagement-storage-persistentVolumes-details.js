@@ -16,12 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // List > Delete
-  VOLUME_SNAPSHOT_CONTENT: '卷快照内容',
-  VOLUME_SNAPSHOT_CONTENT_PL: '卷快照内容',
-  VOLUME_SNAPSHOT_CONTENT_LOW: '卷快照内容',
-  VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: '请创建一个卷快照。',
-  READY: '就绪',
-  UNREADY: '未就绪',
-  DELETION_POLICY: '删除策略'
+  // Details
+  VOLUME_HANDLE: 'Volume Handle',
+  VOLUME_MODE: 'Volume Mode',
+  VOLUME_MODE_FILESYSTEM: 'File system',
+  VOLUME_MODE_BLOCK: 'Block device',
+  // More > Edit YAML
+  // More > Delete
+  // Resource Status
+  STORAGE_CLASS_VALUE: 'Storage class: {value}'
 };

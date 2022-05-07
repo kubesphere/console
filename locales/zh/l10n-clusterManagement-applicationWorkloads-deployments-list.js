@@ -36,6 +36,7 @@ module.exports = {
   // List > Create > Pod Settings
   PREVIOUS: '上一步',
   NOTE: '备注',
+  CREATE_CONFIGMAP_SECRET_DESC: '如果没有配置字典或保密字典满足要求，您可以',
   // List > Create > Pod Settings > Add Container > Container Settings
   IMAGE: '镜像',
   IMAGE_VALUE: '镜像：{value}',
