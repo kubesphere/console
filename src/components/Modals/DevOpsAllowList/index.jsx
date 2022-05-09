@@ -74,7 +74,8 @@ export default class CDAllowListModal extends React.Component {
       return {
         label: item.name,
         value: item.repoURL,
-        icon: item.provider,
+        icon:
+          item.provider === 'bitbucket_server' ? 'bitbucket' : item.provider,
       }
     })
 
