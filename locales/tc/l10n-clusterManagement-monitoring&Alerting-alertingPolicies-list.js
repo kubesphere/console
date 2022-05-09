@@ -22,7 +22,7 @@ module.exports = {
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '如何觸發告警訊息？',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A: '您需要對資源設置告警策略，當資源的某項指標達到告警策略的閥值後即會觸發告警訊息。',
   // List
-  ALERTING_STATUS: 'Alerting Status',
+  ALERTING_STATUS: '告警狀態',
   ALERTING_POLICY_EMPTY_DESC: '請創建一個告警規則。',
   ALERT_RULE_INACTIVE: '未觸發',
   ALERT_RULE_PENDING: '待觸發',
