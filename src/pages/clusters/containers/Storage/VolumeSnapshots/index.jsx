@@ -48,6 +48,7 @@ export default class VolumesSnapshots extends React.Component {
       description: t('VOLUME_SNAPSHOT_DESC'),
       module: 'VOLUME_SNAPSHOT',
       title: t('VOLUME_SNAPSHOT_PL'),
+      icon: 'snapshot',
     }
   }
 
@@ -65,7 +66,7 @@ export default class VolumesSnapshots extends React.Component {
   }
 
   renderBanner() {
-    if (this.store.ksVersion >= 3.0) {
+    if (this.store.ksVersion >= 3.3) {
       return (
         <Banner {...this.bannerProps} tips={this.tips} routes={this.routes} />
       )
