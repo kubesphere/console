@@ -73,7 +73,7 @@ export default class PipelinesList extends React.Component {
 
   refreshHandler = () => {
     if (this.isRuning) {
-      this.getData()
+      this.getData({ silent: true })
     } else {
       clearInterval(this.refreshTimer)
       this.refreshTimer = null

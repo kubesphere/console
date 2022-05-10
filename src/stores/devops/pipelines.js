@@ -134,8 +134,17 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async fetchList({ devops, workspace, devopsName, cluster, ...filters } = {}) {
-    this.list.isLoading = true
+  async fetchList({
+    devops,
+    workspace,
+    devopsName,
+    silent,
+    cluster,
+    ...filters
+  } = {}) {
+    if (!silent) {
+      this.list.isLoading = true
+    }
 
     const { page, limit, name, filter } = filters
     const nameKey = name ? `${encodeURIComponent(name)}` : undefined

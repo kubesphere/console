@@ -26,6 +26,11 @@ import { inCluster2Default } from 'utils'
 
 import styles from './index.scss'
 
+const allItem = {
+  label: t('ALL'),
+  value: '*',
+  icon: 'allowlist',
+}
 @observer
 export default class Destinations extends React.Component {
   projectStore = new ProjectStore()
@@ -37,7 +42,6 @@ export default class Destinations extends React.Component {
   @observable
   cluster = this.props.formtemplate.name || ''
 
-  @computed
   get clusters() {
     return this.props.clusters || []
   }
@@ -58,7 +62,7 @@ export default class Destinations extends React.Component {
 
   @computed
   get namespaces() {
-    return this.projectStore.list.data
+    const data = this.projectStore.list.data
       .filter(item => item.status !== 'Terminating')
       .map(item => ({
         label: item.name,
@@ -66,14 +70,16 @@ export default class Destinations extends React.Component {
         disabled: item.isFedManaged,
         isFedManaged: item.isFedManaged,
       }))
+
+    return [allItem, ...data]
   }
 
   async init() {
     const { name, namespace, server } =
       this.destinations[this.props.index] || {}
 
-    if (name && server && namespace && this.clusters.length > 0) {
-      const clusterInfo = this.clusters.find(item => item.value === name)
+    if (name && server && namespace) {
+      const clusterInfo = this.clusters.find(item => item.value === name) || {}
 
       set(this.state.formData, `name`, get(this.clusters, clusterInfo.value))
       set(this.state.formData, `server`, get(this.clusters, clusterInfo.server))
@@ -90,35 +96,52 @@ export default class Destinations extends React.Component {
 
   fetchNamespaces = async (params = {}) => {
     const _cluster = inCluster2Default(this.cluster)
-    await this.projectStore.fetchList({
-      cluster: _cluster,
-      ...params,
-      type: 'user',
-    })
+    if (_cluster === '*') {
+      this.projectStore.list.update({
+        data: [],
+        isLoading: false,
+      })
+    } else {
+      await this.projectStore.fetchList({
+        cluster: _cluster,
+        ...params,
+        type: 'user',
+      })
+    }
   }
 
-  projectOptionRenderer = option => (
-    <span className={styles.option}>
-      {option.isFedManaged ? (
-        <img className={styles.indicator} src="/assets/cluster.svg" />
-      ) : (
-        <Icon name="project" />
-      )}
-      {option.label}
-      {option.isFedManaged && (
-        <Tooltip content={t('MULTI_CLUSTER_PROJECT_NOT_FOR_CD')}>
-          <Icon className={styles.tip} name="question" />
-        </Tooltip>
-      )}
-    </span>
-  )
+  projectOptionRenderer = option => {
+    return (
+      <span className={styles.option}>
+        {option.isFedManaged ? (
+          <img className={styles.indicator} src="/assets/cluster.svg" />
+        ) : (
+          <Icon name="project" />
+        )}
+        {option.label}
+        {option.isFedManaged && (
+          <Tooltip content={t('MULTI_CLUSTER_PROJECT_NOT_FOR_CD')}>
+            <Icon className={styles.tip} name="question" />
+          </Tooltip>
+        )}
+      </span>
+    )
+  }
 
   @action
   handleClusterChange = async value => {
-    await this.fetchNamespaces()
-    const server = this.clusters.find(item => item.value === value).server
     this.cluster = value
-    this.props.onChange({ name: value, server })
+
+    await this.fetchNamespaces()
+
+    const server = this.clusters.find(item => item.value === value).server
+    const namespaces = this.namespaces[0].value
+
+    this.props.onChange({
+      name: value,
+      server,
+      namespace: namespaces,
+    })
   }
 
   handleChange = res => {
@@ -143,7 +166,7 @@ export default class Destinations extends React.Component {
         />
         <Select
           name="namespace"
-          placeholder={t('WORKSPACE')}
+          placeholder={t('PROJECT')}
           options={this.namespaces}
           pagination={pick(this.projectStore.list, ['page', 'limit', 'total'])}
           isLoading={this.projectStore.list.isLoading}
