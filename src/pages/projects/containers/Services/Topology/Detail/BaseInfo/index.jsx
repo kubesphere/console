@@ -40,6 +40,10 @@ export default class BaseInfo extends Component {
       if (item.label === 'Created') {
         item.value = getLocalTime(item.value).format('YYYY-MM-DD HH:mm:ss')
       }
+
+      if (item.id === 'pod') {
+        item.label = item.label.replace(/#/g, '').trim()
+      }
     })
     return (
       <div className={styles.info}>
