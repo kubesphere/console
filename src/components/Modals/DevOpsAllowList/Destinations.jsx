@@ -16,11 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-import { pick, get, set, isEmpty, isEqual } from 'lodash'
+import { pick, get, isEmpty, set } from 'lodash'
 import { ObjectInput } from 'components/Inputs'
 import ProjectStore from 'stores/project'
-import { Select, Icon } from '@kube-design/components'
-import { action, computed, observable } from 'mobx'
+import { Select, Icon, Tooltip } from '@kube-design/components'
+import { action, observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { inCluster2Default } from 'utils'
 
@@ -40,7 +40,7 @@ export default class Destinations extends React.Component {
   }
 
   @observable
-  cluster = this.props.formtemplate.name || ''
+  cluster = ''
 
   get clusters() {
     return this.props.clusters || []
@@ -50,17 +50,6 @@ export default class Destinations extends React.Component {
     return get(this.props.formtemplate, 'spec.argo.destinations', [])
   }
 
-  componentDidMount() {
-    this.init()
-  }
-
-  componentDidUpdate(prevProps) {
-    if (!isEqual(prevProps.formtemplate, this.props.formtemplate)) {
-      this.init()
-    }
-  }
-
-  @computed
   get namespaces() {
     const data = this.projectStore.list.data
       .filter(item => item.status !== 'Terminating')
@@ -71,26 +60,35 @@ export default class Destinations extends React.Component {
         isFedManaged: item.isFedManaged,
       }))
 
-    return [allItem, ...data]
+    if (this.cluster) {
+      return [allItem, ...data]
+    }
+
+    return data
+  }
+
+  componentDidMount() {
+    this.init()
   }
 
   async init() {
-    const { name, namespace, server } =
-      this.destinations[this.props.index] || {}
+    const { name, namespace } = this.destinations[this.props.index] || {}
 
-    if (name && server && namespace) {
+    if (name) {
       const clusterInfo = this.clusters.find(item => item.value === name) || {}
+
+      this.cluster = clusterInfo.value
 
       set(this.state.formData, `name`, get(this.clusters, clusterInfo.value))
       set(this.state.formData, `server`, get(this.clusters, clusterInfo.server))
 
-      this.cluster = clusterInfo.value
-
       await this.fetchNamespaces()
 
-      const namespaceData =
-        this.namespaces.find(item => item.value === namespace) ||
-        set(this.state.formData, `namespace`, namespaceData.value || '')
+      const namespaceData = this.namespaces.find(
+        item => item.value === namespace
+      )
+
+      set(this.state.formData, `namespace`, namespaceData?.value ?? '')
     }
   }
 
@@ -101,7 +99,7 @@ export default class Destinations extends React.Component {
         data: [],
         isLoading: false,
       })
-    } else {
+    } else if (_cluster && _cluster !== '*') {
       await this.projectStore.fetchList({
         cluster: _cluster,
         ...params,
@@ -174,7 +172,6 @@ export default class Destinations extends React.Component {
           valueRenderer={this.projectOptionRenderer}
           optionRenderer={this.projectOptionRenderer}
           searchable
-          clearable
         />
       </ObjectInput>
     )
