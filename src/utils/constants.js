@@ -268,6 +268,7 @@ export const ICON_TYPES = {
   s2ibuilders: 'vnas',
   apps: 'appcenter',
   'volume-snapshots': 'snapshot',
+  'volume-snapshot-content': 'snapshot',
   customresourcedefinitions: 'select',
   network: 'eip-group',
   networkpolicies: 'firewall',
