@@ -64,28 +64,19 @@ export default class TerminalStore {
       })}/nodes/${nodename}/exec`
     }
 
-    const result = await request.get(
+    return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
+      cluster,
+    })}/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
+  }
+
+  oldWebsocketUrl() {
+    const { cluster, namespace, pod, container, shell = 'sh' } = this.kubectl
+
+    return [
       `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
         cluster,
       })}/namespaces/${namespace}/pods/${pod}/exec?container=${container}&shell=${shell}`,
-      null,
-      null,
-      err => {
-        if (err.status === 404) {
-          return false
-        }
-        return true
-      }
-    )
-    if (!result) {
-      return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
-        cluster,
-      })}/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
-    }
-
-    return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
-      cluster,
-    })}/namespaces/${namespace}/pods/${pod}/exec?container=${container}&shell=${shell}`
+    ]
   }
 
   @action
