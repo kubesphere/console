@@ -98,6 +98,7 @@ export default {
         cluster,
         namespace,
         name: kind,
+        title: t('CREATE_PERSISTENT_VOLUME_CLAIM'),
         formTemplate,
         isFederated,
         steps: fromSnapshot ? APPLY_SNAPSHOT_FORM_STEPS : steps,
