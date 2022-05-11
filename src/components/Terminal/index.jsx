@@ -39,7 +39,7 @@ export default class SessionTerminal extends Component {
   }
 
   render() {
-    const { isEdgeNode } = this.props
+    const { isEdgeNode, socketUrlOnError } = this.props
 
     if (!this.props.url) {
       return null
@@ -73,6 +73,7 @@ export default class SessionTerminal extends Component {
               ref={ref => {
                 this.terminalRef = ref
               }}
+              socketUrlOnError={socketUrlOnError}
             />
           )}
         </Suspense>
