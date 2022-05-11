@@ -343,9 +343,9 @@ class BaseInfo extends React.Component {
 
     const isAll =
       data.length === 1 &&
-      data.some(item => {
+      data.every(item => {
         if (isObject(item)) {
-          return Object.entries(item)[1].includes('*')
+          return Object.keys(item).every(key => item[key] === '*')
         }
         return item === '*'
       })
@@ -364,7 +364,7 @@ class BaseInfo extends React.Component {
       <div className={styles.items}>
         {this.detail.sourceRepos.map(repo => (
           <div key={repo} className={styles.item}>
-            {repo || t('NONE')}
+            {repo === '*' ? t('All') : repo}
           </div>
         ))}
       </div>
@@ -374,12 +374,22 @@ class BaseInfo extends React.Component {
           <div key={index} className={`${styles.item} ${styles.item_flex}`}>
             <div>
               <Icon name="cluster" size={20} />
-              <b>{inCluster2Default(destination.name) || t('NONE')}</b>
-              <span>({destination.server || t('NONE')})</span>
+              <b>
+                {destination.name === '*'
+                  ? t('All')
+                  : inCluster2Default(destination.name)}
+              </b>
+              {destination?.name !== '*' && (
+                <span>({destination?.server})</span>
+              )}
             </div>
             <div>
               <Icon name="enterprise" size={20} />
-              <b>{destination.namespace || t('NONE')}</b>
+              <b>
+                {destination?.namespace === '*'
+                  ? t('All')
+                  : destination?.namespace}
+              </b>
             </div>
           </div>
         ))}

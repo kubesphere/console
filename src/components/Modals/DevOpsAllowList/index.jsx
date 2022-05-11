@@ -20,9 +20,9 @@ import React from 'react'
 import { ArrayInput } from 'components/Inputs'
 
 import PropTypes from 'prop-types'
-import { Icon, Form, Select } from '@kube-design/components'
-import { Modal } from 'components/Base'
-import { get } from 'lodash'
+import { Icon, Form, Select, Loading } from '@kube-design/components'
+import { Modal, Empty } from 'components/Base'
+import { get, pick, isUndefined } from 'lodash'
 import DevopsStore from 'stores/devops'
 import CodeStore from 'stores/codeRepo'
 import CDStore from 'stores/cd'
@@ -51,6 +51,7 @@ export default class CDAllowListModal extends React.Component {
     formTemplate: {},
     options: [],
     clusters: [],
+    isLoading: false,
   }
 
   store = new DevopsStore()
@@ -62,9 +63,16 @@ export default class CDAllowListModal extends React.Component {
   formRef = React.createRef()
 
   componentDidMount() {
-    this.initFormTemplate()
-    this.fetchClusters()
-    this.getRepoList()
+    this.init()
+  }
+
+  init = async () => {
+    this.setState({ isLoading: true })
+    await this.initFormTemplate()
+    await this.getRepoList()
+    await this.fetchClusters()
+
+    this.setState({ isLoading: false })
   }
 
   getRepoList = async () => {
@@ -129,6 +137,9 @@ export default class CDAllowListModal extends React.Component {
         if (arr.includes(item)) {
           return callback({ message: t('CODE_REPOSITORY_EXIST_DESC') })
         }
+        if (!item) {
+          return callback({ message: t('CODE_REPOSITORY_NOT_SELECTED') })
+        }
         arr.push(item)
       })
     }
@@ -144,10 +155,22 @@ export default class CDAllowListModal extends React.Component {
     if (value.length > 0) {
       const data = []
       value.forEach(item => {
-        if (data.includes(item.namespace)) {
+        const isExit = data.find(destination => {
+          return (
+            destination.namespace === item.namespace &&
+            destination.cluster === item.name
+          )
+        })
+
+        if (!isUndefined(isExit)) {
           return callback({ message: t('DEPLOYMENT_LOCATION_EXIST_DESC') })
         }
-        data.push(item.namespace)
+
+        if (item.name && !item.namespace) {
+          return callback({ message: t('PROJECT_NOT_SELECT_DESC') })
+        }
+
+        data.push({ namespace: item.namespace, cluster: item.name })
       })
     }
 
@@ -175,43 +198,60 @@ export default class CDAllowListModal extends React.Component {
         visible={visible}
         formRef={this.formRef}
       >
-        <Form.Item
-          label={t('CODE_REPO_PL')}
-          rules={[{ validator: this.sourceReposValidator }]}
-        >
-          <ArrayInput
-            name="spec.argo.sourceRepos"
-            addText={t('ADD')}
-            itemType="string"
-            checkItemValid={this.checkItemValid}
-          >
-            <Select
-              style={{ maxWidth: '100%' }}
-              placeholder=" "
-              options={this.state.options}
-              valueRenderer={option => this.repoOptionRenderer(option)('value')}
-              optionRenderer={option =>
-                this.repoOptionRenderer(option)('option')
-              }
-            />
-          </ArrayInput>
-        </Form.Item>
-        <Form.Item
-          label={t('DEPLOYMENT_LOCATION_PL')}
-          rules={[{ validator: this.destinationsValidator }]}
-        >
-          <ArrayInput
-            name="spec.argo.destinations"
-            itemType="object"
-            addText={t('ADD')}
-            checkItemValid={this.checkDestinationsValid}
-          >
-            <Destinations
-              clusters={this.state.clusters}
-              formtemplate={this.state.formTemplate}
-            />
-          </ArrayInput>
-        </Form.Item>
+        {this.state.isLoading ? (
+          <Loading spinning={this.state.isLoading}>
+            <Empty desc={'NO_DATA'} />
+          </Loading>
+        ) : (
+          <>
+            <Form.Item
+              label={t('CODE_REPO_PL')}
+              rules={[{ validator: this.sourceReposValidator }]}
+            >
+              <ArrayInput
+                name="spec.argo.sourceRepos"
+                addText={t('ADD')}
+                itemType="string"
+                checkItemValid={this.checkItemValid}
+              >
+                <Select
+                  style={{ maxWidth: '100%' }}
+                  placeholder=" "
+                  options={this.state.options}
+                  pagination={pick(this.codeStore.list, [
+                    'page',
+                    'limit',
+                    'total',
+                  ])}
+                  isLoading={this.codeStore.list.isLoading}
+                  onFetch={this.getRepoList}
+                  valueRenderer={option =>
+                    this.repoOptionRenderer(option)('value')
+                  }
+                  optionRenderer={option =>
+                    this.repoOptionRenderer(option)('option')
+                  }
+                  searchable
+                />
+              </ArrayInput>
+            </Form.Item>
+            <Form.Item
+              label={t('DEPLOYMENT_LOCATION_PL')}
+              rules={[{ validator: this.destinationsValidator }]}
+            >
+              <ArrayInput
+                name="spec.argo.destinations"
+                itemType="object"
+                addText={t('ADD')}
+              >
+                <Destinations
+                  clusters={this.state.clusters}
+                  formtemplate={this.state.formTemplate}
+                />
+              </ArrayInput>
+            </Form.Item>
+          </>
+        )}
       </Modal.Form>
     )
   }
