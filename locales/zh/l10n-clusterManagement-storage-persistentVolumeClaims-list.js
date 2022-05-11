@@ -40,6 +40,7 @@ module.exports = {
   ACCESS_MODE_TCAP: '访问模式',
   // List > Create > Basic Information
   CREATE: '创建',
+  CREATE_PERSISTENT_VOLUME_CLAIM: 'Create Persistent Volume Claim',
   // List > Create > Storage Settings
   CREATION_METHOD: '创建方式',
   CREATE_VOLUME_BY_STORAGE_CLASS: '通过存储类创建',
