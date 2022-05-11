@@ -183,11 +183,7 @@ export default class Nodes extends React.Component {
   }
 
   getUnschedulable = record => {
-    const taints = record.taints
-
-    return taints.some(
-      taint => taint.key === 'node.kubernetes.io/unschedulable'
-    )
+    return !!record?.unschedulable;
   }
 
   getReady = record => {
