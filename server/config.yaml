@@ -511,12 +511,14 @@ client:
             title: CONTINUOUS_DEPLOYMENT_PL,
             icon: rocket,
             authKey: "applications",
+            requiredClusterVersion: v3.3.0,
           }
         - {
             name: code-repo,
             title: CODE_REPO_PL,
             icon: code,
             authKey: "gitrepositories",
+            requiredClusterVersion: v3.3.0,
           }
         - name: management
           title: DEVOPS_PROJECT_SETTINGS
