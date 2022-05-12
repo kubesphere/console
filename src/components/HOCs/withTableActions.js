@@ -94,8 +94,16 @@ function withTableActions(WrappedComponent) {
       }
     }
 
+    isTerminating = status => {
+      return status && status === 'Terminating'
+    }
+
     renderMore = (field, record) => {
       if (isEmpty(this.enabledItemActions)) {
+        return null
+      }
+
+      if (record && this.isTerminating(record.status)) {
         return null
       }
 
