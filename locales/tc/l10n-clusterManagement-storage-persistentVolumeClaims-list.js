@@ -40,6 +40,7 @@ module.exports = {
   ACCESS_MODE_TCAP: '支持的訪問模式',
   // List > Create > Basic Information
   CREATE: '創建',
+  CREATE_PERSISTENT_VOLUME_CLAIM: 'Create Persistent Volume Claim',
   // List > Create > Storage Settings
   CREATION_METHOD: 'Creation Method',
   CREATE_VOLUME_BY_STORAGE_CLASS: 'From Storage Class',
