@@ -24,7 +24,7 @@ module.exports = {
   DEFAULT_STORAGE_CLASS: '默认存储类',
   ALLOW_VOLUME_SNAPSHOT: '允许卷快照',
   ALLOW_VOLUME_CLONE: '允许卷克隆',
-  ALLOW_VOLUME_EXPANSION: '允许卷扩容',
+  ALLOW_VOLUME_EXPANSION: '允许卷扩展',
   // List > Create
   // List > Create > Basic Information
   // List > Create > Storage System
@@ -33,7 +33,7 @@ module.exports = {
   QINGCLOUD_CSI_DESC: '使用 QingCloud CSI 作为底层存储插件。<a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md">了解更多</a>',
   CUSTOM: '自定义',
   // List > Create > > QingCloud CSI > Storage Class Settings
-  VOLUME_EXPANSION: '卷扩容',
+  VOLUME_EXPANSION: '卷扩展',
   RECLAIM_POLICY: '回收机制',
   ACCESS_MODE: '访问模式',
   ACCESS_MODES_DESC: '选择存储类支持的一种或多种访问模式。',
