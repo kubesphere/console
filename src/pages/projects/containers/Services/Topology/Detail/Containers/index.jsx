@@ -59,6 +59,12 @@ export default class Containers extends Component {
   }
 
   getOptions(container) {
+    if (container.length > 0) {
+      const needOmitLabel = ['POD']
+      container[0].nodes = container[0].nodes.filter(
+        node => needOmitLabel.indexOf(node.label) === -1
+      )
+    }
     const con =
       container.length > 0
         ? [
