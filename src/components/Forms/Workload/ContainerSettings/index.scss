@@ -1,7 +1,7 @@
 @import '~scss/variables';
 
 @mixin tipFont {
-  font-family: 'PingFang SC';
+  font-family: 'PingFang SC', sans-serif;
   font-style: normal;
   font-size: 12px;
   line-height: 20px;
