@@ -40,7 +40,7 @@ export default [
     routes: [
       ...detail,
       {
-        path: '',
+        path: PATH,
         component: DevopsListLayout,
         routes: [
           { path: `${PATH}/pipelines`, component: PipelinesList, exact: true },
@@ -50,7 +50,6 @@ export default [
           { path: `${PATH}/roles`, component: Roles, exact: true },
           { path: `${PATH}/members`, component: Members, exact: true },
           { path: `${PATH}/credentials`, component: Credential, exact: true },
-          getIndexRoute({ path: PATH, to: `${PATH}/base-info`, exact: true }),
         ],
       },
       getIndexRoute({ path: '*', to: '/404', exact: true }),

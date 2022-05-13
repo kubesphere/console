@@ -19,8 +19,9 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Loading } from '@kube-design/components'
+import { get } from 'lodash'
 
-import { renderRoutes } from 'utils/router.config'
+import { renderRoutes, getIndexRoute } from 'utils/router.config'
 import { Nav } from 'components/Layout'
 import Selector from 'projects/components/Selector'
 
@@ -51,6 +52,14 @@ class DevOpsListLayout extends Component {
     const { match, route, location } = this.props
     const { initializing, detail } = this.props.devopsStore
 
+    const navs = globals.app.getDevOpsNavs({
+      devops: this.devops,
+      cluster: this.cluster,
+      workspace: this.workspace,
+    })
+    const indexNav = get(navs, '[0].items[0].name', 'management')
+    const indexPath = indexNav === 'management' ? 'base-info' : indexNav
+
     if (initializing) {
       return <Loading className={styles.loading} />
     }
@@ -68,17 +77,22 @@ class DevOpsListLayout extends Component {
           />
           <Nav
             className="ks-page-nav"
-            navs={globals.app.getDevOpsNavs({
-              devops: this.devops,
-              cluster: this.cluster,
-              workspace: this.workspace,
-            })}
+            navs={navs}
             location={location}
             match={match}
           />
         </div>
 
-        <div className="ks-page-main">{renderRoutes(route.routes)}</div>
+        <div className="ks-page-main">
+          {renderRoutes([
+            ...route.routes,
+            getIndexRoute({
+              path: route.path,
+              to: `${route.path}/${indexPath}`,
+              exact: true,
+            }),
+          ])}
+        </div>
       </div>
     )
   }
