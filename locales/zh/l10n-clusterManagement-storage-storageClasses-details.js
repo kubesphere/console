@@ -36,19 +36,19 @@ module.exports = {
   VOLUME_CLONING_DESC: '允许用户克隆卷。',
   VOLUME_SNAPSHOT_CREATION: '卷快照创建',
   VOLUME_SNAPSHOT_CREATION_DESC: '允许用户创建卷快照。',
-  VOLUME_EXPANSION_DESC: '允许用户对卷进行扩容。卷容量只能增加，不能减少。',
+  VOLUME_EXPANSION_DESC: '允许用户扩展卷容量。卷容量只能增加，不能减少。',
   SET_VOLUME_OPERATIONS_TIP: '以下设置仅控制用户是否被允许在 Web 控制台执行操作。基于存储类型创建的持久卷是否实际支持这些操作取决于后端存储系统。',
   // More > Set Auto Expansion
-  SET_AUTO_EXPANSION: '设置自动扩容',
-  AUTO_EXPANSION: '自动扩容',
-  AUTO_EXPANSION_DESC: '设置系统在卷剩余空间低于阈值时自动对卷进行扩容。',
-  AUTO_EXPANSION_SETTINGS: '自动扩容设置',
+  SET_AUTO_EXPANSION: '设置自动扩展',
+  AUTO_EXPANSION: '自动扩展',
+  AUTO_EXPANSION_DESC: '设置系统在卷剩余空间低于阈值时自动扩展卷容量。',
+  AUTO_EXPANSION_SETTINGS: '自动扩展设置',
   MAXIMUM_SIZE: '最大容量',
   INCREMENT: '增量',
   INCREMENT_DESC: '根据存储类的 CSI 插件设置卷容量增量。',
   RESTART_WORKLOAD_AUTOMATICALLY: '自动重启工作负载',
   RESTART_WORKLOAD_AUTOMATICALLY_DESC: '该系统自动检查卷状态，以确定是否需要重新启动工作负载。',
-  RESTART_WORKLOAD_AUTOMATICALLY_TIP: '如果到达超时时间时卷仍未扩容成功，系统将在工作负载上添加“restart.kubesphere.io/skip”注解使工作负载不再被重启。如需再次为工作负载启用自动重启功能，您需要在工作负载上手动删除该注解。',
+  RESTART_WORKLOAD_AUTOMATICALLY_TIP: '如果到达超时时间时卷容量仍未扩展成功，系统将在工作负载上添加“restart.kubesphere.io/skip”注解使工作负载不再被重启。如需再次为工作负载启用自动重启功能，您需要在工作负载上手动删除该注解。',
   // More > Delete
   // Volumes
   PVC_COUNT: '持久卷声明数量'
