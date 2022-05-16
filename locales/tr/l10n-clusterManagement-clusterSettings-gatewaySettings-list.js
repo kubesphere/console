@@ -39,15 +39,16 @@ module.exports = {
   // Cluster Gateway > Manage > Edit
   EDIT: 'Düzenle',
   EDIT_TITLE: 'Başlığı Düzenle',
-  // Cluster Gateway > Manage > Delete
-  // Project Gateway
-  PROJECT_GATEWAY: 'Proje Ağ Geçidi',
+  // Cluster Gateway > Manage > Disable
+  // Project Gateways
+  PROJECT_GATEWAY_PL: 'Proje Ağ Geçidi',
   PROJECT_GATEWAY_NOT_ENABLED: 'Proje Ağ Geçidi Etkin Değil',
   PROJECT_ENABLE_GATEWAY_DESC: 'Lütfen proje ağ geçidini etkinleştirin.',
   REPLICA_COUNT: 'Kopyalar',
   NODE_PORTS: 'Düğüm Portu',
   UPDATE_GATEWAY_DESC: 'Geçerli ağ geçidi güncellenebilir.',
-  // Project Gateway > Delete
+  // Project Gateways > Disable
   PROJECT_GATEWAY_PL: 'Proje Ağ Geçidi',
-  PROJECT_GATEWAY_LOW: 'proje Ağ Geçidi'
+  PROJECT_GATEWAY_LOW: 'proje Ağ Geçidi',
+  DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'
 };
