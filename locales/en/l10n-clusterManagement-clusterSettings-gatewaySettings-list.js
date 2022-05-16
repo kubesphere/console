@@ -40,15 +40,16 @@ module.exports = {
   // Cluster Gateway > Manage > Edit
   EDIT: 'Edit',
   EDIT_TITLE: 'Edit {title}',
-  // Cluster Gateway > Manage > Delete
-  // Project Gateway
-  PROJECT_GATEWAY: 'Project Gateway',
+  // Cluster Gateway > Manage > Disable
+  // Project Gateways
+  PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',
   PROJECT_ENABLE_GATEWAY_DESC: 'Please enable the project gateway.',
   REPLICA_COUNT: 'Replicas',
   NODE_PORTS: 'Node Ports',
   UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
-  // Project Gateway > Delete
+  // Project Gateways > Disable
   PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_LOW: 'project gateway',
+  DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways',
 }

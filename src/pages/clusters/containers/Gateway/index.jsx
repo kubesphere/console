@@ -61,7 +61,7 @@ export default class Getway extends React.Component {
         },
         {
           value: 'project',
-          label: t('PROJECT_GATEWAY'),
+          label: t('PROJECT_GATEWAY_PL'),
         },
       ],
     }

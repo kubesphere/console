@@ -20,6 +20,7 @@ module.exports = {
   // Banner
   PROJECT_GATEWAY_DESC: 'Set up and manage the configuration of the external network access gateway and service management in the project.',
   // Project Gateway
+  PROJECT_GATEWAY: 'Project Gateway',
   // Project Gateway > Enable Gateway
   ENABLE_GATEWAY_DESC: 'Enable the gateway controller to forward traffic to different services based on domain names and paths configured in routes.',
   // Project Gateway > Enable Gateway > NodePort

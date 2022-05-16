@@ -25,7 +25,7 @@ export default [
   {
     name: 'volumes',
     path: `${PATH}/volumes`,
-    title: 'Volumes',
+    title: 'PERSISTENT_VOLUME_CLAIM_PL',
     component: Volumes,
   },
   getIndexRoute({ path: PATH, to: `${PATH}/volumes`, exact: true }),
