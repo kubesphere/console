@@ -24,9 +24,9 @@ module.exports = {
   // List
   ALERTING_STATUS: '告警状态',
   ALERTING_POLICY_EMPTY_DESC: '请创建一个告警规则。',
-  ALERT_RULE_INACTIVE: '未触发',
-  ALERT_RULE_PENDING: '待触发',
-  ALERT_RULE_FIRING: '触发中',
+  ALERT_RULE_INACTIVE: '未激活',
+  ALERT_RULE_PENDING: '待发送',
+  ALERT_RULE_FIRING: '发送中',
   ALERT_RULE_HEALTH_OK: '健康',
   ALERT_RULE_HEALTH_ERR: '错误',
   ALERT_RULE_HEALTH_UNKNOWN: '未知',
