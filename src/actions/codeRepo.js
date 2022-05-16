@@ -29,7 +29,14 @@ const getRepoUrl = (repoType, repo) => {
     case 'gitlab':
       return `${repo.server_name}/${repo.repo}`
     case 'bitbucket_server':
-      return `${repo.api_uri}/${repo.owner}/${repo.repo}`
+      // eslint-disable-next-line no-case-declarations
+      const uri = repo.api_uri
+      // eslint-disable-next-line no-case-declarations
+      let url = uri.substr(uri.length - 1) === '/' ? uri : `${uri}/`
+      if (!/https:\/\/bitbucket.org\/?/gm.test(url)) {
+        url += 'scm/'
+      }
+      return `${url}${repo.owner}/${repo.repo}`
     default:
       return repo.repo || repo.url || repo.remote
   }

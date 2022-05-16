@@ -378,14 +378,15 @@ export default class SCMStore extends BaseStore {
           password,
         }
       )
+
       if (verifyResult && verifyResult.credentialId) {
         this.orgList.isLoading = false
         this.getOrganizationList(
           {
-            credentialId: `bitbucket-server:${result.id}`,
+            credentialId: verifyResult.credentialId,
             apiUrl,
           },
-          'bitbucket-server',
+          verifyResult.credentialId,
           cluster
         )
       }
