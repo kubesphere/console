@@ -510,7 +510,7 @@ export default class Nodes extends React.Component {
   }
 
   renderOverview() {
-    const { masterCount, masterWorkerCount, list } = this.store
+    const { masterNum, masterCount, masterWorkerCount, list } = this.store
     const totalCount = list.total
     const workerCount = Math.max(
       Number(totalCount) - Number(masterCount) + Number(masterWorkerCount),
@@ -526,9 +526,9 @@ export default class Nodes extends React.Component {
             description={totalCount === 1 ? t(`NODE_SI`) : t(`NODE_PL`)}
           />
           <Text
-            title={masterCount}
+            title={masterNum}
             description={
-              masterCount === 1 ? t('MASTER_NODE_SI') : t('MASTER_NODE_PL')
+              masterNum === 1 ? t('MASTER_NODE_SI') : t('MASTER_NODE_PL')
             }
           />
           <Text
