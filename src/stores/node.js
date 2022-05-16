@@ -33,6 +33,9 @@ export default class NodeStore extends Base {
   nodeMetrics = {}
 
   @observable
+  masterNum = 0
+
+  @observable
   masterCount = 0
 
   @observable
@@ -130,7 +133,12 @@ export default class NodeStore extends Base {
 
     const masterWorker = resp.items.filter(item => {
       const labels = getNodeRoles(item.metadata.labels)
-      return !labels.includes('master') && labels.includes('worker')
+      return labels.includes('worker')
+    }).length
+
+    this.masterNum = resp.items.filter(item => {
+      const labels = getNodeRoles(item.metadata.labels)
+      return labels.includes('master') || labels.includes('control-plane')
     }).length
 
     this.masterCount = resp.totalItems
