@@ -45,6 +45,7 @@ module.exports = {
   // List > Create > Rule Settings > Rule Template
   RULE_SETTINGS: 'Rule Settings',
   MONITORING_TARGETS: 'Monitoring Targets',
+  ACTIVATION_CONDITION: 'Activation Condition',
   CPU_USAGE_SCAP: 'CPU usage',
   DISK_READ_IOPS: 'Local disk read IOPS',
   DISK_READ_THROUGHPUT: 'Local disk read throughput',
@@ -57,7 +58,7 @@ module.exports = {
   MEMORY_USAGE_SCAP: 'Memory usage',
   DATA_RECEIVE_RATE: 'Network data receiving rate',
   DATA_SEND_RATE: 'Network data sending rate',
-  SET_RULE_DESC: 'Please set an alerting rule.',
+  SET_ACTIVATION_CONDITION_DESC: 'Please set an activation condition.',
   ABNORMAL_PODS: 'Abnormal Pods',
   POD_USAGE_SCAP: 'Pod usage',
   THRESHOLD: 'Threshold',

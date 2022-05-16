@@ -58,7 +58,7 @@ export default class AlertingRule extends React.Component {
 
     if (isEmpty(value.thresholds)) {
       return callback({
-        message: t('SET_RULE_DESC'),
+        message: t('SET_ACTIVATION_CONDITION_DESC'),
         field: rule.field,
       })
     }
@@ -78,7 +78,7 @@ export default class AlertingRule extends React.Component {
         <Form.Item
           label={t('ALERTING_RULE')}
           rules={[
-            { required: true, message: t('SET_RULE_DESC') },
+            { required: true, message: t('SET_ACTIVATION_CONDITION_DESC') },
             { validator: this.ruleValidator },
           ]}
         >
