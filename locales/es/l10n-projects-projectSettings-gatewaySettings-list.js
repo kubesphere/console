@@ -19,6 +19,7 @@ module.exports = {
   // Banner
   PROJECT_GATEWAY_DESC: 'Set up and manage the configuration of the external network access gateway and service management in the cluster and project',
   // Project Gateway
+  PROJECT_GATEWAY: 'Project Gateway',
   // Project Gateway > Enable Gateway
   ENABLE_GATEWAY_DESC: 'Antes de crear una ruta, debe habilitar el portal de acceso a Internet (es decir, la puerta de enlace). Este paso crea un controlador de enrutamiento correspondiente para reenviar la solicitud al servicio de back-end correspondiente.',
   // Project Gateway > Enable Gateway > NodePort
