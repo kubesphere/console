@@ -86,7 +86,7 @@ export default class VolumesCard extends React.Component {
 
   render() {
     const { className } = this.props
-    const title = this.props.title || t('PERSISTENT_VOLUME_CLAIM_PL')
+    const title = this.props.title || t('VOLUME_PL')
 
     return (
       <Panel className={className} title={title}>

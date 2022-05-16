@@ -189,6 +189,10 @@ export default {
         },
         resource: selectNames.join(', '),
         modal: DeleteModal,
+        title:
+          selectNames.length === 1
+            ? t('DISABLE_GATEWAY')
+            : t('DISABLE_MULTIPLE_GATEWAYS'),
         store,
         ...props,
       })
