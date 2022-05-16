@@ -39,15 +39,16 @@ module.exports = {
   // Cluster Gateway > Manage > Edit
   EDIT: '编辑',
   EDIT_TITLE: '编辑{title}',
-  // Cluster Gateway > Manage > Delete
-  // Project Gateway
-  PROJECT_GATEWAY: '项目网关',
+  // Cluster Gateway > Manage > Disable
+  // Project Gateways
+  PROJECT_GATEWAY_PL: '项目网关',
   PROJECT_GATEWAY_NOT_ENABLED: '项目网关未开启',
   PROJECT_ENABLE_GATEWAY_DESC: '请开启项目网关。',
   REPLICA_COUNT: '副本数量',
   NODE_PORTS: '节点端口',
   UPDATE_GATEWAY_DESC: '当前网关可更新。',
-  // Project Gateway > Delete
+  // Project Gateways > Disable
   PROJECT_GATEWAY_PL: '项目网关',
-  PROJECT_GATEWAY_LOW: '项目网关'
+  PROJECT_GATEWAY_LOW: '项目网关',
+  DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'
 };
