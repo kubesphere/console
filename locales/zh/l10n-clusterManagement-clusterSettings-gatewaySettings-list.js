@@ -50,5 +50,5 @@ module.exports = {
   // Project Gateways > Disable
   PROJECT_GATEWAY_PL: '项目网关',
   PROJECT_GATEWAY_LOW: '项目网关',
-  DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'
+  DISABLE_MULTIPLE_GATEWAYS: '批量关闭网关'
 };
