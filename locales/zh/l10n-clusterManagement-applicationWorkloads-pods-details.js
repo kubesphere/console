@@ -49,6 +49,7 @@ module.exports = {
   NO_RESOURCE: '未发现{resource}。',
   LOG_DATA_LOW: '日志信息',
   // Resource Status > Volumes
+  VOLUME_PL: '卷',
   TYPE_CONFIGMAP: '卷类型：配置字典',
   TYPE_SECRET: '卷类型：保密字典',
   TYPE_EMPTYDIR: '卷类型：EmptyDir',

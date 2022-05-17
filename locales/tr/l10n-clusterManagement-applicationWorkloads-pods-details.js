@@ -49,6 +49,7 @@ module.exports = {
   NO_RESOURCE: '{kaynak} yok.',
   LOG_DATA_LOW: 'kayıt verileri',
   // Resource Status > Volumes
+  VOLUME_PL: 'Volumes',
   TYPE_CONFIGMAP: 'Birim türü: configmap',
   TYPE_SECRET: 'Birim tipi: gizli',
   TYPE_EMPTYDIR: 'Birim tipi: emptyDir',

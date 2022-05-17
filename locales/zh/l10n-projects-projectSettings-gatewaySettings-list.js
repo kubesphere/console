@@ -19,6 +19,7 @@ module.exports = {
   // Banner
   PROJECT_GATEWAY_DESC: '对项目中的外网访问网关以及服务治理等配置进行设置和管理。',
   // Project Gateway
+  PROJECT_GATEWAY: '项目网关',
   // Project Gateway > Enable Gateway
   ENABLE_GATEWAY_DESC: '在创建应用路由之前，需要先开启外网访问入口，即网关。这一步是创建对应的应用路由控制器，负责将请求转发到对应的后端服务。',
   // Project Gateway > Enable Gateway > NodePort
