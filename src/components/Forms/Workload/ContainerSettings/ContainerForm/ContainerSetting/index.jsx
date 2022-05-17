@@ -64,6 +64,7 @@ export default class ContainerSetting extends React.Component {
       const auths = get(item, 'data[".dockerconfigjson"].auths', {})
       const url = Object.keys(auths)[0] || ''
       const username = get(auths[url], 'username')
+      const auth = get(auths[url], 'auth')
       const cluster = item.isFedManaged
         ? get(item, 'clusters[0].name')
         : item.cluster
@@ -74,6 +75,7 @@ export default class ContainerSetting extends React.Component {
         label: item.name,
         value: item.name,
         cluster,
+        auth,
       }
     })
   }

@@ -144,7 +144,7 @@ export default class DropdownContent extends React.Component {
   handleSecretChange = value => {
     if (value) {
       const url = this.props.imageRegistries.filter(
-        hub => hub.label === value
+        hub => hub.value === value
       )[0].url
       this.setState({ hubUrl: url })
     }
@@ -230,11 +230,19 @@ export default class DropdownContent extends React.Component {
 
     this.setState({ isLoading: true })
 
+    const { imageRegistries } = this.props
+    const { auth } = imageRegistries.find(item => item.value === 'harbor')
+
     const result = await this.store
       .getHarborImagesLists(
         {
           q: keyword,
         },
+        auth
+          ? {
+              Authorization: `Basic ${auth}`,
+            }
+          : null,
         url
       )
       .finally(() => {

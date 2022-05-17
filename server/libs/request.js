@@ -72,9 +72,13 @@ const send_dockerhub_request = ({ params, path, headers }) => {
   return request['get'](`${serverConfig.dockerHubUrl}${path}`, params, options)
 }
 
-const send_harbor_request = ({ path }) => {
+const send_harbor_request = ({ path, params, headers }) => {
   return request['get'](
-    `${path.replace('http:/', 'http://').replace('https:/', 'https://')}`
+    `${path.replace('http:/', 'http://').replace('https:/', 'https://')}`,
+    params,
+    {
+      headers,
+    }
   )
 }
 

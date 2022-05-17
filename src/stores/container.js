@@ -166,8 +166,15 @@ export default class ContainerStore {
     )
 
   @action
-  getHarborImagesLists = async (params, url) =>
-    await request.get(`harbor/${url}/api/v2.0/search`, params, () => {})
+  getHarborImagesLists = async (params, headers, url) =>
+    await request.get(
+      `harbor/${url}/api/v2.0/search`,
+      params,
+      {
+        headers,
+      },
+      () => {}
+    )
 
   @action
   getHarborImageTag = async (url, projectName, repositoryName, params) =>

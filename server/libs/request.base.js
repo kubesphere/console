@@ -79,7 +79,11 @@ function buildRequest(method, url, params = {}, options) {
 
   if (method === 'GET') {
     if (!isEmpty(params)) {
-      requestURL += `?${qs.stringify(params)}`
+      let splitor = '?'
+      if (/\?[^=&]+=/.test(requestURL)) {
+        splitor = '&'
+      }
+      requestURL += `${splitor}${qs.stringify(params)}`
     }
   } else if (isForm) {
     request.body = qs.stringify(params)
