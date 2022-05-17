@@ -22,6 +22,7 @@ import { action, observable, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { get, isEmpty, pick } from 'lodash'
 import { ScrollLoad } from 'components/Base'
+import { safeAtob } from 'utils/base64'
 
 import {
   Form,
@@ -74,6 +75,7 @@ export default class GitHubForm extends React.Component {
           value: credential.name,
           type: credential.type,
           namespace: credential.namespace,
+          token: get(credential, '_originData.data.password'),
         }))
         .filter(credential => credential.type === 'username_password'),
     ]
@@ -132,9 +134,16 @@ export default class GitHubForm extends React.Component {
     if (!isEmpty(credentialDetail)) {
       const secretName = get(credentialDetail, 'value')
       const secretNamespace = get(credentialDetail, 'namespace')
+      const token = safeAtob(get(credentialDetail, 'token'))
 
       await this.props.store
-        .putAccessName({ secretName, secretNamespace, cluster, devops })
+        .putAccessName({
+          secretName,
+          secretNamespace,
+          cluster,
+          devops,
+          token,
+        })
         .finally(() => {
           this.setState({ isLoading: false })
         })

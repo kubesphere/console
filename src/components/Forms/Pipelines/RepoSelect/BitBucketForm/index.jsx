@@ -52,12 +52,13 @@ export default class BitBucketForm extends GitHubForm {
     this.setState({ bitbucketList })
   }
 
-  getCredentialsList = () => {
+  get credentialsList() {
     return [
       ...this.props.store.credentials.data.map(credential => ({
         label: credential.name,
         value: credential.name,
         type: credential.type,
+        data: credential.data,
       })),
     ]
   }
@@ -73,11 +74,16 @@ export default class BitBucketForm extends GitHubForm {
   handlePasswordConfirm = async () => {
     const { cluster, devops } = this.props
     const data = this.tokenFormRef.current.getData()
+
     this.credentialId = data.credentialId
 
     if (isEmpty(data) || !this.credentialId) return false
 
     this.setState({ isLoading: true })
+
+    const credentialDetail = this.credentialsList.find(
+      item => item.value === this.credentialId
+    )
 
     await this.props.store
       .creatBitBucketServers({
@@ -86,6 +92,7 @@ export default class BitBucketForm extends GitHubForm {
         apiUrl: data.apiUrl,
         secretName: this.credentialId,
         secretNamespace: devops,
+        ...credentialDetail.data,
       })
       .finally(() => {
         this.setState({ isLoading: false })
@@ -99,7 +106,9 @@ export default class BitBucketForm extends GitHubForm {
       [REPO_KEY_MAP[this.scmType]]: {
         repo: get(this.repoListData, `${index}.name`), // repo
         credential_id: this.credentialId,
-        owner: get(toJS(this.orgList), `data[${this.activeRepoIndex}].name`),
+        owner:
+          get(this.orgList[this.activeRepoIndex], 'key') ||
+          get(toJS(this.orgList), `data[${this.activeRepoIndex}].name`),
         api_uri: get(tokenFormData, 'apiUrl'),
         discover_branches: 1,
         discover_pr_from_forks: { strategy: 2, trust: 2 },
@@ -162,7 +171,7 @@ export default class BitBucketForm extends GitHubForm {
           >
             <Select
               name="credentialId"
-              options={this.getCredentialsList()}
+              options={this.credentialsList}
               pagination={pick(credentials, ['page', 'limit', 'total'])}
               isLoading={credentials.isLoading}
               onFetch={this.getCredentialsListData}
