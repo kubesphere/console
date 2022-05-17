@@ -44,6 +44,7 @@ module.exports = {
   // List > Create > Rule Settings > Rule Template
   RULE_SETTINGS: '規則設置',
   MONITORING_TARGETS: '監控目標',
+  ACTIVATION_CONDITION: 'Activation Condition',
   CPU_USAGE_SCAP: 'CPU 用量',
   DISK_READ_IOPS: '本地磁碟讀取 IOPS',
   DISK_READ_THROUGHPUT: '本地磁碟讀取吞吐量',
@@ -56,7 +57,7 @@ module.exports = {
   MEMORY_USAGE_SCAP: '記憶體用量',
   DATA_RECEIVE_RATE: '網路接收數據速率',
   DATA_SEND_RATE: '網路發送數據速率',
-  SET_RULE_DESC: '請設置告警規則。',
+  SET_ACTIVATION_CONDITION_DESC: 'Please set an activation condition.',
   ABNORMAL_PODS: '容器組異常率',
   POD_USAGE_SCAP: '容器組利用率',
   THRESHOLD: '閾值',
