@@ -34,11 +34,20 @@
   right: 20px;
 }
 
-.manage {
+@mixin button {
   position: absolute;
   top: 4px;
   right: 6px;
-  width: 92px;
   height: 32px;
+}
+
+.manage {
+  @include button();
+  width: 92px;
   min-width: 0px !important;
+}
+
+.singleButton {
+  @include button();
+  min-width: 92px;
 }
