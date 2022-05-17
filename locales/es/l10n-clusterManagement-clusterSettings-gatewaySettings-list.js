@@ -48,7 +48,6 @@ module.exports = {
   NODE_PORTS: 'Puerto host',
   UPDATE_GATEWAY_DESC: 'The current gateway can be upgraded',
   // Project Gateways > Disable
-  PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_LOW: 'project gateway',
   DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'
 };
