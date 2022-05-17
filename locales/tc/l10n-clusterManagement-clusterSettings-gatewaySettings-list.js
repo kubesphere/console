@@ -48,7 +48,6 @@ module.exports = {
   NODE_PORTS: '主機通訊埠',
   UPDATE_GATEWAY_DESC: '目前網關可更新',
   // Project Gateways > Disable
-  PROJECT_GATEWAY_PL: '項目網關',
   PROJECT_GATEWAY_LOW: '項目網關',
   DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'
 };
