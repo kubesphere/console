@@ -48,7 +48,6 @@ module.exports = {
   NODE_PORTS: 'Düğüm Portu',
   UPDATE_GATEWAY_DESC: 'Geçerli ağ geçidi güncellenebilir.',
   // Project Gateways > Disable
-  PROJECT_GATEWAY_PL: 'Proje Ağ Geçidi',
   PROJECT_GATEWAY_LOW: 'proje Ağ Geçidi',
   DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'
 };
