@@ -49,6 +49,7 @@ module.exports = {
   NO_RESOURCE: '沒有發現 {resource}。',
   LOG_DATA_LOW: '紀錄數據',
   // Resource Status > Volumes
+  VOLUME_PL: 'Volumes',
   TYPE_CONFIGMAP: '儲存卷類型：配置設定',
   TYPE_SECRET: '儲存卷類型：保密設定',
   TYPE_EMPTYDIR: '儲存卷類型：EmptyDir',
