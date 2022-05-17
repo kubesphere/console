@@ -219,7 +219,10 @@ export default class Overview extends React.Component {
 
     return (
       action.length > 0 && (
-        <Button className={styles.manage} onClick={() => action[0].onClick()}>
+        <Button
+          className={styles.singleButton}
+          onClick={() => action[0].onClick()}
+        >
           {action[0].text}
         </Button>
       )
