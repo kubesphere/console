@@ -44,6 +44,7 @@ module.exports = {
   // List > Create > Rule Settings > Rule Template
   RULE_SETTINGS: 'Kural Ayarları',
   MONITORING_TARGETS: 'Hedefleri İzleme',
+  ACTIVATION_CONDITION: 'Activation Condition',
   CPU_USAGE_SCAP: 'CPU kullanımı',
   DISK_READ_IOPS: 'Yerel disk okuma IOPS',
   DISK_READ_THROUGHPUT: 'Yerel disk okuma çıktısı',
@@ -56,7 +57,7 @@ module.exports = {
   MEMORY_USAGE_SCAP: 'Hafıza kullanımı',
   DATA_RECEIVE_RATE: 'Ağ verisi alma hızı',
   DATA_SEND_RATE: 'Ağ verisi gönderme hızı',
-  SET_RULE_DESC: 'Lütfen bir uyarı kuralı belirleyin.',
+  SET_ACTIVATION_CONDITION_DESC: 'Please set an activation condition.',
   ABNORMAL_PODS: 'Anormal Kapsüller',
   POD_USAGE_SCAP: 'Kapsül kullanımı',
   THRESHOLD: 'Eşik',
