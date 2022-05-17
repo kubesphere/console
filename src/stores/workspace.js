@@ -44,7 +44,11 @@ export default class WorkspaceStore extends Base {
       ? `kapis/resources.kubesphere.io/v1alpha3${this.getPath(params)}/${
           this.module
         }`
-      : `kapis/tenant.kubesphere.io/v1alpha2${this.getPath(params)}/${
+      : globals.clusterRole === 'host'
+      ? `kapis/tenant.kubesphere.io/v1alpha3${this.getPath(
+          params
+        )}/workspacetemplates`
+      : `kapis/tenant.kubesphere.io/v1alpha3${this.getPath(params)}/${
           this.module
         }`
 
