@@ -48,7 +48,6 @@ module.exports = {
   NODE_PORTS: '节点端口',
   UPDATE_GATEWAY_DESC: '当前网关可更新。',
   // Project Gateways > Disable
-  PROJECT_GATEWAY_PL: '项目网关',
   PROJECT_GATEWAY_LOW: '项目网关',
   DISABLE_MULTIPLE_GATEWAYS: '批量关闭网关'
 };
