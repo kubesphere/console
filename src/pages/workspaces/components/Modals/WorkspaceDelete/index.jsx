@@ -45,7 +45,7 @@ export default class DeleteModal extends React.Component {
 
   state = {
     confirm: '',
-    checked: true,
+    checked: false,
   }
 
   componentDidUpdate(prevProps) {
