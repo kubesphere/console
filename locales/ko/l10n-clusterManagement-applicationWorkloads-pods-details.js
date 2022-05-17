@@ -26,34 +26,33 @@ module.exports = {
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: 'The container does not support real-time logs currently. Please try again later.',
   CONTAINER_LOGS: 'Container Logs',
-  // Resource Status > Containers > Container Details > Details
+  // Resource Status > Details > Container Details > Details
   COMMAND: 'Command',
   IMAGE_ID: 'Image ID',
   IMAGE_PULL_POLICY: 'Image Pull Policy',
   CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
-  // Resource Status > Containers > Container Details > Terminal
+  // Resource Status > Details > Container Details > Terminal
   LOADING: 'Loading...',
   RESOURCE_LIMITS: 'Resource Limits',
   RESOURCE_REQUESTS: 'Resource Requests',
   TERMINAL: 'Terminal',
-  // Resource Status > Containers > Container Details > Resource Status
+  // Resource Status > Details > Container Details > Resource Status
   RESTART_PL: 'Restarts',
   RESTART: 'Restart',
   STORAGE_DEVICES: 'Storage Devices',
   LIVENESS_PROBE: 'Liveness Probe',
   READINESS_PROBE: 'Readiness Probe',
   STARTUP_PROBE: 'Startup Probe',
-  // Resource Status > Containers > Container Details > Monitoring
-  // Resource Status > Containers > Container Details > Environment Variables
-  // Resource Status > Containers > Container Details > Container Logs
+  // Resource Status > Details > Container Details > Monitoring
+  // Resource Status > Details > Container Details > Environment Variables
+  // Resource Status > Details > Container Details > Container Logs
   NO_RESOURCE: 'No {resource}.',
   LOG_DATA_LOW: 'log data',
   // Resource Status > Volumes
-  VOLUME_PL: 'Volumes',
   TYPE_CONFIGMAP: 'Volume type: configmap',
   TYPE_SECRET: 'Volume type: secret',
   TYPE_EMPTYDIR: 'Volume type: emptyDir',
-  TYPE_HOSTPATH: 'Volume type: hostPath',
+  TYPE_HOSTPATH: 'Volume type: host path',
   // Scheduling Information
   REASON_VALUE: 'Reason: {value}',
   MESSAGE_VALUE: 'Message: {value}',
