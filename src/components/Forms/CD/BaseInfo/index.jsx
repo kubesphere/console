@@ -50,7 +50,8 @@ export default class BaseInfo extends React.Component {
       return {
         label: item.name,
         value: `${item.name}(${item.repoURL})`,
-        icon: item.provider,
+        icon:
+          item.provider === 'bitbucket_server' ? 'bitbucket' : item.provider,
       }
     })
     this.setState({ options })

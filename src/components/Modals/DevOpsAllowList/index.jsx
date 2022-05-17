@@ -20,15 +20,15 @@ import React from 'react'
 import { ArrayInput } from 'components/Inputs'
 
 import PropTypes from 'prop-types'
-import { Icon, Form, Select, Loading } from '@kube-design/components'
+import { Form, Loading } from '@kube-design/components'
 import { Modal, Empty } from 'components/Base'
-import { get, pick, isUndefined } from 'lodash'
+import { get, isUndefined } from 'lodash'
 import DevopsStore from 'stores/devops'
 import CodeStore from 'stores/codeRepo'
 import CDStore from 'stores/cd'
 import { toJS } from 'mobx'
 import Destinations from './Destinations'
-import styles from './index.scss'
+import CodeRepoSelect from './CodeRepoSelect'
 
 export default class CDAllowListModal extends React.Component {
   static propTypes = {
@@ -69,31 +69,8 @@ export default class CDAllowListModal extends React.Component {
   init = async () => {
     this.setState({ isLoading: true })
     await this.initFormTemplate()
-    await this.getRepoList()
     await this.fetchClusters()
-
     this.setState({ isLoading: false })
-  }
-
-  getRepoList = async () => {
-    const { devops } = this.props
-    await this.codeStore.fetchList({ devops, limit: -1 })
-    const options = this.codeStore.list.data.map(item => {
-      return {
-        label: item.name,
-        value: item.repoURL,
-        icon:
-          item.provider === 'bitbucket_server' ? 'bitbucket' : item.provider,
-      }
-    })
-
-    const allItem = {
-      label: t('ALL'),
-      value: '*',
-      icon: 'allowlist',
-    }
-
-    this.setState({ options: [allItem, ...options] })
   }
 
   fetchClusters = async () => {
@@ -137,9 +114,11 @@ export default class CDAllowListModal extends React.Component {
         if (arr.includes(item)) {
           return callback({ message: t('CODE_REPOSITORY_EXIST_DESC') })
         }
+
         if (!item) {
-          return callback({ message: t('CODE_REPOSITORY_NOT_SELECTED') })
+          return callback({ message: t('REPO_EMPTY_DESC') })
         }
+
         arr.push(item)
       })
     }
@@ -177,14 +156,6 @@ export default class CDAllowListModal extends React.Component {
     callback()
   }
 
-  repoOptionRenderer = option => type => (
-    <span className={styles.option}>
-      <Icon name={option.icon} type={type === 'value' ? 'dark' : 'light'} />
-      {option.label}
-      {option.value === '*' ? '' : ` (${option.value})`}
-    </span>
-  )
-
   render() {
     const { visible, onCancel, onOk } = this.props
 
@@ -214,25 +185,7 @@ export default class CDAllowListModal extends React.Component {
                 itemType="string"
                 checkItemValid={this.checkItemValid}
               >
-                <Select
-                  style={{ maxWidth: '100%' }}
-                  placeholder=" "
-                  options={this.state.options}
-                  pagination={pick(this.codeStore.list, [
-                    'page',
-                    'limit',
-                    'total',
-                  ])}
-                  isLoading={this.codeStore.list.isLoading}
-                  onFetch={this.getRepoList}
-                  valueRenderer={option =>
-                    this.repoOptionRenderer(option)('value')
-                  }
-                  optionRenderer={option =>
-                    this.repoOptionRenderer(option)('option')
-                  }
-                  searchable
-                />
+                <CodeRepoSelect devops={this.props.devops} />
               </ArrayInput>
             </Form.Item>
             <Form.Item
