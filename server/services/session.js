@@ -310,13 +310,15 @@ const getClusterRole = async ctx => {
     })
     const data = config.data['kubesphere.yaml']
     const str = /clusterRole:[^\\n]*/g.exec(data)
-    if (str) {
-      role = str[0].split(':')[1]
-      role = role.replace(/\s/g, '')
+
+    if (str && Array.isArray(str)) {
+      role = str[0].split(':')[1].replace(/\s/g, '')
+      role = role || 'host'
     }
   } catch (error) {
     console.error(error)
   }
+
   return role
 }
 

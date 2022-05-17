@@ -45,7 +45,7 @@ export default {
               : { [syncPolicyType]: {} }
 
           const source = {
-            repoURL: data.repoURL,
+            repoURL: data.repoURL.match(/\(([\w\W]+)\)/)[1],
             ...data.source,
           }
 
