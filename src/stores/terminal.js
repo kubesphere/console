@@ -66,7 +66,7 @@ export default class TerminalStore {
 
     return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
       cluster,
-    })}/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
+    })}/namespaces/${namespace}/pods/${pod}/exec?container=${container}&shell=${shell}`
   }
 
   oldWebsocketUrl() {
@@ -75,7 +75,7 @@ export default class TerminalStore {
     return [
       `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
         cluster,
-      })}/namespaces/${namespace}/pods/${pod}/exec?container=${container}&shell=${shell}`,
+      })}/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`,
     ]
   }
 
