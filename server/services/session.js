@@ -312,8 +312,9 @@ const getClusterRole = async ctx => {
     const str = /clusterRole:[^\\n]*/g.exec(data)
 
     if (str && Array.isArray(str)) {
-      role = str[0].split(':')[1].replace(/\s/g, '')
-      role = role || 'host'
+      const clusterRole = str[0].split(':')[1].replace(/\s/g, '')
+      role =
+        ['host', 'member'].indexOf(clusterRole) === -1 ? 'host' : clusterRole
     }
   } catch (error) {
     console.error(error)
