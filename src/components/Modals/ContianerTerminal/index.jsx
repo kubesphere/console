@@ -86,7 +86,18 @@ export default class ContainerTerminalModal extends React.Component {
       this.container = container
     }
 
+    this.backupUrls = this.store.oldWebsocketUrl()
     this.url = await this.store.kubeWebsocketUrl()
+  }
+
+  switchToBackupUrl = cb => {
+    if (this.backupUrls.length > 0) {
+      this.url = this.backupUrls.slice(-1)
+      this.backupUrls = this.backupUrls.slice(0, -1)
+    } else {
+      this.backupUrls = []
+      cb()
+    }
   }
 
   get clusters() {
@@ -176,7 +187,10 @@ export default class ContainerTerminalModal extends React.Component {
       <div className={styles.kubectl}>
         <div className={styles.terminalWrapper}>
           <div className={classnames(styles.pane, styles.terminal)}>
-            <ContainerTerminal url={this.url} />
+            <ContainerTerminal
+              url={this.url}
+              socketUrlOnError={this.switchToBackupUrl}
+            />
           </div>
         </div>
         <div className={styles.tipWrapper}>{this.renderContainerMsg()}</div>
