@@ -69,7 +69,7 @@ class GatewayCard extends React.Component {
         key: 'view',
         icon: 'eye',
         text: t('VIEW_DETAILS'),
-        disabled: this.gateway.createTime == null,
+        disabled: this.canEdit || this.gateway.createTime == null,
       },
       {
         key: 'edit',
