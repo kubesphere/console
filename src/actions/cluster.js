@@ -26,6 +26,7 @@ import KubeKeyClusterStore from 'stores/cluster/kubekey'
 import { safeParseJSON } from 'utils'
 import DeleteModal from 'components/Modals/Delete'
 import KubeConfigModal from 'components/Forms/Cluster/KubeConfig'
+import { safeBtoa } from 'utils/base64'
 
 export default {
   'cluster.add': {
@@ -87,7 +88,7 @@ export default {
     on({ store, detail, cluster, success, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
-          set(data, 'kubeconfig', btoa(data.kubeconfig))
+          set(data, 'kubeconfig', safeBtoa(data.kubeconfig))
           await store.updateKubeConfig({ cluster: detail.name, data })
           Modal.close(modal)
           Notify.success({ content: t('UPDATE_SUCCESSFUL') })
@@ -111,7 +112,7 @@ const handleImport = async (store, data) => {
     unset(postData, 'spec.connection.kubeconfig')
   } else {
     const config = get(postData, 'spec.connection.kubeconfig', '')
-    set(postData, 'spec.connection.kubeconfig', btoa(config))
+    set(postData, 'spec.connection.kubeconfig', safeBtoa(config))
     await store.validate(postData)
   }
 

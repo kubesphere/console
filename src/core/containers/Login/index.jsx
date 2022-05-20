@@ -29,11 +29,12 @@ import {
 } from '@kube-design/components'
 
 import { get } from 'lodash'
+import { safeBtoa } from 'utils/base64'
 
 import styles from './index.scss'
 
 function encrypt(salt, str) {
-  return mix(salt, window.btoa(str))
+  return mix(salt, safeBtoa(str))
 }
 
 function mix(salt, str) {
@@ -50,7 +51,7 @@ function mix(salt, str) {
     ret.push(String.fromCharCode(Math.floor(sum / 2)))
   }
 
-  return `${window.btoa(prefix.join(''))}@${ret.join('')}`
+  return `${safeBtoa(prefix.join(''))}@${ret.join('')}`
 }
 
 @inject('rootStore')
