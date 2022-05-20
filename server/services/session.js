@@ -190,6 +190,11 @@ const getUserDetail = async (token, clusterRole) => {
         resp,
         'metadata.annotations["iam.kubesphere.io/globalrole"]'
       ),
+      grantedClusters: get(
+        resp,
+        'metadata.annotations["iam.kubesphere.io/granted-clusters"]',
+        []
+      ),
       lastLoginTime: get(resp, 'status.lastLoginTime'),
     }
   } else {
@@ -198,9 +203,20 @@ const getUserDetail = async (token, clusterRole) => {
 
   try {
     const roles = await getUserGlobalRules(username, token)
+
     if (clusterRole === 'member') {
       roles.users = roles.users.filter(role => role !== 'manage')
       roles.workspaces = roles.workspaces.filter(role => role !== 'manage')
+    }
+
+    const isClustersRole = Object.keys(roles).includes('clusters')
+
+    if (
+      !isClustersRole &&
+      user.globalrole === 'platform-regular' &&
+      user.grantedClusters.length > 0
+    ) {
+      roles.clusters = ['view']
     }
     user.globalRules = roles
   } catch (error) {}
