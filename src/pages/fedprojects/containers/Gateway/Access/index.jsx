@@ -180,7 +180,6 @@ class InternetAccess extends React.Component {
               bodyClassName={styles.bodyClass}
               itemClassName={styles.itemClass}
               isFederated={true}
-              prefix={index !== 0 ? this.prefix : null}
               getData={this.getInitGateway}
               detail={item}
               key={index}
