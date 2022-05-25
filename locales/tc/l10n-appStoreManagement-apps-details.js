@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Title
-  // Suspend App
-  SUSPEND_APP: '下架應用',
+  // Suspend
+  SUSPEND: 'Suspend',
   APP_NOTE: '提示',
   SUSPEND_SUCCESSFUL: '下架成功。',
-  // Activate App
-  ACTIVATE_APP: '上架應用',
+  // Release
+  RELEASE: 'Release',
   ACTIVATE_SUCCESSFUL: '上架成功。',
   // Details
   APP_ID: '應用編號',
