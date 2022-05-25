@@ -28,7 +28,7 @@ import ReviewStore from 'stores/openpitrix/review'
 import { REVIEW_QUERY_STATUS } from 'configs/openpitrix/app'
 import { getLocalTime } from 'utils'
 import { transferReviewStatus } from 'utils/app'
-
+import { find } from 'lodash'
 import styles from './index.scss'
 
 @withList({
@@ -136,14 +136,16 @@ export default class Reviews extends React.Component {
       title: t('WORKSPACE'),
       dataIndex: 'app_id',
       isHideable: true,
-      width: '10%',
-      render: appId => this.getAppISV(appId),
+      width: '15%',
+      render: appId => {
+        return this.getAppISV(appId)
+      },
     },
     {
       title: t('OPERATOR'),
       dataIndex: 'reviewer',
       isHideable: true,
-      width: '10%',
+      width: '15%',
     },
     {
       title: t('STATUS'),
