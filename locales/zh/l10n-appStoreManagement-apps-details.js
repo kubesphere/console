@@ -18,11 +18,11 @@
 module.exports = {
   // Title
   // Suspend
-  SUSPEND: 'Suspend',
+  SUSPEND: '下架',
   APP_NOTE: '提示',
   SUSPEND_SUCCESSFUL: '下架成功。',
   // Release
-  RELEASE: 'Release',
+  RELEASE: '发布',
   ACTIVATE_SUCCESSFUL: '上架成功。',
   // Details
   APP_ID: '应用 ID',
