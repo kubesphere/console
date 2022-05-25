@@ -43,10 +43,10 @@ module.exports = {
   APP_TEMPLATE_LOW: '应用模板',
   // Details
   // Versions
-  APP_STATUS_SUBMITTED: 'Submitted',
+  APP_STATUS_SUBMITTED: '已提交',
   VERSION_INFO: '版本信息',
   INSTALL: '安装',
-  SUBMIT_FOR_RELEASE: 'Submit for Review',
+  SUBMIT_FOR_RELEASE: '提交审核',
   DOWNLOAD_SUCCESSFUL: '下载成功。',
   VERSION_DELETE_TIP: '您确定要删除版本 <strong>{name}</strong> 吗？',
   VERSION_SUBMIT_TIP: '您确定要提交版本 <strong>{name}</strong> 进行发布？',
@@ -56,12 +56,12 @@ module.exports = {
   VERSION_RECOVER_TIP: '版本 <strong>{name}</strong> 恢复上架后，关联的应用将显示出该版本，您确定要恢复上架吗？',
   UPDATE_TIME_SCAP: '更新时间',
   VIEW_IN_STORE: '在商店中查看',
-  RELEASE_TO_STORE: 'Release',
+  RELEASE_TO_STORE: '发布',
   // Versions > Upload
   UPLOAD_AGAIN_TIP: '出现错误，请重试。',
   // Versions > Submit for Review
   ENTER_VERSION_NUMBER_TIP: '请输入版本号。',
-  SUBMIT_REVIEW_DESC: 'Submit the app template for review before releasing it to the App Store.',
+  SUBMIT_REVIEW_DESC: '将应用模板提交审核以发布到应用商店。',
   APP_LEARN_MORE: '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">了解更多</a>',
   INVALID_VERSION_TIP: '请输入正确的版本号。',
   // Versions > Submit for Review > Test Steps
