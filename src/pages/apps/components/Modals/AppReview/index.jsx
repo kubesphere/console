@@ -173,7 +173,7 @@ export default class AppReview extends Component {
           disabled={isSubmitting}
           onClick={onOk}
         >
-          {t('RELEASE')}
+          {t('APPROVE')}
         </Button>
       </div>
     )

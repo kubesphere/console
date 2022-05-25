@@ -23,4 +23,5 @@ module.exports = {
   APP_STORE_DESC: 'Manage apps in the App Store. You can view app information, release apps, and suspend apps.',
   // List
   APP_CATEGORY: 'App Category',
+  APP_EMPTY_DESC: 'Please create an app template in a workspace and release it to the App Store.',
 }

@@ -30,8 +30,8 @@ module.exports = {
   BASIC_INFORMATION: 'Basic Information',
   NAME: 'Name',
   FEDPROJECT_RESOURCE_TIP: 'To create workload resources in a multi-cluster project, go to the Workloads page in the multi-cluster project.',
-  FINISHED: 'Finished',
-  NOT_SET: 'Not set',
+  FINISHED: 'Done',
+  NOT_SET: 'To do',
   CURRENT: 'Current',
   PROJECT: 'Project',
   // List > Create > Pod Settings

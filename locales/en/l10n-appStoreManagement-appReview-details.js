@@ -37,6 +37,6 @@ module.exports = {
   REJECT_REASON_TIP: 'Please enter at least one reason for rejection.',
   REJECT_SUCCESSFUL: 'Rejected successfully.',
   // Release
-  RELEASE: 'Release',
+  APPROVE: 'Approve',
   RELEASE_SUCCESSFUL: 'Released successfully.',
 }

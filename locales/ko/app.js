@@ -26,8 +26,6 @@ module.exports = {
   'App Deploy': 'App Deploy',
   'App Introduction': 'App Introduction',
   'App Name': 'App Name',
-  APP_REVIEW: 'App Review',
-  APP_REVIEWS: 'App Reviews',
   'App Version': 'App Version',
   'App Version Types': 'App Version Types',
   'Application Name': 'App Name',

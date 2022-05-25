@@ -40,7 +40,7 @@ export default [
   },
   {
     path: `${PATH}/audit-records`,
-    title: 'APP_RELEASE',
+    title: 'APP_REVIEW',
     component: AuditRecord,
     exact: true,
   },

@@ -85,7 +85,7 @@ export default class AppDetail extends React.Component {
           key: 'suspend',
           type: 'control',
           icon: 'sort-descending',
-          text: t('SUSPEND_APP'),
+          text: t('SUSPEND'),
           onClick: () =>
             this.trigger('openpitrix.template.action', {
               detail,
@@ -101,7 +101,7 @@ export default class AppDetail extends React.Component {
         key: 'recover',
         type: 'control',
         icon: 'sort-ascending',
-        text: t('ACTIVATE_APP'),
+        text: t('RELEASE'),
         onClick: () =>
           this.trigger('openpitrix.template.action', {
             detail,

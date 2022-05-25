@@ -111,7 +111,7 @@ export default class LoginInfo extends Component {
               className={styles.loginLabel}
               href={`/login?referer=${location.pathname}`}
             >
-              {t('Log in KubeSphere')}
+              {t('LOG_IN')}
             </a>
           </div>
         </div>

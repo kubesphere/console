@@ -22,7 +22,7 @@ import cookie from 'utils/cookie'
 import { STATUS_TRANSFER_MAP } from 'configs/openpitrix/version'
 
 export const transferAppStatus = status => {
-  const name = status === 'draft' ? 'developing' : status
+  const name = status
 
   if (STATUS_TRANSFER_MAP[name]) {
     return t(
@@ -44,15 +44,13 @@ export const transferReviewStatus = status => {
   let transStatus
   switch (status) {
     case 'submitted':
-      transStatus = 'pending-review'
+      transStatus = 'to-be-reviewed'
       break
     case 'passed':
     case 'suspended':
     case 'rejected':
-      transStatus = status
-      break
     case 'active':
-      transStatus = 'published'
+      transStatus = status
       break
     default:
       transStatus = 'in-review'

@@ -24,8 +24,6 @@ module.exports = {
   'App Deploy': 'Despliegue de Aplicación',
   'App Introduction': 'Introducción de Aplicación',
   'App Name': 'Nombre de Aplicación',
-  APP_REVIEW: 'Revisión de Aplicación',
-  APP_REVIEWS: 'Revisiones de Aplicación',
   'App Version': 'Versión de Aplicación',
   'App Version Types': 'Tipos de Versión de Aplicación',
   'Application Name': 'Nombre de Application',

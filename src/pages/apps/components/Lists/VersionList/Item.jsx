@@ -256,7 +256,7 @@ export default class VersionItem extends React.PureComponent {
               appName={appDetail.name}
             />
           </TabPanel>
-          <TabPanel label={t('APP_RELEASE')} name="auditRecord">
+          <TabPanel label={t('APP_REVIEW')} name="auditRecord">
             <AuditRecord appId={detail.app_id} versionId={detail.version_id} />
           </TabPanel>
           <TabPanel label={t('APP_INSTANCES')} name="deployInstances">
