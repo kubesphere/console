@@ -21,5 +21,6 @@ module.exports = {
   APP_STORE_MANAGEMENT: 'Gestión de la Tienda de Aplicacines',
   APP_STORE_DESC: 'Gestionar aplicaciones de la Tienda.',
   // List
-  APP_CATEGORY: 'Categoria de Aplicación'
+  APP_CATEGORY: 'Categoria de Aplicación',
+  APP_EMPTY_DESC: 'Please create an app template in a workspace and release it to the App Store.'
 };
