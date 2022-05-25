@@ -36,6 +36,6 @@ module.exports = {
   REJECT_REASON_TIP: '请填写至少一条拒绝原因。',
   REJECT_SUCCESSFUL: '拒绝成功。',
   // Release
-  APPROVE: 'Approve',
+  APPROVE: '批准',
   RELEASE_SUCCESSFUL: '发布成功。'
 };
