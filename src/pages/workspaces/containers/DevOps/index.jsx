@@ -167,11 +167,6 @@ export default class DevOps extends React.Component {
       },
     },
     {
-      title: t('ID'),
-      dataIndex: 'namespace',
-      isHideable: true,
-    },
-    {
       title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
