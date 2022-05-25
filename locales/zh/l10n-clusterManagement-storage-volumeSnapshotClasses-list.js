@@ -18,7 +18,7 @@
 module.exports = {
   VOLUME_SNAPSHOT_CLASS_PL: '卷快照类',
   VOLUME_SNAPSHOT_CLASS: '卷快照类',
-  VOLUME_SNAPSHOT_CLASS_DESC: '管理员可使用卷快照类定义用于卷快照的存储种类。',
+  VOLUME_SNAPSHOT_CLASS_DESC: 'Volume snapshot classes provide a way for administrators to define storage types used for volume snapshots.',
   VOLUME_SNAPSHOT_CLASS_EMPTY_DESC: '请创建一个卷快照类。',
   // List > Create
   SNAPSHOT_CLASS_SETTINGS: '卷快照类设置',
