@@ -34,9 +34,23 @@ export default class Containers extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      podsId: '',
       containerName: '',
     }
     this.monitorStore = new ContainerMonitorStore()
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const podsId = get(nextProps.detail, 'id', '')
+
+    if (podsId !== prevState.podsId) {
+      return {
+        containerName: '',
+        podsId,
+      }
+    }
+
+    return null
   }
 
   get podName() {
@@ -44,6 +58,30 @@ export default class Containers extends Component {
       item => item.label === 'Pods'
     )
     return children.length > 0 ? children[0].nodes[0].label : ''
+  }
+
+  get containers() {
+    return get(this.props.detail, 'children', []).filter(item => {
+      return item.label === 'Containers'
+    })
+  }
+
+  get cpuMetric() {
+    const { containerName } = this.state
+    const { data: metrics } = this.monitorStore
+
+    return containerName === ''
+      ? []
+      : get(metrics, `${MetricTypes.cpu_usage}.data.result`)
+  }
+
+  get memoryMetric() {
+    const { containerName } = this.state
+    const { data: metrics } = this.monitorStore
+
+    return containerName === ''
+      ? []
+      : get(metrics, `${MetricTypes.memory_usage}.data.result`)
   }
 
   fetchData = () => {
@@ -98,16 +136,14 @@ export default class Containers extends Component {
   }
 
   render() {
-    const { data: metrics, isLoading, isRefreshing } = this.monitorStore
+    const { isLoading, isRefreshing } = this.monitorStore
     const { containerName } = this.state
-    const containers = get(this.props.detail, 'children', []).filter(item => {
-      return item.label === 'Containers'
-    })
+
     return (
       <div className={styles.container}>
         <Select
           className={styles.containerSelect}
-          options={this.getOptions(containers)}
+          options={this.getOptions(this.containers)}
           onChange={this.handleContainerChange}
           value={containerName}
         />
@@ -115,14 +151,14 @@ export default class Containers extends Component {
           <PhysicalResourceItem
             type="cpu"
             title="CPU Usage(m)"
-            metrics={get(metrics, `${MetricTypes.cpu_usage}.data.result`)}
+            metrics={this.cpuMetric}
             isLoading={isLoading || isRefreshing}
             showDay={172800}
           />
           <PhysicalResourceItem
             type="memory"
             title="Memory Usage(Mi)"
-            metrics={get(metrics, `${MetricTypes.memory_usage}.data.result`)}
+            metrics={this.memoryMetric}
             isLoading={isLoading || isRefreshing}
             showDay={172800}
           />
