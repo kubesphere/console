@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Title
-  // Suspend App
-  SUSPEND_APP: 'تعليق التطبيق',
+  // Suspend
+  SUSPEND: 'Suspend',
   APP_NOTE: 'ملاحظة',
   SUSPEND_SUCCESSFUL: 'تم التعليق بنجاح.',
-  // Activate App
-  ACTIVATE_APP: 'تفعيل التطبيق',
+  // Release
+  RELEASE: 'Release',
   ACTIVATE_SUCCESSFUL: 'تم التفعيل بنجاح.',
   // Details
   APP_ID: 'ID التطبيق',
