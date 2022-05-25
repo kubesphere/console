@@ -19,12 +19,12 @@
 module.exports = {
   // Title
 
-  // Suspend App
-  SUSPEND_APP: 'Suspend App',
+  // Suspend
+  SUSPEND: 'Suspend',
   APP_NOTE: 'Note',
   SUSPEND_SUCCESSFUL: 'Suspended successfully.',
-  // Activate App
-  ACTIVATE_APP: 'Activate App',
+  // Release
+  RELEASE: 'Release',
   ACTIVATE_SUCCESSFUL: 'Activated successfully.',
   // Details
   APP_ID: 'App ID',

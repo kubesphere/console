@@ -21,11 +21,11 @@ export const DEFAULT_QUERY_STATUS =
 
 export const STATUS_TRANSFER_MAP = {
   active: 'active',
-  suspended: 'recalled',
-  suspend: 'recall',
+  suspended: 'suspended',
+  suspend: 'suspending',
   submitted: 'submitted',
   passed: 'passed',
-  developing: 'developing',
+  draft: 'draft',
 }
 
 export const STATUS_TO_ICON = {

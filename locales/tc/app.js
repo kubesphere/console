@@ -24,8 +24,6 @@ module.exports = {
   'App Deploy': '應用部署',
   'App Introduction': '應用介紹',
   'App Name': '應用名稱',
-  APP_REVIEW: '應用審核',
-  APP_REVIEWS: '應用審核',
   'App Version': '應用版本',
   'App Version Types': '交付類型',
   'Application Name': '應用名稱',

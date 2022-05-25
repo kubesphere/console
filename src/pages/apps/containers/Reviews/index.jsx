@@ -49,11 +49,11 @@ export default class Reviews extends React.Component {
       options: [
         {
           value: 'unprocessed',
-          label: t('UNRELEASED'),
+          label: t('NEW_SUBMIT'),
         },
         {
           value: 'processed',
-          label: t('RELEASED'),
+          label: t('COMPLETED'),
         },
         {
           value: 'all',
@@ -175,9 +175,7 @@ export default class Reviews extends React.Component {
   get emptyProps() {
     return {
       icon: 'safe-notice',
-      title: t('EMPTY_WRAPPER', {
-        resource: t(`${this.type.toUpperCase()}_APP_RELEASE`),
-      }),
+      title: t(`APP_REVIEW_${this.type.toUpperCase()}_EMPTY_DESC`),
     }
   }
 
@@ -189,8 +187,8 @@ export default class Reviews extends React.Component {
           {...bannerProps}
           tabs={this.tabs}
           icon="safe-notice"
-          title={t('APP_RELEASE')}
-          description={t('APP_RELEASE_DESC')}
+          title={t('APP_REVIEW')}
+          description={t('APP_REVIEW_DESC')}
         />
         <Table
           {...tableProps}
