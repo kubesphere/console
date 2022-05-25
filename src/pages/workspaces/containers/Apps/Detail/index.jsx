@@ -29,11 +29,7 @@ import { Image } from 'components/Base'
 
 import AppStore from 'stores/openpitrix/app'
 import VersionStore from 'stores/openpitrix/version'
-import {
-  getVersionTypesName,
-  getAppCategoryNames,
-  transferAppStatus,
-} from 'utils/app'
+import { getVersionTypesName, transferAppStatus } from 'utils/app'
 import { getLocalTime } from 'utils'
 
 import routes from './routes'
@@ -146,16 +142,8 @@ export default class RoleDetail extends React.Component {
 
     return [
       {
-        name: t('APP_ID'),
-        value: detail.app_id,
-      },
-      {
         name: t('STATUS'),
         value: transferAppStatus(detail.status),
-      },
-      {
-        name: t('CATEGORY'),
-        value: getAppCategoryNames(get(detail, 'category_set', [])),
       },
       {
         name: t('TYPE'),
