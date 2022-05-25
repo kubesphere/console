@@ -29,8 +29,8 @@ module.exports = {
   BASIC_INFORMATION: '基本信息',
   NAME: '名称',
   FEDPROJECT_RESOURCE_TIP: '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作。',
-  FINISHED: '已设置',
-  NOT_SET: '未设置',
+  FINISHED: 'Done',
+  NOT_SET: 'To do',
   CURRENT: '当前',
   PROJECT: '项目',
   // List > Create > Pod Settings
