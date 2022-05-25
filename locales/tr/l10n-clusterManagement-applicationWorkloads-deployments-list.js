@@ -29,8 +29,8 @@ module.exports = {
   BASIC_INFORMATION: 'Temel Bilgiler',
   NAME: 'Ad',
   FEDPROJECT_RESOURCE_TIP: 'Çok kümeli bir projede iş yükü kaynakları oluşturmak için çok kümeli projede İş Yükleri sayfasına gidin.',
-  FINISHED: 'Bitti',
-  NOT_SET: 'Belirlenmemiş',
+  FINISHED: 'Done',
+  NOT_SET: 'To do',
   CURRENT: 'Güncel',
   PROJECT: 'Proje',
   // List > Create > Pod Settings
