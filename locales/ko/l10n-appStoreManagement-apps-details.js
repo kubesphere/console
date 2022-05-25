@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Title
-  // Suspend App
-  SUSPEND_APP: '앱 비활성화',
+  // Suspend
+  SUSPEND: 'Suspend',
   APP_NOTE: '참고',
   SUSPEND_SUCCESSFUL: '앱을 비활성화했습니다.',
-  // Activate App
-  ACTIVATE_APP: '앱 활성화',
+  // Release
+  RELEASE: 'Release',
   ACTIVATE_SUCCESSFUL: '앱을 활성화했습니다.',
   // Details
   APP_ID: '앱 ID',
