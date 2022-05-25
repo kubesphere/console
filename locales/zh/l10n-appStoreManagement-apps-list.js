@@ -21,5 +21,6 @@ module.exports = {
   APP_STORE_MANAGEMENT: '应用商店管理',
   APP_STORE_DESC: '管理应用商店中的应用。您可以查看应用的信息并上架或下架应用。',
   // List
-  APP_CATEGORY: '应用分类'
+  APP_CATEGORY: '应用分类',
+  APP_EMPTY_DESC: 'Please create an app template in a workspace and release it to the App Store.'
 };
