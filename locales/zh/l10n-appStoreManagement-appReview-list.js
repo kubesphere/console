@@ -22,8 +22,8 @@ module.exports = {
   // New
   NEW_SUBMIT: '新提交',
   APP_REVIEW_EMPTY_DESC: 'Please create an app template in a workspace and submit the app template for rewview.',
-  APP_STATUS_TO_BE_REVIEWED: 'To be reviewed',
-  APP_STATUS_PASSED: 'Approved',
+  APP_STATUS_TO_BE_REVIEWED: '待审核',
+  APP_STATUS_PASSED: '已批准',
   APP_STATUS_SUSPENDED: '已下架',
   APP_STATUS_REJECTED: '已拒绝',
   APP_STATUS_IN_REVIEW: '审核中',
