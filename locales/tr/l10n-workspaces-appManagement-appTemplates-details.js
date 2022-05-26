@@ -44,9 +44,10 @@ module.exports = {
   // Details
   // Versions
   APP_STATUS_SUBMITTED: 'Submitted',
+  APP_STATUS_NOT_SUBMITTED: 'Not submitted',
   VERSION_INFO: 'Sürüm Bilgisi',
   INSTALL: 'Kur',
-  SUBMIT_FOR_RELEASE: 'Submit for Review',
+  SUBMIT_FOR_REVIEW: 'Submit for Review',
   DOWNLOAD_SUCCESSFUL: 'Başarılı olarak inidirildi.',
   VERSION_DELETE_TIP: '<strong>{name}</strong> sürümünü silmek istediğinizden emin misiniz?',
   VERSION_SUBMIT_TIP: '<strong>{name}</strong> sürümünü yayınlanmak üzere göndermek istediğinizden emin misiniz?',
@@ -56,7 +57,6 @@ module.exports = {
   VERSION_RECOVER_TIP: '<strong>{name}</strong> sürümü, kurtarıldıktan sonra App Store\'da görüntülenebilecek. Kurtarmak istediğinizden emin misiniz?',
   UPDATE_TIME_SCAP: 'Güncelleme zamanı',
   VIEW_IN_STORE: 'Mağazada Görüntüle',
-  RELEASE_TO_STORE: 'Release',
   // Versions > Upload
   UPLOAD_AGAIN_TIP: 'Bir hata oluştu. Lütfen tekrar deneyin.',
   // Versions > Submit for Review
