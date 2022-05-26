@@ -22,6 +22,15 @@ module.exports = {
   DISCOVER: '發現',
   NEW_APPS: '最新上架',
   // App Categories
+  APP_CATE_ALL: '全部',
+  APP_CATE_UNCATEGORIZED: 'Uncategorized',
+  APP_CATE_MESSAGE_QUEUEING: 'Message Queuing',
+  APP_CATE_IMAGE_REGISTRY: 'Image Registry',
+  APP_CATE_PROMETHEUS_EXPORTER: 'Prometheus Exporter',
+  APP_CATE_WEB_SERVER: 'Web Server',
+  APP_CATE_NETWORKING: 'Networking',
+  APP_CATE_DATABASE_CACHE: 'Database & Cache',
+  APP_CATE_STORAGE: '儲存',
   // List
   MAINTAINER_VALUE: '維護者：{value}',
   LATEST_VALUE: '最新：{value}',
