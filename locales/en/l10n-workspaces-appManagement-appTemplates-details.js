@@ -45,9 +45,10 @@ module.exports = {
   // Details
   // Versions
   APP_STATUS_SUBMITTED: 'Submitted',
+  APP_STATUS_NOT_SUBMITTED: 'Not submitted',
   VERSION_INFO: 'Version Information',
   INSTALL: 'Install',
-  SUBMIT_FOR_RELEASE: 'Submit for Review',
+  SUBMIT_FOR_REVIEW: 'Submit for Review',
   DOWNLOAD_SUCCESSFUL: 'Downloaded successfully.',
   VERSION_DELETE_TIP: 'Are you sure you want to delete the version <strong>{name}</strong>?',
   VERSION_SUBMIT_TIP: 'Are you sure you want to submit the version <strong>{name}</strong> for release?',
@@ -57,7 +58,6 @@ module.exports = {
   VERSION_RECOVER_TIP: 'The version <strong>{name}</strong> will be displayed in the App Store after it is recovered. Are you sure you want to recover it?',
   UPDATE_TIME_SCAP: 'Update time',
   VIEW_IN_STORE: 'View in Store',
-  RELEASE_TO_STORE: 'Release',
   // Versions > Upload
   UPLOAD_AGAIN_TIP: 'An error occurred. Please try again.',
   // Versions > Submit for Review

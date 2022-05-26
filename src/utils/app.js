@@ -22,7 +22,7 @@ import cookie from 'utils/cookie'
 import { STATUS_TRANSFER_MAP } from 'configs/openpitrix/version'
 
 export const transferAppStatus = status => {
-  const name = status
+  const name = status === 'draft' ? 'not-submitted' : status
 
   if (STATUS_TRANSFER_MAP[name]) {
     return t(
