@@ -44,9 +44,10 @@ module.exports = {
   // Details
   // Versions
   APP_STATUS_SUBMITTED: 'Submitted',
+  APP_STATUS_NOT_SUBMITTED: 'Not submitted',
   VERSION_INFO: 'Version Information',
   INSTALL: 'Install',
-  SUBMIT_FOR_RELEASE: 'Submit for Review',
+  SUBMIT_FOR_REVIEW: 'Submit for Review',
   DOWNLOAD_SUCCESSFUL: 'Descargado con éxito',
   VERSION_DELETE_TIP: '¿Está seguro de eliminar la versión <strong>{name}</strong> ?',
   VERSION_SUBMIT_TIP: '¿Está seguro de enviar la versión <strong>{name}</strong> para auditoría?',
@@ -56,7 +57,6 @@ module.exports = {
   VERSION_RECOVER_TIP: 'La versión <strong>{name}</strong> se mostrará nuevamente en la tienda. ¿Estás seguro de activarlo ahora?',
   UPDATE_TIME_SCAP: 'Update time',
   VIEW_IN_STORE: 'View in Store',
-  RELEASE_TO_STORE: 'Release',
   // Versions > Upload
   UPLOAD_AGAIN_TIP: 'Please try again.',
   // Versions > Submit for Review
