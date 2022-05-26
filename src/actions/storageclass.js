@@ -179,7 +179,10 @@ export default {
       const modal = Modal.open({
         onOk: async newObject => {
           Modal.close(modal)
-          await store.update({ name: newObject.metadata.name }, newObject)
+          await store.update(
+            { cluster, name: newObject.metadata.name },
+            newObject
+          )
           Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
@@ -193,7 +196,7 @@ export default {
     },
   },
   'storageclass.batch.delete': {
-    on({ store, success, rowKey = 'name', accessorStore, ...props }) {
+    on({ store, success, rowKey = 'name', accessorStore, cluster, ...props }) {
       const { data, selectedRowKeys } = store.list
       const selectValues = data
         .filter(item => selectedRowKeys.includes(item[rowKey]))
@@ -210,14 +213,14 @@ export default {
           selectNames.forEach(name => {
             updateAccessor.push(
               accessorStore.silentPatch(
-                { name: `${name}-accessor` },
+                { cluster, name: `${name}-accessor` },
                 {
                   spec: { storageClassName: `${name}-accessor-disabled` },
                 }
               )
             )
 
-            reqs.push(store.delete({ name }))
+            reqs.push(store.delete({ cluster, name }))
           })
 
           await Promise.all([...updateAccessor, ...reqs])
@@ -236,11 +239,11 @@ export default {
     },
   },
   'storageclass.delete': {
-    on({ store, detail, success, accessorStore, ...props }) {
+    on({ store, detail, success, accessorStore, cluster, ...props }) {
       const modal = Modal.open({
         onOk: async () => {
           await accessorStore.silentPatch(
-            { name: `${detail.name}-accessor` },
+            { cluster, name: `${detail.name}-accessor` },
             {
               spec: { storageClassName: `${detail.name}-accessor-disabled` },
             }

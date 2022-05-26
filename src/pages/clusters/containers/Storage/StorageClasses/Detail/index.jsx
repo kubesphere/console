@@ -121,13 +121,17 @@ export default class StorageClassDetail extends React.Component {
       })
     } else if (isEmpty(detail)) {
       const template = FORM_TEMPLATES['accessors'](storageClassName)
-      await this.accessorStore.create(template)
-      await this.accessorStore.fetchDetail({ name: `${params.name}-accessor` })
+      await this.accessorStore.create(template, { ...params })
+      await this.accessorStore.fetchDetail({
+        cluster: params.cluster,
+        name: `${params.name}-accessor`,
+      })
     }
   }
 
   getOperations = () => {
     const { shouldAddCrd } = this.state
+    const { cluster } = this.props.match.params
     return [
       {
         key: 'editYaml',
@@ -171,6 +175,7 @@ export default class StorageClassDetail extends React.Component {
             shouldAddCrd,
             store: this.accessorStore,
             detail: toJS(this.accessorStore.detail),
+            cluster,
             success: this.fetchData,
           }),
       },
@@ -217,6 +222,7 @@ export default class StorageClassDetail extends React.Component {
             type: this.name,
             detail: toJS(this.store.detail),
             accessorStore: this.accessorStore,
+            cluster,
             success: this.returnTolist,
           }),
       },

@@ -133,7 +133,7 @@ export default class StorageClasses extends React.Component {
   handleBatchDelete = () => {
     this.props.trigger('storageclass.batch.delete', {
       accessorStore: this.accessorStore,
-      ...this.props,
+      cluster: this.props.match.params.cluster,
     })
   }
 
@@ -141,7 +141,7 @@ export default class StorageClasses extends React.Component {
     this.props.trigger('storageclass.delete', {
       detail: item,
       accessorStore: this.accessorStore,
-      ...this.props,
+      cluster: this.props.match.params.cluster,
     })
   }
 
