@@ -107,8 +107,6 @@ module.exports = {
   RESOURCE_TOOL_DESCRIPTION: 'KubeSphere provides a visual resource orchestration tool that allows you to' +
     ' create application templates and deploy tests through resource pre-editing',
   HELM_DEVELOP_GUIDE: ' Helm Specifications.',
-  APP_CATE_All: 'All',
-  APP_CATE_UNCATEGORIZED: 'Uncategorized',
   ICON_DESC: 'Please select an icon to identify the classification',
   MODIFY_VERSION_TIPS: 'Every modification will follow the next release and take effect.',
   UNDER_REVIEW_TIPS: 'The current version of the application is under review,' +
@@ -125,13 +123,6 @@ module.exports = {
   APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'No App Needs to Be Reviewed',
   APP_REVIEW_PROCESSED_EMPTY_DESC: 'No Review Record Found',
   APP_REVIEW_ALL_EMPTY_DESC: 'No App Found',
-  'APP_CATE_MESSAGE QUEUEING': 'Message Queuing',
-  'APP_CATE_IMAGE REGISTRY': 'Image Registry',
-  'APP_CATE_PROMETHEUS EXPORTER': 'Prometheus Exporter',
-  'APP_CATE_WEB SERVER': 'Web Server',
-  APP_CATE_NETWORKING: 'Networking',
-  'APP_CATE_DATABASE & CACHE': 'Database & Cache',
-  APP_CATE_STORAGE: 'Storage',
   // App Review
   REVIEW: 'Review',
   PENDING_REVIEW: 'Pending',

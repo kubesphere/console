@@ -61,7 +61,7 @@ export default class Item extends PureComponent {
           size={16}
           clickable
         />
-        {t(`APP_CATE_${data.name.toUpperCase()}`, {
+        {t(`APP_CATE_${data.name.toUpperCase().replace(/[^A-Z]+/g, '_')}`, {
           defaultValue: data.name,
         })}
         <label className={styles.number}>{data.app_total || 0}</label>

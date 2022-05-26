@@ -55,7 +55,7 @@ export default class Home extends React.Component {
     this.cateRef = React.createRef()
     this.appRef = React.createRef()
     this.state = {
-      tabName: t(`APP_CATE_All`),
+      tabName: t(`APP_CATE_ALL`),
     }
   }
 
@@ -146,7 +146,7 @@ export default class Home extends React.Component {
 
   handleClickCate = (category, tabName) => {
     this.setState({
-      tabName: t(`APP_CATE_${tabName.toUpperCase()}`, {
+      tabName: t(`APP_CATE_${tabName.toUpperCase().replace(/[^A-Z]+/g, '_')}`, {
         defaultValue: tabName,
       }),
     })
@@ -219,9 +219,12 @@ export default class Home extends React.Component {
                   className={styles.icon}
                 />
                 <span className={styles.name}>
-                  {t(`APP_CATE_${name.toUpperCase()}`, {
-                    defaultValue: name,
-                  })}
+                  {t(
+                    `APP_CATE_${name.toUpperCase().replace(/[^A-Z]+/g, '_')}`,
+                    {
+                      defaultValue: name,
+                    }
+                  )}
                 </span>
               </li>
             ))}

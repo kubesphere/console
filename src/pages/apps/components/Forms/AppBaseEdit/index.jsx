@@ -53,7 +53,9 @@ export default class AppBaseEdit extends React.Component {
   get categories() {
     return [
       ...this.props.categories.map(({ name, category_id }) => ({
-        label: t(`APP_CATE_${name.toUpperCase()}`, { defaultValue: name }),
+        label: t(`APP_CATE_${name.toUpperCase().replace(/[^A-Z]+/g, '_')}`, {
+          defaultValue: name,
+        }),
         value: category_id,
       })),
     ]
