@@ -44,9 +44,10 @@ module.exports = {
   // Details
   // Versions
   APP_STATUS_SUBMITTED: '已提交',
+  APP_STATUS_NOT_SUBMITTED: 'Not submitted',
   VERSION_INFO: '版本信息',
   INSTALL: '安装',
-  SUBMIT_FOR_RELEASE: '提交审核',
+  SUBMIT_FOR_REVIEW: 'Submit for Review',
   DOWNLOAD_SUCCESSFUL: '下载成功。',
   VERSION_DELETE_TIP: '您确定要删除版本 <strong>{name}</strong> 吗？',
   VERSION_SUBMIT_TIP: '您确定要提交版本 <strong>{name}</strong> 进行发布？',
@@ -56,7 +57,6 @@ module.exports = {
   VERSION_RECOVER_TIP: '版本 <strong>{name}</strong> 恢复上架后，关联的应用将显示出该版本，您确定要恢复上架吗？',
   UPDATE_TIME_SCAP: '更新时间',
   VIEW_IN_STORE: '在商店中查看',
-  RELEASE_TO_STORE: '发布',
   // Versions > Upload
   UPLOAD_AGAIN_TIP: '出现错误，请重试。',
   // Versions > Submit for Review
