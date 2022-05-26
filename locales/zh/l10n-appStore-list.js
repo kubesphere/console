@@ -22,6 +22,15 @@ module.exports = {
   DISCOVER: '发现',
   NEW_APPS: '新应用',
   // App Categories
+  APP_CATE_ALL: '全部',
+  APP_CATE_UNCATEGORIZED: 'Uncategorized',
+  APP_CATE_MESSAGE_QUEUEING: 'Message Queuing',
+  APP_CATE_IMAGE_REGISTRY: 'Image Registry',
+  APP_CATE_PROMETHEUS_EXPORTER: 'Prometheus Exporter',
+  APP_CATE_WEB_SERVER: 'Web Server',
+  APP_CATE_NETWORKING: 'Networking',
+  APP_CATE_DATABASE_CACHE: 'Database & Cache',
+  APP_CATE_STORAGE: '存储',
   // List
   MAINTAINER_VALUE: '维护者：{value}',
   LATEST_VALUE: '最新：{value}',
