@@ -25,6 +25,7 @@ import Table from 'components/Tables/Base'
 import Banner from 'components/Cards/Banner'
 import { getLocalTime, getDisplayName } from 'utils'
 import { trigger } from 'utils/action'
+import { get } from 'lodash'
 
 import WorkspaceStore from 'stores/workspace'
 
@@ -62,6 +63,10 @@ export default class Overview extends React.Component {
         description: t('CLUSTER_VISIBILITY_A1'),
       },
     ]
+  }
+
+  get clusterRules() {
+    return get(globals, 'user.globalRules.clusters', [])
   }
 
   getData = params => {
@@ -171,7 +176,7 @@ export default class Overview extends React.Component {
               description={t('CLUSTER_VISIBILITY_SCAP')}
             />
             {globals.app.isMultiCluster &&
-              this.enabledActions.includes('edit') && (
+              this.clusterRules.includes('edit') && (
                 <Button onClick={this.editVisibility}>
                   {t('EDIT_VISIBILITY')}
                 </Button>
