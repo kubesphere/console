@@ -5,7 +5,13 @@ import { Panel } from 'components/Base'
 import { compareVersion } from 'utils'
 import styles from './index.scss'
 
-const GatewayEmpty = ({ component, type, handleCreateGateway, cluster }) => {
+const GatewayEmpty = ({
+  component,
+  type,
+  handleCreateGateway,
+  cluster,
+  canEdit,
+}) => {
   const desc = component || type
   const clusterVersion = globals.app.isMultiCluster
     ? get(globals, `clusterConfig.${cluster}.ksVersion`)
@@ -39,7 +45,7 @@ const GatewayEmpty = ({ component, type, handleCreateGateway, cluster }) => {
           )}
         </div>
 
-        {(component === 'cluster' || type) && (
+        {(component === 'cluster' || type) && !canEdit && (
           <Button
             type="control"
             onClick={handleCreateGateway}

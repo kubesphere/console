@@ -436,6 +436,7 @@ class GatewayCard extends React.Component {
                 type={type}
                 handleCreateGateway={this.handleCreateGateway}
                 cluster={this.cluster}
+                canEdit={this.canEdit}
               />
             </>
           )
