@@ -22,7 +22,7 @@ module.exports = {
   APP_REVIEW_DESC: 'Review apps to be released to the App Store.',
   // New
   NEW_SUBMIT: 'New',
-  APP_REVIEW_EMPTY_DESC: 'Please create an app template in a workspace and submit the app template for rewview.',
+  APP_REVIEW_EMPTY_DESC: 'Please create an app template in a workspace and submit the app template for review.',
   APP_STATUS_TO_BE_REVIEWED: 'To be reviewed',
   APP_STATUS_PASSED: 'Approved',
   APP_STATUS_SUSPENDED: 'Suspended',
