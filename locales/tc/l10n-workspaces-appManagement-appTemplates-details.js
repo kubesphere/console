@@ -44,9 +44,10 @@ module.exports = {
   // Details
   // Versions
   APP_STATUS_SUBMITTED: 'Submitted',
+  APP_STATUS_NOT_SUBMITTED: 'Not submitted',
   VERSION_INFO: 'Version Information',
   INSTALL: 'Install',
-  SUBMIT_FOR_RELEASE: 'Submit for Review',
+  SUBMIT_FOR_REVIEW: 'Submit for Review',
   DOWNLOAD_SUCCESSFUL: '下載成功',
   VERSION_DELETE_TIP: '確定要刪除版本 <strong>{name}</strong> 嗎? ',
   VERSION_SUBMIT_TIP: '確定要提交版本 <strong>{name}</strong> 去審核?',
@@ -56,7 +57,6 @@ module.exports = {
   VERSION_RECOVER_TIP: '版本 <strong>{name}</strong> 上架後，關聯的應用將顯示出該版本，您確定要上架嗎？',
   UPDATE_TIME_SCAP: 'Update time',
   VIEW_IN_STORE: 'View in Store',
-  RELEASE_TO_STORE: 'Release',
   // Versions > Upload
   UPLOAD_AGAIN_TIP: 'Please try again.',
   // Versions > Submit for Review
