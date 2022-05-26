@@ -126,8 +126,6 @@ module.exports = {
 
   HELM_DEVELOP_GUIDE: ' Helm Specifications.',
 
-  APP_CATE_All: 'All',
-  APP_CATE_UNCATEGORIZED: 'Uncategorized',
 
   ICON_DESC: 'Please select an icon to identify the classification',
 
@@ -156,13 +154,6 @@ module.exports = {
   PROCESSED_APP_RELEASE: 'Released App',
   ALL_APP_RELEASE: 'Release Record',
 
-  'APP_CATE_MESSAGE QUEUEING': 'Message Queuing',
-  'APP_CATE_IMAGE REGISTRY': 'Image Registry',
-  'APP_CATE_PROMETHEUS EXPORTER': 'Prometheus Exporter',
-  'APP_CATE_WEB SERVER': 'Web Server',
-  APP_CATE_NETWORKING: 'Networking',
-  'APP_CATE_DATABASE & CACHE': 'Database & Cache',
-  APP_CATE_STORAGE: 'Storage',
 
   // App Review
   REVIEW: 'Review',
