@@ -20,5 +20,5 @@ module.exports = {
   // Description
   // Details
   // Permissions
-  NO_PERMISSION: 'Sin autorización'
+  NO_PERMISSION: 'No Permission Found'
 };

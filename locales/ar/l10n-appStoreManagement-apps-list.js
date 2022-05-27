@@ -21,5 +21,6 @@ module.exports = {
   APP_STORE_MANAGEMENT: 'إدارة متجر التطبيقات',
   APP_STORE_DESC: 'إدارة التطبيقات في متجر التطبيقات. يمكنك عرض معلومات التطبيق، وإصدار التطبيقات، وتعليق التطبيقات.',
   // List
-  APP_CATEGORY: 'فئة التطبيق'
+  APP_CATEGORY: 'فئة التطبيق',
+  APP_EMPTY_DESC: 'Please create an app template in a workspace and release it to the App Store.'
 };

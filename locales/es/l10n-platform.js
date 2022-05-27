@@ -16,7 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  CLUSTERS_MANAGE_DESC: 'Gestión unificada de múltiples clústeres y sus recursos básicos, componentes y recursos de aplicaciones.',
+  CLUSTER_MANAGEMENT: 'Cluster Management',
+  CLUSTER_DESC: 'Unified management of multiple clusters and their basic resources, components, and application resources.',
   ACCESS_CONTROL_DESC: 'Gestión unificada de espacios de trabajo, cuentas y acceso a roles.',
   APP_STORE_MANAGEMENT_DESC: 'Gestión unificada del ciclo de vida de aplicaciones cloud nativas, incluida su publicación, eliminación y revisión',
   PLATFORM_SETTINGS_DESC: 'Configuración de plataforma personalizada, que incluye información básica y recopilador de registros'

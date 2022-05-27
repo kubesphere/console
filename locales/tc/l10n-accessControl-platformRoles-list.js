@@ -28,23 +28,33 @@ module.exports = {
   // List > Create
   CREATE_PLATFORM_ROLE: '創建帳戶角色',
   // List > Create > Edit Permissions > Cluster Management
-  CLUSTERS_MANAGEMENT: '集群管理',
-  CLUSTERS_VIEW: '集群查看',
-  CLUSTERS_VIEW_DESC: '查看平台中所有的集群及集群下所有的資源',
-  CLUSTERS_MANAGEMENT_DESC: '創建刪除集群，管理所有集群下的資源',
+  PERMIGROUP_CLUSTERS_MANAGEMENT: '集群',
+  PERMISSION_CLUSTERS_VIEW: 'Cluster Viewing',
+  PERMISSION_CLUSTERS_VIEW_DESC: 'View all clusters and cluster resources.',
+  PERMISSION_CLUSTERS_MANAGEMENT: 'Cluster Management',
+  PERMISSION_CLUSTERS_MANAGEMENT_DESC: 'Create clusters, delete clusters, and manage resources in all clusters.',
   // List > Create > Edit Permissions > Access Control
-  USERS_MANAGEMENT: '用戶管理',
-  USERS_VIEW: '用戶查看',
-  WORKSPACES_MANAGEMENT_DESC: '支持企業空間的管理，包括添加/刪除/編輯企業空間，查看平台的所有企業空間。',
-  USERS_MANAGEMENT_DESC: '支持帳戶的管理，包括添加/刪除/更新帳戶資訊',
-  ROLES_MANAGEMENT_DESC: '支持帳戶角色的管理，包括添加/刪除/更新帳戶角色',
-  WORKSPACES_VIEW_DESC: '可以查看用戶目前授權的企業空間',
-  ROLES_VIEW_DESC: '可以查看目前平台有哪些角色',
-  USERS_VIEW_DESC: '可以查看目前平台有哪些用戶',
-  // List > Create > Edit Permissions > App Management
-  APP_TEMPLATES_VIEW_DESC: '查看平台級别的應用商店',
-  APP_TEMPLATES_MANAGEMENT_DESC: '管理平台級别的應用商店，對雲原生應用的上架、下架以及審核等應用全生命週期的統一管理。',
+  PERMIGROUP_ACCESS_CONTROL: '訪問控制',
+  PERMISSION_WORKSPACES_VIEW: 'Workspace Viewing',
+  PERMISSION_WORKSPACES_VIEW_DESC: 'View workspaces.',
+  PERMISSION_WORKSPACES_MANAGEMENT: 'Workspace Management',
+  PERMISSION_WORKSPACES_MANAGEMENT_DESC: 'Create, edit, delete, and view workspaces.',
+  PERMISSION_USERS_VIEW: 'User Viewing',
+  PERMISSION_USERS_VIEW_DESC: 'View users.',
+  PERMISSION_USERS_MANAGEMENT: 'User Management',
+  PERMISSION_USERS_MANAGEMENT_DESC: 'Create, edit, and delete users.',
+  PERMISSION_ROLES_VIEW: '角色查看',
+  PERMISSION_ROLES_VIEW_DESC: 'View platform roles.',
+  PERMISSION_ROLES_MANAGEMENT: '角色管理',
+  PERMISSION_ROLES_MANAGEMENT_DESC: 'Create, edit, and delete platform roles.',
+  // List > Create > Edit Permissions > Apps
+  PERMIGROUP_APPS_MANAGEMENT: '應用程式',
+  PERMISSION_APP_TEMPLATES_VIEW: 'App Viewing',
+  PERMISSION_APP_TEMPLATES_VIEW_DESC: 'View the platform App Store.',
+  PERMISSION_APP_TEMPLATES_MANAGEMENT: '應用模板管理',
+  PERMISSION_APP_TEMPLATES_MANAGEMENT_DESC: 'Manage the platform App Store and life cycles of cloud-native applications.',
   // List > Create > Edit Permissions > Platform Settings
-  PLATFORM_SETTINGS_MANAGEMENT: '平台設置管理',
-  PLATFORM_SETTINGS_MANAGEMENT_DESC: '管理平台設置，如自定義平台資訊，logo，配置紀錄收集，郵件通知等。'
+  PERMIGROUP_PLATFORM_SETTINGS: '平台設置',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.'
 };

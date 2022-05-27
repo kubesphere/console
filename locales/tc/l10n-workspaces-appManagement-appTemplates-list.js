@@ -26,6 +26,9 @@ module.exports = {
   HOW_PUBLISH_APP_TITLE: '如何發佈已有應用',
   HOW_PUBLISH_APP_DESC: 'KubeSphere 目前支持將已有應用的 Helm Chart 上傳至企業空間的應用模板，提交審核後，可以將應用發佈在應用商店中。',
   // List
+  APP_STATUS_ACTIVE: '已發布',
+  APP_STATUS_DRAFT: 'Unreleased',
+  APP_STATUS_SUSPENDING: 'Suspending',
   APP_TEMPLATE_EMPTY_DESC: 'Please create an app template.',
   LATEST_VERSION: '最新版本',
   // List > Create

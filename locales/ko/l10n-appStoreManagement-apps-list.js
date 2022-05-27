@@ -21,5 +21,6 @@ module.exports = {
   APP_STORE_MANAGEMENT: '앱 스토어 관리',
   APP_STORE_DESC: '앱 스토어의 앱을 관리합니다. 앱 정보를 확인하거나, 앱을 릴리즈하거나, 앱을 비활성화할 수 있습니다.',
   // List
-  APP_CATEGORY: '앱 카테고리'
+  APP_CATEGORY: '앱 카테고리',
+  APP_EMPTY_DESC: 'Please create an app template in a workspace and release it to the App Store.'
 };

@@ -26,6 +26,9 @@ module.exports = {
   HOW_PUBLISH_APP_TITLE: 'Cómo publicar aplicaciones en la Tienda de Aplicaciones?',
   HOW_PUBLISH_APP_DESC: 'KubeSphere actualmente admite la subida de Charts de Helm a través de plantillas de aplicación dentro del espacio de trabajo, donde puedes enviar tu plantilla para su revisión. Una vez que se apruebe la plantilla, podrás publicarla en la Tienda de Aplicaciones.',
   // List
+  APP_STATUS_ACTIVE: 'Released',
+  APP_STATUS_DRAFT: 'Unreleased',
+  APP_STATUS_SUSPENDING: 'Suspending',
   APP_TEMPLATE_EMPTY_DESC: 'Please create an app template.',
   LATEST_VERSION: 'Última versión',
   // List > Create

@@ -43,9 +43,11 @@ module.exports = {
   APP_TEMPLATE_LOW: '应用模板',
   // Details
   // Versions
+  APP_STATUS_SUBMITTED: '已提交',
+  APP_STATUS_NOT_SUBMITTED: '未提交',
   VERSION_INFO: '版本信息',
   INSTALL: '安装',
-  SUBMIT_FOR_RELEASE: '提交发布',
+  SUBMIT_FOR_REVIEW: '提交审核',
   DOWNLOAD_SUCCESSFUL: '下载成功。',
   VERSION_DELETE_TIP: '您确定要删除版本 <strong>{name}</strong> 吗？',
   VERSION_SUBMIT_TIP: '您确定要提交版本 <strong>{name}</strong> 进行发布？',
@@ -55,18 +57,17 @@ module.exports = {
   VERSION_RECOVER_TIP: '版本 <strong>{name}</strong> 恢复上架后，关联的应用将显示出该版本，您确定要恢复上架吗？',
   UPDATE_TIME_SCAP: '更新时间',
   VIEW_IN_STORE: '在商店中查看',
-  RELEASE_TO_STORE: '发布到商店',
   // Versions > Upload
   UPLOAD_AGAIN_TIP: '出现错误，请重试。',
-  // Versions > Submit for Release
+  // Versions > Submit for Review
   ENTER_VERSION_NUMBER_TIP: '请输入版本号。',
-  SUBMIT_REVIEW_DESC: '提交应用进行发布。',
+  SUBMIT_REVIEW_DESC: '将应用模板提交审核以发布到应用商店。',
   APP_LEARN_MORE: '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">了解更多</a>',
   INVALID_VERSION_TIP: '请输入正确的版本号。',
-  // Versions > Submit for Release > Test Steps
+  // Versions > Submit for Review > Test Steps
   VERSION_SUBMIT_TEST_STEPS: '1. 所有依赖的 chart 已经分别提交。<br/>' + '2. 可以成功通过静态检查（helm lint）。<br/>' + '3. 可以用默认值成功启动应用（helm install）。所有容器组处于运行中状态，所有服务（Service）都至少有一个端点。<br/>' + '4. 使用的镜像没有安全漏洞。<br/>' + '5. 支持升级。<br/>' + '6. 支持自定义应用配置。<br/>' + '7. 不要使用 Kubernetes 的 alpha 功能。<br/>' + '8. 需要提供详细的说明文档，包括应用介绍、准备工作和自定义参数配置。<br/>',
   VERSION_SUBMIT_NOTE: '提交之前，请确认您的应用满足以下要求：',
-  // Versions > Submit for Release > Update Log
+  // Versions > Submit for Review > Update Log
   UPDATE_LOG_DESC: '填写关于应用更新的详细信息。',
   SUBMIT_SUCCESSFUL: '提交成功。',
   CANCEL_SUCCESSFUL: '取消成功。',

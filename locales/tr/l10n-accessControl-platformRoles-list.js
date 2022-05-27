@@ -28,23 +28,33 @@ module.exports = {
   // List > Create
   CREATE_PLATFORM_ROLE: 'Platform Rolü Oluştur',
   // List > Create > Edit Permissions > Cluster Management
-  CLUSTERS_MANAGEMENT: 'Küme Yönetimi',
-  CLUSTERS_VIEW: 'Kümeleri Görüntüle',
-  CLUSTERS_VIEW_DESC: 'Tüm küme ve küme kaynaklarını görüntüle.',
-  CLUSTERS_MANAGEMENT_DESC: 'Kümeler oluşturun, kümeleri silin ve kaynakları yönetin.',
+  PERMIGROUP_CLUSTERS_MANAGEMENT: 'Küme',
+  PERMISSION_CLUSTERS_VIEW: 'Cluster Viewing',
+  PERMISSION_CLUSTERS_VIEW_DESC: 'View all clusters and cluster resources.',
+  PERMISSION_CLUSTERS_MANAGEMENT: 'Cluster Management',
+  PERMISSION_CLUSTERS_MANAGEMENT_DESC: 'Create clusters, delete clusters, and manage resources in all clusters.',
   // List > Create > Edit Permissions > Access Control
-  USERS_MANAGEMENT: 'Kullanıcı Yönetimi',
-  USERS_VIEW: 'Kullanıcıları Görüntüle',
-  WORKSPACES_MANAGEMENT_DESC: 'Çalışma alanları oluşturun, düzenleyin, silin ve görüntüleyin.',
-  USERS_MANAGEMENT_DESC: 'Kullanıcıları oluşturun, düzenleyin ve silin.',
-  ROLES_MANAGEMENT_DESC: 'Platform rolleri oluşturun, düzenleyin ve silin.',
-  WORKSPACES_VIEW_DESC: 'Çalışma Alanlarını Görüntüle',
-  ROLES_VIEW_DESC: 'Platform Rollerini Görüntüle',
-  USERS_VIEW_DESC: 'Kullanıcıları görüntüle',
-  // List > Create > Edit Permissions > App Management
-  APP_TEMPLATES_VIEW_DESC: 'App Store\'u görüntüle.',
-  APP_TEMPLATES_MANAGEMENT_DESC: 'App Store\'u ve bulutta yerel uygulamaların yaşam döngülerini yönetin.',
+  PERMIGROUP_ACCESS_CONTROL: 'Erişim Denetimi',
+  PERMISSION_WORKSPACES_VIEW: 'Workspace Viewing',
+  PERMISSION_WORKSPACES_VIEW_DESC: 'View workspaces.',
+  PERMISSION_WORKSPACES_MANAGEMENT: 'Workspace Management',
+  PERMISSION_WORKSPACES_MANAGEMENT_DESC: 'Create, edit, delete, and view workspaces.',
+  PERMISSION_USERS_VIEW: 'User Viewing',
+  PERMISSION_USERS_VIEW_DESC: 'View users.',
+  PERMISSION_USERS_MANAGEMENT: 'User Management',
+  PERMISSION_USERS_MANAGEMENT_DESC: 'Create, edit, and delete users.',
+  PERMISSION_ROLES_VIEW: 'Role İzleme',
+  PERMISSION_ROLES_VIEW_DESC: 'View platform roles.',
+  PERMISSION_ROLES_MANAGEMENT: 'Rol Yönetimi',
+  PERMISSION_ROLES_MANAGEMENT_DESC: 'Create, edit, and delete platform roles.',
+  // List > Create > Edit Permissions > Apps
+  PERMIGROUP_APPS_MANAGEMENT: 'Uygulamalar',
+  PERMISSION_APP_TEMPLATES_VIEW: 'App Viewing',
+  PERMISSION_APP_TEMPLATES_VIEW_DESC: 'View the platform App Store.',
+  PERMISSION_APP_TEMPLATES_MANAGEMENT: 'Uygulama Şablon Yönetimi',
+  PERMISSION_APP_TEMPLATES_MANAGEMENT_DESC: 'Manage the platform App Store and life cycles of cloud-native applications.',
   // List > Create > Edit Permissions > Platform Settings
-  PLATFORM_SETTINGS_MANAGEMENT: 'Platform Ayarları Yönetimi',
-  PLATFORM_SETTINGS_MANAGEMENT_DESC: 'KubeSphere platformunun ayarlarını görüntüleyin ve düzenleyin.'
+  PERMIGROUP_PLATFORM_SETTINGS: 'Platform Ayarları',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.'
 };

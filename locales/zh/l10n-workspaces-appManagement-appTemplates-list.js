@@ -26,6 +26,9 @@ module.exports = {
   HOW_PUBLISH_APP_TITLE: '如何发布应用到应用商店？',
   HOW_PUBLISH_APP_DESC: '您可以将 Helm chart 上传为企业空间的应用模板，审核通过后，应用将会发布在应用商店中。',
   // List
+  APP_STATUS_ACTIVE: '已发布',
+  APP_STATUS_DRAFT: '未发布',
+  APP_STATUS_SUSPENDING: '下架中',
   APP_TEMPLATE_EMPTY_DESC: '请创建一个应用模板。',
   LATEST_VERSION: '最新版本',
   // List > Create

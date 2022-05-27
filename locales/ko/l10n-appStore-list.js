@@ -22,6 +22,15 @@ module.exports = {
   DISCOVER: '살펴보기',
   NEW_APPS: '새로운 앱',
   // App Categories
+  APP_CATE_ALL: 'All',
+  APP_CATE_UNCATEGORIZED: 'Uncategorized',
+  APP_CATE_MESSAGE_QUEUEING: 'Message Queuing',
+  APP_CATE_IMAGE_REGISTRY: 'Image Registry',
+  APP_CATE_PROMETHEUS_EXPORTER: 'Prometheus Exporter',
+  APP_CATE_WEB_SERVER: 'Web Server',
+  APP_CATE_NETWORKING: 'Networking',
+  APP_CATE_DATABASE_CACHE: 'Database & Cache',
+  APP_CATE_STORAGE: 'Storage',
   // List
   MAINTAINER_VALUE: '메인테이너: {value}',
   LATEST_VALUE: '최신 버전: {value}',

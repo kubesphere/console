@@ -18,7 +18,7 @@
 module.exports = {
   VOLUME_SNAPSHOT_CLASS_PL: 'Volume Snapshot Classes',
   VOLUME_SNAPSHOT_CLASS: 'Volume Snapshot Class',
-  VOLUME_SNAPSHOT_CLASS_DESC: 'Volume snapshot classes provides a way for administrators to define storage types used for volume snapshots.',
+  VOLUME_SNAPSHOT_CLASS_DESC: 'Volume snapshot classes provide a way for administrators to define storage types used for volume snapshots.',
   VOLUME_SNAPSHOT_CLASS_EMPTY_DESC: 'Please create a volume snapshot class.',
   // List > Create
   SNAPSHOT_CLASS_SETTINGS: 'Volume Snapshot Class Settings',
