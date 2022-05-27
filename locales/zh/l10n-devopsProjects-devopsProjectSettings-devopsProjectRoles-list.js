@@ -30,7 +30,7 @@ module.exports = {
   EDIT_PERMISSIONS: '编辑权限',
   CREATE_ROLE: '创建角色',
   // List > Create > Edit Permissions
-  CATEGORIES: 'Modules',
+  CATEGORIES: 'Categories',
   // List > Create > Edit Permissions > Pipeline Management
   DEPENDS_ON: '依赖于：',
   PERMIGROUP_PIPELINES_MANAGEMENT: '流水线',
