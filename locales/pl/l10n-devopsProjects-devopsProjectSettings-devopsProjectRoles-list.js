@@ -30,7 +30,7 @@ module.exports = {
   EDIT_PERMISSIONS: 'Edit Permissions',
   CREATE_ROLE: 'Create Role',
   // List > Create > Edit Permissions
-  CATEGORIES: 'Modules',
+  CATEGORIES: 'Categories',
   // List > Create > Edit Permissions > Pipeline Management
   DEPENDS_ON: 'Depends on: ',
   PERMIGROUP_PIPELINES_MANAGEMENT: 'Pipelines',
