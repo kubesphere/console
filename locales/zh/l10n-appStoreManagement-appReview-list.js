@@ -21,7 +21,7 @@ module.exports = {
   APP_REVIEW_DESC: '审核待发布到应用商店的应用。',
   // New
   NEW_SUBMIT: '新提交',
-  APP_REVIEW_EMPTY_DESC: 'Please create an app template in a workspace and submit the app template for review.',
+  APP_REVIEW_EMPTY_DESC: '请在企业空间中创建应用模板并提交审核。',
   APP_STATUS_TO_BE_REVIEWED: '待审核',
   APP_STATUS_PASSED: '已批准',
   APP_STATUS_SUSPENDED: '已下架',
