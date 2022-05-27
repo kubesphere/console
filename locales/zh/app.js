@@ -125,7 +125,6 @@ module.exports = {
   COMPLETE_REVIEW: '已处理',
   SERVICE_PROVIDER: '服务提供商',
   // App Store
-  CATEGORIES: '分类',
   UPDATE_TIME_COLON: '更新时间：',
   DEVELOPER: '开发者',
   // App Categories

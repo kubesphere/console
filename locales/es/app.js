@@ -125,7 +125,6 @@ module.exports = {
   COMPLETE_REVIEW: 'Complete',
   SERVICE_PROVIDER: 'Service provider',
   // App Store
-  CATEGORIES: 'Categories',
   UPDATE_TIME_COLON: 'Update time: ',
   DEVELOPER: 'Developer',
   // App Categories

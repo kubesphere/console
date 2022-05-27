@@ -57,7 +57,6 @@ module.exports = {
   PROJECT_RESOURCES_MANAGEMENT: 'Project Resource Management',
   Role: 'Role',
   'Role Management': 'Role Management',
-  'Role name exists': 'The role name already exists.',
   'Role Type': 'Role Type',
   Roles: 'Roles',
   roles: 'roles',
@@ -65,7 +64,6 @@ module.exports = {
   'StorageClasses View': 'StorageClass Viewing',
   'Unable to delete preset role': 'Preset roles cannot be deleted.',
   WORKSPACES_MANAGEMENT: 'Workspace Management',
-  WORKSPACES_VIEW: 'Workspace Viewing',
   NO_AVAILABLE_ROLE: 'No role is available in the current project.',
   JOIN_PROJECT_PLACEHOLDER:
     'Invite users by username or email address to the project.',
@@ -134,8 +132,6 @@ module.exports = {
     'The role of an account defines the permissions of the account on the KubeSphere platform.',
   ACCOUNT_ROLE_CREATE_DESC:
     'The role of an account defines the permissions of the account on the KubeSphere platform.',
-  PIPELINERUNS_MANAGEMENT_DESC:
-    'View, edit, and delete pipeline run records in the DevOps project.',
   DEVOPS_ROLES_VIEW_DESC: 'View DevOps project roles.',
   DEVOPS_ROLES_MANAGEMENT_DESC:
     'Create, edit, and delete DevOps project roles except preset roles.',

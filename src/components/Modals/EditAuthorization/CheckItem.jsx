@@ -95,10 +95,16 @@ export default class CheckItem extends Component {
           onClick={this.handleCheck}
         />
         <Text
-          title={t(data.aliasName.replace(/\s+/g, '_').toUpperCase())}
+          title={t(
+            `PERMISSION_${data.aliasName
+              .toUpperCase()
+              .replace(/[^A-Z]+/g, '_')}`
+          )}
           onClick={this.handleCheck}
           description={t(
-            `${data.aliasName.toUpperCase().replace(/\s+/g, '_')}_DESC`
+            `PERMISSION_${data.aliasName
+              .toUpperCase()
+              .replace(/[^A-Z]+/g, '_')}_DESC`
           )}
         />
         {data.dependencies.length > 0 && (
@@ -107,9 +113,9 @@ export default class CheckItem extends Component {
             {data.dependencies.map(item => (
               <Tag className={styles.tag} type="info" key={item}>
                 {t(
-                  get(roleTemplatesMap, `[${item}].aliasName`)
-                    .replace(/\s+/g, '_')
+                  `PERMISSION_${get(roleTemplatesMap, `[${item}].aliasName`)
                     .toUpperCase()
+                    .replace(/[^A-Z]+/g, '_')}`
                 )}
               </Tag>
             ))}

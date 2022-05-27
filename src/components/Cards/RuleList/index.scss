@@ -11,14 +11,15 @@
     }
   }
 
-  span {
-    display: inline-block;
+  div {
     vertical-align: middle;
     color: #5f708a;
   }
 
   .name {
+    float: left;
     width: 200px;
+    height: 60px;
     margin-right: 60px;
     font-size: $size-normal;
     font-weight: $font-bold;

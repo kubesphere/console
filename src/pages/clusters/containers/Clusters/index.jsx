@@ -295,8 +295,8 @@ class Clusters extends React.Component {
         <Banner
           className={styles.banner}
           icon="cluster"
-          title={t('Clusters Management')}
-          description={t('CLUSTERS_MANAGE_DESC')}
+          title={t('CLUSTER_MANAGEMENT')}
+          description={t('CLUSTER_DESC')}
           extra={this.renderSearch()}
         />
         {this.renderList()}

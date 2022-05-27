@@ -28,16 +28,20 @@ export default class RuleList extends React.Component {
       <ul className={styles.wrapper} data-test="rule-list">
         {Object.keys(templates).map(key => (
           <li key={key}>
-            <span className={styles.name}>
-              {t(key.replace(/\s+/g, '_').toUpperCase())}
-            </span>
-            <span>
+            <div className={styles.name}>
+              {t(`PERMIGROUP_${key.toUpperCase().replace(/[^A-Z]+/g, '_')}`)}
+            </div>
+            <div>
               {templates[key]
                 .map(role =>
-                  t(role.aliasName.replace(/\s+/g, '_').toUpperCase())
+                  t(
+                    `PERMISSION_${role.aliasName
+                      .toUpperCase()
+                      .replace(/[^A-Z]+/g, '_')}`
+                  )
                 )
-                .join('/')}
-            </span>
+                .join('  |  ')}
+            </div>
           </li>
         ))}
       </ul>

@@ -85,8 +85,8 @@ client:
   # platform management navigations
   globalNavs:
     - name: clusters
-      title: CLUSTERS_MANAGEMENT
-      desc: CLUSTERS_MANAGE_DESC
+      title: CLUSTER_MANAGEMENT
+      desc: CLUSTER_DESC
       icon: cluster
     - name: access
       title: ACCESS_CONTROL

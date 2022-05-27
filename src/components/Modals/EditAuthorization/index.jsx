@@ -110,7 +110,7 @@ export default class EditAuthorizationModal extends React.Component {
 
     return (
       <div className={styles.tabs}>
-        <div className={styles.title}>{t('MODULES')}</div>
+        <div className={styles.title}>{t('CATEGORIES')}</div>
         <div className={styles.tabsWrapper}>
           {roleModules.map(item => (
             <div
@@ -123,11 +123,17 @@ export default class EditAuthorizationModal extends React.Component {
             >
               <Text
                 icon={item.icon}
-                title={t(item.name.replace(/\s+/g, '_').toUpperCase())}
+                title={t(
+                  `PERMIGROUP_${item.name
+                    .toUpperCase()
+                    .replace(/[^A-Z]+/g, '_')}`
+                )}
                 description={
                   currentModule === item.name
                     ? t('CURRENT')
-                    : t(item.state || 'NOT_ENABLED')
+                    : item.state === 'ENABLED'
+                    ? t('AUTHORIZED')
+                    : t('UNAUTHORIZED')
                 }
               />
               <Indicator
