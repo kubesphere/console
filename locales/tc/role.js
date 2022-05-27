@@ -57,7 +57,6 @@ module.exports = {
   PROJECT_RESOURCES_MANAGEMENT: '項目資源管理',
   Role: '角色',
   'Role Management': '角色管理',
-  'Role name exists': '角色名稱已存在',
   'Role Type': '角色類型',
   Roles: '角色',
   roles: '角色',
@@ -65,7 +64,6 @@ module.exports = {
   'StorageClasses View': '儲存類型查看',
   'Unable to delete preset role': '無法刪除預設角色',
   WORKSPACES_MANAGEMENT: '企業空間管理',
-  WORKSPACES_VIEW: '企業空間查看',
   NO_AVAILABLE_ROLE: '目前項目無可用角色',
   JOIN_PROJECT_PLACEHOLDER: '輸入用戶名稱或者郵箱邀請用戶加入到項目中',
   ROLE_PROJECTS_JOIN_TIP: '輸入用戶名或者郵箱邀請用戶加入到項目中',
@@ -129,8 +127,6 @@ module.exports = {
   COMPONENTS_MANAGEMENT_DESC: '管理集群的服務組件',
   ACCOUNT_ROLE_DESC: '帳號角色可以定義平台内的帳號擁有的權限',
   ACCOUNT_ROLE_CREATE_DESC: '帳號角色可以定義平台内的帳號擁有的權限',
-  PIPELINERUNS_MANAGEMENT_DESC:
-    'View, edit, and delete pipeline run records in the DevOps project.',
   DEVOPS_ROLES_VIEW_DESC: '查看 DevOps 项目角色',
   DEVOPS_ROLES_MANAGEMENT_DESC:
     '可以 創建/編輯/刪除  DevOps 项目角色，系統預設角色無法刪除',

@@ -21,6 +21,6 @@ module.exports = {
   // Description
   // Details
   // Permissions
-  NO_PERMISSION: 'No Permission',
+  NO_PERMISSION: 'No Permission Found',
   // Authorized Users
 }

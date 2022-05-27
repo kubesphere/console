@@ -58,7 +58,6 @@ module.exports = {
   PROJECT_RESOURCES_MANAGEMENT: 'Project Resource Management',
   Role: 'Rol',
   'Role Management': 'Gestión de roles',
-  'Role name exists': 'El nombre del rol ya existe',
   'Role Type': 'Tipo de rol',
   Roles: 'Roles',
   roles: 'roles',
@@ -66,7 +65,6 @@ module.exports = {
   'StorageClasses View': 'Vista de clases de almacenamiento',
   'Unable to delete preset role': 'No se puedes eliminar el rol preestablecido',
   WORKSPACES_MANAGEMENT: 'Workspace Management',
-  WORKSPACES_VIEW: 'Workspace Viewing',
   NO_AVAILABLE_ROLE: 'No hay roles disponibles para el proyecto actual.',
   JOIN_PROJECT_PLACEHOLDER:
     'Invita a los miembros por nombre de usuario o correo electrónico para que se unan al proyecto.',
@@ -137,8 +135,6 @@ module.exports = {
     'Los roles de cuenta definen la autorización que tiene una cuenta en la plataforma.',
   ACCOUNT_ROLE_CREATE_DESC:
     'Los roles de cuenta definen la autorización que tiene una cuenta en la plataforma.',
-  PIPELINERUNS_MANAGEMENT_DESC:
-    'View, edit, and delete pipeline run records in the DevOps project.',
   DEVOPS_ROLES_VIEW_DESC: 'Ver los roles de proyecto DevOps',
   DEVOPS_ROLES_MANAGEMENT_DESC:
     'Crear, editar y eliminar roles de proyecto DevOps (los roles preestablecidos del sistema no se pueden eliminar)',

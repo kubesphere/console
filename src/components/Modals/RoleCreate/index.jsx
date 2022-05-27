@@ -86,7 +86,7 @@ export default class CreateModal extends React.Component {
       .checkName({ name: value, workspace, cluster, namespace })
       .then(resp => {
         if (resp.exist) {
-          return callback({ message: t('Role name exists'), field: rule.field })
+          return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
         }
         callback()
       })
