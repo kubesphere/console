@@ -44,10 +44,10 @@ module.exports = {
   // Details
   // Versions
   APP_STATUS_SUBMITTED: '已提交',
-  APP_STATUS_NOT_SUBMITTED: 'Not submitted',
+  APP_STATUS_NOT_SUBMITTED: '未提交',
   VERSION_INFO: '版本信息',
   INSTALL: '安装',
-  SUBMIT_FOR_REVIEW: 'Submit for Review',
+  SUBMIT_FOR_REVIEW: '提交审核',
   DOWNLOAD_SUCCESSFUL: '下载成功。',
   VERSION_DELETE_TIP: '您确定要删除版本 <strong>{name}</strong> 吗？',
   VERSION_SUBMIT_TIP: '您确定要提交版本 <strong>{name}</strong> 进行发布？',
