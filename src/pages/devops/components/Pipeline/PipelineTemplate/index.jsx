@@ -105,7 +105,11 @@ const Card = ({
       </div>
       <div className={styles.info}>
         <div className={styles.subtitle}>{title}</div>
-        <p title={desc} className={styles.desc}>
+        <p
+          title={desc}
+          className={styles.desc}
+          style={{ '-webkit-box-orient': 'vertical' }}
+        >
           {desc}
         </p>
       </div>
