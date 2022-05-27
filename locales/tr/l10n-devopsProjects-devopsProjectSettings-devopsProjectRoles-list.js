@@ -30,7 +30,7 @@ module.exports = {
   EDIT_PERMISSIONS: 'İzinleri Düzenle',
   CREATE_ROLE: 'Rol Oluştur',
   // List > Create > Edit Permissions
-  CATEGORIES: 'Modules',
+  CATEGORIES: 'Categories',
   // List > Create > Edit Permissions > Pipeline Management
   DEPENDS_ON: 'Bağlı olarak: ',
   PERMIGROUP_PIPELINES_MANAGEMENT: 'İş hatları',
