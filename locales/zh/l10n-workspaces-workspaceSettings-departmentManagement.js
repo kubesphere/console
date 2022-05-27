@@ -17,8 +17,8 @@
  */
 module.exports = {
   // Banner
-  DEPARTMENT_PL: 'Departments',
-  DEPARTMENT_DESC: 'A department in a workspace is a logical unit used for permission control. You can set a workspace role, multiple project roles, and multiple DevOps project roles in a department, and assign users to the department to control user permissions in batches.',
+  DEPARTMENT_PL: '部门',
+  DEPARTMENT_DESC: '企业空间中的部门是用来管理权限的逻辑单元。您可以在部门中设置企业空间角色、多个项目角色以及多个 DevOps 项目角色，还可以将用户分配到部门中以批量管理用户权限。',
   // List
   // List > Not Assigned
   NOT_ASSIGNED_TCAP: '未分配',
