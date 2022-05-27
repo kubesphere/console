@@ -28,23 +28,33 @@ module.exports = {
   // List > Create
   CREATE_PLATFORM_ROLE: 'إنشاء دور منصة',
   // List > Create > Edit Permissions > Cluster Management
-  CLUSTERS_MANAGEMENT: 'إدارة المجموعة',
-  CLUSTERS_VIEW: 'عرض المجموعة',
-  CLUSTERS_VIEW_DESC: 'عرض جميع المجموعات وموارد المجموعات.',
-  CLUSTERS_MANAGEMENT_DESC: 'إنشاء مجموعات، حذف المجموعات، وإدارة الموارد في جميع المجموعات.',
+  PERMIGROUP_CLUSTERS_MANAGEMENT: 'المجموعات',
+  PERMISSION_CLUSTERS_VIEW: 'Cluster Viewing',
+  PERMISSION_CLUSTERS_VIEW_DESC: 'View all clusters and cluster resources.',
+  PERMISSION_CLUSTERS_MANAGEMENT: 'Cluster Management',
+  PERMISSION_CLUSTERS_MANAGEMENT_DESC: 'Create clusters, delete clusters, and manage resources in all clusters.',
   // List > Create > Edit Permissions > Access Control
-  USERS_MANAGEMENT: 'إدارة المستخدم',
-  USERS_VIEW: 'عرض المستخدم',
-  WORKSPACES_MANAGEMENT_DESC: 'إنشاء, تعديل, حذف و عرض مساحات العمل.',
-  USERS_MANAGEMENT_DESC: 'إنشاء, تعديل وحذف المستخدمين.',
-  ROLES_MANAGEMENT_DESC: 'إنشاء أدوار المنصة وتعديلها وحذفها.',
-  WORKSPACES_VIEW_DESC: 'عرض مساحات العمل.',
-  ROLES_VIEW_DESC: 'عرض أدوار المنصة.',
-  USERS_VIEW_DESC: 'عرض المستخدمين.',
-  // List > Create > Edit Permissions > App Management
-  APP_TEMPLATES_VIEW_DESC: 'عرض متجر تطبيقات المنصة.',
-  APP_TEMPLATES_MANAGEMENT_DESC: 'إدارة متجر تطبيقات المنصة ودورات حياة التطبيقات السحابية الأصلية.',
+  PERMIGROUP_ACCESS_CONTROL: 'Access Control',
+  PERMISSION_WORKSPACES_VIEW: 'Workspace Viewing',
+  PERMISSION_WORKSPACES_VIEW_DESC: 'View workspaces.',
+  PERMISSION_WORKSPACES_MANAGEMENT: 'Workspace Management',
+  PERMISSION_WORKSPACES_MANAGEMENT_DESC: 'Create, edit, delete, and view workspaces.',
+  PERMISSION_USERS_VIEW: 'User Viewing',
+  PERMISSION_USERS_VIEW_DESC: 'View users.',
+  PERMISSION_USERS_MANAGEMENT: 'User Management',
+  PERMISSION_USERS_MANAGEMENT_DESC: 'Create, edit, and delete users.',
+  PERMISSION_ROLES_VIEW: 'Role Viewing',
+  PERMISSION_ROLES_VIEW_DESC: 'View platform roles.',
+  PERMISSION_ROLES_MANAGEMENT: 'Role Management',
+  PERMISSION_ROLES_MANAGEMENT_DESC: 'Create, edit, and delete platform roles.',
+  // List > Create > Edit Permissions > Apps
+  PERMIGROUP_APPS_MANAGEMENT: 'التطبيقات',
+  PERMISSION_APP_TEMPLATES_VIEW: 'App Viewing',
+  PERMISSION_APP_TEMPLATES_VIEW_DESC: 'View the platform App Store.',
+  PERMISSION_APP_TEMPLATES_MANAGEMENT: 'App Template Management',
+  PERMISSION_APP_TEMPLATES_MANAGEMENT_DESC: 'Manage the platform App Store and life cycles of cloud-native applications.',
   // List > Create > Edit Permissions > Platform Settings
-  PLATFORM_SETTINGS_MANAGEMENT: 'إدارة إعدادات المنصة',
-  PLATFORM_SETTINGS_MANAGEMENT_DESC: 'عرض وتعديل إعدادات منصة KubeSphere.'
+  PERMIGROUP_PLATFORM_SETTINGS: 'Platform Settings',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.'
 };
