@@ -28,23 +28,33 @@ module.exports = {
   // List > Create
   CREATE_PLATFORM_ROLE: '创建平台角色',
   // List > Create > Edit Permissions > Cluster Management
-  CLUSTERS_MANAGEMENT: '集群管理',
-  CLUSTERS_VIEW: '集群查看',
-  CLUSTERS_VIEW_DESC: '查看 KubeSphere 平台的所有集群及集群中的所有资源。',
-  CLUSTERS_MANAGEMENT_DESC: '创建集群、删除集群和管理集群中的所有资源。',
+  PERMIGROUP_CLUSTERS_MANAGEMENT: '集群',
+  PERMISSION_CLUSTERS_VIEW: '集群查看',
+  PERMISSION_CLUSTERS_VIEW_DESC: '查看所有集群和集群资源。',
+  PERMISSION_CLUSTERS_MANAGEMENT: '集群管理',
+  PERMISSION_CLUSTERS_MANAGEMENT_DESC: '创建集群、删除集群和管理集群中的所有资源。',
   // List > Create > Edit Permissions > Access Control
-  USERS_MANAGEMENT: '用户管理',
-  USERS_VIEW: '用户查看',
-  WORKSPACES_MANAGEMENT_DESC: '创建、编辑和删除企业空间。',
-  USERS_MANAGEMENT_DESC: '创建、编辑和删除用户。',
-  ROLES_MANAGEMENT_DESC: '创建、编辑和删除角色。',
-  WORKSPACES_VIEW_DESC: '查看用户被授权的企业空间。',
-  ROLES_VIEW_DESC: '查看 KubeSphere 平台的所有角色。',
-  USERS_VIEW_DESC: '查看 KubeSphere 平台的所有用户。',
-  // List > Create > Edit Permissions > App Management
-  APP_TEMPLATES_VIEW_DESC: '查看 KubeSphere 平台的应用商店。',
-  APP_TEMPLATES_MANAGEMENT_DESC: '管理 KubeSphere 平台的应用商店。',
+  PERMIGROUP_ACCESS_CONTROL: '访问控制',
+  PERMISSION_WORKSPACES_VIEW: '企业空间查看',
+  PERMISSION_WORKSPACES_VIEW_DESC: '查看工作空间。',
+  PERMISSION_WORKSPACES_MANAGEMENT: '企业空间管理',
+  PERMISSION_WORKSPACES_MANAGEMENT_DESC: '创建、编辑和删除企业空间。',
+  PERMISSION_USERS_VIEW: '用户查看',
+  PERMISSION_USERS_VIEW_DESC: '查看用户。',
+  PERMISSION_USERS_MANAGEMENT: '用户管理',
+  PERMISSION_USERS_MANAGEMENT_DESC: '创建、编辑和删除用户。',
+  PERMISSION_ROLES_VIEW: '角色查看',
+  PERMISSION_ROLES_VIEW_DESC: '查看平台角色。',
+  PERMISSION_ROLES_MANAGEMENT: '角色管理',
+  PERMISSION_ROLES_MANAGEMENT_DESC: '创建、编辑和删除平台角色。',
+  // List > Create > Edit Permissions > Apps
+  PERMIGROUP_APPS_MANAGEMENT: '应用',
+  PERMISSION_APP_TEMPLATES_VIEW: '应用查看',
+  PERMISSION_APP_TEMPLATES_VIEW_DESC: '查看平台应用商店。',
+  PERMISSION_APP_TEMPLATES_MANAGEMENT: '应用模板管理',
+  PERMISSION_APP_TEMPLATES_MANAGEMENT_DESC: '管理平台应用商店和云原生应用的生命周期。',
   // List > Create > Edit Permissions > Platform Settings
-  PLATFORM_SETTINGS_MANAGEMENT: '平台设置管理',
-  PLATFORM_SETTINGS_MANAGEMENT_DESC: '查看和编辑 KubeSphere平台的设置。'
+  PERMIGROUP_PLATFORM_SETTINGS: '平台设置',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: '平台设置管理',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: '查看和编辑 KubeSphere平台的设置。'
 };
