@@ -120,7 +120,6 @@ module.exports = {
   FILE_MAX_ICON: 'Icon size should not exceed 20KB',
   REVIEWS_CREATE_DESC: 'There is no relevant application review data',
   NO_DEPLOY_RUNTIME_NOTE: 'The project has no available deploy runtime',
-  APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'No App Needs to Be Reviewed',
   APP_REVIEW_PROCESSED_EMPTY_DESC: 'No Review Record Found',
   APP_REVIEW_ALL_EMPTY_DESC: 'No App Found',
   // App Review

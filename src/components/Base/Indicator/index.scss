@@ -20,6 +20,7 @@
 
   &.draft,
   &.pending-review,
+  &.to-be-reviewed,
   &.creating {
     background-color: rgba(36, 46, 66, 0.1);
     box-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.06);
