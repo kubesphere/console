@@ -32,10 +32,10 @@ module.exports = {
   SCREENSHOTS_COLON: 'Screenshots: ',
   DELETE_ALL: 'Delete All',
   // More > Install
-  // More > Upload New Version
+  // More > Upload Version
   ADD_VERSION_SUCCESSFUL: 'Versión Añadida Satisfactoriamente',
   UPLOAD_PACKAGE_OK_NOTE: 'The version already exists. Please upload another version.',
-  UPLOAD_NEW_VERSION: 'Upload New Version',
+  UPLOAD_NEW_VERSION: 'Upload Version',
   UPLOAD_NEW_VERSION_DESC: 'Upload a new version of the app.',
   // More > Delete
   DELETE_APP_TEMPLATE_DESC: 'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation.',
