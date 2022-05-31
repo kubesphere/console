@@ -27,5 +27,6 @@ module.exports = {
   APP_STATUS_SUSPENDED: '중단됨',
   APP_STATUS_REJECTED: '거부됨',
   APP_STATUS_IN_REVIEW: '리뷰 중',
-  OPERATOR: '운영자'
+  OPERATOR: '운영자',
+  APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'No App Needs to Be Reviewed'
 };
