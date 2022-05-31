@@ -32,6 +32,7 @@ const {
   isAppsRoute,
   decryptPassword,
   safeParseJSON,
+  safeBase64,
 } = require('../libs/utils')
 
 const { send_gateway_request } = require('../libs/request')
@@ -121,7 +122,8 @@ const handleLogin = async ctx => {
   ctx.cookies.set('referer', null)
 
   if (user.username === 'system:pre-registration') {
-    ctx.cookies.set('defaultUser', user.extraname)
+    const extraname = safeBase64.safeBtoa(user.extraname)
+    ctx.cookies.set('defaultUser', extraname)
     ctx.cookies.set('defaultEmail', user.email)
     return ctx.redirect('/login/confirm')
   }
@@ -183,6 +185,9 @@ const handleOAuthLogin = async ctx => {
   try {
     user = await oAuthLogin({ ...oauthParams, oauthName: ctx.params.name })
   } catch (err) {
+    /* eslint-disable no-console */
+    console.log(err)
+
     ctx.app.emit('error', err)
     Object.assign(error, {
       status: err.code,
@@ -201,7 +206,8 @@ const handleOAuthLogin = async ctx => {
   ctx.cookies.set('refreshToken', user.refreshToken)
 
   if (user.username === 'system:pre-registration') {
-    ctx.cookies.set('defaultUser', user.extraname)
+    const extraname = safeBase64.safeBtoa(user.extraname)
+    ctx.cookies.set('defaultUser', extraname)
     ctx.cookies.set('defaultEmail', user.email)
     return ctx.redirect('/login/confirm')
   }

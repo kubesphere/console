@@ -142,6 +142,21 @@ const safeParseJSON = (json, defaultValue) => {
   return result
 }
 
+const safeBase64 = {
+  safeBtoa: str => {
+    if (typeof str !== 'string') {
+      return ''
+    }
+    return Buffer.from(str).toString('base64')
+  },
+  safeAtob: str => {
+    if (typeof str !== 'string') {
+      return ''
+    }
+    return Buffer.from(str, 'base64').toString('utf-8')
+  },
+}
+
 const getManifest = entry => {
   let manifestCache = cache.get(`${MANIFEST_CACHE_KEY_PREFIX}${entry}`)
 
@@ -188,4 +203,5 @@ module.exports = {
   isAppsRoute,
   decryptPassword,
   safeParseJSON,
+  safeBase64,
 }
