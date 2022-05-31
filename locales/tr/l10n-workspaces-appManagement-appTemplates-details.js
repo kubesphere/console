@@ -32,10 +32,10 @@ module.exports = {
   SCREENSHOTS_COLON: 'Ekran görüntüleri: ',
   DELETE_ALL: 'Hepsini Sil',
   // More > Install
-  // More > Upload New Version
+  // More > Upload Version
   ADD_VERSION_SUCCESSFUL: 'Sürüm başarıyla eklendi.',
   UPLOAD_PACKAGE_OK_NOTE: 'Sürüm zaten mevcut. Lütfen farklı bir sürüm yükleyiniz.',
-  UPLOAD_NEW_VERSION: 'Yeni Sürüm Yükle',
+  UPLOAD_NEW_VERSION: 'Upload Version',
   UPLOAD_NEW_VERSION_DESC: 'Uygulama şablonunun yeni sürümünü yükle.',
   // More > Delete
   DELETE_APP_TEMPLATE_DESC: 'Bu işlemin risklerini anladığınızı doğrulamak için <b>{resource}</b> uygulama şablonu adını girin.',
