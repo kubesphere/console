@@ -27,5 +27,6 @@ module.exports = {
   APP_STATUS_SUSPENDED: 'Suspendido',
   APP_STATUS_REJECTED: 'Rejected',
   APP_STATUS_IN_REVIEW: 'Reviewing',
-  OPERATOR: 'Operador'
+  OPERATOR: 'Operador',
+  APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'No App Needs to Be Reviewed'
 };
