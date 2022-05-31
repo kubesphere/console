@@ -35,7 +35,7 @@ module.exports = {
   // More > Upload Version
   ADD_VERSION_SUCCESSFUL: '版本添加成功。',
   UPLOAD_PACKAGE_OK_NOTE: '该版本已存在，请上传其他版本。',
-  UPLOAD_NEW_VERSION: 'Upload Version',
+  UPLOAD_NEW_VERSION: '上传版本',
   UPLOAD_NEW_VERSION_DESC: '上传应用模板的新版本。',
   // More > Delete
   DELETE_APP_TEMPLATE_DESC: '请输入应用模板名称 <b>{resource}</b> 以确认您了解此操作的风险。',
