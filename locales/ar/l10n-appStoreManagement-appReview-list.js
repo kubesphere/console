@@ -27,5 +27,6 @@ module.exports = {
   APP_STATUS_SUSPENDED: 'موقوف',
   APP_STATUS_REJECTED: 'رفض',
   APP_STATUS_IN_REVIEW: 'في انتظار المراجعة',
-  OPERATOR: 'المشغل'
+  OPERATOR: 'المشغل',
+  APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'No App Needs to Be Reviewed'
 };
