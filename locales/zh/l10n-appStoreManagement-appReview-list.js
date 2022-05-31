@@ -28,5 +28,5 @@ module.exports = {
   APP_STATUS_REJECTED: '已拒绝',
   APP_STATUS_IN_REVIEW: '审核中',
   OPERATOR: '操作者',
-  APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'No App Needs to Be Reviewed'
+  APP_REVIEW_UNPROCESSED_EMPTY_DESC: '没有需要审核的应用'
 };
