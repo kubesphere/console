@@ -23,6 +23,7 @@ const bodyParser = require('koa-bodyparser')
 const proxy = require('./middlewares/proxy')
 const checkToken = require('./middlewares/checkToken')
 const checkIfExist = require('./middlewares/checkIfExist')
+const checkPwd = require('./middlewares/checkPwd')
 
 const {
   k8sResourceProxy,
@@ -68,7 +69,7 @@ router
   .get('/harbor/(.*)', parseBody, handleHarborProxy)
   .get('/blank_md', renderMarkdown)
 
-  .all('/(k)?api(s)?/(.*)', checkToken, checkIfExist)
+  .all('/(k)?api(s)?/(.*)', checkToken, checkIfExist, checkPwd)
   .use(proxy('/(k)?api(s)?/(.*)', k8sResourceProxy))
 
   .get('/sample/:app', parseBody, handleSampleData)

@@ -32,7 +32,7 @@ import { get } from 'lodash'
 
 import styles from './index.scss'
 
-function encrypt(salt, str) {
+export function encrypt(salt, str) {
   return mix(salt, window.btoa(str))
 }
 

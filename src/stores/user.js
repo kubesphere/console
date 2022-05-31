@@ -23,6 +23,7 @@ import { safeParseJSON } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 import cookie from 'utils/cookie'
 
+import { encrypt } from 'core/containers/Login'
 import Base from './base'
 import List from './base.list'
 
@@ -240,7 +241,11 @@ export default class UsersStore extends Base {
   @action
   async modifyPassword({ name }, data) {
     return this.submitting(
-      request.put(`${this.getDetailUrl({ name })}/password`, data)
+      request.put(`${this.getDetailUrl({ name })}/password`, {
+        ...data,
+        currentPassword: encrypt('kubesphere', data['currentPassword']),
+        password: encrypt('kubesphere', data['password']),
+      })
     )
   }
 
@@ -348,6 +353,17 @@ export default class UsersStore extends Base {
   @action
   async confirm(data) {
     return await this.submitting(request.post(`login/confirm`, data))
+  }
+
+  @action
+  create(data, params = {}) {
+    const pwd = get(data, 'spec.password', '')
+    return this.submitting(
+      request.post(this.getListUrl(params), {
+        ...data,
+        spec: { ...data.spec, password: encrypt('kubesphere', pwd) },
+      })
+    )
   }
 
   @action
