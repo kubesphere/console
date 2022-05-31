@@ -40,6 +40,8 @@ module.exports = {
   EDIT: 'Edit',
   EDIT_TITLE: 'Edit {title}',
   // Cluster Gateway > Manage > Disable
+  // Cluster Gateway > Manage > Update
+  UPDATE: 'Update',
   // Project Gateways
   PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',

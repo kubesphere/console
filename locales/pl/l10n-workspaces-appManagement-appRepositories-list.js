@@ -47,5 +47,5 @@ module.exports = {
   APP_REPOSITORY: 'App Repository',
   APP_REPOSITORY_LOW: 'app repository',
   // Checkbox
-  UPDATE: 'Update'
+  SYNC_SUCCESS: 'Synced successfully.',
 };
