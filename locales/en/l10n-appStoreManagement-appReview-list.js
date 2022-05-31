@@ -29,6 +29,7 @@ module.exports = {
   APP_STATUS_REJECTED: 'Rejected',
   APP_STATUS_IN_REVIEW: 'Reviewing',
   OPERATOR: 'Operator',
+  APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'No App Needs to Be Reviewed',
   // Completed
   // All
 }

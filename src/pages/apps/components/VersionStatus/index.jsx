@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Icon } from '@kube-design/components'
 
-import { transferAppStatus } from 'utils/app'
+import { transferVersionStatus } from 'utils/app'
 import { STATUS_TO_ICON } from 'configs/openpitrix/version'
 import styles from './index.scss'
 
@@ -74,7 +74,7 @@ export default class VersionStatus extends PureComponent {
 
   render() {
     const { className, name, type, noIcon, noName } = this.props
-    const status = transferAppStatus(name || type)
+    const status = transferVersionStatus(name || type)
 
     return (
       <span className={classNames(styles.status, className)}>

@@ -26,6 +26,7 @@ export const STATUS_TRANSFER_MAP = {
   submitted: 'submitted',
   passed: 'passed',
   draft: 'draft',
+  rejected: 'rejected',
 }
 
 export const STATUS_TO_ICON = {
