@@ -30,6 +30,7 @@ const {
   getManifest,
   getLocaleManifest,
   isValidReferer,
+  safeBase64,
 } = require('../libs/utils')
 
 const { client: clientConfig } = getServerConfig()
@@ -71,9 +72,10 @@ const renderLogin = async ctx => {
 }
 
 const renderLoginConfirm = async ctx => {
+  const usrName = ctx.cookies.get('defaultUser') || ''
   await renderIndex(ctx, {
     user: {
-      username: ctx.cookies.get('defaultUser'),
+      username: safeBase64.safeAtob(usrName),
       email: ctx.cookies.get('defaultEmail'),
     },
   })
