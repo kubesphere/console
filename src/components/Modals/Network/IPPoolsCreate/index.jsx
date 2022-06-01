@@ -131,7 +131,7 @@ export default class CreateIPPoolModal extends Component {
           />
         </Form.Item>
         <Form.Item
-          label={t('NUMBER_OF_CREATION_TCAP')}
+          label={t('QUANTITY')}
           desc={t('IP_POOL_CREATE_COUNT_DESC')}
           rules={[
             {

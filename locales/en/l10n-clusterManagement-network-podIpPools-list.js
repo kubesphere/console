@@ -31,7 +31,7 @@ module.exports = {
   CREATE_POD_IP_POOL: 'Create Pod IP Pool',
   NETWORK_SEGMENT: 'Network Segment',
   USED_IP_ADDRESSES: 'Used IP Addresses',
-  NUMBER_OF_CREATION_TCAP: 'Number of Creation',
+  QUANTITY: 'Quantity',
   IP_POOL_CREATE_DESC: 'Pod IP Pools to be Created',
   IP_ADDRESS_EMPTY_DESC: 'Please enter an IP address.',
   MASK_TIP: 'Please enter a mask.',
