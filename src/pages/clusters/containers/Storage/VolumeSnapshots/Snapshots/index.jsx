@@ -58,6 +58,7 @@ export default class Snapshots extends React.Component {
       module: store.module,
       cluster,
       namespace,
+      success: this.props.getData,
     })
   }
 
