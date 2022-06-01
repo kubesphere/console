@@ -27,10 +27,8 @@ module.exports = {
   // Manage > Edit Information
   // Manage > Edit Project Quotas
   EDIT_PROJECT_QUOTA: '编辑项目配额',
-  NUMBER_OF_CRONJOBS: '定时任务数量',
   PROJECT_REMAINING_QUOTAS: '项目剩余配额',
   WORKSPACE_REMAINING_QUOTAS: '企业空间剩余配额',
-  NUMBER_OF_JOBS: '任务数量',
   // Manage > Edit Default Container Quotas
   GPU_TYPE_SCAP: 'GPU 类型',
   GPU_LIMIT_SCAP: 'GPU 限制',
