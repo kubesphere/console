@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  NUMBER_OF_PODS: '容器组数量',
   STRATEGY_PL: '策略',
   // Cluster Node List
   CORE: '核',
@@ -211,7 +210,6 @@ module.exports = {
   secret: '密钥',
   secret_text: '秘密文本',
   Service: '服务',
-  NUMBER_OF_SERVICES: '服务数量',
   'Service Components': '服务组件',
   'Session timeout or this account is logged in elsewhere, please login again':
     '会话超时或此帐户在其它地方登录，请重新登录',
