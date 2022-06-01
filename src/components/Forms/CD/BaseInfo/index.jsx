@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import CDStore from 'stores/codeRepo'
+import CodeStore from 'stores/codeRepo'
 import { pick } from 'lodash'
 import {
   Icon,
@@ -33,7 +33,7 @@ import { PATTERN_NAME } from 'utils/constants'
 import styles from './index.scss'
 
 export default class BaseInfo extends React.Component {
-  codeStore = new CDStore()
+  codeStore = new CodeStore()
 
   state = {
     options: [],
@@ -44,8 +44,8 @@ export default class BaseInfo extends React.Component {
   }
 
   getRepoList = async params => {
-    const { devops } = this.props
-    await this.codeStore.fetchList({ devops, ...params })
+    const { devops, cluster } = this.props
+    await this.codeStore.fetchList({ devops, cluster, ...params })
     const options = this.codeStore.list.data.map(item => {
       return {
         label: item.name,

@@ -78,7 +78,7 @@ export default {
         onOk: async data => {
           const postData = handleFormData({ data, module, devops })
 
-          await store.create({ data: postData, devops })
+          await store.create({ data: postData, devops, cluster })
 
           Notify.success({ content: t('CREATE_SUCCESSFUL') })
           success && success()
@@ -121,7 +121,12 @@ export default {
             formTemplate: editTemplate,
           })
 
-          await store.edit({ data: postData, devops, name: detail.name })
+          await store.edit({
+            data: postData,
+            devops,
+            name: detail.name,
+            cluster,
+          })
 
           Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()

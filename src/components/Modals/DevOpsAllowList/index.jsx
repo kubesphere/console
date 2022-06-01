@@ -24,7 +24,6 @@ import { Form, Loading } from '@kube-design/components'
 import { Modal, Empty } from 'components/Base'
 import { get, isUndefined } from 'lodash'
 import DevopsStore from 'stores/devops'
-import CodeStore from 'stores/codeRepo'
 import CDStore from 'stores/cd'
 import { toJS } from 'mobx'
 import Destinations from './Destinations'
@@ -55,8 +54,6 @@ export default class CDAllowListModal extends React.Component {
   }
 
   store = new DevopsStore()
-
-  codeStore = new CodeStore()
 
   cdStore = new CDStore()
 
@@ -157,7 +154,7 @@ export default class CDAllowListModal extends React.Component {
   }
 
   render() {
-    const { visible, onCancel, onOk } = this.props
+    const { visible, onCancel, onOk, devops, cluster } = this.props
 
     return (
       <Modal.Form
@@ -185,7 +182,7 @@ export default class CDAllowListModal extends React.Component {
                 itemType="string"
                 checkItemValid={this.checkItemValid}
               >
-                <CodeRepoSelect devops={this.props.devops} />
+                <CodeRepoSelect devops={devops} cluster={cluster} />
               </ArrayInput>
             </Form.Item>
             <Form.Item
