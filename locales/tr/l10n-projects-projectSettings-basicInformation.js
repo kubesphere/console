@@ -27,10 +27,8 @@ module.exports = {
   // Manage > Edit Information
   // Manage > Edit Project Quotas
   EDIT_PROJECT_QUOTA: 'Proje Kotasını Düzenle',
-  NUMBER_OF_CRONJOBS: 'Cronjobs Sayısı',
   PROJECT_REMAINING_QUOTAS: 'Kalan Proje Kotaları',
   WORKSPACE_REMAINING_QUOTAS: 'Çalışma Alanında Kalan Kotalar',
-  NUMBER_OF_JOBS: 'İş Sayısı',
   // Manage > Edit Default Container Quotas
   GPU_TYPE_SCAP: 'GPU Tipi',
   GPU_LIMIT_SCAP: 'GPU Sınırı',
