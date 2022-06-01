@@ -67,8 +67,11 @@ export default {
 
           set(formTemplate, 'metadata', data.metadata)
           set(formTemplate, 'spec.argoApp.spec', argoApp)
-
-          await store.create({ data: formTemplate, devops: props.devops })
+          await store.create({
+            data: formTemplate,
+            devops: props.devops,
+            cluster,
+          })
 
           Notify.success({ content: t('CREATE_SUCCESSFUL') })
           success && success()
@@ -113,6 +116,7 @@ export default {
           await store.updateSync({
             data: postData,
             devops: props.devops,
+            cluster,
             application,
           })
 

@@ -45,6 +45,7 @@ class SyncStatus extends React.Component {
     this.props.detailStore.fetchDetail({
       name: params.cd,
       devops: params.devops,
+      cluster: params.cluster,
     })
   }
 
