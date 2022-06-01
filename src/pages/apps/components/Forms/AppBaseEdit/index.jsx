@@ -79,7 +79,7 @@ export default class AppBaseEdit extends React.Component {
 
         if (!imagesResult) {
           this.setState({
-            error: t('FILE_MAX_SIZE_ICON'),
+            error: 'FILE_MAX_SIZE_ICON',
             base64Str: '',
           })
         } else {
@@ -128,7 +128,7 @@ export default class AppBaseEdit extends React.Component {
             </Upload>
           </div>
         </div>
-        {error && <div className={styles.error}>{t(`${error}_DESC`)}</div>}
+        {error && <div className={styles.error}>{t(error)}</div>}
       </>
     )
   }

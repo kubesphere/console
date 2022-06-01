@@ -101,7 +101,7 @@ export default class AppRepos extends React.Component {
         {
           key: 'index',
           type: 'primary',
-          text: t('UPDATE'),
+          text: t('SYNC'),
           action: 'manage',
           onClick: this.handleIndex,
         },
@@ -146,7 +146,13 @@ export default class AppRepos extends React.Component {
       dataIndex: 'status',
       isHideable: true,
       width: '15%',
-      render: status => <Status type={status} name={t(status)} flicker />,
+      render: status => (
+        <Status
+          type={status}
+          name={t(`APP_REPO_STATUS_${status.toUpperCase()}`)}
+          flicker
+        />
+      ),
     },
     {
       title: t('URL'),
