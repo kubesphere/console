@@ -179,6 +179,7 @@ client:
                 name: volume-snapshots,
                 title: VOLUME_SNAPSHOT_PL,
                 authKey: volumes,
+                requiredClusterVersion: v3.3.0,
               }
             - {
                 name: volume-snapshot-classes,

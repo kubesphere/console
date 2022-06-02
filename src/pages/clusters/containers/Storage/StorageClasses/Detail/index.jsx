@@ -21,9 +21,9 @@ import { get, isEmpty } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
-import { getDisplayName } from 'utils'
+import { getDisplayName, compareVersion } from 'utils'
 import { trigger } from 'utils/action'
-import { toJS } from 'mobx'
+import { toJS, observable } from 'mobx'
 import StorageClassStore from 'stores/storageClass'
 import AccessorStore from 'stores/accessor'
 import ValidateWebhookCFStore from 'stores/validateWebhookCF'
@@ -49,6 +49,9 @@ export default class StorageClassDetail extends React.Component {
   state = {
     shouldAddCrd: false,
   }
+
+  @observable
+  ksVersion = ''
 
   componentDidMount() {
     this.store.fetchList({ limit: -1 })
@@ -78,10 +81,10 @@ export default class StorageClassDetail extends React.Component {
 
   fetchData = async () => {
     const { params } = this.props.match
-    const ksVersion = await this.accessorStore.getKsVersion(params)
+    this.ksVersion = await this.accessorStore.getKsVersion(params)
     await this.store.fetchDetail(params)
 
-    if (ksVersion < 3.3) {
+    if (compareVersion(`${this.ksVersion}`, 'v3.3') > 0) {
       // check if k8s supports accessor resource
       Promise.all([
         this.validateWebhookCFStore.fetchDetailWithoutWarning({
@@ -132,6 +135,7 @@ export default class StorageClassDetail extends React.Component {
   getOperations = () => {
     const { shouldAddCrd } = this.state
     const { cluster } = this.props.match.params
+    const show = compareVersion(`${this.ksVersion}`, 'v3.3') < 0
     return [
       {
         key: 'editYaml',
@@ -169,6 +173,7 @@ export default class StorageClassDetail extends React.Component {
         ),
         text: t('SET_AUTHORIZATION_RULES'),
         action: 'edit',
+        show: !show,
         onClick: () =>
           this.trigger('storageclass.accessor', {
             storageClassName: get(this.store.detail, 'name'),
