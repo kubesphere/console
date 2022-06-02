@@ -164,7 +164,7 @@ export default class AddConfigOrSecret extends Component {
     return (
       <div className={classNames(className, styles.contentBox)} style={style}>
         <div className={styles.content}>
-          <apn className={styles.title}>{t('BATCH_REFERENCE')}</apn>
+          <span className={styles.title}>{t('BATCH_REFERENCE')}</span>
           <Alert
             className={styles.tip}
             message={t('BATCH_REFERENCE_DESC')}
