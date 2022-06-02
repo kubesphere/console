@@ -80,6 +80,19 @@ export default class CDList extends React.Component {
     return this.props.rootStore.routing
   }
 
+  get hideSummary() {
+    const { healthStatus = {}, syncStatus = {} } = toJS(
+      this.props.store.summary
+    )
+
+    const isEmpty = []
+      .concat(Object.values(healthStatus))
+      .concat(Object.values(syncStatus))
+      .every(item => !item)
+
+    return isEmpty
+  }
+
   get itemActions() {
     const { trigger, routing } = this.props
 
@@ -431,14 +444,16 @@ export default class CDList extends React.Component {
       <ListPage {...this.props} getData={this.getData}>
         <Banner {...bannerProps} />
         <div>
-          <div className={styles.status__container}>
-            <div className={styles.warper__container}>
-              {this.renderStatusCard()}
+          {!this.hideSummary && (
+            <div className={styles.status__container}>
+              <div className={styles.warper__container}>
+                {this.renderStatusCard()}
+              </div>
+              <div className={styles.warper__container}>
+                {this.renderSyncStatusCard()}
+              </div>
             </div>
-            <div className={styles.warper__container}>
-              {this.renderSyncStatusCard()}
-            </div>
-          </div>
+          )}
 
           {this.renderContent()}
         </div>

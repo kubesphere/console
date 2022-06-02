@@ -123,6 +123,7 @@ export default class VolumeSnapshot extends React.Component {
         empty={t('NO_AVAILABLE_RESOURCE_VALUE', {
           resource: t('VOLUME_SNAPSHOT'),
         })}
+        className={styles.noPadding}
       >
         <BaseTable
           className={styles.table}
