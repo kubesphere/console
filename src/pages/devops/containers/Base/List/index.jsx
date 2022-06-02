@@ -46,6 +46,13 @@ class DevOpsListLayout extends Component {
     return this.props.rootStore.routing
   }
 
+  get isHostCluster() {
+    return (
+      !globals.app.isMultiCluster ||
+      this.cluster === this.props.devopsStore.hostName
+    )
+  }
+
   handleChange = url => this.routing.push(url)
 
   render() {
@@ -57,7 +64,18 @@ class DevOpsListLayout extends Component {
       cluster: this.cluster,
       workspace: this.workspace,
     })
-    const indexNav = get(navs, '[0].items[0].name', 'management')
+
+    const _navs = this.isHostCluster
+      ? navs
+      : navs.map(nav => {
+          const navsItem = nav.items.filter(
+            item => item.name !== 'cd' && item.name !== 'code-repo'
+          )
+          nav.items = navsItem
+          return nav
+        })
+
+    const indexNav = get(_navs, '[0].items[0].name', 'management')
     const indexPath = indexNav === 'management' ? 'base-info' : indexNav
 
     if (initializing) {
@@ -77,7 +95,7 @@ class DevOpsListLayout extends Component {
           />
           <Nav
             className="ks-page-nav"
-            navs={navs}
+            navs={_navs}
             location={location}
             match={match}
           />
