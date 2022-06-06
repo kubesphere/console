@@ -351,16 +351,21 @@ const getSupportGpuList = async ctx => {
       url: `/kapis/config.kubesphere.io/v1alpha2/configs/gpu/kinds`,
       token,
     })
-    const defaultGpu = list
-      .filter(item => item.default)
-      .map(item => item.resourceName)
-    const otherGpus = list
-      .filter(item => !item.default)
-      .map(item => item.resourceName)
-    gpuKinds = [...defaultGpu, ...otherGpus]
+    if (Array.isArray(list)) {
+      const defaultGpu = list
+        .filter(item => item.default)
+        .map(item => item.resourceName)
+
+      const otherGpus = list
+        .filter(item => !item.default)
+        .map(item => item.resourceName)
+
+      gpuKinds = [...defaultGpu, ...otherGpus]
+    }
   } catch (error) {
     console.error(error)
   }
+
   return gpuKinds
 }
 

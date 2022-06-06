@@ -144,7 +144,7 @@ export default class DropdownContent extends React.Component {
   handleSecretChange = value => {
     if (value) {
       const url = this.props.imageRegistries.filter(
-        hub => hub.label === value
+        hub => hub.value === value
       )[0].url
       this.setState({ hubUrl: url })
     }
