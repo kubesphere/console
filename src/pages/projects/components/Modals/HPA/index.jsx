@@ -166,7 +166,6 @@ export default class HPAModal extends React.Component {
                 name="metadata.annotations.cpuTargetUtilization"
                 interger
                 min={0}
-                max={100}
                 defaultValue=""
                 onChange={this.handleCPUChange}
               />
