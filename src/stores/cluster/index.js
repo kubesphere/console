@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, cloneDeep } from 'lodash'
+import { get, cloneDeep, set } from 'lodash'
 import { action, observable } from 'mobx'
 
 import { LIST_DEFAULT_ORDER, DEFAULT_CLUSTER } from 'utils/constants'
@@ -217,5 +217,12 @@ export default class ClusterStore extends Base {
         data
       )
     )
+  }
+
+  @action
+  async fetchClusterConfigz({ cluster }) {
+    await this.fetchDetail({ name: cluster })
+    set(globals, `clusterConfig.${cluster}`, this.detail.configz)
+    return get(this.detail.configz, 'ksVersion', '') !== ''
   }
 }

@@ -220,11 +220,12 @@ export default class GlobalValue {
   }
 
   getClusterNavs(cluster) {
+    const needRebuild = get(globals, `need_rebuild_${cluster}_nav`, false)
     if (!get(globals.user, `clusterRules[${cluster}]`)) {
       return []
     }
 
-    if (!this._cache_[`cluster_${cluster}_navs`]) {
+    if (!this._cache_[`cluster_${cluster}_navs`] || needRebuild) {
       const navs = []
 
       cloneDeep(globals.config.clusterNavs).forEach(nav => {

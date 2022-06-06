@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-
+import { debounce, get, unset } from 'lodash'
 import { renderRoutes } from 'utils/router.config'
 
 import { Nav } from 'components/Layout'
@@ -37,6 +37,23 @@ class ClusterLayout extends Component {
 
   enterCluster = async cluster =>
     this.routing.push(`/clusters/${cluster}/overview`)
+
+  componentDidUpdate() {
+    if (get(globals, `need_rebuild_${this.cluster}_nav`, false)) {
+      this.fetchConfigz()
+    }
+  }
+
+  fetchConfigz = debounce(async () => {
+    const shouldDeleteFlag = await this.props.clusterStore.fetchClusterConfigz({
+      cluster: this.cluster,
+    })
+    if (shouldDeleteFlag) {
+      globals.app.getClusterNavs(this.cluster)
+      unset(globals, `need_rebuild_${this.cluster}_nav`)
+      this.forceUpdate()
+    }
+  }, 3000)
 
   render() {
     const { match, route, location } = this.props
