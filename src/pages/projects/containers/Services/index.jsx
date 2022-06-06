@@ -203,7 +203,7 @@ export default class Services extends React.Component {
       },
       {
         title: t('INTERNAL_ACCESS_PL'),
-        dataIndex: 'annotations["kubesphere.io/serviceType"]',
+        dataIndex: 'clusterIP',
         isHideable: true,
         width: '16%',
         render: (_, record) => {
