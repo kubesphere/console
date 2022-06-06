@@ -21,7 +21,7 @@ module.exports = {
   SERVICE_PROVIDER_WEBSITE_DESC: '服务商的官方网站地址。',
   WRONG_ADDRESS_TIP: '地址格式错误，请输入正确的地址。',
   APP_NAME_DESC: '名称可包含任意字符，最长 20 个字符。',
-  APP_DESCRIPTION_DESC: 'The description can contain any characters and the maximum length is 120 characters.',
+  APP_DESCRIPTION_DESC: '描述可包含任意字符，最长 120 个字符。',
   APP_ICON_FORMAT: '格式：PNG 或 JPG',
   APP_ICON_SIZE: '大小：96x96 像素',
   CHOOSE_APP_CATEGORY_DESC: '为应用选择一个分类。',
