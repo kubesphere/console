@@ -26,11 +26,11 @@ module.exports = {
   APP_REPOSITORY_EMPTY_DESC: '请添加一个应用仓库。',
   APP_REPO_STATUS_SUCCESSFUL: '成功',
   APP_REPO_STATUS_FAILED: '失败',
-  APP_REPO_STATUS_SYNCING: 'Syncing',
+  APP_REPO_STATUS_SYNCING: '同步中',
   // List > Add
   ADD_APP_REPO: '添加应用仓库',
   VALIDATE: '验证',
-  SYNC_INTERVAL: 'Sync Interval',
+  SYNC_INTERVAL: '同步间隔',
   SYNC_INTERVAL_DESC: '设置一个同步周期，取值范围为 3 分钟到 24 小时。默认值 0 表示不同步。',
   SYNC_PERIOD_EMPTY_DESC: '请设置同步周期。',
   SYNC_INTERVAL_INVALID: '数值无效，请输入 0 或正整数。',
