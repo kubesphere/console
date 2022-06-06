@@ -79,8 +79,8 @@ export default class Placement extends Component {
       .map(item => ({
         label: item.name,
         value: item.name,
-        disabled: item.isFedManaged,
-        isFedManaged: item.isFedManaged,
+        disabled: item.isFedManaged || item.isFedHostNamespace,
+        isFedManaged: item.isFedManaged || item.isFedHostNamespace,
       }))
   }
 
