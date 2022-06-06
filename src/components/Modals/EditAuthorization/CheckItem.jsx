@@ -43,9 +43,9 @@ export default class CheckItem extends Component {
             resource: relateTemplates
               .map(rt =>
                 t(
-                  get(roleTemplatesMap, `[${rt}].aliasName`)
-                    .replace(/\s+/g, '_')
+                  `PERMISSION_${get(roleTemplatesMap, `[${rt}].aliasName`)
                     .toUpperCase()
+                    .replace(/[^A-Z]+/g, '_')}`
                 )
               )
               .join('/'),
