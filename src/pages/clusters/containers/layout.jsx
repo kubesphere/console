@@ -17,7 +17,7 @@
  */
 import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
-import { set, pick } from 'lodash'
+import { set, get, pick } from 'lodash'
 
 import { Loading } from '@kube-design/components'
 
@@ -58,6 +58,10 @@ export default class App extends Component {
       }
 
       set(globals, `clusterConfig.${params.cluster}`, this.store.detail.configz)
+
+      if (get(this.store.detail.configz, 'ksVersion') === '') {
+        set(globals, `need_rebuild_${this.cluster}_nav`, true)
+      }
 
       globals.app.cacheHistory(this.props.match.url, {
         type: 'Cluster',
