@@ -33,8 +33,8 @@ export default class CodeRepoSelect extends React.Component {
   }
 
   getRepoList = async params => {
-    const { devops } = this.props
-    await this.codeStore.fetchList({ devops, ...params })
+    const { devops, cluster } = this.props
+    await this.codeStore.fetchList({ devops, cluster, ...params })
     const _options = this.codeStore.list.data.map(item => {
       return {
         label: item.name,

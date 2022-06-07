@@ -19,7 +19,7 @@ import React, { Component } from 'react'
 import { pick, set } from 'lodash'
 import { inject, observer, Provider } from 'mobx-react'
 import { Loading } from '@kube-design/components'
-
+import { toJS } from 'mobx'
 import { renderRoutes } from 'utils/router.config'
 
 import DevOpsStore from 'stores/devops'
@@ -63,6 +63,21 @@ export default class Layout extends Component {
     }
   }
 
+  getHostCluster = async () => {
+    const list = await this.clusterStore.fetchList({
+      labelSelector: 'cluster-role.kubesphere.io/host=',
+      limit: -1,
+    })
+
+    const host = toJS(list).filter(item =>
+      Object.keys(item.labels).some(key =>
+        key.endsWith('cluster-role.kubesphere.io/host')
+      )
+    )
+
+    this.store.hostName = host[0]?.name ?? 'host'
+  }
+
   async init() {
     this.store.initializing = true
     const params = {
@@ -77,6 +92,7 @@ export default class Layout extends Component {
       this.props.rootStore.getRules({
         workspace: this.workspace,
       }),
+      this.getHostCluster(),
     ])
 
     await this.props.rootStore.getRules(params)

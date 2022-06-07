@@ -38,8 +38,11 @@ export default class CodeRepoStore extends Base {
   @observable
   detail = {}
 
-  getPath({ namespace } = {}) {
+  getPath({ namespace, cluster } = {}) {
     let path = ''
+    if (cluster) {
+      path += `/klusters/${cluster}`
+    }
     if (namespace) {
       path += `/namespaces/${namespace}`
     }
@@ -72,7 +75,7 @@ export default class CodeRepoStore extends Base {
 
     params.limit = params.limit || 10
 
-    const url = `${this.getResourceUrl({ namespace: devops })}`
+    const url = `${this.getResourceUrl({ namespace: devops, cluster })}`
 
     const result = await request.get(url, { ...params }, {}, () => {
       return []
@@ -97,23 +100,24 @@ export default class CodeRepoStore extends Base {
   }
 
   @action
-  async create({ data, devops }) {
-    const url = `${this.getResourceUrl({ namespace: devops })}`
+  async create({ data, devops, cluster }) {
+    const url = `${this.getResourceUrl({ namespace: devops, cluster })}`
     const result = await request.post(url, data)
     return result
   }
 
   @action
-  async edit({ data, devops, name }) {
-    const url = `${this.getResourceUrl({ namespace: devops })}/${name}`
+  async edit({ data, devops, name, cluster }) {
+    const url = `${this.getResourceUrl({ namespace: devops, cluster })}/${name}`
     return this.submitting(request.put(url, data))
   }
 
   @action
   async update(params, newObject) {
-    const url = `${this.getResourceUrl({ namespace: params.devops })}/${
-      newObject.metadata.name
-    }`
+    const url = `${this.getResourceUrl({
+      namespace: params.devops,
+      cluster: params.cluster,
+    })}/${newObject.metadata.name}`
     return this.submitting(request.put(url, newObject))
   }
 
@@ -125,9 +129,10 @@ export default class CodeRepoStore extends Base {
 
   @action
   async fetchDetail(params) {
-    const url = `${this.getResourceUrl({ namespace: params.devops })}/${
-      params.name
-    }`
+    const url = `${this.getResourceUrl({
+      namespace: params.devops,
+      cluster: params.cluster,
+    })}/${params.name}`
     const result = await this.submitting(request.get(url), null, null, () => {
       return {}
     })

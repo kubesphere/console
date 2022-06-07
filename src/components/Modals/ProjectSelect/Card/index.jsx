@@ -45,7 +45,7 @@ export default class ProjectCard extends React.Component {
       name = data.name
       desc = data.description || '-'
       admin = data.creator
-      createTime = data.create_time
+      createTime = data.create_time || data.createTime
       icon = 'strategy-group'
     } else {
       name = getDisplayName(data)

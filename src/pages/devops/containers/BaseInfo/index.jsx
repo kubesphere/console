@@ -85,8 +85,10 @@ class BaseInfo extends React.Component {
       : get(globals, 'ksConfig.ksVersion')
   }
 
-  get isNeedUpdate() {
-    return compareVersion(this.clusterVersion, '3.3.0') < 0
+  get isNeedHide() {
+    return (
+      compareVersion(this.clusterVersion, '3.3.0') < 0 || !this.isHostCluster
+    )
   }
 
   get routing() {
@@ -111,6 +113,13 @@ class BaseInfo extends React.Component {
 
   get cluster() {
     return this.props.match.params.cluster
+  }
+
+  get isHostCluster() {
+    return (
+      !globals.app.isMultiCluster ||
+      this.cluster === this.props.devopsStore.hostName
+    )
   }
 
   get enabledActions() {
@@ -506,7 +515,7 @@ class BaseInfo extends React.Component {
           module={this.module}
         />
         {this.renderBaseInfo()}
-        {this.isNeedUpdate ? null : this.renderCD()}
+        {this.isNeedHide ? null : this.renderCD()}
         <EditModal
           detail={data}
           workspace={this.workspace}

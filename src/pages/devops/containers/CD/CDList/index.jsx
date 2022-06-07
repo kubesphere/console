@@ -52,7 +52,7 @@ export default class CDList extends React.Component {
   get enabledActions() {
     return globals.app.getActions({
       module: 'applications',
-      cluster: this.props.match.params.cluster,
+      cluster: this.cluster,
       devops: this.devops,
     })
   }
@@ -104,7 +104,7 @@ export default class CDList extends React.Component {
         action: 'edit',
         onClick: item => {
           trigger('resource.baseinfo.edit', {
-            detail: item,
+            detail: { ...item, cluster: this.cluster },
             success: routing.query,
           })
         },
@@ -116,7 +116,7 @@ export default class CDList extends React.Component {
         action: 'edit',
         onClick: item => {
           trigger('resource.yaml.edit', {
-            detail: item,
+            detail: { ...item, cluster: this.cluster },
             success: routing.query,
           })
         },
@@ -139,6 +139,7 @@ export default class CDList extends React.Component {
           trigger('cd.delete', {
             type: 'CONTINUOUS_DEPLOYMENT',
             detail: record,
+            cluster: this.cluster,
             success: routing.query,
           })
         },
@@ -152,7 +153,10 @@ export default class CDList extends React.Component {
       ...this.props.match.params,
       ...params,
     })
-    await this.props.store.fetchStatusSummary({ devops: this.devops })
+    await this.props.store.fetchStatusSummary({
+      devops: this.devops,
+      cluster: this.cluster,
+    })
   }
 
   componentDidMount() {

@@ -96,7 +96,7 @@ export default class CDStore extends Base {
 
     params.limit = params.limit || 10
 
-    const url = `${this.getResourceUrl({ namespace: devops })}`
+    const url = `${this.getResourceUrl({ namespace: devops, cluster })}`
 
     const result = await request.get(url, { ...params }, {}, () => {})
 
@@ -119,16 +119,17 @@ export default class CDStore extends Base {
   }
 
   @action
-  async create({ data, devops }) {
-    const url = `${this.getResourceUrl({ namespace: devops })}`
+  async create({ data, devops, cluster }) {
+    const url = `${this.getResourceUrl({ namespace: devops, cluster })}`
     const result = await request.post(url, data)
     return result
   }
 
   @action
-  async updateSync({ data, application, devops }) {
+  async updateSync({ data, application, devops, cluster }) {
     const url = `${this.getResourceUrl({
       namespace: devops,
+      cluster,
     })}/${application}/sync`
 
     return this.submitting(request.post(url, data))
@@ -136,17 +137,19 @@ export default class CDStore extends Base {
 
   @action
   async update(detail, data) {
-    const url = `${this.getResourceUrl({ namespace: detail.devops })}/${
-      data.metadata.name
-    }`
+    const url = `${this.getResourceUrl({
+      namespace: detail.devops,
+      cluster: detail.cluster,
+    })}/${data.metadata.name}`
     return this.submitting(request.put(url, data))
   }
 
   @action
   patch(params, newObject) {
-    const url = `${this.getResourceUrl({ namespace: params.devops })}/${
-      newObject.metadata.name
-    }`
+    const url = `${this.getResourceUrl({
+      namespace: params.devops,
+      cluster: params.cluster,
+    })}/${newObject.metadata.name}`
     return this.submitting(request.put(url, newObject))
   }
 
@@ -163,13 +166,13 @@ export default class CDStore extends Base {
   }
 
   @action
-  async fetchDetail({ name, isSilent, devops }) {
+  async fetchDetail({ name, isSilent, devops, cluster }) {
     if (!isSilent) {
       this.isLoading = true
     }
 
     const resultKub = await request.get(
-      `${this.getResourceUrl({ namespace: devops })}/${name}`
+      `${this.getResourceUrl({ namespace: devops, cluster })}/${name}`
     )
 
     const result = this.mapper({ ...resultKub, devops })
@@ -220,9 +223,10 @@ export default class CDStore extends Base {
   }
 
   @action
-  async fetchStatusSummary({ devops }) {
+  async fetchStatusSummary({ devops, cluster }) {
     const url = `${this.apiVersion}${this.getPath({
       namespace: devops,
+      cluster,
     })}/application-summary`
     const result = await request.get(url)
     this.summary = result || {}
