@@ -21,6 +21,7 @@ module.exports = {
   // More > Edit Settings > Update Strategy
   // More > Edit Settings > Containers
   // More > Edit Settings > Volumes
+  PLEASE_USE_RELATIVE_PATH: 'Please use the relative path instead.',
   // More > Edit Settings > Pod Scheduling Rules
   // More > Edit Settings > Cluster Differences
   // More > Edit YAML
