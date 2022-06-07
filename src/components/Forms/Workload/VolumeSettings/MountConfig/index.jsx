@@ -284,6 +284,14 @@ export default class MountConfig extends React.Component {
     }
   }
 
+  relativePathValidator = (rule, value, callback) => {
+    const absPath = value.some(item => /^\//.test(item.path))
+    if (absPath) {
+      return callback({ message: t('PLEASE_USE_RELATIVE_PATH') })
+    }
+    return callback()
+  }
+
   renderContent() {
     const { containers, collectSavedLog } = this.props
     const { type, formData } = this.state
@@ -324,7 +332,7 @@ export default class MountConfig extends React.Component {
           checkable
           keepDataWhenUncheck
         >
-          <Form.Item>
+          <Form.Item rules={[{ validator: this.relativePathValidator }]}>
             <ArrayInput name="items" itemType="object" addText={t('ADD')}>
               <ObjectInput>
                 <Select
