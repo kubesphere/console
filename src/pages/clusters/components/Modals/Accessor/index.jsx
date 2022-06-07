@@ -110,9 +110,10 @@ export default class AccessorModal extends Component {
   }
 
   fetchData = () => {
+    const { cluster } = this.props
     Promise.all([
-      this.workspaceStore.fetchList({ limit: -1 }),
-      this.namespaceStore.fetchList({ limit: -1 }),
+      this.workspaceStore.fetchList({ cluster, limit: -1 }),
+      this.namespaceStore.fetchList({ cluster, limit: -1 }),
     ]).then(([workspace, namespace]) => {
       const workspaceArr = workspace.map(ws => ws.name)
       const namespaceArr = namespace.map(ns => ns.name)
