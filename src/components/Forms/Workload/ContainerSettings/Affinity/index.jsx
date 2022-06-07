@@ -237,10 +237,12 @@ export default class AffinityForm extends React.Component {
     }
 
     if (value.some(item => !this.checkItemValid(item))) {
-      return callback({
+      callback({
         message: t('RULE_NOT_COMPLETE'),
         field: rule.field,
       })
+      this.forceUpdate()
+      return
     }
 
     callback()

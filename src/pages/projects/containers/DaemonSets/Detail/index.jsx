@@ -120,6 +120,7 @@ export default class DaemonSetDetail extends React.Component {
         this.trigger('workload.redeploy', {
           module: this.module,
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {
