@@ -134,6 +134,17 @@ export default class UpdateStrategyForm extends React.Component {
     callback()
   }
 
+  valueValidatorNumber = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+    const number = /^[0-9]*$/
+    if (!number.test(value)) {
+      return callback({ message: t('PARTITION_ORDINAL_EMPTY') })
+    }
+    callback()
+  }
+
   renderRollingUpdateParams() {
     const { module } = this.props
     if (module === 'statefulsets') {
@@ -145,6 +156,7 @@ export default class UpdateStrategyForm extends React.Component {
               desc={t('PARTITION_ORDINAL_DESC')}
               rules={[
                 { required: true, message: t('PARTITION_ORDINAL_EMPTY') },
+                { validator: this.valueValidatorNumber },
               ]}
             >
               <NumberInput

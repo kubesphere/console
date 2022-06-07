@@ -79,6 +79,7 @@ export default class StatefulSetDetail extends React.Component {
         this.trigger('resource.baseinfo.edit', {
           type: this.name,
           detail: toJS(this.store.detail),
+          success: this.fetchData,
         }),
     },
     {
@@ -89,6 +90,7 @@ export default class StatefulSetDetail extends React.Component {
       onClick: () =>
         this.trigger('workload.revision.rollback', {
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {
@@ -100,6 +102,7 @@ export default class StatefulSetDetail extends React.Component {
       onClick: () =>
         this.trigger('workload.service.edit', {
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {
@@ -111,6 +114,7 @@ export default class StatefulSetDetail extends React.Component {
         this.trigger('workload.template.edit', {
           detail: this.store.detail,
           ...this.props.match.params,
+          success: this.fetchData,
         }),
     },
     {
@@ -121,6 +125,7 @@ export default class StatefulSetDetail extends React.Component {
       onClick: () =>
         this.trigger('resource.yaml.edit', {
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {
@@ -132,6 +137,7 @@ export default class StatefulSetDetail extends React.Component {
         this.trigger('workload.redeploy', {
           module: this.module,
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {
