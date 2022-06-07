@@ -154,12 +154,13 @@ export default {
     },
   },
   'create.snapshot': {
-    on({ store, cluster, namespace, ...props }) {
+    on({ store, cluster, namespace, success, ...props }) {
       const modal = Modal.open({
         onOk: async ({ namespace: ns, ...params }) => {
           await store.createSnapshot({ ...params, cluster, namespace: ns })
           Modal.close(modal)
           Notify.success({ content: t('CREATE_SUCCESSFUL') })
+          success && success()
         },
         title: t('CREATE_SNAPSHOT'),
         modal: SnapshotModal,
