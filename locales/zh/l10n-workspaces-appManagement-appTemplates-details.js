@@ -20,8 +20,8 @@ module.exports = {
   MODIFY_SUCCESSFUL: '修改成功。',
   SERVICE_PROVIDER_WEBSITE_DESC: '服务商的官方网站地址。',
   WRONG_ADDRESS_TIP: '地址格式错误，请输入正确的地址。',
-  APP_NAME_DESC: '应用的名称，最长 20 个字符。',
-  APP_DESCRIPTION_DESC: '应用的描述，最长 120 个字符。',
+  APP_NAME_DESC: '名称可包含任意字符，最长 20 个字符。',
+  APP_DESCRIPTION_DESC: '描述可包含任意字符，最长 120 个字符。',
   APP_ICON_FORMAT: '格式：PNG 或 JPG',
   APP_ICON_SIZE: '大小：96x96 像素',
   CHOOSE_APP_CATEGORY_DESC: '为应用选择一个分类。',
@@ -32,10 +32,10 @@ module.exports = {
   SCREENSHOTS_COLON: '截图数量：',
   DELETE_ALL: '全部删除',
   // More > Install
-  // More > Upload New Version
+  // More > Upload Version
   ADD_VERSION_SUCCESSFUL: '版本添加成功。',
   UPLOAD_PACKAGE_OK_NOTE: '该版本已存在，请上传其他版本。',
-  UPLOAD_NEW_VERSION: '上传新版本',
+  UPLOAD_NEW_VERSION: '上传版本',
   UPLOAD_NEW_VERSION_DESC: '上传应用模板的新版本。',
   // More > Delete
   DELETE_APP_TEMPLATE_DESC: '请输入应用模板名称 <b>{resource}</b> 以确认您了解此操作的风险。',

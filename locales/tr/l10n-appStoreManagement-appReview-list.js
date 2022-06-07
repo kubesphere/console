@@ -27,5 +27,6 @@ module.exports = {
   APP_STATUS_SUSPENDED: 'Askıya alındı',
   APP_STATUS_REJECTED: 'Reddedildi',
   APP_STATUS_IN_REVIEW: 'Gözden geçirme',
-  OPERATOR: 'Operatör'
+  OPERATOR: 'Operatör',
+  APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'No App Needs to Be Reviewed'
 };

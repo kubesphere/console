@@ -24,10 +24,13 @@ module.exports = {
   APP_REPO_DESC: 'Uygulama havuzu, uygulama şablonlarını depolamak için kullanılan bir havuzdur. Uygulamalarını dağıtmak ve yönetmek için bir uygulama havuzu ekleyebilirsiniz.',
   // List
   APP_REPOSITORY_EMPTY_DESC: 'Lütfen bir uygulama deposu ekleyin.',
+  APP_REPO_STATUS_SUCCESSFUL: 'Başarılı',
+  APP_REPO_STATUS_FAILED: 'Başarısız',
+  APP_REPO_STATUS_SYNCING: 'Syncing',
   // List > Add
   ADD_APP_REPO: 'Uygulama Deposu Ekle',
   VALIDATE: 'Doğrula',
-  SYNC_INTERVAL: 'Senkronizasyon Aralığı',
+  SYNC_INTERVAL: 'Sync Interval',
   SYNC_INTERVAL_DESC: 'Bir senkronizasyon aralığı ayarlayın. Değer aralığı 3 dakika ile 24 saat arasındadır. Varsayılan değer 0, senkronizasyon olmadığını gösterir.',
   SYNC_PERIOD_EMPTY_DESC: 'Lütfen bir senkronizasyon aralığı belirleyin.',
   SYNC_INTERVAL_INVALID: 'Geçersiz değer. Lütfen 0 veya pozitif bir tam sayı girin. ',
@@ -45,7 +48,5 @@ module.exports = {
   VALID_URL_DESC: 'Geçerli URL.',
   // List > Delete
   APP_REPOSITORY: 'Uygulama Deposu',
-  APP_REPOSITORY_LOW: 'uygulama deposu',
-  // Checkbox
-  UPDATE: 'Güncelle'
+  APP_REPOSITORY_LOW: 'uygulama deposu'
 };

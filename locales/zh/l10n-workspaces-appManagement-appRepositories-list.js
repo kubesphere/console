@@ -24,10 +24,13 @@ module.exports = {
   APP_REPO_DESC: '应用仓库是用于存放应用模板的仓库，您可以添加应用仓库以部署和管理其中的应用。',
   // List
   APP_REPOSITORY_EMPTY_DESC: '请添加一个应用仓库。',
+  APP_REPO_STATUS_SUCCESSFUL: '成功',
+  APP_REPO_STATUS_FAILED: '失败',
+  APP_REPO_STATUS_SYNCING: '同步中',
   // List > Add
   ADD_APP_REPO: '添加应用仓库',
   VALIDATE: '验证',
-  SYNC_INTERVAL: '同步周期',
+  SYNC_INTERVAL: '同步间隔',
   SYNC_INTERVAL_DESC: '设置一个同步周期，取值范围为 3 分钟到 24 小时。默认值 0 表示不同步。',
   SYNC_PERIOD_EMPTY_DESC: '请设置同步周期。',
   SYNC_INTERVAL_INVALID: '数值无效，请输入 0 或正整数。',
@@ -45,7 +48,5 @@ module.exports = {
   VALID_URL_DESC: 'URL 验证通过。',
   // List > Delete
   APP_REPOSITORY: '应用仓库',
-  APP_REPOSITORY_LOW: '应用仓库',
-  // Checkbox
-  UPDATE: '更新'
+  APP_REPOSITORY_LOW: '应用仓库'
 };

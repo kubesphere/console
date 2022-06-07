@@ -24,10 +24,13 @@ module.exports = {
   APP_REPO_DESC: 'An app repository is a repository used to store application templates. You can add an app repository to deploy and manage its applications.',
   // List
   APP_REPOSITORY_EMPTY_DESC: 'Please add an app repository.',
+  APP_REPO_STATUS_SUCCESSFUL: 'सफल!',
+  APP_REPO_STATUS_FAILED: 'असफल',
+  APP_REPO_STATUS_SYNCING: 'Syncing',
   // List > Add
   ADD_APP_REPO: 'Add App Repository',
   VALIDATE: 'Validate',
-  SYNC_INTERVAL: 'Synchronization Interval',
+  SYNC_INTERVAL: 'Sync Interval',
   SYNC_INTERVAL_DESC: 'Set a synchronization interval. The value range is 3 minutes to 24 hours. The default value 0 indicates no synchronization.',
   SYNC_PERIOD_EMPTY_DESC: 'Please set a synchronization interval.',
   SYNC_INTERVAL_INVALID: 'Invalid value. Please enter 0 or a positive integer. ',
@@ -45,7 +48,5 @@ module.exports = {
   VALID_URL_DESC: 'Valid URL.',
   // List > Delete
   APP_REPOSITORY: 'App Repository',
-  APP_REPOSITORY_LOW: 'app repository',
-  // Checkbox
-  UPDATE: 'Update'
+  APP_REPOSITORY_LOW: 'app repository'
 };

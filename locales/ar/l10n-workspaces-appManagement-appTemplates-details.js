@@ -20,8 +20,8 @@ module.exports = {
   MODIFY_SUCCESSFUL: 'Modified successfully.',
   SERVICE_PROVIDER_WEBSITE_DESC: 'Official website address of the service provider.',
   WRONG_ADDRESS_TIP: 'Incorrect address format. Please enter a correct address.',
-  APP_NAME_DESC: 'Name of the app. The maximum length is 20 characters.',
-  APP_DESCRIPTION_DESC: 'Description of the app. The maximum length is 120 characters.',
+  APP_NAME_DESC: 'يمكن أن يحتوي الاسم على أي حرف، ويبلغ الحد الأقصى للطول 20 حرفاً.',
+  APP_DESCRIPTION_DESC: 'The description can contain any characters and the maximum length is 120 characters.',
   APP_ICON_FORMAT: 'Format: PNG or JPG',
   APP_ICON_SIZE: 'Size: 96 x 96 pixels',
   CHOOSE_APP_CATEGORY_DESC: 'Select a category for the app.',
@@ -32,10 +32,10 @@ module.exports = {
   SCREENSHOTS_COLON: 'Screenshots: ',
   DELETE_ALL: 'Delete All',
   // More > Install
-  // More > Upload New Version
+  // More > Upload Version
   ADD_VERSION_SUCCESSFUL: 'The version was added successfully.',
   UPLOAD_PACKAGE_OK_NOTE: 'The version already exists. Please upload another version.',
-  UPLOAD_NEW_VERSION: 'Upload New Version',
+  UPLOAD_NEW_VERSION: 'Upload Version',
   UPLOAD_NEW_VERSION_DESC: 'Upload a new version of the app template.',
   // More > Delete
   DELETE_APP_TEMPLATE_DESC: 'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation.',

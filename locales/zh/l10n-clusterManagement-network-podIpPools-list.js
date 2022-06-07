@@ -30,7 +30,7 @@ module.exports = {
   CREATE_POD_IP_POOL: '创建容器组 IP 池',
   NETWORK_SEGMENT: '网段',
   USED_IP_ADDRESSES: '已用 IP 地址',
-  NUMBER_OF_CREATION_TCAP: '创建数量',
+  QUANTITY: '数量',
   IP_POOL_CREATE_DESC: '即将创建的容器组 IP 池',
   IP_ADDRESS_EMPTY_DESC: '请输入 IP 地址。',
   MASK_TIP: '请输入掩码。',
