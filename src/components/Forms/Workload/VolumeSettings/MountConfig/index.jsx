@@ -289,6 +289,18 @@ export default class MountConfig extends React.Component {
     if (absPath) {
       return callback({ message: t('PLEASE_USE_RELATIVE_PATH') })
     }
+
+    const notSupportRelPath = value.some(item => /^(\.)\1{1,}/.test(item.path))
+    if (notSupportRelPath) {
+      return callback({ message: t('RELATIVE_PATH_NOT_SUPPORT') })
+    }
+
+    const pathIncorrect = value.some(item =>
+      /(\/)\1{1,}|(\.)\2{1,}/.test(item.path)
+    )
+    if (pathIncorrect) {
+      return callback({ message: t('PATH_NOT_INCORRECT') })
+    }
     return callback()
   }
 
