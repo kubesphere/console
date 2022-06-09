@@ -299,7 +299,7 @@ export default class MountConfig extends React.Component {
       /(\/)\1{1,}|(\.)\2{1,}/.test(item.path)
     )
     if (pathIncorrect) {
-      return callback({ message: t('PATH_NOT_INCORRECT') })
+      return callback({ message: t('MOUNT_PATH_INCORRECT') })
     }
     return callback()
   }

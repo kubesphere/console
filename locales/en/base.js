@@ -17,7 +17,6 @@
  */
 
 module.exports = {
-  NUMBER_OF_PODS: 'Number of Pods',
   STRATEGY_PL: 'Strategies',
   // Cluster Node List
   CORE: 'core',
@@ -209,7 +208,6 @@ module.exports = {
   secret: 'secret',
   secret_text: 'Secret text',
   Service: 'Service',
-  NUMBER_OF_SERVICES: 'Number of Services',
   'Service Components': 'Components',
   'Session timeout or this account is logged in elsewhere, please login again': 'Session timeout or this account is logged in elsewhere, please login again',
   Set: 'Set',

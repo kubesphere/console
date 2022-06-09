@@ -139,7 +139,7 @@ export default class Accounts extends React.Component {
     const { prefix } = this.props
     return [
       {
-        title: t('NAME'),
+        title: t('USERNAME'),
         dataIndex: 'username',
         width: '40%',
         render: (name, record) => (
