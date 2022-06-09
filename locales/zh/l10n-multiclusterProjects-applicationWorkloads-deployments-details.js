@@ -23,7 +23,7 @@ module.exports = {
   // More > Edit Settings > Volumes
   PLEASE_USE_RELATIVE_PATH: '请使用相对路径。',
   RELATIVE_PATH_NOT_SUPPORT: '不支持的相对路径格式。',
-  PATH_NOT_INCORRECT: '挂载路径不正确。',
+  MOUNT_PATH_INCORRECT: '挂载路径不正确。',
   // More > Edit Settings > Pod Scheduling Rules
   // More > Edit Settings > Cluster Differences
   // More > Edit YAML
