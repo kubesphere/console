@@ -84,7 +84,7 @@ export default class StorageClassDetail extends React.Component {
     this.ksVersion = await this.accessorStore.getKsVersion(params)
     await this.store.fetchDetail(params)
 
-    if (compareVersion(`${this.ksVersion}`, 'v3.3') > 0) {
+    if (compareVersion(`${this.ksVersion}`, 'v3.3') < 0) {
       // check if k8s supports accessor resource
       Promise.all([
         this.validateWebhookCFStore.fetchDetailWithoutWarning({
@@ -135,7 +135,7 @@ export default class StorageClassDetail extends React.Component {
   getOperations = () => {
     const { shouldAddCrd } = this.state
     const { cluster } = this.props.match.params
-    const show = compareVersion(`${this.ksVersion}`, 'v3.3') < 0
+    const show = compareVersion(`${this.ksVersion}`, 'v3.3') >= 0
     return [
       {
         key: 'editYaml',
@@ -173,7 +173,7 @@ export default class StorageClassDetail extends React.Component {
         ),
         text: t('SET_AUTHORIZATION_RULES'),
         action: 'edit',
-        show: !show,
+        show,
         onClick: () =>
           this.trigger('storageclass.accessor', {
             storageClassName: get(this.store.detail, 'name'),
@@ -208,7 +208,8 @@ export default class StorageClassDetail extends React.Component {
         ),
         text: t('SET_AUTO_EXPANSION'),
         action: 'edit',
-        disabled: !get(toJS(this.store.detail), 'allowVolumeExpansion', false),
+        disabled:
+          !show || !get(toJS(this.store.detail), 'allowVolumeExpansion', false),
         onClick: () =>
           this.trigger('storageclass.pvc.autoresizer', {
             detail: toJS(this.store.detail),

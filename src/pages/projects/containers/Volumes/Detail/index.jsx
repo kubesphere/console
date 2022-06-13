@@ -82,7 +82,7 @@ export default class VolumeDetail extends React.Component {
   }
 
   get allowSnapshot() {
-    const disable = compareVersion(`${this.ksVersion}`, 'v3.3') < 0
+    const disable = compareVersion(`${this.ksVersion}`, 'v3.3') >= 0
     return (
       disable || this.getAllowToDo('storageclass.kubesphere.io/allow-snapshot')
     )
