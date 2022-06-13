@@ -410,6 +410,7 @@ export default class CDList extends React.Component {
       },
       {
         title: 'OUT_OF_SYNC',
+        filterValue: 'OutOfSync',
         color: '#F5A623',
         used: syncStatus.OutOfSync || 0,
         total,

@@ -167,6 +167,7 @@ export default class Services extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('name'),
         search: true,
+        width: '20%',
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
@@ -182,7 +183,7 @@ export default class Services extends React.Component {
         title: t('SERVICE_TYPE_TCAP'),
         dataIndex: 'annotations["kubesphere.io/serviceType"]',
         isHideable: true,
-        width: '16%',
+        width: '15%',
         render: (serviceType, record) => (
           <Text
             title={
@@ -199,13 +200,13 @@ export default class Services extends React.Component {
         dataIndex: 'app',
         isHideable: true,
         search: true,
-        width: '22%',
+        width: '15%',
       },
       {
         title: t('INTERNAL_ACCESS_PL'),
         dataIndex: 'clusterIP',
         isHideable: true,
-        width: '16%',
+        width: '15%',
         render: (_, record) => {
           return (
             <Text
@@ -228,7 +229,7 @@ export default class Services extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('createTime'),
         isHideable: true,
-        width: 150,
+        width: '15%',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]

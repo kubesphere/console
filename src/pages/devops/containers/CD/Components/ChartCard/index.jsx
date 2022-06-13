@@ -27,11 +27,11 @@ import styles from './index.scss'
 
 export default function ChartCard({ click, item, type, filters }) {
   const [checked, setCheck] = useState(false)
-  const { title, color, used, total, icon, label } = item
+  const { title, color, filterValue, used, total, icon, label } = item
 
   const handleClick = () => {
     setCheck(!checked)
-    click({ [type]: capitalize(item.title) })
+    click({ [type]: filterValue || capitalize(title) })
   }
 
   useEffect(() => {
@@ -40,7 +40,10 @@ export default function ChartCard({ click, item, type, filters }) {
     } else {
       setCheck(false)
       Object.keys(filters).forEach(key => {
-        if (type === key && filters[key] === capitalize(title)) {
+        if (
+          type === key &&
+          filters[key] === (filterValue || capitalize(title))
+        ) {
           setCheck(true)
         }
       })

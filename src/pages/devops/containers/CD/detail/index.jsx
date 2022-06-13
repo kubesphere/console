@@ -196,7 +196,7 @@ export default class CDDetail extends React.Component {
     const stores = { detailStore: this.store }
 
     const sideProps = {
-      module: 'cds',
+      module: 'applications',
       name: getDisplayName(detail),
       desc: detail.description,
       operations: this.getOperations(),
