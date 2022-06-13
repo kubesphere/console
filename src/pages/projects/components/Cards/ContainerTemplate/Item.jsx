@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 
 import { Icon, Tag, Tooltip } from '@kube-design/components'
 
@@ -151,7 +151,7 @@ export default class ContainerItem extends React.Component {
     const { className, detail, prefix, podName, isInit, ...rest } = this.props
     const hasProbe =
       detail.livenessProbe || detail.readinessProbe || detail.startupProbe
-    const hasLife = detail.lifecycle
+    const hasLife = detail.lifecycle && !isEmpty(detail.lifecycle)
 
     return (
       <div className={classnames(styles.item, className)} {...rest}>

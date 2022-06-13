@@ -194,7 +194,7 @@ export default class ContainerItem extends React.Component {
     const { status, reason } = getContainerStatus(detail)
     const hasProbe =
       detail.livenessProbe || detail.readinessProbe || detail.startupProbe
-    const hasLife = detail.lifecycle
+    const hasLife = detail.lifecycle && !isEmpty(detail.lifecycle)
 
     return (
       <div className={classnames(styles.item, className)} {...rest}>
