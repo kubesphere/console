@@ -52,7 +52,7 @@ export default class Status extends PureComponent {
             className
           )}
         />
-        {hasLabel && (label || t(type.toLowerCase()))}
+        {hasLabel && t(label.toUpperCase())}
       </span>
     )
   }

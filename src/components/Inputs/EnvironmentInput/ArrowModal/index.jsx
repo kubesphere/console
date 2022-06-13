@@ -55,7 +55,7 @@ const ArrowModal = ({
     style: {
       top: modalPosition.y,
       // triangle width is 12px
-      left: modalPosition.x - 12,
+      left: `calc(${modalPosition.x} - 12px)`,
     },
     hideModal,
     onOK: handleOK,
