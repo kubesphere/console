@@ -39,6 +39,8 @@ import styles from './index.scss'
   authKey: 'volumes',
 })
 export default class Snapshots extends React.Component {
+  volumeStore = new VolumeStore()
+
   showApply = params => {
     const { cluster, namespace } = params
     return globals.app.hasPermission({
@@ -73,8 +75,17 @@ export default class Snapshots extends React.Component {
         show: item => {
           return this.showApply(item) && item.backupStatus === 'success'
         },
-        onClick: item => {
+        onClick: async item => {
           const { cluster, namespace } = item
+          const storageClassName = get(
+            item,
+            '_originData.spec.source.persistentVolumeClaimName'
+          )
+          await this.volumeStore.fetchDetail({
+            cluster,
+            name: storageClassName,
+            namespace,
+          })
           trigger('volume.create', {
             fromSnapshot: true,
             module: 'persistentvolumeclaims',
@@ -89,7 +100,10 @@ export default class Snapshots extends React.Component {
                     storage: get(item, 'restoreSize'),
                   },
                 },
-                storageClassName: get(item, 'snapshotClassName'),
+                storageClassName: get(
+                  this.volumeStore,
+                  'detail.storageClassName'
+                ),
                 dataSource: {
                   name: get(item, 'name'),
                   kind: 'VolumeSnapshot',
