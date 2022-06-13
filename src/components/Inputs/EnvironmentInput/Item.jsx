@@ -139,6 +139,7 @@ export default class EnvironmentInputItem extends React.Component {
       newValue.name = data
     }
 
+    this.validEnvKey(newValue.name, newValue)
     this.props.onChange(newValue)
   }
 
@@ -174,7 +175,7 @@ export default class EnvironmentInputItem extends React.Component {
   }
 
   handleCfOrScChange = cfOrScName => {
-    this.props.onChange({
+    const newValue = {
       name: this.props.value.name || '',
       valueFrom: {
         [this.envType]: {
@@ -182,7 +183,9 @@ export default class EnvironmentInputItem extends React.Component {
           key: '',
         },
       },
-    })
+    }
+    this.validEnvKey(newValue.name, newValue)
+    this.props.onChange(newValue)
   }
 
   getKeysOptions({ resourceType, resourceName }) {
@@ -225,7 +228,7 @@ export default class EnvironmentInputItem extends React.Component {
   validEnvKey = debounce((value, target = {}) => {
     const invalid = !PATTERN_ENV_NAME.test(value)
     const repeat = this.checkNameRepeat(value)
-    const emptyKey = get(target, 'valueFrom', {})
+    const emptyKey = has(target, 'valueFrom')
       ? isEmpty(target.valueFrom)
       : target.value === ''
     if (value === '' && emptyKey) {
