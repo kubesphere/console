@@ -34,7 +34,7 @@ module.exports = {
   ADD_DATA_TCAP: '添加数据',
   ADD_DATA_DESC: '添加键值对数据。',
   REGISTRY_ADDRESS_TIP: '设置镜像服务地址，例如 docker.io。',
-  IMAGE_REGISTRY_REQUIRED_DESC: '请设置镜像服务地址\b、用户名和密码。',
+  IMAGE_REGISTRY_REQUIRED_DESC: '请设置镜像服务地址、用户名和密码。',
   CREDENTIAL_NAME_EMPTY_DESC: '请输入凭证名称。',
   ENTER_PRIVATE_KEY_DESC: '请输入私钥。',
   ENTER_DATA_DESC: '请添加数据。',
