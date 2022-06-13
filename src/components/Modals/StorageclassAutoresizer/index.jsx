@@ -22,7 +22,7 @@ import { Form, Columns, Column, Alert, Checkbox } from '@kube-design/components'
 import { Modal, Text, Switch } from 'components/Base'
 import NumberInput from 'components/Inputs/NumberInput'
 import { observer } from 'mobx-react'
-import { get, isBoolean, range, set } from 'lodash'
+import { get, isBoolean, range, set, trim } from 'lodash'
 import Slider from './Slider'
 import TailItemInput from './TailItemInput'
 import styles from './index.scss'
@@ -131,7 +131,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
   handleLimitChange = val => {
     const { resize } = this.state
     const { unit } = sliderSettings
-    const value = /[0-9]+/g.test(val) ? `${val}${unit}` : '10000Gi'
+    const value = /[0-9]+/g.test(val) ? `${trim(val)}${unit}` : '10000Gi'
     this.setState({
       resize: {
         ...resize,
@@ -175,9 +175,9 @@ export default class StorageClassAutoResizerModal extends React.Component {
     this.setState({
       restart: {
         ...restart,
-        'max-time': time === '' ? '300' : `${time}`,
+        'max-time': time === '' ? '300' : `${trim(time)}`,
       },
-      fakeMaxTime: time,
+      fakeMaxTime: trim(time),
     })
   }
 

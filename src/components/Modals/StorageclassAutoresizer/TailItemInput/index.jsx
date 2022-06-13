@@ -18,6 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { trim } from 'lodash'
 import { Select } from '@kube-design/components'
 import NumberInput from 'components/Inputs/NumberInput'
 
@@ -53,12 +54,12 @@ export default class TailItemInput extends React.Component {
 
   handleSelectChange = val => {
     const { unit } = this.state
-    this.props.onChange(`${val}${unit}`)
+    this.props.onChange(`${trim(val)}${unit}`)
   }
 
   handleInput = val => {
     const { unit } = this.state
-    this.props.onChange(`${val}${unit}`)
+    this.props.onChange(`${trim(val)}${unit}`)
   }
 
   renderTail = () => {
