@@ -18,6 +18,7 @@
 
 const { resolve4 } = require('dns')
 const https = require('https')
+const omit = require('lodash/omit')
 const isArray = require('lodash/isArray')
 
 const request = require('./request.base')
@@ -66,7 +67,7 @@ const send_dockerhub_request = ({ params, path, headers }) => {
   })
 
   const options = {
-    headers,
+    headers: omit(headers, ['origin', 'content-length']),
     agent: httpsAgent,
   }
   return request['get'](`${serverConfig.dockerHubUrl}${path}`, params, options)

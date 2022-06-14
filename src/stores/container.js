@@ -154,7 +154,7 @@ export default class ContainerStore {
 
   @action
   getDockerImagesLists = async params =>
-    await request.get(
+    await request.post(
       `dockerhub/api/content/v1/products/search`,
       params,
       {
@@ -167,14 +167,13 @@ export default class ContainerStore {
 
   @action
   getHarborImagesLists = async (params, url) =>
-    await request.get(`harbor/${url}/api/v2.0/search`, params, () => {})
+    await request.post(`harbor/${url}/api/v2.0/search`, params)
 
   @action
   getHarborImageTag = async (url, projectName, repositoryName, params) =>
-    await request.get(
+    await request.post(
       `harbor/${url}/api/v2.0/projects/${projectName}/repositories/${repositoryName}/artifacts`,
-      params,
-      () => {}
+      params
     )
 
   @action

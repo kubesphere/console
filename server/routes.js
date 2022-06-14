@@ -64,8 +64,8 @@ const router = new Router()
 router
   .use(proxy('/devops_webhook/(.*)', devopsWebhookProxy))
   .use(proxy('/b2i_download/(.*)', b2iFileProxy))
-  .get('/dockerhub/(.*)', parseBody, handleDockerhubProxy)
-  .get('/harbor/(.*)', parseBody, handleHarborProxy)
+  .post('/dockerhub/(.*)', parseBody, handleDockerhubProxy)
+  .post('/harbor/(.*)', parseBody, handleHarborProxy)
   .get('/blank_md', renderMarkdown)
 
   .all('/(k)?api(s)?/(.*)', checkToken, checkIfExist)

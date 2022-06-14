@@ -30,6 +30,12 @@ const cache = getCache()
 
 const handleSampleData = async ctx => {
   const sampleName = ctx.params.app
+  const isFilePath = /(\/)\1{1,}|(\.)\2{1,}/.test(sampleName)
+
+  if (isFilePath) {
+    ctx.body = 'Invalid sample name'
+    return
+  }
 
   let resources = cache.get(sampleName)
   if (!resources) {
@@ -50,11 +56,14 @@ const handleSampleData = async ctx => {
 const handleDockerhubProxy = async ctx => {
   const data = ctx.request.body || {}
   const headers = ctx.request.headers
-  ctx.body = await send_dockerhub_request({
+
+  const res = await send_dockerhub_request({
     params: data,
     path: ctx.url.slice(10),
     headers: omit(headers, NEED_OMIT_HEADERS),
   })
+
+  ctx.body = res
 }
 
 const handleHarborProxy = async ctx => {
