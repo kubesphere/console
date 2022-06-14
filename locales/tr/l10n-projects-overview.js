@@ -37,7 +37,7 @@ module.exports = {
   NUMBER_OF_SECRETS: 'Number of secrets',
   NUMBER_OF_CONFIGMAPS: 'Number of configmaps',
   // Deployed Apps
-  DEPLOYED_APPS: 'Dağıtılmış Uygulamalar',
+  INSTALLED_APPS: 'Installed Apps',
   // Resource Status
   RESOURCE_STATUS: 'Kaynak Durumu',
   // Resource Status > Application Resources
