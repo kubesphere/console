@@ -85,7 +85,7 @@ export default class VolumeSnapshot extends React.Component {
         width: '20.5%',
         render: (backupStatus, _) => (
           <Status
-            type={backupStatus}
+            type={_.readyToUse ? 'ready' : 'unready'}
             name={_.readyToUse ? t('READY') : t('UNREADY')}
           />
         ),
