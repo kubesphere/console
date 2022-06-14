@@ -93,15 +93,15 @@ module.exports = {
   UPDATE_CD_TITLE: '持续部署更新',
   // Task Status > Edit Jenkinsfile
   EDIT_JENKINSFILE: '编辑 Jenkinsfile',
-  CLOSE_JENKINSFILE_EDITOR_TIP: '确定关闭 Jenkinsfile 编辑器？',
+  CLOSE_JENKINSFILE_EDITOR_TIP: '确定禁用 Jenkinsfile 编辑器？',
   // Task Status > View Logs
   PIPELINE_RUN_LOGS: '流水线运行日志',
   VIEW_LOGS: '查看日志',
   DURATION_VALUE: '持续时间：{value}',
   DOWNLOAD_LOGS: '下载日志',
   // Task Status > View Logs > View Logs
-  START_REAL_TIME_LOG: '开启实时日志',
-  STOP_REAL_TIME_LOG: '停止实时日志',
+  START_REAL_TIME_LOG: '启用实时日志',
+  STOP_REAL_TIME_LOG: '禁用实时日志',
   // Run Records
   RUN_RECORDS: '运行记录',
   RUN: '运行',
