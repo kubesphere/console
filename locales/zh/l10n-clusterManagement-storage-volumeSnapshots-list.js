@@ -39,5 +39,8 @@ module.exports = {
   // List > Delete
   VOLUME_SNAPSHOT_LOW: '卷快照',
   // List > Create
-  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: '持久卷声明的存储类不支持创建快照，请选择其他持久卷声明。'
+  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: '持久卷声明的存储类不支持创建快照，请选择其他持久卷声明。',
+  // List > Table item actions > Create volume
+  SNAPSHOT_CLASS_NOT_EXIST_TITLE: 'Snapshot class doesn\'t exist',
+  SNAPSHOT_CLASS_NOT_EXIST: 'The volume snapshot uses a volume snapshot class that does not exist.'
 };
