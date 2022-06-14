@@ -37,7 +37,7 @@ module.exports = {
   CONFIGURATION_OPTIONS: '配置选项',
   // Gateway Logs
   GATEWAY_LOGS: '网关日志',
-  LOGGING_DISABLED: '日志组件未开启',
+  LOGGING_DISABLED: '日志组件未启用',
   REFRESH_INTERVAL_VALUE: '刷新间隔：{value}s',
   EXPORT_LOGS: '导出日志',
   // Resource Status > Replica Status
