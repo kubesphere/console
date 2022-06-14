@@ -34,7 +34,7 @@ module.exports = {
   // List > Create > Basic Information
   APPLICATION_GOVERNANCE: '应用治理',
   VERSION_DESC: '版本只能包含小写字母和数字，最长 16 个字符。',
-  APPLICATION_GOVERNANCE_DESC: '开启应用治理后可以对应用使用流量监控、灰度发布和链路追踪功能。',
+  APPLICATION_GOVERNANCE_DESC: '启用应用治理后可以对应用使用流量监控、灰度发布和链路追踪功能。',
   APP_BASIC_INFORMATION_DESC: '设置应用的基本信息。',
   // List > Create > Service Settings
   APP_SELECT_SERVICE_TYPE_DESC: '创建一个无状态或有状态服务。',
