@@ -90,7 +90,7 @@ export default class unitSlider extends React.Component {
             min={min}
             onChange={this.inputChange}
           ></NumberInput>
-          <span className={styles.unit}>{unit.slice(0, 1)}</span>
+          <span className={styles.unit}>{unit}</span>
         </div>
       </div>
     )
