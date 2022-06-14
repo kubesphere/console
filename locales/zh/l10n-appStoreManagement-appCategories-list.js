@@ -31,6 +31,6 @@ module.exports = {
   // List
   // List > Change Category
   CHANGED_SUCCESSFULLY: '调整成功。',
-  CHANGE_CATEGORY: '调整分类',
+  CHANGE_CATEGORY: '更改分类',
   CHANGE_CATEGORY_DESC: '应用分类将决定该应用在应用商店中的分类。'
 };
