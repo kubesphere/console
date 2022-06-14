@@ -108,13 +108,6 @@ export default class EnvironmentInputItem extends React.Component {
 
   handleChange = value => {
     const { onChange } = this.props
-    const isEmptyValue = Object.values(value).every(_value => {
-      return isEmpty(_value)
-    })
-
-    if (isEmptyValue) {
-      return
-    }
 
     const newValue = { name: '', valueFrom: {} }
 
@@ -232,7 +225,10 @@ export default class EnvironmentInputItem extends React.Component {
   validEnvKey = debounce((value, target = {}) => {
     const invalid = !PATTERN_ENV_NAME.test(value)
     const repeat = this.checkNameRepeat(value)
-    if (value === '' && target.value === '') {
+    const emptyKey = get(target, 'valueFrom', {})
+      ? isEmpty(target.valueFrom)
+      : target.value === ''
+    if (value === '' && emptyKey) {
       this.handleError()
       this.setState({
         keyError: false,
@@ -264,7 +260,7 @@ export default class EnvironmentInputItem extends React.Component {
         keyError: false,
       })
     } else {
-      this.validEnvKey(name, value)
+      this.validEnvKey(name, { value })
     }
   }, 300)
 
@@ -273,6 +269,7 @@ export default class EnvironmentInputItem extends React.Component {
     this.setState(
       {
         envType: val,
+        keyError: '',
       },
       () => {
         if (val !== 'customization') {
@@ -290,6 +287,10 @@ export default class EnvironmentInputItem extends React.Component {
             name: value.name || '',
             value: '',
           })
+        }
+
+        if (value.name === '') {
+          this.handleError()
         }
       }
     )
