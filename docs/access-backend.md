@@ -35,4 +35,3 @@ server:
     url: http://ks-apiserver.kubesphere-system.svc
     wsUrl: ws://ks-apiserver.kubesphere-system.svc
 ```
-
