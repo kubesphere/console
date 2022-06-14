@@ -32,10 +32,10 @@ module.exports = {
   // Cluster Gateway > Manage > View Details
   VIEW_DETAILS: '查看详情',
   // Cluster Gateway > Manage > Disable
-  DISABLE: '关闭',
-  DISABLE_GATEWAY: '关闭网关',
-  DISABLE_GATEWAY_TIP: '您确定关闭网关吗？',
-  DISABLE_SUCCESSFUL: '关闭成功。',
+  DISABLE: '禁用',
+  DISABLE_GATEWAY: '禁用网关',
+  DISABLE_GATEWAY_TIP: '您确定禁用网关吗？',
+  DISABLE_SUCCESSFUL: '禁用成功。',
   // Cluster Gateway > Manage > Edit
   EDIT: '编辑',
   EDIT_TITLE: '编辑{title}',
@@ -49,5 +49,5 @@ module.exports = {
   UPDATE_GATEWAY_DESC: '当前网关可更新。',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: '项目网关',
-  DISABLE_MULTIPLE_GATEWAYS: '批量关闭网关'
+  DISABLE_MULTIPLE_GATEWAYS: '批量禁用网关'
 };
