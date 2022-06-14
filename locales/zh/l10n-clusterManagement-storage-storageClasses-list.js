@@ -55,7 +55,7 @@ module.exports = {
   // List > Create > > GlusterFS > Storage Class Settings
   GLUSTERFS_RESTURL_DESC: '供应卷的 Heketi REST URL。',
   GLUSTERFS_ID_DESC: 'Gluster 集群 ID。',
-  GLUSTERFS_RESTAUTHENABLED_DESC: ' Gluster 开启对 REST 服务器的认证。',
+  GLUSTERFS_RESTAUTHENABLED_DESC: 'Gluster 启用对 REST 服务器的认证。',
   GLUSTERFS_RESTUSER_DESC: 'Gluster REST 服务或 Heketi 服务的用户名。',
   GLUSTERFS_SECRET_NAMESPACE_DESC: 'Heketi 用户密钥的所属项目。',
   GLUSTERFS_SECRET_NAME_DESC: 'Heketi 用户密钥的名称。',
@@ -64,7 +64,7 @@ module.exports = {
   GLUSTERFS_VOLUME_TYPE_DESC: '卷的类型。该值可为 none，replicate:<副本数>，或 disperse:<数据>:<冗余数>。如果未设置该值，则默认卷类型为 replicate:3。',
   RESTURL: 'REST URL',
   CLUSTER_ID: '集群 ID',
-  REST_AUTH_ENABLED: '开启 REST 认证',
+  REST_AUTH_ENABLED: '启用 REST 认证',
   REST_USER: 'REST 用户',
   VOLUME_TYPE: '卷类型',
   SECRET_NAME: '密钥名称',
