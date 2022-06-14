@@ -64,7 +64,7 @@ module.exports = {
   TARGET_MEMORY_USAGE: '目标内存用量',
   TARGET_CPU_USAGE: '目标 CPU 用量',
   TARGET_CURRENT: '{target}（当前：{current}）',
-  NOT_ENABLE: '{resource}暂未开启',
+  NOT_ENABLE: '{resource}未启用',
   // Metadata
   // Monitoring
   // Monitoring > View All Replicas (visible only when replicas > 5)

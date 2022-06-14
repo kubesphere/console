@@ -30,7 +30,7 @@ module.exports = {
   COMPONENT_STATUS: '组件状态',
   CONTROLLER_MANAGER: '管理控制中心',
   KUBERNETES_SCHEDULER: 'Kubernetes 调度器',
-  NOT_ENABLED: '未开启',
+  NOT_ENABLED: '未启用',
   // Overview > Cluster Resource Usage
   CLUSTER_RESOURCE_USAGE: '集群资源用量',
   POD_COUNT: '容器组数量',

@@ -32,7 +32,7 @@ module.exports = {
   // Traffic Management
   TRAFFIC_MANAGEMENT: '流量管理',
   // Tracing
-  APPLICATION_GOVERNANCE_ENABLED: '应用治理已开启',
-  APPLICATION_GOVERNANCE_DISABLED: '应用治理已关闭',
+  APPLICATION_GOVERNANCE_ENABLED: '应用治理已启用',
+  APPLICATION_GOVERNANCE_DISABLED: '应用治理已禁用',
   TRACING_UNAVAILABLE: '暂时无法使用链路追踪'
 };

@@ -45,7 +45,7 @@ module.exports = {
   CREATE_CANARY_RELEASE_JOB: '创建金丝雀发布任务',
   // Release Modes > Canary Release > Create > Service Settings
   UNFINISHED_GRAY_JOB: '灰度发布进行中',
-  NO_SERVICE_MESH_TIP: '该应用未开启应用治理，无法使用灰度发布功能。',
+  NO_SERVICE_MESH_TIP: '该应用未启用应用治理，无法使用灰度发布功能。',
   GRAY_APP_NAME: '应用：{name}',
   UNSUPPORTED_WORKLOAD_TYPE: '不支持该工作负载类型',
   // Release Modes > Canary Release > Create > New Version Settings
@@ -81,7 +81,7 @@ module.exports = {
   // Release Modes > Traffic Mirroring > Create > Strategy Settings
   // Release Jobs
   PREREQUEST_FOR_USE_GRAYRELEASE_Q: '使用灰度发布功能有哪些前提条件？',
-  PREREQUEST_FOR_USE_GRAYRELEASE_A: '使用灰度发布功能前，您需要创建自制应用并且为自制应用开启应用治理功能。',
+  PREREQUEST_FOR_USE_GRAYRELEASE_A: '使用灰度发布功能前，您需要创建自制应用并且为自制应用启用应用治理功能。',
   RELEASE_JOBS: '任务状态',
   TCP_INBOUND_TRAFFIC: 'TCP 入站流量',
   TCP_OUTBOUND_TRAFFIC: 'TCP 出站流量',

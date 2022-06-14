@@ -35,8 +35,8 @@ module.exports = {
   PROJECTS: '项目',
   // Workspace Information > Edit Information
   // Network Isolation
-  ON: '开启',
-  OFF: '关闭',
+  ON: '启用',
+  OFF: '禁用',
   WS_NETWORK_ISOLATION: '企业空间网络隔离',
   NETWORK_POLICY_UNINSATLLED_DESC: '该集群未安装网络策略组件。',
   // Delete Workspace

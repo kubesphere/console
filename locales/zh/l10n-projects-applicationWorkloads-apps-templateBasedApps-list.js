@@ -23,7 +23,7 @@ module.exports = {
   APP_TYPES_Q: 'KubeSphere 支持哪些应用类型？',
   APP_TYPES_A: 'KubeSphere 支持基于模板的应用和自制应用。基于模板的应用创建自 KubeSphere 应用商店或应用模板，自制应用由用户自定义。',
   HOW_TO_USE_APP_GOVERN_Q: '如何使用应用治理功能?',
-  HOW_TO_USE_APP_GOVERN_A: '您可以在创建自制应用时开启应用治理功能。',
+  HOW_TO_USE_APP_GOVERN_A: '您可以在创建自制应用时启用应用治理功能。',
   DEPLOY_SAMPLE_APP: '部署示例应用',
   // List
   NO_TEMPLATE_BASED_APP_FOUND: '未发现基于模板的应用',

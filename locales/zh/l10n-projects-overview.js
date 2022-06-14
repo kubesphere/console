@@ -37,7 +37,7 @@ module.exports = {
   NUMBER_OF_SECRETS: '保密字典数量',
   NUMBER_OF_CONFIGMAPS: '配置字典数量',
   // Deployed Apps
-  DEPLOYED_APPS: '已部署应用',
+  INSTALLED_APPS: 'Installed Apps',
   // Resource Status
   RESOURCE_STATUS: '资源状态',
   // Resource Status > Application Resources

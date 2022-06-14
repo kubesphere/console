@@ -64,7 +64,7 @@ module.exports = {
   MEMORY_REQUEST_VALUE: '{gib} GiB（{percent}）',
   RESOURCE_REQUEST: '资源预留',
   CORDON: '停止调度',
-  UNCORDON: '开启调度',
+  UNCORDON: '启用调度',
   OPEN_TERMINAL: '打开终端',
   CUSTOM_COLUMNS: '定制内容',
   NO_MATCHING_RESULT_FOUND: '未发现匹配的结果',

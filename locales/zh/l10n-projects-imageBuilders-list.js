@@ -38,9 +38,9 @@ module.exports = {
   CODE_REPOSITORY_KEY_DESC: '如果使用私有代码仓库，请选择包含代码仓库密钥的保密字典。',
   IMAGE_NAME: '镜像名称',
   IMAGE_TAG: '镜像标签',
-  TARGET_IMAGE_REPOSITORY: '目标镜像仓库',
+  TARGET_IMAGE_REPOSITORY: '目标镜像服务',
   S2I_IMAGE_NAME_DESC: '名称只能包含小写字母、数字、连字符（-）、句点（.）、斜钱（/）和冒号（:），并以小写字母或数字开头和结尾。',
-  S2I_TARGET_IMAGE_REPOSITORY_DESC: '选择一个镜像仓库用于存放即将创建的镜像。如果没有可用的镜像仓库，您需要先创建镜像仓库保密字典。<a href={link} target="_blank">了解更多</a>',
+  S2I_TARGET_IMAGE_REPOSITORY_DESC: '选择一个镜像服务用于存放即将创建的镜像。如果没有可用的镜像服务，您需要先创建镜像服务保密字典。<br/><a href={link} target="_blank">了解更多</a>',
   TRIGGER_TOKEN: '触发令牌',
   INVALID_TRIGGER_TOKEN_DESC: '令牌无效。令牌只能包含大写字母、小写字母和数字。',
   TRIGGER_TOKEN_DESC: '设置客户端通过 Webhook 触发 KubeSphere 镜像构建时所使用的认证令牌。令牌只能包含大写字母、小写字母和数字。',
@@ -63,5 +63,5 @@ module.exports = {
   WRONG_FILE_EXTENSION_NAME: '选择的文件类型不匹配，请选择 {type} 类型。',
   IMAGE_NAME_EMPTY_DESC: '请输入镜像名称。',
   IMAGE_TAG_EMPTY_DESC: '请输入镜像标签。',
-  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: '请设置目标镜像仓库。'
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: '请设置目标镜像服务。'
 };
