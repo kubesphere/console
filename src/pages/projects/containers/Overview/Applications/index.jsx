@@ -87,7 +87,7 @@ export default class Applications extends React.Component {
     return (
       <Panel
         className={styles.apps}
-        title={t('DEPLOYED_APPS')}
+        title={t('INSTALLED_APPS')}
         extras={this.renderExtras()}
       >
         <Columns className="is-variable is-1">
