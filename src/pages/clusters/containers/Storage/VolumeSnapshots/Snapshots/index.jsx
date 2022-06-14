@@ -24,11 +24,12 @@ import { VOLUME_SNAPSHOT_STATUS } from 'utils/constants'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
 import ResourceTable from 'clusters/components/ResourceTable'
 import SnapshotStore from 'stores/volumeSnapshot'
+import SnapshotClassStore from 'stores/volumeSnapshotClasses'
 import VolumeStore from 'stores/volume'
 import { getLocalTime } from 'utils'
 import { Avatar, Status } from 'components/Base'
 
-import { Icon, Tooltip } from '@kube-design/components'
+import { Icon, Notify, Tooltip } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -40,6 +41,8 @@ import styles from './index.scss'
 })
 export default class Snapshots extends React.Component {
   volumeStore = new VolumeStore()
+
+  snapshotClass = new SnapshotClassStore()
 
   showApply = params => {
     const { cluster, namespace } = params
@@ -64,6 +67,12 @@ export default class Snapshots extends React.Component {
     })
   }
 
+  checkSnapshotClassExist = async name => {
+    const { cluster, namespace } = this.props.match.params
+    await this.snapshotClass.fetchDetail({ name, cluster, namespace })
+    return !isEmpty(this.snapshotClass.detail)
+  }
+
   get itemActions() {
     const { trigger, routing, name } = this.props
 
@@ -73,10 +82,22 @@ export default class Snapshots extends React.Component {
         icon: 'copy',
         text: t('CREATE_VOLUME'),
         show: item => {
-          return this.showApply(item) && item.backupStatus === 'success'
+          return (
+            this.showApply(item) &&
+            item.backupStatus === 'success' &&
+            isEmpty(item.error)
+          )
         },
         onClick: async item => {
-          const { cluster, namespace } = item
+          const { cluster, namespace, snapshotClassName } = item
+          const exist = await this.checkSnapshotClassExist(snapshotClassName)
+          if (!exist) {
+            Notify.error({
+              title: t('SNAPSHOT_CLASS_NOT_EXIST_TITLE'),
+              content: t('SNAPSHOT_CLASS_NOT_EXIST'),
+            })
+            return
+          }
           const storageClassName = get(
             item,
             '_originData.spec.source.persistentVolumeClaimName'
