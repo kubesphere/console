@@ -42,20 +42,18 @@ const getRepoUrl = (repoType, repo) => {
   }
 }
 
-const handleFormData = ({ data, module, devops, formTemplate }) => {
+const handleFormData = ({ data, module, devops }) => {
   const postData = FORM_TEMPLATES[module]({ namespace: devops })
   const repoType = data.sources.source_type
   const repo = get(data, `sources.${repoType}_source`, {})
   const repoURL = repo.repo || repo.url || repo.remote
-  let isEditCodeURl = false
+  let url = ''
 
-  if (formTemplate) {
-    const editRepo = get(formTemplate, `sources.${repoType}_source`, {})
-    const editRepoURL = editRepo.repo || editRepo.url || editRepo.remote
-    isEditCodeURl = editRepoURL === repoURL
+  if (repoType === 'github' && /^https:\/\//.test(repoURL)) {
+    url = repoURL
+  } else {
+    url = getRepoUrl(repoType, repo)
   }
-
-  const url = !isEditCodeURl ? getRepoUrl(repoType, repo) : repoURL
 
   const spec = {
     provider: data.sources.source_type,
@@ -118,7 +116,6 @@ export default {
             data,
             module,
             devops,
-            formTemplate: editTemplate,
           })
 
           await store.edit({
