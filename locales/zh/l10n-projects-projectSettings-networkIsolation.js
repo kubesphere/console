@@ -22,10 +22,10 @@ module.exports = {
   NETWORK_ISOLATION_Q1: 'CNI 插件实现网络隔离需满足哪些必要条件？',
   // Network Isolation
   NETWORK_ISOLATION: '网络隔离',
-  ENABLE: '开启',
+  ENABLE: '启用',
   PROJECT_NETWORK_ISOLATION: '项目网络隔离',
-  NETWORK_POLICY_EMP_TITLE: '未开启网络隔离',
-  NETWORK_POLICY_EMP_DESC: '开启项目网络隔离后，将禁止其他项目访问当前项目，但您可以按需放行项目、服务以及外部 IP 地址。',
+  NETWORK_POLICY_EMP_TITLE: '未启用网络隔离',
+  NETWORK_POLICY_EMP_DESC: '启用项目网络隔离后，将禁止其他项目访问当前项目，但您可以按需放行项目、服务以及外部 IP 地址。',
   // Network Isolation > Internal Allowlist
   INTERNAL_ALLOWLIST: '内部白名单',
   INTERNAL_ALLOWLIST_TIP: '将集群内部的项目和服务添加到白名单。',
