@@ -37,7 +37,7 @@ module.exports = {
   NUMBER_OF_SECRETS: 'Number of secrets',
   NUMBER_OF_CONFIGMAPS: 'Number of configmaps',
   // Deployed Apps
-  DEPLOYED_APPS: 'Deployed Apps',
+  INSTALLED_APPS: 'Installed Apps',
   // Resource Status
   RESOURCE_STATUS: 'Estado del recurso',
   // Resource Status > Application Resources
