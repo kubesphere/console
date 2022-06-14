@@ -21,5 +21,5 @@ module.exports = {
   ISSUE_FEEDBACK: '问题反馈',
   PART_IN_DISCUSSION: '参与讨论',
   CODE_CONTRIBUTE: '贡献代码',
-  GITHUB_STAR: '点亮Star'
+  GITHUB_STAR: '标星'
 };
