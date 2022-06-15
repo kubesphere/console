@@ -152,7 +152,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
 
   handleThreshold = val => {
     const { resize } = this.state
-    const value = NumberReg.test(val) ? val : '10%'
+    const value = val === '%' ? '10%' : val
     this.setState({
       resize: {
         ...resize,
@@ -164,7 +164,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
 
   handleIncrease = val => {
     const { resize } = this.state
-    const value = NumberReg.test(val) ? val : '10Gi'
+    const value = val === 'Gi' ? '10Gi' : val
     this.setState({
       resize: {
         ...resize,
