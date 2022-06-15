@@ -39,8 +39,5 @@ module.exports = {
   // List > Delete
   VOLUME_SNAPSHOT_LOW: 'birim Anlık Görüntüsü',
   // List > Create
-  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: 'The storage class of the persistent volume claim does not support snapshot creation. Please select another persistent volume claim.',
-  // List > Table item actions > Create volume
-  SNAPSHOT_CLASS_NOT_EXIST_TITLE: 'Snapshot class doesn\'t exist',
-  SNAPSHOT_CLASS_NOT_EXIST: 'The volume snapshot uses a volume snapshot class that does not exist.'
+  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: 'The storage class of the persistent volume claim does not support snapshot creation. Please select another persistent volume claim.'
 };
