@@ -77,7 +77,7 @@ export default class SecretDataForm extends React.Component {
     form &&
       form.validate(() => {
         const { key, value } = form.getData()
-        onOk({ [trim(key)]: btoa(value) })
+        onOk({ [trim(key)]: window.btoa(value) })
         callback && callback()
       })
   }

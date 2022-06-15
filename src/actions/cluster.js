@@ -87,8 +87,12 @@ export default {
     on({ store, detail, cluster, success, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
-          set(data, 'kubeconfig', btoa(data.kubeconfig))
-          await store.updateKubeConfig({ cluster: detail.name, data })
+          const newData = cloneDeep(data)
+          set(newData, 'kubeconfig', window.btoa(newData.kubeconfig))
+          await store.updateKubeConfig({
+            cluster: detail.name,
+            data: newData,
+          })
           Modal.close(modal)
           Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
@@ -111,7 +115,7 @@ const handleImport = async (store, data) => {
     unset(postData, 'spec.connection.kubeconfig')
   } else {
     const config = get(postData, 'spec.connection.kubeconfig', '')
-    set(postData, 'spec.connection.kubeconfig', btoa(config))
+    set(postData, 'spec.connection.kubeconfig', window.btoa(config))
     await store.validate(postData)
   }
 
