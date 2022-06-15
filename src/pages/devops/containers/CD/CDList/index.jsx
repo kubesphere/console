@@ -275,9 +275,10 @@ export default class CDList extends React.Component {
         isHideable: true,
         width: '20%',
         render: (updateTime, record) => {
-          return getLocalTime(get(record, 'status.reconciledAt')).format(
-            'YYYY-MM-DD HH:mm:ss'
-          )
+          const reconciledAt = get(record, 'status.reconciledAt')
+          return reconciledAt
+            ? getLocalTime(reconciledAt).format('YYYY-MM-DD HH:mm:ss')
+            : '-'
         },
       },
     ]

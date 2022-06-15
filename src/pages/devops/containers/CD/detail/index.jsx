@@ -141,6 +141,7 @@ export default class CDDetail extends React.Component {
 
   getAttrs = () => {
     const { detail } = this.store
+    const reconciledAt = get(detail, 'status.reconciledAt')
 
     return [
       {
@@ -180,9 +181,9 @@ export default class CDDetail extends React.Component {
       },
       {
         name: t('UPDATE_TIME_TCAP'),
-        value: getLocalTime(get(detail, 'status.reconciledAt')).format(
-          'YYYY-MM-DD HH:mm:ss'
-        ),
+        value: reconciledAt
+          ? getLocalTime(reconciledAt).format('YYYY-MM-DD HH:mm:ss')
+          : '-',
       },
       {
         name: t('CREATOR'),
