@@ -154,7 +154,7 @@ export default class ContainerTerminal extends React.Component {
   }
 
   onWSError = ex => {
-    this.props.socketUrlOnError(() => this.fatal(ex.message))
+    this.fatal(ex.message)
   }
 
   onWSReceive = data => {

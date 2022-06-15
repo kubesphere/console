@@ -38,8 +38,6 @@ export default class KubeCtlModal extends React.Component {
     cluster: this.props.cluster || '',
   }
 
-  backupUrls = []
-
   store = new TerminalStore()
 
   clusterStore = new ClusterStore()
@@ -103,18 +101,7 @@ export default class KubeCtlModal extends React.Component {
 
   getKubeWebUrl = async cluster => {
     await this.store.fetchKubeCtl({ cluster })
-    this.backupUrls = this.store.oldWebsocketUrl()
     this.url = await this.store.kubeWebsocketUrl()
-  }
-
-  switchToBackupUrl = cb => {
-    if (this.backupUrls.length > 0) {
-      this.url = this.backupUrls.slice(-1)
-      this.backupUrls = this.backupUrls.slice(0, -1)
-    } else {
-      this.backupUrls = []
-      cb()
-    }
   }
 
   render() {
@@ -156,7 +143,6 @@ export default class KubeCtlModal extends React.Component {
         <ContainerTerminal
           isLoading={this.store.kubectl.isLoading}
           url={this.url}
-          socketUrlOnError={this.switchToBackupUrl}
           ref={this.terminalRef}
           isEdgeNode={isEdgeNode}
         />
