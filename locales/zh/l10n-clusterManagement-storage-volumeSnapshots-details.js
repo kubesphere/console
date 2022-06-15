@@ -16,8 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Button
+  // More > Create Volume
   CREATE_VOLUME: '创建卷',
+  SNAPSHOT_CLASS_NOT_EXIST_TITLE: '未发现卷快照类',
+  SNAPSHOT_CLASS_NOT_EXIST: '卷快照的卷快照类不存在。',
   // Details
   // Data Source
   STORAGE_CLASS_SCAP: '存储类',

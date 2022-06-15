@@ -47,7 +47,7 @@ module.exports = {
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
   NO_RESOURCE: '未发现{resource}。',
-  LOG_DATA_LOW: '日志信息',
+  LOG_DATA_LOW: '日志数据',
   // Resource Status > Volumes
   VOLUME_PL: '卷',
   TYPE_CONFIGMAP: '卷类型：配置字典',
