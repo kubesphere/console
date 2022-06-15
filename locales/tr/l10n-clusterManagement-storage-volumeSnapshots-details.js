@@ -18,8 +18,8 @@
 module.exports = {
   // More > Create Volume
   CREATE_VOLUME: 'Birim Oluştur',
-  SNAPSHOT_CLASS_NOT_EXIST_TITLE: 'Snapshot class doesn\'t exist',
-  SNAPSHOT_CLASS_NOT_EXIST: 'The volume snapshot uses a volume snapshot class that does not exist.',
+  SNAPSHOT_CLASS_NOT_EXIST_TITLE: 'Volume Snapshot Class Not Found',
+  SNAPSHOT_CLASS_NOT_EXIST: 'The volume snapshot class of the volume snapshot does not exist.',
   // Details
   // Data Source
   STORAGE_CLASS_SCAP: 'Depolama Sınıfı',
