@@ -47,16 +47,17 @@ const ArrowModal = ({
     onOK(data)
   }
 
+  const getSelfPosition = () => {
+    return modalPosition
+  }
+
   const { className: componentClassName, ...rest } = children.props
   const childNode = React.cloneElement(children, {
     className: classNames(componentClassName, styles.modal, {
       [styles.showModal]: showModal,
     }),
-    style: {
-      top: modalPosition.y,
-      // triangle width is 12px
-      left: `calc(${modalPosition.x} - 12px)`,
-    },
+    getParentPosition: getSelfPosition,
+    showModal,
     hideModal,
     onOK: handleOK,
     onCancel: hideModal,
