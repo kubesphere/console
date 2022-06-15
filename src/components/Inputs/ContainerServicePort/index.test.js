@@ -68,7 +68,7 @@ it('renders correctly', () => {
 
 it('change correctly', () => {
   const onchangeCb = jest.fn()
-  const wrapper = mount(<ContainerPort onChange={onchangeCb} />)
+  const wrapper = mount(<ContainerPort onChange={onchangeCb} index={0} />)
   const protocol = wrapper.find('Select[name="protocol"]')
   const name = wrapper.find('Input[name="name"]')
   const containerPort = wrapper.find('NumberInput[name="containerPort"]')
@@ -78,7 +78,7 @@ it('change correctly', () => {
   expect(onchangeCb).toHaveBeenCalledWith({
     containerPort: 8080,
     servicePort: undefined,
-    name: 'http-',
+    name: 'http-0',
     protocol: 'TCP',
   })
 
@@ -86,7 +86,7 @@ it('change correctly', () => {
   expect(onchangeCb).toHaveBeenCalledWith({
     containerPort: 8080,
     servicePort: 18080,
-    name: 'http-',
+    name: 'http-0',
     protocol: 'TCP',
   })
 
@@ -94,7 +94,7 @@ it('change correctly', () => {
   expect(onchangeCb).toHaveBeenCalledWith({
     containerPort: 8080,
     servicePort: 18080,
-    name: 'redis-',
+    name: 'redis-0',
     protocol: 'TCP',
   })
 
@@ -110,7 +110,7 @@ it('change correctly', () => {
   expect(onchangeCb).toHaveBeenCalledWith({
     containerPort: 8080,
     servicePort: 18080,
-    name: 'redis-',
+    name: 'redis-0',
     protocol: 'TCP',
   })
 
@@ -118,7 +118,7 @@ it('change correctly', () => {
   expect(onchangeCb).toHaveBeenCalledWith({
     containerPort: 8080,
     servicePort: 18080,
-    name: 'udp-',
+    name: 'udp-0',
     protocol: 'UDP',
   })
 })
