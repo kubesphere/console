@@ -29,6 +29,7 @@ const DEFAULT_PROTOCOL = 'HTTP'
 const getStateFromProps = props => {
   let protocol = DEFAULT_PROTOCOL
   const { name, containerPort, servicePort } = props.value
+  const { index } = props
   if (!isUndefined(name)) {
     const matchs = name.match(/^(\w+)-(.*)/)
     if (matchs) {
@@ -37,7 +38,7 @@ const getStateFromProps = props => {
   }
 
   return {
-    name: !isUndefined(name) ? name : `${protocol.toLowerCase()}-`,
+    name: !isUndefined(name) ? name : `${protocol.toLowerCase()}-${index}`,
     protocol: PROTOCOLS.some(item => item.value === protocol)
       ? protocol
       : props.value.protocol,
@@ -84,10 +85,11 @@ export default class ServicePort extends React.Component {
     let name
     const oldName = this.state.name
     const prefix = `${this.state.protocol.toLowerCase()}-`
+    const { index } = this.props
     if (oldName.startsWith(prefix)) {
       name = `${protocol.toLowerCase()}-${oldName.replace(prefix, '')}`
     } else {
-      name = `${protocol.toLowerCase()}-`
+      name = `${protocol.toLowerCase()}-${index}`
     }
 
     this.setState(
