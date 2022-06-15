@@ -16,8 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Button
+  // More > Create Volume
   CREATE_VOLUME: 'Create Volume',
+  SNAPSHOT_CLASS_NOT_EXIST_TITLE: 'Snapshot class doesn\'t exist',
+  SNAPSHOT_CLASS_NOT_EXIST: 'The volume snapshot uses a volume snapshot class that does not exist.',
   // Details
   // Data Source
   STORAGE_CLASS_SCAP: 'Storage class',
