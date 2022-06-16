@@ -60,6 +60,7 @@ export default class ContainerSetting extends React.Component {
 
   get imageRegistries() {
     const { imageRegistries = [] } = this.props
+
     return imageRegistries.map(item => {
       const auths = get(item, 'data[".dockerconfigjson"].auths', {})
       const url = Object.keys(auths)[0] || ''
@@ -68,12 +69,17 @@ export default class ContainerSetting extends React.Component {
         ? get(item, 'clusters[0].name')
         : item.cluster
 
+      const isSkipTLS = Boolean(
+        get(item, 'annotations["secret.kubesphere.io/force-insecure"]', false)
+      )
+
       return {
         url,
         username,
         label: item.name,
         value: item.name,
         cluster,
+        isSkipTLS,
       }
     })
   }

@@ -21,6 +21,7 @@ import { get } from 'lodash'
 
 import ObjectMapper from 'utils/object.mapper'
 import { getWorkloadVolumes } from 'utils/workload'
+import { encrypt } from 'utils'
 
 export default class ContainerStore {
   @observable
@@ -166,15 +167,20 @@ export default class ContainerStore {
     )
 
   @action
-  getHarborImagesLists = async (params, url) =>
-    await request.post(`harbor/${url}/api/v2.0/search`, params)
+  getHarborImagesLists = async ({ params, harborData }) =>
+    await request.post(`harbor/search`, {
+      harborData: encrypt('kubesphere', JSON.stringify(harborData)),
+      params,
+    })
 
   @action
-  getHarborImageTag = async (url, projectName, repositoryName, params) =>
-    await request.post(
-      `harbor/${url}/api/v2.0/projects/${projectName}/repositories/${repositoryName}/artifacts`,
-      params
-    )
+  getHarborImageTag = async (harborData, projectName, repositoryName, params) =>
+    await request.post(`harbor/artifacts`, {
+      harborData: encrypt('kubesphere', JSON.stringify(harborData)),
+      projectName,
+      repositoryName,
+      params,
+    })
 
   @action
   getImageDetail = async ({ cluster, namespace, ...params }) => {

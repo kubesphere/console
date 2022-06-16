@@ -78,10 +78,12 @@ export default class Login extends Component {
 
     cookie('oAuthLoginInfo', '')
 
+    const encryptKey = get(globals, 'config.encryptKey', 'kubesphere')
+
     this.props.rootStore
       .login({
         username,
-        encrypt: encrypt('kubesphere', password),
+        encrypt: encrypt(encryptKey, password),
         ...rest,
       })
       .then(resp => {

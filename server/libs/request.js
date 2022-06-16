@@ -20,6 +20,7 @@ const { resolve4 } = require('dns')
 const https = require('https')
 const omit = require('lodash/omit')
 const isArray = require('lodash/isArray')
+const qs = require('qs')
 
 const request = require('./request.base')
 const { getServerConfig } = require('./utils')
@@ -73,10 +74,52 @@ const send_dockerhub_request = ({ params, path, headers }) => {
   return request['get'](`${serverConfig.dockerHubUrl}${path}`, params, options)
 }
 
-const send_harbor_request = ({ path }) => {
-  return request['get'](
-    `${path.replace('http:/', 'http://').replace('https:/', 'https://')}`
-  )
+const send_harbor_request = ({ path, params }) => {
+  const { isSkipTLS, ...param } = params || {}
+  const url = `${path}?${qs.stringify(param)}`
+
+  return new Promise((resolve, reject) => {
+    https
+      .get(
+        url,
+        {
+          rejectUnauthorized: !isSkipTLS,
+        },
+        res => {
+          let data = ''
+          res.on('data', chunk => {
+            data += chunk.toString()
+          })
+
+          res.on('end', () => {
+            try {
+              const body = JSON.parse(data)
+              if (body.errors) {
+                const errorMsg = body.errors[0]
+                  ? body.errors[0].message
+                  : 'bad response'
+
+                if (
+                  errorMsg ===
+                  'validation failure list:\nq in query is required'
+                ) {
+                  resolve({ repository: [], project: [], chart: [] })
+                } else {
+                  reject({ message: errorMsg })
+                }
+              } else {
+                resolve(body)
+              }
+            } catch (error) {
+              reject(error)
+            }
+          })
+        }
+      )
+      .on('error', error => {
+        reject(error)
+      })
+  })
 }
 
 module.exports = {

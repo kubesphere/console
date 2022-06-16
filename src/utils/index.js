@@ -746,3 +746,24 @@ export const inCluster2Default = name => {
   const clusterName = globals.hostClusterName || 'default'
   return name === 'in-cluster' ? clusterName : name
 }
+
+export const encrypt = (salt, str) => {
+  return mix(salt, window.btoa(str))
+}
+
+function mix(salt, str) {
+  if (str.length > salt.length) {
+    salt += str.slice(0, str.length - salt.length)
+  }
+
+  const ret = []
+  const prefix = []
+  for (let i = 0, len = salt.length; i < len; i++) {
+    const tomix = str.length > i ? str.charCodeAt(i) : 64
+    const sum = salt.charCodeAt(i) + tomix
+    prefix.push(sum % 2 === 0 ? '0' : '1')
+    ret.push(String.fromCharCode(Math.floor(sum / 2)))
+  }
+
+  return `${window.btoa(prefix.join(''))}@${ret.join('')}`
+}
