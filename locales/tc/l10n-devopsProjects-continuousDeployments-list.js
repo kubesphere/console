@@ -26,7 +26,7 @@ module.exports = {
   SYNCED: 'Synced',
   MISSING: 'Missing',
   SUSPENDED: '已下架',
-  OUT_OF_SYNC: 'Out of sync',
+  OUTOFSYNC: 'Out of sync',
   DEPLOY_LOCATION: 'Deployment Location',
   // List > Create
   CREATE_CONTINUOUS_DEPLOYMENT: 'Create Continuous Deployment',
