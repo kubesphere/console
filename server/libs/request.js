@@ -76,7 +76,7 @@ const send_dockerhub_request = ({ params, path, headers }) => {
 }
 
 const send_harbor_request = ({ path, params }) => {
-  const { isSkipTLS, protocol } = params
+  const { isSkipTLS, protocol, auth } = params
 
   const httpsAgent =
     protocol === 'https://'
@@ -87,6 +87,14 @@ const send_harbor_request = ({ path, params }) => {
           rejectUnauthorized: !isSkipTLS,
         })
 
+  let AuthorizationHeader = {}
+
+  if (auth) {
+    AuthorizationHeader = {
+      Authorization: `Basic ${auth}`,
+    }
+  }
+
   return new Promise((resolve, reject) => {
     fetch(path, {
       method: 'GET',
@@ -94,6 +102,7 @@ const send_harbor_request = ({ path, params }) => {
       credentials: 'include',
       headers: {
         'content-type': 'application/json',
+        ...AuthorizationHeader,
       },
       agent: httpsAgent,
       followRedirect: false,

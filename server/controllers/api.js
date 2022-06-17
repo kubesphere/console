@@ -127,6 +127,7 @@ const handleHarborProxy = async ctx => {
     const res = await send_harbor_request({
       params: {
         isSkipTLS: harborData.isSkipTLS,
+        auth: harborData.auth,
         protocol,
       },
       path: url,

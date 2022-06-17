@@ -73,6 +73,8 @@ export default class ContainerSetting extends React.Component {
         get(item, 'annotations["secret.kubesphere.io/force-insecure"]', false)
       )
 
+      const auth = get(auths[url], 'auth')
+
       return {
         url,
         username,
@@ -80,6 +82,7 @@ export default class ContainerSetting extends React.Component {
         value: item.name,
         cluster,
         isSkipTLS,
+        auth,
       }
     })
   }
