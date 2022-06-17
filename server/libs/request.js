@@ -20,7 +20,6 @@ const { resolve4 } = require('dns')
 const https = require('https')
 const omit = require('lodash/omit')
 const isArray = require('lodash/isArray')
-const qs = require('qs')
 
 const request = require('./request.base')
 const { getServerConfig } = require('./utils')
@@ -75,13 +74,12 @@ const send_dockerhub_request = ({ params, path, headers }) => {
 }
 
 const send_harbor_request = ({ path, params }) => {
-  const { isSkipTLS, ...param } = params || {}
-  const url = `${path}?${qs.stringify(param)}`
+  const { isSkipTLS } = params
 
   return new Promise((resolve, reject) => {
     https
       .get(
-        url,
+        path,
         {
           rejectUnauthorized: !isSkipTLS,
         },

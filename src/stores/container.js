@@ -41,6 +41,8 @@ export default class ContainerStore {
 
   watchHandler = null
 
+  encryptKey = get(globals, 'config.encryptKey', 'kubesphere')
+
   module = 'containers'
 
   getDetailUrl = ({ cluster, namespace, podName, gateways }) => {
@@ -169,14 +171,14 @@ export default class ContainerStore {
   @action
   getHarborImagesLists = async ({ params, harborData }) =>
     await request.post(`harbor/search`, {
-      harborData: encrypt('kubesphere', JSON.stringify(harborData)),
+      harborData: encrypt(this.encryptKey, JSON.stringify(harborData)),
       params,
     })
 
   @action
   getHarborImageTag = async (harborData, projectName, repositoryName, params) =>
     await request.post(`harbor/artifacts`, {
-      harborData: encrypt('kubesphere', JSON.stringify(harborData)),
+      harborData: encrypt(this.encryptKey, JSON.stringify(harborData)),
       projectName,
       repositoryName,
       params,

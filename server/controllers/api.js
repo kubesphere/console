@@ -19,6 +19,7 @@
 const fs = require('fs')
 const yaml = require('js-yaml/dist/js-yaml')
 const omit = require('lodash/omit')
+const qs = require('qs')
 
 const {
   send_dockerhub_request,
@@ -73,39 +74,53 @@ const handleDockerhubProxy = async ctx => {
 
 const handleHarborProxy = async ctx => {
   const requestUrl = ctx.url.slice(8)
-  const data = ctx.request.body || {}
+  const data = ctx.request.body
   const headers = ctx.request.headers
   const encryptKey = clientConfig.encryptKey || 'kubesphere'
-  let requestURL = ''
+  const pathRule = /^(\/)\1{1,}|(\.)\2{1,}/
+  let path = ''
 
-  const harborData = JSON.parse(
-    decryptPassword(data.harborData || {}, encryptKey)
-  )
+  if (!data.harborData) {
+    ctx.throw(500, 'Invalid post data')
+  }
+
+  const harborData = JSON.parse(decryptPassword(data.harborData, encryptKey))
 
   const [, protocol, harborUrl] = harborData.url.match(
     /^(https?:\/\/)?([\s\S]+)/
   )
-  const params = data.params
 
-  if (!harborUrl || /^(\/)\1{1,}|(\.)\2{1,}/.test(harborUrl)) {
+  if (!harborUrl || pathRule.test(harborUrl)) {
     ctx.throw(500, 'Invalid harbor url')
     return
   }
 
-  if (requestUrl === 'search') {
-    requestURL = `${protocol}${harborUrl}/api/v2.0/${requestUrl}`
-  } else {
-    const { projectName, repositoryName } = data
-    requestURL = `${protocol}${harborUrl}/api/v2.0/projects/${projectName}/repositories/${repositoryName}/${requestUrl}`
+  if (
+    data.projectName &&
+    data.repositoryName &&
+    pathRule.test(data.projectName) &&
+    pathRule.test(data.repositoryName)
+  ) {
+    ctx.throw(500, 'Invalid post data')
   }
+
+  if (requestUrl === 'search') {
+    path = `${protocol}${harborUrl}/api/v2.0/${requestUrl}`
+  } else if (requestUrl === 'artifacts') {
+    path = `${protocol}${harborUrl}/api/v2.0/projects/${data.projectName}/repositories/${data.repositoryName}/${requestUrl}`
+  } else {
+    ctx.throw(500, 'Invalid request url')
+  }
+
+  const params = data.params
+  const url = `${path}?${qs.stringify(params)}`
 
   try {
     const res = await send_harbor_request({
       params: {
-        ...params,
         isSkipTLS: harborData.isSkipTLS,
       },
-      path: requestURL,
+      path: url,
       headers: omit(headers, NEED_OMIT_HEADERS),
     })
 
