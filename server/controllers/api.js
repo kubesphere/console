@@ -83,7 +83,7 @@ const handleHarborProxy = async ctx => {
   let path = ''
 
   if (!data.harborData) {
-    ctx.throw(500, 'Invalid post data')
+    ctx.throw(400, 'Invalid post data')
   }
 
   const harborData = JSON.parse(decryptPassword(data.harborData, encryptKey))
@@ -93,7 +93,7 @@ const handleHarborProxy = async ctx => {
   )
 
   if (!harborUrl || pathRule.test(harborUrl)) {
-    ctx.throw(500, 'Invalid harbor url')
+    ctx.throw(400, 'Invalid harbor url')
     return
   }
 
@@ -117,7 +117,7 @@ const handleHarborProxy = async ctx => {
       ctx.throw(400, 'Invalid post data')
     }
   } else {
-    ctx.throw(500, 'Invalid request url')
+    ctx.throw(400, 'Invalid request url')
   }
 
   const params = data.params
@@ -148,14 +148,12 @@ const handleHarborProxy = async ctx => {
     }
 
     if (isErrorRes) {
-      /* eslint-disable no-console */
-      console.log('bad harbor response')
-      ctx.throw(500, 'bad request')
+      ctx.throw(400, 'bad request')
     } else {
       ctx.body = res
     }
   } catch (err) {
-    ctx.throw(500, err.message)
+    ctx.throw(400, err.message)
   }
 }
 
