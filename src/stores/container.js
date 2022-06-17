@@ -178,9 +178,10 @@ export default class ContainerStore {
   @action
   getHarborImageTag = async (harborData, projectName, repositoryName, params) =>
     await request.post(`harbor/artifacts`, {
-      harborData: encrypt(this.encryptKey, JSON.stringify(harborData)),
-      projectName,
-      repositoryName,
+      harborData: encrypt(
+        this.encryptKey,
+        JSON.stringify({ ...harborData, projectName, repositoryName })
+      ),
       params,
     })
 

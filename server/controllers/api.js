@@ -95,19 +95,23 @@ const handleHarborProxy = async ctx => {
     return
   }
 
-  if (
-    data.projectName &&
-    data.repositoryName &&
-    pathRule.test(data.projectName) &&
-    pathRule.test(data.repositoryName)
-  ) {
-    ctx.throw(500, 'Invalid post data')
-  }
-
   if (requestUrl === 'search') {
-    path = `${protocol}${harborUrl}/api/v2.0/${requestUrl}`
+    path = `${protocol}${harborUrl}/api/v2.0/search`
   } else if (requestUrl === 'artifacts') {
-    path = `${protocol}${harborUrl}/api/v2.0/projects/${data.projectName}/repositories/${data.repositoryName}/${requestUrl}`
+    const rule = /^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9]$/
+
+    if (harborData.projectName && harborData.repositoryName) {
+      const [projectName] = harborData.projectName.match(rule)
+      const [repositoryName] = harborData.repositoryName.match(rule)
+
+      if (projectName && repositoryName) {
+        path = `${protocol}${harborUrl}/api/v2.0/projects/${projectName}/repositories/${repositoryName}/artifacts`
+      } else {
+        ctx.throw(400, 'Invalid post data')
+      }
+    } else {
+      ctx.throw(400, 'Invalid post data')
+    }
   } else {
     ctx.throw(500, 'Invalid request url')
   }
