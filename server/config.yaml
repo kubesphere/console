@@ -37,6 +37,7 @@ server:
 client:
   title: KubeSphere
   description: ""
+  encryptKey: kubesphere
 
   version:
     kubesphere: 3.1.0

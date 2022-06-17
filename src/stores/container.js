@@ -21,6 +21,7 @@ import { get } from 'lodash'
 
 import ObjectMapper from 'utils/object.mapper'
 import { getWorkloadVolumes } from 'utils/workload'
+import { encrypt } from 'utils'
 
 export default class ContainerStore {
   @observable
@@ -39,6 +40,8 @@ export default class ContainerStore {
   }
 
   watchHandler = null
+
+  encryptKey = get(globals, 'config.encryptKey', 'kubesphere')
 
   module = 'containers'
 
@@ -154,7 +157,7 @@ export default class ContainerStore {
 
   @action
   getDockerImagesLists = async params =>
-    await request.get(
+    await request.post(
       `dockerhub/api/content/v1/products/search`,
       params,
       {
@@ -166,16 +169,21 @@ export default class ContainerStore {
     )
 
   @action
-  getHarborImagesLists = async (params, url) =>
-    await request.get(`harbor/${url}/api/v2.0/search`, params, () => {})
+  getHarborImagesLists = async ({ params, harborData }) =>
+    await request.post(`harbor/search`, {
+      harborData: encrypt(this.encryptKey, JSON.stringify(harborData)),
+      params,
+    })
 
   @action
-  getHarborImageTag = async (url, projectName, repositoryName, params) =>
-    await request.get(
-      `harbor/${url}/api/v2.0/projects/${projectName}/repositories/${repositoryName}/artifacts`,
+  getHarborImageTag = async (harborData, projectName, repositoryName, params) =>
+    await request.post(`harbor/artifacts`, {
+      harborData: encrypt(
+        this.encryptKey,
+        JSON.stringify({ ...harborData, projectName, repositoryName })
+      ),
       params,
-      () => {}
-    )
+    })
 
   @action
   getImageDetail = async ({ cluster, namespace, ...params }) => {

@@ -31,7 +31,7 @@ export default class DropdownContent extends React.Component {
     this.state = {
       dockerList: [],
       harborList: [],
-      hubUrl: '',
+      hubData: {},
       visible: false,
       isLoading: false,
     }
@@ -124,12 +124,16 @@ export default class DropdownContent extends React.Component {
     this.setState({ visible: true }, () => {
       document.addEventListener('click', this.handleDOMClick)
       if (this.hubType !== 'dockerHub') {
-        this.fetchHarborList('', this.state.hubUrl)
+        this.fetchHarborList('', this.state.harborData)
       }
     })
   }
 
   hideContent = () => {
+    if (this.hubType !== 'dockerHub') {
+      this.setState({ harborList: [] })
+    }
+
     this.setState({ visible: false }, () => {
       document.removeEventListener('click', this.handleDOMClick)
     })
@@ -143,10 +147,11 @@ export default class DropdownContent extends React.Component {
 
   handleSecretChange = value => {
     if (value) {
-      const url = this.props.imageRegistries.filter(
-        hub => hub.label === value
-      )[0].url
-      this.setState({ hubUrl: url })
+      const harborData = this.props.imageRegistries.filter(
+        hub => hub.value === value
+      )[0]
+
+      this.setState({ harborData })
     }
 
     const { formTemplate } = this.props
@@ -184,13 +189,18 @@ export default class DropdownContent extends React.Component {
   }
 
   handleHarborImageSelected = async imageDetail => {
+    const { harborData } = this.state
     const projectName = imageDetail.project_name
     const repository = imageDetail.repository_name.replace(
       `${projectName}/`,
       ''
     )
-    const url = this.state.hubUrl
-    const tag = await this.fetchHarborImageTag(url, projectName, repository)
+
+    const tag = await this.fetchHarborImageTag(
+      harborData,
+      projectName,
+      repository
+    )
     const image = `${imageDetail.repository_name}:${tag}`
     const logo = ''
     const short_description = ''
@@ -204,7 +214,7 @@ export default class DropdownContent extends React.Component {
   }
 
   handleSearchHarbor = keyword => {
-    this.fetchHarborList(keyword, this.state.hubUrl)
+    this.fetchHarborList(keyword, this.state.harborData)
   }
 
   fetchDockerList = async keyword => {
@@ -212,7 +222,7 @@ export default class DropdownContent extends React.Component {
 
     const result = await this.store
       .getDockerImagesLists({
-        q: keyword,
+        q: keyword || '',
         image_filter: keyword ? undefined : 'official',
         page_size: 50,
         type: 'image',
@@ -225,18 +235,19 @@ export default class DropdownContent extends React.Component {
       this.setState({ dockerList: get(result, 'summaries', []) })
   }
 
-  fetchHarborList = async (keyword, url) => {
-    if (!url) return
+  fetchHarborList = async (keyword, harborData) => {
+    const url = get(harborData, 'url')
+    if (!url || isEmpty(harborData)) return
 
     this.setState({ isLoading: true })
 
     const result = await this.store
-      .getHarborImagesLists(
-        {
-          q: keyword,
+      .getHarborImagesLists({
+        harborData,
+        params: {
+          q: keyword || '',
         },
-        url
-      )
+      })
       .finally(() => {
         !this.isUnMounted && this.setState({ isLoading: false })
       })
@@ -245,9 +256,9 @@ export default class DropdownContent extends React.Component {
       this.setState({ harborList: get(result, 'repository', []) })
   }
 
-  fetchHarborImageTag = async (url, projectName, repository) => {
+  fetchHarborImageTag = async (harborData, projectName, repository) => {
     const result = await this.store.getHarborImageTag(
-      url,
+      harborData,
       projectName,
       repository,
       {
