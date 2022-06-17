@@ -19,7 +19,7 @@
 const { resolve4 } = require('dns')
 const https = require('https')
 const http = require('http')
-const fetch = require('node-fetch')
+const fetch = require('node-fetch').default
 const omit = require('lodash/omit')
 const isArray = require('lodash/isArray')
 
