@@ -77,6 +77,8 @@ const handleHarborProxy = async ctx => {
   const data = ctx.request.body
   const headers = ctx.request.headers
   const encryptKey = clientConfig.encryptKey || 'kubesphere'
+
+  // Check for relative and absolute paths
   const pathRule = /^(\/)\1{1,}|(\.)\2{1,}/
   let path = ''
 
@@ -98,9 +100,11 @@ const handleHarborProxy = async ctx => {
   if (requestUrl === 'search') {
     path = `${protocol}${harborUrl}/api/v2.0/search`
   } else if (requestUrl === 'artifacts') {
+    // the rule of harbor project name and repository name
     const rule = /^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9]$/
 
     if (harborData.projectName && harborData.repositoryName) {
+      // get projectName and repositoryName by rule
       const [projectName] = harborData.projectName.match(rule)
       const [repositoryName] = harborData.repositoryName.match(rule)
 
@@ -123,6 +127,7 @@ const handleHarborProxy = async ctx => {
     const res = await send_harbor_request({
       params: {
         isSkipTLS: harborData.isSkipTLS,
+        protocol,
       },
       path: url,
       headers: omit(headers, NEED_OMIT_HEADERS),
@@ -132,6 +137,7 @@ const handleHarborProxy = async ctx => {
 
     if (requestUrl === 'search') {
       const { repository, project, chart } = res
+      // Check whether the response is the requirements
       isErrorRes = !(
         Array.isArray(repository) &&
         Array.isArray(project) &&

@@ -18,6 +18,8 @@
 
 const { resolve4 } = require('dns')
 const https = require('https')
+const http = require('http')
+const fetch = require('node-fetch')
 const omit = require('lodash/omit')
 const isArray = require('lodash/isArray')
 
@@ -74,48 +76,69 @@ const send_dockerhub_request = ({ params, path, headers }) => {
 }
 
 const send_harbor_request = ({ path, params }) => {
-  const { isSkipTLS } = params
+  const { isSkipTLS, protocol } = params
+
+  const httpsAgent =
+    protocol === 'https://'
+      ? new https.Agent({
+          rejectUnauthorized: !isSkipTLS,
+        })
+      : new http.Agent({
+          rejectUnauthorized: !isSkipTLS,
+        })
 
   return new Promise((resolve, reject) => {
-    https
-      .get(
-        path,
-        {
-          rejectUnauthorized: !isSkipTLS,
-        },
-        res => {
-          let data = ''
-          res.on('data', chunk => {
-            data += chunk.toString()
-          })
+    fetch(path, {
+      method: 'GET',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json',
+      },
+      agent: httpsAgent,
+      followRedirect: false,
+    })
+      .then(response => {
+        const contentType = response.headers.get('content-type')
 
-          res.on('end', () => {
-            try {
-              const body = JSON.parse(data)
-              if (body.errors) {
-                const errorMsg = body.errors[0]
-                  ? body.errors[0].message
-                  : 'bad response'
+        if (contentType && contentType.includes('json')) {
+          return response.json().then(res => {
+            if (res.errors) {
+              const errorMsg = res.errors[0]
+                ? res.errors[0].message
+                : 'bad response'
 
-                if (
-                  errorMsg ===
-                  'validation failure list:\nq in query is required'
-                ) {
-                  resolve({ repository: [], project: [], chart: [] })
-                } else {
-                  reject({ message: errorMsg })
-                }
-              } else {
-                resolve(body)
+              if (
+                errorMsg === 'validation failure list:\nq in query is required'
+              ) {
+                resolve({ repository: [], project: [], chart: [] })
               }
-            } catch (error) {
-              reject(error)
             }
+
+            if (
+              response.ok &&
+              response.status >= 200 &&
+              response.status < 400
+            ) {
+              resolve(res)
+            }
+
+            reject({
+              code: response.status,
+              ...res,
+              statusText: response.statusText,
+            })
           })
         }
-      )
-      .on('error', error => {
-        reject(error)
+
+        reject({
+          code: 400,
+          statusText: response.statusText,
+          message: 'bad request',
+        })
+      })
+      .catch(err => {
+        reject(err)
       })
   })
 }
