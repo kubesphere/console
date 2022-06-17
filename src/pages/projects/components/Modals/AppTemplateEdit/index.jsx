@@ -180,7 +180,7 @@ export default class AppDeploy extends React.Component {
         {...this.props}
         onOk={this.handleOk}
         width={1280}
-        okText={t('UPDATE')}
+        okText={t('OK')}
       >
         <Columns>
           <Column>
