@@ -18,6 +18,9 @@
 
 const { resolve4 } = require('dns')
 const https = require('https')
+const http = require('http')
+const fetch = require('node-fetch').default
+const omit = require('lodash/omit')
 const isArray = require('lodash/isArray')
 
 const request = require('./request.base')
@@ -66,16 +69,87 @@ const send_dockerhub_request = ({ params, path, headers }) => {
   })
 
   const options = {
-    headers,
+    headers: omit(headers, ['origin', 'content-length']),
     agent: httpsAgent,
   }
   return request['get'](`${serverConfig.dockerHubUrl}${path}`, params, options)
 }
 
-const send_harbor_request = ({ path }) => {
-  return request['get'](
-    `${path.replace('http:/', 'http://').replace('https:/', 'https://')}`
-  )
+const send_harbor_request = ({ path, params }) => {
+  const { isSkipTLS, protocol, auth } = params
+
+  const httpsAgent =
+    protocol === 'https://'
+      ? new https.Agent({
+          rejectUnauthorized: !isSkipTLS,
+        })
+      : new http.Agent({
+          rejectUnauthorized: !isSkipTLS,
+        })
+
+  let AuthorizationHeader = {}
+
+  if (auth) {
+    AuthorizationHeader = {
+      Authorization: `Basic ${auth}`,
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    fetch(path, {
+      method: 'GET',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json',
+        ...AuthorizationHeader,
+      },
+      agent: httpsAgent,
+      followRedirect: false,
+    })
+      .then(response => {
+        const contentType = response.headers.get('content-type')
+
+        if (contentType && contentType.includes('json')) {
+          return response.json().then(res => {
+            if (res.errors) {
+              const errorMsg = res.errors[0]
+                ? res.errors[0].message
+                : 'bad response'
+
+              if (
+                errorMsg === 'validation failure list:\nq in query is required'
+              ) {
+                resolve({ repository: [], project: [], chart: [] })
+              }
+            }
+
+            if (
+              response.ok &&
+              response.status >= 200 &&
+              response.status < 400
+            ) {
+              resolve(res)
+            }
+
+            reject({
+              code: response.status,
+              ...res,
+              statusText: response.statusText,
+            })
+          })
+        }
+
+        reject({
+          code: 400,
+          statusText: response.statusText,
+          message: 'bad request',
+        })
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
 }
 
 module.exports = {

@@ -19,8 +19,11 @@
 const isEmpty = require('lodash/isEmpty')
 const jwtDecode = require('jwt-decode')
 const omit = require('lodash/omit')
-
 const base64_url_decode = require('jwt-decode/lib/base64_url_decode')
+const { getServerConfig } = require('../libs/utils')
+
+const { client: clientConfig } = getServerConfig()
+
 const {
   login,
   oAuthLogin,
@@ -56,9 +59,11 @@ const handleLogin = async ctx => {
 
   if (isEmpty(error)) {
     try {
-      params.password = decryptPassword(params.encrypt, 'kubesphere')
+      const encryptKey = clientConfig.encryptKey || 'kubesphere'
+      params.password = decryptPassword(params.encrypt, encryptKey)
 
       user = await login(params, { 'x-client-ip': ctx.request.ip })
+
       if (!user) {
         Object.assign(error, {
           status: 401,
@@ -147,6 +152,8 @@ const handleLogout = async ctx => {
     decodeURIComponent(ctx.cookies.get('oAuthLoginInfo'))
   )
 
+  const token = ctx.cookies.get('token')
+
   ctx.cookies.set('token', null)
   ctx.cookies.set('expire', null)
   ctx.cookies.set('refreshToken', null)
@@ -167,6 +174,7 @@ const handleLogout = async ctx => {
     await send_gateway_request({
       method: 'GET',
       url: '/oauth/logout',
+      token,
     })
 
     if (isAppsRoute(refererPath)) {

@@ -19,17 +19,29 @@
 const fs = require('fs')
 const yaml = require('js-yaml/dist/js-yaml')
 const omit = require('lodash/omit')
+const qs = require('qs')
+
 const {
   send_dockerhub_request,
   send_harbor_request,
 } = require('../libs/request')
-const { getCache, root } = require('../libs/utils')
+const { getCache, root, getServerConfig } = require('../libs/utils')
+
+const { client: clientConfig } = getServerConfig()
 
 const NEED_OMIT_HEADERS = ['cookie', 'referer', 'host']
+const { decryptPassword } = require('../libs/utils')
+
 const cache = getCache()
 
 const handleSampleData = async ctx => {
   const sampleName = ctx.params.app
+  const isFilePath = /(\/)\1{1,}|(\.)\2{1,}/.test(sampleName)
+
+  if (isFilePath) {
+    ctx.body = 'Invalid sample name'
+    return
+  }
 
   let resources = cache.get(sampleName)
   if (!resources) {
@@ -50,21 +62,100 @@ const handleSampleData = async ctx => {
 const handleDockerhubProxy = async ctx => {
   const data = ctx.request.body || {}
   const headers = ctx.request.headers
-  ctx.body = await send_dockerhub_request({
+
+  const res = await send_dockerhub_request({
     params: data,
     path: ctx.url.slice(10),
     headers: omit(headers, NEED_OMIT_HEADERS),
   })
+
+  ctx.body = res
 }
 
 const handleHarborProxy = async ctx => {
-  const data = ctx.request.body || {}
+  const requestUrl = ctx.url.slice(8)
+  const data = ctx.request.body
   const headers = ctx.request.headers
-  ctx.body = await send_harbor_request({
-    params: data,
-    path: ctx.url.slice(8),
-    headers: omit(headers, NEED_OMIT_HEADERS),
-  })
+  const encryptKey = clientConfig.encryptKey || 'kubesphere'
+
+  // Check for relative and absolute paths
+  const pathRule = /^(\/)\1{1,}|(\.)\2{1,}/
+  let path = ''
+
+  if (!data.harborData) {
+    ctx.throw(400, 'Invalid post data')
+  }
+
+  const harborData = JSON.parse(decryptPassword(data.harborData, encryptKey))
+
+  const [, protocol, harborUrl] = harborData.url.match(
+    /^(https?:\/\/)?([\s\S]+)/
+  )
+
+  if (!harborUrl || pathRule.test(harborUrl)) {
+    ctx.throw(400, 'Invalid harbor url')
+    return
+  }
+
+  if (requestUrl === 'search') {
+    path = `${protocol}${harborUrl}/api/v2.0/search`
+  } else if (requestUrl === 'artifacts') {
+    // the rule of harbor project name and repository name
+    const rule = /^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9]$/
+
+    if (harborData.projectName && harborData.repositoryName) {
+      // get projectName and repositoryName by rule
+      const [projectName] = harborData.projectName.match(rule)
+      const [repositoryName] = harborData.repositoryName.match(rule)
+
+      if (projectName && repositoryName) {
+        path = `${protocol}${harborUrl}/api/v2.0/projects/${projectName}/repositories/${repositoryName}/artifacts`
+      } else {
+        ctx.throw(400, 'Invalid post data')
+      }
+    } else {
+      ctx.throw(400, 'Invalid post data')
+    }
+  } else {
+    ctx.throw(400, 'Invalid request url')
+  }
+
+  const params = data.params
+  const url = `${path}?${qs.stringify(params)}`
+
+  try {
+    const res = await send_harbor_request({
+      params: {
+        isSkipTLS: harborData.isSkipTLS,
+        auth: harborData.auth,
+        protocol,
+      },
+      path: url,
+      headers: omit(headers, NEED_OMIT_HEADERS),
+    })
+
+    let isErrorRes = false
+
+    if (requestUrl === 'search') {
+      const { repository, project, chart } = res
+      // Check whether the response is the requirements
+      isErrorRes = !(
+        Array.isArray(repository) &&
+        Array.isArray(project) &&
+        Array.isArray(chart)
+      )
+    } else {
+      isErrorRes = !Array.isArray(res)
+    }
+
+    if (isErrorRes) {
+      ctx.throw(400, 'bad request')
+    } else {
+      ctx.body = res
+    }
+  } catch (err) {
+    ctx.throw(400, err.message)
+  }
 }
 
 module.exports = {
