@@ -39,7 +39,8 @@ module.exports = {
   // Cluster Gateway > Manage > Edit
   EDIT: 'Düzenle',
   EDIT_TITLE: 'Başlığı Düzenle',
-  // Cluster Gateway > Manage > Disable
+  // Cluster Gateway > Manage > Update
+  UPDATE: 'Update',
   // Project Gateways
   PROJECT_GATEWAY_PL: 'Proje Ağ Geçidi',
   PROJECT_GATEWAY_NOT_ENABLED: 'Proje Ağ Geçidi Etkin Değil',
