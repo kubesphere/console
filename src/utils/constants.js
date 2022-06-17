@@ -89,7 +89,7 @@ export const CD_WEATHER_STATUS = [
 
 export const CD_SYNC_STATUS = [
   { text: 'SYNCED', value: 'Synced' },
-  { text: 'OUT_OF_SYNC', value: 'OutOfSync' },
+  { text: 'OUTOFSYNC', value: 'OutOfSync' },
   { text: 'UNKNOWN', value: 'Unknown' },
 ]
 
