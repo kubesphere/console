@@ -39,7 +39,8 @@ module.exports = {
   // Cluster Gateway > Manage > Edit
   EDIT: '編輯',
   EDIT_TITLE: '編輯 {title}',
-  // Cluster Gateway > Manage > Disable
+  // Cluster Gateway > Manage > Update
+  UPDATE: 'Update',
   // Project Gateways
   PROJECT_GATEWAY_PL: '項目網關',
   PROJECT_GATEWAY_NOT_ENABLED: '項目網關 未開啟',
