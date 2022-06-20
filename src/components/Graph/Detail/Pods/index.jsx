@@ -115,7 +115,7 @@ export default class Pods extends React.Component {
                   </strong>
                 </p>
                 <div className={styles.version}>
-                  <span>version</span> {get(workload, 'labels.version')}
+                  <span>{t('VERSION')}</span> {get(workload, 'labels.version')}
                 </div>
               </div>
             </div>

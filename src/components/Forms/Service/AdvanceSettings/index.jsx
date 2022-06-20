@@ -109,8 +109,8 @@ export default class AdvancedSettings extends React.Component {
           </Form.Group>
         )}
         <Form.Group
-          label={t('STICKY_SESSION')}
-          desc={t('STICKY_SESSION_DESC')}
+          label={t('SESSION_PERSISTENCE')}
+          desc={t('SESSION_PERSISTENCE_DESC')}
           onChange={this.handleSessionAffinityChange}
           checkable
         >

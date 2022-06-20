@@ -54,10 +54,11 @@ export default class Item extends React.Component {
             <strong onClick={this.handleLinkClick}>{data.name}</strong>
           </Link>
           <p>
-            {t('Updated at')}{' '}
-            {getLocalTime(
-              get(data, 'status.startTime') || get(data, 'createTime')
-            ).format(`YYYY-MM-DD HH:mm:ss`)}
+            {t('UPDATED_AT_VALUE_SCAP', {
+              value: getLocalTime(
+                get(data, 'status.startTime') || get(data, 'createTime')
+              ).format(`YYYY-MM-DD HH:mm:ss`),
+            })}
           </p>
         </div>
       </div>

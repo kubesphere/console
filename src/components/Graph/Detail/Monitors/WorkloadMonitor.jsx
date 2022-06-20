@@ -138,8 +138,8 @@ export default class Monitors extends React.Component {
     )
 
     return getAreaChartOps({
-      title: 'traffic',
-      legend: ['Success', 'All'],
+      title: 'TRAFFIC',
+      legend: ['SUCCESSFUL', 'ALL'],
       areaColors: ['#329dce', '#d8dee5'],
       data: [{ values: request_success_count }, { values: request_count }],
       unit: 'RPS',
@@ -164,8 +164,8 @@ export default class Monitors extends React.Component {
     )
 
     return getAreaChartOps({
-      title: 'traffic',
-      legend: ['Success', 'All'],
+      title: 'TRAFFIC',
+      legend: ['SUCCESSFUL', 'ALL'],
       areaColors: ['#329dce', '#d8dee5'],
       data: [{ values: request_success_count }, { values: request_count }],
       unit: 'RPS',
@@ -187,8 +187,8 @@ export default class Monitors extends React.Component {
     }
 
     return getAreaChartOps({
-      title: 'bandwith',
-      legend: ['Send', 'Receive'],
+      title: 'BANDWIDTH',
+      legend: ['SENT', 'RECEIVED'],
       data: [{ values: sent }, { values: received }],
       unit: 'B/s',
     })
@@ -213,8 +213,8 @@ export default class Monitors extends React.Component {
     }
 
     return getAreaChartOps({
-      title: 'bandwith',
-      legend: ['Send', 'Receive'],
+      title: 'BANDWIDTH',
+      legend: ['SENT', 'RECEIVED'],
       data: [{ values: sent }, { values: received }],
       unit: 'B/s',
     })
@@ -247,19 +247,20 @@ export default class Monitors extends React.Component {
 
     return [
       {
-        title: 'Traffic',
+        title: 'TRAFFIC',
         data: request_count.toFixed(2),
         unit: 'RPS',
         icon: 'changing-over',
       },
       {
-        title: 'Success rate',
+        title: 'SUCCESS_RATE',
+        desc: 'SUCCESS_RATE_SCAP',
         data: request_success_rate.toFixed(2),
         icon: 'check',
         unit: '%',
       },
       {
-        title: 'Duration',
+        title: 'DURATION',
         data: request_duration.toFixed(2),
         icon: 'timed-task',
         unit: 'ms',
@@ -294,19 +295,20 @@ export default class Monitors extends React.Component {
 
     return [
       {
-        title: 'Traffic',
+        title: 'TRAFFIC',
         data: request_count.toFixed(2),
         unit: 'RPS',
         icon: 'changing-over',
       },
       {
-        title: 'Success rate',
+        title: 'SUCCESS_RATE',
+        desc: 'SUCCESS_RATE_SCAP',
         data: request_success_rate.toFixed(2),
         icon: 'check',
         unit: '%',
       },
       {
-        title: 'Duration',
+        title: 'DURATION',
         data: request_duration.toFixed(2),
         icon: 'timed-task',
         unit: 'ms',
@@ -350,13 +352,13 @@ export default class Monitors extends React.Component {
     return (
       <>
         <div className={styles.title}>
-          {t('HTTP - Inbound Traffic')} {this.renderWorkloadSelect()}
+          {t('HTTP_INBOUND_TRAFFIC')} {this.renderWorkloadSelect()}
         </div>
         <TrafficCard metrics={this.trafficInMetrics} />
         <div className="margin-b8" />
         <Chart {...this.requestInMetrics} height={150} />
         <div className={styles.title}>
-          {t('HTTP - Outbound Traffic')} {this.renderWorkloadSelect()}
+          {t('HTTP_OUTBOUND_TRAFFIC')} {this.renderWorkloadSelect()}
         </div>
         <TrafficCard metrics={this.trafficOutMetrics} />
         <div className="margin-b8" />

@@ -3,6 +3,13 @@
 .alert {
   min-width: auto;
   margin-top: 12px;
+  :global {
+    .alert-message {
+      & > span {
+        word-break: keep-all;
+      }
+    }
+  }
 }
 
 .title {

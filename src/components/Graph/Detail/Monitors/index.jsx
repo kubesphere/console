@@ -35,11 +35,11 @@ export default class Monitors extends React.Component {
   get types() {
     return [
       {
-        label: t('Service'),
+        label: t('SERVICE_PL'),
         value: 'service',
       },
       {
-        label: t('Workload'),
+        label: t('WORKLOAD_PL'),
         value: 'workload',
       },
     ]

@@ -101,7 +101,7 @@ export default class AppDetail extends React.Component {
                 protocol={protocol}
               />
             </CollapseItem>
-            <CollapseItem label={t('Pods')} key="pods">
+            <CollapseItem label={t('POD_PL')} key="pods">
               <Pods detail={data} store={this.props.store} />
             </CollapseItem>
           </Collapse>
