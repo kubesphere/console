@@ -77,14 +77,14 @@ export default class VolumeDetail extends React.Component {
     return this.store.detail.isFedManaged
   }
 
-  get allowClone() {
-    return this.getAllowToDo('storageclass.kubesphere.io/allow-clone')
+  get disableClone() {
+    return this.getDisAllowToDo('storageclass.kubesphere.io/allow-clone')
   }
 
-  get allowSnapshot() {
-    const disable = compareVersion(`${this.ksVersion}`, 'v3.3') >= 0
+  get disableSnapshot() {
     return (
-      disable || this.getAllowToDo('storageclass.kubesphere.io/allow-snapshot')
+      compareVersion(`${this.ksVersion}`, 'v3.3') < 0 ||
+      this.getDisAllowToDo('storageclass.kubesphere.io/allow-snapshot')
     )
   }
 
@@ -94,7 +94,7 @@ export default class VolumeDetail extends React.Component {
     return isPending ? true : !value
   }
 
-  getAllowToDo = key => {
+  getDisAllowToDo = key => {
     try {
       const value = toJS(this.storageclass).detail.annotations[key]
       const isPending = this.store.detail.phase === 'Pending'
@@ -148,7 +148,7 @@ export default class VolumeDetail extends React.Component {
       text: t('CLONE'),
       icon: 'copy',
       action: 'create',
-      disabled: this.allowClone,
+      disabled: this.disableClone,
       onClick: () => {
         this.trigger('volume.clone', {})
       },
@@ -159,7 +159,7 @@ export default class VolumeDetail extends React.Component {
       text: t('CREATE_SNAPSHOT'),
       icon: 'copy',
       action: 'create',
-      disabled: this.allowSnapshot,
+      disabled: this.disableSnapshot,
       onClick: () => {
         this.trigger('volume.create.snapshot', {
           detail: this.store.detail,

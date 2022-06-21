@@ -41,8 +41,6 @@ const sliderSettings = {
   unit: 'Gi',
 }
 
-const NumberReg = /^[0-9]+(\.[0-9]{0,})?/g
-
 @observer
 export default class StorageClassAutoResizerModal extends React.Component {
   static propTypes = {
@@ -99,7 +97,7 @@ export default class StorageClassAutoResizerModal extends React.Component {
   }
 
   NumberEndDot = num => {
-    const getNumber = NumberReg.exec(num) ?? []
+    const getNumber = /^[0-9]+(\.[0-9]{0,})?/g.exec(num) ?? []
     return endsWith(getNumber[0], '.') ? num.split('.').join('') : num
   }
 
@@ -140,7 +138,9 @@ export default class StorageClassAutoResizerModal extends React.Component {
   handleLimitChange = val => {
     const { resize } = this.state
     const { unit } = sliderSettings
-    const value = NumberReg.test(val) ? `${trim(val)}${unit}` : '10000Gi'
+    const value = /^[0-9]+(\.[0-9]{0,})?/g.test(val)
+      ? `${trim(val)}${unit}`
+      : '10000Gi'
     this.setState({
       resize: {
         ...resize,

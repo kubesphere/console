@@ -80,7 +80,7 @@ export default class Service extends Component {
               </div>
             </div>
             <div className={styles.footer}>
-              {t(internalIP.toUpperCase()) || label}
+              {internalIP ? t(internalIP.toUpperCase()) : label}
             </div>
           </div>
         </foreignObject>
