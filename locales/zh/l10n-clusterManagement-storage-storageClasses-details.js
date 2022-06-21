@@ -50,6 +50,9 @@ module.exports = {
   RESTART_WORKLOAD_AUTOMATICALLY_DESC: '该系统自动检查卷状态，以确定是否需要重新启动工作负载。',
   RESTART_WORKLOAD_AUTOMATICALLY_TIP: '如果到达超时时间时卷容量仍未扩展成功，系统将在工作负载上添加“restart.kubesphere.io/skip”注解使工作负载不再被重启。如需再次为工作负载启用自动重启功能，您需要在工作负载上手动删除该注解。',
   // More > Delete
-  // Volumes
+  // Persistent Volume Claims > Persistent Volume Claims
+  MAXIMUM_SIZE_SCAP: '最大容量',
+  VALUE_TIMEOUT: '{value}s（超时时间）',
+  // Persistent Volume Claims > Persistent Volume Claims
   PVC_COUNT: '持久卷声明数量'
 };
