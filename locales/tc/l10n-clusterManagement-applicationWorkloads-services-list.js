@@ -56,9 +56,9 @@ module.exports = {
   // List > Create > Service Settings > Workload Selector > View Details
   TOTAL_WORKLOADS_VALUE: '工作負載總數：{count}',
   // List > Create > Advanced Settings
-  STICKY_SESSION: '會話保持',
+  SESSION_PERSISTENCE: 'Session Persistence',
   MAXIMUM_STICKINESS_DURATION: '最大會話保持時間（s）',
-  STICKY_SESSION_DESC: '設置系統在指定的時間内將同一個會話中来自同一個用戶端的請求全部轉發給同一個容器組。',
+  SESSION_PERSISTENCE_DESC: 'Set the system to forward all requests from the same client to the same pod within a specified duration.',
   SERVICE_EXTERNAL_ACCESS_DESC: '設置從集群外訪問服務的方式。',
   ACCESS_NODEPORT_TIP: '通過集群節點的對應通訊埠來訪問服務。',
   ACCESS_LOADBALANCER_TIP: '通過負載平衡器來訪問服務。',
