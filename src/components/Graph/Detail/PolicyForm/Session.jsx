@@ -115,12 +115,12 @@ export default class Session extends React.Component {
     if (protocol === 'http') {
       return [
         {
-          label: t('Hash based on a specific HTTP header.'),
+          label: t('HASH_BASED_ON_HTTP_HEADER'),
           value: 'httpHeaderName',
         },
-        { label: t('Hash based on HTTP cookie.'), value: 'httpCookie' },
+        { label: t('HASH_BASED_ON_HTTP_COOKIE'), value: 'httpCookie' },
         {
-          label: t('Hash based on the source IP address.'),
+          label: t('HASH_BASED_ON_SOURCE_IP_ADDRESS'),
           value: 'useSourceIp',
         },
       ]
@@ -128,7 +128,7 @@ export default class Session extends React.Component {
 
     return [
       {
-        label: t('Hash based on the source IP address.'),
+        label: t('HASH_BASED_ON_SOURCE_IP_ADDRESS'),
         value: 'useSourceIp',
       },
     ]
@@ -146,17 +146,17 @@ export default class Session extends React.Component {
         />
         {type === 'httpHeaderName' && (
           <>
-            <div className="margin-t12">{t('Based on HTTP header')}</div>
+            <div className="margin-t12">{t('HTTP_HEADER')}</div>
             <Input value={value} onChange={this.handleValueChange} />
           </>
         )}
         {type === 'httpCookie' && (
           <>
-            <div className="margin-t12">{t('Based on HTTP cookie')}</div>
+            <div className="margin-t12">{t('HTTP_COOKIE')}</div>
             <Input
               value={value}
               onChange={this.handleValueChange}
-              placeholder="key1=val1; key2=val2"
+              placeholder="key1=value1; key2=value2"
             />
           </>
         )}

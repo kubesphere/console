@@ -185,7 +185,7 @@ export default class PolicyForm extends React.Component {
       isEmpty(value) ||
       Object.values(value).some(item => isString(item) && !item)
     ) {
-      return callback({ message: t('Please input value'), field: rule.field })
+      return callback({ message: t('PARAM_REQUIRED'), field: rule.field })
     }
 
     callback()
@@ -196,16 +196,16 @@ export default class PolicyForm extends React.Component {
 
     return (
       <>
-        <div className={styles.title}>{t('Load balance algorithm')}</div>
+        <div className={styles.title}>{t('TRAFFIC_POLICIES')}</div>
         <RadioGroup
           wrapClassName="radio-group-button margin-t12"
-          buttonWidth={148}
+          buttonWidth={165}
           value={mode}
           onChange={this.handleModeChange}
           size="small"
         >
-          <RadioButton value="lb">{t('Load balance')}</RadioButton>
-          <RadioButton value="session">{t('Session retention')}</RadioButton>
+          <RadioButton value="lb">{t('LOAD_BALANCING')}</RadioButton>
+          <RadioButton value="session">{t('SESSION_PERSISTENCE')}</RadioButton>
         </RadioGroup>
         {mode === 'lb' && this.renderLBOptions()}
         {mode === 'session' && this.renderSessionOptions()}
@@ -218,12 +218,12 @@ export default class PolicyForm extends React.Component {
 
     const title = (
       <div className={styles.title}>
-        {t('Connection pool management')}
+        {t('CONNECTION_POOL')}
         <Toggle
           checked={showPoolForm}
           onChange={this.handlePoolToggle}
-          onText={t('On')}
-          offText={t('Off')}
+          onText={t('ON')}
+          offText={t('OFF')}
         />
       </div>
     )
@@ -240,10 +240,8 @@ export default class PolicyForm extends React.Component {
             <>
               <Form.Item
                 className="margin-t12"
-                label={t('Max number of connections')}
-                desc={t(
-                  'The maximum number of HTTP1 or TCP connections to the target host.'
-                )}
+                label={t('MAXIMUM_CONNECTIONS')}
+                desc={t('MAXIMUM_CONNECTIONS_DESC')}
               >
                 <NumberInput
                   name="spec.template.spec.trafficPolicy.connectionPool.tcp.maxConnections"
@@ -251,8 +249,8 @@ export default class PolicyForm extends React.Component {
                 />
               </Form.Item>
               <Form.Item
-                label={t('Connection timeout')}
-                desc={t('TCP connection timeout.')}
+                label={t('CONNECTION_TIMEOUT')}
+                desc={t('CONNECTION_TIMEOUT_DESC')}
               >
                 <NumberInput
                   name="spec.template.spec.trafficPolicy.connectionPool.tcp.connectTimeout"
@@ -276,10 +274,8 @@ export default class PolicyForm extends React.Component {
           <>
             <Form.Item
               className="margin-t12"
-              label={t('Max number of connections')}
-              desc={t(
-                'The maximum number of HTTP1 or TCP connections to the target host.'
-              )}
+              label={t('MAXIMUM_CONNECTIONS')}
+              desc={t('MAXIMUM_CONNECTIONS_DESC')}
             >
               <NumberInput
                 name="spec.template.spec.trafficPolicy.connectionPool.tcp.maxConnections"
@@ -287,10 +283,8 @@ export default class PolicyForm extends React.Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('Max number of requests per connection')}
-              desc={t(
-                'If the maximum number of requests in the backend connection is set to 1, the keep alive feature is disabled.'
-              )}
+              label={t('MAXIMUM_REQUESTS_PER_CONNECTION')}
+              desc={t('MAXIMUM_REQUESTS_PER_CONNECTION_DESC')}
             >
               <NumberInput
                 name="spec.template.spec.trafficPolicy.connectionPool.http.maxRequestsPerConnection"
@@ -299,10 +293,8 @@ export default class PolicyForm extends React.Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('Max request retries')}
-              desc={t(
-                'The maximum number of retries to the target host within the specified time.'
-              )}
+              label={t('TRAFFIC_MONITORING_MAXIMUM_RETRIES')}
+              desc={t('TRAFFIC_MONITORING_MAXIMUM_RETRIES_DESC')}
             >
               <NumberInput
                 name="spec.template.spec.trafficPolicy.connectionPool.http.maxRetries"
@@ -311,8 +303,8 @@ export default class PolicyForm extends React.Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('Connection timeout')}
-              desc={t('TCP connection timeout.')}
+              label={t('CONNECTION_TIMEOUT')}
+              desc={t('CONNECTION_TIMEOUT_DESC')}
             >
               <NumberInput
                 name="spec.template.spec.trafficPolicy.connectionPool.tcp.connectTimeout"
@@ -321,14 +313,14 @@ export default class PolicyForm extends React.Component {
                 showUnit
               />
             </Form.Item>
-            <Form.Item label={t('Maximum requests')}>
+            <Form.Item label={t('MAXIMUM_REQUESTS')}>
               <NumberInput
                 name="spec.template.spec.trafficPolicy.connectionPool.http.http2MaxRequests"
                 defaultValue={1024}
                 min={0}
               />
             </Form.Item>
-            <Form.Item label={t('Maximum pending requests')}>
+            <Form.Item label={t('MAXIMUM_PENDING_REQUESTS')}>
               <NumberInput
                 name="spec.template.spec.trafficPolicy.connectionPool.http.http1MaxPendingRequests"
                 defaultValue={1024}
@@ -353,22 +345,20 @@ export default class PolicyForm extends React.Component {
     return (
       <>
         <div className={styles.title}>
-          {t('Circuit Breaker')}
+          {t('CIRCUIT_BREAKER')}
           <Toggle
             checked={showCircuitForm}
             onChange={this.handleCircuitToggle}
-            onText={t('On')}
-            offText={t('Off')}
+            onText={t('ON')}
+            offText={t('OFF')}
           />
         </div>
         {showCircuitForm ? (
           <>
             <Form.Item
               className="margin-t12"
-              label={t('Continuous error response (5xx) number')}
-              desc={t(
-                'The number of consecutive 5xx errors in one inspection cycle'
-              )}
+              label={t('CONSECUTIVE_FIVEXX_ERRORS')}
+              desc={t('CONSECUTIVE_FIVEXX_ERRORS_DESC')}
             >
               <NumberInput
                 name="spec.template.spec.trafficPolicy.outlierDetection.consecutiveErrors"
@@ -377,10 +367,8 @@ export default class PolicyForm extends React.Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('Inspection period (unit: s)')}
-              desc={t(
-                'The response code will be filtered in the inspection cycle.'
-              )}
+              label={t('INSPECTION_INTERVAL_S')}
+              desc={t('INSPECTION_INTERVAL_S_DESC')}
             >
               <NumberInput
                 name="spec.template.spec.trafficPolicy.outlierDetection.interval"
@@ -391,8 +379,8 @@ export default class PolicyForm extends React.Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('Pod isolation ratio (unit: %)')}
-              desc={t('POD_ISOLATION_RATIO_DESC')}
+              label={t('MAXIUM_EJECTION_RATIO')}
+              desc={t('MAXIUM_EJECTION_RATIO_DESC')}
             >
               <NumberInput
                 name="spec.template.spec.trafficPolicy.outlierDetection.maxEjectionPercent"
@@ -401,8 +389,8 @@ export default class PolicyForm extends React.Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('Base ejection time (s)')}
-              desc={t('BASE_EJECTION_TIME_DESC')}
+              label={t('BASE_EJECTION_TIME_S')}
+              desc={t('BASE_EJECTION_TIME_S_DESC')}
             >
               <NumberInput
                 name="spec.template.spec.trafficPolicy.outlierDetection.baseEjectionTime"
@@ -414,7 +402,7 @@ export default class PolicyForm extends React.Component {
             </Form.Item>
           </>
         ) : (
-          <div className={styles.tip}>{t('CIRCUIT_DESC')}</div>
+          <div className={styles.tip}>{t('CIRCUIT_BREAKER_DESC')}</div>
         )}
       </>
     )
@@ -423,7 +411,7 @@ export default class PolicyForm extends React.Component {
   renderLBOptions() {
     return (
       <div className="margin-t12">
-        <Form.Item label={t('Load balance algorithm')}>
+        <Form.Item label={t('LOAD_BALANCING_ALGORITHM')}>
           <Select
             name="spec.template.spec.trafficPolicy.loadBalancer.simple"
             options={this.getLBOptions()}

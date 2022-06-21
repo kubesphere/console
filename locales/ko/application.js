@@ -38,24 +38,16 @@ module.exports = {
   'Application Icon': 'App Icon',
   'Application Route': 'App Route',
   APP_VERSION: 'App Version',
-  'Base ejection time (s)': 'Base ejection time (s)',
-  'Based on HTTP cookie': 'Based on HTTP cookie',
-  'Based on HTTP header': 'Based on HTTP header',
   'Build an app by app template': 'Build an app by app template',
   'Build an app by services': 'Build an app by services',
   'Called Depth': 'Called Depth',
   'Called Services': 'Called Services',
   'Choose existing services or create new service components to build an app':
     'Choose existing services or create new service components to build an app',
-  'Circuit Breaker': 'Circuit Breaker',
   'Cluster Select': 'Cluster Select',
   'Cluster Selection': 'Cluster Selection',
   'Component Version': 'Component Version',
   'Composing App': 'Composing App',
-  'Connection pool management': 'Connection pool management',
-  'Connection timeout': 'Connection timeout',
-  'Continuous error response (5xx) number':
-    'Continuous error response (5xx) number',
   'Create Application by Service': 'Create App by Service',
   'Current Version': 'Current Version',
   DEPLOY: 'Deploy',
@@ -65,25 +57,11 @@ module.exports = {
   'Deploy sample app Bookinfo': 'Deploy sample app Bookinfo',
   'From third party Helm': 'From third party Helm',
 
-  'Hash based on a specific HTTP header.':
-    'Hash based on a specific HTTP header.',
-  'Hash based on HTTP cookie.': 'Hash based on HTTP cookie.',
-  'Hash based on the source IP address.':
-    'Hash based on the source IP address.',
   'How to use Application Governance': 'How do I use Application Governance?',
-  'If the maximum number of requests in the backend connection is set to 1, the keep alive feature is disabled.':
-    'If the maximum number of requests in the backend connection is set to 1, the keep alive feature is disabled.',
   'If you need to access applications by application route, add routing rules':
     'If you need to access applications by application route, add routing rules',
-  'Inspection period (unit: s)': 'Inspection period (unit: s)',
-  'Load balance algorithm': 'Load balance algorithm',
   Log: 'Log',
-  'Max number of connections': 'Max number of connections',
-  'Max number of requests per connection':
-    'Max number of requests per connection',
   'Max request retries': 'Max request retries',
-  'Maximum pending requests': 'Maximum pending requests',
-  'Maximum requests': 'Maximum requests',
   METHOD: 'Method',
   'No Components': 'No Components',
   'No result found': 'No result found',
@@ -92,7 +70,6 @@ module.exports = {
   'Please finish the sub form first': 'Please finish the sub form first',
   'Please input an application name': 'Please input an application name',
   'Please input component version': 'Please input component version',
-  'Pod isolation ratio (unit: %)': 'Pod isolation ratio (unit: %)',
   Process: 'Process',
   Receive: 'Receive',
   Rollback: 'Rollback',
@@ -108,29 +85,13 @@ module.exports = {
   'Session retention': 'Session retention',
   'Success rate': 'Success rate',
   Tags: 'Tags',
-  'TCP connection timeout.': 'TCP connection timeout.',
-  'The maximum number of HTTP1 or TCP connections to the target host.':
-    'The maximum number of HTTP1 or TCP connections to the target host.',
-  'The maximum number of retries to the target host within the specified time.':
-    'The maximum number of retries to the target host within the specified time.',
-  'The number of consecutive 5xx errors in one inspection cycle':
-    'The number of consecutive 5xx errors in one inspection cycle',
-  'The response code will be filtered in the inspection cycle.':
-    'The response code will be filtered in the inspection cycle.',
   TOTAL_COLLECTIONS: 'Total {num} receivers',
   Traffic: 'Traffic',
-  'Traffic (requests per second)': 'Traffic (requests per second)',
   'Traffic Monitoring': 'Traffic Monitoring',
   Upgrade: 'Upgrade',
   'Workload Type': 'Workload Type',
 
   TOTAL_APPS: 'Total {num} applications',
-
-  LB_ALG_DESC:
-    'Support standard load balancing algorithms</br>ROUND_ROBIN：Polling, the default load balancing algorithm.</br>LEAST_CONN：Randomly select two healthy hosts, and then select one host with fewer links from the selected two hosts.</br>RANDOM：Pick one randomly from all healthy hosts.',
-  LB_ROUND_ROBIN: 'ROUND_ROBIN',
-  LB_LEAST_CONN: 'LEAST_CONN',
-  LB_RANDOM: 'RANDOM',
 
   APP_WORKLOAD_TYPE_DESC:
     'Support stateless services (deployment) and stateful services (statefulset)',
@@ -138,15 +99,6 @@ module.exports = {
   TYPE_SERVICE_DEPLOYMENT: 'Type: stateless service (deployment)',
   TYPE_SERVICE_STATEFULSET: 'Type: stateful service (statefulset)',
 
-  CONNECTION_POOL_TIP:
-    'A fixed number of connection objects will be created for the application and stored in the connection pool for reuse. The existing pool is available for each access, and each connection object will be returned to the pool after use.',
-
-  POD_ISOLATION_RATIO_DESC:
-    'Maximum % of pod for the upstream service that can be ejected. It uses up rounding, when set to 13% it will isolate up to 2 instances if 10 instances exist.',
-  BASE_EJECTION_TIME_DESC:
-    'Minimum ejection duration. A host will remain ejected for a period equal to the product of minimum ejection duration and the number of times the host has been ejected.',
-  CIRCUIT_DESC:
-    'The circuit breaking is a microservice connection protection mechanism that addresses the avalanche effect. When a microservice of the fan-out connection is unavailable or the response time is too long, the service will be downgraded, and the call of the microservice of the node will be broken, and the error response is quickly returned. After detectin the microservice response is normal, the connection will be resumed. ',
 
   'Last {hour} hour': 'Last {hour} hour',
   'Last {hour} hours': 'Last {hour} hours',

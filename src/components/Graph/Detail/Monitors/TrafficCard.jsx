@@ -39,7 +39,7 @@ export default class TrafficCard extends React.Component {
           <div key={metric.title}>
             <div className="h5">
               {isNaN(metric.data)
-                ? t('No Data')
+                ? t('NO_DATA')
                 : `${metric.data} ${metric.unit}`}
             </div>
             <p>

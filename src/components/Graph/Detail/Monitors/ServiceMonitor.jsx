@@ -120,8 +120,8 @@ export default class Monitors extends React.Component {
     )
 
     return getAreaChartOps({
-      title: 'traffic',
-      legend: ['Success', 'All'],
+      title: 'TRAFFIC',
+      legend: ['SUCCESSFUL', 'ALL'],
       areaColors: ['#329dce', '#d8dee5'],
       data: [{ values: request_success_count }, { values: request_count }],
       unit: 'RPS',
@@ -143,8 +143,8 @@ export default class Monitors extends React.Component {
     }
 
     return getAreaChartOps({
-      title: 'bandwith',
-      legend: ['Send', 'Receive'],
+      title: 'BANDWIDTH',
+      legend: ['SENT', 'RECEIVED'],
       data: [{ values: sent }, { values: received }],
       unit: 'B/s',
     })
@@ -177,19 +177,19 @@ export default class Monitors extends React.Component {
 
     return [
       {
-        title: 'Traffic',
+        title: 'TRAFFIC',
         data: request_count.toFixed(2),
         unit: 'RPS',
         icon: 'changing-over',
       },
       {
-        title: 'Success rate',
+        title: 'SUCCESS_RATE',
         data: request_success_rate.toFixed(2),
         icon: 'check',
         unit: '%',
       },
       {
-        title: 'Duration',
+        title: 'DURATION',
         data: request_duration.toFixed(2),
         icon: 'timed-task',
         unit: 'ms',
@@ -212,7 +212,7 @@ export default class Monitors extends React.Component {
     // for http and grpc
     return (
       <>
-        <div className={styles.title}>{t('Traffic (requests per second)')}</div>
+        <div className={styles.title}>{t('TRAFFIC_RPS')}</div>
         <TrafficCard metrics={this.trafficInMetrics} />
         <div className="margin-b8" />
         <Chart {...this.requestInMetrics} height={150} />
