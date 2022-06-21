@@ -56,9 +56,9 @@ module.exports = {
   // List > Create > Service Settings > Workload Selector > View Details
   TOTAL_WORKLOADS_VALUE: 'Toplam İş Yükü: {count}',
   // List > Create > Advanced Settings
-  STICKY_SESSION: 'Sabit Oturum',
+  SESSION_PERSISTENCE: 'Session Persistence',
   MAXIMUM_STICKINESS_DURATION: 'Maksimum Stickness Süresi (ler)',
-  STICKY_SESSION_DESC: 'Sistemi, aynı istemciden gelen tüm istekleri belirli bir süre içinde aynı bölmeye iletecek şekilde ayarlayın.',
+  SESSION_PERSISTENCE_DESC: 'Set the system to forward all requests from the same client to the same pod within a specified duration.',
   SERVICE_EXTERNAL_ACCESS_DESC: 'Hizmete kümenin dışından erişme yöntemini ayarlayın.',
   ACCESS_NODEPORT_TIP: 'Hizmete erişmek için küme düğümlerinin bir bağlantı noktasını kullanın.',
   ACCESS_LOADBALANCER_TIP: 'Hizmete erişmek için bir yük dengeleyici kullanın.',

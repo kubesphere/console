@@ -56,9 +56,9 @@ module.exports = {
   // List > Create > Service Settings > Workload Selector > View Details
   TOTAL_WORKLOADS_VALUE: 'Total Workloads: { count }',
   // List > Create > Advanced Settings
-  STICKY_SESSION: 'Sticky Session',
+  SESSION_PERSISTENCE: 'Session Persistence',
   MAXIMUM_STICKINESS_DURATION: 'Tiempo máximo de sesión (s)',
-  STICKY_SESSION_DESC: 'Set the system to forward all requests from the same client to the same backend within a specified duration.',
+  SESSION_PERSISTENCE_DESC: 'Set the system to forward all requests from the same client to the same pod within a specified duration.',
   SERVICE_EXTERNAL_ACCESS_DESC: 'Exponga el servicio fuera del clúster.',
   ACCESS_NODEPORT_TIP: 'Use a port of the cluster nodes to access the Service.',
   ACCESS_LOADBALANCER_TIP: 'Use a load balancer to access the Service.',
