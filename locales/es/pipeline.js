@@ -182,7 +182,6 @@ module.exports = {
   'This name has been used.': 'Este nombre ha sido usado.',
   'Time Used': 'Tiempo utilizado',
   Timeout: 'Se acabó el tiempo',
-  TIMEOUT_VALUE: 'Se acabó el tiempo: {value}',
   timeout: 'se acabó el tiempo',
   'Timeout after no activity in logs for this block':
     'Tiempo de espera agotado tras inactividad en los logs deregistro de este bloque',

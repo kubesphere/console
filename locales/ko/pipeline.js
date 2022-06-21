@@ -219,7 +219,6 @@ module.exports = {
   'This name has been used.': 'This name has been used.',
   'Time Used': 'Time Used',
   Timeout: 'Timeout',
-  TIMEOUT_VALUE: 'Timeout: {value}',
   timeout: 'timeout',
   'Timeout after no activity in logs for this block':
     'Timeout after no activity in logs for this block',

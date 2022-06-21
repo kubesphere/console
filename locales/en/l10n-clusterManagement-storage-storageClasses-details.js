@@ -51,6 +51,9 @@ module.exports = {
   RESTART_WORKLOAD_AUTOMATICALLY_DESC: 'The system automatically checks volume status to determine whether the workload needs to be restarted.',
   RESTART_WORKLOAD_AUTOMATICALLY_TIP: 'If the volume is not expanded successfully when the timeout period expires, the system will add the "restart.kubesphere.io/skip" annotation to the workload so that the workload is not restarted any more. To enable the automatic restart function for the workload again, you need to manually delete the annotation on the workload.',
   // More > Delete
-  // Volumes
+  // Persistent Volume Claims > Persistent Volume Claims
+  MAXIMUM_SIZE_SCAP: 'Maximum size',
+  VALUE_TIMEOUT: '{value}s (timeout)',
+  // Persistent Volume Claims > Persistent Volume Claims
   PVC_COUNT: 'PVCs',
 }
