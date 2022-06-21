@@ -166,7 +166,6 @@ module.exports = {
   'This name has been used.': '此名称已被使用',
   'Time Used': '用时',
   Timeout: '超时',
-  TIMEOUT_VALUE: '超时：{value}',
   timeout: '超时',
   'Timeout after no activity in logs for this block':
     '此区块代码无日志输出后开始计算超时',

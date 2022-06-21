@@ -145,15 +145,15 @@ export default class Volumes extends React.Component {
     const increase = get(annotations, 'resize.kubesphere.io/increase', '10%')
     const maxTime = get(annotations, 'restart.kubesphere.io/max-time', '300')
     const maxTimeItem = {
-      title: `${maxTime} s(${t('timeout')})`,
+      title: t('VALUE_TIMEOUT', { value: maxTime }),
       src: '/assets/history_duotone.svg',
-      des: t('AUTOMATIC_RESTART_WORKLOAD'),
+      des: t('RESTART_WORKLOAD_AUTOMATICALLY'),
     }
     const itemArr = [
       {
         iconName: 'storage',
         title: storageLimit,
-        des: t('MAX_SIZE'),
+        des: t('MAXIMUM_SIZE_SCAP'),
       },
       {
         src: '/assets/chart.svg',
@@ -163,7 +163,7 @@ export default class Volumes extends React.Component {
       {
         iconName: 'stretch',
         title: increase,
-        des: t('INCREASE'),
+        des: t('INCREMENT'),
       },
     ]
 
@@ -180,8 +180,8 @@ export default class Volumes extends React.Component {
               className={styles.icon}
             ></img>
             <div>
-              <span className={styles.title}>{t('SET_AUTO_EXPANSION')}</span>
-              <span className={styles.des}>{t('SET_AUTO_EXPANSION_DESC')}</span>
+              <span className={styles.title}>{t('AUTO_EXPANSION')}</span>
+              <span className={styles.des}>{t('AUTO_EXPANSION_DESC')}</span>
             </div>
           </div>
           <div className={styles.bottom}>
