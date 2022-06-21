@@ -49,7 +49,7 @@ module.exports = {
   CONNECTION_POOL_TIP: '为应用程序创建固定数量的连接对象，并将其存储在一个连接池中供重复使用。每次请求都从连接池中获取连接对象，并在使用后将连接对象返还到连接池。',
   MAXIMUM_CONNECTIONS: '最大连接数',
   MAXIMUM_CONNECTIONS_DESC: '目标后端 HTTP1 或 TCP 连接的最大数量。',
-  MAXIMUM_REQUESTS_PER_CONNECTION: '每条连接最大请求数',
+  MAXIMUM_REQUESTS_PER_CONNECTION: '每个连接最大请求数',
   MAXIMUM_REQUESTS_PER_CONNECTION_DESC: '后端每个连接的最大请求数量。',
   TRAFFIC_MONITORING_MAXIMUM_RETRIES: '最大重试次数',
   TRAFFIC_MONITORING_MAXIMUM_RETRIES_DESC: '请求的最大重试次数。',
