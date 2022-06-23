@@ -22,7 +22,7 @@ module.exports = {
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'Alarm mesajları nasıl üretilir?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'Bir kaynak için bir uyarı politikası belirlemeniz gerekir. Uyarı politikasında yapılandırılan ölçüm bir eşiğe ulaştığında uyarı mesajları oluşturulur.',
   // List
-  ALERTING_STATUS: 'Alerting Status',
+  ALERTING_STATUS: 'Uyarı Durumu',
   ALERTING_POLICY_EMPTY_DESC: 'Lütfen bir uyarı politikası oluşturun.',
   ALERT_RULE_INACTIVE: 'İnaktif',
   ALERT_RULE_PENDING: 'Bekliyor',
@@ -44,7 +44,7 @@ module.exports = {
   // List > Create > Rule Settings > Rule Template
   RULE_SETTINGS: 'Kural Ayarları',
   MONITORING_TARGETS: 'Hedefleri İzleme',
-  ACTIVATION_CONDITION: 'Activation Condition',
+  ACTIVATION_CONDITION: 'Aktivasyon koşulu',
   CPU_USAGE_SCAP: 'CPU kullanımı',
   DISK_READ_IOPS: 'Yerel disk okuma IOPS',
   DISK_READ_THROUGHPUT: 'Yerel disk okuma çıktısı',
@@ -57,7 +57,7 @@ module.exports = {
   MEMORY_USAGE_SCAP: 'Hafıza kullanımı',
   DATA_RECEIVE_RATE: 'Ağ verisi alma hızı',
   DATA_SEND_RATE: 'Ağ verisi gönderme hızı',
-  SET_ACTIVATION_CONDITION_DESC: 'Please set an activation condition.',
+  SET_ACTIVATION_CONDITION_DESC: 'Lütfen aktivasyon kodunu girin.',
   ABNORMAL_PODS: 'Anormal Kapsüller',
   POD_USAGE_SCAP: 'Kapsül kullanımı',
   THRESHOLD: 'Eşik',
