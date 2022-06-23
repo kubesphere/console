@@ -29,13 +29,13 @@ module.exports = {
   CREATE_PLATFORM_ROLE: 'Platform Rolü Oluştur',
   // List > Create > Edit Permissions > Cluster Management
   PERMIGROUP_CLUSTERS_MANAGEMENT: 'Küme',
-  PERMISSION_CLUSTERS_VIEW: 'Cluster Viewing',
-  PERMISSION_CLUSTERS_VIEW_DESC: 'View all clusters and cluster resources.',
-  PERMISSION_CLUSTERS_MANAGEMENT: 'Cluster Management',
-  PERMISSION_CLUSTERS_MANAGEMENT_DESC: 'Create clusters, delete clusters, and manage resources in all clusters.',
+  PERMISSION_CLUSTERS_VIEW: 'Kümeleri Görüntüle',
+  PERMISSION_CLUSTERS_VIEW_DESC: 'Tüm küme ve küme kaynaklarını görüntüle.',
+  PERMISSION_CLUSTERS_MANAGEMENT: 'Küme Yönetimi',
+  PERMISSION_CLUSTERS_MANAGEMENT_DESC: 'Kümeler oluşturun, kümeleri silin ve kaynakları yönetin.',
   // List > Create > Edit Permissions > Access Control
   PERMIGROUP_ACCESS_CONTROL: 'Erişim Denetimi',
-  PERMISSION_WORKSPACES_VIEW: 'Workspace Viewing',
+  PERMISSION_WORKSPACES_VIEW: 'Çalışma alanı Görüntüleme',
   PERMISSION_WORKSPACES_VIEW_DESC: 'View workspaces.',
   PERMISSION_WORKSPACES_MANAGEMENT: 'Workspace Management',
   PERMISSION_WORKSPACES_MANAGEMENT_DESC: 'Create, edit, delete, and view workspaces.',
