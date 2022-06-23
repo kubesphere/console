@@ -17,11 +17,11 @@
  */
 module.exports = {
   // Banner
-  CONTINUOUS_DEPLOYMENT_PL: 'Continuous Deployments',
+  CONTINUOUS_DEPLOYMENT_PL: 'Sürekli Dağıtımlar',
   CONTINUOUS_DEPLOYMENT_DESC: 'GitOps\'u kullanarak kaynakları sürekli olarak dağıtmak için sürekli dağıtımları yönetin. ',
   // List
   CONTINUOUS_DEPLOYMENT_EMPTY_DESC: 'Lütfen sürekli bir dağıtım kaynağı oluşturun.',
-  DEGRADED: 'Degraded',
+  DEGRADED: 'Bozulmuş',
   PROGRESSING: 'İlerleme',
   SYNCED: 'Senkronize Edildi',
   MISSING: 'Eksik',
@@ -36,7 +36,7 @@ module.exports = {
   SYNC_STRATEGY_TCAP: 'Senkronizasyon stratejileri',
   AUTO_SYNC_DESC: 'Otomatik olarak belirlenen kurallara göre senkronize edin.',
   MANUAL_SYNC_DESC: 'Özel kurallara göre senkronize edin.',
-  PRUNE_RESOURCES: 'Prune resources',
+  PRUNE_RESOURCES: 'Kaynakları kısıtlama',
   SELF_HEAL: 'Kendini iyileştirme',
   MANIFEST_FILE_PATH: 'Manifest Dosya Yolu',
   MANIFEST_FILE_PATH_DESC: 'Kaynak dosya yolunu ayarlayın. ',
@@ -55,18 +55,18 @@ module.exports = {
   SYNC_RESOURCE: 'Senkronizasyon Kaynağı',
   REVISION: 'Revizyon',
   REVISION_DESC: 'Kod deposunun dalını ve etiketini ayarlayın.',
-  PRUNE: 'Prune',
-  DRY_RUN: 'Dry run',
+  PRUNE: 'Kısıtlama',
+  DRY_RUN: 'Kuru Çalışma',
   APPLY_ONLY: 'Yalnızca uygulama',
   FORCE: 'Kuvvet',
   SYNC_SETTINGS: 'Senkronizasyon Ayarları',
   SKIP_SCHEMA_VALIDATION: 'Şema doğrulamasını atla',
   AUTO_CREATE_PROJECT: 'Otomatik proje oluştur',
-  PRUNE_LAST: 'Prune last',
+  PRUNE_LAST: 'Son Kısıtlama',
   APPLY_OUT_OF_SYNC_ONLY: 'Yalnızca senkronizasyon dışı uygula',
   PRUNE_PROPAGATION_POLICY: 'Budama Yayılma Politikası',
   REPLACE_RESOURCE: 'Kaynağı Değiştir',
   REPLACE_RESOURCE_DESC: 'Zaten varolan dosyaları değiştirin.',
   EMPTY_CD_TITLE: 'Sürekli Dağıtım Bulunamadı',
-  SYNC_TRIGGERED: 'Resource sync was triggered successfully.'
+  SYNC_TRIGGERED: 'Kaynak senkronizasyonu başarıyla tetiklendi.'
 };
