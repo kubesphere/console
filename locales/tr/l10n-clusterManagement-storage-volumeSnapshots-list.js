@@ -17,17 +17,17 @@
  */
 module.exports = {
   // Banner
-  VOLUME_SNAPSHOT: 'Volume Snapshot',
+  VOLUME_SNAPSHOT: 'Birim Anlık Görüntüsü',
   VOLUME_SNAPSHOT_PL: 'Birim Anlık Görüntüsü',
   VOLUME_SNAPSHOT_DESC: 'Birim anlık görüntüsü, bir birimin belirli bir zaman noktasındaki kopyasıdır. Anlık görüntü tarafından önceden doldurulmuş verilerle yeni bir birim sağlamak veya bir birimi anlık görüntü tarafından yakalanan önceki durumuna geri yüklemek için kullanılabilir.',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'What is a volume snapshot class?',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: 'A volume snapshot class defines the storage types used to create a volume snapshot.',
-  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: 'What is a volume snapshot content?',
-  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: 'A volume snapshot content is a resource that represents the content of a volume snapshot.',
-  SELECT_A_VOLUME_DESC: 'Select a persistent volume claim to create a snapshot.',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'Anlık görüntü sınıfı nedir?',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: 'Birim anlık görüntüsü sınıfı, birim anlık görüntüsü oluşturmak için kullanılan depolama türlerini tanımlar.',
+  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: 'Birim anlık görüntü içeriği nedir?',
+  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: 'Birim anlık görüntüsü içeriği, bir birim anlık görüntüsünün içeriğini temsil eden bir kaynaktır.',
+  SELECT_A_VOLUME_DESC: 'Anlık görüntü oluşturmak için kalıcı bir birim talebi seçin.',
   SELECT_VOLUME_SNAPSHOT_CLASS_DESC: 'Belirli bir türde anlık görüntü oluşturmak için bir anlık görüntü sınıfı seçin.',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
+  VOLUME_SNAPSHOT_EMPTY_DESC: 'Lütfen bir bölüm anlık görüntü sınıfı seçiniz.',
   VOLUME_SNAPSHOT_STATUS_CREATING: 'Oluşturuluyor',
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Oluşturulamadı',
   VOLUME_SNAPSHOT_STATUS_READY: 'Başarıyla oluşturuldu',
@@ -39,5 +39,5 @@ module.exports = {
   // List > Delete
   VOLUME_SNAPSHOT_LOW: 'birim Anlık Görüntüsü',
   // List > Create
-  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: 'The storage class of the persistent volume claim does not support snapshot creation. Please select another persistent volume claim.'
+  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: 'Kalıcı birim talebinin depolama sınıfı, anlık görüntü oluşturmayı desteklemiyor. Lütfen başka bir kalıcı hacim talebi seçin.'
 };
