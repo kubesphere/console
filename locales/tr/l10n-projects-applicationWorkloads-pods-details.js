@@ -21,9 +21,9 @@ module.exports = {
   NODE_NAME: 'Düğüm Adı',
   POD_IP_ADDRESS: 'Kapsül İp Adresi',
   // Run Records
-  JOB_UNFINISHED: 'Unfinished',
+  JOB_UNFINISHED: 'Bitmemiş',
   // Resource Status
-  TERMINATED: 'Terminated',
+  TERMINATED: 'Sonlandırılmış',
   // Scheduling Information
   SCHEDULED_TO_NODE: 'Zamanla {value}',
   SCHEDULING_NOT_SUCCESSFUL: 'Zamanlama Başarılı Değil',
