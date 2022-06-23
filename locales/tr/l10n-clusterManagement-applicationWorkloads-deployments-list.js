@@ -29,14 +29,14 @@ module.exports = {
   BASIC_INFORMATION: 'Temel Bilgiler',
   NAME: 'Ad',
   FEDPROJECT_RESOURCE_TIP: 'Çok kümeli bir projede iş yükü kaynakları oluşturmak için çok kümeli projede İş Yükleri sayfasına gidin.',
-  FINISHED: 'Done',
-  NOT_SET: 'To do',
+  FINISHED: 'Tamamlandı',
+  NOT_SET: 'Yapılacak',
   CURRENT: 'Güncel',
   PROJECT: 'Proje',
   // List > Create > Pod Settings
   PREVIOUS: 'Önceki',
   NOTE: 'Not',
-  CREATE_CONFIGMAP_SECRET_DESC: 'If no configmap or secret meets the requirements, you can',
+  CREATE_CONFIGMAP_SECRET_DESC: 'Hiçbir configmap veya secret gereksinimleri karşılamıyorsa, şunları yapabilirsiniz',
   // List > Create > Pod Settings > Add Container > Container Settings
   IMAGE: 'Resim',
   IMAGE_VALUE: 'Resim: {değer}',
@@ -48,7 +48,7 @@ module.exports = {
   SELECT_TYPE: 'Türleri seçin',
   SPECIFY_SUBPATH: 'Alt Yolu Belirtin',
   SPECIFY_SUBPATH_TIP: 'Kapsayıcıya monte edilecek bir birim alt yolu belirtin.',
-  MOUNT_PATH: 'Mount path',
+  MOUNT_PATH: 'Bağlama yolu',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: 'Ağ segmenti',
   AVAILABLE_ADDRESSES: 'Kullanılabilir adresler',
