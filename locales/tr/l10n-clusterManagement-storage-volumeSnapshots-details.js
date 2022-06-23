@@ -18,8 +18,8 @@
 module.exports = {
   // More > Create Volume
   CREATE_VOLUME: 'Birim Oluştur',
-  SNAPSHOT_CLASS_NOT_EXIST_TITLE: 'Volume Snapshot Class Not Found',
-  SNAPSHOT_CLASS_NOT_EXIST: 'The volume snapshot class of the volume snapshot does not exist.',
+  SNAPSHOT_CLASS_NOT_EXIST_TITLE: 'Birim Anlık Görüntü Sınıfı Bulunamadı',
+  SNAPSHOT_CLASS_NOT_EXIST: 'Birim anlık görüntüsünün birim anlık görüntüsü sınıfı mevcut değil.',
   // Details
   // Data Source
   STORAGE_CLASS_SCAP: 'Depolama Sınıfı',
