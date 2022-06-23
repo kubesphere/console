@@ -17,7 +17,7 @@
  */
 module.exports = {
   CLUSTER_MANAGEMENT: 'Küme Yönetimi',
-  CLUSTER_DESC: 'Unified management of multiple clusters and their basic resources, components, and application resources.',
+  CLUSTER_DESC: 'Kümelerin ve onların basit kaynaklarının, bileşenlerin ve uygulama kaynaklarının tek arayüzden yönetimi.',
   ACCESS_CONTROL_DESC: 'Çalışma alanları, kullanıcılar ve rollerin tek arayüzden yönetimi.',
   APP_STORE_MANAGEMENT_DESC: 'Bulut uygulamaların; dağıtım, aktivasyon ve askıya alınmasını da içeren yaşam döngüsünün tek arayüzden yönetimi.',
   PLATFORM_SETTINGS_DESC: 'Temel bilgiler ve bildirim konfigürasyonlarını da içeren özelleştirilmiş platform ayarları.'
