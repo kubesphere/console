@@ -17,14 +17,14 @@
  */
 module.exports = {
   // Banner
-  PERSISTENT_VOLUME: 'Persistent Volume',
-  PERSISTENT_VOLUME_PL: 'Persistent Volumes',
-  PERSISTENT_VOLUME_LOW: 'persistent volume',
+  PERSISTENT_VOLUME: 'Kalıcı Hacim (Volume)',
+  PERSISTENT_VOLUME_PL: 'Kalıcı Hacimler (Volumes)',
+  PERSISTENT_VOLUME_LOW: 'kalıcı hacim(Volume)',
   // List
   PV_STATUS_AVAILABLE: 'Uygun',
-  PV_STATUS_BOUND: 'Bound',
+  PV_STATUS_BOUND: 'Bağlı',
   PV_STATUS_RELEASED: 'Yayınlandı',
   PV_STATUS_FAILED: 'Başarısız',
-  RECYCLING_STRATEGY: 'Recycling Strategy',
-  VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
+  RECYCLING_STRATEGY: 'Geri Dönüşüm Stratejisi',
+  VOLUME_EMPTY_DESC: 'Lütfen kalıcı bir birim talebini bir iş yüküne bağlayın.'
 };
