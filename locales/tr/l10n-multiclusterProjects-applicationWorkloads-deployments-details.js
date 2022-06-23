@@ -22,8 +22,8 @@ module.exports = {
   // More > Edit Settings > Containers
   // More > Edit Settings > Volumes
   PLEASE_USE_RELATIVE_PATH: 'Please use a relative path.',
-  RELATIVE_PATH_NOT_SUPPORT: 'Unsupported relative path format.',
-  MOUNT_PATH_INCORRECT: 'Incorrect mount path.',
+  RELATIVE_PATH_NOT_SUPPORT: 'Desteklenmeyen göreceli  yol biçimi.',
+  MOUNT_PATH_INCORRECT: 'Yanlış bağlama yolu.',
   // More > Edit Settings > Pod Scheduling Rules
   // More > Edit Settings > Cluster Differences
   // More > Edit YAML
