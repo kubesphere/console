@@ -27,6 +27,6 @@ module.exports = {
   SERVICE_COLON: 'Servis:',
   ACCESS_SERVICE: 'Erişim Servisi',
   UNABLE_TO_ACCESS: 'Servise erişilemiyor',
-  UNABLE_TO_ACCESS_TIP: 'Make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
+  UNABLE_TO_ACCESS_TIP: 'Etki alanı adı çözümleme ilkelerinin DNS sunucunuzda veya istemci makinenizin ana bilgisayar dosyasında yapılandırıldığından emin olun.',
   CERTIFICATE_VALUE: 'Sertifika: {value}'
 };
