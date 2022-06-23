@@ -17,16 +17,16 @@
  */
 module.exports = {
   // Banner
-  APP_REVIEW: 'App Review',
-  APP_REVIEW_DESC: 'Review apps to be released to the App Store.',
+  APP_REVIEW: 'Uygulama incelemeleri',
+  APP_REVIEW_DESC: 'App Store\'da yayınlanacak uygulamaları inceleyin.',
   // New
-  NEW_SUBMIT: 'New',
-  APP_REVIEW_EMPTY_DESC: 'Please create an app template in a workspace and submit the app template for review.',
-  APP_STATUS_TO_BE_REVIEWED: 'To be reviewed',
-  APP_STATUS_PASSED: 'Approved',
+  NEW_SUBMIT: 'Yeni',
+  APP_REVIEW_EMPTY_DESC: 'Lütfen bir çalışma alanında bir uygulama şablonu oluşturun ve uygulama şablonunu yayınlanmak üzere gönderin.',
+  APP_STATUS_TO_BE_REVIEWED: 'Yayınlanacak',
+  APP_STATUS_PASSED: 'Onaylandı',
   APP_STATUS_SUSPENDED: 'Askıya alındı',
   APP_STATUS_REJECTED: 'Reddedildi',
   APP_STATUS_IN_REVIEW: 'Gözden geçirme',
   OPERATOR: 'Operatör',
-  APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'No App Needs to Be Reviewed'
+  APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'Taşınması gereken uygulama yok'
 };
