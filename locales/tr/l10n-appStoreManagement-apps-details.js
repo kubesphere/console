@@ -18,11 +18,11 @@
 module.exports = {
   // Title
   // Suspend
-  SUSPEND: 'Suspend',
+  SUSPEND: 'Askıya al',
   APP_NOTE: 'Not',
   SUSPEND_SUCCESSFUL: 'Başarıyla askıya alındı.',
   // Release
-  RELEASE: 'Release',
+  RELEASE: 'Yayınlamak',
   ACTIVATE_SUCCESSFUL: 'Başarıyla etkinleştirildi.',
   // Details
   APP_ID: 'Uygulama Kimliği',
