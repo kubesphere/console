@@ -37,7 +37,7 @@ module.exports = {
   PVC_NAME_PREFIX_EMPTY: 'Lütfen kalıcı birim talep adlarının ön ekini girin.',
   INVALID_PVC_NAME_PREFIX: 'Geçersiz isim. Ad yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir ve küçük harf veya sayı ile başlayıp bitmelidir. Maksimum uzunluk 253 karakterdir.',
   PVC_NAME_PREFIX_EXISTS: 'Ön ek zaten var. Lütfen başka bir önek girin.',
-  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE: 'Add Persistent Volume Claim Template',
+  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE: 'Kalıcı Hacim Talebi Şablonu Ekle',
   ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE_DESC: 'Durum bilgisi kümesinin her bölmesine kalıcı bir birim eklemek için kalıcı bir birim talep şablonu ekleyin.',
   VOLUME_CAPACITY_TCAP: 'Bölüm Kapasitesi',
   MOUNT_PATH_TCAP: 'Bağlama yolu',
