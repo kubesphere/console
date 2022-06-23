@@ -36,6 +36,6 @@ module.exports = {
   REJECT_REASON_TIP: 'Lütfen reddetmek için en az bir neden girin.',
   REJECT_SUCCESSFUL: 'Başarıyla reddedildi.',
   // Release
-  APPROVE: 'Approve',
+  APPROVE: 'Kabul et',
   RELEASE_SUCCESSFUL: 'Yayınlama başarılı.'
 };
