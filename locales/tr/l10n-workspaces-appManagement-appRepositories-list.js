@@ -26,11 +26,11 @@ module.exports = {
   APP_REPOSITORY_EMPTY_DESC: 'Lütfen bir uygulama deposu ekleyin.',
   APP_REPO_STATUS_SUCCESSFUL: 'Başarılı',
   APP_REPO_STATUS_FAILED: 'Başarısız',
-  APP_REPO_STATUS_SYNCING: 'Syncing',
+  APP_REPO_STATUS_SYNCING: 'Senkronizasyon',
   // List > Add
   ADD_APP_REPO: 'Uygulama Deposu Ekle',
   VALIDATE: 'Doğrula',
-  SYNC_INTERVAL: 'Sync Interval',
+  SYNC_INTERVAL: 'Eşitleme aralığı',
   SYNC_INTERVAL_DESC: 'Bir senkronizasyon aralığı ayarlayın. Değer aralığı 3 dakika ile 24 saat arasındadır. Varsayılan değer 0, senkronizasyon olmadığını gösterir.',
   SYNC_PERIOD_EMPTY_DESC: 'Lütfen bir senkronizasyon aralığı belirleyin.',
   SYNC_INTERVAL_INVALID: 'Geçersiz değer. Lütfen 0 veya pozitif bir tam sayı girin. ',
