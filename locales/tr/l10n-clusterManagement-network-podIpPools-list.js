@@ -30,7 +30,7 @@ module.exports = {
   CREATE_POD_IP_POOL: 'Kapsül IP Havuzu Yarat',
   NETWORK_SEGMENT: 'Ağ Bölümü',
   USED_IP_ADDRESSES: 'Kullanılan Ip Adresleri',
-  QUANTITY: 'Quantity',
+  QUANTITY: 'Miktar',
   IP_POOL_CREATE_DESC: 'Oluşturulacak Kapsül IP Havuzları',
   IP_ADDRESS_EMPTY_DESC: 'Lütfen bir IP adresi girin.',
   MASK_TIP: 'Lütfen maskeyi girin.',
