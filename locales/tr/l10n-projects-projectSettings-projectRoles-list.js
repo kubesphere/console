@@ -34,7 +34,7 @@ module.exports = {
   PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT: 'Application Workload Management',
   PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT_DESC: 'Create, edit, and delete resources such as applications, services, workloads, jobs, grayscale release jobs, and image builders in the project.',
   // List > Edit Permissions > Storage
-  PERMIGROUP_STORAGE_MANAGEMENT: 'Storage',
+  PERMIGROUP_STORAGE_MANAGEMENT: 'Depolama',
   PERMISSION_VOLUME_SNAPSHOTS_VIEW: 'Volume Snapshot Viewing',
   PERMISSION_VOLUME_SNAPSHOTS_VIEW_DESC: 'View volume snapshots in the project.',
   PERMISSION_VOLUME_SNAPSHOTS_MANAGEMENT: 'Volume Snapshot Management',
@@ -76,13 +76,13 @@ module.exports = {
   PERMISSION_PROJECT_MEMBERS_VIEW_DESC: 'View project members.',
   PERMISSION_PROJECT_MEMBERS_MANAGEMENT: 'Üye yönetimi',
   PERMISSION_PROJECT_MEMBERS_MANAGEMENT_DESC: 'Invite, edit, and remove project members.',
-  PERMISSION_PROJECT_ROLES_VIEW: 'Role İzleme',
+  PERMISSION_PROJECT_ROLES_VIEW: 'Rol (Role) İzleme',
   PERMISSION_PROJECT_ROLES_VIEW_DESC: 'View project roles.',
-  PERMISSION_PROJECT_ROLES_MANAGEMENT: 'Rol Yönetimi',
+  PERMISSION_PROJECT_ROLES_MANAGEMENT: 'Rol (Role) Yönetimi',
   PERMISSION_PROJECT_ROLES_MANAGEMENT_DESC: 'Create, edit, and delete project roles except preset roles.',
   // List > Edit Permissions > Project Settings
   PERMIGROUP_PROJECT_SETTINGS: 'Proje Ayarları',
-  PERMISSION_PROJECT_SETTINGS: 'Project Settings Management',
+  PERMISSION_PROJECT_SETTINGS: 'Çalışma alanı Ayarları Yönetimi',
   PERMISSION_PROJECT_SETTINGS_DESC: 'Manage project settings including project basic information, external access settings, network policies, resource quotas, and log collection settings.',
   // List > Delete
   DELETE_ROLE: 'Rolü Sil',
