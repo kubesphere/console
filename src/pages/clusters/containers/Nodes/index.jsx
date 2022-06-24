@@ -204,6 +204,7 @@ export default class Nodes extends React.Component {
         Modal.close(modal)
       },
       modal: KubeCtlModal,
+      cluster: this.cluster,
       title: record.name,
       nodename: record.name,
       isEdgeNode: true,
