@@ -66,7 +66,7 @@ export default class KubeCtlModal extends React.Component {
   async fetchData() {
     if (this.props.nodename) {
       this.store.setNodename(this.props.nodename)
-      this.getKubeWebUrl()
+      this.getKubeWebUrl(this.props.cluster)
       return
     }
 
