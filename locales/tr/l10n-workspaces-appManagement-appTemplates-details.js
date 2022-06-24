@@ -21,7 +21,7 @@ module.exports = {
   SERVICE_PROVIDER_WEBSITE_DESC: 'Servis sağlayıcının resmi web sitesi.',
   WRONG_ADDRESS_TIP: 'Yanlış adres biçimi. Lütfen doğru bir adres giriniz.',
   APP_NAME_DESC: 'Ad herhangi bir karakter içerebilir ve maksimum uzunluk 20 karakterdir.',
-  APP_DESCRIPTION_DESC: 'The description can contain any characters and the maximum length is 120 characters.',
+  APP_DESCRIPTION_DESC: 'Açıklama herhangi bir karakter içerebilir ve maksimum uzunluk 120 karakterdir.',
   APP_ICON_FORMAT: 'Biçim: PNG veya JPG',
   APP_ICON_SIZE: 'Boyut: 96 x 96 piksel',
   CHOOSE_APP_CATEGORY_DESC: 'Uygulama için kategori seçiniz.',
@@ -35,7 +35,7 @@ module.exports = {
   // More > Upload Version
   ADD_VERSION_SUCCESSFUL: 'Sürüm başarıyla eklendi.',
   UPLOAD_PACKAGE_OK_NOTE: 'Sürüm zaten mevcut. Lütfen farklı bir sürüm yükleyiniz.',
-  UPLOAD_NEW_VERSION: 'Upload Version',
+  UPLOAD_NEW_VERSION: 'Sürümü Yükle',
   UPLOAD_NEW_VERSION_DESC: 'Uygulama şablonunun yeni sürümünü yükle.',
   // More > Delete
   DELETE_APP_TEMPLATE_DESC: 'Bu işlemin risklerini anladığınızı doğrulamak için <b>{resource}</b> uygulama şablonu adını girin.',
@@ -43,11 +43,11 @@ module.exports = {
   APP_TEMPLATE_LOW: 'uygulama şablonu',
   // Details
   // Versions
-  APP_STATUS_SUBMITTED: 'Submitted',
-  APP_STATUS_NOT_SUBMITTED: 'Not submitted',
+  APP_STATUS_SUBMITTED: 'Gönderilen',
+  APP_STATUS_NOT_SUBMITTED: 'Gönderilemedi',
   VERSION_INFO: 'Sürüm Bilgisi',
   INSTALL: 'Kur',
-  SUBMIT_FOR_REVIEW: 'Submit for Review',
+  SUBMIT_FOR_REVIEW: 'İnceleme için gönder',
   DOWNLOAD_SUCCESSFUL: 'Başarılı olarak inidirildi.',
   VERSION_DELETE_TIP: '<strong>{name}</strong> sürümünü silmek istediğinizden emin misiniz?',
   VERSION_SUBMIT_TIP: '<strong>{name}</strong> sürümünü yayınlanmak üzere göndermek istediğinizden emin misiniz?',
@@ -61,7 +61,7 @@ module.exports = {
   UPLOAD_AGAIN_TIP: 'Bir hata oluştu. Lütfen tekrar deneyin.',
   // Versions > Submit for Review
   ENTER_VERSION_NUMBER_TIP: 'Lütfen bir sürüm numarası girin.',
-  SUBMIT_REVIEW_DESC: 'Submit the app template for review before releasing it to the App Store.',
+  SUBMIT_REVIEW_DESC: 'App Store\'da yayınlamadan önce uygulama şablonunu incelemeye gönderin.',
   APP_LEARN_MORE: '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Daha Fazla Bilgi</a>',
   INVALID_VERSION_TIP: 'Lütfen doğru bir sürüm numarası girin.',
   // Versions > Submit for Review > Test Steps

@@ -23,7 +23,7 @@ module.exports = {
   SERVICE_EMPTY_DESC: 'Lütfen bir hizmet oluşturun.',
   UNKNOWN: 'Bilinmeyen',
   EXTERNAL_ACCESS: 'Harici erişim',
-  INTERNAL_ACCESS_PL: 'Internal Access',
+  INTERNAL_ACCESS_PL: 'Harici erişim',
   // List > Edit YAML
   // List > Edit Service
   UNKNOWN_SERVICE_TYPE: 'Bilinmeyen Hizmet Tipi',
@@ -56,9 +56,9 @@ module.exports = {
   // List > Create > Service Settings > Workload Selector > View Details
   TOTAL_WORKLOADS_VALUE: 'Toplam İş Yükü: {count}',
   // List > Create > Advanced Settings
-  SESSION_PERSISTENCE: 'Session Persistence',
+  SESSION_PERSISTENCE: 'Oturum Kalıcılığı',
   MAXIMUM_STICKINESS_DURATION: 'Maksimum Stickness Süresi (ler)',
-  SESSION_PERSISTENCE_DESC: 'Set the system to forward all requests from the same client to the same pod within a specified duration.',
+  SESSION_PERSISTENCE_DESC: 'Sistemi, aynı istemciden gelen tüm istekleri belirli bir süre içinde aynı bölmeye iletecek şekilde ayarlayın.',
   SERVICE_EXTERNAL_ACCESS_DESC: 'Hizmete kümenin dışından erişme yöntemini ayarlayın.',
   ACCESS_NODEPORT_TIP: 'Hizmete erişmek için küme düğümlerinin bir bağlantı noktasını kullanın.',
   ACCESS_LOADBALANCER_TIP: 'Hizmete erişmek için bir yük dengeleyici kullanın.',

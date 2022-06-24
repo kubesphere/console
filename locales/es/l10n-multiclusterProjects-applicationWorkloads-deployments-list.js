@@ -19,8 +19,8 @@ module.exports = {
   // Banner
   WORKLOAD_DESC: 'La carga de trabajo suele ser el operador real para acceder al servicio, y también es el operador real en ejecución para aplicaciones del sistema, como la recopilación y supervisión de registros de nodos. Workload es un modelo abstracto para un grupo de Pods.',
   // List
-  DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
-  UPDATING: 'Updating',
+  DEPLOYMENT_EMPTY_DESC: 'Cree un deployment.',
+  UPDATING: 'Actualización',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
@@ -29,9 +29,9 @@ module.exports = {
   NEXT: 'Siguiente',
   // List > Create > Pod Settings > Replica Scheduling Mode
   REPLICA_SCHEDULING_MODE: 'Modo de despliegue',
-  SPECIFY_REPLICAS: 'Specify Replicas',
-  WEIGHTS: 'Weights',
-  SPECIFY_WEIGHTS: 'Specify Weights',
+  SPECIFY_REPLICAS: 'Especificar las réplicas',
+  WEIGHTS: 'Pesas',
+  SPECIFY_WEIGHTS: 'Especificar los pesos',
   SPECIFY_WEIGHTS_DESC: 'El número total de copias establecido se asignará a los grupos seleccionados de acuerdo con los pesos establecidos, y las copias de los grupos no disponibles se migrarán automáticamente a los grupos disponibles.',
   SPECIFY_REPLICAS_DESC: 'Especifique claramente la cantidad de réplicas que se implementarán para cada clúster.',
   REPLICA_LOW_SI: 'replica',

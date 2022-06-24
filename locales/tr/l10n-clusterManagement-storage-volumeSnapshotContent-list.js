@@ -17,11 +17,11 @@
  */
 module.exports = {
   // List > Delete
-  VOLUME_SNAPSHOT_CONTENT: 'Volume Snapshot Content',
-  VOLUME_SNAPSHOT_CONTENT_PL: 'Volume Snapshot Contents',
-  VOLUME_SNAPSHOT_CONTENT_LOW: 'volume snapshot content',
-  VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: 'Please create a volume snapshot.',
-  READY: 'Ready',
-  UNREADY: 'Unready',
-  DELETION_POLICY: 'Deletion Policy'
+  VOLUME_SNAPSHOT_CONTENT: 'Birim Anlık Görüntü İçeriği',
+  VOLUME_SNAPSHOT_CONTENT_PL: 'Birim Anlık Görüntü İçeriği',
+  VOLUME_SNAPSHOT_CONTENT_LOW: 'birim Anlık Görüntü İçeriği',
+  VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: 'Lütfen bir bölüm anlık görüntü sınıfı seçiniz.',
+  READY: 'Hazır',
+  UNREADY: 'Hazır Değil',
+  DELETION_POLICY: 'Silme Politikası'
 };

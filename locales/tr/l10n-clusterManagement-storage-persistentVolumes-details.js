@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Details
-  VOLUME_HANDLE: 'Volume Handle',
-  VOLUME_MODE: 'Volume Mode',
-  VOLUME_MODE_FILESYSTEM: 'File system',
-  VOLUME_MODE_BLOCK: 'Block device',
+  VOLUME_HANDLE: 'Hacim (Volume) Kolu',
+  VOLUME_MODE: 'Hacim (Volume) Klon',
+  VOLUME_MODE_FILESYSTEM: 'Dosya Sistemi',
+  VOLUME_MODE_BLOCK: 'Cihazı engelle',
   // More > Edit YAML
   // More > Delete
   // Resource Status
-  STORAGE_CLASS_VALUE: 'Storage class: {value}'
+  STORAGE_CLASS_VALUE: 'Depolama sınıfı: {değer}'
 };

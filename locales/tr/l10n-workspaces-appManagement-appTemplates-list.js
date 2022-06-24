@@ -27,8 +27,8 @@ module.exports = {
   HOW_PUBLISH_APP_DESC: 'Uygulama şablonu olarak Help çizelgelerini çalışma alanına yükleyebilirsiniz. Bu uygulamalar, onaylandıktan sonra App Store\'a yayınlanacaktır.',
   // List
   APP_STATUS_ACTIVE: 'Yayınlandı',
-  APP_STATUS_DRAFT: 'Unreleased',
-  APP_STATUS_SUSPENDING: 'Suspending',
+  APP_STATUS_DRAFT: 'Yayınlanmamış',
+  APP_STATUS_SUSPENDING: 'Askıya alındı',
   APP_TEMPLATE_EMPTY_DESC: 'Lütfen bir uygulama şablonu oluşturunuz.',
   LATEST_VERSION: 'Son Sürüm',
   // List > Create

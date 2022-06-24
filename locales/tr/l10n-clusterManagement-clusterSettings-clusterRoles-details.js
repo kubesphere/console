@@ -19,34 +19,34 @@ module.exports = {
   // Permissions
   // Permissions > Network
   PERMIGROUP_NETWORK_MANAGEMENT: 'Ağ',
-  PERMISSION_NETWORK_RESOURCES_VIEW: 'Network Resource Viewing',
-  PERMISSION_NETWORK_RESOURCES_MANAGEMENT: 'Network Resource Management',
+  PERMISSION_NETWORK_RESOURCES_VIEW: 'Ağ Kaynağı Görüntüleme',
+  PERMISSION_NETWORK_RESOURCES_MANAGEMENT: 'Ağ Kaynak Yönetimi',
   // Permissions > Project Resources
-  PERMIGROUP_PROJECT_RESOURCES_MANAGEMENT: 'Project Resources',
-  PERMISSION_PROJECT_RESOURCES_VIEW: 'Project Resource Viewing',
-  PERMISSION_PROJECT_RESOURCES_MANAGEMENT: 'Project Resource Management',
+  PERMIGROUP_PROJECT_RESOURCES_MANAGEMENT: 'Proje kaynakları',
+  PERMISSION_PROJECT_RESOURCES_VIEW: 'Proje Kaynak Görüntüleme',
+  PERMISSION_PROJECT_RESOURCES_MANAGEMENT: 'Proje Kaynak Yönetimi',
   // Permissions > Storage
-  PERMISSION_STORAGECLASSES_VIEW: 'Storage Class Viewing',
-  PERMISSION_STORAGECLASSES_MANAGEMENT: 'Storage Class Management',
-  PERMISSION_VOLUME_SNAPSHOT_CLASSES_VIEW: 'Volume Snapshot Class Viewing',
-  PERMISSION_VOLUME_SNAPSHOT_CLASSES_MANAGEMENT: 'Volume Snapshot Class Management',
+  PERMISSION_STORAGECLASSES_VIEW: 'Depolama Sınıfı Görüntüleme',
+  PERMISSION_STORAGECLASSES_MANAGEMENT: 'Depolama Sınıfı Yönetimi',
+  PERMISSION_VOLUME_SNAPSHOT_CLASSES_VIEW: 'Birim Anlık Görüntü Sınıfı Görüntüleme',
+  PERMISSION_VOLUME_SNAPSHOT_CLASSES_MANAGEMENT: 'Birim Anlık Görüntüsü Sınıf Yönetimi',
   // Permissions > Cluster Resources
-  PERMIGROUP_CLUSTER_RESOURCES_MANAGEMENT: 'Cluster Resources',
-  PERMISSION_CRD_VIEW: 'Custom Resource Definition Viewing',
-  PERMISSION_CRD_MANAGEMENT: 'Custom Resource Definition Management',
-  PERMISSION_NODES_VIEW: 'Node Viewing',
-  PERMISSION_NODES_MANAGEMENT: 'Node Management',
-  PERMISSION_COMPONENTS_VIEW: 'System Component Viewing',
+  PERMIGROUP_CLUSTER_RESOURCES_MANAGEMENT: 'Küme Kaynakları',
+  PERMISSION_CRD_VIEW: 'Özel Kaynak Tanımı Görüntüleme',
+  PERMISSION_CRD_MANAGEMENT: 'Özel Kaynak Tanımı Yönetimi',
+  PERMISSION_NODES_VIEW: 'Node (Düğüm) Görüntüleme',
+  PERMISSION_NODES_MANAGEMENT: 'Node (Düğüm) Yönetimi',
+  PERMISSION_COMPONENTS_VIEW: 'Sistem Bileşeni Görüntüleme',
   // Permissions > Cluster Settings
   PERMIGROUP_CLUSTER_SETTINGS: 'Küme Ayarları',
-  PERMISSION_CLUSTER_SETTINGS_VIEW: 'Cluster Settings Viewing',
-  PERMISSION_CLUSTER_SETTINGS_MANAGEMENT: 'Cluster Settings Management',
+  PERMISSION_CLUSTER_SETTINGS_VIEW: 'Küme (Cluster) Ayarları Görüntüleme',
+  PERMISSION_CLUSTER_SETTINGS_MANAGEMENT: 'Küme (Cluster) Ayarları Yönetimi',
   // Permissions > Monitoring & Alerting
-  PERMISSION_CLUSTER_MONITORING_VIEW: 'Monitoring Information Viewing',
-  PERMISSION_CLUSTER_MONITORING_MANAGEMENT: 'Monitoring Information Management',
+  PERMISSION_CLUSTER_MONITORING_VIEW: 'İzleme Bilgileri Görüntüleme',
+  PERMISSION_CLUSTER_MONITORING_MANAGEMENT: 'İzleme Bilgi Yönetimi',
   // Permissions > Access Control
-  PERMISSION_CLUSTER_ROLES_VIEW: 'Role İzleme',
-  PERMISSION_CLUSTER_ROLES_MANAGEMENT: 'Rol Yönetimi',
+  PERMISSION_CLUSTER_ROLES_VIEW: 'Rol (Role) İzleme',
+  PERMISSION_CLUSTER_ROLES_MANAGEMENT: 'Rol (Role) Yönetimi',
   PERMISSION_CLUSTER_MEMBERS_VIEW: 'Üye Görüntüleme',
   PERMISSION_CLUSTER_MEMBERS_MANAGEMENT: 'Üye yönetimi'
 };

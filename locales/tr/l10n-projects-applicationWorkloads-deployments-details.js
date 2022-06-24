@@ -37,12 +37,12 @@ module.exports = {
   // More > Edit Settings > Update Strategy
   EDIT_SETTINGS: 'Ayarları Düzenle',
   // More > Edit Settings > Containers
-  FROM_CONFIGMAP: 'From configmap',
-  FROM_SECRET: 'From secret',
-  BATCH_REFERENCE: 'Batch Reference',
-  BATCH_REFERENCE_DESC: 'Reference multiple keys in a configmap or secret.',
-  DESELECT_ALL: 'Deselect all',
-  KEY_PL: 'Keys',
+  FROM_CONFIGMAP: 'configmap\'ten',
+  FROM_SECRET: 'Sırdan (Secret)',
+  BATCH_REFERENCE: 'Toplu Referans',
+  BATCH_REFERENCE_DESC: 'Bir yapılandırma haritasında veya gizli anahtarda birden çok anahtara başvurun.',
+  DESELECT_ALL: 'Hiçbirini seçme',
+  KEY_PL: 'Anahtarlar',
   // More > Edit Settings > Volumes
   // More > Edit Settings > Volumes > Mount Volume
   // More > Edit Settings > Volumes > Mount Configmap or Secret

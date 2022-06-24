@@ -47,7 +47,7 @@ module.exports = {
   PROTOCOL: 'Protokol',
   PORT: 'Bağlantı Noktası (port)',
   PORT_VALUE: 'Bağlantı noktası: {değer}',
-  CERTIFICATE: 'Certificate',
+  CERTIFICATE: 'Sertifika',
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML

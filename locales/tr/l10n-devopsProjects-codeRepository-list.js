@@ -16,11 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  CODE_REPO_PL: 'Code Repositories',
-  CODE_REPO_LOW: 'code cepository',
+  CODE_REPO_PL: 'Kod Deposu',
+  CODE_REPO_LOW: 'kod Deposu',
   CODE_REPO: 'Kod Deposu',
-  CODE_REPO_DESC: 'Manage code repositories based on Git.',
-  CODE_REPO_EMPTY_DESC: 'Import a code repository from GitHub, GitLab, or Bitbucket. You can also use Git to directly pull source code.',
-  IMPORT_CODE_REPO: 'Import Code Repository',
-  EDIT_CODE_REPO: 'Edit Code Repository'
+  CODE_REPO_DESC: 'Git\'e dayalı kod depolarını yönetin.',
+  CODE_REPO_EMPTY_DESC: 'GitHub, GitLab veya Bitbucket\'ten bir kod deposu içe aktarın. Git\'i doğrudan kaynak kodunu çekmek için de kullanabilirsiniz.',
+  IMPORT_CODE_REPO: 'Kod Deposunu İçe Aktar',
+  EDIT_CODE_REPO: 'Kod Deposunu Düzenle'
 };

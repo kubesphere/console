@@ -17,13 +17,13 @@
  */
 module.exports = {
   // Sync Status
-  LATEST_SYNC_STATUS: 'Latest sync status',
-  CURRENT_SYNC_STATUS: 'Current sync status',
-  SYNC_STRATEGY: 'Sync strategy',
-  AUTO_SYNC: 'Auto Sync',
-  MANUAL_SYNC: 'Manual Sync',
-  END_TIME_SCAP: 'End time',
-  SYNC_RESULT_PL: 'Sync Results',
-  SYNC_RESULT: 'Sync Result',
-  SYNC_RESULT_EMPTY_DESC: 'No sync result is found.'
+  LATEST_SYNC_STATUS: 'En son senkronizasyon durumu',
+  CURRENT_SYNC_STATUS: 'En son senkronizasyon durumu',
+  SYNC_STRATEGY: 'Senkronizasyon stratejileri',
+  AUTO_SYNC: 'Otomatik Senkronizasyon',
+  MANUAL_SYNC: 'Manuel Senkronize',
+  END_TIME_SCAP: 'Bitiş zamanı',
+  SYNC_RESULT_PL: 'Senkronizasyon Sonuçlar',
+  SYNC_RESULT: 'Senkronizasyon Sonucu',
+  SYNC_RESULT_EMPTY_DESC: 'Sonuç bulunamadı.'
 };

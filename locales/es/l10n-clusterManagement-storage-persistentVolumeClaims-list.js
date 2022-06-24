@@ -31,7 +31,7 @@ module.exports = {
   VOLUME_STATUS_LOST: 'Lost',
   VOLUME_STATUS_PENDING: 'Pendiente',
   VOLUME_STATUS_TERMINATING: 'Terminating',
-  VOLUME_STATUS_UPDATING: 'Updating',
+  VOLUME_STATUS_UPDATING: 'Actualización',
   VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: 'Disk Expanding',
   PERSISTENT_VOLUME_CLAIM_EMPTY_DESC: 'Please create a persistent volume claim.',
   MOUNT_STATUS: 'Mount Status',

@@ -43,8 +43,8 @@ module.exports = {
   ENV_DEVELOPMENT: 'Gelişim',
   ENV_TESTING: 'Test yapmak',
   ENV_DEMO: 'Demo',
-  UPDATE_KUBECONFIG: 'Update kubeconfig',
-  KUBE_CONFIG_IS_EXPIRED: 'KubeConfig has expired',
-  EXPIRE_DATE: 'Expiration Time',
-  LAST_KUBE_CONFIG_EXPIRED: 'KubeConfig expires in <span class="kubeConfig_expired">{count}</span> days'
+  UPDATE_KUBECONFIG: 'Kubeconfig\'i Güncelle',
+  KUBE_CONFIG_IS_EXPIRED: 'KubeConfig\'in süresi doldu',
+  EXPIRE_DATE: 'Sonlanma Süresi',
+  LAST_KUBE_CONFIG_EXPIRED: 'KubeConfig\'in süresi'
 };

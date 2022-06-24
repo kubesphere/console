@@ -41,8 +41,8 @@ module.exports = {
   AVAILABLE: 'Uygun',
   IN_USER: 'Kullanımda',
   ACCESS_MODE_SCAP: 'Erişim modu',
-  PVC_OR_TEMPLATE_EMPTY: 'You have enabled Collect Logs on Volumes. Please add at least one persistent volume, temperary volume, or persistent volume claim template and specify the path of container logs.',
-  PVC_EMPTY: 'You have enabled Collect Logs on Volumes. Please add at least one persistent volume or temperary volume and specify the path of container logs.',
+  PVC_OR_TEMPLATE_EMPTY: 'Volume Günlükleri Topla\'yı etkinleştirdiniz. Lütfen en az bir kalıcı volume, geçici volume veya kalıcı volume talep şablonu ekleyin ve kapsayıcı günlüklerinin yolunu belirtin.',
+  PVC_EMPTY: 'Volumlerde Günlükleri Topla\'yı etkinleştirdiniz. Lütfen en az bir kalıcı volume veya geçici volume ekleyin ve kapsayıcı günlüklerinin yolunu belirtin.',
   PROJECT_COLLECT_SAVED_DISABLED_DESC: 'Bu işlevi etkinleştirmek için Proje Ayarlarında Birimlerdeki Günlükleri Topla\'yı etkinleştirmeniz gerekir.',
   COLLECT_LOGS_ON_VOLUMES_DESC: 'Sistemin birimlere kaydedilen kapsayıcı günlüklerini toplamasına izin verin. Bu işlevi kullanmak için, bir kapsayıcıya okuma ve yazma modunda bir birimi bağlamanız ve kapsayıcıyı, günlükleri birime aktaracak şekilde ayarlamanız gerekir.',
   // List > Create

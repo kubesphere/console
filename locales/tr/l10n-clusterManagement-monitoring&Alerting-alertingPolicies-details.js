@@ -21,8 +21,8 @@ module.exports = {
   // Alerting Rule
   ALERTING_RULE: 'Uyarı Kuralı',
   MONITORING_TARGETS_SCAP: 'Hedefi İzleme',
-  ACTIVATION_CONDITION_SCAP: 'Activation condition',
-  METRIC_MONITORING: 'Metric Monitoring',
+  ACTIVATION_CONDITION_SCAP: 'Aktivasyon Koşulu',
+  METRIC_MONITORING: 'Metrik İzleme',
   // Alerting History
   NO_DATA_DESC: 'Veri Bulunamadı'
 };

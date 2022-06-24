@@ -49,7 +49,7 @@ module.exports = {
   NO_RESOURCE: '{kaynak} yok.',
   LOG_DATA_LOW: 'kayıt verileri',
   // Resource Status > Volumes
-  VOLUME_PL: 'Volumes',
+  VOLUME_PL: 'Birimler',
   TYPE_CONFIGMAP: 'Birim türü: configmap',
   TYPE_SECRET: 'Birim tipi: gizli',
   TYPE_EMPTYDIR: 'Birim tipi: emptyDir',
@@ -61,6 +61,6 @@ module.exports = {
   // Metadata
   // Monitoring
   NO_MONITORING_DATA: 'Veri Yok',
-  OUTBOUND: 'Outbound',
-  INBOUND: 'Inbound'
+  OUTBOUND: 'Giden',
+  INBOUND: 'Gelen'
 };

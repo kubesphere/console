@@ -25,9 +25,9 @@ module.exports = {
   // Resource Status
   // Resource Status > Volume
   // Resource Status > Mounted Pods
-  MOUNTED_PODS: 'Mounted Pods',
+  MOUNTED_PODS: 'Takılı Bölmeler',
   // Metadata
   // Events
   // Snapshot
-  SNAPSHOT_PL: 'Snapshots'
+  SNAPSHOT_PL: 'Görüntüler'
 };

@@ -37,5 +37,5 @@ module.exports = {
   SEARCH_BY_STATUS_CODE: 'Durum Koduna Göre Ara',
   SEARCH_BY_OPERATOR: 'Operatöre Göre Ara',
   SEARCH_BY_SOURCE_IP_ADDRESS: 'Kaynak IP Adresine Göre Ara',
-  ENABLE_AUDIT_LOG_COLLECTION_DESC: 'You need to enable audit log collection if it is disabled. <a href="{link}" target="_blank">Learn More</a>'
+  ENABLE_AUDIT_LOG_COLLECTION_DESC: 'Devre dışı bırakılmışsa, denetim günlüğü toplamayı etkinleştirmeniz gerekir'
 };

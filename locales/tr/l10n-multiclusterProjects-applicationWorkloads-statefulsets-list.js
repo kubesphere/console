@@ -32,15 +32,15 @@ module.exports = {
   PARTITION_ORDINAL: 'Kapsül Replikalarını Bölmek için Sıra',
   PARTITION_ORDINAL_DESC: 'Kapsül replikalarını iki gruba bölmek için sıra tanımla. Statefulset güncellendiğinde, yalnızca sıralaması bu değerden eşit veya büyük olan kapsül replikaları güncellenir.',
   // List > Create > Storage Settings
-  PVC_NAME_PREFIX: 'PVC Name Prefix',
-  PVC_NAME_PREFIX_DESC: 'Prefix of persistent volume claim names. The prefix can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 253 characters.',
-  PVC_NAME_PREFIX_EMPTY: 'Please enter the prefix of persistent volume claim names.',
-  INVALID_PVC_NAME_PREFIX: 'Invalid prefix. The prefix can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 253 characters.',
-  PVC_NAME_PREFIX_EXISTS: 'The prefix already exists. Please enter another prefix.',
-  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE: 'Add Persistent Volume Claim Template',
-  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE_DESC: 'Add a persistent volume claim template to mount a persistent volume to each pod of the statefulset.',
+  PVC_NAME_PREFIX: 'İsim Ön Eki',
+  PVC_NAME_PREFIX_DESC: 'Geçersiz isim. Ad yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir ve küçük harf veya sayı ile başlayıp bitmelidir. Maksimum uzunluk 253 karakterdir.',
+  PVC_NAME_PREFIX_EMPTY: 'Lütfen kalıcı birim talep adlarının ön ekini girin.',
+  INVALID_PVC_NAME_PREFIX: 'Geçersiz isim. Ad yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir ve küçük harf veya sayı ile başlayıp bitmelidir. Maksimum uzunluk 253 karakterdir.',
+  PVC_NAME_PREFIX_EXISTS: 'Ön ek zaten var. Lütfen başka bir önek girin.',
+  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE: 'Kalıcı Hacim Talebi Şablonu Ekle',
+  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE_DESC: 'Durum bilgisi kümesinin her bölmesine kalıcı bir birim eklemek için kalıcı bir birim talep şablonu ekleyin.',
   VOLUME_CAPACITY_TCAP: 'Bölüm Kapasitesi',
-  MOUNT_PATH_TCAP: 'Mount Path',
+  MOUNT_PATH_TCAP: 'Bağlama yolu',
   VOLUME_TEMPLATES: 'Bölüm Şablonları',
   // List > Create > Advanced Settings
   // List > Create > Cluster Differences
