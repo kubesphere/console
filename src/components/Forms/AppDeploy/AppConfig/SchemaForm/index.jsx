@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { map, get, set, every, has, debounce, isEmpty } from 'lodash'
-import { Form, Input, Slider, TextArea, Toggle } from '@kube-design/components'
+import { Form, Input, Slider, TextArea, Toggle, Select } from '@kube-design/components'
 import { Text } from 'components/Base'
 import { NumberInput } from 'components/Inputs'
 
@@ -85,6 +85,13 @@ export default class SchemaForm extends React.Component {
           )
         } else if (propObj.render === 'textArea') {
           content = <TextArea {...attrs} />
+        } else if  (propObj.render === 'select') {
+          content = (
+             <Select
+              options={propObj.options}
+              defaultValue={propObj.defaultValue}
+            {...attrs} />
+          )
         } else {
           content = <Input {...attrs} />
         }
