@@ -285,6 +285,9 @@ export default class MountConfig extends React.Component {
   }
 
   relativePathValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
     const absPath = value.some(item => /^\//.test(item.path))
     if (absPath) {
       return callback({ message: t('PLEASE_USE_RELATIVE_PATH') })
