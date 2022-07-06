@@ -3,7 +3,7 @@
 # that can be found in the LICENSE file.
 
 # Prepare the build environment
-FROM node:12-alpine3.14 as builder
+FROM node:14-alpine3.15 as builder
 
 ARG YARN_VERSION=1.22.4
 
