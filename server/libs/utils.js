@@ -75,8 +75,22 @@ const getServerConfig = key => {
 
 const getCache = () => cache
 
-const isValidReferer = path =>
-  !isEmpty(path) && path !== '/' && path.indexOf('/login') === -1
+const URL_PATTEN = /^((https|http|ftp|rtsp|mms){0,1}(:\/\/){0,1})(www\.)?(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\\/])+$/
+
+const isValidReferer = path => {
+  const isUrl = URL_PATTEN.test(path)
+
+  // eslint-disable-next-line no-script-url
+  const isJsScript = path && path.indexOf('javascript:') < 0
+
+  return (
+    !isEmpty(path) &&
+    path !== '/' &&
+    path.indexOf('/login') === -1 &&
+    !isUrl &&
+    isJsScript
+  )
+}
 
 /**
  *
