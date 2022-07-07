@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import isEqual from 'react-fast-compare'
 import { toJS } from 'mobx'
-import { get, isUndefined, isEmpty } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import {
   Icon,
   Table,
@@ -31,12 +31,12 @@ import {
   LevelRight,
   Button,
   InputSearch,
-  Pagination,
 } from '@kube-design/components'
 import { safeParseJSON } from 'utils'
 import CustomColumns from './CustomColumns'
 import FilterInput from './FilterInput'
 import Empty from './Empty'
+import Pagination from './Pagination'
 
 import styles from './index.scss'
 
@@ -143,9 +143,9 @@ export default class WorkloadTable extends React.Component {
     })
   }
 
-  handlePagination = page => {
+  handlePagination = ({ page, limit }) => {
     const { onFetch } = this.props
-    onFetch({ page })
+    onFetch({ page, limit })
   }
 
   handleRefresh = () => {
@@ -408,19 +408,12 @@ export default class WorkloadTable extends React.Component {
     const { total, page, limit } = this.props.pagination
 
     return (
-      <Level>
-        {!isUndefined(total) && (
-          <LevelLeft>{t('TOTAL_ITEMS', { num: total })}</LevelLeft>
-        )}
-        <LevelRight>
-          <Pagination
-            page={page}
-            total={total}
-            limit={limit}
-            onChange={this.handlePagination}
-          />
-        </LevelRight>
-      </Level>
+      <Pagination
+        page={page}
+        total={total}
+        limit={limit}
+        onChange={this.handlePagination}
+      />
     )
   }
 
