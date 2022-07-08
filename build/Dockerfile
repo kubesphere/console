@@ -19,7 +19,7 @@ RUN npm install yarn@${YARN_VERSION}
 # RUN yarn config set registry https://registry.npmmirror.com
 
 #RUN yarn && yarn build
- RUN npm install&&npm run build
+ RUN npm install && npm run build
 
 # Copy compiled files
 RUN mkdir -p /out/server
