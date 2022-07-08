@@ -27,5 +27,4 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_SECRET }}
     - name: Push
-      run: |
-      docker push $DOCKERHUB_REPO/ks-console/$TAG
+      run: docker push $DOCKERHUB_REPO/ks-console/$TAG
