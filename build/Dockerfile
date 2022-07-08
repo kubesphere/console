@@ -5,7 +5,7 @@
 # Prepare the build environment
 FROM node:14-alpine3.15 as builder
 
-ARG YARN_VERSION=1.22.4
+ARG YARN_VERSION=1.22.5
 
 WORKDIR /kubesphere
 ADD . /kubesphere/
