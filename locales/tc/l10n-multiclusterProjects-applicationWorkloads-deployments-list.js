@@ -166,6 +166,7 @@ module.exports = {
   TEMPORARY_VOLUME: '臨時儲存卷',
   VOLUME_NAME: '儲存卷名稱',
   VOLUME_NAME_EMPTY: '請輸入儲存卷名稱',
+  HOST_PATH_EMPTY: '請輸入存儲卷主機路徑',
   CONTAINER_NOT_SELECTED: '請至少選擇一個容器進行掛載',
   NOT_MOUNT: '不掛載',
   HOSTPATH_VOLUME: 'HostPath 儲存卷',
