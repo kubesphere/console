@@ -1,0 +1,31 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "release-3.3" ]
+  pull_request:
+    branches: [ "release-3.3" ]
+  issues:
+    types: [opened, edited, milestoned]
+env:
+  PLATFORMS=linux/amd64,linux/arm64
+  DOCKERHUB_REPO=yuanyp8/kubesphere
+  TAG=3.3.0-arm64
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run check
+      run: make check
+      
+    - name: Run multi arch
+      run: make container-cross
+    - name: Docker login
+      uses: azure/docker-login@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_SECRET }}
+    - name: Push
+      run: |
+      docker push $DOCKERHUB_REPO/ks-console/$TAG
