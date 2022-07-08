@@ -1,10 +1,11 @@
 const fs = require('fs')
+const path = require('path')
 
 const args = process.argv.slice(2)
 const filePath = args[0].split('locales')
 
-const lang = filePath[1].split('/')[1]
-const fileName = filePath[1].split('/')[2]
+const lang = filePath[1].split(path.sep)[1]
+const fileName = filePath[1].split(path.sep)[2]
 var repeatArr = []
 const files = fs.readdirSync(`locales/${lang}`)
 const allKeyArr = []
