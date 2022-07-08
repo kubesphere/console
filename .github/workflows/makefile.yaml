@@ -8,9 +8,9 @@ on:
   issues:
     types: [opened, edited, milestoned]
 env:
-  PLATFORMS=linux/amd64,linux/arm64
-  DOCKERHUB_REPO=yuanyp8/kubesphere
-  TAG=3.3.0-arm64
+  PLATFORMS: linux/amd64,linux/arm64
+  DOCKERHUB_REPO: yuanyp8/kubesphere
+  TAG: 3.3.0-arm64
 jobs:
   build:
     runs-on: ubuntu-latest
