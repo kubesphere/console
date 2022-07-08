@@ -23,7 +23,7 @@ RUN yarn && yarn build
 
 # Copy compiled files
 RUN mkdir -p /out/server
-RUN mv /kubesphere/dist/ /out/
+RUN mv /kubesphere/console/dist/ /out/
 RUN mv /kubesphere/server/locales \
        /kubesphere/server/public \
        /kubesphere/server/views \
