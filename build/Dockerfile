@@ -18,12 +18,12 @@ RUN npm install yarn@${YARN_VERSION}
 # If you have trouble downloading the yarn binary, try the following:
 # RUN yarn config set registry https://registry.npmmirror.com
 
-RUN yarn && yarn build
-# RUN npm install&&npm run build
+#RUN yarn && yarn build
+ RUN npm install&&npm run build
 
 # Copy compiled files
 RUN mkdir -p /out/server
-RUN mv /kubesphere/console/dist/ /out/
+RUN mv /kubesphere/dist/ /out/
 RUN mv /kubesphere/server/locales \
        /kubesphere/server/public \
        /kubesphere/server/views \
