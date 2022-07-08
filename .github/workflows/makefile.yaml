@@ -13,7 +13,7 @@ env:
   TAG: 3.3.0-arm64
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: docker/buildx-bin
     steps:
     - uses: actions/checkout@v3
     - name: Run multi arch
