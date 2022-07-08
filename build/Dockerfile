@@ -4,7 +4,7 @@
 
 # Prepare the build environment
 # FROM node:14-alpine3.15 as builder
-FROM node:14-alpine3.15 as builder
+FROM node:12.18.3 as builder
 
 ARG YARN_VERSION=1.22.5
 
@@ -18,8 +18,8 @@ RUN npm install yarn@${YARN_VERSION}
 # If you have trouble downloading the yarn binary, try the following:
 # RUN yarn config set registry https://registry.npmmirror.com
 
-# RUN yarn && yarn build
-RUN npm install&&npm run build
+RUN yarn && yarn build
+# RUN npm install&&npm run build
 
 # Copy compiled files
 RUN mkdir -p /out/server
@@ -36,7 +36,7 @@ RUN mv /kubesphere/package.json /out/
 # Final Image
 ##############
 
-FROM node:14-alpine3.15 as base_os_context
+FROM node:12.18.3 as base_os_context
 
 RUN adduser -D -g kubesphere -u 1002 kubesphere && \
     mkdir -p /opt/kubesphere/console && \
