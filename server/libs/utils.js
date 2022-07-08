@@ -75,20 +75,20 @@ const getServerConfig = key => {
 
 const getCache = () => cache
 
-const URL_PATTEN = /^((https|http|ftp|rtsp|mms){0,1}(:\/\/){0,1})(www\.)?(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\\/])+$/
+const URL_PATTEN = /^(https|http|ftp|rtsp|mms){0,1}:?(\/)+(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\\/])+$/
 
 const isValidReferer = path => {
-  const isUrl = URL_PATTEN.test(path)
+  if (isEmpty(path)) {
+    return false
+  }
+  const referer = decodeURIComponent(path)
+  const isUrl = URL_PATTEN.test(referer)
 
   // eslint-disable-next-line no-script-url
-  const isJsScript = path && path.indexOf('javascript:') < 0
+  const isJsScript = referer.indexOf('javascript:') < 0
 
   return (
-    !isEmpty(path) &&
-    path !== '/' &&
-    path.indexOf('/login') === -1 &&
-    !isUrl &&
-    isJsScript
+    referer !== '/' && referer.indexOf('/login') === -1 && !isUrl && isJsScript
   )
 }
 
