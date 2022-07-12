@@ -87,39 +87,46 @@ export default class RepoSelectForm extends React.Component {
 
     if (!isEmpty(sourceData)) {
       this.source_type = sourceData.source_type
+      this.restoreSourceData()
+    }
+  }
+
+  restoreSourceData = () => {
+    const { sourceData } = this.props
+    const { source_type } = sourceData
+
+    this.store.formData = {
+      [REPO_KEY_MAP[source_type]]: omitBy(
+        sourceData[REPO_KEY_MAP[source_type]],
+        (value, key) => key && key.startsWith('discover') && isEmpty(value)
+      ),
+    }
+
+    if (has(sourceData, 'credentialId')) {
+      if (source_type === 'github') {
+        this.store.tokenFormData = { credentialId: sourceData.credentialId }
+      }
+
+      if (source_type === 'git') {
+        set(
+          this.store.formData,
+          `${REPO_KEY_MAP[source_type]}.credential_id`,
+          sourceData.credentialId
+        )
+      }
+
+      if (source_type === 'gitlab') {
+        set(this.store.formData, `${REPO_KEY_MAP[source_type]}`, {})
+      }
+    }
+
+    // initial single_svn type in edit
+    if (source_type === 'single_svn') {
       this.store.formData = {
-        [REPO_KEY_MAP[this.source_type]]: omitBy(
-          sourceData[REPO_KEY_MAP[this.source_type]],
-          (value, key) => key && key.startsWith('discover') && isEmpty(value)
-        ),
-      }
-
-      if (has(sourceData, 'credentialId')) {
-        if (this.source_type === 'github') {
-          this.store.tokenFormData = { credentialId: sourceData.credentialId }
-        }
-
-        if (this.source_type === 'git') {
-          set(
-            this.store.formData,
-            `${REPO_KEY_MAP[this.source_type]}.credential_id`,
-            sourceData.credentialId
-          )
-        }
-
-        if (this.source_type === 'gitlab') {
-          set(this.store.formData, `${REPO_KEY_MAP[this.source_type]}`, {})
-        }
-      }
-
-      // initial single_svn type in edit
-      if (this.source_type === 'single_svn') {
-        this.store.formData = {
-          svn_source: {
-            type: 'single_svn',
-            ...this.store.formData.single_svn_source,
-          },
-        }
+        svn_source: {
+          type: 'single_svn',
+          ...this.store.formData.single_svn_source,
+        },
       }
     }
   }
@@ -205,6 +212,7 @@ export default class RepoSelectForm extends React.Component {
   }
 
   handleTypeChange = e => {
+    const { sourceData } = this.props
     const { type } = e.currentTarget.dataset
 
     this.source_type = type
@@ -214,6 +222,10 @@ export default class RepoSelectForm extends React.Component {
     }
 
     this.store.resetStore()
+
+    if (!isEmpty(sourceData) && sourceData.source_type === type) {
+      this.restoreSourceData()
+    }
   }
 
   renderTypes() {
