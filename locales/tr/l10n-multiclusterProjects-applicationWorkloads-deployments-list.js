@@ -166,7 +166,7 @@ module.exports = {
   TEMPORARY_VOLUME: 'Geçici Hacim',
   VOLUME_NAME: 'Hacim Adı',
   VOLUME_NAME_EMPTY: 'Lütfen birim için bir ad belirleyin.',
-  HOST_PATH_EMPTY: 'Lütfen birim için Ana bilgisayar yolu belirleyin.',
+  HOST_PATH_EMPTY: 'Please set a host path for the volume.',
   CONTAINER_NOT_SELECTED: 'Lütfen birimi en az bir konteynere bağlayın.',
   NOT_MOUNT: 'Bağlanamadı',
   HOSTPATH_VOLUME: 'HostPath Hacmi',
