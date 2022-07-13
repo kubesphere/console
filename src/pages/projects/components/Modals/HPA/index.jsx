@@ -84,8 +84,9 @@ export default class HPAModal extends React.Component {
   }
 
   getFormData = () => {
-    const { name, namespace } = this.props.detail
+    const { name, namespace, uid, kind } = this.props.detail
     const detail = toJS(this.store.detail)
+    const apiVersion = 'apps/v1'
 
     const {
       cpuCurrentUtilization,
@@ -104,6 +105,16 @@ export default class HPAModal extends React.Component {
           memoryCurrentValue,
           memoryTargetValue,
         },
+        ownerReferences: [
+          {
+            apiVersion,
+            blockOwnerDeletion: true,
+            controller: true,
+            kind,
+            name,
+            uid,
+          },
+        ],
       },
       spec: {
         scaleTargetRef: {
