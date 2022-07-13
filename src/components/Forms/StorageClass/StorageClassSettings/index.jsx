@@ -212,6 +212,7 @@ export default class StorageClassSetting extends React.Component {
                 <Select
                   name="volumeBindingMode"
                   options={this.volumeBindingMode}
+                  defaultValue={'WaitForFirstConsumer'}
                 ></Select>
               </Form.Item>
             </Column>
