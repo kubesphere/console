@@ -166,7 +166,7 @@ module.exports = {
   TEMPORARY_VOLUME: '临时卷',
   VOLUME_NAME: '卷名称',
   VOLUME_NAME_EMPTY: '请为卷设置名称。',
-  HOST_PATH_EMPTY: '请为卷设置主机路径。',
+  HOST_PATH_EMPTY: 'Please set a host path for the volume.',
   CONTAINER_NOT_SELECTED: '请将卷挂载到至少一个容器。',
   NOT_MOUNT: '不挂载',
   HOSTPATH_VOLUME: 'HostPath 卷',
