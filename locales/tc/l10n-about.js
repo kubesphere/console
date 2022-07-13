@@ -21,5 +21,5 @@ module.exports = {
   ISSUE_FEEDBACK: '問題反饋',
   PART_IN_DISCUSSION: '參與討論',
   CODE_CONTRIBUTE: '貢獻代碼',
-  GITHUB_STAR: '點亮Star'
+  GITHUB_STAR: '點亮 Star'
 };
