@@ -26,14 +26,14 @@ export default class OSSelect extends React.Component {
       return []
     }
 
-    return props.value.slice(2, props.value.length - 2).split('|')
+    return props.value.slice(3, props.value.length - 3).split('|')
   }
 
   handleChange = value => {
     const { onChange } = this.props
 
     if (!isEmpty(value)) {
-      onChange && onChange(`.*${value.join('|')}.*`)
+      onChange && onChange(`.*(${value.join('|')}).*`)
     } else {
       onChange && onChange('')
     }
