@@ -1169,3 +1169,5 @@ export const OMIT_TOTAL_REPLICAS = kind => [
   `${kind}.Deployment.totalReplicas`,
   `${kind}.workload.totalReplicas`,
 ]
+
+export const PAGESIZE_OPTION = [10, 20, 50, 100]
