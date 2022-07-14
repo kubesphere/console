@@ -71,6 +71,5 @@ module.exports = {
   POLICY: 'Policy',
   // Pods
   READY_VALUE: 'Ready: {readyCount}/{total}',
-  STATUS_VALUE: 'Status: {value}',
-  CREATED_AGO: 'Creado {diff}'
+  STATUS_VALUE: 'Status: {value}'
 };
