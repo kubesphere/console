@@ -24,7 +24,6 @@ module.exports = {
   EDIT_APP_SETTINGS: 'Edit App Settings',
   // Details
   // Resource Status
-  UPDATED_AGO: 'Updated {value}',
   // App Template > App Description
   APP_TEMPLATE: 'App Template',
   NO_APP_DESC_FOUND: '該應用沒有說明文件'
