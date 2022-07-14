@@ -71,6 +71,5 @@ module.exports = {
   POLICY: '策略',
   // Pods
   READY_VALUE: '就绪：{readyCount}/{total}',
-  STATUS_VALUE: '状态：{value}',
-  CREATED_AGO: '创建于 {diff}'
+  STATUS_VALUE: '状态：{value}'
 };
