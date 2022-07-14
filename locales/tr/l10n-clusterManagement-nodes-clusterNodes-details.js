@@ -71,6 +71,5 @@ module.exports = {
   POLICY: 'Politika',
   // Pods
   READY_VALUE: 'Hazır:{hazırSayısı}/{toplam}',
-  STATUS_VALUE: 'Durum:{değer}',
-  CREATED_AGO: 'Yaratılan {diff}'
+  STATUS_VALUE: 'Durum:{değer}'
 };
