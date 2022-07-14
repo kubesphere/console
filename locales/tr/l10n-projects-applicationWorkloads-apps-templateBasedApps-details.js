@@ -24,7 +24,6 @@ module.exports = {
   EDIT_APP_SETTINGS: 'Uygulama Ayarlarını Düzenle',
   // Attributes
   // Resource Status
-  UPDATED_TIME: '{value} Değerinde güncellendi.',
   // App Template > App Description
   APP_TEMPLATE: 'Uygulama Şablonu',
   NO_APP_DESC_FOUND: 'Uygulama açıklaması bulunamadı.'
