@@ -242,7 +242,7 @@ export default class Services extends React.Component {
     }
 
     if (data.specType === 'NodePort') {
-      text.des = t('PORT_PL')
+      text.des = t('NODE_PORTS_SCAP')
       text.title = data.ports
         .filter(port => port.nodePort)
         .map(port => `${port.nodePort}/${port.protocol}`)
