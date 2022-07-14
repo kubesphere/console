@@ -73,7 +73,6 @@ module.exports = {
   // Pods
   READY_VALUE: 'Ready: {readyCount}/{total}',
   STATUS_VALUE: 'Status: {value}',
-  CREATED_AGO: 'Created {diff}',
   // Metadata
   // Monitoring
   // Events
