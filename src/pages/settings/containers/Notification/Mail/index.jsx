@@ -129,8 +129,16 @@ export default class Mail extends React.Component {
       secretData[key] = safeBtoa(secretData[key])
     })
 
-    set(config, 'spec.email.authPassword.key', 'authPassword')
-    set(config, 'spec.email.authPassword.name', SECRET_NAME)
+    set(
+      config,
+      'spec.email.authPassword.valueFrom.secretKeyRef.key',
+      'authPassword'
+    )
+    set(
+      config,
+      'spec.email.authPassword.valueFrom.secretKeyRef.name',
+      SECRET_NAME
+    )
 
     if (formStatus === 'create') {
       await this.configStore.create(config)

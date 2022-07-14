@@ -640,6 +640,9 @@ client:
     dingtalk:
       max_number_of_cid: 20
       max_number_of_keyword: 20
+    feishu:
+      max_number_of_cid: 20
+      max_number_of_keyword: 20
     wecom:
       max_number_of_toUser: 50
       max_number_of_toParty: 20

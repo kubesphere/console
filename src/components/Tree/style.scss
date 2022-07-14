@@ -9,7 +9,7 @@
     position: inherit;
     list-style: none;
     padding: 0;
-    outline: 0; 
+    outline: 0;
     margin: 0;
     z-index: auto;
   }
@@ -23,15 +23,15 @@
     color: $tree-text-color;
     display: inline-flex;
     &.disabled {
-      .treeContent{
-        opacity: .5;
+      .treeContent {
+        opacity: 0.5;
         cursor: default;
       }
     }
   }
 
   .treeContent {
-    flex:1;
+    flex: 1;
     padding: 6px 8px;
     border-radius: $tree-border-radius;
     display: flex;
@@ -83,7 +83,6 @@
     &:hover {
       background-color: $tree-switch-hover-color;
     }
-
   }
 
   &.showLine {
@@ -91,7 +90,7 @@
       padding: 0 0 0 29px;
     }
 
-    >li:first-child {
+    > li:first-child {
       &:before {
         top: #{$tree-node-height / 2} !important;
         height: 100% !important;
@@ -102,7 +101,7 @@
       }
     }
 
-    >li:only-of-type {
+    > li:only-of-type {
       &:after {
         display: none;
       }
@@ -132,7 +131,6 @@
         margin: 0;
         content: ' ';
       }
-
     }
     ul li.treeNode {
       &:only-of-type:before {
@@ -143,7 +141,7 @@
         height: #{$tree-node-height / 2};
         border-left: 1px solid $border-color;
         margin: 0;
-        content: " ";
+        content: ' ';
       }
     }
   }

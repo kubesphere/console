@@ -24,7 +24,7 @@ import BaseStore from 'stores/base'
 
 export default class Base extends BaseStore {
   get apiVersion() {
-    return 'kapis/notification.kubesphere.io/v2beta1'
+    return 'kapis/notification.kubesphere.io/v2beta2'
   }
 
   getPath({ user }) {
