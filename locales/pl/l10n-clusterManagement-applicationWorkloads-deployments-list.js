@@ -23,7 +23,7 @@ module.exports = {
   DEPLOYMENTS: 'Deployments',
   UPDATE_TIME_TCAP: 'Update Time',
   ALL_PROJECTS: 'All projects',
-  SHOW_NUM: 'Show: {num}',
+  TABLE_UNIT: 'pcs/page',
   // List > Create > Basic Information
   SELECT_PROJECT_DESC: 'Select a project in which the resource is to be created.',
   PROJECT_NOT_SELECT_DESC: 'Please select a project.',
