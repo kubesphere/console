@@ -80,32 +80,33 @@ export default class DingTalk extends React.Component {
 
   fetchData = async () => {
     this.setState({ isLoading: true })
-    const results = await this.configStore.fetchList({ type: 'dingtalk' })
-    const config = results.find(
+
+    const [configResult, receivers, secrets] = await Promise.all([
+      this.configStore.fetchList({ type: 'dingtalk' }),
+      this.receiverStore.fetchList({
+        name: RECEIVER_NAME,
+      }),
+      this.secretStore.fetchList({ name: SECRET_NAME }),
+    ])
+
+    const config = configResult.find(
       item => get(item, 'metadata.name') === CONFIG_NAME
     )
 
-    if (!isEmpty(config)) {
-      const [receivers, secrets] = await Promise.all([
-        this.receiverStore.fetchList({
-          name: RECEIVER_NAME,
-        }),
-        this.secretStore.fetchList({ name: SECRET_NAME }),
-      ])
-
-      this.formData = {
-        config,
-        receiver: set(
-          this.receiverFormTemplate,
-          'spec',
-          get(receivers, '[0].spec', {})
-        ),
-        secret: set(this.secretTemplate, 'data', get(secrets, '[0].data', {})),
-      }
-      this.setState({
-        formData: cloneDeep(this.formData),
-      })
+    this.formData = {
+      config: config || this.configFormTemplate,
+      receiver: set(
+        this.receiverFormTemplate,
+        'spec',
+        get(receivers, '[0].spec', {})
+      ),
+      secret: set(this.secretTemplate, 'data', get(secrets, '[0].data', {})),
     }
+
+    this.setState({
+      formData: cloneDeep(this.formData),
+    })
+
     this.setState({ isLoading: false })
   }
 
@@ -288,6 +289,12 @@ export default class DingTalk extends React.Component {
 
     if (!secretData.appsecret) {
       unset(config, 'spec.dingtalk.conversation.appsecret')
+    }
+
+    const conversation = get(config, 'spec.dingtalk.conversation')
+
+    if (isEmpty(conversation)) {
+      unset(config, 'spec.dingtalk.conversation')
     }
 
     if (!secretData.webhook) {

@@ -78,32 +78,31 @@ export default class Feishu extends Component {
 
   fetchData = async () => {
     this.setState({ isLoading: true })
-    const results = await this.configStore.fetchList({ type: 'feishu' })
-    const config = results.find(
+
+    const [configRes, receivers, secrets] = await Promise.all([
+      await this.configStore.fetchList({ type: 'feishu' }),
+      this.receiverStore.fetchList({
+        name: RECEIVER_NAME,
+      }),
+      this.secretStore.fetchList({ name: SECRET_NAME }),
+    ])
+
+    const config = configRes.find(
       item => get(item, 'metadata.name') === CONFIG_NAME
     )
-
-    if (!isEmpty(config)) {
-      const [receivers, secrets] = await Promise.all([
-        this.receiverStore.fetchList({
-          name: RECEIVER_NAME,
-        }),
-        this.secretStore.fetchList({ name: SECRET_NAME }),
-      ])
-
-      this.formData = {
-        config,
-        receiver: set(
-          this.receiverFormTemplate,
-          'spec',
-          get(receivers, '[0].spec', {})
-        ),
-        secret: set(this.secretTemplate, 'data', get(secrets, '[0].data', {})),
-      }
-      this.setState({
-        formData: cloneDeep(this.formData),
-      })
+    this.formData = {
+      config: config || this.configFormTemplate,
+      receiver: set(
+        this.receiverFormTemplate,
+        'spec',
+        get(receivers, '[0].spec', {})
+      ),
+      secret: set(this.secretTemplate, 'data', get(secrets, '[0].data', {})),
     }
+    this.setState({
+      formData: cloneDeep(this.formData),
+    })
+
     this.setState({ isLoading: false })
   }
 
@@ -267,6 +266,12 @@ export default class Feishu extends Component {
 
     if (!secretData.appsecret) {
       unset(config, 'spec.feishu.appSecret')
+    }
+
+    const conversation = get(config, 'spec.dingtalk')
+
+    if (isEmpty(conversation)) {
+      unset(config, 'spec.feishu')
     }
 
     if (!secretData.webhook) {
