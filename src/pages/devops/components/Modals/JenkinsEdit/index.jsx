@@ -114,12 +114,27 @@ export default class JenkinsEdit extends React.Component {
     return false
   }
 
+  saveJenkins = jenkinsFile => {
+    const { devops, name: pipeline } = this.props.params
+    return request.put(
+      `/kapis/devops.kubesphere.io/v1alpha3/devops/${devops}/pipelines/${pipeline}/jenkinsfile`,
+      { data: jenkinsFile },
+      {
+        headers: {
+          'content-type': 'application/json',
+        },
+      }
+    )
+  }
+
   handleOk = async () => {
     this.newValue = this.state.value.replace(/\t/g, '    ')
     const hasError = await this.checkScriptCompile()
     if (hasError) {
       return
     }
+
+    await this.saveJenkins(this.newValue)
     this.props.onOk(this.newValue)
   }
 
@@ -146,7 +161,7 @@ export default class JenkinsEdit extends React.Component {
               className={styles.codeEditor}
               name="script"
               mode="groovy"
-              value={this.state.value}
+              value={this.state.value ?? ''}
               onChange={this.handleChange}
               options={
                 this.state.error && {

@@ -101,12 +101,12 @@ export default class Pipeline extends React.Component {
   }
 
   handleJenkinsFileModal = () => {
-    const { jenkinsfile } = this.store
+    const { pipelineConfig } = this.store
     const { params } = this.props.match
 
     this.trigger('pipeline.jenkins', {
       store: this.store,
-      defaultValue: toJS(jenkinsfile),
+      defaultValue: toJS(pipelineConfig.spec.pipeline.jenkinsfile),
       params,
       success: () => {
         const { devops, name } = params
@@ -118,15 +118,18 @@ export default class Pipeline extends React.Component {
 
   getData = async () => {
     const { params } = this.props.match
+    const decodeName = decodeURIComponent(params.name)
 
-    await this.store.getJenkinsFile(params)
+    await this.store.getJenkinsFile({ ...params, name: decodeName })
 
     this.store.getActivities(params)
   }
 
   handleRefresh = () => {
     const { params } = this.props.match
-    this.store.getJenkinsFile(params)
+    const decodeName = decodeURIComponent(params.name)
+
+    this.store.getJenkinsFile({ ...params, name: decodeName }, true)
   }
 
   componentDidMount() {
