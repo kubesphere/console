@@ -115,6 +115,8 @@ export default class Slack extends React.Component {
     const { config, receiver, secret } = cloneDeep(data)
     set(config, 'spec.slack.slackTokenSecret.value', get(secret, 'data.token'))
     unset(receiver, 'spec.slack.alertSelector')
+    unset(config, 'spec.slack.slackTokenSecret.valueFrom')
+
     return { config, receiver, secret }
   }
 

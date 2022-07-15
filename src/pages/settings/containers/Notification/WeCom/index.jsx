@@ -119,6 +119,8 @@ export default class WeCom extends React.Component {
       get(secret, 'data.appsecret')
     )
     unset(receiver, 'spec.wechat.alertSelector')
+    unset(config, 'spec.wechat.wechatApiSecret.valueFrom')
+
     return { config, receiver, secret }
   }
 

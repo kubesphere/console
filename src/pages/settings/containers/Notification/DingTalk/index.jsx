@@ -50,7 +50,6 @@ export default class DingTalk extends React.Component {
       receiver: this.receiverFormTemplate,
       secret: this.secretTemplate,
     },
-    formStatus: 'create',
     isLoading: false,
   }
 
@@ -105,7 +104,6 @@ export default class DingTalk extends React.Component {
       }
       this.setState({
         formData: cloneDeep(this.formData),
-        formStatus: 'update',
       })
     }
     this.setState({ isLoading: false })
@@ -216,10 +214,22 @@ export default class DingTalk extends React.Component {
     return true
   }
 
+  getResource = async () => {
+    const [isExitConfig, isExitReceiver, isExitSecret] = await Promise.all([
+      this.configStore.getResource({ name: CONFIG_NAME }),
+      this.receiverStore.getResource({ name: RECEIVER_NAME }),
+      this.secretStore.getResource({ name: SECRET_NAME }),
+    ])
+
+    return {
+      isExitConfig,
+      isExitReceiver,
+      isExitSecret,
+    }
+  }
+
   handleSubmit = async data => {
     const { config, receiver, secret } = cloneDeep(data)
-    const { formStatus } = this.state
-    let message
 
     if (!this.handleVerify(data)) {
       return
@@ -299,25 +309,41 @@ export default class DingTalk extends React.Component {
       unset(receiver, 'spec.dingtalk.chatbot')
     }
 
-    if (formStatus === 'create') {
-      await this.configStore.create(config)
-      await this.secretStore.create(
-        set(this.secretTemplate, 'data', secretData)
-      )
-      await this.receiverStore.create(receiver)
-      message = t('CREATE_SUCCESSFUL')
+    const {
+      isExitConfig,
+      isExitReceiver,
+      isExitSecret,
+    } = await this.getResource()
+
+    if (isExitConfig) {
+      if (isEmpty(get(receiver, 'spec.dingtalk.conversation.chatids'))) {
+        await this.configStore.delete({ name: CONFIG_NAME })
+      } else {
+        await this.configStore.update({ name: CONFIG_NAME }, config)
+      }
     } else {
-      await this.configStore.update({ name: CONFIG_NAME }, config)
+      unset(config, 'metadata.resourceVersion')
+      await this.configStore.create(config)
+    }
+
+    if (isExitReceiver) {
+      await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
+    } else {
+      await this.receiverStore.create(receiver)
+    }
+
+    if (isExitSecret) {
       await this.secretStore.update(
         { name: SECRET_NAME },
         set(this.secretTemplate, 'data', secretData)
       )
-      await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
-      message = t('UPDATE_SUCCESSFUL')
+    } else {
+      await this.secretStore.create(
+        set(this.secretTemplate, 'data', secretData)
+      )
     }
-
-    this.fetchData()
-    Notify.success({ content: message, duration: 1000 })
+    await this.fetchData()
+    Notify.success({ content: '操作成功', duration: 1000 })
   }
 
   onFormClose = () => {

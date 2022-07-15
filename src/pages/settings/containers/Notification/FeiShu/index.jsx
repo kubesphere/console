@@ -48,7 +48,6 @@ export default class Feishu extends Component {
       receiver: this.receiverFormTemplate,
       secret: this.secretTemplate,
     },
-    formStatus: 'create',
     isLoading: false,
   }
 
@@ -103,7 +102,6 @@ export default class Feishu extends Component {
       }
       this.setState({
         formData: cloneDeep(this.formData),
-        formStatus: 'update',
       })
     }
     this.setState({ isLoading: false })
@@ -113,27 +111,40 @@ export default class Feishu extends Component {
     const template = {}
     const { receiver, secret } = cloneDeep(data)
     const keywords = get(receiver, 'spec.feishu.chatbot.keywords')
+    const department = get(receiver, 'spec.feishu.department')
+    const user = get(receiver, 'spec.feishu.user')
+
     const { appkey, appsecret, webhook, chatbotsecret } = get(
       secret,
       'data',
       {}
     )
-
     if (appkey) {
-      set(template, 'config.spec.feishu.appkey.value', appkey)
+      set(template, 'config.spec.feishu.appID.value', appkey)
     }
+
     if (appsecret) {
-      set(template, 'config.spec.feishu.appsecret.value', appsecret)
+      set(template, 'config.spec.feishu.appSecret.value', appsecret)
     }
 
     if (webhook) {
       set(template, 'receiver.spec.feishu.chatbot.webhook.value', webhook)
     }
+
     if (chatbotsecret) {
       set(template, 'receiver.spec.feishu.chatbot.secret.value', chatbotsecret)
     }
+
     if (!isEmpty(keywords)) {
       set(template, 'receiver.spec.feishu.chatbot.keywords', keywords)
+    }
+
+    if (!isEmpty(department)) {
+      set(template, 'receiver.spec.feishu.department', department)
+    }
+
+    if (!isEmpty(user)) {
+      set(template, 'receiver.spec.feishu.user', user)
     }
 
     return template
@@ -141,7 +152,9 @@ export default class Feishu extends Component {
 
   handleVerify = ({ receiver, secret }) => {
     const keywords = get(receiver, 'spec.feishu.chatbot.keywords')
-    const chatids = get(receiver, 'spec.feishu.conversation.chatids')
+    const department = get(receiver, 'spec.feishu.department', [])
+    const user = get(receiver, 'spec.feishu.user', [])
+
     const { appkey, appsecret, webhook, chatbotsecret } = get(
       secret,
       'data',
@@ -149,14 +162,9 @@ export default class Feishu extends Component {
     )
 
     if (
-      [
-        appkey,
-        appsecret,
-        chatids,
-        webhook,
-        chatbotsecret,
-        keywords,
-      ].every(item => (isArray(item) ? isEmpty(item) : !item))
+      [appkey, appsecret, webhook, chatbotsecret, keywords].every(item =>
+        isArray(item) ? isEmpty(item) : !item
+      )
     ) {
       Notify.error({
         content: t('DINGTALK_SETTING_TIP'),
@@ -164,13 +172,14 @@ export default class Feishu extends Component {
       return false
     }
 
-    if (appkey || appsecret) {
+    if (department.length > 0 || user.length > 0) {
       if (!appkey) {
         Notify.error({
           content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('AppKey') }),
         })
         return false
       }
+
       if (!appsecret) {
         Notify.error({
           content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('AppSecret') }),
@@ -195,10 +204,22 @@ export default class Feishu extends Component {
     return true
   }
 
+  getResource = async () => {
+    const [isExitConfig, isExitReceiver, isExitSecret] = await Promise.all([
+      this.configStore.getResource({ name: CONFIG_NAME }),
+      this.receiverStore.getResource({ name: RECEIVER_NAME }),
+      this.secretStore.getResource({ name: SECRET_NAME }),
+    ])
+
+    return {
+      isExitConfig,
+      isExitReceiver,
+      isExitSecret,
+    }
+  }
+
   handleSubmit = async data => {
     const { config, receiver, secret } = cloneDeep(data)
-    const { formStatus } = this.state
-    let message
 
     if (!this.handleVerify(data)) {
       return
@@ -263,25 +284,41 @@ export default class Feishu extends Component {
       unset(receiver, 'spec.feishu.chatbot')
     }
 
-    if (formStatus === 'create') {
-      await this.configStore.create(config)
-      await this.secretStore.create(
-        set(this.secretTemplate, 'data', secretData)
-      )
-      await this.receiverStore.create(receiver)
-      message = t('CREATE_SUCCESSFUL')
+    const {
+      isExitConfig,
+      isExitReceiver,
+      isExitSecret,
+    } = await this.getResource()
+
+    if (isExitConfig) {
+      if (isEmpty(get(config, 'spec.feishu'))) {
+        await this.configStore.delete({ name: CONFIG_NAME })
+      } else {
+        await this.configStore.update({ name: CONFIG_NAME }, config)
+      }
     } else {
-      await this.configStore.update({ name: CONFIG_NAME }, config)
+      unset(config, 'metadata.resourceVersion')
+      await this.configStore.create(config)
+    }
+
+    if (isExitReceiver) {
+      await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
+    } else {
+      await this.receiverStore.create(receiver)
+    }
+
+    if (isExitSecret) {
       await this.secretStore.update(
         { name: SECRET_NAME },
         set(this.secretTemplate, 'data', secretData)
       )
-      await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
-      message = t('UPDATE_SUCCESSFUL')
+    } else {
+      await this.secretStore.create(
+        set(this.secretTemplate, 'data', secretData)
+      )
     }
-
-    this.fetchData()
-    Notify.success({ content: message, duration: 1000 })
+    await this.fetchData()
+    Notify.success({ content: '操作成功', duration: 1000 })
   }
 
   onFormClose = () => {
