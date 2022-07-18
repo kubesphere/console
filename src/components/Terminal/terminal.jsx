@@ -49,7 +49,7 @@ export default class ContainerTerminal extends React.Component {
 
   static defaultProps = {
     terminalOpts: {},
-    initText: 'Connecting...',
+    initText: 'Connecting',
     isEdgeNode: false,
   }
 
@@ -62,6 +62,7 @@ export default class ContainerTerminal extends React.Component {
 
     this.first = true
     this.containerRef = React.createRef()
+    this.initTimer = null
   }
 
   componentDidMount() {
@@ -78,6 +79,7 @@ export default class ContainerTerminal extends React.Component {
     this.term.destroy()
     this.disconnect()
     this.removeResizeListener()
+    this.initTimer && clearInterval(this.initTimer)
   }
 
   initTerm() {
@@ -85,10 +87,22 @@ export default class ContainerTerminal extends React.Component {
     const terminalOpts = this.getTerminalOpts()
     const term = new Terminal(terminalOpts)
     term.open(this.containerRef.current)
-    term.write(initText)
+    this.initTimer = this.renderConnecting(term, initText)
     term.fit()
 
     return term
+  }
+
+  renderConnecting(term, initText) {
+    let count = 0
+    const timer = setInterval(() => {
+      term.reset()
+      term.write(`${initText}${'.'.repeat(++count)}`)
+      if (count > 2) {
+        count = 0
+      }
+    }, 500)
+    return timer
   }
 
   disableTermStdin(disabled = true) {
@@ -154,10 +168,12 @@ export default class ContainerTerminal extends React.Component {
   }
 
   onWSError = ex => {
+    this.initTimer && clearInterval(this.initTimer)
     this.fatal(ex.message)
   }
 
   onWSReceive = data => {
+    this.initTimer && clearInterval(this.initTimer)
     const term = this.term
 
     if (this.first) {
