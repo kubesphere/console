@@ -356,7 +356,7 @@ const NodeMapper = item => ({
   role: getNodeRoles(get(item, 'metadata.labels')),
   annotations: get(item, 'metadata.annotations'),
   status: get(item, 'status'),
-  conditions: get(item, 'status.conditions'),
+  conditions: get(item, 'status.conditions', []),
   nodeInfo: get(item, 'status.nodeInfo'),
   spec: get(item, 'spec'),
   unschedulable: get(item, 'spec.unschedulable'),
