@@ -79,7 +79,7 @@ module.exports = {
   MAX_CID_COUNT: '您可以最多添加 {count} 个会话 ID。',
   CONVERSATION_ID_EXISTS: '会话 ID 已存在，请添加其他会话 ID。',
   // DingTalk > DingTalk Chatbot
-  CHATBOT_SETTINGS: '群机器人设置',
+  CHATBOT_SETTINGS: 'Chatbot Setting',
   KEYWORDS_LIST: '关键词列表',
   DINGTALK_CHATBOT_SECURITY_TIP: '请输入密钥或关键词',
   ENTER_KEYWORD_DESC: '请输入关键字。',
@@ -147,5 +147,9 @@ module.exports = {
   TOKEN: '令牌',
   WEBHOOK_USERNAME_EMPTY_DESC: '请输入一个用户名。',
   WEBHOOK_PASSWORD_EMPTY_DESC: '请输入密码。',
-  WEBHOOK_TOKEN_EMPTY_DESC: '请输入一个令牌。'
+  WEBHOOK_TOKEN_EMPTY_DESC: '请输入一个令牌。',
+  // Feishu
+  Feishu: 'Feishu',
+  FEISHU_TITLE: 'Feishu',
+  FEISHU_DESC: 'You can receive notifications from the platform through Feishu, and you need to configure the Feishu sending server.'
 };
