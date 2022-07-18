@@ -68,6 +68,8 @@ export default class WorkloadItem extends React.Component {
       'annotations["deployment.kubernetes.io/revision"]'
     )
 
+    const kind = get(detail, 'module')
+
     return (
       <div className={styles.item}>
         <Text
@@ -79,6 +81,7 @@ export default class WorkloadItem extends React.Component {
           }
           description={this.getDescription(detail)}
         />
+        <Text title={kind ? t(`${kind}`) : '-'} description={t('TYPE')} />
         <Text
           title={<WorkloadStatus data={detail} module={detail.module} />}
           description={t('STATUS')}
