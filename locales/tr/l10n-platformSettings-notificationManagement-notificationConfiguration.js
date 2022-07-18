@@ -79,7 +79,7 @@ module.exports = {
   MAX_CID_COUNT: 'En fazla {count} görüşme kimliği ekleyebilirsiniz.',
   CONVERSATION_ID_EXISTS: 'Görüşme kimliği zaten var. Lütfen başka bir görüşme kimliği ekleyin.',
   // DingTalk > DingTalk Chatbot
-  CHATBOT_SETTINGS: 'DingTalk Sohbet Robotu',
+  CHATBOT_SETTINGS: 'Chatbot Setting',
   KEYWORDS_LIST: 'Anahtar Kelime Listesi',
   DINGTALK_CHATBOT_SECURITY_TIP: 'Lütfen bir sır veya anahtar kelime girin.',
   ENTER_KEYWORD_DESC: 'Lütfen bir anahtar kelime girin.',
@@ -147,5 +147,9 @@ module.exports = {
   TOKEN: 'Jeton',
   WEBHOOK_USERNAME_EMPTY_DESC: 'Lütfen kullanıcı adınızı girin.',
   WEBHOOK_PASSWORD_EMPTY_DESC: 'Lütfen bir şifre girin.',
-  WEBHOOK_TOKEN_EMPTY_DESC: 'Lütfen bir jeton girin.'
+  WEBHOOK_TOKEN_EMPTY_DESC: 'Lütfen bir jeton girin.',
+  // Feishu
+  Feishu: 'Feishu',
+  FEISHU_TITLE: 'Feishu',
+  FEISHU_DESC: 'You can receive notifications from the platform through Feishu, and you need to configure the Feishu sending server.'
 };
