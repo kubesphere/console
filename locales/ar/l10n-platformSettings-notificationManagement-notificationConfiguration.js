@@ -79,7 +79,7 @@ module.exports = {
   MAX_CID_COUNT: 'You can add a maximum of {count} conversation IDs.',
   CONVERSATION_ID_EXISTS: 'The conversation ID already exists. Please add another conversation ID.',
   // DingTalk > DingTalk Chatbot
-  CHATBOT_SETTINGS: 'DingTalk Chatbot',
+  CHATBOT_SETTINGS: 'Chatbot Setting',
   KEYWORDS_LIST: 'Keyword List',
   DINGTALK_CHATBOT_SECURITY_TIP: 'Please enter a secret or keywords.',
   ENTER_KEYWORD_DESC: 'Please enter a keyword.',
@@ -147,5 +147,9 @@ module.exports = {
   TOKEN: 'Token',
   WEBHOOK_USERNAME_EMPTY_DESC: 'يُرجى إدخال اسم مستخدم.',
   WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
-  WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
+  WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.',
+  // Feishu
+  Feishu: 'Feishu',
+  FEISHU_TITLE: 'Feishu',
+  FEISHU_DESC: 'You can receive notifications from the platform through Feishu, and you need to configure the Feishu sending server.'
 };
