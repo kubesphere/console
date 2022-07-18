@@ -119,6 +119,8 @@ export default class WeCom extends React.Component {
       get(secret, 'data.appsecret')
     )
     unset(receiver, 'spec.wechat.alertSelector')
+    unset(config, 'spec.wechat.wechatApiSecret.valueFrom')
+
     return { config, receiver, secret }
   }
 
@@ -132,8 +134,16 @@ export default class WeCom extends React.Component {
       secretData[key] = safeBtoa(secretData[key])
     })
 
-    set(config, 'spec.wechat.wechatApiSecret.key', 'appsecret')
-    set(config, 'spec.wechat.wechatApiSecret.name', SECRET_NAME)
+    set(
+      config,
+      'spec.wechat.wechatApiSecret.valueFrom.secretKeyRef.key',
+      'appsecret'
+    )
+    set(
+      config,
+      'spec.wechat.wechatApiSecret.valueFrom.secretKeyRef.name',
+      SECRET_NAME
+    )
 
     if (formStatus === 'create') {
       await this.configStore.create(config)

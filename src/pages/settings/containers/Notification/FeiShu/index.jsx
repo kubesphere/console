@@ -1,6 +1,6 @@
 /*
  * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * Copyright (C) 2022 The KubeSphere Console Authors.
  *
  * KubeSphere Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -16,31 +16,29 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { observer } from 'mobx-react'
+import React, { Component } from 'react'
 import { isArray, isEmpty, get, set, unset, cloneDeep } from 'lodash'
-
-import { Notify } from '@kube-design/components'
-import { Panel } from 'components/Base'
-import DingTalkForm from 'components/Forms/Notification/DingTalkForm'
+import { observer } from 'mobx-react'
 import BaseBanner from 'settings/components/Cards/Banner'
+import FeiShuForm from 'components/Forms/Notification/FeiShuForm'
+import { Panel } from 'components/Base'
+import { Notify } from '@kube-design/components'
 
-import ConfigStore from 'stores/notification/config'
 import ReceiverStore from 'stores/notification/receiver'
 import SecretStore from 'stores/notification/secret'
-
-import { safeBtoa } from 'utils/base64'
+import ConfigStore from 'stores/notification/config'
 import FORM_TEMPLATES from 'utils/form.templates'
+import { safeBtoa } from 'utils/base64'
 
-const CONFIG_NAME = 'default-dingtalk-config'
-const RECEIVER_NAME = 'global-dingtalk-receiver'
-const SECRET_NAME = 'global-dingtalk-config-secret'
+const CONFIG_NAME = 'default-feishu-config'
+const RECEIVER_NAME = 'global-feishu-receiver'
+const SECRET_NAME = 'global-feishu-config-secret'
 
 @observer
-export default class DingTalk extends React.Component {
-  configStore = new ConfigStore()
-
+export default class Feishu extends Component {
   receiverStore = new ReceiverStore()
+
+  configStore = new ConfigStore()
 
   secretStore = new SecretStore()
 
@@ -66,7 +64,7 @@ export default class DingTalk extends React.Component {
   get receiverFormTemplate() {
     return FORM_TEMPLATES['notificationreceivers']({
       name: RECEIVER_NAME,
-      type: 'dingtalk',
+      type: 'feishu',
     })
   }
 
@@ -81,18 +79,17 @@ export default class DingTalk extends React.Component {
   fetchData = async () => {
     this.setState({ isLoading: true })
 
-    const [configResult, receivers, secrets] = await Promise.all([
-      this.configStore.fetchList({ type: 'dingtalk' }),
+    const [configRes, receivers, secrets] = await Promise.all([
+      await this.configStore.fetchList({ type: 'feishu' }),
       this.receiverStore.fetchList({
         name: RECEIVER_NAME,
       }),
       this.secretStore.fetchList({ name: SECRET_NAME }),
     ])
 
-    const config = configResult.find(
+    const config = configRes.find(
       item => get(item, 'metadata.name') === CONFIG_NAME
     )
-
     this.formData = {
       config: config || this.configFormTemplate,
       receiver: set(
@@ -102,7 +99,6 @@ export default class DingTalk extends React.Component {
       ),
       secret: set(this.secretTemplate, 'data', get(secrets, '[0].data', {})),
     }
-
     this.setState({
       formData: cloneDeep(this.formData),
     })
@@ -113,47 +109,51 @@ export default class DingTalk extends React.Component {
   getVerifyFormTemplate = data => {
     const template = {}
     const { receiver, secret } = cloneDeep(data)
-    const chatids = get(receiver, 'spec.dingtalk.conversation.chatids')
-    const keywords = get(receiver, 'spec.dingtalk.chatbot.keywords')
+    const keywords = get(receiver, 'spec.feishu.chatbot.keywords')
+    const department = get(receiver, 'spec.feishu.department')
+    const user = get(receiver, 'spec.feishu.user')
+
     const { appkey, appsecret, webhook, chatbotsecret } = get(
       secret,
       'data',
       {}
     )
-
     if (appkey) {
-      set(template, 'config.spec.dingtalk.conversation.appkey.value', appkey)
+      set(template, 'config.spec.feishu.appID.value', appkey)
     }
+
     if (appsecret) {
-      set(
-        template,
-        'config.spec.dingtalk.conversation.appsecret.value',
-        appsecret
-      )
+      set(template, 'config.spec.feishu.appSecret.value', appsecret)
     }
-    if (!isEmpty(chatids)) {
-      set(template, 'receiver.spec.dingtalk.conversation.chatids', chatids)
-    }
+
     if (webhook) {
-      set(template, 'receiver.spec.dingtalk.chatbot.webhook.value', webhook)
+      set(template, 'receiver.spec.feishu.chatbot.webhook.value', webhook)
     }
+
     if (chatbotsecret) {
-      set(
-        template,
-        'receiver.spec.dingtalk.chatbot.secret.value',
-        chatbotsecret
-      )
+      set(template, 'receiver.spec.feishu.chatbot.secret.value', chatbotsecret)
     }
+
     if (!isEmpty(keywords)) {
-      set(template, 'receiver.spec.dingtalk.chatbot.keywords', keywords)
+      set(template, 'receiver.spec.feishu.chatbot.keywords', keywords)
+    }
+
+    if (!isEmpty(department)) {
+      set(template, 'receiver.spec.feishu.department', department)
+    }
+
+    if (!isEmpty(user)) {
+      set(template, 'receiver.spec.feishu.user', user)
     }
 
     return template
   }
 
   handleVerify = ({ receiver, secret }) => {
-    const keywords = get(receiver, 'spec.dingtalk.chatbot.keywords')
-    const chatids = get(receiver, 'spec.dingtalk.conversation.chatids')
+    const keywords = get(receiver, 'spec.feishu.chatbot.keywords')
+    const department = get(receiver, 'spec.feishu.department', [])
+    const user = get(receiver, 'spec.feishu.user', [])
+
     const { appkey, appsecret, webhook, chatbotsecret } = get(
       secret,
       'data',
@@ -161,14 +161,9 @@ export default class DingTalk extends React.Component {
     )
 
     if (
-      [
-        appkey,
-        appsecret,
-        chatids,
-        webhook,
-        chatbotsecret,
-        keywords,
-      ].every(item => (isArray(item) ? isEmpty(item) : !item))
+      [appkey, appsecret, webhook, chatbotsecret, keywords].every(item =>
+        isArray(item) ? isEmpty(item) : !item
+      )
     ) {
       Notify.error({
         content: t('DINGTALK_SETTING_TIP'),
@@ -176,24 +171,17 @@ export default class DingTalk extends React.Component {
       return false
     }
 
-    if (appkey || appsecret || !isEmpty(chatids)) {
+    if (department.length > 0 || user.length > 0) {
       if (!appkey) {
         Notify.error({
           content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('AppKey') }),
         })
         return false
       }
+
       if (!appsecret) {
         Notify.error({
           content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('AppSecret') }),
-        })
-        return false
-      }
-      if (isEmpty(chatids)) {
-        Notify.error({
-          content: t('PLEASE_ENTER_VALUE_CUSTOM', {
-            value: t('CONVERSATION_ID'),
-          }),
         })
         return false
       }
@@ -241,79 +229,64 @@ export default class DingTalk extends React.Component {
       secretData[key] = safeBtoa(secretData[key])
     })
 
+    set(config, 'spec.feishu.appID.valueFrom.secretKeyRef.key', 'appkey')
+    set(config, 'spec.feishu.appID.valueFrom.secretKeyRef.name', SECRET_NAME)
     set(
       config,
-      'spec.dingtalk.conversation.appkey.valueFrom.secretKeyRef.key',
-      'appkey'
-    )
-    set(
-      config,
-      'spec.dingtalk.conversation.appkey.valueFrom.secretKeyRef.name',
-      SECRET_NAME
-    )
-    set(
-      config,
-      'spec.dingtalk.conversation.appsecret.valueFrom.secretKeyRef.key',
-      'appsecret'
-    )
-    set(
-      config,
-      'spec.dingtalk.conversation.appsecret.valueFrom.secretKeyRef.name',
+      'spec.feishu.appSecret.valueFrom.secretKeyRef.name',
       SECRET_NAME
     )
 
+    set(config, 'spec.feishu.appSecret.valueFrom.secretKeyRef.key', 'appsecret')
+
     set(
       receiver,
-      'spec.dingtalk.chatbot.webhook.valueFrom.secretKeyRef.key',
+      'spec.feishu.chatbot.webhook.valueFrom.secretKeyRef.key',
       'webhook'
     )
     set(
       receiver,
-      'spec.dingtalk.chatbot.webhook.valueFrom.secretKeyRef.name',
+      'spec.feishu.chatbot.webhook.valueFrom.secretKeyRef.name',
       SECRET_NAME
     )
     set(
       receiver,
-      'spec.dingtalk.chatbot.secret.valueFrom.secretKeyRef.key',
+      'spec.feishu.chatbot.secret.valueFrom.secretKeyRef.key',
       'chatbotsecret'
     )
     set(
       receiver,
-      'spec.dingtalk.chatbot.secret.valueFrom.secretKeyRef.name',
+      'spec.feishu.chatbot.secret.valueFrom.secretKeyRef.name',
       SECRET_NAME
     )
 
     if (!secretData.appkey) {
-      unset(config, 'spec.dingtalk.conversation.appkey')
+      unset(config, 'spec.feishu.appID')
     }
 
     if (!secretData.appsecret) {
-      unset(config, 'spec.dingtalk.conversation.appsecret')
+      unset(config, 'spec.feishu.appSecret')
     }
 
-    const conversation = get(config, 'spec.dingtalk.conversation')
+    const conversation = get(config, 'spec.dingtalk')
 
     if (isEmpty(conversation)) {
-      unset(config, 'spec.dingtalk.conversation')
+      unset(config, 'spec.feishu')
     }
 
     if (!secretData.webhook) {
-      unset(receiver, 'spec.dingtalk.chatbot.webhook')
+      unset(receiver, 'spec.feishu.chatbot.webhook')
     }
     if (!secretData.chatbotsecret) {
-      unset(receiver, 'spec.dingtalk.chatbot.secret')
+      unset(receiver, 'spec.feishu.chatbot.secret')
     }
 
-    if (isEmpty(get(receiver, 'spec.dingtalk.conversation.chatids'))) {
-      unset(receiver, 'spec.dingtalk.conversation')
+    if (isEmpty(get(receiver, 'spec.feishu.chatbot.keywords'))) {
+      unset(receiver, 'spec.feishu.chatbot.keywords')
     }
 
-    if (isEmpty(get(receiver, 'spec.dingtalk.chatbot.keywords'))) {
-      unset(receiver, 'spec.dingtalk.chatbot.keywords')
-    }
-
-    if (isEmpty(get(receiver, 'spec.dingtalk.chatbot'))) {
-      unset(receiver, 'spec.dingtalk.chatbot')
+    if (isEmpty(get(receiver, 'spec.feishu.chatbot'))) {
+      unset(receiver, 'spec.feishu.chatbot')
     }
 
     const {
@@ -323,7 +296,7 @@ export default class DingTalk extends React.Component {
     } = await this.getResource()
 
     if (isExitConfig) {
-      if (isEmpty(get(receiver, 'spec.dingtalk.conversation.chatids'))) {
+      if (isEmpty(get(config, 'spec.feishu'))) {
         await this.configStore.delete({ name: CONFIG_NAME })
       } else {
         await this.configStore.update({ name: CONFIG_NAME }, config)
@@ -360,13 +333,13 @@ export default class DingTalk extends React.Component {
   }
 
   render() {
-    const { formData, isLoading } = this.state
+    const { isLoading, formData } = this.state
 
     return (
       <div>
-        <BaseBanner type="dingtalk" />
+        <BaseBanner type="feishu" />
         <Panel loading={isLoading}>
-          <DingTalkForm
+          <FeiShuForm
             data={formData}
             onCancel={this.onFormClose}
             onSubmit={this.handleSubmit}

@@ -28,6 +28,7 @@ export default class BaseBanner extends React.PureComponent {
       onChange: this.handleTabChange,
       options: [
         { value: 'mail', label: t('NOTIFICATION_EMAIL') },
+        { value: 'feishu', label: t('Feishu') },
         { value: 'dingtalk', label: t('DingTalk') },
         { value: 'wecom', label: t('WeCom') },
         { value: 'slack', label: t('Slack') },

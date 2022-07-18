@@ -115,6 +115,8 @@ export default class Slack extends React.Component {
     const { config, receiver, secret } = cloneDeep(data)
     set(config, 'spec.slack.slackTokenSecret.value', get(secret, 'data.token'))
     unset(receiver, 'spec.slack.alertSelector')
+    unset(config, 'spec.slack.slackTokenSecret.valueFrom')
+
     return { config, receiver, secret }
   }
 
@@ -124,8 +126,16 @@ export default class Slack extends React.Component {
     const token = safeBtoa(get(secret, 'data.token'))
     let message
 
-    set(config, 'spec.slack.slackTokenSecret.key', 'token')
-    set(config, 'spec.slack.slackTokenSecret.name', SECRET_NAME)
+    set(
+      config,
+      'spec.slack.slackTokenSecret.valueFrom.secretKeyRefkey.key',
+      'token'
+    )
+    set(
+      config,
+      'spec.slack.slackTokenSecret.valueFrom.secretKeyRefkey.name',
+      SECRET_NAME
+    )
     set(secret, 'data.token', token)
 
     if (formStatus === 'create') {
