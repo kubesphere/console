@@ -161,12 +161,26 @@ export default class WorkloadStore extends Base {
   @action
   stop({ name, cluster, namespace }) {
     const promises = []
+    const patchFiled =
+      this.module === 'daemonsets'
+        ? {
+            spec: {
+              template: {
+                spec: {
+                  nodeSelector: {
+                    'non-existing': 'true',
+                  },
+                },
+              },
+            },
+          }
+        : {
+            spec: {
+              replicas: 0,
+            },
+          }
     promises.push(
-      request.patch(this.getDetailUrl({ name, cluster, namespace }), {
-        spec: {
-          replicas: 0,
-        },
-      })
+      request.patch(this.getDetailUrl({ name, cluster, namespace }), patchFiled)
     )
 
     return this.submitting(Promise.all(promises))
