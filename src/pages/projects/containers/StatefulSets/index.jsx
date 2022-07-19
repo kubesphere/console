@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-
+import { get } from 'lodash'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
@@ -35,6 +35,7 @@ import WorkloadStore from 'stores/workload'
   store: new WorkloadStore('statefulsets'),
   module: 'statefulsets',
   name: 'WORKLOAD',
+  rowKey: 'uid',
 })
 export default class StatefulSets extends React.Component {
   get prefix() {
@@ -65,6 +66,23 @@ export default class StatefulSets extends React.Component {
         },
       ],
     }
+  }
+
+  get selectActions() {
+    const { tableProps, trigger, module, rootStore } = this.props
+    return [
+      ...get(tableProps, 'tableActions.selectActions', {}),
+      {
+        key: 'stop',
+        text: t('STOP'),
+        onClick: () =>
+          trigger('resource.batch.stop', {
+            type: module.toUpperCase(),
+            rowKey: 'uid',
+            success: rootStore.routing.query(),
+          }),
+      },
+    ]
   }
 
   get itemActions() {
@@ -223,6 +241,7 @@ export default class StatefulSets extends React.Component {
           {...tableProps}
           itemActions={this.itemActions}
           tableActions={this.tableActions}
+          selectActions={this.selectActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />
