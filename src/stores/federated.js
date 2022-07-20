@@ -361,20 +361,24 @@ export default class FederatedStore extends Base {
   async stop(item) {
     const { name, cluster, namespace } = item
     const params = { name, cluster, namespace }
-
-    const scheduleData = await request.get(
-      `${this.getScheduleListUrl(params)}/${params.name}`,
-      {},
-      {},
-      () => {
-        return {}
-      }
-    )
-    const isScheduled = isEmpty(scheduleData)
-
     const promises = []
+    let scheduleData = {}
+
+    if (this.resourceStore.module === 'deployments') {
+      scheduleData = await request.get(
+        `${this.getScheduleListUrl(params)}/${params.name}`,
+        {},
+        {},
+        () => {
+          return {}
+        }
+      )
+    }
+
+    const isWeightScheduled = !isEmpty(scheduleData)
     const overrides = [...toJS(item._originData.spec.overrides)]
-    if (!isScheduled) {
+
+    if (isWeightScheduled) {
       promises.push(
         request.patch(`${this.getScheduleListUrl(params)}/${params.name}`, {
           spec: {
