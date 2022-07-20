@@ -193,7 +193,7 @@ export default class Pipeline extends React.Component {
         {this.editable && (
           <Button
             onClick={this.handleJenkinsFileModal}
-            disabled={!this.isJsonModeOfJenkinsFile}
+            disabled={this.isJsonModeOfJenkinsFile}
           >
             {t('EDIT_JENKINSFILE')}
           </Button>
@@ -234,7 +234,7 @@ export default class Pipeline extends React.Component {
           {this.editable && (
             <Button
               onClick={this.handleJenkinsFileModal}
-              disabled={!this.isJsonModeOfJenkinsFile}
+              disabled={this.isJsonModeOfJenkinsFile}
             >
               {t('EDIT_JENKINSFILE')}
             </Button>
@@ -249,7 +249,7 @@ export default class Pipeline extends React.Component {
           {this.editable && (
             <Button
               onClick={this.handleJenkinsFileModal}
-              disabled={!this.isJsonModeOfJenkinsFile}
+              disabled={this.isJsonModeOfJenkinsFile}
             >
               {t('EDIT_JENKINSFILE')}
             </Button>

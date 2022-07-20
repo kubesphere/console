@@ -44,7 +44,7 @@ export default class JenkinsEdit extends React.Component {
     super(props)
     this.store = new PipelineStore()
     this.state = {
-      value: props.defaultValue,
+      value: props.defaultValue ?? '',
       isLoading: false,
       isshowComfirm: false,
     }
