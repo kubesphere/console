@@ -25,6 +25,7 @@ import { withClusterList, ListPage } from 'components/HOCs/withList'
 import WorkloadStatus from 'projects/components/WorkloadStatus'
 import StatusReason from 'projects/components/StatusReason'
 import ResourceTable from 'clusters/components/ResourceTable'
+import { get } from 'lodash'
 
 import { getLocalTime, getDisplayName } from 'utils'
 import { getWorkloadStatus } from 'utils/status'
@@ -66,6 +67,23 @@ export default class StatefulSets extends React.Component {
   }
 
   showAction = record => !record.isFedManaged
+
+  get selectActions() {
+    const { tableProps, trigger, module, rootStore } = this.props
+    return [
+      ...get(tableProps, 'tableActions.selectActions', {}),
+      {
+        key: 'stop',
+        text: t('STOP'),
+        onClick: () =>
+          trigger('resource.batch.stop', {
+            type: module.toUpperCase(),
+            rowKey: 'uid',
+            success: rootStore.routing.query(),
+          }),
+      },
+    ]
+  }
 
   get itemActions() {
     const { module, trigger, name } = this.props
@@ -215,6 +233,7 @@ export default class StatefulSets extends React.Component {
         <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}
+          selectActions={this.selectActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           cluster={match.params.cluster}

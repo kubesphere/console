@@ -19,6 +19,8 @@
 module.exports = {
   // Banner
   // List
+  DAEMONSETS_LOW: 'daemonsets',
+  DAEMONSETS_PL: 'daemonsets',
   // List > Create > Basic Information
   // List > Create > Pod Settings
   CONTAINER_SETTINGS_DESC: 'Set the image, name, type, and computing resources of the container.',

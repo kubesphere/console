@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-
+import { get } from 'lodash'
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
@@ -34,6 +34,7 @@ import WorkloadStore from 'stores/workload'
   store: new FederatedStore(new WorkloadStore('deployments')),
   module: 'deployments',
   name: 'WORKLOAD',
+  rowKey: 'uid',
 })
 export default class Deployments extends React.Component {
   get prefix() {
@@ -95,6 +96,23 @@ export default class Deployments extends React.Component {
             type: name,
             detail: item,
             isFederated: true,
+          }),
+      },
+    ]
+  }
+
+  get selectActions() {
+    const { tableProps, trigger, name, rootStore } = this.props
+    return [
+      ...get(tableProps, 'tableActions.selectActions', {}),
+      {
+        key: 'stop',
+        text: t('STOP'),
+        onClick: () =>
+          trigger('resource.batch.stop', {
+            type: name,
+            rowKey: 'uid',
+            success: rootStore.routing.query(),
           }),
       },
     ]
@@ -191,6 +209,7 @@ export default class Deployments extends React.Component {
           {...tableProps}
           itemActions={this.itemActions}
           tableActions={this.tableActions}
+          selectActions={this.selectActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType="name"
