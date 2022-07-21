@@ -18,6 +18,8 @@
 module.exports = {
   // Banner
   // List
+  STATEFULSETS_LOW: 'Durum kümeleri',
+  STATEFULSETS_PL: 'Durum kümeleri',
   // List > Create > Basic Information
   // List > Create > Pod Settings > Update Settings > Rolling Update Settings
   PARTITION_ORDINAL_EMPTY: 'Lütfen pod replikalarını bölümlemek için bir sıra tanımlayınız.'
