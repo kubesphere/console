@@ -18,6 +18,8 @@
 module.exports = {
   // Banner
   // List
+  DAEMONSETS_LOW: 'daemonsets',
+  DAEMONSETS_PL: 'daemonsets',
   // List > Create > Basic Information
   // List > Create > Pod Settings
   CONTAINER_SETTINGS_DESC: 'Kapsayıcının görüntüsünü, adını, türünü ve bilgi işlem kaynaklarını ayarlayın.',
