@@ -89,17 +89,19 @@ export default class JenkinsEdit extends React.Component {
     const { devops, name: pipeline, cluster } = this.props.params
     this.setState({ isLoading: true })
     const res = await this.store
-      .checkScriptCompile({
-        value: this.newValue,
-        pipeline,
-        devops,
-        cluster,
-      })
-      .catch(() => {
-        this.setState({
-          shouldCheckScriptCompile: false,
-        })
-      })
+      .checkScriptCompile(
+        {
+          value: this.newValue,
+          pipeline,
+          devops,
+          cluster,
+        },
+        () => {
+          this.setState({
+            shouldCheckScriptCompile: false,
+          })
+        }
+      )
       .finally(() => this.setState({ isLoading: false }))
 
     if (res.status === 'fail') {
@@ -123,7 +125,7 @@ export default class JenkinsEdit extends React.Component {
     this.setState({ isLoading: true })
     return request
       .put(
-        `/kapis/devops.kubesphere.io/v1alpha3/devops/${devops}/pipelines/${pipeline}/jenkinsfile`,
+        `/kapis/devops.kubesphere.io/v1alpha3/devops/${devops}/pipelines/${pipeline}/jenkinsfile?mode=raw`,
         { data: jenkinsFile },
         {
           headers: {
@@ -196,11 +198,7 @@ export default class JenkinsEdit extends React.Component {
             {!shouldCheckScriptCompile && (
               <div className={styles.checkResult}>
                 <img src="/assets/error.svg" />
-                <span>
-                  {t(
-                    'The check of script compile failed, if you want to bypass the step, please click the continue button'
-                  )}
-                </span>
+                <span>{t('FAILED_CHECK_SCRIPT_COMPILE')}</span>
               </div>
             )}
           </>

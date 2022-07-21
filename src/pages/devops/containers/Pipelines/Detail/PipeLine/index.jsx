@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Button, Loading } from '@kube-design/components'
+import { Button, Loading, Tooltip } from '@kube-design/components'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { isEmpty, debounce } from 'lodash'
@@ -51,12 +51,10 @@ export default class Pipeline extends React.Component {
     return this.enabledActions.includes('edit')
   }
 
-  get isJsonModeOfJenkinsFile() {
-    return (
-      this.store.pipelineConfig.metadata.annotations[
-        'pipeline.devops.kubesphere.io/jenkinsfile.edit.mode'
-      ] === 'json'
-    )
+  get jenkinsFileMode() {
+    return this.store.pipelineConfig.metadata.annotations[
+      'pipeline.devops.kubesphere.io/jenkinsfile.edit.mode'
+    ]
   }
 
   get isMultibranch() {
@@ -188,26 +186,37 @@ export default class Pipeline extends React.Component {
   }
 
   renderBtnGroup() {
+    if (!this.editable) {
+      return
+    }
+
     return (
       <div className={style.pipelineCard__btnGroup}>
-        {this.editable && (
-          <Button
-            onClick={this.handleJenkinsFileModal}
-            disabled={this.isJsonModeOfJenkinsFile}
-          >
+        {this.jenkinsFileMode === 'json' ? (
+          <Tooltip content={t('JENKINS_UNAVAILABLE')}>
+            <Button className={style['btn-disabled']}>
+              {t('EDIT_JENKINSFILE')}
+            </Button>
+          </Tooltip>
+        ) : (
+          <Button onClick={this.handleJenkinsFileModal}>
             {t('EDIT_JENKINSFILE')}
           </Button>
         )}
-        {this.editable && (
+        {this.jenkinsFileMode === 'raw' ? (
+          <Tooltip content={t('JENKINS_UNAVAILABLE')}>
+            <Button className={style['btn-disabled']}>
+              {t('EDIT_PIPELINE')}
+            </Button>
+          </Tooltip>
+        ) : (
           <Button onClick={this.handleEditorPipelineModal}>
             {t('EDIT_PIPELINE')}
           </Button>
         )}
-        {this.editable && (
-          <Button type="control" onClick={this.handleRunning}>
-            {t('RUN')}
-          </Button>
-        )}
+        <Button type="control" onClick={this.handleRunning}>
+          {t('RUN')}
+        </Button>
       </div>
     )
   }
@@ -227,17 +236,21 @@ export default class Pipeline extends React.Component {
       return (
         <EmptyCard desc={t('NO_PIPELINE_CONFIG_FILE_TIP')}>
           {this.editable && (
-            <Button type="control" onClick={this.handlePipelineModal}>
-              {t('EDIT_PIPELINE')}
-            </Button>
-          )}
-          {this.editable && (
-            <Button
-              onClick={this.handleJenkinsFileModal}
-              disabled={this.isJsonModeOfJenkinsFile}
-            >
-              {t('EDIT_JENKINSFILE')}
-            </Button>
+            <>
+              <Button
+                onClick={this.handleJenkinsFileModal}
+                disabled={this.jenkinsFileMode === 'json'}
+              >
+                {t('EDIT_JENKINSFILE')}
+              </Button>
+              <Button
+                type="control"
+                onClick={this.handlePipelineModal}
+                disabled={this.jenkinsFileMode === 'raw'}
+              >
+                {t('EDIT_PIPELINE')}
+              </Button>
+            </>
           )}
         </EmptyCard>
       )
@@ -247,17 +260,17 @@ export default class Pipeline extends React.Component {
       return (
         <EmptyCard desc={t('INVALID_JENKINSFILE_TIP')}>
           {this.editable && (
-            <Button
-              onClick={this.handleJenkinsFileModal}
-              disabled={this.isJsonModeOfJenkinsFile}
-            >
-              {t('EDIT_JENKINSFILE')}
-            </Button>
-          )}
-          {this.editable && (
-            <Button type="control" onClick={this.handleRunning}>
-              {t('RUN')}
-            </Button>
+            <>
+              <Button
+                onClick={this.handleJenkinsFileModal}
+                disabled={this.jenkinsFileMode === 'json'}
+              >
+                {t('EDIT_JENKINSFILE')}
+              </Button>
+              <Button type="control" onClick={this.handleRunning}>
+                {t('RUN')}
+              </Button>
+            </>
           )}
         </EmptyCard>
       )

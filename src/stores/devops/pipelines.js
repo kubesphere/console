@@ -550,7 +550,10 @@ export default class PipelineStore extends BaseStore {
     )
   }
 
-  async checkScriptCompile({ devops, pipeline, value, cluster }) {
+  async checkScriptCompile(
+    { devops, pipeline, value, cluster },
+    failureHandler
+  ) {
     return this.submitting(
       request.post(
         `${this.getPipelineUrl({
@@ -561,7 +564,8 @@ export default class PipelineStore extends BaseStore {
         {
           value,
         },
-        FORM_HEAR
+        FORM_HEAR,
+        failureHandler
       )
     )
   }
