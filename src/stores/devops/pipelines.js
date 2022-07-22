@@ -118,7 +118,7 @@ export default class PipelineStore extends BaseStore {
   branchDetail = {}
 
   @observable
-  jenkinsfile = ''
+  jenkinsFile = ''
 
   @observable
   devops = ''
@@ -219,32 +219,28 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async getJenkinsFile({ cluster, name, devops }) {
+  async getJenkinsFile({ cluster, name, devops }, isRefresh = false) {
     this.pipelineJsonData.isLoading = true
-    const decodeName = decodeURIComponent(name)
 
-    if (isEmpty(this.detail)) {
-      await this.fetchDetail({ cluster, name: decodeName, devops })
-    }
-
-    this.jenkinsfile = get(this.pipelineConfig, 'spec.pipeline.jenkinsfile', '')
-    const json = await this.convertJenkinsFileToJson(
-      toJS(this.jenkinsfile),
-      cluster
+    isRefresh && (await this.fetchDetail({ cluster, name, devops }))
+    this.jenkinsFile = get(this.pipelineConfig, 'spec.pipeline.jenkinsfile', '')
+    const json = get(
+      this.pipelineConfig,
+      `metadata.annotations['pipeline.devops.kubesphere.io/jenkinsfile']`
     )
 
     this.pipelineJsonData = {
-      pipelineJson: json,
+      pipelineJson: json ? { json: JSON.parse(json) } : undefined,
       isLoading: false,
     }
   }
 
   @action
-  async convertJenkinsFileToJson(jenkinsfile, cluster) {
-    if (jenkinsfile) {
+  async convertJenkinsFileToJson(jenkinsFile, cluster) {
+    if (jenkinsFile) {
       const result = await request.post(
         `${this.getDevopsUrlV2({ cluster })}tojson`,
-        { jenkinsfile },
+        { jenkinsfile: jenkinsFile },
         FORM_HEAR
       )
       return result.data
@@ -504,15 +500,10 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  updateJenkinsFile(jenkinsFile, params) {
+  updateJenkinsFile(jenkinsFile) {
     const data = cloneDeep(toJS(this.pipelineConfig))
     set(data, 'spec.pipeline.jenkinsfile', jenkinsFile)
-
-    return this.updatePipeline({
-      data,
-      devops: params.devops,
-      cluster: params.cluster,
-    })
+    this.setPipelineConfig(data)
   }
 
   @action
@@ -559,7 +550,10 @@ export default class PipelineStore extends BaseStore {
     )
   }
 
-  async checkScriptCompile({ devops, pipeline, value, cluster }) {
+  async checkScriptCompile(
+    { devops, pipeline, value, cluster },
+    failureHandler
+  ) {
     return this.submitting(
       request.post(
         `${this.getPipelineUrl({
@@ -570,7 +564,8 @@ export default class PipelineStore extends BaseStore {
         {
           value,
         },
-        FORM_HEAR
+        FORM_HEAR,
+        failureHandler
       )
     )
   }

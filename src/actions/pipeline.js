@@ -273,8 +273,8 @@ export default {
   'pipeline.jenkins': {
     on({ store, params, defaultValue, success, ...props }) {
       const modal = Modal.open({
-        onOk: async jenkinsFile => {
-          await store.updateJenkinsFile(jenkinsFile, params)
+        onOk: jenkinsFile => {
+          store.updateJenkinsFile(jenkinsFile, params)
           Modal.close(modal)
           Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
@@ -289,8 +289,8 @@ export default {
   'pipeline.pipelineCreate': {
     on({ store, rootStore, success, jsonData, params, ...props }) {
       const modal = Modal.open({
-        onOk: async jenkinsFile => {
-          await store.updateJenkinsFile(jenkinsFile, params)
+        onOk: jenkinsFile => {
+          store.updateJenkinsFile(jenkinsFile, params)
           Modal.close(modal)
           Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()

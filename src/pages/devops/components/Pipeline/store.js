@@ -18,7 +18,6 @@
 
 import { action, observable, computed, toJS } from 'mobx'
 import { get, set, unset, isObject, isEmpty, isArray, cloneDeep } from 'lodash'
-import { Notify } from '@kube-design/components'
 
 import CredentialStore from 'stores/devops/credential'
 import BaseStore from 'stores/devops'
@@ -266,95 +265,25 @@ export default class Store extends BaseStore {
   }
 
   @action
-  async convertJsonToJenkinsFile({ cluster }) {
+  async saveJenkinsFile({ devops, name }) {
     return request
-      .post(
-        `${this.getDevopsUrlV2({ cluster })}/tojenkinsfile`,
-        {
-          json: JSON.stringify(formatPipeLineJson(toJS(this.jsonData.json))),
-        },
+      .put(
+        `${this.getDevopsUrlV3({
+          devops,
+        })}/pipelines/${name}/jenkinsfile?mode=json`,
+        { data: JSON.stringify(formatPipeLineJson(toJS(this.jsonData.json))) },
         {
           headers: {
-            'content-type': 'application/x-www-form-urlencoded',
+            'content-type': 'application/json',
           },
         }
       )
-      .then(result => {
-        if (result && get(result, 'data.result') === 'success') {
-          this.jenkinsFile = result.data.jenkinsfile
-          return result
-        }
-
-        if (result && get(result, 'data.result') === 'failure') {
-          result.data.errors.forEach(error => {
-            if (!error.location) {
-              // no location show full screen message
-              window.onunhandledrejection({
-                status: 'Failure',
-                reason: t('pipeline syntax error'),
-                message: error.error || JSON.stringify(error),
-              })
-              return
-            }
-
-            const loacationArr = error.location.join('.').split('.branches')
-            const errorObj = get(this.jsonData.json, loacationArr[0])
-
-            if (errorObj && !isEmpty(errorObj)) {
-              const errorStepIndex =
-                error.location.indexOf('steps') !== -1
-                  ? parseInt(
-                      error.location[error.location.indexOf('steps') + 1],
-                      10
-                    )
-                  : undefined
-              if (errorStepIndex !== undefined) {
-                set(this.jsonData.json, loacationArr[0], {
-                  ...toJS(get(this.jsonData.json, loacationArr[0])),
-                  error: { error: error.error, index: errorStepIndex },
-                })
-                return
-              }
-
-              Notify.error({
-                title: t('pipeline syntax error'),
-                content: t(error.error),
-                duration: 6000,
-              })
-              return
-            }
-
-            if (error.location.indexOf('conditions') !== -1) {
-              const conditionLoacationArr = error.location
-                .join('.')
-                .split('.when')
-              const errorStepIndex =
-                error.location.indexOf('conditions') !== -1
-                  ? parseInt(
-                      error.location[error.location.indexOf('conditions') + 1],
-                      10
-                    )
-                  : undefined
-
-              set(this.jsonData.json, conditionLoacationArr[0], {
-                ...toJS(get(this.jsonData.json, conditionLoacationArr[0])),
-                conditionError: { error: error.error, index: errorStepIndex },
-              })
-              return
-            }
-
-            const errorStepIndex =
-              error.location.indexOf('steps') !== -1
-                ? parseInt(
-                    error.location[error.location.indexOf('steps') + 1],
-                    10
-                  )
-                : undefined
-            set(this.jsonData.json, loacationArr[0], {
-              ...toJS(get(this.jsonData.json, loacationArr[0])),
-              error: { error: error.error, index: errorStepIndex },
-            })
-          })
+      .then(({ result }) => {
+        if (result === 'success') {
+          this.jenkinsFile = JSON.stringify(
+            formatPipeLineJson(toJS(this.jsonData.json))
+          )
+          return this.jenkinsFile
         }
       })
   }
@@ -386,7 +315,7 @@ export default class Store extends BaseStore {
 
   @action
   async handleConfirm() {
-    await this.convertJsonToJenkinsFile()
+    await this.saveJenkinsFile()
   }
 
   @action

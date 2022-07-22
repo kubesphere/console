@@ -110,14 +110,10 @@ export default class Sider extends React.Component {
   handleConfirm = async () => {
     this.getAgentArguments()
     this.loading = true
-    const result = await this.props.store
-      .convertJsonToJenkinsFile(this.props.store.params)
-      .finally(() => {
-        this.loading = false
-      })
-    if (result && get(result, 'data.result') === 'success') {
-      this.props.onOk(get(result, 'data.jenkinsfile', ''))
-    }
+    const jenkinsFile = await this.props.store.saveJenkinsFile(
+      this.props.store.params
+    )
+    jenkinsFile && this.props.onOk(jenkinsFile)
   }
 
   getAgentArguments() {
