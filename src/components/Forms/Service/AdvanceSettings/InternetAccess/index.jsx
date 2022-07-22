@@ -16,22 +16,37 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset } from 'lodash'
+import { get, unset } from 'lodash'
 import React from 'react'
-import { Form, Select } from '@kube-design/components'
-import { PropertiesInput } from 'components/Inputs'
+import {
+  Form,
+  Select,
+  Icon,
+  Tooltip,
+  Columns,
+  Column,
+} from '@kube-design/components'
+import { AnnotationsInput } from 'components/Inputs'
+import { CLUSTER_PROVIDERS_ANNOTATIONS } from 'pages/projects/components/Modals/GatewaySetting/contants'
 import { updateFederatedAnnotations } from 'utils'
+import { CLUSTER_PROVIDERS } from 'utils/constants'
 
+import OpenELBStore from 'stores/openelb'
 import styles from './index.scss'
 
+const defaultProvider = 'QingCloud Kubernetes Engine'
 export default class InternetAccess extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
       mode: get(this.formTemplate, 'spec.type', 'ClusterIP'),
+      provider: defaultProvider,
+      openELBOpened: true,
     }
   }
+
+  openELBStore = new OpenELBStore()
 
   get fedPreifx() {
     return this.props.isFederated ? 'spec.template.' : ''
@@ -56,20 +71,38 @@ export default class InternetAccess extends React.Component {
     ]
   }
 
+  get providerOptions() {
+    const { provider } = this.state
+    return provider === ''
+      ? []
+      : Object.keys(CLUSTER_PROVIDERS_ANNOTATIONS[provider])
+  }
+
+  async componentDidMount() {
+    this.checkOpenELBStatus()
+  }
+
+  checkOpenELBStatus = async () => {
+    const { clusters, namespace } = this.props
+    const isOpened = await this.openELBStore.isActive({ clusters, namespace })
+    if (!isOpened) {
+      this.setState({
+        openELBOpened: isOpened,
+      })
+    }
+  }
+
   handleAccessModeChange = mode => {
-    if (mode === 'LoadBalancer') {
-      let annotations = get(this.formTemplate, 'metadata.annotations', {})
-      annotations = {
-        ...globals.config.loadBalancerDefaultAnnotations,
-        ...annotations,
-      }
-      set(this.formTemplate, 'metadata.annotations', annotations)
-    } else {
+    if (mode !== 'LoadBalancer') {
       Object.keys(globals.config.loadBalancerDefaultAnnotations).forEach(
         key => {
           unset(this.formTemplate, `metadata.annotations["${key}"]`)
         }
       )
+
+      this.providerOptions.forEach(key => {
+        unset(this.formTemplate, `metadata.annotations["${key}"]`)
+      })
     }
 
     if (this.props.isFederated) {
@@ -92,29 +125,76 @@ export default class InternetAccess extends React.Component {
     </div>
   )
 
-  render() {
-    const { mode } = this.state
+  providerOptionRenderer = option => (
+    <div className={styles.selectOption}>
+      <Icon className="margin-r8" name={option.icon} type="light" size={20} />
+      <span className={styles.text}>{option.label}</span>
+      {option.disabled && (
+        <Tooltip content={t('OPENELB_NOT_READY')}>
+          <Icon name={'question'} size="16"></Icon>
+        </Tooltip>
+      )}
+    </div>
+  )
 
+  handleProvideChange = provider => {
+    this.setState({
+      provider,
+    })
+  }
+
+  render() {
+    const { mode, provider, openELBOpened } = this.state
+    const options = [
+      ...CLUSTER_PROVIDERS,
+      {
+        label: 'OpenELB',
+        value: 'OpenELB',
+        icon: 'kubernetes',
+        disabled: !openELBOpened,
+        tip: '',
+      },
+    ]
     return (
       <>
-        <Form.Item label={t('ACCESS_MODE')}>
-          <Select
-            name={`Service.${this.fedPreifx}spec.type`}
-            options={this.accessModes}
-            onChange={this.handleAccessModeChange}
-            optionRenderer={this.optionRenderer}
-            placeholder=" "
-          />
-        </Form.Item>
+        <Columns>
+          <Column>
+            <Form.Item label={t('ACCESS_MODE')}>
+              <Select
+                name={`Service.${this.fedPreifx}spec.type`}
+                options={this.accessModes}
+                onChange={this.handleAccessModeChange}
+              ></Select>
+            </Form.Item>
+          </Column>
+          {mode === 'LoadBalancer' && (
+            <Column>
+              <Form.Item label={t('LOAD_BALANCER_PROVIDER')}>
+                <Select
+                  options={options}
+                  placeholder=" "
+                  optionRenderer={this.providerOptionRenderer}
+                  onChange={this.handleProvideChange}
+                  value={provider}
+                ></Select>
+              </Form.Item>
+            </Column>
+          )}
+        </Columns>
         {mode === 'LoadBalancer' && (
-          <Form.Item label={t('ANNOTATION_PL')}>
-            <PropertiesInput
-              name="Service.metadata.annotations"
-              hiddenKeys={globals.config.preservedAnnotations}
-              onChange={this.handleAnnotationsChange}
-              addText={t('ADD')}
-            />
-          </Form.Item>
+          <Columns>
+            <Column>
+              <Form.Item label={t('ANNOTATION_PL')}>
+                <AnnotationsInput
+                  name="Service.metadata.annotations"
+                  options={this.providerOptions}
+                  hiddenKeys={globals.config.preservedAnnotations}
+                  onChange={this.handleAnnotationsChange}
+                  addText={t('ADD')}
+                />
+              </Form.Item>
+            </Column>
+          </Columns>
         )}
       </>
     )
