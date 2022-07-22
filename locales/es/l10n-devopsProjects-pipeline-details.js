@@ -48,7 +48,7 @@ module.exports = {
   NO_PIPELINE_CONFIG_FILE_TIP: 'Archivo de configuración de Pipeline no encontrado',
   // Task Status > Edit Pipeline
   EDIT_PIPELINE: 'Editar pipeline',
-  JENKINS_UNAVAILABLE: 'Jenkins is unready.',
+  JENKINS_UNAVAILABLE: 'This is unavailable until Jenkins is ready',
   AGENT_TYPE_DESC: `The agent section specifies
     where the entire Pipeline or a particular stage will be executed in the Jenkins environment,
     depending on where the Agent part is placed.
