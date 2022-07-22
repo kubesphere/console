@@ -128,6 +128,24 @@ export const VOLUME_SNAPSHOT_CLASS_STATUS = [
   { text: 'UNREADY', value: 'false' },
 ]
 
+export const PARMMETER_TYPES = [
+  {
+    label: 'AUTO_PARAMETER',
+    value: 'auto',
+    description: 'AUTO_PARAMETER_DESC',
+  },
+  {
+    label: 'HELM_PARAMETER',
+    value: 'helm',
+    description: 'HELM_PARAMETER_DESC',
+  },
+  {
+    label: 'KUSTOMIZE_PARAMETER',
+    value: 'kustomize',
+    description: 'KUSTOMIZE_PARAMETER_DESC',
+  },
+]
+
 export const INGRESS_ANNOTATIONS = [
   'nginx.ingress.kubernetes.io/app-root',
   'nginx.ingress.kubernetes.io/affinity',

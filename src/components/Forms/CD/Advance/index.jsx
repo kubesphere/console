@@ -33,6 +33,7 @@ import {
 } from 'utils/constants'
 import { get, set } from 'lodash'
 import Placement from './Placement'
+import Parameter from './Parameter'
 import styles from './index.scss'
 
 export default class Advance extends React.Component {
@@ -198,6 +199,12 @@ export default class Advance extends React.Component {
                 </div>
               </div>
             </Form.Item>
+          </div>
+        </div>
+        <div className={styles.wrapper}>
+          <h6>{t('PARAMETER_SETTINGS')}</h6>
+          <div className={styles.wrapper_item}>
+            <Parameter formData={formTemplate} />
           </div>
         </div>
       </Form>

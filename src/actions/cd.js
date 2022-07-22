@@ -44,9 +44,18 @@ export default {
                 }
               : { [syncPolicyType]: {} }
 
+          const parameterType = data.parameter_type
+          const parameters =
+            parameterType && parameterType !== 'auto'
+              ? {
+                  [parameterType]: data[parameterType],
+                }
+              : {}
+
           const source = {
             repoURL: data.repoURL.match(/\(([\w\W]+)\)/)[1],
             ...data.source,
+            ...parameters,
           }
 
           const syncOptions = !isEmpty(data.syncOptions)
