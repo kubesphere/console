@@ -17,55 +17,15 @@
  */
 
 import React from 'react'
-import CodeStore from 'stores/codeRepo'
-import { pick } from 'lodash'
-import {
-  Icon,
-  Column,
-  Columns,
-  Form,
-  Input,
-  TextArea,
-  Select,
-} from '@kube-design/components'
+import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
+
 import { PATTERN_NAME } from 'utils/constants'
 
-import styles from './index.scss'
+import CodeRepoSelector from '../../../CodeRepoSelector'
 
 export default class BaseInfo extends React.Component {
-  codeStore = new CodeStore()
-
-  state = {
-    options: [],
-  }
-
-  componentDidMount() {
-    this.getRepoList()
-  }
-
-  getRepoList = async params => {
-    const { devops, cluster } = this.props
-    await this.codeStore.fetchList({ devops, cluster, ...params })
-    const options = this.codeStore.list.data.map(item => {
-      return {
-        label: item.name,
-        value: `${item.name}(${item.repoURL})`,
-        icon:
-          item.provider === 'bitbucket_server' ? 'bitbucket' : item.provider,
-      }
-    })
-    this.setState({ options })
-  }
-
-  repoOptionRenderer = option => type => (
-    <span className={styles.option}>
-      <Icon name={option.icon} type={type === 'value' ? 'dark' : 'light'} />
-      <span>{option.value}</span>
-    </span>
-  )
-
   render() {
-    const { formRef, formTemplate } = this.props
+    const { formRef, formTemplate, devops, cluster } = this.props
     return (
       <Form ref={formRef} data={formTemplate}>
         <Columns>
@@ -103,17 +63,7 @@ export default class BaseInfo extends React.Component {
           label={t('CODE_REPOSITORY')}
           rules={[{ required: true, message: t('REPO_EMPTY_DESC') }]}
         >
-          <Select
-            name="repoURL"
-            options={this.state.options}
-            valueRenderer={option => this.repoOptionRenderer(option)('value')}
-            optionRenderer={option => this.repoOptionRenderer(option)('option')}
-            pagination={pick(this.codeStore.list, ['page', 'limit', 'total'])}
-            isLoading={this.codeStore.list.isLoading}
-            onFetch={this.getRepoList}
-            searchable
-            clearable
-          />
+          <CodeRepoSelector name="repoURL" devops={devops} cluster={cluster} />
         </Form.Item>
       </Form>
     )

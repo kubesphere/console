@@ -22,7 +22,7 @@ import { PATTERN_NAME } from 'utils/constants'
 
 // import RepoSelect from '../RepoSelect'
 import RepoSelectForm from '../RepoSelect/subForm'
-import RepositorySelector from '../../../CodeRepoSelector'
+import CodeRepoSelector from '../../../CodeRepoSelector'
 
 export default class BaseInfo extends React.Component {
   constructor(props) {
@@ -145,7 +145,7 @@ export default class BaseInfo extends React.Component {
             handleDeleteSource={this.handleDeleteSource}
             devops={devops}
           /> */}
-          <RepositorySelector devops={devops} cluster={cluster} />
+          <CodeRepoSelector devops={devops} cluster={cluster} />
         </Form.Item>
       </Form>
     )

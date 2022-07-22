@@ -53,7 +53,7 @@ export default {
               : {}
 
           const source = {
-            repoURL: data.repoURL.match(/\(([\w\W]+)\)/)[1],
+            repoURL: data.repoURL,
             ...data.source,
             ...parameters,
           }

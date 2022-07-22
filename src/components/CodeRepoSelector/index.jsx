@@ -74,6 +74,7 @@ export default class CodeRepoSelect extends React.Component {
         searchable
         clearable
         key={index}
+        name={this.props.name}
         value={value}
         onChange={this.props.onChange}
         options={this.state.options}
