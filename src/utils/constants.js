@@ -776,6 +776,7 @@ export const PROVISIONERS = [
     params: [
       {
         key: 'RESTURL',
+        _key: 'resturl',
         type: 'input',
         placeholder:
           'https://<Heketi service cluster IP address>:<Heketi service port>',
@@ -783,11 +784,13 @@ export const PROVISIONERS = [
       },
       {
         key: 'CLUSTER_ID',
+        _key: 'clusterid',
         type: 'input',
         desc: 'GLUSTERFS_ID_DESC',
       },
       {
         key: 'REST_AUTH_ENABLED',
+        _key: 'restauthenabled',
         type: 'select',
         defaultValue: 'true',
         options: [
@@ -798,34 +801,40 @@ export const PROVISIONERS = [
       },
       {
         key: 'REST_USER',
+        _key: 'restuser',
         type: 'input',
         placeholder: 'admin',
         desc: 'GLUSTERFS_RESTUSER_DESC',
       },
       {
         key: 'SECRET_NAMESPACE',
+        _key: 'secretNamespace',
         type: 'input',
         desc: 'GLUSTERFS_SECRET_NAMESPACE_DESC',
       },
       {
         key: 'SECRET_NAME',
+        _key: 'secretName',
         type: 'input',
         desc: 'GLUSTERFS_SECRET_NAME_DESC',
       },
       {
         key: 'GID_MIN',
+        _key: 'gidMin',
         type: 'input',
         placeholder: '2000-2147483647',
         desc: 'GLUSTERFS_GID_MIN_DESC',
       },
       {
         key: 'GID_MAX',
+        _key: 'gidMax',
         type: 'input',
         placeholder: '2000-2147483647',
         desc: 'GLUSTERFS_GID_MAX_DESC',
       },
       {
         key: 'VOLUME_TYPE',
+        _key: 'volumetype',
         type: 'input',
         desc: 'GLUSTERFS_VOLUME_TYPE_DESC',
       },
