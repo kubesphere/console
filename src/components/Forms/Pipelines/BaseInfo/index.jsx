@@ -20,8 +20,9 @@ import React from 'react'
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
 import { PATTERN_NAME } from 'utils/constants'
 
-import RepoSelect from '../RepoSelect'
+// import RepoSelect from '../RepoSelect'
 import RepoSelectForm from '../RepoSelect/subForm'
+import RepositorySelector from '../../../CodeRepoSelector'
 
 export default class BaseInfo extends React.Component {
   constructor(props) {
@@ -99,7 +100,7 @@ export default class BaseInfo extends React.Component {
   }
 
   render() {
-    const { formRef, formTemplate } = this.props
+    const { formRef, formTemplate, devops, cluster } = this.props
     const { showSelectRepo } = this.state
     if (showSelectRepo) {
       return this.renderRepoSelectForm()
@@ -137,13 +138,14 @@ export default class BaseInfo extends React.Component {
           </Column>
         </Columns>
         <Form.Item label={t('CODE_REPOSITORY_OPTIONAL')}>
-          <RepoSelect
+          {/* <RepoSelect
             name="multi_branch_pipeline"
             ref={this.scmRef}
             onClick={this.showSelectRepo}
             handleDeleteSource={this.handleDeleteSource}
-            devops={this.props.devops}
-          />
+            devops={devops}
+          /> */}
+          <RepositorySelector devops={devops} cluster={cluster} />
         </Form.Item>
       </Form>
     )
