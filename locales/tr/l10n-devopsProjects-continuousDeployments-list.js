@@ -68,5 +68,25 @@ module.exports = {
   REPLACE_RESOURCE: 'Kaynağı Değiştir',
   REPLACE_RESOURCE_DESC: 'Zaten varolan dosyaları değiştirin.',
   EMPTY_CD_TITLE: 'Sürekli Dağıtım Bulunamadı',
-  SYNC_TRIGGERED: 'Kaynak senkronizasyonu başarıyla tetiklendi.'
+  SYNC_TRIGGERED: 'Kaynak senkronizasyonu başarıyla tetiklendi.',
+  // List > Parameter
+  PARAMETER_SETTINGS: 'Parameter Settings',
+  AUTO_PARAMETER: 'Auto',
+  AUTO_PARAMETER_DESC: 'Set automatically.',
+  HELM_PARAMETER: 'Helm',
+  HELM_PARAMETER_DESC: 'Set Helm parameter.',
+  KUSTOMIZE_PARAMETER: 'Kustomize',
+  KUSTOMIZE_PARAMETER_DESC: 'Set Kustomize parameters.',
+  PASS_CREDENTIALS: 'Pass Credentials',
+  IGNORE_MISSING_VALUE_FILES: 'Ignore Missing Value Files',
+  SKIP_CRDS: 'Skip Crds',
+  RELEASE_NAME: 'Release Name',
+  VALUE_FILES: 'Value Files',
+  FORCE_STRING: 'Force String',
+  FILE_PARAMETERS: 'File Parameters',
+  NAME_PREFIX: 'Name Prefix',
+  NAME_SUFFIX: 'Name Suffix',
+  IMAGES: 'Images',
+  COMMON_LABELS: 'Common Labels',
+  COMMON_ANNOTATIONS: 'Common Annotations'
 };
