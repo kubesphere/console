@@ -119,7 +119,7 @@ export default class StorageClassSetting extends React.Component {
               desc={t(left.desc.toUpperCase())}
             >
               <LeftComponent
-                name={`parameters.${left.key.toLowerCase()}`}
+                name={`parameters.${left._key || left.key.toLowerCase()}`}
                 {...omit(left, [
                   'type',
                   'key',
@@ -140,7 +140,7 @@ export default class StorageClassSetting extends React.Component {
                 desc={t(right.desc.toUpperCase())}
               >
                 <RightComponent
-                  name={`parameters.${right.key.toLowerCase()}`}
+                  name={`parameters.${right._key || right.key.toLowerCase()}`}
                   unit={keyWithUnit[right.key.toLowerCase()] ?? null}
                   {...omit(right, ['type', 'key', 'desc'])}
                 />
