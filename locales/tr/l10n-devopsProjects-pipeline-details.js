@@ -48,7 +48,7 @@ module.exports = {
   NO_PIPELINE_CONFIG_FILE_TIP: 'İşlem hattı yapılandırma dosyası bulunamadı.',
   // Task Status > Edit Pipeline
   EDIT_PIPELINE: 'İş hattını Düzenle',
-  JENKINS_UNAVAILABLE: 'Jenkins is unready.',
+  JENKINS_UNAVAILABLE: 'This is unavailable until Jenkins is ready',
   AGENT_TYPE_DESC: `Aracı Bölümü belirtir
     tüm iş hattı veya belirli bir aşamanın Jenkins ortamında yürütüleceği yer,
     Agent bölümünün nereye yerleştirildiğine bağlı olarak.
