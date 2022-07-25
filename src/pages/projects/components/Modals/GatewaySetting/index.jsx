@@ -108,6 +108,9 @@ export default class GatewaySettingModal extends React.Component {
         globals.config.loadBalancerDefaultAnnotations
       )
     }
+    if (annotationType) {
+      this.options = Object.keys(CLUSTER_PROVIDERS_ANNOTATIONS[annotationType])
+    }
   }
 
   handleOk = () => {

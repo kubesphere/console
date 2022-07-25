@@ -152,7 +152,7 @@ export default class GatewaySettingModal extends React.Component {
                 <Form.Item label={t('ANNOTATION_PL')}>
                   <PropertiesInput
                     name="metadata.annotations"
-                    hiddenKeys={globals.config.preservedAnnotations}
+                    hiddenKeys={[/^kubesphere.io\//, 'openpitrix_runtime']}
                     addText={t('ADD')}
                   />
                 </Form.Item>
