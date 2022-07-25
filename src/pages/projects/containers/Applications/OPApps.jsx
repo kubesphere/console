@@ -110,7 +110,7 @@ export default class OPApps extends React.Component {
         render: this.renderStatus,
       },
       {
-        title: t('APP'),
+        title: t('APP_TEMPLATE'),
         dataIndex: 'app.name',
         isHideable: true,
         width: '16%',
@@ -143,7 +143,7 @@ export default class OPApps extends React.Component {
     if (record.additional_info) {
       return (
         <Tooltip content={record.additional_info}>
-          <Status name={t(status)} type={status} flicker />
+          <Status name={t(status.toUpperCase())} type={status} flicker />
         </Tooltip>
       )
     }
