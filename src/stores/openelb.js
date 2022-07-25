@@ -20,7 +20,7 @@ import Base from './base'
 
 export default class OpenELBStore extends Base {
   get apiVersion() {
-    return 'kapis/openelb.kubesphere.io/v1alpha2'
+    return 'apis/network.kubesphere.io/v1alpha1'
   }
 
   isActive = async ({ clusters }) => {
@@ -28,7 +28,7 @@ export default class OpenELBStore extends Base {
     clusters.forEach(cluster => {
       req.push(
         request.get(
-          `${this.apiVersion}${this.getPath({ cluster })}/detect`,
+          `${this.apiVersion}${this.getPath({ cluster })}/bgpconfs`,
           {},
           {},
           () => {
