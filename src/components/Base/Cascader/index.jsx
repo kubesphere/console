@@ -60,17 +60,18 @@ export default class Cascader extends Component {
     }))
   }
 
-  getOptionsStyle() {
+  getOptionsStyle(options) {
+    const heightItemCount = options.length >= 8 ? 8 : options.length
     const style = {}
     if (this.ref && this.ref.current) {
       const triggerStyle = this.ref.current.getBoundingClientRect()
       if (
         window.innerHeight - triggerStyle.top >
-        252 + 8 + triggerStyle.height
+        heightItemCount * 31.5 + 8 + triggerStyle.height
       ) {
         style.top = triggerStyle.top + triggerStyle.height + 8
       } else {
-        style.top = triggerStyle.top - 8 - 252
+        style.top = triggerStyle.top - 8 - heightItemCount * 31.5
       }
       style.left = triggerStyle.left
     }
@@ -88,7 +89,7 @@ export default class Cascader extends Component {
         </div>
         {isOpen && (
           <Options
-            style={this.getOptionsStyle()}
+            style={this.getOptionsStyle(options)}
             options={options}
             level={0}
             onSelect={this.handleSelect}
