@@ -12,3 +12,13 @@
     height: 16px;
   }
 }
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.multi-repo {
+  margin-left: 4px;
+  cursor: pointer;
+}

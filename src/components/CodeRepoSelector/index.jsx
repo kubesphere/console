@@ -15,17 +15,23 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Select, Icon } from '@kube-design/components'
 import React from 'react'
-import CodeStore from 'stores/codeRepo'
 import { pick } from 'lodash'
+import { Select, Icon } from '@kube-design/components'
+
+import CodeStore from 'stores/codeRepo'
+import { handleFormData } from 'actions/codeRepo'
+
 import styles from './index.scss'
 
 export default class CodeRepoSelect extends React.Component {
-  codeStore = new CodeStore()
+  constructor(props) {
+    super(props)
+    this.codeStore = new CodeStore()
 
-  state = {
-    options: [],
+    this.state = {
+      options: [],
+    }
   }
 
   componentDidMount() {
@@ -56,6 +62,33 @@ export default class CodeRepoSelect extends React.Component {
     this.setState({ options })
   }
 
+  handleRepoChange = () => null
+  // handleRepoChange = val => {
+  //   console.log(val)
+  // }
+
+  createCodeRepo = sources => {
+    const temp = {
+      metadata: {
+        name: 'en', // need get variable name
+        annotations: {
+          'kubesphere.io/creator': 'admin',
+        },
+      },
+      sources,
+    }
+    const { devops, cluster } = this.props
+    const postData = handleFormData({
+      data: temp,
+      module: 'codeRepos',
+      devops,
+    })
+
+    this.codeStore
+      .create({ data: postData, devops, cluster })
+      .then(this.getRepoList)
+  }
+
   repoOptionRenderer = option => type => (
     <span className={styles.option}>
       <Icon
@@ -68,22 +101,36 @@ export default class CodeRepoSelect extends React.Component {
   )
 
   render() {
-    const { value, index } = this.props
+    const {
+      value,
+      index,
+      name,
+      allowSelectMultiRepo,
+      showSelectRepo,
+    } = this.props
+
     return (
-      <Select
-        searchable
-        clearable
-        key={index}
-        name={this.props.name}
-        value={value}
-        onChange={this.props.onChange}
-        options={this.state.options}
-        valueRenderer={option => this.repoOptionRenderer(option)('value')}
-        optionRenderer={option => this.repoOptionRenderer(option)('option')}
-        pagination={pick(this.codeStore.list, ['page', 'limit', 'total'])}
-        isLoading={this.codeStore.list.isLoading}
-        onFetch={this.getRepoList}
-      />
+      <div className={styles.wrapper}>
+        <Select
+          clearable
+          searchable
+          key={index}
+          name={name}
+          value={value}
+          onChange={this.handleRepoChange}
+          options={this.state.options}
+          onFetch={this.getRepoList}
+          isLoading={this.codeStore.list.isLoading}
+          pagination={pick(this.codeStore.list, ['page', 'limit', 'total'])}
+          valueRenderer={option => this.repoOptionRenderer(option)('value')}
+          optionRenderer={option => this.repoOptionRenderer(option)('option')}
+        />
+        {allowSelectMultiRepo && (
+          <span className={styles['multi-repo']} onClick={showSelectRepo}>
+            t('There is no suitable, go create it')
+          </span>
+        )}
+      </div>
     )
   }
 }

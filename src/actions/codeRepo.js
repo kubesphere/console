@@ -15,12 +15,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Modal } from 'components/Base'
+import { cloneDeep, get, set } from 'lodash'
 import { Notify } from '@kube-design/components'
+
+import { Modal } from 'components/Base'
+import FORM_TEMPLATES from 'utils/form.templates'
 import DeleteModal from 'components/Modals/Delete'
 import CodeRepoModal from 'components/Modals/CodeRepoCreate'
-import FORM_TEMPLATES from 'utils/form.templates'
-import { cloneDeep, get, set } from 'lodash'
 
 const getRepoUrl = (repoType, repo) => {
   switch (repoType) {
@@ -42,7 +43,7 @@ const getRepoUrl = (repoType, repo) => {
   }
 }
 
-const handleFormData = ({ data, module, devops }) => {
+export const handleFormData = ({ data, module, devops }) => {
   const postData = FORM_TEMPLATES[module]({ namespace: devops })
   const repoType = data.sources.source_type
   const repo = get(data, `sources.${repoType}_source`, {})

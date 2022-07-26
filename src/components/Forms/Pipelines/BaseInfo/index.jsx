@@ -18,9 +18,9 @@
 
 import React from 'react'
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
+
 import { PATTERN_NAME } from 'utils/constants'
 
-// import RepoSelect from '../RepoSelect'
 import RepoSelectForm from '../RepoSelect/subForm'
 import CodeRepoSelector from '../../../CodeRepoSelector'
 
@@ -51,16 +51,12 @@ export default class BaseInfo extends React.Component {
         showSelectRepo: false,
       },
       () => {
-        this.scmRef.current.onChange({
+        this.scmRef.current.createCodeRepo({
           source_type,
           ...formData,
         })
       }
     )
-  }
-
-  handleDeleteSource = () => {
-    this.scmRef.current.onChange()
   }
 
   validator = (rule, value, callback) => {
@@ -138,14 +134,14 @@ export default class BaseInfo extends React.Component {
           </Column>
         </Columns>
         <Form.Item label={t('CODE_REPOSITORY_OPTIONAL')}>
-          {/* <RepoSelect
-            name="multi_branch_pipeline"
+          <CodeRepoSelector
+            allowSelectMultiRepo
             ref={this.scmRef}
-            onClick={this.showSelectRepo}
-            handleDeleteSource={this.handleDeleteSource}
+            name="multi_branch_pipeline"
             devops={devops}
-          /> */}
-          <CodeRepoSelector devops={devops} cluster={cluster} />
+            cluster={cluster}
+            showSelectRepo={this.showSelectRepo}
+          />
         </Form.Item>
       </Form>
     )
