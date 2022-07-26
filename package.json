@@ -103,7 +103,8 @@
       "git add"
     ],
     "locales/**/*.js": [
-      "node scripts/checkRepeat.js"
+      "node scripts/checkRepeat.js",
+      "node scripts/checkLocales.js"
     ]
   },
   "devDependencies": {
