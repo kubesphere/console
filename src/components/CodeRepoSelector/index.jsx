@@ -16,19 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
+import cs from 'classnames'
 import { pick } from 'lodash'
 import { Select, Icon } from '@kube-design/components'
 
 import CodeStore from 'stores/codeRepo'
-import { handleFormData } from 'actions/codeRepo'
 
 import styles from './index.scss'
 
 export default class CodeRepoSelect extends React.Component {
   constructor(props) {
     super(props)
-    this.codeStore = new CodeStore()
 
+    this.codeStore = new CodeStore()
     this.state = {
       options: [],
     }
@@ -63,31 +63,6 @@ export default class CodeRepoSelect extends React.Component {
   }
 
   handleRepoChange = () => null
-  // handleRepoChange = val => {
-  //   console.log(val)
-  // }
-
-  createCodeRepo = sources => {
-    const temp = {
-      metadata: {
-        name: 'en', // need get variable name
-        annotations: {
-          'kubesphere.io/creator': 'admin',
-        },
-      },
-      sources,
-    }
-    const { devops, cluster } = this.props
-    const postData = handleFormData({
-      data: temp,
-      module: 'codeRepos',
-      devops,
-    })
-
-    this.codeStore
-      .create({ data: postData, devops, cluster })
-      .then(this.getRepoList)
-  }
 
   repoOptionRenderer = option => type => (
     <span className={styles.option}>
@@ -105,18 +80,19 @@ export default class CodeRepoSelect extends React.Component {
       value,
       index,
       name,
-      allowSelectMultiRepo,
-      showSelectRepo,
+      showCreateRepo,
+      allowCreateCodeRepo,
     } = this.props
 
     return (
-      <div className={styles.wrapper}>
+      <>
         <Select
           clearable
           searchable
           key={index}
           name={name}
           value={value}
+          className={styles.select}
           onChange={this.handleRepoChange}
           options={this.state.options}
           onFetch={this.getRepoList}
@@ -125,12 +101,15 @@ export default class CodeRepoSelect extends React.Component {
           valueRenderer={option => this.repoOptionRenderer(option)('value')}
           optionRenderer={option => this.repoOptionRenderer(option)('option')}
         />
-        {allowSelectMultiRepo && (
-          <span className={styles['multi-repo']} onClick={showSelectRepo}>
-            t('There is no suitable, go create it')
+        {allowCreateCodeRepo && (
+          <span
+            className={cs(styles['multi-repo'], 'form-item-desc')}
+            onClick={showCreateRepo}
+          >
+            {t('GO_CREATE_REPO')}
           </span>
         )}
-      </div>
+      </>
     )
   }
 }

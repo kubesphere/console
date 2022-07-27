@@ -21,44 +21,9 @@ import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
 
 import { PATTERN_NAME } from 'utils/constants'
 
-import RepoSelectForm from '../RepoSelect/subForm'
 import CodeRepoSelector from '../../../CodeRepoSelector'
 
 export default class BaseInfo extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showSelectRepo: false,
-    }
-    this.scmRef = React.createRef()
-  }
-
-  showSelectRepo = () => {
-    this.setState({
-      showSelectRepo: true,
-    })
-  }
-
-  hideSelectRepo = () => {
-    this.setState({
-      showSelectRepo: false,
-    })
-  }
-
-  handleRepoChange = (source_type, formData) => {
-    this.setState(
-      {
-        showSelectRepo: false,
-      },
-      () => {
-        this.scmRef.current.createCodeRepo({
-          source_type,
-          ...formData,
-        })
-      }
-    )
-  }
-
   validator = (rule, value, callback) => {
     if (!value) {
       return callback()
@@ -81,26 +46,15 @@ export default class BaseInfo extends React.Component {
       })
   }
 
-  renderRepoSelectForm() {
-    const { formTemplate, devops, cluster } = this.props
-    return (
-      <RepoSelectForm
-        sourceData={formTemplate['multi_branch_pipeline']}
-        devops={devops}
-        name={formTemplate.name}
-        cluster={cluster}
-        onSave={this.handleRepoChange}
-        onCancel={this.hideSelectRepo}
-      />
-    )
-  }
-
   render() {
-    const { formRef, formTemplate, devops, cluster } = this.props
-    const { showSelectRepo } = this.state
-    if (showSelectRepo) {
-      return this.renderRepoSelectForm()
-    }
+    const {
+      formRef,
+      formTemplate,
+      devops,
+      cluster,
+      showCodeRepoCreate,
+      codeRepoSelectorRef,
+    } = this.props
 
     return (
       <Form ref={formRef} data={formTemplate}>
@@ -135,12 +89,12 @@ export default class BaseInfo extends React.Component {
         </Columns>
         <Form.Item label={t('CODE_REPOSITORY_OPTIONAL')}>
           <CodeRepoSelector
-            allowSelectMultiRepo
-            ref={this.scmRef}
+            allowCreateCodeRepo
+            ref={codeRepoSelectorRef}
             name="multi_branch_pipeline"
             devops={devops}
             cluster={cluster}
-            showSelectRepo={this.showSelectRepo}
+            showCreateRepo={showCodeRepoCreate}
           />
         </Form.Item>
       </Form>

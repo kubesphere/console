@@ -16,17 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { toJS } from 'mobx'
+import { get, isEmpty } from 'lodash'
 import { Notify } from '@kube-design/components'
+
 import { Modal } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
 import CreateModal from 'components/Modals/Create'
+import CopyModal from 'components/Modals/Pipelines/Copy'
+import BaseInfoModal from 'components/Modals/Pipelines/Base'
+import PipelineModal from 'components/Modals/Pipelines/PipelineEdit'
 import AdvanceEditorModal from 'components/Modals/Pipelines/AdvanceEdit'
 import ParamsFormModal from 'components/Forms/Pipelines/ParamsFormModal'
-import BaseInfoModal from 'components/Modals/Pipelines/Base'
-import CopyModal from 'components/Modals/Pipelines/Copy'
-
 import ScanRepositoryLogs from 'components/Modals/Pipelines/ScanRepositoryLogs'
-import PipelineModal from 'components/Modals/Pipelines/PipelineEdit'
 
 import {
   PIPELINE_PROJECT_CREATE_STEPS,
@@ -34,7 +35,6 @@ import {
 } from 'configs/steps/pipelines'
 import { updatePipelineParams, updatePipelineParamsInSpec } from 'utils/devops'
 import JenkinsEdit from 'devops/components/Modals/JenkinsEdit'
-import { get, isEmpty } from 'lodash'
 
 function handleParams(param) {
   const type = param.type.toLowerCase().split('parameterdefinition')[0]
@@ -64,6 +64,7 @@ export default {
       module,
       success,
       formTemplate,
+      showCodeRepoCreate,
       ...props
     }) {
       const modal = Modal.open({
@@ -89,6 +90,7 @@ export default {
         modal: CreateModal,
         steps: PIPELINE_PROJECT_CREATE_STEPS,
         noCodeEdit: true,
+        showCodeRepoCreate,
         ...props,
       })
     },
