@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import { observable } from 'mobx'
-import { set } from 'lodash'
+import { set, get } from 'lodash'
 import { observer } from 'mobx-react'
 import { PARMMETER_TYPES } from 'utils/constants'
 import { TypeSelect } from 'components/Base'
@@ -33,6 +33,7 @@ export default class Parameter extends Component {
     super(props)
 
     this.formRef = React.createRef()
+    this.parameter_type = get(this.props.formData, 'parameter_type', 'auto')
   }
 
   @observable
@@ -46,14 +47,9 @@ export default class Parameter extends Component {
     }))
   }
 
-  componentWillUnmount() {
-    this.resetFormParameterValue()
-  }
-
   handleTypeChange = type => {
     this.parameter_type = type
     set(this.props.formData, 'parameter_type', type)
-    this.resetFormParameterValue()
   }
 
   resetFormParameterValue = () => {
