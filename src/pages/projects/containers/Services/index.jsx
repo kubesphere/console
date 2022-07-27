@@ -22,6 +22,7 @@ import { Avatar, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
+import { Tooltip } from '@kube-design/components'
 
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES, SERVICE_TYPES } from 'utils/constants'
