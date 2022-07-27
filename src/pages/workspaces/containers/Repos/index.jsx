@@ -146,7 +146,7 @@ export default class AppRepos extends React.Component {
       dataIndex: 'status',
       isHideable: true,
       width: '15%',
-      render: status => (
+      render: (status = 'syncing') => (
         <Status
           type={status}
           name={t(`APP_REPO_STATUS_${status.toUpperCase()}`)}
