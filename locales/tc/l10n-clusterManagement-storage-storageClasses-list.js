@@ -52,6 +52,7 @@ module.exports = {
   CREATE_VOLUME_MIN_SIZE: '儲存卷的容量下限。',
   VOLUME_FS_TYPE: '支持 ext3、ext4 和 xfs。預設類型為 ext4。',
   QINGCLOUD_VOLUME_TAGS_DESC: '為儲存卷添加標籤。使用半角逗號（,）分隔多個標籤。',
+  GID_RANGE_TIP: 'The maximum and minimum values must be between 2000 and 2147483647.',
   // List > Create > > GlusterFS > Storage Class Settings
   GLUSTERFS_RESTURL_DESC: '供應儲存卷的 Heketi REST URL。',
   GLUSTERFS_ID_DESC: 'Gluster 集群 ID。',
