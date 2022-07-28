@@ -39,7 +39,7 @@ export default class KustomizeForm extends React.Component {
           </Column>
         </Columns>
         <Form.Item label={t('IMAGES')}>
-          <ImagesInput name="kustomize.images" />
+          <ImagesInput name="kustomize.images" formData={formData} />
         </Form.Item>
         <Form.Item label={t('COMMON_LABELS')}>
           <PropertiesInput

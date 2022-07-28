@@ -19,10 +19,17 @@
 import React from 'react'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
 import { Form, Input, Checkbox, Columns, Column } from '@kube-design/components'
+import { get, set } from 'lodash'
 import style from '../../index.scss'
 
 export default class HelmForm extends React.Component {
   checkItemValid = item => item.name && item.value
+
+  handleChange = key => value => {
+    const { formData } = this.props
+    set(formData, key, value)
+    this.forceUpdate()
+  }
 
   render() {
     const { formRef, formData } = this.props
@@ -31,21 +38,35 @@ export default class HelmForm extends React.Component {
         <div className={`${style.columns} ${style.wrapper_item_com}`}>
           <div className={style.column}>
             <Form.Item>
-              <Checkbox name="helm.passCredentials">
+              <Checkbox
+                name="helm.passCredentials"
+                checked={get(formData, 'helm.passCredentials')}
+                onChange={this.handleChange('helm.passCredentials')}
+              >
                 {t('PASS_CREDENTIALS')}
               </Checkbox>
             </Form.Item>
           </div>
           <div className={style.column}>
             <Form.Item>
-              <Checkbox name="helm.ignoreMissingValueFiles">
+              <Checkbox
+                name="helm.ignoreMissingValueFiles"
+                checked={get(formData, 'helm.ignoreMissingValueFiles')}
+                onChange={this.handleChange('helm.ignoreMissingValueFiles')}
+              >
                 {t('IGNORE_MISSING_VALUE_FILES')}
               </Checkbox>
             </Form.Item>
           </div>
           <div className={style.column}>
             <Form.Item>
-              <Checkbox name="helm.skipCrds">{t('SKIP_CRDS')}</Checkbox>
+              <Checkbox
+                name="helm.skipCrds"
+                checked={get(formData, 'helm.skipCrds')}
+                onChange={this.handleChange('helm.skipCrds')}
+              >
+                {t('SKIP_CRDS')}
+              </Checkbox>
             </Form.Item>
           </div>
         </div>

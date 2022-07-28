@@ -17,13 +17,31 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
+import { get, head } from 'lodash'
 import { ObjectInput, ArrayInput } from 'components/Inputs'
-import { Input } from '@kube-design/components'
+import { Input, Select } from '@kube-design/components'
+import { observer } from 'mobx-react'
 
+@observer
 export default class ImagesInput extends React.Component {
+  get images() {
+    const images = get(
+      this.props.formData,
+      ['metadata', 'annotations', 'gitops.kubesphere.io/images'],
+      ''
+    )
+    return images
+      ? images.split(',').map(image => ({
+          label: head(image.split(':')),
+          value: head(image.split(':')),
+        }))
+      : []
+  }
+
   onChange = (values = []) => {
-    const images = values.map(({ key = '', value = '' }) => `${key}:${value}`)
+    const images = values
+      .filter(({ key = '' }) => key)
+      .map(({ key, value = '' }) => `${key}:${value}`)
     this.props.onChange(images)
   }
 
@@ -44,7 +62,13 @@ export default class ImagesInput extends React.Component {
         onChange={this.onChange}
       >
         <ObjectInput>
-          <Input placeholder={t('KEY')} name="key" />
+          <Select
+            name="key"
+            placeholder={t('KEY')}
+            searchable
+            clearable
+            options={this.images}
+          />
           <Input placeholder={t('VALUE')} name="value" />
         </ObjectInput>
       </ArrayInput>
