@@ -835,6 +835,19 @@ const getApplicationWorkloads = item => {
     .map(com => com.name)
 }
 
+const getApplicationUpdateTime = item => {
+  return get(item, 'status.conditions', []).reduce((max, cur = {}) => {
+    const { lastUpdateTime } = cur
+    if (!max) {
+      return lastUpdateTime
+    }
+    if (!lastUpdateTime) {
+      return max
+    }
+    return max > lastUpdateTime ? max : lastUpdateTime
+  }, undefined)
+}
+
 const ApplicationMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
@@ -849,6 +862,7 @@ const ApplicationMapper = item => ({
   status: getApplicationStatus(item),
   services: getApplicationServices(item),
   workloads: getApplicationWorkloads(item),
+  updateTime: getApplicationUpdateTime(item),
   _originData: getOriginData(item),
 })
 
