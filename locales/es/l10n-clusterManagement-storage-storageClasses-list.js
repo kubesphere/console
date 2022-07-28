@@ -52,7 +52,7 @@ module.exports = {
   CREATE_VOLUME_MIN_SIZE: 'Minimum size of the volume.',
   VOLUME_FS_TYPE: 'Supports ext3, ext4, and xfs. The default type is ext4.',
   QINGCLOUD_VOLUME_TAGS_DESC: 'Add tags to the storage volume. Use commas to separate multiple tags.',
-  GID_RANGE_TIP: 'The value cannot be less than 2000 or greater than 2147483647.',
+  GID_RANGE_TIP: 'The maximum and minimum values must be between 2000 and 2147483647.',
   // List > Create > > GlusterFS > Storage Class Settings
   GLUSTERFS_RESTURL_DESC: 'Heketi REST URL that provisions volumes.',
   GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
