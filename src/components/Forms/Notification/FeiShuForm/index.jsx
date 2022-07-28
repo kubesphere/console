@@ -83,7 +83,6 @@ export default class FeishuForm extends Component {
       <div className={styles.row}>
         <div className={styles.title}>
           <span>{t('RECIPIENT_SETTINGS')}</span>
-          <p className={styles.subtitle}>至少需要配置一项方可接收通知</p>
         </div>
         <div className={styles.item}>
           <Tabs type="button">
