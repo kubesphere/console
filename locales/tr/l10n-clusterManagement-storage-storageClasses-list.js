@@ -52,6 +52,7 @@ module.exports = {
   CREATE_VOLUME_MIN_SIZE: 'Hacmin en az boyutu.',
   VOLUME_FS_TYPE: 'Ext3, ext4 ve xfs\'yi destekler. Varsayılan tür ext4\'tür.',
   QINGCLOUD_VOLUME_TAGS_DESC: 'Depolama birimine etiketler ekleyin. Birden çok etiketi ayırmak için virgül kullanın.',
+  GID_RANGE_TIP: 'The maximum and minimum values must be between 2000 and 2147483647.',
   // List > Create > > GlusterFS > Storage Class Settings
   GLUSTERFS_RESTURL_DESC: 'Hacimleri sağlayan Heketi REST URL\'si.',
   GLUSTERFS_ID_DESC: 'Gluster küme kimliği.',
