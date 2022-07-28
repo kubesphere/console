@@ -25,6 +25,7 @@ module.exports = {
   CLUSTER_RESOURCE_CONSUMPTION_DESC: '<strong>Cluster</strong> CPU, memory, storage and other resource consumption',
   CLUSTER_NODE_CONSUMPTION_DESC: 'Resource consumption of <strong>nodes</strong> in the cluster, such as CPU, memory, and storage',
   CLUSTER_POD_CONSUMPTION_DESC: 'Resource consumption of <strong>Pods</strong> in a node, such as CPU and memory',
+  CURRENT_RESOURCE_CONSUMPTION: 'Current Resource Consumption',
   VIEW: 'View',
   // Workspace Recource Consumption
   WORKSPACE_CONSUMPTION: 'Workspace (project) resource consumption',
