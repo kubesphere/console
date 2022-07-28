@@ -239,9 +239,7 @@ export default class PipelinesList extends React.Component {
       devops: this.devops,
       cluster: this.cluster,
       noCodeEdit: true,
-      success: () => {
-        this.getData()
-      },
+      success: this.getData,
       codeRepoSelectorRef: this.codeRepoSelectorRef,
       showCodeRepoCreate: this.showCodeRepoCreate,
     })
@@ -257,8 +255,25 @@ export default class PipelinesList extends React.Component {
       module: 'codeRepos',
       noCodeEdit: true,
       store: this.codeStore,
-      success: () => {
-        this.codeRepoSelectorRef.current.getRepoList()
+      addSvnCodeRepoDirectly: this.codeRepoSelectorRef.current
+        .addSvnCodeRepoOption,
+      success: curRepo => {
+        const {
+          handleRepoChange,
+          getRepoList,
+        } = this.codeRepoSelectorRef.current
+        getRepoList()
+        curRepo &&
+          handleRepoChange(
+            `${curRepo.metadata.name}(${curRepo.spec?.url ||
+              curRepo.sources[
+                `${
+                  curRepo.sources.source_type === 'svn'
+                    ? 'svn_source'
+                    : 'single_svn_source'
+                }`
+              ].remote})`
+          )
       },
     })
   }

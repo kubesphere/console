@@ -30,21 +30,33 @@ export default class CodeRepoSelect extends React.Component {
 
     this.codeStore = new CodeStore()
     this.state = {
+      repoList: [],
+      svnRepoList: [],
       options: [],
     }
   }
 
-  componentDidMount() {
-    this.getRepoList()
+  get svnOptions() {
+    return this.state.svnRepoList.map(({ name, sources }) => ({
+      label: name,
+      value: `${name}(${
+        sources[
+          `${
+            sources.source_type === 'svn' ? 'svn_source' : 'single_svn_source'
+          }`
+        ].remote
+      })`,
+      icon: 'svn',
+    }))
   }
 
-  getRepoList = async params => {
-    const { devops, cluster, showAllItem } = this.props
-    await this.codeStore.fetchList({ devops, cluster, ...params })
-    let options = this.codeStore.list.data.map(item => {
+  get repoOptions() {
+    const { showAllItem, type } = this.props
+    let options = this.state.repoList.map(item => {
       return {
         label: item.name,
-        value: item.repoURL,
+        value:
+          type !== 'pipeline' ? `${item.name}(${item.repoURL})` : item.name,
         icon:
           item.provider === 'bitbucket_server' ? 'bitbucket' : item.provider,
       }
@@ -59,21 +71,51 @@ export default class CodeRepoSelect extends React.Component {
       options = [allItem, ...options]
     }
 
-    this.setState({ options })
+    return options
   }
 
-  handleRepoChange = () => null
+  componentDidMount() {
+    this.getRepoList()
+  }
 
-  repoOptionRenderer = option => type => (
-    <span className={styles.option}>
-      <Icon
-        name={option.icon ?? ''}
-        type={type === 'value' ? 'dark' : 'light'}
-      />
-      {option.label}
-      {option.value === '*' ? '' : ` (${option.value})`}
-    </span>
-  )
+  getRepoList = async params => {
+    const { devops, cluster } = this.props
+    await this.codeStore.fetchList({ devops, cluster, ...params })
+
+    this.setState({ repoList: this.codeStore.list.data })
+    this.updateOptions()
+  }
+
+  addSvnCodeRepoOption = svnData => {
+    const _svnRepoList = [...this.state.svnRepoList]
+    _svnRepoList.push({
+      name: svnData.metadata.name,
+      sources: svnData.sources,
+    })
+
+    this.setState({ svnRepoList: _svnRepoList })
+  }
+
+  updateOptions = () => {
+    return this.setState({ options: this.svnOptions.concat(this.repoOptions) })
+  }
+
+  handleRepoChange = val => {
+    const { onChange } = this.props
+    onChange && onChange(val)
+  }
+
+  repoOptionRenderer = option => type => {
+    return (
+      <span className={styles.option}>
+        <Icon
+          name={option.icon ?? ''}
+          type={type === 'value' ? 'dark' : 'light'}
+        />
+        {option.value}
+      </span>
+    )
+  }
 
   render() {
     const {

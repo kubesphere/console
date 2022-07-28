@@ -72,15 +72,37 @@ export const handleFormData = ({ data, module, devops }) => {
 
 export default {
   'codeRepo.create': {
-    on({ store, cluster, devops, module, success, ...props }) {
+    on({
+      store,
+      cluster,
+      devops,
+      module,
+      success,
+      type,
+      addSvnCodeRepoDirectly,
+      ...props
+    }) {
       const modal = Modal.open({
         onOk: async data => {
-          const postData = handleFormData({ data, module, devops })
+          let _currentRepo = {}
+          if (['svn', 'single_svn'].includes(data.sources.source_type)) {
+            addSvnCodeRepoDirectly && addSvnCodeRepoDirectly(data)
+            _currentRepo = data
+          } else {
+            const postData = handleFormData({ data, module, devops })
 
-          await store.create({ data: postData, devops, cluster })
+            _currentRepo = await store.create({
+              data: postData,
+              devops,
+              cluster,
+            })
 
-          Notify.success({ content: t('CREATE_SUCCESSFUL') })
-          success && success()
+            Notify.success({ content: t('CREATE_SUCCESSFUL') })
+          }
+
+          success && !type && success(_currentRepo)
+          success && !!type && success()
+
           Modal.close(modal)
         },
         store,
