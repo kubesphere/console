@@ -90,8 +90,9 @@ export default class BaseInfo extends React.Component {
         <Form.Item label={t('CODE_REPOSITORY_OPTIONAL')}>
           <CodeRepoSelector
             allowCreateCodeRepo
-            ref={codeRepoSelectorRef}
+            type="pipeline"
             name="multi_branch_pipeline"
+            ref={codeRepoSelectorRef}
             devops={devops}
             cluster={cluster}
             showCreateRepo={showCodeRepoCreate}

@@ -247,6 +247,11 @@ export default class PipelinesList extends React.Component {
 
   showCodeRepoCreate = () => {
     const { trigger } = this.props
+    const {
+      addSvnCodeRepoOption,
+      handleRepoChange,
+      getRepoList,
+    } = this.codeRepoSelectorRef.current
 
     trigger('codeRepo.create', {
       title: t('IMPORT_CODE_REPO'),
@@ -255,25 +260,10 @@ export default class PipelinesList extends React.Component {
       module: 'codeRepos',
       noCodeEdit: true,
       store: this.codeStore,
-      addSvnCodeRepoDirectly: this.codeRepoSelectorRef.current
-        .addSvnCodeRepoOption,
+      addSvnCodeRepoDirectly: addSvnCodeRepoOption,
       success: curRepo => {
-        const {
-          handleRepoChange,
-          getRepoList,
-        } = this.codeRepoSelectorRef.current
         getRepoList()
-        curRepo &&
-          handleRepoChange(
-            `${curRepo.metadata.name}(${curRepo.spec?.url ||
-              curRepo.sources[
-                `${
-                  curRepo.sources.source_type === 'svn'
-                    ? 'svn_source'
-                    : 'single_svn_source'
-                }`
-              ].remote})`
-          )
+        curRepo && handleRepoChange(curRepo)
       },
     })
   }

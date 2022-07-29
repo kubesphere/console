@@ -23,42 +23,19 @@ import FORM_TEMPLATES from 'utils/form.templates'
 import DeleteModal from 'components/Modals/Delete'
 import CodeRepoModal from 'components/Modals/CodeRepoCreate'
 
-const getRepoUrl = (repoType, repo) => {
-  switch (repoType) {
-    case 'github':
-      return `https://github.com/${repo.owner}/${repo.repo}`
-    case 'gitlab':
-      return `${repo.server_name}/${repo.repo}`
-    case 'bitbucket_server':
-      // eslint-disable-next-line no-case-declarations
-      const uri = repo.api_uri
-      // eslint-disable-next-line no-case-declarations
-      let url = uri.substr(uri.length - 1) === '/' ? uri : `${uri}/`
-      if (!/https:\/\/bitbucket.org\/?/gm.test(url)) {
-        url += 'scm/'
-      }
-      return `${url}${repo.owner}/${repo.repo}`
-    default:
-      return repo.repo || repo.url || repo.remote
-  }
-}
-
-export const handleFormData = ({ data, module, devops }) => {
+const handleFormData = ({ data, module, devops }) => {
   const postData = FORM_TEMPLATES[module]({ namespace: devops })
   const repoType = data.sources.source_type
   const repo = get(data, `sources.${repoType}_source`, {})
-  const repoURL = repo.repo || repo.url || repo.remote
-  let url = ''
-
-  if (repoType === 'github' && /^https:\/\//.test(repoURL)) {
-    url = repoURL
-  } else {
-    url = getRepoUrl(repoType, repo)
-  }
 
   const spec = {
     provider: data.sources.source_type,
-    url,
+    owner: repo.owner || repo.server_name,
+    repo: repo.repo,
+    url:
+      !repo.owner && !repo.server_name
+        ? repo.repo || repo.url || repo.remote
+        : undefined,
     secret: {
       name: repo.credential_id || data.sources.credentialId,
       namespace: devops,
@@ -87,22 +64,28 @@ export default {
           let _currentRepo = {}
           if (['svn', 'single_svn'].includes(data.sources.source_type)) {
             addSvnCodeRepoDirectly && addSvnCodeRepoDirectly(data)
-            _currentRepo = data
+            _currentRepo = { name: data.metadata.name, ...data.sources }
           } else {
             const postData = handleFormData({ data, module, devops })
-
-            _currentRepo = await store.create({
+            const { metadata, spec } = await store.create({
               data: postData,
               devops,
               cluster,
             })
 
-            Notify.success({ content: t('CREATE_SUCCESSFUL') })
+            _currentRepo = {
+              name: metadata.name,
+              source_type: spec.provider,
+              [`${spec.provider}_source`]: {
+                owner: spec.owner,
+                repo: spec.repo,
+                url: spec.url,
+              },
+            }
           }
 
-          success && !type && success(_currentRepo)
-          success && !!type && success()
-
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
+          success && success(!type ? JSON.stringify(_currentRepo) : undefined)
           Modal.close(modal)
         },
         store,

@@ -18,7 +18,7 @@
 import React from 'react'
 import cs from 'classnames'
 import { pick } from 'lodash'
-import { Select, Icon } from '@kube-design/components'
+import { Select, Icon, Notify } from '@kube-design/components'
 
 import CodeStore from 'stores/codeRepo'
 
@@ -29,6 +29,7 @@ export default class CodeRepoSelect extends React.Component {
     super(props)
 
     this.codeStore = new CodeStore()
+    this.inPipeline = props.type === 'pipeline'
     this.state = {
       repoList: [],
       svnRepoList: [],
@@ -37,26 +38,26 @@ export default class CodeRepoSelect extends React.Component {
   }
 
   get svnOptions() {
-    return this.state.svnRepoList.map(({ name, sources }) => ({
-      label: name,
-      value: `${name}(${
-        sources[
-          `${
-            sources.source_type === 'svn' ? 'svn_source' : 'single_svn_source'
-          }`
-        ].remote
-      })`,
-      icon: 'svn',
-    }))
+    return this.state.svnRepoList.map(({ name, sources }) => {
+      const svnRepoStr = JSON.stringify({ name, ...sources })
+      return {
+        label: name,
+        value: svnRepoStr,
+        icon: 'svn',
+      }
+    })
   }
 
   get repoOptions() {
-    const { showAllItem, type } = this.props
+    const { showAllItem } = this.props
     let options = this.state.repoList.map(item => {
+      const value = this.inPipeline
+        ? this.transformValue(item)
+        : `${item.name}(${item.repoURL})`
+
       return {
         label: item.name,
-        value:
-          type !== 'pipeline' ? `${item.name}(${item.repoURL})` : item.name,
+        value,
         icon:
           item.provider === 'bitbucket_server' ? 'bitbucket' : item.provider,
       }
@@ -86,13 +87,30 @@ export default class CodeRepoSelect extends React.Component {
     this.updateOptions()
   }
 
+  isSvnRepoRepeat = svnData => {
+    const svnRepoMap = this.state.svnRepoList.map(({ name, sources }) => ({
+      name,
+      sources: JSON.stringify(sources),
+    }))
+
+    return svnRepoMap.some(({ name }) => name === svnData.metadata.name)
+  }
+
   addSvnCodeRepoOption = svnData => {
     const _svnRepoList = [...this.state.svnRepoList]
+    const isRepeat = this.isSvnRepoRepeat(svnData)
+
+    if (isRepeat) {
+      Notify.error({
+        content: `"${svnData.metadata.name}" ${t('CODE_REPO_EXISTS')}`,
+      })
+      throw Error(`"${svnData.metadata.name}" ${t('CODE_REPO_EXISTS')}`)
+    }
+
     _svnRepoList.push({
       name: svnData.metadata.name,
       sources: svnData.sources,
     })
-
     this.setState({ svnRepoList: _svnRepoList })
   }
 
@@ -102,24 +120,40 @@ export default class CodeRepoSelect extends React.Component {
 
   handleRepoChange = val => {
     const { onChange } = this.props
-    onChange && onChange(val)
+    const selectedRepo = this.inPipeline && !!val ? JSON.parse(val) : val
+    onChange && onChange(selectedRepo)
   }
 
-  repoOptionRenderer = option => type => {
+  transformValue = item => {
+    const { metadata, spec } = item._originData
+    const repoJsonStr = JSON.stringify({
+      name: metadata.name,
+      source_type: spec.provider,
+      [`${spec.provider}_source`]: {
+        owner: spec.owner,
+        repo: spec.repo,
+        url: spec.url,
+      },
+    })
+
+    return repoJsonStr
+  }
+
+  optionRenderer = option => type => {
     return (
       <span className={styles.option}>
         <Icon
           name={option.icon ?? ''}
           type={type === 'value' ? 'dark' : 'light'}
         />
-        {option.value}
+        {this.inPipeline ? option.label : option.value}
       </span>
     )
   }
 
   render() {
     const {
-      value,
+      value: selectedRepo,
       index,
       name,
       showCreateRepo,
@@ -133,15 +167,19 @@ export default class CodeRepoSelect extends React.Component {
           searchable
           key={index}
           name={name}
-          value={value}
           className={styles.select}
+          value={
+            this.inPipeline && selectedRepo
+              ? JSON.stringify(selectedRepo)
+              : selectedRepo
+          }
           onChange={this.handleRepoChange}
           options={this.state.options}
           onFetch={this.getRepoList}
           isLoading={this.codeStore.list.isLoading}
           pagination={pick(this.codeStore.list, ['page', 'limit', 'total'])}
-          valueRenderer={option => this.repoOptionRenderer(option)('value')}
-          optionRenderer={option => this.repoOptionRenderer(option)('option')}
+          valueRenderer={option => this.optionRenderer(option)('value')}
+          optionRenderer={option => this.optionRenderer(option)('option')}
         />
         {allowCreateCodeRepo && (
           <span

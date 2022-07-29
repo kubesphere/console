@@ -193,11 +193,11 @@ export default class BaseInfo extends React.Component {
           >
             <RepoSelect
               name="sources"
+              type={type}
               ref={this.scmRef}
+              devops={this.props.devops}
               onClick={this.showSelectRepo}
               handleDeleteSource={this.handleDeleteSource}
-              devops={this.props.devops}
-              type={type}
             />
           </Form.Item>
         </Form>
