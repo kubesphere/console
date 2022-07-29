@@ -394,7 +394,7 @@ export default class GatewaySettingModal extends React.Component {
 
     this.setState({
       tipType: 'warning',
-      tipInfo: t('DELETE_GRAYSCALE_RELEASE_JOB_DESC'),
+      tipInfo: t('DELETE_GRAYSCALE_RELEASE_TASK_DESC'),
     })
   }
 
@@ -800,7 +800,7 @@ export default class GatewaySettingModal extends React.Component {
         className={styles.modal}
         bodyClassName={styles.body}
         headerClassName={styles.header}
-        title={t('JOB_STATUS')}
+        title={t('TASK_STATUS')}
         cancelText={t('CLOSE')}
         onCancel={onCancel}
         visible={visible}

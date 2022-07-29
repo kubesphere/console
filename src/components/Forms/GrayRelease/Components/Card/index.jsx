@@ -59,7 +59,7 @@ export default class Card extends React.PureComponent {
     }
 
     if (component.strategies.length > 0) {
-      return <span className={styles.right}>{t('UNFINISHED_GRAY_JOB')}</span>
+      return <span className={styles.right}>{t('UNFINISHED_GRAY_TASK')}</span>
     }
 
     return (
