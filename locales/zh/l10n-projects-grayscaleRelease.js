@@ -82,7 +82,7 @@ module.exports = {
   // Release Tasks
   PREREQUEST_FOR_USE_GRAYRELEASE_Q: '使用灰度发布功能有哪些前提条件？',
   PREREQUEST_FOR_USE_GRAYRELEASE_A: '使用灰度发布功能前，您需要创建自制应用并且为自制应用启用应用治理功能。',
-  RELEASE_TASKS: '发布任务',
+  RELEASE_JOBS: '发布任务',
   TCP_INBOUND_TRAFFIC: 'TCP 入站流量',
   TCP_OUTBOUND_TRAFFIC: 'TCP 出站流量',
   NO_DATA_SCAP: '未发现数据',
