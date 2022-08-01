@@ -30,9 +30,9 @@ module.exports = {
   // List > Edit Permissions > Application Workloads
   PERMIGROUP_APPLICATION_WORKLOADS: '应用负载',
   PERMISSION_APPLICATION_WORKLOADS_VIEW: '应用负载查看',
-  PERMISSION_APPLICATION_WORKLOADS_VIEW_DESC: '查看项目中的应用、服务、工作负载、任务、灰度发布任务和镜像构建器等资源。',
+  PERMISSION_APPLICATION_WORKLOADS_VIEW_DESC: 'View resources such as applications, services, workloads, jobs, grayscale release tasks, and image builders in the project.',
   PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT: '应用负载管理',
-  PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT_DESC: '创建、编辑和删除项目中的应用、服务、工作负载、任务、灰度发布任务和镜像构建器等资源。',
+  PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT_DESC: 'Create, edit, and delete resources such as applications, services, workloads, jobs, grayscale release tasks, and image builders in the project.',
   // List > Edit Permissions > Storage
   PERMIGROUP_STORAGE_MANAGEMENT: '存储',
   PERMISSION_VOLUME_SNAPSHOTS_VIEW: '卷快照查看',
