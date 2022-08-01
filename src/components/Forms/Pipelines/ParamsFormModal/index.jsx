@@ -157,7 +157,9 @@ export default class ParamsFormModal extends React.Component {
   }
 
   renderParamsItem(param) {
-    const type = param?.type ?? ''.toLowerCase().split('parameterdefinition')[0]
+    const type = (param?.type ?? '')
+      .toLowerCase()
+      .split('parameterdefinition')[0]
     const defaultValue = get(param, 'defaultParameterValue.value')
     switch (type) {
       case 'string':
