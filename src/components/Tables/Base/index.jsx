@@ -312,7 +312,7 @@ export default class WorkloadTable extends React.Component {
         onClick={onCreate}
         data-test="table-create"
       >
-        {t(createText || 'Create')}
+        {t(createText || 'CREATE')}
       </Button>
     )
   }
