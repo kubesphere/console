@@ -26,7 +26,7 @@ module.exports = {
   CANARY_RELEASE_DESC: '将业务流量同时分配给新版本和旧版本，在测试新版本的同时保证业务连续性。',
   TRAFFIC_MIRRORING_DESC: '将业务流量的副本发送给新版本进行测试，而不实际暴露新版本。',
   // Release Modes > Blue-Green Deployment > Create > Basic Information
-  CREATE_BLUE_GREEN_DEPLOYMENT_TASK: '创建蓝绿部署任务',
+  CREATE_BLUE_GREEN_DEPLOYMENT_TASK: 'Create Blue-Green Deployment Task',
   // Release Modes > Blue-Green Deployment > Create > Service Settings
   DESELECT: '取消选择',
   SELECT: '选择',
@@ -42,9 +42,9 @@ module.exports = {
   TAKE_OVER: '接管',
   GRAYSCALE_VERSION: '版本：{version}',
   // Release Modes > Canary Release > Create
-  CREATE_CANARY_RELEASE_TASK: '创建金丝雀发布任务',
+  CREATE_CANARY_RELEASE_TASK: 'Create Canary Release Task',
   // Release Modes > Canary Release > Create > Service Settings
-  UNFINISHED_GRAY_TASK: '灰度发布进行中',
+  UNFINISHED_GRAY_TASK: 'Grayscale release in progress',
   NO_SERVICE_MESH_TIP: '该应用未启用应用治理，无法使用灰度发布功能。',
   GRAY_APP_NAME: '应用：{name}',
   UNSUPPORTED_WORKLOAD_TYPE: '不支持该工作负载类型',
@@ -77,12 +77,12 @@ module.exports = {
   TRAFFIC: '流量',
   TRAFFIC_DISTRIBUTION: '流量分配',
   // Release Modes > Traffic Mirroring > Create
-  CREATE_TRAFFIC_MIRRORING_TASK: '创建流量镜像任务',
+  CREATE_TRAFFIC_MIRRORING_TASK: 'Create Traffic Mirroring Task',
   // Release Modes > Traffic Mirroring > Create > Strategy Settings
   // Release Tasks
   PREREQUEST_FOR_USE_GRAYRELEASE_Q: '使用灰度发布功能有哪些前提条件？',
   PREREQUEST_FOR_USE_GRAYRELEASE_A: '使用灰度发布功能前，您需要创建自制应用并且为自制应用启用应用治理功能。',
-  RELEASE_JOBS: '发布任务',
+  RELEASE_TASKS: 'Release Tasks',
   TCP_INBOUND_TRAFFIC: 'TCP 入站流量',
   TCP_OUTBOUND_TRAFFIC: 'TCP 出站流量',
   NO_DATA_SCAP: '未发现数据',
@@ -93,7 +93,7 @@ module.exports = {
   TRAFFIC_LOW: '流量',
   VERSION_TRAFFIC_PERCENT: '{version} 流量 {percent}%',
   // Release Tasks > Canary Release > Task Status
-  TASK_OFFLINE_SUCCESSFULLY: '任务下线成功。',
+  TASK_OFFLINE_SUCCESSFULLY: 'Task offline successfully.',
   ADJUST_TRAFFIC_DISTRIBUTION_DESC: '您确定将 {ratioNew}% 的流量发送给新版本 <b>{newVersion}</b> 以及 {ratioOld}% 的流量发送给旧版本 <b>{oldVersion}</b> 吗？',
   ALLOCATE_TRAFFIC_DESC: '拖动滑块设置发送给新版本的流量比例和发送给旧版本的流量比例。',
   COOKIE_EXACT_MATCH: 'Cookie（完全匹配）',
@@ -107,19 +107,19 @@ module.exports = {
   RESTORE: '恢复',
   SUCCESSFUL_REQUEST_RATE: '请求成功率',
   TRAFFIC_IN_LAST_FIVE_MINUTES: '最近五分钟的流量。',
-  DELETE_GRAYSCALE_RELEASE_TASK_DESC: '删除灰度发布任务前，请选择一个版本接管所有流量。',
+  DELETE_GRAYSCALE_RELEASE_TASK_DESC: 'Please select a version to take over all traffic before deleting the grayscale release task.',
   GRAY_COMPONENT_DESC: '测试中的新版本和旧版本的相关信息。',
   // Release Tasks > Traffic Mirroring > Task Status
   MIRRORED_TRAFFIC: '镜像流量',
   RELEASE_MODE_PL: '发布模式',
   RELEASE_MODE: '发布模式',
-  NEW_VERSION_TAKEOVER_DESC: '新版本 <b>{newVersion}</b> 正在接收所有流量。如果您删除当前灰度发布任务，旧版本 <b>{oldVersion}</b> 也将被删除。',
-  OLD_VERSION_TAKEOVER_DESC: '旧版本 <b>{oldVersion}</b> 已接管所有流量。如果您删除当前灰度发布任务，新版本 <b>{newVersion}</b> 也将被删除。',
+  NEW_VERSION_TAKEOVER_DESC: 'The new version <b>{newVersion}</b> is receiving all traffic. If you delete the current grayscale release task, the old version <b>{oldVersion}</b> will be also be deleted.',
+  OLD_VERSION_TAKEOVER_DESC: 'The old version <b>{oldVersion}</b> is receiving all traffic. If you delete the current grayscale release task, the new version <b>{newVersion}</b> will be also be deleted.',
   GRAYSCALE_REPLICA_SI: '副本数量：{count}',
   GRAYSCALE_REPLICA_PL: '副本数量：{count}',
   TRAFFIC_MIRRORING_TRAFFIC_DISTRI_DESC: '将流量的副本发送给新版本进行测试。',
   // Release Tasks > Task Status > Edit
-  EDIT_GRAYSCALE_RELEASE_TASK: '编辑灰度发布任务',
+  EDIT_GRAYSCALE_RELEASE_TASK: 'Edit Grayscale Release Task',
   // Release Tasks > Canary Release > Traffic Distribution
   ADJUST_TRAFFIC_DISTRIBUTION: '调整流量分配'
 };
