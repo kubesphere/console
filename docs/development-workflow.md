@@ -61,8 +61,10 @@ git rebase -i master
 
 See [Git Commit Messages Style Guide](../CONTRIBUTING.md#git-commit-messages)
 
+See [Commit Signature(GPG or S/MIME) Verification](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification)
+
 ```shell
-git commit -a -s
+git commit -a -s -S
 ```
 
 ### Step 6: Push to your fork
