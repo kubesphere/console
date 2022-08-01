@@ -72,7 +72,9 @@ module.exports = {
   CREATE_GRAYSCALE_RELEASE_TASK: 'Create Grayscale Release Task',
   GRAYSCALE_RELEASE_DESC: 'Gri tonlamalı sürüm, üretim ortamında önemli bir uygulama yineleme yöntemini temsil eder. Uygulamalarınızı yeni bir sürüme yükseltirken sorunsuz geçiş için farklı yayın yöntemleri seçebilirsiniz.',
   NO_GRAYSCALE_RELEASE_TASK_FOUND: 'No Grayscale Release Task Found',
-  NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: 'Lütfen bir gri tonlamalı yayın işi oluşturun.',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: 'Please create a grayscale release task.',
+  TOTAL_GRAY_RELEASE_JOB: '{num} grayscale release task in total',
+  TOTAL_GRAY_RELEASE_JOBS: '{num} grayscale release tasks in total',
   // Tracing
   TRACING: 'İzleme',
   TRACING_NO_DATA_DESC: 'Lütfen arama koşullarını değiştirin ve tekrar deneyin.',
