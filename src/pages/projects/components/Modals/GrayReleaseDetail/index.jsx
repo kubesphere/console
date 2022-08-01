@@ -659,7 +659,7 @@ export default class GatewaySettingModal extends React.Component {
     const os = headers['User-Agent'] || {}
     const osMatchValue = os.regex
       ? os.regex
-          .slice(2, os.regex.length - 2)
+          .slice(3, os.regex.length - 3)
           .split('|')
           .map(item =>
             CANARY_CONTENT[item] ? CANARY_CONTENT[item].label : item
