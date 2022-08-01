@@ -120,7 +120,7 @@ module.exports = {
   GRAYSCALE_REPLICA_PL: 'Replicas: {count}',
   TRAFFIC_MIRRORING_TRAFFIC_DISTRI_DESC: 'A copy of traffic is sent to the new version for testing.',
   // Release Jobs > Job Status > Edit
-  EDIT_GRAYSCALE_RELEASE_JOB: 'Edit Grayscale Release Job',
+  EDIT_GRAYSCALE_RELEASE_TASK: 'Edit Grayscale Release Task',
   // Release Jobs > Canary Release > Traffic Distribution
   ADJUST_TRAFFIC_DISTRIBUTION: 'Adjust Traffic Distribution'
 };
