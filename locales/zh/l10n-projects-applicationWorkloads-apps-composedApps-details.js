@@ -69,10 +69,12 @@ module.exports = {
   BASE_EJECTION_TIME_S_DESC: '最大后端排除时间。',
   UPDATED_AT_VALUE_SCAP: '更新于 {value}',
   // Grayscale Release
-  CREATE_GRAYSCALE_RELEASE_TASK: '创建灰度发布任务',
+  CREATE_GRAYSCALE_RELEASE_TASK: 'Create Grayscale Release Task',
   GRAYSCALE_RELEASE_DESC: '灰度发布是在生产环境进行应用迭代的一种重要方式。您可以选择不同的发布方法，在应用升级至新版本的过程中实现平滑过渡。',
-  NO_GRAYSCALE_RELEASE_TASK_FOUND: '未发现灰度发布任务',
-  NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: '请创建一个灰度发布任务。',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND: 'No Grayscale Release Task Found',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: 'Please create a grayscale release task.',
+  TOTAL_GRAY_RELEASE_JOB: '{num} grayscale release task in total',
+  TOTAL_GRAY_RELEASE_JOBS: '{num} grayscale release tasks in total',
   // Tracing
   TRACING: '链路追踪',
   TRACING_NO_DATA_DESC: '请修改搜索条件后重试。',
