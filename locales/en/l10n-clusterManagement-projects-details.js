@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   // More > Edit Project Quotas
   // More > Edit Default Container Quotas
   // Overview > Resource Status > Application resources

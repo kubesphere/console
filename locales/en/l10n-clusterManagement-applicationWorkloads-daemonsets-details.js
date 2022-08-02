@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   // More > Roll Back
   // More > Edit Autoscaling
   // More > Edit Settings > Update Strategy

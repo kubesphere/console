@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   // Resource Status
   CUSTOM_RESOURCE_PL: 'Custom Resources',
   PROJECT_DEVOPS_PROJECT: 'Project/DevOps Project',

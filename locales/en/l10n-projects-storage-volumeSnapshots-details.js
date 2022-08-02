@@ -20,7 +20,7 @@ module.exports = {
   // Create Volume > Basic Information
   // Create Volume > Volume Settings
   // Create Volume > Advanced Settings
-  // Details
+  // Attributes
   // Data Source
   // Events
 }

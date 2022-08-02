@@ -20,7 +20,7 @@ module.exports = {
   // Back Button
   // Edit
   // More > Disbale
-  // Details
+  // Attributes
   // Monitoring
   // Configuration Options
   // Gateway Logs

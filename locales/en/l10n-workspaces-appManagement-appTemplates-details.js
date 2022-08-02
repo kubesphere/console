@@ -42,7 +42,7 @@ module.exports = {
   DELETE_APP_TEMPLATE_DESC: 'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation.',
   DELETE_APP_TEMPLATE_VERSIONS_DESC: 'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation. Before deleting the app template, you must delete all versions of the template.',
   APP_TEMPLATE_LOW: 'app template',
-  // Details
+  // Attributes
   // Versions
   APP_STATUS_SUBMITTED: 'Submitted',
   APP_STATUS_NOT_SUBMITTED: 'Not submitted',

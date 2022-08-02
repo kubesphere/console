@@ -22,7 +22,7 @@ module.exports = {
   // More > Edit Settings > Cluster Differences
   // More > Edit YAML
   // More > Delete
-  // Details
+  // Attributes
   // Resource Status
   // Resource Status > Instance Status
   // esource Status > Pods

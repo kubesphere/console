@@ -21,7 +21,7 @@ module.exports = {
   ADD_SERVICE: 'Add Service',
   ADD_ROUTE: 'Add Route',
   // More > Add Route
-  // Details
+  // Attributes
   // Resource Status
   // Traffic Monitoring
   TRAFFIC_MONITORING: 'Traffic Monitoring',

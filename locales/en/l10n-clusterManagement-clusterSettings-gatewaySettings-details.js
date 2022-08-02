@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   // More > Update Gateway
   // More > Delete
   GATEWAY_LOW: 'gateway',

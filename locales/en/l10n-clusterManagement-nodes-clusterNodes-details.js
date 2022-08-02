@@ -17,8 +17,8 @@
  */
 
 module.exports = {
-  // Details
-  DETAILS: 'Details',
+  // Attributes
+  ATTRIBUTES: 'Attributes',
   ARCHITECTURE: 'Architecture',
   OS_VERSION: 'OS Version',
   OS_TYPE: 'OS Type',
