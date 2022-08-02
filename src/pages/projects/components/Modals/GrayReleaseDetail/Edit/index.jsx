@@ -41,7 +41,7 @@ export default class EditGrayReleaseModal extends React.Component {
 
     return (
       <EditModal
-        title="EDIT_GRAYSCALE_RELEASE_JOB"
+        title="EDIT_GRAYSCALE_RELEASE_TASK"
         icon="components"
         module={module}
         forms={this.forms}
