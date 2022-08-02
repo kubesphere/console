@@ -362,9 +362,7 @@ const getSupportGpuList = async ctx => {
 
       gpuKinds = [...defaultGpu, ...otherGpus]
     }
-  } catch (error) {
-    console.error(error)
-  }
+  } catch (error) {}
 
   return gpuKinds
 }
