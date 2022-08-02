@@ -42,6 +42,13 @@ export default class ConfigFile extends React.Component {
     appName: '',
   }
 
+  get hasPermission() {
+    return globals.app.hasPermission({
+      module: 'app-templates',
+      actions: ['manage', 'edit'],
+    })
+  }
+
   constructor(props) {
     super(props)
 
@@ -119,7 +126,9 @@ export default class ConfigFile extends React.Component {
           type={'MODIFY_VERSION'}
           appId={detail.app_id}
           versionId={detail.version_id}
-          canEdit={CAN_EDIT_STATUS.includes(detail.status)}
+          canEdit={
+            this.hasPermission && CAN_EDIT_STATUS.includes(detail.status)
+          }
           className={styles.uploadInfo}
           hasPackage
         />
