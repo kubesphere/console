@@ -319,23 +319,16 @@ export default class Store extends BaseStore {
   }
 
   @action
-  async fetchLabel({ devops, cluster }) {
-    const url = `${this.getDevopsUrlV2({
-      cluster,
-      devops,
-    })}jenkins/labelsdashboard/labelsData`
+  async fetchLabel() {
+    const url = `${this.getDevopsUrlV3()}ci/nodelabels`
+    this.labelDataList = []
+    const result = await request.get(url, {}, {}, () => null)
 
-    const result = await request.get(url, {}, {}, () => {
-      this.labelDataList = []
-    })
-
-    if (result && result.status === 'ok' && isArray(result.data)) {
-      const labelDataList = result.data.map(item => {
-        return { label: item.label, value: item.label }
-      })
-      this.labelDataList = labelDataList
-    } else {
-      this.labelDataList = []
+    if (result && result.status === 'success' && isArray(result.data)) {
+      this.labelDataList = result.data.map(item => ({
+        label: item,
+        value: item,
+      }))
     }
   }
 }
