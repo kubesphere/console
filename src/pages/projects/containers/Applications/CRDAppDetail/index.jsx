@@ -153,6 +153,14 @@ export default class CRDAppDetail extends React.Component {
         name: t('CREATOR'),
         value: detail.creator,
       },
+      {
+        name: t('APPLICATION_GOVERNANCE_SCAP'),
+        value:
+          get(detail, 'annotations["servicemesh.kubesphere.io/enabled"]') ===
+          'true'
+            ? t('ON')
+            : t('OFF'),
+      },
     ]
   }
 

@@ -71,15 +71,6 @@ export default class ServiceItem extends React.Component {
           }
           description={t(detail.type)}
         />
-        <Text
-          title={
-            get(detail, 'annotations["servicemesh.kubesphere.io/enabled"]') ===
-            'true'
-              ? t('ON')
-              : t('OFF')
-          }
-          description={t('APPLICATION_GOVERNANCE_SCAP')}
-        />
         <ServiceAccess data={detail} />
       </div>
     )
