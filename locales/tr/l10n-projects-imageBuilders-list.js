@@ -22,6 +22,9 @@ module.exports = {
   // List
   IMAGE_BUILDER_EMPTY_DESC: 'Lütfen bir resim oluşturucu oluşturun.',
   NOT_RUNNING_YET: 'Henüz çalıştırılmadı',
+  BUILDING: 'Building',
+  S2I: 'Source-to-image',
+  B2I: 'Artifact-to-image',
   // List > Name (Displayed after you create a service from artifact)
   BUILD_IMAGE_FOR_SERVICE: '{service} hizmeti için görüntü oluşturun.',
   // List > Create > Build Mode
