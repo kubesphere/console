@@ -67,7 +67,7 @@ export default class DaemonSets extends React.Component {
   }
 
   get selectActions() {
-    const { tableProps, trigger, module, rootStore } = this.props
+    const { tableProps, trigger, name, rootStore } = this.props
     return [
       ...get(tableProps, 'tableActions.selectActions', {}),
       {
@@ -75,7 +75,7 @@ export default class DaemonSets extends React.Component {
         text: t('STOP'),
         onClick: () =>
           trigger('resource.batch.stop', {
-            type: module.toUpperCase(),
+            type: name.toUpperCase(),
             rowKey: 'uid',
             success: rootStore.routing.query(),
           }),
