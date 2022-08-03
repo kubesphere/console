@@ -20,7 +20,6 @@ module.exports = {
   TOTAL_EVENTS_TODAY: '今日总共收录了 <span class={className}> {events} </span> 条资源事件',
   NO_RESOURCE_EVENTS_TODAY: '今日没有收录的资源事件',
   // Search
-  EVENT_NOT_ENABLED_DESC: '当前组件尚未启用。<a href="{docUrl}/pluggable-components/events/" target="_blank">了解更多</a>',
   // Querying Rules
   RESOURCE_EVENT_TRENDS_12H: '12 小时内资源事件变化趋势',
   RESOURCE_EVENT_WORKSPACE_TIP: '输入企业空间名称查找资源事件。',
