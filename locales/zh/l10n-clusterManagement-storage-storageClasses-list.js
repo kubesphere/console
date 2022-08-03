@@ -52,7 +52,7 @@ module.exports = {
   CREATE_VOLUME_MIN_SIZE: '卷的容量下限。',
   VOLUME_FS_TYPE: '支持 ext3、ext4 和 xfs。默认类型为 ext4。',
   QINGCLOUD_VOLUME_TAGS_DESC: '为卷添加标签。使用半角逗号（,）分隔多个标签。',
-  GID_RANGE_TIP: '取值不能小于 2000 或大于 2147483647。',
+  GID_RANGE_TIP: 'The value cannot be less than 2000 or greater than 2147483647.',
   // List > Create > > GlusterFS > Storage Class Settings
   GLUSTERFS_RESTURL_DESC: '供应卷的 Heketi REST URL。',
   GLUSTERFS_ID_DESC: 'Gluster 集群 ID。',
@@ -93,6 +93,6 @@ module.exports = {
   // List > Delete
   STORAGE_CLASS: '存储类',
   STORAGE_CLASS_LOW: '存储类',
-  STORAGE_CLASS_DELETE_DESC: '删除卷快照类可能会影响卷快照的正常使用。您确定删除卷快照类吗？',
+  STORAGE_CLASS_DELETE_DESC: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Are you sure you want to delete the volume snapshot class?',
   STORAGE_CLASS_DELETE_DESC_PL: '删除卷快照类可能会影响卷快照的正常使用。请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。'
 };
