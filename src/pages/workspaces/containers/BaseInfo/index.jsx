@@ -330,7 +330,7 @@ class BaseInfo extends React.Component {
     return (
       <Panel className={styles.network} title={t('NETWORK_ISOLATION')}>
         {isEmpty(data) && !isLoading && (
-          <div className={styles.empty}>{t('NO_AVAILABLE_CLUSTER')}</div>
+          <div className={styles.empty}>{t('NO_CLUSTER_AVAILABLE')}</div>
         )}
         {data.map(cluster => {
           const clusterTemp =
