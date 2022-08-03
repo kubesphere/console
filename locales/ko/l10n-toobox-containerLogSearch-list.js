@@ -19,7 +19,6 @@ module.exports = {
   // Title
   TOTAL_LOGS_TODAY: 'A total of <span class={className}> {logs} </span> log entries from <span class={className}>{containers}</span> containers have been collected today.',
   // Search
-  LOGGING_NOT_ENABLED_DESC: 'The component is not enabled. <a href="{docUrl}/pluggable-components/logging/" target="_blank">Learn More</a>',
   WORKLOAD: 'Workload',
   TIME_RANGE_SCAP: 'Time range',
   // Querying Rules
