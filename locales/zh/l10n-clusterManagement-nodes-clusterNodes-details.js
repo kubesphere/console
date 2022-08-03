@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Attributes
-  ATTRIBUTES: 'Attributes',
+  ATTRIBUTES: '属性',
   ARCHITECTURE: '系统架构',
   OS_VERSION: '操作系统版本',
   OS_TYPE: '操作系统类型',
