@@ -20,7 +20,6 @@ module.exports = {
   TOTAL_EVENTS_TODAY: 'Hoy se recopilaron un total de <span class={className}>{events}</span> eventos.',
   NO_RESOURCE_EVENTS_TODAY: 'Eventos no encontrados hoy',
   // Search
-  EVENT_NOT_ENABLED_DESC: 'No hay clúster con consulta de eventos habilitada',
   // Querying Rules
   RESOURCE_EVENT_TRENDS_12H: 'Tendencias en el número total de eventos en las últimas 12 horas.',
   RESOURCE_EVENT_WORKSPACE_TIP: 'Puedes ver información de eventos relacionados de acuerdo con el espacio de trabajo.',
