@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
-  DETAILS: 'Detaylar',
+  // Attributes
+  ATTRIBUTES: 'Attributes',
   ARCHITECTURE: 'Mimari',
   OS_VERSION: 'İşletim sistemi sürümü',
   OS_TYPE: 'İşletim Sistemi Tipi',
