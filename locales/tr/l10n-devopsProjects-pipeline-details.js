@@ -18,7 +18,7 @@
 module.exports = {
   // Edit Information
   CODE_REPOSITORY: 'Kod Deposu',
-  // Details
+  // Attributes
   TASK_STATUS: 'Görev Durumu',
   NOT_RUNNING: 'Çalışmıyor',
   QUEUED: 'Kuyrukta',
