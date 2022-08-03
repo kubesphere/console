@@ -288,6 +288,12 @@ export default class MountConfig extends React.Component {
     if (!value) {
       return callback()
     }
+
+    const pathHasEmpty = value.some(item => item.path === '')
+    if (pathHasEmpty) {
+      return callback({ message: t('MOUNT_PATH_EMPTY') })
+    }
+
     const absPath = value.some(item => /^\//.test(item.path))
     if (absPath) {
       return callback({ message: t('PLEASE_USE_RELATIVE_PATH') })
