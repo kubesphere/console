@@ -234,6 +234,10 @@ export default {
         type: 'STORAGE_CLASS',
         modal: DeleteModal,
         store,
+        desc: t.html('STORAGE_CLASS_DELETE_DESC_PL', {
+          type: t('STORAGE_CLASS_LOW'),
+          resource: selectNames.join(', '),
+        }),
         ...props,
       })
     },
@@ -258,6 +262,7 @@ export default {
         store,
         modal: DeleteModal,
         resource: detail.name,
+        desc: t('STORAGE_CLASS_DELETE_DESC'),
         ...props,
       })
     },
