@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   ENDPOINT: 'Endpoint',
   SESSION_AFFINITY: '會話親和性',
   // More
@@ -44,7 +44,7 @@ module.exports = {
   BEARER_TOKEN_TCAP: 'Bearer Token',
   BASIC_AUTHENTICATION_TCAP: 'Basic Authentication',
   // More > Edit YAML
-  // Details
+  // Attributes
   EXTERNAL_IP_ADDRESS: '外部 IP 地址',
   // Resource Status
   MONITORING_EXPORTER: '監控導出器',
