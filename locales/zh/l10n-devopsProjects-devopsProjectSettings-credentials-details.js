@@ -17,11 +17,12 @@
  */
 module.exports = {
   // Labels
-  // Details
+  // Attributes
   // Edit
   // Delete
   CREDENTIAL_LOW: '凭证',
   // Details > Credential
+  DETAILS: '详情',
   TYPE_VALUE: '类型：{value}',
   // Events
   RECORD: '记录'
