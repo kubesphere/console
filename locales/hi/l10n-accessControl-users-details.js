@@ -21,7 +21,7 @@ module.exports = {
   CHANGE_PASSWORD: 'पासवर्ड बदलिए',
   NEW_PASSWORD: 'नया पासवर्ड',
   // More > Delete
-  // Details
+  // Attributes
   // Login History
   TIME: 'समय',
   SOURCE_IP_ADDRESS: 'स्रोत आई.पी पता',
