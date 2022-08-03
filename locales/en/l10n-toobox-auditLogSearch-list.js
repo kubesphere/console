@@ -21,8 +21,8 @@ module.exports = {
   TOTAL_AUDITING_TODAY: 'A total of <span class={className}> {auditing} </span> audit log entries have been collected today.',
   NO_AUDIT_LOG_TODAY: 'No Audit Log Collected Today',
   // Search
-  NO_AVAILABLE_CLUSTER: 'No Available Cluster',
-  AUDITING_NOT_ENABLED_DESC: 'The component is not enabled. <a href="{docUrl}/pluggable-components/auditing-logs/" target="_blank">Learn More</a>',
+  NO_DATA_AUTHORIZED: 'No Data Authorized',
+  NO_DATA_AUTHORIZED_DESC: 'Please contact an administrator to obtain data authorization.',
   TIME_RANGE_LAST: 'Time range: last {value}',
   TIME_RANGE_RANGE: 'Time range: {startTime} – {endTime}',
   // Querying Rules
