@@ -24,7 +24,7 @@ module.exports = {
   // Release
   RELEASE: 'Yayınlamak',
   ACTIVATE_SUCCESSFUL: 'Başarıyla etkinleştirildi.',
-  // Details
+  // Attributes
   APP_ID: 'Uygulama Kimliği',
   CATEGORY: 'Kategori',
   TYPE: 'Tip',
