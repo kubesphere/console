@@ -25,7 +25,7 @@ import { List } from 'components/Base'
 
 import styles from './index.scss'
 
-const Card = ({ volume, onDelete, onEdit }) => {
+const Card = ({ volume, onDelete, onEdit, banEdit = false }) => {
   const handleDelete = () => onDelete(volume.metadata.name)
   const handleEdit = () => onEdit(volume)
 
@@ -69,6 +69,22 @@ const Card = ({ volume, onDelete, onEdit }) => {
       </ul>
     </div>
   )
+
+  if (banEdit) {
+    return (
+      <List.Item
+        icon="storage"
+        title={get(volume, 'metadata.name', '-')}
+        description={`${t('Storage Classs')}: ${get(
+          volume,
+          'spec.storageClassName',
+          '-'
+        )}`}
+        extras={mount}
+        details={details}
+      />
+    )
+  }
 
   return (
     <List.Item
