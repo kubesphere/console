@@ -22,6 +22,9 @@ module.exports = {
   // List
   IMAGE_BUILDER_EMPTY_DESC: 'Please create an image builder.',
   NOT_RUNNING_YET: 'Not run yet',
+  BUILDING: 'Building',
+  S2I: 'Source-to-image',
+  B2I: 'Artifact-to-image',
   // List > Name (Displayed after you create a service from artifact)
   BUILD_IMAGE_FOR_SERVICE: 'Build image for service {service}.',
   // List > Create > Build Mode
