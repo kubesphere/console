@@ -48,7 +48,7 @@ module.exports = {
   NO_PIPELINE_CONFIG_FILE_TIP: '未找到流水線配置文件',
   // Task Status > Edit Pipeline
   EDIT_PIPELINE: '編輯流水線',
-  JENKINS_UNAVAILABLE: 'This is unavailable until Jenkins is ready',
+  JENKINS_UNAVAILABLE: 'Jenkins is unready.',
   AGENT_TYPE_DESC: `Agent 部分指定整個 Pipeline 或特定階段將在 Jenkins 還境中執行的位置，
     具體取決於該 agent 部分的放置位置。該部分必須在流水線塊内的頂層定義，但 stage 級使用是可選的。`,
   CREATE_PIPELINE_DESC: '使用流水線進行構建，測試和部署',
