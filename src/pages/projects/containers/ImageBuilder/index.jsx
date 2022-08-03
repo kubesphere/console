@@ -133,7 +133,7 @@ export default class ImageBuilders extends React.Component {
         dataIndex: 'type',
         isHideable: true,
         width: '15%',
-        render: type => t(type.toUpperCase()),
+        render: type => type && t(type.toUpperCase()),
       },
       {
         title: t('SERVICE'),
