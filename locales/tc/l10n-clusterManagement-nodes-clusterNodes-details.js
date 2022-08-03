@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
-  DETAILS: '詳情',
+  // Attributes
+  ATTRIBUTES: 'Attributes',
   ARCHITECTURE: '系統架構',
   OS_VERSION: '操作系統',
   OS_TYPE: '操作系統類型',
