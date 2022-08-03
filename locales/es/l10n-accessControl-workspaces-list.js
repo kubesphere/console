@@ -28,6 +28,7 @@ module.exports = {
   ADMINISTRATOR: 'Administrator',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'Selecciona el clúster disponible en el espacio de trabajo.',
+  NO_CLUSTER_AVAILABLE: 'No Cluster Available',
   NO_CLUSTER_AVAILABLE_DESC: 'No hay clústeres públicos disponibles, solicita autorización para clúster al administrador de la plataforma o al administrador del clúster después de crear el espacio de trabajo',
   WORKSPACE_NO_CLUSTER_TIP: 'You need to contact the platform or cluster administrator to authorize a cluster to the workspace.',
   AVAILABLE_CLUSTERS: 'Clusters Disponibles',
