@@ -18,7 +18,7 @@
 module.exports = {
   // Edit Information
   CODE_REPOSITORY: '代码仓库',
-  // Details
+  // Attributes
   TASK_STATUS: '任务状态',
   NOT_RUNNING: '未运行',
   QUEUED: '队列中',
