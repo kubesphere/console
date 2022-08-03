@@ -20,7 +20,7 @@ module.exports = {
   ADD_SERVICE: '添加服务',
   ADD_ROUTE: '添加应用路由',
   // More > Add Route
-  // Details
+  // Attributes
   // Resource Status
   // Traffic Monitoring
   TRAFFIC_MONITORING: '流量监控',
@@ -73,8 +73,6 @@ module.exports = {
   GRAYSCALE_RELEASE_DESC: '灰度发布是在生产环境进行应用迭代的一种重要方式。您可以选择不同的发布方法，在应用升级至新版本的过程中实现平滑过渡。',
   NO_GRAYSCALE_RELEASE_TASK_FOUND: '未发现灰度发布任务',
   NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: '请创建一个灰度发布任务。',
-  TOTAL_GRAY_RELEASE_JOB: '共计 {num} 个灰度任务',
-  TOTAL_GRAY_RELEASE_JOBS: '共计 {num} 个灰度任务',
   // Tracing
   TRACING: '链路追踪',
   TRACING_NO_DATA_DESC: '请修改搜索条件后重试。',
