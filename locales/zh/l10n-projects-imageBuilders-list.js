@@ -22,6 +22,9 @@ module.exports = {
   // List
   IMAGE_BUILDER_EMPTY_DESC: '请创建一个镜像构建器。',
   NOT_RUNNING_YET: '未运行',
+  BUILDING: 'Building',
+  S2I: 'Source-to-image',
+  B2I: 'Artifact-to-image',
   // List > Name (Displayed after you create a service from artifact)
   BUILD_IMAGE_FOR_SERVICE: '为 {service} 服务构建镜像。',
   // List > Create > Build Mode
