@@ -18,8 +18,6 @@
 module.exports = {
   // Banner
   // List
-  DAEMONSETS_LOW: 'daemonsets',
-  DAEMONSETS_PL: 'daemonsets',
   // List > Create > Basic Information
   // List > Create > Pod Settings
   CONTAINER_SETTINGS_DESC: '對容器的名稱及容器的計算資源進行設置',
