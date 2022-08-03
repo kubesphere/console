@@ -18,7 +18,7 @@
 module.exports = {
   // Edit Information
   CODE_REPOSITORY: 'Repositorio de Código',
-  // Details
+  // Attributes
   TASK_STATUS: 'Task Status',
   NOT_RUNNING: 'no ejecutar',
   QUEUED: 'Encolado',
