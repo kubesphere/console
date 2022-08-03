@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   // Projects
   // DevOps Projects
   DEVOPS_PROJECTS: 'DevOps 项目'
