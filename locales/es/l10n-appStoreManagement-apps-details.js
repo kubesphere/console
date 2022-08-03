@@ -24,7 +24,7 @@ module.exports = {
   // Release
   RELEASE: 'Release',
   ACTIVATE_SUCCESSFUL: 'Activated successfully.',
-  // Details
+  // Attributes
   APP_ID: 'ID de la aplicación',
   CATEGORY: 'Categoría',
   TYPE: 'Tipo',
