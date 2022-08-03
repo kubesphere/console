@@ -23,7 +23,7 @@ module.exports = {
   // More > Edit Settings > Containers > Add Container
   // More > Edit Settings > Volumes > Mount Volume
   // More > Edit Settings > Volumes > Mount Configmap or Secret
-  // Details
+  // Attributes
   // Resource Status
   // Revision Records
   REVISION_RECORDS_DESC: 'İş yükü oluşturulduktan veya değiştirildikten sonra, iş yükü ayarlarını geri almak için kullanılabilen bir revizyon kaydı oluşturulur. En fazla 10 revizyon kaydı tutulabilir.',
