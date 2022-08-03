@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   CUSTOM_SERVICE: '自定義服務',
   VIRTUAL_IP: '虛擬 IP',
   // Resource Status
