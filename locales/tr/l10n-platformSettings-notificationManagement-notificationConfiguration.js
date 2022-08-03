@@ -79,7 +79,7 @@ module.exports = {
   MAX_CID_COUNT: 'En fazla {count} görüşme kimliği ekleyebilirsiniz.',
   CONVERSATION_ID_EXISTS: 'Görüşme kimliği zaten var. Lütfen başka bir görüşme kimliği ekleyin.',
   // DingTalk > DingTalk Chatbot
-  CHATBOT_SETTINGS: 'Chatbot Setting',
+  CHATBOT_SETTINGS: 'Group Chatbot Settings',
   KEYWORDS_LIST: 'Anahtar Kelime Listesi',
   DINGTALK_CHATBOT_SECURITY_TIP: 'Lütfen bir sır veya anahtar kelime girin.',
   ENTER_KEYWORD_DESC: 'Lütfen bir anahtar kelime girin.',
