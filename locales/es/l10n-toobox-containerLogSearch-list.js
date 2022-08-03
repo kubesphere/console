@@ -19,7 +19,6 @@ module.exports = {
   // Title
   TOTAL_LOGS_TODAY: 'Hoy se recolectó un total de <span class={className}>{logs}</span> logs de <span class={className}>{contenedores}</span> contenedores.',
   // Search
-  LOGGING_NOT_ENABLED_DESC: 'No hay clúster con módulo de registro habilitado',
   WORKLOAD: 'Carga de trabajo',
   TIME_RANGE_SCAP: 'Time range',
   // Querying Rules
