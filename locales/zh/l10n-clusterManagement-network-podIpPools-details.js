@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   NETWORK: '网络',
   START_IP_ADDRESS: '起始 IP 地址',
   END_IP_ADDRESS: '结束 IP 地址',
