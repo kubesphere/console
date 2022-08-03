@@ -18,7 +18,7 @@
 
 module.exports = {
   // More > Edit YAML
-  // Details
+  // Attributes
   // Run Records
   // Metadata
   // Events

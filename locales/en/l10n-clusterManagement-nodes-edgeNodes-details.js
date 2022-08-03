@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   // More > Edit Labels
   // More > Edit Taints
   // Running Status

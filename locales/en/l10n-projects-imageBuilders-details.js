@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   COPIED_SUCCESSFUL: 'Copied successfully.',
   BUILDER_IMAGE: 'Builder Image',
   PULL_POLICY: 'Pull Policy',

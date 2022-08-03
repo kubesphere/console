@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   NODE_IP_ADDRESS: 'Node IP Address',
   CLUSTER: 'Cluster',
   // Resource Status > Containers

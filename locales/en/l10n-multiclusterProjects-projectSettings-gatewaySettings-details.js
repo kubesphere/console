@@ -20,7 +20,7 @@ module.exports = {
   // More > Disable
   // Edit > NodePort
   // Edit > LoadBalancer
-  // Details
+  // Attributes
   // Monitoring
   // Configuration Options
   // Gateway Logs

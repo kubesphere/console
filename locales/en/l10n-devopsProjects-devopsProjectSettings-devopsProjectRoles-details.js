@@ -19,7 +19,7 @@
 module.exports = {
   // Title
   // Description
-  // Details
+  // Attributes
   // Permissions
   NO_PERMISSION: 'No Permission Found',
   // Authorized Users
