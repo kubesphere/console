@@ -92,5 +92,7 @@ module.exports = {
   // List > Edit Information
   // List > Delete
   STORAGE_CLASS: '存储类',
-  STORAGE_CLASS_LOW: '存储类'
+  STORAGE_CLASS_LOW: '存储类',
+  STORAGE_CLASS_DELETE_DESC: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Are you sure you want to delete the resource?',
+  STORAGE_CLASS_DELETE_DESC_PL: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Enter the {type} names <strong>{resource}</strong> to confirm that you understand the risks of this operation.'
 };
