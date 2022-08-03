@@ -41,7 +41,7 @@ module.exports = {
   DELETE_APP_TEMPLATE_DESC: 'Bu işlemin risklerini anladığınızı doğrulamak için <b>{resource}</b> uygulama şablonu adını girin.',
   DELETE_APP_TEMPLATE_VERSIONS_DESC: 'Bu işlemin risklerini anladığınızı doğrulamak için <b>{resource}</b> uygulama şablonu adını girin. Uygulama şablonunu silmeden önce şablonun tüm sürümlerini silmelisiniz.',
   APP_TEMPLATE_LOW: 'uygulama şablonu',
-  // Details
+  // Attributes
   // Versions
   APP_STATUS_SUBMITTED: 'Gönderilen',
   APP_STATUS_NOT_SUBMITTED: 'Gönderilemedi',
