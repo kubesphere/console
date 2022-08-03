@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   THRESHOLD_DURATION: 'Eşik Süresi',
   // Alerting Rule
   ALERTING_RULE: 'Uyarı Kuralı',
