@@ -28,6 +28,7 @@ module.exports = {
   ADMINISTRATOR: 'व्यवस्थापक',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'कार्यक्षेत्र में उपयोग किए जाने वाले समूहों का चयन करें।',
+  NO_CLUSTER_AVAILABLE: 'No Cluster Available',
   NO_CLUSTER_AVAILABLE_DESC: 'कोई क्लस्टर उपलब्ध नहीं है। कार्यक्षेत्र बनने के बाद, कार्यक्षेत्र के लिए क्लस्टर अधिकृत करने के लिए कृपया प्लेटफ़ॉर्म या क्लस्टर व्यवस्थापक से संपर्क करें।',
   WORKSPACE_NO_CLUSTER_TIP: 'किसी क्लस्टर को कार्यक्षेत्र के लिए अधिकृत करने के लिए कृपया प्लेटफ़ॉर्म या क्लस्टर व्यवस्थापक से संपर्क करें।',
   AVAILABLE_CLUSTERS: 'उपलब्ध क्लस्टर',
