@@ -21,7 +21,7 @@ module.exports = {
   CHANGE_PASSWORD: 'Parola Değiştir',
   NEW_PASSWORD: 'Yeni Parola',
   // More > Delete
-  // Details
+  // Attributes
   // Login History
   TIME: 'Zaman',
   SOURCE_IP_ADDRESS: 'Kaynak IP Adresi',
