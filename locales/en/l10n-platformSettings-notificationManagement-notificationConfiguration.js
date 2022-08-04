@@ -80,7 +80,7 @@ module.exports = {
   MAX_CID_COUNT: 'You can add a maximum of {count} conversation IDs.',
   CONVERSATION_ID_EXISTS: 'The conversation ID already exists. Please add another conversation ID.',
   // DingTalk > DingTalk Chatbot
-  CHATBOT_SETTINGS: 'DingTalk Chatbot',
+  CHATBOT_SETTINGS: 'Group Chatbot Settings',
   KEYWORDS_LIST: 'Keyword List',
   DINGTALK_CHATBOT_SECURITY_TIP: 'Please enter a secret or keywords.',
   ENTER_KEYWORD_DESC: 'Please enter a keyword.',
