@@ -35,7 +35,7 @@ module.exports = {
   REQUEST_EXCEED_WORKSPACE: '资源预留和资源限制均不能超过企业空间资源限制。',
   REQUEST_EXCEED_LIMIT: '资源预留不能超过资源限制。',
   // Mange > Delete
-  DELETE_PROJECT_TIP: '确定删除项目 <strong>{resource}</strong> ? 删除后将无法恢复, 项目下的资源也同时会被销毁。',
+  DELETE_PROJECT_TIP: 'Enter the project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   // Project Information
   MANAGE: '管理',
   PROJECT_INFO: '项目信息',
