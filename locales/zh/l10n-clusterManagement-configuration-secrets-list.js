@@ -41,7 +41,7 @@ module.exports = {
   PRIVATE_KEY_TCAP: '私钥',
   REGISTRY_ADDRESS_TCAP: '镜像服务地址',
   REGISTRY_SECRET_VER_ERR: '镜像服务验证失败。',
-  REGISTRY_SECRET_VER_SUC: '镜像服务可用。',
+  REGISTRY_SECRET_VER_SUC: '镜像服务验证通过。',
   SECRET_NO_CHINESE_CODE_DESC: '保密字典的键必须由字母数字字符、连字符（-）、下划线（_）或句点（.）组成。',
   SECRET_TYPE_DESC: '选择一个保密字典类型。',
   IMAGE_REGISTRY_VALIDATE_TIP: '创建镜像服务保密字典前，请先验证用户名和密码。',
