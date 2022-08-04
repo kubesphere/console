@@ -25,6 +25,7 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Container Settings
   INVALID_IMAGE: 'Geçersiz resim.',
   INVALID_NAME_DESC: 'Geçersiz isim. Ad yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir ve küçük harf veya sayı ile başlayıp bitmelidir. Maksimum uzunluk 63 karakterdir.',
+  DUPLICATE_CONTAINER_NAME_DESC: 'Ad geçersiz. Adlar yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir, küçük harflerle veya sayılarla başlayıp bitmeli ve en fazla 63 karakter uzunluğunda olmalıdır.',
   NO_IMAGE_FOUND: 'Görsel bulunamadı',
   CONTAINER_EMPTY_DESC: 'Lütfen en az bir konteyner ekleyin.',
   QUOTA_UNSET_TIP: 'Kaynak işgali ayarlanmadı',
