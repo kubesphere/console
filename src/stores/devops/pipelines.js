@@ -161,9 +161,9 @@ export default class PipelineStore extends BaseStore {
       { params: { ...filters } }
     )
 
-    const data = result.items.map(item => {
-      return { ...this.mapper(item) }
-    })
+    const data = result.items
+      .filter(({ metadata }) => !metadata.deletionTimestamp)
+      .map(item => ({ ...this.mapper(item) }))
 
     this.setDevops(devops)
     this.devopsName = devopsName
