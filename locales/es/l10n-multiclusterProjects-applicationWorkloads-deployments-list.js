@@ -166,7 +166,7 @@ module.exports = {
   TEMPORARY_VOLUME: 'Volumen Temporal',
   VOLUME_NAME: 'Nombre del volumen',
   VOLUME_NAME_EMPTY: 'Por favor introduce el nombre del volumen',
-  HOST_PATH_EMPTY: 'Please set a host path for the volume.',
+  HOST_PATH_EMPTY: 'Por favor introduce el ruta del host del volumen',
   CONTAINER_NOT_SELECTED: 'Selecciona al menos un contenedor para montar',
   NOT_MOUNT: 'No montado',
   HOSTPATH_VOLUME: 'HostPath Volume',
