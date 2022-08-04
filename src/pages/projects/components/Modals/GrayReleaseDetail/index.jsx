@@ -322,6 +322,8 @@ export default class GatewaySettingModal extends React.Component {
       unset(strategy, `${prefix}.match[0].headers['User-Agent'].regex`)
     }
 
+    unset(strategy, 'spec.governor')
+
     return strategy
   }
 
