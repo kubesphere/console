@@ -113,7 +113,7 @@ export default class BuilderInfo extends React.Component {
             <p className={styles.value} title={sourceUrl}>
               {sourceUrl}
             </p>
-            <p className={styles.name}>{t('SOURCE_URL')}</p>
+            <p className={styles.name}>{t('CODE_REPOSITORY_URL')}</p>
           </div>
         </li>
         <li>
