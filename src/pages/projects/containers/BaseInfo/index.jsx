@@ -151,7 +151,7 @@ class BaseInfo extends React.Component {
         key: 'delete',
         icon: 'trash',
         action: 'delete',
-        text: t('DELETE'),
+        text: t('DELETE_PROJECT'),
         onClick: () =>
           this.trigger('resource.delete', {
             detail,
