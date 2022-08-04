@@ -30,9 +30,9 @@ module.exports = {
   // List > Edit Permissions > Application Workloads
   PERMIGROUP_APPLICATION_WORKLOADS: '應用負載',
   PERMISSION_APPLICATION_WORKLOADS_VIEW: 'Application Workload Viewing',
-  PERMISSION_APPLICATION_WORKLOADS_VIEW_DESC: 'View resources such as applications, services, workloads, jobs, grayscale release tasks, and image builders in the project.',
+  PERMISSION_APPLICATION_WORKLOADS_VIEW_DESC: 'View resources such as applications, services, workloads, jobs, grayscale release jobs, and image builders in the project.',
   PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT: 'Application Workload Management',
-  PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT_DESC: 'Create, edit, and delete resources such as applications, services, workloads, jobs, grayscale release tasks, and image builders in the project.',
+  PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT_DESC: 'Create, edit, and delete resources such as applications, services, workloads, jobs, grayscale release jobs, and image builders in the project.',
   // List > Edit Permissions > Storage
   PERMIGROUP_STORAGE_MANAGEMENT: '儲存',
   PERMISSION_VOLUME_SNAPSHOTS_VIEW: 'Volume Snapshot Viewing',
