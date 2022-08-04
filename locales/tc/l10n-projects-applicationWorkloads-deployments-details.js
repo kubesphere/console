@@ -48,7 +48,7 @@ module.exports = {
   // More > Edit Settings > Volumes > Mount Configmap or Secret
   // More > Edit Settings > Pod Scheduling Rules
   RULE_NOT_COMPLETE: '請填寫完整策略',
-  // Details
+  // Attributes
   // Revision Records
   REVISION_RECORDS: '版本記錄',
   CONFIG_FILE: '配置文件',

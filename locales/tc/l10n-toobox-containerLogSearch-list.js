@@ -19,7 +19,6 @@ module.exports = {
   // Title
   TOTAL_LOGS_TODAY: '今日總共收錄了 <span class={className}>{containers}</span> 個容器<br/> <span class={className}> {logs} </span> 條紀錄資訊',
   // Search
-  LOGGING_NOT_ENABLED_DESC: '暫無啟用紀錄模組的集群',
   WORKLOAD: '工作負載',
   TIME_RANGE_SCAP: 'Time range',
   // Querying Rules

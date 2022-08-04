@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   // Resource Status
   CUSTOM_RESOURCE_PL: 'Özel Kaynaklar',
   PROJECT_DEVOPS_PROJECT: 'Proje/DevOps Projesi',

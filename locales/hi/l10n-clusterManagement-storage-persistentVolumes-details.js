@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   VOLUME_HANDLE: 'Volume Handle',
   VOLUME_MODE: 'Volume Mode',
   VOLUME_MODE_FILESYSTEM: 'File system',

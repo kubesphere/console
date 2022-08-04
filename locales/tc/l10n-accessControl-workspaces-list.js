@@ -28,6 +28,7 @@ module.exports = {
   ADMINISTRATOR: '管理員',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: '選擇企業空間下可用的集群',
+  NO_CLUSTER_AVAILABLE: 'No Cluster Available',
   NO_CLUSTER_AVAILABLE_DESC: '暫無可用的公開集群，請在企業空間創建完畢後，向平台管理員或集群管理員申請集群的授權。',
   WORKSPACE_NO_CLUSTER_TIP: '您需要聯繫平台管理員或者集群管理員為企業空間授權集群的訪問權限。',
   AVAILABLE_CLUSTERS: '可用集群',

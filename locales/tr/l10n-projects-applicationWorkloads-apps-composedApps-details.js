@@ -20,7 +20,7 @@ module.exports = {
   ADD_SERVICE: 'Hizmet Ekle',
   ADD_ROUTE: 'Rota ekle',
   // More > Add Route
-  // Details
+  // Attributes
   // Resource Status
   // Traffic Monitoring
   TRAFFIC_MONITORING: 'Trafik İzleme',
@@ -69,12 +69,10 @@ module.exports = {
   BASE_EJECTION_TIME_S_DESC: 'Maksimum fırlatma süresi.',
   UPDATED_AT_VALUE_SCAP: '{value} Değerinde güncellendi.',
   // Grayscale Release
-  CREATE_GRAYSCALE_RELEASE_JOB: 'Gri Tonlamalı Yayın İşi Oluştur',
+  CREATE_GRAYSCALE_RELEASE_TASK: 'Create Grayscale Release Task',
   GRAYSCALE_RELEASE_DESC: 'Gri tonlamalı sürüm, üretim ortamında önemli bir uygulama yineleme yöntemini temsil eder. Uygulamalarınızı yeni bir sürüme yükseltirken sorunsuz geçiş için farklı yayın yöntemleri seçebilirsiniz.',
-  NO_GRAYSCALE_RELEASE_JOB_FOUND: 'Gri Tonlamalı Yayın İşi Bulunamadı',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND: 'No Grayscale Release Task Found',
   NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: 'Lütfen bir gri tonlamalı yayın işi oluşturun.',
-  TOTAL_GRAY_RELEASE_JOB: 'toplam {num} gri tonlamalı yayın işi',
-  TOTAL_GRAY_RELEASE_JOBS: 'Toplamda {num} gri tonlamalı yayın işi',
   // Tracing
   TRACING: 'İzleme',
   TRACING_NO_DATA_DESC: 'Lütfen arama koşullarını değiştirin ve tekrar deneyin.',

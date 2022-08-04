@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   NODE_IP_ADDRESS: '节点 IP 地址',
   CLUSTER: '集群',
   // Resource Status > Containers

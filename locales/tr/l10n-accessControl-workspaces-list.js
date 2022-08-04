@@ -28,6 +28,7 @@ module.exports = {
   ADMINISTRATOR: 'Yönetici',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'Çalışma alanında kullanılacak kümeleri seçin.',
+  NO_CLUSTER_AVAILABLE: 'No Cluster Available',
   NO_CLUSTER_AVAILABLE_DESC: 'Küme mevcut değil. Çalışma alanı oluşturulduktan sonra, çalışma alanına bir kümeyi yetkilendirmek için lütfen platform veya küme yöneticisiyle iletişime geçin.',
   WORKSPACE_NO_CLUSTER_TIP: 'Bir kümeyi çalışma alanına yetkilendirmek için lütfen platform veya küme yöneticisiyle iletişime geçin.',
   AVAILABLE_CLUSTERS: 'Mevcut Kümeler',

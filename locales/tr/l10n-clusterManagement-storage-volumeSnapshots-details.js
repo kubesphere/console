@@ -20,7 +20,7 @@ module.exports = {
   CREATE_VOLUME: 'Birim Oluştur',
   SNAPSHOT_CLASS_NOT_EXIST_TITLE: 'Birim Anlık Görüntü Sınıfı Bulunamadı',
   SNAPSHOT_CLASS_NOT_EXIST: 'Birim anlık görüntüsünün birim anlık görüntüsü sınıfı mevcut değil.',
-  // Details
+  // Attributes
   // Data Source
   STORAGE_CLASS_SCAP: 'Depolama Sınıfı',
   DATA_SOURCE: 'Veri Kaynağı'

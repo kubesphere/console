@@ -19,7 +19,7 @@ module.exports = {
   // More > Add Component
   // More > Add Component > Create Service
   // More > Delete
-  // Details
+  // Attributes
   // Resource Status
   APPLICATION_GOVERNANCE_SCAP: '应用治理',
   NO_SERVICE_FOUND: '未发现服务',

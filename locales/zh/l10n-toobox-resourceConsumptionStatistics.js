@@ -25,6 +25,7 @@ module.exports = {
   CLUSTER_RESOURCE_CONSUMPTION_DESC: '<strong>集群</strong>的 CPU、内存、卷等资源的消费情况',
   CLUSTER_NODE_CONSUMPTION_DESC: '集群<strong>节点</strong>的 CPU、内存、卷等资源的消费情况',
   CLUSTER_POD_CONSUMPTION_DESC: '节点中<strong>容器组</strong>的 CPU、内存等资源的消费情况',
+  CURRENT_RESOURCE_CONSUMPTION: '集群资源消费情况',
   VIEW: '查看',
   // Workspace Recource Consumption
   WORKSPACE_CONSUMPTION: '企业空间资源消费情况',

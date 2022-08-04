@@ -52,6 +52,7 @@ module.exports = {
   CREATE_VOLUME_MIN_SIZE: 'Minimum size of the volume.',
   VOLUME_FS_TYPE: 'Supports ext3, ext4, and xfs. The default type is ext4.',
   QINGCLOUD_VOLUME_TAGS_DESC: 'Add tags to the storage volume. Use commas to separate multiple tags.',
+  GID_RANGE_TIP: 'The value cannot be less than 2000 or greater than 2147483647.',
   // List > Create > > GlusterFS > Storage Class Settings
   GLUSTERFS_RESTURL_DESC: 'Heketi REST URL that provisions volumes.',
   GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
@@ -91,5 +92,7 @@ module.exports = {
   // List > Edit Information
   // List > Delete
   STORAGE_CLASS: 'Clase de almacenamiento',
-  STORAGE_CLASS_LOW: 'storage class'
+  STORAGE_CLASS_LOW: 'storage class',
+  STORAGE_CLASS_DELETE_DESC: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Are you sure you want to delete the volume snapshot class?',
+  STORAGE_CLASS_DELETE_DESC_PL: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Enter the {type} names <strong>{resource}</strong> to confirm that you understand the risks of this operation.'
 };

@@ -17,11 +17,12 @@
  */
 module.exports = {
   // Labels
-  // Details
+  // Attributes
   // Edit
   // Delete
   CREDENTIAL_LOW: 'credential',
   // Details > Credential
+  DETAILS: 'Details',
   TYPE_VALUE: 'Type: {value}',
   // Events
   RECORD: 'Record'

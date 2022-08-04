@@ -20,8 +20,8 @@ module.exports = {
   TOTAL_AUDITING_TODAY: 'Bugün toplam <span class={className}> {auditing} </span> denetim günlüğü girişi toplandı.',
   NO_AUDIT_LOG_TODAY: 'Bugün Toplanan Denetim Günlüğü Yok',
   // Search
-  NO_AVAILABLE_CLUSTER: 'Kullanılabilir Küme Yok',
-  AUDITING_NOT_ENABLED_DESC: 'Bileşen etkin değil. <a href="{docUrl}/pluggable-components/auditing-logs/" target="_blank">Daha Fazla Bilgi Edinin</a>',
+  NO_DATA_AUTHORIZED: 'No Data Authorized',
+  NO_DATA_AUTHORIZED_DESC: 'Please contact an administrator to obtain data authorization.',
   TIME_RANGE_LAST: 'Zaman aralığı: son {değer}',
   TIME_RANGE_RANGE: 'Zaman aralığı:{startTime} –{endTime}',
   // Querying Rules
