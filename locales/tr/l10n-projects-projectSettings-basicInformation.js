@@ -35,7 +35,7 @@ module.exports = {
   REQUEST_EXCEED_WORKSPACE: 'Kaynak istekleri ve sınırları, çalışma alanı kaynak sınırlarını aşamaz.',
   REQUEST_EXCEED_LIMIT: 'Kaynak istekleri, kaynak sınırlarından büyük olamaz.',
   // Mange > Delete
-  DELETE_PROJECT_TIP: '<strong>{resource}</strong> projesini silmek istediğinizden emin misiniz? Silme işleminden sonra onu kurtaramayacaksınız ve tüm proje kaynakları da yok edilecek.',
+  DELETE_PROJECT_TIP: 'Enter the project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   // Project Information
   MANAGE: 'Yönet',
   PROJECT_INFO: 'Proje Bilgisi',
