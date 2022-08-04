@@ -30,9 +30,9 @@ module.exports = {
   // List > Edit Permissions > Application Workloads
   PERMIGROUP_APPLICATION_WORKLOADS: 'Uygulama İş Yükleri',
   PERMISSION_APPLICATION_WORKLOADS_VIEW: 'Uygulama İş Yükü Görüntüleme',
-  PERMISSION_APPLICATION_WORKLOADS_VIEW_DESC: 'View resources such as applications, services, workloads, jobs, grayscale release tasks, and image builders in the project.',
+  PERMISSION_APPLICATION_WORKLOADS_VIEW_DESC: 'Projedeki uygulamalar, hizmetler, iş yükleri, işler, gri tonlamalı yayın işleri ve görüntü oluşturucular gibi kaynakları görüntüleyin.',
   PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT: 'Uygulama İş Yükü Yönetimi',
-  PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT_DESC: 'Create, edit, and delete resources such as applications, services, workloads, jobs, grayscale release tasks, and image builders in the project.',
+  PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT_DESC: 'Projede uygulamalar, hizmetler, iş yükleri, işler, gri tonlamalı yayın işleri ve görüntü oluşturucular gibi kaynakları oluşturun, düzenleyin ve silin.',
   // List > Edit Permissions > Storage
   PERMIGROUP_STORAGE_MANAGEMENT: 'Depolama',
   PERMISSION_VOLUME_SNAPSHOTS_VIEW: 'Depolama Anlık Görüntüsü Görüntüleme',
