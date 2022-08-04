@@ -33,6 +33,7 @@ module.exports = {
   IMAGE_FROM_S2I: 'Crea una nueva imagen a partir del código',
   IMAGE_FROM_B2I: 'Crea una nueva imagen a partir del artefacto',
   B2I_DESC: 'Select the file type of your artifact.',
+  EMPTY_IMAGE_TYPE_DESC: 'Please select a language or artifact type.',
   // List > Create > Java > Build Settings
   CODE_REPOSITORY_URL: 'URL de código',
   CODE_REPOSITORY_BRANCH: 'Rama',
