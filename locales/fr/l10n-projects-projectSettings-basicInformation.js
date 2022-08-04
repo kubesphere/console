@@ -35,7 +35,7 @@ module.exports = {
   REQUEST_EXCEED_WORKSPACE: 'Resource requests and limits cannot exceed workspace resource limits.',
   REQUEST_EXCEED_LIMIT: 'Resource requests cannot be greater than resource limits.',
   // Mange > Delete
-  DELETE_PROJECT_TIP: 'Are you sure you want to delete the project <strong>{resource}</strong>? After the deletion, you will not be able to recover it, and all project resources will also be destroyed.',
+  DELETE_PROJECT_TIP: 'Enter the project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   // Project Information
   MANAGE: 'Manage',
   PROJECT_INFO: 'Project Information',
