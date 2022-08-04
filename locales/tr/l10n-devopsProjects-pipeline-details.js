@@ -18,7 +18,7 @@
 module.exports = {
   // Edit Information
   CODE_REPOSITORY: 'Kod Deposu',
-  // Details
+  // Attributes
   TASK_STATUS: 'Görev Durumu',
   NOT_RUNNING: 'Çalışmıyor',
   QUEUED: 'Kuyrukta',
@@ -48,6 +48,7 @@ module.exports = {
   NO_PIPELINE_CONFIG_FILE_TIP: 'İşlem hattı yapılandırma dosyası bulunamadı.',
   // Task Status > Edit Pipeline
   EDIT_PIPELINE: 'İş hattını Düzenle',
+  JENKINS_UNAVAILABLE: 'Jenkins is unready.',
   AGENT_TYPE_DESC: `Aracı Bölümü belirtir
     tüm iş hattı veya belirli bir aşamanın Jenkins ortamında yürütüleceği yer,
     Agent bölümünün nereye yerleştirildiğine bağlı olarak.
@@ -163,5 +164,6 @@ Jenkinsfile'nin operasyonel gereksinimlere göre girilen parametreler bölümü.
   LINE_VALUE: 'Hat: {value}',
   PASSED: 'Geçti',
   // Pull Requests
-  PULL_REQUEST_PL: 'Değişiklik İsteği'
+  PULL_REQUEST_PL: 'Değişiklik İsteği',
+  FAILED_CHECK_SCRIPT_COMPILE: 'The check of script compile failed, if you want to bypass the step, please click the continue button'
 };

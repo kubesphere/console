@@ -26,7 +26,7 @@ module.exports = {
   CANARY_RELEASE_DESC: 'Hem yeni sürümü test etmek hem de hizmet sürekliliğini sağlamak için hizmet trafiğini yeni sürüm ve eski sürüm arasında tahsis edin.',
   TRAFFIC_MIRRORING_DESC: 'Yeni sürümü gerçekten göstermeden test için hizmet trafiğinin bir kopyasını yeni sürüme gönderin.',
   // Release Modes > Blue-Green Deployment > Create > Basic Information
-  CREATE_BLUE_GREEN_DEPLOYMENT_JOB: 'Mavi-Yeşil Dağıtım İşi Oluşturun',
+  CREATE_BLUE_GREEN_DEPLOYMENT_TASK: 'Create Blue-Green Deployment Task',
   // Release Modes > Blue-Green Deployment > Create > Service Settings
   DESELECT: 'Seçimi İptal Et',
   SELECT: 'Seçiniz',
@@ -42,9 +42,9 @@ module.exports = {
   TAKE_OVER: 'Devral',
   GRAYSCALE_VERSION: 'Sürüm: {{version}}',
   // Release Modes > Canary Release > Create
-  CREATE_CANARY_RELEASE_JOB: 'Kanarya Yayın İşi Oluştur',
+  CREATE_CANARY_RELEASE_TASK: 'Create Canary Release Task',
   // Release Modes > Canary Release > Create > Service Settings
-  UNFINISHED_GRAY_JOB: 'Gri tonlamalı sürüm devam ediyor',
+  UNFINISHED_GRAY_TASK: 'Grayscale release in progress',
   NO_SERVICE_MESH_TIP: 'Uygulama için uygulama yönetişimi devre dışı bırakıldı ve gri tonlamalı sürüm kullanılamaz.',
   GRAY_APP_NAME: 'Uygulama:{name}',
   UNSUPPORTED_WORKLOAD_TYPE: 'İş yükü türü desteklenmiyor',
@@ -77,24 +77,23 @@ module.exports = {
   TRAFFIC: 'Trafik',
   TRAFFIC_DISTRIBUTION: 'Trafik Dağılımı',
   // Release Modes > Traffic Mirroring > Create
-  CREATE_TRAFFIC_MIRRORING_JOB: 'Trafik Yansıtma İşi Oluştur',
+  CREATE_TRAFFIC_MIRRORING_TASK: 'Create Traffic Mirroring Task',
   // Release Modes > Traffic Mirroring > Create > Strategy Settings
-  // Release Jobs
+  // Release Tasks
   PREREQUEST_FOR_USE_GRAYRELEASE_Q: 'Gri tonlamalı sürümü uygulamak için ön koşullar nelerdir?',
   PREREQUEST_FOR_USE_GRAYRELEASE_A: 'Gri tonlamalı sürümü uygulamadan önce, oluşturulmuş bir uygulama oluşturmanız ve uygulama için uygulama yönetimini etkinleştirmeniz gerekir.',
-  RELEASE_JOBS: 'İşleri Yayınla',
+  RELEASE_TASKS: 'Release Tasks',
   TCP_INBOUND_TRAFFIC: 'TCP Gelen Trafik',
   TCP_OUTBOUND_TRAFFIC: 'TCP Giden Trafik',
   NO_DATA_SCAP: 'Veri bulunamadı',
   REPLICA_COUNT_LOW: 'kopyalar',
   MIRROR_POLICY_DESC: 'Hizmet trafiğinin bir kopyası, test için yeni sürüme gönderilir. Yalnızca eski sürüm gösterilir ve yeni sürüm gösterilmez.',
-  // Release Jobs > Blue-Green Deployment > Job Status
+  // Release Tasks > Blue-Green Deployment > Task Status
   BLUE_GREEN_TRAFFIC_DISTRI_DESC: 'Yeni sürüm veya eski sürüm tüm trafiği alır.',
   TRAFFIC_LOW: 'trafik',
   VERSION_TRAFFIC_PERCENT: '{version} trafik {percent}%',
-  // Release Jobs > Canary Release > Job Status
-  JOB_OFFLINE_SUCCESSFULLY: 'Çevrimdışı iş başarıyla tamamlandı.',
-  JOB_STATUS: 'İş Durumu',
+  // Release Tasks > Canary Release > Task Status
+  TASK_OFFLINE_SUCCESSFULLY: 'Task offline successfully.',
   ADJUST_TRAFFIC_DISTRIBUTION_DESC: 'Trafiğin %{ratioNew}%\'sini yeni <b>{newVersion}</b> sürümüne ve %{ratioOld}%\'unu eski <b>{oldVersion}</b> sürümüne göndermek istediğinizden emin misiniz?',
   ALLOCATE_TRAFFIC_DESC: 'Yeni sürüme gönderilen ve eski sürüme gönderilen trafiğin oranını ayarlamak için kaydırıcıyı hareket ettirin.',
   COOKIE_EXACT_MATCH: 'Çerez (tam eşleşme)',
@@ -108,9 +107,9 @@ module.exports = {
   RESTORE: 'Geri Yükle',
   SUCCESSFUL_REQUEST_RATE: 'Başarılı İstek Oranı',
   TRAFFIC_IN_LAST_FIVE_MINUTES: 'Son beş dakikada trafik.',
-  DELETE_GRAYSCALE_RELEASE_JOB_DESC: 'Lütfen gri tonlamalı yayın işini silmeden önce tüm trafiği devralacak bir sürüm seçin.',
+  DELETE_GRAYSCALE_RELEASE_TASK_DESC: 'Please select a version to take over all traffic before deleting the grayscale release task.',
   GRAY_COMPONENT_DESC: 'Test edilen yeni sürüm ve eski sürüm hakkında bilgiler.',
-  // Release Jobs > Traffic Mirroring > Job Status
+  // Release Tasks > Traffic Mirroring > Task Status
   MIRRORED_TRAFFIC: 'Yansıtılmış trafik',
   RELEASE_MODE_PL: 'Yayın Modları',
   RELEASE_MODE: 'Yayın Modu',
@@ -119,8 +118,8 @@ module.exports = {
   GRAYSCALE_REPLICA_SI: 'Kopya: {count}',
   GRAYSCALE_REPLICA_PL: 'Kopyalar: {count}',
   TRAFFIC_MIRRORING_TRAFFIC_DISTRI_DESC: 'Test için yeni sürüme trafiğin bir kopyası gönderilir.',
-  // Release Jobs > Job Status > Edit
-  EDIT_GRAYSCALE_RELEASE_JOB: 'Gri Tonlamalı Yayın İşini Düzenle',
-  // Release Jobs > Canary Release > Traffic Distribution
+  // Release Tasks > Task Status > Edit
+  EDIT_GRAYSCALE_RELEASE_TASK: 'Edit Grayscale Release Task',
+  // Release Tasks > Canary Release > Traffic Distribution
   ADJUST_TRAFFIC_DISTRIBUTION: 'Trafik Dağıtımını Ayarla'
 };

@@ -19,7 +19,6 @@ module.exports = {
   // Title
   TOTAL_LOGS_TODAY: 'Bugün <span class={className}>{containers}</span> kapsayıcısından toplam <span class={className}> {logs} </span> günlük girişi toplandı.',
   // Search
-  LOGGING_NOT_ENABLED_DESC: 'Bileşen etkin değil. <a href="{docUrl}/pluggable-components/logging/" target="_blank">Daha Fazla Bilgi Edinin</a>',
   WORKLOAD: 'İş Yükü',
   TIME_RANGE_SCAP: 'Zaman aralığı',
   // Querying Rules

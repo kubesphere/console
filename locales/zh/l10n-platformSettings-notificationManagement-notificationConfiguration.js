@@ -147,5 +147,9 @@ module.exports = {
   TOKEN: '令牌',
   WEBHOOK_USERNAME_EMPTY_DESC: '请输入一个用户名。',
   WEBHOOK_PASSWORD_EMPTY_DESC: '请输入密码。',
-  WEBHOOK_TOKEN_EMPTY_DESC: '请输入一个令牌。'
+  WEBHOOK_TOKEN_EMPTY_DESC: '请输入一个令牌。',
+  // Feishu
+  Feishu: 'Feishu',
+  FEISHU_TITLE: 'Feishu',
+  FEISHU_DESC: 'You can receive notifications from the platform through Feishu, and you need to configure the Feishu sending server.'
 };

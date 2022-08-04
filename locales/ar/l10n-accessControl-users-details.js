@@ -21,7 +21,7 @@ module.exports = {
   CHANGE_PASSWORD: 'تغيير كلمة المرور',
   NEW_PASSWORD: 'كلمة مرور جديدة',
   // More > Delete
-  // Details
+  // Attributes
   // Login History
   TIME: 'الوقت',
   SOURCE_IP_ADDRESS: 'عنوان IP المصدر',

@@ -21,7 +21,7 @@ module.exports = {
   SERVICE_ACCOUNT_PROJECT_ROLE_DESC: '选择服务帐户在当前项目中的角色。',
   // More > Delete
   SERVICE_ACCOUNT: '服务帐户',
-  // Details
+  // Attributes
   // Resource Status
   SECRET_VALUE: '保密字典：{value}',
   // Resource Status > kubeconfig Settings

@@ -102,6 +102,6 @@ module.exports = {
   DELETE_MULTIPLE_SERVICES: '批量删除服务',
   // Service Topology
   SERVICE_TOPOLOGY: '服务拓扑',
-  AUTO_REFRESH: '自动更新',
+  AUTO_REFRESH: '自动刷新',
   POD_COUNT_VALUE: '容器组数量：{value}'
 };

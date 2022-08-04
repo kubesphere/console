@@ -23,6 +23,7 @@ module.exports = {
   DEPLOYMENTS: '部署',
   UPDATE_TIME_TCAP: '更新時間',
   ALL_PROJECTS: '全部項目',
+  SHOW_NUM: 'Show: {num}',
   // List > Create > Basic Information
   SELECT_PROJECT_DESC: '選擇將要創建資源的項目。',
   PROJECT_NOT_SELECT_DESC: '請選擇一個項目。',

@@ -16,11 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   COPIED_SUCCESSFUL: 'Başarıyla kopyalandı.',
   BUILDER_IMAGE: 'Oluşturucu Resmi',
   PULL_POLICY: 'Çekme Politikası',
-  SOURCE_URL: 'Kaynak URL',
   REMOTE_TRIGGER: 'Uzaktan Tetikleme',
   // Run
   NEW_TAG_DESC: 'yeni görüntünün etiketini girin',

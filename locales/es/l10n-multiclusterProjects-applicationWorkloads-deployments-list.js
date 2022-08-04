@@ -19,8 +19,8 @@ module.exports = {
   // Banner
   WORKLOAD_DESC: 'La carga de trabajo suele ser el operador real para acceder al servicio, y también es el operador real en ejecución para aplicaciones del sistema, como la recopilación y supervisión de registros de nodos. Workload es un modelo abstracto para un grupo de Pods.',
   // List
-  DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
-  UPDATING: 'Updating',
+  DEPLOYMENT_EMPTY_DESC: 'Cree un deployment.',
+  UPDATING: 'Actualización',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete

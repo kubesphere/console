@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   TRUE: 'Doğru',
   FALSE: 'Yanlış',
   // More > Set as Default Storage Class

@@ -16,11 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   COPIED_SUCCESSFUL: 'Copia con éxito',
   BUILDER_IMAGE: 'Builder Image',
   PULL_POLICY: 'Pull Policy',
-  SOURCE_URL: 'Source URL',
   REMOTE_TRIGGER: 'Remote Trigger',
   // Run
   NEW_TAG_DESC: 'introduce el tag para la nueva imagen',

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   // Resource Status
   CUSTOM_RESOURCE_PL: '自定義資源',
   PROJECT_DEVOPS_PROJECT: '項目/DevOps 項目',

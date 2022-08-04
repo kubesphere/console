@@ -20,7 +20,6 @@ module.exports = {
   TOTAL_EVENTS_TODAY: '今日總共收錄了 <span class={className}> {events} </span> 條事件',
   NO_RESOURCE_EVENTS_TODAY: '今日沒有收錄的事件',
   // Search
-  EVENT_NOT_ENABLED_DESC: '暫無啟用事件查詢的集群',
   // Querying Rules
   RESOURCE_EVENT_TRENDS_12H: '最近 12 小時事件總數變化趨勢',
   RESOURCE_EVENT_WORKSPACE_TIP: '可以根據企業空間查看相關的事件資訊',

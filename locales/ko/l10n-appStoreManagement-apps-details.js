@@ -24,7 +24,7 @@ module.exports = {
   // Release
   RELEASE: 'Release',
   ACTIVATE_SUCCESSFUL: '앱을 활성화했습니다.',
-  // Details
+  // Attributes
   APP_ID: '앱 ID',
   CATEGORY: '카테고리',
   TYPE: '타입',

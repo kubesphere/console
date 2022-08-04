@@ -20,7 +20,7 @@ module.exports = {
   ADD_SERVICE: '添加服務',
   ADD_ROUTE: 'Add Route',
   // More > Add Route
-  // Details
+  // Attributes
   // Resource Status
   // Traffic Monitoring
   TRAFFIC_MONITORING: '流量監控',
@@ -69,12 +69,10 @@ module.exports = {
   BASE_EJECTION_TIME_S_DESC: 'Maximum ejection duration.',
   UPDATED_AT_VALUE_SCAP: 'Updated at {value}',
   // Grayscale Release
-  CREATE_GRAYSCALE_RELEASE_JOB: '創建灰度任務',
+  CREATE_GRAYSCALE_RELEASE_TASK: 'Create Grayscale Release Task',
   GRAYSCALE_RELEASE_DESC: 'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
-  NO_GRAYSCALE_RELEASE_JOB_FOUND: '沒有找到灰度發佈任務',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND: 'No Grayscale Release Task Found',
   NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: '請創建一個灰度發布任務。',
-  TOTAL_GRAY_RELEASE_JOB: '共計 {num} 個灰度任務',
-  TOTAL_GRAY_RELEASE_JOBS: '共計 {num} 個灰度任務',
   // Tracing
   TRACING: 'Tracing',
   TRACING_NO_DATA_DESC: '請嘗試其它查詢條件',

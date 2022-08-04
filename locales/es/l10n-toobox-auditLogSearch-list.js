@@ -20,8 +20,8 @@ module.exports = {
   TOTAL_AUDITING_TODAY: 'Hoy se han recopilado un total de <span class={className}>{auditing}</span> registros de auditoría.',
   NO_AUDIT_LOG_TODAY: 'Registros de auditoría no encontrados hoy',
   // Search
-  NO_AVAILABLE_CLUSTER: 'Clúster no disponible',
-  AUDITING_NOT_ENABLED_DESC: 'No hay clúster con módulo de auditoría habilitado',
+  NO_DATA_AUTHORIZED: 'No Data Authorized',
+  NO_DATA_AUTHORIZED_DESC: 'Please contact an administrator to obtain data authorization.',
   TIME_RANGE_LAST: 'Time range: last {value}',
   TIME_RANGE_RANGE: 'Time range: {startTime} - {endTime}',
   // Querying Rules

@@ -26,7 +26,7 @@ module.exports = {
   // More > Expand
   EXPAND_VOLUME: '扩展卷',
   EXPAND: '扩展',
-  // Details
+  // Attributes
   PROVISIONER: '供应者',
   // Resource Status
   AVAILABLE_CAPACITY: '剩余容量',
