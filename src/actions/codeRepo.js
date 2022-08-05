@@ -22,6 +22,7 @@ import { Modal } from 'components/Base'
 import FORM_TEMPLATES from 'utils/form.templates'
 import DeleteModal from 'components/Modals/Delete'
 import CodeRepoModal from 'components/Modals/CodeRepoCreate'
+import { getSource } from '../components/CodeRepoSelector'
 
 const handleFormData = ({ data, module, devops }) => {
   const postData = FORM_TEMPLATES[module]({ namespace: devops })
@@ -74,13 +75,9 @@ export default {
             })
 
             _currentRepo = {
-              name: metadata.name,
               source_type: spec.provider,
-              [`${spec.provider}_source`]: {
-                owner: spec.owner,
-                repo: spec.repo,
-                url: spec.url,
-              },
+              [`${spec.provider}_source`]: getSource(spec),
+              name: metadata.name,
             }
           }
 

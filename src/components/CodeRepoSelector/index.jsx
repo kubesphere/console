@@ -24,6 +24,18 @@ import CodeStore from 'stores/codeRepo'
 
 import styles from './index.scss'
 
+export const getSource = ({ provider, owner, repo, url, servername }) => {
+  if (provider === 'git') {
+    return { url }
+  }
+
+  if (provider === 'gitlab') {
+    return { owner, repo, servername }
+  }
+
+  return { owner, repo }
+}
+
 export default class CodeRepoSelect extends React.Component {
   constructor(props) {
     super(props)
@@ -41,7 +53,7 @@ export default class CodeRepoSelect extends React.Component {
     return this.state.svnRepoList.map(({ name, sources }) => {
       const svnRepoStr = JSON.stringify({ name, ...sources })
       return {
-        label: name,
+        label: `${name}(${sources.svn_source.remote})`,
         value: svnRepoStr,
         icon: 'svn',
       }
@@ -51,12 +63,15 @@ export default class CodeRepoSelect extends React.Component {
   get repoOptions() {
     const { showAllItem } = this.props
     let options = this.state.repoList.map(item => {
+      const label = this.inPipeline
+        ? `${item.name}(${item._originData.spec.url})`
+        : item.name
       const value = this.inPipeline
         ? this.transformValue(item)
         : `${item.name}(${item.repoURL})`
 
       return {
-        label: item.name,
+        label,
         value,
         icon:
           item.provider === 'bitbucket_server' ? 'bitbucket' : item.provider,
@@ -127,25 +142,29 @@ export default class CodeRepoSelect extends React.Component {
   transformValue = item => {
     const { metadata, spec } = item._originData
     const repoJsonStr = JSON.stringify({
-      name: metadata.name,
       source_type: spec.provider,
-      [`${spec.provider}_source`]: {
-        owner: spec.owner,
-        repo: spec.repo,
-        url: spec.url,
-      },
+      [`${spec.provider}_source`]: getSource(spec),
+      name: metadata.name,
     })
 
     return repoJsonStr
   }
 
   optionRenderer = option => type => {
+    if (!option.value) {
+      return
+    }
+
+    // const _value = this.inPipeline ? JSON.parse(option.value) : undefined
+    // const _val = _value?.[`${_value.source_type}_source`].url
+
     return (
       <span className={styles.option}>
         <Icon
           name={option.icon ?? ''}
           type={type === 'value' ? 'dark' : 'light'}
         />
+        {/* {_val ? `${option.label}(${_val})` : option.value} */}
         {this.inPipeline ? option.label : option.value}
       </span>
     )
