@@ -33,6 +33,7 @@ module.exports = {
   IMAGE_FROM_S2I: '通过代码构建镜像',
   IMAGE_FROM_B2I: '通过制品构建镜像',
   B2I_DESC: '选择制品的文件类型。',
+  EMPTY_IMAGE_TYPE_DESC: '请选择语言或制品类型。',
   // List > Create > Java > Build Settings
   CODE_REPOSITORY_URL: '代码仓库 URL',
   CODE_REPOSITORY_BRANCH: '代码仓库分支',

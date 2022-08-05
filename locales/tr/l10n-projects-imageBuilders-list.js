@@ -33,6 +33,7 @@ module.exports = {
   IMAGE_FROM_S2I: 'Kaynak Kodundan Resim Oluştur',
   IMAGE_FROM_B2I: 'Artifact\'ten Görüntü Oluşturma',
   B2I_DESC: 'Bir yapıt dosya türü seçin.',
+  EMPTY_IMAGE_TYPE_DESC: 'Please select a language or artifact type.',
   // List > Create > Java > Build Settings
   CODE_REPOSITORY_URL: 'Kod Depo URL',
   CODE_REPOSITORY_BRANCH: 'Uzak Kod Deposu',

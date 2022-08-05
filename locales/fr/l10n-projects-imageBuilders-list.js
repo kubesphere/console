@@ -33,6 +33,7 @@ module.exports = {
   IMAGE_FROM_S2I: 'Build Image from Source Code',
   IMAGE_FROM_B2I: 'Build Image from Artifact',
   B2I_DESC: 'Select an artifact file type.',
+  EMPTY_IMAGE_TYPE_DESC: 'Please select a language or artifact type.',
   // List > Create > Java > Build Settings
   CODE_REPOSITORY_URL: 'Code Repository URL',
   CODE_REPOSITORY_BRANCH: 'Code Repository Branch',

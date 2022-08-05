@@ -33,6 +33,7 @@ module.exports = {
   IMAGE_FROM_S2I: '通過代碼構建新的容器鏡像',
   IMAGE_FROM_B2I: '通過成品構建新的鏡像',
   B2I_DESC: '選擇您成品的文件類型。',
+  EMPTY_IMAGE_TYPE_DESC: 'Please select a language or artifact type.',
   // List > Create > Java > Build Settings
   CODE_REPOSITORY_URL: '代碼地址',
   CODE_REPOSITORY_BRANCH: '分支',
