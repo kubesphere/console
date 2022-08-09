@@ -52,6 +52,30 @@ export const getCommonSource = ({
   }
 }
 
+const getRepoUrl = ({ provider, owner, repo, server, url }) => {
+  if (url) {
+    return url
+  }
+
+  switch (provider) {
+    case 'github':
+      return `https://github.com/${owner}/${repo}`
+    case 'gitlab':
+      return `${server}/${owner}/${repo}`
+    case 'bitbucket_server':
+      // eslint-disable-next-line no-case-declarations
+      const uri = repo.api_uri
+      // eslint-disable-next-line no-case-declarations
+      let _url = uri.substr(uri.length - 1) === '/' ? uri : `${uri}/`
+      if (!/https:\/\/bitbucket.org\/?/gm.test(_url)) {
+        _url += 'scm/'
+      }
+      return `${_url}${repo.owner}/${repo.repo}`
+    default:
+      return ''
+  }
+}
+
 export default class CodeRepoSelect extends React.Component {
   constructor(props) {
     super(props)
@@ -80,7 +104,7 @@ export default class CodeRepoSelect extends React.Component {
     const { showAllItem } = this.props
     let options = this.state.repoList.map(item => {
       const label = this.inPipeline
-        ? `${item.name}(${item._originData.spec.url})`
+        ? `${item.name}(${getRepoUrl(item._originData.spec)})`
         : item.name
       const value = this.inPipeline
         ? this.transformValue(item)
