@@ -27,8 +27,6 @@ import TerminalStore from 'stores/terminal'
 import { TypeSelect } from 'components/Base'
 import ContainerTerminal from 'components/Terminal'
 import fullscreen from 'components/Modals/FullscreenModal'
-import ClusterStore from 'stores/cluster'
-import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
 import { observable } from 'mobx'
 import styles from './index.scss'
@@ -62,8 +60,6 @@ export default class ContainerTerminalModal extends React.Component {
     })
   }
 
-  clusterStore = new ClusterStore()
-
   async componentDidMount() {
     const params = this.props.match.params
     const { cluster, namespace, podName, containerName } = params
@@ -87,18 +83,6 @@ export default class ContainerTerminalModal extends React.Component {
     }
 
     this.url = await this.store.kubeWebsocketUrl()
-  }
-
-  get clusters() {
-    return this.clusterStore.list.data
-      .filter(item => item.isReady)
-      .map(item => ({
-        label: item.name,
-        value: item.name,
-        icon: CLUSTER_PROVIDER_ICON[item.provider] || 'kubernetes',
-        version: get(item, 'configz.ksVersion'),
-        description: item.provider,
-      }))
   }
 
   handleContainerChange = container => {
