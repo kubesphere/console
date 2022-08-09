@@ -22,7 +22,7 @@ import { Modal } from 'components/Base'
 import FORM_TEMPLATES from 'utils/form.templates'
 import DeleteModal from 'components/Modals/Delete'
 import CodeRepoModal from 'components/Modals/CodeRepoCreate'
-import { getSource } from '../components/CodeRepoSelector'
+import { getCommonSource } from '../components/CodeRepoSelector'
 
 const handleFormData = ({ data, module, devops }) => {
   const postData = FORM_TEMPLATES[module]({ namespace: devops })
@@ -31,12 +31,10 @@ const handleFormData = ({ data, module, devops }) => {
 
   const spec = {
     provider: data.sources.source_type,
-    owner: repo.owner || repo.server_name,
+    owner: repo.owner,
     repo: repo.repo,
-    url:
-      !repo.owner && !repo.server_name
-        ? repo.repo || repo.url || repo.remote
-        : undefined,
+    server: repo.server_name,
+    url: repo.url || repo.remote,
     secret: {
       name: repo.credential_id || data.sources.credentialId,
       namespace: devops,
@@ -76,7 +74,7 @@ export default {
 
             _currentRepo = {
               source_type: spec.provider,
-              [`${spec.provider}_source`]: getSource(spec),
+              [`${spec.provider}_source`]: getCommonSource(spec),
               name: metadata.name,
             }
           }

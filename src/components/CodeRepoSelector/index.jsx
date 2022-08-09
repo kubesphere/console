@@ -24,16 +24,32 @@ import CodeStore from 'stores/codeRepo'
 
 import styles from './index.scss'
 
-export const getSource = ({ provider, owner, repo, url, servername }) => {
+export const getCommonSource = ({
+  provider,
+  owner,
+  repo,
+  url,
+  secret,
+  server: server_name,
+}) => {
   if (provider === 'git') {
-    return { url }
+    return {
+      url,
+      discover_tags: true,
+      credential_id: secret.name,
+    }
   }
 
-  if (provider === 'gitlab') {
-    return { owner, repo, servername }
+  return {
+    owner,
+    repo,
+    server_name,
+    credential_id: secret.name,
+    discover_branches: 1,
+    discover_pr_from_forks: { strategy: 2, trust: 2 },
+    discover_pr_from_origin: 2,
+    discover_tags: true,
   }
-
-  return { owner, repo }
 }
 
 export default class CodeRepoSelect extends React.Component {
@@ -53,7 +69,7 @@ export default class CodeRepoSelect extends React.Component {
     return this.state.svnRepoList.map(({ name, sources }) => {
       const svnRepoStr = JSON.stringify({ name, ...sources })
       return {
-        label: `${name}(${sources.svn_source.remote})`,
+        label: `${name}(${sources[`${sources.source_type}_source`].remote})`,
         value: svnRepoStr,
         icon: 'svn',
       }
@@ -143,7 +159,7 @@ export default class CodeRepoSelect extends React.Component {
     const { metadata, spec } = item._originData
     const repoJsonStr = JSON.stringify({
       source_type: spec.provider,
-      [`${spec.provider}_source`]: getSource(spec),
+      [`${spec.provider}_source`]: getCommonSource(spec),
       name: metadata.name,
     })
 
@@ -155,16 +171,12 @@ export default class CodeRepoSelect extends React.Component {
       return
     }
 
-    // const _value = this.inPipeline ? JSON.parse(option.value) : undefined
-    // const _val = _value?.[`${_value.source_type}_source`].url
-
     return (
       <span className={styles.option}>
         <Icon
           name={option.icon ?? ''}
           type={type === 'value' ? 'dark' : 'light'}
         />
-        {/* {_val ? `${option.label}(${_val})` : option.value} */}
         {this.inPipeline ? option.label : option.value}
       </span>
     )
