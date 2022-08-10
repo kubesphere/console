@@ -265,7 +265,7 @@ export default class MonitoringOverview extends React.Component {
                 <span>
                   {`${this.getMetricsData(
                     'ingress_request_duration_average'
-                  )} ms`}
+                  )} s`}
                 </span>
               </div>
             </div>
@@ -274,7 +274,7 @@ export default class MonitoringOverview extends React.Component {
               <span>
                 {`${this.getMetricsData(
                   'ingress_request_duration_50percentage'
-                )} ms`}
+                )} s`}
               </span>
             </div>
             <div className={styles.itemSmall}>
@@ -282,7 +282,7 @@ export default class MonitoringOverview extends React.Component {
               <span>
                 {`${this.getMetricsData(
                   'ingress_request_duration_95percentage'
-                )} ms`}
+                )} s`}
               </span>
             </div>
             <div className={styles.itemSmall}>
@@ -290,7 +290,7 @@ export default class MonitoringOverview extends React.Component {
               <span>
                 {`${this.getMetricsData(
                   'ingress_request_duration_99percentage'
-                )} ms`}
+                )} s`}
               </span>
             </div>
           </div>
