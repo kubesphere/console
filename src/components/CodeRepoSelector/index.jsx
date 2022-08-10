@@ -36,7 +36,7 @@ export const getCommonSource = ({
     return {
       url,
       discover_tags: true,
-      credential_id: secret.name,
+      credential_id: secret?.name,
     }
   }
 
@@ -44,7 +44,7 @@ export const getCommonSource = ({
     owner,
     repo,
     server_name,
-    credential_id: secret.name,
+    credential_id: secret?.name,
     discover_branches: 1,
     discover_pr_from_forks: { strategy: 2, trust: 2 },
     discover_pr_from_origin: 2,
@@ -70,7 +70,7 @@ const getRepoUrl = ({ provider, owner, repo, server, url }) => {
       if (!/https:\/\/bitbucket.org\/?/gm.test(_url)) {
         _url += 'scm/'
       }
-      return `${_url}${repo.owner}/${repo.repo}`
+      return `${_url}${owner}/${repo}`
     default:
       return ''
   }
