@@ -83,6 +83,10 @@ export default class StorageClassDetail extends React.Component {
     const { params } = this.props.match
     this.ksVersion = await this.accessorStore.getKsVersion(params)
     await this.store.fetchDetail(params)
+  }
+
+  checkAccessorExist = async () => {
+    const { params } = this.props.match
 
     if (compareVersion(`${this.ksVersion}`, 'v3.3') < 0) {
       // check if k8s supports accessor resource
@@ -95,7 +99,7 @@ export default class StorageClassDetail extends React.Component {
           ...params,
           name: 'accessors.storage.kubesphere.io',
         }),
-      ]).then(([validate, crd]) => {
+      ]).then(async ([validate, crd]) => {
         const { urlNotSupport: u1 } = validate
         const { urlNotSupport: u2 } = crd
         if (u1 || u2) {
@@ -103,11 +107,11 @@ export default class StorageClassDetail extends React.Component {
             shouldAddCrd: true,
           })
         } else if (!isEmpty(validate) && !isEmpty(crd)) {
-          this.checkHasAccessor()
+          await this.checkHasAccessor()
         }
       })
     } else {
-      this.checkHasAccessor()
+      await this.checkHasAccessor()
     }
   }
 
@@ -133,7 +137,6 @@ export default class StorageClassDetail extends React.Component {
   }
 
   getOperations = () => {
-    const { shouldAddCrd } = this.state
     const { cluster } = this.props.match.params
     const show = compareVersion(`${this.ksVersion}`, 'v3.3') >= 0
     return [
@@ -174,15 +177,17 @@ export default class StorageClassDetail extends React.Component {
         text: t('SET_AUTHORIZATION_RULES'),
         action: 'edit',
         show,
-        onClick: () =>
+        onClick: async () => {
+          await this.checkAccessorExist()
           this.trigger('storageclass.accessor', {
             storageClassName: get(this.store.detail, 'name'),
-            shouldAddCrd,
+            shouldAddCrd: this.state.shouldAddCrd,
             store: this.accessorStore,
             detail: toJS(this.accessorStore.detail),
             cluster,
             success: this.fetchData,
-          }),
+          })
+        },
       },
       {
         key: 'funcManage',
