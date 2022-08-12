@@ -25,6 +25,7 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Container Settings
   INVALID_IMAGE: '鏡像無效。',
   INVALID_NAME_DESC: 'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
+  DUPLICATE_CONTAINER_NAME_DESC: 'The name already exists. Container names must be unique, and multiple containers cannot have the same name.',
   NO_IMAGE_FOUND: '沒有找到此鏡像',
   CONTAINER_EMPTY_DESC: '請至少添加一個容器',
   QUOTA_UNSET_TIP: 'Resource occupation is unset',
