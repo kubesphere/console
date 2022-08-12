@@ -211,11 +211,7 @@ const getUserDetail = async (token, clusterRole) => {
 
     const isClustersRole = Object.keys(roles).includes('clusters')
 
-    if (
-      !isClustersRole &&
-      user.globalrole === 'platform-regular' &&
-      user.grantedClusters.length > 0
-    ) {
+    if (!isClustersRole && user.grantedClusters.length > 0) {
       roles.clusters = ['view']
     }
     user.globalRules = roles
