@@ -116,6 +116,27 @@ export default class Advance extends React.Component {
                   <Input name="source.path" defaultValue="." />
                 </Form.Item>
               </Column>
+              <Column className={styles.align_center}>
+                <div className={styles.columns}>
+                  <div className={styles.column}>
+                    <Form.Item>
+                      <Checkbox
+                        name="source.directory.recurse"
+                        checked={get(
+                          formTemplate,
+                          'source.directory.recurse',
+                          false
+                        )}
+                        onChange={this.handleCheckboxChange(
+                          'source.directory.recurse'
+                        )}
+                      >
+                        {t('DIRECTORY_RECURSE')}
+                      </Checkbox>
+                    </Form.Item>
+                  </div>
+                </div>
+              </Column>
             </Columns>
           </div>
         </div>
