@@ -22,7 +22,8 @@ import { Modal } from 'components/Base'
 import FORM_TEMPLATES from 'utils/form.templates'
 import DeleteModal from 'components/Modals/Delete'
 import CodeRepoModal from 'components/Modals/CodeRepoCreate'
-import { getCommonSource } from '../components/CodeRepoSelector'
+
+import { getCommonSource } from '../utils/devops'
 
 const handleFormData = ({ data, module, devops }) => {
   const postData = FORM_TEMPLATES[module]({ namespace: devops })
@@ -61,8 +62,11 @@ export default {
       const modal = Modal.open({
         onOk: async data => {
           let _currentRepo = {}
-          if (['svn', 'single_svn'].includes(data.sources.source_type)) {
-            addSvnCodeRepoDirectly && addSvnCodeRepoDirectly(data)
+          if (
+            ['svn', 'single_svn'].includes(data.sources.source_type) &&
+            addSvnCodeRepoDirectly
+          ) {
+            addSvnCodeRepoDirectly(data)
             _currentRepo = { name: data.metadata.name, ...data.sources }
           } else {
             const postData = handleFormData({ data, module, devops })
