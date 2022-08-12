@@ -103,15 +103,16 @@ export default class FormMode extends React.Component {
     }
 
     const stepCount = this.state.steps.length
-    const multiPipeline = get(form.props, 'data.multi_branch_pipeline', {})
-    const isValidRepo = checkRepoSource(multiPipeline)
-
-    if (!isValidRepo) {
-      Notify.error(t('NOT_VALID_REPO'))
-      throw Error(t('NOT_VALID_REPO'))
-    }
 
     form.validate(() => {
+      const multiPipeline = get(form.props, 'data.multi_branch_pipeline', {})
+      const isValidRepo = checkRepoSource(multiPipeline)
+
+      if (!isValidRepo) {
+        Notify.error(t('NOT_VALID_REPO'))
+        throw Error(t('NOT_VALID_REPO'))
+      }
+
       this.setState({
         currentStep: Math.min(this.state.currentStep + 1, stepCount - 1),
         subRoute: {},
