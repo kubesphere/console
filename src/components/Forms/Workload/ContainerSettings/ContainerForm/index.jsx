@@ -48,6 +48,7 @@ export default class ContaineForm extends React.Component {
     onCancel: PropTypes.func,
     configMaps: PropTypes.array,
     secrets: PropTypes.array,
+    containers: PropTypes.array,
   }
 
   static defaultProps = {
@@ -61,6 +62,7 @@ export default class ContaineForm extends React.Component {
     onCancel() {},
     configMaps: [],
     secrets: [],
+    containers: [],
   }
 
   static childContextTypes = {
@@ -188,6 +190,7 @@ export default class ContaineForm extends React.Component {
       withService,
       supportGpuSelect,
       projectDetail,
+      containers,
     } = this.props
     const { containerType, formData } = this.state
 
@@ -209,6 +212,7 @@ export default class ContaineForm extends React.Component {
             onContainerTypeChange={this.handleContainerTypeChange}
             workspaceQuota={this.props.workspaceQuota}
             supportGpuSelect={supportGpuSelect}
+            containers={containers}
           />
           <Ports withService={containerType !== 'init' ? withService : false} />
           <ImagePullPolicy />

@@ -38,6 +38,13 @@ import ImageInput from './ImageInput'
 import styles from './index.scss'
 
 export default class ContainerSetting extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      originName: props.data.name,
+    }
+  }
+
   get defaultResourceLimit() {
     const { limitRange = {} } = this.props
 
@@ -173,6 +180,16 @@ export default class ContainerSetting extends React.Component {
     callback()
   }
 
+  duplicatedNameValidator = (rule, value, callback) => {
+    const containerNames = this.props.containers
+      .map(({ name }) => name)
+      .filter(i => i !== this.state.originName)
+    if (containerNames.includes(value)) {
+      callback({ message: t('DUPLICATE_CONTAINER_NAME_DESC') })
+    }
+    callback()
+  }
+
   renderAdvancedSettings() {
     const {
       defaultContainerType,
@@ -196,6 +213,9 @@ export default class ContainerSetting extends React.Component {
                     message: t('INVALID_NAME_DESC', {
                       message: t('NAME_DESC'),
                     }),
+                  },
+                  {
+                    validator: this.duplicatedNameValidator,
                   },
                 ]}
               >

@@ -141,6 +141,21 @@ export default class ContainerSetting extends React.Component {
     return projectDetail.clusters.map(cluster => cluster.name)
   }
 
+  get containers() {
+    const containers = get(
+      this.fedFormTemplate,
+      `${this.prefix}spec.containers`,
+      []
+    )
+    const initContainers = get(
+      this.fedFormTemplate,
+      `${this.prefix}spec.initContainers`,
+      []
+    )
+
+    return concat(containers, initContainers)
+  }
+
   initService() {
     const workloadName = get(this.formTemplate, 'metadata.name')
     let serviceName = get(this.props.formTemplate, 'Service.metadata.name')
@@ -584,6 +599,7 @@ export default class ContainerSetting extends React.Component {
         workspaceQuota={this.workspaceQuota}
         cluster={cluster}
         supportGpuSelect={supportGpuSelect}
+        containers={this.containers}
         {...params}
       />
     )
