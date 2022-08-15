@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { Notify } from '@kube-design/components'
 import { get, set, cloneDeep } from 'lodash'
 
 const deleteUnenableAttrs = data => {
@@ -32,17 +33,28 @@ const deleteUnenableAttrs = data => {
 }
 
 export const checkRepoSource = ({ source_type, ...rest }) => {
-  const { owner, repo, server_name } = get(rest, `${source_type}_source`, {})
+  const { owner, repo, server_name, url: gitUrl } = get(
+    rest,
+    `${source_type}_source`,
+    {}
+  )
 
-  if (!owner || !repo) {
-    return false
+  let isValid = owner && repo
+  switch (source_type) {
+    case 'git':
+      isValid = !!gitUrl
+      break
+    case 'gitlab':
+      isValid = isValid && server_name
+      break
+    default:
+      break
   }
 
-  if (source_type === 'gitlab' && !server_name) {
-    return false
+  if (!isValid) {
+    Notify.error(t('NOT_VALID_REPO'))
+    throw Error(t('NOT_VALID_REPO'))
   }
-
-  return true
 }
 
 export const updatePipelineParams = (data, isEditor = false) => {

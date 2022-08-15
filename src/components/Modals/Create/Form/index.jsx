@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { get, throttle, isEmpty } from 'lodash'
-import { Button, Notify } from '@kube-design/components'
+import { Button } from '@kube-design/components'
 
 import { Steps } from 'components/Base'
 import { checkRepoSource } from 'utils/devops'
@@ -105,14 +105,8 @@ export default class FormMode extends React.Component {
     const stepCount = this.state.steps.length
 
     form.validate(() => {
-      const multiPipeline = get(form.props, 'data.multi_branch_pipeline', {})
-      const isValidRepo = checkRepoSource(multiPipeline)
-
-      if (!isValidRepo) {
-        Notify.error(t('NOT_VALID_REPO'))
-        throw Error(t('NOT_VALID_REPO'))
-      }
-
+      const multiPipeline = get(form.props, 'data.multi_branch_pipeline')
+      multiPipeline && checkRepoSource(multiPipeline)
       this.setState({
         currentStep: Math.min(this.state.currentStep + 1, stepCount - 1),
         subRoute: {},
