@@ -32,31 +32,6 @@ const deleteUnenableAttrs = data => {
   }
 }
 
-export const checkRepoSource = ({ source_type, ...rest }) => {
-  const { owner, repo, server_name, url: gitUrl } = get(
-    rest,
-    `${source_type}_source`,
-    {}
-  )
-
-  let isValid = owner && repo
-  switch (source_type) {
-    case 'git':
-      isValid = !!gitUrl
-      break
-    case 'gitlab':
-      isValid = isValid && server_name
-      break
-    default:
-      break
-  }
-
-  if (!isValid) {
-    Notify.error(t('NOT_VALID_REPO'))
-    throw Error(t('NOT_VALID_REPO'))
-  }
-}
-
 export const updatePipelineParams = (data, isEditor = false) => {
   const { multi_branch_pipeline, pipeline, type, ...rest } = data
 
@@ -208,4 +183,39 @@ export const getCommonSource = ({
     discover_pr_from_origin: 2,
     discover_tags: true,
   }
+}
+
+export const checkRepoSource = ({ source_type, ...rest }) => {
+  const { owner, repo, server_name, url: gitUrl, remote } = get(
+    rest,
+    `${source_type}_source`,
+    {}
+  )
+
+  let isValid = owner && repo
+  switch (source_type) {
+    case 'svn':
+      isValid = !!remote
+      break
+    case 'single_svn':
+      isValid = !!remote
+      break
+    case 'git':
+      isValid = !!gitUrl
+      break
+    case 'gitlab':
+      isValid = isValid && server_name
+      break
+    default:
+      break
+  }
+
+  if (!isValid) {
+    Notify.error(t('NOT_VALID_REPO'))
+    throw Error(t('NOT_VALID_REPO'))
+  }
+}
+
+export const isSvnRepo = source_type => {
+  return ['svn', 'single_svn'].includes(source_type)
 }

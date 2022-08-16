@@ -113,8 +113,8 @@ export default class BaseInfo extends React.Component {
   }
 
   renderRepoSelectForm() {
-    const { formTemplate, devops, cluster, noSVN, ...res } = this.props
     const { showSelectRepo } = this.state
+    const { formTemplate, devops, cluster, noSVN, ...res } = this.props
 
     return (
       <Modal width={970} {...res} disableSubmit={showSelectRepo}>
@@ -147,7 +147,7 @@ export default class BaseInfo extends React.Component {
   }
 
   render() {
-    const { formTemplate, isEdit, type, ...rest } = this.props
+    const { formTemplate, isEdit, ...rest } = this.props
     const { showSelectRepo } = this.state
     if (showSelectRepo) {
       return this.renderRepoSelectForm()
@@ -193,7 +193,7 @@ export default class BaseInfo extends React.Component {
           >
             <RepoSelect
               name="sources"
-              type={type}
+              type="cd"
               ref={this.scmRef}
               devops={this.props.devops}
               onClick={this.showSelectRepo}

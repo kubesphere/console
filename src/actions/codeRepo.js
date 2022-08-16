@@ -23,7 +23,7 @@ import FORM_TEMPLATES from 'utils/form.templates'
 import DeleteModal from 'components/Modals/Delete'
 import CodeRepoModal from 'components/Modals/CodeRepoCreate'
 
-import { getCommonSource } from '../utils/devops'
+import { getRepoUrl, isSvnRepo } from '../utils/devops'
 
 const handleFormData = ({ data, module, devops }) => {
   const postData = FORM_TEMPLATES[module]({ namespace: devops })
@@ -55,36 +55,34 @@ export default {
       devops,
       module,
       success,
-      type,
+      isComplexMode,
       addSvnCodeRepoDirectly,
       ...props
     }) {
       const modal = Modal.open({
         onOk: async data => {
-          let _currentRepo = {}
-          if (
-            ['svn', 'single_svn'].includes(data.sources.source_type) &&
-            addSvnCodeRepoDirectly
-          ) {
+          if (isSvnRepo(data.sources.source_type) && addSvnCodeRepoDirectly) {
             addSvnCodeRepoDirectly(data)
-            _currentRepo = { name: data.metadata.name, ...data.sources }
-          } else {
-            const postData = handleFormData({ data, module, devops })
-            const { metadata, spec } = await store.create({
-              data: postData,
-              devops,
-              cluster,
-            })
-
-            _currentRepo = {
-              source_type: spec.provider,
-              [`${spec.provider}_source`]: getCommonSource(spec),
-              name: metadata.name,
-            }
+            Notify.success({ content: t('CREATE_SUCCESSFUL') })
+            success && success()
+            Modal.close(modal)
+            return
           }
 
+          const postData = handleFormData({ data, module, devops })
+          const { metadata, spec } = await store.create({
+            data: postData,
+            devops,
+            cluster,
+          })
+
           Notify.success({ content: t('CREATE_SUCCESSFUL') })
-          success && success(!type ? JSON.stringify(_currentRepo) : undefined)
+          success &&
+            success(
+              isComplexMode
+                ? `${metadata.name}(${getRepoUrl(spec)})`
+                : undefined
+            )
           Modal.close(modal)
         },
         store,

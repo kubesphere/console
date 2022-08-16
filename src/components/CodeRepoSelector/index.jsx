@@ -30,43 +30,59 @@ export default class CodeRepoSelect extends React.Component {
   constructor(props) {
     super(props)
 
+    this.optionValueMap = {}
     this.codeStore = new CodeStore()
-    this.inPipeline = props.type === 'pipeline'
     this.state = {
       repoList: [],
       svnRepoList: [],
-      options: [],
     }
   }
 
   get svnOptions() {
-    return this.state.svnRepoList.map(({ name, sources }) => {
-      const svnRepoStr = JSON.stringify({ name, ...sources })
+    return this.state.svnRepoList.map(({ name: label, sources }) => {
+      const value = `${label}(${
+        sources[`${sources.source_type}_source`].remote
+      })`
+      const repo = {
+        key: value, // the unique key of repo source
+        ...sources,
+      }
+
       return {
-        label: `${name}(${sources[`${sources.source_type}_source`].remote})`,
-        value: svnRepoStr,
+        label,
+        value,
         icon: 'svn',
+        repo,
       }
     })
   }
 
   get repoOptions() {
-    const { showAllItem } = this.props
-    let options = this.state.repoList.map(item => {
-      const label = this.inPipeline
-        ? `${item.name}(${getRepoUrl(item._originData.spec)})`
-        : item.name
-      const value = this.inPipeline
-        ? this.transformValue(item)
-        : `${item.name}(${item.repoURL})`
+    return this.state.repoList.map(
+      ({ name: label, _originData, repoURL, provider }) => {
+        const { spec } = _originData
+        const value = `${label}(${repoURL ?? getRepoUrl(spec)})`
+        const repo = !this.props.isComplexMode
+          ? value
+          : {
+              key: value, // the unique key of repo source
+              source_type: spec.provider,
+              [`${spec.provider}_source`]: getCommonSource(spec),
+            }
 
-      return {
-        label,
-        value,
-        icon:
-          item.provider === 'bitbucket_server' ? 'bitbucket' : item.provider,
+        return {
+          label,
+          value,
+          icon: provider === 'bitbucket_server' ? 'bitbucket' : provider,
+          repo,
+        }
       }
-    })
+    )
+  }
+
+  get allOptions() {
+    const { showAllItem } = this.props
+    const options = this.svnOptions.concat(this.repoOptions)
 
     if (showAllItem) {
       const allItem = {
@@ -74,22 +90,19 @@ export default class CodeRepoSelect extends React.Component {
         value: '*',
         icon: 'allowlist',
       }
-      options = [allItem, ...options]
+      return [allItem, ...options]
     }
 
     return options
   }
 
-  componentDidMount() {
-    this.getRepoList()
-  }
-
-  getRepoList = async params => {
+  getRepoList = async (params, currentRepo) => {
     const { devops, cluster } = this.props
     await this.codeStore.fetchList({ devops, cluster, ...params })
 
-    this.setState({ repoList: this.codeStore.list.data })
-    this.updateOptions()
+    this.setState({ repoList: this.codeStore.list.data }, () => {
+      currentRepo && this.handleRepoChange(currentRepo)
+    })
   }
 
   isSvnRepoRepeat = svnData => {
@@ -102,42 +115,38 @@ export default class CodeRepoSelect extends React.Component {
   }
 
   addSvnCodeRepoOption = svnData => {
-    const _svnRepoList = [...this.state.svnRepoList]
     const isRepeat = this.isSvnRepoRepeat(svnData)
+    const { metadata, sources } = svnData
 
     if (isRepeat) {
       Notify.error({
-        content: `"${svnData.metadata.name}" ${t('CODE_REPO_EXISTS')}`,
+        content: `"${metadata.name}" ${t('CODE_REPO_EXISTS')}`,
       })
-      throw Error(`"${svnData.metadata.name}" ${t('CODE_REPO_EXISTS')}`)
+      throw Error(`"${metadata.name}" ${t('CODE_REPO_EXISTS')}`)
     }
 
-    _svnRepoList.push({
-      name: svnData.metadata.name,
-      sources: svnData.sources,
-    })
-    this.setState({ svnRepoList: _svnRepoList })
-  }
-
-  updateOptions = () => {
-    return this.setState({ options: this.svnOptions.concat(this.repoOptions) })
+    const svnRepoData = { name: metadata.name, sources }
+    this.setState(
+      ({ svnRepoList }) => ({
+        svnRepoList: [svnRepoData, ...svnRepoList],
+      }),
+      () => {
+        const selectedSvnRepoKey = `${metadata.name}(${
+          sources[`${sources.source_type}_source`].remote
+        })`
+        this.handleRepoChange(selectedSvnRepoKey)
+      }
+    )
   }
 
   handleRepoChange = val => {
     const { onChange } = this.props
-    const selectedRepo = this.inPipeline && !!val ? JSON.parse(val) : val
-    onChange && onChange(selectedRepo)
+    const current = this.allOptions.find(({ value }) => value === val)
+    onChange && onChange(current?.repo)
   }
 
-  transformValue = item => {
-    const { metadata, spec } = item._originData
-    const repoJsonStr = JSON.stringify({
-      source_type: spec.provider,
-      [`${spec.provider}_source`]: getCommonSource(spec),
-      name: metadata.name,
-    })
-
-    return repoJsonStr
+  componentDidMount() {
+    this.getRepoList()
   }
 
   optionRenderer = option => type => {
@@ -151,19 +160,13 @@ export default class CodeRepoSelect extends React.Component {
           name={option.icon ?? ''}
           type={type === 'value' ? 'dark' : 'light'}
         />
-        {this.inPipeline ? option.label : option.value}
+        {option.value}
       </span>
     )
   }
 
   render() {
-    const {
-      value: selectedRepo,
-      index,
-      name,
-      showCreateRepo,
-      allowCreateCodeRepo,
-    } = this.props
+    const { value, index, name, isComplexMode, showCreateRepo } = this.props
 
     return (
       <>
@@ -173,20 +176,16 @@ export default class CodeRepoSelect extends React.Component {
           key={index}
           name={name}
           className={styles.select}
-          value={
-            this.inPipeline && selectedRepo
-              ? JSON.stringify(selectedRepo)
-              : selectedRepo
-          }
+          value={isComplexMode ? value?.key : value}
           onChange={this.handleRepoChange}
-          options={this.state.options}
+          options={this.allOptions}
           onFetch={this.getRepoList}
           isLoading={this.codeStore.list.isLoading}
           pagination={pick(this.codeStore.list, ['page', 'limit', 'total'])}
           valueRenderer={option => this.optionRenderer(option)('value')}
           optionRenderer={option => this.optionRenderer(option)('option')}
         />
-        {allowCreateCodeRepo && (
+        {isComplexMode && (
           <span
             className={cs(styles['multi-repo'], 'form-item-desc')}
             onClick={showCreateRepo}

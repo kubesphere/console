@@ -33,9 +33,11 @@ import GitForm from './GitForm'
 import GithubForm from './GithubForm'
 import SvnForm from './SVNForm'
 import BitBucketForm from './BitBucketForm'
-import styles from './index.scss'
 import GitLabForm from './GitLabForm'
 import { compareVersion } from '../../../../utils'
+import { isSvnRepo } from '../../../../utils/devops'
+
+import styles from './index.scss'
 
 @observer
 export default class RepoSelectForm extends React.Component {
@@ -197,7 +199,7 @@ export default class RepoSelectForm extends React.Component {
           })
         }
 
-        if (['svn', 'single_svn'].includes(this.source_type)) {
+        if (isSvnRepo(this.source_type)) {
           const type = get(formData, 'svn_source.type', 'svn')
           onSave(type, {
             [REPO_KEY_MAP[type]]: {
@@ -284,7 +286,7 @@ export default class RepoSelectForm extends React.Component {
       )
     }
 
-    if (['svn', 'single_svn'].includes(this.source_type)) {
+    if (isSvnRepo(this.source_type)) {
       return (
         <SvnForm
           store={this.store}

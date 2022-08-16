@@ -248,9 +248,8 @@ export default class PipelinesList extends React.Component {
   showCodeRepoCreate = () => {
     const { trigger } = this.props
     const {
-      addSvnCodeRepoOption,
-      handleRepoChange,
       getRepoList,
+      addSvnCodeRepoOption,
     } = this.codeRepoSelectorRef.current
 
     trigger('codeRepo.create', {
@@ -260,10 +259,10 @@ export default class PipelinesList extends React.Component {
       module: 'codeRepos',
       noCodeEdit: true,
       store: this.codeStore,
+      isComplexMode: true,
       addSvnCodeRepoDirectly: addSvnCodeRepoOption,
       success: curRepo => {
-        getRepoList()
-        curRepo && handleRepoChange(curRepo)
+        getRepoList(undefined, curRepo)
       },
     })
   }
