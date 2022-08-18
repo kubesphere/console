@@ -207,9 +207,10 @@ class VolumeSettings extends React.Component {
     set(this.fedFormTemplate, `${this.prefix}spec.volumes`, newVolumes)
 
     this.checkMaxUnavalable(volumes)
+    return newSpecVolume.name
   }
 
-  updateVolumeMounts = (newVolumeMounts, omitEditVolume) => {
+  updateVolumeMounts = (volumeName, newVolumeMounts, omitEditVolume) => {
     const containers = get(
       this.fedFormTemplate,
       `${this.prefix}spec.containers`,
@@ -223,31 +224,39 @@ class VolumeSettings extends React.Component {
 
     const mergedContainers = concat(containers, initContainers)
     const volumes = get(this.fedFormTemplate, `${this.prefix}spec.volumes`, [])
+    let existVolume
+    if (volumeName) {
+      existVolume = volumes.find(item => item.name === volumeName)
+    }
 
-    newVolumeMounts.forEach(({ containerName, volume, ...rest }) => {
+    newVolumeMounts.forEach(({ containerName, mountPath, ...rest }) => {
       const container = mergedContainers.find(
         item => item.name === containerName
       )
-      const existVolume = findVolume(volumes, volume)
 
-      if (existVolume && container) {
+      if (container) {
         container.volumeMounts = container.volumeMounts || []
 
-        const newVolumeMount = { name: existVolume.name, ...rest }
+        if (existVolume) {
+          const newVolumeMount = { name: existVolume.name, ...rest }
 
-        const volumeMount = container.volumeMounts.find(
-          item => item.name === existVolume.name
-        )
-
-        if (volumeMount) {
-          container.volumeMounts = container.volumeMounts.map(item =>
-            item.name === existVolume.name ? newVolumeMount : item
+          const volumeMount = container.volumeMounts.find(
+            item =>
+              item.name === existVolume.name && item.mountPath === mountPath
           )
-        } else {
-          container.volumeMounts.push(newVolumeMount)
+
+          if (volumeMount) {
+            container.volumeMounts = container.volumeMounts.map(item =>
+              item.name === existVolume.name && item.mountPath === mountPath
+                ? newVolumeMount
+                : item
+            )
+          } else {
+            container.volumeMounts.push(newVolumeMount)
+          }
         }
 
-        if (omitEditVolume && omitEditVolume.name !== existVolume.name) {
+        if (omitEditVolume) {
           container.volumeMounts = container.volumeMounts.filter(
             item => item.name !== omitEditVolume.name
           )
@@ -424,8 +433,8 @@ class VolumeSettings extends React.Component {
       })
     }
 
-    this.updateVolumes(newVolume)
-    this.updateVolumeMounts(newVolumeMounts, omitEditVolume)
+    const volumeName = this.updateVolumes(newVolume)
+    this.updateVolumeMounts(volumeName, newVolumeMounts, omitEditVolume)
     this.updateLogConfigs(newVolumeMounts)
 
     this.resetState()
