@@ -720,6 +720,10 @@ const GatewayMapper = item => {
     ''
   )
 
+  // get the first ipv4 ingress's ip, because the k8s can't support ipv6's colon
+  const defaultIngressIPV4 = loadBalancerIngress.find(i => !i.ip.includes(':'))
+    ?.ip
+
   return {
     ...getBaseInfo(item),
     namespace: get(item, 'metadata.namespace'), // it's not metadata.namespace
@@ -731,8 +735,7 @@ const GatewayMapper = item => {
     ports: get(item, 'status.service', []),
     loadBalancerIngress: loadBalancerIngress.map(lb => lb.ip || lb.hostname),
     defaultIngress:
-      get(loadBalancerIngress, '[0].ip') ||
-      get(loadBalancerIngress, '[0].hostname'),
+      defaultIngressIPV4 || get(loadBalancerIngress, '[0].hostname'),
     isHostName: !!get(loadBalancerIngress, '[0].hostname'),
     serviceMeshEnable:
       get(
