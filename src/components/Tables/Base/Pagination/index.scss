@@ -41,11 +41,7 @@
 .menu {
   min-width: 80px;
   max-height: 176px;
-  overflow-x: hidden;
-}
-
-.scrollY {
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 .menuitem {
@@ -93,8 +89,7 @@
 .pageSizeMenu {
   min-width: 96px;
   max-height: 144px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: auto;
 
   .pageSizeMenuitem {
     min-width: 80px;
