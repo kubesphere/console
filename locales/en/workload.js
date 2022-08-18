@@ -18,6 +18,8 @@
 
 module.exports = {
   CONTAINER_IMAGE: 'Container Image',
+  MOUNT_PATH_NOT_SPECIFY: 'Please select a specific key to be mounted to the containers.',
+  MOUNT_PATH_REPEAT: 'The mount path is duplicated.',
   MOUNT_PATH_EMPTY: 'Please enter a mount path.',
   IMAGE_TIME_SIZE_LAYER_PL: 'Updated {time}, {size}, {layer} layers',
   IMAGE_TIME_SIZE_LAYER_SI: 'Updated {time}, {size}, {layer} layer',
