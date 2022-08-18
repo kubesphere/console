@@ -225,7 +225,7 @@ const handleOAuthLogin = async ctx => {
 
   if (state) {
     try {
-      const state_object = base64_url_decode('state')
+      const state_object = JSON.parse(base64_url_decode(state))
       const state_url = state_object.redirect_url
       if (state_url) {
         ctx.redirect(state_url)
