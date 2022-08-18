@@ -122,9 +122,7 @@ export default class Pagination extends Component {
       }
       return (
         <Menu
-          className={classNames(styles.menu, {
-            [styles.scrollY]: this.totalPage > 5,
-          })}
+          className={classNames(styles.menu)}
           onClick={this.handlePageMenuClick}
         >
           {items}
