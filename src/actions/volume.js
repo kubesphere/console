@@ -124,12 +124,13 @@ export default {
     },
   },
   'volume.create.snapshot': {
-    on({ store, detail, ...props }) {
+    async on({ store, detail, ...props }) {
       const provisioner = get(
         detail,
         "annotations['volume.beta.kubernetes.io/storage-provisioner']",
         '-'
       )
+      await store.getSnapshotType()
       const options = []
       store.snapshotType.items.forEach(item => {
         if (item.driver === provisioner) {
