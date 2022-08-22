@@ -33,7 +33,6 @@ import {
   CLUSTER_PRESET_GROUPS,
 } from 'utils/constants'
 
-import Title from '../Title'
 import SubTitle from '../SubTitle'
 import NodeList from '../NodeList'
 
@@ -114,16 +113,7 @@ export default class BaseInfo extends React.Component {
     const method = this.method
     return (
       <div className={styles.wrapper}>
-        {method === 'new' ? (
-          <Title title={t('New Cluster')} description={t('NEW_CLUSTER_DESC')} />
-        ) : (
-          <Title
-            title={t('Import Cluster')}
-            description={t('IMPORT_CLUSTER_DESC')}
-          />
-        )}
         <Form data={formTemplate} ref={formRef}>
-          <SubTitle title={t('Cluster Basic Info')} />
           <Form.Item
             label={t('CLUSTER_NAME')}
             desc={t('NAME_DESC')}
@@ -142,7 +132,7 @@ export default class BaseInfo extends React.Component {
             <Select
               name="metadata.labels['cluster.kubesphere.io/group']"
               options={CLUSTER_PRESET_GROUPS}
-              placeholder={t('Please select or input a tag')}
+              placeholder=" "
               optionRenderer={this.groupOptionRenderer}
               searchable
             />
@@ -151,7 +141,7 @@ export default class BaseInfo extends React.Component {
             <Select
               name="spec.provider"
               options={CLUSTER_PROVIDERS}
-              placeholder={t('Please select or input a provider')}
+              placeholder=" "
               optionRenderer={this.providerOptionRenderer}
               searchable
             />

@@ -49,7 +49,6 @@ module.exports = {
   'Please input cluster name': 'Please enter a cluster name.',
   'Please input the kubesphere api server address of the cluster':
     'Please input the kubesphere api server address of the cluster',
-  'Please select or input a provider': 'Please select or input a provider',
   'Please select or input a tag': 'Please select or input a tag',
   SELECT_CLUSTERS: 'Select Clusters',
   'The current cluster is public': 'The current cluster is public',
@@ -57,10 +56,8 @@ module.exports = {
   Unauthorized: 'Unauthorized',
   Validating: 'Validating',
   'Validation failed': 'Validation failed',
-  'How to Add': 'How to Add',
   'New Cluster': 'New Cluster',
   'Import Cluster': 'Import Cluster',
-  'Cluster Basic Info': 'Cluster Basic Information',
   'Node Settings': 'Node Settings',
   'Please add at least one cluster node':
     'Please add at least one cluster node',

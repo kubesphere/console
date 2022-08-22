@@ -19,13 +19,11 @@ module.exports = {
   // Banner
   NO_CLUSTER_TIP: 'Please add at least one cluster.',
   // Add Cluster > Basic Information
-  IMPORT_CLUSTER_DESC: 'Import an existing Kubernetes cluster.',
   ADD_CLUSTER: 'Add Cluster',
   TAG: 'Tag',
   CLUSTER_TAG_DESC: 'Select a tag to identify the purpose of the cluster.',
   CLUSTER_PROVIDER_DESC: 'Select the provider of the cluster infrastructure.',
   // Add Cluster > Cluster Settings
-  CLUSTER_SETTINGS_DESC: 'Define cluster configuration information',
   CLUSTER_CONNECT_METHOD_DESC: 'Directly connect to the cluster or use an agent.',
   CONNTECT_DIRECT: 'Direct connection',
   CONNTECT_PROXY: 'Agent connection',
