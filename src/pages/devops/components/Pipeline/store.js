@@ -18,12 +18,15 @@
 
 import { action, observable, computed, toJS } from 'mobx'
 import { get, set, unset, isObject, isEmpty, isArray, cloneDeep } from 'lodash'
+import qs from 'qs'
 
+import cookie from 'utils/cookie'
 import CredentialStore from 'stores/devops/credential'
 import BaseStore from 'stores/devops'
+import PipelineStore from 'stores/devops/pipelines'
 import CDStore from 'stores/cd'
-
-import { generateId } from 'utils'
+import { generateId, safeParseJSON } from 'utils'
+import { CREDENTIAL_DISPLAY_KEY } from 'utils/constants'
 
 const formatPipeLineJson = json => {
   if (!get(json, 'pipeline.stages')) return
@@ -67,10 +70,61 @@ const formatPipeLineJson = json => {
   return json
 }
 
+const formatStepTemplate = data => {
+  const lang = cookie('lang') === 'zh' ? 'ZH' : 'EN'
+  const template = {}
+  const annotations = get(data, 'metadata.annotations', {})
+
+  template.icon = annotations['step.devops.kubesphere.io/icon']
+  template.category = get(data, [
+    'metadata',
+    'labels',
+    'step.devops.kubesphere.io/category',
+  ])
+  template.name = data.metadata.name
+  template.desc =
+    annotations[`devops.kubesphere.io/description${lang}`] ||
+    annotations['devops.kubesphere.io/descriptionEN']
+  template.title =
+    annotations[`devops.kubesphere.io/displayName${lang}`] ||
+    annotations['devops.kubesphere.io/displayNameEN'] ||
+    annotations.displayNameEN
+
+  template.parameters = get(data, 'spec.parameters', []).map(p => {
+    return {
+      ...p,
+      ...(p.options
+        ? {
+            options: safeParseJSON(p.options, []).map(opt => ({
+              label: t(opt.label),
+              value: opt.value,
+            })),
+          }
+        : {}),
+    }
+  })
+
+  if (!isEmpty(get(data, 'spec.secret', {}))) {
+    const secretType =
+      CREDENTIAL_DISPLAY_KEY[data.spec.secret.type?.split('/')[1]]
+    template.parameters.push({
+      name: 'secret',
+      type: 'secret',
+      display: 'Secret',
+      postByQuery: true,
+      required: true,
+      secretType,
+    })
+  }
+  return template
+}
+
 export default class Store extends BaseStore {
   credentialStore = new CredentialStore()
 
   cdStore = new CDStore()
+
+  pipelineStore = new PipelineStore()
 
   get newStage() {
     return {
@@ -131,6 +185,12 @@ export default class Store extends BaseStore {
 
   @observable
   cdList = { data: [] }
+
+  @observable
+  pipelineList = { data: [] }
+
+  @observable
+  pipelineSteps = []
 
   handleAddBranch(lineIndex) {
     if (this.jsonData.json.pipeline.stages[lineIndex].parallel) {
@@ -299,6 +359,17 @@ export default class Store extends BaseStore {
   }
 
   @action
+  getPipelines = async params => {
+    await this.pipelineStore.fetchList({
+      devops: this.params.devops,
+      cluster: this.params.cluster,
+      filter: 'no-folders',
+      ...params,
+    })
+    this.pipelineList = this.pipelineStore.list
+  }
+
+  @action
   getCDListData = async params => {
     await this.cdStore.fetchList({
       devops: this.params.devops,
@@ -330,5 +401,39 @@ export default class Store extends BaseStore {
         value: item,
       }))
     }
+  }
+
+  @action
+  async fetchPipelineStepTemplates() {
+    const data = await request.get(
+      `${this.getBaseUrl()}clustersteptemplates?limit=100`
+    )
+
+    const { items = [] } = data
+    const templateList = items.map(formatStepTemplate)
+
+    this.pipelineSteps = templateList
+    return templateList
+  }
+
+  @action
+  async fetchStepTemplate(clustersteptemplate) {
+    const data = await request.get(
+      `${this.getBaseUrl()}clustersteptemplates/${clustersteptemplate}`
+    )
+    return formatStepTemplate(data)
+  }
+
+  async getPipelineStepTempleJenkins(clustersteptemplate, params, query = {}) {
+    const data = await request.post(
+      `${this.getBaseUrl()}clustersteptemplates/${clustersteptemplate}/render?${qs.stringify(
+        query
+      )}`,
+      params
+    )
+
+    const jenkins = get(data, 'data', '')
+
+    return jenkins
   }
 }

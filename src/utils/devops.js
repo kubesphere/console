@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { set, cloneDeep } from 'lodash'
+import { get, set, cloneDeep } from 'lodash'
 
 const deleteUnenableAttrs = data => {
   /* eslint-disable no-unused-vars */
@@ -130,4 +130,60 @@ export const getLanguageIcon = (name, defaultIcon) => {
     'binary',
   ]
   return LEGO_LANGUAGE_ICON.includes(name) ? name : defaultIcon
+}
+
+const parsePhrase = phrase => {
+  const reg = /(.+)(>|>=|==|!=)(.+)/
+  const res = phrase.match(reg)
+  const [, key, operator, value] = res
+  return {
+    key: key.replace('.param.', ''),
+    operator,
+    value,
+  }
+}
+
+const compare = (cond, data) => {
+  const value = get(data, cond.key)
+  switch (cond.operator) {
+    case '==':
+      return value === cond.value
+    case '>=':
+      return value >= cond.value
+    case '<=':
+      return value <= cond.value
+    case '!=':
+      return value !== cond.value
+    default:
+      return false
+  }
+}
+
+export const parseCondition = (cond, data) => {
+  try {
+    const reg = /(.+?)(&&|\|\|)/g
+    const result = cond.match(reg)
+    if (!result) {
+      return compare(parsePhrase(cond), data)
+    }
+    const condList = [
+      ...result.map(match => match.slice(0, -2)),
+      cond.slice(result.reduce((pre, cur) => pre + cur.length, 0)),
+    ].map(parsePhrase)
+    const operator = result.map(match => match.slice(-2))
+    return operator.reduce((pre, cur, index) => {
+      const left = index === 0 ? compare(condList[0], data) : pre
+      const right = compare(condList[index + 1], data)
+      switch (cur) {
+        case '&&':
+          return left && right
+        case '||':
+          return left || right
+        default:
+          return false
+      }
+    }, false)
+  } catch (e) {
+    return false
+  }
 }
