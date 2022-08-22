@@ -34,7 +34,6 @@ module.exports = {
   // Create Cluster
   SELECT_ADD_CLUSTER_METHOD: 'Choose how to add a cluster',
   SELECT_ADD_CLUSTER_METHOD_DESC: 'Support for adding new clusters and importing existing clusters.',
-  NEW_CLUSTER_DESC: 'add a new Kubernetes cluster',
   CLUSTER_NODE_SETTINGS_DESC: 'add the nodes for the cluster',
   K8S_CLUSTER_SETTINGS_DESC: 'Initially configure the new Kubernetes cluster.',
   CLUSTER_MAX_PODS_DESC: 'maxPods is the number of pods that can run on this Kubelet. [Default: 110].',
@@ -53,6 +52,7 @@ module.exports = {
   CLUSTER_KUBESPHERE_SETTINGS_DESC: 'Customized settings for KubeSphere',
   MASTER_NODE_COUNT_TIP: 'The number of Master nodes needs to be 1 or 3',
   WORKER_NODE_COUNT_TIP: 'The number of Worker nodes is at least 1',
+  HOW_TO_ADD: 'How to Add',
   // Add Node
   NODE_ROLE_EMPTY_DESC: 'Please set the role of the node in the cluster.',
   EXTERNAL_IP: 'External IP Address',

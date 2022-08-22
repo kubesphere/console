@@ -23,7 +23,6 @@ import { getDocsUrl } from 'utils'
 import EditMode from 'components/EditMode'
 
 import { get } from 'lodash'
-import Title from '../Title'
 import styles from './index.scss'
 
 export default class Confiuguration extends React.Component {
@@ -64,10 +63,6 @@ export default class Confiuguration extends React.Component {
     const { connectType } = this.state
     return (
       <div>
-        <Title
-          title={t('CLUSTER_SETTINGS')}
-          description={t('CLUSTER_SETTINGS_DESC')}
-        />
         <Form data={formTemplate} ref={formRef}>
           <Form.Item
             label={t('Connection Method')}

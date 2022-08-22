@@ -19,13 +19,11 @@ module.exports = {
   // Banner
   NO_CLUSTER_TIP: 'Lütfen en az bir küme ekleyiniz.',
   // Add Cluster > Basic Information
-  IMPORT_CLUSTER_DESC: 'Mevcut bir Kubernetes kümesini içe aktarın.',
   ADD_CLUSTER: 'Küme Ekle',
   TAG: 'Etiket',
   CLUSTER_TAG_DESC: 'Kümenin amacını belirlemek için bir etiket seçin.',
   CLUSTER_PROVIDER_DESC: 'Küme altyapısının sağlayıcısını seçin.',
   // Add Cluster > Cluster Settings
-  CLUSTER_SETTINGS_DESC: 'Küme yapılandırma bilgilerini tanımlayın',
   CLUSTER_CONNECT_METHOD_DESC: 'Doğrudan kümeye bağlanın veya bir aracı kullanın.',
   CONNTECT_DIRECT: 'Direk Bağlantı',
   CONNTECT_PROXY: 'Ajan bağlantısı',
