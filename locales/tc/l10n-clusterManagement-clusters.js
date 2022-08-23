@@ -19,13 +19,11 @@ module.exports = {
   // Banner
   NO_CLUSTER_TIP: '請添加至少 1 個集群',
   // Add Cluster > Basic Information
-  IMPORT_CLUSTER_DESC: '導入已有的 Kubernetes 集群',
   ADD_CLUSTER: '添加集群',
   TAG: '標籤',
   CLUSTER_TAG_DESC: '選擇標籤來識別集群的用途。',
   CLUSTER_PROVIDER_DESC: '選擇提供集群基礎設施的服務商。',
   // Add Cluster > Cluster Settings
-  CLUSTER_SETTINGS_DESC: '定義集群配置資訊',
   CLUSTER_CONNECT_METHOD_DESC: '可以直接連接集群或者使用代理',
   CONNTECT_DIRECT: '直接連接Kubernetes集群',
   CONNTECT_PROXY: '集群連接代理',

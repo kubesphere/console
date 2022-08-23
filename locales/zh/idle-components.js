@@ -33,7 +33,6 @@ module.exports = {
   // Create Cluster
   SELECT_ADD_CLUSTER_METHOD: '选择添加集群的方式',
   SELECT_ADD_CLUSTER_METHOD_DESC: '支持添加新集群和导入已存在集群',
-  NEW_CLUSTER_DESC: '添加新的 Kubernetes 集群',
   CLUSTER_NODE_SETTINGS_DESC: '添加集群需要的节点',
   K8S_CLUSTER_SETTINGS_DESC: '对即将新建的 Kubernetes 集群进行初始化配置',
   CLUSTER_MAX_PODS_DESC: '可以在此 Kubelet 上运行的 pod 的数量. 默认为 110.',
