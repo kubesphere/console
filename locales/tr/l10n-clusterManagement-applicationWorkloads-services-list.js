@@ -56,6 +56,7 @@ module.exports = {
   // List > Create > Service Settings > Workload Selector > View Details
   TOTAL_WORKLOADS_VALUE: 'Toplam İş Yükü: {count}',
   // List > Create > Advanced Settings
+  OPENELB_NOT_READY: 'OpenELB is not installed. Please install OpenELB.',
   SESSION_PERSISTENCE: 'Oturum Kalıcılığı',
   MAXIMUM_STICKINESS_DURATION: 'Maksimum Stickness Süresi (ler)',
   SESSION_PERSISTENCE_DESC: 'Sistemi, aynı istemciden gelen tüm istekleri belirli bir süre içinde aynı bölmeye iletecek şekilde ayarlayın.',

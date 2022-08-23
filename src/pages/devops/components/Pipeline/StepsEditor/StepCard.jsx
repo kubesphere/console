@@ -20,7 +20,6 @@ import React from 'react'
 import classNames from 'classnames'
 
 import { Icon } from '@kube-design/components'
-import { PIPELINE_TASKS } from 'utils/constants'
 import PropTypes from 'prop-types'
 
 import { toJS } from 'mobx'
@@ -32,20 +31,10 @@ import cardStyles from '../Card/index.scss'
 import StepContainer from './StepContainer'
 
 const nestingSteps = {
-  withCredentials: true,
-  dir: true,
-  container: true,
-  timeout: true,
-  withSonarQubeEnv: true,
   not: true,
   allOf: true,
   anyOf: true,
 }
-
-const isEditable = function(name) {
-  return PIPELINE_TASKS.All.includes(name) || name === 'sh'
-}
-
 export default class StepCard extends React.Component {
   step = toJS(this.props.step)
 
@@ -101,7 +90,7 @@ export default class StepCard extends React.Component {
         >
           <Icon name="trash" clickable />
         </span>
-        {listType || !isEditable(step.name) ? null : (
+        {listType ? null : (
           <span
             className={styles.edit}
             onClick={this.handleEdit(zIndex, index, step, listType)}
@@ -121,7 +110,7 @@ export default class StepCard extends React.Component {
           listType={listType}
         />
 
-        {step.name in nestingSteps ? (
+        {step.name in nestingSteps || Array.isArray(step.children) ? (
           <div
             className={cardStyles.addSteps}
             onClick={this.toggleAddStep([...zIndex, index], listType)}

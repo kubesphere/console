@@ -19,7 +19,7 @@
 module.exports = {
   // Edit Information
   CODE_REPOSITORY: 'Code Repository',
-  // Details
+  // Attributes
   TASK_STATUS: 'Task Status',
   NOT_RUNNING: 'Not running',
   QUEUED: 'Queued',
@@ -49,7 +49,7 @@ module.exports = {
   NO_PIPELINE_CONFIG_FILE_TIP: 'No pipeline configuration file is found.',
   // Task Status > Edit Pipeline
   EDIT_PIPELINE: 'Edit Pipeline',
-  JENKINS_UNAVAILABLE: 'This is unavailable until Jenkins is ready',
+  JENKINS_UNAVAILABLE: 'Jenkins is unready.',
   AGENT_TYPE_DESC: `The agent section specifies
     where the entire Pipeline or a particular stage will be executed in the Jenkins environment,
     depending on where the Agent part is placed.

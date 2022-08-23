@@ -21,7 +21,7 @@ module.exports = {
   ADD_SERVICE: 'Add Service',
   ADD_ROUTE: 'Add Route',
   // More > Add Route
-  // Details
+  // Attributes
   // Resource Status
   // Traffic Monitoring
   TRAFFIC_MONITORING: 'Traffic Monitoring',
@@ -70,12 +70,10 @@ module.exports = {
   BASE_EJECTION_TIME_S_DESC: 'Maximum ejection duration.',
   UPDATED_AT_VALUE_SCAP: 'Updated at {value}',
   // Grayscale Release
-  CREATE_GRAYSCALE_RELEASE_JOB: 'Create Grayscale Release Job',
+  CREATE_GRAYSCALE_RELEASE_TASK: 'Create Grayscale Release Task',
   GRAYSCALE_RELEASE_DESC: 'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
-  NO_GRAYSCALE_RELEASE_JOB_FOUND: 'No Grayscale Release Job Found',
-  NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: 'Please create a grayscale release job.',
-  TOTAL_GRAY_RELEASE_JOB: '{num} grayscale release job in total',
-  TOTAL_GRAY_RELEASE_JOBS: '{num} grayscale release jobs in total',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND: 'No Grayscale Release Task Found',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: 'Please create a grayscale release task.',
   // Tracing
   TRACING: 'Tracing',
   TRACING_NO_DATA_DESC: 'Please change the search conditions and try again.',

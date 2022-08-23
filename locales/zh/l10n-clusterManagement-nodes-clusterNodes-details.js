@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
-  DETAILS: '详情',
+  // Attributes
+  ATTRIBUTES: '属性',
   ARCHITECTURE: '系统架构',
   OS_VERSION: '操作系统版本',
   OS_TYPE: '操作系统类型',
@@ -71,6 +71,5 @@ module.exports = {
   POLICY: '策略',
   // Pods
   READY_VALUE: '就绪：{readyCount}/{total}',
-  STATUS_VALUE: '状态：{value}',
-  CREATED_AGO: '创建于 {diff}'
+  STATUS_VALUE: '状态：{value}'
 };

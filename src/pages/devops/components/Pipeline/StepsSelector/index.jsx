@@ -18,34 +18,14 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { Icon, Tooltip } from '@kube-design/components'
+import { Icon, Loading } from '@kube-design/components'
 import { observable, action } from 'mobx'
 import { observer } from 'mobx-react'
 import { ReactComponent as BackIcon } from 'assets/back.svg'
 import CredentialModal from 'components/Modals/CredentialCreate'
-import { PIPELINE_TASKS, PIPELINE_CONDITIONS } from 'utils/constants'
+import { PIPELINE_CONDITIONS } from 'utils/constants'
 
-import {
-  Echo,
-  Shell,
-  Dir,
-  Container,
-  ArchiveArtifacts,
-  Git,
-  Checkout,
-  InputStep,
-  WithCredentials,
-  KubernetesDeploy,
-  Timeout,
-  Branch,
-  Environment,
-  Expression,
-  Sonarqube,
-  WaitForQualityGate,
-  Script,
-  Mail,
-  CD,
-} from '../StepModals'
+import { Branch, Environment, Expression, Params } from '../StepModals'
 
 import siderStyle from '../Sider/index.scss'
 import styles from './index.scss'
@@ -56,90 +36,71 @@ const noInputTasks = {
   anyOf: true,
 }
 
-const taskIcon = {
-  echo: 'loudspeaker',
-  mail: 'mail',
-  shell: 'terminal',
-  container: 'terminal',
-  checkout: 'network-router',
-  git: 'network-router',
-  cd: 'rocket',
-  withCredentials: 'key',
-  kubernetesDeploy: 'kubernetes',
+const condIcon = {
   branch: 'network-router',
-  timeout: 'clock',
-  withSonarQubeEnv: 'network',
+}
+
+const conditionDescs = {
+  branch: t('Current branch name must match the input value'),
+  environment: t(
+    'The environment variable entered before running the pipeline is match the current value.'
+  ),
+  expression: t('Enter an expression'),
+  not: t('Negative prefix'),
+  allOf: t('Internal nesting conditions must be matched'),
+  anyOf: t('Internal nested conditions only need to satisfy one'),
 }
 
 @observer
 export default class StepsEditor extends React.Component {
   constructor(props) {
     super(props)
-    this.taskDescs = {
-      git: t('Pull code by Git'),
-      shell: t(
-        'You can execute shell commands or windows batch commands in the build.'
+
+    this.state = {
+      isLoading: true,
+      stepTemplates: [],
+      activeTask: null,
+      showCredential: false,
+      isShowParamModal: false,
+      ...PIPELINE_CONDITIONS.reduce(
+        (prev, name) => ({
+          ...prev,
+          [`isShow${name}`]: false,
+        }),
+        {}
       ),
-      container: t(
-        'Specify a container to add nested tasks to execute inside the container'
-      ),
-      echo: t('Send messages in the build'),
-      mail: t('Send messages by email'),
-      checkout: t('CHECKOUT_DESC'),
-      dir: t('Change Current Directory'),
-      archiveArtifacts: t('Save Artifact'),
-      cleanWs: t('Clean Workspace'),
-      input: t('REVIEW_DESC'),
-      withCredentials: t('Load credentials into environment variables'),
-      kubernetesDeploy: t('Deploy resources to the Kubernetes cluster'),
-      timeout: t(
-        'Executes the code inside the block with a determined time out limit.'
-      ),
-      branch: t('Current branch name must match the input value'),
-      environment: t(
-        'The environment variable entered before running the pipeline is match the current value.'
-      ),
-      expression: t('Enter an expression'),
-      not: t('Negative prefix'),
-      allOf: t('Internal nesting conditions must be matched'),
-      anyOf: t('Internal nested conditions only need to satisfy one'),
-      withSonarQubeEnv: t('withSonarQubeEnv_DESC'),
-      waitForQualityGate: t('waitForQualityGate_DESC'),
-      script: t('script_DESC'),
-      cd: t('CD_STEP_DESC'),
     }
-    this.state = [...PIPELINE_TASKS.All, ...PIPELINE_CONDITIONS].reduce(
-      (prev, taskName) => {
-        prev[`isShow${taskName}`] = false
-        return prev
-      },
-      {}
-    )
-    this.state.showCredential = false
   }
 
   @observable
   activeTab = 'All'
 
-  componentDidMount() {
-    const { type } = this.props.store.edittingData
+  get steps() {
+    return this.props.store.pipelineSteps
+  }
 
-    const _type = type === 'sh' ? 'shell' : type
-    this.setState({ [`isShow${_type}`]: true })
+  async componentDidMount() {
+    const { type } = this.props.store.edittingData
+    if (type && PIPELINE_CONDITIONS.includes(type)) {
+      this.setState({ [`isShow${type}`]: true })
+      return
+    }
+    if (type) {
+      const task = await this.props.store.fetchStepTemplate(type)
+      task &&
+        this.setState({
+          activeTask: task,
+          isShowParamModal: true,
+        })
+      return
+    }
+
+    await this.getPipelineSteps()
   }
 
   @action
   handleBack = () => {
     this.props.store.isAddingStep = false
-  }
-
-  @action
-  handleAddTask = task => () => {
-    if (task in noInputTasks) {
-      this.props.onAddNoInputTask(task)
-      return
-    }
-    this.setState({ [`isShow${task}`]: true })
   }
 
   @action
@@ -159,10 +120,28 @@ export default class StepsEditor extends React.Component {
     this.setState({ [`isShow${modalName}`]: false })
   }
 
-  handleSetValue = () => {
-    this.stage.name = this.stageName || this.stage.name
+  handleAddTask = task => () => {
+    if (task in noInputTasks) {
+      this.props.onAddNoInputTask(task)
+      return
+    }
+    const _task = this.state.stepTemplates.filter(t => t.name === task)
+    if (_task.length) {
+      this.setState({
+        activeTask: _task[0],
+        isShowParamModal: true,
+      })
+      return
+    }
+    this.setState({ [`isShow${task}`]: true })
+  }
 
-    this.props.store.setValue(this.stage)
+  async getPipelineSteps() {
+    await this.props.store.fetchPipelineStepTemplates()
+    this.setState({
+      stepTemplates: [...this.steps],
+      isLoading: false,
+    })
   }
 
   handleCreateCredential = async (data, callback) => {
@@ -184,6 +163,10 @@ export default class StepsEditor extends React.Component {
   renderStepsModal = () => {
     const { devops, cluster } = this.props.store.params
     const { edittingData, isAddingStep } = this.props.store
+    const { activeTask } = this.state
+    const hasCredential = activeTask?.parameters.some(
+      task => task.type === 'secret'
+    )
 
     if (isAddingStep === 'condition') {
       return (
@@ -212,122 +195,26 @@ export default class StepsEditor extends React.Component {
 
     return (
       <React.Fragment>
-        <Echo
-          visible={this.state.isShowecho}
-          onAddStep={this.handleAddStep('echo')}
-          onCancel={this.handleCancel('echo')}
-          edittingData={edittingData}
-        />
-        <Shell
-          visible={this.state.isShowshell}
-          onAddStep={this.handleAddStep('shell')}
-          onCancel={this.handleCancel('shell')}
-          edittingData={edittingData}
-        />
-        <Dir
-          visible={this.state.isShowdir}
-          onAddStep={this.handleAddStep('dir')}
-          onCancel={this.handleCancel('dir')}
-          edittingData={edittingData}
-        />
-        <Container
-          visible={this.state.isShowcontainer}
-          onAddStep={this.handleAddStep('container')}
-          onCancel={this.handleCancel('container')}
-          edittingData={edittingData}
-        />
-        <ArchiveArtifacts
-          visible={this.state.isShowarchiveArtifacts}
-          onAddStep={this.handleAddStep('archiveArtifacts')}
-          onCancel={this.handleCancel('archiveArtifacts')}
-          edittingData={edittingData}
-        />
-        <Git
-          visible={this.state.isShowgit}
-          showCredential={this.handleShowCredential}
-          onAddStep={this.handleAddStep('git')}
-          onCancel={this.handleCancel('git')}
-          edittingData={edittingData}
-          store={this.props.store}
-        />
-        <CD
-          visible={this.state.isShowcd}
-          showCredential={this.handleShowCredential}
-          onAddStep={this.handleAddStep('cd')}
-          onCancel={this.handleCancel('cd')}
-          edittingData={edittingData}
-          store={this.props.store}
-        />
-        <Checkout
-          visible={this.state.isShowcheckout}
-          showCredential={this.handleShowCredential}
-          onAddStep={this.handleAddStep('checkout')}
-          onCancel={this.handleCancel('checkout')}
-          edittingData={edittingData}
-          store={this.props.store}
-        />
-        <InputStep
-          devops={devops}
-          cluster={cluster}
-          visible={this.state.isShowinput}
-          edittingData={edittingData}
-          onAddStep={this.handleAddStep('input')}
-          onCancel={this.handleCancel('input')}
-        />
-        <WithCredentials
-          visible={this.state.isShowwithCredentials}
-          onAddStep={this.handleAddStep('withCredentials')}
-          onCancel={this.handleCancel('withCredentials')}
-          store={this.props.store}
-          showCredential={this.handleShowCredential}
-          edittingData={edittingData}
-        />
-        <KubernetesDeploy
-          visible={this.state.isShowkubernetesDeploy}
-          onAddStep={this.handleAddStep('kubernetesDeploy')}
-          onCancel={this.handleCancel('kubernetesDeploy')}
-          store={this.props.store}
-          showCredential={this.handleShowCredential}
-          edittingData={edittingData}
-        />
-        <Timeout
-          visible={this.state.isShowtimeout}
-          onAddStep={this.handleAddStep('timeout')}
-          onCancel={this.handleCancel('timeout')}
-          edittingData={edittingData}
-        />
-        <CredentialModal
-          visible={this.state.showCredential}
-          onOk={this.handleCreateCredential}
-          onCancel={this.hideCreateCredential}
-          devops={devops}
-          cluster={cluster}
-          credentialType={this.state.isShowkubernetesDeploy ? 'kubeconfig' : ''}
-        />
-        <Sonarqube
-          visible={this.state.isShowwithSonarQubeEnv}
-          onAddStep={this.handleAddStep('withSonarQubeEnv')}
-          onCancel={this.handleCancel('withSonarQubeEnv')}
-          edittingData={edittingData}
-        />
-        <WaitForQualityGate
-          visible={this.state.isShowwaitForQualityGate}
-          onAddStep={this.handleAddStep('waitForQualityGate')}
-          onCancel={this.handleCancel('waitForQualityGate')}
-          edittingData={edittingData}
-        />
-        <Script
-          visible={this.state.isShowscript}
-          onAddStep={this.handleAddStep('script')}
-          onCancel={this.handleCancel('script')}
-          edittingData={edittingData}
-        />
-        <Mail
-          visible={this.state.isShowmail}
-          onAddStep={this.handleAddStep('mail')}
-          onCancel={this.handleCancel('mail')}
-          edittingData={edittingData}
-        />
+        {activeTask && (
+          <Params
+            visible={this.state.isShowParamModal}
+            activeTask={activeTask}
+            onAddStep={this.handleAddStep('ParamModal')}
+            onCancel={this.handleCancel('ParamModal')}
+            showCredential={this.handleShowCredential}
+            edittingData={edittingData}
+            store={this.props.store}
+          />
+        )}
+        {hasCredential && (
+          <CredentialModal
+            visible={this.state.showCredential}
+            onOk={this.handleCreateCredential}
+            onCancel={this.hideCreateCredential}
+            devops={devops}
+            cluster={cluster}
+          />
+        )}
       </React.Fragment>
     )
   }
@@ -348,19 +235,19 @@ export default class StepsEditor extends React.Component {
             {t('Add conditions')}
           </div>
           <div className={styles.taskList}>
-            {PIPELINE_CONDITIONS.map(task => (
+            {PIPELINE_CONDITIONS.map(cond => (
               <div
                 className={styles.task}
-                key={task}
-                onClick={this.handleAddTask(task)}
+                key={cond}
+                onClick={this.handleAddTask(cond)}
               >
                 <div className={styles.taskIcon}>
-                  <Icon name={taskIcon[task] || 'cdn'} size={24} />
+                  <Icon name={condIcon[cond] || 'cdn'} size={24} />
                 </div>
                 <div className={styles.taskInfo}>
-                  <div className={styles.taskName}>{task}</div>
+                  <div className={styles.taskName}>{cond}</div>
                   <div className={styles.desc}>
-                    {this.taskDescs[task] || '-'}
+                    {conditionDescs[cond] || '-'}
                   </div>
                 </div>
               </div>
@@ -370,6 +257,22 @@ export default class StepsEditor extends React.Component {
       )
     }
 
+    const allTask = this.state.stepTemplates
+      .filter(t => t.category)
+      .reduce(
+        (prev, task) => {
+          const _tasks = prev[task.category] || []
+          return {
+            ...prev,
+            [task.category]: [..._tasks, task],
+          }
+        },
+        {
+          All: this.state.stepTemplates,
+        }
+      )
+    const others = this.state.stepTemplates.filter(t => !t.category)
+    others.length && (allTask.others = others)
     return (
       <div className={siderStyle.sheet}>
         <div className={siderStyle.title}>
@@ -381,50 +284,44 @@ export default class StepsEditor extends React.Component {
           </span>
           {t('Add Step')}
         </div>
-        <div className={styles.tabs}>
-          {Object.keys(PIPELINE_TASKS).map(task => (
-            <div
-              key={task}
-              className={classNames(styles.tab, {
-                [styles.tab_active]: this.activeTab === task,
-              })}
-              onClick={this.handleChangeActiveTab(task)}
-            >
-              {t(task)}
-            </div>
-          ))}
-        </div>
-        <div className={styles.taskList}>
-          {PIPELINE_TASKS[this.activeTab].map(task => (
-            <div
-              className={styles.task}
-              key={task}
-              onClick={this.handleAddTask(task)}
-            >
-              <div className={styles.taskIcon}>
-                <Icon name={taskIcon[task] || 'cdn'} size={24} />
-              </div>
-              <div className={styles.taskInfo}>
-                <div className={styles.taskName}>
-                  <span>{t(task)}</span>
-                  {task === 'kubernetesDeploy' && (
-                    <Tooltip content={t('KUBERNETES_DEPLOY_DEPRECATED_TIP')}>
-                      <Icon
-                        name="exclamation"
-                        size={16}
-                        color={{
-                          primary: '#fff',
-                          secondary: '#F5A623',
-                        }}
-                      />
-                    </Tooltip>
-                  )}
+        {this.state.isLoading ? (
+          <Loading className={styles.loading} />
+        ) : (
+          <>
+            <div className={styles.tabs}>
+              {Object.keys(allTask).map(task => (
+                <div
+                  key={task}
+                  className={classNames(styles.tab, {
+                    [styles.tab_active]: this.activeTab === task,
+                  })}
+                  onClick={this.handleChangeActiveTab(task)}
+                >
+                  {t(task)}
                 </div>
-                <div className={styles.desc}>{this.taskDescs[task] || '-'}</div>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
+            <div className={styles.taskList}>
+              {(allTask[this.activeTab] || []).map(task => (
+                <div
+                  className={styles.task}
+                  key={task.name}
+                  onClick={this.handleAddTask(task.name)}
+                >
+                  <div className={styles.taskIcon}>
+                    <Icon name={task.icon || 'cdn'} size={24} />
+                  </div>
+                  <div className={styles.taskInfo}>
+                    <div className={styles.taskName}>
+                      <span>{t(task.title)}</span>
+                    </div>
+                    <div className={styles.desc}>{t(task.desc) || '-'}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     )
   }

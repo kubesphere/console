@@ -17,11 +17,10 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   COPIED_SUCCESSFUL: 'Copied successfully.',
   BUILDER_IMAGE: 'Builder Image',
   PULL_POLICY: 'Pull Policy',
-  SOURCE_URL: 'Source URL',
   REMOTE_TRIGGER: 'Remote Trigger',
   // Run
   NEW_TAG_DESC: 'enter tag of the new image',

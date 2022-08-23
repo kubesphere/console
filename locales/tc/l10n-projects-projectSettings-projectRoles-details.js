@@ -21,7 +21,7 @@ module.exports = {
   // Edit Information
   // More > Edit Permissions
   // More >Delete
-  // Details
+  // Attributes
   // Permissions
   PERMISSION_PL: '權限列表',
   // Authorized Users

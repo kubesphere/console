@@ -20,7 +20,6 @@ module.exports = {
   TOTAL_EVENTS_TODAY: 'A total of <span class={className}> {events} </span> resource events were collected today.',
   NO_RESOURCE_EVENTS_TODAY: 'No Resource Events Collected Today',
   // Search
-  EVENT_NOT_ENABLED_DESC: 'The component is not enabled. <a href="{docUrl}/pluggable-components/events/" target="_blank">Learn More</a>',
   // Querying Rules
   RESOURCE_EVENT_TRENDS_12H: 'Resource event trends in 12 h',
   RESOURCE_EVENT_WORKSPACE_TIP: 'Enter a workspace name to search for container logs.',

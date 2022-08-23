@@ -165,7 +165,7 @@ export default class Overview extends React.Component {
         text: t('EDIT_INFORMATION'),
       })
     }
-    if (!isHost && actions.includes('edit')) {
+    if (globals.app.isMultiCluster && !isHost && actions.includes('edit')) {
       option.push({
         actionName: 'cluster.update.kubeconfig',
         icon: 'data',

@@ -33,7 +33,6 @@ module.exports = {
   // Create Cluster
   SELECT_ADD_CLUSTER_METHOD: 'Choose how to add a cluster',
   SELECT_ADD_CLUSTER_METHOD_DESC: 'Support for adding new clusters and importing existing clusters.',
-  NEW_CLUSTER_DESC: 'add a new Kubernetes cluster',
   CLUSTER_NODE_SETTINGS_DESC: 'add the nodes for the cluster',
   K8S_CLUSTER_SETTINGS_DESC: 'Initially configure the new Kubernetes cluster.',
   CLUSTER_MAX_PODS_DESC: 'maxPods is the number of pods that can run on this Kubelet. [Default: 110].',

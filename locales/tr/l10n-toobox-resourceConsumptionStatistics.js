@@ -25,6 +25,7 @@ module.exports = {
   CLUSTER_RESOURCE_CONSUMPTION_DESC: 'CPU, bellek ve <strong>kümelerin</strong> hacimleri gibi kaynakların tüketimi',
   CLUSTER_NODE_CONSUMPTION_DESC: 'CPU, bellek ve küme <strong>düğüm</strong> hacimleri gibi kaynakların tüketimi',
   CLUSTER_POD_CONSUMPTION_DESC: 'Düğümlerdeki <strong>pod\'ların</strong> CPU ve bellek tüketimi',
+  CURRENT_RESOURCE_CONSUMPTION: 'Current Resource Consumption',
   VIEW: 'Görünüm',
   // Workspace Recource Consumption
   WORKSPACE_CONSUMPTION: 'Çalışma Alanı Kaynak Tüketimi',

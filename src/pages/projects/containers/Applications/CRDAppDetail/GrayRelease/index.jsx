@@ -77,7 +77,7 @@ class GrayRelease extends Base {
     return (
       <EmptyList
         icon="istio"
-        title={t('NO_GRAYSCALE_RELEASE_JOB_FOUND')}
+        title={t('NO_GRAYSCALE_RELEASE_TASK_FOUND')}
         desc={t('NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC')}
       />
     )
@@ -98,7 +98,7 @@ class GrayRelease extends Base {
             >
               {this.canCreate && (
                 <Button type="control">
-                  {t('CREATE_GRAYSCALE_RELEASE_JOB')}
+                  {t('CREATE_GRAYSCALE_RELEASE_TASK')}
                 </Button>
               )}
             </Link>

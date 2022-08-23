@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   CUSTOM_SERVICE: 'Custom Service',
   VIRTUAL_IP: 'VirtualIP',
   // Resource Status

@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   // More > Edit Settings
   // More > Edit Settings > Volume Settings
   // More > Edit Settings > Cluster Differences

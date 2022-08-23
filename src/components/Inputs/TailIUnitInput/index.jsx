@@ -30,18 +30,30 @@ export default class TailIUnitInput extends React.Component {
 
   render() {
     const { name, unit, onChange, ...rest } = this.props
+
+    if (unit) {
+      return (
+        <>
+          <div className={styles.wrapper}>
+            <Input
+              name={name}
+              className={styles.input}
+              onChange={onChange || null}
+              {...rest}
+            />
+            {unit && <span className={styles.unit}>{unit}</span>}
+          </div>
+        </>
+      )
+    }
+
     return (
-      <>
-        <div className={styles.wrapper}>
-          <Input
-            name={name}
-            className={styles.input}
-            onChange={onChange || null}
-            {...rest}
-          />
-          {unit && <span className={styles.unit}>{unit}</span>}
-        </div>
-      </>
+      <Input
+        name={name}
+        className={styles.input}
+        onChange={onChange || null}
+        {...rest}
+      />
     )
   }
 }

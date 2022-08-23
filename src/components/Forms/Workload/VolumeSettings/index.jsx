@@ -666,7 +666,7 @@ class VolumeSettings extends React.Component {
           />
         )}
         <div className={styles.volumes}>
-          {isSTS && !hideVolumeSetting && (
+          {isSTS && (
             <Form.Item>
               <VolumeTemplateList
                 prefix={this.prefix}
@@ -676,6 +676,7 @@ class VolumeSettings extends React.Component {
                 onShowEdit={this.showEditVolumeTemplate}
                 collectSavedLog={collectSavedLog}
                 logPath={logPath}
+                hideVolumeSetting={hideVolumeSetting}
               />
             </Form.Item>
           )}

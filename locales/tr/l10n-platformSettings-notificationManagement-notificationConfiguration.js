@@ -147,5 +147,9 @@ module.exports = {
   TOKEN: 'Jeton',
   WEBHOOK_USERNAME_EMPTY_DESC: 'Lütfen kullanıcı adınızı girin.',
   WEBHOOK_PASSWORD_EMPTY_DESC: 'Lütfen bir şifre girin.',
-  WEBHOOK_TOKEN_EMPTY_DESC: 'Lütfen bir jeton girin.'
+  WEBHOOK_TOKEN_EMPTY_DESC: 'Lütfen bir jeton girin.',
+  // Feishu
+  Feishu: 'Feishu',
+  FEISHU_TITLE: 'Feishu',
+  FEISHU_DESC: 'You can receive notifications from the platform through Feishu, and you need to configure the Feishu sending server.'
 };

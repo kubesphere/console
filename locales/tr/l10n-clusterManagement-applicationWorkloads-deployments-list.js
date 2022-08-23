@@ -23,6 +23,7 @@ module.exports = {
   DEPLOYMENTS: 'Dağıtımlar',
   UPDATE_TIME_TCAP: 'Güncelleme Zamanı',
   ALL_PROJECTS: 'Bütün projeler',
+  SHOW_NUM: 'Show: {num}',
   // List > Create > Basic Information
   SELECT_PROJECT_DESC: 'Kaynağın oluşturulacağı bir proje seçin.',
   PROJECT_NOT_SELECT_DESC: 'Lütfen bir proje seçin.',

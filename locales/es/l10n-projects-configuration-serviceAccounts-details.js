@@ -21,7 +21,7 @@ module.exports = {
   SERVICE_ACCOUNT_PROJECT_ROLE_DESC: 'Select the role of the service account in the current project.',
   // More > Delete
   SERVICE_ACCOUNT: 'Cuentas de servicio',
-  // Details
+  // Attributes
   // Resource Status
   SECRET_VALUE: 'Secreto: {value}',
   // Resource Status > kubeconfig Settings

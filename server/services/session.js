@@ -170,7 +170,7 @@ const getUserGlobalRules = async (username, token) => {
   return rules
 }
 
-const getUserDetail = async (token, clusterRole) => {
+const getUserDetail = async (token, clusterRole, isMulticluster) => {
   let user = {}
 
   const { username } = jwtDecode(token)
@@ -213,11 +213,11 @@ const getUserDetail = async (token, clusterRole) => {
 
     if (
       !isClustersRole &&
-      user.globalrole === 'platform-regular' &&
-      user.grantedClusters.length > 0
+      (user.grantedClusters.length > 0 || isMulticluster === false)
     ) {
       roles.clusters = ['view']
     }
+
     user.globalRules = roles
   } catch (error) {}
 
@@ -362,14 +362,12 @@ const getSupportGpuList = async ctx => {
 
       gpuKinds = [...defaultGpu, ...otherGpus]
     }
-  } catch (error) {
-    console.error(error)
-  }
+  } catch (error) {}
 
   return gpuKinds
 }
 
-const getCurrentUser = async (ctx, clusterRole) => {
+const getCurrentUser = async (ctx, clusterRole, isMulticluster) => {
   const token = ctx.cookies.get('token')
 
   if (!token) {
@@ -380,7 +378,7 @@ const getCurrentUser = async (ctx, clusterRole) => {
   }
 
   const [userDetail, workspaces] = await Promise.all([
-    getUserDetail(token, clusterRole),
+    getUserDetail(token, clusterRole, isMulticluster),
     getWorkspaces(token, clusterRole),
   ])
 

@@ -16,11 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   COPIED_SUCCESSFUL: '复制成功',
   BUILDER_IMAGE: '构建器镜像',
   PULL_POLICY: '拉取策略',
-  SOURCE_URL: '源 URL',
   REMOTE_TRIGGER: '远程触发器',
   // Run
   NEW_TAG_DESC: '输入重新构建镜像的标签',

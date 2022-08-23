@@ -131,7 +131,8 @@ export default class ScheduleCluster extends Component {
         <ClusterTitle cluster={cluster} tagClass="float-right" theme="light" />
         <div className={styles.bottom}>
           <div className={styles.replicas}>
-            <span>{readyPodNums}</span> / <span>{replicas}</span>&nbsp;
+            <span className={styles.readyNum}>{readyPodNums}</span> /{' '}
+            <span className={styles.readyNum}>{replicas}</span>&nbsp;
             {reason && <StatusReason status={status} data={workload} />}
           </div>
           <div className={styles.pods}>

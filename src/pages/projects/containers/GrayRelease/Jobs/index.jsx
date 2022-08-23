@@ -89,7 +89,7 @@ class Jobs extends React.Component {
 
   handleDelete = () => {
     this.store.delete(this.state.selectItem).then(() => {
-      Notify.success({ content: `${t('JOB_OFFLINE_SUCCESSFULLY')}` })
+      Notify.success({ content: `${t('TASK_OFFLINE_SUCCESSFULLY')}` })
       this.hideDetail()
     })
   }
@@ -110,7 +110,7 @@ class Jobs extends React.Component {
     return (
       <EmptyList
         icon="istio"
-        title={t('NO_GRAYSCALE_RELEASE_JOB_FOUND')}
+        title={t('NO_GRAYSCALE_RELEASE_TASK_FOUND')}
         desc={t('NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC')}
         actions={
           this.canCreate ? (

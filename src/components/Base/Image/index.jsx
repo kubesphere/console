@@ -61,8 +61,10 @@ export default class Image extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.src !== this.props.src) {
       this.setState({ failed: false }, () => {
-        this.img.onerror = () => {
-          this.setState({ failed: true })
+        if (this.img) {
+          this.img.onerror = () => {
+            this.setState({ failed: true })
+          }
         }
       })
     }

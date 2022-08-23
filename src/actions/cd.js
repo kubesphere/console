@@ -25,57 +25,67 @@ import DeleteModal from 'components/Modals/CDDelete'
 import FORM_TEMPLATES from 'utils/form.templates'
 import { set, isEmpty, cloneDeep } from 'lodash'
 import { toJS } from 'mobx'
+import EditCDAdvanceSetting from 'components/Modals/CDAdvanceEdit'
+
+const handleFormData = ({ data, module }) => {
+  const formTemplate = FORM_TEMPLATES[module]()
+  const syncPolicyType = data.syncPolicy.type
+  const syncPolicy =
+    syncPolicyType === 'automated'
+      ? {
+          [syncPolicyType]: {
+            prune: data.syncPolicy.prune,
+            selfHeal: data.syncPolicy.selfHeal,
+          },
+        }
+      : { [syncPolicyType]: {} }
+
+  const parameterType = data.parameter_type
+  const parameters =
+    parameterType && parameterType !== 'auto'
+      ? {
+          [parameterType]: data[parameterType],
+        }
+      : {}
+
+  const source = {
+    repoURL: data.repoURL
+      ? data.repoURL.match(/\(([\w\W]+)\)/)[1]
+      : data.source.repoURL,
+    ...data.source,
+    ...parameters,
+  }
+
+  const syncOptions = !isEmpty(data.syncOptions)
+    ? Object.entries(data.syncOptions).reduce((pre, current) => {
+        const item = `${current[0]}=${current[1]}`
+        pre.push(item)
+        return pre
+      }, [])
+    : undefined
+
+  syncPolicy.syncOptions = syncOptions
+
+  const argoApp = {
+    destination: data.destination,
+    source,
+    syncPolicy,
+  }
+
+  set(formTemplate, 'metadata', data.metadata)
+  set(formTemplate, 'spec.argoApp.spec', argoApp)
+  return formTemplate
+}
 
 export default {
   'cd.create': {
     on({ store, cluster, workspace, module, success, ...props }) {
-      const formTemplate = FORM_TEMPLATES[module]()
-
       const modal = Modal.open({
         onOk: async data => {
-          const syncPolicyType = data.syncPolicy.type
-          const syncPolicy =
-            syncPolicyType === 'automated'
-              ? {
-                  [syncPolicyType]: {
-                    prune: data.syncPolicy.prune,
-                    selfHeal: data.syncPolicy.selfHeal,
-                  },
-                }
-              : { [syncPolicyType]: {} }
-
-          const parameterType = data.parameter_type
-          const parameters =
-            parameterType && parameterType !== 'auto'
-              ? {
-                  [parameterType]: data[parameterType],
-                }
-              : {}
-
-          const source = {
-            repoURL: data.repoURL.match(/\(([\w\W]+)\)/)[1],
-            ...data.source,
-            ...parameters,
-          }
-
-          const syncOptions = !isEmpty(data.syncOptions)
-            ? Object.entries(data.syncOptions).reduce((pre, current) => {
-                const item = `${current[0]}=${current[1]}`
-                pre.push(item)
-                return pre
-              }, [])
-            : undefined
-
-          syncPolicy.syncOptions = syncOptions
-
-          const argoApp = {
-            destination: data.destination,
-            source,
-            syncPolicy,
-          }
-
-          set(formTemplate, 'metadata', data.metadata)
-          set(formTemplate, 'spec.argoApp.spec', argoApp)
+          const formTemplate = handleFormData({
+            data,
+            module,
+          })
           await store.create({
             data: formTemplate,
             devops: props.devops,
@@ -96,7 +106,28 @@ export default {
       })
     },
   },
-
+  'cd.edit': {
+    on({ store, cluster, detail, module, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async data => {
+          const formTemplate = handleFormData({
+            data,
+            module,
+          })
+          await store.update(detail, formTemplate)
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+          success && success()
+          Modal.close(modal)
+        },
+        store,
+        module,
+        cluster,
+        formTemplate: cloneDeep(toJS(detail._originData)),
+        modal: EditCDAdvanceSetting,
+        ...props,
+      })
+    },
+  },
   'cd.sync': {
     on({
       store,

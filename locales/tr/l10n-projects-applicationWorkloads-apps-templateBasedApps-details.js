@@ -22,9 +22,9 @@ module.exports = {
   TARGET_APP_VERSION: 'Hedef Uygulama Sürümü',
   CURRENT_APP_VERSION: 'Mevcut Uygulama Sürümü',
   EDIT_APP_SETTINGS: 'Uygulama Ayarlarını Düzenle',
-  // Details
+  // Attributes
   // Resource Status
-  UPDATED_AGO: 'Güncelle {value}',
+  UPDATED_TIME: '{value} Değerinde güncellendi.',
   // App Template > App Description
   APP_TEMPLATE: 'Uygulama Şablonu',
   NO_APP_DESC_FOUND: 'Uygulama açıklaması bulunamadı.'

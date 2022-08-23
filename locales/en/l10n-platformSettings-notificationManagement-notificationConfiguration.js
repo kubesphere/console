@@ -95,7 +95,7 @@ module.exports = {
   CONVERSATION_ID_EXISTS:
     'The conversation ID already exists. Please add another conversation ID.',
   // DingTalk > DingTalk Chatbot
-  CHATBOT_SETTINGS: 'Chatbot Setting',
+  CHATBOT_SETTINGS: 'Group Chatbot Settings',
   KEYWORDS_LIST: 'Keyword List',
   DINGTALK_CHATBOT_SECURITY_TIP: 'Please enter a secret or keywords.',
   ENTER_KEYWORD_DESC: 'Please enter a keyword.',

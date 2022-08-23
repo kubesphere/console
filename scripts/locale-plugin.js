@@ -18,6 +18,7 @@
 
 const fs = require('fs')
 const path = require('path')
+const chalk = require('chalk')
 const RawSource = require('webpack-sources/lib/RawSource')
 const langArr = fs.readdirSync(`./locales/`)
 
@@ -50,9 +51,12 @@ class LocalePlugin {
 
         compilation.updateAsset(asset.name, new RawSource(content))
       })
+
       langArr.forEach(lang => {
         only(lang)
       })
+
+      isExistFilesInEN()
     })
   }
 }
@@ -66,16 +70,34 @@ function only(lang) {
   const files = read(lang)
 
   const allKeyArr = []
+
   files.forEach(file => {
     if (file === 'index.js') {
       return
     }
+
     const fileObj = require(`../locales/${lang}/${file}`)
+
     Object.keys(fileObj).forEach(key => {
       if (allKeyArr.indexOf(key) > -1) {
         console.log(lang, '语言环境下重复UI词条为:', key)
       } else {
         allKeyArr.push(key)
+      }
+    })
+  })
+}
+
+const isExistFilesInEN = () => {
+  const enFiles = read('en')
+
+  langArr.forEach(lang => {
+    const files = read(lang)
+    files.forEach(file => {
+      const isExist = enFiles.indexOf(file)
+
+      if (isExist < 0) {
+        console.log(chalk`{red.bold.italic [${lang}]} {yellowBright 文件夹中未与 en 同步的文件为:} {yellowBright.bold.underline ${file}}`)
       }
     })
   })

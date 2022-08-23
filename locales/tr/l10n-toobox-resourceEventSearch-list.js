@@ -20,7 +20,6 @@ module.exports = {
   TOTAL_EVENTS_TODAY: 'Bugün toplam <span class={className}> {events} </span> kaynak etkinliği toplandı.',
   NO_RESOURCE_EVENTS_TODAY: 'Bugün Toplanan Kaynak Etkinliği Yok',
   // Search
-  EVENT_NOT_ENABLED_DESC: 'Bileşen etkin değil. <a href="{docUrl}/pluggable-components/events/" target="_blank">Daha Fazla Bilgi Edinin</a>',
   // Querying Rules
   RESOURCE_EVENT_TRENDS_12H: '12 saat içinde kaynak olay eğilimleri',
   RESOURCE_EVENT_WORKSPACE_TIP: 'Kapsayıcı günlüklerini aramak için bir çalışma alanı adı girin.',

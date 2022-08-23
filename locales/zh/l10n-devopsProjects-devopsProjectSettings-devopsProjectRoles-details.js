@@ -18,7 +18,7 @@
 module.exports = {
   // Title
   // Description
-  // Details
+  // Attributes
   // Permissions
   NO_PERMISSION: '没有找到权限'
 };

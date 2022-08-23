@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   // More > Edit YAML
   // More > Edit Routing Rules
   SERVICE_VALUE: '服務：{value}',

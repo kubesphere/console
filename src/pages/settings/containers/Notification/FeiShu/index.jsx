@@ -323,7 +323,7 @@ export default class Feishu extends Component {
       )
     }
     await this.fetchData()
-    Notify.success({ content: '操作成功', duration: 1000 })
+    Notify.success({ content: t('UPDATE_SUCCESSFUL'), duration: 1000 })
   }
 
   onFormClose = () => {

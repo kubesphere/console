@@ -21,7 +21,7 @@ module.exports = {
   CHANGE_PASSWORD: '修改密码',
   NEW_PASSWORD: '新的密码',
   // More > Delete
-  // Details
+  // Attributes
   // Login History
   TIME: '时间',
   SOURCE_IP_ADDRESS: '源 IP 地址',

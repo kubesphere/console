@@ -39,6 +39,10 @@ const AgentType = [
   { label: 'none', value: 'none' },
 ]
 
+const stepNameMapper = {
+  sh: 'shell',
+}
+
 @observer
 export default class StepsEditor extends React.Component {
   static defaultProps = {
@@ -279,7 +283,7 @@ export default class StepsEditor extends React.Component {
   @action
   handleEdit = (zIndex, index, step, type) => () => {
     this.props.store.setEdittingData({
-      type: step.name,
+      type: stepNameMapper[step.name] || step.name.toLowerCase(),
       data: step.arguments,
     })
 

@@ -110,6 +110,22 @@ export default class CDList extends React.Component {
         },
       },
       {
+        key: 'settings',
+        icon: 'pen',
+        text: t('EDIT_SETTINGS'),
+        action: 'edit',
+        onClick: item => {
+          trigger('cd.edit', {
+            detail: { ...item, cluster: this.cluster },
+            store: this.props.store,
+            devops: this.devops,
+            module: 'cds',
+            cluster: this.cluster,
+            success: routing.query,
+          })
+        },
+      },
+      {
         key: 'yaml',
         icon: 'pen',
         text: t('EDIT_YAML'),

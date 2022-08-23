@@ -30,10 +30,11 @@ import {
 
 import { get } from 'lodash'
 
+import { Base64 } from 'js-base64'
 import styles from './index.scss'
 
 function encrypt(salt, str) {
-  return mix(salt, window.btoa(str))
+  return mix(salt, Base64.encode(str))
 }
 
 function mix(salt, str) {
@@ -49,8 +50,7 @@ function mix(salt, str) {
     prefix.push(sum % 2 === 0 ? '0' : '1')
     ret.push(String.fromCharCode(Math.floor(sum / 2)))
   }
-
-  return `${window.btoa(prefix.join(''))}@${ret.join('')}`
+  return `${Base64.encode(prefix.join(''))}@${ret.join('')}`
 }
 
 @inject('rootStore')

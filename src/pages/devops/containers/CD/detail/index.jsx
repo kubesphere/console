@@ -113,6 +113,22 @@ export default class CDDetail extends React.Component {
       },
     },
     {
+      key: 'editSettings',
+      icon: 'pen',
+      text: t('EDIT_SETTINGS'),
+      action: 'edit',
+      onClick: () => {
+        this.trigger('cd.edit', {
+          detail: { ...this.store.detail, cluster: this.cluster },
+          store: this.store,
+          devops: this.devops,
+          module: 'cds',
+          cluster: this.cluster,
+          success: this.fetchData,
+        })
+      },
+    },
+    {
       key: 'editYaml',
       icon: 'pen',
       text: t('EDIT_YAML'),

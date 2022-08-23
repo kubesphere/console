@@ -70,9 +70,7 @@ export default class Pagination extends Component {
                   className={classNames(styles.pageSizeMenuitem)}
                   key={item}
                 >
-                  <span>
-                    {item} {t('TABLE_UNIT')}
-                  </span>
+                  <span>{item}</span>
                 </Menu.MenuItem>
               ))}
             </Menu>
@@ -80,7 +78,7 @@ export default class Pagination extends Component {
         >
           <div className={styles.pagesize}>
             <span className={styles.text}>
-              {pagesize} {t('TABLE_UNIT')}
+              {t('SHOW_NUM', { num: pagesize })}
             </span>
             <Icon name="caret-down" size={16} />
           </div>
@@ -124,9 +122,7 @@ export default class Pagination extends Component {
       }
       return (
         <Menu
-          className={classNames(styles.menu, {
-            [styles.scrollY]: this.totalPage > 5,
-          })}
+          className={classNames(styles.menu)}
           onClick={this.handlePageMenuClick}
         >
           {items}

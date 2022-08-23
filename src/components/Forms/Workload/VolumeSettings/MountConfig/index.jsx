@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, keyBy, isEmpty } from 'lodash'
+import { get, set, keyBy, isEmpty, isUndefined, uniq } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -62,6 +62,7 @@ export default class MountConfig extends React.Component {
     super(props)
 
     this.formRef = React.createRef()
+    this.specificKeyRef = React.createRef()
 
     if (!isEmpty(props.volume)) {
       const data = props.volume.configMap || props.volume.secret || {}
@@ -285,9 +286,17 @@ export default class MountConfig extends React.Component {
   }
 
   relativePathValidator = (rule, value, callback) => {
+    this.validateSpecificKey(value, callback)
+
     if (!value) {
       return callback()
     }
+
+    const pathHasEmpty = value.some(item => item.path === '')
+    if (pathHasEmpty) {
+      return callback({ message: t('MOUNT_PATH_EMPTY') })
+    }
+
     const absPath = value.some(item => /^\//.test(item.path))
     if (absPath) {
       return callback({ message: t('PLEASE_USE_RELATIVE_PATH') })
@@ -304,7 +313,25 @@ export default class MountConfig extends React.Component {
     if (pathIncorrect) {
       return callback({ message: t('MOUNT_PATH_INCORRECT') })
     }
+
+    this.checkMountPathRepeat(value, callback)
+
     return callback()
+  }
+
+  validateSpecificKey(value, callback) {
+    const { isCheck } = this.specificKeyRef.current.state
+
+    if (isCheck && isUndefined(value)) {
+      callback({ message: t('MOUNT_PATH_NOT_SPECIFY') })
+    }
+  }
+
+  checkMountPathRepeat(value, callback) {
+    const mountPath = value.map(item => item.path)
+    if (uniq(mountPath).length !== value.length) {
+      callback({ message: t('MOUNT_PATH_REPEAT') })
+    }
   }
 
   renderContent() {
@@ -344,6 +371,7 @@ export default class MountConfig extends React.Component {
         <Form.Group
           label={t('SELECT_SPECIFIC_KEYS')}
           desc={t('SELECT_SPECIFIC_KEYS_DESC')}
+          ref={this.specificKeyRef}
           checkable
           keepDataWhenUncheck
         >

@@ -20,8 +20,8 @@ module.exports = {
   TOTAL_AUDITING_TODAY: '今日總共收錄了 <span class={className}> {auditing} </span> 條操作審計',
   NO_AUDIT_LOG_TODAY: '今日沒有收錄的操作審計',
   // Search
-  NO_AVAILABLE_CLUSTER: '暫時沒有可用集群',
-  AUDITING_NOT_ENABLED_DESC: '暫無啟用審計模組的集群',
+  NO_DATA_AUTHORIZED: 'No Data Authorized',
+  NO_DATA_AUTHORIZED_DESC: 'Please contact an administrator to obtain data authorization.',
   TIME_RANGE_LAST: 'Time range: last {value}',
   TIME_RANGE_RANGE: 'Time range: {startTime} - {endTime}',
   // Querying Rules

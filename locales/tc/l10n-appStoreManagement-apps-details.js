@@ -24,7 +24,7 @@ module.exports = {
   // Release
   RELEASE: 'Release',
   ACTIVATE_SUCCESSFUL: '上架成功。',
-  // Details
+  // Attributes
   APP_ID: '應用編號',
   CATEGORY: '類别',
   TYPE: '類型',

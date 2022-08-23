@@ -16,17 +16,18 @@
 .cluster,
 .clusterLoading {
   width: 326px;
-  height: 108px;
+  min-height: 108px;
   @include cluster-base();
   background-image: url('/assets/cluster-card-bg.svg');
 }
 
 .scheduleCluster {
   max-width: 298px;
-  height: 160px;
+  min-height: 160px;
   padding: 12px;
   flex: 1;
   @include cluster-base();
+  background-size: auto 100%;
   background-image: url('/assets/federate-cluster-card-bg.svg');
 }
 
@@ -69,11 +70,9 @@
   margin-right: 8px;
   @include TypographySymbolText(#fff);
 
-  span {
-    &:first-of-type {
-      @include TypographyTitleH2(#fff);
-      line-height: 40px;
-    }
+  .readyNum {
+    @include TypographyTitleH2(#fff);
+    line-height: 40px;
   }
 }
 

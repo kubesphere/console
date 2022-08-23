@@ -28,6 +28,7 @@ module.exports = {
   ADMINISTRATOR: 'Administrator',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'حدد المجموعات التي سيتم استخدامها في مساحة العمل.',
+  NO_CLUSTER_AVAILABLE: 'No Cluster Available',
   NO_CLUSTER_AVAILABLE_DESC: 'لا توجد مجموعة متاحة. بعد إنشاء مساحة العمل، يرجى الاتصال بالمنصة أو مدير المجموعة لتفويض مجموعة إلى مساحة العمل.',
   WORKSPACE_NO_CLUSTER_TIP: 'الرجاء الاتصال بمسؤول المنصة أو المجموعة لتفويض مجموعة إلى مساحة العمل.',
   AVAILABLE_CLUSTERS: 'المجموعات المتاحة',

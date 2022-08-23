@@ -29,7 +29,7 @@ module.exports = {
   // More > Re-Create
   RECREATE: 'Re-create',
   RECREATE_SUCCESS_DESC: 'Re-created successfully.',
-  // Details
+  // Attributes
   // Resource Status
   // Revision Records
   // Metadata

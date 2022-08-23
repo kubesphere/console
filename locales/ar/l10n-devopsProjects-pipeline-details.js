@@ -18,7 +18,7 @@
 module.exports = {
   // Edit Information
   CODE_REPOSITORY: 'Code Repository',
-  // Details
+  // Attributes
   TASK_STATUS: 'Task Status',
   NOT_RUNNING: 'Not running',
   QUEUED: 'Queued',
@@ -48,6 +48,7 @@ module.exports = {
   NO_PIPELINE_CONFIG_FILE_TIP: 'No pipeline configuration file is found.',
   // Task Status > Edit Pipeline
   EDIT_PIPELINE: 'Edit Pipeline',
+  JENKINS_UNAVAILABLE: 'Jenkins is unready.',
   AGENT_TYPE_DESC: `The agent section specifies
     where the entire Pipeline or a particular stage will be executed in the Jenkins environment,
     depending on where the Agent part is placed.
@@ -163,5 +164,6 @@ module.exports = {
   LINE_VALUE: 'Line: {value}',
   PASSED: 'Passed',
   // Pull Requests
-  PULL_REQUEST_PL: 'Pull Requests'
+  PULL_REQUEST_PL: 'Pull Requests',
+  FAILED_CHECK_SCRIPT_COMPILE: 'The check of script compile failed, if you want to bypass the step, please click the continue button'
 };

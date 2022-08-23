@@ -38,9 +38,10 @@ const { client: clientConfig } = getServerConfig()
 const renderView = async ctx => {
   try {
     const clusterRole = await getClusterRole(ctx)
-    const [user, ksConfig, runtime, supportGpuType] = await Promise.all([
-      getCurrentUser(ctx, clusterRole),
-      getKSConfig(),
+    const ksConfig = await getKSConfig()
+
+    const [user, runtime, supportGpuType] = await Promise.all([
+      getCurrentUser(ctx, clusterRole, ksConfig.multicluster),
       getK8sRuntime(ctx),
       getSupportGpuList(ctx),
     ])

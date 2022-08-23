@@ -26,8 +26,6 @@ import BaseStore from '../devops'
 
 import PipelineStore from './pipelines'
 
-const TABLE_LIMIT = 10
-
 export default class PipelineRunStore extends BaseStore {
   constructor() {
     super()
@@ -105,7 +103,7 @@ export default class PipelineRunStore extends BaseStore {
   }) {
     name = decodeURIComponent(name)
 
-    const { page } = filters
+    const { page, limit = 10 } = filters
 
     if (!this.runDetail.id) {
       await this.getRunDetail({ devops, cluster, runName })
@@ -122,8 +120,8 @@ export default class PipelineRunStore extends BaseStore {
         runId: this.runDetail.id,
       })}`,
       {
-        start: (page - 1) * TABLE_LIMIT || 0,
-        limit: TABLE_LIMIT,
+        start: (page - 1) * limit || 0,
+        limit,
       }
     )
     let data = []
@@ -151,7 +149,7 @@ export default class PipelineRunStore extends BaseStore {
 
     this.commitsList = {
       data,
-      limit: TABLE_LIMIT,
+      limit,
       total: data.length,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
@@ -171,7 +169,7 @@ export default class PipelineRunStore extends BaseStore {
     ...filters
   }) {
     name = decodeURIComponent(name)
-    const { page } = filters
+    const { page, limit = 10 } = filters
 
     if (!this.runDetail.id) {
       await this.getRunDetail({ devops, cluster, runName })
@@ -187,8 +185,8 @@ export default class PipelineRunStore extends BaseStore {
         runId: this.runDetail.id,
       })}artifacts/`,
       {
-        start: (page - 1) * TABLE_LIMIT || 0,
-        limit: TABLE_LIMIT,
+        start: (page - 1) * limit || 0,
+        limit,
       }
     )
 
@@ -197,7 +195,7 @@ export default class PipelineRunStore extends BaseStore {
       pipeline: name,
       pipelineRun: runName,
       total: result.length,
-      limit: TABLE_LIMIT,
+      limit,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
       isLoading: false,

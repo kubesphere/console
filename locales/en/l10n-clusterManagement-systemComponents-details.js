@@ -17,6 +17,6 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   // Service Details
 }

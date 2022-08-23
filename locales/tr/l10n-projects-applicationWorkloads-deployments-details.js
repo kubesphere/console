@@ -48,7 +48,7 @@ module.exports = {
   // More > Edit Settings > Volumes > Mount Configmap or Secret
   // More > Edit Settings > Pod Scheduling Rules
   RULE_NOT_COMPLETE: 'Lütfen eksiksiz bir kural belirleyin.',
-  // Details
+  // Attributes
   // Revision Records
   REVISION_RECORDS: 'Revizyon Kayıtları',
   CONFIG_FILE: 'Yapılandırma Dosyası',

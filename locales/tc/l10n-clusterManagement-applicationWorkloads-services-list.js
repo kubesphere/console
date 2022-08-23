@@ -56,6 +56,7 @@ module.exports = {
   // List > Create > Service Settings > Workload Selector > View Details
   TOTAL_WORKLOADS_VALUE: '工作負載總數：{count}',
   // List > Create > Advanced Settings
+  OPENELB_NOT_READY: 'OpenELB is not installed. Please install OpenELB.',
   SESSION_PERSISTENCE: 'Session Persistence',
   MAXIMUM_STICKINESS_DURATION: '最大會話保持時間（s）',
   SESSION_PERSISTENCE_DESC: 'Set the system to forward all requests from the same client to the same pod within a specified duration.',

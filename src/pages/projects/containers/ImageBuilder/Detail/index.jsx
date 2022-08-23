@@ -187,7 +187,7 @@ export default class ImageBuilderDetail extends React.Component {
         value: get(spec, 'config.builderPullPolicy', '-'),
       },
       {
-        name: t('SOURCE_URL'),
+        name: t('CODE_REPOSITORY_URL'),
         value: isBinaryURL ? (
           <a href={downLoadUrl} download>
             {binaryName}

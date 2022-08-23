@@ -22,9 +22,9 @@ module.exports = {
   TARGET_APP_VERSION: 'Target App Version',
   CURRENT_APP_VERSION: '當前應用版本',
   EDIT_APP_SETTINGS: 'Edit App Settings',
-  // Details
+  // Attributes
   // Resource Status
-  UPDATED_AGO: 'Updated {value}',
+  UPDATED_TIME: 'Updated at {value}',
   // App Template > App Description
   APP_TEMPLATE: 'App Template',
   NO_APP_DESC_FOUND: '該應用沒有說明文件'

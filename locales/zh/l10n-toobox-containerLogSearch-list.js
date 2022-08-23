@@ -19,7 +19,6 @@ module.exports = {
   // Title
   TOTAL_LOGS_TODAY: '今日总共收录了 <span class={className}>{containers}</span> 个容器<br/> <span class={className}> {logs} </span> 条日志信息',
   // Search
-  LOGGING_NOT_ENABLED_DESC: '当前组件尚未启用。<a href="{docUrl}/pluggable-components/logging/" target="_blank">了解更多</a>',
   WORKLOAD: '工作负载',
   TIME_RANGE_SCAP: '时间范围',
   // Querying Rules

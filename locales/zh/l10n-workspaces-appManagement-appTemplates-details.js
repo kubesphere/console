@@ -41,7 +41,7 @@ module.exports = {
   DELETE_APP_TEMPLATE_DESC: '请输入应用模板名称 <b>{resource}</b> 以确认您了解此操作的风险。',
   DELETE_APP_TEMPLATE_VERSIONS_DESC: '请输入应用模板名称 <b>{resource}</b> 以确认您了解此操作的风险。删除应用模板前，您必须先删除该应用模板的所有版本。',
   APP_TEMPLATE_LOW: '应用模板',
-  // Details
+  // Attributes
   // Versions
   APP_STATUS_SUBMITTED: '已提交',
   APP_STATUS_NOT_SUBMITTED: '未提交',
