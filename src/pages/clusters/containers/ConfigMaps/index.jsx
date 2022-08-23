@@ -109,7 +109,6 @@ export default class ConfigMaps extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            to={`${this.props.match.url}/${name}`}
             isMultiCluster={record.isFedManaged}
             to={`/clusters/${cluster}/projects/${record.namespace}/${module}/${name}`}
           />

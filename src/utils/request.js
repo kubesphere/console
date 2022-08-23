@@ -18,7 +18,7 @@
 
 import 'whatwg-fetch'
 import qs from 'qs'
-import { isObject, get, set, merge, isEmpty } from 'lodash'
+import { isObject, get, merge, isEmpty } from 'lodash'
 import { getClusterUrl, safeParseJSON } from './index'
 
 const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
@@ -87,13 +87,6 @@ function buildRequest({
   } else if (isForm) {
     request.body = qs.stringify(params)
   } else {
-    if (method === 'POST' && params.metadata) {
-      set(
-        params,
-        'metadata.annotations["kubesphere.io/creator"]',
-        globals.user.username
-      )
-    }
     request.body = JSON.stringify(params)
   }
 
