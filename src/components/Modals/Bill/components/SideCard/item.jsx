@@ -177,7 +177,13 @@ export default function Card({
         <div className={styles.desc}>
           <Text
             title={name}
-            description={t(`${desc.toUpperCase().replace(/\s+/g, '_')}_SCAP`)}
+            description={
+              desc
+                ? t(`${desc.toUpperCase().replace(/\s+/g, '_')}_SCAP`)
+                : type === 'cluster' && !desc
+                ? t('CLUSTER_SCAP')
+                : ''
+            }
           />
         </div>
         {renderCluster(name)}
