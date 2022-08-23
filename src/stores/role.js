@@ -27,6 +27,8 @@ import List from 'stores/base.list'
 export default class RoleStore extends Base {
   roleTemplates = new List()
 
+  roleTemplatesDetail = new List()
+
   getPath({ cluster, workspace, namespace, devops }) {
     let path = ''
 
@@ -142,6 +144,23 @@ export default class RoleStore extends Base {
     )
 
     this.roleTemplates.update({
+      data: get(result, 'items', []).map(this.mapper),
+      total: result.totalItems || result.total_count || 0,
+      isLoading: false,
+    })
+  }
+
+  @action
+  async fetchRoleTemplatesToDetail(params) {
+    this.roleTemplatesDetail.isLoading = true
+
+    const result = await request.get(
+      `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${
+        this.module
+      }?labelSelector=iam.kubesphere.io/role-template`
+    )
+
+    this.roleTemplatesDetail.update({
       data: get(result, 'items', []).map(this.mapper),
       total: result.totalItems || result.total_count || 0,
       isLoading: false,
