@@ -82,7 +82,7 @@
     "build:e2e": "webpack -p --config scripts/webpack.e2e.js --display errors-only",
     "test": "jest",
     "test:e2e": "cypress run",
-    "serve": "NODE_ENV=production node server/server.js",
+    "serve": "cross-env NODE_ENV=production node server/server.js",
     "lint": "eslint src/**/*.jsx src/**/*.js",
     "postinstall": "rimraf node_modules/.cache",
     "prebuild": "rimraf dist",
