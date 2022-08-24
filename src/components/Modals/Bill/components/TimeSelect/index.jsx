@@ -105,56 +105,58 @@ export default class TimeSelect extends React.Component {
     const { step, start, end } = timeRange
 
     return (
-      <ul className={styles.datepicker}>
-        <li>
+      <div className={styles.datepicker}>
+        <div className={styles.datepickerLeft}>
           <div>{t('BILLING_CYCLE')}</div>
-        </li>
-        <li>
-          <DatePicker
-            defaultValue={start}
-            value={start}
-            showClearBtn={false}
-            dateFormat={format}
-            minDate={this.minDate}
-            maxDate={this.maxDate}
-            onClose={this.getTimeRange({
-              type: 'start',
-              methord: 'close',
-            })}
-            onChange={this.handleTimeRangeChange('start')}
-          />
-          <p>{t('START_TIME')}</p>
-        </li>
-        <li>
-          <DatePicker
-            defaultValue={end}
-            value={end}
-            showClearBtn={false}
-            dateFormat={format}
-            minDate={this.minDate}
-            maxDate={this.endMaxDate}
-            onClose={this.getTimeRange({
-              type: 'end',
-              methord: 'close',
-            })}
-            onChange={this.handleTimeRangeChange('end')}
-          />
-          <p>{t('END_TIME')}</p>
-        </li>
-        <li>
+        </div>
+        <div className={styles.datepickerRight}>
           <div>
-            <Select
-              value={step}
-              options={getTimeOptions(TimeOps)}
-              onChange={this.handleStepChange({
-                type: 'step',
+            <DatePicker
+              defaultValue={start}
+              value={start}
+              showClearBtn={false}
+              dateFormat={format}
+              minDate={this.minDate}
+              maxDate={this.maxDate}
+              onClose={this.getTimeRange({
+                type: 'start',
                 methord: 'close',
               })}
+              onChange={this.handleTimeRangeChange('start')}
             />
+            <p>{t('START_TIME')}</p>
           </div>
-          <p>{t('SAMPLING_INTERVAL')}</p>
-        </li>
-      </ul>
+          <div>
+            <DatePicker
+              defaultValue={end}
+              value={end}
+              showClearBtn={false}
+              dateFormat={format}
+              minDate={this.minDate}
+              maxDate={this.endMaxDate}
+              onClose={this.getTimeRange({
+                type: 'end',
+                methord: 'close',
+              })}
+              onChange={this.handleTimeRangeChange('end')}
+            />
+            <p>{t('END_TIME')}</p>
+          </div>
+          <div>
+            <div>
+              <Select
+                value={step}
+                options={getTimeOptions(TimeOps)}
+                onChange={this.handleStepChange({
+                  type: 'step',
+                  methord: 'close',
+                })}
+              />
+            </div>
+            <p>{t('SAMPLING_INTERVAL')}</p>
+          </div>
+        </div>
+      </div>
     )
   }
 }
