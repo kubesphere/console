@@ -238,7 +238,11 @@ class VolumeSettings extends React.Component {
         container.volumeMounts = container.volumeMounts || []
 
         if (existVolume) {
-          const newVolumeMount = { name: existVolume.name, ...rest }
+          const newVolumeMount = {
+            name: existVolume.name,
+            mountPath,
+            ...rest,
+          }
 
           const volumeMount = container.volumeMounts.find(
             item =>
