@@ -16,7 +16,7 @@ The following will show you how to build console from source code.
 
 ### Prerequisite
 #### Node.js
-Console is written using Javascript. If you don't have a Node.js development environment, please [set it up](https://nodejs.org/en/download/). The minimum version required is 12.18.
+Console is written using Javascript. If you don't have a Node.js development environment, please [set it up](https://nodejs.org/en/download/). The minimum version required is 12.18.3 but lower than 14.
 
 #### Yarn
 We use [Yarn](https://yarnpkg.com/) to do package management. If you don't have yarn, use the following to install:
