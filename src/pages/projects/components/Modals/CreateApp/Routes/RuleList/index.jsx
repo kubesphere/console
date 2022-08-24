@@ -38,12 +38,8 @@ export default class RuleList extends React.Component {
     onDelete() {},
   }
 
-  handleAdd = () => {
-    this.props.onAdd()
-  }
-
   renderContent() {
-    const { data, onAdd, onDelete, projectDetail } = this.props
+    const { data, onEdit, onDelete, onAdd, projectDetail } = this.props
 
     const rules = get(data, 'spec.rules', [])
     const tls = get(data, 'spec.tls', [])
@@ -58,12 +54,12 @@ export default class RuleList extends React.Component {
               rule={rule}
               tls={tls}
               index={index}
-              onEdit={onAdd}
+              onEdit={onEdit}
               onDelete={onDelete}
               projectDetail={projectDetail}
             />
           ))}
-        <div className={styles.add} onClick={this.handleAdd}>
+        <div className={styles.add} onClick={onAdd}>
           <Text
             title={t('ADD_ROUTING_RULE')}
             description={t('ADD_ROUTING_RULE_DESC')}
