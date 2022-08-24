@@ -229,7 +229,7 @@ class VolumeSettings extends React.Component {
       existVolume = volumes.find(item => item.name === volumeName)
     }
 
-    newVolumeMounts.forEach(({ containerName, mountPath, ...rest }) => {
+    newVolumeMounts.forEach(({ containerName, ...rest }) => {
       const container = mergedContainers.find(
         item => item.name === containerName
       )
@@ -237,33 +237,26 @@ class VolumeSettings extends React.Component {
       if (container) {
         container.volumeMounts = container.volumeMounts || []
 
-        if (existVolume) {
-          const newVolumeMount = {
-            name: existVolume.name,
-            mountPath,
-            ...rest,
-          }
-
-          const volumeMount = container.volumeMounts.find(
-            item =>
-              item.name === existVolume.name && item.mountPath === mountPath
-          )
-
-          if (volumeMount) {
-            container.volumeMounts = container.volumeMounts.map(item =>
-              item.name === existVolume.name && item.mountPath === mountPath
-                ? newVolumeMount
-                : item
-            )
-          } else {
-            container.volumeMounts.push(newVolumeMount)
-          }
-        }
-
         if (omitEditVolume) {
           container.volumeMounts = container.volumeMounts.filter(
             item => item.name !== omitEditVolume.name
           )
+        }
+
+        if (existVolume) {
+          const newVolumeMount = { name: existVolume.name, ...rest }
+
+          const volumeMount = container.volumeMounts.find(
+            item => item.name === existVolume.name
+          )
+
+          if (volumeMount) {
+            container.volumeMounts = container.volumeMounts.map(item =>
+              item.name === existVolume.name ? newVolumeMount : item
+            )
+          } else {
+            container.volumeMounts.push(newVolumeMount)
+          }
         }
 
         container.volumeMounts = container.volumeMounts
