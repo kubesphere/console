@@ -229,7 +229,7 @@ class VolumeSettings extends React.Component {
       existVolume = volumes.find(item => item.name === volumeName)
     }
 
-    newVolumeMounts.forEach(({ containerName, ...rest }) => {
+    newVolumeMounts.forEach(({ containerName, volume, ...rest }) => {
       const container = mergedContainers.find(
         item => item.name === containerName
       )
