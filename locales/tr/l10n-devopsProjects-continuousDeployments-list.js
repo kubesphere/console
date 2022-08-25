@@ -40,6 +40,7 @@ module.exports = {
   SELF_HEAL: 'Kendini iyileştirme',
   MANIFEST_FILE_PATH: 'Manifest Dosya Yolu',
   MANIFEST_FILE_PATH_DESC: 'Kaynak dosya yolunu ayarlayın. ',
+  DIRECTORY_RECURSE: 'Directory recurse',
   REPO_EMPTY_DESC: 'Lütfen yeni bir depo yakalayıcısı seçin.',
   // List > Delete
   CONTINUOUS_DEPLOYMENT: 'Sürekli Dağıtım',
