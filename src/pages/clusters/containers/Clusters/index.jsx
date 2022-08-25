@@ -131,7 +131,7 @@ class Clusters extends React.Component {
         key: 'data',
         icon: 'data',
         text: t('UPDATE_KUBECONFIG'),
-        show: !item.isHost,
+        show: !item.isHost && item.connectionType !== 'proxy',
         onClick: record => {
           this.trigger('cluster.updateKubeConfig', {
             detail: record,
