@@ -25,7 +25,6 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Container Settings
   INVALID_IMAGE: '镜像无效。',
   INVALID_NAME_DESC: '名称无效。名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
-  DUPLICATE_CONTAINER_NAME_DESC: 'The name already exists. Container names must be unique, and multiple containers cannot have the same name.',
   NO_IMAGE_FOUND: '没有找到镜像',
   CONTAINER_EMPTY_DESC: '请添加至少一个工作容器。',
   QUOTA_UNSET_TIP: '资源占用未设置。',
