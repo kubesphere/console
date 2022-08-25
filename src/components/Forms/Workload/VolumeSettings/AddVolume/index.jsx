@@ -230,7 +230,7 @@ export default class AddVolume extends React.Component {
       }
     }
 
-    if (volumeMounts.length > 0) {
+    if (volume.name && volumeMounts.length > 0) {
       volume.volumeMounts.forEach(item => set(item, 'name', volume.name))
     }
 
