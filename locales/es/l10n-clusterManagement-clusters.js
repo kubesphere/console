@@ -23,16 +23,17 @@ module.exports = {
   TAG: 'Etiqueta',
   CLUSTER_TAG_DESC: 'Select a tag to identify the purpose of the cluster.',
   CLUSTER_PROVIDER_DESC: 'Select the provider of the cluster infrastructure.',
-  // Add Cluster > Cluster Settings
+  // Add Cluster > Connection Settings
+  CONNECTION_SETTINGS: 'Connection Settings',
   CLUSTER_CONNECT_METHOD_DESC: 'Conéctese directamente al clúster o use un agente',
   CONNTECT_DIRECT: 'Conexión directa al clúster de Kubernetes',
   CONNTECT_PROXY: 'Agente de conexión de clúster',
-  INPUT_KUBECONFIG: 'Complete el KubeConfig del clúster de destino',
+  INPUT_KUBECONFIG: 'Member Cluster kubeconfig',
   CLUSTER_DIRECT_IMPORT_TIP: 'La interfaz de control de múltiples clústeres de KubeSphere se conecta a los clústeres importados a través del kubeconfig proporcionado. Para este método, el clúster actual debe poder acceder directamente a los clústeres que se importarán a través de la dirección del servidor en kubeconfig. </br></br> Este método generalmente se aplica a las siguientes condiciones: </br> 1. El clúster actual y los clústeres que se importarán están en la misma red interna. </br> 2. La red tanto del clúster actual como de los clústeres que se importarán está conectada a través de VPN u otras tecnologías (por ejemplo, Túneles). </br> 3. Se puedes acceder a la dirección del servidor en kubeconfig a través de la red pública.',
   CLUSTER_AGENT_IMPORT_TIP: 'La interfaz de control de KubeSphere se conecta a los clústeres que se importarán a través de un proxy. La interfaz de control ejecuta un servicio de proxy público, que está conectado a un componente de cliente creado por clústeres para importar. Por lo tanto, se crea un proxy de reserva. Para este método, la interfaz de control y los clústeres que se van a importar no necesitan estar en la misma red. La dirección de apiserver de los clústeres a importar tampoco necesita exponerse. Sin embargo, el rendimiento de la red puedes verse afectado. </br></br> Este método generalmente se aplica a las siguientes condiciones: </br> 1. El clúster actual y los clústeres que se importarán no están en la misma red. <br/> 2. La red tanto del clúster actual como de los clústeres que se van a importar no se puedes conectar a través de VPN u otras tecnologías (por ejemplo, Túneles). <br/> 3. Se pueden aceptar deficiencias de rendimiento de la red dentro de los clústeres.',
   CLUSTER_AGENT_TITLE: 'Agregue el clúster en función del agente proporcionado en el clúster.',
   CLUSTER_AGENT_DESC: 'Se debe establecer un agente correspondiente en el clúster.',
-  HOW_TO_GET_KUBECONFIG: '¿Cómo obtener KubeConfig?',
+  HOW_TO_GET_KUBECONFIG: 'How do I obtain kubeconfig?',
   // List
   HOST_CLUSTER_TCAP: 'Host Cluster',
   HOST_CLUSTER_PL_TCAP: 'Host Clusters',
