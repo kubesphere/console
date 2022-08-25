@@ -205,6 +205,7 @@ export default class ContaineForm extends React.Component {
         <Form ref={this.formRef} data={formData}>
           <ContainerSetting
             data={formData}
+            cluster={cluster}
             namespace={namespace}
             limitRange={limitRange}
             imageRegistries={imageRegistries}
