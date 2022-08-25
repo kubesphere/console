@@ -40,6 +40,7 @@ module.exports = {
   SELF_HEAL: 'Self-heal',
   MANIFEST_FILE_PATH: 'Manifest File Path',
   MANIFEST_FILE_PATH_DESC: 'Set the manifest file path. ',
+  DIRECTORY_RECURSE: 'Directory recurse',
   REPO_EMPTY_DESC: 'Please select a code repository.',
   // List > Delete
   CONTINUOUS_DEPLOYMENT: 'Continuous Deployment',

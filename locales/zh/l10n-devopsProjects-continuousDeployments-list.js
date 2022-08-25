@@ -40,6 +40,7 @@ module.exports = {
   SELF_HEAL: '自恢复',
   MANIFEST_FILE_PATH: '清单文件路径',
   MANIFEST_FILE_PATH_DESC: '设置清单文件路径。 ',
+  DIRECTORY_RECURSE: 'Directory recurse',
   REPO_EMPTY_DESC: '请选择一个代码仓库。',
   // List > Delete
   CONTINUOUS_DEPLOYMENT: '持续部署',
