@@ -24,7 +24,8 @@ module.exports = {
   TAG: 'Tag',
   CLUSTER_TAG_DESC: 'Select a tag to identify the purpose of the cluster.',
   CLUSTER_PROVIDER_DESC: 'Select the provider of the cluster infrastructure.',
-  // Add Cluster > Cluster Settings
+  // Add Cluster > Connection Settings
+  CONNECTION_SETTINGS: 'Connection Settings',
   CLUSTER_CONNECT_METHOD_DESC: 'Directly connect to the cluster or use an agent.',
   CONNTECT_DIRECT: 'Direct connection',
   CONNTECT_PROXY: 'Agent connection',
