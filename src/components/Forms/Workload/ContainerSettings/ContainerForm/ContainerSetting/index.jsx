@@ -185,7 +185,7 @@ export default class ContainerSetting extends React.Component {
       .map(({ name }) => name)
       .filter(i => i !== this.state.originName)
     if (containerNames.includes(value)) {
-      callback({ message: t('DUPLICATE_CONTAINER_NAME_DESC') })
+      callback({ message: t('NAME_EXIST_DESC') })
     }
     callback()
   }
