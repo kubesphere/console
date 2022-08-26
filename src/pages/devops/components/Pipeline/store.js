@@ -197,7 +197,7 @@ export default class Store extends BaseStore {
       this.jsonData.json.pipeline.stages[lineIndex].parallel.push(this.newStage)
     } else {
       this.jsonData.json.pipeline.stages[lineIndex] = {
-        name: `default-${lineIndex}`,
+        name: generateId(6),
         parallel: [
           this.jsonData.json.pipeline.stages[lineIndex],
           this.newStage,
