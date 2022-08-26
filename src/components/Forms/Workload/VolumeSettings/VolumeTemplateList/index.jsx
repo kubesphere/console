@@ -91,7 +91,7 @@ export default class VolumeList extends React.Component {
     ).map(c => ({ ...c, type: 'worker' }))
     const initContainers = get(
       formData,
-      `${this.prefix}spec.initContainers`,
+      `${this.props.prefix}spec.initContainers`,
       []
     ).map(c => ({ ...c, type: 'init' }))
 
