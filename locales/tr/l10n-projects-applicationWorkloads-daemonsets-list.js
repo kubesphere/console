@@ -29,6 +29,8 @@ module.exports = {
   CONTAINER_ARGUMENT_DESC: 'Başlatma komutunun parametreleri. Birden çok parametreyi ayırmak için virgül kullanın.',
   CONTAINER_ENVIRONMENT_DESC: 'Kapsayıcıya ortam değişkenleri ekleyin.',
   PROBE_COMMAND_DESC: 'Birden çok komutu ayırmak için virgül kullanın.',
+  DAEMONSETS_LOW: 'daemonsets',
+  DAEMONSETS_PL: 'daemonsets',
   // List > Create > Pod Settings > Add Container
   IGNORE_CERT_WARN_DESC: 'Sertifika doğrulamasının dikkate alınmaması, parolanın açığa çıkmasına neden olabilir.',
   CERT_ERROR: 'Sertifika hatası.'

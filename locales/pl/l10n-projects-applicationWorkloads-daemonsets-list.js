@@ -29,6 +29,8 @@ module.exports = {
   CONTAINER_ARGUMENT_DESC: 'Parameters of the startup command. Use commas to separate multiple parameters.',
   CONTAINER_ENVIRONMENT_DESC: 'Add environment variables to the container.',
   PROBE_COMMAND_DESC: 'Use commas to separate multiple commands.',
+  DAEMONSETS_LOW: 'daemonsets',
+  DAEMONSETS_PL: 'daemonsets',
   // List > Create > Pod Settings > Add Container
   IGNORE_CERT_WARN_DESC: 'Ignoring certificate verification may cause password disclosure.',
   CERT_ERROR: 'Certificate error.'
