@@ -23,8 +23,6 @@ import { safeParseJSON } from 'utils'
 import cookie from 'utils/cookie'
 import BaseStore from '../devops'
 
-const TABLE_LIMIT = 10
-
 const FORM_HEAR = {
   headers: {
     'content-type': 'application/x-www-form-urlencoded',
@@ -154,7 +152,7 @@ export default class PipelineStore extends BaseStore {
       url,
       {
         page: page || 1,
-        limit: 10,
+        limit: limit || 10,
         name: nameKey,
         filter: filter || undefined,
       },
@@ -255,7 +253,7 @@ export default class PipelineStore extends BaseStore {
   async getPullRequest({ name, devops, workspace, cluster, ...filters }) {
     const decodeName = decodeURIComponent(name)
 
-    const { page } = filters
+    const { page, limit = 10 } = filters
 
     if (isEmpty(this.detail)) {
       await this.fetchDetail({ name: decodeName, devops })
@@ -269,7 +267,7 @@ export default class PipelineStore extends BaseStore {
       {
         filter: 'pull-requests',
         page: page || 1,
-        limit: TABLE_LIMIT,
+        limit,
       }
     )
 
@@ -281,7 +279,7 @@ export default class PipelineStore extends BaseStore {
     this.pullRequestList = {
       data: result.items || [],
       total: result.totalItems || 0,
-      limit: TABLE_LIMIT,
+      limit,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
       isLoading: false,
@@ -293,7 +291,7 @@ export default class PipelineStore extends BaseStore {
   async getBranches({ cluster, devops, name, branch, ...filters }) {
     const decodeName = decodeURIComponent(name)
 
-    const { page } = filters
+    const { page, limit = 10 } = filters
     if (isEmpty(this.detail)) {
       await this.fetchDetail({ cluster, name: decodeName, devops })
     }
@@ -306,14 +304,14 @@ export default class PipelineStore extends BaseStore {
       {
         filter: 'origin',
         page: page || 1,
-        limit: TABLE_LIMIT,
+        limit,
         branch: encodeURIComponent(branch),
       }
     )
 
     this.branchList = {
       data: result.items || [],
-      limit: TABLE_LIMIT,
+      limit,
       total: result.totalItems || 0,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
@@ -333,8 +331,7 @@ export default class PipelineStore extends BaseStore {
   }) {
     name = decodeURIComponent(name)
 
-    const { page } = filters
-    const { limit = 10 } = this.activityList
+    const { page, limit = 10 } = filters
 
     if (isEmpty(this.detail)) {
       await this.fetchDetail({ cluster, name, devops })
@@ -576,14 +573,14 @@ export default class PipelineStore extends BaseStore {
   }
 
   async getBranchLists({ devops, name, workspace, cluster, ...filters }) {
-    const { page } = filters
+    const { page, limit = 10 } = filters
 
     return await request.get(
       `${this.getPipelineUrl({ cluster, name, devops })}branches/`,
       {
         filter: 'origin',
-        start: (page - 1) * TABLE_LIMIT || 0,
-        limit: TABLE_LIMIT,
+        start: (page - 1) * limit || 0,
+        limit,
       }
     )
   }
