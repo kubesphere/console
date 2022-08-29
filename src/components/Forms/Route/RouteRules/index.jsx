@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, isEmpty, omit } from 'lodash'
+import { get, set, isEmpty, omit, cloneDeep } from 'lodash'
 import React from 'react'
 import { toJS, computed } from 'mobx'
 import { observer } from 'mobx-react'
@@ -39,7 +39,9 @@ class RouteRules extends React.Component {
       showRule: false,
       selectRuleIndex: -1,
       gateway: {},
+      oldTemplate: {},
       isLoading: false,
+      operation: '',
     }
 
     this.secretStore = new SecretStore()
@@ -95,11 +97,30 @@ class RouteRules extends React.Component {
   }
 
   showRule = index => {
-    this.setState({ showRule: true, selectRuleIndex: index })
+    this.setState({ showRule: true, selectRuleIndex: index, operation: 'add' })
   }
 
-  hideRule = () => {
-    this.setState({ showRule: false, selectRuleIndex: -1 })
+  closeModal = () => {
+    this.setState({ showRule: false, selectRuleIndex: -1, operation: '' })
+  }
+
+  closeEditModal = () => {
+    if (this.state.operation === 'edit') {
+      const { oldTemplate } = this.state
+      set(this.fedFormTemplate, 'spec', oldTemplate.spec)
+      const { isFederated } = this.props
+      isFederated && this.updateOverrides()
+    }
+    this.closeModal()
+  }
+
+  showEdit = index => {
+    this.setState({
+      showRule: true,
+      selectRuleIndex: index,
+      operation: 'edit',
+      oldTemplate: cloneDeep(toJS(this.fedFormTemplate)),
+    })
   }
 
   handleRule = data => {
@@ -121,7 +142,7 @@ class RouteRules extends React.Component {
 
     isFederated && this.updateOverrides()
 
-    this.hideRule()
+    this.closeModal()
   }
 
   getGateway = async () => {
@@ -135,7 +156,7 @@ class RouteRules extends React.Component {
       this.setState({ isLoading: true })
       const dataList = await getProjectGateway()
 
-      const data = dataList[1] || dataList[0]
+      const data = dataList[1] || dataList[0] || {}
 
       if (data.serviceMeshEnable) {
         set(
@@ -162,7 +183,7 @@ class RouteRules extends React.Component {
 
     isFederated && this.updateOverrides()
 
-    this.hideRule()
+    this.closeModal()
   }
 
   updateTLS(formTemplate) {
@@ -242,7 +263,7 @@ class RouteRules extends React.Component {
         projectDetail={projectDetail}
         namespace={namespace}
         onSave={this.handleRule}
-        onCancel={this.hideRule}
+        onCancel={this.closeEditModal}
       />
     )
   }
@@ -263,6 +284,7 @@ class RouteRules extends React.Component {
           <RuleList
             name="spec.rules"
             onShow={this.showRule}
+            onEdit={this.showEdit}
             onDelete={this.handleDelete}
             disabled={noGateway}
             isFederated={isFederated}

@@ -87,6 +87,17 @@ export default class CheckItem extends Component {
 
   render() {
     const { roleTemplates, roleTemplatesMap, data } = this.props
+    const dependencies =
+      data.dependencies.length > 0
+        ? data.dependencies
+            .map(item => {
+              const aliasName = get(roleTemplatesMap, `[${item}].aliasName`)
+              return aliasName
+                ? aliasName.toUpperCase().replace(/[^A-Z]+/g, '_')
+                : undefined
+            })
+            .filter(item => item !== undefined)
+        : []
 
     return (
       <div className={styles.checkItem}>
@@ -107,16 +118,12 @@ export default class CheckItem extends Component {
               .replace(/[^A-Z]+/g, '_')}_DESC`
           )}
         />
-        {data.dependencies.length > 0 && (
+        {dependencies.length > 0 && (
           <div className={styles.extra}>
             {t('DEPENDS_ON')}
-            {data.dependencies.map(item => (
-              <Tag className={styles.tag} type="info" key={item}>
-                {t(
-                  `PERMISSION_${get(roleTemplatesMap, `[${item}].aliasName`)
-                    .toUpperCase()
-                    .replace(/[^A-Z]+/g, '_')}`
-                )}
+            {dependencies.map(aliasName => (
+              <Tag className={styles.tag} type="info" key={aliasName}>
+                {t(`PERMISSION_${aliasName}`)}
               </Tag>
             ))}
           </div>
