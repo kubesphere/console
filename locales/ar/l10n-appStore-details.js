@@ -43,6 +43,7 @@ module.exports = {
   HOMEPAGE_COLON: 'الصفحة الرئيسية:',
   RELEASE_DATE_COLON: 'تاريخ الإصدار:',
   APP_ID_COLON: 'ID التطبيق:',
+  SOURCE_CODE_ADDRESS_COLON: 'Source Code Address:',
   APP_VERSIONS_TITLE: 'الإصدارات (سيتم عرض أحدث 10 إصدارات فقط)',
   MAINTAINER_COLON: 'المشرفين:',
   // App Details > Verions
