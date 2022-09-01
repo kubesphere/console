@@ -323,14 +323,14 @@ export default class MountConfig extends React.Component {
     const { isCheck } = this.specificKeyRef.current.state
 
     if (isCheck && isUndefined(value)) {
-      callback({ message: t('MOUNT_PATH_NOT_SPECIFY') })
+      callback({ message: t('MOUNT_PATH_NOT_SPECIFIED') })
     }
   }
 
   checkMountPathRepeat(value, callback) {
     const mountPath = value.map(item => item.path)
     if (uniq(mountPath).length !== value.length) {
-      callback({ message: t('MOUNT_PATH_REPEAT') })
+      callback({ message: t('MOUNT_PATH_REPEATED') })
     }
   }
 

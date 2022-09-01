@@ -46,7 +46,6 @@ module.exports = {
   'Edit Role': '編輯角色',
   'Federated Projects Management': 'Federated Project Management',
   'Invalid role name': '角色名稱格式不合法',
-  'Invited Successfully': 'Invited successfully.',
   Member: '成員',
   'Network Policies Management': '網路策略管理',
   'Network Policies View': '網路策略查看',

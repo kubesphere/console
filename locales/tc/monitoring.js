@@ -87,8 +87,6 @@ module.exports = {
   // Cluster Status
   DISK_USAGE_SCAP: 'Disk usage',
   // Application Resources
-  SERVICES: 'Services',
-  ROUTES: 'Routes',
   // Custom Monitoring
   CUSTOM_MONITOR_DASHBOARD: 'Custom Monitoring Dashboard',
   CUSTOM_MONITOR_DASHBOARD_CREATE_DESC: 'You can customize application monitoring dashboards based on your needs.'

@@ -87,8 +87,6 @@ module.exports = {
   // Cluster Status
   DISK_USAGE_SCAP: '磁盘用量',
   // Application Resources
-  SERVICES: '服务',
-  ROUTES: '应用路由',
   // Custom Monitoring
   CUSTOM_MONITOR_DASHBOARD: '自定义监控面板',
   CUSTOM_MONITOR_DASHBOARD_CREATE_DESC: '您可以根据需求自定义应用监控面板。'

@@ -49,7 +49,6 @@ module.exports = {
   'Bound Volume': 'Storage volume bound',
   'Used Capacity': 'Used Capacity',
   BACKEND_IDENTIFIER: 'Backend Identifier',
-  VOLUMES: 'Volume',
   'The volume name exists': 'The volume name exists',
   'The volume size must be greater than zero': 'The volume size must be greater than zero',
   'Volume Usage': 'Volume Usage',
