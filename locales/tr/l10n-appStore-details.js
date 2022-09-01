@@ -43,6 +43,7 @@ module.exports = {
   HOMEPAGE_COLON: 'Ana sayfa:',
   RELEASE_DATE_COLON: 'Yayın tarihi:',
   APP_ID_COLON: 'Uygulama Kimliği:',
+  SOURCE_CODE_ADDRESS_COLON: 'Source Code Address:',
   APP_VERSIONS_TITLE: 'Sürümler (yalnızca en son 10 sürüm görüntülenecektir)',
   MAINTAINER_COLON: 'Geliştiriciler:',
   // App Details > Verions
