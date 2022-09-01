@@ -25,7 +25,7 @@ const PATH = '/access/accounts/:name'
 export default [
   {
     path: `${PATH}/login-history`,
-    title: 'Login History',
+    title: 'LOGIN_HISTORY',
     component: LoginHistory,
     exact: true,
   },

@@ -62,7 +62,7 @@ export default class ProbeCard extends React.Component {
       const { path, port, scheme } = probe.httpGet
       probeType = 'HTTP_REQUEST'
       details = [
-        { title: scheme, description: t('Request Type') },
+        { title: scheme, description: t('REQUEST_TYPE') },
         { title: path, description: t('PATH') },
         { title: port, description: t('PORT') },
       ]
