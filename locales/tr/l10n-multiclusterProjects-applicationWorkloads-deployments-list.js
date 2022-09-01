@@ -27,6 +27,7 @@ module.exports = {
   // List > Create
   // List > Create > Basic Information
   NEXT: 'Sonraki',
+  INVALID_PROJECT: 'Invalid project.',
   // List > Create > Pod Settings > Replica Scheduling Mode
   REPLICA_SCHEDULING_MODE: 'Çoğaltma Zamanlama Modu',
   SPECIFY_REPLICAS: 'Kopyaları Belirtin',
@@ -39,6 +40,7 @@ module.exports = {
   WEIGHT: 'yük',
   TOTAL_REPLICAS: 'Toplam Kopyalar',
   // List > Create > Pod Settings > Add Container > Container Settings
+  COST: 'Cost',
   ADD_CONTAINER: 'Konteyner ekle',
   ADD_CONTAINER_DESC: 'Bir kapsayıcı oluşturmak için kapsayıcı ayarlarını özelleştirin.',
   CONTAINERS: 'Konteynerler',
@@ -63,6 +65,7 @@ module.exports = {
   NO_REQUEST: 'Istek yok',
   NO_RESOURCE_LIMIT: 'Kaynak Limiti Yok',
   IGNORE_AND_RETRY: 'Yoksay ve Tekrar Deneyin',
+  AVAILABLE_QUOTAS: 'Available Quotas',
   // List > Create > Pod Settings > Add Container > Port Settings
   PORT_SETTINGS: 'Bağlantı Noktası Ayarları',
   ISTIO_PROTOCOL_TIP: 'Uygulama Yönetimi işlevini tam olarak kullanmak için hizmet tarafından kullanılan protokolü seçin. Örneğin, bir HTTP hizmeti için HTTP\'yi seçin.',
@@ -85,6 +88,7 @@ module.exports = {
   COMMANDS: 'Komutlar',
   HEALTH_CHECK: 'Sağlık Kontrolü',
   STARTUP_CHECK_TIP: 'Kubernetes v1.18 veya üstü gereklidir.',
+  HTTP_PATH_EMPTY: 'Please set a path for the HTTP check.',
   // List > Create > Pod Settings > Add Container > Life Management
   LIFECYCLE_MANAGEMENT: 'Yaşam Döngüsü Yönetimi',
   LIFECYCLE_MANAGEMENT_DESC: 'Kapsayıcı başlatıldıktan sonra veya ortam hazırlığı veya hassas kapatma için durdurulmadan önce gerçekleştirilecek eylemleri ekleyin.',
@@ -97,6 +101,7 @@ module.exports = {
   ADD_ENVIRONMENT_VARIABLE: 'Ortam Değişkenleri Ekle',
   KEY_IN_RESOURCE: 'Kaynakta anahtar',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
+  RESOURCE: 'Resource',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: 'Konteyner Güvenliği Bağlamı',
   CONTAINER_SECURITY_CONTEXT_DESC: 'Kapsayıcının ayrıcalık ayarlarını özelleştirin.',
@@ -194,11 +199,13 @@ module.exports = {
   KEY: 'Anahtar',
   VALUE: 'Değer',
   ADVANCED_SETTINGS: 'Gelişmiş Ayarlar',
+  DUPLICATE_LABELS: 'Duplicate labels cannot be added.',
   // List > Create > Advanced Settings > Specify Node
   WORKLOAD_SPECIFY_NODE_DESC: 'Belirli bir düğüme bölme kopyaları atayın.',
   // List > Create > Cluster Differences
   CLUSTER_DIFF: 'Küme Farklılıkları',
   CLUSTER_DIFF_CONTAINER_SETTINGS_DESC: 'Farklı kümelerde farklı kapsayıcı ayarları kullanın.',
   CLUSTER_DIFF_PORT_SETTINGS_DESC: 'Farklı kümelerdeki kapsayıcılar için farklı bağlantı noktaları ayarlayın.',
-  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: 'Farklı kümelerdeki kapsayıcılar için farklı ortam değişkenleri ayarlayın.'
+  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: 'Farklı kümelerdeki kapsayıcılar için farklı ortam değişkenleri ayarlayın.',
+  CONTAINER_IMAGE: 'Container Image'
 };
