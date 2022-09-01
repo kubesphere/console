@@ -19,6 +19,7 @@ module.exports = {
   // Banner
   POD_PL: '容器組',
   // List
+  NODE_IP: '{node} ({ip})',
   // List > View YAML
   // List > Delete
   POD_LOW: '容器組',
