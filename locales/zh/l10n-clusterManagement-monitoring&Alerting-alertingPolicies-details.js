@@ -23,6 +23,9 @@ module.exports = {
   MONITORING_TARGETS_SCAP: '监控目标',
   ACTIVATION_CONDITION_SCAP: '激活条件',
   METRIC_MONITORING: '指标监控',
+  ALERT_MONITORING: 'Alert Monitoring',
+  NOTIFICATION_SUMMARY_COLON: 'Summary: ',
+  DETAILS_COLON: 'Details: ',
   // Alerting History
   NO_DATA_DESC: '未发现数据'
 };
