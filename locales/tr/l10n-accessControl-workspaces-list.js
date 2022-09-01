@@ -26,6 +26,7 @@ module.exports = {
   WORKSPACE_NAME_EMPTY_DESC: 'Lütfen bir şablon adı girin.',
   WORKSPACE_CREATE_DESC: 'Uygulama hakkında temel bilgileri öğrenin.',
   ADMINISTRATOR: 'Yönetici',
+  WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'Çalışma alanında kullanılacak kümeleri seçin.',
   NO_CLUSTER_AVAILABLE: 'No Cluster Available',
