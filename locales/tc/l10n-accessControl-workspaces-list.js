@@ -26,6 +26,7 @@ module.exports = {
   WORKSPACE_NAME_EMPTY_DESC: '請輸入企業空間名稱。',
   WORKSPACE_CREATE_DESC: '設置企業空間的基本資訊。',
   ADMINISTRATOR: '管理員',
+  WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: '選擇企業空間下可用的集群',
   NO_CLUSTER_AVAILABLE: 'No Cluster Available',
