@@ -20,6 +20,8 @@ module.exports = {
   CONFIRM_PASSWORD_TIP: '请再次输入新的密码。',
   CHANGE_PASSWORD: '修改密码',
   NEW_PASSWORD: '新的密码',
+  PASSWORD_STRENGTH: 'Password Strength',
+  PASSWORD_STRENGTH_DESC: 'Avoid using weak passwords or passwords of other accounts.',
   // More > Delete
   // Attributes
   // Login History
