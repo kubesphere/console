@@ -41,6 +41,7 @@ module.exports = {
   THRESHOLD_DURATION_MIN: 'Threshold Duration (min)',
   ALERT_DURATION: 'An alert is firing when the threshold duration reaches the preset value.',
   LONG_NAME_DESC: 'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de carácteres se establece en 253.',
+  NAME_EXIST_DESC: 'Nombre existe',
   // List > Create > Rule Settings > Rule Template
   RULE_SETTINGS: 'Rule Settings',
   MONITORING_TARGETS: 'Monitoring Targets',
