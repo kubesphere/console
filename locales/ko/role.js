@@ -48,7 +48,6 @@ module.exports = {
   'Edit Role': 'Edit Role',
   'Federated Projects Management': 'Federated Project Management',
   'Invalid role name': 'Invalid role name.',
-  'Invited Successfully': 'Invited successfully.',
   Member: 'Member',
 
   'Network Policies Management': 'Network Policy Management',

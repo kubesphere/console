@@ -454,7 +454,6 @@ module.exports = {
 
   // Jobs
 
-  JOBS: 'Jobs',
 
   // Cronjobs
   ADD_VOLUME: 'Add Volume',

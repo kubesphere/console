@@ -49,7 +49,7 @@ module.exports = {
   'Bound Volume': '已绑定存储卷',
   'Used Capacity': '已分配存储',
   BACKEND_IDENTIFIER: '后端标识符',
-  VOLUMES: '存储卷',
+  
   'The volume name exists': 'The volume name exists',
   'The volume size must be greater than zero': 'The volume size must be greater than zero',
   'Volume Usage': '存储卷用量',

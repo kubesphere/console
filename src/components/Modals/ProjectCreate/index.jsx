@@ -126,7 +126,10 @@ export default class ProjectCreateModal extends React.Component {
 
     this.store.checkName({ name: value, cluster }).then(resp => {
       if (resp.exist) {
-        return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
+        return callback({
+          message: t('PROJECT_NAME_EXIST_DESC'),
+          field: rule.field,
+        })
       }
       callback()
     })
