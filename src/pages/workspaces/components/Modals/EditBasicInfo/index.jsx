@@ -136,7 +136,7 @@ export default class EditBasicInfoModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Workspace Name')} desc={t('NAME_DESC')}>
+        <Form.Item label={t('NAME')} desc={t('NAME_DESC')}>
           <Input name="metadata.name" disabled />
         </Form.Item>
         <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>

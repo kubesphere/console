@@ -26,10 +26,10 @@ const PATH = '/clusters/:cluster/ippools/:name'
 export default [
   {
     path: `${PATH}/workspaces`,
-    title: 'Workspaces',
+    title: 'WORKSPACE_PL',
     component: Workspaces,
     exact: true,
   },
-  { path: `${PATH}/pods`, title: 'Pods', component: Pods, exact: true },
+  { path: `${PATH}/pods`, title: 'POD_PL', component: Pods, exact: true },
   getIndexRoute({ path: PATH, to: `${PATH}/workspaces`, exact: true }),
 ]

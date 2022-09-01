@@ -48,7 +48,7 @@ export default class ContainersCard extends React.Component {
       initContainers,
       podName,
     } = this.props
-    const title = this.props.title || t('Container Config')
+    const title = this.props.title
     return (
       <Panel className={className} title={title}>
         <div className={styles.wrapper}>

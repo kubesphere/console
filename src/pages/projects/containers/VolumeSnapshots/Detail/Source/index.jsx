@@ -91,7 +91,7 @@ export default class VolumeSnapshotSource extends Component {
           <CardBox
             icon="database"
             size="30"
-            title={'capacity'}
+            title={'CAPACITY'}
             value={detail.capacity}
           />
         </div>

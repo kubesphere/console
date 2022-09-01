@@ -31,12 +31,12 @@ const BANDWIDTH_RULE_CONFIG = getBaseRuleConfig({
 
 export default {
   pod_cpu_usage: {
-    label: 'cpu usage',
+    label: 'CPU_USAGE',
     prefixIcon: 'cpu',
     ruleConfig: CPU_RULE_CONFIG,
   },
   pod_cpu_utilisation: {
-    label: 'cpu utilisation',
+    label: 'CPU_PERCENTAGE_SCAP',
     prefixIcon: 'cpu',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
@@ -46,22 +46,22 @@ export default {
     ruleConfig: MEMORY_RULE_CONFIG,
   },
   pod_memory_usage_wo_cache: {
-    label: 'memory usage',
+    label: 'MEMORY_USAGE_SCAP',
     prefixIcon: 'memory',
     ruleConfig: MEMORY_RULE_CONFIG,
   },
   pod_memory_utilisation: {
-    label: 'memory utilisation (including cache)',
+    label: 'MEMORY_PERCENTAGE_CACHE',
     prefixIcon: 'memory',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
   pod_net_bytes_transmitted: {
-    label: 'network data transmitting rate',
+    label: 'DATA_SEND_RATE',
     prefixIcon: 'network',
     ruleConfig: BANDWIDTH_RULE_CONFIG,
   },
   pod_net_bytes_received: {
-    label: 'network data receiving rate',
+    label: 'DATA_RECEIVE_RATE',
     prefixIcon: 'network',
     ruleConfig: BANDWIDTH_RULE_CONFIG,
   },
