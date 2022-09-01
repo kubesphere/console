@@ -25,5 +25,13 @@ module.exports = {
   ABOUT: '关于',
   USERNAME_OR_EMAIL: '用户名或邮箱',
   WELCOME: '欢迎登录',
-  INTERNAL_SERVER_ERROR_TIP: '对不起，服务器开小差了'
+  INTERNAL_SERVER_ERROR_TIP: '对不起，服务器开小差了',
+  // Change password upon first login
+  CHANGE_PASSWORD_TIP: '由于您是第一次登录，出于安全考虑请重置您的密码',
+  SUBMIT: 'Submit',
+  CHANGE_PASSWORD_LATER: 'Change Password Later',
+  PASSWORD_MUST: 'Your password must:',
+  PASSWORD_LETTER: 'Contain at least 1 uppercase letter and 1 lowercase letter.',
+  PASSWORD_NUMBER: 'Contain at least 1 number.',
+  PASSWORD_LENGTH: 'Contain at least 6 characters.'
 };
