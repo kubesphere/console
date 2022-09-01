@@ -46,7 +46,6 @@ module.exports = {
   'Edit Role': 'Editar rol',
   'Federated Projects Management': 'Gestión de proyectos federados',
   'Invalid role name': 'Nombre de rol inválido',
-  'Invited Successfully': 'Invitado con éxito',
   Member: 'Miembro',
   'Network Policies Management': 'Gestión de políticas de red',
   'Network Policies View': 'Vista de políticas de red',

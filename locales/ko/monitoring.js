@@ -134,8 +134,6 @@ module.exports = {
 
   // Application Resources
 
-  SERVICES: 'Services',
-  ROUTES: 'Routes',
 
   // Custom Monitoring
   CUSTOM_MONITOR_DASHBOARD: 'Custom Monitoring Dashboard',

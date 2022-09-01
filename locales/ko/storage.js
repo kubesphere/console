@@ -65,7 +65,6 @@ module.exports = {
   'Used Capacity': 'Used Capacity',
 
   BACKEND_IDENTIFIER: 'Backend Identifier',
-  VOLUMES: 'Volume',
 
   'The volume name exists': 'The volume name exists',
 
