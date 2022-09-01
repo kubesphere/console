@@ -41,6 +41,7 @@ module.exports = {
   THRESHOLD_DURATION_MIN: 'Eşik Süresi (dk)',
   ALERT_DURATION: 'Uyarı kuralında yapılandırılan koşulun süresi eşiğe ulaştığında uyarı ilkesinin durumu tetikleniyor olur.',
   LONG_NAME_DESC: 'İsim yanlızda küçük harfler, sayılar ve kısa çizgiler(-) içerebilir ve küçük harf ve sayı ile başlayıp bitmelidir. Maksimum 253 karakter olabilir.',
+  NAME_EXIST_DESC: 'Ad zaten var. Lütfen başka bir ad girin.',
   // List > Create > Rule Settings > Rule Template
   RULE_SETTINGS: 'Kural Ayarları',
   MONITORING_TARGETS: 'Hedefleri İzleme',
