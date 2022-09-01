@@ -43,6 +43,7 @@ module.exports = {
   HOMEPAGE_COLON: '首頁：',
   RELEASE_DATE_COLON: '發布時間：',
   APP_ID_COLON: '應用程式 ID：',
+  SOURCE_CODE_ADDRESS_COLON: 'Source Code Address:',
   APP_VERSIONS_TITLE: '版本（只顯示 10 個最新的版本）',
   MAINTAINER_COLON: '維護者',
   // App Details > Verions
