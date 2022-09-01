@@ -23,5 +23,6 @@ module.exports = {
   CONTAINER_PORT_SCAP: 'Konteyner Kayıtları',
   SERVICE_PORT_SCAP: 'Servis bağlama portu',
   NO_AVAILABLE_RESOURCE_VALUE: 'mevcut kaynak',
-  NO_RESOURCE_FOUND: 'Kaynak Bulunamadı'
+  NO_RESOURCE_FOUND: 'Kaynak Bulunamadı',
+  REVISION_RECORD: 'Revision record'
 };
