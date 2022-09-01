@@ -51,5 +51,11 @@ module.exports = {
   LIMITS_MEMORY: '記憶體限額',
   // Project Quotas
   PROJECT_QUOTA_PL: 'Project Quotas',
-  RESOURCE_TYPE_SCAP: '資源類型'
+  RESOURCE_TYPE_SCAP: '資源類型',
+  PODS: '容器組',
+  JOBS: 'Jobs',
+  VOLUMES: 'Volumes',
+  SERVICES: '服務',
+  ROUTES: '應用路由',
+  SECRETS: '保密字典'
 };
