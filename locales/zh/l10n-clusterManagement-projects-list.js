@@ -36,7 +36,7 @@ module.exports = {
   CREATE_NAME: '创建{name}',
   DESCRIPTION: '描述',
   NAME_VALIDATION_FAILED: '名称不能以 kube- 开头，该字符串为 Kubernetes 系统保留保留字符串。',
-  NAME_EXIST_DESC: '名称已存在，请输入其他名称。',
+  PROJECT_NAME_EXIST_DESC: 'The name already exists. Please enter another name. Project names must be unique on the entire platform.',
   NAME_EMPTY_DESC: '请设置一个名称。',
   OK: '确定',
   NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
