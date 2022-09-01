@@ -73,7 +73,7 @@ export default class BaseInfo extends React.Component {
     this.props.store.checkName({ name: value }).then(resp => {
       if (resp.exist) {
         return callback({
-          message: t('Workspace name exists'),
+          message: t('WORKSPACE_NAME_EXISTS_DESC'),
           field: rule.field,
         })
       }

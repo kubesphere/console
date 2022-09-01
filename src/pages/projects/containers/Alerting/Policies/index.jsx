@@ -243,7 +243,6 @@ export default class AlertingPolicy extends React.Component {
           {...bannerProps}
           tips={this.tips}
           tabs={namespace ? {} : this.tabs}
-          title={t('ALERTING_POLICIES')}
           description={t('ALERT_POLICY_DESC')}
         />
         <Table

@@ -66,6 +66,7 @@ module.exports = {
   APP_LEARN_MORE: '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Learn More</a>',
   INVALID_VERSION_TIP: 'Please enter a correct version number.',
   // Versions > Submit for Review > Test Steps
+  TEST_STEPS: 'Test Steps',
   VERSION_SUBMIT_TEST_STEPS: '1. All dependent charts have been submitted.<br/>' +
     '2. The static analysis has been passed (helm lint).<br/>' +
     '3. The app can be started using default values (helm install). All pods are in running state and all services have at least one endpoint.<br/>' +

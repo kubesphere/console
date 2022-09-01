@@ -67,4 +67,14 @@ module.exports = {
   SSH_AUTH_MODE_DESC: 'Select an SSH authentication mode.',
   NODE_USERNAME_DESC: 'Enter the username used for SSH login.',
   NODE_PASSWORD_DESC: 'Enter the password used for SSH login.',
+  // workspaces/containers/Clusters
+  WORKSPACE_CLUSTERS_DESC: 'The cluster information shows how cluster resources are used in the workspace.',
+  // console/components/Cards/Workspace
+  'DevOps Project Number': 'DevOps Projects',
+  'Project Number': 'Projects',
+  'View Workspace': 'View Workspace',
+  // components/Forms/Cluster/AdvanceSettings
+  'Private Registry': 'Private Registry',
+  // pages/projects/containers/Alerting/Messages
+  ALERT_TYPE: '{type} Alert',
 }
