@@ -50,6 +50,8 @@ module.exports = {
   SPECIFY_SUBPATH: '指定子路径',
   SPECIFY_SUBPATH_TIP: '指定需要挂载到容器的卷子路径。',
   MOUNT_PATH: '挂载路径',
+  MOUNT_PATH_NOT_SPECIFIED: 'Please select a key to be mounted and the mount path of the key.',
+  MOUNT_PATH_REPEATED: 'The mount path is duplicated.',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: '网段',
   AVAILABLE_ADDRESSES: '可用地址数量',
