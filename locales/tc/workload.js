@@ -335,7 +335,6 @@ module.exports = {
   // Pods Page
   NODE_IP: '{node}（{ip}）',
   // Jobs
-  JOBS: 'Jobs',
   // Cronjobs
   ADD_VOLUME: 'Add Volume',
   MOUNT_VOLUMES: 'Mount Volumes',
