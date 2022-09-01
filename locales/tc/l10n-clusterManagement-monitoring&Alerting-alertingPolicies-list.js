@@ -41,6 +41,7 @@ module.exports = {
   THRESHOLD_DURATION_MIN: '閾值時間（分鐘）',
   ALERT_DURATION: '告警規則中設置的情形持續時間達到該閾值後，告警策略將變為觸發中狀態。',
   LONG_NAME_DESC: '最長 253 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
+  NAME_EXIST_DESC: '名稱已存在',
   // List > Create > Rule Settings > Rule Template
   RULE_SETTINGS: '規則設置',
   MONITORING_TARGETS: '監控目標',
