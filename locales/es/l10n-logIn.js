@@ -25,5 +25,13 @@ module.exports = {
   ABOUT: 'About',
   USERNAME_OR_EMAIL: 'Username or Email',
   WELCOME: 'Welcome',
-  INTERNAL_SERVER_ERROR_TIP: 'An unepected error seems to have occurred. Please refresh your page.'
+  INTERNAL_SERVER_ERROR_TIP: 'An unepected error seems to have occurred. Please refresh your page.',
+  // Change password upon first login
+  CHANGE_PASSWORD_TIP: 'Since you are logging in for the first time, please reset your password.',
+  SUBMIT: 'Submit',
+  CHANGE_PASSWORD_LATER: 'Change Password Later',
+  PASSWORD_MUST: 'Your password must:',
+  PASSWORD_LETTER: 'Contain at least 1 uppercase letter and 1 lowercase letter.',
+  PASSWORD_NUMBER: 'Contain at least 1 number.',
+  PASSWORD_LENGTH: 'Contain at least 6 characters.'
 };
