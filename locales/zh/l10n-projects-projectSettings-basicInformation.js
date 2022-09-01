@@ -52,7 +52,6 @@ module.exports = {
   // Project Quotas
   PROJECT_QUOTA_PL: '项目配额',
   RESOURCE_TYPE_SCAP: '资源类型',
-  PODS: '容器组',
   JOBS: '任务',
   VOLUMES: '卷',
   SERVICES: '服务',
