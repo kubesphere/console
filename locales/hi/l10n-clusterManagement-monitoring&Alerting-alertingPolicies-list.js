@@ -41,6 +41,7 @@ module.exports = {
   THRESHOLD_DURATION_MIN: 'Threshold Duration (min)',
   ALERT_DURATION: 'The status of the alerting policy becomes Firing when the duration of the condition configured in the alerting rule reaches the threshold.',
   LONG_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 253 characters.',
+  NAME_EXIST_DESC: 'The name already exists. Please enter another name.',
   // List > Create > Rule Settings > Rule Template
   RULE_SETTINGS: 'Rule Settings',
   MONITORING_TARGETS: 'Monitoring Targets',
