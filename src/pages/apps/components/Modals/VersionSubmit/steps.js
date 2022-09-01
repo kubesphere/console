@@ -21,7 +21,7 @@ import VersionEdit from 'apps/components/Forms/VersionEdit'
 
 export default [
   {
-    title: 'Test Steps',
+    title: 'TEST_STEPS',
     icon: 'cdn',
     component: TestSteps,
     value: 'testSteps',

@@ -70,7 +70,7 @@ export default class AppBase extends React.PureComponent {
           )}
           {!isEmpty(sources) && (
             <>
-              <dt>{t('SOURCE_CODE_ADDRESS')}</dt>
+              <dt>{t('SOURCE_CODE_ADDRESS_COLON')}</dt>
               <dd>
                 {sources.map(item => (
                   <p>{item}</p>

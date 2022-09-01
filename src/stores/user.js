@@ -247,7 +247,7 @@ export default class UsersStore extends Base {
   @action
   async batchDelete({ rowKeys, ...params }) {
     if (rowKeys.includes(globals.user.username)) {
-      Notify.error(t('Error Tips'), t('Unable to delete itself'))
+      Notify.error(t('DELETING_CURRENT_USER_NOT_ALLOWED'))
     } else {
       await this.submitting(
         Promise.all(
@@ -311,7 +311,7 @@ export default class UsersStore extends Base {
   @action
   delete(user) {
     if (user.name === globals.user.username) {
-      Notify.error(t('Error Tips'), t('Unable to delete itself'))
+      Notify.error(t('DELETING_CURRENT_USER_NOT_ALLOWED'))
       return
     }
 
