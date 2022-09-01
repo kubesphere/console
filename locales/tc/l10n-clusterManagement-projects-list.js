@@ -36,7 +36,7 @@ module.exports = {
   CREATE_NAME: '創建{name}',
   DESCRIPTION: '描述資訊',
   NAME_VALIDATION_FAILED: '避免使用前綴為 kube- 的名稱，因為它是為 Kubernetes 系統命名空間保留的',
-  NAME_EXIST_DESC: '名稱已存在',
+  PROJECT_NAME_EXIST_DESC: 'The name already exists. Please enter another name. Project names must be unique on the entire platform.',
   NAME_EMPTY_DESC: '請輸入名稱。',
   OK: '確定',
   NAME_DESC: '最長 63 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
