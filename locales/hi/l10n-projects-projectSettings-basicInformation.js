@@ -52,7 +52,6 @@ module.exports = {
   // Project Quotas
   PROJECT_QUOTA_PL: 'Project Quotas',
   RESOURCE_TYPE_SCAP: 'Resource type',
-  PODS: 'Pods',
   JOBS: 'Jobs',
   VOLUMES: 'Volumes',
   SERVICES: 'Services',
