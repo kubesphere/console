@@ -36,7 +36,7 @@ module.exports = {
   CREATE_NAME: 'Create {name}',
   DESCRIPTION: 'Description',
   NAME_VALIDATION_FAILED: 'The name cannot start with kube-, which is reserved for the Kubernetes system.',
-  NAME_EXIST_DESC: 'The name already exists. Please enter another name.',
+  PROJECT_NAME_EXIST_DESC: 'The name already exists. Please enter another name. Project names must be unique on the entire platform.',
   NAME_EMPTY_DESC: 'Please set a name.',
   OK: 'OK',
   NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
