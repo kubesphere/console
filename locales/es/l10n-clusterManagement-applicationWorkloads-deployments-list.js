@@ -50,6 +50,8 @@ module.exports = {
   SPECIFY_SUBPATH: 'Haga clic para agregar subPath',
   SPECIFY_SUBPATH_TIP: 'Solo es apropiado para montar volúmenes, pero no para hostpath',
   MOUNT_PATH: 'Mount path',
+  MOUNT_PATH_NOT_SPECIFIED: 'Please select a key to be mounted and the mount path of the key.',
+  MOUNT_PATH_REPEATED: 'The mount path is duplicated.',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: 'Network segment',
   AVAILABLE_ADDRESSES: 'Available Number',
