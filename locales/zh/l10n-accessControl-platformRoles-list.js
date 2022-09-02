@@ -60,5 +60,5 @@ module.exports = {
   // List > Edit Information
   // List > Edit Permissions
   // List > Delete
-  DELETING_PRESET_ROLES_NOT_ALLOWED: 'Preset roles cannot be deleted.'
+  DELETING_PRESET_ROLES_NOT_ALLOWED: '无法删除预置角色。'
 };
