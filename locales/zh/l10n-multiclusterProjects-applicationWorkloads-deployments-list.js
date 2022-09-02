@@ -27,7 +27,7 @@ module.exports = {
   // List > Create
   // List > Create > Basic Information
   NEXT: '下一步',
-  INVALID_PROJECT: 'Invalid project.',
+  INVALID_PROJECT: '项目无效。',
   // List > Create > Pod Settings > Replica Scheduling Mode
   REPLICA_SCHEDULING_MODE: '副本调度模式',
   SPECIFY_REPLICAS: '指定副本数量',
@@ -40,7 +40,7 @@ module.exports = {
   WEIGHT: '权重',
   TOTAL_REPLICAS: '副本总数',
   // List > Create > Pod Settings > Add Container > Container Settings
-  COST: 'Cost',
+  COST: '占用',
   ADD_CONTAINER: '添加容器',
   ADD_CONTAINER_DESC: '自定义容器的设置以创建容器。',
   CONTAINERS: '容器',
@@ -65,7 +65,7 @@ module.exports = {
   NO_REQUEST: '不预留',
   NO_RESOURCE_LIMIT: '无资源限制',
   IGNORE_AND_RETRY: '忽略并重试',
-  AVAILABLE_QUOTAS: 'Available Quotas',
+  AVAILABLE_QUOTAS: '可用配额',
   // List > Create > Pod Settings > Add Container > Port Settings
   PORT_SETTINGS: '端口设置',
   ISTIO_PROTOCOL_TIP: '选择服务实际使用的协议以充分利用应用治理功能。例如，为 HTTP 服务选择 HTTP 协议。',
@@ -88,7 +88,7 @@ module.exports = {
   COMMANDS: '命令',
   HEALTH_CHECK: '健康检查',
   STARTUP_CHECK_TIP: '需要 Kubernetes v1.18 或以上版本。',
-  HTTP_PATH_EMPTY: 'Please set a path for the HTTP check.',
+  HTTP_PATH_EMPTY: '请设置 HTTP 检查的路径。',
   // List > Create > Pod Settings > Add Container > Life Management
   LIFECYCLE_MANAGEMENT: '生命周期管理',
   LIFECYCLE_MANAGEMENT_DESC: '设置容器启动后或终止前需要执行的动作，以进行环境检查或体面终止。',
@@ -101,7 +101,7 @@ module.exports = {
   ADD_ENVIRONMENT_VARIABLE: '添加环境变量',
   KEY_IN_RESOURCE: '资源中的键',
   LABEL_TYPE: '{label} <span style="{style}">（{type}）</span>',
-  RESOURCE: 'Resource',
+  RESOURCE: '资源',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: '容器安全上下文',
   CONTAINER_SECURITY_CONTEXT_DESC: '自定义容器的权限设置。',
@@ -199,7 +199,7 @@ module.exports = {
   KEY: '键',
   VALUE: '值',
   ADVANCED_SETTINGS: '高级设置',
-  DUPLICATE_LABELS: 'Duplicate labels cannot be added.',
+  DUPLICATE_LABELS: '无法添加重复标签。',
   // List > Create > Advanced Settings > Specify Node
   WORKLOAD_SPECIFY_NODE_DESC: '将容器副本分配给特定节点。',
   // List > Create > Cluster Differences
@@ -207,5 +207,5 @@ module.exports = {
   CLUSTER_DIFF_CONTAINER_SETTINGS_DESC: '在不同的集群中使用不同的容器设置。',
   CLUSTER_DIFF_PORT_SETTINGS_DESC: '为不同集群中的容器设置不同的端口。',
   CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: '为不同集群中的容器设置不同的环境变量。',
-  CONTAINER_IMAGE: 'Container Image'
+  CONTAINER_IMAGE: '容器镜像'
 };
