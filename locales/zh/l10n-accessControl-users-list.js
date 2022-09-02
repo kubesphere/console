@@ -46,5 +46,5 @@ module.exports = {
   EDIT_USER: '编辑用户',
   // List > Delete
   USER_LOW: '用户',
-  DELETING_CURRENT_USER_NOT_ALLOWED: 'The current user cannot be deleted.'
+  DELETING_CURRENT_USER_NOT_ALLOWED: '无法删除当前用户。'
 };
