@@ -43,7 +43,7 @@ module.exports = {
   LIVENESS_PROBE: '存活探针',
   READINESS_PROBE: '就绪探针',
   STARTUP_PROBE: '启动探针',
-  REQUEST_TYPE: 'Request type',
+  REQUEST_TYPE: '请求类型',
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
