@@ -18,7 +18,7 @@
 module.exports = {
   // Banner
   ALERTING_POLICY_PL: '告警策略',
-  ALERT_POLICY_DESC: '告警策略是用于监控集群资源的一系列条件，您可以创建告警策略对资源进行监控。',
+  ALERTING_POLICY_DESC: '告警策略是用于监控集群资源的一系列条件，您可以创建告警策略对资源进行监控。',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '如何触发告警消息？',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A: '您需要对资源设置告警策略，当资源的某项指标达到告警策略的阈值后即会触发告警消息。',
   // List
