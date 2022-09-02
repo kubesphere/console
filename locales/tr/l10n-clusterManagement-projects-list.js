@@ -36,7 +36,7 @@ module.exports = {
   CREATE_NAME: 'Yaratılan {name}',
   DESCRIPTION: 'Açıklama',
   NAME_VALIDATION_FAILED: 'Ad, Kubernetes sistemi için ayrılmış olan kube- ile başlayamaz.',
-  NAME_EXIST_DESC: 'Ad zaten var. Lütfen başka bir ad girin.',
+  PROJECT_NAME_EXIST_DESC: 'The name already exists. Please enter another name. Project names must be unique on the entire platform.',
   NAME_EMPTY_DESC: 'Lütfen bir ad girin.',
   OK: 'Tamam',
   NAME_DESC: 'Ad yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir ve küçük harf veya sayı ile başlayıp bitmelidir. Maksimum uzunluk 63 karakterdir.',

@@ -20,6 +20,8 @@ module.exports = {
   CONFIRM_PASSWORD_TIP: 'Lütfen yeni parolanızı tekrar girin.',
   CHANGE_PASSWORD: 'Parola Değiştir',
   NEW_PASSWORD: 'Yeni Parola',
+  PASSWORD_STRENGTH: 'Password Strength',
+  PASSWORD_STRENGTH_DESC: 'Avoid using weak passwords or passwords of other accounts.',
   // More > Delete
   // Attributes
   // Login History

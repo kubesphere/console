@@ -18,6 +18,7 @@
 module.exports = {
   // Head
   APP_STORE: '应用商店',
+  HOME_APP_STORE_DESC: 'KubeSphere 官方应用商店提供部署及管理功能，用户可以基于应用模板快速地一键部署应用。',
   // Discover
   DISCOVER: '发现',
   NEW_APPS: '新应用',

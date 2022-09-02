@@ -56,5 +56,9 @@ module.exports = {
   // List > Create > Edit Permissions > Platform Settings
   PERMIGROUP_PLATFORM_SETTINGS: 'Platform Settings',
   PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
-  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.'
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.',
+  // List > Edit Information
+  // List > Edit Permissions
+  // List > Delete
+  DELETING_PRESET_ROLES_NOT_ALLOWED: 'Preset roles cannot be deleted.'
 };

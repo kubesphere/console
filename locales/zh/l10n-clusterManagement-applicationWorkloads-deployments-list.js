@@ -50,6 +50,9 @@ module.exports = {
   SPECIFY_SUBPATH: '指定子路径',
   SPECIFY_SUBPATH_TIP: '指定需要挂载到容器的卷子路径。',
   MOUNT_PATH: '挂载路径',
+  MOUNT_PATH_NOT_SPECIFIED: '请选择需要挂载的键和键的挂载路径。',
+  MOUNT_PATH_EMPTY: '请输入挂载路径。',
+  MOUNT_PATH_REPEATED: '挂载路径重复。',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: '网段',
   AVAILABLE_ADDRESSES: '可用地址数量',

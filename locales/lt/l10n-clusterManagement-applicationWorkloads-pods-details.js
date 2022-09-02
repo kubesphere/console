@@ -43,6 +43,7 @@ module.exports = {
   LIVENESS_PROBE: 'Liveness Probe',
   READINESS_PROBE: 'Readiness Probe',
   STARTUP_PROBE: 'Startup Probe',
+  REQUEST_TYPE: 'Request type',
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs

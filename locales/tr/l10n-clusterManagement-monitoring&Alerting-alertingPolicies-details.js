@@ -23,6 +23,9 @@ module.exports = {
   MONITORING_TARGETS_SCAP: 'Hedefi İzleme',
   ACTIVATION_CONDITION_SCAP: 'Aktivasyon Koşulu',
   METRIC_MONITORING: 'Metrik İzleme',
+  ALERT_MONITORING: 'Alert Monitoring',
+  NOTIFICATION_SUMMARY_COLON: 'Summary: ',
+  DETAILS_COLON: 'Details: ',
   // Alerting History
   NO_DATA_DESC: 'Veri Bulunamadı'
 };

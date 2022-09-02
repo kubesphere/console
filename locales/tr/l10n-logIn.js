@@ -25,5 +25,13 @@ module.exports = {
   ABOUT: 'Hakkında',
   USERNAME_OR_EMAIL: 'Kullanıcı adı veya E-posta',
   WELCOME: 'Hoşgeldiniz',
-  INTERNAL_SERVER_ERROR_TIP: 'Beklenmeyen hata oluştu. Lütfen sayfayı yenileyin.'
+  INTERNAL_SERVER_ERROR_TIP: 'Beklenmeyen hata oluştu. Lütfen sayfayı yenileyin.',
+  // Change password upon first login
+  CHANGE_PASSWORD_TIP: 'İlk kez giriş yaptığınız için lütfen şifrenizi sıfırlayın.',
+  SUBMIT: 'Submit',
+  CHANGE_PASSWORD_LATER: 'Change Password Later',
+  PASSWORD_MUST: 'Your password must:',
+  PASSWORD_LETTER: 'Contain at least 1 uppercase letter and 1 lowercase letter.',
+  PASSWORD_NUMBER: 'Contain at least 1 number.',
+  PASSWORD_LENGTH: 'Contain at least 6 characters.'
 };

@@ -51,5 +51,10 @@ module.exports = {
   LIMITS_MEMORY: 'Memory Limit',
   // Project Quotas
   PROJECT_QUOTA_PL: 'Project Quotas',
-  RESOURCE_TYPE_SCAP: 'Resource type'
+  RESOURCE_TYPE_SCAP: 'Resource type',
+  JOBS: 'Jobs',
+  VOLUMES: 'Volumes',
+  SERVICES: 'Services',
+  ROUTES: 'Routes',
+  SECRETS: 'Secrets'
 };

@@ -36,7 +36,7 @@ module.exports = {
   CREATE_NAME: 'Crear {name}',
   DESCRIPTION: 'Descripción',
   NAME_VALIDATION_FAILED: 'Evite de crear nombre con el kube- del prefijo, puesto que es reservado para los namespaces del sistema de Kubernetes',
-  NAME_EXIST_DESC: 'Nombre existe',
+  PROJECT_NAME_EXIST_DESC: 'The name already exists. Please enter another name. Project names must be unique on the entire platform.',
   NAME_EMPTY_DESC: 'Introduce el nombre',
   OK: 'Okay',
   NAME_DESC: 'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de carácteres se establece en 63.',

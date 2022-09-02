@@ -50,6 +50,9 @@ module.exports = {
   SPECIFY_SUBPATH: 'Specify Subpath',
   SPECIFY_SUBPATH_TIP: 'Specify a volume subpath to be mounted to the container.',
   MOUNT_PATH: 'Mount path',
+  MOUNT_PATH_NOT_SPECIFIED: 'Please select a key to be mounted and the mount path of the key.',
+  MOUNT_PATH_EMPTY: 'Please enter a mount path.',
+  MOUNT_PATH_REPEATED: 'The mount path is duplicated.',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: 'Network segment',
   AVAILABLE_ADDRESSES: 'Available addresses',

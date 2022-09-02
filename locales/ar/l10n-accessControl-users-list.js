@@ -45,5 +45,6 @@ module.exports = {
   // List > Edit
   EDIT_USER: 'تعديل المستخدم',
   // List > Delete
-  USER_LOW: 'مستخدم'
+  USER_LOW: 'مستخدم',
+  DELETING_CURRENT_USER_NOT_ALLOWED: 'The current user cannot be deleted.'
 };

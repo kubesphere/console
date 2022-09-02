@@ -27,6 +27,7 @@ module.exports = {
   // List > Create
   // List > Create > Basic Information
   NEXT: '下一步',
+  INVALID_PROJECT: 'Invalid project.',
   // List > Create > Pod Settings > Replica Scheduling Mode
   REPLICA_SCHEDULING_MODE: '部署模式',
   SPECIFY_REPLICAS: 'Specify Replicas',
@@ -39,6 +40,7 @@ module.exports = {
   WEIGHT: '權重',
   TOTAL_REPLICAS: '副本總數',
   // List > Create > Pod Settings > Add Container > Container Settings
+  COST: 'Cost',
   ADD_CONTAINER: '添加容器',
   ADD_CONTAINER_DESC: 'Kubesphere 支持從鏡像倉庫拉取鏡像以及通過代碼構建新的鏡像並部署',
   CONTAINERS: '容器鏡像',
@@ -63,6 +65,7 @@ module.exports = {
   NO_REQUEST: '不預留',
   NO_RESOURCE_LIMIT: '無資源限制',
   IGNORE_AND_RETRY: '重試',
+  AVAILABLE_QUOTAS: 'Available Quotas',
   // List > Create > Pod Settings > Add Container > Port Settings
   PORT_SETTINGS: '端口設置',
   ISTIO_PROTOCOL_TIP: 'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
@@ -85,6 +88,7 @@ module.exports = {
   COMMANDS: '命令',
   HEALTH_CHECK: '健康檢查',
   STARTUP_CHECK_TIP: '需要 Kubernetes v1.18 或以上版本。',
+  HTTP_PATH_EMPTY: 'Please set a path for the HTTP check.',
   // List > Create > Pod Settings > Add Container > Life Management
   LIFECYCLE_MANAGEMENT: 'Lifecycle Management',
   LIFECYCLE_MANAGEMENT_DESC: 'Add actions to be performed after the container is started or before it is stopped for environment preparation or graceful shutdown.',
@@ -97,6 +101,7 @@ module.exports = {
   ADD_ENVIRONMENT_VARIABLE: '添加環境變量',
   KEY_IN_RESOURCE: '選擇鍵',
   LABEL_TYPE: '{label} <span style="{style}">（{type}）</span>',
+  RESOURCE: 'Resource',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: '容器 Security Context',
   CONTAINER_SECURITY_CONTEXT_DESC: 'Security Context的目的是限制不可信容器的行為，保護系統和其他容器不受其影響。',
@@ -194,11 +199,13 @@ module.exports = {
   KEY: '鍵',
   VALUE: '值',
   ADVANCED_SETTINGS: '高級設置',
+  DUPLICATE_LABELS: 'Duplicate labels cannot be added.',
   // List > Create > Advanced Settings > Specify Node
   WORKLOAD_SPECIFY_NODE_DESC: '可以讓容器組副本在指定的節點運行',
   // List > Create > Cluster Differences
   CLUSTER_DIFF: 'Cluster Differences',
   CLUSTER_DIFF_CONTAINER_SETTINGS_DESC: '根據不同的需要在不同的集群中設置不同的容器',
   CLUSTER_DIFF_PORT_SETTINGS_DESC: '可以在不同集群設置不同的服務端口',
-  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: '可以在不同集群設置不同的環境變量'
+  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: '可以在不同集群設置不同的環境變量',
+  CONTAINER_IMAGE: 'Container Image'
 };
