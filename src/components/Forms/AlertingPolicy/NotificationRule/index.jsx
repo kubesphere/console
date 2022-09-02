@@ -40,7 +40,7 @@ export default class NotificationRule extends React.Component {
             metricConfig.label
           )} ${condition_type} ${thresholds}${unit}`
         })
-        .join(` ${t('or')} `)}`
+        .join(` ${t('OR')} `)}`
 
       set(formTemplate, 'annotations.summary', summary)
     }

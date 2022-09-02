@@ -153,7 +153,6 @@ module.exports = {
   'Operation Account': 'Operation Account',
   OPERATION_DETAILS: 'Operation Details',
   Optional: 'Optional',
-  or: 'or',
   Others: 'Others',
   OUT: 'Out',
   Outbound: 'Outbound',
