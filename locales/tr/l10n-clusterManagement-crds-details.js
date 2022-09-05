@@ -23,5 +23,5 @@ module.exports = {
   // Resource Status > Edit YAML
   // Resource Status > Delete
   CUSTOM_RESOURCE: 'Özel Kaynaklar',
-  CUSTOM_RESOURCE_DEFINITION_LOW: 'özel kaynak tanımı'
+  CUSTOM_RESOURCE_LOW: 'custom resource'
 };
