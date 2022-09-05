@@ -37,7 +37,6 @@ module.exports = {
   // List > Create > Pod Settings
   PREVIOUS: 'Önceki',
   NOTE: 'Not',
-  CREATE_CONFIGMAP_SECRET_DESC: 'Hiçbir configmap veya secret gereksinimleri karşılamıyorsa, şunları yapabilirsiniz',
   // List > Create > Pod Settings > Add Container > Container Settings
   IMAGE: 'Resim',
   IMAGE_VALUE: 'Resim: {değer}',
