@@ -76,7 +76,7 @@ export default class ServiceSelect extends React.Component {
       <div className={styles.select}>
         {!isLoading && isEmpty(options) ? (
           <div className={styles.empty}>
-            {t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('Service') })}
+            {t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('SERVICE') })}
           </div>
         ) : (
           <Dropdown

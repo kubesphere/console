@@ -51,10 +51,10 @@ class Header extends React.Component {
     return (
       <Menu onClick={this.handleDocumentLinkClick} data-test="header-docs">
         <Menu.MenuItem key={url}>
-          <Icon name="hammer" /> {t('User Manual')}
+          <Icon name="hammer" /> {t('USER_GUIDE')}
         </Menu.MenuItem>
         <Menu.MenuItem key={api}>
-          <Icon name="api" /> {t('API Documents')}
+          <Icon name="api" /> {t('API_DOCUMENT')}
         </Menu.MenuItem>
       </Menu>
     )
@@ -91,7 +91,7 @@ class Header extends React.Component {
                 icon="cogwheel"
                 onClick={this.props.onToggleNav}
               >
-                {t('Platform')}
+                {t('PLATFORM')}
               </Button>
             )}
             {globals.app.enableAppStore && (
@@ -114,7 +114,7 @@ class Header extends React.Component {
                 [styles.active]: location.pathname === '/',
               })}
             >
-              {t('Workbench')}
+              {t('WORKBENCH')}
             </Button>
           </div>
         )}

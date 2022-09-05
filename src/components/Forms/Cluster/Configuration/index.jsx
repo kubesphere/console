@@ -65,7 +65,7 @@ export default class Confiuguration extends React.Component {
       <div>
         <Form data={formTemplate} ref={formRef}>
           <Form.Item
-            label={t('Connection Method')}
+            label={t('CONNECTION_MODE')}
             desc={t('CLUSTER_CONNECT_METHOD_DESC')}
           >
             <Select

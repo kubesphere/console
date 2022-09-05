@@ -78,7 +78,7 @@ export const getAppCategoryNames = categories => {
   categories.forEach(({ category_id, name, status }) => {
     if (category_id && status !== 'disabled') {
       const result =
-        category_id === 'ctg-uncategorized' ? t('Uncategorized') : name
+        category_id === 'ctg-uncategorized' ? t('APP_CATE_UNCATEGORIZED') : name
       names.push(t(result || category_id))
     }
   })

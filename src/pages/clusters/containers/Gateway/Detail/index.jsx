@@ -145,7 +145,7 @@ export default class NodeDetail extends React.Component {
         value: this.cluster,
       },
       {
-        name: t('Create Time'),
+        name: t('CREATION_TIME'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

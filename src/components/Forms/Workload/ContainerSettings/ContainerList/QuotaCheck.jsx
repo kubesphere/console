@@ -204,10 +204,10 @@ export default class QuotaCheck extends Component {
 
     const title =
       overcost && this.hasLimitQuota
-        ? t('QUOTA_OVERCOST_TIP')
+        ? t('INSUFFICENT_RESOURCES')
         : limitUnset && this.hasLimitQuota
-        ? t('QUOTA_UNSET_TIP')
-        : t('Remaining Quota')
+        ? t('RESOURC_QUOTAS_UNSET')
+        : t('REMAINING_QUOTAS')
 
     const message =
       (overcost || limitUnset) && this.hasLimitQuota

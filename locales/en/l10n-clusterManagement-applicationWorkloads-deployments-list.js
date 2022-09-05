@@ -70,4 +70,5 @@ module.exports = {
   STOP: 'Stop',
   STOP_TITLE_SI: 'Stop {type}',
   STOP_TITLE_PL: 'Stop Multiple {type}',
+  STOP_DESC: 'Are you sure you want to stop the resource?',
 }

@@ -74,8 +74,8 @@ export default class ProjectCreateModal extends React.Component {
 
   get networkOptions() {
     return [
-      { label: t('Off'), value: '' },
-      { label: t('On'), value: 'enabled' },
+      { label: t('OFF'), value: '' },
+      { label: t('ON'), value: 'enabled' },
     ]
   }
 

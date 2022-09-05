@@ -20,12 +20,14 @@ module.exports = {
   // Banner
   NO_CLUSTER_TIP: 'Please add at least one cluster.',
   // Add Cluster > Basic Information
+  CLUSTER_NAME_EMPTY: 'Please enter a cluster name.',
   ADD_CLUSTER: 'Add Cluster',
   TAG: 'Tag',
   CLUSTER_TAG_DESC: 'Select a tag to identify the purpose of the cluster.',
   CLUSTER_PROVIDER_DESC: 'Select the provider of the cluster infrastructure.',
   // Add Cluster > Connection Settings
   CONNECTION_SETTINGS: 'Connection Settings',
+  CONNECTION_METHOD: 'Connection Mode',
   CLUSTER_CONNECT_METHOD_DESC: 'Directly connect to the cluster or use an agent.',
   CONNTECT_DIRECT: 'Direct connection',
   CONNTECT_PROXY: 'Agent connection',
@@ -38,6 +40,7 @@ module.exports = {
   // List
   HOST_CLUSTER_TCAP: 'Host Cluster',
   HOST_CLUSTER_PL_TCAP: 'Host Clusters',
+  MEMBER_CLUSTER_TCAP_PL: 'Member Clusters',
   NODE_COUNT: 'Nodes',
   ENV_PRODUCTION: 'Production',
   ENV_DEVELOPMENT: 'Development',
@@ -47,4 +50,6 @@ module.exports = {
   KUBE_CONFIG_IS_EXPIRED: 'KubeConfig has expired',
   EXPIRE_DATE: 'Expiration Time',
   LAST_KUBE_CONFIG_EXPIRED: 'KubeConfig expires in <span class="kubeConfig_expired">{count}</span> days',
+  VALIDATION_FAILED: 'Validation failed.',
+  NO_CLUSTER_TIP_DESC: 'A cluster is a group of nodes (physical or virtual machines) running KubeSphere.',
 }

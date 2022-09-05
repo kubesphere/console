@@ -129,7 +129,7 @@ export default class PodItem extends React.PureComponent {
       type: 'cpu',
       title: 'CPU',
       unitType: 'cpu',
-      legend: ['Used'],
+      legend: ['USED'],
       data: [metrics.cpu],
       bgColor: 'transparent',
     },
@@ -137,7 +137,7 @@ export default class PodItem extends React.PureComponent {
       type: 'memory',
       title: 'Memory',
       unitType: 'memory',
-      legend: ['Used'],
+      legend: ['USED'],
       data: [metrics.memory],
       bgColor: 'transparent',
     },
@@ -182,7 +182,7 @@ export default class PodItem extends React.PureComponent {
           <div className={styles.statusTip}>
             <strong>{name}</strong>
             <p>
-              {t('Ready')}: {readyCount}/{total}
+              {t('READY')}: {readyCount}/{total}
             </p>
             <p>
               {t('STATUS')}: {t(statusStr)}

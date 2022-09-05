@@ -30,6 +30,8 @@ export default class Terminal extends React.Component {
   }
 
   render() {
-    return <LogModal title={t('LOG_SEARCH')} onCancel={this.pageClose} />
+    return (
+      <LogModal title={t('CONTAINER_LOG_SEARCH')} onCancel={this.pageClose} />
+    )
   }
 }
