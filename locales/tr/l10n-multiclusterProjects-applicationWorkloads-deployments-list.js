@@ -102,6 +102,10 @@ module.exports = {
   KEY_IN_RESOURCE: 'Kaynakta anahtar',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
   RESOURCE: 'Resource',
+  CREATE_CONFIGMAP_SECRET_DESC: 'If no configmap or secret meets the requirements, you can',
+  CREATE_CONFIG: 'create a configmap',
+  OR: 'or',
+  CREATE_SECRET: 'create a secret.',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: 'Konteyner Güvenliği Bağlamı',
   CONTAINER_SECURITY_CONTEXT_DESC: 'Kapsayıcının ayrıcalık ayarlarını özelleştirin.',
