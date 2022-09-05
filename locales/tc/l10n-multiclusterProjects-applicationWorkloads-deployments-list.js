@@ -102,6 +102,10 @@ module.exports = {
   KEY_IN_RESOURCE: '選擇鍵',
   LABEL_TYPE: '{label} <span style="{style}">（{type}）</span>',
   RESOURCE: 'Resource',
+  CREATE_CONFIGMAP_SECRET_DESC: 'If no configmap or secret meets the requirements, you can',
+  CREATE_CONFIG: 'create a configmap',
+  OR: 'or',
+  CREATE_SECRET: 'create a secret.',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: '容器 Security Context',
   CONTAINER_SECURITY_CONTEXT_DESC: 'Security Context的目的是限制不可信容器的行為，保護系統和其他容器不受其影響。',

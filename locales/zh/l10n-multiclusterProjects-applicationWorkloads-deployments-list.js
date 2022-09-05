@@ -102,6 +102,10 @@ module.exports = {
   KEY_IN_RESOURCE: '资源中的键',
   LABEL_TYPE: '{label} <span style="{style}">（{type}）</span>',
   RESOURCE: '资源',
+  CREATE_CONFIGMAP_SECRET_DESC: 'If no configmap or secret meets the requirements, you can',
+  CREATE_CONFIG: 'create a configmap',
+  OR: 'or',
+  CREATE_SECRET: 'create a secret.',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: '容器安全上下文',
   CONTAINER_SECURITY_CONTEXT_DESC: '自定义容器的权限设置。',
