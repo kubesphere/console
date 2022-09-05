@@ -36,7 +36,7 @@ export default class BaseInfo extends React.Component {
         <Form.Item
           label={t('INDEX_PREFIX')}
           desc={t('LOG_COLLECTION_ES_INDEX_TIPS')}
-          rules={[{ required: true, message: t('PARAMETER_REQUIRED') }]}
+          rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
         >
           <Input name="logstashPrefix" defaultValue="ks-logstash-log" />
         </Form.Item>

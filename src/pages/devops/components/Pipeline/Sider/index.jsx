@@ -203,7 +203,7 @@ export default class Sider extends React.Component {
     return (
       <div className={styles.sider}>
         <div className={styles.sheet}>
-          <div className={styles.title}>{t('Agent')}</div>
+          <div className={styles.title}>{t('AGENT')}</div>
           <Form.Item desc={t('AGENT_TYPE_DESC')} label={t('TYPE')}>
             <Select
               options={AgentType}

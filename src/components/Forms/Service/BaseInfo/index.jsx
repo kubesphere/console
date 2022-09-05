@@ -68,8 +68,8 @@ export default class ServiceBaseInfo extends React.Component {
 
   get serviceMeshOptions() {
     return [
-      { label: t('Off'), value: 'false' },
-      { label: t('On'), value: 'true' },
+      { label: t('OFF'), value: 'false' },
+      { label: t('ON'), value: 'true' },
     ]
   }
 

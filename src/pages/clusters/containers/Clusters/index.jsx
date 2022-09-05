@@ -201,7 +201,7 @@ class Clusters extends React.Component {
       return (
         <>
           <div className="h6 margin-b12">
-            {t('Cluster List')} <span className={styles.total}>{total}</span>
+            {t('CLUSTER_PL')} <span className={styles.total}>{total}</span>
           </div>
           <div className={styles.noData}>
             <img src="/assets/empty-card.svg" alt="" />
@@ -236,7 +236,7 @@ class Clusters extends React.Component {
         {!isEmpty(_data) && (
           <div>
             <div className="h6">
-              {t('Member Clusters')}{' '}
+              {t('MEMBER_CLUSTER_TCAP_PL')}{' '}
               <span className={styles.total}>{total}</span>
             </div>
             {_data.map(item => (

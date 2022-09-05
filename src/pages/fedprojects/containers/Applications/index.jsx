@@ -119,7 +119,7 @@ export default class CRDApps extends React.Component {
     const data = get(record, `resources[${cluster.name}]`)
 
     if (!data) {
-      return t('waiting')
+      return t('WAITING')
     }
 
     return <Status name={t(data.status)} type={data.status} />

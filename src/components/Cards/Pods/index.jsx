@@ -68,7 +68,7 @@ export default class PodsCard extends React.Component {
   }
 
   static defaultProps = {
-    title: 'Pods',
+    title: 'PODS',
     detail: {},
     details: {},
     hideHeader: false,

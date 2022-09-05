@@ -42,7 +42,6 @@ module.exports = {
   traffic: 'traffic',
   TRAFFIC_CONTROL: 'Traffic Control',
   VERSION_COMPARISON: 'Version Comparison',
-  'version number is invalid': 'version number is invalid.',
   'Version Off': 'Version Off',
   GRAY_RELEASE_CATEGORIES: 'Strategies',
   GRAY_RELEASE_STRATEGY_SI: 'Grayscale Release Strategy',

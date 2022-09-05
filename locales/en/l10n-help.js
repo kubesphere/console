@@ -14,14 +14,10 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
- */
+
+*/
+
 module.exports = {
-  connected: '已連接',
-  Disconnect: '斷開連接',
-  disconnected: '未連接',
-  'Download File': '下載檔案',
-  'Kubeconfig File': 'Kubeconfig 檔案',
-  'KubeSphere Terminal': 'KubeSphere 終端',
-  'Launch kubectl': '啟動 kubectl',
-  'Put this into': '把它加入到'
-};
+  USER_GUIDE: 'User Guide',
+  API_DOCUMENT: 'API Docuement',
+}

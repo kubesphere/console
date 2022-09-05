@@ -46,8 +46,8 @@ export default class NotifyConfirm extends React.PureComponent {
     type: 'info',
     title: 'title',
     content: 'content',
-    confirmText: 'Confirm',
-    cancelText: 'Cancel',
+    confirmText: 'OK',
+    cancelText: 'CANCEL',
     onConfirm() {},
     onCancel() {},
   }

@@ -49,7 +49,7 @@ export default function ParamsInput({ option }) {
         rules={[
           {
             required: option.required ?? false,
-            message: t('Please input value'),
+            message: t('PARAM_REQUIRED'),
           },
         ]}
       >

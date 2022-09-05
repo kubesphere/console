@@ -38,7 +38,7 @@ module.exports = {
   COMPOSING_APP: 'Composed app',
   CLUSTER_NODE_SCAP: 'Cluster node',
   POD_SCAP: 'Pod',
-  APP_TEMPLATE_SCAP: 'Template-based app',
+  APP_TEMPLATE_SCAP: 'App template',
   COMPOSING_APP_SCAP: 'Composed app',
   DEPLOYMENT_SCAP: 'Deployment',
   STATEFULSET_SCAP: 'Statefulset',

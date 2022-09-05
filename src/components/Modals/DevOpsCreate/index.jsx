@@ -118,7 +118,7 @@ export default class ProjectCreateModal extends React.Component {
       {item.disabled && (
         <div className={styles.toolmessage}>
           <span>
-            {!item.cluster.isReady ? t('Not Ready') : t('NO_DEVOPS_INSTALL')}
+            {!item.cluster.isReady ? t('UNREADY') : t('NO_DEVOPS_INSTALL')}
           </span>
         </div>
       )}
