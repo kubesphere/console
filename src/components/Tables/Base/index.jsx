@@ -374,7 +374,7 @@ export default class WorkloadTable extends React.Component {
             >
               {t('refresh data')}
             </span>
-            {t('or')}
+            {t('OR')}
             <span
               className={styles.action}
               onClick={this.clearFilter}
