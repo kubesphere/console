@@ -226,6 +226,17 @@ export default class GatewaySettingModal extends React.Component {
     return formData
   }
 
+  get CanDelete() {
+    const { cluster, workspace, project } = this.props.detail
+    return globals.app.hasPermission({
+      cluster,
+      workspace,
+      project,
+      module: 'grayscale-release',
+      action: 'delete',
+    })
+  }
+
   handlePatch = data => {
     const params = toJS(this.store.detail)
     this.store.patch(params, data).then(() => {
@@ -439,7 +450,9 @@ export default class GatewaySettingModal extends React.Component {
             {t('RELEASE_MODE')}: <strong>{t(`${cate.title}_LOW`)}</strong>
           </p>
         </div>
-        <Button onClick={this.handleOffline}>{t('DELETE')}</Button>
+        {this.CanDelete && (
+          <Button onClick={this.handleOffline}>{t('DELETE')}</Button>
+        )}
       </div>
     )
   }
