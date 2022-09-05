@@ -46,9 +46,14 @@ export default class DropdownContent extends React.Component {
     onChange: () => {},
   }
 
+  get defaultImage() {
+    const { imageRegistries } = this.props
+    return imageRegistries.find(item => item.isDefault)
+  }
+
   get secretValue() {
     const { formTemplate } = this.props
-    return get(formTemplate, 'pullSecret', '')
+    return get(formTemplate, 'pullSecret', this.defaultImage?.value || '')
   }
 
   get hubType() {
@@ -92,13 +97,16 @@ export default class DropdownContent extends React.Component {
 
   get secretsOptions() {
     const { imageRegistries } = this.props
-
     const options = imageRegistries.map(item => ({
       label: `${item.url} (${item.value})`,
       value: item.value,
       url: item.url,
+      isDefault: item.isDefault,
     }))
-    return [{ label: `Docker Hub`, value: '', url: '' }, ...options]
+
+    return [{ label: `Docker Hub`, value: '', url: '' }, ...options].sort(
+      (x, y) => Number(!!y.isDefault) - Number(!!x.isDefault)
+    )
   }
 
   componentDidMount() {

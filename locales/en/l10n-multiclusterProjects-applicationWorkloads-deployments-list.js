@@ -107,6 +107,12 @@ module.exports = {
   CREATE_CONFIG: 'create a configmap',
   OR: 'or',
   CREATE_SECRET: 'create a secret.',
+  DEFAULT_REPOSITORY: 'Default repository',
+  SET_DEFAULT_REPOSITORY: 'Set default repository',
+  SET_AS_DEFAULT_REPOSITORY_DESC:
+      'Set as default repository after setting, if not specified, the system will use the default repository to create the application load. Only one default repository can be set in a project.',
+  SET_AS_DEFAULT_REPOSITORY: 'Set as default mirror repository',
+  SET_DEFAULT_REPO_SUCCESSFUL: 'Set default repository successful',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: 'Container Security Context',
   CONTAINER_SECURITY_CONTEXT_DESC: 'Customize the privilege settings of the container.',

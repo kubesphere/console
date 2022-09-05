@@ -92,3 +92,29 @@
     background-color: $dark-color06;
   }
 }
+
+.optionCol {
+  display: flex;
+  justify-content: space-between;
+  .optionLabel {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .defaultTag {
+    flex: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    color: #ffffff;
+    padding: 0px 4px;
+
+    height: 20px;
+
+    /* ColorPalette/Green/$green-color-03 */
+
+    background: #55bc8a;
+    border-radius: 2px;
+  }
+}
