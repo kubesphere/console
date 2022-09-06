@@ -25,7 +25,7 @@ export default class CRDResourceStore {
   list = {
     data: [],
     page: 1,
-    limit: 8,
+    limit: 10,
     total: 0,
     continues: { 1: '' },
     isLoading: true,
@@ -84,7 +84,11 @@ export default class CRDResourceStore {
 
     const params = rest
 
-    params.limit = this.list.limit
+    if (!params.limit) {
+      params.limit = this.list.limit
+    } else {
+      this.list.limit = params.limit
+    }
 
     if (this.list.continues[page]) {
       params.continue = this.list.continues[page]
