@@ -40,5 +40,7 @@ module.exports = {
   // Monitoring
   // Environment Variables
   // Events
-  EVENT_PL: 'Etkinlikler'
+  EVENT_PL: 'Etkinlikler',
+  EVENT_NORMAL: 'Normal',
+  EVENT_WARNING: 'Dikkat'
 };
