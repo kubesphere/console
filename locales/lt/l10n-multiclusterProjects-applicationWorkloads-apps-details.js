@@ -33,6 +33,5 @@ module.exports = {
   TRAFFIC_MANAGEMENT: 'Traffic Management',
   // Tracing
   APPLICATION_GOVERNANCE_ENABLED: 'Application governance enabled',
-  APPLICATION_GOVERNANCE_DISABLED: 'Application governance disabled',
-  TRACING_UNAVAILABLE: 'Tracing Unavailable'
+  APPLICATION_GOVERNANCE_DISABLED: 'Application governance disabled'
 };
