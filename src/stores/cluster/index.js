@@ -177,7 +177,7 @@ export default class ClusterStore extends Base {
         this.isValidating = false
         window.onunhandledrejection({
           status: 400,
-          reason: t('Validation failed'),
+          reason: t('VALIDATION_FAILED'),
           message: err.message,
         })
         return Promise.reject()

@@ -242,7 +242,7 @@ export default class StorageClassSetting extends React.Component {
                 rules={[
                   {
                     required: true,
-                    message: t('PARAMETER_REQUIRED'),
+                    message: t('PARAM_REQUIRED'),
                   },
                 ]}
                 label={t('PROVISIONER')}

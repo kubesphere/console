@@ -77,6 +77,7 @@ module.exports = {
   EDIT_TEMPLATE: 'Edit Template',
   SAVE_TEMPLATE: 'Save Template',
   THRESHOLD_FILL: 'Threshold Settings',
+  UNIT: 'Unit',
   // List > Edit Information
 
   // List > Edit YAMl

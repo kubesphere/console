@@ -101,7 +101,7 @@ export default class LoginConfirm extends Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('Username')}
+              label={t('USERNAME')}
               desc={t('USERNAME_DESC')}
               rules={[
                 { required: true, message: t('Please input username') },

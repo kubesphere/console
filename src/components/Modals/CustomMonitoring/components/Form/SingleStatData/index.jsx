@@ -57,7 +57,7 @@ export default class SingleStatDataForm extends Component {
           <Form.Item>
             <FormItemContainer name={'format'} defaultValue={formatOpts[0]}>
               {({ onChange, value }) => (
-                <Field label={t('Unit')} tips={''}>
+                <Field label={t('UNIT')} tips={''}>
                   <Select
                     options={formatOpts}
                     value={value}

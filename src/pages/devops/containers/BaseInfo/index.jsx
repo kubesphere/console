@@ -392,7 +392,7 @@ class BaseInfo extends React.Component {
       <div className={styles.items}>
         {this.detail.sourceRepos.map(repo => (
           <div key={repo} className={styles.item}>
-            {repo === '*' ? t('All') : repo}
+            {repo === '*' ? t('ALL') : repo}
           </div>
         ))}
       </div>
@@ -404,7 +404,7 @@ class BaseInfo extends React.Component {
               <Icon name="cluster" size={20} />
               <b>
                 {destination.name === '*'
-                  ? t('All')
+                  ? t('ALL')
                   : inCluster2Default(destination.name)}
               </b>
               {destination?.name !== '*' && (
@@ -415,7 +415,7 @@ class BaseInfo extends React.Component {
               <Icon name="enterprise" size={20} />
               <b>
                 {destination?.namespace === '*'
-                  ? t('All')
+                  ? t('ALL')
                   : destination?.namespace}
               </b>
             </div>

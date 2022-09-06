@@ -41,7 +41,7 @@ export default class StatusCircle extends React.Component {
   static defaultProps = {
     theme: 'dark',
     name: 'Status',
-    legend: ['Used', 'Total'],
+    legend: ['USED', 'TOTAL'],
     used: 0,
     total: 0,
     unit: '',

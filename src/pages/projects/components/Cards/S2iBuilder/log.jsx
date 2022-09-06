@@ -51,7 +51,7 @@ export default class Log extends React.Component {
     } else {
       this.store.logData.isLoading = false
       this.setState({
-        noModuleMsg: t('The logging module is not installed.'),
+        noModuleMsg: t('CONTAINER_LOG_NOT_ENABLED'),
       })
     }
   }
@@ -112,7 +112,7 @@ export default class Log extends React.Component {
           <span className={classnames(styles.icon, styles.successful)} />
           <p>
             <span className={styles.taskName}>{builderName}</span>
-            {t('building logs')}
+            {t('BUILD_LOG')}
           </p>
         </React.Fragment>
       )
@@ -123,9 +123,9 @@ export default class Log extends React.Component {
         <React.Fragment>
           <span className={classnames(styles.icon, styles.running)} />
           <p>
-            {t('Task')}
+            {t('TASK')}
             <span className={styles.taskName}>{builderName}</span>
-            {t('is Building')}
+            {t('IN_PROGRESS')}
           </p>
         </React.Fragment>
       )
@@ -136,11 +136,11 @@ export default class Log extends React.Component {
         <React.Fragment>
           <span className={classnames(styles.icon, styles.failed)} />
           <p>
-            {t('Task')}
+            {t('TASK')}
             <span className={styles.taskName}>{builderName}</span>
-            {t('is Failed')}
+            {t('HAS_FAILED')}
             {isFunction(onRerun) ? (
-              <Tooltip content={t('Rebuild Image')}>
+              <Tooltip content={t('RERUN')}>
                 <Icon name="refresh" onClick={this.handleRerun} />
               </Tooltip>
             ) : null}
@@ -153,7 +153,7 @@ export default class Log extends React.Component {
         <span className={classnames(styles.icon, styles.unknow)} />
         <p>
           <span className={styles.taskName}>{builderName}</span>
-          {t('building logs')}
+          {t('BUILD_LOG')}
         </p>
       </React.Fragment>
     )
@@ -171,7 +171,7 @@ export default class Log extends React.Component {
           </Loading>
         )
       }
-      return <p className={styles.noneLogDesc}>{t('No log records')}</p>
+      return <p className={styles.noneLogDesc}>{t('NO_DATA')}</p>
     }
     return (
       <pre ref={this.LogContent}>{noModuleMsg || log || t('LOADING_DOTS')}</pre>

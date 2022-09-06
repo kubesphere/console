@@ -75,5 +75,7 @@ module.exports = {
   STATUS_VALUE: 'Status: {value}',
   // Metadata
   // Monitoring
+  OUT: 'Out',
+  IN: 'In',
   // Events
 }

@@ -53,6 +53,7 @@ module.exports = {
   MASTER_NODE_COUNT_TIP: 'The number of Master nodes needs to be 1 or 3',
   WORKER_NODE_COUNT_TIP: 'The number of Worker nodes is at least 1',
   HOW_TO_ADD: 'How to Add',
+  DOMAIN: 'Domain',
   // Add Node
   NODE_ROLE_EMPTY_DESC: 'Please set the role of the node in the cluster.',
   EXTERNAL_IP: 'External IP Address',
@@ -67,6 +68,7 @@ module.exports = {
   SSH_AUTH_MODE_DESC: 'Select an SSH authentication mode.',
   NODE_USERNAME_DESC: 'Enter the username used for SSH login.',
   NODE_PASSWORD_DESC: 'Enter the password used for SSH login.',
+  'Add node to the cluster': 'Add node to the cluster',
   // workspaces/containers/Clusters
   WORKSPACE_CLUSTERS_DESC: 'The cluster information shows how cluster resources are used in the workspace.',
   // console/components/Cards/Workspace
@@ -77,4 +79,34 @@ module.exports = {
   'Private Registry': 'Private Registry',
   // pages/projects/containers/Alerting/Messages
   ALERT_TYPE: '{type} Alert',
+  // pages/projects/containers/Applications/OPAppDetail/VersionInfo
+  CURRENT_VERSION: 'Current version',
+  UPGRADE: 'Upgrade',
+  // utils/time.js
+  SECONDS: 'seconds',
+  MINUTES: 'minutes',
+  HOURS: 'hours',
+  DAYS: 'days',
+  WEEKS: 'weeks',
+  // components/Inputs/Upload
+  FILE_OVERSIZED_TIP: 'The file size must be less than 2 MB.',
+  // pages/clusters/containers/Clusters/index.jsx
+  'New Cluster': 'New Cluster',
+  'Import Cluster': 'Import Cluster',
+  // src/components/Forms/Cluster/BaseInfo/index.jsx
+  'Node Settings': 'Node Settings',
+  'Please add at least one cluster node': 'Please add at least one cluster node',
+  // components/Forms/Cluster/ClusterSettings
+  'Network Plugin': 'Network Plugin',
+  'Max Pods': 'Max Pods',
+  'Pods CIDR': 'Pods CIDR',
+  'Service CIDR': 'Service CIDR',
+  'Default Storage Plugin': 'Default Storage Plugin',
+  // components/Forms/Cluster/AdvanceSettings
+  'Private Registry Configuration': 'Private Registry Configuration',
+  'etcd Backup': 'etcd Backup',
+  'etcd Backup Dir': 'etcd Backup Dir',
+  'etcd Backup Period': 'etcd Backup Period',
+  'Keep Backup Number': 'Keep Backup Number',
+  'KubeSphere Settings': 'KubeSphere Settings',
 }

@@ -69,7 +69,7 @@ export default class AppInfo extends React.PureComponent {
               <td>
                 <p className={styles.name}>{name}</p>
                 <p className={styles.date}>
-                  {moment(status_time).format(t('YYYY-MM-DD'))}
+                  {moment(status_time).format('YYYY-MM-DD')}
                 </p>
               </td>
               <td>

@@ -160,8 +160,8 @@ class TrafficManagement extends React.Component {
       return (
         <EmptyList
           image="/assets/traffic-management.svg"
-          title={t('NO_DATA')}
-          desc={t('TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP')}
+          title={t('TRAFFIC_MANAGEMENT_UNAVAILABLE')}
+          desc={t('APPLICATION_GOVERNANCE_NOT_ENABLED')}
         />
       )
     }
@@ -189,7 +189,7 @@ class TrafficManagement extends React.Component {
         image="/assets/traffic-management.svg"
         title={t('NO_DATA')}
         desc={t('TRAFFIC_MONITORING_UNAVAILABLE_DESC')}
-        actions={<Button onClick={this.handleRefresh}>{t('Refresh')}</Button>}
+        actions={<Button onClick={this.handleRefresh}>{t('REFRESH')}</Button>}
       />
     )
   }

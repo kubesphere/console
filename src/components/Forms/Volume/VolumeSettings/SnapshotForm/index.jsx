@@ -137,7 +137,7 @@ export default class SanpshotForm extends Component {
     return (
       <>
         <Form.Item
-          label={t('Volume Snapshot')}
+          label={t('VOLUME_SNAPSHOT')}
           rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           className={styles.snapshotContainer}
         >

@@ -91,7 +91,7 @@ export default class App extends React.Component {
           {isGroup && (
             <p className={styles.pods}>
               <img src="/assets/health.svg" alt="" />
-              {t('Pods')}: {podNums}
+              {t('PODS')}: {podNums}
             </p>
           )}
           {groupedNodes.service &&

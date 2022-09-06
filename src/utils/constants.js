@@ -43,9 +43,9 @@ export const JOB_STATUS = [
 ]
 
 export const S2IJOBS_STATUS = [
-  { text: 'Failed', value: 'Failed' },
-  { text: 'Successful', value: 'successful' },
-  { text: 'Running', value: 'Running' },
+  { text: 'FAILED', value: 'Failed' },
+  { text: 'SUCCESSFUL', value: 'successful' },
+  { text: 'RUNNING', value: 'Running' },
 ]
 
 export const S2I_STATUS_DESC = {
