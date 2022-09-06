@@ -17,6 +17,7 @@
  */
 module.exports = {
   // Head
+  WORKBENCH: 'Workbench',
   DASHBOARD_TITLE: '您好 {username}',
   LAST_LOGIN_TIME: 'Last Login: ',
   USER_DASHBOARD_EMPTY_TITLE: '您暫時不屬於任何企業空間',
