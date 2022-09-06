@@ -32,5 +32,4 @@ module.exports = {
 
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value} ({label})',
-  CREATE_SECRET: 'create a secret.',
 }

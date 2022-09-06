@@ -179,7 +179,7 @@ export default {
       const modal = Modal.open({
         onOk: () => {
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_SUCCESSFUL') })
+          Notify.success({ content: t('DELETED_SUCCESSFULLY') })
           success && success()
         },
         store,
@@ -204,7 +204,7 @@ export default {
       const modal = Modal.open({
         onOk: () => {
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_SUCCESSFUL') })
+          Notify.success({ content: t('DELETED_SUCCESSFULLY') })
           success && success()
         },
         modal: DeleteModal,

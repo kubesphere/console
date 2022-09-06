@@ -33,7 +33,7 @@ import getRoutes from './routes'
 @observer
 @trigger
 export default class NetworkpoliciesDetail extends React.Component {
-  name = 'Network Policy'
+  name = 'NETWORK_POLICY'
 
   module = 'networkpolicies'
 

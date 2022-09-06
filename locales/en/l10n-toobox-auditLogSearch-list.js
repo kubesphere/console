@@ -20,6 +20,8 @@ module.exports = {
   // Title
   TOTAL_AUDITING_TODAY: 'A total of <span class={className}> {auditing} </span> audit log entries have been collected today.',
   NO_AUDIT_LOG_TODAY: 'No Audit Log Collected Today',
+  AUDIT_LOG_TREND_LAST_TWELVE_HOURS: 'Audit log trend in the last 12 hours',
+  START_TIME_VALUE: 'Start Time: {value}',
   // Search
   NO_DATA_AUTHORIZED: 'No Data Authorized',
   NO_DATA_AUTHORIZED_DESC: 'Please contact an administrator to obtain data authorization.',
