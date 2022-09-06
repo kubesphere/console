@@ -226,7 +226,7 @@ export default {
           await Promise.all([...updateAccessor, ...reqs])
 
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_SUCCESSFUL') })
+          Notify.success({ content: t('DELETED_SUCCESSFULLY') })
           store.setSelectRowKeys([])
           success && success()
         },
@@ -255,7 +255,7 @@ export default {
 
           store.delete(detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: t('DELETE_SUCCESSFUL') })
+            Notify.success({ content: t('DELETED_SUCCESSFULLY') })
             success && success()
           })
         },

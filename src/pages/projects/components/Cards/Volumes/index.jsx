@@ -85,7 +85,7 @@ export default class VolumesCard extends React.Component {
     }
 
     return (
-      <Panel className={className} title={title || t('Volumes')}>
+      <Panel className={className} title={title || t('VOLUME_PL')}>
         {content}
       </Panel>
     )

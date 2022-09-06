@@ -83,9 +83,6 @@ module.exports = {
   CURRENT_VERSION: 'Current version',
   UPGRADE: 'Upgrade',
   // utils/time.js
-  SECONDS: 'seconds',
-  MINUTES: 'minutes',
-  HOURS: 'hours',
   DAYS: 'days',
   WEEKS: 'weeks',
   // components/Inputs/Upload

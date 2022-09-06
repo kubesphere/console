@@ -87,7 +87,7 @@ export default class ServicesCard extends React.Component {
     const { className } = this.props
 
     return (
-      <Panel className={className} title={t('Services')}>
+      <Panel className={className} title={t('SERVICE_PL')}>
         {this.renderContent()}
       </Panel>
     )

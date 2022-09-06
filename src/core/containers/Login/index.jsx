@@ -140,7 +140,7 @@ export default class Login extends Component {
               label={t('PASSWORD')}
               rules={[{ required: true, message: t('PASSWORD_EMPTY_DESC') }]}
             >
-              <InputPassword name="password" placeholder="Password" />
+              <InputPassword name="password" placeholder=" " />
             </Form.Item>
             <div className={styles.footer}>
               <Button type="control" htmlType="submit" loading={isSubmmiting}>

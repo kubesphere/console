@@ -154,10 +154,11 @@ export default class HomeModal extends React.Component {
             </h3>
             <p>
               <Icon name="clock" />
-              {t('START_TIME_COLON')}
-              {moment(this.logStatisticsStore.startTime).format(
-                `${t('LOG_DATE')}`
-              )}
+              {t('START_TIME_VALUE', {
+                value: moment(this.logStatisticsStore.startTime).format(
+                  'YYYY-MM-DD HH:mm:ss'
+                ),
+              })}
             </p>
           </div>
         </Loading>

@@ -26,5 +26,4 @@ module.exports = {
   Unverified: '镜像仓库保密字典验证失败。',
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value}（{label}）',
-  CREATE_SECRET: '创建保密字典。'
 };

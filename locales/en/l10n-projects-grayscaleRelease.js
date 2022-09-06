@@ -46,6 +46,7 @@ module.exports = {
   CREATE_CANARY_RELEASE_TASK: 'Create Canary Release Task',
   // Release Modes > Canary Release > Create > Service Settings
   UNFINISHED_GRAY_TASK: 'Grayscale release in progress',
+  NO_WORKLOAD_FOUND_TIP: 'No workload found',
   NO_SERVICE_MESH_TIP: 'Application governance is disabled for the app and grayscale release is unavailable.',
   GRAY_APP_NAME: 'App: {name}',
   UNSUPPORTED_WORKLOAD_TYPE: 'Workload type not supported',
@@ -92,11 +93,15 @@ module.exports = {
   REPLICA_COUNT_LOW: 'replicas',
   MIRROR_POLICY_DESC: 'A copy of service traffic is sent to the new version for testing. Only the old version is exposed and the new version is not exposed.',
   // Release Tasks > Blue-Green Deployment > Task Status
+  BLUE_GREEN_DEPLOYMENT_LOW: 'blue-green deployment',
   BLUE_GREEN_TRAFFIC_DISTRI_DESC: 'The new version or old version receives all traffic.',
   TRAFFIC_LOW: 'traffic',
   VERSION_TRAFFIC_PERCENT: '{version} traffic {percent}%',
+  OFFLINE: 'Offline',
+  OFFLINE_TIP: 'No service traffic is sent to this version. You can take the version online to make it take over all traffic.',
   // Release Tasks > Canary Release > Task Status
-  TASK_OFFLINE_SUCCESSFULLY: 'Task offline successfully.',
+  CANARY_RELEASE_LOW: 'canary release',
+  TASK_OFFLINE_SUCCESSFULLY: 'The task is taken offline successfully.',
   ADJUST_TRAFFIC_DISTRIBUTION_DESC: 'Are you sure you want to send {ratioNew}% of traffic to the new version <b>{newVersion}</b> and {ratioOld}% to the old version <b>{oldVersion}</b>?',
   ALLOCATE_TRAFFIC_DESC: 'Move the slider to set the proportion of traffic sent to the new version and that sent to the old version.',
   COOKIE_EXACT_MATCH: 'Cookie (exact match)',
@@ -113,7 +118,9 @@ module.exports = {
   DELETE_GRAYSCALE_RELEASE_TASK_DESC: 'Please select a version to take over all traffic before deleting the grayscale release task.',
   GRAY_COMPONENT_DESC: 'Information about the new version being tested and the old version.',
   // Release Tasks > Traffic Mirroring > Task Status
+  TRAFFIC_MIRRORING_LOW: 'traffic mirroring',
   MIRRORED_TRAFFIC: 'Mirrored traffic',
+  MIRRORED_TRAFFIC_TIP: 'Traffic mirroring does not actually expose the new version.',
   RELEASE_MODE_PL: 'Release Modes',
   RELEASE_MODE: 'Release mode',
   NEW_VERSION_TAKEOVER_DESC: 'The new version <b>{newVersion}</b> is receiving all traffic. If you delete the current grayscale release task, the old version <b>{oldVersion}</b> will be also be deleted.',

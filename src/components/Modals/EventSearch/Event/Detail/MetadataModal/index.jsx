@@ -110,12 +110,10 @@ export default class MetadataModal extends React.Component {
     return (
       <div className={styles.bottom}>
         <div className={styles.reason}>
-          {t('REASON_COLON')}
-          {reason}
+          {t('REASON_VALUE', { value: reason })}
         </div>
         <div className={styles.message}>
-          {t('MESSAGE_COLON')}
-          {message}
+          {t('MESSAGE_VALUE', { value: message })}
         </div>
       </div>
     )
