@@ -65,6 +65,13 @@ module.exports = {
   TARGET_CPU_USAGE: '目标 CPU 用量',
   TARGET_CURRENT: '{target}（当前：{current}）',
   NOT_ENABLE: '{resource}未启用',
+  // Resource Status > Image Builder
+  CONTAINER_LOG_NOT_ENABLED: 'Container Log is not enabled.',
+  BUILD_LOG: 'Build Log',
+  TASK: 'Task',
+  IN_PROGRESS: 'in progress',
+  IMAGE_BUILDING: 'Image Building',
+  HAS_FAILED: 'has failed',
   // Metadata
   // Monitoring
   // Monitoring > View All Replicas (visible only when replicas > 5)

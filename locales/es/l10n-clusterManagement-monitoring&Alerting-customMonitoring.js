@@ -75,6 +75,7 @@ module.exports = {
   EDIT_TEMPLATE: 'Editar plantilla',
   SAVE_TEMPLATE: 'Guardar plantilla',
   THRESHOLD_FILL: 'Configuraciones de umbral',
+  UNIT: 'Unit',
   // List > Edit Information
   // List > Edit YAMl
   // List > Delete

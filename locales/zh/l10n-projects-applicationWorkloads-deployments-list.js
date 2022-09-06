@@ -27,8 +27,9 @@ module.exports = {
   INVALID_NAME_DESC: '名称无效。名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   NO_IMAGE_FOUND: '没有找到镜像',
   CONTAINER_EMPTY_DESC: '请添加至少一个工作容器。',
-  QUOTA_UNSET_TIP: '资源占用未设置。',
-  QUOTA_OVERCOST_TIP: '当前的资源占用已超过剩余资源。',
+  RESOURC_QUOTAS_UNSET: 'Resource Quotas Unset',
+  INSUFFICENT_RESOURCES: 'Insufficent Resources',
+  REMAINING_QUOTAS: 'Remaining Quotas',
   // List > Create > Pod Settings > Add Container > Container Settings > Environment Settings
   ENVIRONMENT_INVALID_TIP: '环境变量的键只能包含字母、数字、下划线（_）、连字符（-）和句点（.），并且不能以数字开头。',
   ENVIRONMENT_CANNOT_BE_EMPTY: '请设置环境变量的键。',
@@ -61,5 +62,7 @@ module.exports = {
   DELETE_WORKLOAD_DESC_SI: '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下与工作负载关联的资源。',
   DELETE_WORKLOAD_DESC_PL: '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下与工作负载关联的资源。',
   DELETE_WORKLOAD: '删除工作负载',
-  DELETE_MULTIPLE_WORKLOADS: '批量删除工作负载'
+  DELETE_MULTIPLE_WORKLOADS: '批量删除工作负载',
+  DELETE_APP_RESOURCE_TIP: 'The resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is deleted. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
+  STOP_APP_RESOURCE_TIP: 'The resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is stopped. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.'
 };

@@ -18,6 +18,7 @@
 module.exports = {
   // Banner
   HOST_CLUSTER: 'Clúster de host',
+  MEMBER_CLUSTER: 'Member cluster',
   CLUSTER_CONDITIONS: 'Condiciones de clúster',
   // Baisc Information
   PROVIDER: 'Proveedor',
@@ -32,6 +33,7 @@ module.exports = {
   TOTAL: 'Total',
   USED: 'En uso',
   // Tools
+  TOOLS: 'Tools',
   KUBECTL_DESC: 'Herramienta de línea de comandos para controlar el clúster Kubernetes actual',
   KUBECONFIG_DESC: 'Puedes usar este archivo para configurar el acceso al clúster Kubernetes actual',
   // Kubernetes Status

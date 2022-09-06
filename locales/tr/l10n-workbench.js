@@ -17,6 +17,7 @@
  */
 module.exports = {
   // Head
+  WORKBENCH: 'Workbench',
   DASHBOARD_TITLE: 'Hoşgeldin, {username}',
   LAST_LOGIN_TIME: 'Son Giriş: ',
   USER_DASHBOARD_EMPTY_TITLE: 'Herhangi bir çalışma alanına ait değilsiniz.',

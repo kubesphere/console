@@ -28,7 +28,6 @@ module.exports = {
   // Banner > Add Log Receiver > Elasticsearch
   LOG_COLLECTION_ES_URL_TIPS: '默认使用系统部署的 Elasticsearch 服务，您也可以输入在集群内部或外部单独部署的 Elasticsearch 服务的地址。',
   LOG_COLLECTION_ES_INDEX_TIPS: '使用索引前缀进行快速搜索。系统以<索引前缀>-<年-月-日>格式自动生成索引前缀。',
-  PARAMETER_REQUIRED: '此参数为必填项。',
   // Banner > Add Log Receiver > Kafka
   TOPIC: '主题',
   ADD_SERVICE_ADDRESS: '添加',

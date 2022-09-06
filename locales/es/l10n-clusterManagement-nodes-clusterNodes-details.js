@@ -71,5 +71,9 @@ module.exports = {
   POLICY: 'Policy',
   // Pods
   READY_VALUE: 'Ready: {readyCount}/{total}',
-  STATUS_VALUE: 'Status: {value}'
+  STATUS_VALUE: 'Status: {value}',
+  // Metadata
+  // Monitoring
+  OUT: 'Out',
+  IN: 'En'
 };

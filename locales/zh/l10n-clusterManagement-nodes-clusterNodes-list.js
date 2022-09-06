@@ -70,6 +70,9 @@ module.exports = {
   NO_MATCHING_RESULT_FOUND: '未发现匹配的结果',
   STATUS: '状态',
   TOTAL_ITEMS: '总数：{num}',
+  YOU_CAN_TRY_TO: 'You can try to',
+  REFRESH_DATA: 'refresh data',
+  CLEAR_SEARCH_CONDITIONS: 'clear search conditions',
   // List > Edit Taints
   DUPLICATE_KEYS: '该键已经存在，请输入其他键。',
   EMPTY_KEY: '请输入一个键。'

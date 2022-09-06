@@ -19,6 +19,7 @@ module.exports = {
   // Title
   TOOLBOX: '工具箱',
   TOOLBOX_DESC: '提供集群分析和控制工具。',
+  DETAIL_NOT_FOUND_DESC: 'No related resources were found. <a href="{link}">Return to {title}</a>',
   // Description
   // Ayalysis Tools
   ANALYSIS_TOOLS: '分析工具',

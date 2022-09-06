@@ -37,7 +37,7 @@ module.exports = {
   COMPOSING_APP: 'Oluşturulan uygulama',
   CLUSTER_NODE_SCAP: 'Küme Düğümü',
   POD_SCAP: 'Koza',
-  APP_TEMPLATE_SCAP: 'Şablon tabanlı uygulama',
+  APP_TEMPLATE_SCAP: 'App template',
   COMPOSING_APP_SCAP: 'Oluşturulan uygulama',
   DEPLOYMENT_SCAP: 'Dağıtım',
   STATEFULSET_SCAP: 'Durum bilgisi',

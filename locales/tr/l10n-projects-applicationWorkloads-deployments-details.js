@@ -65,6 +65,13 @@ module.exports = {
   TARGET_CPU_USAGE: 'Hedef CPU Kullanımı',
   TARGET_CURRENT: '{target} (Current: {current})',
   NOT_ENABLE: '{resource} Aktif Edilmedi',
+  // Resource Status > Image Builder
+  CONTAINER_LOG_NOT_ENABLED: 'Container Log is not enabled.',
+  BUILD_LOG: 'Build Log',
+  TASK: 'Task',
+  IN_PROGRESS: 'in progress',
+  IMAGE_BUILDING: 'Image Building',
+  HAS_FAILED: 'has failed',
   // Metadata
   // Monitoring
   // Monitoring > View All Replicas (visible only when replicas > 5)

@@ -40,6 +40,7 @@ module.exports = {
   WS_NETWORK_ISOLATION: '企業空間網路隔離',
   NETWORK_POLICY_UNINSATLLED_DESC: 'The network policy component is not installed in this cluster.',
   // Delete Workspace
+  DELETE_DESC: 'Are you sure you want to delete the resource? The resource cannot be restored after it is deleted.',
   // Delete Workspace > Delete
   SURE_TO_DELETE_WORKSPACE: 'Are you sure you want to delete the workspace?',
   DELETE_WORKSPACE_PROJECTS_DESC: '刪除該企業空間關聯項目',

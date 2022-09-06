@@ -19,6 +19,7 @@ module.exports = {
   // More > Add Service
   ADD_SERVICE: '添加服务',
   ADD_ROUTE: '添加应用路由',
+  SERVICE_ADDED_SUCCESSFULLY: 'The service was added successfully.',
   // More > Add Route
   // Attributes
   // Resource Status
@@ -68,11 +69,16 @@ module.exports = {
   BASE_EJECTION_TIME_S: '排除时间（秒）',
   BASE_EJECTION_TIME_S_DESC: '最大后端排除时间。',
   UPDATED_AT_VALUE_SCAP: '更新于 {value}',
+  METHOD: 'Method',
+  TRAFFIC_MANAGEMENT_UNAVAILABLE: 'Traffic Management Unavailable',
+  APPLICATION_GOVERNANCE_NOT_ENABLED: 'Please enable Application Governance.',
   // Grayscale Release
   CREATE_GRAYSCALE_RELEASE_TASK: '创建灰度发布任务',
   GRAYSCALE_RELEASE_DESC: '灰度发布是在生产环境进行应用迭代的一种重要方式。您可以选择不同的发布方法，在应用升级至新版本的过程中实现平滑过渡。',
   NO_GRAYSCALE_RELEASE_TASK_FOUND: '未发现灰度发布任务',
   NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: '请创建一个灰度发布任务。',
+  TYPE_SERVICE_DEPLOYMENT: 'Type: stateless service (deployment)',
+  TYPE_SERVICE_STATEFULSET: 'Type: stateful service (statefulset)',
   // Tracing
   TRACING: '链路追踪',
   TRACING_NO_DATA_DESC: '请修改搜索条件后重试。',
@@ -80,5 +86,10 @@ module.exports = {
   NUM_SPAN_PL: '{num} 跨度',
   NUM_ERROR_SI: '{num} 错误',
   NUM_ERROR_PL: '{num} 错误',
-  LAST_NUM_RECORDS: '最近 {num} 条记录'
+  LAST_NUM_RECORDS: '最近 {num} 条记录',
+  PROCESS: 'Process',
+  SERVICES_AND_OPERATIONS: 'Services & Operations',
+  TRACING_UNAVAILABLE: 'Tracing Unavailable',
+  CALLED_SERVICES: 'Called Services',
+  CALLED_DEPTH: 'Call Depth'
 };

@@ -18,6 +18,7 @@
 module.exports = {
   // Banner
   HOST_CLUSTER: 'Host cluster',
+  MEMBER_CLUSTER: 'Member cluster',
   CLUSTER_CONDITIONS: 'Cluster Conditions',
   // Baisc Information
   PROVIDER: 'Provider',
@@ -32,6 +33,7 @@ module.exports = {
   TOTAL: 'Total',
   USED: 'Used',
   // Tools
+  TOOLS: 'Tools',
   KUBECTL_DESC: 'Command line tool used to control the current cluster.',
   KUBECONFIG_DESC: 'File used to configure the access information about the current cluster.',
   // Kubernetes Status

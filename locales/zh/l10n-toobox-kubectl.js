@@ -58,5 +58,6 @@ module.exports = {
     <li>查看容器组详情</li>
     </ul>
     <p><code>kubectl describe pods &lt;容器组名称&gt;</code></p>
-  `
+  `,
+  OPEN_TERMINAL_DESC: 'Ensure that the web socket settings on the proxy server is correct.'
 };

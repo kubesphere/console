@@ -19,6 +19,7 @@ module.exports = {
   // Title
   TOOLBOX: '工具箱',
   TOOLBOX_DESC: '提供紀錄、事件、審計等相關查詢工具',
+  DETAIL_NOT_FOUND_DESC: 'No related resources were found. <a href="{link}">Return to {title}</a>',
   // Description
   // Ayalysis Tools
   ANALYSIS_TOOLS: 'Analysis Tools',
