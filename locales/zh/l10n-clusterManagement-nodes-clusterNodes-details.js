@@ -71,5 +71,9 @@ module.exports = {
   POLICY: '策略',
   // Pods
   READY_VALUE: '就绪：{readyCount}/{total}',
-  STATUS_VALUE: '状态：{value}'
+  STATUS_VALUE: '状态：{value}',
+  // Metadata
+  // Monitoring
+  OUT: 'Out',
+  IN: '入'
 };
