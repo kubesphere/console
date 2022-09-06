@@ -75,6 +75,7 @@ module.exports = {
   EDIT_TEMPLATE: '编辑模板',
   SAVE_TEMPLATE: '保存模板',
   THRESHOLD_FILL: '阈值填充',
+  UNIT: 'Unit',
   // List > Edit Information
   // List > Edit YAMl
   // List > Delete
