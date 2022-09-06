@@ -68,5 +68,6 @@ module.exports = {
   // List > Stop
   STOP: 'Dur',
   STOP_TITLE_SI: 'Dur {tip}',
-  STOP_TITLE_PL: 'Çoklu {tip} Durdur.'
+  STOP_TITLE_PL: 'Çoklu {tip} Durdur.',
+  STOP_DESC: 'Are you sure you want to stop the resource?'
 };
