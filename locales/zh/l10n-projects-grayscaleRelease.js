@@ -49,6 +49,7 @@ module.exports = {
   GRAY_APP_NAME: '应用：{name}',
   UNSUPPORTED_WORKLOAD_TYPE: '不支持该工作负载类型',
   // Release Modes > Canary Release > Create > New Version Settings
+  VERSION_EXISTS: 'The version code already exists. Please enter another version code.',
   NEW_VERSION_NUMBER_EXIST_DESC: '工作负载 {name} 已经存在，请输入其他版本号。',
   INIT_CONTAINER: '初始化容器',
   INIT_CONTAINER_VALUE: '初始化容器：{value}',
