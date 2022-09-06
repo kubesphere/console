@@ -28,7 +28,6 @@ module.exports = {
   // Banner > Add Log Receiver > Elasticsearch
   LOG_COLLECTION_ES_URL_TIPS: 'Yerleşik Elasticsearch hizmeti varsayılan olarak kullanılır. Küme içinde veya dışında bağımsız olarak dağıtılan Elasticsearch\'ün IP adresini de girebilirsiniz.',
   LOG_COLLECTION_ES_INDEX_TIPS: 'Sorguları hızlandırmak için dizin önekini kullanın. Dizin öneki, <Index öneki>-<Yıl-ay-tarihi> biçiminde otomatik olarak oluşturulur.',
-  PARAMETER_REQUIRED: 'Bu çerez zorunludur.',
   // Banner > Add Log Receiver > Kafka
   TOPIC: 'Konu',
   ADD_SERVICE_ADDRESS: 'Ekle',
