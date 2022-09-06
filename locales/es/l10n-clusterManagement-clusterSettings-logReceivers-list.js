@@ -28,7 +28,6 @@ module.exports = {
   // Banner > Add Log Receiver > Elasticsearch
   LOG_COLLECTION_ES_URL_TIPS: 'The built-in Elasticsearch service is used by default. You can also enter the IP address of Elasticsearch independently deployed inside or outside the cluster.',
   LOG_COLLECTION_ES_INDEX_TIPS: 'Use the index prefix to speed up queries. The index prefix is automatically generated in <Index prefix>-<Year-month-date> format.',
-  PARAMETER_REQUIRED: 'This parameter is mandatory.',
   // Banner > Add Log Receiver > Kafka
   TOPIC: 'tema',
   ADD_SERVICE_ADDRESS: 'Add',
