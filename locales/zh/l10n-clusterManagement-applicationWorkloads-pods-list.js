@@ -20,6 +20,7 @@ module.exports = {
   POD_PL: '容器组',
   // List
   NODE_IP: '{node}（{ip}）',
+  WAITING: 'Waiting',
   // List > View YAML
   // List > Delete
   POD_LOW: '容器组',
