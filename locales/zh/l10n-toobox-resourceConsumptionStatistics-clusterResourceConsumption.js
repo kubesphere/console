@@ -37,7 +37,7 @@ module.exports = {
   COMPOSING_APP: '自制应用',
   CLUSTER_NODE_SCAP: '集群节点',
   POD_SCAP: '容器组',
-  APP_TEMPLATE_SCAP: '基于模板的应用',
+  APP_TEMPLATE_SCAP: 'App template',
   COMPOSING_APP_SCAP: '自制应用',
   DEPLOYMENT_SCAP: '部署',
   STATEFULSET_SCAP: '有状态副本集',
