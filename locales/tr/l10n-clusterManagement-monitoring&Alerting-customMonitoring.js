@@ -75,6 +75,7 @@ module.exports = {
   EDIT_TEMPLATE: 'Şablon Düzenle',
   SAVE_TEMPLATE: 'Şablonu Kaydet',
   THRESHOLD_FILL: 'Eşik Ayarları',
+  UNIT: 'Unit',
   // List > Edit Information
   // List > Edit YAMl
   // List > Delete
