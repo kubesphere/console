@@ -68,5 +68,6 @@ module.exports = {
   // List > Stop
   STOP: '停止',
   STOP_TITLE_SI: '停止{type}',
-  STOP_TITLE_PL: '批量停止{type}'
+  STOP_TITLE_PL: '批量停止{type}',
+  STOP_DESC: 'Are you sure you want to stop the resource?'
 };
