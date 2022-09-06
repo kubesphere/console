@@ -19,12 +19,14 @@ module.exports = {
   // Banner
   NO_CLUSTER_TIP: 'Lütfen en az bir küme ekleyiniz.',
   // Add Cluster > Basic Information
+  CLUSTER_NAME_EMPTY: 'Please enter a cluster name.',
   ADD_CLUSTER: 'Küme Ekle',
   TAG: 'Etiket',
   CLUSTER_TAG_DESC: 'Kümenin amacını belirlemek için bir etiket seçin.',
   CLUSTER_PROVIDER_DESC: 'Küme altyapısının sağlayıcısını seçin.',
   // Add Cluster > Connection Settings
   CONNECTION_SETTINGS: 'Connection Settings',
+  CONNECTION_METHOD: 'Connection Mode',
   CLUSTER_CONNECT_METHOD_DESC: 'Doğrudan kümeye bağlanın veya bir aracı kullanın.',
   CONNTECT_DIRECT: 'Direk Bağlantı',
   CONNTECT_PROXY: 'Ajan bağlantısı',
@@ -37,6 +39,7 @@ module.exports = {
   // List
   HOST_CLUSTER_TCAP: 'Host  Kümesi',
   HOST_CLUSTER_PL_TCAP: 'Host  Kümesi',
+  MEMBER_CLUSTER_TCAP_PL: 'Member Clusters',
   NODE_COUNT: 'Düğümler',
   ENV_PRODUCTION: '\nÜretim ',
   ENV_DEVELOPMENT: 'Gelişim',
@@ -45,5 +48,7 @@ module.exports = {
   UPDATE_KUBECONFIG: 'Kubeconfig\'i Güncelle',
   KUBE_CONFIG_IS_EXPIRED: 'KubeConfig\'in süresi doldu',
   EXPIRE_DATE: 'Sonlanma Süresi',
-  LAST_KUBE_CONFIG_EXPIRED: 'KubeConfig\'in süresi'
+  LAST_KUBE_CONFIG_EXPIRED: 'KubeConfig\'in süresi',
+  VALIDATION_FAILED: 'Validation failed.',
+  NO_CLUSTER_TIP_DESC: 'A cluster is a group of nodes (physical or virtual machines) running KubeSphere.'
 };
