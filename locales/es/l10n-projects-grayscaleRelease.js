@@ -49,6 +49,7 @@ module.exports = {
   GRAY_APP_NAME: 'App: {name}',
   UNSUPPORTED_WORKLOAD_TYPE: 'Tipo de carga de trabajo no compatible',
   // Release Modes > Canary Release > Create > New Version Settings
+  VERSION_EXISTS: 'The version code already exists. Please enter another version code.',
   NEW_VERSION_NUMBER_EXIST_DESC: 'Deployment {name} exists. Please enter another version number.',
   INIT_CONTAINER: 'Init Container',
   INIT_CONTAINER_VALUE: 'Init Container: {value}',
