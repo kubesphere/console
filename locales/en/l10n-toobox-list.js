@@ -20,6 +20,7 @@ module.exports = {
   // Title
   TOOLBOX: 'Toolbox',
   TOOLBOX_DESC: 'Provides cluster analysis and control tools.',
+  DETAIL_NOT_FOUND_DESC: 'No related resources were found. <a href="{link}">Return to {title}</a>',
   // Description
   // Ayalysis Tools
   ANALYSIS_TOOLS: 'Analysis Tools',

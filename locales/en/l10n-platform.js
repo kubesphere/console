@@ -17,6 +17,7 @@
  */
 
 module.exports = {
+  PLATFORM: 'Platform',
   CLUSTER_MANAGEMENT: 'Cluster Management',
   CLUSTER_DESC: 'Unified management of multiple clusters and their basic resources, components, and application resources.',
   ACCESS_CONTROL_DESC: 'Unified management of workspaces, users, and roles.',

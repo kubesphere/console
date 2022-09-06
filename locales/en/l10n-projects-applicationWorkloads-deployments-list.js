@@ -28,8 +28,9 @@ module.exports = {
   INVALID_NAME_DESC: 'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
   NO_IMAGE_FOUND: 'No Image Found',
   CONTAINER_EMPTY_DESC: 'Please add at least one worker container.',
-  QUOTA_UNSET_TIP: 'Resource occupation is unset',
-  QUOTA_OVERCOST_TIP: 'The current resource occupation has exceeded the remaining',
+  RESOURC_QUOTAS_UNSET: 'Resource Quotas Unset',
+  INSUFFICENT_RESOURCES: 'Insufficent Resources',
+  REMAINING_QUOTAS: 'Remaining Quotas',
   // List > Create > Pod Settings > Add Container > Container Settings > Environment Settings
   ENVIRONMENT_INVALID_TIP: 'The key of an environment variable can contain only letters, numbers, underscores (_), hyphens (-), and periods (.), and must not start with a number.',
   ENVIRONMENT_CANNOT_BE_EMPTY: 'Please set a key for the environment variable.',
@@ -63,4 +64,6 @@ module.exports = {
   DELETE_WORKLOAD_DESC_PL: 'You are about to delete the workloads {resource}.<br/>Do you want to also delete the resources related to the workloads?',
   DELETE_WORKLOAD: 'Delete Workload',
   DELETE_MULTIPLE_WORKLOADS: 'Delete Multiple Workloads',
+  DELETE_APP_RESOURCE_TIP: 'The resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is deleted. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
+  STOP_APP_RESOURCE_TIP: 'The resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is stopped. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
 }

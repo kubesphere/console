@@ -80,7 +80,7 @@ export default class AppDetail extends React.Component {
     {
       key: 'addComponent',
       icon: 'add',
-      text: t('Add Component'),
+      text: t('ADD_SERVICE'),
       action: 'edit',
       onClick: () =>
         this.trigger('crd.app.addservice', {

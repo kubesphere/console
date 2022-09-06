@@ -275,7 +275,7 @@ export const getXAxisTickFormatter = (chartValus = []) => {
   const maxTime = max(timeList)
 
   if (maxTime - minTime > 8640000) {
-    return time => moment(time).format(t('Do HH:mm'))
+    return time => moment(time).format('MM-DD HH:mm')
   }
 
   return time => moment(time).format('HH:mm:ss')

@@ -113,7 +113,7 @@ export default {
           }
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Add Component Successfully')}` })
+          Notify.success({ content: `${t('SERVICE_ADDED_SUCCESSFULLY')}` })
           success && success()
         },
         store,

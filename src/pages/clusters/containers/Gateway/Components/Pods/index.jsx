@@ -58,7 +58,7 @@ export default class PodsCard extends React.Component {
   }
 
   static defaultProps = {
-    title: 'Pods',
+    title: 'PODS',
     detail: {},
     details: {},
     hideHeader: false,
@@ -210,7 +210,7 @@ export default class PodsCard extends React.Component {
         <InputSearch
           className={styles.search}
           name="search"
-          placeholder={t('Filter by keyword')}
+          placeholder={t('SEARCH')}
           onSearch={this.handleSearch}
         />
         <div className={styles.actions}>

@@ -138,7 +138,7 @@ export default class ContainerTerminalModal extends React.Component {
           <h6>{t('BASIC_INFORMATION')}</h6>
           <dl>
             <dt>{t('STATUS')}</dt>
-            <dd>{selectContainer.ready ? t('RUNNING') : t('Updating')}</dd>
+            <dd>{selectContainer.ready ? t('RUNNING') : t('UPDATING')}</dd>
             <dt>{t('IMAGE')}</dt>
             <dd>{selectContainer.image}</dd>
             <dt>{t('COMMAND')}</dt>

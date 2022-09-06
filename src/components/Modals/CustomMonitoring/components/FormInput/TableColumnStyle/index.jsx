@@ -74,7 +74,7 @@ export default class TableColumnInput extends React.Component {
       },
       {
         key: 'unit',
-        label: t('Unit'),
+        label: t('UNIT'),
         visible(value, fileds) {
           return fileds.type === 'number'
         },

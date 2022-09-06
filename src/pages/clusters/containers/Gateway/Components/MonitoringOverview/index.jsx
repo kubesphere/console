@@ -187,7 +187,7 @@ export default class MonitoringOverview extends React.Component {
     return (
       <div className={styles.overview}>
         <div className={styles.header}>
-          <p className={styles.title}>{t('Overview')}</p>
+          <p className={styles.title}>{t('OVERVIEW')}</p>
           <div className={styles.operations}>
             <TimeSelector duration={duration} onChange={this.handleChange} />
             {this.renderAutoRefresh()}

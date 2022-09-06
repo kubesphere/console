@@ -85,7 +85,7 @@ export default function StatusReason({ data, noTip }) {
         </Tooltip>
       )}
       <span className={status === 'error' ? styles.error : styles.warning}>
-        {t('Not Ready')}
+        {t('UNREADY')}
       </span>
     </span>
   )

@@ -129,7 +129,7 @@ export default class Graph extends Component {
               <Form.Item>
                 <FormItemContainer name={'yaxes[0].format'} debounce={100}>
                   {({ onChange, value }) => (
-                    <Field label={t('Unit')} tips={''}>
+                    <Field label={t('UNIT')} tips={''}>
                       <Select
                         defaultValue={'none'}
                         options={formatOpts}
