@@ -94,8 +94,11 @@ export default class Routes extends React.Component {
 
   closeEditModal = () => {
     if (this.state.operation === 'edit') {
+      const { formData } = this.props
       const ingress = this.state.old
-      this.setState({ ingress })
+      this.setState({ ingress }, () => {
+        set(formData, 'ingress', ingress)
+      })
     }
     this.closeModal()
   }
