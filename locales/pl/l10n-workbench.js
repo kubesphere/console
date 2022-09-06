@@ -17,6 +17,7 @@
  */
 module.exports = {
   // Head
+  WORKBENCH: 'Workbench',
   DASHBOARD_TITLE: 'Hello {username}',
   LAST_LOGIN_TIME: 'Last login: ',
   USER_DASHBOARD_EMPTY_TITLE: 'You do not belong to any workspace.',
