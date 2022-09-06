@@ -19,6 +19,7 @@ module.exports = {
   // Title
   TOOLBOX: 'Araç Kutusu',
   TOOLBOX_DESC: 'Küme analizi ve kontrol araçları sağlar.',
+  DETAIL_NOT_FOUND_DESC: 'No related resources were found. <a href="{link}">Return to {title}</a>',
   // Description
   // Ayalysis Tools
   ANALYSIS_TOOLS: 'Analiz Araçları',
