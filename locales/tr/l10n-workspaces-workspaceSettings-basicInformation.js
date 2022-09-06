@@ -40,6 +40,7 @@ module.exports = {
   WS_NETWORK_ISOLATION: 'Çalışma alanı ağ izolasyonu',
   NETWORK_POLICY_UNINSATLLED_DESC: 'Ağ politikası bileşeni bu kümede yüklü değildir.',
   // Delete Workspace
+  DELETE_DESC: 'Are you sure you want to delete the resource? The resource cannot be restored after it is deleted.',
   // Delete Workspace > Delete
   SURE_TO_DELETE_WORKSPACE: 'Çalışma alanını silmek istediğinizden emin misiniz?',
   DELETE_WORKSPACE_PROJECTS_DESC: 'Çalışma alanındaki projeleri sil',
