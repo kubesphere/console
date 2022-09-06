@@ -26,6 +26,7 @@ module.exports = {
   // List > Create
   CREATE_DEVOPS_PROJECT: 'Create DevOps Project',
   DEVOPS_PROJECT_CREATE_DESC: 'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines themselves (for example, project type and organization type).',
+  DEVOPS_BASEINFO_DESC: 'Please set the basic information of the DevOps project',
   // List > Create > Cluster Settings
   NO_DEVOPS_INSTALL: 'DevOps not installed',
   // List > Edit
