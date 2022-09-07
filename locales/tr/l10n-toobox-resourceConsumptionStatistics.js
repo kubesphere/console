@@ -27,6 +27,8 @@ module.exports = {
   CLUSTER_POD_CONSUMPTION_DESC: 'Düğümlerdeki <strong>pod\'ların</strong> CPU ve bellek tüketimi',
   CURRENT_RESOURCE_CONSUMPTION: 'Current Resource Consumption',
   VIEW: 'Görünüm',
+  CONSUMPTION_SINCE_CREATION: 'has consumed the following resources since it is created.',
+  PRICE: 'Price',
   // Workspace Recource Consumption
   WORKSPACE_CONSUMPTION: 'Çalışma Alanı Kaynak Tüketimi',
   WORKSPACE_CONSUMPTION_DESC: 'Çalışma alanı kaynaklarının tüketim bilgilerini görüntüleyin.',
