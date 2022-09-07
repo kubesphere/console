@@ -28,6 +28,8 @@ module.exports = {
   HIDE: 'Hide',
   STOP_REAL_TIME_CONTAINER_LOG: 'Pause real-time container logs',
   START_REAL_TIME_CONTAINER_LOG: 'View real-time container logs',
+  // Refresh Rate
+  REFRESH_RATE_COLON: 'Refresh Rate: ',
   // Time Topology > Histogram
   CONTAINER_LOG_COUNT: '紀錄統計',
   // List
