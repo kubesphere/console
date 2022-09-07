@@ -574,7 +574,7 @@ export default class ResourceLimit extends React.Component {
       <>
         <div>
           <div className={styles.message}>
-            <span>{t('WS_RESOURCE_REQUESTS')}:</span>
+            <span>{t('RESOURCE_REQUESTS')}:</span>
             <span>
               CPU&nbsp;
               {this.renderLimitTip(wsR.cpu, cpuUnit)},&nbsp;
@@ -583,7 +583,7 @@ export default class ResourceLimit extends React.Component {
             </span>
           </div>
           <div className={styles.message}>
-            <span>{t('WS_RESOURCE_LIMITS')}:</span>
+            <span>{t('RESOURCE_LIMITS')}:</span>
             <span>
               CPU&nbsp;
               {this.renderLimitTip(wsL.cpu, cpuUnit)},&nbsp;

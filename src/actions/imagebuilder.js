@@ -61,7 +61,7 @@ export default {
         module,
         cluster,
         namespace,
-        name: 'Image Builder',
+        name: 'IMAGE_BUILDER',
         formTemplate,
         steps: FORM_STEPS,
         modal: CreateModal,

@@ -162,7 +162,7 @@ export default class AddEdgeModal extends Component {
 
     return (
       <Modal
-        title={t('Add Edge Node')}
+        title={t('ADD_EDGE_NODE')}
         width={600}
         visible={visible}
         onOk={onOk}
