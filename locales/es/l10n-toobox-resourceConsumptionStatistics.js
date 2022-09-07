@@ -27,6 +27,8 @@ module.exports = {
   CLUSTER_POD_CONSUMPTION_DESC: 'Resource consumption of <strong>Pods</strong> in a node, such as CPU and memory',
   CURRENT_RESOURCE_CONSUMPTION: 'Current Resource Consumption',
   VIEW: 'View',
+  CONSUMPTION_SINCE_CREATION: 'has consumed the following resources since it is created.',
+  PRICE: 'Price',
   // Workspace Recource Consumption
   WORKSPACE_CONSUMPTION: 'Workspace (project) resource consumption',
   WORKSPACE_CONSUMPTION_DESC: 'Workspace (project) resource consumption statistics take the workspace as the dimension to calculate the CPU, memory, storage and other resource consumption of workspace and projects',
