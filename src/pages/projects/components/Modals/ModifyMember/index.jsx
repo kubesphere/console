@@ -92,7 +92,7 @@ export default class ModifyMemberModal extends React.Component {
           ))}
         </div>
         <Form.Item
-          label={t('Role')}
+          label={t('ROLE')}
           rules={[{ required: true, message: t('SELECT_ROLE_TIP') }]}
         >
           <Select

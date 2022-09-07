@@ -69,20 +69,22 @@ module.exports = {
   NODE_USERNAME_DESC: 'Enter the username used for SSH login.',
   NODE_PASSWORD_DESC: 'Enter the password used for SSH login.',
   'Add node to the cluster': 'Add node to the cluster',
-  // workspaces/containers/Clusters
+  ADD_EDGE_NODE: 'Add Edge Node',
+  // src/pages/workspaces/containers/Clusters
   WORKSPACE_CLUSTERS_DESC: 'The cluster information shows how cluster resources are used in the workspace.',
-  // console/components/Cards/Workspace
+  // src/pages/console/components/Cards/Workspace
   'DevOps Project Number': 'DevOps Projects',
   'Project Number': 'Projects',
   'View Workspace': 'View Workspace',
-  // components/Forms/Cluster/AdvanceSettings
+  Members: 'Members',
+  // src/components/Forms/Cluster/AdvanceSettings
   'Private Registry': 'Private Registry',
-  // pages/projects/containers/Alerting/Messages
+  // src/pages/projects/containers/Alerting/Messages
   ALERT_TYPE: '{type} Alert',
-  // pages/projects/containers/Applications/OPAppDetail/VersionInfo
+  // src/pages/projects/containers/Applications/OPAppDetail/VersionInfo
   CURRENT_VERSION: 'Current version',
   UPGRADE: 'Upgrade',
-  // utils/time.js
+  // src/utils/time.js
   DAYS: 'days',
   WEEKS: 'weeks',
   // components/Inputs/Upload
@@ -93,17 +95,41 @@ module.exports = {
   // src/components/Forms/Cluster/BaseInfo/index.jsx
   'Node Settings': 'Node Settings',
   'Please add at least one cluster node': 'Please add at least one cluster node',
-  // components/Forms/Cluster/ClusterSettings
+  // src/components/Forms/Cluster/ClusterSettings
   'Network Plugin': 'Network Plugin',
   'Max Pods': 'Max Pods',
   'Pods CIDR': 'Pods CIDR',
   'Service CIDR': 'Service CIDR',
   'Default Storage Plugin': 'Default Storage Plugin',
-  // components/Forms/Cluster/AdvanceSettings
+  // src/components/Forms/Cluster/AdvanceSettings
   'Private Registry Configuration': 'Private Registry Configuration',
   'etcd Backup': 'etcd Backup',
   'etcd Backup Dir': 'etcd Backup Dir',
   'etcd Backup Period': 'etcd Backup Period',
   'Keep Backup Number': 'Keep Backup Number',
   'KubeSphere Settings': 'KubeSphere Settings',
+  // src/clusters/components/Modals/AddNodeType
+  ADD_NODE_TYPE: 'Add Node Type',
+  NODE_TYPE_DESCRIPTION_DEC: 'The description will help users to select nodes types and use the cluster.',
+  TYPE_NAME: 'Type Name',
+  // src/pages/projects/components/Modals/RebuildS2i
+  NEW_IMAGE_TAG: 'New Image Tag',
+  REPO_URL: 'Repository URL',
+  REVISION_ID: 'Revision ID',
+  // src/pages/settings/containers/ThirdPartyLogin/index.jsx
+  Configure: 'Configure',
+  'Current third-party login configurations': 'Current third-party login configurations',
+  'not configured': 'not configured',
+  'Please input client id': 'Please input client id',
+  'Please input server address': 'Please input server address',
+  'Protocol Type': 'Protocol Type',
+  'Server Address': 'Server Address',
+  'Third-party Login': 'Third-party Login',
+  THIRD_PARTY_LOGIN_DESC: 'When a third part service is used for login, users need to enter related information. After that, a local user will be created which is associated with the user for the secure login in the environment.',
+  THIRD_PARTY_LOGIN_Q: 'What third parties are supported for login?',
+  THIRD_PARTY_LOGIN_A: 'LDAP, AD, OAuth and Github OAuth are supported.',
+  OAUTH_DESC: 'OAuth is an open standard that provides an easy and secure way for users to grant access to their resources.',
+  GITHUB_OAUTH_DESC: 'GitHub OAuth grants access based on organization membership.',
+  // src/pages/projects/components/Modals/ModifyMember
+  'Modify Member Role': 'Modify Member Role',
 }

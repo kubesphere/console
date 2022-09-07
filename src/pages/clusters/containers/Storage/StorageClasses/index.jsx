@@ -125,7 +125,7 @@ export default class StorageClasses extends React.Component {
 
   showCreate = () =>
     this.props.trigger('storageclass.create', {
-      name: 'Storage Class',
+      name: 'STORAGE_CLASS',
       module: this.props.module,
       cluster: this.props.match.params.cluster,
       success: this.props.getData,

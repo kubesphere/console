@@ -146,7 +146,7 @@ export default {
         onOk: () => {
           Modal.close(modal)
         },
-        title: t('Add Edge Node'),
+        title: t('ADD_EDGE_NODE'),
         modal: AddEdgeNode,
         cluster,
         store,

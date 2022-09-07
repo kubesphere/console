@@ -95,7 +95,7 @@ export default class LanguageSelect extends React.Component {
         <Alert
           className={styles.margin_b_10}
           type="warning"
-          message={t('CONTAINERD_RUNTIME_NOT_SUPPORT')}
+          message={t('CONTAINERD_RUNTIME_NOT_SUPPORTED')}
         />
       )
     }
