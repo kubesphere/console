@@ -92,7 +92,7 @@ export default class ExpandVolume extends Component {
         type="warning"
         title={t('EXPAND_VOLUME')}
         icon="exclamation"
-        message={t('VOLUME_EXPAND_TIPS')}
+        message={t('VOLUME_EXPAND_TIP')}
       />
     )
   }

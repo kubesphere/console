@@ -43,7 +43,7 @@ export default class BuilderInfo extends React.Component {
           </span>
           <div className={styles.info}>
             <p className={styles.value}>{sourceUrl}</p>
-            <p className={styles.name}>{t('sourceUrl')}</p>
+            <p className={styles.name}>{t('SOURCE_URL')}</p>
           </div>
         </li>
         <li>
@@ -57,7 +57,7 @@ export default class BuilderInfo extends React.Component {
           />
           <div className={styles.info}>
             <p className={styles.value}>{builderImage}</p>
-            <p className={styles.name}>{t('builderImage')}</p>
+            <p className={styles.name}>{t('BUILDER_IMAGE')}</p>
           </div>
         </li>
       </ul>
