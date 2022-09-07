@@ -47,8 +47,8 @@ module.exports = {
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
-  NO_RESOURCE: '{kaynak} yok.',
-  LOG_DATA_LOW: 'kayıt verileri',
+  NO_LOG_DATA_FOUND: 'No Log Data Found',
+  NO_LOG_DATA_FOUND_TIP: 'No log data is found.',
   // Resource Status > Volumes
   VOLUME_PL: 'Birimler',
   TYPE_CONFIGMAP: 'Birim türü: configmap',
