@@ -17,6 +17,7 @@
  */
 module.exports = {
   // Banner
+  PROJECT_MEMBER: 'Project Member',
   PROJECT_MEMBER_PL: 'Proje Üyeleri',
   PROJECT_MEMBER_DESC: 'Proje üyeleri, proje kaynaklarını görüntüleyebilir veya yönetebilir. Proje yöneticisi, çalışma alanına ait üyeleri projeye davet edebilir ve proje üyelerini yönetebilir.',
   // List
