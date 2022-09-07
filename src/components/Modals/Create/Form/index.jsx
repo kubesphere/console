@@ -16,12 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, throttle, isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import { get, throttle, isEmpty } from 'lodash'
 import { Button } from '@kube-design/components'
+
 import { Steps } from 'components/Base'
+import { checkRepoSource } from 'utils/devops'
 import Confirm from 'components/Forms/Base/Confirm'
 
 import styles from './index.scss'
@@ -96,15 +97,21 @@ export default class FormMode extends React.Component {
 
   handleNext = throttle(() => {
     const form = this.formRef.current
+
+    if (!form) {
+      return
+    }
+
     const stepCount = this.state.steps.length
 
-    form &&
-      form.validate(() => {
-        this.setState({
-          currentStep: Math.min(this.state.currentStep + 1, stepCount - 1),
-          subRoute: {},
-        })
+    form.validate(() => {
+      const multiPipeline = get(form.props, 'data.multi_branch_pipeline')
+      multiPipeline && checkRepoSource(multiPipeline)
+      this.setState({
+        currentStep: Math.min(this.state.currentStep + 1, stepCount - 1),
+        subRoute: {},
       })
+    })
   }, 300)
 
   handlePrev = () => {

@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { get, set, cloneDeep } from 'lodash'
+import { Notify } from '@kube-design/components'
 
 const deleteUnenableAttrs = data => {
   /* eslint-disable no-unused-vars */
@@ -130,6 +131,93 @@ export const getLanguageIcon = (name, defaultIcon) => {
     'binary',
   ]
   return LEGO_LANGUAGE_ICON.includes(name) ? name : defaultIcon
+}
+
+export const getRepoUrl = ({ provider, owner, repo, server, url }) => {
+  if (url) {
+    return url
+  }
+
+  switch (provider) {
+    case 'github':
+      return `https://github.com/${owner}/${repo}`
+    case 'gitlab':
+      return `${server}/${owner}/${repo}`
+    case 'bitbucket_server':
+      // eslint-disable-next-line no-case-declarations
+      const uri = repo.api_uri
+      // eslint-disable-next-line no-case-declarations
+      let _url = uri.substr(uri.length - 1) === '/' ? uri : `${uri}/`
+      if (!/https:\/\/bitbucket.org\/?/gm.test(_url)) {
+        _url += 'scm/'
+      }
+      return `${_url}${owner}/${repo}`
+    default:
+      return ''
+  }
+}
+
+export const getCommonSource = ({
+  provider,
+  owner,
+  repo,
+  url,
+  secret,
+  server: server_name,
+}) => {
+  if (provider === 'git') {
+    return {
+      url,
+      discover_branches: true,
+      credential_id: secret?.name,
+    }
+  }
+
+  return {
+    owner,
+    repo,
+    server_name,
+    credential_id: secret?.name,
+    discover_branches: 1,
+    discover_pr_from_forks: { strategy: 2, trust: 2 },
+    discover_pr_from_origin: 2,
+    discover_tags: true,
+  }
+}
+
+export const checkRepoSource = ({ source_type, ...rest }) => {
+  const { owner, repo, server_name, url: gitUrl, remote } = get(
+    rest,
+    `${source_type}_source`,
+    {}
+  )
+
+  let isValid = owner && repo
+  switch (source_type) {
+    case 'svn':
+      isValid = !!remote
+      break
+    case 'single_svn':
+      isValid = !!remote
+      break
+    case 'git':
+      isValid = !!gitUrl
+      break
+    case 'gitlab':
+      isValid = isValid && server_name
+      break
+    default:
+      break
+  }
+
+  if (!isValid) {
+    Notify.error(t('NOT_VALID_REPO'))
+    throw Error(t('NOT_VALID_REPO'))
+  }
+}
+
+export const isSvnRepo = source_type => {
+  return ['svn', 'single_svn'].includes(source_type)
 }
 
 const parsePhrase = phrase => {

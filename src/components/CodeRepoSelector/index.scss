@@ -12,3 +12,14 @@
     height: 16px;
   }
 }
+
+.select {
+  margin-bottom: 4px;
+}
+
+.multi-repo {
+  cursor: pointer;
+  &:hover {
+    color: #242e42;
+  }
+}

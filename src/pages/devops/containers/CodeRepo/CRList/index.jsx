@@ -142,6 +142,7 @@ export default class CRList extends React.Component {
       cluster: this.cluster,
       module: 'codeRepos',
       noCodeEdit: true,
+      noSVN: true,
       success: this.getData,
     })
   }

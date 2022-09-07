@@ -104,7 +104,7 @@ export default class GitLabForm extends React.Component {
   render() {
     const { formData, credentials } = this.props.store
     const { formRef } = this.props
-    const { serverList, projectList } = this.state
+    const { serverList } = this.state
 
     return (
       <div className={styles.card}>
@@ -166,7 +166,11 @@ export default class GitLabForm extends React.Component {
           >
             <Select
               name="gitlab_source.repo"
-              options={projectList}
+              options={this.state.projectList.map(item => {
+                const owner = get(formData, 'gitlab_source.owner')
+                const repo = item.replace(`${owner}/`, '')
+                return { label: repo, value: repo }
+              })}
               placeholder=" "
               clearable
             />

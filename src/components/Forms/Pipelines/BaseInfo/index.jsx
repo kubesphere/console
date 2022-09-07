@@ -18,50 +18,12 @@
 
 import React from 'react'
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
+
 import { PATTERN_NAME } from 'utils/constants'
 
-import RepoSelect from '../RepoSelect'
-import RepoSelectForm from '../RepoSelect/subForm'
+import CodeRepoSelector from '../../../CodeRepoSelector'
 
 export default class BaseInfo extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showSelectRepo: false,
-    }
-    this.scmRef = React.createRef()
-  }
-
-  showSelectRepo = () => {
-    this.setState({
-      showSelectRepo: true,
-    })
-  }
-
-  hideSelectRepo = () => {
-    this.setState({
-      showSelectRepo: false,
-    })
-  }
-
-  handleRepoChange = (source_type, formData) => {
-    this.setState(
-      {
-        showSelectRepo: false,
-      },
-      () => {
-        this.scmRef.current.onChange({
-          source_type,
-          ...formData,
-        })
-      }
-    )
-  }
-
-  handleDeleteSource = () => {
-    this.scmRef.current.onChange()
-  }
-
   validator = (rule, value, callback) => {
     if (!value) {
       return callback()
@@ -84,26 +46,15 @@ export default class BaseInfo extends React.Component {
       })
   }
 
-  renderRepoSelectForm() {
-    const { formTemplate, devops, cluster } = this.props
-    return (
-      <RepoSelectForm
-        sourceData={formTemplate['multi_branch_pipeline']}
-        devops={devops}
-        name={formTemplate.name}
-        cluster={cluster}
-        onSave={this.handleRepoChange}
-        onCancel={this.hideSelectRepo}
-      />
-    )
-  }
-
   render() {
-    const { formRef, formTemplate } = this.props
-    const { showSelectRepo } = this.state
-    if (showSelectRepo) {
-      return this.renderRepoSelectForm()
-    }
+    const {
+      formRef,
+      formTemplate,
+      devops,
+      cluster,
+      showCodeRepoCreate,
+      codeRepoSelectorRef,
+    } = this.props
 
     return (
       <Form ref={formRef} data={formTemplate}>
@@ -137,12 +88,13 @@ export default class BaseInfo extends React.Component {
           </Column>
         </Columns>
         <Form.Item label={t('CODE_REPOSITORY_OPTIONAL')}>
-          <RepoSelect
+          <CodeRepoSelector
             name="multi_branch_pipeline"
-            ref={this.scmRef}
-            onClick={this.showSelectRepo}
-            handleDeleteSource={this.handleDeleteSource}
-            devops={this.props.devops}
+            devops={devops}
+            cluster={cluster}
+            isComplexMode={true}
+            ref={codeRepoSelectorRef}
+            showCreateRepo={showCodeRepoCreate}
           />
         </Form.Item>
       </Form>
