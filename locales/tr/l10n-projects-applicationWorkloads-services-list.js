@@ -24,6 +24,11 @@ module.exports = {
   // Service List
   SERVICE_TYPE: 'Servis Türü',
   SERVICE_LIST: 'Servis Listesi',
+  SERVICE_TYPE_STATEFULSERVICE: 'Duruma Dayalı Hizmet',
+  SERVICE_TYPE_STATELESSSERVICE: 'Sahipsiz Hizmet',
+  SERVICE_TYPE_EXTERNALSERVICE: 'Harici servis',
+  HEADLESS: 'Headless',
+  EXTERNALNAME: 'ExternalName',
   // List > Create
   CREATE_SERVICE_DESC: 'Servis oluşturma yöntemini seçiniz.',
   SELECT_SERVICE_TYPE_DESC: 'Durum bilgili veya durum bilgisiz servis oluştur, veya bir servisi harici bir servise adresle.',
