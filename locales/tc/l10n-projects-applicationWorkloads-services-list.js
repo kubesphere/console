@@ -24,6 +24,11 @@ module.exports = {
   // Service List
   SERVICE_TYPE: '服務類型',
   SERVICE_LIST: '列表',
+  SERVICE_TYPE_STATEFULSERVICE: '有狀態服務',
+  SERVICE_TYPE_STATELESSSERVICE: '無狀態服務',
+  SERVICE_TYPE_EXTERNALSERVICE: '外部服務',
+  HEADLESS: 'Headless',
+  EXTERNALNAME: 'ExternalName',
   // List > Create
   CREATE_SERVICE_DESC: 'Select a Service creation method.',
   SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful Service, or map a Service to an external Service.',
