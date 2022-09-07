@@ -46,7 +46,7 @@ class CustomMonitorTimeRangeSelect extends React.Component {
   }
 
   options = recentTimeRange.map(recentDuration => ({
-    label: `${t('Last')} ${translateTimeAlias(recentDuration)}`,
+    label: `${t('LAST')} ${translateTimeAlias(recentDuration)}`,
     value: {
       from: `now-${recentDuration}`,
       to: 'now',
@@ -56,7 +56,7 @@ class CustomMonitorTimeRangeSelect extends React.Component {
   format = () => {
     const { to, from } = this.props.monitoringStore.time
     return to === 'now'
-      ? `${t('Last')} ${translateTimeAlias(from.replace('now-', ''))}`
+      ? `${t('LAST')} ${translateTimeAlias(from.replace('now-', ''))}`
       : `${moment(from).format(FULL_TIME_FORMAT)} ~ ${moment(to).format(
           FULL_TIME_FORMAT
         )}`

@@ -102,7 +102,7 @@ class APIServerMonitorings extends React.Component {
     {
       type: 'request',
       title: 'REQUEST_PER_SECOND',
-      unit: 'times/s',
+      unit: 'TIMES_PER_SECOND',
       legend: ['REQUEST'],
       data: get(this.metrics, `${MetricTypes.request_rate}.data.result`),
     },

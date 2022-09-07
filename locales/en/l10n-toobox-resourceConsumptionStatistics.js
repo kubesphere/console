@@ -28,6 +28,8 @@ module.exports = {
   CLUSTER_POD_CONSUMPTION_DESC: 'Consumption of CPU and memory of <strong>pods</strong> in nodes',
   CURRENT_RESOURCE_CONSUMPTION: 'Current Resource Consumption',
   VIEW: 'View',
+  CONSUMPTION_SINCE_CREATION: 'has consumed the following resources since it is created.',
+  PRICE: 'Price',
   // Workspace Recource Consumption
   WORKSPACE_CONSUMPTION: 'Workspace Resource Consumption',
   WORKSPACE_CONSUMPTION_DESC: 'View the consumption information of workspace resources.',

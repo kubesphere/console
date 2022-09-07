@@ -156,7 +156,7 @@ export default class ServiceComponentStatusTab extends React.Component {
       {
         type: 'area',
         title: 'REQUEST_PER_SECOND',
-        unit: 'times/s',
+        unit: 'TIMES_PER_SECOND',
         legend: ['REQUEST'],
         data: get(metrics, `${MetricTypes.request_rate}.data.result`),
       },
@@ -183,7 +183,7 @@ export default class ServiceComponentStatusTab extends React.Component {
       {
         type: 'area',
         title: 'SCHEDULING_RATE',
-        unit: 'times/s',
+        unit: 'TIMES_PER_SECOND',
         legend: ['SUCCESS', 'ERROR', 'FAILURE'],
         data: [
           this.getSpecificData('schedule_attempt_rate', 'result', 'scheduled'),

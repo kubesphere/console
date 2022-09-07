@@ -957,7 +957,7 @@ export const API_VERSIONS = {
 export const MONITOR_GRAPH_COLORS = [
   {
     get nameI18nKey() {
-      return t('Default Color')
+      return t('DEFAULT_COLORS')
     },
     colors: [
       '#60acfc',
@@ -971,7 +971,7 @@ export const MONITOR_GRAPH_COLORS = [
   },
   {
     get nameI18nKey() {
-      return t('Cool Color')
+      return t('COOL_COLORS')
     },
     colors: [
       '#678ed7',
@@ -985,7 +985,7 @@ export const MONITOR_GRAPH_COLORS = [
   },
   {
     get nameI18nKey() {
-      return t('Warm Color')
+      return t('WARM_COLORS')
     },
     colors: [
       '#717adf',
