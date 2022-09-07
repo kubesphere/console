@@ -49,7 +49,7 @@ module.exports = {
   DELETE_TITLE_PL: '¿Seguro que deseas eliminar {type}?',
   DELETE: 'Eliminar',
   PROJECT_LOW: 'project',
-  DELETE_SUCCESSFUL: 'Eliminado con éxito.',
+  DELETED_SUCCESSFULLY: 'Deleted successfully.',
   STOP_SUCCESS_DESC: 'Stopped successfully.',
   DELETE_RESOURCE_TYPE_DESC_SI: 'Introduce el {type} nombre <strong>{resource}</strong> para asegurarte de comprender los riesgos asociados con la operación.',
   DELETE_RESOURCE_TYPE_DESC_PL: 'Introduce el {type} nombre <strong>{resource}</strong> para asegurarte de comprender los riesgos asociados con la operación.',
