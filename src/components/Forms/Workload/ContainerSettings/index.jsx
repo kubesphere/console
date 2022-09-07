@@ -87,6 +87,7 @@ export default class ContainerSetting extends React.Component {
     }
 
     this.handleContainer = this.handleContainer.bind(this)
+    this.containerRef = React.createRef()
   }
 
   componentDidMount() {
@@ -98,6 +99,20 @@ export default class ContainerSetting extends React.Component {
     }
     if (store.renderScheduleTab) {
       this.props.store.setMetadata(this.formTemplate.metadata)
+    }
+  }
+
+  componentDidUpdate() {
+    const containerRef = this.containerRef.current
+    const error = containerRef.state.error
+    const containers = get(
+      this.props.formTemplate,
+      `${this.prefix}spec.containers`,
+      []
+    )
+
+    if (error && containers.length > 0) {
+      containerRef.setState({ error: null })
     }
   }
 
@@ -694,6 +709,7 @@ export default class ContainerSetting extends React.Component {
       <Form.Item
         label={t('CONTAINERS')}
         rules={[{ validator: this.containersValidator }]}
+        ref={this.containerRef}
       >
         <ContainerList
           name={`${this.prefix}spec.containers`}
