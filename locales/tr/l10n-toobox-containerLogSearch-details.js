@@ -28,6 +28,8 @@ module.exports = {
   HIDE: 'Gizle',
   STOP_REAL_TIME_CONTAINER_LOG: 'Gerçek zamanlı kapsayıcı günlüklerini duraklat',
   START_REAL_TIME_CONTAINER_LOG: 'Gerçek zamanlı konteyner günlüklerini görüntüleyin',
+  // Refresh Rate
+  REFRESH_RATE_COLON: 'Refresh Rate: ',
   // Time Topology > Histogram
   CONTAINER_LOG_COUNT: 'Konteyner Kayıtları',
   // List
