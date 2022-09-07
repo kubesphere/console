@@ -51,6 +51,7 @@ module.exports = {
   JENKINS_UNAVAILABLE: 'Jenkins 未就绪。',
   AGENT_TYPE_DESC: `Agent 部分指定整个流水线或特定阶段将在 Jenkins 环境中执行的位置，
       具体取决于该 agent 部分的放置位置。该部分必须在流水线块内的顶层定义，但 stage 级使用是可选的。`,
+  NOT_VALID_REPO: 'Code repo is not valid and cannot be created',
   CREATE_PIPELINE_DESC: '使用流水线进行构建，测试和部署',
   CI: '持续集成 (CI)',
   CI_DESC: '持续集成（CI）是在源代码变更后自动检测、拉取、构建和（在大多数情况下）进行单元测试的过程。',
