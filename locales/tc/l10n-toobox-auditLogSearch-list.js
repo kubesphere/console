@@ -19,6 +19,8 @@ module.exports = {
   // Title
   TOTAL_AUDITING_TODAY: '今日總共收錄了 <span class={className}> {auditing} </span> 條操作審計',
   NO_AUDIT_LOG_TODAY: '今日沒有收錄的操作審計',
+  AUDIT_LOG_TREND_LAST_TWELVE_HOURS: 'Audit log trend in the last 12 hours',
+  START_TIME_VALUE: 'Start Time: {value}',
   // Search
   NO_DATA_AUTHORIZED: 'No Data Authorized',
   NO_DATA_AUTHORIZED_DESC: 'Please contact an administrator to obtain data authorization.',
