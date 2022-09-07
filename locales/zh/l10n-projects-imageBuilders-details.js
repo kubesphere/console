@@ -22,7 +22,8 @@ module.exports = {
   PULL_POLICY: '拉取策略',
   REMOTE_TRIGGER: '远程触发器',
   // Run
-  NEW_TAG_DESC: '输入重新构建镜像的标签',
+  S2I_UPDATE_WORKLOAD: 'Update workload after image building is successful',
+  S2I_UPDATA_WORKLOAD_DESC: 'After the image is rebuilt successfully, workloads that use the image will be updated.',
   // More > Edit Information
   // More > Edit YAML
   // More > Delete
@@ -45,7 +46,11 @@ module.exports = {
   LAST_MESSAGE_SCAP: '最后消息',
   START_TIME_SCAP: '开始时间',
   // Resource Status
+  SOURCE_URL: 'Source URL',
+  NEW_TAG: 'New Tag',
+  NEW_TAG_DESC: 'Enter the tag of the new image',
   // Image Artifacts
   IMAGE_ARTIFACTS: '镜像制品',
-  RELEASE_TIME_SCAP: '发布时间'
+  RELEASE_TIME_SCAP: '发布时间',
+  PULL_COMMAND_SCAP: 'Pull command'
 };
