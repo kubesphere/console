@@ -54,6 +54,7 @@ module.exports = {
     depending on where the Agent part is placed.
     This part must be defined at the top level within the pipeline block,
     but the stage level usage is optional. `,
+  NOT_VALID_REPO: 'Code repo is not valid and cannot be created',
   CREATE_PIPELINE_DESC: 'Build, test and deploy with Pipelines',
   CI: 'Continuous Integration (CI)',
   CI_DESC: 'Continuous integration (CI) is the process of automatically detecting, pulling, building, and (in most cases) unit testing after source code changes.',
