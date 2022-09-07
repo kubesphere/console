@@ -50,5 +50,11 @@ module.exports = {
   EXPIRE_DATE: '過期時間',
   LAST_KUBE_CONFIG_EXPIRED: 'kubeconfig 將在 <span class="kubeConfig_expired">{count}</span> 天後過期',
   VALIDATION_FAILED: 'Validation failed.',
-  NO_CLUSTER_TIP_DESC: 'A cluster is a group of nodes (physical or virtual machines) running KubeSphere.'
+  NO_CLUSTER_TIP_DESC: 'A cluster is a group of nodes (physical or virtual machines) running KubeSphere.',
+  // List > Unbind Cluster
+  RISK_ALERT: 'Risk alert',
+  UNBIND_tIP_A: 'When a cluster is removed, the resources and configuration information in the original member cluster are not automatically cleared.',
+  UNBIND_tIP_B: 'See the <a href="https://kubesphere.io/docs/">official KubeSphere documentation</a> to manually clear the configuration information in the original member cluster to avoid resource conflicts when the original member cluster joins other multi-cluster systems.',
+  CLUSTER_CONFIRM_TEXT: 'I have confirmed the cluster to be unbundled and know the risks, slide to continue',
+  INPUT_CLUSTER_NAME: 'This action cannot be undone, please enter the cluster name {name} to confirm your removal of this cluster.'
 };
