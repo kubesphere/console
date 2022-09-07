@@ -36,16 +36,18 @@ module.exports = {
   TAINTS: '污点',
   EDIT_TAINTS: '编辑污点',
   TAINTS_DESC: '为节点添加污点以避免或尽可能避免容器组调度到节点。为节点设置污点后，您可以为容器组设置容忍度以允许容器组调度到有特定污点的节点。',
-  ADD_TAINT: '添加污点',
   COMMON_TAINTS: '公共污点',
   NOSCHEDULE: '阻止调度',
   PREFER_NOSCHEDULE: '尽可能阻止调度',
   NOEXECUTE: '阻止调度并驱逐现有容器组',
+  TAINT_SELECT_TIPS: 'Join Common Taints',
   TAINTS_TIPS: '<b>阻止调度</b><br/>阻止容器组调度到节点。<br/><br/><b>尽可能阻止调度</b>尽可能阻止容器组调度到节点。<br/><br/><b>阻止调度并驱逐现有容器组</b>阻止容器组调度到节点并驱逐节点上现有的容器组。',
+  TAINT_DELETE_TIP: 'Delete taint',
   // Running Status > Resource Usage
   RESOURCE_USAGE: '资源用量',
   MAXIMUM_PODS: '容器组最大数量',
   MAXIMUM_PODS_SCAP: '容器组最大数量',
+  DISK_USAGE_SCAP: 'Disk usage',
   // Running Status > Allocated resources
   MEMORY_REQUEST_SCAP: '内存预留',
   MEMORY_LIMIT_SCAP: '内存限制',
@@ -66,6 +68,7 @@ module.exports = {
   NODE_PIDPRESSURE_DESC: '允许在节点上创建的进程数量是否小于阈值。',
   NODE_READY: '就绪',
   NODE_READY_DESC: '节点是否可以接收容器组。',
+  LAST_HEARTBEAT_VALUE: 'Last Heartbeat: {value}',
   // Running Status > Taints
   NO_TAINTS_TIPS: '未发现污点。',
   POLICY: '策略',
@@ -74,6 +77,7 @@ module.exports = {
   STATUS_VALUE: '状态：{value}',
   // Metadata
   // Monitoring
+  USAGE: 'Usage',
   OUT: 'Out',
   IN: '属于'
 };
