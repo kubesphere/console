@@ -75,5 +75,5 @@ module.exports = {
   // Metadata
   // Monitoring
   OUT: 'Out',
-  IN: '入'
+  IN: '属于'
 };
