@@ -49,7 +49,7 @@ module.exports = {
   DELETE_TITLE_PL: '{type} 刪除確認？',
   DELETE: '刪除',
   PROJECT_LOW: '項目',
-  DELETE_SUCCESSFUL: '刪除成功。',
+  DELETED_SUCCESSFULLY: 'Deleted successfully.',
   STOP_SUCCESS_DESC: '停止成功。',
   DELETE_RESOURCE_TYPE_DESC_SI: '請輸入 {type} 名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。',
   DELETE_RESOURCE_TYPE_DESC_PL: '請輸入 {type} 名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。',
