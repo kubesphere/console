@@ -75,11 +75,9 @@ const Card = ({ volume, onDelete, onEdit, banEdit = false }) => {
       <List.Item
         icon="storage"
         title={get(volume, 'metadata.name', '-')}
-        description={`${t('Storage Classs')}: ${get(
-          volume,
-          'spec.storageClassName',
-          '-'
-        )}`}
+        description={t('STORAGE_CLASS_VALUE', {
+          value: get(volume, 'spec.storageClassName', '-'),
+        })}
         extras={mount}
         details={details}
       />
@@ -90,11 +88,9 @@ const Card = ({ volume, onDelete, onEdit, banEdit = false }) => {
     <List.Item
       icon="storage"
       title={get(volume, 'metadata.name', '-')}
-      description={`${t('Storage Classs')}: ${get(
-        volume,
-        'spec.storageClassName',
-        '-'
-      )}`}
+      description={t('STORAGE_CLASS_VALUE', {
+        value: get(volume, 'spec.storageClassName', '-'),
+      })}
       extras={mount}
       details={details}
       onDelete={handleDelete}

@@ -219,7 +219,7 @@ export default class MountConfig extends React.Component {
     if (type === 'secret' && !isEmpty(secrets)) {
       return secrets.map(item => ({
         label: getDisplayName(item),
-        description: t('Secret'),
+        description: t('SECRET'),
         value: item.name,
         icon: 'key',
       }))

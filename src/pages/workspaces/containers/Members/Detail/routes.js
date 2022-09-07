@@ -26,13 +26,13 @@ const PATH = '/workspaces/:workspace/members/:name'
 export default [
   {
     path: `${PATH}/projects`,
-    title: 'Projects',
+    title: 'PROJECT_PL',
     component: Projects,
     exact: true,
   },
   {
     path: `${PATH}/devops`,
-    title: 'DevOps Projects',
+    title: 'DEVOPS_PROJECT_PL',
     component: DevOps,
     ksModule: 'devops',
     exact: true,

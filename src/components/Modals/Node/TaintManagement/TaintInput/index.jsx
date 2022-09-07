@@ -176,7 +176,7 @@ export default class TaintInput extends React.Component {
             onClick={this.handleAdd}
             disabled={!this.isAddEnable()}
           >
-            {t('ADD_TAINT')}
+            {t('ADD')}
           </Button>
         </div>
       </div>

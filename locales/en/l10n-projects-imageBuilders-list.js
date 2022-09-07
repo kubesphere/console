@@ -30,6 +30,7 @@ module.exports = {
   BUILD_IMAGE_FOR_SERVICE: 'Build image for service {service}.',
   // List > Create > Build Mode
   BUILD_MODE: 'Build Mode',
+  CONTAINERD_RUNTIME_NOT_SUPPORTED: 'The containerd runtime does not support this feature.',
   S2I_DESC: 'Select a source code language.',
   IMAGE_FROM_S2I: 'Build Image from Source Code',
   IMAGE_FROM_B2I: 'Build Image from Artifact',
