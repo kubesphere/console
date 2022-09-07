@@ -19,6 +19,8 @@ module.exports = {
   // Title
   TOTAL_AUDITING_TODAY: 'Hoy se han recopilado un total de <span class={className}>{auditing}</span> registros de auditoría.',
   NO_AUDIT_LOG_TODAY: 'Registros de auditoría no encontrados hoy',
+  AUDIT_LOG_TREND_LAST_TWELVE_HOURS: 'Audit log trend in the last 12 hours',
+  START_TIME_VALUE: 'Start Time: {value}',
   // Search
   NO_DATA_AUTHORIZED: 'No Data Authorized',
   NO_DATA_AUTHORIZED_DESC: 'Please contact an administrator to obtain data authorization.',
