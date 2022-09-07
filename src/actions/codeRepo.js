@@ -146,7 +146,7 @@ export default {
         onOk: async () => {
           await store.delete({ ...detail, devops })
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_SUCCESSFUL') })
+          Notify.success({ content: t('DELETED_SUCCESSFULLY') })
           success && success()
         },
         store,

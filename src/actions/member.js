@@ -99,7 +99,7 @@ export default {
             .delete({ ...detail, cluster, workspace, namespace, devops })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: t('DELETE_SUCCESSFUL') })
+              Notify.success({ content: t('DELETED_SUCCESSFULLY') })
               success && success()
             })
         },
@@ -124,7 +124,7 @@ export default {
             .batchDelete({ rowKeys, cluster, workspace, namespace, devops })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: t('DELETE_SUCCESSFUL') })
+              Notify.success({ content: t('DELETED_SUCCESSFULLY') })
               success && success()
             })
         },

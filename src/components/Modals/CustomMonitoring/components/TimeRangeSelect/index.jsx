@@ -38,7 +38,7 @@ const defaultRecentOpts = [
 
 const defaultFormat = ({ count, unit } = {}, { startTime = 0, endTime = 0 }) =>
   count
-    ? `${t('Last')} ${count} ${t(unit)}`
+    ? `${t('LAST')} ${count} ${t(unit)}`
     : `${moment(startTime).format('YYYY/MM/DD HH:mm:ss')} ~ ${moment(
         endTime
       ).format('YYYY/MM/DD HH:mm:ss')}`

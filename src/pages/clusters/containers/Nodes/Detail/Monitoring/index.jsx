@@ -119,7 +119,7 @@ class Monitorings extends React.Component {
       },
       {
         type: 'utilisation',
-        title: 'DISK_USAGE_DETAILS',
+        title: 'DISK_USAGE',
         unit: '%',
         legend: ['AVERAGE_USAGE', ...legend],
         data: [

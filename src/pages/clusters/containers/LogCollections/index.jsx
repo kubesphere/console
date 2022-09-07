@@ -198,7 +198,7 @@ export default class LogCollection extends React.Component {
           <ICON width={40} height={40} />
           <Text
             title={<span className={styles.title}>{title}</span>}
-            description={`${t('LOG_ADDRESS')}${address}`}
+            description={t('ADDRESS_VALUE', { value: address })}
           />
           <Text
             title={collection.enabled ? t('ENABLED') : t('DISABLED')}

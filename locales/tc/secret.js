@@ -26,5 +26,4 @@ module.exports = {
   Unverified: '鏡像倉庫密鑰驗證失敗。',
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value}（{label}）',
-  CREATE_SECRET: '新建保密字典'
 };

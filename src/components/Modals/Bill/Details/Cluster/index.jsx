@@ -362,7 +362,9 @@ export default class ClusterDetails extends React.Component {
           feeData[item.type] = {
             value: free.toFixed(2),
             unit: {
-              label: this.priceConfig.currency === 'CNY' ? t('￥') : t('$'),
+              label: this.priceConfig.currency
+                ? this.priceConfig.currency
+                : ' ',
             },
           }
         }

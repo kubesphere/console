@@ -113,8 +113,9 @@ export default class HomeModal extends React.Component {
             {histogramTodayData.events ? (
               <p>
                 <Icon name="clock" />
-                {t('START_TIME_COLON')}
-                {moment(new Date()).format(`${t('EVENT_DATE')}`)}
+                {t('START_TIME_VALUE', {
+                  value: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+                })}
               </p>
             ) : null}
           </div>

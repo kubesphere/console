@@ -68,7 +68,7 @@ const handleLogin = async ctx => {
         Object.assign(error, {
           status: 401,
           reason: 'Unauthorized',
-          message: 'Wrong username or password, please try again',
+          message: 'INCORRECT_USERNAME_OR_PASSWORD',
         })
       }
     } catch (err) {
@@ -80,28 +80,28 @@ const handleLogin = async ctx => {
           Object.assign(error, {
             status: err.code,
             reason: 'Unauthorized',
-            message: 'Wrong username or password, please try again',
+            message: 'INCORRECT_USERNAME_OR_PASSWORD',
           })
           break
         case 429:
           Object.assign(error, {
             status: err.code,
-            reason: 'Too Many Requests',
-            message: 'Too many failed login attempts, please wait!',
+            reason: 'Too Many Failures',
+            message: 'TOO_MANY_FAILURES',
           })
           break
         case 502:
           Object.assign(error, {
             status: err.code,
             reason: 'Bad Gateway',
-            message: 'Unable to access the backend services',
+            message: 'FAILED_TO_ACCESS_BACKEND',
           })
           break
         case 'ETIMEDOUT':
           Object.assign(error, {
             status: 500,
             reason: 'Internal Server Error',
-            message: 'Unable to access the api server',
+            message: 'FAILED_TO_ACCESS_API_SERVER',
           })
           break
         default:

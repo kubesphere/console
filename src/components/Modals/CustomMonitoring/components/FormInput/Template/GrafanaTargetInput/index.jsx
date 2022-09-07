@@ -59,7 +59,7 @@ export default function GrafanaTargetInput({
               <FormItemContainer name={`${prefix}.step`} debounce={500}>
                 {({ onChange, value }) => (
                   <div>
-                    <Field label={t('Interval')} tips={''}>
+                    <Field label={t('INTERVAL')} tips={''}>
                       <Input
                         className={styles.input}
                         value={value}

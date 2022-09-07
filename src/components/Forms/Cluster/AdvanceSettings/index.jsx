@@ -72,7 +72,7 @@ export default class ClusterSettings extends React.Component {
             <Form.Item label={t('DOMAIN')}>
               <Input name="spec.controlPlaneEndpoint.domain" />
             </Form.Item>
-            <Form.Item label={t('Address')}>
+            <Form.Item label={t('ADDRESS')}>
               <Input name="spec.controlPlaneEndpoint.address" />
             </Form.Item>
             <Form.Item label={t('PORT')}>

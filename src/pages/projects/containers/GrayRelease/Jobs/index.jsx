@@ -89,7 +89,7 @@ class Jobs extends React.Component {
 
   handleDelete = () => {
     this.store.delete(this.state.selectItem).then(() => {
-      Notify.success({ content: `${t('TASK_OFFLINE_SUCCESSFULLY')}` })
+      Notify.success({ content: `${t('DELETED_SUCCESSFULLY')}` })
       this.hideDetail()
     })
   }

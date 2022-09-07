@@ -135,7 +135,7 @@ export default class PodItem extends React.PureComponent {
     },
     {
       type: 'memory',
-      title: 'Memory',
+      title: 'MEMORY',
       unitType: 'memory',
       legend: ['USED'],
       data: [metrics.memory],
@@ -257,7 +257,7 @@ export default class PodItem extends React.PureComponent {
         {!(location.pathname.indexOf('/nodes') !== -1) && (
           <div className={styles.text}>
             <div>{this.getNodeContent()}</div>
-            <p>{t('Node')}</p>
+            <p>{t('NODE')}</p>
           </div>
         )}
         <div className={styles.text}>
