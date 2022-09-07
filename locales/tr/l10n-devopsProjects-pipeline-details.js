@@ -54,6 +54,7 @@ module.exports = {
     Agent bölümünün nereye yerleştirildiğine bağlı olarak.
     Bu kısım, iş hattı bloğu içinde en üst düzeyde tanımlanmalıdır,
     ancak sahne seviyesi kullanımı isteğe bağlıdır. `,
+  NOT_VALID_REPO: 'Code repo is not valid and cannot be created',
   CREATE_PIPELINE_DESC: 'İş hattı ile derleyin, test edin ve devreye alın',
   CI: 'Sürekli Entegrasyon',
   CI_DESC: 'Sürekli entegrasyon (CI), kaynak kodu değişikliklerinden sonra otomatik olarak algılama, çekme, oluşturma ve (çoğu durumda) birim testi sürecidir.',
