@@ -45,6 +45,7 @@ module.exports = {
   CREATE_CANARY_RELEASE_TASK: 'Create Canary Release Task',
   // Release Modes > Canary Release > Create > Service Settings
   UNFINISHED_GRAY_TASK: 'Grayscale release in progress',
+  NO_WORKLOAD_FOUND_TIP: 'No workload found',
   NO_SERVICE_MESH_TIP: 'Uygulama için uygulama yönetişimi devre dışı bırakıldı ve gri tonlamalı sürüm kullanılamaz.',
   GRAY_APP_NAME: 'Uygulama:{name}',
   UNSUPPORTED_WORKLOAD_TYPE: 'İş yükü türü desteklenmiyor',
@@ -90,11 +91,15 @@ module.exports = {
   REPLICA_COUNT_LOW: 'kopyalar',
   MIRROR_POLICY_DESC: 'Hizmet trafiğinin bir kopyası, test için yeni sürüme gönderilir. Yalnızca eski sürüm gösterilir ve yeni sürüm gösterilmez.',
   // Release Tasks > Blue-Green Deployment > Task Status
+  BLUE_GREEN_DEPLOYMENT_LOW: 'blue-green deployment',
   BLUE_GREEN_TRAFFIC_DISTRI_DESC: 'Yeni sürüm veya eski sürüm tüm trafiği alır.',
   TRAFFIC_LOW: 'trafik',
   VERSION_TRAFFIC_PERCENT: '{version} trafik {percent}%',
+  OFFLINE: 'Offline',
+  OFFLINE_TIP: 'No service traffic is sent to this version. You can take the version online to make it take over all traffic.',
   // Release Tasks > Canary Release > Task Status
-  TASK_OFFLINE_SUCCESSFULLY: 'Task offline successfully.',
+  CANARY_RELEASE_LOW: 'canary release',
+  TASK_OFFLINE_SUCCESSFULLY: 'The task is taken offline successfully.',
   ADJUST_TRAFFIC_DISTRIBUTION_DESC: 'Trafiğin %{ratioNew}%\'sini yeni <b>{newVersion}</b> sürümüne ve %{ratioOld}%\'unu eski <b>{oldVersion}</b> sürümüne göndermek istediğinizden emin misiniz?',
   ALLOCATE_TRAFFIC_DESC: 'Yeni sürüme gönderilen ve eski sürüme gönderilen trafiğin oranını ayarlamak için kaydırıcıyı hareket ettirin.',
   COOKIE_EXACT_MATCH: 'Çerez (tam eşleşme)',
@@ -111,7 +116,9 @@ module.exports = {
   DELETE_GRAYSCALE_RELEASE_TASK_DESC: 'Please select a version to take over all traffic before deleting the grayscale release task.',
   GRAY_COMPONENT_DESC: 'Test edilen yeni sürüm ve eski sürüm hakkında bilgiler.',
   // Release Tasks > Traffic Mirroring > Task Status
+  TRAFFIC_MIRRORING_LOW: 'traffic mirroring',
   MIRRORED_TRAFFIC: 'Yansıtılmış trafik',
+  MIRRORED_TRAFFIC_TIP: 'Traffic mirroring does not actually expose the new version.',
   RELEASE_MODE_PL: 'Yayın Modları',
   RELEASE_MODE: 'Yayın Modu',
   NEW_VERSION_TAKEOVER_DESC: 'Yeni sürüm <b>{newVersion}</b> tüm trafiği alıyor. Mevcut gri tonlamalı yayın işini silerseniz, eski <b>{oldVersion}</b> sürümü de silinecektir.',
