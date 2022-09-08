@@ -55,6 +55,6 @@ module.exports = {
   // Add Allowlist Entry > Project
   // Add Allowlist Entry > Service
   // Delete Allowlist Entry
-  ALLOWLIST_ENTRY: 'Allowlist Entry',
+  ALLOWLIST_ENTRY: '白名单条目',
   ALLOWLIST_ENTRY_LOW: '白名单条目'
 };
