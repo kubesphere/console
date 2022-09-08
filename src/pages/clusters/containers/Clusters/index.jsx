@@ -142,7 +142,7 @@ class Clusters extends React.Component {
       {
         key: 'trash',
         icon: 'trash',
-        text: t('UNBIND_CLUSTER'),
+        text: t('REMOVE_CLUSTER'),
         show: !item.isHost,
         onClick: record => {
           this.trigger('cluster.unbind', {
