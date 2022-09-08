@@ -99,7 +99,6 @@ module.exports = {
   OFFLINE_TIP: 'No service traffic is sent to this version. You can take the version online to make it take over all traffic.',
   // Release Tasks > Canary Release > Task Status
   CANARY_RELEASE_LOW: 'canary release',
-  TASK_OFFLINE_SUCCESSFULLY: 'The task is taken offline successfully.',
   ADJUST_TRAFFIC_DISTRIBUTION_DESC: 'Trafiğin %{ratioNew}%\'sini yeni <b>{newVersion}</b> sürümüne ve %{ratioOld}%\'unu eski <b>{oldVersion}</b> sürümüne göndermek istediğinizden emin misiniz?',
   ALLOCATE_TRAFFIC_DESC: 'Yeni sürüme gönderilen ve eski sürüme gönderilen trafiğin oranını ayarlamak için kaydırıcıyı hareket ettirin.',
   COOKIE_EXACT_MATCH: 'Çerez (tam eşleşme)',
