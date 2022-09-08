@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, uniqBy } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import ClusterVisibility from 'clusters/components/Modals/ClusterVisibility'
@@ -47,29 +46,29 @@ export default {
           )
 
           const requests = []
-
           if (data.addWorkspaces) {
             data.addWorkspaces.forEach(item => {
-              const formData = {}
-              const clusters = item.clusters || []
-              set(
-                formData,
-                'spec.placement.clusters',
-                uniqBy([...clusters, { name: cluster.name }], 'name')
-              )
-              requests.push(workspaceStore.patch(item, formData))
+              const params = {
+                op: 'add',
+                path: '/spec/placement/clusters/-',
+                value: { name: cluster.name },
+              }
+
+              requests.push(workspaceStore.patch(item, params))
             })
           }
           if (data.deleteWorkspaces) {
             data.deleteWorkspaces.forEach(item => {
-              const formData = {}
-              const clusters = item.clusters || []
-              set(
-                formData,
-                'spec.placement.clusters',
-                clusters.filter(({ name }) => name !== cluster.name)
-              )
-              requests.push(workspaceStore.patch(item, formData))
+              const clusters = item.clusters.map(_item => _item.name) || []
+              const deleteIndex = clusters.indexOf(cluster.name)
+
+              const params = {
+                op: 'remove',
+                path: `/spec/placement/clusters/${deleteIndex}`,
+                value: { name: cluster.name },
+              }
+
+              requests.push(workspaceStore.patch(item, params))
             })
           }
 
