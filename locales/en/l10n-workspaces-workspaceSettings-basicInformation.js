@@ -43,7 +43,6 @@ module.exports = {
   // Delete Workspace
   DELETE_DESC: 'Are you sure you want to delete the resource? The resource cannot be restored after it is deleted.',
   // Delete Workspace > Delete
-  SURE_TO_DELETE_WORKSPACE: 'Are you sure you want to delete the workspace?',
   DELETE_WORKSPACE_PROJECTS_DESC: 'Delete projects in the workspace',
   DELETE_WORKSPACE_DESC: 'The workspace cannot be restored after it is deleted and all resources in the workspace will be removed.',
   DELETE_WORKSPACE_TIP: 'Are you sure you want to delete the workspace <strong>{resource}</strong>? The workspace cannot be restored after it is deleted and all resources in the workspace will be removed.',
