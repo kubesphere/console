@@ -86,7 +86,7 @@ const UnbindClusterModal = props => {
         )}
         {showConfirm && (
           <div className={styles.confirmInput}>
-            <p>{t.html('INPUT_CLUSTER_NAME', { name: detail.name })}</p>
+            <p>{t.html('ENTER_CLUSTER_NAME', { name: detail.name })}</p>
             <Input
               placeholder={detail.name}
               autoFocus={true}
