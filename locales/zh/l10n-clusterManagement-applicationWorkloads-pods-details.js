@@ -47,8 +47,8 @@ module.exports = {
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
-  NO_LOG_DATA_FOUND: 'No Log Data Found',
-  NO_LOG_DATA_FOUND_TIP: 'No log data is found.',
+  NO_LOG_DATA_FOUND: '未发现日志数据',
+  NO_LOG_DATA_FOUND_TIP: '没有找到日志数据。',
   // Resource Status > Volumes
   VOLUME_PL: '卷',
   TYPE_CONFIGMAP: '卷类型：配置字典',
