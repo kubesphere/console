@@ -41,6 +41,6 @@ module.exports = {
   // Environment Variables
   // Events
   EVENT_PL: '事件',
-  EVENT_NORMAL: 'Normal',
+  EVENT_NORMAL: '正常',
   EVENT_WARNING: '一般告警'
 };
