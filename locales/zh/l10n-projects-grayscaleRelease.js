@@ -99,7 +99,6 @@ module.exports = {
   OFFLINE_TIP: '没有服务流量被发送到此版本。您可以上线此版本使其接管所有流量。',
   // Release Tasks > Canary Release > Task Status
   CANARY_RELEASE_LOW: '金丝雀发布',
-  TASK_OFFLINE_SUCCESSFULLY: '任务下线成功。',
   ADJUST_TRAFFIC_DISTRIBUTION_DESC: '您确定将 {ratioNew}% 的流量发送给新版本 <b>{newVersion}</b> 以及 {ratioOld}% 的流量发送给旧版本 <b>{oldVersion}</b> 吗？',
   ALLOCATE_TRAFFIC_DESC: '拖动滑块设置发送给新版本的流量比例和发送给旧版本的流量比例。',
   COOKIE_EXACT_MATCH: 'Cookie（完全匹配）',
