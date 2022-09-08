@@ -182,7 +182,7 @@ export default class Overview extends React.Component {
         actionName: 'cluster.unbind',
         onClick: this.handleUnbind,
         icon: 'trash',
-        text: t('UNBIND_CLUSTER'),
+        text: t('REMOVE_CLUSTER'),
       })
     }
     return option
