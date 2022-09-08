@@ -140,6 +140,7 @@ export default class ServiceCreateModal extends React.Component {
       isFederated,
       projectDetail,
       isSubmitting,
+      components,
     } = this.props
 
     let content
@@ -158,7 +159,7 @@ export default class ServiceCreateModal extends React.Component {
 
         steps[0] = {
           ...steps[0],
-          component: withProps(steps[0].component, { noApp: true }),
+          component: withProps(steps[0].component, { noApp: true, components }),
         }
 
         if (isEmpty(detail) && isFederated) {
@@ -225,7 +226,7 @@ export default class ServiceCreateModal extends React.Component {
 
         steps[0] = {
           ...steps[0],
-          component: withProps(steps[0].component, { noApp: true }),
+          component: withProps(steps[0].component, { noApp: true, components }),
         }
 
         if (isFederated && isEmpty(detail)) {
