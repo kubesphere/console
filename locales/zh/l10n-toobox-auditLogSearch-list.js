@@ -19,8 +19,8 @@ module.exports = {
   // Title
   TOTAL_AUDITING_TODAY: '今日总共收录了 <span class={className}> {auditing} </span> 条审计日志',
   NO_AUDIT_LOG_TODAY: '今日没有收录的审计日志',
-  AUDIT_LOG_TREND_LAST_TWELVE_HOURS: 'Audit log trend in the last 12 hours',
-  START_TIME_VALUE: 'Start Time: {value}',
+  AUDIT_LOG_TREND_LAST_TWELVE_HOURS: '最近 12 小时审计日志数量变化趋势',
+  START_TIME_VALUE: '开始时间：{value}',
   // Search
   NO_DATA_AUTHORIZED: '没有数据授权',
   NO_DATA_AUTHORIZED_DESC: '请联系管理员获取数据授权。',
