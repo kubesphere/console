@@ -20,5 +20,5 @@ module.exports = {
   CLUSTER_MEMBER_PL: '集群成员',
   CLUSTER_MEMBER: '集群成员',
   // Invite
-  INVITE_CLUSTER_MEMBER_DESC: 'Invite users to the cluster.'
+  INVITE_CLUSTER_MEMBER_DESC: '邀请用户加入集群。'
 };
