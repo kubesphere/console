@@ -66,12 +66,12 @@ module.exports = {
   TARGET_CURRENT: '{target}（当前：{current}）',
   NOT_ENABLE: '{resource}未启用',
   // Resource Status > Image Builder
-  CONTAINER_LOG_NOT_ENABLED: 'Container Log is not enabled.',
-  BUILD_LOG: 'Build Log',
-  TASK: 'Task',
-  IN_PROGRESS: 'in progress',
-  IMAGE_BUILDING: 'Image Building',
-  HAS_FAILED: 'has failed',
+  CONTAINER_LOG_NOT_ENABLED: '容器日志未启用。',
+  BUILD_LOG: '构建日志',
+  TASK: '任务',
+  IN_PROGRESS: '进行中',
+  IMAGE_BUILDING: '构建镜像中',
+  HAS_FAILED: '已失败',
   // Metadata
   // Monitoring
   // Monitoring > View All Replicas (visible only when replicas > 5)
