@@ -44,8 +44,8 @@ const UnbindClusterModal = props => {
         <div className={styles.tipBox}>
           <p className={styles.title}>{t('RISK_ALERT')}</p>
           <ul>
-            <li className={styles.des}>{t('UNBIND_tIP_A')}</li>
-            <li className={styles.des}>{t.html('UNBIND_tIP_B')}</li>
+            <li className={styles.des}>{t('REMOVE_CLUSTER_TIP_A')}</li>
+            <li className={styles.des}>{t.html('REMOVE_CLUSTER_TIP_B')}</li>
           </ul>
         </div>
         <div className={styles.cluster}>

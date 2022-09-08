@@ -70,14 +70,14 @@ export default {
         onOk: () => {
           store.delete(detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: t('UNBIND_SUCCESS') })
+            Notify.success({ content: t('REMOVE_SUCCESS') })
             success && success()
           })
         },
         store,
         modal: UnbindCluster,
         detail,
-        title: t('UNBIND_CLUSTER'),
+        title: t('REMOVE_CLUSTER'),
         resource: detail.name,
         deleteCluster: true,
         ...props,
