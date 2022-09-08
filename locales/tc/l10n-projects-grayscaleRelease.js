@@ -99,7 +99,6 @@ module.exports = {
   OFFLINE_TIP: 'No service traffic is sent to this version. You can take the version online to make it take over all traffic.',
   // Release Tasks > Canary Release > Task Status
   CANARY_RELEASE_LOW: 'canary release',
-  TASK_OFFLINE_SUCCESSFULLY: 'The task is taken offline successfully.',
   ADJUST_TRAFFIC_DISTRIBUTION_DESC: 'Are you sure you want to send {ratioNew}% of traffic to the new version <b>{newVersion}</b> and {ratioOld}% to the old version <b>{oldVersion}</b>?',
   ALLOCATE_TRAFFIC_DESC: '將所有流量按比例分配給灰度組件。',
   COOKIE_EXACT_MATCH: 'Cookie (exact match)',
