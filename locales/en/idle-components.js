@@ -113,7 +113,6 @@ module.exports = {
   NODE_TYPE_DESCRIPTION_DEC: 'The description will help users to select nodes types and use the cluster.',
   TYPE_NAME: 'Type Name',
   // src/pages/projects/components/Modals/RebuildS2i
-  NEW_IMAGE_TAG: 'New Image Tag',
   REPO_URL: 'Repository URL',
   REVISION_ID: 'Revision ID',
   // src/pages/settings/containers/ThirdPartyLogin/index.jsx
