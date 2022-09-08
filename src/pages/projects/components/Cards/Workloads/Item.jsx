@@ -42,6 +42,11 @@ export default class WorkloadItem extends React.Component {
     detail: {},
   }
 
+  get showRecord() {
+    const kind = get(this.props.detail, 'module')
+    return !['statefulsets', 'daemonsets'].some(item => item === kind)
+  }
+
   getDescription(detail) {
     const { status, reason } = getWorkloadStatus(detail, detail.module)
     if (reason) {
@@ -90,10 +95,12 @@ export default class WorkloadItem extends React.Component {
           title={<WorkloadStatus data={detail} module={detail.module} />}
           description={t('STATUS')}
         />
-        <Text
-          title={version ? `#${version}` : '-'}
-          description={t('REVISION_RECORD')}
-        />
+        {this.showRecord && (
+          <Text
+            title={version ? `#${version}` : '-'}
+            description={t('REVISION_RECORD')}
+          />
+        )}
       </div>
     )
   }
