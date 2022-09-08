@@ -24,12 +24,8 @@ module.exports = {
   // Cluster Information > Edit Information
   CLUSTER_NAME: '集群名稱',
   EDIT_CLUSTER_INFO_DESC: '編輯集群基礎資訊',
-  // Unbind Cluster
-  UNBIND: '解綁',
-  UNBIND_CLUSTER: '解綁集群',
-  UNBIND_CLUSTER_DESC: '集群解除綁定後，KubeSphere 將無法管理集群。集群中的 Kubernetes 資源將不會被刪除。請輸入集群名稱 <strong>{name}</strong> 以確保您了解該操作的風險。',
-  UNBIND_SUCCESS: '解除綁定成功。',
-  SURE_TO_UNBIND_CLUSTER: '我已了解操作所带来的風險',
-  UNBIND_CLUSTER_Q: '解綁集群',
-  NODE: '節點'
+  // Remove Cluster
+  REMOVE_CLUSTER: 'Remove Cluster',
+  REMOVE_CLUSTER_DESC: 'After the cluster is unbound, KubeSphere will not be able to manage the cluster. The Kubernetes resources on the cluster will not be deleted. Please enter the cluster name <strong>{name}</strong> to make sure you understand the risks associated with the operation.',
+  REMOVE_SUCCESS: 'Removed Successfully'
 };
