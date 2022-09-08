@@ -26,7 +26,7 @@ module.exports = {
   ALL_NODES: '全部节点',
   ONLINE_NODES: '在线节点',
   NODE_ONLINE_STATUS: '节点在线状态',
-  TIMES_PER_SECOND: 'times/s',
+  TIMES_PER_SECOND: '次/秒',
   // Overview > Component Status
   COMPONENT_STATUS: '组件状态',
   CONTROLLER_MANAGER: '管理控制中心',
@@ -47,9 +47,9 @@ module.exports = {
   ETCD_DB_SIZE: '库 <span>大小</span>',
   ETCD_CLIENT_TRAFFIC: '客户端 <span>流量</span>',
   TITLE_UNIT: '{title}（{unit}）',
-  AVERAGE: 'Average',
-  PROPOSAL_COMMITTED: 'Committed',
-  PROPOSAL_APPLIED: 'Applied',
+  AVERAGE: '平均值',
+  PROPOSAL_COMMITTED: '已提交',
+  PROPOSAL_APPLIED: '已应用',
   PROPOSAL_FAILED: '失败',
   PROPOSAL_PENDING: '等待中',
   // Overview > Service Component Monitoring
