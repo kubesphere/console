@@ -89,8 +89,8 @@ module.exports = {
   RUNNING: '运行中',
   // Physical Resource Monitoring > Average CPU Load
   TIME_M: '{num} 分钟',
-  TIME_H: '{num, plural, =1 {1 hour} other{# hours}}',
-  TIME_D: '{num, plural, =1 {1 day} other{# days}}',
+  TIME_H: '{num, plural, =1 {1 小时} other{# 小时}}',
+  TIME_D: '{num, plural, =1 {1 天} other{# 天}}',
   // etcd Monitoring
   EXTERNAL_ETCD: '外部 etcd',
   DB_FSYNC: '库同步时间',
