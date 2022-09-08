@@ -19,14 +19,14 @@ module.exports = {
   // Banner
   NO_CLUSTER_TIP: '请添加至少 1 个集群',
   // Add Cluster > Basic Information
-  CLUSTER_NAME_EMPTY: 'Please enter a cluster name.',
+  CLUSTER_NAME_EMPTY: '请输入集群名称。',
   ADD_CLUSTER: '添加集群',
   TAG: '标签',
   CLUSTER_TAG_DESC: '选择标签来标识集群的用途。',
   CLUSTER_PROVIDER_DESC: '选择提供集群基础设施的服务商。',
   // Add Cluster > Connection Settings
   CONNECTION_SETTINGS: '连接设置',
-  CONNECTION_METHOD: 'Connection Mode',
+  CONNECTION_METHOD: '连接模式',
   CLUSTER_CONNECT_METHOD_DESC: '可以直接连接集群或者使用代理',
   CONNTECT_DIRECT: '直接连接',
   CONNTECT_PROXY: '代理连接',
@@ -39,7 +39,7 @@ module.exports = {
   // List
   HOST_CLUSTER_TCAP: '主集群',
   HOST_CLUSTER_PL_TCAP: '主集群',
-  MEMBER_CLUSTER_TCAP_PL: 'Member Clusters',
+  MEMBER_CLUSTER_TCAP_PL: '成员集群',
   NODE_COUNT: '节点数量',
   ENV_PRODUCTION: '生产环境',
   ENV_DEVELOPMENT: '开发环境',
@@ -49,8 +49,8 @@ module.exports = {
   KUBE_CONFIG_IS_EXPIRED: 'kubeconfig 已过期',
   EXPIRE_DATE: '过期时间',
   LAST_KUBE_CONFIG_EXPIRED: 'kubeconfig 将在 <span class="kubeConfig_expired">{count}</span> 天后过期',
-  VALIDATION_FAILED: 'Validation failed.',
-  NO_CLUSTER_TIP_DESC: 'A cluster is a group of nodes (physical or virtual machines) running KubeSphere.',
+  VALIDATION_FAILED: '校验失败。',
+  NO_CLUSTER_TIP_DESC: '集群是运行 KubeSphone 的一组节点（物理或虚拟机）。',
   // List > Unbind Cluster
   RISK_ALERT: 'Risk alert',
   UNBIND_tIP_A: 'When a cluster is removed, the resources and configuration information in the original member cluster are not automatically cleared.',
