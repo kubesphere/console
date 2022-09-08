@@ -25,7 +25,7 @@ module.exports = {
   CLUSTER_NAME: '集群名称',
   EDIT_CLUSTER_INFO_DESC: '编辑集群基本信息。',
   // Remove Cluster
-  REMOVE_CLUSTER: 'Remove Cluster',
-  REMOVE_CLUSTER_DESC: 'After the cluster is unbound, KubeSphere will not be able to manage the cluster. The Kubernetes resources on the cluster will not be deleted. Please enter the cluster name <strong>{name}</strong> to make sure you understand the risks associated with the operation.',
-  REMOVE_SUCCESS: 'Removed Successfully'
+  REMOVE_CLUSTER: '移除集群',
+  REMOVE_CLUSTER_DESC: 'After the cluster is removed, KubeSphere will not be able to manage the cluster. Resources in the cluster will not be deleted. Enter the cluster name <strong>{name}</strong> to confirm that you understand the risks of this operation.',
+  REMOVE_SUCCESS: 'Removed successfully.'
 };
