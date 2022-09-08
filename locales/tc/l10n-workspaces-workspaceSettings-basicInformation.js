@@ -42,7 +42,6 @@ module.exports = {
   // Delete Workspace
   DELETE_DESC: 'Are you sure you want to delete the resource? The resource cannot be restored after it is deleted.',
   // Delete Workspace > Delete
-  SURE_TO_DELETE_WORKSPACE: 'Are you sure you want to delete the workspace?',
   DELETE_WORKSPACE_PROJECTS_DESC: '刪除該企業空間關聯項目',
   DELETE_WORKSPACE_DESC: '刪除後將無法恢復，企業空間下的資源也同時會被銷毀。',
   DELETE_WORKSPACE_TIP: '確定刪除企業空間 <strong> {resource} </strong> ？ 刪除後將無法恢復，企業空間下的資源也同時會被銷毀。'
