@@ -49,7 +49,7 @@ module.exports = {
   DELETE_TITLE_PL: '批量删除{type}',
   DELETE: '删除',
   PROJECT_LOW: '项目',
-  DELETED_SUCCESSFULLY: 'Deleted successfully.',
+  DELETED_SUCCESSFULLY: '删除成功。',
   STOP_SUCCESS_DESC: '停止成功。',
   DELETE_RESOURCE_TYPE_DESC_SI: '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
   DELETE_RESOURCE_TYPE_DESC_PL: '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
