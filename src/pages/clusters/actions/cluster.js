@@ -48,11 +48,13 @@ export default {
           const requests = []
           if (data.addWorkspaces) {
             data.addWorkspaces.forEach(item => {
-              const params = {
-                op: 'add',
-                path: '/spec/placement/clusters/-',
-                value: { name: cluster.name },
-              }
+              const params = [
+                {
+                  op: 'add',
+                  path: '/spec/placement/clusters/-',
+                  value: { name: cluster.name },
+                },
+              ]
 
               requests.push(workspaceStore.patch(item, params))
             })
@@ -62,11 +64,13 @@ export default {
               const clusters = item.clusters.map(_item => _item.name) || []
               const deleteIndex = clusters.indexOf(cluster.name)
 
-              const params = {
-                op: 'remove',
-                path: `/spec/placement/clusters/${deleteIndex}`,
-                value: { name: cluster.name },
-              }
+              const params = [
+                {
+                  op: 'remove',
+                  path: `/spec/placement/clusters/${deleteIndex}`,
+                  value: { name: cluster.name },
+                },
+              ]
 
               requests.push(workspaceStore.patch(item, params))
             })
