@@ -45,5 +45,11 @@ module.exports = {
   SCHEDULING_FAILURES: 'Scheduling failures',
   SCHEDULING_FAILURE: 'Scheduling failure',
   // Nodes
-  VIEW_MORE: 'View More'
+  VIEW_MORE: 'View More',
+  NODE_CPU_UTILISATION: 'CPU usage',
+  NODE_LOAD1: 'Average CPU load',
+  NODE_MEMORY_UTILISATION: 'Memory usage',
+  NODE_DISK_SIZE_UTILISATION: 'Disk usage',
+  NODE_DISK_INODE_UTILISATION: 'Inode usage',
+  NODE_POD_UTILISATION: 'Pod usage'
 };
