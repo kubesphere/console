@@ -47,8 +47,8 @@ module.exports = {
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
-  NO_RESOURCE: '沒有發現 {resource}。',
-  LOG_DATA_LOW: '紀錄數據',
+  NO_LOG_DATA_FOUND: 'No Log Data Found',
+  NO_LOG_DATA_FOUND_TIP: 'No log data is found.',
   // Resource Status > Volumes
   VOLUME_PL: 'Volumes',
   TYPE_CONFIGMAP: '儲存卷類型：配置設定',

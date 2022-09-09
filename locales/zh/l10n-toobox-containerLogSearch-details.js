@@ -28,6 +28,8 @@ module.exports = {
   HIDE: '隐藏',
   STOP_REAL_TIME_CONTAINER_LOG: '暂停实时容器日志',
   START_REAL_TIME_CONTAINER_LOG: '查看实时容器日志',
+  // Refresh Rate
+  REFRESH_RATE_COLON: '刷新频率：',
   // Time Topology > Histogram
   CONTAINER_LOG_COUNT: '容器日志数量',
   // List

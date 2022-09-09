@@ -33,6 +33,7 @@ module.exports = {
   // Resource Status > Replica Status
   // Resource Status > Ports
   // Resource Status > Pods
+  NODE: 'Nodo',
   // Revision Records
   SERIAL_NUMBER: 'Serial number',
   CREATED_TIME: 'Created at {diff}',

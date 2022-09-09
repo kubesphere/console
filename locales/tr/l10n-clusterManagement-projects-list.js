@@ -49,7 +49,7 @@ module.exports = {
   DELETE_TITLE_PL: 'Çoklu Sil {type}',
   DELETE: 'Sil',
   PROJECT_LOW: 'proje',
-  DELETE_SUCCESSFUL: 'Başarıyla silindi.',
+  DELETED_SUCCESSFULLY: 'Deleted successfully.',
   STOP_SUCCESS_DESC: 'Durdurma Başarılı.',
   DELETE_RESOURCE_TYPE_DESC_SI: 'Bu işlemin risklerini anladığınızı doğrulamak için {type} adını <strong>{resource}</strong> girin.',
   DELETE_RESOURCE_TYPE_DESC_PL: 'Bu işlemin risklerini anladığınızı doğrulamak için {type} adlarını <strong>{resource}</strong> girin.',

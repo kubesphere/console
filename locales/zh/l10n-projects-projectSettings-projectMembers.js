@@ -17,6 +17,7 @@
  */
 module.exports = {
   // Banner
+  PROJECT_MEMBER: '项目成员',
   PROJECT_MEMBER_PL: '项目成员',
   PROJECT_MEMBER_DESC: '项目成员可以查看或管理项目资源。项目管理员可以邀请企业空间成员至该项目并对项目成员进行管理。',
   // List

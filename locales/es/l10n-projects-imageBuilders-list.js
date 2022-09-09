@@ -29,6 +29,7 @@ module.exports = {
   BUILD_IMAGE_FOR_SERVICE: 'Crear imagen para el servicio {service}',
   // List > Create > Build Mode
   BUILD_MODE: 'Elige un idioma',
+  CONTAINERD_RUNTIME_NOT_SUPPORTED: 'The containerd runtime does not support this feature.',
   S2I_DESC: 'Por favor elige tu lenguaje de código fuente',
   IMAGE_FROM_S2I: 'Crea una nueva imagen a partir del código',
   IMAGE_FROM_B2I: 'Crea una nueva imagen a partir del artefacto',

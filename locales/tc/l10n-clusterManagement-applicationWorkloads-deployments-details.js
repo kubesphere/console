@@ -33,6 +33,7 @@ module.exports = {
   // Resource Status > Replica Status
   // Resource Status > Ports
   // Resource Status > Pods
+  NODE: '節點',
   // Revision Records
   SERIAL_NUMBER: '序號',
   CREATED_TIME: '創建於 {diff}',

@@ -33,6 +33,7 @@ module.exports = {
   // Resource Status > Replica Status
   // Resource Status > Ports
   // Resource Status > Pods
+  NODE: '节点',
   // Revision Records
   SERIAL_NUMBER: '序列号',
   CREATED_TIME: '创建于 {diff}',
@@ -41,6 +42,6 @@ module.exports = {
   // Environment Variables
   // Events
   EVENT_PL: '事件',
-  EVENT_NORMAL: 'Normal',
+  EVENT_NORMAL: '正常',
   EVENT_WARNING: '一般告警'
 };
