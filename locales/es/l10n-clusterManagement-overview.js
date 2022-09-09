@@ -45,5 +45,11 @@ module.exports = {
   SCHEDULING_FAILURES: 'Programar pods fallidos',
   SCHEDULING_FAILURE: 'Scheduling failure',
   // Nodes
-  VIEW_MORE: 'Ver más'
+  VIEW_MORE: 'Ver más',
+  NODE_CPU_UTILISATION: 'ratio de uso de CPU',
+  NODE_LOAD1: 'Average CPU load',
+  NODE_MEMORY_UTILISATION: 'ratio de uso de memoria',
+  NODE_DISK_SIZE_UTILISATION: 'Disk usage',
+  NODE_DISK_INODE_UTILISATION: 'Inode usage',
+  NODE_POD_UTILISATION: 'ratio de utilización de pod'
 };

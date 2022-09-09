@@ -37,7 +37,7 @@ module.exports = {
   PERMISSION_PROJECTS_MANAGEMENT: '项目管理',
   PERMISSION_PROJECTS_MANAGEMENT_DESC: '创建、编辑和删除企业空间中的项目。',
   PERMISSION_PROJECTS_CREATE: '项目创建',
-  PERMISSION_PROJECTS_CREATE_DESC: '创建项目。项目的管理员为项目的创建者。',
+  PERMISSION_PROJECTS_CREATE_DESC: '创建项目并成为所创建的项目的管理员。',
   // List > Create > Edit Permissions > DevOps Project Management
   PERMIGROUP_DEVOPS_MANAGEMENT: 'DevOps 项目',
   PERMISSION_DEVOPS_VIEW: 'DevOps 项目查看',
@@ -45,7 +45,7 @@ module.exports = {
   PERMISSION_DEVOPS_MANAGEMENT: 'DevOps 项目管理',
   PERMISSION_DEVOPS_MANAGEMENT_DESC: '创建、编辑和删除企业空间中的 DevOps 项目。',
   PERMISSION_DEVOPS_CREATE: 'DevOps 项目创建',
-  PERMISSION_DEVOPS_CREATE_DESC: '创建 DevOps 项目。DevOps 项目的管理员为项目的创建者。',
+  PERMISSION_DEVOPS_CREATE_DESC: '创建 DevOps 项目并成为所创建的 DevOps 项目的管理员。',
   // List > Create > Edit Permissions > App Management
   PERMISSION_APPS_MANAGEMENT: '应用管理',
   PERMISSION_WORKSPACE_APP_REPOS_VIEW: '应用仓库查看',
