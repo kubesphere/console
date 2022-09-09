@@ -39,6 +39,8 @@ module.exports = {
   PERMISSION_WORKSPACES_VIEW_DESC: 'View workspaces.',
   PERMISSION_WORKSPACES_MANAGEMENT: 'Workspace Management',
   PERMISSION_WORKSPACES_MANAGEMENT_DESC: 'Create, edit, delete, and view workspaces.',
+  PERMISSION_WORKSPACES_CREATE: 'Workspace Creation',
+  PERMISSION_WORKSPACES_CREATE: 'Create workspaces and become an administrator of the created workspaces.',
   PERMISSION_USERS_VIEW: 'User Viewing',
   PERMISSION_USERS_VIEW_DESC: 'View users.',
   PERMISSION_USERS_MANAGEMENT: 'User Management',
