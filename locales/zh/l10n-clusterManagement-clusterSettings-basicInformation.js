@@ -27,5 +27,5 @@ module.exports = {
   // Remove Cluster
   REMOVE_CLUSTER: '移除集群',
   REMOVE_CLUSTER_DESC: 'After the cluster is removed, KubeSphere will not be able to manage the cluster. Resources in the cluster will not be deleted. Enter the cluster name <strong>{name}</strong> to confirm that you understand the risks of this operation.',
-  REMOVE_SUCCESS: 'Removed successfully.'
+  REMOVE_SUCCESS: '移除成功。'
 };
