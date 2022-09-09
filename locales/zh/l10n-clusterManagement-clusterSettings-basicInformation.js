@@ -26,6 +26,6 @@ module.exports = {
   EDIT_CLUSTER_INFO_DESC: '编辑集群基本信息。',
   // Remove Cluster
   REMOVE_CLUSTER: '移除集群',
-  REMOVE_CLUSTER_DESC: 'After the cluster is removed, KubeSphere will not be able to manage the cluster. Resources in the cluster will not be deleted. Enter the cluster name <strong>{name}</strong> to confirm that you understand the risks of this operation.',
+  REMOVE_CLUSTER_DESC: '集群被移除后，KubeSphere 将无法管理集群，集群中的资源将不会被删除。请输入集群名称 <strong>{name}</strong> 以确认您了解此操作的风险。',
   REMOVE_SUCCESS: '移除成功。'
 };
