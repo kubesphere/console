@@ -65,10 +65,10 @@ export default class FeishuForm extends Component {
       <div className={styles.row}>
         <div className={styles.title}>{t('CONVERSATION_SETTINGS')}</div>
         <div className={styles.item}>
-          <Form.Item label={t('AppKey')}>
+          <Form.Item label={t('APP_ID')}>
             <Input name="secret.data.appkey" />
           </Form.Item>
-          <Form.Item label={t('AppSecret')}>
+          <Form.Item label={t('APP_SECRET')}>
             <Input name="secret.data.appsecret" />
           </Form.Item>
         </div>
