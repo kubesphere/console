@@ -18,6 +18,7 @@
 
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import { get, isEmpty } from 'lodash'
 import ClusterVisibility from 'clusters/components/Modals/ClusterVisibility'
 
 import WorkspaceStore from 'stores/workspace'
@@ -48,13 +49,33 @@ export default {
           const requests = []
           if (data.addWorkspaces) {
             data.addWorkspaces.forEach(item => {
-              const params = [
-                {
-                  op: 'add',
-                  path: '/spec/placement/clusters/-',
-                  value: { name: cluster.name },
-                },
-              ]
+              let params
+              const clustersField = get(
+                item,
+                '_originData.spec.placement.clusters',
+                {}
+              )
+              if (isEmpty(clustersField)) {
+                params = [
+                  {
+                    op: 'add',
+                    path: '/spec/placement',
+                    value: {
+                      clusters: {
+                        name: cluster.name,
+                      },
+                    },
+                  },
+                ]
+              } else {
+                params = [
+                  {
+                    op: 'add',
+                    path: '/spec/placement/clusters/-',
+                    value: { name: cluster.name },
+                  },
+                ]
+              }
 
               requests.push(workspaceStore.patch(item, params))
             })
