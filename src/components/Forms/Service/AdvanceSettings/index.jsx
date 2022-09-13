@@ -30,6 +30,8 @@ import NodeSchedule from './NodeSchedule'
 import InternetAccess from './InternetAccess'
 
 export default class AdvancedSettings extends React.Component {
+  metadataRef = React.createRef()
+
   get namespace() {
     return get(this.props.formTemplate, 'Service.metadata.namespace')
   }
@@ -48,6 +50,10 @@ export default class AdvancedSettings extends React.Component {
     return isFederated
       ? toJS(projectDetail.clusters).map(item => item.name)
       : [cluster]
+  }
+
+  componentDidMount() {
+    this.metadataRef.current.setState({ isCheck: true })
   }
 
   handleLabelsChange = labels => {
@@ -152,6 +158,7 @@ export default class AdvancedSettings extends React.Component {
         <Form.Group
           label={t('ADD_METADATA')}
           desc={t('SERVICE_ADD_METADATA_DESC')}
+          ref={this.metadataRef}
           keepDataWhenUnCheck
           checkable
         >
