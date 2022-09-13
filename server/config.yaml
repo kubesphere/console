@@ -278,7 +278,7 @@ client:
           icon: bell
           children:
             - name: notification-configuration
-              title: NOTIFICATION_CONFIGURATION
+              title: NOTIFICATION_CHANNELS
               tabs:
                 - { name: mail, title: Mail, authKey: platform-settings }
                 - {
