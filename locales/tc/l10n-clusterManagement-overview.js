@@ -43,5 +43,11 @@ module.exports = {
   SCHEDULING_FAILURES: '調度失敗的容器組',
   SCHEDULING_FAILURE: '調度失敗的容器組',
   // Nodes
-  VIEW_MORE: '查看更多'
+  VIEW_MORE: '查看更多',
+  NODE_CPU_UTILISATION: 'CPU 用量',
+  NODE_LOAD1: 'Average CPU load',
+  NODE_MEMORY_UTILISATION: '記憶體用量',
+  NODE_DISK_SIZE_UTILISATION: 'Disk usage',
+  NODE_DISK_INODE_UTILISATION: 'Inode usage',
+  NODE_POD_UTILISATION: '容器組利用率'
 };

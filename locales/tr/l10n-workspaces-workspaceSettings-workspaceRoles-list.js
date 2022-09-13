@@ -37,7 +37,7 @@ module.exports = {
   PERMISSION_PROJECTS_MANAGEMENT: 'Proje Yönetimi',
   PERMISSION_PROJECTS_MANAGEMENT_DESC: 'Çalışma alanında projeler oluşturun, düzenleyin ve silin.',
   PERMISSION_PROJECTS_CREATE: 'Proje Oluşturma',
-  PERMISSION_PROJECTS_CREATE_DESC: 'Projeler oluşturun. Bir projenin yaratıcısı proje yöneticisidir.',
+  PERMISSION_PROJECTS_CREATE_DESC: 'Create projects and become an administrator of the created projects.',
   // List > Create > Edit Permissions > DevOps Project Management
   PERMIGROUP_DEVOPS_MANAGEMENT: 'DevOps Projeleri',
   PERMISSION_DEVOPS_VIEW: 'DevOps Proje İzle',
@@ -45,7 +45,7 @@ module.exports = {
   PERMISSION_DEVOPS_MANAGEMENT: 'DevOps Proje Yönetimi',
   PERMISSION_DEVOPS_MANAGEMENT_DESC: 'Çalışma alanında DevOps projeleri oluşturun, düzenleyin ve silin.',
   PERMISSION_DEVOPS_CREATE: 'DevOps Projesi Oluştur',
-  PERMISSION_DEVOPS_CREATE_DESC: 'DevOps projeleri oluşturun. DevOps projesinin yaratıcısı DevOps proje yöneticisidir.',
+  PERMISSION_DEVOPS_CREATE_DESC: 'Create DevOps projects and become an administrator of the created DevOps projects.',
   // List > Create > Edit Permissions > App Management
   PERMISSION_APPS_MANAGEMENT: 'Uygulama Yönetimi',
   PERMISSION_WORKSPACE_APP_REPOS_VIEW: 'Uygulama Deposu Görüntüleme',

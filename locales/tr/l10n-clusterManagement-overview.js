@@ -43,5 +43,11 @@ module.exports = {
   SCHEDULING_FAILURES: 'Zamanlama hataları',
   SCHEDULING_FAILURE: 'Zamanlama hataları',
   // Nodes
-  VIEW_MORE: 'Daha Fazla Görüntüle'
+  VIEW_MORE: 'Daha Fazla Görüntüle',
+  NODE_CPU_UTILISATION: 'CPU kullanımı',
+  NODE_LOAD1: 'Average CPU load',
+  NODE_MEMORY_UTILISATION: 'Hafıza kullanımı',
+  NODE_DISK_SIZE_UTILISATION: 'Disk usage',
+  NODE_DISK_INODE_UTILISATION: 'Inode usage',
+  NODE_POD_UTILISATION: 'Kapsül kullanımı'
 };
