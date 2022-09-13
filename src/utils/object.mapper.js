@@ -1376,6 +1376,19 @@ const CDSMapper = item => {
     })
   }
 
+  // fluxcd
+  const fluxAppType = get(item, 'metadata.labels.["gitops.kubepshere.io/type"]')
+  const fluxAppReadyNum = get(
+    item,
+    'metadata.labels.["gitops.kubesphere.io/ready-number"]'
+  )
+  const fluxLastRevision = get(
+    item,
+    'metadata.annotations.["gitops.kubesphere.io/last-revision"]'
+  )
+  const fluxApp = get(item, 'spec.fluxApp', {})
+  const fluxSource = get(fluxApp, 'spec.source.sourceRef')
+
   return {
     ...getBaseInfo(item),
     syncStatus,
@@ -1387,6 +1400,10 @@ const CDSMapper = item => {
     operation,
     syncType,
     syncOptions: _syncOptions,
+    fluxAppType,
+    fluxAppReadyNum,
+    fluxLastRevision,
+    fluxSource,
     _originData: getOriginData(omit(item, 'devops')),
   }
 }

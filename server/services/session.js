@@ -367,6 +367,14 @@ const getSupportGpuList = async ctx => {
   return gpuKinds
 }
 
+const getGitOpsEngine = async ctx => {
+  const token = ctx.cookies.get('token')
+  if (!token) {
+    return []
+  }
+  return 'fluxcd'
+}
+
 const getCurrentUser = async (ctx, clusterRole, isMulticluster) => {
   const token = ctx.cookies.get('token')
 
@@ -477,4 +485,5 @@ module.exports = {
   createUser,
   getClusterRole,
   getSupportGpuList,
+  getGitOpsEngine,
 }

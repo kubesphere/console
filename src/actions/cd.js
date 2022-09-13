@@ -73,6 +73,7 @@ const handleFormData = ({ data, module }) => {
   }
 
   set(formTemplate, 'metadata', data.metadata)
+  set(formTemplate, 'spec.kind', 'arogcd')
   set(formTemplate, 'spec.argoApp.spec', argoApp)
   return formTemplate
 }

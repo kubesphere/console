@@ -696,7 +696,7 @@ const getCDTemplate = () => ({
   apiVersion: 'gitops.kubesphere.io/v1alpha1',
   metadata: {},
   spec: {
-    kind: 'argo-project',
+    kind: '',
   },
 })
 

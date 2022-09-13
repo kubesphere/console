@@ -33,6 +33,7 @@ import Destination from '../Components/Destination'
 import StatusText from '../Components/StatusText'
 import ChartCard from '../Components/ChartCard'
 import styles from './index.scss'
+import { isArgo } from 'utils/devops'
 
 @withList({
   store: new CDStore(),
@@ -163,7 +164,7 @@ export default class CDList extends React.Component {
     ]
   }
 
-  getData = async params => {
+  getArgoData = async params => {
     await this.props.store.fetchList({
       devops: this.devops,
       ...this.props.match.params,
@@ -175,16 +176,25 @@ export default class CDList extends React.Component {
     })
   }
 
+  getFluxData = async params => {
+    await this.props.store.fetchList({
+      devops: this.devops,
+      ...this.props.match.params,
+      ...params,
+    })
+  }
+
   componentDidMount() {
+    // ArgoCD & FluxCD both needs cluster info
     this.clusterStore.fetchList({ limit: -1 })
-    this.getData()
+    isArgo ? this.getArgoData() : this.getFluxData()
   }
 
   handleFetch = (params, refresh) => {
     this.routing.query(params, refresh)
   }
 
-  handleCreate = () => {
+  handleArgoCreate = () => {
     const { trigger } = this.props
 
     trigger('cd.create', {
@@ -193,7 +203,20 @@ export default class CDList extends React.Component {
       cluster: this.cluster,
       module: 'cds',
       noCodeEdit: true,
-      success: this.getData,
+      success: this.getArgoData,
+    })
+  }
+
+  handleFluxCreate = () => {
+    const { trigger } = this.props
+
+    trigger('fluxcd.create', {
+      title: t('CREATE_CONTINUOUS_DEPLOYMENT'),
+      devops: this.devops,
+      cluster: this.cluster,
+      module: 'cds',
+      noCodeEdit: true,
+      success: this.getFluxData,
     })
   }
 
@@ -208,7 +231,7 @@ export default class CDList extends React.Component {
       cluster: this.cluster,
       application: item.name,
       noCodeEdit: true,
-      success: this.getData,
+      success: this.getArgoData,
     })
   }
 
@@ -228,76 +251,129 @@ export default class CDList extends React.Component {
 
   getColumns = () => {
     const { getSortOrder, getFilteredValue } = this.props
-    return [
-      {
-        title: t('NAME'),
-        dataIndex: 'name',
-        width: '20%',
-        sorter: true,
-        sortOrder: getSortOrder('name'),
-        search: true,
-        render: (name, record) => {
-          return (
-            <Avatar
-              to={`${this.prefix}/${name}`}
-              desc={record.description}
-              title={getDisplayName(record)}
-            />
-          )
-        },
-      },
+    const columns = isArgo
+      ? [
+          {
+            title: t('NAME'),
+            dataIndex: 'name',
+            width: '20%',
+            sorter: true,
+            sortOrder: getSortOrder('name'),
+            search: true,
+            render: (name, record) => {
+              return (
+                <Avatar
+                  to={`${this.prefix}/${name}`}
+                  desc={record.description}
+                  title={getDisplayName(record)}
+                />
+              )
+            },
+          },
 
-      {
-        title: t('HEALTH_STATUS'),
-        dataIndex: 'healthStatus',
-        width: '20%',
-        filters: this.getWeatherStatus(),
-        filteredValue: getFilteredValue('healthStatus'),
-        search: true,
-        render: (healthStatus = 'Unknown') => (
-          <StatusText type={healthStatus} label={t(healthStatus)} />
-        ),
-      },
-      {
-        title: t('SYNC_STATUS'),
-        dataIndex: 'syncStatus',
-        filters: this.getSyncStatus(),
-        filteredValue: getFilteredValue('syncStatus'),
-        search: true,
-        width: '20%',
-        render: (syncStatus = 'Unknown') => (
-          <StatusText type={syncStatus} label={syncStatus} />
-        ),
-      },
-      {
-        title: t('DEPLOY_LOCATION'),
-        dataIndex: 'destination',
-        isHideable: true,
-        width: '20%',
-        render: destination => {
-          return (
-            <Destination
-              destination={destination}
-              clustersDetail={this.clusters}
-            />
-          )
-        },
-      },
-      {
-        title: t('UPDATE_TIME_TCAP'),
-        dataIndex: 'updateTime',
-        sorter: true,
-        sortOrder: getSortOrder('updateTime'),
-        isHideable: true,
-        width: '20%',
-        render: (updateTime, record) => {
-          const reconciledAt = get(record, 'status.reconciledAt')
-          return reconciledAt
-            ? getLocalTime(reconciledAt).format('YYYY-MM-DD HH:mm:ss')
-            : '-'
-        },
-      },
-    ]
+          {
+            title: t('HEALTH_STATUS'),
+            dataIndex: 'healthStatus',
+            width: '20%',
+            filters: this.getWeatherStatus(),
+            filteredValue: getFilteredValue('healthStatus'),
+            search: true,
+            render: (healthStatus = 'Unknown') => (
+              <StatusText type={healthStatus} label={t(healthStatus)} />
+            ),
+          },
+          {
+            title: t('SYNC_STATUS'),
+            dataIndex: 'syncStatus',
+            filters: this.getSyncStatus(),
+            filteredValue: getFilteredValue('syncStatus'),
+            search: true,
+            width: '20%',
+            render: (syncStatus = 'Unknown') => (
+              <StatusText type={syncStatus} label={syncStatus} />
+            ),
+          },
+          {
+            title: t('DEPLOY_LOCATION'),
+            dataIndex: 'destination',
+            isHideable: true,
+            width: '20%',
+            render: destination => {
+              return (
+                <Destination
+                  destination={destination}
+                  clustersDetail={this.clusters}
+                />
+              )
+            },
+          },
+          {
+            title: t('UPDATE_TIME_TCAP'),
+            dataIndex: 'updateTime',
+            sorter: true,
+            sortOrder: getSortOrder('updateTime'),
+            isHideable: true,
+            width: '20%',
+            render: (updateTime, record) => {
+              const reconciledAt = get(record, 'status.reconciledAt')
+              return reconciledAt
+                ? getLocalTime(reconciledAt).format('YYYY-MM-DD HH:mm:ss')
+                : '-'
+            },
+          },
+        ]
+      : [
+          {
+            title: t('NAME'),
+            dataIndex: 'name',
+            width: '20%',
+            sorter: true,
+            sortOrder: getSortOrder('name'),
+            search: true,
+            render: (name, record) => {
+              return (
+                <Avatar
+                  to={`${this.prefix}/${name}`}
+                  desc={record.description}
+                  title={getDisplayName(record)}
+                />
+              )
+            },
+          },
+          {
+            title: '类型',
+            dataIndex: 'fluxAppType',
+            width: '20%',
+            render: fluxAppType => {
+              return fluxAppType || '-'
+            },
+          },
+          {
+            title: '源',
+            dataIndex: 'fluxSource',
+            width: '20%',
+            render: fluxSource => {
+              return `${fluxSource.kind}/${fluxSource.name}`
+            },
+          },
+          {
+            title: '版本',
+            dataIndex: 'fluxLastRevision',
+            width: '20%',
+            render: fluxLastRevision => {
+              return fluxLastRevision || '-'
+            },
+          },
+          {
+            title: '就绪个数',
+            dataIndex: 'fluxAppReadyNum',
+            width: '20%',
+            render: fluxAppReadyNum => {
+              return fluxAppReadyNum ? fluxAppReadyNum.replace('-', '/') : '-'
+            },
+          },
+        ]
+    return columns
   }
 
   renderContent() {
@@ -332,7 +408,9 @@ export default class CDList extends React.Component {
     }
 
     const showCreate = this.enabledActions.includes('create')
-      ? this.handleCreate
+      ? isArgo
+        ? this.handleArgoCreate
+        : this.handleFluxCreate
       : null
 
     const showEmpty =
@@ -463,10 +541,13 @@ export default class CDList extends React.Component {
     const { bannerProps } = this.props
 
     return (
-      <ListPage {...this.props} getData={this.getData}>
+      <ListPage
+        {...this.props}
+        getData={isArgo ? this.getArgoData : this.getFluxData}
+      >
         <Banner {...bannerProps} />
         <div>
-          {!this.hideSummary && (
+          {isArgo && !this.hideSummary && (
             <div className={styles.status__container}>
               <div className={styles.warper__container}>
                 {this.renderStatusCard()}

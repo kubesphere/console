@@ -1,0 +1,323 @@
+/*
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import React from 'react'
+import {
+  Form,
+  Input,
+  Column,
+  Columns,
+  Toggle,
+  Tag,
+  Tabs,
+  Dropdown,
+  Menu,
+  Collapse,
+} from '@kube-design/components'
+
+import { FLUXCD_APP_TYPES } from 'utils/constants'
+
+import { TypeSelect } from 'components/Base'
+import Placement from '../../Advance/Placement'
+import { get, set } from 'lodash'
+import styles from './index.scss'
+const { TabPanel } = Tabs
+
+export default class Advance extends React.Component {
+  state = { appType: 'HelmRelease', tabName: 'Interval' }
+
+  handleToggleChange = key => value => {
+    const { formTemplate } = this.props
+    set(formTemplate, key, value)
+    this.forceUpdate()
+  }
+
+  handleTabChange = tab => {
+    this.state.tabName = tab
+    this.forceUpdate()
+  }
+
+  get appOptions() {
+    return FLUXCD_APP_TYPES.map(({ label, value, description, icon }) => ({
+      label: t(label),
+      description: t(description),
+      icon: t(icon),
+      value,
+    }))
+  }
+
+  render() {
+    const { formRef, formTemplate } = this.props
+
+    return (
+      <Form data={formTemplate} ref={formRef}>
+        <div className={styles.wrapper}>
+          <h6>{t('应用类型')}</h6>
+          <div className={styles.wrapper_item}>
+            <Form.Item>
+              <TypeSelect
+                name="appType"
+                defaultValue="HelmRelease"
+                options={this.appOptions}
+                onChange={type => {
+                  this.state.appType = type
+                  this.forceUpdate()
+                }}
+              />
+            </Form.Item>
+          </div>
+        </div>
+        {this.state.appType === 'HelmRelease' && (
+          <div>
+            <div className={styles.wrapper}>
+              <h6>{t('应用配置')}</h6>
+              <div className={styles.wrapper_item}>
+                <Columns>
+                  <Column>
+                    <Form.Item
+                      label={t('Chart')}
+                      desc={t('Helm Chart的名称或路径')}
+                      rules={[{ required: true }]}
+                    >
+                      <Input name="config.helmRelease.chart.chart" />
+                    </Form.Item>
+                  </Column>
+                  <Column>
+                    <Form.Item
+                      label={t('值文件')}
+                      desc={t('多个值文件请用分号分隔')}
+                    >
+                      <Input name="config.helmRelease.chart.valuesFiles" />
+                    </Form.Item>
+                  </Column>
+                  <Column>
+                    <Form.Item
+                      label={t('保存为模版')}
+                      desc={t('模版包含Chart、值文件等配置，可以重复使用')}
+                    >
+                      <Toggle
+                        name="metadata.labels['gitops.kubesphere.io/save-helm-template']"
+                        checked={get(
+                          formTemplate,
+                          "metadata.labels['gitops.kubesphere.io/save-helm-template']",
+                          false
+                        )}
+                        onChange={this.handleToggleChange(
+                          "metadata.labels['gitops.kubesphere.io/save-helm-template']"
+                        )}
+                      />
+                    </Form.Item>
+                  </Column>
+                </Columns>
+              </div>
+            </div>
+            <div className={styles.wrapper}>
+              <h6>{t('部署配置')}</h6>
+              <div className={styles.wrapper_item}>
+                <h5>{t('DEPLOY_LOCATION')}</h5>
+                <Form.Item
+                  rules={[
+                    {
+                      required: true,
+                      message: t('PROJECT_NOT_SELECT_DESC'),
+                    },
+                  ]}
+                >
+                  <Placement
+                    name="destination"
+                    prefix="destination"
+                    formData={formTemplate}
+                    {...this.props}
+                  />
+                </Form.Item>
+                <br />
+                <Columns>
+                  <Column>
+                    <Form.Item
+                      label={t('键值对')}
+                      desc={t('Values holds the values for this Helm release.')}
+                    >
+                      <Input name="config.helmRelease.values" />
+                    </Form.Item>
+                  </Column>
+                  <Column>
+                    <Form.Item
+                      label={t('值引用')}
+                      desc={
+                        <div>
+                          <Dropdown
+                            content={
+                              <Menu>
+                                <Menu.MenuItem key="ConfigMap">
+                                  ConfigMap
+                                </Menu.MenuItem>
+                                <Menu.MenuItem key="Secret">
+                                  Secret
+                                </Menu.MenuItem>
+                              </Menu>
+                            }
+                          >
+                            <Tag type="primary">ConfigMap</Tag>
+                          </Dropdown>
+                        </div>
+                      }
+                    >
+                      <div>
+                        <Input name="config.helmRelease.valuesFrom.secret" />
+                      </div>
+                    </Form.Item>
+                  </Column>
+                </Columns>
+                <Collapse accordion>
+                  <Collapse.CollapseItem label="高级配置" key="advance">
+                    <Tabs
+                      type="button"
+                      activeName={this.state.tabName}
+                      onChange={this.handleTabChange}
+                      defaultActiveName={'Interval'}
+                    >
+                      <TabPanel label="同步时间间隔" name="Interval">
+                        <Form.Item
+                          label={t('')}
+                          desc={t('同步时间间隔，默认10m')}
+                        >
+                          <Input
+                            name="config.helmRelease.interval"
+                            defaultValue="10m"
+                          />
+                        </Form.Item>
+                      </TabPanel>
+                      <TabPanel label="发布名称" name="ReleaseName">
+                        <Form.Item
+                          label={t('')}
+                          desc={t('ReleaseName used for the Helm release.')}
+                        >
+                          <Input name="config.helmRelease.releaseName" />
+                        </Form.Item>
+                      </TabPanel>
+                      <TabPanel label="存储名称空间" name="StorageNamespace">
+                        <Form.Item
+                          label={t('')}
+                          desc={t(
+                            'StorageNamespace used for the Helm storage.'
+                          )}
+                        >
+                          <Input
+                            name="config.helmRelease.storageNamespace"
+                            defaultValue="flux-system"
+                          />
+                        </Form.Item>
+                      </TabPanel>
+                      <TabPanel label="安装配置" name="Install">
+                        <Form.Item
+                          label={t('')}
+                          desc={t(
+                            'Install holds the configuration for Helm install actions for this HelmRelease.'
+                          )}
+                        >
+                          <Input name="config.helmRelease.install" />
+                        </Form.Item>
+                      </TabPanel>
+                      <TabPanel label="更新配置" name="Upgrade">
+                        <Form.Item
+                          label={t('')}
+                          desc={t(
+                            'Upgrade holds the configuration for Helm upgrade actions for this HelmRelease.'
+                          )}
+                        >
+                          <Input name="config.helmRelease.upgrade" />
+                        </Form.Item>
+                      </TabPanel>
+                      <TabPanel label="测试配置" name="Test">
+                        <Form.Item
+                          label={t('')}
+                          desc={t(
+                            'Test holds the configuration for Helm test actions for this HelmRelease.'
+                          )}
+                        >
+                          <Input name="config.helmRelease.test" />
+                        </Form.Item>
+                      </TabPanel>
+                      <TabPanel label="回滚配置" name="Rollback">
+                        <Form.Item
+                          label={t('')}
+                          desc={t(
+                            'Rollback holds the configuration for Helm rollback actions for this HelmRelease.'
+                          )}
+                        >
+                          <Input name="config.helmRelease.rollback" />
+                        </Form.Item>
+                      </TabPanel>
+                    </Tabs>
+                  </Collapse.CollapseItem>
+                </Collapse>
+              </div>
+            </div>
+          </div>
+        )}
+        {this.state.appType === 'Kustomization' && (
+          <div>
+            <div className={styles.wrapper}>
+              <h6>{t('应用配置')}</h6>
+              <div className={styles.wrapper_item}>
+                <Columns>
+                  <Column>
+                    <Form.Item
+                      label={t('路径')}
+                      desc={t('清单文件相对于仓库根目录的路径')}
+                    >
+                      <Input name="config.kustomization.path" />
+                    </Form.Item>
+                  </Column>
+                  <Column>
+                    <Form.Item
+                      label={t('同步时间间隔')}
+                      desc={t('同步时间间隔，默认10m')}
+                    >
+                      <Input name="config.kustomization.path" />
+                    </Form.Item>
+                  </Column>
+                </Columns>
+              </div>
+            </div>
+            <div className={styles.wrapper}>
+              <h6>{t('DEPLOY_LOCATION')}</h6>
+              <div className={styles.wrapper_item}>
+                <Form.Item
+                  rules={[
+                    {
+                      required: true,
+                      message: t('PROJECT_NOT_SELECT_DESC'),
+                    },
+                  ]}
+                >
+                  <Placement
+                    name="destination"
+                    prefix="destination"
+                    formData={formTemplate}
+                    {...this.props}
+                  />
+                </Form.Item>
+              </div>
+            </div>
+          </div>
+        )}
+      </Form>
+    )
+  }
+}
