@@ -472,14 +472,12 @@ export default class ContainerSetting extends React.Component {
 
     set(serviceTemplate, `${serivcePrefix}spec.ports`, servicePorts)
 
-    const labels = get(this.formTemplate, 'metadata.labels', {})
     const podLabels = get(
       this.fedFormTemplate,
       `${this.prefix}metadata.labels`,
       {}
     )
 
-    set(serviceTemplate, 'metadata.labels', labels)
     set(
       serviceTemplate,
       `${serivcePrefix}spec.selector`,
