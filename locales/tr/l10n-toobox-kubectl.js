@@ -57,5 +57,6 @@ module.exports = {
     <ul>
     <li>Bölme ayrıntılarını görüntüleyin</li>
     </ul>
-    <p><code>kubectl bölmeleri tanımlar &lt;pod-name&gt;</code></p>  `
+    <p><code>kubectl bölmeleri tanımlar &lt;pod-name&gt;</code></p>  `,
+  OPEN_TERMINAL_DESC: 'Ensure that the web socket settings on the proxy server is correct.'
 };

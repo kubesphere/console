@@ -23,5 +23,6 @@ module.exports = {
   CONTAINER_PORT_SCAP: '容器端口',
   SERVICE_PORT_SCAP: '服务端口',
   NO_AVAILABLE_RESOURCE_VALUE: '未发现可用{resource}',
-  NO_RESOURCE_FOUND: '未发现资源'
+  NO_RESOURCE_FOUND: '未发现资源',
+  REVISION_RECORD: '修改记录'
 };

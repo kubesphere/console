@@ -23,5 +23,6 @@ module.exports = {
   CONTAINER_PORT_SCAP: 'Container port',
   SERVICE_PORT_SCAP: 'Service port',
   NO_AVAILABLE_RESOURCE_VALUE: '{resource} no disponible',
-  NO_RESOURCE_FOUND: 'No se puede encontrar el recurso.'
+  NO_RESOURCE_FOUND: 'No se puede encontrar el recurso.',
+  REVISION_RECORD: 'Revision record'
 };

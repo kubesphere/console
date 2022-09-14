@@ -37,7 +37,6 @@ module.exports = {
   // List > Create > Pod Settings
   PREVIOUS: 'Previous',
   NOTE: 'ملاحظة',
-  CREATE_CONFIGMAP_SECRET_DESC: 'If no configmap or secret meets the requirements, you can',
   // List > Create > Pod Settings > Add Container > Container Settings
   IMAGE: 'Image',
   IMAGE_VALUE: 'Image: {value}',
@@ -50,6 +49,9 @@ module.exports = {
   SPECIFY_SUBPATH: 'Specify Subpath',
   SPECIFY_SUBPATH_TIP: 'Specify a volume subpath to be mounted to the container.',
   MOUNT_PATH: 'Mount path',
+  MOUNT_PATH_NOT_SPECIFIED: 'Please select a key to be mounted and the mount path of the key.',
+  MOUNT_PATH_EMPTY: 'Please enter a mount path.',
+  MOUNT_PATH_REPEATED: 'The mount path is duplicated.',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: 'Network segment',
   AVAILABLE_ADDRESSES: 'Available addresses',
@@ -66,5 +68,6 @@ module.exports = {
   // List > Stop
   STOP: 'Stop',
   STOP_TITLE_SI: 'Stop {type}',
-  STOP_TITLE_PL: 'Stop Multiple {type}'
+  STOP_TITLE_PL: 'Stop Multiple {type}',
+  STOP_DESC: 'Are you sure you want to stop the resource?'
 };

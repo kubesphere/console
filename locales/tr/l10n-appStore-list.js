@@ -18,6 +18,7 @@
 module.exports = {
   // Head
   APP_STORE: 'Uygulama Mağazası',
+  HOME_APP_STORE_DESC: 'The official App Store of KubeSphere provides deployment and management features that allow users to quickly deploy apps with one click based on app templates.',
   // Discover
   DISCOVER: 'Keşfet',
   NEW_APPS: 'Yeni Uygulama',

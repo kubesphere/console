@@ -26,6 +26,7 @@ module.exports = {
   WORKSPACE_NAME_EMPTY_DESC: 'الرجاء إدخال اسم مساحة عمل.',
   WORKSPACE_CREATE_DESC: 'عيّن المعلومات الأساسية حول مساحة العمل.',
   ADMINISTRATOR: 'Administrator',
+  WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'حدد المجموعات التي سيتم استخدامها في مساحة العمل.',
   NO_CLUSTER_AVAILABLE: 'No Cluster Available',

@@ -33,6 +33,5 @@ module.exports = {
   TRAFFIC_MANAGEMENT: 'Trafik Yönetimi',
   // Tracing
   APPLICATION_GOVERNANCE_ENABLED: 'Uygulama Yönetişimi etkinleştirildi',
-  APPLICATION_GOVERNANCE_DISABLED: 'Uygulama yönetişimi devre dışı bırakıldı',
-  TRACING_UNAVAILABLE: 'İzleme Müsait Değil'
+  APPLICATION_GOVERNANCE_DISABLED: 'Uygulama yönetişimi devre dışı bırakıldı'
 };

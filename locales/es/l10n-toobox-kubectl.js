@@ -58,5 +58,6 @@ module.exports = {
     <li>Mostrar detalles del pod</li>
     </ul>
     <p><code>kubectl describe pods/<pod-name></code></p>
-  `
+  `,
+  OPEN_TERMINAL_DESC: 'Ensure that the web socket settings on the proxy server is correct.'
 };

@@ -51,5 +51,10 @@ module.exports = {
   LIMITS_MEMORY: '内存限制',
   // Project Quotas
   PROJECT_QUOTA_PL: '项目配额',
-  RESOURCE_TYPE_SCAP: '资源类型'
+  RESOURCE_TYPE_SCAP: '资源类型',
+  JOBS: '任务',
+  VOLUMES: '卷',
+  SERVICES: '服务',
+  ROUTES: '应用路由',
+  SECRETS: '保密字典'
 };

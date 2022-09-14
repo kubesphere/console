@@ -29,6 +29,7 @@ module.exports = {
   CATEGORY: '카테고리',
   TYPE: '타입',
   // Verisons
+  DEVELOPER: 'Developer',
   NO_VERSION_INFO_DESC: '버전 정보가 없습니다.',
   ACTIVATE_VERSION: '이 버전 활성화',
   CANCEL_SUBMISSION: '제출 취소',

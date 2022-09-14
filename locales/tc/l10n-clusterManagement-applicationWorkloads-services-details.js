@@ -23,5 +23,6 @@ module.exports = {
   CONTAINER_PORT_SCAP: '容器通訊埠',
   SERVICE_PORT_SCAP: '服務通訊埠',
   NO_AVAILABLE_RESOURCE_VALUE: '暫時沒有可用的{resource}',
-  NO_RESOURCE_FOUND: '沒有發現資源。'
+  NO_RESOURCE_FOUND: '沒有發現資源。',
+  REVISION_RECORD: 'Revision record'
 };

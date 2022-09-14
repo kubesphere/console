@@ -37,7 +37,6 @@ module.exports = {
   // List > Create > Pod Settings
   PREVIOUS: '上一步',
   NOTE: '备注',
-  CREATE_CONFIGMAP_SECRET_DESC: '如果没有配置字典或保密字典满足要求，您可以',
   // List > Create > Pod Settings > Add Container > Container Settings
   IMAGE: '镜像',
   IMAGE_VALUE: '镜像：{value}',
@@ -50,6 +49,9 @@ module.exports = {
   SPECIFY_SUBPATH: '指定子路径',
   SPECIFY_SUBPATH_TIP: '指定需要挂载到容器的卷子路径。',
   MOUNT_PATH: '挂载路径',
+  MOUNT_PATH_NOT_SPECIFIED: '请选择需要挂载的键和键的挂载路径。',
+  MOUNT_PATH_EMPTY: '请输入挂载路径。',
+  MOUNT_PATH_REPEATED: '挂载路径重复。',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: '网段',
   AVAILABLE_ADDRESSES: '可用地址数量',
@@ -66,5 +68,6 @@ module.exports = {
   // List > Stop
   STOP: '停止',
   STOP_TITLE_SI: '停止{type}',
-  STOP_TITLE_PL: '批量停止{type}'
+  STOP_TITLE_PL: '批量停止{type}',
+  STOP_DESC: '您确定停止该资源吗？'
 };

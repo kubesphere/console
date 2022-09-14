@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   // More > Edit Settings
   // More > Edit YAML
   // More > Delete

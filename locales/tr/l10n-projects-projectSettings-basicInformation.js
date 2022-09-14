@@ -51,5 +51,10 @@ module.exports = {
   LIMITS_MEMORY: 'Bellek Sınırı',
   // Project Quotas
   PROJECT_QUOTA_PL: 'Proje Kotası',
-  RESOURCE_TYPE_SCAP: 'Kaynak Türü'
+  RESOURCE_TYPE_SCAP: 'Kaynak Türü',
+  JOBS: 'İşler',
+  VOLUMES: 'Birimler',
+  SERVICES: 'Hizmetler',
+  ROUTES: 'Routerler',
+  SECRETS: 'Gizli'
 };

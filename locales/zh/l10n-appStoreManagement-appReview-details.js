@@ -26,6 +26,7 @@ module.exports = {
   // Documentation
   DOCUMENTATION: '说明文档',
   NO_DOCUMENT_FOUND: '未发现说明文档',
+  UPDATE_TIME_COLON: '更新时间：',
   // Chart Files
   // Update Log
   UPDATE_LOG: '更新日志',

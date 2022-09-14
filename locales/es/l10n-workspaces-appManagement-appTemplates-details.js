@@ -65,6 +65,7 @@ module.exports = {
   APP_LEARN_MORE: '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Learn More</a>',
   INVALID_VERSION_TIP: 'Versión no válida',
   // Versions > Submit for Review > Test Steps
+  TEST_STEPS: 'Test Steps',
   VERSION_SUBMIT_TEST_STEPS: '1. All dependent charts have been submitted.<br/>' + '2. The static analysis has been passed (helm lint).<br/>' + '3. The app can be started using default values (helm install). All pods are in running state and all services have at least one endpoint.<br/>' + '4. The images used have no security vulnerabilities.<br/>' + '5. Upgrade is supported.<br/>' + '6. Custom application configuration is supported.<br/>' + '7. Do not use the alpha features of Kubernetes.<br/>' + '8. Detailed documentation is provided, including app introduction, prereauisites, and custom parameter configurations.<br/>',
   VERSION_SUBMIT_NOTE: 'Please make sure your app has met the following requirements before submission:',
   // Versions > Submit for Review > Update Log

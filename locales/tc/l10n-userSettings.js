@@ -26,7 +26,6 @@ module.exports = {
   // Password Settings
   PASSWORD_SETTINGS: '密碼設置',
   PASSWORD_EMPTY_DESC: '請輸入密碼',
-  CHANGE_PASSWORD_TIP: '由于您是第一次登入，處於安全考慮請重置您的密碼',
   CURRENT_PASSWORD: '目前密碼',
   ENTER_CURRENT_PASSWORD_TIP: '請輸入目前密碼',
   CONFIRM_PASSWORD: '重複新的密碼',

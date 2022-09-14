@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   CREATOR: 'Creator',
   NO: 'No',
   // More > Roll Back

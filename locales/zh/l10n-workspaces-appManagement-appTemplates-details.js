@@ -65,6 +65,7 @@ module.exports = {
   APP_LEARN_MORE: '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">了解更多</a>',
   INVALID_VERSION_TIP: '请输入正确的版本号。',
   // Versions > Submit for Review > Test Steps
+  TEST_STEPS: '测试步骤',
   VERSION_SUBMIT_TEST_STEPS: '1. 所有依赖的 chart 已经分别提交。<br/>' + '2. 可以成功通过静态检查（helm lint）。<br/>' + '3. 可以用默认值成功启动应用（helm install）。所有容器组处于运行中状态，所有服务（Service）都至少有一个端点。<br/>' + '4. 使用的镜像没有安全漏洞。<br/>' + '5. 支持升级。<br/>' + '6. 支持自定义应用配置。<br/>' + '7. 不要使用 Kubernetes 的 alpha 功能。<br/>' + '8. 需要提供详细的说明文档，包括应用介绍、准备工作和自定义参数配置。<br/>',
   VERSION_SUBMIT_NOTE: '提交之前，请确认您的应用满足以下要求：',
   // Versions > Submit for Review > Update Log

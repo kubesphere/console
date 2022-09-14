@@ -19,6 +19,8 @@ module.exports = {
   // Title
   TOTAL_AUDITING_TODAY: 'Bugün toplam <span class={className}> {auditing} </span> denetim günlüğü girişi toplandı.',
   NO_AUDIT_LOG_TODAY: 'Bugün Toplanan Denetim Günlüğü Yok',
+  AUDIT_LOG_TREND_LAST_TWELVE_HOURS: 'Audit log trend in the last 12 hours',
+  START_TIME_VALUE: 'Start Time: {value}',
   // Search
   NO_DATA_AUTHORIZED: 'No Data Authorized',
   NO_DATA_AUTHORIZED_DESC: 'Please contact an administrator to obtain data authorization.',

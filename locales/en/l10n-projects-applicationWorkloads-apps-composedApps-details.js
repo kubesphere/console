@@ -22,7 +22,7 @@ module.exports = {
   ADD_ROUTE: 'Add Route',
   SERVICE_ADDED_SUCCESSFULLY: 'The service was added successfully.',
   // More > Add Route
-  // Details
+  // Attributes
   // Resource Status
   // Traffic Monitoring
   TRAFFIC_MONITORING: 'Traffic Monitoring',

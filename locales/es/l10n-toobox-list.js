@@ -19,6 +19,7 @@ module.exports = {
   // Title
   TOOLBOX: 'Caja de herramientas',
   TOOLBOX_DESC: 'La caja de herramientas proporciona búsqueda de registros y herramientas operativas de cli',
+  DETAIL_NOT_FOUND_DESC: 'No related resources were found. <a href="{link}">Return to {title}</a>',
   // Description
   // Ayalysis Tools
   ANALYSIS_TOOLS: 'Analysis Tools',

@@ -43,11 +43,12 @@ module.exports = {
   LIVENESS_PROBE: '存活探针',
   READINESS_PROBE: '就绪探针',
   STARTUP_PROBE: '启动探针',
+  REQUEST_TYPE: '请求类型',
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
-  NO_RESOURCE: '未发现{resource}。',
-  LOG_DATA_LOW: '日志数据',
+  NO_LOG_DATA_FOUND: '未发现日志数据',
+  NO_LOG_DATA_FOUND_TIP: '没有找到日志数据。',
   // Resource Status > Volumes
   VOLUME_PL: '卷',
   TYPE_CONFIGMAP: '卷类型：配置字典',

@@ -26,7 +26,6 @@ module.exports = {
   // Password Settings
   PASSWORD_SETTINGS: 'Şifre ayarları',
   PASSWORD_EMPTY_DESC: 'Lütfen bir şifre ayarlayın.',
-  CHANGE_PASSWORD_TIP: 'İlk kez giriş yaptığınız için lütfen şifrenizi sıfırlayın.',
   CURRENT_PASSWORD: 'Mevcut Parola',
   ENTER_CURRENT_PASSWORD_TIP: 'Lütfen mevcut şifrenizi giriniz.',
   CONFIRM_PASSWORD: 'Şifreyi Onayla',

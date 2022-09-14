@@ -33,6 +33,7 @@ module.exports = {
   // Resource Status > Replica Status
   // Resource Status > Ports
   // Resource Status > Pods
+  NODE: 'Düğüm',
   // Revision Records
   SERIAL_NUMBER: 'Seri numarası',
   CREATED_TIME: '{diff} tarihinde oluşturuldu.',
@@ -40,5 +41,7 @@ module.exports = {
   // Monitoring
   // Environment Variables
   // Events
-  EVENT_PL: 'Etkinlikler'
+  EVENT_PL: 'Etkinlikler',
+  EVENT_NORMAL: 'Normal',
+  EVENT_WARNING: 'Dikkat'
 };

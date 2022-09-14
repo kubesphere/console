@@ -27,6 +27,8 @@ module.exports = {
   CLUSTER_POD_CONSUMPTION_DESC: '节点中<strong>容器组</strong>的 CPU、内存等资源的消费情况',
   CURRENT_RESOURCE_CONSUMPTION: '当前资源消费情况',
   VIEW: '查看',
+  CONSUMPTION_SINCE_CREATION: '自创建以来已消耗了以下资源。',
+  PRICE: '价格',
   // Workspace Recource Consumption
   WORKSPACE_CONSUMPTION: '企业空间资源消费情况',
   WORKSPACE_CONSUMPTION_DESC: '查看企业空间的资源消费情况。',

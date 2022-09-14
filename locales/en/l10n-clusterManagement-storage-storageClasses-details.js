@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   TRUE: 'True',
   FALSE: 'False',
   // More > Set as Default Storage Class
