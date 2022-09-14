@@ -53,7 +53,7 @@ export default class KeyWords extends React.Component {
       value,
       validate,
       className,
-      title = t('KEYWORDS'),
+      title = t('KEYWORD'),
       listTitle = t('KEYWORDS_LIST'),
       emptyDesc = t('EMPTY_KEYWORDS_DESC'),
       placeholder = t(' '),

@@ -51,7 +51,7 @@ export default class SlackForm extends Component {
             rules={[
               {
                 required: true,
-                message: t('CHANNEL_SETTINGS_DESC'),
+                message: t('ADD_CHANNEL_TIP'),
               },
             ]}
           >
