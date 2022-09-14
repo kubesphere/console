@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
+  PLATFORM: '平台管理',
   CLUSTER_MANAGEMENT: '集群管理',
   CLUSTER_DESC: '对多集群以及每个集群的基础资源、服务组件和应用资源等的统一管理。',
   ACCESS_CONTROL_DESC: '对平台中的企业空间、用户、以及角色进行统一管理。',

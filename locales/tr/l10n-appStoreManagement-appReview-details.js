@@ -26,6 +26,7 @@ module.exports = {
   // Documentation
   DOCUMENTATION: 'Belgeler',
   NO_DOCUMENT_FOUND: 'Belge Bulunamadı',
+  UPDATE_TIME_COLON: 'Update time: ',
   // Chart Files
   // Update Log
   UPDATE_LOG: 'Kaydı Güncelle',

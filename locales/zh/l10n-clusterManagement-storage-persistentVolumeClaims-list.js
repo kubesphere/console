@@ -38,6 +38,9 @@ module.exports = {
   MOUNTED: '已挂载',
   NOT_MOUNTED: '未挂载',
   ACCESS_MODE_TCAP: '访问模式',
+  RWO_DESC: 'RWO：单节点读写',
+  ROX_DESC: 'ROX：多节点只读',
+  RWX_DESC: 'RWX：多节点读写',
   // List > Create > Basic Information
   CREATE: '创建',
   CREATE_PERSISTENT_VOLUME_CLAIM: '创建持久卷声明',

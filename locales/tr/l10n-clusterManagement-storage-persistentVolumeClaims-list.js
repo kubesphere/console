@@ -38,6 +38,9 @@ module.exports = {
   MOUNTED: 'Bağlandı',
   NOT_MOUNTED: 'Bağlanamadı',
   ACCESS_MODE_TCAP: 'Erişim modu',
+  RWO_DESC: 'RWO: Single-node read and write',
+  ROX_DESC: 'ROX: Multi-node readonly',
+  RWX_DESC: 'RWX: Multi-node read and write',
   // List > Create > Basic Information
   CREATE: 'Oluştur',
   CREATE_PERSISTENT_VOLUME_CLAIM: 'Kalıcı Birim Talebi Oluştur',

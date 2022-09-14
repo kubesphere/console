@@ -27,6 +27,7 @@ module.exports = {
   // List > Create
   // List > Create > Basic Information
   NEXT: 'Next',
+  INVALID_PROJECT: 'Invalid project.',
   // List > Create > Pod Settings > Replica Scheduling Mode
   REPLICA_SCHEDULING_MODE: 'Replica Scheduling Mode',
   SPECIFY_REPLICAS: 'Specify Replicas',
@@ -39,6 +40,7 @@ module.exports = {
   WEIGHT: 'weight',
   TOTAL_REPLICAS: 'Total Replicas',
   // List > Create > Pod Settings > Add Container > Container Settings
+  COST: 'Cost',
   ADD_CONTAINER: 'Add Container',
   ADD_CONTAINER_DESC: 'Customize container settings to create a container.',
   CONTAINERS: 'Containers',
@@ -63,6 +65,7 @@ module.exports = {
   NO_REQUEST: 'No request',
   NO_RESOURCE_LIMIT: 'No resource limit',
   IGNORE_AND_RETRY: 'Ignore and Try Again',
+  AVAILABLE_QUOTAS: 'Available Quotas',
   // List > Create > Pod Settings > Add Container > Port Settings
   PORT_SETTINGS: 'Port Settings',
   ISTIO_PROTOCOL_TIP: 'Select the protocol used by the service to fully utilize the Application Governance function. For example, select HTTP for an HTTP service.',
@@ -85,6 +88,7 @@ module.exports = {
   COMMANDS: 'Commands',
   HEALTH_CHECK: 'Health Check',
   STARTUP_CHECK_TIP: 'Kubernetes v1.18 or later is required.',
+  HTTP_PATH_EMPTY: 'Please set a path for the HTTP check.',
   // List > Create > Pod Settings > Add Container > Life Management
   LIFECYCLE_MANAGEMENT: 'Lifecycle Management',
   LIFECYCLE_MANAGEMENT_DESC: 'Add actions to be performed after the container is started or before it is stopped for environment preparation or graceful shutdown.',
@@ -97,6 +101,11 @@ module.exports = {
   ADD_ENVIRONMENT_VARIABLE: 'Add Environment Variable',
   KEY_IN_RESOURCE: 'Key in resource',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
+  RESOURCE: 'Resource',
+  CREATE_CONFIGMAP_SECRET_DESC: 'If no configmap or secret meets the requirements, you can',
+  CREATE_CONFIG: 'create a configmap',
+  OR: 'or',
+  CREATE_SECRET: 'create a secret.',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: 'Container Security Context',
   CONTAINER_SECURITY_CONTEXT_DESC: 'Customize the privilege settings of the container.',
@@ -194,11 +203,13 @@ module.exports = {
   KEY: 'Key',
   VALUE: 'Value',
   ADVANCED_SETTINGS: 'Advanced Settings',
+  DUPLICATE_LABELS: 'Duplicate labels cannot be added.',
   // List > Create > Advanced Settings > Specify Node
   WORKLOAD_SPECIFY_NODE_DESC: 'Assign pod replicas to a specific node.',
   // List > Create > Cluster Differences
   CLUSTER_DIFF: 'Cluster Differences',
   CLUSTER_DIFF_CONTAINER_SETTINGS_DESC: 'Use different container settings in different clusters.',
   CLUSTER_DIFF_PORT_SETTINGS_DESC: 'Set different ports for containers in different clusters.',
-  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: 'Set different environment variables for containers in different clusters.'
+  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: 'Set different environment variables for containers in different clusters.',
+  CONTAINER_IMAGE: 'Container Image'
 };

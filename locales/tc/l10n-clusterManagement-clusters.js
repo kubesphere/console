@@ -19,12 +19,14 @@ module.exports = {
   // Banner
   NO_CLUSTER_TIP: '請添加至少 1 個集群',
   // Add Cluster > Basic Information
+  CLUSTER_NAME_EMPTY: 'Please enter a cluster name.',
   ADD_CLUSTER: '添加集群',
   TAG: '標籤',
   CLUSTER_TAG_DESC: '選擇標籤來識別集群的用途。',
   CLUSTER_PROVIDER_DESC: '選擇提供集群基礎設施的服務商。',
   // Add Cluster > Connection Settings
   CONNECTION_SETTINGS: 'Connection Settings',
+  CONNECTION_METHOD: 'Connection Mode',
   CLUSTER_CONNECT_METHOD_DESC: '可以直接連接集群或者使用代理',
   CONNTECT_DIRECT: '直接連接Kubernetes集群',
   CONNTECT_PROXY: '集群連接代理',
@@ -37,6 +39,7 @@ module.exports = {
   // List
   HOST_CLUSTER_TCAP: '主集群',
   HOST_CLUSTER_PL_TCAP: '主集群',
+  MEMBER_CLUSTER_TCAP_PL: 'Member Clusters',
   NODE_COUNT: '節點數量',
   ENV_PRODUCTION: '生產環境',
   ENV_DEVELOPMENT: '開發環境',
@@ -45,5 +48,13 @@ module.exports = {
   UPDATE_KUBECONFIG: 'Update kubeconfig',
   KUBE_CONFIG_IS_EXPIRED: 'kubeconfig 已過期',
   EXPIRE_DATE: '過期時間',
-  LAST_KUBE_CONFIG_EXPIRED: 'kubeconfig 將在 <span class="kubeConfig_expired">{count}</span> 天後過期'
+  LAST_KUBE_CONFIG_EXPIRED: 'kubeconfig 將在 <span class="kubeConfig_expired">{count}</span> 天後過期',
+  VALIDATION_FAILED: 'Validation failed.',
+  NO_CLUSTER_TIP_DESC: 'A cluster is a group of nodes (physical or virtual machines) running KubeSphere.',
+  // List > Remove Cluster
+  RISK_WARNING: 'Risk Warning',
+  REMOVE_CLUSTER_TIP_A: 'After the cluster is removed, resources and configuration information in the cluster will not be cleared automatically.',
+  REMOVE_CLUSTER_TIP_B: 'To avoid resource conflicts when the cluster joins another multi-cluster system, you need to manually clear the configuration information in the cluster by referring to the <a href="https://kubesphere.io/docs/">official KubeSphere documentation</a>.',
+  CLUSTER_CONFIRM_TEXT: 'I understand the risks of removing the cluster',
+  ENTER_CLUSTER_NAME: 'This operation cannot be undone. Enter the cluster name <strong>{name}</strong> to confirm that you understand the risks of this operation.'
 };

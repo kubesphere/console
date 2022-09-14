@@ -18,6 +18,7 @@
 module.exports = {
   // Banner
   HOST_CLUSTER: 'Host Kümesi',
+  MEMBER_CLUSTER: 'Üye kümesi',
   CLUSTER_CONDITIONS: 'Küme Koşulları',
   // Baisc Information
   PROVIDER: 'Sağlayıcı',
@@ -32,6 +33,7 @@ module.exports = {
   TOTAL: 'Toplam',
   USED: 'Kullanılan',
   // Tools
+  TOOLS: 'Tools',
   KUBECTL_DESC: 'Geçerli kümeyi kontrol etmek için kullanılan komut satırı aracı.',
   KUBECONFIG_DESC: 'Geçerli kümeyle ilgili erişim bilgilerini yapılandırmak için kullanılan dosya.',
   // Kubernetes Status

@@ -17,5 +17,6 @@
  */
 module.exports = {
   CLUSTER_ROLE: 'Cluster Role',
-  CLUSTER_ROLE_PL: 'Cluster Roles'
+  CLUSTER_ROLE_PL: 'Cluster Roles',
+  CLUSTER_ROLE_DESC: 'This module allows you to manage the access of users within a cluster.'
 };

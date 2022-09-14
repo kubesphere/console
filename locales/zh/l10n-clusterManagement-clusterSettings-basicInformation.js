@@ -24,12 +24,8 @@ module.exports = {
   // Cluster Information > Edit Information
   CLUSTER_NAME: '集群名称',
   EDIT_CLUSTER_INFO_DESC: '编辑集群基本信息。',
-  // Unbind Cluster
-  UNBIND: '解绑',
-  UNBIND_CLUSTER: '解绑集群',
-  UNBIND_CLUSTER_DESC: '集群解绑后，KubeSphere 将无法管理集群。集群中的 Kubernetes 资源将不会被删除。请输入集群名称 <strong>{name}</strong> 以确保您了解该操作的风险。',
-  UNBIND_SUCCESS: '解绑成功。',
-  SURE_TO_UNBIND_CLUSTER: '我已了解操作的风险。',
-  UNBIND_CLUSTER_Q: '解绑集群',
-  NODE: '节点'
+  // Remove Cluster
+  REMOVE_CLUSTER: '移除集群',
+  REMOVE_CLUSTER_DESC: '集群被移除后，KubeSphere 将无法管理集群，集群中的资源将不会被删除。请输入集群名称 <strong>{name}</strong> 以确认您了解此操作的风险。',
+  REMOVE_SUCCESS: '移除成功。'
 };

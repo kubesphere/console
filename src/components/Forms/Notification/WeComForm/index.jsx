@@ -35,15 +35,15 @@ export default class WeComForm extends Component {
   get tabs() {
     return [
       {
-        label: t('USER_ID'),
+        label: 'User ID',
         value: 'toUser',
       },
       {
-        label: t('DEPARTMENT_ID'),
+        label: 'Department ID',
         value: 'toParty',
       },
       {
-        label: t('TAG_ID'),
+        label: 'Tag ID',
         value: 'toTag',
       },
     ]
@@ -98,7 +98,7 @@ export default class WeComForm extends Component {
         <div className={styles.title}>{t('SERVER_SETTINGS')}</div>
         <div className={styles.item}>
           <Form.Item
-            label={t('WECOM_CORP_ID')}
+            label="Corp ID"
             rules={[
               {
                 required: true,
@@ -109,7 +109,7 @@ export default class WeComForm extends Component {
             <Input name="config.spec.wechat.wechatApiCorpId" />
           </Form.Item>
           <Form.Item
-            label={t('WECOM_AGENT_ID')}
+            label="Agent ID"
             rules={[
               {
                 required: true,
@@ -120,7 +120,7 @@ export default class WeComForm extends Component {
             <Input name="config.spec.wechat.wechatApiAgentId" />
           </Form.Item>
           <Form.Item
-            label={t('WECOM_SECRET')}
+            label="Secret"
             rules={[
               {
                 required: true,

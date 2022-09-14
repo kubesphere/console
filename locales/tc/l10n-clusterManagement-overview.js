@@ -18,6 +18,7 @@
 module.exports = {
   // Banner
   HOST_CLUSTER: '主集群',
+  MEMBER_CLUSTER: 'Member cluster',
   CLUSTER_CONDITIONS: '集群狀態',
   // Baisc Information
   PROVIDER: '服務商',
@@ -32,6 +33,7 @@ module.exports = {
   TOTAL: '總計',
   USED: '已使用',
   // Tools
+  TOOLS: 'Tools',
   KUBECTL_DESC: '目前集群客戶端命令行工具',
   KUBECONFIG_DESC: '配置文件，用於配置目前集群的訪問資訊。',
   // Kubernetes Status

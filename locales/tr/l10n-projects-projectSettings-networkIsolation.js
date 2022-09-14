@@ -52,5 +52,9 @@ module.exports = {
   EGRESS: 'Çıkış',
   INGRESS: 'Giriş',
   INTERNAL_TRAFFIC_DIRECTION_DESC: 'Çıkış, mevcut projeden diğer projelere olan yönü gösterir. Giriş, diğer projelerden mevcut projeye olan yönü gösterir.',
+  // Add Allowlist Entry > Project
+  // Add Allowlist Entry > Service
+  // Delete Allowlist Entry
+  ALLOWLIST_ENTRY: 'Allowlist Entry',
   ALLOWLIST_ENTRY_LOW: 'izin verilenler listesi girişi'
 };

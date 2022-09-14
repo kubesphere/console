@@ -23,5 +23,5 @@ module.exports = {
   // Resource Status > Edit YAML
   // Resource Status > Delete
   CUSTOM_RESOURCE: '自定义资源',
-  CUSTOM_RESOURCE_DEFINITION_LOW: '定制资源定义'
+  CUSTOM_RESOURCE_LOW: '定制资源'
 };

@@ -23,6 +23,9 @@ module.exports = {
   MONITORING_TARGETS_SCAP: '監控目標',
   ACTIVATION_CONDITION_SCAP: 'Activation condition',
   METRIC_MONITORING: '指標監控',
+  ALERT_MONITORING: 'Alert Monitoring',
+  NOTIFICATION_SUMMARY_COLON: 'Summary: ',
+  DETAILS_COLON: 'Details: ',
   // Alerting History
   NO_DATA_DESC: '未發現資料'
 };

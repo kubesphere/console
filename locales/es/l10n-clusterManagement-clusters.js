@@ -19,12 +19,14 @@ module.exports = {
   // Banner
   NO_CLUSTER_TIP: 'Agregue al menos un clúster.',
   // Add Cluster > Basic Information
+  CLUSTER_NAME_EMPTY: 'Please enter a cluster name.',
   ADD_CLUSTER: 'Agregar clúster',
   TAG: 'Etiqueta',
   CLUSTER_TAG_DESC: 'Select a tag to identify the purpose of the cluster.',
   CLUSTER_PROVIDER_DESC: 'Select the provider of the cluster infrastructure.',
   // Add Cluster > Connection Settings
   CONNECTION_SETTINGS: 'Connection Settings',
+  CONNECTION_METHOD: 'Connection Mode',
   CLUSTER_CONNECT_METHOD_DESC: 'Conéctese directamente al clúster o use un agente',
   CONNTECT_DIRECT: 'Conexión directa al clúster de Kubernetes',
   CONNTECT_PROXY: 'Agente de conexión de clúster',
@@ -37,6 +39,7 @@ module.exports = {
   // List
   HOST_CLUSTER_TCAP: 'Host Cluster',
   HOST_CLUSTER_PL_TCAP: 'Host Clusters',
+  MEMBER_CLUSTER_TCAP_PL: 'Member Clusters',
   NODE_COUNT: 'Cantidad de nodos',
   ENV_PRODUCTION: 'Producción',
   ENV_DEVELOPMENT: 'Desarrollo',
@@ -45,5 +48,13 @@ module.exports = {
   UPDATE_KUBECONFIG: 'Update kubeconfig',
   KUBE_CONFIG_IS_EXPIRED: 'KubeConfig has expired',
   EXPIRE_DATE: 'Expiration Time',
-  LAST_KUBE_CONFIG_EXPIRED: 'KubeConfig expires in <span class="kubeConfig_expired">{count}</span> days'
+  LAST_KUBE_CONFIG_EXPIRED: 'KubeConfig expires in <span class="kubeConfig_expired">{count}</span> days',
+  VALIDATION_FAILED: 'Validation failed.',
+  NO_CLUSTER_TIP_DESC: 'A cluster is a group of nodes (physical or virtual machines) running KubeSphere.',
+  // List > Remove Cluster
+  RISK_WARNING: 'Risk Warning',
+  REMOVE_CLUSTER_TIP_A: 'After the cluster is removed, resources and configuration information in the cluster will not be cleared automatically.',
+  REMOVE_CLUSTER_TIP_B: 'To avoid resource conflicts when the cluster joins another multi-cluster system, you need to manually clear the configuration information in the cluster by referring to the <a href="https://kubesphere.io/docs/">official KubeSphere documentation</a>.',
+  CLUSTER_CONFIRM_TEXT: 'I understand the risks of removing the cluster',
+  ENTER_CLUSTER_NAME: 'This operation cannot be undone. Enter the cluster name <strong>{name}</strong> to confirm that you understand the risks of this operation.'
 };

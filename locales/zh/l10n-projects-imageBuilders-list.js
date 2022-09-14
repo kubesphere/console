@@ -29,6 +29,7 @@ module.exports = {
   BUILD_IMAGE_FOR_SERVICE: '为 {service} 服务构建镜像。',
   // List > Create > Build Mode
   BUILD_MODE: '构建模式',
+  CONTAINERD_RUNTIME_NOT_SUPPORTED: '容器运行时不支持此功能。',
   S2I_DESC: '选择代码的开发语言。',
   IMAGE_FROM_S2I: '通过代码构建镜像',
   IMAGE_FROM_B2I: '通过制品构建镜像',

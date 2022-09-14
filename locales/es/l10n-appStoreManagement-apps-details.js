@@ -29,6 +29,7 @@ module.exports = {
   CATEGORY: 'Categoría',
   TYPE: 'Tipo',
   // Verisons
+  DEVELOPER: 'Developer',
   NO_VERSION_INFO_DESC: 'No version information is found.',
   ACTIVATE_VERSION: 'Activar versión',
   CANCEL_SUBMISSION: 'Cancelar revisión',

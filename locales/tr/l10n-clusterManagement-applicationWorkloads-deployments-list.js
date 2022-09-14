@@ -37,7 +37,6 @@ module.exports = {
   // List > Create > Pod Settings
   PREVIOUS: 'Önceki',
   NOTE: 'Not',
-  CREATE_CONFIGMAP_SECRET_DESC: 'Hiçbir configmap veya secret gereksinimleri karşılamıyorsa, şunları yapabilirsiniz',
   // List > Create > Pod Settings > Add Container > Container Settings
   IMAGE: 'Resim',
   IMAGE_VALUE: 'Resim: {değer}',
@@ -50,6 +49,9 @@ module.exports = {
   SPECIFY_SUBPATH: 'Alt Yolu Belirtin',
   SPECIFY_SUBPATH_TIP: 'Kapsayıcıya monte edilecek bir birim alt yolu belirtin.',
   MOUNT_PATH: 'Bağlama yolu',
+  MOUNT_PATH_NOT_SPECIFIED: 'Please select a key to be mounted and the mount path of the key.',
+  MOUNT_PATH_EMPTY: 'Please enter a mount path.',
+  MOUNT_PATH_REPEATED: 'The mount path is duplicated.',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: 'Ağ segmenti',
   AVAILABLE_ADDRESSES: 'Kullanılabilir adresler',
@@ -66,5 +68,6 @@ module.exports = {
   // List > Stop
   STOP: 'Dur',
   STOP_TITLE_SI: 'Dur {tip}',
-  STOP_TITLE_PL: 'Çoklu {tip} Durdur.'
+  STOP_TITLE_PL: 'Çoklu {tip} Durdur.',
+  STOP_DESC: 'Are you sure you want to stop the resource?'
 };

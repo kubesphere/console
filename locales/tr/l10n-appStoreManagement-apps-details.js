@@ -29,6 +29,7 @@ module.exports = {
   CATEGORY: 'Kategori',
   TYPE: 'Tip',
   // Verisons
+  DEVELOPER: 'Developer',
   NO_VERSION_INFO_DESC: 'Sürüm bilgisi bulunamadı.',
   ACTIVATE_VERSION: 'Sürümü Etkinleştir',
   CANCEL_SUBMISSION: 'Gönderimi İptal Et',

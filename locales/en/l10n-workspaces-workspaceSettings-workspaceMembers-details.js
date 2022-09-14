@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   // Projects
   // DevOps Projects
   DEVOPS_PROJECTS: 'DevOps Projects',
