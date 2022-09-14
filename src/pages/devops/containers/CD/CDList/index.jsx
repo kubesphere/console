@@ -20,6 +20,7 @@ import React from 'react'
 
 import { toJS, computed } from 'mobx'
 import { getLocalTime, getDisplayName } from 'utils'
+import { isArgo } from 'utils/devops'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -33,7 +34,6 @@ import Destination from '../Components/Destination'
 import StatusText from '../Components/StatusText'
 import ChartCard from '../Components/ChartCard'
 import styles from './index.scss'
-import { isArgo } from 'utils/devops'
 
 @withList({
   store: new CDStore(),
@@ -353,7 +353,7 @@ export default class CDList extends React.Component {
             dataIndex: 'fluxSource',
             width: '20%',
             render: fluxSource => {
-              return `${fluxSource.kind}/${fluxSource.name}`
+              return `${fluxSource.kind}/${fluxSource.name.slice(7)}`
             },
           },
           {

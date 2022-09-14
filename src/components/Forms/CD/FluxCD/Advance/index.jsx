@@ -114,8 +114,7 @@ export default class Advance extends React.Component {
                         name="metadata.labels['gitops.kubesphere.io/save-helm-template']"
                         checked={get(
                           formTemplate,
-                          "metadata.labels['gitops.kubesphere.io/save-helm-template']",
-                          false
+                          "metadata.labels['gitops.kubesphere.io/save-helm-template']"
                         )}
                         onChange={this.handleToggleChange(
                           "metadata.labels['gitops.kubesphere.io/save-helm-template']"
@@ -280,6 +279,11 @@ export default class Advance extends React.Component {
                     <Form.Item
                       label={t('路径')}
                       desc={t('清单文件相对于仓库根目录的路径')}
+                      rules={[
+                        {
+                          required: true,
+                        },
+                      ]}
                     >
                       <Input name="config.kustomization.path" />
                     </Form.Item>
@@ -289,7 +293,10 @@ export default class Advance extends React.Component {
                       label={t('同步时间间隔')}
                       desc={t('同步时间间隔，默认10m')}
                     >
-                      <Input name="config.kustomization.path" />
+                      <Input
+                        name="config.kustomization.interval"
+                        defaultValue="10m"
+                      />
                     </Form.Item>
                   </Column>
                 </Columns>

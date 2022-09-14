@@ -114,7 +114,35 @@ const buildHelmRelease = data => {
 }
 
 const buildKustomization = data => {
-  console.log(data)
+  return {
+    spec: {
+      source: {
+        sourceRef: {
+          name: `fluxcd-${data.repoURL.match('.*?(?=\\()')[0]}`,
+          kind: 'GitRepository',
+        },
+      },
+      config: {
+        kustomization: [
+          {
+            destination: {
+              kubeConfig:
+                data.destination.name !== 'in-cluster'
+                  ? {
+                      secretRef: {
+                        name: data.destination.name,
+                      },
+                    }
+                  : null,
+              targetNamespace: data.destination.namespace,
+            },
+            interval: data.config.kustomization.interval,
+            path: data.config.kustomization.path,
+          },
+        ],
+      },
+    },
+  }
 }
 
 export default {
