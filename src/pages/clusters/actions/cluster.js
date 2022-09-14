@@ -61,9 +61,11 @@ export default {
                     op: 'add',
                     path: '/spec/placement',
                     value: {
-                      clusters: {
-                        name: cluster.name,
-                      },
+                      clusters: [
+                        {
+                          name: cluster.name,
+                        },
+                      ],
                     },
                   },
                 ]
