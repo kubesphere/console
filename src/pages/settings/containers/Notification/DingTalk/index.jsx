@@ -179,21 +179,19 @@ export default class DingTalk extends React.Component {
     if (appkey || appsecret || !isEmpty(chatids)) {
       if (!appkey) {
         Notify.error({
-          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('AppKey') }),
+          content: t('PLEASE_ENTER_APP_KEY'),
         })
         return false
       }
       if (!appsecret) {
         Notify.error({
-          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('AppSecret') }),
+          content: t('PLEASE_ENTER_APP_SECRET'),
         })
         return false
       }
       if (isEmpty(chatids)) {
         Notify.error({
-          content: t('PLEASE_ENTER_VALUE_CUSTOM', {
-            value: t('CONVERSATION_ID'),
-          }),
+          content: t('PLEASE_ENTER_CHAT_ID'),
         })
         return false
       }
@@ -202,7 +200,7 @@ export default class DingTalk extends React.Component {
     if (webhook || chatbotsecret || !isEmpty(keywords)) {
       if (!webhook) {
         Notify.error({
-          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('Webhook URL') }),
+          content: t('PLEASE_ENTER_WEBHOOK_URL'),
         })
         return false
       }

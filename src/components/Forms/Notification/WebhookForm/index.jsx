@@ -72,17 +72,17 @@ export default class WebhookForm extends Component {
         <div className={styles.title}>{t('SERVER_SETTINGS')}</div>
         <div className={styles.item}>
           <Form.Item
-            label={t('Webhook URL')}
+            label="Webhook URL"
             rules={[{ required: true, message: t('WEBHOOK_URL_DESC') }]}
           >
             <Input name="receiver.spec.webhook.url" />
           </Form.Item>
           <Form.Item
-            label={t('VERIFICATION_TYPE')}
+            label={t('AUTHENTICATION_TYPE')}
             rules={[
               {
                 required: true,
-                message: t('VERIFICATION_TYPE_DESC'),
+                message: t('AUTHENTICATION_TYPE_DESC'),
               },
             ]}
           >

@@ -63,12 +63,12 @@ export default class FeishuForm extends Component {
   renderServiceSetting() {
     return (
       <div className={styles.row}>
-        <div className={styles.title}>{t('CONVERSATION_SETTINGS')}</div>
+        <div className={styles.title}>{t('APP_SETTINGS')}</div>
         <div className={styles.item}>
-          <Form.Item label={t('APP_ID')}>
+          <Form.Item label="App ID">
             <Input name="secret.data.appkey" />
           </Form.Item>
-          <Form.Item label={t('APP_SECRET')}>
+          <Form.Item label="App Secret">
             <Input name="secret.data.appsecret" />
           </Form.Item>
         </div>
@@ -86,27 +86,27 @@ export default class FeishuForm extends Component {
         </div>
         <div className={styles.item}>
           <Tabs type="button">
-            <TabPanel label={t('USER_ID')} name="conversation">
+            <TabPanel label="User ID" name="conversation">
               <Form.Item>
                 <KeyWords
                   className={wrapperClassName}
                   title={t('')}
                   listTitle={t('TOUSER_LIST')}
                   emptyDesc={t('EMPTY_TOUSER_DESC')}
-                  placeholder={t('ENTER_TOUSER_TIP')}
+                  placeholder=" "
                   name="receiver.spec.feishu.user"
                   validate={this.validateKeywords}
                 />
               </Form.Item>
             </TabPanel>
-            <TabPanel label={t('DEPARTMENT_ID')} name="chatbot">
+            <TabPanel label={'Department ID'} name="chatbot">
               <Form.Item>
                 <KeyWords
                   className={wrapperClassName}
                   title={t('')}
                   listTitle={t('TOPARTY_LIST')}
                   emptyDesc={t('EMPTY_TOPARTY_DESC')}
-                  placeholder={t('ENTER_TOPARTY_TIP')}
+                  placeholder=" "
                   name="receiver.spec.feishu.department"
                   validate={this.validateKeywords}
                 />
@@ -129,7 +129,7 @@ export default class FeishuForm extends Component {
           <Form.Item label={t('Webhook URL')}>
             <Input name="secret.data.webhook" />
           </Form.Item>
-          <Form.Item label={t('DINGTALK_SECRET')}>
+          <Form.Item label={'Secret'}>
             <Input name="secret.data.chatbotsecret" />
           </Form.Item>
           <Form.Item>
@@ -159,7 +159,7 @@ export default class FeishuForm extends Component {
         {...rest}
       >
         <Tabs type="button">
-          <TabPanel label={t('CONVERSATION_SETTINGS')} name="conversation">
+          <TabPanel label={t('CHAT_SETTINGS')} name="conversation">
             {!user && this.renderServiceSetting()}
             <>{this.renderReceiverSetting()}</>
           </TabPanel>

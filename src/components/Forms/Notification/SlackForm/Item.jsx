@@ -41,7 +41,7 @@ export default class Item extends React.Component {
     const { value } = this.props
     const count = globals.config.notification.dingtalk['max_number_of_keyword']
     if (!channel) {
-      Notify.error({ content: t('ADD_CHANNEL_DESC'), duration: 1000 })
+      Notify.error({ content: t('ADD_CHANNEL_TIP'), duration: 1000 })
       return
     }
     if (value.length > count - 1) {
@@ -76,7 +76,8 @@ export default class Item extends React.Component {
       <div>
         <BoxInput
           className={styles.wrapper}
-          placeholder={t('SLACK_CHANNEL')}
+          title={t('SLACK_CHANNEL')}
+          placeholder=" "
           onAdd={this.handleAdd}
           validate={this.validateChannel}
         />

@@ -174,14 +174,14 @@ export default class Feishu extends Component {
     if (department.length > 0 || user.length > 0) {
       if (!appkey) {
         Notify.error({
-          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('AppKey') }),
+          content: t('PLEASE_ENTER_APP_ID'),
         })
         return false
       }
 
       if (!appsecret) {
         Notify.error({
-          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('AppSecret') }),
+          content: t('PLEASE_ENTER_APP_SECRET'),
         })
         return false
       }
@@ -190,7 +190,7 @@ export default class Feishu extends Component {
     if (webhook || chatbotsecret || !isEmpty(keywords)) {
       if (!webhook) {
         Notify.error({
-          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('Webhook URL') }),
+          content: t('PLEASE_ENTER_WEBHOOK_URL'),
         })
         return false
       }
