@@ -134,7 +134,7 @@ module.exports = {
   WEBHOOK_URL_DESC: '请输入 webhook URL。',
   AUTHENTICATION_TYPE: '认证类型',
   AUTHENTICATION_TYPE_DESC: '请选择认证类型。',
-  SKIP_TLS_VERFICATION: '跳过 TLS 认证（不安全）',
+  SKIP_TLS_VERFICATION: '跳过 TLS 验证（不安全）',
   BASIC_AUTH: '基础认证',
   NO_AUTH: '无需认证',
   BEARER_TOKEN: 'Bearer 令牌',
