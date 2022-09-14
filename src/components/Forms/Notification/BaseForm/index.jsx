@@ -159,7 +159,7 @@ export default class BaseForm extends Component {
 
     return (
       <Form.Group
-        label={t('NOTIFICATION_CONDITIONS')}
+        label={t('FILTER_CONDITIONS')}
         desc={t('NOTIFICATION_CONDITION_SETTINGS_DESC')}
         checkable
       >
