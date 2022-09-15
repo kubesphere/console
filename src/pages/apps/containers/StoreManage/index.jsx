@@ -86,7 +86,7 @@ export default class Store extends React.Component {
       width: '16%',
     },
     {
-      title: t('APP_CATEGORY'),
+      title: t('CATEGORY'),
       dataIndex: 'category_set',
       isHideable: true,
       width: '17%',
