@@ -35,7 +35,7 @@ module.exports = {
   CONTAINER: 'Container',
   VALUES: 'Values',
   CONDITION_OPERATOR: '운영자',
-  NOTIFICATION_CONDITION_SETTING_TIP: 'The <strong>Contain/Not contain</strong> operators require one or more values. You can press <strong>Enter</strong> to set multiple strings.',
+  NOTIFICATION_CONDITION_SETTING_TIP: 'The <strong>Contain</strong> and <strong>Not contain</strong> operators require one or more values. You can press <strong>Enter</strong> to set multiple values.',
   NOTIFICATION_CONDITION_SETTINGS_DESC: 'Set the system to send only alerting messages that meet the conditions.',
   CONTAIN: 'Contain',
   NOT_CONTAIN: 'Not contain',
