@@ -27,7 +27,6 @@ import { toJS } from 'mobx'
 import EditCDAdvanceSetting from 'components/Modals/CDAdvanceEdit'
 
 const handleFormData = ({ data, module }) => {
-  console.log('data is: ', data)
   const formTemplate = FORM_TEMPLATES[module]()
 
   set(formTemplate, 'metadata', data.metadata)
@@ -39,7 +38,6 @@ const handleFormData = ({ data, module }) => {
       ? buildHelmRelease(data)
       : buildKustomization(data)
   )
-  console.log('formTemplate is: ', formTemplate)
   return formTemplate
 }
 

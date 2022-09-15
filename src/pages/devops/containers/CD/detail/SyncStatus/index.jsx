@@ -27,6 +27,7 @@ import { get, isEmpty } from 'lodash'
 import { Icon, Tooltip } from '@kube-design/components'
 import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 import { getLocalTime, formatUsedTime } from 'utils'
+import { isArgo } from 'utils/devops'
 import styles from './index.scss'
 import StatusText from '../../Components/StatusText'
 
@@ -101,6 +102,110 @@ class SyncStatus extends React.Component {
     ]
   }
 
+  getHRData = () => {
+    const hrs = get(
+      this.detail,
+      '_originData.spec.fluxApp.spec.config.helmRelease'
+    )
+    if (hrs === undefined) {
+      return
+    }
+    let newData = []
+    for (d of hrs.deploy) {
+      const data = {}
+      data.name = `${get(this.detail, 'name')}xxx`
+      data.kind = 'HelmRelease'
+      const cluster = d.destination.kubeConfig
+        ? d.destination.kubeConfig
+        : 'in-cluster'
+      data.destination = `${cluster}/${d.destination.targetNamespace}`
+      data.interval = d.interval
+      newData = [...newData, data]
+    }
+    return newData
+  }
+
+  getKusData = () => {
+    const kus = get(
+      this.detail,
+      '_originData.spec.fluxApp.spec.config.kustomization'
+    )
+    console.log(kus)
+    if (kus === undefined) {
+      return
+    }
+    let newData = []
+    for (k of kus) {
+      const data = {}
+      const cluster = k.destination.kubeConfig
+        ? k.destination.kubeConfig
+        : 'in-cluster'
+      data.destination = `${cluster}/${k.destination.targetNamespace}`
+      data.kind = 'Kustomization'
+      data.name = `${get(this.detail, 'name')}xxx`
+      data.interval = k.interval
+      newData = [...newData, data]
+    }
+    return newData
+  }
+
+  getFluxColumns = () => {
+    return [
+      {
+        title: t('NAME'),
+        dataIndex: 'name',
+        width: '20%',
+      },
+      {
+        title: t('TYPE'),
+        dataIndex: 'kind',
+        width: '20%',
+      },
+      {
+        title: t('部署位置'),
+        dataIndex: 'destination',
+        width: '20%',
+      },
+      {
+        title: t('时间间隔'),
+        dataIndex: 'interval',
+        width: '20%',
+      },
+      {
+        title: t('状态'),
+        dataIndex: 'status',
+        width: '20%',
+      },
+    ]
+  }
+
+  renderFluxTable = () => {
+    const hrs = this.getHRData()
+    const kus = this.getKusData()
+
+    return hrs ? (
+      <Table
+        hideHeader
+        hideFooter
+        rowKey="name"
+        data={hrs}
+        showEmpty={hrs === undefined}
+        columns={this.getFluxColumns()}
+        name="HelmRelease"
+      />
+    ) : (
+      <Table
+        hideHeader
+        hideFooter
+        rowKey="name"
+        data={kus}
+        showEmpty={kus === undefined}
+        columns={this.getFluxColumns()}
+        name="Kustomization"
+      />
+    )
+  }
+
   renderTable = () => {
     const data = get(
       this.detail,
@@ -164,7 +269,7 @@ class SyncStatus extends React.Component {
     const duration = new Date(endTime) - new Date(startTime)
     const durationTime = isNaN(duration) ? '-' : formatUsedTime(duration)
 
-    return (
+    return isArgo ? (
       <div className={styles.container}>
         <div className={styles.sync_info}>
           <h3>{t('SYNC_STATUS')}</h3>
@@ -230,6 +335,13 @@ class SyncStatus extends React.Component {
         <div className={styles.sync_result}>
           <h3>{t('SYNC_RESULT_PL')}</h3>
           {this.renderTable()}
+        </div>
+      </div>
+    ) : (
+      <div className={styles.container}>
+        <div className={styles.sync_result}>
+          <h3>{t('应用')}</h3>
+          {this.renderFluxTable()}
         </div>
       </div>
     )

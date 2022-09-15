@@ -367,6 +367,7 @@ const getSupportGpuList = async ctx => {
   return gpuKinds
 }
 
+// TODO: need to get the data from kubesphere
 const getGitOpsEngine = async ctx => {
   const token = ctx.cookies.get('token')
   if (!token) {

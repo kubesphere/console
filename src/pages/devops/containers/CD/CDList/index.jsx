@@ -97,71 +97,112 @@ export default class CDList extends React.Component {
   get itemActions() {
     const { trigger, routing } = this.props
 
-    return [
-      {
-        key: 'edit',
-        icon: 'pen',
-        text: t('EDIT_INFORMATION'),
-        action: 'edit',
-        onClick: item => {
-          trigger('resource.baseinfo.edit', {
-            detail: { ...item, cluster: this.cluster },
-            success: routing.query,
-          })
-        },
-      },
-      {
-        key: 'settings',
-        icon: 'pen',
-        text: t('EDIT_SETTINGS'),
-        action: 'edit',
-        onClick: item => {
-          trigger('cd.edit', {
-            detail: { ...item, cluster: this.cluster },
-            store: this.props.store,
-            devops: this.devops,
-            module: 'cds',
-            cluster: this.cluster,
-            success: routing.query,
-          })
-        },
-      },
-      {
-        key: 'yaml',
-        icon: 'pen',
-        text: t('EDIT_YAML'),
-        action: 'edit',
-        onClick: item => {
-          trigger('resource.yaml.edit', {
-            detail: { ...item, cluster: this.cluster },
-            success: routing.query,
-          })
-        },
-      },
-      {
-        key: 'sync',
-        icon: 'changing-over',
-        text: t('SYNC'),
-        action: 'edit',
-        onClick: record => {
-          this.handleSync(record)
-        },
-      },
-      {
-        key: 'delete',
-        icon: 'trash',
-        text: t('DELETE'),
-        action: 'delete',
-        onClick: record => {
-          trigger('cd.delete', {
-            type: 'CONTINUOUS_DEPLOYMENT',
-            detail: record,
-            cluster: this.cluster,
-            success: routing.query,
-          })
-        },
-      },
-    ]
+    return isArgo
+      ? [
+          {
+            key: 'edit',
+            icon: 'pen',
+            text: t('EDIT_INFORMATION'),
+            action: 'edit',
+            onClick: item => {
+              trigger('resource.baseinfo.edit', {
+                detail: { ...item, cluster: this.cluster },
+                success: routing.query,
+              })
+            },
+          },
+          {
+            key: 'settings',
+            icon: 'pen',
+            text: t('EDIT_SETTINGS'),
+            action: 'edit',
+            onClick: item => {
+              trigger('cd.edit', {
+                detail: { ...item, cluster: this.cluster },
+                store: this.props.store,
+                devops: this.devops,
+                module: 'cds',
+                cluster: this.cluster,
+                success: routing.query,
+              })
+            },
+          },
+          {
+            key: 'yaml',
+            icon: 'pen',
+            text: t('EDIT_YAML'),
+            action: 'edit',
+            onClick: item => {
+              trigger('resource.yaml.edit', {
+                detail: { ...item, cluster: this.cluster },
+                success: routing.query,
+              })
+            },
+          },
+          {
+            key: 'sync',
+            icon: 'changing-over',
+            text: t('SYNC'),
+            action: 'edit',
+            onClick: record => {
+              this.handleSync(record)
+            },
+          },
+          {
+            key: 'delete',
+            icon: 'trash',
+            text: t('DELETE'),
+            action: 'delete',
+            onClick: record => {
+              trigger('cd.delete', {
+                type: 'CONTINUOUS_DEPLOYMENT',
+                detail: record,
+                cluster: this.cluster,
+                success: routing.query,
+              })
+            },
+          },
+        ]
+      : [
+          {
+            key: 'edit',
+            icon: 'pen',
+            text: t('EDIT_INFORMATION'),
+            action: 'edit',
+            onClick: item => {
+              trigger('resource.baseinfo.edit', {
+                detail: { ...item, cluster: this.cluster },
+                success: routing.query,
+              })
+            },
+          },
+          {
+            key: 'yaml',
+            icon: 'pen',
+            text: t('EDIT_YAML'),
+            action: 'edit',
+            onClick: item => {
+              trigger('resource.yaml.edit', {
+                detail: { ...item, cluster: this.cluster },
+                success: routing.query,
+              })
+            },
+          },
+          {
+            key: 'delete',
+            icon: 'trash',
+            text: t('DELETE'),
+            action: 'delete',
+            onClick: record => {
+              trigger('fluxcd.delete', {
+                type: 'CONTINUOUS_DEPLOYMENT',
+                detail: record,
+                cluster: this.cluster,
+                success: routing.query,
+              })
+            },
+          },
+        ]
   }
 
   getArgoData = async params => {
