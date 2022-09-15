@@ -23,7 +23,7 @@ module.exports = {
   SUSPEND_SUCCESSFUL: '앱을 비활성화했습니다.',
   // Release
   RELEASE: 'Release',
-  ACTIVATE_SUCCESSFUL: '앱을 활성화했습니다.',
+  ACTIVATE_SUCCESSFUL: '앱을 릴리즈하였습니다.',
   // Attributes
   APP_ID: '앱 ID',
   CATEGORY: '카테고리',
