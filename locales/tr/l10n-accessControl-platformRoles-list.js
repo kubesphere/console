@@ -40,7 +40,7 @@ module.exports = {
   PERMISSION_WORKSPACES_MANAGEMENT: 'Çalışma alanı Yönetimi',
   PERMISSION_WORKSPACES_MANAGEMENT_DESC: 'Çalışma alanları oluşturun, düzenleyin, silin ve görüntüleyin.',
   PERMISSION_WORKSPACES_CREATE: 'Workspace Creation',
-  PERMISSION_WORKSPACES_CREATE: 'Create workspaces and become an administrator of the created workspaces.',
+  PERMISSION_WORKSPACES_CREATE_DESC: 'Create workspaces and become an administrator of the created workspaces.',
   PERMISSION_USERS_VIEW: 'Kullanıcıları Görüntüle',
   PERMISSION_USERS_VIEW_DESC: 'Kullanıcıları görüntüle.',
   PERMISSION_USERS_MANAGEMENT: 'Kullanıcı Yönetimi',
