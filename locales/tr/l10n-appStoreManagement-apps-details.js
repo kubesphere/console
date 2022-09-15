@@ -23,7 +23,7 @@ module.exports = {
   SUSPEND_SUCCESSFUL: 'Başarıyla askıya alındı.',
   // Release
   RELEASE: 'Yayınlamak',
-  ACTIVATE_SUCCESSFUL: 'Başarıyla etkinleştirildi.',
+  ACTIVATE_SUCCESSFUL: 'Yayınlama başarılı.',
   // Attributes
   APP_ID: 'Uygulama Kimliği',
   CATEGORY: 'Kategori',
