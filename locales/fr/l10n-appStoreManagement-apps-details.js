@@ -23,7 +23,7 @@ module.exports = {
   SUSPEND_SUCCESSFUL: 'Suspended successfully.',
   // Release
   RELEASE: 'Release',
-  ACTIVATE_SUCCESSFUL: 'Activated successfully.',
+  ACTIVATE_SUCCESSFUL: 'Released successfully.',
   // Attributes
   APP_ID: 'App ID',
   CATEGORY: 'Category',
