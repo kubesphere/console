@@ -23,7 +23,7 @@ module.exports = {
   SUSPEND_SUCCESSFUL: '下架成功。',
   // Release
   RELEASE: '发布',
-  ACTIVATE_SUCCESSFUL: '上架成功。',
+  ACTIVATE_SUCCESSFUL: '发布成功。',
   // Attributes
   APP_ID: '应用 ID',
   CATEGORY: '分类',
