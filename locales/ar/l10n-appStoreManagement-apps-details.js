@@ -23,7 +23,7 @@ module.exports = {
   SUSPEND_SUCCESSFUL: 'تم التعليق بنجاح.',
   // Release
   RELEASE: 'Release',
-  ACTIVATE_SUCCESSFUL: 'تم التفعيل بنجاح.',
+  ACTIVATE_SUCCESSFUL: 'تم الإصدار بنجاح.',
   // Attributes
   APP_ID: 'ID التطبيق',
   CATEGORY: 'الفئة',
