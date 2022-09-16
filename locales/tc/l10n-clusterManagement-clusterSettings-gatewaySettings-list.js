@@ -48,7 +48,7 @@ module.exports = {
   PROJECT_ENABLE_GATEWAY_DESC: '請開啟項目網關。',
   REPLICA_COUNT: '副本數量',
   NODE_PORTS: '主機通訊埠',
-  UPDATE_GATEWAY_DESC: '目前網關可更新',
+  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short whilte. Exercise caution when performing this operation.',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: '項目網關',
   DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'
