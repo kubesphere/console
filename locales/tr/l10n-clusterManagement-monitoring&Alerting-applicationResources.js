@@ -69,7 +69,7 @@ module.exports = {
   STATEFULSET: 'Durum Bilgisi',
   STATEFULSET_PL: 'Durum kümeleri',
   DAEMONSET: 'Daemonset',
-  DAEMONSET_PL: 'Daemonsets',
+  DAEMONSET_PL: 'Arka Plan Programı',
   DEPLOYMENTS_VALUE: 'Dağıtımlar:{value}',
   STATEFULSETS_VALUE: 'Durum kümeleri:{value}',
   DAEMONSETS_VALUE: 'Daemonsets: {value}',
