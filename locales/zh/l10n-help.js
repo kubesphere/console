@@ -17,6 +17,6 @@
 
 */
 module.exports = {
-  USER_GUIDE: 'User Guide',
-  API_DOCUMENT: 'API Docuement'
+  USER_GUIDE: '用户指南',
+  API_DOCUMENT: 'API 文档'
 };
