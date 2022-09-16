@@ -133,11 +133,13 @@ export default class ServiceBaseInfo extends React.Component {
       return callback()
     }
 
-    const existNames = Object.keys(this.props.components)?.filter(
-      i => i !== this.state.originName
-    )
-    if (existNames?.includes(value)) {
-      return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
+    if (this.props.components) {
+      const existNames = Object.keys(this.props.components)?.filter(
+        i => i !== this.state.originName
+      )
+      if (existNames?.includes(value)) {
+        return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
+      }
     }
 
     this.store
