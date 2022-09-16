@@ -48,7 +48,7 @@ module.exports = {
   PROJECT_ENABLE_GATEWAY_DESC: 'The cluster management page does not support the setting of the project gateway. If you need to set it, you need to go to the corresponding project to set it. ',
   REPLICA_COUNT: 'Replicas',
   NODE_PORTS: 'Puerto host',
-  UPDATE_GATEWAY_DESC: 'The current gateway can be upgraded',
+  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short whilte. Exercise caution when performing this operation.',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: 'project gateway',
   DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'
