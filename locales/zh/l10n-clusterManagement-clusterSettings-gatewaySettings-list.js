@@ -48,7 +48,7 @@ module.exports = {
   PROJECT_ENABLE_GATEWAY_DESC: '请启用项目网关。',
   REPLICA_COUNT: '副本数量',
   NODE_PORTS: '节点端口',
-  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
+  UPDATE_GATEWAY_DESC: '当前网关可以更新。',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: '项目网关',
   DISABLE_MULTIPLE_GATEWAYS: '批量禁用网关'
