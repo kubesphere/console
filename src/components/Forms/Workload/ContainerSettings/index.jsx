@@ -104,7 +104,8 @@ export default class ContainerSetting extends React.Component {
 
   componentDidUpdate() {
     const containerRef = this.containerRef.current
-    const error = containerRef.state.error
+    const error = get(containerRef, 'state.error', null)
+
     const containers = get(
       this.props.formTemplate,
       `${this.prefix}spec.containers`,
