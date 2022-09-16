@@ -41,14 +41,14 @@ module.exports = {
   EDIT_TITLE: '编辑{title}',
   // Cluster Gateway > Manage > Update
   UPDATE: '更新',
-  UPDATE_GATEWAY_DESC: '此操作可能会导致短暂业务中断，请谨慎执行此操作。',
+  UPDATE_GATEWAY_DESC: '当前网关可更新。',
   // Project Gateways
   PROJECT_GATEWAY_PL: '项目网关',
   PROJECT_GATEWAY_NOT_ENABLED: '项目网关未启用',
   PROJECT_ENABLE_GATEWAY_DESC: '请启用项目网关。',
   REPLICA_COUNT: '副本数量',
   NODE_PORTS: '节点端口',
-  UPDATE_GATEWAY_DESC: '当前网关可更新。',
+  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: '项目网关',
   DISABLE_MULTIPLE_GATEWAYS: '批量禁用网关'
