@@ -40,7 +40,7 @@ module.exports = {
   PERMISSION_WORKSPACES_MANAGEMENT: '企业空间管理',
   PERMISSION_WORKSPACES_MANAGEMENT_DESC: '创建、编辑和删除企业空间。',
   PERMISSION_WORKSPACES_CREATE: '企业空间创建',
-  PERMISSION_WORKSPACES_CREATE_DESC: 'Create workspaces and become an administrator of the created workspaces.',
+  PERMISSION_WORKSPACES_CREATE_DESC: '创建企业空间并成为所创建的企业空间的管理员。',
   PERMISSION_USERS_VIEW: '用户查看',
   PERMISSION_USERS_VIEW_DESC: '查看用户。',
   PERMISSION_USERS_MANAGEMENT: '用户管理',
