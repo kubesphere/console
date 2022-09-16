@@ -48,7 +48,7 @@ module.exports = {
   PROJECT_ENABLE_GATEWAY_DESC: 'Lütfen proje ağ geçidini etkinleştirin.',
   REPLICA_COUNT: 'Kopyalar',
   NODE_PORTS: 'Düğüm Portu',
-  UPDATE_GATEWAY_DESC: 'Geçerli ağ geçidi güncellenebilir.',
+  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short whilte. Exercise caution when performing this operation.',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: 'proje Ağ Geçidi',
   DISABLE_MULTIPLE_GATEWAYS: 'Birden Çok Ağ Geçidini Devre Dışı Bırak'
