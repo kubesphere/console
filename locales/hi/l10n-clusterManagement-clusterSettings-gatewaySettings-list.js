@@ -48,7 +48,7 @@ module.exports = {
   PROJECT_ENABLE_GATEWAY_DESC: 'Please enable the project gateway.',
   REPLICA_COUNT: 'Replicas',
   NODE_PORTS: 'Node Ports',
-  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
+  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short whilte. Exercise caution when performing this operation.',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: 'project gateway',
   DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'
