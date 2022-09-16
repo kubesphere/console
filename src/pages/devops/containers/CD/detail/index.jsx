@@ -280,18 +280,8 @@ export default class CDDetail extends React.Component {
             ),
           },
           {
-            name: t('CODE_REPOSITORY_URL'),
-            // value: get(detail, 'repoSource.repoURL', '-'),
-            value: 'TODO',
-          },
-          {
             name: t('REVISION'),
             value: get(detail, 'fluxLastRevision', '-'),
-          },
-          {
-            name: t('CODE_RELATIVE_PATH'),
-            // value: get(detail, 'repoSource.path', '-'),
-            value: 'TODO',
           },
           {
             name: t('CREATION_TIME_TCAP'),

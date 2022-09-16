@@ -394,7 +394,9 @@ export default class CDList extends React.Component {
             dataIndex: 'fluxSource',
             width: '20%',
             render: fluxSource => {
-              return `${fluxSource.kind}/${fluxSource.name.slice(7)}`
+              return (
+                fluxSource && `${fluxSource.kind}/${fluxSource.name.slice(7)}`
+              )
             },
           },
           {

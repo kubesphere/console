@@ -1388,6 +1388,9 @@ const CDSMapper = item => {
   )
   const fluxApp = get(item, 'spec.fluxApp', {})
   const fluxSource = get(fluxApp, 'spec.source.sourceRef')
+  const fluxStatus = get(item, 'status.fluxApp', {})
+  const fluxHelmReleaseStatus = get(fluxStatus, 'helmReleaseStatus', {})
+  const fluxKustomizationStatus = get(fluxStatus, 'kustomizationStatus', {})
 
   return {
     ...getBaseInfo(item),
@@ -1404,6 +1407,8 @@ const CDSMapper = item => {
     fluxAppReadyNum,
     fluxLastRevision,
     fluxSource,
+    fluxHelmReleaseStatus,
+    fluxKustomizationStatus,
     _originData: getOriginData(omit(item, 'devops')),
   }
 }
