@@ -23,7 +23,7 @@ module.exports = {
   TIME_RANGE_SCAP: 'Time range',
   // Querying Rules
   QUERYING_RULES: '查詢規則',
-  CONTAINER_LOG_TRENDS_12H: '最近 12 小時紀錄總數變化趨勢',
+  CONTAINER_LOGS_12H: 'Container logs in the last 12 hours',
   CONTAINER_LOG_KEYWORD_TIP: '請輸入關鍵字查詢紀錄, 還可以通過 “Error” “Fail” “Fatal” “Exception ” “Warning” 等關鍵字查詢錯誤紀錄',
   CONTAINER_LOG_PROJECT_TIP: '可以根據項目名稱查看相關的紀錄資訊',
   CONTAINER_LOG_WORKLOAD_TIP: '可以根據工作負載名稱查看相關的紀錄資訊',
