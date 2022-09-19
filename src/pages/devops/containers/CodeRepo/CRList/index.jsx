@@ -229,7 +229,7 @@ export default class CRList extends React.Component {
         isLoading={isLoading}
         showEmpty={showEmpty}
         enabledActions={this.enabledActions}
-        createText="Import"
+        createText={t('ADD')}
       />
     )
   }
