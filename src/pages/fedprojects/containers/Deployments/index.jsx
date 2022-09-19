@@ -33,7 +33,7 @@ import WorkloadStore from 'stores/workload'
 @withProjectList({
   store: new FederatedStore(new WorkloadStore('deployments')),
   module: 'deployments',
-  name: 'WORKLOAD',
+  name: 'DEPLOYMENT',
   rowKey: 'uid',
 })
 export default class Deployments extends React.Component {
@@ -204,7 +204,12 @@ export default class Deployments extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props} isFederated>
-        <Banner {...bannerProps} tabs={this.tabs} />
+        <Banner
+          {...bannerProps}
+          title={t('WORKLOAD_PL')}
+          description={t('WORKLOAD_DESC')}
+          tabs={this.tabs}
+        />
         <Table
           {...tableProps}
           itemActions={this.itemActions}

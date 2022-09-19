@@ -34,7 +34,7 @@ import WorkloadStore from 'stores/workload'
 @withProjectList({
   store: new FederatedStore(new WorkloadStore('statefulsets')),
   module: 'statefulsets',
-  name: 'WORKLOAD',
+  name: 'STATEFULSET',
   rowKey: 'uid',
 })
 export default class StatefulSets extends React.Component {
@@ -65,7 +65,7 @@ export default class StatefulSets extends React.Component {
   }
 
   get selectActions() {
-    const { tableProps, trigger, module, rootStore } = this.props
+    const { tableProps, trigger, name, rootStore } = this.props
     return [
       ...get(tableProps, 'tableActions.selectActions', {}),
       {
@@ -73,7 +73,7 @@ export default class StatefulSets extends React.Component {
         text: t('STOP'),
         onClick: () =>
           trigger('resource.batch.stop', {
-            type: module.toUpperCase(),
+            type: name,
             rowKey: 'uid',
             success: rootStore.routing.query(),
           }),
@@ -221,7 +221,12 @@ export default class StatefulSets extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props} isFederated>
-        <Banner {...bannerProps} tabs={this.tabs} />
+        <Banner
+          {...bannerProps}
+          title={t('WORKLOAD_PL')}
+          description={t('WORKLOAD_DESC')}
+          tabs={this.tabs}
+        />
         <Table
           {...tableProps}
           itemActions={this.itemActions}
