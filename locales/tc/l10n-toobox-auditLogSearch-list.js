@@ -27,6 +27,7 @@ module.exports = {
   TIME_RANGE_LAST: 'Time range: last {value}',
   TIME_RANGE_RANGE: 'Time range: {startTime} - {endTime}',
   // Querying Rules
+  AUDIT_LOGS_12H: 'Audit logs in the last 12 hours',
   AUDIT_LOG_WORKSPACE_TIP: '可以根據企業空間查看相關的操作審計',
   AUDIT_LOG_PROJECT_TIP: '可以根據項目查看相關的操作審計',
   AUDIT_LOG_RESOURCE_NAME_TIP: '可以根據資源名稱查看相關的操作審計',
