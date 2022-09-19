@@ -29,8 +29,6 @@ module.exports = {
   CONTAINER_ARGUMENT_DESC: '容器启动命令的参数。如有多个参数请使用半角逗号（,）分隔。',
   CONTAINER_ENVIRONMENT_DESC: '为容器添加添加环境变量。',
   PROBE_COMMAND_DESC: '使用半角逗号（,）分隔多条命令。',
-  DAEMONSETS_LOW: '守护进程集',
-  DAEMONSETS_PL: '守护进程集',
   // List > Create > Pod Settings > Add Container
   IGNORE_CERT_WARN_DESC: '忽略证书验证可能会导致帐户密码被泄露。',
   CERT_ERROR: '证书错误。'
