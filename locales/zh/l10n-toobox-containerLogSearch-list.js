@@ -23,7 +23,7 @@ module.exports = {
   TIME_RANGE_SCAP: '时间范围',
   // Querying Rules
   QUERYING_RULES: '查询规则',
-  CONTAINER_LOGS_12H: 'Container logs in the last 12 hours',
+  CONTAINER_LOGS_12H: '最近 12 小时容器日志数量',
   CONTAINER_LOG_KEYWORD_TIP: '输入关键词查找容器日志。',
   CONTAINER_LOG_PROJECT_TIP: '输入项目名称查找容器日志。',
   CONTAINER_LOG_WORKLOAD_TIP: '输入工作负载名称查找容器日志。',
