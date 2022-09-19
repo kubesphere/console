@@ -23,7 +23,7 @@ module.exports = {
   TIME_RANGE_SCAP: 'Time range',
   // Querying Rules
   QUERYING_RULES: 'Regla de búsqueda',
-  CONTAINER_LOG_TRENDS_12H: 'Tendencias en el número total de registros en las últimas 12 horas.',
+  CONTAINER_LOGS_12H: 'Container logs in the last 12 hours',
   CONTAINER_LOG_KEYWORD_TIP: 'Introduce la palabra clave para encontrar el log. También puedes encontrar el log de errores por palabras clave como "Error", "Fail", "Fatal", "Exception" y "Warning".',
   CONTAINER_LOG_PROJECT_TIP: 'Puedes ver la información de log relacionada de acuerdo con el nombre del proyecto.',
   CONTAINER_LOG_WORKLOAD_TIP: 'Puedes ver la información de log relacionada de acuerdo con el nombre de la carga de trabajo.',
