@@ -154,7 +154,8 @@ export default class Overview extends React.Component {
   }
 
   get enableManageAction() {
-    const { isHost = false } = this.store.detail
+    const { isHost = false, connectionType } = this.store.detail
+    const proxyConnect = connectionType === 'proxy'
     const actions = this.enabledActions
     const option = []
     if (actions.includes('edit') && globals.app.isMultiCluster) {
@@ -165,7 +166,12 @@ export default class Overview extends React.Component {
         text: t('EDIT_INFORMATION'),
       })
     }
-    if (globals.app.isMultiCluster && !isHost && actions.includes('edit')) {
+    if (
+      globals.app.isMultiCluster &&
+      !isHost &&
+      !proxyConnect &&
+      actions.includes('edit')
+    ) {
       option.push({
         actionName: 'cluster.update.kubeconfig',
         icon: 'data',
