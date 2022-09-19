@@ -23,7 +23,7 @@ module.exports = {
   DEVOPS_PROJECT_ROLE_EMPTY_DESC: 'Please create a DevOps project role.',
   ROLE_DEVOPS_VIEWER: 'Permite el acceso de lectura para ver todos los recursos en el proyecto DevOps.',
   ROLE_DEVOPS_OPERATOR: 'Usuario normal en un proyecto DevOps, que puede crear credenciales para las pipelines en el proyecto DevOps.',
-  ROLE_DEVOPS_ADMIN: 'Permite el acceso de administrador para realizar cualquier acción en cualquier recurso. Da control total sobre todos los recursos en el proyecto DevOps.',
+  ROLE_DEVOPS_ADMIN: 'Manage all resources in the DevOps project.',
   // List > Edit Information
   // List > Edit Permissions
   // List > Create
