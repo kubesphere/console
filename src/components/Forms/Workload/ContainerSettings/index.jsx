@@ -472,6 +472,7 @@ export default class ContainerSetting extends React.Component {
     const serivcePrefix = this.props.isFederated ? 'spec.template.' : ''
 
     set(serviceTemplate, `${serivcePrefix}spec.ports`, servicePorts)
+    const labels = get(this.formTemplate, 'metadata.labels', {})
 
     const podLabels = get(
       this.fedFormTemplate,
@@ -479,6 +480,7 @@ export default class ContainerSetting extends React.Component {
       {}
     )
 
+    set(serviceTemplate, 'metadata.labels', labels)
     set(
       serviceTemplate,
       `${serivcePrefix}spec.selector`,
