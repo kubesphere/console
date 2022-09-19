@@ -21,7 +21,7 @@ module.exports = {
   NO_RESOURCE_EVENTS_TODAY: 'Bugün Toplanan Kaynak Etkinliği Yok',
   // Search
   // Querying Rules
-  RESOURCE_EVENT_TRENDS_12H: '12 saat içinde kaynak olay eğilimleri',
+  RESOURCE_EVENTS_12H: 'Resource events in the last 12 hours',
   RESOURCE_EVENT_WORKSPACE_TIP: 'Kapsayıcı günlüklerini aramak için bir çalışma alanı adı girin.',
   RESOURCE_EVENT_PROJECT_TIP: 'Kapsayıcı günlüklerini aramak için bir proje adı girin.',
   RESOURCE_EVENT_RESOURCE_TYPE_TIP: 'Kapsayıcı günlüklerini aramak için bir kaynak türü girin.',
