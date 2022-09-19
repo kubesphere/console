@@ -20,7 +20,7 @@ module.exports = {
   PROJECT_ROLE_PL: '項目角色',
   PROJECT_ROLE_DESC: '項目角色定義了在目前項目下用戶所擁有的權限',
   // List
-  ROLE_PROJECT_ADMIN: '項目管理員，可以管理項目下所有的資源。',
+  ROLE_PROJECT_ADMIN: 'Manage all resources in the project.',
   ROLE_PROJECT_REGULAR: 'Manage resources other than users and roles in the project.',
   ROLE_PROJECT_VIEWER: '項目觀察者，可以查看項目下所有的資源。',
   ROLE_PROJECT_OPERATOR: '項目維護者，可以管理項目下除用戶和角色之外的資源。',
