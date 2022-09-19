@@ -29,8 +29,6 @@ module.exports = {
   CONTAINER_ARGUMENT_DESC: 'Los parámetros del comando de inicio del contenedor. Utiliza comas para separar varios.',
   CONTAINER_ENVIRONMENT_DESC: 'Añade la variable de entorno del contenedor.',
   PROBE_COMMAND_DESC: 'Utiliza comas para separar múltiples comandos.',
-  DAEMONSETS_LOW: 'daemonsets',
-  DAEMONSETS_PL: 'daemonsets',
   // List > Create > Pod Settings > Add Container
   IGNORE_CERT_WARN_DESC: 'Ignoring the verification certificate may cause the account password to be disclosed. ',
   CERT_ERROR: 'A certificate error was found, do you want to ignore the certificate verification'
