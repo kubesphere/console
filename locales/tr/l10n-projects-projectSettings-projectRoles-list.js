@@ -20,7 +20,7 @@ module.exports = {
   PROJECT_ROLE_PL: 'Proje Rolleri',
   PROJECT_ROLE_DESC: 'Proje rolleri, proje üyelerinin izinlerini tanımlar.',
   // List
-  ROLE_PROJECT_ADMIN: 'Projedeki tüm kaynakları kontrol edin.',
+  ROLE_PROJECT_ADMIN: 'Manage all resources in the project.',
   ROLE_PROJECT_REGULAR: 'Projedeki kullanıcılar ve roller dışındaki kaynakları yönetin.',
   ROLE_PROJECT_VIEWER: 'Projedeki tüm kaynakları görüntüleyin.',
   ROLE_PROJECT_OPERATOR: 'Projedeki kullanıcılar ve roller dışındaki kaynakları yönetin.',
