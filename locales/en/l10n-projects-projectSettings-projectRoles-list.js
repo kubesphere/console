@@ -21,7 +21,7 @@ module.exports = {
   PROJECT_ROLE_PL: 'Project Roles',
   PROJECT_ROLE_DESC: 'Project roles define the permissions of project members.',
   // List
-  ROLE_PROJECT_ADMIN: 'Control all resources in the project.',
+  ROLE_PROJECT_ADMIN: 'Manage all resources in the project.',
   ROLE_PROJECT_REGULAR: 'Manage resources other than users and roles in the project.',
   ROLE_PROJECT_VIEWER: 'View all resources in the project.',
   ROLE_PROJECT_OPERATOR: 'Manage resources other than users and roles in the project.',
