@@ -21,7 +21,7 @@ module.exports = {
   NO_RESOURCE_EVENTS_TODAY: '今日沒有收錄的事件',
   // Search
   // Querying Rules
-  RESOURCE_EVENT_TRENDS_12H: '最近 12 小時事件總數變化趨勢',
+  RESOURCE_EVENTS_12H: 'Resource events in the last 12 hours',
   RESOURCE_EVENT_WORKSPACE_TIP: '可以根據企業空間查看相關的事件資訊',
   RESOURCE_EVENT_PROJECT_TIP: '可以根據項目查看相關的事件資訊',
   RESOURCE_EVENT_RESOURCE_TYPE_TIP: '可以根據資源類型查看相關的事件資訊',

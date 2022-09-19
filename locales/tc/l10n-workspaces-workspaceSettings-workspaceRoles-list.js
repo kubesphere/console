@@ -21,7 +21,7 @@ module.exports = {
   WORKSPACE_ROLE_DESC: '企業角色定義了在目前企業空間下用戶所擁有的權限。',
   // List
   WORKSPACE_ROLE_EMPTY_DESC: 'Please create a workspace role.',
-  ROLE_WORKSPACE_ADMIN: '企業空間管理員，可以管理企業空間下所有的資源。',
+  ROLE_WORKSPACE_ADMIN: 'Manage all resources in the workspace.',
   ROLE_WORKSPACE_REGULAR: '企業空間普通成員，無法創建 DevOps 项目和項目。',
   ROLE_WORKSPACE_VIEWER: '企業空間的觀察者，可以查看企業空間下所有的資源資訊。',
   ROLE_WORKSPACE_SELF_PROVISIONER: '企業空間普通成員，可以在企業空間下創建 DevOps 项目和項目。',

@@ -21,7 +21,7 @@ module.exports = {
   WORKSPACE_ROLE_DESC: 'El rol del espacio de trabajo determina los permisos del rol en el espacio de trabajo actual.',
   // List
   WORKSPACE_ROLE_EMPTY_DESC: 'Please create a workspace role.',
-  ROLE_WORKSPACE_ADMIN: 'Permite el acceso de administrador para realizar cualquier acción en cualquier recurso. Le da control total sobre todos los recursos en el espacio de trabajo.',
+  ROLE_WORKSPACE_ADMIN: 'Manage all resources in the workspace.',
   ROLE_WORKSPACE_REGULAR: 'Usuario normal en el espacio de trabajo que no puede crear espacios de nombres o proyectos DevOps.',
   ROLE_WORKSPACE_VIEWER: 'Permite el acceso de lectura para ver todos los recursos en el espacio de trabajo.',
   ROLE_WORKSPACE_SELF_PROVISIONER: 'Usuario normal en el espacio de trabajo que puede crear espacios de nombres y proyectos DevOps.',

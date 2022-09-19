@@ -27,6 +27,7 @@ module.exports = {
   TIME_RANGE_LAST: 'Zaman aralığı: son {değer}',
   TIME_RANGE_RANGE: 'Zaman aralığı:{startTime} –{endTime}',
   // Querying Rules
+  AUDIT_LOGS_12H: 'Audit logs in the last 12 hours',
   AUDIT_LOG_WORKSPACE_TIP: 'Denetim günlüklerini aramak için bir çalışma alanı adı girin.',
   AUDIT_LOG_PROJECT_TIP: 'Denetim günlüklerini aramak için bir proje adı girin.',
   AUDIT_LOG_RESOURCE_NAME_TIP: 'Denetim günlüklerini aramak için bir kaynak adı girin.',

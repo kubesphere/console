@@ -20,7 +20,7 @@ module.exports = {
   PROJECT_ROLE_PL: 'Roles del proyecto',
   PROJECT_ROLE_DESC: 'Los roles de proyecto definen la autorización que los usuarios tienen en el proyecto actual.',
   // List
-  ROLE_PROJECT_ADMIN: 'Permite el acceso de administrador para realizar cualquier acción en cualquier recurso. Le da control total sobre todos los recursos en el namespace.',
+  ROLE_PROJECT_ADMIN: 'Manage all resources in the project.',
   ROLE_PROJECT_REGULAR: 'El que mantiene el namespace, que puede administrar recursos en el mismo excepto usuarios y roles.',
   ROLE_PROJECT_VIEWER: 'Permite el acceso de lectura para ver todos los recursos en el namespace.',
   ROLE_PROJECT_OPERATOR: 'El que mantiene el proyecto, que puede administrar recursos en el mismo excepto usuarios y roles.',

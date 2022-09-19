@@ -21,7 +21,7 @@ module.exports = {
   NO_RESOURCE_EVENTS_TODAY: '今日没有收录的资源事件',
   // Search
   // Querying Rules
-  RESOURCE_EVENT_TRENDS_12H: '12 小时内资源事件变化趋势',
+  RESOURCE_EVENTS_12H: 'Resource events in the last 12 hours',
   RESOURCE_EVENT_WORKSPACE_TIP: '输入企业空间名称查找资源事件。',
   RESOURCE_EVENT_PROJECT_TIP: '输入项目名称查找资源事件。',
   RESOURCE_EVENT_RESOURCE_TYPE_TIP: '输入资源类型查找资源事件。',
