@@ -21,7 +21,7 @@ module.exports = {
   WORKSPACE_ROLE_DESC: 'Çalışma alanı üyesinin rolü, üyenin çalışma alanındaki izinlerini belirler.',
   // List
   WORKSPACE_ROLE_EMPTY_DESC: 'Lütfen bir çalışma alanı rolü oluşturun.',
-  ROLE_WORKSPACE_ADMIN: 'Çalışma alanındaki tüm kaynakları kontrol edin.',
+  ROLE_WORKSPACE_ADMIN: 'Manage all resources in the workspace.',
   ROLE_WORKSPACE_REGULAR: 'Çalışma alanları ayarları.',
   ROLE_WORKSPACE_VIEWER: 'Çalışma alanındaki tüm kaynakları görüntüleyin.',
   ROLE_WORKSPACE_SELF_PROVISIONER: 'Çalışma alanı ayarlarını görüntüleyin, uygulama şablonlarını yönetin ve projeler ile DevOps projeleri oluşturun.',
