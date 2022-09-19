@@ -23,7 +23,7 @@ module.exports = {
   TIME_RANGE_SCAP: 'Time range',
   // Querying Rules
   QUERYING_RULES: 'Querying Rules',
-  CONTAINER_LOG_TRENDS_12H: 'Container log trends in 12 h',
+  CONTAINER_LOGS_12H: 'Container logs in the last 12 hours',
   CONTAINER_LOG_KEYWORD_TIP: 'Enter a keyword to search for container logs.',
   CONTAINER_LOG_PROJECT_TIP: 'Enter a project name to search for container logs.',
   CONTAINER_LOG_WORKLOAD_TIP: 'Enter a workload name to search for container logs.',
