@@ -21,7 +21,7 @@ module.exports = {
   NO_RESOURCE_EVENTS_TODAY: 'Eventos no encontrados hoy',
   // Search
   // Querying Rules
-  RESOURCE_EVENT_TRENDS_12H: 'Tendencias en el número total de eventos en las últimas 12 horas.',
+  RESOURCE_EVENTS_12H: 'Resource events in the last 12 hours',
   RESOURCE_EVENT_WORKSPACE_TIP: 'Puedes ver información de eventos relacionados de acuerdo con el espacio de trabajo.',
   RESOURCE_EVENT_PROJECT_TIP: 'Puedes ver información de eventos relacionados de acuerdo con el proyecto.',
   RESOURCE_EVENT_RESOURCE_TYPE_TIP: 'Puedes ver información de eventos relacionados según el tipo de recurso.',
