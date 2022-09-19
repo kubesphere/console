@@ -23,7 +23,7 @@ module.exports = {
   TIME_RANGE_SCAP: 'Zaman aralığı',
   // Querying Rules
   QUERYING_RULES: 'Sorgulama Kuralları',
-  CONTAINER_LOG_TRENDS_12H: '12 saatte kapsayıcı günlüğü eğilimleri',
+  CONTAINER_LOGS_12H: 'Container logs in the last 12 hours',
   CONTAINER_LOG_KEYWORD_TIP: 'Kapsayıcı günlüklerini aramak için bir anahtar sözcük girin.',
   CONTAINER_LOG_PROJECT_TIP: 'Kapsayıcı günlüklerini aramak için bir proje adı girin.',
   CONTAINER_LOG_WORKLOAD_TIP: 'Kapsayıcı günlüklerini aramak için bir iş yükü adı girin.',

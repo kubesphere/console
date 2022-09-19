@@ -21,7 +21,7 @@ module.exports = {
   NO_RESOURCE_EVENTS_TODAY: 'No Resource Events Collected Today',
   // Search
   // Querying Rules
-  RESOURCE_EVENT_TRENDS_12H: 'Resource event trends in 12 h',
+  RESOURCE_EVENTS_12H: 'Resource events in the last 12 hours',
   RESOURCE_EVENT_WORKSPACE_TIP: 'Enter a workspace name to search for container logs.',
   RESOURCE_EVENT_PROJECT_TIP: 'Enter a project name to search for container logs.',
   RESOURCE_EVENT_RESOURCE_TYPE_TIP: 'Enter a resource type to search for container logs.',

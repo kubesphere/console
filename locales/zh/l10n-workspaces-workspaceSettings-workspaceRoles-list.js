@@ -21,7 +21,7 @@ module.exports = {
   WORKSPACE_ROLE_DESC: '企业空间角色定义了在当前企业空间下用户所拥有的权限。',
   // List
   WORKSPACE_ROLE_EMPTY_DESC: '请创建一个企业空间角色。',
-  ROLE_WORKSPACE_ADMIN: '管理企业空间中的所有资源。',
+  ROLE_WORKSPACE_ADMIN: 'Manage all resources in the workspace.',
   ROLE_WORKSPACE_REGULAR: '查看企业空间设置。',
   ROLE_WORKSPACE_VIEWER: '查看企业空间中的所有资源。',
   ROLE_WORKSPACE_SELF_PROVISIONER: '查看企业设置、管理应用模板、创建项目和 DevOps 项目。',
