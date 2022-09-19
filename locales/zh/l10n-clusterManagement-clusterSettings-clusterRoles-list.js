@@ -18,5 +18,7 @@
 module.exports = {
   CLUSTER_ROLE: '集群角色',
   CLUSTER_ROLE_PL: '集群角色',
-  CLUSTER_ROLE_DESC: '集群角色定义了在集群范围内授权用户的访问权限。'
+  CLUSTER_ROLE_DESC: '集群角色定义了在集群范围内授权用户的访问权限。',
+  ROLE_CLUSTER_VIEWER: 'View all resources in the cluster.',
+  ROLE_CLUSTER_ADMIN: 'Manage all resources in the cluster.'
 };
