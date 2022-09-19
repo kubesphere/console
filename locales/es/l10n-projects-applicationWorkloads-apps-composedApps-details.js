@@ -23,6 +23,9 @@ module.exports = {
   // More > Add Route
   // Attributes
   // Resource Status
+  WORKLOAD_TYPE_DEPLOYMENTS: 'Deployment',
+  WORKLOAD_TYPE_DAEMONSETS: 'DaemonSet',
+  WORKLOAD_TYPE_STATEFULSETS: 'StatefulSet',
   // Traffic Monitoring
   TRAFFIC_MONITORING: 'Monitor de tráfico',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC: 'La aplicación no ha recibido una solicitud durante mucho tiempo, visita la aplicación y prueba el gestor de tráfico',
