@@ -161,7 +161,7 @@ export default class HomeModal extends React.Component {
         <div className={classnames(styles.card, styles.recent)}>
           <div className={styles.recentSummary}>
             <h2 className={styles.count}>{total || 0}</h2>
-            <p>{t('RESOURCE_EVENT_TRENDS_12H')}</p>
+            <p>{t('RESOURCE_EVENTS_12H')}</p>
           </div>
           <div className={styles.chart}>
             <TimeBar

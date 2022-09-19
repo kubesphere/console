@@ -335,7 +335,7 @@ client:
           title: WORKSPACE_SETTINGS
           icon: cogwheel
           children:
-            - { name: base-info, title: Basic Info, skipAuth: true }
+            - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
             - {
                 name: quota,
                 title: WORKSPACE_QUOTA_PL,
@@ -376,7 +376,7 @@ client:
                 - { name: statefulsets, title: STATEFULSET_PL }
                 - { name: daemonsets, title: DAEMONSET_PL }
             - name: jobs
-              title: Jobs
+              title: JOB_PL
               tabs:
                 - { name: jobs, title: JOB_PL }
                 - { name: cronjobs, title: CRONJOB_PL }
@@ -439,7 +439,7 @@ client:
           title: PROJECT_SETTINGS
           icon: cogwheel
           children:
-            - { name: base-info, title: Basic Info, skipAuth: true }
+            - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
             - {
                 name: networkpolicies,
                 title: NETWORK_ISOLATION,
