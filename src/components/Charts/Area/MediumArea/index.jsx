@@ -60,7 +60,7 @@ export default class MediumArea extends React.Component {
   get lastValue() {
     const { data } = this.props
     const key = get(this.series, [0], '')
-    return last(data)[key] || 0
+    return last(data)?.[key] ?? 0
   }
 
   renderTitle() {
