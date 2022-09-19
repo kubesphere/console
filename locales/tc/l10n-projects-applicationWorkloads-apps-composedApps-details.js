@@ -23,6 +23,9 @@ module.exports = {
   // More > Add Route
   // Attributes
   // Resource Status
+  WORKLOAD_TYPE_DEPLOYMENTS: '部署',
+  WORKLOAD_TYPE_DAEMONSETS: '守護進程集',
+  WORKLOAD_TYPE_STATEFULSETS: '有狀態副本集',
   // Traffic Monitoring
   TRAFFIC_MONITORING: '流量監控',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC: '應用長時間未收到請求，請訪問應用後嘗試流量治理',
