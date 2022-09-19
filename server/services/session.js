@@ -213,7 +213,8 @@ const getUserDetail = async (token, clusterRole, isMulticluster) => {
 
     if (
       !isClustersRole &&
-      (user.grantedClusters.length > 0 || isMulticluster === false)
+      user.grantedClusters.length > 0 &&
+      isMulticluster === true
     ) {
       roles.clusters = ['view']
     }
