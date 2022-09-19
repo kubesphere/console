@@ -21,7 +21,7 @@ module.exports = {
   WORKSPACE_ROLE_DESC: 'The role of a workspace member determines the permissions of the member in the workspace.',
   // List
   WORKSPACE_ROLE_EMPTY_DESC: 'Please create a workspace role.',
-  ROLE_WORKSPACE_ADMIN: 'Control all resources in the workspace.',
+  ROLE_WORKSPACE_ADMIN: 'Manage all resources in the workspace.',
   ROLE_WORKSPACE_REGULAR: 'View workspace settings.',
   ROLE_WORKSPACE_VIEWER: 'View all resources in the workspace.',
   ROLE_WORKSPACE_SELF_PROVISIONER: 'View workspace settings, manage app templates, and create projects and DevOps projects.',
