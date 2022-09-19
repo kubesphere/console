@@ -29,8 +29,6 @@ module.exports = {
   CONTAINER_ARGUMENT_DESC: '容器的啟動命令參數, 如需多個請以 "," 分隔',
   CONTAINER_ENVIRONMENT_DESC: '添加容器的環境變量',
   PROBE_COMMAND_DESC: '如需多個請以 "," 分隔',
-  DAEMONSETS_LOW: 'daemonsets',
-  DAEMONSETS_PL: 'daemonsets',
   // List > Create > Pod Settings > Add Container
   IGNORE_CERT_WARN_DESC: '忽略驗證證書，可能會導致帳戶密碼被欺騙。',
   CERT_ERROR: '發現證書錯誤，是否忽略證書驗證並再次'
