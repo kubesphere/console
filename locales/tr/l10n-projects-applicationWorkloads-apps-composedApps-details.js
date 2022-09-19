@@ -23,6 +23,9 @@ module.exports = {
   // More > Add Route
   // Attributes
   // Resource Status
+  WORKLOAD_TYPE_DEPLOYMENTS: 'Dağıtım',
+  WORKLOAD_TYPE_DAEMONSETS: 'Daemonset',
+  WORKLOAD_TYPE_STATEFULSETS: 'Durum Bilgisi',
   // Traffic Monitoring
   TRAFFIC_MONITORING: 'Trafik İzleme',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC: 'Uygulama uzun süredir istek almıyor. Lütfen daha sonra tekrar deneyiniz.',
