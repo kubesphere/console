@@ -36,7 +36,7 @@ import WorkloadStore from 'stores/workload'
 @withClusterList({
   store: new WorkloadStore('deployments'),
   module: 'deployments',
-  name: 'WORKLOAD',
+  name: 'DEPLOYMENT',
   rowKey: 'uid',
 })
 export default class Deployments extends React.Component {
@@ -231,7 +231,12 @@ export default class Deployments extends React.Component {
     const { match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
-        <Banner {...bannerProps} tabs={this.tabs} />
+        <Banner
+          {...bannerProps}
+          title={t('WORKLOAD_PL')}
+          description={t('WORKLOAD_DESC')}
+          tabs={this.tabs}
+        />
         <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}
