@@ -64,7 +64,6 @@ module.exports = {
   // List > Edit YAML
   // List > Re-create
   // List > Delete
-  WORKLOAD_LOW: 'workload',
   // List > Stop
   STOP: 'Stop',
   STOP_TITLE_SI: 'Stop {type}',
