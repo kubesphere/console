@@ -21,7 +21,7 @@ import { trim } from 'lodash'
 import PropTypes from 'prop-types'
 import { Form, Input, TextArea } from '@kube-design/components'
 import { ReactComponent as BackIcon } from 'assets/back.svg'
-import { safeAtob } from 'utils/base64'
+import { safeAtob, safeBtoa } from 'utils/base64'
 
 import styles from './index.scss'
 
@@ -77,7 +77,7 @@ export default class SecretDataForm extends React.Component {
     form &&
       form.validate(() => {
         const { key, value } = form.getData()
-        onOk({ [trim(key)]: window.btoa(value) })
+        onOk({ [trim(key)]: safeBtoa(value) })
         callback && callback()
       })
   }
