@@ -74,7 +74,7 @@ class FluxApp extends React.Component {
     }
     const hrStatus = get(this.detail, 'fluxHelmReleaseStatus')
     let newData = []
-    for (d of hrs.deploy) {
+    for (const d of hrs.deploy) {
       const data = {}
       const cluster = d.destination.kubeConfig
         ? d.destination.kubeConfig
@@ -87,7 +87,7 @@ class FluxApp extends React.Component {
       data.status =
         hrStatus[data.name].conditions[0].status === 'True'
           ? hrStatus[data.name].conditions[0].type
-          : hrStatus[data.name].conditions[0].type + '/' + 'False'
+          : `${hrStatus[data.name].conditions[0].type}/False`
       data.message = hrStatus[data.name].conditions[0].message
       data.interval = d.interval
       newData = [...newData, data]
@@ -96,7 +96,6 @@ class FluxApp extends React.Component {
   }
 
   getKusData = () => {
-    console.log('detail is: ', this.detail)
     const kus = get(
       this.detail,
       '_originData.spec.fluxApp.spec.config.kustomization'
@@ -106,7 +105,7 @@ class FluxApp extends React.Component {
     }
     const kusStatus = get(this.detail, 'fluxKustomizationStatus')
     let newData = []
-    for (k of kus) {
+    for (const k of kus) {
       const data = {}
       const cluster = k.destination.kubeConfig
         ? k.destination.kubeConfig
@@ -119,7 +118,7 @@ class FluxApp extends React.Component {
       data.status =
         kusStatus[data.name].conditions[0].status === 'True'
           ? kusStatus[data.name].conditions[0].type
-          : kusStatus[data.name].conditions[0].type + '/' + 'False'
+          : `${kusStatus[data.name].conditions[0].type}/False`
       data.message = kusStatus[data.name].conditions[0].message
       data.interval = k.interval
       newData = [...newData, data]
