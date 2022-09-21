@@ -202,8 +202,11 @@ export default class Services extends React.Component {
         isHideable: true,
         search: true,
         width: '15%',
-        render: (app, record) =>
-          get(record, 'labels["app.kubesphere.io/instance"]', '-'),
+        render: (app, record) => {
+          const instance = get(record, 'labels["app.kubesphere.io/instance"]')
+          const name = get(record, 'labels["app.kubesphere.io/name"]')
+          return instance || name || '-'
+        },
       },
       {
         title: t('INTERNAL_ACCESS_PL'),
