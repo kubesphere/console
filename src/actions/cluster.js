@@ -26,6 +26,7 @@ import KubeKeyClusterStore from 'stores/cluster/kubekey'
 import { safeParseJSON } from 'utils'
 import UnbindCluster from 'pages/clusters/components/Modals/UnbindCluster'
 import KubeConfigModal from 'components/Forms/Cluster/KubeConfig'
+import { safeBtoa } from 'utils/base64'
 
 export default {
   'cluster.add': {
@@ -89,7 +90,7 @@ export default {
       const modal = Modal.open({
         onOk: async data => {
           const newData = cloneDeep(data)
-          set(newData, 'kubeconfig', window.btoa(newData.kubeconfig))
+          set(newData, 'kubeconfig', safeBtoa(newData.kubeconfig))
           await store.updateKubeConfig({
             cluster: detail.name,
             data: newData,
@@ -116,7 +117,7 @@ const handleImport = async (store, data) => {
     unset(postData, 'spec.connection.kubeconfig')
   } else {
     const config = get(postData, 'spec.connection.kubeconfig', '')
-    set(postData, 'spec.connection.kubeconfig', window.btoa(config))
+    set(postData, 'spec.connection.kubeconfig', safeBtoa(config))
     await store.validate(postData)
   }
 
