@@ -137,7 +137,7 @@ export default class RoleStore extends Base {
     const result = await request.get(
       `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${
         this.module
-      }?label=iam.kubesphere.io/role-template=true`
+      }?labelSelector=iam.kubesphere.io/role-template`
     )
 
     this.roleTemplates.update({
