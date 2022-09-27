@@ -178,7 +178,7 @@ export default class Services extends React.Component {
         ),
       },
       {
-        title: t('INTERNAL_ACCESS_PL'),
+        title: t('INTERNAL_ACCESS'),
         dataIndex: 'annotations["kubesphere.io/serviceType"]',
         isHideable: true,
         width: '16%',
