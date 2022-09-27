@@ -79,6 +79,7 @@ module.exports = {
   PHYSICAL_RESOURCES_MONITORING: 'Fiziksel Kaynak İzleme',
   INODE_USAGE: 'Düğüm indeksi Kullanımı',
   DISK_USAGE: 'Disk Kullanımı',
+  DISK_USAGE_DETAILS: 'Disk Usage Details',
   AVERAGE_CPU_LOAD: 'Ortalama CPU Yükü',
   DISK_THROUGHPUT: 'Disk Verimi',
   POD_STATUS: 'Kapsül Durumu',
