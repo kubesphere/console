@@ -209,7 +209,7 @@ export default class Services extends React.Component {
         },
       },
       {
-        title: t('INTERNAL_ACCESS_PL'),
+        title: t('INTERNAL_ACCESS'),
         dataIndex: 'clusterIP',
         isHideable: true,
         width: '15%',
