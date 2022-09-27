@@ -17,8 +17,6 @@
  */
 
 module.exports = {
-  // Cluster Initializing
-
   // Create Cluster
   SELECT_ADD_CLUSTER_METHOD: 'Choose how to add a cluster',
   SELECT_ADD_CLUSTER_METHOD_DESC: 'Support for adding new clusters and importing existing clusters.',
