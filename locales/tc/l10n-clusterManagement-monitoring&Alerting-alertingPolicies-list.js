@@ -18,7 +18,7 @@
 module.exports = {
   // Banner
   ALERTING_POLICY_PL: '告警策略',
-  ALERT_POLICY_DESC: '告警策略是用於監控集群資源的一系列條件，您可以創建告警策略對資源進行監控。',
+  ALERTING_POLICY_DESC: 'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '如何觸發告警訊息？',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A: '您需要對資源設置告警策略，當資源的某項指標達到告警策略的閥值後即會觸發告警訊息。',
   // List
