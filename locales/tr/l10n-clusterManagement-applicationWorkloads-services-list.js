@@ -23,7 +23,7 @@ module.exports = {
   SERVICE_EMPTY_DESC: 'Lütfen bir hizmet oluşturun.',
   UNKNOWN: 'Bilinmeyen',
   EXTERNAL_ACCESS: 'Harici erişim',
-  INTERNAL_ACCESS_PL: 'Harici erişim',
+  INTERNAL_ACCESS: 'Internal Access',
   // List > Edit YAML
   // List > Edit Service
   UNKNOWN_SERVICE_TYPE: 'Bilinmeyen Hizmet Tipi',
