@@ -138,7 +138,8 @@ export default class Placement extends Component {
   }
 
   async fetchClusters() {
-    await this.cdStore.getClustersList()
+    const defaultHost = this.props.cluster
+    await this.cdStore.getClustersList(defaultHost)
   }
 
   fetchNamespaces = async (params = {}) => {

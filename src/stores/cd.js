@@ -183,7 +183,7 @@ export default class CDStore extends Base {
   }
 
   @action
-  async getClustersList() {
+  async getClustersList(defaultHost = 'host') {
     const url = `${this.apiVersion}/clusters`
     const result = await request.get(url, null, null, () => {
       return []
@@ -200,7 +200,7 @@ export default class CDStore extends Base {
         has(item, 'metadata.labels["cluster-role.kubesphere.io/host"]')
       )
 
-      hostName = get(cluster, 'metadata.name', 'host')
+      hostName = get(cluster, 'metadata.name', defaultHost)
     }
 
     if (isEmpty(result)) {
