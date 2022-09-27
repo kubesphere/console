@@ -79,6 +79,7 @@ module.exports = {
   PHYSICAL_RESOURCES_MONITORING: '物理資源監控',
   INODE_USAGE: 'Inode 用量',
   DISK_USAGE: '磁碟用量',
+  DISK_USAGE_DETAILS: 'Disk Usage Details',
   AVERAGE_CPU_LOAD: 'CPU 平均負載',
   DISK_THROUGHPUT: '磁碟吞吐量',
   POD_STATUS: '容器組狀態',
