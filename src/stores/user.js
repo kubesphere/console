@@ -138,13 +138,6 @@ export default class UsersStore extends Base {
         break
       }
       case 'workspaceroles': {
-        if (params.workspace === globals.config.systemWorkspace) {
-          set(globals.user, `workspaceRules[${params.workspace}]`, {
-            ...globals.config.systemWorkspaceRules,
-          })
-          break
-        }
-
         const parentActions = globals.app.getActions({ module: 'workspaces' })
         set(globals.user, `workspaceRules[${params.workspace}]`, {
           ...rules,
