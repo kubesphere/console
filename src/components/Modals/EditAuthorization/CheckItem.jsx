@@ -69,7 +69,7 @@ export default class CheckItem extends Component {
 
     names.forEach(name => {
       const template = roleTemplatesMap[name]
-      if (template.dependencies) {
+      if (template && template.dependencies) {
         template.dependencies.forEach(dep => {
           if (!names.includes(dep) && !dependencies.includes(dep)) {
             dependencies.push(dep)
