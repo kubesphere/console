@@ -167,7 +167,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('ALERTING_STATUS'),
+        title: t('STATUS'),
         dataIndex: 'state',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('state'),
