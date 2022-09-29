@@ -24,6 +24,7 @@ module.exports = {
   ROLE_WORKSPACES_MANAGER: '平台企業空間管理員，管理平台所有企業空間。',
   ROLE_PLATFORM_ADMIN: '平台管理員，可以管理平台内的所有資源。',
   ROLE_PLATFORM_REGULAR: '平台普通用戶，在被邀請加入企業空間或集群之前沒有任何資源操作權限。',
+  ROLE_PLATFORM_SELF_PROVISIONER: 'Create workspaces and become an administrator of the created workspaces.',
   CREATION_TIME_TCAP: '創建時間',
   // List > Create
   CREATE_PLATFORM_ROLE: '創建帳戶角色',
