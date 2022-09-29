@@ -18,7 +18,7 @@
 
 module.exports = {
   // Attributes
-  THRESHOLD_DURATION: 'Threshold Duration',
+  DURATION: 'Duration',
   // Alerting Rule
   ALERTING_RULE: 'Alerting Rule',
   MONITORING_TARGETS_SCAP: 'Monitoring targets',

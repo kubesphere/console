@@ -140,7 +140,7 @@ export default class BaseInfo extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('THRESHOLD_DURATION_MIN')}
+              label={t('DURATION_MIN')}
               desc={t('ALERT_DURATION')}
               rules={[{ validator: this.timeValidator }]}
             >
