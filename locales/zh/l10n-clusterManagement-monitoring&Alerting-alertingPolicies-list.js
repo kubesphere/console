@@ -35,10 +35,10 @@ module.exports = {
   CRITICAL_ALERT: '危险告警',
   ERROR_ALERT: '重要告警',
   WARNING_ALERT: '一般告警',
-  INVALID_TIME_DESC: 'Invalid value. Please enter 0 or a positive integer.',
+  INVALID_TIME_DESC: '数值无效，请输入 0 或正整数。',
   ALIAS: '别名',
-  DURATION_MIN: 'Duration (minutes)',
-  ALERT_DURATION: 'When the alert situation persists longer than the value of this parameter, the system starts to send alerting messages to users.',
+  DURATION_MIN: '持续时间（分钟）',
+  ALERT_DURATION: '当告警状况持续时间超过此参数值时，系统将开始向用户发送告警消息。',
   LONG_NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
   NAME_EXIST_DESC: '名称已存在，请输入其他名称。',
   // List > Create > Rule Settings > Rule Template
