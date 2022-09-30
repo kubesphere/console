@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Attributes
-  THRESHOLD_DURATION: 'Eşik Süresi',
+  DURATION: 'Süre',
   // Alerting Rule
   ALERTING_RULE: 'Uyarı Kuralı',
   MONITORING_TARGETS_SCAP: 'Hedefi İzleme',

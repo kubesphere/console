@@ -22,7 +22,6 @@ module.exports = {
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'Alarm mesajları nasıl üretilir?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'Bir kaynak için bir uyarı politikası belirlemeniz gerekir. Uyarı politikasında yapılandırılan ölçüm bir eşiğe ulaştığında uyarı mesajları oluşturulur.',
   // List
-  ALERTING_STATUS: 'Uyarı Durumu',
   ALERTING_POLICY_EMPTY_DESC: 'Lütfen bir uyarı politikası oluşturun.',
   ALERT_RULE_INACTIVE: 'İnaktif',
   ALERT_RULE_PENDING: 'Bekliyor',
@@ -36,10 +35,10 @@ module.exports = {
   CRITICAL_ALERT: 'Kritik',
   ERROR_ALERT: 'Hata',
   WARNING_ALERT: 'Dikkat',
-  INVALID_TIME_DESC: 'Geçersiz değer. Lütfen açılır listeden bir değer seçin 0 veya pozitif bir tam sayı girin.',
+  INVALID_TIME_DESC: 'Invalid value. Please enter 0 or a positive integer.',
   ALIAS: 'Takma ad',
-  THRESHOLD_DURATION_MIN: 'Eşik Süresi (dk)',
-  ALERT_DURATION: 'Uyarı kuralında yapılandırılan koşulun süresi eşiğe ulaştığında uyarı ilkesinin durumu tetikleniyor olur.',
+  DURATION_MIN: 'Duration (minutes)',
+  ALERT_DURATION: 'When the alert situation persists longer than the value of this parameter, the system starts to send alerting messages to users.',
   LONG_NAME_DESC: 'İsim yanlızda küçük harfler, sayılar ve kısa çizgiler(-) içerebilir ve küçük harf ve sayı ile başlayıp bitmelidir. Maksimum 253 karakter olabilir.',
   NAME_EXIST_DESC: 'Ad zaten var. Lütfen başka bir ad girin.',
   // List > Create > Rule Settings > Rule Template

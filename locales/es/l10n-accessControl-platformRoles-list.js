@@ -24,6 +24,7 @@ module.exports = {
   ROLE_WORKSPACES_MANAGER: 'Maneje todos los espacios de trabajo en la plataforma KubeSphere.',
   ROLE_PLATFORM_ADMIN: 'Administrador de la plataforma que puede administrar todos los recursos en la plataforma.',
   ROLE_PLATFORM_REGULAR: 'Usuario normal en la plataforma que no tiene acceso a ningún recurso antes de unirse al espacio de trabajo o clúster.',
+  ROLE_PLATFORM_SELF_PROVISIONER: 'Create workspaces and become an administrator of the created workspaces.',
   CREATION_TIME_TCAP: 'Fecha de creación',
   // List > Create
   CREATE_PLATFORM_ROLE: 'Create Platform Role',

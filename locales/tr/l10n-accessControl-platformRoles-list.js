@@ -24,6 +24,7 @@ module.exports = {
   ROLE_WORKSPACES_MANAGER: 'KubeSphere platformundaki tüm çalışma alanlarını yönetin.',
   ROLE_PLATFORM_ADMIN: 'KubeSphere platformundaki tüm kaynakları yönetin.',
   ROLE_PLATFORM_REGULAR: 'Bir çalışma alanına katılmadan önce hiçbir kaynağa erişilemez.',
+  ROLE_PLATFORM_SELF_PROVISIONER: 'Create workspaces and become an administrator of the created workspaces.',
   CREATION_TIME_TCAP: 'Oluşturma Zamanı',
   // List > Create
   CREATE_PLATFORM_ROLE: 'Platform Rolü Oluştur',

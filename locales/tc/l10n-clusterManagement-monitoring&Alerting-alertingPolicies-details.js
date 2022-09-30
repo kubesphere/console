@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Attributes
-  THRESHOLD_DURATION: '告警持續時間',
+  DURATION: 'Duration',
   // Alerting Rule
   ALERTING_RULE: '告警規則',
   MONITORING_TARGETS_SCAP: '監控目標',
