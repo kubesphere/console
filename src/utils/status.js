@@ -18,6 +18,13 @@
 
 import { get, isUndefined, isEmpty, sortBy, includes } from 'lodash'
 
+const POD_LIFE_CONDITIONS = [
+  'Initialized',
+  'Ready',
+  'ContainersReady',
+  'PodScheduled',
+]
+
 export const getDeployStatus = ({
   hasS2i,
   spec = {},
@@ -266,7 +273,11 @@ export const getPodStatusAndRestartCount = pod => {
       status = 'Running'
     }
 
-    conditions.forEach(item => {
+    const _conditions = conditions.filter(
+      item => POD_LIFE_CONDITIONS.indexOf(item.type) !== -1
+    )
+
+    _conditions.forEach(item => {
       if (status === 'Running') {
         if (
           item.type === 'Unschedulable'
