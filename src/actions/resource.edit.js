@@ -20,14 +20,34 @@ import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 import EditYamlModal from 'components/Modals/EditYaml'
-import { set } from 'lodash'
+import { get, set } from 'lodash'
 
 export default {
   'resource.baseinfo.edit': {
     on({ store, detail, success, ...props }) {
+      const module = get(store, 'module', '')
       const modal = Modal.open({
         onOk: data => {
-          store.patch(detail, data).then(() => {
+          let _data = module === 'workspace' ? null : data
+
+          if (get(store, 'module', '') === 'workspaces') {
+            const annotations = get(data, 'metadata.annotations')
+            const spec = get(data, 'spec')
+            _data = [
+              {
+                op: 'add',
+                path: '/metadata/annotations',
+                value: annotations,
+              },
+              {
+                op: 'add',
+                path: '/spec',
+                value: spec,
+              },
+            ]
+          }
+
+          store.patch(detail, _data).then(() => {
             Modal.close(modal)
             Notify.success({ content: t('UPDATE_SUCCESSFUL') })
             success && success()
