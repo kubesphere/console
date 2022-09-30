@@ -24,6 +24,7 @@ module.exports = {
   ROLE_WORKSPACES_MANAGER: '管理 KubeSphere 平台上的所有企业空间。',
   ROLE_PLATFORM_ADMIN: '管理 KubeSphere 平台上的所有资源。',
   ROLE_PLATFORM_REGULAR: '被邀请加入企业空间之前无法访问任何资源。',
+  ROLE_PLATFORM_SELF_PROVISIONER: '创建企业空间并成为所创建的企业空间的管理员。',
   CREATION_TIME_TCAP: '创建时间',
   // List > Create
   CREATE_PLATFORM_ROLE: '创建平台角色',

@@ -22,7 +22,6 @@ module.exports = {
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerting messages generated?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'You need to set an alerting policy for a resource. Alerting messages will be generated when the metric configured in the alerting policy reaches a threshold.',
   // List
-  ALERTING_STATUS: 'Alerting Status',
   ALERTING_POLICY_EMPTY_DESC: 'You can notice if a resource is abnormal in real time by creating an alerting policy.',
   ALERT_RULE_INACTIVE: 'Inactive',
   ALERT_RULE_PENDING: 'Pendiente',
@@ -36,10 +35,10 @@ module.exports = {
   CRITICAL_ALERT: 'Critical',
   ERROR_ALERT: 'Error',
   WARNING_ALERT: 'Warning',
-  INVALID_TIME_DESC: 'Invalid value. Please select a value from the drop-down list or enter 0 or a positive integer.',
+  INVALID_TIME_DESC: 'Invalid value. Please enter 0 or a positive integer.',
   ALIAS: 'Alias',
-  THRESHOLD_DURATION_MIN: 'Threshold Duration (min)',
-  ALERT_DURATION: 'An alert is firing when the threshold duration reaches the preset value.',
+  DURATION_MIN: 'Duration (minutes)',
+  ALERT_DURATION: 'When the alert situation persists longer than the value of this parameter, the system starts to send alerting messages to users.',
   LONG_NAME_DESC: 'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de carácteres se establece en 253.',
   NAME_EXIST_DESC: 'Nombre existe',
   // List > Create > Rule Settings > Rule Template
