@@ -35,6 +35,7 @@ module.exports = {
   SERVICE_ADDRESS: 'Kaynak Adresi',
   ENTER_SERVICE_ADDRESS: 'Lütfen bir hizmet adresi girin.',
   INVALID_SERVICE_ADDRESS: 'Lütfen bir hizmet adresi girin.',
+  SERVICE_ADDRESS_EXIST: 'service address is exist',
   EXAMPLE_VALUE: 'Example: {value}',
   // Banner > Add Log Receiver > Fluentd
   LOG_COLLECTION_FLUENTD_URL_TIPS: 'Kayıtları alan Fluentd hizmetinin adresini girin.',
