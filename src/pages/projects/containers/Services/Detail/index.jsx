@@ -234,10 +234,10 @@ export default class ServiceDetail extends React.Component {
         name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
-      {
+      /* {
         name: t('UPDATE_TIME_TCAP'),
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
-      },
+      }, */
       {
         name: t('CREATOR'),
         value: detail.creator,
