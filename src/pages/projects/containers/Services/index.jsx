@@ -204,7 +204,7 @@ export default class Services extends React.Component {
         width: '15%',
         render: (app, record) => {
           const instance = get(record, 'labels["app.kubesphere.io/instance"]')
-          const name = get(record, 'labels["app.kubesphere.io/name"]')
+          const name = get(record, 'labels["app.kubernetes.io/name"]')
           return instance || name || '-'
         },
       },
