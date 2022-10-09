@@ -64,5 +64,5 @@ module.exports = {
   ACCESS_NODEPORT_TIP: '通过集群节点的端口访问服务。',
   ACCESS_LOADBALANCER_TIP: '通过负载均衡器访问服务。',
   WORKLOAD_ANNOTATIONS: '工作负载注解',
-  LABEL_FORMAT_DESC: '标签的键和值只能包含字母、数字、连字符（-）、下划线（_）和句点（.），必须以数字或字母开头和结尾。键和值分别最长 63 个字符（如键包含域名则最长 253 个字符）。'
+  LABEL_FORMAT_DESC: 'The key and value of a label can contain only letters, numbers, hyphens (-), underscores (_), and dots (.), and must start and end with a letter or number. The maximum length of each key and each value is 63 characters (if the key contains a domain name, the maximum length is 253 characters).'
 };
