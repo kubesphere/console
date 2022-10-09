@@ -36,7 +36,7 @@ module.exports = {
   SERVICE_ADDRESS: 'Service Address',
   ENTER_SERVICE_ADDRESS: 'Please enter a service address.',
   INVALID_SERVICE_ADDRESS: 'Please enter a correct service address.',
-  SERVICE_ADDRESS_EXIST:'service address is exist',
+  SERVICE_ADDRESS_EXIST:'The service address already exists. Please enter another service address.',
   EXAMPLE_VALUE: 'Example: {value}',
   // Banner > Add Log Receiver > Fluentd
   LOG_COLLECTION_FLUENTD_URL_TIPS: 'Enter the address of the Fluentd service that receives logs.',
