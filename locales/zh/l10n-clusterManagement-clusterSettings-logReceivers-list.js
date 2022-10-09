@@ -35,7 +35,7 @@ module.exports = {
   SERVICE_ADDRESS: '服务地址',
   ENTER_SERVICE_ADDRESS: '请输入服务地址。',
   INVALID_SERVICE_ADDRESS: '请输入正确的服务地址。',
-  SERVICE_ADDRESS_EXIST: 'service address is exist',
+  SERVICE_ADDRESS_EXIST: 'The service address already exists. Please enter another service address.',
   EXAMPLE_VALUE: '例如：{value}',
   // Banner > Add Log Receiver > Fluentd
   LOG_COLLECTION_FLUENTD_URL_TIPS: '输入接收日志的 Fluentd 服务的地址。',
