@@ -19,7 +19,7 @@
 module.exports = {
   // Title
   // Navigation Pane > Workspace
-  ADD_CLUSTER_FOR_WORKSPACE: 'Please add clusters for this workspace.',
+  ADD_CLUSTER_FOR_WORKSPACE: 'Please authorize a cluster to this workspace.',
   // Navigation Pane > Workspace > Project
   // Navigation Pane > Workspace > App Template
   // Navigation Pane > Workspace > Workload
