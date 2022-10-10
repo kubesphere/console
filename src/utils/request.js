@@ -93,6 +93,13 @@ function buildRequest({
         'metadata.annotations["kubesphere.io/creator"]',
         globals.user.username
       )
+      if (get(params, 'spec.template')) {
+        set(
+          params,
+          'spec.template.metadata.annotations["kubesphere.io/creator"]',
+          globals.user.username
+        )
+      }
     }
     request.body = JSON.stringify(params)
   }
