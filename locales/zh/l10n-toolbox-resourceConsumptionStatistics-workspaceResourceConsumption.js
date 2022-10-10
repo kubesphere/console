@@ -18,5 +18,5 @@
 module.exports = {
   // Title
   // Navigation Pane > Workspace
-  ADD_CLUSTER_FOR_WORKSPACE: 'Please add clusters for this workspace.'
+  ADD_CLUSTER_FOR_WORKSPACE: '请将集群授权给企业空间。'
 };
