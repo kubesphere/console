@@ -121,9 +121,9 @@ module.exports = {
   SCHEDULING_LATENCY: 'Programación de latencia',
   // Resource Usage Ranking
   RESOURCE_USAGE_RANKING: 'Resource Usage Ranking',
-  SORT_BY_NODE_CPU_UTILISATION: 'Ordenar por CPU',
-  SORT_BY_NODE_MEMORY_UTILISATION: 'Ordenar por memoria',
-  SORT_BY_NODE_DISK_SIZE_UTILISATION: 'Ordenar por almacenamiento local',
+  SORT_BY_NODE_CPU_UTILISATION: 'Sort by CPU usage (%)',
+  SORT_BY_NODE_MEMORY_UTILISATION: 'Sort by memory usage (%)',
+  SORT_BY_NODE_DISK_SIZE_UTILISATION: 'Sort by disk usage (%)',
   SORT_BY_NODE_POD_UTILISATION: 'Ordenar mediante el uso de pod',
   SORT_BY_NODE_DISK_INODE_UTILISATION: 'Ordenar por inodo Utilización',
   SORT_BY_NODE_LOAD1: 'Ordenar por promedio de carga',
