@@ -87,7 +87,7 @@ module.exports = {
   OUTBOUND_TRAFFIC: '出站流量',
   INBOUND_TRAFFIC: '入站流量',
   SORT_BY_NAMESPACE_CPU_USAGE: '按 CPU 使用量排行',
-  SORT_BY_NAMESPACE_POD_COUNT: '按容器組用量排行',
+  SORT_BY_NAMESPACE_POD_COUNT: 'Sort by pod count (%)',
   SORT_BY_NAMESPACE_NET_BYTES_RECEIVED: '按網路流入速率排行',
   SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: '按網路流出速率排行'
 };
