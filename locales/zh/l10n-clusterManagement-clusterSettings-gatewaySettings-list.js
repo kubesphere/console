@@ -41,7 +41,7 @@ module.exports = {
   EDIT_TITLE: '编辑{title}',
   // Cluster Gateway > Manage > Update
   UPDATE: '更新',
-  UPDATE_GATEWAY_DESC: '当前网关可更新。',
+  UPDATE_GATEWAY_DESC: '当前网关可以更新。',
   // Project Gateways
   PROJECT_GATEWAY_PL: '项目网关',
   PROJECT_GATEWAY_NOT_ENABLED: '项目网关未启用',
