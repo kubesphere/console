@@ -19,8 +19,8 @@ module.exports = {
   // Title
   // Search Bar
   // Time Topology
-  START_REAL_TIME_AUDIT_LOG: 'Pause real-time audit logs',
-  STOP_REAL_TIME_AUDIT_LOG: 'View real-time audit logs',
+  START_REAL_TIME_AUDIT_LOG: '暂停实时审计日志',
+  STOP_REAL_TIME_AUDIT_LOG: '查看实时审计日志',
   TIME_S: '{num}s',
   // Time Topology > Histogram
   AUDIT_LOG_COUNT: '审计日志',
