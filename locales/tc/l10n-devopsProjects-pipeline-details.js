@@ -109,7 +109,6 @@ module.exports = {
   RUN: '運行',
   ACTIVITY_EMPTY_TIP: '目前 Pipeline 還沒有運行',
   COMMIT: '提交',
-  DURATION: 'Duration',
   LAST_MESSAGE: '最後訊息',
   RUN_ID: 'Run ID',
   STOP_PIPELINE_SUCCESSFUL: '任務已停止，狀態稍後更新',

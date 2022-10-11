@@ -19,7 +19,7 @@ module.exports = {
   // List
   SORT_BY_WORKSPACE_MEMORY_USAGE: 'Bellek kullanımına göre sırala',
   SORT_BY_WORKSPACE_MEMORY_USAGE_WO_CACHE: 'Bellek kullanımına göre sırala',
-  SORT_BY_WORKSPACE_POD_COUNT: 'Kapsül sayısına göre sırala',
+  SORT_BY_WORKSPACE_POD_COUNT: 'Sort by pod quota usage (%)',
   SORT_BY_WORKSPACE_CPU_USAGE: 'CPU kullanımına göre sırala',
   SORT_BY_WORKSPACE_NET_BYTES_TRANSMITTED: 'Giden trafiğe göre sırala',
   SORT_BY_WORKSPACE_NET_BYTES_RECEIVED: 'Gelen trafiğe göre sırala'

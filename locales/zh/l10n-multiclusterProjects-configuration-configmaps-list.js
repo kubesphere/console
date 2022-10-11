@@ -15,4 +15,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-module.exports = {};
+module.exports = {
+  // Banner
+  // List
+  CONFIGMAP_EMPTY_DESC: '请创建一个配置字典。'
+};
