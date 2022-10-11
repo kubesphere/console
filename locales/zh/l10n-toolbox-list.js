@@ -17,24 +17,24 @@
  */
 module.exports = {
   // Title
-  TOOLBOX: 'Toolbox',
-  TOOLBOX_DESC: 'Provides cluster analysis and control tools.',
-  DETAIL_NOT_FOUND_DESC: 'No related resources were found. <a href="{link}">Return to {title}</a>',
+  TOOLBOX: '工具箱',
+  TOOLBOX_DESC: '提供集群分析和控制工具。',
+  DETAIL_NOT_FOUND_DESC: '未发现相关资源。 <a href="{link}">返回{title}</a>',
   // Description
   // Ayalysis Tools
-  ANALYSIS_TOOLS: 'Analysis Tools',
-  VIEW_KUBE_CONFIG: 'View or download the kubeconfig file of the current cluster.',
-  CONTAINER_LOG_SEARCH_DESC: 'A multi-dimensional container log search tool for resources.',
-  RESOURCE_EVENT_SEARCH_DESC: 'A multi-dimensional resource event search tool for resources.',
-  AUDIT_LOG_DESC: 'A multi-dimensional audit log search tool for resources.',
-  RESOURCE_CONSUMPTION_STATISTICS: 'Resource Consumption Statistics',
-  METERING_AND_BILLING_DESC: 'View resource consumption of clusters and workspaces.',
-  CONTAINER_LOG_SEARCH: 'Container Log Search',
-  RESOURCE_EVENT_SEARCH: 'Resource Event Search',
-  AUDIT_LOG_SEARCH: 'Audit Log Search',
+  ANALYSIS_TOOLS: '分析工具',
+  VIEW_KUBE_CONFIG: '查看或下载当前集群的 kubeconfig 文件。',
+  CONTAINER_LOG_SEARCH_DESC: '针对集群资源的多维度容器日志查询工具。',
+  RESOURCE_EVENT_SEARCH_DESC: '针对集群资源的多维度资源事件查询工具。',
+  AUDIT_LOG_DESC: '针对集群资源的多维度审计日志查询工具。',
+  RESOURCE_CONSUMPTION_STATISTICS: '资源消费统计',
+  METERING_AND_BILLING_DESC: '查看集群和企业空间的资源消费情况。',
+  CONTAINER_LOG_SEARCH: '容器日志查询',
+  RESOURCE_EVENT_SEARCH: '资源事件查询',
+  AUDIT_LOG_SEARCH: '审计日志查询',
   // Control Tool
-  CONTROL_TOOL: 'Control Tool',
-  TOOLBOX_SHIFT_TIPS: ' 👻 Press "shift+left click" to open kubectl in a new browser window.',
+  CONTROL_TOOL: '控制工具',
+  TOOLBOX_SHIFT_TIPS: ' 👻 按下“shift+左键”可在浏览器新窗口中打开 kubectl。',
   // Third-Party Tools
-  THIRD_PARTY_TOOLS: 'Third-Party Tools'
+  THIRD_PARTY_TOOLS: '第三方工具'
 };
