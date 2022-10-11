@@ -113,7 +113,6 @@ module.exports = {
   RUN: 'ejecutar',
   ACTIVITY_EMPTY_TIP: 'La pipeline actual aún no se está ejecutando',
   COMMIT: 'Commit',
-  DURATION: 'Duration',
   LAST_MESSAGE: 'Ultimo mensaje',
   RUN_ID: 'Run ID',
   STOP_PIPELINE_SUCCESSFUL: 'Parado de ejecución satisfactorio, se actualizará el estado después',
