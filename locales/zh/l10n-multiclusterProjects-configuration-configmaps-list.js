@@ -18,5 +18,5 @@
 module.exports = {
   // Banner
   // List
-  CONFIGMAP_EMPTY_DESC: 'Please create a configmap.'
+  CONFIGMAP_EMPTY_DESC: '请创建一个配置字典。'
 };
