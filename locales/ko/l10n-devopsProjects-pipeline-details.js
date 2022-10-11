@@ -114,7 +114,6 @@ module.exports = {
   RUN: 'Run',
   ACTIVITY_EMPTY_TIP: 'The pipeline has not been run.',
   COMMIT: 'Commit',
-  DURATION: 'Duration',
   LAST_MESSAGE: 'Last Message',
   RUN_ID: 'Run ID',
   STOP_PIPELINE_SUCCESSFUL: 'The pipeline was stopped successfully.',

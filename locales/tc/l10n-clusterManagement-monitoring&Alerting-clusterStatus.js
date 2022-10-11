@@ -121,9 +121,9 @@ module.exports = {
   SCHEDULING_LATENCY: '調度延遲',
   // Resource Usage Ranking
   RESOURCE_USAGE_RANKING: '資源用量排行',
-  SORT_BY_NODE_CPU_UTILISATION: '按 CPU 使用率排行',
-  SORT_BY_NODE_MEMORY_UTILISATION: '按記憶體使用率排行',
-  SORT_BY_NODE_DISK_SIZE_UTILISATION: '按本地儲存用量排行',
+  SORT_BY_NODE_CPU_UTILISATION: 'Sort by CPU usage (%)',
+  SORT_BY_NODE_MEMORY_UTILISATION: 'Sort by memory usage (%)',
+  SORT_BY_NODE_DISK_SIZE_UTILISATION: 'Sort by disk usage (%)',
   SORT_BY_NODE_POD_UTILISATION: '按容器組用量排行',
   SORT_BY_NODE_DISK_INODE_UTILISATION: '按 Inode 使用率排行',
   SORT_BY_NODE_LOAD1: '按 CPU 平均負載排行',

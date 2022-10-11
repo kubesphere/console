@@ -64,5 +64,5 @@ module.exports = {
   ACCESS_NODEPORT_TIP: 'Use a port of the cluster nodes to access the Service.',
   ACCESS_LOADBALANCER_TIP: 'Use a load balancer to access the Service.',
   WORKLOAD_ANNOTATIONS: 'Workload Annotations',
-  LABEL_FORMAT_DESC: 'The key and value can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number. The maximum length is 63 characters. If the key contains the domain name, the maximum length is 253 characters.'
+  LABEL_FORMAT_DESC: 'The key and value of a label can contain only letters, numbers, hyphens (-), underscores (_), and dots (.), and must start and end with a letter or number. The maximum length of each key and each value is 63 characters (if the key contains a domain name, the maximum length is 253 characters).'
 };

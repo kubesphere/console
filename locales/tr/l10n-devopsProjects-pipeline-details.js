@@ -114,7 +114,6 @@ Bu nedenle, bu adım çoğunlukla bu tür kaynakların dağıtımını işlemek 
   RUN: 'Çalıştır',
   ACTIVITY_EMPTY_TIP: 'İş hattı çalışmıyor.',
   COMMIT: 'Yap',
-  DURATION: 'Süre',
   LAST_MESSAGE: 'Son Mesaj',
   RUN_ID: 'Oturum Kimliği',
   STOP_PIPELINE_SUCCESSFUL: 'İş Hattı başarıyla durduruldu.',
