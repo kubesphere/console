@@ -47,7 +47,7 @@ module.exports = {
   // Nodes
   VIEW_MORE: '查看更多',
   NODE_CPU_UTILISATION: 'CPU 用量',
-  NODE_LOAD1: 'Average CPU load (1 min)',
+  NODE_LOAD1: 'CPU 平均负载（1 分钟）',
   NODE_MEMORY_UTILISATION: '内存用量',
   NODE_DISK_SIZE_UTILISATION: '磁盘用量',
   NODE_DISK_INODE_UTILISATION: 'Inode 用量',
