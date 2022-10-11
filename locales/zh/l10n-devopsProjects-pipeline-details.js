@@ -109,7 +109,6 @@ module.exports = {
   RUN: '运行',
   ACTIVITY_EMPTY_TIP: '流水线尚未运行。',
   COMMIT: '提交',
-  DURATION: '持续时间',
   LAST_MESSAGE: '最后消息',
   RUN_ID: '运行 ID',
   STOP_PIPELINE_SUCCESSFUL: '流水线停止成功。',
