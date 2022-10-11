@@ -121,9 +121,9 @@ module.exports = {
   SCHEDULING_LATENCY: 'Zamanlama Gecikmesi',
   // Resource Usage Ranking
   RESOURCE_USAGE_RANKING: 'Kaynak Kullanımı Sıralaması',
-  SORT_BY_NODE_CPU_UTILISATION: 'CPU kullanımına göre sırala',
-  SORT_BY_NODE_MEMORY_UTILISATION: 'Bellek kullanımına göre sırala',
-  SORT_BY_NODE_DISK_SIZE_UTILISATION: 'Disk kullanımına göre sırala',
+  SORT_BY_NODE_CPU_UTILISATION: 'Sort by CPU usage (%)',
+  SORT_BY_NODE_MEMORY_UTILISATION: 'Sort by memory usage (%)',
+  SORT_BY_NODE_DISK_SIZE_UTILISATION: 'Sort by disk usage (%)',
   SORT_BY_NODE_POD_UTILISATION: 'Kapsül kullanımına göre sırala',
   SORT_BY_NODE_DISK_INODE_UTILISATION: 'Inode kullanımına göre sırala',
   SORT_BY_NODE_LOAD1: 'Ortalama CPU yüküne göre sırala',

@@ -16,9 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  DOWNLOAD: 'Download',
+  DOWNLOAD: '下载',
   KUBECONFIG_TIP: `
-    <h2><a id="KubeConfig_Configuration_Method_0"></a>Configuration Method</h2>
-    <p>Configure the access information about the current cluster by using kubeconfig file. <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">Learn More</a></p>
+    <h2><a id="KubeConfig__0"></a>配置方法</h2>
+    <p>通过使用 kubeconfig 文件配置当前集群的访问信息。<a href="https://kubernetes.io/zh/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">了解更多</a></p>
   `
 };

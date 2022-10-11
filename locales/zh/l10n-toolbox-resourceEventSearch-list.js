@@ -17,22 +17,22 @@
  */
 module.exports = {
   // Title
-  TOTAL_EVENTS_TODAY: 'A total of <span class={className}> {events} </span> resource events were collected today.',
-  NO_RESOURCE_EVENTS_TODAY: 'No Resource Events Collected Today',
+  TOTAL_EVENTS_TODAY: '今日总共收录了 <span class={className}> {events} </span> 条资源事件',
+  NO_RESOURCE_EVENTS_TODAY: '今日没有收录的资源事件',
   // Search
   // Querying Rules
-  RESOURCE_EVENTS_12H: 'Resource events in the last 12 hours',
-  RESOURCE_EVENT_WORKSPACE_TIP: 'Enter a workspace name to search for container logs.',
-  RESOURCE_EVENT_PROJECT_TIP: 'Enter a project name to search for container logs.',
-  RESOURCE_EVENT_RESOURCE_TYPE_TIP: 'Enter a resource type to search for container logs.',
-  RESOURCE_EVENT_RESOURCE_NAME_TIP: 'Enter a resource name to search for container logs.',
-  RESOURCE_EVENT_MESSAGE_TIP: 'Enter a message to search for resource events.',
-  RESOURCE_EVENT_CATEGORY_TIP: 'Enter a category name to search for container logs.',
-  RESOURCE_EVENT_REASON_TIP: 'Enter a reason to search for container logs.',
-  SEARCH_BY_MESSAGE: 'Search by Message',
-  SEARCH_BY_WORKSPACE: 'Search by Workspace',
-  SEARCH_BY_RESOURCE_TYPE: 'Search by Resource Type',
-  SEARCH_BY_RESOURCE_NAME: 'Search by Resource Name',
-  SEARCH_BY_REASON: 'Search by Reason',
-  SEARCH_BY_CATEGORY: 'Search by Category'
+  RESOURCE_EVENTS_12H: '最近 12 小时资源事件数量',
+  RESOURCE_EVENT_WORKSPACE_TIP: '输入企业空间名称查找资源事件。',
+  RESOURCE_EVENT_PROJECT_TIP: '输入项目名称查找资源事件。',
+  RESOURCE_EVENT_RESOURCE_TYPE_TIP: '输入资源类型查找资源事件。',
+  RESOURCE_EVENT_RESOURCE_NAME_TIP: '输入资源名称查找资源事件。',
+  RESOURCE_EVENT_MESSAGE_TIP: '输入消息查找资源事件。',
+  RESOURCE_EVENT_CATEGORY_TIP: '输入分类名称查找资源事件。',
+  RESOURCE_EVENT_REASON_TIP: '输入原因查找资源事件。',
+  SEARCH_BY_MESSAGE: '按消息搜索',
+  SEARCH_BY_WORKSPACE: '按企业空间搜索',
+  SEARCH_BY_RESOURCE_TYPE: '按资源类型搜索',
+  SEARCH_BY_RESOURCE_NAME: '按资源名称搜索',
+  SEARCH_BY_REASON: '按原因搜索',
+  SEARCH_BY_CATEGORY: '按分类搜索'
 };

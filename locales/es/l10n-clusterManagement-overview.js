@@ -47,7 +47,7 @@ module.exports = {
   // Nodes
   VIEW_MORE: 'Ver más',
   NODE_CPU_UTILISATION: 'ratio de uso de CPU',
-  NODE_LOAD1: 'Average CPU load',
+  NODE_LOAD1: 'Average CPU load (1 min)',
   NODE_MEMORY_UTILISATION: 'ratio de uso de memoria',
   NODE_DISK_SIZE_UTILISATION: 'Disk usage',
   NODE_DISK_INODE_UTILISATION: 'Inode usage',
