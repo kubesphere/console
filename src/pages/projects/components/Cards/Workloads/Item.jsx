@@ -20,6 +20,8 @@ import { get } from 'lodash'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { observer } from 'mobx-react'
+import RevisionStore from 'stores/workload/revision'
 
 import { Text } from 'components/Base'
 import StatusReason from 'projects/components/StatusReason'
@@ -30,6 +32,7 @@ import { getWorkloadStatus } from 'utils/status'
 
 import styles from './index.scss'
 
+@observer
 export default class WorkloadItem extends React.Component {
   static propTypes = {
     className: PropTypes.string,
@@ -42,9 +45,24 @@ export default class WorkloadItem extends React.Component {
     detail: {},
   }
 
-  get showRecord() {
-    const kind = get(this.props.detail, 'module')
-    return !['statefulsets', 'daemonsets'].some(item => item === kind)
+  constructor(props) {
+    super(props)
+
+    this.revisionStore = new RevisionStore(props.detail.module)
+  }
+
+  get curRevision() {
+    const { currentRevision } = this.revisionStore
+
+    return `#${currentRevision}`
+  }
+
+  componentDidMount() {
+    this.fetchData(this.props.detail)
+  }
+
+  fetchData = detail => {
+    this.revisionStore.fetchCurrentRevision(detail)
   }
 
   getDescription(detail) {
@@ -72,11 +90,6 @@ export default class WorkloadItem extends React.Component {
       return null
     }
 
-    const version = get(
-      detail,
-      'annotations["deployment.kubernetes.io/revision"]'
-    )
-
     const kind = get(detail, 'module')
 
     return (
@@ -98,12 +111,7 @@ export default class WorkloadItem extends React.Component {
           title={<WorkloadStatus data={detail} module={detail.module} />}
           description={t('STATUS')}
         />
-        {this.showRecord && (
-          <Text
-            title={version ? `#${version}` : '-'}
-            description={t('REVISION_RECORD')}
-          />
-        )}
+        <Text title={this.curRevision} description={t('REVISION_RECORD')} />
       </div>
     )
   }
