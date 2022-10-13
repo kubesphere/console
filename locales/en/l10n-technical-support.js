@@ -21,7 +21,7 @@ module.exports = {
   TECHNICAL_SUPPORT: 'Technical Support',
   // 想了解更多的云原生技术赋能服务，请联系我们。
   LEARN_MORE_CONTACT_US:
-    'To learn more about cloud-native technology empowerment services, please <a class="action" href="https://kubesphere.cloud/" target="_blank">contact us</a>.',
+    'To learn more about cloud-native technology empowerment services, please <a class="support-action" href="https://kubesphere.cloud/" target="_blank">contact us</a>.',
   //文档
   // DOCUMENTATION: 'Documentation',
   // 中文论坛
