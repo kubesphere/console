@@ -137,11 +137,11 @@ export default function Support() {
               {openButtons.map(item => {
                 return (
                   <a
+                    rel="noopener noreferrer"
+                    target="_blank"
                     className={styles.circleButton}
                     key={item.title}
                     href={item.link}
-                    target={'_blank'}
-                    rel="noopener noreferrer"
                   >
                     {typeof item.icon === 'string' ? (
                       <Icon name={item.icon} size={20} />
@@ -163,7 +163,7 @@ export default function Support() {
             <a
               className={styles.button}
               href={config.github}
-              target={'_blank'}
+              target="_blank"
               rel="noopener noreferrer"
             >
               <Icon name={'github'} size={20} color={{ primary: 'inherit' }} />
@@ -175,7 +175,7 @@ export default function Support() {
             <a
               className={styles.button}
               href={config.githubPr}
-              target={'_blank'}
+              target="_blank"
               rel="noopener noreferrer"
             >
               <Icon name={'git'} size={20} color={{ primary: '#329DCE' }} />
@@ -187,7 +187,7 @@ export default function Support() {
             <a
               className={styles.button}
               href={config.star}
-              target={'_blank'}
+              target="_blank"
               rel="noopener noreferrer"
             >
               <Icon name={'star'} size={20} color={{ primary: '#F5A623' }} />
@@ -198,7 +198,7 @@ export default function Support() {
         <a
           className={styles.ticket}
           href={config.contactUs}
-          target={'_blank'}
+          target="_blank"
           rel="noopener noreferrer"
         >
           <div className={styles.title}>{t('TICKET_SUPPORT')}</div>
@@ -222,7 +222,7 @@ export default function Support() {
           <a
             className={classnames(styles.buttonText, 'support-action')}
             href={config.kse}
-            target={'_blank'}
+            target="_blank"
             rel="noopener noreferrer"
           >
             {t('LEARN_MORE')}
@@ -259,7 +259,7 @@ export default function Support() {
           <a
             className={classnames(styles.buttonText, 'support-action')}
             href={config.ksc}
-            target={'_blank'}
+            target="_blank"
             rel="noopener noreferrer"
           >
             {t('LEARN_MORE')}
