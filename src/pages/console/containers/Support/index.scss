@@ -62,7 +62,8 @@
     display: flex;
     gap: 12px;
 
-    > div {
+    .ticket,
+    .open {
       flex: 1;
       background-color: white;
       box-shadow: 0px 4px 8px rgba(36, 46, 66, 0.06);
@@ -92,8 +93,21 @@
 
           .circleButton {
             &:hover {
-              background-color: $light-color02;
               cursor: pointer;
+              background: $dark-color07;
+              box-shadow: 0px 8px 16px rgba(36, 46, 66, 0.28);
+              border: 1px solid $dark-color07;
+
+              .buttonText {
+                color: white;
+              }
+
+              :global {
+                svg.kubed-icon {
+                  color: rgba(255, 255, 255, 0.9);
+                  fill: rgba(255, 255, 255, 0.4);
+                }
+              }
             }
 
             flex: none;
@@ -152,16 +166,19 @@
         color: $dark-color07;
       }
 
+      &:hover {
+        .link {
+          gap: 12px;
+          fill: $blue-color03;
+          color: $blue-color03;
+        }
+      }
+
       .link {
         display: inline-flex;
         gap: 4px;
         align-items: center;
         @include font();
-
-        &:hover {
-          fill: $blue-color03;
-          color: $blue-color03;
-        }
       }
     }
   }
@@ -311,6 +328,7 @@
           background: #ffffff;
 
           .buttonText {
+            gap: 12px;
             fill: $blue-color03;
             color: $blue-color03;
           }

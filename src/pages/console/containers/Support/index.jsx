@@ -28,8 +28,8 @@ import inspection from 'assets/support-cluster-inspection.svg'
 import ksLight from 'assets/support-kse-light.svg'
 import ksCluster from 'assets/support-kse-cluster.svg'
 import ksSecurity from 'assets/support-kse-security.svg'
-import slack from 'assets/slack_duotone.svg'
-import topic from 'assets/topic_circle_duotone.svg'
+import { ReactComponent as Slack } from 'assets/slack_duotone.svg'
+import { ReactComponent as Topic } from 'assets/topic_circle_duotone.svg'
 import styles from './index.scss'
 
 const config = {
@@ -56,7 +56,7 @@ const openButtons = [
     link: config.doc,
   },
   {
-    icon: topic,
+    icon: Topic,
     title: 'CHINESE_FORUM',
     link: config.forum,
   },
@@ -66,7 +66,7 @@ const openButtons = [
     link: config.issues,
   },
   {
-    icon: slack,
+    icon: Slack,
     title: 'SLACK',
     link: config.slack,
   },
@@ -142,10 +142,15 @@ export default function Support() {
                     href={item.link}
                     target={'_blank'}
                   >
-                    {!item.icon.startsWith('data:image') ? (
+                    {typeof item.icon === 'string' ? (
                       <Icon name={item.icon} size={20} />
                     ) : (
-                      <img src={item.icon} alt="" />
+                      <span className={'icon'}>
+                        <item.icon
+                          className={'kubed-icon kubed-icon-dark'}
+                          style={{ width: 20, height: 20 }}
+                        />
+                      </span>
                     )}
                     <span className={styles.buttonText}>{t(item.title)}</span>
                   </a>
@@ -178,17 +183,17 @@ export default function Support() {
             </a>
           </div>
         </div>
-        <div className={styles.ticket}>
+        <a className={styles.ticket} href={config.contactUs} target={'_blank'}>
           <div className={styles.title}>{t('TICKET_SUPPORT')}</div>
           <div className={styles.desc}>{t('TICKET_SUPPORT_DESC')}</div>
-          <a className={styles.link} href={config.contactUs} target={'_blank'}>
+          <div className={styles.link}>
             <span>{t('CONTACT_US')}</span>
             <Icon
               name={'next'}
               color={{ primary: 'inherit', secondary: 'inherit' }}
             />
-          </a>
-        </div>
+          </div>
+        </a>
       </div>
     )
   }
