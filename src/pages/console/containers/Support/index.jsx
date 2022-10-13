@@ -203,7 +203,7 @@ export default function Support() {
         <div className={classnames(styles.header, styles.headerWithPadding)}>
           <img src={logo} alt={'logo'} />
           <a
-            className={classnames(styles.buttonText, 'action')}
+            className={classnames(styles.buttonText, 'support-action')}
             href={config.kse}
             target={'_blank'}
           >
@@ -239,7 +239,7 @@ export default function Support() {
         <div className={styles.header}>
           <img src={ksc} alt={'ks-cloud'} />
           <a
-            className={classnames(styles.buttonText, 'action')}
+            className={classnames(styles.buttonText, 'support-action')}
             href={config.ksc}
             target={'_blank'}
           >
