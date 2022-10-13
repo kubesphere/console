@@ -175,6 +175,7 @@
       }
 
       .link {
+        //transition: gap 0.3s ease-in;
         display: inline-flex;
         gap: 4px;
         align-items: center;
@@ -319,6 +320,7 @@
           gap: 4px;
           margin-top: 24px;
           margin-bottom: 20px;
+          //transition: gap 0.3s ease-in;
         }
 
         &:hover {
