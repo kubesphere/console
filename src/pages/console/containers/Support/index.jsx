@@ -33,7 +33,7 @@ import { ReactComponent as Topic } from 'assets/topic_circle_duotone.svg'
 import styles from './index.scss'
 
 const config = {
-  github: 'https://github.com/kubesphere',
+  github: 'https://github.com/kubesphere/kubesphere',
   githubPr: 'https://github.com/kubesphere/kubesphere',
   star: 'https://github.com/kubesphere/kubesphere',
   githubFork: 'https://github.com/kubesphere/kubesphere',
@@ -43,7 +43,7 @@ const config = {
   issues: 'https://github.com/kubesphere/kubesphere/issues',
   contactUs: 'https://kubesphere.cloud/en/ticket/',
   kse: 'https://kubesphere.cloud/en/self-service/qkcp/',
-  ksc: 'https://kubesphere.cloud/en/',
+  ksc: 'https://kubesphere.cloud/',
   backup: 'https://kubesphere.cloud/self-service/disaster-recovery/',
   inspection: 'https://kubesphere.cloud/inspection/',
   light: 'https://kubesphere.cloud/lite-cluster/',
