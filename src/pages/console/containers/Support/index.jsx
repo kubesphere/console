@@ -141,6 +141,7 @@ export default function Support() {
                     key={item.title}
                     href={item.link}
                     target={'_blank'}
+                    rel="noopener noreferrer"
                   >
                     {typeof item.icon === 'string' ? (
                       <Icon name={item.icon} size={20} />
@@ -159,7 +160,12 @@ export default function Support() {
             </div>
           </div>
           <div className={styles.buttons}>
-            <a className={styles.button} href={config.github} target={'_blank'}>
+            <a
+              className={styles.button}
+              href={config.github}
+              target={'_blank'}
+              rel="noopener noreferrer"
+            >
               <Icon name={'github'} size={20} color={{ primary: 'inherit' }} />
               <span className={styles.smallButtonText}>
                 {t('REPS_ADDRESS')}
@@ -170,6 +176,7 @@ export default function Support() {
               className={styles.button}
               href={config.githubPr}
               target={'_blank'}
+              rel="noopener noreferrer"
             >
               <Icon name={'git'} size={20} color={{ primary: '#329DCE' }} />
               <span className={styles.smallButtonText}>
@@ -177,13 +184,23 @@ export default function Support() {
               </span>
             </a>
             <Divider />
-            <a className={styles.button} href={config.star} target={'_blank'}>
+            <a
+              className={styles.button}
+              href={config.star}
+              target={'_blank'}
+              rel="noopener noreferrer"
+            >
               <Icon name={'star'} size={20} color={{ primary: '#F5A623' }} />
               <span className={styles.smallButtonText}>{t('GITHUB_STAR')}</span>
             </a>
           </div>
         </div>
-        <a className={styles.ticket} href={config.contactUs} target={'_blank'}>
+        <a
+          className={styles.ticket}
+          href={config.contactUs}
+          target={'_blank'}
+          rel="noopener noreferrer"
+        >
           <div className={styles.title}>{t('TICKET_SUPPORT')}</div>
           <div className={styles.desc}>{t('TICKET_SUPPORT_DESC')}</div>
           <div className={styles.link}>
@@ -206,6 +223,7 @@ export default function Support() {
             className={classnames(styles.buttonText, 'support-action')}
             href={config.kse}
             target={'_blank'}
+            rel="noopener noreferrer"
           >
             {t('LEARN_MORE')}
           </a>
@@ -242,6 +260,7 @@ export default function Support() {
             className={classnames(styles.buttonText, 'support-action')}
             href={config.ksc}
             target={'_blank'}
+            rel="noopener noreferrer"
           >
             {t('LEARN_MORE')}
           </a>
@@ -257,6 +276,7 @@ export default function Support() {
               key={item.title}
               href={item.link}
               target={'_blank'}
+              rel="noopener noreferrer"
             >
               <div>
                 <div className={styles.title}>{t(item.title)}</div>
