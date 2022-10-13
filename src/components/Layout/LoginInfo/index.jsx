@@ -85,7 +85,7 @@ export default class LoginInfo extends Component {
           <Icon name="information" /> {t('ABOUT')}
         </Menu.MenuItem>
         <Menu.MenuItem key="support">
-          <Icon name="message_circle_duo" />
+          <Icon name="message-circle-duotone" />
           {t('TECHNICAL_SUPPORT')}
         </Menu.MenuItem>
       </Menu>
