@@ -34,6 +34,7 @@ module.exports = {
   GPU_LIMIT_SCAP: 'GPU Sınırı',
   REQUEST_EXCEED_WORKSPACE: 'Kaynak istekleri ve sınırları, çalışma alanı kaynak sınırlarını aşamaz.',
   REQUEST_EXCEED_LIMIT: 'Kaynak istekleri, kaynak sınırlarından büyük olamaz.',
+  REQUEST_EXCEED_AVAILABLE_QUOTA: 'Insufficient resources.',
   // Mange > Delete
   DELETE_PROJECT_TIP: 'Enter the project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   // Project Information
