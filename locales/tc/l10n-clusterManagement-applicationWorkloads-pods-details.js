@@ -26,11 +26,14 @@ module.exports = {
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: '容器在目前狀態下不支持即時紀錄，請稍後再試',
   CONTAINER_LOGS: '容器紀錄',
-  // Resource Status > Details > Container Details > Details
+  // Resource Status > Details > Container Details > Attributes
   COMMAND: '命令',
   IMAGE_ID: '鏡像 ID',
   IMAGE_PULL_POLICY: '鏡像拉取策略',
   CONTAINER_DETAILS_PAGE_SCAP: '容器詳情頁。',
+  CPU_VALUE: 'CPU: {value, plural, =1 {1 core} other {# cores}}',
+  MEMORY_VALUE: 'Memory: {value}',
+  NVIDIA_COM_GPU_VALUE: 'GPU: {value}',
   // Resource Status > Details > Container Details > Terminal
   LOADING: '載入中...',
   RESOURCE_LIMITS: '資源限制',

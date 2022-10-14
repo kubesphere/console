@@ -34,6 +34,7 @@ module.exports = {
   GPU_LIMIT_SCAP: 'GPU 限制',
   REQUEST_EXCEED_WORKSPACE: '资源预留和资源限制均不能超过企业空间资源限制。',
   REQUEST_EXCEED_LIMIT: '资源预留不能超过资源限制。',
+  REQUEST_EXCEED_AVAILABLE_QUOTA: '资源不足。',
   // Mange > Delete
   DELETE_PROJECT_TIP: '请输入项目名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
   // Project Information

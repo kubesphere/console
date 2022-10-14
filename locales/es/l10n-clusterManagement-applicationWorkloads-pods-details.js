@@ -26,11 +26,14 @@ module.exports = {
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: 'El contenedor no admite logs en tiempo real en el estado actual, intente nuevamente más tarde.',
   CONTAINER_LOGS: 'Registros de contenedores',
-  // Resource Status > Details > Container Details > Details
+  // Resource Status > Details > Container Details > Attributes
   COMMAND: 'Comando',
   IMAGE_ID: 'ID de imagen',
   IMAGE_PULL_POLICY: 'Política de extracción de imagen',
   CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
+  CPU_VALUE: 'CPU: {value, plural, =1 {1 core} other {# cores}}',
+  MEMORY_VALUE: 'Memory: {value}',
+  NVIDIA_COM_GPU_VALUE: 'GPU: {value}',
   // Resource Status > Details > Container Details > Terminal
   LOADING: 'Cargando',
   RESOURCE_LIMITS: 'Límites de recursos',
