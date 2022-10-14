@@ -26,11 +26,14 @@ module.exports = {
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: 'The container does not support real-time logs currently. Please try again later.',
   CONTAINER_LOGS: 'Container Logs',
-  // Resource Status > Details > Container Details > Details
+  // Resource Status > Details > Container Details > Attributes
   COMMAND: 'Command',
   IMAGE_ID: 'Image ID',
   IMAGE_PULL_POLICY: 'Image Pull Policy',
   CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
+  CPU_VALUE: 'CPU: {value, plural, =1 {1 core} other {# cores}}',
+  MEMORY_VALUE: 'Memory: {value}',
+  NVIDIA_COM_GPU_VALUE: 'GPU: {value}',
   // Resource Status > Details > Container Details > Terminal
   LOADING: 'Loading...',
   RESOURCE_LIMITS: 'Resource Limits',
