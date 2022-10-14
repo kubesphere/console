@@ -22,6 +22,7 @@ import LogQuery from '../containers/LogQuery'
 import EventSearch from '../containers/EventSearch'
 import AuditingSearch from '../containers/AuditingSearch'
 import Bill from '../containers/Bill'
+import Support from '../containers/Support'
 
 export default [
   { path: '/404', component: NotFound, exact: true },
@@ -30,6 +31,7 @@ export default [
   { path: '/eventsearch', exact: true, component: EventSearch },
   { path: '/auditingsearch', exact: true, component: AuditingSearch },
   { path: '/bill', exact: true, component: Bill },
+  { path: '/support', exact: true, component: Support },
   {
     path: '/',
     redirect: { from: '/', to: '/dashboard', exact: true },
