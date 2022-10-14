@@ -77,7 +77,6 @@
       background-image: url('/assets/support-open-about-bg.svg');
       background-repeat: no-repeat;
       background-size: 100% auto;
-      //position: relative;
       display: grid;
       grid-template-rows: 1fr auto;
 
@@ -125,10 +124,6 @@
       }
 
       .buttons {
-        //position: absolute;
-        //bottom: 0;
-        //left: 0;
-        //right: 0;
         padding: 14px 20px;
         background: #f9fbfd;
         display: flex;
@@ -195,21 +190,6 @@
       padding: 20px 20px 0 20px;
     }
 
-    .features {
-      display: flex;
-      gap: 20px;
-
-      .feature {
-        background: #f9fbfd;
-        border-radius: 4px;
-        border: 1px #f9fbfd solid;
-        display: flex;
-        align-items: center;
-        padding: 12px 20px;
-        gap: 12px;
-      }
-    }
-
     .content {
       display: flex;
       gap: 28px;
@@ -241,9 +221,10 @@
         width: 100%;
       }
 
-      & > img {
+      .kseBg {
         flex: none;
-        width: 440px;
+        width: 446px;
+        background: url('/assets/support-kse.svg') no-repeat;
       }
     }
 
@@ -254,19 +235,16 @@
 
     .features {
       overflow: hidden;
+      display: flex;
+      gap: 40px;
 
       .feature {
         overflow: hidden;
-        transition: flex 0.3s ease-in-out;
+        flex: 1 1 0;
 
         .featureTitle {
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
-        }
-
-        &:hover {
-          flex: none;
+          font-weight: 400;
+          word-break: break-word;
         }
       }
     }
@@ -286,31 +264,29 @@
     }
 
     .features {
+      display: flex;
+      gap: 20px;
+
       .feature {
         padding: 0 20px;
         flex: 1 1 0;
         align-items: stretch;
+        border-radius: 4px;
+        border: 1px #f9fbfd solid;
+        background: no-repeat right, 240px 200px, #f9fbfd;
+        //background-size: 240px 200px;
+        word-break: break-word;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
 
         .title {
-          color: $dark-color08;
           margin-top: 20px;
-        }
-
-        > div {
-          flex: auto;
-          word-break: break-word;
-          display: grid;
-          grid-template-rows: auto 1fr auto;
-        }
-
-        > img {
-          flex: none;
-          width: 240px;
         }
 
         .descRow {
           @include font(28px, 14px, 400);
           opacity: 0.7;
+          margin-right: 180px;
         }
 
         .buttonText {
@@ -325,7 +301,7 @@
           border: 1px solid #79879c;
           box-shadow: 0px 4px 8px rgba(36, 46, 66, 0.2);
           border-radius: 4px;
-          background: #ffffff;
+          background-color: #ffffff;
 
           .buttonText {
             gap: 12px;

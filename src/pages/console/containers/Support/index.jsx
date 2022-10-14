@@ -20,11 +20,7 @@ import * as React from 'react'
 import { Icon } from '@kube-design/components'
 import classnames from 'classnames'
 import logo from 'assets/support-ks.svg'
-import kse from 'assets/support-kse.svg'
 import ksc from 'assets/support-ks-cloud.svg'
-import backup from 'assets/support-backup.svg'
-import light from 'assets/support-light-cluster.svg'
-import inspection from 'assets/support-cluster-inspection.svg'
 import ksLight from 'assets/support-kse-light.svg'
 import ksCluster from 'assets/support-kse-cluster.svg'
 import ksSecurity from 'assets/support-kse-security.svg'
@@ -94,7 +90,7 @@ const kscFeatures = [
       'KSC_FEATURE_BACKUP_DATA_DESC',
       'KSC_FEATURE_BACKUP_CLOUD_DESC',
     ],
-    img: backup,
+    img: '/assets/support-backup.svg',
     link: config.backup,
   },
   {
@@ -105,7 +101,7 @@ const kscFeatures = [
       'KSC_FEATURE_INSPECTION_SECURITY_DESC',
       'KSC_FEATURE_INSPECTION_BEST_DESC',
     ],
-    img: inspection,
+    img: '/assets/support-cluster-inspection.svg',
     link: config.inspection,
   },
   {
@@ -117,7 +113,7 @@ const kscFeatures = [
       'KSC_FEATURE_LIGHTWEIGHT_TEST_DESC',
     ],
 
-    img: light,
+    img: '/assets/support-light-cluster.svg',
     link: config.light,
   },
 ]
@@ -245,7 +241,7 @@ export default function Support() {
               ))}
             </div>
           </div>
-          <img src={kse} alt={'kse'} />
+          <div className={styles.kseBg} />
         </div>
       </div>
     )
@@ -277,25 +273,25 @@ export default function Support() {
               href={item.link}
               target={'_blank'}
               rel="noopener noreferrer"
+              style={{
+                backgroundImage: `url("${item.img}")`,
+              }}
             >
+              <div className={styles.title}>{t(item.title)}</div>
               <div>
-                <div className={styles.title}>{t(item.title)}</div>
-                <div>
-                  {item.desc.map((desc, index) => (
-                    <div className={styles.descRow} key={index}>
-                      {t(desc)}
-                    </div>
-                  ))}
-                </div>
-                <div className={styles.buttonText}>
-                  <span>{t('START_NOW')}</span>
-                  <Icon
-                    name={'next'}
-                    color={{ primary: 'inherit', secondary: 'inherit' }}
-                  />
-                </div>
+                {item.desc.map((desc, index) => (
+                  <div className={styles.descRow} key={index}>
+                    {t(desc)}
+                  </div>
+                ))}
               </div>
-              <img src={item.img} alt={item.title} />
+              <div className={styles.buttonText}>
+                <span>{t('START_NOW')}</span>
+                <Icon
+                  name={'next'}
+                  color={{ primary: 'inherit', secondary: 'inherit' }}
+                />
+              </div>
             </a>
           ))}
         </div>
