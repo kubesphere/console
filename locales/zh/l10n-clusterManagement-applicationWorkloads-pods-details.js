@@ -26,11 +26,14 @@ module.exports = {
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: '容器在当前不支持实时日志，请稍后重试。',
   CONTAINER_LOGS: '容器日志',
-  // Resource Status > Details > Container Details > Details
+  // Resource Status > Details > Container Details > Attributes
   COMMAND: '命令',
   IMAGE_ID: '镜像 ID',
   IMAGE_PULL_POLICY: '镜像拉取策略',
   CONTAINER_DETAILS_PAGE_SCAP: '容器详情页。',
+  CPU_VALUE: 'CPU：{value, plural, =1 {1 核} other {# 核}}',
+  MEMORY_VALUE: '内存：{value}',
+  NVIDIA_COM_GPU_VALUE: 'GPU：{value}',
   // Resource Status > Details > Container Details > Terminal
   LOADING: '加载中...',
   RESOURCE_LIMITS: '资源限制',
