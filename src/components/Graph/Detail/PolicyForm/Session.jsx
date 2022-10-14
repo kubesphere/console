@@ -99,7 +99,7 @@ export default class Session extends React.Component {
     this.setState({ value }, () => {
       const { type } = this.state
       if (type === 'httpCookie') {
-        const { parsedValue, status } = parseCookie(value)
+        const { result: parsedValue, status } = parseCookie(value)
         if (status) {
           this.triggerChange({ [type]: parsedValue })
         }
