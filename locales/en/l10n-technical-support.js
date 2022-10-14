@@ -49,37 +49,37 @@ module.exports = {
   // 全生命周期安全防护
   KSE_FEATURE_3: 'Full Lifecycle Security Protection',
   // 了解 KubeSphere Cloud
-  LEARN_MORE_ABOUT_KUBE_SPHERE_CLOUD: 'Learn More About KubeSphere Cloud',
+  LEARN_MORE_ABOUT_KUBE_SPHERE_CLOUD: 'Learn about KubeSphere Cloud',
   // KubeSphere Cloud 围绕 Kubernetes 构建数字化生态，以极高的要求和标准为客户提供一站式的企业级云原生服务与支持，现已有备份容灾、集群巡检、轻量集群等，助力您更便捷高效地管理、保护、交付生产级应用。
   KUBE_SPHERE_CLOUD_DESC:
-    'KubeSphere Cloud builds a digital ecosystem around Kubernetes and provides one-stop enterprise cloud-native services and support to customers with extremely high requirements and standards. It now has backup disaster recovery, cluster inspection, lightweight cluster, etc., to help you manage, protect, and deliver production-level applications more conveniently and efficiently.',
+    'KubeSphere Cloud builds a Kubernetes-centric digital ecosystem to provide customers with all-in-one enterprise-level cloud-native services of high quality. It offers KubeSphere Backup, Inspector, and Lite to help you manage, protect, and deliver production-ready applications more efficiently.',
 
   // 备份容灾
-  KSC_FEATURE_BACKUP: 'Backup Disaster Recovery',
+  KSC_FEATURE_BACKUP: 'KubeSphere Backup',
   // 应用级数据保护
-  KSC_FEATURE_BACKUP_APP_DESC: 'Application-level data protection',
+  KSC_FEATURE_BACKUP_APP_DESC: 'Application-oriented protection',
   // 数据一致性保障
-  KSC_FEATURE_BACKUP_DATA_DESC: 'Data consistency guarantee',
+  KSC_FEATURE_BACKUP_DATA_DESC: 'Assured data consistency',
   // 跨多云统一纳管
-  KSC_FEATURE_BACKUP_CLOUD_DESC: 'Unified management across multiple clouds',
+  KSC_FEATURE_BACKUP_CLOUD_DESC: 'Unified data management',
 
   // 集群巡检
-  KSC_FEATURE_INSPECTION: 'Cluster Inspection',
+  KSC_FEATURE_INSPECTION: 'KubeSphere Inspector',
   // 全面漏洞扫描
-  KSC_FEATURE_INSPECTION_VULN_DESC: 'Comprehensive vulnerability scanning',
+  KSC_FEATURE_INSPECTION_VULN_DESC: 'All-round vulnerability scanning',
   // 系统安全加固
-  KSC_FEATURE_INSPECTION_SECURITY_DESC: 'System security enhancement',
+  KSC_FEATURE_INSPECTION_SECURITY_DESC: 'Enhanced system security',
   // 最佳实践指导
   KSC_FEATURE_INSPECTION_BEST_DESC: 'Best practice guidance',
 
   // 轻量集群
-  KSC_FEATURE_LIGHTWEIGHT: 'Lightweight Cluster',
+  KSC_FEATURE_LIGHTWEIGHT: 'KubeSphere Lite',
   // 极速启用集群
-  KSC_FEATURE_LIGHTWEIGHT_START_DESC: 'Ultra-fast cluster enablement',
+  KSC_FEATURE_LIGHTWEIGHT_START_DESC: 'Cluster startup in seconds',
   // KubeSphere 开箱即用
-  KSC_FEATURE_LIGHTWEIGHT_KS_DESC: 'KubeSphere out of the box',
+  KSC_FEATURE_LIGHTWEIGHT_KS_DESC: 'Out-of-the-box KubeSphere',
   // 满足测试演示场景
-  KSC_FEATURE_LIGHTWEIGHT_TEST_DESC: 'Meet test and demonstration scenarios',
+  KSC_FEATURE_LIGHTWEIGHT_TEST_DESC: 'Ideal for tests and demos',
 
   // 立即使用
   START_NOW: 'Start Now',
