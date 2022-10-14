@@ -26,11 +26,14 @@ module.exports = {
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: 'Kapsayıcı şu anda gerçek zamanlı kayıtları desteklemiyor. Lütfen daha sonra tekrar deneyiniz.',
   CONTAINER_LOGS: 'Konteyner Kayıtları',
-  // Resource Status > Details > Container Details > Details
+  // Resource Status > Details > Container Details > Attributes
   COMMAND: 'Komut',
   IMAGE_ID: 'Resim Kimliği',
   IMAGE_PULL_POLICY: 'Resim Çekme Politikası',
   CONTAINER_DETAILS_PAGE_SCAP: 'Konteyner ayrıntıları sayfası.',
+  CPU_VALUE: 'CPU: {value, plural, =1 {1 core} other {# cores}}',
+  MEMORY_VALUE: 'Memory: {value}',
+  NVIDIA_COM_GPU_VALUE: 'GPU: {value}',
   // Resource Status > Details > Container Details > Terminal
   LOADING: 'Yükleniyor...',
   RESOURCE_LIMITS: 'Özkaynak sınırları',
