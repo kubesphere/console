@@ -319,7 +319,7 @@ export const composeComponent = (...Components) => props => (
 )
 
 export const cpuFormat = (cpu, unit = 'Core') => {
-  if (isUndefined(cpu) || cpu === null) {
+  if (isUndefined(cpu) || cpu === null || cpu === '') {
     return cpu
   }
 
@@ -341,7 +341,7 @@ export const cpuFormat = (cpu, unit = 'Core') => {
 }
 
 export const memoryFormat = (memory, unit = 'Mi') => {
-  if (isUndefined(memory) || memory === null) {
+  if (isUndefined(memory) || memory === null || memory === '') {
     return memory
   }
 
