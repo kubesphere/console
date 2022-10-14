@@ -95,7 +95,9 @@ export default class ContainerDetail extends React.Component {
       resourceType &&
       Object.keys(resourceType)
         .map(key =>
-          t(`${key.toUpperCase()}_VALUE`, { value: resourceType[key] })
+          t(`${key.toUpperCase().replace(/[^A-Z]/g, '_')}_VALUE`, {
+            value: resourceType[key],
+          })
         )
         .join('/')
     )
