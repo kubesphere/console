@@ -97,13 +97,13 @@ export const FLUXCD_APP_TYPES = [
   {
     label: 'HelmRelease',
     value: 'HelmRelease',
-    description: 'Helm应用',
+    description: 'Helm Application',
     icon: 'helm',
   },
   {
     label: 'Kustomization',
     value: 'Kustomization',
-    description: 'Kustomization应用或Kubernetes manifests',
+    description: 'Kustomize or pure kubernetes manifests',
     icon: 'kubernetes',
   },
 ]

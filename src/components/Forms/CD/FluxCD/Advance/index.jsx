@@ -67,7 +67,7 @@ export default class Advance extends React.Component {
     return (
       <Form data={formTemplate} ref={formRef}>
         <div className={styles.wrapper}>
-          <h6>{t('应用类型')}</h6>
+          <h6>{t('TYPE')}</h6>
           <div className={styles.wrapper_item}>
             <Form.Item>
               <TypeSelect
@@ -85,13 +85,13 @@ export default class Advance extends React.Component {
         {this.state.appType === 'HelmRelease' && (
           <div>
             <div className={styles.wrapper}>
-              <h6>{t('应用配置')}</h6>
+              <h6>{t('CONFIGURATION')}</h6>
               <div className={styles.wrapper_item}>
                 <Columns>
                   <Column>
                     <Form.Item
                       label={t('Chart')}
-                      desc={t('Helm Chart的名称或路径')}
+                      desc={t('The name or path of the Helm Chart')}
                       rules={[{ required: true }]}
                     >
                       <Input name="config.helmRelease.chart.chart" />
@@ -99,16 +99,20 @@ export default class Advance extends React.Component {
                   </Column>
                   <Column>
                     <Form.Item
-                      label={t('值文件')}
-                      desc={t('多个值文件请用分号分隔')}
+                      label={t('ValuesFiles')}
+                      desc={t(
+                        'list of values files to use as the chart values'
+                      )}
                     >
                       <Input name="config.helmRelease.chart.valuesFiles" />
                     </Form.Item>
                   </Column>
                   <Column>
                     <Form.Item
-                      label={t('保存为模版')}
-                      desc={t('模版包含Chart、值文件等配置，可以重复使用')}
+                      label={t('Save Template')}
+                      desc={t(
+                        'Template is a reusable module includes Chart, ValuesFiles and so on'
+                      )}
                     >
                       <Toggle
                         name="metadata.labels['gitops.kubesphere.io/save-helm-template']"
@@ -126,7 +130,7 @@ export default class Advance extends React.Component {
               </div>
             </div>
             <div className={styles.wrapper}>
-              <h6>{t('部署配置')}</h6>
+              <h6>{t('DEPLOYMENTS')}</h6>
               <div className={styles.wrapper_item}>
                 <h5>{t('DEPLOY_LOCATION')}</h5>
                 <Form.Item
@@ -148,7 +152,7 @@ export default class Advance extends React.Component {
                 <Columns>
                   <Column>
                     <Form.Item
-                      label={t('键值对')}
+                      label={t('Values')}
                       desc={t('Values holds the values for this Helm release.')}
                     >
                       <Input name="config.helmRelease.values" />
@@ -156,7 +160,7 @@ export default class Advance extends React.Component {
                   </Column>
                   <Column>
                     <Form.Item
-                      label={t('值引用')}
+                      label={t('ValuesFrom')}
                       desc={
                         <div>
                           <Dropdown
@@ -183,17 +187,21 @@ export default class Advance extends React.Component {
                   </Column>
                 </Columns>
                 <Collapse accordion>
-                  <Collapse.CollapseItem label="高级配置" key="advance">
+                  <Collapse.CollapseItem
+                    label={t('ADVANCED_SETTINGS')}
+                    key="advance"
+                  >
                     <Tabs
                       type="button"
                       activeName={this.state.tabName}
                       onChange={this.handleTabChange}
                       defaultActiveName={'Interval'}
                     >
-                      <TabPanel label="同步时间间隔" name="Interval">
+                      <TabPanel label={t('SYNC_INTERVAL')} name="Interval">
                         <Form.Item
-                          label={t('')}
-                          desc={t('同步时间间隔，默认10m')}
+                          desc={t(
+                            'Interval at which to reconcile the Helm release'
+                          )}
                         >
                           <Input
                             name="config.helmRelease.interval"
@@ -201,20 +209,19 @@ export default class Advance extends React.Component {
                           />
                         </Form.Item>
                       </TabPanel>
-                      <TabPanel label="发布名称" name="ReleaseName">
+                      <TabPanel label={t('RELEASE_NAME')} name="ReleaseName">
                         <Form.Item
-                          label={t('')}
-                          desc={t('ReleaseName used for the Helm release.')}
+                          desc={t('ReleaseName used for the Helm release')}
                         >
                           <Input name="config.helmRelease.releaseName" />
                         </Form.Item>
                       </TabPanel>
-                      <TabPanel label="存储名称空间" name="StorageNamespace">
+                      <TabPanel
+                        label={t('StorageNamespace')}
+                        name="StorageNamespace"
+                      >
                         <Form.Item
-                          label={t('')}
-                          desc={t(
-                            'StorageNamespace used for the Helm storage.'
-                          )}
+                          desc={t('StorageNamespace used for the Helm storage')}
                         >
                           <Input
                             name="config.helmRelease.storageNamespace"
@@ -222,41 +229,37 @@ export default class Advance extends React.Component {
                           />
                         </Form.Item>
                       </TabPanel>
-                      <TabPanel label="安装配置" name="Install">
+                      <TabPanel label={t('INSTALL')} name="Install">
                         <Form.Item
-                          label={t('')}
                           desc={t(
-                            'Install holds the configuration for Helm install actions for this HelmRelease.'
+                            'Install holds the configuration for Helm install actions for this HelmRelease'
                           )}
                         >
                           <Input name="config.helmRelease.install" />
                         </Form.Item>
                       </TabPanel>
-                      <TabPanel label="更新配置" name="Upgrade">
+                      <TabPanel label={t('UPDATE')} name="Upgrade">
                         <Form.Item
-                          label={t('')}
                           desc={t(
-                            'Upgrade holds the configuration for Helm upgrade actions for this HelmRelease.'
+                            'Upgrade holds the configuration for Helm upgrade actions for this HelmRelease'
                           )}
                         >
                           <Input name="config.helmRelease.upgrade" />
                         </Form.Item>
                       </TabPanel>
-                      <TabPanel label="测试配置" name="Test">
+                      <TabPanel label={t('TEST')} name="Test">
                         <Form.Item
-                          label={t('')}
                           desc={t(
-                            'Test holds the configuration for Helm test actions for this HelmRelease.'
+                            'Test holds the configuration for Helm test actions for this HelmRelease'
                           )}
                         >
                           <Input name="config.helmRelease.test" />
                         </Form.Item>
                       </TabPanel>
-                      <TabPanel label="回滚配置" name="Rollback">
+                      <TabPanel label={t('ROLL_BACK')} name="Rollback">
                         <Form.Item
-                          label={t('')}
                           desc={t(
-                            'Rollback holds the configuration for Helm rollback actions for this HelmRelease.'
+                            'Rollback holds the configuration for Helm rollback actions for this HelmRelease'
                           )}
                         >
                           <Input name="config.helmRelease.rollback" />
@@ -272,13 +275,15 @@ export default class Advance extends React.Component {
         {this.state.appType === 'Kustomization' && (
           <div>
             <div className={styles.wrapper}>
-              <h6>{t('应用配置')}</h6>
+              <h6>{t('CONFIGURATION')}</h6>
               <div className={styles.wrapper_item}>
                 <Columns>
                   <Column>
                     <Form.Item
-                      label={t('路径')}
-                      desc={t('清单文件相对于仓库根目录的路径')}
+                      label={t('PATH')}
+                      desc={t(
+                        'Path to the directory containing the kustomization.yaml file'
+                      )}
                       rules={[
                         {
                           required: true,
@@ -290,8 +295,10 @@ export default class Advance extends React.Component {
                   </Column>
                   <Column>
                     <Form.Item
-                      label={t('同步时间间隔')}
-                      desc={t('同步时间间隔，默认10m')}
+                      label={t('SYNC_INTERVAL')}
+                      desc={t(
+                        'The interval at which to reconcile the Kustomization'
+                      )}
                     >
                       <Input
                         name="config.kustomization.interval"
