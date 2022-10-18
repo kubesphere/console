@@ -53,7 +53,7 @@ const openButtons = [
   },
   {
     icon: Topic,
-    title: 'CHINESE_FORUM',
+    title: 'FORUM',
     link: config.forum,
   },
   {
@@ -227,10 +227,10 @@ export default function Support() {
         <div className={styles.content}>
           <div>
             <div className={styles.title}>
-              {t('LEARN_MORE_ABOUT_KUBE_SPHERE_ENTERPRISE_EDITION')}
+              {t('KUBESPHERE_ENTERPRISE_CAPTION')}
             </div>
             <div className={styles.desc}>
-              {t('KUBE_SPHERE_ENTERPRISE_EDITION_DESC')}
+              {t('KUBE_SPHERE_ENTERPRISE_DESC')}
             </div>
             <div className={styles.features}>
               {kseFeatures.map(item => (
@@ -261,10 +261,8 @@ export default function Support() {
             {t('LEARN_MORE')}
           </a>
         </div>
-        <div className={styles.title}>
-          {t('LEARN_MORE_ABOUT_KUBE_SPHERE_CLOUD')}
-        </div>
-        <div className={styles.desc}>{t('KUBE_SPHERE_CLOUD_DESC')}</div>
+        <div className={styles.title}>{t('KUBESPHERE_CLOUD_CAPTION')}</div>
+        <div className={styles.desc}>{t('KUBESPHERE_CLOUD_DESC')}</div>
         <div className={styles.features}>
           {kscFeatures.map(item => (
             <a
