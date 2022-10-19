@@ -19,8 +19,8 @@ module.exports = {
   // Banner
   ALERTING_POLICY_PL: '告警策略',
   ALERTING_POLICY_DESC: 'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '如何觸發告警訊息？',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A: '您需要對資源設置告警策略，當資源的某項指標達到告警策略的閥值後即會觸發告警訊息。',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerts generated?',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'You need to set an alerting policy for a resource. Alerts will be generated when the metric configured in the alerting policy reaches a threshold.',
   // List
   ALERTING_POLICY_EMPTY_DESC: '請創建一個告警規則。',
   ALERT_RULE_INACTIVE: '未觸發',
@@ -38,7 +38,7 @@ module.exports = {
   INVALID_TIME_DESC: 'Invalid value. Please enter 0 or a positive integer.',
   ALIAS: '別名',
   DURATION_MIN: 'Duration (minutes)',
-  ALERT_DURATION: 'When the alert situation persists longer than the value of this parameter, the system starts to send alerting messages to users.',
+  ALERT_DURATION: 'When the alert situation persists longer than the value of this parameter, the system starts to send alerts to users.',
   LONG_NAME_DESC: '最長 253 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
   NAME_EXIST_DESC: '名稱已存在',
   // List > Create > Rule Settings > Rule Template
@@ -80,7 +80,7 @@ module.exports = {
   ALERT_LABELS: '標籤',
   ALERT_RATE_RANGES: 'Rate Ranges',
   // List > Create > Message Settings
-  ALERTING_MESSAGE: 'Alerting Message',
+  ALERTING_MESSAGE: 'Alert',
   MESSAGE_SETTINGS: '訊息設置',
   NOTIFICATION_SUMMARY: '概括',
   NOTIFICATION_DETAILS: '詳情',
