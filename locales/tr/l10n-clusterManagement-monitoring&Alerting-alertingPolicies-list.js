@@ -19,8 +19,8 @@ module.exports = {
   // Banner
   ALERTING_POLICY_PL: 'Uyarı Politikaları',
   ALERTING_POLICY_DESC: 'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'Alarm mesajları nasıl üretilir?',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'Bir kaynak için bir uyarı politikası belirlemeniz gerekir. Uyarı politikasında yapılandırılan ölçüm bir eşiğe ulaştığında uyarı mesajları oluşturulur.',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerts generated?',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'You need to set an alerting policy for a resource. Alerts will be generated when the metric configured in the alerting policy reaches a threshold.',
   // List
   ALERTING_POLICY_EMPTY_DESC: 'Lütfen bir uyarı politikası oluşturun.',
   ALERT_RULE_INACTIVE: 'İnaktif',
@@ -38,7 +38,7 @@ module.exports = {
   INVALID_TIME_DESC: 'Invalid value. Please enter 0 or a positive integer.',
   ALIAS: 'Takma ad',
   DURATION_MIN: 'Duration (minutes)',
-  ALERT_DURATION: 'When the alert situation persists longer than the value of this parameter, the system starts to send alerting messages to users.',
+  ALERT_DURATION: 'When the alert situation persists longer than the value of this parameter, the system starts to send alerts to users.',
   LONG_NAME_DESC: 'İsim yanlızda küçük harfler, sayılar ve kısa çizgiler(-) içerebilir ve küçük harf ve sayı ile başlayıp bitmelidir. Maksimum 253 karakter olabilir.',
   NAME_EXIST_DESC: 'Ad zaten var. Lütfen başka bir ad girin.',
   // List > Create > Rule Settings > Rule Template
@@ -80,7 +80,7 @@ module.exports = {
   ALERT_LABELS: 'Etiketler',
   ALERT_RATE_RANGES: 'Rate Ranges',
   // List > Create > Message Settings
-  ALERTING_MESSAGE: 'Alerting Message',
+  ALERTING_MESSAGE: 'Alert',
   MESSAGE_SETTINGS: 'Mesaj Ayarları',
   NOTIFICATION_SUMMARY: 'Özet',
   NOTIFICATION_DETAILS: 'Detaylar',
