@@ -19,8 +19,8 @@ module.exports = {
   // Banner
   ALERTING_POLICY_PL: '告警策略',
   ALERTING_POLICY_DESC: '告警策略是用于监控集群资源的一系列条件，您可以创建告警策略对资源进行监控。',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '如何触发告警消息？',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A: '您需要对资源设置告警策略，当资源的某项指标达到告警策略的阈值后即会触发告警消息。',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '告警是如何产生的？',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A: '您需要对资源设置告警策略，当资源的某项指标达到告警策略的阈值后即会触发告警。',
   // List
   ALERTING_POLICY_EMPTY_DESC: '请创建一个告警规则。',
   ALERT_RULE_INACTIVE: '未激活',
@@ -38,7 +38,7 @@ module.exports = {
   INVALID_TIME_DESC: '数值无效，请输入 0 或正整数。',
   ALIAS: '别名',
   DURATION_MIN: '持续时间（分钟）',
-  ALERT_DURATION: '当告警状况持续时间超过此参数值时，系统将开始向用户发送告警消息。',
+  ALERT_DURATION: '当告警状况持续时间超过此参数值时，系统将开始向用户发送告警。',
   LONG_NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
   NAME_EXIST_DESC: '名称已存在，请输入其他名称。',
   // List > Create > Rule Settings > Rule Template
@@ -80,7 +80,7 @@ module.exports = {
   ALERT_LABELS: '标签',
   ALERT_RATE_RANGES: '比率范围',
   // List > Create > Message Settings
-  ALERTING_MESSAGE: '告警消息',
+  ALERTING_MESSAGE: '警告',
   MESSAGE_SETTINGS: '消息设置',
   NOTIFICATION_SUMMARY: '概括',
   NOTIFICATION_DETAILS: '详情',
