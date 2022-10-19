@@ -56,6 +56,16 @@ export default class Overview extends React.Component {
     })
   }
 
+  get editPromission() {
+    const cluster = this.props.match.params.cluster
+    const clusterSettings = get(
+      globals,
+      `user.clusterRules.${cluster}.cluster-settings`,
+      []
+    )
+    return clusterSettings.includes('manage')
+  }
+
   get tips() {
     return [
       {
@@ -175,12 +185,11 @@ export default class Overview extends React.Component {
               }
               description={t('CLUSTER_VISIBILITY_SCAP')}
             />
-            {globals.app.isMultiCluster &&
-              this.clusterRules.includes('manage') && (
-                <Button onClick={this.editVisibility}>
-                  {t('EDIT_VISIBILITY')}
-                </Button>
-              )}
+            {globals.app.isMultiCluster && this.editPromission && (
+              <Button onClick={this.editVisibility}>
+                {t('EDIT_VISIBILITY')}
+              </Button>
+            )}
           </div>
           {this.renderVisibility()}
         </Panel>
