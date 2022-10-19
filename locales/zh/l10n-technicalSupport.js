@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  TECHNICAL_SUPPORT: 'Technical Support',
+  TECHNICAL_SUPPORT: '技术支持',
   LEARN_MORE_CONTACT_US: 'For more cloud-native technology empowerment services, please <a class="support-action" href="https://kubesphere.cloud/" target="_blank">Contact Us</a>.',
   // Community Support
   COMMUNITY_SUPPORT: 'Community Support',
