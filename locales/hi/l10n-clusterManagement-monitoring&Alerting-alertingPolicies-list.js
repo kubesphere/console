@@ -19,8 +19,8 @@ module.exports = {
   // Banner
   ALERTING_POLICY_PL: 'Alerting Policies',
   ALERTING_POLICY_DESC: 'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerting messages generated?',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'You need to set an alerting policy for a resource. Alerting messages will be generated when the metric configured in the alerting policy reaches a threshold.',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerts generated?',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'You need to set an alerting policy for a resource. Alerts will be generated when the metric configured in the alerting policy reaches a threshold.',
   // List
   ALERTING_POLICY_EMPTY_DESC: 'Please create an alerting policy.',
   ALERT_RULE_INACTIVE: 'Inactive',
@@ -38,7 +38,7 @@ module.exports = {
   INVALID_TIME_DESC: 'Invalid value. Please enter 0 or a positive integer.',
   ALIAS: 'Alias',
   DURATION_MIN: 'Duration (minutes)',
-  ALERT_DURATION: 'When the alert situation persists longer than the value of this parameter, the system starts to send alerting messages to users.',
+  ALERT_DURATION: 'When the alert situation persists longer than the value of this parameter, the system starts to send alerts to users.',
   LONG_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 253 characters.',
   NAME_EXIST_DESC: 'The name already exists. Please enter another name.',
   // List > Create > Rule Settings > Rule Template
@@ -80,7 +80,7 @@ module.exports = {
   ALERT_LABELS: 'Labels',
   ALERT_RATE_RANGES: 'Rate Ranges',
   // List > Create > Message Settings
-  ALERTING_MESSAGE: 'Alerting Message',
+  ALERTING_MESSAGE: 'Alert',
   MESSAGE_SETTINGS: 'Message Settings',
   NOTIFICATION_SUMMARY: 'Summary',
   NOTIFICATION_DETAILS: 'Details',
