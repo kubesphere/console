@@ -695,9 +695,6 @@ const getCDTemplate = () => ({
   kind: 'Application',
   apiVersion: 'gitops.kubesphere.io/v1alpha1',
   metadata: {},
-  spec: {
-    kind: 'argo-project',
-  },
 })
 
 const getCodeRepoTemplate = ({ namespace }) => ({
