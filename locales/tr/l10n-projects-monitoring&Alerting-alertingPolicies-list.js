@@ -17,9 +17,9 @@
  */
 module.exports = {
   // Banner
-  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'Bir uyarı politikası tetiklenirse uyarı mesajlarını nasıl alırım?',
+  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'How do I receive alerts if an alerting policy is triggered?',
   REQUESTS_FOR_PUSH_AN_ALARM_A: 'Platform yöneticisinin bir bildirim yöntemi seçmesi ve yönteme karşılık gelen sunucuyu yapılandırması gerekir.',
-  HOW_TO_SUPRESS_AN_ALARM_Q: 'Uyarı mesajlarını nasıl bastırırım?',
+  HOW_TO_SUPRESS_AN_ALARM_Q: 'How do I suppress alerts?',
   HOW_TO_SUPRESS_AN_ALARM_A: 'Uyarı ilkelerini farklı düzeylerde ayarlayabilirsiniz. Her seviye bir uyarı aralığına karşılık gelir.',
   // List
   // List > Create > Basic Information
