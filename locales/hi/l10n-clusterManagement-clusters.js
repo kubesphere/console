@@ -26,8 +26,8 @@ module.exports = {
   CLUSTER_PROVIDER_DESC: 'Select the provider of the cluster infrastructure.',
   // Add Cluster > Connection Settings
   CONNECTION_SETTINGS: 'Connection Settings',
-  CONNECTION_METHOD: 'Connection Mode',
-  CLUSTER_CONNECT_METHOD_DESC: 'Directly connect to the cluster or use an agent.',
+  CONNECTION_MODE: 'Connection Mode',
+  CLUSTER_CONNECT_MODE_DESC: 'Directly connect to the cluster or use an agent.',
   CONNTECT_DIRECT: 'Direct connection',
   CONNTECT_PROXY: 'Agent connection',
   INPUT_KUBECONFIG: 'Member Cluster kubeconfig',
