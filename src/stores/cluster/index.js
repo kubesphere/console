@@ -54,9 +54,7 @@ export default class ClusterStore extends Base {
     `kapis/cluster.kubesphere.io/v1alpha1/clusters/${cluster}/agent/deployment`
 
   getTenantUrl = (params = {}) =>
-    `kapis/resources.kubesphere.io/v1alpha3${this.getPath(params)}/${
-      this.module
-    }`
+    `kapis/tenant.kubesphere.io/v1alpha2${this.getPath(params)}/${this.module}`
 
   @action
   async fetchList({ from, more, ...params } = {}) {
@@ -114,7 +112,29 @@ export default class ClusterStore extends Base {
     if (!globals.app.isMultiCluster) {
       result = { items: [DEFAULT_CLUSTER] }
     } else {
-      result = await request.get(this.getTenantUrl({}), params)
+      const tenantParams = {
+        ...params,
+        labelSelector: `${
+          params.labelSelector ? `${params.labelSelector},` : ''
+        }cluster.kubesphere.io/visibility!=public`,
+      }
+
+      const resourceParams = {
+        ...params,
+        labelSelector: `${
+          params.labelSelector ? `${params.labelSelector},` : ''
+        }cluster.kubesphere.io/visibility=public`,
+      }
+
+      const [tenantList, list] = await Promise.all([
+        request.get(this.getTenantUrl({}), tenantParams),
+        request.get(this.getResourceUrl({}), resourceParams),
+      ])
+
+      result = {
+        items: [...list.items, ...tenantList.items],
+        totalItems: tenantList.totalItems + list.totalItems,
+      }
     }
 
     const data = get(result, 'items', []).map(this.mapper)
@@ -129,7 +149,7 @@ export default class ClusterStore extends Base {
       ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     })
 
-    return data
+    // return data
   }
 
   @action

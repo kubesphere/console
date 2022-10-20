@@ -49,7 +49,6 @@ export default class ClusterSettings extends Component {
     } else {
       await this.clusterStore.fetchGrantedList({
         limit: -1,
-        labelSelector: 'cluster.kubesphere.io/visibility=public',
       })
     }
 
