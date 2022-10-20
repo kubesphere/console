@@ -17,9 +17,9 @@
  */
 module.exports = {
   // Banner
-  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'How do I receive alerting messages if an alerting policy is triggered?',
+  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'How do I receive alerts if an alerting policy is triggered?',
   REQUESTS_FOR_PUSH_AN_ALARM_A: 'The platform administrator needs to select a notification method and configure the server corresponding to the method.',
-  HOW_TO_SUPRESS_AN_ALARM_Q: 'How do I suppress alerting messages?',
+  HOW_TO_SUPRESS_AN_ALARM_Q: 'How do I suppress alerts?',
   HOW_TO_SUPRESS_AN_ALARM_A: 'You can set alerting policies at different levels. Each level corresponds to an alerting interval.',
   // List
   // List > Create > Basic Information
