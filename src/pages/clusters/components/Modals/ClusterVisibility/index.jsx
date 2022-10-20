@@ -202,16 +202,19 @@ export default class ClusterVisibility extends React.Component {
                     />
                   ))}
                 </div>
-                <div className={styles.footer}>
-                  <Toggle
-                    checked={isPublic}
-                    onChange={this.handlePublicChange}
-                  />
-                  <span>{t('SET_PUBLIC_CLUSTER')}</span>
-                  <Tooltip content={t('CLUSTER_VISIBILITY_A2')}>
-                    <Icon name="information" />
-                  </Tooltip>
-                </div>
+
+                {globals.user.globalrole === 'platform-admin' && (
+                  <div className={styles.footer}>
+                    <Toggle
+                      checked={isPublic}
+                      onChange={this.handlePublicChange}
+                    />
+                    <span>{t('SET_PUBLIC_CLUSTER')}</span>
+                    <Tooltip content={t('CLUSTER_VISIBILITY_A2')}>
+                      <Icon name="information" />
+                    </Tooltip>
+                  </div>
+                )}
               </div>
             </Column>
             <Column>
