@@ -26,8 +26,8 @@ module.exports = {
   CLUSTER_PROVIDER_DESC: 'Küme altyapısının sağlayıcısını seçin.',
   // Add Cluster > Connection Settings
   CONNECTION_SETTINGS: 'Connection Settings',
-  CONNECTION_METHOD: 'Connection Mode',
-  CLUSTER_CONNECT_METHOD_DESC: 'Doğrudan kümeye bağlanın veya bir aracı kullanın.',
+  CONNECTION_MODE: 'Connection Mode',
+  CLUSTER_CONNECT_MODE_DESC: 'Directly connect to the cluster or use an agent.',
   CONNTECT_DIRECT: 'Direk Bağlantı',
   CONNTECT_PROXY: 'Ajan bağlantısı',
   INPUT_KUBECONFIG: 'Member Cluster kubeconfig',
