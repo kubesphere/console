@@ -26,8 +26,8 @@ module.exports = {
   CLUSTER_PROVIDER_DESC: '選擇提供集群基礎設施的服務商。',
   // Add Cluster > Connection Settings
   CONNECTION_SETTINGS: 'Connection Settings',
-  CONNECTION_METHOD: 'Connection Mode',
-  CLUSTER_CONNECT_METHOD_DESC: '可以直接連接集群或者使用代理',
+  CONNECTION_MODE: 'Connection Mode',
+  CLUSTER_CONNECT_MODE_DESC: 'Directly connect to the cluster or use an agent.',
   CONNTECT_DIRECT: '直接連接Kubernetes集群',
   CONNTECT_PROXY: '集群連接代理',
   INPUT_KUBECONFIG: 'Member Cluster kubeconfig',
