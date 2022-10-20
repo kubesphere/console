@@ -73,7 +73,7 @@ class Clusters extends React.Component {
   }
 
   fetchData = (params = {}) => {
-    this.store.fetchGrantedList({
+    this.store.fetchListByUser({
       ...params,
       limit: 10,
       labelSelector: '!cluster-role.kubesphere.io/host',
@@ -81,7 +81,7 @@ class Clusters extends React.Component {
   }
 
   fetchHostData = (params = {}) => {
-    this.hostStore.fetchGrantedList({
+    this.hostStore.fetchListByUser({
       ...params,
       labelSelector: 'cluster-role.kubesphere.io/host=',
       limit: -1,
