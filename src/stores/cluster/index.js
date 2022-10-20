@@ -93,6 +93,7 @@ export default class ClusterStore extends Base {
     return data
   }
 
+  // Whether the current user has permission to access the cluster to which he belongs and the public cluster in the worksspace
   @action
   async fetchGrantedList({ from, more, ...params } = {}) {
     this.list.isLoading = true
@@ -150,6 +151,43 @@ export default class ClusterStore extends Base {
     })
 
     // return data
+  }
+
+  @action
+  async fetchListByUser({ from, more, ...params } = {}) {
+    this.list.isLoading = true
+
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
+    }
+
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
+    }
+
+    params.limit = params.limit || 10
+
+    let result
+    if (!globals.app.isMultiCluster) {
+      result = { items: [DEFAULT_CLUSTER] }
+    } else {
+      result = await request.get(this.getTenantUrl({}), params)
+    }
+
+    const data = get(result, 'items', []).map(this.mapper)
+
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
+
+    return data
   }
 
   @action
