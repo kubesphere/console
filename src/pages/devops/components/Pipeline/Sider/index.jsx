@@ -197,7 +197,7 @@ export default class Sider extends React.Component {
 
   render() {
     const { activeStage, jsonData } = this.props.store
-    const { pipeline } = jsonData.json
+    const { pipeline = {} } = jsonData.json
     const { isSubmitting } = this.props
 
     return (

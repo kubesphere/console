@@ -420,7 +420,7 @@ export default class ResourceLimit extends React.Component {
     }
 
     // pass gpu input config into limits and requests field
-    if (gpu.type) {
+    if (!!gpu.type && !!gpu.value) {
       set(result, 'limits', { ...result.limits, [`${gpu.type}`]: gpu.value })
       set(result, 'requests', {
         ...result.requests,
