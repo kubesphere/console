@@ -408,15 +408,19 @@ export default class ResourceLimit extends React.Component {
       set(result, 'requests.memory', `${requests.memory}${memoryUnit}`)
     }
 
-    if (limits.cpu > 0 && limits.cpu < Infinity) {
+    if (limits.cpu !== '' && limits.cpu >= 0 && limits.cpu < Infinity) {
       set(result, 'limits.cpu', `${limits.cpu}${cpuUnit}`)
     }
-    if (limits.memory > 0 && limits.memory < Infinity) {
+    if (
+      limits.memory !== '' &&
+      limits.memory >= 0 &&
+      limits.memory < Infinity
+    ) {
       set(result, 'limits.memory', `${limits.memory}${memoryUnit}`)
     }
 
     // pass gpu input config into limits and requests field
-    if (!!gpu.type && !!gpu.value) {
+    if (gpu.type) {
       set(result, 'limits', { ...result.limits, [`${gpu.type}`]: gpu.value })
       set(result, 'requests', {
         ...result.requests,
@@ -437,7 +441,7 @@ export default class ResourceLimit extends React.Component {
     this.setState(
       ({ requests, limits }) => ({
         requests: { ...requests, cpu: value[0] === 0 ? '' : value[0] },
-        limits: { ...limits, cpu: value[1] },
+        limits: { ...limits, cpu: value[1] === 0 ? '' : value[1] },
       }),
       this.checkAndTrigger
     )
@@ -447,7 +451,7 @@ export default class ResourceLimit extends React.Component {
     this.setState(
       ({ requests, limits }) => ({
         requests: { ...requests, memory: value[0] === 0 ? '' : value[0] },
-        limits: { ...limits, memory: value[1] },
+        limits: { ...limits, memory: value[1] === 0 ? '' : value[1] },
       }),
       this.checkAndTrigger
     )
