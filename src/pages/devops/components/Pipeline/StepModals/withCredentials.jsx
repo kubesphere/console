@@ -40,6 +40,7 @@ const typesDict = {
   username_password: 'usernamePassword',
   ssh: 'sshUserPrivateKey',
   kubeconfig: 'kubeconfigContent',
+  kubeconfigFile: 'kubeconfigFile',
 }
 
 const setCredentialType = str => {
@@ -48,8 +49,8 @@ const setCredentialType = str => {
   if (type) {
     const credentialType = Object.entries(typesDict).find(
       typeArr => typeArr[1] === type
-    )[0]
-    return credentialType
+    )
+    return credentialType ? credentialType[0] : null
   }
   return null
 }
@@ -159,6 +160,12 @@ export default class WithCredentials extends React.Component {
       case 'kubeconfig':
         return (
           <Form.Item label={t('Kubeconfig Variable')}>
+            <Input name="variable" />
+          </Form.Item>
+        )
+      case 'kubeconfigFile':
+        return (
+          <Form.Item label={t('KubeconfigFile Variable')}>
             <Input name="variable" />
           </Form.Item>
         )
