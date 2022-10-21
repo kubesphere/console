@@ -150,11 +150,12 @@ export default class Pipeline extends React.Component {
     this.getData()
   }
 
-  handleRunning = debounce(() => {
+  handleRunning = debounce(async () => {
+    const { params } = this.props.match
+    await this.store.fetchDetail(params)
     const { detail } = this.store
     const isMultibranch = !isEmpty(toJS(detail.branchNames))
     const hasParameters = !isEmpty(toJS(detail.parameters))
-    const { params } = this.props.match
 
     if (isMultibranch || hasParameters) {
       this.trigger('pipeline.params', {
