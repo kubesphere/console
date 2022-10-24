@@ -16,30 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getIndexRoute } from 'utils/router.config'
-import { isArgo } from 'utils/devops'
+import BaseInfo from 'components/Forms/CD/BaseInfo'
+import Advance from 'components/Forms/CD/FluxCD/Advance'
 
-import SyncStatus from './SyncStatus'
-import FluxApp from './FluxApp'
-
-const PATH = '/:workspace/clusters/:cluster/devops/:devops/cd/:cd'
-
-export default isArgo
-  ? [
-      {
-        path: `${PATH}/syncStatus`,
-        title: 'SYNC_STATUS',
-        component: SyncStatus,
-      },
-
-      getIndexRoute({ path: PATH, to: `${PATH}/syncStatus`, exact: true }),
-    ]
-  : [
-      {
-        path: `${PATH}/fluxApp`,
-        title: '应用详情',
-        component: FluxApp,
-      },
-
-      getIndexRoute({ path: PATH, to: `${PATH}/fluxApp`, exact: true }),
-    ]
+export const FLUXCD_FORM = [
+  {
+    title: 'BASIC_INFORMATION',
+    component: BaseInfo,
+    required: true,
+  },
+  {
+    title: 'DEPLOYMENT_SETTINGS',
+    component: Advance,
+    required: true,
+    icon: 'rocket',
+  },
+]

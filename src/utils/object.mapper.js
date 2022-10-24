@@ -1376,6 +1376,22 @@ const CDSMapper = item => {
     })
   }
 
+  // fluxcd
+  const fluxAppType = get(item, 'metadata.labels.["gitops.kubepshere.io/type"]')
+  const fluxAppReadyNum = get(
+    item,
+    'metadata.labels.["gitops.kubesphere.io/ready-number"]'
+  )
+  const fluxLastRevision = get(
+    item,
+    'metadata.annotations.["gitops.kubesphere.io/last-revision"]'
+  )
+  const fluxApp = get(item, 'spec.fluxApp', {})
+  const fluxSource = get(fluxApp, 'spec.source.sourceRef')
+  const fluxStatus = get(item, 'status.fluxApp', {})
+  const fluxHelmReleaseStatus = get(fluxStatus, 'helmReleaseStatus', {})
+  const fluxKustomizationStatus = get(fluxStatus, 'kustomizationStatus', {})
+
   return {
     ...getBaseInfo(item),
     syncStatus,
@@ -1387,6 +1403,12 @@ const CDSMapper = item => {
     operation,
     syncType,
     syncOptions: _syncOptions,
+    fluxAppType,
+    fluxAppReadyNum,
+    fluxLastRevision,
+    fluxSource,
+    fluxHelmReleaseStatus,
+    fluxKustomizationStatus,
     _originData: getOriginData(omit(item, 'devops')),
   }
 }

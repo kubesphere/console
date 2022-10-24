@@ -93,6 +93,21 @@ export const CD_SYNC_STATUS = [
   { text: 'UNKNOWN', value: 'Unknown' },
 ]
 
+export const FLUXCD_APP_TYPES = [
+  {
+    label: 'HelmRelease',
+    value: 'HelmRelease',
+    description: 'Helm Application',
+    icon: 'helm',
+  },
+  {
+    label: 'Kustomization',
+    value: 'Kustomization',
+    description: 'Kustomize or pure kubernetes manifests',
+    icon: 'kubernetes',
+  },
+]
+
 export const PRUNE_PROPAGATION_POLICY_OPTIONS = [
   { label: 'foreground', value: 'foreground' },
   { label: 'background', value: 'background' },

@@ -247,6 +247,8 @@ const compare = (cond, data) => {
   }
 }
 
+export const isArgo = globals.config.gitopsEngine === 'argocd'
+
 export const parseCondition = (cond, data) => {
   try {
     const reg = /(.+?)(&&|\|\|)/g
