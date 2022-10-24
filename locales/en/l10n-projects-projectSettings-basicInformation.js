@@ -52,7 +52,7 @@ module.exports = {
   LIMITS_CPU: 'CPU Limit',
   LIMITS_MEMORY: 'Memory Limit',
   REQUESTS_CPU: 'CPU Request',
-  REQUESTS_MEMORY: 'CPU Limit',
+  REQUESTS_MEMORY: 'Memory Request',
   // Project Quotas
   PROJECT_QUOTA_PL: 'Project Quotas',
   RESOURCE_TYPE_SCAP: 'Resource type',
