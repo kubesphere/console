@@ -103,7 +103,9 @@ export default class MemberProjects extends React.Component {
   }
 
   render() {
-    const { data, page, limit, total, isLoading } = toJS(this.projectStore.list)
+    const { data, page, limit, total, isLoading, filters } = toJS(
+      this.projectStore.list
+    )
     const pagination = { page, limit, total }
 
     return (
@@ -119,6 +121,7 @@ export default class MemberProjects extends React.Component {
           name="PROJECT"
           hideSearch
           hideCustom
+          filters={filters}
         />
       </Card>
     )
