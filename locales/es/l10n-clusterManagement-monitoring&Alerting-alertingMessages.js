@@ -20,8 +20,8 @@ module.exports = {
   ALERTING_MESSAGE_PL: 'Alerts',
   ALERT_MESSAGE_DESC: 'Alert messages display details of triggered alerts that have met the conditions of the alert rules.',
   // Custom Policies > List
-  CUSTOM_POLICIES: 'Custom Policies',
-  BUILT_IN_POLICIES: 'Built-In Policies',
+  ALERTS_FROM_CUSTOM_POLICIES: 'Alerts from Custom Policies',
+  ALERTS_FROM_BUILT_IN_POLICIES: 'Alerts from Built-in Policies',
   ACTIVATION_TIME: 'Activation Time',
   ALERTING_MESSAGE_EMPTY_DESC: 'No alert is found in the current project.',
   MONITORING_TARGET: 'Monitoring Target'
