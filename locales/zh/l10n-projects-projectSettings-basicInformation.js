@@ -51,7 +51,7 @@ module.exports = {
   LIMITS_CPU: 'CPU 限制',
   LIMITS_MEMORY: '内存限制',
   REQUESTS_CPU: 'CPU 预留',
-  REQUESTS_MEMORY: '内存预留',
+  REQUESTS_MEMORY: 'CPU 限制',
   // Project Quotas
   PROJECT_QUOTA_PL: '项目配额',
   RESOURCE_TYPE_SCAP: '资源类型',
