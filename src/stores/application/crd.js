@@ -202,7 +202,7 @@ export default class ApplicationStore extends Base {
       step: 20,
       rateInterval: '20s',
       direction: 'inbound',
-      reporter: 'source',
+      reporter: 'destination',
       ...options,
     }
     return request.get(
@@ -221,7 +221,7 @@ export default class ApplicationStore extends Base {
       step: 20,
       rateInterval: '20s',
       direction: 'inbound',
-      reporter: 'source',
+      reporter: 'destination',
       ...options,
     }
     return request.get(

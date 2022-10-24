@@ -93,7 +93,7 @@ export default class Monitors extends React.Component {
         {
           duration: 1800,
           direction: 'outbound',
-          reporter: 'destination',
+          reporter: 'source',
         }
       ).then(metrics => {
         this.setState({ outMetrics: metrics })
