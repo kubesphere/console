@@ -58,12 +58,12 @@ export default class AlertingPolicy extends React.Component {
       options: [
         {
           value: 'custom',
-          label: t('CUSTOM_POLICIES'),
+          label: t('ALERTS_FROM_CUSTOM_POLICIES'),
           count: this.props.store.ruleCount,
         },
         {
           value: 'builtin',
-          label: t('BUILT_IN_POLICIES'),
+          label: t('ALERTS_FROM_BUILT_IN_POLICIES'),
           count: this.props.store.builtinRuleCount,
         },
       ],
