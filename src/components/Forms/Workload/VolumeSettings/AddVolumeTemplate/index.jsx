@@ -158,14 +158,14 @@ export default class AddVolume extends React.Component {
     const { volume, cluster, namespace, checkVolumeNameExist } = this.props
 
     if (checkVolumeNameExist(value) && volume.metadata.name !== value) {
-      callback({ message: t('PVC_NAME_PREFIX_EXIST'), field: rule.field })
+      callback({ message: t('PVC_NAME_PREFIX_EXISTS'), field: rule.field })
     } else {
       this.volumeStore
         .checkName({ name: value, cluster, namespace })
         .then(resp => {
           if (resp.exist) {
             return callback({
-              message: t('PVC_NAME_PREFIX_EXIST'),
+              message: t('PVC_NAME_PREFIX_EXISTS'),
               field: rule.field,
             })
           }
