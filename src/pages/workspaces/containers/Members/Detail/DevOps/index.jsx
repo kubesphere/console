@@ -99,11 +99,13 @@ export default class MemberDevOpsProjects extends React.Component {
 
   handleClusterChange = cluster => {
     this.workspaceStore.selectCluster(cluster)
-    this.getData()
+    this.getData({ filters: { cluster } })
   }
 
   render() {
-    const { data, isLoading, page, limit, total } = toJS(this.devopsStore.list)
+    const { data, isLoading, page, limit, total, filters } = toJS(
+      this.devopsStore.list
+    )
     const pagination = { page, limit, total }
 
     return (
@@ -119,6 +121,7 @@ export default class MemberDevOpsProjects extends React.Component {
           name="DEVOPS_PROJECT"
           hideSearch
           hideCustom
+          filters={filters}
         />
       </Card>
     )
