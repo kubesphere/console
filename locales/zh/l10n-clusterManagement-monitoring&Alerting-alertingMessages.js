@@ -20,8 +20,8 @@ module.exports = {
   ALERTING_MESSAGE_PL: '告警',
   ALERT_MESSAGE_DESC: '告警消息显示满足告警规则后触发的告警详细信息。',
   // Custom Policies > List
-  ALERTS_FROM_CUSTOM_POLICIES: 'Alerts from Custom Policies',
-  ALERTS_FROM_BUILT_IN_POLICIES: 'Alerts from Built-in Policies',
+  ALERTS_FROM_CUSTOM_POLICIES: '自定义策略告警',
+  ALERTS_FROM_BUILT_IN_POLICIES: '内置策略告警',
   ACTIVATION_TIME: '激活时间',
   ALERTING_MESSAGE_EMPTY_DESC: '当前项目中没有发现告警。',
   MONITORING_TARGET: '监控目标'
