@@ -71,6 +71,10 @@ export default class Overview extends React.Component {
     })
   }
 
+  get editPromission() {
+    return globals.user.globalRules.clusters.includes('manage')
+  }
+
   getValue = (data, unitType) => {
     const value = get(data, 'value[1]', 0)
     const unit = getSuitableUnit(value, unitType) || unit
@@ -158,7 +162,8 @@ export default class Overview extends React.Component {
     const proxyConnect = connectionType === 'proxy'
     const actions = this.enabledActions
     const option = []
-    if (actions.includes('edit') && globals.app.isMultiCluster) {
+
+    if (this.editPromission && globals.app.isMultiCluster) {
       option.push({
         actionName: 'resource.baseinfo.edit',
         onClick: this.showEdit,
