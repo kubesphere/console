@@ -26,6 +26,7 @@ module.exports = {
   EDGE: '邊緣節點',
   // List > Add
   ADD: '添加',
+  ADD_EDGE_NODE: 'Add Edge Node',
   EDGENODE_CONFIG_COMMAND: '添加命令',
   ADD_EDGE_COMMAND: '將命令複製到命令行中進行創建邊緣節點',
   IN_USE_Node_IP: '節點 IP {ip} 已被使用',

@@ -26,6 +26,7 @@ module.exports = {
   EDGE: '边缘节点',
   // List > Add
   ADD: '添加',
+  ADD_EDGE_NODE: '添加边缘节点',
   EDGENODE_CONFIG_COMMAND: '边缘节点配置命令',
   ADD_EDGE_COMMAND: '在边缘节点中运行以上命令以对其进行配置。',
   IN_USE_Node_IP: 'IP 地址 {ip} 已被使用，请输入其他 IP 地址。',
