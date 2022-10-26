@@ -34,7 +34,7 @@ module.exports = {
   ENVIRONMENT_INVALID_TIP: 'Bir ortam değişkeninin anahtarı yalnızca harf, sayı, alt çizgi (_), kısa çizgi (-) ve nokta (.) içerebilir ve bir sayı ile başlamamalıdır.',
   ENVIRONMENT_CANNOT_BE_EMPTY: 'Lütfen ortam değişkeni için bir anahtar ayarlayın.',
   // List > Create > Pod Settings > Port Settings
-  WORKLOAD_PORT_NAME_DESC: 'Bağlantı noktası adı yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir ve küçük harf veya sayı ile başlayıp bitmelidir. Maksimum uzunluk 15 karakterdir.',
+  WORKLOAD_PORT_NAME_DESC: 'The port name can contain only lowercase letters, numbers and hyphens (-), and must start with a lowercase letter and end with a lowercase letter or number. The maximum length is 15 characters.',
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
   MAX_EXTRA_PODS_DESC: 'Güncelleme işlemi sırasında izin verilen maksimum ek bölme sayısı veya yüzdesi.',
   MAX_EXTRA_PODS: 'Maksimum Ekstra Bölme',

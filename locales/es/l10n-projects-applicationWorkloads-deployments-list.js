@@ -34,7 +34,7 @@ module.exports = {
   ENVIRONMENT_INVALID_TIP: 'The key of an environment variable can contain only letters, numbers, underscores (_), hyphens (-), and periods (.), and must not start with a number.',
   ENVIRONMENT_CANNOT_BE_EMPTY: 'Please set a key for the environment variable.',
   // List > Create > Pod Settings > Port Settings
-  WORKLOAD_PORT_NAME_DESC: 'The port name can contain only lowercase letters, numbers and hyphens (-), and must begin and end with a lowercase letter or number. The maximum length is 15 characters.',
+  WORKLOAD_PORT_NAME_DESC: 'The port name can contain only lowercase letters, numbers and hyphens (-), and must start with a lowercase letter and end with a lowercase letter or number. The maximum length is 15 characters.',
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
   MAX_EXTRA_PODS_DESC: 'El número máximo de pods permitido durante una actualización continua',
   MAX_EXTRA_PODS: 'El número máximo disponible de pods',
