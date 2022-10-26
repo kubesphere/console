@@ -149,7 +149,7 @@ module.exports = {
   CODE_LINE_COUNT: '行数',
   COVERAGE: '覆盖率',
   TEST_RESULTS: '检查结果',
-  ISSUE_PL: '问题',
+  ISSUE_PL: '议题',
   CRITICAL: '严重',
   MAJOR: '重要',
   MINOR: '轻微',
