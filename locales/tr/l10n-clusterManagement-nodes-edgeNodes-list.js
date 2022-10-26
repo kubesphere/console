@@ -26,6 +26,7 @@ module.exports = {
   EDGE: 'Kenar Düğümleri',
   // List > Add
   ADD: 'Ekle',
+  ADD_EDGE_NODE: 'Add Edge Node',
   EDGENODE_CONFIG_COMMAND: 'Kenar Düğüm Konfigürasyon Komutu',
   ADD_EDGE_COMMAND: 'Yukarıda ki komutu çalıştırmak için Kenar düğümünüzü konfigüre edin.',
   IN_USE_Node_IP: 'IP adresi {ip} kullanımda. Lütfen başka bir IP adresi girin.',
