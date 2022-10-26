@@ -55,7 +55,6 @@ module.exports = {
   NODE_USERNAME_DESC: 'Enter the username used for SSH login.',
   NODE_PASSWORD_DESC: 'Enter the password used for SSH login.',
   'Add node to the cluster': 'Add node to the cluster',
-  ADD_EDGE_NODE: 'Add Edge Node',
   // src/pages/workspaces/containers/Clusters
   WORKSPACE_CLUSTERS_DESC: 'The cluster information shows how cluster resources are used in the workspace.',
   // src/pages/console/components/Cards/Workspace
