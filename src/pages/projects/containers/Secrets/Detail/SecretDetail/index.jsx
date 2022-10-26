@@ -21,8 +21,7 @@ import { observer, inject } from 'mobx-react'
 import { Button, Icon } from '@kube-design/components'
 import { Card } from 'components/Base'
 import Placement from 'projects/components/Cards/Placement'
-import { safeBtoa } from 'utils/base64'
-
+import { get } from 'lodash'
 import styles from './index.scss'
 
 @inject('detailStore')
@@ -39,9 +38,14 @@ export default class SecretDetail extends React.Component {
     }
   }
 
-  convert = value => {
+  get originData() {
+    const originData = this.store.detail._originData?.data ?? {}
+    return originData
+  }
+
+  convert = (value, key) => {
     const { showSecret } = this.state
-    return showSecret ? value : safeBtoa(value)
+    return showSecret ? value : get(this.originData, key, '')
   }
 
   changeSecretState = () => {
@@ -55,11 +59,11 @@ export default class SecretDetail extends React.Component {
       <div className={styles.tlsWrapper}>
         <div className={styles.tlsItem}>
           <div className="h6">{t('CREDENTIAL_SI')}</div>
-          <pre>{this.convert(data['tls.crt'])}</pre>
+          <pre>{this.convert(data['tls.crt'], 'tls.crt')}</pre>
         </div>
         <div className={styles.tlsItem}>
           <div className="h6">{t('PRIVATE_KEY_TCAP')}</div>
-          <pre>{this.convert(data['tls.key'])}</pre>
+          <pre>{this.convert(data['tls.key'], 'tls.key')}</pre>
         </div>
       </div>
     )
@@ -88,16 +92,16 @@ export default class SecretDetail extends React.Component {
               <ul>
                 <li>
                   <span>{t('USERNAME')}:</span>
-                  <span>{this.convert(value.username)}</span>
+                  <span>{this.convert(value.username, 'username')}</span>
                 </li>
                 <li>
                   <span>{t('PASSWORD')}:</span>
-                  <span>{this.convert(value.password)}</span>
+                  <span>{this.convert(value.password, 'password')}</span>
                 </li>
                 {value.email && (
                   <li>
                     <span>{t('EMAIL')}:</span>
-                    <span>{this.convert(value.email)}</span>
+                    <span>{this.convert(value.email, 'email')}</span>
                   </li>
                 )}
               </ul>
@@ -116,7 +120,7 @@ export default class SecretDetail extends React.Component {
             <li key={key}>
               <span>{key}:</span>
               <span>
-                <pre>{this.convert(value)}</pre>
+                <pre>{this.convert(value, key)}</pre>
               </span>
             </li>
           ))}
@@ -133,7 +137,7 @@ export default class SecretDetail extends React.Component {
             <li key={key}>
               <span>{t(key.toUpperCase())}:</span>
               <span>
-                <pre>{this.convert(value)}</pre>
+                <pre>{this.convert(value, key)}</pre>
               </span>
             </li>
           ))}
