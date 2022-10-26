@@ -22,6 +22,8 @@ module.exports = {
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '告警是如何产生的？',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A: '您需要对资源设置告警策略，当资源的某项指标达到告警策略的阈值后即会触发告警。',
   // List
+  CUSTOM_POLICIES: '自定义策略',
+  BUILT_IN_POLICIES: '内置策略',
   ALERTING_POLICY_EMPTY_DESC: '请创建一个告警规则。',
   ALERT_RULE_INACTIVE: '未激活',
   ALERT_RULE_PENDING: '待发送',

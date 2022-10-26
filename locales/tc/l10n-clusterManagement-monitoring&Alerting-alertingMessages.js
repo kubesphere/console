@@ -20,8 +20,8 @@ module.exports = {
   ALERTING_MESSAGE_PL: 'Alerts',
   ALERT_MESSAGE_DESC: '告警訊息顯示滿足告警規則後觸發的告警詳細資訊。',
   // Custom Policies > List
-  CUSTOM_POLICIES: '自定義策略',
-  BUILT_IN_POLICIES: '内建策略',
+  ALERTS_FROM_CUSTOM_POLICIES: 'Alerts from Custom Policies',
+  ALERTS_FROM_BUILT_IN_POLICIES: 'Alerts from Built-in Policies',
   ACTIVATION_TIME: '觸發時間',
   ALERTING_MESSAGE_EMPTY_DESC: 'No alert is found in the current project.',
   MONITORING_TARGET: '監控目標'
