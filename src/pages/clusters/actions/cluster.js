@@ -33,18 +33,20 @@ export default {
             return Modal.close(modal)
           }
 
-          await store.patch(
-            { name: store.detail.name },
-            {
-              metadata: {
-                labels: {
-                  'cluster.kubesphere.io/visibility': data.public
-                    ? 'public'
-                    : 'private',
+          if (globals.user.globalRules.clusters.includes('manage')) {
+            await store.patch(
+              { name: store.detail.name },
+              {
+                metadata: {
+                  labels: {
+                    'cluster.kubesphere.io/visibility': data.public
+                      ? 'public'
+                      : 'private',
+                  },
                 },
-              },
-            }
-          )
+              }
+            )
+          }
 
           const requests = []
           if (data.addWorkspaces) {
@@ -79,7 +81,7 @@ export default {
                 ]
               }
 
-              requests.push(workspaceStore.patch(item, params))
+              requests.push(workspaceStore.editVisible(item, params))
             })
           }
           if (data.deleteWorkspaces) {
@@ -95,7 +97,7 @@ export default {
                 },
               ]
 
-              requests.push(workspaceStore.patch(item, params))
+              requests.push(workspaceStore.editVisible(item, params))
             })
           }
 
