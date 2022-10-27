@@ -33,9 +33,10 @@ import {
 import { FLUXCD_APP_TYPES } from 'utils/constants'
 
 import { TypeSelect } from 'components/Base'
-import Placement from '../../Advance/Placement'
 import { get, set } from 'lodash'
+import Placement from '../../Advance/Placement'
 import styles from './index.scss'
+
 const { TabPanel } = Tabs
 
 export default class Advance extends React.Component {
