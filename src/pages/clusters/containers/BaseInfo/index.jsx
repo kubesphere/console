@@ -163,7 +163,7 @@ export default class Overview extends React.Component {
     const actions = this.enabledActions
     const option = []
 
-    if (this.editPromission && globals.app.isMultiCluster) {
+    if (actions.includes('edit') && globals.app.isMultiCluster) {
       option.push({
         actionName: 'resource.baseinfo.edit',
         onClick: this.showEdit,
@@ -264,7 +264,7 @@ export default class Overview extends React.Component {
               title={kubernetesVersion || this.store.version}
               description={t('KUBERNETES_VERSION')}
             />
-            {this.renderManageButton()}
+            {this.editPromission && this.renderManageButton()}
           </div>
           <div className={styles.content}>
             {options.map(option => (

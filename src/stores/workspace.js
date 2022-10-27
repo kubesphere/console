@@ -133,10 +133,7 @@ export default class WorkspaceStore extends Base {
 
   @action
   editVisible(params, newObject) {
-    const url = `kapis/tenant.kubesphere.io/v1alpha3${this.getPath(
-      params
-    )}/workspacetemplates/${params.name}`
-
+    const url = `kapis/tenant.kubesphere.io/v1alpha3/workspacetemplates/${params.name}`
     return this.submitting(request.patch(url, newObject))
   }
 }
