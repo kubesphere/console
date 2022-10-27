@@ -23,7 +23,7 @@ import classNames from 'classnames'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Icon, Button, Notify, Dropdown, Menu } from '@kube-design/components'
-import { Panel, Avatar } from 'components/Base'
+import { Panel, Avatar, Switch } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
 import Banner from 'components/Cards/Banner'
 import Empty from 'components/Tables/Base/Empty'
@@ -467,16 +467,12 @@ class BaseInfo extends React.Component {
 
               {!isEmpty(this.enabledItemActions) && (
                 <div className={classNames(styles.item, 'text-right')}>
-                  <div
-                    className={classNames(
-                      styles.toggle,
-                      opened ? '' : styles.closed
-                    )}
-                    onClick={this.toggle}
-                  >
-                    <span>{opened ? t('ENABLED') : t('DISABLED')}</span>
-                    <label className={styles.toggleop} />
-                  </div>
+                  <Switch
+                    className={styles.switch}
+                    text={opened ? t('ENABLED') : t('DISABLED')}
+                    onChange={this.toggle}
+                    checked={opened}
+                  />
                   <Button onClick={this.handleEditAllowlist}>
                     {t('EDIT_ALLOWLIST')}
                   </Button>
