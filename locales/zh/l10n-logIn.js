@@ -36,7 +36,7 @@ module.exports = {
   PASSWORD_MUST: '您的密码必须：',
   PASSWORD_LETTER: '包含至少 1 个大写字母和 1 个小写字母。',
   PASSWORD_NUMBER: '包含至少 1 个数字。',
-  PASSWORD_LENGTH: 'Contain at least 8 characters.',
+  PASSWORD_LENGTH: '包含至少 8 个字符。',
   // Third-party authentication
   SET_EMAIL_AND_USERNAME: '设置邮箱和用户名'
 };
