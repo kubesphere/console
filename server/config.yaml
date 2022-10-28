@@ -646,3 +646,19 @@ client:
       max_number_of_toTag: 20
     slack:
       max_number_of_channel: 20
+
+  supportLinks:
+    github: "https://github.com/kubesphere/kubesphere"
+    githubPr: "https://github.com/kubesphere/kubesphere"
+    star: "https://github.com/kubesphere/kubesphere"
+    githubFork: "https://github.com/kubesphere/kubesphere"
+    slack: "https://kubesphere.slack.com/"
+    doc: "https://kubesphere.com.cn/docs/v3.3/"
+    forum: "https://kubesphere.com.cn/forum/"
+    issues: "https://github.com/kubesphere/kubesphere/issues"
+    contactUs: "https://kubesphere.cloud/ticket/"
+    kse: "https://kubesphere.cloud/self-service/qkcp/"
+    ksc: "https://kubesphere.cloud/"
+    backup: "https://kubesphere.cloud/self-service/disaster-recovery/"
+    inspection: "https://kubesphere.cloud/inspection/"
+    light: "https://kubesphere.cloud/lite-cluster/"
