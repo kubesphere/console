@@ -28,22 +28,7 @@ import { ReactComponent as Slack } from 'assets/slack_duotone.svg'
 import { ReactComponent as Topic } from 'assets/topic_circle_duotone.svg'
 import styles from './index.scss'
 
-const config = {
-  github: 'https://github.com/kubesphere/kubesphere',
-  githubPr: 'https://github.com/kubesphere/kubesphere',
-  star: 'https://github.com/kubesphere/kubesphere',
-  githubFork: 'https://github.com/kubesphere/kubesphere',
-  slack: 'https://kubesphere.slack.com/',
-  doc: 'https://kubesphere.com.cn/docs/v3.3/',
-  forum: 'https://kubesphere.com.cn/forum/',
-  issues: 'https://github.com/kubesphere/kubesphere/issues',
-  contactUs: 'https://kubesphere.cloud/en/ticket/',
-  kse: 'https://kubesphere.cloud/en/self-service/qkcp/',
-  ksc: 'https://kubesphere.cloud/',
-  backup: 'https://kubesphere.cloud/self-service/disaster-recovery/',
-  inspection: 'https://kubesphere.cloud/inspection/',
-  light: 'https://kubesphere.cloud/lite-cluster/',
-}
+const config = globals.config.supportLinks
 
 const openButtons = [
   {
@@ -95,7 +80,6 @@ const kscFeatures = [
   },
   {
     title: 'KSC_FEATURE_INSPECTION',
-    // desc: '全面漏洞扫描 系统安全加固 最佳实践指导',
     desc: [
       'KSC_FEATURE_INSPECTION_VULN_DESC',
       'KSC_FEATURE_INSPECTION_SECURITY_DESC',
@@ -106,7 +90,6 @@ const kscFeatures = [
   },
   {
     title: 'KSC_FEATURE_LIGHTWEIGHT',
-    // desc: '极速启用集群 KubeSphere 开箱即用 满足测试演示场景',
     desc: [
       'KSC_FEATURE_LIGHTWEIGHT_START_DESC',
       'KSC_FEATURE_LIGHTWEIGHT_KS_DESC',
