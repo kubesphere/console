@@ -37,7 +37,7 @@ module.exports = {
   PASSWORD_MUST: 'Your password must:',
   PASSWORD_LETTER: 'Contain at least 1 uppercase letter and 1 lowercase letter.',
   PASSWORD_NUMBER: 'Contain at least 1 number.',
-  PASSWORD_LENGTH: 'Contain at least 6 characters.',
+  PASSWORD_LENGTH: 'Contain at least 8 characters.',
   // Third-party authentication
   SET_EMAIL_AND_USERNAME: 'Set Email and Username',
 }
