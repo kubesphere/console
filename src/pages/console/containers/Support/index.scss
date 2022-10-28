@@ -64,6 +64,7 @@
 
     .ticket,
     .open {
+      transition: all 0.3s ease;
       flex: 1;
       background-color: white;
       box-shadow: 0px 4px 8px rgba(36, 46, 66, 0.06);
@@ -91,6 +92,18 @@
           flex-wrap: wrap;
 
           .circleButton {
+            transition: all 0.3s ease;
+
+            .buttonText {
+              transition: all 0.3s ease;
+            }
+
+            :global {
+              svg.kubed-icon {
+                transition: all 0.3s ease;
+              }
+            }
+
             &:hover {
               cursor: pointer;
               background: $dark-color07;
@@ -134,6 +147,7 @@
           display: inline-flex;
           gap: 4px;
           align-items: center;
+          transition: all 0.3s ease;
 
           &:hover {
             color: $blue-color03;
@@ -170,6 +184,7 @@
       }
 
       .link {
+        transition: all 0.3s ease;
         display: inline-flex;
         gap: 4px;
         align-items: center;
@@ -180,6 +195,7 @@
 
   .card {
     background: #ffffff;
+    transition: all 0.3s ease;
 
     .header {
       display: flex;
@@ -278,6 +294,7 @@
         word-break: break-word;
         display: grid;
         grid-template-rows: auto 1fr auto;
+        transition: all 0.3s ease;
 
         .title {
           margin-top: 20px;
@@ -295,6 +312,7 @@
           gap: 4px;
           margin-top: 24px;
           margin-bottom: 20px;
+          transition: all 0.3s ease;
         }
 
         &:hover {
@@ -323,6 +341,7 @@
   :global {
     a.support-action {
       color: $blue-color03;
+      transition: all 0.3s ease;
 
       &:hover {
         color: $blue-color04;
