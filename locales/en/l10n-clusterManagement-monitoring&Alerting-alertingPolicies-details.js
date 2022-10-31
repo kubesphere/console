@@ -19,8 +19,8 @@
 module.exports = {
   // Attributes
   DURATION: 'Duration',
-  // Alerting Rule
-  ALERTING_RULE: 'Alerting Rule',
+  // Alert Rules
+  ALERTING_RULE: 'Alert Rules',
   MONITORING_TARGETS_SCAP: 'Monitoring targets',
   ACTIVATION_CONDITION_SCAP: 'Activation condition',
   METRIC_MONITORING: 'Metric Monitoring',

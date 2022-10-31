@@ -92,10 +92,6 @@ export default class AlertingPolicy extends React.Component {
         title: t('REQUESTS_FOR_PUSH_AN_ALARM_Q'),
         description: t('REQUESTS_FOR_PUSH_AN_ALARM_A'),
       },
-      {
-        title: t('HOW_TO_SUPRESS_AN_ALARM_Q'),
-        description: t('HOW_TO_SUPRESS_AN_ALARM_A'),
-      },
     ]
   }
 
