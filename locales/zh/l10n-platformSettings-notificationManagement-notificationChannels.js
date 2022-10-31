@@ -19,7 +19,7 @@ module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: '通知管理',
   NOTIFICATION_CHANNELS: '通知渠道',
-  NOTIFICATION_CHANNELS_DESC: '当资源指标满足告警策略中配置的条件和持续时间时，通过多种渠道通知用户。',
+  NOTIFICATION_CHANNELS_DESC: '当资源指标满足规则组中配置的条件和持续时间时，通过多种渠道通知用户。',
   // Email
   MAIL_TITLE: '邮件',
   MAIL_DESC: '向邮件地址发送通知。',
