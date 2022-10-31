@@ -18,8 +18,8 @@
 module.exports = {
   // Attributes
   DURATION: 'Duration',
-  // Alerting Rule
-  ALERTING_RULE: '告警規則',
+  // Alert Rules
+  ALERTING_RULE: 'Alert Rules',
   MONITORING_TARGETS_SCAP: '監控目標',
   ACTIVATION_CONDITION_SCAP: 'Activation condition',
   METRIC_MONITORING: '指標監控',
