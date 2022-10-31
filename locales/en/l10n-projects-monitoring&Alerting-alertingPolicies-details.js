@@ -18,6 +18,6 @@
 
 module.exports = {
   // Attributes
-  // Alerting Rule
+  // Alert Rule
   // Alerting History
 }
