@@ -73,8 +73,8 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Use Local Image First
   IMAGE_PULL_POLICY_ALWAYS: 'Volver a descargar la imagen (siempre)',
   IMAGE_PULL_POLICY_NEVER: 'Usar solo imagen local (nunca)',
-  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Tire de la imagen cada vez que se inicia el pod.',
-  IMAGE_PULL_POLICY_IFNOTPRESENT_DESC: 'Tire de la imagen solo si no existe localmente.',
+  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Pulls an image always when the pod is created or updated.',
+  IMAGE_PULL_POLICY_IFNOTPRESENT_DESC: 'Pulls an image only when the required image does not exist locally.',
   IMAGE_PULL_POLICY_NEVER_DESC: 'Solo se usará la imagen local, lo que hará que el contenedor sea anormal si la imagen requerida no existe localmente.',
   IMAGE_PULL_POLICY_IFNOTPRESENT: 'Use la imagen local primero (IfNotPresent)',
   // List > Create > Pod Settings > Add Container > Health Check
