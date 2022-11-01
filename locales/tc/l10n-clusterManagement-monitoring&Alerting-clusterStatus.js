@@ -31,7 +31,6 @@ module.exports = {
   COMPONENT_STATUS: '組件狀態',
   CONTROLLER_MANAGER: '管理控制中心',
   KUBERNETES_SCHEDULER: 'K8s 調度器',
-  NOT_ENABLED: '未開啟',
   // Overview > Cluster Resource Usage
   CLUSTER_RESOURCE_USAGE: '集群資源使用情況',
   POD_COUNT: '容器組數量',
