@@ -31,7 +31,6 @@ module.exports = {
   COMPONENT_STATUS: 'Bileşen Durumu',
   CONTROLLER_MANAGER: 'Denetleyici Yöneticisi',
   KUBERNETES_SCHEDULER: 'Kubernetes Zamanlayıcı',
-  NOT_ENABLED: 'Etkin değil',
   // Overview > Cluster Resource Usage
   CLUSTER_RESOURCE_USAGE: 'Küme Kaynak Kullanımı',
   POD_COUNT: 'Bölmeler',
