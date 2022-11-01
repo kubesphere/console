@@ -82,9 +82,9 @@ module.exports = {
   ALERT_LABELS: '标签',
   ALERT_RATE_RANGES: '比率范围',
   // List > Create > Message Settings
-  ALERTING_MESSAGE: '警告',
+  ALERTING_MESSAGE: '告警',
   MESSAGE_SETTINGS: '消息设置',
-  NOTIFICATION_SUMMARY: '概括',
+  NOTIFICATION_SUMMARY: '概要',
   NOTIFICATION_DETAILS: '详情',
   // List > Edit
   EDIT_ALERTING_POLICY: '编辑告警策略',
