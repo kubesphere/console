@@ -18,7 +18,7 @@
 module.exports = {
   // Attributes
   DURATION: '持续时间',
-  // Alerting Rule
+  // Alert Rules
   ALERTING_RULE: '告警规则',
   MONITORING_TARGETS_SCAP: '监控目标',
   ACTIVATION_CONDITION_SCAP: '激活条件',

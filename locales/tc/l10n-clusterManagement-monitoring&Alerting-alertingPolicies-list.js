@@ -17,14 +17,14 @@
  */
 module.exports = {
   // Banner
-  ALERTING_POLICY_PL: '告警策略',
-  ALERTING_POLICY_DESC: 'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
+  ALERTING_POLICY_PL: 'Rule Groups',
+  ALERTING_POLICY_DESC: 'A rule group contains alert rules used to monitor cluster resources.',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerts generated?',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'You need to set an alerting policy for a resource. Alerts will be generated when the metric configured in the alerting policy reaches a threshold.',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'You need to create a rule group and set alert rules. The system will generate alerts when resource metrics meet conditions configured in rule groups.',
   // List
-  CUSTOM_POLICIES: 'Custom Policies',
-  BUILT_IN_POLICIES: 'Built-in Policies',
-  ALERTING_POLICY_EMPTY_DESC: '請創建一個告警規則。',
+  CUSTOM_POLICIES: 'Custom Rule Groups',
+  BUILT_IN_POLICIES: 'Built-in Rule Groups',
+  ALERTING_POLICY_EMPTY_DESC: 'Please create a rule group.',
   ALERT_RULE_INACTIVE: '未觸發',
   ALERT_RULE_PENDING: '待觸發',
   ALERT_RULE_FIRING: '觸發中',
@@ -33,7 +33,7 @@ module.exports = {
   ALERT_RULE_HEALTH_UNKNOWN: '未知',
   // List > Create > Basic Information
   SEVERITY: '告警級別',
-  CREATE_ALERTING_POLICY: '創建告警策略',
+  CREATE_ALERTING_POLICY: 'Create Rule Group',
   CRITICAL_ALERT: '危險告警',
   ERROR_ALERT: '重要告警',
   WARNING_ALERT: '一般告警',
@@ -87,8 +87,8 @@ module.exports = {
   NOTIFICATION_SUMMARY: '概括',
   NOTIFICATION_DETAILS: '詳情',
   // List > Edit
-  EDIT_ALERTING_POLICY: '編輯告警策略',
+  EDIT_ALERTING_POLICY: 'Edit Rule Group',
   // List > Delete
-  ALERTING_POLICY: '告警策略',
-  ALERTING_POLICY_LOW: '告警策略'
+  ALERTING_POLICY: 'Rule Group',
+  ALERTING_POLICY_LOW: 'rule group'
 };

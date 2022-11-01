@@ -17,14 +17,14 @@
  */
 module.exports = {
   // Banner
-  ALERTING_POLICY_PL: '告警策略',
-  ALERTING_POLICY_DESC: '告警策略是用于监控集群资源的一系列条件，您可以创建告警策略对资源进行监控。',
+  ALERTING_POLICY_PL: '规则组',
+  ALERTING_POLICY_DESC: '规则组包含告警规则，用于监测集群资源。',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '告警是如何产生的？',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A: '您需要对资源设置告警策略，当资源的某项指标达到告警策略的阈值后即会触发告警。',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A: '您需要创建一个规则组并设置告警规则。当资源指标满足规则组中配置的条件时，系统将生成告警。',
   // List
-  CUSTOM_POLICIES: '自定义策略',
-  BUILT_IN_POLICIES: '内置策略',
-  ALERTING_POLICY_EMPTY_DESC: '请创建一个告警规则。',
+  CUSTOM_POLICIES: '自定义规则组',
+  BUILT_IN_POLICIES: '内置规则组',
+  ALERTING_POLICY_EMPTY_DESC: '请创建一个规则组。',
   ALERT_RULE_INACTIVE: '未激活',
   ALERT_RULE_PENDING: '待发送',
   ALERT_RULE_FIRING: '发送中',
@@ -33,7 +33,7 @@ module.exports = {
   ALERT_RULE_HEALTH_UNKNOWN: '未知',
   // List > Create > Basic Information
   SEVERITY: '告警级别',
-  CREATE_ALERTING_POLICY: '创建告警策略',
+  CREATE_ALERTING_POLICY: '创建规则组',
   CRITICAL_ALERT: '危险告警',
   ERROR_ALERT: '重要告警',
   WARNING_ALERT: '一般告警',
@@ -87,8 +87,8 @@ module.exports = {
   NOTIFICATION_SUMMARY: '概括',
   NOTIFICATION_DETAILS: '详情',
   // List > Edit
-  EDIT_ALERTING_POLICY: '编辑告警策略',
+  EDIT_ALERTING_POLICY: '编辑规则组',
   // List > Delete
-  ALERTING_POLICY: '告警策略',
-  ALERTING_POLICY_LOW: '告警策略'
+  ALERTING_POLICY: '规则组',
+  ALERTING_POLICY_LOW: '规则组'
 };

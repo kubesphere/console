@@ -18,10 +18,10 @@
 module.exports = {
   // Banner
   ALERTING_MESSAGE_PL: 'Alerts',
-  ALERT_MESSAGE_DESC: 'Uyarı mesajları, uyarı kurallarının koşullarını karşılayan tetiklenen uyarıların ayrıntılarını görüntüler.',
-  // Custom Policies > List
-  ALERTS_FROM_CUSTOM_POLICIES: 'Alerts from Custom Policies',
-  ALERTS_FROM_BUILT_IN_POLICIES: 'Alerts from Built-in Policies',
+  ALERT_MESSAGE_DESC: 'Alerts are generated when resource metrics meet conditions configured in rule groups.',
+  // Custom > List
+  ALERTS_FROM_CUSTOM_POLICIES: 'From Custom Rules',
+  ALERTS_FROM_BUILT_IN_POLICIES: 'From Built-in Rules',
   ACTIVATION_TIME: 'Aktive etme zamanı',
   ALERTING_MESSAGE_EMPTY_DESC: 'No alert is found in the current project.',
   MONITORING_TARGET: 'Hedefi İzleme'

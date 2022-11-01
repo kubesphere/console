@@ -18,8 +18,8 @@
 module.exports = {
   // Attributes
   DURATION: 'Süre',
-  // Alerting Rule
-  ALERTING_RULE: 'Uyarı Kuralı',
+  // Alert Rules
+  ALERTING_RULE: 'Alert Rules',
   MONITORING_TARGETS_SCAP: 'Hedefi İzleme',
   ACTIVATION_CONDITION_SCAP: 'Aktivasyon Koşulu',
   METRIC_MONITORING: 'Metrik İzleme',

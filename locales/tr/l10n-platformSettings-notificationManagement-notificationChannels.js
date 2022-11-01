@@ -19,7 +19,7 @@ module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: 'Bildirim Yönetimi',
   NOTIFICATION_CHANNELS: 'Notification Channels',
-  NOTIFICATION_CHANNELS_DESC: 'Notify users through multiple channels when resource metrics meet conditions and durations configured in alerting policies.',
+  NOTIFICATION_CHANNELS_DESC: 'Notify users through multiple channels when resource metrics meet conditions configured in rule groups.',
   // Email
   MAIL_TITLE: 'E-Posta',
   MAIL_DESC: 'Send notifications to email addresses.',
