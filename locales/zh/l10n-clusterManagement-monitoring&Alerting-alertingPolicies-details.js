@@ -24,7 +24,7 @@ module.exports = {
   ACTIVATION_CONDITION_SCAP: '激活条件',
   METRIC_MONITORING: '指标监控',
   ALERT_MONITORING: '告警监控',
-  NOTIFICATION_SUMMARY_COLON: '概括：',
+  NOTIFICATION_SUMMARY_COLON: '概要：',
   DETAILS_COLON: '详情：',
   // Alerting History
   NO_DATA_DESC: '未发现数据'
