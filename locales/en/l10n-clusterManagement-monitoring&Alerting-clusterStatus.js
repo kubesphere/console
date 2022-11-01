@@ -32,7 +32,6 @@ module.exports = {
   COMPONENT_STATUS: 'Component Status',
   CONTROLLER_MANAGER: 'Controller Manager',
   KUBERNETES_SCHEDULER: 'Kubernetes Scheduler',
-  NOT_ENABLED: 'Not enabled',
   // Overview > Cluster Resource Usage
   CLUSTER_RESOURCE_USAGE: 'Cluster Resource Usage',
   POD_COUNT: 'Pods',

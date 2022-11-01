@@ -52,7 +52,7 @@ export default class RedeployModal extends React.Component {
             <p>
               {t('RECREATE_CONFIRM_DESC', {
                 resource: detail.name,
-                type: t(type.toUpperCase()),
+                type: t(`${type.toUpperCase()}_LOW`),
               })}
             </p>
           </div>
