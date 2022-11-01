@@ -209,7 +209,7 @@ class Overview extends React.Component {
                 <span>/{get(counts, `[${item.type}].total`, 0)}</span>
               </p>
             ) : (
-              <span>{t('NOT_ENABLED')}</span>
+              <span>{t('DISABLED')}</span>
             )}
           </div>
         ))}
