@@ -73,8 +73,8 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Use Local Image First
   IMAGE_PULL_POLICY_ALWAYS: '嘗試重新下載鏡像（Always）',
   IMAGE_PULL_POLICY_NEVER: '僅使用本地鏡像（Never）',
-  IMAGE_PULL_POLICY_ALWAYS_DESC: '在創建及更新時，每次都會嘗試下載新的鏡像',
-  IMAGE_PULL_POLICY_IFNOTPRESENT_DESC: '如果本地存在鏡像就優先使用本地鏡像',
+  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Pulls an image always when the pod is created or updated.',
+  IMAGE_PULL_POLICY_IFNOTPRESENT_DESC: 'Pulls an image only when the required image does not exist locally.',
   IMAGE_PULL_POLICY_NEVER_DESC: '僅會使用本地鏡像，如果本地不存在所需鏡像，則會導致容器異常',
   IMAGE_PULL_POLICY_IFNOTPRESENT: '優先使用本地鏡像（IfNotPresent）',
   // List > Create > Pod Settings > Add Container > Health Check
