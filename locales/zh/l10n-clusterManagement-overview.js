@@ -19,7 +19,6 @@ module.exports = {
   // Banner
   HOST_CLUSTER: '主集群',
   MEMBER_CLUSTER: '成员集群',
-  CLUSTER_CONDITIONS: '集群状态',
   // Baisc Information
   PROVIDER: '提供商',
   KUBERNETES_VERSION: 'Kubernetes 版本',
