@@ -73,8 +73,8 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Use Local Image First
   IMAGE_PULL_POLICY_ALWAYS: 'Görüntüyü Her Zaman Çekin',
   IMAGE_PULL_POLICY_NEVER: 'Yalnızca Yerel Resmi Kullan',
-  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Bölme oluşturulduğunda veya güncellendiğinde her zaman görüntüyü çeker.',
-  IMAGE_PULL_POLICY_IFNOTPRESENT_DESC: 'Görüntüyü yalnızca yerel olarak mevcut olmadığında çeker.',
+  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Pulls an image always when the pod is created or updated.',
+  IMAGE_PULL_POLICY_IFNOTPRESENT_DESC: 'Pulls an image only when the required image does not exist locally.',
   IMAGE_PULL_POLICY_NEVER_DESC: 'Yalnızca yerel bir görüntü kullanır. Gerekli görüntü yerel olarak mevcut değilse kapsayıcı anormal hale gelecektir.',
   IMAGE_PULL_POLICY_IFNOTPRESENT: 'Önce Yerel Resmi Kullan',
   // List > Create > Pod Settings > Add Container > Health Check
