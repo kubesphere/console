@@ -19,7 +19,6 @@ module.exports = {
   // Banner
   HOST_CLUSTER: 'Host Kümesi',
   MEMBER_CLUSTER: 'Üye kümesi',
-  CLUSTER_CONDITIONS: 'Küme Koşulları',
   // Baisc Information
   PROVIDER: 'Sağlayıcı',
   KUBERNETES_VERSION: 'Kubernetes Sürümü',
