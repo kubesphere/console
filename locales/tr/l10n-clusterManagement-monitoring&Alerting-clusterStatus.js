@@ -125,7 +125,7 @@ module.exports = {
   SORT_BY_NODE_DISK_SIZE_UTILISATION: 'Sort by disk usage (%)',
   SORT_BY_NODE_POD_UTILISATION: 'Kapsül kullanımına göre sırala',
   SORT_BY_NODE_DISK_INODE_UTILISATION: 'Inode kullanımına göre sırala',
-  SORT_BY_NODE_LOAD1: 'Ortalama CPU yüküne göre sırala',
+  SORT_BY_NODE_LOAD1: 'Sort by 1-minute CPU load average',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: 'Bellek kullanımına göre sırala',
   POD_USAGE: 'Kapsül Kullanımı',
   EXPORT: 'Dışa Aktar'
