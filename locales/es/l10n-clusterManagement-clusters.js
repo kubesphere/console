@@ -46,7 +46,7 @@ module.exports = {
   CLUSTER_CONDITION_EXTERNALACCESSREADY: 'External Access Ready',
   CLUSTER_CONDITION_READY: 'Cluster Ready',
   CLUSTER_CONDITION_OPENPITRIXRUNTIMEREADY: 'App Store Ready',
-  CLUSTER_CONDITION_KUBECONFIGCERTEXPIRESINSEVENDAYS: 'kubeconfig Certificate About to Expire',
+  CLUSTER_CONDITION_KUBECONFIGCERTEXPIRESINSEVENDAYS: 'kubeconfig About to Expire',
   NODE_COUNT: 'Cantidad de nodos',
   ENV_PRODUCTION: 'Producción',
   ENV_DEVELOPMENT: 'Desarrollo',
