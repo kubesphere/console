@@ -125,7 +125,7 @@ module.exports = {
   SORT_BY_NODE_DISK_SIZE_UTILISATION: 'Sort by disk usage (%)',
   SORT_BY_NODE_POD_UTILISATION: 'Sort by pod usage',
   SORT_BY_NODE_DISK_INODE_UTILISATION: 'Sort by inode usage',
-  SORT_BY_NODE_LOAD1: 'Sort by average CPU load',
+  SORT_BY_NODE_LOAD1: 'Sort by 1-minute CPU load average',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: 'Sort by memory usage',
   POD_USAGE: 'Pod Usage',
   EXPORT: 'Export'
