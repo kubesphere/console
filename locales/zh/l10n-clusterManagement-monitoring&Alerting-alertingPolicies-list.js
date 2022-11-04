@@ -62,7 +62,7 @@ module.exports = {
   MEMORY_UTILIZATION_SCAP: '内存用量（%）',
   DISK_SPACE_AVAILABLE: '本地磁盘可用空间',
   DISK_SPACE_UTILIZATION: '本地磁盘用量（%）',
-  INODE_UTILIZATION: 'Inode utilization (%)',
+  INODE_UTILIZATION: 'Inode usage (%)',
   DISK_READ_IOPS: '本地磁盘读取 IOPS',
   DISK_WRITE_IOPS: '本地磁盘写入 IOPS',
   DISK_READ_THROUGHPUT: '本地磁盘读取吞吐量',
