@@ -36,12 +36,12 @@ export default {
     ruleConfig: CPU_RULE_CONFIG,
   },
   'namespace:workload_memory_usage:sum{$1}': {
-    label: 'MEMORY_USAGE_CACHE',
+    label: 'MEMORY_USAGE_SCAP',
     prefixIcon: 'memory',
     ruleConfig: MEMORY_RULE_CONFIG,
   },
   'namespace:workload_memory_usage_wo_cache:sum{$1}': {
-    label: 'MEMORY_USAGE_SCAP',
+    label: 'MEMORY_USAGE_WO_CACHE_SCAP',
     prefixIcon: 'memory',
     ruleConfig: MEMORY_RULE_CONFIG,
   },
@@ -56,7 +56,7 @@ export default {
     ruleConfig: BANDWIDTH_RULE_CONFIG,
   },
   'namespace:$2_unavailable_replicas:ratio{$1}': {
-    label: 'UNAVAILABLE_REPLICAS',
+    label: 'UNAVAILABLE_WORKLOAD_REPLICA_RATIO',
     prefixIcon: 'backup',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
