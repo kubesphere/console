@@ -31,12 +31,12 @@ export default {
     ruleConfig: PERCENT_RULE_CONFIG,
   },
   'node:pod_utilisation:ratio{$1}': {
-    label: 'POD_USAGE_SCAP',
+    label: 'POD_QUOTA_UTILIZATION_SCAP',
     prefixIcon: 'pod',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
   'node:node_cpu_utilisation:avg1m{$1}': {
-    label: 'CPU_USAGE_SCAP',
+    label: 'CPU_UTILIZATION_SCAP',
     prefixIcon: 'cpu',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
@@ -61,7 +61,7 @@ export default {
     ruleConfig: DISK_RULE_CONFIG,
   },
   'node:node_memory_utilisation:{$1}': {
-    label: 'MEMORY_USAGE_SCAP',
+    label: 'MEMORY_UTILIZATION_SCAP',
     prefixIcon: 'memory',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
@@ -71,12 +71,12 @@ export default {
     ruleConfig: DISK_RULE_CONFIG,
   },
   'node:disk_space_utilization:ratio{$1}': {
-    label: 'DISK_SPACE_USAGE',
+    label: 'DISK_SPACE_UTILIZATION',
     prefixIcon: 'storage',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
   'node:disk_inode_utilization:ratio{$1}': {
-    label: 'INODE_USAGE',
+    label: 'INODE_UTILIZATION',
     prefixIcon: 'storage',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
