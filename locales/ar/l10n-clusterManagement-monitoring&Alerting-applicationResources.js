@@ -87,7 +87,7 @@ module.exports = {
   OUTBOUND_TRAFFIC: 'Outbound Traffic',
   INBOUND_TRAFFIC: 'Inbound Traffic',
   SORT_BY_NAMESPACE_CPU_USAGE: 'Sort by CPU usage',
-  SORT_BY_NAMESPACE_POD_COUNT: 'Sort by number of pods',
+  SORT_BY_NAMESPACE_POD_COUNT: 'Sort by pod quota usage (%)',
   SORT_BY_NAMESPACE_NET_BYTES_RECEIVED: 'Sort by inbound traffic',
   SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: 'Sort by outbound traffic'
 };
