@@ -62,7 +62,7 @@ module.exports = {
   MEMORY_UTILIZATION_SCAP: 'Memory usage (%)',
   DISK_SPACE_AVAILABLE: 'Kullanılabilir yerel disk alanı',
   DISK_SPACE_UTILIZATION: 'Local disk usage (%)',
-  INODE_UTILIZATION: 'Inode utilization (%)',
+  INODE_UTILIZATION: 'Inode usage (%)',
   DISK_READ_IOPS: 'Yerel disk okuma IOPS',
   DISK_WRITE_IOPS: 'Yerel disk yazma IOPS',
   DISK_READ_THROUGHPUT: 'Yerel disk okuma çıktısı',
