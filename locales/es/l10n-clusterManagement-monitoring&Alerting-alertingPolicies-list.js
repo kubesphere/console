@@ -62,7 +62,7 @@ module.exports = {
   MEMORY_UTILIZATION_SCAP: 'Memory usage (%)',
   DISK_SPACE_AVAILABLE: 'espacio de disco disponible',
   DISK_SPACE_UTILIZATION: 'Local disk usage (%)',
-  INODE_UTILIZATION: 'Inode utilization (%)',
+  INODE_UTILIZATION: 'Inode usage (%)',
   DISK_READ_IOPS: 'iops de lectura de disco',
   DISK_WRITE_IOPS: 'iops de escritura de disco',
   DISK_READ_THROUGHPUT: 'rendimiento de lectura de disco',
