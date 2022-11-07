@@ -26,7 +26,7 @@ import {
 
 export default {
   'node:pod_abnormal:ratio{$1}': {
-    label: 'ABNORMAL_POD_RATIO',
+    label: 'UNAVAILABLE_POD_RATIO',
     prefixIcon: 'pod',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
