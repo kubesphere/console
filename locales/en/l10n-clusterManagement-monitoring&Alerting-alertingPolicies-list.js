@@ -52,7 +52,7 @@ module.exports = {
   MEMORY_PERCENTAGE_SCAP: 'Memory percentage',
   SET_ACTIVATION_CONDITION_DESC: 'Please set an activation condition.',
   THRESHOLD: 'Threshold',
-  ABNORMAL_PODS: 'Abnormal pods',
+  ABNORMAL_POD_RATIO: 'Abnormal pod ratio (%)',
   POD_QUOTA_UTILIZATION_SCAP: 'Pod quota usage (%)',
   CPU_USAGE_SCAP: 'CPU usage',
   CPU_UTILIZATION_SCAP: 'CPU usage (%)',
