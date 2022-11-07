@@ -51,7 +51,7 @@ module.exports = {
   MEMORY_PERCENTAGE_SCAP: '内存百分比',
   SET_ACTIVATION_CONDITION_DESC: '请设置激活条件。',
   THRESHOLD: '阈值',
-  ABNORMAL_PODS: '异常容器组数量',
+  UNAVAILABLE_POD_RATIO: 'Unavailable pod ratio (%)',
   POD_QUOTA_UTILIZATION_SCAP: '容器组配额用量（%）',
   CPU_USAGE_SCAP: 'CPU 用量',
   CPU_UTILIZATION_SCAP: 'CPU 用量（%）',
