@@ -51,7 +51,7 @@ module.exports = {
   MEMORY_PERCENTAGE_SCAP: 'Memory percentage',
   SET_ACTIVATION_CONDITION_DESC: 'Lütfen aktivasyon kodunu girin.',
   THRESHOLD: 'Eşik',
-  ABNORMAL_PODS: 'Abnormal pods',
+  UNAVAILABLE_POD_RATIO: 'Unavailable pod ratio (%)',
   POD_QUOTA_UTILIZATION_SCAP: 'Pod quota usage (%)',
   CPU_USAGE_SCAP: 'CPU kullanımı',
   CPU_UTILIZATION_SCAP: 'CPU usage (%)',
