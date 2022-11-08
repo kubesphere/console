@@ -28,6 +28,7 @@ module.exports = {
   ALERT_RULE_INACTIVE: '未觸發',
   ALERT_RULE_PENDING: '待觸發',
   ALERT_RULE_FIRING: '觸發中',
+  ALERT_RULE_DISABLED: '已禁用',
   ALERT_RULE_HEALTH_OK: '健康',
   ALERT_RULE_HEALTH_ERR: '錯誤',
   ALERT_RULE_HEALTH_UNKNOWN: '未知',
