@@ -25,7 +25,7 @@ module.exports = {
   CUSTOM_POLICIES: '自定义规则组',
   BUILT_IN_POLICIES: '内置规则组',
   ALERTING_POLICY_EMPTY_DESC: '请创建一个规则组。',
-  ALERT_RULE_INACTIVE: '未激活',
+  ALERT_RULE_INACTIVE: '未触发',
   ALERT_RULE_PENDING: '待发送',
   ALERT_RULE_FIRING: '发送中',
   ALERT_RULE_HEALTH_OK: '健康',
@@ -69,7 +69,7 @@ module.exports = {
   DATA_SEND_RATE: '网络发送数据速率',
   MEMORY_USAGE_SCAP: '内存用量',
   MEMORY_USAGE_WO_CACHE_SCAP: '内存用量不含缓存',
-  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: '不可用工作负载副本比例',
+  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable replica ratio (%)',
   SELECT_NODE_TIP: '请选择至少一个集群节点。',
   // List > Create > Rule Settings > Custom Rule
   CUSTOM_RULE: '自定义规则',
