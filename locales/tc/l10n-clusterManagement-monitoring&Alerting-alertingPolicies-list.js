@@ -69,7 +69,7 @@ module.exports = {
   DATA_SEND_RATE: '網路發送數據速率',
   MEMORY_USAGE_SCAP: '記憶體用量',
   MEMORY_USAGE_WO_CACHE_SCAP: 'Memory usage without cache',
-  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable workload replica ratio',
+  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable replica ratio (%)',
   SELECT_NODE_TIP: '請選擇至少一個集群節點。',
   // List > Create > Rule Settings > Custom Rule
   CUSTOM_RULE: '自定義規則',
