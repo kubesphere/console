@@ -196,7 +196,7 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('ACTIVATION_TIME'),
+        title: t('TRIGGER_TIME'),
         dataIndex: 'alerts',
         isHideable: true,
         width: '16%',
