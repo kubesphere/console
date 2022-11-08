@@ -22,7 +22,7 @@ module.exports = {
   // Custom > List
   ALERTS_FROM_CUSTOM_POLICIES: '来源于自定义规则',
   ALERTS_FROM_BUILT_IN_POLICIES: '来源于内置规则',
-  ACTIVATION_TIME: '激活时间',
+  TRIGGER_TIME: '触发时间',
   ALERTING_MESSAGE_EMPTY_DESC: '当前项目中没有发现告警。',
   MONITORING_TARGET: '监控目标'
 };
