@@ -28,6 +28,7 @@ module.exports = {
   ALERT_RULE_INACTIVE: 'İnaktif',
   ALERT_RULE_PENDING: 'Bekliyor',
   ALERT_RULE_FIRING: 'Ateşleme',
+  ALERT_RULE_DISABLED: 'Devre Dışı',
   ALERT_RULE_HEALTH_OK: 'Sağlıklı',
   ALERT_RULE_HEALTH_ERR: 'Hata',
   ALERT_RULE_HEALTH_UNKNOWN: 'Bilinmeyen',
