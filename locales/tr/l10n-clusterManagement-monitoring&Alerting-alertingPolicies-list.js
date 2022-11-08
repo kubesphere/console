@@ -69,7 +69,7 @@ module.exports = {
   DATA_SEND_RATE: 'Ağ verisi gönderme hızı',
   MEMORY_USAGE_SCAP: 'Hafıza kullanımı',
   MEMORY_USAGE_WO_CACHE_SCAP: 'Memory usage without cache',
-  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable workload replica ratio',
+  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable replica ratio (%)',
   SELECT_NODE_TIP: 'Lütfen en az bir küme düğümü seçin.',
   // List > Create > Rule Settings > Custom Rule
   CUSTOM_RULE: 'Özel Kural',
