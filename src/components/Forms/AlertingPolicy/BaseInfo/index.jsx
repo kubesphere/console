@@ -155,7 +155,11 @@ export default class BaseInfo extends React.Component {
           </Column>
           <Column>
             <Form.Item label={t('SEVERITY')}>
-              <Select name="labels.severity" options={this.severities} />
+              <Select
+                name="labels.severity"
+                options={this.severities}
+                placeholder=" "
+              />
             </Form.Item>
           </Column>
         </Columns>

@@ -232,7 +232,7 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('ACTIVATION_TIME'),
+        title: t('TRIGGER_TIME'),
         dataIndex: 'activeAt',
         isHideable: true,
         width: 200,
