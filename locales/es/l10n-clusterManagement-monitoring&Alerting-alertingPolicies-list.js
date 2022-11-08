@@ -69,7 +69,7 @@ module.exports = {
   DATA_SEND_RATE: 'Network data sending rate',
   MEMORY_USAGE_SCAP: 'ratio de uso de memoria',
   MEMORY_USAGE_WO_CACHE_SCAP: 'Memory usage without cache',
-  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable workload replica ratio',
+  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable replica ratio (%)',
   SELECT_NODE_TIP: 'Please select at lease a cluster node.',
   // List > Create > Rule Settings > Custom Rule
   CUSTOM_RULE: 'Custom Rule',
