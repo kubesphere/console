@@ -28,6 +28,7 @@ module.exports = {
   ALERT_RULE_INACTIVE: 'Inactive',
   ALERT_RULE_PENDING: 'قيد الانتظار',
   ALERT_RULE_FIRING: 'Firing',
+  ALERT_RULE_DISABLED: 'معطَّل',
   ALERT_RULE_HEALTH_OK: 'Healthy',
   ALERT_RULE_HEALTH_ERR: 'Error',
   ALERT_RULE_HEALTH_UNKNOWN: 'UnKnown',
