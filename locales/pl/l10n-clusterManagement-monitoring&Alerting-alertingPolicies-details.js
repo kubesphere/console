@@ -21,7 +21,7 @@ module.exports = {
   // Alert Rules
   ALERTING_RULE: 'Alert Rules',
   MONITORING_TARGETS_SCAP: 'Monitoring targets',
-  ACTIVATION_CONDITION_SCAP: 'Activation condition',
+  TRIGGER_CONDITION_SCAP: 'Trigger condition',
   METRIC_MONITORING: 'Metric Monitoring',
   ALERT_MONITORING: 'Alert Monitoring',
   NOTIFICATION_SUMMARY_COLON: 'Summary: ',

@@ -28,6 +28,7 @@ module.exports = {
   ALERT_RULE_INACTIVE: 'İnaktif',
   ALERT_RULE_PENDING: 'Bekliyor',
   ALERT_RULE_FIRING: 'Ateşleme',
+  ALERT_RULE_DISABLED: 'Devre Dışı',
   ALERT_RULE_HEALTH_OK: 'Sağlıklı',
   ALERT_RULE_HEALTH_ERR: 'Hata',
   ALERT_RULE_HEALTH_UNKNOWN: 'Bilinmeyen',
@@ -40,7 +41,7 @@ module.exports = {
   INVALID_TIME_DESC: 'Invalid value. Please enter 0 or a positive integer.',
   ALIAS: 'Takma ad',
   DURATION_MIN: 'Duration (minutes)',
-  ALERT_DURATION: 'When the alert situation persists longer than the value of this parameter, the system starts to send alerts to users.',
+  ALERT_DURATION: 'Set the system to wait for a certain duration and check whether the alert situation persists before firing an alert.',
   LONG_NAME_DESC: 'İsim yanlızda küçük harfler, sayılar ve kısa çizgiler(-) içerebilir ve küçük harf ve sayı ile başlayıp bitmelidir. Maksimum 253 karakter olabilir.',
   NAME_EXIST_DESC: 'Ad zaten var. Lütfen başka bir ad girin.',
   // List > Create > Rule Settings > Rule Template
@@ -69,7 +70,7 @@ module.exports = {
   DATA_SEND_RATE: 'Ağ verisi gönderme hızı',
   MEMORY_USAGE_SCAP: 'Hafıza kullanımı',
   MEMORY_USAGE_WO_CACHE_SCAP: 'Memory usage without cache',
-  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable workload replica ratio',
+  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable replica ratio (%)',
   SELECT_NODE_TIP: 'Lütfen en az bir küme düğümü seçin.',
   // List > Create > Rule Settings > Custom Rule
   CUSTOM_RULE: 'Özel Kural',

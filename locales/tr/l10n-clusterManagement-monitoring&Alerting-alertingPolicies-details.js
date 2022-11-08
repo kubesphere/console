@@ -21,7 +21,7 @@ module.exports = {
   // Alert Rules
   ALERTING_RULE: 'Alert Rules',
   MONITORING_TARGETS_SCAP: 'Hedefi İzleme',
-  ACTIVATION_CONDITION_SCAP: 'Aktivasyon Koşulu',
+  TRIGGER_CONDITION_SCAP: 'Trigger condition',
   METRIC_MONITORING: 'Metrik İzleme',
   ALERT_MONITORING: 'Alert Monitoring',
   NOTIFICATION_SUMMARY_COLON: 'Summary: ',

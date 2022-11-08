@@ -22,7 +22,7 @@ module.exports = {
   // Custom > List
   ALERTS_FROM_CUSTOM_POLICIES: 'From Custom Rules',
   ALERTS_FROM_BUILT_IN_POLICIES: 'From Built-in Rules',
-  ACTIVATION_TIME: '觸發時間',
+  TRIGGER_TIME: 'Trigger Time',
   ALERTING_MESSAGE_EMPTY_DESC: 'No alert is found in the current project.',
   MONITORING_TARGET: '監控目標'
 };

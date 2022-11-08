@@ -28,6 +28,7 @@ module.exports = {
   ALERT_RULE_INACTIVE: 'Inactive',
   ALERT_RULE_PENDING: 'Pendiente',
   ALERT_RULE_FIRING: 'Firing',
+  ALERT_RULE_DISABLED: 'Deshabilitado',
   ALERT_RULE_HEALTH_OK: 'Healthy',
   ALERT_RULE_HEALTH_ERR: 'Error',
   ALERT_RULE_HEALTH_UNKNOWN: 'UnKnown',
@@ -40,7 +41,7 @@ module.exports = {
   INVALID_TIME_DESC: 'Invalid value. Please enter 0 or a positive integer.',
   ALIAS: 'Alias',
   DURATION_MIN: 'Duration (minutes)',
-  ALERT_DURATION: 'When the alert situation persists longer than the value of this parameter, the system starts to send alerts to users.',
+  ALERT_DURATION: 'Set the system to wait for a certain duration and check whether the alert situation persists before firing an alert.',
   LONG_NAME_DESC: 'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de carácteres se establece en 253.',
   NAME_EXIST_DESC: 'Nombre existe',
   // List > Create > Rule Settings > Rule Template
@@ -69,7 +70,7 @@ module.exports = {
   DATA_SEND_RATE: 'Network data sending rate',
   MEMORY_USAGE_SCAP: 'ratio de uso de memoria',
   MEMORY_USAGE_WO_CACHE_SCAP: 'Memory usage without cache',
-  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable workload replica ratio',
+  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable replica ratio (%)',
   SELECT_NODE_TIP: 'Please select at lease a cluster node.',
   // List > Create > Rule Settings > Custom Rule
   CUSTOM_RULE: 'Custom Rule',

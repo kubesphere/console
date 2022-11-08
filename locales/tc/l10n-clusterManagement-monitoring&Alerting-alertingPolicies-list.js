@@ -28,6 +28,7 @@ module.exports = {
   ALERT_RULE_INACTIVE: '未觸發',
   ALERT_RULE_PENDING: '待觸發',
   ALERT_RULE_FIRING: '觸發中',
+  ALERT_RULE_DISABLED: '已禁用',
   ALERT_RULE_HEALTH_OK: '健康',
   ALERT_RULE_HEALTH_ERR: '錯誤',
   ALERT_RULE_HEALTH_UNKNOWN: '未知',
@@ -40,7 +41,7 @@ module.exports = {
   INVALID_TIME_DESC: 'Invalid value. Please enter 0 or a positive integer.',
   ALIAS: '別名',
   DURATION_MIN: 'Duration (minutes)',
-  ALERT_DURATION: 'When the alert situation persists longer than the value of this parameter, the system starts to send alerts to users.',
+  ALERT_DURATION: 'Set the system to wait for a certain duration and check whether the alert situation persists before firing an alert.',
   LONG_NAME_DESC: '最長 253 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
   NAME_EXIST_DESC: '名稱已存在',
   // List > Create > Rule Settings > Rule Template
@@ -69,7 +70,7 @@ module.exports = {
   DATA_SEND_RATE: '網路發送數據速率',
   MEMORY_USAGE_SCAP: '記憶體用量',
   MEMORY_USAGE_WO_CACHE_SCAP: 'Memory usage without cache',
-  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable workload replica ratio',
+  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable replica ratio (%)',
   SELECT_NODE_TIP: '請選擇至少一個集群節點。',
   // List > Create > Rule Settings > Custom Rule
   CUSTOM_RULE: '自定義規則',

@@ -21,7 +21,7 @@ module.exports = {
   // Alert Rules
   ALERTING_RULE: '告警规则',
   MONITORING_TARGETS_SCAP: '监控目标',
-  ACTIVATION_CONDITION_SCAP: '激活条件',
+  TRIGGER_CONDITION_SCAP: '触发条件',
   METRIC_MONITORING: '指标监控',
   ALERT_MONITORING: '告警监控',
   NOTIFICATION_SUMMARY_COLON: '概要：',

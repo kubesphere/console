@@ -28,6 +28,7 @@ module.exports = {
   ALERT_RULE_INACTIVE: 'Inactive',
   ALERT_RULE_PENDING: 'قيد الانتظار',
   ALERT_RULE_FIRING: 'Firing',
+  ALERT_RULE_DISABLED: 'معطَّل',
   ALERT_RULE_HEALTH_OK: 'Healthy',
   ALERT_RULE_HEALTH_ERR: 'Error',
   ALERT_RULE_HEALTH_UNKNOWN: 'UnKnown',
@@ -69,7 +70,7 @@ module.exports = {
   DATA_SEND_RATE: 'Network data sending rate',
   MEMORY_USAGE_SCAP: 'Memory usage',
   MEMORY_USAGE_WO_CACHE_SCAP: 'Memory usage without cache',
-  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable workload replica ratio',
+  UNAVAILABLE_WORKLOAD_REPLICA_RATIO: 'Unavailable replica ratio (%)',
   SELECT_NODE_TIP: 'Please select at least one cluster node.',
   // List > Create > Rule Settings > Custom Rule
   CUSTOM_RULE: 'Custom Rule',
