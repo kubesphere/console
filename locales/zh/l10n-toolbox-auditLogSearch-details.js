@@ -21,7 +21,7 @@ module.exports = {
   // Time Topology
   START_REAL_TIME_AUDIT_LOG: '暂停实时审计日志',
   STOP_REAL_TIME_AUDIT_LOG: '查看实时审计日志',
-  TIME_S: '{num} 秒',
+  TIME_S: '{num, plural, =1 {1 秒} other {# 秒}}',
   // Time Topology > Histogram
   AUDIT_LOG_COUNT: '审计日志',
   // List
