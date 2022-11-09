@@ -22,7 +22,7 @@ module.exports = {
   // Time Topology
   START_REAL_TIME_AUDIT_LOG: 'Pause real-time audit logs',
   STOP_REAL_TIME_AUDIT_LOG: 'View real-time audit logs',
-  TIME_S: '{num}s',
+  TIME_S: '{num, plural, =1 {1 second} other {# seconds}}',
   // Time Topology > Histogram
   AUDIT_LOG_COUNT: 'Audit Logs',
   // List
