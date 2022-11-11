@@ -20,7 +20,7 @@ module.exports = {
   // Project Information
   PROJECT_NAME: '项目名称',
   // Default Container Quotas
-  NO_REQUEST_TCAP: '不预留',
+  NO_REQUEST_TCAP: '无预留',
   NO_LIMIT_TCAP: '无上限',
   CPU_REQUEST_LOW: 'CPU 预留',
   CPU_LIMIT_LOW: 'CPU 上限',
