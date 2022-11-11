@@ -67,6 +67,11 @@ module.exports = {
   FEISHU_TITLE: 'Feishu',
   FEISHU_DESC: 'Send notifications to Feishu users.',
   PLEASE_ENTER_APP_ID: 'Please enter an app ID.',
+  CONVERSATION_SETTINGS: 'Conversation Settings',
+  USER_ID: 'User ID',
+  DEPARTMENT_ID: 'Department ID',
+  FEISHU_RECEIPIENT_SETTINGS_DESC: 'To receive notifications, please set at least one user ID or department ID.',
+  FEISHU_SECRET: '保密字典',
   // DingTalk
   DINGTALK_TITLE: 'DingTalk',
   DINGTALK: 'DingTalk',
