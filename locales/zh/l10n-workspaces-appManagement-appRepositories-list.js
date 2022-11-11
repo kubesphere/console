@@ -33,7 +33,7 @@ module.exports = {
   SYNC_INTERVAL: '同步间隔',
   SYNC_INTERVAL_DESC: '设置一个同步周期，取值范围为 3 分钟到 24 小时。默认值 0 表示不同步。',
   SYNC_PERIOD_EMPTY_DESC: '请设置同步周期。',
-  SYNC_INTERVAL_INVALID: '数值无效，请输入 0 或正整数。',
+  SYNC_INTERVAL_INVALID: '参数值无效，请输入 0 或正整数。',
   APP_REPO_URL_DESC: 'URL 需要通过验证才能添加或编辑应用仓库。',
   SYNC_INTERVAL_TIP: '取值范围为 3 分钟到 24 小时，请输入有效数值。',
   SECONDS: '秒',
