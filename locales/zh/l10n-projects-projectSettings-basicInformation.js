@@ -22,7 +22,7 @@ module.exports = {
   HOW_TO_USE_QUOTA_Q: '如何使用资源配额?',
   HOW_TO_USE_QUOTA_A: '资源配额是用来限制资源用量的一种机制，您可以通过<b>编辑项目</b>来编辑项目资源配额和默认容器配额。',
   WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q: '什么是默认容器配额?',
-  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A: '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 限制、内存预留和内存限制。',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A: '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 上限、内存预留和内存上限。',
   PROJECT_BASIC_INFO_DESC: '基本信息提供项目的信息概览，您可以查看项目的信息以及默认容器配额。',
   // Manage > Edit Information
   // Manage > Edit Project Quotas
@@ -31,9 +31,9 @@ module.exports = {
   WORKSPACE_REMAINING_QUOTAS: '企业空间剩余配额',
   // Manage > Edit Default Container Quotas
   GPU_TYPE_SCAP: 'GPU 类型',
-  GPU_LIMIT_SCAP: 'GPU 限制',
-  REQUEST_EXCEED_WORKSPACE: '资源预留和资源限制均不能超过企业空间资源限制。',
-  REQUEST_EXCEED_LIMIT: '资源预留不能超过资源限制。',
+  GPU_LIMIT_SCAP: 'GPU 上限',
+  REQUEST_EXCEED_WORKSPACE: '资源预留和资源上限均不能超过企业空间资源上限。',
+  REQUEST_EXCEED_LIMIT: '资源预留不能超过资源上限。',
   REQUEST_EXCEED_AVAILABLE_QUOTA: '资源不足。',
   // Mange > Delete
   DELETE_PROJECT_TIP: '请输入项目名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
@@ -48,8 +48,8 @@ module.exports = {
   // Default Container Quotas
   DEFAULT_CONTAINER_QUOTA_PL: '默认容器配额',
   EDIT_DEFAULT_CONTAINER_QUOTAS: '编辑默认容器配额',
-  LIMITS_CPU: 'CPU 限制',
-  LIMITS_MEMORY: '内存限制',
+  LIMITS_CPU: 'CPU 上限',
+  LIMITS_MEMORY: '内存上限',
   REQUESTS_CPU: 'CPU 预留',
   REQUESTS_MEMORY: '内存预留',
   // Project Quotas
