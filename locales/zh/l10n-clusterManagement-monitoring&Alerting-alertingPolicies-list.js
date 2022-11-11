@@ -38,7 +38,7 @@ module.exports = {
   CRITICAL_ALERT: '危险告警',
   ERROR_ALERT: '重要告警',
   WARNING_ALERT: '一般告警',
-  INVALID_TIME_DESC: '数值无效，请输入 0 或正整数。',
+  INVALID_TIME_DESC: '参数值无效，请输入 0 或正整数。',
   ALIAS: '别名',
   DURATION_MIN: '持续时间（分钟）',
   ALERT_DURATION: '设置系统等待一段时间并检查告警情况是否持续存在，如果告警情况持续存在才触发告警。',
