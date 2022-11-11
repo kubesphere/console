@@ -23,7 +23,7 @@ module.exports = {
   MONITORING_CLUSTER_DESC: '集群状态展示集群资源的概览和详情，您可以查看集群资源的监控数据和用量排行情况。',
   // Overview > Cluster Node Status
   CLUSTER_NODE_STATUS: '集群节点状态',
-  ALL_NODES: '全部节点',
+  ALL_NODES: '所有节点',
   ONLINE_NODES: '在线节点',
   NODE_ONLINE_STATUS: '节点在线状态',
   TIMES_PER_SECOND: '次/秒',
