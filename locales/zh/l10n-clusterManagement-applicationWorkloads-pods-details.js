@@ -36,7 +36,7 @@ module.exports = {
   NVIDIA_COM_GPU_VALUE: 'GPU：{value}',
   // Resource Status > Details > Container Details > Terminal
   LOADING: '加载中...',
-  RESOURCE_LIMITS: '资源限制',
+  RESOURCE_LIMITS: '资源上限',
   RESOURCE_REQUESTS: '资源预留',
   TERMINAL: '终端',
   // Resource Status > Details > Container Details > Resource Status

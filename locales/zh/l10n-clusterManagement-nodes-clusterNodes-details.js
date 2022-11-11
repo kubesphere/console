@@ -50,9 +50,9 @@ module.exports = {
   DISK_USAGE_SCAP: '磁盘用量',
   // Running Status > Allocated resources
   MEMORY_REQUEST_SCAP: '内存预留',
-  MEMORY_LIMIT_SCAP: '内存限制',
+  MEMORY_LIMIT_SCAP: '内存上限',
   CPU_REQUEST_SCAP: 'CPU 预留',
-  CPU_LIMIT_SCAP: 'CPU 限制',
+  CPU_LIMIT_SCAP: 'CPU 上限',
   // Running Status > Allocated Resources
   ALLOCATED_RESOURCES: '已分配资源',
   // Running Status > Health Status

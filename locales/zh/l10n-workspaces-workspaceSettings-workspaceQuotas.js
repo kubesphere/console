@@ -22,11 +22,11 @@ module.exports = {
   // Resource Quotas
   RESOURCE_QUOTA_PL: '资源配额',
   USED_PERCENT: '已使用：{percent}%',
-  RESOURCE_LIMIT: '资源限制',
+  RESOURCE_LIMIT: '资源上限',
   // Resource Quotas > Edit Quotas
   EDIT_WORKSPACE_QUOTAS: '编辑企业空间配额',
   CPU_REQUEST: 'CPU 预留',
   CPU_LIMIT: 'CPU 限制',
   MEMORY_REQUEST: '内存预留',
-  MEMORY_LIMIT: '内存限制'
+  MEMORY_LIMIT: '内存上限'
 };
