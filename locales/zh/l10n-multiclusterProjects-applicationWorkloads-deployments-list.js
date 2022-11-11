@@ -62,7 +62,7 @@ module.exports = {
   GPU_LIMIT: 'GPU 上限',
   NVIDIA_COM_GPU: 'NVIDIA GPU',
   NO_LIMIT: '无上限',
-  NO_REQUEST: '不预留',
+  NO_REQUEST: '无预留',
   NO_RESOURCE_LIMIT: '无资源上限',
   IGNORE_AND_RETRY: '忽略并重试',
   AVAILABLE_QUOTAS: '可用配额',
