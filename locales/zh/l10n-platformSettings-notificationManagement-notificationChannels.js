@@ -83,7 +83,7 @@ module.exports = {
   MAX_CID_COUNT: '您可以添加最多 {count} 个 Chat ID。',
   CHAT_ID_EXISTS: 'Chat ID 已存在，请添加其他 Chat ID。',
   // DingTalk > DingTalk Chatbot
-  CHATBOT_SETTINGS: '群机器人设置',
+  CHATBOT_SETTINGS: 'Chatbot Settings',
   KEYWORDS_LIST: '已添加关键字',
   DINGTALK_CHATBOT_SECURITY_TIP: '请输入 Secret 或关键词。',
   ENTER_KEYWORD_DESC: '请输入关键字。',
