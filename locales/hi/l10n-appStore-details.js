@@ -27,7 +27,7 @@ module.exports = {
   DO_NOT_REMIND_AGAIN: 'मुझे फिर से याद न दिलाएं',
   // Install > Basic Information
   LOCATION: 'स्थान',
-  CLUSTER_NAME_DESC: 'नाम में केवल लोअरकेस अक्षर, संख्याएं और हाइफ़न (-) हो सकते हैं, एक लोअरकेस अक्षर से शुरू होना चाहिए, और एक लोअरकेस अक्षर या संख्या के साथ समाप्त होना चाहिए। अधिकतम लंबाई 53 वर्ण है।',
+  CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 32 characters.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'ऐप को मल्टी-क्लस्टर प्रोजेक्ट में तैनात नहीं किया जा सकता है।',
   LATEST_VERSION_SCAP: 'नवीनतम संस्करण',
   WORKSPACE_EMPTY_DESC: 'कृपया कोई कार्यस्थान चुनें',
