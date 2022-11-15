@@ -34,7 +34,7 @@ module.exports = {
   ENVIRONMENT_INVALID_TIP: '环境变量的键只能包含字母、数字、下划线（_）、连字符（-）和句点（.），并且不能以数字开头。',
   ENVIRONMENT_CANNOT_BE_EMPTY: '请设置环境变量的键。',
   // List > Create > Pod Settings > Port Settings
-  WORKLOAD_PORT_NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 15 个字符。',
+  WORKLOAD_PORT_NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，不能有连续的分隔符，最长 15 个字符。',
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
   MAX_EXTRA_PODS_DESC: '更新过程中允许的多余容器组副本的最大数量或百分比。',
   MAX_EXTRA_PODS: '最大多余容器组数量',
