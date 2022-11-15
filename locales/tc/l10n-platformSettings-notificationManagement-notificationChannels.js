@@ -87,7 +87,7 @@ module.exports = {
   MAX_CID_COUNT: 'You can add a maximum of {count} chat IDs.',
   CHAT_ID_EXISTS: 'The chat ID already exists. Please add another chat ID.',
   // DingTalk > DingTalk Chatbot
-  CHATBOT_SETTINGS: '群機器人設置',
+  CHATBOT_SETTINGS: 'Chatbot Settings',
   KEYWORDS_LIST: 'Added Keywords',
   DINGTALK_CHATBOT_SECURITY_TIP: 'Please enter a secret or keyword.',
   ENTER_KEYWORD_DESC: '請輸入關鍵字。',
