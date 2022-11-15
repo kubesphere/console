@@ -35,7 +35,7 @@ module.exports = {
   CONTAINER: '容器',
   VALUES: '值',
   CONDITION_OPERATOR: '操作符',
-  NOTIFICATION_CONDITION_SETTING_TIP: '<strong>包含</strong>和<strong>不包含</strong> 操作符需要一个或多个值。您可以按 <strong>Enter</strong> 设置多个值。',
+  NOTIFICATION_CONDITION_SETTING_TIP: '<strong>包含</strong>和<strong>不包含</strong>操作符需要一个或多个值。您可以按 <strong>Enter</strong> 设置多个值。',
   NOTIFICATION_CONDITION_SETTINGS_DESC: '设置系统仅发送符合条件的告警。',
   CONTAIN: '包含',
   NOT_CONTAIN: '不包含',
