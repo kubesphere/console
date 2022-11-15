@@ -118,7 +118,7 @@ export default class BaseInfo extends React.Component {
             label={t('CLUSTER_NAME')}
             desc={t('NAME_DESC')}
             rules={[
-              { required: true, message: t('Please input cluster name') },
+              { required: true, message: t('CLUSTER_NAME_EMPTY') },
               {
                 pattern: PATTERN_NAME,
                 message: t('INVALID_NAME_DESC'),
