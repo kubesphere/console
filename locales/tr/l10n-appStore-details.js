@@ -27,7 +27,7 @@ module.exports = {
   DO_NOT_REMIND_AGAIN: 'Bir daha hatırlatma',
   // Install > Basic Information
   LOCATION: 'Konum',
-  CLUSTER_NAME_DESC: 'Ad yalnızca küçük harf, sayı ve kısa çizgi (-) içerebilir, küçük harfle başlamalı ve küçük harf veya sayı ile bitmelidir. Maksimum uzunluk 53 karakterdir.',
+  CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 32 characters.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'Uygulama, çok kümeli bir projede dağıtılamaz.',
   LATEST_VERSION_SCAP: 'Son Sürüm',
   WORKSPACE_EMPTY_DESC: 'Lütfen bir çalışma alanı seçin.',
