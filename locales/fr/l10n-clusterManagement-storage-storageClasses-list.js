@@ -45,7 +45,6 @@ module.exports = {
   MINSIZE: 'Minimum Size',
   STEPSIZE: 'Step Size',
   FSTYPE: 'File System Type',
-  TAGS: 'Tag',
   QINGCLOUD_CSI_TYPE_DESC: 'On QingCloud Public Cloud Platform, 0 means high performance volume; 2 high capacity volume; 3 ultra-high performance volume; 5 enterprise server SAN (NeonSAN); 100 standard volume; 200 enterprise SSD.',
   CREATE_VOLUME_MAX_SIZE: 'Maximum size of the volume.',
   CREATE_VOLUME_STEP_SIZE: 'Step size of the volume.',
