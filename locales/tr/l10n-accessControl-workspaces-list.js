@@ -27,6 +27,7 @@ module.exports = {
   WORKSPACE_CREATE_DESC: 'Uygulama hakkında temel bilgileri öğrenin.',
   ADMINISTRATOR: 'Yönetici',
   WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
+  INVALID_WORKSPACE_NAME: 'Invalid workspace name.',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'Çalışma alanında kullanılacak kümeleri seçin.',
   NO_CLUSTER_AVAILABLE: 'No Cluster Available',
