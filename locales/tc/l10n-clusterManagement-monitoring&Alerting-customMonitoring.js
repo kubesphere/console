@@ -39,6 +39,7 @@ module.exports = {
   UPLOAD_FROM_LOCAL_STORAGE: '從本地上傳',
   UPLOAD_FROM_URL: '通過 URL 上傳',
   // List > Create > Custom
+  DASHBOARD_TITILE: 'Dashboard title',
   APPLICABLE_SCENE: 'Applicable Scenario',
   BASE_LINE_CHART: 'Base Line Chart',
   STACK_LINE_CHART: 'Stacked Area Chart',
