@@ -174,7 +174,7 @@ export default class JenkinsEdit extends React.Component {
           visible={visible}
           closable={false}
           maskClosable={false}
-          title={t('Jenkinsfile')}
+          title={'Jenkinsfile'}
         >
           <>
             <CodeEditor

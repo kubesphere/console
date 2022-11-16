@@ -169,7 +169,7 @@ export default {
           await ingressStore.create(_data, { cluster, namespace })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Add Route Successfully')}` })
+          Notify.success({ content: t('ADD_ROUTE_SUCCESS') })
           success && success()
         },
         cluster,

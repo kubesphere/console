@@ -47,4 +47,5 @@ module.exports = {
   ROUTE_SETTINGS: 'Route Settings',
   ROUTING_RULES: 'Routing Rules',
   ROUTE_SETTINGS_DESC: 'Set routing rules for the app.',
+  ADD_ROUTE_SUCCESS: 'The route was added successfully.',
 }

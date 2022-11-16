@@ -72,13 +72,13 @@ export default class ContainerItem extends React.Component {
       <div className={styles.probe}>
         {this.renderProbeRecord({
           probe: postStart,
-          title: t('PostStart'),
+          title: t('POSTSTART_ACTION'),
           tagType: 'primary',
           noTime: true,
         })}
         {this.renderProbeRecord({
           probe: preStop,
-          title: t('PreStop'),
+          title: t('PRESTOP_ACTION'),
           tagType: 'warning',
           noTime: true,
         })}

@@ -48,11 +48,11 @@ export default class NetworkParams extends Component {
     return (
       <div className={styles.preview}>
         <div className={styles.item}>
-          <span>{t('Pods CIDR')}: </span>
+          <span>{t('PODS_CIDR')}: </span>
           <span>{value.kubePodsCIDR}</span>
         </div>
         <div className={styles.item}>
-          <span>{t('Service CIDR')}: </span>
+          <span>{t('SERVICE_CIDR')}: </span>
           <span>{value.kubeServiceCIDR}</span>
         </div>
         <a className={styles.edit} onClick={this.showEdit}>
@@ -72,10 +72,10 @@ export default class NetworkParams extends Component {
         onCancel={this.hideEdit}
         visible={this.state.visible}
       >
-        <Form.Item label={t('Pods CIDR')} desc={t('KUBE_PODS_CIDR_DESC')}>
+        <Form.Item label={t('PODS_CIDR')} desc={t('KUBE_PODS_CIDR_DESC')}>
           <Input name="kubePodsCIDR" />
         </Form.Item>
-        <Form.Item label={t('Service CIDR')} desc={t('KUBE_SERVICE_CIDR_DESC')}>
+        <Form.Item label={t('SERVICE_CIDR')} desc={t('KUBE_SERVICE_CIDR_DESC')}>
           <Input name="kubeServiceCIDR" />
         </Form.Item>
         {params.map(param => (

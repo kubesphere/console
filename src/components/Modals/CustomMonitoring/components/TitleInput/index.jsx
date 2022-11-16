@@ -32,7 +32,7 @@ export default function TitleInput({ title, isEditing, onChange, theme }) {
         <Input
           onChange={onChange}
           value={title}
-          placeholder={t('Dashboard Title')}
+          placeholder={t('DASHBOARD_TITILE')}
         />
       ) : (
         <span

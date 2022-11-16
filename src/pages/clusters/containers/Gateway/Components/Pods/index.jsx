@@ -274,7 +274,7 @@ export default class PodsCard extends React.Component {
       <Panel
         className={classnames(styles.main, className)}
         title={t(title)}
-        empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('Pod') })}
+        empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('POD') })}
         isEmpty={isEmpty(data)}
       >
         {!hideHeader && this.renderHeader()}

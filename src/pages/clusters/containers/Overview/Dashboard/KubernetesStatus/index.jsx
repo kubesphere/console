@@ -113,7 +113,7 @@ export default class KubernetesStatus extends Component {
           <>
             <div className={styles.level}>
               <Text
-                title={`${request_rate} times/s`}
+                title={t('VALUE_REQUESTS_SECOND', { value: request_rate })}
                 description={t('API_REQUESTS_PER_SECOND')}
               />
               <Text

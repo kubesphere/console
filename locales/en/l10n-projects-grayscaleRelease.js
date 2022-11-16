@@ -52,7 +52,7 @@ module.exports = {
   UNSUPPORTED_WORKLOAD_TYPE: 'Workload type not supported',
   // Release Modes > Canary Release > Create > New Version Settings
   VERSION_EXISTS: 'The version code already exists. Please enter another version code.',
-  NEW_VERSION_NUMBER_EXIST_DESC: 'The workload {name} already exists. Please enter another version number.',
+  NEW_VERSION_NUMBER_EXIST_DESC: 'The workload {name} already exists. Please enter another version code.',
   INIT_CONTAINER: 'Init container',
   INIT_CONTAINER_VALUE: 'Init Container: {value}',
   CONTAINER_VALUE: 'Container: {value}',

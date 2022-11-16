@@ -156,14 +156,14 @@ export default class BaseInfo extends React.Component {
             <>
               <SubTitle
                 className={styles.nodesTitle}
-                title={t('Node Settings')}
+                title={t('NODE_SETTINGS')}
                 description={t('CLUSTER_NODE_SETTINGS_DESC')}
               />
               <Form.Item
                 rules={[
                   {
                     required: true,
-                    message: t('Please add at least one cluster node'),
+                    message: t('PLEASE_ADD_AT_LEAST_ONE_CLUSTER_NODE'),
                   },
                   {
                     validator: this.nodesValidator,

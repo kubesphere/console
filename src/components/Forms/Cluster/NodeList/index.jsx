@@ -119,7 +119,7 @@ export default class NodeList extends React.Component {
       <List.Add
         icon="add"
         title={t('ADD_NODE')}
-        description={t('Add node to the cluster')}
+        description={t('ADD_NODE_TO_THE_CLUSTER')}
         onClick={this.showAdd}
       />
     )

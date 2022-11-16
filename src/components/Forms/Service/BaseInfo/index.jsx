@@ -178,11 +178,7 @@ export default class ServiceBaseInfo extends React.Component {
       .then(resp => {
         if (resp.exist) {
           return callback({
-            message: t(
-              `${t(this.workloadKind)} ${name} ${t('exists')}, ${t(
-                'version number is invalid'
-              )}`
-            ),
+            message: t('NEW_VERSION_NUMBER_EXIST_DESC', { value: name }),
             field: rule.field,
           })
         }
