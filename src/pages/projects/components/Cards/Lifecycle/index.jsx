@@ -35,12 +35,12 @@ export default class LifecycleCard extends React.Component {
       <div className={styles.probe}>
         {this.renderProbeRecord({
           probe: postStart,
-          title: t('PostStart'),
+          title: t('POSTSTART_ACTION'),
           tagType: 'primary',
         })}
         {this.renderProbeRecord({
           probe: preStop,
-          title: t('PreStop'),
+          title: t('PRESTOP_ACTION'),
           tagType: 'warning',
         })}
       </div>

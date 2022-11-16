@@ -69,7 +69,7 @@ export default class KubeConfigModal extends React.Component {
       >
         <div className={styles.header}>
           <Icon name="coding" size={40} />
-          <div className={styles.title}>{t('kubeconfig')}</div>
+          <div className={styles.title}>{'kubeconfig'}</div>
         </div>
         <div className={styles.content}>
           <div className={styles.topbar}>

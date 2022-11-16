@@ -71,11 +71,11 @@ export default class Providers extends React.Component {
             >
               <Radio value="new">
                 <Icon name="kubernetes" size={48} />
-                <span>{t('New Cluster')}</span>
+                <span>{t('NEW_CLUSTER')}</span>
               </Radio>
               <Radio value="import">
                 <Icon name="hammer" size={48} />
-                <span>{t('Import Cluster')}</span>
+                <span>{t('IMPORT_CLUSTER')}</span>
               </Radio>
             </RadioGroup>
           </Form.Item>

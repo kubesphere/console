@@ -222,7 +222,7 @@ class Overview extends React.Component {
     const components = [
       {
         type: 'etcd-0',
-        name: t('etcd'),
+        name: 'etcd',
       },
       {
         type: 'controller-manager',

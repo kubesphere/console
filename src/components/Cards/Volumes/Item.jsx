@@ -39,7 +39,7 @@ const Card = ({ volume, match, isMultiProject }) => {
   if (volume.hostPath) {
     description = t('TYPE_HOSTPATH')
     details = [
-      { title: get(volume, 'hostPath.path', '-'), description: t('HostPath') },
+      { title: get(volume, 'hostPath.path', '-'), description: 'HostPath' },
     ]
   } else if (volume.emptyDir) {
     description = t('TYPE_EMPTYDIR')

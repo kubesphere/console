@@ -80,22 +80,22 @@ export default class OAuthModal extends React.Component {
               <Input name="name" />
             </Form.Item>
             <Form.Item
-              label={t('Client ID')}
-              rules={[{ required: true, message: t('Please input client id') }]}
+              label={t('CLIENT_ID')}
+              rules={[{ required: true, message: t('PLEASE_INPUT_CLIENT_ID') }]}
             >
               <Input name="clientID" />
             </Form.Item>
           </Column>
           <Column>
             <Form.Item
-              label={t('Server Address')}
+              label={t('SERVER_ADDRESS')}
               rules={[
-                { required: true, message: t('Please input server address') },
+                { required: true, message: t('PLEASE_INPUT_SERVER_ADDRESS') },
               ]}
             >
               <Input name="server" />
             </Form.Item>
-            <Form.Item label={t('Client Secret')}>
+            <Form.Item label={t('CLIENT_SECRET')}>
               <Input name="secret" />
             </Form.Item>
           </Column>

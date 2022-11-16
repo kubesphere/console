@@ -52,7 +52,7 @@ const Item = ({ prefix = '', data = {} }) => {
             ) : (
               <Link to={`${prefix}/${node_name}`}>{node_name}</Link>
             )}
-            {isLeader && <Tag className={styles.tag}>{t('Leader')}</Tag>}
+            {isLeader && <Tag className={styles.tag}>{'leader'}</Tag>}
           </strong>
           <span>{t('NODE_IP_ADDRESS_VALUE', { value: node_ip || '-' })}</span>
         </p>
