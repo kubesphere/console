@@ -39,6 +39,7 @@ module.exports = {
   UPLOAD_FROM_LOCAL_STORAGE: '从本地上传',
   UPLOAD_FROM_URL: '通过 URL 上传',
   // List > Create > Custom
+  DASHBOARD_TITILE: 'Dashboard title',
   APPLICABLE_SCENE: '适用场景',
   BASE_LINE_CHART: '基础折线图',
   STACK_LINE_CHART: '堆叠面积图',
