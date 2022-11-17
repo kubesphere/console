@@ -37,11 +37,7 @@ window.onunhandledrejection = function(e) {
       if (!isAppsPage() && !isMemberClusterPage(location.pathname, e.message)) {
         /* eslint-disable no-alert */
         location.href = `/login?referer=${location.pathname}`
-        window.alert(
-          t(
-            'Session timeout or this account is logged in elsewhere, please login again'
-          )
-        )
+        window.alert(t('LOGIN_AGAIN_DESC'))
       } else {
         Notify.error({ title: e.reason, content: t(e.message), duration: 6000 })
       }
