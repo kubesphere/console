@@ -46,5 +46,5 @@ module.exports = {
   ROUTE_SETTINGS: '路由设置',
   ROUTING_RULES: '路由规则',
   ROUTE_SETTINGS_DESC: '为应用设置路由规则。',
-  ADD_ROUTE_SUCCESS: 'The route was added successfully.'
+  ADD_ROUTE_SUCCESS: '应用路由添加成功。'
 };
