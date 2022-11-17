@@ -45,7 +45,6 @@ module.exports = {
   MINSIZE: 'En Az Boyut',
   STEPSIZE: 'Adım Boyutu',
   FSTYPE: 'Dosya Sistemi Türü',
-  TAGS: 'Etiket',
   QINGCLOUD_CSI_TYPE_DESC: 'QingCloud Public Cloud Platform\'da 0, yüksek performans hacmi anlamına gelir; 2 yüksek kapasiteli hacim; 3 ultra yüksek performans hacmi; 5 kurumsal sunucu SAN (NeonSAN); 100 standart hacim; 200 kurumsal SSD.',
   CREATE_VOLUME_MAX_SIZE: 'Hacmin en fazla boyutu.',
   CREATE_VOLUME_STEP_SIZE: 'Hacmin adım boyutu.',

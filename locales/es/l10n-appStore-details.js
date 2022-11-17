@@ -27,7 +27,7 @@ module.exports = {
   DO_NOT_REMIND_AGAIN: 'No recordar de nuevo',
   // Install > Basic Information
   LOCATION: 'Ubicación de despliegue',
-  CLUSTER_NAME_DESC: 'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 53.',
+  CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 32 characters.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'No se pueden implementar aplicaciones en proyectos de múltiples clústeres.',
   LATEST_VERSION_SCAP: 'Última versión',
   WORKSPACE_EMPTY_DESC: 'Selecciona un espacio de trabajo, por favor',

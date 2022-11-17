@@ -70,9 +70,9 @@ module.exports = {
   NO_MATCHING_RESULT_FOUND: '暫時沒有找到符合過濾條件的資源',
   STATUS: '狀態',
   TOTAL_ITEMS: '共 {num} 個項目',
-  YOU_CAN_TRY_TO: 'You can try to',
-  REFRESH_DATA: 'refresh data',
-  CLEAR_SEARCH_CONDITIONS: 'clear search conditions',
+  YOU_CAN_TRY_TO: 'You can try',
+  REFRESH_DATA: 'refreshing data',
+  CLEAR_SEARCH_CONDITIONS: 'clearing search conditions',
   // List > Edit Taints
   DUPLICATE_KEYS: '無法添加重複的 key',
   EMPTY_KEY: '無法添加空的 key'

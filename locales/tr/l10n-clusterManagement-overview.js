@@ -38,6 +38,7 @@ module.exports = {
   // Kubernetes Status
   KUBERNETES_STATUS: 'Kubernetes Durumu',
   API_REQUESTS_PER_SECOND: 'Saniye başına API istekleri',
+  VALUE_REQUESTS_SECOND: '{value, plural, =1 {1 request} other {# requests}}/s',
   API_REQUEST_LATENCY: 'API isteği gecikmesi',
   SCHEDULING_OPERATIONS: 'Zamanlama işlemleri',
   SCHEDULING_OPERATION: 'Zamanlama işlemleri',

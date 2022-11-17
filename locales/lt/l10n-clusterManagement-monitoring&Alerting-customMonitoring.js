@@ -39,6 +39,7 @@ module.exports = {
   UPLOAD_FROM_LOCAL_STORAGE: 'Upload from Local Storage',
   UPLOAD_FROM_URL: 'Upload from URL',
   // List > Create > Custom
+  DASHBOARD_TITILE: 'Dashboard title',
   APPLICABLE_SCENE: 'Applicable Scenario',
   BASE_LINE_CHART: 'Base Line Chart',
   STACK_LINE_CHART: 'Stacked Area Chart',
