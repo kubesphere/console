@@ -110,7 +110,7 @@ export default {
           Modal.close(modal)
         },
         modal: KubeConfigModal,
-        title: t('kubeconfig'),
+        title: 'kubeconfig',
         ...props,
       })
     },
