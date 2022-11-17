@@ -29,6 +29,7 @@ module.exports = {
   TOO_MANY_FAILURES: '连续登录失败次数超过限制，请稍后重试。',
   FAILED_TO_ACCESS_BACKEND: '访问后端服务失败。',
   FAILED_TO_ACCESS_API_SERVER: '访问 API 服务失败。',
+  LOGIN_AGAIN_DESC: '会话已超时或用户已从其他地方登录，请重新登录。',
   // Change password upon first login
   CHANGE_PASSWORD_TIP: '初次登录请修改密码。',
   SUBMIT: '提交',
