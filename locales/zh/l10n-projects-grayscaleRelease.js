@@ -51,7 +51,7 @@ module.exports = {
   UNSUPPORTED_WORKLOAD_TYPE: '不支持该工作负载类型',
   // Release Modes > Canary Release > Create > New Version Settings
   VERSION_EXISTS: '版本号已经存在，请输入其他版本号。',
-  NEW_VERSION_NUMBER_EXIST_DESC: 'The workload {name} already exists. Please enter another version code.',
+  NEW_VERSION_NUMBER_EXIST_DESC: '工作负载 {name} 已经存在，请输入其他版本号。',
   INIT_CONTAINER: '初始化容器',
   INIT_CONTAINER_VALUE: '初始化容器：{value}',
   CONTAINER_VALUE: '容器：{value}',
