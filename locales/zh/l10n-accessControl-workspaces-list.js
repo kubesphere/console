@@ -27,6 +27,7 @@ module.exports = {
   WORKSPACE_CREATE_DESC: '设置企业空间的基本信息。',
   ADMINISTRATOR: '管理员',
   WORKSPACE_NAME_EXISTS_DESC: '企业空间名称已存在。',
+  INVALID_WORKSPACE_NAME: '企业空间名称无效。',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: '选择企业空间需要使用的集群。',
   NO_CLUSTER_AVAILABLE: '没有可用集群',

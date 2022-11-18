@@ -38,6 +38,7 @@ module.exports = {
   // Kubernetes Status
   KUBERNETES_STATUS: 'Kubernetes 組件狀態',
   API_REQUESTS_PER_SECOND: '每秒 API 請求數',
+  VALUE_REQUESTS_SECOND: '{value, plural, =1 {1 request} other {# requests}}/s',
   API_REQUEST_LATENCY: 'API 請求延遲',
   SCHEDULING_OPERATIONS: '排程器調度次數',
   SCHEDULING_OPERATION: '排程器調度次數',

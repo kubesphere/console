@@ -45,5 +45,6 @@ module.exports = {
   // List > Create > Route Settings
   ROUTE_SETTINGS: 'Rota Ayarları',
   ROUTING_RULES: 'Rota Kuralları',
-  ROUTE_SETTINGS_DESC: 'Uygulama için yönlendirme kuralları belirleyin.'
+  ROUTE_SETTINGS_DESC: 'Uygulama için yönlendirme kuralları belirleyin.',
+  ADD_ROUTE_SUCCESS: 'The route was added successfully.'
 };

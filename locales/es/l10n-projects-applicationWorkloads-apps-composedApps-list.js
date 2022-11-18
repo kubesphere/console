@@ -45,5 +45,6 @@ module.exports = {
   // List > Create > Route Settings
   ROUTE_SETTINGS: 'Route Settings',
   ROUTING_RULES: 'Reglas de ruta',
-  ROUTE_SETTINGS_DESC: 'Puedes definir las reglas de acceso a internet para la aplicación (Ingress).'
+  ROUTE_SETTINGS_DESC: 'Puedes definir las reglas de acceso a internet para la aplicación (Ingress).',
+  ADD_ROUTE_SUCCESS: 'The route was added successfully.'
 };
