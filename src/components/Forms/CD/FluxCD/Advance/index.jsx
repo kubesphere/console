@@ -34,6 +34,7 @@ import { FLUXCD_APP_TYPES } from 'utils/constants'
 
 import { TypeSelect } from 'components/Base'
 import { get, set } from 'lodash'
+import { ArrayInput } from 'components/Inputs'
 import Placement from '../../Advance/Placement'
 import styles from './index.scss'
 
@@ -100,16 +101,6 @@ export default class Advance extends React.Component {
                   </Column>
                   <Column>
                     <Form.Item
-                      label={t('ValuesFiles')}
-                      desc={t(
-                        'list of values files to use as the chart values'
-                      )}
-                    >
-                      <Input name="config.helmRelease.chart.valuesFiles" />
-                    </Form.Item>
-                  </Column>
-                  <Column>
-                    <Form.Item
                       label={t('Save Template')}
                       desc={t(
                         'Template is a reusable module includes Chart, ValuesFiles and so on'
@@ -125,6 +116,20 @@ export default class Advance extends React.Component {
                           "metadata.labels['gitops.kubesphere.io/save-helm-template']"
                         )}
                       />
+                    </Form.Item>
+                  </Column>
+                </Columns>
+                <Columns>
+                  <Column>
+                    <Form.Item
+                      label={t('ValuesFiles')}
+                      desc={t(
+                        'list of values files to use as the chart values'
+                      )}
+                    >
+                      <ArrayInput name="config.helmRelease.chart.valuesFiles">
+                        <Input />
+                      </ArrayInput>
                     </Form.Item>
                   </Column>
                 </Columns>

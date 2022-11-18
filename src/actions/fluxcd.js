@@ -81,7 +81,7 @@ const buildHelmRelease = data => {
         helmRelease: {
           chart: {
             chart: data.config.helmRelease.chart.chart,
-            valuesFiles: split(data.config.helmRelease.chart.valuesFiles, ';'),
+            valuesFiles: data.config.helmRelease.chart.valuesFiles,
           },
           deploy: [
             {
