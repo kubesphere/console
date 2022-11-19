@@ -99,7 +99,7 @@ export default class Advance extends React.Component {
                   </Column>
                   <Column>
                     <Form.Item
-                      label={t('Save Template')}
+                      label={t('SAVE_TEMPLATE')}
                       desc={t(
                         'Template is a reusable module includes Chart, ValuesFiles and so on'
                       )}
@@ -120,7 +120,7 @@ export default class Advance extends React.Component {
                 <Columns>
                   <Column>
                     <Form.Item
-                      label={t('ValuesFiles')}
+                      label={t('VALUES_FILES')}
                       desc={t(
                         'list of values files to use as the chart values'
                       )}
@@ -174,7 +174,7 @@ export default class Advance extends React.Component {
                 <Columns>
                   <Column>
                     <Form.Item
-                      label={t('ValuesFrom')}
+                      label={t('VALUES_FROM')}
                       desc={
                         'ValuesFrom holds references to resources containing Helm values for this HelmRelease'
                       }
@@ -266,7 +266,7 @@ export default class Advance extends React.Component {
                         </Form.Item>
                       </TabPanel>
                       <TabPanel
-                        label={t('StorageNamespace')}
+                        label={t('STORAGE_NAMESPACE')}
                         name="StorageNamespace"
                       >
                         <Form.Item
