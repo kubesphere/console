@@ -58,6 +58,22 @@ const buildHelmRelease = data => {
     }
     return o
   }
+  const arr2Obj = arr => {
+    if (arr === undefined) return null
+    const gen = (idx, arr, end) => {
+      if (idx == arr.length) {
+        return end
+      }
+      return { [arr[idx]]: gen(++idx, arr, end) }
+    }
+
+    let o = {}
+    for (entry of arr) {
+      let ks = entry.k.split('.')
+      o = Object.assign(o, gen(0, ks, entry.v))
+    }
+    return o
+  }
   if (
     data.metadata.labels &&
     data.metadata.labels['gitops.kubesphere.io/save-helm-template']
@@ -96,6 +112,7 @@ const buildHelmRelease = data => {
                     : null,
                 targetNamespace: data.destination.namespace,
               },
+              values: arr2Obj(data.config.helmRelease.values),
               interval: data.config.helmRelease.interval,
               releaseName: data.config.helmRelease.releaseName,
               storageNamespace: data.config.helmRelease.storageNamespace,
