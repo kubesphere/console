@@ -29,6 +29,7 @@ import {
   Menu,
   Collapse,
   Select,
+  Icon,
 } from '@kube-design/components'
 
 import { FLUXCD_APP_TYPES } from 'utils/constants'
@@ -188,18 +189,45 @@ export default class Advance extends React.Component {
                       >
                         <ObjectInput>
                           <Select
+                            name="kind"
+                            defaultValue="ConfigMap"
+                            optionRenderer={option => (
+                              <span className="option-with-icon">
+                                <Icon
+                                  name={option.icon}
+                                  style={{
+                                    marginRight: 6,
+                                    verticalAlign: 'middle',
+                                  }}
+                                  type="light"
+                                />
+                                <span>{option.label}</span>
+                              </span>
+                            )}
+                            valueRenderer={option => (
+                              <span className="option-with-icon">
+                                <Icon
+                                  name={option.icon}
+                                  style={{
+                                    marginRight: 6,
+                                    verticalAlign: 'middle',
+                                  }}
+                                />
+                                <span>{option.value}</span>
+                              </span>
+                            )}
                             options={[
                               {
                                 label: 'ConfigMap',
                                 value: 'ConfigMap',
+                                icon: 'hammer',
                               },
                               {
-                                label: 'Secert',
-                                value: 'Secert',
+                                label: 'Secret',
+                                value: 'Secret',
+                                icon: 'key',
                               },
                             ]}
-                            name="kind"
-                            defaultValue="ConfigMap"
                           />
                           <Input name="name" placeholder={t('NAME')} />
                           <Input
