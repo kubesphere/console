@@ -28,10 +28,11 @@ import {
   Dropdown,
   Menu,
   Collapse,
+  Select,
 } from '@kube-design/components'
 
 import { FLUXCD_APP_TYPES } from 'utils/constants'
-
+import { ArrayInput, ObjectInput } from 'components/Inputs'
 import { TypeSelect } from 'components/Base'
 import { get, set } from 'lodash'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
@@ -178,27 +179,35 @@ export default class Advance extends React.Component {
                     <Form.Item
                       label={t('ValuesFrom')}
                       desc={
-                        <div>
-                          <Dropdown
-                            content={
-                              <Menu>
-                                <Menu.MenuItem key="ConfigMap">
-                                  ConfigMap
-                                </Menu.MenuItem>
-                                <Menu.MenuItem key="Secret">
-                                  Secret
-                                </Menu.MenuItem>
-                              </Menu>
-                            }
-                          >
-                            <Tag type="primary">ConfigMap</Tag>
-                          </Dropdown>
-                        </div>
+                        'ValuesFrom holds references to resources containing Helm values for this HelmRelease'
                       }
                     >
-                      <div>
-                        <Input name="config.helmRelease.valuesFrom.secret" />
-                      </div>
+                      <ArrayInput
+                        name="config.helmRelease.valuesFrom"
+                        itemType="object"
+                      >
+                        <ObjectInput>
+                          <Select
+                            options={[
+                              {
+                                label: 'ConfigMap',
+                                value: 'ConfigMap',
+                              },
+                              {
+                                label: 'Secert',
+                                value: 'Secert',
+                              },
+                            ]}
+                            name="kind"
+                            defaultValue="ConfigMap"
+                          />
+                          <Input name="name" placeholder={t('NAME')} />
+                          <Input
+                            name="valuesKey"
+                            placeholder={t('ValuesKey')}
+                          />
+                        </ObjectInput>
+                      </ArrayInput>
                     </Form.Item>
                   </Column>
                 </Columns>

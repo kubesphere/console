@@ -22,7 +22,7 @@ import { Modal } from 'components/Base'
 import { Notify } from '@kube-design/components'
 import DeleteModal from 'components/Modals/CDDelete'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { set, isEmpty, cloneDeep, split, merge } from 'lodash'
+import { set, isEmpty, cloneDeep, split } from 'lodash'
 import { toJS } from 'mobx'
 import EditCDAdvanceSetting from 'components/Modals/CDAdvanceEdit'
 
@@ -58,22 +58,6 @@ const buildHelmRelease = data => {
     }
     return o
   }
-  const arr2Obj = arr => {
-    if (arr === undefined) return null
-    const gen = (idx, arr, end) => {
-      if (idx == arr.length) {
-        return end
-      }
-      return { [arr[idx]]: gen(++idx, arr, end) }
-    }
-
-    let o = {}
-    for (entry of arr) {
-      let ks = entry.k.split('.')
-      o = merge(o, gen(0, ks, entry.v))
-    }
-    return o
-  }
   if (
     data.metadata.labels &&
     data.metadata.labels['gitops.kubesphere.io/save-helm-template']
@@ -97,7 +81,7 @@ const buildHelmRelease = data => {
         helmRelease: {
           chart: {
             chart: data.config.helmRelease.chart.chart,
-            valuesFiles: data.config.helmRelease.chart.valuesFiles,
+            valuesFiles: split(data.config.helmRelease.chart.valuesFiles, ';'),
           },
           deploy: [
             {
@@ -113,6 +97,7 @@ const buildHelmRelease = data => {
                 targetNamespace: data.destination.namespace,
               },
               values: arr2Obj(data.config.helmRelease.values),
+              valuesFrom: data.config.helmRelease.valuesFrom,
               interval: data.config.helmRelease.interval,
               releaseName: data.config.helmRelease.releaseName,
               storageNamespace: data.config.helmRelease.storageNamespace,
