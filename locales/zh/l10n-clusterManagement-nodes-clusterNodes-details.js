@@ -60,7 +60,7 @@ module.exports = {
   HEALTH_STATUS: '健康状态',
   NODE_NETWORKUNAVAILABLE: '网络可用性',
   NODE_NETWORKUNAVAILABLE_DESC: '节点的网络状态是否正常。',
-  NODE_MEMORYPRESSURE: '内存压力(MemoryPressure)',
+  NODE_MEMORYPRESSURE: '内存压力',
   NODE_MEMORYPRESSURE_DESC: '节点的剩余内存是否小于阈值。',
   NODE_DISKPRESSURE: '磁盘压力',
   NODE_DISKPRESSURE_DESC: '节点的剩余磁盘空间或 Inode 数量是否小于阈值。',
