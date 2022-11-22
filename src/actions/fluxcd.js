@@ -22,7 +22,7 @@ import { Modal } from 'components/Base'
 import { Notify } from '@kube-design/components'
 import DeleteModal from 'components/Modals/CDDelete'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { set, isEmpty, cloneDeep, split } from 'lodash'
+import { set, isEmpty, cloneDeep, split, merge } from 'lodash'
 import { toJS } from 'mobx'
 import EditCDAdvanceSetting from 'components/Modals/CDAdvanceEdit'
 
@@ -70,7 +70,7 @@ const buildHelmRelease = data => {
     let o = {}
     for (entry of arr) {
       let ks = entry.k.split('.')
-      o = Object.assign(o, gen(0, ks, entry.v))
+      o = merge(o, gen(0, ks, entry.v))
     }
     return o
   }
