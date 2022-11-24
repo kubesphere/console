@@ -38,7 +38,7 @@ module.exports = {
   SPECIFY_REPLICAS_DESC: 'Manually set the number of pod replicas in each cluster.',
   REPLICA_LOW_SI: 'replica',
   REPLICA_LOW_PL: 'replicas',
-  WEIGHT: 'weight',
+  WEIGHT: 'Weight',
   TOTAL_REPLICAS: 'Total Replicas',
   // List > Create > Pod Settings > Add Container > Container Settings
   COST: 'Cost',
