@@ -34,7 +34,7 @@ import { FLUXCD_APP_TYPES } from 'utils/constants'
 
 import { TypeSelect } from 'components/Base'
 import { get, set } from 'lodash'
-import { ArrayInput } from 'components/Inputs'
+import { ArrayInput, ObjectInput } from 'components/Inputs'
 import Placement from '../../Advance/Placement'
 import styles from './index.scss'
 
@@ -159,11 +159,21 @@ export default class Advance extends React.Component {
                   <Column>
                     <Form.Item
                       label={t('Values')}
-                      desc={t('Values holds the values for this Helm release.')}
+                      desc={t('Values holds the values for this HelmRelease')}
                     >
-                      <Input name="config.helmRelease.values" />
+                      <ArrayInput
+                        name="config.helmRelease.values"
+                        itemType="object"
+                      >
+                        <ObjectInput>
+                          <Input name="k" placeholder={t('KEY')} />
+                          <Input name="v" placeholder={t('VALUE')} />
+                        </ObjectInput>
+                      </ArrayInput>
                     </Form.Item>
                   </Column>
+                </Columns>
+                <Columns>
                   <Column>
                     <Form.Item
                       label={t('ValuesFrom')}
