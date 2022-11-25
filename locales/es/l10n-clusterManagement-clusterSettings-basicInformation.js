@@ -24,12 +24,8 @@ module.exports = {
   // Cluster Information > Edit Information
   CLUSTER_NAME: 'Nombre del clúster',
   EDIT_CLUSTER_INFO_DESC: 'Edit basic information about the cluster.',
-  // Unbind Cluster
-  UNBIND: 'Desvincular',
-  UNBIND_CLUSTER: 'Desvincular clúster',
-  UNBIND_CLUSTER_DESC: 'After the cluster is unbound, KubeSphere will not be able to manage the cluster. The Kubernetes resources on the cluster will not be deleted. Please enter the cluster name <strong>{name}</strong> to make sure you understand the risks associated with the operation.',
-  UNBIND_SUCCESS: 'Unbind Successfully',
-  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation',
-  UNBIND_CLUSTER_Q: 'Desvincular clúster',
-  NODE: 'Node'
+  // Remove Cluster
+  REMOVE_CLUSTER: 'Remove Cluster',
+  REMOVE_CLUSTER_DESC: 'After the cluster is removed, KubeSphere will not be able to manage the cluster. Resources in the cluster will not be deleted. Enter the cluster name <strong>{name}</strong> to confirm that you understand the risks of this operation.',
+  REMOVE_SUCCESS: 'Removed successfully.'
 };

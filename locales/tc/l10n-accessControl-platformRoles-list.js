@@ -24,6 +24,7 @@ module.exports = {
   ROLE_WORKSPACES_MANAGER: '平台企業空間管理員，管理平台所有企業空間。',
   ROLE_PLATFORM_ADMIN: '平台管理員，可以管理平台内的所有資源。',
   ROLE_PLATFORM_REGULAR: '平台普通用戶，在被邀請加入企業空間或集群之前沒有任何資源操作權限。',
+  ROLE_PLATFORM_SELF_PROVISIONER: 'Create workspaces and become an administrator of the created workspaces.',
   CREATION_TIME_TCAP: '創建時間',
   // List > Create
   CREATE_PLATFORM_ROLE: '創建帳戶角色',
@@ -39,6 +40,8 @@ module.exports = {
   PERMISSION_WORKSPACES_VIEW_DESC: 'View workspaces.',
   PERMISSION_WORKSPACES_MANAGEMENT: 'Workspace Management',
   PERMISSION_WORKSPACES_MANAGEMENT_DESC: 'Create, edit, delete, and view workspaces.',
+  PERMISSION_WORKSPACES_CREATE: 'Workspace Creation',
+  PERMISSION_WORKSPACES_CREATE_DESC: 'Create workspaces and become an administrator of the created workspaces.',
   PERMISSION_USERS_VIEW: 'User Viewing',
   PERMISSION_USERS_VIEW_DESC: 'View users.',
   PERMISSION_USERS_MANAGEMENT: 'User Management',
@@ -56,5 +59,9 @@ module.exports = {
   // List > Create > Edit Permissions > Platform Settings
   PERMIGROUP_PLATFORM_SETTINGS: '平台設置',
   PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
-  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.'
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.',
+  // List > Edit Information
+  // List > Edit Permissions
+  // List > Delete
+  DELETING_PRESET_ROLES_NOT_ALLOWED: 'Preset roles cannot be deleted.'
 };

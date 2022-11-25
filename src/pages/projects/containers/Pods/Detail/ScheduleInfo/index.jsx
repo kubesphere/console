@@ -192,11 +192,11 @@ class ScheduleInfo extends React.Component {
             {/* <div className={styles.requests}>
               <div className={styles.text}>
                 <div>{get(detail, 'requests.cpu')} Core</div>
-                <p>{t('Pod CPU Request')}</p>
+                <p>{t('POD_CPU_REQUEST')}</p>
               </div>
               <div className={styles.text}>
                 <div>{get(detail, 'requests.memory')} Mi</div>
-                <p>{t('Pod Memory Request')}</p>
+                <p>{t('POD_MEMORY_REQUEST')}</p>
               </div>
             </div> */}
           </div>

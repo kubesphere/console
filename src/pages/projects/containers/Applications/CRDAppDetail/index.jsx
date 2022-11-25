@@ -124,8 +124,6 @@ export default class CRDAppDetail extends React.Component {
       return
     }
 
-    const appName = get(detail, 'labels["app.kubernetes.io/name"]')
-
     return [
       {
         name: t('CLUSTER'),
@@ -138,10 +136,6 @@ export default class CRDAppDetail extends React.Component {
       {
         name: t('STATUS'),
         value: <Status name={t(detail.status)} type={detail.status} />,
-      },
-      {
-        name: t('APP'),
-        value: appName,
       },
       {
         name: t('VERSION'),
@@ -158,6 +152,14 @@ export default class CRDAppDetail extends React.Component {
       {
         name: t('CREATOR'),
         value: detail.creator,
+      },
+      {
+        name: t('APPLICATION_GOVERNANCE_SCAP'),
+        value:
+          get(detail, 'annotations["servicemesh.kubesphere.io/enabled"]') ===
+          'true'
+            ? t('ON')
+            : t('OFF'),
       },
     ]
   }

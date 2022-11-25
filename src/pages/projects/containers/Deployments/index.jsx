@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-
+import { get } from 'lodash'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
@@ -34,7 +34,8 @@ import WorkloadStore from 'stores/workload'
 @withProjectList({
   store: new WorkloadStore('deployments'),
   module: 'deployments',
-  name: 'WORKLOAD',
+  name: 'DEPLOYMENT',
+  rowKey: 'uid',
 })
 export default class Deployments extends React.Component {
   get prefix() {
@@ -65,6 +66,23 @@ export default class Deployments extends React.Component {
         },
       ],
     }
+  }
+
+  get selectActions() {
+    const { tableProps, trigger, name, rootStore } = this.props
+    return [
+      ...get(tableProps, 'tableActions.selectActions', {}),
+      {
+        key: 'stop',
+        text: t('STOP'),
+        onClick: () =>
+          trigger('resource.batch.stop', {
+            type: name,
+            rowKey: 'uid',
+            success: rootStore.routing.query(),
+          }),
+      },
+    ]
   }
 
   get itemActions() {
@@ -219,11 +237,17 @@ export default class Deployments extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
-        <Banner {...bannerProps} tabs={this.tabs} />
+        <Banner
+          {...bannerProps}
+          title={t('WORKLOAD_PL')}
+          description={t('WORKLOAD_DESC')}
+          tabs={this.tabs}
+        />
         <Table
           {...tableProps}
           itemActions={this.itemActions}
           tableActions={this.tableActions}
+          selectActions={this.selectActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />

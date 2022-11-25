@@ -16,11 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   // More > Edit YAML
   // More > Clone Volume
   // More > Create Snapshot
-  // More > Expand Volume
+  // More > Expand
+  VOLUME_EXPAND_TIP: '持久卷声明已挂载到工作负载。扩展持久卷声明容量将导致工作负载重启，业务将出现短暂中断。',
   // More > Delete
   // Resource Status
   // Resource Status > Volume

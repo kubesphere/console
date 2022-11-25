@@ -23,7 +23,7 @@ module.exports = {
   DEVOPS_PROJECT_ROLE_EMPTY_DESC: 'Please create a DevOps project role.',
   ROLE_DEVOPS_VIEWER: 'DevOps 项目觀察者，可以查看 DevOps 项目下所有的資源。',
   ROLE_DEVOPS_OPERATOR: 'DevOps 项目普通成員，可以在 DevOps 项目下創建流水線憑證等。',
-  ROLE_DEVOPS_ADMIN: 'DevOps 项目管理員，可以管理 DevOps 项目下所有的資源。',
+  ROLE_DEVOPS_ADMIN: 'Manage all resources in the DevOps project.',
   // List > Edit Information
   // List > Edit Permissions
   // List > Create

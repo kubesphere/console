@@ -23,7 +23,7 @@ module.exports = {
   SERVICE_EMPTY_DESC: '请创建一个服务。',
   UNKNOWN: '未知',
   EXTERNAL_ACCESS: '外部访问',
-  INTERNAL_ACCESS_PL: '内部访问',
+  INTERNAL_ACCESS: '内部访问',
   // List > Edit YAML
   // List > Edit Service
   UNKNOWN_SERVICE_TYPE: '未知服务类型',
@@ -56,6 +56,7 @@ module.exports = {
   // List > Create > Service Settings > Workload Selector > View Details
   TOTAL_WORKLOADS_VALUE: '工作负载总数：{count}',
   // List > Create > Advanced Settings
+  OPENELB_NOT_READY: 'OpenELB 未安装。请安装 OpenELB。',
   SESSION_PERSISTENCE: '会话保持',
   MAXIMUM_STICKINESS_DURATION: '最长会话保持时间（s）',
   SESSION_PERSISTENCE_DESC: '设置系统在指定的时间内将同一个会话中来自同一个客户端的请求全部转发给同一个容器组。',

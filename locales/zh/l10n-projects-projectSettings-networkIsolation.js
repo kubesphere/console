@@ -52,5 +52,9 @@ module.exports = {
   EGRESS: '出站',
   INGRESS: '入站',
   INTERNAL_TRAFFIC_DIRECTION_DESC: '出站表示从当前项目到其他项目的方向。入站表示从其他项目到当前项目的方向。',
+  // Add Allowlist Entry > Project
+  // Add Allowlist Entry > Service
+  // Delete Allowlist Entry
+  ALLOWLIST_ENTRY: '白名单条目',
   ALLOWLIST_ENTRY_LOW: '白名单条目'
 };

@@ -18,12 +18,13 @@
 
 import React from 'react'
 import { get } from 'lodash'
-import { ObjectInput, ArrayInput, NumberInput } from 'components/Inputs'
+import { ObjectInput, NumberInput, ArrayInput } from 'components/Inputs'
 import { Input } from '@kube-design/components'
-
 import styles from './index.scss'
 
 export default class BrokersInput extends React.Component {
+  checkItemValid = item => item.host && item.port
+
   onChange = (value = {}) => {
     const Brokers = value
       .map(({ host = '', port = '' }) => `${host.replace(/,/g, '')}:${port}`)
@@ -47,18 +48,19 @@ export default class BrokersInput extends React.Component {
         addText={t('ADD_SERVICE_ADDRESS')}
         itemType="object"
         value={brokers}
+        checkItemValid={this.checkItemValid}
         onChange={this.onChange}
       >
         <ObjectInput className={styles.address}>
           <Input
             name="host"
             className={styles.host}
-            placeholder={`${t('EXAMPLE')}192.168.1.10`}
+            placeholder={t('EXAMPLE_VALUE', { value: '192.168.1.10' })}
           />
           <NumberInput
             className={styles.port}
-            placeholder="9092"
             name="port"
+            placeholder="9092"
             min={0}
             max={65535}
             integer

@@ -227,7 +227,7 @@ export default class Tracing extends React.Component {
         <EmptyList
           image="/assets/traffic-management.svg"
           title={t('TRACING_UNAVAILABLE')}
-          desc={t('TRACING_NO_MICROSERVICE_TIP')}
+          desc={t('APPLICATION_GOVERNANCE_NOT_ENABLED')}
         />
       )
     }

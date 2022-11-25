@@ -45,5 +45,6 @@ module.exports = {
   // List > Create > Route Settings
   ROUTE_SETTINGS: 'Route Settings',
   ROUTING_RULES: '路由規則',
-  ROUTE_SETTINGS_DESC: '可以設置應用的外網訪問規則 (Ingress)'
+  ROUTE_SETTINGS_DESC: '可以設置應用的外網訪問規則 (Ingress)',
+  ADD_ROUTE_SUCCESS: 'The route was added successfully.'
 };

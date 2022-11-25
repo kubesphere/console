@@ -18,18 +18,52 @@
 
 import React from 'react'
 import { Form, Input } from '@kube-design/components'
-import Brokers from 'components/Forms/KafkaForm/Settings/BrokersInput'
+import Brokers from './BrokersInput'
 
 export default class BaseInfo extends React.Component {
   addressValidator = (rule, value, callback) => {
     const brokers = value.split(',')
+
     const isValid = brokers.every(broker => {
       const [, host = '', port = ''] = broker.match(/(.*):(.*)$/) || []
       return host && port
     })
-    return isValid
-      ? callback()
-      : callback({ message: t('INVALID_SERVICE_ADDRESS') })
+
+    if (!isValid) {
+      callback({ message: t('INVALID_SERVICE_ADDRESS') })
+    }
+
+    const isExist = this.handlePathExistValidator(brokers)
+
+    if (isExist) {
+      return callback({ message: t('SERVICE_ADDRESS_EXIST') })
+    }
+
+    callback()
+  }
+
+  handlePathExistValidator = value => {
+    let isExist = false
+
+    value.forEach(item => {
+      const length = value.length
+      let i = 0
+      let count = 0
+
+      while (i <= length) {
+        if (item === value[i]) {
+          count++
+        }
+
+        if (count > 1) {
+          isExist = true
+          break
+        }
+
+        i++
+      }
+    })
+    return isExist
   }
 
   render() {

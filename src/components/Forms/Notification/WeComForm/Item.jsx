@@ -54,11 +54,7 @@ export default class Item extends Component {
 
     return (
       <div className={classnames(styles.wrapper, className)}>
-        <BoxInput
-          placeholder={t(`WECOM_${text.toUpperCase()}_PLACEHOLDER`)}
-          validate={validate}
-          onAdd={this.handleAdd}
-        />
+        <BoxInput placeholder=" " validate={validate} onAdd={this.handleAdd} />
         <p className="margin-t8">{t(`${type.toUpperCase()}_LIST`)}</p>
         <div className={classnames(styles.boxWrapper, className)}>
           {isEmpty(value) ? (

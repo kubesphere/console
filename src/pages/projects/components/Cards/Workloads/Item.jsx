@@ -20,6 +20,8 @@ import { get } from 'lodash'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { observer } from 'mobx-react'
+import RevisionStore from 'stores/workload/revision'
 
 import { Text } from 'components/Base'
 import StatusReason from 'projects/components/StatusReason'
@@ -30,6 +32,7 @@ import { getWorkloadStatus } from 'utils/status'
 
 import styles from './index.scss'
 
+@observer
 export default class WorkloadItem extends React.Component {
   static propTypes = {
     className: PropTypes.string,
@@ -42,6 +45,26 @@ export default class WorkloadItem extends React.Component {
     detail: {},
   }
 
+  constructor(props) {
+    super(props)
+
+    this.revisionStore = new RevisionStore(props.detail.module)
+  }
+
+  get curRevision() {
+    const { currentRevision } = this.revisionStore
+
+    return `#${currentRevision}`
+  }
+
+  componentDidMount() {
+    this.fetchData(this.props.detail)
+  }
+
+  fetchData = detail => {
+    this.revisionStore.fetchCurrentRevision(detail)
+  }
+
   getDescription(detail) {
     const { status, reason } = getWorkloadStatus(detail, detail.module)
     if (reason) {
@@ -50,10 +73,14 @@ export default class WorkloadItem extends React.Component {
 
     const { updateTime, createTime } = detail
     if (updateTime) {
-      return t('UPDATED_AGO', { value: getLocalTime(updateTime).fromNow() })
+      return t('UPDATED_TIME', {
+        value: getLocalTime(updateTime).format('YYYY-MM-DD HH:mm:ss'),
+      })
     }
 
-    return t('CREATED_AGO', { diff: getLocalTime(createTime).fromNow() })
+    return t('CREATED_TIME', {
+      diff: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
+    })
   }
 
   render() {
@@ -63,10 +90,7 @@ export default class WorkloadItem extends React.Component {
       return null
     }
 
-    const version = get(
-      detail,
-      'annotations["deployment.kubernetes.io/revision"]'
-    )
+    const kind = get(detail, 'module')
 
     return (
       <div className={styles.item}>
@@ -80,13 +104,14 @@ export default class WorkloadItem extends React.Component {
           description={this.getDescription(detail)}
         />
         <Text
+          title={kind ? t(`WORKLOAD_TYPE_${kind.toUpperCase()}`) : '-'}
+          description={t('TYPE')}
+        />
+        <Text
           title={<WorkloadStatus data={detail} module={detail.module} />}
           description={t('STATUS')}
         />
-        <Text
-          title={version ? `#${version}` : '-'}
-          description={t('REVISION_RECORD')}
-        />
+        <Text title={this.curRevision} description={t('REVISION_RECORD')} />
       </div>
     )
   }

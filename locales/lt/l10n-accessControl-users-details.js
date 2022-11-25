@@ -20,8 +20,10 @@ module.exports = {
   CONFIRM_PASSWORD_TIP: 'Please enter the new password again.',
   CHANGE_PASSWORD: 'Change Password',
   NEW_PASSWORD: 'New Password',
+  PASSWORD_STRENGTH: 'Password Strength',
+  PASSWORD_STRENGTH_DESC: 'Avoid using weak passwords or passwords of other accounts.',
   // More > Delete
-  // Details
+  // Attributes
   // Login History
   TIME: 'Time',
   SOURCE_IP_ADDRESS: 'Source IP Address',

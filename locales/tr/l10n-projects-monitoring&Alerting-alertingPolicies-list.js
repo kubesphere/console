@@ -17,10 +17,8 @@
  */
 module.exports = {
   // Banner
-  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'Bir uyarı politikası tetiklenirse uyarı mesajlarını nasıl alırım?',
-  REQUESTS_FOR_PUSH_AN_ALARM_A: 'Platform yöneticisinin bir bildirim yöntemi seçmesi ve yönteme karşılık gelen sunucuyu yapılandırması gerekir.',
-  HOW_TO_SUPRESS_AN_ALARM_Q: 'Uyarı mesajlarını nasıl bastırırım?',
-  HOW_TO_SUPRESS_AN_ALARM_A: 'Uyarı ilkelerini farklı düzeylerde ayarlayabilirsiniz. Her seviye bir uyarı aralığına karşılık gelir.',
+  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'How do I receive alerts when alerts are generated?',
+  REQUESTS_FOR_PUSH_AN_ALARM_A: 'A platform administrator needs to configure notification channels. When resource metrics meet conditions and durations configured in rule groups, the system sends alerts to users through the notification channels.',
   // List
   // List > Create > Basic Information
   // List > Create > Rule Settings > Rule Template

@@ -79,14 +79,14 @@ class Monitorings extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'utilisation',
-      title: 'CPU Utilization',
+      title: 'CPU_USAGE',
       unit: '%',
-      legend: ['Utilization'],
+      legend: ['CPU_USAGE'],
       data: get(this.metrics, `${MetricTypes.cpu_utilisation}.data.result`),
     },
     {
       type: 'load',
-      title: 'CPU Load Average',
+      title: 'AVERAGE_CPU_LOAD',
       legend: [
         t('TIME_M', { num: 1 }),
         t('TIME_M', { num: 5 }),
@@ -100,23 +100,23 @@ class Monitorings extends React.Component {
     },
     {
       type: 'utilisation',
-      title: 'Memory Utilization',
+      title: 'MEMORY_USAGE',
       unit: '%',
-      legend: ['Utilization'],
+      legend: ['USAGE'],
       data: get(this.metrics, `${MetricTypes.memory_utilisation}.data.result`),
     },
     {
       type: 'utilisation',
-      title: 'Disk Utilization',
+      title: 'MEMORY_USAGE',
       unit: '%',
-      legend: ['Utilization'],
+      legend: ['MEMORY_USAGE'],
       data: get(this.metrics, `${MetricTypes.disk_utilisation}.data.result`),
     },
     {
       type: 'utilisation',
-      title: 'inode Utilization',
+      title: 'INODE_USAGE',
       unit: '%',
-      legend: ['USAGE'],
+      legend: ['INODE_USAGE'],
       data: get(
         this.metrics,
         `${MetricTypes.disk_inode_utilisation}.data.result`
@@ -159,7 +159,7 @@ class Monitorings extends React.Component {
     },
     {
       type: 'throughput',
-      title: 'Disk Throughput',
+      title: 'DISK_THROUGHPUT',
       unitType: 'throughput',
       legend: ['READ', 'WRITE'],
       data: [
@@ -177,7 +177,7 @@ class Monitorings extends React.Component {
     },
     {
       type: 'bandwidth',
-      title: 'Network Bandwidth',
+      title: 'NETWORK_TRAFFIC',
       unitType: 'bandwidth',
       legend: ['OUT', 'IN'],
       data: [

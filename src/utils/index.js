@@ -37,8 +37,8 @@ import {
 import generate from 'nanoid/generate'
 import moment from 'moment-mini'
 
+import { Base64 } from 'js-base64'
 import { PATTERN_LABEL, MODULE_KIND_MAP } from './constants'
-
 /**
  * format size, output the value with unit
  * @param {Number} size - the number need to be format
@@ -319,7 +319,7 @@ export const composeComponent = (...Components) => props => (
 )
 
 export const cpuFormat = (cpu, unit = 'Core') => {
-  if (isUndefined(cpu) || cpu === null) {
+  if (isUndefined(cpu) || cpu === null || cpu === '') {
     return cpu
   }
 
@@ -341,7 +341,7 @@ export const cpuFormat = (cpu, unit = 'Core') => {
 }
 
 export const memoryFormat = (memory, unit = 'Mi') => {
-  if (isUndefined(memory) || memory === null) {
+  if (isUndefined(memory) || memory === null || memory === '') {
     return memory
   }
 
@@ -748,7 +748,7 @@ export const inCluster2Default = name => {
 }
 
 export const encrypt = (salt, str) => {
-  return mix(salt, window.btoa(str))
+  return mix(salt, Base64.encode(str))
 }
 
 function mix(salt, str) {
@@ -765,5 +765,5 @@ function mix(salt, str) {
     ret.push(String.fromCharCode(Math.floor(sum / 2)))
   }
 
-  return `${window.btoa(prefix.join(''))}@${ret.join('')}`
+  return `${Base64.encode(prefix.join(''))}@${ret.join('')}`
 }

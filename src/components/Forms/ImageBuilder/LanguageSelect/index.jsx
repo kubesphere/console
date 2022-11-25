@@ -20,7 +20,7 @@ import React from 'react'
 import { set, get, unset } from 'lodash'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { Form, Icon, Alert } from '@kube-design/components'
+import { Form, Icon, Alert, Input } from '@kube-design/components'
 import S2iBuilderStore from 'stores/s2i/builder'
 import { getLanguageIcon } from 'utils/devops'
 
@@ -95,7 +95,7 @@ export default class LanguageSelect extends React.Component {
         <Alert
           className={styles.margin_b_10}
           type="warning"
-          message={t('CONTAINERD_RUNTIME_NOT_SUPPORT')}
+          message={t('CONTAINERD_RUNTIME_NOT_SUPPORTED')}
         />
       )
     }
@@ -115,6 +115,7 @@ export default class LanguageSelect extends React.Component {
     return (
       <Form ref={formRef} data={formTemplate}>
         {this.renderSupportTip()}
+
         <div className={styles.header}>
           <p>{t('IMAGE_FROM_S2I')}</p>
           <p>{t('S2I_DESC')}</p>
@@ -153,6 +154,15 @@ export default class LanguageSelect extends React.Component {
             </li>
           ))}
         </ul>
+        <Form.Item
+          rules={[{ required: true, message: t('EMPTY_IMAGE_TYPE_DESC') }]}
+        >
+          <Input
+            style={{ display: 'none' }}
+            readOnly
+            name="metadata.annotations.languageType"
+          ></Input>
+        </Form.Item>
       </Form>
     )
   }

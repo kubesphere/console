@@ -17,6 +17,7 @@
  */
 module.exports = {
   // Banner
+  DEVOPS_PROJECT_MEMBER: 'DevOps Project Member',
   DEVOPS_PROJECT_MEMBER_PL: 'DevOps Proje üyeleri',
   DEVOPS_PROJECT_MEM_DESC: 'Proje üyelerine rolleri yönetin ve atayın.',
   // List

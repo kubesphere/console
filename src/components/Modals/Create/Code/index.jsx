@@ -66,7 +66,7 @@ export default class CodeMode extends React.Component {
             loading={isSubmitting}
             disabled={isSubmitting}
           >
-            {t('Create')}
+            {t('CREATE')}
           </Button>
         </div>
       </div>

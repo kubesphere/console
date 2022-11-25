@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Banner
-  ALERTING_MESSAGE_PL: '告警訊息',
-  ALERT_MESSAGE_DESC: '告警訊息顯示滿足告警規則後觸發的告警詳細資訊。',
-  // Custom Policies > List
-  CUSTOM_POLICIES: '自定義策略',
-  BUILT_IN_POLICIES: '内建策略',
-  ACTIVATION_TIME: '觸發時間',
-  ALERTING_MESSAGE_EMPTY_DESC: '没有在目前項目中找到告警訊息。',
+  ALERTING_MESSAGE_PL: 'Alerts',
+  ALERT_MESSAGE_DESC: 'Alerts are generated when resource metrics meet conditions configured in rule groups.',
+  // Custom > List
+  ALERTS_FROM_CUSTOM_POLICIES: 'From Custom Rules',
+  ALERTS_FROM_BUILT_IN_POLICIES: 'From Built-in Rules',
+  TRIGGER_TIME: 'Trigger Time',
+  ALERTING_MESSAGE_EMPTY_DESC: 'No alert is found in the current project.',
   MONITORING_TARGET: '監控目標'
 };

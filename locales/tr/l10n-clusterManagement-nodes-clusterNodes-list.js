@@ -70,6 +70,9 @@ module.exports = {
   NO_MATCHING_RESULT_FOUND: 'Eşleşen sonuç bulunamadı',
   STATUS: 'Durum',
   TOTAL_ITEMS: 'Toplam:{num}',
+  YOU_CAN_TRY_TO: 'You can try',
+  REFRESH_DATA: 'refreshing data',
+  CLEAR_SEARCH_CONDITIONS: 'clearing search conditions',
   // List > Edit Taints
   DUPLICATE_KEYS: 'Anahtar zaten mevcut. Lütfen başka bir anahtar giriniz.',
   EMPTY_KEY: 'Lütfen bir anahtar girin.'

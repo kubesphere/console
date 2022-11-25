@@ -110,14 +110,10 @@ export default class Sider extends React.Component {
   handleConfirm = async () => {
     this.getAgentArguments()
     this.loading = true
-    const result = await this.props.store
-      .convertJsonToJenkinsFile(this.props.store.params)
-      .finally(() => {
-        this.loading = false
-      })
-    if (result && get(result, 'data.result') === 'success') {
-      this.props.onOk(get(result, 'data.jenkinsfile', ''))
-    }
+    const jenkinsFile = await this.props.store.saveJenkinsFile(
+      this.props.store.params
+    )
+    jenkinsFile && this.props.onOk(jenkinsFile)
   }
 
   getAgentArguments() {
@@ -197,13 +193,13 @@ export default class Sider extends React.Component {
 
   render() {
     const { activeStage, jsonData } = this.props.store
-    const { pipeline } = jsonData.json
+    const { pipeline = {} } = jsonData.json
     const { isSubmitting } = this.props
 
     return (
       <div className={styles.sider}>
         <div className={styles.sheet}>
-          <div className={styles.title}>{t('Agent')}</div>
+          <div className={styles.title}>{t('AGENT')}</div>
           <Form.Item desc={t('AGENT_TYPE_DESC')} label={t('TYPE')}>
             <Select
               options={AgentType}

@@ -55,7 +55,7 @@ class LogCollectionDetailContainers extends Component {
   }
 
   intervalOpts = [5, 10, 20].map(second => ({
-    label: `${t('Real-Time Data')} (${t('Refresh Interval')} ${second}s)`,
+    label: t('REFRESH_INTERVAL_VALUE', { value: second }),
     value: second * 1000,
   }))
 
@@ -259,7 +259,7 @@ class LogCollectionDetailContainers extends Component {
 
   renderRecentRange() {
     const { recent } = this.state
-    return `${t('Last')} ${dateI18n(recent)}`
+    return `${t('LAST')} ${dateI18n(recent)}`
   }
 
   renderRange() {
@@ -295,7 +295,7 @@ class LogCollectionDetailContainers extends Component {
               data-recent={recent}
               onClick={this.changeRecent}
             >
-              {t('Last')} {dateI18n(recent)}
+              {t('LAST')} {dateI18n(recent)}
             </li>
           ))}
         </ul>
@@ -309,7 +309,7 @@ class LogCollectionDetailContainers extends Component {
         <Icon className={styles.icon} type="light" name="magnifier" />
         <input
           className={styles.input}
-          placeholder={t('Search by keyword')}
+          placeholder={t('SEARCH')}
           onChange={this.onKeyWordChange}
           value={this.store.log_query}
           type="text"

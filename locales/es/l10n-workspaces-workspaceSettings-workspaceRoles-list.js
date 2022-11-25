@@ -21,7 +21,7 @@ module.exports = {
   WORKSPACE_ROLE_DESC: 'El rol del espacio de trabajo determina los permisos del rol en el espacio de trabajo actual.',
   // List
   WORKSPACE_ROLE_EMPTY_DESC: 'Please create a workspace role.',
-  ROLE_WORKSPACE_ADMIN: 'Permite el acceso de administrador para realizar cualquier acción en cualquier recurso. Le da control total sobre todos los recursos en el espacio de trabajo.',
+  ROLE_WORKSPACE_ADMIN: 'Manage all resources in the workspace.',
   ROLE_WORKSPACE_REGULAR: 'Usuario normal en el espacio de trabajo que no puede crear espacios de nombres o proyectos DevOps.',
   ROLE_WORKSPACE_VIEWER: 'Permite el acceso de lectura para ver todos los recursos en el espacio de trabajo.',
   ROLE_WORKSPACE_SELF_PROVISIONER: 'Usuario normal en el espacio de trabajo que puede crear espacios de nombres y proyectos DevOps.',
@@ -37,7 +37,7 @@ module.exports = {
   PERMISSION_PROJECTS_MANAGEMENT: 'Project Management',
   PERMISSION_PROJECTS_MANAGEMENT_DESC: 'Create, edit, and delete projects in the workspace.',
   PERMISSION_PROJECTS_CREATE: 'Project Creation',
-  PERMISSION_PROJECTS_CREATE_DESC: 'Create projects. The creator of a project is the project administrator.',
+  PERMISSION_PROJECTS_CREATE_DESC: 'Create projects and become an administrator of the created projects.',
   // List > Create > Edit Permissions > DevOps Project Management
   PERMIGROUP_DEVOPS_MANAGEMENT: 'DevOps Projects',
   PERMISSION_DEVOPS_VIEW: 'DevOps Project Viewing',
@@ -45,7 +45,7 @@ module.exports = {
   PERMISSION_DEVOPS_MANAGEMENT: 'DevOps Project Management',
   PERMISSION_DEVOPS_MANAGEMENT_DESC: 'Create, edit, and delete DevOps projects in the workspace.',
   PERMISSION_DEVOPS_CREATE: 'DevOps Project Creation',
-  PERMISSION_DEVOPS_CREATE_DESC: 'Create DevOps projects. The creator of a DevOps project is the DevOps project administrator.',
+  PERMISSION_DEVOPS_CREATE_DESC: 'Create DevOps projects and become an administrator of the created DevOps projects.',
   // List > Create > Edit Permissions > App Management
   PERMISSION_APPS_MANAGEMENT: 'Gestión de Alicaciones',
   PERMISSION_WORKSPACE_APP_REPOS_VIEW: 'App Repository Viewing',

@@ -26,10 +26,10 @@ export default class AddNodeTypeModal extends React.Component {
       <Modal.Form
         width={600}
         icon="nodes"
-        title={t('Add Node Type')}
+        title={t('ADD_NODE_TYPE')}
         {...this.props}
       >
-        <Form.Item label={t('Type Name')} desc={t('NAME_DESC')}>
+        <Form.Item label={t('TYPE_NAME')} desc={t('NAME_DESC')}>
           <Input name="name" maxLength={63} />
         </Form.Item>
         <Form.Item

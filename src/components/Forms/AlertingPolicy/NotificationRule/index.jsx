@@ -40,7 +40,7 @@ export default class NotificationRule extends React.Component {
             metricConfig.label
           )} ${condition_type} ${thresholds}${unit}`
         })
-        .join(` ${t('or')} `)}`
+        .join(` ${t('OR')} `)}`
 
       set(formTemplate, 'annotations.summary', summary)
     }
@@ -51,7 +51,7 @@ export default class NotificationRule extends React.Component {
 
     return (
       <Form className={styles.wrapper} data={formTemplate} ref={formRef}>
-        <div className={styles.title}>{t('ALERTING_MESSAGE')}</div>
+        <div className={styles.title}>{t('MESSAGE_SETTINGS')}</div>
         <div className={styles.content}>
           <div className={styles.contentWrapper}>
             <Form.Item label={t('NOTIFICATION_SUMMARY')}>

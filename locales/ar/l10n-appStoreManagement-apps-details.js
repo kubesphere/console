@@ -23,12 +23,13 @@ module.exports = {
   SUSPEND_SUCCESSFUL: 'تم التعليق بنجاح.',
   // Release
   RELEASE: 'Release',
-  ACTIVATE_SUCCESSFUL: 'تم التفعيل بنجاح.',
-  // Details
+  ACTIVATE_SUCCESSFUL: 'تم الإصدار بنجاح.',
+  // Attributes
   APP_ID: 'ID التطبيق',
   CATEGORY: 'الفئة',
   TYPE: 'نوع',
   // Verisons
+  DEVELOPER: 'Developer',
   NO_VERSION_INFO_DESC: 'لم يتم العثور على معلومات الإصدار.',
   ACTIVATE_VERSION: 'تفعيل الإصدار',
   CANCEL_SUBMISSION: 'إلغاء التقديم',

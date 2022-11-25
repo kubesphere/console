@@ -19,6 +19,7 @@ module.exports = {
   // Banner
   NETWORK_POLICY: 'Política de red',
   NETWORK_POLICY_PL: 'Network Policies',
+  NETWORK_POLICY_DESC: 'The network policy configuration allows network isolation within the same cluster, which means firewalls can be set up between certain instances (pods).',
   NETWORK_POLICY_Q: '¿Cómo usar mejor una política de red?',
   NETWORK_POLICY_A: 'Hemos compilado varios escenarios de aplicación comunes basados en los escenarios reales, y puedes consultar la documentación para obtener más información.',
   NETWORK_POLICY_Q1: 'Requisitos del complemento CNI para implementar una política de red',

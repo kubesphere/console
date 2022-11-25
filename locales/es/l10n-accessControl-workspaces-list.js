@@ -26,8 +26,11 @@ module.exports = {
   WORKSPACE_NAME_EMPTY_DESC: 'Introduce el nombre del espacio de trabajo',
   WORKSPACE_CREATE_DESC: 'Los esapcios de trabajo son una unidad lógica para organizar tus proyectos y proyectos DevOps. El acceso a los recursos y los recursos compartidos del equipo se pueden administrar aquí. Puede servir como un espacio de trabajo independiente para tu equipo.',
   ADMINISTRATOR: 'Administrator',
+  WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
+  INVALID_WORKSPACE_NAME: 'Invalid workspace name.',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'Selecciona el clúster disponible en el espacio de trabajo.',
+  NO_CLUSTER_AVAILABLE: 'No Cluster Available',
   NO_CLUSTER_AVAILABLE_DESC: 'No hay clústeres públicos disponibles, solicita autorización para clúster al administrador de la plataforma o al administrador del clúster después de crear el espacio de trabajo',
   WORKSPACE_NO_CLUSTER_TIP: 'You need to contact the platform or cluster administrator to authorize a cluster to the workspace.',
   AVAILABLE_CLUSTERS: 'Clusters Disponibles',

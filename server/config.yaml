@@ -278,7 +278,7 @@ client:
           icon: bell
           children:
             - name: notification-configuration
-              title: NOTIFICATION_CONFIGURATION
+              title: NOTIFICATION_CHANNELS
               tabs:
                 - { name: mail, title: Mail, authKey: platform-settings }
                 - {
@@ -335,7 +335,7 @@ client:
           title: WORKSPACE_SETTINGS
           icon: cogwheel
           children:
-            - { name: base-info, title: Basic Info, skipAuth: true }
+            - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
             - {
                 name: quota,
                 title: WORKSPACE_QUOTA_PL,
@@ -376,7 +376,7 @@ client:
                 - { name: statefulsets, title: STATEFULSET_PL }
                 - { name: daemonsets, title: DAEMONSET_PL }
             - name: jobs
-              title: Jobs
+              title: JOB_PL
               tabs:
                 - { name: jobs, title: JOB_PL }
                 - { name: cronjobs, title: CRONJOB_PL }
@@ -439,7 +439,7 @@ client:
           title: PROJECT_SETTINGS
           icon: cogwheel
           children:
-            - { name: base-info, title: Basic Info, skipAuth: true }
+            - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
             - {
                 name: networkpolicies,
                 title: NETWORK_ISOLATION,
@@ -549,7 +549,7 @@ client:
   # preset infos
   presetUsers: [admin, sonarqube]
   presetGlobalRoles:
-    [platform-admin, platform-regular, workspaces-manager, users-manager]
+    [platform-admin, platform-regular, platform-self-provisioner]
   presetClusterRoles: [cluster-admin, cluster-viewer]
   presetWorkspaceRoles: [admin, regular, viewer, self-provisioner]
   presetDevOpsRoles: [admin, operator, viewer]
@@ -617,7 +617,7 @@ client:
     storageclasses: /cluster-administration/persistent-volume-and-storage-class/
 
     # DevOps User Guide
-    pipelines: /devops-user-guide/how-to-use/pipeline-settings/
+    pipelines: /devops-user-guide/how-to-use/pipelines/pipeline-settings/
     cridentials: /devops-user-guide/how-to-use/credential-management/
 
     # Developer Guide
@@ -640,9 +640,28 @@ client:
     dingtalk:
       max_number_of_cid: 20
       max_number_of_keyword: 20
+    feishu:
+      max_number_of_cid: 20
+      max_number_of_keyword: 20
     wecom:
       max_number_of_toUser: 50
       max_number_of_toParty: 20
       max_number_of_toTag: 20
     slack:
       max_number_of_channel: 20
+
+  supportLinks:
+    github: "https://github.com/kubesphere/kubesphere"
+    githubPr: "https://github.com/kubesphere/kubesphere"
+    star: "https://github.com/kubesphere/kubesphere"
+    githubFork: "https://github.com/kubesphere/kubesphere"
+    slack: "https://kubesphere.slack.com/"
+    doc: "https://kubesphere.com.cn/docs/v3.3/"
+    forum: "https://kubesphere.com.cn/forum/"
+    issues: "https://github.com/kubesphere/kubesphere/issues"
+    contactUs: "https://kubesphere.cloud/ticket/"
+    kse: "https://kubesphere.cloud/self-service/qkcp/"
+    ksc: "https://kubesphere.cloud/"
+    backup: "https://kubesphere.cloud/self-service/disaster-recovery/"
+    inspection: "https://kubesphere.cloud/inspection/"
+    light: "https://kubesphere.cloud/lite-cluster/"

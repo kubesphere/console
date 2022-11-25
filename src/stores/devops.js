@@ -269,6 +269,7 @@ export default class DevOpsStore extends Base {
     namespace,
     username,
     type,
+    filters,
     ...params
   } = {}) {
     this.list.isLoading = true
@@ -299,6 +300,7 @@ export default class DevOpsStore extends Base {
       data,
       total: result.totalItems || 0,
       ...params,
+      ...filters,
       cluster: globals.app.isMultiCluster ? cluster : undefined,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,

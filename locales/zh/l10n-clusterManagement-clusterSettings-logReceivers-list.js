@@ -28,13 +28,15 @@ module.exports = {
   // Banner > Add Log Receiver > Elasticsearch
   LOG_COLLECTION_ES_URL_TIPS: '默认使用系统部署的 Elasticsearch 服务，您也可以输入在集群内部或外部单独部署的 Elasticsearch 服务的地址。',
   LOG_COLLECTION_ES_INDEX_TIPS: '使用索引前缀进行快速搜索。系统以<索引前缀>-<年-月-日>格式自动生成索引前缀。',
-  PARAMETER_REQUIRED: '此参数为必填项。',
+  ADDRESS_VALUE: '地址：{value}',
   // Banner > Add Log Receiver > Kafka
   TOPIC: '主题',
   ADD_SERVICE_ADDRESS: '添加',
   SERVICE_ADDRESS: '服务地址',
   ENTER_SERVICE_ADDRESS: '请输入服务地址。',
   INVALID_SERVICE_ADDRESS: '请输入正确的服务地址。',
+  SERVICE_ADDRESS_EXIST: '服务地址已存在，请输入其他服务地址。',
+  EXAMPLE_VALUE: '例如：{value}',
   // Banner > Add Log Receiver > Fluentd
   LOG_COLLECTION_FLUENTD_URL_TIPS: '输入接收日志的 Fluentd 服务的地址。',
   // Container Logs

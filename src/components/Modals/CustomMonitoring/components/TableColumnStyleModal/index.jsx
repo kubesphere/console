@@ -74,7 +74,7 @@ export default class TableColumnStyleModal extends React.Component {
         description={t('CUSTOM_DISPLAY_MODAL_DESC')}
         icon={'table-chart'}
         visible={visible}
-        okText={t('Apply')}
+        okText={t('OK')}
         onCancel={onCancel}
         onOk={this.onOk}
       >
@@ -108,7 +108,7 @@ export default class TableColumnStyleModal extends React.Component {
             <div>
               <Columns>
                 <Column>
-                  <Form.Item label={t('Unit')}>
+                  <Form.Item label={t('UNIT')}>
                     <Select
                       defaultValue={'null'}
                       name={'unit'}

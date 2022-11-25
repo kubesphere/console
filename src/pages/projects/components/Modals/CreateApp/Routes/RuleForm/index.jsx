@@ -20,7 +20,7 @@ import { get, isEmpty } from 'lodash'
 import React from 'react'
 
 import PropTypes from 'prop-types'
-import { Alert, Form, Input, Select } from '@kube-design/components'
+import { Form, Input, Select } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 import { ArrayInput, RulePath } from 'components/Inputs'
@@ -234,7 +234,6 @@ export default class RuleForm extends React.Component {
 
   render() {
     const { data, isFederated } = this.props
-    const { type } = this.state
 
     return (
       <Modal.Form
@@ -254,14 +253,7 @@ export default class RuleForm extends React.Component {
             </Form.Item>
           </Form.Group>
         )}
-        <Form.Group>
-          <Alert
-            className="margin-t12 margin-b12"
-            message={t.html(`RULE_SETTING_MODE_${type.toUpperCase()}`)}
-            type="info"
-          />
-          {this.renderForm()}
-        </Form.Group>
+        <Form.Group>{this.renderForm()}</Form.Group>
       </Modal.Form>
     )
   }

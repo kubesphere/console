@@ -27,11 +27,21 @@ import RuleList from 'components/Cards/RuleList'
 @inject('detailStore')
 @observer
 export default class AuthorizationList extends React.Component {
+  store = this.props.detailStore
+
+  componentDidMount() {
+    this.fetchRoleTemplatesToDetail()
+  }
+
+  fetchRoleTemplatesToDetail = async () => {
+    await this.store.fetchRoleTemplatesToDetail(this.props.match.params)
+  }
+
   render() {
-    const { detail, roleTemplates, isLoading } = toJS(this.props.detailStore)
+    const { detail, roleTemplatesDetail, isLoading } = toJS(this.store)
 
     const templates = groupBy(
-      roleTemplates.data.filter(
+      roleTemplatesDetail.data.filter(
         rt =>
           get(rt, 'annotations["iam.kubesphere.io/module"]') &&
           detail.roleTemplates.includes(rt.name)

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   // More > Update Gateway
   // More > Delete
   GATEWAY_LOW: 'gateway',
@@ -39,7 +39,5 @@ module.exports = {
   GATEWAY_LOGS: 'Gateway Logs',
   LOGGING_DISABLED: 'Logging Disabled',
   REFRESH_INTERVAL_VALUE: 'Refresh interval: {value}s',
-  EXPORT_LOGS: 'Export Logs',
-  // Resource Status > Replica Status
-  GATEWAYS_REPLICA_DESC: 'Deployment is used to describe the desired target state of the application. It is mainly used to describe the stateless application. The number and state of replicas are maintained by the controller behind it to ensure that the state is consistent with the defined desired state. You can increase the number of replicas to meet higher loads; roll back the deployed version to eliminate erroneous changes to the program; create an autoscaler to flexibly respond to the load in different scenarios.'
+  EXPORT_LOGS: 'Export Logs'
 };

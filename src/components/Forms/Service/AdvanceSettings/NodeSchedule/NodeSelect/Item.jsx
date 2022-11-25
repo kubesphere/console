@@ -169,7 +169,7 @@ export default class NodeItem extends React.Component {
         </div>
         {this.renderStatus(detail)}
         <div>
-          <Text title={<>{detail.role.join(',')}</>} description={t('Role')} />
+          <Text title={<>{detail.role.join(',')}</>} description={t('ROLE')} />
         </div>
         <div>{this.renderCPU(detail)}</div>
         <div>{this.renderMemory(detail)}</div>

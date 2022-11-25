@@ -155,7 +155,7 @@ export default class ContainerLog extends React.Component {
 
     if (!result) {
       Notify.info({
-        content: `${t('NO_RESOURCE', { resource: t('LOG_DATA_LOW') })}`,
+        content: t('NO_LOG_DATA_FOUND_TIP'),
       })
       return
     }
@@ -271,7 +271,7 @@ export default class ContainerLog extends React.Component {
     return (
       <Card
         className={className}
-        empty={t('NO_RESOURCE', { resource: t('Log Data') })}
+        empty={t('NO_LOG_DATA_FOUND')}
         loading={isLoading}
       >
         {this.renderContent()}

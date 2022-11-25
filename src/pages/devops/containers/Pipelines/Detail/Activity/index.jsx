@@ -126,8 +126,9 @@ export default class Activity extends React.Component {
   }
 
   handleRunning = debounce(async () => {
-    const { detail } = this.store
     const { params } = this.props.match
+    await this.store.fetchDetail(params)
+    const { detail } = this.store
     const hasParameters = !isEmpty(toJS(detail.parameters))
     const hasBranches = !isEmpty(toJS(detail.branchNames))
 

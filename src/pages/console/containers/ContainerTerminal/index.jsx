@@ -30,7 +30,7 @@ export default class Terminal extends React.Component {
     return (
       <Modal
         icon="terminal"
-        title={t('Terminal')}
+        title={t('TERMINAL')}
         match={this.props.match}
         onCancel={this.pageClose}
       />

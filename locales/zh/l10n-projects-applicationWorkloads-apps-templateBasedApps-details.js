@@ -22,9 +22,9 @@ module.exports = {
   TARGET_APP_VERSION: '目标应用版本',
   CURRENT_APP_VERSION: '当前应用版本',
   EDIT_APP_SETTINGS: '编辑应用设置',
-  // Details
+  // Attributes
   // Resource Status
-  UPDATED_AGO: '更新于 {value}',
+  UPDATED_TIME: '更新于 {value}',
   // App Template > App Description
   APP_TEMPLATE: '应用模板',
   NO_APP_DESC_FOUND: '未发现应用描述信息。'

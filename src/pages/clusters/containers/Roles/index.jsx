@@ -33,10 +33,6 @@ import RoleStore from 'stores/role'
   name: 'CLUSTER_ROLE',
 })
 export default class ClusterRoles extends React.Component {
-  componentDidMount() {
-    this.props.store.fetchRoleTemplates(this.props.match.params)
-  }
-
   showAction = record =>
     !globals.config.presetClusterRoles.includes(record.name)
 

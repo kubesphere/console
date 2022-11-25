@@ -17,13 +17,14 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   CREATOR: 'Creator',
   NO: 'No',
   // More > Roll Back
   // More > Edit Autoscaling
   // More > Edit Settings > Update Strategy
   // More > Edit Settings > Containers
+  EDIT_CONTAINER: 'Edit Container',
   // More > Edit Settings > Volumes
   // More > Edit Settings > Pod Scheduling Rules
   // More > Edit YAML
@@ -34,6 +35,7 @@ module.exports = {
   // Resource Status > Replica Status
   // Resource Status > Ports
   // Resource Status > Pods
+  NODE: 'Node',
   // Revision Records
   SERIAL_NUMBER: 'Serial number',
   CREATED_TIME: 'Created at {diff}',
@@ -42,4 +44,6 @@ module.exports = {
   // Environment Variables
   // Events
   EVENT_PL: 'Events',
+  EVENT_NORMAL: 'Normal',
+  EVENT_WARNING: 'Warning',
 }

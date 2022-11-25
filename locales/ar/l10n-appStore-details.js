@@ -27,7 +27,7 @@ module.exports = {
   DO_NOT_REMIND_AGAIN: 'لاتذكرني مرة أخرى',
   // Install > Basic Information
   LOCATION: 'الموقع',
-  CLUSTER_NAME_DESC: 'يمكن أن يحتوي الاسم فقط على أحرف صغيرة وأرقام ووصلات (-)، يجب أن يبدأ بحرف صغير، ويجب أن ينتهي بحرف صغير أو عدد. أقصى طول هو 53 حرفاً.',
+  CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 32 characters.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'لا يمكن نشر التطبيق في مشروع متعدد المجموعات.',
   LATEST_VERSION_SCAP: 'أحدث إصدار',
   WORKSPACE_EMPTY_DESC: 'الرجاء تحديد مساحة عمل',
@@ -43,6 +43,7 @@ module.exports = {
   HOMEPAGE_COLON: 'الصفحة الرئيسية:',
   RELEASE_DATE_COLON: 'تاريخ الإصدار:',
   APP_ID_COLON: 'ID التطبيق:',
+  SOURCE_CODE_ADDRESS_COLON: 'Source Code Address:',
   APP_VERSIONS_TITLE: 'الإصدارات (سيتم عرض أحدث 10 إصدارات فقط)',
   MAINTAINER_COLON: 'المشرفين:',
   // App Details > Verions

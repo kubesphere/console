@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   // More > Edit Settings
   // More > Edit Settings > Update Strategy
   // More > Edit Settings > Containers

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   // More > Update Gateway
   // More > Delete
   GATEWAY_LOW: 'Ağ geçidi',
@@ -39,7 +39,5 @@ module.exports = {
   GATEWAY_LOGS: 'Ağ Geçidi kaydı',
   LOGGING_DISABLED: 'Oturum Açma Devre Dışı',
   REFRESH_INTERVAL_VALUE: 'Yenileme aralığı: {değer} s',
-  EXPORT_LOGS: 'Günlüğü Dışa Aktar',
-  // Resource Status > Replica Status
-  GATEWAYS_REPLICA_DESC: 'Dağıtım, uygulamanın istenen hedef durumunu tanımlamak için kullanılır. Esas olarak durum bilgisi olmayan uygulamayı tanımlamak için kullanılır. Durumun tanımlanan istenen durumla tutarlı olmasını sağlamak için, kopyaların sayısı ve durumu, arkasındaki denetleyici tarafından korunur. Daha yüksek yükleri karşılamak için replika sayısını artırabilirsiniz; programdaki hatalı değişiklikleri ortadan kaldırmak için dağıtılan sürümü geri alın; farklı senaryolarda yüke esnek bir şekilde yanıt vermek için bir otomatik ölçekleyici oluşturun.'
+  EXPORT_LOGS: 'Günlüğü Dışa Aktar'
 };

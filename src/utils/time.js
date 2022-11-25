@@ -25,11 +25,11 @@ export const timeUnitAlias2MsMap = {
 }
 
 export const timeUnitAlias2CompleteTimeMap = {
-  s: 'Seconds',
-  m: 'Minutes',
-  h: 'Hours',
-  d: 'Days',
-  w: 'Weeks',
+  s: 'SECONDS',
+  m: 'MINUTES',
+  h: 'HOURS',
+  d: 'DAYS',
+  w: 'WEEKS',
 }
 
 export const timeAlias2CompleteTimeMap = {

@@ -92,10 +92,6 @@ export default class AlertingPolicy extends React.Component {
         title: t('REQUESTS_FOR_PUSH_AN_ALARM_Q'),
         description: t('REQUESTS_FOR_PUSH_AN_ALARM_A'),
       },
-      {
-        title: t('HOW_TO_SUPRESS_AN_ALARM_Q'),
-        description: t('HOW_TO_SUPRESS_AN_ALARM_A'),
-      },
     ]
   }
 
@@ -167,7 +163,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('ALERTING_STATUS'),
+        title: t('STATUS'),
         dataIndex: 'state',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('state'),
@@ -200,7 +196,7 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('ACTIVATION_TIME'),
+        title: t('TRIGGER_TIME'),
         dataIndex: 'alerts',
         isHideable: true,
         width: '16%',
@@ -243,8 +239,6 @@ export default class AlertingPolicy extends React.Component {
           {...bannerProps}
           tips={this.tips}
           tabs={namespace ? {} : this.tabs}
-          title={t('ALERTING_POLICIES')}
-          description={t('ALERT_POLICY_DESC')}
         />
         <Table
           {...tableProps}

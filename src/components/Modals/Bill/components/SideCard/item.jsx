@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-
+import { toJS } from 'mobx'
 import { Icon, Checkbox, Tag, Tooltip } from '@kube-design/components'
 import classnames from 'classnames'
 import { Text, Indicator } from 'components/Base'
@@ -53,6 +53,7 @@ export default function Card({
     : active.name === name && active.type === type
 
   const isLast = type === 'pods'
+  const placementCluster = get(toJS(data), '_origin.clusters', [])
 
   const handleChildrenClick = (e, value) => {
     e.stopPropagation()
@@ -157,6 +158,24 @@ export default function Card({
     )
   }
 
+  const renderAddClusterTip = () => {
+    return (
+      <Tooltip content={t('ADD_CLUSTER_FOR_WORKSPACE')} placement="topRight">
+        <Icon
+          name="information"
+          color={{
+            primary: '#ffc781',
+            secondary: '#f5a623',
+          }}
+        />
+      </Tooltip>
+    )
+  }
+
+  const showAddCluster = !!(
+    name !== 'system-workspace' && placementCluster.length === 0
+  )
+
   return (
     <div
       className={classnames(styles.billCard, {
@@ -168,7 +187,6 @@ export default function Card({
       onClick={disabled ? null : handleClick}
     >
       {renderCheckbox()}
-
       <div className={styles.info}>
         <div className={styles.title}>
           <Indicator type={status} className={styles.indicator} />
@@ -177,13 +195,21 @@ export default function Card({
         <div className={styles.desc}>
           <Text
             title={name}
-            description={t(`${desc.toUpperCase().replace(/\s+/g, '_')}_SCAP`)}
+            description={
+              desc
+                ? t(`${desc.toUpperCase().replace(/\s+/g, '_')}_SCAP`)
+                : type === 'cluster' && !desc
+                ? t('CLUSTER_SCAP')
+                : ''
+            }
           />
         </div>
         {renderCluster(name)}
       </div>
       {disabled ? (
-        <div className={styles.unMeter}>{renderDisabledTip()}</div>
+        <div className={styles.unMeter}>
+          {showAddCluster ? renderAddClusterTip() : renderDisabledTip()}
+        </div>
       ) : (
         renderArrow()
       )}

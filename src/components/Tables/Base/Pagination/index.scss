@@ -1,0 +1,115 @@
+@import '~scss/variables';
+
+.pagination {
+  display: flex;
+
+  .button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    padding: 8px 8px !important;
+    border-radius: 4px;
+
+    & > span {
+      transform: translateY(-1.6px);
+    }
+  }
+
+  .pages {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 32px;
+    color: $dark-color06;
+    border-radius: 4px;
+    margin: 0px 4px;
+
+    & > span {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: $light-color03;
+    }
+  }
+}
+
+.menu {
+  min-width: 80px;
+  max-height: 176px;
+  overflow: auto;
+}
+
+.menuitem {
+  width: 64px;
+  height: 32px;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  color: $dark-color04;
+
+  &:hover {
+    cursor: pointer;
+    background: $light-color02;
+  }
+}
+
+.pageSizeBox {
+  display: flex;
+  align-items: center;
+
+  .pagesize {
+    min-width: 67px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    .text {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 20px;
+      color: $dark-color06;
+      margin-right: 4px;
+    }
+  }
+
+  .gap {
+    width: 1px;
+    height: 12px;
+    background: $light-color03;
+    margin: 0px 12px;
+  }
+}
+
+.pageSizeMenu {
+  min-width: 96px;
+  max-height: 144px;
+  overflow: auto;
+
+  .pageSizeMenuitem {
+    min-width: 80px;
+    height: 32px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    color: $dark-color04;
+    padding: 0 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+      background: $light-color02;
+    }
+  }
+}
+
+.menuActive {
+  background: $light-color02;
+}

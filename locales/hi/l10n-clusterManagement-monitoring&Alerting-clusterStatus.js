@@ -26,11 +26,11 @@ module.exports = {
   ALL_NODES: 'All nodes',
   ONLINE_NODES: 'Online nodes',
   NODE_ONLINE_STATUS: 'Node Online Status',
+  TIMES_PER_SECOND: 'times/s',
   // Overview > Component Status
   COMPONENT_STATUS: 'Component Status',
   CONTROLLER_MANAGER: 'Controller Manager',
   KUBERNETES_SCHEDULER: 'Kubernetes Scheduler',
-  NOT_ENABLED: 'Not enabled',
   // Overview > Cluster Resource Usage
   CLUSTER_RESOURCE_USAGE: 'Cluster Resource Usage',
   POD_COUNT: 'Pods',
@@ -46,6 +46,11 @@ module.exports = {
   ETCD_DB_SIZE: 'DB <span>Size</span>',
   ETCD_CLIENT_TRAFFIC: 'Client <span>Traffic</span>',
   TITLE_UNIT: '{title} ({unit})',
+  AVERAGE: 'Average',
+  PROPOSAL_COMMITTED: 'Committed',
+  PROPOSAL_APPLIED: 'Applied',
+  PROPOSAL_FAILED: 'असफल',
+  PROPOSAL_PENDING: 'लंबित',
   // Overview > Service Component Monitoring
   SERVICE_COMPONENT_MONITORING: 'Service Component Monitoring',
   SCHEDULE_ATTEMPTS: 'Scheduling Attempts',
@@ -79,12 +84,13 @@ module.exports = {
   POD_STATUS: 'Pod Status',
   COMPLETED: 'Completed',
   WARNING: 'Warning',
-  IN: 'In',
   READ: 'Read',
   WRITE: 'Write',
   RUNNING: 'Running',
   // Physical Resource Monitoring > Average CPU Load
   TIME_M: '{num, plural, =1 {1 minute} other{# minutes}}',
+  TIME_H: '{num, plural, =1 {1 hour} other{# hours}}',
+  TIME_D: '{num, plural, =1 {1 day} other{# days}}',
   // etcd Monitoring
   EXTERNAL_ETCD: 'External etcd',
   DB_FSYNC: 'DB Fsync',
@@ -114,12 +120,12 @@ module.exports = {
   SCHEDULING_LATENCY: 'Scheduling Latency',
   // Resource Usage Ranking
   RESOURCE_USAGE_RANKING: 'Resource Usage Ranking',
-  SORT_BY_NODE_CPU_UTILISATION: 'Sort by CPU usage',
-  SORT_BY_NODE_MEMORY_UTILISATION: 'Sort by memory usage',
-  SORT_BY_NODE_DISK_SIZE_UTILISATION: 'Sort by disk usage',
+  SORT_BY_NODE_CPU_UTILISATION: 'Sort by CPU usage (%)',
+  SORT_BY_NODE_MEMORY_UTILISATION: 'Sort by memory usage (%)',
+  SORT_BY_NODE_DISK_SIZE_UTILISATION: 'Sort by disk usage (%)',
   SORT_BY_NODE_POD_UTILISATION: 'Sort by pod usage',
   SORT_BY_NODE_DISK_INODE_UTILISATION: 'Sort by inode usage',
-  SORT_BY_NODE_LOAD1: 'Sort by average CPU load',
+  SORT_BY_NODE_LOAD1: 'Sort by 1-minute CPU load average',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: 'Sort by memory usage',
   POD_USAGE: 'Pod Usage',
   EXPORT: 'Export'

@@ -1,0 +1,362 @@
+@import '~scss/variables';
+
+.layout {
+  min-width: 1164px;
+}
+
+@mixin font(
+  $light-height: 20px,
+  $size: 14px,
+  $bold-height: 600,
+  $color: $dark-color07
+) {
+  font-size: $size;
+  line-height: $light-height;
+  font-weight: $bold-height;
+  color: $color;
+}
+
+@mixin font-bold(
+  $light-height: 24px,
+  $size: 16px,
+  $bold-height: 600,
+  $color: $dark-color08
+) {
+  font-size: $size;
+  line-height: $light-height;
+  font-weight: $bold-height;
+  color: $color;
+}
+
+.title {
+  @include font-bold();
+}
+
+.buttonText {
+  @include font();
+}
+
+.smallButtonText {
+  @include font(20px, 12px);
+}
+
+.featureTitle {
+  @include font(28px);
+}
+
+.desc {
+  margin-top: 8px;
+  @include font(24px, 14px, 400, $dark-color01);
+}
+
+.wrapper {
+  max-width: 1440px;
+  padding: 20px;
+  min-height: calc(100vh - 68px - 40px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .about {
+    display: flex;
+    gap: 12px;
+
+    .ticket,
+    .open {
+      transition: all 0.3s ease;
+      flex: 1;
+      background-color: white;
+      box-shadow: 0px 4px 8px rgba(36, 46, 66, 0.06);
+
+      &:hover {
+        box-shadow: 0 8px 16px rgba(36, 46, 66, 0.16);
+      }
+    }
+
+    .open {
+      background-image: url('/assets/support-open-about-bg.svg');
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      display: grid;
+      grid-template-rows: 1fr auto;
+
+      .container {
+        padding: 20px;
+
+        .circleButtons {
+          margin: 20px 0 0;
+          display: flex;
+          gap: 12px;
+          user-select: none;
+          flex-wrap: wrap;
+
+          .circleButton {
+            transition: all 0.3s ease;
+
+            .buttonText {
+              transition: all 0.3s ease;
+            }
+
+            :global {
+              svg.kubed-icon {
+                transition: all 0.3s ease;
+              }
+            }
+
+            &:hover {
+              cursor: pointer;
+              background: $dark-color07;
+              box-shadow: 0px 8px 16px rgba(36, 46, 66, 0.28);
+              border: 1px solid $dark-color07;
+
+              .buttonText {
+                color: white;
+              }
+
+              :global {
+                svg.kubed-icon {
+                  color: rgba(255, 255, 255, 0.9);
+                  fill: rgba(255, 255, 255, 0.4);
+                }
+              }
+            }
+
+            flex: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 24px;
+            gap: 8px;
+            height: 40px;
+            background: #ffffff;
+            border: 1px solid #eff4f9;
+            border-radius: 100px;
+          }
+        }
+      }
+
+      .buttons {
+        padding: 14px 20px;
+        background: #f9fbfd;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .button {
+          display: inline-flex;
+          gap: 4px;
+          align-items: center;
+          transition: all 0.3s ease;
+
+          &:hover {
+            color: $blue-color03;
+
+            .smallButtonText {
+              color: $blue-color03;
+            }
+          }
+        }
+      }
+    }
+
+    .ticket {
+      padding: 20px;
+      background-image: url('/assets/support-ticket-about-bg.svg');
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      color: $dark-color07;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+
+      .desc {
+        margin-top: 12px;
+        margin-bottom: 24px;
+        color: $dark-color07;
+      }
+
+      &:hover {
+        .link {
+          gap: 12px;
+          fill: $blue-color03;
+          color: $blue-color03;
+        }
+      }
+
+      .link {
+        transition: all 0.3s ease;
+        display: inline-flex;
+        gap: 4px;
+        align-items: center;
+        @include font();
+      }
+    }
+  }
+
+  .card {
+    background: #ffffff;
+    transition: all 0.3s ease;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .headerWithPadding {
+      padding: 20px 20px 0 20px;
+    }
+
+    .content {
+      display: flex;
+      gap: 28px;
+
+      > div:nth-of-type(1) {
+        flex: auto;
+        padding: 20px;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 8px 16px rgba(36, 46, 66, 0.16);
+    }
+
+    box-shadow: 0px 4px 8px rgba(36, 46, 66, 0.06);
+    border-radius: 4px;
+  }
+
+  .kse {
+    .title {
+      color: $dark-color07;
+    }
+
+    .content {
+      overflow: hidden;
+
+      & > div {
+        overflow: hidden;
+        width: 100%;
+      }
+
+      .kseBg {
+        flex: none;
+        width: 446px;
+        background: url('/assets/support-kse.svg') no-repeat;
+      }
+    }
+
+    .desc {
+      margin-top: 8px;
+      margin-bottom: 20px;
+    }
+
+    .features {
+      overflow: hidden;
+      display: flex;
+      gap: 40px;
+
+      .feature {
+        overflow: hidden;
+        flex: 1 1 0;
+
+        .featureTitle {
+          font-weight: 400;
+          word-break: break-word;
+        }
+      }
+    }
+  }
+
+  .ksc {
+    padding: 20px;
+
+    .title {
+      color: $dark-color07;
+      margin-bottom: 8px;
+      margin-top: 20px;
+    }
+
+    .desc {
+      margin-bottom: 12px;
+    }
+
+    .features {
+      display: flex;
+      gap: 20px;
+
+      .feature {
+        padding: 0 20px;
+        flex: 1 1 0;
+        align-items: stretch;
+        border-radius: 4px;
+        border: 1px #f9fbfd solid;
+        background: no-repeat right, 240px 200px, #f9fbfd;
+        //background-size: 240px 200px;
+        word-break: break-word;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        transition: all 0.3s ease;
+
+        .title {
+          margin-top: 20px;
+        }
+
+        .descRow {
+          @include font(28px, 14px, 400);
+          opacity: 0.7;
+          margin-right: 180px;
+        }
+
+        .buttonText {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          margin-top: 24px;
+          margin-bottom: 20px;
+          transition: all 0.3s ease;
+        }
+
+        &:hover {
+          border: 1px solid #79879c;
+          box-shadow: 0px 4px 8px rgba(36, 46, 66, 0.2);
+          border-radius: 4px;
+          background-color: #ffffff;
+
+          .buttonText {
+            gap: 12px;
+            fill: $blue-color03;
+            color: $blue-color03;
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: $dark-color07;
+  }
+
+  :global {
+    a.support-action {
+      color: $blue-color03;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $blue-color04;
+      }
+
+      &:active {
+        color: $blue-color05;
+      }
+    }
+  }
+}
+
+.divider {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background: #d8dee5;
+}

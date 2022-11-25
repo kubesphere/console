@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   NETWORK: 'Ağ',
   START_IP_ADDRESS: 'Başlangıc IP Adresi',
   END_IP_ADDRESS: 'Bitiş IP Adresi',

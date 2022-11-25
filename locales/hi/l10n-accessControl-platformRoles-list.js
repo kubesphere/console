@@ -24,6 +24,7 @@ module.exports = {
   ROLE_WORKSPACES_MANAGER: 'KubeSphere प्लेटफॉर्म पर सभी वर्कस्पेसेस का प्रभंधन करें।',
   ROLE_PLATFORM_ADMIN: 'KubeSphere प्लेटफॉर्म पर सभी संसाधनों का प्रबंधन करें।',
   ROLE_PLATFORM_REGULAR: 'बिना किसी वर्कस्पेस से जुड़े कोई भी संसाधन को पहुंच नहीं सकते',
+  ROLE_PLATFORM_SELF_PROVISIONER: 'Create workspaces and become an administrator of the created workspaces.',
   CREATION_TIME_TCAP: 'निर्माण का समय',
   // List > Create
   CREATE_PLATFORM_ROLE: 'प्लेटफार्म भूमिका बनाएं',
@@ -39,6 +40,8 @@ module.exports = {
   PERMISSION_WORKSPACES_VIEW_DESC: 'View workspaces.',
   PERMISSION_WORKSPACES_MANAGEMENT: 'Workspace Management',
   PERMISSION_WORKSPACES_MANAGEMENT_DESC: 'Create, edit, delete, and view workspaces.',
+  PERMISSION_WORKSPACES_CREATE: 'Workspace Creation',
+  PERMISSION_WORKSPACES_CREATE_DESC: 'Create workspaces and become an administrator of the created workspaces.',
   PERMISSION_USERS_VIEW: 'User Viewing',
   PERMISSION_USERS_VIEW_DESC: 'View users.',
   PERMISSION_USERS_MANAGEMENT: 'User Management',
@@ -56,5 +59,9 @@ module.exports = {
   // List > Create > Edit Permissions > Platform Settings
   PERMIGROUP_PLATFORM_SETTINGS: 'Platform Settings',
   PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
-  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.'
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.',
+  // List > Edit Information
+  // List > Edit Permissions
+  // List > Delete
+  DELETING_PRESET_ROLES_NOT_ALLOWED: 'Preset roles cannot be deleted.'
 };

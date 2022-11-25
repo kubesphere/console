@@ -27,7 +27,6 @@ import { createCenterWindowOpt } from 'utils/dom'
 import ContainerStore from 'stores/container'
 
 import DetailPage from 'projects/containers/Base/Detail'
-
 import getRoutes from './routes'
 
 @observer
@@ -94,9 +93,17 @@ export default class ContainerDetail extends React.Component {
     return (
       resourceType &&
       Object.keys(resourceType)
-        .map(key =>
-          t(`${key.toUpperCase()}_VALUE`, { value: resourceType[key] })
-        )
+        .map(key => {
+          const isCpu = key === 'cpu'
+          const value =
+            isCpu && resourceType[key].endsWith('m')
+              ? parseInt(resourceType[key], 10) / 1000
+              : resourceType[key]
+
+          return t(`${key.toUpperCase().replace(/[^A-Z]/g, '_')}_VALUE`, {
+            value,
+          })
+        })
         .join('/')
     )
   }

@@ -46,7 +46,7 @@ export default class RuleList extends React.Component {
   }
 
   renderContent() {
-    const { value, onShow, onDelete, projectDetail } = this.props
+    const { value, onShow, onEdit, onDelete, projectDetail } = this.props
 
     const tls = get(this.context.formData, 'spec.tls', [])
 
@@ -60,7 +60,7 @@ export default class RuleList extends React.Component {
               tls={tls}
               key={index}
               index={index}
-              onEdit={onShow}
+              onEdit={onEdit}
               onDelete={onDelete}
               projectDetail={projectDetail}
             />

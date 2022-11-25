@@ -113,7 +113,7 @@ export default class ProjectSelectModal extends React.Component {
 
     if (globals.app.hasKSModule('devops')) {
       types.push({
-        label: t('DevOps Projects'),
+        label: t('DEVOPS_PROJECT_PL'),
         value: 'devops',
       })
     }

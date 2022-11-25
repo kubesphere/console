@@ -17,7 +17,7 @@
  */
 
 import { get, set } from 'lodash'
-import { action } from 'mobx'
+import { action, observable } from 'mobx'
 
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
 import BaseStore from 'stores/base'
@@ -26,6 +26,9 @@ export default class Base extends BaseStore {
   get apiVersion() {
     return 'kapis/notification.kubesphere.io/v2beta1'
   }
+
+  @observable
+  resourceVersion = ''
 
   getPath({ user }) {
     let path = ''
@@ -80,22 +83,26 @@ export default class Base extends BaseStore {
   }
 
   @action
-  async update(params, newObject) {
+  async getResource(params) {
     const result = await request.get(
       this.getDetailUrl(params),
       {},
       null,
       () => {
-        window.onunhandledrejection({
-          status: 404,
-        })
-        return Promise.reject()
+        return {}
       }
     )
     const resourceVersion = get(result, 'metadata.resourceVersion')
-    if (resourceVersion) {
-      set(newObject, 'metadata.resourceVersion', resourceVersion)
+    this.resourceVersion = resourceVersion || ''
+    return resourceVersion !== undefined
+  }
+
+  @action
+  async update(params, newObject) {
+    if (!this.resourceVersion) {
+      await this.getResource(params)
     }
+    set(newObject, 'metadata.resourceVersion', this.resourceVersion)
     return this.submitting(request.put(this.getDetailUrl(params), newObject))
   }
 }

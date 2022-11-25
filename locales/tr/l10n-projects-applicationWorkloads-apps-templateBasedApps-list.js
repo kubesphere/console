@@ -30,6 +30,9 @@ module.exports = {
   TEMPLATE_BASED_APP_EMPTY_DESC: 'Lütfen KubeSphere App Store\'dan bir uygulama veya bir uygulama şablonu oluşturun.',
   APP: 'Uygulama',
   VERSION: 'Versiyon',
+  CREATING: 'Oluşturuluyor',
+  UPGRADING: 'Created',
+  DELETING: 'Siliniyor',
   // List > Create
   CREATE_APP: 'Uygulama oluştur',
   CREATE_APP_DESC: 'KubeSphere App Store\'dan veya bir uygulama şablonundan bir uygulama oluşturun.',

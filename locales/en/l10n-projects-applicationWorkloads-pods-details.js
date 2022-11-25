@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   QOS_CLASS: 'QoS Class',
   NODE_NAME: 'Node Name',
   POD_IP_ADDRESS: 'Pod IP Address',

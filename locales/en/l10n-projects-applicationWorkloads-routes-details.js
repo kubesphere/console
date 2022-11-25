@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   // Resource Status
   DOMAIN_NAME_VALUE: 'Domain Name: {value}',
   PATH_VALUE: 'Path: {value}',

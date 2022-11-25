@@ -28,13 +28,15 @@ module.exports = {
   // Banner > Add Log Receiver > Elasticsearch
   LOG_COLLECTION_ES_URL_TIPS: 'Yerleşik Elasticsearch hizmeti varsayılan olarak kullanılır. Küme içinde veya dışında bağımsız olarak dağıtılan Elasticsearch\'ün IP adresini de girebilirsiniz.',
   LOG_COLLECTION_ES_INDEX_TIPS: 'Sorguları hızlandırmak için dizin önekini kullanın. Dizin öneki, <Index öneki>-<Yıl-ay-tarihi> biçiminde otomatik olarak oluşturulur.',
-  PARAMETER_REQUIRED: 'Bu çerez zorunludur.',
+  ADDRESS_VALUE: 'Address: {value}',
   // Banner > Add Log Receiver > Kafka
   TOPIC: 'Konu',
   ADD_SERVICE_ADDRESS: 'Ekle',
   SERVICE_ADDRESS: 'Kaynak Adresi',
   ENTER_SERVICE_ADDRESS: 'Lütfen bir hizmet adresi girin.',
   INVALID_SERVICE_ADDRESS: 'Lütfen bir hizmet adresi girin.',
+  SERVICE_ADDRESS_EXIST: 'The service address already exists. Please enter another service address.',
+  EXAMPLE_VALUE: 'Example: {value}',
   // Banner > Add Log Receiver > Fluentd
   LOG_COLLECTION_FLUENTD_URL_TIPS: 'Kayıtları alan Fluentd hizmetinin adresini girin.',
   // Container Logs

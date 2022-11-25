@@ -74,11 +74,103 @@ export default class ClusterStore extends Base {
     let result
     if (!globals.app.isMultiCluster) {
       result = { items: [DEFAULT_CLUSTER] }
-    } else if (
-      from === 'resource' ||
-      globals.app.hasPermission({ module: 'clusters', action: 'view' })
-    ) {
+    } else {
       result = await request.get(this.getResourceUrl({}), params)
+    }
+
+    const data = get(result, 'items', []).map(this.mapper)
+
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
+
+    return data
+  }
+
+  // Whether the current user has permission to access the cluster to which he belongs and the public cluster in the worksspace
+  @action
+  async fetchGrantedList({ from, more, ...params } = {}) {
+    this.list.isLoading = true
+
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
+    }
+
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
+    }
+
+    params.limit = params.limit || 10
+
+    let result
+    if (!globals.app.isMultiCluster) {
+      result = { items: [DEFAULT_CLUSTER] }
+    } else {
+      const tenantParams = {
+        ...params,
+        labelSelector: `${
+          params.labelSelector ? `${params.labelSelector},` : ''
+        }cluster.kubesphere.io/visibility!=public`,
+      }
+
+      const resourceParams = {
+        ...params,
+        labelSelector: `${
+          params.labelSelector ? `${params.labelSelector},` : ''
+        }cluster.kubesphere.io/visibility=public`,
+      }
+
+      const [tenantList, list] = await Promise.all([
+        request.get(this.getTenantUrl({}), tenantParams),
+        request.get(this.getResourceUrl({}), resourceParams),
+      ])
+
+      result = {
+        items: [...list.items, ...tenantList.items],
+        totalItems: tenantList.totalItems + list.totalItems,
+      }
+    }
+
+    const data = get(result, 'items', []).map(this.mapper)
+
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
+
+    // return data
+  }
+
+  @action
+  async fetchListByUser({ from, more, ...params } = {}) {
+    this.list.isLoading = true
+
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
+    }
+
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
+    }
+
+    params.limit = params.limit || 10
+
+    let result
+    if (!globals.app.isMultiCluster) {
+      result = { items: [DEFAULT_CLUSTER] }
     } else {
       result = await request.get(this.getTenantUrl({}), params)
     }
@@ -145,7 +237,7 @@ export default class ClusterStore extends Base {
         this.isValidating = false
         window.onunhandledrejection({
           status: 400,
-          reason: t('Validation failed'),
+          reason: t('VALIDATION_FAILED'),
           message: err.message,
         })
         return Promise.reject()

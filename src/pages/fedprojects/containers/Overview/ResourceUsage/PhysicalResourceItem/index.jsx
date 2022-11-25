@@ -31,11 +31,11 @@ export default class PhysicalResourceItem extends React.Component {
     const config = getAreaChartOps({
       title,
       unitType: type,
-      legend: ['Count'],
+      legend: ['COUNT'],
       data: metrics,
       xFormatter: value =>
         getLocalTime(Number(value) * 1000).format(
-          showDay ? t('Do HH:mm') : 'HH:mm'
+          showDay ? 'MM-DD HH:mm' : 'HH:mm'
         ),
     })
 

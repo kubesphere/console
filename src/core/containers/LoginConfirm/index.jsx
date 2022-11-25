@@ -73,9 +73,7 @@ export default class LoginConfirm extends Component {
           <img src="/assets/logo.svg" alt="" />
         </a>
         <div className={styles.login}>
-          <div className={styles.header}>
-            {t('Please confirm your account info')}
-          </div>
+          <div className={styles.header}>{t('SET_EMAIL_AND_USERNAME')}</div>
           <div className={styles.divider}></div>
           {errorMessage && (
             <Alert
@@ -101,10 +99,10 @@ export default class LoginConfirm extends Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('Username')}
+              label={t('USERNAME')}
               desc={t('USERNAME_DESC')}
               rules={[
-                { required: true, message: t('Please input username') },
+                { required: true, message: t('USERNAME_EMPTY_DESC') },
                 {
                   pattern: PATTERN_USER_NAME,
                   message: t('USERNAME_INVALID', {
@@ -116,7 +114,7 @@ export default class LoginConfirm extends Component {
             >
               <Input
                 name="username"
-                placeholder="user@example.com"
+                placeholder=" "
                 defaultValue={get(globals, 'user.username')}
                 maxLength={32}
               />
@@ -127,7 +125,7 @@ export default class LoginConfirm extends Component {
                 htmlType="submit"
                 loading={this.store.isSubmmiting}
               >
-                {t('Log In')}
+                {t('LOG_IN')}
               </Button>
             </div>
           </Form>

@@ -23,14 +23,19 @@ module.exports = {
   // List
   IMAGE_BUILDER_EMPTY_DESC: 'Please create an image builder.',
   NOT_RUNNING_YET: 'Not run yet',
+  BUILDING: 'Building',
+  S2I: 'Source-to-image',
+  B2I: 'Artifact-to-image',
   // List > Name (Displayed after you create a service from artifact)
   BUILD_IMAGE_FOR_SERVICE: 'Build image for service {service}.',
   // List > Create > Build Mode
   BUILD_MODE: 'Build Mode',
+  CONTAINERD_RUNTIME_NOT_SUPPORTED: 'The containerd runtime does not support this feature.',
   S2I_DESC: 'Select a source code language.',
   IMAGE_FROM_S2I: 'Build Image from Source Code',
   IMAGE_FROM_B2I: 'Build Image from Artifact',
   B2I_DESC: 'Select an artifact file type.',
+  EMPTY_IMAGE_TYPE_DESC:'Please select a language or artifact type.',
   // List > Create > Java > Build Settings
   CODE_REPOSITORY_URL: 'Code Repository URL',
   CODE_REPOSITORY_BRANCH: 'Code Repository Branch',

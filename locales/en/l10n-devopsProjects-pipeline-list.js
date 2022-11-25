@@ -44,6 +44,8 @@ module.exports = {
   SELECT_CODE_REPOSITORY: 'Select Code Repository',
   PIPELINE_CREATE_DEVOPS_PROJECT_DESC: 'Select the DevOps project to which the pipeline belongs.',
   CODE_REPOSITORY_OPTIONAL: 'Code Repository (optional)',
+  GO_CREATE_REPO: 'No code repository is available. Please create a code repository.',
+  CODE_REPO_EXISTS: 'code repository already exists',
   SELECT_CODE_REPO_DESC: 'Select a code repository to be used by the pipeline.',
   RESELECT: 'Reselect',
   // List > Create > Basic Information > Code Repository > GitHub

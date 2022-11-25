@@ -151,11 +151,11 @@ export default class AlertPolicyDetail extends React.Component {
         value: <Health detail={detail} />,
       },
       {
-        name: t('THRESHOLD_DURATION'),
+        name: t('DURATION'),
         value: detail.duration,
       },
       {
-        name: t('ACTIVATION_TIME'),
+        name: t('TRIGGER_TIME'),
         value: time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-',
       },
     ]

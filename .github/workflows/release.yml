@@ -1,0 +1,37 @@
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+name: Build Release
+
+env:
+  # TODO: Change variable to your image's name.
+  IMAGE_NAME: ks-console
+  IMAGE_REPO: kubesphere
+
+jobs:
+  release-linux-amd64:
+    runs-on: ubuntu-latest
+    if: github.repository	== 'kubesphere/console'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get Version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          platforms: all
+
+      - name: Set up Docker buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log into registry
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+      - name: Push image
+        run: |
+          TAG=${{ steps.get_version.outputs.VERSION }} REPO=$IMAGE_REPO make container-cross-push
+          echo "Push $IMAGE success!"

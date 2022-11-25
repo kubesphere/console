@@ -641,7 +641,7 @@ const getGlobalSecretTemplate = ({ name }) => ({
 })
 
 const getNotificationConfigTemplate = ({ name }) => ({
-  apiVersion: 'notification.kubesphere.io/v2beta1',
+  apiVersion: 'notification.kubesphere.io/v2beta2',
   kind: 'Config',
   metadata: {
     name,
@@ -650,7 +650,7 @@ const getNotificationConfigTemplate = ({ name }) => ({
 })
 
 const getNotificationReceiverTemplate = ({ name, type }) => ({
-  apiVersion: 'notification.kubesphere.io/v2beta1',
+  apiVersion: 'notification.kubesphere.io/v2beta2',
   kind: 'Receiver',
   metadata: {
     name,
@@ -695,9 +695,6 @@ const getCDTemplate = () => ({
   kind: 'Application',
   apiVersion: 'gitops.kubesphere.io/v1alpha1',
   metadata: {},
-  spec: {
-    kind: 'argo-project',
-  },
 })
 
 const getCodeRepoTemplate = ({ namespace }) => ({

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   ENDPOINT: 'Uç nokta',
   SESSION_AFFINITY: 'Oturum Yakınlığı',
   // More
@@ -44,7 +44,7 @@ module.exports = {
   BEARER_TOKEN_TCAP: 'Bearer Jetonu',
   BASIC_AUTHENTICATION_TCAP: 'Temel Kimlik Doğrulama',
   // More > Edit YAML
-  // Details
+  // Attributes
   EXTERNAL_IP_ADDRESS: 'Harici IP Adresi',
   // Resource Status
   MONITORING_EXPORTER: 'İzleme Aktarıcısı',

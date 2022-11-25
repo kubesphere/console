@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   // Events
   MESSAGE: 'Message',
 }

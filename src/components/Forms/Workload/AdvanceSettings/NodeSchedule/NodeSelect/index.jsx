@@ -66,7 +66,7 @@ export default class NodeSelect extends React.PureComponent {
 
   get edgeDisabled() {
     const { cluster } = this.props
-    return globals.app.hasClusterModule(cluster, 'kubeedge')
+    return globals.app.hasClusterModule(cluster, 'edgeruntime')
   }
 
   handleTypeChange = async type => {

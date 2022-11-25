@@ -33,7 +33,7 @@ export default [
     component: RunningStatus,
     exact: true,
   },
-  { path: `${PATH}/pods`, title: 'Pods', component: Pods, exact: true },
+  { path: `${PATH}/pods`, title: 'PODS', component: Pods, exact: true },
   {
     path: `${PATH}/metadata`,
     title: 'METADATA',

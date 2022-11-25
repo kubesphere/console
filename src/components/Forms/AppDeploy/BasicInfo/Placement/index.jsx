@@ -270,7 +270,6 @@ export default class Placement extends Component {
                   onFetch={this.fetchNamespaces}
                   valueRenderer={this.projectOptionRenderer}
                   optionRenderer={this.projectOptionRenderer}
-                  searchable
                   clearable
                 />
               </Form.Item>

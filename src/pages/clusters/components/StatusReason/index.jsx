@@ -27,7 +27,7 @@ const isSuccess = condition => condition.status === 'True'
 export default function StatusReason({ data, noTip }) {
   const conditions = (
     <div>
-      <div className="tooltip-title">{t('CLUSTER_CONDITIONS')}</div>
+      <div className="tooltip-title">{t('CLUSTER_STATUS')}</div>
       <div>
         {Object.values(get(data, 'conditions', {})).map(cd => (
           <div key={cd.type} className={styles.condition}>
@@ -85,7 +85,7 @@ export default function StatusReason({ data, noTip }) {
         </Tooltip>
       )}
       <span className={status === 'error' ? styles.error : styles.warning}>
-        {t('Not Ready')}
+        {t('UNREADY')}
       </span>
     </span>
   )

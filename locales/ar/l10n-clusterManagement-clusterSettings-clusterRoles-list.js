@@ -17,5 +17,8 @@
  */
 module.exports = {
   CLUSTER_ROLE: 'Cluster Role',
-  CLUSTER_ROLE_PL: 'Cluster Roles'
+  CLUSTER_ROLE_PL: 'Cluster Roles',
+  CLUSTER_ROLE_DESC: 'This module allows you to manage the access of users within a cluster.',
+  ROLE_CLUSTER_VIEWER: 'View all resources in the cluster.',
+  ROLE_CLUSTER_ADMIN: 'Manage all resources in the cluster.'
 };

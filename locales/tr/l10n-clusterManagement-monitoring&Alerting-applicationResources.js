@@ -66,10 +66,13 @@ module.exports = {
   APPLICATION_RESOURCE_USAGE: 'Uygulama Kaynak Kullanımı',
   DEPLOYMENT: 'Dağıtım',
   DEPLOYMENT_PL: 'Dağıtımlar',
+  DEPLOYMENT_LOW: 'deployment',
   STATEFULSET: 'Durum Bilgisi',
   STATEFULSET_PL: 'Durum kümeleri',
+  STATEFULSET_LOW: 'statefulset',
   DAEMONSET: 'Daemonset',
-  DAEMONSET_PL: 'Daemonsets',
+  DAEMONSET_PL: 'Arka Plan Programı',
+  DAEMONSET_LOW: 'daemonset',
   DEPLOYMENTS_VALUE: 'Dağıtımlar:{value}',
   STATEFULSETS_VALUE: 'Durum kümeleri:{value}',
   DAEMONSETS_VALUE: 'Daemonsets: {value}',
@@ -84,7 +87,7 @@ module.exports = {
   OUTBOUND_TRAFFIC: 'Giden Trafik',
   INBOUND_TRAFFIC: 'Gelen Trafik',
   SORT_BY_NAMESPACE_CPU_USAGE: 'CPU kullanımına göre sırala',
-  SORT_BY_NAMESPACE_POD_COUNT: 'Kapsül sayısına göre sırala',
+  SORT_BY_NAMESPACE_POD_COUNT: 'Sort by pod quota usage (%)',
   SORT_BY_NAMESPACE_NET_BYTES_RECEIVED: 'Gelen trafiğe göre sırala',
   SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: 'Giden trafiğe göre sırala'
 };

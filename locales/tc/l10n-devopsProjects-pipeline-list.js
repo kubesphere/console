@@ -43,6 +43,8 @@ module.exports = {
   SELECT_CODE_REPOSITORY: '選擇代碼倉庫',
   PIPELINE_CREATE_DEVOPS_PROJECT_DESC: 'Select the DevOps project to which the pipeline belongs.',
   CODE_REPOSITORY_OPTIONAL: '代碼倉庫（可選）',
+  GO_CREATE_REPO: 'No code repository is available. Please create a code repository.',
+  CODE_REPO_EXISTS: 'code repository already exists',
   SELECT_CODE_REPO_DESC: '請選擇一個代碼倉庫作為流水線的代碼來源。',
   RESELECT: '重新選擇',
   // List > Create > Basic Information > Code Repository > GitHub

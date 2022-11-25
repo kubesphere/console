@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   NODE_IP_ADDRESS: 'Node IP Address',
   CLUSTER: 'Cluster',
   // Resource Status > Containers
@@ -26,11 +26,14 @@ module.exports = {
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: 'The container does not support real-time logs currently. Please try again later.',
   CONTAINER_LOGS: 'Container Logs',
-  // Resource Status > Details > Container Details > Details
+  // Resource Status > Details > Container Details > Attributes
   COMMAND: 'Command',
   IMAGE_ID: 'Image ID',
   IMAGE_PULL_POLICY: 'Image Pull Policy',
   CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
+  CPU_VALUE: 'CPU: {value, plural, =1 {1 core} other {# cores}}',
+  MEMORY_VALUE: 'Memory: {value}',
+  NVIDIA_COM_GPU_VALUE: 'GPU: {value}',
   // Resource Status > Details > Container Details > Terminal
   LOADING: 'Loading...',
   RESOURCE_LIMITS: 'Resource Limits',
@@ -43,11 +46,12 @@ module.exports = {
   LIVENESS_PROBE: 'Liveness Probe',
   READINESS_PROBE: 'Readiness Probe',
   STARTUP_PROBE: 'Startup Probe',
+  REQUEST_TYPE: 'Request type',
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
-  NO_RESOURCE: 'No {resource}.',
-  LOG_DATA_LOW: 'log data',
+  NO_LOG_DATA_FOUND: 'No Log Data Found',
+  NO_LOG_DATA_FOUND_TIP: 'No log data is found.',
   // Resource Status > Volumes
   VOLUME_PL: 'Volumes',
   TYPE_CONFIGMAP: 'Volume type: configmap',

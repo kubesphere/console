@@ -154,10 +154,11 @@ export default class HomeModal extends React.Component {
             </h3>
             <p>
               <Icon name="clock" />
-              {t('START_TIME_COLON')}
-              {moment(this.logStatisticsStore.startTime).format(
-                `${t('LOG_DATE')}`
-              )}
+              {t('START_TIME_VALUE', {
+                value: moment(this.logStatisticsStore.startTime).format(
+                  'YYYY-MM-DD HH:mm:ss'
+                ),
+              })}
             </p>
           </div>
         </Loading>
@@ -217,7 +218,7 @@ export default class HomeModal extends React.Component {
         <div className={classnames(styles.card, styles.recent)}>
           <div className={styles.recentSummary}>
             <h2 className={styles.count}>{this.histogramStore.logsCount}</h2>
-            <p>{t('CONTAINER_LOG_TRENDS_12H')}</p>
+            <p>{t('CONTAINER_LOGS_12H')}</p>
           </div>
           <div className={styles.chart}>
             <TimeBar

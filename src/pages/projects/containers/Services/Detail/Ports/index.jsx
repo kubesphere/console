@@ -59,7 +59,7 @@ export default class Ports extends Component {
                     <strong>{port.nodePort}</strong>
                   </p>
                   <div>
-                    {t('NodePort')}
+                    {t('NODE_PORT_SCAP')}
                     <Tooltip
                       content={t('SERVICE_NODE_PORT_DESC')}
                       trigger="hover"

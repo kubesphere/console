@@ -41,13 +41,14 @@ module.exports = {
   EDIT_TITLE: 'Başlığı Düzenle',
   // Cluster Gateway > Manage > Update
   UPDATE: 'Güncelle',
+  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
   // Project Gateways
   PROJECT_GATEWAY_PL: 'Proje Ağ Geçidi',
   PROJECT_GATEWAY_NOT_ENABLED: 'Proje Ağ Geçidi Etkin Değil',
   PROJECT_ENABLE_GATEWAY_DESC: 'Lütfen proje ağ geçidini etkinleştirin.',
   REPLICA_COUNT: 'Kopyalar',
   NODE_PORTS: 'Düğüm Portu',
-  UPDATE_GATEWAY_DESC: 'Geçerli ağ geçidi güncellenebilir.',
+  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: 'proje Ağ Geçidi',
   DISABLE_MULTIPLE_GATEWAYS: 'Birden Çok Ağ Geçidini Devre Dışı Bırak'

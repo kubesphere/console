@@ -19,9 +19,13 @@ module.exports = {
   // More > Add Service
   ADD_SERVICE: 'Add Service',
   ADD_ROUTE: 'Add Route',
+  SERVICE_ADDED_SUCCESSFULLY: 'The service was added successfully.',
   // More > Add Route
-  // Details
+  // Attributes
   // Resource Status
+  WORKLOAD_TYPE_DEPLOYMENTS: 'Deployment',
+  WORKLOAD_TYPE_DAEMONSETS: 'Daemonset',
+  WORKLOAD_TYPE_STATEFULSETS: 'Statefulset',
   // Traffic Monitoring
   TRAFFIC_MONITORING: 'Traffic Monitoring',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC: 'The app has not received requests for a long time. Please try again later.',
@@ -68,13 +72,16 @@ module.exports = {
   BASE_EJECTION_TIME_S: 'Base Ejection Time (s)',
   BASE_EJECTION_TIME_S_DESC: 'Maximum ejection duration.',
   UPDATED_AT_VALUE_SCAP: 'Updated at {value}',
+  METHOD: 'Method',
+  TRAFFIC_MANAGEMENT_UNAVAILABLE: 'Traffic Management Unavailable',
+  APPLICATION_GOVERNANCE_NOT_ENABLED: 'Please enable Application Governance.',
   // Grayscale Release
-  CREATE_GRAYSCALE_RELEASE_JOB: 'Create Grayscale Release Job',
+  CREATE_GRAYSCALE_RELEASE_TASK: 'Create Grayscale Release Task',
   GRAYSCALE_RELEASE_DESC: 'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
-  NO_GRAYSCALE_RELEASE_JOB_FOUND: 'No Grayscale Release Job Found',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND: 'No Grayscale Release Task Found',
   NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: 'Please create a grayscale release job.',
-  TOTAL_GRAY_RELEASE_JOB: '{num} grayscale release job in total',
-  TOTAL_GRAY_RELEASE_JOBS: '{num} grayscale release jobs in total',
+  TYPE_SERVICE_DEPLOYMENT: 'Type: stateless service (deployment)',
+  TYPE_SERVICE_STATEFULSET: 'Type: stateful service (statefulset)',
   // Tracing
   TRACING: 'Tracing',
   TRACING_NO_DATA_DESC: 'Please change the search conditions and try again.',
@@ -82,5 +89,10 @@ module.exports = {
   NUM_SPAN_PL: '{num} spans',
   NUM_ERROR_SI: '{num} error',
   NUM_ERROR_PL: '{num} errors',
-  LAST_NUM_RECORDS: 'Last {num} records'
+  LAST_NUM_RECORDS: 'Last {num} records',
+  PROCESS: 'Process',
+  SERVICES_AND_OPERATIONS: 'Services & Operations',
+  TRACING_UNAVAILABLE: 'Tracing Unavailable',
+  CALLED_SERVICES: 'Called Services',
+  CALLED_DEPTH: 'Call Depth'
 };

@@ -26,7 +26,7 @@ module.exports = {
   // More > Expand
   EXPAND_VOLUME: 'Bölüm Genişlet',
   EXPAND: 'Genişlet',
-  // Details
+  // Attributes
   PROVISIONER: 'Sağlayıcı',
   // Resource Status
   AVAILABLE_CAPACITY: 'Kullanılabilir kapasite',

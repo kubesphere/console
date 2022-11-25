@@ -170,7 +170,9 @@ export default class DevOps extends React.Component {
       title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
-      render: status => <Status type={status} name={t(status)} flicker />,
+      render: status => (
+        <Status type={status} name={t(status.toUpperCase())} flicker />
+      ),
     },
     {
       title: t('CREATOR'),

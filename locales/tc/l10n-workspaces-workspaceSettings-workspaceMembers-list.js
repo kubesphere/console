@@ -31,6 +31,7 @@ module.exports = {
   INVITE_WORKSPACE_MEMBER_DESC: 'You can invite members to the workspace.',
   INVITE_MEMBER: 'Invite Member',
   INVITE: 'Invite',
+  INVITED_SUCCESSFULLY: 'Invited successfully.',
   // List > Remove
   REMOVE_MEMBER_TIP: '確定移除成員 <strong>{resource}</strong> ？'
 };

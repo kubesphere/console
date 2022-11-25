@@ -43,6 +43,8 @@ module.exports = {
   SELECT_CODE_REPOSITORY: 'Kod Deposu Seç',
   PIPELINE_CREATE_DEVOPS_PROJECT_DESC: 'İş hattının ait olduğu DevOps projesini seçin.',
   CODE_REPOSITORY_OPTIONAL: 'Kod Deposu (opsiyonel)',
+  GO_CREATE_REPO: 'No code repository is available. Please create a code repository.',
+  CODE_REPO_EXISTS: 'code repository already exists',
   SELECT_CODE_REPO_DESC: 'İş hattı tarafından kullanılacak bir kod deposu seçin.',
   RESELECT: 'Yeniden seç',
   // List > Create > Basic Information > Code Repository > GitHub

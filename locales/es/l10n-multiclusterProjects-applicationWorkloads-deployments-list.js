@@ -27,6 +27,7 @@ module.exports = {
   // List > Create
   // List > Create > Basic Information
   NEXT: 'Siguiente',
+  INVALID_PROJECT: 'Invalid project.',
   // List > Create > Pod Settings > Replica Scheduling Mode
   REPLICA_SCHEDULING_MODE: 'Modo de despliegue',
   SPECIFY_REPLICAS: 'Especificar las réplicas',
@@ -39,6 +40,7 @@ module.exports = {
   WEIGHT: 'Peso',
   TOTAL_REPLICAS: 'Número total de copias',
   // List > Create > Pod Settings > Add Container > Container Settings
+  COST: 'Cost',
   ADD_CONTAINER: 'Add Container',
   ADD_CONTAINER_DESC: 'KubeSphere admite la extracción de imágenes de los Registros de imágenes y la creación de nuevas imágenes a través del código fuente (Fuente a imagen).',
   CONTAINERS: 'Imagen de contenedor',
@@ -63,6 +65,7 @@ module.exports = {
   NO_REQUEST: 'Ninguna solicitud',
   NO_RESOURCE_LIMIT: 'No resource limit',
   IGNORE_AND_RETRY: 'para volver a intentarlo',
+  AVAILABLE_QUOTAS: 'Available Quotas',
   // List > Create > Pod Settings > Add Container > Port Settings
   PORT_SETTINGS: 'Configuraciones de puerto',
   ISTIO_PROTOCOL_TIP: 'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
@@ -70,8 +73,8 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Use Local Image First
   IMAGE_PULL_POLICY_ALWAYS: 'Volver a descargar la imagen (siempre)',
   IMAGE_PULL_POLICY_NEVER: 'Usar solo imagen local (nunca)',
-  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Tire de la imagen cada vez que se inicia el pod.',
-  IMAGE_PULL_POLICY_IFNOTPRESENT_DESC: 'Tire de la imagen solo si no existe localmente.',
+  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Pulls an image always when the pod is created or updated.',
+  IMAGE_PULL_POLICY_IFNOTPRESENT_DESC: 'Pulls an image only when the required image does not exist locally.',
   IMAGE_PULL_POLICY_NEVER_DESC: 'Solo se usará la imagen local, lo que hará que el contenedor sea anormal si la imagen requerida no existe localmente.',
   IMAGE_PULL_POLICY_IFNOTPRESENT: 'Use la imagen local primero (IfNotPresent)',
   // List > Create > Pod Settings > Add Container > Health Check
@@ -85,6 +88,7 @@ module.exports = {
   COMMANDS: 'Comando',
   HEALTH_CHECK: 'Health check',
   STARTUP_CHECK_TIP: 'Kubernetes v1.18 or later is required.',
+  HTTP_PATH_EMPTY: 'Please set a path for the HTTP check.',
   // List > Create > Pod Settings > Add Container > Life Management
   LIFECYCLE_MANAGEMENT: 'Lifecycle Management',
   LIFECYCLE_MANAGEMENT_DESC: 'Add actions to be performed after the container is started or before it is stopped for environment preparation or graceful shutdown.',
@@ -97,6 +101,11 @@ module.exports = {
   ADD_ENVIRONMENT_VARIABLE: 'Agregar variable de entorno',
   KEY_IN_RESOURCE: 'Seleccionar clave',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
+  RESOURCE: 'Resource',
+  CREATE_CONFIGMAP_SECRET_DESC: 'If no configmap or secret meets the requirements, you can',
+  CREATE_CONFIG: 'create a configmap',
+  OR: 'or',
+  CREATE_SECRET: 'create a secret.',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: 'Contexto de seguridad del contenedor',
   CONTAINER_SECURITY_CONTEXT_DESC: 'Un contexto de seguridad define la configuración de privilegios y control de acceso para un Pod o Contenedor.',
@@ -166,6 +175,7 @@ module.exports = {
   TEMPORARY_VOLUME: 'Volumen Temporal',
   VOLUME_NAME: 'Nombre del volumen',
   VOLUME_NAME_EMPTY: 'Por favor introduce el nombre del volumen',
+  HOST_PATH_EMPTY: 'Por favor introduce el ruta del host del volumen',
   CONTAINER_NOT_SELECTED: 'Selecciona al menos un contenedor para montar',
   NOT_MOUNT: 'No montado',
   HOSTPATH_VOLUME: 'HostPath Volume',
@@ -193,11 +203,13 @@ module.exports = {
   KEY: 'Clave',
   VALUE: 'Valor',
   ADVANCED_SETTINGS: 'Ajustes avanzados',
+  DUPLICATE_LABELS: 'Duplicate labels cannot be added.',
   // List > Create > Advanced Settings > Specify Node
   WORKLOAD_SPECIFY_NODE_DESC: 'Assign Pod replicas to a specific node.',
   // List > Create > Cluster Differences
   CLUSTER_DIFF: 'Cluster Differences',
   CLUSTER_DIFF_CONTAINER_SETTINGS_DESC: 'Establecer diferentes contenedores en diferentes grupos según las necesidades',
   CLUSTER_DIFF_PORT_SETTINGS_DESC: 'Se pueden configurar diferentes puertos de servicio en diferentes grupos',
-  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: 'Se pueden configurar diferentes entornos de contenedores en diferentes grupos'
+  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: 'Se pueden configurar diferentes entornos de contenedores en diferentes grupos',
+  CONTAINER_IMAGE: 'Container Image'
 };

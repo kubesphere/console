@@ -35,12 +35,12 @@ export default class LifecycleCard extends React.Component {
       <div className={styles.probe}>
         {this.renderProbeRecord({
           probe: postStart,
-          title: t('PostStart'),
+          title: t('POSTSTART_ACTION'),
           tagType: 'primary',
         })}
         {this.renderProbeRecord({
           probe: preStop,
-          title: t('PreStop'),
+          title: t('PRESTOP_ACTION'),
           tagType: 'warning',
         })}
       </div>
@@ -57,7 +57,7 @@ export default class LifecycleCard extends React.Component {
       const { path, port, scheme } = probe.httpGet
       probeType = 'HTTP_REQUEST'
       details = [
-        { title: scheme, description: t('Request Type') },
+        { title: scheme, description: t('REQUEST_TYPE') },
         { title: path, description: t('PATH') },
         { title: port, description: t('PORT') },
       ]

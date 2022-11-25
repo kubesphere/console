@@ -4,26 +4,32 @@
 .datepicker {
   display: flex;
 
-  li {
-    flex: 1 1 auto;
-    margin-right: 40px;
+  &Left {
+    flex: 12 1 auto;
+    margin-right: 65px;
+  }
 
-    &:first-child {
-      flex: 12 1 auto;
-      margin-right: 65px;
-    }
-
-    &:last-child {
-      flex: 1 1;
-      margin-right: 0;
-    }
-
+  &Right {
+    display: flex;
     & > div {
-      color: $dark-color06;
-    }
+      flex: 1 1 auto;
+      margin-right: 40px;
 
-    p {
-      color: $dark-color01;
+      &:last-child {
+        margin-right: 0;
+      }
+      :global {
+        .is-right {
+          transform: translateY(-62%);
+        }
+      }
+      & > div {
+        color: $dark-color06;
+      }
+
+      p {
+        color: $dark-color01;
+      }
     }
   }
 

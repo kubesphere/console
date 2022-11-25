@@ -24,6 +24,9 @@ import { MODULE_KIND_MAP, PROVISIONERS, ACCESS_MODES } from 'utils/constants'
 
 const Components = { input: TailIUnitInput, select: Select }
 
+const GID_MIN = 2000
+const GID_MAX = 2147483647
+
 const keyWithUnit = {
   maxsize: 'GiB',
   stepsize: 'GiB',
@@ -63,6 +66,46 @@ export default class StorageClassSetting extends React.Component {
         value: 'WaitForFirstConsumer',
       },
     ]
+  }
+
+  get validators() {
+    const gidNum = (rule, value, callback) => {
+      if (!value) {
+        return callback()
+      }
+
+      if (!/^[0-9]*$/.test(value)) {
+        return callback({
+          message: t('ENTER_POSITIVE_INTEGER_DESC'),
+          field: rule.field,
+        })
+      }
+
+      if (value < GID_MIN || value > GID_MAX) {
+        return callback({ message: t('GID_RANGE_TIP'), field: rule.field })
+      }
+
+      callback()
+    }
+
+    return [
+      {
+        _key: 'gidMin',
+        validator: gidNum,
+        checkOnSubmit: true,
+      },
+      {
+        _key: 'gidMax',
+        validator: gidNum,
+        checkOnSubmit: true,
+      },
+    ]
+  }
+
+  getRules(key) {
+    return this.validators
+      .filter(rule => rule._key === key)
+      .map(rule => omit(rule, '_key'))
   }
 
   getAccessModesOptions() {
@@ -117,9 +160,10 @@ export default class StorageClassSetting extends React.Component {
             <Form.Item
               label={t(left.key.toUpperCase())}
               desc={t(left.desc.toUpperCase())}
+              rules={this.getRules(left._key)}
             >
               <LeftComponent
-                name={`parameters.${left.key.toLowerCase()}`}
+                name={`parameters.${left._key || left.key.toLowerCase()}`}
                 {...omit(left, [
                   'type',
                   'key',
@@ -138,9 +182,10 @@ export default class StorageClassSetting extends React.Component {
               <Form.Item
                 label={t(right.key.toUpperCase())}
                 desc={t(right.desc.toUpperCase())}
+                rules={this.getRules(right._key)}
               >
                 <RightComponent
-                  name={`parameters.${right.key.toLowerCase()}`}
+                  name={`parameters.${right._key || right.key.toLowerCase()}`}
                   unit={keyWithUnit[right.key.toLowerCase()] ?? null}
                   {...omit(right, ['type', 'key', 'desc'])}
                 />
@@ -197,7 +242,7 @@ export default class StorageClassSetting extends React.Component {
                 rules={[
                   {
                     required: true,
-                    message: t('PARAMETER_REQUIRED'),
+                    message: t('PARAM_REQUIRED'),
                   },
                 ]}
                 label={t('PROVISIONER')}
@@ -212,6 +257,7 @@ export default class StorageClassSetting extends React.Component {
                 <Select
                   name="volumeBindingMode"
                   options={this.volumeBindingMode}
+                  defaultValue={'WaitForFirstConsumer'}
                 ></Select>
               </Form.Item>
             </Column>

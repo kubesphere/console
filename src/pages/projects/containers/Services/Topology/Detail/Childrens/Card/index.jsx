@@ -25,7 +25,7 @@ export default class Card extends React.PureComponent {
     return [
       {
         title: data.length,
-        description: 'Count',
+        description: 'COUNT',
         className: styles.texts,
       },
       {

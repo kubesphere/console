@@ -121,7 +121,7 @@ export default class ImageBuilders extends React.Component {
           _status = _status === 'Running' ? 'Building' : _status
           return (
             <Status
-              name={t(_status || 'NOT_RUNNING_YET')}
+              name={t(_status.toUpperCase() || 'NOT_RUNNING_YET')}
               type={_status || 'Unknown'}
               flicker
             />
@@ -133,7 +133,7 @@ export default class ImageBuilders extends React.Component {
         dataIndex: 'type',
         isHideable: true,
         width: '15%',
-        render: type => t(type),
+        render: type => type && t(type.toUpperCase()),
       },
       {
         title: t('SERVICE'),

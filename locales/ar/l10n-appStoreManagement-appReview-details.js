@@ -26,6 +26,7 @@ module.exports = {
   // Documentation
   DOCUMENTATION: 'الوثائق',
   NO_DOCUMENT_FOUND: 'لم يتم العثور على أي وثائق',
+  UPDATE_TIME_COLON: 'Update time: ',
   // Chart Files
   // Update Log
   UPDATE_LOG: 'سجل التحديث',

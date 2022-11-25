@@ -27,7 +27,6 @@ module.exports = {
   // Password Settings
   PASSWORD_SETTINGS: 'Password Settings',
   PASSWORD_EMPTY_DESC: 'Please set a password.',
-  CHANGE_PASSWORD_TIP: 'Since you are logging in for the first time, please reset your password.',
   CURRENT_PASSWORD: 'Current Password',
   ENTER_CURRENT_PASSWORD_TIP: 'Please enter the current password.',
   CONFIRM_PASSWORD: 'Confirm Password',

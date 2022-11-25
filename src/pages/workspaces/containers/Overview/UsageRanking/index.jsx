@@ -119,7 +119,7 @@ class Ranking extends React.Component {
     return (
       <EmptyList
         icon="cluster"
-        title={t('NO_AVAILABLE_CLUSTER')}
+        title={t('NO_CLUSTER_AVAILABLE')}
         desc={t('WORKSPACE_NO_CLUSTER_TIP')}
       />
     )

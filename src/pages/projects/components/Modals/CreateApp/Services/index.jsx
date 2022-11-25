@@ -202,6 +202,7 @@ export default class Services extends React.Component {
         <CreateAppServiceModal
           cluster={cluster}
           namespace={namespace}
+          components={components}
           detail={editData}
           store={this.serviceStore}
           module="services"

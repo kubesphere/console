@@ -129,10 +129,6 @@ export default class OPAppDetail extends React.Component {
         value: this.renderStatus(),
       },
       {
-        name: t('APP'),
-        value: get(detail, 'app.name', '-'),
-      },
-      {
         name: t('VERSION'),
         value: get(detail, 'version.name', '-'),
       },

@@ -649,11 +649,11 @@ export const getListConfig = ({ type, isMultiCluster }) => {
       : [
           {
             status: item => (item.isReady ? 'ready' : 'stop'),
-            desc: 'Host Cluster',
+            desc: 'HOST_CLUSTER',
           },
           {
             status: item => (item.isReady ? 'ready' : 'stop'),
-            desc: 'Member Cluster',
+            desc: 'MEMBER_CLUSTER',
           },
         ],
     nodes: [

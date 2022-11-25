@@ -16,14 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   COPIED_SUCCESSFUL: 'Başarıyla kopyalandı.',
   BUILDER_IMAGE: 'Oluşturucu Resmi',
   PULL_POLICY: 'Çekme Politikası',
-  SOURCE_URL: 'Kaynak URL',
   REMOTE_TRIGGER: 'Uzaktan Tetikleme',
   // Run
-  NEW_TAG_DESC: 'yeni görüntünün etiketini girin',
+  S2I_UPDATE_WORKLOAD: 'Update workload after image building is successful',
+  S2I_UPDATA_WORKLOAD_DESC: 'After the image is rebuilt successfully, workloads that use the image will be updated.',
   // More > Edit Information
   // More > Edit YAML
   // More > Delete
@@ -46,7 +46,11 @@ module.exports = {
   LAST_MESSAGE_SCAP: 'Son mesaj',
   START_TIME_SCAP: 'Başlama zamanı',
   // Resource Status
+  SOURCE_URL: 'Source URL',
+  NEW_TAG: 'New Tag',
+  NEW_TAG_DESC: 'Enter the tag of the new image',
   // Image Artifacts
   IMAGE_ARTIFACTS: 'Resim Artifacts',
-  RELEASE_TIME_SCAP: 'Bırakma zamanı'
+  RELEASE_TIME_SCAP: 'Bırakma zamanı',
+  PULL_COMMAND_SCAP: 'Pull command'
 };

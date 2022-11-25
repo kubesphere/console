@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   QOS_CLASS: 'QoS Class',
   NODE_NAME: '主機名稱',
   POD_IP_ADDRESS: '容器組 IP 地址',

@@ -33,8 +33,8 @@ class RefreshIntervalSelector extends React.Component {
 
   options = refreshOpts.map(interval => ({
     label: interval
-      ? `${t('Interval')} ${translateTimeAlias(interval)}`
-      : t('No Refreshing'),
+      ? `${t('INTERVAL')} ${translateTimeAlias(interval)}`
+      : t('NO_REFRESHING'),
     value: interval,
   }))
 

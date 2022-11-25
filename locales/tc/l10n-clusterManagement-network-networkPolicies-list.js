@@ -19,6 +19,7 @@ module.exports = {
   // Banner
   NETWORK_POLICY: '網路策略',
   NETWORK_POLICY_PL: '網路策略',
+  NETWORK_POLICY_DESC: 'The network policy configuration allows network isolation within the same cluster, which means firewalls can be set up between certain instances (pods).',
   NETWORK_POLICY_Q: '如何更好地使用網路策略?',
   NETWORK_POLICY_A: '根據實際使用場景我们整理了幾種較為常見的應用場景，您可以查閱文件了解更多',
   NETWORK_POLICY_Q1: 'CNI 插件實現網絡策略需滿足哪些必要條件？',

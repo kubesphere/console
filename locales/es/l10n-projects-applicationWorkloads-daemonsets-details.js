@@ -23,7 +23,7 @@ module.exports = {
   // More > Edit Settings > Containers > Add Container
   // More > Edit Settings > Volumes > Mount Volume
   // More > Edit Settings > Volumes > Mount Configmap or Secret
-  // Details
+  // Attributes
   // Resource Status
   // Revision Records
   REVISION_RECORDS_DESC: 'Después de cambiar la plantilla de recursos de la carga de trabajo, se generará un nuevo registro y los pods se reprogramarán para la actualización de la versión. Las últimas 10 versiones se guardarán de forma predeterminada. Puede implementar una redistribución basada en el registro de cambios.',

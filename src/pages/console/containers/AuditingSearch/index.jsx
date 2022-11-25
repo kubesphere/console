@@ -26,7 +26,7 @@ export default class AuditingSearchComponent extends React.Component {
                 height: '20px',
               }}
             >
-              {t('Auditing Operating')}
+              {t('AUDIT_LOG_SEARCH')}
             </span>
           </div>
         }

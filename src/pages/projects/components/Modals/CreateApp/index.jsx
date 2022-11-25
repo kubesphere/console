@@ -201,7 +201,7 @@ export default class ServiceDeployAppModal extends React.Component {
     }
 
     const dataList = await getProjectGateway()
-    const gateway = dataList[1] || dataList[0]
+    const gateway = dataList[1] || dataList[0] || {}
     const isGovernance = !!(this.serviceMeshEnable && gateway.serviceMeshEnable)
 
     set(

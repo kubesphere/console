@@ -66,7 +66,7 @@ export default class NodeSelect extends React.PureComponent {
 
   get edgeDisabled() {
     const { cluster } = this.props
-    return globals.app.hasClusterModule(cluster, 'kubeedge')
+    return globals.app.hasClusterModule(cluster, 'edgeruntime')
   }
 
   handleTypeChange = async type => {
@@ -123,7 +123,7 @@ export default class NodeSelect extends React.PureComponent {
         onChange={this.handleTypeChange}
         size="small"
       >
-        <RadioButton value="node">{t('Cluster Nodes')}</RadioButton>
+        <RadioButton value="node">{t('CLUSTER_NODE_PL')}</RadioButton>
         <RadioButton value="edgenode">{t('EDGE_NODE_PL')}</RadioButton>
       </RadioGroup>
     ) : null

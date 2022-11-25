@@ -88,7 +88,7 @@ export default class PasswordConfirm extends Component {
           <img src="/assets/logo.svg" alt="" />
         </a>
         <div className={styles.login}>
-          <div className={styles.header}>{t('Please reset your password')}</div>
+          <div className={styles.header}>{t('CHANGE_PASSWORD')}</div>
           <div className={styles.divider}></div>
           <Alert className="margin-b12" message={t('CHANGE_PASSWORD_TIP')} />
           <Form data={formData} onSubmit={this.handleSubmit}>
@@ -108,29 +108,28 @@ export default class PasswordConfirm extends Component {
               />
             </Form.Item>
             <div className={styles.tip}>
-              <p>{t('Your password must meet the following requirements')}</p>
+              <p>{t('PASSWORD_MUST')}</p>
               <div className={styles.strength}>
                 <div>
                   <Icon
                     name="success"
                     type={PATTERN_WORD.test(password) ? 'coloured' : 'dark'}
                   />
-                  {t('At least 1 uppercase and lowercase letter')}
+                  {t('PASSWORD_LETTER')}
                 </div>
                 <div>
                   <Icon
                     name="success"
-                    type="dark"
                     type={PATTERN_NUMBER.test(password) ? 'coloured' : 'dark'}
                   />
-                  {t('At least 1 number')}
+                  {t('PASSWORD_NUMBER')}
                 </div>
                 <div>
                   <Icon
                     name="success"
                     type={password.length >= 6 ? 'coloured' : 'dark'}
                   />
-                  {t('Password length is at least 6 characters')}
+                  {t('PASSWORD_LENGTH')}
                 </div>
               </div>
             </div>
@@ -140,10 +139,10 @@ export default class PasswordConfirm extends Component {
                 htmlType="submit"
                 loading={this.store.isSubmmiting}
               >
-                {t('Submit')}
+                {t('SUBMIT')}
               </Button>
               <Button type="flat" onClick={this.handleSkip}>
-                {t('Modify Later')}
+                {t('CHANGE_PASSWORD_LATER')}
               </Button>
             </div>
           </Form>

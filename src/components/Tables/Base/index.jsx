@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import isEqual from 'react-fast-compare'
 import { toJS } from 'mobx'
-import { get, isUndefined, isEmpty } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import {
   Icon,
   Table,
@@ -31,12 +31,12 @@ import {
   LevelRight,
   Button,
   InputSearch,
-  Pagination,
 } from '@kube-design/components'
 import { safeParseJSON } from 'utils'
 import CustomColumns from './CustomColumns'
 import FilterInput from './FilterInput'
 import Empty from './Empty'
+import Pagination from './Pagination'
 
 import styles from './index.scss'
 
@@ -143,9 +143,9 @@ export default class WorkloadTable extends React.Component {
     })
   }
 
-  handlePagination = page => {
+  handlePagination = ({ page, limit }) => {
     const { onFetch } = this.props
-    onFetch({ page })
+    onFetch({ page, limit })
   }
 
   handleRefresh = () => {
@@ -312,7 +312,7 @@ export default class WorkloadTable extends React.Component {
         onClick={onCreate}
         data-test="table-create"
       >
-        {t(createText || 'Create')}
+        {t(createText || 'CREATE')}
       </Button>
     )
   }
@@ -366,21 +366,21 @@ export default class WorkloadTable extends React.Component {
           </span>
           <div>{t('NO_MATCHING_RESULT_FOUND')}</div>
           <p>
-            {t('You can try to')}
+            {t('YOU_CAN_TRY_TO')}
             <span
               className={styles.action}
               onClick={this.handleRefresh}
               data-test="table-empty-refresh"
             >
-              {t('refresh data')}
+              {t('REFRESH_DATA')}
             </span>
-            {t('or')}
+            {t('OR')}
             <span
               className={styles.action}
               onClick={this.clearFilter}
               data-test="table-empty-clear-filter"
             >
-              {t('clear search conditions')}
+              {t('CLEAR_SEARCH_CONDITIONS')}
             </span>
           </p>
         </div>
@@ -408,19 +408,12 @@ export default class WorkloadTable extends React.Component {
     const { total, page, limit } = this.props.pagination
 
     return (
-      <Level>
-        {!isUndefined(total) && (
-          <LevelLeft>{t('TOTAL_ITEMS', { num: total })}</LevelLeft>
-        )}
-        <LevelRight>
-          <Pagination
-            page={page}
-            total={total}
-            limit={limit}
-            onChange={this.handlePagination}
-          />
-        </LevelRight>
-      </Level>
+      <Pagination
+        page={page}
+        total={total}
+        limit={limit}
+        onChange={this.handlePagination}
+      />
     )
   }
 

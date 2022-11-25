@@ -109,13 +109,15 @@ export default class VolumeList extends React.Component {
       `${this.props.prefix}spec.containers`,
       []
     ).map(c => ({ ...c, type: 'worker' }))
+
     const initContainers = get(
       formData,
-      `${this.prefix}spec.initContainers`,
+      `${this.props.prefix}spec.initContainers`,
       []
     ).map(c => ({ ...c, type: 'init' }))
 
     const mergedContainers = concat(containers, initContainers)
+
     mergedContainers.forEach(container => {
       if (!isEmpty(container.volumeMounts)) {
         container.volumeMounts = container.volumeMounts.filter(
@@ -135,6 +137,7 @@ export default class VolumeList extends React.Component {
         _initContainers.push(item)
       }
     })
+
     set(formData, `${this.props.prefix}spec.containers`, _containers)
     set(formData, `${this.props.prefix}spec.initContainers`, _initContainers)
   }

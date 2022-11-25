@@ -136,8 +136,9 @@ export default class BranchDetailLayout extends React.Component {
   }
 
   handleRun = debounce(async () => {
-    const { branchDetail } = this.store
     const { params } = this.props.match
+    await this.store.getBranchDetail(params)
+    const { branchDetail } = this.store
     const isMultibranch = !isEmpty(toJS(branchDetail.branchNames))
     const hasParameters = !isEmpty(toJS(branchDetail.parameters))
 

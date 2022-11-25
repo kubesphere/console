@@ -223,15 +223,15 @@ export default class TracingDetailModal extends React.Component {
               </span>
             </li>
             <li>
-              <span>{t('Duration')}: </span>
+              <span>{t('DURATION')}: </span>
               <span>{formatDuration(duration)}</span>
             </li>
             <li>
-              <span>{t('Called Services')}: </span>
+              <span>{t('CALLED_SERVICES')}: </span>
               <span>{services.length}</span>
             </li>
             <li>
-              <span>{t('Called Depth')}: </span>
+              <span>{t('CALL_DEPTH')}: </span>
               <span>{depth}</span>
             </li>
           </ul>
@@ -265,7 +265,7 @@ export default class TracingDetailModal extends React.Component {
               <Column className="is-3">
                 <div className={styles.leftPane}>
                   <div className={styles.timelineTitle}>
-                    {t('Services & Operations')}
+                    {t('SERVICES_AND_OPERATIONS')}
                   </div>
                 </div>
               </Column>

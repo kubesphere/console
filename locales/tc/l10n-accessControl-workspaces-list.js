@@ -26,8 +26,11 @@ module.exports = {
   WORKSPACE_NAME_EMPTY_DESC: '請輸入企業空間名稱。',
   WORKSPACE_CREATE_DESC: '設置企業空間的基本資訊。',
   ADMINISTRATOR: '管理員',
+  WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
+  INVALID_WORKSPACE_NAME: 'Invalid workspace name.',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: '選擇企業空間下可用的集群',
+  NO_CLUSTER_AVAILABLE: 'No Cluster Available',
   NO_CLUSTER_AVAILABLE_DESC: '暫無可用的公開集群，請在企業空間創建完畢後，向平台管理員或集群管理員申請集群的授權。',
   WORKSPACE_NO_CLUSTER_TIP: '您需要聯繫平台管理員或者集群管理員為企業空間授權集群的訪問權限。',
   AVAILABLE_CLUSTERS: '可用集群',

@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { map, get, set, every, has, debounce, isEmpty } from 'lodash'
+import { map, get, set, every, has, debounce, isEmpty, isNaN } from 'lodash'
 import { Form, Input, Slider, TextArea, Toggle, Select } from '@kube-design/components'
 import { Text } from 'components/Base'
 import { NumberInput } from 'components/Inputs'
@@ -73,12 +73,16 @@ export default class SchemaForm extends React.Component {
     switch (propObj.type) {
       case 'string':
         if (propObj.render === 'slider') {
+          const min = propObj.sliderMin ?? 0
+          const maxNum = Number(propObj.sliderMax)
+          const max = !isNaN(maxNum) ? (maxNum < min ? min + 100 : maxNum) : 100
+
           content = (
             <Slider
-              max={propObj.sliderMax}
-              min={propObj.sliderMin}
+              max={max}
+              min={min}
               unit={propObj.sliderUnit}
-              marks={this.generateMarks(propObj.sliderMin, propObj.sliderMax)}
+              marks={this.generateMarks(min, max)}
               {...attrs}
               withInput
             />

@@ -15,7 +15,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { set, cloneDeep } from 'lodash'
+import { get, set, cloneDeep } from 'lodash'
+import { Notify } from '@kube-design/components'
 
 const deleteUnenableAttrs = data => {
   /* eslint-disable no-unused-vars */
@@ -130,4 +131,149 @@ export const getLanguageIcon = (name, defaultIcon) => {
     'binary',
   ]
   return LEGO_LANGUAGE_ICON.includes(name) ? name : defaultIcon
+}
+
+export const getRepoUrl = ({ provider, owner, repo, server, url }) => {
+  if (url) {
+    return url
+  }
+
+  switch (provider) {
+    case 'github':
+      return `https://github.com/${owner}/${repo}`
+    case 'gitlab':
+      return `${server}/${owner}/${repo}`
+    case 'bitbucket_server':
+      // eslint-disable-next-line no-case-declarations
+      const uri = repo.api_uri
+      // eslint-disable-next-line no-case-declarations
+      let _url = uri.substr(uri.length - 1) === '/' ? uri : `${uri}/`
+      if (!/https:\/\/bitbucket.org\/?/gm.test(_url)) {
+        _url += 'scm/'
+      }
+      return `${_url}${owner}/${repo}`
+    default:
+      return ''
+  }
+}
+
+export const getCommonSource = ({
+  provider,
+  owner,
+  repo,
+  url,
+  secret,
+  server: server_name,
+}) => {
+  if (provider === 'git') {
+    return {
+      url,
+      discover_branches: true,
+      credential_id: secret?.name,
+    }
+  }
+
+  return {
+    owner,
+    repo,
+    server_name,
+    credential_id: secret?.name,
+    discover_branches: 1,
+    discover_pr_from_forks: { strategy: 2, trust: 2 },
+    discover_pr_from_origin: 2,
+    discover_tags: true,
+  }
+}
+
+export const checkRepoSource = ({ source_type, ...rest }) => {
+  const { owner, repo, server_name, url: gitUrl, remote } = get(
+    rest,
+    `${source_type}_source`,
+    {}
+  )
+
+  let isValid = owner && repo
+  switch (source_type) {
+    case 'svn':
+      isValid = !!remote
+      break
+    case 'single_svn':
+      isValid = !!remote
+      break
+    case 'git':
+      isValid = !!gitUrl
+      break
+    case 'gitlab':
+      isValid = isValid && server_name
+      break
+    default:
+      break
+  }
+
+  if (!isValid) {
+    Notify.error(t('NOT_VALID_REPO'))
+    throw Error(t('NOT_VALID_REPO'))
+  }
+}
+
+export const isSvnRepo = source_type => {
+  return ['svn', 'single_svn'].includes(source_type)
+}
+
+const parsePhrase = phrase => {
+  const reg = /(.+)(>|>=|==|!=)(.+)/
+  const res = phrase.match(reg)
+  const [, key, operator, value] = res
+  return {
+    key: key.replace('.param.', ''),
+    operator,
+    value,
+  }
+}
+
+const compare = (cond, data) => {
+  const value = get(data, cond.key)
+  switch (cond.operator) {
+    case '==':
+      return value === cond.value
+    case '>=':
+      return value >= cond.value
+    case '<=':
+      return value <= cond.value
+    case '!=':
+      return value !== cond.value
+    default:
+      return false
+  }
+}
+
+export const isArgo = globals.config.gitopsEngine === 'argocd'
+
+export const parseCondition = (cond, data) => {
+  try {
+    const reg = /(.+?)(&&|\|\|)/g
+    const result = cond.match(reg)
+    if (!result) {
+      return compare(parsePhrase(cond), data)
+    }
+    const condList = [
+      ...result.map(match => match.slice(0, -2)),
+      cond.slice(result.reduce((pre, cur) => pre + cur.length, 0)),
+    ].map(parsePhrase)
+    const operator = result.map(match => match.slice(-2))
+    return operator.reduce((pre, cur, index) => {
+      const left = index === 0 ? compare(condList[0], data) : pre
+      const right = compare(condList[index + 1], data)
+      switch (cur) {
+        case '&&':
+          return left && right
+        case '||':
+          return left || right
+        default:
+          return false
+      }
+    }, false)
+  } catch (e) {
+    return false
+  }
 }

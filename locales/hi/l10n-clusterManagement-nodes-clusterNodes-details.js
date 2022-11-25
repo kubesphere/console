@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
-  DETAILS: 'Details',
+  // Attributes
+  ATTRIBUTES: 'Attributes',
   ARCHITECTURE: 'Architecture',
   OS_VERSION: 'OS Version',
   OS_TYPE: 'OS Type',
@@ -36,16 +36,18 @@ module.exports = {
   TAINTS: 'Taints',
   EDIT_TAINTS: 'Edit Taints',
   TAINTS_DESC: 'Add taints to nodes so that pods are not scheduled to the nodes or not scheduled to the nodes if possible. After you add taints to nodes, you can set tolerations on a pod to allow the pod to be scheduled to nodes with certain taints.',
-  ADD_TAINT: 'Add Taint',
   COMMON_TAINTS: 'Common Taints',
   NOSCHEDULE: 'Prevent scheduling',
   PREFER_NOSCHEDULE: 'Prevent scheduling if possible',
   NOEXECUTE: 'Prevent scheduling and evict existing pods',
+  TAINT_SELECT_TIPS: 'Join Common Taints',
   TAINTS_TIPS: '<b>Prevent scheduling</b><br />Prevents all pods from being scheduled to the node.<br /><br /><b>Prevent scheduling if possible</b><br />Prevents all pods from being scheduled to the node if possible.<br /><br /><b>Prevent scheduling and evict existing pods</b><br />Prevents all pods from being scheduled to the node and evict all existing pods on the node.',
+  TAINT_DELETE_TIP: 'Delete taint',
   // Running Status > Resource Usage
   RESOURCE_USAGE: 'Resource Usage',
   MAXIMUM_PODS: 'Maximum Pods',
   MAXIMUM_PODS_SCAP: 'Maximum pods',
+  DISK_USAGE_SCAP: 'Disk usage',
   // Running Status > Allocated resources
   MEMORY_REQUEST_SCAP: 'Memory request',
   MEMORY_LIMIT_SCAP: 'Memory limit',
@@ -66,11 +68,16 @@ module.exports = {
   NODE_PIDPRESSURE_DESC: 'Whether the number of processes allowed to be created on the node is less the threshold.',
   NODE_READY: 'Readiness',
   NODE_READY_DESC: 'Whether the node is ready to accept pods.',
+  LAST_HEARTBEAT_VALUE: 'Last Heartbeat: {value}',
   // Running Status > Taints
   NO_TAINTS_TIPS: 'No taint is found.',
   POLICY: 'Policy',
   // Pods
   READY_VALUE: 'Ready: {readyCount}/{total}',
   STATUS_VALUE: 'Status: {value}',
-  CREATED_AGO: 'Created {diff}'
+  // Metadata
+  // Monitoring
+  USAGE: 'Usage',
+  OUT: 'Out',
+  IN: 'In'
 };

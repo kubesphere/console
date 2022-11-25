@@ -378,21 +378,21 @@ export default class GatewayLog extends React.Component {
         </span>
         <div>{t('NO_MATCHING_RESULT_FOUND')}</div>
         <p>
-          {t('You can try to')}
+          {t('YOU_CAN_TRY_TO')}
           <span
             className={styles.action}
             onClick={this.handleRefresh}
             data-test="table-empty-refresh"
           >
-            {t('refresh data')}
+            {t('REFRESH_DATA')}
           </span>
-          {t('or')}
+          {t('OR')}
           <span
             className={styles.action}
             onClick={this.clearFilter}
             data-test="table-empty-clear-filter"
           >
-            {t('clear search conditions')}
+            {t('CLEAR_SEARCH_CONDITIONS')}
           </span>
         </p>
       </div>

@@ -19,9 +19,13 @@ module.exports = {
   // More > Add Service
   ADD_SERVICE: 'Hizmet Ekle',
   ADD_ROUTE: 'Rota ekle',
+  SERVICE_ADDED_SUCCESSFULLY: 'The service was added successfully.',
   // More > Add Route
-  // Details
+  // Attributes
   // Resource Status
+  WORKLOAD_TYPE_DEPLOYMENTS: 'Dağıtım',
+  WORKLOAD_TYPE_DAEMONSETS: 'Daemonset',
+  WORKLOAD_TYPE_STATEFULSETS: 'Durum Bilgisi',
   // Traffic Monitoring
   TRAFFIC_MONITORING: 'Trafik İzleme',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC: 'Uygulama uzun süredir istek almıyor. Lütfen daha sonra tekrar deneyiniz.',
@@ -68,13 +72,16 @@ module.exports = {
   BASE_EJECTION_TIME_S: 'Baz Çıkarma Süresi (s)',
   BASE_EJECTION_TIME_S_DESC: 'Maksimum fırlatma süresi.',
   UPDATED_AT_VALUE_SCAP: '{value} Değerinde güncellendi.',
+  METHOD: 'Method',
+  TRAFFIC_MANAGEMENT_UNAVAILABLE: 'Traffic Management Unavailable',
+  APPLICATION_GOVERNANCE_NOT_ENABLED: 'Please enable Application Governance.',
   // Grayscale Release
-  CREATE_GRAYSCALE_RELEASE_JOB: 'Gri Tonlamalı Yayın İşi Oluştur',
+  CREATE_GRAYSCALE_RELEASE_TASK: 'Create Grayscale Release Task',
   GRAYSCALE_RELEASE_DESC: 'Gri tonlamalı sürüm, üretim ortamında önemli bir uygulama yineleme yöntemini temsil eder. Uygulamalarınızı yeni bir sürüme yükseltirken sorunsuz geçiş için farklı yayın yöntemleri seçebilirsiniz.',
-  NO_GRAYSCALE_RELEASE_JOB_FOUND: 'Gri Tonlamalı Yayın İşi Bulunamadı',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND: 'No Grayscale Release Task Found',
   NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: 'Lütfen bir gri tonlamalı yayın işi oluşturun.',
-  TOTAL_GRAY_RELEASE_JOB: 'toplam {num} gri tonlamalı yayın işi',
-  TOTAL_GRAY_RELEASE_JOBS: 'Toplamda {num} gri tonlamalı yayın işi',
+  TYPE_SERVICE_DEPLOYMENT: 'Type: stateless service (deployment)',
+  TYPE_SERVICE_STATEFULSET: 'Type: stateful service (statefulset)',
   // Tracing
   TRACING: 'İzleme',
   TRACING_NO_DATA_DESC: 'Lütfen arama koşullarını değiştirin ve tekrar deneyin.',
@@ -82,5 +89,10 @@ module.exports = {
   NUM_SPAN_PL: '{num} yayılmalar',
   NUM_ERROR_SI: '{num} hata',
   NUM_ERROR_PL: '{num} hatalar',
-  LAST_NUM_RECORDS: 'Son {sayı} kayıt'
+  LAST_NUM_RECORDS: 'Son {sayı} kayıt',
+  PROCESS: 'Process',
+  SERVICES_AND_OPERATIONS: 'Services & Operations',
+  TRACING_UNAVAILABLE: 'Tracing Unavailable',
+  CALLED_SERVICES: 'Called Services',
+  CALLED_DEPTH: 'Call Depth'
 };

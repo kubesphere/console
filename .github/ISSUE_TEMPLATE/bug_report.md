@@ -8,7 +8,7 @@ labels: kind/bug
 **General remarks**
 
 > This form is to report bugs. For general usage questions refer to our Slack channel
->        [KubeSphere-users](https://join.slack.com/t/kubesphere/shared_invite/enQtNTE3MDIxNzUxNzQ0LTdkNTc3OTdmNzdiODViZjViNTU5ZDY3M2I2MzY4MTI4OGZlOTJmMDg5ZTFiMDAwYzNlZDY5NjA0NzZlNDU5NmY)
+> [KubeSphere-users](https://join.slack.com/t/kubesphere/shared_invite/zt-1ilxbsp39-t4ES4xn5OI0eF5hvOoAhEw)
 
 **Describe the bug**
 A clear and concise description of what the bug is.

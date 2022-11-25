@@ -19,6 +19,7 @@ module.exports = {
   // Banner
   NETWORK_POLICY: '网络策略',
   NETWORK_POLICY_PL: '网络策略',
+  NETWORK_POLICY_DESC: '通过配置网络策略，允许在同个集群内实现网络的隔离，即可以在某些实例（容器组）之间架起防火墙。',
   NETWORK_POLICY_Q: '如何更好地使用网络策略?',
   NETWORK_POLICY_A: '我们根据实际使用场景整理了几种较为常见的应用场景，您可以查阅文档了解更多。',
   NETWORK_POLICY_Q1: 'CNI 插件实现网络策略需满足哪些必要条件？',

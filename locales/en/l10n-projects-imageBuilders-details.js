@@ -17,14 +17,14 @@
  */
 
 module.exports = {
-  // Details
+  // Attributes
   COPIED_SUCCESSFUL: 'Copied successfully.',
   BUILDER_IMAGE: 'Builder Image',
   PULL_POLICY: 'Pull Policy',
-  SOURCE_URL: 'Source URL',
   REMOTE_TRIGGER: 'Remote Trigger',
   // Run
-  NEW_TAG_DESC: 'enter tag of the new image',
+  S2I_UPDATE_WORKLOAD: 'Update workload after image building is successful',
+  S2I_UPDATA_WORKLOAD_DESC: 'After the image is rebuilt successfully, workloads that use the image will be updated.',
   // More > Edit Information
   // More > Edit YAML
   // More > Delete
@@ -47,9 +47,13 @@ module.exports = {
   LAST_MESSAGE_SCAP: 'Last message',
   START_TIME_SCAP: 'Start time',
   // Resource Status
+  SOURCE_URL: 'Source URL',
+  NEW_TAG: 'New Tag',
+  NEW_TAG_DESC: 'Enter the tag of the new image',
   // Image Artifacts
   IMAGE_ARTIFACTS: 'Image Artifacts',
   RELEASE_TIME_SCAP: 'Release time',
+  PULL_COMMAND_SCAP: 'Pull command',
   // Environment Variables
   // Events
 }

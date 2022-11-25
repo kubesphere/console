@@ -46,7 +46,7 @@ export default class DurationSelect extends React.Component {
   @computed
   get duration() {
     if (this.lastTime) {
-      return `${t('Last')} ${getTimeLabel(this.lastTime)}`
+      return `${t('LAST')} ${getTimeLabel(this.lastTime)}`
     }
     const { startTime, endTime } = this.props.duration
     return `${moment(startTime).format('YYYY-MM-DD HH:mm:ss')} 

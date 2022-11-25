@@ -125,7 +125,7 @@ export default class HPACard extends React.Component {
   handleCancel = () => {
     const { detail, onDeleted } = this.props
     this.store.delete(detail).then(() => {
-      Notify.success({ content: `${t('Canceled Successfully')}` })
+      Notify.success({ content: `${t('CANCELED_SUCCESSFULLY')}` })
       onDeleted()
     })
   }

@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, get, keyBy, findKey, cloneDeep } from 'lodash'
-import { action, observable } from 'mobx'
+import { set, get, keyBy, findKey, cloneDeep, isEmpty } from 'lodash'
+import { action, observable, toJS } from 'mobx'
 import { withDryRun, LimitsEqualRequests } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 import { MODULE_KIND_MAP } from 'utils/constants'
@@ -355,5 +355,68 @@ export default class FederatedStore extends Base {
 
   async deleteSchedule(params) {
     return request.delete(`${this.getScheduleListUrl(params)}/${params.name}`)
+  }
+
+  @action
+  async stop(item) {
+    const { name, cluster, namespace } = item
+    const params = { name, cluster, namespace }
+    const promises = []
+    let scheduleData = {}
+
+    if (this.resourceStore.module === 'deployments') {
+      scheduleData = await request.get(
+        `${this.getScheduleListUrl(params)}/${params.name}`,
+        {},
+        {},
+        () => {
+          return {}
+        }
+      )
+    }
+
+    const isWeightScheduled = !isEmpty(scheduleData)
+    const overrides = [...toJS(item._originData.spec.overrides)]
+
+    if (isWeightScheduled) {
+      promises.push(
+        request.patch(`${this.getScheduleListUrl(params)}/${params.name}`, {
+          spec: {
+            totalReplicas: 0,
+          },
+        })
+      )
+    } else {
+      const _overrides = overrides.map(config => {
+        if (config.clusterOverrides) {
+          config.clusterOverrides = config.clusterOverrides.map(spec => {
+            spec.value = 0
+            return spec
+          })
+          return config
+        }
+
+        config = {
+          ...config,
+          clusterOverrides: [
+            {
+              path: '/spec/replicas',
+              value: 0,
+            },
+          ],
+        }
+        return config
+      })
+
+      promises.push(
+        request.patch(this.getDetailUrl({ name, cluster, namespace }), {
+          spec: {
+            overrides: _overrides,
+          },
+        })
+      )
+
+      return this.submitting(Promise.all(promises))
+    }
   }
 }

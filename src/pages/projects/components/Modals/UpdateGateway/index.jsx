@@ -68,7 +68,7 @@ export default class UpdateGatewayModal extends React.Component {
             <Icon name="information" type="light" size={20} />
             <strong>{t('UPDATED_GATEWAY_TITLE')}</strong>
           </div>
-          <div className={styles.content}>{t('UPDATED_GATEWAY_DESC')}</div>
+          <div className={styles.content}>{t('UPDATE_GATEWAY_DESC')}</div>
         </div>
       </Modal>
     )

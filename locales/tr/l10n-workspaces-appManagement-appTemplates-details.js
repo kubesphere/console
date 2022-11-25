@@ -41,7 +41,7 @@ module.exports = {
   DELETE_APP_TEMPLATE_DESC: 'Bu işlemin risklerini anladığınızı doğrulamak için <b>{resource}</b> uygulama şablonu adını girin.',
   DELETE_APP_TEMPLATE_VERSIONS_DESC: 'Bu işlemin risklerini anladığınızı doğrulamak için <b>{resource}</b> uygulama şablonu adını girin. Uygulama şablonunu silmeden önce şablonun tüm sürümlerini silmelisiniz.',
   APP_TEMPLATE_LOW: 'uygulama şablonu',
-  // Details
+  // Attributes
   // Versions
   APP_STATUS_SUBMITTED: 'Gönderilen',
   APP_STATUS_NOT_SUBMITTED: 'Gönderilemedi',
@@ -65,6 +65,7 @@ module.exports = {
   APP_LEARN_MORE: '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Daha Fazla Bilgi</a>',
   INVALID_VERSION_TIP: 'Lütfen doğru bir sürüm numarası girin.',
   // Versions > Submit for Review > Test Steps
+  TEST_STEPS: 'Test Steps',
   VERSION_SUBMIT_TEST_STEPS: '1. Tüm bağımlı çizelgelerin gönderilmiş olması.<br/>' + '2. Statik analizden geçmiş olması (helm lint).<br/>' + '3. Uygulamanın varsayılan değerler ile başlatılabilir olması (helm install). Tüm pod\'ların çalışır durumda olması ve tüm servislerin en az bir uç noktaya sahip olması.<br/>' + '4. Kullanılan imajların güvenlik zaafiyeti içermemesi.<br/>' + '5. Güncellemenin desteklenmesi.<br/>' + '6. Özel uygulama konfigürasyonunun desteklenmesi<br/>' + '7. Kubernetes alpha yeteneklerinin kullanılmaması<br/>' + '8. Uygulama girizgahını, gereksinimlerini ve özel parametre konfigürasyonlarını da içeren detaylı dökümantasyonun sağlanması.<br/>',
   VERSION_SUBMIT_NOTE: 'Başvuru iletmeden önce lütfen uygulamanızın sıradaki gereksinimleri sağladığından emin olun:',
   // Versions > Submit for Review > Update Log

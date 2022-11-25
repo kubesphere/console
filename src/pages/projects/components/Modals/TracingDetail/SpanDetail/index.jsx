@@ -124,9 +124,9 @@ export default class SpanDetail extends React.Component {
           <div className={styles.text}>
             <div className={styles.name}>
               {span.process.serviceName}
-              <Label name={t('Service')} value={service} />
+              <Label name={t('SERVICE')} value={service} />
               <Label name={t('START_TIME')} value={startTime} />
-              <Label name={t('Duration')} value={duration} />
+              <Label name={t('DURATION')} value={duration} />
             </div>
             <p>{span.operationName}</p>
           </div>
@@ -143,10 +143,10 @@ export default class SpanDetail extends React.Component {
               onChange={this.handleTypeChange}
               size="small"
             >
-              <RadioButton value="tags">{t('Tags')}</RadioButton>
-              <RadioButton value="process">{t('Process')}</RadioButton>
+              <RadioButton value="tags">{t('TAG')}</RadioButton>
+              <RadioButton value="process">{t('PROCESS')}</RadioButton>
               {!isEmpty(span.logs) && (
-                <RadioButton value="logs">{t('Log')}</RadioButton>
+                <RadioButton value="logs">{t('LOG')}</RadioButton>
               )}
             </RadioGroup>
           </div>

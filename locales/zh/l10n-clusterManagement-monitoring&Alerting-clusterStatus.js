@@ -23,14 +23,14 @@ module.exports = {
   MONITORING_CLUSTER_DESC: '集群状态展示集群资源的概览和详情，您可以查看集群资源的监控数据和用量排行情况。',
   // Overview > Cluster Node Status
   CLUSTER_NODE_STATUS: '集群节点状态',
-  ALL_NODES: '全部节点',
+  ALL_NODES: '所有节点',
   ONLINE_NODES: '在线节点',
   NODE_ONLINE_STATUS: '节点在线状态',
+  TIMES_PER_SECOND: '次/秒',
   // Overview > Component Status
   COMPONENT_STATUS: '组件状态',
   CONTROLLER_MANAGER: '管理控制中心',
   KUBERNETES_SCHEDULER: 'Kubernetes 调度器',
-  NOT_ENABLED: '未启用',
   // Overview > Cluster Resource Usage
   CLUSTER_RESOURCE_USAGE: '集群资源用量',
   POD_COUNT: '容器组数量',
@@ -46,6 +46,11 @@ module.exports = {
   ETCD_DB_SIZE: '库 <span>大小</span>',
   ETCD_CLIENT_TRAFFIC: '客户端 <span>流量</span>',
   TITLE_UNIT: '{title}（{unit}）',
+  AVERAGE: '平均值',
+  PROPOSAL_COMMITTED: '已提交',
+  PROPOSAL_APPLIED: '已应用',
+  PROPOSAL_FAILED: '失败',
+  PROPOSAL_PENDING: '等待中',
   // Overview > Service Component Monitoring
   SERVICE_COMPONENT_MONITORING: '服务组件监控',
   SCHEDULE_ATTEMPTS: '调度次数',
@@ -79,12 +84,13 @@ module.exports = {
   POD_STATUS: '容器组状态',
   COMPLETED: '已完成',
   WARNING: '异常',
-  IN: '入',
   READ: '读',
   WRITE: '写',
   RUNNING: '运行中',
   // Physical Resource Monitoring > Average CPU Load
   TIME_M: '{num} 分钟',
+  TIME_H: '{num, plural, =1 {1 小时} other{# 小时}}',
+  TIME_D: '{num, plural, =1 {1 天} other{# 天}}',
   // etcd Monitoring
   EXTERNAL_ETCD: '外部 etcd',
   DB_FSYNC: '库同步时间',
@@ -114,12 +120,12 @@ module.exports = {
   SCHEDULING_LATENCY: '调度延迟',
   // Resource Usage Ranking
   RESOURCE_USAGE_RANKING: '资源用量排行',
-  SORT_BY_NODE_CPU_UTILISATION: '按 CPU 用量排行',
-  SORT_BY_NODE_MEMORY_UTILISATION: '按内存用量排行',
-  SORT_BY_NODE_DISK_SIZE_UTILISATION: '按磁盘用量排行',
+  SORT_BY_NODE_CPU_UTILISATION: '按 CPU 用量（%）排行',
+  SORT_BY_NODE_MEMORY_UTILISATION: '按内存用量（%）排行',
+  SORT_BY_NODE_DISK_SIZE_UTILISATION: '按磁盘用量（%）排行',
   SORT_BY_NODE_POD_UTILISATION: '按容器组用量排行',
   SORT_BY_NODE_DISK_INODE_UTILISATION: '按 Inode 用量排行',
-  SORT_BY_NODE_LOAD1: '按 CPU 平均负载排行',
+  SORT_BY_NODE_LOAD1: '按 1 分钟 CPU 平均负载排行',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: '按内存用量排行',
   POD_USAGE: '容器组用量',
   EXPORT: '导出'

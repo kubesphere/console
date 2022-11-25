@@ -113,8 +113,8 @@ export default class BaseInfo extends React.Component {
   }
 
   renderRepoSelectForm() {
-    const { formTemplate, devops, cluster, ...res } = this.props
     const { showSelectRepo } = this.state
+    const { formTemplate, devops, cluster, noSVN, ...res } = this.props
 
     return (
       <Modal width={970} {...res} disableSubmit={showSelectRepo}>
@@ -126,7 +126,7 @@ export default class BaseInfo extends React.Component {
             cluster={cluster}
             onSave={this.handleRepoChange}
             onCancel={this.hideSelectRepo}
-            noSVN={true}
+            noSVN={noSVN}
             noJenkins
           />
           <Confirm
@@ -193,11 +193,11 @@ export default class BaseInfo extends React.Component {
           >
             <RepoSelect
               name="sources"
+              type="cd"
               ref={this.scmRef}
+              devops={this.props.devops}
               onClick={this.showSelectRepo}
               handleDeleteSource={this.handleDeleteSource}
-              devops={this.props.devops}
-              type="cd"
             />
           </Form.Item>
         </Form>

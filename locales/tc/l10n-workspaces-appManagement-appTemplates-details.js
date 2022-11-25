@@ -41,7 +41,7 @@ module.exports = {
   DELETE_APP_TEMPLATE_DESC: 'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation.',
   DELETE_APP_TEMPLATE_VERSIONS_DESC: 'Enter the app template name <b>{resource}</b> to confirm that you understand the risks of this operation. Before deleting the app template, you must delete all versions of the template.',
   APP_TEMPLATE_LOW: 'app template',
-  // Details
+  // Attributes
   // Versions
   APP_STATUS_SUBMITTED: 'Submitted',
   APP_STATUS_NOT_SUBMITTED: 'Not submitted',
@@ -65,6 +65,7 @@ module.exports = {
   APP_LEARN_MORE: '<a href="{docUrl}/application-store/app-developer-guide/helm-developer-guide/" target="_blank">Learn More</a>',
   INVALID_VERSION_TIP: '无效版本格式。',
   // Versions > Submit for Review > Test Steps
+  TEST_STEPS: 'Test Steps',
   VERSION_SUBMIT_TEST_STEPS: '1. 所有依賴的 Chart 已經分别提交<br/>' + '2. 可以成功通過静態檢查 (helm lint) <br/>' + '3. 可以用預設值成功啟動應用 (helm install)：所有 Pod 是 running 狀態，所有服務 (service) 都至少有一個 endpoint<br/>' + '4. 使用的鏡像沒有安全漏洞 <br/>' + '5. 支持升級 <br/>' + '6. 支持自定義應用配置<br/>' + '7. 不要使用 Kubernetes 的 alpha 功能<br/>' + '8. 需要提供詳細的 README 檔案，包括對應用的介紹，前置條件和如何自定義配置參數<br/>',
   VERSION_SUBMIT_NOTE: '在正式提交審核之前，請確認您的應用已經通過了以下基本功能的測試',
   // Versions > Submit for Review > Update Log

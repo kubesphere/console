@@ -35,7 +35,7 @@ export const IMPORT_CLUSTER = [
     required: true,
   },
   {
-    title: 'Cluster Settings',
+    title: 'CONNECTION_SETTINGS',
     component: Configuration,
     required: true,
     isForm: false,
@@ -44,7 +44,7 @@ export const IMPORT_CLUSTER = [
 
 export const NEW_CLUSTER = [
   {
-    title: 'How to Add',
+    title: 'HOW_TO_ADD',
     component: Providers,
     required: true,
   },
@@ -54,7 +54,7 @@ export const NEW_CLUSTER = [
     required: true,
   },
   {
-    title: 'Cluster Settings',
+    title: 'CONNECTION_SETTINGS',
     component: ClusterSettings,
     required: true,
   },

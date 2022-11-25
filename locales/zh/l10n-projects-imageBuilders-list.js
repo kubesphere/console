@@ -22,14 +22,19 @@ module.exports = {
   // List
   IMAGE_BUILDER_EMPTY_DESC: '请创建一个镜像构建器。',
   NOT_RUNNING_YET: '未运行',
+  BUILDING: '构建中',
+  S2I: '源码构建镜像',
+  B2I: '制品构建镜像',
   // List > Name (Displayed after you create a service from artifact)
   BUILD_IMAGE_FOR_SERVICE: '为 {service} 服务构建镜像。',
   // List > Create > Build Mode
   BUILD_MODE: '构建模式',
+  CONTAINERD_RUNTIME_NOT_SUPPORTED: '容器运行时不支持此功能。',
   S2I_DESC: '选择代码的开发语言。',
   IMAGE_FROM_S2I: '通过代码构建镜像',
   IMAGE_FROM_B2I: '通过制品构建镜像',
   B2I_DESC: '选择制品的文件类型。',
+  EMPTY_IMAGE_TYPE_DESC: '请选择语言或制品类型。',
   // List > Create > Java > Build Settings
   CODE_REPOSITORY_URL: '代码仓库 URL',
   CODE_REPOSITORY_BRANCH: '代码仓库分支',

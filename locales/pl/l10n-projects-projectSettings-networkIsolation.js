@@ -52,5 +52,9 @@ module.exports = {
   EGRESS: 'Egress',
   INGRESS: 'Ingress',
   INTERNAL_TRAFFIC_DIRECTION_DESC: 'Egress indicates the direction from the current project to other projects. Ingress indicates the direction from other projects to the current project.',
+  // Add Allowlist Entry > Project
+  // Add Allowlist Entry > Service
+  // Delete Allowlist Entry
+  ALLOWLIST_ENTRY: 'Allowlist Entry',
   ALLOWLIST_ENTRY_LOW: 'allowlist entry'
 };

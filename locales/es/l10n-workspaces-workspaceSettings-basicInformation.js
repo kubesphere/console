@@ -40,8 +40,8 @@ module.exports = {
   WS_NETWORK_ISOLATION: 'Aislamiento de red de espacio de trabajo',
   NETWORK_POLICY_UNINSATLLED_DESC: 'The network policy component is not installed in this cluster.',
   // Delete Workspace
+  DELETE_DESC: 'Are you sure you want to delete the resource? The resource cannot be restored after it is deleted.',
   // Delete Workspace > Delete
-  SURE_TO_DELETE_WORKSPACE: 'Are you sure you want to delete the workspace?',
   DELETE_WORKSPACE_PROJECTS_DESC: 'Eliminar el proyecto asociado con el espacio empresarial',
   DELETE_WORKSPACE_DESC: 'El espacio de trabajo no se puede restaurar después de ser eliminado y los recursos en el espacio de trabajo también se eliminarán.',
   DELETE_WORKSPACE_TIP: '¿Estás seguro de eliminar el espacio de trabajo <strong>{resource}</strong> ? No podrás recuperarlo, y los recursos en el espacio de trabajo también se eliminarán.'

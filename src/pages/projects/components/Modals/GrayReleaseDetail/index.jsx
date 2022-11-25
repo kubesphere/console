@@ -226,6 +226,17 @@ export default class GatewaySettingModal extends React.Component {
     return formData
   }
 
+  get CanDelete() {
+    const { cluster, workspace, project } = this.props.detail
+    return globals.app.hasPermission({
+      cluster,
+      workspace,
+      project,
+      module: 'grayscale-release',
+      action: 'delete',
+    })
+  }
+
   handlePatch = data => {
     const params = toJS(this.store.detail)
     this.store.patch(params, data).then(() => {
@@ -322,6 +333,8 @@ export default class GatewaySettingModal extends React.Component {
       unset(strategy, `${prefix}.match[0].headers['User-Agent'].regex`)
     }
 
+    unset(strategy, 'spec.governor')
+
     return strategy
   }
 
@@ -394,7 +407,7 @@ export default class GatewaySettingModal extends React.Component {
 
     this.setState({
       tipType: 'warning',
-      tipInfo: t('DELETE_GRAYSCALE_RELEASE_JOB_DESC'),
+      tipInfo: t('DELETE_GRAYSCALE_RELEASE_TASK_DESC'),
     })
   }
 
@@ -437,7 +450,9 @@ export default class GatewaySettingModal extends React.Component {
             {t('RELEASE_MODE')}: <strong>{t(`${cate.title}_LOW`)}</strong>
           </p>
         </div>
-        <Button onClick={this.handleOffline}>{t('DELETE')}</Button>
+        {this.CanDelete && (
+          <Button onClick={this.handleOffline}>{t('DELETE')}</Button>
+        )}
       </div>
     )
   }
@@ -659,7 +674,7 @@ export default class GatewaySettingModal extends React.Component {
     const os = headers['User-Agent'] || {}
     const osMatchValue = os.regex
       ? os.regex
-          .slice(2, os.regex.length - 2)
+          .slice(3, os.regex.length - 3)
           .split('|')
           .map(item =>
             CANARY_CONTENT[item] ? CANARY_CONTENT[item].label : item
@@ -800,7 +815,7 @@ export default class GatewaySettingModal extends React.Component {
         className={styles.modal}
         bodyClassName={styles.body}
         headerClassName={styles.header}
-        title={t('JOB_STATUS')}
+        title={t('TASK_STATUS')}
         cancelText={t('CLOSE')}
         onCancel={onCancel}
         visible={visible}

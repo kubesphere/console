@@ -287,7 +287,7 @@ export default class AddVolume extends React.Component {
           <a className="custom-icon" onClick={this.handleGoBack}>
             <BackIcon />
           </a>
-          {t('Volumes')}
+          {t('VOLUME_PL')}
         </div>
         <div className={classNames(styles.contentWrapper, contentClassName)}>
           <div className={styles.title}>{t('MOUNT_VOLUME')}</div>

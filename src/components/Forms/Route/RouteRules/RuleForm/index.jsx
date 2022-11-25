@@ -20,7 +20,7 @@ import { get, isEmpty } from 'lodash'
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { Alert, Form, Input, Select } from '@kube-design/components'
+import { Form, Input, Select } from '@kube-design/components'
 
 import { ArrayInput, RulePath } from 'components/Inputs'
 
@@ -69,14 +69,8 @@ export default class RuleForm extends React.Component {
 
   componentDidMount() {
     const { registerSubRoute } = this.context
-    const { onCancel } = this.props
-    registerSubRoute &&
-      registerSubRoute(this.handleSubmit, () => {
-        if (this.handleValidator()) {
-          return onCancel
-        }
-        return false
-      })
+
+    registerSubRoute && registerSubRoute(this.handleSubmit, this.handleGoBack)
   }
 
   get protocols() {
@@ -185,6 +179,7 @@ export default class RuleForm extends React.Component {
     if (this.handleValidator()) {
       this.props.onCancel()
     }
+    return false
   }
 
   handleProtocolChange = value => {
@@ -288,14 +283,7 @@ export default class RuleForm extends React.Component {
               </Form.Group>
             )}
 
-            <Form.Group noWrapper>
-              <Alert
-                className="margin-t12 margin-b12"
-                message={t.html(`RULE_SETTING_MODE_${'specify'.toUpperCase()}`)}
-                type="info"
-              />
-              {this.renderForm()}
-            </Form.Group>
+            <Form.Group noWrapper>{this.renderForm()}</Form.Group>
           </Form>
         </div>
       </div>

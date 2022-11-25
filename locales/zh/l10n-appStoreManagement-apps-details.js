@@ -23,12 +23,13 @@ module.exports = {
   SUSPEND_SUCCESSFUL: '下架成功。',
   // Release
   RELEASE: '发布',
-  ACTIVATE_SUCCESSFUL: '上架成功。',
-  // Details
+  ACTIVATE_SUCCESSFUL: '发布成功。',
+  // Attributes
   APP_ID: '应用 ID',
   CATEGORY: '分类',
   TYPE: '类型',
   // Verisons
+  DEVELOPER: '开发者',
   NO_VERSION_INFO_DESC: '未发现版本信息。',
   ACTIVATE_VERSION: '上架版本',
   CANCEL_SUBMISSION: '取消提交',

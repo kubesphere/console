@@ -18,6 +18,7 @@
 
 module.exports = {
   // Banner
+  PROJECT_MEMBER: 'Project Member',
   PROJECT_MEMBER_PL: 'Project Members',
   PROJECT_MEMBER_DESC: 'Project members can view or manage project resources. The project administrator can invite members who belong to the workspace to the project and manage project members.',
   // List

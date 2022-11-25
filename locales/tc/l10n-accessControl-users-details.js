@@ -20,8 +20,10 @@ module.exports = {
   CONFIRM_PASSWORD_TIP: '請再次輸入新的密碼。',
   CHANGE_PASSWORD: '修改密碼',
   NEW_PASSWORD: '新的密碼',
+  PASSWORD_STRENGTH: 'Password Strength',
+  PASSWORD_STRENGTH_DESC: 'Avoid using weak passwords or passwords of other accounts.',
   // More > Delete
-  // Details
+  // Attributes
   // Login History
   TIME: '時間',
   SOURCE_IP_ADDRESS: '來源 IP 地址',

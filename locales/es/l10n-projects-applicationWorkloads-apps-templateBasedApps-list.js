@@ -30,6 +30,9 @@ module.exports = {
   TEMPLATE_BASED_APP_EMPTY_DESC: 'Please create an app from the KubeSphere App Store or an app template.',
   APP: 'App',
   VERSION: 'Versión',
+  CREATING: 'Creating',
+  UPGRADING: 'Created',
+  DELETING: 'Eliminando',
   // List > Create
   CREATE_APP: 'Desplegar nueva aplicación',
   CREATE_APP_DESC: 'La liviana, portátil y autónoma tecnología de empaquetado de software permite que las aplicaciones se ejecuten en casi cualquier lugar de la misma manera.',

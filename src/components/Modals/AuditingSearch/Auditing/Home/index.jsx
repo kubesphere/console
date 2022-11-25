@@ -116,8 +116,9 @@ export default class Home extends React.Component {
             {events ? (
               <p>
                 <Icon name="clock" />
-                {t('START_TIME_COLON')}
-                {moment(new Date()).format(`${t('EVENT_DATE')}`)}
+                {t('START_TIME_VALUE', {
+                  value: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+                })}
               </p>
             ) : null}
             <p className={styles.tip}>
@@ -173,7 +174,7 @@ export default class Home extends React.Component {
         <div className={classnames(styles.card, styles.recent)}>
           <div className={styles.recentSummary}>
             <h2 className={styles.count}>{total || 0}</h2>
-            <p>{t('Auditing log trends in the last 12 hours')}</p>
+            <p>{t('AUDIT_LOGS_12H')}</p>
           </div>
           <div className={styles.chart}>
             <TimeBar

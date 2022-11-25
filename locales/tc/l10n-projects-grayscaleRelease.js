@@ -26,7 +26,7 @@ module.exports = {
   CANARY_RELEASE_DESC: '金絲雀發佈將一部分實際流量引入一個新版本進行測試，測試新版本的性能和表現，在保證系統整體穩定運行的前提下，盡早發現新版本在實際環境上的問題。',
   TRAFFIC_MIRRORING_DESC: '流量鏡像用來更為真實地測試新版本，提前發現問題，同時不對生產環境產生影響，從而，提高版本發佈的安全性可靠性。',
   // Release Modes > Blue-Green Deployment > Create > Basic Information
-  CREATE_BLUE_GREEN_DEPLOYMENT_JOB: 'Create Blue-Green Deployment Job',
+  CREATE_BLUE_GREEN_DEPLOYMENT_TASK: 'Create Blue-Green Deployment Task',
   // Release Modes > Blue-Green Deployment > Create > Service Settings
   DESELECT: '取消選擇',
   SELECT: '選擇',
@@ -42,14 +42,16 @@ module.exports = {
   TAKE_OVER: 'Take Over',
   GRAYSCALE_VERSION: '版本：{version}',
   // Release Modes > Canary Release > Create
-  CREATE_CANARY_RELEASE_JOB: 'Create Canary Release Job',
+  CREATE_CANARY_RELEASE_TASK: 'Create Canary Release Task',
   // Release Modes > Canary Release > Create > Service Settings
-  UNFINISHED_GRAY_JOB: '存在未完成的灰度任務',
+  UNFINISHED_GRAY_TASK: 'Grayscale release in progress',
+  NO_WORKLOAD_FOUND_TIP: 'No workload found',
   NO_SERVICE_MESH_TIP: '未開啟應用治理的應用無法使用灰度發佈',
   GRAY_APP_NAME: '應用：{name}',
   UNSUPPORTED_WORKLOAD_TYPE: '不支持該工作負載類型',
   // Release Modes > Canary Release > Create > New Version Settings
-  NEW_VERSION_NUMBER_EXIST_DESC: 'Deployment {name} exists. Please enter another version number.',
+  VERSION_EXISTS: 'The version code already exists. Please enter another version code.',
+  NEW_VERSION_NUMBER_EXIST_DESC: 'The workload {name} already exists. Please enter another version code.',
   INIT_CONTAINER: 'Init 容器',
   INIT_CONTAINER_VALUE: 'Init Container: {value}',
   CONTAINER_VALUE: 'Container: {value}',
@@ -77,24 +79,26 @@ module.exports = {
   TRAFFIC: 'Traffic',
   TRAFFIC_DISTRIBUTION: '流量比例',
   // Release Modes > Traffic Mirroring > Create
-  CREATE_TRAFFIC_MIRRORING_JOB: 'Create Traffic Mirroring Job',
+  CREATE_TRAFFIC_MIRRORING_TASK: 'Create Traffic Mirroring Task',
   // Release Modes > Traffic Mirroring > Create > Strategy Settings
-  // Release Jobs
+  // Release Tasks
   PREREQUEST_FOR_USE_GRAYRELEASE_Q: '使用灰度發佈的前提條件?',
   PREREQUEST_FOR_USE_GRAYRELEASE_A: '使用灰度發佈功能前，您需要創建自定義應用並且開啟應用治理功能。',
-  RELEASE_JOBS: 'Release Jobs',
+  RELEASE_TASKS: 'Release Tasks',
   TCP_INBOUND_TRAFFIC: 'TCP 入站流量',
   TCP_OUTBOUND_TRAFFIC: 'TCP 出站流量',
   NO_DATA_SCAP: 'No data',
   REPLICA_COUNT_LOW: '副本',
   MIRROR_POLICY_DESC: '流量鏡像將生產環境的流量復製到灰度版本中，在新版本上線到真實環境之前使用實時用戶流量對它進行測試。</br>因此，流量鏡像可以降低直接在生產環境進行變更所帶來的風險。',
-  // Release Jobs > Blue-Green Deployment > Job Status
+  // Release Tasks > Blue-Green Deployment > Task Status
+  BLUE_GREEN_DEPLOYMENT_LOW: 'blue-green deployment',
   BLUE_GREEN_TRAFFIC_DISTRI_DESC: 'The new version or old version receives all traffic.',
   TRAFFIC_LOW: '流量',
   VERSION_TRAFFIC_PERCENT: '{version} traffic {percent}%',
-  // Release Jobs > Canary Release > Job Status
-  JOB_OFFLINE_SUCCESSFULLY: '任務下線成功。',
-  JOB_STATUS: '任務狀態',
+  OFFLINE: 'Offline',
+  OFFLINE_TIP: 'No service traffic is sent to this version. You can take the version online to make it take over all traffic.',
+  // Release Tasks > Canary Release > Task Status
+  CANARY_RELEASE_LOW: 'canary release',
   ADJUST_TRAFFIC_DISTRIBUTION_DESC: 'Are you sure you want to send {ratioNew}% of traffic to the new version <b>{newVersion}</b> and {ratioOld}% to the old version <b>{oldVersion}</b>?',
   ALLOCATE_TRAFFIC_DESC: '將所有流量按比例分配給灰度組件。',
   COOKIE_EXACT_MATCH: 'Cookie (exact match)',
@@ -108,10 +112,12 @@ module.exports = {
   RESTORE: '恢復',
   SUCCESSFUL_REQUEST_RATE: '請求成功率',
   TRAFFIC_IN_LAST_FIVE_MINUTES: '最近五分鐘流量',
-  DELETE_GRAYSCALE_RELEASE_JOB_DESC: '您需要選擇一個下線版本，系統會保留一個可用版本並且自動將流量全部切換至該可用版本，保證服務正常運行。',
+  DELETE_GRAYSCALE_RELEASE_TASK_DESC: 'Please select a version to take over all traffic before deleting the grayscale release task.',
   GRAY_COMPONENT_DESC: 'The grayscale release components used to serve the traffic.',
-  // Release Jobs > Traffic Mirroring > Job Status
+  // Release Tasks > Traffic Mirroring > Task Status
+  TRAFFIC_MIRRORING_LOW: 'traffic mirroring',
   MIRRORED_TRAFFIC: '鏡像流量',
+  MIRRORED_TRAFFIC_TIP: 'Traffic mirroring does not actually expose the new version.',
   RELEASE_MODE_PL: '灰度策略',
   RELEASE_MODE: 'Release mode',
   NEW_VERSION_TAKEOVER_DESC: 'The new version <b>{newVersion}</b> is receiving all traffic. If you delete the current grayscale release job, the old version <b>{oldVersion}</b> will be also be deleted.',
@@ -119,8 +125,8 @@ module.exports = {
   GRAYSCALE_REPLICA_SI: '副本數量：{count}',
   GRAYSCALE_REPLICA_PL: '副本數量：{count}',
   TRAFFIC_MIRRORING_TRAFFIC_DISTRI_DESC: 'A copy of traffic is sent to the new version for testing.',
-  // Release Jobs > Job Status > Edit
-  EDIT_GRAYSCALE_RELEASE_JOB: '編輯組件',
-  // Release Jobs > Canary Release > Traffic Distribution
+  // Release Tasks > Task Status > Edit
+  EDIT_GRAYSCALE_RELEASE_TASK: 'Edit Grayscale Release Task',
+  // Release Tasks > Canary Release > Traffic Distribution
   ADJUST_TRAFFIC_DISTRIBUTION: 'Adjust Traffic Distribution'
 };

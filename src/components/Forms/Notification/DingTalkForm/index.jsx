@@ -46,7 +46,7 @@ export default class DingTalkForm extends Component {
     const count = globals.config.notification.dingtalk['max_number_of_cid']
     if (!value) {
       Notify.error({
-        content: t('ENTER_CONVERSATION_ID_DESC'),
+        content: t('ENTER_CHAT_ID_DESC'),
         durantion: 1000,
       })
       return
@@ -60,7 +60,7 @@ export default class DingTalkForm extends Component {
     }
     if (data.includes(value)) {
       Notify.error({
-        content: t(`CONVERSATION_ID_EXISTS`),
+        content: t('CHAT_ID_EXISTS'),
         duration: 1000,
       })
       return
@@ -104,9 +104,9 @@ export default class DingTalkForm extends Component {
   renderLabel() {
     return (
       <div className={styles.labelWrapper}>
-        <span>{t('CONVERSATION_ID')}</span>
+        <span>Chat ID</span>
         {this.props.user && (
-          <Tooltip content={t('CONVERSATION_ID_TIP')}>
+          <Tooltip content={t('CHAT_ID_TIP')}>
             <Icon className={styles.tip} name="question" />
           </Tooltip>
         )}
@@ -117,12 +117,12 @@ export default class DingTalkForm extends Component {
   renderServiceSetting() {
     return (
       <div className={styles.row}>
-        <div className={styles.title}>{t('CONVERSATION_SETTINGS')}</div>
+        <div className={styles.title}>{t('APP_SETTINGS')}</div>
         <div className={styles.item}>
-          <Form.Item label={t('AppKey')}>
+          <Form.Item label="App Key">
             <Input name="secret.data.appkey" />
           </Form.Item>
-          <Form.Item label={t('AppSecret')}>
+          <Form.Item label="App Secret">
             <Input name="secret.data.appsecret" />
           </Form.Item>
         </div>
@@ -142,7 +142,7 @@ export default class DingTalkForm extends Component {
             <Item
               className={wrapperClassName}
               name="receiver.spec.dingtalk.conversation.chatids"
-              title={t('CONVERSATION_ID')}
+              title="Chat ID"
               placeholder=" "
               validate={this.validateCid}
             />
@@ -160,10 +160,10 @@ export default class DingTalkForm extends Component {
           <span>{t('CHATBOT_SETTINGS')}</span>
         </div>
         <div className={styles.item}>
-          <Form.Item label={t('Webhook URL')}>
+          <Form.Item label="Webhook URL">
             <Input name="secret.data.webhook" />
           </Form.Item>
-          <Form.Item label={t('DINGTALK_SECRET')}>
+          <Form.Item label="Secret">
             <Input name="secret.data.chatbotsecret" />
           </Form.Item>
           <Form.Item>
@@ -192,7 +192,7 @@ export default class DingTalkForm extends Component {
         {...rest}
       >
         <Tabs type="button">
-          <TabPanel label={t('CONVERSATION_SETTINGS')} name="conversation">
+          <TabPanel label={t('CHAT_SETTINGS')} name="conversation">
             <>
               {!user && this.renderServiceSetting()}
               {this.renderReceiverSetting()}

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, omit, isEmpty } from 'lodash'
+import { get, set, omit, isEmpty, isEqual, cloneDeep } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 
@@ -44,13 +44,17 @@ export default class Routes extends React.Component {
       this.secretStore = new FederatedStore({ module: this.secretStore.module })
     }
 
+    const ingress = get(this.props.formData, 'ingress', {})
+
     this.state = {
-      ingress: get(this.props.formData, 'ingress', {}),
+      ingress,
+      old: cloneDeep(ingress),
       services: Object.values(
         omit(this.props.formData, ['application', 'ingress']) || {}
       ).map(item => this.mapper(item.service)),
       showAdd: false,
       selectRuleIndex: -1,
+      operation: '',
     }
   }
 
@@ -62,9 +66,10 @@ export default class Routes extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { formData } = this.props
-    if (formData !== prevProps.formData) {
+
+    if (!isEqual(formData, prevProps.formData)) {
       this.setState({
-        ingress: get(this.props.formData, 'ingress', {}),
+        ingress: get(formData, 'ingress', {}),
         services: Object.values(
           omit(this.props.formData, ['application', 'ingress']) || {}
         ).map(item => this.mapper(item.service)),
@@ -73,16 +78,33 @@ export default class Routes extends React.Component {
     }
   }
 
-  validate(callback) {
-    callback && callback()
-  }
-
   showAdd = index => {
-    this.setState({ showAdd: true, selectRuleIndex: index })
+    this.setState({ showAdd: true, selectRuleIndex: index, operation: 'add' })
   }
 
-  hideAdd = () => {
-    this.setState({ showAdd: false, selectRuleIndex: -1 })
+  showEdit = index => {
+    const { ingress } = this.state
+    this.setState({
+      showAdd: true,
+      selectRuleIndex: index,
+      operation: 'edit',
+      old: cloneDeep(ingress),
+    })
+  }
+
+  closeEditModal = () => {
+    if (this.state.operation === 'edit') {
+      const { formData } = this.props
+      const ingress = this.state.old
+      this.setState({ ingress }, () => {
+        set(formData, 'ingress', ingress)
+      })
+    }
+    this.closeModal()
+  }
+
+  closeModal = () => {
+    this.setState({ showAdd: false, selectRuleIndex: -1, operation: '' })
   }
 
   updateName = () => {
@@ -142,7 +164,7 @@ export default class Routes extends React.Component {
 
     isFederated && this.updateOverrides()
 
-    this.hideAdd()
+    this.closeModal()
   }
 
   handleDelete = index => {
@@ -162,7 +184,7 @@ export default class Routes extends React.Component {
 
     isFederated && this.updateOverrides()
 
-    this.hideAdd()
+    this.closeModal()
   }
 
   updateTLS(formTemplate) {
@@ -239,6 +261,7 @@ export default class Routes extends React.Component {
       isFederated,
       projectDetail,
     } = this.props
+
     const { showAdd, ingress, services, selectRuleIndex } = this.state
 
     const template = isFederated ? get(ingress, 'spec.template') : ingress
@@ -260,6 +283,7 @@ export default class Routes extends React.Component {
             gateway={gateway}
             isFederated={isFederated}
             projectDetail={projectDetail}
+            onEdit={this.showEdit}
             onAdd={this.showAdd}
             onDelete={this.handleDelete}
           />
@@ -272,7 +296,7 @@ export default class Routes extends React.Component {
           isFederated={isFederated}
           projectDetail={projectDetail}
           onOk={this.handleAdd}
-          onCancel={this.hideAdd}
+          onCancel={this.closeEditModal}
           gateway={gateway}
           services={services}
           secrets={secrets}

@@ -101,5 +101,5 @@ it('empty holder', () => {
     </ScrollLoad>
   )
 
-  expect(wrapper).toHaveText('No Data')
+  expect(wrapper).toHaveText('NO_DATA')
 })

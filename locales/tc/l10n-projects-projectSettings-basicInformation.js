@@ -34,8 +34,9 @@ module.exports = {
   GPU_LIMIT_SCAP: 'GPU limit',
   REQUEST_EXCEED_WORKSPACE: 'Resource requests and limits cannot exceed workspace resource limits.',
   REQUEST_EXCEED_LIMIT: '資源預留不能超過資源限制。',
+  REQUEST_EXCEED_AVAILABLE_QUOTA: 'Insufficient resources.',
   // Mange > Delete
-  DELETE_PROJECT_TIP: '確定刪除項目 <strong>{resource}</strong> ? 刪除後將無法恢復, 項目下的資源也同時會被銷毀。',
+  DELETE_PROJECT_TIP: 'Enter the project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   // Project Information
   MANAGE: '管理',
   PROJECT_INFO: '項目資訊',
@@ -49,7 +50,14 @@ module.exports = {
   EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
   LIMITS_CPU: 'CPU 限額',
   LIMITS_MEMORY: '記憶體限額',
+  REQUESTS_CPU: 'CPU 預留',
+  REQUESTS_MEMORY: 'CPU 限額',
   // Project Quotas
   PROJECT_QUOTA_PL: 'Project Quotas',
-  RESOURCE_TYPE_SCAP: '資源類型'
+  RESOURCE_TYPE_SCAP: '資源類型',
+  JOBS: 'Jobs',
+  VOLUMES: 'Volumes',
+  SERVICES: '服務',
+  ROUTES: '應用路由',
+  SECRETS: '保密字典'
 };

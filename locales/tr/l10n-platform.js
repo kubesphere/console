@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
+  PLATFORM: 'Platform',
   CLUSTER_MANAGEMENT: 'Küme Yönetimi',
   CLUSTER_DESC: 'Kümelerin ve onların basit kaynaklarının, bileşenlerin ve uygulama kaynaklarının tek arayüzden yönetimi.',
   ACCESS_CONTROL_DESC: 'Çalışma alanları, kullanıcılar ve rollerin tek arayüzden yönetimi.',

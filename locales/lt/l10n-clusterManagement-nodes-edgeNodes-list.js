@@ -26,6 +26,7 @@ module.exports = {
   EDGE: 'Edge node',
   // List > Add
   ADD: 'Add',
+  ADD_EDGE_NODE: 'Add Edge Node',
   EDGENODE_CONFIG_COMMAND: 'Edge Node Configuration Command',
   ADD_EDGE_COMMAND: 'Run the above command on your edge node to configure it.',
   IN_USE_Node_IP: 'The IP address {ip} is in use. Please enter another IP address.',

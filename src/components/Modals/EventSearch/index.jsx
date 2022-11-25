@@ -24,7 +24,6 @@ import { get } from 'lodash'
 import EmptyList from 'components/Cards/EmptyList'
 import FullScreen from 'components/Modals/FullscreenModal'
 import Clusters from 'stores/cluster'
-import { getWebsiteUrl } from 'utils'
 
 import { Home, Detail } from './Event'
 
@@ -104,7 +103,6 @@ export default class EventSearch extends React.Component {
 
   render() {
     const { Component, props } = this.Content
-    const { url } = getWebsiteUrl()
     if (!Component) {
       return
     }
@@ -114,8 +112,8 @@ export default class EventSearch extends React.Component {
         <EmptyList
           className="no-shadow"
           icon="cluster"
-          title={t('NO_AVAILABLE_CLUSTER')}
-          desc={t.html('EVENT_NOT_ENABLED_DESC', { docUrl: url })}
+          title={t('NO_DATA_AUTHORIZED')}
+          desc={t('NO_DATA_AUTHORIZED_DESC')}
         />
       )
     }

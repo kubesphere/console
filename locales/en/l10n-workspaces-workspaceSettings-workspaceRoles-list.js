@@ -22,7 +22,7 @@ module.exports = {
   WORKSPACE_ROLE_DESC: 'The role of a workspace member determines the permissions of the member in the workspace.',
   // List
   WORKSPACE_ROLE_EMPTY_DESC: 'Please create a workspace role.',
-  ROLE_WORKSPACE_ADMIN: 'Control all resources in the workspace.',
+  ROLE_WORKSPACE_ADMIN: 'Manage all resources in the workspace.',
   ROLE_WORKSPACE_REGULAR: 'View workspace settings.',
   ROLE_WORKSPACE_VIEWER: 'View all resources in the workspace.',
   ROLE_WORKSPACE_SELF_PROVISIONER: 'View workspace settings, manage app templates, and create projects and DevOps projects.',
@@ -38,7 +38,7 @@ module.exports = {
   PERMISSION_PROJECTS_MANAGEMENT: 'Project Management',
   PERMISSION_PROJECTS_MANAGEMENT_DESC: 'Create, edit, and delete projects in the workspace.',
   PERMISSION_PROJECTS_CREATE: 'Project Creation',
-  PERMISSION_PROJECTS_CREATE_DESC: 'Create projects. The creator of a project is the project administrator.',
+  PERMISSION_PROJECTS_CREATE_DESC: 'Create projects and become an administrator of the created projects.',
   // List > Create > Edit Permissions > DevOps Project Management
   PERMIGROUP_DEVOPS_MANAGEMENT: 'DevOps Projects',
   PERMISSION_DEVOPS_VIEW: 'DevOps Project Viewing',
@@ -46,7 +46,7 @@ module.exports = {
   PERMISSION_DEVOPS_MANAGEMENT: 'DevOps Project Management',
   PERMISSION_DEVOPS_MANAGEMENT_DESC: 'Create, edit, and delete DevOps projects in the workspace.',
   PERMISSION_DEVOPS_CREATE: 'DevOps Project Creation',
-  PERMISSION_DEVOPS_CREATE_DESC: 'Create DevOps projects. The creator of a DevOps project is the DevOps project administrator.',
+  PERMISSION_DEVOPS_CREATE_DESC: 'Create DevOps projects and become an administrator of the created DevOps projects.',
   // List > Create > Edit Permissions > App Management
   PERMISSION_APPS_MANAGEMENT: 'App Management',
   PERMISSION_WORKSPACE_APP_REPOS_VIEW: 'App Repository Viewing',

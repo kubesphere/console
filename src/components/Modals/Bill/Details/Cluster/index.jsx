@@ -362,7 +362,9 @@ export default class ClusterDetails extends React.Component {
           feeData[item.type] = {
             value: free.toFixed(2),
             unit: {
-              label: this.priceConfig.currency === 'CNY' ? t('￥') : t('$'),
+              label: this.priceConfig.currency
+                ? this.priceConfig.currency
+                : ' ',
             },
           }
         }
@@ -1112,7 +1114,7 @@ export default class ClusterDetails extends React.Component {
             <EmptyList
               className={styles.emptyCard}
               icon="cluster"
-              title={t('NO_AVAILABLE_CLUSTER')}
+              title={t('NO_CLUSTER_AVAILABLE')}
               desc={t.html('METERING_NOT_ENABLED_DESC', { docUrl: url })}
               actions={<Button onClick={this.props.handleBack}>返回</Button>}
             />

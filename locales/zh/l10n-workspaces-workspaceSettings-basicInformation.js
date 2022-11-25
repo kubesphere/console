@@ -40,8 +40,8 @@ module.exports = {
   WS_NETWORK_ISOLATION: '企业空间网络隔离',
   NETWORK_POLICY_UNINSATLLED_DESC: '该集群未安装网络策略组件。',
   // Delete Workspace
+  DELETE_DESC: '您确定删除该资源吗？资源删除后将无法恢复。',
   // Delete Workspace > Delete
-  SURE_TO_DELETE_WORKSPACE: '您确定删除企业空间吗？',
   DELETE_WORKSPACE_PROJECTS_DESC: '删除企业空间中的项目',
   DELETE_WORKSPACE_DESC: '企业空间删除后将无法恢复, 企业空间下的资源也同时会被销毁。',
   DELETE_WORKSPACE_TIP: '确定删除企业空间 <strong>{resource}</strong> ? 删除后将无法恢复, 企业空间下的资源也同时会被销毁。'

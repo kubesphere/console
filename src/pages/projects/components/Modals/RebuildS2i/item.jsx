@@ -54,7 +54,7 @@ export default class Item extends React.Component {
           </p>
         </Radio>
         <p className={styles.desc}>
-          <span>{t('Repo URL')}:</span>
+          <span>{t('REPO_URL')}:</span>
           {url}
         </p>
       </div>

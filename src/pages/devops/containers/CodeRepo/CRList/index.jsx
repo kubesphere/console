@@ -142,6 +142,7 @@ export default class CRList extends React.Component {
       cluster: this.cluster,
       module: 'codeRepos',
       noCodeEdit: true,
+      noSVN: true,
       success: this.getData,
     })
   }
@@ -228,7 +229,7 @@ export default class CRList extends React.Component {
         isLoading={isLoading}
         showEmpty={showEmpty}
         enabledActions={this.enabledActions}
-        createText="Import"
+        createText={t('ADD')}
       />
     )
   }

@@ -48,7 +48,7 @@ module.exports = {
   // More > Edit Settings > Volumes > Mount Configmap or Secret
   // More > Edit Settings > Pod Scheduling Rules
   RULE_NOT_COMPLETE: '請填寫完整策略',
-  // Details
+  // Attributes
   // Revision Records
   REVISION_RECORDS: '版本記錄',
   CONFIG_FILE: '配置文件',
@@ -65,6 +65,13 @@ module.exports = {
   TARGET_CPU_USAGE: '目標使用率',
   TARGET_CURRENT: '{target} (Current: {current})',
   NOT_ENABLE: '{resource} 暫未啟用',
+  // Resource Status > Image Builder
+  CONTAINER_LOG_NOT_ENABLED: 'Container Log is not enabled.',
+  BUILD_LOG: 'Build Log',
+  TASK: 'Task',
+  IN_PROGRESS: 'in progress',
+  IMAGE_BUILDING: 'Image Building',
+  HAS_FAILED: 'has failed',
   // Metadata
   // Monitoring
   // Monitoring > View All Replicas (visible only when replicas > 5)

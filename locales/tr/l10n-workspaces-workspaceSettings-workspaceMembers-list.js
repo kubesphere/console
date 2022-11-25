@@ -31,6 +31,7 @@ module.exports = {
   INVITE_WORKSPACE_MEMBER_DESC: 'Kullanıcıları çalışma alanına davet et.',
   INVITE_MEMBER: 'Üyeyi Davet Et',
   INVITE: 'Davet et',
+  INVITED_SUCCESSFULLY: 'Invited successfully.',
   // List > Remove
   REMOVE_MEMBER_TIP: 'Kullanıcı adlarını <strong>{resource}</strong> giriş yaparak bu operasyonun riskini anladığınızı teyid edin.'
 };

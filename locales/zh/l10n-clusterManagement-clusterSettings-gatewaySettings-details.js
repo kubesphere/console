@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   // More > Update Gateway
   // More > Delete
   GATEWAY_LOW: '网关',
@@ -39,7 +39,5 @@ module.exports = {
   GATEWAY_LOGS: '网关日志',
   LOGGING_DISABLED: '日志组件未启用',
   REFRESH_INTERVAL_VALUE: '刷新间隔：{value}s',
-  EXPORT_LOGS: '导出日志',
-  // Resource Status > Replica Status
-  GATEWAYS_REPLICA_DESC: '部署（Deployment）用来描述期望应用达到的目标状态，主要用来描述无状态应用，副本的数量和状态由其背后的控制器来维护，确保状态与定义的期望状态一致。您可以增加副本数量来满足更高负载；回滚部署的版本来消除程序的错误修改；创建自动扩缩器来弹性应对不同场景下的负载。'
+  EXPORT_LOGS: '导出日志'
 };

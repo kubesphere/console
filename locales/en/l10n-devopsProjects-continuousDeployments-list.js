@@ -40,6 +40,7 @@ module.exports = {
   SELF_HEAL: 'Self-heal',
   MANIFEST_FILE_PATH: 'Manifest File Path',
   MANIFEST_FILE_PATH_DESC: 'Set the manifest file path. ',
+  DIRECTORY_RECURSE: 'Directory recurse',
   REPO_EMPTY_DESC: 'Please select a code repository.',
   // List > Delete
   CONTINUOUS_DEPLOYMENT: 'Continuous Deployment',
@@ -69,4 +70,24 @@ module.exports = {
   REPLACE_RESOURCE_DESC: 'Replace resources that already exist.',
   EMPTY_CD_TITLE: 'No Continuous Deployment Found',
   SYNC_TRIGGERED: 'Resource sync was triggered successfully.',
+  // List > Parameter
+  PARAMETER_SETTINGS: 'Parameter Settings',
+  AUTO_PARAMETER: "Auto",
+  AUTO_PARAMETER_DESC: "Set automatically.",
+  HELM_PARAMETER: "Helm",
+  HELM_PARAMETER_DESC: "Set Helm parameter.",
+  KUSTOMIZE_PARAMETER: "Kustomize",
+  KUSTOMIZE_PARAMETER_DESC: "Set Kustomize parameters.",
+  PASS_CREDENTIALS: "Pass Credentials",
+  IGNORE_MISSING_VALUE_FILES: "Ignore Missing Value Files",
+  SKIP_CRDS: "Skip Crds",
+  RELEASE_NAME: "Release Name",
+  VALUE_FILES: "Value Files",
+  FORCE_STRING: "Force String",
+  FILE_PARAMETERS: "File Parameters",
+  NAME_PREFIX: "Name Prefix",
+  NAME_SUFFIX: "Name Suffix",
+  IMAGES: "Images",
+  COMMON_LABELS: "Common Labels",
+  COMMON_ANNOTATIONS: "Common Annotations"
 }

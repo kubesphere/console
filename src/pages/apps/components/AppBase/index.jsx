@@ -59,7 +59,7 @@ export default class AppBase extends React.PureComponent {
           <dt>{t('HOMEPAGE_COLON')}</dt>
           <dd>{app.home || '-'}</dd>
           <dt>{t('RELEASE_DATE_COLON')}</dt>
-          <dd>{moment(app.status_time).format(t('YYYY-MM-DD'))}</dd>
+          <dd>{moment(app.status_time).format('YYYY-MM-DD')}</dd>
           <dt>{t('APP_ID_COLON')}</dt>
           <dd>{app.app_id || '-'}</dd>
           {!isEmpty(maintainers) && (
@@ -70,7 +70,7 @@ export default class AppBase extends React.PureComponent {
           )}
           {!isEmpty(sources) && (
             <>
-              <dt>{t('SOURCE_CODE_ADDRESS')}</dt>
+              <dt>{t('SOURCE_CODE_ADDRESS_COLON')}</dt>
               <dd>
                 {sources.map(item => (
                   <p>{item}</p>

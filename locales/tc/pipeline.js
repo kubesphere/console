@@ -212,7 +212,6 @@ module.exports = {
     JENKINS_URL / job / JOB_NAME / build？token =TOKEN_NAME
     或者/ buildWithParameters？token = TOKEN_NAME 可選擇附加＆cause =原因提供將包含在紀錄的構建原因中的文本。`,
   PIPELINE_NO_CONFIG: '目前 Pipeline 中並沒有找到相關配置文件',
-  WEBHOOK_DESC: 'Configure webhook notifications by setting a webhook server.',
   EDIT_CREDENTIAL_DESC: '下列表單不會顯示原有憑證資訊，重新輸入會將其覆蓋。',
   pipeline_conditions: '條件',
   CODE_SMELL: '容易出錯',

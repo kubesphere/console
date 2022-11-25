@@ -102,7 +102,7 @@ export default class TimeSelector extends React.PureComponent {
     const { showStep = true } = this.props
 
     if (start && end && !lastTime) {
-      const intervalText = `(${t('Interval')} ${getTimeLabel(step)})`
+      const intervalText = `(${t('INTERVAL')} ${getTimeLabel(step)})`
       return `${getDateStr(start)} ~ ${getDateStr(end)} ${
         showStep ? intervalText : ''
       }`

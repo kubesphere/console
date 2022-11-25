@@ -34,8 +34,9 @@ module.exports = {
   GPU_LIMIT_SCAP: 'GPU Sınırı',
   REQUEST_EXCEED_WORKSPACE: 'Kaynak istekleri ve sınırları, çalışma alanı kaynak sınırlarını aşamaz.',
   REQUEST_EXCEED_LIMIT: 'Kaynak istekleri, kaynak sınırlarından büyük olamaz.',
+  REQUEST_EXCEED_AVAILABLE_QUOTA: 'Insufficient resources.',
   // Mange > Delete
-  DELETE_PROJECT_TIP: '<strong>{resource}</strong> projesini silmek istediğinizden emin misiniz? Silme işleminden sonra onu kurtaramayacaksınız ve tüm proje kaynakları da yok edilecek.',
+  DELETE_PROJECT_TIP: 'Enter the project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   // Project Information
   MANAGE: 'Yönet',
   PROJECT_INFO: 'Proje Bilgisi',
@@ -49,7 +50,14 @@ module.exports = {
   EDIT_DEFAULT_CONTAINER_QUOTAS: 'Varsayılan Kapsayıcı Kotalarını Düzenle',
   LIMITS_CPU: 'CPU Sınırı',
   LIMITS_MEMORY: 'Bellek Sınırı',
+  REQUESTS_CPU: 'CPU Talebi',
+  REQUESTS_MEMORY: 'CPU Sınırı',
   // Project Quotas
   PROJECT_QUOTA_PL: 'Proje Kotası',
-  RESOURCE_TYPE_SCAP: 'Kaynak Türü'
+  RESOURCE_TYPE_SCAP: 'Kaynak Türü',
+  JOBS: 'İşler',
+  VOLUMES: 'Birimler',
+  SERVICES: 'Hizmetler',
+  ROUTES: 'Routerler',
+  SECRETS: 'Gizli'
 };

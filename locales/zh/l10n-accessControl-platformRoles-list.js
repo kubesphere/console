@@ -24,6 +24,7 @@ module.exports = {
   ROLE_WORKSPACES_MANAGER: '管理 KubeSphere 平台上的所有企业空间。',
   ROLE_PLATFORM_ADMIN: '管理 KubeSphere 平台上的所有资源。',
   ROLE_PLATFORM_REGULAR: '被邀请加入企业空间之前无法访问任何资源。',
+  ROLE_PLATFORM_SELF_PROVISIONER: '创建企业空间并成为所创建的企业空间的管理员。',
   CREATION_TIME_TCAP: '创建时间',
   // List > Create
   CREATE_PLATFORM_ROLE: '创建平台角色',
@@ -39,6 +40,8 @@ module.exports = {
   PERMISSION_WORKSPACES_VIEW_DESC: '查看工作空间。',
   PERMISSION_WORKSPACES_MANAGEMENT: '企业空间管理',
   PERMISSION_WORKSPACES_MANAGEMENT_DESC: '创建、编辑和删除企业空间。',
+  PERMISSION_WORKSPACES_CREATE: '企业空间创建',
+  PERMISSION_WORKSPACES_CREATE_DESC: '创建企业空间并成为所创建的企业空间的管理员。',
   PERMISSION_USERS_VIEW: '用户查看',
   PERMISSION_USERS_VIEW_DESC: '查看用户。',
   PERMISSION_USERS_MANAGEMENT: '用户管理',
@@ -56,5 +59,9 @@ module.exports = {
   // List > Create > Edit Permissions > Platform Settings
   PERMIGROUP_PLATFORM_SETTINGS: '平台设置',
   PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: '平台设置管理',
-  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: '查看和编辑 KubeSphere平台的设置。'
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: '查看和编辑 KubeSphere平台的设置。',
+  // List > Edit Information
+  // List > Edit Permissions
+  // List > Delete
+  DELETING_PRESET_ROLES_NOT_ALLOWED: '无法删除预置角色。'
 };

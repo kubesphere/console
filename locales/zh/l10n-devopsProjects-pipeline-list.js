@@ -43,6 +43,8 @@ module.exports = {
   SELECT_CODE_REPOSITORY: '选择代码仓库',
   PIPELINE_CREATE_DEVOPS_PROJECT_DESC: '选择流水线所属的 DevOps 项目。',
   CODE_REPOSITORY_OPTIONAL: '代码仓库（可选）',
+  GO_CREATE_REPO: '没有可用的代码库。请创建代码库。',
+  CODE_REPO_EXISTS: '代码仓库已存在',
   SELECT_CODE_REPO_DESC: '选择流水线使用的代码仓库。',
   RESELECT: '重新选择',
   // List > Create > Basic Information > Code Repository > GitHub

@@ -222,7 +222,7 @@ export default {
         onOk: async () => {
           await store.delete(detail)
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_SUCCESSFUL') })
+          Notify.success({ content: t('DELETED_SUCCESSFULLY') })
           success && success()
         },
         store,
@@ -338,7 +338,7 @@ export default {
         onOk: async () => {
           await store.delete(detail)
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_SUCCESSFUL') })
+          Notify.success({ content: t('DELETED_SUCCESSFULLY') })
           success && success()
         },
         desc: t.html('DELETE_CATEGORY_DESC', { name: detail.name }),

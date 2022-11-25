@@ -137,7 +137,7 @@ export default class SanpshotForm extends Component {
     return (
       <>
         <Form.Item
-          label={t('Volume Snapshot')}
+          label={t('VOLUME_SNAPSHOT')}
           rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           className={styles.snapshotContainer}
         >
@@ -156,7 +156,7 @@ export default class SanpshotForm extends Component {
           <Loading spinning={isSnapshotClassLoading}>
             <Form.Item
               className="margin-t12"
-              label={t('Access Mode')}
+              label={t('ACCESS_MODE')}
               rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <AccessModes

@@ -45,13 +45,13 @@ module.exports = {
   MINSIZE: '容量下限',
   STEPSIZE: '步長',
   FSTYPE: '文件系統類型',
-  TAGS: '標籤',
   QINGCLOUD_CSI_TYPE_DESC: '在青雲雲平台中，0 代表性能型硬碟，2 代表容量型硬碟，3 代表超高性能型硬碟，5 代表企業級分布式 SAN（NeonSAN）型硬碟，100 代表基礎型硬碟，200 代表企業型硬碟',
   CREATE_VOLUME_MAX_SIZE: '儲存卷的容量上限。',
   CREATE_VOLUME_STEP_SIZE: '儲存卷的增量值。',
   CREATE_VOLUME_MIN_SIZE: '儲存卷的容量下限。',
   VOLUME_FS_TYPE: '支持 ext3、ext4 和 xfs。預設類型為 ext4。',
   QINGCLOUD_VOLUME_TAGS_DESC: '為儲存卷添加標籤。使用半角逗號（,）分隔多個標籤。',
+  GID_RANGE_TIP: 'The value cannot be less than 2000 or greater than 2147483647.',
   // List > Create > > GlusterFS > Storage Class Settings
   GLUSTERFS_RESTURL_DESC: '供應儲存卷的 Heketi REST URL。',
   GLUSTERFS_ID_DESC: 'Gluster 集群 ID。',
@@ -91,5 +91,7 @@ module.exports = {
   // List > Edit Information
   // List > Delete
   STORAGE_CLASS: '儲存類型',
-  STORAGE_CLASS_LOW: '儲存類型'
+  STORAGE_CLASS_LOW: '儲存類型',
+  STORAGE_CLASS_DELETE_DESC: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Are you sure you want to delete the volume snapshot class?',
+  STORAGE_CLASS_DELETE_DESC_PL: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Enter the {type} names <strong>{resource}</strong> to confirm that you understand the risks of this operation.'
 };

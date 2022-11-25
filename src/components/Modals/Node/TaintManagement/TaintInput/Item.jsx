@@ -59,7 +59,7 @@ const Item = ({ onSelect, onDelete, disabled, ...params }) => {
           </Tooltip>
         )}
         {onDelete && (
-          <Tooltip content={t('TAINT_DELETE_TIPS')}>
+          <Tooltip content={t('TAINT_DELETE_TIP')}>
             <Button
               type="flat"
               icon="trash"

@@ -284,7 +284,6 @@ module.exports = {
   PIPELINE_NO_CONFIG:
     'The relevant configuration file was not found in the current pipeline',
 
-  WEBHOOK_DESC: 'Configure webhook notifications by setting a webhook server.',
 
   EDIT_CREDENTIAL_DESC:
     'The following form will not display the original credential information. The original information will be overwritten by any new input.',

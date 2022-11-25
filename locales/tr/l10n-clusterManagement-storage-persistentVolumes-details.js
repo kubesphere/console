@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   VOLUME_HANDLE: 'Hacim (Volume) Kolu',
   VOLUME_MODE: 'Hacim (Volume) Klon',
   VOLUME_MODE_FILESYSTEM: 'Dosya Sistemi',

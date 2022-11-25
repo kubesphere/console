@@ -73,7 +73,7 @@ class Clusters extends React.Component {
   }
 
   fetchData = (params = {}) => {
-    this.store.fetchList({
+    this.store.fetchListByUser({
       ...params,
       limit: 10,
       labelSelector: '!cluster-role.kubesphere.io/host',
@@ -81,7 +81,7 @@ class Clusters extends React.Component {
   }
 
   fetchHostData = (params = {}) => {
-    this.hostStore.fetchList({
+    this.hostStore.fetchListByUser({
       ...params,
       labelSelector: 'cluster-role.kubesphere.io/host=',
       limit: -1,
@@ -131,7 +131,7 @@ class Clusters extends React.Component {
         key: 'data',
         icon: 'data',
         text: t('UPDATE_KUBECONFIG'),
-        show: !item.isHost,
+        show: !item.isHost && item.connectionType !== 'proxy',
         onClick: record => {
           this.trigger('cluster.updateKubeConfig', {
             detail: record,
@@ -142,7 +142,7 @@ class Clusters extends React.Component {
       {
         key: 'trash',
         icon: 'trash',
-        text: t('UNBIND_CLUSTER'),
+        text: t('REMOVE_CLUSTER'),
         show: !item.isHost,
         onClick: record => {
           this.trigger('cluster.unbind', {
@@ -201,7 +201,7 @@ class Clusters extends React.Component {
       return (
         <>
           <div className="h6 margin-b12">
-            {t('Cluster List')} <span className={styles.total}>{total}</span>
+            {t('CLUSTER_PL')} <span className={styles.total}>{total}</span>
           </div>
           <div className={styles.noData}>
             <img src="/assets/empty-card.svg" alt="" />
@@ -236,7 +236,7 @@ class Clusters extends React.Component {
         {!isEmpty(_data) && (
           <div>
             <div className="h6">
-              {t('Member Clusters')}{' '}
+              {t('MEMBER_CLUSTER_TCAP_PL')}{' '}
               <span className={styles.total}>{total}</span>
             </div>
             {_data.map(item => (

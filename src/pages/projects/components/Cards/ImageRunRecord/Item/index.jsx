@@ -196,6 +196,7 @@ export default class ImageBuilderLastRun extends React.Component {
   render() {
     const { count, status, imageName, startTime, name } = this.props.runDetail
     const { loading } = this.props
+
     if (loading) {
       return null
     }
@@ -236,7 +237,9 @@ export default class ImageBuilderLastRun extends React.Component {
         </li>
         <li>
           <div className={styles.value}>
-            {t(`IMAGE_NAME_${status.toUpperCase()}`, { name })}
+            {status &&
+              name &&
+              t(`IMAGE_NAME_${status.toUpperCase()}`, { name })}
           </div>
           <div className={styles.label}>{t('LAST_MESSAGE_SCAP')}</div>
         </li>

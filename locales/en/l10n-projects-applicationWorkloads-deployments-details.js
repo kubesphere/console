@@ -49,7 +49,7 @@ module.exports = {
   // More > Edit Settings > Volumes > Mount Configmap or Secret
   // More > Edit Settings > Pod Scheduling Rules
   RULE_NOT_COMPLETE: 'Please set a complete rule.',
-  // Details
+  // Attributes
 
   // Revision Records
   REVISION_RECORDS: 'Revision Records',
@@ -67,6 +67,13 @@ module.exports = {
   TARGET_CPU_USAGE: 'Target CPU Usage',
   TARGET_CURRENT: '{target} (Current: {current})',
   NOT_ENABLE: '{resource} Not Enabled',
+  // Resource Status > Image Builder
+  CONTAINER_LOG_NOT_ENABLED: 'Container Log is not enabled.',
+  BUILD_LOG: 'Build Log',
+  TASK: 'Task',
+  IN_PROGRESS: 'in progress',
+  IMAGE_BUILDING: 'Image Building',
+  HAS_FAILED: 'has failed',
   // Metadata
   // Monitoring
   // Monitoring > View All Replicas (visible only when replicas > 5)

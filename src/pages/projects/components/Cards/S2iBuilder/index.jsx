@@ -176,11 +176,11 @@ export default class S2IBuilder extends React.Component {
         <div className={styles.title}>
           <Loading size="16" />
           <p>
-            {t('Task')}
+            {t('TASK')}
             <span className={styles.taskName}>
               {this.state.currentBuilderName}
             </span>
-            {t('is Building')}
+            {t('IN_PROGRESS')}
           </p>
         </div>
       )
@@ -208,7 +208,7 @@ export default class S2IBuilder extends React.Component {
 
     return (
       <Panel
-        title={t('Building Image')}
+        title={t('IMAGE_BUILDING')}
         operations={this.renderBuilderSelect()}
       >
         <BuilderInfo config={config} className={className} />

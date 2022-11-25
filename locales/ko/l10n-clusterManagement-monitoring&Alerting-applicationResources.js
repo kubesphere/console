@@ -66,10 +66,13 @@ module.exports = {
   APPLICATION_RESOURCE_USAGE: 'Application Resource Usage',
   DEPLOYMENT: 'Deployment',
   DEPLOYMENT_PL: 'Deployments',
+  DEPLOYMENT_LOW: 'deployment',
   STATEFULSET: 'Statefulset',
   STATEFULSET_PL: 'Statefulsets',
+  STATEFULSET_LOW: 'statefulset',
   DAEMONSET: 'Daemonset',
   DAEMONSET_PL: 'Daemonsets',
+  DAEMONSET_LOW: 'daemonset',
   DEPLOYMENTS_VALUE: 'Deployments: {value}',
   STATEFULSETS_VALUE: 'Statefulsets: {value}',
   DAEMONSETS_VALUE: 'Daemonsets: {value}',
@@ -84,7 +87,7 @@ module.exports = {
   OUTBOUND_TRAFFIC: 'Outbound Traffic',
   INBOUND_TRAFFIC: 'Inbound Traffic',
   SORT_BY_NAMESPACE_CPU_USAGE: 'Sort by CPU usage',
-  SORT_BY_NAMESPACE_POD_COUNT: 'Sort by pod count',
+  SORT_BY_NAMESPACE_POD_COUNT: 'Sort by pod quota usage (%)',
   SORT_BY_NAMESPACE_NET_BYTES_RECEIVED: 'Sort by inbound traffic',
   SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: 'Sort by outbound traffic'
 };

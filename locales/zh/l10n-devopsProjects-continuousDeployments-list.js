@@ -40,6 +40,7 @@ module.exports = {
   SELF_HEAL: '自恢复',
   MANIFEST_FILE_PATH: '清单文件路径',
   MANIFEST_FILE_PATH_DESC: '设置清单文件路径。 ',
+  DIRECTORY_RECURSE: 'Directory recurse',
   REPO_EMPTY_DESC: '请选择一个代码仓库。',
   // List > Delete
   CONTINUOUS_DEPLOYMENT: '持续部署',
@@ -68,5 +69,25 @@ module.exports = {
   REPLACE_RESOURCE: '替换资源',
   REPLACE_RESOURCE_DESC: '替换已存在的资源。',
   EMPTY_CD_TITLE: '未发现持续部署',
-  SYNC_TRIGGERED: '资源同步触发成功。'
+  SYNC_TRIGGERED: '资源同步触发成功。',
+  // List > Parameter
+  PARAMETER_SETTINGS: 'Parameter Settings',
+  AUTO_PARAMETER: 'Auto',
+  AUTO_PARAMETER_DESC: 'Set automatically.',
+  HELM_PARAMETER: 'Helm',
+  HELM_PARAMETER_DESC: 'Set Helm parameter.',
+  KUSTOMIZE_PARAMETER: 'Kustomize',
+  KUSTOMIZE_PARAMETER_DESC: 'Set Kustomize parameters.',
+  PASS_CREDENTIALS: 'Pass Credentials',
+  IGNORE_MISSING_VALUE_FILES: 'Ignore Missing Value Files',
+  SKIP_CRDS: 'Skip Crds',
+  RELEASE_NAME: 'Release Name',
+  VALUE_FILES: 'Value Files',
+  FORCE_STRING: 'Force String',
+  FILE_PARAMETERS: 'File Parameters',
+  NAME_PREFIX: 'Name Prefix',
+  NAME_SUFFIX: 'Name Suffix',
+  IMAGES: 'Images',
+  COMMON_LABELS: 'Common Labels',
+  COMMON_ANNOTATIONS: 'Common Annotations'
 };

@@ -185,12 +185,8 @@ export default class Component extends React.Component {
                 <Tooltip
                   content={
                     jobDetail.type === 'Mirror'
-                      ? t(
-                          'Mirrored traffic is only receiving traffic, no service'
-                        )
-                      : t(
-                          'The current version is not online, you can let this version take over all traffic and bring it online.'
-                        )
+                      ? t('MIRRORED_TRAFFIC_TIP')
+                      : t('OFFLINE_TIP')
                   }
                 >
                   <span className="ks-tag ks-tag-disable">

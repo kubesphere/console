@@ -29,7 +29,7 @@ module.exports = {
   LAST_LOGIN: 'آخر تسجيل دخول',
   // List > Create
   USERNAME_DESC: 'اسم المستخدم يمكن أن يحتوي فقط على أحرف صغيرة وأرقام ووصلات (-) ونقاط (.) ، ويجب أن تبدأ وتنتهي بحرف صغير أو عدد. أقصى طول هو 32 حرفاً.',
-  PASSWORD_DESC: 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل، وحرف صغير واحد، وحرف كبير واحد. يجب أن يكون الطول 8 إلى 64 حرفاً.',
+  PASSWORD_DESC: 'The password must contain at least one number, one lowercase letter, one uppercase letter, and one special character (~!@#$%^&*()-_=+\\|[{}];:\'",<.>/? or space). The length must be 8 to 64 characters.',
   PASSWORD_INVALID_DESC: 'كلمة المرور غير صالحة. يجب أن تحتوي كلمة المرور على رقم واحد على الأقل، وحرف صغير واحد، وحرف كبير واحد. يجب أن يكون الطول 8 إلى 64 حرفاً.',
   PLATFORM_ROLE_DESC: 'تعيين دور المستخدم على منصة KubeSphere.',
   USER_SETTING_EMAIL_DESC: 'يمكن استخدام عنوان البريد الإلكتروني لتسجيل الدخول إلى وحدة تحكم KubeSphere.',
@@ -45,5 +45,6 @@ module.exports = {
   // List > Edit
   EDIT_USER: 'تعديل المستخدم',
   // List > Delete
-  USER_LOW: 'مستخدم'
+  USER_LOW: 'مستخدم',
+  DELETING_CURRENT_USER_NOT_ALLOWED: 'The current user cannot be deleted.'
 };

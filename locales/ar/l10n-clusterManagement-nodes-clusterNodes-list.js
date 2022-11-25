@@ -70,6 +70,9 @@ module.exports = {
   NO_MATCHING_RESULT_FOUND: 'No Matching Result Found',
   STATUS: 'Status',
   TOTAL_ITEMS: 'Total: {num}',
+  YOU_CAN_TRY_TO: 'You can try',
+  REFRESH_DATA: 'refreshing data',
+  CLEAR_SEARCH_CONDITIONS: 'clearing search conditions',
   // List > Edit Taints
   DUPLICATE_KEYS: 'The key already exists. Please enter another key.',
   EMPTY_KEY: 'Please enter a key.'

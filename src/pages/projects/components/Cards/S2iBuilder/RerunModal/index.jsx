@@ -86,10 +86,10 @@ export default class RerunModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Repo Url')}>
+        <Form.Item label={t('CODE_REPOSITORY_URL')}>
           <Input name="url" defaultValue={detail.sourceUrl} readOnly />
         </Form.Item>
-        <Form.Item label={t('New Tag')}>
+        <Form.Item label={t('NEW_TAG')}>
           <Input name="newTag" placeholder={t('NEW_TAG_DESC')} />
         </Form.Item>
         {this.renderEnableUpdate()}

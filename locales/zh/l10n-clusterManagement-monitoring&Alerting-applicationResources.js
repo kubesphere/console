@@ -66,10 +66,13 @@ module.exports = {
   APPLICATION_RESOURCE_USAGE: '应用资源用量',
   DEPLOYMENT: '部署',
   DEPLOYMENT_PL: '部署',
+  DEPLOYMENT_LOW: '部署',
   STATEFULSET: '有状态副本集',
   STATEFULSET_PL: '有状态副本集',
+  STATEFULSET_LOW: '有状态副本集',
   DAEMONSET: '守护进程集',
   DAEMONSET_PL: '守护进程集',
+  DAEMONSET_LOW: '守护进程集',
   DEPLOYMENTS_VALUE: '部署：{value}',
   STATEFULSETS_VALUE: '有状态副本集数量：{value}',
   DAEMONSETS_VALUE: '守护进程集数量：{value}',
@@ -84,7 +87,7 @@ module.exports = {
   OUTBOUND_TRAFFIC: '出站流量',
   INBOUND_TRAFFIC: '入站流量',
   SORT_BY_NAMESPACE_CPU_USAGE: '按 CPU 用量排行',
-  SORT_BY_NAMESPACE_POD_COUNT: '按容器组数量排行',
+  SORT_BY_NAMESPACE_POD_COUNT: '按容器组配额用量（%）排行',
   SORT_BY_NAMESPACE_NET_BYTES_RECEIVED: '按入站流量排行',
   SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: '按出站流量排行'
 };

@@ -176,7 +176,7 @@ export default class Overview extends React.Component {
               description={t('CLUSTER_VISIBILITY_SCAP')}
             />
             {globals.app.isMultiCluster &&
-              this.clusterRules.includes('manage') && (
+              this.enabledActions.includes('manage') && (
                 <Button onClick={this.editVisibility}>
                   {t('EDIT_VISIBILITY')}
                 </Button>

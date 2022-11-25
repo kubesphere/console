@@ -26,7 +26,7 @@ module.exports = {
   // More > Expand
   EXPAND_VOLUME: 'Ampliar volumen',
   EXPAND: 'Expand',
-  // Details
+  // Attributes
   PROVISIONER: 'Provisioner',
   // Resource Status
   AVAILABLE_CAPACITY: 'Capacidad disponible',

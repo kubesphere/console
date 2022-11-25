@@ -15,49 +15,27 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Modal } from 'components/Base'
+import { cloneDeep, get, set } from 'lodash'
 import { Notify } from '@kube-design/components'
+
+import { Modal } from 'components/Base'
+import FORM_TEMPLATES from 'utils/form.templates'
 import DeleteModal from 'components/Modals/Delete'
 import CodeRepoModal from 'components/Modals/CodeRepoCreate'
-import FORM_TEMPLATES from 'utils/form.templates'
-import { cloneDeep, get, set } from 'lodash'
 
-const getRepoUrl = (repoType, repo) => {
-  switch (repoType) {
-    case 'github':
-      return `https://github.com/${repo.owner}/${repo.repo}`
-    case 'gitlab':
-      return `${repo.server_name}/${repo.repo}`
-    case 'bitbucket_server':
-      // eslint-disable-next-line no-case-declarations
-      const uri = repo.api_uri
-      // eslint-disable-next-line no-case-declarations
-      let url = uri.substr(uri.length - 1) === '/' ? uri : `${uri}/`
-      if (!/https:\/\/bitbucket.org\/?/gm.test(url)) {
-        url += 'scm/'
-      }
-      return `${url}${repo.owner}/${repo.repo}`
-    default:
-      return repo.repo || repo.url || repo.remote
-  }
-}
+import { getRepoUrl, isSvnRepo } from '../utils/devops'
 
 const handleFormData = ({ data, module, devops }) => {
   const postData = FORM_TEMPLATES[module]({ namespace: devops })
   const repoType = data.sources.source_type
   const repo = get(data, `sources.${repoType}_source`, {})
-  const repoURL = repo.repo || repo.url || repo.remote
-  let url = ''
-
-  if (repoType === 'github' && /^https:\/\//.test(repoURL)) {
-    url = repoURL
-  } else {
-    url = getRepoUrl(repoType, repo)
-  }
 
   const spec = {
     provider: data.sources.source_type,
-    url,
+    owner: repo.owner,
+    repo: repo.repo,
+    server: repo.server_name,
+    url: repo.url || repo.remote,
     secret: {
       name: repo.credential_id || data.sources.credentialId,
       namespace: devops,
@@ -71,15 +49,40 @@ const handleFormData = ({ data, module, devops }) => {
 
 export default {
   'codeRepo.create': {
-    on({ store, cluster, devops, module, success, ...props }) {
+    on({
+      store,
+      cluster,
+      devops,
+      module,
+      success,
+      isComplexMode,
+      addSvnCodeRepoDirectly,
+      ...props
+    }) {
       const modal = Modal.open({
         onOk: async data => {
-          const postData = handleFormData({ data, module, devops })
+          if (isSvnRepo(data.sources.source_type) && addSvnCodeRepoDirectly) {
+            addSvnCodeRepoDirectly(data)
+            Notify.success({ content: t('CREATE_SUCCESSFUL') })
+            success && success()
+            Modal.close(modal)
+            return
+          }
 
-          await store.create({ data: postData, devops, cluster })
+          const postData = handleFormData({ data, module, devops })
+          const { metadata, spec } = await store.create({
+            data: postData,
+            devops,
+            cluster,
+          })
 
           Notify.success({ content: t('CREATE_SUCCESSFUL') })
-          success && success()
+          success &&
+            success(
+              isComplexMode
+                ? `${metadata.name}(${getRepoUrl(spec)})`
+                : undefined
+            )
           Modal.close(modal)
         },
         store,
@@ -146,7 +149,7 @@ export default {
         onOk: async () => {
           await store.delete({ ...detail, devops })
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_SUCCESSFUL') })
+          Notify.success({ content: t('DELETED_SUCCESSFULLY') })
           success && success()
         },
         store,

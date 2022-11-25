@@ -85,7 +85,7 @@ export default {
         steps: FORM_STEPS,
         noCodeEdit: true,
         isEdit: !!detail,
-        okBtnText: detail ? t('OK') : t('Create'),
+        okBtnText: detail ? t('OK') : t('CREATE'),
         store,
         ...props,
       })

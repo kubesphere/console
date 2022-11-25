@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   NODE_IP_ADDRESS: 'Kaynak IP Adresi',
   CLUSTER: 'Küme',
   // Resource Status > Containers
@@ -26,11 +26,14 @@ module.exports = {
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: 'Kapsayıcı şu anda gerçek zamanlı kayıtları desteklemiyor. Lütfen daha sonra tekrar deneyiniz.',
   CONTAINER_LOGS: 'Konteyner Kayıtları',
-  // Resource Status > Details > Container Details > Details
+  // Resource Status > Details > Container Details > Attributes
   COMMAND: 'Komut',
   IMAGE_ID: 'Resim Kimliği',
   IMAGE_PULL_POLICY: 'Resim Çekme Politikası',
   CONTAINER_DETAILS_PAGE_SCAP: 'Konteyner ayrıntıları sayfası.',
+  CPU_VALUE: 'CPU: {value, plural, =1 {1 core} other {# cores}}',
+  MEMORY_VALUE: 'Memory: {value}',
+  NVIDIA_COM_GPU_VALUE: 'GPU: {value}',
   // Resource Status > Details > Container Details > Terminal
   LOADING: 'Yükleniyor...',
   RESOURCE_LIMITS: 'Özkaynak sınırları',
@@ -43,11 +46,12 @@ module.exports = {
   LIVENESS_PROBE: 'Liveness Probe',
   READINESS_PROBE: 'Readiness Probe',
   STARTUP_PROBE: 'Startup Probe',
+  REQUEST_TYPE: 'Request type',
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
-  NO_RESOURCE: '{kaynak} yok.',
-  LOG_DATA_LOW: 'kayıt verileri',
+  NO_LOG_DATA_FOUND: 'No Log Data Found',
+  NO_LOG_DATA_FOUND_TIP: 'No log data is found.',
   // Resource Status > Volumes
   VOLUME_PL: 'Birimler',
   TYPE_CONFIGMAP: 'Birim türü: configmap',

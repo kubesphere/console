@@ -29,7 +29,7 @@ const PATH = '/clusters/:cluster/monitor-cluster'
 export default [
   {
     path: `${PATH}/overview`,
-    title: 'Overview',
+    title: 'OVERVIEW',
     component: Overview,
     exact: true,
   },

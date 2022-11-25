@@ -18,8 +18,8 @@
 
 import React from 'react'
 import { Icon } from '@kube-design/components'
-import classNames from 'classnames'
 import { ICON_TYPES } from 'utils/constants'
+import { Switch } from 'components/Base'
 import styles from './index.scss'
 
 export default class IsolateInfo extends React.Component {
@@ -58,13 +58,12 @@ export default class IsolateInfo extends React.Component {
           </div>
         </div>
         {canEdit && (
-          <div
-            className={classNames(styles.toggle, opened ? '' : styles.closed)}
-            onClick={this.toggle}
-          >
-            <span>{opened ? t('ENABLED') : t('DISABLED')}</span>
-            <label className={styles.toggleop} />
-          </div>
+          <Switch
+            className={styles.switch}
+            text={opened ? t('ENABLED') : t('DISABLED')}
+            onChange={this.toggle}
+            checked={opened}
+          />
         )}
       </div>
     )

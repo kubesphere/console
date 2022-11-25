@@ -18,7 +18,7 @@
 module.exports = {
   // Edit Information
   CODE_REPOSITORY: 'Kod Deposu',
-  // Details
+  // Attributes
   TASK_STATUS: 'Görev Durumu',
   NOT_RUNNING: 'Çalışmıyor',
   QUEUED: 'Kuyrukta',
@@ -48,11 +48,13 @@ module.exports = {
   NO_PIPELINE_CONFIG_FILE_TIP: 'İşlem hattı yapılandırma dosyası bulunamadı.',
   // Task Status > Edit Pipeline
   EDIT_PIPELINE: 'İş hattını Düzenle',
+  JENKINS_UNAVAILABLE: 'Jenkins is unready.',
   AGENT_TYPE_DESC: `Aracı Bölümü belirtir
     tüm iş hattı veya belirli bir aşamanın Jenkins ortamında yürütüleceği yer,
     Agent bölümünün nereye yerleştirildiğine bağlı olarak.
     Bu kısım, iş hattı bloğu içinde en üst düzeyde tanımlanmalıdır,
     ancak sahne seviyesi kullanımı isteğe bağlıdır. `,
+  NOT_VALID_REPO: 'Code repo is not valid and cannot be created',
   CREATE_PIPELINE_DESC: 'İş hattı ile derleyin, test edin ve devreye alın',
   CI: 'Sürekli Entegrasyon',
   CI_DESC: 'Sürekli entegrasyon (CI), kaynak kodu değişikliklerinden sonra otomatik olarak algılama, çekme, oluşturma ve (çoğu durumda) birim testi sürecidir.',
@@ -112,7 +114,6 @@ Bu nedenle, bu adım çoğunlukla bu tür kaynakların dağıtımını işlemek 
   RUN: 'Çalıştır',
   ACTIVITY_EMPTY_TIP: 'İş hattı çalışmıyor.',
   COMMIT: 'Yap',
-  DURATION: 'Süre',
   LAST_MESSAGE: 'Son Mesaj',
   RUN_ID: 'Oturum Kimliği',
   STOP_PIPELINE_SUCCESSFUL: 'İş Hattı başarıyla durduruldu.',
@@ -163,5 +164,6 @@ Jenkinsfile'nin operasyonel gereksinimlere göre girilen parametreler bölümü.
   LINE_VALUE: 'Hat: {value}',
   PASSED: 'Geçti',
   // Pull Requests
-  PULL_REQUEST_PL: 'Değişiklik İsteği'
+  PULL_REQUEST_PL: 'Değişiklik İsteği',
+  FAILED_CHECK_SCRIPT_COMPILE: 'The check of script compile failed, if you want to bypass the step, please click the continue button'
 };

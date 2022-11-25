@@ -17,17 +17,17 @@
  */
 
 import React from 'react'
-
 import { toJS } from 'mobx'
 import { cloneDeep, get, isEmpty, omit } from 'lodash'
-
 import { Button, Notify } from '@kube-design/components'
+
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import PipelineStore from 'stores/devops/pipelines'
 import Table from 'components/Tables/List'
 import Empty from 'components/Tables/Base/Empty'
 import Health from 'devops/components/Health'
+import CodeStore from 'stores/codeRepo'
+import PipelineStore from 'stores/devops/pipelines'
 
 import { withDevOpsList, ListPage } from 'components/HOCs/withList'
 
@@ -48,7 +48,9 @@ export default class PipelinesList extends React.Component {
       enable_timer_trigger: false,
       enable_discarder: true,
     }
+    this.codeStore = new CodeStore()
     this.refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+    this.codeRepoSelectorRef = React.createRef()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -237,8 +239,30 @@ export default class PipelinesList extends React.Component {
       devops: this.devops,
       cluster: this.cluster,
       noCodeEdit: true,
-      success: () => {
-        this.getData()
+      success: this.getData,
+      codeRepoSelectorRef: this.codeRepoSelectorRef,
+      showCodeRepoCreate: this.showCodeRepoCreate,
+    })
+  }
+
+  showCodeRepoCreate = () => {
+    const { trigger } = this.props
+    const {
+      getRepoList,
+      addSvnCodeRepoOption,
+    } = this.codeRepoSelectorRef.current
+
+    trigger('codeRepo.create', {
+      title: t('IMPORT_CODE_REPO'),
+      devops: this.devops,
+      cluster: this.cluster,
+      module: 'codeRepos',
+      noCodeEdit: true,
+      store: this.codeStore,
+      isComplexMode: true,
+      addSvnCodeRepoDirectly: addSvnCodeRepoOption,
+      success: curRepo => {
+        getRepoList(undefined, curRepo)
       },
     })
   }

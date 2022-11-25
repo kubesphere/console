@@ -20,6 +20,7 @@ import React from 'react'
 
 import DetailPage from 'devops/containers/Base/Detail'
 import { trigger } from 'utils/action'
+import { isArgo } from 'utils/devops'
 import CDStore from 'stores/cd'
 import { observer, inject } from 'mobx-react'
 import { get, pick } from 'lodash'
@@ -81,115 +82,218 @@ export default class CDDetail extends React.Component {
     this.clusterStore.fetchList({ limit: -1 })
   }
 
-  getOperations = () => [
-    {
-      key: 'edit',
-      type: 'control',
-      text: t('EDIT_INFORMATION'),
-      action: 'edit',
-      onClick: () => {
-        this.trigger('resource.baseinfo.edit', {
-          formTemplate: this.store.detail,
-          detail: { ...this.store.detail, cluster: this.cluster },
-          success: this.fetchData,
-        })
-      },
-    },
-    {
-      key: 'sync',
-      icon: 'changing-over',
-      text: t('SYNC'),
-      action: 'edit',
-      onClick: () => {
-        this.trigger('cd.sync', {
-          title: t('SYNC_RESOURCE'),
-          formTemplate: pick(toJS(this.store.detail), 'repoSource'),
-          devops: this.devops,
-          cluster: this.cluster,
-          noCodeEdit: true,
-          application: this.store.detail.name,
-          success: this.fetchData,
-        })
-      },
-    },
-    {
-      key: 'editYaml',
-      icon: 'pen',
-      text: t('EDIT_YAML'),
-      action: 'edit',
-      onClick: () => {
-        this.trigger('resource.yaml.edit', {
-          detail: { ...this.store.detail, cluster: this.cluster },
-          success: this.fetchData,
-        })
-      },
-    },
-    {
-      key: 'delete',
-      icon: 'trash',
-      text: t('DELETE'),
-      action: 'delete',
-      onClick: () => {
-        this.trigger('cd.delete', {
-          type: 'CONTINUOUS_DEPLOYMENT',
-          detail: { ...this.store.detail, cluster: this.cluster },
-          success: () => this.routing.push(this.listUrl),
-        })
-      },
-    },
-  ]
+  getOperations = () => {
+    return isArgo
+      ? [
+          {
+            key: 'edit',
+            type: 'control',
+            text: t('EDIT_INFORMATION'),
+            action: 'edit',
+            onClick: () => {
+              this.trigger('resource.baseinfo.edit', {
+                formTemplate: this.store.detail,
+                detail: { ...this.store.detail, cluster: this.cluster },
+                success: this.fetchData,
+              })
+            },
+          },
+          {
+            key: 'sync',
+            icon: 'changing-over',
+            text: t('SYNC'),
+            action: 'edit',
+            onClick: () => {
+              this.trigger('cd.sync', {
+                title: t('SYNC_RESOURCE'),
+                formTemplate: pick(toJS(this.store.detail), 'repoSource'),
+                devops: this.devops,
+                cluster: this.cluster,
+                noCodeEdit: true,
+                application: this.store.detail.name,
+                success: this.fetchData,
+              })
+            },
+          },
+          {
+            key: 'editSettings',
+            icon: 'pen',
+            text: t('EDIT_SETTINGS'),
+            action: 'edit',
+            onClick: () => {
+              this.trigger('cd.edit', {
+                detail: { ...this.store.detail, cluster: this.cluster },
+                store: this.store,
+                devops: this.devops,
+                module: 'cds',
+                cluster: this.cluster,
+                success: this.fetchData,
+              })
+            },
+          },
+          {
+            key: 'editYaml',
+            icon: 'pen',
+            text: t('EDIT_YAML'),
+            action: 'edit',
+            onClick: () => {
+              this.trigger('resource.yaml.edit', {
+                detail: { ...this.store.detail, cluster: this.cluster },
+                success: this.fetchData,
+              })
+            },
+          },
+          {
+            key: 'delete',
+            icon: 'trash',
+            text: t('DELETE'),
+            action: 'delete',
+            onClick: () => {
+              this.trigger('cd.delete', {
+                type: 'CONTINUOUS_DEPLOYMENT',
+                detail: { ...this.store.detail, cluster: this.cluster },
+                success: () => this.routing.push(this.listUrl),
+              })
+            },
+          },
+        ]
+      : [
+          {
+            key: 'edit',
+            type: 'control',
+            text: t('EDIT_INFORMATION'),
+            action: 'edit',
+            onClick: () => {
+              this.trigger('resource.baseinfo.edit', {
+                formTemplate: this.store.detail,
+                detail: { ...this.store.detail, cluster: this.cluster },
+                success: this.fetchData,
+              })
+            },
+          },
+          {
+            key: 'editSettings',
+            icon: 'pen',
+            text: t('EDIT_SETTINGS'),
+            action: 'edit',
+            onClick: () => {
+              this.trigger('cd.edit', {
+                detail: { ...this.store.detail, cluster: this.cluster },
+                store: this.store,
+                devops: this.devops,
+                module: 'cds',
+                cluster: this.cluster,
+                success: this.fetchData,
+              })
+            },
+          },
+          {
+            key: 'editYaml',
+            icon: 'pen',
+            text: t('EDIT_YAML'),
+            action: 'edit',
+            onClick: () => {
+              this.trigger('resource.yaml.edit', {
+                detail: { ...this.store.detail, cluster: this.cluster },
+                success: this.fetchData,
+              })
+            },
+          },
+          {
+            key: 'delete',
+            icon: 'trash',
+            text: t('DELETE'),
+            action: 'delete',
+            onClick: () => {
+              this.trigger('cd.delete', {
+                type: 'CONTINUOUS_DEPLOYMENT',
+                detail: { ...this.store.detail, cluster: this.cluster },
+                success: () => this.routing.push(this.listUrl),
+              })
+            },
+          },
+        ]
+  }
 
   getAttrs = () => {
     const { detail } = this.store
     const reconciledAt = get(detail, 'status.reconciledAt')
 
-    return [
-      {
-        name: t('HEALTH_STATUS'),
-        value: (
-          <StatusText
-            type={detail.healthStatus}
-            label={detail.healthStatus}
-            noBolder
-          />
-        ),
-      },
-      {
-        name: t('DEPLOY_LOCATION'),
-        value: (
-          <Destination
-            destination={detail.destination}
-            clustersDetail={this.clusters}
-          />
-        ),
-      },
-      {
-        name: t('CODE_REPOSITORY_URL'),
-        value: get(detail, 'repoSource.repoURL', '-'),
-      },
-      {
-        name: t('REVISION'),
-        value: get(detail, 'repoSource.targetRevision', '-'),
-      },
-      {
-        name: t('CODE_RELATIVE_PATH'),
-        value: get(detail, 'repoSource.path', '-'),
-      },
-      {
-        name: t('CREATION_TIME_TCAP'),
-        value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
-      },
-      {
-        name: t('UPDATE_TIME_TCAP'),
-        value: reconciledAt
-          ? getLocalTime(reconciledAt).format('YYYY-MM-DD HH:mm:ss')
-          : '-',
-      },
-      {
-        name: t('CREATOR'),
-        value: detail.creator,
-      },
-    ]
+    return isArgo
+      ? [
+          {
+            name: t('HEALTH_STATUS'),
+            value: (
+              <StatusText
+                type={detail.healthStatus}
+                label={detail.healthStatus}
+                noBolder
+              />
+            ),
+          },
+          {
+            name: t('DEPLOY_LOCATION'),
+            value: (
+              <Destination
+                destination={detail.destination}
+                clustersDetail={this.clusters}
+              />
+            ),
+          },
+          {
+            name: t('CODE_REPOSITORY_URL'),
+            value: get(detail, 'repoSource.repoURL', '-'),
+          },
+          {
+            name: t('REVISION'),
+            value: get(detail, 'repoSource.targetRevision', '-'),
+          },
+          {
+            name: t('CODE_RELATIVE_PATH'),
+            value: get(detail, 'repoSource.path', '-'),
+          },
+          {
+            name: t('CREATION_TIME_TCAP'),
+            value: getLocalTime(detail.createTime).format(
+              'YYYY-MM-DD HH:mm:ss'
+            ),
+          },
+          {
+            name: t('UPDATE_TIME_TCAP'),
+            value: reconciledAt
+              ? getLocalTime(reconciledAt).format('YYYY-MM-DD HH:mm:ss')
+              : '-',
+          },
+          {
+            name: t('CREATOR'),
+            value: detail.creator,
+          },
+        ]
+      : [
+          {
+            name: t('DEPLOY_LOCATION'),
+            value: (
+              <Destination
+                destination={detail.destination}
+                clustersDetail={this.clusters}
+              />
+            ),
+          },
+          {
+            name: t('REVISION'),
+            value: get(detail, 'fluxLastRevision', '-'),
+          },
+          {
+            name: t('CREATION_TIME_TCAP'),
+            value: getLocalTime(detail.createTime).format(
+              'YYYY-MM-DD HH:mm:ss'
+            ),
+          },
+          {
+            name: t('CREATOR'),
+            value: detail.creator,
+          },
+        ]
   }
 
   render() {

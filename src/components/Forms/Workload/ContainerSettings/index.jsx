@@ -87,6 +87,7 @@ export default class ContainerSetting extends React.Component {
     }
 
     this.handleContainer = this.handleContainer.bind(this)
+    this.containerRef = React.createRef()
   }
 
   componentDidMount() {
@@ -98,6 +99,21 @@ export default class ContainerSetting extends React.Component {
     }
     if (store.renderScheduleTab) {
       this.props.store.setMetadata(this.formTemplate.metadata)
+    }
+  }
+
+  componentDidUpdate() {
+    const containerRef = this.containerRef.current
+    const error = get(containerRef, 'state.error', null)
+
+    const containers = get(
+      this.props.formTemplate,
+      `${this.prefix}spec.containers`,
+      []
+    )
+
+    if (error && containers.length > 0) {
+      containerRef.setState({ error: null })
     }
   }
 
@@ -139,6 +155,21 @@ export default class ContainerSetting extends React.Component {
   get clusters() {
     const { projectDetail } = this.props
     return projectDetail.clusters.map(cluster => cluster.name)
+  }
+
+  get containers() {
+    const containers = get(
+      this.fedFormTemplate,
+      `${this.prefix}spec.containers`,
+      []
+    )
+    const initContainers = get(
+      this.fedFormTemplate,
+      `${this.prefix}spec.initContainers`,
+      []
+    )
+
+    return concat(containers, initContainers)
   }
 
   initService() {
@@ -441,8 +472,8 @@ export default class ContainerSetting extends React.Component {
     const serivcePrefix = this.props.isFederated ? 'spec.template.' : ''
 
     set(serviceTemplate, `${serivcePrefix}spec.ports`, servicePorts)
-
     const labels = get(this.formTemplate, 'metadata.labels', {})
+
     const podLabels = get(
       this.fedFormTemplate,
       `${this.prefix}metadata.labels`,
@@ -584,6 +615,7 @@ export default class ContainerSetting extends React.Component {
         workspaceQuota={this.workspaceQuota}
         cluster={cluster}
         supportGpuSelect={supportGpuSelect}
+        containers={this.containers}
         {...params}
       />
     )
@@ -678,6 +710,7 @@ export default class ContainerSetting extends React.Component {
       <Form.Item
         label={t('CONTAINERS')}
         rules={[{ validator: this.containersValidator }]}
+        ref={this.containerRef}
       >
         <ContainerList
           name={`${this.prefix}spec.containers`}

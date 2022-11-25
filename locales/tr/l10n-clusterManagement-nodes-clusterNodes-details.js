@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
-  DETAILS: 'Detaylar',
+  // Attributes
+  ATTRIBUTES: 'Attributes',
   ARCHITECTURE: 'Mimari',
   OS_VERSION: 'İşletim sistemi sürümü',
   OS_TYPE: 'İşletim Sistemi Tipi',
@@ -36,16 +36,18 @@ module.exports = {
   TAINTS: 'Kusurlar',
   EDIT_TAINTS: 'Kusurları Düzenle',
   TAINTS_DESC: 'Bölmelerin düğümlere programlanmaması veya mümkünse düğümlere programlanmaması için düğümlere kusurlar ekleyin. Düğümlere kusurlar ekledikten sonra, bölmenin belirli kusurlara sahip düğümlere programlanmasına izin vermek için bir bölmede toleranslar ayarlayabilirsiniz.',
-  ADD_TAINT: 'Kusur Ekle',
   COMMON_TAINTS: 'Yaygın Kusurlar',
   NOSCHEDULE: 'Zamanlamayı Engelle',
   PREFER_NOSCHEDULE: 'Mümkünse zamanlamayı önleyin',
   NOEXECUTE: 'Zamanlamayı önleyin ve mevcut bölmeleri çıkarın',
+  TAINT_SELECT_TIPS: 'Join Common Taints',
   TAINTS_TIPS: '<b>Zamanlamayı engelle</b><br />Tüm bölmelerin düğüme programlanmasını engeller.<br /><br /><b>Mümkünse zamanlamayı engelle</b><br />Tüm bölmelerin mümkünse düğüme programlanıyor.<br /><br /><b>Zamanlamayı engelle ve mevcut bölmeleri çıkar</b><br />Tüm bölmelerin düğüme programlanmasını önler ve düğümdeki tüm mevcut bölmeleri çıkar.',
+  TAINT_DELETE_TIP: 'Delete taint',
   // Running Status > Resource Usage
   RESOURCE_USAGE: 'Kaynak Kullanımı',
   MAXIMUM_PODS: 'Maksimum Kapsüller',
   MAXIMUM_PODS_SCAP: 'Maksimum Kapsüller',
+  DISK_USAGE_SCAP: 'Disk usage',
   // Running Status > Allocated resources
   MEMORY_REQUEST_SCAP: 'Bellek isteği',
   MEMORY_LIMIT_SCAP: 'Bellek sınırı',
@@ -66,11 +68,16 @@ module.exports = {
   NODE_PIDPRESSURE_DESC: 'Düğümde oluşturulmasına izin verilen işlem sayısının eşikten az olup olmadığı.',
   NODE_READY: 'Hazırlık',
   NODE_READY_DESC: 'Düğümün bölmeleri kabul etmeye hazır olup olmadığı.',
+  LAST_HEARTBEAT_VALUE: 'Last Heartbeat: {value}',
   // Running Status > Taints
   NO_TAINTS_TIPS: 'Herhangi bir kusur bulunamadı.',
   POLICY: 'Politika',
   // Pods
   READY_VALUE: 'Hazır:{hazırSayısı}/{toplam}',
   STATUS_VALUE: 'Durum:{değer}',
-  CREATED_AGO: 'Yaratılan {diff}'
+  // Metadata
+  // Monitoring
+  USAGE: 'Usage',
+  OUT: 'Out',
+  IN: 'İçinde'
 };

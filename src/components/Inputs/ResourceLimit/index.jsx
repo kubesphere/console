@@ -40,8 +40,6 @@ import {
 
 import { cpuFormat, memoryFormat } from 'utils'
 
-import Slider from './Slider'
-
 import styles from './index.scss'
 
 export default class ResourceLimit extends React.Component {
@@ -106,11 +104,14 @@ export default class ResourceLimit extends React.Component {
     if (formatNum === Infinity) {
       return formatNum
     }
+
     const inputNum = formatNum && isMemory ? formatNum.slice(0, -2) : formatNum
+
     if (inputNum && String(inputNum).endsWith('.')) {
       const number = formatFn(formatNum, unit)
       return `${number}.`
     }
+
     if (inputNum && String(inputNum).endsWith('.0')) {
       const number = formatFn(formatNum, unit)
       return `${number}.0`
@@ -224,11 +225,12 @@ export default class ResourceLimit extends React.Component {
   }
 
   static getDefaultRequestValue(props, key) {
-    return get(
+    const value = get(
       props,
       `value.requests.${key}`,
-      get(props, `defaultValue.requests.${key}`) ?? 0
+      get(props, `defaultValue.requests.${key}`) ?? ''
     )
+    return value
   }
 
   static getDefaultLimitValue(props, key) {
@@ -296,55 +298,12 @@ export default class ResourceLimit extends React.Component {
     return this.state.gpu.type
   }
 
-  getCPUProps() {
-    const { requests, limits } = this.state
-    return {
-      marks: [
-        { value: 0, label: t('NO_REQUEST'), weight: 2 },
-        { value: 0.2, label: 0.2, weight: 2 },
-        { value: 0.5, label: 0.5, weight: 2 },
-        { value: 1, label: 1, weight: 2 },
-        { value: 2, label: 2, weight: 2 },
-        { value: 3, label: 3, weight: 2 },
-        { value: 4, label: 4 },
-        { value: Infinity, label: t('NO_LIMIT') },
-      ],
-      value: [requests.cpu || 0, limits.cpu || Infinity],
-      onChange: this.handleCPUChange,
-      valueFormatter: this.cpuFormatter,
-      ...this.props.cpuProps,
-      unit: this.cpuUnit,
-    }
-  }
-
-  getMemoryProps() {
-    const { requests, limits } = this.state
-    return {
-      marks: [
-        { value: 0, label: t('NO_REQUEST'), weight: 2 },
-        { value: 200, label: 200, weight: 1 },
-        { value: 500, label: 500, weight: 1 },
-        { value: 1000, label: 1000, weight: 2 },
-        { value: 2000, label: 2000, weight: 2 },
-        { value: 4000, label: 4000, weight: 2 },
-        { value: 6000, label: 6000, weight: 1 },
-        { value: 8000, label: 8000 },
-        { value: Infinity, label: t('NO_LIMIT') },
-      ],
-      value: [requests.memory || 0, limits.memory || Infinity],
-      onChange: this.handleMemoryChange,
-      valueFormatter: this.memoryFormatter,
-      ...this.props.memoryProps,
-      unit: this.memoryUnit,
-    }
-  }
-
   getLimit(value) {
     return isFinite(Number(value)) ? value : ''
   }
 
   getRequest(value) {
-    return value === 0 ? '' : value
+    return value === null || value === undefined ? '' : value
   }
 
   checkError = state => {
@@ -427,10 +386,8 @@ export default class ResourceLimit extends React.Component {
       workspaceLimitCheck: wsL,
       gpu,
     } = this.state
-    const { unit: memoryUnit } = this.getMemoryProps()
-    let { unit: cpuUnit } = this.getCPUProps()
-
-    cpuUnit = cpuUnit === 'Core' ? '' : cpuUnit
+    const memoryUnit = this.memoryUnit
+    const cpuUnit = this.cpuUnit === 'Core' ? '' : this.cpuUnit
 
     const errorList = this.getWorkspaceCheckError()
     errorList.length > 0
@@ -438,16 +395,27 @@ export default class ResourceLimit extends React.Component {
       : onError(cpuError || memoryError)
 
     const result = {}
-    if (requests.cpu > 0 && requests.cpu < Infinity) {
+
+    if (requests.cpu !== '' && requests.cpu >= 0 && requests.cpu < Infinity) {
       set(result, 'requests.cpu', `${requests.cpu}${cpuUnit}`)
     }
-    if (requests.memory > 0 && requests.memory < Infinity) {
+
+    if (
+      requests.memory !== '' &&
+      requests.memory >= 0 &&
+      requests.memory < Infinity
+    ) {
       set(result, 'requests.memory', `${requests.memory}${memoryUnit}`)
     }
-    if (limits.cpu > 0 && limits.cpu < Infinity) {
+
+    if (limits.cpu !== '' && limits.cpu >= 0 && limits.cpu < Infinity) {
       set(result, 'limits.cpu', `${limits.cpu}${cpuUnit}`)
     }
-    if (limits.memory > 0 && limits.memory < Infinity) {
+    if (
+      limits.memory !== '' &&
+      limits.memory >= 0 &&
+      limits.memory < Infinity
+    ) {
       set(result, 'limits.memory', `${limits.memory}${memoryUnit}`)
     }
 
@@ -472,8 +440,8 @@ export default class ResourceLimit extends React.Component {
   handleCPUChange = value => {
     this.setState(
       ({ requests, limits }) => ({
-        requests: { ...requests, cpu: value[0] },
-        limits: { ...limits, cpu: value[1] },
+        requests: { ...requests, cpu: value[0] === 0 ? '' : value[0] },
+        limits: { ...limits, cpu: value[1] === 0 ? '' : value[1] },
       }),
       this.checkAndTrigger
     )
@@ -482,8 +450,8 @@ export default class ResourceLimit extends React.Component {
   handleMemoryChange = value => {
     this.setState(
       ({ requests, limits }) => ({
-        requests: { ...requests, memory: value[0] },
-        limits: { ...limits, memory: value[1] },
+        requests: { ...requests, memory: value[0] === 0 ? '' : value[0] },
+        limits: { ...limits, memory: value[1] === 0 ? '' : value[1] },
       }),
       this.checkAndTrigger
     )
@@ -492,7 +460,8 @@ export default class ResourceLimit extends React.Component {
   handleInputChange = (e, value) => {
     let inputNum
     const name = e.target.name
-    if (value === '') {
+
+    if (value === '' || value === undefined) {
       inputNum = ''
     } else {
       const number = /^(([1-9]{1}\d*)|(0{1}))(\.\d{0,2})?$/.exec(value)
@@ -574,7 +543,7 @@ export default class ResourceLimit extends React.Component {
       <>
         <div>
           <div className={styles.message}>
-            <span>{t('WS_RESOURCE_REQUESTS')}:</span>
+            <span>{t('RESOURCE_REQUESTS')}:</span>
             <span>
               CPU&nbsp;
               {this.renderLimitTip(wsR.cpu, cpuUnit)},&nbsp;
@@ -583,7 +552,7 @@ export default class ResourceLimit extends React.Component {
             </span>
           </div>
           <div className={styles.message}>
-            <span>{t('WS_RESOURCE_LIMITS')}:</span>
+            <span>{t('RESOURCE_LIMITS')}:</span>
             <span>
               CPU&nbsp;
               {this.renderLimitTip(wsL.cpu, cpuUnit)},&nbsp;
@@ -654,16 +623,6 @@ export default class ResourceLimit extends React.Component {
 
     return (
       <div className={styles.wrapper}>
-        <div className={styles.sliderWrapper}>
-          <div>CPU ({this.cpuUnit})</div>
-          <Slider {...this.getCPUProps()} />
-        </div>
-        <div className={styles.sliderWrapper}>
-          <div>
-            {t('MEMORY')} ({this.memoryUnit})
-          </div>
-          <Slider {...this.getMemoryProps()} />
-        </div>
         <div className={styles.inputWrapper}>
           <Columns className="is-gapless">
             <Column>

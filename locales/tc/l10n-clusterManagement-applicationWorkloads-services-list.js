@@ -23,7 +23,7 @@ module.exports = {
   SERVICE_EMPTY_DESC: '請創建一個服務。',
   UNKNOWN: '未知',
   EXTERNAL_ACCESS: '外網訪問',
-  INTERNAL_ACCESS_PL: '內網訪問',
+  INTERNAL_ACCESS: 'Internal Access',
   // List > Edit YAML
   // List > Edit Service
   UNKNOWN_SERVICE_TYPE: '未知服務類型',
@@ -56,6 +56,7 @@ module.exports = {
   // List > Create > Service Settings > Workload Selector > View Details
   TOTAL_WORKLOADS_VALUE: '工作負載總數：{count}',
   // List > Create > Advanced Settings
+  OPENELB_NOT_READY: 'OpenELB is not installed. Please install OpenELB.',
   SESSION_PERSISTENCE: 'Session Persistence',
   MAXIMUM_STICKINESS_DURATION: '最大會話保持時間（s）',
   SESSION_PERSISTENCE_DESC: 'Set the system to forward all requests from the same client to the same pod within a specified duration.',
@@ -63,5 +64,5 @@ module.exports = {
   ACCESS_NODEPORT_TIP: '通過集群節點的對應通訊埠來訪問服務。',
   ACCESS_LOADBALANCER_TIP: '通過負載平衡器來訪問服務。',
   WORKLOAD_ANNOTATIONS: '工作負載註釋',
-  LABEL_FORMAT_DESC: '標籤的鍵和值只能包含字母、數字、連字號（-）、底線（_）和句點（.），必須以數字或字母開頭和結尾。鍵和值分别最長 63 個字元（如鍵包含域名則最長 253 個字元）。'
+  LABEL_FORMAT_DESC: 'The key and value of a label can contain only letters, numbers, hyphens (-), underscores (_), and dots (.), and must start and end with a letter or number. The maximum length of each key and each value is 63 characters (if the key contains a domain name, the maximum length is 253 characters).'
 };

@@ -123,7 +123,7 @@ export default class ResourceCard extends React.Component {
     const config = getAreaChartOps({
       title: '',
       unit: '',
-      legend: ['Count'],
+      legend: ['COUNT'],
       data: metrics,
     })
 

@@ -16,13 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   CREATOR: '創建者',
   NO: '否',
   // More > Roll Back
   // More > Edit Autoscaling
   // More > Edit Settings > Update Strategy
   // More > Edit Settings > Containers
+  EDIT_CONTAINER: 'Edit Container',
   // More > Edit Settings > Volumes
   // More > Edit Settings > Pod Scheduling Rules
   // More > Edit YAML
@@ -33,6 +34,7 @@ module.exports = {
   // Resource Status > Replica Status
   // Resource Status > Ports
   // Resource Status > Pods
+  NODE: '節點',
   // Revision Records
   SERIAL_NUMBER: '序號',
   CREATED_TIME: '創建於 {diff}',
@@ -40,5 +42,7 @@ module.exports = {
   // Monitoring
   // Environment Variables
   // Events
-  EVENT_PL: '事件'
+  EVENT_PL: '事件',
+  EVENT_NORMAL: 'Normal',
+  EVENT_WARNING: '一般告警'
 };

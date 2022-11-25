@@ -23,6 +23,7 @@ const {
   getOAuthInfo,
   getClusterRole,
   getSupportGpuList,
+  getGitOpsEngine,
 } = require('../services/session')
 
 const {
@@ -38,11 +39,13 @@ const { client: clientConfig } = getServerConfig()
 const renderView = async ctx => {
   try {
     const clusterRole = await getClusterRole(ctx)
-    const [user, ksConfig, runtime, supportGpuType] = await Promise.all([
-      getCurrentUser(ctx, clusterRole),
-      getKSConfig(),
+    const ksConfig = await getKSConfig()
+
+    const [user, runtime, supportGpuType, gitopsEngine] = await Promise.all([
+      getCurrentUser(ctx, clusterRole, ksConfig.multicluster),
       getK8sRuntime(ctx),
       getSupportGpuList(ctx),
+      getGitOpsEngine(ctx),
     ])
 
     await renderIndex(ctx, {
@@ -50,7 +53,7 @@ const renderView = async ctx => {
       user,
       runtime,
       clusterRole,
-      config: { ...clientConfig, supportGpuType },
+      config: { ...clientConfig, supportGpuType, gitopsEngine },
     })
   } catch (err) {
     renderViewErr(ctx, err)

@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Button, Loading } from '@kube-design/components'
+import { Button, Loading, Tooltip } from '@kube-design/components'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { isEmpty, debounce } from 'lodash'
@@ -45,6 +45,16 @@ export default class Pipeline extends React.Component {
       cluster,
       devops,
     })
+  }
+
+  get editable() {
+    return this.enabledActions.includes('edit')
+  }
+
+  get jenkinsFileMode() {
+    return this.store.pipelineConfig.metadata.annotations[
+      'pipeline.devops.kubesphere.io/jenkinsfile.edit.mode'
+    ]
   }
 
   get isMultibranch() {
@@ -101,12 +111,12 @@ export default class Pipeline extends React.Component {
   }
 
   handleJenkinsFileModal = () => {
-    const { jenkinsfile } = this.store
+    const { pipelineConfig } = this.store
     const { params } = this.props.match
 
     this.trigger('pipeline.jenkins', {
       store: this.store,
-      defaultValue: toJS(jenkinsfile),
+      defaultValue: toJS(pipelineConfig.spec.pipeline.jenkinsfile),
       params,
       success: () => {
         const { devops, name } = params
@@ -118,30 +128,34 @@ export default class Pipeline extends React.Component {
 
   getData = async () => {
     const { params } = this.props.match
+    const decodeName = decodeURIComponent(params.name)
 
-    await this.store.getJenkinsFile(params)
+    await this.store.getJenkinsFile({ ...params, name: decodeName })
 
     this.store.getActivities(params)
   }
 
   handleRefresh = () => {
     const { params } = this.props.match
-    this.store.getJenkinsFile(params)
+    const decodeName = decodeURIComponent(params.name)
+
+    this.store.getJenkinsFile({ ...params, name: decodeName }, true)
   }
 
   componentDidMount() {
-    if (this.isMultibranch || !this.enabledActions.includes('edit')) {
+    if (this.isMultibranch || !this.editable) {
       this.props.rootStore.routing.push('./activity')
       return
     }
     this.getData()
   }
 
-  handleRunning = debounce(() => {
+  handleRunning = debounce(async () => {
+    const { params } = this.props.match
+    await this.store.fetchDetail(params)
     const { detail } = this.store
     const isMultibranch = !isEmpty(toJS(detail.branchNames))
     const hasParameters = !isEmpty(toJS(detail.parameters))
-    const { params } = this.props.match
 
     if (isMultibranch || hasParameters) {
       this.trigger('pipeline.params', {
@@ -173,33 +187,43 @@ export default class Pipeline extends React.Component {
   }
 
   renderBtnGroup() {
-    const editable = this.enabledActions.includes('edit')
+    if (!this.editable) {
+      return
+    }
 
     return (
       <div className={style.pipelineCard__btnGroup}>
-        {editable && (
+        {this.jenkinsFileMode === 'json' ? (
+          <Tooltip content={t('JENKINS_UNAVAILABLE')}>
+            <Button className={style['btn-disabled']}>
+              {t('EDIT_JENKINSFILE')}
+            </Button>
+          </Tooltip>
+        ) : (
           <Button onClick={this.handleJenkinsFileModal}>
             {t('EDIT_JENKINSFILE')}
           </Button>
         )}
-        {editable && (
+        {this.jenkinsFileMode === 'raw' ? (
+          <Tooltip content={t('JENKINS_UNAVAILABLE')}>
+            <Button className={style['btn-disabled']}>
+              {t('EDIT_PIPELINE')}
+            </Button>
+          </Tooltip>
+        ) : (
           <Button onClick={this.handleEditorPipelineModal}>
             {t('EDIT_PIPELINE')}
           </Button>
         )}
-        {editable && (
-          <Button type="control" onClick={this.handleRunning}>
-            {t('RUN')}
-          </Button>
-        )}
+        <Button type="control" onClick={this.handleRunning}>
+          {t('RUN')}
+        </Button>
       </div>
     )
   }
 
   renderPipeLineContent() {
     const { pipelineJson, isLoading } = this.store.pipelineJsonData
-
-    const editable = this.enabledActions.includes('edit')
 
     if (isLoading) {
       return (
@@ -212,15 +236,22 @@ export default class Pipeline extends React.Component {
     if (isEmpty(toJS(pipelineJson))) {
       return (
         <EmptyCard desc={t('NO_PIPELINE_CONFIG_FILE_TIP')}>
-          {editable && (
-            <Button type="control" onClick={this.handlePipelineModal}>
-              {t('EDIT_PIPELINE')}
-            </Button>
-          )}
-          {editable && (
-            <Button onClick={this.handleJenkinsFileModal}>
-              {t('EDIT_JENKINSFILE')}
-            </Button>
+          {this.editable && (
+            <>
+              <Button
+                onClick={this.handleJenkinsFileModal}
+                disabled={this.jenkinsFileMode === 'json'}
+              >
+                {t('EDIT_JENKINSFILE')}
+              </Button>
+              <Button
+                type="control"
+                onClick={this.handlePipelineModal}
+                disabled={this.jenkinsFileMode === 'raw'}
+              >
+                {t('EDIT_PIPELINE')}
+              </Button>
+            </>
           )}
         </EmptyCard>
       )
@@ -229,15 +260,18 @@ export default class Pipeline extends React.Component {
     if (pipelineJson.result === 'failure') {
       return (
         <EmptyCard desc={t('INVALID_JENKINSFILE_TIP')}>
-          {editable && (
-            <Button onClick={this.handleJenkinsFileModal}>
-              {t('EDIT_JENKINSFILE')}
-            </Button>
-          )}
-          {editable && (
-            <Button type="control" onClick={this.handleRunning}>
-              {t('RUN')}
-            </Button>
+          {this.editable && (
+            <>
+              <Button
+                onClick={this.handleJenkinsFileModal}
+                disabled={this.jenkinsFileMode === 'json'}
+              >
+                {t('EDIT_JENKINSFILE')}
+              </Button>
+              <Button type="control" onClick={this.handleRunning}>
+                {t('RUN')}
+              </Button>
+            </>
           )}
         </EmptyCard>
       )

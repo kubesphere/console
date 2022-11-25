@@ -18,15 +18,12 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { get } from 'lodash'
 import classnames from 'classnames'
 
 import { Alert } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import widthBack from 'components/Modals/WithBack'
-
-import collectionConfig from './config'
-
+import collectionConfig from 'pages/clusters/containers/LogCollections/config'
 import styles from './index.scss'
 
 export default class CreateLogCollectionModal extends Component {
@@ -46,32 +43,39 @@ export default class CreateLogCollectionModal extends Component {
     onCancel() {},
   }
 
-  collectionMap = Object.entries(collectionConfig).reduce(
-    (configs, [type, config]) => ({
-      ...configs,
-      [type]: {
-        Form: widthBack(config.Form),
-      },
-    }),
-    {}
-  )
+  constructor(props) {
+    super(props)
 
-  formRef = React.createRef()
+    const collectionMap = Object.entries(collectionConfig).reduce(
+      (configs, [type, config]) => ({
+        ...configs,
+        [type]: {
+          Form: widthBack(config.Form),
+        },
+      }),
+      {}
+    )
 
-  state = {
-    collectionType: '',
+    this.state = {
+      collectionType: '',
+      collectionMap,
+      formData: {},
+    }
+
+    this.formRef = React.createRef()
   }
 
   selectCollectionType = e => {
+    const value = e.currentTarget.dataset.type
+
     this.setState(
       {
-        collectionType: e.currentTarget.dataset.type,
+        collectionType: value,
+        currentCollectionConfig: this.state.collectionMap[value],
+        formData: {},
       },
       () => {
-        const validator = get(
-          collectionConfig,
-          `${this.state.collectionType}.validator`
-        )
+        const validator = this.state.currentCollectionConfig.validator
         this.formRef.current.setCustomValidator(validator)
       }
     )
@@ -87,6 +91,7 @@ export default class CreateLogCollectionModal extends Component {
   returnToSelectTypeForm = () => {
     this.setState({
       collectionType: '',
+      formData: {},
     })
   }
 
@@ -96,38 +101,22 @@ export default class CreateLogCollectionModal extends Component {
     )
   }
 
-  render() {
-    const { title, ...rest } = this.props
-    const { collectionType } = this.state
-    return (
-      <Modal.Form
-        {...rest}
-        icon="clock"
-        width={691}
-        title={title}
-        formRef={this.formRef}
-        onOk={this.handleSubmit}
-        bodyClassName={styles.body}
-        disableOk={collectionType === ''}
-      >
-        {this.renderContent()}
-      </Modal.Form>
-    )
-  }
-
   renderContent() {
-    const { collectionType } = this.state
-    const CreateForm = get(this.collectionMap, `${collectionType}.Form`)
-    const title = get(collectionConfig, `${collectionType}.title`)
+    const { collectionType, currentCollectionConfig } = this.state
 
-    return CreateForm ? (
-      <CreateForm
-        wrapperTitle={title}
-        wrapperOnBack={this.returnToSelectTypeForm}
-      />
-    ) : (
-      this.renderFormSelector()
-    )
+    if (collectionType) {
+      const CreateForm = currentCollectionConfig.Form
+      const title = currentCollectionConfig.title
+
+      return (
+        <CreateForm
+          wrapperTitle={title}
+          wrapperOnBack={this.returnToSelectTypeForm}
+        />
+      )
+    }
+
+    return this.renderFormSelector()
   }
 
   renderFormSelector() {
@@ -166,6 +155,26 @@ export default class CreateLogCollectionModal extends Component {
           </div>
         </div>
       )
+    )
+  }
+
+  render() {
+    const { title, ...rest } = this.props
+    const { collectionType, formData } = this.state
+    return (
+      <Modal.Form
+        {...rest}
+        icon="clock"
+        width={691}
+        title={title}
+        data={formData}
+        formRef={this.formRef}
+        onOk={this.handleSubmit}
+        bodyClassName={styles.body}
+        disableOk={collectionType === ''}
+      >
+        {this.renderContent()}
+      </Modal.Form>
     )
   }
 }

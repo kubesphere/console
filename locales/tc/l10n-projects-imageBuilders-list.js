@@ -22,14 +22,19 @@ module.exports = {
   // List
   IMAGE_BUILDER_EMPTY_DESC: '請創建一個鏡像構建器。',
   NOT_RUNNING_YET: '未運行',
+  BUILDING: 'Building',
+  S2I: 'Source-to-image',
+  B2I: 'Artifact-to-image',
   // List > Name (Displayed after you create a service from artifact)
   BUILD_IMAGE_FOR_SERVICE: '為 {service} 服務構建鏡像。',
   // List > Create > Build Mode
   BUILD_MODE: '選擇語言',
+  CONTAINERD_RUNTIME_NOT_SUPPORTED: 'The containerd runtime does not support this feature.',
   S2I_DESC: '選擇您的代碼開發語言。',
   IMAGE_FROM_S2I: '通過代碼構建新的容器鏡像',
   IMAGE_FROM_B2I: '通過成品構建新的鏡像',
   B2I_DESC: '選擇您成品的文件類型。',
+  EMPTY_IMAGE_TYPE_DESC: 'Please select a language or artifact type.',
   // List > Create > Java > Build Settings
   CODE_REPOSITORY_URL: '代碼地址',
   CODE_REPOSITORY_BRANCH: '分支',

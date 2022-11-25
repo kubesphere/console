@@ -163,10 +163,9 @@ export default class Volumes extends React.Component {
   renderAccessTitle = () => {
     const renderModeTip = (
       <div>
-        <div>{t('ACCESS_MODE_TCAP')}:</div>
-        <div>RWO (ReadWriteOnce): {t('ACCESS_MODE_RWO')}</div>
-        <div>ROX (ReadOnlyMany): {t('ACCESS_MODE_ROX')}</div>
-        <div>RWX (ReadWriteMany): {t('ACCESS_MODE_RWX')}</div>
+        <div>{t('RWO_DESC')}</div>
+        <div>{t('ROX_DESC')}</div>
+        <div>{t('RWX_DESC')}</div>
       </div>
     )
     return (
@@ -188,7 +187,7 @@ export default class Volumes extends React.Component {
     const data = get(record, `resources[${cluster.name}]`)
 
     if (!data) {
-      return t('waiting')
+      return t('WAITING')
     }
 
     const status = getVolumeStatus(data)

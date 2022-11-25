@@ -21,7 +21,6 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { get } from 'lodash'
 
-import { Alert } from '@kube-design/components'
 import { Panel } from 'components/Base'
 import ReplicaStatus from './Status'
 
@@ -39,10 +38,6 @@ export default class HPACard extends React.Component {
     module: 'deployments',
     enableScale: true,
     onScale() {},
-  }
-
-  get replicaMsg() {
-    return t(`${this.props.module.toUpperCase()}_REPLICA_DESC`)
   }
 
   get replicaStatus() {
@@ -99,13 +94,6 @@ export default class HPACard extends React.Component {
         <div className={styles.replicaCount}>
           <ReplicaStatus {...this.replicaStatus} />
         </div>
-        <Alert
-          className={styles.replicaMsg}
-          type="info"
-          message={
-            <div dangerouslySetInnerHTML={{ __html: this.replicaMsg }} />
-          }
-        />
       </Panel>
     )
   }

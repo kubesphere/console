@@ -42,7 +42,7 @@ export default function WorkloadStatus({ data, module }) {
       <div className={styles.status}>
         <Status
           type={statusResult}
-          name={t(statusResult)}
+          name={t(statusResult.toUpperCase())}
           total={get(data, 'status.desiredNumberScheduled', 0)}
           ready={get(data, 'status.numberAvailable', 0)}
           flicker

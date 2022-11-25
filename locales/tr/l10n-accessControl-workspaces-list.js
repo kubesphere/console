@@ -26,8 +26,11 @@ module.exports = {
   WORKSPACE_NAME_EMPTY_DESC: 'Lütfen bir şablon adı girin.',
   WORKSPACE_CREATE_DESC: 'Uygulama hakkında temel bilgileri öğrenin.',
   ADMINISTRATOR: 'Yönetici',
+  WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
+  INVALID_WORKSPACE_NAME: 'Invalid workspace name.',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'Çalışma alanında kullanılacak kümeleri seçin.',
+  NO_CLUSTER_AVAILABLE: 'No Cluster Available',
   NO_CLUSTER_AVAILABLE_DESC: 'Küme mevcut değil. Çalışma alanı oluşturulduktan sonra, çalışma alanına bir kümeyi yetkilendirmek için lütfen platform veya küme yöneticisiyle iletişime geçin.',
   WORKSPACE_NO_CLUSTER_TIP: 'Bir kümeyi çalışma alanına yetkilendirmek için lütfen platform veya küme yöneticisiyle iletişime geçin.',
   AVAILABLE_CLUSTERS: 'Mevcut Kümeler',

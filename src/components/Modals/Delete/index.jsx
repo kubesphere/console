@@ -94,7 +94,7 @@ export default class DeleteModal extends React.Component {
       tip = t.html('DELETE_APP_RESOURCE_TIP', { type, resource, app })
     }
     if (deleteCluster) {
-      tip = t.html('UNBIND_CLUSTER_DESC', { name: resource })
+      tip = t.html('REMOVE_CLUSTER_DESC', { name: resource })
     }
     return (
       <Modal

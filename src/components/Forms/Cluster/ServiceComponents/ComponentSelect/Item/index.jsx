@@ -112,7 +112,7 @@ export default class Item extends Component {
           />
           <Switch
             className={styles.switch}
-            text={enable ? t('Enabled') : t('Disabled')}
+            text={enable ? t('ENABLED') : t('DISABLED')}
             onChange={this.handleSwitch}
             checked={enable}
           />

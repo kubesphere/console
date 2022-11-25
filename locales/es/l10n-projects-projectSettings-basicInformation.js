@@ -34,8 +34,9 @@ module.exports = {
   GPU_LIMIT_SCAP: 'GPU limit',
   REQUEST_EXCEED_WORKSPACE: 'Resource requests and limits cannot exceed workspace resource limits.',
   REQUEST_EXCEED_LIMIT: 'Las solicitudes de recursos no deben ser mayores que los límites de recursos',
+  REQUEST_EXCEED_AVAILABLE_QUOTA: 'Insufficient resources.',
   // Mange > Delete
-  DELETE_PROJECT_TIP: '¿Está seguro de eliminar el proyecto <strong>{resource}</strong> ? Después de la eliminación no podrás recuperarlo y los recursos del proyecto también serán destruidos.',
+  DELETE_PROJECT_TIP: 'Enter the project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   // Project Information
   MANAGE: 'Manage',
   PROJECT_INFO: 'Información del proyecto',
@@ -49,7 +50,14 @@ module.exports = {
   EDIT_DEFAULT_CONTAINER_QUOTAS: 'Edit Default Container Quotas',
   LIMITS_CPU: 'limit.cpu',
   LIMITS_MEMORY: 'limits.memoria',
+  REQUESTS_CPU: 'CPU Request',
+  REQUESTS_MEMORY: 'limit.cpu',
   // Project Quotas
   PROJECT_QUOTA_PL: 'Project Quotas',
-  RESOURCE_TYPE_SCAP: 'Tipo de recurso'
+  RESOURCE_TYPE_SCAP: 'Tipo de recurso',
+  JOBS: 'Jobs',
+  VOLUMES: 'Volumes',
+  SERVICES: 'Servicio',
+  ROUTES: 'Routes',
+  SECRETS: 'Secrets'
 };

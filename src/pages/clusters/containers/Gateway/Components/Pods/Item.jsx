@@ -110,8 +110,10 @@ export default class PodItem extends React.PureComponent {
 
     return (
       <p>
-        {t('CREATED_AGO', {
-          diff: getLocalTime(this.props.detail.createTime).fromNow(),
+        {t('CREATED_TIME', {
+          diff: getLocalTime(this.props.detail.createTime).format(
+            'YYYY-MM-DD HH:mm:ss'
+          ),
         })}
       </p>
     )
@@ -127,15 +129,15 @@ export default class PodItem extends React.PureComponent {
       type: 'cpu',
       title: 'CPU',
       unitType: 'cpu',
-      legend: ['Used'],
+      legend: ['USED'],
       data: [metrics.cpu],
       bgColor: 'transparent',
     },
     {
       type: 'memory',
-      title: 'Memory',
+      title: 'MEMORY',
       unitType: 'memory',
-      legend: ['Used'],
+      legend: ['USED'],
       data: [metrics.memory],
       bgColor: 'transparent',
     },
@@ -180,7 +182,7 @@ export default class PodItem extends React.PureComponent {
           <div className={styles.statusTip}>
             <strong>{name}</strong>
             <p>
-              {t('Ready')}: {readyCount}/{total}
+              {t('READY')}: {readyCount}/{total}
             </p>
             <p>
               {t('STATUS')}: {t(statusStr)}
@@ -255,7 +257,7 @@ export default class PodItem extends React.PureComponent {
         {!(location.pathname.indexOf('/nodes') !== -1) && (
           <div className={styles.text}>
             <div>{this.getNodeContent()}</div>
-            <p>{t('Node')}</p>
+            <p>{t('NODE')}</p>
           </div>
         )}
         <div className={styles.text}>

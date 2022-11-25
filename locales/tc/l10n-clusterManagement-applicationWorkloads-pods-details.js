@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   NODE_IP_ADDRESS: '節點 IP 地址',
   CLUSTER: '集群',
   // Resource Status > Containers
@@ -26,11 +26,14 @@ module.exports = {
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: '容器在目前狀態下不支持即時紀錄，請稍後再試',
   CONTAINER_LOGS: '容器紀錄',
-  // Resource Status > Details > Container Details > Details
+  // Resource Status > Details > Container Details > Attributes
   COMMAND: '命令',
   IMAGE_ID: '鏡像 ID',
   IMAGE_PULL_POLICY: '鏡像拉取策略',
   CONTAINER_DETAILS_PAGE_SCAP: '容器詳情頁。',
+  CPU_VALUE: 'CPU: {value, plural, =1 {1 core} other {# cores}}',
+  MEMORY_VALUE: 'Memory: {value}',
+  NVIDIA_COM_GPU_VALUE: 'GPU: {value}',
   // Resource Status > Details > Container Details > Terminal
   LOADING: '載入中...',
   RESOURCE_LIMITS: '資源限制',
@@ -43,11 +46,12 @@ module.exports = {
   LIVENESS_PROBE: '存活探針',
   READINESS_PROBE: '就緒探針',
   STARTUP_PROBE: '啟動探針',
+  REQUEST_TYPE: 'Request type',
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
-  NO_RESOURCE: '沒有發現 {resource}。',
-  LOG_DATA_LOW: '紀錄數據',
+  NO_LOG_DATA_FOUND: 'No Log Data Found',
+  NO_LOG_DATA_FOUND_TIP: 'No log data is found.',
   // Resource Status > Volumes
   VOLUME_PL: 'Volumes',
   TYPE_CONFIGMAP: '儲存卷類型：配置設定',

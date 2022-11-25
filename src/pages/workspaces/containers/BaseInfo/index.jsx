@@ -117,6 +117,9 @@ class BaseInfo extends React.Component {
 
   handleNetworkChange = cluster => () => {
     const detail = toJS(this.store.detail)
+    const _originData = toJS(this.store.detail._originData)
+    const _overrides = get(_originData, 'overrides', [])
+
     const { overrides } = detail
     let override = overrides.find(od => od.clusterName === cluster)
     if (!override) {
@@ -142,21 +145,38 @@ class BaseInfo extends React.Component {
       `clusterTemplates[${cluster}].spec.networkIsolation`
     )
 
+    const OtherOrd = _overrides.filter(item => item.clusterName !== cluster)
+
     this.store
-      .patch(detail, {
-        metadata: { name: detail.name },
-        spec: { overrides },
-      })
+      .patch(detail, [
+        {
+          op: 'replace',
+          path: '/metadata/name',
+          value: detail.name,
+        },
+        {
+          op: 'add',
+          path: '/spec/overrides',
+          value: [...OtherOrd, ...overrides],
+        },
+      ])
       .then(() => this.fetchDetail())
   }
 
   handleSingleClusterNetworkChange = () => {
     const detail = toJS(this.store.detail)
-    const obj = {}
+    const _templateSpec = get(detail._originData, 'spec.template.spec', {})
+    set(_templateSpec, 'networkIsolation', !detail.networkIsolation)
 
-    set(obj, 'spec.template.spec.networkIsolation', !detail.networkIsolation)
-
-    this.store.patch(detail, obj).then(() => this.fetchDetail())
+    this.store
+      .patch(detail, [
+        {
+          op: 'add',
+          path: '/spec/template/spec',
+          value: _templateSpec,
+        },
+      ])
+      .then(() => this.fetchDetail())
   }
 
   handleDelete = () => {
@@ -330,7 +350,7 @@ class BaseInfo extends React.Component {
     return (
       <Panel className={styles.network} title={t('NETWORK_ISOLATION')}>
         {isEmpty(data) && !isLoading && (
-          <div className={styles.empty}>{t('NO_AVAILABLE_CLUSTER')}</div>
+          <div className={styles.empty}>{t('NO_CLUSTER_AVAILABLE')}</div>
         )}
         {data.map(cluster => {
           const clusterTemp =

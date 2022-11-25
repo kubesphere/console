@@ -20,8 +20,10 @@ module.exports = {
   CONFIRM_PASSWORD_TIP: 'कृपया एक नया पासवर्ड दोबारा दर्ज करें।',
   CHANGE_PASSWORD: 'पासवर्ड बदलिए',
   NEW_PASSWORD: 'नया पासवर्ड',
+  PASSWORD_STRENGTH: 'Password Strength',
+  PASSWORD_STRENGTH_DESC: 'Avoid using weak passwords or passwords of other accounts.',
   // More > Delete
-  // Details
+  // Attributes
   // Login History
   TIME: 'समय',
   SOURCE_IP_ADDRESS: 'स्रोत आई.पी पता',

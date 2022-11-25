@@ -41,6 +41,7 @@ export default class ServiceBaseInfo extends React.Component {
     this.state = {
       showServiceMesh: false,
       selectApp: {},
+      originName: get(props.formTemplate, 'Service.metadata.name'),
     }
 
     this.store = new ServiceStore()
@@ -68,8 +69,8 @@ export default class ServiceBaseInfo extends React.Component {
 
   get serviceMeshOptions() {
     return [
-      { label: t('Off'), value: 'false' },
-      { label: t('On'), value: 'true' },
+      { label: t('OFF'), value: 'false' },
+      { label: t('ON'), value: 'true' },
     ]
   }
 
@@ -102,6 +103,7 @@ export default class ServiceBaseInfo extends React.Component {
     set(formTemplate[this.workloadKind], 'metadata.name', workloadName)
     set(formTemplate[this.workloadKind], 'metadata.namespace', namespace)
     set(formTemplate[this.workloadKind], 'metadata.labels.app', value)
+
     updateLabels(
       isFederated
         ? get(formTemplate[this.workloadKind], 'spec.template')
@@ -137,6 +139,15 @@ export default class ServiceBaseInfo extends React.Component {
       return callback()
     }
 
+    if (this.props.components) {
+      const existNames = Object.keys(this.props.components)?.filter(
+        i => i !== this.state.originName
+      )
+      if (existNames?.includes(value)) {
+        return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
+      }
+    }
+
     this.store
       .checkName({
         name: value,
@@ -167,11 +178,7 @@ export default class ServiceBaseInfo extends React.Component {
       .then(resp => {
         if (resp.exist) {
           return callback({
-            message: t(
-              `${t(this.workloadKind)} ${name} ${t('exists')}, ${t(
-                'version number is invalid'
-              )}`
-            ),
+            message: t('NEW_VERSION_NUMBER_EXIST_DESC', { value: name }),
             field: rule.field,
           })
         }

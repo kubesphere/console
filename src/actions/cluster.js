@@ -24,8 +24,9 @@ import { IMPORT_CLUSTER } from 'configs/steps/clusters'
 import { IMPORT_CLUSTER_SPEC } from 'components/Forms/Cluster/constants'
 import KubeKeyClusterStore from 'stores/cluster/kubekey'
 import { safeParseJSON } from 'utils'
-import DeleteModal from 'components/Modals/Delete'
+import UnbindCluster from 'pages/clusters/components/Modals/UnbindCluster'
 import KubeConfigModal from 'components/Forms/Cluster/KubeConfig'
+import { safeBtoa } from 'utils/base64'
 
 export default {
   'cluster.add': {
@@ -70,13 +71,14 @@ export default {
         onOk: () => {
           store.delete(detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: t('UNBIND_SUCCESS') })
+            Notify.success({ content: t('REMOVE_SUCCESS') })
             success && success()
           })
         },
         store,
-        modal: DeleteModal,
-        title: t('UNBIND_CLUSTER'),
+        modal: UnbindCluster,
+        detail,
+        title: t('REMOVE_CLUSTER'),
         resource: detail.name,
         deleteCluster: true,
         ...props,
@@ -88,7 +90,7 @@ export default {
       const modal = Modal.open({
         onOk: async data => {
           const newData = cloneDeep(data)
-          set(newData, 'kubeconfig', window.btoa(newData.kubeconfig))
+          set(newData, 'kubeconfig', safeBtoa(newData.kubeconfig))
           await store.updateKubeConfig({
             cluster: detail.name,
             data: newData,
@@ -115,7 +117,7 @@ const handleImport = async (store, data) => {
     unset(postData, 'spec.connection.kubeconfig')
   } else {
     const config = get(postData, 'spec.connection.kubeconfig', '')
-    set(postData, 'spec.connection.kubeconfig', window.btoa(config))
+    set(postData, 'spec.connection.kubeconfig', safeBtoa(config))
     await store.validate(postData)
   }
 

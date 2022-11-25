@@ -22,14 +22,19 @@ module.exports = {
   // List
   IMAGE_BUILDER_EMPTY_DESC: 'Crea un generador de image builder.',
   NOT_RUNNING_YET: 'Aún no está en ejecución',
+  BUILDING: 'Building',
+  S2I: 'Source-to-image',
+  B2I: 'Artifact-to-image',
   // List > Name (Displayed after you create a service from artifact)
   BUILD_IMAGE_FOR_SERVICE: 'Crear imagen para el servicio {service}',
   // List > Create > Build Mode
   BUILD_MODE: 'Elige un idioma',
+  CONTAINERD_RUNTIME_NOT_SUPPORTED: 'The containerd runtime does not support this feature.',
   S2I_DESC: 'Por favor elige tu lenguaje de código fuente',
   IMAGE_FROM_S2I: 'Crea una nueva imagen a partir del código',
   IMAGE_FROM_B2I: 'Crea una nueva imagen a partir del artefacto',
   B2I_DESC: 'Select the file type of your artifact.',
+  EMPTY_IMAGE_TYPE_DESC: 'Please select a language or artifact type.',
   // List > Create > Java > Build Settings
   CODE_REPOSITORY_URL: 'URL de código',
   CODE_REPOSITORY_BRANCH: 'Rama',

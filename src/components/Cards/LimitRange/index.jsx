@@ -62,11 +62,11 @@ export default class DefaultResource extends React.Component {
             <Icon name="cpu" size={40} />
             <div className={styles.item}>
               <div>{cpuRequest ? `${cpuRequest} Core` : t('NO_REQUEST')}</div>
-              <p>{t('Resource Request')}</p>
+              <p>{t('RESOURCE_REQUEST')}</p>
             </div>
             <div className={styles.item}>
               <div>{cpuLimit ? `${cpuLimit} Core` : t('NO_LIMIT')}</div>
-              <p>{t('Resource Limit')}</p>
+              <p>{t('RESOURCE_LIMIT')}</p>
             </div>
           </div>
           <div className={styles.contentItem}>
@@ -75,11 +75,11 @@ export default class DefaultResource extends React.Component {
               <div>
                 {memoryRequest ? `${memoryRequest} Mi` : t('NO_REQUEST')}
               </div>
-              <p>{t('Resource Request')}</p>
+              <p>{t('RESOURCE_REQUEST')}</p>
             </div>
             <div className={styles.item}>
               <div>{memoryLimit ? `${memoryLimit} Mi` : t('NO_LIMIT')}</div>
-              <p>{t('Resource Limit')}</p>
+              <p>{t('RESOURCE_LIMIT')}</p>
             </div>
           </div>
         </div>

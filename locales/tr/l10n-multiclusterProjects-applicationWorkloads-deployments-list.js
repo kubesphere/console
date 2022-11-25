@@ -27,6 +27,7 @@ module.exports = {
   // List > Create
   // List > Create > Basic Information
   NEXT: 'Sonraki',
+  INVALID_PROJECT: 'Invalid project.',
   // List > Create > Pod Settings > Replica Scheduling Mode
   REPLICA_SCHEDULING_MODE: 'Çoğaltma Zamanlama Modu',
   SPECIFY_REPLICAS: 'Kopyaları Belirtin',
@@ -39,6 +40,7 @@ module.exports = {
   WEIGHT: 'yük',
   TOTAL_REPLICAS: 'Toplam Kopyalar',
   // List > Create > Pod Settings > Add Container > Container Settings
+  COST: 'Cost',
   ADD_CONTAINER: 'Konteyner ekle',
   ADD_CONTAINER_DESC: 'Bir kapsayıcı oluşturmak için kapsayıcı ayarlarını özelleştirin.',
   CONTAINERS: 'Konteynerler',
@@ -63,6 +65,7 @@ module.exports = {
   NO_REQUEST: 'Istek yok',
   NO_RESOURCE_LIMIT: 'Kaynak Limiti Yok',
   IGNORE_AND_RETRY: 'Yoksay ve Tekrar Deneyin',
+  AVAILABLE_QUOTAS: 'Available Quotas',
   // List > Create > Pod Settings > Add Container > Port Settings
   PORT_SETTINGS: 'Bağlantı Noktası Ayarları',
   ISTIO_PROTOCOL_TIP: 'Uygulama Yönetimi işlevini tam olarak kullanmak için hizmet tarafından kullanılan protokolü seçin. Örneğin, bir HTTP hizmeti için HTTP\'yi seçin.',
@@ -70,8 +73,8 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Use Local Image First
   IMAGE_PULL_POLICY_ALWAYS: 'Görüntüyü Her Zaman Çekin',
   IMAGE_PULL_POLICY_NEVER: 'Yalnızca Yerel Resmi Kullan',
-  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Bölme oluşturulduğunda veya güncellendiğinde her zaman görüntüyü çeker.',
-  IMAGE_PULL_POLICY_IFNOTPRESENT_DESC: 'Görüntüyü yalnızca yerel olarak mevcut olmadığında çeker.',
+  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Pulls an image always when the pod is created or updated.',
+  IMAGE_PULL_POLICY_IFNOTPRESENT_DESC: 'Pulls an image only when the required image does not exist locally.',
   IMAGE_PULL_POLICY_NEVER_DESC: 'Yalnızca yerel bir görüntü kullanır. Gerekli görüntü yerel olarak mevcut değilse kapsayıcı anormal hale gelecektir.',
   IMAGE_PULL_POLICY_IFNOTPRESENT: 'Önce Yerel Resmi Kullan',
   // List > Create > Pod Settings > Add Container > Health Check
@@ -85,6 +88,7 @@ module.exports = {
   COMMANDS: 'Komutlar',
   HEALTH_CHECK: 'Sağlık Kontrolü',
   STARTUP_CHECK_TIP: 'Kubernetes v1.18 veya üstü gereklidir.',
+  HTTP_PATH_EMPTY: 'Please set a path for the HTTP check.',
   // List > Create > Pod Settings > Add Container > Life Management
   LIFECYCLE_MANAGEMENT: 'Yaşam Döngüsü Yönetimi',
   LIFECYCLE_MANAGEMENT_DESC: 'Kapsayıcı başlatıldıktan sonra veya ortam hazırlığı veya hassas kapatma için durdurulmadan önce gerçekleştirilecek eylemleri ekleyin.',
@@ -97,6 +101,11 @@ module.exports = {
   ADD_ENVIRONMENT_VARIABLE: 'Ortam Değişkenleri Ekle',
   KEY_IN_RESOURCE: 'Kaynakta anahtar',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
+  RESOURCE: 'Resource',
+  CREATE_CONFIGMAP_SECRET_DESC: 'If no configmap or secret meets the requirements, you can',
+  CREATE_CONFIG: 'create a configmap',
+  OR: 'or',
+  CREATE_SECRET: 'create a secret.',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: 'Konteyner Güvenliği Bağlamı',
   CONTAINER_SECURITY_CONTEXT_DESC: 'Kapsayıcının ayrıcalık ayarlarını özelleştirin.',
@@ -166,6 +175,7 @@ module.exports = {
   TEMPORARY_VOLUME: 'Geçici Hacim',
   VOLUME_NAME: 'Hacim Adı',
   VOLUME_NAME_EMPTY: 'Lütfen birim için bir ad belirleyin.',
+  HOST_PATH_EMPTY: 'Lütfen birim için Ana bilgisayar yolu belirleyin.',
   CONTAINER_NOT_SELECTED: 'Lütfen birimi en az bir konteynere bağlayın.',
   NOT_MOUNT: 'Bağlanamadı',
   HOSTPATH_VOLUME: 'HostPath Hacmi',
@@ -193,11 +203,13 @@ module.exports = {
   KEY: 'Anahtar',
   VALUE: 'Değer',
   ADVANCED_SETTINGS: 'Gelişmiş Ayarlar',
+  DUPLICATE_LABELS: 'Duplicate labels cannot be added.',
   // List > Create > Advanced Settings > Specify Node
   WORKLOAD_SPECIFY_NODE_DESC: 'Belirli bir düğüme bölme kopyaları atayın.',
   // List > Create > Cluster Differences
   CLUSTER_DIFF: 'Küme Farklılıkları',
   CLUSTER_DIFF_CONTAINER_SETTINGS_DESC: 'Farklı kümelerde farklı kapsayıcı ayarları kullanın.',
   CLUSTER_DIFF_PORT_SETTINGS_DESC: 'Farklı kümelerdeki kapsayıcılar için farklı bağlantı noktaları ayarlayın.',
-  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: 'Farklı kümelerdeki kapsayıcılar için farklı ortam değişkenleri ayarlayın.'
+  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: 'Farklı kümelerdeki kapsayıcılar için farklı ortam değişkenleri ayarlayın.',
+  CONTAINER_IMAGE: 'Container Image'
 };

@@ -45,13 +45,13 @@ module.exports = {
   MINSIZE: 'En Az Boyut',
   STEPSIZE: 'Adım Boyutu',
   FSTYPE: 'Dosya Sistemi Türü',
-  TAGS: 'Etiket',
   QINGCLOUD_CSI_TYPE_DESC: 'QingCloud Public Cloud Platform\'da 0, yüksek performans hacmi anlamına gelir; 2 yüksek kapasiteli hacim; 3 ultra yüksek performans hacmi; 5 kurumsal sunucu SAN (NeonSAN); 100 standart hacim; 200 kurumsal SSD.',
   CREATE_VOLUME_MAX_SIZE: 'Hacmin en fazla boyutu.',
   CREATE_VOLUME_STEP_SIZE: 'Hacmin adım boyutu.',
   CREATE_VOLUME_MIN_SIZE: 'Hacmin en az boyutu.',
   VOLUME_FS_TYPE: 'Ext3, ext4 ve xfs\'yi destekler. Varsayılan tür ext4\'tür.',
   QINGCLOUD_VOLUME_TAGS_DESC: 'Depolama birimine etiketler ekleyin. Birden çok etiketi ayırmak için virgül kullanın.',
+  GID_RANGE_TIP: 'The value cannot be less than 2000 or greater than 2147483647.',
   // List > Create > > GlusterFS > Storage Class Settings
   GLUSTERFS_RESTURL_DESC: 'Hacimleri sağlayan Heketi REST URL\'si.',
   GLUSTERFS_ID_DESC: 'Gluster küme kimliği.',
@@ -91,5 +91,7 @@ module.exports = {
   // List > Edit Information
   // List > Delete
   STORAGE_CLASS: 'Depolama Sınıfı',
-  STORAGE_CLASS_LOW: 'depolama Sınıfı'
+  STORAGE_CLASS_LOW: 'depolama Sınıfı',
+  STORAGE_CLASS_DELETE_DESC: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Are you sure you want to delete the volume snapshot class?',
+  STORAGE_CLASS_DELETE_DESC_PL: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Enter the {type} names <strong>{resource}</strong> to confirm that you understand the risks of this operation.'
 };

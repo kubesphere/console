@@ -20,6 +20,7 @@ import React from 'react'
 
 import { toJS, computed } from 'mobx'
 import { getLocalTime, getDisplayName } from 'utils'
+import { isArgo } from 'utils/devops'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -96,58 +97,115 @@ export default class CDList extends React.Component {
   get itemActions() {
     const { trigger, routing } = this.props
 
-    return [
-      {
-        key: 'edit',
-        icon: 'pen',
-        text: t('EDIT_INFORMATION'),
-        action: 'edit',
-        onClick: item => {
-          trigger('resource.baseinfo.edit', {
-            detail: { ...item, cluster: this.cluster },
-            success: routing.query,
-          })
-        },
-      },
-      {
-        key: 'yaml',
-        icon: 'pen',
-        text: t('EDIT_YAML'),
-        action: 'edit',
-        onClick: item => {
-          trigger('resource.yaml.edit', {
-            detail: { ...item, cluster: this.cluster },
-            success: routing.query,
-          })
-        },
-      },
-      {
-        key: 'sync',
-        icon: 'changing-over',
-        text: t('SYNC'),
-        action: 'edit',
-        onClick: record => {
-          this.handleSync(record)
-        },
-      },
-      {
-        key: 'delete',
-        icon: 'trash',
-        text: t('DELETE'),
-        action: 'delete',
-        onClick: record => {
-          trigger('cd.delete', {
-            type: 'CONTINUOUS_DEPLOYMENT',
-            detail: record,
-            cluster: this.cluster,
-            success: routing.query,
-          })
-        },
-      },
-    ]
+    return isArgo
+      ? [
+          {
+            key: 'edit',
+            icon: 'pen',
+            text: t('EDIT_INFORMATION'),
+            action: 'edit',
+            onClick: item => {
+              trigger('resource.baseinfo.edit', {
+                detail: { ...item, cluster: this.cluster },
+                success: routing.query,
+              })
+            },
+          },
+          {
+            key: 'settings',
+            icon: 'pen',
+            text: t('EDIT_SETTINGS'),
+            action: 'edit',
+            onClick: item => {
+              trigger('cd.edit', {
+                detail: { ...item, cluster: this.cluster },
+                store: this.props.store,
+                devops: this.devops,
+                module: 'cds',
+                cluster: this.cluster,
+                success: routing.query,
+              })
+            },
+          },
+          {
+            key: 'yaml',
+            icon: 'pen',
+            text: t('EDIT_YAML'),
+            action: 'edit',
+            onClick: item => {
+              trigger('resource.yaml.edit', {
+                detail: { ...item, cluster: this.cluster },
+                success: routing.query,
+              })
+            },
+          },
+          {
+            key: 'sync',
+            icon: 'changing-over',
+            text: t('SYNC'),
+            action: 'edit',
+            onClick: record => {
+              this.handleSync(record)
+            },
+          },
+          {
+            key: 'delete',
+            icon: 'trash',
+            text: t('DELETE'),
+            action: 'delete',
+            onClick: record => {
+              trigger('cd.delete', {
+                type: 'CONTINUOUS_DEPLOYMENT',
+                detail: record,
+                cluster: this.cluster,
+                success: routing.query,
+              })
+            },
+          },
+        ]
+      : [
+          {
+            key: 'edit',
+            icon: 'pen',
+            text: t('EDIT_INFORMATION'),
+            action: 'edit',
+            onClick: item => {
+              trigger('resource.baseinfo.edit', {
+                detail: { ...item, cluster: this.cluster },
+                success: routing.query,
+              })
+            },
+          },
+          {
+            key: 'yaml',
+            icon: 'pen',
+            text: t('EDIT_YAML'),
+            action: 'edit',
+            onClick: item => {
+              trigger('resource.yaml.edit', {
+                detail: { ...item, cluster: this.cluster },
+                success: routing.query,
+              })
+            },
+          },
+          {
+            key: 'delete',
+            icon: 'trash',
+            text: t('DELETE'),
+            action: 'delete',
+            onClick: record => {
+              trigger('fluxcd.delete', {
+                type: 'CONTINUOUS_DEPLOYMENT',
+                detail: record,
+                cluster: this.cluster,
+                success: routing.query,
+              })
+            },
+          },
+        ]
   }
 
-  getData = async params => {
+  getArgoData = async params => {
     await this.props.store.fetchList({
       devops: this.devops,
       ...this.props.match.params,
@@ -159,16 +217,25 @@ export default class CDList extends React.Component {
     })
   }
 
+  getFluxData = async params => {
+    await this.props.store.fetchList({
+      devops: this.devops,
+      ...this.props.match.params,
+      ...params,
+    })
+  }
+
   componentDidMount() {
+    // ArgoCD & FluxCD both needs cluster info
     this.clusterStore.fetchList({ limit: -1 })
-    this.getData()
+    isArgo ? this.getArgoData() : this.getFluxData()
   }
 
   handleFetch = (params, refresh) => {
     this.routing.query(params, refresh)
   }
 
-  handleCreate = () => {
+  handleArgoCreate = () => {
     const { trigger } = this.props
 
     trigger('cd.create', {
@@ -177,7 +244,20 @@ export default class CDList extends React.Component {
       cluster: this.cluster,
       module: 'cds',
       noCodeEdit: true,
-      success: this.getData,
+      success: this.getArgoData,
+    })
+  }
+
+  handleFluxCreate = () => {
+    const { trigger } = this.props
+
+    trigger('fluxcd.create', {
+      title: t('CREATE_CONTINUOUS_DEPLOYMENT'),
+      devops: this.devops,
+      cluster: this.cluster,
+      module: 'cds',
+      noCodeEdit: true,
+      success: this.getFluxData,
     })
   }
 
@@ -192,7 +272,7 @@ export default class CDList extends React.Component {
       cluster: this.cluster,
       application: item.name,
       noCodeEdit: true,
-      success: this.getData,
+      success: this.getArgoData,
     })
   }
 
@@ -212,76 +292,131 @@ export default class CDList extends React.Component {
 
   getColumns = () => {
     const { getSortOrder, getFilteredValue } = this.props
-    return [
-      {
-        title: t('NAME'),
-        dataIndex: 'name',
-        width: '20%',
-        sorter: true,
-        sortOrder: getSortOrder('name'),
-        search: true,
-        render: (name, record) => {
-          return (
-            <Avatar
-              to={`${this.prefix}/${name}`}
-              desc={record.description}
-              title={getDisplayName(record)}
-            />
-          )
-        },
-      },
+    const columns = isArgo
+      ? [
+          {
+            title: t('NAME'),
+            dataIndex: 'name',
+            width: '20%',
+            sorter: true,
+            sortOrder: getSortOrder('name'),
+            search: true,
+            render: (name, record) => {
+              return (
+                <Avatar
+                  to={`${this.prefix}/${name}`}
+                  desc={record.description}
+                  title={getDisplayName(record)}
+                />
+              )
+            },
+          },
 
-      {
-        title: t('HEALTH_STATUS'),
-        dataIndex: 'healthStatus',
-        width: '20%',
-        filters: this.getWeatherStatus(),
-        filteredValue: getFilteredValue('healthStatus'),
-        search: true,
-        render: (healthStatus = 'Unknown') => (
-          <StatusText type={healthStatus} label={t(healthStatus)} />
-        ),
-      },
-      {
-        title: t('SYNC_STATUS'),
-        dataIndex: 'syncStatus',
-        filters: this.getSyncStatus(),
-        filteredValue: getFilteredValue('syncStatus'),
-        search: true,
-        width: '20%',
-        render: (syncStatus = 'Unknown') => (
-          <StatusText type={syncStatus} label={syncStatus} />
-        ),
-      },
-      {
-        title: t('DEPLOY_LOCATION'),
-        dataIndex: 'destination',
-        isHideable: true,
-        width: '20%',
-        render: destination => {
-          return (
-            <Destination
-              destination={destination}
-              clustersDetail={this.clusters}
-            />
-          )
-        },
-      },
-      {
-        title: t('UPDATE_TIME_TCAP'),
-        dataIndex: 'updateTime',
-        sorter: true,
-        sortOrder: getSortOrder('updateTime'),
-        isHideable: true,
-        width: '20%',
-        render: (updateTime, record) => {
-          const reconciledAt = get(record, 'status.reconciledAt')
-          return reconciledAt
-            ? getLocalTime(reconciledAt).format('YYYY-MM-DD HH:mm:ss')
-            : '-'
-        },
-      },
-    ]
+          {
+            title: t('HEALTH_STATUS'),
+            dataIndex: 'healthStatus',
+            width: '20%',
+            filters: this.getWeatherStatus(),
+            filteredValue: getFilteredValue('healthStatus'),
+            search: true,
+            render: (healthStatus = 'Unknown') => (
+              <StatusText type={healthStatus} label={t(healthStatus)} />
+            ),
+          },
+          {
+            title: t('SYNC_STATUS'),
+            dataIndex: 'syncStatus',
+            filters: this.getSyncStatus(),
+            filteredValue: getFilteredValue('syncStatus'),
+            search: true,
+            width: '20%',
+            render: (syncStatus = 'Unknown') => (
+              <StatusText type={syncStatus} label={syncStatus} />
+            ),
+          },
+          {
+            title: t('DEPLOY_LOCATION'),
+            dataIndex: 'destination',
+            isHideable: true,
+            width: '20%',
+            render: destination => {
+              return (
+                <Destination
+                  destination={destination}
+                  clustersDetail={this.clusters}
+                />
+              )
+            },
+          },
+          {
+            title: t('UPDATE_TIME_TCAP'),
+            dataIndex: 'updateTime',
+            sorter: true,
+            sortOrder: getSortOrder('updateTime'),
+            isHideable: true,
+            width: '20%',
+            render: (updateTime, record) => {
+              const reconciledAt = get(record, 'status.reconciledAt')
+              return reconciledAt
+                ? getLocalTime(reconciledAt).format('YYYY-MM-DD HH:mm:ss')
+                : '-'
+            },
+          },
+        ]
+      : [
+          {
+            title: t('NAME'),
+            dataIndex: 'name',
+            width: '20%',
+            sorter: true,
+            sortOrder: getSortOrder('name'),
+            search: true,
+            render: (name, record) => {
+              return (
+                <Avatar
+                  to={`${this.prefix}/${name}`}
+                  desc={record.description}
+                  title={getDisplayName(record)}
+                />
+              )
+            },
+          },
+          {
+            title: '类型',
+            dataIndex: 'fluxAppType',
+            width: '20%',
+            render: fluxAppType => {
+              return fluxAppType || '-'
+            },
+          },
+          {
+            title: '源',
+            dataIndex: 'fluxSource',
+            width: '20%',
+            render: fluxSource => {
+              return (
+                fluxSource && `${fluxSource.kind}/${fluxSource.name.slice(7)}`
+              )
+            },
+          },
+          {
+            title: '版本',
+            dataIndex: 'fluxLastRevision',
+            width: '20%',
+            render: fluxLastRevision => {
+              return fluxLastRevision || '-'
+            },
+          },
+          {
+            title: '就绪个数',
+            dataIndex: 'fluxAppReadyNum',
+            width: '20%',
+            render: fluxAppReadyNum => {
+              return fluxAppReadyNum ? fluxAppReadyNum.replace('-', '/') : '-'
+            },
+          },
+        ]
+    return columns
   }
 
   renderContent() {
@@ -316,7 +451,9 @@ export default class CDList extends React.Component {
     }
 
     const showCreate = this.enabledActions.includes('create')
-      ? this.handleCreate
+      ? isArgo
+        ? this.handleArgoCreate
+        : this.handleFluxCreate
       : null
 
     const showEmpty =
@@ -447,10 +584,13 @@ export default class CDList extends React.Component {
     const { bannerProps } = this.props
 
     return (
-      <ListPage {...this.props} getData={this.getData}>
+      <ListPage
+        {...this.props}
+        getData={isArgo ? this.getArgoData : this.getFluxData}
+      >
         <Banner {...bannerProps} />
         <div>
-          {!this.hideSummary && (
+          {isArgo && !this.hideSummary && (
             <div className={styles.status__container}>
               <div className={styles.warper__container}>
                 {this.renderStatusCard()}

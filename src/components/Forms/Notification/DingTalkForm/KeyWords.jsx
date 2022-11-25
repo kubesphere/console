@@ -49,21 +49,29 @@ export default class KeyWords extends React.Component {
   }
 
   render() {
-    const { value, validate, className } = this.props
+    const {
+      value,
+      validate,
+      className,
+      title = t('KEYWORD'),
+      listTitle = t('KEYWORDS_LIST'),
+      emptyDesc = t('EMPTY_KEYWORDS_DESC'),
+      placeholder = t(' '),
+    } = this.props
 
     return (
       <div className={classnames(styles.wrapper, className)}>
         <BoxInput
           className={styles.wrapper}
-          title={t('KEYWORDS')}
-          placeholder=" "
+          title={title}
+          placeholder={placeholder}
           validate={validate}
           onAdd={this.handleAdd}
         />
-        <p className="margin-t8">{t('KEYWORDS_LIST')}</p>
+        <p className="margin-t8">{listTitle}</p>
         <div className={styles.boxWrapper}>
           {isEmpty(value) ? (
-            <div className={styles.empty}>{t('EMPTY_KEYWORDS_DESC')}</div>
+            <div className={styles.empty}>{emptyDesc}</div>
           ) : (
             value.map(item => {
               return (
@@ -73,6 +81,7 @@ export default class KeyWords extends React.Component {
                     name="close"
                     size={12}
                     clickable
+                    type="light"
                     onClick={() => this.handleDelete(item)}
                   ></Icon>
                 </Tag>

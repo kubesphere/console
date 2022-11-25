@@ -20,6 +20,8 @@ module.exports = {
   // Banner
   POD_PL: 'Pods',
   // List
+  NODE_IP: '{node} ({ip})',
+  WAITING: 'Waiting',
   // List > View YAML
   // List > Delete
   POD_LOW: 'pod',

@@ -21,7 +21,7 @@ module.exports = {
   WORKSPACE_ROLE_DESC: 'Çalışma alanı üyesinin rolü, üyenin çalışma alanındaki izinlerini belirler.',
   // List
   WORKSPACE_ROLE_EMPTY_DESC: 'Lütfen bir çalışma alanı rolü oluşturun.',
-  ROLE_WORKSPACE_ADMIN: 'Çalışma alanındaki tüm kaynakları kontrol edin.',
+  ROLE_WORKSPACE_ADMIN: 'Manage all resources in the workspace.',
   ROLE_WORKSPACE_REGULAR: 'Çalışma alanları ayarları.',
   ROLE_WORKSPACE_VIEWER: 'Çalışma alanındaki tüm kaynakları görüntüleyin.',
   ROLE_WORKSPACE_SELF_PROVISIONER: 'Çalışma alanı ayarlarını görüntüleyin, uygulama şablonlarını yönetin ve projeler ile DevOps projeleri oluşturun.',
@@ -37,7 +37,7 @@ module.exports = {
   PERMISSION_PROJECTS_MANAGEMENT: 'Proje Yönetimi',
   PERMISSION_PROJECTS_MANAGEMENT_DESC: 'Çalışma alanında projeler oluşturun, düzenleyin ve silin.',
   PERMISSION_PROJECTS_CREATE: 'Proje Oluşturma',
-  PERMISSION_PROJECTS_CREATE_DESC: 'Projeler oluşturun. Bir projenin yaratıcısı proje yöneticisidir.',
+  PERMISSION_PROJECTS_CREATE_DESC: 'Create projects and become an administrator of the created projects.',
   // List > Create > Edit Permissions > DevOps Project Management
   PERMIGROUP_DEVOPS_MANAGEMENT: 'DevOps Projeleri',
   PERMISSION_DEVOPS_VIEW: 'DevOps Proje İzle',
@@ -45,7 +45,7 @@ module.exports = {
   PERMISSION_DEVOPS_MANAGEMENT: 'DevOps Proje Yönetimi',
   PERMISSION_DEVOPS_MANAGEMENT_DESC: 'Çalışma alanında DevOps projeleri oluşturun, düzenleyin ve silin.',
   PERMISSION_DEVOPS_CREATE: 'DevOps Projesi Oluştur',
-  PERMISSION_DEVOPS_CREATE_DESC: 'DevOps projeleri oluşturun. DevOps projesinin yaratıcısı DevOps proje yöneticisidir.',
+  PERMISSION_DEVOPS_CREATE_DESC: 'Create DevOps projects and become an administrator of the created DevOps projects.',
   // List > Create > Edit Permissions > App Management
   PERMISSION_APPS_MANAGEMENT: 'Uygulama Yönetimi',
   PERMISSION_WORKSPACE_APP_REPOS_VIEW: 'Uygulama Deposu Görüntüleme',

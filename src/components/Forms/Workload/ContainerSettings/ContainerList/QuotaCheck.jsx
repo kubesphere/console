@@ -76,7 +76,7 @@ export default class QuotaCheck extends Component {
             <span>{t('RESOURCE_REQUESTS')}:</span>
             {requestCPUOver && (
               <span>
-                CPU&nbsp;{t('Cost')}&nbsp;
+                CPU&nbsp;{t('COST')}&nbsp;
                 {get(result, '["requests.cpu"].cost', t('NO_LIMIT'))}&nbsp;(
                 {t('PROJECT_REMAINING_QUOTAS')}:&nbsp;
                 {get(
@@ -96,7 +96,7 @@ export default class QuotaCheck extends Component {
             {requestMemoryOver && (
               <span>
                 {t('MEMORY')}&nbsp;
-                {t('Cost')}&nbsp;
+                {t('COST')}&nbsp;
                 {get(result, '["requests.memory"].cost', t('NO_LIMIT'))}
                 &nbsp;(
                 {t('PROJECT_REMAINING_QUOTAS')}:&nbsp;
@@ -121,7 +121,7 @@ export default class QuotaCheck extends Component {
             <span>{t('RESOURCE_LIMITS')}:</span>
             {limitCPUOver && (
               <span>
-                CPU&nbsp;{t('Cost')}&nbsp;
+                CPU&nbsp;{t('COST')}&nbsp;
                 {get(result, '["limits.cpu"].cost', t('NO_LIMIT'))}&nbsp;(
                 {t('PROJECT_REMAINING_QUOTAS')}:&nbsp;
                 {get(result, '["limits.cpu"].namespaceQuota', t('NO_LIMIT'))}
@@ -133,7 +133,7 @@ export default class QuotaCheck extends Component {
             {limitMemoryOver && (
               <span>
                 {t('MEMORY')}&nbsp;
-                {t('Cost')}&nbsp;
+                {t('COST')}&nbsp;
                 {get(result, '["limits.memory"].cost', t('NO_LIMIT'))}&nbsp;(
                 {t('PROJECT_REMAINING_QUOTAS')}:&nbsp;
                 {get(result, '["limits.memory"].namespaceQuota', t('NO_LIMIT'))}
@@ -204,10 +204,10 @@ export default class QuotaCheck extends Component {
 
     const title =
       overcost && this.hasLimitQuota
-        ? t('QUOTA_OVERCOST_TIP')
+        ? t('INSUFFICENT_RESOURCES')
         : limitUnset && this.hasLimitQuota
-        ? t('QUOTA_UNSET_TIP')
-        : t('Remaining Quota')
+        ? t('RESOURC_QUOTAS_UNSET')
+        : t('REMAINING_QUOTAS')
 
     const message =
       (overcost || limitUnset) && this.hasLimitQuota

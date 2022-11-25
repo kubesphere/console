@@ -18,7 +18,7 @@
 module.exports = {
   // Edit Information
   CODE_REPOSITORY: '代码仓库',
-  // Details
+  // Attributes
   TASK_STATUS: '任务状态',
   NOT_RUNNING: '未运行',
   QUEUED: '队列中',
@@ -48,8 +48,10 @@ module.exports = {
   NO_PIPELINE_CONFIG_FILE_TIP: '未发现流水线配置文件。',
   // Task Status > Edit Pipeline
   EDIT_PIPELINE: '编辑流水线',
+  JENKINS_UNAVAILABLE: 'Jenkins 未就绪。',
   AGENT_TYPE_DESC: `Agent 部分指定整个流水线或特定阶段将在 Jenkins 环境中执行的位置，
       具体取决于该 agent 部分的放置位置。该部分必须在流水线块内的顶层定义，但 stage 级使用是可选的。`,
+  NOT_VALID_REPO: 'Code repo is not valid and cannot be created',
   CREATE_PIPELINE_DESC: '使用流水线进行构建，测试和部署',
   CI: '持续集成 (CI)',
   CI_DESC: '持续集成（CI）是在源代码变更后自动检测、拉取、构建和（在大多数情况下）进行单元测试的过程。',
@@ -107,7 +109,6 @@ module.exports = {
   RUN: '运行',
   ACTIVITY_EMPTY_TIP: '流水线尚未运行。',
   COMMIT: '提交',
-  DURATION: '持续时间',
   LAST_MESSAGE: '最后消息',
   RUN_ID: '运行 ID',
   STOP_PIPELINE_SUCCESSFUL: '流水线停止成功。',
@@ -148,7 +149,7 @@ module.exports = {
   CODE_LINE_COUNT: '行数',
   COVERAGE: '覆盖率',
   TEST_RESULTS: '检查结果',
-  ISSUE_PL: '问题',
+  ISSUE_PL: '议题',
   CRITICAL: '严重',
   MAJOR: '重要',
   MINOR: '轻微',
@@ -157,5 +158,6 @@ module.exports = {
   LINE_VALUE: '行：{value}',
   PASSED: '已通过',
   // Pull Requests
-  PULL_REQUEST_PL: '拉取请求'
+  PULL_REQUEST_PL: '拉取请求',
+  FAILED_CHECK_SCRIPT_COMPILE: 'The check of script compile failed, if you want to bypass the step, please click the continue button'
 };

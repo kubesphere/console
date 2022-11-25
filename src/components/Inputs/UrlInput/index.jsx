@@ -41,7 +41,7 @@ export default class UrlInput extends React.Component {
           <Form.Item rules={this.props.hostRules}>
             <Input
               name={this.props.hostName}
-              placeholder={`${t('EXAMPLE')}192.168.1.10`}
+              placeholder={t('EXAMPLE_VALUE', { value: '192.168.1.10' })}
               readOnly={readOnly}
             />
           </Form.Item>

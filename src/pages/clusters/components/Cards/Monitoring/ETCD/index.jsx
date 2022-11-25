@@ -120,7 +120,7 @@ export default class ETCDStatusTab extends React.Component {
         props: {
           type: 'area',
           title: 'RAFT_PROPOSAL',
-          unit: 'times/s',
+          unit: 'TIMES_PER_SECOND',
           legend: [
             'PROPOSAL_COMMITTED',
             'PROPOSAL_APPLIED',

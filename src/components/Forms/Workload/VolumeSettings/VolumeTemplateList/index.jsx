@@ -35,6 +35,7 @@ export default class VolumeList extends React.Component {
     onChange: PropTypes.func,
     onShowAddVolume: PropTypes.func,
     onShowEdit: PropTypes.func,
+    hideVolumeSetting: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -45,6 +46,7 @@ export default class VolumeList extends React.Component {
     onChange() {},
     onShowAddVolume() {},
     onShowEdit() {},
+    hideVolumeSetting: false,
   }
 
   static contextTypes = {
@@ -89,7 +91,7 @@ export default class VolumeList extends React.Component {
     ).map(c => ({ ...c, type: 'worker' }))
     const initContainers = get(
       formData,
-      `${this.prefix}spec.initContainers`,
+      `${this.props.prefix}spec.initContainers`,
       []
     ).map(c => ({ ...c, type: 'init' }))
 
@@ -144,7 +146,7 @@ export default class VolumeList extends React.Component {
   }
 
   render() {
-    const { className } = this.props
+    const { className, hideVolumeSetting } = this.props
     const formatVolumes = this.getFormattedVolumes()
 
     return (
@@ -158,11 +160,12 @@ export default class VolumeList extends React.Component {
                   key={get(volume, 'metadata.name')}
                   onEdit={this.handleEdit}
                   onDelete={this.handleDelete}
+                  banEdit={hideVolumeSetting}
                 />
               ))}
             </ul>
           )}
-          {this.renderAddVolume()}
+          {!hideVolumeSetting && this.renderAddVolume()}
         </div>
       </div>
     )

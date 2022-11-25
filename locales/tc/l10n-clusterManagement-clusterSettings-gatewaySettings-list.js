@@ -41,13 +41,14 @@ module.exports = {
   EDIT_TITLE: '編輯 {title}',
   // Cluster Gateway > Manage > Update
   UPDATE: 'Update',
+  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
   // Project Gateways
   PROJECT_GATEWAY_PL: '項目網關',
   PROJECT_GATEWAY_NOT_ENABLED: '項目網關 未開啟',
   PROJECT_ENABLE_GATEWAY_DESC: '請開啟項目網關。',
   REPLICA_COUNT: '副本數量',
   NODE_PORTS: '主機通訊埠',
-  UPDATE_GATEWAY_DESC: '目前網關可更新',
+  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: '項目網關',
   DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'

@@ -19,7 +19,7 @@ module.exports = {
   // More > Add Component
   // More > Add Component > Create Service
   // More > Delete
-  // Details
+  // Attributes
   // Resource Status
   APPLICATION_GOVERNANCE_SCAP: 'Uygulama Yönetişimi',
   NO_SERVICE_FOUND: 'Servis Bulunamadı',
@@ -33,6 +33,5 @@ module.exports = {
   TRAFFIC_MANAGEMENT: 'Trafik Yönetimi',
   // Tracing
   APPLICATION_GOVERNANCE_ENABLED: 'Uygulama Yönetişimi etkinleştirildi',
-  APPLICATION_GOVERNANCE_DISABLED: 'Uygulama yönetişimi devre dışı bırakıldı',
-  TRACING_UNAVAILABLE: 'İzleme Müsait Değil'
+  APPLICATION_GOVERNANCE_DISABLED: 'Uygulama yönetişimi devre dışı bırakıldı'
 };

@@ -124,7 +124,7 @@ export default class ScrollLoad extends React.Component {
     }
 
     if (isEmpty(data) || !children) {
-      return empty || <Empty className={styles.empty} desc={t('No Data')} />
+      return empty || <Empty className={styles.empty} desc={t('NO_DATA')} />
     }
 
     return children

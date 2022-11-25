@@ -29,14 +29,14 @@ const Item = ({ data, onUpgrade, currentVersion }) => {
     <div className={styles.item}>
       <span>{data.name}</span>
       {currentVersion.version_id === data.version_id && (
-        <div className={styles.tag}>{t('Current Version')}</div>
+        <div className={styles.tag}>{t('CURRENT_VERSION')}</div>
       )}
       {currentVersion.version_id !== data.version_id && (
         <div className={styles.operations}>
           <Button onClick={handleUpgrade}>
             {currentVersion.create_time < data.create_time
-              ? t('Upgrade')
-              : t('Rollback')}
+              ? t('UPGRADE')
+              : t('ROLL_BACK')}
           </Button>
         </div>
       )}

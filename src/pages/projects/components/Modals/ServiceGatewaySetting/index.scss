@@ -26,6 +26,7 @@
 
 .contentWrapper {
   height: 376px;
+  overflow: auto;
   padding: 20px;
   border-radius: 4px;
   background-color: #ffffff;
@@ -41,5 +42,14 @@
 
   & > p {
     @include TypographyParagraph($dark-color01);
+  }
+}
+
+.selectOption {
+  display: flex;
+
+  .text {
+    display: inline-block;
+    flex: 1;
   }
 }

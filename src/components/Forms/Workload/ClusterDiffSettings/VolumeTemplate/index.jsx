@@ -34,10 +34,9 @@ export default class VolumeSettingsDiff extends Component {
     return (
       <EditForm
         {...this.props}
-        title={`${t('Storage Class')}: ${get(
-          formData,
-          'spec.storageClassName'
-        )}`}
+        title={t('STORAGE_CLASS_VALUE', {
+          value: get(formData, 'spec.storageClassName'),
+        })}
         onOk={this.handleSubmit}
       >
         <div className="padding-12">

@@ -31,6 +31,7 @@ module.exports = {
   INVITE_WORKSPACE_MEMBER_DESC: '邀请用户到当前企业空间。',
   INVITE_MEMBER: '邀请成员',
   INVITE: '邀请',
+  INVITED_SUCCESSFULLY: '邀请成功。',
   // List > Remove
   REMOVE_MEMBER_TIP: '请输入用户名 <strong>{resource}</strong> 以确认您了解此操作的风险。'
 };

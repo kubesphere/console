@@ -78,7 +78,7 @@ export const getAppCategoryNames = categories => {
   categories.forEach(({ category_id, name, status }) => {
     if (category_id && status !== 'disabled') {
       const result =
-        category_id === 'ctg-uncategorized' ? t('Uncategorized') : name
+        category_id === 'ctg-uncategorized' ? t('APP_CATE_UNCATEGORIZED') : name
       names.push(t(result || category_id))
     }
   })
@@ -124,19 +124,19 @@ export const checkRepoInvalidReason = errCode => {
   const errReason = {
     // 901: '', // ErrNotExpect
     // 101: '', // ErrVisibility
-    102: 'Unrecognized URL', // ErrNotUrl
-    103: 'Invalid format of credential', // ErrCredentialNotJson
-    104: 'Missing access key ID', // ErrNoAccessKeyId
-    105: 'Missing secret access key', // ErrNoSecretAccessKey
-    106: 'S3 access denied', // ErrS3AccessDeny
-    107: 'Invalid format of URL', // ErrUrlFormat
-    108: 'Invalid HTTP Scheme', // ErrSchemeNotHttp
-    109: 'HTTP access denied', // ErrHttpAccessDeny
-    110: 'Invalid HTTPS Scheme', // ErrSchemeNotHttps
-    111: 'Invalid type', // ErrType
-    112: 'Invalid Providers', // ErrProviders
-    113: 'Invalid Repo URL', // ErrNotRepoUrl
-    114: 'Invalid S3 Scheme', // ErrSchemeNotS3
+    102: 'UNRECOGNIZED_URL', // ErrNotUrl
+    103: 'INVALID_CREDENTIAL_FORMAT', // ErrCredentialNotJson
+    104: 'MISSING_ACCESS_KEY_ID', // ErrNoAccessKeyId
+    105: 'MISSING_SECRET_ACCESS_KEY', // ErrNoSecretAccessKey
+    106: 'S_THREE_ACCESS_DENIED', // ErrS3AccessDeny
+    107: 'INVALID_URL_FORMAT', // ErrUrlFormat
+    108: 'INVALID_HTTP_SCHEME', // ErrSchemeNotHttp
+    109: 'HTTP_ACCESS_DENIED', // ErrHttpAccessDeny
+    110: 'INVALID_HTTPS_SCHEME', // ErrSchemeNotHttps
+    111: 'INVALID_TYPE', // ErrType
+    112: 'INVALID_PROVIDERS', // ErrProviders
+    113: 'INVALID_REPO_URL', // ErrNotRepoUrl
+    114: 'INVALID_S_THREE_SCHEME', // ErrSchemeNotS3
     // 115: 'Bad Index YAML', // ErrBadIndexYaml
   }
   return t(errReason[errCode] || 'INVALID_URL_DESC')

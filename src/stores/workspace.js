@@ -130,4 +130,10 @@ export default class WorkspaceStore extends Base {
   delete(params, data = {}) {
     return this.submitting(request.delete(this.getDetailUrl(params), data))
   }
+
+  @action
+  editVisible(params, newObject) {
+    const url = `kapis/tenant.kubesphere.io/v1alpha3/workspacetemplates/${params.name}`
+    return this.submitting(request.patch(url, newObject))
+  }
 }

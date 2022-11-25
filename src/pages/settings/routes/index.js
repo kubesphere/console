@@ -27,6 +27,7 @@ import DingTalk from '../containers/Notification/DingTalk'
 import WeCom from '../containers/Notification/WeCom'
 import Slack from '../containers/Notification/Slack'
 import Webhook from '../containers/Notification/Webhook'
+import FeiShu from '../containers/Notification/FeiShu'
 
 const PATH = '/settings'
 
@@ -49,6 +50,10 @@ export default [
       {
         path: `${PATH}/mail`,
         component: Mail,
+      },
+      {
+        path: `${PATH}/feishu`,
+        component: FeiShu,
       },
       {
         path: `${PATH}/dingtalk`,

@@ -42,7 +42,6 @@ export default class GrayReleaseComponent extends Base {
     const componentName = get(this.formTemplate, 'metadata.labels.app', '')
 
     const name = `${componentName}-${value}`
-    const kind = this.workloadKind
     this.workloadStore
       .checkName({
         name,
@@ -52,11 +51,7 @@ export default class GrayReleaseComponent extends Base {
       .then(resp => {
         if (resp.exist) {
           return callback({
-            message: t(
-              `${t(kind)} ${name} ${t('exists')}, ${t(
-                'version number is invalid'
-              )}`
-            ),
+            message: t('VERSION_EXISTS'),
             field: rule.field,
           })
         }

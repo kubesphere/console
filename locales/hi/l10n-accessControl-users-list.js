@@ -29,7 +29,7 @@ module.exports = {
   LAST_LOGIN: 'अंतिम लॉगइन',
   // List > Create
   USERNAME_DESC: 'उपयोगकर्ता नाम में केवल लोअरकेस अक्षर, संख्याएं, हाइफ़न (-), और डॉट्स (.) हो सकते हैं, और उन्हें लोअरकेस अक्षर या संख्या के साथ शुरू और समाप्त होना चाहिए। अधिकतम लंबाई 32 वर्ण है।',
-  PASSWORD_DESC: 'पासवर्ड में कम से कम एक नंबर, एक लोअरकेस अक्षर और एक अपरकेस अक्षर होना चाहिए। लंबाई 8 से 64 वर्णों की होनी चाहिए।',
+  PASSWORD_DESC: 'The password must contain at least one number, one lowercase letter, one uppercase letter, and one special character (~!@#$%^&*()-_=+\\|[{}];:\'",<.>/? or space). The length must be 8 to 64 characters.',
   PASSWORD_INVALID_DESC: 'अवैध पासवर्ड। पासवर्ड में कम से कम एक नंबर, एक लोअरकेस अक्षर और एक अपरकेस अक्षर होना चाहिए। लंबाई 8 से 64 वर्णों की होनी चाहिए।',
   PLATFORM_ROLE_DESC: 'KubeSphere प्लेटफॉर्म पर उपयोगकर्ता की भूमिका निर्धारित करें।',
   USER_SETTING_EMAIL_DESC: 'ईमेल पते का उपयोग KubeSphere वेब कंसोल में लॉग इन करने के लिए किया जा सकता है।',
@@ -45,5 +45,6 @@ module.exports = {
   // List > Edit
   EDIT_USER: 'उपयोगकर्ता को संपादित करो',
   // List > Delete
-  USER_LOW: 'उपयोगकर्ता'
+  USER_LOW: 'उपयोगकर्ता',
+  DELETING_CURRENT_USER_NOT_ALLOWED: 'The current user cannot be deleted.'
 };

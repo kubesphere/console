@@ -29,7 +29,7 @@ module.exports = {
   LAST_LOGIN: '最近登录',
   // List > Create
   USERNAME_DESC: '用户名只能包含小写字母、数字、连字符（-）和句点（.），必须以小写字母或数字开头及结尾，最长 32 个字符。',
-  PASSWORD_DESC: '密码必须包含数字、大写字母和小写字母，长度为 8 至 64 个字符。',
+  PASSWORD_DESC: '密码必须包含至少一个数字、一个小写字母、一个大写字母和一个特殊字符（~!@#$%^&*()-_=+\\|[{}];:\'",<.>/? 或空格），长度为 8 到 64 个字符。',
   PASSWORD_INVALID_DESC: '密码无效。密码必须包含数字、大写字母和小写字母，长度为 8 至 64 个字符。',
   PLATFORM_ROLE_DESC: '设置用户在 KubeSphere 平台的角色。',
   USER_SETTING_EMAIL_DESC: '邮箱地址可用于登录 KubeSphere Web 控制台。',
@@ -45,5 +45,6 @@ module.exports = {
   // List > Edit
   EDIT_USER: '编辑用户',
   // List > Delete
-  USER_LOW: '用户'
+  USER_LOW: '用户',
+  DELETING_CURRENT_USER_NOT_ALLOWED: '无法删除当前用户。'
 };

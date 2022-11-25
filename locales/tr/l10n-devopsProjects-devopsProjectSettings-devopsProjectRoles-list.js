@@ -23,7 +23,7 @@ module.exports = {
   DEVOPS_PROJECT_ROLE_EMPTY_DESC: 'Lütfen bir DevOps proje rolü oluşturun.',
   ROLE_DEVOPS_VIEWER: 'DevOps projesindeki tüm kaynakları görüntüleyin.',
   ROLE_DEVOPS_OPERATOR: 'DevOps projesinde kimlik bilgileri oluşturun.',
-  ROLE_DEVOPS_ADMIN: 'DevOps projesindeki tüm kaynakları kontrol edin.',
+  ROLE_DEVOPS_ADMIN: 'Manage all resources in the DevOps project.',
   // List > Edit Information
   // List > Edit Permissions
   // List > Create

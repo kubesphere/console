@@ -99,7 +99,7 @@ export default class Routes extends React.Component {
     }
 
     return (
-      <Panel className={className} title={title || t('Routes')}>
+      <Panel className={className} title={title || t('ROUTE_PL')}>
         {content}
       </Panel>
     )

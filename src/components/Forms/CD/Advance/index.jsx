@@ -33,6 +33,7 @@ import {
 } from 'utils/constants'
 import { get, set } from 'lodash'
 import Placement from './Placement'
+import Parameter from './Parameter'
 import styles from './index.scss'
 
 export default class Advance extends React.Component {
@@ -53,6 +54,12 @@ export default class Advance extends React.Component {
   get getReplace() {
     const { formTemplate } = this.props
     return get(formTemplate, 'syncOptions.Replace', false)
+  }
+
+  handleCheckboxChange = key => value => {
+    const { formTemplate } = this.props
+    set(formTemplate, key, value)
+    this.forceUpdate()
   }
 
   handleChange = value => {
@@ -109,6 +116,27 @@ export default class Advance extends React.Component {
                   <Input name="source.path" defaultValue="." />
                 </Form.Item>
               </Column>
+              <Column className={styles.align_center}>
+                <div className={styles.columns}>
+                  <div className={styles.column}>
+                    <Form.Item>
+                      <Checkbox
+                        name="source.directory.recurse"
+                        checked={get(
+                          formTemplate,
+                          'source.directory.recurse',
+                          false
+                        )}
+                        onChange={this.handleCheckboxChange(
+                          'source.directory.recurse'
+                        )}
+                      >
+                        {t('DIRECTORY_RECURSE')}
+                      </Checkbox>
+                    </Form.Item>
+                  </div>
+                </div>
+              </Column>
             </Columns>
           </div>
         </div>
@@ -129,7 +157,11 @@ export default class Advance extends React.Component {
               <div className={styles.columns}>
                 <div className={styles.column}>
                   <Form.Item>
-                    <Checkbox name="syncPolicy.prune">
+                    <Checkbox
+                      name="syncPolicy.prune"
+                      checked={get(formTemplate, 'syncPolicy.prune', false)}
+                      onChange={this.handleCheckboxChange('syncPolicy.prune')}
+                    >
                       {t('PRUNE_RESOURCES')}
                     </Checkbox>
                   </Form.Item>
@@ -137,7 +169,13 @@ export default class Advance extends React.Component {
 
                 <div className={styles.column}>
                   <Form.Item>
-                    <Checkbox name="syncPolicy.selfHeal">
+                    <Checkbox
+                      name="syncPolicy.selfHeal"
+                      checked={get(formTemplate, 'syncPolicy.selfHeal', false)}
+                      onChange={this.handleCheckboxChange(
+                        'syncPolicy.selfHeal'
+                      )}
+                    >
                       {t('SELF_HEAL')}
                     </Checkbox>
                   </Form.Item>
@@ -152,28 +190,58 @@ export default class Advance extends React.Component {
             <div className={`${styles.columns} ${styles.wrapper_item_com}`}>
               <div className={styles.column}>
                 <Form.Item>
-                  <Checkbox name="syncOptions.Validate">
+                  <Checkbox
+                    name="syncOptions.Validate"
+                    checked={get(formTemplate, 'syncOptions.Validate', false)}
+                    onChange={this.handleCheckboxChange('syncOptions.Validate')}
+                  >
                     {t('SKIP_SCHEMA_VALIDATION')}
                   </Checkbox>
                 </Form.Item>
               </div>
               <div className={styles.column}>
                 <Form.Item>
-                  <Checkbox name="syncOptions.CreateNamespace">
+                  <Checkbox
+                    name="syncOptions.CreateNamespace"
+                    checked={get(
+                      formTemplate,
+                      'syncOptions.CreateNamespace',
+                      false
+                    )}
+                    onChange={this.handleCheckboxChange(
+                      'syncOptions.CreateNamespace'
+                    )}
+                  >
                     {t('AUTO_CREATE_PROJECT')}
                   </Checkbox>
                 </Form.Item>
               </div>
               <div className={styles.column}>
                 <Form.Item>
-                  <Checkbox name="syncOptions.PruneLast">
+                  <Checkbox
+                    name="syncOptions.PruneLast"
+                    checked={get(formTemplate, 'syncOptions.PruneLast', false)}
+                    onChange={this.handleCheckboxChange(
+                      'syncOptions.PruneLast'
+                    )}
+                  >
                     {t('PRUNE_LAST')}
                   </Checkbox>
                 </Form.Item>
               </div>
               <div className={styles.column}>
                 <Form.Item>
-                  <Checkbox name="syncOptions.ApplyOutOfSyncOnly">
+                  <Checkbox
+                    name="syncOptions.ApplyOutOfSyncOnly"
+                    checked={get(
+                      formTemplate,
+                      'syncOptions.ApplyOutOfSyncOnly',
+                      false
+                    )}
+                    onChange={this.handleCheckboxChange(
+                      'syncOptions.ApplyOutOfSyncOnly'
+                    )}
+                  >
                     {t('APPLY_OUT_OF_SYNC_ONLY')}
                   </Checkbox>
                 </Form.Item>
@@ -198,6 +266,12 @@ export default class Advance extends React.Component {
                 </div>
               </div>
             </Form.Item>
+          </div>
+        </div>
+        <div className={styles.wrapper}>
+          <h6>{t('PARAMETER_SETTINGS')}</h6>
+          <div className={styles.wrapper_item}>
+            <Parameter formData={formTemplate} {...this.props} />
           </div>
         </div>
       </Form>

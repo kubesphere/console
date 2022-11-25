@@ -38,6 +38,9 @@ module.exports = {
   MOUNTED: 'Mounted',
   NOT_MOUNTED: '不掛載',
   ACCESS_MODE_TCAP: '支持的訪問模式',
+  RWO_DESC: 'RWO: Single-node read and write',
+  ROX_DESC: 'ROX: Multi-node readonly',
+  RWX_DESC: 'RWX: Multi-node read and write',
   // List > Create > Basic Information
   CREATE: '創建',
   CREATE_PERSISTENT_VOLUME_CLAIM: 'Create Persistent Volume Claim',

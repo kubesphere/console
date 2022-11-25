@@ -58,12 +58,12 @@ export default class AlertingPolicy extends React.Component {
       options: [
         {
           value: 'custom',
-          label: t('CUSTOM_POLICIES'),
+          label: t('ALERTS_FROM_CUSTOM_POLICIES'),
           count: this.props.store.ruleCount,
         },
         {
           value: 'builtin',
-          label: t('BUILT_IN_POLICIES'),
+          label: t('ALERTS_FROM_BUILT_IN_POLICIES'),
           count: this.props.store.builtinRuleCount,
         },
       ],
@@ -157,7 +157,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('ALERTING_STATUS'),
+        title: t('STATUS'),
         dataIndex: 'state',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('state'),
@@ -232,7 +232,7 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('ACTIVATION_TIME'),
+        title: t('TRIGGER_TIME'),
         dataIndex: 'activeAt',
         isHideable: true,
         width: 200,

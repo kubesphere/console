@@ -44,7 +44,7 @@ export default class Tools extends Component {
   render() {
     const { cluster } = this.props
     return (
-      <Panel title={t('Tools')}>
+      <Panel title={t('TOOLS')}>
         <div className={styles.level}>
           <div
             className="margin-r12"

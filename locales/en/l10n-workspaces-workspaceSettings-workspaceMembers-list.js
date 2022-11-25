@@ -32,6 +32,7 @@ module.exports = {
   INVITE_WORKSPACE_MEMBER_DESC: 'Invite users to the workspace.',
   INVITE_MEMBER: 'Invite Member',
   INVITE: 'Invite',
+  INVITED_SUCCESSFULLY: 'Invited successfully.',
   // List > Remove
   REMOVE_MEMBER_TIP: 'Enter the username <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 }

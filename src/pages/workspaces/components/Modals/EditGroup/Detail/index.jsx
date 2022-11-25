@@ -128,7 +128,7 @@ export default class Detail extends Component {
 
     this.store.deleteGroup(group_id, { workspace }).then(() => {
       this.setState({ showConfirm: false, deleteKeys: [group_id] })
-      Notify.success({ content: t('DELETE_SUCCESSFUL') })
+      Notify.success({ content: t('DELETED_SUCCESSFULLY') })
     })
   }
 

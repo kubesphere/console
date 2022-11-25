@@ -38,6 +38,9 @@ module.exports = {
   MOUNTED: 'Mounted',
   NOT_MOUNTED: 'No montado',
   ACCESS_MODE_TCAP: 'Modo de acceso admitido',
+  RWO_DESC: 'RWO: Single-node read and write',
+  ROX_DESC: 'ROX: Multi-node readonly',
+  RWX_DESC: 'RWX: Multi-node read and write',
   // List > Create > Basic Information
   CREATE: 'Crear',
   CREATE_PERSISTENT_VOLUME_CLAIM: 'Create Persistent Volume Claim',

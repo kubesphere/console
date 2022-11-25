@@ -23,6 +23,7 @@ module.exports = {
   DEPLOYMENTS: 'Deployments',
   UPDATE_TIME_TCAP: 'Tiempo de actualización',
   ALL_PROJECTS: 'Todos los proyectos',
+  SHOW_NUM: 'Show: {num}',
   // List > Create > Basic Information
   SELECT_PROJECT_DESC: 'Select a project in which the resource is to be created.',
   PROJECT_NOT_SELECT_DESC: 'Please select a project.',
@@ -36,7 +37,6 @@ module.exports = {
   // List > Create > Pod Settings
   PREVIOUS: 'Anterior',
   NOTE: 'Advertencia',
-  CREATE_CONFIGMAP_SECRET_DESC: 'If no configmap or secret meets the requirements, you can',
   // List > Create > Pod Settings > Add Container > Container Settings
   IMAGE: 'Imagen',
   IMAGE_VALUE: 'Imagen: {value}',
@@ -49,6 +49,9 @@ module.exports = {
   SPECIFY_SUBPATH: 'Haga clic para agregar subPath',
   SPECIFY_SUBPATH_TIP: 'Solo es apropiado para montar volúmenes, pero no para hostpath',
   MOUNT_PATH: 'Mount path',
+  MOUNT_PATH_NOT_SPECIFIED: 'Please select a key to be mounted and the mount path of the key.',
+  MOUNT_PATH_EMPTY: 'Please enter a mount path.',
+  MOUNT_PATH_REPEATED: 'The mount path is duplicated.',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: 'Network segment',
   AVAILABLE_ADDRESSES: 'Available Number',
@@ -61,9 +64,9 @@ module.exports = {
   // List > Edit YAML
   // List > Re-create
   // List > Delete
-  WORKLOAD_LOW: 'workload',
   // List > Stop
   STOP: 'Stop',
   STOP_TITLE_SI: 'Stop {type}',
-  STOP_TITLE_PL: 'Stop Multiple {type}'
+  STOP_TITLE_PL: 'Stop Multiple {type}',
+  STOP_DESC: 'Are you sure you want to stop the resource?'
 };

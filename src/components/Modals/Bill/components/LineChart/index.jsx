@@ -78,7 +78,7 @@ export default class LineChart extends React.Component {
         const legend = data.map(record => get(record, `type`))
         const _result = {
           title: t('CONSUMER_TRENDS'),
-          unit: this.priceConfig.currency === 'CNY' ? t('￥') : t('$'),
+          unit: this.priceConfig.currency ? this.priceConfig.currency : ' ',
           data,
           legend,
         }

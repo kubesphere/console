@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { get, keyBy } from 'lodash'
+import { get, isEmpty, keyBy } from 'lodash'
 import {
   Alert,
   Columns,
@@ -41,7 +41,7 @@ import styles from './index.scss'
 export default class ClusterVisibility extends React.Component {
   state = {
     allWorkspaces: [],
-    authedWorkspaces: [],
+    authoredWorkspaces: [],
     addWorkspaces: [],
     deleteWorkspaces: [],
     isPublic: get(this.props, 'cluster.visibility') === 'public',
@@ -51,27 +51,27 @@ export default class ClusterVisibility extends React.Component {
 
   workspaceStore = new WorkspaceStore()
 
-  authedWorkspaceStore = new WorkspaceStore()
+  authoredWorkspaceStore = new WorkspaceStore()
 
   componentDidMount() {
     this.fetchWorkspaces()
-    this.fetchAuthedWorkspaces()
+    this.fetchAuthoredWorkspaces()
   }
 
   handleOk = () => {
-    const { allWorkspaces, authedWorkspaces } = this.state
-    const savedAuthWorkspaces = toJS(this.authedWorkspaceStore.list.data)
+    const { allWorkspaces, authoredWorkspaces } = this.state
+    const savedAuthWorkspaces = toJS(this.authoredWorkspaceStore.list.data)
 
     const allWorkspacesMap = keyBy(allWorkspaces, 'name')
-    const authedWorkspacesMap = keyBy(authedWorkspaces, 'name')
+    const authoredWorkspacesMap = keyBy(authoredWorkspaces, 'name')
     const savedAuthWorkspacesMap = keyBy(savedAuthWorkspaces, 'name')
 
-    const addWorkspaces = authedWorkspaces.filter(
+    const addWorkspaces = authoredWorkspaces.filter(
       workspace => !savedAuthWorkspacesMap[workspace.name]
     )
 
     const deleteWorkspaces = savedAuthWorkspaces
-      .filter(workspace => !authedWorkspacesMap[workspace.name])
+      .filter(workspace => !authoredWorkspacesMap[workspace.name])
       .map(workspace => allWorkspacesMap[workspace.name])
 
     this.setState({ addWorkspaces, deleteWorkspaces }, () => {
@@ -103,9 +103,9 @@ export default class ClusterVisibility extends React.Component {
     })
   }
 
-  fetchAuthedWorkspaces = params => {
+  fetchAuthoredWorkspaces = params => {
     const { cluster = {} } = this.props
-    this.authedWorkspaceStore
+    this.authoredWorkspaceStore
       .fetchList({
         ...params,
         limit: -1,
@@ -114,24 +114,37 @@ export default class ClusterVisibility extends React.Component {
       })
       .then(() => {
         this.setState({
-          authedWorkspaces: [...toJS(this.authedWorkspaceStore.list.data)],
+          authoredWorkspaces: [...toJS(this.authoredWorkspaceStore.list.data)],
         })
       })
   }
 
   handleWorkspaceAuth = workspace => {
-    this.setState(({ authedWorkspaces }) => ({
-      authedWorkspaces: [...authedWorkspaces, workspace],
+    this.setState(({ authoredWorkspaces }) => ({
+      authoredWorkspaces: [...authoredWorkspaces, workspace],
     }))
   }
 
   handleWorkspaceUnAuth = workspace => {
-    this.setState(({ authedWorkspaces }) => ({
-      authedWorkspaces: authedWorkspaces.filter(
-        item => item.name !== workspace.name
-      ),
-      showUnAuthTip: true,
-    }))
+    const { allWorkspaces } = this.state
+
+    this.setState(({ authoredWorkspaces }) => {
+      const isExistWorkspace = allWorkspaces.filter(
+        item => item.name === workspace.name
+      )
+
+      if (isEmpty(isExistWorkspace)) {
+        allWorkspaces.push(workspace)
+      }
+
+      return {
+        authoredWorkspaces: authoredWorkspaces.filter(
+          item => item.name !== workspace.name
+        ),
+        allWorkspaces,
+        showUnAuthTip: true,
+      }
+    })
   }
 
   handlePublicChange = isPublic => {
@@ -142,7 +155,7 @@ export default class ClusterVisibility extends React.Component {
     const { visible, onCancel } = this.props
     const {
       allWorkspaces,
-      authedWorkspaces,
+      authoredWorkspaces,
       showUnAuthTip,
       isPublic,
       showConfirm,
@@ -196,21 +209,25 @@ export default class ClusterVisibility extends React.Component {
                       data={item}
                       type="all"
                       onClick={this.handleWorkspaceAuth}
-                      disabled={authedWorkspaces.find(
+                      disabled={authoredWorkspaces.find(
                         ws => ws.name === item.name
                       )}
                     />
                   ))}
                 </div>
                 <div className={styles.footer}>
-                  <Toggle
-                    checked={isPublic}
-                    onChange={this.handlePublicChange}
-                  />
-                  <span>{t('SET_PUBLIC_CLUSTER')}</span>
-                  <Tooltip content={t('CLUSTER_VISIBILITY_A2')}>
-                    <Icon name="information" />
-                  </Tooltip>
+                  {globals.user.globalRules.clusters.includes('manage') && (
+                    <>
+                      <Toggle
+                        checked={isPublic}
+                        onChange={this.handlePublicChange}
+                      />
+                      <span>{t('SET_PUBLIC_CLUSTER')}</span>
+                      <Tooltip content={t('CLUSTER_VISIBILITY_A2')}>
+                        <Icon name="information" />
+                      </Tooltip>
+                    </>
+                  )}
                 </div>
               </div>
             </Column>
@@ -218,7 +235,7 @@ export default class ClusterVisibility extends React.Component {
               <div className={styles.title}>{t('AUTHORIZED')}</div>
               <div className={styles.content}>
                 <div className={styles.authedList}>
-                  {authedWorkspaces.map(item => (
+                  {authoredWorkspaces.map(item => (
                     <WorkspaceItem
                       key={item.name}
                       data={item}

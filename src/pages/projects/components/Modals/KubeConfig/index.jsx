@@ -69,13 +69,12 @@ export default class KubeConfigModal extends React.Component {
       >
         <div className={styles.header}>
           <Icon name="coding" size={40} />
-          <div className={styles.title}>{t('Kubeconfig File')}</div>
+          <div className={styles.title}>{'kubeconfig'}</div>
         </div>
         <div className={styles.content}>
           <div className={styles.topbar}>
-            <p>{`${t('Put this into')} ~/.kube/config:`}</p>
             <Button icon="download" ghost onClick={this.handleDownload}>
-              {t('Download File')}
+              {t('DOWNLOAD')}
             </Button>
           </div>
           <div className={styles.editor}>

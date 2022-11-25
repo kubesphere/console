@@ -79,7 +79,7 @@ const QuotaItem = ({ name, total, used, type }) => {
           value={Math.min(ratio, 1)}
           className={styles.bar}
           rightText={!total ? t('NO_LIMIT_TCAP') : ''}
-          text={`${t('Used')} ${Number((ratio * 100).toFixed(2))}%`}
+          text={`${t('USED')} ${Number((ratio * 100).toFixed(2))}%`}
         />
       </div>
     </div>

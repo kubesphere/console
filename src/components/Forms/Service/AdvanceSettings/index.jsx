@@ -24,11 +24,14 @@ import { Form } from '@kube-design/components'
 import { NumberInput } from 'components/Inputs'
 import PodIPRange from 'components/Forms/Workload/AdvanceSettings/PodIPRange'
 
+import { toJS } from 'mobx'
 import Metadata from './Metadata'
 import NodeSchedule from './NodeSchedule'
 import InternetAccess from './InternetAccess'
 
 export default class AdvancedSettings extends React.Component {
+  metadataRef = React.createRef()
+
   get namespace() {
     return get(this.props.formTemplate, 'Service.metadata.namespace')
   }
@@ -40,6 +43,17 @@ export default class AdvancedSettings extends React.Component {
   get kind() {
     const { module } = this.props
     return MODULE_KIND_MAP[module]
+  }
+
+  get clusters() {
+    const { projectDetail, cluster, isFederated } = this.props
+    return isFederated
+      ? toJS(projectDetail.clusters).map(item => item.name)
+      : [cluster]
+  }
+
+  componentDidMount() {
+    this.metadataRef.current.setState({ isCheck: true })
   }
 
   handleLabelsChange = labels => {
@@ -105,6 +119,7 @@ export default class AdvancedSettings extends React.Component {
             <InternetAccess
               formTemplate={formTemplate}
               isFederated={isFederated}
+              clusters={this.clusters}
             />
           </Form.Group>
         )}
@@ -143,6 +158,7 @@ export default class AdvancedSettings extends React.Component {
         <Form.Group
           label={t('ADD_METADATA')}
           desc={t('SERVICE_ADD_METADATA_DESC')}
+          ref={this.metadataRef}
           keepDataWhenUnCheck
           checkable
         >

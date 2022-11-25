@@ -19,9 +19,13 @@ module.exports = {
   // More > Add Service
   ADD_SERVICE: '添加服務',
   ADD_ROUTE: 'Add Route',
+  SERVICE_ADDED_SUCCESSFULLY: 'The service was added successfully.',
   // More > Add Route
-  // Details
+  // Attributes
   // Resource Status
+  WORKLOAD_TYPE_DEPLOYMENTS: '部署',
+  WORKLOAD_TYPE_DAEMONSETS: '守護進程集',
+  WORKLOAD_TYPE_STATEFULSETS: '有狀態副本集',
   // Traffic Monitoring
   TRAFFIC_MONITORING: '流量監控',
   TRAFFIC_MONITORING_UNAVAILABLE_DESC: '應用長時間未收到請求，請訪問應用後嘗試流量治理',
@@ -68,13 +72,16 @@ module.exports = {
   BASE_EJECTION_TIME_S: 'Base Ejection Time (s)',
   BASE_EJECTION_TIME_S_DESC: 'Maximum ejection duration.',
   UPDATED_AT_VALUE_SCAP: 'Updated at {value}',
+  METHOD: 'Method',
+  TRAFFIC_MANAGEMENT_UNAVAILABLE: 'Traffic Management Unavailable',
+  APPLICATION_GOVERNANCE_NOT_ENABLED: 'Please enable Application Governance.',
   // Grayscale Release
-  CREATE_GRAYSCALE_RELEASE_JOB: '創建灰度任務',
+  CREATE_GRAYSCALE_RELEASE_TASK: 'Create Grayscale Release Task',
   GRAYSCALE_RELEASE_DESC: 'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
-  NO_GRAYSCALE_RELEASE_JOB_FOUND: '沒有找到灰度發佈任務',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND: 'No Grayscale Release Task Found',
   NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: '請創建一個灰度發布任務。',
-  TOTAL_GRAY_RELEASE_JOB: '共計 {num} 個灰度任務',
-  TOTAL_GRAY_RELEASE_JOBS: '共計 {num} 個灰度任務',
+  TYPE_SERVICE_DEPLOYMENT: 'Type: stateless service (deployment)',
+  TYPE_SERVICE_STATEFULSET: 'Type: stateful service (statefulset)',
   // Tracing
   TRACING: 'Tracing',
   TRACING_NO_DATA_DESC: '請嘗試其它查詢條件',
@@ -82,5 +89,10 @@ module.exports = {
   NUM_SPAN_PL: '{num} spans',
   NUM_ERROR_SI: '{num} error',
   NUM_ERROR_PL: '{num} errors',
-  LAST_NUM_RECORDS: '最近 {num} 條紀錄'
+  LAST_NUM_RECORDS: '最近 {num} 條紀錄',
+  PROCESS: 'Process',
+  SERVICES_AND_OPERATIONS: 'Services & Operations',
+  TRACING_UNAVAILABLE: 'Tracing Unavailable',
+  CALLED_SERVICES: 'Called Services',
+  CALLED_DEPTH: 'Call Depth'
 };

@@ -17,7 +17,9 @@
  */
 module.exports = {
   // Banner
+  CRD: 'CRD',
   CRD_PL: 'CRDs',
+  CRD_LOW: 'CRD',
   CRD_DESC: 'Özel Kaynak Tanımı (CRD), kullanıcıların her türden özel kaynak oluşturmasına olanak tanıyarak Kubernetes\'i genişletir. Kullanıcılar, bu CRD nesnelerini yerleşik kaynaklar için olduğu gibi kullanabilir.',
   // List
   CRD_EMPTY_DESC: 'Lütfen bir CRD oluşturun.',

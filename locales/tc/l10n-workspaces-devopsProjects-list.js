@@ -26,6 +26,8 @@ module.exports = {
   // List > Create
   CREATE_DEVOPS_PROJECT: '創建 DevOps 项目',
   DEVOPS_PROJECT_CREATE_DESC: 'DevOps 是一個獨立的命名空間，其中定義了一組流水線；用戶可以按照自己的方式對流水線進行分組 (例如：項目類型、組織類型)。',
+  DEVOPS_BASEINFO_DESC: 'Please set the basic information of the DevOps project',
+  PATTERN_NAME_INVALID_TIP: 'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-).',
   // List > Create > Cluster Settings
   NO_DEVOPS_INSTALL: '未安裝 DevOps',
   // List > Edit

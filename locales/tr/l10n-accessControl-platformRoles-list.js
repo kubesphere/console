@@ -24,6 +24,7 @@ module.exports = {
   ROLE_WORKSPACES_MANAGER: 'KubeSphere platformundaki tüm çalışma alanlarını yönetin.',
   ROLE_PLATFORM_ADMIN: 'KubeSphere platformundaki tüm kaynakları yönetin.',
   ROLE_PLATFORM_REGULAR: 'Bir çalışma alanına katılmadan önce hiçbir kaynağa erişilemez.',
+  ROLE_PLATFORM_SELF_PROVISIONER: 'Create workspaces and become an administrator of the created workspaces.',
   CREATION_TIME_TCAP: 'Oluşturma Zamanı',
   // List > Create
   CREATE_PLATFORM_ROLE: 'Platform Rolü Oluştur',
@@ -39,6 +40,8 @@ module.exports = {
   PERMISSION_WORKSPACES_VIEW_DESC: 'Çalışma Alanlarını Görüntüle.',
   PERMISSION_WORKSPACES_MANAGEMENT: 'Çalışma alanı Yönetimi',
   PERMISSION_WORKSPACES_MANAGEMENT_DESC: 'Çalışma alanları oluşturun, düzenleyin, silin ve görüntüleyin.',
+  PERMISSION_WORKSPACES_CREATE: 'Workspace Creation',
+  PERMISSION_WORKSPACES_CREATE_DESC: 'Create workspaces and become an administrator of the created workspaces.',
   PERMISSION_USERS_VIEW: 'Kullanıcıları Görüntüle',
   PERMISSION_USERS_VIEW_DESC: 'Kullanıcıları görüntüle.',
   PERMISSION_USERS_MANAGEMENT: 'Kullanıcı Yönetimi',
@@ -56,5 +59,9 @@ module.exports = {
   // List > Create > Edit Permissions > Platform Settings
   PERMIGROUP_PLATFORM_SETTINGS: 'Platform Ayarları',
   PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Platform Ayarları Yönetimi',
-  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'KubeSphere platformunun ayarlarını görüntüleyin ve düzenleyin.'
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'KubeSphere platformunun ayarlarını görüntüleyin ve düzenleyin.',
+  // List > Edit Information
+  // List > Edit Permissions
+  // List > Delete
+  DELETING_PRESET_ROLES_NOT_ALLOWED: 'Preset roles cannot be deleted.'
 };

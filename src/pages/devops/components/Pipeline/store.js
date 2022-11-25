@@ -18,13 +18,15 @@
 
 import { action, observable, computed, toJS } from 'mobx'
 import { get, set, unset, isObject, isEmpty, isArray, cloneDeep } from 'lodash'
-import { Notify } from '@kube-design/components'
+import qs from 'qs'
 
+import cookie from 'utils/cookie'
 import CredentialStore from 'stores/devops/credential'
 import BaseStore from 'stores/devops'
+import PipelineStore from 'stores/devops/pipelines'
 import CDStore from 'stores/cd'
-
-import { generateId } from 'utils'
+import { generateId, safeParseJSON } from 'utils'
+import { CREDENTIAL_DISPLAY_KEY } from 'utils/constants'
 
 const formatPipeLineJson = json => {
   if (!get(json, 'pipeline.stages')) return
@@ -68,10 +70,61 @@ const formatPipeLineJson = json => {
   return json
 }
 
+const formatStepTemplate = data => {
+  const lang = cookie('lang') === 'zh' ? 'ZH' : 'EN'
+  const template = {}
+  const annotations = get(data, 'metadata.annotations', {})
+
+  template.icon = annotations['step.devops.kubesphere.io/icon']
+  template.category = get(data, [
+    'metadata',
+    'labels',
+    'step.devops.kubesphere.io/category',
+  ])
+  template.name = data.metadata.name
+  template.desc =
+    annotations[`devops.kubesphere.io/description${lang}`] ||
+    annotations['devops.kubesphere.io/descriptionEN']
+  template.title =
+    annotations[`devops.kubesphere.io/displayName${lang}`] ||
+    annotations['devops.kubesphere.io/displayNameEN'] ||
+    annotations.displayNameEN
+
+  template.parameters = get(data, 'spec.parameters', []).map(p => {
+    return {
+      ...p,
+      ...(p.options
+        ? {
+            options: safeParseJSON(p.options, []).map(opt => ({
+              label: t(opt.label),
+              value: opt.value,
+            })),
+          }
+        : {}),
+    }
+  })
+
+  if (!isEmpty(get(data, 'spec.secret', {}))) {
+    const secretType =
+      CREDENTIAL_DISPLAY_KEY[data.spec.secret.type?.split('/')[1]]
+    template.parameters.push({
+      name: 'secret',
+      type: 'secret',
+      display: 'Secret',
+      postByQuery: true,
+      required: true,
+      secretType,
+    })
+  }
+  return template
+}
+
 export default class Store extends BaseStore {
   credentialStore = new CredentialStore()
 
   cdStore = new CDStore()
+
+  pipelineStore = new PipelineStore()
 
   get newStage() {
     return {
@@ -133,12 +186,18 @@ export default class Store extends BaseStore {
   @observable
   cdList = { data: [] }
 
+  @observable
+  pipelineList = { data: [] }
+
+  @observable
+  pipelineSteps = []
+
   handleAddBranch(lineIndex) {
     if (this.jsonData.json.pipeline.stages[lineIndex].parallel) {
       this.jsonData.json.pipeline.stages[lineIndex].parallel.push(this.newStage)
     } else {
       this.jsonData.json.pipeline.stages[lineIndex] = {
-        name: `default-${lineIndex}`,
+        name: generateId(6),
         parallel: [
           this.jsonData.json.pipeline.stages[lineIndex],
           this.newStage,
@@ -266,95 +325,25 @@ export default class Store extends BaseStore {
   }
 
   @action
-  async convertJsonToJenkinsFile({ cluster }) {
+  async saveJenkinsFile({ devops, name }) {
     return request
-      .post(
-        `${this.getDevopsUrlV2({ cluster })}/tojenkinsfile`,
-        {
-          json: JSON.stringify(formatPipeLineJson(toJS(this.jsonData.json))),
-        },
+      .put(
+        `${this.getDevopsUrlV3({
+          devops,
+        })}/pipelines/${name}/jenkinsfile?mode=json`,
+        { data: JSON.stringify(formatPipeLineJson(toJS(this.jsonData.json))) },
         {
           headers: {
-            'content-type': 'application/x-www-form-urlencoded',
+            'content-type': 'application/json',
           },
         }
       )
-      .then(result => {
-        if (result && get(result, 'data.result') === 'success') {
-          this.jenkinsFile = result.data.jenkinsfile
-          return result
-        }
-
-        if (result && get(result, 'data.result') === 'failure') {
-          result.data.errors.forEach(error => {
-            if (!error.location) {
-              // no location show full screen message
-              window.onunhandledrejection({
-                status: 'Failure',
-                reason: t('pipeline syntax error'),
-                message: error.error || JSON.stringify(error),
-              })
-              return
-            }
-
-            const loacationArr = error.location.join('.').split('.branches')
-            const errorObj = get(this.jsonData.json, loacationArr[0])
-
-            if (errorObj && !isEmpty(errorObj)) {
-              const errorStepIndex =
-                error.location.indexOf('steps') !== -1
-                  ? parseInt(
-                      error.location[error.location.indexOf('steps') + 1],
-                      10
-                    )
-                  : undefined
-              if (errorStepIndex !== undefined) {
-                set(this.jsonData.json, loacationArr[0], {
-                  ...toJS(get(this.jsonData.json, loacationArr[0])),
-                  error: { error: error.error, index: errorStepIndex },
-                })
-                return
-              }
-
-              Notify.error({
-                title: t('pipeline syntax error'),
-                content: t(error.error),
-                duration: 6000,
-              })
-              return
-            }
-
-            if (error.location.indexOf('conditions') !== -1) {
-              const conditionLoacationArr = error.location
-                .join('.')
-                .split('.when')
-              const errorStepIndex =
-                error.location.indexOf('conditions') !== -1
-                  ? parseInt(
-                      error.location[error.location.indexOf('conditions') + 1],
-                      10
-                    )
-                  : undefined
-
-              set(this.jsonData.json, conditionLoacationArr[0], {
-                ...toJS(get(this.jsonData.json, conditionLoacationArr[0])),
-                conditionError: { error: error.error, index: errorStepIndex },
-              })
-              return
-            }
-
-            const errorStepIndex =
-              error.location.indexOf('steps') !== -1
-                ? parseInt(
-                    error.location[error.location.indexOf('steps') + 1],
-                    10
-                  )
-                : undefined
-            set(this.jsonData.json, loacationArr[0], {
-              ...toJS(get(this.jsonData.json, loacationArr[0])),
-              error: { error: error.error, index: errorStepIndex },
-            })
-          })
+      .then(({ result }) => {
+        if (result === 'success') {
+          this.jenkinsFile = JSON.stringify(
+            formatPipeLineJson(toJS(this.jsonData.json))
+          )
+          return this.jenkinsFile
         }
       })
   }
@@ -367,6 +356,17 @@ export default class Store extends BaseStore {
       ...params,
     })
     this.credentialsList = this.credentialStore.list
+  }
+
+  @action
+  getPipelines = async params => {
+    await this.pipelineStore.fetchList({
+      devops: this.params.devops,
+      cluster: this.params.cluster,
+      filter: 'no-folders',
+      ...params,
+    })
+    this.pipelineList = this.pipelineStore.list
   }
 
   @action
@@ -386,27 +386,54 @@ export default class Store extends BaseStore {
 
   @action
   async handleConfirm() {
-    await this.convertJsonToJenkinsFile()
+    await this.saveJenkinsFile()
   }
 
   @action
-  async fetchLabel({ devops, cluster }) {
-    const url = `${this.getDevopsUrlV2({
-      cluster,
-      devops,
-    })}jenkins/labelsdashboard/labelsData`
+  async fetchLabel() {
+    const url = `${this.getDevopsUrlV3()}ci/nodelabels`
+    this.labelDataList = []
+    const result = await request.get(url, {}, {}, () => null)
 
-    const result = await request.get(url, {}, {}, () => {
-      this.labelDataList = []
-    })
-
-    if (result && result.status === 'ok' && isArray(result.data)) {
-      const labelDataList = result.data.map(item => {
-        return { label: item.label, value: item.label }
-      })
-      this.labelDataList = labelDataList
-    } else {
-      this.labelDataList = []
+    if (result && result.status === 'success' && isArray(result.data)) {
+      this.labelDataList = result.data.map(item => ({
+        label: item,
+        value: item,
+      }))
     }
+  }
+
+  @action
+  async fetchPipelineStepTemplates() {
+    const data = await request.get(
+      `${this.getBaseUrl()}clustersteptemplates?limit=100`
+    )
+
+    const { items = [] } = data
+    const templateList = items.map(formatStepTemplate)
+
+    this.pipelineSteps = templateList
+    return templateList
+  }
+
+  @action
+  async fetchStepTemplate(clustersteptemplate) {
+    const data = await request.get(
+      `${this.getBaseUrl()}clustersteptemplates/${clustersteptemplate}`
+    )
+    return formatStepTemplate(data)
+  }
+
+  async getPipelineStepTempleJenkins(clustersteptemplate, params, query = {}) {
+    const data = await request.post(
+      `${this.getBaseUrl()}clustersteptemplates/${clustersteptemplate}/render?${qs.stringify(
+        query
+      )}`,
+      params
+    )
+
+    const jenkins = get(data, 'data', '')
+
+    return jenkins
   }
 }

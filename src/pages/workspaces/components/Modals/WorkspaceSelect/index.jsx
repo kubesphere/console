@@ -38,7 +38,7 @@ export default class WorkspaceSelectModal extends React.Component {
   }
 
   componentDidMount() {
-    this.clusterStore.fetchList({ limit: -1 })
+    this.clusterStore.fetchGrantedList({ limit: -1 })
   }
 
   @computed

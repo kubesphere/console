@@ -25,7 +25,6 @@ import EmptyList from 'components/Cards/EmptyList'
 import FullScreen from 'components/Modals/FullscreenModal'
 import Clusters from 'stores/cluster'
 
-import { getWebsiteUrl } from 'utils'
 import { Home, Detail } from './Auditing'
 
 @FullScreen
@@ -104,7 +103,6 @@ export default class AuditingOperating extends React.Component {
 
   render() {
     const { Component, props } = this.Content
-    const { url } = getWebsiteUrl()
 
     if (!Component) {
       return
@@ -115,10 +113,8 @@ export default class AuditingOperating extends React.Component {
         <EmptyList
           className="no-shadow"
           icon="cluster"
-          title={t('NO_AVAILABLE_CLUSTER')}
-          desc={t.html('AUDITING_NOT_ENABLED_DESC', {
-            docUrl: url,
-          })}
+          title={t('NO_DATA_AUTHORIZED')}
+          desc={t('NO_DATA_AUTHORIZED_DESC')}
         />
       )
     }

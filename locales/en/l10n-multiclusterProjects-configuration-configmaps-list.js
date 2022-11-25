@@ -19,6 +19,7 @@
 module.exports = {
   // Banner
   // List
+  CONFIGMAP_EMPTY_DESC: 'Please create a configmap.',
   // List > Edit Information
   // List > Edit YAML
   // List > Edit Settings

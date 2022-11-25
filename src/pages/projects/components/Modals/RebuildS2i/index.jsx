@@ -134,13 +134,13 @@ export default class ReBuild extends React.Component {
       <>
         <Columns>
           <Column>
-            <Form.Item label={t('New Image Tag')}>
+            <Form.Item label={t('NEW_IMAGE_TAG')}>
               <Input name="newTag" />
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('RevisionId')}>
-              <Input name="revisionId" />
+            <Form.Item label={t('REVISION_ID')}>
+              <Input name="REVISION_ID" />
             </Form.Item>
           </Column>
         </Columns>

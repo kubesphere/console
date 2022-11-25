@@ -30,6 +30,9 @@ module.exports = {
   TEMPLATE_BASED_APP_EMPTY_DESC: 'Please create an app from the KubeSphere App Store or an app template.',
   APP: '應用',
   VERSION: '版本',
+  CREATING: '創建中',
+  UPGRADING: 'Created',
+  DELETING: '刪除中',
   // List > Create
   CREATE_APP: '部署新應用',
   CREATE_APP_DESC: '輕量化、可移植、自包含的軟體封裝技術，使應用可以在幾乎任何地方以相同的方式運行。',

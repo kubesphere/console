@@ -33,7 +33,6 @@ import {
   CLUSTER_PRESET_GROUPS,
 } from 'utils/constants'
 
-import Title from '../Title'
 import SubTitle from '../SubTitle'
 import NodeList from '../NodeList'
 
@@ -114,21 +113,12 @@ export default class BaseInfo extends React.Component {
     const method = this.method
     return (
       <div className={styles.wrapper}>
-        {method === 'new' ? (
-          <Title title={t('New Cluster')} description={t('NEW_CLUSTER_DESC')} />
-        ) : (
-          <Title
-            title={t('Import Cluster')}
-            description={t('IMPORT_CLUSTER_DESC')}
-          />
-        )}
         <Form data={formTemplate} ref={formRef}>
-          <SubTitle title={t('Cluster Basic Info')} />
           <Form.Item
             label={t('CLUSTER_NAME')}
             desc={t('NAME_DESC')}
             rules={[
-              { required: true, message: t('Please input cluster name') },
+              { required: true, message: t('CLUSTER_NAME_EMPTY') },
               {
                 pattern: PATTERN_NAME,
                 message: t('INVALID_NAME_DESC'),
@@ -142,7 +132,7 @@ export default class BaseInfo extends React.Component {
             <Select
               name="metadata.labels['cluster.kubesphere.io/group']"
               options={CLUSTER_PRESET_GROUPS}
-              placeholder={t('Please select or input a tag')}
+              placeholder=" "
               optionRenderer={this.groupOptionRenderer}
               searchable
             />
@@ -151,7 +141,7 @@ export default class BaseInfo extends React.Component {
             <Select
               name="spec.provider"
               options={CLUSTER_PROVIDERS}
-              placeholder={t('Please select or input a provider')}
+              placeholder=" "
               optionRenderer={this.providerOptionRenderer}
               searchable
             />
@@ -166,14 +156,14 @@ export default class BaseInfo extends React.Component {
             <>
               <SubTitle
                 className={styles.nodesTitle}
-                title={t('Node Settings')}
+                title={t('NODE_SETTINGS')}
                 description={t('CLUSTER_NODE_SETTINGS_DESC')}
               />
               <Form.Item
                 rules={[
                   {
                     required: true,
-                    message: t('Please add at least one cluster node'),
+                    message: t('PLEASE_ADD_AT_LEAST_ONE_CLUSTER_NODE'),
                   },
                   {
                     validator: this.nodesValidator,

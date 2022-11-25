@@ -19,7 +19,7 @@ module.exports = {
   // More > Add Component
   // More > Add Component > Create Service
   // More > Delete
-  // Details
+  // Attributes
   // Resource Status
   APPLICATION_GOVERNANCE_SCAP: 'Application governance',
   NO_SERVICE_FOUND: 'No Service Found',
@@ -33,6 +33,5 @@ module.exports = {
   TRAFFIC_MANAGEMENT: 'Gestión del tráfico',
   // Tracing
   APPLICATION_GOVERNANCE_ENABLED: 'Microservicio habilitado',
-  APPLICATION_GOVERNANCE_DISABLED: 'Microservicio no habilitado',
-  TRACING_UNAVAILABLE: 'No se puede usar el servicio de tracing temporalmente'
+  APPLICATION_GOVERNANCE_DISABLED: 'Microservicio no habilitado'
 };

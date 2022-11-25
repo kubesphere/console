@@ -194,7 +194,7 @@ export default class FullCreateModal extends React.Component {
                 onClick={this.handleOk}
                 loading={isSubmitting}
               >
-                {t('Create')}
+                {t('CREATE')}
               </Button>
             </div>
           </div>
@@ -223,7 +223,7 @@ export default class FullCreateModal extends React.Component {
                 onClick={this.handleOk}
                 loading={isSubmitting}
               >
-                {t('Create')}
+                {t('CREATE')}
               </Button>
             )}
           </div>

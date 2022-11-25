@@ -20,7 +20,7 @@ module.exports = {
   // More > Add Component
   // More > Add Component > Create Service
   // More > Delete
-  // Details
+  // Attributes
   // Resource Status
   APPLICATION_GOVERNANCE_SCAP: 'Application governance',
   NO_SERVICE_FOUND: 'No Service Found',
@@ -35,5 +35,4 @@ module.exports = {
   // Tracing
   APPLICATION_GOVERNANCE_ENABLED: 'Application governance enabled',
   APPLICATION_GOVERNANCE_DISABLED: 'Application governance disabled',
-  TRACING_UNAVAILABLE: 'Tracing Unavailable',
 }

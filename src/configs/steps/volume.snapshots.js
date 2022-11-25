@@ -21,5 +21,5 @@ import Source from 'components/Forms/VolumeSnapshot/Source'
 
 export default [
   { title: 'BASIC_INFORMATION', component: BaseInfo, required: true },
-  { title: 'Source', component: Source, required: true },
+  { title: 'SOURCE', component: Source, required: true },
 ]

@@ -84,7 +84,7 @@ export default class TimeSelector extends React.PureComponent {
   renderButtonText() {
     const { duration } = this.state
     const lastTimeText = getTimeLabel(duration)
-    return `${t('Last')} ${lastTimeText}`
+    return `${t('LAST')} ${lastTimeText}`
   }
 
   renderContent() {

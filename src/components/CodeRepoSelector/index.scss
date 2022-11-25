@@ -1,0 +1,25 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.option {
+  display: block;
+  position: relative;
+  width: 100%;
+  @include ellipsis;
+  & > span {
+    margin-right: 6px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.select {
+  margin-bottom: 4px;
+}
+
+.multi-repo {
+  cursor: pointer;
+  &:hover {
+    color: #242e42;
+  }
+}

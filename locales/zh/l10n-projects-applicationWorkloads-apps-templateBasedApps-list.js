@@ -30,6 +30,9 @@ module.exports = {
   TEMPLATE_BASED_APP_EMPTY_DESC: '请从 KubeSphere 应用商店或应用模板创建应用。',
   APP: '应用',
   VERSION: '版本',
+  CREATING: '创建中',
+  UPGRADING: '已创建',
+  DELETING: '删除中',
   // List > Create
   CREATE_APP: '创建应用',
   CREATE_APP_DESC: '从 KubeSphere 应用商店或应用模板创建应用。',

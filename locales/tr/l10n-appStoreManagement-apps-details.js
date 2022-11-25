@@ -23,12 +23,13 @@ module.exports = {
   SUSPEND_SUCCESSFUL: 'Başarıyla askıya alındı.',
   // Release
   RELEASE: 'Yayınlamak',
-  ACTIVATE_SUCCESSFUL: 'Başarıyla etkinleştirildi.',
-  // Details
+  ACTIVATE_SUCCESSFUL: 'Yayınlama başarılı.',
+  // Attributes
   APP_ID: 'Uygulama Kimliği',
   CATEGORY: 'Kategori',
   TYPE: 'Tip',
   // Verisons
+  DEVELOPER: 'Developer',
   NO_VERSION_INFO_DESC: 'Sürüm bilgisi bulunamadı.',
   ACTIVATE_VERSION: 'Sürümü Etkinleştir',
   CANCEL_SUBMISSION: 'Gönderimi İptal Et',

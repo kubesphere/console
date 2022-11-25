@@ -210,7 +210,7 @@ export default class EnvironmentInput extends React.Component {
             <span className={styles.desc}>
               {t.html('CREATE_CONFIGMAP_SECRET_DESC')}
               <a onClick={this.handleCreateConfig}>{t('CREATE_CONFIG')}</a>
-              {t('or')}
+              {t('OR')}
               <a onClick={this.handleCreateSecrets}>{t('CREATE_SECRET')}</a>
             </span>
             <ArrowModal

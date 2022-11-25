@@ -19,6 +19,7 @@ module.exports = {
   // Banner
   NETWORK_POLICY: 'Ağ Politikası',
   NETWORK_POLICY_PL: 'Ağ Politikası',
+  NETWORK_POLICY_DESC: 'The network policy configuration allows network isolation within the same cluster, which means firewalls can be set up between certain instances (pods).',
   NETWORK_POLICY_Q: 'Bir ağ politikasını nasıl daha iyi kullanırım?',
   NETWORK_POLICY_A: 'Gerçek senaryolara dayalı olarak birkaç yaygın kullanım durumu belirledik ve daha fazla bilgi için belgelere başvurabilirsiniz.',
   NETWORK_POLICY_Q1: 'Bir ağ politikasını uygulamak için CNI eklentisindeki gereksinimler nelerdir?',

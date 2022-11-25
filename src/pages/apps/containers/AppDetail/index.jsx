@@ -79,7 +79,7 @@ export default class App extends React.Component {
     const versions = this.versionStore.list.data
     return versions.map(({ version_id, name, create_time }) => ({
       label: name,
-      description: moment(create_time).format(t('YYYY-MM-DD')),
+      description: moment(create_time).format('YYYY-MM-DD'),
       value: version_id,
     }))
   }

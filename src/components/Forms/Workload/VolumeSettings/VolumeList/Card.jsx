@@ -38,33 +38,33 @@ const Card = ({ volume, onDelete, onEdit }) => {
   let description
   let details
   if (volume.hostPath) {
-    description = `${t('TYPE')}: ${t('HostPath')}`
+    description = `${t('TYPE_HOSTPATH')}`
     details = [
-      { title: get(volume, 'hostPath.path', '-'), description: t('Host Path') },
+      { title: get(volume, 'hostPath.path', '-'), description: 'HostPath' },
     ]
   } else if (volume.emptyDir) {
-    description = `${t('TYPE')}: ${t('EmptyDir')}`
+    description = `${t('TYPE_EMPTYDIR')}`
     details = []
   } else if (volume.configMap) {
     icon = 'hammer'
-    description = `${t('TYPE')}: ${t('ConfigMap')}`
+    description = `${t('TYPE_CONFIGMAP')}`
     details = [
       {
         title: get(volume, 'configMap.name', '-'),
-        description: t('ConfigMap'),
+        description: t('CONFIGMAP'),
       },
     ]
   } else if (volume.secret) {
     icon = 'key'
-    description = `${t('TYPE')}: ${t('Secret')}`
+    description = `${t('TYPE_SECRET')}`
     details = [
       {
         title: get(volume, 'secret.secretName', '-'),
-        description: t('Secret'),
+        description: t('SECRET'),
       },
     ]
   } else {
-    description = `${t('Storage Classs')}: ${get(
+    description = `${t('STORAGE_CLASSS')}: ${get(
       volume,
       'volume.storageClassName',
       '-'

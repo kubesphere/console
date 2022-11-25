@@ -117,7 +117,7 @@ export default class Password extends React.Component {
 
     return (
       <div className={styles.content}>
-        <p>{t('Your password must meet the following requirements')}</p>
+        <p>{t('PASSWORD_MUST')}</p>
         <ul className={styles.rules}>
           <li>
             <Icon
@@ -128,7 +128,7 @@ export default class Password extends React.Component {
               size={12}
               type="light"
             />
-            {t('At least 1 uppercase and lowercase letter')}
+            {t('PASSWORD_LETTER')}
           </li>
           <li>
             <Icon
@@ -139,7 +139,7 @@ export default class Password extends React.Component {
               size={12}
               type="light"
             />
-            {t('At least 1 number')}
+            {t('PASSWORD_NUMBER')}
           </li>
           <li>
             <Icon
@@ -150,18 +150,14 @@ export default class Password extends React.Component {
               size={12}
               type="light"
             />
-            {t('Password length is at least 6 characters')}
+            {t('PASSWORD_LENGTH')}
           </li>
         </ul>
-        <p>{t('Password Strength')}:</p>
+        <p>{t('PASSWORD_STRENGTH')}:</p>
         <div className={styles.barWrapper}>
           <div className={styles.bar} style={this.getColor()} />
         </div>
-        <p className={styles.tip}>
-          {t(
-            'Avoid using the password that has already been used on other websites or the one that can be easily guessed.'
-          )}
-        </p>
+        <p className={styles.tip}>{t('PASSWORD_STRENGTH_DESC')}</p>
       </div>
     )
   }

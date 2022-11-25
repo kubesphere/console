@@ -23,7 +23,7 @@ module.exports = {
   SERVICE_EMPTY_DESC: 'Lütfen bir hizmet oluşturun.',
   UNKNOWN: 'Bilinmeyen',
   EXTERNAL_ACCESS: 'Harici erişim',
-  INTERNAL_ACCESS_PL: 'Harici erişim',
+  INTERNAL_ACCESS: 'Internal Access',
   // List > Edit YAML
   // List > Edit Service
   UNKNOWN_SERVICE_TYPE: 'Bilinmeyen Hizmet Tipi',
@@ -56,6 +56,7 @@ module.exports = {
   // List > Create > Service Settings > Workload Selector > View Details
   TOTAL_WORKLOADS_VALUE: 'Toplam İş Yükü: {count}',
   // List > Create > Advanced Settings
+  OPENELB_NOT_READY: 'OpenELB is not installed. Please install OpenELB.',
   SESSION_PERSISTENCE: 'Oturum Kalıcılığı',
   MAXIMUM_STICKINESS_DURATION: 'Maksimum Stickness Süresi (ler)',
   SESSION_PERSISTENCE_DESC: 'Sistemi, aynı istemciden gelen tüm istekleri belirli bir süre içinde aynı bölmeye iletecek şekilde ayarlayın.',
@@ -63,5 +64,5 @@ module.exports = {
   ACCESS_NODEPORT_TIP: 'Hizmete erişmek için küme düğümlerinin bir bağlantı noktasını kullanın.',
   ACCESS_LOADBALANCER_TIP: 'Hizmete erişmek için bir yük dengeleyici kullanın.',
   WORKLOAD_ANNOTATIONS: 'İş Yükü Açıklamaları',
-  LABEL_FORMAT_DESC: 'Bir etiketin anahtarı ve değeri yalnızca harf, sayı, kısa çizgi (-), alt çizgi (_) ve nokta (.) içerebilir ve bir harf veya sayı ile başlayıp bitmelidir. Her anahtarın ve her etiketin maksimum uzunluğu 63 karakterdir (anahtar bir alan adı içeriyorsa maksimum uzunluk 253 karakterdir).'
+  LABEL_FORMAT_DESC: 'The key and value of a label can contain only letters, numbers, hyphens (-), underscores (_), and dots (.), and must start and end with a letter or number. The maximum length of each key and each value is 63 characters (if the key contains a domain name, the maximum length is 253 characters).'
 };

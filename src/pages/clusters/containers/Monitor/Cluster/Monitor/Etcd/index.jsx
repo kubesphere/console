@@ -99,7 +99,7 @@ class EtcdMonitorings extends React.Component {
     {
       type: 'area',
       title: 'GRPC_STREAM_MESSAGES',
-      unit: 'times/s',
+      unit: 'TIMES_PER_SECOND',
       legend: ['RECEIVED', 'SENT'],
       data: [
         get(this.metrics, `${MetricTypes.grpc_received_rate}.data.result[0]`),
@@ -139,7 +139,7 @@ class EtcdMonitorings extends React.Component {
     {
       type: 'area',
       title: 'RAFT_PROPOSAL',
-      unit: 'times/s',
+      unit: 'TIMES_PER_SECOND',
       legend: [
         'PROPOSAL_COMMITTED',
         'PROPOSAL_APPLIED',

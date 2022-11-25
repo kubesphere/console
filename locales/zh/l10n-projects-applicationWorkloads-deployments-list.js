@@ -26,14 +26,15 @@ module.exports = {
   INVALID_IMAGE: '镜像无效。',
   INVALID_NAME_DESC: '名称无效。名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   NO_IMAGE_FOUND: '没有找到镜像',
-  CONTAINER_EMPTY_DESC: '请至少添加一个容器。',
-  QUOTA_UNSET_TIP: '资源占用未设置。',
-  QUOTA_OVERCOST_TIP: '当前的资源占用已超过剩余资源。',
+  CONTAINER_EMPTY_DESC: '请添加至少一个工作容器。',
+  RESOURC_QUOTAS_UNSET: '资源配额未设置',
+  INSUFFICENT_RESOURCES: '资源不足',
+  REMAINING_QUOTAS: '剩余配额',
   // List > Create > Pod Settings > Add Container > Container Settings > Environment Settings
   ENVIRONMENT_INVALID_TIP: '环境变量的键只能包含字母、数字、下划线（_）、连字符（-）和句点（.），并且不能以数字开头。',
   ENVIRONMENT_CANNOT_BE_EMPTY: '请设置环境变量的键。',
   // List > Create > Pod Settings > Port Settings
-  WORKLOAD_PORT_NAME_DESC: '端口名称只能包含小写字母、数字及分隔符（-），且必须以小写字母或数字开头及结尾，最长 15 个字符。',
+  WORKLOAD_PORT_NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 15 个字符。',
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
   MAX_EXTRA_PODS_DESC: '更新过程中允许的多余容器组副本的最大数量或百分比。',
   MAX_EXTRA_PODS: '最大多余容器组数量',
@@ -61,5 +62,7 @@ module.exports = {
   DELETE_WORKLOAD_DESC_SI: '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下与工作负载关联的资源。',
   DELETE_WORKLOAD_DESC_PL: '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下与工作负载关联的资源。',
   DELETE_WORKLOAD: '删除工作负载',
-  DELETE_MULTIPLE_WORKLOADS: '批量删除工作负载'
+  DELETE_MULTIPLE_WORKLOADS: '批量删除工作负载',
+  DELETE_APP_RESOURCE_TIP: '资源由应用 <strong>{app}</strong> 管理，删除后可能影响应用的正常使用。请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
+  STOP_APP_RESOURCE_TIP: '资源由应用 <strong>{app}</strong> 管理，停止后可能影响应用的正常使用。请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。'
 };

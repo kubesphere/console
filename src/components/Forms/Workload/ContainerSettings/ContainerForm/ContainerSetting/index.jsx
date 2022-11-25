@@ -38,6 +38,13 @@ import ImageInput from './ImageInput'
 import styles from './index.scss'
 
 export default class ContainerSetting extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      originName: props.data.name,
+    }
+  }
+
   get defaultResourceLimit() {
     const { limitRange = {} } = this.props
 
@@ -147,7 +154,7 @@ export default class ContainerSetting extends React.Component {
   )
 
   renderImageForm = () => {
-    const { data, namespace } = this.props
+    const { data, namespace, cluster } = this.props
     const imageRegistries = this.imageRegistries
     const formTemplate = this.getFormTemplate(data, imageRegistries)
 
@@ -158,6 +165,7 @@ export default class ContainerSetting extends React.Component {
         namespace={namespace}
         formTemplate={formTemplate}
         imageRegistries={imageRegistries}
+        cluster={cluster}
       />
     )
   }
@@ -169,6 +177,16 @@ export default class ContainerSetting extends React.Component {
   limitValidator = (rule, value, callback) => {
     if (this.limitError !== '') {
       callback({ message: '' })
+    }
+    callback()
+  }
+
+  duplicatedNameValidator = (rule, value, callback) => {
+    const containerNames = this.props.containers
+      .map(({ name }) => name)
+      .filter(i => i !== this.state.originName)
+    if (containerNames.includes(value)) {
+      callback({ message: t('NAME_EXIST_DESC') })
     }
     callback()
   }
@@ -196,6 +214,9 @@ export default class ContainerSetting extends React.Component {
                     message: t('INVALID_NAME_DESC', {
                       message: t('NAME_DESC'),
                     }),
+                  },
+                  {
+                    validator: this.duplicatedNameValidator,
                   },
                 ]}
               >

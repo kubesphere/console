@@ -76,7 +76,5 @@ export const getTimeOptions = times =>
 
 export const getDateStr = time => {
   const localTime = getLocalTime(time * 1000)
-  return `${localTime.format(t('MMMM Do YYYY'))} ${localTime.format(
-    'HH:mm:ss'
-  )}`
+  return `${localTime.format('YYYY-MM-DD HH:mm:ss')}`
 }

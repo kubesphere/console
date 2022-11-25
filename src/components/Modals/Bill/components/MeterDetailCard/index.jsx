@@ -30,8 +30,7 @@ const MeterDetailCard = ({
   priceConfig,
   ...meterData
 } = {}) => {
-  const priceUnit =
-    !isEmpty(priceConfig) && priceConfig.currency === 'CNY' ? t('￥') : t('$')
+  const priceUnit = priceConfig.currency ? priceConfig.currency : ' '
 
   const handleSumFeeData = () => {
     const feeData = meterData.feeData
@@ -103,7 +102,7 @@ const MeterDetailCard = ({
     return (
       <div>
         <h3>
-          {_title} {t('Total Consumption By Creation')}
+          {_title} {t('CONSUMPTION_SINCE_CREATION')}
         </h3>
         {isEmpty(priceConfig) ? null : (
           <div className={styles.totalPrice}>
@@ -122,7 +121,7 @@ const MeterDetailCard = ({
       <div className={styles.parentCostContainer}>
         <div>
           <h3>{_title}</h3>
-          <span> {t('Total Consumption By Creation')}</span>
+          <span> {t('CONSUMPTION_SINCE_CREATION')}</span>
         </div>
         <p>
           <span>{priceUnit}</span>

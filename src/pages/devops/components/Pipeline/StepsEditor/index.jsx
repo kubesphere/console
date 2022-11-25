@@ -39,6 +39,10 @@ const AgentType = [
   { label: 'none', value: 'none' },
 ]
 
+const stepNameMapper = {
+  sh: 'shell',
+}
+
 @observer
 export default class StepsEditor extends React.Component {
   static defaultProps = {
@@ -279,7 +283,7 @@ export default class StepsEditor extends React.Component {
   @action
   handleEdit = (zIndex, index, step, type) => () => {
     this.props.store.setEdittingData({
-      type: step.name,
+      type: stepNameMapper[step.name] || step.name.toLowerCase(),
       data: step.arguments,
     })
 
@@ -502,7 +506,7 @@ export default class StepsEditor extends React.Component {
               onChange={this.handleChangeName}
             />
           </Form.Item>
-          <div className={styles.title}>{t('Agent')}</div>
+          <div className={styles.title}>{t('AGENT')}</div>
           <Form.Item desc={t('AGENT_TYPE_DESC')} label={t('TYPE')}>
             <Select
               options={AgentType}
@@ -530,7 +534,7 @@ export default class StepsEditor extends React.Component {
               {t('Add conditions')}
             </div>
           )}
-          <div className={styles.title}>{t('Task')}</div>
+          <div className={styles.title}>{t('TASK')}</div>
           <StepContainer steps={this.steps} zIndex={[]} />
           {this.hasNestStage ? null : (
             <div

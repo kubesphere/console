@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  // Details
-  // Alerting Rule
+  // Attributes
+  // Alert Rule
   // Alerting History
 }

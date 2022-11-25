@@ -153,7 +153,7 @@ export default class Accounts extends React.Component {
 
   getColumns = () => [
     {
-      title: t('NAME'),
+      title: t('USERNAME'),
       dataIndex: 'username',
       render: (name, record) => (
         <Avatar

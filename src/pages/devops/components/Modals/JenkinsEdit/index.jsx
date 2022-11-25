@@ -44,9 +44,10 @@ export default class JenkinsEdit extends React.Component {
     super(props)
     this.store = new PipelineStore()
     this.state = {
-      value: props.defaultValue,
+      value: props.defaultValue ?? '',
       isLoading: false,
-      isshowComfirm: false,
+      isShowConfirm: false,
+      shouldCheckScriptCompile: true,
     }
   }
 
@@ -61,14 +62,14 @@ export default class JenkinsEdit extends React.Component {
     const { defaultValue } = this.props
     const { value } = this.state
     if (!isEqual(defaultValue, value)) {
-      this.setState({ isshowComfirm: true })
+      this.setState({ isShowConfirm: true })
     } else {
       this.props.onCancel()
     }
   }
 
   hideConfirm = () => {
-    this.setState({ isshowComfirm: false })
+    this.setState({ isShowConfirm: false })
   }
 
   handleCancel = () => {
@@ -88,15 +89,20 @@ export default class JenkinsEdit extends React.Component {
     const { devops, name: pipeline, cluster } = this.props.params
     this.setState({ isLoading: true })
     const res = await this.store
-      .checkScriptCompile({
-        value: this.newValue,
-        pipeline,
-        devops,
-        cluster,
-      })
-      .finally(() => {
-        this.setState({ isLoading: false })
-      })
+      .checkScriptCompile(
+        {
+          value: this.newValue,
+          pipeline,
+          devops,
+          cluster,
+        },
+        () => {
+          this.setState({
+            shouldCheckScriptCompile: false,
+          })
+        }
+      )
+      .finally(() => this.setState({ isLoading: false }))
 
     if (res.status === 'fail') {
       this.setState({
@@ -114,17 +120,45 @@ export default class JenkinsEdit extends React.Component {
     return false
   }
 
+  saveJenkins = jenkinsFile => {
+    const { devops, name: pipeline } = this.props.params
+    this.setState({ isLoading: true })
+    return request
+      .put(
+        `/kapis/devops.kubesphere.io/v1alpha3/devops/${devops}/pipelines/${pipeline}/jenkinsfile?mode=raw`,
+        { data: jenkinsFile },
+        {
+          headers: {
+            'content-type': 'application/json',
+          },
+        }
+      )
+      .finally(() => this.setState({ isLoading: false }))
+  }
+
   handleOk = async () => {
     this.newValue = this.state.value.replace(/\t/g, '    ')
-    const hasError = await this.checkScriptCompile()
-    if (hasError) {
-      return
+
+    if (this.state.shouldCheckScriptCompile) {
+      const hasError = await this.checkScriptCompile()
+      if (hasError) {
+        return
+      }
     }
+
+    await this.saveJenkins(this.newValue)
     this.props.onOk(this.newValue)
   }
 
   render() {
-    const { visible } = this.props
+    const { visible, isSubmitting } = this.props
+    const {
+      isShowConfirm,
+      error,
+      shouldCheckScriptCompile,
+      value,
+      isLoading,
+    } = this.state
 
     return (
       <>
@@ -132,40 +166,45 @@ export default class JenkinsEdit extends React.Component {
           icon="cogwheel"
           width={900}
           bodyClassName={styles.body}
-          isSubmitting={this.props.isSubmitting || this.state.isLoading}
+          isSubmitting={isSubmitting || isLoading}
           onCancel={this.showConfirm}
           onOk={this.handleOk}
-          renderFooter={this.renderFooter}
+          okButtonType={!shouldCheckScriptCompile ? 'danger' : undefined}
+          okText={!shouldCheckScriptCompile ? 'continue' : undefined}
           visible={visible}
           closable={false}
           maskClosable={false}
-          title={t('Jenkinsfile')}
+          title={'Jenkinsfile'}
         >
           <>
             <CodeEditor
               className={styles.codeEditor}
               name="script"
               mode="groovy"
-              value={this.state.value}
+              value={value}
               onChange={this.handleChange}
               options={
-                this.state.error && {
-                  annotations: [this.state.error],
+                error && {
+                  annotations: [error],
                 }
               }
             />
-            {this.state.error && (
+            {error && (
               <div className={styles.checkResult}>
                 <img src="/assets/error.svg" />
-                <span>
-                  {t('JENKINS_LINS_ERROR', { line: this.state.error.row + 1 })}
-                </span>
+                <span>{t('JENKINS_LINS_ERROR', { line: error.row + 1 })}</span>
+              </div>
+            )}
+            {!shouldCheckScriptCompile && (
+              <div className={styles.checkResult}>
+                <img src="/assets/error.svg" />
+                <span>{t('FAILED_CHECK_SCRIPT_COMPILE')}</span>
               </div>
             )}
           </>
         </Modal>
         <ConfirmModal
-          visible={this.state.isshowComfirm}
+          visible={isShowConfirm}
           onCancel={this.hideConfirm}
           onOk={this.handleCancel}
           title={t('CLOSE')}

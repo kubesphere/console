@@ -17,6 +17,7 @@
  */
 module.exports = {
   // Banner
+  DEVOPS_PROJECT_MEMBER: 'DevOps 项目成员',
   DEVOPS_PROJECT_MEMBER_PL: 'DevOps 项目成员',
   DEVOPS_PROJECT_MEM_DESC: '对项目内的成员进行管理及角色分配。',
   // List

@@ -104,9 +104,9 @@ export default class Projects extends React.Component {
 
   getData = async ({ silent, ...params } = {}) => {
     const { store } = this.props
-
     silent && (store.list.silent = true)
     const { cluster } = this.workspaceStore
+
     if (cluster) {
       await store.fetchList({
         cluster,
@@ -115,7 +115,9 @@ export default class Projects extends React.Component {
         labelSelector:
           'kubefed.io/managed!=true, kubesphere.io/kubefed-host-namespace!=true',
       })
+
       const resources = store.list.data.map(item => item.name)
+
       if (resources.length > 0) {
         await this.monitoringStore.fetchMetrics({
           cluster,
@@ -126,6 +128,7 @@ export default class Projects extends React.Component {
         })
       }
     }
+
     store.list.silent = false
   }
 

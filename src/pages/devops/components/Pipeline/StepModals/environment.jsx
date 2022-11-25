@@ -77,13 +77,13 @@ export default class Enviroment extends React.Component {
         onOk={this.handleOk}
         visible={visible}
         closable={false}
-        title={t('environment')}
+        title={t('ENVIRONMENT_VARIABLE')}
       >
         <Form data={this.state.formData} ref={this.formRef}>
-          <Form.Item label={t('Environment name')}>
+          <Form.Item label={t('NAME')}>
             <Input name="name" />
           </Form.Item>
-          <Form.Item label={t('Value')}>
+          <Form.Item label={t('VALUE')}>
             <Input name="value" />
           </Form.Item>
         </Form>

@@ -17,6 +17,7 @@
  */
 module.exports = {
   // Edit
+  EDIT_LOG_RECEIVER: 'Edit Log Receiver',
   INDEX_PREFIX: '索引前缀',
   // More > Change Status
   CHANGE_STATUS: '更改狀態',

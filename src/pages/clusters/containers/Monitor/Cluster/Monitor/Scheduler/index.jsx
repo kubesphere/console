@@ -84,7 +84,7 @@ class SchedulerMonitorings extends React.Component {
     {
       type: 'area',
       title: 'SCHEDULING_RATE',
-      unit: 'times/s',
+      unit: 'TIMES_PER_SECOND',
       legend: ['SUCCESS', 'ERROR', 'FAILURE'],
       data: [
         this.getSpecificData('schedule_attempt_rate', 'result', 'scheduled'),

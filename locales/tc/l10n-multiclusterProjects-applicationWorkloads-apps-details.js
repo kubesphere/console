@@ -19,7 +19,7 @@ module.exports = {
   // More > Add Component
   // More > Add Component > Create Service
   // More > Delete
-  // Details
+  // Attributes
   // Resource Status
   APPLICATION_GOVERNANCE_SCAP: 'Application governance',
   NO_SERVICE_FOUND: 'No Service Found',
@@ -33,6 +33,5 @@ module.exports = {
   TRAFFIC_MANAGEMENT: '流量管理',
   // Tracing
   APPLICATION_GOVERNANCE_ENABLED: '微服務已啟用',
-  APPLICATION_GOVERNANCE_DISABLED: '微服務未啟用',
-  TRACING_UNAVAILABLE: '暫時無法使用 Tracing'
+  APPLICATION_GOVERNANCE_DISABLED: '微服務未啟用'
 };

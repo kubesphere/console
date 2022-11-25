@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Details
+  // Attributes
   VOLUME_HANDLE: '卷句柄',
   VOLUME_MODE: '卷模式',
   VOLUME_MODE_FILESYSTEM: '文件系统',

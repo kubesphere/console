@@ -38,11 +38,7 @@ export default class PodTemplate extends Base {
 
   renderRestartPolicy() {
     return (
-      <Form.Item
-        label={t('RESTART_POLICY')}
-        tip={t.html('RESTART_POLICY_TIP')}
-        desc={t(`RESTART_POLICY_DESC`)}
-      >
+      <Form.Item label={t('RESTART_POLICY')} desc={t(`RESTART_POLICY_DESC`)}>
         <Select
           name={`${this.prefix}spec.restartPolicy`}
           options={this.getRestartPolicyOptions()}

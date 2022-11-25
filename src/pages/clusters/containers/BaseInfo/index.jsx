@@ -71,6 +71,10 @@ export default class Overview extends React.Component {
     })
   }
 
+  get editPromission() {
+    return globals.user.globalRules.clusters.includes('manage')
+  }
+
   getValue = (data, unitType) => {
     const value = get(data, 'value[1]', 0)
     const unit = getSuitableUnit(value, unitType) || unit
@@ -154,9 +158,11 @@ export default class Overview extends React.Component {
   }
 
   get enableManageAction() {
-    const { isHost = false } = this.store.detail
+    const { isHost = false, connectionType } = this.store.detail
+    const proxyConnect = connectionType === 'proxy'
     const actions = this.enabledActions
     const option = []
+
     if (actions.includes('edit') && globals.app.isMultiCluster) {
       option.push({
         actionName: 'resource.baseinfo.edit',
@@ -165,7 +171,12 @@ export default class Overview extends React.Component {
         text: t('EDIT_INFORMATION'),
       })
     }
-    if (!isHost && actions.includes('edit')) {
+    if (
+      globals.app.isMultiCluster &&
+      !isHost &&
+      !proxyConnect &&
+      actions.includes('edit')
+    ) {
       option.push({
         actionName: 'cluster.update.kubeconfig',
         icon: 'data',
@@ -182,7 +193,7 @@ export default class Overview extends React.Component {
         actionName: 'cluster.unbind',
         onClick: this.handleUnbind,
         icon: 'trash',
-        text: t('UNBIND_CLUSTER'),
+        text: t('REMOVE_CLUSTER'),
       })
     }
     return option
@@ -253,7 +264,7 @@ export default class Overview extends React.Component {
               title={kubernetesVersion || this.store.version}
               description={t('KUBERNETES_VERSION')}
             />
-            {this.renderManageButton()}
+            {this.editPromission && this.renderManageButton()}
           </div>
           <div className={styles.content}>
             {options.map(option => (

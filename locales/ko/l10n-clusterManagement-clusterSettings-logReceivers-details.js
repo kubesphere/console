@@ -17,6 +17,7 @@
  */
 module.exports = {
   // Edit
+  EDIT_LOG_RECEIVER: 'Edit Log Receiver',
   INDEX_PREFIX: 'Index Prefix',
   // More > Change Status
   CHANGE_STATUS: 'Change Status',

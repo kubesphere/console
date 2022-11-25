@@ -17,11 +17,12 @@
  */
 
 import React from 'react'
-
+import { get } from 'lodash'
 import { Avatar, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
+import { Tooltip } from '@kube-design/components'
 
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES, SERVICE_TYPES } from 'utils/constants'
@@ -201,9 +202,14 @@ export default class Services extends React.Component {
         isHideable: true,
         search: true,
         width: '15%',
+        render: (app, record) => {
+          const instance = get(record, 'labels["app.kubesphere.io/instance"]')
+          const name = get(record, 'labels["app.kubernetes.io/name"]')
+          return instance || name || '-'
+        },
       },
       {
-        title: t('INTERNAL_ACCESS_PL'),
+        title: t('INTERNAL_ACCESS'),
         dataIndex: 'clusterIP',
         isHideable: true,
         width: '15%',
@@ -242,7 +248,7 @@ export default class Services extends React.Component {
     }
 
     if (data.specType === 'NodePort') {
-      text.des = t('PORT_PL')
+      text.des = t('NODE_PORTS_SCAP')
       text.title = data.ports
         .filter(port => port.nodePort)
         .map(port => `${port.nodePort}/${port.protocol}`)

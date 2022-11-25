@@ -141,7 +141,7 @@ export default class Categories extends React.Component {
           ))}
         </ul>
         <CreateModal
-          title={t(`CREATE_${cate.title}_JOB`)}
+          title={t(`CREATE_${cate.title}_TASK`)}
           module={`grayreleases_${cate.type}`}
           formTemplate={this.formTemplate}
           cluster={this.cluster}

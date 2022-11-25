@@ -58,7 +58,7 @@ export default class PodsCard extends React.Component {
   }
 
   static defaultProps = {
-    title: 'Pods',
+    title: 'PODS',
     detail: {},
     details: {},
     hideHeader: false,
@@ -210,7 +210,7 @@ export default class PodsCard extends React.Component {
         <InputSearch
           className={styles.search}
           name="search"
-          placeholder={t('Filter by keyword')}
+          placeholder={t('SEARCH')}
           onSearch={this.handleSearch}
         />
         <div className={styles.actions}>
@@ -274,7 +274,7 @@ export default class PodsCard extends React.Component {
       <Panel
         className={classnames(styles.main, className)}
         title={t(title)}
-        empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('Pod') })}
+        empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('POD') })}
         isEmpty={isEmpty(data)}
       >
         {!hideHeader && this.renderHeader()}

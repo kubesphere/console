@@ -26,7 +26,7 @@ export default class EventSearchComponent extends React.Component {
                 height: '20px',
               }}
             >
-              {t('EVENT_SEARCH')}
+              {t('RESOURCE_EVENT_SEARCH')}
             </span>
           </div>
         }

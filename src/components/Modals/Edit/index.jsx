@@ -40,7 +40,7 @@ export default class EditModal extends React.Component {
 
   static defaultProps = {
     visible: false,
-    title: 'Edit',
+    title: 'EDIT',
     store: {},
     forms: [],
     formData: {},

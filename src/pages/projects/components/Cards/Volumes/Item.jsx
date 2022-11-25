@@ -26,11 +26,9 @@ import { Text } from 'components/Base'
 import styles from './index.scss'
 
 const Card = ({ volume, prefix }) => {
-  const description = `${t('Storage Classs')}: ${get(
-    volume,
-    'storageClassName',
-    '-'
-  )}`
+  const description = t('STORAGE_CLASS_VALUE', {
+    value: get(volume, 'storageClassName', '-'),
+  })
   const details = [
     {
       title: get(volume, 'capacity', '-'),

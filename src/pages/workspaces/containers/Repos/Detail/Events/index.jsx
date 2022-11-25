@@ -70,7 +70,7 @@ export default class Events extends React.Component {
     const { data, isLoading } = this.store.events
 
     return (
-      <Panel title={t('Events')}>
+      <Panel title={t('EVENT_PL')}>
         <Table
           className={styles.table}
           dataSource={toJS(data)}

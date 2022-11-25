@@ -26,14 +26,15 @@ module.exports = {
   INVALID_IMAGE: 'Geçersiz resim.',
   INVALID_NAME_DESC: 'Geçersiz isim. Ad yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir ve küçük harf veya sayı ile başlayıp bitmelidir. Maksimum uzunluk 63 karakterdir.',
   NO_IMAGE_FOUND: 'Görsel bulunamadı',
-  CONTAINER_EMPTY_DESC: 'Lütfen en az bir konteyner ekleyin.',
-  QUOTA_UNSET_TIP: 'Kaynak işgali ayarlanmadı',
-  QUOTA_OVERCOST_TIP: 'Mevcut kaynak işgali kalan miktarı aştı',
+  CONTAINER_EMPTY_DESC: 'Please add at least one worker container.',
+  RESOURC_QUOTAS_UNSET: 'Resource Quotas Unset',
+  INSUFFICENT_RESOURCES: 'Insufficent Resources',
+  REMAINING_QUOTAS: 'Remaining Quotas',
   // List > Create > Pod Settings > Add Container > Container Settings > Environment Settings
   ENVIRONMENT_INVALID_TIP: 'Bir ortam değişkeninin anahtarı yalnızca harf, sayı, alt çizgi (_), kısa çizgi (-) ve nokta (.) içerebilir ve bir sayı ile başlamamalıdır.',
   ENVIRONMENT_CANNOT_BE_EMPTY: 'Lütfen ortam değişkeni için bir anahtar ayarlayın.',
   // List > Create > Pod Settings > Port Settings
-  WORKLOAD_PORT_NAME_DESC: 'Bağlantı noktası adı yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir ve küçük harf veya sayı ile başlayıp bitmelidir. Maksimum uzunluk 15 karakterdir.',
+  WORKLOAD_PORT_NAME_DESC: 'The port name can contain only lowercase letters, numbers and hyphens (-), and must start with a lowercase letter and end with a lowercase letter or number. The maximum length is 15 characters.',
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
   MAX_EXTRA_PODS_DESC: 'Güncelleme işlemi sırasında izin verilen maksimum ek bölme sayısı veya yüzdesi.',
   MAX_EXTRA_PODS: 'Maksimum Ekstra Bölme',
@@ -61,5 +62,7 @@ module.exports = {
   DELETE_WORKLOAD_DESC_SI: '{resource} iş yükünü silmek üzeresiniz.<br/>İş yüküyle ilgili kaynağı da silmek istiyor musunuz?',
   DELETE_WORKLOAD_DESC_PL: '{resource} iş yüklerini silmek üzeresiniz.<br/>İş yükleriyle ilgili kaynakları da silmek istiyor musunuz?',
   DELETE_WORKLOAD: 'İş yükünü Sil',
-  DELETE_MULTIPLE_WORKLOADS: 'Çoklu İş Yükü Sil'
+  DELETE_MULTIPLE_WORKLOADS: 'Çoklu İş Yükü Sil',
+  DELETE_APP_RESOURCE_TIP: 'The resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is deleted. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
+  STOP_APP_RESOURCE_TIP: 'The resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is stopped. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.'
 };

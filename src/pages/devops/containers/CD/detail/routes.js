@@ -17,17 +17,29 @@
  */
 
 import { getIndexRoute } from 'utils/router.config'
+import { isArgo } from 'utils/devops'
 
 import SyncStatus from './SyncStatus'
+import FluxApp from './FluxApp'
 
 const PATH = '/:workspace/clusters/:cluster/devops/:devops/cd/:cd'
 
-export default [
-  {
-    path: `${PATH}/syncStatus`,
-    title: 'SYNC_STATUS',
-    component: SyncStatus,
-  },
+export default isArgo
+  ? [
+      {
+        path: `${PATH}/syncStatus`,
+        title: 'SYNC_STATUS',
+        component: SyncStatus,
+      },
 
-  getIndexRoute({ path: PATH, to: `${PATH}/syncStatus`, exact: true }),
-]
+      getIndexRoute({ path: PATH, to: `${PATH}/syncStatus`, exact: true }),
+    ]
+  : [
+      {
+        path: `${PATH}/fluxApp`,
+        title: '应用详情',
+        component: FluxApp,
+      },
+
+      getIndexRoute({ path: PATH, to: `${PATH}/fluxApp`, exact: true }),
+    ]

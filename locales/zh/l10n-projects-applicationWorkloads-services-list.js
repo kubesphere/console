@@ -24,6 +24,11 @@ module.exports = {
   // Service List
   SERVICE_TYPE: '服务类型',
   SERVICE_LIST: '服务列表',
+  SERVICE_TYPE_STATEFULSERVICE: '有状态服务',
+  SERVICE_TYPE_STATELESSSERVICE: '无状态服务',
+  SERVICE_TYPE_EXTERNALSERVICE: '外部服务',
+  HEADLESS: 'Headless',
+  EXTERNALNAME: 'ExternalName',
   // List > Create
   CREATE_SERVICE_DESC: '选择创建服务的方式。',
   SELECT_SERVICE_TYPE_DESC: '创建一个无状态或有状态服务，或将一个服务映射到外部服务。',
@@ -102,6 +107,6 @@ module.exports = {
   DELETE_MULTIPLE_SERVICES: '批量删除服务',
   // Service Topology
   SERVICE_TOPOLOGY: '服务拓扑',
-  AUTO_REFRESH: '自动更新',
+  AUTO_REFRESH: '自动刷新',
   POD_COUNT_VALUE: '容器组数量：{value}'
 };

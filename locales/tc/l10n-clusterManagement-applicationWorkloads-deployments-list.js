@@ -23,6 +23,7 @@ module.exports = {
   DEPLOYMENTS: '部署',
   UPDATE_TIME_TCAP: '更新時間',
   ALL_PROJECTS: '全部項目',
+  SHOW_NUM: 'Show: {num}',
   // List > Create > Basic Information
   SELECT_PROJECT_DESC: '選擇將要創建資源的項目。',
   PROJECT_NOT_SELECT_DESC: '請選擇一個項目。',
@@ -36,7 +37,6 @@ module.exports = {
   // List > Create > Pod Settings
   PREVIOUS: '上一步',
   NOTE: '請注意',
-  CREATE_CONFIGMAP_SECRET_DESC: '如果没有配置字典或保密字典滿足要求，您可以',
   // List > Create > Pod Settings > Add Container > Container Settings
   IMAGE: '鏡像',
   IMAGE_VALUE: '鏡像：{value}',
@@ -49,6 +49,9 @@ module.exports = {
   SPECIFY_SUBPATH: '點擊指定子路徑',
   SPECIFY_SUBPATH_TIP: '指定需要掛載到容器的儲存卷子路徑。',
   MOUNT_PATH: '掛載路徑',
+  MOUNT_PATH_NOT_SPECIFIED: 'Please select a key to be mounted and the mount path of the key.',
+  MOUNT_PATH_EMPTY: 'Please enter a mount path.',
+  MOUNT_PATH_REPEATED: 'The mount path is duplicated.',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: '網段',
   AVAILABLE_ADDRESSES: '可用地址數量',
@@ -61,9 +64,9 @@ module.exports = {
   // List > Edit YAML
   // List > Re-create
   // List > Delete
-  WORKLOAD_LOW: '工作負載',
   // List > Stop
   STOP: '停止',
   STOP_TITLE_SI: '停止{type}',
-  STOP_TITLE_PL: '批量停止{type}'
+  STOP_TITLE_PL: '批量停止{type}',
+  STOP_DESC: 'Are you sure you want to stop the resource?'
 };

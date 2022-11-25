@@ -26,6 +26,8 @@ module.exports = {
   // List > Create
   CREATE_DEVOPS_PROJECT: 'DevOps Projesi Oluştur',
   DEVOPS_PROJECT_CREATE_DESC: 'DevOps, bir dizi işlem hattının tanımlandığı ayrı bir ad alanıdır. Kullanıcılar işlem hatlarını kendileri gruplayabilir (örneğin, proje türü ve kuruluş türü).',
+  DEVOPS_BASEINFO_DESC: 'Please set the basic information of the DevOps project',
+  PATTERN_NAME_INVALID_TIP: 'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-).',
   // List > Create > Cluster Settings
   NO_DEVOPS_INSTALL: 'DevOps kurulu değil',
   // List > Edit

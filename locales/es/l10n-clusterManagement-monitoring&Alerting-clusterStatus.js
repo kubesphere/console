@@ -26,11 +26,11 @@ module.exports = {
   ALL_NODES: 'Todos los nodos',
   ONLINE_NODES: 'Nodos en línea',
   NODE_ONLINE_STATUS: 'Estado del nodo online',
+  TIMES_PER_SECOND: 'times/s',
   // Overview > Component Status
   COMPONENT_STATUS: 'Estado de los componentes',
   CONTROLLER_MANAGER: 'Manager de controlador',
   KUBERNETES_SCHEDULER: 'Scheduler K8s',
-  NOT_ENABLED: 'Not enabled',
   // Overview > Cluster Resource Usage
   CLUSTER_RESOURCE_USAGE: 'Uso de recursos del clúster',
   POD_COUNT: 'Pods',
@@ -46,6 +46,11 @@ module.exports = {
   ETCD_DB_SIZE: '<span>Tamaño</span> de DB',
   ETCD_CLIENT_TRAFFIC: '<span>Tráfico</span> de clientes',
   TITLE_UNIT: '{title} ({unit})',
+  AVERAGE: 'Average',
+  PROPOSAL_COMMITTED: 'Committed',
+  PROPOSAL_APPLIED: 'Applied',
+  PROPOSAL_FAILED: 'Failed',
+  PROPOSAL_PENDING: 'Pendiente',
   // Overview > Service Component Monitoring
   SERVICE_COMPONENT_MONITORING: 'Servicio de Monitorización de Componentes',
   SCHEDULE_ATTEMPTS: 'Scheduling Attempts',
@@ -79,12 +84,13 @@ module.exports = {
   POD_STATUS: 'Pod Status',
   COMPLETED: 'Completed',
   WARNING: 'Warning',
-  IN: 'En',
   READ: 'Lectura',
   WRITE: 'Escribir',
   RUNNING: 'En ejecución',
   // Physical Resource Monitoring > Average CPU Load
   TIME_M: '{num, plural, =1 {1 minute} other{# minutes}}',
+  TIME_H: '{num, plural, =1 {1 hour} other{# hours}}',
+  TIME_D: '{num, plural, =1 {1 day} other{# days}}',
   // etcd Monitoring
   EXTERNAL_ETCD: 'etcd externo',
   DB_FSYNC: 'DB Fsync',
@@ -114,12 +120,12 @@ module.exports = {
   SCHEDULING_LATENCY: 'Programación de latencia',
   // Resource Usage Ranking
   RESOURCE_USAGE_RANKING: 'Resource Usage Ranking',
-  SORT_BY_NODE_CPU_UTILISATION: 'Ordenar por CPU',
-  SORT_BY_NODE_MEMORY_UTILISATION: 'Ordenar por memoria',
-  SORT_BY_NODE_DISK_SIZE_UTILISATION: 'Ordenar por almacenamiento local',
+  SORT_BY_NODE_CPU_UTILISATION: 'Sort by CPU usage (%)',
+  SORT_BY_NODE_MEMORY_UTILISATION: 'Sort by memory usage (%)',
+  SORT_BY_NODE_DISK_SIZE_UTILISATION: 'Sort by disk usage (%)',
   SORT_BY_NODE_POD_UTILISATION: 'Ordenar mediante el uso de pod',
   SORT_BY_NODE_DISK_INODE_UTILISATION: 'Ordenar por inodo Utilización',
-  SORT_BY_NODE_LOAD1: 'Ordenar por promedio de carga',
+  SORT_BY_NODE_LOAD1: 'Sort by 1-minute CPU load average',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: 'Ordenar por uso de memoria',
   POD_USAGE: 'Pod Usage',
   EXPORT: 'Export'

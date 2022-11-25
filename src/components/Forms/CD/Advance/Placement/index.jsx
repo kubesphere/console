@@ -87,6 +87,7 @@ export default class Placement extends Component {
   async init() {
     this.setState({ initializing: true })
 
+    this.formData[`${this.prefix}`] = this.props.formData[`${this.prefix}`]
     const { cluster, server, namespace } = this.formData[`${this.prefix}`] || {}
 
     await this.fetchClusters()
@@ -137,7 +138,8 @@ export default class Placement extends Component {
   }
 
   async fetchClusters() {
-    await this.cdStore.getClustersList()
+    const defaultHost = this.props.cluster
+    await this.cdStore.getClustersList(defaultHost)
   }
 
   fetchNamespaces = async (params = {}) => {

@@ -240,7 +240,6 @@ module.exports = {
     will be included in the build reason for the record. `,
   PIPELINE_NO_CONFIG:
     'El archivo de configuración relevante no se encontró en la pipeline actual',
-  WEBHOOK_DESC: 'Configure webhook notifications by setting a webhook server.',
   EDIT_CREDENTIAL_DESC:
     'El siguiente formulario no mostrará la información de credenciales original. Volver a ingresarlo lo sobrescribirá.',
   pipeline_conditions: 'Condiciones',
