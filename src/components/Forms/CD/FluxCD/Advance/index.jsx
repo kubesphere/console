@@ -23,18 +23,16 @@ import {
   Column,
   Columns,
   Toggle,
-  Tag,
   Tabs,
-  Dropdown,
-  Menu,
   Collapse,
+  Select,
+  Icon,
 } from '@kube-design/components'
 
 import { FLUXCD_APP_TYPES } from 'utils/constants'
-
+import { ArrayInput, ObjectInput } from 'components/Inputs'
 import { TypeSelect } from 'components/Base'
 import { get, set } from 'lodash'
-import { ArrayInput, ObjectInput } from 'components/Inputs'
 import Placement from '../../Advance/Placement'
 import styles from './index.scss'
 
@@ -178,27 +176,62 @@ export default class Advance extends React.Component {
                     <Form.Item
                       label={t('ValuesFrom')}
                       desc={
-                        <div>
-                          <Dropdown
-                            content={
-                              <Menu>
-                                <Menu.MenuItem key="ConfigMap">
-                                  ConfigMap
-                                </Menu.MenuItem>
-                                <Menu.MenuItem key="Secret">
-                                  Secret
-                                </Menu.MenuItem>
-                              </Menu>
-                            }
-                          >
-                            <Tag type="primary">ConfigMap</Tag>
-                          </Dropdown>
-                        </div>
+                        'ValuesFrom holds references to resources containing Helm values for this HelmRelease'
                       }
                     >
-                      <div>
-                        <Input name="config.helmRelease.valuesFrom.secret" />
-                      </div>
+                      <ArrayInput
+                        name="config.helmRelease.valuesFrom"
+                        itemType="object"
+                      >
+                        <ObjectInput>
+                          <Select
+                            name="kind"
+                            defaultValue="ConfigMap"
+                            optionRenderer={option => (
+                              <span className="option-with-icon">
+                                <Icon
+                                  name={option.icon}
+                                  style={{
+                                    marginRight: 6,
+                                    verticalAlign: 'middle',
+                                  }}
+                                  type="light"
+                                />
+                                <span>{option.label}</span>
+                              </span>
+                            )}
+                            valueRenderer={option => (
+                              <span className="option-with-icon">
+                                <Icon
+                                  name={option.icon}
+                                  style={{
+                                    marginRight: 6,
+                                    verticalAlign: 'middle',
+                                  }}
+                                />
+                                <span>{option.value}</span>
+                              </span>
+                            )}
+                            options={[
+                              {
+                                label: 'ConfigMap',
+                                value: 'ConfigMap',
+                                icon: 'hammer',
+                              },
+                              {
+                                label: 'Secret',
+                                value: 'Secret',
+                                icon: 'key',
+                              },
+                            ]}
+                          />
+                          <Input name="name" placeholder={t('NAME')} />
+                          <Input
+                            name="valuesKey"
+                            placeholder={t('ValuesKey')}
+                          />
+                        </ObjectInput>
+                      </ArrayInput>
                     </Form.Item>
                   </Column>
                 </Columns>
