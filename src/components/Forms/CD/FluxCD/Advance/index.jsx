@@ -23,10 +23,7 @@ import {
   Column,
   Columns,
   Toggle,
-  Tag,
   Tabs,
-  Dropdown,
-  Menu,
   Collapse,
   Select,
   Icon,
@@ -36,7 +33,6 @@ import { FLUXCD_APP_TYPES } from 'utils/constants'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
 import { TypeSelect } from 'components/Base'
 import { get, set } from 'lodash'
-import { ArrayInput, ObjectInput } from 'components/Inputs'
 import Placement from '../../Advance/Placement'
 import styles from './index.scss'
 
