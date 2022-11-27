@@ -42,6 +42,10 @@ module.exports = {
   MANIFEST_FILE_PATH_DESC: '设置清单文件路径。 ',
   DIRECTORY_RECURSE: 'Directory recurse',
   REPO_EMPTY_DESC: '请选择一个代码仓库。',
+  VALUES_FILES: 'Values Files',
+  VALUES_FROM: 'Values From',
+  STORAGE_NAMESPACE: 'Storage Namespace',
+  TEST: 'Test',
   // List > Delete
   CONTINUOUS_DEPLOYMENT: '持续部署',
   CONTINUOUS_DEPLOYMENT_LOW: '持续部署',
