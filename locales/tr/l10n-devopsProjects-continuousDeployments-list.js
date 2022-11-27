@@ -42,6 +42,10 @@ module.exports = {
   MANIFEST_FILE_PATH_DESC: 'Kaynak dosya yolunu ayarlayın. ',
   DIRECTORY_RECURSE: 'Directory recurse',
   REPO_EMPTY_DESC: 'Lütfen yeni bir depo yakalayıcısı seçin.',
+  VALUES_FILES: 'Values Files',
+  VALUES_FROM: 'Values From',
+  STORAGE_NAMESPACE: 'Storage Namespace',
+  TEST: 'Test',
   // List > Delete
   CONTINUOUS_DEPLOYMENT: 'Sürekli Dağıtım',
   CONTINUOUS_DEPLOYMENT_LOW: 'sürekli Dağıtım',
