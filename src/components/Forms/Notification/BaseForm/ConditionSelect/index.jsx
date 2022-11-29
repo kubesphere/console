@@ -207,7 +207,7 @@ export default class ConditionSelect extends React.Component {
           name="key"
           value={key}
           options={keyItems}
-          placeholder={t('LABEL')}
+          placeholder={t('KEY')}
           onChange={this.handleKeyChange}
           dorpdownRender={this.dorpdownRender}
         />
