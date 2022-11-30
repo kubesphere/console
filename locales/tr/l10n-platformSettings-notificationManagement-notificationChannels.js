@@ -105,11 +105,13 @@ module.exports = {
   // WeCom > User ID
   TOUSER_LIST: 'Kullanıcı Kimlikleri eklendi',
   EMPTY_TOUSER_DESC: 'Kullanıcı kimliği eklenemedi.',
+  ENTER_TOUSER_TIP: 'Please enter a user ID.',
   TOUSER_EXISTS: 'Kullanıcı kimliği zaten var. Lütfen başka bir kullanıcı kimliği girin.',
   MAX_TOUSER_COUNT: 'You can add a maximum of {count} user IDs.',
   // WeCom > Department ID
   TOPARTY_LIST: 'Eklenen Departman Kimlikleri',
   EMPTY_TOPARTY_DESC: 'Departman kimliği eklenmedi.',
+  ENTER_TOPARTY_TIP: 'Please enter a department ID.',
   TOPARTY_EXISTS: 'Departman kimliği zaten var. Lütfen başka bir departman kimliği girin.',
   MAX_TOPARTY_COUNT: 'You can add a maximum of {count} department IDs.',
   // WeCom > Tag ID

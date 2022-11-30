@@ -42,6 +42,10 @@ module.exports = {
   MANIFEST_FILE_PATH_DESC: 'Set the manifest file path. ',
   DIRECTORY_RECURSE: 'Directory recurse',
   REPO_EMPTY_DESC: 'Please select a code repository.',
+  VALUES_FILES: 'Values Files',
+  VALUES_FROM: 'Values From',
+  STORAGE_NAMESPACE: 'Storage Namespace',
+  TEST: 'Test',
   // List > Delete
   CONTINUOUS_DEPLOYMENT: 'Continuous Deployment',
   CONTINUOUS_DEPLOYMENT_LOW: 'continuous deployment',

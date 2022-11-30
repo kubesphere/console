@@ -60,8 +60,8 @@ module.exports = {
   NO_CLUSTER_TIP_DESC: 'A cluster is a group of nodes (physical or virtual machines) running KubeSphere.',
   // List > Remove Cluster
   RISK_WARNING: 'Risk Warning',
-  REMOVE_CLUSTER_TIP_A: 'After the cluster is removed, resources and configuration information in the cluster will not be cleared automatically.',
-  REMOVE_CLUSTER_TIP_B: 'To avoid resource conflicts when the cluster joins another multi-cluster system, you need to manually clear the configuration information in the cluster by referring to the <a href="https://kubesphere.io/docs/">official KubeSphere documentation</a>.',
+  REMOVE_CLUSTER_TIP_A: 'After the cluster is removed, resources in the cluster will not be cleared automatically.',
+  REMOVE_CLUSTER_TIP_B: 'After the cluster is removed, multi-cluster configuration data in the cluster will not be cleared automatically. Uninstalling KubeSphere or deleting related resources may cause user data loss. You must manually clear the multi-cluster configuration data in the removed cluster by refering to the <a href="https://kubesphere.io/docs/">official KubeSphere documentation</a>.',
   CLUSTER_CONFIRM_TEXT: 'I understand the risks of removing the cluster',
   ENTER_CLUSTER_NAME: 'This operation cannot be undone. Enter the cluster name <strong>{name}</strong> to confirm that you understand the risks of this operation.'
 };
