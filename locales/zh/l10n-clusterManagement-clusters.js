@@ -60,7 +60,7 @@ module.exports = {
   NO_CLUSTER_TIP_DESC: '集群是运行 KubeSphone 的一组节点（物理或虚拟机）。',
   // List > Remove Cluster
   RISK_WARNING: '风险警告',
-  REMOVE_CLUSTER_TIP_A: '集群被移除后，集群中的资源不会被自动清除。',
+  REMOVE_CLUSTER_TIP_A: '集群被移除后，集群中原有的资源不会被自动清除。',
   REMOVE_CLUSTER_TIP_B: '集群被移除后，集群中原有的多集群配置数据不会被自动清除，卸载 KubeSphere 或删除关联资源时可能会导致用户数据丢失。请务必参照 <a href="https://kubesphere.io/docs/">KubeSphere 官方文档</a>手动清理被移除集群中原有的多集群配置数据。',
   CLUSTER_CONFIRM_TEXT: '我了解移除集群的风险',
   ENTER_CLUSTER_NAME: '此操作不能撤消。请输入群集名称 <strong>{name}</strong> 以确认您了解此操作的风险。'
