@@ -109,13 +109,14 @@ module.exports = {
   // WeCom > User ID
   TOUSER_LIST: 'Added User IDs',
   EMPTY_TOUSER_DESC: 'No user ID is added.',
+  ENTER_TOUSER_TIP: 'Please enter a user ID.',
   TOUSER_EXISTS: 'The user ID already exists. Please enter another user ID.',
   MAX_TOUSER_COUNT: 'You can add a maximum of {count} user IDs.',
   // WeCom > Department ID
   TOPARTY_LIST: 'Added Department IDs',
   EMPTY_TOPARTY_DESC: 'No department ID is added.',
-  TOPARTY_EXISTS:
-    'The department ID already exists. Please enter another department ID.',
+  ENTER_TOPARTY_TIP: 'Please enter a department ID.',
+  TOPARTY_EXISTS: 'The department ID already exists. Please enter another department ID.',
   MAX_TOPARTY_COUNT: 'You can add a maximum of {count} department IDs.',
   // WeCom > Tag ID
   TOTAG_LIST: 'Added Tag IDs',
