@@ -105,11 +105,13 @@ module.exports = {
   // WeCom > User ID
   TOUSER_LIST: '已添加的用户 ID',
   EMPTY_TOUSER_DESC: '没有已添加的用户 ID。',
+  ENTER_TOUSER_TIP: 'Please enter a user ID.',
   TOUSER_EXISTS: '用户 ID 已存在，请输入其他用户 ID。',
   MAX_TOUSER_COUNT: '您可以最多添加 {count} 个 User ID。',
   // WeCom > Department ID
   TOPARTY_LIST: '已添加的部门 ID',
   EMPTY_TOPARTY_DESC: '没有已添加部门 ID。',
+  ENTER_TOPARTY_TIP: 'Please enter a department ID.',
   TOPARTY_EXISTS: '部门 ID 已存在，请输入其他部门 ID。',
   MAX_TOPARTY_COUNT: '您可以最多添加 {count} 个 Department ID。',
   // WeCom > Tag ID
