@@ -78,7 +78,7 @@ module.exports = {
   PLEASE_ENTER_APP_KEY: '请输入 App Key。',
   PLEASE_ENTER_APP_SECRET: '请输入 App Secret。',
   PLEASE_ENTER_CHAT_ID: '请输入 Chat ID。',
-  PLEASE_ENTER_WEBHOOK_URL: '请输入 webhook URL。',
+  PLEASE_ENTER_WEBHOOK_URL: '请输入 Webhook URL。',
   // DingTalk > Chat Settings
   CHAT_SETTINGS: '会话设置',
   CHAT_ID_TIP: '联系 DingTalk 管理员获取 Chat ID。',
@@ -137,7 +137,7 @@ module.exports = {
   WEBHOOK: 'Webhook',
   WEBHOOK_TITLE: 'Webhook',
   WEBHOOK_DESC: '向 Webhook 发送通知。',
-  WEBHOOK_URL_DESC: '请输入 webhook URL。',
+  WEBHOOK_URL_DESC: '请输入 Webhook URL。',
   AUTHENTICATION_TYPE: '认证类型',
   AUTHENTICATION_TYPE_DESC: '请选择认证类型。',
   SKIP_TLS_VERFICATION: '跳过 TLS 验证（不安全）',
