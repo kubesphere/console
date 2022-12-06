@@ -57,7 +57,7 @@ module.exports = {
   EXPIRE_DATE: '过期时间',
   LAST_KUBE_CONFIG_EXPIRED: 'kubeconfig 将在 <span class="kubeConfig_expired">{count}</span> 天后过期',
   VALIDATION_FAILED: '校验失败。',
-  NO_CLUSTER_TIP_DESC: '集群是运行 KubeSphone 的一组节点（物理或虚拟机）。',
+  NO_CLUSTER_TIP_DESC: 'A cluster is a group of nodes (physical or virtual machines) running KubeSphere.',
   // List > Remove Cluster
   RISK_WARNING: '风险警告',
   REMOVE_CLUSTER_TIP_A: '集群被移除后，集群中的资源和配置信息不会被自动清除。',
