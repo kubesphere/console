@@ -26,14 +26,15 @@ module.exports = {
   TICKET_SUPPORT_DESC: 'Professional cloud-native development team and container service delivery team with more than 10 years of public and private cloud support experience and in-depth understanding of industries, providing comprehensive technical support including installation, troubleshooting, recovery, and other professional services.',
   CONTACT_US: 'Contact Us',
   // KubeSphere Enterprise
-  KUBESPHERE_ENTERPRISE_CAPTION: 'Commercial Enterprise-Grade Container Platform',
+  KUBESPHERE_ENTERPRISE_CAPTION: 'KubeSphere Enterprise',
   KUBE_SPHERE_ENTERPRISE_DESC: 'KubeSphere Enterprise is an enterprise-grade container platform developed by QingCloud based on the open-source KubeSphere platform. Compared with the open-source edition, KubeSphere Enterprise enhances capabilities for enterprise quantitative operations, large-scale cluster O&M, and security hardening, and extends multiple key features such as microservice governance and app management. The KubeSphere Enterprise Extension Marketplace provides enterprise-grade extensions to meet requirements of various business scenarios, with expert solutions and technical support from QingCloud.',
   KSE_FEATURE_1: 'Empowers enterprise digital transformation towards quantitative operations',
   KSE_FEATURE_2: 'Enhances large-scale federated cluster O&M',
   KSE_FEATURE_3: 'Provides full lifecycle security protection',
+  KSE_PLATFORM_VERSION: 'Platform Version: <strong>{version}</strong>',
   // KubeSphere Cloud
-  KUBESPHERE_CLOUD_CAPTION: 'Cloud-Native Products and Services',
-  KUBESPHERE_CLOUD_DESC: 'KubeSphere Cloud builds a digital ecosystem focusing on Kubernetes and provides full-stack cloud-native products and services of high standard, such as KubeSphere Backup, KubeSphere Inspector, and KubeSphere Lite, helping enterprises manage, protect, and deliver production-ready applications more efficiently.',
+  KUBESPHERE_CLOUD_CAPTION: 'KubeSphere Cloud',
+  KUBESPHERE_CLOUD_DESC: 'KubeSphere Cloud builds a digital ecosystem focusing on Kubernetes and provides cloud-native products and services of high standard, such as KubeSphere Backup, KubeSphere Inspector, and KubeSphere Lite, helping enterprises manage, protect, and deliver production-ready applications more efficiently.',
   KSC_FEATURE_BACKUP: 'KubeSphere Backup',
   KSC_FEATURE_BACKUP_APP_DESC: 'Application-level data protection',
   KSC_FEATURE_BACKUP_DATA_DESC: 'Assured data consistency',
