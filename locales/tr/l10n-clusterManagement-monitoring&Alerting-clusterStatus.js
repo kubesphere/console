@@ -56,7 +56,7 @@ module.exports = {
   SCHEDULE_ATTEMPTS: 'Zamanlama Girişimleri',
   SCHEDULING_RATE: 'Zamanlama Oranı',
   REQUEST: 'İstek',
-  REQUEST_PER_SECOND: 'Saniye başına İstek',
+  REQUEST_PER_SECOND: 'Requests per Second',
   SCHEDULER: 'Zamanlayıcı',
   TOTAL_AVERAGE: 'Toplam',
   SUCCESS: 'Başarı',
