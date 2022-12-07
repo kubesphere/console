@@ -56,7 +56,7 @@ module.exports = {
   SCHEDULE_ATTEMPTS: 'Scheduling Attempts',
   SCHEDULING_RATE: 'Scheduling Rate',
   REQUEST: 'Request',
-  REQUEST_PER_SECOND: 'Request per Second',
+  REQUEST_PER_SECOND: 'Requests per Second',
   SCHEDULER: 'Scheduler',
   TOTAL_AVERAGE: 'Total',
   SUCCESS: 'Success',
