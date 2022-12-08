@@ -36,7 +36,7 @@ module.exports = {
   USERNAME_EXISTS: '用户名已存在，请输入其他用户名。',
   USERNAME_EMPTY_DESC: '请输入一个用户名。',
   PLATFORM_ROLE: '平台角色',
-  CREATE_USER: '添加用户',
+  CREATE_USER: '创建用户',
   EMAIL: '邮箱',
   EMAIL_EXISTS: '邮箱地址已存在，请输入其他邮箱地址。',
   USERNAME_INVALID: '用户名无效。{message}',
