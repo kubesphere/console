@@ -63,13 +63,21 @@ export default class NetworkPoliciesModal extends React.Component {
       cluster,
       limit: -1,
     }
+
     this.projectStore.fetchList({
       ...params,
+      labelSelector: this.ProjectLabelSelector,
     })
+
     this.serviceStore.fetchList({
       namespace,
       ...params,
     })
+  }
+
+  get ProjectLabelSelector() {
+    const { workspace } = this.props
+    return `!kubesphere.io/kubefed-host-namespace,!kubesphere.io/devopsproject,kubesphere.io/workspace=${workspace}`
   }
 
   handleTabChange = tabName => {
@@ -257,6 +265,7 @@ export default class NetworkPoliciesModal extends React.Component {
               defaultValue={specCurNameSpace}
               onChange={this.handleNameSpaceChange}
               tipMessage={t('FED_HOST_NAMESPACE_TIP')}
+              labelSelector={this.ProjectLabelSelector}
             />
           </div>
           <div className={styles.sbody}>
