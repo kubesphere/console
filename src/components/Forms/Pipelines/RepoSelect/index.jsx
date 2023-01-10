@@ -93,7 +93,7 @@ export default class valueSelect extends React.Component {
             <div className={styles.name}>
               {data.repo || data.url || data.remote}
             </div>
-            <div className={styles.desc}>{data.description || '-'}</div>
+            <div className={styles.desc}>{data.description || ''}</div>
           </div>
           <div className={styles.action}>
             <Button onClick={this.props.onClick}>{t('RESELECT')}</Button>
