@@ -133,7 +133,10 @@ export default class PodsCard extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { detail, details, isFederated } = this.props
-    const needUpdate = isFederated && !isEqual(details, prevProps.details)
+    const needUpdate =
+      isFederated &&
+      (!isEqual(details, prevProps.details) ||
+        !isEqual(detail, prevProps.detail))
 
     if (detail !== prevProps.detail || needUpdate) {
       const selectCluster = isFederated
