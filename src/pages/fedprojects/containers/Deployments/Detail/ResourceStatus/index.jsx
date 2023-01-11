@@ -19,7 +19,15 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { isEmpty, flatten, uniqBy, keyBy } from 'lodash'
+import {
+  isEmpty,
+  flatten,
+  uniqBy,
+  keyBy,
+  throttle,
+  get,
+  cloneDeep,
+} from 'lodash'
 
 import PodsCard from 'components/Cards/Pods'
 import ContainerPortsCard from 'components/Cards/Containers/Ports'
@@ -28,6 +36,10 @@ import ClusterWorkloadStatus from 'fedprojects/components/ClusterWorkloadStatus'
 import styles from './index.scss'
 
 class ResourceStatus extends React.Component {
+  state = {
+    resources: {},
+  }
+
   get module() {
     return this.props.detailStore.module
   }
@@ -48,19 +60,41 @@ class ResourceStatus extends React.Component {
     })
   }
 
+  fetchReplica = throttle(async () => {
+    const { params } = this.props.match
+    const resources = await this.store.fetchDetailSilent({
+      clusters: this.store.detail.clusters.map(item => item.name),
+      ...params,
+    })
+    this.setState({
+      resources,
+    })
+  }, 1000)
+
   renderReplicaInfo() {
     const { detail = {}, resources, isResourcesLoading } = this.store
+    const _resources = cloneDeep(toJS(resources))
+    const { resources: refetchResources } = this.state
     const clustersDetail = keyBy(
       this.props.projectStore.detail.clusters,
       'name'
     )
+
+    if (!isEmpty(refetchResources)) {
+      Object.keys(_resources).forEach(cluster => {
+        _resources[cluster] = {
+          ..._resources[cluster],
+          ...get(refetchResources, cluster, {}),
+        }
+      })
+    }
 
     return (
       <ClusterWorkloadStatus
         module={this.module}
         store={this.store}
         detail={detail}
-        resources={resources}
+        resources={_resources}
         clustersDetail={clustersDetail}
         clusters={detail.clusters}
         isLoading={isResourcesLoading}
@@ -117,6 +151,7 @@ class ResourceStatus extends React.Component {
         prefix={this.prefix}
         details={toJS(resources)}
         clusters={clusters}
+        getReplica={this.fetchReplica}
         isFederated
       />
     )
