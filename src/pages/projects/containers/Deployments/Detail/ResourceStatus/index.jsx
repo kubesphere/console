@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { isEmpty, flatten, uniqBy, isNil } from 'lodash'
+import { isEmpty, flatten, uniqBy, isNil, throttle } from 'lodash'
 
 import HpaStore from 'stores/workload/hpa'
 
@@ -38,7 +38,10 @@ class ResourceStatus extends React.Component {
 
     this.hpaStore = props.hpaStore || new HpaStore()
 
-    this.state = {}
+    this.state = {
+      podNums: props.detailStore.podNums,
+      availablePodNums: props.detailStore.availablePodNums,
+    }
   }
 
   get module() {
@@ -75,6 +78,15 @@ class ResourceStatus extends React.Component {
   componentDidMount() {
     this.fetchData()
   }
+
+  fetchReplica = throttle(async () => {
+    const { params } = this.props.match
+    const res = await this.store.getReplica(params)
+    this.setState({
+      podNums: res.podNums,
+      availablePodNums: res.availablePodNums,
+    })
+  }, 500)
 
   fetchData = () => {
     const { cluster, namespace, name } = this.store.detail
@@ -149,11 +161,12 @@ class ResourceStatus extends React.Component {
 
   renderReplicaInfo() {
     const detail = toJS(this.store.detail)
+    const { availablePodNums, podNums } = this.state
 
     return (
       <ReplicaCard
         module={this.module}
-        detail={detail}
+        detail={{ ...detail, availablePodNums, podNums }}
         onScale={this.handleScale}
         enableScale={this.enableScaleReplica}
       />
@@ -200,7 +213,13 @@ class ResourceStatus extends React.Component {
   }
 
   renderPods() {
-    return <PodsCard prefix={this.prefix} detail={this.store.detail} />
+    return (
+      <PodsCard
+        prefix={this.prefix}
+        detail={this.store.detail}
+        getReplica={this.fetchReplica}
+      />
+    )
   }
 
   renderContent() {
