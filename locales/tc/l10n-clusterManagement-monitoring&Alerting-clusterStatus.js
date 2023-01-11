@@ -56,7 +56,7 @@ module.exports = {
   SCHEDULE_ATTEMPTS: '調度次數',
   SCHEDULING_RATE: '調度速率',
   REQUEST: '請求',
-  REQUEST_PER_SECOND: '每秒請求數',
+  REQUEST_PER_SECOND: 'Requests per Second',
   SCHEDULER: '調度器',
   TOTAL_AVERAGE: '總平均值',
   SUCCESS: '成功',
