@@ -185,4 +185,11 @@ export default class WorkloadStore extends Base {
 
     return this.submitting(Promise.all(promises))
   }
+
+  async getReplica(params) {
+    const result = await request.get(this.getDetailUrl(params))
+    const detail = { ...params, ...this.mapper(result) }
+
+    return detail
+  }
 }

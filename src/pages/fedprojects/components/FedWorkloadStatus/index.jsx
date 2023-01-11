@@ -52,6 +52,7 @@ export default class FedWorkloadStatus extends Component {
               <Tag
                 key={cluster.name}
                 type={CLUSTER_GROUP_TAG_TYPE[cluster.group]}
+                className={styles.tag}
               >
                 <Icon
                   name={CLUSTER_PROVIDER_ICON[cluster.provider] || 'kubernetes'}
