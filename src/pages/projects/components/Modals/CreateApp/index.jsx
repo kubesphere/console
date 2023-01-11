@@ -78,7 +78,7 @@ export default class ServiceDeployAppModal extends React.Component {
       this.fetchData().then(() => {
         const { sampleApp } = this.props
         if (sampleApp) {
-          this.fecthSampleData(sampleApp)
+          this.fetchSampleData(sampleApp)
         }
       })
     } else {
@@ -141,7 +141,43 @@ export default class ServiceDeployAppModal extends React.Component {
     ]
   }
 
-  fecthSampleData(app) {
+  setServicemeshValue(formData) {
+    const { isFederated } = this.props
+    const { isGovernance } = this.state
+    const { application, ingress, ...components } = formData
+    const governanceValue = String(isGovernance)
+
+    set(
+      application,
+      'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
+      governanceValue
+    )
+
+    Object.values(components).forEach(component => {
+      set(
+        component.workload,
+        'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
+        governanceValue
+      )
+      set(
+        component.service,
+        'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
+        governanceValue
+      )
+      set(
+        component.workload,
+        'spec.template.metadata.annotations["sidecar.istio.io/inject"]',
+        governanceValue
+      )
+
+      if (isFederated) {
+        updateFederatedAnnotations(component.workload)
+        updateFederatedAnnotations(component.service)
+      }
+    })
+  }
+
+  fetchSampleData(app) {
     const { namespace, store } = this.props
     const { gateway } = this.state
 
@@ -165,6 +201,7 @@ export default class ServiceDeployAppModal extends React.Component {
         )
       }
 
+      this.setServicemeshValue(formData)
       this.setState({ formData })
     })
   }
