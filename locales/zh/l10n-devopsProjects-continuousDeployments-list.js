@@ -24,7 +24,7 @@ module.exports = {
   DEGRADED: '已降级',
   PROGRESSING: '进行中',
   SYNCED: '已同步',
-  MISSING: '丢失',
+  MISSING: '缺失',
   SUSPENDED: '已下架',
   OUTOFSYNC: '未同步',
   DEPLOY_LOCATION: '部署位置',
