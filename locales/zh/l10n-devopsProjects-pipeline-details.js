@@ -51,7 +51,7 @@ module.exports = {
   JENKINS_UNAVAILABLE: 'Jenkins 未就绪。',
   AGENT_TYPE_DESC: `Agent 部分指定整个流水线或特定阶段将在 Jenkins 环境中执行的位置，
       具体取决于该 agent 部分的放置位置。该部分必须在流水线块内的顶层定义，但 stage 级使用是可选的。`,
-  NOT_VALID_REPO: 'Code repo is not valid and cannot be created',
+  NOT_VALID_REPO: '代码仓库无效且无法创建',
   CREATE_PIPELINE_DESC: '使用流水线进行构建，测试和部署',
   CI: '持续集成 (CI)',
   CI_DESC: '持续集成（CI）是在源代码变更后自动检测、拉取、构建和（在大多数情况下）进行单元测试的过程。',
@@ -159,5 +159,5 @@ module.exports = {
   PASSED: '已通过',
   // Pull Requests
   PULL_REQUEST_PL: '拉取请求',
-  FAILED_CHECK_SCRIPT_COMPILE: 'The check of script compile failed, if you want to bypass the step, please click the continue button'
+  FAILED_CHECK_SCRIPT_COMPILE: '检查脚本编译失败，如果你想跳过这一步骤，请点击继续按钮'
 };
