@@ -227,11 +227,11 @@ export default class GatewaySettingModal extends React.Component {
   }
 
   get CanDelete() {
-    const { cluster, workspace, project } = this.props.detail
+    const { cluster, workspace, namespace } = this.store.detail
     return globals.app.hasPermission({
       cluster,
       workspace,
-      project,
+      project: namespace,
       module: 'grayscale-release',
       action: 'delete',
     })
