@@ -45,7 +45,7 @@ module.exports = {
   VALUES_FILES: 'Values Files',
   VALUES_FROM: 'Values From',
   STORAGE_NAMESPACE: 'Storage Namespace',
-  TEST: 'Test',
+  TEST: '测试',
   // List > Delete
   CONTINUOUS_DEPLOYMENT: '持续部署',
   CONTINUOUS_DEPLOYMENT_LOW: '持续部署',
