@@ -103,7 +103,7 @@ export default class Artifacts extends React.Component {
       title: t('DOWNLOAD'),
       width: '20%',
       key: 'download',
-      render: path => (
+      render: (download, { path }) => (
         <a
           href={this.getDownloadUrl(pipeline, pipelineRun, path)}
           target="_blank"
