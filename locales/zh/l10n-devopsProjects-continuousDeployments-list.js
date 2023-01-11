@@ -75,9 +75,9 @@ module.exports = {
   EMPTY_CD_TITLE: '未发现持续部署',
   SYNC_TRIGGERED: '资源同步触发成功。',
   // List > Parameter
-  PARAMETER_SETTINGS: 'Parameter Settings',
+  PARAMETER_SETTINGS: '参数设置',
   AUTO_PARAMETER: 'Auto',
-  AUTO_PARAMETER_DESC: 'Set automatically.',
+  AUTO_PARAMETER_DESC: '已自动设置',
   HELM_PARAMETER: 'Helm',
   HELM_PARAMETER_DESC: 'Set Helm parameter.',
   KUSTOMIZE_PARAMETER: 'Kustomize',
