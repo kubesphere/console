@@ -31,10 +31,10 @@ module.exports = {
   KSE_FEATURE_1: '赋能企业数字化转型量化运营',
   KSE_FEATURE_2: '增强大规模联邦集群运维能力',
   KSE_FEATURE_3: '提供全生命周期安全保护',
-  KSE_PLATFORM_VERSION: 'Platform Version: <strong>{version}</strong>',
+  KSE_PLATFORM_VERSION: '平台版本： <strong>{version}</strong>',
   // KubeSphere Cloud
   KUBESPHERE_CLOUD_CAPTION: 'KubeSphere Cloud',
-  KUBESPHERE_CLOUD_DESC: 'KubeSphere Cloud builds a digital ecosystem focusing on Kubernetes and provides cloud-native products and services of high standard, such as KubeSphere Backup, KubeSphere Inspector, and KubeSphere Lite, helping enterprises manage, protect, and deliver production-ready applications more efficiently.',
+  KUBESPHERE_CLOUD_DESC: 'KubeSphere Cloud 围绕 Kubernetes 构建数字化生态，以极高的要求和标准为客户提供企业级云原生服务与支持，现已有云原生备份容灾、集群巡检、轻量集群等产品，助力您更便捷高效地管理、保护、交付生产级应用。',
   KSC_FEATURE_BACKUP: '备份容灾',
   KSC_FEATURE_BACKUP_APP_DESC: '应用级数据保护',
   KSC_FEATURE_BACKUP_DATA_DESC: '数据一致性保障',
