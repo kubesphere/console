@@ -247,6 +247,19 @@ export default class Nodes extends React.Component {
     }))
   }
 
+  getRoles() {
+    return [
+      {
+        text: t('CONTROL_PLANE'),
+        value: 'master',
+      },
+      {
+        text: t('WORKER'),
+        value: 'worker',
+      },
+    ]
+  }
+
   getColumns = () => {
     const { module, prefix, getSortOrder, getFilteredValue } = this.props
     return [
@@ -295,6 +308,8 @@ export default class Nodes extends React.Component {
       {
         title: t('ROLE'),
         dataIndex: 'role',
+        filters: this.getRoles(),
+        filteredValue: getFilteredValue('role'),
         isHideable: true,
         search: true,
         render: roles =>
@@ -511,13 +526,8 @@ export default class Nodes extends React.Component {
   }
 
   renderOverview() {
-    const { masterNum, masterCount, masterWorkerCount, list } = this.store
+    const { masterNum, list } = this.store
     const totalCount = list.total
-    const workerCount = Math.max(
-      Number(totalCount) - Number(masterCount) + Number(masterWorkerCount),
-      0
-    )
-
     return (
       <Panel className="margin-b12">
         <div className={styles.overview}>
@@ -532,12 +542,6 @@ export default class Nodes extends React.Component {
               masterNum === 1 ? t('MASTER_NODE_SI') : t('MASTER_NODE_PL')
             }
           />
-          <Text
-            title={workerCount}
-            description={
-              workerCount === 1 ? t('WORKER_NODE_SI') : t('WORKER_NODE_PL')
-            }
-          />
         </div>
       </Panel>
     )
@@ -546,7 +550,6 @@ export default class Nodes extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     const isLoadingMonitor = this.monitoringStore.isLoading
-
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner
