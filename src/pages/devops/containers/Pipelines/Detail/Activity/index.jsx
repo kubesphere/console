@@ -228,7 +228,7 @@ export default class Activity extends React.Component {
       width: '15%',
       key: 'status',
       render: record =>
-        record.result === 'ABORTED' || !record.result ? (
+        getPipelineStatus(record)?.type === 'nostatus' || !record.result ? (
           <Status {...getPipelineStatus(record)} />
         ) : (
           <Link className="item-name" to={this.getRunhref(record)}>
