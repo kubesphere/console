@@ -74,6 +74,10 @@
     @include TypographyTitleH2(#fff);
     line-height: 40px;
   }
+
+  & > span:last-of-type {
+    display: inline;
+  }
 }
 
 .pods {

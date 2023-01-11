@@ -419,4 +419,29 @@ export default class FederatedStore extends Base {
       return this.submitting(Promise.all(promises))
     }
   }
+
+  @action
+  async fetchDetailSilent({ clusters, ...params }) {
+    const result = await Promise.all(
+      clusters.map(cluster =>
+        request.get(
+          this.resourceStore.getDetailUrl({ ...params, cluster }),
+          null,
+          null,
+          () => {}
+        )
+      )
+    )
+
+    const resource = {}
+
+    result.forEach((item, index) => {
+      resource[clusters[index]] = {
+        ...this.mapper(item),
+        cluster: clusters[index],
+      }
+    })
+
+    return resource
+  }
 }

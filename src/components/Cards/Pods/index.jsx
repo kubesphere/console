@@ -100,6 +100,7 @@ export default class PodsCard extends React.Component {
   }
 
   initWebsocket() {
+    const { getReplica } = this.props
     const { selectCluster, params = {} } = this.state
     const { namespace, labelSelector } = params
 
@@ -122,8 +123,10 @@ export default class PodsCard extends React.Component {
                 ...ObjectMapper.pods(toJS(message.object)),
               }
               this.store.list.updateItem(data)
+              getReplica && getReplica()
             } else if (message.type === 'DELETED' || message.type === 'ADDED') {
               this.fetchData({ silent: true })
+              getReplica && getReplica()
             }
           }
         }
