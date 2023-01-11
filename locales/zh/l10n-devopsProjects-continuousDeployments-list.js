@@ -25,7 +25,7 @@ module.exports = {
   PROGRESSING: '进行中',
   SYNCED: '已同步',
   MISSING: '缺失',
-  SUSPENDED: '已下架',
+  SUSPENDED: '已暂停',
   OUTOFSYNC: '未同步',
   DEPLOY_LOCATION: '部署位置',
   // List > Create
