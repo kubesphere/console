@@ -64,7 +64,7 @@ const Card = ({ volume, onDelete, onEdit }) => {
       },
     ]
   } else {
-    description = `${t('STORAGE_CLASSS')}: ${get(
+    description = `${t('STORAGE_CLASS')}: ${get(
       volume,
       'volume.storageClassName',
       '-'
