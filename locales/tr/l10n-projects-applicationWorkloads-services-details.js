@@ -53,5 +53,8 @@ module.exports = {
   SERVICE_NODE_PORT_DESC: 'İstemci makineniz kümeyle aynı ağdaysa, hizmete erişmek için <Düğüm IP adresi>:<Düğüm bağlantı noktası> kullanabilirsiniz.',
   IMAGE_BUILDING_FAILED: 'Görüntü oluşturma başarısız oldu',
   IMAGE_BUILDING_SUCCESSFUL: 'Görüntü oluşturma başarılı',
-  BUILDING_IMAGE: 'Oluşturucu Resmi'
+  BUILDING_IMAGE: 'Oluşturucu Resmi',
+  SERVICE_MONITORING_EXPORTER: 'Service Monitoring Exporter',
+  EXPORTER_SERVICE_PORTS: 'Exporter Service Ports',
+  SCRAPE_INTERVAL_MIN: 'Scape Interval Min'
 };
