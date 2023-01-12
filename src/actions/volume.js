@@ -76,6 +76,7 @@ export default {
           title: 'CLUSTER_DIFF',
           icon: 'blue-green-deployment',
           component: ClusterDiffSettings,
+          required: true,
         })
       }
 

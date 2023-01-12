@@ -99,6 +99,7 @@ export default class VolumeDetail extends React.Component {
           ...this.props.match.params,
           success: this.fetchData,
           isFederated: true,
+          isEdit: true,
           projectDetail: this.props.projectStore.detail,
         }),
     },

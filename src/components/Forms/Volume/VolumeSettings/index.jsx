@@ -94,7 +94,7 @@ export default class VolumeSettings extends React.Component {
             cluster={cluster}
           />
         ) : (
-          <FormTemplate cluster={cluster} />
+          <FormTemplate cluster={cluster} isFederated={isFederated} />
         )}
       </Form>
     )

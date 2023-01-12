@@ -50,7 +50,7 @@ const CREATE_TYPE_OPTIONS = [
 
 export default class VolumeSettingsForm extends Base {
   render() {
-    const { formRef, isFederated, cluster, formProps } = this.props
+    const { formRef, isFederated, cluster, formProps, isEdit } = this.props
     const { fromSnapshot } = this.state
 
     return (
@@ -70,7 +70,11 @@ export default class VolumeSettingsForm extends Base {
             cluster={cluster}
           />
         ) : (
-          <FormTemplate cluster={cluster} />
+          <FormTemplate
+            cluster={cluster}
+            isFederated={isFederated}
+            isEdit={isEdit}
+          />
         )}
       </Form>
     )
