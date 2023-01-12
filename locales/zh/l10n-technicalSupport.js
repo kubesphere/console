@@ -34,7 +34,7 @@ module.exports = {
   KSE_PLATFORM_VERSION: '平台版本： <strong>{version}</strong>',
   // KubeSphere Cloud
   KUBESPHERE_CLOUD_CAPTION: 'KubeSphere Cloud',
-  KUBESPHERE_CLOUD_DESC: 'KubeSphere Cloud 围绕 Kubernetes 构建的数字化生态，以极高要求、极高标准，为客户提供企业级的云原生服务与支持，现已有备份容灾、集群巡检、轻量集群等，助力您更便捷高效地管理、保护、交付生产级应用。',
+  KUBESPHERE_CLOUD_DESC: 'KubeSphere Cloud 围绕 Kubernetes 构建数字化生态，以极高的要求和标准为客户提供企业级云原生服务与支持，现已有云原生备份容灾、集群巡检、轻量集群等产品，助力您更便捷高效地管理、保护、交付生产级应用。',
   KSC_FEATURE_BACKUP: '备份容灾',
   KSC_FEATURE_BACKUP_APP_DESC: '应用级数据保护',
   KSC_FEATURE_BACKUP_DATA_DESC: '数据一致性保障',
