@@ -79,7 +79,7 @@ module.exports = {
   AUTO_PARAMETER: 'Auto',
   AUTO_PARAMETER_DESC: '已自动设置',
   HELM_PARAMETER: 'Helm',
-  HELM_PARAMETER_DESC: 'Set Helm parameter.',
+  HELM_PARAMETER_DESC: '设置 Helm 参数',
   KUSTOMIZE_PARAMETER: 'Kustomize',
   KUSTOMIZE_PARAMETER_DESC: 'Set Kustomize parameters.',
   PASS_CREDENTIALS: 'Pass Credentials',
