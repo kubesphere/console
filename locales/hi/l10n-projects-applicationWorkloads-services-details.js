@@ -53,5 +53,8 @@ module.exports = {
   SERVICE_NODE_PORT_DESC: 'If your client machine is on the same network as the cluster, you can use <Node IP address>:<Node port> to access the service.',
   IMAGE_BUILDING_FAILED: 'Image building failed',
   IMAGE_BUILDING_SUCCESSFUL: 'Image building successful',
-  BUILDING_IMAGE: 'Building image'
+  BUILDING_IMAGE: 'Building image',
+  SERVICE_MONITORING_EXPORTER: 'Service Monitoring Exporter',
+  EXPORTER_SERVICE_PORTS: 'Exporter Service Ports',
+  SCRAPE_INTERVAL_MIN: 'Scape Interval Min'
 };
