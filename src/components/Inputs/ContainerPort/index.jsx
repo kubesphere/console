@@ -59,6 +59,10 @@ export default class ContainerPort extends React.Component {
     this.state = getStateFromProps(props)
   }
 
+  componentDidMount() {
+    this.triggerChange()
+  }
+
   static getDerivedStateFromProps(props, state) {
     if (props.value !== state.propsValue) {
       return getStateFromProps(props)

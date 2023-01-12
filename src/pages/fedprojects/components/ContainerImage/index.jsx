@@ -27,6 +27,7 @@ import WorkspaceQuotaStore from 'stores/workspace.quota'
 import { resourceLimitKey } from 'utils'
 import { getLeftQuota } from 'utils/workload'
 import EditForm from 'components/Forms/Workload/ClusterDiffSettings/EditForm'
+import SecretStore from 'stores/secret'
 import ContainerSetting from '../ContainerSetting'
 
 @observer
@@ -35,8 +36,11 @@ export default class ContainerImages extends Component {
     super(props)
     this.quotaStore = new QuotaStore()
     this.workspaceQuotaStore = new WorkspaceQuotaStore()
+    this.imageRegistryStore = new SecretStore()
+
     this.state = {
       availableQuota: {},
+      imageRegistries: [],
     }
   }
 
@@ -47,6 +51,20 @@ export default class ContainerImages extends Component {
 
   componentDidMount() {
     this.fetchQuota()
+    this.fetchImageSecret()
+  }
+
+  fetchImageSecret() {
+    const { cluster, namespace } = this.props
+    this.imageRegistryStore
+      .fetchListByK8s({
+        cluster,
+        namespace,
+        fieldSelector: `type=kubernetes.io/dockerconfigjson`,
+      })
+      .then(imageRegistries => {
+        this.setState({ imageRegistries })
+      })
   }
 
   fetchQuota() {
@@ -99,6 +117,7 @@ export default class ContainerImages extends Component {
   render() {
     const { cluster, namespace, formData, containerType, isEdit } = this.props
     const limitRanges = get(formData, 'resources')
+    const { imageRegistries } = this.state
 
     return (
       <EditForm
@@ -114,6 +133,7 @@ export default class ContainerImages extends Component {
           defaultContainerType={containerType}
           workspaceQuota={this.workspaceQuota}
           isEdit={isEdit}
+          imageRegistries={imageRegistries}
         />
       </EditForm>
     )
