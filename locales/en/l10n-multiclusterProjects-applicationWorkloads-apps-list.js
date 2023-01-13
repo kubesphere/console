@@ -24,5 +24,5 @@ module.exports = {
   // List > Create > Service Settings > Cluster Differences
   NAME_VALUE: 'Name: {value}',
   CONTAINER_PORT_VALUE: 'Container Port: {value}',
-  // List > Create > Route Settings
+  // List > Create > Ingress Settings
 }
