@@ -17,15 +17,15 @@
  */
 module.exports = {
   // Banner
-  ROUTE_DESC: 'Una ruta proporciona una forma de agregar servicios, y puede exponer los servicios internos del clúster al exterior a través de una dirección IP accesible desde el exterior.',
-  PREREQUESTS_FOR_USE_ROUTE_Q: '¿Cuales son los requisitos para poder usar rutas?',
-  PREREQUESTS_FOR_USE_ROUTE_A: 'To use a route, the project administrator needs to set the gateway for the current project.',
-  ACCESS_TYPES_OF_ROUTE_Q: '¿Qué tipos de acceso admite la ruta?',
-  ACCESS_TYPES_OF_ROUTE_A: 'Las rutas de KubeSphere admiten nombres de dominio personalizados (HostName) y así como wildcards DNS.',
-  ROUTE_PL: 'Routes',
+  ROUTE_DESC: 'An ingress provides a way to aggregate services. You can expose the internal services outside the cluster through an externally accessible IP address.',
+  PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using ingresses?',
+  PREREQUESTS_FOR_USE_ROUTE_A: 'To use ingresses, you need to contact the project administrator to set the gateway for the project.',
+  ACCESS_TYPES_OF_ROUTE_Q: 'What are the external access modes of ingresses?',
+  ACCESS_TYPES_OF_ROUTE_A: 'KubeSphere ingresses support the NodePort and LoadBalancer external access modes.',
+  ROUTE_PL: 'Ingresses',
   // List
   GATEWAY_ADDRESS_TCAP: 'Dirección del gateway',
-  ROUTE_EMPTY_DESC: 'Una ruta proporciona una forma de agregar servicios, y puede exponer los servicios internos del clúster al exterior a través de una dirección IP accesible desde el exterior.',
+  ROUTE_EMPTY_DESC: 'Please create an ingress.',
   // List > Create > Basic Information
   // List > Create > Routing Rules
   ADD_ROUTING_RULE_DESC: 'Agregar una regla de ruta para asignar un nombre de dominio a un servicio.',
@@ -56,5 +56,5 @@ module.exports = {
   // List > Edit Annotations
   EDIT_ANNOTATIONS: 'Edit Annotations',
   // List > Delete
-  ROUTE_LOW: 'Route'
+  ROUTE_LOW: 'ingress'
 };
