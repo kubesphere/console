@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Navigation pane
-  STORAGE: 'Storage',
+  STORAGE: 'Speicher',
   // Banner
   PERSISTENT_VOLUME_CLAIM_DESC: 'Persistent volume claims define storage requirements. The system creates persistent volumes according to persistent volume claims.',
   PERSISTENT_VOLUME_CLAIM: 'Persistent Volume Claim',
