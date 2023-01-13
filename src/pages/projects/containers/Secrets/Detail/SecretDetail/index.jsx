@@ -45,7 +45,16 @@ export default class SecretDetail extends React.Component {
 
   convert = (value, key) => {
     const { showSecret } = this.state
-    return showSecret ? value : get(this.originData, key, '')
+    const { detail } = this.store
+
+    return showSecret
+      ? value
+      : detail.type === 'kubernetes.io/dockerconfigjson' && value
+      ? value
+          .split('')
+          .map(item => item.replace(/[\s\S]/g, '*'))
+          .join('')
+      : get(this.originData, key, '')
   }
 
   changeSecretState = () => {
