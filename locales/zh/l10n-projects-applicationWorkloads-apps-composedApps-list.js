@@ -42,9 +42,9 @@ module.exports = {
   STATELESS_SERVICE_DESC: '创建一个服务和一个部署。',
   APPLICATION_SERVICE_DESC: '根据需求为应用添加有状态服务或无状态服务。',
   APP_CREATE_SERVICE_DESC: '为应用创建一个服务。',
-  // List > Create > Route Settings
-  ROUTE_SETTINGS: '路由设置',
+  // List > Create > Ingress Settings
+  ROUTE_SETTINGS: 'Ingress Settings',
   ROUTING_RULES: '路由规则',
   ROUTE_SETTINGS_DESC: '为应用设置路由规则。',
-  ADD_ROUTE_SUCCESS: '应用路由添加成功。'
+  ADD_ROUTE_SUCCESS: 'The ingress was added successfully.'
 };
