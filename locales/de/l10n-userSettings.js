@@ -24,11 +24,11 @@ module.exports = {
   CONTENT_NOT_SAVED_TIPS: 'Inhalt wurde geändert, aber nicht gespeichert',
   SAVE_EDIT_HINTS: 'Bitte bestätigen Sie, dass der geänderte Inhalt korrekt ist, Sie können die Einstellungen speichern oder verwerfen.',
   // Password Settings
-  PASSWORD_SETTINGS: 'Password Settings',
-  PASSWORD_EMPTY_DESC: 'Please set a password.',
-  CURRENT_PASSWORD: 'Current Password',
-  ENTER_CURRENT_PASSWORD_TIP: 'Please enter the current password.',
+  PASSWORD_SETTINGS: 'Passwort Einstellungen',
+  PASSWORD_EMPTY_DESC: 'Bitte ein Passwort festlegen.',
+  CURRENT_PASSWORD: 'Aktuelles Passwort',
+  ENTER_CURRENT_PASSWORD_TIP: 'Bitte geben Sie das aktuelle Kennwort ein.',
   CONFIRM_PASSWORD: 'Passwort bestätigen',
-  PASSWORD_NOT_SAME_DESC: 'New Password and Confirm Password must be the same.',
+  PASSWORD_NOT_SAME_DESC: 'Neues Passwort und Bestätigungspasswort müssen identisch sein.',
   ENTER_CURRENT_PASSWORD_DESC: 'Um das Passwort zu ändern, müssen Sie zuerst das aktuelle Passwort eingeben.'
 };
