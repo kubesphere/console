@@ -20,7 +20,7 @@ module.exports = {
   MODIFY_SUCCESSFUL: 'Modified successfully.',
   SERVICE_PROVIDER_WEBSITE_DESC: 'Official website address of the service provider.',
   WRONG_ADDRESS_TIP: 'Incorrect address format. Please enter a correct address.',
-  APP_NAME_DESC: 'The name can contain any characters and the maximum length is 20 characters.',
+  APP_NAME_DESC: 'Der Name kann beliebige Zeichen enthalten und darf maximal 20 Zeichen lang sein.',
   APP_DESCRIPTION_DESC: 'The description can contain any characters and the maximum length is 120 characters.',
   APP_ICON_FORMAT: 'Format: PNG or JPG',
   APP_ICON_SIZE: 'Size: 96 x 96 pixels',
