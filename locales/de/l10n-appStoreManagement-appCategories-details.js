@@ -20,5 +20,5 @@ module.exports = {
   // Install > Deployment Agreement
   // Install > Basic Information
   // Install > App Settings
-  APP_SETTINGS: 'App Settings'
+  APP_SETTINGS: 'App Einstellungen'
 };
