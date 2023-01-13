@@ -18,9 +18,9 @@
 module.exports = {
   // More > Add Service
   ADD_SERVICE: 'Add Service',
-  ADD_ROUTE: 'Add Route',
+  ADD_ROUTE: 'Add Ingress',
   SERVICE_ADDED_SUCCESSFULLY: 'The service was added successfully.',
-  // More > Add Route
+  // More > Add Ingress
   // Attributes
   // Resource Status
   WORKLOAD_TYPE_DEPLOYMENTS: 'Deployment',
