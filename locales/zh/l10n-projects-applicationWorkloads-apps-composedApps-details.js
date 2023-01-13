@@ -18,7 +18,7 @@
 module.exports = {
   // More > Add Service
   ADD_SERVICE: '添加服务',
-  ADD_ROUTE: 'Add Ingress',
+  ADD_ROUTE: '添加应用路由',
   SERVICE_ADDED_SUCCESSFULLY: '服务添加成功。',
   // More > Add Ingress
   // Attributes
