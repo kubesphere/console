@@ -28,7 +28,7 @@ module.exports = {
   LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
   // Cluster Gateway > Enable Gateway
   ENABLE_GATEWAY: 'Establecer puerta de enlace',
-  GATEWAY_TRACING_TIP: 'Necesitas habilitar Application Governance si deseas utilizar la función de Tracing. Una vez que Application Governance esté habilitado, verifica si se ha agregado una annotation como "nginx.ingress.kubernetes.io/service-upstream: true" para la ruta de la aplicación si la ruta es inaccesible. Si no existe el annotation, agrégalo.',
+  GATEWAY_TRACING_TIP: 'If ingresses cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the ingress.',
   // Cluster Gateway > Manage > View Details
   VIEW_DETAILS: 'Ver detalles',
   // Cluster Gateway > Manage > Disable
