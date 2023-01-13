@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { isEmpty } from 'lodash'
+import { isEmpty, get } from 'lodash'
 import { Notify } from '@kube-design/components'
 
 import ContainerPortsCard from 'components/Cards/Containers/Ports'
@@ -28,6 +28,9 @@ import Placement from 'projects/components/Cards/Placement'
 import PodsCard from 'clusters/containers/Gateway/Components/Pods'
 import PropTypes from 'prop-types'
 import GatewayStore from 'stores/gateway'
+import WorkloadStore from 'stores/workload'
+import ConfigMapStore from 'stores/configmap'
+import { getAllYAMLValue } from 'utils/yaml'
 import styles from './index.scss'
 
 class ResourceStatus extends React.Component {
@@ -44,7 +47,12 @@ class ResourceStatus extends React.Component {
 
     this.state = {
       pods: 0,
+      selector: {},
+      workloadNamespace: '',
+      gatewayPods: [],
     }
+    this.workloadStore = new WorkloadStore('deployments')
+    this.configMapStore = new ConfigMapStore()
   }
 
   getChildContext() {
@@ -106,8 +114,37 @@ class ResourceStatus extends React.Component {
   }
 
   fetchData = async () => {
+    const { gatewayName: name, cluster } = this.props.match.params
+    const configmap = await this.configMapStore.fetchDetail({
+      cluster,
+      namespace: 'kubesphere-system',
+      name: 'kubesphere-config',
+    })
+    const workloadNamespace = get(
+      getAllYAMLValue(configmap.data['kubesphere.yaml'])[0],
+      'gateway.namespace'
+    )
+    // for websocket get pods data
+    const { selector } = await this.workloadStore.fetchDetail({
+      cluster,
+      namespace: workloadNamespace,
+      name,
+    })
     const result = await this.store.getGatewayPods(this.props.match.params)
-    this.setState({ pods: result.length })
+    this.setState({
+      pods: result.length,
+      selector,
+      workloadNamespace,
+    })
+  }
+
+  fetchReplica = async () => {
+    const gatewayPods = await this.store.getGatewayReplica(
+      this.props.match.params
+    )
+    this.setState({
+      gatewayPods,
+    })
   }
 
   checkGatewayLatest = async () => {
@@ -145,12 +182,15 @@ class ResourceStatus extends React.Component {
   }
 
   renderReplicaInfo() {
+    const { gatewayPods } = this.state
     const detail = toJS(this.detail)
 
     return (
       <ReplicaCard
         module={this.module}
-        detail={detail}
+        detail={
+          isEmpty(gatewayPods) ? detail : { ...detail, pods: gatewayPods }
+        }
         onScale={this.handleScale}
         enableScale={this.enableScaleReplica}
       />
@@ -172,6 +212,7 @@ class ResourceStatus extends React.Component {
   }
 
   renderPods() {
+    const { workloadNamespace } = this.state
     const params = { ...this.props.match.params, cluster: this.cluster }
 
     return (
@@ -180,6 +221,9 @@ class ResourceStatus extends React.Component {
         detail={this.detail}
         store={this.store}
         params={params}
+        selector={this.state.selector}
+        namespace={workloadNamespace}
+        getReplica={this.fetchReplica}
       />
     )
   }
