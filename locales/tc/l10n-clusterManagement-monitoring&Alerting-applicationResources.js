@@ -77,7 +77,7 @@ module.exports = {
   STATEFULSETS_VALUE: '有狀態副本集數量：{value}',
   DAEMONSETS_VALUE: '守護進程集數量：{value}',
   RUNNING_PODS: '運行中的容器組數量',
-  ROUTE: '應用路由',
+  ROUTE: 'Ingress',
   // Resource Usage > Projects
   PROJECT_PL: '項目',
   PROJECT_COUNT: '項目數量',
