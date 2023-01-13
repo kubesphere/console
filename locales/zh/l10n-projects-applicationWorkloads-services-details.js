@@ -56,5 +56,5 @@ module.exports = {
   BUILDING_IMAGE: '创建镜像中',
   SERVICE_MONITORING_EXPORTER: '服务监控 Exporter',
   EXPORTER_SERVICE_PORTS: 'Exporter 服务端口',
-  SCRAPE_INTERVAL_MIN: 'Scrape Interval (Min)'
+  SCRAPE_INTERVAL_MIN: '采集间隔（分钟）'
 };
