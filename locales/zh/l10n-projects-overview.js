@@ -33,7 +33,7 @@ module.exports = {
   NUMBER_OF_CRONJOBS: '定时任务数量',
   NUMBER_OF_VOLUMES: '持久卷声明数量',
   NUMBER_OF_SERVICES: '服务数量',
-  NUMBER_OF_ROUTES: 'Number of ingresses',
+  NUMBER_OF_ROUTES: '应用路由数量',
   NUMBER_OF_SECRETS: '保密字典数量',
   NUMBER_OF_CONFIGMAPS: '配置字典数量',
   // Deployed Apps
