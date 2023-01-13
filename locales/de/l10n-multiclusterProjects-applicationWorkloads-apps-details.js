@@ -22,11 +22,11 @@ module.exports = {
   // Attributes
   // Resource Status
   APPLICATION_GOVERNANCE_SCAP: 'Application governance',
-  NO_SERVICE_FOUND: 'No Service Found',
+  NO_SERVICE_FOUND: 'Kein Service gefunden',
   // External Access
-  GATEWAY_IP_ADDRESS: 'Gateway IP address',
-  GATEWAY_ACCESS_MODE: 'Gateway access mode',
-  NODE_PORTS_SCAP: 'Node ports',
+  GATEWAY_IP_ADDRESS: 'Gateway-IP-Adresse',
+  GATEWAY_ACCESS_MODE: 'Gateway-Zugriffsmodus',
+  NODE_PORTS_SCAP: 'Node Ports',
   LOAD_BALANCER_SCAP: 'Load balancer',
   LOAD_BALANCERS_SCAP: 'Load balancers',
   // Traffic Management
