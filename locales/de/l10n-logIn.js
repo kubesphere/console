@@ -18,13 +18,13 @@
 */
 module.exports = {
   // Log in page
-  INPUT_USERNAME_OR_EMAIL_TIP: 'Please enter your username or email.',
-  LOG_IN: 'Log In',
-  LOG_IN_WITH_TITLE: 'Log in with {title}',
-  LOG_OUT: 'Log Out',
-  ABOUT: 'About',
-  USERNAME_OR_EMAIL: 'Username or Email',
-  WELCOME: 'Welcome',
+  INPUT_USERNAME_OR_EMAIL_TIP: 'Bitte gib deinen Benutzernamen oder E-Mail ein.',
+  LOG_IN: 'Anmelden',
+  LOG_IN_WITH_TITLE: 'Anmelden mit {title}',
+  LOG_OUT: 'Abmelden',
+  ABOUT: 'Über uns',
+  USERNAME_OR_EMAIL: 'Benutzername oder E-Mail',
+  WELCOME: 'Willkommen',
   INTERNAL_SERVER_ERROR_TIP: 'An unepected error occurred. Please refresh your page.',
   TOO_MANY_FAILURES: 'The number of consecutive login failures has exceeded the limit. Please try again later.',
   FAILED_TO_ACCESS_BACKEND: 'Failed to access the backend services.',
