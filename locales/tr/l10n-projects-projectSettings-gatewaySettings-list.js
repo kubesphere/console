@@ -21,7 +21,7 @@ module.exports = {
   // Project Gateway
   PROJECT_GATEWAY: 'Proje Ağ Geçidi',
   // Project Gateway > Enable Gateway
-  ENABLE_GATEWAY_DESC: 'Ağ geçidi denetleyicisinin, rotalarda yapılandırılan etki alanı adlarına ve yollara dayalı olarak trafiği farklı hizmetlere iletmesini etkinleştirin.',
+  ENABLE_GATEWAY_DESC: 'Enable the gateway controller to forward traffic to different services based on domain names and paths configured in ingresses.',
   // Project Gateway > Enable Gateway > NodePort
   // Project Gateway > Enable Gateway > LoadBalancer
   LOAD_BALANCER_PROVIDER: 'Yük dengeleyici sağlayıcı',
