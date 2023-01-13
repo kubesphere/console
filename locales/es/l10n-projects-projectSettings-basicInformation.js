@@ -58,6 +58,6 @@ module.exports = {
   JOBS: 'Jobs',
   VOLUMES: 'Volumes',
   SERVICES: 'Servicio',
-  ROUTES: 'Routes',
+  ROUTES: 'Ingresses',
   SECRETS: 'Secrets'
 };
