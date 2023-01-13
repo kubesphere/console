@@ -21,17 +21,17 @@ module.exports = {
   HOME_APP_STORE_DESC: 'The official App Store of KubeSphere provides deployment and management features that allow users to quickly deploy apps with one click based on app templates.',
   // Discover
   DISCOVER: 'Discover',
-  NEW_APPS: 'New Apps',
+  NEW_APPS: 'Neue Apps',
   // App Categories
   APP_CATE_ALL: 'All',
-  APP_CATE_UNCATEGORIZED: 'Uncategorized',
+  APP_CATE_UNCATEGORIZED: 'Unkategorisiert',
   APP_CATE_MESSAGE_QUEUEING: 'Message Queuing',
   APP_CATE_IMAGE_REGISTRY: 'Image Registry',
   APP_CATE_PROMETHEUS_EXPORTER: 'Prometheus Exporter',
   APP_CATE_WEB_SERVER: 'Web Server',
-  APP_CATE_NETWORKING: 'Networking',
-  APP_CATE_DATABASE_CACHE: 'Database & Cache',
-  APP_CATE_STORAGE: 'Storage',
+  APP_CATE_NETWORKING: 'Netzwerk',
+  APP_CATE_DATABASE_CACHE: 'Datenbank & Cache',
+  APP_CATE_STORAGE: 'Speicher',
   // List
   MAINTAINER_VALUE: 'Maintainer: {value}',
   LATEST_VALUE: 'Latest: {value}',
