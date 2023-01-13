@@ -34,7 +34,7 @@ module.exports = {
   PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT: 'Application Workload Management',
   PERMISSION_APPLICATION_WORKLOADS_MANAGEMENT_DESC: 'Create, edit, and delete resources such as applications, services, workloads, jobs, grayscale release tasks, and image builders in the project.',
   // List > Edit Permissions > Storage
-  PERMIGROUP_STORAGE_MANAGEMENT: 'Storage',
+  PERMIGROUP_STORAGE_MANAGEMENT: 'Speicher',
   PERMISSION_VOLUME_SNAPSHOTS_VIEW: 'Volume Snapshot Viewing',
   PERMISSION_VOLUME_SNAPSHOTS_VIEW_DESC: 'View volume snapshots in the project.',
   PERMISSION_VOLUME_SNAPSHOTS_MANAGEMENT: 'Volume Snapshot Management',
