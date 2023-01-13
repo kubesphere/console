@@ -54,7 +54,7 @@ module.exports = {
   IMAGE_BUILDING_FAILED: '镜像创建失败',
   IMAGE_BUILDING_SUCCESSFUL: '镜像创建成功',
   BUILDING_IMAGE: '创建镜像中',
-  SERVICE_MONITORING_EXPORTER: 'Service Monitoring Exporter',
-  EXPORTER_SERVICE_PORTS: 'Exporter Service Ports',
-  SCRAPE_INTERVAL_MIN: 'Scape Interval Min'
+  SERVICE_MONITORING_EXPORTER: '服务监控 Exporter',
+  EXPORTER_SERVICE_PORTS: 'Exporter 服务端口',
+  SCRAPE_INTERVAL_MIN: 'Scrape Interval (Min)'
 };
