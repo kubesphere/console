@@ -77,7 +77,7 @@ module.exports = {
   STATEFULSETS_VALUE: 'Durum kümeleri:{value}',
   DAEMONSETS_VALUE: 'Daemonsets: {value}',
   RUNNING_PODS: 'Çalışan Bölmeler',
-  ROUTE: 'Rota',
+  ROUTE: 'Giriş',
   // Resource Usage > Projects
   PROJECT_PL: 'Projeler',
   PROJECT_COUNT: 'Projeler',
