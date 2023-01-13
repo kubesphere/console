@@ -17,15 +17,15 @@
  */
 module.exports = {
   // Banner
-  ROUTE_DESC: '應用路由提供一種聚合服務的方式，您可以將集群的内部服務通過一個外部可訪問的 IP 地址暴露給集群外部。',
-  PREREQUESTS_FOR_USE_ROUTE_Q: '使用應用路由的前提條件?',
-  PREREQUESTS_FOR_USE_ROUTE_A: '使用應用路由需要由項目管理員對當前項目設置網關。',
-  ACCESS_TYPES_OF_ROUTE_Q: '應用路由支持的訪問方式?',
-  ACCESS_TYPES_OF_ROUTE_A: 'KubeSphere 應用路由支持 NodePort 訪問方式以及 LoadBalancer 訪問方式。',
-  ROUTE_PL: '應用路由',
+  ROUTE_DESC: 'An ingress provides a way to aggregate services. You can expose the internal services outside the cluster through an externally accessible IP address.',
+  PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using ingresses?',
+  PREREQUESTS_FOR_USE_ROUTE_A: 'To use ingresses, you need to contact the project administrator to set the gateway for the project.',
+  ACCESS_TYPES_OF_ROUTE_Q: 'What are the external access modes of ingresses?',
+  ACCESS_TYPES_OF_ROUTE_A: 'KubeSphere ingresses support the NodePort and LoadBalancer external access modes.',
+  ROUTE_PL: 'Ingresses',
   // List
   GATEWAY_ADDRESS_TCAP: '網關地址',
-  ROUTE_EMPTY_DESC: '應用路由提供一種聚合服務的方式，您可以將集群的内部服務通過一個外部可訪問的 IP 地址暴露給集群外部。',
+  ROUTE_EMPTY_DESC: 'Please create an ingress.',
   // List > Create > Basic Information
   // List > Create > Routing Rules
   ADD_ROUTING_RULE_DESC: '添加一個路由規則將域名映射至服務。',
@@ -56,5 +56,5 @@ module.exports = {
   // List > Edit Annotations
   EDIT_ANNOTATIONS: '編輯註釋',
   // List > Delete
-  ROUTE_LOW: '應用路由'
+  ROUTE_LOW: 'ingress'
 };
