@@ -57,7 +57,7 @@ module.exports = {
   BUILDING_IMAGE: 'Building image',
   SERVICE_MONITORING_EXPORTER: 'Service Monitoring Exporter',
   EXPORTER_SERVICE_PORTS: 'Exporter Service Ports',
-  SCRAPE_INTERVAL_MIN: 'Scape Interval Min',
+  SCRAPE_INTERVAL_MIN: 'Scrape Interval (Min)',
   // Metadata
   // Events
 }
