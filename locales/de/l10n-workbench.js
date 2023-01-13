@@ -18,8 +18,8 @@
 module.exports = {
   // Head
   WORKBENCH: 'Workbench',
-  DASHBOARD_TITLE: 'Hello {username}',
-  LAST_LOGIN_TIME: 'Last login: ',
+  DASHBOARD_TITLE: 'Hallo, {username}',
+  LAST_LOGIN_TIME: 'Letzter Login: ',
   USER_DASHBOARD_EMPTY_TITLE: 'You do not belong to any workspace.',
   USER_DASHBOARD_EMPTY_DESC: 'Please contact a workspace administrator to invite you to join a workspace.',
   // Platform Information
@@ -31,13 +31,13 @@ module.exports = {
   // Recent Access
   RECENT_ACCESS: 'Recent Access',
   MULTI_CLUSTER_DEPLOYMENT: 'Multi-cluster Project',
-  WORKBENCH_PROJECT: 'Project',
+  WORKBENCH_PROJECT: 'Projekt',
   WORKBENCH_WORKSPACE: 'Workspace',
   WORKBENCH_DEVOPS: 'DevOps project',
   WORKBENCH_MULTI_CLUSTER_PROJECT: 'Multi-cluster project',
   WORKBENCH_CLUSTER: 'Cluster',
   NOT_FOUND_DESC: 'The resource was not found. The system will return to <a href="{link}">Workbench</a> in {time}s.',
   MULTI_CLUSTER_PROJECT_TIP: 'The project is deployed across multiple clusters.',
-  NO_HISTORY_TITLE: 'No Recently Accessed Resource Found',
+  NO_HISTORY_TITLE: 'Keine kürzlich aufgerufene Ressource gefunden',
   NO_HISTORY_DESC: 'You can access platform resources.'
 };
