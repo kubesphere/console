@@ -3,6 +3,7 @@
 
 .wrapper {
   display: flex;
+  overflow: hidden;
 }
 
 .icon {
@@ -24,9 +25,16 @@
 .name {
   @include TypographyTitleH6($dark-color07);
   @include ellipsis;
+  display: flex;
 
   & > a,
   & > span {
+    &:first-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     display: inline-block;
     vertical-align: middle;
   }
