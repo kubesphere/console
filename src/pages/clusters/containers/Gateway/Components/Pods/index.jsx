@@ -18,6 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
+import { reaction, toJS } from 'mobx'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty, get } from 'lodash'
@@ -33,7 +34,9 @@ import {
 
 import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
 import GatewayMonitorStore from 'stores/monitoring/gateway'
-
+import WebSocketStore from 'stores/websocket'
+import ObjectMapper from 'utils/object.mapper'
+import { joinSelector } from 'utils'
 import { Panel } from 'components/Base'
 import PodItem from './Item'
 
@@ -71,29 +74,67 @@ export default class PodsCard extends React.Component {
 
     this.store = props.store
     this.monitorStore = new GatewayMonitorStore()
-
-    const selectCluster = props.detail.cluster || props.params
+    this.websocket = new WebSocketStore()
 
     this.state = {
       expandItem: '',
-      params: selectCluster,
+      params: props.params,
+    }
+  }
+
+  initWebsocket = () => {
+    const { selector, namespace, getReplica } = this.props
+    const { params } = this.state
+
+    const labelSelector = joinSelector(selector)
+    const url = `api/v1/watch${
+      params ? `/klusters/${params.cluster}` : ''
+    }/namespaces/${namespace}/pods?labelSelector=${labelSelector}`
+
+    if (url && namespace && labelSelector) {
+      this.websocket.watch(url)
+
+      this.disposer && this.disposer()
+
+      this.disposer = reaction(
+        () => this.websocket.message,
+        message => {
+          if (message.object.kind === 'Pod') {
+            if (message.type === 'MODIFIED') {
+              const data = {
+                cluster: params.cluster,
+                ...ObjectMapper.pods(toJS(message.object)),
+              }
+              this.store.podList.updateItem(data)
+              getReplica && getReplica()
+            } else if (message.type === 'DELETED' || message.type === 'ADDED') {
+              this.fetchData({ silent: true })
+              getReplica && getReplica()
+            }
+          }
+        }
+      )
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { detail, params } = this.props
+    const { detail, params, selector, namespace } = this.props
+    const initWs =
+      selector !== prevProps.selector || namespace !== prevProps.namespace
     if (detail !== prevProps.detail) {
-      const selectCluster = detail.cluster || params
       this.setState(
         {
           expandItem: '',
-          selectCluster: selectCluster || '',
-          params: this.getParams(selectCluster),
+          params: params || {},
         },
         () => {
           this.fetchData()
         }
       )
+    }
+
+    if (initWs) {
+      this.initWebsocket()
     }
   }
 
@@ -193,15 +234,6 @@ export default class PodsCard extends React.Component {
       label: cluster,
       value: cluster,
     }))
-  }
-
-  handleClusterChange = cluster => {
-    this.setState(
-      { selectCluster: cluster, params: this.getParams(cluster) },
-      () => {
-        this.fetchData()
-      }
-    )
   }
 
   renderHeader = () => {
