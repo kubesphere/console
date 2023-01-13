@@ -58,6 +58,6 @@ module.exports = {
   JOBS: '任务',
   VOLUMES: '卷',
   SERVICES: '服务',
-  ROUTES: 'Ingresses',
+  ROUTES: '应用路由',
   SECRETS: '保密字典'
 };
