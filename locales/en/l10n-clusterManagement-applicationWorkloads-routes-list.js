@@ -18,15 +18,15 @@
 
 module.exports = {
   // Banner
-  ROUTE_DESC: 'A route provides a way to aggregate services. You can expose the internal services outside the cluster through an externally accessible IP address.',
-  PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using routes?',
-  PREREQUESTS_FOR_USE_ROUTE_A: 'To use routes, you need to contact the project administrator to set the gateway for the project.',
-  ACCESS_TYPES_OF_ROUTE_Q: 'What are the external access modes of routes?',
-  ACCESS_TYPES_OF_ROUTE_A: 'KubeSphere routes support the NodePort and LoadBalancer external access modes.',
-  ROUTE_PL: 'Routes',
+  ROUTE_DESC: 'An ingress provides a way to aggregate services. You can expose the internal services outside the cluster through an externally accessible IP address.',
+  PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using ingresses?',
+  PREREQUESTS_FOR_USE_ROUTE_A: 'To use ingresses, you need to contact the project administrator to set the gateway for the project.',
+  ACCESS_TYPES_OF_ROUTE_Q: 'What are the external access modes of ingresses?',
+  ACCESS_TYPES_OF_ROUTE_A: 'KubeSphere ingresses support the NodePort and LoadBalancer external access modes.',
+  ROUTE_PL: 'Ingresses',
   // List
   GATEWAY_ADDRESS_TCAP: 'Gateway Address',
-  ROUTE_EMPTY_DESC: 'Please create a route.',
+  ROUTE_EMPTY_DESC: 'Please create an ingress.',
   // List > Create > Basic Information
   // List > Create > Routing Rules
   ADD_ROUTING_RULE_DESC: 'Add a routing rule to map domain name paths to services.',
@@ -57,5 +57,5 @@ module.exports = {
   // List > Edit Annotations
   EDIT_ANNOTATIONS: 'Edit Annotations',
   // List > Delete
-  ROUTE_LOW: 'route',
+  ROUTE_LOW: 'ingress',
 }
