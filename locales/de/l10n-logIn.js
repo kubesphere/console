@@ -25,19 +25,19 @@ module.exports = {
   ABOUT: 'Über uns',
   USERNAME_OR_EMAIL: 'Benutzername oder E-Mail',
   WELCOME: 'Willkommen',
-  INTERNAL_SERVER_ERROR_TIP: 'An unepected error occurred. Please refresh your page.',
-  TOO_MANY_FAILURES: 'The number of consecutive login failures has exceeded the limit. Please try again later.',
-  FAILED_TO_ACCESS_BACKEND: 'Failed to access the backend services.',
-  FAILED_TO_ACCESS_API_SERVER: 'Failed to access the API server.',
-  LOGIN_AGAIN_DESC: 'The session has timed out or the user has logged in elsewhere. Please log in again.',
+  INTERNAL_SERVER_ERROR_TIP: 'Ein unerwarteter Fehler ist aufgetreten, bitte aktualisieren Sie die Seite.',
+  TOO_MANY_FAILURES: 'Die Anzahl aufeinanderfolgender fehlgeschlagener Anmeldungen hat das Limit überschritten. Bitte versuchen Sie es später erneut.',
+  FAILED_TO_ACCESS_BACKEND: 'Fehler beim Zugriff auf die Backend-Dienste.',
+  FAILED_TO_ACCESS_API_SERVER: 'Fehler beim Zugriff auf den API-Server.',
+  LOGIN_AGAIN_DESC: 'Die Sitzung ist abgelaufen oder der Benutzer hat sich woanders angemeldet. Bitte melde dich erneut an.',
   // Change password upon first login
-  CHANGE_PASSWORD_TIP: 'You are logging in for the first time. Please change your password.',
+  CHANGE_PASSWORD_TIP: 'Sie melden sich zum ersten Mal an. Bitte ändern Sie Ihr Passwort.',
   SUBMIT: 'Submit',
-  CHANGE_PASSWORD_LATER: 'Change Password Later',
-  PASSWORD_MUST: 'Your password must:',
-  PASSWORD_LETTER: 'Contain at least 1 uppercase letter and 1 lowercase letter.',
-  PASSWORD_NUMBER: 'Contain at least 1 number.',
-  PASSWORD_LENGTH: 'Contain at least 8 characters.',
+  CHANGE_PASSWORD_LATER: 'Passwort später ändern',
+  PASSWORD_MUST: 'Ihr Passwort muss:',
+  PASSWORD_LETTER: 'Mindestens 1 Großbuchstaben und 1 Kleinbuchstaben enthalten.',
+  PASSWORD_NUMBER: 'Mindestens 1 Zahl enthalten.',
+  PASSWORD_LENGTH: 'Mindestens 8 Zeichen enthalten.',
   // Third-party authentication
-  SET_EMAIL_AND_USERNAME: 'Set Email and Username'
+  SET_EMAIL_AND_USERNAME: 'E-Mail und Benutzername festlegen'
 };
