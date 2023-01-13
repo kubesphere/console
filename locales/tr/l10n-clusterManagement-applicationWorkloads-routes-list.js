@@ -17,15 +17,15 @@
  */
 module.exports = {
   // Banner
-  ROUTE_DESC: 'Bir router, hizmetleri toplamak için bir yol sağlar. Küme dışındaki dahili hizmetleri, dışarıdan erişilebilir bir IP adresi aracılığıyla kullanıma sunabilirsiniz.',
-  PREREQUESTS_FOR_USE_ROUTE_Q: 'Routerleri kullanmak için ön koşullar nelerdir?',
-  PREREQUESTS_FOR_USE_ROUTE_A: 'Routerleri kullanmak için, proje için ağ geçidini ayarlamak üzere proje yöneticisiyle iletişime geçmeniz gerekir.',
-  ACCESS_TYPES_OF_ROUTE_Q: 'Routerlerin harici erişim modları nelerdir?',
-  ACCESS_TYPES_OF_ROUTE_A: 'KubeSphere yolları, NodePort ve LoadBalancer harici erişim modlarını destekler.',
-  ROUTE_PL: 'Routerler',
+  ROUTE_DESC: 'An ingress provides a way to aggregate services. You can expose the internal services outside the cluster through an externally accessible IP address.',
+  PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using ingresses?',
+  PREREQUESTS_FOR_USE_ROUTE_A: 'To use ingresses, you need to contact the project administrator to set the gateway for the project.',
+  ACCESS_TYPES_OF_ROUTE_Q: 'What are the external access modes of ingresses?',
+  ACCESS_TYPES_OF_ROUTE_A: 'KubeSphere ingresses support the NodePort and LoadBalancer external access modes.',
+  ROUTE_PL: 'Ingresses',
   // List
   GATEWAY_ADDRESS_TCAP: 'Ağ Geçidi Adresi',
-  ROUTE_EMPTY_DESC: 'Lütfen bir route oluşturun.',
+  ROUTE_EMPTY_DESC: 'Please create an ingress.',
   // List > Create > Basic Information
   // List > Create > Routing Rules
   ADD_ROUTING_RULE_DESC: 'Alan adı yollarını hizmetlere eşlemek için bir yönlendirme kuralı ekleyin.',
@@ -56,5 +56,5 @@ module.exports = {
   // List > Edit Annotations
   EDIT_ANNOTATIONS: 'Ek Açıklamaları Düzenle',
   // List > Delete
-  ROUTE_LOW: 'route'
+  ROUTE_LOW: 'ingress'
 };
