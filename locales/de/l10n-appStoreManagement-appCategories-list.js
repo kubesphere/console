@@ -17,20 +17,20 @@
  */
 module.exports = {
   // Banner
-  APP_CATEGORY_PL: 'App Categories',
-  APP_CATEGORIES_DESC: 'Manage categories of apps released to the App Store. You can create, edit, delete, and change app categories.',
+  APP_CATEGORY_PL: 'App-Kategorien',
+  APP_CATEGORIES_DESC: 'Verwalten Sie Kategorien von Apps, die im App Store veröffentlicht wurden. Sie können App-Kategorien erstellen, bearbeiten, löschen und ändern.',
   // All Categories
-  ALL_CATEGORIES_VALUE: 'All Categories ({value})',
-  APP_CATEGORY_EMPTY_DESC: 'No apps belong to the category.',
+  ALL_CATEGORIES_VALUE: 'Alle Kategorien ({value})',
+  APP_CATEGORY_EMPTY_DESC: 'Keine Apps gehören zu dieser Kategorie.',
   // All Categories > Add
-  ENTER_CATEGORY_NAME_TIP: 'Please enter a category name.',
-  CATEGORY_NAME_DESC: 'The name can contain any characters and the maximum length is 20 characters.',
+  ENTER_CATEGORY_NAME_TIP: 'Bitte geben Sie einen Kategorienamen ein.',
+  CATEGORY_NAME_DESC: 'Der Name kann beliebige Zeichen enthalten und darf maximal 20 Zeichen lang sein.',
   // All Categories > Eit
   // All Categories > Delete
-  DELETE_CATEGORY_DESC: 'Are you sure you want to delete the category <b>{name}</b>?',
+  DELETE_CATEGORY_DESC: 'Sind Sie sicher, dass Sie die Kategorie <b>{name}</b> löschen möchten?',
   // List
   // List > Change Category
-  CHANGED_SUCCESSFULLY: 'Changed successfully.',
-  CHANGE_CATEGORY: 'Change Category',
-  CHANGE_CATEGORY_DESC: 'The app category determines the classification of the app in the App Store.'
+  CHANGED_SUCCESSFULLY: 'Erfolgreich geändert.',
+  CHANGE_CATEGORY: 'Kategorie ändern',
+  CHANGE_CATEGORY_DESC: 'Die App-Kategorie bestimmt die Klassifizierung der App im App Store.'
 };
