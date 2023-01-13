@@ -34,17 +34,21 @@ module.exports = {
   CREATE_BY_YAML_DESC: 'Customize the settings in the YAML file.',
   // List > Create > Basic Information
   APPLICATION_GOVERNANCE: 'Application Governance',
-  VERSION_DESC: 'The version can contain only lowercase letters and numbers. The maximum length is 16 characters.',
-  APPLICATION_GOVERNANCE_DESC: 'Enable Application Governace to use the Traffic Monitoring, Grayscale Release, and Tracing features for the app.',
+  VERSION_DESC:
+    'The version can contain only lowercase letters and numbers. The maximum length is 16 characters.',
+  APPLICATION_GOVERNANCE_DESC:
+    'Enable Application Governace to use the Traffic Monitoring, Grayscale Release, and Tracing features for the app.',
   APP_BASIC_INFORMATION_DESC: 'Set the basic information about the app.',
   // List > Create > Service Settings
   APP_SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful service.',
   STATEFUL_SERVICE_DESC: 'Create a service and a statefulset.',
   STATELESS_SERVICE_DESC: 'Create a service and a Deployment.',
-  APPLICATION_SERVICE_DESC: 'Add stateful or stateless services to the app based on your requirements.',
+  APPLICATION_SERVICE_DESC:
+    'Add stateful or stateless services to the app based on your requirements.',
   APP_CREATE_SERVICE_DESC: 'Create a service for the app.',
-  // List > Create > Route Settings
-  ROUTE_SETTINGS: 'Route Settings',
+  // List > Create > Ingress Settings
+  ROUTE_SETTINGS: 'Ingress Settings',
   ROUTING_RULES: 'Routing Rules',
   ROUTE_SETTINGS_DESC: 'Set routing rules for the app.',
+  ADD_ROUTE_SUCCESS: 'The ingress was added successfully.',
 }
