@@ -77,7 +77,7 @@ module.exports = {
   STATEFULSETS_VALUE: 'StatefulSets: {value}',
   DAEMONSETS_VALUE: 'DaemonSets: {value}',
   RUNNING_PODS: 'Pods en ejecución',
-  ROUTE: 'Ruta',
+  ROUTE: 'Ingress',
   // Resource Usage > Projects
   PROJECT_PL: 'Projects',
   PROJECT_COUNT: 'Projects',
