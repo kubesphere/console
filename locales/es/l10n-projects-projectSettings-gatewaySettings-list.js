@@ -21,7 +21,7 @@ module.exports = {
   // Project Gateway
   PROJECT_GATEWAY: 'Project Gateway',
   // Project Gateway > Enable Gateway
-  ENABLE_GATEWAY_DESC: 'Antes de crear una ruta, debe habilitar el portal de acceso a Internet (es decir, la puerta de enlace). Este paso crea un controlador de enrutamiento correspondiente para reenviar la solicitud al servicio de back-end correspondiente.',
+  ENABLE_GATEWAY_DESC: 'Enable the gateway controller to forward traffic to different services based on domain names and paths configured in ingresses.',
   // Project Gateway > Enable Gateway > NodePort
   // Project Gateway > Enable Gateway > LoadBalancer
   LOAD_BALANCER_PROVIDER: 'LoadBalancer Provider',
