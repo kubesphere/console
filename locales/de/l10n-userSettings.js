@@ -17,18 +17,18 @@
  */
 module.exports = {
   // Basic Information
-  EMAIL_DESC: 'The email address can be used to log in to the KubeSphere web console.',
-  LANGUAGE: 'Language',
-  USER_SETTINGS: 'User Settings',
-  CLOSE: 'Close',
-  CONTENT_NOT_SAVED_TIPS: 'content has been modified but not saved',
-  SAVE_EDIT_HINTS: 'please confirm that the modified content is correct, you can save the settings or cancel the settings.',
+  EMAIL_DESC: 'Die E-Mail-Adresse kann verwendet werden, um sich auf der KubeSphere Web-Konsole anzumelden.',
+  LANGUAGE: 'Sprache',
+  USER_SETTINGS: 'Benutzereinstellungen',
+  CLOSE: 'Schließen',
+  CONTENT_NOT_SAVED_TIPS: 'Inhalt wurde geändert, aber nicht gespeichert',
+  SAVE_EDIT_HINTS: 'Bitte bestätigen Sie, dass der geänderte Inhalt korrekt ist, Sie können die Einstellungen speichern oder verwerfen.',
   // Password Settings
   PASSWORD_SETTINGS: 'Password Settings',
   PASSWORD_EMPTY_DESC: 'Please set a password.',
   CURRENT_PASSWORD: 'Current Password',
   ENTER_CURRENT_PASSWORD_TIP: 'Please enter the current password.',
-  CONFIRM_PASSWORD: 'Confirm Password',
+  CONFIRM_PASSWORD: 'Passwort bestätigen',
   PASSWORD_NOT_SAME_DESC: 'New Password and Confirm Password must be the same.',
-  ENTER_CURRENT_PASSWORD_DESC: 'To change the password, you must first enter the current password.'
+  ENTER_CURRENT_PASSWORD_DESC: 'Um das Passwort zu ändern, müssen Sie zuerst das aktuelle Passwort eingeben.'
 };
