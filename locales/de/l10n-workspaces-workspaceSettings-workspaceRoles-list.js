@@ -54,7 +54,7 @@ module.exports = {
   PERMISSION_WORKSPACE_APP_REPOS_MANAGEMENT_DESC: 'Create, edit, and delete app repositories in the workspace.',
   PERMISSION_WORKSPACE_APP_TEMPLATES_VIEW: 'App Template Viewing',
   PERMISSION_WORKSPACE_APP_TEMPLATES_VIEW_DESC: 'View app templates in the workspace.',
-  PERMISSION_WORKSPACE_APP_TEMPLATES_MANAGEMENT: 'App Template Management',
+  PERMISSION_WORKSPACE_APP_TEMPLATES_MANAGEMENT: 'App-Vorlagenverwaltung',
   PERMISSION_WORKSPACE_APP_TEMPLATES_MANAGEMENT_DESC: 'Upload, edit, and delete workspace app templates, and release and delete apps in the platform App Store.',
   // List > Create > Edit Permissions > Access Control
   PERMISSION_WORKSPACE_GROUPS_VIEW: 'Department Viewing',
