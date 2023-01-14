@@ -124,7 +124,7 @@ module.exports = {
   SELINUX_CONTEXT: 'SELinux Context',
   CAPABILITIES: 'Capabilities',
   DROP: 'Drop',
-  ACCESS_CONTROL: 'Access Control',
+  ACCESS_CONTROL: 'Zugangskontrolle',
   LEVEL: 'Level',
   // List > Create > Pod Settings > Add Container > Synchronize Host Timezone
   SYNC_HOST_TIMEZONE_DESC: 'Synchronize the time zone of the container with that of the host.',
