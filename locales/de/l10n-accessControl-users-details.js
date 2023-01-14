@@ -18,17 +18,17 @@
 module.exports = {
   // More > Change Password
   CONFIRM_PASSWORD_TIP: 'Please enter the new password again.',
-  CHANGE_PASSWORD: 'Change Password',
-  NEW_PASSWORD: 'New Password',
-  PASSWORD_STRENGTH: 'Password Strength',
-  PASSWORD_STRENGTH_DESC: 'Avoid using weak passwords or passwords of other accounts.',
+  CHANGE_PASSWORD: 'Passwort ändern',
+  NEW_PASSWORD: 'Neues Passwort',
+  PASSWORD_STRENGTH: 'Passwortstärke',
+  PASSWORD_STRENGTH_DESC: 'Vermeiden Sie die Verwendung schwacher Passwörter oder Passwörter anderer Konten.',
   // More > Delete
   // Attributes
   // Login History
   TIME: 'Time',
   SOURCE_IP_ADDRESS: 'Source IP Address',
-  LOGIN_HISTORY: 'Login History',
-  NO_LOGIN_HISTORY: 'No login history is found.',
-  SUCCESSFUL: 'Successful',
+  LOGIN_HISTORY: 'Login-Verlauf',
+  NO_LOGIN_HISTORY: 'Es wurde kein Login-Verlauf gefunden.',
+  SUCCESSFUL: 'Erfolgreich',
   FAILED: 'Failed'
 };
