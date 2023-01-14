@@ -20,32 +20,32 @@ module.exports = {
   PLATFORM_ROLE_PL: 'Platform Roles',
   // List
   PLATFORM_ROLE_EMPTY_DESC: 'Please create a platform role.',
-  ROLE_USERS_MANAGER: 'Manage all users on the KubeSphere platform.',
-  ROLE_WORKSPACES_MANAGER: 'Manage all workspaces on the KubeSphere platform.',
-  ROLE_PLATFORM_ADMIN: 'Manage all resources on the KubeSphere platform.',
-  ROLE_PLATFORM_REGULAR: 'Cannot access any resources before joining a workspace.',
-  ROLE_PLATFORM_SELF_PROVISIONER: 'Create workspaces and become an administrator of the created workspaces.',
+  ROLE_USERS_MANAGER: 'Verwalten Sie alle Benutzer auf der KubeSphere Plattform.',
+  ROLE_WORKSPACES_MANAGER: 'Verwalten Sie alle Arbeitsbereiche auf der KubeSphere Plattform.',
+  ROLE_PLATFORM_ADMIN: 'Verwalten Sie alle Ressourcen auf der KubeSphere Plattform.',
+  ROLE_PLATFORM_REGULAR: 'Vor dem Betreten eines Arbeitsbereiches kann auf keine Ressourcen zugreifen werden.',
+  ROLE_PLATFORM_SELF_PROVISIONER: 'Erstellen Sie Arbeitsbereiche und werden Sie Administrator der erstellten Arbeitsbereiche.',
   CREATION_TIME_TCAP: 'Erstellungszeit',
   // List > Create
   CREATE_PLATFORM_ROLE: 'Create Platform Role',
   // List > Create > Edit Permissions > Cluster Management
   PERMIGROUP_CLUSTERS_MANAGEMENT: 'Clusters',
   PERMISSION_CLUSTERS_VIEW: 'Cluster Viewing',
-  PERMISSION_CLUSTERS_VIEW_DESC: 'View all clusters and cluster resources.',
+  PERMISSION_CLUSTERS_VIEW_DESC: 'Alle Cluster und Cluster-Ressourcen anzeigen.',
   PERMISSION_CLUSTERS_MANAGEMENT: 'Cluster Management',
-  PERMISSION_CLUSTERS_MANAGEMENT_DESC: 'Create clusters, delete clusters, and manage resources in all clusters.',
+  PERMISSION_CLUSTERS_MANAGEMENT_DESC: 'Erstelle Cluster, lösche Cluster und verwalte Ressourcen in allen Clustern.',
   // List > Create > Edit Permissions > Access Control
-  PERMIGROUP_ACCESS_CONTROL: 'Access Control',
+  PERMIGROUP_ACCESS_CONTROL: 'Zugangskontrolle',
   PERMISSION_WORKSPACES_VIEW: 'Workspace Viewing',
-  PERMISSION_WORKSPACES_VIEW_DESC: 'View workspaces.',
+  PERMISSION_WORKSPACES_VIEW_DESC: 'Arbeitsbereiche anzeigen.',
   PERMISSION_WORKSPACES_MANAGEMENT: 'Workspace Management',
-  PERMISSION_WORKSPACES_MANAGEMENT_DESC: 'Create, edit, delete, and view workspaces.',
-  PERMISSION_WORKSPACES_CREATE: 'Workspace Creation',
-  PERMISSION_WORKSPACES_CREATE_DESC: 'Create workspaces and become an administrator of the created workspaces.',
+  PERMISSION_WORKSPACES_MANAGEMENT_DESC: 'Arbeitsbereiche erstellen, bearbeiten, löschen und ansehen.',
+  PERMISSION_WORKSPACES_CREATE: 'Erstellung von Arbeitsbereichen',
+  PERMISSION_WORKSPACES_CREATE_DESC: 'Erstellen Sie Arbeitsbereiche und werden Sie Administrator der erstellten Arbeitsbereiche.',
   PERMISSION_USERS_VIEW: 'User Viewing',
   PERMISSION_USERS_VIEW_DESC: 'View users.',
   PERMISSION_USERS_MANAGEMENT: 'User Management',
-  PERMISSION_USERS_MANAGEMENT_DESC: 'Create, edit, and delete users.',
+  PERMISSION_USERS_MANAGEMENT_DESC: 'Benutzer erstellen, bearbeiten und löschen.',
   PERMISSION_ROLES_VIEW: 'Role Viewing',
   PERMISSION_ROLES_VIEW_DESC: 'View platform roles.',
   PERMISSION_ROLES_MANAGEMENT: 'Role Management',
@@ -53,15 +53,15 @@ module.exports = {
   // List > Create > Edit Permissions > Apps
   PERMIGROUP_APPS_MANAGEMENT: 'Apps',
   PERMISSION_APP_TEMPLATES_VIEW: 'App Viewing',
-  PERMISSION_APP_TEMPLATES_VIEW_DESC: 'View the platform App Store.',
-  PERMISSION_APP_TEMPLATES_MANAGEMENT: 'App Template Management',
-  PERMISSION_APP_TEMPLATES_MANAGEMENT_DESC: 'Manage the platform App Store and life cycles of cloud-native applications.',
+  PERMISSION_APP_TEMPLATES_VIEW_DESC: 'Platform App Store ansehen.',
+  PERMISSION_APP_TEMPLATES_MANAGEMENT: 'App-Vorlagenverwaltung',
+  PERMISSION_APP_TEMPLATES_MANAGEMENT_DESC: 'Verwalten Sie den Plattform-App-Store und Lebenszyklen von Cloud-nativen Anwendungen.',
   // List > Create > Edit Permissions > Platform Settings
-  PERMIGROUP_PLATFORM_SETTINGS: 'Platform Settings',
-  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
-  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.',
+  PERMIGROUP_PLATFORM_SETTINGS: 'Plattformeinstellungen',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Plattformeinstellungen verwalten',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'Einstellungen der KubeSphere Plattform anzeigen und bearbeiten.',
   // List > Edit Information
   // List > Edit Permissions
   // List > Delete
-  DELETING_PRESET_ROLES_NOT_ALLOWED: 'Preset roles cannot be deleted.'
+  DELETING_PRESET_ROLES_NOT_ALLOWED: 'Voreingestellte Rollen können nicht gelöscht werden.'
 };
