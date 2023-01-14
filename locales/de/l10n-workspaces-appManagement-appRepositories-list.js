@@ -24,7 +24,7 @@ module.exports = {
   APP_REPO_DESC: 'An app repository is a repository used to store application templates. You can add an app repository to deploy and manage its applications.',
   // List
   APP_REPOSITORY_EMPTY_DESC: 'Please add an app repository.',
-  APP_REPO_STATUS_SUCCESSFUL: 'Successful',
+  APP_REPO_STATUS_SUCCESSFUL: 'Erfolgreich',
   APP_REPO_STATUS_FAILED: 'Failed',
   APP_REPO_STATUS_SYNCING: 'Syncing',
   // List > Add
