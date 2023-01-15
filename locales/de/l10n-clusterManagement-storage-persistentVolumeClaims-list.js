@@ -29,7 +29,7 @@ module.exports = {
   // List
   VOLUME_STATUS_BOUND: 'Bound',
   VOLUME_STATUS_LOST: 'Lost',
-  VOLUME_STATUS_PENDING: 'Pending',
+  VOLUME_STATUS_PENDING: 'Ausstehend',
   VOLUME_STATUS_TERMINATING: 'Terminating',
   VOLUME_STATUS_UPDATING: 'Updating',
   VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: 'Disk Expanding',
