@@ -50,7 +50,7 @@ module.exports = {
   PROPOSAL_COMMITTED: 'Committed',
   PROPOSAL_APPLIED: 'Applied',
   PROPOSAL_FAILED: 'Failed',
-  PROPOSAL_PENDING: 'Pending',
+  PROPOSAL_PENDING: 'Ausstehend',
   // Overview > Service Component Monitoring
   SERVICE_COMPONENT_MONITORING: 'Service Component Monitoring',
   SCHEDULE_ATTEMPTS: 'Scheduling Attempts',
