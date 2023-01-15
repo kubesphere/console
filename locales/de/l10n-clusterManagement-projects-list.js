@@ -23,7 +23,7 @@ module.exports = {
   // List
   EMPTY_WRAPPER: 'No {resource} Found',
   TERMINATING: 'Terminating',
-  ACTIVE: 'Active',
+  ACTIVE: 'Aktiv',
   // List > Assign Workspace
   PROJECT_ADMINISTRATOR: 'Project Administrator',
   PROJECT_ADMINISTRATOR_DESC: 'Select a user in the workspace as the project administrator.',
