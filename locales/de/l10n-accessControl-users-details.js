@@ -17,7 +17,7 @@
  */
 module.exports = {
   // More > Change Password
-  CONFIRM_PASSWORD_TIP: 'Please enter the new password again.',
+  CONFIRM_PASSWORD_TIP: 'Bitte geben Sie Ihr neues Passwort erneut ein.',
   CHANGE_PASSWORD: 'Passwort ändern',
   NEW_PASSWORD: 'Neues Passwort',
   PASSWORD_STRENGTH: 'Passwortstärke',
