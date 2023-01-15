@@ -17,46 +17,46 @@
  */
 module.exports = {
   // Title
-  BACK: 'Back',
+  BACK: 'Zurück',
   // Description
   // Install > Deployment Agreement
-  AGREE: 'Agree',
-  APP_DEPLOY_AGREEMENT: 'Deployment Agreement',
-  APP_DEPLOY_AGREEMENT_DESC_1: 'You must abide by the open-source agreement of the application.',
-  APP_DEPLOY_AGREEMENT_DESC_2: 'Any consequences arising from your deployment of the application shall be borne by you. For support services, please contact the developer.',
-  DO_NOT_REMIND_AGAIN: 'Do not remind me again',
+  AGREE: 'Akzeptieren',
+  APP_DEPLOY_AGREEMENT: 'Bereitstellungsvereinbarung',
+  APP_DEPLOY_AGREEMENT_DESC_1: 'Sie müssen sich an die Open-Source-Vereinbarung der Anwendung halten.',
+  APP_DEPLOY_AGREEMENT_DESC_2: 'Alle Konsequenzen, die sich aus Ihrem Einsatz der Anwendung ergeben, werden von Ihnen getragen. Für Support-Dienste wenden Sie sich bitte an den Entwickler.',
+  DO_NOT_REMIND_AGAIN: 'Nicht nochmal erinnern',
   // Install > Basic Information
-  LOCATION: 'Location',
-  CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 32 characters.',
-  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'The app cannot be deployed in a multi-cluster project.',
-  LATEST_VERSION_SCAP: 'Latest version',
-  WORKSPACE_EMPTY_DESC: 'Please select a workspace',
-  VERSION_EMPTY_DESC: 'Please select a version.',
+  LOCATION: 'Standort',
+  CLUSTER_NAME_DESC: 'Der Name darf nur Kleinbuchstaben, Zahlen und Bindestriche enthalten (-), muss mit einem Kleinbuchstaben beginnen und mit einem Kleinbuchstaben oder einer Zahl enden. Die maximale Länge ist 32 Zeichen.',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'Die App kann nicht in einem Multi-Cluster-Projekt verwendet werden.',
+  LATEST_VERSION_SCAP: 'Neueste Version',
+  WORKSPACE_EMPTY_DESC: 'Bitte wählen Sie einen Arbeitsbereich',
+  VERSION_EMPTY_DESC: 'Bitte wählen Sie eine Version aus.',
   // Install > App Settings
-  HELM_APP_SCHEMA_FORM_TIP: 'You can customize the app settings in a GUI form or a YAML file. Settings in the GUI form and those in the YAML file are independent of each other.',
-  DEPLOYED_SUCCESSFUL: 'Installed successfully.',
+  HELM_APP_SCHEMA_FORM_TIP: 'Sie können die App-Einstellungen in einem GUI-Formular oder einer YAML-Datei anpassen. Einstellungen im GUI-Formular und in der YAML-Datei sind unabhängig voneinander.',
+  DEPLOYED_SUCCESSFUL: 'Erfolgreich installiert.',
   // App Information
   APP_INFORMATION: 'App Information',
-  VERSION_NUMBER: 'Version Number',
+  VERSION_NUMBER: 'Versionsnummer',
   APP_SCREENSHOTS: 'App Screenshots',
-  CATEGORY_COLON: 'Category:',
+  CATEGORY_COLON: 'Kategorie:',
   HOMEPAGE_COLON: 'Homepage:',
-  RELEASE_DATE_COLON: 'Release Date:',
-  APP_ID_COLON: 'App ID:',
-  SOURCE_CODE_ADDRESS_COLON: 'Source Code Address:',
-  APP_VERSIONS_TITLE: 'Versions (only the latest 10 versions will be displayed)',
-  MAINTAINER_COLON: 'Maintainer:',
+  RELEASE_DATE_COLON: 'Veröffentlichungsdatum:',
+  APP_ID_COLON: 'App-ID:',
+  SOURCE_CODE_ADDRESS_COLON: 'Quellcode Adresse:',
+  APP_VERSIONS_TITLE: 'Versionen (nur die letzten 10 Versionen werden angezeigt)',
+  MAINTAINER_COLON: 'Betreuer:',
   // App Details > Verions
-  VERSIONS: 'Versions',
+  VERSIONS: 'Versionen',
   // APP Details > Keywords
-  KEYWORDS: 'Keywords',
+  KEYWORDS: 'Schlüsselwörter',
   NONE: 'None',
   // App Details > App Introduction
-  APP_INTRODUCTION: 'App Introduction',
+  APP_INTRODUCTION: 'App Einführung',
   APP_DETAILS: 'App Details',
-  NO_DOCUMENT_DESC: 'No documentation is found.',
-  VERSION_INTRO_EMPTY_DESC: 'No introduction to this version is found.',
+  NO_DOCUMENT_DESC: 'Keine Dokumentation gefunden.',
+  VERSION_INTRO_EMPTY_DESC: 'Es gibt keine Einführung zu dieser Version.',
   // App Details > Chart Files
-  CHART_FILES: 'Chart Files',
-  NO_APP_CHART_FILE_FOUND: 'No chart file of the app is found.'
+  CHART_FILES: 'Diagrammdateien',
+  NO_APP_CHART_FILE_FOUND: 'Es wurde keine Diagrammdatei der App gefunden.'
 };
