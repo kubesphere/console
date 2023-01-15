@@ -20,23 +20,23 @@ module.exports = {
   APP_DETAILS_DESC: 'View details of the app to be released.',
   // Description
   // App Information
-  INTRODUCTION: 'Introduction',
-  SERVICE_PROVIDER_WEBSITE: 'Service provider website',
-  APP_DESCRIPTION: 'App Description',
+  INTRODUCTION: 'Einführung',
+  SERVICE_PROVIDER_WEBSITE: 'Dienstanbieter Webseite',
+  APP_DESCRIPTION: 'App Beschreibung',
   // Documentation
-  DOCUMENTATION: 'Documentation',
-  NO_DOCUMENT_FOUND: 'No Documentation Found',
-  UPDATE_TIME_COLON: 'Update time: ',
+  DOCUMENTATION: 'Dokumentation',
+  NO_DOCUMENT_FOUND: 'Keine Dokumentation gefunden',
+  UPDATE_TIME_COLON: 'Aktualisierungszeit: ',
   // Chart Files
   // Update Log
-  UPDATE_LOG: 'Update Log',
-  NO_UPDATE_LOG_DESC: 'No update log is found.',
+  UPDATE_LOG: 'Aktualisierungsprotokoll',
+  NO_UPDATE_LOG_DESC: 'Kein Aktualisierungsprotokoll gefunden.',
   // Reject
-  REJECT: 'Reject',
-  REJECT_REASON_DESC: 'Enter reasons for rejection of the app review.',
-  REJECT_REASON_TIP: 'Please enter at least one reason for rejection.',
-  REJECT_SUCCESSFUL: 'Rejected successfully.',
+  REJECT: 'Ablehnen',
+  REJECT_REASON_DESC: 'Geben Sie Gründe für die Ablehnung der App-Überprüfung ein.',
+  REJECT_REASON_TIP: 'Bitte geben Sie mindestens einen Grund für die Ablehnung ein.',
+  REJECT_SUCCESSFUL: 'Erfolgreich abgelehnt.',
   // Release
-  APPROVE: 'Approve',
-  RELEASE_SUCCESSFUL: 'Released successfully.'
+  APPROVE: 'Genehmigen',
+  RELEASE_SUCCESSFUL: 'Erfolgreich freigegeben.'
 };
