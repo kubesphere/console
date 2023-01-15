@@ -18,23 +18,23 @@
 module.exports = {
   // Head
   APP_STORE: 'App Store',
-  HOME_APP_STORE_DESC: 'The official App Store of KubeSphere provides deployment and management features that allow users to quickly deploy apps with one click based on app templates.',
+  HOME_APP_STORE_DESC: 'Der offizielle App-Store von KubeSphere bietet Funktionen zur Bereitstellung und Verwaltung von Anwendungen, die es Benutzern ermöglichen, Apps mit einem Klick auf App-Vorlagen schnell zu verteilen.',
   // Discover
-  DISCOVER: 'Discover',
+  DISCOVER: 'Entdecken',
   NEW_APPS: 'Neue Apps',
   // App Categories
   APP_CATE_ALL: 'All',
   APP_CATE_UNCATEGORIZED: 'Unkategorisiert',
-  APP_CATE_MESSAGE_QUEUEING: 'Message Queuing',
+  APP_CATE_MESSAGE_QUEUEING: 'Nachrichtenwarteschlange',
   APP_CATE_IMAGE_REGISTRY: 'Image Registry',
   APP_CATE_PROMETHEUS_EXPORTER: 'Prometheus Exporter',
-  APP_CATE_WEB_SERVER: 'Web Server',
+  APP_CATE_WEB_SERVER: 'Webserver',
   APP_CATE_NETWORKING: 'Netzwerk',
   APP_CATE_DATABASE_CACHE: 'Datenbank & Cache',
   APP_CATE_STORAGE: 'Speicher',
   // List
-  MAINTAINER_VALUE: 'Maintainer: {value}',
-  LATEST_VALUE: 'Latest: {value}',
-  TOTAL_CATE_COUNT: 'Total Apps: {total}',
-  SEARCH_BY_NAME: 'Search by name'
+  MAINTAINER_VALUE: 'Betreuer: {value}',
+  LATEST_VALUE: 'Neueste: {value}',
+  TOTAL_CATE_COUNT: 'Gesamte Apps: {total}',
+  SEARCH_BY_NAME: 'Nach Namen suchen'
 };
