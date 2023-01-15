@@ -18,14 +18,14 @@
 module.exports = {
   // Banner
   USER_DESC: 'Manage users and their roles.',
-  USER_PL: 'Users',
+  USER_PL: 'Benutzer',
   // List
-  NOT_LOGIN_YET: 'Not logged in yet',
+  NOT_LOGIN_YET: 'Noch nicht angemeldet',
   USER_EMPTY_DESC: 'Please create a user.',
-  USER_ACTIVE: 'Active',
+  USER_ACTIVE: 'Aktiv',
   USER_AUTHLIMITEXCEEDED: 'Login restricted',
-  USER_PENDING: 'Pending',
-  USER_DISABLED: 'Disabled',
+  USER_PENDING: 'Ausstehend',
+  USER_DISABLED: 'Deaktiviert',
   LAST_LOGIN: 'Last Login',
   // List > Create
   USERNAME_DESC: 'The username can contain only lowercase letters, numbers, hyphens (-), and dots (.), and must start and end with a lowercase letter or number. The maximum length is 32 characters.',
