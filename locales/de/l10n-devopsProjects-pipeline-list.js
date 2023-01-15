@@ -153,7 +153,7 @@ module.exports = {
   PARAMS_BOOLEAN: 'Boolean',
   PARAMS_CHOICE: 'Options',
   CHOICE_PARAM_OPTION_DESC: 'Enter an option in each line. The first line is used as the default option.',
-  PARAMS_PASSWORD: 'Password',
+  PARAMS_PASSWORD: 'Passwort',
   BUILD_TRIGGER: 'Build Trigger',
   BUILD_PERIODICALLY: 'Build periodically',
   BUILD_PERIODICALLY_TIP: 'Set the pipeline to periodically run build tasks.',
