@@ -17,16 +17,16 @@
  */
 module.exports = {
   // Banner
-  APP_REVIEW: 'App Review',
-  APP_REVIEW_DESC: 'Review apps to be released to the App Store.',
+  APP_REVIEW: 'App Überprüfung',
+  APP_REVIEW_DESC: 'Überprüfe Apps, die im App Store freigegeben werden sollen.',
   // New
-  NEW_SUBMIT: 'New',
-  APP_REVIEW_EMPTY_DESC: 'Please create an app template in a workspace and submit the app template for review.',
-  APP_STATUS_TO_BE_REVIEWED: 'To be reviewed',
-  APP_STATUS_PASSED: 'Approved',
-  APP_STATUS_SUSPENDED: 'Suspended',
-  APP_STATUS_REJECTED: 'Rejected',
-  APP_STATUS_IN_REVIEW: 'Reviewing',
+  NEW_SUBMIT: 'Neu',
+  APP_REVIEW_EMPTY_DESC: 'Bitte erstellen Sie eine App-Vorlage in einem Arbeitsbereich und senden Sie die App-Vorlage zur Überprüfung.',
+  APP_STATUS_TO_BE_REVIEWED: 'Zu überprüfen',
+  APP_STATUS_PASSED: 'Genehmigt',
+  APP_STATUS_SUSPENDED: 'Ausgesetzt',
+  APP_STATUS_REJECTED: 'Abgelehnt',
+  APP_STATUS_IN_REVIEW: 'In Prüfung',
   OPERATOR: 'Operator',
-  APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'No App Needs to Be Reviewed'
+  APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'Keine App muss überprüft werden'
 };
