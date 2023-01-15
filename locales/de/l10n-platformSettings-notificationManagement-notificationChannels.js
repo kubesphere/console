@@ -21,7 +21,7 @@ module.exports = {
   NOTIFICATION_CHANNELS: 'Notification Channels',
   NOTIFICATION_CHANNELS_DESC: 'Notify users through multiple channels when resource metrics meet conditions configured in rule groups.',
   // Email
-  MAIL_TITLE: 'Email',
+  MAIL_TITLE: 'E-Mail',
   MAIL_DESC: 'Send notifications to email addresses.',
   INVALID_PORT_DESC: 'Please enter a valid port number.',
   ENTER_PORT_NUMBER: 'Please enter a port number.',
@@ -145,7 +145,7 @@ module.exports = {
   NO_AUTH: 'No authentication',
   BEARER_TOKEN: 'Bearer token',
   TOKEN: 'Token',
-  WEBHOOK_USERNAME_EMPTY_DESC: 'Please enter a username.',
+  WEBHOOK_USERNAME_EMPTY_DESC: 'Bitte geben Sie einen Benutzernamen ein.',
   WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
   WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
 };
