@@ -17,8 +17,8 @@
  */
 module.exports = {
   // Banner
-  CLUSTER_MEMBER_PL: 'Cluster Members',
-  CLUSTER_MEMBER: 'Cluster Member',
+  CLUSTER_MEMBER_PL: 'Cluster-Mitglieder',
+  CLUSTER_MEMBER: 'Cluster-Mitglied',
   // Invite
-  INVITE_CLUSTER_MEMBER_DESC: 'Invite users to the cluster.'
+  INVITE_CLUSTER_MEMBER_DESC: 'Lade Benutzer in den Cluster ein.'
 };
