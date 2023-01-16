@@ -17,54 +17,54 @@
  */
 module.exports = {
   // Attributes
-  NODE_IP_ADDRESS: 'Node IP Address',
+  NODE_IP_ADDRESS: 'Node IP-Adresse',
   CLUSTER: 'Cluster',
   // Resource Status > Containers
-  CONTAINER_PL: 'Containers',
-  PROBE_PL: 'Probes',
+  CONTAINER_PL: 'Container',
+  PROBE_PL: 'Sonden',
   HOOK_PL: 'Hooks',
   // Resource Status > Containers > Container Logs
-  CONTAINER_LOGS_NOT_SUPPORTED: 'The container does not support real-time logs currently. Please try again later.',
+  CONTAINER_LOGS_NOT_SUPPORTED: 'Der Container unterstützt derzeit keine Echtzeit Logs. Bitte versuchen Sie es später erneut.',
   CONTAINER_LOGS: 'Container Logs',
   // Resource Status > Details > Container Details > Attributes
-  COMMAND: 'Command',
-  IMAGE_ID: 'Image ID',
-  IMAGE_PULL_POLICY: 'Image Pull Policy',
-  CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
-  CPU_VALUE: 'CPU: {value, plural, =1 {1 core} other {# cores}}',
-  MEMORY_VALUE: 'Memory: {value}',
+  COMMAND: 'Befehl',
+  IMAGE_ID: 'Abbild ID',
+  IMAGE_PULL_POLICY: 'Abbild Pull Richtlinie',
+  CONTAINER_DETAILS_PAGE_SCAP: 'Container Detailseite.',
+  CPU_VALUE: 'CPU: {value, plural, =1 {1 Kern} other {# Kerne}}',
+  MEMORY_VALUE: 'Arbeitsspeicher: {value}',
   NVIDIA_COM_GPU_VALUE: 'GPU: {value}',
   // Resource Status > Details > Container Details > Terminal
-  LOADING: 'Loading...',
-  RESOURCE_LIMITS: 'Resource Limits',
-  RESOURCE_REQUESTS: 'Resource Requests',
+  LOADING: 'Wird geladen...',
+  RESOURCE_LIMITS: 'Ressourcengrenzen',
+  RESOURCE_REQUESTS: 'Ressourcenanfragen',
   TERMINAL: 'Terminal',
   // Resource Status > Details > Container Details > Resource Status
-  RESTART_PL: 'Restarts',
+  RESTART_PL: 'Neustarts',
   RESTART: 'Restart',
-  STORAGE_DEVICES: 'Storage Devices',
-  LIVENESS_PROBE: 'Liveness Probe',
-  READINESS_PROBE: 'Readiness Probe',
+  STORAGE_DEVICES: 'Speichergeräte',
+  LIVENESS_PROBE: 'Lebendigkeitsprobe',
+  READINESS_PROBE: 'Bereitschaftssonde',
   STARTUP_PROBE: 'Startup Probe',
-  REQUEST_TYPE: 'Request type',
+  REQUEST_TYPE: 'Anfragetyp',
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
-  NO_LOG_DATA_FOUND: 'No Log Data Found',
-  NO_LOG_DATA_FOUND_TIP: 'No log data is found.',
+  NO_LOG_DATA_FOUND: 'Keine Logdaten gefunden',
+  NO_LOG_DATA_FOUND_TIP: 'Es wurden keine Logdaten gefunden.',
   // Resource Status > Volumes
-  VOLUME_PL: 'Volumes',
-  TYPE_CONFIGMAP: 'Volume type: configmap',
-  TYPE_SECRET: 'Volume type: secret',
-  TYPE_EMPTYDIR: 'Volume type: emptyDir',
-  TYPE_HOSTPATH: 'Volume type: host path',
+  VOLUME_PL: 'Volumen',
+  TYPE_CONFIGMAP: 'Volume-Typ: configmap',
+  TYPE_SECRET: 'Volume-Typ: Secret',
+  TYPE_EMPTYDIR: 'Volume-Typ: leeres Verzeichnis',
+  TYPE_HOSTPATH: 'Volume-Typ: Host Pfad',
   // Scheduling Information
-  REASON_VALUE: 'Reason: {value}',
-  MESSAGE_VALUE: 'Message: {value}',
-  UPDATED_AT_VALUE: 'Updated At: {value}',
+  REASON_VALUE: 'Grund: {value}',
+  MESSAGE_VALUE: 'Nachricht: {value}',
+  UPDATED_AT_VALUE: 'Aktualisiert am: {value}',
   // Metadata
   // Monitoring
-  NO_MONITORING_DATA: 'No Monitoring Data',
-  OUTBOUND: 'Outbound',
-  INBOUND: 'Inbound'
+  NO_MONITORING_DATA: 'Keine Überwachungsdaten',
+  OUTBOUND: 'Ausgehend',
+  INBOUND: 'Eingehend'
 };
