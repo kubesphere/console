@@ -22,7 +22,7 @@ module.exports = {
   // List
   CRONJOB_PAUSED: 'Paused',
   CRONJOB_RUNNING: 'Running',
-  CRONJOB_FAILED: 'Failed',
+  CRONJOB_FAILED: 'Fehlgeschlagen',
   // List > Create > Basic Information
   SCHEDULE: 'Schedule',
   ENTER_SCHEDULE_TIP: 'Please select a schedule.',
