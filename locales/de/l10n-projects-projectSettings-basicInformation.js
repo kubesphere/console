@@ -56,8 +56,8 @@ module.exports = {
   PROJECT_QUOTA_PL: 'Project Quotas',
   RESOURCE_TYPE_SCAP: 'Resource type',
   JOBS: 'Jobs',
-  VOLUMES: 'Volumes',
-  SERVICES: 'Services',
+  VOLUMES: 'Volumen',
+  SERVICES: 'Dienste',
   ROUTES: 'Ingresses',
   SECRETS: 'Secrets'
 };
