@@ -29,11 +29,10 @@ export const POD_STATUS = [
 ]
 
 export const PODS_STATUS = [
-  { text: 'PENDING', value: 'Pending' },
+  { text: 'WAITING', value: 'Waiting' },
   { text: 'RUNNING', value: 'Running' },
-  { text: 'COMPLETED', value: 'Succeeded' },
+  { text: 'COMPLETED', value: 'Completed' },
   { text: 'FAILED', value: 'Failed' },
-  { text: 'UNKNOWN', value: 'Unknown' },
 ]
 
 export const JOB_STATUS = [
