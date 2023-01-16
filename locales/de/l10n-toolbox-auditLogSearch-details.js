@@ -19,14 +19,14 @@ module.exports = {
   // Title
   // Search Bar
   // Time Topology
-  START_REAL_TIME_AUDIT_LOG: 'Pause real-time audit logs',
-  STOP_REAL_TIME_AUDIT_LOG: 'View real-time audit logs',
-  TIME_S: '{num, plural, =1 {1 second} other {# seconds}}',
+  START_REAL_TIME_AUDIT_LOG: 'Echtzeit-Audit-Logs pausieren',
+  STOP_REAL_TIME_AUDIT_LOG: 'Echtzeit-Audit-Logs anzeigen',
+  TIME_S: '{num, plural, =1 {1 Sekunde} other {# Sekunden}}',
   // Time Topology > Histogram
-  AUDIT_LOG_COUNT: 'Audit Logs',
+  AUDIT_LOG_COUNT: 'Audit-Logs',
   // List
-  RESOURCE_NAME_AND_TYPE: 'Resource Type & Name',
+  RESOURCE_NAME_AND_TYPE: 'Ressourcentyp & Name',
   VERB: 'Verb',
-  STATUS_CODE: 'Status Code',
-  SUBRESOURCE: 'Subresource'
+  STATUS_CODE: 'Statuscode',
+  SUBRESOURCE: 'Unterressource'
 };
