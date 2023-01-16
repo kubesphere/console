@@ -37,7 +37,7 @@ module.exports = {
   CREATE_ALERTING_POLICY: 'Create Rule Group',
   CRITICAL_ALERT: 'Critical',
   ERROR_ALERT: 'Error',
-  WARNING_ALERT: 'Warning',
+  WARNING_ALERT: 'Warnung',
   INVALID_TIME_DESC: 'Invalid value. Please enter 0 or a positive integer.',
   ALIAS: 'Alias',
   DURATION_MIN: 'Duration (minutes)',
