@@ -30,7 +30,7 @@ module.exports = {
   PROJECT_ASSIGN_DESC: 'After the project is assigned to a workspace, the workspace cannot be changed.',
   // List > Create
   CREATE_PROJECT_DESC: 'Create a project to group resources and control the resource management permissions of different users.',
-  PROJECT_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
+  PROJECT_NAME_DESC: 'Der Name darf nur Kleinbuchstaben, Zahlen und Bindestriche enthalten (-), muss mit einem Kleinbuchstaben beginnen und mit einem Kleinbuchstaben oder einer Zahl enden. Die Maximallänge beträgt 63 Zeichen.',
   PROJECT_NAME_INVALID_DESC: 'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
   CANCEL: 'Cancel',
   CREATE_NAME: 'Create {name}',
