@@ -50,7 +50,7 @@ module.exports = {
   VERSIONS: 'Versionen',
   // APP Details > Keywords
   KEYWORDS: 'Schlüsselwörter',
-  NONE: 'None',
+  NONE: 'Keine',
   // App Details > App Introduction
   APP_INTRODUCTION: 'App Einführung',
   APP_DETAILS: 'App Details',
