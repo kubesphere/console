@@ -16,9 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  DOWNLOAD: 'Download',
+  DOWNLOAD: 'Herunterladen',
   KUBECONFIG_TIP: `
-    <h2><a id="KubeConfig_Configuration_Method_0"></a>Configuration Method</h2>
-    <p>Configure the access information about the current cluster by using kubeconfig file. <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">Learn More</a></p>
+    <h2><a id="KubeConfig_Configuration_Method_0"></a>Konfigurationsmethode</h2>
+    <p>Konfigurieren Sie die Zugriffsinformationen über den aktuellen Cluster mittels kubeconfig-Datei. <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">Mehr erfahren</a></p>
   `
 };
