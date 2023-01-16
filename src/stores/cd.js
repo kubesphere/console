@@ -98,7 +98,9 @@ export default class CDStore extends Base {
 
     const url = `${this.getResourceUrl({ namespace: devops, cluster })}`
 
-    const result = await request.get(url, { ...params }, {}, () => {})
+    const result = await request.get(url, { ...params }, {}, () => {
+      return []
+    })
 
     const data = Array.isArray(result.items)
       ? result.items.map(item => {
