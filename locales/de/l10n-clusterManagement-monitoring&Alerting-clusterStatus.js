@@ -49,7 +49,7 @@ module.exports = {
   AVERAGE: 'Average',
   PROPOSAL_COMMITTED: 'Committed',
   PROPOSAL_APPLIED: 'Applied',
-  PROPOSAL_FAILED: 'Failed',
+  PROPOSAL_FAILED: 'Fehlgeschlagen',
   PROPOSAL_PENDING: 'Ausstehend',
   // Overview > Service Component Monitoring
   SERVICE_COMPONENT_MONITORING: 'Service Component Monitoring',
