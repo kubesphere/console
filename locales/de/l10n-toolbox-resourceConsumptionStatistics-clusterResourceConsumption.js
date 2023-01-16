@@ -44,7 +44,7 @@ module.exports = {
   DAEMONSET_SCAP: 'Daemonset',
   WORKSPACE_SCAP: 'Workspace',
   CLUSTER_SCAP: 'Cluster',
-  PROJECT_SCAP: 'Project',
+  PROJECT_SCAP: 'Projekt',
   SERVICE_SCAP: 'Service',
   HOST_CLUSTER_SCAP: 'Host cluster',
   MEMBER_CLUSTER_SCAP: 'Member cluster',
