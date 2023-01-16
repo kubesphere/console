@@ -19,7 +19,7 @@ module.exports = {
   // Banner
   // Cluster Information
   NODES: 'Nodes',
-  DISK: 'Disk',
+  DISK: 'Datenträger',
   CLUSTER_INFORMATION: 'Cluster Informationen',
   // Cluster Information > Edit Information
   CLUSTER_NAME: 'Cluster Name',
