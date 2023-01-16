@@ -20,8 +20,8 @@ module.exports = {
   WORKSPACE_SETTINGS: 'Workspace Settings',
   // Banner
   WORKSPACE_BASIC_INFO_DESC: 'Basic information provides the overview of the workspace. You can view the basic information of the workspace.',
-  WORKSPACE_BASE_INFO_Q1: 'How do I apply for more clusters for the workspace?',
-  WORKSPACE_BASE_INFO_A1: 'Contact the platform or cluster administrator to apply for more clusters.',
+  WORKSPACE_BASE_INFO_Q1: 'Wie beantrage ich mehr Cluster für den Arbeitsbereich?',
+  WORKSPACE_BASE_INFO_A1: 'Wenden Sie sich an den Plattform- oder Clusteradministrator, um weitere Cluster zu beantragen.',
   // Workspace Information
   WORKSPACE_INFO: 'Workspace Information',
   WORKSPACE_MEMBER_TCAP: 'Workspace member',
