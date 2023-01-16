@@ -18,10 +18,10 @@
 module.exports = {
   // Attributes
   // Resource Status
-  CUSTOM_RESOURCE_PL: 'Custom Resources',
-  PROJECT_DEVOPS_PROJECT: 'Project/DevOps Project',
+  CUSTOM_RESOURCE_PL: 'Benutzerdefinierte Ressourcen',
+  PROJECT_DEVOPS_PROJECT: 'Projekt/DevOps Projekt',
   // Resource Status > Edit YAML
   // Resource Status > Delete
-  CUSTOM_RESOURCE: 'Custom Resource',
-  CUSTOM_RESOURCE_LOW: 'custom resource'
+  CUSTOM_RESOURCE: 'Benutzerdefinierte Ressource',
+  CUSTOM_RESOURCE_LOW: 'benutzerdefinierte ressource'
 };
