@@ -19,14 +19,14 @@ module.exports = {
   // Title
   // Search Bar
   // Time Topology
-  STOP_REAL_TIME_RESOURCE_EVENT: 'Pause real-time resource events',
-  START_REAL_TIME_RESOURCE_EVENT: 'View real-time resource events',
+  STOP_REAL_TIME_RESOURCE_EVENT: 'Echtzeit-Ressourcenereignisse anhalten',
+  START_REAL_TIME_RESOURCE_EVENT: 'Anzeigen von Ressourcenereignissen in Echtzeit',
   // Time Topology > Histogram
-  RESOURCE_EVENT_COUNT: 'Resource Events',
+  RESOURCE_EVENT_COUNT: 'Ressourcenereignisse',
   // List
   // List > Resource Event Details > Metadata
-  METADATA: 'Metadata',
+  METADATA: 'Metadaten',
   // List > Resource Event Details > Details
-  EARLIEST_START_TIME: 'Earliest Start Time',
-  LATEST_START_TIME: 'Latest Start Time'
+  EARLIEST_START_TIME: 'Früheste Startzeit',
+  LATEST_START_TIME: 'Späteste Startzeit'
 };
