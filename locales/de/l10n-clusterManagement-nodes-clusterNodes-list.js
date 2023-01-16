@@ -43,7 +43,7 @@ module.exports = {
   NODE_STATUS_RUNNING: 'Running',
   NODE_STATUS_WARNING: 'Warnung',
   NODE_STATUS_PENDING: 'Creating',
-  NODE_STATUS_FAILED: 'Failed',
+  NODE_STATUS_FAILED: 'Fehlgeschlagen',
   CLUSTER_NODE_EMPTY_DESC: 'Please add a node to the cluster.',
   NODE_NAME_EMPTY_DESC: 'Please set a name for the node.',
   CPU_USAGE: 'CPU Usage',
