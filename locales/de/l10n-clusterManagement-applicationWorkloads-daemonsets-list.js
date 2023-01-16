@@ -19,35 +19,35 @@ module.exports = {
   // Banner
   // List
   DAEMONSETS: 'Daemonsets',
-  DAEMONSET_EMPTY_DESC: 'Please create a daemonset.',
+  DAEMONSET_EMPTY_DESC: 'Bitte erstellen Sie einen Daemonset.',
   // List > Create > Basic Information
   // List > Create > Pod Settings
   // List > Create > Pod Settings > Add Container > Update Strategy > Rolling Update Settings
-  MIN_READY_SECONDS: 'Minimum Running Time for Pod Readiness (s)',
-  MAX_UNAVAILABLE_PODS: 'Maximum Unavailable Pods',
-  ROLLING_UPDATE_SETTINGS: 'Rolling Update Settings',
-  MAX_UNAVAILABLE_PODS_DESC: 'Maximum number or percentage of unavailable pod replicas allowed during the update process.',
-  MIN_READY_SECONDS_DESC: 'Minimum stable running time required for a pod replica to be considered ready.',
-  MIN_READY_SECONDS_EMPTY: 'Please set the minimum stable running time required for a pod replica to be considered ready.',
-  MAX_UNAVAILABLE_EMPTY: 'Please set the maximum number or percentage of unavailable pod replicas allowed during the update process.',
+  MIN_READY_SECONDS: 'Mindestlaufzeit für Pod Bereitschaft(n)',
+  MAX_UNAVAILABLE_PODS: 'Maximale nicht verfügbare Pods',
+  ROLLING_UPDATE_SETTINGS: 'Rollende Aktualisierungseinstellungen',
+  MAX_UNAVAILABLE_PODS_DESC: 'Maximale Anzahl oder Prozentsatz nicht verfügbarer Pod Replikate, die während des Aktualisierungsprozesses erlaubt sind.',
+  MIN_READY_SECONDS_DESC: 'Minimale stabile Laufzeit, die für ein Pod Replikat benötigt wird, um bereit zu sein.',
+  MIN_READY_SECONDS_EMPTY: 'Bitte legen Sie die minimale stabile Laufzeit, die für ein Pod Replikat benötigt wird, um bereit zu sein fest.',
+  MAX_UNAVAILABLE_EMPTY: 'Bitte setzen Sie die maximale Anzahl oder Prozentsatz nicht verfügbarer Pod Replikate, die während des Aktualisierungsprozesses erlaubt sind.',
   // List > Create > Pod Settings > Add Container > Health Check > Liveness Check > HTTP Request
-  FAILURE_THRESHOLD: 'Failure Threshold',
-  HTTP_REQUEST: 'HTTP Request',
-  INITIAL_DELAY_S: 'Initial Delay (s)',
-  INITIAL_DELAY_TIMEOUT_VALUE: '{delay}s initial delay, {timeout}s timeout period',
-  PROBE_TIME: '{delay}s delay, {timeout}s timeout',
+  FAILURE_THRESHOLD: 'Fehlerschwelle',
+  HTTP_REQUEST: 'HTTP Anfrage',
+  INITIAL_DELAY_S: 'Anfangsverzögerung (s)',
+  INITIAL_DELAY_TIMEOUT_VALUE: '{delay}s Startverzögerung, {timeout}s Timeout-Zeit',
+  PROBE_TIME: '{delay}s Verzögerung, {timeout}s Timeout',
   TIMEOUT_PERIOD_S: 'Timeout (s)',
-  CHECK_INTERVAL_S: 'Check Interval (s)',
-  SUCCESS_THRESHOLD: 'Success Threshold',
-  INITIAL_DELAY_DESC: 'Delay time before the probe is initiated after container startup. The value must be an integer and the minimum value is 0.',
-  TIMEOUT_PERIOD_DESC: 'Timeout period after which the probe times out and is considered failed. The value must be an integer and the minimum value is 1.',
-  CHECK_INTERVAL_DESC: 'Interval between check attempts. The value must be an integer and the minimum value is 1.',
-  SUCCESS_THRESHOLD_DESC: 'Minimum number of consecutive successes for the probe to be considered successful after having failed. The minimum value is 1 and the value must be 1 for liveness and startup probes.',
-  FAILURE_THRESHOLD_DESC: 'Minimum number of consecutive failures for the probe to be considered failed after having succeeded. The minimum value is 1.',
+  CHECK_INTERVAL_S: 'Überprüfungsintervall (s)',
+  SUCCESS_THRESHOLD: 'Erfolgsschwelle',
+  INITIAL_DELAY_DESC: 'Verzögerung vor Beginn der Sonde nach dem Start des Containers. Der Wert muss eine Ganzzahl sein und der Mindestwert ist 0.',
+  TIMEOUT_PERIOD_DESC: 'Timeout Periode nach der die Sonde ausläuft und als fehlgeschlagen angesehen wird. Der Wert muss eine Ganzzahl sein und der Mindestwert ist 1.',
+  CHECK_INTERVAL_DESC: 'Intervall zwischen Prüfversuchen. Der Wert muss eine Ganzzahl sein und der Minimalwert ist 1.',
+  SUCCESS_THRESHOLD_DESC: 'Minimale Anzahl von aufeinanderfolgenden Erfolgen für die Sonde, die nach einem Fehlschlag als erfolgreich angesehen wird. Der Mindestwert ist 1 und der Wert muss 1 für Lebendigkeit und startup Sonden sein.',
+  FAILURE_THRESHOLD_DESC: 'Minimale Anzahl von aufeinanderfolgenden Fehlern für die Sonde, die nach dem Erfolg als fehlgeschlagen angesehen wird. Der Mindestwert ist 1.',
   // List > Create > Pod Settings > Add Container > Health Check > Liveness Check > Command
-  PROBE_COMMAND_EMPTY: 'Please enter at least one command.',
+  PROBE_COMMAND_EMPTY: 'Bitte mindestens einen Befehl eingeben.',
   // List > Create > Pod Settings > Add Container > Health Check > Liveness Check > TCP Port
   TCP_PORT: 'TCP Port',
   // List > Create > Storage Settings
-  MOUNT_PATH_IN_USE: 'The mount path is already in use. Please enter another mount path.'
+  MOUNT_PATH_IN_USE: 'Der Mountpfad wird bereits verwendet. Bitte geben Sie einen anderen Mountpfad ein.'
 };
