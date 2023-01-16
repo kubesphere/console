@@ -24,7 +24,7 @@ module.exports = {
   MAIL_TITLE: 'E-Mail',
   MAIL_DESC: 'Send notifications to email addresses.',
   INVALID_PORT_DESC: 'Please enter a valid port number.',
-  ENTER_PORT_NUMBER: 'Please enter a port number.',
+  ENTER_PORT_NUMBER: 'Bitte geben Sie eine Portnummer ein.',
   ALERTING_NAME: 'Alert name',
   ALERTING_SEVERITY: 'Alert severity',
   ADDRESS_EMPTY_DESC: 'Please enter an address.',
