@@ -83,7 +83,7 @@ module.exports = {
   DISK_THROUGHPUT: 'Disk Throughput',
   POD_STATUS: 'Pod Status',
   COMPLETED: 'Completed',
-  WARNING: 'Warning',
+  WARNING: 'Warnung',
   READ: 'Read',
   WRITE: 'Write',
   RUNNING: 'Running',
