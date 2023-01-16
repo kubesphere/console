@@ -25,7 +25,7 @@ module.exports = {
   // List
   APP_REPOSITORY_EMPTY_DESC: 'Please add an app repository.',
   APP_REPO_STATUS_SUCCESSFUL: 'Erfolgreich',
-  APP_REPO_STATUS_FAILED: 'Failed',
+  APP_REPO_STATUS_FAILED: 'Fehlgeschlagen',
   APP_REPO_STATUS_SYNCING: 'Syncing',
   // List > Add
   ADD_APP_REPO: 'Add App Repository',
