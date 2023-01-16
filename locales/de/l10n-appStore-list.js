@@ -23,7 +23,7 @@ module.exports = {
   DISCOVER: 'Entdecken',
   NEW_APPS: 'Neue Apps',
   // App Categories
-  APP_CATE_ALL: 'All',
+  APP_CATE_ALL: 'Alles',
   APP_CATE_UNCATEGORIZED: 'Unkategorisiert',
   APP_CATE_MESSAGE_QUEUEING: 'Nachrichtenwarteschlange',
   APP_CATE_IMAGE_REGISTRY: 'Image Registry',
