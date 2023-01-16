@@ -18,14 +18,14 @@
 module.exports = {
   // Attributes
   NETWORK: 'Netzwerk',
-  START_IP_ADDRESS: 'Start IP Address',
-  END_IP_ADDRESS: 'End IP Address',
-  MASK: 'Mask',
+  START_IP_ADDRESS: 'Start IP Adresse',
+  END_IP_ADDRESS: 'End IP Adresse',
+  MASK: 'Maske',
   // More > View YAML
   // More > Assign Workspace
   // More > Delete
   // Workspaces
-  WORKSPACES: 'Workspaces',
+  WORKSPACES: 'Arbeitsbereiche',
   MANAGER: 'Manager',
-  IPPOOL_WORKSPACE_EMPTY_TIP: 'No workspace is using this pod IP pool.'
+  IPPOOL_WORKSPACE_EMPTY_TIP: 'Kein Arbeitsbereich verwendet diesen Pod IP Pool.'
 };
