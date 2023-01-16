@@ -22,51 +22,51 @@ module.exports = {
   // List
   DEPLOYMENTS: 'Deployments',
   UPDATE_TIME_TCAP: 'Update Time',
-  ALL_PROJECTS: 'All projects',
-  SHOW_NUM: 'Show: {num}',
+  ALL_PROJECTS: 'Alle Projekte',
+  SHOW_NUM: 'Zeige: {num}',
   // List > Create > Basic Information
-  SELECT_PROJECT_DESC: 'Select a project in which the resource is to be created.',
-  PROJECT_NOT_SELECT_DESC: 'Please select a project.',
-  BASIC_INFORMATION: 'Basic Information',
+  SELECT_PROJECT_DESC: 'Wählen Sie ein Projekt, in dem die Ressource erstellt werden soll.',
+  PROJECT_NOT_SELECT_DESC: 'Bitte wählen Sie ein Projekt.',
+  BASIC_INFORMATION: 'Basisinformation',
   NAME: 'Name',
   FEDPROJECT_RESOURCE_TIP: 'To create workload resources in a multi-cluster project, go to the Workloads page in the multi-cluster project.',
-  FINISHED: 'Done',
-  NOT_SET: 'To do',
-  CURRENT: 'Current',
-  PROJECT: 'Project',
+  FINISHED: 'Fertig',
+  NOT_SET: 'Zu tun',
+  CURRENT: 'Aktuell',
+  PROJECT: 'Projekt',
   // List > Create > Pod Settings
-  PREVIOUS: 'Previous',
-  NOTE: 'Note',
+  PREVIOUS: 'Vorherige',
+  NOTE: 'Notiz',
   // List > Create > Pod Settings > Add Container > Container Settings
-  IMAGE: 'Image',
-  IMAGE_VALUE: 'Image: {value}',
+  IMAGE: 'Abbild',
+  IMAGE_VALUE: 'Abbild: {value}',
   // List > Create > Pod Settings > Add Container > Health Check > Readiness Check > TCP Port
-  PORT_NUMBER_EMPTY: 'Please enter a port number.',
-  USER: 'User',
+  PORT_NUMBER_EMPTY: 'Bitte geben Sie eine Portnummer ein.',
+  USER: 'Benutzer',
   // List > Create > Storage Settings
-  VOLUME_NAME_EXIST: 'The volume name already exists.',
-  SELECT_TYPE: 'Select {type}',
-  SPECIFY_SUBPATH: 'Specify Subpath',
-  SPECIFY_SUBPATH_TIP: 'Specify a volume subpath to be mounted to the container.',
-  MOUNT_PATH: 'Mount path',
-  MOUNT_PATH_NOT_SPECIFIED: 'Please select a key to be mounted and the mount path of the key.',
-  MOUNT_PATH_EMPTY: 'Please enter a mount path.',
-  MOUNT_PATH_REPEATED: 'The mount path is duplicated.',
+  VOLUME_NAME_EXIST: 'Der Volume Name existiert bereits.',
+  SELECT_TYPE: '{type} ausgewäht',
+  SPECIFY_SUBPATH: 'Unterpfad festlegen',
+  SPECIFY_SUBPATH_TIP: 'Geben Sie einen Volume Unterpfad an, der in den Container eingebunden werden soll.',
+  MOUNT_PATH: 'Einhängepfad',
+  MOUNT_PATH_NOT_SPECIFIED: 'Bitte wählen Sie einen Schlüssel und den Einhängepfad des Schlüssels aus.',
+  MOUNT_PATH_EMPTY: 'Bitte gib einen Einhängepfad ein.',
+  MOUNT_PATH_REPEATED: 'Der Einhängepfad ist dupliziert.',
   // List > Create > Advanced Settings
-  NETWORK_SEGMENT_SCAP: 'Network segment',
-  AVAILABLE_ADDRESSES: 'Available addresses',
+  NETWORK_SEGMENT_SCAP: 'Netzwerksegment',
+  AVAILABLE_ADDRESSES: 'Verfügbare Adressen',
   POD_IP_POOL: 'Pod IP Pool',
-  SUBPATH: 'Subpath',
+  SUBPATH: 'Unterpfad',
   // List > Create > Advanced Settings > Add Metadata
-  ANNOTATION_PL: 'Annotations',
-  CREATE_SUCCESSFUL: 'Created successfully.',
+  ANNOTATION_PL: 'Anmerkungen',
+  CREATE_SUCCESSFUL: 'Erfolgreich erstellt.',
   // List > Edit Information
   // List > Edit YAML
   // List > Re-create
   // List > Delete
   // List > Stop
   STOP: 'Stop',
-  STOP_TITLE_SI: 'Stop {type}',
+  STOP_TITLE_SI: 'Stoppe {type}',
   STOP_TITLE_PL: 'Stop Multiple {type}',
   STOP_DESC: 'Are you sure you want to stop the resource?'
 };
