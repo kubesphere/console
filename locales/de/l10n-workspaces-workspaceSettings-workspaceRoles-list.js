@@ -65,9 +65,9 @@ module.exports = {
   PERMISSION_WORKSPACE_MEMBERS_VIEW_DESC: 'View workspace members.',
   PERMISSION_WORKSPACE_MEMBERS_MANAGEMENT: 'Verwaltung von Cluster Mitgliedern',
   PERMISSION_WORKSPACE_MEMBERS_MANAGEMENT_DESC: 'Invite, edit, and delete workspace members.',
-  PERMISSION_WORKSPACE_ROLES_VIEW: 'Role Viewing',
+  PERMISSION_WORKSPACE_ROLES_VIEW: 'Rollen anzeigen',
   PERMISSION_WORKSPACE_ROLES_VIEW_DESC: 'View workspace roles.',
-  PERMISSION_WORKSPACE_ROLES_MANAGEMENT: 'Role Management',
+  PERMISSION_WORKSPACE_ROLES_MANAGEMENT: 'Rollen verwalten',
   PERMISSION_WORKSPACE_ROLES_MANAGEMENT_DESC: 'Create, edit, and delete workspace roles except system preset roles.',
   // List > Create > Edit Permissions > Workspace Settings Management
   PERMIGROUP_WORKSPACE_SETTINGS: 'Workspace Settings',
