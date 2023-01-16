@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get, keyBy } from 'lodash'
+import { get, keyBy, cloneDeep, isEmpty, throttle } from 'lodash'
 
 import WorkloadStore from 'stores/workload'
 import FedStore from 'stores/federated'
@@ -43,6 +43,7 @@ export default class ResourceStatus extends React.Component {
         this.store.detail.annotations,
         '["kubesphere.io/workloadName"]'
       ),
+      resources: {},
     }
 
     const workloadModule = get(
@@ -99,6 +100,22 @@ export default class ResourceStatus extends React.Component {
     }
   }
 
+  fetchReplica = throttle(async () => {
+    const { workloadExist } = this.state
+    const { params } = this.props.match
+
+    if (workloadExist) {
+      const resources = await this.workloadStore.fetchDetailSilent({
+        clusters: this.workloadStore.detail.clusters.map(item => item.name),
+        ...params,
+        name: this.state.workloadName,
+      })
+      this.setState({
+        resources,
+      })
+    }
+  }, 2000)
+
   renderReplicaInfo() {
     const { clusters } = this.store.detail || {}
     const { detail, resources, isResourcesLoading } = this.workloadStore
@@ -107,12 +124,23 @@ export default class ResourceStatus extends React.Component {
       'name'
     )
 
+    const _resources = cloneDeep(toJS(resources))
+    const { resources: refetchResources } = this.state
+    if (!isEmpty(refetchResources)) {
+      Object.keys(_resources).forEach(cluster => {
+        _resources[cluster] = {
+          ..._resources[cluster],
+          ...get(refetchResources, cluster, {}),
+        }
+      })
+    }
+
     return (
       <ClusterWorkloadStatus
         module={this.workloadStore.module}
         store={this.workloadStore}
         detail={detail}
-        resources={resources}
+        resources={_resources}
         clusters={clusters}
         clustersDetail={clustersDetail}
         isLoading={isResourcesLoading}
@@ -130,6 +158,7 @@ export default class ResourceStatus extends React.Component {
         prefix={this.prefix}
         details={toJS(resources)}
         clusters={clusters}
+        getReplica={this.fetchReplica}
         isFederated
       />
     )
