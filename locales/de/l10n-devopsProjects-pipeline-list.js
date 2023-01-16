@@ -130,7 +130,7 @@ module.exports = {
   TRUSTED_USERS: 'Trusted User',
   CONTRIBUTORS: 'Contributors',
   EVERYONE: 'Everyone',
-  NOBODY: 'None',
+  NOBODY: 'Keine',
   USERS_WITH_PERMISSION: 'Users with the admin or write permission',
   // List > Create > Advanced Settings (no repo specified)
   OPTIONS: 'Options',
