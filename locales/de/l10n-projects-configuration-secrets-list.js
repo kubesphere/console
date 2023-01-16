@@ -24,5 +24,5 @@ module.exports = {
   // List > Edit YAML
   // List > Edit Settings
   // List > Delete
-  SECRET_LOW: 'secret'
+  SECRET_LOW: 'geheimnis'
 };
