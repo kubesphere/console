@@ -76,9 +76,9 @@ module.exports = {
   PERMISSION_PROJECT_MEMBERS_VIEW_DESC: 'View project members.',
   PERMISSION_PROJECT_MEMBERS_MANAGEMENT: 'Verwaltung von Cluster Mitgliedern',
   PERMISSION_PROJECT_MEMBERS_MANAGEMENT_DESC: 'Invite, edit, and remove project members.',
-  PERMISSION_PROJECT_ROLES_VIEW: 'Role Viewing',
+  PERMISSION_PROJECT_ROLES_VIEW: 'Rollen anzeigen',
   PERMISSION_PROJECT_ROLES_VIEW_DESC: 'View project roles.',
-  PERMISSION_PROJECT_ROLES_MANAGEMENT: 'Role Management',
+  PERMISSION_PROJECT_ROLES_MANAGEMENT: 'Rollen verwalten',
   PERMISSION_PROJECT_ROLES_MANAGEMENT_DESC: 'Create, edit, and delete project roles except preset roles.',
   // List > Edit Permissions > Project Settings
   PERMIGROUP_PROJECT_SETTINGS: 'Project Settings',
