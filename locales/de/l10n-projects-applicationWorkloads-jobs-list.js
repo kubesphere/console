@@ -22,7 +22,7 @@ module.exports = {
   // List
   JOB_EMPTY_DESC: 'Please create a job.',
   JOB_COMPLETED: 'Completed',
-  JOB_FAILED: 'Failed',
+  JOB_FAILED: 'Fehlgeschlagen',
   JOB_RUNNING: 'Running',
   LAST_RUN_TIME: 'Last Run Time',
   // List > Create > Basic Information
