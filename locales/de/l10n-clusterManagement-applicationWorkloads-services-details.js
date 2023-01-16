@@ -18,11 +18,11 @@
 module.exports = {
   // Attributes
   CUSTOM_SERVICE: 'Custom Service',
-  VIRTUAL_IP: 'VirtualIP',
+  VIRTUAL_IP: 'Virtuelle IP',
   // Resource Status
-  CONTAINER_PORT_SCAP: 'Container port',
-  SERVICE_PORT_SCAP: 'Service port',
-  NO_AVAILABLE_RESOURCE_VALUE: 'No Available {resource}',
-  NO_RESOURCE_FOUND: 'No Resource Found',
-  REVISION_RECORD: 'Revision record'
+  CONTAINER_PORT_SCAP: 'Container Port',
+  SERVICE_PORT_SCAP: 'Service Port',
+  NO_AVAILABLE_RESOURCE_VALUE: 'Keine verfügbaren {resource}',
+  NO_RESOURCE_FOUND: 'Keine Ressourcen gefunden',
+  REVISION_RECORD: 'Revisionsprotokoll'
 };
