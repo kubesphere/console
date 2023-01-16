@@ -17,22 +17,22 @@
  */
 module.exports = {
   // Banner
-  SERVICE_PL: 'Services',
-  SERVICE_DESC: 'Services provide an abstract way to expose applications running on a pod as network services.',
+  SERVICE_PL: 'Dienste',
+  SERVICE_DESC: 'Dienste bieten eine abstrakte Möglichkeit, Anwendungen, die auf einem Pod ausgeführt werden, als Netzwerkdienste bereitzustellen.',
   // List
-  SERVICE_EMPTY_DESC: 'Please create a service.',
-  UNKNOWN: 'Unknown',
+  SERVICE_EMPTY_DESC: 'Bitte erstellen Sie einen Dienst.',
+  UNKNOWN: 'Unbekannt',
   EXTERNAL_ACCESS: 'External Access',
   INTERNAL_ACCESS: 'Internal Access',
   // List > Edit YAML
   // List > Edit Service
   UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
   // List > Delete
-  SERVICE: 'Service',
-  SERVICE_LOW: 'service',
+  SERVICE: 'Dienst',
+  SERVICE_LOW: 'dienst',
   // List > Create
-  INTERNAL_ACCESS_MODE: 'Internal Access Mode',
-  CREATE_SERVICE: 'Create Service',
+  INTERNAL_ACCESS_MODE: 'Interner Zugriffsmodus',
+  CREATE_SERVICE: 'Dienst erstellen',
   // List > Create > Basic Information
   SERVICE_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
   // List > Create > Service Settings
