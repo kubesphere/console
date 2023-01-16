@@ -18,23 +18,23 @@
 module.exports = {
   // Title
   // Search Bar
-  KEYWORD: 'Keyword',
-  EXACT_QUERY: 'Exact Query',
-  FUZZY_QUERY: 'Fuzzy Query',
+  KEYWORD: 'Stichwörter',
+  EXACT_QUERY: 'Exakte Suche',
+  FUZZY_QUERY: 'Unscharfe Suche',
   // Time Topology
-  TIME_TOPOLOGY: 'Time Topology ',
-  SEARCH_RESULTS: 'Search Results',
-  DISPLAY: 'Display',
-  HIDE: 'Hide',
-  STOP_REAL_TIME_CONTAINER_LOG: 'Pause real-time container logs',
-  START_REAL_TIME_CONTAINER_LOG: 'View real-time container logs',
+  TIME_TOPOLOGY: 'Zeit Topologie ',
+  SEARCH_RESULTS: 'Suchergebnisse',
+  DISPLAY: 'Anzeigen',
+  HIDE: 'Verstecken',
+  STOP_REAL_TIME_CONTAINER_LOG: 'Echtzeit-Container-Logs pausieren',
+  START_REAL_TIME_CONTAINER_LOG: 'Echtzeit-Container-Logs anzeigen',
   // Refresh Rate
-  REFRESH_RATE_COLON: 'Refresh Rate: ',
+  REFRESH_RATE_COLON: 'Aktualisierungsrate: ',
   // Time Topology > Histogram
-  CONTAINER_LOG_COUNT: 'Container Logs',
+  CONTAINER_LOG_COUNT: 'Container-Logs',
   // List
   LOG: 'Log',
   // List > Container Log Details
   // List > Container Log Details > Container Log Source
-  CONTAINER_LOG_SOURCE: 'Container Log Source'
+  CONTAINER_LOG_SOURCE: 'Container-Log Quelle'
 };
