@@ -20,5 +20,5 @@ module.exports = {
   // More > Edit Labels
   // More > Edit Taints
   // Running Status
-  LATEST_UPDATE_VALUE: 'Latest update: {value}'
+  LATEST_UPDATE_VALUE: 'Letzte Aktualisierung: {value}'
 };
