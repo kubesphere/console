@@ -20,12 +20,12 @@ module.exports = {
   // Cluster Information
   NODES: 'Nodes',
   DISK: 'Disk',
-  CLUSTER_INFORMATION: 'Cluster Information',
+  CLUSTER_INFORMATION: 'Cluster Informationen',
   // Cluster Information > Edit Information
   CLUSTER_NAME: 'Cluster Name',
-  EDIT_CLUSTER_INFO_DESC: 'Edit basic information about the cluster.',
+  EDIT_CLUSTER_INFO_DESC: 'Bearbeite grundlegende Informationen über den Cluster.',
   // Remove Cluster
-  REMOVE_CLUSTER: 'Remove Cluster',
-  REMOVE_CLUSTER_DESC: 'After the cluster is removed, KubeSphere will not be able to manage the cluster. Resources in the cluster will not be deleted. Enter the cluster name <strong>{name}</strong> to confirm that you understand the risks of this operation.',
-  REMOVE_SUCCESS: 'Removed successfully.'
+  REMOVE_CLUSTER: 'Cluster entfernen',
+  REMOVE_CLUSTER_DESC: 'Nachdem der Cluster entfernt wurde, kann KubeSphere den Cluster nicht verwalten. Ressourcen im Cluster werden nicht gelöscht. Geben Sie den Clusternamen <strong>{name}</strong> ein, um zu bestätigen, dass Sie die Risiken dieser Operation verstehen.',
+  REMOVE_SUCCESS: 'Erfolgreich entfernt.'
 };
