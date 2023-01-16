@@ -18,9 +18,9 @@
 module.exports = {
   // Banner
   APPS: 'Apps',
-  APP_STORE_MANAGEMENT: 'App Store Management',
-  APP_STORE_DESC: 'Manage apps in the App Store. You can view app information, release apps, and suspend apps.',
+  APP_STORE_MANAGEMENT: 'App Store Verwaltung',
+  APP_STORE_DESC: 'Verwalten Sie Apps im App Store. Sie können App-Informationen ansehen, Apps freigeben und sperren.',
   // List
-  APP_CATEGORY: 'App Category',
-  APP_EMPTY_DESC: 'Please create an app template in a workspace and release it to the App Store.'
+  APP_CATEGORY: 'App Kategorie',
+  APP_EMPTY_DESC: 'Bitte erstellen Sie eine App-Vorlage in einem Arbeitsbereich und lassen Sie sie im App Store freigeben.'
 };
