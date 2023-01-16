@@ -21,12 +21,12 @@ module.exports = {
   WORKSPACE_QUOTAS_DESC: 'Workspace quotas are used to control the total resource usage of all projects and DevOps projects in a workspace.',
   // Resource Quotas
   RESOURCE_QUOTA_PL: 'Resource Quotas',
-  USED_PERCENT: 'Used: {percent}%',
-  RESOURCE_LIMIT: 'Resource limit',
+  USED_PERCENT: 'Verwendet: {percent}%',
+  RESOURCE_LIMIT: 'Ressourcenlimit',
   // Resource Quotas > Edit Quotas
   EDIT_WORKSPACE_QUOTAS: 'Edit Workspace Quotas',
-  CPU_REQUEST: 'CPU Request',
+  CPU_REQUEST: 'CPU Anforderung',
   CPU_LIMIT: 'CPU Limit',
-  MEMORY_REQUEST: 'Memory Request',
+  MEMORY_REQUEST: 'Speicheranforderung',
   MEMORY_LIMIT: 'Memory Limit'
 };
