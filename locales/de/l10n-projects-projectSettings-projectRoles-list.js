@@ -72,9 +72,9 @@ module.exports = {
   PERMISSION_CUSTOM_MONITORING_MANAGEMENT: 'Custom Monitoring Management',
   PERMISSION_CUSTOM_MONITORING_MANAGEMENT_DESC: 'Create, edit, and delete custom monitoring dashboards in the project.',
   // List > Edit Permissions > Access Control
-  PERMISSION_PROJECT_MEMBERS_VIEW: 'Member Viewing',
+  PERMISSION_PROJECT_MEMBERS_VIEW: 'Anzeigen von Cluster Mitgliedern',
   PERMISSION_PROJECT_MEMBERS_VIEW_DESC: 'View project members.',
-  PERMISSION_PROJECT_MEMBERS_MANAGEMENT: 'Member Management',
+  PERMISSION_PROJECT_MEMBERS_MANAGEMENT: 'Verwaltung von Cluster Mitgliedern',
   PERMISSION_PROJECT_MEMBERS_MANAGEMENT_DESC: 'Invite, edit, and remove project members.',
   PERMISSION_PROJECT_ROLES_VIEW: 'Role Viewing',
   PERMISSION_PROJECT_ROLES_VIEW_DESC: 'View project roles.',
