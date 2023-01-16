@@ -17,15 +17,15 @@
  */
 module.exports = {
   // Attributes
-  DURATION: 'Duration',
+  DURATION: 'Dauer',
   // Alert Rules
-  ALERTING_RULE: 'Alert Rules',
-  MONITORING_TARGETS_SCAP: 'Monitoring targets',
-  TRIGGER_CONDITION_SCAP: 'Trigger condition',
-  METRIC_MONITORING: 'Metric Monitoring',
-  ALERT_MONITORING: 'Alert Monitoring',
-  NOTIFICATION_SUMMARY_COLON: 'Summary: ',
+  ALERTING_RULE: 'Alarmregeln',
+  MONITORING_TARGETS_SCAP: 'Überwachungsziele',
+  TRIGGER_CONDITION_SCAP: 'Auslösebedingung',
+  METRIC_MONITORING: 'Metriküberwachung',
+  ALERT_MONITORING: 'Alarmüberwachung',
+  NOTIFICATION_SUMMARY_COLON: 'Zusammenfassung: ',
   DETAILS_COLON: 'Details: ',
   // Alerting History
-  NO_DATA_DESC: 'No Data Found'
+  NO_DATA_DESC: 'Keine Daten gefunden'
 };
