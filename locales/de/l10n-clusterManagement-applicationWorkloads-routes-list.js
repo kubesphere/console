@@ -17,44 +17,44 @@
  */
 module.exports = {
   // Banner
-  ROUTE_DESC: 'An ingress provides a way to aggregate services. You can expose the internal services outside the cluster through an externally accessible IP address.',
+  ROUTE_DESC: 'Eine ingress bietet eine Möglichkeit, Dienste zusammenzufassen. Sie können die internen Dienste außerhalb des Clusters durch eine externe zugängliche IP-Adresse freigeben.',
   PREREQUESTS_FOR_USE_ROUTE_Q: 'What are the prerequisites for using ingresses?',
   PREREQUESTS_FOR_USE_ROUTE_A: 'To use ingresses, you need to contact the project administrator to set the gateway for the project.',
   ACCESS_TYPES_OF_ROUTE_Q: 'What are the external access modes of ingresses?',
   ACCESS_TYPES_OF_ROUTE_A: 'KubeSphere ingresses support the NodePort and LoadBalancer external access modes.',
   ROUTE_PL: 'Ingresses',
   // List
-  GATEWAY_ADDRESS_TCAP: 'Gateway Address',
+  GATEWAY_ADDRESS_TCAP: 'Gatewayadresse',
   ROUTE_EMPTY_DESC: 'Please create an ingress.',
   // List > Create > Basic Information
   // List > Create > Routing Rules
   ADD_ROUTING_RULE_DESC: 'Add a routing rule to map domain name paths to services.',
-  ADD_ROUTING_RULE: 'Add Routing Rule',
-  ROUTING_RULE_EMPTY_DESC: 'Please add at least one routing rule.',
-  PATH_EMPTY_DESC: 'Please add at least one path.',
-  AUTO_GENERATE_TCAP: 'Auto Generate',
-  DOMAIN_NAME_TCAP: 'Domain Name',
-  DOMAIN_NAME_EMPTY_DESC: 'Please enter a domain name.',
-  INVALID_DOMAIN_DESC: 'Invalid domain name.',
-  INVALID_PATH_DESC: 'Invalid path.',
-  MODE_TCAP: 'Mode',
-  PATH_PL: 'Paths',
-  PATH_SERVICE_TIP: 'Service',
-  SET_ROUTING_RULES: 'Set Routing Rules',
-  SPECIFY_DOMAIN_TCAP: 'Specify Domain',
-  NO_GATEWAY_DESC: 'To use Auto Generate, please contact the project administrator to set the gateway access mode in Gateway Settings of the project.',
-  PATH: 'Path',
-  PROTOCOL: 'Protocol',
+  ADD_ROUTING_RULE: 'Routingregel hinzufügen',
+  ROUTING_RULE_EMPTY_DESC: 'Bitte mindestens eine Routingregel hinzufügen.',
+  PATH_EMPTY_DESC: 'Bitte fügen Sie mindestens einen Pfad hinzu.',
+  AUTO_GENERATE_TCAP: 'Automatisch generieren',
+  DOMAIN_NAME_TCAP: 'Domainname',
+  DOMAIN_NAME_EMPTY_DESC: 'Bitte geben Sie einen Domainnamen ein.',
+  INVALID_DOMAIN_DESC: 'Ungültiger Domainname.',
+  INVALID_PATH_DESC: 'Ungültiger Pfad.',
+  MODE_TCAP: 'Modus',
+  PATH_PL: 'Pfade',
+  PATH_SERVICE_TIP: 'Dienst',
+  SET_ROUTING_RULES: 'Routingregeln festlegen',
+  SPECIFY_DOMAIN_TCAP: 'Domain angeben',
+  NO_GATEWAY_DESC: 'Um Auto Generate zu verwenden, wenden Sie sich bitte an den Projektadministrator, um den Gateway-Zugriffsmodus in den Gateway-Einstellungen des Projekts festzulegen.',
+  PATH: 'Pfad',
+  PROTOCOL: 'Protokoll',
   PORT: 'Port',
   PORT_VALUE: 'Port: {value}',
-  CERTIFICATE: 'Certificate',
+  CERTIFICATE: 'Zertifikat',
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML
   // List > Edit Routing Rules
-  EDIT_ROUTING_RULES: 'Edit Routing Rules',
+  EDIT_ROUTING_RULES: 'Routingregeln bearbeiten',
   // List > Edit Annotations
-  EDIT_ANNOTATIONS: 'Edit Annotations',
+  EDIT_ANNOTATIONS: 'Anmerkungen bearbeiten',
   // List > Delete
   ROUTE_LOW: 'ingress'
 };
