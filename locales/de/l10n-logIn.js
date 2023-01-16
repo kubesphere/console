@@ -32,7 +32,7 @@ module.exports = {
   LOGIN_AGAIN_DESC: 'Die Sitzung ist abgelaufen oder der Benutzer hat sich woanders angemeldet. Bitte melde dich erneut an.',
   // Change password upon first login
   CHANGE_PASSWORD_TIP: 'Sie melden sich zum ersten Mal an. Bitte ändern Sie Ihr Passwort.',
-  SUBMIT: 'Submit',
+  SUBMIT: 'Absenden',
   CHANGE_PASSWORD_LATER: 'Passwort später ändern',
   PASSWORD_MUST: 'Ihr Passwort muss:',
   PASSWORD_LETTER: 'Mindestens 1 Großbuchstaben und 1 Kleinbuchstaben enthalten.',
