@@ -18,5 +18,5 @@
 module.exports = {
   // Title
   // Navigation Pane > Workspace
-  ADD_CLUSTER_FOR_WORKSPACE: 'Please authorize a cluster to this workspace.'
+  ADD_CLUSTER_FOR_WORKSPACE: 'Bitte autorisieren Sie einen Cluster zu diesem Arbeitsbereich.'
 };
