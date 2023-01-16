@@ -37,7 +37,7 @@ module.exports = {
   DOWNLOAD_ARTIFACT: 'Download Artifact',
   ARTIFACT_FILE: 'Artifact File',
   LOG_MODULE_NOT_INSTALLED: 'The logging module is not installed.',
-  LOADING_DOTS: 'Loading...',
+  LOADING_DOTS: 'Wird geladen...',
   IMAGE_NAME_SCAP: 'Image name',
   IMAGE_SIZE_SCAP: 'Image size',
   IMAGE_NAME_BUILDING: 'Image: {name}/Building',
