@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  APP_DETAILS_DESC: 'View details of the app to be released.',
+  APP_DETAILS_DESC: 'Details der zu veröffentlichenden App anzeigen.',
   // Description
   // App Information
   INTRODUCTION: 'Einführung',
