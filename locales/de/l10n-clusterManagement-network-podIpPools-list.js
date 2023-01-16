@@ -24,7 +24,7 @@ module.exports = {
   // List
   POD_IP_POOL_EMPTY_DESC: 'Please create a pod IP pool.',
   TOTAL_VALUE: 'Total: {value}',
-  ALL: 'All',
+  ALL: 'Alles',
   NOT_ASSIGNED: 'Not assigned',
   // List > Create
   CREATE_POD_IP_POOL: 'Create Pod IP Pool',
