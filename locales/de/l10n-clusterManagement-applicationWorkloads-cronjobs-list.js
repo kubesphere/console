@@ -18,12 +18,12 @@
 module.exports = {
   // Banner
   // List
-  CRONJOB_EMPTY_DESC: 'Please create a cronjob.',
+  CRONJOB_EMPTY_DESC: 'Bitte erstellen Sie einen Cronjob.',
   // List > Create > Basic Information
-  EVERY_DAY: '0 0 * * * (every day)',
-  EVERY_HOUR: '0 * * * * (every hour)',
-  EVERY_MONTH: '0 0 1 * * (every month)',
-  EVERY_WEEK: '0 0 * * 0 (every week)',
+  EVERY_DAY: '0 0 * * * (jeden Tag)',
+  EVERY_HOUR: '0 * * * * (jede Stunde)',
+  EVERY_MONTH: '0 0 1 * * (jeden Monat)',
+  EVERY_WEEK: '0 0 * * 0 (jede Woche)',
   // List > Create > Strategy Settings
   // List > Create > Pod Settings
   // List > Create > Storage Settings
@@ -31,6 +31,6 @@ module.exports = {
   // List > Edit Information
   // List > Edit YAML
   // List > Start/Pause
-  PAUSE: 'Pause',
-  START: 'Start'
+  PAUSE: 'Anhalten',
+  START: 'Starten'
 };
