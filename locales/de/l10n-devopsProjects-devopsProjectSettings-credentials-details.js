@@ -20,10 +20,10 @@ module.exports = {
   // Attributes
   // Edit
   // Delete
-  CREDENTIAL_LOW: 'credential',
+  CREDENTIAL_LOW: 'anmeldedaten',
   // Details > Credential
   DETAILS: 'Details',
-  TYPE_VALUE: 'Type: {value}',
+  TYPE_VALUE: 'Typ: {value}',
   // Events
-  RECORD: 'Record'
+  RECORD: 'Aufzeichnung'
 };
