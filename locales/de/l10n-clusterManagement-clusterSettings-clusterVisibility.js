@@ -17,25 +17,25 @@
  */
 module.exports = {
   // Banner
-  CLUSTER_VISIBILITY: 'Cluster Visibility',
-  EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
-  UNAUTHORIZED: 'Unauthorized',
-  CLUSTER_VISIBILITY_DESC: 'Cluster visibility controls the cluster authorization to workspaces. After a cluster is authorized to workspaces, you can view and manage the cluster resources in the workspaces.',
-  CLUSTER_VISIBILITY_Q1: 'How do I authorize a cluster to specific workspaces?',
-  CLUSTER_VISIBILITY_A1: 'You can assign a cluster to specific workspaces by clicking Edit Visibility.',
-  CLUSTER_VISIBILITY_Q2: 'What are public clusters?',
-  CLUSTER_VISIBILITY_A2: 'Public clusters can be accessed by all platform users. Users can create and schedule resources on public clusters.',
+  CLUSTER_VISIBILITY: 'Cluster Sichtbarkeit',
+  EDIT_VISIBILITY_DESC: 'Bearbeiten Sie die Sichtbarkeit des Clusters in Arbeitsbereichen.',
+  UNAUTHORIZED: 'Unautorisiert',
+  CLUSTER_VISIBILITY_DESC: 'Die Cluster-Sichtbarkeit steuert die Cluster-Autorisierung für Arbeitsbereiche. Nachdem ein Cluster für Arbeitsbereiche autorisiert wurde, können Sie die Cluster Ressourcen in den Arbeitsbereichen anzeigen und verwalten.',
+  CLUSTER_VISIBILITY_Q1: 'Wie autorisiere ich einen Cluster zu bestimmten Arbeitsbereichen?',
+  CLUSTER_VISIBILITY_A1: 'Sie können einen Cluster bestimmten Arbeitsbereichen zuordnen, indem Sie auf Sichtbarkeit bearbeiten klicken.',
+  CLUSTER_VISIBILITY_Q2: 'Was sind öffentliche Cluster?',
+  CLUSTER_VISIBILITY_A2: 'Öffentliche Cluster können von allen Plattformnutzern genutzt werden. Benutzer können Ressourcen für öffentliche Cluster erstellen und planen.',
   // List
-  WORKSPACE: 'Workspace',
-  CLUSTER_VISIBILITY_SCAP: 'Cluster visibility',
-  AUTHORIZATION_TIME_TCAP: 'Authorization Time',
+  WORKSPACE: 'Arbeitsbereich',
+  CLUSTER_VISIBILITY_SCAP: 'Cluster Sichtbarkeit',
+  AUTHORIZATION_TIME_TCAP: 'Autorisierungszeit',
   // List > Edit Visibility
-  EDIT_VISIBILITY: 'Edit Visibility',
-  AUTHORIZED: 'Authorized',
-  SET_PUBLIC_CLUSTER: 'Set as Public Cluster',
-  HOST_CLUSTER_VISIBILITY_WARNING: 'The stability of the multi-cluster system will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
-  CLUSTER_VISIBILITY_REMOVE_WARNING: 'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
-  REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
-  REMOVE_WORKSPACE_CONFIRM_SI: 'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
-  REMOVE_WORKSPACE_CONFIRM_PL: 'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks of this operation.'
+  EDIT_VISIBILITY: 'Sichtbarkeit bearbeiten',
+  AUTHORIZED: 'Autorisiert',
+  SET_PUBLIC_CLUSTER: 'Als öffentlicher Cluster festlegen',
+  HOST_CLUSTER_VISIBILITY_WARNING: 'Die Stabilität des Multi-Cluster-Systems nimmt ab, wenn der Host-Cluster überlastet ist. Gehen Sie beim Zuweisen des Host-Clusters zu Arbeitsbereichen vorsichtig vor.',
+  CLUSTER_VISIBILITY_REMOVE_WARNING: 'Nachdem die Berechtigung für einen Arbeitsbereich zur Nutzung des Clusters entfernt wurde, werden alle Ressourcen des Arbeitsbereichs auf dem Cluster gelöscht.',
+  REMOVE_WORKSPACE_CONFIRM_TITLE: 'Autorisierung entfernen',
+  REMOVE_WORKSPACE_CONFIRM_SI: 'Geben Sie den Namen des Arbeitsbereiches <strong>{resource}</strong> ein, um zu bestätigen, dass Sie die Risiken dieser Operation verstehen.',
+  REMOVE_WORKSPACE_CONFIRM_PL: 'Geben Sie die Arbeitsbereichsnamen <strong>{resource}</strong> ein, um zu bestätigen, dass Sie die Risiken dieses Vorgangs verstehen.'
 };
