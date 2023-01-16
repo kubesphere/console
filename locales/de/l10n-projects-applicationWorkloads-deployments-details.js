@@ -55,7 +55,7 @@ module.exports = {
   COMPARE_WITH: 'Compared with the previous record {version}',
   // Resource Status
   REPLICAS_DESIRED: 'Desired',
-  REPLICAS_CURRENT: 'Current',
+  REPLICAS_CURRENT: 'Aktuell',
   ADJUST_REPLICAS: 'Adjust Replicas',
   REPLICAS_SCALE_NOTIFY_CONTENT: 'Are you sure you want to change the number of pod replicas to {num}?',
   REPLICAS_SCALE_NOTIFY_CONFIRM: 'OK ({seconds}s)',
