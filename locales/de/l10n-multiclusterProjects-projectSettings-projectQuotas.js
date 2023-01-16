@@ -18,6 +18,6 @@
 module.exports = {
   // Banner
   // Resource Quotas
-  FOLD: 'Fold',
-  UNFOLD: 'Unfold'
+  FOLD: 'Zuklappen',
+  UNFOLD: 'Aufklappen'
 };
