@@ -25,10 +25,10 @@ module.exports = {
   // More > Delete
   // Attributes
   // Login History
-  TIME: 'Time',
-  SOURCE_IP_ADDRESS: 'Source IP Address',
+  TIME: 'Zeit',
+  SOURCE_IP_ADDRESS: 'Ursprungs IP-Addresse',
   LOGIN_HISTORY: 'Login-Verlauf',
   NO_LOGIN_HISTORY: 'Es wurde kein Login-Verlauf gefunden.',
   SUCCESSFUL: 'Erfolgreich',
-  FAILED: 'Failed'
+  FAILED: 'Fehlgeschlagen'
 };
