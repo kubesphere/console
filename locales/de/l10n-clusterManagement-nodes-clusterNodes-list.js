@@ -41,7 +41,7 @@ module.exports = {
   ADD_NODE: 'Add Node',
   NODE_STATUS_UNSCHEDULABLE: 'Unschedulable',
   NODE_STATUS_RUNNING: 'Running',
-  NODE_STATUS_WARNING: 'Warning',
+  NODE_STATUS_WARNING: 'Warnung',
   NODE_STATUS_PENDING: 'Creating',
   NODE_STATUS_FAILED: 'Failed',
   CLUSTER_NODE_EMPTY_DESC: 'Please add a node to the cluster.',
