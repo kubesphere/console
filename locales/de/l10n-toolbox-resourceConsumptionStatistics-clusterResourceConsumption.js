@@ -45,7 +45,7 @@ module.exports = {
   WORKSPACE_SCAP: 'Workspace',
   CLUSTER_SCAP: 'Cluster',
   PROJECT_SCAP: 'Projekt',
-  SERVICE_SCAP: 'Service',
+  SERVICE_SCAP: 'Dienst',
   HOST_CLUSTER_SCAP: 'Host cluster',
   MEMBER_CLUSTER_SCAP: 'Member cluster',
   // Consumtion History
