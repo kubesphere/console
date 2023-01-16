@@ -24,8 +24,8 @@ module.exports = {
   // Pods
   // Gateway
   GATEWAY: 'Gateway',
-  GATEWAY_NOT_ENABLED: 'Gateway Not Enabled',
-  ENABLE_GATEWAY_TIP: 'To use the gateway, please configure the gateway in the cluster or the project.',
+  GATEWAY_NOT_ENABLED: 'Gateway nicht aktiviert',
+  ENABLE_GATEWAY_TIP: 'Um das Gateway zu verwenden, konfigurieren Sie das Gateway bitte im Cluster oder im Projekt.',
   // Quotas > Default Container Quotas
-  QUOTA_PL: 'Quotas'
+  QUOTA_PL: 'Quoten'
 };
