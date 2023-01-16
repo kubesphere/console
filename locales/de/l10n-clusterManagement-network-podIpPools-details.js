@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Attributes
-  NETWORK: 'Network',
+  NETWORK: 'Netzwerk',
   START_IP_ADDRESS: 'Start IP Address',
   END_IP_ADDRESS: 'End IP Address',
   MASK: 'Mask',
