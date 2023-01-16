@@ -67,6 +67,6 @@ module.exports = {
   // List > Stop
   STOP: 'Stop',
   STOP_TITLE_SI: 'Stoppe {type}',
-  STOP_TITLE_PL: 'Stop Multiple {type}',
-  STOP_DESC: 'Are you sure you want to stop the resource?'
+  STOP_TITLE_PL: 'Stoppe mehrere {type}',
+  STOP_DESC: 'Sind Sie sicher, dass Sie die Ressource stoppen wollen?'
 };
