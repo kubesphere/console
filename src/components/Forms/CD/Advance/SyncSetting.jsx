@@ -26,7 +26,6 @@ import { get, set } from 'lodash'
 import styles from './index.scss'
 
 export default class SyncSetting extends React.Component {
-  // 同步策略
   get syncPolicyTypeOptions() {
     return [
       {
@@ -42,7 +41,6 @@ export default class SyncSetting extends React.Component {
     ]
   }
 
-  // 同步设置
   get syncOptionsOptions() {
     return [
       {
@@ -68,7 +66,6 @@ export default class SyncSetting extends React.Component {
     ]
   }
 
-  // 依赖清理策略
   get prunePropagationPolicyOptions() {
     return [
       {
