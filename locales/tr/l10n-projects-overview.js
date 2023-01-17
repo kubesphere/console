@@ -33,7 +33,7 @@ module.exports = {
   NUMBER_OF_CRONJOBS: 'Cronjobs Sayısı',
   NUMBER_OF_VOLUMES: 'Kalıcı hacim taleplerinin sayısı',
   NUMBER_OF_SERVICES: 'Hizmet Sayısı',
-  NUMBER_OF_ROUTES: 'Number of ingresses',
+  NUMBER_OF_ROUTES: 'Rota Sayısı',
   NUMBER_OF_SECRETS: 'Gizlilik Sayısı',
   NUMBER_OF_CONFIGMAPS: 'Yapılandırma Haritası Sayısı',
   // Deployed Apps
