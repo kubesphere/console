@@ -58,6 +58,6 @@ module.exports = {
   JOBS: 'İşler',
   VOLUMES: 'Birimler',
   SERVICES: 'Hizmetler',
-  ROUTES: 'Ingresses',
+  ROUTES: 'Routerler',
   SECRETS: 'Gizli'
 };
