@@ -43,8 +43,8 @@ module.exports = {
   APPLICATION_SERVICE_DESC: '根據應用中服務類型的不同設置不同類型的服務組件，支持無狀態服務和有狀態服務',
   APP_CREATE_SERVICE_DESC: 'Create a service for the app.',
   // List > Create > Ingress Settings
-  ROUTE_SETTINGS: 'Ingress Settings',
+  ROUTE_SETTINGS: 'Route Settings',
   ROUTING_RULES: '路由規則',
   ROUTE_SETTINGS_DESC: '可以設置應用的外網訪問規則 (Ingress)',
-  ADD_ROUTE_SUCCESS: 'The ingress was added successfully.'
+  ADD_ROUTE_SUCCESS: 'The route was added successfully.'
 };
