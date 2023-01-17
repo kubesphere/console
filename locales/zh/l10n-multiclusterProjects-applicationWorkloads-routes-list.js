@@ -27,5 +27,5 @@ module.exports = {
   // List > Create > Basic Information
   // List > Create > Routing Rules
   // List > Create > Advanced Settings
-  ROUTE_ADD_METADATA_DESC: '为应用路由添加元数据。'
+  ROUTE_ADD_METADATA_DESC: '为路由添加元数据。'
 };
