@@ -28,7 +28,7 @@ module.exports = {
   LOAD_BALANCER_PROVIDER_SCAP: 'Yük dengeleyici sağlayıcı',
   // Cluster Gateway > Enable Gateway
   ENABLE_GATEWAY: 'Ağ geçidi etkinleştir',
-  GATEWAY_TRACING_TIP: 'If ingresses cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the ingress.',
+  GATEWAY_TRACING_TIP: '<b>İzleme</b> etkinleştirildikten sonra rotalara erişilemiyorsa, lütfen rotaya <b>nginx.ingress.kubernetes.io/service-upstream: true </b> ek açıklamasını ekleyin.',
   // Cluster Gateway > Manage > View Details
   VIEW_DETAILS: 'Detayları Göster',
   // Cluster Gateway > Manage > Disable
