@@ -43,8 +43,8 @@ module.exports = {
   APPLICATION_SERVICE_DESC: 'Puedes configurar diferentes componentes de servicio basándote en el tipo de servicio dentro de una aplicación. Tanto los servicios con estado como los sin estado están soportados.',
   APP_CREATE_SERVICE_DESC: 'Create a service for the app.',
   // List > Create > Ingress Settings
-  ROUTE_SETTINGS: 'Ingress Settings',
+  ROUTE_SETTINGS: 'Route Settings',
   ROUTING_RULES: 'Reglas de ruta',
   ROUTE_SETTINGS_DESC: 'Puedes definir las reglas de acceso a internet para la aplicación (Ingress).',
-  ADD_ROUTE_SUCCESS: 'The ingress was added successfully.'
+  ADD_ROUTE_SUCCESS: 'The route was added successfully.'
 };
