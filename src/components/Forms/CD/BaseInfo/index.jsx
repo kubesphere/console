@@ -20,12 +20,13 @@ import React from 'react'
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
 
 import { PATTERN_NAME } from 'utils/constants'
+import Placement from '../Advance/Placement'
 
-import CodeRepoSelector from '../../../CodeRepoSelector'
+import styles from '../Advance/index.scss'
 
 export default class BaseInfo extends React.Component {
   render() {
-    const { formRef, formTemplate, devops, cluster } = this.props
+    const { formRef, formTemplate } = this.props
     return (
       <Form ref={formRef} data={formTemplate}>
         <Columns>
@@ -59,12 +60,26 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item
-          label={t('CODE_REPOSITORY')}
-          rules={[{ required: true, message: t('REPO_EMPTY_DESC') }]}
-        >
-          <CodeRepoSelector name="repoURL" devops={devops} cluster={cluster} />
-        </Form.Item>
+        <div className={styles.wrapper}>
+          <h6>{t('DEPLOY_LOCATION')}</h6>
+          <div className={styles.wrapper_item}>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: t('PROJECT_NOT_SELECT_DESC'),
+                },
+              ]}
+            >
+              <Placement
+                name="destination"
+                prefix="destination"
+                formData={formTemplate}
+                {...this.props}
+              />
+            </Form.Item>
+          </div>
+        </div>
       </Form>
     )
   }
