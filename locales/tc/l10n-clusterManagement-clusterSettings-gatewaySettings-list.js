@@ -28,7 +28,7 @@ module.exports = {
   LOAD_BALANCER_PROVIDER_SCAP: '負載均衡器供應商',
   // Cluster Gateway > Enable Gateway
   ENABLE_GATEWAY: '開啟網關',
-  GATEWAY_TRACING_TIP: 'If ingresses cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the ingress.',
+  GATEWAY_TRACING_TIP: '如果開啟<b>鏈路追蹤</b>後路由無法訪問，請在路由中添加註釋 <b>nginx.ingress.kubernetes.io/service-upstream: true</b>。',
   // Cluster Gateway > Manage > View Details
   VIEW_DETAILS: '查看詳情',
   // Cluster Gateway > Manage > Disable
