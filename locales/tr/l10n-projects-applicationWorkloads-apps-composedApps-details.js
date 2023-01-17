@@ -18,7 +18,7 @@
 module.exports = {
   // More > Add Service
   ADD_SERVICE: 'Hizmet Ekle',
-  ADD_ROUTE: 'Add Ingress',
+  ADD_ROUTE: 'Rota ekle',
   SERVICE_ADDED_SUCCESSFULLY: 'The service was added successfully.',
   // More > Add Ingress
   // Attributes
