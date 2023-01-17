@@ -77,7 +77,7 @@ module.exports = {
   STATEFULSETS_VALUE: '有状态副本集数量：{value}',
   DAEMONSETS_VALUE: '守护进程集数量：{value}',
   RUNNING_PODS: '运行中的容器组数量',
-  ROUTE: '入站',
+  ROUTE: '应用路由',
   // Resource Usage > Projects
   PROJECT_PL: '项目',
   PROJECT_COUNT: '项目数量',
