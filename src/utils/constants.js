@@ -32,7 +32,7 @@ export const PODS_STATUS = [
   { text: 'WAITING', value: 'Waiting' },
   { text: 'RUNNING', value: 'Running' },
   { text: 'COMPLETED', value: 'Completed' },
-  { text: 'FAILED', value: 'Failed' },
+  { text: 'ERROR', value: 'Error' },
 ]
 
 export const JOB_STATUS = [
