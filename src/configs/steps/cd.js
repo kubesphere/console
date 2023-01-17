@@ -27,14 +27,12 @@ export const CD_FORM = [
     required: true,
   },
   {
-    // 代码仓库设置
     title: 'CODE_REPOSITORY_SETTINGS',
     component: CodeRepoSetting,
     required: true,
     icon: 'code',
   },
   {
-    // 同步设置
     title: 'SYNC_SETTINGS',
     component: SyncSetting,
     required: true,
