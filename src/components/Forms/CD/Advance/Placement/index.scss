@@ -42,15 +42,17 @@
 
 .placement {
   display: flex;
+  gap: 12px;
+  align-items: center;
 
   & > div {
     min-width: 200px;
     margin-right: 12px;
+    flex: 1;
   }
 
   .icon {
-    @include vertical-center;
-    right: 12px;
+    flex: none;
   }
 }
 
