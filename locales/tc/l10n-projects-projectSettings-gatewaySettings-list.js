@@ -21,7 +21,7 @@ module.exports = {
   // Project Gateway
   PROJECT_GATEWAY: 'Project Gateway',
   // Project Gateway > Enable Gateway
-  ENABLE_GATEWAY_DESC: 'Enable the gateway controller to forward traffic to different services based on domain names and paths configured in ingresses.',
+  ENABLE_GATEWAY_DESC: '在創建應用路由之前，需要先啟用外網訪問入口，即網關。這一步是創建對應的應用路由控制器，用來負責將請求轉發到對應的後端服務。',
   // Project Gateway > Enable Gateway > NodePort
   // Project Gateway > Enable Gateway > LoadBalancer
   LOAD_BALANCER_PROVIDER: 'LoadBalancer提供商',
