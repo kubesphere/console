@@ -21,23 +21,23 @@ module.exports = {
   // More > Delete
   GATEWAY_LOW: 'gateway',
   // Monitoring
-  REQUEST_COUNT: 'Requests',
-  NETWORK_TRAFFIC: 'Network Traffic',
-  CONNECTION_COUNT: 'Connections',
-  FAILED_REQUEST_COUNT: 'Failed Requests',
-  AVERAGE_LATENCY: 'Average Latency',
-  P_FIFTY_LATENCY: 'P50 Latency',
-  P_NINETY_FIVE_LATENCY: 'P95 Latency',
-  P_NINETY_NINE_LATENCY: 'P99 Latency',
-  FOUR_XX_REQUEST_COUNT: '4XX Requests',
-  FIVE_XX_REQUEST_COUNT: '5XX Requests',
-  TOTAL_REQUESTS: 'Total Requests',
-  SUCCESSFUL_REQUESTS: 'Successful Requests',
+  REQUEST_COUNT: 'Anfragen',
+  NETWORK_TRAFFIC: 'Netzwerkverkehr',
+  CONNECTION_COUNT: 'Verbindungen',
+  FAILED_REQUEST_COUNT: 'Fehlgeschlagene Anfragen',
+  AVERAGE_LATENCY: 'Durchschnittliche Latenz',
+  P_FIFTY_LATENCY: 'P50 Latenz',
+  P_NINETY_FIVE_LATENCY: 'P95 Latenz',
+  P_NINETY_NINE_LATENCY: 'P99 Latenz',
+  FOUR_XX_REQUEST_COUNT: '4XX Anfragen',
+  FIVE_XX_REQUEST_COUNT: '5XX Anfragen',
+  TOTAL_REQUESTS: 'Gesamte Anfragen',
+  SUCCESSFUL_REQUESTS: 'Erfolgreiche Anfragen',
   // Configuration Options
-  CONFIGURATION_OPTIONS: 'Configuration Options',
+  CONFIGURATION_OPTIONS: 'Konfigurationsoptionen',
   // Gateway Logs
   GATEWAY_LOGS: 'Gateway Logs',
-  LOGGING_DISABLED: 'Logging Disabled',
-  REFRESH_INTERVAL_VALUE: 'Refresh interval: {value}s',
-  EXPORT_LOGS: 'Export Logs'
+  LOGGING_DISABLED: 'Logging deaktiviert',
+  REFRESH_INTERVAL_VALUE: 'Aktualisierungsintervall: {value}s',
+  EXPORT_LOGS: 'Logs exportieren'
 };
