@@ -35,7 +35,7 @@ module.exports = {
   // List > Create > > QingCloud CSI > Storage Class Settings
   VOLUME_EXPANSION: 'Volume Expansion',
   RECLAIM_POLICY: 'Reclaim Policy',
-  ACCESS_MODE: 'Access Mode',
+  ACCESS_MODE: 'Zugriffsmodus',
   ACCESS_MODES_DESC: 'Select one or more access modes supported by the storage class.',
   STORAGE_SYSTEM: 'Storage System',
   VOLUME_BINDING_MODE: 'Volume Binding Mode',
