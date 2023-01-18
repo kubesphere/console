@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Edit
-  EDIT_LOG_RECEIVER: 'Edit Log Receiver',
-  INDEX_PREFIX: 'Index Prefix',
+  EDIT_LOG_RECEIVER: 'Log Empfänger bearbeiten',
+  INDEX_PREFIX: 'Index Präfix',
   // More > Change Status
-  CHANGE_STATUS: 'Change Status',
-  LOG_COLLECTION_ENABLE_TIPS: 'The new status requires about 1 minute to take effect.',
-  SELECT_STATUS_TIP: 'Select a status',
+  CHANGE_STATUS: 'Status ändern',
+  LOG_COLLECTION_ENABLE_TIPS: 'Der neue Status benötigt ca. 1 Minute, um wirksam zu werden.',
+  SELECT_STATUS_TIP: 'Wählen Sie einen Status aus',
   // Resource Status
-  ADDRESS: 'Address'
+  ADDRESS: 'Adresse'
 };
