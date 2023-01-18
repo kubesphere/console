@@ -18,7 +18,6 @@
 
 import React from 'react'
 import CodeStore from 'stores/codeRepo'
-import { pick } from 'lodash'
 import {
   Icon,
   Column,
@@ -26,11 +25,11 @@ import {
   Form,
   Input,
   TextArea,
-  Select,
 } from '@kube-design/components'
 import { PATTERN_NAME } from 'utils/constants'
+import Placement from '../Advance/Placement'
 
-import styles from './index.scss'
+import styles from '../Advance/index.scss'
 
 export default class BaseInfo extends React.Component {
   codeStore = new CodeStore()
@@ -99,22 +98,26 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item
-          label={t('CODE_REPOSITORY')}
-          rules={[{ required: true, message: t('REPO_EMPTY_DESC') }]}
-        >
-          <Select
-            name="repoURL"
-            options={this.state.options}
-            valueRenderer={option => this.repoOptionRenderer(option)('value')}
-            optionRenderer={option => this.repoOptionRenderer(option)('option')}
-            pagination={pick(this.codeStore.list, ['page', 'limit', 'total'])}
-            isLoading={this.codeStore.list.isLoading}
-            onFetch={this.getRepoList}
-            searchable
-            clearable
-          />
-        </Form.Item>
+        <div className={styles.wrapper}>
+          <h6>{t('DEPLOY_LOCATION')}</h6>
+          <div className={styles.wrapper_item}>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: t('PROJECT_NOT_SELECT_DESC'),
+                },
+              ]}
+            >
+              <Placement
+                name="destination"
+                prefix="destination"
+                formData={formTemplate}
+                {...this.props}
+              />
+            </Form.Item>
+          </div>
+        </div>
       </Form>
     )
   }

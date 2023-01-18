@@ -17,7 +17,8 @@
  */
 
 import BaseInfo from 'components/Forms/CD/BaseInfo'
-import Advance from 'components/Forms/CD/Advance'
+import CodeRepoSetting from 'components/Forms/CD/Advance/CodeRepoSetting'
+import SyncSetting from 'components/Forms/CD/Advance/SyncSetting'
 
 export const CD_FORM = [
   {
@@ -26,9 +27,15 @@ export const CD_FORM = [
     required: true,
   },
   {
-    title: 'DEPLOYMENT_SETTINGS',
-    component: Advance,
+    title: 'CODE_REPOSITORY_SETTINGS',
+    component: CodeRepoSetting,
     required: true,
-    icon: 'rocket',
+    icon: 'code',
+  },
+  {
+    title: 'SYNC_SETTINGS',
+    component: SyncSetting,
+    required: true,
+    icon: 'timed-task',
   },
 ]

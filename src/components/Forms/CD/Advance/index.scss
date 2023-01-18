@@ -9,9 +9,9 @@
   }
 
   &_item {
-    background: #f9fbfd;
-    border-radius: 4px;
-    padding: 12px;
+    // background: #f9fbfd;
+    // border-radius: 4px;
+    // padding: 12px;
 
     &_com {
       margin-bottom: 12px;
@@ -19,8 +19,13 @@
   }
 
   .columns {
-    display: flex;
-
+    // display: flex;
+    :global {
+      .form-item + .form-item,
+      .form-item + .form-group {
+        margin-top: 8px;
+      }
+    }
     .column {
       flex: 1 1;
       padding: 12px;
@@ -57,5 +62,12 @@
         color: #242e42;
       }
     }
+  }
+  .array_checkbox_item {
+    min-width: 150px;
+    align-self: center;
+  }
+  .align_center {
+    align-self: center;
   }
 }
