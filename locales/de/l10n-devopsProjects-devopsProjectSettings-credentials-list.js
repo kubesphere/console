@@ -24,9 +24,9 @@ module.exports = {
   // List > Create
   CREATE_CREDENTIAL: 'Create Credential',
   CREDENTIAL_NAME_EXIST_DESC: 'The credential name already exists. Please enter another name.',
-  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'Username and password',
+  CREDENTIAL_TYPE_USERNAME_PASSWORD: 'Benutzername und Passwort',
   CREDENTIAL_TYPE_SSH: 'SSH key',
-  PRIVATE_KEY: 'Private Key',
+  PRIVATE_KEY: 'Privatschlüssel',
   PASSPHRASE: 'Passphrase',
   CREDENTIAL_TYPE_SECRET_TEXT: 'Access token',
   CREDENTIAL_TYPE_KUBECONFIG: 'kubeconfig',
