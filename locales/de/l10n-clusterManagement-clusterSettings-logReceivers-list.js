@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Banner
-  LOG_RECEIVER_PL: 'Log Receivers',
-  LOG_COLLECTION_DESC: 'The system collects standard output (stdout) and standard error (stderr) logs from each container and sends them to one or more target services.',
+  LOG_RECEIVER_PL: 'Log Empfänger',
+  LOG_COLLECTION_DESC: 'Das System sammelt Standardausgabe- (stdout) und Standardfehlerprotokolle (stderr) von jedem Container und sendet sie an einen oder mehrere Zieldienste.',
   // Banner > Add Log Receiver
-  ADD_LOG_RECEIVER: 'Add Log Receiver',
-  LOG_COLLECTION_TIPS: 'You can add one log receiver for each type.',
-  ES_DESC: 'Elasticsearch is a distributed, RESTful search and analytics engine.',
+  ADD_LOG_RECEIVER: 'Log Empfänger hinzufügen',
+  LOG_COLLECTION_TIPS: 'Sie können für jeden Typ einen Log Empfänger hinzufügen.',
+  ES_DESC: 'Elasticsearch ist eine verteilte, REST-konforme Such- und Analyse-Engine.',
   KAFKA_DESC: 'Kafka is a popular open-source, stream-processing platform.',
   FLUENTD_DESC: 'Fluentd is an open-source data collector for unified logging layer.',
   // Banner > Add Log Receiver > Elasticsearch
