@@ -17,11 +17,11 @@
  */
 module.exports = {
   // Banner
-  APPLICATION_WORKLOAD_PL: 'Application Workloads',
+  APPLICATION_WORKLOAD_PL: 'Anwendungs-Workloads',
   WORKLOAD_PL: 'Workloads',
   // List
   DEPLOYMENTS: 'Deployments',
-  UPDATE_TIME_TCAP: 'Update Time',
+  UPDATE_TIME_TCAP: 'Aktualisierungszeit',
   ALL_PROJECTS: 'Alle Projekte',
   SHOW_NUM: 'Zeige: {num}',
   // List > Create > Basic Information
