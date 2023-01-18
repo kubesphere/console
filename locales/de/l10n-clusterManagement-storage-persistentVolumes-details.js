@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Attributes
-  VOLUME_HANDLE: 'Volume Handle',
+  VOLUME_HANDLE: 'Volumen Handle',
   VOLUME_MODE: 'Volumen Modus',
   VOLUME_MODE_FILESYSTEM: 'Dateisystem',
   VOLUME_MODE_BLOCK: 'Blockgerät',
