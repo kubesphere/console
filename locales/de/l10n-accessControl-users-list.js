@@ -17,16 +17,16 @@
  */
 module.exports = {
   // Banner
-  USER_DESC: 'Manage users and their roles.',
+  USER_DESC: 'Verwalten Sie Benutzer und ihre Rollen.',
   USER_PL: 'Benutzer',
   // List
   NOT_LOGIN_YET: 'Noch nicht angemeldet',
-  USER_EMPTY_DESC: 'Please create a user.',
+  USER_EMPTY_DESC: 'Bitte erstellen Sie einen Benutzer.',
   USER_ACTIVE: 'Aktiv',
-  USER_AUTHLIMITEXCEEDED: 'Login restricted',
+  USER_AUTHLIMITEXCEEDED: 'Anmeldung eingeschränkt',
   USER_PENDING: 'Ausstehend',
   USER_DISABLED: 'Deaktiviert',
-  LAST_LOGIN: 'Last Login',
+  LAST_LOGIN: 'Letzte Anmeldung',
   // List > Create
   USERNAME_DESC: 'Der Benutzername darf nur Kleinbuchstaben, Zahlen, Bindestriche (-) und Punkte (.), und muss mit einem Kleinbuchstaben oder einer Zahl beginnen und enden, die maximale Länge beträgt 32 Zeichen.',
   PASSWORD_DESC: 'Das Passwort muss mindestens eine Zahl, einen Kleinbuchstaben, einen Großbuchstaben und ein Sonderzeichen (~!@#$%^&*()-_=+\\|[{}];:\'",<. /? oder Leerzeichen). Die Länge muss 8 bis 64 Zeichen lang sein.',
