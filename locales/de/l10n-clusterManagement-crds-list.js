@@ -20,9 +20,9 @@ module.exports = {
   CRD: 'CRD',
   CRD_PL: 'CRDs',
   CRD_LOW: 'CRD',
-  CRD_DESC: 'A Custom Resource Definition (CRD) extends Kubernetes by allowing users to create any kind of custom resources. Users can use these CRD objects as they do for built-in resources.',
+  CRD_DESC: 'Eine Custom Resource Definition (CRD) erweitert Kubernetes, indem sie es Benutzern ermöglicht, jede Art von benutzerdefinierten Ressourcen zu erstellen. Benutzer können diese CRD-Objekte wie integrierte Ressourcen verwenden.',
   // List
-  CRD_EMPTY_DESC: 'Please create a CRD.',
-  KIND_TCAP: 'Kind',
-  SCOPE_TCAP: 'Scope'
+  CRD_EMPTY_DESC: 'Bitte erstellen Sie eine CRD.',
+  KIND_TCAP: 'Art',
+  SCOPE_TCAP: 'Bereich'
 };
