@@ -18,5 +18,5 @@
 module.exports = {
   // Banner
   // List
-  STATEFULSETS: 'Statefulsets'
+  STATEFULSETS: 'StatefulSets'
 };
