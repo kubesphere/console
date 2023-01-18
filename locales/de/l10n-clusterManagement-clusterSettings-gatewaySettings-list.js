@@ -17,39 +17,39 @@
  */
 module.exports = {
   // Navigation Pane
-  GATEWAY_SETTINGS: 'Gateway Settings',
+  GATEWAY_SETTINGS: 'Gateway Einstellungen',
   // Banner
-  CLUSTER_GATEWAY_DESC: 'Set up and manage the configuration of the external network access gateway and service management in the cluster.',
+  CLUSTER_GATEWAY_DESC: 'Einrichten und Verwalten der Konfiguration des Gateways für den externen Netzwerkzugriff und der Dienstverwaltung im Cluster.',
   // Cluster Gateway
-  CLUSTER_GATEWAY_NOT_ENABLED: 'Cluster Gateway Not Enabled',
-  CLUSTER_ENABLE_GATEWAY_DESC: 'Please enable the cluster gateway.',
+  CLUSTER_GATEWAY_NOT_ENABLED: 'Cluster Gateway nicht aktiviert',
+  CLUSTER_ENABLE_GATEWAY_DESC: 'Bitte aktivieren Sie das Cluster Gateway.',
   CLUSTER_GATEWAY: 'Cluster Gateway',
-  GATEWAY_ADDRESS_SCAP: 'Gateway address',
-  LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
+  GATEWAY_ADDRESS_SCAP: 'Gateway Adresse',
+  LOAD_BALANCER_PROVIDER_SCAP: 'Load Balancer Anbieter',
   // Cluster Gateway > Enable Gateway
-  ENABLE_GATEWAY: 'Enable Gateway',
+  ENABLE_GATEWAY: 'Gateway aktivieren',
   GATEWAY_TRACING_TIP: 'If ingresses cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the ingress.',
   // Cluster Gateway > Manage > View Details
-  VIEW_DETAILS: 'View Details',
+  VIEW_DETAILS: 'Details anzeigen',
   // Cluster Gateway > Manage > Disable
-  DISABLE: 'Disable',
-  DISABLE_GATEWAY: 'Disable Gateway',
-  DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
-  DISABLE_SUCCESSFUL: 'Disabled successfully.',
+  DISABLE: 'Deaktivieren',
+  DISABLE_GATEWAY: 'Gateway deaktivieren',
+  DISABLE_GATEWAY_TIP: 'Möchten Sie das Gateway wirklich deaktivieren?',
+  DISABLE_SUCCESSFUL: 'Erfolgreich deaktiviert.',
   // Cluster Gateway > Manage > Edit
-  EDIT: 'Edit',
-  EDIT_TITLE: 'Edit {title}',
+  EDIT: 'Bearbeiten',
+  EDIT_TITLE: '{title} bearbeiten',
   // Cluster Gateway > Manage > Update
-  UPDATE: 'Update',
-  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short whilte. Exercise caution when performing this operation.',
+  UPDATE: 'Aktualisieren',
+  UPDATE_GATEWAY_DESC: 'Dieser Vorgang kann den Betrieb für kurze Zeit unterbrechen. Seien Sie vorsichtig, wenn Sie diesen Vorgang ausführen.',
   // Project Gateways
-  PROJECT_GATEWAY_PL: 'Project Gateways',
-  PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',
-  PROJECT_ENABLE_GATEWAY_DESC: 'Please enable the project gateway.',
-  REPLICA_COUNT: 'Replicas',
+  PROJECT_GATEWAY_PL: 'Projekt Gateways',
+  PROJECT_GATEWAY_NOT_ENABLED: 'Projekt Gateway nicht aktiviert',
+  PROJECT_ENABLE_GATEWAY_DESC: 'Bitte aktivieren Sie das Projekt Gateway.',
+  REPLICA_COUNT: 'Replikate',
   NODE_PORTS: 'Node Ports',
-  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
+  UPDATE_GATEWAY_DESC: 'Das aktuelle Gateway kann aktualisiert werden.',
   // Project Gateways > Disable
-  PROJECT_GATEWAY_LOW: 'project gateway',
-  DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'
+  PROJECT_GATEWAY_LOW: 'projekt gateway',
+  DISABLE_MULTIPLE_GATEWAYS: 'Mehrere Gateways deaktivieren'
 };
