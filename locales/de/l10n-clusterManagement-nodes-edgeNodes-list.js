@@ -25,7 +25,7 @@ module.exports = {
   AGENT: 'Agent',
   EDGE: 'Edge node',
   // List > Add
-  ADD: 'Add',
+  ADD: 'Hinzufügen',
   ADD_EDGE_NODE: 'Add Edge Node',
   EDGENODE_CONFIG_COMMAND: 'Edge Node Configuration Command',
   ADD_EDGE_COMMAND: 'Run the above command on your edge node to configure it.',
