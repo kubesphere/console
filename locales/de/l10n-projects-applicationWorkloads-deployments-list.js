@@ -39,7 +39,7 @@ module.exports = {
   MAX_EXTRA_PODS_DESC: 'Maximum number or percentage of extra pods allowed during the update process.',
   MAX_EXTRA_PODS: 'Maximum Extra Pods',
   // List > Create > Storage Settings
-  AVAILABLE: 'Available',
+  AVAILABLE: 'Verfügbar',
   IN_USER: 'In use',
   ACCESS_MODE_SCAP: 'Access mode',
   PVC_OR_TEMPLATE_EMPTY: 'You have enabled Collect Logs on Volumes. Please add at least one persistent volume, temperary volume, or persistent volume claim template and specify the path of container logs.',
