@@ -22,11 +22,11 @@ module.exports = {
   // List
   SERVICE_EMPTY_DESC: 'Bitte erstellen Sie einen Dienst.',
   UNKNOWN: 'Unbekannt',
-  EXTERNAL_ACCESS: 'External Access',
-  INTERNAL_ACCESS: 'Internal Access',
+  EXTERNAL_ACCESS: 'Externer Zugang',
+  INTERNAL_ACCESS: 'Interner Zugang',
   // List > Edit YAML
   // List > Edit Service
-  UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
+  UNKNOWN_SERVICE_TYPE: 'Unbekannter Servicetyp',
   // List > Delete
   SERVICE: 'Dienst',
   SERVICE_LOW: 'dienst',
