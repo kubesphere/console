@@ -68,7 +68,7 @@ module.exports = {
   DEPLOYMENT_PL: 'Deployments',
   DEPLOYMENT_LOW: 'deployment',
   STATEFULSET: 'Statefulset',
-  STATEFULSET_PL: 'Statefulsets',
+  STATEFULSET_PL: 'StatefulSets',
   STATEFULSET_LOW: 'statefulset',
   DAEMONSET: 'Daemonset',
   DAEMONSET_PL: 'Daemonsets',
