@@ -59,5 +59,5 @@ module.exports = {
   VOLUMES: 'Volumen',
   SERVICES: 'Dienste',
   ROUTES: 'Ingresses',
-  SECRETS: 'Secrets'
+  SECRETS: 'Geheimnisse'
 };
