@@ -33,7 +33,7 @@ module.exports = {
   SELECT_GRAY_COMPONENT_TIP: 'Please select a service.',
   // Release Modes > Blue-Green Deployment > Create > New Version Settings
   REPLICA: 'Replica',
-  REPLICA_PL: 'Replicas',
+  REPLICA_PL: 'Replikate',
   GRAYSCALE_REPLICAS_DESC: 'Pod replicas in the new version',
   // Release Modes > Blue-Green Deployment > Create > Strategy Settings
   SELECT_VERSION: 'Select Version',
