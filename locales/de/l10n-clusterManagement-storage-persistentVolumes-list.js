@@ -17,14 +17,14 @@
  */
 module.exports = {
   // Banner
-  PERSISTENT_VOLUME: 'Persistent Volume',
-  PERSISTENT_VOLUME_PL: 'Persistent Volumes',
-  PERSISTENT_VOLUME_LOW: 'persistent volume',
+  PERSISTENT_VOLUME: 'Persistenten Volumenanspruch',
+  PERSISTENT_VOLUME_PL: 'Persistente Volumenansprüche',
+  PERSISTENT_VOLUME_LOW: 'persistent volumenanspruch',
   // List
-  PV_STATUS_AVAILABLE: 'Available',
-  PV_STATUS_BOUND: 'Bound',
-  PV_STATUS_RELEASED: 'Released',
+  PV_STATUS_AVAILABLE: 'Verfügbar',
+  PV_STATUS_BOUND: 'Gebunden',
+  PV_STATUS_RELEASED: 'Freigegeben',
   PV_STATUS_FAILED: 'Fehlgeschlagen',
-  RECYCLING_STRATEGY: 'Recycling Strategy',
-  VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
+  RECYCLING_STRATEGY: 'Recyclingstrategie',
+  VOLUME_EMPTY_DESC: 'Bitte binden Sie einen persistenten Volumenanspruch an eine Workload.'
 };
