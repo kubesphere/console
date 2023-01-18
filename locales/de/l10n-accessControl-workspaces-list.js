@@ -17,24 +17,24 @@
  */
 module.exports = {
   // Banner
-  WORKSPACE_PL: 'Workspaces',
-  WORKSPACE_DESC: 'A workspace is an isolated logical unit used to organize projects and DevOps projects, manage resource access, and share information within your team.',
+  WORKSPACE_PL: 'Arbeitsbereiche',
+  WORKSPACE_DESC: 'Ein Arbeitsbereich ist eine isolierte logische Einheit, die verwendet wird, um Projekte und DevOps Projekte zu organisieren, Ressourcenzugang zu verwalten und Informationen innerhalb Ihres Teams zu teilen.',
   // List
   CLUSTER_PL: 'Cluster',
   // List > Create > Basic Information
-  CREATE_WORKSPACE: 'Create Workspace',
-  WORKSPACE_NAME_EMPTY_DESC: 'Please enter a workspace name.',
-  WORKSPACE_CREATE_DESC: 'Set the basic information about the workspace.',
+  CREATE_WORKSPACE: 'Arbeitsbereich erstellen',
+  WORKSPACE_NAME_EMPTY_DESC: 'Bitte geben Sie einen Arbeitsbereichsnamen ein.',
+  WORKSPACE_CREATE_DESC: 'Legen Sie die grundlegenden Informationen über den Arbeitsbereich fest.',
   ADMINISTRATOR: 'Administrator',
-  WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
-  INVALID_WORKSPACE_NAME: 'Invalid workspace name.',
+  WORKSPACE_NAME_EXISTS_DESC: 'Der Name des Arbeitsbereichs existiert bereits.',
+  INVALID_WORKSPACE_NAME: 'Ungültiger Arbeitsbereichsname.',
   // List > Create > Cluster Settings
-  SELECT_CLUSTERS_DESC: 'Select clusters to be used in the workspace.',
-  NO_CLUSTER_AVAILABLE: 'No Cluster Available',
-  NO_CLUSTER_AVAILABLE_DESC: 'No cluster is available. After the workspace is created, please contact the platform or cluster administrator to authorize a cluster to the workspace.',
-  WORKSPACE_NO_CLUSTER_TIP: 'Please contact the platform or cluster administrator to authorize a cluster to the workspace.',
-  AVAILABLE_CLUSTERS: 'Available Clusters',
-  CLUSTER_SETTINGS: 'Cluster Settings',
+  SELECT_CLUSTERS_DESC: 'Wählen Sie Cluster für den Arbeitsbereich aus.',
+  NO_CLUSTER_AVAILABLE: 'Keine Cluster verfügbar',
+  NO_CLUSTER_AVAILABLE_DESC: 'Es ist kein Cluster verfügbar. Nachdem der Arbeitsbereich erstellt wurde, wenden Sie sich bitte an den Plattform- oder Cluster-Administrator, um einen Cluster für den Arbeitsbereich zu autorisieren.',
+  WORKSPACE_NO_CLUSTER_TIP: 'Bitte wenden Sie sich an den Plattform- oder Cluster-Administrator, um einen Cluster für den Arbeitsbereich zu autorisieren.',
+  AVAILABLE_CLUSTERS: 'Verfügbare Cluster',
+  CLUSTER_SETTINGS: 'Cluster Einstellungen',
   SELECT_HOST_CLUSTER_WARNING: 'The current system is a multi-cluster system. Please avoid creating resources in the host cluster if possible. Excessive loads in the host cluster will decrease the stability of the multi-cluster system.',
   // List > Edit Information
   // List > Delete
