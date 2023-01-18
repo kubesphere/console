@@ -39,7 +39,7 @@ module.exports = {
   PVC_NAME_PREFIX_EXISTS: 'The prefix already exists. Please enter another prefix.',
   ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE: 'Add Persistent Volume Claim Template',
   ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE_DESC: 'Add a persistent volume claim template to mount a persistent volume to each pod of the statefulset.',
-  VOLUME_CAPACITY_TCAP: 'Volume Capacity',
+  VOLUME_CAPACITY_TCAP: 'Volumenkapazität',
   MOUNT_PATH_TCAP: 'Mount Path',
   VOLUME_TEMPLATES: 'Volume Templates',
   // List > Create > Advanced Settings
