@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Attributes
-  CUSTOM_SERVICE: 'Custom Service',
+  CUSTOM_SERVICE: 'Kundenspezifischer Service',
   VIRTUAL_IP: 'Virtuelle IP',
   // Resource Status
   CONTAINER_PORT_SCAP: 'Container Port',
