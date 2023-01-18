@@ -32,7 +32,7 @@ module.exports = {
   POD_SCHEDULING_METHOD: 'Pod Scheduling Method',
   POD_ASSIGNED_DESC: 'The system schedules a pod to a node with sufficient available resources based on the resource requests of the Pod.',
   STATUS_INFORMATION: 'Status Information',
-  WORKLOAD_CONDITION_AVAILABLE: 'Available',
+  WORKLOAD_CONDITION_AVAILABLE: 'Verfügbar',
   WORKLOAD_CONDITION_PROGRESSING: 'Progressing',
   NOT_SUCCESSFUL: 'Not successful',
   CURRENT_STATUS: 'Current status',
