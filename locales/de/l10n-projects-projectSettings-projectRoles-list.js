@@ -44,7 +44,7 @@ module.exports = {
   PERMISSION_VOLUMES_MANAGEMENT: 'Persistent Volume Claim Management',
   PERMISSION_VOLUMES_MANAGEMENT_DESC: 'Create, edit, and delete persistent volume claims in the project.',
   // List > Edit Permissions > Configuration
-  PERMIGROUP_CONFIGURATION_CENTER: 'Configuration',
+  PERMIGROUP_CONFIGURATION_CENTER: 'Einstellungen',
   PERMISSION_CONFIGMAPS_VIEW: 'Configmap Viewing',
   PERMISSION_CONFIGMAPS_VIEW_DESC: 'View configmaps in the project.',
   PERMISSION_CONFIGMAPS_MANAGEMENT: 'Configmap Management',
