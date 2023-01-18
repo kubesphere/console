@@ -21,12 +21,12 @@ module.exports = {
   // More > Clone Volume
   // More > Create Snapshot
   // More > Expand
-  VOLUME_EXPAND_TIP: 'The persistent volume claim has been mounted to a workload. Expanding the persistent volume claim will cause the workload to restart and business will be interrupted for a short while.',
+  VOLUME_EXPAND_TIP: 'Der persistente Datenträgeranspruch wurde an eine Workload gemountet. Die Erweiterung des persistenten Volumenanspruchs führt dazu, dass die Workload neu gestartet wird und der Betrieb für kurze Zeit unterbrochen wird.',
   // More > Delete
   // Resource Status
   // Resource Status > Volume
   // Resource Status > Mounted Pods
-  MOUNTED_PODS: 'Mounted Pods',
+  MOUNTED_PODS: 'Eingehängte Pods',
   // Metadata
   // Events
   // Snapshot
