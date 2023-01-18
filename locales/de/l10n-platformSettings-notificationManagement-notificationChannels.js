@@ -70,7 +70,7 @@ module.exports = {
   USER_ID: 'User ID',
   DEPARTMENT_ID: 'Department ID',
   FEISHU_RECEIPIENT_SETTINGS_DESC: 'To receive notifications, please set at least one user ID or department ID.',
-  FEISHU_SECRET: 'Secret',
+  FEISHU_SECRET: 'Geheimnis',
   // DingTalk
   DINGTALK_TITLE: 'DingTalk',
   DINGTALK: 'DingTalk',
