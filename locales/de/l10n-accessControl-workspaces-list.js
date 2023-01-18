@@ -35,9 +35,9 @@ module.exports = {
   WORKSPACE_NO_CLUSTER_TIP: 'Bitte wenden Sie sich an den Plattform- oder Cluster-Administrator, um einen Cluster für den Arbeitsbereich zu autorisieren.',
   AVAILABLE_CLUSTERS: 'Verfügbare Cluster',
   CLUSTER_SETTINGS: 'Cluster Einstellungen',
-  SELECT_HOST_CLUSTER_WARNING: 'The current system is a multi-cluster system. Please avoid creating resources in the host cluster if possible. Excessive loads in the host cluster will decrease the stability of the multi-cluster system.',
+  SELECT_HOST_CLUSTER_WARNING: 'Das aktuelle System ist ein Multi-Cluster-System. Bitte vermeiden Sie nach Möglichkeit das Erstellen von Ressourcen im Host-Cluster. Übermäßige Lasten im Host-Cluster verringern die Stabilität des Multi-Cluster-Systems.',
   // List > Edit Information
   // List > Delete
-  DELETE_WORKSPACE: 'Delete Workspace',
-  WORKSPACE_LOW: 'workspace'
+  DELETE_WORKSPACE: 'Arbeitsbereich löschen',
+  WORKSPACE_LOW: 'arbeitsbereich'
 };
