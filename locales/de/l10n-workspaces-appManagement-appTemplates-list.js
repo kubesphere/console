@@ -26,7 +26,7 @@ module.exports = {
   HOW_PUBLISH_APP_TITLE: 'How do I release apps to the App Store?',
   HOW_PUBLISH_APP_DESC: 'You can upload Helm charts as app templates to workspaces. The apps will be released to the App Store after they are approved.',
   // List
-  APP_STATUS_ACTIVE: 'Released',
+  APP_STATUS_ACTIVE: 'Freigegeben',
   APP_STATUS_DRAFT: 'Unreleased',
   APP_STATUS_SUSPENDING: 'Suspending',
   APP_TEMPLATE_EMPTY_DESC: 'Please create an app template.',
