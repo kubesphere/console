@@ -20,7 +20,7 @@ module.exports = {
   WORKLOAD_DESC: 'Workloads are used to handle service requests and can contain one or more pods. System functions such as logging and monitoring are also implemented by workloads.',
   // List
   DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
-  UPDATING: 'Updating',
+  UPDATING: 'Aktualisierung',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
@@ -177,7 +177,7 @@ module.exports = {
   VOLUME_NAME_EMPTY: 'Please set a name for the volume.',
   HOST_PATH_EMPTY: 'Please set a host path for the volume.',
   CONTAINER_NOT_SELECTED: 'Please mount the volume to at least one container.',
-  NOT_MOUNT: 'Not mounted',
+  NOT_MOUNT: 'Nicht eingehängt',
   HOSTPATH_VOLUME: 'HostPath Volume',
   HOSTPATH_TIP: 'Use a HostPath volume to mount a file or directory in the host file system to the containers.',
   HOST_PATH: 'Host Path',
@@ -200,8 +200,8 @@ module.exports = {
   SELECT_NODES_DESC: 'Assign pod replicas to specific nodes. You can use labels to select nodes or manually specify a node.',
   ADD_NODE_SELECTOR: 'Add Node Selector',
   ADD_METADATA_DESC: 'Add metadata to the resource.',
-  KEY: 'Key',
-  VALUE: 'Value',
+  KEY: 'Schlüssel',
+  VALUE: 'Wert',
   ADVANCED_SETTINGS: 'Advanced Settings',
   DUPLICATE_LABELS: 'Duplicate labels cannot be added.',
   // List > Create > Advanced Settings > Specify Node
