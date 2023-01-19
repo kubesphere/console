@@ -23,7 +23,7 @@ module.exports = {
   PULL_REQUEST_COUNT: 'Pull Requests',
   HEALTHY: 'Gesund',
   SUB_HEALTHY: 'Sub-healthy',
-  NO_STATUS: 'No status',
+  NO_STATUS: 'Kein Status',
   BRANCH_COUNT: 'Branches',
   PIPELINE_EMPTY_DESC: 'Please create a pipeline.',
   // List > Run
