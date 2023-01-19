@@ -30,7 +30,7 @@ module.exports = {
   TEMPLATE_BASED_APP_EMPTY_DESC: 'Please create an app from the KubeSphere App Store or an app template.',
   APP: 'App',
   VERSION: 'Version',
-  CREATING: 'Creating',
+  CREATING: 'Wird erstellt',
   UPGRADING: 'Created',
   DELETING: 'Deleting',
   // List > Create
