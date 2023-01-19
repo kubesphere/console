@@ -21,7 +21,7 @@ module.exports = {
   // List
   HEALTH: 'Health',
   PULL_REQUEST_COUNT: 'Pull Requests',
-  HEALTHY: 'Healthy',
+  HEALTHY: 'Gesund',
   SUB_HEALTHY: 'Sub-healthy',
   NO_STATUS: 'No status',
   BRANCH_COUNT: 'Branches',
