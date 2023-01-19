@@ -28,7 +28,7 @@ module.exports = {
   LOAD_BALANCER_PROVIDER_SCAP: 'Load Balancer Anbieter',
   // Cluster Gateway > Enable Gateway
   ENABLE_GATEWAY: 'Gateway aktivieren',
-  GATEWAY_TRACING_TIP: 'If ingresses cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the ingress.',
+  GATEWAY_TRACING_TIP: 'Wenn auf Ingress nicht zugegriffen werden kann, nachdem <b>Tracing</b> aktiviert wurde, fügen Sie dem Ingress bitte die Anmerkung <b>nginx.ingress.kubernetes.io/service-upstream: true </b> hinzu.',
   // Cluster Gateway > Manage > View Details
   VIEW_DETAILS: 'Details anzeigen',
   // Cluster Gateway > Manage > Disable
