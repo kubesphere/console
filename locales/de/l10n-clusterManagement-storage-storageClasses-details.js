@@ -17,18 +17,18 @@
  */
 module.exports = {
   // Attributes
-  TRUE: 'True',
-  FALSE: 'False',
+  TRUE: 'Wahr',
+  FALSE: 'Falsch',
   // More > Set as Default Storage Class
-  SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
-  SET_AS_DEFAULT_STORAGE_CLASS: 'Set as Default Storage Class',
+  SET_DEFAULT_STORAGE_CLASS_TITLE: 'Als Standardspeicherklasse festlegen',
+  SET_AS_DEFAULT_STORAGE_CLASS: 'Als Standardspeicherklasse festlegen',
   STORAGE_CLASS_SET_DEFAULT_DESC: 'After the default storage class is set, the system will create volumes of this class by default if no special requirement is added. Only one default storage class is allowed in a KubeSphere cluster.',
   // More > Edit Authorization Rules
   SET_AUTHORIZATION_RULES: 'Set Authorization Rules',
   AUTHORIZATION_RULES: 'Authorization Rules',
   AUTHORIZATION_RULES_DESC: 'Set authorization rules so that the storage class can be accessed only in specific projects and workspaces.',
   AUTHORIZATION_NOT_SUPPORT: 'The cluster currently does not support this feature. Please upgrade KubeSphere to v3.3.0 or later, or manually install <a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a>.',
-  OPERATOR_IN: 'In',
+  OPERATOR_IN: 'Ein',
   OPERATOR_NOT_IN: 'Not in',
   // More > Set Volume Permissions
   SET_VOLUME_OPERATIONS: 'Set Volume Operations',
@@ -43,16 +43,16 @@ module.exports = {
   AUTO_EXPANSION: 'Auto Expansion',
   AUTO_EXPANSION_DESC: 'Set the system to automatically expand volumes when the remaining volume space is lower than a threshold.',
   AUTO_EXPANSION_SETTINGS: 'Auto Expansion Settings',
-  MAXIMUM_SIZE: 'Maximum Size',
-  INCREMENT: 'Increment',
+  MAXIMUM_SIZE: 'Maximale Größe',
+  INCREMENT: 'Erhöhen',
   INCREMENT_DESC: 'Set the volume size increment according to the CSI pluggin of the storage class.',
   RESTART_WORKLOAD_AUTOMATICALLY: 'Restart workload automatically',
   RESTART_WORKLOAD_AUTOMATICALLY_DESC: 'The system automatically checks volume status to determine whether the workload needs to be restarted.',
   RESTART_WORKLOAD_AUTOMATICALLY_TIP: 'If the volume is not expanded successfully when the timeout period expires, the system will add the "restart.kubesphere.io/skip" annotation to the workload so that the workload is not restarted any more. To enable the automatic restart function for the workload again, you need to manually delete the annotation on the workload.',
   // More > Delete
   // Persistent Volume Claims > Persistent Volume Claims
-  MAXIMUM_SIZE_SCAP: 'Maximum size',
-  VALUE_TIMEOUT: '{value}s (timeout)',
+  MAXIMUM_SIZE_SCAP: 'Maximale Größe',
+  VALUE_TIMEOUT: '{value}s (Zeitüberschreitung)',
   // Persistent Volume Claims > Persistent Volume Claims
   PVC_COUNT: 'PVCs'
 };
