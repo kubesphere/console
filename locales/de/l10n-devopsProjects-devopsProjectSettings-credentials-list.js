@@ -25,12 +25,12 @@ module.exports = {
   CREATE_CREDENTIAL: 'Create Credential',
   CREDENTIAL_NAME_EXIST_DESC: 'The credential name already exists. Please enter another name.',
   CREDENTIAL_TYPE_USERNAME_PASSWORD: 'Benutzername und Passwort',
-  CREDENTIAL_TYPE_SSH: 'SSH key',
+  CREDENTIAL_TYPE_SSH: 'SSH-Schlüssel',
   PRIVATE_KEY: 'Privatschlüssel',
   PASSPHRASE: 'Passphrase',
   CREDENTIAL_TYPE_SECRET_TEXT: 'Access token',
   CREDENTIAL_TYPE_KUBECONFIG: 'kubeconfig',
-  PASSWORD_TOKEN: 'Password/Token',
+  PASSWORD_TOKEN: 'Passwort/Token',
   KUBECONFIG_CONTENT_DESC: 'The default content is the kubeconfig settings of the current user.',
-  CONTENT: 'Content'
+  CONTENT: 'Inhalt'
 };
