@@ -18,9 +18,9 @@
 module.exports = {
   // Banner
   POD_IP_POOL_PL: 'Pod-IP-Pools',
-  POD_IP_POOL_DESC: 'Pod IP pools is used to manage the pod network address space in the cluster. You can create pod IP pools based on your needs.',
-  IPPOOL_USAGE_Q: 'How do I manage a pod network using a pod IP pool?',
-  IPPOOL_USAGE_A: 'A pod IP pool is used to manage the pod network address space, and the address spaces between different pod IP pools cannot overlap. When creating a workload, you can select a specific pod IP pool to assign IP addresses from this pod IP pool to the created pods.',
+  POD_IP_POOL_DESC: 'Pod-IP-Pools werden verwendet, um den Adressraum des Pod-Netzwerks im Cluster zu verwalten. Sie können Pod-IP-Pools basierend auf Ihren Anforderungen erstellen.',
+  IPPOOL_USAGE_Q: 'Wie verwalte ich ein Pod-Netzwerk mit einem Pod-IP-Pool?',
+  IPPOOL_USAGE_A: 'Ein Pod-IP-Pool wird verwendet, um den Adressraum des Pod-Netzwerks zu verwalten, und die Adressräume zwischen verschiedenen Pod-IP-Pools dürfen sich nicht überschneiden. Beim Erstellen einer Workload können Sie einen bestimmten Pod-IP-Pool auswählen, um IP-Adressen aus diesem Pod-IP-Pool den erstellten Pods zuzuweisen.',
   // List
   POD_IP_POOL_EMPTY_DESC: 'Bitte erstellen Sie einen Pod-IP-Pool.',
   TOTAL_VALUE: 'Insgesamt: {value}',
