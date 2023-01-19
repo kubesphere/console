@@ -156,7 +156,7 @@ module.exports = {
   COVERAGE: 'Coverage',
   TEST_RESULTS: 'Results',
   ISSUE_PL: 'Issues',
-  CRITICAL: 'Critical',
+  CRITICAL: 'Kritisch',
   MAJOR: 'Major',
   MINOR: 'Minor',
   DISPLAY_ALL: 'Display All',
