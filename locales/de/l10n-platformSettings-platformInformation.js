@@ -17,11 +17,11 @@
  */
 module.exports = {
   // Banner
-  PLATFORM_INFO_DESC: 'Overview of the platform information. You can view and customize the platform information.',
+  PLATFORM_INFO_DESC: 'Übersicht der Plattforminformationen. Sie können die Plattforminformationen anzeigen und anpassen.',
   // Basic Information
-  HOW_TO_MODIFY_PLATFORM_INFO: 'How do I customize platform information?',
-  PLATFORM_INFORMATION: 'Platform Information',
-  PLATFORM_DESCRIPTION: 'Platform description',
-  PLATFORM_TITLE: 'Platform title',
-  PLATFORM_ADDRESS: 'Platform address'
+  HOW_TO_MODIFY_PLATFORM_INFO: 'Wie passe ich Plattforminformationen an?',
+  PLATFORM_INFORMATION: 'Plattforminformationen',
+  PLATFORM_DESCRIPTION: 'Plattformbeschreibung',
+  PLATFORM_TITLE: 'Titel der Plattform',
+  PLATFORM_ADDRESS: 'Plattformadresse'
 };
