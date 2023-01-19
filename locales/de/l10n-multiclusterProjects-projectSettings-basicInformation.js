@@ -18,19 +18,19 @@
 module.exports = {
   // Banner
   // Project Information
-  PROJECT_NAME: 'Project name',
+  PROJECT_NAME: 'Projektname',
   // Default Container Quotas
-  NO_REQUEST_TCAP: 'No Request',
-  NO_LIMIT_TCAP: 'No Limit',
+  NO_REQUEST_TCAP: 'Keine Anfrage',
+  NO_LIMIT_TCAP: 'Kein Limit',
   CPU_REQUEST_LOW: 'CPU request',
   CPU_LIMIT_LOW: 'CPU limit',
-  CPU_REQUEST_CORE: '{value} Core',
-  CPU_LIMIT_CORE: '{value} Core',
-  MEMORY_REQUEST_MIB: '{value} Mi',
-  MEMORY_LIMIT_MIB: '{value} Mi',
+  CPU_REQUEST_CORE: '{value} Kern',
+  CPU_LIMIT_CORE: '{value} Kern',
+  MEMORY_REQUEST_MIB: '{value} MiB',
+  MEMORY_LIMIT_MIB: '{value} MiB',
   // Manage > Edit Information
   // Manage > Add Cluster
   // Manage > Edit Default Container Quotas
   // Manage > Delete Project
-  DELETE_PROJECT: 'Delete Project'
+  DELETE_PROJECT: 'Projekt löschen'
 };
