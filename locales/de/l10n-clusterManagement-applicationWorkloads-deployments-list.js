@@ -20,7 +20,7 @@ module.exports = {
   APPLICATION_WORKLOAD_PL: 'Anwendungs-Workloads',
   WORKLOAD_PL: 'Workloads',
   // List
-  DEPLOYMENTS: 'Deployments',
+  DEPLOYMENTS: 'Bereitstellungen',
   UPDATE_TIME_TCAP: 'Aktualisierungszeit',
   ALL_PROJECTS: 'Alle Projekte',
   SHOW_NUM: 'Zeige: {num}',
@@ -29,7 +29,7 @@ module.exports = {
   PROJECT_NOT_SELECT_DESC: 'Bitte wählen Sie ein Projekt.',
   BASIC_INFORMATION: 'Basisinformation',
   NAME: 'Name',
-  FEDPROJECT_RESOURCE_TIP: 'To create workload resources in a multi-cluster project, go to the Workloads page in the multi-cluster project.',
+  FEDPROJECT_RESOURCE_TIP: 'Um Workload-Ressourcen in einem Multi-Cluster-Projekt zu erstellen, gehen Sie zur Seite „Workloads“ im Multi-Cluster-Projekt.',
   FINISHED: 'Fertig',
   NOT_SET: 'Zu tun',
   CURRENT: 'Aktuell',
