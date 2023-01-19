@@ -32,7 +32,7 @@ module.exports = {
   VERSION: 'Version',
   CREATING: 'Wird erstellt',
   UPGRADING: 'Created',
-  DELETING: 'Deleting',
+  DELETING: 'Wird gelöscht',
   // List > Create
   CREATE_APP: 'Create App',
   CREATE_APP_DESC: 'Create an app from the KubeSphere App Store or an app template.',
