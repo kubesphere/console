@@ -60,7 +60,7 @@ module.exports = {
   SCHEDULER: 'Scheduler',
   TOTAL_AVERAGE: 'Total',
   SUCCESS: 'Success',
-  ERROR: 'Error',
+  ERROR: 'Fehler',
   FAILURE: 'Failure',
   REQUEST_LATENCY_TCAP: 'Request <span>Latency</span>',
   REQUEST_RATE: 'Request <span>Rate</span>',
