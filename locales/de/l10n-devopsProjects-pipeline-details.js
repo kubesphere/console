@@ -23,8 +23,8 @@ module.exports = {
   NOT_RUNNING: 'Not running',
   QUEUED: 'Queued',
   ABORTED: 'Aborted',
-  UNSTABLE: 'Unstable',
-  SKIPPED: 'Skipped',
+  UNSTABLE: 'Instabil',
+  SKIPPED: 'Übersprungen',
   NOT_BUILT: 'Not built',
   SYNC_STATUS: 'Sync Status',
   DEVOPS_PROJECT: 'DevOps Project',
@@ -38,7 +38,7 @@ module.exports = {
   RESCAN: 'Rescan',
   LOGS_OBTAINED_SUCCESSFULLY: 'The logs were obtained successfully.',
   // Health Status
-  HEALTH_STATUS_SCAP: 'Health status',
+  HEALTH_STATUS_SCAP: 'Gesundheitszustand',
   // Task Status
   PIPELINE_QUEUED_TITLE: 'About to Complete Initialization',
   INITIALIZING_PIPELINE: 'Pipeline Initializing',
@@ -48,7 +48,7 @@ module.exports = {
   NO_PIPELINE_CONFIG_FILE_TIP: 'No pipeline configuration file is found.',
   // Task Status > Edit Pipeline
   EDIT_PIPELINE: 'Edit Pipeline',
-  JENKINS_UNAVAILABLE: 'Jenkins is unready.',
+  JENKINS_UNAVAILABLE: 'Jenkins ist nicht bereit.',
   AGENT_TYPE_DESC: `The agent section specifies
     where the entire Pipeline or a particular stage will be executed in the Jenkins environment,
     depending on where the Agent part is placed.
@@ -139,7 +139,7 @@ module.exports = {
   // Run Records > Run Record Details > Artifacts
   ARTIFACT_PL: 'Artifacts',
   NO_ARTIFACT_FOUND_TIP: 'No artifact is found.',
-  SIZE: 'Size',
+  SIZE: 'Größe',
   // Run Records > Run > Set Parameters
   // Branches
   BRANCH_SI: 'Branch',
@@ -150,7 +150,7 @@ module.exports = {
   // Branches > Code Check
   CODE_CHECK: 'Code Check',
   BUG_PL: 'Bugs',
-  VULNERABILITY_PL: 'Vulnerabilities',
+  VULNERABILITY_PL: 'Schwachstellen',
   CODE_SMELL_PL: 'Code Smells',
   CODE_LINE_COUNT: 'Code Lines',
   COVERAGE: 'Coverage',
@@ -160,8 +160,8 @@ module.exports = {
   MAJOR: 'Major',
   MINOR: 'Minor',
   DISPLAY_ALL: 'Display All',
-  DISPLAY_ONLY_LAST_TEN: 'Only the last 10 issues are displayed.',
-  LINE_VALUE: 'Line: {value}',
+  DISPLAY_ONLY_LAST_TEN: 'Nur die letzten 10 Tickets werden angezeigt.',
+  LINE_VALUE: 'Zeile: {value}',
   PASSED: 'Passed',
   // Pull Requests
   PULL_REQUEST_PL: 'Pull Requests',
