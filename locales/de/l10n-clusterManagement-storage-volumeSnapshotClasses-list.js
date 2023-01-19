@@ -22,8 +22,8 @@ module.exports = {
   VOLUME_SNAPSHOT_CLASS_EMPTY_DESC: 'Please create a volume snapshot class.',
   // List > Create
   SNAPSHOT_CLASS_SETTINGS: 'Volume Snapshot Class Settings',
-  SNAPSHOT_CLASS_PROVISIONER_DESC: 'Enter the name of a CSI plugin.',
-  SNAPSHOT_CLASS_PROVISIONER_EMPTY_DESC: 'Please enter the name of a CSI plugin.',
+  SNAPSHOT_CLASS_PROVISIONER_DESC: 'Geben Sie den Namen eines CSI-Plugins ein.',
+  SNAPSHOT_CLASS_PROVISIONER_EMPTY_DESC: 'Bitte geben Sie den Namen eines CSI-Plugins ein.',
   // List > Delete
   VOLUME_SNAPSHOT_CLASS_LOW: 'volume snapshot class',
   DELETE_VOLUME_SNAPSHOT_CLASS: 'Delete Volume Snapshot Class'
