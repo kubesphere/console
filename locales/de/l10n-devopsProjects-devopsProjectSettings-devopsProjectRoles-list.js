@@ -27,12 +27,12 @@ module.exports = {
   // List > Edit Information
   // List > Edit Permissions
   // List > Create
-  EDIT_PERMISSIONS: 'Edit Permissions',
-  CREATE_ROLE: 'Create Role',
+  EDIT_PERMISSIONS: 'Berechtigungen bearbeiten',
+  CREATE_ROLE: 'Rolle erstellen',
   // List > Create > Edit Permissions
-  CATEGORIES: 'Categories',
+  CATEGORIES: 'Kategorien',
   // List > Create > Edit Permissions > Pipeline Management
-  DEPENDS_ON: 'Depends on: ',
+  DEPENDS_ON: 'Abhängig von: ',
   PERMIGROUP_PIPELINES_MANAGEMENT: 'Pipelines',
   PERMISSION_PIPELINES_VIEW: 'Pipeline Viewing',
   PERMISSION_PIPELINES_VIEW_DESC: 'View DevOps project pipelines and download artifacts.',
