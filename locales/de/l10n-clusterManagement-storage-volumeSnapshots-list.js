@@ -28,12 +28,12 @@ module.exports = {
   SELECT_VOLUME_SNAPSHOT_CLASS_DESC: 'Select a snapshot class to create a snapshot of a specific type.',
   // List
   VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
-  VOLUME_SNAPSHOT_STATUS_CREATING: 'Creating',
+  VOLUME_SNAPSHOT_STATUS_CREATING: 'Wird erstellt',
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Creation failed',
   VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',
   VOLUME_SNAPSHOT_STATUS_DELETING: 'Deleting',
   CREATE_STATUS_SUCCESS: 'Created successfully',
-  CREATE_STATUS_UPDATING: 'Creating',
+  CREATE_STATUS_UPDATING: 'Wird erstellt',
   CREATE_STATUS_FAILED: 'Creation failed',
   CREATE_STATUS_DELETING: 'Deleting',
   // List > Delete
