@@ -17,35 +17,35 @@
  */
 module.exports = {
   // Banner
-  POD_IP_POOL_PL: 'Pod IP Pools',
+  POD_IP_POOL_PL: 'Pod-IP-Pools',
   POD_IP_POOL_DESC: 'Pod IP pools is used to manage the pod network address space in the cluster. You can create pod IP pools based on your needs.',
   IPPOOL_USAGE_Q: 'How do I manage a pod network using a pod IP pool?',
   IPPOOL_USAGE_A: 'A pod IP pool is used to manage the pod network address space, and the address spaces between different pod IP pools cannot overlap. When creating a workload, you can select a specific pod IP pool to assign IP addresses from this pod IP pool to the created pods.',
   // List
-  POD_IP_POOL_EMPTY_DESC: 'Please create a pod IP pool.',
-  TOTAL_VALUE: 'Total: {value}',
+  POD_IP_POOL_EMPTY_DESC: 'Bitte erstellen Sie einen Pod-IP-Pool.',
+  TOTAL_VALUE: 'Insgesamt: {value}',
   ALL: 'Alles',
-  NOT_ASSIGNED: 'Not assigned',
+  NOT_ASSIGNED: 'Nicht zugewiesen',
   // List > Create
-  CREATE_POD_IP_POOL: 'Create Pod IP Pool',
-  NETWORK_SEGMENT: 'Network Segment',
-  USED_IP_ADDRESSES: 'Used IP Addresses',
-  QUANTITY: 'Quantity',
-  IP_POOL_CREATE_DESC: 'Pod IP Pools to be Created',
-  IP_ADDRESS_EMPTY_DESC: 'Please enter an IP address.',
-  MASK_TIP: 'Please enter a mask.',
-  ENTER_NETWORK_SEGMENT_TIP: 'Please enter a network segment.',
-  IP_POOL_NUM_TIP: 'Please enter the number of pod IP pools to be created.',
-  IP_POOL_CREATE_COUNT_DESC: 'Up to 10 pod IP pools can be created at the same time.',
-  INVALID_IP_DESC: 'Invalid IP address format.',
+  CREATE_POD_IP_POOL: 'Pod-IP-Pool erstellen',
+  NETWORK_SEGMENT: 'Netzwerksegment',
+  USED_IP_ADDRESSES: 'Verwendete IP-Adressen',
+  QUANTITY: 'Anzahl',
+  IP_POOL_CREATE_DESC: 'Zu erstellende Pod-IP-Pools',
+  IP_ADDRESS_EMPTY_DESC: 'Bitte geben Sie eine IP-Adresse ein.',
+  MASK_TIP: 'Bitte geben Sie eine Maske ein.',
+  ENTER_NETWORK_SEGMENT_TIP: 'Bitte geben Sie ein Netzwerksegment ein.',
+  IP_POOL_NUM_TIP: 'Bitte geben Sie die Anzahl der zu erstellenden Pod-IP-Pools ein.',
+  IP_POOL_CREATE_COUNT_DESC: 'Bis zu 10 Pod-IP-Pools können gleichzeitig erstellt werden.',
+  INVALID_IP_DESC: 'Ungültiges IP-Adressformat.',
   // List > Edit Information
   // List > View YAML
   // Assign Workspace
-  IPPOOL_ASSIGN_WORKSPACE_DESC: 'Assign the pod IP pool to a workspace.',
-  IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING: 'The pod IP pool is in use and cannot be assigned to another specific workspace.',
-  IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING: 'The pod IP pool is in use with a specific workspace assigned. The workspace cannot be changed.',
-  ASSIGN_WORKSPACE: 'Assign Workspace',
-  SELECT_WORKSPACE_DESC: 'Select a workspace.',
+  IPPOOL_ASSIGN_WORKSPACE_DESC: 'Weisen Sie den Pod-IP-Pool einem Arbeitsbereich zu.',
+  IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING: 'Der Pod-IP-Pool wird verwendet und kann keinem anderen spezifischen Arbeitsbereich zugewiesen werden.',
+  IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING: 'Der Pod-IP-Pool wird mit einem bestimmten zugewiesenen Arbeitsbereich verwendet. Der Arbeitsbereich kann nicht geändert werden.',
+  ASSIGN_WORKSPACE: 'Arbeitsbereich zuweisen',
+  SELECT_WORKSPACE_DESC: 'Wählen Sie einen Arbeitsbereich aus.',
   // List > Delete
   POD_IP_POOL_LOW: 'pod IP pool'
 };
