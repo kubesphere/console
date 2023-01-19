@@ -21,7 +21,7 @@ module.exports = {
   // More > Delete
   // Attributes
   // Resource Status
-  APPLICATION_GOVERNANCE_SCAP: 'Application governance',
+  APPLICATION_GOVERNANCE_SCAP: 'Anwendungs-Governance',
   NO_SERVICE_FOUND: 'Kein Service gefunden',
   // External Access
   GATEWAY_IP_ADDRESS: 'Gateway-IP-Adresse',
