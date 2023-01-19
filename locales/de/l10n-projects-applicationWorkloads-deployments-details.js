@@ -59,7 +59,7 @@ module.exports = {
   ADJUST_REPLICAS: 'Adjust Replicas',
   REPLICAS_SCALE_NOTIFY_CONTENT: 'Are you sure you want to change the number of pod replicas to {num}?',
   REPLICAS_SCALE_NOTIFY_CONFIRM: 'OK ({seconds}s)',
-  REPLICAS_SCALE_NOTIFY_CANCEL: 'Cancel',
+  REPLICAS_SCALE_NOTIFY_CANCEL: 'Abbrechen',
   // Resource Status > Autoscaling
   TARGET_MEMORY_USAGE: 'Target Memory Usage',
   TARGET_CPU_USAGE: 'Target CPU Usage',
