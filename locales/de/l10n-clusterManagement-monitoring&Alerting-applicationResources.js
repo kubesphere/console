@@ -65,7 +65,7 @@ module.exports = {
   // Resource Usage > Application Resource Usage
   APPLICATION_RESOURCE_USAGE: 'Application Resource Usage',
   DEPLOYMENT: 'Deployment',
-  DEPLOYMENT_PL: 'Deployments',
+  DEPLOYMENT_PL: 'Bereitstellungen',
   DEPLOYMENT_LOW: 'deployment',
   STATEFULSET: 'Statefulset',
   STATEFULSET_PL: 'StatefulSets',
