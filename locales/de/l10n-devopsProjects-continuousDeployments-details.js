@@ -17,13 +17,13 @@
  */
 module.exports = {
   // Sync Status
-  LATEST_SYNC_STATUS: 'Latest sync status',
-  CURRENT_SYNC_STATUS: 'Current sync status',
-  SYNC_STRATEGY: 'Sync strategy',
-  AUTO_SYNC: 'Auto Sync',
-  MANUAL_SYNC: 'Manual Sync',
-  END_TIME_SCAP: 'End time',
-  SYNC_RESULT_PL: 'Sync Results',
-  SYNC_RESULT: 'Sync Result',
-  SYNC_RESULT_EMPTY_DESC: 'No sync result is found.'
+  LATEST_SYNC_STATUS: 'Letzter Synchronisierungsstatus',
+  CURRENT_SYNC_STATUS: 'Aktueller Synchronisierungsstatus',
+  SYNC_STRATEGY: 'Synchronisierungsstrategie',
+  AUTO_SYNC: 'Automatische Synchronisation',
+  MANUAL_SYNC: 'Manuelle Synchronisierung',
+  END_TIME_SCAP: 'Endzeit',
+  SYNC_RESULT_PL: 'Ergebnisse synchronisieren',
+  SYNC_RESULT: 'Ergebniss synchronisieren',
+  SYNC_RESULT_EMPTY_DESC: 'Keine Synchronisierungsergebnisse gefunden.'
 };
