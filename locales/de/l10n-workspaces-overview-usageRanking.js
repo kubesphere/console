@@ -19,7 +19,7 @@ module.exports = {
   // List
   SORT_BY_WORKSPACE_MEMORY_USAGE: 'Nach Speicherverbrauch sortieren',
   SORT_BY_WORKSPACE_MEMORY_USAGE_WO_CACHE: 'Nach Speicherverbrauch sortieren',
-  SORT_BY_WORKSPACE_POD_COUNT: 'Sort by pod quota usage (%)',
+  SORT_BY_WORKSPACE_POD_COUNT: 'Nach Pod Quote sortieren (%)',
   SORT_BY_WORKSPACE_CPU_USAGE: 'Nach CPU-Auslastung sortieren',
   SORT_BY_WORKSPACE_NET_BYTES_TRANSMITTED: 'Nach ausgehendem Datenverkehr sortieren',
   SORT_BY_WORKSPACE_NET_BYTES_RECEIVED: 'Nach eingehendem Datenverkehr sortieren'
