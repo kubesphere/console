@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  STORAGE_CLASS_PL: 'Storage Classes',
+  STORAGE_CLASS_PL: 'Speicherklassen',
   STORAGE_CLASS_DESC: 'Storage classes support dynamic volume provisioning, allowing administrators to create new storage volumes on demand.',
   // List
   STORAGE_CLASS_EMPTY_DESC: 'Please create a storage class.',
@@ -41,10 +41,10 @@ module.exports = {
   VOLUME_BINDING_MODE: 'Volume Binding Mode',
   IMMEDIATE_BINDING: 'Immediate binding',
   BINDING_WAIT: 'Delayed binding',
-  MAXSIZE: 'Maximum Size',
-  MINSIZE: 'Minimum Size',
+  MAXSIZE: 'Maximale Größe',
+  MINSIZE: 'Minimale Größe',
   STEPSIZE: 'Step Size',
-  FSTYPE: 'File System Type',
+  FSTYPE: 'Dateisystemtyp',
   QINGCLOUD_CSI_TYPE_DESC: 'On QingCloud Public Cloud Platform, 0 means high performance volume; 2 high capacity volume; 3 ultra-high performance volume; 5 enterprise server SAN (NeonSAN); 100 standard volume; 200 enterprise SSD.',
   CREATE_VOLUME_MAX_SIZE: 'Maximum size of the volume.',
   CREATE_VOLUME_STEP_SIZE: 'Step size of the volume.',
@@ -68,7 +68,7 @@ module.exports = {
   REST_USER: 'REST User',
   VOLUME_TYPE: 'Volume Type',
   SECRET_NAME: 'Secret Name',
-  REST_AUTH_TRUE: 'True',
+  REST_AUTH_TRUE: 'Wahr',
   SECRET_NAMESPACE: 'Secret Namespace',
   GID_MIN: 'Minimum GID',
   GID_MAX: 'Maximum GID',
