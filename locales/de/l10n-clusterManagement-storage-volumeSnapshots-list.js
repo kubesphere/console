@@ -29,13 +29,13 @@ module.exports = {
   // List
   VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
   VOLUME_SNAPSHOT_STATUS_CREATING: 'Wird erstellt',
-  VOLUME_SNAPSHOT_STATUS_FAILED: 'Creation failed',
-  VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',
-  VOLUME_SNAPSHOT_STATUS_DELETING: 'Deleting',
-  CREATE_STATUS_SUCCESS: 'Created successfully',
+  VOLUME_SNAPSHOT_STATUS_FAILED: 'Erstellung fehlgeschlagen',
+  VOLUME_SNAPSHOT_STATUS_READY: 'Erfolgreich erstellt',
+  VOLUME_SNAPSHOT_STATUS_DELETING: 'Wird gelöscht',
+  CREATE_STATUS_SUCCESS: 'Erfolgreich erstellt',
   CREATE_STATUS_UPDATING: 'Wird erstellt',
-  CREATE_STATUS_FAILED: 'Creation failed',
-  CREATE_STATUS_DELETING: 'Deleting',
+  CREATE_STATUS_FAILED: 'Erstellung fehlgeschlagen',
+  CREATE_STATUS_DELETING: 'Wird gelöscht',
   // List > Delete
   VOLUME_SNAPSHOT_LOW: 'volume snapshot',
   // List > Create
