@@ -189,6 +189,8 @@ const handleOAuthLogin = async ctx => {
   let user = null
   const error = {}
   const oauthParams = omit(ctx.query, ['redirect_url', 'state'])
+  let referer = ctx.cookies.get('referer')
+  referer = referer ? decodeURIComponent(referer) : ''
 
   try {
     user = await oAuthLogin({ ...oauthParams, oauthName: ctx.params.name })
@@ -212,6 +214,7 @@ const handleOAuthLogin = async ctx => {
   ctx.cookies.set('token', user.token)
   ctx.cookies.set('expire', user.expire)
   ctx.cookies.set('refreshToken', user.refreshToken)
+  ctx.cookies.set('referer', null)
 
   if (user.username === 'system:pre-registration') {
     const extraname = safeBase64.safeBtoa(user.extraname)
@@ -242,8 +245,7 @@ const handleOAuthLogin = async ctx => {
       ctx.redirect(redirect_url)
     }
   } else {
-    ctx.redirect('/')
-  }
+    ctx.redirect(isValidReferer(referer) ? referer : '/')  }
 }
 
 const handleLoginConfirm = async ctx => {
