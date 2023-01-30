@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  NETWORK_ISOLATION_DESC: 'Kullanıcılar, ağ yalıtımını yapılandırarak, uygulama yalıtımını uygulamak ve uygulama güvenliğini artırmak için aynı küme içindeki bölmeler arasındaki trafiği ve dışarıdan gelen trafiği kontrol edebilir.',
+  NETWORK_ISOLATION_DESC: 'By configuring network isolation, users can control traffic between pods within the same workspace and traffic from outside to implement application isolation and enhance application security.',
   NETWORK_ISOLATION_Q: 'Ağ izolasyonunu nasıl daha iyi kullanırım?',
   NETWORK_ISOLATION_Q1: 'Ağ izolasyonunu uygulamak için CNI eklentisindeki gereksinimler nelerdir?',
   // Network Isolation
@@ -28,15 +28,15 @@ module.exports = {
   NETWORK_POLICY_EMP_DESC: 'Proje ağ erişimi etkinleştirildikten sonra, diğer projeler projeye erişemez. Ancak ihtiyaçlarınıza göre projelerin, hizmetlerin ve harici IP adreslerinin bu projeye erişmesine izin verebilirsiniz.',
   // Network Isolation > Internal Allowlist
   INTERNAL_ALLOWLIST: 'Dahili İzin Listesi',
-  INTERNAL_ALLOWLIST_TIP: 'Kümedeki projeleri ve hizmetleri izin verilenler listesine ekleyin.',
+  INTERNAL_ALLOWLIST_TIP: 'Add projects and services in the workspace to the allowlist.',
   INTERNAL_EGRESS_DESC: 'Mevcut projedeki pod\'ların aşağıdaki hizmet ve projelerin pod\'larına erişmesine izin verilir.',
   INTERNAL_INGRESS_DESC: 'Mevcut projedeki pod\'lara, aşağıdaki hizmet ve projelerin pod\'ları tarafından erişilmesine izin verilir.',
-  INTERNAL_ALLOWLIST_DESC: 'Geçerli projedeki bölmelerin, geçerli kümenin diğer projelerindeki bölmelerle iletişim kurmasına izin verin.',
+  INTERNAL_ALLOWLIST_DESC: 'Allow pods in the current project to communicate with pods in other projects of the current workspace.',
   EMPTY_RESOURCE_DESC: 'Lütfen en az bir proje veya hizmet seçin.',
   // Network Isolation > External Allowlist
   EXTERNAL_ALLOWLIST: 'Harici İzin Verilenler Listesi',
-  EXTERNAL_ALLOWLIST_TIP: 'Kümenin dışındaki ağ kesimlerini ve bağlantı noktalarını izin verilenler listesine ekleyin.',
-  EXTERNAL_ALLOWLIST_DESC: 'Geçerli projedeki bölmelerin, küme dışındaki belirli ağ kesimleri ve bağlantı noktalarıyla iletişim kurmasına izin verin.',
+  EXTERNAL_ALLOWLIST_TIP: 'Add network segments and ports outside the workspace to the allowlist.',
+  EXTERNAL_ALLOWLIST_DESC: 'Allow pods in the current project to communicate with specific network segments and ports outside the workspace.',
   NETWORK_SEGMENT_EXAMPLE: 'Örnek: 10.0.0.0',
   PORT_EXAMPLE: 'Örnek: 80',
   EXTERNAL_EGRESS_DESC: 'Mevcut projedeki bölmelerin aşağıdaki ağ bölümlerine ve bağlantı noktalarına erişmesine izin verilir.',
@@ -46,7 +46,7 @@ module.exports = {
   ENTER_VALID_PORT_NUMBER_DESC: 'Lütfen geçerli bir bağlantı noktası numarası girin.',
   // Add Allowlist Entry
   ADD_ALLOWLIST_ENTRY: 'İzin Verilenler Listesi Girişi Ekle',
-  EXTERNAL_TRAFFIC_DIRECTION_DESC: 'Çıkış, mevcut projeden kümenin dışına olan yönü gösterir. Giriş, kümenin dışından mevcut projeye olan yönü gösterir.',
+  EXTERNAL_TRAFFIC_DIRECTION_DESC: 'Egress indicates the direction from the current project to outside the workspace. Ingress indicates the direction from outside the workspace to the current project.',
   TRAFFIC_DIRECTION: 'Trafik yönü',
   NETWORK_SEGMENT_DESC: 'Bir ağ kesimi ayarlayın (CIDR desteklenir).',
   EGRESS: 'Çıkış',

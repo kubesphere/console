@@ -20,7 +20,7 @@ module.exports = {
   ADD_SERVICE: 'Hizmet Ekle',
   ADD_ROUTE: 'Rota ekle',
   SERVICE_ADDED_SUCCESSFULLY: 'The service was added successfully.',
-  // More > Add Route
+  // More > Add Ingress
   // Attributes
   // Resource Status
   WORKLOAD_TYPE_DEPLOYMENTS: 'Dağıtım',
