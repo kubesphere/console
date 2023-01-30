@@ -47,6 +47,7 @@ export default class ClusterWrapper extends Component {
               </Tag>
             )
           })}
+          {clusters.length === 0 && '-'}
         </div>
       </div>
     )
