@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  NETWORK_ISOLATION_DESC: 'By configuring network isolation, users can control traffic between pods within the same workspace and traffic from outside to implement application isolation and enhance application security.',
+  NETWORK_ISOLATION_DESC: '通过配置网络隔离控制同一企业空间容器组之间的流量以及来自外部的流量，从而实现隔离应用并增强应用的安全性。',
   NETWORK_ISOLATION_Q: '如何更好地使用网络隔离?',
   NETWORK_ISOLATION_Q1: 'CNI 插件实现网络隔离需满足哪些必要条件？',
   // Network Isolation
@@ -28,7 +28,7 @@ module.exports = {
   NETWORK_POLICY_EMP_DESC: '启用项目网络隔离后，将禁止其他项目访问当前项目，但您可以按需放行项目、服务以及外部 IP 地址。',
   // Network Isolation > Internal Allowlist
   INTERNAL_ALLOWLIST: '内部白名单',
-  INTERNAL_ALLOWLIST_TIP: 'Add projects and services in the workspace to the allowlist.',
+  INTERNAL_ALLOWLIST_TIP: '将企业空间内部的项目和服务添加到白名单。',
   INTERNAL_EGRESS_DESC: '当前项目中的容器组可以访问以下服务和项目的容器组。',
   INTERNAL_INGRESS_DESC: '当前项目中的容器组可以被以下服务和项目的容器组访问。',
   INTERNAL_ALLOWLIST_DESC: 'Allow pods in the current project to communicate with pods in other projects of the current workspace.',
