@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { computed } from 'mobx'
-
+import { Tag } from '@kube-design/components'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import withList, { ListPage } from 'components/HOCs/withList'
@@ -142,9 +142,15 @@ export default class Workspaces extends React.Component {
         title: t('CLUSTER_PL'),
         dataIndex: 'clusters',
         width: '30%',
-        render: clusters => (
-          <ClusterWrapper clusters={clusters} clustersDetail={this.clusters} />
-        ),
+        render: (clusters, { name }) =>
+          name === 'system-workspace' ? (
+            <Tag type="secondary">{t('ALL_CLUSTERS')}</Tag>
+          ) : (
+            <ClusterWrapper
+              clusters={clusters}
+              clustersDetail={this.clusters}
+            />
+          ),
       })
     }
 
