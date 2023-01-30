@@ -18,7 +18,8 @@
 module.exports = {
   // Banner
   CONTINUOUS_DEPLOYMENT_PL: 'Continuous Deployments',
-  CONTINUOUS_DEPLOYMENT_DESC: 'Manage continuous deployments to continuously deploy resources by using GitOps. ',
+  CONTINUOUS_DEPLOYMENT_DESC:
+    'Manage continuous deployments to continuously deploy resources by using GitOps. ',
   // List
   CONTINUOUS_DEPLOYMENT_EMPTY_DESC: 'Please create a continuous deployment.',
   DEGRADED: 'Degraded',
@@ -30,27 +31,61 @@ module.exports = {
   DEPLOY_LOCATION: 'Deployment Location',
   // List > Create
   CREATE_CONTINUOUS_DEPLOYMENT: 'Create Continuous Deployment',
-  CD_SELECT_CODE_REPO_DESC: 'Select a code repository to be used by the continuous deployment.',
+  CD_SELECT_CODE_REPO_DESC:
+    'Select a code repository to be used by the continuous deployment.',
   DEPLOYMENT_SETTINGS: 'Deployment Settings',
   CODE_REPOSITORY_SETTINGS: 'Code Repository Settings',
   SYNC_STRATEGY_TCAP: 'Sync Strategy',
   AUTO_SYNC_DESC: 'Sync according to rules set automatically.',
-  MANUAL_SYNC_DESC: 'Sync according to custom rules.',
+  // MANUAL_SYNC_DESC: 'Sync according to custom rules.',
   PRUNE_RESOURCES: 'Prune resources',
   SELF_HEAL: 'Self-heal',
   MANIFEST_FILE_PATH: 'Manifest File Path',
-  MANIFEST_FILE_PATH_DESC: 'Set the manifest file path. ',
+  // MANIFEST_FILE_PATH_DESC: 'Set the manifest file path. ',
   DIRECTORY_RECURSE: 'Directory recurse',
   REPO_EMPTY_DESC: 'Please select a code repository.',
+  VALUES_FILES: 'Values Files',
+  VALUES_FROM: 'Values From',
+  STORAGE_NAMESPACE: 'Storage Namespace',
+  TEST: 'Test',
+  REVISIONS_DESC:
+    'Git repository commit ID, branch, or tag. For example: "master", "v1.2.0", "0a1b2c3", or "HEAD".',
+  MANIFEST_FILE_PATH_DESC:
+    'Manifest file path, for example: "deployments/nginx" or "deployments/"',
+  MANUAL_SYNC_DESC: 'Sync according to custom rules.',
+  AUTO_SYNC_DESC:
+    'Automatically trigger application sync when there is a difference between the manifest in Git and the real-time state of the deployed resources, according to the set sync options.',
+  PRUNE_RESOURCES_DESC:
+    'If selected, resources that do not exist in Git will be deleted during automatic sync. If not selected, resources in the cluster will not be deleted when automatic sync is triggered.',
+  SELF_HEAL_DESC:
+    'If selected, when there is a deviation between the defined state in Git and the deployed resources, the defined state in Git will be enforced. If not selected, automatic sync will not be triggered when changes are made to the deployed resources.',
+  FOREGROUND_DESC:
+    'Delete dependent resources first, then delete the main resource.',
+  BACKGROUND_DESC:
+    'Delete the main resource first, then delete the dependent resource.',
+  ORPHAN_DESC:
+    'Delete the main resource and leave the dependent resource as an orphan.',
+  SKIP_SCHEMA_VALIDATION_DESC:
+    'Skip kubectl validation. Add the --validate=false flag when kubectl applies the object.',
+  AUTO_CREATE_PROJECT_DESC:
+    'Automatically create a project for application resources when the project does not exist.',
+  PRUNE_LAST_DESC:
+    'Clean up resources after other resources are deployed and healthy.',
+  APPLY_OUT_OF_SYNC_ONLY_DESC: 'Only apply resources that are out of sync.',
   // List > Delete
   CONTINUOUS_DEPLOYMENT: 'Continuous Deployment',
   CONTINUOUS_DEPLOYMENT_LOW: 'continuous deployment',
-  DELETE_CONTINUOUS_DEPLOYMENT_DESC_SI: 'You are about to delete the continuous deployment {resource}. <br/>Please confirm whether to delete resources created by the continuous deployment.',
-  DELETE_CONTINUOUS_DEPLOYMENT_DESC_PL: 'You are about to delete the continuous deployments {resource}. <br/>Please confirm whether to delete resources created by the continuous deployments.',
-  NO_CONTINUOUS_DEPLOYMENT_RELATED_RESOURCE_DESC: 'No resource created by the continuous deployment is found.',
-  DELETE_MULTIPLE_CONTINUOUS_DEPLOYMENT: 'Delete Multiple Continuous Deployments',
+  DELETE_CONTINUOUS_DEPLOYMENT_DESC_SI:
+    'You are about to delete the continuous deployment {resource}. <br/>Please confirm whether to delete resources created by the continuous deployment.',
+  DELETE_CONTINUOUS_DEPLOYMENT_DESC_PL:
+    'You are about to delete the continuous deployments {resource}. <br/>Please confirm whether to delete resources created by the continuous deployments.',
+  NO_CONTINUOUS_DEPLOYMENT_RELATED_RESOURCE_DESC:
+    'No resource created by the continuous deployment is found.',
+  DELETE_MULTIPLE_CONTINUOUS_DEPLOYMENT:
+    'Delete Multiple Continuous Deployments',
   DELETE_CONTINUOUS_DEPLOYMENT: 'Delete Continuous Deployment',
-  DELETE_CONTINUOUS_DEPLOYMENT_RELATE_DESC: 'Delete resources created by {resourceName}',
+  DELETE_CONTINUOUS_DEPLOYMENT_RELATE_DESC:
+    'Delete resources created by {resourceName}',
   // List > Sync
   SYNC: 'Sync',
   SYNC_RESOURCE: 'Sync Resource',
@@ -89,5 +124,5 @@ module.exports = {
   NAME_SUFFIX: 'Name Suffix',
   IMAGES: 'Images',
   COMMON_LABELS: 'Common Labels',
-  COMMON_ANNOTATIONS: 'Common Annotations'
-};
+  COMMON_ANNOTATIONS: 'Common Annotations',
+}

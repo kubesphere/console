@@ -25,7 +25,7 @@ module.exports = {
   ROUTE_PL: '应用路由',
   // List
   GATEWAY_ADDRESS_TCAP: '网关地址',
-  ROUTE_EMPTY_DESC: '请创建一个应用路由。',
+  ROUTE_EMPTY_DESC: '请创建应用路由。',
   // List > Create > Basic Information
   // List > Create > Routing Rules
   ADD_ROUTING_RULE_DESC: '添加一个路由规则将域名路径映射至服务。',
