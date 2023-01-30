@@ -21,6 +21,7 @@ module.exports = {
   WORKSPACE_DESC: 'कार्यक्षेत्र एक अलग तार्किक इकाई है जिसका उपयोग परियोजनाओं और DevOps परियोजनाओं को व्यवस्थित करने, संसाधन पहुँच का प्रबंधन करने और आपकी टीम के भीतर जानकारी साझा करने के लिए किया जाता है।',
   // List
   CLUSTER_PL: 'क्लस्टर',
+  ALL_CLUSTERS: 'All Clusters',
   // List > Create > Basic Information
   CREATE_WORKSPACE: 'कार्यक्षेत्र बनाएँ',
   WORKSPACE_NAME_EMPTY_DESC: 'कृपया एक कार्यक्षेत्र का नाम दर्ज करें.',
