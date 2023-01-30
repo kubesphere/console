@@ -53,5 +53,8 @@ module.exports = {
   SERVICE_NODE_PORT_DESC: '如果您目前的網路與集群節點在同一網路内，那麼您可以透通<集群 IP 地址>:<NodePort>進行訪問，或者通過<節點 IP 地址>:<NodePort>進行訪問。',
   IMAGE_BUILDING_FAILED: 'Image building failed',
   IMAGE_BUILDING_SUCCESSFUL: 'Image building successful',
-  BUILDING_IMAGE: 'Building image'
+  BUILDING_IMAGE: 'Building image',
+  SERVICE_MONITORING_EXPORTER: 'Service Monitoring Exporter',
+  EXPORTER_SERVICE_PORTS: 'Exporter Service Ports',
+  SCRAPE_INTERVAL_MIN: 'Scrape Interval (Min)'
 };

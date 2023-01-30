@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  NETWORK_ISOLATION_DESC: '通過配置網路隔離控制同一集群内 Pod 之間的流量以及來自外部的流量，從而實現隔離應用並增強應用的安全性。',
+  NETWORK_ISOLATION_DESC: 'By configuring network isolation, users can control traffic between pods within the same workspace and traffic from outside to implement application isolation and enhance application security.',
   NETWORK_ISOLATION_Q: '如何更好地使用網路隔離?',
   NETWORK_ISOLATION_Q1: 'What are the requirements on the CNI plugin for implementing network isolation?',
   // Network Isolation
@@ -28,15 +28,15 @@ module.exports = {
   NETWORK_POLICY_EMP_DESC: 'After the project network access is enabled, other projects will be unable to access the project. But you can allow projects, Services, and external IP addresses to access this project based on your needs.',
   // Network Isolation > Internal Allowlist
   INTERNAL_ALLOWLIST: '内部白名單',
-  INTERNAL_ALLOWLIST_TIP: 'Add projects and services in the cluster to the allowlist.',
+  INTERNAL_ALLOWLIST_TIP: 'Add projects and services in the workspace to the allowlist.',
   INTERNAL_EGRESS_DESC: 'Allows access to resources that match any of the following network policies.',
   INTERNAL_INGRESS_DESC: 'Allows access from resources that match any of the following network policies.',
-  INTERNAL_ALLOWLIST_DESC: 'Specifies the allowed access to and from projects and services in the cluster.',
+  INTERNAL_ALLOWLIST_DESC: 'Allow pods in the current project to communicate with pods in other projects of the current workspace.',
   EMPTY_RESOURCE_DESC: 'Please select at least one project or Service.',
   // Network Isolation > External Allowlist
   EXTERNAL_ALLOWLIST: 'External Allowlist',
-  EXTERNAL_ALLOWLIST_TIP: 'Add network segments outside the cluster to the allowlist.',
-  EXTERNAL_ALLOWLIST_DESC: 'Specifies the allowed access to and from network segments outside the cluster.',
+  EXTERNAL_ALLOWLIST_TIP: 'Add network segments and ports outside the workspace to the allowlist.',
+  EXTERNAL_ALLOWLIST_DESC: 'Allow pods in the current project to communicate with specific network segments and ports outside the workspace.',
   NETWORK_SEGMENT_EXAMPLE: 'Example: 10.0.0.0',
   PORT_EXAMPLE: 'Example: 80',
   EXTERNAL_EGRESS_DESC: 'Pods in the current project are allowed to access the following network segments and ports.',
@@ -46,7 +46,7 @@ module.exports = {
   ENTER_VALID_PORT_NUMBER_DESC: 'Please enter a valid port number.',
   // Add Allowlist Entry
   ADD_ALLOWLIST_ENTRY: '添加白名單',
-  EXTERNAL_TRAFFIC_DIRECTION_DESC: 'Egress indicates the direction from the current project to outside the cluster. Ingress indicates the direction from outside the cluster to the current project.',
+  EXTERNAL_TRAFFIC_DIRECTION_DESC: 'Egress indicates the direction from the current project to outside the workspace. Ingress indicates the direction from outside the workspace to the current project.',
   TRAFFIC_DIRECTION: '流量方向',
   NETWORK_SEGMENT_DESC: 'Set a network segment (CIDR is supported).',
   EGRESS: '出口',

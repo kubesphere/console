@@ -53,5 +53,8 @@ module.exports = {
   SERVICE_NODE_PORT_DESC: '如果您的客户机与集群在同一网段，您可以使用<节点 IP 地址>:<节点端口>访问服务。',
   IMAGE_BUILDING_FAILED: '镜像创建失败',
   IMAGE_BUILDING_SUCCESSFUL: '镜像创建成功',
-  BUILDING_IMAGE: '创建镜像中'
+  BUILDING_IMAGE: '创建镜像中',
+  SERVICE_MONITORING_EXPORTER: '服务监控 Exporter',
+  EXPORTER_SERVICE_PORTS: 'Exporter 服务端口',
+  SCRAPE_INTERVAL_MIN: '采集间隔（分钟）'
 };
