@@ -105,24 +105,42 @@ export default class ContainerSetting extends React.Component {
   }
 
   updatePullSecrets = formData => {
-    const pullSecrets = {}
-
     const imagePullSecretsPath = `${this.prefix}spec.imagePullSecrets`
+    const annotationsImagePullSecretsPath = `${this.prefix}metadata.annotations["kubesphere.io/imagepullsecrets"]`
 
     const containers = get(formData, `${this.prefix}spec.containers`, [])
+
+    const propsPullSecret = get(
+      this.props.formTemplate,
+      'S2i.spec.config.pushAuthentication.secretRef.name',
+      ''
+    )
+
+    const annotationOfImagePullSecrets = {}
+
     containers.forEach(container => {
-      if (container.pullSecret) {
-        pullSecrets[container.pullSecret] = ''
+      if (propsPullSecret) {
+        annotationOfImagePullSecrets[container.name] = propsPullSecret
       }
     })
 
     set(
       formData,
       imagePullSecretsPath,
-      !isEmpty(pullSecrets)
-        ? Object.keys(pullSecrets).map(key => ({ name: key }))
+      !isEmpty(annotationOfImagePullSecrets)
+        ? Object.values(annotationOfImagePullSecrets).map(value => ({
+            name: value,
+          }))
         : null
     )
+
+    if (!isEmpty(annotationOfImagePullSecrets)) {
+      set(
+        formData,
+        annotationsImagePullSecretsPath,
+        JSON.stringify(annotationOfImagePullSecrets)
+      )
+    }
   }
 
   updateService = formData => {
