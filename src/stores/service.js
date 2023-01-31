@@ -57,13 +57,6 @@ const updateS2iServiceParams = data => {
     data.S2i,
     'spec.config.tag'
   )}`
-  // set private image repo secret to deployment
-  const pullSecret = get(
-    data.S2i,
-    'spec.config.pushAuthentication.secretRef.name',
-    ''
-  )
-  set(serviceData, 'spec.template.spec.imagePullSecrets[0].name', pullSecret)
   set(data, 'S2i.metadata.annotations.serviceName', serviceName)
   data.S2i.metadata.name = builderName
   set(serviceData, 'metadata.labels.s2ibuilder', builderName)
