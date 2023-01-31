@@ -70,14 +70,14 @@
       height: 20px;
       padding-top: 6px;
       display: block;
+      width: 100%;
 
       :global(.lego-progress-inner) {
         height: 8px;
         border-radius: 2px;
         background-color: $light-color02;
-
       }
-      :global(.lego-progress-bg){
+      :global(.lego-progress-bg) {
         height: 8px;
         border-radius: 2px;
         background-color: $primary;
