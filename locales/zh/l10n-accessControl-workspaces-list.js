@@ -21,6 +21,7 @@ module.exports = {
   WORKSPACE_DESC: '企业空间是一个组织您的项目和 DevOps 项目、管理资源访问权限以及在团队内部共享资源等的逻辑单元，可以作为团队工作的独立工作空间。',
   // List
   CLUSTER_PL: '集群',
+  ALL_CLUSTERS: 'All Clusters',
   // List > Create > Basic Information
   CREATE_WORKSPACE: '创建企业空间',
   WORKSPACE_NAME_EMPTY_DESC: '请输入企业空间名称。',
