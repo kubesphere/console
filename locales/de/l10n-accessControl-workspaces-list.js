@@ -21,6 +21,7 @@ module.exports = {
   WORKSPACE_DESC: 'Ein Arbeitsbereich ist eine isolierte logische Einheit, die verwendet wird, um Projekte und DevOps Projekte zu organisieren, Ressourcenzugang zu verwalten und Informationen innerhalb Ihres Teams zu teilen.',
   // List
   CLUSTER_PL: 'Cluster',
+  ALL_CLUSTERS: 'All Clusters',
   // List > Create > Basic Information
   CREATE_WORKSPACE: 'Arbeitsbereich erstellen',
   WORKSPACE_NAME_EMPTY_DESC: 'Bitte geben Sie einen Arbeitsbereichsnamen ein.',

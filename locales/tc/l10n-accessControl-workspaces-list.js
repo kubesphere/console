@@ -21,6 +21,7 @@ module.exports = {
   WORKSPACE_DESC: '企業空間是一個組織您的項目和 DevOps 項目、管理資源訪問權限以及在團隊内部共享資源等的邏輯單元，可以作為團隊工作的獨立工作空間。',
   // List
   CLUSTER_PL: '集群',
+  ALL_CLUSTERS: 'All Clusters',
   // List > Create > Basic Information
   CREATE_WORKSPACE: '創建企業空間',
   WORKSPACE_NAME_EMPTY_DESC: '請輸入企業空間名稱。',
