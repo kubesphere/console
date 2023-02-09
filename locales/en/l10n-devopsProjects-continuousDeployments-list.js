@@ -30,6 +30,7 @@ module.exports = {
   OUTOFSYNC: 'Out of sync',
   DEPLOY_LOCATION: 'Deployment Location',
   // List > Create
+  NEED_TO_SYNC_REPO: 'Need to sync repo',
   CREATE_CONTINUOUS_DEPLOYMENT: 'Create Continuous Deployment',
   CD_SELECT_CODE_REPO_DESC:
     'Select a code repository to be used by the continuous deployment.',
