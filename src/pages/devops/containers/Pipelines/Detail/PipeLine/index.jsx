@@ -224,7 +224,6 @@ export default class Pipeline extends React.Component {
 
   renderPipeLineContent() {
     const { pipelineJson, isLoading } = this.store.pipelineJsonData
-
     if (isLoading) {
       return (
         <Loading spinning>
@@ -233,7 +232,7 @@ export default class Pipeline extends React.Component {
       )
     }
 
-    if (isEmpty(toJS(pipelineJson))) {
+    if (!this.store.detail?.validate || isEmpty(toJS(pipelineJson))) {
       return (
         <EmptyCard desc={t('NO_PIPELINE_CONFIG_FILE_TIP')}>
           {this.editable && (
