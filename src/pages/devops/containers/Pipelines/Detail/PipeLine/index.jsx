@@ -232,7 +232,27 @@ export default class Pipeline extends React.Component {
       )
     }
 
-    if (!this.store.detail?.validate || isEmpty(toJS(pipelineJson))) {
+    if (!this.store.detail?.validate || pipelineJson?.result === 'failure') {
+      return (
+        <EmptyCard desc={t('INVALID_JENKINSFILE_TIP')}>
+          {this.editable && (
+            <>
+              <Button
+                onClick={this.handleJenkinsFileModal}
+                disabled={this.jenkinsFileMode === 'json'}
+              >
+                {t('EDIT_JENKINSFILE')}
+              </Button>
+              <Button type="control" onClick={this.handleRunning}>
+                {t('RUN')}
+              </Button>
+            </>
+          )}
+        </EmptyCard>
+      )
+    }
+
+    if (isEmpty(toJS(pipelineJson))) {
       return (
         <EmptyCard desc={t('NO_PIPELINE_CONFIG_FILE_TIP')}>
           {this.editable && (
@@ -249,26 +269,6 @@ export default class Pipeline extends React.Component {
                 disabled={this.jenkinsFileMode === 'raw'}
               >
                 {t('EDIT_PIPELINE')}
-              </Button>
-            </>
-          )}
-        </EmptyCard>
-      )
-    }
-
-    if (pipelineJson.result === 'failure') {
-      return (
-        <EmptyCard desc={t('INVALID_JENKINSFILE_TIP')}>
-          {this.editable && (
-            <>
-              <Button
-                onClick={this.handleJenkinsFileModal}
-                disabled={this.jenkinsFileMode === 'json'}
-              >
-                {t('EDIT_JENKINSFILE')}
-              </Button>
-              <Button type="control" onClick={this.handleRunning}>
-                {t('RUN')}
               </Button>
             </>
           )}

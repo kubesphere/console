@@ -1254,7 +1254,7 @@ const PipelinesMapper = item => {
     validate:
       get(
         item,
-        'metadata.annotations["pipeline.devops.kubesphere.io/validate"]',
+        'metadata.annotations["pipeline.devops.kubesphere.io/jenkinsfile.validate"]',
         'successful'
       ) === 'successful',
     ...pipelineObject,
