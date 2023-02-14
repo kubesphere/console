@@ -159,6 +159,10 @@ module.exports = {
   MUST_MATCH: 'Must match',
   TARGET: 'Target',
   STRATEGY: 'Strategy',
+  // List > Create > Pod Settings > Pod Grace Period
+  POD_GRACE_PERIOD: 'Pod Grace Period',
+  POD_GRACE_PERIOD_DESC: 'Set the waiting time before Pod terminates, after which Pod will be forcibly terminated.',
+  TERMINATION_GRACEPERIOD_SECONDS: 'Termination GracePeriod Seconds (s)',
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: 'Add Metadata',
   POD_ADD_METADATA_DESC: 'Add metadata to the pod replicas.',

@@ -52,6 +52,7 @@ import UpdateStrategy from './UpdateStrategy'
 import ContainerList from './ContainerList'
 import ContainerForm from './ContainerForm'
 import PodSecurityContext from './PodSecurityContext'
+import TerminationSeconds from './TerminationSeconds'
 
 import Metadata from './Metadata'
 import styles from './index.scss'
@@ -772,6 +773,23 @@ export default class ContainerSetting extends React.Component {
     )
   }
 
+  renderTerminationSeconds() {
+    return (
+      <div className="margin-b12">
+        <Form.Group
+          label={t('POD_GRACE_PERIOD')}
+          desc={t('POD_GRACE_PERIOD_DESC')}
+          keepDataWhenUnCheck
+          checkable
+        >
+          <TerminationSeconds
+            name={`${this.prefix}spec.terminationGracePeriodSeconds`}
+          />
+        </Form.Group>
+      </div>
+    )
+  }
+
   renderMetadata() {
     return (
       <div className="margin-b12">
@@ -813,6 +831,7 @@ export default class ContainerSetting extends React.Component {
         {this.renderUpdateStrategy()}
         {this.renderPodSecurityContext()}
         {this.renderPodAffinity()}
+        {this.renderTerminationSeconds()}
         {this.renderMetadata()}
       </Form>
     )
