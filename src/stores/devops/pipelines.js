@@ -107,6 +107,9 @@ export default class PipelineStore extends BaseStore {
   repositoryLog = ''
 
   @observable
+  isSubmitting = false
+
+  @observable
   pipelineJsonData = {
     pipelineJson: {},
     isLoading: true,
@@ -195,6 +198,35 @@ export default class PipelineStore extends BaseStore {
     return result
   }
 
+  async fetchDetailUntilEditModeNull({ cluster, name, devops }) {
+    return new Promise((resolve, reject) => {
+      const timerOut = setTimeout(() => {
+        clearTimeout(this.timer)
+        clearTimeout(timerOut)
+        reject(t('CONNECTION_TIMEOUT'))
+      }, 60000)
+      const getFn = async () => {
+        const resultKub = await request.get(
+          `${this.getBaseUrl({ devops, cluster })}${this.module}/${name}`
+        )
+        const result = this.mapper(resultKub)
+        clearTimeout(this.timer)
+        if (
+          get(
+            result,
+            "annotations['pipeline.devops.kubesphere.io/jenkinsfile.edit.mode']"
+          )
+        ) {
+          this.timer = setTimeout(getFn, 1000)
+        } else {
+          clearTimeout(timerOut)
+          resolve(result)
+        }
+      }
+      getFn()
+    })
+  }
+
   @action
   setPipelineConfig = detail => {
     this.pipelineConfig = detail
@@ -233,15 +265,76 @@ export default class PipelineStore extends BaseStore {
     }
   }
 
+  submitting = promise => {
+    this.isSubmitting = true
+    return promise
+  }
+
   @action
-  async convertJenkinsFileToJson(jenkinsFile, cluster) {
-    if (jenkinsFile) {
-      const result = await request.post(
-        `${this.getDevopsUrlV2({ cluster })}tojson`,
-        { jenkinsfile: jenkinsFile },
-        FORM_HEAR
+  setPipelineJsonData(json) {
+    this.pipelineJsonData = {
+      pipelineJson: json ? { json: JSON.parse(json) } : undefined,
+      isLoading: false,
+    }
+  }
+  // @action
+  // async convertJenkinsFileToJson(jenkinsFile, cluster) {
+  //   if (jenkinsFile) {
+  //     const result = await request.post(
+  //       `${this.getDevopsUrlV2({ cluster })}tojson`,
+  //       { jenkinsfile: jenkinsFile },
+  //       FORM_HEAR
+  //     )
+  //     return result.data
+  //   }
+  // }
+
+  @action
+  async convertJenkinsFileToJson(
+    jenkinsFile,
+    cluster,
+    devops,
+    name,
+    withLoading
+  ) {
+    if (withLoading) {
+      this.isSubmitting = true
+    }
+    await request.put(
+      `/kapis/devops.kubesphere.io/v1alpha3/devops/${devops}/pipelines/${name}/jenkinsfile?mode=raw`,
+      { data: jenkinsFile },
+      {
+        headers: {
+          'content-type': 'application/json',
+        },
+      }
+    )
+    let mode = 'raw'
+    let jsonData
+    try {
+      // const res = store.mapper(item)
+      const res = await this.fetchDetailUntilEditModeNull({
+        cluster,
+        devops,
+        name,
+      })
+      jsonData = get(
+        res,
+        'annotations["pipeline.devops.kubesphere.io/jenkinsfile"]'
       )
-      return result.data
+      mode = ''
+    } catch (e) {
+      mode = 'raw'
+      jsonData = undefined
+    } finally {
+      if (withLoading) {
+        this.isSubmitting = false
+      }
+    }
+
+    return {
+      mode,
+      jsonData,
     }
   }
 
@@ -551,19 +644,17 @@ export default class PipelineStore extends BaseStore {
     { devops, pipeline, value, cluster },
     failureHandler
   ) {
-    return this.submitting(
-      request.post(
-        `${this.getPipelineUrl({
-          cluster,
-          name: pipeline,
-          devops,
-        })}checkScriptCompile`,
-        {
-          value,
-        },
-        FORM_HEAR,
-        failureHandler
-      )
+    return request.post(
+      `${this.getPipelineUrl({
+        cluster,
+        name: pipeline,
+        devops,
+      })}checkScriptCompile`,
+      {
+        value,
+      },
+      FORM_HEAR,
+      failureHandler
     )
   }
 

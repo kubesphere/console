@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Button, Loading, Tooltip } from '@kube-design/components'
+import { Button, Loading, Notify, Tooltip } from '@kube-design/components'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { isEmpty, debounce } from 'lodash'
@@ -57,13 +57,27 @@ export default class Pipeline extends React.Component {
     ]
   }
 
+  get isValidated() {
+    return (
+      this.store.pipelineConfig.metadata.annotations[
+        'pipeline.devops.kubesphere.io/jenkinsfile.validate'
+      ] !== 'failure'
+    )
+  }
+
+  get jenkinsFile() {
+    const { pipelineConfig } = this.store
+    return toJS(pipelineConfig.spec.pipeline.jenkinsfile)
+  }
+
   get isMultibranch() {
     const { detailStore } = this.props
     return toJS(detailStore.detail.isMultiBranch)
   }
 
   handlePipelineModal = () => {
-    const { pipelineJsonData } = this.store
+    const { pipelineJsonData, pipelineConfig } = this.store
+    const defaultValue = toJS(pipelineConfig.spec.pipeline.jenkinsfile)
     const { params } = this.props.match
 
     this.trigger('pipeline.pipelineTemplate', {
@@ -77,30 +91,67 @@ export default class Pipeline extends React.Component {
       contentWidth: '960px',
       noCodeEdit: true,
       params,
-      success: jenkinsFile => {
-        this.trigger('pipeline.pipelineCreate', {
-          store: this.store,
-          jsonData: jenkinsFile,
-          params,
-          success: () => {
-            const { devops, name } = params
-            localStorage.removeItem(
-              `${globals.user.username}-${devops}-${name}`
+      onCancel: () => this.handleReset(defaultValue),
+      success: ({ jenkinsFile, jsonData, mode, template }) => {
+        if (template === 'custom') {
+          this.trigger('pipeline.pipelineCreate', {
+            store: this.store,
+            jsonData: {},
+            params,
+            onCancel: () => this.handleReset(defaultValue),
+            success: () => {
+              const { devops, name } = params
+              localStorage.removeItem(
+                `${globals.user.username}-${devops}-${name}`
+              )
+              this.handleRefresh()
+            },
+          })
+        } else if (!mode) {
+          this.store.updateJenkinsFile(jenkinsFile)
+          if (!isEmpty(jsonData)) {
+            this.store.setPipelineJsonData(jsonData)
+            this.handleEditorPipelineModal(undefined, () =>
+              this.handleReset(defaultValue)
             )
-            this.handleRefresh()
-          },
-        })
+          } else {
+            this.handleJenkinsFileModal(undefined, () =>
+              this.handleReset(defaultValue)
+            )
+          }
+        } else {
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
+          this.handleRefresh()
+        }
       },
     })
   }
 
-  handleEditorPipelineModal = () => {
+  handleReset = () => {
+    const { params } = this.props.match
+    const { devops, name } = params
+    clearTimeout(this.store.timer)
+    request
+      .put(
+        `/kapis/devops.kubesphere.io/v1alpha3/devops/${devops}/pipelines/${name}/jenkinsfile?mode=raw`,
+        { data: '' },
+        {
+          headers: {
+            'content-type': 'application/json',
+          },
+        }
+      )
+      .then(this.handleRefresh)
+  }
+
+  handleEditorPipelineModal = (e, cb) => {
     const { pipelineJsonData } = this.store
     const { params } = this.props.match
 
     this.trigger('pipeline.pipelineCreate', {
       store: this.store,
       jsonData: toJS(pipelineJsonData.pipelineJson),
+      onCancel: cb,
       params,
       success: () => {
         const { devops, name } = params
@@ -110,13 +161,14 @@ export default class Pipeline extends React.Component {
     })
   }
 
-  handleJenkinsFileModal = () => {
+  handleJenkinsFileModal = (e, cb) => {
     const { pipelineConfig } = this.store
     const { params } = this.props.match
 
     this.trigger('pipeline.jenkins', {
       store: this.store,
       defaultValue: toJS(pipelineConfig.spec.pipeline.jenkinsfile),
+      onCancel: cb,
       params,
       success: () => {
         const { devops, name } = params
@@ -224,7 +276,6 @@ export default class Pipeline extends React.Component {
 
   renderPipeLineContent() {
     const { pipelineJson, isLoading } = this.store.pipelineJsonData
-
     if (isLoading) {
       return (
         <Loading spinning>
@@ -233,7 +284,27 @@ export default class Pipeline extends React.Component {
       )
     }
 
-    if (isEmpty(toJS(pipelineJson))) {
+    if (this.jenkinsFileMode) {
+      return (
+        <EmptyCard desc={t('JENKINS_UNAVAILABLE')}>
+          {this.editable && (
+            <>
+              <Button
+                onClick={this.handleJenkinsFileModal}
+                disabled={this.jenkinsFileMode === 'json'}
+              >
+                {t('EDIT_JENKINSFILE')}
+              </Button>
+              <Button type="control" onClick={this.handleRunning}>
+                {t('RUN')}
+              </Button>
+            </>
+          )}
+        </EmptyCard>
+      )
+    }
+
+    if (isEmpty(toJS(pipelineJson)) || !this.jenkinsFile) {
       return (
         <EmptyCard desc={t('NO_PIPELINE_CONFIG_FILE_TIP')}>
           {this.editable && (
@@ -257,7 +328,10 @@ export default class Pipeline extends React.Component {
       )
     }
 
-    if (pipelineJson.result === 'failure') {
+    if (
+      (pipelineJson && pipelineJson.result === 'failure') ||
+      !this.isValidated
+    ) {
       return (
         <EmptyCard desc={t('INVALID_JENKINSFILE_TIP')}>
           {this.editable && (
