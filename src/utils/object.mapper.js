@@ -1251,6 +1251,12 @@ const PipelinesMapper = item => {
     parameters: [],
     disabled: false,
     weatherScore: 100,
+    validate:
+      get(
+        item,
+        'metadata.annotations["pipeline.devops.kubesphere.io/jenkinsfile.validate"]',
+        'successful'
+      ) === 'successful',
     ...pipelineObject,
     _originData: getOriginData(item),
   }
