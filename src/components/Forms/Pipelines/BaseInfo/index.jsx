@@ -21,9 +21,15 @@ import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
 
 import { PATTERN_NAME } from 'utils/constants'
 
+import { set } from 'lodash'
 import CodeRepoSelector from '../../../CodeRepoSelector'
+import { TypeSelect } from '../../../Base'
 
 export default class BaseInfo extends React.Component {
+  state = {
+    type: 0,
+  }
+
   validator = (rule, value, callback) => {
     if (!value) {
       return callback()
@@ -87,16 +93,48 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('CODE_REPOSITORY_OPTIONAL')}>
-          <CodeRepoSelector
-            name="multi_branch_pipeline"
-            devops={devops}
-            cluster={cluster}
-            isComplexMode={true}
-            ref={codeRepoSelectorRef}
-            showCreateRepo={showCodeRepoCreate}
-          />
-        </Form.Item>
+        <TypeSelect
+          value={this.state.type}
+          onChange={type => {
+            this.setState({ type })
+            set(formTemplate, 'MULTI_BRANCH_PIPELINE', undefined)
+          }}
+          name="pipeline-type"
+          options={[
+            {
+              label: t('PIPELINE_PL'),
+              value: 0,
+              icon: 'branch',
+              description: t('BRANCH_PIPELINE_DESC'),
+            },
+            {
+              label: t('MULTI_BRANCH_PIPELINE'),
+              value: 1,
+              icon: 'branch',
+              description: t('MULTI_BRANCH_PIPELINE_DESC'),
+            },
+          ]}
+        />
+        {this.state.type === 1 && (
+          <Form.Item
+            label={t('CODE_REPOSITORY_OPTIONAL')}
+            rules={[
+              {
+                required: true,
+                message: t('CODE_REPOSITORY_REQUIRED_DESC'),
+              },
+            ]}
+          >
+            <CodeRepoSelector
+              name="multi_branch_pipeline"
+              devops={devops}
+              cluster={cluster}
+              isComplexMode={true}
+              ref={codeRepoSelectorRef}
+              showCreateRepo={showCodeRepoCreate}
+            />
+          </Form.Item>
+        )}
       </Form>
     )
   }

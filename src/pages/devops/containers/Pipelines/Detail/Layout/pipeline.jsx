@@ -234,10 +234,18 @@ export default class PipelineDetailLayout extends React.Component {
       'metadata.annotations["pipeline.devops.kubesphere.io/syncstatus"]'
     )
 
+    const kind = this.store.detail.isMultiBranch
+      ? t('MULTI_BRANCH_PIPELINE')
+      : t('PIPELINE_PL')
+
     return [
       {
         name: t('DEVOPS_PROJECT'),
         value: devopsName,
+      },
+      {
+        name: t('KIND_TCAP'),
+        value: kind,
       },
       {
         name: t('TASK_STATUS'),

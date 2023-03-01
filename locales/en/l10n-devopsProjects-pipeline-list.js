@@ -22,6 +22,7 @@ module.exports = {
   // List
   HEALTH: 'Health',
   PULL_REQUEST_COUNT: 'Pull Requests',
+  MULTI_BRANCH_PIPELINE: 'Multi-branch Pipeline',
   HEALTHY: 'Healthy',
   SUB_HEALTHY: 'Sub-healthy',
   NO_STATUS: 'No status',
@@ -41,9 +42,14 @@ module.exports = {
   // List > Create
   CREATE_PIPELINE: 'Create Pipeline',
   // List > Create > Basic Information
+  PIPELINE_TYPE: 'Pipeline Type',
   SELECT_CODE_REPOSITORY: 'Select Code Repository',
+  BRANCH_PIPELINE_DESC: 'Describe the software build process with visual orchestration or Jenkinsfile.',
+  MULTI_BRANCH_PIPELINE_DESC: 'Create a series of pipelines for each branch detected in the source code management (SCM) repository.',
   PIPELINE_CREATE_DEVOPS_PROJECT_DESC: 'Select the DevOps project to which the pipeline belongs.',
   CODE_REPOSITORY_OPTIONAL: 'Code Repository (optional)',
+  CODE_REPOSITORY_REQUIRED: 'Code Repository',
+  CODE_REPOSITORY_REQUIRED_DESC: 'Please select a code repository.',
   GO_CREATE_REPO: 'No code repository is available. Please create a code repository.',
   CODE_REPO_EXISTS: 'code repository already exists',
   SELECT_CODE_REPO_DESC: 'Select a code repository to be used by the pipeline.',

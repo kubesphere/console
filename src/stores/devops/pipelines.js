@@ -147,7 +147,7 @@ export default class PipelineStore extends BaseStore {
       this.list.isLoading = true
     }
 
-    const { page, limit, name, filter } = filters
+    const { page, limit, name, filter, type, ascending } = filters
     const nameKey = name ? `${encodeURIComponent(name)}` : undefined
     const url = `${this.getBaseUrl({ cluster, devops })}pipelines`
 
@@ -158,6 +158,8 @@ export default class PipelineStore extends BaseStore {
         limit: limit || 10,
         name: nameKey,
         filter: filter || undefined,
+        type: type || undefined,
+        ascending,
       },
       { params: { ...filters } }
     )
@@ -174,7 +176,7 @@ export default class PipelineStore extends BaseStore {
       total: result.totalItems || 0,
       limit: parseInt(limit, 10) || 10,
       page: parseInt(page, 10) || 1,
-      filters: omit(filters, 'devops'),
+      filters: omit(filters, 'devops', 'ascending'),
       selectedRowKeys: [],
       isLoading: false,
     }

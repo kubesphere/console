@@ -311,54 +311,82 @@ export default class PipelinesList extends React.Component {
     })
   }
 
-  getColumns = () => [
-    {
-      title: t('NAME'),
-      dataIndex: 'name',
-      width: '20%',
-      render: (name, record) => {
-        const isRun =
-          record.status !== 'failed' && record.status !== 'successful'
-
-        const url = `/${this.workspace}/clusters/${this.cluster}/devops/${
-          this.devops
-        }/pipelines/${encodeURIComponent(record.name)}${
-          record.isMultiBranch ? '/activity' : ''
-        }`
-
-        return <Avatar to={isRun ? null : url} title={name} />
+  getTypes() {
+    return [
+      {
+        text: t('PIPELINE_PL'),
+        value: 'pipeline',
       },
-    },
+      {
+        text: t('MULTI_BRANCH_PIPELINE'),
+        value: 'multi-branch-pipeline',
+      },
+    ]
+  }
 
-    {
-      title: t('HEALTH'),
-      dataIndex: 'weatherScore',
-      width: '30%',
-      isHideable: true,
-      render: weatherScore => <Health score={weatherScore} />,
-    },
-    {
-      title: t('BRANCH_COUNT'),
-      dataIndex: 'totalNumberOfBranches',
-      width: '25%',
-      isHideable: true,
-      render: (totalNumberOfBranches, record) =>
-        totalNumberOfBranches === undefined ||
-        (!record.isMultiBranch && totalNumberOfBranches === 0)
-          ? '-'
-          : totalNumberOfBranches,
-    },
-    {
-      title: t('PULL_REQUEST_COUNT'),
-      dataIndex: 'totalNumberOfPullRequests',
-      width: '20%',
-      isHideable: true,
-      render: totalNumberOfPullRequests =>
-        totalNumberOfPullRequests === undefined
-          ? '-'
-          : totalNumberOfPullRequests,
-    },
-  ]
+  getColumns = () => {
+    const { getFilteredValue } = this.props
+    return [
+      {
+        title: t('NAME'),
+        dataIndex: 'name',
+        width: '20%',
+        search: true,
+        render: (name, record) => {
+          const isRun =
+            record.status !== 'failed' && record.status !== 'successful'
+
+          const url = `/${this.workspace}/clusters/${this.cluster}/devops/${
+            this.devops
+          }/pipelines/${encodeURIComponent(record.name)}${
+            record.isMultiBranch ? '/activity' : ''
+          }`
+
+          return <Avatar to={isRun ? null : url} title={name} />
+        },
+      },
+
+      {
+        title: t('HEALTH'),
+        dataIndex: 'weatherScore',
+        width: '25%',
+        isHideable: true,
+        render: weatherScore => <Health score={weatherScore} />,
+      },
+      {
+        title: t('KIND_TCAP'),
+        dataIndex: 'type',
+        width: '20%',
+        filters: this.getTypes(),
+        filteredValue: getFilteredValue('type'),
+        isHideable: true,
+        search: true,
+        render: (e, { isMultiBranch }) =>
+          isMultiBranch ? t('MULTI_BRANCH_PIPELINE') : t('PIPELINE_PL'),
+      },
+      {
+        title: t('BRANCH_COUNT'),
+        dataIndex: 'totalNumberOfBranches',
+        width: '20%',
+        isHideable: true,
+        render: (totalNumberOfBranches, record) =>
+          totalNumberOfBranches === undefined ||
+          (!record.isMultiBranch && totalNumberOfBranches === 0)
+            ? '-'
+            : totalNumberOfBranches,
+      },
+      {
+        title: t('PULL_REQUEST_COUNT'),
+        dataIndex: 'totalNumberOfPullRequests',
+        width: '15%',
+        isHideable: true,
+        render: totalNumberOfPullRequests =>
+          totalNumberOfPullRequests === undefined
+            ? '-'
+            : totalNumberOfPullRequests,
+      },
+    ]
+  }
 
   handleMultiBatchRun = () => {
     const { selectedRowKeys, data } = toJS(this.props.store.list)
@@ -401,7 +429,6 @@ export default class PipelinesList extends React.Component {
 
     const isEmptyList = isLoading === false && total === 0
     const omitFilters = omit(filters, ['limit', 'page'])
-
     const showCreate = this.enabledActions.includes('create')
       ? this.handleCreate
       : null
@@ -455,9 +482,10 @@ export default class PipelinesList extends React.Component {
         },
       ],
     }
-
+    const { tableProps } = this.props
     return (
       <Table
+        {...tableProps}
         rowKey="name"
         data={data}
         columns={this.getColumns()}
@@ -466,7 +494,7 @@ export default class PipelinesList extends React.Component {
         isLoading={isLoading}
         onFetch={this.handleFetch}
         onCreate={showCreate}
-        searchType="name"
+        // searchType="name"
         tableActions={defaultTableProps}
         itemActions={this.itemActions}
         enabledActions={this.enabledActions}
