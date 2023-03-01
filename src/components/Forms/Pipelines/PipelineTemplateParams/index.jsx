@@ -38,7 +38,7 @@ export default function PipelineTemplateParams({
   const [tab, setTab] = useState('params')
   const [loading, setLoading] = useState(false)
   const [jsonData, setJsonData] = useState({})
-
+  const [timeOut, setTout] = useState(false)
   const handleTabChange = async value => {
     if (value === 'view') {
       const { paramsForm = {} } = formTemplate
@@ -62,10 +62,22 @@ export default function PipelineTemplateParams({
         cluster,
       })
 
-      const jenkinsFile = await store.convertJenkinsFileToJson(jenkins, cluster)
-
-      setJsonData(jenkinsFile)
-      set(formTemplate, 'jenkinsFile', jenkinsFile)
+      try {
+        const { mode, jsonData: json1 } = await store.convertJenkinsFileToJson(
+          jenkins,
+          cluster,
+          devops,
+          name
+        )
+        const json = JSON.parse(json1)
+        if (!mode) {
+          setJsonData({ json })
+          set(formTemplate, 'jenkinsFile', { json })
+        }
+      } catch (e) {
+        console.error(e)
+        setTout(true)
+      }
       setLoading(false)
     }
     setTab(value)
@@ -105,14 +117,23 @@ export default function PipelineTemplateParams({
           </TabPanel>
           <TabPanel label={t('PREVIEW')} name="view" disabled={isEmpty(params)}>
             <div className={styles.view}>
-              <Loading spinning={loading}>
-                <Form data={formTemplate} ref={formRef}>
-                  <PipelineContent
-                    className={styles.content}
-                    jsonData={jsonData}
-                  />
-                </Form>
-              </Loading>
+              {timeOut ? (
+                <div className={styles.timeOut}>
+                  <div className={styles.icon}>
+                    <img src="/assets/pipeline-temp-empty.svg" alt="" />
+                  </div>
+                  <p>{t('CONNECTION_TIMEOUT')}</p>
+                </div>
+              ) : (
+                <Loading spinning={loading}>
+                  <Form data={formTemplate} ref={formRef}>
+                    <PipelineContent
+                      className={styles.content}
+                      jsonData={jsonData}
+                    />
+                  </Form>
+                </Loading>
+              )}
             </div>
           </TabPanel>
         </Tabs>

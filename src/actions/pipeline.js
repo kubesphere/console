@@ -306,11 +306,19 @@ export default {
     },
   },
   'pipeline.pipelineTemplate': {
-    on({ store, rootStore, success, jsonData, params, ...props }) {
+    on({
+      store,
+      rootStore,
+      success,
+      jsonData,
+      params,
+      pipelineDetailStore,
+      ...props
+    }) {
+      store.isSubmitting = false
       const modal = Modal.open({
         onOk: async data => {
-          let jenkinsFile = data.jenkinsFile
-
+          let re
           if (data.template !== 'custom') {
             const { paramsForm = {} } = data
             const postData = Object.keys(paramsForm).reduce((prev, curr) => {
@@ -328,11 +336,33 @@ export default {
               cluster,
             })
 
-            jenkinsFile = await store.convertJenkinsFileToJson(jenkins, cluster)
+            const {
+              mode,
+              jsonData: json,
+            } = await store.convertJenkinsFileToJson(
+              jenkins,
+              cluster,
+              devops,
+              name,
+              true
+            )
+            re = {
+              jenkinsFile: jenkins,
+              jsonData: json,
+              mode,
+              template: data.template,
+            }
+          } else {
+            re = {
+              jenkinsFile: '',
+              json: {},
+              mode: 'raw',
+              template: 'custom',
+            }
           }
 
           Modal.close(modal)
-          success && success(jenkinsFile)
+          success && success(re)
         },
         modal: CreateModal,
         steps: PIPELINE_CREATE_STEPS,
