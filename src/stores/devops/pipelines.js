@@ -361,19 +361,25 @@ export default class PipelineStore extends BaseStore {
 
     if (backward === false && !isEmpty(result) && isArray(result.items)) {
       result.items = result.items.map(item => {
+        const res = safeParseJSON(
+          get(
+            item,
+            "metadata.annotations.['devops.kubesphere.io/jenkins-pipelinerun-status']"
+          )
+        )
         return {
-          ...safeParseJSON(
+          ...res,
+          id:
+            res.id ??
             get(
               item,
-              "metadata.annotations.['devops.kubesphere.io/jenkins-pipelinerun-status']"
-            )
-          ),
+              'metadata.annotations["devops.kubesphere.io/jenkins-pipelinerun-id"]'
+            ),
           uid: item.metadata.uid,
           _originData: item,
         }
       })
     }
-
     this.activityList = {
       limit,
       data: result.items || [],
