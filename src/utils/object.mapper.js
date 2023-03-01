@@ -1239,6 +1239,7 @@ const PipelinesMapper = item => {
     ),
     name,
     isMultiBranch: get(item, 'spec.type', '') === 'multi-branch-pipeline',
+    type: get(item, 'spec.type', ''),
     numberOfPipelines: 0,
     numberOfFolders: 0,
     pipelineFolderNames: [],
