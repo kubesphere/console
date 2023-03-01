@@ -454,6 +454,14 @@ export default class AdvanceSettings extends React.Component {
               <Form.Item
                 label={t('BUILD_RECORD_RETENTION_PERIOD_DAYS')}
                 desc={t('BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC')}
+                rules={[
+                  {
+                    pattern: /^\d+$/,
+                    message: t(
+                      'BUILD_RECORD_RETENTION_PERIOD_DAYS_INVALID_TIP'
+                    ),
+                  },
+                ]}
               >
                 <Input
                   name={`${this.prefix}.discarder.days_to_keep`}
@@ -465,6 +473,12 @@ export default class AdvanceSettings extends React.Component {
               <Form.Item
                 label={t('MAXIMUM_BUILD_RECORDS')}
                 desc={t('MAXIMUM_BUILD_RECORDS_DESC')}
+                rules={[
+                  {
+                    pattern: /^\d+$/,
+                    message: t('MAXIMUM_BUILD_RECORDS_INVALID_TIP'),
+                  },
+                ]}
               >
                 <Input
                   name={`${this.prefix}.discarder.num_to_keep`}
@@ -483,6 +497,12 @@ export default class AdvanceSettings extends React.Component {
             <Form.Item
               label={t('BRANCH_RETENTION_PERIOD_DAYS')}
               desc={t('BRANCH_RETENTION_PERIOD_DAYS_DESC')}
+              rules={[
+                {
+                  pattern: /^\d+$/,
+                  message: t('BUILD_RECORD_RETENTION_PERIOD_DAYS_INVALID_TIP'),
+                },
+              ]}
             >
               <Input
                 name={`${this.prefix}.discarder.days_to_keep`}
@@ -494,6 +514,12 @@ export default class AdvanceSettings extends React.Component {
             <Form.Item
               label={t('MAXIMUM_BRANCHES')}
               desc={t('MAXIMUM_BRANCHES_DESC')}
+              rules={[
+                {
+                  pattern: /^\d+$/,
+                  message: t('MAXIMUM_BUILD_RECORDS_INVALID_TIP'),
+                },
+              ]}
             >
               <Input
                 name={`${this.prefix}.discarder.num_to_keep`}
