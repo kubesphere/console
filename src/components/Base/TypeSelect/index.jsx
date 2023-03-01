@@ -169,8 +169,7 @@ export default class TypeSelect extends React.Component {
 
   renderControl() {
     const { placeholder, options, disabled } = this.props
-    const { value } = this.state
-
+    const { value, showOptions } = this.state
     const option =
       options.find(item => isEqual(item.value, value)) || placeholder || {}
 
@@ -190,7 +189,7 @@ export default class TypeSelect extends React.Component {
         {!disabled && (
           <Icon
             className={styles.rightIcon}
-            name="chevron-down"
+            name={!showOptions ? 'chevron-down' : 'chevron-up'}
             size="small"
             clickable
           />
