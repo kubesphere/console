@@ -304,23 +304,19 @@ export default class Pipeline extends React.Component {
       )
     }
 
-    if (isEmpty(toJS(pipelineJson)) || !this.jenkinsFile) {
+    if (!this.store.detail?.validate || pipelineJson?.result === 'failure') {
       return (
-        <EmptyCard desc={t('NO_PIPELINE_CONFIG_FILE_TIP')}>
+        <EmptyCard desc={t('INVALID_JENKINSFILE_TIP')}>
           {this.editable && (
             <>
               <Button
                 onClick={this.handleJenkinsFileModal}
-                disabled={this.jenkinsFileMode === 'json'}
+                // disabled={this.jenkinsFileMode === 'json'}
               >
                 {t('EDIT_JENKINSFILE')}
               </Button>
-              <Button
-                type="control"
-                onClick={this.handlePipelineModal}
-                disabled={this.jenkinsFileMode === 'raw'}
-              >
-                {t('EDIT_PIPELINE')}
+              <Button type="control" onClick={this.handleRunning}>
+                {t('RUN')}
               </Button>
             </>
           )}
@@ -328,22 +324,23 @@ export default class Pipeline extends React.Component {
       )
     }
 
-    if (
-      (pipelineJson && pipelineJson.result === 'failure') ||
-      !this.isValidated
-    ) {
+    if (isEmpty(toJS(pipelineJson)) || !this.jenkinsFile) {
       return (
-        <EmptyCard desc={t('INVALID_JENKINSFILE_TIP')}>
+        <EmptyCard desc={t('NO_PIPELINE_CONFIG_FILE_TIP')}>
           {this.editable && (
             <>
               <Button
                 onClick={this.handleJenkinsFileModal}
-                disabled={this.jenkinsFileMode === 'json'}
+                // disabled={this.jenkinsFileMode === 'json'}
               >
                 {t('EDIT_JENKINSFILE')}
               </Button>
-              <Button type="control" onClick={this.handleRunning}>
-                {t('RUN')}
+              <Button
+                type="control"
+                onClick={this.handlePipelineModal}
+                // disabled={this.jenkinsFileMode === 'raw'}
+              >
+                {t('EDIT_PIPELINE')}
               </Button>
             </>
           )}

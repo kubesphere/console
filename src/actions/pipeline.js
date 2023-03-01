@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { toJS } from 'mobx'
-import { get, isEmpty } from 'lodash'
+import { cloneDeep, get, isEmpty } from 'lodash'
 import { Notify } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
@@ -205,7 +205,7 @@ export default {
         store,
         cluster,
         devops,
-        formTemplate,
+        formTemplate: cloneDeep(formTemplate),
         modal: BaseInfoModal,
         ...props,
       })
@@ -231,7 +231,7 @@ export default {
         store,
         cluster,
         devops,
-        formTemplate,
+        formTemplate: cloneDeep(formTemplate),
         modal: AdvanceEditorModal,
         ...props,
       })
