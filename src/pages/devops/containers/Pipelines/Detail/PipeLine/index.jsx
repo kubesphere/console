@@ -284,7 +284,7 @@ export default class Pipeline extends React.Component {
       )
     }
 
-    if (this.jenkinsFileMode) {
+    if (this.jenkinsFileMode && this.jenkinsFileMode === 'raw') {
       return (
         <EmptyCard desc={t('JENKINS_UNAVAILABLE')}>
           {this.editable && (
