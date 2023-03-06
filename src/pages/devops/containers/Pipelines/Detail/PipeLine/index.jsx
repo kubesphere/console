@@ -185,13 +185,26 @@ export default class Pipeline extends React.Component {
     await this.store.getJenkinsFile({ ...params, name: decodeName })
 
     this.store.getActivities(params)
+    if (this.jenkinsFileMode) {
+      this.handleRefresh()
+    }
   }
 
-  handleRefresh = () => {
+  handleRefresh = async () => {
     const { params } = this.props.match
     const decodeName = decodeURIComponent(params.name)
-
-    this.store.getJenkinsFile({ ...params, name: decodeName }, true)
+    await this.store.getJenkinsFile({ ...params, name: decodeName }, true)
+    if (this.jenkinsFileMode) {
+      this.store
+        .fetchDetailUntilEditModeNull({
+          ...params,
+          name: decodeName,
+        })
+        .then(res => {
+          this.store.detail = res
+          this.store.setPipelineConfig(res._originData)
+        })
+    }
   }
 
   componentDidMount() {
