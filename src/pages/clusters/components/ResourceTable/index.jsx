@@ -47,6 +47,12 @@ class ResourceTable extends React.Component {
 
   fetchProjects = (params = {}) => {
     const { cluster, clusterStore } = this.props
+
+    if (params.name) {
+      params.nameAndAlias = params.name
+      delete params.name
+    }
+
     return clusterStore.fetchProjects({
       cluster,
       ...clusterStore.projects.filters,

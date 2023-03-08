@@ -42,7 +42,7 @@ export default class ProjectCard extends React.Component {
     let admin
     let createTime
     if (type === 'devops') {
-      name = data.name
+      name = getDisplayName(data)
       desc = data.description || '-'
       admin = data.creator
       createTime = data.create_time || data.createTime

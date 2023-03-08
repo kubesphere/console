@@ -128,6 +128,12 @@ export default class BaseInfo extends React.Component {
           >
             <Input name="metadata.name" maxLength={63} />
           </Form.Item>
+          <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
+            <Input
+              name="metadata.annotations['kubesphere.io/alias-name']"
+              maxLength={63}
+            />
+          </Form.Item>
           <Form.Item label={t('TAG')} desc={t('CLUSTER_TAG_DESC')}>
             <Select
               name="metadata.labels['cluster.kubesphere.io/group']"

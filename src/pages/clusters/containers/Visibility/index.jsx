@@ -69,6 +69,21 @@ export default class Overview extends React.Component {
     return get(globals, 'user.globalRules.clusters', [])
   }
 
+  get columnSearch() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
+  }
+
   getData = params => {
     this.workspaceStore.fetchList({
       ...this.props.match.params,
@@ -147,9 +162,9 @@ export default class Overview extends React.Component {
           pagination={pagination}
           isLoading={isLoading}
           onFetch={this.getData}
-          searchType="name"
           emptyProps={emptyProps}
           columns={this.getColumns()}
+          columnSearch={this.columnSearch}
         />
       </div>
     )

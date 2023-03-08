@@ -22,7 +22,7 @@ import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 import { Loading } from '@kube-design/components'
 
-import { getDisplayName, getLocalTime } from 'utils'
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
 import RoleStore from 'stores/role'
 
@@ -128,11 +128,11 @@ export default class RoleDetail extends React.Component {
     return [
       {
         name: t('CLUSTER'),
-        value: cluster,
+        value: showNameAndAlias(cluster, 'cluster'),
       },
       {
         name: t('DEVOPS_PROJECT'),
-        value: namespace,
+        value: showNameAndAlias(namespace, 'project'),
       },
       {
         name: t('CREATION_TIME_TCAP'),

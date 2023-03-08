@@ -24,6 +24,7 @@ import { Icon, Tag } from '@kube-design/components'
 import { Indicator } from 'components/Base'
 import StatusReason from 'clusters/components/StatusReason'
 import { CLUSTER_PROVIDER_ICON, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
+import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -89,11 +90,13 @@ export default class ClusterTitle extends Component {
         <div className={styles.title}>
           <div className={styles.name}>
             {onClick ? (
-              <a title={cluster.name} onClick={onClick}>
-                {cluster.name}
+              <a title={showNameAndAlias(cluster)} onClick={onClick}>
+                {showNameAndAlias(cluster)}
               </a>
             ) : (
-              <span title={cluster.name}>{cluster.name}</span>
+              <span title={showNameAndAlias(cluster)}>
+                {showNameAndAlias(cluster)}
+              </span>
             )}
             {cluster.group && (
               <Tag

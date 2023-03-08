@@ -132,6 +132,21 @@ export default class Projects extends React.Component {
     }
   }
 
+  get columnSearch() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
+  }
+
   getColumns = () => {
     return [
       {
@@ -202,8 +217,8 @@ export default class Projects extends React.Component {
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}
+          columnSearch={this.columnSearch}
           onCreate={this.showCreate}
-          searchType="name"
           clusters={this.clusters}
         />
       </ListPage>

@@ -17,12 +17,12 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
 import { toJS, computed } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { Button, InputSearch, Columns, Column } from '@kube-design/components'
+import { Button, Columns, Column } from '@kube-design/components'
 import { Modal, ScrollLoad } from 'components/Base'
 import WorkspaceStore from 'stores/workspace'
+import FilterInput from 'components/Tables/Base/FilterInput'
 import ClusterStore from 'stores/cluster'
 
 import WorkspaceCard from './Card'
@@ -35,6 +35,7 @@ export default class WorkspaceSelectModal extends React.Component {
     super(props)
     this.store = new WorkspaceStore()
     this.clusterStore = new ClusterStore()
+    this.state = { filters: {} }
   }
 
   componentDidMount() {
@@ -46,12 +47,23 @@ export default class WorkspaceSelectModal extends React.Component {
     return this.clusterStore.list.data
   }
 
-  fetchData = params => {
-    this.store.fetchList({ ...params })
+  get columns() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
   }
 
-  handleSearch = name => {
-    this.fetchData({ name })
+  fetchData = params => {
+    this.store.fetchList({ ...params })
   }
 
   handleRefresh = () => {
@@ -75,8 +87,6 @@ export default class WorkspaceSelectModal extends React.Component {
     const { visible, onCancel } = this.props
     const { data, total, page, isLoading } = toJS(this.store.list)
 
-    const keyword = get(this.store.list, 'filters.name')
-
     const canCreate = globals.app
       .getActions({ module: 'workspaces' })
       .includes('manage')
@@ -95,10 +105,16 @@ export default class WorkspaceSelectModal extends React.Component {
         <div className={styles.bar}>
           <Columns>
             <Column>
-              <InputSearch
-                value={keyword}
+              <FilterInput
                 placeholder={t('SEARCH_BY_NAME')}
-                onSearch={this.handleSearch}
+                columns={this.columns}
+                onChange={_filters => {
+                  this.setState({
+                    filters: _filters,
+                  })
+                  this.fetchData(_filters)
+                }}
+                filters={this.state.filters}
               />
             </Column>
             <Column className="is-narrow">

@@ -20,7 +20,7 @@ import { isEmpty } from 'lodash'
 import React from 'react'
 import { List } from 'components/Base'
 import ClusterWrapper from 'components/Clusters/ClusterWrapper'
-import { getLocalTime } from 'utils'
+import { getLocalTime, showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -59,7 +59,7 @@ export default class WorkspaceCard extends React.Component {
         icon="enterprise"
         className={styles.wrapper}
         titleClass={styles.title}
-        title={<a>{data.name}</a>}
+        title={<a>{showNameAndAlias(data)}</a>}
         description={data.description || '-'}
         details={details}
         onClick={this.handleClick}

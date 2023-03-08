@@ -27,7 +27,7 @@ import EditBasicInfoModal from 'workspaces/components/Modals/EditBasicInfo'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 import ManageButton from 'pages/clusters/containers/BaseInfo/ManageButton'
 
-import { getLocalTime } from 'utils'
+import { getLocalTime, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
 
 import WorkspaceMonitorStore from 'stores/monitoring/workspace'
@@ -284,7 +284,7 @@ class BaseInfo extends React.Component {
           <Text
             className={styles.title}
             icon="enterprise"
-            title={detail.name}
+            title={showNameAndAlias(detail)}
             description={detail.description || t('WORKSPACE')}
             ellipsis
           />

@@ -409,7 +409,7 @@ export const getDisplayName = item => {
     return item.display_name
   }
 
-  return `${item.name}${item.aliasName ? ` (${item.aliasName})` : ''}`
+  return item.aliasName ? `${item.aliasName}(${item.name})` : item.name
 }
 
 export const getWebSocketProtocol = protocol => {
@@ -766,4 +766,25 @@ function mix(salt, str) {
   }
 
   return `${Base64.encode(prefix.join(''))}@${ret.join('')}`
+}
+
+export const showNameAndAlias = (name, type) => {
+  let object
+
+  if (!name) {
+    return ''
+  }
+
+  if (type) {
+    const objectArray = get(globals, `${type}Array`, [])
+    object = objectArray.filter(item => item.name === name)[0]
+  } else {
+    object = name
+  }
+
+  return object
+    ? object.aliasName
+      ? `${object.aliasName}(${object.name})`
+      : object.name
+    : name
 }

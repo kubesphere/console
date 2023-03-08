@@ -16,18 +16,36 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { set } from 'lodash'
 import { reaction, toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'react-router-dom'
 import { Component as Base } from 'core/containers/Base/Detail'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
+import ClusterStore from 'stores/cluster'
+import WorkspaceStore from 'stores/workspace'
+import ProjectStore from 'stores/project'
+
 @withRouter
 @inject('rootStore')
 @observer
 export default class DetailPage extends Base {
+  constructor(props) {
+    super(props)
+
+    this.clusterStore = new ClusterStore()
+    this.workspaceStore = new WorkspaceStore()
+    this.projectStore = new ProjectStore()
+  }
+
+  // state = {
+  //   fetchFin: false,
+  // }
+
   componentDidMount() {
     this.props.watch && this.initWebsocket()
+    this.setGlobals()
   }
 
   componentWillUnmount() {
@@ -49,6 +67,36 @@ export default class DetailPage extends Base {
       ...(this.inCluster
         ? { cluster }
         : { cluster, workspace, project: namespace }),
+    })
+  }
+
+  async setGlobals() {
+    const storeArray = [
+      { store: this.clusterStore, arrayName: 'clusterArray' },
+      {
+        store: this.workspaceStore,
+        arrayName: 'workspaceArray',
+      },
+      {
+        store: this.projectStore,
+        arrayName: 'projectArray',
+        searchKey: ['cluster', 'workspace'],
+      },
+    ]
+
+    const param = {}
+    storeArray.map(async item => {
+      if (item.searchKey) {
+        item.searchKey.forEach(para => {
+          param[para] = this.props.match.params[para]
+        })
+      }
+      await item.store.fetchList({ limit: Infinity, ...param })
+      set(globals, item.arrayName, toJS(item.store.list.data))
+    })
+
+    this.setState({
+      fetchFin: true,
     })
   }
 

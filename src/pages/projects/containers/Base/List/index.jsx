@@ -17,16 +17,36 @@
  */
 
 import React, { Component } from 'react'
+import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { get } from 'lodash'
+import { get, set } from 'lodash'
 
 import { renderRoutes } from 'utils/router.config'
 import { Nav } from 'components/Layout'
 import Selector from 'projects/components/Selector'
+import ClusterStore from 'stores/cluster'
+import WorkspaceStore from 'stores/workspace'
+import ProjectStore from 'stores/project'
 
 @inject('rootStore', 'projectStore')
 @observer
 class ProjectLayout extends Component {
+  constructor(props) {
+    super(props)
+
+    this.clusterStore = new ClusterStore()
+    this.workspaceStore = new WorkspaceStore()
+    this.projectStore = new ProjectStore()
+  }
+
+  state = {
+    fetchFin: false,
+  }
+
+  componentDidMount() {
+    this.setGlobals()
+  }
+
   getRoutes(navs) {
     const { routes, path } = this.props.route
     const nav = get(navs, '[0].items[0]', {})
@@ -47,6 +67,36 @@ class ProjectLayout extends Component {
   }
 
   handleChange = url => this.props.rootStore.routing.push(url)
+
+  async setGlobals() {
+    const storeArray = [
+      { store: this.clusterStore, arrayName: 'clusterArray' },
+      {
+        store: this.workspaceStore,
+        arrayName: 'workspaceArray',
+      },
+      {
+        store: this.projectStore,
+        arrayName: 'projectArray',
+        searchKey: ['cluster', 'workspace'],
+      },
+    ]
+
+    const param = {}
+    storeArray.map(async item => {
+      if (item.searchKey) {
+        item.searchKey.forEach(para => {
+          param[para] = this.props.match.params[para]
+        })
+      }
+      await item.store.fetchList({ limit: Infinity, ...param })
+      set(globals, item.arrayName, toJS(item.store.list.data))
+    })
+
+    this.setState({
+      fetchFin: true,
+    })
+  }
 
   render() {
     const { match, location } = this.props

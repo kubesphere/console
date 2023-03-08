@@ -21,7 +21,7 @@ import { isEmpty } from 'lodash'
 import { observer } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
-import { getDisplayName } from 'utils'
+import { getDisplayName, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
 import { createCenterWindowOpt } from 'utils/dom'
 import ContainerStore from 'stores/container'
@@ -132,11 +132,11 @@ export default class ContainerDetail extends React.Component {
     return [
       {
         name: t('CLUSTER'),
-        value: cluster,
+        value: showNameAndAlias(cluster, 'cluster'),
       },
       {
         name: t('PROJECT'),
-        value: namespace,
+        value: showNameAndAlias(namespace, 'project'),
       },
       {
         name: t('APP'),

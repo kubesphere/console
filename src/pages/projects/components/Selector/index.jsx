@@ -20,6 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon, Tooltip } from '@kube-design/components'
 import SelectModal from 'components/Modals/ProjectSelect'
+import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -59,7 +60,7 @@ export default class Selector extends React.Component {
 
   render() {
     const { title, type, detail } = this.props
-    const { name, description, cluster, workspace } = detail
+    const { description, cluster, workspace } = detail
     const { showSelect } = this.state
 
     return (
@@ -73,8 +74,8 @@ export default class Selector extends React.Component {
             />
           </div>
           <div className={styles.text}>
-            <Tooltip content={name}>
-              <div className="h6">{name}</div>
+            <Tooltip content={showNameAndAlias(detail)}>
+              <div className="h6">{showNameAndAlias(detail)}</div>
             </Tooltip>
             <p>{description || title}</p>
           </div>

@@ -20,6 +20,7 @@ import React, { Component } from 'react'
 import { Icon, Tag } from '@kube-design/components'
 import { keyBy } from 'lodash'
 import { CLUSTER_PROVIDER_ICON, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
+import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -43,7 +44,7 @@ export default class ClusterWrapper extends Component {
                   size={16}
                   type="light"
                 />
-                {children ? children(cluster) : cluster.name}
+                {children ? children(cluster) : showNameAndAlias(cluster)}
               </Tag>
             )
           })}

@@ -21,6 +21,7 @@ import { get, isEmpty } from 'lodash'
 import { computed } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { Panel, Text } from 'components/Base'
+import { showNameAndAlias } from 'utils'
 
 import WorkspaceStore from 'stores/workspace'
 
@@ -77,7 +78,7 @@ export default class Workspaces extends React.Component {
               <div key={item} className={styles.item}>
                 <Text
                   icon="enterprise"
-                  title={item}
+                  title={showNameAndAlias(workspace)}
                   description={workspace.description || t('WORKSPACE')}
                 />
                 <Text

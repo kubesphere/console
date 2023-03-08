@@ -32,6 +32,7 @@ import {
   getDisplayName,
   getLocalTime,
   compareVersion,
+  showNameAndAlias,
 } from 'utils'
 import EditModal from 'devops/components/Modals/DevOpsEdit'
 
@@ -278,7 +279,9 @@ class BaseInfo extends React.Component {
           </div>
           <div className={styles.item}>
             <div>
-              <Link to={`/workspaces/${this.workspace}`}>{this.workspace}</Link>
+              <Link to={`/workspaces/${this.workspace}`}>
+                {showNameAndAlias(this.workspace, 'workspace')}
+              </Link>
             </div>
             <p>{t('WORKSPACE')}</p>
           </div>

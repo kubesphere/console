@@ -23,6 +23,7 @@ import { renderRoutes } from 'utils/router.config'
 
 import { Nav } from 'components/Layout'
 import Selector from 'clusters/components/Selector'
+import { showNameAndAlias } from 'utils'
 
 @inject('rootStore', 'clusterStore')
 @observer
@@ -64,7 +65,7 @@ class ClusterLayout extends Component {
         <div className="ks-page-side">
           <Selector
             icon={detail.icon}
-            value={this.cluster}
+            value={showNameAndAlias(detail)}
             onChange={this.enterCluster}
           />
           <Nav

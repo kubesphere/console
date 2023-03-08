@@ -20,6 +20,7 @@ import React from 'react'
 import { inject, observer } from 'mobx-react'
 
 import { getSuitableValue } from 'utils/monitoring'
+import { showNameAndAlias } from 'utils'
 
 import { Avatar, Empty } from 'components/Base'
 import Table from 'components/Tables/Ranking'
@@ -53,7 +54,7 @@ export default class ProjectUsageRank extends React.Component {
         <Avatar
           icon="project"
           iconSize={40}
-          title={namespace}
+          title={showNameAndAlias(namespace, 'project')}
           to={`${this.prefix}/${namespace}`}
         />
       ),

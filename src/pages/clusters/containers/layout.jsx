@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { toJS } from 'mobx'
 import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
 import { set, get, pick } from 'lodash'
@@ -24,6 +25,8 @@ import { Loading } from '@kube-design/components'
 import { renderRoutes } from 'utils/router.config'
 
 import ClusterStore from 'stores/cluster'
+import WorkspaceStore from 'stores/workspace'
+import ProjectStore from 'stores/project'
 
 @inject('rootStore')
 @observer
@@ -32,6 +35,13 @@ export default class App extends Component {
     super(props)
 
     this.store = new ClusterStore()
+    this.clusterStore = new ClusterStore()
+    this.workspaceStore = new WorkspaceStore()
+    this.projectStore = new ProjectStore()
+  }
+
+  state = {
+    fetchFin: false,
   }
 
   componentDidMount() {
@@ -68,8 +78,39 @@ export default class App extends Component {
         ...pick(this.store.detail, ['name', 'aliasName', 'group', 'isHost']),
       })
     }
+    this.setGlobals()
 
     this.store.initializing = false
+  }
+
+  async setGlobals() {
+    const storeArray = [
+      { store: this.clusterStore, arrayName: 'clusterArray' },
+      {
+        store: this.workspaceStore,
+        arrayName: 'workspaceArray',
+      },
+      {
+        store: this.projectStore,
+        arrayName: 'projectArray',
+        searchKey: ['cluster', 'workspace'],
+      },
+    ]
+
+    const param = {}
+    storeArray.map(async item => {
+      if (item.searchKey) {
+        item.searchKey.forEach(para => {
+          param[para] = this.props.match.params[para]
+        })
+      }
+      await item.store.fetchList({ limit: Infinity, ...param })
+      set(globals, item.arrayName, toJS(item.store.list.data))
+    })
+
+    this.setState({
+      fetchFin: true,
+    })
   }
 
   get cluster() {

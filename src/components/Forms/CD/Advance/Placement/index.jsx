@@ -34,7 +34,7 @@ import {
 import { Text } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
 import ProjectStore from 'stores/project'
-import { inCluster2Default } from 'utils'
+import { inCluster2Default, showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -66,7 +66,7 @@ export default class Placement extends Component {
   @computed
   get clusters() {
     return this.cdStore.clustersList.map(item => ({
-      label: item.label,
+      label: showNameAndAlias(item),
       value: item.name,
       server: item.server,
     }))
@@ -77,7 +77,7 @@ export default class Placement extends Component {
     return this.projectStore.list.data
       .filter(item => item.status !== 'Terminating')
       .map(item => ({
-        label: item.name,
+        label: showNameAndAlias(item),
         value: item.name,
         disabled: item.isFedManaged || item.isFedHostNamespace,
         isFedManaged: item.isFedManaged || item.isFedHostNamespace,

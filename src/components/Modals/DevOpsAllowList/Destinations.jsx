@@ -16,13 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
+import { computed, action, observable } from 'mobx'
 import { pick, get, isEmpty, set } from 'lodash'
 import { ObjectInput } from 'components/Inputs'
 import ProjectStore from 'stores/project'
 import { Select, Icon, Tooltip } from '@kube-design/components'
-import { action, observable } from 'mobx'
 import { observer } from 'mobx-react'
-import { inCluster2Default } from 'utils'
+import { inCluster2Default, showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -42,8 +42,13 @@ export default class Destinations extends React.Component {
   @observable
   cluster = ''
 
+  @computed
   get clusters() {
-    return this.props.clusters || []
+    return this.props.clusters.map(item => ({
+      label: showNameAndAlias(item.label, 'cluster'),
+      value: item.value,
+      cluster: item,
+    }))
   }
 
   get destinations() {
@@ -54,7 +59,7 @@ export default class Destinations extends React.Component {
     const data = this.projectStore.list.data
       .filter(item => item.status !== 'Terminating')
       .map(item => ({
-        label: item.name,
+        label: showNameAndAlias(item),
         value: item.name,
         disabled: item.isFedManaged,
         isFedManaged: item.isFedManaged,

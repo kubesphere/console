@@ -21,7 +21,7 @@ import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
-import { getDisplayName, getLocalTime } from 'utils'
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { getJobStatus } from 'utils/status'
 import { trigger } from 'utils/action'
 import WorkloadStore from 'stores/workload'
@@ -132,11 +132,11 @@ export default class JobDetail extends React.Component {
     return [
       {
         name: t('CLUSTER'),
-        value: cluster,
+        value: showNameAndAlias(cluster, 'cluster'),
       },
       {
         name: t('PROJECT'),
-        value: namespace,
+        value: showNameAndAlias(namespace, 'project'),
       },
       {
         name: t('STATUS'),

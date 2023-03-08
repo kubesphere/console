@@ -22,7 +22,7 @@ import { observer, inject } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
 import { Loading, Tooltip } from '@kube-design/components'
 
-import { getDisplayName, getLocalTime } from 'utils'
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
 import AppStore from 'stores/openpitrix/application'
 
@@ -118,11 +118,11 @@ export default class OPAppDetail extends React.Component {
     return [
       {
         name: t('CLUSTER'),
-        value: cluster,
+        value: showNameAndAlias(cluster, 'cluster'),
       },
       {
         name: t('PROJECT'),
-        value: namespace,
+        value: showNameAndAlias(namespace, 'project'),
       },
       {
         name: t('STATUS'),

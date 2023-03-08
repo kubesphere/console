@@ -24,7 +24,7 @@ import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
 
-import { getDisplayName } from 'utils'
+import { showNameAndAlias } from 'utils'
 import { getSuitableValue, getValueByUnit } from 'utils/monitoring'
 
 import ProjectStore from 'stores/project'
@@ -117,6 +117,25 @@ export default class Projects extends React.Component {
     }
   }
 
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
+  get columnSearch() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
+  }
+
   handleFetch = (params, refresh) => {
     const { routing } = this.props
     routing.query({ ...params, type: this.type }, refresh)
@@ -164,6 +183,7 @@ export default class Projects extends React.Component {
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
+        search: true,
         render: (name, record) => (
           <Avatar
             to={record.status === 'Terminating' ? null : `${prefix}/${name}`}
@@ -171,14 +191,16 @@ export default class Projects extends React.Component {
             iconSize={40}
             isMultiCluster={record.isFedHostNamespace}
             desc={record.description || '-'}
-            title={getDisplayName(record)}
+            title={showNameAndAlias(record)}
           />
         ),
       },
+
       {
         title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
+        search: true,
         render: status => (
           <Status type={status} name={t(status.toUpperCase())} flicker />
         ),
@@ -187,6 +209,8 @@ export default class Projects extends React.Component {
         title: t('WORKSPACE'),
         dataIndex: 'workspace',
         isHideable: true,
+        search: true,
+        render: record => showNameAndAlias(record, 'workspace'),
       },
       {
         title: t('CPU_USAGE'),
@@ -236,9 +260,8 @@ export default class Projects extends React.Component {
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           columns={this.getColumns()}
-          onCreate={this.type === 'system' ? null : this.showCreate}
           isLoading={tableProps.isLoading || isLoadingMonitor}
-          searchType="name"
+          // searchType="name"
         />
       </ListPage>
     )

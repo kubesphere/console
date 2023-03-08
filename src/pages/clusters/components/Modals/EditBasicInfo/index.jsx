@@ -135,6 +135,12 @@ export default class EditBasicInfoModal extends React.Component {
         <Form.Item label={t('CLUSTER_NAME')} desc={t('NAME_DESC')}>
           <Input name="metadata.name" disabled />
         </Form.Item>
+        <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
+          <Input
+            name="metadata.annotations['kubesphere.io/alias-name']"
+            maxLength={63}
+          />
+        </Form.Item>
         <Form.Item label={t('TAG')} desc={t('CLUSTER_TAG_DESC')}>
           <Select
             name="metadata.labels['cluster.kubesphere.io/group']"

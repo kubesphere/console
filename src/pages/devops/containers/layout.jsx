@@ -24,6 +24,8 @@ import { renderRoutes } from 'utils/router.config'
 
 import DevOpsStore from 'stores/devops'
 import ClusterStore from 'stores/cluster'
+import WorkspaceStore from 'stores/workspace'
+import ProjectStore from 'stores/project'
 
 @inject('rootStore')
 @observer
@@ -32,6 +34,12 @@ export default class Layout extends Component {
     super(props)
     this.store = new DevOpsStore()
     this.clusterStore = new ClusterStore()
+    this.workspaceStore = new WorkspaceStore()
+    this.projectStore = new ProjectStore()
+  }
+
+  state = {
+    fetchFin: true,
   }
 
   get cluster() {
@@ -52,6 +60,7 @@ export default class Layout extends Component {
 
   componentDidMount() {
     this.init()
+    this.setGlobals()
   }
 
   componentDidUpdate(prevProps) {
@@ -116,6 +125,36 @@ export default class Layout extends Component {
     })
 
     this.store.initializing = false
+  }
+
+  async setGlobals() {
+    const storeArray = [
+      { store: this.clusterStore, arrayName: 'clusterArray' },
+      {
+        store: this.workspaceStore,
+        arrayName: 'workspaceArray',
+      },
+      {
+        store: this.projectStore,
+        arrayName: 'projectArray',
+        searchKey: ['cluster', 'workspace'],
+      },
+    ]
+
+    const param = {}
+    storeArray.map(async item => {
+      if (item.searchKey) {
+        item.searchKey.forEach(para => {
+          param[para] = this.props.match.params[para]
+        })
+      }
+      await item.store.fetchList({ limit: Infinity, ...param })
+      set(globals, item.arrayName, toJS(item.store.list.data))
+    })
+
+    this.setState({
+      fetchFin: true,
+    })
   }
 
   render() {

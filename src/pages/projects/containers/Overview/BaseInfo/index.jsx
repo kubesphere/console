@@ -20,8 +20,7 @@ import React from 'react'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import { Icon } from '@kube-design/components'
-import { getDisplayName } from 'utils'
-
+import { showNameAndAlias } from 'utils'
 import styles from './index.scss'
 
 export default class BaseInfo extends React.Component {
@@ -33,14 +32,14 @@ export default class BaseInfo extends React.Component {
         <div className={styles.header}>
           <Icon name="project" size={40} />
           <div className={styles.text}>
-            <div>{getDisplayName(detail)}</div>
+            <div>{showNameAndAlias(detail)}</div>
             <p>{detail.description || '-'}</p>
           </div>
         </div>
         <div className={styles.content}>
           {globals.app.isMultiCluster && (
             <div className={styles.text}>
-              <div>{detail.cluster || '-'}</div>
+              <div>{showNameAndAlias(detail.cluster, 'cluster') || '-'}</div>
               <p>{t('CLUSTER')}</p>
             </div>
           )}
@@ -48,7 +47,7 @@ export default class BaseInfo extends React.Component {
             <div>
               {detail.workspace ? (
                 <Link to={`/workspaces/${detail.workspace}/overview`}>
-                  {detail.workspace}
+                  {showNameAndAlias(detail.workspace, 'workspace')}
                 </Link>
               ) : (
                 '-'

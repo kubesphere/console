@@ -21,7 +21,7 @@ import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Avatar } from 'components/Base'
 import Table from 'components/Tables/List'
-import { getLocalTime, getDisplayName } from 'utils'
+import { getLocalTime, getDisplayName, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
 import CRDResource from 'stores/crd.resource'
 
@@ -122,6 +122,7 @@ export default class ResourceStatus extends React.Component {
             {
               title: t('PROJECT_DEVOPS_PROJECT'),
               dataIndex: 'namespace',
+              render: namespace => showNameAndAlias(namespace, 'project'),
             },
           ]
         : []),

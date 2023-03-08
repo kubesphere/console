@@ -15,23 +15,75 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
+import { set } from 'lodash'
 import React, { Component } from 'react'
+import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 
 import { renderRoutes } from 'utils/router.config'
 import { Nav } from 'components/Layout'
 import Selector from 'projects/components/Selector'
 
+import ClusterStore from 'stores/cluster'
+import WorkspaceStore from 'stores/workspace'
+import ProjectStore from 'stores/project'
+
 @inject('rootStore', 'projectStore')
 @observer
 export default class FederatedProjectLayout extends Component {
+  constructor(props) {
+    super(props)
+
+    this.store = new ClusterStore()
+    this.clusterStore = new ClusterStore()
+    this.workspaceStore = new WorkspaceStore()
+    this.projectStore = new ProjectStore()
+  }
+
+  componentDidMount() {
+    this.setGlobals()
+  }
+
+  state = {
+    fetchFin: false,
+  }
+
   get project() {
     return this.props.match.params.namespace
   }
 
   get routing() {
     return this.props.rootStore.routing
+  }
+
+  async setGlobals() {
+    const storeArray = [
+      { store: this.clusterStore, arrayName: 'clusterArray' },
+      {
+        store: this.workspaceStore,
+        arrayName: 'workspaceArray',
+      },
+      {
+        store: this.projectStore,
+        arrayName: 'projectArray',
+        searchKey: ['cluster', 'workspace'],
+      },
+    ]
+
+    const param = {}
+    storeArray.map(async item => {
+      if (item.searchKey) {
+        item.searchKey.forEach(para => {
+          param[para] = this.props.match.params[para]
+        })
+      }
+      await item.store.fetchList({ limit: Infinity, ...param })
+      set(globals, item.arrayName, toJS(item.store.list.data))
+    })
+
+    this.setState({
+      fetchFin: true,
+    })
   }
 
   handleChange = url => this.routing.push(url)

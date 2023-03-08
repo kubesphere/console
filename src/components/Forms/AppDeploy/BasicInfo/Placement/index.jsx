@@ -30,6 +30,7 @@ import {
   Loading,
   Form,
 } from '@kube-design/components'
+import { showNameAndAlias } from 'utils'
 
 import { Text } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
@@ -62,7 +63,7 @@ export default class Placement extends Component {
     return this.workspaceStore.list.data
       .filter(item => item.name !== globals.config.systemWorkspace)
       .map(item => ({
-        label: item.name,
+        label: showNameAndAlias(item),
         value: item.name,
       }))
   }
@@ -70,7 +71,7 @@ export default class Placement extends Component {
   @computed
   get clusters() {
     return this.workspaceStore.clusters.data.map(item => ({
-      label: item.name,
+      label: showNameAndAlias(item),
       value: item.name,
       disabled: !item.isReady,
       cluster: item,
@@ -82,7 +83,7 @@ export default class Placement extends Component {
     return this.projectStore.list.data
       .filter(item => item.status !== 'Terminating')
       .map(item => ({
-        label: item.name,
+        label: showNameAndAlias(item),
         value: item.name,
         disabled: item.isFedManaged,
         isFedManaged: item.isFedManaged,
@@ -211,7 +212,7 @@ export default class Placement extends Component {
 
   clusterOptionRenderer = option => (
     <div>
-      <div>{option.value}</div>
+      <div>{option.label}</div>
       {!option.cluster.isReady && (
         <div>
           <StatusReason data={option.cluster} noTip />

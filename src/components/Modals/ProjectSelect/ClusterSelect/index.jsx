@@ -19,6 +19,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import { Dropdown, Menu, Icon } from '@kube-design/components'
+import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -43,7 +44,9 @@ export default class ClusterSelect extends Component {
     const { className, value } = this.props
     return (
       <div className={classNames(styles.value, className)}>
-        <span className={styles.label}>{t('CLUSTER_VALUE', { value })}</span>
+        <span className={styles.label}>
+          {t('CLUSTER_VALUE', { value: showNameAndAlias(value, 'cluster') })}
+        </span>
         <Icon className={styles.rightIcon} name="chevron-down" type="light" />
       </div>
     )

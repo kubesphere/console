@@ -22,7 +22,7 @@ import { observer, inject } from 'mobx-react'
 import { get, isEmpty, omit } from 'lodash'
 import { Loading } from '@kube-design/components'
 
-import { getDisplayName, getLocalTime } from 'utils'
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
 import ProjectStore from 'stores/project'
 import QuotaStore from 'stores/quota'
@@ -153,11 +153,11 @@ export default class ProjectDetail extends React.Component {
       },
       {
         name: t('CLUSTER'),
-        value: this.props.match.params.cluster,
+        value: showNameAndAlias(this.props.match.params.cluster, 'cluster'),
       },
       {
         name: t('WORKSPACE'),
-        value: detail.workspace,
+        value: showNameAndAlias(detail.workspace, 'workspace'),
       },
       {
         name: t('CREATION_TIME_TCAP'),

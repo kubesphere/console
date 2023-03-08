@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from '@kube-design/components'
+import { Icon, Tooltip } from '@kube-design/components'
 
 import SelectModal from 'clusters/components/Modals/ClusterSelect'
 
@@ -71,7 +71,9 @@ export default class Selector extends React.Component {
             <Icon name="cluster" size={40} type="light" />
           </div>
           <div className={styles.text}>
-            <div className="h6">{value}</div>
+            <Tooltip content={value}>
+              <div className="h6">{value}</div>
+            </Tooltip>
             <p>{t('CLUSTER')}</p>
           </div>
         </div>

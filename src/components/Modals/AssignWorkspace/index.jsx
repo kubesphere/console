@@ -23,6 +23,7 @@ import { pick } from 'lodash'
 
 import { Alert, Form, Select } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import { showNameAndAlias } from 'utils'
 
 import WorkspaceStore from 'stores/workspace'
 import UserStore from 'stores/user'
@@ -60,7 +61,7 @@ export default class AssignWorkspaceModal extends Component {
 
   getWorkspaces() {
     return this.workspaceStore.list.data.map(item => ({
-      label: item.name,
+      label: showNameAndAlias(item),
       value: item.name,
     }))
   }

@@ -22,7 +22,7 @@ import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 
 import { Icon, Menu } from '@kube-design/components'
-import { getLocalTime, getDisplayName } from 'utils'
+import { getLocalTime, getDisplayName, showNameAndAlias } from 'utils'
 import { Panel } from 'components/Base'
 import ManageButton from 'pages/clusters/containers/BaseInfo/ManageButton'
 
@@ -66,7 +66,9 @@ export default class ProjectInfo extends React.Component {
           </div>
           <div className={styles.item}>
             <div>
-              <Link to={`/workspaces/${workspace}`}>{workspace}</Link>
+              <Link to={`/workspaces/${workspace}`}>
+                {showNameAndAlias(workspace, 'workspace')}
+              </Link>
             </div>
             <p>{t('WORKSPACE')}</p>
           </div>

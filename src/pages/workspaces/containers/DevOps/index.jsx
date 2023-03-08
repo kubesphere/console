@@ -123,6 +123,21 @@ export default class DevOps extends React.Component {
     }
   }
 
+  get columnSearch() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
+  }
+
   handleClusterChange = cluster => {
     this.workspaceStore.selectCluster(cluster)
     this.getData()
@@ -228,8 +243,8 @@ export default class DevOps extends React.Component {
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           columns={this.getColumns()}
+          columnSearch={this.columnSearch}
           onCreate={this.showCreate}
-          searchType="name"
           isLoading={tableProps.isLoading}
           {...this.clusterProps}
           getCheckboxProps={this.getCheckboxProps}

@@ -22,7 +22,7 @@ import { observer, inject } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
 import { Loading } from '@kube-design/components'
 
-import { getDisplayName, getLocalTime } from 'utils'
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
 import ServiceStore from 'stores/service'
 import FederatedStore from 'stores/federated'
@@ -139,7 +139,7 @@ export default class ServiceDetail extends React.Component {
     return [
       {
         name: t('PROJECT'),
-        value: namespace,
+        value: showNameAndAlias(namespace, 'project'),
       },
       {
         name: t('TYPE'),

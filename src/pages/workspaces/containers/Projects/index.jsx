@@ -26,7 +26,7 @@ import Banner from 'components/Cards/Banner'
 import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
 
-import { getDisplayName, getLocalTime } from 'utils'
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { getSuitableValue, getValueByUnit } from 'utils/monitoring'
 
 import ProjectStore from 'stores/project'
@@ -96,6 +96,21 @@ export default class Projects extends React.Component {
       onClusterChange: this.handleClusterChange,
       showClusterSelect: globals.app.isMultiCluster,
     }
+  }
+
+  get columnSearch() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
   }
 
   handleClusterChange = cluster => {
@@ -199,7 +214,7 @@ export default class Projects extends React.Component {
             icon="project"
             iconSize={40}
             desc={record.description || '-'}
-            title={this.renderTitle(record)}
+            title={showNameAndAlias(record)}
           />
         ),
       },
@@ -299,8 +314,8 @@ export default class Projects extends React.Component {
           {...tableProps}
           itemActions={this.itemActions}
           columns={this.getColumns()}
+          columnSearch={this.columnSearch}
           onCreate={this.showCreate}
-          searchType="name"
           {...this.clusterProps}
           isLoading={tableProps.isLoading || isLoadingMonitor}
           getCheckboxProps={this.getCheckboxProps}

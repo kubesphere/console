@@ -22,7 +22,7 @@ import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { isEmpty, get } from 'lodash'
 
-import { getLocalTime, getDisplayName } from 'utils'
+import { getLocalTime, getDisplayName, showNameAndAlias } from 'utils'
 import { getSuitableValue, getAreaChartOps } from 'utils/monitoring'
 import ProjectStore from 'stores/project'
 import ClusterMonitorStore from 'stores/monitoring/cluster'
@@ -82,7 +82,7 @@ export default class ResourceMonitorModal extends React.Component {
 
   get clusters() {
     return this.workspaceStore.clusters.data.map(item => ({
-      label: item.name,
+      label: showNameAndAlias(item),
       value: item.name,
       cluster: item,
       disabled: !item.isReady,
@@ -129,6 +129,11 @@ export default class ResourceMonitorModal extends React.Component {
 
   fetchNamespaces = (params = {}) => {
     const { cluster } = this.state
+
+    if (params.name) {
+      params.nameAndAlias = params.name
+      delete params.name
+    }
 
     if (cluster) {
       this.projectStore.fetchList({

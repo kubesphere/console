@@ -20,6 +20,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import { Icon } from '@kube-design/components'
 import { Text } from 'components/Base'
+import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -47,7 +48,7 @@ export default class WorkspaceItem extends Component {
         <Text
           className={styles.title}
           icon="enterprise"
-          title={data.name}
+          title={showNameAndAlias(data)}
           description={data.description || '-'}
           ellipsis
         />

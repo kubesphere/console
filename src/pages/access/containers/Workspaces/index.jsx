@@ -25,7 +25,7 @@ import withList, { ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
 import ClusterWrapper from 'components/Clusters/ClusterWrapper'
 
-import { getLocalTime, getDisplayName } from 'utils'
+import { getLocalTime, showNameAndAlias } from 'utils'
 
 import WorkspaceStore from 'stores/workspace'
 import ClusterStore from 'stores/cluster'
@@ -45,6 +45,21 @@ export default class Workspaces extends React.Component {
   @computed
   get clusters() {
     return this.clusterStore.list.data
+  }
+
+  get columnSearch() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
   }
 
   showAction(record) {
@@ -120,7 +135,7 @@ export default class Workspaces extends React.Component {
           <Avatar
             icon="enterprise"
             iconSize={40}
-            title={getDisplayName(record)}
+            title={showNameAndAlias(record)}
             desc={record.description || '-'}
             to={`/workspaces/${name}`}
           />
@@ -167,11 +182,11 @@ export default class Workspaces extends React.Component {
         <Table
           {...tableProps}
           columns={this.getColumns()}
+          columnSearch={this.columnSearch}
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           onCreate={this.showCreate}
           isLoading={tableProps.isLoading || isClusterLoading}
-          searchType="name"
         />
       </ListPage>
     )
