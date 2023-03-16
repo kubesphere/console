@@ -16,10 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { Icon, Tag, Tooltip } from '@kube-design/components'
 import { Text } from 'components/Base'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { getDisplayName } from 'utils'
 import { CLUSTER_GROUP_TAG_TYPE, CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
@@ -56,7 +56,10 @@ export default class Card extends Component {
       return (
         <>
           {data.group && (
-            <Tag type={CLUSTER_GROUP_TAG_TYPE[data.group]}>
+            <Tag
+              type={CLUSTER_GROUP_TAG_TYPE[data.group]}
+              className={styles.tag}
+            >
               {t(`ENV_${data.group.toUpperCase()}`, {
                 defaultValue: data.group,
               })}
@@ -74,13 +77,16 @@ export default class Card extends Component {
       data.cluster.name
     ) {
       return (
-        <Tag type={CLUSTER_GROUP_TAG_TYPE[data.cluster.group]}>
+        <Tag
+          type={CLUSTER_GROUP_TAG_TYPE[data.cluster.group]}
+          className={styles.tag}
+        >
           <Icon
             name={CLUSTER_PROVIDER_ICON[data.cluster.provider] || 'kubernetes'}
             size={16}
             type="light"
+            className={'margin-r4'}
           />
-          &nbsp;
           {getDisplayName(data.cluster)}
         </Tag>
       )
@@ -102,7 +108,9 @@ export default class Card extends Component {
           )}
           ellipsis
         />
-        <span className={styles.tagWrapper}>{this.renderTags()}</span>
+        <span className={styles.tagWrapper}>
+          <span>{this.renderTags()}</span>
+        </span>
         {data.isFedManaged && (
           <Tooltip
             content={

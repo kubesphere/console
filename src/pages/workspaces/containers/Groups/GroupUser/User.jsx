@@ -16,12 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { toJS } from 'mobx'
-import { get } from 'lodash'
 import { Button, Icon } from '@kube-design/components'
 import { Avatar, Text } from 'components/Base'
+import { toJS } from 'mobx'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styles from './index.scss'
 
 export default class UserItem extends React.Component {
@@ -36,14 +35,11 @@ export default class UserItem extends React.Component {
   getGroupName = groups => {
     const { data = [] } = toJS(this.props.groupStore.list)
     return groups
-      .map(item => {
-        return get(
-          data.find(v => v.group_id === item),
-          'group_name',
-          ''
-        )
-      })
-      .filter(item => item)
+      .map(item => data.find(v => v.group_id === item))
+      .filter(Boolean)
+      .map(i =>
+        i.aliasName ? `${i.aliasName}(${i.group_name})` : i.group_name
+      )
       .join(', ')
   }
 

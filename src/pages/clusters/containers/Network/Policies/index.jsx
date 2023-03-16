@@ -16,16 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { get } from 'lodash'
-import { Link } from 'react-router-dom'
+import ResourceTable from 'clusters/components/ResourceTable'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
+import { ListPage, withClusterList } from 'components/HOCs/withList'
+import { get } from 'lodash'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import NetworkPolicyStore from 'stores/network/policy'
-import { withClusterList, ListPage } from 'components/HOCs/withList'
-import ResourceTable from 'clusters/components/ResourceTable'
 
-import { getLocalTime, getDisplayName } from 'utils'
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
 @withClusterList({
@@ -144,7 +144,7 @@ export default class NetworkPolicies extends React.Component {
         width: '22%',
         render: namespace => (
           <Link to={`/clusters/${cluster}/projects/${namespace}`}>
-            {namespace}
+            {showNameAndAlias(namespace, 'project')}
           </Link>
         ),
       },

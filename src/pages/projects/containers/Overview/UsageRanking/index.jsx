@@ -23,9 +23,8 @@ import { get, isEmpty } from 'lodash'
 import { Link } from 'react-router-dom'
 import { Icon, Select } from '@kube-design/components'
 import { Panel } from 'components/Base'
-import { getValueByUnit, getSuitableUnit } from 'utils/monitoring'
+import { getSuitableUnit, getValueByUnit } from 'utils/monitoring'
 import Store from 'stores/rank/workload'
-
 import styles from './index.scss'
 
 const UNITS = {

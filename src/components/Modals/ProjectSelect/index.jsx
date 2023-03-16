@@ -16,19 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
-import React from 'react'
+import { Button, Column, Columns, RadioGroup } from '@kube-design/components'
 import classNames from 'classnames'
-import { toJS } from 'mobx'
-import { inject, observer } from 'mobx-react'
-import { Button, RadioGroup, Columns, Column } from '@kube-design/components'
 import { Modal, ScrollLoad } from 'components/Base'
 import FilterInput from 'components/Tables/Base/FilterInput'
-
-import WorkspaceStore from 'stores/workspace'
+import { get } from 'lodash'
+import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
+import DevOpsStore from 'stores/devops'
 import ProjectStore from 'stores/project'
 import FederatedStore from 'stores/project.federated'
-import DevOpsStore from 'stores/devops'
+
+import WorkspaceStore from 'stores/workspace'
 import { showNameAndAlias } from 'utils'
 
 import Card from './Card'
@@ -231,7 +231,11 @@ export default class ProjectSelectModal extends React.Component {
         onCancel={onCancel}
         width={960}
         icon="enterprise"
-        title={<a onClick={this.handleEnterWorkspace}>{workspace}</a>}
+        title={
+          <a onClick={this.handleEnterWorkspace}>
+            {showNameAndAlias(workspace, 'workspace')}
+          </a>
+        }
         description={get(detail, 'description') || t('WORKSPACE')}
         hideFooter
       >

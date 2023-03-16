@@ -16,13 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Modal, Text, Switch } from 'components/Base'
 import { Alert, Select } from '@kube-design/components'
-import WorkspaceStore from 'stores/workspace'
+import { Modal, Switch, Text } from 'components/Base'
+import { cloneDeep, get, set } from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import ProjectStore from 'stores/project'
-import { get, set, cloneDeep } from 'lodash'
+import WorkspaceStore from 'stores/workspace'
+import { showNameAndAlias } from 'utils'
 import styles from './index.scss'
 
 export default class AccessorModal extends Component {
@@ -78,8 +79,10 @@ export default class AccessorModal extends Component {
 
   get namespaceOptions() {
     const { namespace } = this.state
+    const { cluster } = this.props
+
     return namespace.map(ns => ({
-      label: ns,
+      label: showNameAndAlias(ns, 'project', cluster),
       value: ns,
     }))
   }
@@ -87,7 +90,7 @@ export default class AccessorModal extends Component {
   get workspaceOptions() {
     const { workspace } = this.state
     return workspace.map(ws => ({
-      label: ws,
+      label: showNameAndAlias(ws, 'workspace'),
       value: ws,
     }))
   }

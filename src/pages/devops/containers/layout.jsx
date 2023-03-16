@@ -15,17 +15,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { Component } from 'react'
-import { pick, set } from 'lodash'
-import { inject, observer, Provider } from 'mobx-react'
 import { Loading } from '@kube-design/components'
+import { pick, set } from 'lodash'
 import { toJS } from 'mobx'
-import { renderRoutes } from 'utils/router.config'
+import { inject, observer, Provider } from 'mobx-react'
+import React, { Component } from 'react'
+import ClusterStore from 'stores/cluster'
 
 import DevOpsStore from 'stores/devops'
-import ClusterStore from 'stores/cluster'
-import WorkspaceStore from 'stores/workspace'
-import ProjectStore from 'stores/project'
+import { eventBus } from 'utils/EventBus'
+import { eventKeys } from 'utils/events'
+import { renderRoutes } from 'utils/router.config'
 
 @inject('rootStore')
 @observer
@@ -34,8 +34,7 @@ export default class Layout extends Component {
     super(props)
     this.store = new DevOpsStore()
     this.clusterStore = new ClusterStore()
-    this.workspaceStore = new WorkspaceStore()
-    this.projectStore = new ProjectStore()
+    this.rootStore = props.rootStore
   }
 
   state = {
@@ -60,7 +59,6 @@ export default class Layout extends Component {
 
   componentDidMount() {
     this.init()
-    this.setGlobals()
   }
 
   componentDidUpdate(prevProps) {
@@ -103,6 +101,7 @@ export default class Layout extends Component {
       }),
       this.getHostCluster(),
     ])
+    eventBus.emit(eventKeys.DEVOPS_CHANGE, toJS(this.store.detail))
 
     await this.props.rootStore.getRules(params)
 
@@ -125,36 +124,6 @@ export default class Layout extends Component {
     })
 
     this.store.initializing = false
-  }
-
-  async setGlobals() {
-    const storeArray = [
-      { store: this.clusterStore, arrayName: 'clusterArray' },
-      {
-        store: this.workspaceStore,
-        arrayName: 'workspaceArray',
-      },
-      {
-        store: this.projectStore,
-        arrayName: 'projectArray',
-        searchKey: ['cluster', 'workspace'],
-      },
-    ]
-
-    const param = {}
-    storeArray.map(async item => {
-      if (item.searchKey) {
-        item.searchKey.forEach(para => {
-          param[para] = this.props.match.params[para]
-        })
-      }
-      await item.store.fetchList({ limit: Infinity, ...param })
-      set(globals, item.arrayName, toJS(item.store.list.data))
-    })
-
-    this.setState({
-      fetchFin: true,
-    })
   }
 
   render() {

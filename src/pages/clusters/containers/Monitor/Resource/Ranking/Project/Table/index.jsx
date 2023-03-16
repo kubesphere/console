@@ -16,14 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { inject, observer } from 'mobx-react'
-
-import { getSuitableValue } from 'utils/monitoring'
-import { showNameAndAlias } from 'utils'
-
 import { Avatar, Empty } from 'components/Base'
 import Table from 'components/Tables/Ranking'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
+import { showNameAndAlias } from 'utils'
+
+import { getSuitableValue } from 'utils/monitoring'
 
 @inject('rootStore')
 @observer
@@ -54,7 +53,9 @@ export default class ProjectUsageRank extends React.Component {
         <Avatar
           icon="project"
           iconSize={40}
-          title={showNameAndAlias(namespace, 'project')}
+          title={showNameAndAlias(namespace, 'project', {
+            cluster: this.props.cluster,
+          })}
           to={`${this.prefix}/${namespace}`}
         />
       ),

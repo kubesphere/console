@@ -16,27 +16,27 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import { computed } from 'mobx'
-import { observer } from 'mobx-react'
-import { get, set, pick } from 'lodash'
-import classNames from 'classnames'
 import {
-  Icon,
-  Columns,
   Column,
+  Columns,
+  Form,
+  Icon,
+  Loading,
   Select,
   Tooltip,
-  Loading,
-  Form,
 } from '@kube-design/components'
-import { showNameAndAlias } from 'utils'
+import classNames from 'classnames'
+import StatusReason from 'clusters/components/StatusReason'
 
 import { Text } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
-import StatusReason from 'clusters/components/StatusReason'
-import WorkspaceStore from 'stores/workspace'
+import { get, pick, set } from 'lodash'
+import { computed } from 'mobx'
+import { observer } from 'mobx-react'
+import React, { Component } from 'react'
 import ProjectStore from 'stores/project'
+import WorkspaceStore from 'stores/workspace'
+import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -186,9 +186,19 @@ export default class Placement extends Component {
     const { namespace, workspace, cluster } = formData
     return (
       <div className={styles.placement}>
-        <Text title={workspace} description={t('WORKSPACE')} />
-        <Text title={cluster} description={t('CLUSTER')} />
-        <Text icon="project" title={namespace} description={t('PROJECT')} />
+        <Text
+          title={showNameAndAlias(workspace, 'workspace')}
+          description={t('WORKSPACE')}
+        />
+        <Text
+          title={showNameAndAlias(cluster, 'cluster')}
+          description={t('CLUSTER')}
+        />
+        <Text
+          icon="project"
+          title={showNameAndAlias(namespace, 'project', { cluster })}
+          description={t('PROJECT')}
+        />
         <Icon className={styles.icon} name="chevron-down" size={20} />
       </div>
     )

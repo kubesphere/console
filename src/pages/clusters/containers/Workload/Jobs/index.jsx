@@ -16,21 +16,21 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { Link } from 'react-router-dom'
+import ResourceTable from 'clusters/components/ResourceTable'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import { withClusterList, ListPage } from 'components/HOCs/withList'
+import { ListPage, withClusterList } from 'components/HOCs/withList'
 import JobStatus from 'projects/components/JobStatus'
 import StatusReason from 'projects/components/StatusReason'
-import ResourceTable from 'clusters/components/ResourceTable'
-
-import { getLocalTime, getDisplayName } from 'utils'
-import { getWorkloadStatus } from 'utils/status'
-import { JOB_STATUS, ICON_TYPES } from 'utils/constants'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 import WorkloadStore from 'stores/workload'
+
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
+import { ICON_TYPES, JOB_STATUS } from 'utils/constants'
+import { getWorkloadStatus } from 'utils/status'
 
 @withClusterList({
   store: new WorkloadStore('jobs'),
@@ -151,7 +151,7 @@ export default class Jobs extends React.Component {
         width: '18%',
         render: namespace => (
           <Link to={`/clusters/${cluster}/projects/${namespace}`}>
-            {namespace}
+            {showNameAndAlias(namespace, 'project')}
           </Link>
         ),
       },

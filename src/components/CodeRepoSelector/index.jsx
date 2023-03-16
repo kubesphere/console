@@ -15,14 +15,14 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from 'react'
+import { Icon, Notify } from '@kube-design/components'
 import cs from 'classnames'
-import { pick } from 'lodash'
-import { Select, Icon, Notify } from '@kube-design/components'
+import React from 'react'
 
 import CodeStore from 'stores/codeRepo'
 
-import { getRepoUrl, getCommonSource } from '../../utils/devops'
+import { getCommonSource, getRepoUrl } from '../../utils/devops'
+import { TypeSelect } from '../Base'
 
 import styles from './index.scss'
 
@@ -75,6 +75,7 @@ export default class CodeRepoSelect extends React.Component {
           value,
           icon: provider === 'bitbucket_server' ? 'bitbucket' : provider,
           repo,
+          description: repoURL,
         }
       }
     )
@@ -98,7 +99,7 @@ export default class CodeRepoSelect extends React.Component {
 
   getRepoList = async (params, currentRepo) => {
     const { devops, cluster } = this.props
-    await this.codeStore.fetchList({ devops, cluster, ...params })
+    await this.codeStore.fetchList({ devops, cluster, ...params, limit: -1 })
 
     this.setState({ repoList: this.codeStore.list.data }, () => {
       currentRepo && this.handleRepoChange(currentRepo)
@@ -156,10 +157,12 @@ export default class CodeRepoSelect extends React.Component {
 
     return (
       <span className={styles.option}>
-        <Icon
-          name={option.icon ?? ''}
-          type={type === 'value' ? 'dark' : 'light'}
-        />
+        {!!option.icon && (
+          <Icon
+            name={option.icon ?? ''}
+            type={type === 'value' ? 'dark' : 'light'}
+          />
+        )}
         {option.value}
       </span>
     )
@@ -167,23 +170,20 @@ export default class CodeRepoSelect extends React.Component {
 
   render() {
     const { value, index, name, isComplexMode, showCreateRepo } = this.props
-
     return (
       <>
-        <Select
-          clearable
-          searchable
+        <TypeSelect
           key={index}
           name={name}
-          className={styles.select}
-          value={isComplexMode ? value?.key : value}
-          onChange={this.handleRepoChange}
-          options={this.allOptions}
           onFetch={this.getRepoList}
-          isLoading={this.codeStore.list.isLoading}
-          pagination={pick(this.codeStore.list, ['page', 'limit', 'total'])}
-          valueRenderer={option => this.optionRenderer(option)('value')}
-          optionRenderer={option => this.optionRenderer(option)('option')}
+          options={this.allOptions}
+          onChange={this.handleRepoChange}
+          value={isComplexMode ? value?.key : value}
+          placeholder={{
+            icon: 'code',
+            label: t('SELECT_CODE_REPOSITORY'),
+            description: t('NEED_TO_SYNC_REPO'),
+          }}
         />
         {isComplexMode && (
           <span

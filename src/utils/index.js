@@ -16,29 +16,34 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import { Base64 } from 'js-base64'
 import {
+  endsWith,
   get,
-  set,
+  isEmpty,
+  isNull,
+  isNumber,
   isObject,
   isString,
-  trimEnd,
   isUndefined,
-  isNull,
-  isEmpty,
-  trimStart,
-  isNumber,
+  merge as _merge,
   pick,
   pickBy,
-  endsWith,
   replace,
-  merge as _merge,
+  set,
+  trimEnd,
+  trimStart,
 } from 'lodash'
-import generate from 'nanoid/generate'
 import moment from 'moment-mini'
+import generate from 'nanoid/generate'
+import React from 'react'
 
-import { Base64 } from 'js-base64'
-import { PATTERN_LABEL, MODULE_KIND_MAP } from './constants'
+import { PATTERN_LABEL, MODULE_KIND_MAP } from 'utils/constants'
+
+import { eventBus } from 'utils/EventBus'
+import { eventKeys } from 'utils/events'
+import NameWithAction from 'utils/NameWithAction'
+
 /**
  * format size, output the value with unit
  * @param {Number} size - the number need to be format
@@ -742,6 +747,7 @@ export const map_accessModes = accessModes =>
 
 export const quota_limits_requests_Dot = deal_With_Dot
 
+// FIXME: maybe async get globals hostClusterName
 export const inCluster2Default = name => {
   const clusterName = globals.hostClusterName || 'default'
   return name === 'in-cluster' ? clusterName : name
@@ -768,23 +774,77 @@ function mix(salt, str) {
   return `${Base64.encode(prefix.join(''))}@${ret.join('')}`
 }
 
-export const showNameAndAlias = (name, type) => {
+/**
+ *
+ * @param name string | object
+ * @param type 'cluster' | 'project' | 'devops' | 'workspace'
+ * @param cluster
+ * @returns {React.DetailedReactHTMLElement<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>|string}
+ */
+export const showNameAndAlias = (
+  name,
+  type,
+  { cluster, workspace } = {},
+  isText = false
+) => {
+  if (typeof name === 'object' && name !== null) {
+    return name.display_name
+      ? name.display_name
+      : name.aliasName
+      ? `${name.aliasName}(${name.name})`
+      : name.name
+  }
   let object
-
+  let event
   if (!name) {
     return ''
   }
+  if (!type) {
+    return name
+  }
+  const currentCluster = cluster ?? globals.currentCluster
+  const currentWorkspace = workspace ?? globals.currentWorkspace
 
-  if (type) {
-    const objectArray = get(globals, `${type}Array`, [])
-    object = objectArray.filter(item => item.name === name)[0]
-  } else {
-    object = name
+  let objectArray = []
+  if (type === 'project') {
+    objectArray = get(globals, `clusterProjectArray.${currentCluster}`, [])
+    event = eventKeys.PROJECT_ITEM_CHANGE(name, currentCluster)
+  } else if (type === 'cluster') {
+    objectArray = get(globals, `clusterArray`, [])
+    event = eventKeys.CLUSTER_ITEM_CHANGE(name)
+  } else if (type === 'workspace') {
+    objectArray = get(globals, `workspaceArray`, [])
+    event = eventKeys.WORKSPACE_ITEM_CHANGE(name)
   }
 
-  return object
-    ? object.aliasName
-      ? `${object.aliasName}(${object.name})`
-      : object.name
-    : name
+  object = objectArray.find(item => item.name === name)
+
+  if (type === 'devops') {
+    objectArray = get(globals, `clusterDevopsArray.${currentCluster}`, [])
+    event = eventKeys.DEVOPS_ITEM_CHANGE(name, currentCluster, currentWorkspace)
+    object = objectArray.find(
+      item => item.name === name && item.workspace === currentWorkspace
+    )
+  }
+  if (isText) {
+    return object
+      ? object.aliasName
+        ? `${object.aliasName}(${object.name})`
+        : object.name
+      : name
+  }
+
+  if (!object && type !== 'devops') {
+    const params = {
+      cluster: currentCluster,
+      workspace: currentWorkspace,
+      [type]: name,
+    }
+    eventBus.emit(eventKeys.requestAlias, { type, params })
+  }
+  return React.createElement(NameWithAction, {
+    name,
+    event,
+    object,
+  })
 }

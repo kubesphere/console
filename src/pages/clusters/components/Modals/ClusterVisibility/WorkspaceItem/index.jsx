@@ -16,10 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import classNames from 'classnames'
 import { Icon } from '@kube-design/components'
+import classNames from 'classnames'
 import { Text } from 'components/Base'
+import React, { Component } from 'react'
 import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'

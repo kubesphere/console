@@ -16,19 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { get, omit } from 'lodash'
-
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
+import { get, omit } from 'lodash'
+import React from 'react'
+import ProjectMonitorStore from 'stores/monitoring/project'
+
+import ProjectStore from 'stores/project'
 
 import { showNameAndAlias } from 'utils'
 import { getSuitableValue, getValueByUnit } from 'utils/monitoring'
-
-import ProjectStore from 'stores/project'
-import ProjectMonitorStore from 'stores/monitoring/project'
 
 const MetricTypes = {
   cpu: 'namespace_cpu_usage',

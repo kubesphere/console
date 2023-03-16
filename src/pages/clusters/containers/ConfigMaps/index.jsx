@@ -16,18 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { Link } from 'react-router-dom'
+import ResourceTable from 'clusters/components/ResourceTable'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import { withClusterList, ListPage } from 'components/HOCs/withList'
-import ResourceTable from 'clusters/components/ResourceTable'
-
-import { getLocalTime, getDisplayName } from 'utils'
-import { ICON_TYPES } from 'utils/constants'
+import { ListPage, withClusterList } from 'components/HOCs/withList'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 import ConfigMapStore from 'stores/configmap'
+
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
+import { ICON_TYPES } from 'utils/constants'
 
 @withClusterList({
   store: new ConfigMapStore(),
@@ -121,7 +121,7 @@ export default class ConfigMaps extends React.Component {
         width: '22%',
         render: namespace => (
           <Link to={`/clusters/${cluster}/projects/${namespace}`}>
-            {namespace}
+            {showNameAndAlias(namespace, 'project')}
           </Link>
         ),
       },

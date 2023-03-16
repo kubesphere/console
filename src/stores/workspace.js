@@ -18,11 +18,13 @@
 
 import { get, isEmpty } from 'lodash'
 import { action, observable } from 'mobx'
-import ObjectMapper from 'utils/object.mapper'
-import { DEFAULT_CLUSTER } from 'utils/constants'
 
 import Base from 'stores/base'
 import List from 'stores/base.list'
+import { DEFAULT_CLUSTER } from 'utils/constants'
+import { eventBus } from 'utils/EventBus'
+import { eventKeys } from 'utils/events'
+import ObjectMapper from 'utils/object.mapper'
 
 export default class WorkspaceStore extends Base {
   @observable
@@ -56,6 +58,14 @@ export default class WorkspaceStore extends Base {
 
   getWatchListUrl = (params = {}) =>
     `${this.apiVersion}/watch${this.getPath(params)}/workspacetemplates`
+
+  @action
+  async fetchList(params) {
+    const data = await super.fetchList(params)
+    data.forEach(item => {
+      eventBus.emit(eventKeys.WORKSPACE_CHANGE, item)
+    })
+  }
 
   @action
   async fetchDetail({ cluster, workspace } = {}) {
@@ -128,12 +138,22 @@ export default class WorkspaceStore extends Base {
 
   @action
   delete(params, data = {}) {
-    return this.submitting(request.delete(this.getDetailUrl(params), data))
+    const res = this.submitting(request.delete(this.getDetailUrl(params), data))
+    this.afterDelete(params)
+    return res
   }
 
   @action
   editVisible(params, newObject) {
     const url = `kapis/tenant.kubesphere.io/v1alpha3/workspacetemplates/${params.name}`
     return this.submitting(request.patch(url, newObject))
+  }
+
+  afterChange = d => {
+    eventBus.emit(eventKeys.WORKSPACE_CHANGE, this.mapper(d))
+  }
+
+  afterDelete = params => {
+    eventBus.emit(eventKeys.DELETE_DEVOPS, params)
   }
 }

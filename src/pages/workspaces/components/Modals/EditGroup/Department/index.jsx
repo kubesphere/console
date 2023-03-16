@@ -16,10 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
 import Tree from 'components/Tree'
+import { observer } from 'mobx-react'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { showNameAndAlias } from 'utils'
 import styles from './index.scss'
 
 @observer
@@ -30,7 +31,6 @@ export default class Department extends React.Component {
 
   render() {
     const { treeData, groupId, onSelect } = this.props
-
     return (
       <div className={styles.wrapper}>
         <div className={styles.treeWrapper}>
@@ -42,6 +42,20 @@ export default class Department extends React.Component {
               defaultSelectedKeys={[groupId || 'root']}
               onSelect={onSelect}
               treeData={treeData}
+              processor={{
+                processProps: i => {
+                  if (i.key === 'root') {
+                    return {
+                      ...i,
+                      title: showNameAndAlias(i.title, 'workspace'),
+                    }
+                  }
+                  return {
+                    ...i,
+                    title: i.aliasName ? `${i.aliasName}(${i.title})` : i.title,
+                  }
+                },
+              }}
             />
           ) : (
             <p>{t('NO_DEPARTMENT_TIP')}</p>

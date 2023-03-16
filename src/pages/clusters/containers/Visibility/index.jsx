@@ -16,18 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
 import { Button } from '@kube-design/components'
 import { Avatar, Panel, Text } from 'components/Base'
-import Table from 'components/Tables/Base'
 import Banner from 'components/Cards/Banner'
-import { getLocalTime, getDisplayName } from 'utils'
-import { trigger } from 'utils/action'
+import Table from 'components/Tables/Base'
 import { get } from 'lodash'
+import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
 
 import WorkspaceStore from 'stores/workspace'
+import { getLocalTime, showNameAndAlias } from 'utils'
+import { trigger } from 'utils/action'
 
 import styles from './index.scss'
 
@@ -104,15 +104,17 @@ export default class Overview extends React.Component {
       {
         title: t('WORKSPACE'),
         dataIndex: 'name',
-        render: (name, record) => (
-          <Avatar
-            icon="enterprise"
-            iconSize={40}
-            title={getDisplayName(record)}
-            desc={record.description || '-'}
-            noLink
-          />
-        ),
+        render: (name, record) => {
+          return (
+            <Avatar
+              icon="enterprise"
+              iconSize={40}
+              title={showNameAndAlias(record)}
+              desc={record.description || '-'}
+              noLink
+            />
+          )
+        },
       },
       {
         title: t('ADMINISTRATOR'),

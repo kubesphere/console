@@ -16,12 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, get, isArray, omit, cloneDeep } from 'lodash'
+import { cloneDeep, get, isArray, omit, set } from 'lodash'
 import { action, observable } from 'mobx'
 
 import Base from 'stores/base'
 
 import RoleStore from 'stores/role'
+import { eventBus } from 'utils/EventBus'
+import { eventKeys } from 'utils/events'
 
 export default class DevOpsStore extends Base {
   @observable
@@ -91,6 +93,12 @@ export default class DevOpsStore extends Base {
     )}/devopsprojects?labelSelector=kubesphere.io/workspace=${workspace}`
   }
 
+  getWatchAllListUrl = ({ workspace, ...params }) => {
+    return `apis/devops.kubesphere.io/v1alpha3/watch${this.getPath(
+      params
+    )}/devopsprojects`
+  }
+
   getWatchUrl = (params = {}) =>
     `${this.getWatchListUrl(params)}/${params.name}`
 
@@ -135,16 +143,22 @@ export default class DevOpsStore extends Base {
       ...(this.list.silent ? {} : { selectedRowKeys: [] }),
       ...omit(params, ['limit', 'page']),
     })
+
+    data.forEach(item => {
+      eventBus.emit(eventKeys.DEVOPS_CHANGE, item)
+    })
   }
 
   @action
-  create(data, { cluster, workspace }) {
+  async create(data, { cluster, workspace }) {
     data.kind = 'DevOpsProject'
     data.apiVersion = 'devops.kubesphere.io/v1alpha3'
     data.metadata.labels = { 'kubesphere.io/workspace': workspace }
-    return this.submitting(
+    const res = await this.submitting(
       request.post(`${this.getBaseUrl({ cluster, workspace })}devops`, data)
     )
+    this.afterChange(res, { cluster, workspace })
+    return res
   }
 
   @action
@@ -165,7 +179,7 @@ export default class DevOpsStore extends Base {
         newData.aliasName
       )
 
-      return this.submitting(
+      const res = await this.submitting(
         request.put(
           `${this.getBaseUrl({ cluster, workspace, devops })}`,
           data,
@@ -176,6 +190,8 @@ export default class DevOpsStore extends Base {
           }
         )
       )
+      this.afterChange(res, { cluster, workspace, devops })
+      return res
     }
   }
 
@@ -195,10 +211,12 @@ export default class DevOpsStore extends Base {
   }
 
   @action
-  delete({ devops, cluster, workspace }) {
-    return this.submitting(
+  async delete({ devops, cluster, workspace }) {
+    const res = await this.submitting(
       request.delete(`${this.getBaseUrl({ workspace, cluster, devops })}`)
     )
+    this.afterDelete({ workspace, cluster, devops })
+    return res
   }
 
   @action
@@ -239,6 +257,7 @@ export default class DevOpsStore extends Base {
     data.workspace = data.workspace || workspace
     this.data = data
     this.detail = data
+    return data
   }
 
   @action
@@ -308,5 +327,13 @@ export default class DevOpsStore extends Base {
     })
 
     return data
+  }
+
+  afterChange = (d, { cluster }) => {
+    eventBus.emit(eventKeys.DEVOPS_CHANGE, { ...this.mapper(d), cluster })
+  }
+
+  afterDelete = d => {
+    eventBus.emit(eventKeys.DELETE_DEVOPS, { ...d, namespace: d.devops })
   }
 }

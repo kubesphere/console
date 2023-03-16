@@ -15,13 +15,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from 'react'
-import { computed, action, observable } from 'mobx'
-import { pick, get, isEmpty, set } from 'lodash'
+import { Icon, Select, Tooltip } from '@kube-design/components'
 import { ObjectInput } from 'components/Inputs'
-import ProjectStore from 'stores/project'
-import { Select, Icon, Tooltip } from '@kube-design/components'
+import { get, isEmpty, pick, set } from 'lodash'
+import { action, computed, observable } from 'mobx'
 import { observer } from 'mobx-react'
+import React from 'react'
+import ProjectStore from 'stores/project'
 import { inCluster2Default, showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
@@ -44,11 +44,12 @@ export default class Destinations extends React.Component {
 
   @computed
   get clusters() {
-    return this.props.clusters.map(item => ({
-      label: showNameAndAlias(item.label, 'cluster'),
-      value: item.value,
-      cluster: item,
-    }))
+    return this.props.clusters.map(item => {
+      return {
+        ...item,
+        label: <span>{showNameAndAlias(item.label, 'cluster')}</span>,
+      }
+    })
   }
 
   get destinations() {
@@ -162,6 +163,7 @@ export default class Destinations extends React.Component {
       <ObjectInput value={value} onChange={this.handleChange}>
         <Select
           name="name"
+          key={this.props.value?.name}
           placeholder={t('CLUSTER')}
           options={this.clusters}
           onChange={this.handleClusterChange}
