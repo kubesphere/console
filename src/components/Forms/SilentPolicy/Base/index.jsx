@@ -17,36 +17,57 @@
  */
 
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
-import React from 'react'
+import * as React from 'react'
+import {
+  PATTERN_ALIAS_NAME,
+  PATTERN_SERVICE_NAME,
+} from '../../../../utils/constants'
 
-import { PATTERN_NAME, PATTERN_ALIAS_NAME } from 'utils/constants'
+export default class SilentPolicyBaseForm extends React.Component {
+  nameValidator = (rule, value, callback) => {
+    if (!value || this.props.isEdit) {
+      return callback()
+    }
 
-import CodeRepoSelector from '../../../CodeRepoSelector'
+    this.props.store
+      .checkName({
+        name: value,
+        namespace: this.props.namespace,
+        cluster: this.props.cluster,
+      })
+      .then(resp => {
+        if (resp.exist) {
+          return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
+        }
+        callback()
+      })
+  }
 
-export default class BaseInfo extends React.Component {
   render() {
-    const { formRef, formTemplate, devops, cluster } = this.props
+    const { formRef, formTemplate, isEdit = false } = this.props
+
     return (
       <Form ref={formRef} data={formTemplate}>
         <Columns>
           <Column>
             <Form.Item
               label={t('NAME')}
-              desc={t('NAME_DESC')}
+              desc={t('PROJECT_NAME_DESC')}
+              ref={this.nameRef}
               rules={[
                 { required: true, message: t('NAME_EMPTY_DESC') },
                 {
-                  pattern: PATTERN_NAME,
-                  message: t('INVALID_NAME_DESC'),
+                  pattern: PATTERN_SERVICE_NAME,
+                  message: t('PROJECT_NAME_INVALID_DESC'),
                 },
+                { validator: this.nameValidator },
               ]}
             >
-              <Input name="metadata.name" maxLength={63} />
-            </Form.Item>
-            <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
-              <TextArea
-                name="metadata.annotations['kubesphere.io/description']"
-                maxLength={256}
+              <Input
+                name="name"
+                autoFocus={true}
+                maxLength={63}
+                disabled={isEdit}
               />
             </Form.Item>
           </Column>
@@ -61,19 +82,18 @@ export default class BaseInfo extends React.Component {
                 },
               ]}
             >
-              <Input
-                name="metadata.annotations['kubesphere.io/alias-name']"
-                maxLength={63}
-              />
+              <Input name="aliasName" maxLength={63} />
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item
-          label={t('CODE_REPOSITORY')}
-          rules={[{ required: true, message: t('REPO_EMPTY_DESC') }]}
-        >
-          <CodeRepoSelector name="repoURL" devops={devops} cluster={cluster} />
-        </Form.Item>
+        <Columns>
+          <Column>
+            <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
+              <TextArea name="desc" maxLength={256} />
+            </Form.Item>
+          </Column>
+          <Column />
+        </Columns>
       </Form>
     )
   }

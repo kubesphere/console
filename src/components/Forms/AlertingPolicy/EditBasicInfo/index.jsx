@@ -18,17 +18,16 @@
 
 import { Form, Input, TextArea } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 import copy from 'fast-copy'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import React from 'react'
-
-import RoleStore from 'stores/role'
 import { PATTERN_ALIAS_NAME } from 'utils/constants'
+import UnitInput from '../BaseInfo/UnitInput'
+import styles from './index.scss'
 
-@observer
-export default class EditServiceAccountModal extends React.Component {
+export default class EditAlarmBasicInfoModal extends React.Component {
   static propTypes = {
     detail: PropTypes.object,
     visible: PropTypes.bool,
@@ -43,8 +42,6 @@ export default class EditServiceAccountModal extends React.Component {
     onCancel() {},
     isSubmitting: false,
   }
-
-  roleStore = new RoleStore()
 
   constructor(props) {
     super(props)
@@ -68,11 +65,46 @@ export default class EditServiceAccountModal extends React.Component {
     const { onOk, store, detail } = this.props
     const list = store.list
     const selectedRowKeys = toJS(list.selectedRowKeys)
-    const newSelectedRowKeys = selectedRowKeys.filter(
-      item => item !== detail.uid
-    )
+    const newSelectedRowKeys = selectedRowKeys
+      ? selectedRowKeys.filter(item => item !== detail.uid)
+      : ''
     onOk(data)
-    list.setSelectRowKeys(newSelectedRowKeys)
+    if (selectedRowKeys) list.setSelectRowKeys(newSelectedRowKeys)
+  }
+
+  timeValidator = (rule, value, callback) => {
+    const duration = value.slice(0, -1)
+    const time = /^[0-9]*$/
+
+    if (!time.test(duration)) {
+      return callback({ message: t('INVALID_TIME_DESC') })
+    }
+    callback()
+  }
+
+  get durationUnitOptions() {
+    return [
+      {
+        label: t('SECONDS'),
+        value: 's',
+      },
+      {
+        label: t('MINUTES'),
+        value: 'm',
+      },
+      {
+        label: t('HOURS'),
+        value: 'h',
+      },
+    ]
+  }
+
+  get severities() {
+    return SEVERITY_LEVEL.map(item => ({
+      label: t(item.label),
+      value: item.value,
+      level: item,
+    }))
   }
 
   render() {
@@ -107,6 +139,18 @@ export default class EditServiceAccountModal extends React.Component {
           <Input
             name="metadata.annotations['kubesphere.io/alias-name']"
             maxLength={63}
+          />
+        </Form.Item>
+        <Form.Item
+          label={t('CHECK_INTERVAL')}
+          desc={t('ALERTING_POLICY_CHECK_INTERVAL_DESC')}
+          rules={[{ validator: this.timeValidator }]}
+        >
+          <UnitInput
+            className={styles.duration}
+            name="spec.interval"
+            unitOptions={this.durationUnitOptions}
+            defaultValue={this.durationUnitOptions[1].value}
           />
         </Form.Item>
         <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>

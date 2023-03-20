@@ -1,0 +1,25 @@
+@import '~scss/variables';
+
+.box {
+  display: flex;
+  justify-content: space-between;
+
+  .value {
+    width: 322px;
+  }
+
+  .unit {
+    width: 120px;
+
+    :global {
+      .select-control {
+        border: 1px solid $light-color08 !important;
+
+        &:hover {
+          border: 1px solid $light-color08 !important;
+          box-shadow: none !important;
+        }
+      }
+    }
+  }
+}

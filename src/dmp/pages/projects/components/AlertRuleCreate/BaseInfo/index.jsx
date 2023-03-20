@@ -17,43 +17,33 @@
  */
 
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
-import { get } from 'lodash'
+import UnitInput from 'components/Forms/AlertingPolicy/BaseInfo/UnitInput'
+
+import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 import { observer } from 'mobx-react'
 import React from 'react'
 
-import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
-
-import { PATTERN_NAME, PATTERN_ALIAS_NAME } from 'utils/constants'
-
-import { UnitWrapper } from 'components/Inputs'
+import { PATTERN_ALIAS_NAME, PATTERN_NAME } from 'utils/constants'
 
 @observer
 export default class BaseInfo extends React.Component {
   get namespace() {
-    return get(this.props.formTemplate, 'namespace')
+    return this.props.namespace
   }
 
-  get durationOptions() {
+  get durationUnitOptions() {
     return [
       {
-        label: 1,
-        value: 1,
+        label: t('SECONDS'),
+        value: 's',
       },
       {
-        label: 5,
-        value: 5,
+        label: t('MINUTES'),
+        value: 'm',
       },
       {
-        label: 15,
-        value: 15,
-      },
-      {
-        label: 30,
-        value: 30,
-      },
-      {
-        label: 60,
-        value: 60,
+        label: t('HOURS'),
+        value: 'h',
       },
     ]
   }
@@ -73,7 +63,7 @@ export default class BaseInfo extends React.Component {
 
     this.props.store
       .checkName({
-        name: value,
+        name: `${this.props.cluster_id}-${value}`,
         namespace: this.namespace,
         cluster: this.props.cluster,
       })
@@ -86,8 +76,10 @@ export default class BaseInfo extends React.Component {
   }
 
   timeValidator = (rule, value, callback) => {
+    const duration = value.slice(0, -1)
     const time = /^[0-9]*$/
-    if (!time.test(value.slice(0, -1))) {
+
+    if (!time.test(duration)) {
       return callback({ message: t('INVALID_TIME_DESC') })
     }
     callback()
@@ -101,7 +93,7 @@ export default class BaseInfo extends React.Component {
           { required: true, message: t('NAME_EMPTY_DESC') },
           {
             pattern: PATTERN_NAME,
-            message: t('INVALID_NAME_DESC', { message: t('LONG_NAME_DESC') }),
+            message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
           },
           { validator: this.nameValidator },
         ]
@@ -110,15 +102,11 @@ export default class BaseInfo extends React.Component {
       <Form data={formTemplate} ref={formRef}>
         <Columns>
           <Column>
-            <Form.Item
-              label={t('NAME')}
-              desc={t('LONG_NAME_DESC')}
-              rules={rules}
-            >
+            <Form.Item label={t('NAME')} desc={t('NAME_DESC')} rules={rules}>
               <Input
-                name="name"
+                name="metadata.name"
                 onChange={this.handleNameChange}
-                maxLength={253}
+                maxLength={63}
                 readOnly={isEdit}
               />
             </Form.Item>
@@ -144,33 +132,23 @@ export default class BaseInfo extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('DURATION_MIN')}
-              desc={t('ALERT_DURATION')}
+              label={t('CHECK_INTERVAL')}
+              desc={t('ALERTING_POLICY_CHECK_INTERVAL_DESC')}
               rules={[{ validator: this.timeValidator }]}
             >
-              <UnitWrapper name="duration" unit="m">
-                <Select
-                  options={this.durationOptions}
-                  searchable
-                  placeholder=" "
-                />
-              </UnitWrapper>
-            </Form.Item>
-          </Column>
-          <Column>
-            <Form.Item label={t('SEVERITY')}>
-              <Select
-                name="labels.severity"
-                options={this.severities}
-                placeholder=" "
+              <UnitInput
+                name="spec.interval"
+                unitOptions={this.durationUnitOptions}
+                defaultValue={this.durationUnitOptions[1].value}
               />
             </Form.Item>
           </Column>
-        </Columns>
-        <Columns>
           <Column>
             <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
-              <TextArea name="annotations.description" maxLength={256} />
+              <TextArea
+                name="metadata.annotations['kubesphere.io/description']"
+                maxLength={256}
+              />
             </Form.Item>
           </Column>
         </Columns>

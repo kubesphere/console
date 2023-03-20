@@ -16,10 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { get } from 'lodash'
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
-import { MODULE_KIND_MAP, PATTERN_NAME } from 'utils/constants'
+import { get } from 'lodash'
+import React from 'react'
+import {
+  MODULE_KIND_MAP,
+  PATTERN_ALIAS_NAME,
+  PATTERN_NAME,
+} from 'utils/constants'
 
 export default class BaseInfo extends React.Component {
   get formTemplate() {
@@ -71,7 +75,16 @@ export default class BaseInfo extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
+              <Form.Item
+                label={t('ALIAS')}
+                desc={t('ALIAS_DESC')}
+                rules={[
+                  {
+                    pattern: PATTERN_ALIAS_NAME,
+                    message: t('INVALID_ALIAS_NAME_DESC'),
+                  },
+                ]}
+              >
                 <Input
                   name="metadata.annotations['kubesphere.io/alias-name']"
                   maxLength={63}

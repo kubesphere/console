@@ -16,20 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { get, set, debounce } from 'lodash'
+import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
+import { ProjectSelect } from 'components/Inputs'
+import { debounce, get, set } from 'lodash'
 import { observer } from 'mobx-react'
+import React from 'react'
 import ProjectStore from 'stores/project'
 
 import { updateLabels } from 'utils'
 import {
-  PATTERN_NAME,
-  MODULE_KIND_MAP,
   APP_LABEL_MODULES,
+  MODULE_KIND_MAP,
+  PATTERN_ALIAS_NAME,
+  PATTERN_NAME,
 } from 'utils/constants'
-
-import { Form, Columns, Column, Input, TextArea } from '@kube-design/components'
-import { ProjectSelect } from 'components/Inputs'
 
 @observer
 export default class BaseInfo extends React.Component {
@@ -149,7 +149,16 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
+            <Form.Item
+              label={t('ALIAS')}
+              desc={t('ALIAS_DESC')}
+              rules={[
+                {
+                  pattern: PATTERN_ALIAS_NAME,
+                  message: t('INVALID_ALIAS_NAME_DESC'),
+                },
+              ]}
+            >
               <Input
                 name="metadata.annotations['kubesphere.io/alias-name']"
                 maxLength={63}

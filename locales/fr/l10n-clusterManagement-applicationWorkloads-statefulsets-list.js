@@ -16,7 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Banner
+   // Banner
   // List
-  STATEFULSETS: 'Statefulsets'
-};
+  STATEFULSETS: 'Statefulsets',
+  GPU_MEMORY: 'Graphics memory',
+  EDIT_TAGS: 'Edit Tags',
+  ADD_TAGS: 'Add Tags',
+  INVALID_ALIAS_NAME_DESC:
+    'Invalid alias name. The alias name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
+}

@@ -16,11 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { get } from 'lodash'
-import PropTypes from 'prop-types'
-import copy from 'fast-copy'
-
 import {
   Form,
   Icon,
@@ -30,12 +25,17 @@ import {
   TextArea,
 } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import copy from 'fast-copy'
+import { get } from 'lodash'
 import { toJS } from 'mobx'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   CLUSTER_GROUP_TAG_TYPE,
-  CLUSTER_PROVIDERS,
   CLUSTER_PRESET_GROUPS,
+  CLUSTER_PROVIDERS,
+  PATTERN_ALIAS_NAME,
 } from 'utils/constants'
 
 export default class EditBasicInfoModal extends React.Component {
@@ -135,7 +135,16 @@ export default class EditBasicInfoModal extends React.Component {
         <Form.Item label={t('CLUSTER_NAME')} desc={t('NAME_DESC')}>
           <Input name="metadata.name" disabled />
         </Form.Item>
-        <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
+        <Form.Item
+          label={t('ALIAS')}
+          desc={t('ALIAS_DESC')}
+          rules={[
+            {
+              pattern: PATTERN_ALIAS_NAME,
+              message: t('INVALID_ALIAS_NAME_DESC'),
+            },
+          ]}
+        >
           <Input
             name="metadata.annotations['kubesphere.io/alias-name']"
             maxLength={63}
