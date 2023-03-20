@@ -17,28 +17,29 @@
  */
 
 import React from 'react'
+
 import { Form } from '@kube-design/components'
-import { NumberInput } from 'components/Inputs'
+import TerminationSecondsForm from 'components/Forms/Workload/ContainerSettings/TerminationSeconds'
 
-export default class TerminationSeconds extends React.Component {
-  get prefix() {
-    return this.props.prefix || 'spec.template.'
-  }
-
+class TerminationSeconds extends React.Component {
   render() {
+    const { formTemplate, formRef, formProps } = this.props
+
     return (
-      <>
-        <Form.Item label={t('TERMINATION_GRACEPERIOD_SECONDS')}>
-          <NumberInput
-            name={`${this.prefix}spec.terminationGracePeriodSeconds`}
-            integer
-            min={0}
-            autoFocus={true}
-            defaultValue={30}
-            style={{ maxWidth: '100%' }}
-          />
-        </Form.Item>
-      </>
+      <div className="margin-t12">
+        <Form data={formTemplate} ref={formRef} {...formProps}>
+          <Form.Group
+            label={t('POD_GRACE_PERIOD')}
+            desc={t('POD_GRACE_PERIOD_DESC')}
+            keepDataWhenUnCheck
+            checkable
+          >
+            <TerminationSecondsForm />
+          </Form.Group>
+        </Form>
+      </div>
     )
   }
 }
+
+export default TerminationSeconds

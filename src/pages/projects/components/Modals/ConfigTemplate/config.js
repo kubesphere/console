@@ -16,10 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import UpdateStrategy from 'components/EditForms/Workload/UpdateStrategy'
-import PodTemplate from 'components/EditForms/Workload/PodTemplate'
-import VolumeSettings from 'components/EditForms/Workload/VolumeSettings'
 import Affinity from 'components/EditForms/Workload/Affinity'
+import TerminationSeconds from 'components/EditForms/Workload/TerminationSeconds'
+// import IPPool from 'components/EditForms/Workload/IPPool'
+import PodTemplate from 'components/EditForms/Workload/PodTemplate'
+import UpdateStrategy from 'components/EditForms/Workload/UpdateStrategy'
+import VolumeSettings from 'components/EditForms/Workload/VolumeSettings'
 
 export default {
   deployments: [
@@ -47,6 +49,18 @@ export default {
       title: 'POD_SCHEDULING_RULES',
       component: Affinity,
     },
+    {
+      icon: 'forbid-right-duotone',
+      name: 'podMode',
+      title: 'POD_GRACE_PERIOD',
+      component: TerminationSeconds,
+    },
+    //    {
+    //      icon: 'eip-group',
+    //      name: 'ippools',
+    //      title: 'POD_IP_POOL',
+    //      component: IPPool,
+    //    },
   ],
   statefulsets: [
     {

@@ -782,9 +782,7 @@ export default class ContainerSetting extends React.Component {
           keepDataWhenUnCheck
           checkable
         >
-          <TerminationSeconds
-            name={`${this.prefix}spec.terminationGracePeriodSeconds`}
-          />
+          <TerminationSeconds prefix={this.prefix} />
         </Form.Group>
       </div>
     )
