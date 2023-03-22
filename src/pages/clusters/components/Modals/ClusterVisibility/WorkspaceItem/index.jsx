@@ -48,7 +48,7 @@ export default class WorkspaceItem extends Component {
         <Text
           className={styles.title}
           icon="enterprise"
-          title={showNameAndAlias(data)}
+          title={showNameAndAlias(data.name, 'workspace')}
           description={data.description || '-'}
           ellipsis
         />

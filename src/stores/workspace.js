@@ -60,11 +60,14 @@ export default class WorkspaceStore extends Base {
     `${this.apiVersion}/watch${this.getPath(params)}/workspacetemplates`
 
   @action
-  async fetchList(params) {
+  async fetchList(params = {}) {
     const data = await super.fetchList(params)
-    data.forEach(item => {
-      eventBus.emit(eventKeys.WORKSPACE_CHANGE, item)
-    })
+    if (!params.cluster) {
+      data.forEach(item => {
+        eventBus.emit(eventKeys.WORKSPACE_CHANGE, item)
+      })
+    }
+    return data
   }
 
   @action

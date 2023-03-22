@@ -109,7 +109,7 @@ export default class Overview extends React.Component {
             <Avatar
               icon="enterprise"
               iconSize={40}
-              title={showNameAndAlias(record)}
+              title={showNameAndAlias(record.name, 'workspace')}
               desc={record.description || '-'}
               noLink
             />
