@@ -25,4 +25,6 @@ module.exports = {
   TRIGGER_TIME: 'Trigger Time',
   ALERTING_MESSAGE_EMPTY_DESC: 'No alert is found in the current project.',
   MONITORING_TARGET: 'Hedefi İzleme'
-};
+  //alert ???
+  ACTIVATION_CONDITION_SCAP: 'Activation condition',
+}

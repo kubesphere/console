@@ -20,6 +20,8 @@ module.exports = {
   VOLUME_HANDLE: 'Volume Handle',
   VOLUME_MODE: 'Volume Mode',
   VOLUME_MODE_FILESYSTEM: 'File system',
+  KUBESPHERE_CLOUD_DESC:
+    'KubeSphere Cloud builds a digital ecosystem focusing on Kubernetes and provides cloud-native products and services of high standard, such as KubeSphere Backup, KubeSphere Inspector, and KubeSphere Lite, helping enterprises manage, protect, and deliver production-ready applications more efficiently.',
   VOLUME_MODE_BLOCK: 'Block device',
   // More > Edit YAML
   // More > Delete
