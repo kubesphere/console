@@ -405,6 +405,17 @@ export const getAliasName = item =>
   get(item, 'metadata.annotations.displayName') ||
   ''
 
+export const getDisplayNameNew = item => {
+  if (isEmpty(item)) {
+    return ''
+  }
+
+  if (item.display_name) {
+    return item.display_name
+  }
+  return item.aliasName ? `${item.aliasName}(${item.name})` : item.name
+}
+
 export const getDisplayName = item => {
   if (isEmpty(item)) {
     return ''
@@ -413,8 +424,7 @@ export const getDisplayName = item => {
   if (item.display_name) {
     return item.display_name
   }
-
-  return item.aliasName ? `${item.aliasName}(${item.name})` : item.name
+  return item.aliasName ? `${item.name}(${item.aliasName})` : item.name
 }
 
 export const getWebSocketProtocol = protocol => {

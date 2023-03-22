@@ -16,20 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import { get, isEmpty, omit } from 'lodash'
 import { Loading } from '@kube-design/components'
-
-import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
-import { trigger } from 'utils/action'
-import ProjectStore from 'stores/project'
-import QuotaStore from 'stores/quota'
-import LimitRangeStore from 'stores/limitrange'
 
 import DetailPage from 'clusters/containers/Base/Detail'
 import { Status } from 'components/Base'
+import { get, isEmpty, omit } from 'lodash'
+import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
+import LimitRangeStore from 'stores/limitrange'
+import ProjectStore from 'stores/project'
+import QuotaStore from 'stores/quota'
+
+import { getDisplayNameNew, getLocalTime, showNameAndAlias } from 'utils'
+import { trigger } from 'utils/action'
 
 import routes from './routes'
 
@@ -183,7 +183,7 @@ export default class ProjectDetail extends React.Component {
 
     const sideProps = {
       module: this.module,
-      name: getDisplayName(this.store.detail),
+      name: getDisplayNameNew(this.store.detail),
       desc: this.store.detail.description,
       operations: this.isFedManaged ? [] : this.getOperations(),
       attrs: this.getAttrs(),

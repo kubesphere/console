@@ -19,7 +19,7 @@
 import { get } from 'lodash'
 // eslint-disable-next-line
 import React from 'react'
-import { getDisplayName } from 'utils'
+import { getDisplayNameNew } from 'utils'
 import { eventBus } from 'utils/EventBus'
 import { eventKeys, useEventValue } from 'utils/events'
 
@@ -44,7 +44,7 @@ const ProjectOrDevopsName = props => {
     }
   }, [namespace])
 
-  return namespace ? getDisplayName(namespace) : data.namespace ?? ''
+  return namespace ? getDisplayNameNew(namespace) : data.namespace ?? ''
   // const devopsName = namespace
   //   ? get(namespace, 'labels["kubesphere.io/devopsproject"]')
   //   : ''

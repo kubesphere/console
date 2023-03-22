@@ -38,7 +38,7 @@ export default class UserItem extends React.Component {
       .map(item => data.find(v => v.group_id === item))
       .filter(Boolean)
       .map(i =>
-        i.aliasName ? `${i.aliasName}(${i.group_name})` : i.group_name
+        i.aliasName ? `${i.group_name}(${i.aliasName})` : i.group_name
       )
       .join(', ')
   }

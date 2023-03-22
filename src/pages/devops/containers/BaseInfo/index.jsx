@@ -33,7 +33,7 @@ import RoleStore from 'stores/role'
 import UserStore from 'stores/user'
 import {
   compareVersion,
-  getDisplayName,
+  getDisplayNameNew,
   getLocalTime,
   inCluster2Default,
   showNameAndAlias,
@@ -288,7 +288,7 @@ class BaseInfo extends React.Component {
         <div className={styles.header}>
           <Icon name="strategy-group" size={40} />
           <div className={styles.item}>
-            <div>{getDisplayName(this.detail)}</div>
+            <div>{getDisplayNameNew(this.detail)}</div>
             <p>{t('DEVOPS_PROJECT_SCAP')}</p>
           </div>
           <div className={styles.item}>

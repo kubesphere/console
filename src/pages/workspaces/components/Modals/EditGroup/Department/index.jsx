@@ -20,7 +20,7 @@ import Tree from 'components/Tree'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { showNameAndAlias } from 'utils'
+import { getDisplayName, showNameAndAlias } from 'utils'
 import styles from './index.scss'
 
 @observer
@@ -52,7 +52,7 @@ export default class Department extends React.Component {
                   }
                   return {
                     ...i,
-                    title: i.aliasName ? `${i.aliasName}(${i.title})` : i.title,
+                    title: getDisplayName(i),
                   }
                 },
               }}

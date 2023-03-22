@@ -16,10 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
 import classNames from 'classnames'
 import { List } from 'components/Base'
-import { getLocalTime, getDisplayName } from 'utils'
+import React from 'react'
+import { getDisplayNameNew, getLocalTime } from 'utils'
 
 import styles from './index.scss'
 
@@ -42,13 +42,13 @@ export default class ProjectCard extends React.Component {
     let admin
     let createTime
     if (type === 'devops') {
-      name = getDisplayName(data)
+      name = getDisplayNameNew(data)
       desc = data.description || '-'
       admin = data.creator
       createTime = data.create_time || data.createTime
       icon = 'strategy-group'
     } else {
-      name = getDisplayName(data)
+      name = getDisplayNameNew(data)
       desc = data.description || '-'
       admin = data.creator
       createTime = data.createTime

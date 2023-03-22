@@ -16,43 +16,43 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
 import { mount } from 'enzyme'
+import React from 'react'
 import {
-  isAppsPage,
-  withDryRun,
-  generateId,
-  formatSize,
-  formatUsedTime,
-  flattenObject,
-  joinSelector,
-  safeParseJSON,
-  isSystemRole,
-  to,
+  cacheFunc,
   capitalize,
-  getQueryString,
-  getFilterString,
-  isValidLabel,
-  updateLabels,
-  mergeLabels,
-  withProps,
   composeComponent,
   cpuFormat,
-  memoryFormat,
-  cacheFunc,
-  getWebSocketProtocol,
-  hasChinese,
-  getResourceCreator,
+  flattenObject,
+  formatDuration,
+  formatSize,
+  formatUsedTime,
+  generateId,
+  getAliasName,
+  getBrowserLang,
   getDescription,
   getDisplayName,
-  getAliasName,
   getDocsUrl,
-  getBrowserLang,
-  toPromise,
+  getFilterString,
   getLanguageName,
+  getQueryString,
+  getResourceCreator,
+  getWebSocketProtocol,
+  hasChinese,
+  isAppsPage,
+  isSystemRole,
+  isValidLabel,
+  joinSelector,
+  memoryFormat,
+  mergeLabels,
   parseUrl,
   replaceToLocalOrigin,
-  formatDuration,
+  safeParseJSON,
+  to,
+  toPromise,
+  updateLabels,
+  withDryRun,
+  withProps,
 } from './index'
 
 it('formatSize', () => {
@@ -318,8 +318,8 @@ it('get metadata info', () => {
   expect(getAliasName(data2)).toBe('system-redis')
 
   const data3 = {
-    name: 'redis-xxx',
-    aliasName: 'redis',
+    aliasName: 'redis-xxx',
+    name: 'redis',
   }
   const data4 = {
     display_name: 'redis-xxx',

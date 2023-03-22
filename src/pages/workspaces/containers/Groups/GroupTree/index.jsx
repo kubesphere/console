@@ -23,7 +23,7 @@ import { cloneDeep, get, set } from 'lodash'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { showNameAndAlias } from 'utils'
+import { getDisplayName, showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -61,7 +61,7 @@ export default class GroupTree extends Component {
               }
               return {
                 ...i,
-                title: i.aliasName ? `${i.aliasName}(${i.title})` : i.title,
+                title: getDisplayName(i),
               }
             },
           }}
