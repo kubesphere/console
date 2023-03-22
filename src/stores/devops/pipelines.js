@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { omit, isArray, get, set, isEmpty, cloneDeep } from 'lodash'
 import { saveAs } from 'file-saver'
+import { cloneDeep, get, isArray, isEmpty, omit, set } from 'lodash'
 import { action, observable, toJS } from 'mobx'
 import { safeParseJSON } from 'utils'
 import cookie from 'utils/cookie'
@@ -460,7 +460,8 @@ export default class PipelineStore extends BaseStore {
           get(
             item,
             "metadata.annotations.['devops.kubesphere.io/jenkins-pipelinerun-status']"
-          )
+          ),
+          {}
         )
         return {
           ...res,
