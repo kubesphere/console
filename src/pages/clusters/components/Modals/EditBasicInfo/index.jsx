@@ -137,7 +137,7 @@ export default class EditBasicInfoModal extends React.Component {
         </Form.Item>
         <Form.Item
           label={t('ALIAS')}
-          desc={t('ALIAS_DESC')}
+          desc={t('ALIAS_NAME_DESC')}
           rules={[
             {
               pattern: PATTERN_ALIAS_NAME,

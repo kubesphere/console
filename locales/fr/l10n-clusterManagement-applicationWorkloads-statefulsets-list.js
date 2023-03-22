@@ -24,4 +24,6 @@ module.exports = {
   ADD_TAGS: 'Add Tags',
   INVALID_ALIAS_NAME_DESC:
     'Invalid alias name. The alias name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
+  ALIAS_NAME_DESC:
+    'The alias name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
 }

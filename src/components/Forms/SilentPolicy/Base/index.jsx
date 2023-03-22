@@ -74,7 +74,7 @@ export default class SilentPolicyBaseForm extends React.Component {
           <Column>
             <Form.Item
               label={t('ALIAS')}
-              desc={t('ALIAS_DESC')}
+              desc={t('ALIAS_NAME_DESC')}
               rules={[
                 {
                   pattern: PATTERN_ALIAS_NAME,

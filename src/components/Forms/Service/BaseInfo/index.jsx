@@ -237,7 +237,7 @@ export default class ServiceBaseInfo extends React.Component {
           <Column>
             <Form.Item
               label={t('ALIAS')}
-              desc={t('ALIAS_DESC')}
+              desc={t('ALIAS_NAME_DESC')}
               rules={[
                 {
                   pattern: PATTERN_ALIAS_NAME,
