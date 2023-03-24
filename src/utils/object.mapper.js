@@ -746,7 +746,7 @@ const GatewayMapper = item => {
     type: get(item, 'spec.service.type'),
     config: get(item, 'spec.controller.config', {}),
     lb: lbSupport,
-    _originData: item,
+    _originData: getOriginData(item),
   }
 }
 
