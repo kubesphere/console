@@ -22,6 +22,7 @@ import VolumeSettings from 'components/EditForms/Workload/VolumeSettings'
 import Affinity from 'components/EditForms/Workload/Affinity'
 import ServiceSetting from 'fedprojects/components/ServiceSetting'
 import ClusterDiffSettings from 'fedprojects/components/ClusterDiffSettings'
+import TerminationSeconds from 'components/EditForms/Workload/TerminationSeconds'
 
 export default {
   deployments: [
@@ -50,6 +51,12 @@ export default {
       component: Affinity,
     },
     {
+      icon: 'forbid-right-duotone',
+      name: 'podMode',
+      title: 'POD_GRACE_PERIOD',
+      component: TerminationSeconds,
+    },
+    {
       title: 'CLUSTER_DIFF',
       icon: 'blue-green-deployment',
       name: 'Diff Settings',
@@ -68,6 +75,12 @@ export default {
       name: 'podTemplate',
       title: 'CONTAINER_PL',
       component: PodTemplate,
+    },
+    {
+      icon: 'forbid-right-duotone',
+      name: 'podMode',
+      title: 'POD_GRACE_PERIOD',
+      component: TerminationSeconds,
     },
     {
       icon: 'storage',

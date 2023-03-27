@@ -76,6 +76,12 @@ export default {
       component: PodTemplate,
     },
     {
+      icon: 'forbid-right-duotone',
+      name: 'podMode',
+      title: 'POD_GRACE_PERIOD',
+      component: TerminationSeconds,
+    },
+    {
       icon: 'storage',
       name: 'volumeSettings',
       title: 'STORAGE',
@@ -100,6 +106,12 @@ export default {
       name: 'volumeSettings',
       title: 'STORAGE',
       component: VolumeSettings,
+    },
+    {
+      icon: 'forbid-right-duotone',
+      name: 'podMode',
+      title: 'POD_GRACE_PERIOD',
+      component: TerminationSeconds,
     },
   ],
 }
