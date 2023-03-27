@@ -3,7 +3,7 @@
 # that can be found in the LICENSE file.
 
 # Prepare the build environment
-FROM node:12-alpine3.14 as builder
+FROM node:14-alpine as builder
 
 ARG YARN_VERSION=1.22.4
 
@@ -32,7 +32,7 @@ RUN mv /kubesphere/package.json /out/
 ##############
 # Final Image
 ##############
-FROM node:12-alpine3.14 as base_os_context
+FROM node:14-alpine as base_os_context
 
 RUN adduser -D -g kubesphere -u 1002 kubesphere && \
     mkdir -p /opt/kubesphere/console && \

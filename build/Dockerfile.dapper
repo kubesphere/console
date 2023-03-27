@@ -2,7 +2,7 @@
 # Use of this source code is governed by an Apache license
 # that can be found in the LICENSE file.
 
-FROM node:12-alpine3.14
+FROM node:14-alpine
 
 RUN adduser -D -g kubesphere -u 1002 kubesphere && \
     mkdir -p /opt/kubesphere/console && \
