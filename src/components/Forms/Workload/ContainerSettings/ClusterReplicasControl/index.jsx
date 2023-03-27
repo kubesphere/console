@@ -16,21 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { observer } from 'mobx-react'
-import { get, set, uniqBy } from 'lodash'
 import { Tabs } from '@kube-design/components'
+import { get, set, uniqBy } from 'lodash'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
+import React from 'react'
+import { getDisplayNameNew } from 'utils'
+import styles from './index.scss'
 
 import Placement from './Placement'
 import Scheduling from './Scheduling'
-import styles from './index.scss'
 
 @observer
 export default class ReplicasControl extends React.Component {
   static propTypes = {
     template: PropTypes.object,
     value: PropTypes.array,
+    omitAlias: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -106,12 +108,13 @@ export default class ReplicasControl extends React.Component {
   }
 
   renderPlacement(clusters) {
+    const { omitAlias = false } = this.props
     return (
       <div className={styles.wrapper}>
         {clusters.map(cluster => (
           <Placement
             key={cluster.name}
-            cluster={cluster.name}
+            cluster={getDisplayNameNew(cluster, omitAlias)}
             replicas={this.getValue(cluster.name)}
             onChange={this.handleChange}
           />

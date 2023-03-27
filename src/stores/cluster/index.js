@@ -92,6 +92,10 @@ export default class ClusterStore extends Base {
       ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     })
 
+    data.forEach(item => {
+      eventBus.emit(eventKeys.CLUSTER_CHANGE, item)
+    })
+
     return data
   }
 

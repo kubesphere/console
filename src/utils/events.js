@@ -21,9 +21,10 @@ import React from 'react'
 import ClusterStore from 'stores/cluster'
 import DevOpsStore from 'stores/devops'
 import ProjectStore from 'stores/project'
+import FederatedProject from 'stores/project.federated'
 import WorkspaceStore from 'stores/workspace'
 import { eventBus } from 'utils/EventBus'
-import { capitalize } from 'utils/index'
+import { capitalizeSimple } from 'utils/index'
 
 const Nothing = () => {}
 export const initEvents = (...listeners) => {
@@ -86,6 +87,15 @@ export const eventKeys = {
   DELETE_WORKSPACE: 'delete.workspace',
   DELETE_PROJECT: 'delete.project',
   DELETE_DEVOPS: 'delete.devops',
+
+  // federatedProjects
+  FEDERATED_PROJECT_CHANGE: 'federated.project.change',
+  FEDERATED_PROJECT_ITEM_CHANGE: federatedProject =>
+    `federated.project.${federatedProject}.change`,
+  requestFederatedProject: 'request.federated.project',
+  requestFederatedProjectItem: ({ federatedProject }) =>
+    `request.federated.project.${federatedProject}.change`,
+  DELETE_FEDERATED_PROJECT: 'delete.federated.project',
 }
 
 export const setDefaultHost = [
@@ -108,14 +118,14 @@ export const setDefaultHost = [
 export const requestAlias = [
   eventKeys.requestAlias,
   ({ type, params }) => {
-    const key = `request${capitalize(type)}Item`
+    const key = `request${capitalizeSimple(type)}Item`
     const action = eventKeys[key]?.(params)
     if (!action || eventBus.hasListener(action, Nothing)) {
       return
     }
 
     eventBus.on(action, Nothing)
-    eventBus.emit(eventKeys[`request${capitalize(type)}`], params)
+    eventBus.emit(eventKeys[`request${capitalizeSimple(type)}`], params)
   },
 ]
 
@@ -323,6 +333,42 @@ export const deleteDevops = [
   },
 ]
 
+// ----------- federatedproject ---------------
+
+export const requestFederatedProject = [
+  eventKeys.requestFederatedProject,
+  async params => {
+    const federatedProjectStore = new FederatedProject(new ProjectStore())
+    const detail = await federatedProjectStore.fetchDetail({
+      namespace: params.federatedProject,
+      name: params.federatedProject,
+    })
+    eventBus.emit(eventKeys.FEDERATED_PROJECT_CHANGE, detail)
+  },
+]
+
+export const federatedProjectChange = [
+  eventKeys.FEDERATED_PROJECT_CHANGE,
+  data => {
+    const objectArray = get(globals, `federatedProjectArray`, [])
+    const index = objectArray.findIndex(item => item.name === data.name)
+    if (index > -1) {
+      objectArray[index] = data
+    } else {
+      objectArray.push(data)
+    }
+    globals.federatedProjectArray = objectArray
+
+    eventBus.emit(eventKeys.FEDERATED_PROJECT_ITEM_CHANGE(data.name), data)
+    eventBus.off(
+      eventKeys.requestFederatedProjectItem({
+        federatedProject: data.name,
+      }),
+      Nothing
+    )
+  },
+]
+
 export const initAlias = [
   setDefaultHost,
   requestAlias,
@@ -338,4 +384,6 @@ export const initAlias = [
   deleteWorkspace,
   deleteProject,
   deleteDevops,
+  requestFederatedProject,
+  federatedProjectChange,
 ]

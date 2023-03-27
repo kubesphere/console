@@ -16,14 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { get, isEmpty } from 'lodash'
-import { Link } from 'react-router-dom'
-
 import { Icon, Menu } from '@kube-design/components'
-import { getLocalTime, getDisplayName } from 'utils'
 import { Panel } from 'components/Base'
+import { get, isEmpty } from 'lodash'
 import ManageButton from 'pages/clusters/containers/BaseInfo/ManageButton'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { getDisplayNameNew, getLocalTime, showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -49,12 +48,14 @@ export default class ProjectInfo extends React.Component {
         <div className={styles.header}>
           <Icon name="project" size={40} />
           <div className={styles.item}>
-            <div>{getDisplayName(detail)}</div>
+            <div>{getDisplayNameNew(detail)}</div>
             <p>{t('PROJECT_NAME')}</p>
           </div>
           <div className={styles.item}>
             <div>
-              <Link to={`/workspaces/${workspace}`}>{workspace}</Link>
+              <Link to={`/workspaces/${workspace}`}>
+                {showNameAndAlias(workspace, 'workspace')}
+              </Link>
             </div>
             <p>{t('WORKSPACE')}</p>
           </div>

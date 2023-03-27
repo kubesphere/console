@@ -16,15 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, get } from 'lodash'
-import React from 'react'
-import { observer, inject } from 'mobx-react'
-import { Button, Loading, Icon } from '@kube-design/components'
-import Graph from 'components/Graph'
+import { Button, Icon, Loading } from '@kube-design/components'
 import EmptyList from 'components/Cards/EmptyList'
-import ClusterSelect from 'fedprojects/components/ClusterSelect'
 import TimeSelector from 'components/Cards/Monitoring/Controller/TimeSelector'
-import { getTimeRange, getMinuteValue } from 'stores/monitoring/base'
+import Graph from 'components/Graph'
+import ClusterSelect from 'fedprojects/components/ClusterSelect'
+import { get, isEmpty } from 'lodash'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
+import { getMinuteValue, getTimeRange } from 'stores/monitoring/base'
 import styles from './index.scss'
 
 @inject('detailStore', 'projectStore')

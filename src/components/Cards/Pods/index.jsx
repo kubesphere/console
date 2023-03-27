@@ -16,35 +16,36 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { reaction, toJS } from 'mobx'
-import { observer } from 'mobx-react'
-import PropTypes from 'prop-types'
-import classnames from 'classnames'
-import { isEqual, isEmpty, has, get, throttle } from 'lodash'
 import {
   Button,
   Icon,
+  InputSearch,
   Level,
   LevelLeft,
   LevelRight,
-  Pagination,
   Loading,
+  Pagination,
   Select,
-  InputSearch,
 } from '@kube-design/components'
-
-import { joinSelector } from 'utils'
-import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
-import ObjectMapper from 'utils/object.mapper'
-import PodStore from 'stores/pod'
-import PodMonitorStore from 'stores/monitoring/pod'
-import WebSocketStore from 'stores/websocket'
+import classnames from 'classnames'
 
 import { Panel } from 'components/Base'
-import PodItem from './Item'
+import { get, has, isEmpty, isEqual, throttle } from 'lodash'
+import { reaction, toJS } from 'mobx'
+import { observer } from 'mobx-react'
+import PropTypes from 'prop-types'
+import React from 'react'
+import PodMonitorStore from 'stores/monitoring/pod'
+import PodStore from 'stores/pod'
+
+import WebSocketStore from 'stores/websocket'
+
+import { joinSelector, showNameAndAlias } from 'utils'
+import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
+import ObjectMapper from 'utils/object.mapper'
 
 import styles from './index.scss'
+import PodItem from './Item'
 
 const MetricTypes = {
   cpu: 'pod_cpu_usage',
@@ -297,7 +298,7 @@ export default class PodsCard extends React.Component {
   getClustersOptions = () => {
     const { clusters } = this.props
     return clusters.map(cluster => ({
-      label: cluster,
+      label: <span>{showNameAndAlias(cluster, 'cluster')}</span>,
       value: cluster,
     }))
   }
@@ -319,6 +320,7 @@ export default class PodsCard extends React.Component {
       <div className={styles.header}>
         {isFederated && (
           <Select
+            key={selectCluster}
             name="cluster"
             prefixIcon={<Icon name="cluster" />}
             className={styles.cluster}

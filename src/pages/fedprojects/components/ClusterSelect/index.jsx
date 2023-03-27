@@ -16,11 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-
 import { Icon, Tag } from '@kube-design/components'
 import { Panel } from 'components/Base'
-import { CLUSTER_PROVIDER_ICON, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
+import React, { Component } from 'react'
+import { getDisplayNameNew } from 'utils'
+import { CLUSTER_GROUP_TAG_TYPE, CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -79,7 +79,7 @@ export default class ClusterSelect extends Component {
           size={20}
           type="light"
         />
-        <span className={styles.name}>{cluster.name}</span>
+        <span className={styles.name}>{getDisplayNameNew(cluster)}</span>
         {cluster.group && (
           <Tag key={cluster.name} type={CLUSTER_GROUP_TAG_TYPE[cluster.group]}>
             {t(`ENV_${cluster.group.toUpperCase()}`, {
@@ -106,7 +106,7 @@ export default class ClusterSelect extends Component {
           size={20}
           type="light"
         />
-        <span className={styles.name}>{cluster.name}</span>
+        <span className={styles.name}>{getDisplayNameNew(cluster)}</span>
         {cluster.group && (
           <Tag key={cluster.name} type={CLUSTER_GROUP_TAG_TYPE[cluster.group]}>
             {t(`ENV_${cluster.group.toUpperCase()}`, {

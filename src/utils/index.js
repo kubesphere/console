@@ -405,7 +405,7 @@ export const getAliasName = item =>
   get(item, 'metadata.annotations.displayName') ||
   ''
 
-export const getDisplayNameNew = item => {
+export const getDisplayNameNew = (item, isOmitAlias = false) => {
   if (isEmpty(item)) {
     return ''
   }
@@ -413,7 +413,17 @@ export const getDisplayNameNew = item => {
   if (item.display_name) {
     return item.display_name
   }
-  return item.aliasName ? `${item.aliasName}(${item.name})` : item.name
+
+  const omitAlias = (text, len = 12) => {
+    if (!isOmitAlias) return text
+    if (text.length > len) {
+      return `${text.slice(0, len)}...`
+    }
+    return text
+  }
+  return item.aliasName
+    ? `${omitAlias(item.aliasName)}(${item.name})`
+    : item.name
 }
 
 export const getDisplayName = item => {
@@ -787,7 +797,7 @@ function mix(salt, str) {
 /**
  *
  * @param name string | object
- * @param type 'cluster' | 'project' | 'devops' | 'workspace'
+ * @param type 'cluster' | 'project' | 'devops' | 'workspace' | 'federatedProject'
  * @param cluster
  * @returns {React.DetailedReactHTMLElement<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>|string}
  */
@@ -825,6 +835,9 @@ export const showNameAndAlias = (
   } else if (type === 'workspace') {
     objectArray = get(globals, `workspaceArray`, [])
     event = eventKeys.WORKSPACE_ITEM_CHANGE(name)
+  } else if (type === 'federatedProject') {
+    objectArray = get(globals, `federatedProjectArray`, [])
+    event = eventKeys.FEDERATED_PROJECT_ITEM_CHANGE(name)
   }
 
   object = objectArray.find(item => item.name === name)
@@ -857,4 +870,18 @@ export const showNameAndAlias = (
     event,
     object,
   })
+}
+
+export const capitalizeSimple = string =>
+  string.charAt(0).toUpperCase() + string.slice(1)
+
+export const transformEmptyFn = path => data => {
+  if (get(data, path) === '') {
+    set(data, path, undefined)
+  }
+  return data
+}
+
+export const getTransformData = (...fns) => data => {
+  return fns.reduce((acc, fn) => fn(acc), data)
 }

@@ -16,18 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
 import { Loading } from '@kube-design/components'
+import { get, isEmpty } from 'lodash'
+import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+
+import DetailPage from 'projects/containers/Base/Detail'
+import React from 'react'
+import FederatedStore from 'stores/federated'
+import ServiceStore from 'stores/service'
 
 import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
-import ServiceStore from 'stores/service'
-import FederatedStore from 'stores/federated'
-
-import DetailPage from 'projects/containers/Base/Detail'
 
 import getRoutes from './routes'
 
@@ -139,7 +139,7 @@ export default class ServiceDetail extends React.Component {
     return [
       {
         name: t('PROJECT'),
-        value: showNameAndAlias(namespace, 'project'),
+        value: showNameAndAlias(namespace, 'federatedProject'),
       },
       {
         name: t('TYPE'),
