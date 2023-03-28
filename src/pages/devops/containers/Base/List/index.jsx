@@ -16,14 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
 import { Loading } from '@kube-design/components'
-import { get } from 'lodash'
-
-import { renderRoutes, getIndexRoute } from 'utils/router.config'
 import { Nav } from 'components/Layout'
+import { get } from 'lodash'
+import { inject, observer } from 'mobx-react'
 import Selector from 'projects/components/Selector'
+import React, { Component } from 'react'
+
+import { getIndexRoute, renderRoutes } from 'utils/router.config'
 
 import styles from './index.scss'
 
@@ -64,7 +64,6 @@ class DevOpsListLayout extends Component {
       cluster: this.cluster,
       workspace: this.workspace,
     })
-
     const _navs = this.isHostCluster
       ? navs
       : navs.map(nav => {
@@ -102,14 +101,19 @@ class DevOpsListLayout extends Component {
         </div>
 
         <div className="ks-page-main">
-          {renderRoutes([
-            ...route.routes,
-            getIndexRoute({
-              path: route.path,
-              to: `${route.path}/${indexPath}`,
-              exact: true,
-            }),
-          ])}
+          {renderRoutes(
+            [
+              ...route.routes,
+              getIndexRoute({
+                path: route.path,
+                to: `${route.path}/${indexPath}`,
+                exact: true,
+              }),
+            ],
+            {
+              isHostCluster: this.isHostCluster,
+            }
+          )}
         </div>
       </div>
     )

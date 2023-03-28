@@ -86,6 +86,24 @@ export const ROLE_MODULES = {
       icon: 'project',
     },
   ],
+  devopsrolesNotHostCluster: [
+    {
+      name: 'Pipelines Management',
+      icon: 'application',
+    },
+    {
+      name: 'Credentials Management',
+      icon: 'key',
+    },
+    {
+      name: 'Access Control',
+      icon: 'human',
+    },
+    {
+      name: 'DevOps Settings',
+      icon: 'strategy-group',
+    },
+  ],
   devopsroles: [
     {
       name: 'Pipelines Management',
