@@ -10,7 +10,8 @@ ARG YARN_VERSION=1.22.4
 WORKDIR /kubesphere
 ADD . /kubesphere/
 
-RUN apk add --no-cache --virtual .build-deps ca-certificates python2 python3 py3-pip make openssl g++ bash
+RUN apk add --no-cache --virtual python2
+RUN apk add --no-cache --virtual .build-deps ca-certificates python3 py3-pip make openssl g++ bash
 RUN npm install yarn@${YARN_VERSION}
 
 # If you have trouble downloading the yarn binary, try the following:
