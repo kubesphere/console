@@ -235,6 +235,7 @@ export default class PipelinesList extends React.Component {
 
     trigger('pipeline.create', {
       module,
+      trigger,
       title: t('CREATE_PIPELINE'),
       formTemplate: this.formTemplate,
       devops: this.devops,

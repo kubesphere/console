@@ -16,14 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import BaseInfo from 'components/Forms/Pipelines/BaseInfo'
 import AdvanceSettings from 'components/Forms/Pipelines/AdvanceSettings'
+import BaseInfo from 'components/Forms/Pipelines/BaseInfo'
 
 import PipelineTemplate from 'components/Forms/Pipelines/PipelineTemplate'
 import PipelineTemplateParams from 'components/Forms/Pipelines/PipelineTemplateParams'
 
 export const PIPELINE_PROJECT_CREATE_STEPS = [
-  { title: 'BASIC_INFORMATION', component: BaseInfo, required: true },
+  {
+    title: 'BASIC_INFORMATION',
+    component: BaseInfo,
+    icon: 'cdn',
+    required: true,
+  },
   {
     title: 'ADVANCED_SETTINGS',
     component: AdvanceSettings,

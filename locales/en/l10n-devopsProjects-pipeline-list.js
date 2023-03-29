@@ -42,6 +42,7 @@ module.exports = {
   // List > Create
   CREATE_PIPELINE: 'Create Pipeline',
   // List > Create > Basic Information
+  GO_CREATE_REPO_ACTION: 'No code repository is available. Please <span class="text-action">create a code repository.</span>',
   PIPELINE_TYPE: 'Pipeline Type',
   SELECT_CODE_REPOSITORY: 'Select Code Repository',
   BRANCH_PIPELINE_DESC:
