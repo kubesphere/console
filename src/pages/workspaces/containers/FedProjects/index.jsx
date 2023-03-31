@@ -16,19 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-
-import { computed } from 'mobx'
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'workspaces/components/ResourceTable'
-import withList, { ListPage } from 'components/HOCs/withList'
 import ClusterWrapper from 'components/Clusters/ClusterWrapper'
+import withList, { ListPage } from 'components/HOCs/withList'
 
-import { getDisplayName, getLocalTime } from 'utils'
+import { computed } from 'mobx'
+import React from 'react'
+import ProjectStore from 'stores/project'
 
 import FederatedStore from 'stores/project.federated'
-import ProjectStore from 'stores/project'
+
+import { getDisplayName, getLocalTime } from 'utils'
+import Table from 'workspaces/components/ResourceTable'
 
 @withList({
   store: new FederatedStore({ module: 'namespaces' }),
@@ -214,6 +214,7 @@ export default class Projects extends React.Component {
         />
         <Table
           {...tableProps}
+          className={'table-2-6'}
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}

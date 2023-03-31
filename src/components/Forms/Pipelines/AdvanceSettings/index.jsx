@@ -279,7 +279,7 @@ export default class AdvanceSettings extends React.Component {
 
         <div className="h6">Webhook</div>
         <Form.Item label={t('WEBHOOK_PUSH_URL')} desc={t('WEBHOOK_PUSH_DESC')}>
-          <Input value={this.webhookUrl} disabled />
+          <div className={'disabled-input'}>{this.webhookUrl}</div>
         </Form.Item>
       </>
     )

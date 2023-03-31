@@ -34,6 +34,7 @@ import UserStore from 'stores/user'
 import {
   compareVersion,
   getDisplayNameNew,
+  getDomTitle,
   getLocalTime,
   inCluster2Default,
   showNameAndAlias,
@@ -288,13 +289,17 @@ class BaseInfo extends React.Component {
         <div className={styles.header}>
           <Icon name="strategy-group" size={40} />
           <div className={styles.item}>
-            <div>{getDisplayNameNew(this.detail)}</div>
+            <div>{getDomTitle(getDisplayNameNew(this.detail))}</div>
             <p>{t('DEVOPS_PROJECT_SCAP')}</p>
           </div>
           <div className={styles.item}>
             <div>
               <Link to={`/workspaces/${this.workspace}`}>
-                {showNameAndAlias(this.workspace, 'workspace')}
+                {getDomTitle(
+                  showNameAndAlias(this.workspace, 'workspace', {}, true, () =>
+                    this.forceUpdate()
+                  )
+                )}
               </Link>
             </div>
             <p>{t('WORKSPACE')}</p>

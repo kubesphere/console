@@ -20,7 +20,7 @@ import { Icon, Tag, Tooltip } from '@kube-design/components'
 import { Text } from 'components/Base'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { getDisplayName } from 'utils'
+import { getDisplayNameNew as getDisplayName } from 'utils'
 import { CLUSTER_GROUP_TAG_TYPE, CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
 import styles from './index.scss'
@@ -54,19 +54,23 @@ export default class Card extends Component {
     const { data } = this.props
     if (data.type === 'Cluster') {
       return (
-        <>
-          {data.group && (
-            <Tag
-              type={CLUSTER_GROUP_TAG_TYPE[data.group]}
-              className={styles.tag}
-            >
-              {t(`ENV_${data.group.toUpperCase()}`, {
-                defaultValue: data.group,
-              })}
-            </Tag>
-          )}
-          {data.isHost && <Tag type="warning">{t('HOST_CLUSTER')}</Tag>}
-        </>
+        <span className={styles.tagWrapper}>
+          <span>
+            <>
+              {data.group && (
+                <Tag
+                  type={CLUSTER_GROUP_TAG_TYPE[data.group]}
+                  className={styles.tag}
+                >
+                  {t(`ENV_${data.group.toUpperCase()}`, {
+                    defaultValue: data.group,
+                  })}
+                </Tag>
+              )}
+              {data.isHost && <Tag type="warning">{t('HOST_CLUSTER')}</Tag>}
+            </>
+          </span>
+        </span>
       )
     }
 
@@ -77,18 +81,24 @@ export default class Card extends Component {
       data.cluster.name
     ) {
       return (
-        <Tag
-          type={CLUSTER_GROUP_TAG_TYPE[data.cluster.group]}
-          className={styles.tag}
-        >
-          <Icon
-            name={CLUSTER_PROVIDER_ICON[data.cluster.provider] || 'kubernetes'}
-            size={16}
-            type="light"
-            className={'margin-r4'}
-          />
-          {getDisplayName(data.cluster)}
-        </Tag>
+        <span className={styles.tagWrapper}>
+          <span>
+            <Tag
+              type={CLUSTER_GROUP_TAG_TYPE[data.cluster.group]}
+              className={styles.tag}
+            >
+              <Icon
+                name={
+                  CLUSTER_PROVIDER_ICON[data.cluster.provider] || 'kubernetes'
+                }
+                size={16}
+                type="light"
+                className={'margin-r4'}
+              />
+              {getDisplayName(data.cluster)}
+            </Tag>
+          </span>
+        </span>
       )
     }
 
@@ -108,9 +118,8 @@ export default class Card extends Component {
           )}
           ellipsis
         />
-        <span className={styles.tagWrapper}>
-          <span>{this.renderTags()}</span>
-        </span>
+        {this.renderTags()}
+
         {data.isFedManaged && (
           <Tooltip
             content={

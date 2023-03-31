@@ -16,16 +16,17 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { inject, observer } from 'mobx-react'
-import EmptyList from 'components/Cards/EmptyList'
 import StatusReason from 'clusters/components/StatusReason'
-
-import ResourceStatistics from './Statistics'
-import PhysicalResource from './Physical'
-import VirtualResource from './Virtual'
+import EmptyList from 'components/Cards/EmptyList'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
+import { getDisplayNameNew, getDomTitle } from 'utils'
 
 import styles from './index.scss'
+import PhysicalResource from './Physical'
+
+import ResourceStatistics from './Statistics'
+import VirtualResource from './Virtual'
 
 @inject('rootStore', 'workspaceStore')
 @observer
@@ -42,7 +43,7 @@ class ResourceUsage extends React.Component {
 
   get clustersOpts() {
     return this.clusters.map(cluster => ({
-      label: cluster.name,
+      label: getDisplayNameNew(cluster),
       value: cluster.name,
       disabled: !cluster.isReady,
       cluster,
@@ -61,11 +62,13 @@ class ResourceUsage extends React.Component {
     }
   }
 
-  valueRenderer = option => t('CLUSTER_VALUE', { value: option.value })
+  valueRenderer = option => {
+    return t('CLUSTER_VALUE', { value: option.label })
+  }
 
   optionRenderer = option => (
     <div>
-      <div>{option.value}</div>
+      <div>{getDomTitle(option.label)}</div>
       {!option.cluster.isReady && (
         <div>
           <StatusReason data={option.cluster} noTip />

@@ -16,21 +16,21 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { computed } from 'mobx'
-import { get } from 'lodash'
-import { Tooltip, Icon } from '@kube-design/components'
+import { Icon, Tooltip } from '@kube-design/components'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
-
-import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
-import { getSuitableValue, getValueByUnit } from 'utils/monitoring'
+import { get } from 'lodash'
+import { computed } from 'mobx'
+import React from 'react'
+import ProjectMonitorStore from 'stores/monitoring/project'
 
 import ProjectStore from 'stores/project'
-import ProjectMonitorStore from 'stores/monitoring/project'
+
+import { getDisplayNameNew, getLocalTime } from 'utils'
+import { getSuitableValue, getValueByUnit } from 'utils/monitoring'
+import Table from 'workspaces/components/ResourceTable'
 
 const MetricTypes = {
   cpu: 'namespace_cpu_usage',
@@ -214,7 +214,7 @@ export default class Projects extends React.Component {
             icon="project"
             iconSize={40}
             desc={record.description || '-'}
-            title={showNameAndAlias(record)}
+            title={getDisplayNameNew(record)}
           />
         ),
       },
@@ -266,7 +266,7 @@ export default class Projects extends React.Component {
     if (record.isFedHostNamespace) {
       return (
         <span>
-          <span className="margin-r8">{getDisplayName(record)}</span>
+          <span className="margin-r8">{getDisplayNameNew(record)}</span>
           <Tooltip content={t('FED_HOST_NAMESPACE_TIP')}>
             <Icon name="information" />
           </Tooltip>
@@ -274,7 +274,7 @@ export default class Projects extends React.Component {
       )
     }
 
-    return getDisplayName(record)
+    return getDisplayNameNew(record)
   }
 
   showCreate = () =>
@@ -311,6 +311,7 @@ export default class Projects extends React.Component {
       >
         <Banner {...bannerProps} tabs={this.showFederated ? this.tabs : {}} />
         <Table
+          className={'table-2-7'}
           {...tableProps}
           itemActions={this.itemActions}
           columns={this.getColumns()}

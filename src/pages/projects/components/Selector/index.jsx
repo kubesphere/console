@@ -16,11 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Icon, Tooltip } from '@kube-design/components'
+import { Icon } from '@kube-design/components'
 import SelectModal from 'components/Modals/ProjectSelect'
-import { showNameAndAlias } from 'utils'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { getDomTitle, showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -74,10 +74,12 @@ export default class Selector extends React.Component {
             />
           </div>
           <div className={styles.text}>
-            <Tooltip content={showNameAndAlias(detail)}>
-              <div className="h6">{showNameAndAlias(detail)}</div>
-            </Tooltip>
-            <p>{description || title}</p>
+            {/* <Tooltip content={showNameAndAlias(detail)}> */}
+            <div className="h6" title={showNameAndAlias(detail)}>
+              {getDomTitle(showNameAndAlias(detail))}
+            </div>
+            {/* </Tooltip> */}
+            <p>{getDomTitle(description || title)}</p>
           </div>
         </div>
         <SelectModal

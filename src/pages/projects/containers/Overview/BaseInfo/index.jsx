@@ -16,10 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import classNames from 'classnames'
-import { Link } from 'react-router-dom'
 import { Icon } from '@kube-design/components'
+import classNames from 'classnames'
+import React from 'react'
+import { Link } from 'react-router-dom'
+
 import { showNameAndAlias } from 'utils'
 import styles from './index.scss'
 
@@ -39,7 +40,16 @@ export default class BaseInfo extends React.Component {
         <div className={styles.content}>
           {globals.app.isMultiCluster && (
             <div className={styles.text}>
-              <div>{showNameAndAlias(detail.cluster, 'cluster') || '-'}</div>
+              <div>
+                {showNameAndAlias(
+                  detail.cluster,
+                  'cluster',
+                  {},
+                  false,
+                  undefined,
+                  true
+                ) || '-'}
+              </div>
               <p>{t('CLUSTER')}</p>
             </div>
           )}
@@ -47,7 +57,14 @@ export default class BaseInfo extends React.Component {
             <div>
               {detail.workspace ? (
                 <Link to={`/workspaces/${detail.workspace}/overview`}>
-                  {showNameAndAlias(detail.workspace, 'workspace')}
+                  {showNameAndAlias(
+                    detail.workspace,
+                    'workspace',
+                    {},
+                    undefined,
+                    undefined,
+                    true
+                  )}
                 </Link>
               ) : (
                 '-'

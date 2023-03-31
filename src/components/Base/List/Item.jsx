@@ -16,11 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import { Button, Icon } from '@kube-design/components'
 import classNames from 'classnames'
-import { Icon, Button } from '@kube-design/components'
 
 import { Indicator } from 'components/Base'
+import React from 'react'
 
 import styles from './index.scss'
 
@@ -28,9 +28,19 @@ export default class Item extends React.Component {
   renderDetail(details) {
     return details.map((detail, index) => (
       <div key={index} className={classNames(styles.text, detail.className)}>
-        <div className={styles.title}>{detail.title}</div>
+        <div
+          className={styles.title}
+          title={detail.withDomTitle ? detail.title : undefined}
+        >
+          {detail.title}
+        </div>
         {detail.description && (
-          <div className={styles.description}>{detail.description}</div>
+          <div
+            className={styles.description}
+            title={detail.withDomDesc ? detail.description : undefined}
+          >
+            {detail.description}
+          </div>
         )}
       </div>
     ))
@@ -51,6 +61,8 @@ export default class Item extends React.Component {
       onClick,
       className,
       titleClass,
+      withDomTitle,
+      withDomDesc,
       ...rest
     } = this.props
 
@@ -79,8 +91,18 @@ export default class Item extends React.Component {
           </div>
           <div className={styles.texts}>
             <div className={classNames(styles.text, titleClass)}>
-              <div className={styles.title}>{title}</div>
-              <div className={styles.description}>{description}</div>
+              <div
+                className={styles.title}
+                title={withDomTitle ? title : undefined}
+              >
+                {title}
+              </div>
+              <div
+                className={styles.description}
+                title={withDomDesc ? description : undefined}
+              >
+                {description}
+              </div>
             </div>
             {details && this.renderDetail(details)}
           </div>

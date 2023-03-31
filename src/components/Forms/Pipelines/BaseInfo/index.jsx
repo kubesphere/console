@@ -20,6 +20,7 @@ import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
 
 import { get, set } from 'lodash'
 import React from 'react'
+import { showNameAndAlias } from 'utils'
 
 import { PATTERN_NAME } from 'utils/constants'
 import { compareVersion } from 'utils/app'
@@ -96,12 +97,16 @@ export default class BaseInfo extends React.Component {
               <TextArea name="description" maxLength={256} />
             </Form.Item>
           </Column>
+
           <Column>
             <Form.Item
               label={t('DEVOPS_PROJECT')}
               desc={t('PIPELINE_CREATE_DEVOPS_PROJECT_DESC')}
             >
-              <Input name="devopsName" disabled />
+              {/* <Input name="devopsName" disabled /> */}
+              <div name={'devopsName'} className={'disabled-input'}>
+                {showNameAndAlias(formTemplate?.devopsName, 'devops')}
+              </div>
             </Form.Item>
           </Column>
         </Columns>

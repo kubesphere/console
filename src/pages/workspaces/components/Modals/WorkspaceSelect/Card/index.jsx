@@ -16,12 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
-import React from 'react'
 import { Tag } from '@kube-design/components'
 import { List } from 'components/Base'
 import ClusterWrapper from 'components/Clusters/ClusterWrapper'
-import { getLocalTime, showNameAndAlias } from 'utils'
+import { isEmpty } from 'lodash'
+import React from 'react'
+import { getDisplayNameNew, getLocalTime } from 'utils'
 
 import styles from './index.scss'
 
@@ -61,10 +61,11 @@ export default class WorkspaceCard extends React.Component {
         icon="enterprise"
         className={styles.wrapper}
         titleClass={styles.title}
-        title={<a>{showNameAndAlias(data)}</a>}
+        title={<a title={getDisplayNameNew(data)}>{getDisplayNameNew(data)}</a>}
         description={data.description || '-'}
         details={details}
         onClick={this.handleClick}
+        withDomDesc
       />
     )
   }

@@ -239,6 +239,7 @@ export default class DevOps extends React.Component {
         />
         <Table
           {...tableProps}
+          className={'table-2-8'}
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           columns={this.getColumns()}

@@ -25,7 +25,7 @@ import { inject, observer } from 'mobx-react'
 import React from 'react'
 
 import ClusterMonitorStore from 'stores/monitoring/cluster'
-import { getDisplayNameNew } from 'utils'
+import { getDisplayNameNew, getDomTitle } from 'utils'
 import { trigger } from 'utils/action'
 
 import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
@@ -257,8 +257,9 @@ export default class Overview extends React.Component {
           <div className={styles.header}>
             <Text
               icon={CLUSTER_PROVIDER_ICON[provider] || 'kubernetes'}
-              title={getDisplayNameNew(this.store.detail)}
+              title={getDomTitle(getDisplayNameNew(this.store.detail))}
               description={t('CLUSTER')}
+              ellipsis
             />
             {provider && <Text title={provider} description={t('PROVIDER')} />}
             <Text

@@ -26,7 +26,7 @@ import ProjectMonitorStore from 'stores/monitoring/project'
 
 import ProjectStore from 'stores/project'
 
-import { showNameAndAlias } from 'utils'
+import { getDisplayNameNew, showNameAndAlias } from 'utils'
 import { getSuitableValue, getValueByUnit } from 'utils/monitoring'
 
 const MetricTypes = {
@@ -190,7 +190,7 @@ export default class Projects extends React.Component {
             iconSize={40}
             isMultiCluster={record.isFedHostNamespace}
             desc={record.description || '-'}
-            title={showNameAndAlias(record)}
+            title={getDisplayNameNew(record)}
           />
         ),
       },
@@ -256,6 +256,7 @@ export default class Projects extends React.Component {
         <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
+          className={'table-2-6 table-4-3'}
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           columns={this.getColumns()}

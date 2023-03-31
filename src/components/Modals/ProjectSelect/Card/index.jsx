@@ -58,7 +58,9 @@ export default class ProjectCard extends React.Component {
     const isTerminating =
       data.status === 'Terminating' || data.status === 'Pending'
     name = (
-      <div className={styles.name}>{isTerminating ? name : <a>{name}</a>}</div>
+      <div className={classNames(styles.name, 'ellipsis')} title={name}>
+        {isTerminating ? name : <a>{name}</a>}
+      </div>
     )
 
     desc = isTerminating ? t(data.status) : desc
@@ -81,6 +83,7 @@ export default class ProjectCard extends React.Component {
         description={desc}
         details={details}
         onClick={this.handleClick}
+        withDomDesc
       />
     )
   }

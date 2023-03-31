@@ -40,10 +40,7 @@ import React from 'react'
 
 import { PATTERN_LABEL, MODULE_KIND_MAP } from 'utils/constants'
 
-import { eventBus } from 'utils/EventBus'
-import { eventKeys } from 'utils/events'
-import NameWithAction from 'utils/NameWithAction'
-
+export { showNameAndAlias } from './NameWithAction'
 /**
  * format size, output the value with unit
  * @param {Number} size - the number need to be format
@@ -405,7 +402,7 @@ export const getAliasName = item =>
   get(item, 'metadata.annotations.displayName') ||
   ''
 
-export const getDisplayNameNew = (item, isOmitAlias = false) => {
+export const getDisplayNameNew = (item, omitAlias = false) => {
   if (isEmpty(item)) {
     return ''
   }
@@ -413,17 +410,21 @@ export const getDisplayNameNew = (item, isOmitAlias = false) => {
   if (item.display_name) {
     return item.display_name
   }
-
-  const omitAlias = (text, len = 12) => {
-    if (!isOmitAlias) return text
-    if (text.length > len) {
-      return `${text.slice(0, len)}...`
-    }
-    return text
+  if (omitAlias === false) {
+    return item.aliasName ? `${item.aliasName}(${item.name})` : item.name
   }
-  return item.aliasName
-    ? `${omitAlias(item.aliasName)}(${item.name})`
-    : item.name
+  const defaultLen = typeof omitAlias === 'number' ? omitAlias : 20
+
+  return item.aliasName ? (
+    <span title={`${item.aliasName}(${item.name})`}>
+      {`${truncateString(item.aliasName, defaultLen)}(${truncateString(
+        item.name,
+        30
+      )})`}
+    </span>
+  ) : (
+    item.name
+  )
 }
 
 export const getDisplayName = item => {
@@ -794,84 +795,6 @@ function mix(salt, str) {
   return `${Base64.encode(prefix.join(''))}@${ret.join('')}`
 }
 
-/**
- *
- * @param name string | object
- * @param type 'cluster' | 'project' | 'devops' | 'workspace' | 'federatedProject'
- * @param cluster
- * @returns {React.DetailedReactHTMLElement<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>|string}
- */
-export const showNameAndAlias = (
-  name,
-  type,
-  { cluster, workspace } = {},
-  isText = false
-) => {
-  if (typeof name === 'object' && name !== null) {
-    return name.display_name
-      ? name.display_name
-      : name.aliasName
-      ? `${name.aliasName}(${name.name})`
-      : name.name
-  }
-  let object
-  let event
-  if (!name) {
-    return ''
-  }
-  if (!type) {
-    return name
-  }
-  const currentCluster = cluster ?? globals.currentCluster
-  const currentWorkspace = workspace ?? globals.currentWorkspace
-
-  let objectArray = []
-  if (type === 'project') {
-    objectArray = get(globals, `clusterProjectArray.${currentCluster}`, [])
-    event = eventKeys.PROJECT_ITEM_CHANGE(name, currentCluster)
-  } else if (type === 'cluster') {
-    objectArray = get(globals, `clusterArray`, [])
-    event = eventKeys.CLUSTER_ITEM_CHANGE(name)
-  } else if (type === 'workspace') {
-    objectArray = get(globals, `workspaceArray`, [])
-    event = eventKeys.WORKSPACE_ITEM_CHANGE(name)
-  } else if (type === 'federatedProject') {
-    objectArray = get(globals, `federatedProjectArray`, [])
-    event = eventKeys.FEDERATED_PROJECT_ITEM_CHANGE(name)
-  }
-
-  object = objectArray.find(item => item.name === name)
-
-  if (type === 'devops') {
-    objectArray = get(globals, `clusterDevopsArray.${currentCluster}`, [])
-    event = eventKeys.DEVOPS_ITEM_CHANGE(name, currentCluster, currentWorkspace)
-    object = objectArray.find(
-      item => item.name === name && item.workspace === currentWorkspace
-    )
-  }
-  if (isText) {
-    return object
-      ? object.aliasName
-        ? `${object.aliasName}(${object.name})`
-        : object.name
-      : name
-  }
-
-  if (!object && type !== 'devops') {
-    const params = {
-      cluster: currentCluster,
-      workspace: currentWorkspace,
-      [type]: name,
-    }
-    eventBus.emit(eventKeys.requestAlias, { type, params })
-  }
-  return React.createElement(NameWithAction, {
-    name,
-    event,
-    object,
-  })
-}
-
 export const capitalizeSimple = string =>
   string.charAt(0).toUpperCase() + string.slice(1)
 
@@ -884,4 +807,31 @@ export const transformEmptyFn = path => data => {
 
 export const getTransformData = (...fns) => data => {
   return fns.reduce((acc, fn) => fn(acc), data)
+}
+
+/**
+ * @param {string} str
+ * @param {number} length
+ * @returns {string}
+ */
+export function truncateString(str, length = 20) {
+  let len = 0
+  for (let i = 0; i < str.length; i++) {
+    if (str.charCodeAt(i) > 255) {
+      len += 2
+    } else {
+      len += 1
+    }
+    if (len > length) {
+      return `${str.slice(0, i)}...`
+    }
+  }
+  return str
+}
+
+export const getDomTitle = name => {
+  if (typeof name !== 'string') {
+    return name
+  }
+  return <span title={name}>{name}</span>
 }

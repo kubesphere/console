@@ -660,7 +660,7 @@ export default class ContainerSetting extends React.Component {
           template={this.formTemplate}
           clusters={projectDetail.clusters}
           onClusterUpdate={this.handleClusterUpdate}
-          omitAlias={true}
+          omitAlias={12}
         />
       </Form.Item>
     )
@@ -686,7 +686,7 @@ export default class ContainerSetting extends React.Component {
             clusters={projectDetail.clusters}
             onClusterUpdate={this.handleClusterUpdate}
             store={this.props.store}
-            omitAlias={true}
+            omitAlias={12}
           />
         </Form.Item>
       </div>

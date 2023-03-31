@@ -16,20 +16,118 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { useEffect, useState } from 'react'
+import { get } from 'lodash'
+import React, { useEffect, useState } from 'react'
 import { eventBus } from 'utils/EventBus'
+import { eventKeys } from 'utils/events'
+import { truncateString } from 'utils/index'
 
-function NameWithAction({ event, name, object }) {
-  const [message, setMessage] = useState(
-    object
+export const showNameAndAlias = (
+  name,
+  type,
+  { cluster, workspace } = {},
+  isText = false,
+  cb = () => {},
+  withTitle = false
+) => {
+  if (typeof name === 'object' && name !== null) {
+    return name.display_name
+      ? name.display_name
+      : name.aliasName
+      ? `${name.aliasName}(${name.name})`
+      : name.name
+  }
+  let object
+  let event
+  if (!name) {
+    return ''
+  }
+  if (!type) {
+    return name
+  }
+  const currentCluster = cluster ?? globals.currentCluster
+  const currentWorkspace = workspace ?? globals.currentWorkspace
+
+  let objectArray = []
+  if (type === 'project') {
+    objectArray = get(globals, `clusterProjectArray.${currentCluster}`, [])
+    event = eventKeys.PROJECT_ITEM_CHANGE(name, currentCluster)
+  } else if (type === 'cluster') {
+    objectArray = get(globals, `clusterArray`, [])
+    event = eventKeys.CLUSTER_ITEM_CHANGE(name)
+  } else if (type === 'workspace') {
+    objectArray = get(globals, `workspaceArray`, [])
+    event = eventKeys.WORKSPACE_ITEM_CHANGE(name)
+  } else if (type === 'federatedProject') {
+    objectArray = get(globals, `federatedProjectArray`, [])
+    event = eventKeys.FEDERATED_PROJECT_ITEM_CHANGE(name)
+  }
+
+  object = objectArray.find(item => item.name === name)
+
+  if (type === 'devops') {
+    objectArray = get(globals, `clusterDevopsArray.${currentCluster}`, [])
+    event = eventKeys.DEVOPS_ITEM_CHANGE(name, currentCluster, currentWorkspace)
+    object = objectArray.find(
+      item => item.name === name && item.workspace === currentWorkspace
+    )
+  }
+
+  if (!object && type !== 'devops') {
+    const params = {
+      cluster: currentCluster,
+      workspace: currentWorkspace,
+      [type]: name,
+    }
+    eventBus.emit(eventKeys.requestAlias, { type, params })
+  }
+
+  if (isText) {
+    if (!object) {
+      const f = () => {
+        cb && cb()
+        eventBus.off(event, f)
+      }
+
+      eventBus.on(event, f)
+    }
+    return object
       ? object.aliasName
         ? `${object.aliasName}(${object.name})`
         : object.name
       : name
-  )
+  }
 
+  return React.createElement(NameWithAction, {
+    name,
+    event,
+    object,
+    withTitle,
+  })
+}
+
+const getName = object =>
+  object
+    ? object.aliasName
+      ? `${truncateString(object.aliasName)}(${truncateString(
+          object.name,
+          30
+        )})`
+      : object.name
+    : name
+
+function NameWithAction({ event, name, object, withTitle }) {
+  const [, setMessage] = useState(getName(object))
+  const [fullName, setFullName] = useState(
+    object
+      ? object.aliasName
+        ? `${object.aliasName}(${truncateString(object.name, 30)})`
+        : object.name
+      : name
+  )
   const handleEvent = object1 => {
-    setMessage(
+    setMessage(getName(object1))
+    setFullName(
       object1
         ? object1.aliasName
           ? `${object1.aliasName}(${object1.name})`
@@ -47,7 +145,11 @@ function NameWithAction({ event, name, object }) {
     }
   }, [event])
 
-  return message ?? name
+  return withTitle ? (
+    <span title={fullName ?? name}>{fullName ?? name}</span>
+  ) : (
+    fullName ?? name
+  )
 }
 
 export default NameWithAction
