@@ -22,6 +22,7 @@ import { get } from 'lodash'
 import { inject, observer } from 'mobx-react'
 import Selector from 'projects/components/Selector'
 import React, { Component } from 'react'
+import { compareVersion } from 'utils/app'
 
 import { getIndexRoute, renderRoutes } from 'utils/router.config'
 
@@ -53,6 +54,25 @@ class DevOpsListLayout extends Component {
     )
   }
 
+  get isNeedCodeRepo() {
+    if (this.isHostCluster) {
+      return true
+    }
+
+    const clusterVersion = get(
+      globals,
+      `clusterConfig.${this.props.match.params.cluster}.ksVersion`
+    )
+    const hostVersion = get(
+      this.props.devopsStore.hostDetail,
+      `configz.ksVersion`
+    )
+    return (
+      !(compareVersion(hostVersion, '3.4.0') < 0) &&
+      !(compareVersion(clusterVersion, '3.3.1') < 0)
+    )
+  }
+
   handleChange = url => this.routing.push(url)
 
   render() {
@@ -68,7 +88,9 @@ class DevOpsListLayout extends Component {
       ? navs
       : navs.map(nav => {
           const navsItem = nav.items.filter(
-            item => item.name !== 'cd' && item.name !== 'code-repo'
+            item =>
+              item.name !== 'cd' &&
+              (this.isNeedCodeRepo ? true : item.name !== 'code-repo')
           )
           nav.items = navsItem
           return nav
@@ -112,6 +134,7 @@ class DevOpsListLayout extends Component {
             ],
             {
               isHostCluster: this.isHostCluster,
+              isNeedCodeRepo: this.isNeedCodeRepo,
             }
           )}
         </div>

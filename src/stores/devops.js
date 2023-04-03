@@ -33,6 +33,8 @@ export default class DevOpsStore extends Base {
 
   hostName = ''
 
+  hostDetail = {}
+
   @observable
   roles = {
     data: [],
