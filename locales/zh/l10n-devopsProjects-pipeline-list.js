@@ -21,6 +21,7 @@ module.exports = {
   // List
   HEALTH: '健康状态',
   PULL_REQUEST_COUNT: '拉取请求数量',
+  MULTI_BRANCH_PIPELINE: '多分支流水线',
   HEALTHY: '健康',
   SUB_HEALTHY: '亚健康',
   NO_STATUS: '没有状态',
@@ -40,9 +41,14 @@ module.exports = {
   // List > Create
   CREATE_PIPELINE: '创建流水线',
   // List > Create > Basic Information
+  PIPELINE_TYPE: '流水线类别',
   SELECT_CODE_REPOSITORY: '选择代码仓库',
+  BRANCH_PIPELINE_DESC: '通过可视化编排或 Jenkinsfile 来描述软件的构建工程。',
+  MULTI_BRANCH_PIPELINE_DESC: '根据源码管理(SCM)仓库中检测到的每个分支创建一系列流水线。',
   PIPELINE_CREATE_DEVOPS_PROJECT_DESC: '选择流水线所属的 DevOps 项目。',
   CODE_REPOSITORY_OPTIONAL: '代码仓库（可选）',
+  CODE_REPOSITORY_REQUIRED: '代码仓库',
+  CODE_REPOSITORY_REQUIRED_DESC: '请选择一个代码仓库。',
   GO_CREATE_REPO: '没有可用的代码库。请创建代码库。',
   CODE_REPO_EXISTS: '代码仓库已存在',
   SELECT_CODE_REPO_DESC: '选择流水线使用的代码仓库。',
@@ -139,8 +145,10 @@ module.exports = {
   DELETE_OUTDATED_BUILD_RECORDS_TIP: `设置系统自动删除过期的控制台输出、归档制品、元数据等构建记录以节省磁盘空间。`,
   BUILD_RECORD_RETENTION_PERIOD_DAYS: '构建记录保留期限（天）',
   BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC: '超过保留期限的构建记录将被删除。默认值为 7。',
+  BUILD_RECORD_RETENTION_PERIOD_DAYS_INVALID_TIP: '保留期限必须是正整数。',
   MAXIMUM_BUILD_RECORDS: '构建记录最大数量',
   MAXIMUM_BUILD_RECORDS_DESC: '当构建记录数量超过允许的最大数量，最早的构建记录将被删除。默认值为 10。',
+  MAXIMUM_BUILD_RECORDS_INVALID_TIP: '构建记录的最大值必须为正整数。',
   NO_CONCURRENT_BUILDS: '不允许并发构建',
   NO_CONCURRENT_BUILD_DESC: '设置流水线一次仅执行一个构建任务。',
   BUILD_PARAMETERS: '构建参数',
