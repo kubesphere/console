@@ -61,14 +61,7 @@ export default class Secrets extends React.Component {
   }
 
   get itemActions() {
-    const {
-      routing,
-      trigger,
-      store,
-      name,
-      isHostCluster,
-      isNeedCodeRepo,
-    } = this.props
+    const { routing, trigger, store, name, isHostCluster } = this.props
 
     return [
       {
@@ -91,11 +84,7 @@ export default class Secrets extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
-            module: isHostCluster
-              ? 'devopsroles'
-              : isNeedCodeRepo
-              ? 'devopsRoleWithCodeRepo'
-              : 'devopsrolesNotHostCluster',
+            module: isHostCluster ? 'devopsroles' : 'devopsrolesNotHostCluster',
             detail: item,
             roleTemplates: toJS(store.roleTemplates.data),
             success: routing.query,
@@ -172,13 +161,9 @@ export default class Secrets extends React.Component {
   }
 
   showCreate = () => {
-    const { isHostCluster, isNeedCodeRepo } = this.props
+    const { isHostCluster } = this.props
     this.props.trigger('role.create', {
-      module: isHostCluster
-        ? 'devopsroles'
-        : isNeedCodeRepo
-        ? 'devopsRoleWithCodeRepo'
-        : 'devopsrolesNotHostCluster',
+      module: isHostCluster ? 'devopsroles' : 'devopsrolesNotHostCluster',
       devops: this.devops,
       namespace: this.devops,
       cluster: this.cluster,

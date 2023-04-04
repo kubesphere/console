@@ -16,23 +16,24 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import PipelineOld from 'devops/containers/Pipelines/Detail/PipeLineOld'
 import { getChildRoutes } from 'utils/router.config'
 
-import PipelineLayout from './Layout/pipeline'
-import BranchLayout from './Layout/branch'
-import RunLayout from './Layout/runs'
-
 import {
-  Pipeline,
   Activity,
-  Branch,
-  PullRequest,
-  CodeQuality,
-  TaskStatus,
-  Commit,
   Artifacts,
+  Branch,
+  CodeQuality,
+  Commit,
   Events,
+  Pipeline,
+  PullRequest,
+  TaskStatus,
 } from './index'
+import BranchLayout from './Layout/branch'
+
+import PipelineLayout from './Layout/pipeline'
+import RunLayout from './Layout/runs'
 
 const PATH = '/:workspace/clusters/:cluster/devops/:devops/pipelines/:name'
 
@@ -44,6 +45,7 @@ const PATH_NO_BRANCH = `${PATH}/run/:runName`
 
 const PIPELINE_ROUTES = [
   { name: 'pipeline', title: 'TASK_STATUS', component: Pipeline },
+  { name: 'pipeline-old', title: 'TASK_STATUS', component: PipelineOld },
   { name: 'code-quality', title: 'CODE_CHECK', component: CodeQuality },
   { name: 'activity', title: 'RUN_RECORDS', component: Activity },
   { name: 'branch', title: 'BRANCH_PL', component: Branch },

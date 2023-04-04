@@ -27,10 +27,12 @@ import { Notify } from '@kube-design/components'
 import Status from 'devops/components/Status'
 import CodeQualityStore from 'stores/devops/codeQuality'
 import DetailPage from 'devops/containers/Base/Detail'
+import { compareVersion, showNameAndAlias } from 'utils'
+
+import { trigger } from 'utils/action'
 
 import { getPipelineStatus } from 'utils/status'
 
-import { trigger } from 'utils/action'
 import Nav from 'devops/components/DetailNav'
 
 import './index.scss'
@@ -67,6 +69,32 @@ export default class PipelineDetailLayout extends React.Component {
       cluster,
       devops,
     })
+  }
+
+  get ksVersion() {
+    const { cluster } = this.props.match.params
+    return globals.app.isMultiCluster
+      ? get(globals, `clusterConfig.${cluster}.ksVersion`)
+      : get(globals, 'ksConfig.ksVersion')
+  }
+
+  get routes() {
+    const isOld = compareVersion(this.ksVersion, '3.4.0') < 0
+    const [newPipeline, oldPipeline, ...rest] = this.props.route.routes
+    return [
+      {
+        ...newPipeline,
+        component: isOld ? oldPipeline.component : newPipeline.component,
+      },
+      ...rest,
+    ]
+  }
+
+  get route() {
+    return {
+      ...this.props.route,
+      routes: this.routes,
+    }
   }
 
   componentDidMount() {
@@ -282,7 +310,7 @@ export default class PipelineDetailLayout extends React.Component {
       <Nav
         sonarqubeStore={this.sonarqubeStore}
         detailStore={this.store}
-        route={this.props.route}
+        route={this.route}
         match={this.props.match}
       />
     )
@@ -323,7 +351,7 @@ export default class PipelineDetailLayout extends React.Component {
 
     return (
       <DetailPage
-        routes={this.props.route.routes}
+        routes={this.routes}
         stores={stores}
         nav={this.renderNav()}
         {...sideProps}

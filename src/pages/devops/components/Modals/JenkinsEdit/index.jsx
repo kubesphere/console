@@ -16,15 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-
 import { Modal } from 'components/Base'
 import CodeEditor from 'components/Base/CodeEditor'
-import PipelineStore from 'stores/devops/pipelines'
 import ConfirmModal from 'components/Modals/Delete'
 
 import { isEqual } from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
+import PipelineStore from 'stores/devops/pipelines'
 import styles from './index.scss'
 
 export default class JenkinsEdit extends React.Component {
@@ -121,11 +120,13 @@ export default class JenkinsEdit extends React.Component {
   }
 
   saveJenkins = jenkinsFile => {
-    const { devops, name: pipeline } = this.props.params
+    const { devops, name: pipeline, cluster } = this.props.params
     this.setState({ isLoading: true })
+    const clusterPath =
+      cluster && cluster !== 'default' ? `/klusters/${cluster}` : ''
     return request
       .put(
-        `/kapis/devops.kubesphere.io/v1alpha3/devops/${devops}/pipelines/${pipeline}/jenkinsfile?mode=raw`,
+        `/kapis/devops.kubesphere.io/v1alpha3${clusterPath}/devops/${devops}/pipelines/${pipeline}/jenkinsfile?mode=raw`,
         { data: jenkinsFile },
         {
           headers: {

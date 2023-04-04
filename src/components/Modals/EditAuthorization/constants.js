@@ -86,7 +86,7 @@ export const ROLE_MODULES = {
       icon: 'project',
     },
   ],
-  devopsRoleWithCodeRepo: [
+  devopsrolesNotHostCluster: [
     {
       name: 'Pipelines Management',
       icon: 'application',
@@ -94,24 +94,6 @@ export const ROLE_MODULES = {
     {
       name: 'Code Repositories Management',
       icon: 'code',
-    },
-    {
-      name: 'Credentials Management',
-      icon: 'key',
-    },
-    {
-      name: 'Access Control',
-      icon: 'human',
-    },
-    {
-      name: 'DevOps Settings',
-      icon: 'strategy-group',
-    },
-  ],
-  devopsrolesNotHostCluster: [
-    {
-      name: 'Pipelines Management',
-      icon: 'application',
     },
     {
       name: 'Credentials Management',

@@ -21,6 +21,7 @@ import BaseInfo from 'components/Forms/Pipelines/BaseInfo'
 
 import PipelineTemplate from 'components/Forms/Pipelines/PipelineTemplate'
 import PipelineTemplateParams from 'components/Forms/Pipelines/PipelineTemplateParams'
+import PipelineTemplateParamsOld from 'components/Forms/Pipelines/PipelineTemplateParams/old'
 
 export const PIPELINE_PROJECT_CREATE_STEPS = [
   {
@@ -45,6 +46,20 @@ export const PIPELINE_CREATE_STEPS = [
   {
     title: 'PARAMETER_CONFIG',
     component: PipelineTemplateParams,
+    required: true,
+    icon: 'slider',
+  },
+]
+
+export const PIPELINE_CREATE_STEPS_OLD = [
+  {
+    title: 'SELECT_TEMPLATE',
+    component: PipelineTemplate,
+    required: true,
+  },
+  {
+    title: 'PARAMETER_CONFIG',
+    component: PipelineTemplateParamsOld,
     required: true,
     icon: 'slider',
   },

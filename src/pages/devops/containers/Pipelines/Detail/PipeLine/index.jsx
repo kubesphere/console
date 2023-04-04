@@ -16,16 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
 import { Button, Loading, Notify, Tooltip } from '@kube-design/components'
-import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import { isEmpty, debounce } from 'lodash'
+import EmptyCard from 'devops/components/Cards/EmptyCard'
 
 import PipelineContent from 'devops/components/Pipeline'
+import { debounce, isEmpty } from 'lodash'
+import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
 
 import { trigger } from 'utils/action'
-import EmptyCard from 'devops/components/Cards/EmptyCard'
 
 import style from './index.scss'
 
@@ -129,11 +129,13 @@ export default class Pipeline extends React.Component {
 
   handleReset = () => {
     const { params } = this.props.match
-    const { devops, name } = params
+    const { devops, name, cluster } = params
     clearTimeout(this.store.timer)
+    const clusterPath =
+      cluster && cluster !== 'default' ? `/klusters/${cluster}` : ''
     request
       .put(
-        `/kapis/devops.kubesphere.io/v1alpha3/devops/${devops}/pipelines/${name}/jenkinsfile?mode=raw`,
+        `/kapis/devops.kubesphere.io/v1alpha3${clusterPath}/devops/${devops}/pipelines/${name}/jenkinsfile?mode=raw`,
         { data: '' },
         {
           headers: {
