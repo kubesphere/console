@@ -16,13 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export { default as Branch } from './Branch'
-export { default as Pipeline } from './PipeLine'
-export { default as PipelineOld } from './PipeLineOld'
-export { default as PullRequest } from './PullRequest'
-export { default as Activity } from './Activity'
-export { default as TaskStatus } from './TaskStatus'
-export { default as Commit } from './Commit'
-export { default as Artifacts } from './Artifacts'
-export { default as CodeQuality } from './CodeQuality'
-export { default as Events } from './Events'
+import PipelineStore from 'stores/devops/pipelines'
+import PipelineStoreOld from 'stores/devops/pipelinesOld'
+import { compareVersion } from 'utils'
+
+export const getPipelinesStore = version => {
+  return [
+    [
+      v => {
+        return compareVersion(v, '3.4.0') < 0
+      },
+      PipelineStoreOld,
+    ],
+    [() => true, PipelineStore],
+  ].find(([condition]) => condition(version))[1]
+}

@@ -20,9 +20,7 @@ import { Loading } from '@kube-design/components'
 import { get } from 'lodash'
 import { inject, observer, Provider } from 'mobx-react'
 import React, { Component } from 'react'
-import PipelineStore from 'stores/devops/pipelines'
-import PipelineStoreOld from 'stores/devops/pipelinesOld'
-import { compareVersion } from 'utils'
+import { getPipelinesStore } from 'stores/devops/getPipelines'
 
 import { renderRoutes } from 'utils/router.config'
 import routes from './routes'
@@ -33,7 +31,7 @@ export default class PipelinesLayout extends Component {
   constructor(props) {
     super(props)
 
-    this.store = !this.isOld ? new PipelineStore() : new PipelineStoreOld()
+    this.store = new (getPipelinesStore(this.ksVersion))()
     this.init(props.match.params)
   }
 
@@ -42,10 +40,6 @@ export default class PipelinesLayout extends Component {
     return globals.app.isMultiCluster
       ? get(globals, `clusterConfig.${cluster}.ksVersion`)
       : get(globals, 'ksConfig.ksVersion')
-  }
-
-  get isOld() {
-    return compareVersion(this.ksVersion, '3.4.0') < 0
   }
 
   async init(params) {

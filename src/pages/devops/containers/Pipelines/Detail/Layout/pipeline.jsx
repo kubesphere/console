@@ -27,7 +27,7 @@ import { Notify } from '@kube-design/components'
 import Status from 'devops/components/Status'
 import CodeQualityStore from 'stores/devops/codeQuality'
 import DetailPage from 'devops/containers/Base/Detail'
-import { compareVersion, showNameAndAlias } from 'utils'
+import { showNameAndAlias } from 'utils'
 
 import { trigger } from 'utils/action'
 
@@ -79,12 +79,11 @@ export default class PipelineDetailLayout extends React.Component {
   }
 
   get routes() {
-    const isOld = compareVersion(this.ksVersion, '3.4.0') < 0
-    const [newPipeline, oldPipeline, ...rest] = this.props.route.routes
+    const [newPipeline, ...rest] = this.props.route.routes
     return [
       {
         ...newPipeline,
-        component: isOld ? oldPipeline.component : newPipeline.component,
+        component: newPipeline.getComponent(this.ksVersion),
       },
       ...rest,
     ]

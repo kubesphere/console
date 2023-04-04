@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import PipelineOld from 'devops/containers/Pipelines/Detail/PipeLineOld'
+import { compareVersion } from 'utils'
 import { getChildRoutes } from 'utils/router.config'
 
 import {
@@ -27,6 +27,7 @@ import {
   Commit,
   Events,
   Pipeline,
+  PipelineOld,
   PullRequest,
   TaskStatus,
 } from './index'
@@ -43,9 +44,19 @@ const RUN_PATH = `${BRANCH_PATH}/run/:runName`
 
 const PATH_NO_BRANCH = `${PATH}/run/:runName`
 
+const getComponent = version => {
+  return [
+    [
+      v => {
+        return compareVersion(v, '3.4.0') < 0
+      },
+      PipelineOld,
+    ],
+    [() => true, Pipeline],
+  ].find(([condition]) => condition(version))[1]
+}
 const PIPELINE_ROUTES = [
-  { name: 'pipeline', title: 'TASK_STATUS', component: Pipeline },
-  { name: 'pipeline-old', title: 'TASK_STATUS', component: PipelineOld },
+  { name: 'pipeline', title: 'TASK_STATUS', getComponent },
   { name: 'code-quality', title: 'CODE_CHECK', component: CodeQuality },
   { name: 'activity', title: 'RUN_RECORDS', component: Activity },
   { name: 'branch', title: 'BRANCH_PL', component: Branch },
