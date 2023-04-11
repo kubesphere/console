@@ -162,7 +162,7 @@ export default class SchemaForm extends React.Component {
       )
     }
 
-    return form && this.renderFormItem(propObj, propKey, propPath)
+    return form ? this.renderFormItem(propObj, propKey, propPath) : null
   }
 
   render() {
