@@ -158,6 +158,7 @@ export default class Overview extends React.Component {
     return (
       <div className={styles.tableWrapper}>
         <Table
+          className="table-1-10"
           data={toJS(data)}
           filters={filters}
           keyword={keyword}
