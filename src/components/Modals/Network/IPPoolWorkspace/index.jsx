@@ -69,7 +69,7 @@ export default class IPPoolWorkspaceModal extends Component {
     return [
       { label: t('ALL'), value: ALL_WORKSPACE },
       ...this.workspaceStore.list.data.map(item => ({
-        label: showNameAndAlias(item),
+        label: showNameAndAlias(item.name, 'workspace'),
         value: item.name,
       })),
     ]
