@@ -1,5 +1,8 @@
 module.exports = {
-    //create pipeline modal -> custom pipeline
+  //create pipeline modal -> custom pipeline
+  General: 'General',
+  Container: 'Container',
+  Review: 'Review',
   URL: 'URL',
   'Credential Name': 'Credential Name',
   Branch: 'Branch',
@@ -7,21 +10,21 @@ module.exports = {
   'Credential Name': 'Credential Name',
   'The message to print': 'The message to print',
   'Shell command line': 'Shell command line',
-//   Recipient: 'Recipient',
-//   CC: 'CC',
-//   Subject: 'Subject',
+  //   Recipient: 'Recipient',
+  //   CC: 'CC',
+  //   Subject: 'Subject',
   Body: 'Body',
   'Credential Name': 'Credential Name',
-//   'Username Variable': 'Username Variable',
-//   'Password Variable': 'Password Variable',
+  //   'Username Variable': 'Username Variable',
+  //   'Password Variable': 'Password Variable',
   Variable: 'Variable',
   'KeyFile Variable': 'KeyFile Variable',
   'Passphrase Variable': 'Passphrase Variable',
   'Artifacts Location': 'Artifacts Location',
   Time: 'Time',
   Unit: 'Unit',
-//   'Timeout after no activity in logs for this block':
-    // 'Timeout after no activity in logs for this block',
+  //   'Timeout after no activity in logs for this block':
+  // 'Timeout after no activity in logs for this block',
   'Groovy script': 'Groovy script',
   'Target Pipeline Name': 'Target Pipeline Name',
   'Quiet Period': 'Quiet Period',
