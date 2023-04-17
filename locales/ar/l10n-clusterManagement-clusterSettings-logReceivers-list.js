@@ -17,6 +17,8 @@
  */
 module.exports = {
   // Banner
+  LOG_RECEIVER: 'Log Receiver',
+  LOG_RECEIVER_LOW: 'Log Receiver',
   LOG_RECEIVER_PL: 'Log Receivers',
   LOG_COLLECTION_DESC: 'The system collects standard output (stdout) and standard error (stderr) logs from each container and sends them to one or more target services.',
   // Banner > Add Log Receiver
