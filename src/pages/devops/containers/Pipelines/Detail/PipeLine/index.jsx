@@ -127,7 +127,7 @@ export default class Pipeline extends React.Component {
     })
   }
 
-  handleReset = () => {
+  handleReset = (defaultValue = '') => {
     const { params } = this.props.match
     const { devops, name, cluster } = params
     clearTimeout(this.store.timer)
@@ -136,7 +136,7 @@ export default class Pipeline extends React.Component {
     request
       .put(
         `/kapis/devops.kubesphere.io/v1alpha3${clusterPath}/devops/${devops}/pipelines/${name}/jenkinsfile?mode=raw`,
-        { data: '' },
+        { data: defaultValue },
         {
           headers: {
             'content-type': 'application/json',
