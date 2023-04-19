@@ -18,5 +18,5 @@
 module.exports = {
   // Attributes
   // Events
-  MESSAGE: 'Message'
+  MESSAGE: '메시지'
 };
