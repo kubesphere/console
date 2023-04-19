@@ -25,5 +25,5 @@ module.exports = {
   // List > Create > Basic Information
   // List > Create > Storage Settings
   // List > Create > Advanced Settings
-  VOLUME_ADD_METADATA_DESC: 'Add metadata to the volume.'
+  VOLUME_ADD_METADATA_DESC: '메타데이터를 볼륨에 추가합니다.'
 };
