@@ -20,10 +20,10 @@ module.exports = {
   // Attributes
   // Edit
   // Delete
-  CREDENTIAL_LOW: 'credential',
+  CREDENTIAL_LOW: '자격 증명',
   // Details > Credential
-  DETAILS: 'Details',
-  TYPE_VALUE: 'Type: {value}',
+  DETAILS: '세부 정보',
+  TYPE_VALUE: '유형: {value}',
   // Events
-  RECORD: 'Record'
+  RECORD: '기록'
 };
