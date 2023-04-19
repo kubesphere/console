@@ -17,40 +17,40 @@
  */
 module.exports = {
   // Attributes
-  COPIED_SUCCESSFUL: 'Copied successfully.',
-  BUILDER_IMAGE: 'Builder Image',
+  COPIED_SUCCESSFUL: '성공적으로 복사됨',
+  BUILDER_IMAGE: '빌더 이미지',
   PULL_POLICY: 'Pull Policy',
-  REMOTE_TRIGGER: 'Remote Trigger',
+  REMOTE_TRIGGER: '원격 트리거',
   // Run
-  S2I_UPDATE_WORKLOAD: 'Update workload after image building is successful',
-  S2I_UPDATA_WORKLOAD_DESC: 'After the image is rebuilt successfully, workloads that use the image will be updated.',
+  S2I_UPDATE_WORKLOAD: '이미지 빌드 후 워크로드 업데이트',
+  S2I_UPDATA_WORKLOAD_DESC: '이미지가 성공적으로 빌드되면 이미지를 사용하는 워크로드가 업데이트됩니다.',
   // More > Edit Information
   // More > Edit YAML
   // More > Delete
-  IMAGE_BUILDER: 'Image Builder',
-  IMAGE_BUILDER_LOW: 'image builder',
+  IMAGE_BUILDER: '이미지 빌더',
+  IMAGE_BUILDER_LOW: '이미지 빌더',
   // Run Records
-  JOB_RECORDS: 'Job Records',
-  LAST_BUILD_ENVIRONMENT: 'Last Build Environment',
-  BUILDER_IMAGE_SCAP: 'Builder image',
-  FILE_SIZE: 'File size: {size}',
-  DOWNLOAD_ARTIFACT: 'Download Artifact',
-  ARTIFACT_FILE: 'Artifact File',
-  LOG_MODULE_NOT_INSTALLED: 'The logging module is not installed.',
-  LOADING_DOTS: 'Loading...',
-  IMAGE_NAME_SCAP: 'Image name',
-  IMAGE_SIZE_SCAP: 'Image size',
-  IMAGE_NAME_BUILDING: 'Image: {name}/Building',
-  IMAGE_NAME_FAILED: 'Image: {name}/Failed',
-  IMAGE_NAME_SUCCESSFUL: 'Image: {name}/Successful',
-  LAST_MESSAGE_SCAP: 'Last message',
-  START_TIME_SCAP: 'Start time',
+  JOB_RECORDS: '잡 기록',
+  LAST_BUILD_ENVIRONMENT: '최근 빌드 환경',
+  BUILDER_IMAGE_SCAP: '빌드 이미지',
+  FILE_SIZE: '파일 크기: {size}',
+  DOWNLOAD_ARTIFACT: '아티팩트 다운로드',
+  ARTIFACT_FILE: '아티팩트 파일',
+  LOG_MODULE_NOT_INSTALLED: '로깅 모듈이 설치되지 않았습니다.',
+  LOADING_DOTS: '불러오는 중…',
+  IMAGE_NAME_SCAP: '이미지 이름',
+  IMAGE_SIZE_SCAP: '이미지 크기',
+  IMAGE_NAME_BUILDING: '이미지: {name}/빌드 중',
+  IMAGE_NAME_FAILED: '이미지: {name}/실패',
+  IMAGE_NAME_SUCCESSFUL: '이미지: {name}/성공',
+  LAST_MESSAGE_SCAP: '마지막 메시지',
+  START_TIME_SCAP: '시작 시간',
   // Resource Status
-  SOURCE_URL: 'Source URL',
-  NEW_TAG: 'New Tag',
-  NEW_TAG_DESC: 'Enter the tag of the new image',
+  SOURCE_URL: '소스 URL',
+  NEW_TAG: '새로운 태그',
+  NEW_TAG_DESC: '새 이미지의 태그 입력',
   // Image Artifacts
-  IMAGE_ARTIFACTS: 'Image Artifacts',
-  RELEASE_TIME_SCAP: 'Release time',
-  PULL_COMMAND_SCAP: 'Pull command'
+  IMAGE_ARTIFACTS: '이미지 아티팩트',
+  RELEASE_TIME_SCAP: '릴리즈 시간',
+  PULL_COMMAND_SCAP: 'Pull 명령'
 };
