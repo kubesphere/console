@@ -19,13 +19,13 @@ module.exports = {
   // Title
   // Search Bar
   // Time Topology
-  STOP_REAL_TIME_RESOURCE_EVENT: 'Pause real-time resource events',
-  START_REAL_TIME_RESOURCE_EVENT: 'View real-time resource events',
+  STOP_REAL_TIME_RESOURCE_EVENT: '실시간 리소스 이벤트 일시 중지',
+  START_REAL_TIME_RESOURCE_EVENT: '실시간 리소스 이벤트 보기',
   // Time Topology > Histogram
-  RESOURCE_EVENT_COUNT: 'Resource Events',
+  RESOURCE_EVENT_COUNT: '리소스 이벤트',
   // List
   // List > Resource Event Details > Metadata
-  METADATA: 'Metadata',
+  METADATA: '메타데이터',
   // List > Resource Event Details > Details
   EARLIEST_START_TIME: 'Earliest Start Time',
   LATEST_START_TIME: 'Latest Start Time'
