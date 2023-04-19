@@ -21,5 +21,5 @@ module.exports = {
   // List > Create > Basic Information
   // List > Create > Routing Rules > Add Routing Rule
   // List > Create > Routing Rules > Add Routing Rule > Auto Generate
-  PATH_EXIST: 'Duplicate paths exist.'
+  PATH_EXIST: '중복된 경로가 있습니다.'
 };
