@@ -18,5 +18,5 @@
 module.exports = {
   // Title
   // Navigation Pane > Workspace
-  ADD_CLUSTER_FOR_WORKSPACE: 'Please authorize a cluster to this workspace.'
+  ADD_CLUSTER_FOR_WORKSPACE: '이 워크스페이스에 대한 클러스터 권한을 부여하십시오.'
 };
