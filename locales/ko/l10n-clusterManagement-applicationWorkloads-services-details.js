@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Attributes
-  CUSTOM_SERVICE: 'Custom Service',
+  CUSTOM_SERVICE: '사용자 지정 서비스',
   VIRTUAL_IP: 'VirtualIP',
   // Resource Status
-  CONTAINER_PORT_SCAP: 'Container port',
-  SERVICE_PORT_SCAP: 'Service port',
-  NO_AVAILABLE_RESOURCE_VALUE: 'No Available {resource}',
-  NO_RESOURCE_FOUND: 'No Resource Found',
-  REVISION_RECORD: 'Revision record'
+  CONTAINER_PORT_SCAP: '컨테이너 포트',
+  SERVICE_PORT_SCAP: '서비스 포트',
+  NO_AVAILABLE_RESOURCE_VALUE: '사용 가능한 {resource}가(이) 없습니다.',
+  NO_RESOURCE_FOUND: '리소스를 찾을 수 없음',
+  REVISION_RECORD: '기록 수정'
 };
