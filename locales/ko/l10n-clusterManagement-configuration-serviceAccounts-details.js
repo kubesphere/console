@@ -21,5 +21,5 @@ module.exports = {
   // More > Change Role
   // More > Delete
   // Resource Status
-  KUBECONFIG_SETTINGS: 'kubeconfig Settings'
+  KUBECONFIG_SETTINGS: 'kubeconfig 설정'
 };
