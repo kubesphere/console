@@ -18,12 +18,12 @@
 module.exports = {
   // Banner
   // List
-  CRONJOB_EMPTY_DESC: 'Please create a cronjob.',
+  CRONJOB_EMPTY_DESC: 'cron 작업을 생성하십시오.',
   // List > Create > Basic Information
-  EVERY_DAY: '0 0 * * * (every day)',
-  EVERY_HOUR: '0 * * * * (every hour)',
-  EVERY_MONTH: '0 0 1 * * (every month)',
-  EVERY_WEEK: '0 0 * * 0 (every week)',
+  EVERY_DAY: '0 0 * * * (매일 반복)',
+  EVERY_HOUR: '0 * * * * (매시간 반복)',
+  EVERY_MONTH: '0 0 1 * * (매월 반복)',
+  EVERY_WEEK: '0 0 * * 0 (매주 반복)',
   // List > Create > Strategy Settings
   // List > Create > Pod Settings
   // List > Create > Storage Settings
@@ -31,6 +31,6 @@ module.exports = {
   // List > Edit Information
   // List > Edit YAML
   // List > Start/Pause
-  PAUSE: 'Pause',
-  START: 'Start'
+  PAUSE: '일시정지',
+  START: '시작'
 };
