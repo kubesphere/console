@@ -17,14 +17,14 @@
  */
 module.exports = {
   // Banner
-  PERSISTENT_VOLUME: 'Persistent Volume',
-  PERSISTENT_VOLUME_PL: 'Persistent Volumes',
-  PERSISTENT_VOLUME_LOW: 'persistent volume',
+  PERSISTENT_VOLUME: '퍼시스턴트 볼륨',
+  PERSISTENT_VOLUME_PL: '퍼시스턴트 볼륨',
+  PERSISTENT_VOLUME_LOW: '퍼시스턴트 볼륨',
   // List
-  PV_STATUS_AVAILABLE: 'Available',
-  PV_STATUS_BOUND: 'Bound',
+  PV_STATUS_AVAILABLE: '사용 가능',
+  PV_STATUS_BOUND: '바운드',
   PV_STATUS_RELEASED: '릴리즈됨',
-  PV_STATUS_FAILED: 'Failed',
-  RECYCLING_STRATEGY: 'Recycling Strategy',
-  VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
+  PV_STATUS_FAILED: '실패',
+  RECYCLING_STRATEGY: '재활용 전략',
+  VOLUME_EMPTY_DESC: '퍼시스턴트 볼륨 클레임을 워크로드에 바인딩하십시오.'
 };

@@ -18,9 +18,9 @@
 module.exports = {
   // Banner
   // List
-  STATEFULSETS_LOW: 'Statefulsets',
-  STATEFULSETS_PL: 'Statefulsets',
+  STATEFULSETS_LOW: '스테이트풀셋',
+  STATEFULSETS_PL: '스테이트풀셋',
   // List > Create > Basic Information
   // List > Create > Pod Settings > Update Settings > Rolling Update Settings
-  PARTITION_ORDINAL_EMPTY: 'Please set a ordinal for dividing pod replicas.'
+  PARTITION_ORDINAL_EMPTY: '파드 복제본 분할 순서를 설정하십시오.'
 };

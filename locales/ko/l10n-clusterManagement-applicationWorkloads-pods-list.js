@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Banner
-  POD_PL: 'Pods',
+  POD_PL: '파드',
   // List
   NODE_IP: '{node} ({ip})',
-  WAITING: 'Waiting',
+  WAITING: '대기 중...',
   // List > View YAML
   // List > Delete
-  POD_LOW: 'pod',
-  PENDING: 'Pending'
+  POD_LOW: '파드',
+  PENDING: '대기 중'
 };

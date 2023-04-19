@@ -21,9 +21,9 @@ module.exports = {
   // More > Edit Settings > Update Strategy
   // More > Edit Settings > Containers
   // More > Edit Settings > Volumes
-  PLEASE_USE_RELATIVE_PATH: 'Please use a relative path.',
-  RELATIVE_PATH_NOT_SUPPORT: 'Unsupported relative path format.',
-  MOUNT_PATH_INCORRECT: 'Incorrect mount path.',
+  PLEASE_USE_RELATIVE_PATH: '상대 경로를 사용하십시오.',
+  RELATIVE_PATH_NOT_SUPPORT: '지원되지 않는 상대 경로 형식입니다.',
+  MOUNT_PATH_INCORRECT: '마운트 경로가 잘못되었습니다.',
   // More > Edit Settings > Pod Scheduling Rules
   // More > Edit Settings > Cluster Differences
   // More > Edit YAML
@@ -35,5 +35,5 @@ module.exports = {
   // Metadata
   // Monitoring
   // Events
-  REASON: 'Reason'
+  REASON: '이유'
 };

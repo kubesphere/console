@@ -19,14 +19,14 @@ module.exports = {
   // Title
   // Search Bar
   // Time Topology
-  START_REAL_TIME_AUDIT_LOG: 'Pause real-time audit logs',
-  STOP_REAL_TIME_AUDIT_LOG: 'View real-time audit logs',
-  TIME_S: '{num, plural, =1 {1 second} other {# seconds}}',
+  START_REAL_TIME_AUDIT_LOG: '실시간 감사 로그 일시 정지',
+  STOP_REAL_TIME_AUDIT_LOG: '실시간 감사 로그 보기',
+  TIME_S: '{num, plural, =1 {1 초} other {# 초}}',
   // Time Topology > Histogram
-  AUDIT_LOG_COUNT: 'Audit Logs',
+  AUDIT_LOG_COUNT: '감사 로그',
   // List
-  RESOURCE_NAME_AND_TYPE: 'Resource Type & Name',
+  RESOURCE_NAME_AND_TYPE: '자원 유형 및 이름',
   VERB: 'Verb',
-  STATUS_CODE: 'Status Code',
+  STATUS_CODE: '상태 코드',
   SUBRESOURCE: 'Subresource'
 };

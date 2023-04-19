@@ -21,6 +21,7 @@ module.exports = {
   // List
   HEALTH: 'Sağlık',
   PULL_REQUEST_COUNT: 'Çekme İstekleri',
+  MULTI_BRANCH_PIPELINE: 'Multi-branch Pipeline',
   HEALTHY: 'Sağlıklı',
   SUB_HEALTHY: 'Alt-sağlık',
   NO_STATUS: 'Durum yok',
@@ -40,9 +41,14 @@ module.exports = {
   // List > Create
   CREATE_PIPELINE: 'İş hattı oluştur',
   // List > Create > Basic Information
+  PIPELINE_TYPE: 'Pipeline Type',
   SELECT_CODE_REPOSITORY: 'Kod Deposu Seç',
+  BRANCH_PIPELINE_DESC: 'Describe the software build process with visual orchestration or Jenkinsfile.',
+  MULTI_BRANCH_PIPELINE_DESC: 'Create a series of pipelines for each branch detected in the source code management (SCM) repository.',
   PIPELINE_CREATE_DEVOPS_PROJECT_DESC: 'İş hattının ait olduğu DevOps projesini seçin.',
   CODE_REPOSITORY_OPTIONAL: 'Kod Deposu (opsiyonel)',
+  CODE_REPOSITORY_REQUIRED: 'Kod Deposu',
+  CODE_REPOSITORY_REQUIRED_DESC: 'Lütfen yeni bir depo yakalayıcısı seçin.',
   GO_CREATE_REPO: 'No code repository is available. Please create a code repository.',
   CODE_REPO_EXISTS: 'code repository already exists',
   SELECT_CODE_REPO_DESC: 'İş hattı tarafından kullanılacak bir kod deposu seçin.',
@@ -139,8 +145,10 @@ module.exports = {
   DELETE_OUTDATED_BUILD_RECORDS_TIP: `Sistemi disk alanından tasarruf etmek için konsol çıktısı, arşivlenmiş eserler ve meta veriler dahil olmak üzere eski yapı kayıtlarını otomatik olarak silecek şekilde ayarlayın.`,
   BUILD_RECORD_RETENTION_PERIOD_DAYS: 'Oluşturma Kaydı Tutma Süresi (gün)',
   BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC: 'Saklama süresini aşan derleme kayıtları silinir. Varsayılan değer 7\'dir.',
+  BUILD_RECORD_RETENTION_PERIOD_DAYS_INVALID_TIP: 'The retention period must be a positive integer.',
   MAXIMUM_BUILD_RECORDS: 'En fazla Yapı Kayıtları',
   MAXIMUM_BUILD_RECORDS_DESC: 'Yapı kayıtlarının sayısı izin verilen maksimum sayıyı aştığında, en eski yapı kaydı silinir. Varsayılan değer 10\'dur.',
+  MAXIMUM_BUILD_RECORDS_INVALID_TIP: 'The maximum number of build records must be a positive integer.',
   NO_CONCURRENT_BUILDS: 'Eşzamanlı derleme yok',
   NO_CONCURRENT_BUILD_DESC: 'İşlem hattını bir seferde yalnızca bir derleme görevi çalıştıracak şekilde ayarlayın.',
   BUILD_PARAMETERS: 'Parametreleri Oluştur',

@@ -17,37 +17,37 @@
  */
 module.exports = {
   // Banner
-  DEPARTMENT_PL: 'Departments',
-  DEPARTMENT_DESC: 'A department in a workspace is a logical unit used for permission control. You can set a workspace role, multiple project roles, and multiple DevOps project roles in a department, and assign users to the department to control user permissions in batches.',
+  DEPARTMENT_PL: '부서',
+  DEPARTMENT_DESC: '워크스페이스 내 부서는 권한 제어에 사용되는 논리 단위입니다. 부서에서 워크스페이스의 역할, 여러 프로젝트 역할 및 여러 데브옵스 프로젝트 역할을 설정하고 사용자를 부서에 할당하여 사용자 권한을 일괄적으로 제어할 수 있습니다.',
   // List
   // List > Not Assigned
-  NOT_ASSIGNED_TCAP: 'Not Assigned',
-  ADD_MEMBER_TIP_SI: 'Are you sure you want to assign the user to the department <strong>{group}</strong>?',
-  ADD_MEMBER_TIP_PL: 'Are you sure you want to assign the users to the department <strong>{group}</strong>?',
+  NOT_ASSIGNED_TCAP: '할당되지 않음',
+  ADD_MEMBER_TIP_SI: '사용자를 <strong>{group}</strong> 부서에 할당하시겠습니까?',
+  ADD_MEMBER_TIP_PL: '사용자를 <strong>{group}</strong> 부서에 할당하시겠습니까?',
   // List > Assigned
-  ASSIGNED: 'Assigned',
-  DEPARTMENT: 'Department',
+  ASSIGNED: '할당됨',
+  DEPARTMENT: '부서',
   // List > Set Departments
-  SET_DEPARTMENTS: 'Set Departments',
-  DEPARTMENT_EMPTY_DESC: 'No Department Available',
-  NO_DEPARTMENT_TIP: 'No department available. Please create a department on the right.',
-  CREATE_DEPARTMENT: 'Create Department',
-  DELETE_GROUP_TIP: 'Are you sure you want to delete the department <strong>{group_name}</strong>? The associated roles will be unbound from the users.',
-  DELETE_PARENT_GROUP_TIP: 'Are you sure you want to delete the department <strong>{group_name}</strong>? Its subdepartments will also be deleted and the associated roles will be unbound from the users.',
-  PROJECT_VALUE: 'Project: {value}',
-  PROJECT_ROLE_VALUE: 'Project role: {value}',
-  DEVOPS_VALUE: 'DevOps project: {value}',
-  DEVOPS_PROJECT_ROLES_VALUE: 'DevOps project role: {value}',
+  SET_DEPARTMENTS: '부서 설정',
+  DEPARTMENT_EMPTY_DESC: '사용 가능한 부서 없음',
+  NO_DEPARTMENT_TIP: '사용 가능한 부서가 없습니다. 오른쪽에 부서를 만드십시오.',
+  CREATE_DEPARTMENT: '부서 생성',
+  DELETE_GROUP_TIP: '부서 <strong>{group_name}</strong>을(를) 삭제하시겠습니까? 관련된 역할이 사용자로부터 언바운드됩니다.',
+  DELETE_PARENT_GROUP_TIP: '부서 <strong>{group_name}</strong>을(를) 삭제하시겠습니까? 하위 부서도 삭제되고 관련 역할이 사용자로부터 언바인딩 됩니다.',
+  PROJECT_VALUE: '프로토콜: {value}',
+  PROJECT_ROLE_VALUE: '프로젝트 역할: {value}',
+  DEVOPS_VALUE: '데브옵스 프로젝트: {value}',
+  DEVOPS_PROJECT_ROLES_VALUE: '데브옵스 프로젝트 역할: {value}',
   // List > Set Departments > Workspace Role
-  WORKSPACE_ROLE: 'Workspace Role',
-  GROUP_WORKSPACE_ROLE_DESC: 'The workspace role will be assigned to all members in the department.',
-  MEMBER_CLUSTER_UPGRADE_TIP: 'Member clusters with versions earlier than {version} do not support this function. Please upgrade the member clusters to {version} or later.',
+  WORKSPACE_ROLE: '워크스페이스 역할',
+  GROUP_WORKSPACE_ROLE_DESC: '워크스페이스 역할은 부서의 모든 구성원에게 할당됩니다.',
+  MEMBER_CLUSTER_UPGRADE_TIP: '{version} 이전 버전의 멤버 클러스터는 이 기능을 지원하지 않습니다. 멤버 클러스터를 {version} 이상으로 업그레이드하십시오.',
   // List > Set Departments > Project Role
-  PROJECT_ROLE: 'Project Role',
-  SELECT_ROLE_TIP: 'Please select a role.',
-  ADD_PROJECT: 'Add Project',
-  CLUSTER_UPGRADE_REQUIRED: 'The current KubeSphere version does not support this feature. Please upgrade KubeSphere to {version} or later.',
+  PROJECT_ROLE: '프로젝트 역할',
+  SELECT_ROLE_TIP: '역할을 선택해주십시오.',
+  ADD_PROJECT: '프로젝트 추가',
+  CLUSTER_UPGRADE_REQUIRED: '현재 KubeSphere 버전은 이 기능을 지원하지 않습니다. KubeSphere를 {version} 이상으로 업그레이드하십시오.',
   // List > Set Departments > DevOps Project Role
-  DEVOPS_PROJECT_ROLE: 'DevOps Project Role',
-  ADD_DEVOPS_PROJECT: 'Add DevOps Project'
+  DEVOPS_PROJECT_ROLE: '데브옵스 프로젝트 역할',
+  ADD_DEVOPS_PROJECT: '데브옵스 프로젝트 추가'
 };

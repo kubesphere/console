@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Banner
-  ALERTING_MESSAGE_PL: 'Alerts',
-  ALERT_MESSAGE_DESC: 'Alerts are generated when resource metrics meet conditions configured in rule groups.',
+  ALERTING_MESSAGE_PL: '알림',
+  ALERT_MESSAGE_DESC: '리소스 메트릭이 규칙 그룹에 구성된 조건을 충족하면 알림 생성됩니다.',
   // Custom > List
-  ALERTS_FROM_CUSTOM_POLICIES: 'From Custom Rules',
-  ALERTS_FROM_BUILT_IN_POLICIES: 'From Built-in Rules',
-  TRIGGER_TIME: 'Trigger Time',
+  ALERTS_FROM_CUSTOM_POLICIES: '커스텀 규칙에서',
+  ALERTS_FROM_BUILT_IN_POLICIES: '기본 제공 규칙에서',
+  TRIGGER_TIME: '트리거 시간',
   ALERTING_MESSAGE_EMPTY_DESC: 'No alert is found in the current project.',
-  MONITORING_TARGET: 'Monitoring Target'
+  MONITORING_TARGET: '모니터링 대상'
 };

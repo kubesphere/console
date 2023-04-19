@@ -21,17 +21,17 @@ module.exports = {
   // More > Delete
   // Attributes
   // Resource Status
-  APPLICATION_GOVERNANCE_SCAP: 'Application governance',
-  NO_SERVICE_FOUND: 'No Service Found',
+  APPLICATION_GOVERNANCE_SCAP: '애플리케이션 거버넌스',
+  NO_SERVICE_FOUND: '서비스를 찾을 수 없음',
   // External Access
-  GATEWAY_IP_ADDRESS: 'Gateway IP address',
-  GATEWAY_ACCESS_MODE: 'Gateway access mode',
-  NODE_PORTS_SCAP: 'Node ports',
-  LOAD_BALANCER_SCAP: 'Load balancer',
-  LOAD_BALANCERS_SCAP: 'Load balancers',
+  GATEWAY_IP_ADDRESS: '게이트웨이 IP 주소',
+  GATEWAY_ACCESS_MODE: '게이트웨이 접근 모드',
+  NODE_PORTS_SCAP: '노드 포트',
+  LOAD_BALANCER_SCAP: '로드 밸런서',
+  LOAD_BALANCERS_SCAP: '로드 밸런서',
   // Traffic Management
-  TRAFFIC_MANAGEMENT: 'Traffic Management',
+  TRAFFIC_MANAGEMENT: '트래픽 관리',
   // Tracing
-  APPLICATION_GOVERNANCE_ENABLED: 'Application governance enabled',
-  APPLICATION_GOVERNANCE_DISABLED: 'Application governance disabled'
+  APPLICATION_GOVERNANCE_ENABLED: '애플리케이션 거버넌스 사용',
+  APPLICATION_GOVERNANCE_DISABLED: '애플리케이션 거버넌스 사용 안 함'
 };

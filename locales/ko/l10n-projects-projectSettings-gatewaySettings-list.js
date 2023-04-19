@@ -17,20 +17,21 @@
  */
 module.exports = {
   // Banner
-  PROJECT_GATEWAY_DESC: 'Set up and manage the configuration of the external network access gateway and service management in the project.',
+  PROJECT_GATEWAY_DESC: '프로젝트에서 외부 네트워크 액세스 게이트웨이 및 서비스 관리의 구성을 설정하고 관리합니다.',
   // Project Gateway
-  PROJECT_GATEWAY: 'Project Gateway',
+  PROJECT_GATEWAY: '프로젝트 게이트웨이',
+  PROJECT_GATEWAY_EMPTY_DESC: '프로젝트 게이트웨이를 생성하십시오.',
   // Project Gateway > Enable Gateway
-  ENABLE_GATEWAY_DESC: 'Enable the gateway controller to forward traffic to different services based on domain names and paths configured in routes.',
+  ENABLE_GATEWAY_DESC: '게이트웨이 컨트롤러가 입력에 구성된 도메인 이름 및 경로를 기반으로 트래픽을 다른 서비스로 전달하도록 설정합니다.',
   // Project Gateway > Enable Gateway > NodePort
   // Project Gateway > Enable Gateway > LoadBalancer
-  LOAD_BALANCER_PROVIDER: 'Load Balancer Provider',
-  GATEWAY_UPDATING_TIP: 'Updating the gateway. Please try again later.',
+  LOAD_BALANCER_PROVIDER: '로드 밸런서 제공자',
+  GATEWAY_UPDATING_TIP: '게이트웨이를 업데이트하는 중입니다. 나중에 다시 시도해 주세요.',
   // Manage > View Details
   // Manage > Edit
   // Manage > Edit > NodePort
   // Manage > Edit > LoadBalancer
   // Manage > Disable
   // Cluster Gateway (displayed when the cluster gateway and project gateway are both enabled)
-  CLUSTER_GATEWAY_GUIDE_DESC: 'If the cluster gateway and project gateway both exist, the project gateway cannot be enabled after it is disabled. You are advised to used either the cluster gateway or project gateway.'
+  CLUSTER_GATEWAY_GUIDE_DESC: '클러스터 게이트웨이와 프로젝트 게이트웨이가 모두 있는 경우 프로젝트 게이트웨이를 사용하지 않도록 설정한 후에는 프로젝트 게이트웨이를 사용할 수 없습니다. 클러스터 게이트웨이 또는 프로젝트 게이트웨이를 사용하는 것이 좋습니다.'
 };

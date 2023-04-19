@@ -17,15 +17,15 @@
  */
 module.exports = {
   // Attributes
-  NETWORK: 'Network',
-  START_IP_ADDRESS: 'Start IP Address',
-  END_IP_ADDRESS: 'End IP Address',
-  MASK: 'Mask',
+  NETWORK: '네트워크',
+  START_IP_ADDRESS: '시작 IP 주소',
+  END_IP_ADDRESS: '끝 IP 주소',
+  MASK: '마스크',
   // More > View YAML
   // More > Assign Workspace
   // More > Delete
   // Workspaces
-  WORKSPACES: 'Workspaces',
-  MANAGER: 'Manager',
-  IPPOOL_WORKSPACE_EMPTY_TIP: 'No workspace is using this pod IP pool.'
+  WORKSPACES: '워크스페이스',
+  MANAGER: '관리자',
+  IPPOOL_WORKSPACE_EMPTY_TIP: '이 파드 IP 풀을 사용하는 워크스페이스가 없습니다.'
 };

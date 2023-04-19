@@ -17,5 +17,5 @@
  */
 module.exports = {
   // Banner
-  MULTI_CLUSTER_PROJECT_SCAP: 'Multi-cluster project'
+  MULTI_CLUSTER_PROJECT_SCAP: '멀티 클러스터 프로젝트'
 };

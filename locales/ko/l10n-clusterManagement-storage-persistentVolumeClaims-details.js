@@ -21,14 +21,14 @@ module.exports = {
   // More > Clone Volume
   // More > Create Snapshot
   // More > Expand
-  VOLUME_EXPAND_TIP: 'The persistent volume claim has been mounted to a workload. Expanding the persistent volume claim will cause the workload to restart and business will be interrupted for a short while.',
+  VOLUME_EXPAND_TIP: '퍼시스턴트 볼륨 클레임이 워크로드에 마운트되었습니다. 퍼시스턴트 볼륨 클레임을 확장하면 워크로드가 다시 시작되고 잠시 동안 서비스가 중단됩니다.',
   // More > Delete
   // Resource Status
   // Resource Status > Volume
   // Resource Status > Mounted Pods
-  MOUNTED_PODS: 'Mounted Pods',
+  MOUNTED_PODS: '마운드 된 파드',
   // Metadata
   // Events
   // Snapshot
-  SNAPSHOT_PL: 'Snapshots'
+  SNAPSHOT_PL: '스냅샷'
 };

@@ -16,10 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  PLATFORM: 'Platform',
-  CLUSTER_MANAGEMENT: 'Cluster Management',
-  CLUSTER_DESC: 'Unified management of multiple clusters and their basic resources, components, and application resources.',
-  ACCESS_CONTROL_DESC: 'Unified management of workspaces, users, and roles.',
-  APP_STORE_MANAGEMENT_DESC: 'Unified lifecycle management of cloud native applications including their release, activation, and suspension.',
-  PLATFORM_SETTINGS_DESC: 'Customized platform settings including basic information and notification configurations.'
+  PLATFORM: '플랫폼',
+  CLUSTER_MANAGEMENT: '클러스터 관리',
+  CLUSTER_DESC: '멀티 클러스터와 클러스터의 기본 리소스, 구성 요소 및 애플리케이션 리소스를 통합 관리합니다.',
+  ACCESS_CONTROL_DESC: '워크스페이스, 사용자 및 역할의 통합 관리.',
+  APP_STORE_MANAGEMENT_DESC: '클라우드 네이티브 애플리케이션의 릴리스, 활성화 및 일시 중단을 포함한 통합 라이프사이클 관리.',
+  PLATFORM_SETTINGS_DESC: '기본 정보 및 알림 구성을 포함한 맞춤형 플랫폼 설정.'
 };

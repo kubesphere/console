@@ -26,8 +26,8 @@ module.exports = {
   // Resource Status > Instance Status
   // esource Status > Pods
   // Service Access
-  ACCESS_INFORMATION: 'Access Information',
-  VIRTUAL_IP_ADDRESS: 'Virtual IP address',
-  INTERNAL_DOMAIN_NAME_SCAP: 'Internal domain name',
-  NODE_PORT_SCAP: 'Node port'
+  ACCESS_INFORMATION: '액세스 정보',
+  VIRTUAL_IP_ADDRESS: '가상 IP 주소',
+  INTERNAL_DOMAIN_NAME_SCAP: '내부 도메인 이름',
+  NODE_PORT_SCAP: '노드 포트'
 };

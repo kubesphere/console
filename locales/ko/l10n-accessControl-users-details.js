@@ -17,18 +17,18 @@
  */
 module.exports = {
   // More > Change Password
-  CONFIRM_PASSWORD_TIP: 'Please enter the new password again.',
-  CHANGE_PASSWORD: 'Change Password',
-  NEW_PASSWORD: 'New Password',
-  PASSWORD_STRENGTH: 'Password Strength',
-  PASSWORD_STRENGTH_DESC: 'Avoid using weak passwords or passwords of other accounts.',
+  CONFIRM_PASSWORD_TIP: '비밀번호를 다시 입력하십시오.',
+  CHANGE_PASSWORD: '비밀번호 변경',
+  NEW_PASSWORD: '새로운 비밀번호',
+  PASSWORD_STRENGTH: '비밀번호 보안 강도',
+  PASSWORD_STRENGTH_DESC: '보안에 취약한 비밀번호나 다른 계정에서 사용 중인 비밀번호를 사용하지 않도록 합니다.',
   // More > Delete
   // Attributes
   // Login History
-  TIME: 'Time',
-  SOURCE_IP_ADDRESS: 'Source IP Address',
-  LOGIN_HISTORY: 'Login History',
-  NO_LOGIN_HISTORY: 'No login history is found.',
-  SUCCESSFUL: 'Successful',
-  FAILED: 'Failed'
+  TIME: '시간',
+  SOURCE_IP_ADDRESS: '소스 IP 주소',
+  LOGIN_HISTORY: '로그인 내역',
+  NO_LOGIN_HISTORY: '로그인 내역을 찾을 수 없습니다.',
+  SUCCESSFUL: '성공',
+  FAILED: '실패'
 };

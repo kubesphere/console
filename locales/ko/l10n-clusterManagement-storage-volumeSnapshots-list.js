@@ -17,27 +17,27 @@
  */
 module.exports = {
   // Banner
-  VOLUME_SNAPSHOT: 'Volume Snapshot',
-  VOLUME_SNAPSHOT_PL: 'Volume Snapshots',
-  VOLUME_SNAPSHOT_DESC: 'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: 'What is a volume snapshot class?',
-  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: 'A volume snapshot class defines the storage types used to create a volume snapshot.',
-  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: 'What is a volume snapshot content?',
-  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: 'A volume snapshot content is a resource that represents the content of a volume snapshot.',
-  SELECT_A_VOLUME_DESC: 'Select a persistent volume claim to create a snapshot.',
-  SELECT_VOLUME_SNAPSHOT_CLASS_DESC: 'Select a snapshot class to create a snapshot of a specific type.',
+  VOLUME_SNAPSHOT: '볼륨 스냅샷',
+  VOLUME_SNAPSHOT_PL: '볼륨 스냅샷',
+  VOLUME_SNAPSHOT_DESC: '볼륨 스냅샷은 특정 시점의 볼륨 복사본입니다. 스냅샷에 의해 미리 채워진 데이터로 새 볼륨을 프로비저닝하거나 스냅샷에 의해 캡처된 볼륨을 이전 상태로 복원하는 데 사용할 수 있습니다.',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_Q: '볼륨 스냅샷 클래스란?',
+  WHAT_IS_VOLUME_SNAPSHOT_CLASS_A: '볼륨 스냅샷 클래스는 볼륨 스냅샷을 생성하는 데 사용되는 스토리지 유형을 정의합니다.',
+  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_Q: '볼륨 스냅샷 콘텐츠란?',
+  WHAT_IS_VOLUME_SNAPSHOT_CONTENT_A: '볼륨 스냅샷 컨텐츠는 볼륨 스냅샷의 컨텐츠를 나타내는 리소스입니다.',
+  SELECT_A_VOLUME_DESC: '스냅샷을 생성할 퍼시스턴트 볼륨 클레임을 선택합니다.',
+  SELECT_VOLUME_SNAPSHOT_CLASS_DESC: '특정 유형의 스냅샷을 생성하려면 스냅샷 클래스를 선택합니다.',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Please create a volume snapshot.',
-  VOLUME_SNAPSHOT_STATUS_CREATING: 'Creating',
-  VOLUME_SNAPSHOT_STATUS_FAILED: 'Creation failed',
-  VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',
-  VOLUME_SNAPSHOT_STATUS_DELETING: 'Deleting',
-  CREATE_STATUS_SUCCESS: 'Created successfully',
-  CREATE_STATUS_UPDATING: 'Creating',
-  CREATE_STATUS_FAILED: 'Creation failed',
-  CREATE_STATUS_DELETING: 'Deleting',
+  VOLUME_SNAPSHOT_EMPTY_DESC: '볼륨 스냅샷을 생성하십시오.',
+  VOLUME_SNAPSHOT_STATUS_CREATING: '생성 중',
+  VOLUME_SNAPSHOT_STATUS_FAILED: '생성 실패',
+  VOLUME_SNAPSHOT_STATUS_READY: '생성 성공',
+  VOLUME_SNAPSHOT_STATUS_DELETING: '삭제 중',
+  CREATE_STATUS_SUCCESS: '생성 성공',
+  CREATE_STATUS_UPDATING: '생성 중',
+  CREATE_STATUS_FAILED: '생성 실패',
+  CREATE_STATUS_DELETING: '삭제 중',
   // List > Delete
-  VOLUME_SNAPSHOT_LOW: 'volume snapshot',
+  VOLUME_SNAPSHOT_LOW: '볼륨 스냅샷',
   // List > Create
-  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: 'The storage class of the persistent volume claim does not support snapshot creation. Please select another persistent volume claim.'
+  STORAGECLASS_NOT_ALLOW_CREATE_SNAPSHOT: '퍼시스턴트 볼륨 클레임의 스토리지 클래스가 스냅샷 생성을 지원하지 않습니다. 다른 퍼시스턴트 볼륨 클레임을 선택하십시오.'
 };
