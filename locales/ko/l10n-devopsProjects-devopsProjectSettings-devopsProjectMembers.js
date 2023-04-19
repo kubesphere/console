@@ -17,15 +17,15 @@
  */
 module.exports = {
   // Banner
-  DEVOPS_PROJECT_MEMBER: 'DevOps Project Member',
-  DEVOPS_PROJECT_MEMBER_PL: 'DevOps Project Members',
-  DEVOPS_PROJECT_MEM_DESC: 'Manage and assign roles to project members.',
+  DEVOPS_PROJECT_MEMBER: '데브옵스 프로젝트 맴버',
+  DEVOPS_PROJECT_MEMBER_PL: '데브옵스 프로젝트 맴버',
+  DEVOPS_PROJECT_MEM_DESC: '프로젝트 맴버를 관리하고 역할을 할당합니다.',
   // List
-  DEVOPS_PROJECT_MEMBER_EMPTY_DESC: 'Please invite a member of the current workspace to the DevOps project.',
+  DEVOPS_PROJECT_MEMBER_EMPTY_DESC: '현재 워크스페이스의 맴버를 데브옵스 프로젝트에 초대하십시오.',
   // List > Change Member Role
   // List > Remove Member
   // Invite
-  INVITE_MEMBER_DESC_DEVOPS: 'Invite members of the current workspace to the DevOps project.',
-  HOW_TO_INVITE_MEMBER_Q: 'How do I invite members to the project?',
-  HOW_TO_INVITE_MEMBER_A: 'The project administrator or users who have permission to invite project members can invite workspace members to the project.'
+  INVITE_MEMBER_DESC_DEVOPS: '현재 워크스페이스의 맴버를 데브옵스 프로젝트에 초대합니다.',
+  HOW_TO_INVITE_MEMBER_Q: '프로젝트에 멤버를 어떻게 초대합니까?',
+  HOW_TO_INVITE_MEMBER_A: '프로젝트 관리자 또는 프로젝트 맴버를 초대할 수 있는 권한이 있는 사용자는 워크스페이스 맴버를 본 프로젝트에 초대할 수 있습니다.'
 };

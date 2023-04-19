@@ -17,11 +17,11 @@
  */
 module.exports = {
   // Banner
-  PLATFORM_INFO_DESC: 'Overview of the platform information. You can view and customize the platform information.',
+  PLATFORM_INFO_DESC: '플랫폼 정보의 개요입니다. 플랫폼 정보를 조회하고 커스터마이즈할 수 있습니다.',
   // Basic Information
-  HOW_TO_MODIFY_PLATFORM_INFO: 'How do I customize platform information?',
-  PLATFORM_INFORMATION: 'Platform Information',
-  PLATFORM_DESCRIPTION: 'Platform description',
-  PLATFORM_TITLE: 'Platform title',
-  PLATFORM_ADDRESS: 'Platform address'
+  HOW_TO_MODIFY_PLATFORM_INFO: '플랫폼 정보를 커스터마이즈 하려면 어떻게 해야 합니까?',
+  PLATFORM_INFORMATION: '플랫폼 정보',
+  PLATFORM_DESCRIPTION: '플랫폼 설명',
+  PLATFORM_TITLE: '플랫폼 제목',
+  PLATFORM_ADDRESS: '플랫폼 주소'
 };

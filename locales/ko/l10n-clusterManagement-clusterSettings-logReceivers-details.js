@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Edit
-  EDIT_LOG_RECEIVER: 'Edit Log Receiver',
-  INDEX_PREFIX: 'Index Prefix',
+  EDIT_LOG_RECEIVER: '로그 수신기 편집',
+  INDEX_PREFIX: '인덱스 접두사',
   // More > Change Status
-  CHANGE_STATUS: 'Change Status',
-  LOG_COLLECTION_ENABLE_TIPS: 'The new status requires about 1 minute to take effect.',
-  SELECT_STATUS_TIP: 'Select a status',
+  CHANGE_STATUS: '상태 변경',
+  LOG_COLLECTION_ENABLE_TIPS: '새 상태를 적용하려면 약 1분 정도 시간이 소요됩니다.',
+  SELECT_STATUS_TIP: '상태 선택',
   // Resource Status
-  ADDRESS: 'Address'
+  ADDRESS: '주소'
 };

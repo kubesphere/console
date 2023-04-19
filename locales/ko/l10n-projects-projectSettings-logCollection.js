@@ -17,15 +17,15 @@
  */
 module.exports = {
   // Banner
-  LOG_COLLECTION: 'Log Collection',
-  DISK_LOG_COLLECTION_DESC: 'The Log Collection function allows the system to collect container logs saved on volumes and send the logs to standard output.',
-  COLLECT_LOGS_ON_VOLUMES_Q: 'How do I collect logs on volumes?',
-  COLLECT_LOGS_ON_VOLUMES_A: 'To collect logs on volumes, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
+  LOG_COLLECTION: '로그 수집',
+  DISK_LOG_COLLECTION_DESC: '로그 수집 기능을 사용하면 시스템에서 볼륨에 저장된 컨테이너 로그를 수집하여 표준 출력으로 보낼 수 있습니다.',
+  COLLECT_LOGS_ON_VOLUMES_Q: '볼륨에서 로그를 수집하려면 어떻게 해야 합니까?',
+  COLLECT_LOGS_ON_VOLUMES_A: '볼륨에서 로그를 수집하려면 읽기 및 쓰기 모드의 볼륨을 컨테이너에 마운트하고 로그를 볼륨으로 내보내도록 컨테이너를 설정해야 합니다.',
   // Collect Logs on Volumes
-  COLLECT_LOGS_ON_VOLUMES: 'Collect Logs on Volumes',
-  DISABLE_LOG_COLLECTION: 'Disable Log Collection',
-  DISABLE_LOG_COLLECTION_TIP: 'Are you sure you want to disable log collection? You need to restart the pod replicas to make the change take effect.',
-  LOG_COLLECTION_ENABLED_DESC: 'After this function is enabled or disabled, you need to restart the pod replicas to make the change take effect.',
-  DISABLED: 'Disabled',
-  ENABLED: 'Enabled'
+  COLLECT_LOGS_ON_VOLUMES: '볼륨에서 로그 수집',
+  DISABLE_LOG_COLLECTION: '로그 수집 사용 안 함',
+  DISABLE_LOG_COLLECTION_TIP: '로그 수집을 사용하지 않도록 설정하시겠습니까? 변경사항을 적용하려면 파드 복제본을 재시작해야 합니다.',
+  LOG_COLLECTION_ENABLED_DESC: '이 기능을 사용 가능 또는 사용 불가능으로 설정한 후 변경사항을 적용하려면 파드 복제본을 재시작해야 합니다.',
+  DISABLED: '사용 안 함',
+  ENABLED: '사용함'
 };

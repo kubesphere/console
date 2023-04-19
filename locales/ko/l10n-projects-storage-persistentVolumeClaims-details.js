@@ -18,18 +18,18 @@
 module.exports = {
   // More > Edit YAML
   // More > Clone
-  CLONE_VOLUME: 'Clone Volume',
-  CLONE: 'Clone',
+  CLONE_VOLUME: '볼륨 복제',
+  CLONE: '복제',
   // More > Create Snapshot
-  CREATE_SNAPSHOT: 'Create Snapshot',
-  SNAPSHOT_EMPTY_TIP: 'Please select a volume snapshot class.',
+  CREATE_SNAPSHOT: '스냅샷 생성',
+  SNAPSHOT_EMPTY_TIP: '볼륨 스냅샷 클래스를 선택하십시오.',
   // More > Expand
-  EXPAND_VOLUME: 'Expand Volume',
-  EXPAND: 'Expand',
+  EXPAND_VOLUME: '볼륨 확장',
+  EXPAND: '확장',
   // Attributes
-  PROVISIONER: 'Provisioner',
+  PROVISIONER: '프로비저너',
   // Resource Status
-  AVAILABLE_CAPACITY: 'Available capacity',
-  POD_IP_ADDRESS_SCAP: 'Pod IP address',
-  TOTAL_CAPACITY: 'Total capacity'
+  AVAILABLE_CAPACITY: '사용 가능 용량',
+  POD_IP_ADDRESS_SCAP: '파드 IP 주소',
+  TOTAL_CAPACITY: '전체 용량'
 };

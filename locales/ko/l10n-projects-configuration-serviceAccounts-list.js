@@ -17,19 +17,19 @@
  */
 module.exports = {
   // Banner
-  SERVICE_ACCOUNT_PL: 'Service Accounts',
-  SERVICE_ACCOUNT_DESC: 'A service account provides the processes that run in a pod with an identity that can be used to access the API server.',
+  SERVICE_ACCOUNT_PL: '서비스 어카운트',
+  SERVICE_ACCOUNT_DESC: '서비스 어카운트는 포드에서 실행되는 프로세스에서 API 서버에 접근하는데 필요한 ID를 제공합니다.',
   // List
-  SERVICE_ACCOUNT_EMPTY_DESC: 'Please create a service account.',
+  SERVICE_ACCOUNT_EMPTY_DESC: '서비스 어카운트를 생성하십시오.',
   // List > Create
-  INVALID_YAML_FILE_FORMAT: 'Invalid YAML file format.',
+  INVALID_YAML_FILE_FORMAT: '잘못된 YAML 파일 형식입니다.',
   // List > Create > Project Role
-  PROJECT_ROLE_SI: 'Project Role',
-  SELECT_PROJECT_ROLE_DESC: 'Select a project role to specify permissions.',
+  PROJECT_ROLE_SI: '프로젝트 역할',
+  SELECT_PROJECT_ROLE_DESC: '권한을 지정할 프로젝트 역할을 선택합니다.',
   // List > Edit
   // List > Edit YAML
   // List > Change Role
-  CHANGE_ROLE: 'Change Role',
+  CHANGE_ROLE: '역할 변경',
   // List > Delete
-  SERVICE_ACCOUNT_LOW: 'service account'
+  SERVICE_ACCOUNT_LOW: '서비스 어카운트'
 };

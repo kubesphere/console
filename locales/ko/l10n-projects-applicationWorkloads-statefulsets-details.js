@@ -18,7 +18,7 @@
 module.exports = {
   // More > Roll Back
   // More > Edit Service
-  SELECTOR: 'Selector',
+  SELECTOR: '셀렉터',
   // More > Edit Settings > Update Strategy
   // More > Edit Settings > Containers
   // More > Edit Settings > Volumes > Add Persistent Volume Template
@@ -26,6 +26,6 @@ module.exports = {
   // More > Edit Settings > Volumes > Mount Configmap or Secret
   // More > Edit Settings > Pod Scheduling Rules
   // More > Re-Create
-  RECREATE: 'Re-create',
-  RECREATE_SUCCESS_DESC: 'Re-created successfully.'
+  RECREATE: '재생성',
+  RECREATE_SUCCESS_DESC: '정상적으로 재생성되었습니다.'
 };

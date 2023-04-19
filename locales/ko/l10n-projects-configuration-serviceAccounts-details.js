@@ -18,12 +18,12 @@
 module.exports = {
   // More > Edit YAML
   // More > Change Role
-  SERVICE_ACCOUNT_PROJECT_ROLE_DESC: 'Select the role of the service account in the current project.',
+  SERVICE_ACCOUNT_PROJECT_ROLE_DESC: '현재 프로젝트에서 서비스 어카운트 역할을 선택합니다.',
   // More > Delete
-  SERVICE_ACCOUNT: 'Service Account',
+  SERVICE_ACCOUNT: '서비스 어카운트',
   // Attributes
   // Resource Status
-  SECRET_VALUE: 'Secret: {value}',
+  SECRET_VALUE: '시크릿: {value}',
   // Resource Status > kubeconfig Settings
-  SERVICEACCOUNT_KUBECONFIG_DESC: 'Download the kubeconfig.yaml file to provide other apps with an account that can access the current project. If the apps to use the kubeconfig.yaml file are deployed outside the current cluster, you need to change the value of clusters:cluster:server to the Kubernetes API server address exposed to the outside. <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">Learn More</a>'
+  SERVICEACCOUNT_KUBECONFIG_DESC: 'kubeconfig.yaml 파일을 다운로드하여 다른 앱에 현재 프로젝트에 액세스할 수 있는 계정을 제공합니다. kubeconfig.yaml 파일을 사용할 앱이 현재 클러스터 외부에 배포된 경우 cluster:cluster:server 값을 외부에 노출된 Kubernetes API 서버 주소로 변경해야 합니다.  <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">더 알아보기</a>'
 };

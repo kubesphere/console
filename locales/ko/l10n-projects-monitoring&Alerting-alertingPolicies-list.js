@@ -17,11 +17,11 @@
  */
 module.exports = {
   // Banner
-  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'How do I receive alerts when alerts are generated?',
-  REQUESTS_FOR_PUSH_AN_ALARM_A: 'A platform administrator needs to configure notification channels. When resource metrics meet conditions and durations configured in rule groups, the system sends alerts to users through the notification channels.',
+  REQUESTS_FOR_PUSH_AN_ALARM_Q: '알림이 생성될 때 알림을 받는 방법은 무엇입니까?',
+  REQUESTS_FOR_PUSH_AN_ALARM_A: '플랫폼 관리자는 알림 채널을 구성해야 합니다. 리소스 메트릭이 규칙 그룹에 구성된 조건 및 기간을 충족하면 시스템은 알림 채널을 통해 사용자에게 알림을 보냅니다.',
   // List
   // List > Create > Basic Information
   // List > Create > Rule Settings > Rule Template
-  SELECT_WORKLOAD_TIP: 'Please select at least one workload.',
-  KUBE_NO_AVAILABLE_DATA: 'No Data'
+  SELECT_WORKLOAD_TIP: '하나 이상의 워크로드를 선택하십시오.',
+  KUBE_NO_AVAILABLE_DATA: '데이터 없음'
 };
