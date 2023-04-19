@@ -18,10 +18,10 @@
 module.exports = {
   // Banner
   // List
-  MULTI_CLUSTER_PROJECT_EMPTY_DESC: 'Please create a multi-cluster project.',
+  MULTI_CLUSTER_PROJECT_EMPTY_DESC: '멀티 클러스터 프로젝트를 생성하십시오.',
   // List > Create
   // List > Edit Information
   // List > Add Cluster
   // List > Delete
-  MULTI_CLUSTER_PROJECT_LOW: 'multi-cluster project'
+  MULTI_CLUSTER_PROJECT_LOW: '멀티 클러스터 프로젝트'
 };
