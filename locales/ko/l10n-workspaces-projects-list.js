@@ -18,23 +18,23 @@
 module.exports = {
   // Banner
   // List
-  PROJECT_EMPTY_DESC: 'Please create a project.',
+  PROJECT_EMPTY_DESC: '프로젝트를 생성하십시오.',
   // List > Projects > Create
-  CREATE_PROJECT: 'Create Project',
+  CREATE_PROJECT: '프로젝트 생성',
   // List > Multi-cluster Projects > Create
-  CREATE_MULTI_CLUSTER_PROJECT: 'Create Multi-cluster Project',
-  CREATE_MULTI_CLUSTER_PROJECT_DESC: 'A multi-cluster project runs across different clusters, which helps you to build a container environment for rapid iteration of applications and achieve high availability.',
-  MULTI_CLUSTER_PROJECT_PL: 'Multi-cluster Projects',
-  FED_HOST_NAMESPACE_TIP: 'Do not change resources in this project because it is related to a multi-cluster project.',
-  MULTI_CLUSTER_PROJECT: 'Multi-cluster Project',
-  PROJECT_NAME_EXISTS_IN_HOST: 'The project name already exists in the host cluster. Please enter another project name.',
-  SELECT_CLUSTER_DESC: 'Select the cluster in which the project is to be created.',
-  CLUSTER_EMPTY_DESC: 'Please select a cluster.',
-  PROJECT_NAME_EXISTS_IN_CLUSTER: 'The project name already exists in the {cluster} cluster. Please enter another project name.',
-  PROJECT_CLUSTER_SETTINGS_DESC: 'Select at least one cluster for the project. If you select multiple clusters, a project with the same name will be created in the host cluster.',
+  CREATE_MULTI_CLUSTER_PROJECT: '멀티 클러스터 프로젝트 생성',
+  CREATE_MULTI_CLUSTER_PROJECT_DESC: '멀티 클러스터 프로젝트는 서로 다른 클러스터에서 실행되므로 이를 통하여 애플리케이션의 신속한 개발 iteration 컨테이너 환경을 구축하고 고가용성 목표를 달성할 수 있습니다.',
+  MULTI_CLUSTER_PROJECT_PL: '멀티 클러스터 프로젝트',
+  FED_HOST_NAMESPACE_TIP: '이 프로젝트는 멀티 클러스터 프로젝트와 관련되어 있으므로 이 프로젝트의 리소스를 변경하지 마십시오.',
+  MULTI_CLUSTER_PROJECT: '멀티 클러스터 프로젝트',
+  PROJECT_NAME_EXISTS_IN_HOST: '프로젝트 이름이 호스트 클러스터에 이미 존재합니다. 다른 프로젝트 이름을 입력하십시오.',
+  SELECT_CLUSTER_DESC: '프로젝트를 생성할 클러스터를 선택합니다.',
+  CLUSTER_EMPTY_DESC: '클러스터를 선택하십시오.',
+  PROJECT_NAME_EXISTS_IN_CLUSTER: '프로젝트 이름이 {cluster} 클러스터에 이미 존재합니다. 다른 프로젝트 이름을 입력하십시오.',
+  PROJECT_CLUSTER_SETTINGS_DESC: '프로젝트에 대한 클러스터를 하나 이상 선택합니다. 클러스터를 여러 개 선택하면 호스트 클러스터에 동일한 이름의 프로젝트가 생성됩니다.',
   // List > Edit Information
   // List > Edit Quotas
   // List > Delete
   // List > Add Cluster
-  FEDPROJECT_CANNOT_ADD_CLUSTER: 'No cluster is available.'
+  FEDPROJECT_CANNOT_ADD_CLUSTER: '가용한 클러스터 없음.'
 };
