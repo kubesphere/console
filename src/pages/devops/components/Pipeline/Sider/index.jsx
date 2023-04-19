@@ -24,7 +24,7 @@ import React from 'react'
 import { compareVersion } from 'utils'
 
 import YamlEditor from '../StepModals/kubernetesYaml'
-import StepsEditor from '../StepsEditor'
+import { getStepsEditor } from '../StepsEditor'
 import styles from './index.scss'
 
 const AgentType = [
@@ -216,11 +216,15 @@ export default class Sider extends React.Component {
     }
   }
 
+  get StepsEditor() {
+    return getStepsEditor(this.ksVersion)
+  }
+
   render() {
     const { activeStage, jsonData } = this.props.store
     const { pipeline = {} } = jsonData.json
     const { isSubmitting } = this.props
-
+    const StepsEditor = this.StepsEditor
     return (
       <div className={styles.sider}>
         <div className={styles.sheet}>

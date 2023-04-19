@@ -607,6 +607,39 @@ export const PATTERN_UTC_TIME = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[
 export const PATTERN_ENV_NAME = /^[-._a-zA-Z][-._a-zA-Z0-9]*$/
 export const CRON_EXP = /^(@(annually|yearly|monthly|weekly|daily|hourly|midnight))|(@every (\d+(ns|us|µs|ms|s|m|h))+)|((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*) ?){5,7})$/
 
+export const PIPELINE_TASKS = {
+  All: [
+    'git',
+    'checkout',
+    'mail',
+    'echo',
+    'shell',
+    'withCredentials',
+    'container',
+    'archiveArtifacts',
+    'input',
+    'kubernetesDeploy',
+    'cd',
+    'timeout',
+    'withSonarQubeEnv',
+    'waitForQualityGate',
+    'script',
+  ],
+  SCM: ['git', 'checkout', 'cd'],
+  Normal: [
+    'echo',
+    'shell',
+    'mail',
+    'withCredentials',
+    'container',
+    'archiveArtifacts',
+    'kubernetesDeploy',
+    'timeout',
+    'script',
+  ],
+  Review: ['input', 'withSonarQubeEnv', 'waitForQualityGate'],
+}
+
 export const PIPELINE_CONDITIONS = [
   'branch',
   'environment',

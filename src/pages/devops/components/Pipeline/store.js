@@ -507,9 +507,9 @@ export default class Store extends BaseStore {
   }
 
   @action
-  async fetchPipelineStepTemplates() {
+  async fetchPipelineStepTemplates(params = {}) {
     const data = await request.get(
-      `${this.getBaseUrl()}clustersteptemplates?limit=100`
+      `${this.getBaseUrl(params)}clustersteptemplates?limit=100`
     )
 
     const { items = [] } = data
