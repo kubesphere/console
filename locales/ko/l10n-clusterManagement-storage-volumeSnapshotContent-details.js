@@ -17,5 +17,5 @@
  */
 module.exports = {
   // Attributes
-  SNAPSHOT_HANDLE: 'Snapshot Handle'
+  SNAPSHOT_HANDLE: '스냅샷 핸들'
 };
