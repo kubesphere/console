@@ -20,6 +20,7 @@ module.exports = {
   PROJECT_GATEWAY_DESC: 'Projede harici ağ erişim, ağ geçidinin yapılandırmasını ve hizmet yönetimini kurun ve yönetin.',
   // Project Gateway
   PROJECT_GATEWAY: 'Proje Ağ Geçidi',
+  PROJECT_GATEWAY_EMPTY_DESC: 'Please create a project gateway.',
   // Project Gateway > Enable Gateway
   ENABLE_GATEWAY_DESC: 'Ağ geçidi denetleyicisinin, rotalarda yapılandırılan etki alanı adlarına ve yollara dayalı olarak trafiği farklı hizmetlere iletmesini etkinleştirin.',
   // Project Gateway > Enable Gateway > NodePort
