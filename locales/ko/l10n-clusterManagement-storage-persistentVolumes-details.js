@@ -17,12 +17,12 @@
  */
 module.exports = {
   // Attributes
-  VOLUME_HANDLE: 'Volume Handle',
-  VOLUME_MODE: 'Volume Mode',
-  VOLUME_MODE_FILESYSTEM: 'File system',
-  VOLUME_MODE_BLOCK: 'Block device',
+  VOLUME_HANDLE: '볼륨 핸들',
+  VOLUME_MODE: '볼륨 모드',
+  VOLUME_MODE_FILESYSTEM: '파일 시스템',
+  VOLUME_MODE_BLOCK: '블록 디바이스',
   // More > Edit YAML
   // More > Delete
   // Resource Status
-  STORAGE_CLASS_VALUE: 'Storage class: {value}'
+  STORAGE_CLASS_VALUE: '스토리지 클래스: {value}'
 };
