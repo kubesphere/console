@@ -17,11 +17,11 @@
  */
 module.exports = {
   // List > Delete
-  VOLUME_SNAPSHOT_CONTENT: 'Volume Snapshot Content',
-  VOLUME_SNAPSHOT_CONTENT_PL: 'Volume Snapshot Contents',
-  VOLUME_SNAPSHOT_CONTENT_LOW: 'volume snapshot content',
-  VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: 'Please create a volume snapshot.',
-  READY: 'Ready',
-  UNREADY: 'Unready',
-  DELETION_POLICY: 'Deletion Policy'
+  VOLUME_SNAPSHOT_CONTENT: '볼륨 스냅샷 컨텐츠',
+  VOLUME_SNAPSHOT_CONTENT_PL: '볼륨 스냅샷 컨텐츠',
+  VOLUME_SNAPSHOT_CONTENT_LOW: '볼륨 스냅샷 컨텐츠',
+  VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: '볼륨 스냅샷 컨텐츠를 생성하세요.',
+  READY: '준비됨',
+  UNREADY: '준비 안됨',
+  DELETION_POLICY: '삭제 정책'
 };
