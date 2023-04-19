@@ -21,6 +21,7 @@ module.exports = {
   // List
   HEALTH: '健康狀態',
   PULL_REQUEST_COUNT: '拉取請求',
+  MULTI_BRANCH_PIPELINE: 'Multi-branch Pipeline',
   HEALTHY: '健康',
   SUB_HEALTHY: '亞健康',
   NO_STATUS: '沒有狀態',
@@ -40,9 +41,14 @@ module.exports = {
   // List > Create
   CREATE_PIPELINE: '創建流水線',
   // List > Create > Basic Information
+  PIPELINE_TYPE: 'Pipeline Type',
   SELECT_CODE_REPOSITORY: '選擇代碼倉庫',
+  BRANCH_PIPELINE_DESC: 'Describe the software build process with visual orchestration or Jenkinsfile.',
+  MULTI_BRANCH_PIPELINE_DESC: 'Create a series of pipelines for each branch detected in the source code management (SCM) repository.',
   PIPELINE_CREATE_DEVOPS_PROJECT_DESC: 'Select the DevOps project to which the pipeline belongs.',
   CODE_REPOSITORY_OPTIONAL: '代碼倉庫（可選）',
+  CODE_REPOSITORY_REQUIRED: '代碼倉庫',
+  CODE_REPOSITORY_REQUIRED_DESC: 'Please select a code repository.',
   GO_CREATE_REPO: 'No code repository is available. Please create a code repository.',
   CODE_REPO_EXISTS: 'code repository already exists',
   SELECT_CODE_REPO_DESC: '請選擇一個代碼倉庫作為流水線的代碼來源。',
@@ -139,8 +145,10 @@ module.exports = {
   DELETE_OUTDATED_BUILD_RECORDS_TIP: `Set the system to automatically delete outdated build records including console output, archived artifacts, and metadata to save disk space.`,
   BUILD_RECORD_RETENTION_PERIOD_DAYS: '保留構建的天數',
   BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC: '達到保留天數的構建將被刪除，默認值為 7。',
+  BUILD_RECORD_RETENTION_PERIOD_DAYS_INVALID_TIP: 'The retention period must be a positive integer.',
   MAXIMUM_BUILD_RECORDS: '保留構建的最大個數',
   MAXIMUM_BUILD_RECORDS_DESC: '如果構建超過保留的最大數量，將丟棄舊的構建。默認值為 10。',
+  MAXIMUM_BUILD_RECORDS_INVALID_TIP: 'The maximum number of build records must be a positive integer.',
   NO_CONCURRENT_BUILDS: '不允許並發構建',
   NO_CONCURRENT_BUILD_DESC: '如果勾選此選項，則不能同時運行多個構建。',
   BUILD_PARAMETERS: '參數化構建',
