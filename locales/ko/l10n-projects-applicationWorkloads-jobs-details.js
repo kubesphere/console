@@ -17,7 +17,7 @@
  */
 module.exports = {
   // More
-  MORE: 'More',
+  MORE: '더 보기',
   // More > View YAML
-  VIEW_YAML: 'View YAML'
+  VIEW_YAML: 'YAML 보기'
 };
