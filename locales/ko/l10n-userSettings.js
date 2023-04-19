@@ -17,18 +17,18 @@
  */
 module.exports = {
   // Basic Information
-  EMAIL_DESC: 'The email address can be used to log in to the KubeSphere web console.',
-  LANGUAGE: 'Language',
-  USER_SETTINGS: 'User Settings',
-  CLOSE: 'Close',
-  CONTENT_NOT_SAVED_TIPS: 'content has been modified but not saved',
-  SAVE_EDIT_HINTS: 'please confirm that the modified content is correct, you can save the settings or cancel the settings.',
+  EMAIL_DESC: '이메일 주소는 KubeSphere 웹 콘솔에 로그인하는 데 사용할 수 있습니다.',
+  LANGUAGE: '언어',
+  USER_SETTINGS: '사용자 설정',
+  CLOSE: '닫기',
+  CONTENT_NOT_SAVED_TIPS: '내용이 수정되었지만 저장되지 않았습니다',
+  SAVE_EDIT_HINTS: '수정된 내용이 올바른지 확인하십시오. 설정을 저장하거나 설정을 취소할 수 있습니다.',
   // Password Settings
-  PASSWORD_SETTINGS: 'Password Settings',
-  PASSWORD_EMPTY_DESC: 'Please set a password.',
-  CURRENT_PASSWORD: 'Current Password',
-  ENTER_CURRENT_PASSWORD_TIP: 'Please enter the current password.',
-  CONFIRM_PASSWORD: 'Confirm Password',
-  PASSWORD_NOT_SAME_DESC: 'New Password and Confirm Password must be the same.',
-  ENTER_CURRENT_PASSWORD_DESC: 'To change the password, you must first enter the current password.'
+  PASSWORD_SETTINGS: '비밀번호 설정',
+  PASSWORD_EMPTY_DESC: '비밀번호를 설정하십시오.',
+  CURRENT_PASSWORD: '현재 비밀번호',
+  ENTER_CURRENT_PASSWORD_TIP: '현재 비밀번호를 입력하십시오.',
+  CONFIRM_PASSWORD: '비밀번호 확인',
+  PASSWORD_NOT_SAME_DESC: '새 비밀번호와 새 비밀번호 확인은 반드시 같아야 합니다.',
+  ENTER_CURRENT_PASSWORD_DESC: '비밀번호를 변경하려면 먼저 현재 비밀번호를 입력해야 합니다.'
 };
