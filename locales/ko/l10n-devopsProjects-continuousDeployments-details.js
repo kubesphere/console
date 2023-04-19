@@ -17,13 +17,13 @@
  */
 module.exports = {
   // Sync Status
-  LATEST_SYNC_STATUS: 'Latest sync status',
-  CURRENT_SYNC_STATUS: 'Current sync status',
-  SYNC_STRATEGY: 'Sync strategy',
-  AUTO_SYNC: 'Auto Sync',
-  MANUAL_SYNC: 'Manual Sync',
-  END_TIME_SCAP: 'End time',
-  SYNC_RESULT_PL: 'Sync Results',
-  SYNC_RESULT: 'Sync Result',
-  SYNC_RESULT_EMPTY_DESC: 'No sync result is found.'
+  LATEST_SYNC_STATUS: '마지막 동기화 상태',
+  CURRENT_SYNC_STATUS: '현재 동기화 상태',
+  SYNC_STRATEGY: '동기화 전략',
+  AUTO_SYNC: '자동 동기화',
+  MANUAL_SYNC: '수동 동기화',
+  END_TIME_SCAP: '종료 시간',
+  SYNC_RESULT_PL: '동기화 결과',
+  SYNC_RESULT: '동기화 결과',
+  SYNC_RESULT_EMPTY_DESC: '동기화 결과를 찾을 수 없습니다.'
 };
