@@ -17,16 +17,16 @@
  */
 module.exports = {
   // Banner
-  APP_REVIEW: 'App Review',
-  APP_REVIEW_DESC: 'Review apps to be released to the App Store.',
+  APP_REVIEW: '앱 검토',
+  APP_REVIEW_DESC: '앱 스토어에 릴리스할 앱을 검토합니다.',
   // New
-  NEW_SUBMIT: 'New',
-  APP_REVIEW_EMPTY_DESC: 'Please create an app template in a workspace and submit the app template for review.',
-  APP_STATUS_TO_BE_REVIEWED: 'To be reviewed',
-  APP_STATUS_PASSED: 'Approved',
+  NEW_SUBMIT: '신규',
+  APP_REVIEW_EMPTY_DESC: '워크스페이스에서 앱 템플릿을 생성하고 검토를 위해 앱 템플릿을 제출하십시오.',
+  APP_STATUS_TO_BE_REVIEWED: '검토 대기 중',
+  APP_STATUS_PASSED: '승인됨',
   APP_STATUS_SUSPENDED: '중단됨',
   APP_STATUS_REJECTED: '거부됨',
   APP_STATUS_IN_REVIEW: '리뷰 중',
   OPERATOR: '운영자',
-  APP_REVIEW_UNPROCESSED_EMPTY_DESC: 'No App Needs to Be Reviewed'
+  APP_REVIEW_UNPROCESSED_EMPTY_DESC: '검토할 앱이 없습니다'
 };
