@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  CONFIGMAP_PL: 'Configmaps',
+  CONFIGMAP_PL: '컨피그맵',
   // List
   // List > Create > Basic Information
   // List > Create > Data Settings > Add Data
@@ -25,6 +25,6 @@ module.exports = {
   // List > Edit YAML
   // List > Edit Settings
   // List > Delete
-  CONFIGMAPS: 'Configmaps',
-  CONFIGMAP_LOW: 'configmap'
+  CONFIGMAPS: '컨피그맵',
+  CONFIGMAP_LOW: '컨피그맵'
 };
