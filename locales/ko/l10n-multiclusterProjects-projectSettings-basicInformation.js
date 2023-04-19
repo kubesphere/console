@@ -18,19 +18,19 @@
 module.exports = {
   // Banner
   // Project Information
-  PROJECT_NAME: 'Project name',
+  PROJECT_NAME: '프로젝트 이름',
   // Default Container Quotas
-  NO_REQUEST_TCAP: 'No Request',
-  NO_LIMIT_TCAP: 'No Limit',
-  CPU_REQUEST_LOW: 'CPU request',
-  CPU_LIMIT_LOW: 'CPU limit',
-  CPU_REQUEST_CORE: '{value} Core',
-  CPU_LIMIT_CORE: '{value} Core',
+  NO_REQUEST_TCAP: '요청 없음',
+  NO_LIMIT_TCAP: '제한 없음',
+  CPU_REQUEST_LOW: 'CPU 요청',
+  CPU_LIMIT_LOW: 'CPU 제한',
+  CPU_REQUEST_CORE: '{value} 코어',
+  CPU_LIMIT_CORE: '{value} 코어',
   MEMORY_REQUEST_MIB: '{value} Mi',
   MEMORY_LIMIT_MIB: '{value} Mi',
   // Manage > Edit Information
   // Manage > Add Cluster
   // Manage > Edit Default Container Quotas
   // Manage > Delete Project
-  DELETE_PROJECT: 'Delete Project'
+  DELETE_PROJECT: '프로젝트 삭제'
 };
