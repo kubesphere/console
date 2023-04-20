@@ -27,7 +27,7 @@ import ProjectStore from 'stores/project'
 
 import FederatedStore from 'stores/project.federated'
 
-import { getDisplayName, getLocalTime } from 'utils'
+import { getDisplayNameNew, getLocalTime } from 'utils'
 import Table from 'workspaces/components/ResourceTable'
 
 @withList({
@@ -163,7 +163,7 @@ export default class Projects extends React.Component {
             iconSize={40}
             isMultiCluster={true}
             desc={record.description || '-'}
-            title={getDisplayName(record)}
+            title={getDisplayNameNew(record)}
           />
         ),
       },
