@@ -26,7 +26,7 @@ module.exports = {
   // Documentation
   DOCUMENTATION: '문서',
   NO_DOCUMENT_FOUND: '문서를 찾지 못했습니다',
-  UPDATE_TIME_COLON: 'Update time: ',
+  UPDATE_TIME_COLON: '업데이트 시간: ',
   // Chart Files
   // Update Log
   UPDATE_LOG: '업데이트 로그',
@@ -37,6 +37,6 @@ module.exports = {
   REJECT_REASON_TIP: '"거부" 사유를 하나 이상 입력해야 합니다.',
   REJECT_SUCCESSFUL: '"거부"하였습니다.',
   // Release
-  APPROVE: 'Approve',
+  APPROVE: '승인',
   RELEASE_SUCCESSFUL: '앱을 릴리즈하였습니다.'
 };
