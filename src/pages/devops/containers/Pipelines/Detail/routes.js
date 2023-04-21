@@ -56,7 +56,7 @@ const getComponent = version => {
   ].find(([condition]) => condition(version))[1]
 }
 const PIPELINE_ROUTES = [
-  { name: 'pipeline', title: 'TASK_STATUS', getComponent },
+  { name: 'pipeline', title: 'PIPELINE_CONFIGURATION', getComponent },
   { name: 'code-quality', title: 'CODE_CHECK', component: CodeQuality },
   { name: 'activity', title: 'RUN_RECORDS', component: Activity },
   { name: 'branch', title: 'BRANCH_PL', component: Branch },
