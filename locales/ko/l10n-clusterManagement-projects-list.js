@@ -41,7 +41,7 @@ module.exports = {
   OK: '확인',
   NAME_DESC: '이름은 소문자, 숫자 및 하이픈(-)만 포함할 수 있으며 소문자 또는 숫자로 시작하고 끝나야 합니다. 최대 길이는 63자입니다.',
   DESCRIPTION_DESC: '설명은 임의의 문자를 포함할 수 있으며 최대 길이는 256자입니다.',
-  ALIAS_DESC: 'The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
+  ALIAS_DESC: '별칭 이름은 문자, 숫자 및 하이픈(-)만 포함할 수 있으며 하이픈으로 시작하거나 끝날 수 없습니다. 최대 길이는 63자입니다.',
   // List > Edit Information
   EDIT_INFORMATION: '정보 편집',
   // List > Delete
