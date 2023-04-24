@@ -46,7 +46,7 @@ module.exports = {
   PROJECT_GATEWAY_PL: '프로젝트 게이트웨이',
   PROJECT_GATEWAY_NOT_ENABLED: '프로젝트 게이트웨이가 활성화되지 않음',
   PROJECT_ENABLE_GATEWAY_DESC: '프로젝트 게이트웨이를 활성화 하십시오.',
-  REPLICA_COUNT: 'Replicas',
+  REPLICA_COUNT: '복제본 수',
   NODE_PORTS: '노드 포트',
   UPDATE_GATEWAY_DESC: '현재 게이트웨이를 업데이트할 수 있습니다.',
   // Project Gateways > Disable
