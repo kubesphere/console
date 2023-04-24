@@ -22,14 +22,14 @@ module.exports = {
   APP_NOTE: '참고',
   SUSPEND_SUCCESSFUL: '앱을 비활성화했습니다.',
   // Release
-  RELEASE: 'Release',
+  RELEASE: '릴리즈',
   ACTIVATE_SUCCESSFUL: '앱을 릴리즈하였습니다.',
   // Attributes
   APP_ID: '앱 ID',
   CATEGORY: '카테고리',
   TYPE: '타입',
   // Verisons
-  DEVELOPER: 'Developer',
+  DEVELOPER: '개발자',
   NO_VERSION_INFO_DESC: '버전 정보가 없습니다.',
   ACTIVATE_VERSION: '이 버전 활성화',
   CANCEL_SUBMISSION: '제출 취소',
