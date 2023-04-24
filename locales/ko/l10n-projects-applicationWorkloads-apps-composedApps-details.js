@@ -89,7 +89,7 @@ module.exports = {
   NUM_SPAN_PL: '{num} spans',
   NUM_ERROR_SI: '{num} 오류',
   NUM_ERROR_PL: '{num} 오류',
-  LAST_NUM_RECORDS: '마지막 {Num}개 기록',
+  LAST_NUM_RECORDS: '마지막 {Num} 개 기록',
   PROCESS: '프로세스',
   SERVICES_AND_OPERATIONS: '서비스 운영',
   TRACING_UNAVAILABLE: '추적할 수 없음',
