@@ -44,8 +44,8 @@ module.exports = {
   LB_LEAST_CONN: '최소 연결',
   LB_RANDOM: '랜덤',
   LB_ALG_DESC: '<strong>라운드 로빈</strong>: 클라이언트 요청을 백엔드로 순환 배포합니다.<br/><strong>최소 연결 </strong>: 정상적인 두 개의 백엔드를 무작위로 선택하고 연결 수가 적은 백엔드로 클라이언트 요청을 보냅니다.<br/><strong>랜덤</strong>: 모든 정상 백엔드에서 임의로 선택한 백엔드로 클라이언트 요청을 보냅니다.',
-  HASH_BASED_ON_HTTP_HEADER: 'HTTTP 헤더 기반 해시',
-  HASH_BASED_ON_HTTP_COOKIE: 'HTTTP 쿠키 기반 해시',
+  HASH_BASED_ON_HTTP_HEADER: 'HTTP 헤더 기반 해시',
+  HASH_BASED_ON_HTTP_COOKIE: 'HTTP 쿠키 기반 해시',
   HASH_BASED_ON_SOURCE_IP_ADDRESS: '소스 IP 주소 기반 해시',
   HTTP_HEADER: 'HTTP 헤더',
   HTTP_COOKIE: 'HTTP 쿠키',
@@ -93,6 +93,6 @@ module.exports = {
   PROCESS: '프로세스',
   SERVICES_AND_OPERATIONS: '서비스 운영',
   TRACING_UNAVAILABLE: '추적할 수 없음',
-  CALLED_SERVICES: 'Called Services',
-  CALLED_DEPTH: 'Call Depth'
+  CALLED_SERVICES: '호출 된 서비스',
+  CALLED_DEPTH: '호출 깊이'
 };
