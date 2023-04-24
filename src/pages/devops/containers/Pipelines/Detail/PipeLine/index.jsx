@@ -291,6 +291,7 @@ export default class Pipeline extends React.Component {
 
   renderPipeLineContent() {
     const { pipelineJson, isLoading } = this.store.pipelineJsonData
+
     if (isLoading) {
       return (
         <Loading spinning>
@@ -319,14 +320,17 @@ export default class Pipeline extends React.Component {
       )
     }
 
-    if (!this.store.detail?.validate || pipelineJson?.result === 'failure') {
+    if (
+      (pipelineJson && pipelineJson.result === 'failure') ||
+      !this.isValidated
+    ) {
       return (
         <EmptyCard desc={t('INVALID_JENKINSFILE_TIP')}>
           {this.editable && (
             <>
               <Button
                 onClick={this.handleJenkinsFileModal}
-                // disabled={this.jenkinsFileMode === 'json'}
+                disabled={this.jenkinsFileMode === 'json'}
               >
                 {t('EDIT_JENKINSFILE')}
               </Button>
@@ -346,14 +350,14 @@ export default class Pipeline extends React.Component {
             <>
               <Button
                 onClick={this.handleJenkinsFileModal}
-                // disabled={this.jenkinsFileMode === 'json'}
+                disabled={this.jenkinsFileMode === 'json'}
               >
                 {t('EDIT_JENKINSFILE')}
               </Button>
               <Button
                 type="control"
                 onClick={this.handlePipelineModal}
-                // disabled={this.jenkinsFileMode === 'raw'}
+                disabled={this.jenkinsFileMode === 'raw'}
               >
                 {t('EDIT_PIPELINE')}
               </Button>
