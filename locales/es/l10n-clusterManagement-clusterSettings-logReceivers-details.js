@@ -19,6 +19,9 @@ module.exports = {
   // Edit
   EDIT_LOG_RECEIVER: 'Edit Log Receiver',
   INDEX_PREFIX: 'Index Prefix',
+  // DELETE
+  LOG_RECEIVER: 'Log Receiver',
+  LOG_RECEIVER_LOW: 'Log Receiver',
   // More > Change Status
   CHANGE_STATUS: 'Cambiar Estado',
   LOG_COLLECTION_ENABLE_TIPS: 'El nuevo estado tarda aproximadamente 1 minuto en surtir efecto.',
