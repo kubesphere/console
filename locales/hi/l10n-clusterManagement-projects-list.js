@@ -41,7 +41,7 @@ module.exports = {
   OK: 'OK',
   NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
   DESCRIPTION_DESC: 'The description can contain any characters and the maximum length is 256 characters.',
-  ALIAS_DESC: 'The alias name can contain only letters, numbers, and hyphens (-), and cannot start with a hyphen. The maximum length is 63 characters.',
+  ALIAS_DESC: 'The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
   // List > Edit Information
   EDIT_INFORMATION: 'Edit Information',
   // List > Delete
