@@ -43,7 +43,7 @@ module.exports = {
   // Cluster Gateway > Manage > Update
   UPDATE: 'Update',
   UPDATED_GATEWAY_TITLE: 'Update Gateway',
-  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short whilte. Exercise caution when performing this operation.',
+  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
   // Project Gateways
   PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',
