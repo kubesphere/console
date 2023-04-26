@@ -33,7 +33,7 @@ module.exports = {
   QUANTITY: '수량',
   IP_POOL_CREATE_DESC: '생성할 파드 IP 풀',
   IP_ADDRESS_EMPTY_DESC: 'IP 주소를 입력하십시오.',
-  MASK_TIP: 'Please enter a mask.',
+  MASK_TIP: '마스크를 입력하십시오.',
   ENTER_NETWORK_SEGMENT_TIP: '네트워크 세그먼트를 입력하십시오.',
   IP_POOL_NUM_TIP: '생성할 파드 IP 풀 수를 입력하십시오.',
   IP_POOL_CREATE_COUNT_DESC: '동시에 최대 10개의 파드 IP 풀을 만들 수 있습니다.',

@@ -41,7 +41,7 @@ module.exports = {
   OK: '確定',
   NAME_DESC: '最長 63 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
   DESCRIPTION_DESC: '描述資訊不超過 256 個字元',
-  ALIAS_DESC: 'The alias name can contain only letters, numbers, and hyphens (-), and cannot start with a hyphen. The maximum length is 63 characters.',
+  ALIAS_DESC: 'The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
   // List > Edit Information
   EDIT_INFORMATION: '編輯資訊',
   // List > Delete

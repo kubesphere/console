@@ -27,6 +27,6 @@ module.exports = {
   // List > Resource Event Details > Metadata
   METADATA: '메타데이터',
   // List > Resource Event Details > Details
-  EARLIEST_START_TIME: 'Earliest Start Time',
-  LATEST_START_TIME: 'Latest Start Time'
+  EARLIEST_START_TIME: '가장 빠른 시작 시간',
+  LATEST_START_TIME: '가장 최근 시작 시간'
 };

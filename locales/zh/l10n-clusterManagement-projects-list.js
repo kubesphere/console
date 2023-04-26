@@ -41,7 +41,7 @@ module.exports = {
   OK: '确定',
   NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   DESCRIPTION_DESC: '描述可包含任意字符，最长 256 个字符。',
-  ALIAS_DESC: '别名只能包含中文、字母、数字和连字符（-），不得以连字符（-）开头，最长 63 个字符。',
+  ALIAS_DESC: '别名只能包含中文、字母、数字和连字符（-），不得以连字符（-）开头或结尾，最长 63 个字符。',
   // List > Edit Information
   EDIT_INFORMATION: '编辑信息',
   // List > Delete

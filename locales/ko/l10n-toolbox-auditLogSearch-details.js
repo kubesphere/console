@@ -28,5 +28,5 @@ module.exports = {
   RESOURCE_NAME_AND_TYPE: '자원 유형 및 이름',
   VERB: 'Verb',
   STATUS_CODE: '상태 코드',
-  SUBRESOURCE: 'Subresource'
+  SUBRESOURCE: '서브리소스'
 };
