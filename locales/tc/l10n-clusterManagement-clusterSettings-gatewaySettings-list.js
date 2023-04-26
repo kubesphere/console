@@ -41,6 +41,7 @@ module.exports = {
   EDIT_TITLE: '編輯 {title}',
   // Cluster Gateway > Manage > Update
   UPDATE: 'Update',
+  UPDATED_GATEWAY_TITLE: 'Update Gateway',
   UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
   // Project Gateways
   PROJECT_GATEWAY_PL: '項目網關',
