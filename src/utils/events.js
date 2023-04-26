@@ -164,6 +164,7 @@ export const requestWorkspace = [
     const workspaceStore = new WorkspaceStore()
     const detail = await workspaceStore.fetchDetail({
       workspace: params.workspace,
+      redirect: false,
     })
     eventBus.emit(eventKeys.WORKSPACE_CHANGE, detail)
   },

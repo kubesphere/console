@@ -71,7 +71,7 @@ export default class WorkspaceStore extends Base {
   }
 
   @action
-  async fetchDetail({ cluster, workspace } = {}) {
+  async fetchDetail({ cluster, workspace, redirect = true } = {}) {
     if (isEmpty(workspace)) {
       return
     }
@@ -82,12 +82,14 @@ export default class WorkspaceStore extends Base {
       null,
       null,
       (_, err) => {
-        if (
-          err.reason === 'Not Found' ||
-          err.reason === 'No Such Object' ||
-          err.reason === 'Forbidden'
-        ) {
-          global.navigateTo('/404')
+        if (redirect) {
+          if (
+            err.reason === 'Not Found' ||
+            err.reason === 'No Such Object' ||
+            err.reason === 'Forbidden'
+          ) {
+            global.navigateTo('/404')
+          }
         }
       }
     )
