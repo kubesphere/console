@@ -42,7 +42,7 @@ module.exports = {
   // Cluster Gateway > Manage > Update
   UPDATE: '更新',
   UPDATED_GATEWAY_TITLE: '更新网关',
-  UPDATE_GATEWAY_DESC: '当前网关可以更新。',
+  UPDATE_GATEWAY_DESC: '此操作可能会在短时间内中断业务。在执行此操作时保持谨慎。',
   // Project Gateways
   PROJECT_GATEWAY_PL: '项目网关',
   PROJECT_GATEWAY_NOT_ENABLED: '项目网关未启用',
