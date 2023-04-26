@@ -41,7 +41,8 @@ module.exports = {
   EDIT_TITLE: '편집 {title}',
   // Cluster Gateway > Manage > Update
   UPDATE: '업데이트',
-  UPDATE_GATEWAY_DESC: '이 작업으로 인해 잠시 동안 업무가 중단될 수 있습니다. 이 작업을 수행할 때는 주의해야 합니다.',
+  UPDATED_GATEWAY_TITLE: 'Update Gateway',
+  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
   // Project Gateways
   PROJECT_GATEWAY_PL: '프로젝트 게이트웨이',
   PROJECT_GATEWAY_NOT_ENABLED: '프로젝트 게이트웨이가 활성화되지 않음',
