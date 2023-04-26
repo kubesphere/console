@@ -67,7 +67,11 @@ export default class CodeRepoSelect extends React.Component {
           : {
               key: value, // the unique key of repo source
               source_type: spec.provider,
-              [`${spec.provider}_source`]: getCommonSource(spec),
+              [`${spec.provider}_source`]: getCommonSource(
+                spec,
+                label,
+                repoURL
+              ),
             }
 
         return {
