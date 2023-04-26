@@ -41,6 +41,7 @@ module.exports = {
   EDIT_TITLE: 'Başlığı Düzenle',
   // Cluster Gateway > Manage > Update
   UPDATE: 'Güncelle',
+  UPDATED_GATEWAY_TITLE: 'Update Gateway',
   UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
   // Project Gateways
   PROJECT_GATEWAY_PL: 'Proje Ağ Geçidi',
