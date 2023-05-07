@@ -21,7 +21,7 @@ module.exports = {
   // Release Modes
   BLUE_GREEN_DEPLOYMENT: '블루-그린 배포',
   CANARY_RELEASE: '카나리 릴리스',
-  TRAFFIC_MIRRORING: '트래픽 모니터링',
+  TRAFFIC_MIRRORING: '트래픽 미러링',
   BLUE_GREEN_DEPLOYMENT_DESC: '테스트를 위해 서비스 트래픽을 새 버전으로 전달합니다. 새 버전이 제대로 작동하지 않으면 서비스 트래픽을 즉시 이전 버전으로 전환할 수 있습니다.',
   CANARY_RELEASE_DESC: '새 버전과 이전 버전 간에 서비스 트래픽을 할당하여 새 버전을 테스트하고 서비스 연속성을 보장합니다.',
   TRAFFIC_MIRRORING_DESC: '실제로 새 버전을 노출하지 않고 테스트할 수 있도록 서비스 트래픽 복사본을 새 버전으로 보냅니다.',
@@ -39,7 +39,7 @@ module.exports = {
   SELECT_VERSION: '버전 선택',
   BLUE_GREEN_STRATEGY_DESC: '모든 서비스 트래픽을 처리할 버전을 선택합니다.',
   TAKE_OFFLINE: '오프라인으로 전환',
-  TAKE_OVER: 'Take Over',
+  TAKE_OVER: '인계',
   GRAYSCALE_VERSION: '버전: {version}',
   // Release Modes > Canary Release > Create
   CREATE_CANARY_RELEASE_TASK: '카나리 릴리스 작업 생성',
@@ -111,7 +111,7 @@ module.exports = {
   SERVICE_VERSION_RECEIVE_ALL_TRAFFIC: '버전 <b>{version}</b>이 모든 트래픽을 처리했습니다.',
   RESTORE: '복원',
   SUCCESSFUL_REQUEST_RATE: '성공된 요청 비율',
-  TRAFFIC_IN_LAST_FIVE_MINUTES: '최근 5분간의 \b트래픽입니다.',
+  TRAFFIC_IN_LAST_FIVE_MINUTES: '최근 5분간의 트래픽입니다.',
   DELETE_GRAYSCALE_RELEASE_TASK_DESC: '그레이스케일 릴리스 작업을 삭제하기 전에 모든 트래픽을 처리할 버전을 선택하십시오.',
   GRAY_COMPONENT_DESC: '테스트 중인 새 버전과 이전 버전에 대한 정보입니다.',
   // Release Tasks > Traffic Mirroring > Task Status
