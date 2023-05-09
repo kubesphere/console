@@ -20,7 +20,7 @@ module.exports = {
   NO_CLUSTER_TIP: '하나 이상의 클러스터를 추가하십시오.',
   // Add Cluster > Basic Information
   CLUSTER_NAME_EMPTY: '클러스터 이름을 입력하세요.',
-  ADD_CLUSTER: '클러스터 생성',
+  ADD_CLUSTER: '클러스터 추가',
   TAG: '태그',
   CLUSTER_TAG_DESC: '클러스터의 용도를 식별할 태그를 선택합니다.',
   CLUSTER_PROVIDER_DESC: '클러스터 인프라 제공자를 선택합니다.',
