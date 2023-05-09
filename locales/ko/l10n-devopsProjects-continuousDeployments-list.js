@@ -18,7 +18,7 @@
 module.exports = {
   // Banner
   CONTINUOUS_DEPLOYMENT_PL: '지속적 배포',
-  CONTINUOUS_DEPLOYMENT_DESC: 'GitOps를 통해 리소스를 지속적으로 배포하기 위한 지속적인 배포 관리를 수행한다. ',
+  CONTINUOUS_DEPLOYMENT_DESC: '깃옵스(GitOps)를 통해 리소스를 지속적으로 배포하기 위한 지속적인 배포 관리를 수행한다. ',
   // List
   CONTINUOUS_DEPLOYMENT_EMPTY_DESC: '지속적 배포를 하나 생성하십시오.',
   DEGRADED: '열화됨',
@@ -29,13 +29,13 @@ module.exports = {
   OUTOFSYNC: '동기화되지 않음',
   DEPLOY_LOCATION: '배포 위치',
   // List > Create
-  NEED_TO_SYNC_REPO: 'Need to sync repo',
+  NEED_TO_SYNC_REPO: '저장소 동기화 필요',
   CREATE_CONTINUOUS_DEPLOYMENT: '지속적 배포 생성',
   CD_SELECT_CODE_REPO_DESC: '지속적 배포 시 사용할 코드 저장소를 선택합니다.',
   DEPLOYMENT_SETTINGS: '배포 설정',
   CODE_REPOSITORY_SETTINGS: '코드 저장소 설정',
   SYNC_STRATEGY_TCAP: '동기화 전략',
-  AUTO_SYNC_DESC: 'Automatically trigger application sync when there is a difference between the manifest in Git and the real-time state of the deployed resources, according to the set sync options.',
+  AUTO_SYNC_DESC: '설정된 동기화 옵션에 따라 Git 저장소에 존재하는 매니페스트와 배포된 리소스의 실시간 상태가 다를 경우 애플리케이션 동기화를 자동으로 트리거합니다.',
   // MANUAL_SYNC_DESC: 'Sync according to custom rules.',
   PRUNE_RESOURCES: '리소스 정리(삭제)',
   SELF_HEAL: '셀프 힐(self-heal)',
