@@ -69,6 +69,10 @@ export default class Activity extends React.Component {
     return !isEmpty(toJS(this.store.detail.branchNames))
   }
 
+  get isDisabled() {
+    return this.store?.branchDetail?.disabled
+  }
+
   get prefix() {
     const { url } = this.props.match
     const _arr = url.split('/')
@@ -310,7 +314,8 @@ export default class Activity extends React.Component {
         if (
           (record.branch && !record.commitId) ||
           !this.enabledActions.includes('edit') ||
-          !record.id
+          !record.id ||
+          this.isDisabled
         ) {
           return null
         }
@@ -331,7 +336,7 @@ export default class Activity extends React.Component {
   ]
 
   getActions = () =>
-    this.isAtBranchDetailPage
+    this.isAtBranchDetailPage || this.isDisabled
       ? null
       : [
           {
@@ -349,7 +354,6 @@ export default class Activity extends React.Component {
     const omitFilters = omit(filters, 'page', 'workspace')
     const pagination = { total, page, limit }
     const isEmptyList = total === 0
-
     if (isEmptyList) {
       const { detail } = this.store
       const runnable = this.enabledActions.includes('edit')

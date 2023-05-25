@@ -20,7 +20,7 @@ import React from 'react'
 import { action } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import moment from 'moment-mini'
-import { get } from 'lodash'
+import { get, omit } from 'lodash'
 
 import { getPipelineStatus } from 'utils/status'
 import Status from 'devops/components/Status'
@@ -45,6 +45,10 @@ export default class RunDetailLayout extends React.Component {
   }
 
   refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+
+  get isDisabled() {
+    return this.props.pipelineStore?.branchDetail?.disabled
+  }
 
   get listUrl() {
     const { workspace, devops, cluster } = this.props.match.params
@@ -73,6 +77,7 @@ export default class RunDetailLayout extends React.Component {
 
   fetchData = () => {
     const { params } = this.props.match
+    this.props.pipelineStore.getBranchDetail(omit(params, 'runName'))
     this.store.getRunDetail(params)
   }
 
@@ -221,7 +226,7 @@ export default class RunDetailLayout extends React.Component {
 
     const sideProps = {
       name: id,
-      operations,
+      operations: this.isDisabled ? [] : operations,
       attrs: this.getAttrs(),
       desc: get(annotations, 'desc'),
       labels,
