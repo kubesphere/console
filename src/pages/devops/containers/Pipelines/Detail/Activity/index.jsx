@@ -22,7 +22,7 @@ import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
 import { parse } from 'qs'
 import { observer, inject } from 'mobx-react'
-import { Button, Notify } from '@kube-design/components'
+import { Button, Notify, Tooltip } from '@kube-design/components'
 
 import { getLocalTime, formatUsedTime } from 'utils'
 
@@ -322,11 +322,13 @@ export default class Activity extends React.Component {
         }
         if (record.state === 'FINISHED') {
           return (
-            <Button
-              onClick={this.handleReplay(record)}
-              icon="restart"
-              type="flat"
-            />
+            <Tooltip content={t('Replay')}>
+              <Button
+                onClick={this.handleReplay(record)}
+                icon="restart"
+                type="flat"
+              />
+            </Tooltip>
           )
         }
         return (
