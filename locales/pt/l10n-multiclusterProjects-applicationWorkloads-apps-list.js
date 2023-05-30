@@ -23,6 +23,4 @@ module.exports = {
   // List > Create > Service Settings > Cluster Differences
   NAME_VALUE: 'Name: {value}',
   CONTAINER_PORT_VALUE: 'Container Port: {value}'
-  //alert ???
-  ACTIVATION_CONDITION_SCAP: 'Activation condition',
 }
