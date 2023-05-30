@@ -25,6 +25,4 @@ module.exports = {
   // More > Delete
   // Resource Status
   STORAGE_CLASS_VALUE: 'Storage class: {value}',
-  KUBESPHERE_CLOUD_DESC:
-    'KubeSphere Cloud builds a digital ecosystem focusing on Kubernetes and provides cloud-native products and services of high standard, such as KubeSphere Backup, KubeSphere Inspector, and KubeSphere Lite, helping enterprises manage, protect, and deliver production-ready applications more efficiently.',
 }
