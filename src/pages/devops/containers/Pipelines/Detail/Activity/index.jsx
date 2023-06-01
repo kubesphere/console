@@ -330,7 +330,9 @@ export default class Activity extends React.Component {
           )
         }
         return (
-          <Button onClick={this.handleStop(record)} icon="stop" type="flat" />
+          <Tooltip content={t('STOP')}>
+            <Button onClick={this.handleStop(record)} icon="stop" type="flat" />
+          </Tooltip>
         )
       },
     },
