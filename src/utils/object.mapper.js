@@ -721,8 +721,8 @@ const GatewayMapper = item => {
   )
 
   // get the first ipv4 ingress's ip, because the k8s can't support ipv6's colon
-  const defaultIngressIPV4 = loadBalancerIngress.find(i => !i.ip.includes(':'))
-    ?.ip
+  const ingressItem = loadBalancerIngress.find(i => i.ip && !i.ip.includes(':'))
+  const defaultIngressIPV4 = get(ingressItem, 'ip')
 
   return {
     ...getBaseInfo(item),
