@@ -4,6 +4,28 @@
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
 }
 
+.pipelineCard__tab {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  background: #f9fbfd;
+  height: 52px;
+  padding: 10px 12px;
+  box-shadow: inset 0px -1px 0px #e3e9ef;
+}
+
+.pipelineCard_content {
+  background: #ffffff;
+  box-shadow: 0px 4px 8px rgba(36, 46, 66, 0.06);
+  border-radius: 4px;
+  padding: 12px;
+}
+.pipelineCard_pipeline_content {
+  padding: 0 12px;
+  & > div {
+    background-color: $bg-color;
+  }
+}
+
 .pipelineCard__toolbar {
   height: 52px;
   line-height: 52px;
@@ -25,11 +47,9 @@
 }
 
 .pipelineCard__main {
-  background-color: $bg-color;
   overflow: auto;
   min-height: 550px;
   height: calc(100vh - 240px);
-
   pre {
     padding: 20px;
     font-size: 12px;
