@@ -200,6 +200,7 @@ export default class PipelinesList extends React.Component {
         devops: this.devops,
         cluster: this.cluster,
         branches: record.branchNames,
+        disabledBrancheNames: record.disabledBrancheNames,
         parameters: record.parameters,
         params: {
           ...params,

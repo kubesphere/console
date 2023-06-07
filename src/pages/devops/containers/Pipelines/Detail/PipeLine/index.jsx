@@ -230,6 +230,7 @@ export default class Pipeline extends React.Component {
         cluster: params.cluster,
         params,
         branches: toJS(detail.branchNames),
+        disabledBrancheNames: toJS(detail.disabledBranchNames),
         parameters: toJS(detail.parameters),
         success: () => {
           this.props.rootStore.routing.push('./activity')
