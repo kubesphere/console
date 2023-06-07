@@ -18,10 +18,11 @@
 
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
 
-import { set } from 'lodash'
+import { get, set } from 'lodash'
 import React from 'react'
 
 import { PATTERN_NAME } from 'utils/constants'
+import { compareVersion } from 'utils/app'
 import { TypeSelect } from '../../../Base'
 import CodeRepoSelector from '../../../CodeRepoSelector'
 import styles from './index.scss'
@@ -31,17 +32,27 @@ export default class BaseInfo extends React.Component {
     type: 0,
   }
 
+  get ksVersion() {
+    const { cluster } = this.props
+    return globals.app.isMultiCluster
+      ? get(globals, `clusterConfig.${cluster}.ksVersion`)
+      : get(globals, 'ksConfig.ksVersion')
+  }
+
   validator = (rule, value, callback) => {
     if (!value) {
       return callback()
     }
 
     this.props.store
-      .checkPipelineName({
-        name: value,
-        cluster: this.props.cluster,
-        devops: this.props.devops,
-      })
+      .checkPipelineName(
+        {
+          name: value,
+          cluster: this.props.cluster,
+          devops: this.props.devops,
+        },
+        compareVersion(this.ksVersion, '3.4.0') < 0
+      )
       .then(resp => {
         if (resp.exist) {
           return callback({

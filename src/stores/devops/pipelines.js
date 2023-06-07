@@ -240,12 +240,23 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async checkPipelineName({ name, cluster, devops }) {
+  async checkPipelineName({ name, cluster, devops }, isOld = true) {
+    if (isOld) {
+      return await request.get(
+        this.getPipelineUrl({ cluster, name, devops }),
+        {},
+        {
+          headers: { 'x-check-exist': true },
+        }
+      )
+    }
     return await request.get(
-      this.getPipelineUrl({ cluster, name, devops }),
-      {},
+      `/kapis/devops.kubesphere.io/v1alpha2${this.getPath({
+        cluster,
+        devops,
+      })}/checkPipelineName`,
       {
-        headers: { 'x-check-exist': true },
+        value: name,
       }
     )
   }

@@ -34,6 +34,7 @@ import { PATTERN_SERVICE_NAME } from 'utils/constants'
 
 import WorkspaceStore from 'stores/workspace'
 
+import { compareVersion } from 'utils/app'
 import styles from './index.scss'
 
 @observer
@@ -125,6 +126,14 @@ export default class ProjectCreateModal extends React.Component {
     </>
   )
 
+  get ksVersion() {
+    const { formTemplate } = this.props
+    const cluster = get(formTemplate, 'spec.placement.cluster')
+    return globals.app.isMultiCluster
+      ? get(globals, `clusterConfig.${cluster}.ksVersion`)
+      : get(globals, 'ksConfig.ksVersion')
+  }
+
   nameValidator = (rule, value, callback) => {
     if (!value) {
       return callback()
@@ -132,9 +141,11 @@ export default class ProjectCreateModal extends React.Component {
 
     const { formTemplate, workspace } = this.props
     const cluster = get(formTemplate, 'spec.placement.cluster')
-
     this.store
-      .checkName({ name: value, cluster, workspace }, { generateName: true })
+      .checkDevopsName(
+        { cluster, workspace, name: value },
+        compareVersion(this.ksVersion, '3.4.0') < 0
+      )
       .then(resp => {
         if (resp.exist) {
           return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
