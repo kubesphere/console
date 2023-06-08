@@ -15,8 +15,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { get, set, cloneDeep } from 'lodash'
 import { Notify } from '@kube-design/components'
+import { cloneDeep, get, set } from 'lodash'
 
 const deleteUnenableAttrs = data => {
   /* eslint-disable no-unused-vars */
@@ -157,14 +157,11 @@ export const getRepoUrl = ({ provider, owner, repo, server, url }) => {
   }
 }
 
-export const getCommonSource = ({
-  provider,
-  owner,
-  repo,
-  url,
-  secret,
-  server: server_name,
-}) => {
+export const getCommonSource = (
+  { provider, owner, repo, url, secret, server: server_name },
+  label,
+  repoURL
+) => {
   if (provider === 'git') {
     return {
       url,
@@ -174,8 +171,10 @@ export const getCommonSource = ({
   }
 
   return {
+    // label,
+    // description: repoURL,
     owner,
-    repo,
+    repo: repo ?? label,
     server_name,
     credential_id: secret?.name,
     discover_branches: 1,

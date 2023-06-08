@@ -1,0 +1,118 @@
+@import '~scss/variables';
+
+.CodeEditor {
+  height: calc(100vh - 300px);
+}
+
+.clickable {
+  color: $green;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.dockerCredentialsContent {
+  margin-left: 20px;
+}
+
+.dockerCredentialsContent__title {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 10px 0 10px -20px;
+}
+
+.dockerCredentialsContent__content {
+  padding: 20px;
+  width: 500px;
+  border: 2px dashed $light;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.dockerCredentialsContent__trashicon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.desc {
+  margin-bottom: 15px;
+  font-size: 12px;
+  line-height: 1.67;
+  color: #79879c;
+
+  li {
+    margin-left: 20px;
+  }
+}
+
+.info {
+  margin-bottom: 15px;
+}
+
+.columns {
+  max-width: 455px;
+  margin: 12px 0;
+}
+
+:global {
+  .mention-input {
+    min-height: 140px;
+    max-width: 455px;
+    padding: 4px 12px;
+    font-weight: 600;
+
+    .mention-input__highlighter {
+      &:focus {
+        outline: transparent;
+      }
+    }
+
+    .mention-input__suggestions {
+      min-width: 180px;
+      margin-top: 30px !important;
+      border: solid 1px #c6d1dc;
+      border-radius: 3px;
+      box-shadow: 0 6px 12px 0 rgba(2, 5, 8, 0.04),
+        0 1px 2px 0 rgba(2, 5, 8, 0.08);
+
+      ul {
+        li {
+          display: flex;
+          -ms-flex-align: center;
+          align-items: center;
+          padding: 4px 12px;
+          font-size: 14px;
+          line-height: 24px;
+          font-weight: normal;
+
+          b {
+            color: #55bc8a;
+            font-style: normal;
+          }
+        }
+      }
+    }
+
+    textarea {
+      border-color: #abb4be;
+      padding: 4px 12px;
+      color: #242e42;
+      caret-color: #242e42;
+      border-radius: 4px;
+      transition: all 0.3s ease-in-out;
+      font-weight: 600;
+      line-height: 1.67;
+
+      &::-webkit-input-placeholder {
+        color: #9da8b1;
+        font-weight: normal;
+      }
+
+      &:focus {
+        border-color: #55bc8a;
+        box-shadow: $base-shadow;
+        outline: transparent;
+      }
+    }
+  }
+}

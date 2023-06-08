@@ -178,7 +178,7 @@ export default class ServiceBaseInfo extends React.Component {
       .then(resp => {
         if (resp.exist) {
           return callback({
-            message: t('NEW_VERSION_NUMBER_EXIST_DESC', { value: name }),
+            message: t('NEW_VERSION_NUMBER_EXIST_DESC', { name }),
             field: rule.field,
           })
         }

@@ -16,17 +16,17 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { toJS } from 'mobx'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import withList, { ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
+import { toJS } from 'mobx'
+import React from 'react'
+
+import RoleStore from 'stores/role'
 
 import { getLocalTime } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
-
-import RoleStore from 'stores/role'
 
 @withList({
   store: new RoleStore(),
@@ -61,7 +61,7 @@ export default class Secrets extends React.Component {
   }
 
   get itemActions() {
-    const { routing, trigger, store, name } = this.props
+    const { routing, trigger, store, name, isHostCluster } = this.props
 
     return [
       {
@@ -84,7 +84,7 @@ export default class Secrets extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
-            module: 'devopsroles',
+            module: isHostCluster ? 'devopsroles' : 'devopsrolesNotHostCluster',
             detail: item,
             roleTemplates: toJS(store.roleTemplates.data),
             success: routing.query,
@@ -160,15 +160,17 @@ export default class Secrets extends React.Component {
     ]
   }
 
-  showCreate = () =>
+  showCreate = () => {
+    const { isHostCluster } = this.props
     this.props.trigger('role.create', {
-      module: 'devopsroles',
+      module: isHostCluster ? 'devopsroles' : 'devopsrolesNotHostCluster',
       devops: this.devops,
       namespace: this.devops,
       cluster: this.cluster,
-      roleTemplates: toJS(this.props.store.roleTemplates.data),
+      roleTemplates: toJS(this.props.store.roleTemplates.data).filter(i => i),
       success: this.getData,
     })
+  }
 
   get emptyProps() {
     return { desc: t('DEVOPS_PROJECT_ROLE_EMPTY_DESC') }
