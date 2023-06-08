@@ -32,6 +32,7 @@ export default class DropdownContent extends React.Component {
       dockerList: [],
       harborList: [],
       hubData: {},
+      harborData: this.defaultHarbor,
       visible: false,
       isLoading: false,
     }
@@ -109,8 +110,16 @@ export default class DropdownContent extends React.Component {
     )
   }
 
+  get defaultHarbor() {
+    return this.props.imageRegistries.find(item => item.isDefault === true)
+  }
+
   componentDidMount() {
     this.fetchDockerList()
+
+    if (this.defaultHarbor) {
+      this.fetchHarborList('', this.defaultHarbor)
+    }
   }
 
   componentWillUnmount() {
