@@ -288,7 +288,6 @@ class BaseInfo extends React.Component {
             description={detail.description || t('WORKSPACE')}
             ellipsis
           />
-          <Text title={detail.manager} description={t('MANAGER')} />
           <Text
             title={getLocalTime(detail.createTime).format(
               'YYYY-MM-DD HH:mm:ss'
