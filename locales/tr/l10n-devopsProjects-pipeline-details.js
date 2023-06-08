@@ -215,5 +215,8 @@ Jenkinsfile'nin operasyonel gereksinimlere göre girilen parametreler bölümü.
   'Original Image Address': 'Orijinal Görüntü Adresi',
   'New Image Address': 'Yeni Görüntü Adresi',
   'New Image Tag': 'Yeni Görüntü Etiketi',
-  Credential: 'Kimlik Bilgileri'
+  Credential: 'Kimlik Bilgileri',
+  // detail page -> pipeline configuration tab
+  PIPELINE_CONFIGURATION: 'Pipeline Configuration',
+  Replay: 'Replay'
 };
