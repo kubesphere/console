@@ -209,5 +209,8 @@ module.exports = {
   'Original Image Address': '原镜像地址',
   'New Image Address': '新镜像地址',
   'New Image Tag': '新镜像标签',
-  Credential: '凭证'
+  Credential: '凭证',
+  // detail page -> pipeline configuration tab
+  PIPELINE_CONFIGURATION: 'Pipeline Configuration',
+  Replay: 'Replay'
 };
