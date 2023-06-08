@@ -17,8 +17,10 @@
  */
 module.exports = {
   // Banner
-  REQUESTS_FOR_PUSH_AN_ALARM_Q: '告警生成后如何接收告警？',
-  REQUESTS_FOR_PUSH_AN_ALARM_A: '平台管理员需要配置通知渠道。当资源指标满足规则组中配置的条件和持续时间时，系统将通过通知渠道向用户发送告警。',
+  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'How do I receive alerts if an alerting policy is triggered?',
+  REQUESTS_FOR_PUSH_AN_ALARM_A: 'The platform administrator needs to select a notification method and configure the server corresponding to the method.',
+  HOW_TO_SUPRESS_AN_ALARM_Q: 'How do I suppress alerts?',
+  HOW_TO_SUPRESS_AN_ALARM_A: 'You can set alerting policies at different levels. Each level corresponds to an alerting interval.',
   // List
   // List > Create > Basic Information
   // List > Create > Rule Settings > Rule Template
