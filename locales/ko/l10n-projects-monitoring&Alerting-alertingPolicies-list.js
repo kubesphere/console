@@ -17,8 +17,10 @@
  */
 module.exports = {
   // Banner
-  REQUESTS_FOR_PUSH_AN_ALARM_Q: '알림이 생성될 때 알림을 받는 방법은 무엇입니까?',
-  REQUESTS_FOR_PUSH_AN_ALARM_A: '플랫폼 관리자는 알림 채널을 구성해야 합니다. 리소스 메트릭이 규칙 그룹에 구성된 조건 및 기간을 충족하면 시스템은 알림 채널을 통해 사용자에게 알림을 보냅니다.',
+  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'How do I receive alerts if an alerting policy is triggered?',
+  REQUESTS_FOR_PUSH_AN_ALARM_A: 'The platform administrator needs to select a notification method and configure the server corresponding to the method.',
+  HOW_TO_SUPRESS_AN_ALARM_Q: 'How do I suppress alerts?',
+  HOW_TO_SUPRESS_AN_ALARM_A: 'You can set alerting policies at different levels. Each level corresponds to an alerting interval.',
   // List
   // List > Create > Basic Information
   // List > Create > Rule Settings > Rule Template
