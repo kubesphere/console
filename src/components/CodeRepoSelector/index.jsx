@@ -67,7 +67,11 @@ export default class CodeRepoSelect extends React.Component {
           : {
               key: value, // the unique key of repo source
               source_type: spec.provider,
-              [`${spec.provider}_source`]: getCommonSource(spec),
+              [`${spec.provider}_source`]: getCommonSource(
+                spec,
+                label,
+                repoURL
+              ),
             }
 
         return {
@@ -140,6 +144,23 @@ export default class CodeRepoSelect extends React.Component {
     )
   }
 
+  showCodeRepoCreate = () => {
+    const { trigger, devops, cluster } = this.props
+    trigger('codeRepo.create', {
+      title: t('IMPORT_CODE_REPO'),
+      devops,
+      cluster,
+      module: 'codeRepos',
+      noCodeEdit: true,
+      store: this.codeStore,
+      isComplexMode: true,
+      addSvnCodeRepoDirectly: this.addSvnCodeRepoOption,
+      success: () => {
+        this.getRepoList()
+      },
+    })
+  }
+
   handleRepoChange = val => {
     const { onChange } = this.props
     const current = this.allOptions.find(({ value }) => value === val)
@@ -167,7 +188,7 @@ export default class CodeRepoSelect extends React.Component {
   }
 
   render() {
-    const { value, index, name, isComplexMode, showCreateRepo } = this.props
+    const { value, index, name, isComplexMode } = this.props
     return (
       <>
         <TypeSelect
@@ -184,12 +205,12 @@ export default class CodeRepoSelect extends React.Component {
           }}
         />
         {isComplexMode && (
-          <span
+          <div
             className={cs(styles['multi-repo'], 'form-item-desc')}
-            onClick={showCreateRepo}
+            onClick={this.showCodeRepoCreate}
           >
-            {t('GO_CREATE_REPO')}
-          </span>
+            {t.html('GO_CREATE_REPO_ACTION')}
+          </div>
         )}
       </>
     )

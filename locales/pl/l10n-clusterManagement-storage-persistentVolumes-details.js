@@ -24,5 +24,5 @@ module.exports = {
   // More > Edit YAML
   // More > Delete
   // Resource Status
-  STORAGE_CLASS_VALUE: 'Storage class: {value}'
-};
+  STORAGE_CLASS_VALUE: 'Storage class: {value}',
+}

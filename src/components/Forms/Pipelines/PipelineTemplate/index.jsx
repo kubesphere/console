@@ -16,11 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set } from 'lodash'
-import React from 'react'
-import { observer } from 'mobx-react'
 import { Form } from '@kube-design/components'
+import { set } from 'lodash'
+import { observer } from 'mobx-react'
 import PipelineTemplate from 'pages/devops/components/Pipeline/PipelineTemplate'
+import React from 'react'
 import style from './index.scss'
 
 @observer
@@ -31,8 +31,7 @@ export default class AdvanceSettings extends React.Component {
   }
 
   render() {
-    const { formRef, formTemplate } = this.props
-
+    const { formRef, formTemplate, params } = this.props
     return (
       <Form
         data={formTemplate}
@@ -48,6 +47,7 @@ export default class AdvanceSettings extends React.Component {
             templateLoading={false}
             handleTemplateChange={this.handleTemplateChange}
             formTemplate={formTemplate}
+            params={params}
           />
         </Form.Item>
       </Form>

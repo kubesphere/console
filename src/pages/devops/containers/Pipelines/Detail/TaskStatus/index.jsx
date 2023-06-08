@@ -20,8 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { observer, inject } from 'mobx-react'
-import { reaction, toJS } from 'mobx'
-import { get, isEmpty } from 'lodash'
+import { reaction, toJS, observable } from 'mobx'
+import { get, isEmpty, throttle } from 'lodash'
 import { Button } from '@kube-design/components'
 import {
   addFullScreenChangeEvents,
@@ -29,7 +29,7 @@ import {
   enterFullScreen,
 } from 'utils/dom'
 
-import { Modal } from 'components/Base'
+import { RadioGroup } from 'components/Base'
 import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
 import PipelineContent from 'devops/components/PipelineStatus'
@@ -46,6 +46,8 @@ export default class TaskStatus extends React.Component {
       isFullScreen: false,
       showLog: false,
       showErrorLog: false,
+      activeTab: 'pipeline',
+      refreshFlag: true,
     }
     this.store = props.detailStore || {}
     this.updateReaction = reaction(() => this.store.runDetail, this.handleFetch)
@@ -104,6 +106,10 @@ export default class TaskStatus extends React.Component {
       const { params } = this.props.match
       this.store.getNodesStatus(params)
     }
+  }
+
+  handleTabChange = activeTab => {
+    this.setState({ activeTab })
   }
 
   toggleFullScreenState = () => {
@@ -190,8 +196,15 @@ export default class TaskStatus extends React.Component {
     </div>
   )
 
+  @observable
+  refreshFlag = true
+
+  handleRefresh = throttle(() => {
+    this.refreshFlag = !this.refreshFlag
+  }, 1000)
+
   render() {
-    const { showLog, showErrorLog } = this.state
+    const { showErrorLog } = this.state
     const { nodesStatus, runDetailLogs, runDetail } = this.store
 
     if (nodesStatus.length === 0) {
@@ -230,33 +243,52 @@ export default class TaskStatus extends React.Component {
     return (
       <React.Fragment>
         <div className={style.pipelineCard}>
-          <div className={style.pipelineCard__toolbar}>
-            {this.renderBtnGroup()}
+          <div className={style.pipelineCard__tab}>
+            {/* {this.renderBtnGroup()} */}
+            <div>
+              <RadioGroup
+                value={this.state.activeTab}
+                onChange={this.handleTabChange}
+                options={[
+                  { label: t('PIPELINE'), value: 'pipeline' },
+                  { label: t('RUN_LOGS'), value: 'logs' },
+                ]}
+              />
+            </div>
+
+            <Button icon="restart" type="flat" onClick={this.handleRefresh} />
           </div>
-          <div
-            className={style.pipelineCard__main}
-            ref={dom => {
-              this.container = dom
-            }}
-          >
-            <PipelineContent jsonData={nodesStatus} />
-          </div>
+          {this.state.activeTab === 'pipeline' && (
+            <div
+              className={classNames(
+                style.pipelineCard_content,
+                style.pipelineCard_pipeline_content
+              )}
+            >
+              <div
+                className={classNames(style.pipelineCard__main)}
+                ref={dom => {
+                  this.container = dom
+                }}
+              >
+                <PipelineContent jsonData={nodesStatus} />
+              </div>
+            </div>
+          )}
+          {this.state.activeTab === 'logs' && (
+            <div className={classNames(style.pipelineCard_content)}>
+              <div className={style.pipelineCard__main}>
+                <PipelineLog
+                  handleDownloadLogs={this.handleDownloadLogs}
+                  params={this.props.match.params}
+                  runId={this.store.runDetail.id}
+                  nodes={nodesStatus}
+                  refreshFlag={this.refreshFlag}
+                />
+              </div>
+            </div>
+          )}
         </div>
-        <Modal
-          width={1162}
-          onCancel={this.hideLog}
-          title={t('PIPELINE_RUN_LOGS')}
-          visible={showLog}
-          closable={false}
-          cancelText={t('CLOSE')}
-        >
-          <PipelineLog
-            handleDownloadLogs={this.handleDownloadLogs}
-            params={this.props.match.params}
-            runId={this.store.runDetail.id}
-            nodes={nodesStatus}
-          />
-        </Modal>
       </React.Fragment>
     )
   }

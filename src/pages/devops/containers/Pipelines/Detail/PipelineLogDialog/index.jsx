@@ -18,9 +18,10 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { throttle, isEmpty, isArray } from 'lodash'
+import { isEmpty, isArray } from 'lodash'
 import { action, observable, computed, toJS, reaction } from 'mobx'
 import { observer } from 'mobx-react'
+import { Modal } from 'components/Base'
 import { Button } from '@kube-design/components'
 import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
@@ -79,9 +80,6 @@ export default class PipelineLog extends React.Component {
   @observable
   activeNodeIndex = [0, 0] // lineindex, columnIndex
 
-  @observable
-  refreshFlag = true
-
   logRefresh = null
 
   @action
@@ -120,15 +118,21 @@ export default class PipelineLog extends React.Component {
     this.activeNodeIndex = [...errorNodeIdex]
   }
 
-  handleRefresh = throttle(() => {
-    this.refreshFlag = !this.refreshFlag
-  }, 1000)
+  // handleRefresh = throttle(() => {
+  //   this.refreshFlag = !this.refreshFlag
+  // }, 1000)
 
   renderLeftTab(stage, index) {
     if (Array.isArray(stage)) {
       return (
         <div key={stage.id} key={index} className={styles.stageContainer}>
-          <div className={styles.cutTitle}>{t('STAGE')}</div>
+          <div
+            className={classNames(styles.cutTitle, {
+              [styles.activeTitle]: this.activeNodeIndex[0] === index,
+            })}
+          >
+            {t('STAGE')}
+          </div>
           {stage.map((_stage, _index) => (
             <div
               key={_stage.id}
@@ -148,7 +152,13 @@ export default class PipelineLog extends React.Component {
     }
     return (
       <div key={stage.id} className={styles.stageContainer}>
-        <div className={styles.cutTitle}>{t('STAGE')}</div>
+        <div
+          className={classNames(styles.cutTitle, {
+            [styles.activeTitle]: this.activeNodeIndex[0] === index,
+          })}
+        >
+          {t('STAGE')}
+        </div>
         <div
           className={classNames(styles.leftTab, {
             [styles.leftTab__active]: this.activeNodeIndex[0] === index,
@@ -181,7 +191,7 @@ export default class PipelineLog extends React.Component {
         step={step}
         nodeId={this.activeStage.id}
         params={this.params}
-        refreshFlag={this.refreshFlag}
+        refreshFlag={this.props.refreshFlag}
       />
     ))
   }
@@ -190,40 +200,53 @@ export default class PipelineLog extends React.Component {
     const { nodes } = this.props
     const _nodes = toJS(nodes)
 
-    if (this.isShowLog) {
-      return (
-        <FullLogs
-          store={this.store}
-          isShowLog={this.isShowLog}
-          params={this.params}
-          handleVisableLog={this.handleVisableLog}
-        />
-      )
-    }
+    // if (this.isShowLog) {
+    //   return (
+    //     <FullLogs
+    //       store={this.store}
+    //       isShowLog={this.isShowLog}
+    //       params={this.params}
+    //       handleVisableLog={this.handleVisableLog}
+    //     />
+    //   )
+    // }
 
     const time = this.activeStage?.durationInMillis ?? ''
 
     return (
-      <div className={styles.container}>
-        <div className={styles.left}>
-          {_nodes.map((stage, index) => this.renderLeftTab(stage, index))}
-        </div>
-        <div className={styles.right}>
-          <div className={styles.header}>
-            <span>
-              {t('DURATION_VALUE', {
-                value: time ? formatUsedTime(time) : '-',
-              })}
-            </span>
-            <Button onClick={this.handleDownloadLogs}>
-              {t('DOWNLOAD_LOGS')}
-            </Button>
-            <Button onClick={this.handleVisableLog}>{t('VIEW_LOGS')}</Button>
-            <Button onClick={this.handleRefresh}>{t('REFRESH')}</Button>
+      <>
+        <div className={styles.container}>
+          <div className={styles.left}>
+            {_nodes.map((stage, index) => this.renderLeftTab(stage, index))}
           </div>
-          <div className={styles.logContainer}>{this.renderLogContent()}</div>
+          <div className={styles.right}>
+            <div className={styles.header}>
+              <span>
+                {t('DURATION_VALUE', {
+                  value: time ? formatUsedTime(time) : '-',
+                })}
+              </span>
+              <Button onClick={this.handleVisableLog}>
+                {t('VIEW_FULL_LOG')}
+              </Button>
+            </div>
+            <div className={styles.logContainer}>{this.renderLogContent()}</div>
+          </div>
         </div>
-      </div>
+        <Modal
+          visible={this.isShowLog}
+          title={t('PIPELINE_LOG')}
+          width={1162}
+          onCancel={this.handleVisableLog}
+        >
+          <FullLogs
+            store={this.store}
+            isShowLog={this.isShowLog}
+            params={this.params}
+            handleVisableLog={this.handleVisableLog}
+          />
+        </Modal>
+      </>
     )
   }
 }

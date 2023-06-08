@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { omit, isArray, get, set, isEmpty, cloneDeep } from 'lodash'
 import { saveAs } from 'file-saver'
+import { cloneDeep, get, isArray, isEmpty, omit, set } from 'lodash'
 import { action, observable, toJS } from 'mobx'
 import { safeParseJSON } from 'utils'
 import cookie from 'utils/cookie'
@@ -164,7 +164,7 @@ export default class PipelineStore extends BaseStore {
       { params: { ...filters } }
     )
 
-    const data = result.items
+    const data = (result.items ?? [])
       .filter(({ metadata }) => !metadata.deletionTimestamp)
       .map(item => ({ ...this.mapper(item) }))
 
@@ -240,12 +240,23 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async checkPipelineName({ name, cluster, devops }) {
+  async checkPipelineName({ name, cluster, devops }, isOld = true) {
+    if (isOld) {
+      return await request.get(
+        this.getPipelineUrl({ cluster, name, devops }),
+        {},
+        {
+          headers: { 'x-check-exist': true },
+        }
+      )
+    }
     return await request.get(
-      this.getPipelineUrl({ cluster, name, devops }),
-      {},
+      `/kapis/devops.kubesphere.io/v1alpha2${this.getPath({
+        cluster,
+        devops,
+      })}/checkPipelineName`,
       {
-        headers: { 'x-check-exist': true },
+        value: name,
       }
     )
   }
@@ -302,8 +313,10 @@ export default class PipelineStore extends BaseStore {
     if (withLoading) {
       this.isSubmitting = true
     }
+    const clusterPath =
+      cluster && cluster !== 'default' ? `/klusters/${cluster}` : ''
     await request.put(
-      `/kapis/devops.kubesphere.io/v1alpha3/devops/${devops}/pipelines/${name}/jenkinsfile?mode=raw`,
+      `/kapis/devops.kubesphere.io/v1alpha3${clusterPath}/devops/${devops}/pipelines/${name}/jenkinsfile?mode=raw`,
       { data: jenkinsFile },
       {
         headers: {
@@ -460,7 +473,8 @@ export default class PipelineStore extends BaseStore {
           get(
             item,
             "metadata.annotations.['devops.kubesphere.io/jenkins-pipelinerun-status']"
-          )
+          ),
+          {}
         )
         return {
           ...res,
@@ -679,11 +693,11 @@ export default class PipelineStore extends BaseStore {
     )
   }
 
-  async getPipelineTemplateList() {
+  async getPipelineTemplateList(params) {
     const lang = cookie('lang') === 'zh' ? 'ZH' : 'EN'
 
     const data = await request.get(
-      `${this.getBaseUrl()}clustertemplates?limit=100`
+      `${this.getBaseUrl(params)}clustertemplates?limit=100`
     )
     const { items = [] } = data
 

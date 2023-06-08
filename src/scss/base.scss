@@ -269,3 +269,25 @@ pre {
 .alert-message {
   word-break: break-all;
 }
+
+.tooltip .tooltip-content {
+  word-wrap: break-word;
+}
+
+.disabled-input {
+  background-color: $light-color02;
+  width: 100%;
+  max-width: 455px;
+  cursor: not-allowed;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.67;
+  color: $dark-color06;
+  transition: all 0.3s ease-in-out;
+  caret-color: $dark-color06;
+  outline: none;
+  border: solid 1px $light-color08;
+  border-radius: 4px;
+  word-break: break-all;
+}

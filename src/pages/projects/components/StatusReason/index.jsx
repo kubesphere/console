@@ -16,10 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { Icon, Tooltip } from '@kube-design/components'
 import { get } from 'lodash'
 import React from 'react'
 
-import { Tooltip, Icon } from '@kube-design/components'
 import styles from './index.scss'
 
 const isSuccess = (type, condition) => {
@@ -91,7 +91,7 @@ export default function StatusReason({
 
   return (
     <span className={styles.reason}>
-      <Tooltip placement="right" content={conditions}>
+      <Tooltip placement="right" content={conditions} positionFixed={true}>
         <Icon
           name="information"
           color={{
