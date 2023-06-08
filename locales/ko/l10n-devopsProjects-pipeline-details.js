@@ -210,5 +210,8 @@ module.exports = {
   'Original Image Address': '원본 이미지 주소',
   'New Image Address': '새로운 이미지 주소',
   'New Image Tag': '새로운 이미지 태그',
-  Credential: '자격 증명'
+  Credential: '자격 증명',
+  // detail page -> pipeline configuration tab
+  PIPELINE_CONFIGURATION: 'Pipeline Configuration',
+  Replay: 'Replay'
 };
