@@ -215,5 +215,8 @@ module.exports = {
   'Original Image Address': 'Original Image Address',
   'New Image Address': 'New Image Address',
   'New Image Tag': 'New Image Tag',
-  Credential: 'Credential'
+  Credential: 'Credential',
+  // detail page -> pipeline configuration tab
+  PIPELINE_CONFIGURATION: 'Pipeline Configuration',
+  Replay: 'Replay'
 };
