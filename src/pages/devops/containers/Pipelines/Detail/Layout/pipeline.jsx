@@ -167,7 +167,7 @@ export default class PipelineDetailLayout extends React.Component {
             devops,
             cluster,
             formTemplate: this.state.formTemplate,
-            codeRepoKey: detail?.codeRepoKey,
+            // codeRepoKey: detail?.codeRepoKey,
             success: this.fetchData,
             handleScanRepository: this.handleScanRepository,
             trigger: (...args) => {

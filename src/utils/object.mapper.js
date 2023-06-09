@@ -1267,7 +1267,7 @@ const PipelinesMapper = item => {
         'success'
       ) === 'success',
 
-    codeRepoKey: get(item, 'metadata.annotations["devops.codeRepo"]'),
+    // codeRepoKey: get(item, 'metadata.annotations["devops.codeRepo"]'),
     disabledBrancheNames,
     ...pipelineObject,
     _originData: getOriginData(item),

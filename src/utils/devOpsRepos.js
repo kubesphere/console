@@ -28,7 +28,7 @@ export function getGithubSource(data) {
     owner,
     url: /^https:\/\//.test(repoURL)
       ? repoURL
-      : `https://github.com${owner}/${repo}`,
+      : `https://github.com/${owner}/${repo}`,
   }
 }
 

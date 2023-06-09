@@ -75,13 +75,13 @@ export const updatePipelineParams = (data, isEditor = false) => {
 export const updatePipelineParamsInSpec = (data, devops) => {
   if (data.multi_branch_pipeline) {
     data = set(data, 'metadata.name', data.multi_branch_pipeline.name)
-    if (data.multi_branch_pipeline.key) {
-      data = set(
-        data,
-        'metadata.annotations["devops.codeRepo"]',
-        data.multi_branch_pipeline.key
-      )
-    }
+    // if (data.multi_branch_pipeline.key) {
+    //   data = set(
+    //     data,
+    //     'metadata.annotations["devops.codeRepo"]',
+    //     data.multi_branch_pipeline.key
+    //   )
+    // }
 
     delete data.multi_branch_pipeline.metadata
 
