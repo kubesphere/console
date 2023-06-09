@@ -28,7 +28,7 @@ import PropTypes from 'prop-types'
 
 import styles from './index.scss'
 
-export default class BaseInfo extends React.Component {
+export default class CodeRepoCreate extends React.Component {
   constructor(props) {
     super(props)
     this.state = {

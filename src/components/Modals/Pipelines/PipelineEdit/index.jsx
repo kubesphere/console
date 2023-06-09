@@ -87,6 +87,7 @@ export default class PipelineModal extends React.Component {
         onOk={onOk}
         onCancel={this.showConfirm}
         isSubmitting={isSubmitting}
+        trigger={this.props.trigger}
       />
     )
   }

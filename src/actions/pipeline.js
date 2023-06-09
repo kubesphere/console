@@ -34,7 +34,7 @@ import {
   PIPELINE_PROJECT_CREATE_STEPS,
 } from 'configs/steps/pipelines'
 import JenkinsEdit from 'devops/components/Modals/JenkinsEdit'
-import { cloneDeep, get, isEmpty } from 'lodash'
+import { cloneDeep, get, isEmpty, set } from 'lodash'
 import { toJS } from 'mobx'
 import { updatePipelineParams, updatePipelineParamsInSpec } from 'utils/devops'
 
@@ -73,7 +73,6 @@ export default {
         onOk: async data => {
           updatePipelineParams(data)
           updatePipelineParamsInSpec(data, devops)
-
           await store.createPipeline({
             data,
             devops,
@@ -192,7 +191,23 @@ export default {
     },
   },
   'pipeline.edit': {
-    on({ store, cluster, devops, success, formTemplate, ...props }) {
+    on({
+      store,
+      cluster,
+      devops,
+      success,
+      codeRepoKey,
+      formTemplate,
+      ...props
+    }) {
+      let provider = null
+      if (get(formTemplate, 'multi_branch_pipeline')) {
+        const mbp = get(formTemplate, 'multi_branch_pipeline')
+        const sourceType = get(mbp, 'source_type')
+        const scmId = get(mbp, `${sourceType}_source.scm_id`)
+        set(formTemplate, 'multi_branch_pipeline.key', scmId)
+        provider = sourceType
+      }
       const modal = Modal.open({
         onOk: async data => {
           updatePipelineParams(data, true)
@@ -207,6 +222,7 @@ export default {
         store,
         cluster,
         devops,
+        provider,
         formTemplate: cloneDeep(formTemplate),
         modal: BaseInfoModal,
         ...props,

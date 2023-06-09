@@ -508,10 +508,14 @@ export default class SCMStore extends BaseStore {
       return []
     })
 
+    let projectList = []
+
     if (result.status === 'ok' && isArray(result.data)) {
-      return result.data
+      projectList = result.data.map(item => {
+        return { label: item, value: item.split('/').pop() }
+      })
     }
 
-    return []
+    return projectList
   }
 }

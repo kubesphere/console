@@ -555,6 +555,7 @@ export default class StepsEditor extends React.Component {
             isEditMode={this.isEditMode}
             onCancel={this.handleEditCancel}
             onAddNoInputTask={this.addNoInputTask}
+            trigger={this.props.trigger}
           />
         ) : null}
         <YamlEditor

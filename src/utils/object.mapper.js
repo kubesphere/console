@@ -1266,6 +1266,8 @@ const PipelinesMapper = item => {
         'metadata.annotations["pipeline.devops.kubesphere.io/jenkinsfile.validate"]',
         'success'
       ) === 'success',
+
+    codeRepoKey: get(item, 'metadata.annotations["devops.codeRepo"]'),
     disabledBrancheNames,
     ...pipelineObject,
     _originData: getOriginData(item),
