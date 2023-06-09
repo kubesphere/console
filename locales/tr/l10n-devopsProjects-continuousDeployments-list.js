@@ -31,7 +31,7 @@ module.exports = {
   // List > Create
   NEED_TO_SYNC_REPO: 'Need to sync repo',
   CREATE_CONTINUOUS_DEPLOYMENT: 'Sürekli dağıtım oluşturun',
-  CD_SELECT_CODE_REPO_DESC: 'İş hattı tarafından kullanılacak bir kod deposu seçin.',
+  CD_SELECT_CODE_REPO_DESC: 'Select a code repository.',
   DEPLOYMENT_SETTINGS: 'Dağıtım ayarları',
   CODE_REPOSITORY_SETTINGS: 'Kod Deposu Ayarları',
   SYNC_STRATEGY_TCAP: 'Senkronizasyon stratejileri',
