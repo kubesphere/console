@@ -166,6 +166,8 @@ Jenkinsfile'nin operasyonel gereksinimlere göre girilen parametreler bölümü.
   // Pull Requests
   PULL_REQUEST_PL: 'Değişiklik İsteği',
   FAILED_CHECK_SCRIPT_COMPILE: 'The check of script compile failed, if you want to bypass the step, please click the continue button',
+  // detail page // Create Pipeline modal // add step modal 
+  IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
   //Create pipeline modal -> Custom Pipeline
   General: 'General',
   Container: 'Konteyner',
