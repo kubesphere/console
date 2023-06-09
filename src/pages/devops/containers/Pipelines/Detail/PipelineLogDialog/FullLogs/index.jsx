@@ -186,7 +186,6 @@ export default class FullLogs extends React.Component {
 
   render() {
     const { runDetailLogs } = this.store
-
     return (
       <div className={styles.logs_container}>
         <div className={styles.log} ref={this.ref}>

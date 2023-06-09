@@ -137,7 +137,8 @@ export default class StepsEditor extends React.Component {
   }
 
   async getPipelineSteps() {
-    await this.props.store.fetchPipelineStepTemplates()
+    const { cluster } = this.props.store.params
+    await this.props.store.fetchPipelineStepTemplates({ cluster })
     this.setState({
       stepTemplates: [...this.steps],
       isLoading: false,

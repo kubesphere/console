@@ -16,16 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
 import { Button, Loading, Notify, Tooltip } from '@kube-design/components'
-import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import { isEmpty, debounce } from 'lodash'
+import EmptyCard from 'devops/components/Cards/EmptyCard'
 
 import PipelineContent from 'devops/components/Pipeline'
+import { debounce, isEmpty } from 'lodash'
+import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
 
 import { trigger } from 'utils/action'
-import EmptyCard from 'devops/components/Cards/EmptyCard'
 
 import style from './index.scss'
 
@@ -127,14 +127,16 @@ export default class Pipeline extends React.Component {
     })
   }
 
-  handleReset = () => {
+  handleReset = (defaultValue = '') => {
     const { params } = this.props.match
-    const { devops, name } = params
+    const { devops, name, cluster } = params
     clearTimeout(this.store.timer)
+    const clusterPath =
+      cluster && cluster !== 'default' ? `/klusters/${cluster}` : ''
     request
       .put(
-        `/kapis/devops.kubesphere.io/v1alpha3/devops/${devops}/pipelines/${name}/jenkinsfile?mode=raw`,
-        { data: '' },
+        `/kapis/devops.kubesphere.io/v1alpha3${clusterPath}/devops/${devops}/pipelines/${name}/jenkinsfile?mode=raw`,
+        { data: defaultValue },
         {
           headers: {
             'content-type': 'application/json',
@@ -228,6 +230,7 @@ export default class Pipeline extends React.Component {
         cluster: params.cluster,
         params,
         branches: toJS(detail.branchNames),
+        disabledBrancheNames: toJS(detail.disabledBranchNames),
         parameters: toJS(detail.parameters),
         success: () => {
           this.props.rootStore.routing.push('./activity')
@@ -289,6 +292,7 @@ export default class Pipeline extends React.Component {
 
   renderPipeLineContent() {
     const { pipelineJson, isLoading } = this.store.pipelineJsonData
+
     if (isLoading) {
       return (
         <Loading spinning>
@@ -317,14 +321,17 @@ export default class Pipeline extends React.Component {
       )
     }
 
-    if (!this.store.detail?.validate || pipelineJson?.result === 'failure') {
+    if (
+      (pipelineJson && pipelineJson.result === 'failure') ||
+      !this.isValidated
+    ) {
       return (
         <EmptyCard desc={t('INVALID_JENKINSFILE_TIP')}>
           {this.editable && (
             <>
               <Button
                 onClick={this.handleJenkinsFileModal}
-                // disabled={this.jenkinsFileMode === 'json'}
+                disabled={this.jenkinsFileMode === 'json'}
               >
                 {t('EDIT_JENKINSFILE')}
               </Button>
@@ -344,14 +351,14 @@ export default class Pipeline extends React.Component {
             <>
               <Button
                 onClick={this.handleJenkinsFileModal}
-                // disabled={this.jenkinsFileMode === 'json'}
+                disabled={this.jenkinsFileMode === 'json'}
               >
                 {t('EDIT_JENKINSFILE')}
               </Button>
               <Button
                 type="control"
                 onClick={this.handlePipelineModal}
-                // disabled={this.jenkinsFileMode === 'raw'}
+                disabled={this.jenkinsFileMode === 'raw'}
               >
                 {t('EDIT_PIPELINE')}
               </Button>

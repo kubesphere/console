@@ -721,8 +721,8 @@ const GatewayMapper = item => {
   )
 
   // get the first ipv4 ingress's ip, because the k8s can't support ipv6's colon
-  const defaultIngressIPV4 = loadBalancerIngress.find(i => !i.ip.includes(':'))
-    ?.ip
+  const ingressItem = loadBalancerIngress.find(i => i.ip && !i.ip.includes(':'))
+  const defaultIngressIPV4 = get(ingressItem, 'ip')
 
   return {
     ...getBaseInfo(item),
@@ -1226,7 +1226,15 @@ const PipelinesMapper = item => {
   const pipelineObject = safeParseJSON(get(item, jenkinsKey), {})
   const ns = get(item, 'metadata.namespace')
   const name = get(item, 'metadata.name')
-
+  const disabledBrancheNames = safeParseJSON(
+    get(
+      item,
+      'metadata.annotations["pipeline.devops.kubesphere.io/jenkins-branches"]'
+    ),
+    []
+  )
+    .filter(i => i.disabled)
+    .map(i => i.name)
   return {
     ...getBaseInfo(item),
     annotations: omit(get(item, 'metadata.annotations'), jenkinsKey),
@@ -1258,6 +1266,7 @@ const PipelinesMapper = item => {
         'metadata.annotations["pipeline.devops.kubesphere.io/jenkinsfile.validate"]',
         'success'
       ) === 'success',
+    disabledBrancheNames,
     ...pipelineObject,
     _originData: getOriginData(item),
   }

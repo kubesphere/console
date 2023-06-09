@@ -16,20 +16,21 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { toJS } from 'mobx'
-import { cloneDeep, get, isEmpty, omit } from 'lodash'
 import { Button, Notify } from '@kube-design/components'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'components/Tables/List'
+
+import { ListPage, withDevOpsList } from 'components/HOCs/withList'
 import Empty from 'components/Tables/Base/Empty'
+import Table from 'components/Tables/List'
 import Health from 'devops/components/Health'
+import { cloneDeep, get, isEmpty, omit } from 'lodash'
+import { toJS } from 'mobx'
+import React from 'react'
 import CodeStore from 'stores/codeRepo'
 import PipelineStore from 'stores/devops/pipelines'
 
-import { withDevOpsList, ListPage } from 'components/HOCs/withList'
 
 @withDevOpsList({
   store: new PipelineStore(),
@@ -199,6 +200,7 @@ export default class PipelinesList extends React.Component {
         devops: this.devops,
         cluster: this.cluster,
         branches: record.branchNames,
+        disabledBrancheNames: record.disabledBrancheNames,
         parameters: record.parameters,
         params: {
           ...params,
@@ -234,6 +236,7 @@ export default class PipelinesList extends React.Component {
 
     trigger('pipeline.create', {
       module,
+      trigger,
       title: t('CREATE_PIPELINE'),
       formTemplate: this.formTemplate,
       devops: this.devops,
@@ -488,6 +491,7 @@ export default class PipelinesList extends React.Component {
         {...tableProps}
         rowKey="name"
         data={data}
+        selectedRowKeys={toJS(selectedRowKeys)}
         columns={this.getColumns()}
         filters={omitFilters}
         pagination={pagination}

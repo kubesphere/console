@@ -16,18 +16,27 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
 
-import { PATTERN_NAME } from 'utils/constants'
+import { get, set } from 'lodash'
+import React from 'react'
 
-import { set } from 'lodash'
-import CodeRepoSelector from '../../../CodeRepoSelector'
+import { PATTERN_NAME } from 'utils/constants'
+import { compareVersion } from 'utils/app'
 import { TypeSelect } from '../../../Base'
+import CodeRepoSelector from '../../../CodeRepoSelector'
+import styles from './index.scss'
 
 export default class BaseInfo extends React.Component {
   state = {
     type: 0,
+  }
+
+  get ksVersion() {
+    const { cluster } = this.props
+    return globals.app.isMultiCluster
+      ? get(globals, `clusterConfig.${cluster}.ksVersion`)
+      : get(globals, 'ksConfig.ksVersion')
   }
 
   validator = (rule, value, callback) => {
@@ -36,11 +45,14 @@ export default class BaseInfo extends React.Component {
     }
 
     this.props.store
-      .checkPipelineName({
-        name: value,
-        cluster: this.props.cluster,
-        devops: this.props.devops,
-      })
+      .checkPipelineName(
+        {
+          name: value,
+          cluster: this.props.cluster,
+          devops: this.props.devops,
+        },
+        compareVersion(this.ksVersion, '3.4.0') < 0
+      )
       .then(resp => {
         if (resp.exist) {
           return callback({
@@ -58,12 +70,12 @@ export default class BaseInfo extends React.Component {
       formTemplate,
       devops,
       cluster,
-      showCodeRepoCreate,
-      codeRepoSelectorRef,
+      // showCodeRepoCreate,
+      // codeRepoSelectorRef,
     } = this.props
 
     return (
-      <Form ref={formRef} data={formTemplate}>
+      <Form ref={formRef} data={formTemplate} className={styles.from}>
         <Columns>
           <Column>
             <Form.Item
@@ -93,28 +105,31 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <TypeSelect
-          value={this.state.type}
-          onChange={type => {
-            this.setState({ type })
-            set(formTemplate, 'MULTI_BRANCH_PIPELINE', undefined)
-          }}
-          name="pipeline-type"
-          options={[
-            {
-              label: t('PIPELINE_PL'),
-              value: 0,
-              icon: 'branch',
-              description: t('BRANCH_PIPELINE_DESC'),
-            },
-            {
-              label: t('MULTI_BRANCH_PIPELINE'),
-              value: 1,
-              icon: 'branch',
-              description: t('MULTI_BRANCH_PIPELINE_DESC'),
-            },
-          ]}
-        />
+        <div className={'form-item'}>
+          <label className={'form-item-label'}>{t('PIPELINE_TYPE')}</label>
+          <TypeSelect
+            value={this.state.type}
+            onChange={type => {
+              this.setState({ type })
+              set(formTemplate, 'MULTI_BRANCH_PIPELINE', undefined)
+            }}
+            name="pipeline-type"
+            options={[
+              {
+                label: t('PIPELINE_PL'),
+                value: 0,
+                icon: 'branch',
+                description: t('BRANCH_PIPELINE_DESC'),
+              },
+              {
+                label: t('MULTI_BRANCH_PIPELINE'),
+                value: 1,
+                icon: 'branch',
+                description: t('MULTI_BRANCH_PIPELINE_DESC'),
+              },
+            ]}
+          />
+        </div>
         {this.state.type === 1 && (
           <Form.Item
             label={t('CODE_REPOSITORY_OPTIONAL')}
@@ -130,8 +145,9 @@ export default class BaseInfo extends React.Component {
               devops={devops}
               cluster={cluster}
               isComplexMode={true}
-              ref={codeRepoSelectorRef}
-              showCreateRepo={showCodeRepoCreate}
+              trigger={this.props.trigger}
+              // ref={codeRepoSelectorRef}
+              // showCreateRepo={this.showCodeRepoCreate}
             />
           </Form.Item>
         )}
