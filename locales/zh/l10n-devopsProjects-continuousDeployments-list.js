@@ -31,7 +31,7 @@ module.exports = {
   // List > Create
   NEED_TO_SYNC_REPO: '需要同步仓库。',
   CREATE_CONTINUOUS_DEPLOYMENT: '创建持续部署',
-  CD_SELECT_CODE_REPO_DESC: '选择持续部署使用的代码仓库。',
+  CD_SELECT_CODE_REPO_DESC: 'Select a code repository.',
   DEPLOYMENT_SETTINGS: '部署设置',
   CODE_REPOSITORY_SETTINGS: '代码仓库设置',
   SYNC_STRATEGY_TCAP: '同步策略',
