@@ -32,7 +32,11 @@ export default props => {
   }
   return (
     <div>
-      <Button onClick={() => setVisible(true)}>
+      <Button
+        style={{ height: 24 }}
+        size="small"
+        onClick={() => setVisible(true)}
+      >
         {t('IMPORT_FROM_CODE_REPO')}
       </Button>
       <Modal

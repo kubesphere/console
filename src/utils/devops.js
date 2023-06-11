@@ -141,7 +141,14 @@ export const getLanguageIcon = (name, defaultIcon) => {
   return LEGO_LANGUAGE_ICON.includes(name) ? name : defaultIcon
 }
 
-export const getRepoUrl = ({ provider, owner, repo, server, url, api_uri }) => {
+export const getRepoUrl = ({
+  provider,
+  owner,
+  repo,
+  server,
+  url,
+  api_uri,
+} = {}) => {
   if (url) {
     return url
   }
@@ -285,31 +292,4 @@ export const parseCondition = (cond, data) => {
   } catch (e) {
     return false
   }
-}
-
-export const getCodeRepoSpec = (data, devops) => {
-  const repoType = data.source_type
-  const repo = get(data, `${repoType}_source`, {})
-  const repoURL = repo.repo || repo.url || repo.remote
-  const { owner, repo: repoName, server_name: server } = repo
-  let url = ''
-
-  if (repoType === 'github' && /^https:\/\//.test(repoURL)) {
-    url = repoURL
-  } else {
-    url = getRepoUrl(repo)
-  }
-
-  const spec = {
-    provider: data.source_type,
-    url,
-    secret: {
-      name: repo.credential_id || data.credentialId,
-      namespace: devops,
-    },
-    repo: repoName,
-    owner,
-    server,
-  }
-  return spec
 }

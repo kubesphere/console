@@ -48,13 +48,13 @@ import { orderBy, set, get, omit } from 'lodash'
 export const defaultConfig = [
   {
     name: 'fromCodeRepository',
-    type: 'importFromcodeRepository',
-    reactions: [
+    type: 'importCodeRepo',
+    reactions: JSON.stringify([
       {
         target: 'url',
         fulfill: {
           state: {
-            value: '{{$self.value?.url}}',
+            value: '{{$context?.getRepoUrl?.($self.value)}}',
           },
         },
       },
@@ -66,7 +66,7 @@ export const defaultConfig = [
           },
         },
       },
-    ],
+    ]),
   },
   {
     name: 'url',
@@ -134,15 +134,22 @@ export class Reaction {
 
   config = []
 
-  constructor(update) {
+  context = {}
+
+  constructor(update, context = {}) {
     this.update = update
+    this.context = context
     this.reactions = {
       display: this.handleDisplayChange.bind(this),
       value: this.handleChangeValue.bind(this),
     }
   }
 
-  init = (config, values) => {
+  init = (_config, values) => {
+    const config = _config.map(i => ({
+      ...i,
+      reactions: i.reactions ? JSON.parse(i.reactions) : [],
+    }))
     this.config = config
     let idx = 0
     const state = []
@@ -196,7 +203,7 @@ export class Reaction {
 
     Object.entries(fulfill.state).forEach(([key, temp]) => {
       const fn = this.reactions[key]
-      const value = runTemplate(temp, { $self: self })
+      const value = runTemplate(temp, { $self: self, $context: this.context })
       if (this.state[target]) {
         this.state[target][key] = value
         fn && fns.push(() => fn(target, value))

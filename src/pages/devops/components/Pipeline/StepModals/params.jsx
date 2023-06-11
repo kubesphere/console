@@ -31,7 +31,7 @@ import { toJS } from 'mobx'
 import { set, isEmpty, get } from 'lodash'
 import { Modal, CodeEditor } from 'components/Base'
 import CodeRepoSelector from 'components/CodeRepoSelector'
-import { groovyToJS, parseCondition } from 'utils/devops'
+import { getRepoUrl, groovyToJS, parseCondition } from 'utils/devops'
 import { observer } from 'mobx-react'
 import { CREDENTIAL_KEY } from 'utils/constants'
 import PipelineSelect from './pipeline'
@@ -130,9 +130,14 @@ export default class Params extends React.Component {
       /**
        * @type {Reaction}
        */
-      reactionForm: new Reaction(() => {
-        this.forceUpdate()
-      }),
+      reactionForm: new Reaction(
+        () => {
+          this.forceUpdate()
+        },
+        {
+          getRepoUrl,
+        }
+      ),
     }
   }
 
@@ -349,7 +354,7 @@ export default class Params extends React.Component {
             />
           </Form.Item>
         )
-      case 'importFromcodeRepository':
+      case 'importCodeRepo':
         return (
           <Form.Item {...formProps}>
             <FromCodeRepository
