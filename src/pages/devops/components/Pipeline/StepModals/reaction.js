@@ -167,10 +167,13 @@ export class Reaction {
         'x-props': i,
       }
       fns.push(() => {
-        this.handleValueChange({
-          key: i.name,
-          value: get(values, i.name),
-        })
+        this.handleValueChange(
+          {
+            key: i.name,
+            value: get(values, i.name),
+          },
+          true
+        )
       })
     })
 
@@ -187,26 +190,28 @@ export class Reaction {
     }
   }
 
-  handleValueChange = kv => {
+  handleValueChange = (kv, isInit = false) => {
     const { state } = this
     this.setValues(kv.key, kv.value)
     this.state[kv.key].value = kv.value
     const { reactions } = state[kv.key]
     reactions?.forEach(i => {
-      this.getStateByReaction(i, state[kv.key])
+      this.getStateByReaction(i, state[kv.key], isInit)
     })
   }
 
-  getStateByReaction = (reaction, self) => {
+  getStateByReaction = (reaction, self, isInit = false) => {
     const { target, fulfill } = reaction
     const fns = []
 
     Object.entries(fulfill.state).forEach(([key, temp]) => {
-      const fn = this.reactions[key]
-      const value = runTemplate(temp, { $self: self, $context: this.context })
-      if (this.state[target]) {
-        this.state[target][key] = value
-        fn && fns.push(() => fn(target, value))
+      if (!(isInit && key === 'value')) {
+        const fn = this.reactions[key]
+        const value = runTemplate(temp, { $self: self, $context: this.context })
+        if (this.state[target]) {
+          this.state[target][key] = value
+          fn && fns.push(() => fn(target, value))
+        }
       }
     })
     // this.state = state

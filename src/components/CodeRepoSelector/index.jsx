@@ -100,7 +100,7 @@ export default class CodeRepoSelect extends React.Component {
 
   getRepoList = async (params, currentRepo) => {
     const { devops, cluster } = this.props
-    await this.codeStore.fetchList({ devops, cluster, ...params, limit: -1 })
+    await this.codeStore.fetchList({ devops, cluster, ...params, limit: 10000 })
 
     this.setState({ repoList: this.codeStore.list.data }, () => {
       currentRepo && this.handleRepoChange(currentRepo)
@@ -192,7 +192,7 @@ export default class CodeRepoSelect extends React.Component {
           key={index}
           name={name}
           onFetch={this.getRepoList}
-          options={this.allOptions}
+          options={toJS(this.allOptions)}
           onChange={this.handleRepoChange}
           value={value?.key}
           placeholder={{
