@@ -161,7 +161,7 @@ module.exports = {
   PULL_REQUEST_PL: '拉取请求',
   FAILED_CHECK_SCRIPT_COMPILE: '检查脚本编译失败，如果你想跳过这一步骤，请点击继续按钮',
   // detail page // Create Pipeline modal // add step modal 
-  IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
+  IMPORT_FROM_CODE_REPO: '从代码库导入',
   //Create pipeline modal -> Custom Pipeline
   General: '通用',
   Container: '容器',
@@ -213,6 +213,6 @@ module.exports = {
   'New Image Tag': '新镜像标签',
   Credential: '凭证',
   // detail page -> pipeline configuration tab
-  PIPELINE_CONFIGURATION: 'Pipeline Configuration',
+  PIPELINE_CONFIGURATION: '编辑流水线',
   Replay: 'Replay'
 };
