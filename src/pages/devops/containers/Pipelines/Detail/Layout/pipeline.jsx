@@ -27,7 +27,6 @@ import { Notify } from '@kube-design/components'
 import Status from 'devops/components/Status'
 import CodeQualityStore from 'stores/devops/codeQuality'
 import DetailPage from 'devops/containers/Base/Detail'
-import { showNameAndAlias } from 'utils'
 
 import { trigger } from 'utils/action'
 
@@ -168,8 +167,12 @@ export default class PipelineDetailLayout extends React.Component {
             devops,
             cluster,
             formTemplate: this.state.formTemplate,
+            // codeRepoKey: detail?.codeRepoKey,
             success: this.fetchData,
             handleScanRepository: this.handleScanRepository,
+            trigger: (...args) => {
+              this.trigger(...args)
+            },
           }),
       },
       {

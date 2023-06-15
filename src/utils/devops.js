@@ -75,6 +75,14 @@ export const updatePipelineParams = (data, isEditor = false) => {
 export const updatePipelineParamsInSpec = (data, devops) => {
   if (data.multi_branch_pipeline) {
     data = set(data, 'metadata.name', data.multi_branch_pipeline.name)
+    // if (data.multi_branch_pipeline.key) {
+    //   data = set(
+    //     data,
+    //     'metadata.annotations["devops.codeRepo"]',
+    //     data.multi_branch_pipeline.key
+    //   )
+    // }
+
     delete data.multi_branch_pipeline.metadata
 
     data.spec = {
@@ -133,7 +141,14 @@ export const getLanguageIcon = (name, defaultIcon) => {
   return LEGO_LANGUAGE_ICON.includes(name) ? name : defaultIcon
 }
 
-export const getRepoUrl = ({ provider, owner, repo, server, url }) => {
+export const getRepoUrl = ({
+  provider,
+  owner,
+  repo,
+  server,
+  url,
+  api_uri,
+} = {}) => {
   if (url) {
     return url
   }
@@ -145,7 +160,7 @@ export const getRepoUrl = ({ provider, owner, repo, server, url }) => {
       return `${server}/${owner}/${repo}`
     case 'bitbucket_server':
       // eslint-disable-next-line no-case-declarations
-      const uri = repo.api_uri
+      const uri = api_uri
       // eslint-disable-next-line no-case-declarations
       let _url = uri.substr(uri.length - 1) === '/' ? uri : `${uri}/`
       if (!/https:\/\/bitbucket.org\/?/gm.test(_url)) {
@@ -157,11 +172,14 @@ export const getRepoUrl = ({ provider, owner, repo, server, url }) => {
   }
 }
 
-export const getCommonSource = (
-  { provider, owner, repo, url, secret, server: server_name },
-  label,
-  repoURL
-) => {
+export const getCommonSource = ({
+  provider,
+  owner,
+  repo,
+  url,
+  secret,
+  server: server_name,
+}) => {
   if (provider === 'git') {
     return {
       url,
@@ -171,11 +189,10 @@ export const getCommonSource = (
   }
 
   return {
-    // label,
-    // description: repoURL,
     owner,
-    repo: repo ?? label,
+    repo,
     server_name,
+    url,
     credential_id: secret?.name,
     discover_branches: 1,
     discover_pr_from_forks: { strategy: 2, trust: 2 },

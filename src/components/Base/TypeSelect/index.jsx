@@ -111,10 +111,10 @@ export default class TypeSelect extends React.Component {
     return (
       <div
         key={option.uid || option.value}
-        onClick={onClick}
+        onClick={!option.disabled ? onClick : null}
         className={classNames(
           styles.option,
-          { [styles.selected]: selected },
+          { [styles.selected]: selected, [styles.disabled]: option.disabled },
           { [styles.withIcon]: option.icon }
         )}
       >

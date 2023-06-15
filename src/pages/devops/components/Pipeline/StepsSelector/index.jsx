@@ -205,6 +205,9 @@ export default class StepsEditor extends React.Component {
             showCredential={this.handleShowCredential}
             edittingData={edittingData}
             store={this.props.store}
+            devops={devops}
+            cluster={cluster}
+            trigger={this.props.trigger}
           />
         )}
         {hasCredential && (
