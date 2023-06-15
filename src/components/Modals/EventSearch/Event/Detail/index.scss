@@ -159,10 +159,10 @@ $chartContainerPadding: 8px;
 }
 
 .visibleHeight {
-  height: calc(
-    100% - 64px - #{$toolbarHeight} - #{$size-medium} - #{$chartContainerPadding} -
-      #{$chartHeight}
-  );
+  height: 100%;
+  z-index: 5;
+  bottom: 22px;
+  right: -2px;
 }
 
 .table {

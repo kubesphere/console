@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, set } from 'lodash'
 
 import { action, observable } from 'mobx'
 
@@ -311,6 +311,7 @@ export default class Gateway extends Base {
   scale(params, newReplicas) {
     const data = this.gateway.data._originData
     data.spec.deployment.replicas = newReplicas
+    set(data, 'metadata.resourceVersion', this.gateway.data.resourceVersion)
     return this.submitting(request.put(this.gatewayUrl(params), data))
   }
 

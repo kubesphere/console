@@ -89,8 +89,12 @@ class ResourceStatus extends React.Component {
   }
 
   getGatewayDetail() {
-    const { namespace } = this.props.match.params
-    this.props.detailStore.getGateway({ cluster: this.cluster, namespace })
+    const { namespace, workspace } = this.props.match.params
+    this.props.detailStore.getGateway({
+      cluster: this.cluster,
+      namespace,
+      workspace,
+    })
   }
 
   get enabledActions() {
@@ -139,26 +143,34 @@ class ResourceStatus extends React.Component {
   }
 
   fetchReplica = async () => {
-    const gatewayPods = await this.store.getGatewayReplica(
-      this.props.match.params
-    )
+    const gatewayPods = await this.store.getGatewayReplica({
+      ...this.props.match.params,
+      cluster: this.cluster,
+    })
     this.setState({
       gatewayPods,
     })
   }
 
   checkGatewayLatest = async () => {
-    const { namespace } = this.props.match.params
-    await this.gateway.getGateway({ cluster: this.cluster, namespace })
+    const { namespace, workspace } = this.props.match.params
+    await this.gateway.getGateway({
+      cluster: this.cluster,
+      namespace,
+      workspace,
+    })
   }
 
   handleScale = async newReplicas => {
-    const { namespace } = this.props.match.params
+    const { namespace, workspace } = this.props.match.params
     await this.checkGatewayLatest()
     if (
       this.gateway.detail.resourceVersion === this.store.detail.resourceVersion
     ) {
-      await this.store.scale({ cluster: this.cluster, namespace }, newReplicas)
+      await this.store.scale(
+        { cluster: this.cluster, workspace, namespace },
+        newReplicas
+      )
     } else {
       Notify.info({ content: t('GATEWAY_UPDATING_TIP') })
     }

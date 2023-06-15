@@ -90,6 +90,7 @@ export default class ContainerSetting extends React.Component {
         cluster,
         isSkipTLS,
         auth,
+        isDefault: item.isDefault,
       }
     })
   }
