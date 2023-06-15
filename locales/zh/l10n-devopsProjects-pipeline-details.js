@@ -159,7 +159,7 @@ module.exports = {
   PASSED: '已通过',
   // Pull Requests
   PULL_REQUEST_PL: '拉取请求',
-  FAILED_CHECK_SCRIPT_COMPILE: '检查脚本编译失败，如果你想跳过这一步骤，请点击继续按钮',
+  FAILED_CHECK_SCRIPT_COMPILE: 'Failed to check script compiling. If you want to skip the step, click Continue.',
   // detail page // Create Pipeline modal // add step modal 
   IMPORT_FROM_CODE_REPO: '从代码库导入',
   //Create pipeline modal -> Custom Pipeline
