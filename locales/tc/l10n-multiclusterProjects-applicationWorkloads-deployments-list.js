@@ -106,6 +106,11 @@ module.exports = {
   CREATE_CONFIG: 'create a configmap',
   OR: 'or',
   CREATE_SECRET: 'create a secret.',
+  DEFAULT_REPOSITORY: 'Default repository',
+  SET_DEFAULT_REPOSITORY: 'Set default repository',
+  SET_AS_DEFAULT_REPOSITORY_DESC: 'Set as default repository after setting, if not specified, the system will use the default repository to create the application load. Only one default repository can be set in a project.',
+  SET_AS_DEFAULT_REPOSITORY: 'Set as default mirror repository',
+  SET_DEFAULT_REPO_SUCCESSFUL: 'Set default repository successful',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: '容器 Security Context',
   CONTAINER_SECURITY_CONTEXT_DESC: 'Security Context的目的是限制不可信容器的行為，保護系統和其他容器不受其影響。',
@@ -158,6 +163,10 @@ module.exports = {
   MUST_MATCH: '必須匹配',
   TARGET: '目標',
   STRATEGY: '策略',
+  // List > Create > Pod Settings > Pod Grace Period
+  POD_GRACE_PERIOD: 'Pod Grace Period',
+  POD_GRACE_PERIOD_DESC: 'Set the waiting time before Pod terminates, after which Pod will be forcibly terminated.',
+  TERMINATION_GRACEPERIOD_SECONDS: 'Termination GracePeriod Seconds (s)',
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: '添加元數據',
   POD_ADD_METADATA_DESC: 'Add metadata to the Pod replicas.',
