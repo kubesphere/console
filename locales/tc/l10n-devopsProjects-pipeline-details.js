@@ -160,7 +160,7 @@ module.exports = {
   PASSED: '已通過',
   // Pull Requests
   PULL_REQUEST_PL: '拉取請求',
-  FAILED_CHECK_SCRIPT_COMPILE: 'The check of script compile failed, if you want to bypass the step, please click the continue button',
+  FAILED_CHECK_SCRIPT_COMPILE: 'Failed to check script compiling. If you want to skip the step, click Continue.',
   // detail page // Create Pipeline modal // add step modal 
   IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
   //Create pipeline modal -> Custom Pipeline
