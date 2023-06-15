@@ -746,7 +746,7 @@ const GatewayMapper = item => {
     type: get(item, 'spec.service.type'),
     config: get(item, 'spec.controller.config', {}),
     lb: lbSupport,
-    _originData: item,
+    _originData: getOriginData(item),
   }
 }
 
@@ -799,6 +799,11 @@ const SecretMapper = item => ({
   annotations: get(item, 'metadata.annotations', {}),
   type: get(item, 'type', ''),
   data: secretDataParser(item),
+  isDefault:
+    get(
+      item,
+      'metadata.annotations["secret.kubesphere.io/is-default-class"]'
+    ) === 'true',
   _originData: getOriginData(item),
 })
 

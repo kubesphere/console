@@ -56,7 +56,7 @@ const renderView = async ctx => {
       config: { ...clientConfig, supportGpuType, gitopsEngine },
     })
   } catch (err) {
-    renderViewErr(ctx, err)
+    await renderViewErr(ctx, err)
   }
 }
 
@@ -124,7 +124,7 @@ const renderTerminal = async ctx => {
       }),
     })
   } catch (err) {
-    renderViewErr(ctx, err)
+    await renderViewErr(ctx, err)
   }
 }
 
