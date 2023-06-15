@@ -214,5 +214,12 @@ module.exports = {
   Credential: '凭证',
   // detail page -> pipeline configuration tab
   PIPELINE_CONFIGURATION: '流水线配置',
-  Replay: '回放'
+  Replay: '回放',
+  // detail page // run log // task status
+  RUN_LOGS: 'Run Logs',
+  VIEW_FULL_LOG: 'View Full Logs',
+  // detail page // run log // task status // pipeline log modal
+  PIPELINE_LOG: 'Pipeline Logs',
+  // detail page // Create Pipeline modal // add step modal
+  IMPORT_FROM_CODE_REPO: '从代码库导入'
 };
