@@ -90,4 +90,7 @@
   &:hover {
     background-color: $light-color01;
   }
+  &.disabled {
+    cursor: not-allowed;
+  }
 }

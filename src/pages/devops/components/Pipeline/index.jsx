@@ -130,6 +130,7 @@ export default class Pipeline extends React.Component {
             onCancel={this.props.onCancel}
             isSubmitting={isSubmitting}
             cluster={cluster}
+            trigger={this.props.trigger}
           />
         ) : null}
         <NotifyConfirm

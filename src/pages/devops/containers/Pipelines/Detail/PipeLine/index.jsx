@@ -98,6 +98,9 @@ export default class Pipeline extends React.Component {
             store: this.store,
             jsonData: {},
             params,
+            trigger: (...args) => {
+              this.trigger(...args)
+            },
             onCancel: () => this.handleReset(defaultValue),
             success: () => {
               const { devops, name } = params
@@ -155,6 +158,9 @@ export default class Pipeline extends React.Component {
       jsonData: toJS(pipelineJsonData.pipelineJson),
       onCancel: cb,
       params,
+      trigger: (...args) => {
+        this.trigger(...args)
+      },
       success: () => {
         const { devops, name } = params
         localStorage.removeItem(`${globals.user.username}-${devops}-${name}`)
