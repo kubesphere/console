@@ -253,16 +253,6 @@ export default class Placement extends Component {
                 label={t('PROJECT')}
                 rules={[
                   { required: true, message: t('PROJECT_NOT_SELECT_DESC') },
-                  {
-                    validator: (rule, value, callback) => {
-                      if (!this.namespaces.some(item => item.value === value)) {
-                        callback(t('PROJECT_NOT_SELECT_DESC'))
-                        return
-                      }
-
-                      callback()
-                    },
-                  },
                 ]}
               >
                 <Select

@@ -136,6 +136,7 @@ export const requestCluster = [
     const clusterStore = new ClusterStore()
     const detail = await clusterStore.fetchDetail({
       name: params.cluster,
+      redirect: false,
     })
     eventBus.emit(eventKeys.CLUSTER_CHANGE, detail)
   },
@@ -194,10 +195,13 @@ export const requestProject = [
   eventKeys.requestProject,
   async params => {
     const projectStore = new ProjectStore()
-    const detail = await projectStore.fetchDetail({
-      cluster: params.cluster,
-      namespace: params.project,
-    })
+    const detail = await projectStore.fetchDetail(
+      {
+        cluster: params.cluster,
+        namespace: params.project,
+      },
+      () => {}
+    )
     eventBus.emit(eventKeys.PROJECT_CHANGE, detail)
   },
 ]

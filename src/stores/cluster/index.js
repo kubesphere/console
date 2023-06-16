@@ -200,7 +200,7 @@ export default class ClusterStore extends Base {
   }
 
   @action
-  async fetchDetail(params) {
+  async fetchDetail({ redirect = true, ...params } = {}) {
     this.isLoading = true
 
     let detail
@@ -212,8 +212,10 @@ export default class ClusterStore extends Base {
         null,
         null,
         (_, err) => {
-          if (err.reason === 'Not Found') {
-            global.navigateTo('/404')
+          if (redirect) {
+            if (err.reason === 'Not Found') {
+              global.navigateTo('/404')
+            }
           }
         }
       )
