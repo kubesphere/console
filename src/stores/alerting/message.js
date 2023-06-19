@@ -31,10 +31,12 @@ export default class AlertStore extends Base {
   builtinRuleCount = 0
 
   get apiVersion() {
-    return 'kapis/alerting.kubesphere.io/v2alpha1/'
+    return 'kapis/alerting.kubesphere.io/v2beta1'
   }
 
-  getPath({ cluster, namespace, ruleName, type } = {}) {
+  module = 'alerts'
+
+  getPath({ cluster, namespace } = {}) {
     let path = ''
     if (cluster) {
       path += `/klusters/${cluster}`
@@ -42,16 +44,25 @@ export default class AlertStore extends Base {
     if (namespace) {
       path += `/namespaces/${namespace}`
     }
-    if (type === 'builtin') {
-      path += `/${type}`
-    }
-    if (ruleName) {
-      path += `/rules/${ruleName}`
-    }
     return path
   }
 
-  module = 'alerts'
+  getAlertPath = ({ namespace, type }) => {
+    if (namespace) {
+      return 'alerts'
+    }
+
+    if (type === 'builtin') {
+      return 'globalalerts'
+    }
+
+    return 'clusteralerts'
+  }
+
+  getListUrl = (params = {}) =>
+    `${this.apiVersion}${this.getPath(params)}/${this.getAlertPath(params)}${
+      params.dryRun ? '?dryRun=All' : ''
+    }`
 
   getResourceUrl = this.getListUrl
 
@@ -87,6 +98,10 @@ export default class AlertStore extends Base {
 
     params.limit = params.limit || 10
 
+    if (type === 'builtin') {
+      params.builtin = true
+    }
+
     const result = await request.get(
       this.getResourceUrl({ cluster, workspace, namespace, ruleName, type }),
       this.getFilterParams(params)
@@ -98,13 +113,7 @@ export default class AlertStore extends Base {
       ...this.mapper(item),
     }))
 
-    const total = result.total
-
-    if (type === 'builtin') {
-      this.builtinRuleCount = total
-    } else {
-      this.ruleCount = total
-    }
+    const total = result.totalItems
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
@@ -128,10 +137,10 @@ export default class AlertStore extends Base {
       }),
       request.get(
         this.getResourceUrl({ cluster, namespace, type: 'builtin' }),
-        { page: 1, limit: 1 }
+        { page: 1, limit: 1, builtin: true }
       ),
     ])
-    this.ruleCount = get(result, '0.total', 0)
-    this.builtinRuleCount = get(result, '1.total', 0)
+    this.ruleCount = get(result, '0.totalItems', 0)
+    this.builtinRuleCount = get(result, '1.totalItems', 0)
   }
 }
