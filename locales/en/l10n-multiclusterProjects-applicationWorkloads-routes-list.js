@@ -28,6 +28,6 @@ module.exports = {
   // List > Create > Basic Information
   // List > Create > Routing Rules
   // List > Create > Advanced Settings
-  ROUTE_ADD_METADATA_DESC: 'Add metadata to the route.',
+  ROUTE_ADD_METADATA_DESC: 'Add metadata to the ingress.',
   // Customize Columns
 }

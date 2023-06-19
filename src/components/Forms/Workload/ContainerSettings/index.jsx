@@ -52,6 +52,7 @@ import UpdateStrategy from './UpdateStrategy'
 import ContainerList from './ContainerList'
 import ContainerForm from './ContainerForm'
 import PodSecurityContext from './PodSecurityContext'
+import TerminationSeconds from './TerminationSeconds'
 
 import Metadata from './Metadata'
 import styles from './index.scss'
@@ -411,6 +412,7 @@ export default class ContainerSetting extends React.Component {
   updatePullSecrets = () => {
     const pullSecrets = {}
     const imagePullSecretsPath = `${this.prefix}spec.imagePullSecrets`
+    const annotationsImagePullSecretsPath = `${this.prefix}metadata.annotations["kubesphere.io/imagepullsecrets"]`
 
     const containers = get(
       this.fedFormTemplate,
@@ -424,7 +426,11 @@ export default class ContainerSetting extends React.Component {
     )
     concat(containers, initContainers).forEach(container => {
       if (container.pullSecret) {
-        pullSecrets[container.pullSecret] = ''
+        pullSecrets[container.name] = container.pullSecret
+      }
+
+      if (container.annotationOfImagePullSecrets) {
+        delete container.annotationOfImagePullSecrets
       }
     })
 
@@ -432,8 +438,16 @@ export default class ContainerSetting extends React.Component {
       this.fedFormTemplate,
       imagePullSecretsPath,
       !isEmpty(pullSecrets)
-        ? Object.keys(pullSecrets).map(key => ({ name: key }))
+        ? Object.values(pullSecrets).map(value => ({ name: value }))
         : null
+    )
+
+    const pullSecretsString = JSON.stringify(pullSecrets)
+
+    set(
+      this.fedFormTemplate,
+      annotationsImagePullSecretsPath,
+      pullSecretsString
     )
   }
 
@@ -759,6 +773,21 @@ export default class ContainerSetting extends React.Component {
     )
   }
 
+  renderTerminationSeconds() {
+    return (
+      <div className="margin-b12">
+        <Form.Group
+          label={t('POD_GRACE_PERIOD')}
+          desc={t('POD_GRACE_PERIOD_DESC')}
+          keepDataWhenUnCheck
+          checkable
+        >
+          <TerminationSeconds prefix={this.prefix} />
+        </Form.Group>
+      </div>
+    )
+  }
+
   renderMetadata() {
     return (
       <div className="margin-b12">
@@ -778,8 +807,19 @@ export default class ContainerSetting extends React.Component {
     const { formRef } = this.props
     const { showContainer, selectContainer } = this.state
 
+    const annotationOfImagePullSecrets = JSON.parse(
+      get(
+        this.fedFormTemplate,
+        'metadata.annotations["kubesphere.io/imagepullsecrets"]',
+        '{}'
+      )
+    )
+
     if (showContainer) {
-      return this.renderContainerForm(selectContainer)
+      return this.renderContainerForm({
+        ...selectContainer,
+        annotationOfImagePullSecrets,
+      })
     }
 
     return (
@@ -789,6 +829,7 @@ export default class ContainerSetting extends React.Component {
         {this.renderUpdateStrategy()}
         {this.renderPodSecurityContext()}
         {this.renderPodAffinity()}
+        {this.renderTerminationSeconds()}
         {this.renderMetadata()}
       </Form>
     )

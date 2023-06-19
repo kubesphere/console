@@ -27,6 +27,7 @@ import { ICON_TYPES, MODULE_KIND_MAP } from 'utils/constants'
 import { Modal } from 'components/Base'
 import EmptyList from 'components/Cards/EmptyList'
 
+import PodStore from 'stores/pod'
 import WorkloadStore from 'stores/workload'
 import VolumeStore from 'stores/volume'
 import FederatedStore from 'stores/federated'
@@ -64,6 +65,7 @@ export default class ServiceDeleteModal extends React.Component {
     this.workloadStore = new WorkloadStore()
     this.volumeStore = new VolumeStore()
     this.builderStore = new Builder()
+    this.podStore = new PodStore()
 
     if (props.isFederated) {
       this.workloadStore = new FederatedStore({
@@ -140,6 +142,11 @@ export default class ServiceDeleteModal extends React.Component {
             namespace,
             labelSelector,
           }),
+          this.podStore.fetchListByK8s({
+            cluster,
+            namespace,
+            labelSelector,
+          }),
           ..._modules.map(module =>
             this.workloadStore.fetchListByK8s({
               cluster,
@@ -190,6 +197,8 @@ export default class ServiceDeleteModal extends React.Component {
           requests.push(this.workloadStore.delete(item))
         } else if (item.module === 's2ibuilders' || item.type === 's2i') {
           requests.push(this.builderStore.delete(item))
+        } else if (item.module === 'pods') {
+          requests.push(this.podStore.delete(item))
         }
       }
     })

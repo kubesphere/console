@@ -17,39 +17,40 @@
  */
 module.exports = {
   // Navigation Pane
-  GATEWAY_SETTINGS: 'Gateway Settings',
+  GATEWAY_SETTINGS: '게이트웨이 설정',
   // Banner
-  CLUSTER_GATEWAY_DESC: 'Set up and manage the configuration of the external network access gateway and service management in the cluster.',
+  CLUSTER_GATEWAY_DESC: '클러스터에서 외부 네트워크 액세스 게이트웨이 및 서비스 관리의 구성을 설정하고 관리합니다.',
   // Cluster Gateway
-  CLUSTER_GATEWAY_NOT_ENABLED: 'Cluster Gateway Not Enabled',
-  CLUSTER_ENABLE_GATEWAY_DESC: 'Please enable the cluster gateway.',
-  CLUSTER_GATEWAY: 'Cluster Gateway',
-  GATEWAY_ADDRESS_SCAP: 'Gateway address',
-  LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
+  CLUSTER_GATEWAY_NOT_ENABLED: '클러스터 게이트웨이가 활성화되지 않음',
+  CLUSTER_ENABLE_GATEWAY_DESC: '클러스터 게이트웨이를 활성화 하십시오.',
+  CLUSTER_GATEWAY: '클러스터 게이트웨이',
+  GATEWAY_ADDRESS_SCAP: '게이트웨어 주소',
+  LOAD_BALANCER_PROVIDER_SCAP: '로드 밸런서 제공자',
   // Cluster Gateway > Enable Gateway
-  ENABLE_GATEWAY: 'Enable Gateway',
-  GATEWAY_TRACING_TIP: 'If routes cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the route.',
+  ENABLE_GATEWAY: '게이트웨이 활성화',
+  GATEWAY_TRACING_TIP: '<b>Tracing</b>을 활성화한 후 인그레스에 엑세스할 수 없다면, 인그레이스에 <b>nginx.ingress.kubernetes.io/service-upstream: true</b> 어노테이션을 추가하세요.',
   // Cluster Gateway > Manage > View Details
-  VIEW_DETAILS: 'View Details',
+  VIEW_DETAILS: '상세 보기',
   // Cluster Gateway > Manage > Disable
-  DISABLE: 'Disable',
-  DISABLE_GATEWAY: 'Disable Gateway',
-  DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
-  DISABLE_SUCCESSFUL: 'Disabled successfully.',
+  DISABLE: '비활성화',
+  DISABLE_GATEWAY: '게이트웨이 활성화',
+  DISABLE_GATEWAY_TIP: '이 게이트웨이를 비활성화하시겠습니까?',
+  DISABLE_SUCCESSFUL: '성공적으로 비활성화하였습니다.',
   // Cluster Gateway > Manage > Edit
-  EDIT: 'Edit',
-  EDIT_TITLE: 'Edit {title}',
+  EDIT: '편집',
+  EDIT_TITLE: '편집 {title}',
   // Cluster Gateway > Manage > Update
-  UPDATE: 'Update',
-  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
+  UPDATE: '업데이트',
+  UPDATED_GATEWAY_TITLE: 'Update Gateway',
+  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
   // Project Gateways
-  PROJECT_GATEWAY_PL: 'Project Gateways',
-  PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',
-  PROJECT_ENABLE_GATEWAY_DESC: 'Please enable the project gateway.',
-  REPLICA_COUNT: 'Replicas',
-  NODE_PORTS: 'Node Ports',
-  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
+  PROJECT_GATEWAY_PL: '프로젝트 게이트웨이',
+  PROJECT_GATEWAY_NOT_ENABLED: '프로젝트 게이트웨이가 활성화되지 않음',
+  PROJECT_ENABLE_GATEWAY_DESC: '프로젝트 게이트웨이를 활성화 하십시오.',
+  REPLICA_COUNT: '복제본 수',
+  NODE_PORTS: '노드 포트',
+  UPDATE_GATEWAY_DESC: '현재 게이트웨이를 업데이트할 수 있습니다.',
   // Project Gateways > Disable
-  PROJECT_GATEWAY_LOW: 'project gateway',
-  DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'
+  PROJECT_GATEWAY_LOW: '프로젝트 게이트웨이',
+  DISABLE_MULTIPLE_GATEWAYS: '일괄적으로 게이트웨이 사용 안 함'
 };

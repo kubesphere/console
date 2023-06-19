@@ -17,33 +17,34 @@
  */
 module.exports = {
   // Banner
-  COMPOSED_APP_PL: 'Composed Apps',
+  COMPOSED_APP_PL: 'Composed 앱',
   // List
-  NO_COMPOSED_APP_FOUND: 'No Composed App Found',
-  COMPOSED_APP_EMPTY_DESC: 'Please create a composed app.',
+  NO_COMPOSED_APP_FOUND: 'Composed 앱을 찾을 수 없음',
+  COMPOSED_APP_EMPTY_DESC: 'Composed 앱을 생성하십시오.',
   // List > Edit Information
   // List > Delete
   // List > Create
-  STATEFUL_SERVICE: 'Stateful Service',
-  STATELESS_SERVICE: 'Stateless Service',
-  CREATE_COMPOSED_APP: 'Create Composed App',
-  SAVE_FORM_TIP: 'Please save the current settings first.',
+  STATEFUL_SERVICE: '상태를 유지하는 서비스',
+  STATELESS_SERVICE: '상태 유지를 하지 않는 서비스',
+  CREATE_COMPOSED_APP: 'Composed 앱 생성',
+  SAVE_FORM_TIP: '현재 설정을 먼저 저장하십시오.',
   // List > Create > Edit YAML
-  YAML_FILE: 'YAML File',
-  CREATE_BY_YAML_DESC: 'Customize the settings in the YAML file.',
+  YAML_FILE: 'YAML 파일',
+  CREATE_BY_YAML_DESC: 'YAML 파일의 설정을 사용자 지정합니다.',
   // List > Create > Basic Information
-  APPLICATION_GOVERNANCE: 'Application Governance',
-  VERSION_DESC: 'The version can contain only lowercase letters and numbers. The maximum length is 16 characters.',
-  APPLICATION_GOVERNANCE_DESC: 'Enable Application Governace to use the Traffic Monitoring, Grayscale Release, and Tracing features for the app.',
-  APP_BASIC_INFORMATION_DESC: 'Set the basic information about the app.',
+  APPLICATION_GOVERNANCE: '애플리케이션 거버넌스',
+  VERSION_DESC: '버전에는 소문자와 숫자만 포함될 수 있습니다. 최대 길이는 16자입니다.',
+  APPLICATION_GOVERNANCE_DESC: '애플리케이션 거버넌스에서 애플리케이션에 대한 트래픽 모니터링, 그레이스케일 릴리스 및 추적 기능을 사용하도록 설정합니다.',
+  APP_BASIC_INFORMATION_DESC: '앱에 대한 기본 정보를 설정합니다.',
   // List > Create > Service Settings
-  APP_SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful service.',
-  STATEFUL_SERVICE_DESC: 'Create a service and a statefulset.',
-  STATELESS_SERVICE_DESC: 'Create a service and a Deployment.',
-  APPLICATION_SERVICE_DESC: 'Add stateful or stateless services to the app based on your requirements.',
-  APP_CREATE_SERVICE_DESC: 'Create a service for the app.',
-  // List > Create > Route Settings
-  ROUTE_SETTINGS: 'Route Settings',
-  ROUTING_RULES: 'Routing Rules',
-  ROUTE_SETTINGS_DESC: 'Set routing rules for the app.'
+  APP_SELECT_SERVICE_TYPE_DESC: '상태 유지 혹은 상태 유지하지 않는 서비스를 생성합니다.',
+  STATEFUL_SERVICE_DESC: '서비스 및 스테이트풀셋을 생성합니다.',
+  STATELESS_SERVICE_DESC: '서비스 및 디플로이먼트를 생성합니다.',
+  APPLICATION_SERVICE_DESC: '필요에 따라 상태를 유지하는 혹은 상태를 유지하지 않는 서비스를 앱에 추가합니다.',
+  APP_CREATE_SERVICE_DESC: '앱에 대한 서비스를 생성합니다.',
+  // List > Create > Ingress Settings
+  ROUTE_SETTINGS: '인그레스 설정',
+  ROUTING_RULES: '라우팅 규칙',
+  ROUTE_SETTINGS_DESC: '앱의 라우팅 규칙을 설정합니다.',
+  ADD_ROUTE_SUCCESS: '인그레스가 정상적으로 추가되었습니다.'
 };

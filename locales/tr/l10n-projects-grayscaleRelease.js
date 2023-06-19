@@ -51,7 +51,7 @@ module.exports = {
   UNSUPPORTED_WORKLOAD_TYPE: 'İş yükü türü desteklenmiyor',
   // Release Modes > Canary Release > Create > New Version Settings
   VERSION_EXISTS: 'The version code already exists. Please enter another version code.',
-  NEW_VERSION_NUMBER_EXIST_DESC: '{name} iş yükü zaten var. Lütfen başka bir sürüm numarası girin.',
+  NEW_VERSION_NUMBER_EXIST_DESC: 'The workload {name} already exists. Please enter another version code.',
   INIT_CONTAINER: 'Başlangıç konteyneri',
   INIT_CONTAINER_VALUE: 'Başlangıç Konyetner:{value}',
   CONTAINER_VALUE: 'Konteyner:{value}',

@@ -80,15 +80,15 @@ export default class GithubOAuthModal extends React.Component {
               <Input name="name" defaultValue="github" disabled />
             </Form.Item>
             <Form.Item
-              label={t('Client ID')}
-              rules={[{ required: true, message: t('Please input client id') }]}
+              label={t('CLIENT_ID')}
+              rules={[{ required: true, message: t('PLEASE_INPUT_CLIENT_ID') }]}
               desc={
                 <a
                   href="https://github.com/settings/applications/new"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  {t('How to obtain a Github client ID ?')}
+                  {t('HOW_TO_OBTAIN_A_GITHUB_CLIENT_ID')}
                 </a>
               }
             >
@@ -97,9 +97,9 @@ export default class GithubOAuthModal extends React.Component {
           </Column>
           <Column>
             <Form.Item
-              label={t('Server Address')}
+              label={t('SERVER_ADDRESS')}
               rules={[
-                { required: true, message: t('Please input server address') },
+                { required: true, message: t('PLEASE_INPUT_SERVER_ADDRESS') },
               ]}
             >
               <Input
@@ -108,7 +108,7 @@ export default class GithubOAuthModal extends React.Component {
                 disabled
               />
             </Form.Item>
-            <Form.Item label={t('Client Secret')}>
+            <Form.Item label={t('CLIENT_SECRET')}>
               <Input name="secret" />
             </Form.Item>
           </Column>

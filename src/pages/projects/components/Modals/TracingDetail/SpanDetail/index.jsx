@@ -143,7 +143,7 @@ export default class SpanDetail extends React.Component {
               onChange={this.handleTypeChange}
               size="small"
             >
-              <RadioButton value="tags">{t('TAGS')}</RadioButton>
+              <RadioButton value="tags">{t('TAG')}</RadioButton>
               <RadioButton value="process">{t('PROCESS')}</RadioButton>
               {!isEmpty(span.logs) && (
                 <RadioButton value="logs">{t('LOG')}</RadioButton>

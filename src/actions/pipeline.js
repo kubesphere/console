@@ -15,26 +15,28 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { toJS } from 'mobx'
-import { get, isEmpty } from 'lodash'
 import { Notify } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
-import DeleteModal from 'components/Modals/Delete'
-import CreateModal from 'components/Modals/Create'
-import CopyModal from 'components/Modals/Pipelines/Copy'
-import BaseInfoModal from 'components/Modals/Pipelines/Base'
-import PipelineModal from 'components/Modals/Pipelines/PipelineEdit'
-import AdvanceEditorModal from 'components/Modals/Pipelines/AdvanceEdit'
 import ParamsFormModal from 'components/Forms/Pipelines/ParamsFormModal'
+import CreateModal from 'components/Modals/Create'
+import DeleteModal from 'components/Modals/Delete'
+import AdvanceEditorModal from 'components/Modals/Pipelines/AdvanceEdit'
+import BaseInfoModal from 'components/Modals/Pipelines/Base'
+import CopyModal from 'components/Modals/Pipelines/Copy'
+import PipelineModal from 'components/Modals/Pipelines/PipelineEdit'
+
 import ScanRepositoryLogs from 'components/Modals/Pipelines/ScanRepositoryLogs'
 
 import {
-  PIPELINE_PROJECT_CREATE_STEPS,
   PIPELINE_CREATE_STEPS,
+  PIPELINE_CREATE_STEPS_OLD,
+  PIPELINE_PROJECT_CREATE_STEPS,
 } from 'configs/steps/pipelines'
-import { updatePipelineParams, updatePipelineParamsInSpec } from 'utils/devops'
 import JenkinsEdit from 'devops/components/Modals/JenkinsEdit'
+import { cloneDeep, get, isEmpty, set } from 'lodash'
+import { toJS } from 'mobx'
+import { updatePipelineParams, updatePipelineParamsInSpec } from 'utils/devops'
 
 function handleParams(param) {
   const type = param.type.toLowerCase().split('parameterdefinition')[0]
@@ -71,7 +73,6 @@ export default {
         onOk: async data => {
           updatePipelineParams(data)
           updatePipelineParamsInSpec(data, devops)
-
           await store.createPipeline({
             data,
             devops,
@@ -190,7 +191,23 @@ export default {
     },
   },
   'pipeline.edit': {
-    on({ store, cluster, devops, success, formTemplate, ...props }) {
+    on({
+      store,
+      cluster,
+      devops,
+      success,
+      // codeRepoKey,
+      formTemplate,
+      ...props
+    }) {
+      let provider = null
+      if (get(formTemplate, 'multi_branch_pipeline')) {
+        const mbp = get(formTemplate, 'multi_branch_pipeline')
+        const sourceType = get(mbp, 'source_type')
+        const scmId = get(mbp, `${sourceType}_source.scm_id`)
+        set(formTemplate, 'multi_branch_pipeline.key', scmId)
+        provider = sourceType
+      }
       const modal = Modal.open({
         onOk: async data => {
           updatePipelineParams(data, true)
@@ -205,7 +222,8 @@ export default {
         store,
         cluster,
         devops,
-        formTemplate,
+        provider,
+        formTemplate: cloneDeep(formTemplate),
         modal: BaseInfoModal,
         ...props,
       })
@@ -231,7 +249,7 @@ export default {
         store,
         cluster,
         devops,
-        formTemplate,
+        formTemplate: cloneDeep(formTemplate),
         modal: AdvanceEditorModal,
         ...props,
       })
@@ -275,8 +293,8 @@ export default {
   'pipeline.jenkins': {
     on({ store, params, defaultValue, success, ...props }) {
       const modal = Modal.open({
-        onOk: jenkinsFile => {
-          store.updateJenkinsFile(jenkinsFile, params)
+        onOk: async jenkinsFile => {
+          await store.updateJenkinsFile(jenkinsFile, params)
           Modal.close(modal)
           Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
@@ -291,8 +309,8 @@ export default {
   'pipeline.pipelineCreate': {
     on({ store, rootStore, success, jsonData, params, ...props }) {
       const modal = Modal.open({
-        onOk: jenkinsFile => {
-          store.updateJenkinsFile(jenkinsFile, params)
+        onOk: async jenkinsFile => {
+          await store.updateJenkinsFile(jenkinsFile, params)
           Modal.close(modal)
           Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
@@ -305,7 +323,7 @@ export default {
       })
     },
   },
-  'pipeline.pipelineTemplate': {
+  'pipeline.pipelineTemplateOld': {
     on({ store, rootStore, success, jsonData, params, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
@@ -333,6 +351,74 @@ export default {
 
           Modal.close(modal)
           success && success(jenkinsFile)
+        },
+        modal: CreateModal,
+        steps: PIPELINE_CREATE_STEPS_OLD,
+        jsonData,
+        params,
+        store,
+        ...props,
+      })
+    },
+  },
+  'pipeline.pipelineTemplate': {
+    on({
+      store,
+      rootStore,
+      success,
+      jsonData,
+      params,
+      pipelineDetailStore,
+      ...props
+    }) {
+      store.isSubmitting = false
+      const modal = Modal.open({
+        onOk: async data => {
+          let re
+          if (data.template !== 'custom') {
+            const { paramsForm = {} } = data
+            const postData = Object.keys(paramsForm).reduce((prev, curr) => {
+              prev.push({ name: curr, value: paramsForm[curr] })
+              return prev
+            }, [])
+            const jenkins = await store.getTempleJenkins(data.template, {
+              parameters: postData,
+            })
+            const { devops, name, cluster } = params
+            await store.checkScriptCompile({
+              devops,
+              pipeline: name,
+              value: jenkins,
+              cluster,
+            })
+
+            const {
+              mode,
+              jsonData: json,
+            } = await store.convertJenkinsFileToJson(
+              jenkins,
+              cluster,
+              devops,
+              name,
+              true
+            )
+            re = {
+              jenkinsFile: jenkins,
+              jsonData: json,
+              mode,
+              template: data.template,
+            }
+          } else {
+            re = {
+              jenkinsFile: '',
+              json: {},
+              mode: 'raw',
+              template: 'custom',
+            }
+          }
+
+          Modal.close(modal)
+          success && success(re)
         },
         modal: CreateModal,
         steps: PIPELINE_CREATE_STEPS,

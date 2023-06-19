@@ -164,7 +164,7 @@ export default class ClusterSettings extends React.Component {
           <Form.Item>
             <KubernetesParams name="spec.kubernetes" />
           </Form.Item>
-          <Form.Item label={t('Network Plugin')}>
+          <Form.Item label={t('NETWORK_PLUGIN')}>
             <TypeSelect
               name="spec.network.plugin"
               options={this.networkPlugins}
@@ -174,7 +174,7 @@ export default class ClusterSettings extends React.Component {
           <Form.Item>
             <NetworkParams name="spec.network" params={networkParams} />
           </Form.Item>
-          <Form.Item label={t('Default Storage Plugin')}>
+          <Form.Item label={t('DEFAULT_STORAGE_PLUGIN')}>
             <TypeSelect
               name="spec.storagePlugin"
               options={this.storagePlugins}

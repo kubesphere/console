@@ -119,7 +119,7 @@ export default class BaseInfo extends React.Component {
             label={t('CLUSTER_NAME')}
             desc={t('NAME_DESC')}
             rules={[
-              { required: true, message: t('Please input cluster name') },
+              { required: true, message: t('CLUSTER_NAME_EMPTY') },
               {
                 pattern: PATTERN_NAME,
                 message: t('INVALID_NAME_DESC'),
@@ -172,14 +172,14 @@ export default class BaseInfo extends React.Component {
             <>
               <SubTitle
                 className={styles.nodesTitle}
-                title={t('Node Settings')}
+                title={t('NODE_SETTINGS')}
                 description={t('CLUSTER_NODE_SETTINGS_DESC')}
               />
               <Form.Item
                 rules={[
                   {
                     required: true,
-                    message: t('Please add at least one cluster node'),
+                    message: t('PLEASE_ADD_AT_LEAST_ONE_CLUSTER_NODE'),
                   },
                   {
                     validator: this.nodesValidator,

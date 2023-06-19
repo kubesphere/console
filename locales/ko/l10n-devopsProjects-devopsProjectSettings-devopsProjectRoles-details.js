@@ -20,5 +20,5 @@ module.exports = {
   // Description
   // Attributes
   // Permissions
-  NO_PERMISSION: 'No Permission Found'
+  NO_PERMISSION: '권한을 찾지 못했습니다'
 };

@@ -18,6 +18,7 @@
 
 import { isEmpty } from 'lodash'
 import React from 'react'
+import { Tag } from '@kube-design/components'
 import { List } from 'components/Base'
 import ClusterWrapper from 'components/Clusters/ClusterWrapper'
 import { getLocalTime, showNameAndAlias } from 'utils'
@@ -35,16 +36,17 @@ export default class WorkspaceCard extends React.Component {
 
     const details = [
       {
-        title: isEmpty(data.clusters) ? (
-          '-'
-        ) : (
-          <ClusterWrapper
-            clusters={data.clusters}
-            clustersDetail={clustersDetail}
-          />
-        ),
-        className: styles.clusters,
-        description: t('CLUSTER_INFORMATION'),
+        title:
+          data.name === 'system-workspace' ? (
+            <Tag type="secondary">{t('ALL_CLUSTERS')}</Tag>
+          ) : isEmpty(data.clusters) ? (
+            '-'
+          ) : (
+            <ClusterWrapper
+              clusters={data.clusters}
+              clustersDetail={clustersDetail}
+            />
+          ),
       },
       {
         title: data.createTime

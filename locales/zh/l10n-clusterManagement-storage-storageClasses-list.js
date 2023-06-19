@@ -45,7 +45,6 @@ module.exports = {
   MINSIZE: '容量下限',
   STEPSIZE: '步长',
   FSTYPE: '文件系统类型',
-  TAGS: '标签',
   QINGCLOUD_CSI_TYPE_DESC: '在青云云平台中，0 代表性能型磁盘；2 代表容量型磁盘；3 代表超高性能型磁盘；5 代表企业级分布式 SAN（NeonSAN）型磁盘；100 代表基础型磁盘；200 代表 SSD 企业型磁盘。',
   CREATE_VOLUME_MAX_SIZE: '卷的容量上限。',
   CREATE_VOLUME_STEP_SIZE: '卷的增量值。',

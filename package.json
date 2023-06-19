@@ -5,7 +5,7 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "@kube-design/components": "^1.20.0",
+    "@kube-design/components": "^1.27.1",
     "ace-builds": "^1.4.7",
     "ansi_up": "^5.0.0",
     "async-validator": "^1.8.5",
@@ -73,7 +73,7 @@
     "xterm": "3.8.1"
   },
   "scripts": {
-    "start": "concurrently -k --raw 'yarn dev:client' 'yarn dev:server'",
+    "start": "concurrently -k --raw \"yarn dev:client\" \"yarn dev:server\"",
     "build": "yarn build:client && yarn build:server",
     "dev:client": "cross-env NODE_ENV=development webpack-dev-server --config scripts/webpack.dev.js -w",
     "dev:server": "cross-env NODE_ENV=development nodemon -w ./common -w ./server -e js,yaml server/server.js",

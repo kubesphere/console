@@ -70,9 +70,9 @@ module.exports = {
   NO_MATCHING_RESULT_FOUND: 'Aún no se han encontrado recursos que coincidan con el filtro',
   STATUS: 'Estado',
   TOTAL_ITEMS: 'Total de {num} artículos',
-  YOU_CAN_TRY_TO: 'You can try to',
-  REFRESH_DATA: 'refresh data',
-  CLEAR_SEARCH_CONDITIONS: 'clear search conditions',
+  YOU_CAN_TRY_TO: 'You can try',
+  REFRESH_DATA: 'refreshing data',
+  CLEAR_SEARCH_CONDITIONS: 'clearing search conditions',
   // List > Edit Taints
   DUPLICATE_KEYS: 'Calves duplicadas',
   EMPTY_KEY: 'Claves vacías'

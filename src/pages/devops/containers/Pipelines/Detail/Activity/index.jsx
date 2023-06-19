@@ -22,7 +22,7 @@ import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
 import { parse } from 'qs'
 import { observer, inject } from 'mobx-react'
-import { Button, Notify } from '@kube-design/components'
+import { Button, Notify, Tooltip } from '@kube-design/components'
 
 import { getLocalTime, formatUsedTime } from 'utils'
 
@@ -67,6 +67,10 @@ export default class Activity extends React.Component {
 
   get isMultiBranch() {
     return !isEmpty(toJS(this.store.detail.branchNames))
+  }
+
+  get isDisabled() {
+    return this.store?.branchDetail?.disabled
   }
 
   get prefix() {
@@ -138,6 +142,7 @@ export default class Activity extends React.Component {
         cluster: params.cluster,
         params,
         branches: toJS(detail.branchNames),
+        disabledBrancheNames: toJS(detail.disabledBrancheNames),
         parameters: toJS(detail.parameters),
         success: () => {
           Notify.success({ content: `${t('PIPELINE_RUN_START_SI')}` })
@@ -228,7 +233,7 @@ export default class Activity extends React.Component {
       width: '15%',
       key: 'status',
       render: record =>
-        record.result === 'ABORTED' || !record.result ? (
+        getPipelineStatus(record)?.type === 'nostatus' || !record.result ? (
           <Status {...getPipelineStatus(record)} />
         ) : (
           <Link className="item-name" to={this.getRunhref(record)}>
@@ -310,28 +315,33 @@ export default class Activity extends React.Component {
         if (
           (record.branch && !record.commitId) ||
           !this.enabledActions.includes('edit') ||
-          !record.id
+          !record.id ||
+          this.isDisabled
         ) {
           return null
         }
         if (record.state === 'FINISHED') {
           return (
-            <Button
-              onClick={this.handleReplay(record)}
-              icon="restart"
-              type="flat"
-            />
+            <Tooltip content={t('Replay')}>
+              <Button
+                onClick={this.handleReplay(record)}
+                icon="restart"
+                type="flat"
+              />
+            </Tooltip>
           )
         }
         return (
-          <Button onClick={this.handleStop(record)} icon="stop" type="flat" />
+          <Tooltip content={t('STOP')}>
+            <Button onClick={this.handleStop(record)} icon="stop" type="flat" />
+          </Tooltip>
         )
       },
     },
   ]
 
   getActions = () =>
-    this.isAtBranchDetailPage
+    this.isAtBranchDetailPage || this.isDisabled
       ? null
       : [
           {
@@ -349,7 +359,6 @@ export default class Activity extends React.Component {
     const omitFilters = omit(filters, 'page', 'workspace')
     const pagination = { total, page, limit }
     const isEmptyList = total === 0
-
     if (isEmptyList) {
       const { detail } = this.store
       const runnable = this.enabledActions.includes('edit')

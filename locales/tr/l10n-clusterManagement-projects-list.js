@@ -41,7 +41,7 @@ module.exports = {
   OK: 'Tamam',
   NAME_DESC: 'Ad yalnızca küçük harfler, sayılar ve kısa çizgiler (-) içerebilir ve küçük harf veya sayı ile başlayıp bitmelidir. Maksimum uzunluk 63 karakterdir.',
   DESCRIPTION_DESC: 'Açıklama herhangi bir karakter içerebilir ve maksimum uzunluk 256 karakterdir.',
-  ALIAS_DESC: 'Takma ad herhangi bir karakter içerebilir ve maksimum uzunluk 63 karakterdir.',
+  ALIAS_DESC: 'The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
   // List > Edit Information
   EDIT_INFORMATION: 'Bilgi Düzenle',
   // List > Delete

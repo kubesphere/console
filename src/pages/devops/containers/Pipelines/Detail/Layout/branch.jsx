@@ -108,7 +108,7 @@ export default class BranchDetailLayout extends React.Component {
   ]
 
   getAttrs = () => {
-    const { detail, activityList } = this.store
+    const { detail, activityList, branchDetail } = this.store
     const { devopsName } = this.props.devopsStore
     const { branch } = this.props.match.params
 
@@ -119,7 +119,16 @@ export default class BranchDetailLayout extends React.Component {
       },
       {
         name: t('PIPELINE'),
-        value: `${detail.name}/${decodeURIComponent(branch)}`,
+        value: (
+          <span>
+            {detail.name}/
+            {branchDetail.disabled ? (
+              <del>{decodeURIComponent(branch)}</del>
+            ) : (
+              decodeURIComponent(branch)
+            )}
+          </span>
+        ),
       },
       {
         name: t('TASK_STATUS'),
@@ -184,21 +193,24 @@ export default class BranchDetailLayout extends React.Component {
     }
     const { params } = this.props.match
     const { branch } = params
-
+    const { branchDetail } = this.store
     const operations = this.getOperations().filter(item =>
       this.enabledActions.includes(item.action)
     )
 
     const { devops, cluster, workspace, name } = this.props.match.params
-
     const sideProps = {
       icon: (
         <span className="icon" style={{ width: '20px', height: '20px' }}>
           <ForkIcon />
         </span>
       ),
-      name: decodeURIComponent(branch),
-      operations,
+      name: branchDetail.disabled ? (
+        <del>{decodeURIComponent(branch)}</del>
+      ) : (
+        decodeURIComponent(branch)
+      ),
+      operations: branchDetail.disabled ? [] : operations,
       attrs: this.getAttrs(),
       module: this.module,
       breadcrumbs: [

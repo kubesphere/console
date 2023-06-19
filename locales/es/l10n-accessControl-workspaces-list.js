@@ -21,12 +21,14 @@ module.exports = {
   WORKSPACE_DESC: 'Los espacios de trabajo son una unidad lógica para organizar tus proyectos de carga de trabajo / namespaces de Kubernetes, proyectos DevOps, administrar el acceso a recursos y compartir información dentro de tu equipo. Es un lugar de trabajo aislado para tu equipo.',
   // List
   CLUSTER_PL: 'Clusters',
+  ALL_CLUSTERS: 'All Clusters',
   // List > Create > Basic Information
   CREATE_WORKSPACE: 'Crear espacio de trabajo',
   WORKSPACE_NAME_EMPTY_DESC: 'Introduce el nombre del espacio de trabajo',
   WORKSPACE_CREATE_DESC: 'Los esapcios de trabajo son una unidad lógica para organizar tus proyectos y proyectos DevOps. El acceso a los recursos y los recursos compartidos del equipo se pueden administrar aquí. Puede servir como un espacio de trabajo independiente para tu equipo.',
   ADMINISTRATOR: 'Administrator',
   WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
+  INVALID_WORKSPACE_NAME: 'Invalid workspace name.',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'Selecciona el clúster disponible en el espacio de trabajo.',
   NO_CLUSTER_AVAILABLE: 'No Cluster Available',

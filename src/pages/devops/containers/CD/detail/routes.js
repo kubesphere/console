@@ -37,7 +37,7 @@ export default isArgo
   : [
       {
         path: `${PATH}/fluxApp`,
-        title: '应用详情',
+        title: 'APP_DETAILS',
         component: FluxApp,
       },
 

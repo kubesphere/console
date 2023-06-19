@@ -42,8 +42,9 @@ module.exports = {
   STATELESS_SERVICE_DESC: 'Create a service and a Deployment.',
   APPLICATION_SERVICE_DESC: 'Add stateful or stateless services to the app based on your requirements.',
   APP_CREATE_SERVICE_DESC: 'Create a service for the app.',
-  // List > Create > Route Settings
+  // List > Create > Ingress Settings
   ROUTE_SETTINGS: 'Route Settings',
   ROUTING_RULES: 'Routing Rules',
-  ROUTE_SETTINGS_DESC: 'Set routing rules for the app.'
+  ROUTE_SETTINGS_DESC: 'Set routing rules for the app.',
+  ADD_ROUTE_SUCCESS: 'The route was added successfully.'
 };

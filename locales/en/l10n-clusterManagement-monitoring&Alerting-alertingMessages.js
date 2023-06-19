@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
   // Banner
   ALERTING_MESSAGE_PL: 'Alerts',
@@ -24,7 +23,7 @@ module.exports = {
   ALERTS_FROM_CUSTOM_POLICIES: 'From Custom Rules',
   ALERTS_FROM_BUILT_IN_POLICIES: 'From Built-in Rules',
   TRIGGER_TIME: 'Trigger Time',
-  ALERTING_MESSAGE_EMPTY_DESC: 'No alert is found in the current project.',
+  ALERTING_MESSAGE_EMPTY_DESC: 'No alert is found in the current cluster.',
   MONITORING_TARGET: 'Monitoring Target',
   // Built-in > List
 }

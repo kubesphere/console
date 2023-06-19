@@ -36,12 +36,23 @@ export default class PodTemplate extends Base {
     const { formRef, formProps, isFederated, isEdit } = this.props
     const { showContainer, selectContainer } = this.state
 
-    if (showContainer) {
-      return this.renderContainerForm(selectContainer)
-    }
-
     const data =
       isFederated && isEdit ? this.fedFormTemplate : this.formTemplate
+
+    const annotationOfImagePullSecrets = JSON.parse(
+      get(
+        data,
+        'spec.template.metadata.annotations["kubesphere.io/imagepullsecrets"]',
+        '{}'
+      )
+    )
+
+    if (showContainer) {
+      return this.renderContainerForm({
+        ...selectContainer,
+        annotationOfImagePullSecrets,
+      })
+    }
 
     const containers = get(data, 'spec.template.spec.containers', [])
     containers.forEach(item => {

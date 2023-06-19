@@ -17,10 +17,10 @@
  */
 module.exports = {
   // List
-  SORT_BY_WORKSPACE_MEMORY_USAGE: 'Sort by memory usage',
-  SORT_BY_WORKSPACE_MEMORY_USAGE_WO_CACHE: 'Sort by memory usage',
-  SORT_BY_WORKSPACE_POD_COUNT: 'Sort by pod quota usage (%)',
-  SORT_BY_WORKSPACE_CPU_USAGE: 'Sort by CPU usage',
-  SORT_BY_WORKSPACE_NET_BYTES_TRANSMITTED: 'Sort by outbound traffic',
-  SORT_BY_WORKSPACE_NET_BYTES_RECEIVED: 'Sort by inbound traffic'
+  SORT_BY_WORKSPACE_MEMORY_USAGE: '메모리 사용량 순',
+  SORT_BY_WORKSPACE_MEMORY_USAGE_WO_CACHE: '메모리 사용량 순',
+  SORT_BY_WORKSPACE_POD_COUNT: '파드 할당량별 사용량 순 (%)',
+  SORT_BY_WORKSPACE_CPU_USAGE: 'CPU 사용량 순',
+  SORT_BY_WORKSPACE_NET_BYTES_TRANSMITTED: '아웃바운드 트래픽 순',
+  SORT_BY_WORKSPACE_NET_BYTES_RECEIVED: '인바운드 트래픽 순'
 };

@@ -42,8 +42,9 @@ module.exports = {
   STATELESS_SERVICE_DESC: '容器服務中最常用的一種服務，通過定義容器組模板來控制容器組狀態，包括滾動升級和回滾',
   APPLICATION_SERVICE_DESC: '根據應用中服務類型的不同設置不同類型的服務組件，支持無狀態服務和有狀態服務',
   APP_CREATE_SERVICE_DESC: 'Create a service for the app.',
-  // List > Create > Route Settings
+  // List > Create > Ingress Settings
   ROUTE_SETTINGS: 'Route Settings',
   ROUTING_RULES: '路由規則',
-  ROUTE_SETTINGS_DESC: '可以設置應用的外網訪問規則 (Ingress)'
+  ROUTE_SETTINGS_DESC: '可以設置應用的外網訪問規則 (Ingress)',
+  ADD_ROUTE_SUCCESS: 'The route was added successfully.'
 };

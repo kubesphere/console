@@ -28,6 +28,7 @@ import SecretStore from 'stores/secret'
 
 import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { ICON_TYPES, SECRET_TYPES } from 'utils/constants'
+import styles from './index.scss'
 
 @withClusterList({
   store: new SecretStore(),
@@ -37,6 +38,9 @@ import { ICON_TYPES, SECRET_TYPES } from 'utils/constants'
 })
 export default class Secrets extends React.Component {
   showAction = record => !record.isFedManaged
+
+  showSetDefault = record =>
+    record.type === 'kubernetes.io/dockerconfigjson' && !record.isDefault
 
   get itemActions() {
     const { trigger, name, getData } = this.props
@@ -69,11 +73,25 @@ export default class Secrets extends React.Component {
         text: t('EDIT_SETTINGS'),
         action: 'edit',
         show: this.showAction,
-        onClick: item =>
+        onClick: item => {
           trigger('secret.edit', {
             detail: item,
             success: getData,
-          }),
+          })
+        },
+      },
+      {
+        key: 'default',
+        icon: 'star',
+        text: t('SET_DEFAULT_REPOSITORY'),
+        action: 'edit',
+        show: this.showSetDefault,
+        onClick: item => {
+          trigger('secret.default', {
+            detail: item,
+            success: getData,
+          })
+        },
       },
       {
         key: 'delete',
@@ -81,11 +99,13 @@ export default class Secrets extends React.Component {
         text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
-        onClick: item =>
+        onClick: item => {
           trigger('resource.delete', {
             type: name,
             detail: item,
-          }),
+            success: getData,
+          })
+        },
       },
     ]
   }
@@ -94,6 +114,18 @@ export default class Secrets extends React.Component {
     disabled: record.isFedManaged,
     name: record.name,
   })
+
+  getDefaultLabel = (title, record) => {
+    if (!record.isDefault) {
+      return title
+    }
+    return (
+      <div className={styles.titleRow}>
+        <span className={styles.title}>{title}</span>
+        <span className={styles.tag}>{t('DEFAULT_REPOSITORY')}</span>
+      </div>
+    )
+  }
 
   getColumns = () => {
     const { getSortOrder, module } = this.props
@@ -108,7 +140,7 @@ export default class Secrets extends React.Component {
           <Avatar
             icon={ICON_TYPES[module]}
             iconSize={40}
-            title={getDisplayName(record)}
+            title={this.getDefaultLabel(getDisplayName(record), record)}
             desc={record.description || '-'}
             to={`/clusters/${cluster}/projects/${record.namespace}/${module}/${name}`}
             isMultiCluster={record.isFedManaged}
@@ -153,11 +185,12 @@ export default class Secrets extends React.Component {
   }
 
   showCreate = () => {
-    const { match, module } = this.props
+    const { match, module, getData } = this.props
     return this.props.trigger('secret.create', {
       module,
-      namespace: match.params.namespace,
       cluster: match.params.cluster,
+      namespace: match.params.namespace,
+      success: () => getData(),
     })
   }
 

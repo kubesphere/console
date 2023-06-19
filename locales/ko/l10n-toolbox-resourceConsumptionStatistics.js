@@ -18,21 +18,21 @@
 module.exports = {
   // Title
   // Description
-  RESOURCE_CONSUMPTION_DESC: 'Select a category to view the resource consumption information.',
+  RESOURCE_CONSUMPTION_DESC: '리소스 사용 정보를 조회할 카테고리를 선택합니다.',
   // Cluster Resource Consumption
-  CLUSTER_CONSUMPTION: 'Cluster Resource Consumption',
-  CLUSTER_CONSUMPTION_DESC: 'View the consumption information of cluster resources.',
-  CLUSTER_RESOURCE_CONSUMPTION_DESC: 'Consumption of resources such as CPU, memory, and volumes of <strong>clusters</strong>',
-  CLUSTER_NODE_CONSUMPTION_DESC: 'Consumption of resources such as CPU, memory, and volumes of cluster <strong>nodes</strong>',
-  CLUSTER_POD_CONSUMPTION_DESC: 'Consumption of CPU and memory of <strong>pods</strong> in nodes',
-  CURRENT_RESOURCE_CONSUMPTION: 'Current Resource Consumption',
-  VIEW: 'View',
-  CONSUMPTION_SINCE_CREATION: 'has consumed the following resources since it is created.',
-  PRICE: 'Price',
+  CLUSTER_CONSUMPTION: '클러스터 리소스 사용량',
+  CLUSTER_CONSUMPTION_DESC: '클러스터 리소스의 사용량 정보를 봅니다.',
+  CLUSTER_RESOURCE_CONSUMPTION_DESC: '<strong>클러스터</strong>의 CPU, 메모리 및 볼륨 등을 포함한 리소스 사용량',
+  CLUSTER_NODE_CONSUMPTION_DESC: '<strong>노드</strong>의 CPU, 메모리 및 볼륨 등을 포함한 리소스 사용량',
+  CLUSTER_POD_CONSUMPTION_DESC: '<strong>파드</strong>의 CPU, 메모리 등을 포함한 리소스 사용량',
+  CURRENT_RESOURCE_CONSUMPTION: '현재 리소스 사용량',
+  VIEW: '보기',
+  CONSUMPTION_SINCE_CREATION: '생성된 이후 다음 리소스를 사용했습니다.',
+  PRICE: '가격',
   // Workspace Recource Consumption
-  WORKSPACE_CONSUMPTION: 'Workspace Resource Consumption',
-  WORKSPACE_CONSUMPTION_DESC: 'View the consumption information of workspace resources.',
-  WORKSPACE_RESOURCE_CONSUMPTION_DESC: 'Consumption of resources such as CPU, memory, and volumes of <strong>workspaces</strong>',
-  WORKSPACE_PROJECT_CONSUMPTION_DESC: 'Consumption of resources such as CPU, memory, and volumes of <strong>projects</strong> in workspaces',
-  PROJECT_CONSUMPTION_DESC: 'Consumption of CPU and memory of <strong>apps</strong>, <strong>services</strong> and <strong>pods</strong> in projects'
+  WORKSPACE_CONSUMPTION: '워크스페이스 리소스 사용량',
+  WORKSPACE_CONSUMPTION_DESC: '워크스페이스 리소스의 사용량 정보를 봅니다.',
+  WORKSPACE_RESOURCE_CONSUMPTION_DESC: '<strong>워크스페이스</strong>의 CPU, 메모리 및 볼륨 등을 포함한 리소스 사용량',
+  WORKSPACE_PROJECT_CONSUMPTION_DESC: '<strong>프로젝트</strong>의 CPU, 메모리 및 볼륨 등을 포함한 리소스 사용량',
+  PROJECT_CONSUMPTION_DESC: '프로젝트 내 <strong>앱</strong>, <strong>서비스</strong>, 및 <strong>파드</strong>의 CPU, 메모리 등을 포함한 리소스 사용량'
 };

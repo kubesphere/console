@@ -232,7 +232,7 @@ export default class TimeRange extends React.Component {
               }}
             />
             <div className={styles.clearBlock} onClick={this.handleClear}>
-              {t('Clear')}
+              {t('CLEAR')}
             </div>
           </>
         )}

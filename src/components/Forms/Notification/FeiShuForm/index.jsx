@@ -126,7 +126,7 @@ export default class FeishuForm extends Component {
           <span>{t('CHATBOT_SETTINGS')}</span>
         </div>
         <div className={styles.item}>
-          <Form.Item label={t('Webhook URL')}>
+          <Form.Item label={'Webhook URL'}>
             <Input name="secret.data.webhook" />
           </Form.Item>
           <Form.Item label={'Secret'}>

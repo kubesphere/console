@@ -16,11 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  CODE_REPO_PL: 'Code Repositories',
-  CODE_REPO_LOW: 'code cepository',
-  CODE_REPO: 'Code Repository',
-  CODE_REPO_DESC: 'Manage code repositories based on Git.',
-  CODE_REPO_EMPTY_DESC: 'Import a code repository from GitHub, GitLab, or Bitbucket. You can also use Git to directly pull source code.',
-  IMPORT_CODE_REPO: 'Import Code Repository',
-  EDIT_CODE_REPO: 'Edit Code Repository'
+  CODE_REPO_PL: '코드 저장소',
+  CODE_REPO_LOW: '코드 저장소',
+  CODE_REPO: '코드 저장소',
+  CODE_REPO_DESC: 'Git를 기반으로 코드 저장소를 관리합니다.',
+  CODE_REPO_EMPTY_DESC: 'GitHub, GitLab 또는 비트 버킷에서 코드 저장소를 가져옵니다. Git를 사용하여 소스 코드를 직접 가져올 수도 있습니다.',
+  IMPORT_CODE_REPO: '코드 저장소 가져오기',
+  EDIT_CODE_REPO: '코드 저장소 편집'
 };

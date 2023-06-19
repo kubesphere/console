@@ -17,22 +17,22 @@
  */
 module.exports = {
   // Title
-  TOTAL_EVENTS_TODAY: 'A total of <span class={className}> {events} </span> resource events were collected today.',
-  NO_RESOURCE_EVENTS_TODAY: 'No Resource Events Collected Today',
+  TOTAL_EVENTS_TODAY: '오늘 총 <span class={className}> {events} </span> 리소스 이벤트가 수집되었습니다.',
+  NO_RESOURCE_EVENTS_TODAY: '오늘 수집된 리소스 이벤트 없음',
   // Search
   // Querying Rules
-  RESOURCE_EVENTS_12H: 'Resource events in the last 12 hours',
-  RESOURCE_EVENT_WORKSPACE_TIP: 'Enter a workspace name to search for container logs.',
-  RESOURCE_EVENT_PROJECT_TIP: 'Enter a project name to search for container logs.',
-  RESOURCE_EVENT_RESOURCE_TYPE_TIP: 'Enter a resource type to search for container logs.',
-  RESOURCE_EVENT_RESOURCE_NAME_TIP: 'Enter a resource name to search for container logs.',
-  RESOURCE_EVENT_MESSAGE_TIP: 'Enter a message to search for resource events.',
-  RESOURCE_EVENT_CATEGORY_TIP: 'Enter a category name to search for container logs.',
-  RESOURCE_EVENT_REASON_TIP: 'Enter a reason to search for container logs.',
-  SEARCH_BY_MESSAGE: 'Search by Message',
-  SEARCH_BY_WORKSPACE: 'Search by Workspace',
-  SEARCH_BY_RESOURCE_TYPE: 'Search by Resource Type',
-  SEARCH_BY_RESOURCE_NAME: 'Search by Resource Name',
-  SEARCH_BY_REASON: 'Search by Reason',
-  SEARCH_BY_CATEGORY: 'Search by Category'
+  RESOURCE_EVENTS_12H: '최근 12시간 동안의 리소스 이벤트',
+  RESOURCE_EVENT_WORKSPACE_TIP: '컨테이너 로그를 검색할 워크스페이스 이름을 입력합니다.',
+  RESOURCE_EVENT_PROJECT_TIP: '컨테이너 로그를 검색할 프로젝트 이름을 입력합니다.',
+  RESOURCE_EVENT_RESOURCE_TYPE_TIP: '컨테이너 로그를 검색할 리소스 유형을 입력합니다.',
+  RESOURCE_EVENT_RESOURCE_NAME_TIP: '컨테이너 로그를 검색할 리소스 이름을 입력합니다.',
+  RESOURCE_EVENT_MESSAGE_TIP: '리소스 이벤트를 검색할 메시지를 입력합니다.',
+  RESOURCE_EVENT_CATEGORY_TIP: '컨테이너 로그를 검색할 카테고리 이름을 입력합니다.',
+  RESOURCE_EVENT_REASON_TIP: '컨테이너 로그를 검색해야 하는 이유를 입력합니다.',
+  SEARCH_BY_MESSAGE: '메시지로 검색',
+  SEARCH_BY_WORKSPACE: '워크스페이스로 검색',
+  SEARCH_BY_RESOURCE_TYPE: '리소스 유형으로 검색',
+  SEARCH_BY_RESOURCE_NAME: '리소스 이름으로 검색',
+  SEARCH_BY_REASON: '이유로 검색',
+  SEARCH_BY_CATEGORY: '카테고리로 검색'
 };

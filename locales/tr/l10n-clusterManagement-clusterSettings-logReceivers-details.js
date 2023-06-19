@@ -19,6 +19,9 @@ module.exports = {
   // Edit
   EDIT_LOG_RECEIVER: 'Edit Log Receiver',
   INDEX_PREFIX: 'Dizin öneki',
+  // DELETE
+  LOG_RECEIVER: 'Log Receiver',
+  LOG_RECEIVER_LOW: 'Log Receiver',
   // More > Change Status
   CHANGE_STATUS: 'Durum değiştirmek',
   LOG_COLLECTION_ENABLE_TIPS: 'Yeni durumun yürürlüğe girmesi için yaklaşık 1 dakika gerekir.',

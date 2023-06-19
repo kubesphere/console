@@ -16,20 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { toJS } from 'mobx'
-import { cloneDeep, get, isEmpty, omit } from 'lodash'
 import { Button, Notify } from '@kube-design/components'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'components/Tables/List'
+
+import { ListPage, withDevOpsList } from 'components/HOCs/withList'
 import Empty from 'components/Tables/Base/Empty'
+import Table from 'components/Tables/List'
 import Health from 'devops/components/Health'
+import { cloneDeep, get, isEmpty, omit } from 'lodash'
+import { toJS } from 'mobx'
+import React from 'react'
 import CodeStore from 'stores/codeRepo'
 import PipelineStore from 'stores/devops/pipelines'
-
-import { withDevOpsList, ListPage } from 'components/HOCs/withList'
 
 @withDevOpsList({
   store: new PipelineStore(),
@@ -199,6 +199,7 @@ export default class PipelinesList extends React.Component {
         devops: this.devops,
         cluster: this.cluster,
         branches: record.branchNames,
+        disabledBrancheNames: record.disabledBrancheNames,
         parameters: record.parameters,
         params: {
           ...params,
@@ -234,6 +235,7 @@ export default class PipelinesList extends React.Component {
 
     trigger('pipeline.create', {
       module,
+      trigger,
       title: t('CREATE_PIPELINE'),
       formTemplate: this.formTemplate,
       devops: this.devops,
@@ -311,54 +313,82 @@ export default class PipelinesList extends React.Component {
     })
   }
 
-  getColumns = () => [
-    {
-      title: t('NAME'),
-      dataIndex: 'name',
-      width: '20%',
-      render: (name, record) => {
-        const isRun =
-          record.status !== 'failed' && record.status !== 'successful'
-
-        const url = `/${this.workspace}/clusters/${this.cluster}/devops/${
-          this.devops
-        }/pipelines/${encodeURIComponent(record.name)}${
-          record.isMultiBranch ? '/activity' : ''
-        }`
-
-        return <Avatar to={isRun ? null : url} title={name} />
+  getTypes() {
+    return [
+      {
+        text: t('PIPELINE_PL'),
+        value: 'pipeline',
       },
-    },
+      {
+        text: t('MULTI_BRANCH_PIPELINE'),
+        value: 'multi-branch-pipeline',
+      },
+    ]
+  }
 
-    {
-      title: t('HEALTH'),
-      dataIndex: 'weatherScore',
-      width: '30%',
-      isHideable: true,
-      render: weatherScore => <Health score={weatherScore} />,
-    },
-    {
-      title: t('BRANCH_COUNT'),
-      dataIndex: 'totalNumberOfBranches',
-      width: '25%',
-      isHideable: true,
-      render: (totalNumberOfBranches, record) =>
-        totalNumberOfBranches === undefined ||
-        (!record.isMultiBranch && totalNumberOfBranches === 0)
-          ? '-'
-          : totalNumberOfBranches,
-    },
-    {
-      title: t('PULL_REQUEST_COUNT'),
-      dataIndex: 'totalNumberOfPullRequests',
-      width: '20%',
-      isHideable: true,
-      render: totalNumberOfPullRequests =>
-        totalNumberOfPullRequests === undefined
-          ? '-'
-          : totalNumberOfPullRequests,
-    },
-  ]
+  getColumns = () => {
+    const { getFilteredValue } = this.props
+    return [
+      {
+        title: t('NAME'),
+        dataIndex: 'name',
+        width: '20%',
+        search: true,
+        render: (name, record) => {
+          const isRun =
+            record.status !== 'failed' && record.status !== 'successful'
+
+          const url = `/${this.workspace}/clusters/${this.cluster}/devops/${
+            this.devops
+          }/pipelines/${encodeURIComponent(record.name)}${
+            record.isMultiBranch ? '/activity' : ''
+          }`
+
+          return <Avatar to={isRun ? null : url} title={name} />
+        },
+      },
+
+      {
+        title: t('HEALTH'),
+        dataIndex: 'weatherScore',
+        width: '25%',
+        isHideable: true,
+        render: weatherScore => <Health score={weatherScore} />,
+      },
+      {
+        title: t('KIND_TCAP'),
+        dataIndex: 'type',
+        width: '20%',
+        filters: this.getTypes(),
+        filteredValue: getFilteredValue('type'),
+        isHideable: true,
+        search: true,
+        render: (e, { isMultiBranch }) =>
+          isMultiBranch ? t('MULTI_BRANCH_PIPELINE') : t('PIPELINE_PL'),
+      },
+      {
+        title: t('BRANCH_COUNT'),
+        dataIndex: 'totalNumberOfBranches',
+        width: '20%',
+        isHideable: true,
+        render: (totalNumberOfBranches, record) =>
+          totalNumberOfBranches === undefined ||
+          (!record.isMultiBranch && totalNumberOfBranches === 0)
+            ? '-'
+            : totalNumberOfBranches,
+      },
+      {
+        title: t('PULL_REQUEST_COUNT'),
+        dataIndex: 'totalNumberOfPullRequests',
+        width: '15%',
+        isHideable: true,
+        render: totalNumberOfPullRequests =>
+          totalNumberOfPullRequests === undefined
+            ? '-'
+            : totalNumberOfPullRequests,
+      },
+    ]
+  }
 
   handleMultiBatchRun = () => {
     const { selectedRowKeys, data } = toJS(this.props.store.list)
@@ -401,7 +431,6 @@ export default class PipelinesList extends React.Component {
 
     const isEmptyList = isLoading === false && total === 0
     const omitFilters = omit(filters, ['limit', 'page'])
-
     const showCreate = this.enabledActions.includes('create')
       ? this.handleCreate
       : null
@@ -455,18 +484,20 @@ export default class PipelinesList extends React.Component {
         },
       ],
     }
-
+    const { tableProps } = this.props
     return (
       <Table
+        {...tableProps}
         rowKey="name"
         data={data}
+        selectedRowKeys={toJS(selectedRowKeys)}
         columns={this.getColumns()}
         filters={omitFilters}
         pagination={pagination}
         isLoading={isLoading}
         onFetch={this.handleFetch}
         onCreate={showCreate}
-        searchType="name"
+        // searchType="name"
         tableActions={defaultTableProps}
         itemActions={this.itemActions}
         enabledActions={this.enabledActions}

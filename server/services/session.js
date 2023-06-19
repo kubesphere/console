@@ -374,7 +374,7 @@ const getGitOpsEngine = async ctx => {
   if (!token) {
     return []
   }
-  return 'fluxcd'
+  return 'argocd'
 }
 
 const getCurrentUser = async (ctx, clusterRole, isMulticluster) => {

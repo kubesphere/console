@@ -17,21 +17,21 @@
  */
 module.exports = {
   // Navigation Pane
-  WORKSPACE_MEMBERS: 'Workspace Members',
+  WORKSPACE_MEMBERS: '워크스페이스 맴버',
   // Banner
-  WORKSPACE_MEMBER_PL: 'Workspace Members',
-  WORKSPACE_MEMBER_DESC: 'Workspace members can view or manage workspace resources. You can manage members and control their permissions in the workspace.',
+  WORKSPACE_MEMBER_PL: '워크스페이스 맴버',
+  WORKSPACE_MEMBER_DESC: '워크스페이스 맴버는 \b워크스페이스 리소스를 보거나 관리할 수 있습니다. 워크스페이스에서 맴버를 관리하고 사용 권한을 제어할 수 있습니다.',
   // List
-  WORKSPACE_MEMBER_EMPTY_DESC: 'Please invite a user to the workspace.',
-  ROLE: 'Role',
-  REMOVE_MEMBER: 'Remove Member',
-  REMOVE_MULTIPLE_MEMBERS: 'Remove Multiple Members',
-  REMOVE_MULTIPLE_MEMBERS_TIP: 'Enter the usernames <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
+  WORKSPACE_MEMBER_EMPTY_DESC: '사용자를 워크스페이스로 초대하십시오.',
+  ROLE: '역할',
+  REMOVE_MEMBER: '맴버 삭제',
+  REMOVE_MULTIPLE_MEMBERS: '여러 맴버 일괄 삭제',
+  REMOVE_MULTIPLE_MEMBERS_TIP: '사용자 이름 <strong>{resource}</strong>을 입력하여 이 작업의 위험을 이해하고 있는지 확인합니다.',
   // List > Invite
-  INVITE_WORKSPACE_MEMBER_DESC: 'Invite users to the workspace.',
-  INVITE_MEMBER: 'Invite Member',
-  INVITE: 'Invite',
-  INVITED_SUCCESSFULLY: 'Invited successfully.',
+  INVITE_WORKSPACE_MEMBER_DESC: '사용자를 워크스페이스로 초대합니다.',
+  INVITE_MEMBER: '맴버 초대',
+  INVITE: '초대하기',
+  INVITED_SUCCESSFULLY: '초대하였습니다.',
   // List > Remove
-  REMOVE_MEMBER_TIP: 'Enter the username <strong>{resource}</strong> to confirm that you understand the risks of this operation.'
+  REMOVE_MEMBER_TIP: '사용자 이름 <strong>{resource}</strong>을 입력하여 이 작업의 위험을 이해하고 있는지 확인합니다.'
 };

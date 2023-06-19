@@ -37,7 +37,7 @@ export default class ClusterSettings extends React.Component {
         />
         <Form className={styles.form} data={formTemplate} ref={formRef}>
           <Form.Group
-            label={t('KubeSphere Settings')}
+            label={t('KUBESPHERE_SETTINGS')}
             desc={t('CLUSTER_KUBESPHERE_SETTINGS_DESC')}
             checkable
             keepDataWhenUnCheck
@@ -54,12 +54,12 @@ export default class ClusterSettings extends React.Component {
             </Form.Item>
           </Form.Group>
           <Form.Group
-            label={t('Private Registry Configuration')}
+            label={t('PRIVATE_REGISTRY_CONFIGURATION')}
             desc={t('CLUSTER_PRIVATE_REGISTRY_DESC')}
             checkable
             keepDataWhenUnCheck
           >
-            <Form.Item label={t('Private Registry')}>
+            <Form.Item label={t('PRIVATE_REGISTRY')}>
               <Input name="spec.registry.privateRegistry" />
             </Form.Item>
           </Form.Group>
@@ -85,19 +85,19 @@ export default class ClusterSettings extends React.Component {
             </Form.Item>
           </Form.Group>
           <Form.Group
-            label={t('etcd Backup')}
+            label={t('ETCD_BACKUP')}
             desc={t('CLUSTER_ETCD_BACKUP_DESC')}
             checkable
             keepDataWhenUnCheck
           >
             <Form.Item
-              label={t('etcd Backup Dir')}
+              label={t('ETCD_BACKUP_DIR')}
               desc={t('CLUSTER_ETCD_BACKUP_DIR_DESC')}
             >
               <Input name="spec.kubernetes.etcdBackupDir" />
             </Form.Item>
             <Form.Item
-              label={t('etcd Backup Period')}
+              label={t('ETCD_BACKUP_PERIOD')}
               desc={t('CLUSTER_ETCD_BACKUP_PERIOD_DESC')}
             >
               <NumberInput
@@ -107,7 +107,7 @@ export default class ClusterSettings extends React.Component {
               />
             </Form.Item>
             <Form.Item
-              label={t('Keep Backup Number')}
+              label={t('KEEP_BACKUP_NUMBER')}
               desc={t('CLUSTER_ETCD_BACKUP_NUMBER_DESC')}
             >
               <NumberInput

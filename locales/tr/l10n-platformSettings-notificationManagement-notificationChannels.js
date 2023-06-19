@@ -67,6 +67,10 @@ module.exports = {
   FEISHU_TITLE: 'Feishu',
   FEISHU_DESC: 'Send notifications to Feishu users.',
   PLEASE_ENTER_APP_ID: 'Please enter an app ID.',
+  USER_ID: 'User ID',
+  DEPARTMENT_ID: 'Department ID',
+  FEISHU_RECEIPIENT_SETTINGS_DESC: 'To receive notifications, please set at least one user ID or department ID.',
+  FEISHU_SECRET: 'Gizli',
   // DingTalk
   DINGTALK_TITLE: 'DingTalk',
   DINGTALK: 'DingTalk',
@@ -83,7 +87,7 @@ module.exports = {
   MAX_CID_COUNT: 'You can add a maximum of {count} chat IDs.',
   CHAT_ID_EXISTS: 'The chat ID already exists. Please add another chat ID.',
   // DingTalk > DingTalk Chatbot
-  CHATBOT_SETTINGS: 'DingTalk Sohbet Robotu',
+  CHATBOT_SETTINGS: 'Chatbot Settings',
   KEYWORDS_LIST: 'Added Keywords',
   DINGTALK_CHATBOT_SECURITY_TIP: 'Please enter a secret or keyword.',
   ENTER_KEYWORD_DESC: 'Lütfen bir anahtar kelime girin.',
@@ -101,11 +105,13 @@ module.exports = {
   // WeCom > User ID
   TOUSER_LIST: 'Kullanıcı Kimlikleri eklendi',
   EMPTY_TOUSER_DESC: 'Kullanıcı kimliği eklenemedi.',
+  ENTER_TOUSER_TIP: 'Please enter a user ID.',
   TOUSER_EXISTS: 'Kullanıcı kimliği zaten var. Lütfen başka bir kullanıcı kimliği girin.',
   MAX_TOUSER_COUNT: 'You can add a maximum of {count} user IDs.',
   // WeCom > Department ID
   TOPARTY_LIST: 'Eklenen Departman Kimlikleri',
   EMPTY_TOPARTY_DESC: 'Departman kimliği eklenmedi.',
+  ENTER_TOPARTY_TIP: 'Please enter a department ID.',
   TOPARTY_EXISTS: 'Departman kimliği zaten var. Lütfen başka bir departman kimliği girin.',
   MAX_TOPARTY_COUNT: 'You can add a maximum of {count} department IDs.',
   // WeCom > Tag ID

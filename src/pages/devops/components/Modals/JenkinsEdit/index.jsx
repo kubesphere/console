@@ -16,15 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-
 import { Modal } from 'components/Base'
 import CodeEditor from 'components/Base/CodeEditor'
-import PipelineStore from 'stores/devops/pipelines'
 import ConfirmModal from 'components/Modals/Delete'
 
-import { isEqual } from 'lodash'
+import { get, isEqual } from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
+import PipelineStore from 'stores/devops/pipelines'
+import { compareVersion } from 'utils'
 import styles from './index.scss'
 
 export default class JenkinsEdit extends React.Component {
@@ -120,12 +120,25 @@ export default class JenkinsEdit extends React.Component {
     return false
   }
 
+  get ksVersion() {
+    const { cluster } = this.props.params
+    return globals.app.isMultiCluster
+      ? get(globals, `clusterConfig.${cluster}.ksVersion`)
+      : get(globals, 'ksConfig.ksVersion')
+  }
+
+  get isOld() {
+    return compareVersion(this.ksVersion, '3.4.0') < 0
+  }
+
   saveJenkins = jenkinsFile => {
-    const { devops, name: pipeline } = this.props.params
+    const { devops, name: pipeline, cluster } = this.props.params
     this.setState({ isLoading: true })
+    const clusterPath =
+      cluster && cluster !== 'default' ? `/klusters/${cluster}` : ''
     return request
       .put(
-        `/kapis/devops.kubesphere.io/v1alpha3/devops/${devops}/pipelines/${pipeline}/jenkinsfile?mode=raw`,
+        `/kapis/devops.kubesphere.io/v1alpha3${clusterPath}/devops/${devops}/pipelines/${pipeline}/jenkinsfile?mode=raw`,
         { data: jenkinsFile },
         {
           headers: {
@@ -146,7 +159,9 @@ export default class JenkinsEdit extends React.Component {
       }
     }
 
-    await this.saveJenkins(this.newValue)
+    if (!this.isOld) {
+      await this.saveJenkins(this.newValue)
+    }
     this.props.onOk(this.newValue)
   }
 
@@ -174,7 +189,7 @@ export default class JenkinsEdit extends React.Component {
           visible={visible}
           closable={false}
           maskClosable={false}
-          title={t('Jenkinsfile')}
+          title={'Jenkinsfile'}
         >
           <>
             <CodeEditor

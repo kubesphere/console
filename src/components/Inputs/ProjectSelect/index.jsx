@@ -30,7 +30,8 @@ export default class ProjectSelect extends Component {
   projectStore = new ProjectStore()
 
   componentDidMount() {
-    this.fetchProjects()
+    const { labelSelector } = this.props
+    this.fetchProjects(labelSelector ? { labelSelector } : undefined)
   }
 
   fetchProjects = (params = {}) => {

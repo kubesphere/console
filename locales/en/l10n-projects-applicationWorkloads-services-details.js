@@ -55,6 +55,9 @@ module.exports = {
   IMAGE_BUILDING_FAILED: 'Image building failed',
   IMAGE_BUILDING_SUCCESSFUL: 'Image building successful',
   BUILDING_IMAGE: 'Building image',
+  SERVICE_MONITORING_EXPORTER: 'Service Monitoring Exporter',
+  EXPORTER_SERVICE_PORTS: 'Exporter Service Ports',
+  SCRAPE_INTERVAL_MIN: 'Scrape Interval (Min)',
   // Metadata
   // Events
 }

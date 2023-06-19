@@ -2,9 +2,9 @@
 @import '~scss/mixins';
 
 .wrapper {
-   & > p {
+  & > p {
     @include TypographyParagraph($dark-color01);
-   }
+  }
 }
 
 .tags {
@@ -22,6 +22,16 @@
 
     & + span {
       margin-left: 4px;
+    }
+  }
+
+  .tag {
+    & > span:last-of-type {
+      display: inline;
+
+      & > span:first-of-type {
+        height: 20px;
+      }
     }
   }
 }

@@ -81,8 +81,8 @@ export default class Layout extends Component {
         key.endsWith('cluster-role.kubesphere.io/host')
       )
     )
-
     this.store.hostName = host[0]?.name ?? 'host'
+    this.store.hostDetail = host[0]
   }
 
   async init() {

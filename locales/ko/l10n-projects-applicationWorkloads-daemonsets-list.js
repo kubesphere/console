@@ -20,16 +20,16 @@ module.exports = {
   // List
   // List > Create > Basic Information
   // List > Create > Pod Settings
-  CONTAINER_SETTINGS_DESC: 'Set the image, name, type, and computing resources of the container.',
-  PORT_SETTINGS_DESC: 'Set the ports used for accessing the container.',
-  HEALTH_CHECKER_DESC: 'Add probes to check the container health status regularly.',
-  STARTUP_COMMAND: 'Start Command',
-  STARTUP_COMMAND_DESC: 'Customize the command run by the container upon startup. By default, the container runs the default image command.',
-  CONTAINER_COMMAND_DESC: 'Startup command of the container.',
-  CONTAINER_ARGUMENT_DESC: 'Parameters of the startup command. Use commas to separate multiple parameters.',
-  CONTAINER_ENVIRONMENT_DESC: 'Add environment variables to the container.',
-  PROBE_COMMAND_DESC: 'Use commas to separate multiple commands.',
+  CONTAINER_SETTINGS_DESC: '컨테이너의 이미지, 이름, 유형 및 컴퓨팅 리소스를 설정합니다.',
+  PORT_SETTINGS_DESC: '컨테이너에 액세스하는 데 사용되는 포트를 설정합니다.',
+  HEALTH_CHECKER_DESC: 'Probe를 추가하여 컨테이너 상태를 정기적으로 확인합니다.',
+  STARTUP_COMMAND: '시작 명령',
+  STARTUP_COMMAND_DESC: '파드 시작 시 컨테이너에서 실행되는 커맨드를 커스터마이즈합니다. 기본적으로 컨테이너는 이미지에 지정된 기본 커맨드를 실행합니다.',
+  CONTAINER_COMMAND_DESC: '컨테이너의 시작 커맨드입니다.',
+  CONTAINER_ARGUMENT_DESC: '시작 커맨드의 매개 변수입니다. 여러 매개 변수를 구분하려면 쉼표를 사용합니다.',
+  CONTAINER_ENVIRONMENT_DESC: '컨테이너에 환경 변수를 추가합니다.',
+  PROBE_COMMAND_DESC: '여러 명령을 구분하려면 쉼표를 사용합니다.',
   // List > Create > Pod Settings > Add Container
-  IGNORE_CERT_WARN_DESC: 'Ignoring certificate verification may cause password disclosure.',
-  CERT_ERROR: 'Certificate error.'
+  IGNORE_CERT_WARN_DESC: '인증서 확인을 무시하면 암호가 노출될 수 있습니다.',
+  CERT_ERROR: '인증서 오류입니다.'
 };

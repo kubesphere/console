@@ -65,7 +65,7 @@ export default class BaseInfo extends React.Component {
 
     if (value === 'workspaces') {
       return callback({
-        message: t('current name is not available'),
+        message: t('INVALID_WORKSPACE_NAME'),
         field: rule.field,
       })
     }

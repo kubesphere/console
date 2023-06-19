@@ -27,7 +27,7 @@ module.exports = {
   DO_NOT_REMIND_AGAIN: '不再提示',
   // Install > Basic Information
   LOCATION: '位置',
-  CLUSTER_NAME_DESC: '名稱只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾，最長 53 個字元。',
+  CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 32 characters.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '無法在多集群項目裡部署應用.',
   LATEST_VERSION_SCAP: '最新版本',
   WORKSPACE_EMPTY_DESC: '請選擇企業空間',

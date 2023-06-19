@@ -18,31 +18,31 @@
 module.exports = {
   // Attributes
   CREATOR: 'Creator',
-  NO: 'No',
+  NO: '아니오',
   // More > Roll Back
   // More > Edit Autoscaling
   // More > Edit Settings > Update Strategy
   // More > Edit Settings > Containers
-  EDIT_CONTAINER: 'Edit Container',
+  EDIT_CONTAINER: '컨테이너 편집',
   // More > Edit Settings > Volumes
   // More > Edit Settings > Pod Scheduling Rules
   // More > Edit YAML
   // More > Re-Create
   // More > Delete
   // Resource Status > Clusters
-  MULTI_CLUSTER_RESOURCE_TIP: 'The current resource is deployed across multiple clusters. You can click a cluster to view the resource settings in the cluster.',
+  MULTI_CLUSTER_RESOURCE_TIP: '현재 리소스가 여러 클러스터에 배포됩니다. 클러스터를 클릭하여 클러스터의 리소스 설정을 볼 수 있습니다.',
   // Resource Status > Replica Status
   // Resource Status > Ports
   // Resource Status > Pods
-  NODE: 'Node',
+  NODE: '노드',
   // Revision Records
-  SERIAL_NUMBER: 'Serial number',
-  CREATED_TIME: 'Created at {diff}',
+  SERIAL_NUMBER: '일련 번호',
+  CREATED_TIME: '{diff}에 생성 됨',
   // Metadata
   // Monitoring
   // Environment Variables
   // Events
-  EVENT_PL: 'Events',
-  EVENT_NORMAL: 'Normal',
-  EVENT_WARNING: 'Warning'
+  EVENT_PL: '이벤트',
+  EVENT_NORMAL: '정상',
+  EVENT_WARNING: '주의'
 };

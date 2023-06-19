@@ -17,41 +17,44 @@
  */
 module.exports = {
   // Attributes
-  ENDPOINT: 'Endpoint',
-  SESSION_AFFINITY: 'Session Affinity',
+  ENDPOINT: '엔드포인트',
+  SESSION_AFFINITY: '세션 어피니티',
   // More
-  EDIT_EXTERNAL_ACCESS: 'Edit External Access',
-  EDIT_MONITORING_EXPORTER: 'Edit Monitoring Exporter',
-  EDIT_SERVICE: 'Edit Service',
+  EDIT_EXTERNAL_ACCESS: '외부 액세스 편집',
+  EDIT_MONITORING_EXPORTER: '모니터링 엑스포터 편집',
+  EDIT_SERVICE: '서비스 편집',
   // More > Edit Service
   // More > Edit Service > Specify Workload
   // More > Edit External Access > Access Mode
-  ACCESS_NONE_TIP: 'Internet access is not supported. The service can be accessed only within the cluster.',
-  EXTERNAL_SERVICE: 'External Service',
+  ACCESS_NONE_TIP: '인터넷 액세스가 지원되지 않습니다. 서비스는 클러스터 내에서만 액세스할 수 있습니다.',
+  EXTERNAL_SERVICE: '외부 서비스',
   // More > Edit Monitoring Exporter
-  COLLECTION_INTERVAL_MIN: 'Collection Interval (min)',
-  COLLECTION_INTERVAL_MIN_DESC: 'Interval in minutes between two metric collection operations. The default value is 1.',
-  COLLECTION_TIMEOUT_DESC: 'Timeout interval in seconds of each collection operation. The default value is 10.',
-  SELECT_AUTHENTICATION_METHOD: 'Select Authentication Method',
-  SELECT_AUTHENTICATION_METHOD_DESC: 'Select the authentication method used during metric collection.',
-  NO_AUTHENTICATION_TCAP: 'No Authentication',
-  NO_AUTHENTICATION_TIP: 'Authentication is not used during metric collection.',
-  CREATE_A_NEW_SECRET: 'Create a new secret',
-  REFRESH_SECRETS: 'refresh secrets.',
-  CERTIFICATE_AUTHORITY: 'Certificate Authority',
-  SERVER_NAME: 'Server Name',
-  TLS_SETTINGS_TCAP: 'TLS Settings',
-  BEARER_TOKEN_TCAP: 'Bearer Token',
-  BASIC_AUTHENTICATION_TCAP: 'Basic Authentication',
+  COLLECTION_INTERVAL_MIN: '수집 간격(분)',
+  COLLECTION_INTERVAL_MIN_DESC: '두 메트릭 수집 작업 사이의 간격(분)입니다. 기본값은 1입니다.',
+  COLLECTION_TIMEOUT_DESC: '각 수집 작업의 시간 초과 간격(초)입니다. 기본값은 10입니다.',
+  SELECT_AUTHENTICATION_METHOD: '인증 방법 선택',
+  SELECT_AUTHENTICATION_METHOD_DESC: '메트릭 수집 중에 사용된 인증 방법을 선택합니다.',
+  NO_AUTHENTICATION_TCAP: '인증 없음',
+  NO_AUTHENTICATION_TIP: '메트릭 수집 중에는 인증이 사용되지 않습니다.',
+  CREATE_A_NEW_SECRET: '새로운 시크릿을 생성합니다.',
+  REFRESH_SECRETS: '시크릿을 새로고침합니다.',
+  CERTIFICATE_AUTHORITY: '인증 기관',
+  SERVER_NAME: '서버 이름',
+  TLS_SETTINGS_TCAP: 'TLS 설정',
+  BEARER_TOKEN_TCAP: '베어러 토큰',
+  BASIC_AUTHENTICATION_TCAP: '일반 인증',
   // More > Edit YAML
   // Attributes
-  EXTERNAL_IP_ADDRESS: 'External IP Address',
+  EXTERNAL_IP_ADDRESS: '외부 IP 주소',
   // Resource Status
-  MONITORING_EXPORTER: 'Monitoring Exporter',
-  MONITORING_EXPORTER_VALUE: 'Monitoring exporter: {value}',
-  PORT_PL: 'Ports',
-  SERVICE_NODE_PORT_DESC: 'If your client machine is on the same network as the cluster, you can use <Node IP address>:<Node port> to access the service.',
-  IMAGE_BUILDING_FAILED: 'Image building failed',
-  IMAGE_BUILDING_SUCCESSFUL: 'Image building successful',
-  BUILDING_IMAGE: 'Building image'
+  MONITORING_EXPORTER: '모니터링 엑스포터',
+  MONITORING_EXPORTER_VALUE: '모니터링 엑스포터: {value}',
+  PORT_PL: '포트',
+  SERVICE_NODE_PORT_DESC: '클라이언트 시스템이 클러스터와 동일한 네트워크에 있는 경우 <Node IP address>:<Node port>를 사용하여 서비스에 접근할 수 있습니다.',
+  IMAGE_BUILDING_FAILED: '이미지 빌드 실패',
+  IMAGE_BUILDING_SUCCESSFUL: '이미지 빌드 성공',
+  BUILDING_IMAGE: '이미지 빌드',
+  SERVICE_MONITORING_EXPORTER: '서비스 모니터링 엑스포터',
+  EXPORTER_SERVICE_PORTS: '서비스 포트 엑스포터',
+  SCRAPE_INTERVAL_MIN: 'Scrape 시간 간격(분)'
 };

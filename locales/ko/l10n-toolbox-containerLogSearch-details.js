@@ -18,23 +18,23 @@
 module.exports = {
   // Title
   // Search Bar
-  KEYWORD: 'Keyword',
-  EXACT_QUERY: 'Exact Query',
-  FUZZY_QUERY: 'Fuzzy Query',
+  KEYWORD: '키워드',
+  EXACT_QUERY: 'Exact 질의',
+  FUZZY_QUERY: 'Fuzzy 질의',
   // Time Topology
-  TIME_TOPOLOGY: 'Time Topology ',
-  SEARCH_RESULTS: 'Search Results',
-  DISPLAY: 'Display',
-  HIDE: 'Hide',
-  STOP_REAL_TIME_CONTAINER_LOG: 'Pause real-time container logs',
-  START_REAL_TIME_CONTAINER_LOG: 'View real-time container logs',
+  TIME_TOPOLOGY: '시간 토폴로지 ',
+  SEARCH_RESULTS: '검색 결과',
+  DISPLAY: '표시',
+  HIDE: '숨기기',
+  STOP_REAL_TIME_CONTAINER_LOG: '실시간 컨테이너 로그 일시 중지',
+  START_REAL_TIME_CONTAINER_LOG: '실시간 컨테이너 로그 보기',
   // Refresh Rate
-  REFRESH_RATE_COLON: 'Refresh Rate: ',
+  REFRESH_RATE_COLON: '새로고침 빈도: ',
   // Time Topology > Histogram
-  CONTAINER_LOG_COUNT: 'Container Logs',
+  CONTAINER_LOG_COUNT: '컨테이너 로그',
   // List
-  LOG: 'Log',
+  LOG: '로그',
   // List > Container Log Details
   // List > Container Log Details > Container Log Source
-  CONTAINER_LOG_SOURCE: 'Container Log Source'
+  CONTAINER_LOG_SOURCE: '컨테이너 로그 소스'
 };

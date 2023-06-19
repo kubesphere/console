@@ -72,28 +72,28 @@ export default class ThirdPartyLogin extends Component {
       <div>
         <Banner
           icon="passport"
-          title={t('Third-party Login')}
+          title={t('THIRD_PARTY_LOGIN')}
           description={t('THIRD_PARTY_LOGIN_DESC')}
           tips={this.tips}
         />
         <div className={styles.title}>
-          {t('Current third-party login configurations')}
+          {t('CURRENT_THIRD_PARTY_LOGIN_CONFIGURATIONS')}
         </div>
         <Panel>
           <Text
             icon="github"
             title="Github OAuth"
-            description={t('Protocol Type')}
+            description={t('PROTOCOL_TYPE')}
           />
           <div className={styles.status}>
             <Text
-              title={`Github OAuth ${t('not configured')}`}
+              title={`Github OAuth ${t('NOT_CONFIGURED')}`}
               description={
                 'GitHub OAuth uses organization membership to grant access. '
               }
             />
             <Button onClick={this.showGithubOAuth}>
-              {t('Configure')} Github OAuth
+              {t('CONFIGURE')} Github OAuth
             </Button>
           </div>
         </Panel>
@@ -101,14 +101,14 @@ export default class ThirdPartyLogin extends Component {
           <Text
             icon="safe-notice"
             title="OAuth"
-            description={t('Protocol Type')}
+            description={t('PROTOCOL_TYPE')}
           />
           <div className={styles.status}>
             <Text
-              title={`OAuth ${t('not configured')}`}
+              title={`OAuth ${t('NOT_CONFIGURED')}`}
               description={t('OAUTH_DESC')}
             />
-            <Button onClick={this.showOAuth}>{t('Configure')} OAuth</Button>
+            <Button onClick={this.showOAuth}>{t('CONFIGURE')} OAuth</Button>
           </div>
         </Panel>
         <OAuthModal

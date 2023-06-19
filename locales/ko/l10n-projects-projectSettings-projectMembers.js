@@ -17,17 +17,17 @@
  */
 module.exports = {
   // Banner
-  PROJECT_MEMBER: 'Project Member',
-  PROJECT_MEMBER_PL: 'Project Members',
-  PROJECT_MEMBER_DESC: 'Project members can view or manage project resources. The project administrator can invite members who belong to the workspace to the project and manage project members.',
+  PROJECT_MEMBER: '프로젝트 멤버',
+  PROJECT_MEMBER_PL: '프로젝트 멤버',
+  PROJECT_MEMBER_DESC: '프로젝트 맴버는 프로젝트 리소스를 보거나 관리할 수 있습니다. 프로젝트 관리자는 워크스페이스에 속한 맴버를 프로젝트로 초대하고 프로젝트 맴버를 관리할 수 있습니다.',
   // List
   // List > Change Role
   // List > Remove
-  REMOVE: 'Remove',
+  REMOVE: '제거',
   // Invite
-  INVITE_MEMBER_DESC: 'Invite members of the current workspace to the project.',
-  PROJECT_MEMBER_EMPTY_DESC: 'Please invite a member of the current workspace to the project.',
-  INVITE_MEMBER_SEARCH_PLACEHOLDER: 'Enter a username to invite members',
+  INVITE_MEMBER_DESC: '현재 워크스페이스의 맴버를 프로젝트에 초대합니다.',
+  PROJECT_MEMBER_EMPTY_DESC: '현재 워크스페이스의 맴버를 프로젝트에 초대하십시오.',
+  INVITE_MEMBER_SEARCH_PLACEHOLDER: '초대할 맴버의 사용자 이름 입력',
   // Invite > Assign Role
-  ASSIGN_ROLE: 'Assign Role'
+  ASSIGN_ROLE: '역할 할당'
 };

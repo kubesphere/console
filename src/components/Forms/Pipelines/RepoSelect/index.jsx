@@ -26,7 +26,7 @@ import { REPO_KEY_MAP } from 'utils/constants'
 
 import styles from './index.scss'
 
-export default class valueSelect extends React.Component {
+export default class RepoSelect extends React.Component {
   static propTypes = {
     name: PropTypes.string,
     value: PropTypes.object,
@@ -93,7 +93,7 @@ export default class valueSelect extends React.Component {
             <div className={styles.name}>
               {data.repo || data.url || data.remote}
             </div>
-            <div className={styles.desc}>{data.description || '-'}</div>
+            <div className={styles.desc}>{data.description || ''}</div>
           </div>
           <div className={styles.action}>
             <Button onClick={this.props.onClick}>{t('RESELECT')}</Button>

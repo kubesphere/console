@@ -165,7 +165,7 @@ export default class VolumeSettings extends React.Component {
 
   render() {
     const { storageClass, isLoading } = this.state
-    const { editModalTitle, tabTitle } = this.props
+    const { editModalTitle, tabTitle, isFederated, isEdit } = this.props
     const storageClasses = this.getStorageClasses()
     const storageClassesList = this.store.list || {}
 
@@ -185,26 +185,27 @@ export default class VolumeSettings extends React.Component {
       PREFERABLE_DEFAULT_ACCESS_MODE in supportedAccessModes
         ? [PREFERABLE_DEFAULT_ACCESS_MODE]
         : supportedAccessModes.slice(0, 1)
-
     return (
       <>
-        <Form.Item
-          label={t('STORAGE_CLASS')}
-          desc={t('VOLUME_STORAGE_CLASS_DESC')}
-          rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
-        >
-          <Select
-            name={STORAGE_CLASSES_KEY}
-            defaultValue={storageClass.name}
-            pagination={pick(storageClassesList, ['page', 'limit', 'total'])}
-            isLoading={storageClassesList.isLoading}
-            onChange={this.handleStorageClassChange}
-            options={storageClasses}
-            onFetch={this.updateStorageClass}
-            searchable
-            clearable
-          />
-        </Form.Item>
+        {!isFederated && !isEdit && (
+          <Form.Item
+            label={t('STORAGE_CLASS')}
+            desc={t('VOLUME_STORAGE_CLASS_DESC')}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+          >
+            <Select
+              name={STORAGE_CLASSES_KEY}
+              defaultValue={storageClass.name}
+              pagination={pick(storageClassesList, ['page', 'limit', 'total'])}
+              isLoading={storageClassesList.isLoading}
+              onChange={this.handleStorageClassChange}
+              options={storageClasses}
+              onFetch={this.updateStorageClass}
+              searchable
+              clearable
+            />
+          </Form.Item>
+        )}
         {editModalTitle !== 'EDIT_SETTINGS' && tabTitle !== 'CLUSTER_DIFF' ? (
           <Form.Item
             label={t('ACCESS_MODE')}

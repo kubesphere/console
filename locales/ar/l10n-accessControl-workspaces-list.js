@@ -21,12 +21,14 @@ module.exports = {
   WORKSPACE_DESC: 'مساحة العمل هي وحدة منطقية منعزلة تستخدم لتنظيم المشاريع ومشاريع DevOps وإدارة الوصول إلى الموارد ومشاركة المعلومات داخل فريقك.',
   // List
   CLUSTER_PL: 'المجموعات',
+  ALL_CLUSTERS: 'All Clusters',
   // List > Create > Basic Information
   CREATE_WORKSPACE: 'إنشاء مساحة عمل',
   WORKSPACE_NAME_EMPTY_DESC: 'الرجاء إدخال اسم مساحة عمل.',
   WORKSPACE_CREATE_DESC: 'عيّن المعلومات الأساسية حول مساحة العمل.',
   ADMINISTRATOR: 'Administrator',
   WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
+  INVALID_WORKSPACE_NAME: 'Invalid workspace name.',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'حدد المجموعات التي سيتم استخدامها في مساحة العمل.',
   NO_CLUSTER_AVAILABLE: 'No Cluster Available',

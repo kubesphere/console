@@ -21,12 +21,14 @@ module.exports = {
   WORKSPACE_DESC: 'Çalışma alanı, projeleri ve DevOps projelerini düzenlemek, kaynak erişimini yönetmek ve ekibiniz içinde bilgi paylaşmak için kullanılan yalıtılmış bir mantıksal birimdir.',
   // List
   CLUSTER_PL: 'Küme',
+  ALL_CLUSTERS: 'All Clusters',
   // List > Create > Basic Information
   CREATE_WORKSPACE: 'Çalışma alanı oluştur',
   WORKSPACE_NAME_EMPTY_DESC: 'Lütfen bir şablon adı girin.',
   WORKSPACE_CREATE_DESC: 'Uygulama hakkında temel bilgileri öğrenin.',
   ADMINISTRATOR: 'Yönetici',
   WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
+  INVALID_WORKSPACE_NAME: 'Invalid workspace name.',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: 'Çalışma alanında kullanılacak kümeleri seçin.',
   NO_CLUSTER_AVAILABLE: 'No Cluster Available',

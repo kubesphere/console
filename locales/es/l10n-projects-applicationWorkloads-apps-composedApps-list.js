@@ -42,8 +42,9 @@ module.exports = {
   STATELESS_SERVICE_DESC: 'El servicio más utilizado en servicios de contenedores. Define la plantilla del Pod para controlar el estado del Pod, incluidas las actualizaciones continuas y los retrocesos.',
   APPLICATION_SERVICE_DESC: 'Puedes configurar diferentes componentes de servicio basándote en el tipo de servicio dentro de una aplicación. Tanto los servicios con estado como los sin estado están soportados.',
   APP_CREATE_SERVICE_DESC: 'Create a service for the app.',
-  // List > Create > Route Settings
+  // List > Create > Ingress Settings
   ROUTE_SETTINGS: 'Route Settings',
   ROUTING_RULES: 'Reglas de ruta',
-  ROUTE_SETTINGS_DESC: 'Puedes definir las reglas de acceso a internet para la aplicación (Ingress).'
+  ROUTE_SETTINGS_DESC: 'Puedes definir las reglas de acceso a internet para la aplicación (Ingress).',
+  ADD_ROUTE_SUCCESS: 'The route was added successfully.'
 };

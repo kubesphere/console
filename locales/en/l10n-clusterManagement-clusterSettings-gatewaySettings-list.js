@@ -29,7 +29,7 @@ module.exports = {
   LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
   // Cluster Gateway > Enable Gateway
   ENABLE_GATEWAY: 'Enable Gateway',
-  GATEWAY_TRACING_TIP: 'If routes cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the route.',
+  GATEWAY_TRACING_TIP: 'If ingresses cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the ingress.',
   // Cluster Gateway > Manage > View Details
   VIEW_DETAILS: 'View Details',
   // Cluster Gateway > Manage > Disable
@@ -42,7 +42,8 @@ module.exports = {
   EDIT_TITLE: 'Edit {title}',
   // Cluster Gateway > Manage > Update
   UPDATE: 'Update',
-  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short whilte. Exercise caution when performing this operation.',
+  UPDATED_GATEWAY_TITLE: 'Update Gateway',
+  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
   // Project Gateways
   PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',

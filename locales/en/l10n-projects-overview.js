@@ -34,7 +34,7 @@ module.exports = {
   NUMBER_OF_CRONJOBS: 'Number of cronjobs',
   NUMBER_OF_VOLUMES: 'Number of persistent volume claims',
   NUMBER_OF_SERVICES: 'Number of services',
-  NUMBER_OF_ROUTES: 'Number of routes',
+  NUMBER_OF_ROUTES: 'Number of ingresses',
   NUMBER_OF_SECRETS: 'Number of secrets',
   NUMBER_OF_CONFIGMAPS: 'Number of configmaps',
   // Deployed Apps

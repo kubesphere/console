@@ -17,13 +17,13 @@
  */
 module.exports = {
   // Banner
-  OVERVIEW: 'Overview',
+  OVERVIEW: '개요',
   // Description
-  WORKSPACE_OVERVIEW_DESC: 'View the resource status of the workspace.',
+  WORKSPACE_OVERVIEW_DESC: '워크스페이스의 리소스 상태를 봅니다.',
   // Statistics
-  ROLE_PL: 'Roles',
+  ROLE_PL: '역할',
   // Physical Resources
-  PHYSICAL_RESOURCES: 'Physical Resources',
-  CRONJOB: 'Cronjob',
-  CLUSTER_VALUE: 'Cluster: {value}'
+  PHYSICAL_RESOURCES: '물리 리소스',
+  CRONJOB: '크론잡',
+  CLUSTER_VALUE: '클러스터: {value}'
 };

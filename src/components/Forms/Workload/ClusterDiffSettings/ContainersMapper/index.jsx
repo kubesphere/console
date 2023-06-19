@@ -45,17 +45,70 @@ export default class ContainersMapper extends Component {
       containerType === 'init' ? 'init_containers' : 'containers'
     }.${index}`
     const clusterOverrides = []
+    const pullSecrets = {}
+
     Object.keys(data).forEach(key => {
       const path = `${prefix}.${key}`
 
-      clusterOverrides.push({
-        path: `/${path.replace(/\./g, '/')}`,
-        value: data[key],
-      })
+      if (key === 'pullSecret') {
+        if (data[key]) {
+          pullSecrets[data.name] = data.pullSecret
+        }
+      } else {
+        clusterOverrides.push({
+          path: `/${path.replace(/\./g, '/')}`,
+          value: data[key],
+        })
+      }
     })
 
     const overrides = get(formTemplate, 'spec.overrides', [])
     const override = overrides.find(item => item.clusterName === cluster)
+
+    if (!isEmpty(pullSecrets)) {
+      const imagePullSecretsPath = '/spec/template/spec/imagePullSecrets'
+      const oldImagePullSecrets =
+        override.clusterOverrides.find(
+          item => item.path === imagePullSecretsPath
+        )?.value ?? []
+
+      const imagePullSecrets = Object.values(pullSecrets).map(value => ({
+        name: value,
+      }))
+
+      const mergedImagePullSecrets = [
+        ...oldImagePullSecrets,
+        ...imagePullSecrets,
+      ]
+
+      clusterOverrides.push({
+        path: imagePullSecretsPath.replace(/\n/g, ''),
+        value: mergedImagePullSecrets,
+      })
+
+      const annotationsImagepullSecretsPath =
+        "/spec/template/metadata/annotations/'kubesphere.io/imagepullsecrets'"
+
+      const oldAnnotationsImagepullSecretsStr =
+        override.clusterOverrides.find(
+          item => item.path === annotationsImagepullSecretsPath
+        )?.value ?? '{}'
+
+      const oldAnnotationsImagepullSecretsStr2JSON = JSON.parse(
+        oldAnnotationsImagepullSecretsStr
+      )
+
+      const annotationsImagepullSecretsString = JSON.stringify({
+        ...oldAnnotationsImagepullSecretsStr2JSON,
+        ...pullSecrets,
+      })
+
+      clusterOverrides.push({
+        path: annotationsImagepullSecretsPath.replace(/\n/g, ''),
+        value: annotationsImagepullSecretsString,
+      })
+    }
+
     if (override) {
       override.clusterOverrides = uniqBy(
         [...clusterOverrides, ...(override.clusterOverrides || [])],

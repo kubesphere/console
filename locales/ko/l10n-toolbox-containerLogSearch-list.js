@@ -17,22 +17,22 @@
  */
 module.exports = {
   // Title
-  TOTAL_LOGS_TODAY: 'A total of <span class={className}> {logs} </span> log entries from <span class={className}>{containers}</span> containers have been collected today.',
+  TOTAL_LOGS_TODAY: '<span class={className}>{containers}</span> 컨테이너에서 총 <span class={className}> {logs} </span> 로그 항목이 오늘 수집되었습니다.',
   // Search
-  WORKLOAD: 'Workload',
-  TIME_RANGE_SCAP: 'Time range',
+  WORKLOAD: '워크로드',
+  TIME_RANGE_SCAP: '시간 범위',
   // Querying Rules
-  QUERYING_RULES: 'Querying Rules',
-  CONTAINER_LOGS_12H: 'Container logs in the last 12 hours',
-  CONTAINER_LOG_KEYWORD_TIP: 'Enter a keyword to search for container logs.',
-  CONTAINER_LOG_PROJECT_TIP: 'Enter a project name to search for container logs.',
-  CONTAINER_LOG_WORKLOAD_TIP: 'Enter a workload name to search for container logs.',
-  CONTAINER_LOG_CONTAINER_TIP: 'Enter a container name to search for container logs.',
-  CONTAINER_LOG_POD_TIP: 'Enter a pod name to search for container logs.',
-  SEARCH_BY_KEYWORD: 'Search by Keyword',
-  SEARCH_BY_PROJECT: 'Search by Project',
-  SEARCH_BY_WORKLOAD: 'Search by Workload',
-  SEARCH_BY_POD: 'Search by Pod',
-  SEARCH_BY_CONTAINER: 'Search by Container',
-  TIME_RANGE: 'Time Range'
+  QUERYING_RULES: '질의 규칙',
+  CONTAINER_LOGS_12H: '지난 12시간 동안의 컨테이너 로그',
+  CONTAINER_LOG_KEYWORD_TIP: '컨테이너 로그를 검색하려면 키워드를 입력합니다.',
+  CONTAINER_LOG_PROJECT_TIP: '컨테이너 로그를 검색할 프로젝트 이름을 입력합니다.',
+  CONTAINER_LOG_WORKLOAD_TIP: '컨테이너 로그를 검색할 워크로드 이름을 입력합니다.',
+  CONTAINER_LOG_CONTAINER_TIP: '컨테이너 로그를 검색할 컨테이너 이름을 입력합니다.',
+  CONTAINER_LOG_POD_TIP: '컨테이너 로그를 검색할 파드 이름을 입력합니다.',
+  SEARCH_BY_KEYWORD: '키워드로 검색',
+  SEARCH_BY_PROJECT: '프로젝트로 검색',
+  SEARCH_BY_WORKLOAD: '워크로드로 검색',
+  SEARCH_BY_POD: '파드로 검색',
+  SEARCH_BY_CONTAINER: '컨테이너로 검색',
+  TIME_RANGE: '시간 범위'
 };

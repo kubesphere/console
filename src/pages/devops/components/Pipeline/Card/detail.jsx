@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get, isString, pick, set } from 'lodash'
 import React from 'react'
-import { isString, get, pick } from 'lodash'
 import { groovyToJS } from 'utils/devops'
 
 import style from './index.scss'
@@ -68,6 +68,9 @@ const checkoutRender = arg => {
 
     if (isString(value) && value.startsWith('[')) {
       let obj = groovyToJS(value)
+      if (obj.url && !obj.remote) {
+        set(obj, 'remote', obj.url)
+      }
       obj = pick(obj, ['remote', 'credentialsId'])
       return groovyRender(obj)
     }

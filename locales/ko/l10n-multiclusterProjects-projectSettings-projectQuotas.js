@@ -18,6 +18,6 @@
 module.exports = {
   // Banner
   // Resource Quotas
-  FOLD: 'Fold',
-  UNFOLD: 'Unfold'
+  FOLD: '접기',
+  UNFOLD: '펼치기'
 };

@@ -42,8 +42,9 @@ module.exports = {
   STATELESS_SERVICE_DESC: 'Bir hizmet ve bir Dağıtım oluşturun.',
   APPLICATION_SERVICE_DESC: 'Gereksinimlerinize göre uygulamaya durum bilgisi olan veya durum bilgisi olmayan hizmetler ekleyin.',
   APP_CREATE_SERVICE_DESC: 'Uygulama için bir hizmet oluşturun.',
-  // List > Create > Route Settings
+  // List > Create > Ingress Settings
   ROUTE_SETTINGS: 'Rota Ayarları',
   ROUTING_RULES: 'Rota Kuralları',
-  ROUTE_SETTINGS_DESC: 'Uygulama için yönlendirme kuralları belirleyin.'
+  ROUTE_SETTINGS_DESC: 'Uygulama için yönlendirme kuralları belirleyin.',
+  ADD_ROUTE_SUCCESS: 'The route was added successfully.'
 };

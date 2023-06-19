@@ -16,17 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { action, observable, computed, toJS } from 'mobx'
-import { get, set, unset, isObject, isEmpty, isArray, cloneDeep } from 'lodash'
+import { Notify } from '@kube-design/components'
+import { cloneDeep, get, isArray, isEmpty, isObject, set, unset } from 'lodash'
+import { action, computed, observable, toJS } from 'mobx'
 import qs from 'qs'
-
-import cookie from 'utils/cookie'
-import CredentialStore from 'stores/devops/credential'
-import BaseStore from 'stores/devops'
-import PipelineStore from 'stores/devops/pipelines'
 import CDStore from 'stores/cd'
+import BaseStore from 'stores/devops'
+
+import CredentialStore from 'stores/devops/credential'
+import PipelineStore from 'stores/devops/pipelines'
+
 import { generateId, safeParseJSON } from 'utils'
 import { CREDENTIAL_DISPLAY_KEY } from 'utils/constants'
+
+import cookie from 'utils/cookie'
 
 const formatPipeLineJson = json => {
   if (!get(json, 'pipeline.stages')) return
@@ -325,10 +328,105 @@ export default class Store extends BaseStore {
   }
 
   @action
-  async saveJenkinsFile({ devops, name }) {
+  async convertJsonToJenkinsFile({ cluster }) {
+    return request
+      .post(
+        `${this.getDevopsUrlV2({ cluster })}/tojenkinsfile`,
+        {
+          json: JSON.stringify(formatPipeLineJson(toJS(this.jsonData.json))),
+        },
+        {
+          headers: {
+            'content-type': 'application/x-www-form-urlencoded',
+          },
+        }
+      )
+      .then(result => {
+        if (result && get(result, 'data.result') === 'success') {
+          this.jenkinsFile = result.data.jenkinsfile
+          return result
+        }
+
+        if (result && get(result, 'data.result') === 'failure') {
+          result.data.errors.forEach(error => {
+            if (!error.location) {
+              // no location show full screen message
+              window.onunhandledrejection({
+                status: 'Failure',
+                reason: t('pipeline syntax error'),
+                message: error.error || JSON.stringify(error),
+              })
+              return
+            }
+
+            const loacationArr = error.location.join('.').split('.branches')
+            const errorObj = get(this.jsonData.json, loacationArr[0])
+
+            if (errorObj && !isEmpty(errorObj)) {
+              const errorStepIndex =
+                error.location.indexOf('steps') !== -1
+                  ? parseInt(
+                      error.location[error.location.indexOf('steps') + 1],
+                      10
+                    )
+                  : undefined
+              if (errorStepIndex !== undefined) {
+                set(this.jsonData.json, loacationArr[0], {
+                  ...toJS(get(this.jsonData.json, loacationArr[0])),
+                  error: { error: error.error, index: errorStepIndex },
+                })
+                return
+              }
+
+              Notify.error({
+                title: t('pipeline syntax error'),
+                content: t(error.error),
+                duration: 6000,
+              })
+              return
+            }
+
+            if (error.location.indexOf('conditions') !== -1) {
+              const conditionLoacationArr = error.location
+                .join('.')
+                .split('.when')
+              const errorStepIndex =
+                error.location.indexOf('conditions') !== -1
+                  ? parseInt(
+                      error.location[error.location.indexOf('conditions') + 1],
+                      10
+                    )
+                  : undefined
+
+              set(this.jsonData.json, conditionLoacationArr[0], {
+                ...toJS(get(this.jsonData.json, conditionLoacationArr[0])),
+                conditionError: { error: error.error, index: errorStepIndex },
+              })
+              return
+            }
+
+            const errorStepIndex =
+              error.location.indexOf('steps') !== -1
+                ? parseInt(
+                    error.location[error.location.indexOf('steps') + 1],
+                    10
+                  )
+                : undefined
+            set(this.jsonData.json, loacationArr[0], {
+              ...toJS(get(this.jsonData.json, loacationArr[0])),
+              error: { error: error.error, index: errorStepIndex },
+            })
+          })
+        }
+      })
+  }
+
+  @action
+  async saveJenkinsFile({ devops, name, cluster }) {
     return request
       .put(
         `${this.getDevopsUrlV3({
+          cluster,
           devops,
         })}/pipelines/${name}/jenkinsfile?mode=json`,
         { data: JSON.stringify(formatPipeLineJson(toJS(this.jsonData.json))) },
@@ -390,6 +488,11 @@ export default class Store extends BaseStore {
   }
 
   @action
+  async handleConfirmOld() {
+    await this.convertJsonToJenkinsFile()
+  }
+
+  @action
   async fetchLabel() {
     const url = `${this.getDevopsUrlV3()}ci/nodelabels`
     this.labelDataList = []
@@ -404,9 +507,9 @@ export default class Store extends BaseStore {
   }
 
   @action
-  async fetchPipelineStepTemplates() {
+  async fetchPipelineStepTemplates(params = {}) {
     const data = await request.get(
-      `${this.getBaseUrl()}clustersteptemplates?limit=100`
+      `${this.getBaseUrl(params)}clustersteptemplates?limit=100`
     )
 
     const { items = [] } = data

@@ -47,7 +47,7 @@ export default class KubernetesParams extends Component {
     return (
       <div className={styles.preview}>
         <div className={styles.item}>
-          <span>{t('Max Pods')}: </span>
+          <span>{t('MAX_PODS')}: </span>
           <span>{value.maxPods}</span>
         </div>
         <a className={styles.edit} onClick={this.showEdit}>
@@ -67,7 +67,7 @@ export default class KubernetesParams extends Component {
         onCancel={this.hideEdit}
         visible={this.state.visible}
       >
-        <Form.Item label={t('Max Pods')} desc={t('CLUSTER_MAX_PODS_DESC')}>
+        <Form.Item label={t('MAX_PODS')} desc={t('CLUSTER_MAX_PODS_DESC')}>
           <NumberInput name="maxPods" integer min={0} />
         </Form.Item>
       </Modal.Form>

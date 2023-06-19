@@ -53,4 +53,24 @@ export default class SecretStore extends Base {
 
     return result
   }
+
+  @action
+  async setDefault(params, prevParams) {
+    if (prevParams.name) {
+      await this.patch(prevParams, {
+        metadata: {
+          annotations: {
+            'secret.kubesphere.io/is-default-class': 'false',
+          },
+        },
+      })
+    }
+    return this.patch(params, {
+      metadata: {
+        annotations: {
+          'secret.kubesphere.io/is-default-class': 'true',
+        },
+      },
+    })
+  }
 }

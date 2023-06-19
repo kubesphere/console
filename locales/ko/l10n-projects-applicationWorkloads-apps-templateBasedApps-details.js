@@ -17,15 +17,15 @@
  */
 module.exports = {
   // More > Edit Settings
-  CURRENT_APP_SETTINGS_READONLY: 'Current App Settings (read-only)',
-  TARGET_APP_SETTINGS: 'Target App Settings',
-  TARGET_APP_VERSION: 'Target App Version',
-  CURRENT_APP_VERSION: 'Current App Version',
-  EDIT_APP_SETTINGS: 'Edit App Settings',
+  CURRENT_APP_SETTINGS_READONLY: '현재 앱 설정(읽기 전용)',
+  TARGET_APP_SETTINGS: '대상 앱 설정',
+  TARGET_APP_VERSION: '대상 앱 버전',
+  CURRENT_APP_VERSION: '현재 앱 버전',
+  EDIT_APP_SETTINGS: '앱 설정 편집',
   // Attributes
   // Resource Status
-  UPDATED_TIME: 'Updated at {value}',
+  UPDATED_TIME: '{value}에 업데이트 됨',
   // App Template > App Description
-  APP_TEMPLATE: 'App Template',
-  NO_APP_DESC_FOUND: 'No app description found.'
+  APP_TEMPLATE: '앱 템플릿',
+  NO_APP_DESC_FOUND: '앱 설명을 찾을 수 없습니다.'
 };

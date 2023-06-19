@@ -21,12 +21,14 @@ module.exports = {
   WORKSPACE_DESC: '企業空間是一個組織您的項目和 DevOps 項目、管理資源訪問權限以及在團隊内部共享資源等的邏輯單元，可以作為團隊工作的獨立工作空間。',
   // List
   CLUSTER_PL: '集群',
+  ALL_CLUSTERS: 'All Clusters',
   // List > Create > Basic Information
   CREATE_WORKSPACE: '創建企業空間',
   WORKSPACE_NAME_EMPTY_DESC: '請輸入企業空間名稱。',
   WORKSPACE_CREATE_DESC: '設置企業空間的基本資訊。',
   ADMINISTRATOR: '管理員',
   WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
+  INVALID_WORKSPACE_NAME: 'Invalid workspace name.',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: '選擇企業空間下可用的集群',
   NO_CLUSTER_AVAILABLE: 'No Cluster Available',

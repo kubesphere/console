@@ -17,11 +17,11 @@
  */
 import { Icon, Notify } from '@kube-design/components'
 import cs from 'classnames'
-import React from 'react'
-
+import * as React from 'react'
 import CodeStore from 'stores/codeRepo'
-
-import { getCommonSource, getRepoUrl } from '../../utils/devops'
+import { gitRepositorySpec2Source } from 'utils/devOpsRepos'
+import { toJS } from 'mobx'
+import { getRepoUrl } from '../../utils/devops'
 import { TypeSelect } from '../Base'
 
 import styles from './index.scss'
@@ -29,7 +29,6 @@ import styles from './index.scss'
 export default class CodeRepoSelect extends React.Component {
   constructor(props) {
     super(props)
-
     this.optionValueMap = {}
     this.codeStore = new CodeStore()
     this.state = {
@@ -62,19 +61,22 @@ export default class CodeRepoSelect extends React.Component {
       ({ name: label, _originData, repoURL, provider }) => {
         const { spec } = _originData
         const value = `${label}(${repoURL ?? getRepoUrl(spec)})`
-        const repo = !this.props.isComplexMode
-          ? value
+        const repo = !this.props.isCreatePipeline
+          ? toJS(spec)
           : {
               key: value, // the unique key of repo source
               source_type: spec.provider,
-              [`${spec.provider}_source`]: getCommonSource(spec),
+              [`${spec.provider}_source`]: gitRepositorySpec2Source[
+                spec.provider
+              ]?.(spec, label),
             }
 
         return {
           label,
-          value,
+          value: label,
           icon: provider === 'bitbucket_server' ? 'bitbucket' : provider,
           repo,
+          disabled: this.props.provider && this.props.provider !== provider,
           description: repoURL,
         }
       }
@@ -84,7 +86,6 @@ export default class CodeRepoSelect extends React.Component {
   get allOptions() {
     const { showAllItem } = this.props
     const options = this.svnOptions.concat(this.repoOptions)
-
     if (showAllItem) {
       const allItem = {
         label: t('ALL'),
@@ -93,13 +94,12 @@ export default class CodeRepoSelect extends React.Component {
       }
       return [allItem, ...options]
     }
-
     return options
   }
 
   getRepoList = async (params, currentRepo) => {
     const { devops, cluster } = this.props
-    await this.codeStore.fetchList({ devops, cluster, ...params, limit: -1 })
+    await this.codeStore.fetchList({ devops, cluster, ...params, limit: 10000 })
 
     this.setState({ repoList: this.codeStore.list.data }, () => {
       currentRepo && this.handleRepoChange(currentRepo)
@@ -140,10 +140,27 @@ export default class CodeRepoSelect extends React.Component {
     )
   }
 
+  showCodeRepoCreate = () => {
+    const { trigger, devops, cluster } = this.props
+    trigger?.('codeRepo.create', {
+      title: t('IMPORT_CODE_REPO'),
+      devops,
+      cluster,
+      module: 'codeRepos',
+      noCodeEdit: true,
+      store: this.codeStore,
+      isCreatePipeline: true,
+      addSvnCodeRepoDirectly: this.addSvnCodeRepoOption,
+      success: () => {
+        this.getRepoList()
+      },
+    })
+  }
+
   handleRepoChange = val => {
     const { onChange } = this.props
     const current = this.allOptions.find(({ value }) => value === val)
-    onChange && onChange(current?.repo)
+    onChange && onChange(current ? { ...current?.repo, key: val } : current)
   }
 
   componentDidMount() {
@@ -169,30 +186,28 @@ export default class CodeRepoSelect extends React.Component {
   }
 
   render() {
-    const { value, index, name, isComplexMode, showCreateRepo } = this.props
+    const { value, index, name } = this.props
     return (
       <>
         <TypeSelect
           key={index}
           name={name}
           onFetch={this.getRepoList}
-          options={this.allOptions}
+          options={toJS(this.allOptions)}
           onChange={this.handleRepoChange}
-          value={isComplexMode ? value?.key : value}
+          value={value?.key}
           placeholder={{
             icon: 'code',
             label: t('SELECT_CODE_REPOSITORY'),
             description: t('NEED_TO_SYNC_REPO'),
           }}
         />
-        {isComplexMode && (
-          <span
-            className={cs(styles['multi-repo'], 'form-item-desc')}
-            onClick={showCreateRepo}
-          >
-            {t('GO_CREATE_REPO')}
-          </span>
-        )}
+        <div
+          className={cs(styles['multi-repo'], 'form-item-desc')}
+          onClick={this.showCodeRepoCreate}
+        >
+          {t.html('GO_CREATE_REPO_ACTION')}
+        </div>
       </>
     )
   }

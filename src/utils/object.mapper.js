@@ -721,8 +721,8 @@ const GatewayMapper = item => {
   )
 
   // get the first ipv4 ingress's ip, because the k8s can't support ipv6's colon
-  const defaultIngressIPV4 = loadBalancerIngress.find(i => !i.ip.includes(':'))
-    ?.ip
+  const ingressItem = loadBalancerIngress.find(i => i.ip && !i.ip.includes(':'))
+  const defaultIngressIPV4 = get(ingressItem, 'ip')
 
   return {
     ...getBaseInfo(item),
@@ -746,7 +746,7 @@ const GatewayMapper = item => {
     type: get(item, 'spec.service.type'),
     config: get(item, 'spec.controller.config', {}),
     lb: lbSupport,
-    _originData: item,
+    _originData: getOriginData(item),
   }
 }
 
@@ -799,6 +799,11 @@ const SecretMapper = item => ({
   annotations: get(item, 'metadata.annotations', {}),
   type: get(item, 'type', ''),
   data: secretDataParser(item),
+  isDefault:
+    get(
+      item,
+      'metadata.annotations["secret.kubesphere.io/is-default-class"]'
+    ) === 'true',
   _originData: getOriginData(item),
 })
 
@@ -1226,7 +1231,15 @@ const PipelinesMapper = item => {
   const pipelineObject = safeParseJSON(get(item, jenkinsKey), {})
   const ns = get(item, 'metadata.namespace')
   const name = get(item, 'metadata.name')
-
+  const disabledBrancheNames = safeParseJSON(
+    get(
+      item,
+      'metadata.annotations["pipeline.devops.kubesphere.io/jenkins-branches"]'
+    ),
+    []
+  )
+    .filter(i => i.disabled)
+    .map(i => i.name)
   return {
     ...getBaseInfo(item),
     annotations: omit(get(item, 'metadata.annotations'), jenkinsKey),
@@ -1239,6 +1252,7 @@ const PipelinesMapper = item => {
     ),
     name,
     isMultiBranch: get(item, 'spec.type', '') === 'multi-branch-pipeline',
+    type: get(item, 'spec.type', ''),
     numberOfPipelines: 0,
     numberOfFolders: 0,
     pipelineFolderNames: [],
@@ -1251,6 +1265,15 @@ const PipelinesMapper = item => {
     parameters: [],
     disabled: false,
     weatherScore: 100,
+    validate:
+      get(
+        item,
+        'metadata.annotations["pipeline.devops.kubesphere.io/jenkinsfile.validate"]',
+        'success'
+      ) === 'success',
+
+    // codeRepoKey: get(item, 'metadata.annotations["devops.codeRepo"]'),
+    disabledBrancheNames,
     ...pipelineObject,
     _originData: getOriginData(item),
   }

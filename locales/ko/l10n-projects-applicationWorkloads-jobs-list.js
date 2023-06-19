@@ -17,25 +17,25 @@
  */
 module.exports = {
   // Banner
-  JOB_PL: 'Jobs',
-  JOB_DESC: 'Jobs are used to perform short-lived, one-off tasks. A job creates one or more pods and ensures that a specific number of pods successfully terminate.',
+  JOB_PL: '잡',
+  JOB_DESC: '잡은 수명이 짧은 일회성 태스크를 수행하는 데 사용됩니다. 잡은 하나 이상의 파드를 생성하고 특정 개수의 파드가 성공적으로 종료되도록 합니다.',
   // List
-  JOB_EMPTY_DESC: 'Please create a job.',
-  JOB_COMPLETED: 'Completed',
-  JOB_FAILED: 'Failed',
-  JOB_RUNNING: 'Running',
-  LAST_RUN_TIME: 'Last Run Time',
+  JOB_EMPTY_DESC: '잡을 생성하십시오.',
+  JOB_COMPLETED: '완료',
+  JOB_FAILED: '실패',
+  JOB_RUNNING: '실행 중',
+  LAST_RUN_TIME: '마지막 실행 시간',
   // List > Create > Basic Information
   // List > Create > Strategy Settings
   // List > Create > Pod Settings
-  RESTART_POLICY_NEVER_DESC: 'Re-create pod',
-  RESTART_POLICY_ONFAILURE_DESC: 'Restart container',
+  RESTART_POLICY_NEVER_DESC: '재생성된 파드',
+  RESTART_POLICY_ONFAILURE_DESC: '컨테이너 재시작',
   // List > Create > Storage Settings
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Rerun
-  RERUN: 'Rerun',
+  RERUN: '재실행',
   // List > Delete
-  JOB: 'Job',
-  JOB_LOW: 'job'
+  JOB: '잡',
+  JOB_LOW: '잡'
 };

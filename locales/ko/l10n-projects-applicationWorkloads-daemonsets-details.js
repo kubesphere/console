@@ -26,9 +26,9 @@ module.exports = {
   // Attributes
   // Resource Status
   // Revision Records
-  REVISION_RECORDS_DESC: 'A revision record is generated after the workload is created or modified, which can be used to roll back the workload settings. A maximum of 10 revision records can be retained.',
+  REVISION_RECORDS_DESC: '워크로드가 생성되거나 수정된 후 리비전 기록이 생성되며, 이 기록을 사용하여 워크로드 설정을 롤백할 수 있습니다. 최대 10개의 리비전 기록을 유지할 수 있습니다.',
   // Metadata
   // Monitoring
   // Environment Variables
-  ENVIRONMENT_VARIABLE: 'Environment Variable'
+  ENVIRONMENT_VARIABLE: '환경 변수'
 };

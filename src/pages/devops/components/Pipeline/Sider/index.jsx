@@ -16,14 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { observable, action, computed, toJS } from 'mobx'
-import { observer } from 'mobx-react'
-import { set, get } from 'lodash'
 import { Button, Form, Input, Select } from '@kube-design/components'
+import { get, set } from 'lodash'
+import { action, computed, observable, toJS } from 'mobx'
+import { observer } from 'mobx-react'
+import React from 'react'
+import { compareVersion } from 'utils'
 
 import YamlEditor from '../StepModals/kubernetesYaml'
-import StepsEditor from '../StepsEditor'
+import { getStepsEditor } from '../StepsEditor'
 import styles from './index.scss'
 
 const AgentType = [
@@ -88,6 +89,17 @@ export default class Sider extends React.Component {
     return get(this.props.store.jsonData, 'json.pipeline.agent.type', '')
   }
 
+  get ksVersion() {
+    const { cluster } = this.props
+    return globals.app.isMultiCluster
+      ? get(globals, `clusterConfig.${cluster}.ksVersion`)
+      : get(globals, 'ksConfig.ksVersion')
+  }
+
+  get isOld() {
+    return compareVersion(this.ksVersion, '3.4.0') < 0
+  }
+
   @computed
   get labelDataList() {
     return get(this.props.store, 'labelDataList', [])
@@ -114,6 +126,19 @@ export default class Sider extends React.Component {
       this.props.store.params
     )
     jenkinsFile && this.props.onOk(jenkinsFile)
+  }
+
+  handleConfirmOld = async () => {
+    this.getAgentArguments()
+    this.loading = true
+    const result = await this.props.store
+      .convertJsonToJenkinsFile(this.props.store.params)
+      .finally(() => {
+        this.loading = false
+      })
+    if (result && get(result, 'data.result') === 'success') {
+      this.props.onOk(get(result, 'data.jenkinsfile', ''))
+    }
   }
 
   getAgentArguments() {
@@ -191,11 +216,15 @@ export default class Sider extends React.Component {
     }
   }
 
+  get StepsEditor() {
+    return getStepsEditor(this.ksVersion)
+  }
+
   render() {
     const { activeStage, jsonData } = this.props.store
     const { pipeline = {} } = jsonData.json
     const { isSubmitting } = this.props
-
+    const StepsEditor = this.StepsEditor
     return (
       <div className={styles.sider}>
         <div className={styles.sheet}>
@@ -214,7 +243,7 @@ export default class Sider extends React.Component {
               disabled={!pipeline || !pipeline.stages.length}
               loading={isSubmitting || this.loading}
               type="control"
-              onClick={this.handleConfirm}
+              onClick={!this.isOld ? this.handleConfirm : this.handleConfirmOld}
             >
               {t('OK')}
             </Button>
@@ -222,7 +251,11 @@ export default class Sider extends React.Component {
         </div>
         {activeStage ? (
           <div className={styles.content}>
-            <StepsEditor activeStage={activeStage} store={this.props.store} />
+            <StepsEditor
+              activeStage={activeStage}
+              store={this.props.store}
+              trigger={this.props.trigger}
+            />
           </div>
         ) : null}
         <YamlEditor

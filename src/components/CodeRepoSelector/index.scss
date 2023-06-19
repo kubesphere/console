@@ -18,8 +18,21 @@
 }
 
 .multi-repo {
-  cursor: pointer;
+  //cursor: pointer;
+  margin-top: 4px;
+  :global {
+    .text-action {
+      color: #329dce;
+      font-weight: 600;
+      line-height: 20px;
+    }
+  }
   &:hover {
+    :global {
+      .text-action {
+        cursor: pointer;
+      }
+    }
     color: #242e42;
   }
 }

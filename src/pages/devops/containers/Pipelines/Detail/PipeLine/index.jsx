@@ -16,16 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { Button, Loading, Tooltip } from '@kube-design/components'
-import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import { isEmpty, debounce } from 'lodash'
+import { Button, Loading, Notify, Tooltip } from '@kube-design/components'
+import EmptyCard from 'devops/components/Cards/EmptyCard'
 
 import PipelineContent from 'devops/components/Pipeline'
+import { debounce, isEmpty } from 'lodash'
+import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
 
 import { trigger } from 'utils/action'
-import EmptyCard from 'devops/components/Cards/EmptyCard'
 
 import style from './index.scss'
 
@@ -57,13 +57,27 @@ export default class Pipeline extends React.Component {
     ]
   }
 
+  get isValidated() {
+    return (
+      this.store.pipelineConfig.metadata.annotations[
+        'pipeline.devops.kubesphere.io/jenkinsfile.validate'
+      ] !== 'failure'
+    )
+  }
+
+  get jenkinsFile() {
+    const { pipelineConfig } = this.store
+    return toJS(pipelineConfig.spec.pipeline.jenkinsfile)
+  }
+
   get isMultibranch() {
     const { detailStore } = this.props
     return toJS(detailStore.detail.isMultiBranch)
   }
 
   handlePipelineModal = () => {
-    const { pipelineJsonData } = this.store
+    const { pipelineJsonData, pipelineConfig } = this.store
+    const defaultValue = toJS(pipelineConfig.spec.pipeline.jenkinsfile)
     const { params } = this.props.match
 
     this.trigger('pipeline.pipelineTemplate', {
@@ -77,31 +91,76 @@ export default class Pipeline extends React.Component {
       contentWidth: '960px',
       noCodeEdit: true,
       params,
-      success: jenkinsFile => {
-        this.trigger('pipeline.pipelineCreate', {
-          store: this.store,
-          jsonData: jenkinsFile,
-          params,
-          success: () => {
-            const { devops, name } = params
-            localStorage.removeItem(
-              `${globals.user.username}-${devops}-${name}`
+      onCancel: () => this.handleReset(defaultValue),
+      success: ({ jenkinsFile, jsonData, mode, template }) => {
+        if (template === 'custom') {
+          this.trigger('pipeline.pipelineCreate', {
+            store: this.store,
+            jsonData: {},
+            params,
+            trigger: (...args) => {
+              this.trigger(...args)
+            },
+            onCancel: () => this.handleReset(defaultValue),
+            success: () => {
+              const { devops, name } = params
+              localStorage.removeItem(
+                `${globals.user.username}-${devops}-${name}`
+              )
+              this.handleRefresh()
+            },
+          })
+        } else if (!mode) {
+          this.store.updateJenkinsFile(jenkinsFile)
+          if (!isEmpty(jsonData)) {
+            this.store.setPipelineJsonData(jsonData)
+            this.handleEditorPipelineModal(undefined, () =>
+              this.handleReset(defaultValue)
             )
-            this.handleRefresh()
-          },
-        })
+          } else {
+            this.handleJenkinsFileModal(undefined, () =>
+              this.handleReset(defaultValue)
+            )
+          }
+        } else {
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
+          this.handleRefresh()
+        }
       },
     })
   }
 
-  handleEditorPipelineModal = () => {
+  handleReset = (defaultValue = '') => {
+    const { params } = this.props.match
+    const { devops, name, cluster } = params
+    clearTimeout(this.store.timer)
+    const clusterPath =
+      cluster && cluster !== 'default' ? `/klusters/${cluster}` : ''
+    request
+      .put(
+        `/kapis/devops.kubesphere.io/v1alpha3${clusterPath}/devops/${devops}/pipelines/${name}/jenkinsfile?mode=raw`,
+        { data: defaultValue },
+        {
+          headers: {
+            'content-type': 'application/json',
+          },
+        }
+      )
+      .then(this.handleRefresh)
+  }
+
+  handleEditorPipelineModal = (e, cb) => {
     const { pipelineJsonData } = this.store
     const { params } = this.props.match
 
     this.trigger('pipeline.pipelineCreate', {
       store: this.store,
       jsonData: toJS(pipelineJsonData.pipelineJson),
+      onCancel: cb,
       params,
+      trigger: (...args) => {
+        this.trigger(...args)
+      },
       success: () => {
         const { devops, name } = params
         localStorage.removeItem(`${globals.user.username}-${devops}-${name}`)
@@ -110,13 +169,14 @@ export default class Pipeline extends React.Component {
     })
   }
 
-  handleJenkinsFileModal = () => {
+  handleJenkinsFileModal = (e, cb) => {
     const { pipelineConfig } = this.store
     const { params } = this.props.match
 
     this.trigger('pipeline.jenkins', {
       store: this.store,
       defaultValue: toJS(pipelineConfig.spec.pipeline.jenkinsfile),
+      onCancel: cb,
       params,
       success: () => {
         const { devops, name } = params
@@ -133,13 +193,26 @@ export default class Pipeline extends React.Component {
     await this.store.getJenkinsFile({ ...params, name: decodeName })
 
     this.store.getActivities(params)
+    if (this.jenkinsFileMode) {
+      this.handleRefresh()
+    }
   }
 
-  handleRefresh = () => {
+  handleRefresh = async () => {
     const { params } = this.props.match
     const decodeName = decodeURIComponent(params.name)
-
-    this.store.getJenkinsFile({ ...params, name: decodeName }, true)
+    await this.store.getJenkinsFile({ ...params, name: decodeName }, true)
+    if (this.jenkinsFileMode) {
+      this.store
+        .fetchDetailUntilEditModeNull({
+          ...params,
+          name: decodeName,
+        })
+        .then(res => {
+          this.store.detail = res
+          this.store.setPipelineConfig(res._originData)
+        })
+    }
   }
 
   componentDidMount() {
@@ -163,6 +236,7 @@ export default class Pipeline extends React.Component {
         cluster: params.cluster,
         params,
         branches: toJS(detail.branchNames),
+        disabledBrancheNames: toJS(detail.disabledBranchNames),
         parameters: toJS(detail.parameters),
         success: () => {
           this.props.rootStore.routing.push('./activity')
@@ -233,7 +307,50 @@ export default class Pipeline extends React.Component {
       )
     }
 
-    if (isEmpty(toJS(pipelineJson))) {
+    if (this.jenkinsFileMode && this.jenkinsFileMode === 'raw') {
+      return (
+        <EmptyCard desc={t('JENKINS_UNAVAILABLE')}>
+          {this.editable && (
+            <>
+              <Button
+                onClick={this.handleJenkinsFileModal}
+                disabled={this.jenkinsFileMode === 'json'}
+              >
+                {t('EDIT_JENKINSFILE')}
+              </Button>
+              <Button type="control" onClick={this.handleRunning}>
+                {t('RUN')}
+              </Button>
+            </>
+          )}
+        </EmptyCard>
+      )
+    }
+
+    if (
+      (pipelineJson && pipelineJson.result === 'failure') ||
+      !this.isValidated
+    ) {
+      return (
+        <EmptyCard desc={t('INVALID_JENKINSFILE_TIP')}>
+          {this.editable && (
+            <>
+              <Button
+                onClick={this.handleJenkinsFileModal}
+                disabled={this.jenkinsFileMode === 'json'}
+              >
+                {t('EDIT_JENKINSFILE')}
+              </Button>
+              <Button type="control" onClick={this.handleRunning}>
+                {t('RUN')}
+              </Button>
+            </>
+          )}
+        </EmptyCard>
+      )
+    }
+
+    if (isEmpty(toJS(pipelineJson)) || !this.jenkinsFile) {
       return (
         <EmptyCard desc={t('NO_PIPELINE_CONFIG_FILE_TIP')}>
           {this.editable && (
@@ -250,26 +367,6 @@ export default class Pipeline extends React.Component {
                 disabled={this.jenkinsFileMode === 'raw'}
               >
                 {t('EDIT_PIPELINE')}
-              </Button>
-            </>
-          )}
-        </EmptyCard>
-      )
-    }
-
-    if (pipelineJson.result === 'failure') {
-      return (
-        <EmptyCard desc={t('INVALID_JENKINSFILE_TIP')}>
-          {this.editable && (
-            <>
-              <Button
-                onClick={this.handleJenkinsFileModal}
-                disabled={this.jenkinsFileMode === 'json'}
-              >
-                {t('EDIT_JENKINSFILE')}
-              </Button>
-              <Button type="control" onClick={this.handleRunning}>
-                {t('RUN')}
               </Button>
             </>
           )}

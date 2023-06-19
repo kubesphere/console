@@ -27,7 +27,7 @@ module.exports = {
   DO_NOT_REMIND_AGAIN: 'Do not remind me again',
   // Install > Basic Information
   LOCATION: 'Location',
-  CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 53 characters.',
+  CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 32 characters.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'The app cannot be deployed in a multi-cluster project.',
   LATEST_VERSION_SCAP: 'Latest version',
   WORKSPACE_EMPTY_DESC: 'Please select a workspace',

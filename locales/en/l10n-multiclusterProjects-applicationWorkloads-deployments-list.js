@@ -38,7 +38,7 @@ module.exports = {
   SPECIFY_REPLICAS_DESC: 'Manually set the number of pod replicas in each cluster.',
   REPLICA_LOW_SI: 'replica',
   REPLICA_LOW_PL: 'replicas',
-  WEIGHT: 'weight',
+  WEIGHT: 'Weight',
   TOTAL_REPLICAS: 'Total Replicas',
   // List > Create > Pod Settings > Add Container > Container Settings
   COST: 'Cost',
@@ -107,6 +107,12 @@ module.exports = {
   CREATE_CONFIG: 'create a configmap',
   OR: 'or',
   CREATE_SECRET: 'create a secret.',
+  DEFAULT_REPOSITORY: 'Default repository',
+  SET_DEFAULT_REPOSITORY: 'Set default repository',
+  SET_AS_DEFAULT_REPOSITORY_DESC:
+      'Set as default repository after setting, if not specified, the system will use the default repository to create the application load. Only one default repository can be set in a project.',
+  SET_AS_DEFAULT_REPOSITORY: 'Set as default mirror repository',
+  SET_DEFAULT_REPO_SUCCESSFUL: 'Set default repository successful',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: 'Container Security Context',
   CONTAINER_SECURITY_CONTEXT_DESC: 'Customize the privilege settings of the container.',
@@ -159,6 +165,10 @@ module.exports = {
   MUST_MATCH: 'Must match',
   TARGET: 'Target',
   STRATEGY: 'Strategy',
+  // List > Create > Pod Settings > Pod Grace Period
+  POD_GRACE_PERIOD: 'Pod Grace Period',
+  POD_GRACE_PERIOD_DESC: 'Set the waiting time before Pod terminates, after which Pod will be forcibly terminated.',
+  TERMINATION_GRACEPERIOD_SECONDS: 'Termination GracePeriod Seconds (s)',
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: 'Add Metadata',
   POD_ADD_METADATA_DESC: 'Add metadata to the pod replicas.',

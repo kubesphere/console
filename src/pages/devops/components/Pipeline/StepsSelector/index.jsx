@@ -137,7 +137,8 @@ export default class StepsEditor extends React.Component {
   }
 
   async getPipelineSteps() {
-    await this.props.store.fetchPipelineStepTemplates()
+    const { cluster } = this.props.store.params
+    await this.props.store.fetchPipelineStepTemplates({ cluster })
     this.setState({
       stepTemplates: [...this.steps],
       isLoading: false,
@@ -204,6 +205,9 @@ export default class StepsEditor extends React.Component {
             showCredential={this.handleShowCredential}
             edittingData={edittingData}
             store={this.props.store}
+            devops={devops}
+            cluster={cluster}
+            trigger={this.props.trigger}
           />
         )}
         {hasCredential && (

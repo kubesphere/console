@@ -17,41 +17,41 @@
  */
 module.exports = {
   // Navigation pane
-  CONFIGURATION: 'Configuration',
+  CONFIGURATION: '환경설정',
   // Banner
-  SECRET_PL: 'Secrets',
-  SECRET_DESC: 'A secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
+  SECRET_PL: '시크릿',
+  SECRET_DESC: '시크릿은 비밀번호, 토큰 또는 키와 같은 중요한 데이터를 저장하는 목적으로 사용하는 개체입니다.',
   // List
-  SECRET_FIELD_COUNT: 'Fields',
-  SECRET_EMPTY_DESC: 'Please create a secret.',
+  SECRET_FIELD_COUNT: '필드',
+  SECRET_EMPTY_DESC: '시크릿을 생성하십시오.',
   // List > Create > Basic Information
-  SECRET: 'Secret',
+  SECRET: '시크릿',
   // List > Create > Data Settings
-  DATA_SETTINGS: 'Data Settings',
-  IMAGE_REGISTRY_INFORMATION: 'Image registry information',
-  TLS_INFORMATION: 'TLS information',
-  USERNAME_PASSWORD: 'Username and password',
-  ADD_DATA_TCAP: 'Add Data',
-  ADD_DATA_DESC: 'Add a key-value pair.',
-  REGISTRY_ADDRESS_TIP: 'Set a registry address, for example, docker.io.',
-  IMAGE_REGISTRY_REQUIRED_DESC: 'Please set the registry address, username, and password.',
-  CREDENTIAL_NAME_EMPTY_DESC: 'Please enter a credential name.',
-  ENTER_PRIVATE_KEY_DESC: 'Please enter a private key.',
-  ENTER_DATA_DESC: 'Please add data.',
-  PRIVATE_KEY_TCAP: 'Private Key',
-  REGISTRY_ADDRESS_TCAP: 'Registry Address',
-  REGISTRY_SECRET_VER_ERR: 'Registry Verification Failed.',
-  REGISTRY_SECRET_VER_SUC: 'Registry Verification Succeeded.',
-  SECRET_NO_CHINESE_CODE_DESC: 'The key of the secret must consist of alphanumeric characters, hyphens (-), underscores (_), or periods (.).',
-  SECRET_TYPE_DESC: 'Select a secret type.',
-  IMAGE_REGISTRY_VALIDATE_TIP: 'Please validate the username and password before creating the image registry secret.',
-  DATA_KEY: 'Key',
-  DATA_VALUE: 'Value',
-  DEFAULT: 'Default',
-  USERNAME_AND_PASSWORD: 'Username and password',
+  DATA_SETTINGS: '데이터 설정',
+  IMAGE_REGISTRY_INFORMATION: '이미지 레지스트리 정보',
+  TLS_INFORMATION: 'TLS 정보',
+  USERNAME_PASSWORD: '사용자 이름 및 비빌번호',
+  ADD_DATA_TCAP: '데이터 추가',
+  ADD_DATA_DESC: '키-값 쌍을 추가합니다.',
+  REGISTRY_ADDRESS_TIP: '레지스트리 주소(예: docker.io)를 설정합니다.',
+  IMAGE_REGISTRY_REQUIRED_DESC: '레지스트리 주소, 사용자 이름 및 비밀번호를 설정하십시오.',
+  CREDENTIAL_NAME_EMPTY_DESC: '자격 증명 이름을 입력하십시오.',
+  ENTER_PRIVATE_KEY_DESC: '개인 키를 입력하십시오.',
+  ENTER_DATA_DESC: '데이터를 추가하십시오.',
+  PRIVATE_KEY_TCAP: '개인 키',
+  REGISTRY_ADDRESS_TCAP: '레지스트리 주소',
+  REGISTRY_SECRET_VER_ERR: '레지스트리 확인에 실패했습니다.',
+  REGISTRY_SECRET_VER_SUC: '레지스트리를 사용할 수 있습니다.',
+  SECRET_NO_CHINESE_CODE_DESC: '시크릿 키는 영숫자, 하이픈(-), 밑줄(_) 또는 마침표(.)로 구성되어야 합니다.',
+  SECRET_TYPE_DESC: '시크릿 유형을 선택합니다.',
+  IMAGE_REGISTRY_VALIDATE_TIP: '이미지 레지스트리 시크릿을 만들기 전에 사용자 이름과 비밀번호를 확인하십시오.',
+  DATA_KEY: '키',
+  DATA_VALUE: '값',
+  DEFAULT: '기본값',
+  USERNAME_AND_PASSWORD: '사용자 이름 및 비빌번호',
   // List > Edit Information
   // List > Edit YAML
   // List > Edit Settings
-  DATA: 'Data',
-  EDIT_DATA_TCAP: 'Edit Data'
+  DATA: '데이터',
+  EDIT_DATA_TCAP: '데이터 편집'
 };

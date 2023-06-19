@@ -50,9 +50,9 @@ module.exports = {
   DISK_USAGE_SCAP: '磁盘用量',
   // Running Status > Allocated resources
   MEMORY_REQUEST_SCAP: '内存预留',
-  MEMORY_LIMIT_SCAP: '内存限制',
+  MEMORY_LIMIT_SCAP: '内存上限',
   CPU_REQUEST_SCAP: 'CPU 预留',
-  CPU_LIMIT_SCAP: 'CPU 限制',
+  CPU_LIMIT_SCAP: 'CPU 上限',
   // Running Status > Allocated Resources
   ALLOCATED_RESOURCES: '已分配资源',
   // Running Status > Health Status
@@ -60,7 +60,7 @@ module.exports = {
   HEALTH_STATUS: '健康状态',
   NODE_NETWORKUNAVAILABLE: '网络可用性',
   NODE_NETWORKUNAVAILABLE_DESC: '节点的网络状态是否正常。',
-  NODE_MEMORYPRESSURE: '内存压力(MemoryPressure)',
+  NODE_MEMORYPRESSURE: '内存压力',
   NODE_MEMORYPRESSURE_DESC: '节点的剩余内存是否小于阈值。',
   NODE_DISKPRESSURE: '磁盘压力',
   NODE_DISKPRESSURE_DESC: '节点的剩余磁盘空间或 Inode 数量是否小于阈值。',

@@ -22,9 +22,26 @@ import { Modal } from 'components/Base'
 import { Notify } from '@kube-design/components'
 import DeleteModal from 'components/Modals/CDDelete'
 import FORM_TEMPLATES from 'utils/form.templates'
-import { set, isEmpty, cloneDeep, split } from 'lodash'
+import { set, cloneDeep, split, merge } from 'lodash'
 import { toJS } from 'mobx'
 import EditCDAdvanceSetting from 'components/Modals/CDAdvanceEdit'
+
+const arr2Obj = arr1 => {
+  if (arr1 === undefined) return null
+  const gen = (idx, arr, end) => {
+    if (idx === arr.length) {
+      return end
+    }
+    return { [arr[idx]]: gen(++idx, arr, end) }
+  }
+
+  let o = {}
+  for (const entry of arr1) {
+    const ks = entry.k.split('.')
+    o = merge(o, gen(0, ks, entry.v))
+  }
+  return o
+}
 
 const handleFormData = ({ data, module }) => {
   const formTemplate = FORM_TEMPLATES[module]()
@@ -51,9 +68,9 @@ const buildHelmRelease = data => {
   const str2Obj = str => {
     if (str === undefined) return null
     const options = split(str, ';')
-    let o = {}
-    for (item of options) {
-      let option = split(item, '=')
+    const o = {}
+    for (const item of options) {
+      const option = split(item, '=')
       o[option[0]] = convert(option[1])
     }
     return o
@@ -96,6 +113,8 @@ const buildHelmRelease = data => {
                     : null,
                 targetNamespace: data.destination.namespace,
               },
+              values: arr2Obj(data.config.helmRelease.values),
+              valuesFrom: data.config.helmRelease.valuesFrom,
               interval: data.config.helmRelease.interval,
               releaseName: data.config.helmRelease.releaseName,
               storageNamespace: data.config.helmRelease.storageNamespace,

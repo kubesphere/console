@@ -17,16 +17,16 @@
  */
 module.exports = {
   // Banner
-  WORKSPACE_QUOTA_PL: 'Workspace Quotas',
-  WORKSPACE_QUOTAS_DESC: 'Workspace quotas are used to control the total resource usage of all projects and DevOps projects in a workspace.',
+  WORKSPACE_QUOTA_PL: '워크스페이스 할당량',
+  WORKSPACE_QUOTAS_DESC: '워크스페이스 할당량은 워크스페이스에 있는 모든 프로젝트 및 데브옵스 프로젝트의 총 리소스 사용량을 제어하는 데 사용됩니다.',
   // Resource Quotas
-  RESOURCE_QUOTA_PL: 'Resource Quotas',
-  USED_PERCENT: 'Used: {percent}%',
-  RESOURCE_LIMIT: 'Resource limit',
+  RESOURCE_QUOTA_PL: '자원 할당량',
+  USED_PERCENT: '사용률: {percent}%',
+  RESOURCE_LIMIT: '리소스 제한',
   // Resource Quotas > Edit Quotas
-  EDIT_WORKSPACE_QUOTAS: 'Edit Workspace Quotas',
-  CPU_REQUEST: 'CPU Request',
-  CPU_LIMIT: 'CPU Limit',
-  MEMORY_REQUEST: 'Memory Request',
-  MEMORY_LIMIT: 'Memory Limit'
+  EDIT_WORKSPACE_QUOTAS: '워크스페이스 할당량 편집',
+  CPU_REQUEST: 'CPU 요청',
+  CPU_LIMIT: 'CPU 제한',
+  MEMORY_REQUEST: '메모리 요청',
+  MEMORY_LIMIT: '메모리 제한'
 };

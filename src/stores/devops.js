@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { cloneDeep, get, isArray, omit, set } from 'lodash'
+import { cloneDeep, get, isArray, pick, omit, set } from 'lodash'
 import { action, observable } from 'mobx'
 
 import Base from 'stores/base'
@@ -34,6 +34,8 @@ export default class DevOpsStore extends Base {
   module = 'devops'
 
   hostName = ''
+
+  hostDetail = {}
 
   @observable
   roles = {
@@ -146,6 +148,34 @@ export default class DevOpsStore extends Base {
 
     data.forEach(item => {
       eventBus.emit(eventKeys.DEVOPS_CHANGE, item)
+    })
+  }
+
+  @action
+  checkNewName(params, query) {
+    return request.get(
+      `/kapis/devops.kubesphere.io/v1alpha3${this.getPath(
+        params
+      )}/devops/checkDevopsName`,
+      { ...query }
+    )
+  }
+
+  @action
+  checkDevopsName(params, isOld) {
+    if (isOld) {
+      return this.checkName(
+        {
+          ...params,
+        },
+        {
+          generateName: true,
+        }
+      )
+    }
+    return this.checkNewName(pick(params, ['cluster', 'workspace']), {
+      devopsName: params.name,
+      generateName: true,
     })
   }
 

@@ -117,7 +117,7 @@ export default class Home extends React.Component {
               <p>
                 <Icon name="clock" />
                 {t('START_TIME_VALUE', {
-                  value: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+                  value: `${moment(new Date()).format('YYYY-MM-DD')} 00:00:00`,
                 })}
               </p>
             ) : null}

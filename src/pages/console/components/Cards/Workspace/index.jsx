@@ -62,7 +62,7 @@ export default class WorkspaceCard extends React.Component {
                     )}
                   </strong>
                 </p>
-                <p>{t('Project Number')}</p>
+                <p>{t('PROJECT_NUMBER')}</p>
               </div>
             </Column>
             {globals.app.hasKSModule('devops') && (
@@ -77,7 +77,7 @@ export default class WorkspaceCard extends React.Component {
                       )}
                     </strong>
                   </p>
-                  <p>{t('DevOps Project Number')}</p>
+                  <p>{t('DEVOPS_PROJECT_NUMBER')}</p>
                 </div>
               </Column>
             )}
@@ -99,7 +99,7 @@ export default class WorkspaceCard extends React.Component {
         </div>
         <div className={styles.footer}>
           <div className={styles.members}>
-            <span>{t('Members')}:</span>
+            <span>{t('MEMBERS')}:</span>
             {Array(memberCount)
               .fill('')
               .map((member, index) => {
@@ -124,7 +124,7 @@ export default class WorkspaceCard extends React.Component {
           </div>
           <div className={styles.view}>
             <Button onClick={this.handleClick} type="control">
-              {t('View Workspace')}
+              {t('VIEW_WORKSPACE')}
             </Button>
           </div>
         </div>

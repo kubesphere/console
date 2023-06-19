@@ -27,7 +27,7 @@ module.exports = {
   DO_NOT_REMIND_AGAIN: '不再提示',
   // Install > Basic Information
   LOCATION: '位置',
-  CLUSTER_NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 53 个字符。',
+  CLUSTER_NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 32 个字符。',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目中安装应用。',
   LATEST_VERSION_SCAP: '最新版本',
   WORKSPACE_EMPTY_DESC: '请选择企业空间',

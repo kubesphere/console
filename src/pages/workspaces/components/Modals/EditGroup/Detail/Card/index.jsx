@@ -63,7 +63,7 @@ export default class GroupCard extends React.Component {
             />
             <div>
               <span className="text-second padding-20">
-                {deleteKeys.includes(item.group_id) && t('deleting')}
+                {deleteKeys.includes(item.group_id) && t('DELETING')}
               </span>
               <Button icon="pen" type="flat" onClick={() => onEdit(item)} />
               <Button icon="trash" type="flat" onClick={() => onDelete(item)} />

@@ -23,15 +23,14 @@ import {
   Column,
   Columns,
   Toggle,
-  Tag,
   Tabs,
-  Dropdown,
-  Menu,
   Collapse,
+  Select,
+  Icon,
 } from '@kube-design/components'
 
 import { FLUXCD_APP_TYPES } from 'utils/constants'
-
+import { ArrayInput, ObjectInput } from 'components/Inputs'
 import { TypeSelect } from 'components/Base'
 import { get, set } from 'lodash'
 import Placement from '../../Advance/Placement'
@@ -100,17 +99,7 @@ export default class Advance extends React.Component {
                   </Column>
                   <Column>
                     <Form.Item
-                      label={t('ValuesFiles')}
-                      desc={t(
-                        'list of values files to use as the chart values'
-                      )}
-                    >
-                      <Input name="config.helmRelease.chart.valuesFiles" />
-                    </Form.Item>
-                  </Column>
-                  <Column>
-                    <Form.Item
-                      label={t('Save Template')}
+                      label={t('SAVE_TEMPLATE')}
                       desc={t(
                         'Template is a reusable module includes Chart, ValuesFiles and so on'
                       )}
@@ -125,6 +114,20 @@ export default class Advance extends React.Component {
                           "metadata.labels['gitops.kubesphere.io/save-helm-template']"
                         )}
                       />
+                    </Form.Item>
+                  </Column>
+                </Columns>
+                <Columns>
+                  <Column>
+                    <Form.Item
+                      label={t('VALUES_FILES')}
+                      desc={t(
+                        'list of values files to use as the chart values'
+                      )}
+                    >
+                      <ArrayInput name="config.helmRelease.chart.valuesFiles">
+                        <Input />
+                      </ArrayInput>
                     </Form.Item>
                   </Column>
                 </Columns>
@@ -154,36 +157,81 @@ export default class Advance extends React.Component {
                   <Column>
                     <Form.Item
                       label={t('Values')}
-                      desc={t('Values holds the values for this Helm release.')}
+                      desc={t('Values holds the values for this HelmRelease')}
                     >
-                      <Input name="config.helmRelease.values" />
+                      <ArrayInput
+                        name="config.helmRelease.values"
+                        itemType="object"
+                      >
+                        <ObjectInput>
+                          <Input name="k" placeholder={t('KEY')} />
+                          <Input name="v" placeholder={t('VALUE')} />
+                        </ObjectInput>
+                      </ArrayInput>
                     </Form.Item>
                   </Column>
+                </Columns>
+                <Columns>
                   <Column>
                     <Form.Item
-                      label={t('ValuesFrom')}
+                      label={t('VALUES_FROM')}
                       desc={
-                        <div>
-                          <Dropdown
-                            content={
-                              <Menu>
-                                <Menu.MenuItem key="ConfigMap">
-                                  ConfigMap
-                                </Menu.MenuItem>
-                                <Menu.MenuItem key="Secret">
-                                  Secret
-                                </Menu.MenuItem>
-                              </Menu>
-                            }
-                          >
-                            <Tag type="primary">ConfigMap</Tag>
-                          </Dropdown>
-                        </div>
+                        'ValuesFrom holds references to resources containing Helm values for this HelmRelease'
                       }
                     >
-                      <div>
-                        <Input name="config.helmRelease.valuesFrom.secret" />
-                      </div>
+                      <ArrayInput
+                        name="config.helmRelease.valuesFrom"
+                        itemType="object"
+                      >
+                        <ObjectInput>
+                          <Select
+                            name="kind"
+                            defaultValue="ConfigMap"
+                            optionRenderer={option => (
+                              <span className="option-with-icon">
+                                <Icon
+                                  name={option.icon}
+                                  style={{
+                                    marginRight: 6,
+                                    verticalAlign: 'middle',
+                                  }}
+                                  type="light"
+                                />
+                                <span>{option.label}</span>
+                              </span>
+                            )}
+                            valueRenderer={option => (
+                              <span className="option-with-icon">
+                                <Icon
+                                  name={option.icon}
+                                  style={{
+                                    marginRight: 6,
+                                    verticalAlign: 'middle',
+                                  }}
+                                />
+                                <span>{option.value}</span>
+                              </span>
+                            )}
+                            options={[
+                              {
+                                label: 'ConfigMap',
+                                value: 'ConfigMap',
+                                icon: 'hammer',
+                              },
+                              {
+                                label: 'Secret',
+                                value: 'Secret',
+                                icon: 'key',
+                              },
+                            ]}
+                          />
+                          <Input name="name" placeholder={t('NAME')} />
+                          <Input
+                            name="valuesKey"
+                            placeholder={t('ValuesKey')}
+                          />
+                        </ObjectInput>
+                      </ArrayInput>
                     </Form.Item>
                   </Column>
                 </Columns>
@@ -218,7 +266,7 @@ export default class Advance extends React.Component {
                         </Form.Item>
                       </TabPanel>
                       <TabPanel
-                        label={t('StorageNamespace')}
+                        label={t('STORAGE_NAMESPACE')}
                         name="StorageNamespace"
                       >
                         <Form.Item

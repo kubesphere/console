@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, set } from 'lodash'
 
 import { action, observable } from 'mobx'
 
@@ -104,6 +104,17 @@ export default class Gateway extends Base {
     this.gateway.data = data
     this.gateway.isLoading = false
     return data
+  }
+
+  @action
+  async getGatewayReplica(params) {
+    const url = `${this.gatewayPodsUrl(params)}/pods`
+    const result = await this.submitting(request.get(url))
+    let pods = []
+    if (result && result.totalItems > 0) {
+      pods = result.items.map(item => ObjectMapper.pods(item))
+    }
+    return pods
   }
 
   @action
@@ -196,7 +207,7 @@ export default class Gateway extends Base {
 
     this.logs = {
       data,
-      total: result.query.total || data.length || 0,
+      total: get(result, 'query.total') || data.length || 0,
       ...params,
       size: Number(params.size) || 10,
       from: Number(params.from) || 0,
@@ -284,13 +295,13 @@ export default class Gateway extends Base {
     }))
 
     this.podList.update({
-      data: more ? [...this.list.data, ...data] : data,
+      data: more ? [...this.podList.data, ...data] : data,
       total: result.totalItems || result.total_count || data.length || 0,
       ...params,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
       isLoading: false,
-      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+      ...(this.podList.silent ? {} : { selectedRowKeys: [] }),
     })
 
     return []
@@ -300,6 +311,7 @@ export default class Gateway extends Base {
   scale(params, newReplicas) {
     const data = this.gateway.data._originData
     data.spec.deployment.replicas = newReplicas
+    set(data, 'metadata.resourceVersion', this.gateway.data.resourceVersion)
     return this.submitting(request.put(this.gatewayUrl(params), data))
   }
 

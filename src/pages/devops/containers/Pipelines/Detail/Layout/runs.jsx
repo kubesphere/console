@@ -20,14 +20,14 @@ import React from 'react'
 import { action } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import moment from 'moment-mini'
-import { get } from 'lodash'
+import { get, omit } from 'lodash'
 
 import { getPipelineStatus } from 'utils/status'
 import Status from 'devops/components/Status'
 
 import RunDetailStore from 'stores/devops/run'
 import { trigger } from 'utils/action'
-import { Loading } from '@kube-design/components'
+import { Loading, Notify } from '@kube-design/components'
 import DetailPage from 'devops/containers/Base/Detail'
 
 @inject('rootStore', 'devopsStore', 'pipelineStore')
@@ -45,6 +45,10 @@ export default class RunDetailLayout extends React.Component {
   }
 
   refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+
+  get isDisabled() {
+    return this.props.pipelineStore?.branchDetail?.disabled
+  }
 
   get listUrl() {
     const { workspace, devops, cluster } = this.props.match.params
@@ -73,6 +77,7 @@ export default class RunDetailLayout extends React.Component {
 
   fetchData = () => {
     const { params } = this.props.match
+    this.props.pipelineStore.getBranchDetail(omit(params, 'runName'))
     this.store.getRunDetail(params)
   }
 
@@ -171,13 +176,53 @@ export default class RunDetailLayout extends React.Component {
     })
   }
 
+  get isRuning() {
+    return (
+      this.store.runDetail?.state !== 'FINISHED' &&
+      this.store.runDetail.state?.state !== 'PAUSED'
+    )
+  }
+
+  stop = () => {
+    const { params } = this.props.match
+
+    this.props.pipelineStore?.handleActivityStop?.({
+      url: this.getActivityDetailLinks(this.store.runDetail),
+      ...params,
+    })
+
+    Notify.success({
+      content: t('STOP_PIPELINE_SUCCESSFUL'),
+    })
+    this.fetchData()
+  }
+
+  getActivityDetailLinks = record => {
+    const branchName = get(record, '_originData.spec.scm.refName')
+
+    if (branchName) {
+      // multi-branch
+      return `branches/${encodeURIComponent(branchName)}/runs/${record.id}`
+    }
+    return `runs/${record.id}`
+  }
+
   getOperations = () => [
     {
-      key: 'rerun',
+      key: 'replay',
       type: 'control',
-      text: t('RERUN'),
+      text: t('Replay'),
       action: 'edit',
+      show: !this.isRuning,
       onClick: () => this.rePlay(),
+    },
+    {
+      key: 'stop',
+      text: t('STOP'),
+      action: 'edit',
+      type: 'danger',
+      show: this.isRuning,
+      onClick: () => this.stop(),
     },
   ]
 
@@ -221,7 +266,7 @@ export default class RunDetailLayout extends React.Component {
 
     const sideProps = {
       name: id,
-      operations,
+      operations: this.isDisabled ? [] : operations,
       attrs: this.getAttrs(),
       desc: get(annotations, 'desc'),
       labels,

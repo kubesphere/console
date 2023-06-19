@@ -16,23 +16,25 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { compareVersion } from 'utils'
 import { getChildRoutes } from 'utils/router.config'
 
-import PipelineLayout from './Layout/pipeline'
-import BranchLayout from './Layout/branch'
-import RunLayout from './Layout/runs'
-
 import {
-  Pipeline,
   Activity,
-  Branch,
-  PullRequest,
-  CodeQuality,
-  TaskStatus,
-  Commit,
   Artifacts,
+  Branch,
+  CodeQuality,
+  Commit,
   Events,
+  Pipeline,
+  PipelineOld,
+  PullRequest,
+  TaskStatus,
 } from './index'
+import BranchLayout from './Layout/branch'
+
+import PipelineLayout from './Layout/pipeline'
+import RunLayout from './Layout/runs'
 
 const PATH = '/:workspace/clusters/:cluster/devops/:devops/pipelines/:name'
 
@@ -42,8 +44,19 @@ const RUN_PATH = `${BRANCH_PATH}/run/:runName`
 
 const PATH_NO_BRANCH = `${PATH}/run/:runName`
 
+const getComponent = version => {
+  return [
+    [
+      v => {
+        return compareVersion(v, '3.4.0') < 0
+      },
+      PipelineOld,
+    ],
+    [() => true, Pipeline],
+  ].find(([condition]) => condition(version))[1]
+}
 const PIPELINE_ROUTES = [
-  { name: 'pipeline', title: 'TASK_STATUS', component: Pipeline },
+  { name: 'pipeline', title: 'PIPELINE_CONFIGURATION', getComponent },
   { name: 'code-quality', title: 'CODE_CHECK', component: CodeQuality },
   { name: 'activity', title: 'RUN_RECORDS', component: Activity },
   { name: 'branch', title: 'BRANCH_PL', component: Branch },

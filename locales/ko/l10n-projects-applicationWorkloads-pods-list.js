@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  POD_DESC: 'A pod is the basic execution unit of a Kubernetes application, representing the smallest and simplest unit in the Kubernetes object model that you create or deploy.',
+  POD_DESC: '파드는 Kubernetes 애플리케이션의 기본 실행 단위로, 사용자가 생성하거나 배포하는 Kubernetes 개체 모델에서 가장 작고 단순한 단위를 나타냅니다.',
   // List
-  POD_EMPTY_DESC: 'Please create a pod.'
+  POD_EMPTY_DESC: '파드를 생성하십시오.'
 };

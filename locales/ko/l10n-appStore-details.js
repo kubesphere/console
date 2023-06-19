@@ -17,46 +17,46 @@
  */
 module.exports = {
   // Title
-  BACK: 'Back',
+  BACK: '뒤로가기',
   // Description
   // Install > Deployment Agreement
-  AGREE: 'Agree',
-  APP_DEPLOY_AGREEMENT: 'Deployment Agreement',
-  APP_DEPLOY_AGREEMENT_DESC_1: 'You must abide by the open-source agreement of the application.',
-  APP_DEPLOY_AGREEMENT_DESC_2: 'Any consequences arising from your deployment of the application shall be borne by you. For support services, please contact the developer.',
-  DO_NOT_REMIND_AGAIN: 'Do not remind me again',
+  AGREE: '동의',
+  APP_DEPLOY_AGREEMENT: '설치 주의 사항',
+  APP_DEPLOY_AGREEMENT_DESC_1: '이 앱의 오픈 소스 규약을 준수해야 합니다.',
+  APP_DEPLOY_AGREEMENT_DESC_2: '앱을 배포하여 사용하면서 발생하는 모든 기술적 이슈는 귀하께서 책임져야 합니다. 기술 지원 서비스가 필요하면 앱 개발자에게 문의하십시오.',
+  DO_NOT_REMIND_AGAIN: '다시 보지 않기',
   // Install > Basic Information
-  LOCATION: 'Location',
-  CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 53 characters.',
-  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'The app cannot be deployed in a multi-cluster project.',
-  LATEST_VERSION_SCAP: 'Latest version',
-  WORKSPACE_EMPTY_DESC: 'Please select a workspace',
-  VERSION_EMPTY_DESC: 'Please select a version.',
+  LOCATION: '위치',
+  CLUSTER_NAME_DESC: '이름은 소문자, 숫자 및 하이픈(-)만 포함할 수 있으며 소문자로 시작하고 소문자 또는 숫자로 끝나야 합니다. 최대 길이는 32자입니다.',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '멀티 클러스터 프로젝트에는 앱을 배포할 수 없습니다.',
+  LATEST_VERSION_SCAP: '최신 버전',
+  WORKSPACE_EMPTY_DESC: '\b워크스페이스를 선택하십시오',
+  VERSION_EMPTY_DESC: '버전을 선택해주세요.',
   // Install > App Settings
-  HELM_APP_SCHEMA_FORM_TIP: 'You can customize the app settings in a GUI form or a YAML file. Settings in the GUI form and those in the YAML file are independent of each other.',
-  DEPLOYED_SUCCESSFUL: 'Installed successfully.',
+  HELM_APP_SCHEMA_FORM_TIP: '사용자 인터페이스 혹은 YAML 파일을 통해 앱을 설정할 수 있습니다. 사용자 인터페이스나 혹은 YAML 파일을 이용한 설정은 서로 영향주지 않습니다.',
+  DEPLOYED_SUCCESSFUL: '설치 성공',
   // App Information
-  APP_INFORMATION: 'App Information',
-  VERSION_NUMBER: 'Version Number',
-  APP_SCREENSHOTS: 'App Screenshots',
-  CATEGORY_COLON: 'Category:',
-  HOMEPAGE_COLON: 'Homepage:',
-  RELEASE_DATE_COLON: 'Release Date:',
-  APP_ID_COLON: 'App ID:',
-  SOURCE_CODE_ADDRESS_COLON: 'Source Code Address:',
-  APP_VERSIONS_TITLE: 'Versions (only the latest 10 versions will be displayed)',
-  MAINTAINER_COLON: 'Maintainer:',
+  APP_INFORMATION: '앱 정보',
+  VERSION_NUMBER: '버전',
+  APP_SCREENSHOTS: '앱 스크린샷',
+  CATEGORY_COLON: '카테고리:',
+  HOMEPAGE_COLON: '홈페이지',
+  RELEASE_DATE_COLON: '출시일:',
+  APP_ID_COLON: '앱 ID:',
+  SOURCE_CODE_ADDRESS_COLON: '소스 코드 주소:',
+  APP_VERSIONS_TITLE: '버전(최신 버전 10개만 표시됨)',
+  MAINTAINER_COLON: '메인테이너:',
   // App Details > Verions
-  VERSIONS: 'Versions',
+  VERSIONS: '버전',
   // APP Details > Keywords
-  KEYWORDS: 'Keywords',
-  NONE: 'None',
+  KEYWORDS: '키워드',
+  NONE: '없음',
   // App Details > App Introduction
-  APP_INTRODUCTION: 'App Introduction',
-  APP_DETAILS: 'App Details',
-  NO_DOCUMENT_DESC: 'No documentation is found.',
-  VERSION_INTRO_EMPTY_DESC: 'No introduction to this version is found.',
+  APP_INTRODUCTION: '앱 개요',
+  APP_DETAILS: '앱 세부정보',
+  NO_DOCUMENT_DESC: '문서를 찾을 수 없습니다.',
+  VERSION_INTRO_EMPTY_DESC: '이 버전에 대한 설명을 찾을 수 없습니다.',
   // App Details > Chart Files
-  CHART_FILES: 'Chart Files',
-  NO_APP_CHART_FILE_FOUND: 'No chart file of the app is found.'
+  CHART_FILES: 'Chart 파일',
+  NO_APP_CHART_FILE_FOUND: '앱의 Chart 파일을 찾을 수 없습니다.'
 };

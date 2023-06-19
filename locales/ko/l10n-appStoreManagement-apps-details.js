@@ -18,24 +18,24 @@
 module.exports = {
   // Title
   // Suspend
-  SUSPEND: 'Suspend',
+  SUSPEND: '비활성화',
   APP_NOTE: '참고',
   SUSPEND_SUCCESSFUL: '앱을 비활성화했습니다.',
   // Release
-  RELEASE: 'Release',
+  RELEASE: '릴리즈',
   ACTIVATE_SUCCESSFUL: '앱을 릴리즈하였습니다.',
   // Attributes
   APP_ID: '앱 ID',
   CATEGORY: '카테고리',
   TYPE: '타입',
   // Verisons
-  DEVELOPER: 'Developer',
+  DEVELOPER: '개발자',
   NO_VERSION_INFO_DESC: '버전 정보가 없습니다.',
   ACTIVATE_VERSION: '이 버전 활성화',
   CANCEL_SUBMISSION: '제출 취소',
   SUSPEND_VERSION: '이 버전 비활성화',
-  APP_SUSPEND_TIP: '이 앱(<strong>{name}</strong>)을 비활성화하면 앱 스토어에서 설치할 수 없게 됩니다. 정말 비활성화할까요?',
-  APP_RECOVER_TIP: '이 앱(<strong>{name}</strong>)의 비활성화되었던 버전이 다시 앱 스토어에 표시될 것입니다. 정말 활성화할까요?',
+  APP_SUSPEND_TIP: '이 앱(<strong>{name}</strong>)을 비활성화하면 앱 스토어를 통하여 설치할 수 없게 됩니다. 그래도 비활성화하시겠습니까?',
+  APP_RECOVER_TIP: '이 앱(<strong>{name}</strong>)의 비활성화되었던 버전이 다시 앱 스토어에 표시됩니다. 그래도 활성화하시겠습니까?',
   // Verisons > Buttons
   // Versions > Chart Files
   // Versions > App Release
