@@ -19,17 +19,38 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import isEqual from 'react-fast-compare'
-import { find, isEmpty, trim, omit } from 'lodash'
+import { find, isEmpty, trim, omit, flatMap } from 'lodash'
 import { Icon, Input, Dropdown, Menu, Tag } from '@kube-design/components'
 import { hasClass, addClass, removeClass } from 'utils/dom'
 import styles from './index.scss'
+
+function getTags(suggestions, filters) {
+  if (typeof filters !== 'object') return []
+  const arr = flatMap(Object.entries(filters), ([k, v]) => {
+    return [].concat(v).map(i => [k, i])
+  })
+  return arr
+    .map(([n, vk]) => {
+      const curFilter = find(suggestions, { key: n }) || {}
+      const curValue = curFilter.options
+        ? find(curFilter.options, { key: vk }) || {}
+        : {}
+      return {
+        filter: n,
+        filterLabel: 'label' in curFilter ? curFilter.label : '',
+        value: vk,
+        valueLabel: 'label' in curValue ? curValue.label : filters[n],
+      }
+    })
+    .filter(item => item.filterLabel)
+}
 
 export default class FilterInput extends Component {
   constructor(props) {
     super(props)
 
     const suggestions = this.getSuggestions(props.columns)
-    const tags = this.getTags(suggestions, props.filters)
+    const tags = getTags(suggestions, props.filters)
 
     this.state = {
       suggestions,
@@ -54,7 +75,7 @@ export default class FilterInput extends Component {
         value: '',
         activeSuggestion: null,
         optionVisible: false,
-        tags: this.getTags(suggestions, this.props.filters),
+        tags: getTags(suggestions, this.props.filters),
       })
     }
   }
@@ -72,23 +93,6 @@ export default class FilterInput extends Component {
             key: filter.value,
           })),
       }))
-  }
-
-  getTags(suggestions, filters) {
-    if (typeof filters !== 'object') return []
-
-    return Object.keys(filters).map(n => {
-      const curFilter = find(suggestions, { key: n }) || {}
-      const curValue = curFilter.options
-        ? find(curFilter.options, { key: filters[n] }) || {}
-        : {}
-      return {
-        filter: n,
-        filterLabel: 'label' in curFilter ? curFilter.label : '',
-        value: filters[n],
-        valueLabel: 'label' in curValue ? curValue.label : filters[n],
-      }
-    })
   }
 
   handleFoucs = () => {
