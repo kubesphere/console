@@ -15,8 +15,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 module.exports = {
-  // Banner
-  // List
-  STATEFULSETS: 'Statefulsets'
-};
+    // base info modal
+    INVALID_ALIAS_NAME_DESC:
+      'Invalid alias name. The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
+    ALIAS_NAME_DESC:
+      'The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
+  }
+  
