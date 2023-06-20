@@ -16,16 +16,41 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, set } from 'lodash'
 import { action, observable } from 'mobx'
 import Base from 'stores/base'
 
 export default class AlertRuleStore extends Base {
+  get yamlApiVersion() {
+    return 'alerting.kubesphere.io/v2beta1'
+  }
+
   get apiVersion() {
-    return 'kapis/alerting.kubesphere.io/v2alpha1/'
+    return 'apis/alerting.kubesphere.io/v2beta1/'
+  }
+
+  get ksApiVersion() {
+    return 'kapis/alerting.kubesphere.io/v2beta1/'
   }
 
   module = 'rules'
+
+  getRulePath = ({ namespace, type = '' }) => {
+    if (namespace) {
+      return 'rulegroups'
+    }
+
+    if (type === 'builtin') {
+      return 'globalrulegroups'
+    }
+
+    return 'clusterrulegroups'
+  }
+
+  getListUrl = (params = {}) =>
+    `${params.k8sOpt ? this.apiVersion : this.ksApiVersion}${this.getPath(
+      params
+    )}/${this.getRulePath(params)}${params.dryRun ? '?dryRun=All' : ''}`
 
   getResourceUrl = this.getListUrl
 
@@ -38,7 +63,7 @@ export default class AlertRuleStore extends Base {
   @observable
   targetsMetadata = []
 
-  getPath({ cluster, namespace, type } = {}) {
+  getPath({ cluster, namespace } = {}) {
     let path = ''
     if (cluster) {
       path += `/klusters/${cluster}`
@@ -46,17 +71,15 @@ export default class AlertRuleStore extends Base {
     if (namespace) {
       path += `/namespaces/${namespace}`
     }
-    if (type === 'builtin') {
-      path += `/${type}`
-    }
+
     return path
   }
 
   getFilterParams = params => {
     const result = { ...params }
-    if (result['labels.severity']) {
-      result.label_filters = `severity=${result['labels.severity']}`
-      delete result['labels.severity']
+    if (result['enable']) {
+      result.labelSelector = `alerting.kubesphere.io/enable=${result['enable']}`
+      delete result['enable']
     }
     return result
   }
@@ -82,6 +105,11 @@ export default class AlertRuleStore extends Base {
     }
 
     params.limit = params.limit || 10
+
+    if (type === 'builtin') {
+      params.builtin = true
+    }
+
     const result = await request.get(
       this.getResourceUrl({ cluster, namespace, type }),
       this.getFilterParams(params)
@@ -92,13 +120,7 @@ export default class AlertRuleStore extends Base {
       ...this.mapper(item),
     }))
 
-    const total = Number(result.total)
-
-    if (type === 'builtin') {
-      this.builtinRuleCount = total
-    } else {
-      this.ruleCount = total
-    }
+    const total = result.totalItems
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
@@ -118,15 +140,15 @@ export default class AlertRuleStore extends Base {
     const result = await Promise.all([
       request.get(this.getResourceUrl({ cluster, namespace }), {
         page: 1,
-        limit: 1,
+        limit: -1,
       }),
       request.get(
         this.getResourceUrl({ cluster, namespace, type: 'builtin' }),
-        { page: 1, limit: 1 }
+        { page: 1, limit: -1, builtin: true }
       ),
     ])
-    this.ruleCount = get(result, '0.total', 0)
-    this.builtinRuleCount = get(result, '1.total', 0)
+    this.ruleCount = get(result, '0.items', []).length
+    this.builtinRuleCount = get(result, '1.items', []).length
   }
 
   @action
@@ -161,5 +183,77 @@ export default class AlertRuleStore extends Base {
     )
 
     return get(response, 'data.result', [])
+  }
+
+  @action
+  create(data, params = {}) {
+    return this.submitting(
+      request.post(this.getListUrl({ ...params, k8sOpt: true }), data)
+    )
+  }
+
+  @action
+  async update(params, newObject) {
+    const result = await request.get(
+      this.getDetailUrl({ ...params, k8sOpt: true })
+    )
+    const resourceVersion = get(result, 'metadata.resourceVersion')
+    if (resourceVersion) {
+      set(newObject, 'metadata.resourceVersion', resourceVersion)
+    }
+    return this.submitting(
+      request.put(this.getDetailUrl({ ...params, k8sOpt: true }), newObject)
+    )
+  }
+
+  @action
+  patch(params, newObject) {
+    return this.submitting(
+      request.patch(this.getDetailUrl({ ...params, k8sOpt: true }), newObject)
+    )
+  }
+
+  @action
+  batchPatch(rowKeys, params, newObject) {
+    return this.submitting(
+      Promise.all(
+        rowKeys.map(name => {
+          return request.patch(
+            this.getDetailUrl({ ...params, name, k8sOpt: true }),
+            newObject
+          )
+        })
+      )
+    )
+  }
+
+  @action
+  delete(params) {
+    return this.submitting(
+      request.delete(this.getDetailUrl({ ...params, k8sOpt: true }))
+    )
+  }
+
+  @action
+  batchDelete(rowKeys) {
+    return this.submitting(
+      Promise.all(
+        rowKeys.map(name => {
+          const item = this.list.data.find(_item => _item.name === name)
+          return request.delete(this.getDetailUrl({ ...item, k8sOpt: true }))
+        })
+      )
+    )
+  }
+
+  @action
+  checkName(params, query) {
+    return request.get(
+      this.getDetailUrl({ ...params, k8sOpt: true }),
+      { ...query },
+      {
+        headers: { 'x-check-exist': true },
+      }
+    )
   }
 }

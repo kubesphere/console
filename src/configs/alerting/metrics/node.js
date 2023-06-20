@@ -19,95 +19,115 @@
 import {
   BASE_RULE_CONFIG,
   PERCENT_RULE_CONFIG,
-  DISK_RULE_CONFIG,
-  THROUGHPUT_RULE_CONFIG,
-  BANDWIDTH_RULE_CONFIG,
+  GIB_RULE_CONFIG,
+  MBPS_RULE_CONFIG,
+  GB_RULE_CONFIG,
+  KBS_RULE_CONFIG,
 } from './rule.config'
 
-export default {
-  'node:pod_abnormal:ratio{$1}': {
-    label: 'UNAVAILABLE_POD_RATIO',
-    prefixIcon: 'pod',
-    ruleConfig: PERCENT_RULE_CONFIG,
-  },
-  'node:pod_utilisation:ratio{$1}': {
-    label: 'POD_QUOTA_UTILIZATION_SCAP',
-    prefixIcon: 'pod',
-    ruleConfig: PERCENT_RULE_CONFIG,
-  },
-  'node:node_cpu_utilisation:avg1m{$1}': {
+export const NODE_ALERTING_CONFIG = {
+  'cpu:utilization': {
     label: 'CPU_UTILIZATION_SCAP',
+    tcapLabel: 'CPU_UTILIZATION_NO_PERCENT_TCAP',
     prefixIcon: 'cpu',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
-  'node:load1:ratio{$1}': {
+  'cpu:load1m': {
     label: 'CPU_LOAD_1',
+    tcapLabel: 'CPU_LOAD_1_TCAP',
     prefixIcon: 'cpu',
     ruleConfig: BASE_RULE_CONFIG,
   },
-  'node:load5:ratio{$1}': {
+  'cpu:load5m': {
     label: 'CPU_LOAD_5',
+    tcapLabel: 'CPU_LOAD_5_TCAP',
     prefixIcon: 'cpu',
     ruleConfig: BASE_RULE_CONFIG,
   },
-  'node:load15:ratio{$1}': {
+  'cpu:load15m': {
     label: 'CPU_LOAD_15',
+    tcapLabel: 'CPU_LOAD_15_TCAP',
     prefixIcon: 'cpu',
     ruleConfig: BASE_RULE_CONFIG,
   },
-  'node:node_memory_bytes_available:sum{$1}': {
-    label: 'MEMORY_AVAILABLE',
-    prefixIcon: 'memory',
-    ruleConfig: DISK_RULE_CONFIG,
-  },
-  'node:node_memory_utilisation:{$1}': {
+  'memory:utilization': {
     label: 'MEMORY_UTILIZATION_SCAP',
+    tcapLabel: 'MEMORY_UTILIZATION_NO_PERCENT_TCAP',
     prefixIcon: 'memory',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
-  'node:disk_space_available:{$1}': {
-    label: 'DISK_SPACE_AVAILABLE',
-    prefixIcon: 'storage',
-    ruleConfig: DISK_RULE_CONFIG,
+  'memory:available': {
+    label: 'MEMORY_AVAILABLE',
+    tcapLabel: 'MEMORY_AVAILABLE_TCAP',
+    prefixIcon: 'memory',
+    ruleConfig: GIB_RULE_CONFIG,
   },
-  'node:disk_space_utilization:ratio{$1}': {
-    label: 'DISK_SPACE_UTILIZATION',
-    prefixIcon: 'storage',
-    ruleConfig: PERCENT_RULE_CONFIG,
-  },
-  'node:disk_inode_utilization:ratio{$1}': {
-    label: 'INODE_UTILIZATION',
-    prefixIcon: 'storage',
-    ruleConfig: PERCENT_RULE_CONFIG,
-  },
-  'node:data_volume_iops_reads:sum{$1}': {
-    label: 'DISK_READ_IOPS',
-    prefixIcon: 'storage',
-    ruleConfig: BASE_RULE_CONFIG,
-  },
-  'node:data_volume_iops_writes:sum{$1}': {
-    label: 'DISK_WRITE_IOPS',
-    prefixIcon: 'storage',
-    ruleConfig: BASE_RULE_CONFIG,
-  },
-  'node:data_volume_throughput_bytes_read:sum{$1}': {
-    label: 'DISK_READ_THROUGHPUT',
-    prefixIcon: 'storage',
-    ruleConfig: THROUGHPUT_RULE_CONFIG,
-  },
-  'node:data_volume_throughput_bytes_written:sum{$1}': {
-    label: 'DISK_WRITE_THROUGHPUT',
-    prefixIcon: 'storage',
-    ruleConfig: THROUGHPUT_RULE_CONFIG,
-  },
-  'node:node_net_bytes_transmitted:sum_irate{$1}': {
+  'network:transmittedRate': {
     label: 'DATA_SEND_RATE',
+    tcapLabel: 'DATA_SEND_RATE_TCAP',
     prefixIcon: 'network',
-    ruleConfig: BANDWIDTH_RULE_CONFIG,
+    ruleConfig: MBPS_RULE_CONFIG,
   },
-  'node:node_net_bytes_received:sum_irate{$1}': {
+  'network:receivedRate': {
     label: 'DATA_RECEIVE_RATE',
+    tcapLabel: 'DATA_RECEIVE_RATE_TCAP',
     prefixIcon: 'network',
-    ruleConfig: BANDWIDTH_RULE_CONFIG,
+    ruleConfig: MBPS_RULE_CONFIG,
+  },
+  'disk:spaceUtilization': {
+    label: 'DISK_SPACE_UTILIZATION',
+    tcapLabel: 'DISK_SPACE_UTILIZATION_NO_PERCENT_TCAP',
+    prefixIcon: 'storage',
+    ruleConfig: PERCENT_RULE_CONFIG,
+  },
+  'disk:spaceAvailable': {
+    label: 'DISK_SPACE_AVAILABLE',
+    tcapLabel: 'DISK_SPACE_AVAILABLE_TCAP',
+    prefixIcon: 'storage',
+    ruleConfig: GB_RULE_CONFIG,
+  },
+  'disk:inodeUtilization': {
+    label: 'INODE_UTILIZATION',
+    tcapLabel: 'INODE_UTILIZATION_NO_PERCENT_TCAP',
+    prefixIcon: 'storage',
+    ruleConfig: PERCENT_RULE_CONFIG,
+  },
+  'disk:iopsRead': {
+    label: 'DISK_READ_IOPS',
+    tcapLabel: 'DISK_READ_IOPS_TCAP',
+    prefixIcon: 'storage',
+    ruleConfig: BASE_RULE_CONFIG,
+  },
+  'disk:iopsWrite': {
+    label: 'DISK_WRITE_IOPS',
+    tcapLabel: 'DISK_WRITE_IOPS_TCAP',
+    prefixIcon: 'storage',
+    ruleConfig: BASE_RULE_CONFIG,
+  },
+  'disk:throughputRead': {
+    label: 'DISK_READ_THROUGHPUT',
+    tcapLabel: 'DISK_READ_THROUGHPUT_TCAP',
+    prefixIcon: 'storage',
+    ruleConfig: KBS_RULE_CONFIG,
+  },
+  'disk:throughputWrite': {
+    label: 'DISK_WRITE_THROUGHPUT',
+    tcapLabel: 'DISK_WRITE_THROUGHPUT_TCAP',
+    prefixIcon: 'storage',
+    ruleConfig: KBS_RULE_CONFIG,
+  },
+  'pod:abnormalRatio': {
+    label: 'UNAVAILABLE_POD_RATIO',
+    tcapLabel: 'UNAVAILABLE_POD_RATIO_NO_PERCENT_TCAP',
+    prefixIcon: 'pod',
+    ruleConfig: PERCENT_RULE_CONFIG,
+  },
+  'pod:utilization': {
+    label: 'POD_QUOTA_UTILIZATION_SCAP',
+    tcapLabel: 'POD_QUOTA_UTILIZATION_NO_PERCENT_TCAP',
+    prefixIcon: 'pod',
+    ruleConfig: PERCENT_RULE_CONFIG,
   },
 }
+
+export default NODE_ALERTING_CONFIG

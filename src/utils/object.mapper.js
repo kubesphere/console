@@ -1359,15 +1359,19 @@ const GroupsMapper = item => ({
 })
 
 const AlertingRuleMapper = item => {
-  const resources = safeParseJSON(get(item, 'annotations.resources'), [])
-  const rules = safeParseJSON(get(item, 'annotations.rules'), [])
+  const rules = safeParseJSON(get(item, 'spec.rules'), [])
+
   return {
-    ...item,
-    aliasName: get(item, 'annotations.aliasName'),
-    description: get(item, 'annotations.description'),
-    resources,
+    ...getBaseInfo(item),
+    enabled: get(item, 'metadata.labels["alerting.kubesphere.io/enable"]'),
+    interval: get(item, 'spec.interval', ''),
     rules,
-    ruleType: !isEmpty(resources) ? 'template' : 'custom',
+    evaluationTime: get(item, 'status.evaluationTime', '-'),
+    lastEvaluation: get(item, 'status.lastEvaluation', '-'),
+    rulesStats: get(item, 'status.rulesStats', {}),
+    rulesStatus: get(item, 'status.rulesStatus', []),
+    _originData: getOriginData(item),
+    _originDataWithStatus: cloneDeep(item),
   }
 }
 

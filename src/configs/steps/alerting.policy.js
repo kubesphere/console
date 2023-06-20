@@ -17,19 +17,19 @@
  */
 
 import BaseInfo from 'components/Forms/AlertingPolicy/BaseInfo'
-import AlertingRule from 'components/Forms/AlertingPolicy/AlertingRule'
-import NotificationRule from 'components/Forms/AlertingPolicy/NotificationRule'
+import AlertingRules from 'components/Forms/AlertingPolicy/AlertingRules'
 
 export default [
-  { title: 'BASIC_INFORMATION', component: BaseInfo, required: true },
   {
-    title: 'RULE_SETTINGS',
-    component: AlertingRule,
+    title: 'BASIC_INFORMATION',
+    component: BaseInfo,
     required: true,
+    icon: 'cdn',
   },
   {
-    title: 'MESSAGE_SETTINGS',
-    component: NotificationRule,
+    title: 'ALERTING_RULE',
+    component: AlertingRules,
     required: true,
+    icon: 'bell',
   },
 ]

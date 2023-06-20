@@ -4,3 +4,61 @@
   margin: -12px -12px;
   box-shadow: none;
 }
+
+.footer {
+  padding: 6px 20px;
+  padding-top: 8px;
+}
+
+.pageSizeBox {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  overflow: auto;
+
+  .pagesize {
+    min-width: 67px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    .text {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 20px;
+      color: $dark-color06;
+      margin-right: 4px;
+    }
+  }
+
+  .gap {
+    width: 1px;
+    height: 12px;
+    background: $light-color03;
+    margin: 0px 12px;
+  }
+}
+
+.pageSizeMenu {
+  min-width: 96px;
+  max-height: 144px;
+  overflow: auto;
+
+  .pageSizeMenuitem {
+    min-width: 80px;
+    height: 32px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    color: $dark-color04;
+    padding: 0 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+      background: $light-color02;
+    }
+  }
+}

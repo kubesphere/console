@@ -735,6 +735,8 @@ export const COLORS_MAP = {
   lightestYellow: '#ffe1be',
 }
 
+export const ALERT_GROUP_MAX_LIMIT = 40
+
 export const MILLISECOND_IN_TIME_UNIT = {
   s: 1000,
   m: 60000,
