@@ -95,6 +95,8 @@ module.exports = {
   NOTIFICATION_DETAILS: 'Details',
   // List > Edit
   EDIT_ALERTING_POLICY: 'Edit Rule Group',
+  // List > Disable
+  DISABLE_ALERTING_POLICY: 'Disable Rule Group',
   // List > Delete
   ALERTING_POLICY: 'Rule Group',
   ALERTING_POLICY_LOW: 'rule group',
