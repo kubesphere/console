@@ -132,6 +132,11 @@ export default class Projects extends React.Component {
         title: t('ALIAS'),
         search: true,
       },
+      {
+        dataIndex: 'workspace',
+        title: t('WORKSPACE'),
+        search: true,
+      },
     ]
   }
 
@@ -260,6 +265,7 @@ export default class Projects extends React.Component {
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           columns={this.getColumns()}
+          columnSearch={this.columnSearch}
           isLoading={tableProps.isLoading || isLoadingMonitor}
           // searchType="name"
         />
