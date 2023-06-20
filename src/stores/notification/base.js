@@ -99,7 +99,8 @@ export default class Base extends BaseStore {
 
   @action
   async update(params, newObject) {
-    if (!this.resourceVersion) {
+    const resourceVersion = get(newObject, 'metadata.resourceVersion')
+    if (!this.resourceVersion || !resourceVersion) {
       await this.getResource(params)
     }
     set(newObject, 'metadata.resourceVersion', this.resourceVersion)
