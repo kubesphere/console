@@ -29,6 +29,7 @@ import DeleteModal from 'components/Modals/Delete'
 import EditYamlModal from 'components/Modals/EditYaml'
 import EditBasicInfoModal from 'components/Forms/AlertingPolicy/EditBasicInfo'
 import AlertingRules from 'components/Forms/AlertingPolicy/AlertingRules'
+import AlertMonitor from 'components/Modals/Monitoring/AlertMonitoring'
 
 import FORM_STEPS from 'configs/steps/alerting.policy'
 
@@ -328,7 +329,18 @@ export default {
     },
   },
   'alerting.rule.monitor': {
-    on() {},
+    on({ store, expr, rule, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+        },
+        rule,
+        expr,
+        store,
+        modal: AlertMonitor,
+        ...props,
+      })
+    },
   },
   'alerting.rule.reset': {
     on() {},
