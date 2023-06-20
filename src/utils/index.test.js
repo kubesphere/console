@@ -328,7 +328,7 @@ it('get metadata info', () => {
     name: 'redis-xxx',
   }
   expect(getDisplayName({})).toBe('')
-  expect(getDisplayName(data3)).toBe('redis-xxx (redis)')
+  expect(getDisplayName(data3)).toBe('redis(redis-xxx)')
   expect(getDisplayName(data4)).toBe('redis-xxx')
   expect(getDisplayName(data5)).toBe('redis-xxx')
 })
