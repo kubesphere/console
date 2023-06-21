@@ -1,0 +1,54 @@
+@import '~scss/variables';
+
+.AddRuleContainer {
+  :global {
+    .h6 {
+      font-size: 14px;
+      line-height: 20px;
+      color: $dark-color07;
+
+      svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 4px;
+        vertical-align: sub;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .AddForm {
+    margin-top: 12px;
+    padding: 12px;
+    background: $light-color01;
+    border-radius: 4px;
+
+    :global {
+      .radio {
+        padding: 2px;
+        background: $light-color01;
+        border: 1px solid $light-color07;
+        border-radius: 16px;
+
+        .radio-button {
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: #fff;
+          }
+        }
+
+        .checked {
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: #242e42;
+          }
+        }
+      }
+    }
+  }
+}
