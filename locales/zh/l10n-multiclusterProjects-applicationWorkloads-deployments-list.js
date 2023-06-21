@@ -164,9 +164,9 @@ module.exports = {
   TARGET: '目标',
   STRATEGY: '策略',
   // List > Create > Pod Settings > Pod Grace Period
-  POD_GRACE_PERIOD: 'Pod Grace Period',
-  POD_GRACE_PERIOD_DESC: 'Set the waiting time before Pod terminates, after which Pod will be forcibly terminated.',
-  TERMINATION_GRACEPERIOD_SECONDS: 'Termination GracePeriod Seconds (s)',
+  POD_GRACE_PERIOD: '容器组优雅终止',
+  POD_GRACE_PERIOD_DESC: '设置容器终止前等待的时间，超时后容器将强制终止。',
+  TERMINATION_GRACEPERIOD_SECONDS: '终止宽限时间 (s)',
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: '添加元数据',
   POD_ADD_METADATA_DESC: '为容器组副本添加元数据。',
