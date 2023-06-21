@@ -47,7 +47,6 @@ export default class AlertingPolicy extends React.Component {
   componentDidMount() {
     const { cluster, namespace } = this.props.match.params
     !namespace && this.props.store.fetchCount({ cluster })
-    localStorage.removeItem('alert-policy-detail-referrer')
   }
 
   get tabs() {

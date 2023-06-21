@@ -59,11 +59,6 @@ export default class AlertPolicyDetail extends React.Component {
   }
 
   get listUrl() {
-    const referrer = localStorage.getItem('alert-policy-detail-referrer')
-
-    if (referrer) {
-      return referrer
-    }
     const { cluster, namespace, workspace } = this.props.match.params
     const type = this.type
     return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}${

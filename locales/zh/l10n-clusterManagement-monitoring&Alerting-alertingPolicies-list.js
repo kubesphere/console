@@ -94,6 +94,8 @@ module.exports = {
   NOTIFICATION_DETAILS: '详情',
   // List > Edit
   EDIT_ALERTING_POLICY: '编辑规则组',
+  // List > Disable
+  DISABLE_ALERTING_POLICY: '禁用规则组',
   // List > Delete
   ALERTING_POLICY: '规则组',
   ALERTING_POLICY_LOW: '规则组'
