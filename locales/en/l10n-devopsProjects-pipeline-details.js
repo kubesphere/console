@@ -231,6 +231,7 @@ module.exports = {
     // detail page -> pipeline configuration tab
   PIPELINE_CONFIGURATION: 'Pipeline Configuration',
   Replay: 'Replay',
+  BRANCH_DISABLED_NOT_REPLAY: 'The branch is disabled and cannot be replayed.',
   // detail page // run log // task status
   RUN_LOGS: 'Run Logs',
   VIEW_FULL_LOG: 'View Full Logs',
