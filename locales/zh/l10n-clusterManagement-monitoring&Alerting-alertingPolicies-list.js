@@ -50,7 +50,16 @@ module.exports = {
   ALIAS_NAME_DESC: '别名只能包含中文、字母、数字和连字符（-），不得以连字符（-）开头或结尾，最长 63 个字符。',
   CHECK_INTERVAL: '检查间隔',
   ALERTING_POLICY_CHECK_INTERVAL_DESC: '设置指标检查间隔。默认值为1分钟。',
+  // List > Create > Rule Settings > Rule List
+  ADD_ALERTING_RULE: '添加告警规则',
+  ADD_ALERTING_RULE_DESC: 'Add an alert rule to the rule group.',
   // List > Create > Rule Settings > Rule Template
+  RULE_NAME: 'Rule Name',
+  CUSTOM_RULE_NAME_DESC: 'The rule name can contain any characters. The maximum length is 63 characters.',
+  LASTING_MINUTES: 'For {minutes, plural, =1 {1 minute} other {# minutes}}',
+  THRESHOLD_REQUIRED: 'Please enter a metric threshold.',
+  MESSAGE_SUMMARY_DESC: 'The message summary can contain any characters. The maximum length is 63 characters.',
+  MESSAGE_DETAILS_DESC: 'The message details can contain any characters. The maximum length is 256 characters.',
   RULE_TEMPLATE: '规则模板',
   RULE_SETTINGS: '规则设置',
   MONITORING_TARGETS: '监控目标',
@@ -94,6 +103,8 @@ module.exports = {
   NOTIFICATION_DETAILS: '详情',
   // List > Edit
   EDIT_ALERTING_POLICY: '编辑规则组',
+  // List > Disable
+  DISABLE_ALERTING_POLICY: 'Disable Rule Group',
   // List > Delete
   ALERTING_POLICY: '规则组',
   ALERTING_POLICY_LOW: '规则组'
