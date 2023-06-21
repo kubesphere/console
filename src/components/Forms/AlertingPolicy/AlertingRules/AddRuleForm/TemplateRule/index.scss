@@ -1,0 +1,48 @@
+@import '~scss/variables';
+
+.label {
+  font-size: 12px;
+  line-height: 20px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  color: $dark-color07;
+}
+
+.contentGroup {
+  padding: 12px;
+  border: 1px solid $light-color06;
+  border-radius: 4px;
+  background: $white;
+
+  .message {
+    :global {
+      input {
+        max-width: 100%;
+      }
+
+      textarea {
+        max-width: 100%;
+        min-height: 112px;
+      }
+    }
+  }
+}
+
+.inputs {
+  display: flex;
+  align-items: center;
+  padding: 6px 17px;
+  border-radius: 60px;
+  background-color: $bg-color;
+  border: solid 1px $border-color;
+
+  & > div,
+  input {
+    width: 100%;
+
+    & + div,
+    & + input {
+      margin-left: 12px;
+    }
+  }
+}
