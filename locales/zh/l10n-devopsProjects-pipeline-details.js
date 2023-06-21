@@ -159,7 +159,7 @@ module.exports = {
   PASSED: '已通过',
   // Pull Requests
   PULL_REQUEST_PL: '拉取请求',
-  FAILED_CHECK_SCRIPT_COMPILE: 'Failed to check script compiling. If you want to skip the step, click Continue.',
+  FAILED_CHECK_SCRIPT_COMPILE: '检查脚本编译失败。如果您想跳过这一步，请单击继续。',
   // detail page // Create Pipeline modal // add step modal 
   IMPORT_FROM_CODE_REPO: '从代码库导入',
   //Create pipeline modal -> Custom Pipeline
@@ -216,10 +216,10 @@ module.exports = {
   PIPELINE_CONFIGURATION: '流水线配置',
   Replay: '回放',
   // detail page // run log // task status
-  RUN_LOGS: 'Run Logs',
-  VIEW_FULL_LOG: 'View Full Logs',
+  RUN_LOGS: '运行日志',
+  VIEW_FULL_LOG: '查看完整日志',
   // detail page // run log // task status // pipeline log modal
-  PIPELINE_LOG: 'Pipeline Logs',
+  PIPELINE_LOG: '流水线日志',
   // detail page // Create Pipeline modal // add step modal
   IMPORT_FROM_CODE_REPO: '从代码库导入'
 };
