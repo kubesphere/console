@@ -29,9 +29,7 @@ export default class VerifyStore extends Base {
   @action
   checkInfo(data, params = {}) {
     return request.post(
-      `${this.apiVersion}/configs/notification/${this.getPath(params)}/${
-        this.module
-      }`,
+      `${this.apiVersion}${this.getPath(params)}/${this.module}`,
       data
     )
   }
