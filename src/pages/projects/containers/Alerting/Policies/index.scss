@@ -41,10 +41,35 @@
   span {
     padding: 0 2em;
   }
+
   &:before,
   &:after {
     content: '';
     flex: 1;
     background: linear-gradient(transparent 50%, #ccc 50%, transparent 54%);
+  }
+}
+
+.table-icon {
+  img {
+    border-radius: 0px;
+    border: none;
+  }
+}
+
+.status_icon {
+  display: flex;
+  align-items: center;
+
+  i {
+    margin-top: 0px;
+  }
+}
+
+.tab_button {
+  :global {
+    .radio-button-wrapper {
+      padding-right: 44px !important;
+    }
   }
 }

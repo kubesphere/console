@@ -16,7 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-const CONDITION_OPTIONS = [
+import Big from 'big.js'
+
+Big.DP = 10
+
+const COMPARATOR_OPTIONS = [
   {
     label: '>',
     value: '>',
@@ -47,7 +51,7 @@ export const SEVERITY_LEVEL = [
     value: 'critical',
   },
   {
-    type: 'error',
+    type: 'warning',
     prefixIcon: 'information',
     color: {
       primary: '#fae7e5',
@@ -57,7 +61,7 @@ export const SEVERITY_LEVEL = [
     value: 'error',
   },
   {
-    type: 'warning',
+    type: 'secondary',
     prefixIcon: 'information',
     color: {
       primary: '#fae7e5',
@@ -68,11 +72,15 @@ export const SEVERITY_LEVEL = [
   },
 ]
 
-export const getBaseRuleConfig = ({ condition = {}, thresholds = {} } = {}) => [
+export const getBaseRuleConfig = ({
+  comparator = {},
+  thresholds = {},
+} = {}) => [
   {
-    name: 'condition_type',
-    options: CONDITION_OPTIONS,
-    ...condition,
+    name: 'comparator',
+    placeholder: 'CONDITION_OPERATOR',
+    options: COMPARATOR_OPTIONS,
+    ...comparator,
   },
   {
     type: 'number',
@@ -85,6 +93,8 @@ export const getBaseRuleConfig = ({ condition = {}, thresholds = {} } = {}) => [
 export const BASE_RULE_CONFIG = getBaseRuleConfig({
   thresholds: {
     min: 0,
+    converter: value => Number(value),
+    reverser: value => Number(value),
   },
 })
 
@@ -93,7 +103,108 @@ export const PERCENT_RULE_CONFIG = getBaseRuleConfig({
     min: 0,
     max: 100,
     unit: '%',
-    converter: value => value / 100,
+    converter: value => {
+      const _value = new Big(value)
+      return Number(_value.div(100).toString())
+    },
+    reverser: value => {
+      const _value = new Big(value)
+      return Number(_value.times(100).toString())
+    },
+  },
+})
+
+export const CORE_RULE_CONFIG = getBaseRuleConfig({
+  thresholds: {
+    unit: 'core',
+    min: 0,
+    converter: value => Number(value),
+    reverser: value => Number(value),
+  },
+})
+
+export const GIB_RULE_CONFIG = getBaseRuleConfig({
+  thresholds: {
+    unit: 'GiB',
+    min: 0,
+    converter: value => {
+      const _value = new Big(value)
+      const unit = new Big(1024).pow(3)
+      return Number(_value.times(unit).toString())
+    },
+    reverser: value => {
+      const _value = new Big(value)
+      const unit = new Big(1024).pow(3)
+      return Number(_value.div(unit).toString())
+    },
+  },
+})
+
+export const MIB_RULE_CONFIG = getBaseRuleConfig({
+  thresholds: {
+    unit: 'MiB',
+    min: 0,
+    converter: value => {
+      const _value = new Big(value)
+      const unit = new Big(1024).pow(2)
+      return Number(_value.times(unit).toString())
+    },
+    reverser: value => {
+      const _value = new Big(value)
+      const unit = new Big(1024).pow(2)
+      return Number(_value.div(unit).toString())
+    },
+  },
+})
+
+export const GB_RULE_CONFIG = getBaseRuleConfig({
+  thresholds: {
+    unit: 'GB',
+    min: 0,
+    converter: value => {
+      const _value = new Big(value)
+      const unit = new Big(1000).pow(3)
+      return Number(_value.times(unit).toString())
+    },
+    reverser: value => {
+      const _value = new Big(value)
+      const unit = new Big(1000).pow(3)
+      return Number(_value.div(unit).toString())
+    },
+  },
+})
+
+export const KBS_RULE_CONFIG = getBaseRuleConfig({
+  thresholds: {
+    unit: 'KB/s',
+    min: 0,
+    converter: value => {
+      const _value = new Big(value)
+      const unit = new Big(1000)
+      return Number(_value.times(unit).toString())
+    },
+    reverser: value => {
+      const _value = new Big(value)
+      const unit = new Big(1000)
+      return Number(_value.div(unit).toString())
+    },
+  },
+})
+
+export const MBPS_RULE_CONFIG = getBaseRuleConfig({
+  thresholds: {
+    unit: 'Mbps',
+    min: 0,
+    converter: value => {
+      const _value = new Big(value)
+      const unit = new Big(1000).pow(2)
+      return Number(_value.times(unit).toString())
+    },
+    reverser: value => {
+      const _value = new Big(value)
+      const unit = new Big(1000).pow(2)
+      return Number(_value.div(unit).toString())
+    },
   },
 })
 
@@ -109,29 +220,5 @@ export const MEMORY_RULE_CONFIG = getBaseRuleConfig({
     unit: 'Mi',
     min: 0,
     converter: value => value * 1024 ** 2,
-  },
-})
-
-export const DISK_RULE_CONFIG = getBaseRuleConfig({
-  thresholds: {
-    unit: 'GB',
-    min: 0,
-    converter: value => value * 1000 ** 3,
-  },
-})
-
-export const THROUGHPUT_RULE_CONFIG = getBaseRuleConfig({
-  thresholds: {
-    unit: 'KB/s',
-    min: 0,
-    converter: value => value * 1000,
-  },
-})
-
-export const BANDWIDTH_RULE_CONFIG = getBaseRuleConfig({
-  thresholds: {
-    unit: 'Mbps',
-    min: 0,
-    converter: value => value * (1024 ** 2 / 8),
   },
 })
