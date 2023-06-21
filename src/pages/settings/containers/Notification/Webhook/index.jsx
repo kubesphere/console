@@ -144,20 +144,28 @@ export default class Webhook extends React.Component {
       set(receiver, 'spec.webhook.httpConfig.basicAuth.username', username)
       set(
         receiver,
-        'spec.webhook.httpConfig.basicAuth.password.key',
+        'spec.webhook.httpConfig.basicAuth.password.valueFrom.secretKeyRef.key',
         'password'
       )
       set(
         receiver,
-        'spec.webhook.httpConfig.basicAuth.password.name',
+        'spec.webhook.httpConfig.basicAuth.password.valueFrom.secretKeyRef.name',
         SECRET_NAME
       )
     }
 
     if (type === 'token') {
       set(secretData, 'token', token)
-      set(receiver, 'spec.webhook.httpConfig.bearerToken.key', 'token')
-      set(receiver, 'spec.webhook.httpConfig.bearerToken.name', SECRET_NAME)
+      set(
+        receiver,
+        'spec.webhook.httpConfig.bearerToken.valueFrom.secretKeyRef.key',
+        'token'
+      )
+      set(
+        receiver,
+        'spec.webhook.httpConfig.bearerToken.valueFrom.secretKeyRef.name',
+        SECRET_NAME
+      )
     }
 
     if (formStatus === 'create') {
