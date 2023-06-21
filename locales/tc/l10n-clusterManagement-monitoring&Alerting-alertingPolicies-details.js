@@ -19,6 +19,7 @@ module.exports = {
   // Attributes
   DURATION: 'Duration',
   // Alert Rules
+  VIEW_METRIC_DATA: 'View metric data',
   ALERTING_RULE: 'Alert Rules',
   MONITORING_TARGETS_SCAP: '監控目標',
   TRIGGER_CONDITION_SCAP: 'Trigger condition',
@@ -26,6 +27,11 @@ module.exports = {
   ALERT_MONITORING: 'Alert Monitoring',
   NOTIFICATION_SUMMARY_COLON: 'Summary: ',
   DETAILS_COLON: 'Details: ',
+  NODES_VALUES: 'Nodes: {values}',
+  TRIGGER_CONDITION: 'Trigger Condition',
+  ALERT_RULE_TEXT_PERCENT_MINUTE: '{alterTypeText} {comparator} {thresholds}% for {durationValue, plural, =1 {1 minute} other {# minutes}}',
+  MESSAGE_SUMMARY: '概括',
+  MESSAGE_DETAILS: '詳情',
   // Alerting History
   NO_DATA_DESC: '未發現資料'
 };
