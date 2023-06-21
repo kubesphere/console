@@ -19,6 +19,7 @@ module.exports = {
   // Attributes
   DURATION: 'Dauer',
   // Alert Rules
+  VIEW_METRIC_DATA: 'View metric data',
   ALERTING_RULE: 'Alarmregeln',
   MONITORING_TARGETS_SCAP: 'Überwachungsziele',
   TRIGGER_CONDITION_SCAP: 'Auslösebedingung',
@@ -26,6 +27,11 @@ module.exports = {
   ALERT_MONITORING: 'Alarmüberwachung',
   NOTIFICATION_SUMMARY_COLON: 'Zusammenfassung: ',
   DETAILS_COLON: 'Details: ',
+  NODES_VALUES: 'Nodes: {values}',
+  TRIGGER_CONDITION: 'Trigger Condition',
+  ALERT_RULE_TEXT_PERCENT_MINUTE: '{alterTypeText} {comparator} {thresholds}% for {durationValue, plural, =1 {1 minute} other {# minutes}}',
+  MESSAGE_SUMMARY: 'Zusammenfassung',
+  MESSAGE_DETAILS: 'Details',
   // Alerting History
   NO_DATA_DESC: 'Keine Daten gefunden'
 };
