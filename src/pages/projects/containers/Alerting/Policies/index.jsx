@@ -17,20 +17,21 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
-
-import { Tag } from '@kube-design/components'
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import withList, { ListPage } from 'components/HOCs/withList'
 
 import Table from 'components/Tables/List'
-
-import { getLocalTime, getDisplayName } from 'utils'
+import { get } from 'lodash'
+import { getDisplayName, getLocalTime } from 'utils'
 import { ALERTING_STATUS } from 'utils/alerting'
 import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 
 import PolicyStore from 'stores/alerting/policy'
+import { toJS } from 'mobx'
+import classNames from 'classnames'
+import AlertStatus from './AlertingStatus'
+import styles from './index.scss'
 
 @withList({
   store: new PolicyStore(),
@@ -46,9 +47,16 @@ export default class AlertingPolicy extends React.Component {
   componentDidMount() {
     const { cluster, namespace } = this.props.match.params
     !namespace && this.props.store.fetchCount({ cluster })
+    localStorage.removeItem('alert-policy-detail-referrer')
   }
 
   get tabs() {
+    const { namespace } = this.props.match.params
+
+    if (namespace) {
+      return {}
+    }
+
     return {
       value: this.state.type,
       onChange: this.handleTabChange,
@@ -96,36 +104,182 @@ export default class AlertingPolicy extends React.Component {
   }
 
   get itemActions() {
-    const { trigger, routing, match, getData, module, name } = this.props
-    return [
+    const { trigger, routing, match, name } = this.props
+    const { type } = this.state
+
+    const commonActions = [
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
-        onClick: item =>
-          trigger('alerting.policy.create', {
+        onClick: item => {
+          trigger('alerting.baseinfo.edit', {
+            type,
             detail: item,
             module,
             cluster: match.params.cluster,
             namespace: match.params.namespace,
             title: t('EDIT_ALERTING_POLICY'),
-            success: getData,
+            success: routing.query,
+          })
+        },
+      },
+      {
+        key: 'editYaml',
+        icon: 'pen',
+        text: t('EDIT_YAML'),
+        action: 'edit',
+        onClick: item =>
+          trigger('alerting.yaml.edit', {
+            type,
+            detail: item,
+            cluster: match.params.cluster,
+            namespace: match.params.namespace,
+            title: t('EDIT_ALERTING_POLICY'),
+            success: routing.query,
           }),
       },
       {
+        key: 'editRule',
+        icon: 'wrench',
+        text: t('EDIT_ALERT_RULES'),
+        action: 'edit',
+        onClick: item => {
+          trigger('alerting.rule.edit', {
+            type,
+            detail: item,
+            cluster: match.params.cluster,
+            namespace: match.params.namespace,
+            success: routing.query,
+          })
+        },
+      },
+      {
+        key: 'disablePolicy',
+        icon: item => {
+          const enabled = JSON.parse(item.enabled)
+          return enabled ? 'stop' : 'start'
+        },
+        text: item => {
+          const enabled = JSON.parse(item.enabled)
+          return enabled ? t('DISABLE') : t('ENABLE')
+        },
+        action: 'edit',
+        onClick: item => {
+          const enabled = JSON.parse(item.enabled)
+          trigger(!enabled ? 'enable.alerting.rule' : 'alerting.rule.update', {
+            type,
+            detail: item,
+            cluster: match.params.cluster,
+            namespace: match.params.namespace,
+            resourceName: name,
+            success: routing.query,
+            title: enabled
+              ? t('DISABLE_ALERTING_POLICY')
+              : t('ENABLE_ALERTING_POLICY'),
+            enabled,
+          })
+        },
+      },
+    ]
+
+    if (type === 'builtin') {
+      commonActions.push(this.resetPolicy)
+    } else {
+      commonActions.push({
         key: 'delete',
         icon: 'trash',
         text: t('DELETE'),
         action: 'delete',
         onClick: item =>
-          trigger('resource.delete', {
-            type: name,
+          trigger('alerting.rule.delete', {
+            type,
+            name,
+            cluster: match.params.cluster,
+            namespace: match.params.namespace,
             detail: item,
             success: routing.query,
           }),
-      },
-    ]
+      })
+    }
+
+    return commonActions
+  }
+
+  get tableActions() {
+    const { tableProps, trigger, name, store, match, routing } = this.props
+    const { type } = this.state
+    const list = toJS(store.list.data)
+    const selectedRowKeys = toJS(store.list.selectedRowKeys)
+    const allDisable = list
+      .filter(item => selectedRowKeys.includes(item.name))
+      .every(item => !JSON.parse(item.enabled))
+
+    const allEnabled = list
+      .filter(item => selectedRowKeys.includes(item.name))
+      .every(item => JSON.parse(item.enabled))
+
+    return {
+      ...tableProps.tableActions,
+      selectActions: [
+        ...tableProps.tableActions.selectActions,
+        {
+          key: 'enable',
+          text: t('ENABLE'),
+          action: 'edit',
+          disabled: allEnabled,
+          onClick: () => {
+            trigger('enable.alerting.rule', {
+              type,
+              resourceName: name,
+              cluster: match.params.cluster,
+              namespace: match.params.namespace,
+              title: t('ENABLE_ALERTING_POLICY'),
+              enabled: false,
+              success: routing.query,
+              batchMode: true,
+            })
+          },
+        },
+        {
+          key: 'disable',
+          text: t('DISABLE'),
+          action: 'edit',
+          disabled: allDisable,
+          onClick: () => {
+            trigger('alerting.rule.update', {
+              type,
+              resourceName: name,
+              cluster: match.params.cluster,
+              namespace: match.params.namespace,
+              enabled: true,
+              success: routing.query,
+              batchMode: true,
+            })
+          },
+        },
+      ],
+    }
+  }
+
+  get resetPolicy() {
+    const { match, trigger, routing } = this.props
+    const { type } = this.state
+
+    return {
+      key: 'reset',
+      icon: 'restart',
+      text: t('RESET'),
+      action: 'edit',
+      onClick: item =>
+        trigger('alerting.rule.reset', {
+          type,
+          cluster: match.params.cluster,
+          detail: item,
+          success: routing.query,
+        }),
+    }
   }
 
   getStatus() {
@@ -133,6 +287,19 @@ export default class AlertingPolicy extends React.Component {
       text: t(`ALERT_RULE_${status.toUpperCase()}`),
       value: status,
     }))
+  }
+
+  getEnableFilter() {
+    return [
+      {
+        text: t('ENABLED'),
+        value: 'true',
+      },
+      {
+        text: t('DISABLED'),
+        value: 'false',
+      },
+    ]
   }
 
   getAlertingTypes() {
@@ -151,100 +318,112 @@ export default class AlertingPolicy extends React.Component {
         search: true,
         render: (name, record) => (
           <Avatar
-            icon="wrench"
+            avatar="/assets/bell_gear_duotone.svg"
             title={getDisplayName(record)}
-            desc={record.desc}
+            desc={record.description}
+            className={styles['table-icon']}
             to={
               this.state.type === 'builtin'
-                ? `${this.props.match.url}/builtin/${record.id}`
+                ? `${this.props.match.url}/builtin/${record.name}`
                 : `${this.props.match.url}/${name}`
             }
           />
         ),
       },
       {
-        title: t('STATUS'),
-        dataIndex: 'state',
-        filters: this.getStatus(),
-        filteredValue: getFilteredValue('state'),
+        title: t('POLICY_STATUS'),
+        dataIndex: 'enable',
+        filters: this.getEnableFilter(),
+        filteredValue: getFilteredValue('enable'),
         isHideable: true,
         search: true,
         width: '16%',
-        render: state => (
+        render: (_, record) => (
           <Status
-            type={state}
-            name={t(`ALERT_RULE_${state.toUpperCase()}`, {
-              defaultValue: state,
-            })}
+            className={styles['status_icon']}
+            type={JSON.parse(record.enabled) ? 'active' : 'disabled'}
+            name={JSON.parse(record.enabled) ? t('ENABLED') : t('DISABLED')}
           />
         ),
       },
       {
-        title: t('SEVERITY'),
-        dataIndex: 'labels.severity',
-        filters: this.getAlertingTypes(),
-        filteredValue: getFilteredValue('labels.severity'),
-        isHideable: true,
+        title: t('RULE_STATUS'),
+        dataIndex: 'state',
         search: true,
+        filters: this.getStatus(),
+        isHideable: true,
         width: '16%',
-        render: severity => {
-          const level = SEVERITY_LEVEL.find(item => item.value === severity)
-          if (level) {
-            return <Tag type={level.type}>{t(level.label)}</Tag>
-          }
-          return <Tag>{severity}</Tag>
-        },
+        render: (_, record) => <AlertStatus rulesStats={record.rulesStats} />,
       },
       {
-        title: t('TRIGGER_TIME'),
-        dataIndex: 'alerts',
+        title: t('TIME_SPENT'),
+        dataIndex: 'evaluationTime',
         isHideable: true,
-        width: '16%',
-        render: (alerts = []) => {
-          const time = get(alerts, `${alerts.length - 1}.activeAt`)
-          return time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-'
+        width: '12%',
+        render: value => (
+          <span>{value !== '-' ? t('TIME_S', { num: value }) : value}</span>
+        ),
+      },
+      {
+        title: t('RECENT_DETECT_TIME'),
+        dataIndex: 'lastEvaluation',
+        isHideable: true,
+        width: '15.8%',
+        render: (_, record) => {
+          const time = get(
+            record._originDataWithStatus,
+            'status.lastEvaluation'
+          )
+          return (
+            <span>
+              {time ? getLocalTime(time).format(`YYYY-MM-DD HH:mm:ss`) : '-'}
+            </span>
+          )
         },
       },
     ]
   }
 
   showCreate = () => {
-    const { match, getData, module } = this.props
+    const { match, routing, module } = this.props
     return this.props.trigger('alerting.policy.create', {
       module,
       cluster: match.params.cluster,
       namespace: match.params.namespace,
       title: t('CREATE_ALERTING_POLICY'),
-      success: getData,
+      success: routing.query,
     })
   }
 
   render() {
-    const { bannerProps, tableProps, match } = this.props
-    const { namespace } = match.params
+    const { bannerProps, tableProps } = this.props
 
-    let rowKey = 'name'
-    let itemActions = this.itemActions
+    const rowKey = 'name'
     let onCreate = this.showCreate
+    const tableActions = this.tableActions
+
     if (this.state.type === 'builtin') {
-      tableProps.selectActions = []
-      itemActions = []
+      tableActions.selectActions = tableActions.selectActions
+        .filter(item => item.action !== 'delete')
+        .concat(this.resetPolicy)
       onCreate = null
-      rowKey = 'id'
     }
 
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner
           {...bannerProps}
+          icon={() => <img src="/assets/bell_gear_duotone.svg" />}
           tips={this.tips}
-          tabs={namespace ? {} : this.tabs}
+          tabs={this.tabs}
+          className={classNames(styles.tab_button, bannerProps.className)}
         />
         <Table
           {...tableProps}
           rowKey={rowKey}
-          itemActions={itemActions}
+          itemActions={this.itemActions}
           columns={this.getColumns()}
+          tableActions={tableActions}
           onCreate={onCreate}
         />
       </ListPage>

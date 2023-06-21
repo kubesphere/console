@@ -19,13 +19,9 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
+import { get } from 'lodash'
 
-import { Panel } from 'components/Base'
-import Notification from './Notification'
-import Monitoring from './Monitoring'
-import RuleItem from './RuleItem'
-import Query from './Query'
+import AlertingRuleList from './RuleList'
 
 @inject('detailStore')
 @observer
@@ -42,38 +38,48 @@ export default class AlertRules extends React.Component {
     return this.props.match.params
   }
 
+  get type() {
+    return this.props.match.url.indexOf('alert-rules/builtin') > 0
+      ? 'builtin'
+      : ''
+  }
+
+  get rules() {
+    const _rule = toJS(
+      get(this.store, 'detail._originDataWithStatus.spec.rules', [])
+    )
+    return _rule
+  }
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  fetchData = params => {
+    const { cluster, namespace, name } = this.props.match.params
+
+    if (this.store.fetchDetail) {
+      this.store.fetchDetail({
+        cluster,
+        namespace,
+        name,
+        type: this.type,
+        ...params,
+      })
+    }
+  }
+
   render() {
-    const { detail } = this.store
-    const summary = get(detail, 'annotations.summary')
-    const message = get(detail, 'annotations.message')
-    const kind = get(detail, 'annotations.kind')
-    const resources = toJS(detail.resources)
+    const { cluster, namespace } = this.props.match.params
+
     return (
-      <>
-        {!isEmpty(detail.rules) && (
-          <Panel title={t('ALERTING_RULE')}>
-            {detail.rules.map((item, index) => (
-              <RuleItem
-                key={index}
-                data={item}
-                resources={resources}
-                kind={kind || 'Node'}
-              />
-            ))}
-          </Panel>
-        )}
-        {detail.query && (
-          <Panel title={t('RULE_EXPRESSION')}>
-            <Query query={detail.query} />
-          </Panel>
-        )}
-        <Panel title={t('METRIC_MONITORING')}>
-          <Monitoring detail={detail} store={this.store} />
-        </Panel>
-        <Panel title={t('MESSAGE_SETTINGS')}>
-          <Notification summary={summary} message={message} />
-        </Panel>
-      </>
+      <AlertingRuleList
+        store={this.store}
+        cluster={cluster}
+        namespace={namespace}
+        rules={this.rules}
+        handleRefresh={this.fetchData}
+      />
     )
   }
 }

@@ -20,17 +20,26 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { get, capitalize, isEmpty } from 'lodash'
 import { Link } from 'react-router-dom'
-import { Tag } from '@kube-design/components'
+import {
+  Level,
+  LevelLeft,
+  LevelRight,
+  Dropdown,
+  Menu,
+  Pagination,
+  Icon,
+} from '@kube-design/components'
 
 import { getLocalTime } from 'utils'
-import { MODULE_KIND_MAP } from 'utils/constants'
+import { MODULE_KIND_MAP, PAGESIZE_OPTION } from 'utils/constants'
 import { getAlertingResource } from 'utils/alerting'
 import AlertMessageStore from 'stores/alerting/message'
 import { Panel, Text } from 'components/Base'
 import BaseTable from 'components/Tables/Base'
 
-import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
+import { severityOptions } from 'components/Forms/AlertingPolicy/AlertingRules'
 
+import classnames from 'classnames'
 import styles from './index.scss'
 
 @observer
@@ -39,6 +48,12 @@ export default class AlertHistory extends React.Component {
     super(props)
 
     this.store = new AlertMessageStore()
+    this.state = {
+      page: 1,
+      limit: 10,
+      sortBy: 'activeAt',
+      ascending: false,
+    }
   }
 
   get type() {
@@ -47,18 +62,35 @@ export default class AlertHistory extends React.Component {
       : ''
   }
 
+  get pagination() {
+    const { page, limit } = this.state
+    const pagination = {
+      page,
+      limit,
+      total: this.store.list.total,
+    }
+    return pagination
+  }
+
   componentDidMount() {
     this.fetchData()
   }
 
   fetchData = params => {
     const { cluster, namespace, name } = this.props.match.params
+    const { limit, page, sortBy, ascending } = this.state
+
     const data = {
       ...params,
       cluster,
       namespace,
       ruleName: name,
       type: this.type,
+      limit,
+      page,
+      sortBy,
+      ascending,
+      label_filters: `rule_group=${name}`,
     }
     this.store.fetchList(data)
   }
@@ -101,11 +133,24 @@ export default class AlertHistory extends React.Component {
       dataIndex: 'labels.severity',
       width: '15%',
       render: severity => {
-        const level = SEVERITY_LEVEL.find(item => item.value === severity)
+        const level = severityOptions.find(item => item.value === severity)
+
         if (level) {
-          return <Tag type={level.type}>{t(level.label)}</Tag>
+          return (
+            <span
+              style={{
+                backgroundColor: level.bgColor,
+                color: level.color,
+                fontWeight: 600,
+                padding: '0px 4px',
+              }}
+            >
+              {t(level.label)}
+            </span>
+          )
         }
-        return <Tag>{severity}</Tag>
+
+        return '-'
       },
     },
     {
@@ -114,6 +159,11 @@ export default class AlertHistory extends React.Component {
       isHideable: true,
       width: '20%',
       render: labels => {
+        const { rule_type } = labels
+        if (rule_type !== 'template') {
+          return '-'
+        }
+
         const { module, name, namespace } = getAlertingResource(labels)
         if (!module) {
           return '-'
@@ -142,6 +192,63 @@ export default class AlertHistory extends React.Component {
     },
   ]
 
+  handlePage = page => {
+    this.setState({ page }, () => {
+      this.fetchData()
+    })
+  }
+
+  handlePageSizeClick = (e, limit) => {
+    this.setState({ limit }, () => {
+      this.fetchData()
+    })
+  }
+
+  renderFooter = () => {
+    const pagination = this.pagination
+    const { total, limit } = pagination
+
+    return (
+      <Level className={styles.footer}>
+        <LevelLeft>
+          <div className={styles.pageSizeBox}>
+            <Dropdown
+              placement={'top'}
+              trigger={'hover'}
+              content={
+                <Menu
+                  className={styles.pageSizeMenu}
+                  onClick={this.handlePageSizeClick}
+                >
+                  {PAGESIZE_OPTION.map(item => (
+                    <Menu.MenuItem
+                      className={classnames(styles.pageSizeMenuitem)}
+                      key={item}
+                    >
+                      <span>{item}</span>
+                    </Menu.MenuItem>
+                  ))}
+                </Menu>
+              }
+            >
+              <div className={styles.pagesize}>
+                <span className={styles.text}>
+                  {t('SHOW_NUM', { num: limit })}
+                </span>
+                <Icon name="caret-down" size={16} />
+              </div>
+            </Dropdown>
+            <div className={styles.gap}></div>
+            <span>{t('TOTAL_ITEMS', { num: total })}</span>
+          </div>
+        </LevelLeft>
+        <LevelRight>
+          <Pagination {...pagination} onChange={this.handlePage} />
+        </LevelRight>
+      </Level>
+    )
+  }
+
   render() {
     const { data, isLoading, filters } = this.store.list
 
@@ -150,18 +257,21 @@ export default class AlertHistory extends React.Component {
         {isEmpty(data) ? (
           <div>{t('NO_DATA_DESC')}</div>
         ) : (
-          <BaseTable
-            className={styles.table}
-            filters={filters}
-            data={data}
-            name="Alerting Message"
-            rowKey="value"
-            columns={this.getColumns()}
-            selectedRowKeys={[]}
-            selectActions={[]}
-            hideHeader
-            hideFooter
-          />
+          <>
+            <BaseTable
+              className={styles.table}
+              filters={filters}
+              data={data}
+              name="Alerting Message"
+              rowKey="value"
+              columns={this.getColumns()}
+              selectedRowKeys={[]}
+              selectActions={[]}
+              hideHeader
+              hideFooter
+            />
+            {this.renderFooter()}
+          </>
         )}
       </Panel>
     )

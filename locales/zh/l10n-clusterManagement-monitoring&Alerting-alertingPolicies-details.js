@@ -19,6 +19,7 @@ module.exports = {
   // Attributes
   DURATION: '持续时间',
   // Alert Rules
+  VIEW_METRIC_DATA: '查看指标数据',
   ALERTING_RULE: '告警规则',
   MONITORING_TARGETS_SCAP: '监控目标',
   TRIGGER_CONDITION_SCAP: '触发条件',
@@ -26,6 +27,11 @@ module.exports = {
   ALERT_MONITORING: '告警监控',
   NOTIFICATION_SUMMARY_COLON: '概要：',
   DETAILS_COLON: '详情：',
+  NODES_VALUES: '节点：{values}',
+  TRIGGER_CONDITION: '触发条件',
+  ALERT_RULE_TEXT_PERCENT_MINUTE: '{alterTypeText} {comparator} {thresholds}% 持续 {durationValue, plural, =1 {1 分钟} other {# 分钟}}',
+  MESSAGE_SUMMARY: '概要',
+  MESSAGE_DETAILS: '详情',
   // Alerting History
   NO_DATA_DESC: '未发现数据'
 };
