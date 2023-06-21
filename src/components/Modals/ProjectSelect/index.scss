@@ -45,17 +45,20 @@
   }
 
   .search {
-    :global .input {
-      opacity: 1;
-      background-color: #ffffff;
-      border-color: #79879c !important;
-      box-shadow: none !important;
-    }
+    width: 390px;
 
     &.withSelect {
-      :global .input {
-        padding-left: 124px;
-      }
+      padding-left: 124px;
+    }
+
+    .content {
+      flex-wrap: nowrap;
+    }
+
+    :global .input {
+      opacity: 1;
+      border-color: #79879c !important;
+      box-shadow: none !important;
     }
   }
 }

@@ -16,14 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { get, isEmpty } from 'lodash'
-import { Link } from 'react-router-dom'
-
 import { Icon, Menu } from '@kube-design/components'
-import { getLocalTime, getDisplayName } from 'utils'
-import { Panel } from 'components/Base'
+import classnames from 'classnames'
+import { Panel, Text } from 'components/Base'
+import { get, isEmpty } from 'lodash'
 import ManageButton from 'pages/clusters/containers/BaseInfo/ManageButton'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import {
+  getDisplayNameNew,
+  getDomTitle,
+  getLocalTime,
+  showNameAndAlias,
+} from 'utils'
 
 import styles from './index.scss'
 
@@ -47,14 +52,32 @@ export default class ProjectInfo extends React.Component {
     return (
       <Panel className={styles.wrapper} title={t('PROJECT_INFO')}>
         <div className={styles.header}>
-          <Icon name="project" size={40} />
-          <div className={styles.item}>
-            <div>{getDisplayName(detail)}</div>
-            <p>{t('PROJECT_NAME')}</p>
-          </div>
-          <div className={styles.item}>
+          <Text
+            icon={'project'}
+            title={getDomTitle(getDisplayNameNew(detail))}
+            description={t('PROJECT_NAME')}
+            ellipsis
+          ></Text>
+          {/* <Icon name="project" size={40} /> */}
+          {/* <div className={styles.item}> */}
+          {/*  <div>{getDomTitle(getDisplayNameNew(detail))}</div> */}
+          {/*  <p>{t('PROJECT_NAME')}</p> */}
+          {/* </div> */}
+          <div className={classnames(styles.item, 'ellipsis')}>
             <div>
-              <Link to={`/workspaces/${workspace}`}>{workspace}</Link>
+              <Link
+                className={'ellipsis block'}
+                to={`/workspaces/${workspace}`}
+              >
+                {showNameAndAlias(
+                  workspace,
+                  'workspace',
+                  {},
+                  false,
+                  undefined,
+                  true
+                )}
+              </Link>
             </div>
             <p>{t('WORKSPACE')}</p>
           </div>

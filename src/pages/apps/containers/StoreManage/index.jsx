@@ -23,7 +23,7 @@ import withList, { ListPage } from 'components/HOCs/withList'
 import { Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Avatar from 'apps/components/Avatar'
-import { getLocalTime } from 'utils'
+import { getLocalTime, showNameAndAlias } from 'utils'
 
 import { getAppCategoryNames, transferAppStatus } from 'utils/app'
 import AppStore from 'stores/openpitrix/store'
@@ -78,6 +78,7 @@ export default class Store extends React.Component {
       dataIndex: 'isv',
       isHideable: true,
       width: '10%',
+      render: record => showNameAndAlias(record, 'workspace'),
     },
     {
       title: t('LATEST_VERSION'),

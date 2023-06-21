@@ -16,20 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { Link } from 'react-router-dom'
+import ResourceTable from 'clusters/components/ResourceTable'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import { withClusterList, ListPage } from 'components/HOCs/withList'
+import { ListPage, withClusterList } from 'components/HOCs/withList'
 import StatusReason from 'projects/components/StatusReason'
-import ResourceTable from 'clusters/components/ResourceTable'
-
-import { getLocalTime, getDisplayName } from 'utils'
-import { getWorkloadStatus } from 'utils/status'
-import { CRONJOB_STATUS, ICON_TYPES } from 'utils/constants'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 import WorkloadStore from 'stores/workload'
+
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
+import { CRONJOB_STATUS, ICON_TYPES } from 'utils/constants'
+import { getWorkloadStatus } from 'utils/status'
 
 @withClusterList({
   store: new WorkloadStore('cronjobs'),
@@ -179,7 +179,7 @@ export default class CronJobs extends React.Component {
         width: '18%',
         render: namespace => (
           <Link to={`/clusters/${cluster}/projects/${namespace}`}>
-            {namespace}
+            {showNameAndAlias(namespace, 'project')}
           </Link>
         ),
       },

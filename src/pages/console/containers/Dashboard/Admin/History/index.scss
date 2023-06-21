@@ -31,6 +31,22 @@
       position: absolute;
       top: 12px;
       right: 12px;
+      left: 100px;
+      text-align: right;
+      > span {
+        max-width: 100%;
+        display: inline-flex;
+        justify-content: flex-end;
+        gap: 4px;
+        background: #fff;
+      }
+      .tag {
+        max-width: 100%;
+        overflow: hidden;
+        word-break: break-all;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
 
     &:hover {

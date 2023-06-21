@@ -16,29 +16,31 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import { Base64 } from 'js-base64'
 import {
+  endsWith,
   get,
-  set,
+  isEmpty,
+  isNull,
+  isNumber,
   isObject,
   isString,
-  trimEnd,
   isUndefined,
-  isNull,
-  isEmpty,
-  trimStart,
-  isNumber,
+  merge as _merge,
   pick,
   pickBy,
-  endsWith,
   replace,
-  merge as _merge,
+  set,
+  trimEnd,
+  trimStart,
 } from 'lodash'
-import generate from 'nanoid/generate'
 import moment from 'moment-mini'
+import generate from 'nanoid/generate'
+import React from 'react'
 
-import { Base64 } from 'js-base64'
-import { PATTERN_LABEL, MODULE_KIND_MAP } from './constants'
+import { PATTERN_LABEL, MODULE_KIND_MAP } from 'utils/constants'
+
+export { showNameAndAlias } from './NameWithAction'
 /**
  * format size, output the value with unit
  * @param {Number} size - the number need to be format
@@ -400,6 +402,31 @@ export const getAliasName = item =>
   get(item, 'metadata.annotations.displayName') ||
   ''
 
+export const getDisplayNameNew = (item, omitAlias = false) => {
+  if (isEmpty(item)) {
+    return ''
+  }
+
+  if (item.display_name) {
+    return item.display_name
+  }
+  if (omitAlias === false) {
+    return item.aliasName ? `${item.aliasName}(${item.name})` : item.name
+  }
+  const defaultLen = typeof omitAlias === 'number' ? omitAlias : 20
+
+  return item.aliasName ? (
+    <span title={`${item.aliasName}(${item.name})`}>
+      {`${truncateString(item.aliasName, defaultLen)}(${truncateString(
+        item.name,
+        30
+      )})`}
+    </span>
+  ) : (
+    item.name
+  )
+}
+
 export const getDisplayName = item => {
   if (isEmpty(item)) {
     return ''
@@ -408,8 +435,7 @@ export const getDisplayName = item => {
   if (item.display_name) {
     return item.display_name
   }
-
-  return `${item.name}${item.aliasName ? ` (${item.aliasName})` : ''}`
+  return item.aliasName ? `${item.name}(${item.aliasName})` : item.name
 }
 
 export const getWebSocketProtocol = protocol => {
@@ -742,6 +768,7 @@ export const map_accessModes = accessModes =>
 
 export const quota_limits_requests_Dot = deal_With_Dot
 
+// FIXME: maybe async get globals hostClusterName
 export const inCluster2Default = name => {
   const clusterName = globals.hostClusterName || 'default'
   return name === 'in-cluster' ? clusterName : name
@@ -766,4 +793,45 @@ function mix(salt, str) {
   }
 
   return `${Base64.encode(prefix.join(''))}@${ret.join('')}`
+}
+
+export const capitalizeSimple = string =>
+  string.charAt(0).toUpperCase() + string.slice(1)
+
+export const transformEmptyFn = path => data => {
+  if (get(data, path) === '') {
+    set(data, path, undefined)
+  }
+  return data
+}
+
+export const getTransformData = (...fns) => data => {
+  return fns.reduce((acc, fn) => fn(acc), data)
+}
+
+/**
+ * @param {string} str
+ * @param {number} length
+ * @returns {string}
+ */
+export function truncateString(str, length = 20) {
+  let len = 0
+  for (let i = 0; i < str.length; i++) {
+    if (str.charCodeAt(i) > 255) {
+      len += 2
+    } else {
+      len += 1
+    }
+    if (len > length) {
+      return `${str.slice(0, i)}...`
+    }
+  }
+  return str
+}
+
+export const getDomTitle = name => {
+  if (typeof name !== 'string') {
+    return name
+  }
+  return <span title={name}>{name}</span>
 }

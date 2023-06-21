@@ -31,7 +31,6 @@ import React from 'react'
 import CodeStore from 'stores/codeRepo'
 import PipelineStore from 'stores/devops/pipelines'
 
-
 @withDevOpsList({
   store: new PipelineStore(),
   module: 'pipelines',

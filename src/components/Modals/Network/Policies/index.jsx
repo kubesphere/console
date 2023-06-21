@@ -16,25 +16,25 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { inject, observer } from 'mobx-react'
-import { set } from 'lodash'
-import { observable, toJS } from 'mobx'
-import classNames from 'classnames'
 import {
-  Form,
-  RadioGroup,
-  RadioButton,
   Checkbox,
+  Form,
   Icon,
+  RadioButton,
+  RadioGroup,
   Tooltip,
 } from '@kube-design/components'
+import classNames from 'classnames'
 import { Modal, Panel } from 'components/Base'
+import { set } from 'lodash'
+import { observable, toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
 import ServiceStore from 'stores/service'
-import { generateId } from 'utils'
+import { generateId, showNameAndAlias } from 'utils'
+import { ProjectSelect } from '../../../Inputs'
 
 import styles from './index.scss'
-import { ProjectSelect } from '../../../Inputs'
 
 @inject('projectStore')
 @observer
@@ -242,7 +242,7 @@ export default class NetworkPoliciesModal extends React.Component {
                     this.handleNameSpaceChecked(item, checked)
                   }}
                 >
-                  {item.name}
+                  {showNameAndAlias(item)}
                 </Checkbox>
                 {item.isFedManaged && (
                   <Tooltip content={t('FED_HOST_NAMESPACE_TIP')}>

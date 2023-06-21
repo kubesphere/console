@@ -20,7 +20,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
-import { getLocalTime, getDisplayName } from 'utils'
+import { getLocalTime, getDisplayName, showNameAndAlias } from 'utils'
 import { getComponentStatus } from 'utils/status'
 import ComponentStore from 'stores/component'
 import { Status } from 'components/Base'
@@ -68,11 +68,11 @@ export default class ComponentDetail extends React.Component {
       },
       {
         name: t('CLUSTER'),
-        value: this.props.match.params.cluster,
+        value: showNameAndAlias(this.props.match.params.cluster, 'cluster'),
       },
       {
         name: t('PROJECT'),
-        value: detail.namespace,
+        value: showNameAndAlias(detail.namespace, 'project'),
       },
       {
         name: t('REPLICA_COUNT'),

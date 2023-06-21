@@ -16,23 +16,21 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import { Notify } from '@kube-design/components'
+import Nav from 'devops/components/DetailNav'
+import Status from 'devops/components/Status'
+import DetailPage from 'devops/containers/Base/Detail'
+import { get, has, isArray, isEmpty, last } from 'lodash'
 import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 
 import moment from 'moment-mini'
-import { get, isEmpty, has, isArray, last } from 'lodash'
-
-import { Notify } from '@kube-design/components'
-import Status from 'devops/components/Status'
+import React from 'react'
 import CodeQualityStore from 'stores/devops/codeQuality'
-import DetailPage from 'devops/containers/Base/Detail'
-
-import { trigger } from 'utils/action'
-
+import { showNameAndAlias } from 'utils'
 import { getPipelineStatus } from 'utils/status'
 
-import Nav from 'devops/components/DetailNav'
+import { trigger } from 'utils/action'
 
 import './index.scss'
 
@@ -271,7 +269,7 @@ export default class PipelineDetailLayout extends React.Component {
     return [
       {
         name: t('DEVOPS_PROJECT'),
-        value: devopsName,
+        value: showNameAndAlias(devopsName, 'devops'),
       },
       {
         name: t('KIND_TCAP'),

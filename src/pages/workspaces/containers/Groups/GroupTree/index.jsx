@@ -16,14 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
-import { set, get, cloneDeep } from 'lodash'
-
 import { Loading } from '@kube-design/components'
 
 import Tree from 'components/Tree'
+import { cloneDeep, get, set } from 'lodash'
+import { observer } from 'mobx-react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import { getDisplayName, showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -50,6 +50,21 @@ export default class GroupTree extends Component {
           treeData={data}
           selectedKeys={[group]}
           onSelect={onSelect}
+          processor={{
+            processProps: i => {
+              if (i.key === 'root') {
+                return {
+                  ...i,
+                  // Groups component, here is hardcoded workspace, not considering generality
+                  title: showNameAndAlias(i.title, 'workspace'),
+                }
+              }
+              return {
+                ...i,
+                title: getDisplayName(i),
+              }
+            },
+          }}
         />
       </div>
     )

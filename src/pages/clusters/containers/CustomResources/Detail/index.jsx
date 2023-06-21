@@ -22,7 +22,7 @@ import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 import { Loading } from '@kube-design/components'
 
-import { getLocalTime } from 'utils'
+import { getLocalTime, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
 import CRDStore from 'stores/crd'
 
@@ -69,7 +69,7 @@ export default class CustomResourceDetail extends React.Component {
     return [
       {
         name: t('CLUSTER'),
-        value: this.props.match.params.cluster,
+        value: showNameAndAlias(this.props.match.params.cluster, 'cluster'),
       },
       {
         name: t('SCOPE_TCAP'),

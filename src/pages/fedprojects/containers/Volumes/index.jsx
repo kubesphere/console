@@ -17,19 +17,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { get, isEmpty } from 'lodash'
-import { getLocalTime, getDisplayName, map_accessModes } from 'utils'
 import { Icon, Tooltip } from '@kube-design/components'
 import { Avatar, Status } from 'components/Base'
-import { withProjectList, ListPage } from 'components/HOCs/withList'
 import Banner from 'components/Cards/Banner'
-import Table from 'components/Tables/List'
-import StatusReason from 'projects/components/StatusReason'
 import ClusterWrapper from 'components/Clusters/ClusterWrapper'
+import { ListPage, withProjectList } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
+import { get, isEmpty } from 'lodash'
+import StatusReason from 'projects/components/StatusReason'
+import React from 'react'
 
 import FederatedStore from 'stores/federated'
 import VolumeStore from 'stores/volume'
+import { getDisplayName, getLocalTime, map_accessModes } from 'utils'
 
 import { getVolumeStatus } from 'utils/status'
 
@@ -221,6 +221,7 @@ export default class Volumes extends React.Component {
         <Banner {...bannerProps} tips={this.tips} />
         <Table
           {...tableProps}
+          className={'table-2-5'}
           itemActions={this.itemActions}
           namespace={query.namespace}
           columns={this.getColumns()}

@@ -15,15 +15,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { Component } from 'react'
-import { pick, set } from 'lodash'
-import { inject, observer, Provider } from 'mobx-react'
 import { Loading } from '@kube-design/components'
+import { pick, set } from 'lodash'
 import { toJS } from 'mobx'
-import { renderRoutes } from 'utils/router.config'
+import { inject, observer, Provider } from 'mobx-react'
+import React, { Component } from 'react'
+import ClusterStore from 'stores/cluster'
 
 import DevOpsStore from 'stores/devops'
-import ClusterStore from 'stores/cluster'
+import { eventBus } from 'utils/EventBus'
+import { eventKeys } from 'utils/events'
+import { renderRoutes } from 'utils/router.config'
 
 @inject('rootStore')
 @observer
@@ -32,6 +34,11 @@ export default class Layout extends Component {
     super(props)
     this.store = new DevOpsStore()
     this.clusterStore = new ClusterStore()
+    this.rootStore = props.rootStore
+  }
+
+  state = {
+    fetchFin: true,
   }
 
   get cluster() {
@@ -94,6 +101,7 @@ export default class Layout extends Component {
       }),
       this.getHostCluster(),
     ])
+    eventBus.emit(eventKeys.DEVOPS_CHANGE, toJS(this.store.detail))
 
     await this.props.rootStore.getRules(params)
 

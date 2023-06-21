@@ -16,26 +16,27 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
-import React from 'react'
-import { observer, inject } from 'mobx-react'
-import { Menu, Icon, Button } from '@kube-design/components'
+import { Button, Icon, Menu } from '@kube-design/components'
+import EditBasicInfoModal from 'clusters/components/Modals/EditBasicInfo'
 import { Panel, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import EditBasicInfoModal from 'clusters/components/Modals/EditBasicInfo'
-import { getDisplayName } from 'utils'
+import { get } from 'lodash'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
+
+import ClusterMonitorStore from 'stores/monitoring/cluster'
+import { getDisplayNameNew, getDomTitle } from 'utils'
 import { trigger } from 'utils/action'
+
 import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
 import {
+  getLastMonitoringData,
   getSuitableUnit,
   getValueByUnit,
-  getLastMonitoringData,
 } from 'utils/monitoring'
-
-import ClusterMonitorStore from 'stores/monitoring/cluster'
-import ManageButton from './ManageButton'
 import styles from './index.scss'
+import ManageButton from './ManageButton'
 
 const MetricTypes = {
   cpu_usage: 'cluster_cpu_total',
@@ -256,8 +257,9 @@ export default class Overview extends React.Component {
           <div className={styles.header}>
             <Text
               icon={CLUSTER_PROVIDER_ICON[provider] || 'kubernetes'}
-              title={getDisplayName(this.store.detail)}
+              title={getDomTitle(getDisplayNameNew(this.store.detail))}
               description={t('CLUSTER')}
+              ellipsis
             />
             {provider && <Text title={provider} description={t('PROVIDER')} />}
             <Text

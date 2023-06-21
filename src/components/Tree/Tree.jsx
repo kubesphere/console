@@ -16,24 +16,24 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import TreeNode from './TreeNode'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import contextTypes from './contextTypes'
-import {
-  convertTreeToEntities,
-  conductExpandParent,
-  calcSelectedKeys,
-  mapChildren,
-  arrAdd,
-  arrDel,
-  toArray,
-  getPosition,
-  getDataAndAria,
-} from './treeUtils'
 
 import styles from './style.scss'
+import TreeNode from './TreeNode'
+import {
+  arrAdd,
+  arrDel,
+  calcSelectedKeys,
+  conductExpandParent,
+  convertTreeToEntities,
+  getDataAndAria,
+  getPosition,
+  mapChildren,
+  toArray,
+} from './treeUtils'
 
 const convertDataToTree = (treeData, processor) => {
   if (!treeData) return []
@@ -100,7 +100,7 @@ export default class Tree extends Component {
     let treeNode = null
 
     if (needSync('treeData')) {
-      treeNode = convertDataToTree(nextProps.treeData)
+      treeNode = convertDataToTree(nextProps.treeData, nextProps.processor)
     } else if (needSync('children')) {
       treeNode = toArray(nextProps.children)
     }

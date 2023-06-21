@@ -21,6 +21,7 @@ import { observer } from 'mobx-react'
 import { pick } from 'lodash'
 import { Icon, Select, Tooltip } from '@kube-design/components'
 import ProjectStore from 'stores/project'
+import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -35,6 +36,12 @@ export default class ProjectSelect extends Component {
 
   fetchProjects = (params = {}) => {
     const { cluster } = this.props
+
+    if (params.name) {
+      params.nameAndAlias = params.name
+      delete params.name
+    }
+
     return this.projectStore.fetchList({
       cluster,
       ...params,
@@ -48,7 +55,7 @@ export default class ProjectSelect extends Component {
     const result = data
       .filter(item => item.status !== 'Terminating')
       .map(item => ({
-        label: item.name,
+        label: showNameAndAlias(item),
         value: item.name,
         disabled: item.isFedManaged,
         isFedManaged: item.isFedManaged,

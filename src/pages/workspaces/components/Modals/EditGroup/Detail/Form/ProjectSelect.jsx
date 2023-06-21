@@ -23,6 +23,7 @@ import { observer } from 'mobx-react'
 import { isEqual, isEmpty } from 'lodash'
 
 import { Select, Icon, Tooltip } from '@kube-design/components'
+import { showNameAndAlias } from 'utils'
 
 import RoleStore from 'stores/role'
 import ProjectStore from 'stores/project'
@@ -81,7 +82,7 @@ export default class ProjectSelect extends Component {
         )
       )
       .map(item => ({
-        label: item.name,
+        label: showNameAndAlias(item),
         value: item.name,
         item,
       }))
@@ -151,7 +152,7 @@ export default class ProjectSelect extends Component {
   clusterRenderer = option => {
     return (
       <span>
-        <span>{option.value}</span>
+        <span>{showNameAndAlias(option.item)}</span>
         {option.needUpgrade && (
           <Tooltip
             content={t('CLUSTER_UPGRADE_REQUIRED', { version: 'v3.1.0' })}
@@ -185,7 +186,9 @@ export default class ProjectSelect extends Component {
             options={clusters}
             placeholder={t('CLUSTER')}
             valueRenderer={option =>
-              t('CLUSTER_VALUE', { value: option.value })
+              t('CLUSTER_VALUE', {
+                value: showNameAndAlias(option.item),
+              })
             }
             optionRenderer={this.clusterRenderer}
             prefixIcon={<Icon name="cluster" size={16} />}
@@ -198,7 +201,14 @@ export default class ProjectSelect extends Component {
           disabled={disabled}
           options={this.projects}
           placeholder={t('PROJECT')}
-          valueRenderer={option => t('PROJECT_VALUE', { value: option.value })}
+          valueRenderer={option => {
+            const optionInfo =
+              this.projectStore.list.data.filter(
+                item => item.name === option.value
+              )[0] || ''
+
+            return t('PROJECT_VALUE', { value: showNameAndAlias(optionInfo) })
+          }}
           prefixIcon={<Icon name="project" size={16} />}
           onChange={this.handleProjectsChange}
         />

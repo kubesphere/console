@@ -16,17 +16,17 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import ResourceTable from 'clusters/components/ResourceTable'
+import { Avatar } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import { ListPage, withClusterList } from 'components/HOCs/withList'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Avatar } from 'components/Base'
-import { withClusterList, ListPage } from 'components/HOCs/withList'
-import Banner from 'components/Cards/Banner'
-import ResourceTable from 'clusters/components/ResourceTable'
-
-import { getDisplayName, getLocalTime } from 'utils'
-import { ICON_TYPES } from 'utils/constants'
 
 import ServiceAccountStore from 'stores/serviceAccount'
+
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
+import { ICON_TYPES } from 'utils/constants'
 
 @withClusterList({
   store: new ServiceAccountStore(),
@@ -117,7 +117,7 @@ export default class ServiceAccounts extends React.Component {
         width: '16%',
         render: namespace => (
           <Link to={`/clusters/${cluster}/projects/${namespace}`}>
-            {namespace}
+            {showNameAndAlias(namespace, 'project')}
           </Link>
         ),
       },

@@ -16,14 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { action, observable, extendObservable } from 'mobx'
+import { get } from 'lodash'
+import { action, extendObservable, observable } from 'mobx'
 import { RouterStore } from 'mobx-react-router'
 import { parse } from 'qs'
-import { getQueryString } from 'utils'
 
 import UserStore from 'stores/user'
 import WebSocketStore from 'stores/websocket'
-import { get } from 'lodash'
+import { getQueryString } from 'utils'
 
 export default class RootStore {
   @observable

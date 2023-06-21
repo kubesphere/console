@@ -16,10 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { observer } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
-import PropTypes from 'prop-types'
 import {
   Column,
   Columns,
@@ -30,9 +26,13 @@ import {
 } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
-import { PATTERN_SERVICE_NAME } from 'utils/constants'
+import { get, isEmpty } from 'lodash'
+import { observer } from 'mobx-react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import WorkspaceStore from 'stores/workspace'
+import { PATTERN_ALIAS_NAME, PATTERN_SERVICE_NAME } from 'utils/constants'
 
 import { compareVersion } from 'utils/app'
 import styles from './index.scss'
@@ -218,7 +218,16 @@ export default class ProjectCreateModal extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
+              <Form.Item
+                label={t('ALIAS')}
+                desc={t('ALIAS_NAME_DESC')}
+                rules={[
+                  {
+                    pattern: PATTERN_ALIAS_NAME,
+                    message: t('INVALID_ALIAS_NAME_DESC'),
+                  },
+                ]}
+              >
                 <Input
                   name="metadata.annotations['kubesphere.io/alias-name']"
                   maxLength={63}

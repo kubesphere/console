@@ -16,22 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
 import { Notify } from '@kube-design/components'
 
-import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import moment from 'moment-mini'
-import { get, debounce, isEmpty } from 'lodash'
-
-import Status from 'devops/components/Status'
-import CodeQualityStore from 'stores/devops/codeQuality'
-import DetailPage from 'devops/containers/Base/Detail'
+import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 import Nav from 'devops/components/DetailNav'
 
-import { ReactComponent as ForkIcon } from 'assets/fork.svg'
-import { getPipelineStatus } from 'utils/status'
+import Status from 'devops/components/Status'
+import DetailPage from 'devops/containers/Base/Detail'
+import { debounce, get, isEmpty } from 'lodash'
+
+import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+import moment from 'moment-mini'
+import React from 'react'
+import CodeQualityStore from 'stores/devops/codeQuality'
+import { showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
+import { getPipelineStatus } from 'utils/status'
 
 import './index.scss'
 
@@ -114,7 +115,7 @@ export default class BranchDetailLayout extends React.Component {
     return [
       {
         name: t('DEVOPS_PROJECT'),
-        value: devopsName,
+        value: showNameAndAlias(devopsName, 'devops'),
       },
       {
         name: t('PIPELINE'),

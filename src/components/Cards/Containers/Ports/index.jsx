@@ -16,13 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { isEmpty } from 'lodash'
-import { PROTOCOLS } from 'utils/constants'
 
 import { Panel } from 'components/Base'
+import { isEmpty } from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { showNameAndAlias } from 'utils'
+import { PROTOCOLS } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -59,7 +60,9 @@ export default class ContainerPorts extends React.Component {
             {ports.map((item, index) => {
               return (
                 <tr key={index}>
-                  {isFederated && <td>{item.cluster}</td>}
+                  {isFederated && (
+                    <td>{showNameAndAlias(item.cluster, 'cluster')}</td>
+                  )}
                   <td>{item.name}</td>
                   <td>{item.protocol}</td>
                   <td>{item.containerPort}</td>

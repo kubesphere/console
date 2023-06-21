@@ -16,19 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
 import {
-  Columns,
-  Column,
-  Dropdown,
-  Menu,
-  Icon,
   Button,
+  Column,
+  Columns,
+  Dropdown,
+  Icon,
+  Menu,
 } from '@kube-design/components'
-import { Text } from 'components/Base'
-import { getLocalTime } from 'utils'
-import ClusterTitle from 'components/Clusters/ClusterTitle'
 import classNames from 'classnames'
+import { Text } from 'components/Base'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
+import React from 'react'
+import { getDomTitle, getLocalTime } from 'utils'
+
 import styles from './index.scss'
 
 export default class ClusterCard extends React.Component {
@@ -101,7 +102,10 @@ export default class ClusterCard extends React.Component {
             />
           </Column>
           <Column className="is-2">
-            <Text title={data.provider} description={t('PROVIDER')} />
+            <Text
+              title={getDomTitle(data.provider || '-')}
+              description={t('PROVIDER')}
+            />
           </Column>
           <Column className="is-2">
             {willExpired ? (

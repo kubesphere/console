@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Select, Icon } from '@kube-design/components'
+import { Icon, Select } from '@kube-design/components'
+import { pick } from 'lodash'
 import React from 'react'
 import CodeStore from 'stores/codeRepo'
-import { pick } from 'lodash'
 import styles from './index.scss'
 
 export default class CodeRepoSelect extends React.Component {
@@ -55,7 +55,9 @@ export default class CodeRepoSelect extends React.Component {
 
   repoOptionRenderer = option => type => (
     <span className={styles.option}>
-      <Icon name={option.icon} type={type === 'value' ? 'dark' : 'light'} />
+      {!!option.icon && (
+        <Icon name={option.icon} type={type === 'value' ? 'dark' : 'light'} />
+      )}
       {option.label}
       {option.value === '*' ? '' : ` (${option.value})`}
     </span>
