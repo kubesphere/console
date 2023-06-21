@@ -19,6 +19,7 @@ module.exports = {
   // Attributes
   DURATION: '기간',
   // Alert Rules
+  VIEW_METRIC_DATA: 'View metric data',
   ALERTING_RULE: '알림 규칙',
   MONITORING_TARGETS_SCAP: '모니터링 대상',
   TRIGGER_CONDITION_SCAP: '트리거 조건',
@@ -26,6 +27,11 @@ module.exports = {
   ALERT_MONITORING: '알림 모니터링',
   NOTIFICATION_SUMMARY_COLON: '개요: ',
   DETAILS_COLON: '세부 정보: ',
+  NODES_VALUES: 'Nodes: {values}',
+  TRIGGER_CONDITION: 'Trigger Condition',
+  ALERT_RULE_TEXT_PERCENT_MINUTE: '{alterTypeText} {comparator} {thresholds}% for {durationValue, plural, =1 {1 minute} other {# minutes}}',
+  MESSAGE_SUMMARY: '개요',
+  MESSAGE_DETAILS: '세부 정보',
   // Alerting History
   NO_DATA_DESC: '데이터를 찾을 수 없습니다'
 };
