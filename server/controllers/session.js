@@ -245,7 +245,8 @@ const handleOAuthLogin = async ctx => {
       ctx.redirect(redirect_url)
     }
   } else {
-    ctx.redirect(isValidReferer(referer) ? referer : '/')  }
+    ctx.redirect(isValidReferer(referer) ? referer : '/')
+  }
 }
 
 const handleLoginConfirm = async ctx => {

@@ -16,14 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
-import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
-import classNames from 'classnames'
 import { Icon, Tag } from '@kube-design/components'
-import { Indicator } from 'components/Base'
+import classNames from 'classnames'
 import StatusReason from 'clusters/components/StatusReason'
-import { CLUSTER_PROVIDER_ICON, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
+import { Indicator } from 'components/Base'
+import { get } from 'lodash'
+import { PropTypes } from 'prop-types'
+import React, { Component } from 'react'
+import { showNameAndAlias } from 'utils'
+import { CLUSTER_GROUP_TAG_TYPE, CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -89,11 +90,13 @@ export default class ClusterTitle extends Component {
         <div className={styles.title}>
           <div className={styles.name}>
             {onClick ? (
-              <a title={cluster.name} onClick={onClick}>
-                {cluster.name}
+              <a title={showNameAndAlias(cluster)} onClick={onClick}>
+                {showNameAndAlias(cluster)}
               </a>
             ) : (
-              <span title={cluster.name}>{cluster.name}</span>
+              <span title={showNameAndAlias(cluster)}>
+                {showNameAndAlias(cluster)}
+              </span>
             )}
             {cluster.group && (
               <Tag
@@ -129,7 +132,10 @@ export default class ClusterTitle extends Component {
                 {t('KUBE_CONFIG_IS_EXPIRED')}
               </p>
             ) : isReady || noStatus ? (
-              <p className={classNames('ellipsis', styles.ellipsis)}>
+              <p
+                className={classNames('ellipsis', styles.ellipsis)}
+                title={cluster.description}
+              >
                 {cluster.description || '-'}
               </p>
             ) : (

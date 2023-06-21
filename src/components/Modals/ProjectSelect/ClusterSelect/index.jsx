@@ -16,9 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
+import { Dropdown, Icon, Menu } from '@kube-design/components'
 import classNames from 'classnames'
-import { Dropdown, Menu, Icon } from '@kube-design/components'
+import React, { Component } from 'react'
 
 import styles from './index.scss'
 
@@ -40,10 +40,14 @@ export default class ClusterSelect extends Component {
   }
 
   renderControl() {
-    const { className, value } = this.props
+    const { className, value, options } = this.props
     return (
       <div className={classNames(styles.value, className)}>
-        <span className={styles.label}>{t('CLUSTER_VALUE', { value })}</span>
+        <span className={styles.label}>
+          {t('CLUSTER_VALUE', {
+            value: options.find(item => item.value === value)?.label,
+          })}
+        </span>
         <Icon className={styles.rightIcon} name="chevron-down" type="light" />
       </div>
     )

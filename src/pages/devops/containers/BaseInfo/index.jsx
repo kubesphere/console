@@ -16,29 +16,32 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty, cloneDeep, isObject, set } from 'lodash'
+import { Button, Dropdown, Icon, Menu, Notify } from '@kube-design/components'
+import classNames from 'classnames'
+import { Avatar, Panel, Switch } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import DeleteModal from 'components/Modals/Delete'
+import Empty from 'components/Tables/Base/Empty'
+import EditModal from 'devops/components/Modals/DevOpsEdit'
+import { cloneDeep, get, isEmpty, isObject, set } from 'lodash'
+import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import classNames from 'classnames'
-import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import { Icon, Button, Notify, Dropdown, Menu } from '@kube-design/components'
-import { Panel, Avatar, Switch } from 'components/Base'
-import DeleteModal from 'components/Modals/Delete'
-import Banner from 'components/Cards/Banner'
-import Empty from 'components/Tables/Base/Empty'
-import {
-  inCluster2Default,
-  getDisplayName,
-  getLocalTime,
-  compareVersion,
-} from 'utils'
-import EditModal from 'devops/components/Modals/DevOpsEdit'
-
-import { trigger } from 'utils/action'
+import RoleStore from 'stores/role'
 
 import UserStore from 'stores/user'
-import RoleStore from 'stores/role'
+import {
+  compareVersion,
+  getDisplayNameNew,
+  getDomTitle,
+  getLocalTime,
+  inCluster2Default,
+  showNameAndAlias,
+} from 'utils'
+
+import { trigger } from 'utils/action'
+import { eventKeys, initEvents } from 'utils/events'
 import styles from './index.scss'
 
 @inject('rootStore', 'devopsStore')
@@ -54,6 +57,10 @@ class BaseInfo extends React.Component {
   roleStore = new RoleStore()
 
   memberStore = new UserStore()
+
+  handleHostClusterChange = () => {
+    this.forceUpdate()
+  }
 
   componentDidMount() {
     if (this.canViewMembers && this.canViewRoles) {
@@ -73,6 +80,15 @@ class BaseInfo extends React.Component {
         isEmpty(this.detail.sourceRepos) && isEmpty(this.detail.destinations)
       ),
     })
+
+    this.subscribe = initEvents([
+      eventKeys.HOST_CLUSTER_CHANGE,
+      this.handleHostClusterChange,
+    ])
+  }
+
+  componentWillUnmount() {
+    this.subscribe && this.subscribe()
   }
 
   get isMultiCluster() {
@@ -273,12 +289,18 @@ class BaseInfo extends React.Component {
         <div className={styles.header}>
           <Icon name="strategy-group" size={40} />
           <div className={styles.item}>
-            <div>{getDisplayName(this.detail)}</div>
+            <div>{getDomTitle(getDisplayNameNew(this.detail))}</div>
             <p>{t('DEVOPS_PROJECT_SCAP')}</p>
           </div>
           <div className={styles.item}>
             <div>
-              <Link to={`/workspaces/${this.workspace}`}>{this.workspace}</Link>
+              <Link to={`/workspaces/${this.workspace}`}>
+                {getDomTitle(
+                  showNameAndAlias(this.workspace, 'workspace', {}, true, () =>
+                    this.forceUpdate()
+                  )
+                )}
+              </Link>
             </div>
             <p>{t('WORKSPACE')}</p>
           </div>
@@ -398,29 +420,39 @@ class BaseInfo extends React.Component {
       </div>
     ) : (
       <div className={styles.items}>
-        {this.detail.destinations.map((destination, index) => (
-          <div key={index} className={`${styles.item} ${styles.item_flex}`}>
-            <div>
-              <Icon name="cluster" size={20} />
-              <b>
-                {destination.name === '*'
-                  ? t('ALL')
-                  : inCluster2Default(destination.name)}
-              </b>
-              {destination?.name !== '*' && (
-                <span>({destination?.server})</span>
-              )}
+        {this.detail.destinations.map(destination => {
+          return (
+            <div
+              key={`${destination.name}-${destination.namespace}+'-'+${globals.hostClusterName}}`}
+              className={`${styles.item} ${styles.item_flex}`}
+            >
+              <div>
+                <Icon name="cluster" size={20} />
+                <b>
+                  {destination.name === '*'
+                    ? t('ALL')
+                    : showNameAndAlias(
+                        inCluster2Default(destination.name),
+                        'cluster'
+                      )}
+                </b>
+                {destination?.name !== '*' && (
+                  <span>({destination?.server})</span>
+                )}
+              </div>
+              <div>
+                <Icon name="enterprise" size={20} />
+                <b>
+                  {destination?.namespace === '*'
+                    ? t('ALL')
+                    : showNameAndAlias(destination?.namespace, 'project', {
+                        cluster: inCluster2Default(destination.name),
+                      })}
+                </b>
+              </div>
             </div>
-            <div>
-              <Icon name="enterprise" size={20} />
-              <b>
-                {destination?.namespace === '*'
-                  ? t('ALL')
-                  : destination?.namespace}
-              </b>
-            </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     )
   }

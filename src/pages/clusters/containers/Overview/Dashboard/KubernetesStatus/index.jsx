@@ -15,15 +15,16 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { Component } from 'react'
-import { get } from 'lodash'
-import { observer } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 import { Panel, Text } from 'components/Base'
-
-import { getValueByUnit } from 'utils/monitoring'
+import { get } from 'lodash'
+import { observer } from 'mobx-react'
+import React, { Component } from 'react'
 
 import ComponentMonitorStore from 'stores/monitoring/component'
+import { getDomTitle } from 'utils'
+
+import { getValueByUnit } from 'utils/monitoring'
 
 import styles from './index.scss'
 
@@ -113,17 +114,19 @@ export default class KubernetesStatus extends Component {
           <>
             <div className={styles.level}>
               <Text
-                title={t('VALUE_REQUESTS_SECOND', { value: request_rate })}
+                title={getDomTitle(
+                  t('VALUE_REQUESTS_SECOND', { value: request_rate })
+                )}
                 description={t('API_REQUESTS_PER_SECOND')}
               />
               <Text
-                title={`${request_latencies_total} ms`}
+                title={getDomTitle(`${request_latencies_total} ms`)}
                 description={t('API_REQUEST_LATENCY')}
               />
             </div>
             <div className={styles.level}>
               <Text
-                title={schedule_attempts_count.scheduled}
+                title={getDomTitle(schedule_attempts_count.scheduled)}
                 description={
                   schedule_attempts_count.scheduled === 1
                     ? t('SCHEDULING_OPERATION')
@@ -131,7 +134,7 @@ export default class KubernetesStatus extends Component {
                 }
               />
               <Text
-                title={schedule_attempts_count.error}
+                title={getDomTitle(schedule_attempts_count.error)}
                 description={
                   schedule_attempts_count.error === 1
                     ? t('SCHEDULING_FAILURE')

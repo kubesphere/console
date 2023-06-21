@@ -17,23 +17,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { isEmpty } from 'lodash'
-import { withProjectList, ListPage } from 'components/HOCs/withList'
-import Table from 'components/Tables/List'
-import VolumeStore from 'stores/volume'
-import { getLocalTime, getDisplayName, map_accessModes } from 'utils'
-import { getVolumeStatus } from 'utils/status'
-import { VOLUME_STATUS } from 'utils/constants'
 import { Icon, Tooltip } from '@kube-design/components'
-import { Link } from 'react-router-dom'
-import PvStore from 'stores/pv'
-
-import StatusReason from 'projects/components/StatusReason'
 
 import { Avatar, Status } from 'components/Base'
 
 import Banner from 'components/Cards/Banner'
+import { ListPage, withProjectList } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
+import { isEmpty } from 'lodash'
+
+import StatusReason from 'projects/components/StatusReason'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import PvStore from 'stores/pv'
+import VolumeStore from 'stores/volume'
+import { getDisplayName, getLocalTime, map_accessModes } from 'utils'
+import { VOLUME_STATUS } from 'utils/constants'
+import { getVolumeStatus } from 'utils/status'
 
 import styles from './index.scss'
 
@@ -266,6 +266,7 @@ export default class Volumes extends React.Component {
         <Banner {...bannerProps} tips={this.tips} />
         <Table
           {...tableProps}
+          className={'table-2-6'}
           itemActions={this.itemActions}
           namespace={query.namespace}
           columns={this.getColumns()}

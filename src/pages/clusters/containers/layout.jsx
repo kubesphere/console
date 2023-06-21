@@ -15,23 +15,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { Component } from 'react'
-import { inject, observer, Provider } from 'mobx-react'
-import { set, get, pick } from 'lodash'
-
 import { Loading } from '@kube-design/components'
-
-import { renderRoutes } from 'utils/router.config'
+import { get, pick, set } from 'lodash'
+import { inject, observer, Provider } from 'mobx-react'
+import React, { Component } from 'react'
 
 import ClusterStore from 'stores/cluster'
+
+import { renderRoutes } from 'utils/router.config'
 
 @inject('rootStore')
 @observer
 export default class App extends Component {
   constructor(props) {
     super(props)
-
     this.store = new ClusterStore()
+  }
+
+  state = {
+    fetchFin: false,
   }
 
   componentDidMount() {
@@ -46,7 +48,6 @@ export default class App extends Component {
 
   async init(params) {
     this.store.initializing = true
-
     if (params.cluster) {
       await Promise.all([
         this.store.fetchDetail({ name: params.cluster }),
@@ -68,7 +69,6 @@ export default class App extends Component {
         ...pick(this.store.detail, ['name', 'aliasName', 'group', 'isHost']),
       })
     }
-
     this.store.initializing = false
   }
 

@@ -2,9 +2,16 @@
 @import '~scss/mixins';
 
 .tags {
+  .tagItem {
+    display: inline-flex;
+  }
   :global {
     .tag {
       margin-right: 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 120px;
 
       .icon {
         margin-top: -2px;

@@ -16,29 +16,27 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { inject, observer } from 'mobx-react'
-import isEqual from 'react-fast-compare'
+import {
+  Loading,
+  RadioButton,
+  RadioGroup,
+  Select,
+} from '@kube-design/components'
+import { Panel } from 'components/Base'
 import { get } from 'lodash'
 import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
+import isEqual from 'react-fast-compare'
+import ProjectMonitorStore from 'stores/monitoring/project'
+import OverviewStore from 'stores/overview'
 
 import { ICON_TYPES } from 'utils/constants'
 import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
-import OverviewStore from 'stores/overview'
-import ProjectMonitorStore from 'stores/monitoring/project'
-
-import {
-  Select,
-  Loading,
-  RadioGroup,
-  RadioButton,
-} from '@kube-design/components'
-import { Panel } from 'components/Base'
-
 import AppResourceItem from './AppResourceItem'
-import PhysicalResourceItem from './PhysicalResourceItem'
 
 import styles from './index.scss'
+import PhysicalResourceItem from './PhysicalResourceItem'
 
 const APP_RESOURCE_METRIC_TYPES = [
   'namespace_pod_count',
@@ -220,7 +218,9 @@ class ResourceUsage extends React.Component {
     })
   }
 
-  clusterRenderer = option => t('CLUSTER_VALUE', { value: option.value })
+  clusterRenderer = option => {
+    return t('CLUSTER_VALUE', { value: option.label })
+  }
 
   renderApplicationResource() {
     const { isLoading } = toJS(this.overviewStore.resource)

@@ -16,15 +16,17 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { observer, inject } from 'mobx-react'
-import { Columns, Column } from '@kube-design/components'
+import { Column, Columns } from '@kube-design/components'
 import { get } from 'lodash'
+import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
+import { showNameAndAlias } from 'utils'
 
 import BaseInfo from './BaseInfo'
+import LimitRange from './LimitRange'
 import ResourceUsage from './ResourceUsage'
 import UsageRanking from './UsageRanking'
-import LimitRange from './LimitRange'
 import Help from './Help'
 
 @inject('rootStore', 'projectStore')
@@ -51,8 +53,8 @@ export default class Overview extends React.Component {
   }
 
   get clusters() {
-    return this.project.detail.clusters.map(cluster => ({
-      label: cluster.name,
+    return toJS(this.project.detail.clusters).map(cluster => ({
+      label: showNameAndAlias(cluster),
       value: cluster.name,
     }))
   }

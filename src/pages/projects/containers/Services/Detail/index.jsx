@@ -22,7 +22,12 @@ import { observer, inject } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
 import { Loading } from '@kube-design/components'
 
-import { getDisplayName, joinSelector, getLocalTime } from 'utils'
+import {
+  getDisplayName,
+  joinSelector,
+  getLocalTime,
+  showNameAndAlias,
+} from 'utils'
 import { trigger } from 'utils/action'
 import { SERVICE_TYPES } from 'utils/constants'
 import ServiceStore from 'stores/service'
@@ -185,11 +190,11 @@ export default class ServiceDetail extends React.Component {
     return [
       {
         name: t('CLUSTER'),
-        value: cluster,
+        value: showNameAndAlias(cluster, 'cluster'),
       },
       {
         name: t('PROJECT'),
-        value: namespace,
+        value: showNameAndAlias(namespace, 'project'),
       },
       {
         name: t('TYPE'),

@@ -16,19 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { isEmpty } from 'lodash'
-import { observer, inject } from 'mobx-react'
 import { Loading } from '@kube-design/components'
-
-import { getDisplayName, getLocalTime } from 'utils'
-import { trigger } from 'utils/action'
+import { isEmpty } from 'lodash'
 import { toJS } from 'mobx'
-import Volume from 'stores/volume'
-import FederatedStore from 'stores/federated'
-import StorageClass from 'stores/storageClass'
+import { inject, observer } from 'mobx-react'
 
 import DetailPage from 'projects/containers/Base/Detail'
+import React from 'react'
+import FederatedStore from 'stores/federated'
+import StorageClass from 'stores/storageClass'
+import Volume from 'stores/volume'
+
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
+import { trigger } from 'utils/action'
 
 import getRoutes from './routes'
 
@@ -147,7 +147,7 @@ export default class VolumeDetail extends React.Component {
     return [
       {
         name: t('PROJECT'),
-        value: namespace,
+        value: showNameAndAlias(namespace, 'federatedProject'),
       },
       {
         name: t('CAPACITY'),

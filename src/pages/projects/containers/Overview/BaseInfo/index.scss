@@ -22,9 +22,15 @@
 }
 
 .text {
-  min-width: 200px;
+  padding: 12px;
+  height: 64px;
+  background: $light-color01;
+  border-radius: 4px;
+  overflow: hidden;
+
   & > div {
     @include TypographyTitleH6($dark-color07);
+    @include ellipsis;
   }
 
   & > p {
@@ -36,7 +42,7 @@
 .content {
   display: flex;
   padding: 8px;
-  border-radius: $border-radius $border-radius 0 0 ;
+  border-radius: $border-radius $border-radius 0 0;
   background-color: $lightest;
 }
 

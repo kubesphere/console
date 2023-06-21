@@ -1,0 +1,109 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  :global {
+    .h6 {
+      margin-bottom: 8px;
+      line-height: 1.43;
+      font-family: $font-family-id;
+
+      .icon {
+        margin-right: 14px;
+        height: 14px;
+        width: 14px;
+      }
+    }
+  }
+
+  .content {
+    padding: 12px;
+    background: $light-color01;
+    border-radius: 4px;
+  }
+}
+
+.search {
+  width: 100%;
+  margin: 12px 0;
+}
+
+.cardList {
+  height: 400px;
+  overflow-y: auto;
+
+  .emptyText {
+    text-align: center;
+    margin-top: 10%;
+    & > div {
+      @include TypographyTitleH5();
+    }
+
+    & > p {
+      margin-top: 4px;
+      @include TypographyParagraph($dark-color01);
+    }
+
+    @at-root {
+      .emptyTipIcon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50% 0 50% 50%;
+        background: $light-color02;
+        display: inline-block;
+        line-height: 50px;
+        margin-bottom: 20px;
+      }
+    }
+    .action {
+      color: $blue-color03;
+      padding: 0 4px;
+      cursor: pointer;
+      font-weight: $font-bold;
+    }
+  }
+}
+
+.card {
+  padding: 12px;
+  margin-bottom: 8px;
+  background-color: $white;
+  border: solid 1px $border-color;
+  border-radius: 4px;
+
+  transition: all $trans-speed ease-in-out;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  :global {
+    .radio-wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      &::before,
+      &::after {
+        top: 50% !important;
+        transform: translateY(-50%);
+      }
+    }
+    .label-value {
+      display: flex !important;
+      align-items: center;
+      width: 100%;
+      & > div {
+        margin-right: 12px;
+        min-width: 20%;
+        &:first-child {
+          min-width: 35%;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    border-color: $border-hover-color;
+    box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
+  }
+}

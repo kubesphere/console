@@ -16,10 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get, isObject, isString, set } from 'lodash'
 import React from 'react'
+import { Route, Switch } from 'react-router'
 import { Redirect } from 'react-router-dom'
-import { Switch, Route } from 'react-router'
-import { isString, isObject, get } from 'lodash'
 
 export const renderRoutes = (routes, extraProps = {}, switchProps = {}) =>
   routes ? (
@@ -43,6 +43,8 @@ export const renderRoutes = (routes, extraProps = {}, switchProps = {}) =>
             exact={route.exact}
             path={route.path}
             render={props => {
+              set(globals, 'currentCluster', props.match.params.cluster)
+              set(globals, 'currentWorkspace', props.match.params.workspace)
               if (route.render) {
                 return route.render(props)
               }

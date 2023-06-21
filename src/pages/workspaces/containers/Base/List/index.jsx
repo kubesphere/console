@@ -16,18 +16,29 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
-import { get } from 'lodash'
-
-import { renderRoutes, getIndexRoute } from 'utils/router.config'
-
 import { Nav } from 'components/Layout'
+import { get } from 'lodash'
+import { inject, observer } from 'mobx-react'
+import React, { Component } from 'react'
+
+import ClusterStore from 'stores/cluster'
+
+import { getIndexRoute, renderRoutes } from 'utils/router.config'
 import Selector from 'workspaces/components/Selector'
 
 @inject('rootStore', 'workspaceStore')
 @observer
 class WorkspaceLayout extends Component {
+  constructor(props) {
+    super(props)
+
+    this.store = new ClusterStore()
+  }
+
+  state = {
+    fetchFin: false,
+  }
+
   get workspace() {
     return this.props.match.params.workspace
   }

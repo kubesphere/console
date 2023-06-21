@@ -15,24 +15,22 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import React from 'react'
-
-import { toJS, computed } from 'mobx'
-import { getLocalTime, getDisplayName } from 'utils'
-import { isArgo } from 'utils/devops'
-
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import CDStore from 'stores/cd'
-import Table from 'components/Tables/List'
-import ClusterStore from 'stores/cluster'
 import withList, { ListPage } from 'components/HOCs/withList'
-import { CD_WEATHER_STATUS, CD_SYNC_STATUS } from 'utils/constants'
-import { omit, get, pick } from 'lodash'
+import Table from 'components/Tables/List'
+import { get, omit, pick } from 'lodash'
+
+import { computed, toJS } from 'mobx'
+import React from 'react'
+import CDStore from 'stores/cd'
+import ClusterStore from 'stores/cluster'
+import { getDisplayName, getLocalTime } from 'utils'
+import { isArgo } from 'utils/devops'
+import { CD_SYNC_STATUS, CD_WEATHER_STATUS } from 'utils/constants'
+import ChartCard from '../Components/ChartCard'
 import Destination from '../Components/Destination'
 import StatusText from '../Components/StatusText'
-import ChartCard from '../Components/ChartCard'
 import styles from './index.scss'
 
 @withList({

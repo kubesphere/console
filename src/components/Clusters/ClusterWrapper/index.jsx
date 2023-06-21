@@ -16,37 +16,68 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import { Icon, Tag } from '@kube-design/components'
+import { Icon, Tag, Tooltip } from '@kube-design/components'
 import { keyBy } from 'lodash'
-import { CLUSTER_PROVIDER_ICON, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
+import React, { Component } from 'react'
+import { getDisplayNameNew } from 'utils'
+import { CLUSTER_GROUP_TAG_TYPE, CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
 import styles from './index.scss'
 
 export default class ClusterWrapper extends Component {
-  render() {
+  renderItem = (item, index, isTooltip = false) => {
     const clusterMap = keyBy(this.props.clustersDetail, 'name')
-    const { children, clusters = [] } = this.props
+    const { children } = this.props
+
+    const cluster = clusterMap[item.name] || item
+    return (
+      <span
+        className={isTooltip ? styles.tagItem : ''}
+        title={getDisplayNameNew(cluster, false)}
+      >
+        <Tag
+          key={cluster.name}
+          type={!isTooltip ? CLUSTER_GROUP_TAG_TYPE[cluster.group] : 'info'}
+        >
+          <Icon
+            name={CLUSTER_PROVIDER_ICON[cluster.provider] || 'kubernetes'}
+            size={16}
+            type="light"
+          />
+          {children ? children(cluster) : getDisplayNameNew(cluster)}
+        </Tag>
+      </span>
+    )
+  }
+
+  renderItem1 = (item, index) => {
+    return this.renderItem(item, index, false)
+  }
+
+  renderTooltip = (item, index) => {
+    return this.renderItem(item, index, true)
+  }
+
+  render() {
+    const { clusters = [] } = this.props
+    const rest = clusters.slice(2)
+    const showClusters = clusters.slice(0, 2)
 
     return (
       <div className={styles.wrapper}>
         <div className={styles.tags}>
-          {clusters.map(item => {
-            const cluster = clusterMap[item.name] || item
-            return (
-              <Tag
-                key={cluster.name}
-                type={CLUSTER_GROUP_TAG_TYPE[cluster.group]}
-              >
-                <Icon
-                  name={CLUSTER_PROVIDER_ICON[cluster.provider] || 'kubernetes'}
-                  size={16}
-                  type="light"
-                />
-                {children ? children(cluster) : cluster.name}
-              </Tag>
-            )
-          })}
+          {showClusters.map(this.renderItem1)}
+          {rest.length ? (
+            <Tooltip
+              content={
+                <div className={'flexbox items-center'}>
+                  {rest.map(this.renderTooltip)}
+                </div>
+              }
+            >
+              <Tag type={'primary'}>{clusters.length}</Tag>
+            </Tooltip>
+          ) : null}
           {clusters.length === 0 && '-'}
         </div>
       </div>

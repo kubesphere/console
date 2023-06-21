@@ -17,19 +17,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { isEmpty, get } from 'lodash'
-import { VOLUME_SNAPSHOT_STATUS } from 'utils/constants'
-
-import { withClusterList, ListPage } from 'components/HOCs/withList'
+import { Icon, Notify, Tooltip } from '@kube-design/components'
 import ResourceTable from 'clusters/components/ResourceTable'
-import SnapshotStore from 'stores/volumeSnapshot'
-import SnapshotClassStore from 'stores/volumeSnapshotClasses'
-import VolumeStore from 'stores/volume'
-import { getLocalTime } from 'utils'
 import { Avatar, Status } from 'components/Base'
 
-import { Icon, Notify, Tooltip } from '@kube-design/components'
+import { ListPage, withClusterList } from 'components/HOCs/withList'
+import { get, isEmpty } from 'lodash'
+import React from 'react'
+import VolumeStore from 'stores/volume'
+import SnapshotStore from 'stores/volumeSnapshot'
+import SnapshotClassStore from 'stores/volumeSnapshotClasses'
+import { getLocalTime, showNameAndAlias } from 'utils'
+import { VOLUME_SNAPSHOT_STATUS } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -210,7 +209,9 @@ export default class Snapshots extends React.Component {
         title: t('PROJECT'),
         dataIndex: 'namespace',
         isHideable: true,
-        render: namespace => <div>{namespace}</div>,
+        render: namespace => (
+          <div>{showNameAndAlias(namespace, 'project')}</div>
+        ),
       },
       {
         title: t('CAPACITY'),

@@ -16,16 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
-import copy from 'fast-copy'
-
 import { Form, Input, TextArea } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import copy from 'fast-copy'
+import { toJS } from 'mobx'
+import { observer } from 'mobx-react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import RoleStore from 'stores/role'
+import { PATTERN_ALIAS_NAME } from 'utils/constants'
 
 @observer
 export default class EditServiceAccountModal extends React.Component {
@@ -94,7 +94,16 @@ export default class EditServiceAccountModal extends React.Component {
         <Form.Item label={t('NAME')}>
           <Input name="metadata.name" disabled />
         </Form.Item>
-        <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
+        <Form.Item
+          label={t('ALIAS')}
+          desc={t('ALIAS_NAME_DESC')}
+          rules={[
+            {
+              pattern: PATTERN_ALIAS_NAME,
+              message: t('INVALID_ALIAS_NAME_DESC'),
+            },
+          ]}
+        >
           <Input
             name="metadata.annotations['kubesphere.io/alias-name']"
             maxLength={63}

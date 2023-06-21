@@ -21,6 +21,7 @@ import { Modal } from 'components/Base'
 import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 import EditYamlModal from 'components/Modals/EditYaml'
 import { get, set } from 'lodash'
+import { updateFederatedAnnotations } from 'utils'
 
 export default {
   'resource.baseinfo.edit': {
@@ -29,7 +30,17 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           let _data = module === 'workspace' ? null : data
-
+          if (
+            data.kind === 'FederatedNamespace' &&
+            get(store, 'module') === 'namespaces'
+          ) {
+            updateFederatedAnnotations(data)
+            // set(
+            //   data,
+            //   'spec.template.metadata.annotations["kubesphere.io/alias-name"]',
+            //   get(data, 'metadata.annotations["kubesphere.io/alias-name"]')
+            // )
+          }
           if (get(store, 'module', '') === 'workspaces') {
             const annotations = get(data, 'metadata.annotations')
             const spec = get(data, 'spec')

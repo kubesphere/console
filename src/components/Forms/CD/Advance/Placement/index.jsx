@@ -16,25 +16,25 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import { action, computed, observable, toJS } from 'mobx'
-import { observer } from 'mobx-react'
-import { get, set, pick, cloneDeep } from 'lodash'
-import classNames from 'classnames'
 import {
-  Icon,
-  Columns,
   Column,
+  Columns,
+  Form,
+  Icon,
+  Loading,
   Select,
   Tooltip,
-  Loading,
-  Form,
 } from '@kube-design/components'
+import classNames from 'classnames'
 
 import { Text } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
+import { cloneDeep, get, pick, set } from 'lodash'
+import { action, computed, observable, toJS } from 'mobx'
+import { observer } from 'mobx-react'
+import React, { Component } from 'react'
 import ProjectStore from 'stores/project'
-import { inCluster2Default } from 'utils'
+import { inCluster2Default, showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -44,6 +44,7 @@ export default class Placement extends Component {
     showForm: false,
     initializing: true,
     oldFormDate: {},
+    name: '',
   }
 
   @observable
@@ -65,11 +66,13 @@ export default class Placement extends Component {
 
   @computed
   get clusters() {
-    return this.cdStore.clustersList.map(item => ({
-      label: item.label,
-      value: item.name,
-      server: item.server,
-    }))
+    return this.cdStore.clustersList.map(item => {
+      return {
+        label: showNameAndAlias(inCluster2Default(item.name), 'cluster'),
+        value: item.name,
+        server: item.server,
+      }
+    })
   }
 
   @computed
@@ -77,7 +80,7 @@ export default class Placement extends Component {
     return this.projectStore.list.data
       .filter(item => item.status !== 'Terminating')
       .map(item => ({
-        label: item.name,
+        label: showNameAndAlias(item),
         value: item.name,
         disabled: item.isFedManaged || item.isFedHostNamespace,
         isFedManaged: item.isFedManaged || item.isFedHostNamespace,
@@ -155,6 +158,7 @@ export default class Placement extends Component {
 
   handleClusterChange = value => {
     this.fetchNamespaces()
+    this.setState({ name: value })
     const server = this.clusters.find(item => item.value === value).server
     set(this.formData, `${this.prefix}.server`, server)
     set(this.formData, `${this.prefix}.namespace`, '')
@@ -195,10 +199,14 @@ export default class Placement extends Component {
     const cluster = inCluster2Default(data.name)
     return (
       <div className={styles.placement}>
-        <Text icon="cluster" title={cluster} description={t('CLUSTER')} />
+        <Text
+          icon="cluster"
+          title={showNameAndAlias(cluster, 'cluster')}
+          description={t('CLUSTER')}
+        />
         <Text
           icon="project"
-          title={data.namespace}
+          title={showNameAndAlias(data.namespace, 'project', { cluster })}
           description={t('PROJECT')}
         />
         <Icon className={styles.icon} name="chevron-down" size={20} />
@@ -231,6 +239,7 @@ export default class Placement extends Component {
               <Form.Item label={t('CLUSTER')}>
                 <Select
                   name={`${this.prefix}.name`}
+                  key={this.state.name}
                   placeholder=" "
                   options={this.clusters}
                   onChange={this.handleClusterChange}
@@ -244,16 +253,6 @@ export default class Placement extends Component {
                 label={t('PROJECT')}
                 rules={[
                   { required: true, message: t('PROJECT_NOT_SELECT_DESC') },
-                  {
-                    validator: (rule, value, callback) => {
-                      if (!this.namespaces.some(item => item.value === value)) {
-                        callback(t('PROJECT_NOT_SELECT_DESC'))
-                        return
-                      }
-
-                      callback()
-                    },
-                  },
                 ]}
               >
                 <Select

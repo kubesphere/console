@@ -584,6 +584,7 @@ export const GRAY_RELEASE_CATEGORIES = [
 
 export const PATTERN_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_USER_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/
+export const PATTERN_ALIAS_NAME = /^(?!-)([a-zA-Z0-9\u4e00-\u9fa5-]+)(?<!-)$/
 export const PATTERN_IMAGE_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?((\.|\/)[a-z0-9]([-a-z0-9]*[a-z0-9])?)*(:([a-z0-9])*)?$/
 export const PATTERN_SERVICE_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_SERVICE_VERSION = /^[a-z0-9]*$/

@@ -19,15 +19,17 @@
 import React, { Component } from 'react'
 import { Select } from '@kube-design/components'
 import StatusReason from 'clusters/components/StatusReason'
+import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
 export default class ClusterSelect extends Component {
-  valueRenderer = option => t('CLUSTER_VALUE', { value: option.value })
+  valueRenderer = option =>
+    t('CLUSTER_VALUE', { value: showNameAndAlias(option.cluster) })
 
   optionRenderer = option => (
     <div>
-      <div>{option.value}</div>
+      <div>{showNameAndAlias(option.cluster)}</div>
       {!option.cluster.isReady && (
         <div>
           <StatusReason data={option.cluster} noTip />

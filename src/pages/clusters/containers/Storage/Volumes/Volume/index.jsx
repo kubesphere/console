@@ -17,21 +17,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { isEmpty } from 'lodash'
-import { withClusterList, ListPage } from 'components/HOCs/withList'
-import ResourceTable from 'clusters/components/ResourceTable'
-import VolumeStore from 'stores/volume'
-import { getLocalTime, getDisplayName, map_accessModes } from 'utils'
-import { getVolumeStatus } from 'utils/status'
-import { VOLUME_STATUS } from 'utils/constants'
-import StatusReason from 'projects/components/StatusReason'
 import { Icon, Tooltip } from '@kube-design/components'
-
 import { Avatar, Status } from 'components/Base'
+import ResourceTable from 'clusters/components/ResourceTable'
+import { ListPage, withClusterList } from 'components/HOCs/withList'
+import { isEmpty } from 'lodash'
+import StatusReason from 'projects/components/StatusReason'
+import React from 'react'
 
 import { Link } from 'react-router-dom'
 import PvStore from 'stores/pv'
+import VolumeStore from 'stores/volume'
+import { getDisplayName, getLocalTime, map_accessModes } from 'utils'
+import { VOLUME_STATUS } from 'utils/constants'
+import { getVolumeStatus } from 'utils/status'
 import styles from './index.scss'
 
 @withClusterList({
@@ -298,6 +297,7 @@ export default class Volumes extends React.Component {
       <ListPage {...this.props}>
         <ResourceTable
           {...tableProps}
+          className={'table-2-6'}
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}

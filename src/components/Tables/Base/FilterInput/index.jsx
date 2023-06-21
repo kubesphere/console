@@ -264,7 +264,7 @@ export default class FilterInput extends Component {
   }
 
   render() {
-    const { className } = this.props
+    const { className, contentClassName } = this.props
     const { value, tags } = this.state
     const hasValue = !isEmpty(value) || !isEmpty(tags)
 
@@ -278,7 +278,7 @@ export default class FilterInput extends Component {
         ref={this.filterInput}
       >
         <Icon className="is-left" name="magnifier" />
-        <div className={styles.content}>
+        <div className={classNames(styles.content, contentClassName)}>
           {this.renderTags()}
           {this.renderInput()}
         </div>

@@ -16,19 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
-import { get, set, cloneDeep, uniq, flatten, isEmpty } from 'lodash'
-
 import { Notify } from '@kube-design/components'
 import DeleteModal from 'components/Modals/Delete'
+import { cloneDeep, flatten, get, isEmpty, set, uniq } from 'lodash'
+import { observer } from 'mobx-react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
-import { safeParseJSON } from 'utils'
+import { safeParseJSON, showNameAndAlias } from 'utils'
 import { getBreadCrumbData } from 'utils/group'
+import Card from './Card'
 
 import Form from './Form'
-import Card from './Card'
 
 import styles from './index.scss'
 
@@ -196,7 +195,14 @@ export default class Detail extends Component {
     const { showForm, treeNodeId } = this.props
     const { mode } = this.state
     let breadcrumbs = getBreadCrumbData(treeNodeId, this.props.rowTreeData).map(
-      item => item.group_name
+      (item, idx) => {
+        if (!idx) {
+          return showNameAndAlias(item.group_name, 'workspace')
+        }
+        return item.aliasName
+          ? `${item.aliasName}(${item.group_name})`
+          : item.group_name
+      }
     )
     if (showForm && mode === 'create') {
       breadcrumbs = [...breadcrumbs, t('CREATE_DEPARTMENT')]

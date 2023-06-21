@@ -26,8 +26,8 @@ import {
   Toggle,
   Tooltip,
   Icon,
-  InputSearch,
 } from '@kube-design/components'
+import FilterInput from 'components/Tables/Base/FilterInput'
 
 import { Modal } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
@@ -47,6 +47,7 @@ export default class ClusterVisibility extends React.Component {
     isPublic: get(this.props, 'cluster.visibility') === 'public',
     showUnAuthTip: false,
     showConfirm: false,
+    filters: {},
   }
 
   workspaceStore = new WorkspaceStore()
@@ -56,6 +57,21 @@ export default class ClusterVisibility extends React.Component {
   componentDidMount() {
     this.fetchWorkspaces()
     this.fetchAuthoredWorkspaces()
+  }
+
+  get columns() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
   }
 
   handleOk = () => {
@@ -94,7 +110,7 @@ export default class ClusterVisibility extends React.Component {
   }
 
   handleSearch = name => {
-    this.fetchWorkspaces({ name })
+    this.fetchWorkspaces({ nameAndAlias: name })
   }
 
   fetchWorkspaces = params => {
@@ -196,10 +212,16 @@ export default class ClusterVisibility extends React.Component {
               <div className={styles.title}>{t('UNAUTHORIZED')}</div>
               <div className={styles.content}>
                 <div className={styles.search}>
-                  <InputSearch
-                    name="name"
-                    onSearch={this.handleSearch}
-                    placeholder={t('SEARCH')}
+                  <FilterInput
+                    placeholder={t('SEARCH_BY_NAME')}
+                    columns={this.columns}
+                    onChange={_filters => {
+                      this.setState({
+                        filters: _filters,
+                      })
+                      this.fetchWorkspaces(_filters)
+                    }}
+                    filters={this.state.filters}
                   />
                 </div>
                 <div className={styles.list}>

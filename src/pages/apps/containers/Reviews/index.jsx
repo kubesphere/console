@@ -26,7 +26,7 @@ import Avatar from 'apps/components/Avatar'
 
 import ReviewStore from 'stores/openpitrix/review'
 import { REVIEW_QUERY_STATUS } from 'configs/openpitrix/app'
-import { getLocalTime } from 'utils'
+import { getLocalTime, showNameAndAlias } from 'utils'
 import { transferReviewStatus } from 'utils/app'
 import { find } from 'lodash'
 import styles from './index.scss'
@@ -138,7 +138,7 @@ export default class Reviews extends React.Component {
       isHideable: true,
       width: '15%',
       render: appId => {
-        return this.getAppISV(appId)
+        return showNameAndAlias(this.getAppISV(appId), 'workspace')
       },
     },
     {

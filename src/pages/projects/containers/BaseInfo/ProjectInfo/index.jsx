@@ -16,15 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { get, isEmpty } from 'lodash'
-import { Link } from 'react-router-dom'
-import classNames from 'classnames'
-
 import { Icon, Menu } from '@kube-design/components'
-import { getLocalTime, getDisplayName } from 'utils'
-import { Panel } from 'components/Base'
+import classNames from 'classnames'
+import { Panel, Text } from 'components/Base'
+import { get, isEmpty } from 'lodash'
 import ManageButton from 'pages/clusters/containers/BaseInfo/ManageButton'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import {
+  getDisplayNameNew,
+  getDomTitle,
+  getLocalTime,
+  showNameAndAlias,
+} from 'utils'
 
 import styles from './index.scss'
 
@@ -59,14 +63,25 @@ export default class ProjectInfo extends React.Component {
         title={t('PROJECT_INFO')}
       >
         <div className={styles.header}>
-          <Icon name="project" size={40} />
-          <div className={styles.item}>
-            <div>{getDisplayName(detail)}</div>
-            <p>{t('NAME')}</p>
-          </div>
-          <div className={styles.item}>
+          <Text
+            icon={'project'}
+            title={getDomTitle(getDisplayNameNew(detail))}
+            description={t('NAME')}
+            ellipsis
+          />
+          {/* <Icon name="project" size={40} /> */}
+          {/* <div className={styles.item}> */}
+          {/*  <div>{getDisplayName(detail)}</div> */}
+          {/*  <p>{t('NAME')}</p> */}
+          {/* </div> */}
+          <div className={classNames(styles.item, 'ellipsis')}>
             <div>
-              <Link to={`/workspaces/${workspace}`}>{workspace}</Link>
+              <Link
+                to={`/workspaces/${workspace}`}
+                className={'ellipsis block'}
+              >
+                {showNameAndAlias(workspace, 'workspace')}
+              </Link>
             </div>
             <p>{t('WORKSPACE')}</p>
           </div>

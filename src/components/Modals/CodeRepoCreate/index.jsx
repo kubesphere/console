@@ -16,15 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
-import { PATTERN_NAME } from 'utils/constants'
 import { Modal } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
 
 import RepoSelect from 'components/Forms/Pipelines/RepoSelect'
 import RepoSelectForm from 'components/Forms/Pipelines/RepoSelect/subForm'
 import PropTypes from 'prop-types'
+import React from 'react'
+import { PATTERN_ALIAS_NAME, PATTERN_NAME } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -179,7 +179,16 @@ export default class CodeRepoCreate extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
+              <Form.Item
+                label={t('ALIAS')}
+                desc={t('ALIAS_NAME_DESC')}
+                rules={[
+                  {
+                    pattern: PATTERN_ALIAS_NAME,
+                    message: t('INVALID_ALIAS_NAME_DESC'),
+                  },
+                ]}
+              >
                 <Input
                   name="metadata.annotations['kubesphere.io/alias-name']"
                   maxLength={63}

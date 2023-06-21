@@ -16,39 +16,42 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
 import { Icon, Tag } from '@kube-design/components'
 import { keyBy } from 'lodash'
-import { CLUSTER_PROVIDER_ICON, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
+import React from 'react'
 
-import { inCluster2Default } from 'utils'
+import { inCluster2Default, showNameAndAlias } from 'utils'
+import { CLUSTER_GROUP_TAG_TYPE, CLUSTER_PROVIDER_ICON } from 'utils/constants'
+import { eventKeys, useEventValue } from 'utils/events'
 import styles from './index.scss'
 
-export default class Destination extends Component {
-  render() {
-    const clusterMap = keyBy(this.props.clustersDetail, 'name')
-    const { destination = {} } = this.props
-    const clusterName = inCluster2Default(destination.name)
-    const cluster = clusterMap[clusterName] || {}
-    const namespace = destination.namespace || ''
-
-    return (
-      <div className={styles.wrapper}>
-        <div className={styles.tags}>
-          <Tag key={cluster.name} type={CLUSTER_GROUP_TAG_TYPE[cluster.group]}>
-            <Icon
-              name={CLUSTER_PROVIDER_ICON[cluster.provider] || 'kubernetes'}
-              size={16}
-              type="light"
-            />
-            {cluster.name || 'default'}
-          </Tag>
-          <span>
-            <Icon name="project" size={16} type="dark" />
-            {namespace}
-          </span>
-        </div>
+const Destination = props => {
+  const clusterMap = keyBy(props.clustersDetail, 'name')
+  const { destination = {} } = props
+  useEventValue(eventKeys.HOST_CLUSTER_CHANGE, '')
+  const clusterName = inCluster2Default(destination.name)
+  const cluster = clusterMap[clusterName] || {}
+  const namespace = destination.namespace || ''
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.tags}>
+        <Tag key={cluster.name} type={CLUSTER_GROUP_TAG_TYPE[cluster.group]}>
+          <Icon
+            name={CLUSTER_PROVIDER_ICON[cluster.provider] || 'kubernetes'}
+            size={16}
+            type="light"
+          />
+          {cluster.name
+            ? showNameAndAlias(inCluster2Default(cluster.name), 'cluster')
+            : 'default'}
+        </Tag>
+        <span>
+          <Icon name="project" size={16} type="dark" />
+          {showNameAndAlias(namespace, 'project')}
+        </span>
       </div>
-    )
-  }
+    </div>
+  )
 }
+
+export default Destination

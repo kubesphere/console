@@ -16,13 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import { Panel, Text } from 'components/Base'
 import { get, isEmpty } from 'lodash'
 import { computed } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { Panel, Text } from 'components/Base'
+import React from 'react'
 
 import WorkspaceStore from 'stores/workspace'
+import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -77,7 +78,7 @@ export default class Workspaces extends React.Component {
               <div key={item} className={styles.item}>
                 <Text
                   icon="enterprise"
-                  title={item}
+                  title={showNameAndAlias(workspace)}
                   description={workspace.description || t('WORKSPACE')}
                 />
                 <Text

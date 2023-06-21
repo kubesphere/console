@@ -15,10 +15,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from 'react'
-import cs from 'classnames'
 import { Icon, Notify } from '@kube-design/components'
-
+import cs from 'classnames'
+import * as React from 'react'
 import CodeStore from 'stores/codeRepo'
 import { gitRepositorySpec2Source } from 'utils/devOpsRepos'
 import { toJS } from 'mobx'
@@ -175,10 +174,12 @@ export default class CodeRepoSelect extends React.Component {
 
     return (
       <span className={styles.option}>
-        <Icon
-          name={option.icon ?? ''}
-          type={type === 'value' ? 'dark' : 'light'}
-        />
+        {!!option.icon && (
+          <Icon
+            name={option.icon ?? ''}
+            type={type === 'value' ? 'dark' : 'light'}
+          />
+        )}
         {option.value}
       </span>
     )

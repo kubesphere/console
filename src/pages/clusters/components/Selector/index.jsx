@@ -16,11 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
 import { Icon } from '@kube-design/components'
 
 import SelectModal from 'clusters/components/Modals/ClusterSelect'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import styles from './index.scss'
 
@@ -71,7 +71,11 @@ export default class Selector extends React.Component {
             <Icon name="cluster" size={40} type="light" />
           </div>
           <div className={styles.text}>
-            <div className="h6">{value}</div>
+            {/* <Tooltip content={value}> */}
+            <div className="h6" title={value}>
+              {value}
+            </div>
+            {/* </Tooltip> */}
             <p>{t('CLUSTER')}</p>
           </div>
         </div>

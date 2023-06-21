@@ -15,14 +15,14 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from 'react'
-import { pick, get, isEmpty, set } from 'lodash'
+import { Icon, Select, Tooltip } from '@kube-design/components'
 import { ObjectInput } from 'components/Inputs'
-import ProjectStore from 'stores/project'
-import { Select, Icon, Tooltip } from '@kube-design/components'
-import { action, observable } from 'mobx'
+import { get, isEmpty, pick, set } from 'lodash'
+import { action, computed, observable } from 'mobx'
 import { observer } from 'mobx-react'
-import { inCluster2Default } from 'utils'
+import React from 'react'
+import ProjectStore from 'stores/project'
+import { inCluster2Default, showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -42,8 +42,14 @@ export default class Destinations extends React.Component {
   @observable
   cluster = ''
 
+  @computed
   get clusters() {
-    return this.props.clusters || []
+    return this.props.clusters.map(item => {
+      return {
+        ...item,
+        label: <span>{showNameAndAlias(item.label, 'cluster')}</span>,
+      }
+    })
   }
 
   get destinations() {
@@ -54,7 +60,7 @@ export default class Destinations extends React.Component {
     const data = this.projectStore.list.data
       .filter(item => item.status !== 'Terminating')
       .map(item => ({
-        label: item.name,
+        label: showNameAndAlias(item),
         value: item.name,
         disabled: item.isFedManaged,
         isFedManaged: item.isFedManaged,
@@ -157,6 +163,7 @@ export default class Destinations extends React.Component {
       <ObjectInput value={value} onChange={this.handleChange}>
         <Select
           name="name"
+          key={this.props.value?.name}
           placeholder={t('CLUSTER')}
           options={this.clusters}
           onChange={this.handleClusterChange}

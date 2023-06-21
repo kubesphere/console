@@ -19,7 +19,7 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 
-import { getLocalTime, getDisplayName } from 'utils'
+import { getLocalTime, getDisplayName, showNameAndAlias } from 'utils'
 import VolumeStore from 'stores/volume'
 import { get } from 'lodash'
 import { Icon } from '@kube-design/components'
@@ -99,6 +99,7 @@ export default class Volumes extends React.Component {
       key: 'namespace',
       width: '13%',
       customizable: true,
+      render: namespace => showNameAndAlias(namespace, 'project'),
     },
     {
       title: t('CREATION_TIME_TCAP'),
