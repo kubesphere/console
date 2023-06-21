@@ -41,9 +41,9 @@ module.exports = {
   ALERT_RULE_TEXT_HOUR: '{alterTypeText} {comparator} {thresholds} {unit} 持续 {durationValue, plural, =1 {1 小时} other {# 小时}}',
   // Alert Rules > View Metric Data
   CPU_UTILIZATION_NO_PERCENT_TCAP: 'CPU 用量',
-  CPU_LOAD_1_TCAP: '1 分钟 CPU 平均负载',
-  CPU_LOAD_5_TCAP: '5 分钟 CPU 平均负载',
-  CPU_LOAD_15_TCAP: '15 分钟 CPU 平均负载',
+  CPU_LOAD_1_TCAP: 'CPU 平均负载（1 分钟）',
+  CPU_LOAD_5_TCAP: 'CPU 平均负载（5 分钟）',
+  CPU_LOAD_15_TCAP: 'CPU 平均负载（15 分钟）',
   MEMORY_UTILIZATION_NO_PERCENT_TCAP: '内存用量',
   MEMORY_AVAILABLE_TCAP: '可用内存',
   DATA_SEND_RATE_TCAP: '网络数据发送速率',
