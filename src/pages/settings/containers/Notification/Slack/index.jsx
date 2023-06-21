@@ -128,12 +128,12 @@ export default class Slack extends React.Component {
 
     set(
       config,
-      'spec.slack.slackTokenSecret.valueFrom.secretKeyRefkey.key',
+      'spec.slack.slackTokenSecret.valueFrom.secretKeyRef.key',
       'token'
     )
     set(
       config,
-      'spec.slack.slackTokenSecret.valueFrom.secretKeyRefkey.name',
+      'spec.slack.slackTokenSecret.valueFrom.secretKeyRef.name',
       SECRET_NAME
     )
     set(secret, 'data.token', token)
@@ -144,6 +144,7 @@ export default class Slack extends React.Component {
       await this.receiverStore.create(receiver)
       message = t('ADDED_SUCCESS_DESC')
     } else {
+      unset(secret, 'metadata.resourceVersion')
       await this.secretStore.update({ name: SECRET_NAME }, secret)
       await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
       message = t('UPDATE_SUCCESSFUL')
