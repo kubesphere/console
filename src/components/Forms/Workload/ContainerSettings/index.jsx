@@ -629,6 +629,7 @@ export default class ContainerSetting extends React.Component {
         cluster={cluster}
         supportGpuSelect={supportGpuSelect}
         containers={this.containers}
+        isEdit={this.props.isEdit}
         {...params}
       />
     )

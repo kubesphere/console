@@ -144,7 +144,7 @@ export default class ContainerSetting extends React.Component {
   )
 
   renderImageForm = () => {
-    const { data, namespace, cluster } = this.props
+    const { data, namespace, cluster, type, isEdit } = this.props
     const imageRegistries = this.imageRegistries
     const formTemplate = this.getFormTemplate(data, imageRegistries)
 
@@ -156,6 +156,7 @@ export default class ContainerSetting extends React.Component {
         formTemplate={formTemplate}
         imageRegistries={imageRegistries}
         cluster={cluster}
+        type={isEdit ? 'Edit' : type}
       />
     )
   }

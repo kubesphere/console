@@ -53,7 +53,10 @@ export default class DropdownContent extends React.Component {
   }
 
   get secretValue() {
-    const { formTemplate } = this.props
+    const { formTemplate, type } = this.props
+    if (type === 'Edit') {
+      return get(formTemplate, 'pullSecret', '')
+    }
     return get(formTemplate, 'pullSecret', this.defaultImage?.value || '')
   }
 
@@ -119,6 +122,10 @@ export default class DropdownContent extends React.Component {
 
     if (this.defaultHarbor) {
       this.fetchHarborList('', this.defaultHarbor)
+    }
+
+    if (this.props.type !== 'Edit' && this.secretValue !== '') {
+      this.handleSecretChange(this.secretValue)
     }
   }
 
@@ -206,21 +213,10 @@ export default class DropdownContent extends React.Component {
   }
 
   handleHarborImageSelected = async imageDetail => {
-    const { harborData } = this.state
-    const projectName = imageDetail.project_name
-    const repository = imageDetail.repository_name.replace(
-      `${projectName}/`,
-      ''
-    )
-
-    const tag = await this.fetchHarborImageTag(
-      harborData,
-      projectName,
-      repository
-    )
-    const image = `${imageDetail.repository_name}:${tag}`
+    const image = `${imageDetail.repository_name}`
     const logo = ''
     const short_description = ''
+
     this.props.onChange(`${this.registryUrl}/${image}`)
     this.hideContent()
     this.props.onEnter({ logo, short_description })
@@ -271,26 +267,6 @@ export default class DropdownContent extends React.Component {
 
     !this.isUnMounted &&
       this.setState({ harborList: get(result, 'repository', []) })
-  }
-
-  fetchHarborImageTag = async (harborData, projectName, repository) => {
-    const result = await this.store.getHarborImageTag(
-      harborData,
-      projectName,
-      repository,
-      {
-        with_tag: true,
-        with_scan_overview: true,
-        with_label: true,
-        page_size: 15,
-        page: 1,
-      }
-    )
-    // get latest version
-    if (result && result.length > 0 && result[0].tags.length > 0) {
-      return result[0].tags[0].name
-    }
-    return ''
   }
 
   renderContent = () => {

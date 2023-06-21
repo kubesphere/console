@@ -22,10 +22,13 @@ import { get } from 'lodash'
 import ObjectMapper from 'utils/object.mapper'
 import { getWorkloadVolumes } from 'utils/workload'
 import { encrypt } from 'utils'
+import List from './base.list'
 
 export default class ContainerStore {
   @observable
   detail = {}
+
+  tagList = new List()
 
   @observable
   isLoading = true
@@ -63,11 +66,15 @@ export default class ContainerStore {
     return `${path}/namespaces/${namespace}/pods/${podName}`
   }
 
-  getPath = ({ cluster }) => {
+  getPath = ({ cluster, namespace }) => {
     let path = ''
 
     if (cluster) {
       path += `/klusters/${cluster}`
+    }
+
+    if (namespace) {
+      path += `/namespaces/${namespace}`
     }
 
     return path
@@ -201,5 +208,43 @@ export default class ContainerStore {
     }
 
     return ObjectMapper.imageBlob(result)
+  }
+
+  @action
+  getImageTagList = async ({
+    namespace,
+    cluster,
+    more,
+    limit = 10,
+    ...params
+  }) => {
+    this.tagList.isLoading = true
+
+    if (limit === Infinity || limit === -1) {
+      limit = -1
+      params.page = 1
+    }
+
+    const result = await request.get(
+      `kapis/resources.kubesphere.io/v1alpha3${this.getPath({
+        cluster,
+        namespace,
+      })}/repositorytags`,
+      { ...params, limit },
+      null,
+      (e, data) => data
+    )
+
+    const data = result.tags || []
+
+    this.tagList.update({
+      data: more ? [...this.tagList.data, ...data] : data,
+      total: result.total || data.length || 0,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+    })
+
+    return result.tags
   }
 }

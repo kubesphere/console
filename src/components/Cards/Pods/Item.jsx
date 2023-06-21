@@ -225,13 +225,15 @@ export default class PodItem extends React.PureComponent {
             const config = getAreaChartOps(item)
 
             return (
-              <TinyArea
-                key={item.type}
-                width="50%"
-                height={40}
-                {...config}
-                darkMode={isExpand}
-              />
+              <div key={item.type}>
+                <TinyArea
+                  key={item.type}
+                  width="100%"
+                  height={40}
+                  {...config}
+                  darkMode={isExpand}
+                />
+              </div>
             )
           })}
         </div>
