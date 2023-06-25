@@ -30,6 +30,7 @@ import EditYamlModal from 'components/Modals/EditYaml'
 import EditBasicInfoModal from 'components/Forms/AlertingPolicy/EditBasicInfo'
 import AlertingRules from 'components/Forms/AlertingPolicy/AlertingRules'
 import AlertMonitor from 'components/Modals/Monitoring/AlertMonitoring'
+import AlertConfirm from 'pages/projects/components/Modals/AlertingConfirm'
 
 import FORM_STEPS from 'configs/steps/alerting.policy'
 
@@ -343,6 +344,68 @@ export default {
     },
   },
   'alerting.rule.reset': {
-    on() {},
+    on({ store, detail, success, type }) {
+      const list = get(toJS(store.list), 'data', [])
+      const selectedRowKeys = get(toJS(store.list), 'selectedRowKeys', [])
+      const selectedPolicy = list.filter(
+        item => selectedRowKeys.indexOf(item.name) !== -1
+      )
+      const modal = Modal.open({
+        onOk: async () => {
+          if (selectedRowKeys.length > 0) {
+            const reqs = []
+            selectedPolicy.forEach(item => {
+              const originAnnotation = get(
+                item._originData,
+                'metadata.annotations',
+                ''
+              )
+              const initialConfig = get(
+                item._originData,
+                'metadata.annotations["alerting.kubesphere.io/initial-configuration"]',
+                ''
+              )
+              if (initialConfig === '') {
+                return
+              }
+              const data = JSON.parse(initialConfig)
+              const params = set(data, 'metadata.annotations', originAnnotation)
+              reqs.push(store.update({ ...item, type }, params))
+            })
+            await Promise.all(reqs)
+          } else {
+            const initialConfig = get(
+              detail._originData,
+              'metadata.annotations["alerting.kubesphere.io/initial-configuration"]',
+              ''
+            )
+            if (initialConfig === '') {
+              return
+            }
+            const data = JSON.parse(initialConfig)
+            const params = set(
+              data,
+              'metadata.annotations["alerting.kubesphere.io/initial-configuration"]',
+              initialConfig
+            )
+            await store.update({ ...detail, type }, params)
+          }
+          Notify.success({ content: t('RESET_SUCCESSFUL') })
+          Modal.close(modal)
+          success && success()
+        },
+        title:
+          selectedRowKeys.length > 0
+            ? t('RESET_MULTIPLE_ALERTING_POLICIES')
+            : t('RESET_ALERTING_POLICY'),
+        desc:
+          selectedRowKeys.length > 0
+            ? t.html('RESET_MULTIPLE_ALERTING_POLICIES_DESC', {
+                name: selectedRowKeys.join(','),
+              })
+            : t('RESET_ALERTING_POLICY_DESC'),
+        modal: AlertConfirm,
+      })
+    },
   },
 }

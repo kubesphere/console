@@ -53,6 +53,8 @@ module.exports = {
   // List > Create > Rule Settings > Rule List
   ADD_ALERTING_RULE: '添加告警规则',
   ADD_ALERTING_RULE_DESC: '为规则组添加告警规则。',
+  ENABLE_RULE: '启用规则',
+  DISABLE_RULE: '禁用规则',
   // List > Create > Rule Settings > Rule Template
   RULE_NAME: '规则名称',
   CUSTOM_RULE_NAME_DESC: '规则名称可包含任意字符，最长 63 个字符。',
@@ -107,5 +109,8 @@ module.exports = {
   DISABLE_ALERTING_POLICY: '禁用规则组',
   // List > Delete
   ALERTING_POLICY: '规则组',
-  ALERTING_POLICY_LOW: '规则组'
+  ALERTING_POLICY_LOW: '规则组',
+  // List > reset
+  RESET_ALERTING_POLICY: '重置规则组',
+  RESET_ALERTING_POLICY_DESC: '您确定重置规则组吗？',
 };
