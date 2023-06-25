@@ -58,8 +58,8 @@ module.exports = {
   CUSTOM_RULE_NAME_DESC: '规则名称可包含任意字符，最长 63 个字符。',
   LASTING_MINUTES: 'For {minutes, plural, =1 {1 minute} other {# minutes}}',
   THRESHOLD_REQUIRED: '请输入指标阈值。',
-  MESSAGE_SUMMARY_DESC: 'The message summary can contain any characters. The maximum length is 63 characters.',
-  MESSAGE_DETAILS_DESC: 'The message details can contain any characters. The maximum length is 256 characters.',
+  MESSAGE_SUMMARY_DESC: '消息摘要可包含任意字符，最长 63 个字符。',
+  MESSAGE_DETAILS_DESC: '消息详情可包含任意字符，最长 256 个字符。',
   RULE_TEMPLATE: '规则模板',
   RULE_SETTINGS: '规则设置',
   MONITORING_TARGETS: '监控目标',
@@ -104,7 +104,7 @@ module.exports = {
   // List > Edit
   EDIT_ALERTING_POLICY: '编辑规则组',
   // List > Disable
-  DISABLE_ALERTING_POLICY: 'Disable Rule Group',
+  DISABLE_ALERTING_POLICY: '禁用规则组',
   // List > Delete
   ALERTING_POLICY: '规则组',
   ALERTING_POLICY_LOW: '规则组'
