@@ -30,6 +30,6 @@ module.exports = {
   CONTAINER_ENVIRONMENT_DESC: '为容器添加添加环境变量。',
   PROBE_COMMAND_DESC: '使用半角逗号（,）分隔多条命令。',
   // List > Create > Pod Settings > Add Container
-  IGNORE_CERT_WARN_DESC: '忽略证书验证可能会导致帐户密码被泄露。',
+  IGNORE_CERT_WARN_DESC: '忽略证书验证可能会导致账户密码被泄露。',
   CERT_ERROR: '证书错误。'
 };
