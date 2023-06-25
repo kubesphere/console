@@ -53,6 +53,7 @@ module.exports = {
   CONTAINER_NAME: 'Konteyner Adı',
   CONTAINER_TYPE: 'Konteyner tipi',
   USE_DEFAULT_PORTS: 'Varsayılan Bağlantı Noktaları',
+  USE_IMAGE_DEFAULT_PORTS: 'Use Default Port of Images',
   NO_DEFAULT_PORT: 'Varsayılan bağlantı noktası yapılandırması yok',
   REGISTRY: 'Kayıt Defteri',
   SET_IMAGE_DESC: 'Konteyner için bir görüntü ayarlayın.',
