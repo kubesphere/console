@@ -53,6 +53,8 @@ module.exports = {
   // List > Create > Rule Settings > Rule List
   ADD_ALERTING_RULE: 'Add Alert Rule',
   ADD_ALERTING_RULE_DESC: 'Add an alert rule to the rule group.',
+  ENABLE_RULE: 'Enable rule',
+  DISABLE_RULE: 'Disable rule',
   // List > Create > Rule Settings > Rule Template
   RULE_NAME: 'Rule Name',
   CUSTOM_RULE_NAME_DESC: 'The rule name can contain any characters. The maximum length is 63 characters.',
@@ -107,5 +109,8 @@ module.exports = {
   DISABLE_ALERTING_POLICY: 'Disable Rule Group',
   // List > Delete
   ALERTING_POLICY: 'Rule Group',
-  ALERTING_POLICY_LOW: 'rule group'
+  ALERTING_POLICY_LOW: 'rule group',
+  // List > reset
+  RESET_ALERTING_POLICY: 'Reset Rule Group',
+  RESET_ALERTING_POLICY_DESC: 'Are you sure you want to reset the rule group?'
 };
