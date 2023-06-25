@@ -229,9 +229,9 @@ module.exports = {
   'New Image Tag': 'New Image Tag',
   Credential: 'Credential',
     // detail page -> pipeline configuration tab
-  PIPELINE_CONFIGURATION: 'Pipeline Configuration',
+  PIPELINE_CONFIGURATION: 'Pipeline Configurations',
   Replay: 'Replay',
-  BRANCH_DISABLED_NOT_REPLAY: 'The branch is disabled and cannot be replayed.',
+  BRANCH_DISABLED_NOT_REPLAY: 'The branch has been disabled and cannot be replayed.',
   // detail page // run log // task status
   RUN_LOGS: 'Run Logs',
   VIEW_FULL_LOG: 'View Full Logs',
