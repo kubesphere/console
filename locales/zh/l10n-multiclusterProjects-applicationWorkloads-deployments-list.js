@@ -53,6 +53,7 @@ module.exports = {
   CONTAINER_NAME: '容器名称',
   CONTAINER_TYPE: '容器类型',
   USE_DEFAULT_PORTS: '使用默认端口',
+  USE_IMAGE_DEFAULT_PORTS: 'Use Default Port of Images',
   NO_DEFAULT_PORT: '暂无默认端口配置',
   REGISTRY: '镜像服务',
   SET_IMAGE_DESC: '为容器设置镜像。',
