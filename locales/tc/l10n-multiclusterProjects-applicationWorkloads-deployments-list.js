@@ -53,6 +53,7 @@ module.exports = {
   CONTAINER_NAME: '容器名稱',
   CONTAINER_TYPE: '容器類型',
   USE_DEFAULT_PORTS: '使用預設端口',
+  USE_IMAGE_DEFAULT_PORTS: 'Use Default Port of Images',
   NO_DEFAULT_PORT: '暫無預設端口配置',
   REGISTRY: '倉庫',
   SET_IMAGE_DESC: '請選擇鏡像',
