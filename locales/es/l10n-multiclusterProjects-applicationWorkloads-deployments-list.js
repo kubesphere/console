@@ -53,6 +53,7 @@ module.exports = {
   CONTAINER_NAME: 'Nombre del contenedor',
   CONTAINER_TYPE: 'Tipo de contenedor',
   USE_DEFAULT_PORTS: 'Usar puertos predeterminados',
+  USE_IMAGE_DEFAULT_PORTS: 'Use Default Port of Images',
   NO_DEFAULT_PORT: 'Sin configuración de puertos predeterminada',
   REGISTRY: 'registro',
   SET_IMAGE_DESC: 'Por favor selecciona imagen',
