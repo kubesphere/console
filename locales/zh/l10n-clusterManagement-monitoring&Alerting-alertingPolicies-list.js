@@ -53,10 +53,12 @@ module.exports = {
   // List > Create > Rule Settings > Rule List
   ADD_ALERTING_RULE: '添加告警规则',
   ADD_ALERTING_RULE_DESC: '将告警规则添加到规则组。',
+  ENABLE_RULE: 'Enable rule',
+  DISABLE_RULE: 'Disable rule',
   // List > Create > Rule Settings > Rule Template
   RULE_NAME: '规则名称',
   CUSTOM_RULE_NAME_DESC: '规则名称可包含任意字符，最长 63 个字符。',
-  LASTING_MINUTES: 'For {minutes, plural, =1 {1 分钟} other {# 分钟}}',
+  LASTING_MINUTES: '{minutes, plural, =1 {1 分钟} other {# 分钟}}',
   THRESHOLD_REQUIRED: '请输入指标阈值。',
   MESSAGE_SUMMARY_DESC: '消息摘要可包含任意字符，最长 63 个字符。',
   MESSAGE_DETAILS_DESC: '消息详情可包含任意字符，最长 256 个字符。',
@@ -107,5 +109,8 @@ module.exports = {
   DISABLE_ALERTING_POLICY: '禁用规则组',
   // List > Delete
   ALERTING_POLICY: '规则组',
-  ALERTING_POLICY_LOW: '规则组'
+  ALERTING_POLICY_LOW: '规则组',
+  // List > reset
+  RESET_ALERTING_POLICY: 'Reset Rule Group',
+  RESET_ALERTING_POLICY_DESC: 'Are you sure you want to reset the rule group?'
 };
