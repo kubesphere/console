@@ -56,7 +56,7 @@ module.exports = {
   // List > Create > Rule Settings > Rule Template
   RULE_NAME: '规则名称',
   CUSTOM_RULE_NAME_DESC: '规则名称可包含任意字符，最长 63 个字符。',
-  LASTING_MINUTES: 'For {minutes, plural, =1 {1 minute} other {# minutes}}',
+  LASTING_MINUTES: 'For {minutes, plural, =1 {1 分钟} other {# 分钟}}',
   THRESHOLD_REQUIRED: '请输入指标阈值。',
   MESSAGE_SUMMARY_DESC: '消息摘要可包含任意字符，最长 63 个字符。',
   MESSAGE_DETAILS_DESC: '消息详情可包含任意字符，最长 256 个字符。',
