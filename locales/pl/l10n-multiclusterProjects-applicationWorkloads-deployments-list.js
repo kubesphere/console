@@ -53,6 +53,7 @@ module.exports = {
   CONTAINER_NAME: 'Container Name',
   CONTAINER_TYPE: 'Container Type',
   USE_DEFAULT_PORTS: 'Use Default Ports',
+  USE_IMAGE_DEFAULT_PORTS: 'Use Default Port of Images',
   NO_DEFAULT_PORT: 'No default ports config',
   REGISTRY: 'Registry',
   SET_IMAGE_DESC: 'Set an image for the container.',
