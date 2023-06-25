@@ -52,12 +52,12 @@ module.exports = {
   ALERTING_POLICY_CHECK_INTERVAL_DESC: '设置指标检查间隔。默认值为1分钟。',
   // List > Create > Rule Settings > Rule List
   ADD_ALERTING_RULE: '添加告警规则',
-  ADD_ALERTING_RULE_DESC: 'Add an alert rule to the rule group.',
+  ADD_ALERTING_RULE_DESC: '将告警规则添加到规则组。',
   // List > Create > Rule Settings > Rule Template
-  RULE_NAME: 'Rule Name',
-  CUSTOM_RULE_NAME_DESC: 'The rule name can contain any characters. The maximum length is 63 characters.',
+  RULE_NAME: '规则名称',
+  CUSTOM_RULE_NAME_DESC: '规则名称可包含任意字符，最长 63 个字符。',
   LASTING_MINUTES: 'For {minutes, plural, =1 {1 minute} other {# minutes}}',
-  THRESHOLD_REQUIRED: 'Please enter a metric threshold.',
+  THRESHOLD_REQUIRED: '请输入指标阈值。',
   MESSAGE_SUMMARY_DESC: 'The message summary can contain any characters. The maximum length is 63 characters.',
   MESSAGE_DETAILS_DESC: 'The message details can contain any characters. The maximum length is 256 characters.',
   RULE_TEMPLATE: '规则模板',
