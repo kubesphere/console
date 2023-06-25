@@ -72,6 +72,12 @@ export default class AlertingPolicy extends React.Component {
   }
 
   get tabs() {
+    const { namespace } = this.props.match.params
+
+    if (namespace) {
+      return {}
+    }
+
     return {
       value: this.state.type,
       onChange: this.handleTabChange,
