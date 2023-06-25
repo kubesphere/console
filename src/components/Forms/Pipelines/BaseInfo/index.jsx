@@ -88,7 +88,7 @@ export default class BaseInfo extends React.Component {
                   pattern: PATTERN_NAME,
                   message: t('INVALID_NAME_DESC'),
                 },
-                // { validator: this.validator },
+                { validator: this.validator },
               ]}
             >
               <Input name="name" maxLength={63} />

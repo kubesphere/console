@@ -254,9 +254,9 @@ export default class PipelineStore extends BaseStore {
       `/kapis/devops.kubesphere.io/v1alpha2${this.getPath({
         cluster,
         devops,
-      })}/checkPipelineName`,
+      })}/pipelines/${name}`,
       {
-        value: name,
+        check: true,
       }
     )
   }
