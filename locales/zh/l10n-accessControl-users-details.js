@@ -21,7 +21,7 @@ module.exports = {
   CHANGE_PASSWORD: '修改密码',
   NEW_PASSWORD: '新密码',
   PASSWORD_STRENGTH: '密码强度',
-  PASSWORD_STRENGTH_DESC: '避免使用弱密码其他帐户的密码。',
+  PASSWORD_STRENGTH_DESC: '避免使用弱密码其他账户的密码。',
   // More > Delete
   // Attributes
   // Login History
