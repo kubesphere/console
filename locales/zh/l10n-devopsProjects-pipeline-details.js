@@ -213,8 +213,9 @@ module.exports = {
   'New Image Tag': '新镜像标签',
   Credential: '凭证',
   // detail page -> pipeline configuration tab
-  PIPELINE_CONFIGURATION: '流水线配置',
+  PIPELINE_CONFIGURATION: 'Pipeline Configurations',
   Replay: '回放',
+  BRANCH_DISABLED_NOT_REPLAY: 'The branch has been disabled and cannot be replayed.',
   // detail page // run log // task status
   RUN_LOGS: '运行日志',
   VIEW_FULL_LOG: '查看完整日志',
