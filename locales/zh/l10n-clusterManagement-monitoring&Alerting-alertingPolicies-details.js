@@ -59,7 +59,7 @@ module.exports = {
   POD_QUOTA_UTILIZATION_NO_PERCENT_TCAP: 'Pod Quota Usage',
   MEMORY_USAGE_WO_CACHE_TCAP: 'Memory Usage Without Cache',
   UNAVAILABLE_WORKLOAD_REPLICA_RATIO_NO_PERCENT_TCAP: 'Unavailable Replica Ratio',
-  THRESHOLD_VALUE: 'Threshold: {value}',
+  THRESHOLD_VALUE: '阀值：{value}',
   // Alerting History
   NO_DATA_DESC: '未发现数据'
 };
