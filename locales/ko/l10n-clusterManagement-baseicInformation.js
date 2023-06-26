@@ -17,6 +17,5 @@
  */
 module.exports = {
     // base info modal
-    INVALID_ALIAS_NAME_DESC: 'Invalid alias name. The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
-    ALIAS_NAME_DESC: '별칭 이름은 문자, 숫자 및 하이픈(-)만 포함할 수 있으며 하이픈으로 시작하거나 끝날 수 없습니다. 최대 길이는 63자입니다.'
+    INVALID_ALIAS_NAME_DESC: 'Invalid alias name. The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.'
 };
