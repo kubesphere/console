@@ -25,7 +25,7 @@ module.exports = {
   TRIGGER_CONDITION_SCAP: '触发条件',
   METRIC_MONITORING: '指标监控',
   ALERT_MONITORING: '告警监控',
-  NOTIFICATION_SUMMARY_COLON: '概要：',
+  NOTIFICATION_SUMMARY_COLON: '消息概要：',
   DETAILS_COLON: '详情：',
   NODES_VALUES: '节点：{values}',
   TRIGGER_CONDITION: '触发条件',
