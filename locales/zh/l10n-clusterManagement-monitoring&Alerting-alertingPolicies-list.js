@@ -53,8 +53,8 @@ module.exports = {
   // List > Create > Rule Settings > Rule List
   ADD_ALERTING_RULE: '添加告警规则',
   ADD_ALERTING_RULE_DESC: '将告警规则添加到规则组。',
-  ENABLE_RULE: 'Enable rule',
-  DISABLE_RULE: 'Disable rule',
+  ENABLE_RULE: 'Enable Rule',
+  DISABLE_RULE: 'Disable Rule',
   // List > Create > Rule Settings > Rule Template
   RULE_NAME: '规则名称',
   CUSTOM_RULE_NAME_DESC: '规则名称可包含任意字符，最长 63 个字符。',
