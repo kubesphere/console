@@ -29,7 +29,6 @@ module.exports = {
   DETAILS_COLON: '详情：',
   NODES_VALUES: '节点：{values}',
   TRIGGER_CONDITION: '触发条件',
-  ALERT_RULE_TEXT_PERCENT_MINUTE: '{alterTypeText} {comparator} {thresholds}% 持续 {durationValue, plural, =1 {1 分钟} other {# 分钟}}',
   MESSAGE_SUMMARY: '概要',
   MESSAGE_DETAILS: '详情',
   VIEW_METRIC_DATA_TCAP: '查看指标数据',
