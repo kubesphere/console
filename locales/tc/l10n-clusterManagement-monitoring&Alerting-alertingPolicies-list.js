@@ -57,8 +57,8 @@ module.exports = {
   // List > Create > Rule Settings > Rule List
   ADD_ALERTING_RULE: 'Add Alert Rule',
   ADD_ALERTING_RULE_DESC: 'Add an alert rule to the rule group.',
-  ENABLE_RULE: 'Enable rule',
-  DISABLE_RULE: 'Disable rule',
+  ENABLE_RULE: 'Enable Rule',
+  DISABLE_RULE: 'Disable Rule',
   // List > Create > Rule Settings > Rule Template
   RULE_NAME: 'Rule Name',
   CUSTOM_RULE_NAME_DESC: 'The rule name can contain any characters. The maximum length is 63 characters.',
