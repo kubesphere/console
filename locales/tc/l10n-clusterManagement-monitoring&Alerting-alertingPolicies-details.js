@@ -29,7 +29,6 @@ module.exports = {
   DETAILS_COLON: 'Details: ',
   NODES_VALUES: 'Nodes: {values}',
   TRIGGER_CONDITION: 'Trigger Condition',
-  ALERT_RULE_TEXT_PERCENT_MINUTE: '{alterTypeText} {comparator} {thresholds}% for {durationValue, plural, =1 {1 minute} other {# minutes}}',
   MESSAGE_SUMMARY: '概括',
   MESSAGE_DETAILS: '詳情',
   VIEW_METRIC_DATA_TCAP: 'View Metric Data',
