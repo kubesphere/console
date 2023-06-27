@@ -160,7 +160,9 @@ module.exports = {
   PASSED: '통과됨',
   // Pull Requests
   PULL_REQUEST_PL: 'Pull Requests',
-  FAILED_CHECK_SCRIPT_COMPILE: '스크립트 컴파일을 확인하지 못했습니다. 단계를 건너뛰려면 계속 버튼을 클릭하십시오.',
+  FAILED_CHECK_SCRIPT_COMPILE: 'Failed to check script compiling. If you want to skip the step, click Continue.',
+  // detail page // Create Pipeline modal // add step modal 
+  IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
   //Create pipeline modal -> Custom Pipeline
   General: '일반',
   Container: '컨테이너',
@@ -210,5 +212,16 @@ module.exports = {
   'Original Image Address': '원본 이미지 주소',
   'New Image Address': '새로운 이미지 주소',
   'New Image Tag': '새로운 이미지 태그',
-  Credential: '자격 증명'
+  Credential: '자격 증명',
+  // detail page -> pipeline configuration tab
+  PIPELINE_CONFIGURATION: 'Pipeline Configurations',
+  Replay: 'Replay',
+  BRANCH_DISABLED_NOT_REPLAY: 'The branch has been disabled and cannot be replayed.',
+  // detail page // run log // task status
+  RUN_LOGS: 'Run Logs',
+  VIEW_FULL_LOG: 'View Full Logs',
+  // detail page // run log // task status // pipeline log modal
+  PIPELINE_LOG: 'Pipeline Logs',
+  // detail page // Create Pipeline modal // add step modal
+  IMPORT_FROM_CODE_REPO: 'Import From Code Repository'
 };

@@ -29,9 +29,12 @@ module.exports = {
   ALERT_RULE_PENDING: '대기 중',
   ALERT_RULE_FIRING: 'Firing',
   ALERT_RULE_DISABLED: '사용안함',
-  ALERT_RULE_HEALTH_OK: '정상',
-  ALERT_RULE_HEALTH_ERR: '오류',
-  ALERT_RULE_HEALTH_UNKNOWN: '알 수 없음',
+  POLICY_STATUS: 'Rule Group Status',
+  RULE_STATUS: 'Rule Status',
+  TIME_SPENT: 'Time Spent',
+  RECENT_DETECT_TIME: 'Last Check',
+  EDIT_ALERT_RULES: 'Edit Alert Rules',
+  RESET: 'Reset',
   // List > Create > Basic Information
   SEVERITY: '심각도',
   CREATE_ALERTING_POLICY: '규칙 그룹 생성',
@@ -44,7 +47,21 @@ module.exports = {
   ALERT_DURATION: '시스템이 특정 기간 동안 대기하도록 설정하고 경고를 실행하기 전에 알림 상황이 지속되는지 확인합니다.',
   LONG_NAME_DESC: '이름은 소문자, 숫자 및 하이픈(-)만 포함할 수 있으며 소문자 또는 숫자로 시작하고 끝나야 합니다. 최대 길이는 253자입니다.',
   NAME_EXIST_DESC: '이미 존재하는 이름입니다. 다른 이름을 입력하십시오.',
+  ALIAS_NAME_DESC: '별칭 이름은 문자, 숫자 및 하이픈(-)만 포함할 수 있으며 하이픈으로 시작하거나 끝날 수 없습니다. 최대 길이는 63자입니다.',
+  CHECK_INTERVAL: 'Check Interval',
+  ALERTING_POLICY_CHECK_INTERVAL_DESC: 'Set the interval between metric checks. The default value is 1 minute.',
+  // List > Create > Rule Settings > Rule List
+  ADD_ALERTING_RULE: 'Add Alert Rule',
+  ADD_ALERTING_RULE_DESC: 'Add an alert rule to the rule group.',
+  ENABLE_RULE: 'Enable Rule',
+  DISABLE_RULE: 'Disable Rule',
   // List > Create > Rule Settings > Rule Template
+  RULE_NAME: 'Rule Name',
+  CUSTOM_RULE_NAME_DESC: 'The rule name can contain any characters. The maximum length is 63 characters.',
+  LASTING_MINUTES: 'For {minutes, plural, =1 {1 minute} other {# minutes}}',
+  THRESHOLD_REQUIRED: 'Please enter a metric threshold.',
+  MESSAGE_SUMMARY_DESC: 'The message summary can contain any characters. The maximum length is 63 characters.',
+  MESSAGE_DETAILS_DESC: 'The message details can contain any characters. The maximum length is 256 characters.',
   RULE_TEMPLATE: '규칙 템플릿',
   RULE_SETTINGS: '규칙 설정',
   MONITORING_TARGETS: '모니터링 대상',
@@ -88,7 +105,12 @@ module.exports = {
   NOTIFICATION_DETAILS: '세부 정보',
   // List > Edit
   EDIT_ALERTING_POLICY: '규칙 그룹 편집',
+  // List > Disable
+  DISABLE_ALERTING_POLICY: 'Disable Rule Group',
   // List > Delete
   ALERTING_POLICY: '규칙 그룹',
-  ALERTING_POLICY_LOW: '규칙 그룹'
+  ALERTING_POLICY_LOW: '규칙 그룹',
+  // List > reset
+  RESET_ALERTING_POLICY: 'Reset Rule Group',
+  RESET_ALERTING_POLICY_DESC: 'Are you sure you want to reset the rule group?'
 };

@@ -24,8 +24,8 @@ module.exports = {
   // List > Edit Information
   // List > Delete
   // List > Create
-  STATEFUL_SERVICE: '상태를 유지하는 서비스',
-  STATELESS_SERVICE: '상태 유지를 하지 않는 서비스',
+  STATEFUL_SERVICE: '스테이트풀 서비스',
+  STATELESS_SERVICE: '스테이트리스 서비스',
   CREATE_COMPOSED_APP: 'Composed 앱 생성',
   SAVE_FORM_TIP: '현재 설정을 먼저 저장하십시오.',
   // List > Create > Edit YAML
@@ -37,10 +37,10 @@ module.exports = {
   APPLICATION_GOVERNANCE_DESC: '애플리케이션 거버넌스에서 애플리케이션에 대한 트래픽 모니터링, 그레이스케일 릴리스 및 추적 기능을 사용하도록 설정합니다.',
   APP_BASIC_INFORMATION_DESC: '앱에 대한 기본 정보를 설정합니다.',
   // List > Create > Service Settings
-  APP_SELECT_SERVICE_TYPE_DESC: '상태 유지 혹은 상태 유지하지 않는 서비스를 생성합니다.',
+  APP_SELECT_SERVICE_TYPE_DESC: '스테이트리스 혹은 스테이트풀 서비스를 생성합니다.',
   STATEFUL_SERVICE_DESC: '서비스 및 스테이트풀셋을 생성합니다.',
   STATELESS_SERVICE_DESC: '서비스 및 디플로이먼트를 생성합니다.',
-  APPLICATION_SERVICE_DESC: '필요에 따라 상태를 유지하는 혹은 상태를 유지하지 않는 서비스를 앱에 추가합니다.',
+  APPLICATION_SERVICE_DESC: '필요에 따라 스테이트풀 혹은 스테이트리스 서비스를 앱에 추가합니다.',
   APP_CREATE_SERVICE_DESC: '앱에 대한 서비스를 생성합니다.',
   // List > Create > Ingress Settings
   ROUTE_SETTINGS: '인그레스 설정',

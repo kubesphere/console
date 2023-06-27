@@ -53,6 +53,7 @@ module.exports = {
   CONTAINER_NAME: '컨테이너 이름',
   CONTAINER_TYPE: '컨테이너 유형',
   USE_DEFAULT_PORTS: '기본 포트 사용',
+  USE_IMAGE_DEFAULT_PORTS: 'Use Default Port of Images',
   NO_DEFAULT_PORT: '기본 포트 구성 없음',
   REGISTRY: '레지스트리',
   SET_IMAGE_DESC: '컨테이너에 대한 이미지를 설정합니다.',
@@ -106,6 +107,11 @@ module.exports = {
   CREATE_CONFIG: '컨피그맵 생성',
   OR: '또는',
   CREATE_SECRET: '시크릿을 생성합니다.',
+  DEFAULT_REPOSITORY: 'Default Registry',
+  SET_DEFAULT_REPOSITORY: 'Set Default Registry',
+  SET_AS_DEFAULT_REPOSITORY_DESC: 'Set the image registry as the default image registry. Unless otherwise specified, the system uses images from the default image registry to create application workloads. Only one default image registry is allowed in each project.',
+  SET_AS_DEFAULT_REPOSITORY: 'Set as Default',
+  SET_DEFAULT_REPO_SUCCESSFUL: 'Default repository set successfully',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: '컨테이너 보안 컨텍스트',
   CONTAINER_SECURITY_CONTEXT_DESC: '컨테이너의 권한 설정을 커스터마이즈합니다.',
@@ -158,6 +164,10 @@ module.exports = {
   MUST_MATCH: '필수로 일치',
   TARGET: '대상',
   STRATEGY: '전략',
+  // List > Create > Pod Settings > Pod Grace Period
+  POD_GRACE_PERIOD: 'Pod Grace Period',
+  POD_GRACE_PERIOD_DESC: 'Set the waiting time before Pod terminates, after which Pod will be forcibly terminated.',
+  TERMINATION_GRACEPERIOD_SECONDS: 'Termination GracePeriod Seconds (s)',
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: '메타데이터 추가',
   POD_ADD_METADATA_DESC: '파드 복제본에 메타데이터를 추가합니다.',

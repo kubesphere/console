@@ -53,6 +53,7 @@ module.exports = {
   CONTAINER_NAME: 'Nombre del contenedor',
   CONTAINER_TYPE: 'Tipo de contenedor',
   USE_DEFAULT_PORTS: 'Usar puertos predeterminados',
+  USE_IMAGE_DEFAULT_PORTS: 'Use Default Port of Images',
   NO_DEFAULT_PORT: 'Sin configuración de puertos predeterminada',
   REGISTRY: 'registro',
   SET_IMAGE_DESC: 'Por favor selecciona imagen',
@@ -106,6 +107,11 @@ module.exports = {
   CREATE_CONFIG: 'create a configmap',
   OR: 'or',
   CREATE_SECRET: 'create a secret.',
+  DEFAULT_REPOSITORY: 'Default Registry',
+  SET_DEFAULT_REPOSITORY: 'Set Default Registry',
+  SET_AS_DEFAULT_REPOSITORY_DESC: 'Set the image registry as the default image registry. Unless otherwise specified, the system uses images from the default image registry to create application workloads. Only one default image registry is allowed in each project.',
+  SET_AS_DEFAULT_REPOSITORY: 'Set as Default',
+  SET_DEFAULT_REPO_SUCCESSFUL: 'Default repository set successfully',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: 'Contexto de seguridad del contenedor',
   CONTAINER_SECURITY_CONTEXT_DESC: 'Un contexto de seguridad define la configuración de privilegios y control de acceso para un Pod o Contenedor.',
@@ -158,6 +164,10 @@ module.exports = {
   MUST_MATCH: 'Must match',
   TARGET: 'Target',
   STRATEGY: 'Strategy',
+  // List > Create > Pod Settings > Pod Grace Period
+  POD_GRACE_PERIOD: 'Pod Grace Period',
+  POD_GRACE_PERIOD_DESC: 'Set the waiting time before Pod terminates, after which Pod will be forcibly terminated.',
+  TERMINATION_GRACEPERIOD_SECONDS: 'Termination GracePeriod Seconds (s)',
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: 'Agregar metadatos',
   POD_ADD_METADATA_DESC: 'Add metadata to the Pod replicas.',

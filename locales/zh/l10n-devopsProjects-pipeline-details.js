@@ -159,7 +159,9 @@ module.exports = {
   PASSED: '已通过',
   // Pull Requests
   PULL_REQUEST_PL: '拉取请求',
-  FAILED_CHECK_SCRIPT_COMPILE: '检查脚本编译失败，如果你想跳过这一步骤，请点击继续按钮',
+  FAILED_CHECK_SCRIPT_COMPILE: '检查脚本编译失败。如果您想跳过这一步，请单击继续。',
+  // detail page // Create Pipeline modal // add step modal 
+  IMPORT_FROM_CODE_REPO: '从代码库导入',
   //Create pipeline modal -> Custom Pipeline
   General: '通用',
   Container: '容器',
@@ -209,5 +211,16 @@ module.exports = {
   'Original Image Address': '原镜像地址',
   'New Image Address': '新镜像地址',
   'New Image Tag': '新镜像标签',
-  Credential: '凭证'
+  Credential: '凭证',
+  // detail page -> pipeline configuration tab
+  PIPELINE_CONFIGURATION: '流水线配置',
+  Replay: '回放',
+  BRANCH_DISABLED_NOT_REPLAY: '该分支已被删除，不支持回放。',
+  // detail page // run log // task status
+  RUN_LOGS: '运行日志',
+  VIEW_FULL_LOG: '查看完整日志',
+  // detail page // run log // task status // pipeline log modal
+  PIPELINE_LOG: '流水线日志',
+  // detail page // Create Pipeline modal // add step modal
+  IMPORT_FROM_CODE_REPO: '从代码库导入'
 };

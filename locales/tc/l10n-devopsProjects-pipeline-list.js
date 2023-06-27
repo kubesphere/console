@@ -41,6 +41,7 @@ module.exports = {
   // List > Create
   CREATE_PIPELINE: '創建流水線',
   // List > Create > Basic Information
+  GO_CREATE_REPO_ACTION: 'No code repository is available. Please <span class="text-action">create a code repository.</span>',
   PIPELINE_TYPE: 'Pipeline Type',
   SELECT_CODE_REPOSITORY: '選擇代碼倉庫',
   BRANCH_PIPELINE_DESC: 'Describe the software build process with visual orchestration or Jenkinsfile.',

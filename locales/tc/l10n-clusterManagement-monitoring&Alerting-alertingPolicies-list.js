@@ -31,9 +31,12 @@ module.exports = {
   ALERT_RULE_PENDING: '待觸發',
   ALERT_RULE_FIRING: '觸發中',
   ALERT_RULE_DISABLED: '已禁用',
-  ALERT_RULE_HEALTH_OK: '健康',
-  ALERT_RULE_HEALTH_ERR: '錯誤',
-  ALERT_RULE_HEALTH_UNKNOWN: '未知',
+  POLICY_STATUS: 'Rule Group Status',
+  RULE_STATUS: 'Rule Status',
+  TIME_SPENT: 'Time Spent',
+  RECENT_DETECT_TIME: 'Last Check',
+  EDIT_ALERT_RULES: 'Edit Alert Rules',
+  RESET: 'Reset',
   // List > Create > Basic Information
   SEVERITY: '告警級別',
   CREATE_ALERTING_POLICY: 'Create Rule Group',
@@ -48,7 +51,21 @@ module.exports = {
   LONG_NAME_DESC:
     '最長 253 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
   NAME_EXIST_DESC: '名稱已存在',
+  ALIAS_NAME_DESC: 'The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
+  CHECK_INTERVAL: 'Check Interval',
+  ALERTING_POLICY_CHECK_INTERVAL_DESC: 'Set the interval between metric checks. The default value is 1 minute.',
+  // List > Create > Rule Settings > Rule List
+  ADD_ALERTING_RULE: 'Add Alert Rule',
+  ADD_ALERTING_RULE_DESC: 'Add an alert rule to the rule group.',
+  ENABLE_RULE: 'Enable Rule',
+  DISABLE_RULE: 'Disable Rule',
   // List > Create > Rule Settings > Rule Template
+  RULE_NAME: 'Rule Name',
+  CUSTOM_RULE_NAME_DESC: 'The rule name can contain any characters. The maximum length is 63 characters.',
+  LASTING_MINUTES: 'For {minutes, plural, =1 {1 minute} other {# minutes}}',
+  THRESHOLD_REQUIRED: 'Please enter a metric threshold.',
+  MESSAGE_SUMMARY_DESC: 'The message summary can contain any characters. The maximum length is 63 characters.',
+  MESSAGE_DETAILS_DESC: 'The message details can contain any characters. The maximum length is 256 characters.',
   RULE_TEMPLATE: '規則模板',
   RULE_SETTINGS: '規則設置',
   MONITORING_TARGETS: '監控目標',
@@ -92,7 +109,12 @@ module.exports = {
   NOTIFICATION_DETAILS: '詳情',
   // List > Edit
   EDIT_ALERTING_POLICY: 'Edit Rule Group',
+  // List > Disable
+  DISABLE_ALERTING_POLICY: 'Disable Rule Group',
   // List > Delete
-  ALERTING_POLICY: '告警策略',
-  ALERTING_POLICY_LOW: '告警策略'
+  ALERTING_POLICY: 'Rule Group',
+  ALERTING_POLICY_LOW: 'rule group',
+  // List > reset
+  RESET_ALERTING_POLICY: 'Reset Rule Group',
+  RESET_ALERTING_POLICY_DESC: 'Are you sure you want to reset the rule group?'
 };

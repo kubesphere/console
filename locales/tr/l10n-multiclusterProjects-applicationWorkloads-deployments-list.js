@@ -53,6 +53,7 @@ module.exports = {
   CONTAINER_NAME: 'Konteyner Adı',
   CONTAINER_TYPE: 'Konteyner tipi',
   USE_DEFAULT_PORTS: 'Varsayılan Bağlantı Noktaları',
+  USE_IMAGE_DEFAULT_PORTS: 'Use Default Port of Images',
   NO_DEFAULT_PORT: 'Varsayılan bağlantı noktası yapılandırması yok',
   REGISTRY: 'Kayıt Defteri',
   SET_IMAGE_DESC: 'Konteyner için bir görüntü ayarlayın.',
@@ -106,6 +107,11 @@ module.exports = {
   CREATE_CONFIG: 'create a configmap',
   OR: 'or',
   CREATE_SECRET: 'create a secret.',
+  DEFAULT_REPOSITORY: 'Default Registry',
+  SET_DEFAULT_REPOSITORY: 'Set Default Registry',
+  SET_AS_DEFAULT_REPOSITORY_DESC: 'Set the image registry as the default image registry. Unless otherwise specified, the system uses images from the default image registry to create application workloads. Only one default image registry is allowed in each project.',
+  SET_AS_DEFAULT_REPOSITORY: 'Set as Default',
+  SET_DEFAULT_REPO_SUCCESSFUL: 'Default repository set successfully',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: 'Konteyner Güvenliği Bağlamı',
   CONTAINER_SECURITY_CONTEXT_DESC: 'Kapsayıcının ayrıcalık ayarlarını özelleştirin.',
@@ -158,6 +164,10 @@ module.exports = {
   MUST_MATCH: 'Zorunlu Eşleştirme',
   TARGET: 'Hedef',
   STRATEGY: 'Strateji',
+  // List > Create > Pod Settings > Pod Grace Period
+  POD_GRACE_PERIOD: 'Pod Grace Period',
+  POD_GRACE_PERIOD_DESC: 'Set the waiting time before Pod terminates, after which Pod will be forcibly terminated.',
+  TERMINATION_GRACEPERIOD_SECONDS: 'Termination GracePeriod Seconds (s)',
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: 'Metaveri Ekle',
   POD_ADD_METADATA_DESC: 'Pod replikalarına meta veriler ekleyin.',

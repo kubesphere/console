@@ -18,20 +18,20 @@
 module.exports = {
   // Banner
   SERVICE_TYPES_Q: 'KubeSphere에서 지원하는 서비스 유형은 무엇입니까?',
-  SERVICE_TYPES_A: 'KubeSphere는 상태 유지가 필요하지 않는 서비스(stateless service) 및 상태 유지가 필요한 서비스(stateful service)를 지원합니다. 상태 유지가 필요하지 않는 서비스의 파드 복제본은 동일한 볼륨을 공유하지만 상태 유지가 필요한 서비스의 각 파드 복제본은 독립적인 볼륨을 가집니다.',
-  SCENARIOS_FOR_SERVICES_Q: '상태 유지가 필요하지 않는 서비스 및 상태 유지가 필요한 서비스의 사용 사례는 무엇입니까?',
-  SCENARIOS_FOR_SERVICES_A: '상태 유지가 필요하지 않는 서비스는 Nginx 및 Tomcat과 같이 데이터 지속성이 필요하지 않은 시나리오에 적합합니다. 상태 유지가 필요한 서비스는 MySQL 데이터베이스, Kafka 및 Zookeeper와 같이 데이터 지속성이 필요한 시나리오에 적합합니다.',
+  SERVICE_TYPES_A: 'KubeSphere는 스테이트리스 서비스 및 스테이트풀 서비스를 지원합니다. 스테이트리스 서비스의 파드 복제본은 동일한 볼륨을 공유하지만 스테이트풀 서비스의 각 파드 복제본은 독립적인 볼륨을 가집니다.',
+  SCENARIOS_FOR_SERVICES_Q: '스테이트리스 서비스 및 스테이트풀 서비스의 사용 사례는 무엇입니까?',
+  SCENARIOS_FOR_SERVICES_A: '스테이트리스 서비스는 Nginx 및 Tomcat과 같이 데이터 지속성이 필요하지 않은 시나리오에 적합합니다. 스테이트풀 서비스는 MySQL 데이터베이스, Kafka 및 Zookeeper와 같이 데이터 지속성이 필요한 시나리오에 적합합니다.',
   // Service List
   SERVICE_TYPE: '서비스 유형',
   SERVICE_LIST: '서비스 목록',
-  SERVICE_TYPE_STATEFULSERVICE: '상태 유지가 필요한 서비스',
-  SERVICE_TYPE_STATELESSSERVICE: '상태 유지가 필요하지 않는 서비스',
+  SERVICE_TYPE_STATEFULSERVICE: '스테이트풀 서비스',
+  SERVICE_TYPE_STATELESSSERVICE: '스테이트리스 서비스',
   SERVICE_TYPE_EXTERNALSERVICE: '외부 서비스',
   HEADLESS: '헤드리스',
   EXTERNALNAME: 'ExternalName',
   // List > Create
   CREATE_SERVICE_DESC: '서비스 생성 방법을 선택합니다.',
-  SELECT_SERVICE_TYPE_DESC: '상태 유지가 필요하지 않는 서비스 또는 상태 유지가 필요한 서비스를 생성하거나 서비스를 외부 서비스에 매핑합니다.',
+  SELECT_SERVICE_TYPE_DESC: '스테이트리스 서비스 또는 스테이트풀 서비스를 생성하거나 서비스를 외부 서비스에 매핑합니다.',
   SERVICE_FROM_CODE: '소스 코드로부터 서비스 생성',
   SERVICE_FROM_ARTIFACT: '아티팩트로부터 서비스 생성',
   SERVICE_FROM_CODE_DESC: '기존 소스 코드로 이미지를 빌드하고 이미지를 배포합니다.',
