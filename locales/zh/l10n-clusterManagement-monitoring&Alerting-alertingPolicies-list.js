@@ -49,10 +49,10 @@ module.exports = {
   NAME_EXIST_DESC: '名称已存在，请输入其他名称。',
   ALIAS_NAME_DESC: '别名只能包含中文、字母、数字和连字符（-），不得以连字符（-）开头或结尾，最长 63 个字符。',
   CHECK_INTERVAL: '检查间隔',
-  ALERTING_POLICY_CHECK_INTERVAL_DESC: '设置指标检查间隔。默认值为1分钟。',
+  ALERTING_POLICY_CHECK_INTERVAL_DESC: '设置指标检查之间的时间间隔。默认值为 1 分钟。',
   // List > Create > Rule Settings > Rule List
   ADD_ALERTING_RULE: '添加告警规则',
-  ADD_ALERTING_RULE_DESC: '将告警规则添加到规则组。',
+  ADD_ALERTING_RULE_DESC: '为规则组添加告警规则。',
   ENABLE_RULE: '启用规则',
   DISABLE_RULE: '禁用规则',
   // List > Create > Rule Settings > Rule Template
@@ -60,7 +60,7 @@ module.exports = {
   CUSTOM_RULE_NAME_DESC: '规则名称可包含任意字符，最长 63 个字符。',
   LASTING_MINUTES: '持续 {minutes, plural, =1 {1 分钟} other {# 分钟}}',
   THRESHOLD_REQUIRED: '请输入指标阈值。',
-  MESSAGE_SUMMARY_DESC: '消息摘要可包含任意字符，最长 63 个字符。',
+  MESSAGE_SUMMARY_DESC: '消息概要可包含任意字符，最长 63 个字符。',
   MESSAGE_DETAILS_DESC: '消息详情可包含任意字符，最长 256 个字符。',
   RULE_TEMPLATE: '规则模板',
   RULE_SETTINGS: '规则设置',
@@ -112,5 +112,5 @@ module.exports = {
   ALERTING_POLICY_LOW: '规则组',
   // List > reset
   RESET_ALERTING_POLICY: '重置规则组',
-  RESET_ALERTING_POLICY_DESC: '您确定要重置规则组吗？'
+  RESET_ALERTING_POLICY_DESC: '您确定重置规则组吗？'
 };
