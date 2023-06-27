@@ -28,6 +28,7 @@ export default class ContainerStore {
   @observable
   detail = {}
 
+  @observable
   tagList = new List()
 
   @observable
@@ -246,5 +247,10 @@ export default class ContainerStore {
     })
 
     return result.tags
+  }
+
+  @action
+  updateTagList = data => {
+    this.tagList.update(data)
   }
 }

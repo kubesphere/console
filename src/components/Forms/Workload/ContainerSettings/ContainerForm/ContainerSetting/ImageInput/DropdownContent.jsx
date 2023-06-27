@@ -28,11 +28,17 @@ import styles from './index.scss'
 export default class DropdownContent extends React.Component {
   constructor(props) {
     super(props)
+    const { imageRegistries } = this.props
+
+    const harborData =
+      this.hubType === 'harbor'
+        ? imageRegistries.find(item => item === this.secretValue)
+        : {}
+
     this.state = {
       dockerList: [],
       harborList: [],
-      hubData: {},
-      harborData: this.defaultHarbor,
+      harborData,
       visible: false,
       isLoading: false,
     }
@@ -61,14 +67,14 @@ export default class DropdownContent extends React.Component {
   }
 
   get hubType() {
-    switch (this.secretValue) {
-      case '':
-        return 'dockerHub'
-      case 'harbor':
-        return 'harbor'
-      default:
-        return 'others'
+    if (this.registryUrl.indexOf('docker.io') >= 0 || this.secretValue === '') {
+      return 'dockerHub'
     }
+
+    if (this.secretValue && this.registryUrl.indexOf('docker.io') < 0) {
+      return 'harbor'
+    }
+    return 'others'
   }
 
   get registryUrl() {
@@ -113,19 +119,17 @@ export default class DropdownContent extends React.Component {
     )
   }
 
-  get defaultHarbor() {
-    return this.props.imageRegistries.find(item => item.isDefault === true)
-  }
-
   componentDidMount() {
-    this.fetchDockerList()
-
-    if (this.defaultHarbor) {
-      this.fetchHarborList('', this.defaultHarbor)
-    }
-
     if (this.props.type !== 'Edit' && this.secretValue !== '') {
       this.handleSecretChange(this.secretValue)
+    }
+
+    if (this.hubType === 'dockerHub') {
+      this.fetchDockerList()
+    }
+
+    if (this.hubType === 'harbor') {
+      this.fetchHarborList('', this.defaultHarbor)
     }
   }
 

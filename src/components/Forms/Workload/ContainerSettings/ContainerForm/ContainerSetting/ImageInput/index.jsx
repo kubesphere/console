@@ -66,10 +66,13 @@ export default class ImageSearch extends Component {
   }
 
   componentDidMount() {
-    const { formTemplate } = this.props
+    const { formTemplate, imageRegistries } = this.props
     const image = get(formTemplate, 'image', '')
+    const secretUrl =
+      imageRegistries.find(item => item.value === this.secret)?.url ?? ''
+    const convertUrl = secretUrl.replace(/^(http(s)?:\/\/)?(.*)$/, '$3')
 
-    if (image) {
+    if (image && image !== convertUrl) {
       this.getImageDetail({ image, secret: this.secret })
     }
   }
@@ -180,13 +183,13 @@ export default class ImageSearch extends Component {
           secret,
         })
 
-        this.store.tagList = {
+        this.store.updateTagList({
           data: [tag],
           total: 1,
           limit: Number(params.limit) || 10,
           page: Number(params.page) || 1,
           isLoading: false,
-        }
+        })
       } else {
         const resTagList = await this.getImageList({
           imageName,
