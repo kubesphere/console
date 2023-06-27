@@ -41,6 +41,7 @@ module.exports = {
   // List > Create
   CREATE_PIPELINE: '创建流水线',
   // List > Create > Basic Information
+  GO_CREATE_REPO_ACTION: '没有可用的代码仓库。请  <span class="text-action">创建代码仓库。</span>',
   PIPELINE_TYPE: '流水线类别',
   SELECT_CODE_REPOSITORY: '选择代码仓库',
   BRANCH_PIPELINE_DESC: '通过可视化编排或 Jenkinsfile 来描述软件的构建工程。',

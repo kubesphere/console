@@ -41,6 +41,7 @@ module.exports = {
   // List > Create
   CREATE_PIPELINE: '파이프라인 생성',
   // List > Create > Basic Information
+  GO_CREATE_REPO_ACTION: 'No code repository is available. Please <span class="text-action">create a code repository.</span>',
   PIPELINE_TYPE: '파이프라인 유형',
   SELECT_CODE_REPOSITORY: '코드 저장소 선택',
   BRANCH_PIPELINE_DESC: '비쥬얼 오케스트레이션 또는 Jenkinsfile을 사용하여 소프트웨어 빌드 프로세스를 디자인합니다.',

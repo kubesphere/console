@@ -18,7 +18,7 @@
 module.exports = {
   // Banner
   CONTINUOUS_DEPLOYMENT_PL: '지속적 배포',
-  CONTINUOUS_DEPLOYMENT_DESC: 'GitOps를 통해 리소스를 지속적으로 배포하기 위한 지속적인 배포 관리를 수행한다. ',
+  CONTINUOUS_DEPLOYMENT_DESC: '깃옵스(GitOps)를 통해 리소스를 지속적으로 배포하기 위한 지속적인 배포 관리를 수행한다. ',
   // List
   CONTINUOUS_DEPLOYMENT_EMPTY_DESC: '지속적 배포를 하나 생성하십시오.',
   DEGRADED: '열화됨',
@@ -29,13 +29,13 @@ module.exports = {
   OUTOFSYNC: '동기화되지 않음',
   DEPLOY_LOCATION: '배포 위치',
   // List > Create
-  NEED_TO_SYNC_REPO: 'Need to sync repo',
+  NEED_TO_SYNC_REPO: '저장소 동기화 필요',
   CREATE_CONTINUOUS_DEPLOYMENT: '지속적 배포 생성',
-  CD_SELECT_CODE_REPO_DESC: '지속적 배포 시 사용할 코드 저장소를 선택합니다.',
+  CD_SELECT_CODE_REPO_DESC: 'Select a code repository.',
   DEPLOYMENT_SETTINGS: '배포 설정',
   CODE_REPOSITORY_SETTINGS: '코드 저장소 설정',
   SYNC_STRATEGY_TCAP: '동기화 전략',
-  AUTO_SYNC_DESC: 'Automatically trigger application sync when there is a difference between the manifest in Git and the real-time state of the deployed resources, according to the set sync options.',
+  AUTO_SYNC_DESC: '설정된 동기화 옵션에 따라 Git 저장소에 존재하는 매니페스트와 배포된 리소스의 실시간 상태가 다를 경우 애플리케이션 동기화를 자동으로 트리거합니다.',
   // MANUAL_SYNC_DESC: 'Sync according to custom rules.',
   PRUNE_RESOURCES: '리소스 정리(삭제)',
   SELF_HEAL: '셀프 힐(self-heal)',
@@ -53,8 +53,8 @@ module.exports = {
   AUTO_SYNC_DESC: '설정된 동기화 옵션에 따라 Git의 매니페스트와 배포된 리소스의 런타임 상태가 다를 경우 애플리케이션 동기화를 자동으로 트리거합니다.',
   PRUNE_RESOURCES_DESC: '이 옵션을 선택하면 Git에 없는 리소스가 자동 동기화 중에 삭제됩니다. 이 옵션을 선택하지 않으면 자동 동기화가 트리거될 때 클러스터의 리소스가 삭제되지 않습니다.',
   SELF_HEAL_DESC: '이 옵션을 선택하면 Git의 정의된 상태와 배포된 리소스 간에 편차가 있을 경우 Git의 정의된 상태가 적용됩니다. 이 옵션을 선택하지 않으면 배포된 리소스가 변경될 때 자동 동기화가 트리거되지 않습니다.',
-  FOREGROUND_DESC: '먼저 종속 된 리소스를 삭제한 다음, 메인 리소스를 삭제하십시오.',
-  BACKGROUND_DESC: '먼저 메인 리소스를 삭제하고, 그 다음 종속된 리소스를 삭제하십시오.',
+  FOREGROUND_DESC: '먼저 종속 된 리소스를 삭제한 다음, 메인 리소스를 삭제합니다.',
+  BACKGROUND_DESC: '먼저 메인 리소스를 삭제하고, 그 다음 종속된 리소스를 삭제합니다.',
   ORPHAN_DESC: '메인 리소스만 삭제하고 종속 된 리소스를 orphan 상태로 남겨둡니다.',
   SKIP_SCHEMA_VALIDATION_DESC: 'kubectl 유효성 검사를 건너뜁니다. kubectl apply를 실행할 때 자동으로 --validation=false 플래그를 추가합니다.',
   AUTO_CREATE_PROJECT_DESC: '애플리케이션에 대한 프로젝트가 존재하지 않는 경우 자동으로 프로젝트를 생성합니다.',

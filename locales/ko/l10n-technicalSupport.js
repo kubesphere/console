@@ -34,7 +34,6 @@ module.exports = {
   KSE_PLATFORM_VERSION: '플랫폼 버전: <strong>{version}</strong>',
   // KubeSphere Cloud
   KUBESPHERE_CLOUD_CAPTION: 'KubeSphere 클라우드',
-  KUBESPHERE_CLOUD_DESC: 'KubeSphere Cloud는 Kubernetes에 초점을 맞춘 디지털 에코시스템을 구축하고 KubeSphere \b백업, KubeSphere 검사 및 KubeSphere 경량화와 같은 높은 표준의 클라우드 네이티브 제품 및 서비스를 제공하여 기업이 프로덕션 준비 애플리케이션을 보다 효율적으로 관리, 보호 및 제공할 수 있도록 지원합니다.',
   KSC_FEATURE_BACKUP: 'KubeSphere 백업',
   KSC_FEATURE_BACKUP_APP_DESC: '애플리케이션 레벨 데이터 보호',
   KSC_FEATURE_BACKUP_DATA_DESC: '데이터 일관성 보장',

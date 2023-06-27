@@ -80,8 +80,8 @@ module.exports = {
   GRAYSCALE_RELEASE_DESC: '그레이스케일 릴리스는 프로덕션 환경에서 애플리케이션을 반복적으로 배포하는 중요한 방법입니다. 애플리케이션을 새 버전으로 업그레이드할 때 원활한 전환을 위해 다양한 릴리스 방법을 선택할 수 있습니다.',
   NO_GRAYSCALE_RELEASE_TASK_FOUND: '그레이스케일 릴리스 작업을 찾을 수 없음',
   NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: '그레이스케일 릴리스 작업을 생성하십시오.',
-  TYPE_SERVICE_DEPLOYMENT: '유형: 상태 유지를 하지 않는 서비스 (디플로이먼트)',
-  TYPE_SERVICE_STATEFULSET: '유형: 상태 유지를 하는 서비스 (스테이트풀셋)',
+  TYPE_SERVICE_DEPLOYMENT: '유형: 스테이트리스 서비스 (디플로이먼트)',
+  TYPE_SERVICE_STATEFULSET: '유형: 스테이트풀 서비스 (스테이트풀셋)',
   // Tracing
   TRACING: '추적',
   TRACING_NO_DATA_DESC: '검색 조건을 변경하고 다시 시도하십시오.',

@@ -160,7 +160,9 @@ module.exports = {
   PASSED: '已通過',
   // Pull Requests
   PULL_REQUEST_PL: '拉取請求',
-  FAILED_CHECK_SCRIPT_COMPILE: 'The check of script compile failed, if you want to bypass the step, please click the continue button',
+  FAILED_CHECK_SCRIPT_COMPILE: 'Failed to check script compiling. If you want to skip the step, click Continue.',
+  // detail page // Create Pipeline modal // add step modal 
+  IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
   //Create pipeline modal -> Custom Pipeline
   General: 'General',
   Container: 'Container',
@@ -210,5 +212,16 @@ module.exports = {
   'Original Image Address': 'Original Image Address',
   'New Image Address': 'New Image Address',
   'New Image Tag': 'New Image Tag',
-  Credential: '憑證'
+  Credential: '憑證',
+  // detail page -> pipeline configuration tab
+  PIPELINE_CONFIGURATION: 'Pipeline Configurations',
+  Replay: 'Replay',
+  BRANCH_DISABLED_NOT_REPLAY: 'The branch has been disabled and cannot be replayed.',
+  // detail page // run log // task status
+  RUN_LOGS: 'Run Logs',
+  VIEW_FULL_LOG: 'View Full Logs',
+  // detail page // run log // task status // pipeline log modal
+  PIPELINE_LOG: 'Pipeline Logs',
+  // detail page // Create Pipeline modal // add step modal
+  IMPORT_FROM_CODE_REPO: 'Import From Code Repository'
 };
