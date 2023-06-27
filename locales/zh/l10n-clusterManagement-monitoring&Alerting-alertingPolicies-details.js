@@ -58,7 +58,7 @@ module.exports = {
   POD_QUOTA_UTILIZATION_NO_PERCENT_TCAP: '容器组配额用量',
   MEMORY_USAGE_WO_CACHE_TCAP: '内存用量不含缓存',
   UNAVAILABLE_WORKLOAD_REPLICA_RATIO_NO_PERCENT_TCAP: '副本不可用率',
-  THRESHOLD_VALUE: '阀值：{value}',
+  THRESHOLD_VALUE: '阈值：{value}',
   // Alerting History
   NO_DATA_DESC: '未发现数据'
 };
