@@ -77,7 +77,10 @@ export default class RunDetailLayout extends React.Component {
 
   fetchData = () => {
     const { params } = this.props.match
-    this.props.pipelineStore.getBranchDetail(omit(params, 'runName'))
+    const { branch } = this.props.match.params
+    if (branch) {
+      this.props.pipelineStore.getBranchDetail(omit(params, 'runName'))
+    }
     this.store.getRunDetail(params)
   }
 
