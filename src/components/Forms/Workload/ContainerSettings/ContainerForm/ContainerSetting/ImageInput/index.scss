@@ -128,40 +128,8 @@
   @include clearfix;
 }
 
-.defaultPortButtons {
-  float: right;
-  height: 32px;
-}
-
-.selectedInfo {
-  height: 40px;
-  display: flex;
-  & > img {
-    margin-right: 12px;
-    width: 40px;
-  }
-  .icon {
-    flex-basis: 40px;
-    min-width: 40px;
-    margin-right: 12px;
-    width: 40px;
-    height: 40px;
-  }
-  .imageInfo {
-    flex-grow: 1;
-    p:first-child {
-      height: 20px;
-      @include TypographyTitleH6;
-    }
-    p:last-child {
-      height: 20px;
-      @include TypographyParagraph($dark-color01);
-    }
-  }
-}
-
 .message {
-  margin-top: 12px;
+  margin-bottom: 12px;
   height: 20px;
   font-family: $font-family-id;
   color: $dark-color01;
@@ -174,20 +142,31 @@
   border-radius: $border-radius;
   background-color: $light-color01;
 
-  .config {
+  .selectedImageInfo {
     display: flex;
-    margin-top: 12px;
-    padding: 12px;
-    height: 64px;
-    border-radius: $border-radius;
-    border: solid 1px $light-color06;
-    background-color: white;
-    & > div {
-      flex-grow: 1;
-      flex-shrink: 1;
-    }
-    .secretInfo {
-      max-width: 50%;
+    margin-bottom: 12px;
+
+    .selectedInfo {
+      display: flex;
+      flex: 1 1;
+
+      .icon,
+      .logo {
+        flex-basis: 40px;
+        height: 40px;
+        margin-right: 12px;
+      }
+      .imageInfo {
+        flex-grow: 1;
+        p:first-child {
+          height: 20px;
+          @include TypographyTitleH6;
+        }
+        p:last-child {
+          height: 20px;
+          @include TypographyParagraph($dark-color01);
+        }
+      }
     }
   }
 }
@@ -235,26 +214,6 @@
 
   button {
     margin-left: 380px;
-  }
-}
-
-.selectOption {
-  display: flex;
-  .icon {
-    flex-basis: 40px;
-    height: 40px;
-    margin-right: 12px;
-  }
-  .secretInfo {
-    flex-grow: 1;
-    p:first-child {
-      height: 20px;
-      @include TypographyTitleH6;
-    }
-    p:last-child {
-      height: 20px;
-      @include TypographyParagraph($dark-color01);
-    }
   }
 }
 
