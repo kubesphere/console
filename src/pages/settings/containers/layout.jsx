@@ -26,26 +26,6 @@ import { renderRoutes } from 'utils/router.config'
 import styles from './layout.scss'
 
 class AccessLayout extends Component {
-  state = {
-    fetchFin: true,
-  }
-
-  componentDidMount() {
-    this.props.initProjectWebsocket?.('cluster', 'workspace')
-  }
-
-  get licenseInfo() {
-    return this.props.rootStore.licenseInfo
-  }
-
-  get isUnAuthorized() {
-    return this.licenseInfo.showLicenseTip
-  }
-
-  get navs() {
-    return globals.app.getPlatformSettingsNavs(this.isUnAuthorized)
-  }
-
   render() {
     const { match, route, location } = this.props
     return (
@@ -61,7 +41,7 @@ class AccessLayout extends Component {
           </div>
           <Nav
             className="ks-page-nav"
-            navs={this.navs}
+            navs={globals.app.getPlatformSettingsNavs()}
             location={location}
             match={match}
           />
