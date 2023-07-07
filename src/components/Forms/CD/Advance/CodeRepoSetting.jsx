@@ -23,7 +23,7 @@ import CodeRepoSelector from '../../../CodeRepoSelector'
 
 export default class Advance extends React.Component {
   render() {
-    const { formRef, formTemplate, devops, cluster } = this.props
+    const { formRef, formTemplate, devops, cluster, trigger } = this.props
     // TODO: v3.4 directory recurse
     return (
       <Form data={formTemplate} ref={formRef}>
@@ -31,7 +31,12 @@ export default class Advance extends React.Component {
           label={t('CODE_REPOSITORY')}
           rules={[{ required: true, message: t('REPO_EMPTY_DESC') }]}
         >
-          <CodeRepoSelector name="repoURL" devops={devops} cluster={cluster} />
+          <CodeRepoSelector
+            name="repoURL"
+            devops={devops}
+            cluster={cluster}
+            trigger={trigger}
+          />
         </Form.Item>
         <Form.Item>
           <Columns>
