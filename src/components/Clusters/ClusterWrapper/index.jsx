@@ -30,19 +30,18 @@ export default class ClusterWrapper extends Component {
     const { children } = this.props
 
     const cluster = clusterMap[item.name] || item
+    const type = CLUSTER_GROUP_TAG_TYPE[cluster.group] || 'default'
+
     return (
       <span
         className={isTooltip ? styles.tagItem : ''}
         title={getDisplayNameNew(cluster, false)}
       >
-        <Tag
-          key={cluster.name}
-          type={!isTooltip ? CLUSTER_GROUP_TAG_TYPE[cluster.group] : 'info'}
-        >
+        <Tag key={cluster.name} type={!isTooltip ? type : 'info'}>
           <Icon
             name={CLUSTER_PROVIDER_ICON[cluster.provider] || 'kubernetes'}
             size={16}
-            type="light"
+            {...(type === 'default' ? { type: 'light' } : '')}
           />
           {children ? children(cluster) : getDisplayNameNew(cluster)}
         </Tag>

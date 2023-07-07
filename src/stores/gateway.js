@@ -37,7 +37,9 @@ export default class Gateway extends Base {
     `${this.apiVersion}${this.getPath({
       namespace: namespace || 'kubesphere-system',
       cluster,
-    })}/${this.module}${this.isCluster(namespace) ? `/${gatewayName}` : ''}`
+    })}/${this.module}${
+      this.isCluster(namespace) ? `${gatewayName && `/${gatewayName}`}` : ''
+    }`
 
   gatewayeditUrl = ({ cluster, namespace, gatewayName = '' }) =>
     `/${
@@ -47,7 +49,7 @@ export default class Gateway extends Base {
       cluster,
     })}/${this.module}${
       this.isCluster(namespace)
-        ? `/${gatewayName}`
+        ? `${gatewayName && `/${gatewayName}`}`
         : '/kubesphere-router-kubesphere-system'
     }`
 
@@ -57,7 +59,7 @@ export default class Gateway extends Base {
       cluster,
     })}/${this.module}${
       this.isCluster(namespace)
-        ? `/${gatewayName}`
+        ? `${gatewayName && `/${gatewayName}`}`
         : '/kubesphere-router-kubesphere-system'
     }`
 
