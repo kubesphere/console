@@ -36,6 +36,9 @@ import FullLogs from './FullLogs'
 export default class PipelineLog extends React.Component {
   constructor(props) {
     super(props)
+    /**
+     * @type {RunStore}
+     */
     this.store = new RunStore()
 
     this.reaction = reaction(
@@ -55,6 +58,7 @@ export default class PipelineLog extends React.Component {
   async componentDidMount() {
     await this.getPipelineIndexLog()
     this.handleExpandErrorStep()
+    this.store.getRunDetail(this.props.params)
   }
 
   @computed
