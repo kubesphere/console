@@ -158,7 +158,12 @@ export default class TypeSelect extends React.Component {
     const selectOption = options.find(item => isEqual(item.value, value))
 
     return (
-      <div className={styles.options} ref={this.optionsRef}>
+      <div
+        className={styles.options}
+        ref={ref => {
+          this.optionsRef = ref
+        }}
+      >
         {selectOption && this.renderOption(selectOption, true)}
         {options
           .filter(item => !isEqual(item.value, value))

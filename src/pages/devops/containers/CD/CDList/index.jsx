@@ -243,6 +243,7 @@ export default class CDList extends React.Component {
       module: 'cds',
       noCodeEdit: true,
       success: this.getArgoData,
+      trigger: this.props.trigger,
     })
   }
 
