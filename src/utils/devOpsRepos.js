@@ -109,6 +109,7 @@ export const gitRepositorySpec2GitSource = (spec, name) => {
     scm_id: name,
     credential_id: spec?.secret?.name,
     url: spec?.url,
+    discover_branches: true,
   }
 }
 
