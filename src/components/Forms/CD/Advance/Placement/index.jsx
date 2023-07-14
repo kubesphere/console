@@ -66,13 +66,15 @@ export default class Placement extends Component {
 
   @computed
   get clusters() {
-    return this.cdStore.clustersList.map(item => {
-      return {
-        label: showNameAndAlias(inCluster2Default(item.name), 'cluster'),
-        value: item.name,
-        server: item.server,
-      }
-    })
+    return this.cdStore.clustersList
+      .map(item => {
+        return {
+          label: showNameAndAlias(inCluster2Default(item.name), 'cluster'),
+          value: item.name,
+          server: item.server,
+        }
+      })
+      .filter(i => i.value === 'in-cluster')
   }
 
   @computed
