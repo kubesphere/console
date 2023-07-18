@@ -23,7 +23,7 @@ import Banner from 'components/Cards/Banner'
 import withList, { ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
 
-import { getDisplayName } from 'utils'
+import { getDisplayName, showNameAndAlias } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
 import IPPoolStore from 'stores/network/ippool'
@@ -134,7 +134,9 @@ export default class IPPools extends React.Component {
         title: t('WORKSPACE'),
         dataIndex: 'workspace',
         render: (workspace, record) =>
-          record.isDefault ? t('ALL') : workspace || t('NOT_ASSIGNED'),
+          record.isDefault
+            ? t('ALL')
+            : showNameAndAlias(workspace, 'workspace') || t('NOT_ASSIGNED'),
       },
     ]
   }

@@ -15,31 +15,39 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { cloneDeep, get, set } from 'lodash'
 import { Notify } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
-import FORM_TEMPLATES from 'utils/form.templates'
 import DeleteModal from 'components/Modals/Delete'
 import CodeRepoModal from 'components/Modals/CodeRepoCreate'
-
-import { getRepoUrl, isSvnRepo } from '../utils/devops'
+import FORM_TEMPLATES from 'utils/form.templates'
+import { cloneDeep, get, set } from 'lodash'
+import { getRepoUrl, isSvnRepo } from 'utils/devops'
+import {
+  getGitSource,
+  getGithubSource,
+  getBitbucketSource,
+  getGitlabSource,
+} from 'utils/devOpsRepos'
 
 const handleFormData = ({ data, module, devops }) => {
   const postData = FORM_TEMPLATES[module]({ namespace: devops })
   const repoType = data.sources.source_type
   const repo = get(data, `sources.${repoType}_source`, {})
+  const getRepo = {
+    git: getGitSource,
+    github: getGithubSource,
+    bitbucket_server: getBitbucketSource,
+    gitlab: getGitlabSource,
+  }[repoType]
 
   const spec = {
     provider: data.sources.source_type,
-    owner: repo.owner,
-    repo: repo.repo,
-    server: repo.server_name,
-    url: repo.url || repo.remote,
     secret: {
       name: repo.credential_id || data.sources.credentialId,
       namespace: devops,
     },
+    ...(getRepo?.(repo) ?? {}),
   }
 
   set(postData, 'metadata', data.metadata)

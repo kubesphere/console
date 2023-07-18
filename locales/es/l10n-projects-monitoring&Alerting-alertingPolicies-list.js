@@ -25,5 +25,5 @@ module.exports = {
   // List > Create > Basic Information
   // List > Create > Rule Settings > Rule Template
   SELECT_WORKLOAD_TIP: 'Please select at lease a workload.',
-  KUBE_NO_AVAILABLE_DATA: 'No hay datos disponibles'
-};
+  KUBE_NO_AVAILABLE_DATA: 'No hay datos disponibles',
+}

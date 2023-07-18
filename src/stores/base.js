@@ -18,9 +18,9 @@
 
 import { get, isEmpty, set } from 'lodash'
 import { action, observable } from 'mobx'
-import ObjectMapper from 'utils/object.mapper'
 
-import { LIST_DEFAULT_ORDER, API_VERSIONS } from 'utils/constants'
+import { API_VERSIONS, LIST_DEFAULT_ORDER } from 'utils/constants'
+import ObjectMapper from 'utils/object.mapper'
 
 import List from './base.list'
 
@@ -240,8 +240,14 @@ export default class BaseStore {
   }
 
   @action
-  create(data, params = {}) {
-    return this.submitting(request.post(this.getListUrl(params), data))
+  async create(data, params = {}) {
+    const res = await this.submitting(
+      request.post(this.getListUrl(params), data)
+    )
+    if (this.afterChange) {
+      this.afterChange(res)
+    }
+    return res
   }
 
   @action
@@ -251,17 +257,33 @@ export default class BaseStore {
     if (resourceVersion) {
       set(newObject, 'metadata.resourceVersion', resourceVersion)
     }
-    return this.submitting(request.put(this.getDetailUrl(params), newObject))
+    const res = this.submitting(
+      request.put(this.getDetailUrl(params), newObject)
+    )
+    if (this.afterChange) {
+      this.afterChange(res, params)
+    }
+    return res
   }
 
   @action
-  patch(params, newObject) {
-    return this.submitting(request.patch(this.getDetailUrl(params), newObject))
+  async patch(params, newObject) {
+    const res = await this.submitting(
+      request.patch(this.getDetailUrl(params), newObject)
+    )
+    if (this.afterChange) {
+      this.afterChange(res, params)
+    }
+    return res
   }
 
   @action
-  delete(params) {
-    return this.submitting(request.delete(this.getDetailUrl(params)))
+  async delete(params) {
+    const res = await this.submitting(request.delete(this.getDetailUrl(params)))
+    if (this.afterDelete) {
+      this.afterDelete(res, params)
+    }
+    return res
   }
 
   @action

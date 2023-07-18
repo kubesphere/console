@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
 import {
+  Button,
+  Dropdown,
+  Icon,
   Level,
   LevelItem,
   LevelLeft,
   LevelRight,
-  Button,
-  Dropdown,
   Menu,
-  Icon,
 } from '@kube-design/components'
 import classNames from 'classnames'
+import React, { Component } from 'react'
 import { PAGESIZE_OPTION } from 'utils/constants'
 import styles from './index.scss'
 
@@ -60,6 +60,12 @@ export default class Pagination extends Component {
         <Dropdown
           placement={'bottomLeft'}
           trigger={'hover'}
+          positionFixed={true}
+          modifiers={{
+            preventOverflow: {
+              boundariesElement: 'viewport',
+            },
+          }}
           content={
             <Menu
               className={styles.pageSizeMenu}
@@ -160,6 +166,12 @@ export default class Pagination extends Component {
               placement={'bottom'}
               trigger={'hover'}
               content={this.renderPageDropDown()}
+              positionFixed={true}
+              modifiers={{
+                preventOverflow: {
+                  boundariesElement: 'viewport',
+                },
+              }}
             >
               <div className={styles.pages}>
                 <span>

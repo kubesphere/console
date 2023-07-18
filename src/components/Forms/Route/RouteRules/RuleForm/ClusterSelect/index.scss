@@ -3,7 +3,7 @@
 .group {
   :global {
     label.checkbox {
-      width: 220px;
+      min-width: 220px;
       padding: 4px 8px;
       margin-right: 12px;
       border-radius: 2px;
@@ -18,8 +18,8 @@
       }
 
       .kubed-icon {
-        color: rgba(255,255,255,0.9);
-        fill: rgba(255,255,255,0.4);
+        color: rgba(255, 255, 255, 0.9);
+        fill: rgba(255, 255, 255, 0.4);
       }
     }
 
@@ -34,7 +34,7 @@
       & > span {
         margin-right: 2px;
         display: inline-block;
-        vertical-align: middle; 
+        vertical-align: middle;
       }
     }
   }

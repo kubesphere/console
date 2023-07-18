@@ -21,6 +21,11 @@ import { pick } from 'lodash'
 import { observer } from 'mobx-react'
 import { Select, Form } from '@kube-design/components'
 
+const FormItemWrap = props => {
+  const { renderItem, ...rest } = props
+  return renderItem(rest)
+}
+
 @observer
 export default class CDSelect extends Component {
   componentDidMount() {
@@ -55,14 +60,29 @@ export default class CDSelect extends Component {
     }
     return (
       <Form.Item {...formProps}>
-        <Select
+        <FormItemWrap
           name={option.name}
-          options={this.getCDList()}
-          pagination={pick(cdList, ['page', 'limit', 'total'])}
-          isLoading={cdList.isLoading}
-          onFetch={this.getCDListData}
-          searchable
-          clearable
+          renderItem={({ value: v, onChange } = {}) => (
+            <Select
+              name={option.name}
+              options={this.getCDList()}
+              pagination={pick(cdList, ['page', 'limit', 'total'])}
+              isLoading={cdList.isLoading}
+              onFetch={this.getCDListData}
+              value={v?.name}
+              onChange={v1 => {
+                const v2 = v1
+                  ? this.props.store.cdList?.data?.find(
+                      item => item.name === v1
+                    )
+                  : null
+
+                onChange(v2 ? { name: v2.name, namespace: v2.devops } : null)
+              }}
+              searchable
+              clearable
+            />
+          )}
         />
       </Form.Item>
     )

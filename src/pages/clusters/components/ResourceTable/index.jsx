@@ -16,13 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { observer, inject } from 'mobx-react'
-import { isEmpty } from 'lodash'
-import { parse } from 'qs'
+import withTableActions from 'components/HOCs/withTableActions'
 
 import BaseTable from 'components/Tables/Base'
-import withTableActions from 'components/HOCs/withTableActions'
+import { isEmpty, omit } from 'lodash'
+import { inject, observer } from 'mobx-react'
+import { parse } from 'qs'
+import React from 'react'
 import ProjectSelect from './ProjectSelect'
 
 class ResourceTable extends React.Component {
@@ -47,9 +47,14 @@ class ResourceTable extends React.Component {
 
   fetchProjects = (params = {}) => {
     const { cluster, clusterStore } = this.props
+    if (params.name) {
+      params.nameAndAlias = params.name
+      delete params.name
+    }
+
     return clusterStore.fetchProjects({
       cluster,
-      ...clusterStore.projects.filters,
+      ...omit(clusterStore.projects.filters, 'nameAndAlias'),
       ...params,
     })
   }

@@ -61,6 +61,16 @@ export default class SecretSettings extends React.Component {
       : this.formTemplate
   }
 
+  get isDefault() {
+    return (
+      get(
+        this.formTemplate,
+        'metadata.annotations["secret.kubesphere.io/is-default-class"]',
+        'false'
+      ) === 'true'
+    )
+  }
+
   getTypeOptions = () => [
     { label: t('DEFAULT'), value: 'Opaque' },
     { label: t('TLS_INFORMATION'), value: 'kubernetes.io/tls' },
@@ -193,7 +203,6 @@ export default class SecretSettings extends React.Component {
   renderImage() {
     const { cluster, isFederated } = this.props
     const { name, namespace } = get(this.formTemplate, 'metadata')
-
     return (
       <div key="image" className="margin-t8">
         <Form.Item rules={[{ validator: this.imageValidator }]}>
@@ -201,6 +210,14 @@ export default class SecretSettings extends React.Component {
             <ImagerRegistry
               fedFormTemplate={this.fedFormTemplate}
               cluster={cluster}
+              isDefault={this.isDefault}
+              onChangeDefault={_isDefault =>
+                set(
+                  this.fedFormTemplate,
+                  'metadata.annotations["secret.kubesphere.io/is-default-class"]',
+                  _isDefault ? 'true' : 'false'
+                )
+              }
               namespace={namespace}
               isFederated={isFederated}
               screatName={name}
@@ -208,6 +225,7 @@ export default class SecretSettings extends React.Component {
             />
           </Base64Wrapper>
         </Form.Item>
+        <Form.Item>{this.renderDefault()}</Form.Item>
       </div>
     )
   }

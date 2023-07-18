@@ -62,6 +62,7 @@ export default class Metadata extends React.Component {
       .checkLabels({ labels: value, namespace, cluster })
       .then(resp => {
         if (resp.exist) {
+          this.props.formGroupRef.current.state.isCheck = true
           return callback({ message: t('DUPLICATE_LABELS'), field: rule.field })
         }
         callback()

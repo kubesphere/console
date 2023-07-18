@@ -16,18 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
+import { Button, Icon, Loading, Select } from '@kube-design/components'
 import classnames from 'classnames'
-import { get, isEmpty, isArray, flatten } from 'lodash'
+import { Card } from 'components/Base'
+import { flatten, get, isArray, isEmpty } from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { showNameAndAlias } from 'utils'
 
 import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
 
-import { Button, Icon, Loading, Select } from '@kube-design/components'
-import { Card } from 'components/Base'
-import TimeSelector from './TimeSelector'
-
 import styles from './index.scss'
+import TimeSelector from './TimeSelector'
 
 export default class MonitoringController extends React.Component {
   static propTypes = {
@@ -85,7 +85,7 @@ export default class MonitoringController extends React.Component {
 
   get clusters() {
     return this.props.clusters.map(cluster => ({
-      label: cluster.name || cluster,
+      label: showNameAndAlias(cluster.name || cluster, 'cluster'),
       value: cluster.name || cluster,
     }))
   }
@@ -209,6 +209,7 @@ export default class MonitoringController extends React.Component {
       >
         {this.props.isFederated && (
           <Select
+            key={this.state.cluster}
             prefixIcon={<Icon name="cluster" />}
             className={styles.clusters}
             value={this.state.cluster}

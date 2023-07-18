@@ -16,16 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import Tools from 'components/KubeTools'
+
+import { GlobalNav, Header } from 'components/Layout'
+import GlobalSVG from 'components/SVG'
 import { inject, observer } from 'mobx-react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import WebSocketStore from 'stores/websocket'
 import { isAppsPage } from 'utils'
 import { getScrollTop } from 'utils/dom'
+import { initAlias, initEvents } from 'utils/events'
 import { renderRoutes } from 'utils/router.config'
-
-import { Header, GlobalNav } from 'components/Layout'
-import Tools from 'components/KubeTools'
-import GlobalSVG from 'components/SVG'
 
 import styles from './index.scss'
 
@@ -46,6 +48,7 @@ class BaseLayout extends Component {
     this.headerRef = React.createRef()
 
     this.routes = props.route.routes
+    this.websocket = new WebSocketStore()
   }
 
   get showKubeControl() {
@@ -54,6 +57,8 @@ class BaseLayout extends Component {
 
   componentDidMount() {
     document.addEventListener('scroll', this.handleScroll)
+    // this.props.initWebsocketData?.()
+    this.subscribe = initEvents(...initAlias)
   }
 
   componentDidUpdate(prevProps) {
@@ -70,6 +75,8 @@ class BaseLayout extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('scroll', this.throttleScroll)
+    // this.props.closeWebsocketData?.()
+    this.subscribe?.()
   }
 
   handleScroll = () => {

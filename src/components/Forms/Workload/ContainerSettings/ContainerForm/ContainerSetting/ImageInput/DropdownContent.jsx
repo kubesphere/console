@@ -28,10 +28,17 @@ import styles from './index.scss'
 export default class DropdownContent extends React.Component {
   constructor(props) {
     super(props)
+    const { imageRegistries } = this.props
+
+    const harborData =
+      this.hubType === 'harbor'
+        ? imageRegistries.find(item => item === this.secretValue)
+        : {}
+
     this.state = {
       dockerList: [],
       harborList: [],
-      hubData: {},
+      harborData,
       visible: false,
       isLoading: false,
     }
@@ -46,20 +53,28 @@ export default class DropdownContent extends React.Component {
     onChange: () => {},
   }
 
+  get defaultImage() {
+    const { imageRegistries } = this.props
+    return imageRegistries.find(item => item.isDefault)
+  }
+
   get secretValue() {
-    const { formTemplate } = this.props
-    return get(formTemplate, 'pullSecret', '')
+    const { formTemplate, type } = this.props
+    if (type === 'Edit') {
+      return get(formTemplate, 'pullSecret', '')
+    }
+    return get(formTemplate, 'pullSecret', this.defaultImage?.value || '')
   }
 
   get hubType() {
-    switch (this.secretValue) {
-      case '':
-        return 'dockerHub'
-      case 'harbor':
-        return 'harbor'
-      default:
-        return 'others'
+    if (this.registryUrl.indexOf('docker.io') >= 0 || this.secretValue === '') {
+      return 'dockerHub'
     }
+
+    if (this.secretValue && this.registryUrl.indexOf('docker.io') < 0) {
+      return 'harbor'
+    }
+    return 'others'
   }
 
   get registryUrl() {
@@ -92,17 +107,30 @@ export default class DropdownContent extends React.Component {
 
   get secretsOptions() {
     const { imageRegistries } = this.props
-
     const options = imageRegistries.map(item => ({
       label: `${item.url} (${item.value})`,
       value: item.value,
       url: item.url,
+      isDefault: item.isDefault,
     }))
-    return [{ label: `Docker Hub`, value: '', url: '' }, ...options]
+
+    return [{ label: `Docker Hub`, value: '', url: '' }, ...options].sort(
+      (x, y) => Number(!!y.isDefault) - Number(!!x.isDefault)
+    )
   }
 
   componentDidMount() {
-    this.fetchDockerList()
+    if (this.props.type !== 'Edit' && this.secretValue !== '') {
+      this.handleSecretChange(this.secretValue)
+    }
+
+    if (this.hubType === 'dockerHub') {
+      this.fetchDockerList()
+    }
+
+    if (this.hubType === 'harbor') {
+      this.fetchHarborList('', this.defaultHarbor)
+    }
   }
 
   componentWillUnmount() {
@@ -189,21 +217,10 @@ export default class DropdownContent extends React.Component {
   }
 
   handleHarborImageSelected = async imageDetail => {
-    const { harborData } = this.state
-    const projectName = imageDetail.project_name
-    const repository = imageDetail.repository_name.replace(
-      `${projectName}/`,
-      ''
-    )
-
-    const tag = await this.fetchHarborImageTag(
-      harborData,
-      projectName,
-      repository
-    )
-    const image = `${imageDetail.repository_name}:${tag}`
+    const image = `${imageDetail.repository_name}`
     const logo = ''
     const short_description = ''
+
     this.props.onChange(`${this.registryUrl}/${image}`)
     this.hideContent()
     this.props.onEnter({ logo, short_description })
@@ -254,26 +271,6 @@ export default class DropdownContent extends React.Component {
 
     !this.isUnMounted &&
       this.setState({ harborList: get(result, 'repository', []) })
-  }
-
-  fetchHarborImageTag = async (harborData, projectName, repository) => {
-    const result = await this.store.getHarborImageTag(
-      harborData,
-      projectName,
-      repository,
-      {
-        with_tag: true,
-        with_scan_overview: true,
-        with_label: true,
-        page_size: 15,
-        page: 1,
-      }
-    )
-    // get latest version
-    if (result && result.length > 0 && result[0].tags.length > 0) {
-      return result[0].tags[0].name
-    }
-    return ''
   }
 
   renderContent = () => {

@@ -23,7 +23,7 @@ import NetWorkPolicyStore from 'stores/network/policy'
 import { isEmpty } from 'lodash'
 import { Loading } from '@kube-design/components'
 
-import { getDisplayName, getLocalTime } from 'utils'
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -112,11 +112,11 @@ export default class NetworkpoliciesDetail extends React.Component {
     return [
       {
         name: t('CLUSTER'),
-        value: cluster,
+        value: showNameAndAlias(cluster, 'cluster'),
       },
       {
         name: t('PROJECT'),
-        value: namespace,
+        value: showNameAndAlias(namespace, 'project'),
       },
       {
         name: t('CREATION_TIME_TCAP'),

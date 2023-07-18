@@ -16,10 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { computed } from 'mobx'
-import { observer } from 'mobx-react'
-import { get, pick } from 'lodash'
 import {
   Column,
   Columns,
@@ -29,12 +25,17 @@ import {
   Tag,
   TextArea,
 } from '@kube-design/components'
-import { compareVersion } from 'utils/app'
-import { PATTERN_SERVICE_NAME } from 'utils/constants'
 import { Text } from 'components/Base'
+import { get, pick } from 'lodash'
+import { computed } from 'mobx'
+import { observer } from 'mobx-react'
+import React from 'react'
+import { showNameAndAlias } from 'utils'
+import { compareVersion } from 'utils/app'
+
+import { PATTERN_SERVICE_NAME } from 'utils/constants'
 
 import Placement from './Placement'
-
 import styles from './index.scss'
 
 @observer
@@ -81,9 +82,19 @@ export default class BasicInfo extends React.Component {
     return (
       <div className={styles.placementWrapper}>
         <div className={styles.placementContent}>
-          <Text title={workspace} description={t('WORKSPACE')} />
-          <Text title={cluster} description={t('CLUSTER')} />
-          <Text icon="project" title={namespace} description={t('PROJECT')} />
+          <Text
+            title={showNameAndAlias(workspace, 'workspace')}
+            description={t('WORKSPACE')}
+          />
+          <Text
+            title={showNameAndAlias(cluster, 'cluster')}
+            description={t('CLUSTER')}
+          />
+          <Text
+            icon="project"
+            title={showNameAndAlias(namespace, 'project')}
+            description={t('PROJECT')}
+          />
         </div>
       </div>
     )

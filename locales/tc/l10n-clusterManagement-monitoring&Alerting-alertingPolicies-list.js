@@ -18,9 +18,11 @@
 module.exports = {
   // Banner
   ALERTING_POLICY_PL: 'Rule Groups',
-  ALERTING_POLICY_DESC: 'A rule group contains alert rules used to monitor cluster resources.',
+  ALERTING_POLICY_DESC:
+    'A rule group contains alert rules used to monitor cluster resources.',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerts generated?',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'You need to create a rule group and set alert rules. The system will generate alerts when resource metrics meet conditions configured in rule groups.',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A:
+    'You need to create a rule group and set alert rules. The system will generate alerts when resource metrics meet conditions configured in rule groups.',
   // List
   CUSTOM_POLICIES: 'Custom Rule Groups',
   BUILT_IN_POLICIES: 'Built-in Rule Groups',
@@ -44,8 +46,10 @@ module.exports = {
   INVALID_TIME_DESC: 'Invalid value. Please enter 0 or a positive integer.',
   ALIAS: '別名',
   DURATION_MIN: 'Duration (minutes)',
-  ALERT_DURATION: 'Set the system to wait for a certain duration and check whether the alert situation persists before firing an alert.',
-  LONG_NAME_DESC: '最長 253 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
+  ALERT_DURATION:
+    'Set the system to wait for a certain duration and check whether the alert situation persists before firing an alert.',
+  LONG_NAME_DESC:
+    '最長 253 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
   NAME_EXIST_DESC: '名稱已存在',
   ALIAS_NAME_DESC: 'The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
   CHECK_INTERVAL: 'Check Interval',
@@ -93,7 +97,7 @@ module.exports = {
   CUSTOM_RULE: '自定義規則',
   RULE_EXPRESSION: '告警規則表達式',
   ENTER_RULE_EXPRESSION: '請輸入告警規則表達式。',
-  ALERT_RULE_EXPRESSION_DESC: '您可以通過 PromQL 語句來自定義告警規則。<a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">了解更多</a>',
+  ALERT_RULE_EXPRESSION_DESC: '您可以通過 PromQL 語句來自定義告警規則。',
   ALERT_FUNCTIONS: 'Functions',
   ALERT_METRICS: 'Metrics',
   ALERT_LABELS: '標籤',

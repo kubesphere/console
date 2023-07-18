@@ -101,15 +101,17 @@ const handleHarborProxy = async ctx => {
     path = `${protocol}${harborUrl}/api/v2.0/search`
   } else if (requestUrl === 'artifacts') {
     // the rule of harbor project name and repository name
-    const rule = /^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9]$/
+    const projectRegex = /^[a-zA-Z0-9](?:[-a-zA-Z0-9]{0,60}[a-zA-Z0-9])?$/
+    const repositoryRegex = /^[a-zA-Z0-9](?:[-a-zA-Z0-9_/]{0,251}[a-zA-Z0-9])?$/
 
     if (harborData.projectName && harborData.repositoryName) {
       // get projectName and repositoryName by rule
-      const [projectName] = harborData.projectName.match(rule)
-      const [repositoryName] = harborData.repositoryName.match(rule)
+      const [projectName] = harborData.projectName.match(projectRegex)
+      const [repositoryName] = harborData.repositoryName.match(repositoryRegex)
 
       if (projectName && repositoryName) {
-        path = `${protocol}${harborUrl}/api/v2.0/projects/${projectName}/repositories/${repositoryName}/artifacts`
+        const encodeRepositoryName = repositoryName.replace(/\//g, '%252F')
+        path = `${protocol}${harborUrl}/api/v2.0/projects/${projectName}/repositories/${encodeRepositoryName}/artifacts`
       } else {
         ctx.throw(400, 'Invalid post data')
       }

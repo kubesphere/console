@@ -16,22 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
 import { Notify } from '@kube-design/components'
 
-import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import moment from 'moment-mini'
-import { get, debounce, isEmpty } from 'lodash'
-
-import Status from 'devops/components/Status'
-import CodeQualityStore from 'stores/devops/codeQuality'
-import DetailPage from 'devops/containers/Base/Detail'
+import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 import Nav from 'devops/components/DetailNav'
 
-import { ReactComponent as ForkIcon } from 'assets/fork.svg'
-import { getPipelineStatus } from 'utils/status'
+import Status from 'devops/components/Status'
+import DetailPage from 'devops/containers/Base/Detail'
+import { debounce, get, isEmpty } from 'lodash'
+
+import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+import moment from 'moment-mini'
+import React from 'react'
+import CodeQualityStore from 'stores/devops/codeQuality'
+import { showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
+import { getPipelineStatus } from 'utils/status'
 
 import './index.scss'
 
@@ -107,18 +108,27 @@ export default class BranchDetailLayout extends React.Component {
   ]
 
   getAttrs = () => {
-    const { detail, activityList } = this.store
+    const { detail, activityList, branchDetail } = this.store
     const { devopsName } = this.props.devopsStore
     const { branch } = this.props.match.params
 
     return [
       {
         name: t('DEVOPS_PROJECT'),
-        value: devopsName,
+        value: showNameAndAlias(devopsName, 'devops'),
       },
       {
         name: t('PIPELINE'),
-        value: `${detail.name}/${decodeURIComponent(branch)}`,
+        value: (
+          <span>
+            {detail.name}/
+            {branchDetail.disabled ? (
+              <del>{decodeURIComponent(branch)}</del>
+            ) : (
+              decodeURIComponent(branch)
+            )}
+          </span>
+        ),
       },
       {
         name: t('TASK_STATUS'),
@@ -183,21 +193,24 @@ export default class BranchDetailLayout extends React.Component {
     }
     const { params } = this.props.match
     const { branch } = params
-
+    const { branchDetail } = this.store
     const operations = this.getOperations().filter(item =>
       this.enabledActions.includes(item.action)
     )
 
     const { devops, cluster, workspace, name } = this.props.match.params
-
     const sideProps = {
       icon: (
         <span className="icon" style={{ width: '20px', height: '20px' }}>
           <ForkIcon />
         </span>
       ),
-      name: decodeURIComponent(branch),
-      operations,
+      name: branchDetail.disabled ? (
+        <del>{decodeURIComponent(branch)}</del>
+      ) : (
+        decodeURIComponent(branch)
+      ),
+      operations: branchDetail.disabled ? [] : operations,
       attrs: this.getAttrs(),
       module: this.module,
       breadcrumbs: [

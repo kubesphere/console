@@ -23,6 +23,7 @@ import NodesTop5 from './NodesTop5'
 
 import styles from './index.scss'
 
+// TODO: need to verify
 export default class ClusterNodes extends Component {
   render() {
     return (

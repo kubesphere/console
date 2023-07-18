@@ -16,12 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import { Table } from '@kube-design/components'
+import { Panel } from 'components/Base'
+import { get, isEmpty, toPairs } from 'lodash'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { Table } from '@kube-design/components'
-import { get, toPairs, isEmpty } from 'lodash'
-import { Panel } from 'components/Base'
+import React from 'react'
+import { showNameAndAlias } from 'utils'
 import styles from './index.scss'
 
 @inject('detailStore')
@@ -45,6 +46,7 @@ export default class Viewer extends React.Component {
           {
             title: t('PROJECT'),
             dataIndex: 'namespace',
+            render: namespace => showNameAndAlias(namespace, 'project'),
           },
           {
             title: t('LABEL'),

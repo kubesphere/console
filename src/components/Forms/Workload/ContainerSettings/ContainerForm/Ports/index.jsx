@@ -17,23 +17,32 @@
  */
 
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { PATTERN_PORT_NAME } from 'utils/constants'
-import { Form } from '@kube-design/components'
+import { Form, Button } from '@kube-design/components'
+import { isEmpty, set } from 'lodash'
+
 import {
   ContainerPort,
   ContainerServicePort,
   ArrayInput,
 } from 'components/Inputs'
 
+import styles from './index.scss'
+
 export default class Ports extends React.Component {
   static defaultProps = {
     prefix: '',
   }
 
+  static contextTypes = {
+    imageDetail: PropTypes.object,
+    forceUpdate: PropTypes.func,
+  }
+
   get prefix() {
     const { prefix } = this.props
-
     return prefix ? `${prefix}.` : ''
   }
 
@@ -79,8 +88,29 @@ export default class Ports extends React.Component {
     return value && value.name && value.containerPort
   }
 
+  handleFillPorts = () => {
+    const { exposedPorts = [] } = this.context.imageDetail
+    const ports = exposedPorts.map(port => {
+      const protocol = port.split('/')[1]
+      const containerPort = Number(port.split('/')[0])
+
+      return {
+        name: `${protocol}-${containerPort}`,
+        protocol: protocol.toUpperCase(),
+        containerPort,
+        servicePort: containerPort,
+      }
+    })
+
+    if (!isEmpty(ports)) {
+      set(this.props.data, 'ports', ports)
+      this.context?.forceUpdate()
+    }
+  }
+
   render() {
     const { withService, className } = this.props
+
     return (
       <Form.Group
         className={className}
@@ -98,6 +128,16 @@ export default class Ports extends React.Component {
             itemType="object"
             addText={t('ADD_PORT')}
             checkItemValid={this.checkContainerPortValid}
+            extraAdd={
+              !isEmpty(this.context?.imageDetail?.exposedPorts ?? []) && (
+                <Button
+                  className={styles.defaultButton}
+                  onClick={this.handleFillPorts}
+                >
+                  {t('USE_IMAGE_DEFAULT_PORTS')}
+                </Button>
+              )
+            }
           >
             {withService ? <ContainerServicePort /> : <ContainerPort />}
           </ArrayInput>

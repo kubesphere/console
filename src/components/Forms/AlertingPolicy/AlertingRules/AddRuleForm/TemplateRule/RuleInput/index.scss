@@ -1,0 +1,121 @@
+@import '~scss/variables';
+
+.inputs {
+  display: flex;
+  align-items: center;
+  padding: 6px 17px;
+  border-radius: 60px;
+  background-color: $bg-color;
+  border: solid 1px $border-color;
+
+  .type {
+    :global {
+      .select {
+        width: 250px;
+
+        .select-options {
+          svg {
+            color: rgba(255, 255, 255, 0.9);
+            fill: rgba(255, 255, 255, 0.4);
+          }
+        }
+      }
+    }
+  }
+
+  .comparator {
+    width: 100px;
+    margin-left: 12px;
+
+    :global {
+      .select-control {
+        width: 100px !important;
+      }
+    }
+  }
+
+  .thresholds {
+    margin-left: 12px;
+    width: 114px;
+
+    input {
+      width: 114px;
+      padding-right: 38px !important;
+    }
+  }
+
+  .normalSelect {
+    margin-left: 12px;
+    width: 160px;
+
+    &:last-of-type {
+      :global {
+        .select-control {
+          padding: 0px 8px;
+        }
+      }
+    }
+  }
+}
+
+.optionLabel {
+  display: flex;
+  align-items: center;
+
+  :global .icon {
+    margin-right: 8px;
+  }
+}
+
+.slider {
+  align-items: center;
+  width: 100%;
+
+  :global {
+    .slider {
+      margin-top: 2px;
+    }
+  }
+}
+
+.thresholds {
+  input {
+    padding-right: 38px !important;
+  }
+}
+
+.condition_type {
+  width: auto !important;
+
+  :global {
+    .select-control {
+      width: 70px;
+    }
+  }
+}
+
+@mixin warningText {
+  padding: 0px 4px;
+  border-radius: 2px;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.critical {
+  @include warningText;
+  color: $white;
+  background-color: $red-color03;
+}
+
+.error {
+  @include warningText;
+  color: $white;
+  background-color: $yellow-color03;
+}
+
+.warning {
+  @include warningText;
+  color: $dark-color06;
+  background-color: $light-color04;
+}

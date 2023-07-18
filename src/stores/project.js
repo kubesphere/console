@@ -19,6 +19,8 @@
 import { get, omit } from 'lodash'
 import { action, observable } from 'mobx'
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
+import { eventBus } from 'utils/EventBus'
+import { eventKeys } from 'utils/events'
 import ObjectMapper from 'utils/object.mapper'
 
 import Base from './base'
@@ -88,7 +90,6 @@ export default class ProjectStore extends Base {
     ...params
   } = {}) {
     this.list.isLoading = true
-
     if (!params.sortBy && params.ascending === undefined) {
       params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
     }
@@ -125,6 +126,9 @@ export default class ProjectStore extends Base {
       ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     })
 
+    data.forEach(item => {
+      eventBus.emit(eventKeys.PROJECT_CHANGE, item)
+    })
     return data
   }
 
@@ -144,17 +148,22 @@ export default class ProjectStore extends Base {
     )
 
     this.detail = { cluster, ...this.mapper(detail) }
-
     this.isLoading = false
+    return { cluster, ...this.mapper(detail) }
   }
 
   @action
   async create(data, params = {}) {
+    let res
     if (params.workspace) {
-      return this.submitting(request.post(this.getResourceUrl(params), data))
+      res = await this.submitting(
+        request.post(this.getResourceUrl(params), data)
+      )
+    } else {
+      res = this.submitting(request.post(this.getListUrl(params), data))
     }
-
-    return this.submitting(request.post(this.getListUrl(params), data))
+    this.afterChange(res, params)
+    return res
   }
 
   @action
@@ -218,5 +227,13 @@ export default class ProjectStore extends Base {
     })
 
     return data
+  }
+
+  afterChange = (d, { cluster }) => {
+    eventBus.emit(eventKeys.PROJECT_CHANGE, { ...this.mapper(d), cluster })
+  }
+
+  afterDelete = (d, { cluster }) => {
+    eventBus.emit(eventKeys.DELETE_PROJECT, { ...this.mapper(d), cluster })
   }
 }

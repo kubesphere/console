@@ -111,10 +111,10 @@ export default class TypeSelect extends React.Component {
     return (
       <div
         key={option.uid || option.value}
-        onClick={onClick}
+        onClick={!option.disabled ? onClick : null}
         className={classNames(
           styles.option,
-          { [styles.selected]: selected },
+          { [styles.selected]: selected, [styles.disabled]: option.disabled },
           { [styles.withIcon]: option.icon }
         )}
       >
@@ -158,7 +158,12 @@ export default class TypeSelect extends React.Component {
     const selectOption = options.find(item => isEqual(item.value, value))
 
     return (
-      <div className={styles.options} ref={this.optionsRef}>
+      <div
+        className={styles.options}
+        ref={ref => {
+          this.optionsRef = ref
+        }}
+      >
         {selectOption && this.renderOption(selectOption, true)}
         {options
           .filter(item => !isEqual(item.value, value))

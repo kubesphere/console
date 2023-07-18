@@ -16,18 +16,17 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import { Router } from 'react-router'
+import '@kube-design/components/esm/styles/index.scss'
 import { createBrowserHistory } from 'history'
 import { Provider } from 'mobx-react'
 import { syncHistoryWithStore } from 'mobx-react-router'
-import { renderRoutes } from 'utils/router.config'
-import { lazy } from 'utils'
+import React, { Component } from 'react'
+import { Router } from 'react-router'
+import 'scss/main.scss'
 
 import RootStore from 'stores/root'
-
-import '@kube-design/components/esm/styles/index.scss'
-import 'scss/main.scss'
+import { lazy } from 'utils'
+import { renderRoutes } from 'utils/router.config'
 
 import routes from './routes'
 

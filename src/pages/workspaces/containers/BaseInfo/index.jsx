@@ -16,21 +16,21 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import { Icon, Menu } from '@kube-design/components'
+import { Panel, Switch, Text } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
 import { get, isEmpty, set } from 'lodash'
 import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import { Menu, Icon } from '@kube-design/components'
-import { Text, Panel, Switch } from 'components/Base'
-import Banner from 'components/Cards/Banner'
-import EditBasicInfoModal from 'workspaces/components/Modals/EditBasicInfo'
-import ClusterTitle from 'components/Clusters/ClusterTitle'
+import { inject, observer } from 'mobx-react'
 import ManageButton from 'pages/clusters/containers/BaseInfo/ManageButton'
-
-import { getLocalTime } from 'utils'
-import { trigger } from 'utils/action'
+import React from 'react'
 
 import WorkspaceMonitorStore from 'stores/monitoring/workspace'
+
+import { getDomTitle, getLocalTime, showNameAndAlias } from 'utils'
+import { trigger } from 'utils/action'
+import EditBasicInfoModal from 'workspaces/components/Modals/EditBasicInfo'
 
 import styles from './index.scss'
 
@@ -284,11 +284,10 @@ class BaseInfo extends React.Component {
           <Text
             className={styles.title}
             icon="enterprise"
-            title={detail.name}
-            description={detail.description || t('WORKSPACE')}
+            title={getDomTitle(showNameAndAlias(detail))}
+            description={getDomTitle(detail.description || t('WORKSPACE'))}
             ellipsis
           />
-          <Text title={detail.manager} description={t('MANAGER')} />
           <Text
             title={getLocalTime(detail.createTime).format(
               'YYYY-MM-DD HH:mm:ss'

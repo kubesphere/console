@@ -27,6 +27,7 @@ import {
   InputPassword,
   Button,
   Alert,
+  Toggle,
 } from '@kube-design/components'
 import { SchemeInput } from 'components/Inputs'
 
@@ -60,6 +61,7 @@ export default class ImageRegistry extends Component {
   state = {
     ...this.getStateFromProps(this.props.value),
     isValidating: false,
+    default: false,
   }
 
   triggerChange = debounce(() => {
@@ -205,6 +207,25 @@ export default class ImageRegistry extends Component {
     return <Alert type="info" message={t('IMAGE_REGISTRY_VALIDATE_TIP')} />
   }
 
+  renderDefault() {
+    const { isDefault, onChangeDefault } = this.props
+    return (
+      <div className={styles.defaultContainer}>
+        <Toggle
+          checed={isDefault}
+          onChange={onChangeDefault}
+          defaultChecked={isDefault}
+        />
+        <div>
+          <div className={styles.title}>{t('SET_AS_DEFAULT_REPOSITORY')}</div>
+          <div className={styles.desc}>
+            {t('SET_AS_DEFAULT_REPOSITORY_DESC')}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     const { url, username, password, email, isValidating } = this.state
     return (
@@ -258,6 +279,7 @@ export default class ImageRegistry extends Component {
             </Wrapper>
           </Column>
         </Columns>
+        {this.renderDefault()}
         <div className={styles.tip}>{this.renderTip()}</div>
       </div>
     )

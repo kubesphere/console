@@ -16,13 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { useEffect, useRef, useState } from 'react'
-import classnames from 'classnames'
-import PipelineStore from 'stores/devops/pipelines'
 import Loading from '@kube-design/components/lib/components/Loading'
+import classnames from 'classnames'
+import { pick } from 'lodash'
+import React, { useEffect, useRef, useState } from 'react'
+import PipelineStore from 'stores/devops/pipelines'
 import styles from './index.scss'
 
-const PipelineTemplate = ({ handleTemplateChange, formTemplate }) => {
+const PipelineTemplate = ({ handleTemplateChange, formTemplate, params }) => {
   const CUSTOM_TEMPLATE = {
     type: 'custom',
     image: '/assets/pipeline/custom.svg',
@@ -36,13 +37,13 @@ const PipelineTemplate = ({ handleTemplateChange, formTemplate }) => {
   const [selected, setSelect] = useState(formTemplate.template)
   const [loading, setLoading] = useState(false)
 
-  const getPipelineTemplateList = async () => {
-    return await store.getPipelineTemplateList()
+  const getPipelineTemplateList = async p => {
+    return await store.getPipelineTemplateList(p)
   }
 
   useEffect(() => {
     setLoading(true)
-    getPipelineTemplateList()
+    getPipelineTemplateList(pick(params, 'cluster'))
       .then(data => {
         data.push(CUSTOM_TEMPLATE)
         setTemplist(data)

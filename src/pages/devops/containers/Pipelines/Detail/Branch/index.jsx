@@ -34,7 +34,7 @@ import Table from 'components/Tables/List'
 import EmptyCard from 'devops/components/Cards/EmptyCard'
 
 import classNames from 'classnames'
-import styles from './index.scss'
+// import styles from './index.scss'
 
 @inject('rootStore', 'detailStore')
 @observer
@@ -143,9 +143,12 @@ export default class Branch extends React.Component {
       title: t('STATUS'),
       dataIndex: 'status',
       width: '20%',
-      render: (status, record) => (
-        <Status {...getPipelineStatus(get(record, 'latestRun', {}))} />
-      ),
+      render: (status, record) =>
+        record.disabled ? (
+          <Status label={t('DISABLED')} type="error" />
+        ) : (
+          <Status {...getPipelineStatus(get(record, 'latestRun', {}))} />
+        ),
     },
     {
       title: t('NAME'),
@@ -154,13 +157,17 @@ export default class Branch extends React.Component {
       render: (name, record) => (
         <Link
           className={classNames('item-name', {
-            [styles.itemNameDisabled]: record.disabled,
+            // [styles.itemNameDisabled]: record.disabled,
           })}
           to={`${this.prefix}/${name}/activity`}
-          disabled={record.disabled}
+          // disabled={record.disabled}
         >
           <ForkIcon style={{ width: '20px', height: '20px' }} />
-          {decodeURIComponent(name)}
+          {record.disabled ? (
+            <del>{decodeURIComponent(name)}</del>
+          ) : (
+            decodeURIComponent(name)
+          )}
         </Link>
       ),
     },

@@ -1,6 +1,27 @@
 @import '~scss/variables';
 @import '~scss/mixins';
 
+:global {
+  @for $i from 1 through 10 {
+    @for $j from 1 through 10 {
+      $maxWidth: $j * 5vw;
+      .table-#{$i}-#{$j} {
+        &.table table {
+          & tr > td:nth-of-type(#{$i}) {
+            & > :first-child {
+              max-width: $maxWidth;
+            }
+            & > span:first-child {
+              max-width: $maxWidth;
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .table {
   border-radius: $border-radius;
   box-shadow: $base-shadow;

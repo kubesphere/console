@@ -117,8 +117,14 @@ export default class QuotaEditModal extends React.Component {
           cluster,
         }),
       ]).then(dataArr => {
+        const statusTotal = get(
+          this.workspaceQuotaStore.detail,
+          'status.total',
+          {}
+        )
+        const specQuota = get(this.workspaceQuotaStore.detail, 'spec.quota', {})
         const { workspace: wsQuota } = getLeftQuota(
-          dataArr[1],
+          !isEmpty(statusTotal) ? statusTotal : specQuota,
           get(dataArr[0], 'data')
         )
         const nsUsed = getUsedQuota(get(dataArr[0], 'data'))
@@ -262,6 +268,7 @@ export default class QuotaEditModal extends React.Component {
         this.setState({ error })
       },
       supportGpuSelect: this.props.supportGpuSelect,
+      omitQuotaCheck: true,
     }
   }
 

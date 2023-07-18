@@ -16,17 +16,21 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
+import { Nav } from 'components/Layout'
 import { get } from 'lodash'
+import { inject, observer } from 'mobx-react'
+import Selector from 'projects/components/Selector'
+import React, { Component } from 'react'
 
 import { renderRoutes } from 'utils/router.config'
-import { Nav } from 'components/Layout'
-import Selector from 'projects/components/Selector'
 
 @inject('rootStore', 'projectStore')
 @observer
 class ProjectLayout extends Component {
+  state = {
+    fetchFin: false,
+  }
+
   getRoutes(navs) {
     const { routes, path } = this.props.route
     const nav = get(navs, '[0].items[0]', {})

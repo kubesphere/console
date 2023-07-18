@@ -16,24 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
+import { Button, Form, Input, Select } from '@kube-design/components'
+import { ArrayInput } from 'components/Inputs'
+import { cloneDeep, get, set } from 'lodash'
 import { computed } from 'mobx'
 import { observer } from 'mobx-react'
-import { cloneDeep, set, get } from 'lodash'
-
-import { Form, Input, Select, Button } from '@kube-design/components'
-import { ArrayInput } from 'components/Inputs'
-
-import { compareVersion } from 'utils'
-import { PATTERN_NAME } from 'utils/constants'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import RoleStore from 'stores/role'
 
-import ProjectSelect from './ProjectSelect'
+import { compareVersion } from 'utils'
+import { PATTERN_ALIAS_NAME, PATTERN_NAME } from 'utils/constants'
 import DevopsSelect from './DevopsSelect'
 
 import styles from './index.scss'
+
+import ProjectSelect from './ProjectSelect'
 
 @observer
 export default class GroupForm extends React.Component {
@@ -178,7 +177,16 @@ export default class GroupForm extends React.Component {
               disabled={mode === 'edit'}
             />
           </Form.Item>
-          <Form.Item label={t(`ALIAS`)} desc={t('ALIAS_DESC')}>
+          <Form.Item
+            label={t(`ALIAS`)}
+            desc={t('ALIAS_NAME_DESC')}
+            rules={[
+              {
+                pattern: PATTERN_ALIAS_NAME,
+                message: t('INVALID_ALIAS_NAME_DESC'),
+              },
+            ]}
+          >
             <Input
               name="metadata.annotations['kubesphere.io/alias-name']"
               maxLength={63}

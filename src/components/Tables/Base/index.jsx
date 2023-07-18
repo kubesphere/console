@@ -255,7 +255,13 @@ export default class WorkloadTable extends React.Component {
   )
 
   renderSearch() {
-    const { hideSearch, searchType, filters, columns } = this.props
+    const {
+      hideSearch,
+      searchType,
+      filters,
+      columns,
+      columnSearch,
+    } = this.props
 
     if (hideSearch) {
       return null
@@ -277,7 +283,7 @@ export default class WorkloadTable extends React.Component {
     return (
       <FilterInput
         className={styles.search}
-        columns={columns}
+        columns={columnSearch || columns}
         filters={filters}
         onChange={this.handleFilterInput}
       />

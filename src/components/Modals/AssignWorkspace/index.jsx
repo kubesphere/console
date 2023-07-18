@@ -16,16 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
-import { pick } from 'lodash'
-
 import { Alert, Form, Select } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import { pick } from 'lodash'
+import { observer } from 'mobx-react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import UserStore from 'stores/user'
 
 import WorkspaceStore from 'stores/workspace'
-import UserStore from 'stores/user'
+import { showNameAndAlias } from 'utils'
 
 @observer
 export default class AssignWorkspaceModal extends Component {
@@ -60,7 +60,7 @@ export default class AssignWorkspaceModal extends Component {
 
   getWorkspaces() {
     return this.workspaceStore.list.data.map(item => ({
-      label: item.name,
+      label: showNameAndAlias(item),
       value: item.name,
     }))
   }

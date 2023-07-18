@@ -16,19 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
 import classNames from 'classnames'
-import { get, isEmpty } from 'lodash'
-import { observer } from 'mobx-react'
-import { action } from 'mobx'
 
 import { Dragger, NotifyConfirm } from 'components/Base'
+import { get, isEmpty } from 'lodash'
+import { action } from 'mobx'
+import { observer } from 'mobx-react'
+import React from 'react'
+
+import style from './index.scss'
 
 import PipelineNodes from './nodesRender'
 import Sider from './Sider'
 import Store from './store'
-
-import style from './index.scss'
 
 const CREATE_TEMP = {
   json: {
@@ -108,7 +108,7 @@ export default class Pipeline extends React.Component {
 
   render() {
     const { isEditMode, className, isSubmitting } = this.props
-
+    const { cluster } = this.props?.params ?? {}
     return (
       <div className={classNames(style.content, 'pipeline-content', className)}>
         <Dragger
@@ -129,6 +129,8 @@ export default class Pipeline extends React.Component {
             onOk={this.props.onOk}
             onCancel={this.props.onCancel}
             isSubmitting={isSubmitting}
+            cluster={cluster}
+            trigger={this.props.trigger}
           />
         ) : null}
         <NotifyConfirm

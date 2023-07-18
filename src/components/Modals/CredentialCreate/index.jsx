@@ -209,9 +209,9 @@ export default class CredentialModal extends React.Component {
               <Input
                 name="username_password.username"
                 defaultValue="admin"
-                disabled={
-                  this.props.sourceType && this.props.sourceType === 'github'
-                }
+                // disabled={
+                //   this.props.sourceType && this.props.sourceType === 'github'
+                // }
               />
             </Form.Item>
             <Form.Item label={t('PASSWORD_TOKEN')}>

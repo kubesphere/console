@@ -16,10 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
 import { List } from 'components/Base'
-import { getLocalTime } from 'utils'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
+import React from 'react'
+import { getLocalTime } from 'utils'
 
 import styles from './index.scss'
 
@@ -42,9 +42,10 @@ export default class ClusterCard extends React.Component {
         description: t('KUBERNETES_VERSION'),
       },
       {
-        title: data.provider,
+        title: data.provider ?? '-',
         description: t('PROVIDER'),
         className: styles.provider,
+        withDomTitle: true,
       },
       {
         title: data.createTime

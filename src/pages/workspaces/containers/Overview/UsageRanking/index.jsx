@@ -36,6 +36,7 @@ import {
 import EmptyList from 'components/Cards/EmptyList'
 import Table from 'clusters/containers/Monitor/Resource/Ranking/Project/Table'
 import StatusReason from 'clusters/components/StatusReason'
+import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -73,11 +74,12 @@ class Ranking extends React.Component {
     }))
   }
 
-  valueRenderer = option => t('CLUSTER_VALUE', { value: option.value })
+  valueRenderer = option =>
+    t('CLUSTER_VALUE', { value: showNameAndAlias(option.cluster) })
 
   optionRenderer = option => (
     <div>
-      <div>{option.value}</div>
+      <div>{showNameAndAlias(option.cluster)}</div>
       {!option.cluster.isReady && (
         <div>
           <StatusReason data={option.cluster} noTip />

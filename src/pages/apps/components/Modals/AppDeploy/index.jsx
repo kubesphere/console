@@ -30,7 +30,7 @@ import AppConfig from 'components/Forms/AppDeploy/AppConfig'
 import VersionStore from 'stores/openpitrix/version'
 import AppFileStore from 'stores/openpitrix/file'
 
-import { generateId } from 'utils'
+import { generateId, showNameAndAlias } from 'utils'
 
 import Steps from './Steps'
 
@@ -165,9 +165,9 @@ export default class AppDeploy extends React.Component {
 
     const props = {
       formData,
-      cluster,
-      workspace,
-      namespace,
+      cluster: showNameAndAlias(cluster, 'cluster'),
+      workspace: showNameAndAlias(workspace, 'workspace'),
+      namespace: showNameAndAlias(namespace, 'project'),
       versionId,
       versionStore: this.versionStore,
       fileStore: this.fileStore,

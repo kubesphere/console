@@ -16,12 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import { inject, observer, Provider } from 'mobx-react'
 import { Loading } from '@kube-design/components'
+import { get } from 'lodash'
+import { inject, observer, Provider } from 'mobx-react'
+import React, { Component } from 'react'
+import { getPipelinesStore } from 'stores/devops/getPipelines'
 
 import { renderRoutes } from 'utils/router.config'
-import PipelineStore from 'stores/devops/pipelines'
 import routes from './routes'
 
 @inject('rootStore', 'devopsStore')
@@ -30,8 +31,15 @@ export default class PipelinesLayout extends Component {
   constructor(props) {
     super(props)
 
-    this.store = new PipelineStore()
+    this.store = new (getPipelinesStore(this.ksVersion))()
     this.init(props.match.params)
+  }
+
+  get ksVersion() {
+    const { cluster } = this.props.match.params
+    return globals.app.isMultiCluster
+      ? get(globals, `clusterConfig.${cluster}.ksVersion`)
+      : get(globals, 'ksConfig.ksVersion')
   }
 
   async init(params) {

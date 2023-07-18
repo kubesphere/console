@@ -721,8 +721,8 @@ const GatewayMapper = item => {
   )
 
   // get the first ipv4 ingress's ip, because the k8s can't support ipv6's colon
-  const defaultIngressIPV4 = loadBalancerIngress.find(i => !i.ip.includes(':'))
-    ?.ip
+  const ingressItem = loadBalancerIngress.find(i => i.ip && !i.ip.includes(':'))
+  const defaultIngressIPV4 = get(ingressItem, 'ip')
 
   return {
     ...getBaseInfo(item),
@@ -746,7 +746,7 @@ const GatewayMapper = item => {
     type: get(item, 'spec.service.type'),
     config: get(item, 'spec.controller.config', {}),
     lb: lbSupport,
-    _originData: item,
+    _originData: getOriginData(item),
   }
 }
 
@@ -799,6 +799,11 @@ const SecretMapper = item => ({
   annotations: get(item, 'metadata.annotations', {}),
   type: get(item, 'type', ''),
   data: secretDataParser(item),
+  isDefault:
+    get(
+      item,
+      'metadata.annotations["secret.kubesphere.io/is-default-class"]'
+    ) === 'true',
   _originData: getOriginData(item),
 })
 
@@ -1226,7 +1231,15 @@ const PipelinesMapper = item => {
   const pipelineObject = safeParseJSON(get(item, jenkinsKey), {})
   const ns = get(item, 'metadata.namespace')
   const name = get(item, 'metadata.name')
-
+  const disabledBrancheNames = safeParseJSON(
+    get(
+      item,
+      'metadata.annotations["pipeline.devops.kubesphere.io/jenkins-branches"]'
+    ),
+    []
+  )
+    .filter(i => i.disabled)
+    .map(i => i.name)
   return {
     ...getBaseInfo(item),
     annotations: omit(get(item, 'metadata.annotations'), jenkinsKey),
@@ -1258,6 +1271,9 @@ const PipelinesMapper = item => {
         'metadata.annotations["pipeline.devops.kubesphere.io/jenkinsfile.validate"]',
         'success'
       ) === 'success',
+
+    // codeRepoKey: get(item, 'metadata.annotations["devops.codeRepo"]'),
+    disabledBrancheNames,
     ...pipelineObject,
     _originData: getOriginData(item),
   }
@@ -1343,15 +1359,19 @@ const GroupsMapper = item => ({
 })
 
 const AlertingRuleMapper = item => {
-  const resources = safeParseJSON(get(item, 'annotations.resources'), [])
-  const rules = safeParseJSON(get(item, 'annotations.rules'), [])
+  const rules = safeParseJSON(get(item, 'spec.rules'), [])
+
   return {
-    ...item,
-    aliasName: get(item, 'annotations.aliasName'),
-    description: get(item, 'annotations.description'),
-    resources,
+    ...getBaseInfo(item),
+    enabled: get(item, 'metadata.labels["alerting.kubesphere.io/enable"]'),
+    interval: get(item, 'spec.interval', ''),
     rules,
-    ruleType: !isEmpty(resources) ? 'template' : 'custom',
+    evaluationTime: get(item, 'status.evaluationTime', '-'),
+    lastEvaluation: get(item, 'status.lastEvaluation', '-'),
+    rulesStats: get(item, 'status.rulesStats', {}),
+    rulesStatus: get(item, 'status.rulesStatus', []),
+    _originData: getOriginData(item),
+    _originDataWithStatus: cloneDeep(item),
   }
 }
 

@@ -18,6 +18,7 @@
 
 export { default as Branch } from './Branch'
 export { default as Pipeline } from './PipeLine'
+export { default as PipelineOld } from './PipeLineOld'
 export { default as PullRequest } from './PullRequest'
 export { default as Activity } from './Activity'
 export { default as TaskStatus } from './TaskStatus'

@@ -18,6 +18,7 @@
 
 import React, { Component } from 'react'
 import { get, omit, mergeWith, isUndefined } from 'lodash'
+import PropTypes from 'prop-types'
 
 import { observer } from 'mobx-react'
 import { toJS } from 'mobx'
@@ -41,11 +42,27 @@ export default class ContainerImages extends Component {
     this.state = {
       availableQuota: {},
       imageRegistries: [],
+      imageDetail: {},
+    }
+  }
+
+  static childContextTypes = {
+    imageDetail: PropTypes.object,
+    setImageDetail: PropTypes.func,
+  }
+
+  getChildContext() {
+    return {
+      imageDetail: this.state.imageDetail,
+      setImageDetail: value => {
+        this.setState({ imageDetail: value })
+      },
     }
   }
 
   handleSubmit = data => {
     const { index, containerType, onEdit } = this.props
+    data.image = this.state.imageDetail.image
     onEdit({ index, containerType, data: omit(data, 'type') })
   }
 

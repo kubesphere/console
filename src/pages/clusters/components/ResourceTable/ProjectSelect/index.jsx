@@ -20,6 +20,7 @@ import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { pick } from 'lodash'
 import { Icon, Select } from '@kube-design/components'
+import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -28,7 +29,7 @@ export default class ProjectSelect extends Component {
   getProjects() {
     return [
       ...this.props.list.data.map(item => ({
-        label: item.name,
+        label: showNameAndAlias(item),
         value: item.name,
         isFedManaged: item.isFedManaged,
       })),

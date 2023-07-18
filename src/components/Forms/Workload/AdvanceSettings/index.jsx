@@ -27,6 +27,12 @@ import NodeSchedule from './NodeSchedule'
 import PodIPRange from './PodIPRange'
 
 export default class AdvancedSettings extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.groupRef = React.createRef()
+  }
+
   get namespace() {
     return get(this.formTemplate, 'metadata.namespace')
   }
@@ -69,6 +75,7 @@ export default class AdvancedSettings extends React.Component {
           </Form.Group>
         )}
         <Form.Group
+          ref={this.groupRef}
           label={t('ADD_METADATA')}
           desc={t('ADD_METADATA_DESC')}
           keepDataWhenUnCheck
@@ -81,6 +88,7 @@ export default class AdvancedSettings extends React.Component {
             namespace={this.namespace}
             formTemplate={this.formTemplate}
             isFederated={isFederated}
+            formGroupRef={this.groupRef}
           />
         </Form.Group>
       </Form>

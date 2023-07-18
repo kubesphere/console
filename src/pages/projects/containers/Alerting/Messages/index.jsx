@@ -19,8 +19,7 @@
 import React from 'react'
 import { capitalize, get } from 'lodash'
 import { Link } from 'react-router-dom'
-
-import { Tag } from '@kube-design/components'
+import classNames from 'classnames'
 
 import { Text, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -30,12 +29,33 @@ import Table from 'components/Tables/List'
 
 import { getLocalTime } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
-import { getAlertingResource, ALERTING_STATUS } from 'utils/alerting'
+import { getAlertingResource } from 'utils/alerting'
 
 import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 
 import MessageStore from 'stores/alerting/message'
+import styles from './index.scss'
 
+export const severityOptions = [
+  {
+    label: t('CRITICAL_ALERT'),
+    value: 'critical',
+    bgColor: '#CA2621',
+    color: '#FFFFFF',
+  },
+  {
+    label: t('ERROR_ALERT'),
+    value: 'error',
+    color: '#FFFFFF',
+    bgColor: '#F5A623',
+  },
+  {
+    label: t('WARNING_ALERT'),
+    value: 'warning',
+    color: '#36435C',
+    bgColor: '#D8DEE5',
+  },
+]
 @withList({
   store: new MessageStore(),
   module: 'alerts',
@@ -52,6 +72,12 @@ export default class AlertingPolicy extends React.Component {
   }
 
   get tabs() {
+    const { namespace } = this.props.match.params
+
+    if (namespace) {
+      return {}
+    }
+
     return {
       value: this.state.type,
       onChange: this.handleTabChange,
@@ -90,6 +116,7 @@ export default class AlertingPolicy extends React.Component {
     this.props.store.fetchList({
       ...this.props.match.params,
       ...params,
+      sortBy: 'activeAt',
       type: this.state.type,
     })
   }
@@ -133,19 +160,19 @@ export default class AlertingPolicy extends React.Component {
   }
 
   getStatus() {
-    return ALERTING_STATUS.map(status => ({
+    return ['pending', 'firing'].map(status => ({
       text: t(`ALERT_RULE_${status.toUpperCase()}`),
       value: status,
     }))
   }
 
   getColumns = () => {
-    const { getFilteredValue } = this.props
+    const { getFilteredValue, getSortOrder } = this.props
     return [
       {
         title: t('MESSAGE'),
-        dataIndex: 'value',
-        render: (value, record) => (
+        dataIndex: 'name',
+        render: (_, record) => (
           <Text
             icon="loudspeaker"
             title={get(record, 'annotations.summary')}
@@ -182,11 +209,22 @@ export default class AlertingPolicy extends React.Component {
         search: true,
         width: '12%',
         render: severity => {
-          const level = SEVERITY_LEVEL.find(item => item.value === severity)
+          const level = severityOptions.find(item => item.value === severity)
           if (level) {
-            return <Tag type={level.type}>{t(level.label)}</Tag>
+            return (
+              <span
+                style={{
+                  backgroundColor: level.bgColor,
+                  color: level.color,
+                  fontWeight: 600,
+                  padding: '0px 4px',
+                }}
+              >
+                {t(level.label)}
+              </span>
+            )
           }
-          return <Tag>{severity}</Tag>
+          return '-'
         },
       },
       {
@@ -194,17 +232,20 @@ export default class AlertingPolicy extends React.Component {
         dataIndex: 'ruleName',
         isHideable: true,
         width: '12%',
-        render: (ruleName, record) => (
-          <Link
-            to={
-              this.state.type === 'builtin'
-                ? `${this.getPrefix()}/alert-rules/builtin/${record.ruleId}`
-                : `${this.getPrefix()}/alert-rules/${ruleName}`
-            }
-          >
-            {ruleName}
-          </Link>
-        ),
+        render: (_, record) => {
+          const ruleName = get(record, 'labels.rule_group')
+          return (
+            <Link
+              to={
+                this.state.type === 'builtin'
+                  ? `${this.getPrefix()}/alert-rules/builtin/${ruleName}`
+                  : `${this.getPrefix()}/alert-rules/${ruleName}`
+              }
+            >
+              {ruleName}
+            </Link>
+          )
+        },
       },
       {
         title: t('MONITORING_TARGET'),
@@ -212,6 +253,11 @@ export default class AlertingPolicy extends React.Component {
         isHideable: true,
         width: '16%',
         render: labels => {
+          const { rule_type } = labels
+          if (rule_type !== 'template') {
+            return '-'
+          }
+
           const { module, name, namespace } = getAlertingResource(labels)
           if (!module) {
             return '-'
@@ -236,23 +282,25 @@ export default class AlertingPolicy extends React.Component {
         dataIndex: 'activeAt',
         isHideable: true,
         width: 200,
+        sorter: true,
+        sortOrder: getSortOrder('activeAt'),
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
   }
 
   render() {
-    const { match, bannerProps, tableProps } = this.props
-    const { namespace } = match.params
+    const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner
           {...bannerProps}
           tips={this.tips}
-          tabs={namespace ? {} : this.tabs}
+          tabs={this.tabs}
           icon="loudspeaker"
           title={t('ALERTING_MESSAGE_PL')}
           description={t('ALERT_MESSAGE_DESC')}
+          className={classNames(styles.tab_button, bannerProps.className)}
         />
         <Table
           {...tableProps}

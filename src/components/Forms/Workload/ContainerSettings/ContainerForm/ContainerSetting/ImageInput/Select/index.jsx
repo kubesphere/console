@@ -86,7 +86,12 @@ export default class Select extends React.Component {
         onClick={onClick}
         className={classNames(styles.option, { [styles.selected]: selected })}
       >
-        {option.label}
+        <div className={styles.optionCol}>
+          <span className={styles.optionLabel}>{option.label}</span>
+          {option.isDefault && (
+            <span className={styles.defaultTag}>{t('DEFAULT')}</span>
+          )}
+        </div>
       </div>
     )
   }
