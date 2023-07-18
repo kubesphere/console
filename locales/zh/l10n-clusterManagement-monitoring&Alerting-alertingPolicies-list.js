@@ -112,5 +112,5 @@ module.exports = {
   ALERTING_POLICY_LOW: '规则组',
   // List > reset
   RESET_ALERTING_POLICY: '重置规则组',
-  RESET_ALERTING_POLICY_DESC: '您确定重置规则组吗？',
+  RESET_ALERTING_POLICY_DESC: '您确定重置规则组吗？'
 };
