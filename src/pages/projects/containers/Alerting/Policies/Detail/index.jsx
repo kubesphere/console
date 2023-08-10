@@ -20,20 +20,19 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
-import { Loading, Tag } from '@kube-design/components'
+import { Loading } from '@kube-design/components'
 
 import { Status } from 'components/Base'
 
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
-import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
+
 import AlertingPolicyStore from 'stores/alerting/policy'
 
 import DetailPage from 'clusters/containers/Base/Detail'
 
-import Health from './Health'
-
 import getRoutes from './routes'
+import styles from './index.scss'
 
 @inject('rootStore')
 @observer
@@ -71,6 +70,25 @@ export default class AlertPolicyDetail extends React.Component {
     return this.props.rootStore.routing
   }
 
+  get resetPolicy() {
+    const { match } = this.props
+    const detail = toJS(this.store.detail)
+
+    return {
+      key: 'reset',
+      icon: 'restart',
+      text: t('RESET'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('alerting.rule.reset', {
+          type: this.type,
+          cluster: match.params.cluster,
+          detail,
+          success: this.fetchData,
+        }),
+    }
+  }
+
   fetchData = params => {
     const { cluster, namespace, name } = this.props.match.params
     if (this.store.fetchDetail) {
@@ -84,36 +102,105 @@ export default class AlertPolicyDetail extends React.Component {
     }
   }
 
-  getOperations = () => [
-    {
-      key: 'edit',
-      icon: 'pen',
-      text: t('EDIT'),
-      type: 'control',
-      action: 'edit',
-      onClick: () =>
-        this.trigger('alerting.policy.create', {
-          detail: toJS(this.store.detail),
-          module: this.store.module,
-          cluster: this.props.match.params.cluster,
-          title: t('EDIT_ALERTING_POLICY'),
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'delete',
-      icon: 'trash',
-      text: t('DELETE'),
-      action: 'delete',
-      type: 'danger',
-      onClick: () =>
-        this.trigger('resource.delete', {
-          type: this.name,
-          detail: this.store.detail,
-          success: () => this.routing.push(this.listUrl),
-        }),
-    },
-  ]
+  getOperations = () => {
+    const { cluster, namespace } = this.props.match.params
+    const detail = toJS(this.store.detail)
+    const enabled = JSON.parse(detail.enabled)
+
+    const commonActions = [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('EDIT_INFORMATION'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('alerting.baseinfo.edit', {
+            type: this.type,
+            cluster,
+            namespace,
+            detail: toJS(this.store.detail),
+            module: this.store.module,
+            title: t('EDIT_ALERTING_POLICY'),
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'disablePolicy',
+        icon: enabled ? 'stop' : 'start',
+        text: enabled ? t('DISABLE') : t('ENABLE'),
+        action: 'edit',
+        onClick: () => {
+          this.trigger(
+            enabled ? 'alerting.rule.update' : 'enable.alerting.rule',
+            {
+              type: this.type,
+              resourceName: this.name,
+              cluster,
+              namespace,
+              detail,
+              success: this.fetchData,
+              enabled,
+              title: enabled
+                ? t('DISABLE_ALERTING_POLICY')
+                : t('ENABLE_ALERTING_POLICY'),
+            }
+          )
+        },
+      },
+      {
+        key: 'editRule',
+        icon: 'wrench',
+        text: t('EDIT_ALERT_RULES'),
+        action: 'edit',
+        onClick: () => {
+          this.trigger('alerting.rule.edit', {
+            type: this.type,
+            cluster,
+            namespace,
+            detail,
+            success: this.fetchData,
+          })
+        },
+      },
+      {
+        key: 'editYaml',
+        icon: 'pen',
+        text: t('EDIT_YAML'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('alerting.yaml.edit', {
+            type: this.type,
+            detail,
+            cluster,
+            namespace,
+            title: t('EDIT_ALERTING_POLICY'),
+            success: this.fetchData,
+          }),
+      },
+    ]
+
+    if (this.type === 'builtin') {
+      commonActions.push(this.resetPolicy)
+    } else {
+      commonActions.push({
+        key: 'delete',
+        icon: 'trash',
+        text: t('DELETE'),
+        action: 'delete',
+        type: 'danger',
+        onClick: () =>
+          this.trigger('alerting.rule.delete', {
+            type: this.name,
+            cluster,
+            namespace,
+            detail: this.store.detail,
+            success: () => this.routing.push(this.listUrl),
+          }),
+      })
+    }
+
+    return commonActions
+  }
 
   getAttrs = () => {
     const detail = toJS(this.store.detail)
@@ -121,42 +208,50 @@ export default class AlertPolicyDetail extends React.Component {
     if (isEmpty(detail)) {
       return
     }
-    const severity = get(detail, 'labels.severity')
-    const level = SEVERITY_LEVEL.find(item => item.value === severity)
-    const alerts = get(detail, 'alerts', [])
-    const time = get(alerts, `${alerts.length - 1}.activeAt`)
+    const enabled = get(detail, 'enabled')
+    const createTime = get(detail, 'createTime')
+
+    const period = get(detail, 'interval', '')
+    const intervalText = {
+      s: 'TIME_S',
+      m: 'TIME_M',
+      h: 'TIME_H',
+    }
+
+    const creator = get(detail, 'creator')
+
+    const evaluationTime = get(detail, 'evaluationTime')
 
     return [
       {
-        name: t('STATUS'),
+        name: t('POLICY_STATUS'),
         value: (
           <Status
-            type={detail.state}
-            name={t(`ALERT_RULE_${detail.state.toUpperCase()}`, {
-              defaultValue: detail.state,
-            })}
+            className={styles.icon}
+            type={JSON.parse(enabled) ? 'active' : 'disabled'}
+            name={JSON.parse(enabled) ? t('ENABLED') : t('DISABLED')}
           />
         ),
       },
       {
-        name: t('SEVERITY'),
-        value: level ? (
-          <Tag type={level.type}>{t(level.label)}</Tag>
-        ) : (
-          <Tag>{severity}</Tag>
-        ),
+        name: t('CHECK_INTERVAL'),
+        value:
+          period !== ''
+            ? t(intervalText[period.slice(-1)], { num: period.slice(0, -1) })
+            : '-',
       },
       {
-        name: t('HEALTH_STATUS'),
-        value: <Health detail={detail} />,
+        name: t('TIME_SPENT'),
+        value:
+          evaluationTime !== '-' ? t('TIME_S', { num: evaluationTime }) : '-',
       },
       {
-        name: t('DURATION'),
-        value: detail.duration,
+        name: t('CREATION_TIME_TCAP'),
+        value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('TRIGGER_TIME'),
-        value: time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-',
+        name: t('CREATOR'),
+        value: creator !== '' ? creator : '-',
       },
     ]
   }
@@ -172,8 +267,9 @@ export default class AlertPolicyDetail extends React.Component {
       module: this.module,
       name: getDisplayName(this.store.detail),
       desc: this.store.detail.description,
-      operations: this.type === 'builtin' ? [] : this.getOperations(),
+      operations: this.getOperations(),
       attrs: this.getAttrs(),
+      icon: <img src="/assets/bell_gear_duotone.svg" />,
       breadcrumbs: [
         {
           label: t('ALERTING_POLICY_PL'),

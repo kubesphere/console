@@ -21,7 +21,7 @@ module.exports = {
   MONITORING_APPLICATION_DESC: '应用资源提供应用资源用量的监控数据以及用量排行情况。',
   // Resource Usage > Cluster Resource Usage
   CUSTOM_TIME_RANGE: '自定义时间范围',
-  ACCOUNTS: '帐户',
+  ACCOUNTS: '账户',
   DEVOPS_PROJECT_PL: 'DevOps 项目',
   SAMPLING_INTERVAL: '采样间隔',
   KUBE_SUN: '日',

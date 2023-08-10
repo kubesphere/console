@@ -22,7 +22,12 @@ import { observer, inject } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
 import { Status } from 'components/Base'
-import { getDisplayName, getLocalTime, compareVersion } from 'utils'
+import {
+  getDisplayName,
+  getLocalTime,
+  compareVersion,
+  showNameAndAlias,
+} from 'utils'
 import { trigger } from 'utils/action'
 import { toJS, observable } from 'mobx'
 import Volume from 'stores/volume'
@@ -220,7 +225,7 @@ export default class VolumeDetail extends React.Component {
     return [
       {
         name: t('PROJECT'),
-        value: namespace,
+        value: showNameAndAlias(namespace, 'project'),
       },
       {
         name: t('STATUS'),

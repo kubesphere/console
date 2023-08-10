@@ -17,8 +17,8 @@
  */
 
 import React from 'react'
-import PropTypes from 'prop-types'
-import { isEmpty } from 'lodash'
+import PropTypes, { oneOfType } from 'prop-types'
+import { isEmpty, isFunction } from 'lodash'
 import { Icon } from '@kube-design/components'
 import classnames from 'classnames'
 
@@ -36,7 +36,7 @@ export default class Banner extends React.Component {
     className: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
-    icon: PropTypes.string,
+    icon: oneOfType([PropTypes.string, PropTypes.func]),
     module: PropTypes.string,
     tips: PropTypes.array,
     routes: PropTypes.array,
@@ -113,7 +113,11 @@ export default class Banner extends React.Component {
       <div className={classnames(styles.wrapper, className)}>
         <div className={styles.titleWrapper}>
           <div className={styles.icon}>
-            <Icon name={icon || ICON_TYPES[module] || 'catalog'} size={48} />
+            {isFunction(icon) ? (
+              icon()
+            ) : (
+              <Icon name={icon || ICON_TYPES[module] || 'catalog'} size={48} />
+            )}
           </div>
           <div className={styles.title}>
             <div className="h3">{title}</div>

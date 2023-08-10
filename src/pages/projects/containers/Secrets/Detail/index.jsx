@@ -22,7 +22,7 @@ import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 import { Loading } from '@kube-design/components'
 
-import { getDisplayName, getLocalTime } from 'utils'
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
 import { SECRET_TYPES } from 'utils/constants'
 import SecretStore from 'stores/secret'
@@ -36,6 +36,9 @@ import getRoutes from './routes'
 @trigger
 export default class SecretDetail extends React.Component {
   store = new SecretStore()
+
+  showSetDefault = record =>
+    record.type === 'kubernetes.io/dockerconfigjson' && !record.isDefault
 
   componentDidMount() {
     this.fetchData()
@@ -75,55 +78,74 @@ export default class SecretDetail extends React.Component {
     this.store.fetchDetail(this.props.match.params)
   }
 
-  getOperations = () => [
-    {
-      key: 'edit',
-      icon: 'pen',
-      text: t('EDIT_INFORMATION'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('resource.baseinfo.edit', {
-          type: this.name,
-          detail: toJS(this.store.detail),
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'editYaml',
-      icon: 'pen',
-      text: t('EDIT_YAML'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('resource.yaml.edit', {
-          detail: this.store.detail,
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'editSecret',
-      icon: 'pen',
-      text: t('EDIT_SETTINGS'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('secret.edit', {
-          detail: this.store.detail,
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'delete',
-      icon: 'trash',
-      text: t('DELETE'),
-      action: 'delete',
-      type: 'danger',
-      onClick: () =>
-        this.trigger('resource.delete', {
-          type: this.name,
-          detail: this.store.detail,
-          success: () => this.routing.push(this.listUrl),
-        }),
-    },
-  ]
+  getOperations = () => {
+    return [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('EDIT_INFORMATION'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('resource.baseinfo.edit', {
+            type: this.name,
+            detail: toJS(this.store.detail),
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'editYaml',
+        icon: 'pen',
+        text: t('EDIT_YAML'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('resource.yaml.edit', {
+            detail: this.store.detail,
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'editSecret',
+        icon: 'pen',
+        text: t('EDIT_SETTINGS'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('secret.edit', {
+            detail: this.store.detail,
+            success: this.fetchData,
+          }),
+      },
+      this.showSetDefault(this.store.detail)
+        ? {
+            key: 'default',
+            icon: 'star',
+            text: t('SET_DEFAULT_REPOSITORY'),
+            action: 'edit',
+            onClick: () => {
+              this.trigger('secret.default', {
+                detail: this.store.detail,
+                cluster: this.props.match.params.cluster,
+                success: () => {
+                  this.fetchData()
+                },
+              })
+            },
+          }
+        : undefined,
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('DELETE'),
+        action: 'delete',
+        type: 'danger',
+        onClick: () =>
+          this.trigger('resource.delete', {
+            type: this.name,
+            detail: this.store.detail,
+            success: () => this.routing.push(this.listUrl),
+          }),
+      },
+    ].filter(Boolean)
+  }
 
   getAttrs = () => {
     const detail = toJS(this.store.detail)
@@ -135,11 +157,11 @@ export default class SecretDetail extends React.Component {
     return [
       {
         name: t('CLUSTER'),
-        value: cluster,
+        value: showNameAndAlias(cluster, 'cluster'),
       },
       {
         name: t('PROJECT'),
-        value: namespace,
+        value: showNameAndAlias(namespace, 'project'),
       },
       {
         name: t('TYPE'),

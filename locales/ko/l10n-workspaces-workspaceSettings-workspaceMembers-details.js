@@ -19,5 +19,5 @@ module.exports = {
   // Attributes
   // Projects
   // DevOps Projects
-  DEVOPS_PROJECTS: 'DevOps Projects'
+  DEVOPS_PROJECTS: '데브옵스 프로젝트'
 };

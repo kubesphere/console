@@ -5,7 +5,7 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "@kube-design/components": "^1.23.2",
+    "@kube-design/components": "^1.27.1",
     "ace-builds": "^1.4.7",
     "ansi_up": "^5.0.0",
     "async-validator": "^1.8.5",

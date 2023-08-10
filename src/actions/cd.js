@@ -49,9 +49,7 @@ const handleFormData = ({ data, module }) => {
       : {}
 
   const source = {
-    repoURL: data.repoURL
-      ? data.repoURL.match(/\(([\w\W]+)\)/)[1]
-      : data.source.repoURL,
+    repoURL: data.repoURL?.url ?? data.source.repoURL,
     ...data.source,
     ...parameters,
   }

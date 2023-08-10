@@ -68,12 +68,14 @@ export default class ParamsFormModal extends React.Component {
   }
 
   get branchOptions() {
-    const { branches, params } = this.props
+    const { branches, params, disabledBrancheNames = [] } = this.props
     let _options = Array.isArray(branches)
-      ? branches.map(branch => ({
-          label: decodeURIComponent(branch),
-          value: branch,
-        }))
+      ? branches
+          .filter(i => !disabledBrancheNames.includes(i))
+          .map(branch => ({
+            label: decodeURIComponent(branch),
+            value: branch,
+          }))
       : []
 
     if (params && params.branch) {

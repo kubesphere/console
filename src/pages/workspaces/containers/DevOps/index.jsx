@@ -16,17 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { computed } from 'mobx'
-
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
-
-import { getLocalTime, getDisplayName } from 'utils'
+import { computed } from 'mobx'
+import React from 'react'
 
 import DevOpsStore from 'stores/devops'
+
+import { getDisplayNameNew, getLocalTime } from 'utils'
+import Table from 'workspaces/components/ResourceTable'
 
 @withList({
   store: new DevOpsStore(),
@@ -123,6 +122,21 @@ export default class DevOps extends React.Component {
     }
   }
 
+  get columnSearch() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
+  }
+
   handleClusterChange = cluster => {
     this.workspaceStore.selectCluster(cluster)
     this.getData()
@@ -160,7 +174,7 @@ export default class DevOps extends React.Component {
                   : null
               }
               desc={record.description || '-'}
-              title={getDisplayName(record)}
+              title={getDisplayNameNew(record)}
             />
           </>
         )
@@ -225,11 +239,12 @@ export default class DevOps extends React.Component {
         />
         <Table
           {...tableProps}
+          className={'table-2-8'}
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           columns={this.getColumns()}
+          columnSearch={this.columnSearch}
           onCreate={this.showCreate}
-          searchType="name"
           isLoading={tableProps.isLoading}
           {...this.clusterProps}
           getCheckboxProps={this.getCheckboxProps}

@@ -67,12 +67,18 @@ export default class ContaineForm extends React.Component {
 
   static childContextTypes = {
     forceUpdate: PropTypes.func,
+    imageDetail: PropTypes.object,
+    setImageDetail: PropTypes.func,
   }
 
   getChildContext() {
     return {
       forceUpdate: () => {
         this.forceUpdate()
+      },
+      imageDetail: this.state.imageDetail,
+      setImageDetail: value => {
+        this.setState({ imageDetail: value })
       },
     }
   }
@@ -90,6 +96,7 @@ export default class ContaineForm extends React.Component {
     this.state = {
       containerType: props.data.type || 'worker',
       formData: cloneDeep(props.data),
+      imageDetail: {},
     }
   }
 
@@ -170,6 +177,8 @@ export default class ContaineForm extends React.Component {
           })
         }
 
+        data.image = this.state.imageDetail.image
+
         onSave(data)
         callback && callback()
       })
@@ -191,6 +200,7 @@ export default class ContaineForm extends React.Component {
       supportGpuSelect,
       projectDetail,
       containers,
+      type,
     } = this.props
     const { containerType, formData } = this.state
 
@@ -214,8 +224,12 @@ export default class ContaineForm extends React.Component {
             workspaceQuota={this.props.workspaceQuota}
             supportGpuSelect={supportGpuSelect}
             containers={containers}
+            type={type}
           />
-          <Ports withService={containerType !== 'init' ? withService : false} />
+          <Ports
+            withService={containerType !== 'init' ? withService : false}
+            data={formData}
+          />
           <ImagePullPolicy />
           {containerType !== 'init' && <HealthChecker />}
           <LifeManagement />

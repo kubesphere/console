@@ -35,6 +35,58 @@ export default class ClusterSettings extends Component {
   state = {
     showTip: false,
     hostClusters: [],
+    filters: {},
+  }
+
+  get columns() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+      {
+        dataIndex: 'group',
+        title: t('TYPE'),
+        search: true,
+        filters: (this.tagsStore.group ?? []).map(i => ({
+          text: i,
+          value: i,
+        })),
+        renderSearch: record => {
+          return (
+            <div className={'flex'}>
+              <div
+                className={classNames(styles.clusterGroupTag, {
+                  [styles[record.key]]: true,
+                })}
+              >
+                {t(`ENV_${record.label.toUpperCase()}`)}
+              </div>
+              {record.label}
+            </div>
+          )
+        },
+      },
+      {
+        dataIndex: 'tags',
+        title: t('TAG_PL'),
+        filters: (this.tagsStore.tags ?? []).map(i => ({
+          text: `${i.label}:${i.value}`,
+          value: i.name,
+        })),
+        search: true,
+        multi: true,
+        renderSearch: record => {
+          return <div>{record.label}</div>
+        },
+      },
+    ]
   }
 
   componentDidMount() {

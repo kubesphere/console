@@ -17,15 +17,15 @@
  */
 module.exports = {
   // Banner
-  CONFIGMAP_DESC: 'A configmap is often used to store configuration information needed for workloads. Many applications will read the information from configuration files, command line parameters, or environment variables.',
+  CONFIGMAP_DESC: '컨피그맵은 종종 워크로드에 필요한 구성 정보를 저장하는 데 사용됩니다. 많은 응용 프로그램이 구성 파일, 명령어 매개 변수 또는 환경 변수에서 정보를 읽습니다.',
   // List
-  FIELDS: 'Fields',
+  FIELDS: '필드',
   // List > Create > Basic Information
   // List > Create > Data Settings
   // List > Edit Information
   // List > Edit YAML
-  EDIT_YAML: 'Edit YAML',
+  EDIT_YAML: 'YAML 편집',
   // List > Edit Settings
-  ENTER_CONFIG_VALUE_DESC: 'Enter the value of the mapping configuration field or use the content from the file.',
-  CONFIG_FIELD_DESC: 'The unique value of the key mapped by the configuration field.'
+  ENTER_CONFIG_VALUE_DESC: '매핑 구성 필드의 값을 입력하거나 파일의 내용을 사용합니다.',
+  CONFIG_FIELD_DESC: '구성 필드에 의해 매핑된 키의 고유 값입니다.'
 };

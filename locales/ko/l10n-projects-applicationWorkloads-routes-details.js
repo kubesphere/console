@@ -18,15 +18,15 @@
 module.exports = {
   // Attributes
   // Resource Status
-  DOMAIN_NAME_VALUE: 'Domain Name: {value}',
-  PATH_VALUE: 'Path: {value}',
-  RULES: 'Rules',
-  ROUTE_PATH_VALUE: 'Path: <strong>{value}</strong>',
-  ROUTE_SERVICE_VALUE: 'Service: <strong>{value}</strong>',
-  ROUTE_PORT_VALUE: 'Port: <strong>{value}</strong>',
-  SERVICE_COLON: 'Service: ',
-  ACCESS_SERVICE: 'Access Service',
-  UNABLE_TO_ACCESS: 'Unable to access service',
-  UNABLE_TO_ACCESS_TIP: 'Make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
-  CERTIFICATE_VALUE: 'Certificate: {value}'
+  DOMAIN_NAME_VALUE: '도메인 이름: {value}',
+  PATH_VALUE: '경로: {value}',
+  RULES: '규칙',
+  ROUTE_PATH_VALUE: '경로: <strong>{value}</strong>',
+  ROUTE_SERVICE_VALUE: '서비스: <strong>{value}</strong>',
+  ROUTE_PORT_VALUE: '포트: <strong>{value}</strong>',
+  SERVICE_COLON: '서비스: ',
+  ACCESS_SERVICE: '엑세스 서비스',
+  UNABLE_TO_ACCESS: '서비스에 액세스할 수 없음',
+  UNABLE_TO_ACCESS_TIP: 'DNS 서버 또는 클라이언트 컴퓨터의 호스트 파일에 도메인 이름 확인 정책이 구성되어 있는지 확인합니다.',
+  CERTIFICATE_VALUE: '인증서: {value}'
 };

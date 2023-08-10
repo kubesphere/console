@@ -19,12 +19,8 @@
 import { isEmpty, sortBy } from 'lodash'
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import {
-  Button,
-  Loading,
-  Pagination,
-  InputSearch,
-} from '@kube-design/components'
+import { Button, Loading, Pagination } from '@kube-design/components'
+import FilterInput from 'components/Tables/Base/FilterInput'
 import Banner from 'components/Cards/Banner'
 import EmptyList from 'components/Cards/EmptyList'
 import ClusterCard from 'clusters/components/Cards/Cluster'
@@ -43,6 +39,9 @@ class Clusters extends React.Component {
 
     this.store = new ClusterStore()
     this.hostStore = new ClusterStore()
+    this.state = {
+      filters: {},
+    }
   }
 
   componentDidMount() {
@@ -103,9 +102,9 @@ class Clusters extends React.Component {
     this.fetchData({ page: 1 })
   }
 
-  handleSearch = name => {
-    this.fetchData({ name })
-    this.fetchHostData({ name })
+  handleSearch = params => {
+    this.fetchData(params)
+    this.fetchHostData(params)
   }
 
   enterCluster = async cluster => {
@@ -262,13 +261,36 @@ class Clusters extends React.Component {
     )
   }
 
+  get columns() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
+  }
+
+  handleFilterChange = filters => {
+    this.setState({
+      filters,
+    })
+    this.handleSearch(filters)
+  }
+
   renderSearch() {
     return (
       <div className={styles.searchPanel}>
-        <InputSearch
-          className={styles.search}
-          onSearch={this.handleSearch}
+        <FilterInput
           placeholder={t('SEARCH_BY_NAME')}
+          columns={this.columns}
+          onChange={this.handleFilterChange}
+          filters={this.state.filters}
         />
         <Button
           type="flat"

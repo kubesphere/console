@@ -16,16 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { Component as Base } from 'core/containers/Base/Detail'
 import { reaction, toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'react-router-dom'
-import { Component as Base } from 'core/containers/Base/Detail'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
 @withRouter
 @inject('rootStore')
 @observer
 export default class DetailPage extends Base {
+  // state = {
+  //   fetchFin: false,
+  // }
+
   componentDidMount() {
     this.props.watch && this.initWebsocket()
   }

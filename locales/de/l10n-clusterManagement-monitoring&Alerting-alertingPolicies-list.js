@@ -29,9 +29,12 @@ module.exports = {
   ALERT_RULE_PENDING: 'Ausstehend',
   ALERT_RULE_FIRING: 'Ausgelöst',
   ALERT_RULE_DISABLED: 'Deaktiviert',
-  ALERT_RULE_HEALTH_OK: 'Gesund',
-  ALERT_RULE_HEALTH_ERR: 'Fehler',
-  ALERT_RULE_HEALTH_UNKNOWN: 'Unbekannt',
+  POLICY_STATUS: 'Rule Group Status',
+  RULE_STATUS: 'Rule Status',
+  TIME_SPENT: 'Time Spent',
+  RECENT_DETECT_TIME: 'Last Check',
+  EDIT_ALERT_RULES: 'Edit Alert Rules',
+  RESET: 'Reset',
   // List > Create > Basic Information
   SEVERITY: 'Schweregrad',
   CREATE_ALERTING_POLICY: 'Regelgruppe erstellen',
@@ -44,7 +47,21 @@ module.exports = {
   ALERT_DURATION: 'Stellen Sie das System so ein, dass es eine bestimmte Zeit lang wartet, und prüfen Sie, ob die Alarmsituation fortbesteht, bevor ein Alarm ausgelöst wird.',
   LONG_NAME_DESC: 'Der Name darf nur Kleinbuchstaben, Zahlen und Bindestriche (-) enthalten und muss mit einem Kleinbuchstaben oder einer Zahl beginnen und enden. Die maximale Länge beträgt 253 Zeichen.',
   NAME_EXIST_DESC: 'Der Name existiert bereits. Bitte geben Sie einen anderen Namen ein.',
+  ALIAS_NAME_DESC: 'The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
+  CHECK_INTERVAL: 'Check Interval',
+  ALERTING_POLICY_CHECK_INTERVAL_DESC: 'Set the interval between metric checks. The default value is 1 minute.',
+  // List > Create > Rule Settings > Rule List
+  ADD_ALERTING_RULE: 'Add Alert Rule',
+  ADD_ALERTING_RULE_DESC: 'Add an alert rule to the rule group.',
+  ENABLE_RULE: 'Enable Rule',
+  DISABLE_RULE: 'Disable Rule',
   // List > Create > Rule Settings > Rule Template
+  RULE_NAME: 'Rule Name',
+  CUSTOM_RULE_NAME_DESC: 'The rule name can contain any characters. The maximum length is 63 characters.',
+  LASTING_MINUTES: 'For {minutes, plural, =1 {1 minute} other {# minutes}}',
+  THRESHOLD_REQUIRED: 'Please enter a metric threshold.',
+  MESSAGE_SUMMARY_DESC: 'The message summary can contain any characters. The maximum length is 63 characters.',
+  MESSAGE_DETAILS_DESC: 'The message details can contain any characters. The maximum length is 256 characters.',
   RULE_TEMPLATE: 'Regelvorlage',
   RULE_SETTINGS: 'Regeleinstellungen',
   MONITORING_TARGETS: 'Überwachungsziele',
@@ -88,7 +105,12 @@ module.exports = {
   NOTIFICATION_DETAILS: 'Details',
   // List > Edit
   EDIT_ALERTING_POLICY: 'Regelgruppe bearbeiten',
+  // List > Disable
+  DISABLE_ALERTING_POLICY: 'Disable Rule Group',
   // List > Delete
   ALERTING_POLICY: 'Regelgruppe',
-  ALERTING_POLICY_LOW: 'regelgruppe'
+  ALERTING_POLICY_LOW: 'regelgruppe',
+  // List > reset
+  RESET_ALERTING_POLICY: 'Reset Rule Group',
+  RESET_ALERTING_POLICY_DESC: 'Are you sure you want to reset the rule group?'
 };

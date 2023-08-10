@@ -19,25 +19,25 @@ module.exports = {
   // Attributes
   // More > Update Gateway
   // More > Delete
-  GATEWAY_LOW: 'gateway',
+  GATEWAY_LOW: '게이트웨이',
   // Monitoring
-  REQUEST_COUNT: 'Requests',
-  NETWORK_TRAFFIC: 'Network Traffic',
-  CONNECTION_COUNT: 'Connections',
-  FAILED_REQUEST_COUNT: 'Failed Requests',
-  AVERAGE_LATENCY: 'Average Latency',
-  P_FIFTY_LATENCY: 'P50 Latency',
-  P_NINETY_FIVE_LATENCY: 'P95 Latency',
-  P_NINETY_NINE_LATENCY: 'P99 Latency',
-  FOUR_XX_REQUEST_COUNT: '4XX Requests',
-  FIVE_XX_REQUEST_COUNT: '5XX Requests',
-  TOTAL_REQUESTS: 'Total Requests',
-  SUCCESSFUL_REQUESTS: 'Successful Requests',
+  REQUEST_COUNT: '요청 수',
+  NETWORK_TRAFFIC: '네트워크 트래픽',
+  CONNECTION_COUNT: '연결 수',
+  FAILED_REQUEST_COUNT: '실패 요청 수',
+  AVERAGE_LATENCY: '평균 지연 시간',
+  P_FIFTY_LATENCY: 'P50 지연',
+  P_NINETY_FIVE_LATENCY: 'P95 지연',
+  P_NINETY_NINE_LATENCY: 'P99 지연',
+  FOUR_XX_REQUEST_COUNT: '4XX 요청 수',
+  FIVE_XX_REQUEST_COUNT: '5XX 요청 수',
+  TOTAL_REQUESTS: '전체 요청 수',
+  SUCCESSFUL_REQUESTS: '성공적인 요청',
   // Configuration Options
-  CONFIGURATION_OPTIONS: 'Configuration Options',
+  CONFIGURATION_OPTIONS: '설정 옵션',
   // Gateway Logs
-  GATEWAY_LOGS: 'Gateway Logs',
-  LOGGING_DISABLED: 'Logging Disabled',
-  REFRESH_INTERVAL_VALUE: 'Refresh interval: {value}s',
-  EXPORT_LOGS: 'Export Logs'
+  GATEWAY_LOGS: '게이트웨어 로그',
+  LOGGING_DISABLED: '로깅 사용 안 함',
+  REFRESH_INTERVAL_VALUE: '새로 고침 간격: {value}\bs',
+  EXPORT_LOGS: '로그 내보내기'
 };

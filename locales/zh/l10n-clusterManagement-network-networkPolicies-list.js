@@ -23,7 +23,7 @@ module.exports = {
   NETWORK_POLICY_Q: '如何更好地使用网络策略?',
   NETWORK_POLICY_A: '我们根据实际使用场景整理了几种较为常见的应用场景，您可以查阅文档了解更多。',
   NETWORK_POLICY_Q1: 'CNI 插件实现网络策略需满足哪些必要条件？',
-  NETWORK_POLICY_A1: 'Kubernetes 所使用 CNI 必须支持 Kubernetes 原生<a href="https://kubernetes.io/zh/docs/concepts/services-networking/network-policies/" target="_blank">网络策略</a>，例如 Calico、Cilium、Kube-router、Romana 和 Weave Net。',
+  NETWORK_POLICY_A1: 'Kubernetes 所使用 CNI 必须支持 Kubernetes 原生网络策略，例如 Calico、Cilium、Kube-router、Romana 和 Weave Net。',
   // List
   NETWORK_POLICY_EMPTY_DESC: '请创建一个网络策略。',
   // List > Create

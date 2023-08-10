@@ -26,10 +26,14 @@ import { getSuitableValue } from 'utils/monitoring'
 import styles from './index.scss'
 
 export default class Item extends React.Component {
+  handleLinkClick = () => {
+    localStorage.setItem('pod-detail-referrer', `${this.props.prefix}/pods`)
+  }
+
   render() {
     const { data, prefix } = this.props
     const { type } = data.podStatus
-
+    const url = `${prefix}/pods/${data.name}`
     return (
       <li>
         <div className={styles.icon}>
@@ -40,7 +44,9 @@ export default class Item extends React.Component {
             flicker
           />
         </div>
-        <Link to={`${prefix}/pods/${data.name}`}>{data.name}</Link>
+        <Link to={url}>
+          <span onClick={this.handleLinkClick}>{data.name}</span>
+        </Link>
         <div className={styles.metric}>
           <Icon name="memory" size={20} />
           <div>

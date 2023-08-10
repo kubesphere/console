@@ -112,7 +112,7 @@ export default class Getway extends React.Component {
         />
       </Loading>
     ) : (
-      <ProjectGatewayList {...this.props} />
+      <ProjectGatewayList {...this.props} type="project" />
     )
   }
 

@@ -16,15 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
-import React from 'react'
-import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
 import { Form, Input, TextArea } from '@kube-design/components'
 import { Modal } from 'components/Base'
-import { PATTERN_NAME } from 'utils/constants'
+import { get } from 'lodash'
+import { observer } from 'mobx-react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import WorkspaceMemberStore from 'stores/user'
+import { PATTERN_ALIAS_NAME, PATTERN_NAME } from 'utils/constants'
 
 @observer
 export default class DevOpsEditModal extends React.Component {
@@ -100,7 +100,16 @@ export default class DevOpsEditModal extends React.Component {
         <Form.Item label={t('CREATOR')} desc={t('DEVOPS_ADMIN_DESC')}>
           <Input name="creator" disabled />
         </Form.Item>
-        <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
+        <Form.Item
+          label={t('ALIAS')}
+          desc={t('ALIAS_NAME_DESC')}
+          rules={[
+            {
+              pattern: PATTERN_ALIAS_NAME,
+              message: t('INVALID_ALIAS_NAME_DESC'),
+            },
+          ]}
+        >
           <Input name="aliasName" maxLength={63} />
         </Form.Item>
         <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>

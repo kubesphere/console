@@ -16,13 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, cloneDeep, set } from 'lodash'
+import { cloneDeep, get, set } from 'lodash'
 import { action, observable } from 'mobx'
-
-import { LIST_DEFAULT_ORDER, DEFAULT_CLUSTER } from 'utils/constants'
 
 import Base from 'stores/base'
 import List from 'stores/base.list'
+
+import { DEFAULT_CLUSTER, LIST_DEFAULT_ORDER } from 'utils/constants'
+import { eventBus } from 'utils/EventBus'
+import { eventKeys } from 'utils/events'
 
 export default class ClusterStore extends Base {
   @observable
@@ -88,6 +90,10 @@ export default class ClusterStore extends Base {
       page: Number(params.page) || 1,
       isLoading: false,
       ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
+
+    data.forEach(item => {
+      eventBus.emit(eventKeys.CLUSTER_CHANGE, item)
     })
 
     return data
@@ -187,11 +193,14 @@ export default class ClusterStore extends Base {
       ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     })
 
+    data.forEach(item => {
+      eventBus.emit(eventKeys.CLUSTER_CHANGE, item)
+    })
     return data
   }
 
   @action
-  async fetchDetail(params) {
+  async fetchDetail({ redirect = true, ...params } = {}) {
     this.isLoading = true
 
     let detail
@@ -203,8 +212,10 @@ export default class ClusterStore extends Base {
         null,
         null,
         (_, err) => {
-          if (err.reason === 'Not Found') {
-            global.navigateTo('/404')
+          if (redirect) {
+            if (err.reason === 'Not Found') {
+              global.navigateTo('/404')
+            }
           }
         }
       )
@@ -316,5 +327,42 @@ export default class ClusterStore extends Base {
     await this.fetchDetail({ name: cluster })
     set(globals, `clusterConfig.${cluster}`, this.detail.configz)
     return get(this.detail.configz, 'ksVersion', '') !== ''
+  }
+
+  @action
+  fetchAllCluster = async params => {
+    const res = await request.get(
+      '/kapis/resources.kubesphere.io/v1alpha3/clusters',
+      params
+    )
+    return get(res, 'items', []).map(this.mapper)
+  }
+
+  checkSpringCloudIfActive = async ({ cluster }) => {
+    const multiCluster = get(globals, 'ksConfig.multicluster', false)
+    const res = await request.get(
+      `/kapis${
+        multiCluster ? `/clusters/${cluster}` : ''
+      }/resources.kubesphere.io/v1alpha3/customresourcedefinitions?name=configurations.springcloud.kubesphere.io`,
+      {},
+      {},
+      () => {
+        return false
+      }
+    )
+
+    if (res && res.totalItems === 1) {
+      return true
+    }
+
+    return false
+  }
+
+  afterChange = d => {
+    eventBus.emit(eventKeys.CLUSTER_CHANGE, this.mapper(d))
+  }
+
+  afterDelete = d => {
+    eventBus.emit(eventKeys.DELETE_CLUSTER, this.mapper(d))
   }
 }

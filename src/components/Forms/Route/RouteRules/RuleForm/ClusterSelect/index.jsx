@@ -16,12 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-
-import { Icon, Checkbox } from '@kube-design/components'
-import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
+import { Checkbox, Icon } from '@kube-design/components'
 import CheckboxGroup from 'fedprojects/components/CheckboxGroup'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import { showNameAndAlias } from 'utils'
+import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -53,7 +53,7 @@ export default class ClusterSelect extends Component {
               <Icon
                 name={CLUSTER_PROVIDER_ICON[option.provider] || 'kubernetes'}
               />
-              <span>{option.name}</span>
+              <span>{showNameAndAlias(option.name, 'cluster')}</span>
             </Checkbox>
           ))}
         </CheckboxGroup>

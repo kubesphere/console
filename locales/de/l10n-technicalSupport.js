@@ -34,7 +34,6 @@ module.exports = {
   KSE_PLATFORM_VERSION: 'Plattformversion: <strong>{version}</strong>',
   // KubeSphere Cloud
   KUBESPHERE_CLOUD_CAPTION: 'KubeSphere Cloud',
-  KUBESPHERE_CLOUD_DESC: 'KubeSphere Cloud builds a digital ecosystem focusing on Kubernetes and provides cloud-native products and services of high standard, such as KubeSphere Backup, KubeSphere Inspector, and KubeSphere Lite, helping enterprises manage, protect, and deliver production-ready applications more efficiently.',
   KSC_FEATURE_BACKUP: 'KubeSphere Backup',
   KSC_FEATURE_BACKUP_APP_DESC: 'Datenschutz auf Anwendungsebene',
   KSC_FEATURE_BACKUP_DATA_DESC: 'Gesicherte Datenkonsistenz',

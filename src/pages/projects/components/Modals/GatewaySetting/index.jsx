@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, isEmpty } from 'lodash'
+import { get, set, isEmpty, has } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -110,6 +110,15 @@ export default class GatewaySettingModal extends React.Component {
     }
     if (annotationType) {
       this.options = Object.keys(CLUSTER_PROVIDERS_ANNOTATIONS[annotationType])
+    }
+
+    const config = get(this.template, 'spec.controller.config', {})
+
+    if (!has(config, 'worker-processes')) {
+      set(this.template, 'spec.controller.config', {
+        ...config,
+        'worker-processes': '4',
+      })
     }
   }
 

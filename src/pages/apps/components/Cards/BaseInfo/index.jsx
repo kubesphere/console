@@ -16,11 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
-
 import { Image, Markdown } from 'components/Base'
+import { observer } from 'mobx-react'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { showNameAndAlias } from 'utils'
 
 import styles from './index.scss'
 
@@ -73,7 +73,7 @@ export default class BaseInfo extends React.Component {
               <dt>{t('VERSION')}</dt>
             </dl>
             <dl>
-              <dd>{detail.isv}</dd>
+              <dd>{showNameAndAlias(detail.isv, 'workspace')}</dd>
               <dt>{t('WORKSPACE')}</dt>
             </dl>
           </div>

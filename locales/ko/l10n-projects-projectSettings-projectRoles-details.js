@@ -23,7 +23,7 @@ module.exports = {
   // More >Delete
   // Attributes
   // Permissions
-  PERMISSION_PL: 'Permissions',
+  PERMISSION_PL: '권한',
   // Authorized Users
-  AUTHORIZED_USER_PL: 'Authorized Users'
+  AUTHORIZED_USER_PL: '인증 된 사용자'
 };

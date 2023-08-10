@@ -17,8 +17,10 @@
  */
 module.exports = {
   // Banner
-  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'How do I receive alerts when alerts are generated?',
-  REQUESTS_FOR_PUSH_AN_ALARM_A: 'A platform administrator needs to configure notification channels. When resource metrics meet conditions and durations configured in rule groups, the system sends alerts to users through the notification channels.',
+  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'How do I receive alerts if an alerting policy is triggered?',
+  REQUESTS_FOR_PUSH_AN_ALARM_A: 'The platform administrator needs to select a notification method and configure the server corresponding to the method.',
+  HOW_TO_SUPRESS_AN_ALARM_Q: 'How do I suppress alerts?',
+  HOW_TO_SUPRESS_AN_ALARM_A: 'You can set alerting policies at different levels. Each level corresponds to an alerting interval.',
   // List
   // List > Create > Basic Information
   // List > Create > Rule Settings > Rule Template

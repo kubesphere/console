@@ -16,9 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import classNames from 'classnames'
 import { Icon } from '@kube-design/components'
+import classNames from 'classnames'
+import { toJS } from 'mobx'
+import React, { Component } from 'react'
+import { getDisplayNameNew, showNameAndAlias } from 'utils'
 import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
 import styles from './index.scss'
@@ -43,11 +45,11 @@ export default class ClustersMapper extends Component {
   render() {
     const { clusters, clustersDetail, namespace, children } = this.props
     const { selectCluster } = this.state
-
     return (
       <div className={styles.wrapper}>
         {clusters.map(cluster => {
-          const clusterDetail = clustersDetail[cluster.name] || cluster
+          const clusterDetail = toJS(clustersDetail[cluster.name]) || cluster
+
           return (
             <div
               key={clusterDetail.name}
@@ -67,7 +69,11 @@ export default class ClustersMapper extends Component {
                   type="light"
                   size={20}
                 />
-                <span>{clusterDetail.name}</span>
+                <span>
+                  {clusterDetail === cluster
+                    ? showNameAndAlias(cluster.name, 'cluster')
+                    : getDisplayNameNew(clusterDetail, false)}
+                </span>
               </div>
               <div>
                 {children({

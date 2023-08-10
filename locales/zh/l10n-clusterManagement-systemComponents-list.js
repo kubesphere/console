@@ -24,7 +24,7 @@ module.exports = {
   RUNNING_TIME: '运行时间',
   KS_CONSOLE_DESC: '提供 KubeSphere 的控制台服务。',
   KS_APISERVER_DESC: '提供用于集群管理的 API 接口。此组件同时也用于集群内部模块通信和集群安全控制。',
-  OPENLDAP_DESC: '集中存储和管理用户的帐户信息。',
+  OPENLDAP_DESC: '集中存储和管理用户的账户信息。',
   REDIS_DESC: '开源内存数据结构化存储组件，用作数据库、缓存和消息中介。',
   TOWER_DESC: '用于集群间通过代理方式创建网络连接。',
   KS_CONTROLLER_MANAGER_DESC: '实现业务逻辑。例如，创建企业空间时创建对应的权限，创建服务策略时生成对应的 Istio 配置。',

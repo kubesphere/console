@@ -53,6 +53,7 @@ module.exports = {
   CONTAINER_NAME: '容器名称',
   CONTAINER_TYPE: '容器类型',
   USE_DEFAULT_PORTS: '使用默认端口',
+  USE_IMAGE_DEFAULT_PORTS: '使用默认镜像端口',
   NO_DEFAULT_PORT: '暂无默认端口配置',
   REGISTRY: '镜像服务',
   SET_IMAGE_DESC: '为容器设置镜像。',
@@ -106,6 +107,11 @@ module.exports = {
   CREATE_CONFIG: '创建配置字典',
   OR: '或',
   CREATE_SECRET: '创建保密字典。',
+  DEFAULT_REPOSITORY: '默认镜像仓库',
+  SET_DEFAULT_REPOSITORY: '设置默认镜像仓库',
+  SET_AS_DEFAULT_REPOSITORY_DESC: '设置为默认镜像仓库后，如果没有特殊指定，系统将使用默认镜像仓库创建应用负载。一个项目中仅允许设置一个默认镜像仓库。',
+  SET_AS_DEFAULT_REPOSITORY: '设为默认镜像仓库',
+  SET_DEFAULT_REPO_SUCCESSFUL: '设置默认镜像仓库成功',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: '容器安全上下文',
   CONTAINER_SECURITY_CONTEXT_DESC: '自定义容器的权限设置。',
@@ -158,6 +164,10 @@ module.exports = {
   MUST_MATCH: '必须匹配',
   TARGET: '目标',
   STRATEGY: '策略',
+  // List > Create > Pod Settings > Pod Grace Period
+  POD_GRACE_PERIOD: '容器组优雅终止',
+  POD_GRACE_PERIOD_DESC: '设置容器终止前等待的时间，超时后容器将强制终止。',
+  TERMINATION_GRACEPERIOD_SECONDS: '终止宽限时间 (s)',
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: '添加元数据',
   POD_ADD_METADATA_DESC: '为容器组副本添加元数据。',

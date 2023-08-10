@@ -23,6 +23,7 @@ import { observer } from 'mobx-react'
 import { isEqual, isEmpty } from 'lodash'
 
 import { Select, Icon, Tooltip } from '@kube-design/components'
+import { showNameAndAlias } from 'utils'
 
 import RoleStore from 'stores/role'
 import DevOpsStore from 'stores/devops'
@@ -82,7 +83,7 @@ export default class DevopsSelect extends Component {
         )
       )
       .map(item => ({
-        label: item.devops,
+        label: showNameAndAlias(item),
         value: item.devops,
         item,
       }))
@@ -149,7 +150,7 @@ export default class DevopsSelect extends Component {
   clusterRenderer = option => {
     return (
       <span>
-        <span>{option.value}</span>
+        <span>{showNameAndAlias(option.item)}</span>
         {option.needUpgrade && (
           <Tooltip
             content={t('CLUSTER_UPGRADE_REQUIRED', { version: 'v3.1.0' })}
@@ -184,7 +185,7 @@ export default class DevopsSelect extends Component {
             options={clusters}
             placeholder={t('CLUSTER')}
             valueRenderer={option =>
-              t('CLUSTER_VALUE', { value: option.value })
+              t('CLUSTER_VALUE', { value: showNameAndAlias(option.item) })
             }
             optionRenderer={this.clusterRenderer}
             prefixIcon={<Icon name="cluster" size={16} />}
@@ -197,7 +198,13 @@ export default class DevopsSelect extends Component {
           disabled={disabled}
           options={this.devops}
           placeholder=" "
-          valueRenderer={option => t('DEVOPS_VALUE', { value: option.value })}
+          valueRenderer={option => {
+            const optionInfo =
+              toJS(this.devopsStore.list).data?.filter(
+                item => item.devops === option.value
+              )[0] || ''
+            return t('PROJECT_VALUE', { value: showNameAndAlias(optionInfo) })
+          }}
           prefixIcon={<Icon name="strategy-group" size={16} />}
           onChange={this.handleDevopsChange}
         />

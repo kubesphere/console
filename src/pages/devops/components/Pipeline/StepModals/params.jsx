@@ -22,6 +22,7 @@ import {
   Select,
   Input,
   TextArea,
+  RadioGroup,
   Checkbox,
   Notify,
 } from '@kube-design/components'
@@ -29,14 +30,17 @@ import { NumberInput } from 'components/Inputs'
 import { toJS } from 'mobx'
 import { set, isEmpty, get } from 'lodash'
 import { Modal, CodeEditor } from 'components/Base'
-import { groovyToJS, parseCondition } from 'utils/devops'
+import CodeRepoSelector from 'components/CodeRepoSelector'
+import { getRepoUrl, groovyToJS, parseCondition } from 'utils/devops'
 import { observer } from 'mobx-react'
 import { CREDENTIAL_KEY } from 'utils/constants'
 import PipelineSelect from './pipeline'
 import CDSelect from './application'
 import SecretSelect from './credential'
+import { Reaction } from './reaction'
 
 import styles from './index.scss'
+import FromCodeRepository from './FromCodeRepository'
 
 const boolMap = new Map([
   [true, 'true'],
@@ -123,21 +127,50 @@ export default class Params extends React.Component {
       typeMap: {},
       initData: {},
       name: '',
+      /**
+       * @type {Reaction}
+       */
+      reactionForm: new Reaction(
+        () => {
+          this.forceUpdate()
+        },
+        {
+          getRepoUrl,
+        }
+      ),
     }
   }
 
   static getDerivedStateFromProps(nextProps, state) {
     const { activeTask, edittingData } = nextProps
     const { name, parameters } = activeTask
+
     if (name === state.name) {
       return null
     }
-
+    const { reactionForm } = state
     const { initData, typeMap, codeKey } = initialData(parameters)
     if (isEmpty(edittingData)) {
+      reactionForm.init(
+        activeTask.parameters ?? [],
+        // defaultConfig,
+        codeKey ? initData[codeKey] : initData
+      )
       return codeKey
-        ? { value: initData[codeKey], initData, typeMap, name }
-        : { formData: initData, initData, typeMap, name }
+        ? {
+            value: initData[codeKey],
+            initData,
+            typeMap,
+            name,
+            reactionForm,
+          }
+        : {
+            formData: initData,
+            initData,
+            typeMap,
+            name,
+            reactionForm,
+          }
     }
 
     let formData = {}
@@ -168,8 +201,16 @@ export default class Params extends React.Component {
         {}
       )
     }
-
-    return { formData, value, initData, typeMap, name }
+    // reactionForm.init(defaultConfig, formData)
+    reactionForm.init(activeTask.parameters ?? [], formData)
+    return {
+      formData,
+      value,
+      initData,
+      typeMap,
+      name,
+      reactionForm,
+    }
   }
 
   handleCodeEditorChange = name => value => {
@@ -184,7 +225,7 @@ export default class Params extends React.Component {
   }
 
   handleSecretChange = option => value => {
-    const { formData } = this.state
+    const { formData, reactionForm } = this.state
     const { store } = this.props
     const res = store.credentialsList.data.filter(t => t.name === value)
     if (!res.length) {
@@ -204,6 +245,7 @@ export default class Params extends React.Component {
         type: `credential.devops.kubesphere.io/${CREDENTIAL_KEY[res[0].type]}`,
       })
     }
+    reactionForm.handleFieldValueChange(option.name, get(formData, option.name))
     this.setState({ formData })
   }
 
@@ -286,6 +328,44 @@ export default class Params extends React.Component {
         )
       case 'hidden':
         return null
+      case 'radioGroup':
+        return (
+          <Form.Item {...formProps}>
+            <RadioGroup
+              name={option.name}
+              options={
+                option.options.map(i => ({
+                  value: i.value,
+                  label: t(i.label),
+                })) || []
+              }
+            />
+          </Form.Item>
+        )
+      case 'codeRepository':
+        return (
+          <Form.Item {...formProps}>
+            <CodeRepoSelector
+              name={option.name}
+              cluster={this.props.cluster}
+              devops={this.props.devops}
+              isCreatePipeline={true}
+              trigger={this.props.trigger}
+            />
+          </Form.Item>
+        )
+      case 'importCodeRepo':
+        return (
+          <Form.Item {...formProps}>
+            <FromCodeRepository
+              name={option.name}
+              cluster={this.props.cluster}
+              devops={this.props.devops}
+              isCreatePipeline={true}
+              trigger={this.props.trigger}
+            />
+          </Form.Item>
+        )
       case 'string':
       default:
         return (
@@ -298,8 +378,8 @@ export default class Params extends React.Component {
 
   handleOk = () => {
     const { activeTask, store, onAddStep, onCancel } = this.props
-    const { typeMap, initData } = this.state
-    const formData = Object.entries(this.formRef.current.getData()).reduce(
+    const { typeMap, initData, reactionForm } = this.state
+    const formData = Object.entries(reactionForm.getValues()).reduce(
       (prev, [key, value]) => {
         const isBoolValue = typeMap[key] === 'bool'
         const _value = typeof value === 'number' ? value.toString() : value
@@ -327,6 +407,8 @@ export default class Params extends React.Component {
 
   render() {
     const { visible, onCancel, activeTask } = this.props
+    const omitType = ['secret']
+    const { reactionForm } = this.state
     return (
       <Modal
         width={680}
@@ -337,8 +419,20 @@ export default class Params extends React.Component {
         closable={false}
         title={activeTask.title}
       >
-        <Form data={this.state.formData} ref={this.formRef}>
-          {activeTask.parameters.map(option => this.renderFormItem(option))}
+        <Form
+          data={reactionForm.getValues()}
+          ref={this.formRef}
+          onChange={(key, value) => {
+            if (
+              !omitType.includes(
+                activeTask.parameters.find(t => t.name === key)?.type
+              )
+            ) {
+              this.state.reactionForm.handleFieldValueChange(key, value)
+            }
+          }}
+        >
+          {reactionForm.getFields().map(option => this.renderFormItem(option))}
         </Form>
       </Modal>
     )

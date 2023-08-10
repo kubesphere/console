@@ -16,12 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { Form, Input, Select, TextArea } from '@kube-design/components'
 import { pick } from 'lodash'
-import React from 'react'
 import { observer } from 'mobx-react'
-import { Input, Select, Form, TextArea } from '@kube-design/components'
-import { PATTERN_NAME } from 'utils/constants'
+import React from 'react'
 import UserStore from 'stores/user'
+import { PATTERN_ALIAS_NAME, PATTERN_NAME } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -108,7 +108,16 @@ export default class BaseInfo extends React.Component {
           >
             <Input name="metadata.name" autoFocus={true} maxLength={63} />
           </Form.Item>
-          <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
+          <Form.Item
+            label={t('ALIAS')}
+            desc={t('ALIAS_NAME_DESC')}
+            rules={[
+              {
+                pattern: PATTERN_ALIAS_NAME,
+                message: t('INVALID_ALIAS_NAME_DESC'),
+              },
+            ]}
+          >
             <Input
               name="metadata.annotations['kubesphere.io/alias-name']"
               maxLength={63}

@@ -16,22 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set } from 'lodash'
-import React from 'react'
-import { observer } from 'mobx-react'
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
-import { updateLabels } from 'utils'
 import { ProjectSelect } from 'components/Inputs'
-
-import {
-  PATTERN_SERVICE_NAME,
-  PATTERN_SERVICE_VERSION,
-  MODULE_KIND_MAP,
-} from 'utils/constants'
+import { get, set } from 'lodash'
+import { observer } from 'mobx-react'
+import React from 'react'
+import FederatedStore from 'stores/federated'
 
 import ServiceStore from 'stores/service'
 import WorkloadStore from 'stores/workload'
-import FederatedStore from 'stores/federated'
+import { updateLabels } from 'utils'
+
+import {
+  MODULE_KIND_MAP,
+  PATTERN_ALIAS_NAME,
+  PATTERN_SERVICE_NAME,
+  PATTERN_SERVICE_VERSION,
+} from 'utils/constants'
 
 @observer
 export default class ServiceBaseInfo extends React.Component {
@@ -178,7 +179,7 @@ export default class ServiceBaseInfo extends React.Component {
       .then(resp => {
         if (resp.exist) {
           return callback({
-            message: t('NEW_VERSION_NUMBER_EXIST_DESC', { value: name }),
+            message: t('NEW_VERSION_NUMBER_EXIST_DESC', { name }),
             field: rule.field,
           })
         }
@@ -230,7 +231,16 @@ export default class ServiceBaseInfo extends React.Component {
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
+            <Form.Item
+              label={t('ALIAS')}
+              desc={t('ALIAS_NAME_DESC')}
+              rules={[
+                {
+                  pattern: PATTERN_ALIAS_NAME,
+                  message: t('INVALID_ALIAS_NAME_DESC'),
+                },
+              ]}
+            >
               <Input
                 name="metadata.annotations['kubesphere.io/alias-name']"
                 maxLength={63}

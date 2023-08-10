@@ -16,19 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { computed } from 'mobx'
 import { Tag } from '@kube-design/components'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
+import ClusterWrapper from 'components/Clusters/ClusterWrapper'
 import withList, { ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
-import ClusterWrapper from 'components/Clusters/ClusterWrapper'
-
-import { getLocalTime, getDisplayName } from 'utils'
+import { computed } from 'mobx'
+import React from 'react'
+import ClusterStore from 'stores/cluster'
 
 import WorkspaceStore from 'stores/workspace'
-import ClusterStore from 'stores/cluster'
+
+import { getDisplayNameNew, getDomTitle, getLocalTime } from 'utils'
 
 @withList({
   store: new WorkspaceStore(),
@@ -45,6 +45,21 @@ export default class Workspaces extends React.Component {
   @computed
   get clusters() {
     return this.clusterStore.list.data
+  }
+
+  get columnSearch() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
   }
 
   showAction(record) {
@@ -120,8 +135,8 @@ export default class Workspaces extends React.Component {
           <Avatar
             icon="enterprise"
             iconSize={40}
-            title={getDisplayName(record)}
-            desc={record.description || '-'}
+            title={getDomTitle(getDisplayNameNew(record))}
+            desc={getDomTitle(record.description || '-')}
             to={`/workspaces/${name}`}
           />
         ),
@@ -171,13 +186,14 @@ export default class Workspaces extends React.Component {
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
         <Table
+          className={'table-2-6'}
           {...tableProps}
           columns={this.getColumns()}
+          columnSearch={this.columnSearch}
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           onCreate={this.showCreate}
           isLoading={tableProps.isLoading || isClusterLoading}
-          searchType="name"
         />
       </ListPage>
     )

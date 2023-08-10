@@ -19,6 +19,9 @@ module.exports = {
   // Edit
   EDIT_LOG_RECEIVER: 'Edit Log Receiver',
   INDEX_PREFIX: '索引前缀',
+  // DELETE
+  LOG_RECEIVER: 'Log Receiver',
+  LOG_RECEIVER_LOW: 'Log Receiver',
   // More > Change Status
   CHANGE_STATUS: '更改狀態',
   LOG_COLLECTION_ENABLE_TIPS: '新的狀態需 1 分鐘左右生效',

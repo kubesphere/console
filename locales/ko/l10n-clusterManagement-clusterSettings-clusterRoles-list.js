@@ -16,9 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  CLUSTER_ROLE: 'Cluster Role',
-  CLUSTER_ROLE_PL: 'Cluster Roles',
-  CLUSTER_ROLE_DESC: 'This module allows you to manage the access of users within a cluster.',
-  ROLE_CLUSTER_VIEWER: 'View all resources in the cluster.',
-  ROLE_CLUSTER_ADMIN: 'Manage all resources in the cluster.'
+  CLUSTER_ROLE: '클러스터 역할',
+  CLUSTER_ROLE_PL: '클러스터 역할',
+  CLUSTER_ROLE_DESC: '이 모듈을 사용하여 클러스터 내 사용자의 액세스를 관리할 수 있습니다.',
+  ROLE_CLUSTER_VIEWER: '클러스터의 모든 리소스를 봅니다.',
+  ROLE_CLUSTER_ADMIN: '클러스터의 모든 리소스를 관리합니다.'
 };

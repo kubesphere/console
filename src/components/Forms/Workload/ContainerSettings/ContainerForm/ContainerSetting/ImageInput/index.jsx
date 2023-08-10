@@ -18,18 +18,17 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { get, set, throttle, isObject, isEmpty } from 'lodash'
-import classnames from 'classnames'
+import { toJS } from 'mobx'
+import { get, debounce, isObject, throttle } from 'lodash'
 import moment from 'moment-mini'
-import { Form, Button, Icon, Loading, Tooltip } from '@kube-design/components'
+import classnames from 'classnames'
 
+import { Form, Icon, Loading, Tooltip } from '@kube-design/components'
 import { getDocsUrl } from 'utils'
-
 import { PATTERN_IMAGE, PATTERN_IMAGE_TAG } from 'utils/constants'
-
 import ContainerStore from 'stores/container'
-
 import DropdownContent from './DropdownContent'
+import ImageTagRadioList from './ImageTagRadioList'
 
 import styles from './index.scss'
 
@@ -37,11 +36,12 @@ export default class ImageSearch extends Component {
   constructor(props) {
     super(props)
     this.store = new ContainerStore()
-    this.getImageDetail = throttle(this.getImageDetail, 1000)
 
     this.state = {
       isLoading: false,
-      showPortsTips: false,
+      selectedImage: undefined,
+      selectedImageTag: undefined,
+      selectedLoading: false,
     }
   }
 
@@ -52,28 +52,28 @@ export default class ImageSearch extends Component {
 
   static contextTypes = {
     forceUpdate: PropTypes.func,
+    setImageDetail: PropTypes.func,
   }
 
-  get selectedImage() {
-    const { formTemplate } = this.props
-    const image = get(formTemplate, 'image', '')
+  get secret() {
+    const { imageRegistries, formTemplate, type } = this.props
+    const defaultsecrect = imageRegistries.find(item => item.isDefault)
 
-    return get(globals.cache, `[${image}]`)
-  }
-
-  get tag() {
-    const imageName = get(this.props.formTemplate, 'image', '')
-    const result = PATTERN_IMAGE_TAG.exec(imageName)
-    return get(result, `[${result.length - 1}]`, ':latest').slice(1)
+    if (type === 'Edit') {
+      get(formTemplate, 'pullSecret', '')
+    }
+    return get(formTemplate, 'pullSecret', defaultsecrect?.value || '')
   }
 
   componentDidMount() {
-    const { formTemplate } = this.props
-
+    const { formTemplate, imageRegistries } = this.props
     const image = get(formTemplate, 'image', '')
-    if (!this.selectedImage && image) {
-      const secret = get(formTemplate, 'pullSecret')
-      this.getImageDetail({ image, secret })
+    const secretUrl =
+      imageRegistries.find(item => item.value === this.secret)?.url ?? ''
+    const convertUrl = secretUrl.replace(/^(http(s)?:\/\/)?(.*)$/, '$3')
+
+    if (image && image !== convertUrl) {
+      this.getImageDetail({ image, secret: this.secret })
     }
   }
 
@@ -81,77 +81,183 @@ export default class ImageSearch extends Component {
     this.isUnMounted = true
   }
 
-  handleEnter = params => {
-    if (!globals.config.enableImageSearch) {
-      return
-    }
-    const { logo = '', short_description = '' } = params || {}
-    const { formTemplate } = this.props
-
-    const secret = get(formTemplate, 'pullSecret')
-    const image = get(formTemplate, 'image', '')
-
-    if (this.image && image === this.image) {
-      this.image = undefined
-      return
-    }
-
-    this.ImageDetail = { image, secret, logo, short_description }
-    this.getImageDetail(this.ImageDetail)
+  getTag = image => {
+    const result = PATTERN_IMAGE_TAG.exec(image)
+    const tag = get(result, `[${result.length - 1}]`, ':latest').slice(1)
+    return { imageName: image.replace(`:${tag}`, ''), tag }
   }
+
+  getImageParam = () => {
+    const { namespace, imageRegistries, cluster: propsCluster } = this.props
+    const secretDetail = imageRegistries.find(
+      item => item.value === this.secret
+    )
+    const cluster = get(secretDetail, 'cluster') || propsCluster
+
+    return {
+      namespace,
+      cluster,
+    }
+  }
+
+  handleEnter = debounce(
+    params => {
+      if (!globals.config.enableImageSearch) {
+        return
+      }
+
+      const { logo = '', short_description = '' } = params || {}
+      const { formTemplate } = this.props
+      const image = get(formTemplate, 'image', '')
+      const tagList = toJS(this.store.tagList.data)
+
+      if (this.image === image && tagList.length > 0) {
+        return
+      }
+
+      this.ImageDetail = { image, secret: this.secret, logo, short_description }
+      this.getImageDetail(this.ImageDetail)
+    },
+    800,
+    { leading: false, trailing: true }
+  )
 
   getImageDetailNoCert = () => {
     this.getImageDetail({ ...this.ImageDetail, insecure: true })
   }
 
-  getImageDetail = async ({ image, secret, insecure, ...rest }) => {
-    const { namespace, imageRegistries, cluster: propsCluster } = this.props
+  getImage = async ({ image, insecure, tag }) => {
+    const pamram = this.getImageParam()
 
-    if (!image || this.isUnMounted) {
-      return
-    }
-
-    this.image = image
-
-    this.setState({ isLoading: true })
-
-    const secretDetail = imageRegistries.find(item => item.value === secret)
-    const cluster = get(secretDetail, 'cluster') || propsCluster
-    const result = await this.store.getImageDetail({
-      cluster,
-      namespace,
-      image,
-      secret,
+    const imageDetail = await this.store.getImageDetail({
+      image: `${image}:${tag || 'lastest'}`,
+      secret: this.secret,
       insecure,
+      ...pamram,
     })
-    const selectedImage = { ...result, ...rest, image }
-    set(globals, `cache[${image}]`, selectedImage)
 
-    if (!isEmpty(selectedImage.exposedPorts)) {
-      this.setState({ showPortsTips: true })
-    }
-
-    this.setState({ isLoading: false })
+    return imageDetail
   }
 
-  handleFillPorts = () => {
-    const ports = this.selectedImage.exposedPorts.map(port => {
-      const protocol = port.split('/')[1]
-      const containerPort = Number(port.split('/')[0])
+  getImageList = async ({ imageName, insecure, page, ...params }) => {
+    const resourceParams = this.getImageParam()
+    const currentImage = imageName || this.image
 
-      return {
-        name: `${protocol}-${containerPort}`,
-        protocol: protocol.toUpperCase(),
-        containerPort,
-        servicePort: containerPort,
+    const resTagList = await this.store.getImageTagList({
+      repository: currentImage,
+      insecure,
+      page,
+      secret: this.secret,
+      ...params,
+      ...resourceParams,
+    })
+
+    if (params.more) {
+      // update page
+      this.setState({ imageTagList: resTagList })
+    }
+
+    return resTagList
+  }
+
+  getImageDetail = debounce(
+    async ({ image, insecure, secret }) => {
+      if (!image || this.isUnMounted) {
+        return
       }
-    })
 
-    if (!isEmpty(ports)) {
-      set(this.props.formTemplate, 'ports', ports)
-      this.context.forceUpdate && this.context.forceUpdate()
-    }
+      this.image = image
+      this.setState({ isLoading: true })
+
+      const params = this.getImageParam()
+      const { imageName, tag } = this.getTag(image)
+
+      let imageDetail
+      let tagList = []
+
+      if (tag && tag !== 'latest') {
+        imageDetail = await this.store.getImageDetail({
+          image: `${imageName}:${tag}`,
+          insecure,
+          ...params,
+          secret,
+        })
+
+        this.store.updateTagList({
+          data: [tag],
+          total: 1,
+          limit: Number(params.limit) || 10,
+          page: Number(params.page) || 1,
+          isLoading: false,
+        })
+      } else {
+        const resTagList = await this.getImageList({
+          imageName,
+          page: 1,
+          ...params,
+        })
+
+        imageDetail = await this.store.getImageDetail({
+          image: `${imageName}${
+            resTagList && Array.isArray(resTagList) ? `:${resTagList[0]}` : ''
+          }`,
+          insecure,
+          secret,
+          ...params,
+        })
+      }
+
+      tagList = toJS(this.store.tagList.data)
+
+      this.setState(
+        {
+          isLoading: false,
+          selectedImageTag: tagList[0],
+          selectedImage: {
+            ...imageDetail,
+            image: `${imageName}:${tagList[0]}`,
+          },
+        },
+        () => {
+          this.context.setImageDetail &&
+            this.context.setImageDetail(this.state.selectedImage)
+        }
+      )
+    },
+    800,
+    { leading: false, trailing: true }
+  )
+
+  renderWaringText = () => {
+    return <p>{t('IGNORE_CERT_WARN_DESC')}</p>
   }
+
+  onSelectImageTag = throttle(
+    async tag => {
+      this.setState({ selectedImageTag: tag, selectedLoading: true })
+
+      const imageDetail = await this.getImage({
+        image: this.image,
+        tag,
+      })
+
+      this.setState(
+        {
+          selectedImage: {
+            ...imageDetail,
+            image: `${this.image}:${tag}`,
+          },
+          selectedLoading: false,
+        },
+        () => {
+          this.context.setImageDetail &&
+            this.context.setImageDetail(this.state.selectedImage)
+        }
+      )
+    },
+    300,
+    { leading: false, trailing: true }
+  )
 
   renderWaringText = () => {
     return <p>{t('IGNORE_CERT_WARN_DESC')}</p>
@@ -166,8 +272,10 @@ export default class ImageSearch extends Component {
       )
     }
 
-    if (isObject(this.selectedImage)) {
-      const { message, status } = this.selectedImage
+    const { selectedImage, selectedImageTag, selectedLoading } = this.state
+
+    if (isObject(selectedImage)) {
+      const { message, status } = selectedImage
 
       if (status === 'failed') {
         if (message && message.includes('x509')) {
@@ -212,7 +320,7 @@ export default class ImageSearch extends Component {
         exposedPorts = [],
         logo,
         short_description,
-      } = this.selectedImage
+      } = selectedImage
 
       const registry =
         image.indexOf('/') > -1 ? image.split('/')[0] : 'docker.io'
@@ -220,57 +328,53 @@ export default class ImageSearch extends Component {
       const _message = message || short_description
 
       return (
-        <div className={styles.selectedContent}>
-          <div className={styles.selectedInfo}>
-            <img
-              className={styles.logo}
-              src={logo || '/assets/no_img.svg'}
-              alt={image}
+        <>
+          <div className={styles.selectedContent}>
+            <Loading spinning={selectedLoading}>
+              <div className={styles.selectedImageInfo}>
+                <div className={styles.selectedInfo}>
+                  <img
+                    className={styles.logo}
+                    src={logo || '/assets/no_img.svg'}
+                    alt={image}
+                  />
+                  <div className={styles.imageInfo}>
+                    <p>{image}</p>
+                    <p>
+                      {t('IMAGE_TIME_SIZE_LAYER', {
+                        time: moment(createTime).fromNow(),
+                      })}
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.selectedInfo}>
+                  <Icon name="port" className={styles.icon} />
+                  <div className={styles.imageInfo}>
+                    <p>{ports || t('NO_DEFAULT_PORT')}</p>
+                    <p>{t('PORT')}</p>
+                  </div>
+                </div>
+                <div className={styles.selectedInfo}>
+                  <Icon name="docker" className={styles.icon} />
+                  <div className={styles.imageInfo}>
+                    <p>{registry}</p>
+                    <p>{t('REGISTRY')}</p>
+                  </div>
+                </div>
+              </div>
+            </Loading>
+            {_message ? <div className={styles.message}>{_message}</div> : null}
+            <ImageTagRadioList
+              onSelectImageTag={this.onSelectImageTag}
+              selectedImageTag={selectedImageTag}
+              tagList={toJS(this.store.tagList)}
+              getImageList={this.getImageList}
             />
-            <div className={styles.imageInfo}>
-              <p className={styles.title}>{image}</p>
-              <p className={styles.desc}>
-                {t('IMAGE_TIME_SIZE_LAYER', {
-                  time: moment(createTime).fromNow(),
-                })}
-              </p>
-            </div>
-            {this.state.showPortsTips ? (
-              <Button
-                className={styles.defaultPortButtons}
-                onClick={this.handleFillPorts}
-              >
-                👉 {t('USE_DEFAULT_PORTS')}
-              </Button>
-            ) : null}
           </div>
-          {_message ? <div className={styles.message}>{_message}</div> : null}
-          <div className={styles.config}>
-            <div className={styles.selectedInfo}>
-              <Icon name="tag" className={styles.icon} />
-              <div className={styles.imageInfo}>
-                <p>{this.tag}</p>
-                <p>{t('TAG')}</p>
-              </div>
-            </div>
-            <div className={styles.selectedInfo}>
-              <Icon name="port" className={styles.icon} />
-              <div className={styles.imageInfo}>
-                <p>{ports || t('NO_DEFAULT_PORT')}</p>
-                <p>{t('PORT')}</p>
-              </div>
-            </div>
-            <div className={styles.selectedInfo}>
-              <Icon name="docker" className={styles.icon} />
-              <div className={styles.imageInfo}>
-                <p>{registry}</p>
-                <p>{t('REGISTRY')}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        </>
       )
     }
+
     return (
       <div className={classnames(styles.selectedContent, styles.emptyContent)}>
         <div>

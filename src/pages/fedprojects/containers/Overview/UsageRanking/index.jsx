@@ -16,16 +16,17 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { toJS } from 'mobx'
-import { inject, observer } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
-import { Link } from 'react-router-dom'
-import isEqual from 'react-fast-compare'
 import { Icon, Select } from '@kube-design/components'
 import { Panel } from 'components/Base'
-import { getValueByUnit, getSuitableUnit } from 'utils/monitoring'
+import { get, isEmpty } from 'lodash'
+import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
+import isEqual from 'react-fast-compare'
+import { Link } from 'react-router-dom'
 import Store from 'stores/rank/workload'
+import { showNameAndAlias } from 'utils'
+import { getSuitableUnit, getValueByUnit } from 'utils/monitoring'
 
 import styles from './index.scss'
 
@@ -90,7 +91,15 @@ class UsageRanking extends React.Component {
     return LINK_MAP[owner_kind]
   }
 
-  clusterRenderer = option => t('CLUSTER_VALUE', { value: option.value })
+  clusterRenderer = option => {
+    return (
+      <span>
+        {t('CLUSTER_VALUE', {
+          value: showNameAndAlias(option.value, 'cluster', {}, true),
+        })}
+      </span>
+    )
+  }
 
   renderHeader() {
     const { cluster, clusters, onClusterChange } = this.props

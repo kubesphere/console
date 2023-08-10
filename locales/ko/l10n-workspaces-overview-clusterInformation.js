@@ -17,6 +17,6 @@
  */
 module.exports = {
   // List
-  HOW_TO_APPLY_MORE_CLUSTER_Q: 'How do I apply for more clusters for the workspace?',
-  HOW_TO_APPLY_MORE_CLUSTER_A: 'Contact the platform or cluster administrator to apply for more clusters.'
+  HOW_TO_APPLY_MORE_CLUSTER_Q: '워크스페이스에 더 많은 클러스터를 신청하려면 어떻게 해야 합니까?',
+  HOW_TO_APPLY_MORE_CLUSTER_A: '더 많은 클러스터를 신청하려면 플랫폼 또는 클러스터 관리자에게 문의하십시오.'
 };

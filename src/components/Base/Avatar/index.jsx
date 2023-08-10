@@ -16,11 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import classNames from 'classnames'
-import { Link } from 'react-router-dom'
 import { Icon, Tooltip } from '@kube-design/components'
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 import styles from './index.scss'
 
@@ -51,13 +51,19 @@ export default class Avatar extends React.Component {
       avatar,
       icon,
       iconSize,
-      title,
+      title: titleProp,
       desc,
       to,
       noLink,
       isMultiCluster,
     } = this.props
 
+    const title =
+      typeof titleProp === 'string' ? (
+        <span title={titleProp}>{titleProp}</span>
+      ) : (
+        titleProp
+      )
     const titleComponent = to ? <Link to={to}>{title}</Link> : title
 
     return (
@@ -82,7 +88,10 @@ export default class Avatar extends React.Component {
         )}
         <div className={styles.text}>
           <div className={styles.title}>{titleComponent}</div>
-          <div className={classNames(styles.description, 'ks-avatar-desc')}>
+          <div
+            className={classNames(styles.description, 'ks-avatar-desc')}
+            title={typeof desc === 'string' ? desc : undefined}
+          >
             {desc}
           </div>
         </div>

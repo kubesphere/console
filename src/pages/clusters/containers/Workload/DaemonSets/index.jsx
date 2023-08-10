@@ -16,22 +16,22 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { Link } from 'react-router-dom'
+import ResourceTable from 'clusters/components/ResourceTable'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import { withClusterList, ListPage } from 'components/HOCs/withList'
-import WorkloadStatus from 'projects/components/WorkloadStatus'
-import StatusReason from 'projects/components/StatusReason'
-import ResourceTable from 'clusters/components/ResourceTable'
+import { ListPage, withClusterList } from 'components/HOCs/withList'
 import { get } from 'lodash'
-
-import { getLocalTime, getDisplayName } from 'utils'
-import { getWorkloadStatus } from 'utils/status'
-import { WORKLOAD_STATUS, ICON_TYPES } from 'utils/constants'
+import StatusReason from 'projects/components/StatusReason'
+import WorkloadStatus from 'projects/components/WorkloadStatus'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 import WorkloadStore from 'stores/workload'
+
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
+import { ICON_TYPES, WORKLOAD_STATUS } from 'utils/constants'
+import { getWorkloadStatus } from 'utils/status'
 
 @withClusterList({
   store: new WorkloadStore('daemonsets'),
@@ -188,7 +188,7 @@ export default class DaemonSets extends React.Component {
         width: '22%',
         render: namespace => (
           <Link to={`/clusters/${cluster}/projects/${namespace}`}>
-            {namespace}
+            {showNameAndAlias(namespace, 'project')}
           </Link>
         ),
       },

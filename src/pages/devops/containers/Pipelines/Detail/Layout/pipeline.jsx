@@ -16,22 +16,21 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import { Notify } from '@kube-design/components'
+import Nav from 'devops/components/DetailNav'
+import Status from 'devops/components/Status'
+import DetailPage from 'devops/containers/Base/Detail'
+import { get, has, isArray, isEmpty, last } from 'lodash'
 import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 
 import moment from 'moment-mini'
-import { get, isEmpty, has, isArray, last } from 'lodash'
-
-import { Notify } from '@kube-design/components'
-import Status from 'devops/components/Status'
+import React from 'react'
 import CodeQualityStore from 'stores/devops/codeQuality'
-import DetailPage from 'devops/containers/Base/Detail'
-
+import { showNameAndAlias } from 'utils'
 import { getPipelineStatus } from 'utils/status'
 
 import { trigger } from 'utils/action'
-import Nav from 'devops/components/DetailNav'
 
 import './index.scss'
 
@@ -67,6 +66,31 @@ export default class PipelineDetailLayout extends React.Component {
       cluster,
       devops,
     })
+  }
+
+  get ksVersion() {
+    const { cluster } = this.props.match.params
+    return globals.app.isMultiCluster
+      ? get(globals, `clusterConfig.${cluster}.ksVersion`)
+      : get(globals, 'ksConfig.ksVersion')
+  }
+
+  get routes() {
+    const [newPipeline, ...rest] = this.props.route.routes
+    return [
+      {
+        ...newPipeline,
+        component: newPipeline.getComponent(this.ksVersion),
+      },
+      ...rest,
+    ]
+  }
+
+  get route() {
+    return {
+      ...this.props.route,
+      routes: this.routes,
+    }
   }
 
   componentDidMount() {
@@ -141,8 +165,12 @@ export default class PipelineDetailLayout extends React.Component {
             devops,
             cluster,
             formTemplate: this.state.formTemplate,
+            // codeRepoKey: detail?.codeRepoKey,
             success: this.fetchData,
             handleScanRepository: this.handleScanRepository,
+            trigger: (...args) => {
+              this.trigger(...args)
+            },
           }),
       },
       {
@@ -241,7 +269,7 @@ export default class PipelineDetailLayout extends React.Component {
     return [
       {
         name: t('DEVOPS_PROJECT'),
-        value: devopsName,
+        value: showNameAndAlias(devopsName, 'devops'),
       },
       {
         name: t('KIND_TCAP'),
@@ -282,7 +310,7 @@ export default class PipelineDetailLayout extends React.Component {
       <Nav
         sonarqubeStore={this.sonarqubeStore}
         detailStore={this.store}
-        route={this.props.route}
+        route={this.route}
         match={this.props.match}
       />
     )
@@ -323,7 +351,7 @@ export default class PipelineDetailLayout extends React.Component {
 
     return (
       <DetailPage
-        routes={this.props.route.routes}
+        routes={this.routes}
         stores={stores}
         nav={this.renderNav()}
         {...sideProps}

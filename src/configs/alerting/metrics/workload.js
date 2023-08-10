@@ -17,46 +17,46 @@
  */
 
 import {
-  getBaseRuleConfig,
   PERCENT_RULE_CONFIG,
-  CPU_RULE_CONFIG,
-  MEMORY_RULE_CONFIG,
+  CORE_RULE_CONFIG,
+  MIB_RULE_CONFIG,
+  MBPS_RULE_CONFIG,
 } from './rule.config'
 
-const BANDWIDTH_RULE_CONFIG = getBaseRuleConfig({
-  thresholds: {
-    unit: 'Kbps',
-  },
-})
-
 export default {
-  'namespace:workload_cpu_usage:sum{$1}': {
+  'cpu:usage': {
     label: 'CPU_USAGE_SCAP',
+    tcapLabel: 'CPU_USAGE_TCAP',
     prefixIcon: 'cpu',
-    ruleConfig: CPU_RULE_CONFIG,
+    ruleConfig: CORE_RULE_CONFIG,
   },
-  'namespace:workload_memory_usage:sum{$1}': {
+  'memory:usage': {
     label: 'MEMORY_USAGE_SCAP',
+    tcapLabel: 'MEMORY_USAGE_TCAP',
     prefixIcon: 'memory',
-    ruleConfig: MEMORY_RULE_CONFIG,
+    ruleConfig: MIB_RULE_CONFIG,
   },
-  'namespace:workload_memory_usage_wo_cache:sum{$1}': {
+  'memory:usageWoCache': {
     label: 'MEMORY_USAGE_WO_CACHE_SCAP',
+    tcapLabel: 'MEMORY_USAGE_WO_CACHE_TCAP',
     prefixIcon: 'memory',
-    ruleConfig: MEMORY_RULE_CONFIG,
+    ruleConfig: MIB_RULE_CONFIG,
   },
-  'namespace:workload_net_bytes_transmitted:sum_irate{$1}': {
+  'network:transmittedRate': {
     label: 'DATA_SEND_RATE',
+    tcapLabel: 'DATA_SEND_RATE_TCAP',
     prefixIcon: 'network',
-    ruleConfig: BANDWIDTH_RULE_CONFIG,
+    ruleConfig: MBPS_RULE_CONFIG,
   },
-  'namespace:workload_net_bytes_received:sum_irate{$1}': {
+  'network:receivedRate': {
     label: 'DATA_RECEIVE_RATE',
+    tcapLabel: 'DATA_RECEIVE_RATE_TCAP',
     prefixIcon: 'network',
-    ruleConfig: BANDWIDTH_RULE_CONFIG,
+    ruleConfig: MBPS_RULE_CONFIG,
   },
-  'namespace:$2_unavailable_replicas:ratio{$1}': {
+  'replica:unavailableRatio': {
     label: 'UNAVAILABLE_WORKLOAD_REPLICA_RATIO',
+    tcapLabel: 'UNAVAILABLE_WORKLOAD_REPLICA_RATIO_NO_PERCENT_TCAP',
     prefixIcon: 'backup',
     ruleConfig: PERCENT_RULE_CONFIG,
   },

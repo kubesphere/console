@@ -29,9 +29,12 @@ module.exports = {
   ALERT_RULE_PENDING: '验证中',
   ALERT_RULE_FIRING: '已触发',
   ALERT_RULE_DISABLED: '已禁用',
-  ALERT_RULE_HEALTH_OK: '健康',
-  ALERT_RULE_HEALTH_ERR: '错误',
-  ALERT_RULE_HEALTH_UNKNOWN: '未知',
+  POLICY_STATUS: '规则组状态',
+  RULE_STATUS: '规则状态',
+  TIME_SPENT: '耗时',
+  RECENT_DETECT_TIME: '最近检查',
+  EDIT_ALERT_RULES: '编辑告警规则',
+  RESET: '重置',
   // List > Create > Basic Information
   SEVERITY: '告警级别',
   CREATE_ALERTING_POLICY: '创建规则组',
@@ -44,7 +47,21 @@ module.exports = {
   ALERT_DURATION: '设置系统等待一段时间并检查告警情况是否持续存在，如果告警情况持续存在才触发告警。',
   LONG_NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
   NAME_EXIST_DESC: '名称已存在，请输入其他名称。',
+  ALIAS_NAME_DESC: '别名只能包含中文、字母、数字和连字符（-），不得以连字符（-）开头或结尾，最长 63 个字符。',
+  CHECK_INTERVAL: '检查间隔',
+  ALERTING_POLICY_CHECK_INTERVAL_DESC: '设置指标检查之间的时间间隔。默认值为 1 分钟。',
+  // List > Create > Rule Settings > Rule List
+  ADD_ALERTING_RULE: '添加告警规则',
+  ADD_ALERTING_RULE_DESC: '为规则组添加告警规则。',
+  ENABLE_RULE: '启用规则',
+  DISABLE_RULE: '禁用规则',
   // List > Create > Rule Settings > Rule Template
+  RULE_NAME: '规则名称',
+  CUSTOM_RULE_NAME_DESC: '规则名称可包含任意字符，最长 63 个字符。',
+  LASTING_MINUTES: '持续 {minutes, plural, =1 {1 分钟} other {# 分钟}}',
+  THRESHOLD_REQUIRED: '请输入指标阈值。',
+  MESSAGE_SUMMARY_DESC: '消息概要可包含任意字符，最长 63 个字符。',
+  MESSAGE_DETAILS_DESC: '消息详情可包含任意字符，最长 256 个字符。',
   RULE_TEMPLATE: '规则模板',
   RULE_SETTINGS: '规则设置',
   MONITORING_TARGETS: '监控目标',
@@ -54,9 +71,9 @@ module.exports = {
   POD_QUOTA_UTILIZATION_SCAP: '容器组配额用量（%）',
   CPU_USAGE_SCAP: 'CPU 用量',
   CPU_UTILIZATION_SCAP: 'CPU 用量（%）',
-  CPU_LOAD_1: '1 分钟 CPU 平均负载',
-  CPU_LOAD_5: '5 分钟 CPU 平均负载',
-  CPU_LOAD_15: '15 分钟 CPU 平均负载',
+  CPU_LOAD_1: 'CPU 平均负载（1 分钟）',
+  CPU_LOAD_5: 'CPU 平均负载（5 分钟）',
+  CPU_LOAD_15: 'CPU 平均负载（15 分钟）',
   MEMORY_AVAILABLE: '可用内存',
   MEMORY_UTILIZATION_SCAP: '内存用量（%）',
   DISK_SPACE_AVAILABLE: '本地磁盘可用空间',
@@ -88,7 +105,12 @@ module.exports = {
   NOTIFICATION_DETAILS: '详情',
   // List > Edit
   EDIT_ALERTING_POLICY: '编辑规则组',
+  // List > Disable
+  DISABLE_ALERTING_POLICY: '禁用规则组',
   // List > Delete
   ALERTING_POLICY: '规则组',
-  ALERTING_POLICY_LOW: '规则组'
+  ALERTING_POLICY_LOW: '规则组',
+  // List > reset
+  RESET_ALERTING_POLICY: '重置规则组',
+  RESET_ALERTING_POLICY_DESC: '您确定重置规则组吗？'
 };

@@ -16,45 +16,45 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { Form, Icon, Tooltip } from '@kube-design/components'
+import AffinityForm from 'components/Forms/Workload/ContainerSettings/Affinity'
 import {
   concat,
+  endsWith,
   get,
-  set,
-  unset,
+  has,
   isEmpty,
+  isUndefined,
+  mergeWith,
+  min,
   omit,
   omitBy,
-  has,
-  min,
-  reduce,
-  mergeWith,
-  isUndefined,
   pickBy,
-  endsWith,
+  reduce,
+  set,
+  unset,
 } from 'lodash'
 import React from 'react'
-import { generateId, cancelContainerDot, resourceLimitKey } from 'utils'
-import { MODULE_KIND_MAP } from 'utils/constants'
-import { getLeftQuota } from 'utils/workload'
+import FederatedStore from 'stores/federated'
+import LimitRangeStore from 'stores/limitrange'
+import ProjectStore from 'stores/project'
+import QuotaStore from 'stores/quota'
 
 import SecretStore from 'stores/secret'
-import LimitRangeStore from 'stores/limitrange'
-import FederatedStore from 'stores/federated'
-import QuotaStore from 'stores/quota'
 import WorkspaceQuotaStore from 'stores/workspace.quota'
-import ProjectStore from 'stores/project'
-
-import { Form, Tooltip, Icon } from '@kube-design/components'
-import AffinityForm from 'components/Forms/Workload/ContainerSettings/Affinity'
-import ReplicasControl from './ReplicasControl'
+import { cancelContainerDot, generateId, resourceLimitKey } from 'utils'
+import { MODULE_KIND_MAP } from 'utils/constants'
+import { getLeftQuota } from 'utils/workload'
 import ClusterReplicasControl from './ClusterReplicasControl'
-import UpdateStrategy from './UpdateStrategy'
-import ContainerList from './ContainerList'
 import ContainerForm from './ContainerForm'
-import PodSecurityContext from './PodSecurityContext'
+import ContainerList from './ContainerList'
+import styles from './index.scss'
 
 import Metadata from './Metadata'
-import styles from './index.scss'
+import PodSecurityContext from './PodSecurityContext'
+import ReplicasControl from './ReplicasControl'
+import TerminationSeconds from './TerminationSeconds'
+import UpdateStrategy from './UpdateStrategy'
 
 export default class ContainerSetting extends React.Component {
   constructor(props) {
@@ -629,6 +629,7 @@ export default class ContainerSetting extends React.Component {
         cluster={cluster}
         supportGpuSelect={supportGpuSelect}
         containers={this.containers}
+        isEdit={this.props.isEdit}
         {...params}
       />
     )
@@ -660,6 +661,7 @@ export default class ContainerSetting extends React.Component {
           template={this.formTemplate}
           clusters={projectDetail.clusters}
           onClusterUpdate={this.handleClusterUpdate}
+          omitAlias={12}
         />
       </Form.Item>
     )
@@ -685,6 +687,7 @@ export default class ContainerSetting extends React.Component {
             clusters={projectDetail.clusters}
             onClusterUpdate={this.handleClusterUpdate}
             store={this.props.store}
+            omitAlias={12}
           />
         </Form.Item>
       </div>
@@ -772,6 +775,21 @@ export default class ContainerSetting extends React.Component {
     )
   }
 
+  renderTerminationSeconds() {
+    return (
+      <div className="margin-b12">
+        <Form.Group
+          label={t('POD_GRACE_PERIOD')}
+          desc={t('POD_GRACE_PERIOD_DESC')}
+          keepDataWhenUnCheck
+          checkable
+        >
+          <TerminationSeconds prefix={this.prefix} />
+        </Form.Group>
+      </div>
+    )
+  }
+
   renderMetadata() {
     return (
       <div className="margin-b12">
@@ -813,6 +831,7 @@ export default class ContainerSetting extends React.Component {
         {this.renderUpdateStrategy()}
         {this.renderPodSecurityContext()}
         {this.renderPodAffinity()}
+        {this.renderTerminationSeconds()}
         {this.renderMetadata()}
       </Form>
     )

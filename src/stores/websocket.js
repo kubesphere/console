@@ -17,12 +17,14 @@
  */
 
 import { action, observable } from 'mobx'
-import { getWebSocketProtocol, getClusterUrl } from 'utils'
+import { getClusterUrl, getWebSocketProtocol } from 'utils'
 import SocketClient from 'utils/socket.client'
 
 export default class WebSocketStore {
   @observable
   message = {}
+
+  wsMap = {}
 
   watch(url) {
     if (this.wsClient) {
@@ -37,6 +39,38 @@ export default class WebSocketStore {
         onmessage: this.receive,
       }
     )
+  }
+
+  watchByKey(key, url, onMsg, onErr) {
+    if (this.wsMap[key]) {
+      this.wsMap[key].close(true)
+    }
+    this.wsMap[key] = new SocketClient(
+      `${getWebSocketProtocol(window.location.protocol)}://${
+        window.location.host
+      }${getClusterUrl(`/${url}`)}`,
+      {
+        onmessage: onMsg,
+        onerror: e => {
+          setTimeout(onErr, 1000)
+          console.error(e)
+        },
+      }
+    )
+  }
+
+  closeBy(...keys) {
+    keys.forEach(key => {
+      if (this.wsMap[key]) {
+        this.wsMap[key].close(true)
+      }
+    })
+  }
+
+  closeMap() {
+    Object.values(this.wsMap).forEach(ws => {
+      ws.close(true)
+    })
   }
 
   @action

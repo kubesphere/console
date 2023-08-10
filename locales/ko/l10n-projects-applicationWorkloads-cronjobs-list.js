@@ -17,47 +17,47 @@
  */
 module.exports = {
   // Banner
-  CRONJOBS: 'Cronjobs',
-  CRONJOB_DESC: 'Cronjobs manage jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
+  CRONJOBS: '크론잡',
+  CRONJOB_DESC: '크론잡은 시간 기반 예약에 따라 작업을 관리하며 정기 또는 반복 태스크를 수행하는 데 사용할 수 있습니다.',
   // List
-  CRONJOB_PAUSED: 'Paused',
-  CRONJOB_RUNNING: 'Running',
-  CRONJOB_FAILED: 'Failed',
+  CRONJOB_PAUSED: '일시정지',
+  CRONJOB_RUNNING: '실행 중',
+  CRONJOB_FAILED: '실패',
   // List > Create > Basic Information
-  SCHEDULE: 'Schedule',
-  ENTER_SCHEDULE_TIP: 'Please select a schedule.',
-  CRONJOB_CRON_DESC: 'Set a schedule for the cronjob. KubeSphere uses UTC by default and you need to adjust the schedule according to your time zone. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Learn More</a>',
+  SCHEDULE: '스케쥴',
+  ENTER_SCHEDULE_TIP: '스케줄을 선택해주십시오.',
+  CRONJOB_CRON_DESC: '크론잡에 대한 스케줄을 설정합니다. KubeSphere는 기본적으로 UTC를 사용하며 사용자는 표준 시간대에 따라 일정을 조정해야 합니다. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">자세히 알아보기</a>',
   // List > Create > Advanced settings
-  MAXIMUM_DELAY: 'Maximum Start Delay (s)',
-  SUCCESSFUL_JOBS_RETAINED: 'Successful Jobs Retained',
-  FAILED_JOBS_RETAINED: 'Failed Jobs Retained',
-  CONCURRENCY_POLICY: 'Concurrency Policy',
-  MAXIMUM_DELAY_DESC: 'Maximum delay before starting a scheduled job when the job is missed for certain reasons.',
-  CONCURRENCY_POLICY_DESC: 'Policy adopted by the system when multiple jobs of the cronjob overlap with each other.',
-  FAILED_JOBS_RETAINED_DESC: 'Number of failed jobs allowed to be retained. The default value is 1.',
-  SUCCESSFUL_JOBS_RETAINED_DESC: 'Number of successful jobs allowed to be retained. The default value is 3.',
-  RUN_JOBS_CONCURRENTLY: 'Run jobs concurrently',
-  SKIP_NEW_JOB: 'Skip new job',
-  SKIP_OLD_JOB: 'Skip old job',
+  MAXIMUM_DELAY: '최대 시작 지연(초)',
+  SUCCESSFUL_JOBS_RETAINED: '성공적인 잡 예약 수',
+  FAILED_JOBS_RETAINED: '실패한 잡 예약 수',
+  CONCURRENCY_POLICY: '동시성 정책',
+  MAXIMUM_DELAY_DESC: '특정 이유로 작업이 누락된 경우 예약된 잡을 시작하기 전 최대 지연 시간입니다.',
+  CONCURRENCY_POLICY_DESC: '크론잡의 여러 잡이 서로 중복될 때 시스템에서 채택하는 정책입니다.',
+  FAILED_JOBS_RETAINED_DESC: '유지할 수 있는 실패한 잡 수입니다. 기본값은 1입니다.',
+  SUCCESSFUL_JOBS_RETAINED_DESC: '유지할 수 있는 성공적인  잡 수입니다. 기본값은 3입니다.',
+  RUN_JOBS_CONCURRENTLY: '동시에 잡들을 실행',
+  SKIP_NEW_JOB: '새 잡 건너뛰기',
+  SKIP_OLD_JOB: '오래 된 잡 건너뛰기',
   // List > Create > Strategy Settings
-  STRATEGY_SETTINGS: 'Strategy Settings',
-  MAXIMUM_RETRIES: 'Maximum Retries',
-  MAXIMUM_RETRIES_DESC: 'Maximum number of retries before the job is marked as failed. The default value is 6.',
-  PARALLEL_PODS_DESC: 'Number of pods that run in parallel in the job.',
-  COMPLETE_PODS_DESC: 'Number of complete pods required for the job to be marked as complete.',
-  MAXIMUM_DURATION_DESC: 'Maximum duration of the job. The job is terminated when it reaches the maximum duration.',
-  PARALLEL_PODS: 'Parallel Pods',
-  COMPLETE_PODS: 'Complete Pods',
-  MAXIMUM_DURATION: 'Maximum Duration (s)',
+  STRATEGY_SETTINGS: '전략 설정',
+  MAXIMUM_RETRIES: '최대 재시도 횟수',
+  MAXIMUM_RETRIES_DESC: '잡이 실패한 것으로 마킹되기 전까지 최대 재시도 횟수입니다. 기본값은 6입니다.',
+  PARALLEL_PODS_DESC: '하나의 잡에서 병렬로 실행 가능한 파드 수입니다.',
+  COMPLETE_PODS_DESC: '잡을 완료로 마킹하는데 필요한 완료 된 파드 수입니다.',
+  MAXIMUM_DURATION_DESC: '잡의 최대 지속 시간입니다. 잡은 최대 지속 시간에 도달하면 종료됩니다.',
+  PARALLEL_PODS: '패러럴 파드',
+  COMPLETE_PODS: '완료된 파드',
+  MAXIMUM_DURATION: '최대 지속 시간(초)',
   // List > Create > Pod Settings
-  RESTART_POLICY: 'Restart Policy',
-  RESTART_POLICY_DESC: 'Select the policy adopted by the system when a container in the pod exits abnormally.',
+  RESTART_POLICY: '정책 다시 시작',
+  RESTART_POLICY_DESC: '파드의 컨테이너가 비정상적으로 종료 될 때 시스템에서 채택할 정책을 선택합니다.',
   // List > Create > Storage Settings
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML
   // List > Pause
   // List > Delete
-  CRONJOB_PL: 'Cronjobs',
-  CRONJOB_LOW: 'cronjob'
+  CRONJOB_PL: '크론잡',
+  CRONJOB_LOW: '크론잡'
 };

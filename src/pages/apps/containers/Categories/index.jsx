@@ -26,6 +26,7 @@ import Banner from 'components/Cards/Banner'
 import Avatar from 'apps/components/Avatar'
 import AppStore from 'stores/openpitrix/store'
 import CategoryStore from 'stores/openpitrix/category'
+import { showNameAndAlias } from 'utils'
 
 import Cates from './Cates'
 
@@ -126,6 +127,7 @@ export default class AppCategories extends React.Component {
       dataIndex: 'isv',
       isHideable: true,
       width: '25%',
+      render: workspace => showNameAndAlias(workspace, 'workspace'),
     },
     {
       title: t('LATEST_VERSION'),

@@ -16,12 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { Icon } from '@kube-design/components'
+
+import { Nav } from 'components/Layout'
 import React, { Component } from 'react'
 
 import { renderRoutes } from 'utils/router.config'
-
-import { Nav } from 'components/Layout'
-import { Icon } from '@kube-design/components'
 
 import styles from './layout.scss'
 

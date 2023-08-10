@@ -41,7 +41,8 @@ module.exports = {
   EDIT_TITLE: 'Edit {title}',
   // Cluster Gateway > Manage > Update
   UPDATE: 'Update',
-  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
+  UPDATED_GATEWAY_TITLE: 'Update Gateway',
+  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
   // Project Gateways
   PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',

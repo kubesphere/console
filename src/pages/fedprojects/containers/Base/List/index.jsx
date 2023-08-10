@@ -15,17 +15,28 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import React, { Component } from 'react'
+import { Nav } from 'components/Layout'
 import { inject, observer } from 'mobx-react'
+import Selector from 'projects/components/Selector'
+import React, { Component } from 'react'
+
+import ClusterStore from 'stores/cluster'
 
 import { renderRoutes } from 'utils/router.config'
-import { Nav } from 'components/Layout'
-import Selector from 'projects/components/Selector'
 
 @inject('rootStore', 'projectStore')
 @observer
 export default class FederatedProjectLayout extends Component {
+  constructor(props) {
+    super(props)
+
+    this.store = new ClusterStore()
+  }
+
+  state = {
+    fetchFin: false,
+  }
+
   get project() {
     return this.props.match.params.namespace
   }

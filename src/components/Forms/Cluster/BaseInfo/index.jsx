@@ -16,25 +16,26 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { get } from 'lodash'
 import {
+  Form,
   Icon,
   Input,
-  Form,
-  Tag,
   Select,
+  Tag,
   TextArea,
 } from '@kube-design/components'
-import {
-  PATTERN_NAME,
-  CLUSTER_GROUP_TAG_TYPE,
-  CLUSTER_PROVIDERS,
-  CLUSTER_PRESET_GROUPS,
-} from 'utils/constants'
+import { get } from 'lodash'
 
-import SubTitle from '../SubTitle'
+import React from 'react'
+import {
+  CLUSTER_GROUP_TAG_TYPE,
+  CLUSTER_PRESET_GROUPS,
+  CLUSTER_PROVIDERS,
+  PATTERN_ALIAS_NAME,
+  PATTERN_NAME,
+} from 'utils/constants'
 import NodeList from '../NodeList'
+import SubTitle from '../SubTitle'
 
 import styles from './index.scss'
 
@@ -127,6 +128,21 @@ export default class BaseInfo extends React.Component {
             ]}
           >
             <Input name="metadata.name" maxLength={63} />
+          </Form.Item>
+          <Form.Item
+            label={t('ALIAS')}
+            desc={t('ALIAS_NAME_DESC')}
+            rules={[
+              {
+                pattern: PATTERN_ALIAS_NAME,
+                message: t('INVALID_ALIAS_NAME_DESC'),
+              },
+            ]}
+          >
+            <Input
+              name="metadata.annotations['kubesphere.io/alias-name']"
+              maxLength={63}
+            />
           </Form.Item>
           <Form.Item label={t('TAG')} desc={t('CLUSTER_TAG_DESC')}>
             <Select

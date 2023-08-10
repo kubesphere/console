@@ -23,9 +23,9 @@ module.exports = {
   // Overview > Resource Status > Physical Resources
   // Pods
   // Gateway
-  GATEWAY: 'Gateway',
-  GATEWAY_NOT_ENABLED: 'Gateway Not Enabled',
-  ENABLE_GATEWAY_TIP: 'To use the gateway, please configure the gateway in the cluster or the project.',
+  GATEWAY: '게이트웨이',
+  GATEWAY_NOT_ENABLED: '게이트웨이가 활성화되지 않음',
+  ENABLE_GATEWAY_TIP: '게이트웨이를 사용하려면 클러스터 또는 프로젝트에서 게이트웨이를 구성하십시오.',
   // Quotas > Default Container Quotas
-  QUOTA_PL: 'Quotas'
+  QUOTA_PL: '할당량'
 };

@@ -17,10 +17,10 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { Button, InputSearch, Columns, Column } from '@kube-design/components'
+import { Button, Columns, Column } from '@kube-design/components'
+import FilterInput from 'components/Tables/Base/FilterInput'
 import { Modal, ScrollLoad } from 'components/Base'
 import ClusterStore from 'stores/cluster'
 import Card from './Card'
@@ -32,6 +32,22 @@ export default class ClusterSelectModal extends React.Component {
   constructor(props) {
     super(props)
     this.store = new ClusterStore()
+    this.state = { filters: {} }
+  }
+
+  get columns() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
   }
 
   fetchData = params => {
@@ -56,8 +72,6 @@ export default class ClusterSelectModal extends React.Component {
     const { visible, onCancel } = this.props
     const { data, total, page, isLoading } = this.store.list
 
-    const keyword = get(this.store.list, 'filters.name')
-
     return (
       <Modal
         bodyClassName={styles.body}
@@ -72,10 +86,16 @@ export default class ClusterSelectModal extends React.Component {
         <div className={styles.bar}>
           <Columns>
             <Column>
-              <InputSearch
-                value={keyword}
+              <FilterInput
                 placeholder={t('SEARCH_BY_NAME')}
-                onSearch={this.handleSearch}
+                columns={this.columns}
+                onChange={_filters => {
+                  this.setState({
+                    filters: _filters,
+                  })
+                  this.fetchData(_filters)
+                }}
+                filters={this.state.filters}
               />
             </Column>
             <Column className="is-narrow">

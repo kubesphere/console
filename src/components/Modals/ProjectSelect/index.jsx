@@ -16,24 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
-import React from 'react'
+import { Button, Column, Columns, RadioGroup } from '@kube-design/components'
 import classNames from 'classnames'
+import { Modal, ScrollLoad } from 'components/Base'
+import FilterInput from 'components/Tables/Base/FilterInput'
+import { get } from 'lodash'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import {
-  Button,
-  RadioGroup,
-  InputSearch,
-  Columns,
-  Column,
-} from '@kube-design/components'
-import { Modal, ScrollLoad } from 'components/Base'
-
-import WorkspaceStore from 'stores/workspace'
+import React from 'react'
+import DevOpsStore from 'stores/devops'
 import ProjectStore from 'stores/project'
 import FederatedStore from 'stores/project.federated'
-import DevOpsStore from 'stores/devops'
+
+import WorkspaceStore from 'stores/workspace'
+import { showNameAndAlias } from 'utils'
 
 import Card from './Card'
 import ClusterSelect from './ClusterSelect'
@@ -61,6 +57,7 @@ export default class ProjectSelectModal extends React.Component {
       type: props.defaultType || 'projects',
       cluster: props.cluster || '',
       search: '',
+      filters: {},
     }
   }
 
@@ -77,7 +74,7 @@ export default class ProjectSelectModal extends React.Component {
 
   get clusters() {
     return this.store.clusters.data.map(item => ({
-      label: item.name,
+      label: showNameAndAlias(item),
       value: item.name,
       cluster: item,
       disabled: !item.isReady,
@@ -125,6 +122,21 @@ export default class ProjectSelectModal extends React.Component {
     return this.enabledActions[this.state.type].includes('create')
   }
 
+  get columns() {
+    return [
+      {
+        dataIndex: 'name',
+        title: t('NAME'),
+        search: true,
+      },
+      {
+        dataIndex: 'alias',
+        title: t('ALIAS'),
+        search: true,
+      },
+    ]
+  }
+
   fetchData = query => {
     const { workspace } = this.props
     const { cluster, search } = this.state
@@ -143,10 +155,6 @@ export default class ProjectSelectModal extends React.Component {
     }
 
     this.stores[this.state.type].fetchList(params)
-  }
-
-  handleSearch = name => {
-    this.setState({ search: name }, this.fetchData)
   }
 
   handleRefresh = () => this.fetchData()
@@ -223,7 +231,11 @@ export default class ProjectSelectModal extends React.Component {
         onCancel={onCancel}
         width={960}
         icon="enterprise"
-        title={<a onClick={this.handleEnterWorkspace}>{workspace}</a>}
+        title={
+          <a onClick={this.handleEnterWorkspace}>
+            {showNameAndAlias(workspace, 'workspace')}
+          </a>
+        }
         description={get(detail, 'description') || t('WORKSPACE')}
         hideFooter
       >
@@ -247,13 +259,20 @@ export default class ProjectSelectModal extends React.Component {
                     onChange={this.handleClusterChange}
                   />
                 )}
-                <InputSearch
+                <FilterInput
                   className={classNames(styles.search, {
                     [styles.withSelect]: showClusterSelect,
                   })}
-                  value={this.state.search}
                   placeholder={t('SEARCH_BY_NAME')}
-                  onSearch={this.handleSearch}
+                  columns={this.columns}
+                  contentClassName={styles.content}
+                  onChange={_filters => {
+                    this.setState({
+                      filters: _filters,
+                    })
+                    this.fetchData(_filters)
+                  }}
+                  filters={this.state.filters}
                 />
               </div>
             </Column>

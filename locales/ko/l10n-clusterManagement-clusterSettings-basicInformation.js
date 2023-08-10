@@ -18,14 +18,14 @@
 module.exports = {
   // Banner
   // Cluster Information
-  NODES: 'Nodes',
-  DISK: 'Disk',
-  CLUSTER_INFORMATION: 'Cluster Information',
+  NODES: '노드',
+  DISK: '디스크',
+  CLUSTER_INFORMATION: '클러스터 정보',
   // Cluster Information > Edit Information
-  CLUSTER_NAME: 'Cluster Name',
-  EDIT_CLUSTER_INFO_DESC: 'Edit basic information about the cluster.',
+  CLUSTER_NAME: '클러스터 이름',
+  EDIT_CLUSTER_INFO_DESC: '클러스터에 대한 기본 정보를 편집합니다.',
   // Remove Cluster
-  REMOVE_CLUSTER: 'Remove Cluster',
-  REMOVE_CLUSTER_DESC: 'After the cluster is removed, KubeSphere will not be able to manage the cluster. Resources in the cluster will not be deleted. Enter the cluster name <strong>{name}</strong> to confirm that you understand the risks of this operation.',
-  REMOVE_SUCCESS: 'Removed successfully.'
+  REMOVE_CLUSTER: '클러스터 제거',
+  REMOVE_CLUSTER_DESC: '클러스터가 제거되면 KubeSphere에서 클러스터를 관리할 수 없습니다. 클러스터의 리소스는 삭제되지 않습니다. 클러스터 이름 <strong>{name}</strong>을 입력하여 이 작업의 위험을 이해하고 있는지 확인합니다.',
+  REMOVE_SUCCESS: '성공적으로 제거됨'
 };

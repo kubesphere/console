@@ -16,12 +16,43 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
 import { mount } from 'enzyme'
+import React from 'react'
 
 import EnvironmentInput from './index'
 
 jest.mock('lodash/debounce', () => jest.fn(fn => fn))
+jest.mock(
+  'stores/configmap',
+  () =>
+    function() {
+      return {
+        module: 'configmaps',
+        fetchListByK8s: jest.fn(() => Promise.resolve([])),
+      }
+    }
+)
+jest.mock(
+  'stores/secret',
+  () =>
+    function() {
+      return {
+        module: 'secrets',
+        fetchListByK8s: jest.fn(() => Promise.resolve([])),
+      }
+    }
+)
+
+jest.mock(
+  'stores/federated',
+  () =>
+    function() {
+      return {
+        module: 'federated',
+        fetchListByK8s: jest.fn(() => Promise.resolve([])),
+      }
+    }
+)
 
 const props = {
   onChange: jest.fn(),

@@ -22,9 +22,9 @@ import PropTypes from 'prop-types'
 import { Form, Input, TextArea } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { get } from 'lodash'
-
-import RepoSelect from 'components/Forms/Pipelines/RepoSelect'
+// import RepoSelect from 'components/Forms/Pipelines/RepoSelect'
 import RepoSelectForm from 'components/Forms/Pipelines/RepoSelect/subForm'
+import CodeRepoSelector from 'components/CodeRepoSelector'
 
 export default class BaseInfoModal extends React.Component {
   static propTypes = {
@@ -89,45 +89,8 @@ export default class BaseInfoModal extends React.Component {
     }
   }
 
-  handleRepoChange = (type, formData) => {
-    const { formTemplate = {} } = this.props
-    const preConfig = get(formTemplate, 'multi_branch_pipeline', {})
-    const sourceKey = `${get(
-      formTemplate,
-      'multi_branch_pipeline.source_type',
-      ''
-    )}_source`
-
-    const mergedSource = Object.assign(
-      get(formTemplate, `multi_branch_pipeline.${sourceKey}`, {}),
-      formData[sourceKey]
-    )
-    this.setState(
-      {
-        showSelectRepo: false,
-      },
-      () => {
-        this.scmRef.current.onChange({
-          source_type: type,
-          ...preConfig,
-          ...formData,
-          [sourceKey]: mergedSource,
-        })
-      }
-    )
-  }
-
-  handleSaveRepo = () => {
-    const { subRoute } = this.state
-    if (subRoute.onSave) {
-      return subRoute.onSave(() => {
-        this.setState({ subRoute: {} })
-      })
-    }
-  }
-
   render() {
-    const { visible, onCancel, formTemplate = {} } = this.props
+    const { visible, onCancel, formTemplate = {}, provider } = this.props
     const name =
       get(formTemplate, 'pipeline.name', '') ||
       get(formTemplate, 'multi_branch_pipeline.name', '')
@@ -174,10 +137,13 @@ export default class BaseInfoModal extends React.Component {
           </Form.Item>
           {formTemplate.multi_branch_pipeline ? (
             <Form.Item label={t('CODE_REPOSITORY')}>
-              <RepoSelect
+              <CodeRepoSelector
                 name="multi_branch_pipeline"
-                ref={this.scmRef}
-                onClick={this.showSelectRepo}
+                cluster={formTemplate.cluster}
+                devops={formTemplate.devops}
+                isCreatePipeline={true}
+                provider={provider}
+                trigger={this.props.trigger}
               />
             </Form.Item>
           ) : null}

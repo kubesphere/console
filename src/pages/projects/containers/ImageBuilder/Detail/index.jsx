@@ -23,7 +23,7 @@ import { get, isArray } from 'lodash'
 
 import { Loading, Notify, Icon } from '@kube-design/components'
 
-import { getDisplayName, getLocalTime, parseUrl } from 'utils'
+import { getDisplayName, getLocalTime, parseUrl, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
 import S2IBuilderStore from 'stores/s2i/builder'
 import S2IRunStore from 'stores/s2i/run'
@@ -168,7 +168,7 @@ export default class ImageBuilderDetail extends React.Component {
       },
       {
         name: t('PROJECT'),
-        value: detail.namespace,
+        value: showNameAndAlias(detail.namespace, 'project'),
       },
       {
         name: t('TYPE'),

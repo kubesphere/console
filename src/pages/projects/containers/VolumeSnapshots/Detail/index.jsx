@@ -23,7 +23,7 @@ import { Loading, Tooltip, Icon } from '@kube-design/components'
 
 import VolumeStore from 'stores/volume'
 import { Status } from 'components/Base'
-import { getDisplayName, getLocalTime } from 'utils'
+import { getDisplayName, getLocalTime, showNameAndAlias } from 'utils'
 import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
 import VolumeSnapshotStore from 'stores/volumeSnapshot'
@@ -176,7 +176,7 @@ export default class VolumeSnapshotDetail extends React.Component {
     return [
       {
         name: t('PROJECT'),
-        value: namespace,
+        value: showNameAndAlias(namespace, 'project'),
       },
       {
         name: t('STATUS'),

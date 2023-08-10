@@ -17,18 +17,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { isEmpty } from 'lodash'
-import { VOLUME_SNAPSHOT_STATUS } from 'utils/constants'
-
-import { withProjectList, ListPage } from 'components/HOCs/withList'
-import Table from 'components/Tables/List'
-import SnapshotStore from 'stores/volumeSnapshot'
-import { getLocalTime } from 'utils'
+import { Icon, Tooltip } from '@kube-design/components'
 import { Avatar, Status } from 'components/Base'
 
 import Banner from 'components/Cards/Banner'
-import { Icon, Tooltip } from '@kube-design/components'
+
+import { ListPage, withProjectList } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
+import { isEmpty } from 'lodash'
+import React from 'react'
+import SnapshotStore from 'stores/volumeSnapshot'
+import { getLocalTime, showNameAndAlias } from 'utils'
+import { VOLUME_SNAPSHOT_STATUS } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -112,7 +112,9 @@ export default class VolumeSnapshot extends React.Component {
         title: t('PROJECT'),
         dataIndex: 'namespace',
         isHideable: true,
-        render: namespace => <div>{namespace}</div>,
+        render: namespace => (
+          <div>{showNameAndAlias(namespace, 'project')}</div>
+        ),
       },
       {
         title: t('CAPACITY'),
