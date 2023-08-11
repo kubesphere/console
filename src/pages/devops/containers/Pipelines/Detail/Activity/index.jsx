@@ -291,7 +291,20 @@ export default class Activity extends React.Component {
       title: t('LAST_MESSAGE'),
       dataIndex: 'causes',
       width: '25%',
-      render: causes => get(causes, '[0].shortDescription', ''),
+      render: (causes, record) => {
+        let message = get(causes, '[0].shortDescription', '')
+        const creator = get(
+          record,
+          '_originData.metadata.annotations["devops.kubesphere.io/creator"]'
+        )
+        if (!creator) {
+          return message
+        }
+        if (message === 'Started by user admin') {
+          message = message.replace('user admin', `user ${creator}`)
+        }
+        return message
+      },
     },
     {
       title: t('DURATION'),

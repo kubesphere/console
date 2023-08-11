@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { result, get, omit, isEmpty } from 'lodash'
+import { get, omit, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
@@ -176,12 +176,6 @@ export default class Branch extends React.Component {
       dataIndex: 'weatherScore',
       width: '20%',
       render: weatherScore => <Health score={weatherScore} />,
-    },
-    {
-      title: t('LAST_MESSAGE'),
-      dataIndex: 'latestRun',
-      width: '20%',
-      render: latestRun => result(latestRun, 'causes[0].shortDescription', '-'),
     },
     {
       title: t('UPDATE_TIME_TCAP'),
