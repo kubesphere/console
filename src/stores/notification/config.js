@@ -20,4 +20,8 @@ import Base from './base'
 
 export default class ConfigStore extends Base {
   module = 'configs'
+
+  get apiVersion() {
+    return 'kapis/notification.kubesphere.io/v2beta2'
+  }
 }
