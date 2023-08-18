@@ -967,7 +967,7 @@ const findCodeDetail = (messures, key, path, defaultValue) => {
 
 const LogOutPutMapper = item => {
   const { metadata, spec } = item
-  const rules = pick(spec, ['es', 'kafka', 'forward'])
+  const rules = pick(spec, ['es', 'kafka', 'forward', 'opensearch'])
   const type = get(Object.keys(rules), '[0]', '')
   const address =
     type === 'kafka'
