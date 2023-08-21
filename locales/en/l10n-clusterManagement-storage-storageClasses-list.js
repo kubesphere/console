@@ -93,6 +93,6 @@ module.exports = {
   // List > Delete
   STORAGE_CLASS: 'Storage Class',
   STORAGE_CLASS_LOW: 'storage class',
-  STORAGE_CLASS_DELETE_DESC: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Are you sure you want to delete the volume snapshot class?',
-  STORAGE_CLASS_DELETE_DESC_PL: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Enter the {type} names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
+  STORAGE_CLASS_DELETE_DESC: 'Are you sure you want to delete the storage class?',
+  STORAGE_CLASS_DELETE_DESC_PL: 'Enter the {type} names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 }

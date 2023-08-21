@@ -92,6 +92,6 @@ module.exports = {
   // List > Delete
   STORAGE_CLASS: '存储类',
   STORAGE_CLASS_LOW: '存储类',
-  STORAGE_CLASS_DELETE_DESC: '删除卷快照类可能会影响卷快照的正常使用。您确定删除卷快照类吗？',
-  STORAGE_CLASS_DELETE_DESC_PL: '删除卷快照类可能会影响卷快照的正常使用。请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。'
+  STORAGE_CLASS_DELETE_DESC: '您确定删除存储类吗？',
+  STORAGE_CLASS_DELETE_DESC_PL: '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。'
 };
