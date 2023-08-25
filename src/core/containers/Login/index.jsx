@@ -142,81 +142,74 @@ export default class Login extends Component {
       showKS,
       currentServer,
     } = this.state
-    const kse_logo = globals.config.logo || globals.defaultTheme.logo
-    const logo = globals.useDefaultTheme ? kse_logo : globals.theme.logo
-    const style = globals.useDefaultTheme
-      ? {}
-      : { backgroundImage: `url(${globals.theme.background})` }
 
     return (
-      <div className={styles.LoginBg} style={style}>
-        <div className={styles.loginContainer}>
-          <a href="/" className={styles.logo}>
-            <img src={logo} alt="" />
-          </a>
-          <div className={styles.login}>
-            <div className={styles.header}>
-              {showKS
-                ? t('WELCOME')
-                : t('TITLE_USERNAME', { title: currentServer.title })}
-            </div>
-            <div className={styles.divider}></div>
-            {showKS &&
-              get(globals, 'oauthServers', []).map(server => (
-                <div
-                  key={server.url}
-                  className={styles.oauth}
-                  data-url={server.url}
-                  onClick={this.handleOAuthLogin(server)}
-                >
-                  <span>{t('LOG_IN_WITH_TITLE', { title: server.title })}</span>
-                </div>
-              ))}
-            {errorMessage && (
-              <Alert
-                className="margin-t12 margin-b12"
-                type="error"
-                message={t(errorMessage)}
-              />
-            )}
-            <Form data={formData} onSubmit={this.handleSubmit}>
-              <Form.Item
-                label={
-                  showKS
-                    ? t('USERNAME_OR_EMAIL')
-                    : t('TITLE_USERNAME', { title: currentServer.title })
-                }
-                rules={[
-                  {
-                    required: true,
-                    message: t('INPUT_USERNAME_OR_EMAIL_TIP'),
-                  },
-                ]}
-              >
-                <Input name="username" placeholder="user@example.com" />
-              </Form.Item>
-              <Form.Item
-                label={t('PASSWORD')}
-                rules={[{ required: true, message: t('PASSWORD_EMPTY_DESC') }]}
-              >
-                <InputPassword
-                  name="password"
-                  placeholder=" "
-                  autoComplete="new-password"
-                />
-              </Form.Item>
-              <div className={styles.footer}>
-                <Button type="control" htmlType="submit" loading={isSubmmiting}>
-                  {t('LOG_IN')}
-                </Button>
-                {!showKS && (
-                  <p className={styles.back} onClick={this.handleBack}>
-                    {t('BACK')}
-                  </p>
-                )}
-              </div>
-            </Form>
+      <div className={styles.loginContainer}>
+        <a href="/" className={styles.logo}>
+          <img src="/assets/logo.svg" alt="" />
+        </a>
+        <div className={styles.login}>
+          <div className={styles.header}>
+            {showKS
+              ? t('WELCOME')
+              : t('TITLE_USERNAME', { title: currentServer.title })}
           </div>
+          <div className={styles.divider}></div>
+          {showKS &&
+            get(globals, 'oauthServers', []).map(server => (
+              <div
+                key={server.url}
+                className={styles.oauth}
+                data-url={server.url}
+                onClick={this.handleOAuthLogin(server)}
+              >
+                <span>{t('LOG_IN_WITH_TITLE', { title: server.title })}</span>
+              </div>
+            ))}
+          {errorMessage && (
+            <Alert
+              className="margin-t12 margin-b12"
+              type="error"
+              message={t(errorMessage)}
+            />
+          )}
+          <Form data={formData} onSubmit={this.handleSubmit}>
+            <Form.Item
+              label={
+                showKS
+                  ? t('USERNAME_OR_EMAIL')
+                  : t('TITLE_USERNAME', { title: currentServer.title })
+              }
+              rules={[
+                {
+                  required: true,
+                  message: t('INPUT_USERNAME_OR_EMAIL_TIP'),
+                },
+              ]}
+            >
+              <Input name="username" placeholder="user@example.com" />
+            </Form.Item>
+            <Form.Item
+              label={t('PASSWORD')}
+              rules={[{ required: true, message: t('PASSWORD_EMPTY_DESC') }]}
+            >
+              <InputPassword
+                name="password"
+                placeholder=" "
+                autoComplete="new-password"
+              />
+            </Form.Item>
+            <div className={styles.footer}>
+              <Button type="control" htmlType="submit" loading={isSubmmiting}>
+                {t('LOG_IN')}
+              </Button>
+              {!showKS && (
+                <p className={styles.back} onClick={this.handleBack}>
+                  {t('BACK')}
+                </p>
+              )}
+            </div>
+          </Form>
         </div>
       </div>
     )
