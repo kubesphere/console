@@ -26,6 +26,7 @@ const { client: clientConfig } = getServerConfig()
 
 const {
   login,
+  loginThird,
   oAuthLogin,
   getNewToken,
   createUser,
@@ -63,6 +64,110 @@ const handleLogin = async ctx => {
       params.password = decryptPassword(params.encrypt, encryptKey)
 
       user = await login(params, { 'x-client-ip': ctx.request.ip })
+
+      if (!user) {
+        Object.assign(error, {
+          status: 401,
+          reason: 'Unauthorized',
+          message: 'INCORRECT_USERNAME_OR_PASSWORD',
+        })
+      }
+    } catch (err) {
+      ctx.app.emit('error', err)
+
+      switch (err.code) {
+        case 400:
+        case 401:
+          Object.assign(error, {
+            status: err.code,
+            reason: 'Unauthorized',
+            message: 'INCORRECT_USERNAME_OR_PASSWORD',
+          })
+          break
+        case 429:
+          Object.assign(error, {
+            status: err.code,
+            reason: 'Too Many Failures',
+            message: 'TOO_MANY_FAILURES',
+          })
+          break
+        case 502:
+          Object.assign(error, {
+            status: err.code,
+            reason: 'Bad Gateway',
+            message: 'FAILED_TO_ACCESS_BACKEND',
+          })
+          break
+        case 'ETIMEDOUT':
+          Object.assign(error, {
+            status: 500,
+            reason: 'Internal Server Error',
+            message: 'FAILED_TO_ACCESS_API_SERVER',
+          })
+          break
+        default:
+          Object.assign(error, {
+            status: 500,
+            reason: err.statusText,
+            message: err.message,
+          })
+      }
+    }
+  }
+
+  if (!isEmpty(error) || !user) {
+    ctx.body = error
+    return
+  }
+
+  const lastToken = ctx.cookies.get('token')
+
+  ctx.cookies.set('token', user.token)
+  ctx.cookies.set('expire', user.expire)
+  ctx.cookies.set('refreshToken', user.refreshToken)
+  ctx.cookies.set('referer', null)
+
+  if (user.username === 'system:pre-registration') {
+    const extraname = safeBase64.safeBtoa(user.extraname)
+    ctx.cookies.set('defaultUser', extraname)
+    ctx.cookies.set('defaultEmail', user.email)
+    return ctx.redirect('/login/confirm')
+  }
+
+  if (!user.initialized) {
+    return ctx.redirect('/password/confirm')
+  }
+
+  if (lastToken) {
+    const { username } = jwtDecode(lastToken)
+    if (username && username !== user.username) {
+      return ctx.redirect('/')
+    }
+  }
+
+  ctx.redirect(isValidReferer(referer) ? referer : '/')
+}
+
+const handleThirdLogin = async ctx => {
+  const params = ctx.request.body
+
+  let referer = ctx.cookies.get('referer')
+  referer = referer ? decodeURIComponent(referer) : ''
+
+  const error = {}
+  let user = null
+
+  if (!params.username || !params.password) {
+    Object.assign(error, {
+      status: 400,
+      reason: 'Invalid Login Params',
+      message: 'invalid login params',
+    })
+  }
+
+  if (isEmpty(error)) {
+    try {
+      user = await loginThird(params, { 'x-client-ip': ctx.request.ip })
 
       if (!user) {
         Object.assign(error, {
@@ -269,6 +374,7 @@ const handleLoginConfirm = async ctx => {
 
 module.exports = {
   handleLogin,
+  handleThirdLogin,
   handleLogout,
   handleOAuthLogin,
   handleLoginConfirm,
