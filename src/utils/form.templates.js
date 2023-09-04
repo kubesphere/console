@@ -184,7 +184,7 @@ const getJobTemplate = ({ namespace }) => ({
 })
 
 const getCronJobTemplate = ({ namespace }) => ({
-  apiVersion: 'batch/v1beta1',
+  apiVersion: 'batch/v1',
   kind: 'CronJob',
   metadata: {
     namespace,
@@ -287,7 +287,7 @@ const getSecretTemplate = ({ namespace }) => ({
 })
 
 const getHorizontalPodAutoscalerTemplate = ({ name, namespace, target }) => ({
-  apiVersion: 'autoscaling/v2beta2',
+  apiVersion: 'autoscaling/v2',
   kind: 'HorizontalPodAutoscaler',
   metadata: {
     name,
