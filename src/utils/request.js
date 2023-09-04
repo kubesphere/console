@@ -111,7 +111,7 @@ function buildRequest({
   }
 
   return fetch(getClusterUrl(requestURL), request).then(resp =>
-    responseHandler(resp, reject)
+    responseHandler(resp, reject, request)
   )
 }
 
@@ -151,7 +151,7 @@ function createURL(path) {
  * @returns {Promise}
  * @private
  */
-function handleResponse(response, reject) {
+function handleResponse(response, reject, request = {}) {
   const redirect = response.redirected
   if (redirect) {
     window.location.replace(response.url)
@@ -184,6 +184,9 @@ function handleResponse(response, reject) {
   }
 
   if (response.status === 200 || response.status === 204) {
+    if (request.headers?.['x-with-headers'] === true) {
+      return response
+    }
     return response.text()
   }
 
