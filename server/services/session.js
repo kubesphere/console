@@ -82,6 +82,19 @@ const login = async (data, headers) => {
   return handleLoginResp(resp)
 }
 
+const loginThird = async ({ title, ...params }) => {
+  const resp = await send_gateway_request({
+    method: 'POST',
+    url: `/oauth/login/${title}`,
+    headers: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    params,
+  })
+
+  return handleLoginResp(resp)
+}
+
 const getNewToken = async ctx => {
   const refreshToken = ctx.cookies.get('refreshToken')
   let newToken = {}
@@ -412,7 +425,8 @@ const getOAuthInfo = async () => {
       if (item && item.provider) {
         let url
         let params = {}
-        let type
+        const title = item.name
+        let type = item.type
         let endSessionURL
 
         const authURL = get(item, 'provider.endpoint.authURL')
@@ -449,8 +463,8 @@ const getOAuthInfo = async () => {
                 `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
             )
             .join('&')}`
-          servers.push({ title: item.name, url, type, endSessionURL })
         }
+        servers.push({ title, type, url, endSessionURL })
       }
     })
   }
@@ -478,6 +492,7 @@ const createUser = (params, token) => {
 
 module.exports = {
   login,
+  loginThird,
   oAuthLogin,
   getCurrentUser,
   getOAuthInfo,
