@@ -182,6 +182,9 @@ export default class Params extends React.Component {
       formData = parseWithCredientialData(edittingData)
     } else if (codeKey) {
       value = (Array.isArray(data) ? data[0]?.value?.value : data.value) || ''
+      formData = {
+        [codeKey]: value,
+      }
     } else if (Array.isArray(data)) {
       formData = data.reduce((prev, arg) => {
         const val = arg.value.value
@@ -305,14 +308,16 @@ export default class Params extends React.Component {
         )
       case 'code':
         return (
-          <CodeEditor
-            key={option.name}
-            className={styles.CodeEditor}
-            name="script"
-            mode="yaml"
-            value={this.state.value}
-            onChange={this.handleCodeEditorChange(option.name)}
-          />
+          <Form.Item {...formProps} label={null}>
+            <CodeEditor
+              key={option.name}
+              className={styles.CodeEditor}
+              name={option.name}
+              mode="yaml"
+              // value={this.state.value}
+              // onChange={this.handleCodeEditorChange(option.name)}
+            />
+          </Form.Item>
         )
       case 'bool':
         return (
