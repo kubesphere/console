@@ -145,7 +145,6 @@ export default class Activity extends React.Component {
         disabledBrancheNames: toJS(detail.disabledBrancheNames),
         parameters: toJS(detail.parameters),
         success: () => {
-          Notify.success({ content: `${t('PIPELINE_RUN_START_SI')}` })
           this.handleFetch()
         },
       })

@@ -259,6 +259,7 @@ export default {
     on({ store, success, devops, cluster, ...props }) {
       const modal = Modal.open({
         onOk: async (parameters, branch) => {
+          Notify.success({ content: `${t('PIPELINE_RUN_START_SI')}` })
           await store.runBranch({
             devops,
             name: props.params.name,
