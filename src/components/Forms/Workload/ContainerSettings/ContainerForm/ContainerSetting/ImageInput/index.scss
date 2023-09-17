@@ -158,9 +158,12 @@
       }
       .imageInfo {
         flex-grow: 1;
+
         p:first-child {
           height: 20px;
+          width: 220px;
           @include TypographyTitleH6;
+          @include ellipsis;
         }
         p:last-child {
           height: 20px;
