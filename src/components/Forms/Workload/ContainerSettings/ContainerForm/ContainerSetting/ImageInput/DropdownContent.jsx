@@ -35,10 +35,9 @@ export default class DropdownContent extends React.Component {
   constructor(props) {
     super(props)
     const { imageRegistries } = this.props
-
     const harborData =
       this.hubType === 'harbor'
-        ? imageRegistries.find(item => item === this.secretValue)
+        ? imageRegistries.find(item => item.value === this.secretValue)
         : {}
 
     this.state = {
@@ -264,6 +263,7 @@ export default class DropdownContent extends React.Component {
 
   fetchHarborList = async (keyword, harborData) => {
     const url = get(harborData, 'url')
+
     if (!url || isEmpty(harborData)) return
 
     this.setState({ isLoading: true })
