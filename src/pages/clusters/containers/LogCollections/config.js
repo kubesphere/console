@@ -20,8 +20,10 @@ import { get } from 'lodash'
 import { ReactComponent as ESICON } from 'assets/es.svg'
 import { ReactComponent as KaFkaICON } from 'assets/kafka.svg'
 import { ReactComponent as FluentdICON } from 'assets/fluentd.svg'
+import { ReactComponent as OSICON } from 'assets/opensearch.svg'
 
 import ESForm from 'components/Forms/Elasticsearch/Settings'
+import OSForm from 'components/Forms/Opensearch/Settings'
 import KafkaForm from 'components/Forms/KafkaForm/Settings'
 import FluentdForm from 'components/Forms/Fluentd/Settings'
 
@@ -37,6 +39,15 @@ export default {
     Form: ESForm,
     get description() {
       return t('ES_DESC')
+    },
+  },
+  opensearch: {
+    ICON: OSICON,
+    title: 'Opensearch',
+    pathGetter,
+    Form: OSForm,
+    get description() {
+      return t('OPENSEARCH_DESC')
     },
   },
   kafka: {
