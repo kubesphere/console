@@ -22,7 +22,7 @@ import { Slider } from '@kube-design/components'
 export default class UnitSlider extends React.Component {
   handleChange = value => {
     const { onChange, unit } = this.props
-    let newValue = value
+    let newValue = Number(value.split(unit)[0]) > 2048 ? `2048${unit}` : value;
     if (unit && String(value).indexOf(unit) < 0) {
       newValue = `${value}${unit}`
     }
