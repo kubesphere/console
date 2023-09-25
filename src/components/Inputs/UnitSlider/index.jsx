@@ -18,8 +18,9 @@
 
 import React from 'react'
 import { Slider } from '@kube-design/components'
-
+import { cloneDeep, get } from "lodash"
 export default class UnitSlider extends React.Component {
+  innerRef = React.createRef();
   handleChange = value => {
     const { onChange, unit } = this.props
     let newValue = value
@@ -31,6 +32,11 @@ export default class UnitSlider extends React.Component {
 
   render() {
     const { onChange, ...rest } = this.props
-    return <Slider onChange={this.handleChange} {...rest} />
+    if (get(this.innerRef, 'current') && get(this.innerRef, 'current.value')) {
+      let result = cloneDeep(this.innerRef);
+      result.current.value = Number(this.innerRef.current.value) > 0 ? Number(this.innerRef.current.value) : this.innerRef.current.value;
+      this.innerRef = result;
+    };
+    return <Slider onChange={this.handleChange} {...rest} innerRef={this.innerRef} />
   }
 }
