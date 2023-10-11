@@ -20,7 +20,7 @@ import { omit, isArray, get, isEmpty } from 'lodash'
 import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
 import { Notify } from '@kube-design/components'
-import { safeParseJSON } from 'utils'
+import { getClusterUrl, safeParseJSON } from 'utils'
 
 import BaseStore from '../devops'
 
@@ -76,7 +76,21 @@ export default class PipelineRunStore extends BaseStore {
 
   // entire run log
   @observable
-  runDetailLogs = ''
+  runStartDetailLogs = ''
+
+  @observable
+  logSize = 0
+
+  @observable
+  overflow = false
+
+  @observable
+  hasMore = false
+
+  hasMoreNotify = false
+
+  @observable
+  lastDetailLogs = ''
 
   getUrl({ cluster, devops, name }) {
     return `${this.getDevopsUrlV2({
@@ -304,30 +318,114 @@ export default class PipelineRunStore extends BaseStore {
   }
 
   @action
-  async getRunStatusLogs({ devops, name, branch, runId, cluster }) {
-    // TODO: use response headers offset
-    const result = await request.get(
-      `${this.getRunUrl({
+  async getRunStatusLogs(
+    { devops, name, branch, runId, cluster },
+    refresh = false
+  ) {
+    if (refresh) {
+      this.logSize = 0
+      this.runStartDetailLogs = ''
+      this.hasMore = false
+    }
+    if (this.overflow) {
+      const result = await request.get(
+        `${this.getRunUrl({
+          cluster,
+          devops,
+          name,
+          branch,
+          runId,
+        })}log/?thresholdInKB=150`
+      )
+      this.hasMore = true
+      this.lastDetailLogs = `
+
+*****************************************************************    
+* The log is too large, please download it to view the details. *
+*                                                               * 
+* The following is the latest 150KB log.                        * 
+*****************************************************************    
+
+${result}`
+    } else {
+      const start = this.logSize
+      const result = await request.get(
+        `${this.getRunUrl({
+          cluster,
+          devops,
+          name,
+          branch,
+          runId,
+        })}log/?start=${this.logSize}`,
+        {},
+        {
+          headers: {
+            'x-file-size-limit': 1024 * 1024 * 10,
+            'x-with-headers': true,
+          },
+        }
+      )
+      const size = result.headers.get('x-text-size')
+      if (size) {
+        this.logSize = Number(size)
+        this.hasMore = Boolean(result.headers.get('x-more-data'))
+      } else {
+        this.logSize += Number(result.headers.get('x-text-size'))
+        this.hasMore = Boolean(result.headers.get('x-more-data'))
+      }
+      this.overflow =
+        Boolean(result.headers.get('X-File-Size-Limit-Out')) ||
+        this.logSize >= 1024 * 1024 * 10
+
+      result.text().then(text => {
+        if (start === 0) {
+          this.runStartDetailLogs = text
+          return
+        }
+        // console.log(this.runStartDetailLogs.slice(-100).split('\n'))
+        const arr = this.runStartDetailLogs.slice(-100).split('\n')
+        if (arr.length >= 2) {
+          arr.pop()
+          if (arr.length && arr.pop().startsWith('Finished:')) {
+            //
+          } else {
+            this.runStartDetailLogs += text
+          }
+        } else {
+          this.runStartDetailLogs += text
+        }
+      })
+    }
+  }
+  // removeSameWords = (str1, str2) => {
+  //   const end = str1.slice(-100)
+  //   const index = str2.indexOf(end)
+  //   if (index === -1) {
+  //     return str2
+  //   }
+  //   return str2.slice(index + end.length)
+  // }
+
+  async handleDownloadLogs({ devops, name, branch, cluster }) {
+    name = decodeURIComponent(name)
+    const url = getClusterUrl(
+      `${window.location.protocol}//${window.location.host}/${this.getRunUrl({
         cluster,
         devops,
         name,
         branch,
-        runId,
-      })}log/?start=0`
+        runId: this.runDetail.id,
+      })}log/?start=0&download=true`
     )
-    this.runDetailLogs = result
-  }
-
-  async handleDownloadLogs({ devops, name, branch, cluster }) {
-    name = decodeURIComponent(name)
-    await this.getRunStatusLogs({
-      devops,
-      name,
-      branch,
-      runId: this.runDetail.id,
-      cluster,
-    })
-    this.saveAsFile(this.runDetailLogs, 'log.txt')
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${name}-${this.runDetail.id}-${this.runDetail.name}.log`
+    a.headers = {
+      'x-add-res-header': JSON.stringify({
+        'Content-Disposition': `attachment; filename=${name}-${this.runDetail.name}.log`,
+      }),
+    }
+    a.click()
   }
 
   saveAsFile = (text = '', fileName = 'default.txt') => {

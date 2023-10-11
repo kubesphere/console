@@ -18,16 +18,16 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { isEmpty, isArray } from 'lodash'
-import { action, observable, computed, toJS, reaction } from 'mobx'
+import { isArray, isEmpty } from 'lodash'
+import { action, computed, observable, reaction, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Modal } from 'components/Base'
 import { Button } from '@kube-design/components'
 import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
-import { formatUsedTime } from 'utils'
 import RunStore from 'stores/devops/run'
 
+import TimeCounter from 'devops/containers/Pipelines/Detail/PipelineLogDialog/Timer'
 import LogItem from './logItem'
 import styles from './index.scss'
 import FullLogs from './FullLogs'
@@ -215,8 +215,7 @@ export default class PipelineLog extends React.Component {
     //   )
     // }
 
-    const time = this.activeStage?.durationInMillis ?? ''
-
+    // const time = this.activeStage?.durationInMillis ?? ''
     return (
       <>
         <div className={styles.container}>
@@ -226,9 +225,14 @@ export default class PipelineLog extends React.Component {
           <div className={styles.right}>
             <div className={styles.header}>
               <span>
-                {t('DURATION_VALUE', {
-                  value: time ? formatUsedTime(time) : '-',
-                })}
+                <TimeCounter
+                  startTime={this.activeStage?.startTime}
+                  time={
+                    this.activeStage?.result !== 'UNKNOWN'
+                      ? this.activeStage?.durationInMillis
+                      : undefined
+                  }
+                />
               </span>
               <Button onClick={this.handleVisableLog}>
                 {t('VIEW_FULL_LOG')}
