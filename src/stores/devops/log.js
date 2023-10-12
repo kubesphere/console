@@ -29,6 +29,9 @@ export default class PipelineRunStore extends BaseStore {
   }
 
   async getStepLog({ devops, cluster, name, branch, runId, nodeId, stepId }) {
+    const params = this.stepLogData.start
+      ? `?start=${this.stepLogData.start}`
+      : ''
     const headers = branch
       ? {}
       : {
@@ -40,8 +43,7 @@ export default class PipelineRunStore extends BaseStore {
         devops,
       })}pipelines/${decodeURIComponent(name)}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
-      }/runs/${runId}/nodes/${nodeId}/steps/${stepId}/log/?start=${this
-        .stepLogData.start || 0}`,
+      }/runs/${runId}/nodes/${nodeId}/steps/${stepId}/log/${params}`,
       options: { headers },
       handler: resp => {
         if (resp.status === 200) {

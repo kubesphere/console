@@ -40,6 +40,9 @@ export default class PipelineLog extends React.Component {
      * @type {RunStore}
      */
     this.store = new RunStore()
+    this.state = {
+      isDownloading: false,
+    }
 
     this.reaction = reaction(
       () => this.isEmptySteps,
@@ -126,6 +129,16 @@ export default class PipelineLog extends React.Component {
   //   this.refreshFlag = !this.refreshFlag
   // }, 1000)
 
+  handleDownload = async () => {
+    this.setState({ isDownloading: true })
+    await this.store.handleDownloadLogs(this.props.params)
+    this.setState({ isDownloading: false })
+  }
+
+  handleJumpFullLogs = () => {
+    this.store.handleJumpFullLogs(this.props.params)
+  }
+
   renderLeftTab(stage, index) {
     if (Array.isArray(stage)) {
       return (
@@ -200,6 +213,28 @@ export default class PipelineLog extends React.Component {
     ))
   }
 
+  get isRunning() {
+    return this.activeStage?.result && this.activeStage?.result === 'UNKNOWN'
+  }
+
+  renderLogButton = () => {
+    if (this.isRunning) {
+      return (
+        <Button onClick={this.handleVisableLog}>
+          {t('VIEW_REAL_TIME_LOG')}
+        </Button>
+      )
+    }
+    return (
+      <span>
+        <Button loading={this.state.isLoading} onClick={this.handleDownload}>
+          {t('DOWNLOAD_LOGS')}
+        </Button>
+        <Button onClick={this.handleJumpFullLogs}>{t('VIEW_FULL_LOG')}</Button>
+      </span>
+    )
+  }
+
   render() {
     const { nodes } = this.props
     const _nodes = toJS(nodes)
@@ -234,9 +269,7 @@ export default class PipelineLog extends React.Component {
                   }
                 />
               </span>
-              <Button onClick={this.handleVisableLog}>
-                {t('VIEW_FULL_LOG')}
-              </Button>
+              {this.renderLogButton()}
             </div>
             <div className={styles.logContainer}>{this.renderLogContent()}</div>
           </div>

@@ -349,6 +349,7 @@ export default class PipelineRunStore extends BaseStore {
 ${result}`
     } else {
       const start = this.logSize
+      const params = start ? `?start=${start}` : ''
       const result = await request.get(
         `${this.getRunUrl({
           cluster,
@@ -356,11 +357,11 @@ ${result}`
           name,
           branch,
           runId,
-        })}log/?start=${this.logSize}`,
+        })}log/${params}`,
         {},
         {
           headers: {
-            'x-file-size-limit': 1024 * 1024 * 10,
+            // 'x-file-size-limit': 1024 * 1024 * 10,
             'x-with-headers': true,
           },
         }
@@ -405,6 +406,20 @@ ${result}`
   //   }
   //   return str2.slice(index + end.length)
   // }
+
+  handleJumpFullLogs({ devops, name, branch, cluster }) {
+    name = decodeURIComponent(name)
+    const url = getClusterUrl(
+      `${window.location.protocol}//${window.location.host}/${this.getRunUrl({
+        cluster,
+        devops,
+        name,
+        branch,
+        runId: this.runDetail.id,
+      })}log/?start=0`
+    )
+    window.open(url)
+  }
 
   async handleDownloadLogs({ devops, name, branch, cluster }) {
     name = decodeURIComponent(name)
