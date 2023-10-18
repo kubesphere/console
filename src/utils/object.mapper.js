@@ -96,6 +96,23 @@ const DefaultMapper = item => ({
   _originData: getOriginData(item),
 })
 
+const CRDEditMapper = item => {
+  return {
+    ...getBaseInfo(item),
+    namespace: get(item, 'metadata.namespace'),
+    spec: get(item, 'spec'),
+    _originData: omit(item, [
+      'metadata.uid',
+      'metadata.selfLink',
+      'metadata.generation',
+      'metadata.ownerReferences',
+      'metadata.resourceVersion',
+      'metadata.creationTimestamp',
+      'metadata.managedFields',
+    ]),
+  }
+}
+
 const WorkspaceMapper = item => {
   const overrides = get(item, 'spec.overrides', [])
   const template = get(item, 'spec.template', {})
@@ -1504,6 +1521,7 @@ export default {
   dashboards: DashboardMapper,
   clusterdashboards: DashboardMapper,
   customresourcedefinitions: CRDMapper,
+  customresourcedefinitionsedit: CRDEditMapper,
   pipelines: PipelinesMapper,
   networkpolicies: NetworkPoliciesMapper,
   namespacenetworkpolicies: NetworkPoliciesMapper,
