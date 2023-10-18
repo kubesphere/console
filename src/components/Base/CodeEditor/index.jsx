@@ -41,7 +41,7 @@ class CodeEditor extends PureComponent {
   }
 
   static defaultProps = {
-    value: {},
+    value: '',
     mode: 'yaml',
     options: {},
     onChange() {},
@@ -49,7 +49,6 @@ class CodeEditor extends PureComponent {
 
   render() {
     const { className, mode, options, value, onChange } = this.props
-
     return (
       <Suspense fallback={<Loading className="ks-page-loading" />}>
         <AceEditor
