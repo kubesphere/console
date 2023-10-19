@@ -50,7 +50,7 @@ export default class History extends Component {
     }
 
     return (
-      <div className={classNames(styles.histories, className)}>
+      <div className={classNames(styles.historiesNew, className)}>
         {histories.map(item => (
           <Card key={item.url} data={item} />
         ))}
