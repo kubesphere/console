@@ -82,7 +82,7 @@ export default class Card extends Component {
     ) {
       return (
         <span className={styles.tagWrapper}>
-          <span>
+          <span title={getDisplayName(data.cluster)}>
             <Tag
               type={CLUSTER_GROUP_TAG_TYPE[data.cluster.group]}
               className={styles.tag}
@@ -112,13 +112,17 @@ export default class Card extends Component {
         <Text
           className={styles.text}
           icon={this.getIcon()}
-          title={getDisplayName(data)}
+          title={
+            <div className={styles.textTitle}>
+              <span title={getDisplayName(data)}>{getDisplayName(data)}</span>
+              <span>{this.renderTags()}</span>
+            </div>
+          }
           description={t(
             `WORKBENCH_${data.type.replace(/[-\s+]/g, '_').toUpperCase()}`
           )}
           ellipsis
         />
-        {this.renderTags()}
 
         {data.isFedManaged && (
           <Tooltip
