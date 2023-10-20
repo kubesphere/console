@@ -222,5 +222,7 @@ module.exports = {
   // detail page // run log // task status // pipeline log modal
   PIPELINE_LOG: '流水线日志',
   // detail page // Create Pipeline modal // add step modal
-  IMPORT_FROM_CODE_REPO: '从代码库导入'
+  IMPORT_FROM_CODE_REPO: '从代码库导入',
+  // detail page // parameters tab
+  NO_BUILD_PARAMETERS: '未发现构建参数。',
 };
