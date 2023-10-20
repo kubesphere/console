@@ -242,17 +242,18 @@ class ScheduleInfo extends React.Component {
   renderPodStatus() {
     const { detail } = this.store
     const conditions = get(detail, 'status.conditions', [])
-    const phase = get(detail, 'status.phase', '')
+    const status = get(detail, 'podStatus.status', '')
+
     return (
       <Panel title={t('STATUS_INFORMATION')}>
         <div className={styles.header}>
           <Text
             className={styles.info}
             icon="pod"
-            title={t(phase)}
+            title={t(status)}
             description={t('CURRENT_STATUS')}
             extra={
-              <Status status={phase === 'Running' ? 'success' : 'warning'} />
+              <Status status={status === 'Running' ? 'success' : 'warning'} />
             }
           />
         </div>
