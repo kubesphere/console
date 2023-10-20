@@ -25,5 +25,5 @@ module.exports = {
   // List > Create > Basic Information
   // List > Create > Rule Settings > Rule Template
   SELECT_WORKLOAD_TIP: '请选择至少一个工作负载。',
-  KUBE_NO_AVAILABLE_DATA: '未发现数据',
-}
+  KUBE_NO_AVAILABLE_DATA: '未发现数据'
+};

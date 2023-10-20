@@ -24,5 +24,5 @@ module.exports = {
   ALERTS_FROM_BUILT_IN_POLICIES: 'From Built-in Rules',
   TRIGGER_TIME: 'Trigger Time',
   ALERTING_MESSAGE_EMPTY_DESC: 'No alert is found in the current project.',
-  MONITORING_TARGET: 'Monitoring Target',
-}
+  MONITORING_TARGET: 'Monitoring Target'
+};
