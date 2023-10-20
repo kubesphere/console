@@ -142,6 +142,10 @@ export default class ParamsFormModal extends React.Component {
     const { parameters, currentBranch } = this.state
 
     this.formRef.current.validate(() => {
+      if (!isEmpty(formParameters) && formParameters.__branch) {
+        formParameters.branch = formParameters.__branch
+        delete formParameters.__branch
+      }
       const params = isEmpty(formParameters)
         ? !isEmpty(parameters) && Array.isArray(parameters)
           ? parameters.map(item => ({
@@ -171,7 +175,10 @@ export default class ParamsFormModal extends React.Component {
             label={param.name}
             desc={param.description}
           >
-            <Input defaultValue={defaultValue} name={param.name} />
+            <Input
+              defaultValue={defaultValue}
+              name={param.name === 'branch' ? '__branch' : param.name}
+            />
           </Form.Item>
         )
       case 'text':
