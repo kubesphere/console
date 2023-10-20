@@ -16,14 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export { default as Branch } from './Branch'
-export { default as Pipeline } from './PipeLine'
-export { default as PipelineOld } from './PipeLineOld'
-export { default as PullRequest } from './PullRequest'
-export { default as Activity } from './Activity'
-export { default as TaskStatus } from './TaskStatus'
-export { default as Commit } from './Commit'
-export { default as Artifacts } from './Artifacts'
-export { default as CodeQuality } from './CodeQuality'
-export { default as Events } from './Events'
-export { default as Parameters } from './Parameters'
+import EmptyCard from 'devops/components/Cards/EmptyCard'
+import { get } from 'lodash'
+import { inject, observer } from 'mobx-react'
+import * as React from 'react'
+import ItemWrapper from './Item'
+
+const Parameters = props => {
+  const data = get(props, 'spec.parameters', []).flatMap(item => [
+    [item.name, item.value],
+  ])
+  if (data.length === 0) {
+    return <EmptyCard desc={t('NO_BUILD_PARAMETERS')} />
+  }
+  return <ItemWrapper title={t('BUILD_PARAMETERS')} list={data} />
+}
+
+export default inject('detailStore')(observer(Parameters))

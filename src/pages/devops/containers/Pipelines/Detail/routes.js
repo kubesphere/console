@@ -30,6 +30,7 @@ import {
   PipelineOld,
   PullRequest,
   TaskStatus,
+  Parameters,
 } from './index'
 import BranchLayout from './Layout/branch'
 
@@ -70,6 +71,11 @@ const PIPELINE_BRANCH_ROUTES = [
 
 const PIPELINE_RUN_ROUTES = [
   { name: 'task-status', title: 'TASK_STATUS', component: TaskStatus },
+  {
+    name: 'build-parameters',
+    title: 'BUILD_PARAMETERS',
+    component: Parameters,
+  },
   { name: 'commit', title: 'COMMIT_PL', component: Commit },
   { name: 'artifacts', title: 'ARTIFACT_PL', component: Artifacts },
   { name: 'events', title: 'EVENT_PL', component: Events },

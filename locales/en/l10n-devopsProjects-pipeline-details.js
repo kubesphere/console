@@ -238,5 +238,7 @@ module.exports = {
   // detail page // run log // task status // pipeline log modal
   PIPELINE_LOG: 'Pipeline Logs',
   // detail page // Create Pipeline modal // add step modal
-  IMPORT_FROM_CODE_REPO: 'Import From Code Repository'
+  IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
+    // detail page // parameters tab
+  NO_BUILD_PARAMETERS: 'Not found build parameters.',
 }
