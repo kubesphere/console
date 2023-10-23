@@ -20,7 +20,8 @@ module.exports = {
   ALERTING_POLICY_PL: '规则组',
   ALERTING_POLICY_DESC: '规则组包含告警规则，用于监测集群资源。',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '告警是如何产生的？',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A: '您需要创建一个规则组并设置告警规则。当资源指标满足规则组中配置的条件时，系统将生成告警。',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A:
+    '您需要创建一个规则组并设置告警规则。当资源指标满足规则组中配置的条件时，系统将生成告警。',
   // List
   CUSTOM_POLICIES: '自定义规则组',
   BUILT_IN_POLICIES: '内置规则组',
@@ -44,12 +45,16 @@ module.exports = {
   INVALID_TIME_DESC: '参数值无效，请输入 0 或正整数。',
   ALIAS: '别名',
   DURATION_MIN: '持续时间（分钟）',
-  ALERT_DURATION: '设置系统等待一段时间并检查告警情况是否持续存在，如果告警情况持续存在才触发告警。',
-  LONG_NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
+  ALERT_DURATION:
+    '设置系统等待一段时间并检查告警情况是否持续存在，如果告警情况持续存在才触发告警。',
+  LONG_NAME_DESC:
+    '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
   NAME_EXIST_DESC: '名称已存在，请输入其他名称。',
-  ALIAS_NAME_DESC: '别名只能包含中文、字母、数字和连字符（-），不得以连字符（-）开头或结尾，最长 63 个字符。',
+  ALIAS_NAME_DESC:
+    '别名只能包含中文、字母、数字和连字符（-），不得以连字符（-）开头或结尾，最长 63 个字符。',
   CHECK_INTERVAL: '检查间隔',
-  ALERTING_POLICY_CHECK_INTERVAL_DESC: '设置指标检查之间的时间间隔。默认值为 1 分钟。',
+  ALERTING_POLICY_CHECK_INTERVAL_DESC:
+    '设置指标检查之间的时间间隔。默认值为 1 分钟。',
   // List > Create > Rule Settings > Rule List
   ADD_ALERTING_RULE: '添加告警规则',
   ADD_ALERTING_RULE_DESC: '为规则组添加告警规则。',
@@ -93,7 +98,8 @@ module.exports = {
   CUSTOM_RULE: '自定义规则',
   RULE_EXPRESSION: '告警规则表达式',
   ENTER_RULE_EXPRESSION: '请输入告警规则表达式。',
-  ALERT_RULE_EXPRESSION_DESC: '您可以通过 PromQL 语句来自定义告警规则。<a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">了解更多</a>',
+  ALERT_RULE_EXPRESSION_DESC:
+    '您可以通过 PromQL 语句来自定义告警规则。<a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">了解更多</a>',
   ALERT_FUNCTIONS: '函数',
   ALERT_METRICS: '指标',
   ALERT_LABELS: '标签',
@@ -107,10 +113,11 @@ module.exports = {
   EDIT_ALERTING_POLICY: '编辑规则组',
   // List > Disable
   DISABLE_ALERTING_POLICY: '禁用规则组',
+  DISABLE_MULTIPLE_ALERTING_POLICIES: '批量禁用规则组',
   // List > Delete
   ALERTING_POLICY: '规则组',
   ALERTING_POLICY_LOW: '规则组',
   // List > reset
   RESET_ALERTING_POLICY: '重置规则组',
-  RESET_ALERTING_POLICY_DESC: '您确定重置规则组吗？'
-};
+  RESET_ALERTING_POLICY_DESC: '您确定重置规则组吗？',
+}

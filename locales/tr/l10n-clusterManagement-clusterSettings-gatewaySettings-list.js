@@ -19,7 +19,8 @@ module.exports = {
   // Navigation Pane
   GATEWAY_SETTINGS: 'Ağ Geçidi Ayarları',
   // Banner
-  CLUSTER_GATEWAY_DESC: 'Kümede harici ağ erişim ağ geçidi ve hizmet yönetiminin yapılandırmasını kurun ve yönetin.',
+  CLUSTER_GATEWAY_DESC:
+    'Kümede harici ağ erişim ağ geçidi ve hizmet yönetiminin yapılandırmasını kurun ve yönetin.',
   // Cluster Gateway
   CLUSTER_GATEWAY_NOT_ENABLED: 'Küme Ağ Geçidi Etkin Değil',
   CLUSTER_ENABLE_GATEWAY_DESC: 'Lütfen küme ağ geçidini etkinleştirin.',
@@ -28,21 +29,26 @@ module.exports = {
   LOAD_BALANCER_PROVIDER_SCAP: 'Yük dengeleyici sağlayıcı',
   // Cluster Gateway > Enable Gateway
   ENABLE_GATEWAY: 'Ağ geçidi etkinleştir',
-  GATEWAY_TRACING_TIP: '<b>İzleme</b> etkinleştirildikten sonra rotalara erişilemiyorsa, lütfen rotaya <b>nginx.ingress.kubernetes.io/service-upstream: true </b> ek açıklamasını ekleyin.',
+  GATEWAY_TRACING_TIP:
+    '<b>İzleme</b> etkinleştirildikten sonra rotalara erişilemiyorsa, lütfen rotaya <b>nginx.ingress.kubernetes.io/service-upstream: true </b> ek açıklamasını ekleyin.',
   // Cluster Gateway > Manage > View Details
   VIEW_DETAILS: 'Detayları Göster',
   // Cluster Gateway > Manage > Disable
   DISABLE: 'Devre Dışı Bırak',
   DISABLE_GATEWAY: 'Ağ geçidi etkinleştir',
-  DISABLE_GATEWAY_TIP: 'Bu ağgeçit donanımını kaldırmak istediğinize emin misiniz?',
+  DISABLE_GATEWAY_TIP:
+    'Bu ağgeçit donanımını kaldırmak istediğinize emin misiniz?',
   DISABLE_SUCCESSFUL: 'Başarıyla devre dışı bırakıldı.',
+  ENABLE_SUCCESSFUL: 'Enabled successfully.',
+  RESET_SUCCESSFUL: 'Reset successful',
   // Cluster Gateway > Manage > Edit
   EDIT: 'Düzenle',
   EDIT_TITLE: 'Başlığı Düzenle',
   // Cluster Gateway > Manage > Update
   UPDATE: 'Güncelle',
   UPDATED_GATEWAY_TITLE: 'Update Gateway',
-  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
+  UPDATE_GATEWAY_DESC:
+    'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
   // Project Gateways
   PROJECT_GATEWAY_PL: 'Proje Ağ Geçidi',
   PROJECT_GATEWAY_NOT_ENABLED: 'Proje Ağ Geçidi Etkin Değil',
@@ -52,5 +58,5 @@ module.exports = {
   UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: 'proje Ağ Geçidi',
-  DISABLE_MULTIPLE_GATEWAYS: 'Birden Çok Ağ Geçidini Devre Dışı Bırak'
-};
+  DISABLE_MULTIPLE_GATEWAYS: 'Birden Çok Ağ Geçidini Devre Dışı Bırak',
+}
