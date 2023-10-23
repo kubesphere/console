@@ -30,7 +30,7 @@ import AppConfig from 'components/Forms/AppDeploy/AppConfig'
 import VersionStore from 'stores/openpitrix/version'
 import AppFileStore from 'stores/openpitrix/file'
 
-import { generateId, showNameAndAlias } from 'utils'
+import { generateId } from 'utils'
 
 import Steps from './Steps'
 
@@ -60,14 +60,18 @@ export default class AppDeploy extends React.Component {
   constructor(props) {
     super(props)
 
+    const appName = props.app.name
+
     this.state = {
       currentStep: 0,
       formData: {
         app_id: props.app.app_id,
-        name: `${props.app.name
-          .slice(0, 7)
-          .toLowerCase()
-          .replaceAll(' ', '-')}-${generateId()}`,
+        name: appName
+          ? `${appName
+              ?.slice(0, 7)
+              .toLowerCase()
+              .replaceAll(' ', '-')}-${generateId()}`
+          : '',
         version_id: props.versionId,
         namespace: props.namespace,
         cluster: props.cluster,
@@ -165,9 +169,9 @@ export default class AppDeploy extends React.Component {
 
     const props = {
       formData,
-      cluster: showNameAndAlias(cluster, 'cluster'),
-      workspace: showNameAndAlias(workspace, 'workspace'),
-      namespace: showNameAndAlias(namespace, 'project'),
+      cluster,
+      workspace,
+      namespace,
       versionId,
       versionStore: this.versionStore,
       fileStore: this.fileStore,
