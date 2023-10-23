@@ -19,7 +19,8 @@ module.exports = {
   // Navigation Pane
   GATEWAY_SETTINGS: 'Gateway Einstellungen',
   // Banner
-  CLUSTER_GATEWAY_DESC: 'Einrichten und Verwalten der Konfiguration des Gateways für den externen Netzwerkzugriff und der Dienstverwaltung im Cluster.',
+  CLUSTER_GATEWAY_DESC:
+    'Einrichten und Verwalten der Konfiguration des Gateways für den externen Netzwerkzugriff und der Dienstverwaltung im Cluster.',
   // Cluster Gateway
   CLUSTER_GATEWAY_NOT_ENABLED: 'Cluster Gateway nicht aktiviert',
   CLUSTER_ENABLE_GATEWAY_DESC: 'Bitte aktivieren Sie das Cluster Gateway.',
@@ -28,7 +29,8 @@ module.exports = {
   LOAD_BALANCER_PROVIDER_SCAP: 'Load Balancer Anbieter',
   // Cluster Gateway > Enable Gateway
   ENABLE_GATEWAY: 'Gateway aktivieren',
-  GATEWAY_TRACING_TIP: 'Wenn auf Ingress nicht zugegriffen werden kann, nachdem <b>Tracing</b> aktiviert wurde, fügen Sie dem Ingress bitte die Anmerkung <b>nginx.ingress.kubernetes.io/service-upstream: true </b> hinzu.',
+  GATEWAY_TRACING_TIP:
+    'Wenn auf Ingress nicht zugegriffen werden kann, nachdem <b>Tracing</b> aktiviert wurde, fügen Sie dem Ingress bitte die Anmerkung <b>nginx.ingress.kubernetes.io/service-upstream: true </b> hinzu.',
   // Cluster Gateway > Manage > View Details
   VIEW_DETAILS: 'Details anzeigen',
   // Cluster Gateway > Manage > Disable
@@ -36,13 +38,16 @@ module.exports = {
   DISABLE_GATEWAY: 'Gateway deaktivieren',
   DISABLE_GATEWAY_TIP: 'Möchten Sie das Gateway wirklich deaktivieren?',
   DISABLE_SUCCESSFUL: 'Erfolgreich deaktiviert.',
+  ENABLE_SUCCESSFUL: 'Enabled successfully.',
+  RESET_SUCCESSFUL: 'Reset successful',
   // Cluster Gateway > Manage > Edit
   EDIT: 'Bearbeiten',
   EDIT_TITLE: '{title} bearbeiten',
   // Cluster Gateway > Manage > Update
   UPDATE: 'Aktualisieren',
   UPDATED_GATEWAY_TITLE: 'Update Gateway',
-  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
+  UPDATE_GATEWAY_DESC:
+    'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
   // Project Gateways
   PROJECT_GATEWAY_PL: 'Projekt Gateways',
   PROJECT_GATEWAY_NOT_ENABLED: 'Projekt Gateway nicht aktiviert',
@@ -52,5 +57,5 @@ module.exports = {
   UPDATE_GATEWAY_DESC: 'Das aktuelle Gateway kann aktualisiert werden.',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: 'projekt gateway',
-  DISABLE_MULTIPLE_GATEWAYS: 'Mehrere Gateways deaktivieren'
-};
+  DISABLE_MULTIPLE_GATEWAYS: 'Mehrere Gateways deaktivieren',
+}
