@@ -18,9 +18,9 @@
 
 import { omit, isArray, get, isEmpty } from 'lodash'
 import { saveAs } from 'file-saver'
-import { action, observable, toJS } from 'mobx'
+import { action, computed, observable, toJS } from 'mobx'
 import { Notify } from '@kube-design/components'
-import { safeParseJSON } from 'utils'
+import { getClusterUrl, safeParseJSON } from 'utils'
 
 import BaseStore from '../devops'
 
@@ -76,7 +76,23 @@ export default class PipelineRunStore extends BaseStore {
 
   // entire run log
   @observable
-  runDetailLogs = ''
+  runStartDetailLogs = ''
+
+  @observable
+  logSize = 0
+
+  @observable
+  hasMore = false
+
+  hasMoreNotify = false
+
+  @observable
+  lastDetailLogs = ''
+
+  @computed
+  get runDetailLogs() {
+    return this.runStartDetailLogs + this.lastDetailLogs
+  }
 
   getUrl({ cluster, devops, name }) {
     return `${this.getDevopsUrlV2({
@@ -304,30 +320,92 @@ export default class PipelineRunStore extends BaseStore {
   }
 
   @action
-  async getRunStatusLogs({ devops, name, branch, runId, cluster }) {
-    // TODO: use response headers offset
-    const result = await request.get(
-      `${this.getRunUrl({
-        cluster,
-        devops,
-        name,
-        branch,
-        runId,
-      })}log/?start=0`
-    )
-    this.runDetailLogs = result
+  async getRunStatusLogs(
+    { devops, name, branch, runId, cluster },
+    refresh = false
+  ) {
+    if (refresh) {
+      this.logSize = 0
+      this.runStartDetailLogs = ''
+      this.hasMore = false
+    }
+    if (this.logSize >= 1024 * 1024 * 20) {
+      const result = await request.get(
+        `${this.getRunUrl({
+          cluster,
+          devops,
+          name,
+          branch,
+          runId,
+        })}log/?thresholdInKB=150`
+      )
+      this.hasMore = true
+      this.lastDetailLogs = `
+
+*****************************************************************    
+* The log is too large, please download it to view the details. *
+*                                                               * 
+* The following is the latest 150KB log.                        * 
+*****************************************************************    
+
+${result}`
+    } else {
+      const result = await request.get(
+        `${this.getRunUrl({
+          cluster,
+          devops,
+          name,
+          branch,
+          runId,
+        })}log/?start=${this.logSize}`,
+        {},
+        {
+          headers: {
+            'x-file-size-limit': 1024 * 100,
+            'x-with-headers': true,
+          },
+        }
+      )
+      this.logSize += Number(result.headers.get('X-File-Size'))
+      this.hasMore = result.headers.get('X-File-Size-Limit-Out') !== 'true'
+      result.text().then(text => {
+        this.runStartDetailLogs += this.removeSameWords(
+          this.runStartDetailLogs,
+          text
+        )
+      })
+    }
+  }
+
+  removeSameWords = (str1, str2) => {
+    const end = str1.slice(-100)
+    const index = str2.indexOf(end)
+    if (index === -1) {
+      return str2
+    }
+    return str2.slice(index + end.length)
   }
 
   async handleDownloadLogs({ devops, name, branch, cluster }) {
     name = decodeURIComponent(name)
-    await this.getRunStatusLogs({
-      devops,
-      name,
-      branch,
-      runId: this.runDetail.id,
-      cluster,
-    })
-    this.saveAsFile(this.runDetailLogs, 'log.txt')
+    const url = getClusterUrl(
+      `${window.location.protocol}//${window.location.host}/${this.getRunUrl({
+        cluster,
+        devops,
+        name,
+        branch,
+        runId: this.runDetail.id,
+      })}log/?start=0&download=true`
+    )
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${name}-${this.runDetail.id}-${this.runDetail.name}.log`
+    a.headers = {
+      'x-add-res-header': JSON.stringify({
+        'Content-Disposition': `attachment; filename=${name}-${this.runDetail.name}.log`,
+      }),
+    }
+    a.click()
   }
 
   saveAsFile = (text = '', fileName = 'default.txt') => {
