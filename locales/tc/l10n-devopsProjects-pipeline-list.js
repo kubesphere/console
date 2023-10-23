@@ -100,7 +100,7 @@ module.exports = {
   BRANCH_RETENTION_PERIOD_DAYS: '保留流水線的天數',
   MAXIMUM_BRANCHES: '保留流水線的最大個數',
   BRANCH_RETENTION_PERIOD_DAYS_DESC: '達到保留天數的流水線將被刪除，默認值為 7。',
-  MAXIMUM_BRANCHES_DESC: '如果流水線數量超過保留的最大數量，將丟棄舊的分支。默認值為 5。',
+  MAXIMUM_BRANCHES_DESC: '如果流水線數量超過保留的最大數量，將丟棄舊的流水線。默認值為 5。',
   ADD_STRATEGY: 'Add Strategy',
   DISCOVER_TAG_BRANCHES: '發現 Tag 分支',
   DISCOVER_BRANCHES: '發現分支',
