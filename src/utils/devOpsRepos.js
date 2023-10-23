@@ -1,8 +1,9 @@
+// ------------- pipeline source to code repo obj -----------
+
 /**
  * type repo
  *  { provider, url, server, owner, repo }
  */
-
 /**
  * github to repo
  * example: {
@@ -73,6 +74,15 @@ export function getGitSource(data) {
     url,
   }
 }
+
+export const getCodeRepoTemplate = {
+  github: getGithubSource,
+  gitlab: getGitlabSource,
+  bitbucket_server: getBitbucketSource,
+  git: getGitSource,
+}
+
+// ------------ code repo obj to pipeline source -----------
 
 const gitRepositorySpec2BaseSource = (spec, name) => {
   return {

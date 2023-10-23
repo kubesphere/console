@@ -145,7 +145,6 @@ export default class Activity extends React.Component {
         disabledBrancheNames: toJS(detail.disabledBrancheNames),
         parameters: toJS(detail.parameters),
         success: () => {
-          Notify.success({ content: `${t('PIPELINE_RUN_START_SI')}` })
           this.handleFetch()
         },
       })
@@ -246,8 +245,8 @@ export default class Activity extends React.Component {
       width: '10%',
       key: 'run',
       render: record =>
-        record.result === 'ABORTED' || !record.result ? (
-          <span>{record.id}</span>
+        !record.id ? (
+          <span>-</span>
         ) : (
           <Link className="item-name" to={this.getRunhref(record)}>
             {record.id}

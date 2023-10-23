@@ -36,9 +36,9 @@ export default class FullLogs extends React.Component {
   }
 
   @action
-  getPipelineIndexLog() {
+  getPipelineIndexLog(refresh = false) {
     const { params } = this.props
-    this.store.getRunStatusLogs(params)
+    this.store.getRunStatusLogs(params, refresh)
   }
 
   @computed
@@ -87,7 +87,8 @@ export default class FullLogs extends React.Component {
   }
 
   handleRefreshLogs = async () => {
-    await this.getPipelineIndexLog()
+    await this.getPipelineIndexLog(true)
+    await this.handleRealtime()
     this.scrollToBottom()
   }
 

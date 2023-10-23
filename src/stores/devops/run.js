@@ -18,7 +18,7 @@
 
 import { omit, isArray, get, isEmpty } from 'lodash'
 import { saveAs } from 'file-saver'
-import { action, observable, toJS } from 'mobx'
+import { action, computed, observable, toJS } from 'mobx'
 import { Notify } from '@kube-design/components'
 import { getClusterUrl, safeParseJSON } from 'utils'
 
@@ -91,6 +91,11 @@ export default class PipelineRunStore extends BaseStore {
 
   @observable
   lastDetailLogs = ''
+
+  @computed
+  get runDetailLogs() {
+    return this.runStartDetailLogs + this.lastDetailLogs
+  }
 
   getUrl({ cluster, devops, name }) {
     return `${this.getDevopsUrlV2({

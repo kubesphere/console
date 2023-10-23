@@ -256,7 +256,7 @@ export default class TaskStatus extends React.Component {
               />
             </div>
 
-            <Button icon="restart" type="flat" onClick={this.handleRefresh} />
+            <Button icon="refresh" type="flat" onClick={this.handleRefresh} />
           </div>
           {this.state.activeTab === 'pipeline' && (
             <div

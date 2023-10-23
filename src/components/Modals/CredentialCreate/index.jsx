@@ -294,10 +294,10 @@ export default class CredentialModal extends React.Component {
                   label: t('CREDENTIAL_TYPE_SECRET_TEXT'),
                   value: 'secret_text',
                 },
-                {
-                  label: t('CREDENTIAL_TYPE_KUBECONFIG'),
-                  value: 'kubeconfig',
-                },
+                // {
+                //   label: t('CREDENTIAL_TYPE_KUBECONFIG'),
+                //   value: 'kubeconfig',
+                // },
               ]}
               disabled={isEditMode}
               onChange={this.handleTypeChange}
