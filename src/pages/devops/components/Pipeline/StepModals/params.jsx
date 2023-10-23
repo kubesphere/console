@@ -84,8 +84,8 @@ const setCredentialType = str => {
   if (type) {
     const credentialType = Object.entries(typesDict).find(
       typeArr => typeArr[1] === type
-    )
-    return credentialType ? credentialType[0] : null
+    )?.[0]
+    return credentialType
   }
   return null
 }

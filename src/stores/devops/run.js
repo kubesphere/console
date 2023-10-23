@@ -82,6 +82,9 @@ export default class PipelineRunStore extends BaseStore {
   logSize = 0
 
   @observable
+  overflow = false
+
+  @observable
   hasMore = false
 
   hasMoreNotify = false
@@ -329,7 +332,7 @@ export default class PipelineRunStore extends BaseStore {
       this.runStartDetailLogs = ''
       this.hasMore = false
     }
-    if (this.logSize >= 1024 * 1024 * 20) {
+    if (this.overflow) {
       const result = await request.get(
         `${this.getRunUrl({
           cluster,
@@ -350,6 +353,8 @@ export default class PipelineRunStore extends BaseStore {
 
 ${result}`
     } else {
+      const start = this.logSize
+      const params = start ? `?start=${start}` : ''
       const result = await request.get(
         `${this.getRunUrl({
           cluster,
@@ -357,33 +362,68 @@ ${result}`
           name,
           branch,
           runId,
-        })}log/?start=${this.logSize}`,
+        })}log/${params}`,
         {},
         {
           headers: {
-            'x-file-size-limit': 1024 * 100,
+            // 'x-file-size-limit': 1024 * 1024 * 10,
             'x-with-headers': true,
           },
         }
       )
-      this.logSize += Number(result.headers.get('X-File-Size'))
-      this.hasMore = result.headers.get('X-File-Size-Limit-Out') !== 'true'
+      const size = result.headers.get('x-text-size')
+      if (size) {
+        this.logSize = Number(size)
+        this.hasMore = Boolean(result.headers.get('x-more-data'))
+      } else {
+        this.logSize += Number(result.headers.get('x-text-size'))
+        this.hasMore = Boolean(result.headers.get('x-more-data'))
+      }
+      this.overflow =
+        Boolean(result.headers.get('X-File-Size-Limit-Out')) ||
+        this.logSize >= 1024 * 1024 * 10
+
       result.text().then(text => {
-        this.runStartDetailLogs += this.removeSameWords(
-          this.runStartDetailLogs,
-          text
-        )
+        if (start === 0) {
+          this.runStartDetailLogs = text
+          return
+        }
+        // console.log(this.runStartDetailLogs.slice(-100).split('\n'))
+        const arr = this.runStartDetailLogs.slice(-100).split('\n')
+        if (arr.length >= 2) {
+          arr.pop()
+          if (arr.length && arr.pop().startsWith('Finished:')) {
+            //
+          } else {
+            this.runStartDetailLogs += text
+          }
+        } else {
+          this.runStartDetailLogs += text
+        }
       })
     }
   }
+  // removeSameWords = (str1, str2) => {
+  //   const end = str1.slice(-100)
+  //   const index = str2.indexOf(end)
+  //   if (index === -1) {
+  //     return str2
+  //   }
+  //   return str2.slice(index + end.length)
+  // }
 
-  removeSameWords = (str1, str2) => {
-    const end = str1.slice(-100)
-    const index = str2.indexOf(end)
-    if (index === -1) {
-      return str2
-    }
-    return str2.slice(index + end.length)
+  handleJumpFullLogs({ devops, name, branch, cluster }) {
+    name = decodeURIComponent(name)
+    const url = getClusterUrl(
+      `${window.location.protocol}//${window.location.host}/${this.getRunUrl({
+        cluster,
+        devops,
+        name,
+        branch,
+        runId: this.runDetail.id,
+      })}log/?start=0`
+    )
+    window.open(url)
   }
 
   async handleDownloadLogs({ devops, name, branch, cluster }) {

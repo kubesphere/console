@@ -43,6 +43,9 @@ export default class FullLogs extends React.Component {
 
   @computed
   get isLogFinish() {
+    if (this.store.overflow) {
+      return true
+    }
     const logs = this.store.runDetailLogs.split('\n')
     let index = logs.length - 1
     let start = 0

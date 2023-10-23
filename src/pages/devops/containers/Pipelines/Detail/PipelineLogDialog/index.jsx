@@ -18,16 +18,16 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { isEmpty, isArray } from 'lodash'
-import { action, observable, computed, toJS, reaction } from 'mobx'
+import { isArray, isEmpty } from 'lodash'
+import { action, computed, observable, reaction, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Modal } from 'components/Base'
 import { Button } from '@kube-design/components'
 import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
-import { formatUsedTime } from 'utils'
 import RunStore from 'stores/devops/run'
 
+import TimeCounter from 'devops/containers/Pipelines/Detail/PipelineLogDialog/Timer'
 import LogItem from './logItem'
 import styles from './index.scss'
 import FullLogs from './FullLogs'
@@ -40,6 +40,9 @@ export default class PipelineLog extends React.Component {
      * @type {RunStore}
      */
     this.store = new RunStore()
+    this.state = {
+      isDownloading: false,
+    }
 
     this.reaction = reaction(
       () => this.isEmptySteps,
@@ -126,6 +129,16 @@ export default class PipelineLog extends React.Component {
   //   this.refreshFlag = !this.refreshFlag
   // }, 1000)
 
+  handleDownload = async () => {
+    this.setState({ isDownloading: true })
+    await this.store.handleDownloadLogs(this.props.params)
+    this.setState({ isDownloading: false })
+  }
+
+  handleJumpFullLogs = () => {
+    this.store.handleJumpFullLogs(this.props.params)
+  }
+
   renderLeftTab(stage, index) {
     if (Array.isArray(stage)) {
       return (
@@ -200,6 +213,28 @@ export default class PipelineLog extends React.Component {
     ))
   }
 
+  get isRunning() {
+    return this.activeStage?.result && this.activeStage?.result === 'UNKNOWN'
+  }
+
+  renderLogButton = () => {
+    if (this.isRunning) {
+      return (
+        <Button onClick={this.handleVisableLog}>
+          {t('VIEW_REAL_TIME_LOG')}
+        </Button>
+      )
+    }
+    return (
+      <span>
+        <Button loading={this.state.isLoading} onClick={this.handleDownload}>
+          {t('DOWNLOAD_LOGS')}
+        </Button>
+        <Button onClick={this.handleJumpFullLogs}>{t('VIEW_FULL_LOG')}</Button>
+      </span>
+    )
+  }
+
   render() {
     const { nodes } = this.props
     const _nodes = toJS(nodes)
@@ -215,8 +250,7 @@ export default class PipelineLog extends React.Component {
     //   )
     // }
 
-    const time = this.activeStage?.durationInMillis ?? ''
-
+    // const time = this.activeStage?.durationInMillis ?? ''
     return (
       <>
         <div className={styles.container}>
@@ -226,13 +260,16 @@ export default class PipelineLog extends React.Component {
           <div className={styles.right}>
             <div className={styles.header}>
               <span>
-                {t('DURATION_VALUE', {
-                  value: time ? formatUsedTime(time) : '-',
-                })}
+                <TimeCounter
+                  startTime={this.activeStage?.startTime}
+                  time={
+                    this.activeStage?.result !== 'UNKNOWN'
+                      ? this.activeStage?.durationInMillis
+                      : undefined
+                  }
+                />
               </span>
-              <Button onClick={this.handleVisableLog}>
-                {t('VIEW_FULL_LOG')}
-              </Button>
+              {this.renderLogButton()}
             </div>
             <div className={styles.logContainer}>{this.renderLogContent()}</div>
           </div>

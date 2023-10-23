@@ -29,25 +29,46 @@ export default class PipelineRunStore extends BaseStore {
   }
 
   async getStepLog({ devops, cluster, name, branch, runId, nodeId, stepId }) {
+    const params = this.stepLogData.start
+      ? `?start=${this.stepLogData.start}`
+      : ''
+    const headers = branch
+      ? {}
+      : {
+          'x-file-size-limit': 1024 * 1024 * 5,
+        }
     const result = await request.defaults({
       url: `${this.getDevopsUrlV2({
         cluster,
         devops,
       })}pipelines/${decodeURIComponent(name)}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
-      }/runs/${runId}/nodes/${nodeId}/steps/${stepId}/log/?start=${this
-        .stepLogData.start || 0}`,
+      }/runs/${runId}/nodes/${nodeId}/steps/${stepId}/log/${params}`,
+      options: { headers },
       handler: resp => {
         if (resp.status === 200) {
           return resp.text().then(res => ({ data: res, headers: resp.headers }))
         }
       },
     })
-    const prevLog = this.stepLogData.log
+    const prevLog = !this.stepLogData.start ? '' : this.stepLogData.log
     this.stepLogData = {
       log: prevLog + get(result, 'data', ''),
       start: result.headers.get('x-text-size'),
       hasMore: Boolean(result.headers.get('x-more-data')),
+    }
+    if (
+      result.headers.get('X-File-Size-Limit-Out') === 'true' ||
+      this.log?.length > 1024 * 1024 * 5
+    ) {
+      this.stepLogData.hasMore = false
+      this.stepLogData.log += `\n
+*****************************************************************   
+*                                                               * 
+* The log is too large, please download it to view the details. *
+*                                                               * 
+*****************************************************************    
+      `
     }
   }
 
