@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Slider } from '@kube-design/components'
+import { Slider } from 'components/Base'
 
 export default class UnitSlider extends React.Component {
   handleChange = value => {
