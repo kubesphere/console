@@ -80,6 +80,21 @@ class Autosuggest extends Component {
     }
   }
 
+  handEnter = event => {
+    event.stopPropagation()
+    const { onAdd } = this.props
+    const { value } = this.state
+    if (value.trim() !== '') {
+      if (!PATTERN_TAG.test(value) || value.length > 63) {
+        Notify.error({ content: t('PATTERN_TAG_VALUE_INVALID_TIP') })
+        return
+      }
+      this.setState({ value: '' }, () => {
+        onAdd(value)
+      })
+    }
+  }
+
   render() {
     const { value } = this.state
     const { style, placeholder } = this.props
@@ -96,6 +111,7 @@ class Autosuggest extends Component {
           className={styles.autosuggestInput}
           type="text"
           onKeyDown={this.handlePressEnter}
+          onBlur={this.handEnter}
           onChange={this.handleChange}
           placeholder={placeholder}
           ref={n => {
