@@ -134,7 +134,13 @@ export default class ConditionSelect extends React.Component {
   }
 
   handleOperatorChange = operator => {
-    this.setState({ operator }, () => this.handleChange())
+    let values = this.state.values
+
+    if (['Exists', 'DoesNotExist'].includes(operator)) {
+      values = undefined
+    }
+
+    this.setState({ operator, values }, () => this.handleChange())
   }
 
   handleValueChange = values => {
@@ -143,12 +149,20 @@ export default class ConditionSelect extends React.Component {
 
   handleChange = () => {
     const { key, operator, values } = this.state
+    const _values = ['Exists', 'DoesNotExist'].includes(operator)
+      ? undefined
+      : values || []
 
-    this.props.onChange({
+    const data = {
       key,
       operator,
-      values: ['Exists', 'DoesNotExist'].includes(operator) ? [] : values,
-    })
+    }
+
+    if (_values) {
+      data.values = _values
+    }
+
+    this.props.onChange(data)
   }
 
   dorpdownRender = options => {
@@ -173,9 +187,11 @@ export default class ConditionSelect extends React.Component {
 
   renderValues() {
     const { key, operator, values } = this.state
+
     if (operator === 'Exists' || operator === 'DoesNotExist') {
       return null
     }
+
     if (key === 'severity') {
       return (
         <Select
@@ -188,6 +204,7 @@ export default class ConditionSelect extends React.Component {
         />
       )
     }
+
     return (
       <TagInput
         name="values"
