@@ -92,6 +92,6 @@ module.exports = {
   // List > Delete
   STORAGE_CLASS: '儲存類型',
   STORAGE_CLASS_LOW: '儲存類型',
-  STORAGE_CLASS_DELETE_DESC: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Are you sure you want to delete the volume snapshot class?',
-  STORAGE_CLASS_DELETE_DESC_PL: 'Deleting the volume snapshot class may affect the normal use of volume snapshots. Enter the {type} names <strong>{resource}</strong> to confirm that you understand the risks of this operation.'
+  STORAGE_CLASS_DELETE_DESC: '您確定刪除儲存類型嗎？',
+  STORAGE_CLASS_DELETE_DESC_PL: '請輸入 {type} 名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。'
 };
