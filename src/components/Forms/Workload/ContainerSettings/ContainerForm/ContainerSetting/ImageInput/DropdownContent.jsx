@@ -17,6 +17,8 @@
  */
 
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { get, set, isEmpty } from 'lodash'
 import classnames from 'classnames'
 import { Icon, InputSearch, Loading } from '@kube-design/components'
@@ -26,13 +28,16 @@ import Input from './Input'
 import styles from './index.scss'
 
 export default class DropdownContent extends React.Component {
+  static contextTypes = {
+    setImageDetail: PropTypes.func,
+  }
+
   constructor(props) {
     super(props)
     const { imageRegistries } = this.props
-
     const harborData =
       this.hubType === 'harbor'
-        ? imageRegistries.find(item => item === this.secretValue)
+        ? imageRegistries.find(item => item.value === this.secretValue)
         : {}
 
     this.state = {
@@ -42,8 +47,10 @@ export default class DropdownContent extends React.Component {
       visible: false,
       isLoading: false,
     }
+
     this.store = props.store
     this.dropContentRef = React.createRef()
+    this.isUnMounted = false
   }
 
   static defaultProps = {
@@ -74,6 +81,7 @@ export default class DropdownContent extends React.Component {
     if (this.secretValue && this.registryUrl.indexOf('docker.io') < 0) {
       return 'harbor'
     }
+
     return 'others'
   }
 
@@ -129,7 +137,7 @@ export default class DropdownContent extends React.Component {
     }
 
     if (this.hubType === 'harbor') {
-      this.fetchHarborList('', this.defaultHarbor)
+      this.fetchHarborList('', this.state.harborData)
     }
   }
 
@@ -195,6 +203,7 @@ export default class DropdownContent extends React.Component {
     }
     image = image.replace(/\s+/g, '')
     this.props.onChange(image)
+    this.context.setImageDetail && this.context.setImageDetail({ image })
   }
 
   handleKeyUp = e => {
@@ -254,6 +263,7 @@ export default class DropdownContent extends React.Component {
 
   fetchHarborList = async (keyword, harborData) => {
     const url = get(harborData, 'url')
+
     if (!url || isEmpty(harborData)) return
 
     this.setState({ isLoading: true })

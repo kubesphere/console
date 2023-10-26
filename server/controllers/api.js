@@ -139,13 +139,9 @@ const handleHarborProxy = async ctx => {
     let isErrorRes = false
 
     if (requestUrl === 'search') {
-      const { repository, project, chart } = res
+      const { repository, project } = res
       // Check whether the response is the requirements
-      isErrorRes = !(
-        Array.isArray(repository) &&
-        Array.isArray(project) &&
-        Array.isArray(chart)
-      )
+      isErrorRes = !(Array.isArray(repository) && Array.isArray(project))
     } else {
       isErrorRes = !Array.isArray(res)
     }
