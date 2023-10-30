@@ -16,9 +16,6 @@ jobs:
     if: github.repository	== 'kubesphere/console'
     steps:
       - uses: actions/checkout@v2
-      - name: Get Version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -33,5 +30,5 @@ jobs:
 
       - name: Push image
         run: |
-          TAG=${{ steps.get_version.outputs.VERSION }} REPO=$IMAGE_REPO make container-cross-push
+          TAG=${GITHUB_REF#refs/*/} REPO=$IMAGE_REPO make container-cross-push
           echo "Push $IMAGE success!"
