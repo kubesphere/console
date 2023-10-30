@@ -23,7 +23,7 @@ import TerminationSecondsForm from 'components/Forms/Workload/ContainerSettings/
 
 class TerminationSeconds extends React.Component {
   render() {
-    const { formTemplate, formRef, formProps } = this.props
+    const { formTemplate, formRef, formProps, isFederated } = this.props
 
     return (
       <div className="margin-t12">
@@ -34,7 +34,7 @@ class TerminationSeconds extends React.Component {
             keepDataWhenUnCheck
             checkable
           >
-            <TerminationSecondsForm />
+            <TerminationSecondsForm isFederated={isFederated} />
           </Form.Group>
         </Form>
       </div>

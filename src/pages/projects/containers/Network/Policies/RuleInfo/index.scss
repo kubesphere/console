@@ -1,18 +1,22 @@
 @import '~scss/variables';
+
 .wrapper {
   box-shadow: 0 -1px 0 0 $light-color04;
 }
+
 .tabs {
   display: flex;
-  padding-left: 20px;
   background-color: $light-color02;
 }
+
 .tab {
   display: flex;
   align-items: center;
   padding: 12px;
   cursor: pointer;
+  flex: 1;
 }
+
 .on {
   background-color: #fff;
 }
@@ -21,6 +25,7 @@
   margin-left: 12px;
   color: $dark-color01;
 }
+
 .dictitle {
   color: $dark-color07;
   font-weight: 600;
@@ -36,9 +41,11 @@
   padding: 0 12px;
   background-color: $light-color01;
 }
+
 .rulebody {
   padding: 20px;
 }
+
 .rulegroup {
   &:first-child {
     margin-bottom: 12px;
@@ -50,10 +57,12 @@
   line-height: 1.67;
   font-weight: 600;
 }
+
 .disp {
   color: $dark-color01;
   line-height: 1.67;
 }
+
 .row {
   display: flex;
   background-color: $light-color02;
@@ -62,24 +71,30 @@
   margin-top: 8px;
   justify-content: space-between;
   align-items: center;
+
   & > :last-child {
     flex: none;
     margin: 0 20px;
     cursor: pointer;
   }
 }
+
 .prow {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
+
 .cell {
   margin: 12px 20px;
+
   & > :first-child {
     margin-right: 8px;
   }
+
   b {
     margin-right: 8px;
+
     span {
       padding: 0 2px;
     }
@@ -91,17 +106,21 @@
     }
   }
 }
+
 .pcell {
   margin: 12px 20px 12px 40px;
+
   & > :first-child {
     margin-right: 8px;
   }
+
   :global {
     label {
       color: $dark-color01;
     }
   }
 }
+
 .port {
   margin: 12px 12px 12px 10px;
 }

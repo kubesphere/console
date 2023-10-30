@@ -1,0 +1,62 @@
+name: NightlyBuild
+
+on:
+  schedule:
+    # This is a UTC time
+    - cron: "0 16 * * *"
+  # Keep it only for test purpose, comment it once everything is ok
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [ '14.x' ]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install Dependencies
+      run: |
+        git branch
+        npm i -g yarn && yarn
+
+    - name: Build
+      run: yarn build
+
+    - name: Test
+      run: yarn test
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Docker login
+      uses: docker/login-action@v1
+      with:
+        registry: docker.io
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+    - name: Push image
+      run: |
+        TAG=nightly-$(date '+%Y%m%d') REPO=docker.io/kubespheredev make container-cross-push
+
+#     - name: slack
+#       uses: 8398a7/action-slack@v3
+#       env:
+#         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#       with:
+#         status: ${{ job.status }}
+#         fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+#       if: failure()

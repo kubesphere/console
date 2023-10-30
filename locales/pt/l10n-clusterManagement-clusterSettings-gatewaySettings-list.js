@@ -19,7 +19,8 @@ module.exports = {
   // Navigation Pane
   GATEWAY_SETTINGS: 'Gateway Settings',
   // Banner
-  CLUSTER_GATEWAY_DESC: 'Set up and manage the configuration of the external network access gateway and service management in the cluster.',
+  CLUSTER_GATEWAY_DESC:
+    'Set up and manage the configuration of the external network access gateway and service management in the cluster.',
   // Cluster Gateway
   CLUSTER_GATEWAY_NOT_ENABLED: 'Cluster Gateway Not Enabled',
   CLUSTER_ENABLE_GATEWAY_DESC: 'Please enable the cluster gateway.',
@@ -28,7 +29,8 @@ module.exports = {
   LOAD_BALANCER_PROVIDER_SCAP: 'Load balancer provider',
   // Cluster Gateway > Enable Gateway
   ENABLE_GATEWAY: 'Enable Gateway',
-  GATEWAY_TRACING_TIP: 'If ingresses cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the ingress.',
+  GATEWAY_TRACING_TIP:
+    'If ingresses cannot be accessed after <b>Tracing</b> is enabled, please add the annotation <b>nginx.ingress.kubernetes.io/service-upstream: true </b> to the ingress.',
   // Cluster Gateway > Manage > View Details
   VIEW_DETAILS: 'View Details',
   // Cluster Gateway > Manage > Disable
@@ -36,13 +38,16 @@ module.exports = {
   DISABLE_GATEWAY: 'Disable Gateway',
   DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
   DISABLE_SUCCESSFUL: 'Disabled successfully.',
+  ENABLE_SUCCESSFUL: 'Enabled successfully.',
+  RESET_SUCCESSFUL: 'Reset successful',
   // Cluster Gateway > Manage > Edit
   EDIT: 'Edit',
   EDIT_TITLE: 'Edit {title}',
   // Cluster Gateway > Manage > Update
   UPDATE: 'Update',
   UPDATED_GATEWAY_TITLE: 'Update Gateway',
-  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
+  UPDATE_GATEWAY_DESC:
+    'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
   // Project Gateways
   PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',
@@ -52,5 +57,5 @@ module.exports = {
   UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: 'project gateway',
-  DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways'
-};
+  DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways',
+}

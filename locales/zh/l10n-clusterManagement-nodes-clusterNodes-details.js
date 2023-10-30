@@ -79,5 +79,5 @@ module.exports = {
   // Monitoring
   USAGE: '用量',
   OUT: '出',
-  IN: '属于'
+  IN: '入'
 };

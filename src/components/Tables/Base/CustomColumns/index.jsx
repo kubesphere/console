@@ -102,7 +102,11 @@ class CustomColumns extends Component {
     }
 
     return (
-      <Dropdown content={this.renderContent()} placement="bottomRight">
+      <Dropdown
+        content={this.renderContent()}
+        placement="bottomRight"
+        positionFixed
+      >
         <Button type="flat" icon="cogwheel" data-test="table-columns" />
       </Dropdown>
     )

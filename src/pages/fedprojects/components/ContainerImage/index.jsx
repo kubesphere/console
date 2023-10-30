@@ -62,7 +62,7 @@ export default class ContainerImages extends Component {
 
   handleSubmit = data => {
     const { index, containerType, onEdit } = this.props
-    data.image = this.state.imageDetail.image
+
     onEdit({ index, containerType, data: omit(data, 'type') })
   }
 

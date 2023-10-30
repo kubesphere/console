@@ -22,7 +22,12 @@ import { NumberInput } from 'components/Inputs'
 
 export default class TerminationSeconds extends React.Component {
   get prefix() {
-    return this.props.prefix || 'spec.template.'
+    const { isFederated, prefix } = this.props
+
+    return (
+      prefix ||
+      (isFederated ? 'spec.template.spec.template.' : 'spec.template.')
+    )
   }
 
   render() {

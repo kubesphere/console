@@ -164,17 +164,33 @@ export default class ContainerStore {
   }
 
   @action
-  getDockerImagesLists = async params =>
-    await request.post(
-      `dockerhub/api/content/v1/products/search`,
-      params,
-      {
-        headers: {
-          'Search-Version': 'v3',
+  getDockerImagesLists = async params => {
+    const controller = new AbortController()
+
+    const timeout = new Promise(() => {
+      setTimeout(() => {
+        controller.abort()
+      }, 3000)
+    })
+
+    const result = await Promise.race([
+      request.post(
+        `dockerhub/api/content/v1/products/search`,
+        params,
+        {
+          headers: {
+            'Search-Version': 'v3',
+          },
+          signal: controller.signal,
         },
-      },
-      () => {}
-    )
+        () => {}
+      ),
+      timeout,
+    ]).catch(() => {
+      return {}
+    })
+    return result
+  }
 
   @action
   getHarborImagesLists = async ({ params, harborData }) =>

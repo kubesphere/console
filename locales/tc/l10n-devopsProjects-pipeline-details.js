@@ -220,8 +220,11 @@ module.exports = {
   // detail page // run log // task status
   RUN_LOGS: 'Run Logs',
   VIEW_FULL_LOG: 'View Full Logs',
+  VIEW_REAL_TIME_LOG: 'View Real-time Logs',
   // detail page // run log // task status // pipeline log modal
   PIPELINE_LOG: 'Pipeline Logs',
   // detail page // Create Pipeline modal // add step modal
-  IMPORT_FROM_CODE_REPO: 'Import From Code Repository'
+  IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
+  // detail page // parameters tab
+  NO_BUILD_PARAMETERS: '未發現構建參數。',
 };

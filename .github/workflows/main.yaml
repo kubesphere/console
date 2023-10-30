@@ -1,0 +1,37 @@
+name: Main
+
+on:
+  push:
+    # Publish `master` as Docker `latest` image.
+    branches:
+    - master
+#      - dev
+    - release-*
+
+env:
+  # TODO: Change variable to your image's name.
+  IMAGE_NAME: ks-console
+  IMAGE_REPO: kubespheredev
+
+jobs:
+  release-linux-amd64:
+    runs-on: ubuntu-latest
+    if: github.repository	== 'kubesphere/console'
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          platforms: all
+
+      - name: Set up Docker buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log into registry
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+      - name: Push image
+        run: |
+          TAG=${GITHUB_REF#refs/*/} REPO=$IMAGE_REPO make container-cross-push
+          echo "Push $IMAGE success!"

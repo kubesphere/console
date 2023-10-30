@@ -18,9 +18,11 @@
 module.exports = {
   // Banner
   ALERTING_POLICY_PL: '규칙 그룹',
-  ALERTING_POLICY_DESC: '규칙 그룹에는 클러스터 리소스를 모니터링하는 데 사용되는 알림 규칙이 포함되어 있습니다.',
+  ALERTING_POLICY_DESC:
+    '규칙 그룹에는 클러스터 리소스를 모니터링하는 데 사용되는 알림 규칙이 포함되어 있습니다.',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '알림이 어떻게 생성됩니까?',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A: '규칙 그룹을 생성하고 알림 규칙을 설정해야 합니다. 리소스 메트릭이 규칙 그룹에 구성된 조건을 충족하면 시스템에서 알림을 생성합니다.',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A:
+    '규칙 그룹을 생성하고 알림 규칙을 설정해야 합니다. 리소스 메트릭이 규칙 그룹에 구성된 조건을 충족하면 시스템에서 알림을 생성합니다.',
   // List
   CUSTOM_POLICIES: '커스텀 규칙 그룹',
   BUILT_IN_POLICIES: '기본 정의 규칙 그룹',
@@ -44,12 +46,16 @@ module.exports = {
   INVALID_TIME_DESC: '잘못된 값입니다. 0 또는 정수를 입력하십시오.',
   ALIAS: '별칭',
   DURATION_MIN: '지속 시간 (분)',
-  ALERT_DURATION: '시스템이 특정 기간 동안 대기하도록 설정하고 경고를 실행하기 전에 알림 상황이 지속되는지 확인합니다.',
-  LONG_NAME_DESC: '이름은 소문자, 숫자 및 하이픈(-)만 포함할 수 있으며 소문자 또는 숫자로 시작하고 끝나야 합니다. 최대 길이는 253자입니다.',
+  ALERT_DURATION:
+    '시스템이 특정 기간 동안 대기하도록 설정하고 경고를 실행하기 전에 알림 상황이 지속되는지 확인합니다.',
+  LONG_NAME_DESC:
+    '이름은 소문자, 숫자 및 하이픈(-)만 포함할 수 있으며 소문자 또는 숫자로 시작하고 끝나야 합니다. 최대 길이는 253자입니다.',
   NAME_EXIST_DESC: '이미 존재하는 이름입니다. 다른 이름을 입력하십시오.',
-  ALIAS_NAME_DESC: '별칭 이름은 문자, 숫자 및 하이픈(-)만 포함할 수 있으며 하이픈으로 시작하거나 끝날 수 없습니다. 최대 길이는 63자입니다.',
+  ALIAS_NAME_DESC:
+    '별칭 이름은 문자, 숫자 및 하이픈(-)만 포함할 수 있으며 하이픈으로 시작하거나 끝날 수 없습니다. 최대 길이는 63자입니다.',
   CHECK_INTERVAL: 'Check Interval',
-  ALERTING_POLICY_CHECK_INTERVAL_DESC: 'Set the interval between metric checks. The default value is 1 minute.',
+  ALERTING_POLICY_CHECK_INTERVAL_DESC:
+    'Set the interval between metric checks. The default value is 1 minute.',
   // List > Create > Rule Settings > Rule List
   ADD_ALERTING_RULE: 'Add Alert Rule',
   ADD_ALERTING_RULE_DESC: 'Add an alert rule to the rule group.',
@@ -57,11 +63,14 @@ module.exports = {
   DISABLE_RULE: 'Disable Rule',
   // List > Create > Rule Settings > Rule Template
   RULE_NAME: 'Rule Name',
-  CUSTOM_RULE_NAME_DESC: 'The rule name can contain any characters. The maximum length is 63 characters.',
+  CUSTOM_RULE_NAME_DESC:
+    'The rule name can contain any characters. The maximum length is 63 characters.',
   LASTING_MINUTES: 'For {minutes, plural, =1 {1 minute} other {# minutes}}',
   THRESHOLD_REQUIRED: 'Please enter a metric threshold.',
-  MESSAGE_SUMMARY_DESC: 'The message summary can contain any characters. The maximum length is 63 characters.',
-  MESSAGE_DETAILS_DESC: 'The message details can contain any characters. The maximum length is 256 characters.',
+  MESSAGE_SUMMARY_DESC:
+    'The message summary can contain any characters. The maximum length is 63 characters.',
+  MESSAGE_DETAILS_DESC:
+    'The message details can contain any characters. The maximum length is 256 characters.',
   RULE_TEMPLATE: '규칙 템플릿',
   RULE_SETTINGS: '규칙 설정',
   MONITORING_TARGETS: '모니터링 대상',
@@ -93,7 +102,8 @@ module.exports = {
   CUSTOM_RULE: '커스텀 규칙',
   RULE_EXPRESSION: '규칙식',
   ENTER_RULE_EXPRESSION: '규칙식을 입력하십시오.',
-  ALERT_RULE_EXPRESSION_DESC: 'PromQL 문을 사용하여 커스텀 규칙을 정의할 수 있습니다. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">더 알아보기</a>',
+  ALERT_RULE_EXPRESSION_DESC:
+    'PromQL 문을 사용하여 커스텀 규칙을 정의할 수 있습니다. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">더 알아보기</a>',
   ALERT_FUNCTIONS: 'Functions',
   ALERT_METRICS: '메트릭',
   ALERT_LABELS: '레이블',
@@ -107,10 +117,11 @@ module.exports = {
   EDIT_ALERTING_POLICY: '규칙 그룹 편집',
   // List > Disable
   DISABLE_ALERTING_POLICY: 'Disable Rule Group',
+  DISABLE_MULTIPLE_ALERTING_POLICIES: 'Disable Multiple Rule Groups',
   // List > Delete
   ALERTING_POLICY: '규칙 그룹',
   ALERTING_POLICY_LOW: '규칙 그룹',
   // List > reset
   RESET_ALERTING_POLICY: 'Reset Rule Group',
-  RESET_ALERTING_POLICY_DESC: 'Are you sure you want to reset the rule group?'
-};
+  RESET_ALERTING_POLICY_DESC: 'Are you sure you want to reset the rule group?',
+}

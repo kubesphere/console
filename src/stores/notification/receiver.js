@@ -20,4 +20,8 @@ import Base from './base'
 
 export default class ReceiverStore extends Base {
   module = 'receivers'
+
+  get apiVersion() {
+    return 'kapis/notification.kubesphere.io/v2beta2'
+  }
 }

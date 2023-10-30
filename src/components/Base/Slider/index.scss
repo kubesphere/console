@@ -1,0 +1,99 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.slider-wrapper {
+  display: flex;
+  padding: 5px;
+
+  .input {
+    width: 100px;
+    margin-left: 20px;
+    margin-right: 8px;
+  }
+}
+
+.slider {
+  position: relative;
+  flex: 1;
+  height: 20px;
+  padding: 5px 0;
+  margin-bottom: 14px;
+
+  &-rail {
+    height: 10px;
+    border-radius: 5px;
+    background-color: $bg-color;
+  }
+
+  &-track {
+    position: absolute;
+    top: 5px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $primary;
+  }
+
+  &-handler {
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid $primary;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(85, 188, 138, 0.36);
+    transition: box-shadow $trans-speed ease-in-out;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+
+    &:active {
+      box-shadow: none;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: $primary;
+      transition: transform $trans-speed ease-in-out;
+    }
+
+    &:hover,
+    &:active {
+      &::after {
+        transform: scale(1.35);
+      }
+    }
+  }
+
+  &-marks {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    width: 100%;
+    user-select: none;
+
+    & > span {
+      position: absolute;
+      top: 0;
+      @include TypographyParagraph;
+      user-select: none;
+      white-space: nowrap;
+      transform: translateX(-50%);
+
+      &:first-of-type {
+        transform: none;
+      }
+
+      &:last-of-type {
+        transform: translateX(-100%);
+      }
+    }
+  }
+}

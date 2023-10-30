@@ -37,14 +37,9 @@ export default class ProjectGatewayCard extends React.Component {
     await store.fetchList({
       ...this.props.match.params,
       ...params,
-      labelSelector: this.labelSelector,
     })
 
     store.list.silent = false
-  }
-
-  get labelSelector() {
-    return `kubesphere.io/gateway-type=${this.props.type}`
   }
 
   get routing() {

@@ -18,9 +18,11 @@
 module.exports = {
   // Banner
   ALERTING_POLICY_PL: 'Regelgruppen',
-  ALERTING_POLICY_DESC: 'Eine Regelgruppe enthält Warnregeln, die zur Überwachung von Clusterressourcen verwendet werden.',
+  ALERTING_POLICY_DESC:
+    'Eine Regelgruppe enthält Warnregeln, die zur Überwachung von Clusterressourcen verwendet werden.',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'Wie werden Warnungen erzeugt?',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'Sie müssen eine Regelgruppe erstellen und Warnregeln festlegen. Das System generiert Warnungen, wenn Ressourcenmetriken die in Regelgruppen konfigurierten Bedingungen erfüllen.',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A:
+    'Sie müssen eine Regelgruppe erstellen und Warnregeln festlegen. Das System generiert Warnungen, wenn Ressourcenmetriken die in Regelgruppen konfigurierten Bedingungen erfüllen.',
   // List
   CUSTOM_POLICIES: 'Benutzerdefinierte Regelgruppen',
   BUILT_IN_POLICIES: 'Integrierte Regelgruppen',
@@ -41,15 +43,21 @@ module.exports = {
   CRITICAL_ALERT: 'Kritisch',
   ERROR_ALERT: 'Fehler',
   WARNING_ALERT: 'Warnung',
-  INVALID_TIME_DESC: 'Ungültiger Wert. Bitte geben Sie 0 oder eine positive Zahl ein.',
+  INVALID_TIME_DESC:
+    'Ungültiger Wert. Bitte geben Sie 0 oder eine positive Zahl ein.',
   ALIAS: 'Alias',
   DURATION_MIN: 'Dauer (Minuten)',
-  ALERT_DURATION: 'Stellen Sie das System so ein, dass es eine bestimmte Zeit lang wartet, und prüfen Sie, ob die Alarmsituation fortbesteht, bevor ein Alarm ausgelöst wird.',
-  LONG_NAME_DESC: 'Der Name darf nur Kleinbuchstaben, Zahlen und Bindestriche (-) enthalten und muss mit einem Kleinbuchstaben oder einer Zahl beginnen und enden. Die maximale Länge beträgt 253 Zeichen.',
-  NAME_EXIST_DESC: 'Der Name existiert bereits. Bitte geben Sie einen anderen Namen ein.',
-  ALIAS_NAME_DESC: 'The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
+  ALERT_DURATION:
+    'Stellen Sie das System so ein, dass es eine bestimmte Zeit lang wartet, und prüfen Sie, ob die Alarmsituation fortbesteht, bevor ein Alarm ausgelöst wird.',
+  LONG_NAME_DESC:
+    'Der Name darf nur Kleinbuchstaben, Zahlen und Bindestriche (-) enthalten und muss mit einem Kleinbuchstaben oder einer Zahl beginnen und enden. Die maximale Länge beträgt 253 Zeichen.',
+  NAME_EXIST_DESC:
+    'Der Name existiert bereits. Bitte geben Sie einen anderen Namen ein.',
+  ALIAS_NAME_DESC:
+    'The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
   CHECK_INTERVAL: 'Check Interval',
-  ALERTING_POLICY_CHECK_INTERVAL_DESC: 'Set the interval between metric checks. The default value is 1 minute.',
+  ALERTING_POLICY_CHECK_INTERVAL_DESC:
+    'Set the interval between metric checks. The default value is 1 minute.',
   // List > Create > Rule Settings > Rule List
   ADD_ALERTING_RULE: 'Add Alert Rule',
   ADD_ALERTING_RULE_DESC: 'Add an alert rule to the rule group.',
@@ -57,11 +65,14 @@ module.exports = {
   DISABLE_RULE: 'Disable Rule',
   // List > Create > Rule Settings > Rule Template
   RULE_NAME: 'Rule Name',
-  CUSTOM_RULE_NAME_DESC: 'The rule name can contain any characters. The maximum length is 63 characters.',
+  CUSTOM_RULE_NAME_DESC:
+    'The rule name can contain any characters. The maximum length is 63 characters.',
   LASTING_MINUTES: 'For {minutes, plural, =1 {1 minute} other {# minutes}}',
   THRESHOLD_REQUIRED: 'Please enter a metric threshold.',
-  MESSAGE_SUMMARY_DESC: 'The message summary can contain any characters. The maximum length is 63 characters.',
-  MESSAGE_DETAILS_DESC: 'The message details can contain any characters. The maximum length is 256 characters.',
+  MESSAGE_SUMMARY_DESC:
+    'The message summary can contain any characters. The maximum length is 63 characters.',
+  MESSAGE_DETAILS_DESC:
+    'The message details can contain any characters. The maximum length is 256 characters.',
   RULE_TEMPLATE: 'Regelvorlage',
   RULE_SETTINGS: 'Regeleinstellungen',
   MONITORING_TARGETS: 'Überwachungsziele',
@@ -93,7 +104,8 @@ module.exports = {
   CUSTOM_RULE: 'Individuelle Regel',
   RULE_EXPRESSION: 'Regelausdruck',
   ENTER_RULE_EXPRESSION: 'Bitte geben Sie einen Regelausdruck ein.',
-  ALERT_RULE_EXPRESSION_DESC: 'Sie können eine benutzerdefinierte Regel mithilfe von PromQL-Anweisungen definieren. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Mehr erfahren</a>',
+  ALERT_RULE_EXPRESSION_DESC:
+    'Sie können eine benutzerdefinierte Regel mithilfe von PromQL-Anweisungen definieren. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Mehr erfahren</a>',
   ALERT_FUNCTIONS: 'Funktionen',
   ALERT_METRICS: 'Metriken',
   ALERT_LABELS: 'Labels',
@@ -107,10 +119,11 @@ module.exports = {
   EDIT_ALERTING_POLICY: 'Regelgruppe bearbeiten',
   // List > Disable
   DISABLE_ALERTING_POLICY: 'Disable Rule Group',
+  DISABLE_MULTIPLE_ALERTING_POLICIES: 'Disable Multiple Rule Groups',
   // List > Delete
   ALERTING_POLICY: 'Regelgruppe',
   ALERTING_POLICY_LOW: 'regelgruppe',
   // List > reset
   RESET_ALERTING_POLICY: 'Reset Rule Group',
-  RESET_ALERTING_POLICY_DESC: 'Are you sure you want to reset the rule group?'
-};
+  RESET_ALERTING_POLICY_DESC: 'Are you sure you want to reset the rule group?',
+}
