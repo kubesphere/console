@@ -177,8 +177,6 @@ export default class ContaineForm extends React.Component {
           })
         }
 
-        data.image = this.state.imageDetail.image
-
         onSave(data)
         callback && callback()
       })

@@ -36,6 +36,50 @@ const k8sResourceProxy = {
 
       NEED_OMIT_HEADERS.forEach(key => proxyReq.removeHeader(key))
     },
+    proxyRes(proxyRes, req, client_res) {
+      let maxBufferSize = req.headers['x-file-size-limit']
+      if (maxBufferSize) {
+        maxBufferSize = Number(maxBufferSize)
+        let body = Buffer.alloc(maxBufferSize)
+        let offset = 0
+        let end = false
+        proxyRes.on('data', chunk => {
+          if (end) {
+            return
+          }
+          if (offset >= maxBufferSize) {
+            if (!client_res.getHeader('x-file-size-limit-out')) {
+              client_res.setHeader('x-file-size-limit-out', 'true')
+            }
+            proxyRes.emit('end')
+            end = true
+            return
+          }
+          chunk.copy(body, offset)
+
+          offset += chunk.length
+        })
+        proxyRes.pipe = function(res) {
+          proxyRes.on('end', () => {
+            end = true
+            const offset1 = Math.min(offset, maxBufferSize)
+            body = body.slice(0, offset1)
+            res.writeHead(proxyRes.statusCode, {
+              ...proxyRes.headers,
+              'x-file-size': offset1,
+            })
+            res.end(body)
+          })
+        }
+      }
+      let addHeaders = req.headers['x-add-res-header']
+      if (addHeaders) {
+        addHeaders = JSON.parse(addHeaders)
+        Object.keys(addHeaders).forEach(key => {
+          proxyRes.headers[key] = addHeaders[key]
+        })
+      }
+    },
   },
 }
 

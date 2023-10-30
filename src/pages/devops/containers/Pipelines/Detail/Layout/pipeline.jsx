@@ -32,6 +32,7 @@ import { getPipelineStatus } from 'utils/status'
 
 import { trigger } from 'utils/action'
 
+import { getCodeRepoTemplate } from 'utils/devOpsRepos'
 import './index.scss'
 
 @inject('rootStore', 'devopsStore', 'pipelineStore')
@@ -256,6 +257,17 @@ export default class PipelineDetailLayout extends React.Component {
 
   getAttrs = () => {
     const { devopsName } = this.props.devopsStore
+    let repo = {}
+    if (this.store.detail.isMultiBranch) {
+      const config = toJS(this.store.pipelineConfig)
+      const provider = get(config, 'spec.multi_branch_pipeline.source_type')
+      const source = get(
+        config,
+        `spec.multi_branch_pipeline.${provider}_source`,
+        {}
+      )
+      repo = getCodeRepoTemplate[provider]?.(source) ?? {}
+    }
 
     const syncStatus = get(
       this.store.pipelineConfig,
@@ -276,6 +288,11 @@ export default class PipelineDetailLayout extends React.Component {
         value: kind,
       },
       {
+        hide: !this.store.detail.isMultiBranch,
+        name: t('CODE_REPO'),
+        value: repo.repo && repo.url ? `${repo.repo}(${repo.url})` : repo.url,
+      },
+      {
         name: t('TASK_STATUS'),
         value: <Status {...getPipelineStatus(this.getCurrentState())} />,
       },
@@ -287,7 +304,7 @@ export default class PipelineDetailLayout extends React.Component {
         name: t('UPDATE_TIME_TCAP'),
         value: this.getUpTime(),
       },
-    ]
+    ].filter(i => !i.hide)
   }
 
   handleScanRepository = async () => {

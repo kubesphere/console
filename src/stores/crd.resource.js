@@ -38,7 +38,7 @@ export default class CRDResourceStore {
   }
 
   get mapper() {
-    return ObjectMapper.default
+    return ObjectMapper.customresourcedefinitionsedit
   }
 
   getPath({ cluster, namespace } = {}) {

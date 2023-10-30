@@ -194,7 +194,7 @@ export default class Home extends React.Component {
               className={classnames(styles.item, {
                 [styles.active]: category === cateLatest,
               })}
-              onClick={() => this.handleClickCate(cateLatest)}
+              onClick={() => this.handleClickCate(cateLatest, t('NEW_APPS'))}
             >
               <Icon name="cart" size={16} type="dark" className={styles.icon} />
               <span className={styles.name}>{t('NEW_APPS')}</span>

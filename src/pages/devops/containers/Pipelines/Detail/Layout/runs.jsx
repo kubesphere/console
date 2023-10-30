@@ -248,6 +248,15 @@ export default class RunDetailLayout extends React.Component {
     ]
   }
 
+  get routes() {
+    const routes = this.props.route.routes
+    const parameters = get(this.store.runDetail, 'spec.parameters', [])
+    if (!parameters.length) {
+      return routes.filter(item => item.name !== 'build-parameters')
+    }
+    return routes
+  }
+
   render() {
     const {
       runDetail: { id, annotations, labels },
@@ -288,12 +297,6 @@ export default class RunDetailLayout extends React.Component {
       ],
     }
 
-    return (
-      <DetailPage
-        routes={this.props.route.routes}
-        stores={stores}
-        {...sideProps}
-      />
-    )
+    return <DetailPage routes={this.routes} stores={stores} {...sideProps} />
   }
 }

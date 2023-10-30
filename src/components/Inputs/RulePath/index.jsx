@@ -70,7 +70,8 @@ export default class RulePath extends React.Component {
     const { onChange } = this.props
 
     const servicePort = get(value, 'backend.service.port.number')
-    if (isNumber(servicePort)) {
+
+    if (servicePort && isNumber(parseInt(servicePort, 10))) {
       set(value, 'backend.service.port.number', Number(servicePort))
     }
 

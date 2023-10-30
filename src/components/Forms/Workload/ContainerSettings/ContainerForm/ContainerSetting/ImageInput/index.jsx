@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
-import { get, debounce, isObject, throttle } from 'lodash'
+import { get, debounce, isObject, throttle, set } from 'lodash'
 import moment from 'moment-mini'
 import classnames from 'classnames'
 
@@ -39,9 +39,9 @@ export default class ImageSearch extends Component {
 
     this.state = {
       isLoading: false,
+      selectedLoading: false,
       selectedImage: undefined,
       selectedImageTag: undefined,
-      selectedLoading: false,
     }
   }
 
@@ -56,12 +56,9 @@ export default class ImageSearch extends Component {
   }
 
   get secret() {
-    const { imageRegistries, formTemplate, type } = this.props
+    const { imageRegistries, formTemplate } = this.props
     const defaultsecrect = imageRegistries.find(item => item.isDefault)
 
-    if (type === 'Edit') {
-      get(formTemplate, 'pullSecret', '')
-    }
     return get(formTemplate, 'pullSecret', defaultsecrect?.value || '')
   }
 
@@ -119,7 +116,7 @@ export default class ImageSearch extends Component {
       this.getImageDetail(this.ImageDetail)
     },
     800,
-    { leading: false, trailing: true }
+    { leading: true, trailing: false }
   )
 
   getImageDetailNoCert = () => {
@@ -128,7 +125,7 @@ export default class ImageSearch extends Component {
 
   getImage = async ({ image, insecure, tag }) => {
     const pamram = this.getImageParam()
-
+    this.setState({ selectedLoading: true })
     const imageDetail = await this.store.getImageDetail({
       image: `${image}:${tag || 'lastest'}`,
       secret: this.secret,
@@ -136,6 +133,7 @@ export default class ImageSearch extends Component {
       ...pamram,
     })
 
+    this.setState({ selectedLoading: false })
     return imageDetail
   }
 
@@ -173,7 +171,6 @@ export default class ImageSearch extends Component {
       const { imageName, tag } = this.getTag(image)
 
       let imageDetail
-      let tagList = []
 
       if (tag && tag !== 'latest') {
         imageDetail = await this.store.getImageDetail({
@@ -190,42 +187,45 @@ export default class ImageSearch extends Component {
           page: Number(params.page) || 1,
           isLoading: false,
         })
+
+        this.setState(
+          {
+            isLoading: false,
+            selectedImageTag: tag,
+            selectedImage: {
+              ...imageDetail,
+              image: `${imageName}:${tag}`,
+            },
+          },
+          () => {
+            set(
+              this.props.formTemplate,
+              'image',
+              this.state.selectedImage.image
+            )
+            this.context.setImageDetail &&
+              this.context.setImageDetail(this.state.selectedImage)
+          }
+        )
       } else {
-        const resTagList = await this.getImageList({
+        await this.getImageList({
           imageName,
           page: 1,
           ...params,
         })
 
-        imageDetail = await this.store.getImageDetail({
-          image: `${imageName}${
-            resTagList && Array.isArray(resTagList) ? `:${resTagList[0]}` : ''
-          }`,
-          insecure,
-          secret,
-          ...params,
+        this.setState({
+          selectedImage: undefined,
+          selectedImageTag: '',
+          isLoading: false,
         })
       }
-
-      tagList = toJS(this.store.tagList.data)
-
-      this.setState(
-        {
-          isLoading: false,
-          selectedImageTag: tagList[0],
-          selectedImage: {
-            ...imageDetail,
-            image: `${imageName}:${tagList[0]}`,
-          },
-        },
-        () => {
-          this.context.setImageDetail &&
-            this.context.setImageDetail(this.state.selectedImage)
-        }
-      )
     },
     800,
-    { leading: false, trailing: true }
+    {
+      leading: true,
+      trailing: false,
+    }
   )
 
   renderWaringText = () => {
@@ -234,20 +234,24 @@ export default class ImageSearch extends Component {
 
   onSelectImageTag = throttle(
     async tag => {
-      this.setState({ selectedImageTag: tag, selectedLoading: true })
+      this.setState({ selectedImageTag: tag })
+      const currentImage = this.image
+      const { imageName } = this.getTag(currentImage)
+      const newImage = `${imageName}:${tag}`
 
       const imageDetail = await this.getImage({
-        image: this.image,
+        image: imageName,
         tag,
       })
+
+      set(this.props.formTemplate, 'image', newImage)
 
       this.setState(
         {
           selectedImage: {
             ...imageDetail,
-            image: `${this.image}:${tag}`,
+            image: newImage,
           },
-          selectedLoading: false,
         },
         () => {
           this.context.setImageDetail &&
@@ -273,6 +277,8 @@ export default class ImageSearch extends Component {
     }
 
     const { selectedImage, selectedImageTag, selectedLoading } = this.state
+
+    const tagList = toJS(this.store.tagList)
 
     if (isObject(selectedImage)) {
       const { message, status } = selectedImage
@@ -367,11 +373,22 @@ export default class ImageSearch extends Component {
             <ImageTagRadioList
               onSelectImageTag={this.onSelectImageTag}
               selectedImageTag={selectedImageTag}
-              tagList={toJS(this.store.tagList)}
+              tagList={tagList}
               getImageList={this.getImageList}
             />
           </div>
         </>
+      )
+    }
+
+    if (tagList.data.length > 0) {
+      return (
+        <ImageTagRadioList
+          onSelectImageTag={this.onSelectImageTag}
+          selectedImageTag={selectedImageTag}
+          tagList={toJS(this.store.tagList)}
+          getImageList={this.getImageList}
+        />
       )
     }
 

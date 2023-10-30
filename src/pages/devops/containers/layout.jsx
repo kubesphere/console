@@ -110,10 +110,9 @@ export default class Layout extends Component {
       `clusterConfig.${params.cluster}`,
       this.clusterStore.detail.configz
     )
-
     globals.app.cacheHistory(this.props.match.url, {
       type: 'DevOps',
-      name: this.devops,
+      name: this.store.data.name,
       aliasName: this.store.data.aliasName,
       cluster: pick(this.clusterStore.detail, [
         'name',

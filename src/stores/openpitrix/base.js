@@ -83,8 +83,10 @@ export default class Base {
     }
 
     if (app_id) {
-      const suffix = this.resourceName === 'apps' ? '' : this.resourceName
-      return `${prefix}/apps/${app_id}/${name || suffix}`
+      const suffixName = this.resourceName === 'apps' ? '' : this.resourceName
+      const suffixPath =
+        `${name || suffixName}` === '' ? '' : `/${name || suffixName}`
+      return `${prefix}/apps/${app_id}${suffixPath}`
     }
 
     return `${prefix}/${name || this.resourceName}`
