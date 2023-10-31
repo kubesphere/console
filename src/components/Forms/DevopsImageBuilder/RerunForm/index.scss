@@ -1,0 +1,23 @@
+@import '~scss/variables';
+
+.checkboxCard {
+  margin-top: 20px;
+  height: 64px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: solid 1px $border-color;
+  background-color: #ffffff;
+  label {
+    .title {
+      font-weight: 600;
+      color: #242e42;
+    }
+    height: 20px;
+  }
+  .desc {
+    color: #79879c;
+  }
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.08);
+  }
+}

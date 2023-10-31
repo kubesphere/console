@@ -30,6 +30,7 @@ import Members from '../containers/Members'
 import Credential from '../containers/Credential'
 
 import detail from './detail'
+import ImageBuilders from '../containers/ImageBuilder'
 
 const PATH = '/:workspace/clusters/:cluster/devops/:devops'
 
@@ -46,6 +47,11 @@ export default [
           { path: `${PATH}/pipelines`, component: PipelinesList, exact: true },
           { path: `${PATH}/cd`, component: CDList, exact: true },
           { path: `${PATH}/code-repo`, component: CRList, exact: true },
+          {
+            path: `${PATH}/imageBuilders`,
+            component: ImageBuilders,
+            exact: true,
+          },
           { path: `${PATH}/base-info`, component: BaseInfo, exact: true },
           { path: `${PATH}/roles`, component: Roles, exact: true },
           { path: `${PATH}/members`, component: Members, exact: true },

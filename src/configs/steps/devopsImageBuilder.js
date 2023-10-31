@@ -16,33 +16,17 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import ImageBuilderDetail from 'devops/containers/ImageBuilder/Detail'
-import CDDetail from '../containers/CD/detail'
-import CredentialDetail from '../containers/Credential/detail'
-import PipelineDetail from '../containers/Pipelines/Detail/layout'
-import RoleDetail from '../containers/Roles/Detail'
-
-const PATH = '/:workspace/clusters/:cluster/devops'
+import LanguageSelect from 'components/Forms/DevopsImageBuilder/LanguageSelect'
+import S2IForm from 'components/Forms/DevopsImageBuilder/S2IForm'
 
 export default [
   {
-    path: `${PATH}/:devops/pipelines/:name`,
-    component: PipelineDetail,
+    title: 'BUILD_MODE',
+    component: LanguageSelect,
   },
   {
-    path: `${PATH}/:devops/credentials/:credential_id`,
-    component: CredentialDetail,
-  },
-  {
-    path: `${PATH}/:devops/imageBuilders/:name`,
-    component: ImageBuilderDetail,
-  },
-  {
-    path: `${PATH}/:devops/cd/:cd`,
-    component: CDDetail,
-  },
-  {
-    path: `${PATH}/:namespace/roles/:name`,
-    component: RoleDetail,
+    title: 'BUILD_SETTINGS',
+    component: S2IForm,
+    required: true,
   },
 ]

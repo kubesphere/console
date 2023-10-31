@@ -522,6 +522,12 @@ client:
             authKey: "gitrepositories",
             requiredClusterVersion: v3.3.0,
           }
+        - {
+            name: imageBuilders,
+            title: IMAGE_BUILDER_PL,
+            icon: vnas,
+            clusterModule: imagebuilds,
+          }
         - name: management
           title: DEVOPS_PROJECT_SETTINGS
           icon: cogwheel

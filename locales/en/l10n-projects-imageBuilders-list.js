@@ -70,6 +70,8 @@ module.exports = {
   IMAGE_NAME_EMPTY_DESC: 'Please enter an image name.',
   IMAGE_TAG_EMPTY_DESC: 'Please enter an image tag.',
   TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Please set a target image registry.',
-  // List > Edit Information
-  // List > Delete
+  VALIDATE_SUCCESS: 'Validation succeeded',
+  VALIDATE_FAILED: 'Validation failed',
+  RUN_SUCCESSFUL: 'Run succeeded',
+  RUN_FAILED: 'Run failed',
 }
