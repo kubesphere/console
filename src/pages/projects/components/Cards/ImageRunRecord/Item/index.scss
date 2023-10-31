@@ -2,6 +2,14 @@
 @import '~scss/mixins';
 
 .item {
+  &.devops {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(
+        0,
+        1fr
+      );
+    overflow: hidden;
+    gap: 12px;
+  }
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, 12%) repeat(3, 23%) auto;

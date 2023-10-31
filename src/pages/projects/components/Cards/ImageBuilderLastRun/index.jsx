@@ -79,7 +79,7 @@ export default class BuilderInfo extends React.Component {
   }
 
   render() {
-    const { className, isB2i } = this.props
+    const { className, isB2i, hiddenBuilderImage } = this.props
 
     if (isB2i) {
       return this.renderB2i()
@@ -89,22 +89,24 @@ export default class BuilderInfo extends React.Component {
 
     return (
       <ul className={classnames(styles.builderContent, className)}>
-        <li>
-          <span
-            className={styles.icon}
-            style={{
-              backgroundImage: `url('/assets/${getLanguageName(
-                builderImage
-              )}.png')`,
-            }}
-          />
-          <div className={styles.info}>
-            <p className={styles.value} title={builderImage}>
-              {builderImage}
-            </p>
-            <p className={styles.name}>{t('BUILDER_IMAGE_SCAP')}</p>
-          </div>
-        </li>
+        {!hiddenBuilderImage && (
+          <li>
+            <span
+              className={styles.icon}
+              style={{
+                backgroundImage: `url('/assets/${getLanguageName(
+                  builderImage
+                )}.png')`,
+              }}
+            />
+            <div className={styles.info}>
+              <p className={styles.value} title={builderImage}>
+                {builderImage}
+              </p>
+              <p className={styles.name}>{t('BUILDER_IMAGE_SCAP')}</p>
+            </div>
+          </li>
+        )}
         <li>
           <span className={styles.icon}>
             <Icon name="resource" size={40} />
@@ -116,13 +118,15 @@ export default class BuilderInfo extends React.Component {
             <p className={styles.name}>{t('CODE_REPOSITORY_URL')}</p>
           </div>
         </li>
-        <li>
-          <Icon name="branch" className={styles.icon} />
-          <div className={styles.info}>
-            <p className={styles.value}>{revisionId || 'master'}</p>
-            <p className={styles.name}>{t('BRANCH_SI')}</p>
-          </div>
-        </li>
+        {!hiddenBuilderImage && (
+          <li>
+            <Icon name="branch" className={styles.icon} />
+            <div className={styles.info}>
+              <p className={styles.value}>{revisionId || 'master'}</p>
+              <p className={styles.name}>{t('BRANCH_SI')}</p>
+            </div>
+          </li>
+        )}
       </ul>
     )
   }

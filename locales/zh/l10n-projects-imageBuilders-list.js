@@ -68,5 +68,9 @@ module.exports = {
   WRONG_FILE_EXTENSION_NAME: '选择的文件类型不匹配，请选择 {type} 类型。',
   IMAGE_NAME_EMPTY_DESC: '请输入镜像名称。',
   IMAGE_TAG_EMPTY_DESC: '请输入镜像标签。',
-  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: '请设置目标镜像服务。'
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: '请设置目标镜像服务。',
+  VALIDATE_SUCCESS: '校验成功',
+  VALIDATE_FAILED: '校验失败',
+  RUN_SUCCESSFUL: '运行成功',
+  RUN_FAILED: '运行失败',
 };

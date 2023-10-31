@@ -1,0 +1,16 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.form {
+  margin-bottom: 12px;
+}
+
+.leftIcon {
+  width: 30px;
+  position: absolute;
+  @include vertical-center;
+  left: 16px;
+}
+.loading {
+  width: 100%;
+}
