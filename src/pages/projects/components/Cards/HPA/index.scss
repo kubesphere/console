@@ -38,3 +38,9 @@
     line-height: 1.67;
   }
 }
+
+.menu {
+  :global(.menu) {
+    min-width: 100px;
+  }
+}

@@ -28,6 +28,7 @@ import { Button, Icon, Dropdown, Menu, Notify } from '@kube-design/components'
 import { Card } from 'components/Base'
 
 import { getSuitableUnit, getValueByUnit } from 'utils/monitoring'
+import { coreUnitTS } from 'utils'
 
 import styles from './index.scss'
 
@@ -57,7 +58,8 @@ export default class HPACard extends React.Component {
   getValue = (data, unitType) => {
     const unit = getSuitableUnit(data, unitType)
     const result = getValueByUnit(data, unit)
-    return unit ? `${result} ${unit}` : result
+    const unitText = coreUnitTS(result, unit)
+    return `${result} ${unitText}`
   }
 
   getHPAData = () => {
@@ -125,7 +127,7 @@ export default class HPACard extends React.Component {
   handleCancel = () => {
     const { detail, onDeleted } = this.props
     this.store.delete(detail).then(() => {
-      Notify.success({ content: `${t('CANCELED_SUCCESSFULLY')}` })
+      Notify.success({ content: `${t('CANCEL_SUCCESSFUL')}` })
       onDeleted()
     })
   }
@@ -133,20 +135,27 @@ export default class HPACard extends React.Component {
   renderOperations() {
     const menus = this.getOperations()
     const contenet = (
-      <Menu onClick={this.handleMoreClick}>
-        {menus.map(({ icon, text, show = true, ...rest }) => {
-          if (!show) return null
-          return (
-            <Menu.MenuItem key={text} {...rest}>
-              {icon && <Icon name={icon} type="light" />} {text}
-            </Menu.MenuItem>
-          )
-        })}
-      </Menu>
+      <div className={styles.menu}>
+        <Menu onClick={this.handleMoreClick}>
+          {menus.map(({ icon, text, show = true, ...rest }) => {
+            if (!show) return null
+            return (
+              <Menu.MenuItem key={text} {...rest}>
+                {icon && <Icon name={icon} type="light" />} {text}
+              </Menu.MenuItem>
+            )
+          })}
+        </Menu>
+      </div>
     )
 
     return (
-      <Dropdown theme="dark" content={contenet}>
+      <Dropdown
+        theme="dark"
+        content={contenet}
+        positionFixed
+        placement="bottomRight"
+      >
         <Button type="ghost" icon="more" />
       </Dropdown>
     )
@@ -178,14 +187,14 @@ export default class HPACard extends React.Component {
   }
 
   render() {
-    const { className, loading } = this.props
+    const { className, loading, enableCancaleHPA = true } = this.props
     const title = this.props.title || t('AUTOSCALING')
 
     return (
       <Card
         className={classnames(styles.main, className)}
         title={title}
-        operations={this.renderOperations()}
+        operations={enableCancaleHPA ? this.renderOperations() : null}
         empty={t('NOT_ENABLE', { resource: t('AUTOSCALING') })}
         loading={loading}
       >

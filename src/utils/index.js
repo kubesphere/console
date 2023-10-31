@@ -835,3 +835,13 @@ export const getDomTitle = name => {
   }
   return <span title={name}>{name}</span>
 }
+
+export const coreUnitTS = (value, unit) => {
+  let unitTxt = unit || ''
+
+  if (unit === 'core') {
+    unitTxt = value !== 1 ? t('CORE_PL') : t('CORE')
+  }
+
+  return unitTxt
+}
