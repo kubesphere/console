@@ -85,16 +85,13 @@ export default class DevOps extends React.Component {
   @computed
   get clusters() {
     const list = this.workspaceStore.clusters.data
+      .filter(i => i.isReady && i.configz?.devops)
       .map(item => ({
         label: item.name,
         value: item.name,
-        disabled: !item.isReady || !item.configz?.devops,
         cluster: toJS(item),
       }))
       .sort((a, b) => a.disabled - b.disabled)
-    if (list[0]) {
-      this.workspaceStore.cluster = list[0]?.value
-    }
     return list
   }
 
