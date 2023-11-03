@@ -51,8 +51,10 @@ client:
       url: https://kubesphere.io/docs
       api: https://kubesphere.io/docs/reference/api-docs/
     zh:
-      url: https://kubesphere.com.cn/docs
-      api: https://kubesphere.com.cn/docs/reference/api-docs/
+      # url: https://kubesphere.com.cn/docs
+      # api: https://kubesphere.com.cn/docs/reference/api-docs/
+      url: https://kubesphere.io/zh/docs
+      api: https://kubesphere.io/zh/docs/reference/api-docs/
 
   # current support lanaguages
   supportLangs:
