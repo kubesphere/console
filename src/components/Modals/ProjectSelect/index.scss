@@ -12,6 +12,15 @@
   background-color: $bg-color;
 }
 
+.radioGroupWrapper {
+  :global {
+    .radio-group-button label.radio-button {
+      padding-right: 12px;
+      padding-left: 12px;
+    }
+  }
+}
+
 .list {
   height: 472px;
   padding: 12px;
@@ -45,7 +54,7 @@
   }
 
   .search {
-    width: 390px;
+    max-width: 390px;
 
     &.withSelect {
       padding-left: 124px;
