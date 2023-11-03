@@ -242,12 +242,14 @@ export default class ProjectSelectModal extends React.Component {
         <div className={styles.bar}>
           <Columns className="is-variable is-1">
             <Column className="is-narrow">
-              <RadioGroup
-                mode="button"
-                value={type}
-                options={this.types}
-                onChange={this.handleTypeChange}
-              />
+              <div className={styles.radioGroupWrapper}>
+                <RadioGroup
+                  mode="button"
+                  value={type}
+                  options={this.types}
+                  onChange={this.handleTypeChange}
+                />
+              </div>
             </Column>
             <Column>
               <div className={styles.searchWrapper}>
