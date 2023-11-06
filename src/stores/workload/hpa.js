@@ -18,12 +18,30 @@
 
 import { action } from 'mobx'
 
+import { compareVersion } from 'utils'
+import { API_VERSIONS } from 'utils/constants'
 import { getHpaFormattedData } from 'utils/workload'
 
 import Base from '../base'
 
+const VERSION = 'v1.23.0'
+
 export default class HpaStore extends Base {
   module = 'horizontalpodautoscalers'
+
+  get apiVersion() {
+    const k8sVersion = globals?.ksConfig?.k8sVersion
+    const result = compareVersion(VERSION, k8sVersion)
+    let module = ''
+
+    if (result > 0) {
+      module = 'horizontalpodautoscalers_outdated'
+    } else {
+      module = this.module
+    }
+
+    return API_VERSIONS[module] || ''
+  }
 
   @action
   create(data, params) {
