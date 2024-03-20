@@ -145,14 +145,14 @@ module.exports = {
   // List > Create > Advanced Settings (no repo specified)
   OPTIONS: 'Options',
   BUILD_SETTINGS: 'Build Settings',
-  DELETE_OUTDATED_BUILD_RECORDS: 'Delete outdated build records',
-  DELETE_OUTDATED_BUILD_RECORDS_TIP: `Set the system to automatically delete outdated build records including console output, archived artifacts, and metadata to save disk space.`,
-  BUILD_RECORD_RETENTION_PERIOD_DAYS: 'Build Record Retention Period (days)',
-  BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC: 'Build records that exceed the retention period are deleted. The default value is 7.',
+  DELETE_OUTDATED_BUILD_RECORDS: 'Clear deleted branches (true, false)',
+  DELETE_OUTDATED_BUILD_RECORDS_TIP: 'Set the system to automatically clear deleted branches to save disk space.',
+  BUILD_RECORD_RETENTION_PERIOD_DAYS: 'Deleted Branches Retention Period (days)',
+  BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC: 'Deleted branches that exceed the retention period are deleted. The default value is 7.',
   BUILD_RECORD_RETENTION_PERIOD_DAYS_INVALID_TIP:
     'The retention period must be a positive integer.',
-  MAXIMUM_BUILD_RECORDS: 'Maximum Build Records',
-  MAXIMUM_BUILD_RECORDS_DESC: 'When the number of build records exceeds the maximum number allowed, the earliest build record is deleted. The default value is 10.',
+  MAXIMUM_BUILD_RECORDS: 'Maximum Deleted Branches',
+  MAXIMUM_BUILD_RECORDS_DESC: 'When the number of deleted branches exceeds the maximum number allowed, the earliest deleted branch is deleted. The default value is 10.',
   MAXIMUM_BUILD_RECORDS_INVALID_TIP:
     'The maximum number of build records must be a positive integer.',
   NO_CONCURRENT_BUILDS: 'No concurrent builds',
