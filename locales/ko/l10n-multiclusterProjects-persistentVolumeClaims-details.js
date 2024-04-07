@@ -23,7 +23,7 @@ module.exports = {
   // More > Edit YAML
   // More > Delete
   // Resource Status
-  VOLUME_MONITORING_TIP: '현재 마운트된 볼륨의 사용량 데이터만 수집할 수 있습니다. OpenEBS, 로컬 PV 및 NFS 볼륨과 같은 경로 기반 볼륨의 사용 데이터가 정확하지 않을 수 있습니다. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">자세히 알아보기</a>',
+  VOLUME_MONITORING_TIP: 'The storage system needs to have real volume quota control capabilities to output real and accurate data. Storage systems built based on host path, local pv, and open source nfs server usually do not have this capability. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">Daha Fazla Bilgi Edinin</a>',
   // Mount Information
   MOUNT_INFORMATION: '마운트 정보'
 };
