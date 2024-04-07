@@ -20,8 +20,8 @@ module.exports = {
   EDIT_LOG_RECEIVER: '로그 수신기 편집',
   INDEX_PREFIX: '인덱스 접두사',
   // DELETE
-  LOG_RECEIVER: 'Log Receiver',
-  LOG_RECEIVER_LOW: 'Log Receiver',
+  LOG_RECEIVER: '로그 수신기',
+  LOG_RECEIVER_LOW: '로그 수신기',
   // More > Change Status
   CHANGE_STATUS: '상태 변경',
   LOG_COLLECTION_ENABLE_TIPS: '새 상태를 적용하려면 약 1분 정도 시간이 소요됩니다.',
