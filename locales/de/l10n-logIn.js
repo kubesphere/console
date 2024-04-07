@@ -21,6 +21,8 @@ module.exports = {
   INPUT_USERNAME_OR_EMAIL_TIP: 'Bitte gib deinen Benutzernamen oder E-Mail ein.',
   LOG_IN: 'Anmelden',
   LOG_IN_WITH_TITLE: 'Anmelden mit {title}',
+  TITLE_USERNAME: '{title} Username',
+  TITLE_LOG_IN: '{title} Log In',
   LOG_OUT: 'Abmelden',
   ABOUT: 'Über uns',
   USERNAME_OR_EMAIL: 'Benutzername oder E-Mail',
