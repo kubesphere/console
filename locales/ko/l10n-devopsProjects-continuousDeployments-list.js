@@ -31,7 +31,7 @@ module.exports = {
   // List > Create
   NEED_TO_SYNC_REPO: '저장소 동기화 필요',
   CREATE_CONTINUOUS_DEPLOYMENT: '지속적 배포 생성',
-  CD_SELECT_CODE_REPO_DESC: 'Select a code repository.',
+  CD_SELECT_CODE_REPO_DESC: '코드 저장소를 선택하십시오.',
   DEPLOYMENT_SETTINGS: '배포 설정',
   CODE_REPOSITORY_SETTINGS: '코드 저장소 설정',
   SYNC_STRATEGY_TCAP: '동기화 전략',
