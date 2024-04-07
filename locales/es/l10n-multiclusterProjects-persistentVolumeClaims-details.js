@@ -23,7 +23,7 @@ module.exports = {
   // More > Edit YAML
   // More > Delete
   // Resource Status
-  VOLUME_MONITORING_TIP: 'KubeSphere collects volume usage data, excluding data from unmounted volumes. For path-based volumes such as OpenEBS/Local PV and NFS, the data collected may be different from the actual amount. For detailed information, see <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">volume monitoring data analysis</a>.',
+  VOLUME_MONITORING_TIP: 'The storage system needs to have real volume quota control capabilities to output real and accurate data. Storage systems built based on host path, local pv, and open source nfs server usually do not have this capability. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">Daha Fazla Bilgi Edinin</a>',
   // Mount Information
   MOUNT_INFORMATION: 'Información de montaje'
 };
