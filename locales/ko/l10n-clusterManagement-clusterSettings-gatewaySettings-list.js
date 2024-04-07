@@ -36,13 +36,15 @@ module.exports = {
   DISABLE_GATEWAY: '게이트웨이 활성화',
   DISABLE_GATEWAY_TIP: '이 게이트웨이를 비활성화하시겠습니까?',
   DISABLE_SUCCESSFUL: '성공적으로 비활성화하였습니다.',
+  ENABLE_SUCCESSFUL: 'Enabled successfully.',
+  RESET_SUCCESSFUL: 'Reset successful',
   // Cluster Gateway > Manage > Edit
   EDIT: '편집',
   EDIT_TITLE: '편집 {title}',
   // Cluster Gateway > Manage > Update
   UPDATE: '업데이트',
-  UPDATED_GATEWAY_TITLE: 'Update Gateway',
-  UPDATE_GATEWAY_DESC: 'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
+  UPDATED_GATEWAY_TITLE: '게이트웨이 업데이트',
+  UPDATE_GATEWAY_DESC: '이 작업은 잠시 동안 업무를 중단할 수 있습니다. 이 작업을 수행할 때 주의하십시오.',
   // Project Gateways
   PROJECT_GATEWAY_PL: '프로젝트 게이트웨이',
   PROJECT_GATEWAY_NOT_ENABLED: '프로젝트 게이트웨이가 활성화되지 않음',
