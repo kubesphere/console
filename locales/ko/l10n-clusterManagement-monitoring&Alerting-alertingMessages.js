@@ -23,6 +23,6 @@ module.exports = {
   ALERTS_FROM_CUSTOM_POLICIES: '커스텀 규칙에서',
   ALERTS_FROM_BUILT_IN_POLICIES: '기본 제공 규칙에서',
   TRIGGER_TIME: '트리거 시간',
-  ALERTING_MESSAGE_EMPTY_DESC: 'No alert is found in the current project.',
+  ALERTING_MESSAGE_EMPTY_DESC: '현재 클러스터에서 알림이 발생하지 않았습니다.',
   MONITORING_TARGET: '모니터링 대상'
 };
