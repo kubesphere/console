@@ -68,5 +68,9 @@ module.exports = {
   WRONG_FILE_EXTENSION_NAME: '선택한 파일 유형이 일치하지 않습니다. {type} 유형을 선택하십시오.',
   IMAGE_NAME_EMPTY_DESC: '이미지 이름을 입력하십시오.',
   IMAGE_TAG_EMPTY_DESC: '이미지 태그를 입력하십시오.',
-  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: '대상 이미지 레지스트리를 설정하십시오.'
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: '대상 이미지 레지스트리를 설정하십시오.',
+  VALIDATE_SUCCESS: 'Validation succeeded',
+  VALIDATE_FAILED: 'Validation failed',
+  RUN_SUCCESSFUL: 'Run succeeded',
+  RUN_FAILED: 'Run failed'
 };
