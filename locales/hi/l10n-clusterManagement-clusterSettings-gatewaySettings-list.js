@@ -36,6 +36,8 @@ module.exports = {
   DISABLE_GATEWAY: 'Disable Gateway',
   DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
   DISABLE_SUCCESSFUL: 'Disabled successfully.',
+  ENABLE_SUCCESSFUL: 'Enabled successfully.',
+  RESET_SUCCESSFUL: 'Reset successful',
   // Cluster Gateway > Manage > Edit
   EDIT: 'Edit',
   EDIT_TITLE: 'Edit {title}',
