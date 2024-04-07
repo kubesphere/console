@@ -68,5 +68,9 @@ module.exports = {
   WRONG_FILE_EXTENSION_NAME: '選擇的檔案類型不符合，請選擇 {type} 類型。',
   IMAGE_NAME_EMPTY_DESC: 'Please enter an image name.',
   IMAGE_TAG_EMPTY_DESC: 'Please enter an image tag.',
-  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Please set a target image registry.'
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Please set a target image registry.',
+  VALIDATE_SUCCESS: 'Validation succeeded',
+  VALIDATE_FAILED: 'Validation failed',
+  RUN_SUCCESSFUL: 'Run succeeded',
+  RUN_FAILED: 'Run failed'
 };
