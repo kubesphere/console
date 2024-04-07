@@ -36,6 +36,8 @@ module.exports = {
   DISABLE_GATEWAY: '關閉網關',
   DISABLE_GATEWAY_TIP: '您確定關閉網關嗎？',
   DISABLE_SUCCESSFUL: '關閉成功。',
+  ENABLE_SUCCESSFUL: 'Enabled successfully.',
+  RESET_SUCCESSFUL: 'Reset successful',
   // Cluster Gateway > Manage > Edit
   EDIT: '編輯',
   EDIT_TITLE: '編輯 {title}',
