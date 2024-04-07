@@ -21,6 +21,8 @@ module.exports = {
   INPUT_USERNAME_OR_EMAIL_TIP: '사용자 이름 또는 이메일을 입력하십시오.',
   LOG_IN: '로그인',
   LOG_IN_WITH_TITLE: '{title}을(를) 사용하여 로그인',
+  TITLE_USERNAME: '{title} Username',
+  TITLE_LOG_IN: '{title} Log In',
   LOG_OUT: '로그아웃',
   ABOUT: '정보',
   USERNAME_OR_EMAIL: '사용자 이름 또는 이메일',
