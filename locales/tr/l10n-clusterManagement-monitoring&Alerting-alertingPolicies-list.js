@@ -107,6 +107,7 @@ module.exports = {
   EDIT_ALERTING_POLICY: 'Edit Rule Group',
   // List > Disable
   DISABLE_ALERTING_POLICY: 'Disable Rule Group',
+  DISABLE_MULTIPLE_ALERTING_POLICIES: 'Disable Multiple Rule Groups',
   // List > Delete
   ALERTING_POLICY: 'Rule Group',
   ALERTING_POLICY_LOW: 'rule group',
