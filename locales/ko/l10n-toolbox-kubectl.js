@@ -20,7 +20,7 @@ module.exports = {
   HIDE_HELP_INFORMATION: '도움말 정보 숨기기',
   KUBECTL_TIP: `
     <h2><a id="KubeCtl_Common_Instructions_0"></a>명령어 사용팁</h2>
-    <p>다음 kubcstl 명령을 참조할 수 있습니다. <a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank">자세히 알아보기</a></p>
+    <p>다음 kubectl 명령을 참조할 수 있습니다. <a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank">자세히 알아보기</a></p>
     <h3><a id="kubectl_output_format_4"></a>사용자 지정 출력</h3>
     <ul>
     <li>파드에 대한 자세한 정보 보기</li>
