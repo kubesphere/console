@@ -23,7 +23,7 @@ module.exports = {
   // More > Edit YAML
   // More > Delete
   // Resource Status
-  VOLUME_MONITORING_TIP: 'KubeSphere 採集的是儲存卷的設備用量數據，未掛載的儲存卷暫時採集不到，並且對於如 OpenEBS/Local PV、NFS 等路徑型儲存卷通常與實際用量有一定出入。詳見<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">儲存卷監控數據分析</a>。',
+  VOLUME_MONITORING_TIP: 'The storage system needs to have real volume quota control capabilities to output real and accurate data. Storage systems built based on host path, local pv, and open source nfs server usually do not have this capability. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">Daha Fazla Bilgi Edinin</a>',
   // Mount Information
   MOUNT_INFORMATION: '掛載資訊'
 };
