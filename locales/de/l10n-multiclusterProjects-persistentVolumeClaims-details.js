@@ -23,7 +23,7 @@ module.exports = {
   // More > Edit YAML
   // More > Delete
   // Resource Status
-  VOLUME_MONITORING_TIP: 'Derzeit können nur Nutzungsdaten von eingehängten Volumen erfasst werden. Daten von path-basierten Volumen wie OpenEBS, Lokal PV und NFS können ungenau sein. <a href="https://github. com/kubesphere/kubesphere/issues/2921" target="_blank">Mehr erfahren</a>',
+  VOLUME_MONITORING_TIP: 'The storage system needs to have real volume quota control capabilities to output real and accurate data. Storage systems built based on host path, local pv, and open source nfs server usually do not have this capability. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">Daha Fazla Bilgi Edinin</a>',
   // Mount Information
   MOUNT_INFORMATION: 'Mount Informationen'
 };
