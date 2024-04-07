@@ -123,7 +123,7 @@ module.exports = {
   // Slack
   SLACK: 'Slack',
   SLACK_TITLE: 'Slack',
-  SLACK_DESC: '슬랙 사용자에게 알림을 보냅니다.',
+  SLACK_DESC: 'Slack 사용자에게 알림을 보냅니다.',
   SLACK_TOKEN: 'Slack 토큰',
   SLACK_TOKEN_DESC: 'Slack 토큰을 입력하십시오.',
   SLACK_CHANNEL: 'Slack 채널',
