@@ -21,6 +21,8 @@ module.exports = {
   INPUT_USERNAME_OR_EMAIL_TIP: 'Please input username or email',
   LOG_IN: 'Log In',
   LOG_IN_WITH_TITLE: 'Log in with {title}',
+  TITLE_USERNAME: '{title} Username',
+  TITLE_LOG_IN: '{title} Log In',
   LOG_OUT: 'Log Out',
   ABOUT: 'About',
   USERNAME_OR_EMAIL: 'Username or Email',
