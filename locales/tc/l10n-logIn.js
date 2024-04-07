@@ -21,6 +21,8 @@ module.exports = {
   INPUT_USERNAME_OR_EMAIL_TIP: '請輸入用戶名或信箱',
   LOG_IN: 'Log In',
   LOG_IN_WITH_TITLE: '通過 {title} 登入',
+  TITLE_USERNAME: '{title} Username',
+  TITLE_LOG_IN: '{title} Log In',
   LOG_OUT: 'Log Out',
   ABOUT: 'About',
   USERNAME_OR_EMAIL: 'Username or Email',
