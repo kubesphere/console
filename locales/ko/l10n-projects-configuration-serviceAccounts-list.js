@@ -18,7 +18,7 @@
 module.exports = {
   // Banner
   SERVICE_ACCOUNT_PL: '서비스 어카운트',
-  SERVICE_ACCOUNT_DESC: '서비스 어카운트는 포드에서 실행되는 프로세스에서 API 서버에 접근하는데 필요한 ID를 제공합니다.',
+  SERVICE_ACCOUNT_DESC: '서비스 어카운트는 파드에서 실행되는 프로세스에서 API 서버에 접근하는데 필요한 ID를 제공합니다.',
   // List
   SERVICE_ACCOUNT_EMPTY_DESC: '서비스 어카운트를 생성하십시오.',
   // List > Create
