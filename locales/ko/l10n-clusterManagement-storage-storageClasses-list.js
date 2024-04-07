@@ -92,6 +92,6 @@ module.exports = {
   // List > Delete
   STORAGE_CLASS: '스토리지 클래스',
   STORAGE_CLASS_LOW: '스토리지 클래스',
-  STORAGE_CLASS_DELETE_DESC: '볼륨 스냅샷 클래스를 삭제하면 일반적인 볼륨 스냅샷 사용에 영향을 줄 수 있습니다. 볼륨 스냅샷 클래스를 삭제하시겠습니까?',
-  STORAGE_CLASS_DELETE_DESC_PL: '볼륨 스냅샷 클래스를 삭제하면 일반적인 볼륨 스냅샷 사용에 영향을 줄 수 있습니다. {type} 이름 <strong>{resource} </strong>을 입력하여 이 작업의 위험을 이해하고 있는지 확인합니다.'
+  STORAGE_CLASS_DELETE_DESC: 'Are you sure you want to delete the storage class?',
+  STORAGE_CLASS_DELETE_DESC_PL: '{type} 이름 <strong>{resource} </strong>을 입력하여 이 작업의 위험을 이해하고 있는지 확인합니다.'
 };
