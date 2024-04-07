@@ -40,9 +40,9 @@ module.exports = {
   SERVICE_STATUS: '서비스 상태',
   ETCD_MONITORING: 'etcd 모니터링',
   DB_SIZE: 'DB 크기',
-  RAFT_PROPOSAL: 'Raft Proposal',
+  RAFT_PROPOSAL: 'Raft 제안',
   ETCD_STATUS: '서비스 <span>상태</span>',
-  ETCD_PROPOSAL: 'Raft <span>Proposal</span>',
+  ETCD_PROPOSAL: 'Raft <span>제안</span>',
   ETCD_DB_SIZE: 'DB <span>크기</span>',
   ETCD_CLIENT_TRAFFIC: '클라이언트 <span>트래픽</span>',
   TITLE_UNIT: '{title} ({unit})',
@@ -70,7 +70,7 @@ module.exports = {
   // Physical Resource Monitoring
   SELECT_TIME_RANGE: '시간 범위를 선택하세요.',
   LAST_TIME: '최근 {value}',
-  LAST_TIME_M: '{num, plural, =1 {최근 1 분} other{최근 # 분}}',
+  LAST_TIME_M: '{num, plural, =1 {최근 1 분} other{최근 # 분}}',
   LAST_TIME_H: '{num, plural, =1 {최근 1 시간} other{최근 # 시간}}',
   LAST_TIME_D: '{num, plural, =1 {최근 1 일} other{최근 # 일}}',
   TIMERANGE_SELECTOR_MSG: '종료 시간은 시작 시간 이후여야 합니다.',
@@ -90,7 +90,7 @@ module.exports = {
   // Physical Resource Monitoring > Average CPU Load
   TIME_M: '{num, plural, =1 {1 분} other{# 분}}',
   TIME_H: '{num, plural, =1 {1 시간} other{# 시간}}',
-  TIME_D: '{num, plural, =1 {1 일} other{# 일}}',
+  TIME_D: '{num, plural, =1 {1 일} other{# 일}}',
   // etcd Monitoring
   EXTERNAL_ETCD: '외부 etcd',
   DB_FSYNC: 'DB Fsync',
