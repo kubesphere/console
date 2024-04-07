@@ -19,7 +19,7 @@ module.exports = {
   PLATFORM: '플랫폼',
   CLUSTER_MANAGEMENT: '클러스터 관리',
   CLUSTER_DESC: '멀티 클러스터와 클러스터의 기본 리소스, 구성 요소 및 애플리케이션 리소스를 통합 관리합니다.',
-  ACCESS_CONTROL_DESC: '워크스페이스, 사용자 및 역할의 통합 관리.',
-  APP_STORE_MANAGEMENT_DESC: '클라우드 네이티브 애플리케이션의 릴리스, 활성화 및 일시 중단을 포함한 통합 라이프사이클 관리.',
-  PLATFORM_SETTINGS_DESC: '기본 정보 및 알림 구성을 포함한 맞춤형 플랫폼 설정.'
+  ACCESS_CONTROL_DESC: '워크스페이스, 사용자 및 역할을 통합 관리합니다.',
+  APP_STORE_MANAGEMENT_DESC: '클라우드 네이티브 애플리케이션의 릴리스, 활성화 및 일시 중단을 포함한 전체 라이프사이클을 통합 관리합니다.',
+  PLATFORM_SETTINGS_DESC: '기본 정보 및 알림 구성을 포함한 플랫폼 설정들을 커스터마이즈 할 수 있습니다.'
 };
