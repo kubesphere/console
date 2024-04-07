@@ -68,5 +68,9 @@ module.exports = {
   WRONG_FILE_EXTENSION_NAME: 'Seçilen dosya türü eşleşmiyor. Lütfen {type} türünü seçin.',
   IMAGE_NAME_EMPTY_DESC: 'Lütfen bir resim adı girin.',
   IMAGE_TAG_EMPTY_DESC: 'Lütfen bir resim etiketi girin.',
-  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Lütfen bir hedef görüntü kaydı ayarlayın.'
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Lütfen bir hedef görüntü kaydı ayarlayın.',
+  VALIDATE_SUCCESS: 'Validation succeeded',
+  VALIDATE_FAILED: 'Validation failed',
+  RUN_SUCCESSFUL: 'Run succeeded',
+  RUN_FAILED: 'Run failed'
 };
