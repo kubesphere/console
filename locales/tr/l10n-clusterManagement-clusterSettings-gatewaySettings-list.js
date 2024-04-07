@@ -36,6 +36,8 @@ module.exports = {
   DISABLE_GATEWAY: 'Ağ geçidi etkinleştir',
   DISABLE_GATEWAY_TIP: 'Bu ağgeçit donanımını kaldırmak istediğinize emin misiniz?',
   DISABLE_SUCCESSFUL: 'Başarıyla devre dışı bırakıldı.',
+  ENABLE_SUCCESSFUL: 'Enabled successfully.',
+  RESET_SUCCESSFUL: 'Reset successful',
   // Cluster Gateway > Manage > Edit
   EDIT: 'Düzenle',
   EDIT_TITLE: 'Başlığı Düzenle',
