@@ -21,6 +21,8 @@ module.exports = {
   INPUT_USERNAME_OR_EMAIL_TIP: 'Lütfen kullanıcı adını veya e-posta adresini giriniz.',
   LOG_IN: 'Giriş Yap',
   LOG_IN_WITH_TITLE: 'Giriş yap ile {title}',
+  TITLE_USERNAME: '{title} Username',
+  TITLE_LOG_IN: '{title} Log In',
   LOG_OUT: 'Çıkış Yap',
   ABOUT: 'Hakkında',
   USERNAME_OR_EMAIL: 'Kullanıcı adı veya E-posta',
