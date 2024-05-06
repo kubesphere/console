@@ -23,7 +23,7 @@ module.exports = {
   // More > Edit YAML
   // More > Delete
   // Resource Status
-  VOLUME_MONITORING_TIP: 'The storage system needs to have real volume quota control capabilities to output real and accurate data. Storage systems built based on host path, local pv, and open source nfs server usually do not have this capability. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">Daha Fazla Bilgi Edinin</a>',
+  VOLUME_MONITORING_TIP: '存储系统需要具备真正的卷配额控制能力，以输出真实准确的数据。基于主机路径、本地持久卷（PV）和开源 NFS 服务器构建的存储系统通常不具备这种能力。 <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">了解更多</a>',
   // Mount Information
   MOUNT_INFORMATION: '挂载信息'
 };
