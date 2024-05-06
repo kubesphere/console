@@ -219,11 +219,11 @@ module.exports = {
   // detail page // run log // task status
   RUN_LOGS: '运行日志',
   VIEW_FULL_LOG: '查看完整日志',
-  VIEW_REAL_TIME_LOG: 'View Real-time Logs',
+  VIEW_REAL_TIME_LOG: '查看实时日志',
   // detail page // run log // task status // pipeline log modal
   PIPELINE_LOG: '流水线日志',
   // detail page // Create Pipeline modal // add step modal
   IMPORT_FROM_CODE_REPO: '从代码库导入',
   // detail page // parameters tab
-  NO_BUILD_PARAMETERS: 'Not found build parameters.'
+  NO_BUILD_PARAMETERS: '未找到构建参数。'
 };
