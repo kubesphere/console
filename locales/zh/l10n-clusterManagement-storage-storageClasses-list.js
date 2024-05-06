@@ -92,6 +92,6 @@ module.exports = {
   // List > Delete
   STORAGE_CLASS: '存储类',
   STORAGE_CLASS_LOW: '存储类',
-  STORAGE_CLASS_DELETE_DESC: 'Are you sure you want to delete the storage class?',
+  STORAGE_CLASS_DELETE_DESC: '您确定要删除此存储类吗？',
   STORAGE_CLASS_DELETE_DESC_PL: '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。'
 };
