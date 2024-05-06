@@ -107,7 +107,7 @@ module.exports = {
   EDIT_ALERTING_POLICY: '编辑规则组',
   // List > Disable
   DISABLE_ALERTING_POLICY: '禁用规则组',
-  DISABLE_MULTIPLE_ALERTING_POLICIES: 'Disable Multiple Rule Groups',
+  DISABLE_MULTIPLE_ALERTING_POLICIES: '禁用多条规则组',
   // List > Delete
   ALERTING_POLICY: '规则组',
   ALERTING_POLICY_LOW: '规则组',
