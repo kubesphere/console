@@ -36,8 +36,8 @@ module.exports = {
   DISABLE_GATEWAY: '禁用网关',
   DISABLE_GATEWAY_TIP: '您确定禁用网关吗？',
   DISABLE_SUCCESSFUL: '禁用成功。',
-  ENABLE_SUCCESSFUL: 'Enabled successfully.',
-  RESET_SUCCESSFUL: 'Reset successful',
+  ENABLE_SUCCESSFUL: '启用成功',
+  RESET_SUCCESSFUL: '重置成功',
   // Cluster Gateway > Manage > Edit
   EDIT: '编辑',
   EDIT_TITLE: '编辑{title}',
