@@ -69,8 +69,8 @@ module.exports = {
   IMAGE_NAME_EMPTY_DESC: '请输入镜像名称。',
   IMAGE_TAG_EMPTY_DESC: '请输入镜像标签。',
   TARGET_IMAGE_REPOSITORY_EMPTY_DESC: '请设置目标镜像服务。',
-  VALIDATE_SUCCESS: 'Validation succeeded',
-  VALIDATE_FAILED: 'Validation failed',
-  RUN_SUCCESSFUL: 'Run succeeded',
-  RUN_FAILED: 'Run failed'
+  VALIDATE_SUCCESS: '校验成功',
+  VALIDATE_FAILED: '校验失败',
+  RUN_SUCCESSFUL: '运行成功',
+  RUN_FAILED: '运行失败'
 };
