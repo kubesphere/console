@@ -76,6 +76,8 @@ client:
       value: "fr"
     - label: "हिन्दी"
       value: "hi"
+    - label: "한국어"
+      value: "ko"
     - label: "Lietuvių"
       value: "lt"
     - label: "Polski"
