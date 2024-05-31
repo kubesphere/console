@@ -37,10 +37,10 @@ class ResourceStatus extends React.Component {
     super(props)
 
     this.hpaStore = props.hpaStore || new HpaStore()
-
+    const detail = toJS(props.detailStore.detail)
     this.state = {
-      podNums: props.detailStore.podNums,
-      availablePodNums: props.detailStore.availablePodNums,
+      podNums: detail.podNums,
+      availablePodNums: detail.availablePodNums,
     }
   }
 
