@@ -1,0 +1,20 @@
+## ContainerStatus
+```ts
+interface ContainerStatus {
+  containerID: string;
+  image: string;
+  imageID: string;
+  lastState: Record<string, any>;
+  name: string;
+  ready: boolean;
+  restartCount: number;
+  started: boolean;
+  state: Record<
+    string,
+    {
+      startedAt: string;
+    }
+  >;
+} 
+```
+

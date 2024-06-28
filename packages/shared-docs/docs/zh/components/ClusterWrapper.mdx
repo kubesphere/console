@@ -1,0 +1,35 @@
+---
+group: 'components'
+title: ClusterWrapper
+description: '集群包装组件，用于展示集群信息。'
+---
+
+# ClusterWrapper 组件
+
+集群包装组件，用于展示集群信息。
+
+## 示例
+
+```jsx live=true
+() => {
+  const clusters = [
+    { name: 'cluster1' },
+    { name: 'cluster2' },
+    { name: 'cluster3' },
+  ];
+
+  const clustersDetail = [
+    { name: 'cluster1', group: 'group1', provider: 'provider1' },
+    { name: 'cluster2', group: 'group2', provider: 'provider2' },
+    { name: 'cluster3', group: 'group3', provider: 'provider3' },
+  ];
+
+  return (
+    <ClusterWrapper clusters={clusters} clustersDetail={clustersDetail}>
+      Custom Content
+    </ClusterWrapper>
+  );
+}
+```
+
+在这个示例中，我们使用 `ClusterWrapper` 组件创建一个集群包装组件。我们传递了 `clusters` 属性，其中包含了要展示的集群列表，以及 `clustersDetail` 属性，其中包含了集群的详细信息。我们还在组件内部传递了自定义的内容作为子元素。组件将根据传入的集群列表和详细信息来展示相应的标签，并显示自定义内容。

@@ -1,0 +1,15 @@
+## OriginalCronJob
+```ts
+interface OriginalCronJob extends WorkloadBase {
+  spec: {
+    concurrencyPolicy: string;
+    failedJobsHistoryLimit: number;
+    jobTemplate: Record<string, any>;
+    schedule: string;
+    successfulJobsHistoryLimit: number;
+    suspend: boolean;
+  };
+  status: Record<string, any>;
+} 
+```
+

@@ -1,0 +1,11 @@
+## CreateUserPayload
+```ts
+type CreateUserPayload = UserActionValues & {
+  metadata: {
+    annotations: {
+      'iam.kubesphere.io/uninitialized': 'true';
+    };
+  };
+}; 
+```
+

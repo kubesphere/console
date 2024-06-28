@@ -1,0 +1,42 @@
+## OriginalCluster
+```ts
+interface OriginalCluster extends KubernetesObjectBase {
+  metadata: Pick<
+    ObjectMeta,
+    | 'annotations'
+    | 'creationTimestamp'
+    | 'finalizers'
+    | 'generation'
+    | 'labels'
+    | 'managedFields'
+    | 'name'
+    | 'resourceVersion'
+    | 'uid'
+  >;
+  spec?: {
+    connection: {
+      kubernetesAPIEndpoint: string;
+      type: string;
+    };
+    enable: boolean;
+    joinFederation: boolean;
+    provider: string;
+  };
+  status?: {
+    conditions: {
+      lastTransitionTime: string;
+      lastUpdateTime: string;
+      message: string;
+      reason: string;
+      status: string;
+      type: string;
+    }[];
+    configz: Record<string, boolean>;
+    kubeSphereVersion: string;
+    kubernetesVersion: string;
+    nodeCount: number;
+    uid: string;
+  };
+} 
+```
+

@@ -1,0 +1,33 @@
+---
+group: 'components'
+title: Replica
+imports: ReplicaCard
+description: 'Replica组件用于显示模块的副本状态和进行副本的扩缩容操作。'
+---
+
+# Replica 组件
+
+Replica组件用于显示模块的副本状态和进行副本的扩缩容操作。
+
+## 示例
+
+```jsx live=true
+() => {
+  return (
+    <div>
+      <ReplicaCard
+        module="deployments"
+        detail={{
+          availablePodNums: 3,
+          podNums: 5
+        }}
+        enableScale={true}
+        className="replica-item"
+        onScale={(replica) => console.log(`Scaling to ${replica} replicas`)}
+      />
+    </div>
+  );
+}
+```
+
+在这个示例中，我们使用 `Replica` 组件创建了两个副本项，分别显示不同模块类型的副本状态和进行副本的扩缩容操作。通过 `module` 属性指定模块类型，`detail` 属性传递模块的额外详细信息，`enableScale` 属性确定是否启用副本的扩缩容功能。可以通过 `className` 属性添加自定义样式类名。当进行副本的扩缩容操作时，通过 `onScale` 属性传递回调函数进行处理。

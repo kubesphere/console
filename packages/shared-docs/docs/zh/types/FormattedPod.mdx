@@ -1,0 +1,33 @@
+## FormattedPod
+```ts
+interface FormattedPod extends BaseInfo {
+  deletionTime: string;
+  labels: string;
+  namespace: string;
+  annotations: Record<string, string>;
+  podNums: string;
+  status: PodStatus | {};
+  statusPhase: PodStatusPhase;
+  podStatus: {
+    status: string;
+    type: string;
+    restarts: number;
+  };
+  spec: Record<string, any>;
+  metrics: any[];
+  node: string;
+  nodeIp: string;
+  podIp: string;
+  networksStatus: any[];
+  app: string;
+  containers: Container[];
+  initContainers: Container[];
+  startTime: string;
+  updateTime: string;
+  volumes: Record<string, any>[];
+  ownerKind: string;
+  ownerName: string;
+  _originData: OriginData<OriginalPod>;
+} 
+```
+

@@ -1,0 +1,23 @@
+## PVDetail
+```ts
+interface PVDetail extends BaseInfo {
+  creationTime?: string;
+  phase: 'Bound' | 'Lost' | 'Pending' | 'Terminating' | 'Updating' | undefined;
+  storageProvisioner?: string;
+  status: Record<string, any>;
+  annotations: Record<string, any>;
+  labels: Record<string, any>;
+  accessMode?: string;
+  accessModes?: string[];
+  storageClassName: string;
+  capacity?: string;
+  // TODO: not sure this type
+  volumeHandle: any;
+  inUse: boolean;
+  type: string;
+  persistentVolumeReclaimPolicy?: string;
+  volumeMode: string;
+  _originData: OriginData<any>;
+} 
+```
+

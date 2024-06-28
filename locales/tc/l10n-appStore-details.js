@@ -27,8 +27,8 @@ module.exports = {
   DO_NOT_REMIND_AGAIN: '不再提示',
   // Install > Basic Information
   LOCATION: '位置',
-  CLUSTER_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 32 characters.',
-  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '無法在多集群項目裡部署應用.',
+  CLUSTER_NAME_DESC: '名稱只能包含小寫字母、數位和連字號（-），必須以小寫字母開頭，並且必須以小寫字元或數位結尾。 最大長度為32個字。',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '無法在聯邦項目裡部署應用.',
   LATEST_VERSION_SCAP: '最新版本',
   WORKSPACE_EMPTY_DESC: '請選擇企業空間',
   VERSION_EMPTY_DESC: '請選擇版本',
@@ -43,8 +43,9 @@ module.exports = {
   HOMEPAGE_COLON: '首頁：',
   RELEASE_DATE_COLON: '發布時間：',
   APP_ID_COLON: '應用程式 ID：',
-  SOURCE_CODE_ADDRESS_COLON: 'Source Code Address:',
-  APP_VERSIONS_TITLE: '版本（只顯示 10 個最新的版本）',
+  SOURCE_CODE_ADDRESS_COLON: '原始程式碼地址:',
+  // APP_VERSIONS_TITLE: '版本（只顯示 10 個最新的版本）',
+  APP_VERSIONS_TITLE: '上架版本',
   MAINTAINER_COLON: '維護者',
   // App Details > Verions
   VERSIONS: '版本',

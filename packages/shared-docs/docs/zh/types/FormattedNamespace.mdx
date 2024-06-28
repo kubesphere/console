@@ -1,0 +1,13 @@
+## FormattedNamespace
+```ts
+interface FormattedNamespace extends BaseInfo {
+  _originData: OriginData<OriginalNamespace>;
+  labels?: Record<string, string>;
+  annotations?: Record<string, string>;
+  namespace?: string;
+  workspace?: string;
+  status?: string;
+  isFedHostNamespace?: boolean;
+} 
+```
+

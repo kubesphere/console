@@ -27,4 +27,4 @@ module.exports = {
   // Metadata
   // Environment Variables
   // Events
-}
+};

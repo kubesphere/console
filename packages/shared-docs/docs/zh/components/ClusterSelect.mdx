@@ -1,0 +1,27 @@
+---
+group: 'components'
+title: ClusterSelect
+description: '集群选择组件，用于选择集群项。'
+---
+
+# ClusterSelect 组件
+
+集群选择组件，用于选择集群项。
+
+## 示例
+
+```jsx live=true
+() => {
+  const [selectedClusters, setSelectedClusters] = useState([]);
+
+  const handleChange = (value) => {
+    setSelectedClusters(value);
+  };
+
+  return (
+    <ClusterSelect value={selectedClusters} onChange={handleChange} />
+  );
+}
+```
+
+在这个示例中，我们使用 `ClusterSelect` 组件创建一个集群选择组件。我们维护一个 `selectedClusters` 状态来记录选择的集群项列表，并通过 `handleChange` 函数来更新该状态。当集群项发生变化时，将会触发 `onChange` 回调函数。组件将会根据传入的 `value` 属性来显示已选择的集群项，并提供选择和取消选择的功能。

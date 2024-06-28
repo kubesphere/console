@@ -1,0 +1,19 @@
+## ConfigValuesJson
+```ts
+type ConfigValuesJson = {
+  affinity?: Record<string, any>;
+  config?: string;
+  fullnameOverride?: string;
+  image?: { repository: string; pullPolicy: string };
+  imagePullSecrets?: any[];
+  nameOverride?: string;
+  nodeSelector?: Record<string, any>;
+  password?: string;
+  persistence?: { size: string };
+  resources?: Record<string, any>;
+  service?: { type: string; port: number };
+  tests?: { enabled: boolean };
+  tolerations?: any[];
+}; 
+```
+

@@ -24,7 +24,8 @@ module.exports = {
   REMOTE_TRIGGER: 'Remote Trigger',
   // Run
   S2I_UPDATE_WORKLOAD: 'Update workload after image building is successful',
-  S2I_UPDATA_WORKLOAD_DESC: 'After the image is rebuilt successfully, workloads that use the image will be updated.',
+  S2I_UPDATA_WORKLOAD_DESC:
+    'After the image is rebuilt successfully, workloads that use the image will be updated.',
   // More > Edit Information
   // More > Edit YAML
   // More > Delete
@@ -56,4 +57,4 @@ module.exports = {
   PULL_COMMAND_SCAP: 'Pull command',
   // Environment Variables
   // Events
-}
+};

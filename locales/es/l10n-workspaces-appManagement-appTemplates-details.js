@@ -53,8 +53,8 @@ module.exports = {
   VERSION_SUBMIT_TIP: '¿Está seguro de enviar la versión <strong>{name}</strong> para auditoría?',
   VERSION_CANCEL_TIP: '¿Está seguro de cancelar la revisión de la versión <strong>{name}</strong> ?',
   VERSION_RELEASE_TIP: 'Los usuarios pueden ver e implementar la versión <strong>{name}</strong> en la tienda cuando se lance. ¿Estás seguro de lanzarlo ahora?',
-  VERSION_SUSPEND_TIP: 'La versión <strong>{name}</strong> no se mostrará en la tienda cuando se suspenda. ¿Estás seguro de suspenderlo ahora?',
-  VERSION_RECOVER_TIP: 'La versión <strong>{name}</strong> se mostrará nuevamente en la tienda. ¿Estás seguro de activarlo ahora?',
+  VERSION_SUSPEND_TIP: 'La versión <strong>{name}</strong> no se mostrará en la tienda cuando se suspenda. ¿Está seguro de que quiere cancelar la publicación?',
+  VERSION_RECOVER_TIP: 'La versión <strong>{name}</strong> se mostrará nuevamente en la tienda. ¿Está seguro de que quiere reanudar la publicación?',
   UPDATE_TIME_SCAP: 'Update time',
   VIEW_IN_STORE: 'View in Store',
   // Versions > Upload

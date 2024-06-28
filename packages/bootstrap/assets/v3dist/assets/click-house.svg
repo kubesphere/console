@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" color="#324558" fill="#b6c2cd">
+  <g fill-rule="evenodd">
+    <path d="M20.75 3.25v17.5H3.25V3.25h17.5zm-14 12.25H5V19h1.75v-3.5z"></path>
+    <path fill="currentColor" fill-rule="nonzero"
+      d="M6.75 15.5H5V5h1.75v10.5zM9.813 5v14h-1.75V5h1.75zm3.062 0v14h-1.75V5h1.75zm3.063 0v14h-1.75V5h1.75zM19 10.688v3.062h-1.75v-3.063H19z">
+    </path>
+  </g>
+</svg>

@@ -21,7 +21,8 @@ module.exports = {
   MONITORING_AND_ALERTING: 'Monitoring & Alerting',
   // Banner
   CLUSTER_STATUS: 'Cluster Status',
-  MONITORING_CLUSTER_DESC: 'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
+  MONITORING_CLUSTER_DESC:
+    'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
   // Overview > Cluster Node Status
   CLUSTER_NODE_STATUS: 'Cluster Node Status',
   ALL_NODES: 'All nodes',
@@ -71,9 +72,12 @@ module.exports = {
   // Physical Resource Monitoring
   SELECT_TIME_RANGE: 'Select Time Range',
   LAST_TIME: 'Last {value}',
-  LAST_TIME_M: '{num, plural, =1 {Last 1 minute} other{Last # minutes}}',
-  LAST_TIME_H: '{num, plural, =1 {Last 1 hour} other{Last # hours}}',
-  LAST_TIME_D: '{num, plural, =1 {Last 1 day} other{Last # days}}',
+  LAST_TIME_M_one: 'Last {count} minute',
+  LAST_TIME_M_other: 'Last {count} minutes',
+  LAST_TIME_H_one: 'Last {count} hour',
+  LAST_TIME_H_other: 'Last {count} hours',
+  LAST_TIME_D_one: 'Last {count} day',
+  LAST_TIME_D_other: 'Last {count} days',
   TIMERANGE_SELECTOR_MSG: 'The end time must be later than the start time.',
   TIMERANGE_SELECTOR_ERROR_MSG: 'Please confirm whether the selected time range is appropriate!',
   PHYSICAL_RESOURCES_MONITORING: 'Physical Resource Monitoring',
@@ -89,9 +93,12 @@ module.exports = {
   WRITE: 'Write',
   RUNNING: 'Running',
   // Physical Resource Monitoring > Average CPU Load
-  TIME_M: '{num, plural, =1 {1 minute} other{# minutes}}',
-  TIME_H: '{num, plural, =1 {1 hour} other{# hours}}',
-  TIME_D: '{num, plural, =1 {1 day} other{# days}}',
+  TIME_M_one: '{count} minute',
+  TIME_M_other: '{count} minutes',
+  TIME_H_one: '{count} hour',
+  TIME_H_other: '{count} hours',
+  TIME_D_one: '{count} day',
+  TIME_D_other: '{count} days',
   // etcd Monitoring
   EXTERNAL_ETCD: 'External etcd',
   DB_FSYNC: 'DB Fsync',
@@ -130,4 +137,4 @@ module.exports = {
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: 'Sort by memory usage',
   POD_USAGE: 'Pod Usage',
   EXPORT: 'Export',
-}
+};

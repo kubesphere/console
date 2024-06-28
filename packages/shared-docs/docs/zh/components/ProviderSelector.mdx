@@ -1,0 +1,23 @@
+---
+group: 'components'
+title: ProviderSelector
+description: '提供者选择器组件，用于选择集群提供者。'
+---
+
+# ProviderSelector 组件
+
+提供者选择器组件，用于选择集群提供者。
+
+## 示例
+
+```jsx live=true
+() => {
+  const handleProviderChange = (value) => {
+    console.log(`Selected Provider: ${value}`);
+  };
+
+  return <ProviderSelector onChange={handleProviderChange} />;
+}
+```
+
+在这个示例中，我们使用 `ProviderSelector` 组件创建一个提供者选择器。每次选择提供者时，将调用 `onChange` 回调函数并传递选中的提供者值。

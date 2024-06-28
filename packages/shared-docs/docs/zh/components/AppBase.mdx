@@ -1,0 +1,28 @@
+---
+group: 'components'
+title: AppBase
+description: '用于显示应用的基本信息。'
+---
+
+# AppBase 组件
+
+用于显示应用的基本信息。
+
+## 示例
+
+```js live=true
+() => {
+  const app = {
+    category_set: ['category1', 'category2'],
+    home: 'https://example.com',
+    status_time: '2023-05-26',
+    app_id: 'app-123',
+    latest_app_version: {
+      maintainers: [{ name: 'Maintainer 1' }, { name: 'Maintainer 2' }],
+      sources: ['https://github.com/source1', 'https://github.com/source2'],
+    },
+  };
+
+  return <AppBase app={app} className="custom-app-base" />;
+}
+```

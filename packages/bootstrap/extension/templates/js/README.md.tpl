@@ -1,0 +1,5 @@
+# {{extensionName}}
+
+{{description}}
+
+> TODO: README

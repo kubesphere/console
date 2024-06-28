@@ -1,0 +1,52 @@
+---
+group: 'components'
+title: PackageUpload
+description: '用于上传应用包的组件。'
+---
+
+# PackageUpload 组件
+
+用于上传应用包的组件。
+
+## 示例
+
+```jsx live=true
+() => {
+  const hasPackage = true;
+  const canCreate = false;
+  const canEdit = true;
+  const fileStore = {};
+  const appId = 'example-app';
+  const versionId = '1.0.0';
+
+  function handleOk(data) {
+    console.log('Package info:', data);
+  }
+
+  function handleCheckStatusChange(status) {
+    console.log('Upload status:', status);
+  }
+
+  const updateTime = '2023-06-08 10:30:00';
+  const packageName = 'example-package';
+  const className = 'custom-package-upload';
+
+  return (
+    <PackageUpload
+      hasPackage={hasPackage}
+      canCreate={canCreate}
+      canEdit={canEdit}
+      fileStore={fileStore}
+      appId={appId}
+      versionId={versionId}
+      onOk={handleOk}
+      onCheckStatusChange={handleCheckStatusChange}
+      updateTime={updateTime}
+      packageName={packageName}
+      className={className}
+    />
+  );
+}
+```
+
+在这个示例中，我们有一个 `PackageUpload` 组件，用于上传应用包。根据不同的状态和权限，组件会显示不同的内容。可以通过回调函数获取上传状态和确认上传成功后的包信息。

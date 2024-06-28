@@ -23,5 +23,5 @@ module.exports = {
   // List > Edit Information
   // List > Add Cluster
   // List > Delete
-  MULTI_CLUSTER_PROJECT_LOW: '多集群項目'
+  MULTI_CLUSTER_PROJECT_LOW: '聯邦項目'
 };

@@ -1,0 +1,59 @@
+---
+group: 'components'
+title: MonitorControllerModal
+description: '监控控制器模态框组件，用于展示监控相关的控制器和数据。'
+---
+
+# MonitorControllerModal 组件
+
+监控控制器模态框组件，用于展示监控相关的控制器和数据。
+
+## 示例
+
+```jsx live=true
+() => {
+  const titleIcon = <Icon name="cluster" />;
+  const [visible, setVisible] = useState(false);
+  const step = '5m';
+  const times = 20;
+  const createTime = '2023-06-01T08:00:00';
+  const loading = false;
+  const enableAutoRefresh = true;
+  const clusters = [
+    { name: 'cluster1' },
+    { name: 'cluster2' },
+    { name: 'cluster3' },
+  ];
+  const onFetch = (query) => {
+    console.log('Fetching data:', query);
+  };
+  const empty = 'No monitoring data available.';
+  const updateMonitorOptions = (data) => {
+    console.log('Updating monitor options:', data);
+  };
+  const onCancel = () => {
+    setVisible(false)
+    console.log('Cancel button clicked.');
+  };
+
+  return (
+    <>
+      <MonitorControllerModal
+        title="Monitoring Controller"
+        titleIcon={titleIcon}
+        visible={visible}
+        step={step}
+        times={times}
+        createTime={createTime}
+        loading={loading}
+        enableAutoRefresh={enableAutoRefresh}
+        clusters={clusters}
+        onFetch={onFetch}
+        empty={empty}
+        updateMonitorOptions={updateMonitorOptions}
+        onCancel={onCancel}
+      />
+      <button onClick={() => setVisible(true)}>打开</button>
+    </>
+  )
+}

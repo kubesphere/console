@@ -1,0 +1,34 @@
+---
+group: 'components'
+title: Text
+description: '文本组件，用于显示标题和描述信息。'
+---
+
+# Text 组件
+
+文本组件用于显示标题和描述信息。
+
+## 示例
+
+```jsx live=true
+() => {
+  return (
+    <div>
+      <Text
+        icon="cluster"
+        title="John Doe"
+        description="Frontend Developer"
+        className="text-item"
+      />
+      <Text
+        icon={() => <Icon name="cluster" size={24} />}
+        title={() => <span style={{ color: 'blue' }}>Jane Smith</span>}
+        description="Backend Developer"
+        className="text-item"
+      />
+    </div>
+  );
+}
+```
+
+在这个示例中，我们使用 `Text` 组件创建了两个文本项，显示不同的标题、描述和图标。可以通过 `icon` 属性传递图标名称或自定义图标组件，`title` 属性传递标题内容，`description` 属性传递描述内容。可以通过 `className` 属性添加自定义样式类名。

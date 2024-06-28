@@ -1,0 +1,17 @@
+## FormattedFederateProject
+```ts
+interface FormattedFederateProject extends BaseInfo {
+  overrides?: string[];
+  template?: Record<string, unknown>;
+  clusters?: unknown[];
+  clusterTemplates?: Record<string, any>;
+  type?: string;
+  labels?: Record<string, string>;
+  annotations?: Record<string, string>;
+  app?: string;
+  namespace?: string;
+  status?: string;
+  _originData?: OriginData<OriginalFederatedProject>;
+} 
+```
+

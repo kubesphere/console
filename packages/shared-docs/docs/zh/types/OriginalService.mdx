@@ -1,0 +1,37 @@
+## OriginalService
+```ts
+interface OriginalService extends Pick<KubernetesObjectBase, 'spec'> {
+  metadata: Required<
+    Pick<
+      ObjectMeta,
+      | 'name'
+      | 'namespace'
+      | 'uid'
+      | 'resourceVersion'
+      | 'creationTimestamp'
+      | 'labels'
+      | 'annotations'
+      | 'managedFields'
+    >
+  >;
+  spec: {
+    ports: Partial<Port>[];
+    selector: {
+      app: string;
+      tier: string;
+      clusterIP: string;
+      clusterIPs: string[];
+      type: string;
+      sessionAffinity: string;
+      externalTrafficPolicy: string;
+      ipFamilies: string[];
+      ipFamilyPolicy: string;
+      internalTrafficPolicy: string;
+    };
+  };
+  status: {
+    loadBalancer: Record<string, unknown>;
+  };
+} 
+```
+

@@ -21,9 +21,11 @@ module.exports = {
   EDIT_QUOTAS: 'Edit Quotas',
   QUOTA: 'Quota',
   PROJECT_QUOTAS_NOT_SET: 'Project Quotas Not Set',
-  PROJECT_QUOTAS_DESC: 'Project quotas specify the number of available CPU and memory resources and the maximum number of application resources such as pods, deployments, and services allowed in the project.',
+  PROJECT_QUOTAS_DESC:
+    'Project quotas specify the number of available CPU and memory resources and the maximum number of application resources such as pods, deployments, and services allowed in the project.',
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: 'Default Container Quotas Not Set',
-  DEFAULT_CONTAINER_QUOTAS_DESC: 'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
+  DEFAULT_CONTAINER_QUOTAS_DESC:
+    'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
   APPLICATION_RESOURCE_COUNT: 'Application Resources',
   SELECT_RESOURCE_TIP: 'Select a resource or enter a resource name',
   NUMBER_OF_PODS: 'Number of pods',
@@ -58,4 +60,4 @@ module.exports = {
   SORT_BY_WORKLOAD_MEMORY_USAGE_WO_CACHE: 'Sort by memory usage',
   SORT_BY_WORKLOAD_NET_BYTES_TRANSMITTED: 'Sort by outbound traffic',
   SORT_BY_WORKLOAD_NET_BYTES_RECEIVED: 'Sort by inbound traffic',
-}
+};

@@ -19,7 +19,8 @@
 module.exports = {
   // Banner
   DEVOPS_PROJECT_ROLE_PL: 'DevOps Project Roles',
-  DEVOPS_PROJECT_ROLES_DESC: 'The project roles define the permissions that users have under the current DevOps project.',
+  DEVOPS_PROJECT_ROLES_DESC:
+    'The project roles define the permissions that users have under the current DevOps project.',
   // List
   DEVOPS_PROJECT_ROLE_EMPTY_DESC: 'Please create a DevOps project role.',
   ROLE_DEVOPS_VIEWER: 'View all resources in the DevOps project.',
@@ -42,7 +43,8 @@ module.exports = {
   PERMISSION_PIPELINERUNS_VIEW: 'Pipeline Run Record Viewing',
   PERMISSION_PIPELINERUNS_VIEW_DESC: 'View pipeline run records in the DevOps project.',
   PERMISSION_PIPELINERUNS_MANAGEMENT: 'Pipeline Run Record Management',
-  PERMISSION_PIPELINERUNS_MANAGEMENT_DESC: 'View, edit, and delete pipeline run records in the DevOps project.',
+  PERMISSION_PIPELINERUNS_MANAGEMENT_DESC:
+    'View, edit, and delete pipeline run records in the DevOps project.',
   // List > Create > Edit Permissions > Credential Management
   PERMIGROUP_CREDENTIALS_MANAGEMENT: 'Credentials',
   PERMISSION_CREDENTIALS_VIEW: 'Credential Viewing',
@@ -59,11 +61,12 @@ module.exports = {
   PERMISSION_CONTINUOUS_DEPLOYMENTS_VIEW: 'Continuous Deployment Viewing',
   PERMISSION_CONTINUOUS_DEPLOYMENTS_VIEW_DESC: 'View continuous deployments in the DevOps project.',
   PERMISSION_CONTINUOUS_DEPLOYMENTS_MANAGEMENT: 'Continuous Deployment Management',
-  PERMISSION_CONTINUOUS_DEPLOYMENTS_MANAGEMENT_DESC: 'Manage continuous deployments in the DevOps project.',
+  PERMISSION_CONTINUOUS_DEPLOYMENTS_MANAGEMENT_DESC:
+    'Manage continuous deployments in the DevOps project.',
   // List > Create > Edit Permissions > Code Repository Management
   PERMIGROUP_CODE_REPOSITORIES_MANAGEMENT: 'Code Repositories',
   PERMISSION_CODE_REPOSITORIES_VIEW: 'Code Repository Viewing',
   PERMISSION_CODE_REPOSITORIES_VIEW_DESC: 'View code repositories in the DevOps project.',
   PERMISSION_CODE_REPOSITORIES_MANAGEMENT: 'Code Repository Management',
   PERMISSION_CODE_REPOSITORIES_MANAGEMENT_DESC: 'Manage code repositories in the DevOps project.',
-}
+};

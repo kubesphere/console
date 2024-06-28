@@ -1,0 +1,30 @@
+---
+group: 'components'
+title: Events
+description: '事件组件，用于显示与资源相关的事件列表。'
+---
+
+# Events 组件
+
+事件组件用于显示与资源相关的事件列表。
+
+## 示例
+
+```jsx live=true
+() => {
+  const detail = {
+    uid: '123',
+    name: 'resource-name',
+    namespace: 'resource-namespace',
+    _originData: {
+      kind: 'Deployment',
+    },
+  };
+  
+  return (
+    <Events detail={detail} module="deployment" />
+  );
+}
+```
+
+在这个示例中，我们使用 `Events` 组件创建了一个事件组件，用于显示与资源相关的事件列表。通过 `detail` 属性传递资源的详细信息，包括 `uid`、`name`、`namespace` 和 `_originData` 等字段。通过 `module` 属性指定模块名称。

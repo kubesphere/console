@@ -1,0 +1,33 @@
+---
+group: 'components'
+title: List
+description: '列表组件，用于显示一组项目。通常结合着 ListItem, ListAdd 组件一起使用'
+---
+
+# List 组件
+
+列表组件，用于显示一组项目。
+
+## 示例
+
+```jsx live=true
+() => (
+  <List className="custom-list">
+    <ListItem
+      icon="cluster"
+      title="John Doe"
+      description="Lorem ipsum dolor sit amet"
+      onDelete={() => alert('Delete')}
+      onEdit={() => alert('Edit')}
+    />
+     <ListAdd
+      icon="cluster"
+      title="Add Item"
+      description="Click here to add an item"
+      onClick={() => alert('Add')}
+      />
+  </List>
+)
+```
+
+在这个示例中，我们使用 `List` 组件创建一个列表。我们传递了一个 `className` 属性来自定义样式类名，并在组件中放置了三个项目。列表组件将会渲染这些项目，并应用自定义样式类名。

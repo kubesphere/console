@@ -1,0 +1,29 @@
+## FormattedWorkspace
+```ts
+type FormattedWorkspace = {
+  uid: string;
+  name: string;
+  creator: string;
+  description: string;
+  aliasName: string;
+  createTime: string;
+  resourceVersion: string;
+  isFedManaged: boolean;
+  annotations: Record<string, string>;
+  manager: string;
+  clusters: { name: string }[];
+  networkIsolation: boolean;
+  overrides: WorkspaceOverride[];
+  clusterTemplates: {
+    [prop: string]: {
+      metadata: Record<string, any>;
+      spec: {
+        manager: string;
+        networkIsolation: boolean;
+      };
+    };
+  };
+  _originData: OriginData<OriginalWorkspace>;
+}; 
+```
+

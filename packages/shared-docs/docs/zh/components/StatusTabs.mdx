@@ -1,0 +1,39 @@
+---
+group: 'components'
+title: StatusTabs
+description: '状态选项卡组件，用于显示多个选项卡和对应的内容。'
+---
+
+# StatusTabs 组件
+
+状态选项卡组件，用于显示多个选项卡和对应的内容。
+
+## 示例
+
+```jsx live=true
+() => {
+  const tabOptions = [
+    {
+      component: () => <>tab1</>,
+    },
+    {
+      component: () => <>tab2</>,
+    },
+  ];
+
+  const contentOptions = [
+    {
+      render: () => <>111</>,
+    },
+    {
+      render: () => <>222</>,
+    },
+  ];
+
+  return (
+    <StatusTabs title="Status Tabs" tabOptions={tabOptions} contentOptions={contentOptions} loading={false} />
+  );
+}
+```
+
+在这个示例中，我们使用 `StatusTabs` 组件创建一个状态选项卡组件。我们传递了一些属性，包括标题、选项卡配置项数组、内容配置项数组和加载状态。组件将会显示一个带有选项卡和对应内容的组件，可以根据选项

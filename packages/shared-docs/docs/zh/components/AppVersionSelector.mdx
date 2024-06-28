@@ -1,0 +1,41 @@
+---
+group: 'components'
+category: 'data entry'
+title: AppVersionSelector
+description: '用于选择应用程序版本的选择器组件。'
+---
+
+# AppVersionSelector 组件
+
+用于选择应用程序版本的选择器组件。
+
+## 示例
+
+```jsx live=true
+() => {
+  const appDetail = {
+    app_id: '1',
+    name: 'My App',
+    keywords: 'keyword1, keyword2, keyword3',
+    // ...
+  };
+
+  const workspace = 'workspace1';
+  const showKeywords = true;
+
+  function handleSelectedVersionChange(versionId) {
+    console.log('Selected Version:', versionId);
+  }
+
+  return (
+    <AppVersionSelector
+      appDetail={appDetail}
+      workspace={workspace}
+      showKeywords={showKeywords}
+      selectedVersionChange={handleSelectedVersionChange}
+    />
+  );
+}
+```
+
+在这个示例中，我们有一个 `AppVersionSelector` 组件，用于选择应用程序版本。通过 `appDetail` 属性传递应用程序详情对象，通过 `workspace` 属性指定工作区名称，通过 `showKeywords` 属性决定是否显示关键词。当选中的版本发生变化时，会调用 `selectedVersionChange` 属性中指定的回调函数，并将选中的版本ID作为参数传递给回调函数。

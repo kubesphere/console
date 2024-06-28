@@ -44,7 +44,8 @@ module.exports = {
   RELEASE_DATE_COLON: 'Release Date:',
   APP_ID_COLON: 'App ID:',
   SOURCE_CODE_ADDRESS_COLON: 'Source Code Address:',
-  APP_VERSIONS_TITLE: 'Versions (only the latest 10 versions will be displayed)',
+  APP_VERSIONS_TITLE: 'Versión de la lista',
+  // APP_VERSIONS_TITLE: 'Versions (only the latest 10 versions will be displayed)',
   MAINTAINER_COLON: 'Mantenedores',
   // App Details > Verions
   VERSIONS: 'Versions',

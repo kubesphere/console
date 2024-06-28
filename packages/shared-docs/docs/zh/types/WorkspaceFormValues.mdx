@@ -1,0 +1,24 @@
+## WorkspaceFormValues
+```ts
+interface WorkspaceFormValues {
+  metadata: {
+    name: string;
+    annotations: {
+      'kubesphere.io/alias-name'?: string;
+      'kubesphere.io/description'?: string;
+      'kubesphere.io/creator'?: string;
+    };
+  };
+  spec: {
+    template: {
+      spec: {
+        manager: string;
+      };
+    };
+    placement?: {
+      cluster: string;
+    };
+  };
+} 
+```
+

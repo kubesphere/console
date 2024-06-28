@@ -1,0 +1,42 @@
+## OriginalCRD
+```ts
+interface OriginalCRD extends KubernetesObjectBase {
+  metadata: Required<
+    Pick<
+      ObjectMeta,
+      | 'name'
+      | 'uid'
+      | 'resourceVersion'
+      | 'generation'
+      | 'creationTimestamp'
+      | 'annotations'
+      | 'managedFields'
+    >
+  >;
+  spec: {
+    group: string;
+    names: Record<string, string>;
+    scope: string;
+    versions: {
+      name: string;
+      served: boolean;
+      storage: boolean;
+      schema: Record<string, SingleSchema>;
+      subresources: {};
+      additionalPrinterColumns: {
+        name: string;
+        type: string;
+        description: string;
+        jsonPath: string;
+      }[];
+    }[];
+    conversion: Record<string, string>;
+  };
+  status: {
+    conditions: Condition[];
+    acceptedNames: Record<string, string>;
+    storedVersions: string[];
+  };
+} 
+```
+

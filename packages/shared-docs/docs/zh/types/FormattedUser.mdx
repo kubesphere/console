@@ -1,0 +1,19 @@
+## FormattedUser
+```ts
+interface FormattedUser extends BaseInfo {
+  username: string;
+  email: string;
+  role: string;
+  globalrole: string;
+  clusterrole: string;
+  workspacerole: string;
+  roleBind: string;
+  groups: any[];
+  status: string;
+  conditions: any[];
+  lastLoginTime: string;
+  displayLastLoginTime: string;
+  _originData: OriginData<OriginalUser>;
+} 
+```
+

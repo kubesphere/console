@@ -28,7 +28,7 @@ jobs:
     needs: deploy-check
     strategy:
       matrix:
-        node-version: [12.18.x]
+        node-version: [16.x]
     steps:
     - name: get pull request ref
       id: get_pull_request_ref
@@ -44,7 +44,7 @@ jobs:
         repository: ${{ fromJson(steps.get_pull_request_ref.outputs.data).head.repo.full_name }}
         ref: ${{ fromJson(steps.get_pull_request_ref.outputs.data).head.ref }}
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
     - name: Build

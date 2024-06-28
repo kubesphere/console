@@ -1,0 +1,34 @@
+---
+group: 'components'
+title: AppBaseInfoForm
+description: '用于显示和编辑应用基本信息的表单组件。'
+---
+
+# AppBaseInfoForm 组件
+
+用于显示和编辑应用基本信息的表单组件。
+
+## 示例
+
+```jsx live=true
+() => {
+  const formRef = useRef(null);
+
+  const handleFormSubmit = () => {
+    if(formRef.current) {
+      formRef.current.validateFields().then(fromData => console.log(formData))
+    }
+  };
+
+  return (
+    <div>
+      <AppBaseInfoForm ref={formRef} />
+      <button onClick={handleFormSubmit}>提交</button>
+    </div>
+  );
+}
+```
+
+在这个示例中，我们有一个 `AppBaseInfoForm` 组件，用于显示和编辑应用的基本信息。
+
+你可以直接使用 `AppBaseInfoForm` 组件，并通过 `ref` 来访问表单数据并验证字段。

@@ -1,0 +1,60 @@
+---
+group: 'components'
+category: 'data entry'
+title: DeployVersionModal
+description: '用于部署版本的模态框组件。'
+---
+
+# DeployVersionModal 组件
+
+用于部署版本的模态框组件。
+
+## 示例
+
+```jsx live=true
+() => {
+  const [visible, setVisible] = useState(false);
+  const appId = '123456';
+  const initFormData = {
+    name: 'App Name',
+    version_id: '1.0',
+    description: 'This is an app',
+    workspace: 'Default',
+    cluster: 'Cluster A',
+    namespace: 'Default',
+  };
+  const detail = {
+    name: 'App Name',
+    icon: 'https://example.com/icon.png',
+    description: 'This is an app',
+  };
+
+  const onOk = (data) => {
+    console.log(data);
+  };
+
+  const onCancel = () => {
+    console.log('Cancel');
+    setVisible(false)
+  };
+
+  const className = 'custom-deploy-modal';
+
+  return (
+    <>
+      <DeployVersionModal
+        visible={visible}
+        appId={appId}
+        initFormData={initFormData}
+        detail={detail}
+        onOk={onOk}
+        onCancel={onCancel}
+        className={className}
+      />
+      <button onClick={() => setVisible(true)}>open</button>
+    </>
+  );
+}
+```
+
+在这个示例中，我们有一个 `DeployVersionModal` 组件，用于部署应用程序的版本。可以通过设置 `visible` 属性来控制模态框的可见状态，通过设置 `appId` 属性来指定应用程序的ID，通过设置 `initFormData` 属性来指定初始部署表单数据，通过设置 `detail` 属性来指定应用程序的详细信息。可以通过回调函数 `onOk` 来获取部署表单数据，通过回调函数 `onCancel` 来处理取消操作。还可以自定义类名。

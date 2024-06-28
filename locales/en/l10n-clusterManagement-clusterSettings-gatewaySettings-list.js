@@ -39,16 +39,13 @@ module.exports = {
   DISABLE_GATEWAY: 'Disable Gateway',
   DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
   DISABLE_SUCCESSFUL: 'Disabled successfully.',
-  ENABLE_SUCCESSFUL: 'Enabled successfully.',
-  RESET_SUCCESSFUL: 'Reset successful',
   // Cluster Gateway > Manage > Edit
   EDIT: 'Edit',
   EDIT_TITLE: 'Edit {title}',
   // Cluster Gateway > Manage > Update
   UPDATE: 'Update',
-  UPDATED_GATEWAY_TITLE: 'Update Gateway',
   UPDATE_GATEWAY_DESC:
-    'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
+    'This operation may interrupt business for a short whilte. Exercise caution when performing this operation.',
   // Project Gateways
   PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',
@@ -56,7 +53,9 @@ module.exports = {
   REPLICA_COUNT: 'Replicas',
   NODE_PORTS: 'Node Ports',
   UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
+  // Workspace Gateways
+  WORKSPACE_GATEWAY_PL: 'Workspace Gateways',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: 'project gateway',
   DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways',
-}
+};

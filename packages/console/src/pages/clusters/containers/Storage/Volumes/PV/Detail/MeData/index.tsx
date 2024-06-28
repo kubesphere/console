@@ -1,0 +1,8 @@
+import React from 'react';
+import { MetaData, useDetailPage, VolumeDetail } from '@ks-console/shared';
+
+export default function DetailMetaData() {
+  const { detail } = useDetailPage<VolumeDetail>();
+
+  return <MetaData detail={detail ?? {}} />;
+}

@@ -1,0 +1,24 @@
+## VolumeSnapshotContentDetail
+```ts
+interface VolumeSnapshotContentDetail extends BaseInfo {
+  creationTimestamp?: string;
+  deletionTimestamp?: string;
+  namespace: string;
+  snapshotClassName: string;
+  volumeSnapshot?: string;
+  annotations: Record<string, any>;
+  labels: Record<string, any>;
+  deletionPolicy: string;
+  driver: string;
+  source: Record<string, any>;
+  error: any;
+  errorMessage: any;
+  generating: boolean;
+  readyToUse: boolean;
+  status: 'ready' | 'unready';
+  snapshotHandle: any;
+  restoreSize: number;
+  _originData: OriginData<any>;
+} 
+```
+

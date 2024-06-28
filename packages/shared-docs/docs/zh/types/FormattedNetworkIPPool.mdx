@@ -1,0 +1,16 @@
+## FormattedNetworkIPPool
+```ts
+interface FormattedNetworkIPPool extends BaseInfo {
+  namespace?: string;
+  cluster?: string;
+  cidr: string;
+  status: object;
+  workspace: string;
+  isDefault: boolean;
+  selector: {
+    'ippool.network.kubesphere.io/name': string;
+  };
+  _originData: OriginData<OriginalNetworkIPPool>;
+} 
+```
+

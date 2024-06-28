@@ -1,0 +1,22 @@
+---
+group: 'components'
+title: Terminal 组件
+description: '终端组件，用于在页面上展示一个终端界面。'
+---
+
+# Terminal 组件
+
+终端组件，用于在页面上展示一个终端界面。
+
+## 示例
+
+```jsx live=true
+() => {
+  const isLoading = false;
+  const websocketUrl = 'wss://example.com/terminal';
+
+  return <Terminal isLoading={isLoading} websocketUrl={websocketUrl} />;
+}
+```
+
+在这个示例中，我们使用 `Terminal` 组件创建一个终端包装器。我们传递了一个 `isLoading` 属性，用于指示是否正在加载终端界面。我们还传递了一个 `websocketUrl` 属性，指定终端连接的 WebSocket URL。当 `isLoading` 为 `true` 时，组件将显示加载状态；当 `isLoading` 为 `false` 时，组件将显示终端界面。

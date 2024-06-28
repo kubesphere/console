@@ -1,0 +1,23 @@
+---
+group: 'components'
+title: AppPreview
+description: '用于显示应用预览内容的组件。'
+---
+
+# AppPreview 组件
+
+用于显示应用预览内容的组件。
+
+## 示例
+
+```jsx live=true
+() => {
+  const appId = '123';
+  const versionId = '456';
+  const currentTab = 'versionInfo';
+
+  return <AppPreview appId={appId} versionId={versionId} currentTab={currentTab} />;
+};
+```
+
+在这个示例中，我们有一个 `AppPreview` 组件，用于根据给定的应用 ID、版本 ID 和当前选项卡来显示应用的预览内容。

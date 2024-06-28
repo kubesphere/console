@@ -1,0 +1,17 @@
+## EditUserPayload
+```ts
+type EditUserPayload = UserActionValues & {
+  metadata: {
+    resourceVersion: string;
+  };
+  spec: {
+    email: string;
+    password?: string;
+    lang?: string;
+  };
+  password?: string;
+  lang?: string;
+  [key: string]: any;
+}; 
+```
+

@@ -1,0 +1,42 @@
+---
+group: 'components'
+title: MonitorController
+propsDefinition: MonitoringController
+description: '监控控制器组件，用于管理监控数据的获取和展示。'
+---
+
+# MonitorController 组件
+
+监控控制器组件，用于管理监控数据的获取和展示。
+
+## 示例
+
+```jsx live=true
+() => {
+  const clusters = [
+    { name: 'cluster1' },
+    { name: 'cluster2' },
+    { name: 'cluster3' },
+  ];
+
+  const handleFetch = (params) => {
+    console.log('Fetching data with params:', params);
+  };
+
+  return (
+    <MonitorController
+      title="Monitoring"
+      step="10m"
+      times={50}
+      loading={false}
+      enableAutoRefresh={true}
+      clusters={clusters}
+      onFetch={handleFetch}
+    >
+      <div>Monitoring Data</div>
+    </MonitorController>
+  );
+}
+```
+
+在这个示例中，我们使用 `MonitorController` 组件创建一个监控控制器。我们传递了一些属性，如 `title`、`step`、`times`、`loading`、`enableAutoRefresh`、`clusters` 和 `onFetch`。在组件内部，我们展示了一个简单的监控数据组件。当控制器加载时，会调用 `onFetch` 回调函数来获取监控数据，并将数据传递给子组件进行展示。我们还提供了一些操作按钮，如自动刷新、手动刷新和自定义操作。

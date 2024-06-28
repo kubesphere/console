@@ -27,9 +27,11 @@ module.exports = {
   HOW_PUBLISH_APP_TITLE: 'How do I release apps to the App Store?',
   HOW_PUBLISH_APP_DESC: 'You can upload Helm charts as app templates to workspaces. The apps will be released to the App Store after they are approved.',
   // List
-  APP_STATUS_ACTIVE: 'Released',
-  APP_STATUS_DRAFT: 'Unreleased',
+  // APP_STATUS_ACTIVE: 'Released',
+  // APP_STATUS_DRAFT: 'Unreleased',
   APP_STATUS_SUSPENDING: 'Suspending',
+  APP_STATUS_ACTIVE: 'Listed',
+  APP_STATUS_DRAFT: 'Not listed',
   APP_TEMPLATE_EMPTY_DESC: 'Please create an app template.',
   LATEST_VERSION: 'Latest Version',
   // List > Create
@@ -44,9 +46,9 @@ module.exports = {
   UPLOAD_ICON: 'Upload Icon',
   UPLOAD_SUCCESSFUL: 'Uploaded successfully.',
   UPLOADING: 'Uploading',
-  FILE_MAX_SIZE_ICON: 'The maximum size of the icon is 96 x 96 pixels.',
+  FILE_MAX_SIZE_ICON: 'The maximum size of the icon is 512 x 512 pixels.',
   FILE_MAX_SCREENSHOTS: 'The snapshot size cannot exceed 2 MB.',
-  APP_ICON_NOTE: 'Upload a JPG or PNG image of 96 x 96 pixels.',
+  APP_ICON_NOTE: 'Upload a JPG or PNG image of 512 x 512 pixels.',
   MISS_FILE_NOTE: 'The file {file} was not found.',
   LICENSE_FILE_DESC: 'License agreement in text format.',
   CHART_FILE_DESC: 'YAML file that describes basic information about the chart such as the name and version.',
@@ -61,4 +63,5 @@ module.exports = {
   FILE_MAX_ICON_DESC: 'The icon size should not exceed 20 KB. Please try again.',
   HOMEPAGE: 'Homepage',
   OPTIONAL: 'Optional',
+  created: "Created"
 }

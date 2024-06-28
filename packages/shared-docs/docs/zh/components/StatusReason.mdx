@@ -1,0 +1,54 @@
+---
+group: 'components'
+title: StatusReason
+description: '状态原因组件，用于显示状态和原因信息。'
+---
+
+# StatusReason 组件
+
+状态原因组件，用于显示状态和原因信息。
+
+## 示例
+
+```jsx live=true
+() => {
+  const data = {
+    conditions: {
+      condition1: {
+        type: 'condition1',
+        status: 'True',
+        reason: 'reason1',
+        message: 'message1',
+      },
+      condition2: {
+        type: 'condition2',
+        status: 'False',
+        reason: 'reason2',
+        message: 'message2',
+      },
+    },
+  };
+
+  const reason = 'reason1';
+  const status = 'success';
+  const type = 'workload';
+  const hasTip = true;
+
+  const onShowEvents = () => {
+    // 处理显示事件的逻辑
+  };
+
+  return (
+    <StatusReason
+      data={data}
+      reason={reason}
+      status={status}
+      type={type}
+      hasTip={hasTip}
+      onShowEvents={onShowEvents}
+    />
+  );
+}
+```
+
+在这个示例中，我们使用 `StatusReason` 组件创建一个状态原因组件。我们传递了 `data` 属性作为数据对象，`reason` 属性表示原因，`status` 属性表示状态，`type` 属性表示类型，`hasTip` 属性表示是否有提示，`onShowEvents` 属性表示显示事件的回调函数。根据传递的参数，组件会显示相应的状态和原因信息。

@@ -29,7 +29,7 @@ module.exports = {
   PROJECT_NOT_SELECT_DESC: '請選擇一個項目。',
   BASIC_INFORMATION: '基本資訊',
   NAME: '名稱',
-  FEDPROJECT_RESOURCE_TIP: '無法在集群管理内創建多集群項目的資源, 請到多集群項目頁面内進行操作。',
+  FEDPROJECT_RESOURCE_TIP: '無法在集群管理内創建聯邦項目的資源, 請到聯邦項目頁面内進行操作。',
   FINISHED: 'Done',
   NOT_SET: 'To do',
   CURRENT: '目前',

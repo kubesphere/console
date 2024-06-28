@@ -1,0 +1,62 @@
+---
+group: 'components'
+title: DataTable
+description: '数据表格组件，用于展示结构化的数据。'
+---
+
+# DataTable 组件
+
+数据表格组件，用于展示结构化的数据。
+
+## 示例
+
+```jsx live=true
+() => {
+  // userStore extends from the baseStore in @ks-console/shared, please refer to the store documentation for details
+  const {
+    name,
+    getListUrl,
+    mapper,
+  } = userStore;
+
+  const url = getListUrl({});
+
+  const columns = [
+    {
+      title: t('NAME'),
+      field: 'name',
+      sortable: true,
+      searchable: true,
+      render: (value, row) => {
+        return (
+          <Field
+            value={getDisplayName(row)}
+            label={row.email || '-'}
+          />
+        );
+      },
+    },
+    {
+      title: t('CREATION_TIME_TCAP'),
+      field: 'createTime',
+      sortable: true,
+      canHide: true,
+      width: 350,
+      render: time => formatTime(time),
+    },
+  ];
+
+  return <DataTable
+          columns={columns}
+          tableName="users"
+          rowKey="name"
+          url={url}
+          format={mapper}
+          useStorageState={false}
+          placeholder={t('SEARCH_BY_NAME')}
+        />;
+}
+```
+
+在这个示例中，使用 `DataTable` 组件创建一个数据表格。我们传递了一个 `columns` 属性，其中包含了三列的定义，包括标题和数据字段。我们还传递了一个 `url` 属性，其中包含了要展示的数据数组。（url从 userStore 中获取）
+组件将会根据这些参数来获取数据展示数据表格，并提供排序功能。

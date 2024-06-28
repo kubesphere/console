@@ -1,0 +1,29 @@
+---
+group: 'components'
+title: NamespaceSelector
+description: '命名空间选择器组件，用于选择特定集群和工作区下的命名空间。'
+---
+
+# NamespaceSelector 组件
+
+命名空间选择器组件，用于选择特定集群和工作区下的命名空间。
+
+## 示例
+
+```jsx live=true
+() => {
+  const handleNamespaceChange = (namespace) => {
+    console.log(`Selected Namespace: ${namespace}`);
+  };
+
+  return (
+    <NamespaceSelector
+      cluster="Cluster-1"
+      workspace="Workspace-1"
+      onChange={handleNamespaceChange}
+    />
+  );
+}
+```
+
+在这个示例中，我们使用 `NamespaceSelector` 组件创建一个命名空间选择器。我们传递了 `cluster` 和 `workspace` 属性来指定特定的集群和工作区。每次选择命名空间时，将调用 `onChange` 回调函数并传递选中的命名空间。

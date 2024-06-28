@@ -1,0 +1,22 @@
+## IOriginalEndPoint
+```ts
+interface IOriginalEndPoint {
+  apiVersion?: string;
+  kind?: string;
+  metadata: Required<
+    Pick<
+      ObjectMeta,
+      | 'name'
+      | 'uid'
+      | 'resourceVersion'
+      | 'generation'
+      | 'creationTimestamp'
+      | 'annotations'
+      | 'finalizers'
+      | 'managedFields'
+    >
+  >;
+  subsets?: ISubsets[];
+} 
+```
+

@@ -1,0 +1,22 @@
+## OriginalPod
+```ts
+interface OriginalPod extends Pick<KubernetesObjectBase, 'spec'> {
+  metadata: Required<
+    Pick<
+      ObjectMeta,
+      | 'name'
+      | 'generateName'
+      | 'namespace'
+      | 'uid'
+      | 'resourceVersion'
+      | 'creationTimestamp'
+      | 'labels'
+      | 'ownerReferences'
+      | 'finalizers'
+      | 'managedFields'
+    >
+  >;
+  status: PodStatus;
+} 
+```
+

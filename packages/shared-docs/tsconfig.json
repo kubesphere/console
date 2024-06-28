@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "lib",
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "lib",
+    "resolveJsonModule": false,
+    "composite": true,
+    "paths": {
+      "@ks-console/*": ["../*/src"]
+    }
+  },
+  "include": [
+    "src",
+    "../core/src/globals.d.ts"
+  ],
+  "exclude": [
+    "docs",
+    ".docgen"
+  ]
+}

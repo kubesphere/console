@@ -1,0 +1,21 @@
+## OriginalWorkload
+```ts
+interface OriginalWorkload extends WorkloadBase {
+  spec: {
+    replicas?: number;
+    selector: {
+      matchLabels: MatchLabels;
+    };
+    strategy?: Strategy;
+    progressDeadlineSeconds?: number;
+    minReadySeconds?: number;
+    revisionHistoryLimit?: number;
+    paused?: boolean;
+    template: OriginalPod;
+  };
+  status: {
+    [key: string]: any;
+  };
+} 
+```
+

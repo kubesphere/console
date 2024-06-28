@@ -61,4 +61,8 @@ module.exports = {
     <p><code>kubectl describe pods &lt;pod-name&gt;</code></p>
   `,
   OPEN_TERMINAL_DESC: 'Ensure that the web socket settings on the proxy server is correct.',
-}
+  COMMAND_REFERENCE: 'Command Tips',
+  SWITCH_SHELL: 'Switch Shell',
+  BASH_SHELL_HELP:
+    'Enter /bin/bash to switch the shell type to bash for a better shell experience. (Note: Some containers do not support bash)',
+};

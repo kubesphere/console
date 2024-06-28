@@ -1,0 +1,23 @@
+---
+group: 'components'
+title: StatusIndicator
+description: '状态指示器组件，用于显示状态信息和状态标识。'
+---
+
+# StatusIndicator 组件
+
+状态指示器组件，用于显示状态信息和状态标识。
+
+## 示例
+
+```jsx live=true
+() => {
+  const type = 'success';
+  const total = 10;
+  const ready = 5;
+
+  return <StatusIndicator type={type} total={total} ready={ready} />;
+}
+```
+
+在这个示例中，我们使用 `StatusIndicator` 组件创建一个状态指示器。我们传递了一个 `type` 属性，表示状态的类型，这将决定状态标识的颜色和样式。我们还传递了 `total` 和 `ready` 属性，用于显示已完成的数量和总数。组件将会根据提供的属性渲染相应的状态标识和状态信息。

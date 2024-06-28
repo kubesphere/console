@@ -25,4 +25,4 @@ module.exports = {
   NAME_VALUE: 'Name: {value}',
   CONTAINER_PORT_VALUE: 'Container Port: {value}',
   // List > Create > Ingress Settings
-}
+};

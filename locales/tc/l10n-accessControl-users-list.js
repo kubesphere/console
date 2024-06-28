@@ -46,5 +46,7 @@ module.exports = {
   EDIT_USER: '編輯用戶',
   // List > Delete
   USER_LOW: '用戶',
-  DELETING_CURRENT_USER_NOT_ALLOWED: 'The current user cannot be deleted.'
+  DELETING_CURRENT_USER_NOT_ALLOWED: 'The current user cannot be deleted.',
+  // ListLayout -> NavTitle
+  USER_AND_ROLE: 'Users and Roles'
 };

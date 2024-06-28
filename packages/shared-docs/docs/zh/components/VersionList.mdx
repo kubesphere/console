@@ -1,0 +1,27 @@
+---
+group: 'components'
+category: 'data display'
+title: VersionList
+description: '用于显示应用版本列表的组件。'
+---
+
+# VersionList 组件
+
+用于显示应用版本列表的组件。
+
+## 示例
+
+```jsx live=true
+() => {
+  const hideHeader = false;
+  const hideFooter = false;
+
+  function handleAddVersion() {
+    console.log('Add version');
+  }
+
+  return <VersionList hideHeader={hideHeader} hideFooter={hideFooter} onAddVersion={handleAddVersion} />;
+}
+```
+
+在这个示例中，我们有一个 `VersionList` 组件，用于显示应用的版本列表。可以选择是否隐藏头部和底部，并提供添加新版本的回调函数。

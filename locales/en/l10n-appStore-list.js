@@ -19,7 +19,8 @@
 module.exports = {
   // Head
   APP_STORE: 'App Store',
-  HOME_APP_STORE_DESC: 'The official App Store of KubeSphere provides deployment and management features that allow users to quickly deploy apps with one click based on app templates.',
+  HOME_APP_STORE_DESC:
+    'The official App Store of KubeSphere provides deployment and management features that allow users to quickly deploy apps with one click based on app templates.',
   // Discover
   DISCOVER: 'Discover',
   NEW_APPS: 'New Apps',
@@ -38,4 +39,4 @@ module.exports = {
   LATEST_VALUE: 'Latest: {value}',
   TOTAL_CATE_COUNT: 'Total Apps: {total}',
   SEARCH_BY_NAME: 'Search by name',
-}
+};

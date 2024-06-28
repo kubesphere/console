@@ -1,0 +1,29 @@
+---
+group: 'components'
+title: StatusCircle
+description: '状态圆组件，用于显示带有状态信息的圆形图表。'
+---
+
+# StatusCircle 组件
+
+状态圆组件，用于显示带有状态信息的圆形图表。
+
+## 示例
+
+```jsx live=true
+() => {
+  return (
+    <StatusCircle
+      themeName="dark"
+      name="Status"
+      legend={['USED', 'TOTAL']}
+      used={80}
+      total={100}
+      unit="%"
+      showRate={true}
+    />
+  );
+}
+```
+
+在这个示例中，我们使用 `StatusCircle` 组件创建一个状态圆组件。我们传递了一些属性，包括主题名称、状态名称、图例标签数组、已使用量、总量、单位和是否显示使用比例。组件将会显示一个圆形图表，其中包含了状态信息和使用比例。

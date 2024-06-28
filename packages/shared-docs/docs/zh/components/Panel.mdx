@@ -1,0 +1,26 @@
+---
+group: 'components'
+title: Panel
+description: '面板组件，用于显示标题、内容和加载状态。'
+---
+
+# Panel 组件
+
+面板组件，用于显示标题、内容和加载状态。
+
+## 示例
+
+```jsx live=true
+() => {
+  const title = '面板标题';
+  const loading = true;
+
+  return (
+    <Panel title={title} loading={loading}>
+      这是面板内容
+    </Panel>
+  );
+}
+```
+
+在这个示例中，我们使用 `Panel` 组件创建一个面板。我们传递了 `title` 属性来指定面板的标题为"面板标题"，并将 `loading` 属性设置为 `true` 来显示加载状态。面板的内容可以通过子元素传递。

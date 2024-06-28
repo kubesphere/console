@@ -38,7 +38,8 @@ module.exports = {
   // Kubernetes Status
   KUBERNETES_STATUS: 'Kubernetes 組件狀態',
   API_REQUESTS_PER_SECOND: '每秒 API 請求數',
-  VALUE_REQUESTS_SECOND: '{value, plural, =1 {1 request} other {# requests}}/s',
+  VALUE_REQUESTS_SECOND: '1 request/s',
+  VALUE_REQUESTS_SECOND_PL: '{value} requests/s',
   API_REQUEST_LATENCY: 'API 請求延遲',
   SCHEDULING_OPERATIONS: '排程器調度次數',
   SCHEDULING_OPERATION: '排程器調度次數',
@@ -54,7 +55,7 @@ module.exports = {
   NODE_POD_UTILISATION: '容器組利用率',
   // Cluster Initializing
   WAIT_FOR_CLUSTER: 'Waiting for the cluster to join...',
-  WAIT_FOR_CLUSTER_DESC: 'The cluster is unavailable. Perform the following steps to add the cluster.',
+  WAIT_FOR_CLUSTER_DESC: 'The cluster is currently unavailable, please try again later.',
   CLUSTER_AGENT_TIP_1: '1. Log in to the cluster over SSH and run the <span class="code">vi agent.yaml</span> command to create a configuration file.',
   CLUSTER_AGENT_TIP_2: '2. Copy the following information to the <span class="code">agent.yaml</span> file.',
   CLUSTER_AGENT_TIP_3: '3. Run the <span class="code">kubectl create -f agent.yaml</span> command to add the cluster.',

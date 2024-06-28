@@ -1,0 +1,23 @@
+---
+group: 'components'
+title: ClusterTagSelector
+description: '集群标签选择器组件，用于选择预设的集群标签。'
+---
+
+# ClusterTagSelector 组件
+
+集群标签选择器组件，用于选择预设的集群标签。
+
+## 示例
+
+```jsx live=true
+() => {
+  const handleTagChange = (value) => {
+    console.log(`Selected Tag: ${value}`);
+  };
+
+  return <ClusterTagSelector onChange={handleTagChange} />;
+}
+```
+
+在这个示例中，我们使用 `ClusterTagSelector` 组件创建一个集群标签选择器。每次选择标签时，将调用 `onChange` 回调函数并传递选中的标签值。

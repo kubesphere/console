@@ -59,5 +59,9 @@ module.exports = {
     </ul>
     <p><code>kubectl describe pods &lt;容器组名称&gt;</code></p>
   `,
-  OPEN_TERMINAL_DESC: '确保代理服务器上的 Web Socket 设置正确。'
+  OPEN_TERMINAL_DESC: '确保代理服务器上的 Web Socket 设置正确。',
+  COMMAND_REFERENCE: '命令参考',
+  SWITCH_SHELL: '切换 shell',
+  BASH_SHELL_HELP:
+    '输入 /bin/bash 切换 shell 类型为 bash，可获得更好 shell 体验。（注意：有些容器不支持 bash）',
 };

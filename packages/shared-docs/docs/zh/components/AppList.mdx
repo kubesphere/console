@@ -1,0 +1,36 @@
+---
+group: 'components'
+title: AppList
+description: '用于显示应用列表的组件。'
+---
+
+# AppList 组件
+
+用于显示应用列表的组件。
+
+## 示例
+
+```jsx live=true
+() => {
+  const parameter = {
+    status: 'active',
+    limit: 10,
+    page: 0,
+  };
+
+  const handleAppItemClick = (item) => {
+    console.log('Clicked App:', item);
+  };
+
+  return (
+    <AppList
+      title="应用列表"
+      workspace="default"
+      parameter={parameter}
+      onAppItemClick={handleAppItemClick}
+    />
+  );
+};
+```
+
+在这个示例中，我们有一个 `AppList` 组件，用于显示应用的列表。我们可以设置标题、工作空间和查询参数，并通过回调函数处理应用项的点击事件。

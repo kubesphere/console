@@ -28,4 +28,4 @@ module.exports = {
   STORAGE_CLASS_VALUE: 'Storage class: {value}',
   // Metadata
   // Events
-}
+};

@@ -1,0 +1,38 @@
+---
+group: 'components'
+title: NotifyConfirm
+description: '通知确认组件，用于显示通知内容和确认按钮。'
+---
+
+# NotifyConfirm 组件
+
+通知确认组件用于显示通知内容和确认按钮。
+
+## 示例
+
+```jsx live=true
+() => {
+  const handleConfirm = () => {
+    console.log('Confirmed');
+  };
+
+  const handleCancel = () => {
+    console.log('Canceled');
+  };
+
+  return (
+    <div>
+      <NotifyConfirm
+        visible={true}
+        type="info"
+        title="Notification"
+        content="This is a notification message."
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+      />
+    </div>
+  );
+}
+```
+
+在这个示例中，我们使用 `NotifyConfirm` 组件创建了一个通知确认框，显示了一个信息通知和确认按钮。可以通过 `visible` 属性控制组件的可见性，`type` 属性指定通知框的类型，`title` 属性设置通知框的标题，`content` 属性设置通知框的内容。可以通过 `onConfirm` 和 `onCancel` 属性分别设置确认按钮和取消按钮的点击事件回调函数。

@@ -23,4 +23,4 @@ module.exports = {
   // Permissions
   NO_PERMISSION: 'No Permission Found',
   // Authorized Users
-}
+};

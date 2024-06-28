@@ -1,0 +1,19 @@
+## FormateJob
+```ts
+interface FormateJob extends BaseInfo {
+  labels: Record<string, string>;
+  namespace: string;
+  annotations: Record<string, string>;
+  status: Record<string, any>;
+  updateTime: string;
+  startTime: string;
+  spec: Record<string, any>;
+  selector: Record<string, any>;
+  containers: { [key: string]: any }[];
+  volumes: { [key: string]: any }[];
+  _originData: OriginData<OriginalJob>;
+}
+
+// workload -> CronJob 
+```
+

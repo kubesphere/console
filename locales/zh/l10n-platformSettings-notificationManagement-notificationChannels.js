@@ -67,8 +67,8 @@ module.exports = {
   FEISHU_TITLE: '飞书',
   FEISHU_DESC: '向飞书用户发送通知。',
   PLEASE_ENTER_APP_ID: '请输入 App ID。',
-  USER_ID: 'User ID',
-  DEPARTMENT_ID: 'Department ID',
+  USER_ID: '用户 ID',
+  DEPARTMENT_ID: '部门 ID',
   FEISHU_RECEIPIENT_SETTINGS_DESC: '如需接收通知，请设置至少一个 User ID 或 Department ID。',
   FEISHU_SECRET: '密钥',
   // DingTalk

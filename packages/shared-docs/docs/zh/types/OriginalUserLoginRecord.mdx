@@ -1,0 +1,29 @@
+## OriginalUserLoginRecord
+```ts
+interface OriginalUserLoginRecord extends KubernetesObjectBase {
+  apiVersion: string;
+  kind: 'LoginRecord';
+  metadata: Required<
+    Pick<
+      ObjectMeta,
+      | 'creationTimestamp'
+      | 'generateName'
+      | 'generation'
+      | 'labels'
+      | 'managedFields'
+      | 'name'
+      | 'resourceVersion'
+      | 'uid'
+    >
+  >;
+  spec: {
+    type: string;
+    provider: string;
+    sourceIP: string;
+    userAgent: string;
+    success: boolean;
+    reason: string;
+  };
+} 
+```
+

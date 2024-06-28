@@ -45,4 +45,4 @@ module.exports = {
   // Resource Status > Ports
   // Resource Status > Pods
   // Metadata
-}
+};

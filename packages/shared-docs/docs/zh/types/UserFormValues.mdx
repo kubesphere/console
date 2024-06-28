@@ -1,0 +1,17 @@
+## UserFormValues
+```ts
+interface UserFormValues {
+  metadata: {
+    name: string;
+    annotations: {
+      'iam.kubesphere.io/globalrole'?: string;
+      'kubesphere.io/description'?: string;
+    };
+  };
+  spec: {
+    email: string;
+    password?: string;
+  };
+} 
+```
+

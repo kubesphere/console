@@ -1,0 +1,40 @@
+---
+group: 'components'
+title: TimeSelector
+description: '时间选择器组件，用于选择时间范围。'
+---
+
+# TimeSelector 组件
+
+时间选择器组件用于选择时间范围。
+
+## 示例
+
+```jsx live=true
+() => {
+  const handleTimeChange = (val) => {
+    console.log('Selected time:', val);
+  };
+
+  const handleToggle = (toggled) => {
+    console.log('Dropdown toggled:', toggled);
+  };
+
+  return (
+    <div style={{position: 'relative'}}>
+      <TimeSelector
+        dark={false}
+        step="15m"
+        times={24}
+        renderCustom={true}
+        showStep={true}
+        onChange={handleTimeChange}
+        onToggle={handleToggle}
+        timeOps={['5m', '10m', '15m', '30m']}
+      />
+    </div>
+  );
+}
+```
+
+在这个示例中，我们使用 `TimeSelector` 组件创建了一个时间选择器，用户可以选择时间范围。可以通过 `arrowIcon` 属性指定下拉箭头图标，`dark` 属性控制是否使用暗色主题，`step` 属性设置时间步长，`times` 属性设置时间个数，`renderCustom` 属性决定是否渲染自定义时间范围选择器，`showStep` 属性控制是否显示时间步长。可以通过 `onChange` 属性监听值的改变，`onToggle` 属性监听下拉框的显示状态切换。可以通过 `timeOps` 属性设置自定义时间范围选择器的快捷选项列表。

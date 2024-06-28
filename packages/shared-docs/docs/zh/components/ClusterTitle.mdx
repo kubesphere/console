@@ -1,0 +1,31 @@
+---
+group: 'components'
+title: ClusterTitle
+description: '集群标题组件，用于显示集群的名称、图标、状态和其他相关信息。'
+---
+
+# ClusterTitle 组件
+
+集群标题组件，用于显示集群的名称、图标、状态和其他相关信息。
+
+## 示例
+
+```jsx live=true
+() => {
+  const cluster = {
+    name: 'Cluster-1',
+    group: 'production',
+    isHost: false,
+    conditions: {
+      Ready: {
+        status: 'True',
+      },
+    },
+    description: 'This is a production cluster',
+  };
+
+  return <ClusterTitle cluster={cluster} />;
+}
+```
+
+在这个示例中，我们使用 `ClusterTitle` 组件创建一个集群标题组件。我们传递了 `cluster` 属性，其中包含了集群的相关信息。组件将显示集群的名称、图标、状态和描述信息。默认情况下，标题尺寸为 'normal'，主题为 'dark'，宽度为 '33.4%'。

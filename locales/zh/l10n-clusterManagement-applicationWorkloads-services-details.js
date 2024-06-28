@@ -18,7 +18,7 @@
 module.exports = {
   // Attributes
   CUSTOM_SERVICE: '自定义服务',
-  VIRTUAL_IP: 'VirtualIP',
+  VIRTUAL_IP: '虚拟IP',
   // Resource Status
   CONTAINER_PORT_SCAP: '容器端口',
   SERVICE_PORT_SCAP: '服务端口',
