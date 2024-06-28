@@ -1,0 +1,39 @@
+---
+group: 'components'
+title: Pagination
+description: '分页组件，用于显示分页导航和处理分页逻辑。'
+---
+
+# Pagination 组件
+
+分页组件，用于显示分页导航和处理分页逻辑。
+
+## 示例
+
+```jsx live=true
+() => {
+  const totalCount = 100;
+  const onNextPage = (page) => {
+    console.log(`Next page: ${page}`);
+  };
+  const onPreviousPage = (page) => {
+    console.log(`Previous page: ${page}`);
+  };
+  const page = 0;
+  const pageSize = 10;
+  const showTotal = true;
+
+  return (
+    <Pagination
+      totalCount={totalCount}
+      onNextPage={onNextPage}
+      onPreviousPage={onPreviousPage}
+      page={page}
+      pageSize={pageSize}
+      showTotal={showTotal}
+    />
+  );
+}
+```
+
+在这个示例中，我们使用 `Pagination` 组件创建一个分页组件。我们传递了 `totalCount` 属性表示总项目数，`onNextPage` 属性表示下一页的回调函数，`onPreviousPage` 属性表示上一页的回调函数，`page` 属性表示当前页数，`pageSize` 属性表示每页项目数，`showTotal` 属性表示是否显示总项目数。根据传递的参数，组件会显示相应的分页导航，并处理分页逻辑。

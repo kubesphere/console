@@ -17,5 +17,5 @@
  */
 module.exports = {
   // Banner
-  MULTI_CLUSTER_PROJECT_SCAP: '多集群項目'
+  MULTI_CLUSTER_PROJECT_SCAP: '聯邦項目'
 };

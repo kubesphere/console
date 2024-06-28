@@ -1,0 +1,31 @@
+---
+group: 'components'
+title: BaseTable
+description: '基础表格组件，用于显示数据表格。'
+---
+
+# BaseTable 组件
+
+基础表格组件，用于显示数据表格。
+
+## 示例
+
+```jsx live=true
+() => {
+  const columns = [
+    { Header: 'Name', accessor: 'name' },
+    { Header: 'Age', accessor: 'age' },
+    { Header: 'Address', accessor: 'address' },
+  ];
+
+  const dataSource = [
+    { name: 'John', age: 30, address: '123 Street' },
+    { name: 'Jane', age: 25, address: '456 Avenue' },
+    { name: 'Bob', age: 40, address: '789 Road' },
+  ];
+
+  return <BaseTable columns={columns} dataSource={dataSource} />;
+}
+```
+
+在这个示例中，我们使用 `BaseTable` 组件创建一个基础表格。我们传递了一个 `columns` 属性，其中定义了表格的列，每个列包含一个 `Header` 属性和一个 `accessor` 属性，分别表示列标题和数据访问路径。我们还传递了一个 `dataSource` 属性，其中包含了表格的数据源数组。组件将根据列定义和数据源数组渲染表格。

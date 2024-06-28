@@ -20,13 +20,16 @@ module.exports = {
   // Navigation pane
   STORAGE: 'Storage',
   // Banner
-  PERSISTENT_VOLUME_CLAIM_DESC:'Persistent volume claims define storage requirements. The system creates persistent volumes according to persistent volume claims.',
+  PERSISTENT_VOLUME_CLAIM_DESC:
+    'Persistent volume claims define storage requirements. The system creates persistent volumes according to persistent volume claims.',
   PERSISTENT_VOLUME_CLAIM: 'Persistent Volume Claim',
   PERSISTENT_VOLUME_CLAIM_PL: 'Persistent Volume Claims',
   WHAT_IS_STORAGE_CLASS_Q: 'What is a storage class?',
-  WHAT_IS_STORAGE_CLASS_A: 'A storage class is a storage type configured by the cluster administrator. Different storage classes provide cluster users with different types of volumes.',
+  WHAT_IS_STORAGE_CLASS_A:
+    'A storage class is a storage type configured by the cluster administrator. Different storage classes provide cluster users with different types of volumes.',
   WHAT_IS_LOCAL_VOLUME_Q: 'What is a local volume?',
-  WHAT_IS_LOCAL_VOLUME_A:'A local volume is a volume created in the local file system of the cluster.',
+  WHAT_IS_LOCAL_VOLUME_A:
+    'A local volume is a volume created in the local file system of the cluster.',
   // List
   VOLUME_STATUS_BOUND: 'Bound',
   VOLUME_STATUS_LOST: 'Lost',
@@ -60,4 +63,4 @@ module.exports = {
   // List > Edit YAML
   // List > Delete
   PERSISTENT_VOLUME_CLAIM_LOW: 'persistent volume claim',
-}
+};

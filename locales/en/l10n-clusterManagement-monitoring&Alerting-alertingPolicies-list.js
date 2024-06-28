@@ -19,8 +19,7 @@
 module.exports = {
   // Banner
   ALERTING_POLICY_PL: 'Rule Groups',
-  ALERTING_POLICY_DESC:
-    'A rule group contains alert rules used to monitor cluster resources.',
+  ALERTING_POLICY_DESC: 'A rule group contains alert rules used to monitor cluster resources.',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerts generated?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A:
     'You need to create a rule group and set alert rules. The system will generate alerts when resource metrics meet conditions configured in rule groups.',
@@ -32,12 +31,9 @@ module.exports = {
   ALERT_RULE_PENDING: 'Pending',
   ALERT_RULE_FIRING: 'Firing',
   ALERT_RULE_DISABLED: 'Disabled',
-  POLICY_STATUS: 'Rule Group Status',
-  RULE_STATUS: 'Rule Status',
-  TIME_SPENT: 'Time Spent',
-  RECENT_DETECT_TIME: 'Last Check',
-  EDIT_ALERT_RULES: 'Edit Alert Rules',
-  RESET: 'Reset',
+  ALERT_RULE_HEALTH_OK: 'Healthy',
+  ALERT_RULE_HEALTH_ERR: 'Error',
+  ALERT_RULE_HEALTH_UNKNOWN: 'UnKnown',
   // List > Create > Basic Information
   SEVERITY: 'Severity',
   CREATE_ALERTING_POLICY: 'Create Rule Group',
@@ -52,26 +48,7 @@ module.exports = {
   LONG_NAME_DESC:
     'The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 253 characters.',
   NAME_EXIST_DESC: 'The name already exists. Please enter another name.',
-  ALIAS_NAME_DESC:
-    'The alias name can contain only letters, numbers, and hyphens (-), and cannot start or end with a hyphen. The maximum length is 63 characters.',
-  CHECK_INTERVAL: 'Check Interval',
-  ALERTING_POLICY_CHECK_INTERVAL_DESC:
-    'Set the interval between metric checks. The default value is 1 minute.',
-  // List > Create > Rule Settings > Rule List
-  ADD_ALERTING_RULE: 'Add Alert Rule',
-  ADD_ALERTING_RULE_DESC: 'Add an alert rule to the rule group.',
-  ENABLE_RULE: 'Enable Rule',
-  DISABLE_RULE: 'Disable Rule',
   // List > Create > Rule Settings > Rule Template
-  RULE_NAME: 'Rule Name',
-  CUSTOM_RULE_NAME_DESC:
-    'The rule name can contain any characters. The maximum length is 63 characters.',
-  LASTING_MINUTES: 'For {minutes, plural, =1 {1 minute} other {# minutes}}',
-  THRESHOLD_REQUIRED: 'Please enter a metric threshold.',
-  MESSAGE_SUMMARY_DESC:
-    'The message summary can contain any characters. The maximum length is 63 characters.',
-  MESSAGE_DETAILS_DESC:
-    'The message details can contain any characters. The maximum length is 256 characters.',
   RULE_TEMPLATE: 'Rule Template',
   RULE_SETTINGS: 'Rule Settings',
   MONITORING_TARGETS: 'Monitoring Targets',
@@ -116,13 +93,7 @@ module.exports = {
   NOTIFICATION_DETAILS: 'Details',
   // List > Edit
   EDIT_ALERTING_POLICY: 'Edit Rule Group',
-  // List > Disable
-  DISABLE_ALERTING_POLICY: 'Disable Rule Group',
-  DISABLE_MULTIPLE_ALERTING_POLICIES: 'Disable Multiple Rule Groups',
   // List > Delete
   ALERTING_POLICY: 'Rule Group',
   ALERTING_POLICY_LOW: 'rule group',
-  // List > reset
-  RESET_ALERTING_POLICY: 'Reset Rule Group',
-  RESET_ALERTING_POLICY_DESC: 'Are you sure you want to reset the rule group?',
-}
+};

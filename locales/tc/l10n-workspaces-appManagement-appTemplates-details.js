@@ -53,9 +53,9 @@ module.exports = {
   VERSION_SUBMIT_TIP: '確定要提交版本 <strong>{name}</strong> 去審核?',
   VERSION_CANCEL_TIP: '確定要取消版本 <strong>{name}</strong> 的審核嗎?',
   VERSION_RELEASE_TIP: '版本 <strong>{name}</strong> 發佈到商店後，用戶可以查看並部署該應用版本，您確定要發佈嗎？',
-  VERSION_SUSPEND_TIP: '版本 <strong>{name}</strong> 下架後，關聯的應用將不顯示該版本，您確定要下架嗎？',
-  VERSION_RECOVER_TIP: '版本 <strong>{name}</strong> 上架後，關聯的應用將顯示出該版本，您確定要上架嗎？',
-  UPDATE_TIME_SCAP: 'Update time',
+  VERSION_SUSPEND_TIP: '版本 <strong>{name}</strong> 下架後，關聯的應用將不顯示該版本，您確定要取消發佈嗎？',
+  VERSION_RECOVER_TIP: '版本 <strong>{name}</strong> 上架後，關聯的應用將顯示出該版本，您確定要恢復發佈嗎？',
+  UPDATE_TIME_SCAP: '更新時間',
   VIEW_IN_STORE: 'View in Store',
   // Versions > Upload
   UPLOAD_AGAIN_TIP: 'Please try again.',
@@ -75,5 +75,5 @@ module.exports = {
   // App Information
   // App Release
   // App Instances
-  APP_INSTANCES: 'App Instances'
+  APP_INSTANCES: '應用程序實例'
 };

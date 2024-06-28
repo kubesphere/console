@@ -23,6 +23,7 @@ module.exports = {
   ACCESS_TYPES_OF_ROUTE_Q: '应用路由支持哪些的访问模式？',
   ACCESS_TYPES_OF_ROUTE_A: 'KubeSphere 应用路由支持 NodePort 访问模式以及 LoadBalancer 访问模式。',
   ROUTE_PL: '应用路由',
+  ROUTE_SETTING_PL : '应用路由工具',
   // List
   GATEWAY_ADDRESS_TCAP: '网关地址',
   ROUTE_EMPTY_DESC: '请创建应用路由。',

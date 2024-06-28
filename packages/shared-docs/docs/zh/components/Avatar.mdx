@@ -1,0 +1,33 @@
+---
+group: '组件'
+title: Avatar
+description: '用于显示包含标题和描述的头像的组件。'
+---
+
+# Avatar 组件
+
+`Avatar` 组件用于显示包含标题和描述的头像。
+
+## 示例
+
+```jsx live=true
+() => {
+  const record = {
+    name: '张三',
+    description: '软件工程师',
+  };
+
+  return (
+    <Avatar
+      title={record.name}
+      record={record}
+      description={record.description}
+      icon='cluster'
+    />
+  );
+}
+```
+
+在这个示例中，我们有一个 `Avatar` 组件，用于显示用户的头像。通过 `to` 属性指定头像的链接地址，通过 `title` 属性设置用户的姓名，通过 `record` 属性传递头像的其他数据。`description` 属性设置用户的职位描述，`icon` 属性指定要显示在头像中的 "user" 图标。
+
+可以根据自己的实际需求自定义 `Avatar` 组件的属性和内容。

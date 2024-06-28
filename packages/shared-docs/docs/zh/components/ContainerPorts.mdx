@@ -1,0 +1,39 @@
+---
+group: 'components'
+title: ContainerPorts
+imports: ContainerPortsCard
+propsDefinition: Ports
+description: '容器端口组件，用于显示容器的端口信息。'
+---
+
+# ContainerPorts 组件
+
+容器端口组件，用于显示容器的端口信息。
+
+## 示例
+
+```jsx live=true
+() => {
+  const ports = [
+    {
+      name: 'port1',
+      protocol: 'TCP',
+      containerPort: 8080,
+    },
+    {
+      name: 'port2',
+      protocol: 'UDP',
+      containerPort: 9090,
+    },
+    {
+      name: 'port3',
+      protocol: 'TCP',
+      containerPort: 8888,
+    },
+  ];
+
+  return <ContainerPortsCard ports={ports} />;
+}
+```
+
+在这个示例中，我们使用 `ContainerPortsCard` 组件创建一个容器端口组件。我们传递了一个 `ports` 属性，其中包含了三个端口的信息。组件将会显示每个端口的名称、协议和容器端口号。

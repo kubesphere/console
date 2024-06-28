@@ -30,7 +30,8 @@ module.exports = {
   PROJECT_NOT_SELECT_DESC: 'Please select a project.',
   BASIC_INFORMATION: 'Basic Information',
   NAME: 'Name',
-  FEDPROJECT_RESOURCE_TIP: 'To create workload resources in a multi-cluster project, go to the Workloads page in the multi-cluster project.',
+  FEDPROJECT_RESOURCE_TIP:
+    'To create workload resources in a multi-cluster project, go to the Workloads page in the multi-cluster project.',
   FINISHED: 'Done',
   NOT_SET: 'To do',
   CURRENT: 'Current',
@@ -70,4 +71,4 @@ module.exports = {
   STOP_TITLE_SI: 'Stop {type}',
   STOP_TITLE_PL: 'Stop Multiple {type}',
   STOP_DESC: 'Are you sure you want to stop the resource?',
-}
+};

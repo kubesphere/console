@@ -1,0 +1,30 @@
+---
+group: 'components'
+title: Annotations
+description: '注释组件，用于显示一组注释信息。'
+imports: AnnotationsCard
+---
+
+# Annotations 组件
+
+注释组件，用于显示一组注释信息。
+
+## 示例
+
+```jsx live=true
+() => {
+  const annotations = {
+    annotation1: 'Value 1',
+    annotation2: 'Value 2',
+    annotation3: 'Value 3',
+  };
+
+  const hiddenKeys = ['annotation2'];
+
+  return <AnnotationsCard annotations={annotations} hiddenKeys={hiddenKeys} />;
+}
+```
+
+在这个示例中，我们使用 `Annotations` 组件创建一个注释组件。我们传递了一个 `annotations` 属性，其中包含了三个注释的键值对。我们还传递了一个 `hiddenKeys` 属性，其中包含了需要隐藏的注释的键的列表，这些键将被匹配并隐藏。组件将会显示未被隐藏的注释的名称和值。
+
+根据这个模板生成 Annotations 的中文文档。

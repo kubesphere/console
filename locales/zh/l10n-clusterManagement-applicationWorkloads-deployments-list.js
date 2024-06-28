@@ -29,7 +29,7 @@ module.exports = {
   PROJECT_NOT_SELECT_DESC: '请选择一个项目。',
   BASIC_INFORMATION: '基本信息',
   NAME: '名称',
-  FEDPROJECT_RESOURCE_TIP: '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作。',
+  FEDPROJECT_RESOURCE_TIP: '无法在集群管理内创建联邦项目的资源, 请到联邦项目页面内进行操作。',
   FINISHED: '已设置',
   NOT_SET: '未设置',
   CURRENT: '当前',

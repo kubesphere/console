@@ -19,7 +19,8 @@
 module.exports = {
   // Banner
   APPLICATION_RESOURCE_PL: 'Application Resources',
-  MONITORING_APPLICATION_DESC: 'Application resources provide the monitoring data of application resource usage and usage ranking.',
+  MONITORING_APPLICATION_DESC:
+    'Application resources provide the monitoring data of application resource usage and usage ranking.',
   // Resource Usage > Cluster Resource Usage
   CUSTOM_TIME_RANGE: 'Customize Time Range',
   ACCOUNTS: 'Accounts',
@@ -73,7 +74,7 @@ module.exports = {
   STATEFULSET_LOW: 'statefulset',
   DAEMONSET: 'Daemonset',
   DAEMONSET_PL: 'Daemonsets',
-  DAEMONSET_LOW:'daemonset',
+  DAEMONSET_LOW: 'daemonset',
   DEPLOYMENTS_VALUE: 'Deployments: {value}',
   STATEFULSETS_VALUE: 'Statefulsets: {value}',
   DAEMONSETS_VALUE: 'Daemonsets: {value}',
@@ -91,4 +92,4 @@ module.exports = {
   SORT_BY_NAMESPACE_POD_COUNT: 'Sort by pod quota usage (%)',
   SORT_BY_NAMESPACE_NET_BYTES_RECEIVED: 'Sort by inbound traffic',
   SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: 'Sort by outbound traffic',
-}
+};

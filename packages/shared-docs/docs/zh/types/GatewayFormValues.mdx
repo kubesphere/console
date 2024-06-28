@@ -1,0 +1,30 @@
+## GatewayFormValues
+```ts
+interface GatewayFormValues {
+  apiVersion: 'gateway.kubesphere.io/v1alpha1';
+  kind: 'Gateway';
+  metadata: {
+    annotations: {
+      'kubesphere.io/annotations': '';
+      [key: string]: string;
+    };
+  };
+  spec: {
+    controller: {
+      replicas: number;
+      annotations?: Record<string, string>;
+      config?: Record<string, string>;
+      scope: { enabled: boolean; namespace: string };
+    };
+    deployment: {
+      annotations?: Record<string, string>;
+      replicas: number;
+    };
+    service: {
+      annotations: Record<string, string>;
+      type: string;
+    };
+  };
+} 
+```
+

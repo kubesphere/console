@@ -38,7 +38,8 @@ module.exports = {
   // Kubernetes Status
   KUBERNETES_STATUS: 'Kubernetes 状态',
   API_REQUESTS_PER_SECOND: '每秒 API 请求数',
-  VALUE_REQUESTS_SECOND: '{value, plural, =1 {1 次} other {# 次}}/s',
+  VALUE_REQUESTS_SECOND: '1 次/s',
+  VALUE_REQUESTS_SECOND_PL: '{value} 次/s',
   API_REQUEST_LATENCY: 'API 请求延迟',
   SCHEDULING_OPERATIONS: '调度次数',
   SCHEDULING_OPERATION: '调度次数',
@@ -54,7 +55,7 @@ module.exports = {
   NODE_POD_UTILISATION: '容器组利用率',
   // Cluster Initializing
   WAIT_FOR_CLUSTER: '等待集群加入...',
-  WAIT_FOR_CLUSTER_DESC: '集群当前不可用。请执行以下步骤添加集群。',
+  WAIT_FOR_CLUSTER_DESC: '集群当前不可用，请稍后重试。',
   CLUSTER_AGENT_TIP_1: '1. 通过 SSH 登录集群，并执行 <span class="code">vi agent.yaml</span> 命令创建配置文件。',
   CLUSTER_AGENT_TIP_2: '2. 将以下信息复制到 <span class="code">agent.yaml</span> 文件中。',
   CLUSTER_AGENT_TIP_3: '3. 执行 <span class="code">kubectl create -f agent.yaml</span> 命令添加集群。',

@@ -1,0 +1,36 @@
+---
+group: 'components'
+title: InfiniteScroll
+description: '无限滚动组件，用于实现无限滚动加载内容。'
+---
+
+# InfiniteScroll 组件
+
+无限滚动组件，用于实现无限滚动加载内容。
+
+## 示例
+
+```jsx live=true
+() => {
+
+  const [content, setContent] = useState(new Array(30).fill(1))
+  const isLoading = false;
+  const isRefreshing = false;
+  const isEmpty = false;
+
+  const loading = <Loading />;
+  const empty = <Empty />;
+
+  return (
+    <div style={{height: '200px'}}>
+      <InfiniteScroll hasNextPage={content.length < 300} isLoading={isLoading} isRefreshing={isRefreshing} isEmpty={isEmpty} loading={loading} empty={empty} onLoadMore={() => setContent([...content, ...new Array(10).fill(1)])}>
+        <div>
+          {content.map(t => (<div>text</div>))}
+        </div>   
+      </InfiniteScroll>
+    </div>
+  );
+}
+```
+
+在这个示例中，我们使用 `InfiniteScroll` 组件创建一个无限滚动组件。我们传递了 `isLoading` 属性来表示是否正在加载，`isRefreshing` 属性来表示是否正在刷新，`isEmpty` 属性来表示内容是否为空。我们还通过 `loading` 属性和 `empty` 属性传递了加载中和空内容时的节点。组件会根据不同的状态显示相应的内容。

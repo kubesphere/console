@@ -1,0 +1,16 @@
+## VolumeSnapshotDetail
+```ts
+interface VolumeSnapshotDetail extends BaseInfo {
+  snapshotClassName: string;
+  restoreSize: string | number;
+  error: Record<string, any>;
+  errorMessage: string;
+  generating: boolean;
+  readyToUse: Record<string, any>;
+  backupStatus: 'deleting' | 'success' | 'updating';
+  snapshotSourceName: string;
+  namespace: string;
+  _originData: OriginData<any>;
+} 
+```
+

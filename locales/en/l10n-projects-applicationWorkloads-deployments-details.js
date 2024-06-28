@@ -23,13 +23,16 @@ module.exports = {
   TARGET_REVISION_EMPTY_DESC: 'Please select a target revision record.',
   TARGET_REVISION_RECORD: 'Target Revision Record',
   // More > Edit Autoscaling
-  CONFIGURE_AUTOSCALING_DESC: 'Set the system to automatically adjust the number of pod replicas based on target CPU usage and target memory usage.',
+  CONFIGURE_AUTOSCALING_DESC:
+    'Set the system to automatically adjust the number of pod replicas based on target CPU usage and target memory usage.',
   EDIT_AUTOSCALING: 'Edit Autoscaling',
   TARGET_CPU_USAGE_UNIT: 'Target CPU Usage (%)',
   AUTOSCALING: 'Autoscaling',
   RESOURCE_NAME: 'Resource Name',
-  TARGET_CPU_USAGE_DESC: 'The system automatically decreases/increases the number of pod replicas when the actual CPU usage is higher/lower than the target.',
-  TARGET_MEMORY_USAGE_DESC: 'The system automatically decreases/increases the number of pod replicas when the actual memory usage is higher/lower than the target.',
+  TARGET_CPU_USAGE_DESC:
+    'The system automatically decreases/increases the number of pod replicas when the actual CPU usage is higher/lower than the target.',
+  TARGET_MEMORY_USAGE_DESC:
+    'The system automatically decreases/increases the number of pod replicas when the actual memory usage is higher/lower than the target.',
   MINIMUM_REPLICAS_DESC: 'Set the minimum number of pod replicas allowed. The default value is 1.',
   MAXIMUM_REPLICAS_DESC: 'Set the maximum number of pod replicas allowed. The default value is 1.',
   TARGET_MEMORY_USAGE_UNIT: 'Target Memory Usage (MiB)',
@@ -59,7 +62,8 @@ module.exports = {
   REPLICAS_DESIRED: 'Desired',
   REPLICAS_CURRENT: 'Current',
   ADJUST_REPLICAS: 'Adjust Replicas',
-  REPLICAS_SCALE_NOTIFY_CONTENT: 'Are you sure you want to change the number of pod replicas to {num}?',
+  REPLICAS_SCALE_NOTIFY_CONTENT:
+    'Are you sure you want to change the number of pod replicas to {num}?',
   REPLICAS_SCALE_NOTIFY_CONFIRM: 'OK ({seconds}s)',
   REPLICAS_SCALE_NOTIFY_CANCEL: 'Cancel',
   // Resource Status > Autoscaling
@@ -80,7 +84,8 @@ module.exports = {
   VIEW_ALL_REPLICAS: 'View All Replicas',
   SHOW_SELECTED_ONLY: 'Show Selected Only',
   MONITORING_SELECT_LIMIT_MSG: 'A maximum of 10 resources can be selected.',
-  MONITORING_ALERT_DESC: 'Information about a maximum of five pod replicas are displayed by default. You can click <b>View All Replicas</b> to view information about all pod replicas.',
+  MONITORING_ALERT_DESC:
+    'Information about a maximum of five pod replicas are displayed by default. You can click <b>View All Replicas</b> to view information about all pod replicas.',
   CURRENT_VALUE: 'Current: {value}',
   // Environment Variables
   ENVIRONMENT_VARIABLE_PL: 'Environment Variables',
@@ -89,4 +94,4 @@ module.exports = {
   EVENT_AGE_DATA: '{lastTime}<br/>({count} times over {duration})',
   EVENT_AGE_DATA_TWICE: '{lastTime}<br/>(twice over {duration})',
   SOURCE: 'Source',
-}
+};

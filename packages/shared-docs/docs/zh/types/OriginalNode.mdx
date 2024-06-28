@@ -1,0 +1,48 @@
+## OriginalNode
+```ts
+interface OriginalNode {
+  kind?: string;
+  apiVersion?: string;
+  metadata: {
+    name?: string;
+    uid?: string;
+    resourceVersion?: string;
+    generation?: number;
+    creationTimestamp?: string;
+    annotations?: Record<string, string>;
+    labels?: Record<string, string>;
+    finalizers?: string[];
+    managedFields?: Array<{
+      manage: string;
+      manager: string;
+      operation: string;
+      apiVersion: string;
+      time: string;
+      fieldsType: string;
+      fieldsV1: Record<string, unknown>;
+    }>;
+  };
+  spec?: {
+    unschedulable?: string;
+    taints?: any[];
+    podCIDR: string;
+    podCIDRs: string[];
+  };
+  status?: {
+    addresses: {
+      address: string;
+      type: string;
+    }[];
+    allocatable: Record<string, string>;
+    capacity: Record<string, string>;
+    conditions: Record<string, string>[];
+    daemonEndpoints: Dictionary<any>;
+    images: {
+      name: string[];
+      sizeBytes: number;
+    }[];
+    nodeInfo: Record<string, string>;
+  };
+} 
+```
+

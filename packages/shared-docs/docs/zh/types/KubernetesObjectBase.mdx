@@ -1,0 +1,15 @@
+## KubernetesObjectBase
+```ts
+interface KubernetesObjectBase extends Record<string, any> {
+  apiVersion?: string;
+  kind?: string;
+  metadata: ObjectMeta;
+  spec?: {
+    [key: string]: any;
+  };
+  status?: {
+    [key: string]: any;
+  };
+} 
+```
+

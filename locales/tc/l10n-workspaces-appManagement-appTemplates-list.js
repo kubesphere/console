@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Banner
-  APP_TEMPLATE_PL: 'App Templates',
+  APP_TEMPLATE_PL: '應用程序範本',
   APPS_MANAGEMENT: '應用管理',
   UPLOAD_TEMPLATE: '上傳模板',
   APP_TEMPLATE_DESC: 'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
@@ -26,10 +26,13 @@ module.exports = {
   HOW_PUBLISH_APP_TITLE: '如何發佈已有應用',
   HOW_PUBLISH_APP_DESC: 'KubeSphere 目前支持將已有應用的 Helm Chart 上傳至企業空間的應用模板，提交審核後，可以將應用發佈在應用商店中。',
   // List
-  APP_STATUS_ACTIVE: '已發布',
-  APP_STATUS_DRAFT: 'Unreleased',
-  APP_STATUS_SUSPENDING: 'Suspending',
-  APP_TEMPLATE_EMPTY_DESC: 'Please create an app template.',
+  // APP_STATUS_ACTIVE: '已發布',
+  // APP_STATUS_DRAFT: 'Unreleased',
+  APP_STATUS_SUSPENDING: '暫停',
+  APP_STATUS_ACTIVE: '已上架',
+  APP_STATUS_DRAFT: '未上架',
+  
+  APP_TEMPLATE_EMPTY_DESC: '請創建一個應用範本。',
   LATEST_VERSION: '最新版本',
   // List > Create
   CREATE_APP_TEMPLATE: '創建應用模板',
@@ -59,5 +62,6 @@ module.exports = {
   TRY_AGAIN: 'Try Again',
   FILE_MAX_ICON_DESC: 'The icon size should not exceed 20 KB. Please try again.',
   HOMEPAGE: '首頁',
-  OPTIONAL: '選填'
+  OPTIONAL: '選填',
+  created: "已創建"
 };

@@ -1,0 +1,65 @@
+---
+group: 'components'
+category: 'data display'
+title: AuditRecords
+description: '用于显示审计记录的组件。'
+---
+
+# AuditRecords 组件
+
+用于显示审计记录的组件。
+
+## 示例
+
+```jsx live=true
+() => {
+  const appId = '123456';
+  const versionId = '1.0';
+  const simpleMode = false;
+  const columns = [
+    {
+      title: 'Time',
+      field: 'status_time',
+      width: '20%',
+      render: (time) => formatTime(time, 'YYYY-MM-DD HH:mm:ss'),
+    },
+    {
+      title: 'Status',
+      field: 'status',
+      canHide: true,
+      width: '15%',
+      render: (status) => <VersionStatus type={status} name={status} />,
+    },
+    {
+      title: 'Version',
+      field: 'version_name',
+      canHide: true,
+      width: '15%',
+    },
+    {
+      title: 'Rejection Reason',
+      field: 'reject',
+      canHide: true,
+      width: '40%',
+      render: (_, item) => item.message || '-',
+    },
+    {
+      title: 'Operator',
+      field: 'operator',
+      canHide: true,
+      width: '10%',
+      render: (_, item) => item.operator || '-',
+    },
+  ];
+  const className = 'custom-audit-records';
+
+  return (
+    <AuditRecords
+      appId={appId}
+      versionId={versionId}
+      simpleMode={simpleMode}
+      columns={columns}
+      className={className}
+    />
+  );
+}

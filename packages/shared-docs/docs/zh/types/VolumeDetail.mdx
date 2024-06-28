@@ -1,0 +1,22 @@
+## VolumeDetail
+```ts
+interface VolumeDetail extends BaseInfo {
+  deletionTime?: string;
+  phase: 'Bound' | 'Lost' | 'Pending' | 'Terminating' | 'Updating' | undefined;
+  storageProvisioner?: string;
+  status: Record<string, any>;
+  conditions: any[];
+  namespace?: string;
+  labels: Record<string, any>;
+  annotations: Record<string, any>;
+  accessMode?: string;
+  accessModes?: string[];
+  storageClassName: string;
+  resources: Record<string, any>;
+  capacity?: string;
+  inUse: boolean;
+  type: string;
+  _originData: OriginData<any>;
+} 
+```
+

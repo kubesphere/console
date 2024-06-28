@@ -1,0 +1,25 @@
+---
+group: 'components'
+title: Bar
+description: '用于显示进度条的组件。'
+---
+
+# Bar 组件
+
+用于显示进度条的组件。
+
+## 示例
+
+```jsx live=true
+() => {
+  const value = 0.75;
+  const text = '进度条';
+  const rightText = '75%';
+
+  return (
+    <Bar value={value} text={text} rightText={rightText} />
+  );
+}
+```
+
+在这个示例中，我们有一个 `Bar` 组件，用于显示进度条。通过 `value` 属性指定进度条的值，取值范围为0到1之间的小数。通过 `text` 属性在进度条上显示文本，通过 `rightText` 属性在进度条右侧显示文本。

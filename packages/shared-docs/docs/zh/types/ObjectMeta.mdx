@@ -1,0 +1,25 @@
+## ObjectMeta
+```ts
+interface ObjectMeta {
+  annotations?: {
+    [key: string]: string;
+  };
+  readonly creationTimestamp?: Time;
+  readonly deletionGracePeriodSeconds?: number;
+  readonly deletionTimestamp?: Time;
+  finalizers?: string[];
+  generateName?: string;
+  readonly generation?: number;
+  labels?: {
+    [key: string]: string;
+  };
+  managedFields?: ManagedFieldsEntry[];
+  name?: string;
+  namespace?: string;
+  ownerReferences?: OwnerReference[];
+  readonly resourceVersion?: string;
+  selfLink?: string;
+  readonly uid?: string;
+} 
+```
+

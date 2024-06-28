@@ -20,4 +20,4 @@ module.exports = {
   // Attributes
   // Alert Rule
   // Alerting History
-}
+};

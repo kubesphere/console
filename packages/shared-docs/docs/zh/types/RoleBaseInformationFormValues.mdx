@@ -1,0 +1,15 @@
+## RoleBaseInformationFormValues
+```ts
+interface RoleBaseInformationFormValues {
+  metadata: {
+    name: string;
+    annotations: {
+      'iam.kubesphere.io/aggregation-roles': string;
+      'kubesphere.io/creator': string;
+      'kubesphere.io/alias-name'?: string;
+      'kubesphere.io/description'?: string;
+    };
+  };
+} 
+```
+

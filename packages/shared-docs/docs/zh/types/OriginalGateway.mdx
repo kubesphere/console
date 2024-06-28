@@ -1,0 +1,22 @@
+## OriginalGateway
+```ts
+interface OriginalGateway extends Pick<KubernetesObjectBase, 'spec'> {
+  apiVersion?: string;
+  kind?: string;
+  metadata: Required<
+    Pick<
+      ObjectMeta,
+      | 'name'
+      | 'namespace'
+      | 'uid'
+      | 'resourceVersion'
+      | 'creationTimestamp'
+      | 'finalizers'
+      | 'managedFields'
+      | 'generation'
+      | 'annotations'
+    >
+  >;
+} 
+```
+

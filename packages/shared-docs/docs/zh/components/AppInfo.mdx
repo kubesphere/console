@@ -1,0 +1,29 @@
+---
+group: 'components'
+title: AppInfo
+description: '用于显示应用信息的组件。'
+---
+
+# AppInfo 组件
+
+用于显示应用信息的组件。
+
+## 示例
+
+```jsx live=true
+() => {
+  const appDetail = {
+    abstraction: '这是一个示例应用的简介。',
+    screenshots: ['screenshot1.jpg', 'screenshot2.jpg'],
+  };
+
+  const versionDetail = [
+    { version: '1.0.0', description: '第一个版本' },
+    { version: '1.1.0', description: '修复了一些 bug' },
+  ];
+
+  return <AppInfo appDetail={appDetail} versionDetail={versionDetail} />;
+}
+```
+
+在这个示例中，我们有一个 `AppInfo` 组件，用于显示应用的信息，包括应用的简介、截图和版本信息。

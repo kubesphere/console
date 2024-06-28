@@ -31,4 +31,4 @@ module.exports = {
   // Monitoring
   // Environment Variables
   // Events
-}
+};

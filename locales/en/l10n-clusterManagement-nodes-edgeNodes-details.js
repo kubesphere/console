@@ -22,6 +22,7 @@ module.exports = {
   // More > Edit Taints
   // Running Status
   LATEST_UPDATE_VALUE: 'Latest update: {value}',
+  NODE_GROUP_PL: 'Node Group'
   // Running Status > Resource Usage
   // Running Status > Allocated resources
   // Running Status > Health Status

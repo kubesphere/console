@@ -1,0 +1,18 @@
+## PodStatus
+```ts
+interface PodStatus {
+  phase: PodStatusPhase;
+  conditions: {
+    type: string;
+    status: 'True' | 'False';
+    lastProbeTime: string | null;
+    lastTransitionTime: string | null;
+  }[];
+  hostIp: string;
+  podIP?: string;
+  qosClass?: string;
+  podIps: { ip: string }[];
+  containerStatuses: ContainerStatus[];
+} 
+```
+

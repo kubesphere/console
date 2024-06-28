@@ -70,9 +70,9 @@ module.exports = {
   // Physical Resource Monitoring
   SELECT_TIME_RANGE: '選擇時間範圍',
   LAST_TIME: '最近 {value}',
-  LAST_TIME_M: '最近 {num} 分鐘',
-  LAST_TIME_H: '最近 {num} 小時',
-  LAST_TIME_D: '最近 {num} 天',
+  LAST_TIME_M_other: '最近 {count} 分鐘',
+  LAST_TIME_H_other: '最近 {count} 小時',
+  LAST_TIME_D_other: '最近 {count} 天',
   TIMERANGE_SELECTOR_MSG: '結束時間需晚於開始時間。',
   TIMERANGE_SELECTOR_ERROR_MSG: '時間範圍設置錯誤。',
   PHYSICAL_RESOURCES_MONITORING: '物理資源監控',
@@ -88,9 +88,9 @@ module.exports = {
   WRITE: '寫',
   RUNNING: '運行中',
   // Physical Resource Monitoring > Average CPU Load
-  TIME_M: '{num} 分鐘',
-  TIME_H: '{num, plural, =1 {1 hour} other{# hours}}',
-  TIME_D: '{num, plural, =1 {1 day} other{# days}}',
+  TIME_M_other: '{count} 分鐘',
+  TIME_H_other: '{count} 小時',
+  TIME_D_other: '{count} 天',
   // etcd Monitoring
   EXTERNAL_ETCD: '外部 etcd',
   DB_FSYNC: '資料庫同步時間',

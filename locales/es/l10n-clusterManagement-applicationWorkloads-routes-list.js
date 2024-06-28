@@ -23,6 +23,7 @@ module.exports = {
   ACCESS_TYPES_OF_ROUTE_Q: '¿Qué tipos de acceso admite la ruta?',
   ACCESS_TYPES_OF_ROUTE_A: 'Las rutas de KubeSphere admiten nombres de dominio personalizados (HostName) y así como wildcards DNS.',
   ROUTE_PL: 'Routes',
+  ROUTE_SETTING_PL: 'Application routing tools',
   // List
   GATEWAY_ADDRESS_TCAP: 'Dirección del gateway',
   ROUTE_EMPTY_DESC: 'Una ruta proporciona una forma de agregar servicios, y puede exponer los servicios internos del clúster al exterior a través de una dirección IP accesible desde el exterior.',

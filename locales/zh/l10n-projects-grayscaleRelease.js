@@ -63,7 +63,7 @@ module.exports = {
   NEW_VERSION_NUMBER_INVALID_DESC: '新版本号无效。新版本号只能包含小写字母和数字, 最长 16 个字符。',
   // Release Modes > Canary Release > Create > Strategy Settings > Specify Request Parameters
   KEY_EQ_VALUE: '键=值',
-  HEADER: 'Header',
+  HEADER: '标头',
   CLIENT_OS: '客户端操作系统',
   COOKIE: 'Cookie',
   SPECIFY_REQUEST_PARAMETERS_DESC: '满足以下条件的请求将被发送给新版本。',

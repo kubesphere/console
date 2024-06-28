@@ -1,0 +1,11 @@
+## Strategy
+```ts
+interface Strategy {
+  type: string;
+  rollingUpdate?: {
+    maxUnavailable?: string;
+    maxSurge?: string;
+  };
+} 
+```
+

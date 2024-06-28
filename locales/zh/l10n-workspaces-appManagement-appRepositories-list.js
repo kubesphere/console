@@ -20,13 +20,14 @@ module.exports = {
   APP_REPOSITORY_PL: '应用仓库',
   APP_REPO: '应用仓库',
   HOW_TO_USE_APP_REPO_Q: '如何使用应用仓库？',
-  HOW_TO_USE_APP_REPO_A: '您需要转到在该企业空间下的项目。在部署新应用时，选择<b>来自应用模板</b>并在下拉列表中选择您的应用仓库，即可部署应用仓库中的应用。',
+  HOW_TO_USE_APP_REPO_A: '您需要转到在该企业空间下的项目。在部署新应用时，选择 "来自应用模板 " 并在下拉列表中选择您的应用仓库，即可部署应用仓库中的应用。',
   APP_REPO_DESC: '应用仓库是用于存放应用模板的仓库，您可以添加应用仓库以部署和管理其中的应用。',
   // List
   APP_REPOSITORY_EMPTY_DESC: '请添加一个应用仓库。',
   APP_REPO_STATUS_SUCCESSFUL: '成功',
   APP_REPO_STATUS_FAILED: '失败',
   APP_REPO_STATUS_SYNCING: '同步中',
+  APP_REPO_STATUS_NOSYNC: '不同步',
   // List > Add
   ADD_APP_REPO: '添加应用仓库',
   VALIDATE: '验证',

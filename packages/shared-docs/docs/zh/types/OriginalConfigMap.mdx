@@ -1,0 +1,34 @@
+## OriginalConfigMap
+```ts
+interface OriginalConfigMap {
+  apiVersion?: string;
+  kind?: string;
+  metadata: {
+    name: string;
+    uid: string;
+    resourceVersion: string;
+    generation?: number;
+    creationTimestamp: string;
+    namespace: string;
+    labels?: { modifiedAt: string; name: string; owner: string; status: string; version: string };
+    annotations: {
+      'iam.kubesphere.io/aggregation-roles': string;
+      'kubesphere.io/alias-name'?: string;
+      'kubectl.kubernetes.io/last-applied-configuration'?: string;
+      'kubesphere.io/creator': string;
+      'kubesphere.io/description'?: string;
+    };
+    managedFields: {
+      manager: string;
+      operation: string;
+      apiVersion: string;
+      time: string;
+      fieldsType: string;
+      fieldsV1: Record<string, unknown>;
+    }[];
+  };
+  data?: { [propName: string]: any };
+  type?: string;
+} 
+```
+

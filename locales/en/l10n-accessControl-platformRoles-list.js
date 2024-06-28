@@ -25,7 +25,8 @@ module.exports = {
   ROLE_WORKSPACES_MANAGER: 'Manage all workspaces on the KubeSphere platform.',
   ROLE_PLATFORM_ADMIN: 'Manage all resources on the KubeSphere platform.',
   ROLE_PLATFORM_REGULAR: 'Cannot access any resources before joining a workspace.',
-  ROLE_PLATFORM_SELF_PROVISIONER: 'Create workspaces and become an administrator of the created workspaces.',
+  ROLE_PLATFORM_SELF_PROVISIONER:
+    'Create workspaces and become an administrator of the created workspaces.',
   CREATION_TIME_TCAP: 'Creation Time',
   // List > Create
   CREATE_PLATFORM_ROLE: 'Create Platform Role',
@@ -34,7 +35,8 @@ module.exports = {
   PERMISSION_CLUSTERS_VIEW: 'Cluster Viewing',
   PERMISSION_CLUSTERS_VIEW_DESC: 'View all clusters and cluster resources.',
   PERMISSION_CLUSTERS_MANAGEMENT: 'Cluster Management',
-  PERMISSION_CLUSTERS_MANAGEMENT_DESC: 'Create clusters, delete clusters, and manage resources in all clusters.',
+  PERMISSION_CLUSTERS_MANAGEMENT_DESC:
+    'Create clusters, delete clusters, and manage resources in all clusters.',
   // List > Create > Edit Permissions > Access Control
   PERMIGROUP_ACCESS_CONTROL: 'Access Control',
   PERMISSION_WORKSPACES_VIEW: 'Workspace Viewing',
@@ -42,7 +44,8 @@ module.exports = {
   PERMISSION_WORKSPACES_MANAGEMENT: 'Workspace Management',
   PERMISSION_WORKSPACES_MANAGEMENT_DESC: 'Create, edit, delete, and view workspaces.',
   PERMISSION_WORKSPACES_CREATE: 'Workspace Creation',
-  PERMISSION_WORKSPACES_CREATE_DESC: 'Create workspaces and become an administrator of the created workspaces.',
+  PERMISSION_WORKSPACES_CREATE_DESC:
+    'Create workspaces and become an administrator of the created workspaces.',
   PERMISSION_USERS_VIEW: 'User Viewing',
   PERMISSION_USERS_VIEW_DESC: 'View users.',
   PERMISSION_USERS_MANAGEMENT: 'User Management',
@@ -56,13 +59,15 @@ module.exports = {
   PERMISSION_APP_TEMPLATES_VIEW: 'App Viewing',
   PERMISSION_APP_TEMPLATES_VIEW_DESC: 'View the platform App Store.',
   PERMISSION_APP_TEMPLATES_MANAGEMENT: 'App Template Management',
-  PERMISSION_APP_TEMPLATES_MANAGEMENT_DESC: 'Manage the platform App Store and life cycles of cloud-native applications.',
+  PERMISSION_APP_TEMPLATES_MANAGEMENT_DESC:
+    'Manage the platform App Store and life cycles of cloud-native applications.',
   // List > Create > Edit Permissions > Platform Settings
   PERMIGROUP_PLATFORM_SETTINGS: 'Platform Settings',
   PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
-  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC:
+    'View and edit settings of the KubeSphere platform.',
   // List > Edit Information
   // List > Edit Permissions
   // List > Delete
   DELETING_PRESET_ROLES_NOT_ALLOWED: 'Preset roles cannot be deleted.',
-}
+};

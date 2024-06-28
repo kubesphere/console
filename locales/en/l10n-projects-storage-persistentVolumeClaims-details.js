@@ -36,4 +36,4 @@ module.exports = {
   // Metadata
   // Events
   // Snapshots
-}
+};

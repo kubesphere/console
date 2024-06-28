@@ -1,0 +1,16 @@
+## StorageClassDetail
+```ts
+interface StorageClassDetail extends BaseInfo {
+  annotations: Record<string, any>;
+  default: boolean;
+  parameters: Record<string, any>;
+  provisioner: string;
+  reclaimPolicy: string;
+  volumeBindingMode: string;
+  allowVolumeExpansion?: Record<string, any>;
+  supportSnapshot: boolean;
+  associationPVCCount: number;
+  _originData: OriginData<any>;
+} 
+```
+

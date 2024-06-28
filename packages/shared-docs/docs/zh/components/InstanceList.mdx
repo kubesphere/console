@@ -1,0 +1,34 @@
+---
+group: 'components'
+category: 'data display'
+title: InstanceList
+description: '用于显示实例列表的组件。'
+---
+
+# InstanceList 组件
+
+用于显示实例列表的组件。
+
+## 示例
+
+```jsx live=true
+() => {
+  const versionId = '1.0';
+  const title = 'Instance List';
+  const hideHeader = false;
+  const hideFooter = false;
+  const className = 'custom-instance-list';
+
+  return (
+    <InstanceList
+      versionId={versionId}
+      title={title}
+      hideHeader={hideHeader}
+      hideFooter={hideFooter}
+      className={className}
+    />
+  );
+}
+```
+
+在这个示例中，我们有一个 `InstanceList` 组件，用于显示实例列表。可以通过设置 `versionId` 属性来指定版本的ID，通过设置 `title` 属性来指定列表的标题，通过设置 `hideHeader` 属性来决定是否隐藏列表头部，通过设置 `hideFooter` 属性来决定是否隐藏列表底部，可以自定义类名。

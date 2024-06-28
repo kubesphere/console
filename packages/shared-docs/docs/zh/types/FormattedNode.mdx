@@ -1,0 +1,18 @@
+## FormattedNode
+```ts
+interface FormattedNode extends BaseInfo {
+  _originData: OriginData<OriginalNode>;
+  labels?: any;
+  annotations?: any;
+  role?: string[];
+  status?: Dictionary<any>;
+  conditions?: Dictionary<any>;
+  nodeInfo?: Record<string, string>;
+  spec?: Dictionary<any>;
+  unschedulable?: string;
+  importStatus?: string;
+  taints?: any[];
+  ip?: string;
+} 
+```
+

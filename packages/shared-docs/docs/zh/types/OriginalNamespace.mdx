@@ -1,0 +1,37 @@
+## OriginalNamespace
+```ts
+type OriginalNamespace = {
+  metadata?: {
+    name?: string;
+    uid?: string;
+    resourceVersion?: string;
+    creationTimestamp?: string;
+    labels?: Record<string, string>;
+    annotations?: Record<string, string>;
+    ownerReferences?: Array<{
+      apiVersion: string;
+      kind: string;
+      name: string;
+      uid: string;
+      controller: boolean;
+      blockOwnerDeletion: boolean;
+    }>;
+    finalizers?: string[];
+    managedFields: Array<{
+      manager: string;
+      operation: string;
+      apiVersion: string;
+      time: string;
+      fieldsType: string;
+      fieldsV1: Record<string, unknown>;
+    }>;
+  };
+  spec?: {
+    finalizers: string[];
+  };
+  status?: {
+    phase: string;
+  };
+}; 
+```
+

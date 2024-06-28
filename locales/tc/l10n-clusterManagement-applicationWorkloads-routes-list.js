@@ -23,6 +23,7 @@ module.exports = {
   ACCESS_TYPES_OF_ROUTE_Q: '應用路由支持的訪問方式?',
   ACCESS_TYPES_OF_ROUTE_A: 'KubeSphere 應用路由支持 NodePort 訪問方式以及 LoadBalancer 訪問方式。',
   ROUTE_PL: '應用路由',
+  ROUTE_SETTING_PL: '應用路由工具',
   // List
   GATEWAY_ADDRESS_TCAP: '網關地址',
   ROUTE_EMPTY_DESC: '應用路由提供一種聚合服務的方式，您可以將集群的内部服務通過一個外部可訪問的 IP 地址暴露給集群外部。',

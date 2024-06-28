@@ -70,9 +70,9 @@ module.exports = {
   // Physical Resource Monitoring
   SELECT_TIME_RANGE: '选择时间范围',
   LAST_TIME: '最近 {value}',
-  LAST_TIME_M: '最近 {num} 分钟',
-  LAST_TIME_H: '最近 {num} 小时',
-  LAST_TIME_D: '最近 {num} 天',
+  LAST_TIME_M_other: '最近 {count} 分钟',
+  LAST_TIME_H_other: '最近 {count} 小时',
+  LAST_TIME_D_other: '最近 {count} 天',
   TIMERANGE_SELECTOR_MSG: '结束时间需晚于开始时间。',
   TIMERANGE_SELECTOR_ERROR_MSG: '时间范围设置错误。',
   PHYSICAL_RESOURCES_MONITORING: '物理资源监控',
@@ -88,9 +88,9 @@ module.exports = {
   WRITE: '写',
   RUNNING: '运行中',
   // Physical Resource Monitoring > Average CPU Load
-  TIME_M: '{num} 分钟',
-  TIME_H: '{num, plural, =1 {1 小时} other{# 小时}}',
-  TIME_D: '{num, plural, =1 {1 天} other{# 天}}',
+  TIME_M_other: '{count} 分钟',
+  TIME_H_other: '{count} 小时',
+  TIME_D_other: '{count} 天',
   // etcd Monitoring
   EXTERNAL_ETCD: '外部 etcd',
   DB_FSYNC: '库同步时间',

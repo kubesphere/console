@@ -1,0 +1,17 @@
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+
+export default [
+  {
+    index: true,
+    element: <Navigate to="authorizations" replace />,
+  },
+  {
+    path: 'authorizations',
+    element: <></>,
+  },
+  {
+    path: 'users',
+    element: <></>,
+  },
+];

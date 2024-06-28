@@ -29,7 +29,7 @@ module.exports = {
   CATEGORY: '類别',
   TYPE: '類型',
   // Verisons
-  DEVELOPER: 'Developer',
+  DEVELOPER: '開發者',
   NO_VERSION_INFO_DESC: '沒有版本資訊。',
   ACTIVATE_VERSION: '上架版本',
   CANCEL_SUBMISSION: '取消提交',

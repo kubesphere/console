@@ -1,0 +1,44 @@
+## OriginalKubeKey
+```ts
+interface OriginalKubeKey {
+  kind?: string;
+  apiVersion?: string;
+  metadata: {
+    name?: string;
+    uid?: string;
+    resourceVersion?: string;
+    generation?: number;
+    creationTimestamp?: string;
+    annotations?: Record<string, string>;
+    labels?: Record<string, string>;
+    managedFields?: Array<{
+      manager?: string;
+      operation: string;
+      apiVersion: string;
+      time: string;
+      fieldsType: string;
+      fieldsV1: Record<string, unknown>;
+    }>;
+  };
+  spec?: {
+    addons?: Record<string, string>[];
+    controlPlaneEndpoint?: Record<string, unknown>;
+    etcd?: Record<string, unknown>;
+    hosts: Record<string, number | string>[];
+    kubernetes?: Record<string, unknown>;
+    kubesphere?: Record<string, unknown>;
+    network?: Record<string, unknown>;
+    registry?: Record<string, string>;
+    roleGroups?: Record<string, unknown>;
+  };
+  status?: {
+    etcdCount?: number | string;
+    masterCount?: number | string;
+    nodes: Record<string, number | string>[];
+    nodesCount: number | string;
+    version: string;
+    workerCount?: number | string;
+  };
+} 
+```
+

@@ -1,0 +1,28 @@
+---
+group: 'components'
+title: ClusterIcon
+description: '集群图标组件，用于显示集群图标和状态。'
+---
+
+# ClusterIcon 组件
+
+集群图标组件，用于显示集群图标和状态。
+
+## 示例
+
+```jsx live=true
+() => {
+  const cluster = {
+    provider: 'provider1',
+    conditions: {
+      Ready: {
+        status: 'True',
+      },
+    },
+  };
+
+  return <ClusterIcon cluster={cluster} />;
+}
+```
+
+在这个示例中，我们使用 `ClusterIcon` 组件创建一个集群图标组件。我们传递了 `cluster` 属性，其中包含了集群的相关信息。组件将根据集群的状态和提供者来显示相应的图标，并可选择显示状态标记。默认情况下，图标大小为 40，并使用暗色主题。

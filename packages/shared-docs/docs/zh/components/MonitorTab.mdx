@@ -1,0 +1,44 @@
+---
+group: 'components'
+title: MonitorTab
+description: '监控选项卡组件，用于显示监控数据和图表。'
+---
+
+# MonitorTab 组件
+
+监控选项卡组件，用于显示监控数据和图表。
+
+## 示例
+
+```jsx live=true
+() => {
+  const tabs = [
+    {
+      key: 'tab1',
+      data: [
+        { values: [[0, 10], [1, 20], [2, 30]] },
+        { values: [[0, 50], [1, 60], [2, 70]] },
+      ],
+      unit: 'percentage',
+      icon: 'cluster',
+      title: 'Tab 1',
+      legend: ['Legend 1', 'Legend 2'],
+    },
+    {
+      key: 'tab2',
+      data: [
+        { values: [[0, 30], [1, 40], [2, 50]] },
+        { values: [[0, 80], [1, 90], [2, 100]] },
+      ],
+      unit: 'percentage',
+      icon: 'cluster',
+      title: 'Tab 2',
+      legend: ['Legend 3', 'Legend 4'],
+    },
+  ];
+
+  return <MonitorTab tabs={tabs} />;
+}
+```
+
+在这个示例中，我们使用 `MonitorTab` 组件创建一个监控选项卡。我们传递了一个 `tabs` 属性，其中包含了选项卡的数据对象数组。每个选项卡对象包含 `key`、`data`、`unit`、`icon`、`title` 和 `legend` 属性，分别表示选项卡的键值、数据、单位、图标、标题和图例。组件根据选项卡数据渲染选项卡标题和对应的图表。

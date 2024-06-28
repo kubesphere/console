@@ -16,13 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-const locales = require('koa-locales')
+const locales = require('koa-locales');
 
-const { root, getServerConfig } = require('../libs/utils')
+const { root, getServerConfig } = require('../libs/utils');
 
-const clientConfig = getServerConfig().client
+const clientConfig = getServerConfig().client;
 
-module.exports = function(app) {
+module.exports = function (app) {
   locales(app, {
     functionName: 't',
     defaultLocale: clientConfig.defaultLang || 'en',
@@ -34,6 +34,6 @@ module.exports = function(app) {
       'en-uk': 'en',
       'en-us': 'en',
     },
-    dirs: [root('server/locales')],
-  })
-}
+    dirs: [root('locales')],
+  });
+};

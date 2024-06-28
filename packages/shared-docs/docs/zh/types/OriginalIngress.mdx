@@ -1,0 +1,30 @@
+## OriginalIngress
+```ts
+interface OriginalIngress extends KubernetesObjectBase {
+  metadata: Required<
+    Pick<
+      ObjectMeta,
+      | 'annotations'
+      | 'creationTimestamp'
+      | 'generation'
+      | 'labels'
+      | 'managedFields'
+      | 'name'
+      | 'namespace'
+      | 'ownerReferences'
+      | 'resourceVersion'
+      | 'uid'
+    >
+  >;
+  spec: {
+    rules: Record<string, any>[];
+  };
+  status: {
+    loadBalancer: {
+      [key: string]: any;
+      ingress: any[];
+    };
+  };
+} 
+```
+

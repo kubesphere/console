@@ -1,0 +1,34 @@
+---
+group: 'components'
+category: 'data display'
+title: VersionStatus
+description: '用于显示版本状态的组件。'
+---
+
+# VersionStatus 组件
+
+用于显示版本状态的组件。
+
+## 示例
+
+```jsx live=true
+() => {
+  const name = 'draft';
+  const type = '';
+  const hideName = false;
+  const hideIcon = false;
+  const className = 'custom-version-status';
+
+  return (
+    <VersionStatus
+      name={name}
+      type={type}
+      hideName={hideName}
+      hideIcon={hideIcon}
+      className={className}
+    />
+  );
+}
+```
+
+在这个示例中，我们有一个 `VersionStatus` 组件，用于显示版本状态。可以通过设置 `name` 属性来指定状态的名称，通过设置 `type` 属性来指定状态的类型。可以选择隐藏状态名称或图标，还可以自定义类名。

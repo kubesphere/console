@@ -1,0 +1,33 @@
+## FormattedGateway
+```ts
+interface FormattedGateway {
+  aliasName: string;
+  annotations: Record<string, string>;
+  config: Record<string, string>;
+  createTime: string;
+  updateTime?: string;
+  creator: string;
+  defaultIngress?: string;
+  description: string;
+  externalIPs: string[];
+  isFedManaged: boolean;
+  isHostName: boolean;
+  lb: string;
+  loadBalancerIngress: boolean[];
+  name: string;
+  namespace: string;
+  ports: {
+    port?: string;
+    name?: string;
+    nodePort?: string;
+  }[];
+  replicas: number;
+  resourceVersion: string;
+  serviceMeshEnable: boolean;
+  type: string;
+  uid: string;
+  cluster?: string;
+  _originData: OriginData<OriginalGateway>;
+} 
+```
+

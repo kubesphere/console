@@ -10,7 +10,7 @@ The locale files containing UI strings of the KubeSphere web console have been u
 
 2. Select a language and a locale file to start translating the UI strings. If your language does not exist in the list, please open an issue at the [kubesphere/console repository](https://github.com/kubesphere/console/issues).
 
-   > **Note**: Chinese Simplified is maintained by KubeSphere SIG-Docs. If you have any suggestions on the existing Chinese Simplified UI strings, please open an issue at the [kubesphere/console repository](https://github.com/kubesphere/console/issues).
+   > **Note**: Chinese (Simplified) is maintained by KubeSphere SIG-Docs and doesn't require localization. If you have any suggestion on the existing UI texts in Chinese (Simplified), you can create an issue to discuss it.
 
    ![crowdin-select-langauge](./images/crowdin-select-langauge.png)
 
@@ -25,15 +25,23 @@ For more information about operations on Crowdin, see the [official Crowdin docu
 
 ## Obtain Context and Preview Your Translations
 
-On Crowdin, obtain the paths of the UI strings from the locale file names and comments.
+Obtaining necessary context could be crucial for UI localization. To make the localization work easier, the KubeSphere team has set up a KubeSphere demo environment where you can locate the UI strings and preview your translations. The KubeSphere demo environment is synchronized with the locale files on Crowdin about once an hour.
 
-For example, the following file name and comment indicate that the string **Platform Roles** is located in the banner area of the **Platform Roles** page.
+1. Visit the KubeSphere demo environment at [https://l10n.kubesphere.io/](https://l10n.kubesphere.io/) and log in with you GitHub account. By default, you are allowed only to view resources in the KubeSphere demo environment. If you require administrator permissions, please send an email to l10n@kubesphere.io and provide the following information:
+   
+   * Your GitHub username
+   * Your GitHub email address
+   * Your organization name (if any)
 
-![crowdin-file-name](./images/crowdin-file-name.png)
+2. On Crowdin, obtain the paths of the UI strings from the locale file names and comments.
 
-![crowdin-comment](./images/crowdin-comment.png)
+   For example, the following file name and comment indicate that the string **Platform Roles** is located in the banner area of the **Platform Roles** page.
 
-![crowdin-ui-string](./images/crowdin-ui-string.png)
+   ![crowdin-file-name](./images/crowdin-file-name.png)
+
+   ![crowdin-comment](./images/crowdin-comment.png)
+
+   ![crowdin-ui-string](./images/crowdin-ui-string.png)
 
 ## Pending Issues
 

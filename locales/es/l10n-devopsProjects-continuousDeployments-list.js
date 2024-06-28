@@ -31,7 +31,7 @@ module.exports = {
   // List > Create
   NEED_TO_SYNC_REPO: 'Need to sync repo',
   CREATE_CONTINUOUS_DEPLOYMENT: 'Create Continuous Deployment',
-  CD_SELECT_CODE_REPO_DESC: 'Select a code repository.',
+  CD_SELECT_CODE_REPO_DESC: 'Select a code repository to be used by the continuous deployment.',
   DEPLOYMENT_SETTINGS: 'Deployment Settings',
   CODE_REPOSITORY_SETTINGS: 'Code Repository Settings',
   SYNC_STRATEGY_TCAP: 'Sync Strategy',

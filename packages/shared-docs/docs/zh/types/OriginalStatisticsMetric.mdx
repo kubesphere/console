@@ -1,0 +1,11 @@
+## OriginalStatisticsMetric
+```ts
+interface OriginalStatisticsMetric {
+  metric_name: string;
+  data: {
+    resultType: 'matrix' | 'vector' | 'scalar' | 'string';
+    result: OriginalStatisticsMetricResult[];
+  };
+} 
+```
+

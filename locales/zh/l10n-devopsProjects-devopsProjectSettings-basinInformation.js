@@ -33,7 +33,7 @@ module.exports = {
   EDIT_ALLOWLIST: '编辑白名单',
   EMPTY_ALLOWLIST_TITLE: '未启用持续部署白名单',
   ALLOWLIST_EMPTY_DESC: '启用白名单从而只允许在持续部署中使用特定的代码仓库和部署位置。',
-  MULTI_CLUSTER_PROJECT_NOT_FOR_CD: '多集群项目不能用于持续部署。',
+  MULTI_CLUSTER_PROJECT_NOT_FOR_CD: '联邦项目不能用于持续部署。',
   CODE_REPOSITORY_EXIST_DESC: '代码仓库已存在，请选择其他代码仓库。',
   DEPLOYMENT_LOCATION_EXIST_DESC: '部署位置已存在，请设置其他部署位置。',
   CODE_REPOSITORY_NOT_SELECTED: '未选择代码仓库',

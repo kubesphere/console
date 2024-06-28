@@ -16,32 +16,32 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-const isString = require('lodash/isString')
+const isString = require('lodash/isString');
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.use(async (ctx, next) => {
     try {
-      await next()
+      await next();
     } catch (err) {
-      let error = err
+      let error = err;
 
       if (isString(error)) {
         error = {
           code: 500,
           status: 'Failure',
           reason: err,
-        }
+        };
       }
 
       if (error.code < 100) {
-        error.code = 500
+        error.code = 500;
       }
 
-      ctx.status = typeof error.code === 'number' ? error.code : 500
-      ctx.body = error
-      ctx.app.emit('error', error)
+      ctx.status = typeof error.code === 'number' ? error.code : 500;
+      ctx.body = error;
+      ctx.app.emit('error', error);
     }
-  })
+  });
 
   app.on('error', err => {
     /* centralized error handling:
@@ -50,13 +50,13 @@ module.exports = function(app) {
      *   save error and request information to database if ctx.request match condition
      *   ...
      */
-    console.error(err)
-  })
+    console.error(err);
+  });
 
   // catch uncaught error
   process.on('uncaughtException', err => {
-    console.error(err)
+    console.error(err);
     /* eslint-disable no-console */
-    console.log('NOT exit...')
-  })
-}
+    console.log('NOT exit...');
+  });
+};

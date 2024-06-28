@@ -1,0 +1,10 @@
+{
+  "name": "@ks-console/locales",
+  "version": "4.1.0-beta.0",
+  "description": "",
+  "homepage": "",
+  "files": [
+    "dist"
+  ],
+  "gitHead": "6380079918d574a833739b35ee51b0d2f72985ee"
+}

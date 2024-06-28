@@ -1,0 +1,26 @@
+---
+group: 'components'
+title: Labels
+description: '标签组件，用于显示一组标签。'
+imports: LabelsCard
+---
+
+# Labels 组件
+
+标签组件，用于显示一组标签。
+
+## 示例
+
+```jsx live=true
+() => {
+  const labels = {
+    label1: 'Value 1',
+    label2: 'Value 2',
+    label3: 'Value 3',
+  };
+
+  return <LabelsCard labels={labels} />;
+}
+```
+
+在这个示例中，我们使用 `Labels` 组件创建一个标签组件。我们传递了一个 `labels` 属性，其中包含了三个标签的键值对。组件将会显示这些标签，并根据键值对的内容渲染标签的名称和值。

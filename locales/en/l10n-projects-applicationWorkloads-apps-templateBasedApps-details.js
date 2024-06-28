@@ -31,4 +31,4 @@ module.exports = {
   NO_APP_DESC_FOUND: 'No app description found.',
   // App Template > Chart Files
   // App Settings
-}
+};

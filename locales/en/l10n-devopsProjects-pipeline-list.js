@@ -36,13 +36,13 @@ module.exports = {
   // List > Copy
   COPY: 'Copy',
   COPY_PIPELINE: 'Copy Pipeline',
-  PIPELINE_NAME_DESC: 'The name of the pipeline. Pipelines in the same project must have different names.',
+  PIPELINE_NAME_DESC:
+    'The name of the pipeline. Pipelines in the same project must have different names.',
   PIPELINE_NAME_TIP: 'Please enter a pipeline name.',
   // List > Delete
   // List > Create
   CREATE_PIPELINE: 'Create Pipeline',
   // List > Create > Basic Information
-  GO_CREATE_REPO_ACTION: 'No code repository is available. Please <span class="text-action">create a code repository.</span>',
   PIPELINE_TYPE: 'Pipeline Type',
   SELECT_CODE_REPOSITORY: 'Select Code Repository',
   BRANCH_PIPELINE_DESC:
@@ -77,7 +77,8 @@ module.exports = {
   GITLAB_SERVER_ADDRESS: 'GitLab Server Address',
   GITLAB_SERVER_EMPTY_TIP: 'Please enter the address of a GitLab server.',
   PROJECT_GROUP_OWNER: 'Project Group/Owner',
-  PROJECT_GROUP_OWNER_EMPTY_TIP: 'Please enter the name of a GitLab project group or project owner.',
+  PROJECT_GROUP_OWNER_EMPTY_TIP:
+    'Please enter the name of a GitLab project group or project owner.',
   REPOSITORY_NAME: 'Code Repository',
   REPOSITORY_NAME_EMPTY_TIP: 'Please enter the name of a code repository.',
   // List > Create > Basic Information > Code Repository > Bitbucket
@@ -98,12 +99,15 @@ module.exports = {
   BRANCH_INCLUDED: 'Included Branches',
   // List > Create > Advanced Settings
   DELETE_OUTDATED_BRANCHES: 'Delete outdated branches',
-  DELETE_OUTDATED_BRANCHES_TIP: 'Set the system to automatically delete outdated branches to save disk space.',
+  DELETE_OUTDATED_BRANCHES_TIP:
+    'Set the system to automatically delete outdated branches to save disk space.',
   BRANCH_SETTINGS: 'Branch Settings',
   BRANCH_RETENTION_PERIOD_DAYS: 'Branch Retention Period (days)',
   MAXIMUM_BRANCHES: 'Maximum Branches',
-  BRANCH_RETENTION_PERIOD_DAYS_DESC: 'Branches that exceed the retention period are deleted. The default value is 7.',
-  MAXIMUM_BRANCHES_DESC: 'When the number of branches exceeds the maximum number allowed, the earliest branch is deleted. The default value is 5.',
+  BRANCH_RETENTION_PERIOD_DAYS_DESC:
+    'Branches that exceed the retention period are deleted. The default value is 7.',
+  MAXIMUM_BRANCHES_DESC:
+    'When the number of branches exceeds the maximum number allowed, the earliest branch is deleted. The default value is 5.',
   ADD_STRATEGY: 'Add Strategy',
   DISCOVER_TAG_BRANCHES: 'Discover Tags',
   DISCOVER_BRANCHES: 'Discover Branches',
@@ -126,8 +130,10 @@ module.exports = {
   TIME_TRIGGER_DESC: 'Scan the code repository periodically.',
   SCAN_INTERVAL: 'Scan Interval',
   SELECT_PIPELINE_SCAP: 'Select pipeline',
-  WHEN_DELETE_PIPELINE_DESC: 'When a pipeline is deleted, the tasks in the specified pipeline are automatically triggered.',
-  WHEN_CREATE_PIPELINE_DESC: 'When a new pipeline is created, the tasks in the specified pipeline are automatically triggered.',
+  WHEN_DELETE_PIPELINE_DESC:
+    'When a pipeline is deleted, the tasks in the specified pipeline are automatically triggered.',
+  WHEN_CREATE_PIPELINE_DESC:
+    'When a new pipeline is created, the tasks in the specified pipeline are automatically triggered.',
   PIPELINE_EVENT_TRIGGER: 'Trigger through pipeline events',
   WHEN_CREATE_PIPELINE: 'Trigger on Pipeline Creation',
   WHEN_DELETE_PIPELINE: 'Trigger on Pipeline Deletion',
@@ -148,11 +154,13 @@ module.exports = {
   DELETE_OUTDATED_BUILD_RECORDS: 'Delete outdated build records',
   DELETE_OUTDATED_BUILD_RECORDS_TIP: `Set the system to automatically delete outdated build records including console output, archived artifacts, and metadata to save disk space.`,
   BUILD_RECORD_RETENTION_PERIOD_DAYS: 'Build Record Retention Period (days)',
-  BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC: 'Build records that exceed the retention period are deleted. The default value is 7.',
+  BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC:
+    'Build records that exceed the retention period are deleted. The default value is 7.',
   BUILD_RECORD_RETENTION_PERIOD_DAYS_INVALID_TIP:
     'The retention period must be a positive integer.',
   MAXIMUM_BUILD_RECORDS: 'Maximum Build Records',
-  MAXIMUM_BUILD_RECORDS_DESC: 'When the number of build records exceeds the maximum number allowed, the earliest build record is deleted. The default value is 10.',
+  MAXIMUM_BUILD_RECORDS_DESC:
+    'When the number of build records exceeds the maximum number allowed, the earliest build record is deleted. The default value is 10.',
   MAXIMUM_BUILD_RECORDS_INVALID_TIP:
     'The maximum number of build records must be a positive integer.',
   NO_CONCURRENT_BUILDS: 'No concurrent builds',
@@ -160,19 +168,22 @@ module.exports = {
   BUILD_PARAMETERS: 'Build Parameters',
   BUILD_PARAMETERS_TIP: 'Pass build parameters to the pipeline.',
   PARAMS_STRING: 'String',
-  PIPELINE_PARAM_DEFAULT_DESC: 'Set the default value of the parameter. You can change the value before manually running the pipeline.',
+  PIPELINE_PARAM_DEFAULT_DESC:
+    'Set the default value of the parameter. You can change the value before manually running the pipeline.',
   PARAMS_TEXT: 'Multi-line string',
   PARAMS_TEXT_TCAP: 'Multi-line String',
   PARAMETER_DESCRIPTION_DESC: 'Set the parameter description.',
   PARAMS_BOOLEAN: 'Boolean',
   PARAMS_CHOICE: 'Options',
-  CHOICE_PARAM_OPTION_DESC: 'Enter an option in each line. The first line is used as the default option.',
+  CHOICE_PARAM_OPTION_DESC:
+    'Enter an option in each line. The first line is used as the default option.',
   PARAMS_PASSWORD: 'Password',
   BUILD_TRIGGER: 'Build Trigger',
   BUILD_PERIODICALLY: 'Build periodically',
   BUILD_PERIODICALLY_TIP: 'Set the pipeline to periodically run build tasks.',
   PIPELINE_CRON_DESC: 'The pipeline will be run at {nextTime} next time.',
-  PIPELINE_SCHEDULE_DESC: 'Enter a CRON expression to set a schedule. <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">Learn More</a>',
+  PIPELINE_SCHEDULE_DESC:
+    'Enter a CRON expression to set a schedule. <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">Learn More</a>',
   DEFAULT_VALUE: 'Default Value',
   PARAMETER_NAME_EMPTY_DESC: 'Please set the parameter name.',
   SELECT_TEMPLATE: 'Select template',
@@ -180,4 +191,4 @@ module.exports = {
   PREVIEW: 'Preview',
   EMPTY_PARAMS_CONFIG: 'This operation does not require parameter configuration.',
   PIPELINE_VALIDATOR_DESC: 'Please select a pipeline template.',
-}
+};

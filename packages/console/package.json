@@ -1,0 +1,36 @@
+{
+  "name": "@ks-console/console",
+  "version": "4.1.0-beta.0",
+  "description": "",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "lib/src/index.d.ts",
+  "files": [
+    "cjs",
+    "esm",
+    "lib"
+  ],
+  "dependencies": {
+    "async-validator": "4.2.5",
+    "file-saver": "^2.0.5",
+    "for-editor": "^0.3.5",
+    "netmask": "^2.0.1",
+    "react-hook-form": "7.16.2",
+    "react-input-autosize": "^3.0.0",
+    "react-markdown": "^7.1.1",
+    "react-table": "^7.7.0",
+    "react-textarea-autosize": "^8.3.2",
+    "wujie-react": "^1.0.6",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/react-input-autosize": "^2.2.1"
+  },
+  "peerDependencies": {
+    "@ks-console/shared": "^4.1.0-beta.0",
+    "@kubed/charts": "^0.0.18",
+    "@kubed/code-editor": "^0.0.23",
+    "@kubed/diff-viewer": "^0.0.18"
+  },
+  "gitHead": "6380079918d574a833739b35ee51b0d2f72985ee"
+}

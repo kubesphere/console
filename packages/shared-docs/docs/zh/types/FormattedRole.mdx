@@ -1,0 +1,28 @@
+## FormattedRole
+```ts
+interface FormattedRole {
+  uid: string;
+  name: string;
+  creator: string;
+  description: string;
+  aliasName: string;
+  createTime: string;
+  namespace: string;
+  resourceVersion: string;
+  isFedManaged: boolean;
+  labels: {
+    'iam.kubesphere.io/role-template': string;
+  };
+  annotations: {
+    'iam.kubesphere.io/dependencies': string;
+    'iam.kubesphere.io/module': string;
+    'iam.kubesphere.io/role-template-rules': string;
+    'kubesphere.io/alias-name': string;
+  };
+  dependencies: string[];
+  roleTemplates: string[];
+  rules: { verbs: string[]; apiGroups: string[]; resources: string[] }[];
+  _originData: OriginData<OriginalRole>;
+} 
+```
+

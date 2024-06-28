@@ -18,4 +18,4 @@
 module.exports = {
   // Attributes
   SNAPSHOT_HANDLE: 'Snapshot Handle',
-}
+};

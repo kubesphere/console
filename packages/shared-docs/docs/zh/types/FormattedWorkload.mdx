@@ -1,0 +1,40 @@
+## FormattedWorkload
+```ts
+interface FormattedWorkload extends BaseInfo {
+  kind: string;
+  updateTime: string;
+  labels: {
+    [key: string]: string;
+  };
+  namespace: string;
+  annotations: {
+    [key: string]: string;
+  };
+  status: {
+    [key: string]: string;
+  };
+  availablePodNums: number;
+  readyPodNums: number;
+  spec: {
+    [key: string]: any;
+  };
+  podNums: number;
+  selector: {
+    [key: string]: any;
+  };
+  containers: { [key: string]: any }[];
+  initContainers: { [key: string]: any }[];
+  volumes: { [key: string]: any }[];
+  strategy: Strategy;
+  updateStrategy: string;
+  availableCondition: { [key: string]: any }[] | { [key: string]: any };
+  app: string;
+  ownerReference: { [key: string]: any };
+  hasS2i: boolean;
+  builderNames: unknown[];
+  _originData: OriginData<OriginalWorkload>;
+}
+
+// workload -> Job 
+```
+

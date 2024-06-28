@@ -27,6 +27,7 @@ module.exports = {
   EDIT_CLUSTER_INFO_DESC: 'Edit basic information about the cluster.',
   // Remove Cluster
   REMOVE_CLUSTER: 'Remove Cluster',
-  REMOVE_CLUSTER_DESC: 'After the cluster is removed, KubeSphere will not be able to manage the cluster. Resources in the cluster will not be deleted. Enter the cluster name <strong>{name}</strong> to confirm that you understand the risks of this operation.',
+  REMOVE_CLUSTER_DESC:
+    'After the cluster is removed, KubeSphere will not be able to manage the cluster. Resources in the cluster will not be deleted. Enter the cluster name <strong>{name}</strong> to confirm that you understand the risks of this operation.',
   REMOVE_SUCCESS: 'Removed successfully.',
-}
+};

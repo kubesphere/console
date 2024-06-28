@@ -26,8 +26,8 @@ module.exports = {
   HOW_PUBLISH_APP_TITLE: '如何发布应用到应用商店？',
   HOW_PUBLISH_APP_DESC: '您可以将 Helm chart 上传为企业空间的应用模板，审核通过后，应用将会发布在应用商店中。',
   // List
-  APP_STATUS_ACTIVE: '已发布',
-  APP_STATUS_DRAFT: '未发布',
+  APP_STATUS_ACTIVE: '已上架',
+  APP_STATUS_DRAFT: '未上架',
   APP_STATUS_SUSPENDING: '下架中',
   APP_TEMPLATE_EMPTY_DESC: '请创建一个应用模板。',
   LATEST_VERSION: '最新版本',
@@ -43,9 +43,9 @@ module.exports = {
   UPLOAD_ICON: '上传图标',
   UPLOAD_SUCCESSFUL: '上传成功。',
   UPLOADING: '正在上传',
-  FILE_MAX_SIZE_ICON: '图标的最大尺寸为 96x96 像素。',
+  FILE_MAX_SIZE_ICON: '图标的最大尺寸为 512x512 像素。',
   FILE_MAX_SCREENSHOTS: '截图大小不能超过 2 MB。',
-  APP_ICON_NOTE: '上传 96x96 像素以内的 JPG 或 PNG 图像。',
+  APP_ICON_NOTE: '上传 512x512 像素以内的 JPG 或 PNG 图像。',
   MISS_FILE_NOTE: '未找到文件 {file}。',
   LICENSE_FILE_DESC: '文本格式的许可协议。',
   CHART_FILE_DESC: 'YAML 文件，用于描述 chart 的基本信息，例如名称和版本。',
@@ -59,5 +59,6 @@ module.exports = {
   TRY_AGAIN: '重试',
   FILE_MAX_ICON_DESC: '图标尺寸不能超过 20 KB，请重试。',
   HOMEPAGE: '首页',
-  OPTIONAL: '可选'
+  OPTIONAL: '可选',
+  created: "已创建"
 };

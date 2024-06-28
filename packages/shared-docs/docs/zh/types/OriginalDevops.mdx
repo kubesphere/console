@@ -1,0 +1,35 @@
+## OriginalDevops
+```ts
+type OriginalDevops = {
+  metadata?: {
+    name?: string;
+    generateName?: string;
+    uid?: string;
+    resourceVersion?: string;
+    creationTimestamp?: string;
+    labels?: Record<string, string>;
+    annotations?: Record<string, string>;
+    finalizers?: string[];
+    managedFields: Array<{
+      manager: string;
+      operation: string;
+      apiVersion: string;
+      time: string;
+      fieldsType: string;
+      fieldsV1: Record<string, unknown>;
+    }>;
+  };
+  spec?: {
+    argo: {
+      sourceRepos: unknown;
+      destinations: unknown;
+    };
+    finalizers: string[];
+  };
+  status?: {
+    adminNamespace: string;
+    phase: string;
+  };
+}; 
+```
+

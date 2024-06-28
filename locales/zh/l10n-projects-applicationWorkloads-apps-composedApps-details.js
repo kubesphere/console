@@ -47,7 +47,7 @@ module.exports = {
   HASH_BASED_ON_HTTP_HEADER: '基于 HTTP Header 哈希',
   HASH_BASED_ON_HTTP_COOKIE: '基于 HTTP Cookie 哈希',
   HASH_BASED_ON_SOURCE_IP_ADDRESS: '基于源 IP 地址哈希',
-  HTTP_HEADER: 'HTTP Header',
+  HTTP_HEADER: 'HTTP 标头',
   HTTP_COOKIE: 'HTTP Cookie',
   CONNECTION_POOL: '连接池',
   CONNECTION_POOL_TIP: '为应用程序创建固定数量的连接对象，并将其存储在一个连接池中供重复使用。每次请求都从连接池中获取连接对象，并在使用后将连接对象返还到连接池。',

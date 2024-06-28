@@ -41,14 +41,13 @@ module.exports = {
   // List > Create
   CREATE_PIPELINE: '創建流水線',
   // List > Create > Basic Information
-  GO_CREATE_REPO_ACTION: 'No code repository is available. Please <span class="text-action">create a code repository.</span>',
   PIPELINE_TYPE: 'Pipeline Type',
   SELECT_CODE_REPOSITORY: '選擇代碼倉庫',
   BRANCH_PIPELINE_DESC: 'Describe the software build process with visual orchestration or Jenkinsfile.',
   MULTI_BRANCH_PIPELINE_DESC: 'Create a series of pipelines for each branch detected in the source code management (SCM) repository.',
   PIPELINE_CREATE_DEVOPS_PROJECT_DESC: 'Select the DevOps project to which the pipeline belongs.',
   CODE_REPOSITORY_OPTIONAL: '代碼倉庫（可選）',
-  CODE_REPOSITORY_REQUIRED: '代碼倉庫',
+  CODE_REPOSITORY_REQUIRED: 'Code Repository',
   CODE_REPOSITORY_REQUIRED_DESC: 'Please select a code repository.',
   GO_CREATE_REPO: 'No code repository is available. Please create a code repository.',
   CODE_REPO_EXISTS: 'code repository already exists',

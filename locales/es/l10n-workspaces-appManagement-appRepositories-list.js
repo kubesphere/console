@@ -20,13 +20,14 @@ module.exports = {
   APP_REPOSITORY_PL: 'App Repositories',
   APP_REPO: 'Repositorios de aplicaciones',
   HOW_TO_USE_APP_REPO_Q: '¿Cómo usar un repositorio de aplicaciones?',
-  HOW_TO_USE_APP_REPO_A: 'You need to go to your project in the workspace. When you deploy a new app, select <b>From App Template</b> and then choose an app repository in the drop-down list to deploy an app in the repository.',
+  HOW_TO_USE_APP_REPO_A: 'You need to go to your project in the workspace. When you deploy a new app, select " From App Template " and then choose an app repository in the drop-down list to deploy an app in the repository.',
   APP_REPO_DESC: 'An app repository is a repository used to store application templates. You can add an app repository to deploy and manage its applications.',
   // List
   APP_REPOSITORY_EMPTY_DESC: 'Please add an app repository.',
   APP_REPO_STATUS_SUCCESSFUL: 'Successful',
   APP_REPO_STATUS_FAILED: 'Failed',
   APP_REPO_STATUS_SYNCING: 'Syncing',
+  APP_REPO_STATUS_NOSYNC: 'Out-sync',
   // List > Add
   ADD_APP_REPO: 'Add App Repository',
   VALIDATE: 'Validar',

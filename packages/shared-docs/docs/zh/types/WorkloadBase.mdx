@@ -1,0 +1,23 @@
+## WorkloadBase
+```ts
+interface WorkloadBase extends KubernetesObjectBase {
+  metadata: Required<
+    Pick<
+      ObjectMeta,
+      | 'annotations'
+      | 'creationTimestamp'
+      | 'generation'
+      | 'labels'
+      | 'managedFields'
+      | 'name'
+      | 'namespace'
+      | 'ownerReferences'
+      | 'resourceVersion'
+      | 'uid'
+    >
+  >;
+}
+
+// workload -> deployment| statefuleset | deamonSet 
+```
+
