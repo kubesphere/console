@@ -56,8 +56,9 @@ const useWorkspaceClusterSelect = (initParams: ProjectSelectInitValue = {}) => {
 
   // select first
   React.useEffect(() => {
-    if (!cluster && clusterList?.filter(i => !i.disabled)?.length) {
-      setCluster(first(clusterList)?.name);
+    const clusters = clusterList?.filter(i => !i.disabled) ?? [];
+    if (!cluster && clusters.length) {
+      setCluster(first(clusters)?.name);
     }
   }, [clusterList]);
 

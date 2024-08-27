@@ -10,23 +10,21 @@ import {
   FormattedDevops,
   getDisplayName,
   getLocalTime,
-  PodsStore,
   StatusIndicator,
   tableState2Query,
   useBatchActions,
-  useCacheStore,
   useCommonActions,
   useItemActions,
   useTableActions,
   useUrlSearchParamsStatus,
   useV3action,
 } from '@ks-console/shared';
+import { Banner, BannerTip, Card, DataTable } from '@kubed/components';
+import { Pen, StrategyGroup, Trash } from '@kubed/icons';
 import { ColumnDef, Table } from '@tanstack/react-table';
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import useWorkspaceClusterSelect from './ClusterSelect';
-import { Pen, StrategyGroup, Trash } from '@kubed/icons';
-import { Banner, BannerTip, Card, DataTable, notify } from '@kubed/components';
 
 const module = devopsStore.module;
 
@@ -45,7 +43,7 @@ const Devops = () => {
   const { cluster } = params;
   const { state, setState } = useUrlSearchParamsStatus([]);
 
-  const { open: openV3Modal } = useV3action();
+  const { open: openV3Modal, render } = useV3action();
 
   const commonParams = {
     cluster: cluster,
@@ -90,7 +88,7 @@ const Devops = () => {
             v3Module: 'devopsStore',
             ...commonParams,
             detail: record,
-            v3StoreParams: '',
+            v3StoreParams: {},
             action: 'devops.edit',
             success: () => {
               refetch();
@@ -316,18 +314,18 @@ const Devops = () => {
 
   const banner = {
     icon: <StrategyGroup />,
-    title: t('DEVOPS.DEVOPS_PROJECT_PL'),
-    description: t('DEVOPS.DEVOPS_DESCRIPTION'),
+    title: t('DEVOPS_PROJECT_PL'),
+    description: t('DEVOPS_DESCRIPTION'),
   };
 
   const tips = [
     {
-      title: t('DEVOPS.DEVOPS_TIP_GITOPS_Q'),
+      title: t('DEVOPS_TIP_GITOPS_Q'),
       description: t('DEVOPS_TIP_GITOPS_A'),
     },
     {
-      title: t('DEVOPS.DEVOPS_TIP_TYPE_Q'),
-      description: t('DEVOPS.DEVOPS_TIP_TYPE_A'),
+      title: t('DEVOPS_TIP_TYPE_Q'),
+      description: t('DEVOPS_TIP_TYPE_A'),
     },
   ];
 
@@ -343,6 +341,7 @@ const Devops = () => {
       <Card padding={0}>
         <DataTable.DataTable table={table} />
       </Card>
+      {render()}
     </>
   );
 };
