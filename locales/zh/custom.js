@@ -461,7 +461,7 @@ module.exports = {
   pipeline_developer: 'DevOps 业务的开发者，可以进行流水线的触发以及查看',
   pipeline_reporter: 'DevOps 业务的观察者，可以查看流水线的运行情况',
   DEVOPS_PROJECT_DESC: 'DevOps 业务用于对资源进行分组管理以及控制不同用户的资源管理权限。',
-
+  PLEASE_SELECT_CLUSTER: '请选择集群',
   // 应用介绍
   NO_DOCUMENT_DESC: '未发现应用介绍。',
   DOCUMENTATION: '应用介绍',

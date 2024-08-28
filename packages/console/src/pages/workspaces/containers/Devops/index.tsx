@@ -297,7 +297,7 @@ const Devops = () => {
           if (!cluster) {
             return {
               image: <StrategyGroup size={40} />,
-              description: t('PLEASE_SELECT_CLUSTER_OR_PROJECT'),
+              description: t('PLEASE_SELECT_CLUSTER'),
             };
           }
           return {
