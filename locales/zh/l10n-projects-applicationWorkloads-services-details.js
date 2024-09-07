@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Attributes
   ENDPOINT: '端点',
@@ -50,11 +38,12 @@ module.exports = {
   MONITORING_EXPORTER: '监控导出器',
   MONITORING_EXPORTER_VALUE: '监控导出器：{value}',
   PORT_PL: '端口',
-  SERVICE_NODE_PORT_DESC: '如果您的客户机与集群在同一网段，您可以使用<节点 IP 地址>:<节点端口>访问服务。',
+  SERVICE_NODE_PORT_DESC:
+    '如果您的客户机与集群在同一网段，您可以使用<节点 IP 地址>:<节点端口>访问服务。',
   IMAGE_BUILDING_FAILED: '镜像创建失败',
   IMAGE_BUILDING_SUCCESSFUL: '镜像创建成功',
   BUILDING_IMAGE: '创建镜像中',
   SERVICE_MONITORING_EXPORTER: '服务监控 Exporter',
   EXPORTER_SERVICE_PORTS: 'Exporter 服务端口',
-  SCRAPE_INTERVAL_MIN: '采集间隔（分钟）'
+  SCRAPE_INTERVAL_MIN: '采集间隔（分钟）',
 };

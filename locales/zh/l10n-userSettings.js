@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Basic Information
   EMAIL_DESC: '邮箱地址可用于登录 KubeSphere Web 控制台。',
@@ -30,5 +18,5 @@ module.exports = {
   ENTER_CURRENT_PASSWORD_TIP: '请输入当前密码。',
   CONFIRM_PASSWORD: '确认密码',
   PASSWORD_NOT_SAME_DESC: '两次输入的密码必须一致。',
-  ENTER_CURRENT_PASSWORD_DESC: '您必须输入当前密码才能修改密码。'
+  ENTER_CURRENT_PASSWORD_DESC: '您必须输入当前密码才能修改密码。',
 };

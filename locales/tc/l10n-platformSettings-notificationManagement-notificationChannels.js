@@ -1,25 +1,14 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: '通知管理',
   NOTIFICATION_CHANNELS: 'Notification Channels',
-  NOTIFICATION_CHANNELS_DESC: 'Notify users through multiple channels when resource metrics meet conditions configured in rule groups.',
+  NOTIFICATION_CHANNELS_DESC:
+    'Notify users through multiple channels when resource metrics meet conditions configured in rule groups.',
   // Email
   MAIL_TITLE: '郵箱',
   MAIL_DESC: 'Send notifications to email addresses.',
@@ -35,17 +24,22 @@ module.exports = {
   CONTAINER: 'Container',
   VALUES: 'Values',
   CONDITION_OPERATOR: '操作者',
-  NOTIFICATION_CONDITION_SETTING_TIP: 'The <strong>Contain</strong> and <strong>Not contain</strong> operators require one or more values. You can press <strong>Enter</strong> to set multiple values.',
-  NOTIFICATION_CONDITION_SETTINGS_DESC: 'Set the system to send only alerts that meet the conditions.',
+  NOTIFICATION_CONDITION_SETTING_TIP:
+    'The <strong>Contain</strong> and <strong>Not contain</strong> operators require one or more values. You can press <strong>Enter</strong> to set multiple values.',
+  NOTIFICATION_CONDITION_SETTINGS_DESC:
+    'Set the system to send only alerts that meet the conditions.',
   CONTAIN: 'Contain',
   NOT_CONTAIN: 'Not contain',
   EXIST: 'Exist',
   NOT_EXIST: 'Not exist',
-  PATTERN_TAG_INVALID_TIP: 'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
-  PATTERN_TAG_VALUE_INVALID_TIP: 'Invalid value. The value can only contain uppercase and lowercase letters, numbers, hyphens (-), underscores (_) and dots (.) and must begin and end with an uppercase or lowercase letter or number and be a maximum of 63 characters.',
+  PATTERN_TAG_INVALID_TIP:
+    'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
+  PATTERN_TAG_VALUE_INVALID_TIP:
+    'Invalid value. The value can only contain uppercase and lowercase letters, numbers, hyphens (-), underscores (_) and dots (.) and must begin and end with an uppercase or lowercase letter or number and be a maximum of 63 characters.',
   INVALID_NOTIFICATION_CONDITION: '請填寫正確的通知條件。',
   SEND_TEST_MESSAGE: '發送測試信息',
-  SEND_TEST_MESSAGE_DESC: 'Send a test message to verify that the notification channel is working properly.',
+  SEND_TEST_MESSAGE_DESC:
+    'Send a test message to verify that the notification channel is working properly.',
   SEND_TEST_MESSAGE_SUCCESS_DESC: 'Verified successfully. A test message has been sent.',
   SMTP_SERVER_ADDRESS: 'SMTP 服務器地址',
   USE_SSL_SECURE_CONNECTION: 'Use SSL secure connection',
@@ -69,7 +63,8 @@ module.exports = {
   PLEASE_ENTER_APP_ID: 'Please enter an app ID.',
   USER_ID: 'User ID',
   DEPARTMENT_ID: 'Department ID',
-  FEISHU_RECEIPIENT_SETTINGS_DESC: 'To receive notifications, please set at least one user ID or department ID.',
+  FEISHU_RECEIPIENT_SETTINGS_DESC:
+    'To receive notifications, please set at least one user ID or department ID.',
   FEISHU_SECRET: '保密字典',
   // DingTalk
   DINGTALK_TITLE: 'DingTalk',
@@ -147,5 +142,5 @@ module.exports = {
   TOKEN: 'Token',
   WEBHOOK_USERNAME_EMPTY_DESC: '請輸入用戶名稱',
   WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
-  WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
+  WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.',
 };

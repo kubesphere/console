@@ -1,19 +1,6 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
 module.exports = {
@@ -22,7 +9,8 @@ module.exports = {
   DASHBOARD_TITLE: 'Hello {username}',
   LAST_LOGIN_TIME: 'Last login: ',
   USER_DASHBOARD_EMPTY_TITLE: 'You do not belong to any workspace.',
-  USER_DASHBOARD_EMPTY_DESC: 'Please contact a workspace administrator to invite you to join a workspace.',
+  USER_DASHBOARD_EMPTY_DESC:
+    'Please contact a workspace administrator to invite you to join a workspace.',
   // Platform Information
   LAST_UPDATE_TIME: 'Last update time',
   PLATFORM_VERSION: 'Platform version',
@@ -37,8 +25,31 @@ module.exports = {
   WORKBENCH_DEVOPS: 'DevOps project',
   WORKBENCH_MULTI_CLUSTER_PROJECT: 'Multi-cluster project',
   WORKBENCH_CLUSTER: 'Cluster',
-  NOT_FOUND_DESC: 'The resource was not found. The system will return to <a href="{link}">Workbench</a> in {time}s.',
+  NOT_FOUND_DESC:
+    'The resource was not found. The system will return to <a href="{link}">Workbench</a> in {time}s.',
   MULTI_CLUSTER_PROJECT_TIP: 'The project is deployed across multiple clusters.',
-  NO_HISTORY_TITLE: 'No Recently Accessed Resource Found',
-  NO_HISTORY_DESC: 'You can access platform resources.',
-}
+  NO_HISTORY_TITLE: 'No Quick Access Resources Found',
+  NO_HISTORY_DESC: 'You can add platform resources.',
+  ADD_TO_QUICK_ACCESS: 'Add to Quick Access',
+  CANCEL_QUICK_ACCESS: 'Cancel Quick Access',
+  WORKSPACES_MANAGEMENT_DESC: 'Share resources across clusters in workspaces.',
+  PLATFORM_CLUSTER_DESC: 'Manage resources based on infrastructures.',
+  USER_AND_ROLE_MANAGEMENT: 'Users and Roles',
+  USER_AND_ROLE_MANAGEMENT_DESC: 'Manage users and roles on the platform.',
+  EXTENSION_DESC: 'Quick Access Entry for KubeSphere Extensions',
+  ALL_WORKSPACE: 'Workspace',
+  ALL_WORKSPACE_PL: 'Workspaces',
+  WORKBENCH_ALL_CLUSTER: 'Cluster',
+  WORKBENCH_ALL_CLUSTER_PL: 'Clusters',
+  ALL_USER: 'User',
+  ALL_USER_PL: 'Users',
+  INSTALLED_COMPONENT: 'Installed Extension',
+  INSTALLED_COMPONENT_PL: 'Installed Extensions',
+  VISIBILITY_WORKSPACE: 'Visible workspace',
+  VISIBILITY_WORKSPACE_PL: 'Visible workspaces',
+  VISIBILITY_CLUSTER: 'Visible cluster',
+  VISIBILITY_CLUSTER_PL: 'Visible clusters',
+  // Quick Access
+  QUICK_ACCESS: 'Quick Access',
+  QUICK_ACCESS_COMING_SOON: 'The quick access feature will be available in the future',
+};

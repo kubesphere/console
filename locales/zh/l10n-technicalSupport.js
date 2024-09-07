@@ -1,24 +1,12 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   TECHNICAL_SUPPORT: '技术支持',
   LEARN_MORE_CONTACT_US:
-    '获取更多云原生技术赋能服务，请<a class="support-action" href="https://kubesphere.cloud/" target="_blank">联系我们</a>。',
+    '获取更多云原生技术赋能服务，请<a class="support-action" href={contactUsLink} target="_blank">联系我们</a>。',
   // Community Support
   COMMUNITY_SUPPORT: '社区支持',
   FORUM: '论坛',
@@ -37,6 +25,8 @@ module.exports = {
   KSE_PLATFORM_VERSION: '平台版本： <strong>{version}</strong>',
   // KubeSphere Cloud
   KUBESPHERE_CLOUD_CAPTION: 'KubeSphere Cloud',
+  KUBESPHERE_CLOUD_DESC:
+    'KubeSphere Cloud 围绕 Kubernetes 构建的数字化生态，以极高要求、极高标准，为客户提供企业级的云原生服务与支持，现已有备份容灾、集群巡检、轻量集群等，助力您更便捷高效地管理、保护、交付生产级应用。',
   KSC_FEATURE_BACKUP: '备份容灾',
   KSC_FEATURE_BACKUP_APP_DESC: '应用级数据保护',
   KSC_FEATURE_BACKUP_DATA_DESC: '数据一致性保障',
@@ -50,4 +40,4 @@ module.exports = {
   KSC_FEATURE_LIGHTWEIGHT_KS_DESC: 'KubeSphere 开箱即用',
   KSC_FEATURE_LIGHTWEIGHT_TEST_DESC: '满足测试演示场景',
   START_NOW: '立即开始',
-}
+};

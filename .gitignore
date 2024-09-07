@@ -1,25 +1,52 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-
-# testing
-/coverage
-
-# production
-/dist
-
-# misc
+# macOS
 .DS_Store
 
+# JetBrains
+.idea/
+
+# Visual Studio Code
+.vscode/*
+## Local History for Visual Studio Code
+.history/
+
+# Node.js
+**/node_modules/
+
+# Yarn
+.yarn/*
+!.yarn/releases
+!.yarn/patches
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
 
-.idea/
+# Config
+configs/local_config.yaml
 
-# local config
-/server/local_config.yaml
+# TypeScript
+*.tsbuildinfo
 
+# Testing
+coverage/
+
+# Production
+**/dist/
+**/cjs/
+**/esm/
+packages/*/lib/
+
+# Cache
 *.rdb
 .cache-loader
+
+# Misc
+bin/

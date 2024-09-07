@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   // List
@@ -30,6 +18,6 @@ module.exports = {
   CONTAINER_ENVIRONMENT_DESC: '为容器添加添加环境变量。',
   PROBE_COMMAND_DESC: '使用半角逗号（,）分隔多条命令。',
   // List > Create > Pod Settings > Add Container
-  IGNORE_CERT_WARN_DESC: '忽略证书验证可能会导致账户密码被泄露。',
-  CERT_ERROR: '证书错误。'
+  IGNORE_CERT_WARN_DESC: '忽略证书验证可能会导致帐户密码被泄露。',
+  CERT_ERROR: '证书错误。',
 };

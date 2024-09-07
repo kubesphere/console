@@ -1,29 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   CLUSTER_NODE_PL: 'Nodo de clúster',
   CLUSTER_NODE: 'Cluster Node',
-  CLUSTER_NODE_DESC: 'Este módulo gestiona los nodos del clúster y muestra el estado de ejecución de ellos. Puedes editar o eliminar nodos aquí.',
+  CLUSTER_NODE_DESC:
+    'Este módulo gestiona los nodos del clúster y muestra el estado de ejecución de ellos. Puedes editar o eliminar nodos aquí.',
   NODE_TYPES_Q: '¿Cuáles son los tipos de nodos de clúster?',
   NODE_TYPES_A: 'Nodes are classified into control plane nodes and worker nodes.',
   WHAT_IS_NODE_TAINTS_Q: '¿Qué son los taints de nodos?',
-  WHAT_IS_NODE_TAINTS_A: 'Los taints permiten que un nodo repele un conjunto de pods. Las contaminaciones y las tolerancias funcionan juntas para garantizar que los pods no se programen en nodos inapropiados.',
+  WHAT_IS_NODE_TAINTS_A:
+    'Los taints permiten que un nodo repele un conjunto de pods. Las contaminaciones y las tolerancias funcionan juntas para garantizar que los pods no se programen en nodos inapropiados.',
   LEARN_MORE: 'Aprende más',
   // Node Count
   NODE_SI: 'Nodo',
@@ -44,7 +34,8 @@ module.exports = {
   NODE_STATUS_WARNING: 'Advertencia',
   NODE_STATUS_PENDING: 'Creating',
   NODE_STATUS_FAILED: 'Failed',
-  CLUSTER_NODE_EMPTY_DESC: 'Este módulo gestiona los nodos del clúster y muestra el estado de ejecución de ellos. Puedes editar o eliminar nodos aquí.',
+  CLUSTER_NODE_EMPTY_DESC:
+    'Este módulo gestiona los nodos del clúster y muestra el estado de ejecución de ellos. Puedes editar o eliminar nodos aquí.',
   NODE_NAME_EMPTY_DESC: 'Please set a name for the node.',
   CPU_USAGE: 'Uso de CPU',
   MEMORY_USAGE: 'Uso de memoria',
@@ -73,7 +64,8 @@ module.exports = {
   YOU_CAN_TRY_TO: 'You can try',
   REFRESH_DATA: 'refreshing data',
   CLEAR_SEARCH_CONDITIONS: 'clearing search conditions',
+  DISK_SIZE_UTILISATION: 'Disk Usage',
   // List > Edit Taints
   DUPLICATE_KEYS: 'Calves duplicadas',
-  EMPTY_KEY: 'Claves vacías'
+  EMPTY_KEY: 'Claves vacías',
 };

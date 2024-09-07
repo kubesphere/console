@@ -1,30 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
 module.exports = {
   // Banner
   CLUSTER_NODE_PL: 'Cluster Nodes',
   CLUSTER_NODE: 'Cluster Node',
-  CLUSTER_NODE_DESC: 'Cluster nodes are basic servers of the KubeSphere cluster. You can manage cluster nodes on this page.',
+  CLUSTER_NODE_DESC:
+    'Cluster nodes are basic servers of the KubeSphere cluster. You can manage cluster nodes on this page.',
   NODE_TYPES_Q: 'What are the types of cluster nodes?',
   NODE_TYPES_A: 'Nodes are classified into control plane nodes and worker nodes.',
   WHAT_IS_NODE_TAINTS_Q: 'What are node taints?',
-  WHAT_IS_NODE_TAINTS_A: 'Taints allow a node to repel certain pods. Taints and tolerations work together to ensure that pods are not scheduled onto inappropriate nodes.',
+  WHAT_IS_NODE_TAINTS_A:
+    'Taints allow a node to repel certain pods. Taints and tolerations work together to ensure that pods are not scheduled onto inappropriate nodes.',
   LEARN_MORE: 'Learn More',
   // Node Count
   NODE_SI: 'Node',
@@ -74,7 +63,8 @@ module.exports = {
   YOU_CAN_TRY_TO: 'You can try',
   REFRESH_DATA: 'refreshing data',
   CLEAR_SEARCH_CONDITIONS: 'clearing search conditions',
+  DISK_SIZE_UTILISATION: 'Disk Usage',
   // List > Edit Taints
   DUPLICATE_KEYS: 'The key already exists. Please enter another key.',
   EMPTY_KEY: 'Please enter a key.',
-}
+};

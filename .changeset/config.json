@@ -1,0 +1,15 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.2/schema.json",
+  "changelog": false,
+  "commit": false,
+  "fixed": [["@ks-console/*"]],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "ksc-release-4.1",
+  "updateInternalDependencies": "patch",
+  "ignore": [],
+  "snapshot": {
+    "useCalculatedVersion": true,
+    "prereleaseTemplate": "{tag}.{datetime}"
+  }
+}

@@ -16,19 +16,28 @@ if [[ -z "${DRY_RUN:-}" ]]; then
   PUSH="--push"
 fi
 
-# supported platforms
+## supported platforms
 PLATFORMS=linux/amd64,linux/arm64
 
-# build the preimage
-docker buildx build -f build/Dockerfile --target builder --load -t ks-console-pre:"${TAG}" .
+# project dir
+PROJECT_DIR="$(dirname "$(realpath "$0")")"/..
 
-# create preimage container
-${CONTAINER_CLI} create \
-  --name predbuild ks-console-pre:"${TAG}"
+# build out
+${CONTAINER_CLI} run --rm -v "$PROJECT_DIR":/builder/ \
+  node:16.14-alpine3.15 sh -c "cd /builder/ && yarn && yarn build"
 
-# copy file from preimage container:./out/ ./out/
-${CONTAINER_CLI} cp \
-  predbuild:/out/ ./out/
+sudo chown $(id -u):$(id -g) -R $PROJECT_DIR/dist
+sudo chown $(id -u):$(id -g) -R $PROJECT_DIR/server
+
+# build out dir
+rm -rf "$PROJECT_DIR"/out/
+mkdir -p "$PROJECT_DIR"/out/server
+mv "$PROJECT_DIR"/dist/ "$PROJECT_DIR"/package.json "$PROJECT_DIR"/out/
+mv "$PROJECT_DIR"/server/locales \
+  "$PROJECT_DIR"/server/public \
+  "$PROJECT_DIR"/server/views \
+  "$PROJECT_DIR"/server/sample \
+  "$PROJECT_DIR"/server/configs "$PROJECT_DIR"/out/server/
 
 # shellcheck disable=SC2086 # inteneded splitting of CONTAINER_BUILDER
 ${CONTAINER_CLI} ${CONTAINER_BUILDER} \
@@ -36,12 +45,4 @@ ${CONTAINER_CLI} ${CONTAINER_BUILDER} \
   ${PUSH} \
   -f build/Dockerfile.dapper \
   -t "${REPO}"/ks-console:"${TAG}" .
-
-# delete preimage
-docker rmi ks-console-pre:"${TAG}" -f
-
-# delete prebuild container
-docker rm predbuild
-
-# delete the folder in ./out
-rm -rf ./out
+  

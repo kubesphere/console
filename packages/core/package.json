@@ -1,0 +1,46 @@
+{
+  "name": "@ks-console/core",
+  "version": "4.1.1",
+  "description": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "lib/src/index.d.ts",
+  "files": [
+    "cjs",
+    "esm",
+    "lib"
+  ],
+  "dependencies": {
+    "@jridgewell/resolve-uri": "^3.1.0",
+    "clean-deep": "^3.4.0",
+    "embla-carousel-react": "^8.0.0-rc11",
+    "file-saver": "^2.0.5",
+    "i18next": "^21.4.0",
+    "lodash": "^4.17.20",
+    "minimatch": "^9.0.3",
+    "react-draggable": "^4.4.5",
+    "react-syntax-highlighter": "^15.5.0",
+    "react-use": "^17.4.2",
+    "remark-gfm": "^3.0.1",
+    "systemjs": "^6.14.3",
+    "type-fest": "^4.13.1",
+    "wujie-react": "^1.0.6"
+  },
+  "devDependencies": {
+    "@types/netmask": "^2.0.5",
+    "@types/react-syntax-highlighter": "^15.5.11"
+  },
+  "peerDependencies": {
+    "@ks-console/appstore": "^4.1.1",
+    "@ks-console/console": "^4.1.1",
+    "@ks-console/shared": "^4.1.1",
+    "@kubed/charts": "^0.2.21",
+    "@kubed/code-editor": "^0.2.21",
+    "@kubed/components": "^0.2.21",
+    "@kubed/hooks": "^0.2.21",
+    "@kubed/icons": "^0.2.21",
+    "@kubed/log-viewer": "^0.2.21"
+  },
+  "gitHead": "f5ad04cf99d7ae5229f4ff770a24af2182d38ab8"
+}

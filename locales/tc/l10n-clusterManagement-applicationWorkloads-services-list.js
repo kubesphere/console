@@ -1,24 +1,13 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   SERVICE_PL: '服務',
-  SERVICE_DESC: '服務（Service）提供一種抽象的方法，將運行在容器组（Pod）上的應用程式公開為網路服務。',
+  SERVICE_DESC:
+    '服務（Service）提供一種抽象的方法，將運行在容器组（Pod）上的應用程式公開為網路服務。',
   // List
   SERVICE_EMPTY_DESC: '請創建一個服務。',
   UNKNOWN: '未知',
@@ -34,7 +23,8 @@ module.exports = {
   INTERNAL_ACCESS_MODE: '内部訪問模式',
   CREATE_SERVICE: '創建服務',
   // List > Create > Basic Information
-  SERVICE_NAME_DESC: '名稱只能包含小寫字母、數字和連字符號（-），必須以小寫字母開頭並以小寫字母或數字结尾，最長 63 個字元。',
+  SERVICE_NAME_DESC:
+    '名稱只能包含小寫字母、數字和連字符號（-），必須以小寫字母開頭並以小寫字母或數字结尾，最長 63 個字元。',
   // List > Create > Service Settings
   VIRTUAL_IP_TITLE: '虚擬 IP 地址',
   INTERNAL_DOMAIN_NAME: '内部域名',
@@ -59,10 +49,12 @@ module.exports = {
   OPENELB_NOT_READY: 'OpenELB is not installed. Please install OpenELB.',
   SESSION_PERSISTENCE: 'Session Persistence',
   MAXIMUM_STICKINESS_DURATION: '最大會話保持時間（s）',
-  SESSION_PERSISTENCE_DESC: 'Set the system to forward all requests from the same client to the same pod within a specified duration.',
+  SESSION_PERSISTENCE_DESC:
+    'Set the system to forward all requests from the same client to the same pod within a specified duration.',
   SERVICE_EXTERNAL_ACCESS_DESC: '設置從集群外訪問服務的方式。',
   ACCESS_NODEPORT_TIP: '通過集群節點的對應通訊埠來訪問服務。',
   ACCESS_LOADBALANCER_TIP: '通過負載平衡器來訪問服務。',
   WORKLOAD_ANNOTATIONS: '工作負載註釋',
-  LABEL_FORMAT_DESC: 'The key and value of a label can contain only letters, numbers, hyphens (-), underscores (_), and dots (.), and must start and end with a letter or number. The maximum length of each key and each value is 63 characters (if the key contains a domain name, the maximum length is 253 characters).'
+  LABEL_FORMAT_DESC:
+    'The key and value of a label can contain only letters, numbers, hyphens (-), underscores (_), and dots (.), and must start and end with a letter or number. The maximum length of each key and each value is 63 characters (if the key contains a domain name, the maximum length is 253 characters).',
 };

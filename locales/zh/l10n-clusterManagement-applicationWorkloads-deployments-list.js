@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   APPLICATION_WORKLOAD_PL: '应用负载',
@@ -29,7 +17,7 @@ module.exports = {
   PROJECT_NOT_SELECT_DESC: '请选择一个项目。',
   BASIC_INFORMATION: '基本信息',
   NAME: '名称',
-  FEDPROJECT_RESOURCE_TIP: '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作。',
+  FEDPROJECT_RESOURCE_TIP: '无法在集群管理内创建联邦项目的资源, 请到联邦项目页面内进行操作。',
   FINISHED: '已设置',
   NOT_SET: '未设置',
   CURRENT: '当前',
@@ -68,5 +56,5 @@ module.exports = {
   STOP: '停止',
   STOP_TITLE_SI: '停止{type}',
   STOP_TITLE_PL: '批量停止{type}',
-  STOP_DESC: '您确定停止该资源吗？'
+  STOP_DESC: '您确定停止该资源吗？',
 };

@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   APPLICATION_WORKLOAD_PL: 'Workload de aplicaciones',
@@ -29,7 +17,8 @@ module.exports = {
   PROJECT_NOT_SELECT_DESC: 'Please select a project.',
   BASIC_INFORMATION: 'Información básica',
   NAME: 'Nombre',
-  FEDPROJECT_RESOURCE_TIP: 'No se pueden crear recursos de proyectos de múltiples clústeres en la administración de clústeres, vaya a la página del proyecto de múltiples clústeres para operar.',
+  FEDPROJECT_RESOURCE_TIP:
+    'No se pueden crear recursos de proyectos de múltiples clústeres en la administración de clústeres, vaya a la página del proyecto de múltiples clústeres para operar.',
   FINISHED: 'Done',
   NOT_SET: 'To do',
   CURRENT: 'Current',
@@ -68,5 +57,5 @@ module.exports = {
   STOP: 'Stop',
   STOP_TITLE_SI: 'Stop {type}',
   STOP_TITLE_PL: 'Stop Multiple {type}',
-  STOP_DESC: 'Are you sure you want to stop the resource?'
+  STOP_DESC: 'Are you sure you want to stop the resource?',
 };

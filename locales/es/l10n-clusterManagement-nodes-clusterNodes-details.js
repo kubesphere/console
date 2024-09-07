@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Attributes
   ATTRIBUTES: 'Attributes',
@@ -35,13 +23,15 @@ module.exports = {
   // More > Edit Taints
   TAINTS: 'Taints',
   EDIT_TAINTS: 'Gestión de Taints',
-  TAINTS_DESC: 'Si se agrega un taint con "clave=valor" al nodo, significa que no se programará ningún pod en este nodo (política PodToleratesNodeTaints) o al menos se evita la programación tanto como sea posible (política TaintTolerationPriority), a menos que el pod tenga una coincidencia tolerancia con "clave=valor".',
+  TAINTS_DESC:
+    'Si se agrega un taint con "clave=valor" al nodo, significa que no se programará ningún pod en este nodo (política PodToleratesNodeTaints) o al menos se evita la programación tanto como sea posible (política TaintTolerationPriority), a menos que el pod tenga una coincidencia tolerancia con "clave=valor".',
   COMMON_TAINTS: 'Taints Comunes',
   NOSCHEDULE: 'NoProgramable',
   PREFER_NOSCHEDULE: 'PreferNoSchedule',
   NOEXECUTE: 'NoEjecutar',
   TAINT_SELECT_TIPS: 'Join Common Taints',
-  TAINTS_TIPS: 'Si hay al menos un taint no ignorado con efecto NoProgramable, entonces el sistema no programará pods en ese nodo. <br /> Si no hay un taint no ignorado con efecto NoProgramable pero hay al menos un taint no ignorada con efecto PreferNoSchedule, entonces el sistema intentará no programar pods en el nodo. <br /> si hay al menos un taint no ignorada con efecto NoEjecutar, los pods serán expulsados del nodo (si ya se está ejecutando en el nodo) y no se programarán en el nodo (si aún no se está ejecutando en el nodo).',
+  TAINTS_TIPS:
+    'Si hay al menos un taint no ignorado con efecto NoProgramable, entonces el sistema no programará pods en ese nodo. <br /> Si no hay un taint no ignorado con efecto NoProgramable pero hay al menos un taint no ignorada con efecto PreferNoSchedule, entonces el sistema intentará no programar pods en el nodo. <br /> si hay al menos un taint no ignorada con efecto NoEjecutar, los pods serán expulsados del nodo (si ya se está ejecutando en el nodo) y no se programarán en el nodo (si aún no se está ejecutando en el nodo).',
   TAINT_DELETE_TIP: 'Delete taint',
   // Running Status > Resource Usage
   RESOURCE_USAGE: 'Resource Usage',
@@ -63,9 +53,11 @@ module.exports = {
   NODE_MEMORYPRESSURE: 'Carga de memoria',
   NODE_MEMORYPRESSURE_DESC: 'Whether the remaining memory of the node is less than the threshold.',
   NODE_DISKPRESSURE: 'Carga de disco',
-  NODE_DISKPRESSURE_DESC: 'Whether the ramaining disk space or inodes of the node is less than the threshold.',
+  NODE_DISKPRESSURE_DESC:
+    'Whether the ramaining disk space or inodes of the node is less than the threshold.',
   NODE_PIDPRESSURE: 'Carga PID',
-  NODE_PIDPRESSURE_DESC: 'Whether the number of processes allowed to be created on the node is less the threshold.',
+  NODE_PIDPRESSURE_DESC:
+    'Whether the number of processes allowed to be created on the node is less the threshold.',
   NODE_READY: 'Readiness',
   NODE_READY_DESC: 'Whether the node is ready to accept pods.',
   LAST_HEARTBEAT_VALUE: 'Last Heartbeat: {value}',
@@ -79,5 +71,5 @@ module.exports = {
   // Monitoring
   USAGE: 'Usage',
   OUT: 'Out',
-  IN: 'En'
+  IN: 'En',
 };

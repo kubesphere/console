@@ -1,19 +1,6 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
 module.exports = {
@@ -39,16 +26,13 @@ module.exports = {
   DISABLE_GATEWAY: 'Disable Gateway',
   DISABLE_GATEWAY_TIP: 'Are you sure you want to disable the gateway?',
   DISABLE_SUCCESSFUL: 'Disabled successfully.',
-  ENABLE_SUCCESSFUL: 'Enabled successfully.',
-  RESET_SUCCESSFUL: 'Reset successful',
   // Cluster Gateway > Manage > Edit
   EDIT: 'Edit',
   EDIT_TITLE: 'Edit {title}',
   // Cluster Gateway > Manage > Update
   UPDATE: 'Update',
-  UPDATED_GATEWAY_TITLE: 'Update Gateway',
   UPDATE_GATEWAY_DESC:
-    'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
+    'This operation may interrupt business for a short whilte. Exercise caution when performing this operation.',
   // Project Gateways
   PROJECT_GATEWAY_PL: 'Project Gateways',
   PROJECT_GATEWAY_NOT_ENABLED: 'Project Gateway Not Enabled',
@@ -56,7 +40,9 @@ module.exports = {
   REPLICA_COUNT: 'Replicas',
   NODE_PORTS: 'Node Ports',
   UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
+  // Workspace Gateways
+  WORKSPACE_GATEWAY_PL: 'Workspace Gateways',
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: 'project gateway',
   DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways',
-}
+};

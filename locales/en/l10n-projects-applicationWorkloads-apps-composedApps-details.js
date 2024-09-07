@@ -1,19 +1,6 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
 module.exports = {
@@ -29,7 +16,8 @@ module.exports = {
   WORKLOAD_TYPE_STATEFULSETS: 'Statefulset',
   // Traffic Monitoring
   TRAFFIC_MONITORING: 'Traffic Monitoring',
-  TRAFFIC_MONITORING_UNAVAILABLE_DESC: 'The app has not received requests for a long time. Please try again later.',
+  TRAFFIC_MONITORING_UNAVAILABLE_DESC:
+    'The app has not received requests for a long time. Please try again later.',
   TRAFFIC_ENTRY: 'Traffic Entry',
   NO_DATA: 'No Data',
   REFRESH: 'Refresh',
@@ -44,16 +32,19 @@ module.exports = {
   LB_ROUND_ROBIN: 'Round robin',
   LB_LEAST_CONN: 'Least connection',
   LB_RANDOM: 'Random',
-  LB_ALG_DESC: '<strong>Round robin</strong>: Distributes client requests to backends in rotation.<br/><strong>Least connection</strong>: Randomly selects two healthy backends and sends client requests to the one with fewer connections.<br/><strong>Random</strong>: Sends client requests to a backend randomly selected from all healthy backends.',
+  LB_ALG_DESC:
+    '<strong>Round robin</strong>: Distributes client requests to backends in rotation.<br/><strong>Least connection</strong>: Randomly selects two healthy backends and sends client requests to the one with fewer connections.<br/><strong>Random</strong>: Sends client requests to a backend randomly selected from all healthy backends.',
   HASH_BASED_ON_HTTP_HEADER: 'Hash based on HTTP header',
   HASH_BASED_ON_HTTP_COOKIE: 'Hash based on HTTP cookie',
   HASH_BASED_ON_SOURCE_IP_ADDRESS: 'Hash based on source IP address',
   HTTP_HEADER: 'HTTP Header',
   HTTP_COOKIE: 'HTTP Cookie',
   CONNECTION_POOL: 'Connection Pool',
-  CONNECTION_POOL_TIP: 'Creates a fixed number of connection objects for the application and stores them in a connection pool for reuse. A connection object is retrieved from the connection pool for each request and returned to the pool after use.',
+  CONNECTION_POOL_TIP:
+    'Creates a fixed number of connection objects for the application and stores them in a connection pool for reuse. A connection object is retrieved from the connection pool for each request and returned to the pool after use.',
   MAXIMUM_CONNECTIONS: 'Maximum Connections',
-  MAXIMUM_CONNECTIONS_DESC: 'Maximum of number of HTTP1 or TCP connections to a destination backend.',
+  MAXIMUM_CONNECTIONS_DESC:
+    'Maximum of number of HTTP1 or TCP connections to a destination backend.',
   MAXIMUM_REQUESTS_PER_CONNECTION: 'Maximum Requests per Connection',
   MAXIMUM_REQUESTS_PER_CONNECTION_DESC: 'Maximum number of requests per connection to a backend.',
   TRAFFIC_MONITORING_MAXIMUM_RETRIES: 'Maximum Retries',
@@ -63,9 +54,11 @@ module.exports = {
   MAXIMUM_REQUESTS: 'Maximum Requests',
   MAXIMUM_PENDING_REQUESTS: 'Maximum Pending Requests',
   CIRCUIT_BREAKER: 'Circuit Breaker',
-  CIRCUIT_BREAKER_DESC: 'If a service cannot be accessed and the specified criteria are met, the ciruit breaker marks the service as unavailable and returns error response to clients directly for a specified period of time.',
+  CIRCUIT_BREAKER_DESC:
+    'If a service cannot be accessed and the specified criteria are met, the ciruit breaker marks the service as unavailable and returns error response to clients directly for a specified period of time.',
   CONSECUTIVE_FIVEXX_ERRORS: 'Consecutive 5XX Errors',
-  CONSECUTIVE_FIVEXX_ERRORS_DESC: 'Number of 5XX errors before a backend is ejected from the connection pool.',
+  CONSECUTIVE_FIVEXX_ERRORS_DESC:
+    'Number of 5XX errors before a backend is ejected from the connection pool.',
   INSPECTION_INTERVAL_S: 'Inspection Interval (s)',
   INSPECTION_INTERVAL_S_DESC: 'Interval between two backend inspections.',
   MAXIUM_EJECTION_RATIO: 'Maximum Ejection Ratio (%)',
@@ -78,7 +71,8 @@ module.exports = {
   APPLICATION_GOVERNANCE_NOT_ENABLED: 'Please enable Application Governance.',
   // Grayscale Release
   CREATE_GRAYSCALE_RELEASE_TASK: 'Create Grayscale Release Task',
-  GRAYSCALE_RELEASE_DESC: 'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
+  GRAYSCALE_RELEASE_DESC:
+    'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
   NO_GRAYSCALE_RELEASE_TASK_FOUND: 'No Grayscale Release Task Found',
   NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: 'Please create a grayscale release task.',
   TYPE_SERVICE_DEPLOYMENT: 'Type: stateless service (deployment)',
@@ -96,4 +90,4 @@ module.exports = {
   TRACING_UNAVAILABLE: 'Tracing Unavailable',
   CALLED_SERVICES: 'Called Services',
   CALLED_DEPTH: 'Call Depth',
-}
+};

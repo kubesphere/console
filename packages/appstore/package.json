@@ -1,0 +1,26 @@
+{
+  "name": "@ks-console/appstore",
+  "version": "4.1.1",
+  "description": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "lib/src/index.d.ts",
+  "files": [
+    "cjs",
+    "esm",
+    "lib"
+  ],
+  "dependencies": {
+    "nanoid": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@ks-console/shared": "^4.1.1",
+    "@kubed/code-editor": "^0.2.21",
+    "@kubed/components": "^0.2.21",
+    "@kubed/hooks": "^0.2.21",
+    "@kubed/icons": "^0.2.21",
+    "react-markdown": "^7.1.1"
+  },
+  "gitHead": "6380079918d574a833739b35ee51b0d2f72985ee"
+}

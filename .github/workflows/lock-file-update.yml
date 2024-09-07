@@ -1,0 +1,41 @@
+name: Update Lock File
+
+on:
+  workflow_dispatch:
+
+jobs:
+  lock-file-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+
+      - name: Install Yarn
+        run: npm install --global yarn
+
+      - name: Remove node_modules
+        run: rm -rf **/node_modules/
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: 'Create Pull Request'
+        env:
+          COMMIT_MESSAGE: 'chore(bot): update yarn.lock'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: ${{ env.COMMIT_MESSAGE }}
+          signoff: true
+          delete-branch: true
+          branch-suffix: timestamp
+          title: ${{ env.COMMIT_MESSAGE }}
+          body: |
+            ```release-note
+            none
+            ```
+          labels: approved

@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   WORKSPACE_ROLE_PL: '企业空间角色',
@@ -55,7 +43,8 @@ module.exports = {
   PERMISSION_WORKSPACE_APP_TEMPLATES_VIEW: '应用模板查看',
   PERMISSION_WORKSPACE_APP_TEMPLATES_VIEW_DESC: '查看企业空间中的应用模板。',
   PERMISSION_WORKSPACE_APP_TEMPLATES_MANAGEMENT: '应用模板管理',
-  PERMISSION_WORKSPACE_APP_TEMPLATES_MANAGEMENT_DESC: '上传、编辑和删除应用模板以及在平台应用商店上架和下架应用。',
+  PERMISSION_WORKSPACE_APP_TEMPLATES_MANAGEMENT_DESC:
+    '上传、编辑和删除应用模板以及在平台应用商店上架和下架应用。',
   // List > Create > Edit Permissions > Access Control
   PERMISSION_WORKSPACE_GROUPS_VIEW: '部门查看',
   PERMISSION_WORKSPACE_GROUPS_VIEW_DESC: '查看企业空间部门的结构和成员。',
@@ -74,5 +63,5 @@ module.exports = {
   PERMISSION_WORKSPACE_SETTINGS_VIEW: '企业空间设置查看',
   PERMISSION_WORKSPACE_SETTINGS_VIEW_DESC: '查看企业空间设置。',
   PERMISSION_WORKSPACE_SETTINGS_MANAGEMENT: '企业空间设置管理',
-  PERMISSION_WORKSPACE_SETTINGS_MANAGEMENT_DESC: '管理企业空间的基本信息、网络策略等设置。'
+  PERMISSION_WORKSPACE_SETTINGS_MANAGEMENT_DESC: '管理企业空间的基本信息、网络策略等设置。',
 };

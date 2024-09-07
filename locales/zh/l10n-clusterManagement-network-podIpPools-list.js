@@ -1,26 +1,15 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   POD_IP_POOL_PL: '容器组 IP 池',
   POD_IP_POOL_DESC: '容器组 IP 池用于规划集群内容器组的网络地址空间，您可以按需创建容器组 IP 池。',
   IPPOOL_USAGE_Q: '如何利用 IP 池规划容器组网络？',
-  IPPOOL_USAGE_A: 'IP 池用于规划 Pod 网络地址空间，每个 IP 池之间地址空间不能重叠。创建工作负载时，可选择特定的 IP 池，这样创建出的容器组将从该 IP 池中分配 IP。',
+  IPPOOL_USAGE_A:
+    'IP 池用于规划 Pod 网络地址空间，每个 IP 池之间地址空间不能重叠。创建工作负载时，可选择特定的 IP 池，这样创建出的容器组将从该 IP 池中分配 IP。',
   // List
   POD_IP_POOL_EMPTY_DESC: '请创建一个容器组 IP 池。',
   TOTAL_VALUE: '总计：{value}',
@@ -47,5 +36,5 @@ module.exports = {
   ASSIGN_WORKSPACE: '分配企业空间',
   SELECT_WORKSPACE_DESC: '选择一个企业空间。',
   // List > Delete
-  POD_IP_POOL_LOW: '容器组 IP 池'
+  POD_IP_POOL_LOW: '容器组 IP 池',
 };

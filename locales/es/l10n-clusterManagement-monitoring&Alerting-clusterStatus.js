@@ -1,26 +1,15 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Navigation pane
   MONITORING_AND_ALERTING: 'Monitorización y alertas',
   // Banner
   CLUSTER_STATUS: 'Monitorización de estado del clúster',
-  MONITORING_CLUSTER_DESC: 'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
+  MONITORING_CLUSTER_DESC:
+    'Cluster status displays the overview and details of cluster resources. You can view the monitoring data and the usage ranking of cluster resources.',
   // Overview > Cluster Node Status
   CLUSTER_NODE_STATUS: 'Estado del nodo del clúster',
   ALL_NODES: 'Todos los nodos',
@@ -70,9 +59,12 @@ module.exports = {
   // Physical Resource Monitoring
   SELECT_TIME_RANGE: 'Seleccionar rango de tiempo',
   LAST_TIME: 'Last {value}',
-  LAST_TIME_M: '{num, plural, =1 {last 1 minute} other{last # minutes}}',
-  LAST_TIME_H: '{num, plural, =1 {last 1 hour} other{last # hours}}',
-  LAST_TIME_D: '{num, plural, =1 {last 1 day} other{last # days}}',
+  LAST_TIME_M_one: 'Last {count} minute',
+  LAST_TIME_M_other: 'Last {count} minutes',
+  LAST_TIME_H_one: 'Last {count} hour',
+  LAST_TIME_H_other: 'Last {count} hours',
+  LAST_TIME_D_one: 'Last {count} day',
+  LAST_TIME_D_other: 'Last {count} days',
   TIMERANGE_SELECTOR_MSG: 'The end time must be later than the start time.',
   TIMERANGE_SELECTOR_ERROR_MSG: 'Please confirm whether the selected time range is appropriate!',
   PHYSICAL_RESOURCES_MONITORING: 'Monitorización de recursos físicos',
@@ -88,9 +80,12 @@ module.exports = {
   WRITE: 'Escribir',
   RUNNING: 'En ejecución',
   // Physical Resource Monitoring > Average CPU Load
-  TIME_M: '{num, plural, =1 {1 minute} other{# minutes}}',
-  TIME_H: '{num, plural, =1 {1 hour} other{# hours}}',
-  TIME_D: '{num, plural, =1 {1 day} other{# days}}',
+  TIME_M_one: '{count} minute',
+  TIME_M_other: '{count} minutes',
+  TIME_H_one: '{count} hour',
+  TIME_H_other: '{count} hours',
+  TIME_D_one: '{count} day',
+  TIME_D_other: '{count} days',
   // etcd Monitoring
   EXTERNAL_ETCD: 'etcd externo',
   DB_FSYNC: 'DB Fsync',
@@ -128,5 +123,5 @@ module.exports = {
   SORT_BY_NODE_LOAD1: 'Sort by 1-minute CPU load average',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: 'Ordenar por uso de memoria',
   POD_USAGE: 'Pod Usage',
-  EXPORT: 'Export'
+  EXPORT: 'Export',
 };

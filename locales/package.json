@@ -1,0 +1,11 @@
+{
+  "name": "@ks-console/locales",
+  "version": "4.1.1",
+  "description": "",
+  "homepage": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "files": [
+    "dist"
+  ],
+  "gitHead": "6380079918d574a833739b35ee51b0d2f72985ee"
+}

@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "outDir": "lib",
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "lib",
+    "composite": true,
+    "paths": {
+      "@ks-console/*": ["../*/src"]
+    }
+  },
+  "include": [
+    "src",
+    "../core/src/globals.d.ts"
+  ]
+}

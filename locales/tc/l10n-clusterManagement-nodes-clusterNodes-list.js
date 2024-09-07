@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   CLUSTER_NODE_PL: '集群節點',
@@ -23,7 +11,8 @@ module.exports = {
   NODE_TYPES_Q: '集群節點的類型？',
   NODE_TYPES_A: '集群節點分為控制平面節點和工作節點。',
   WHAT_IS_NODE_TAINTS_Q: '什麼是節點汙點？',
-  WHAT_IS_NODE_TAINTS_A: '節點汙點 (Taints) 可以阻止某些容器組 (Pod) 副本部署至該節點中, 與容忍度 (Tolerations) 一起工作確保容器組不會被調度到不合適的節點上',
+  WHAT_IS_NODE_TAINTS_A:
+    '節點汙點 (Taints) 可以阻止某些容器組 (Pod) 副本部署至該節點中, 與容忍度 (Tolerations) 一起工作確保容器組不會被調度到不合適的節點上',
   LEARN_MORE: '了解更多',
   // Node Count
   NODE_SI: '節點',
@@ -73,7 +62,8 @@ module.exports = {
   YOU_CAN_TRY_TO: 'You can try',
   REFRESH_DATA: 'refreshing data',
   CLEAR_SEARCH_CONDITIONS: 'clearing search conditions',
+  DISK_SIZE_UTILISATION: '磁盤使用率',
   // List > Edit Taints
   DUPLICATE_KEYS: '無法添加重複的 key',
-  EMPTY_KEY: '無法添加空的 key'
+  EMPTY_KEY: '無法添加空的 key',
 };

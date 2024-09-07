@@ -1,79 +1,67 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-const HttpProxy = require('http-proxy')
-const pathToRegexp = require('path-to-regexp')
-const isArray = require('lodash/isArray')
-const get = require('lodash/get')
-const isFunction = require('lodash/isFunction')
-const streamify = require('stream-array')
+const HttpProxy = require('http-proxy');
+const pathToRegexp = require('path-to-regexp');
+const isArray = require('lodash/isArray');
+const get = require('lodash/get');
+const isFunction = require('lodash/isFunction');
+const streamify = require('stream-array');
 
 module.exports = (context, options) => (ctx, next) => {
-  let eventRegistered = false
+  let eventRegistered = false;
 
-  const regex = pathToRegexp(context)
-  const proxy = HttpProxy.createProxyServer()
+  const regex = pathToRegexp(context);
 
-  if (!regex.test(ctx.path)) return next()
+  if (!regex.test(ctx.path)) return next();
 
-  const { events, ...httpProxyOpts } = options
+  ctx.req.token = ctx.cookies.get('token');
 
-  ctx.req.token = ctx.cookies.get('token')
+  const { events, ...httpProxyOpts } = options;
+
+  const proxy = HttpProxy.createProxyServer();
 
   return new Promise((resolve, reject) => {
     if (events && typeof events === 'object' && !eventRegistered) {
       Object.entries(events).forEach(([event, handler]) => {
-        proxy.on(event, handler)
-      })
+        proxy.on(event, handler);
+      });
 
-      eventRegistered = true
+      eventRegistered = true;
     }
 
     ctx.res.on('close', () => {
-      reject(new Error(`Http response closed while proxying ${ctx.req.url}`))
-    })
+      reject(new Error(`Http response closed while proxying ${ctx.req.url}`));
+    });
 
     ctx.res.on('finish', () => {
-      resolve()
-    })
+      resolve();
+    });
 
-    if (
-      get(ctx, "req.headers['content-type']", '').includes(
-        'multipart/form-data'
-      )
-    ) {
+    if (get(ctx, "req.headers['content-type']", '').includes('multipart/form-data')) {
       httpProxyOpts.buffer = isArray(ctx.req.rawBody)
         ? streamify(ctx.req.rawBody)
-        : ctx.req.rawBody
+        : ctx.req.rawBody;
     }
 
     if (isFunction(httpProxyOpts.optionsHandle)) {
-      httpProxyOpts.optionsHandle(httpProxyOpts, ctx.req)
+      httpProxyOpts.optionsHandle(httpProxyOpts, ctx.req, ctx);
+    }
+
+    if (ctx.req.url?.startsWith('/proxy-api/')) {
+      ctx.req.url = ctx.req.url.slice(10);
     }
 
     proxy.web(ctx.req, ctx.res, httpProxyOpts, e => {
-      console.error(e)
+      console.error(e);
       const status = {
         ECONNREFUSED: 503,
         ETIMEOUT: 504,
-      }[e.code]
-      ctx.status = status || 500
-      resolve()
-    })
-  })
-}
+      }[e.code];
+      ctx.status = status || 500;
+      resolve();
+    });
+  });
+};

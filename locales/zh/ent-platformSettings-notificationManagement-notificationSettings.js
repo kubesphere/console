@@ -1,0 +1,70 @@
+/*
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
+ */
+
+module.exports = {
+  // Navigation pane
+  NOTIFICATION_SUBSCRIPTION: '通知订阅',
+  NOTIFICATION_SETTINGS: '通知设置',
+  // Silence Policies
+  SILENCE_POLICY: '静默策略',
+  SILENCE_POLICY_LOW: '静默策略',
+  SILENCE_POLICY_PL: '静默策略',
+  SILENCE_POLICY_DESC: '设置系统在特定情况下不发送通知。',
+  SILENCE_TIME: '静默时间',
+  CONTINUOUS_SILENCE: '持续静默',
+  PERIODIC_SILENCE: '周期性静默',
+  SPECIFIC_TIME_RANGE_SILENCE: '在特定时间范围内静默',
+  CUSTOM_SILENCE: '基于 Cron 表达式静默',
+  SILENCE_CONDITIONS: '静默条件',
+  ALL_SILENT_NOTIFICATIONS: '对所有通知静默',
+  CUSTOM_SILENT_NOTIFICATIONS: '自定义静默条件',
+  EDIT_SILENCE_CONDITIONS: '编辑静默条件',
+  EDIT_SILENCE_TIME: '编辑静默时间',
+  CREATE_SILENCE_POLICY_SUCCESSFULLY: '创建成功。',
+  EDIT_SILENCE_POLICY_SUCCESSFULLY: '更新成功。',
+  // Silence Policies > Create > Silence Conditions
+  CREATE_SILENCE_POLICY: '创建静默策略',
+  ALL_SILENT_NOTIFICATIONS_TCAP: '对所有通知静默',
+  ALL_SILENT_NOTIFICATIONS_DESC: '静默策略适用于所有通知。',
+  CUSTOM_SILENT_NOTIFICATIONS_TCAP: '自定义静默条件',
+  CUSTOM_SILENT_NOTIFICATIONS_DESC: '静默策略仅适用于符合特定条件的通知。',
+  INVALID_SILENCE_CONDITION: '请设置正确的静默条件。',
+  // Silence Policies > Create > Silence Time
+  SILENT_TEMPLATE: '模板',
+  SILENCE_TIME_TYPE_DESC: '满足静默条件的通知将在指定的时间范围内被静默。',
+  SILENT_CRON: 'Cron 表达式',
+  SILENCE_TIME_RANGE_EMPTY_DESC: '请设置通知静默的时间范围。',
+  SELECT_START_TIME_AND_END_TIME: '选择通知静默的起始时间和结束时间。',
+  SILENCE_DATE: '日期',
+  SELECT_DATE: '请选择日期。',
+  SILENCE_EVERY_DAY: '每日',
+  SILENCE_EVERY_WEEK: '每周',
+  SILENCE_EVERY_MONTH: '每月',
+  MONDAY: '周一',
+  TUESDAY: '周二',
+  WEDNESDAY: '周三',
+  THURSDAY: '周四',
+  FRIDAY: '周五',
+  SATURDAY: '周六',
+  SUNDAY: '周日',
+  DAY: '日',
+  HOUR: '时',
+  MINUTE: '分',
+  SECOND: '秒',
+  CRON_EXPRESSION: 'Cron 表达式',
+  CRON_EXPRESSION_DESC: '输入 Cron 表达式来指定静默时间。',
+  CRON_EXPRESSION_REQUIRE_DESC: '请输入 Cron 表达式。',
+  CRON_EXPRESSION_ERROR_DESC: 'Cron 表达式无效。请输入有效的 Cron 表达式。',
+  // Silence Policies > Details > Silence Time
+  EVERY_DAY_TIMERANGE: '每日：{timeRange}',
+  EVERY_WEEK_DAYS_TIMERANGE: '每周：{days} [{timeRange}]',
+  EVERY_MONTH_DAYS_TIMERANGE: '每月：{days} [{timeRange}]',
+  // Notification Languages
+  NOTIFICATION_LANGUAGE: '通知语言',
+  NOTIFICATION_LANGUAGE_DESC: '设置通知的键的语言。通知以键值对的形式呈现。',
+  NOTIFICATION_SIMPLIFIED_CHINESE_DESC: '在通知中使用简体中文键。',
+  NOTIFICATION_ENGLISH_DESC: '在通知中使用英文键。',
+  NOTIFICATION_LANGUAGE_CHANGE_SUCCESS: '更改成功。',
+};

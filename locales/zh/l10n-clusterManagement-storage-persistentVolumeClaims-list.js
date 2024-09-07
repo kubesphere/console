@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Navigation pane
   STORAGE: '存储',
@@ -23,7 +11,8 @@ module.exports = {
   PERSISTENT_VOLUME_CLAIM: '持久卷声明',
   PERSISTENT_VOLUME_CLAIM_PL: '持久卷声明',
   WHAT_IS_STORAGE_CLASS_Q: '什么是存储类？',
-  WHAT_IS_STORAGE_CLASS_A: '存储类（Storage Class）由集群管理员配置，不同的存储类为集群用户提供不同类型的卷。',
+  WHAT_IS_STORAGE_CLASS_A:
+    '存储类（Storage Class）由集群管理员配置，不同的存储类为集群用户提供不同类型的卷。',
   WHAT_IS_LOCAL_VOLUME_Q: '什么是本地卷?',
   WHAT_IS_LOCAL_VOLUME_A: '本地卷是创建在集群本地文件系统中的卷。',
   // List
@@ -58,5 +47,5 @@ module.exports = {
   // List > Edit
   // List > Edit YAML
   // List > Delete
-  PERSISTENT_VOLUME_CLAIM_LOW: '持久卷声明'
+  PERSISTENT_VOLUME_CLAIM_LOW: '持久卷声明',
 };

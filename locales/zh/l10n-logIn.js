@@ -1,32 +1,18 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
+ */
 
-*/
 module.exports = {
   // Log in page
   INPUT_USERNAME_OR_EMAIL_TIP: '请输入用户名或邮箱。',
   LOG_IN: '登录',
   LOG_IN_WITH_TITLE: '通过 {title} 登录',
-  TITLE_USERNAME: '{title} 用户名',
-  TITLE_LOG_IN: '{title} 登录',
   LOG_OUT: '登出',
   ABOUT: '关于',
   USERNAME_OR_EMAIL: '用户名或邮箱',
   WELCOME: '欢迎登录',
+  USERNAME_WITH_TITLE: '{title} 用户名',
   INTERNAL_SERVER_ERROR_TIP: '对不起，服务器开小差了',
   TOO_MANY_FAILURES: '连续登录失败次数超过限制，请稍后重试。',
   FAILED_TO_ACCESS_BACKEND: '访问后端服务失败。',
@@ -41,5 +27,6 @@ module.exports = {
   PASSWORD_NUMBER: '包含至少 1 个数字。',
   PASSWORD_LENGTH: '包含至少 8 个字符。',
   // Third-party authentication
-  SET_EMAIL_AND_USERNAME: '设置邮箱和用户名'
+  SET_EMAIL_AND_USERNAME: '设置邮箱和用户名',
+  PASSWORD_CHARACTERS: '包含至少 1 个特殊字符（~!@#$%^&*()-_=+\\|[{}];:\'",<.>/? 或空格）。',
 };

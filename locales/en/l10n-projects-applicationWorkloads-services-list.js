@@ -1,27 +1,16 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
 module.exports = {
   // Banner
   SERVICE_TYPES_Q: 'What service types does KubeSphere support?',
-  SERVICE_TYPES_A: 'KubeSphere supports stateless services and stateful services. Pod replicas in a stateless service share the same volume, while each pod replica in a stateful service has an independent volume.',
+  SERVICE_TYPES_A:
+    'KubeSphere supports stateless services and stateful services. Pod replicas in a stateless service share the same volume, while each pod replica in a stateful service has an independent volume.',
   SCENARIOS_FOR_SERVICES_Q: 'What are the use cases of stateless services and stateful services?',
-  SCENARIOS_FOR_SERVICES_A: 'Stateless services applies to scenarios where data persistence is not required, such as Nginx and Tomcat. Stateful services applies to scenarios where data persistence is required, such as MySQL databases, Kafka, and Zookeeper.',
+  SCENARIOS_FOR_SERVICES_A:
+    'Stateless services applies to scenarios where data persistence is not required, such as Nginx and Tomcat. Stateful services applies to scenarios where data persistence is required, such as MySQL databases, Kafka, and Zookeeper.',
   // Service List
   SERVICE_TYPE: 'Service Type',
   SERVICE_LIST: 'Service List',
@@ -32,16 +21,19 @@ module.exports = {
   EXTERNALNAME: 'ExternalName',
   // List > Create
   CREATE_SERVICE_DESC: 'Select a service creation method.',
-  SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful service, or map a service to an external service.',
+  SELECT_SERVICE_TYPE_DESC:
+    'Create a stateless or stateful service, or map a service to an external service.',
   SERVICE_FROM_CODE: 'Create Service from Source Code',
   SERVICE_FROM_ARTIFACT: 'Create Service from Artifact',
   SERVICE_FROM_CODE_DESC: 'Build an image from existing source code and deploy the image.',
   SERVICE_FROM_ARTIFACT_DESC: 'Build an image from an existing artifact and deploy the image.',
   CUSTOMIZE_SERVICE: 'Customize Service',
-  CUSTOMIZE_SERVICE_DESC: 'Specify workloads or edit a YAML configuration file to create a service.',
+  CUSTOMIZE_SERVICE_DESC:
+    'Specify workloads or edit a YAML configuration file to create a service.',
   // List > Create > Select Service Type > Stateless Service > Pod Settings > Port Settings
   PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
-  PORT_NAME_DESC: 'The port name can contain only lowercase letters, numbers, and hyphens (-) and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
+  PORT_NAME_DESC:
+    'The port name can contain only lowercase letters, numbers, and hyphens (-) and must start and end with a lowercase letter or number. The maximum length is 63 characters.',
   // List > Create > Select Service Type > Stateful Service
   // List > Create > Select Service Type > External Service
   CREATE_EXTERNAL_SERVICE_DESC: 'Create a service and map it to an external service.',
@@ -104,13 +96,16 @@ module.exports = {
   // List > Delete
   NO_RELATED_RESOURCE_FOUND: 'No Related Resource Found',
   NO_SERVICE_RELATED_RESOURCE_DESC: 'No resource related to the service is found.',
-  DELETE_SERVICE_DESC: 'You are about to delete the service(s) {resource}. Please confirm whether to delete the associated resource?',
-  DELETE_SERVICE_DESC_PL: 'You are about to delete the services {resource}.<br/>Do you want to also delete the following resources related to the services?',
-  DELETE_SERVICE_DESC_SI: 'You are about to delete the service {resource}.<br/>Do you want to also delete the following resource related to the service?',
+  DELETE_SERVICE_DESC:
+    'You are about to delete the service(s) {resource}. Please confirm whether to delete the associated resource?',
+  DELETE_SERVICE_DESC_PL:
+    'You are about to delete the services {resource}.<br/>Do you want to also delete the following resources related to the services?',
+  DELETE_SERVICE_DESC_SI:
+    'You are about to delete the service {resource}.<br/>Do you want to also delete the following resource related to the service?',
   DELETE_SERVICE: 'Delete Service',
   DELETE_MULTIPLE_SERVICES: 'Delete Multiple Services',
   // Service Topology
   SERVICE_TOPOLOGY: 'Service Topology',
   AUTO_REFRESH: 'Auto Refresh',
   POD_COUNT_VALUE: 'Pods: {value}',
-}
+};

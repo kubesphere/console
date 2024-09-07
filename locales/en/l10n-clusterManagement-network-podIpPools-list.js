@@ -1,27 +1,16 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
 module.exports = {
   // Banner
   POD_IP_POOL_PL: 'Pod IP Pools',
-  POD_IP_POOL_DESC: 'Pod IP pools is used to manage the pod network address space in the cluster. You can create pod IP pools based on your needs.',
+  POD_IP_POOL_DESC:
+    'Pod IP pools is used to manage the pod network address space in the cluster. You can create pod IP pools based on your needs.',
   IPPOOL_USAGE_Q: 'How do I manage a pod network using a pod IP pool?',
-  IPPOOL_USAGE_A: 'A pod IP pool is used to manage the pod network address space, and the address spaces between different pod IP pools cannot overlap. When creating a workload, you can select a specific pod IP pool to assign IP addresses from this pod IP pool to the created pods.',
+  IPPOOL_USAGE_A:
+    'A pod IP pool is used to manage the pod network address space, and the address spaces between different pod IP pools cannot overlap. When creating a workload, you can select a specific pod IP pool to assign IP addresses from this pod IP pool to the created pods.',
   // List
   POD_IP_POOL_EMPTY_DESC: 'Please create a pod IP pool.',
   TOTAL_VALUE: 'Total: {value}',
@@ -43,10 +32,12 @@ module.exports = {
   // List > View YAML
   // Assign Workspace
   IPPOOL_ASSIGN_WORKSPACE_DESC: 'Assign the pod IP pool to a workspace.',
-  IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING: 'The pod IP pool is in use and cannot be assigned to another specific workspace.',
-  IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING: 'The pod IP pool is in use with a specific workspace assigned. The workspace cannot be changed.',
+  IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING:
+    'The pod IP pool is in use and cannot be assigned to another specific workspace.',
+  IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING:
+    'The pod IP pool is in use with a specific workspace assigned. The workspace cannot be changed.',
   ASSIGN_WORKSPACE: 'Assign Workspace',
   SELECT_WORKSPACE_DESC: 'Select a workspace.',
   // List > Delete
   POD_IP_POOL_LOW: 'pod IP pool',
-}
+};

@@ -1,0 +1,42 @@
+name: Update License Headers
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-license-headers:
+    runs-on: self-runner-kubesphere
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+
+      - name: Install Yarn
+        run: npm install --global yarn
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Update License Headers
+        run: bash hack/update-licenses.sh
+
+      - name: 'Create Pull Request'
+        env:
+          COMMIT_MESSAGE: 'chore(bot): update license headers'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: ${{ env.COMMIT_MESSAGE }}
+          signoff: true
+          delete-branch: true
+          branch-suffix: timestamp
+          sign-commits: true
+          title: ${{ env.COMMIT_MESSAGE }}
+          body: |
+            ```release-note
+            none
+            ```
+          labels: approved

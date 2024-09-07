@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Edit Information
   CODE_REPOSITORY: '代码仓库',
@@ -54,9 +42,11 @@ module.exports = {
   NOT_VALID_REPO: '代码仓库无效且无法创建',
   CREATE_PIPELINE_DESC: '使用流水线进行构建，测试和部署',
   CI: '持续集成 (CI)',
-  CI_DESC: '持续集成（CI）是在源代码变更后自动检测、拉取、构建和（在大多数情况下）进行单元测试的过程。',
+  CI_DESC:
+    '持续集成（CI）是在源代码变更后自动检测、拉取、构建和（在大多数情况下）进行单元测试的过程。',
   CICD: '持续集成&交付 (CI/CD)',
-  CICD_DESC: '持续部署（CD）是指能够自动提供持续交付管道中发布版本给最终用户使用的想法。根据用户的安装方式，在云环境中自动部署、app 升级（如手机上的应用程序）、更新网站或只更新可用版本列表。',
+  CICD_DESC:
+    '持续部署（CD）是指能够自动提供持续交付管道中发布版本给最终用户使用的想法。根据用户的安装方式，在云环境中自动部署、app 升级（如手机上的应用程序）、更新网站或只更新可用版本列表。',
   CUSTOM_PIPELIEN: '自定义流水线',
   CUSTOM_PIPELIEN_DESC: '您可以选择您需要的任务自定义流水线的工作内容',
   CC: '抄送',
@@ -159,71 +149,5 @@ module.exports = {
   PASSED: '已通过',
   // Pull Requests
   PULL_REQUEST_PL: '拉取请求',
-  FAILED_CHECK_SCRIPT_COMPILE: '检查脚本编译失败。如果您想跳过这一步，请单击继续。',
-  // detail page // Create Pipeline modal // add step modal 
-  IMPORT_FROM_CODE_REPO: '从代码库导入',
-  //Create pipeline modal -> Custom Pipeline
-  General: '通用',
-  Container: '容器',
-  Review: '审核',
-  URL: 'URL',
-  'Credential Name': '凭证名称',
-  Branch: '分支',
-  'SVN URL': 'SVN URL',
-  'Credential Name': '凭证名称',
-  'The message to print': '要打印的消息',
-  'Shell command line': 'Shell 命令',
-  //   Recipient: 'Recipient',
-  //   CC: 'CC',
-  //   Subject: 'Subject',
-  Body: '正文',
-  'Credential Name': '凭证名称',
-  //   'Username Variable': 'Username Variable',
-  //   'Password Variable': 'Password Variable',
-  Variable: '变量',
-  'KeyFile Variable': 'KeyFile 变量',
-  'Passphrase Variable': '密码变量',
-  'Artifacts Location': '制品位置',
-  Time: '时间',
-  Unit: '单位',
-  //   'Timeout after no activity in logs for this block':
-  // 'Timeout after no activity in logs for this block',
-  'Groovy script': 'Groovy 脚本',
-  'Target Pipeline Name': '目标流水线名称',
-  'Quiet Period': '静默期',
-  'Wait For Completion': '等候完成',
-  'Propagate Errors': '传播误差',
-  'Error Message': '错误信息',
-  Time: '时间',
-  Unit: '单位',
-  'Test Results Location': '测试结果位置',
-  'Allow Empty Results': '允许空结果',
-  'Keep Long Output': '保留长输出',
-  'Skip Publishing Checks': '跳过发布检查',
-  'Retry Count': '重试次数',
-  Message: '消息',
-  Submitter: '提交者',
-  'Config Name': '配置项',
-  'AbortPipeline if quality gate status is not green': '如果质量阈值状态不是绿色，则中止流水线',
-  'Container Name': '容器名称',
-  'Continuous Deployments': '持续部署',
-  Branch: '分支',
-  'Original Image Address': '原镜像地址',
-  'New Image Address': '新镜像地址',
-  'New Image Tag': '新镜像标签',
-  Credential: '凭证',
-  // detail page -> pipeline configuration tab
-  PIPELINE_CONFIGURATION: '流水线配置',
-  Replay: '回放',
-  BRANCH_DISABLED_NOT_REPLAY: '该分支已被删除，不支持回放。',
-  // detail page // run log // task status
-  RUN_LOGS: '运行日志',
-  VIEW_FULL_LOG: '查看完整日志',
-  VIEW_REAL_TIME_LOG: '查看实时日志',
-  // detail page // run log // task status // pipeline log modal
-  PIPELINE_LOG: '流水线日志',
-  // detail page // Create Pipeline modal // add step modal
-  IMPORT_FROM_CODE_REPO: '从代码库导入',
-  // detail page // parameters tab
-  NO_BUILD_PARAMETERS: '未发现构建参数。',
+  FAILED_CHECK_SCRIPT_COMPILE: '检查脚本编译失败，如果你想跳过这一步骤，请点击继续按钮',
 };

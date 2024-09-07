@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // More > Add Service
   ADD_SERVICE: '添加服务',
@@ -43,14 +31,16 @@ module.exports = {
   LB_ROUND_ROBIN: '轮询',
   LB_LEAST_CONN: '最少连接',
   LB_RANDOM: '随机',
-  LB_ALG_DESC: '<strong>轮询</strong>：将客户端请求轮流发送给各个后端。<br/><strong>最少连接</strong>：随机选择两个健康的后端，并将客户端请求发送给连接数较少的后端。<br/><strong>随机</strong>：将客户端请求发送给一个随机的健康后端。',
+  LB_ALG_DESC:
+    '<strong>轮询</strong>：将客户端请求轮流发送给各个后端。<br/><strong>最少连接</strong>：随机选择两个健康的后端，并将客户端请求发送给连接数较少的后端。<br/><strong>随机</strong>：将客户端请求发送给一个随机的健康后端。',
   HASH_BASED_ON_HTTP_HEADER: '基于 HTTP Header 哈希',
   HASH_BASED_ON_HTTP_COOKIE: '基于 HTTP Cookie 哈希',
   HASH_BASED_ON_SOURCE_IP_ADDRESS: '基于源 IP 地址哈希',
-  HTTP_HEADER: 'HTTP Header',
+  HTTP_HEADER: 'HTTP 标头',
   HTTP_COOKIE: 'HTTP Cookie',
   CONNECTION_POOL: '连接池',
-  CONNECTION_POOL_TIP: '为应用程序创建固定数量的连接对象，并将其存储在一个连接池中供重复使用。每次请求都从连接池中获取连接对象，并在使用后将连接对象返还到连接池。',
+  CONNECTION_POOL_TIP:
+    '为应用程序创建固定数量的连接对象，并将其存储在一个连接池中供重复使用。每次请求都从连接池中获取连接对象，并在使用后将连接对象返还到连接池。',
   MAXIMUM_CONNECTIONS: '最大连接数',
   MAXIMUM_CONNECTIONS_DESC: '目标后端 HTTP1 或 TCP 连接的最大数量。',
   MAXIMUM_REQUESTS_PER_CONNECTION: '每个连接最大请求数',
@@ -62,7 +52,8 @@ module.exports = {
   MAXIMUM_REQUESTS: '最大请求数量',
   MAXIMUM_PENDING_REQUESTS: '最大等待请求数量',
   CIRCUIT_BREAKER: '熔断器',
-  CIRCUIT_BREAKER_DESC: '如果服务无法访问并且符合指定的条件， 熔断器会将服务标记为不可用，并在指定时间范围内直接向返回客户端错误响应。',
+  CIRCUIT_BREAKER_DESC:
+    '如果服务无法访问并且符合指定的条件， 熔断器会将服务标记为不可用，并在指定时间范围内直接向返回客户端错误响应。',
   CONSECUTIVE_FIVEXX_ERRORS: '连续 5XX 错误数量',
   CONSECUTIVE_FIVEXX_ERRORS_DESC: '从连接池中排除后端所需的连续 5XX 错误数量。',
   INSPECTION_INTERVAL_S: '检查间隔（秒）',
@@ -77,7 +68,8 @@ module.exports = {
   APPLICATION_GOVERNANCE_NOT_ENABLED: '请启用应用治理。',
   // Grayscale Release
   CREATE_GRAYSCALE_RELEASE_TASK: '创建灰度发布任务',
-  GRAYSCALE_RELEASE_DESC: '灰度发布是在生产环境进行应用迭代的一种重要方式。您可以选择不同的发布方法，在应用升级至新版本的过程中实现平滑过渡。',
+  GRAYSCALE_RELEASE_DESC:
+    '灰度发布是在生产环境进行应用迭代的一种重要方式。您可以选择不同的发布方法，在应用升级至新版本的过程中实现平滑过渡。',
   NO_GRAYSCALE_RELEASE_TASK_FOUND: '未发现灰度发布任务',
   NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC: '请创建一个灰度发布任务。',
   TYPE_SERVICE_DEPLOYMENT: '类型：无状态服务（部署）',
@@ -94,5 +86,5 @@ module.exports = {
   SERVICES_AND_OPERATIONS: '服务和操作',
   TRACING_UNAVAILABLE: '链路追踪不可用',
   CALLED_SERVICES: '调用服务',
-  CALLED_DEPTH: '调用深度'
+  CALLED_DEPTH: '调用深度',
 };

@@ -1,27 +1,15 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   APPLICATION_RESOURCE_PL: '应用资源',
   MONITORING_APPLICATION_DESC: '应用资源提供应用资源用量的监控数据以及用量排行情况。',
   // Resource Usage > Cluster Resource Usage
   CUSTOM_TIME_RANGE: '自定义时间范围',
-  ACCOUNTS: '账户',
+  ACCOUNTS: '帐户',
   DEVOPS_PROJECT_PL: 'DevOps 项目',
   SAMPLING_INTERVAL: '采样间隔',
   KUBE_SUN: '日',
@@ -89,5 +77,5 @@ module.exports = {
   SORT_BY_NAMESPACE_CPU_USAGE: '按 CPU 用量排行',
   SORT_BY_NAMESPACE_POD_COUNT: '按容器组配额用量（%）排行',
   SORT_BY_NAMESPACE_NET_BYTES_RECEIVED: '按入站流量排行',
-  SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: '按出站流量排行'
+  SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: '按出站流量排行',
 };

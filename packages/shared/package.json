@@ -1,0 +1,44 @@
+{
+  "name": "@ks-console/shared",
+  "version": "4.1.1",
+  "description": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "@kubed/stook": "^0.0.4",
+    "@tanstack/react-table": "^8.17.3",
+    "async-validator": "4.2.5",
+    "axios": "^0.24.0",
+    "debounce-promise": "^3.1.2",
+    "file-saver": "^2.0.5",
+    "js-base64": "^3.7.2",
+    "js-yaml": "^3.13.1",
+    "nanoid": "^3.0.0",
+    "path-to-regexp": "^2.2.1",
+    "react-infinite-scroll-hook": "^4.1.1",
+    "react-markdown": "^7.1.1",
+    "react-table": "^7.7.0",
+    "remark-gfm": "^3.0.1",
+    "semver": "^7.6.0",
+    "wujie-react": "^1.0.6",
+    "xterm": "^5.1.0",
+    "xterm-addon-fit": "^0.7.0",
+    "yet-another-react-lightbox": "^3.12.0",
+    "zustand": "^4.5.1"
+  },
+  "devDependencies": {
+    "@types/file-saver": "^2.0.5",
+    "@types/js-yaml": "^4.0.5",
+    "@types/nanoid": "^2.1.0"
+  },
+  "peerDependencies": {
+    "@kubed/charts": "^0.2.21",
+    "@kubed/code-editor": "^0.2.21",
+    "@kubed/log-viewer": "^0.2.21"
+  },
+  "gitHead": "6380079918d574a833739b35ee51b0d2f72985ee"
+}

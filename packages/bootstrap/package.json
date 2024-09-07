@@ -1,0 +1,30 @@
+{
+  "name": "@ks-console/bootstrap",
+  "version": "4.1.1",
+  "description": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "lib/src/index.d.ts",
+  "bin": {
+    "ksc": "./cli/index.js"
+  },
+  "scripts": {
+    "serve": "ksc-server"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "dependencies": {
+    "@ks-console/locales": "^4.1.1",
+    "mustache": "^4.2.0",
+    "npm-checky": "^1.0.4",
+    "path-browserify": "^1.0.1"
+  },
+  "engines": {
+    "node": ">= 16.0.0"
+  },
+  "gitHead": "f5ad04cf99d7ae5229f4ff770a24af2182d38ab8"
+}

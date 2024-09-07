@@ -1,26 +1,15 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Navigation pane
   MONITORING_AND_ALERTING: '监控告警',
   // Banner
   CLUSTER_STATUS: '集群状态',
-  MONITORING_CLUSTER_DESC: '集群状态展示集群资源的概览和详情，您可以查看集群资源的监控数据和用量排行情况。',
+  MONITORING_CLUSTER_DESC:
+    '集群状态展示集群资源的概览和详情，您可以查看集群资源的监控数据和用量排行情况。',
   // Overview > Cluster Node Status
   CLUSTER_NODE_STATUS: '集群节点状态',
   ALL_NODES: '所有节点',
@@ -70,9 +59,9 @@ module.exports = {
   // Physical Resource Monitoring
   SELECT_TIME_RANGE: '选择时间范围',
   LAST_TIME: '最近 {value}',
-  LAST_TIME_M: '最近 {num} 分钟',
-  LAST_TIME_H: '最近 {num} 小时',
-  LAST_TIME_D: '最近 {num} 天',
+  LAST_TIME_M_other: '最近 {count} 分钟',
+  LAST_TIME_H_other: '最近 {count} 小时',
+  LAST_TIME_D_other: '最近 {count} 天',
   TIMERANGE_SELECTOR_MSG: '结束时间需晚于开始时间。',
   TIMERANGE_SELECTOR_ERROR_MSG: '时间范围设置错误。',
   PHYSICAL_RESOURCES_MONITORING: '物理资源监控',
@@ -88,9 +77,9 @@ module.exports = {
   WRITE: '写',
   RUNNING: '运行中',
   // Physical Resource Monitoring > Average CPU Load
-  TIME_M: '{num} 分钟',
-  TIME_H: '{num, plural, =1 {1 小时} other{# 小时}}',
-  TIME_D: '{num, plural, =1 {1 天} other{# 天}}',
+  TIME_M_other: '{count} 分钟',
+  TIME_H_other: '{count} 小时',
+  TIME_D_other: '{count} 天',
   // etcd Monitoring
   EXTERNAL_ETCD: '外部 etcd',
   DB_FSYNC: '库同步时间',
@@ -128,5 +117,5 @@ module.exports = {
   SORT_BY_NODE_LOAD1: '按 1 分钟 CPU 平均负载排行',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: '按内存用量排行',
   POD_USAGE: '容器组用量',
-  EXPORT: '导出'
+  EXPORT: '导出',
 };

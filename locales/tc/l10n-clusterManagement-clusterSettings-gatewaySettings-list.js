@@ -1,26 +1,13 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Navigation Pane
   GATEWAY_SETTINGS: '網關設置',
   // Banner
-  CLUSTER_GATEWAY_DESC:
-    '對集群和項目中的外網訪問網關以及服務治理等配置進行設置和管理',
+  CLUSTER_GATEWAY_DESC: '對集群和項目中的外網訪問網關以及服務治理等配置進行設置和管理',
   // Cluster Gateway
   CLUSTER_GATEWAY_NOT_ENABLED: '集群網關未開啟',
   CLUSTER_ENABLE_GATEWAY_DESC: '請開啟集群網關。',
@@ -38,16 +25,12 @@ module.exports = {
   DISABLE_GATEWAY: '關閉網關',
   DISABLE_GATEWAY_TIP: '您確定關閉網關嗎？',
   DISABLE_SUCCESSFUL: '關閉成功。',
-  ENABLE_SUCCESSFUL: 'Enabled successfully.',
-  RESET_SUCCESSFUL: 'Reset successful',
   // Cluster Gateway > Manage > Edit
   EDIT: '編輯',
   EDIT_TITLE: '編輯 {title}',
   // Cluster Gateway > Manage > Update
   UPDATE: 'Update',
-  UPDATED_GATEWAY_TITLE: 'Update Gateway',
-  UPDATE_GATEWAY_DESC:
-    'This operation may interrupt business for a short while. Exercise caution when performing this operation.',
+  UPDATE_GATEWAY_DESC: 'The current gateway can be updated.',
   // Project Gateways
   PROJECT_GATEWAY_PL: '項目網關',
   PROJECT_GATEWAY_NOT_ENABLED: '項目網關 未開啟',
@@ -58,4 +41,4 @@ module.exports = {
   // Project Gateways > Disable
   PROJECT_GATEWAY_LOW: '項目網關',
   DISABLE_MULTIPLE_GATEWAYS: 'Disable Multiple Gateways',
-}
+};

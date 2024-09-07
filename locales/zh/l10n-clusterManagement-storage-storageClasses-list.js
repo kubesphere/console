@@ -1,25 +1,12 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   STORAGE_CLASS_PL: '存储类',
-  STORAGE_CLASS_DESC:
-    '存储类（StorageClass）支持动态卷供应，使管理员能够按需创建新的卷。',
+  STORAGE_CLASS_DESC: '存储类（StorageClass）支持动态卷供应，使管理员能够按需创建新的卷。',
   // List
   STORAGE_CLASS_EMPTY_DESC: '请创建一个存储类。',
   DEFAULT_STORAGE_CLASS: '默认存储类',
@@ -86,8 +73,7 @@ module.exports = {
   CEPHRBD_USER_SECRET_NAME_DESC: 'userid 的密钥名称。',
   CEPHRBD_USER_SECRET_NAMESPACE_DESC: 'userSecret 所在的项目。',
   CEPHRBD_FS_TYPE_DESC: '卷的文件系统类型。',
-  CEPHRBD_IMAGE_FORMAT_DESC:
-    'Ceph 卷的选项。该值可为 1 或 2 ，选择 2 后需要填写 imageFeatures。',
+  CEPHRBD_IMAGE_FORMAT_DESC: 'Ceph 卷的选项。该值可为 1 或 2 ，选择 2 后需要填写 imageFeatures。',
   CEPHRBD_IMAGE_FEATURES_DESC:
     'Ceph 集群的额外功能。仅当设置 imageFormat 为“2”时，才需要填写该值。',
   CEPH_MONITOR_IP: 'IP 地址:端口号',
@@ -98,7 +84,7 @@ module.exports = {
   // List > Delete
   STORAGE_CLASS: '存储类',
   STORAGE_CLASS_LOW: '存储类',
-  STORAGE_CLASS_DELETE_DESC: '您确定删除存储类吗？',
+  STORAGE_CLASS_DELETE_DESC: '删除卷快照类可能会影响卷快照的正常使用。您确定删除卷快照类吗？',
   STORAGE_CLASS_DELETE_DESC_PL:
-    '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
-}
+    '删除卷快照类可能会影响卷快照的正常使用。请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
+};

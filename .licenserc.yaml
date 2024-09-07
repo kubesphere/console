@@ -1,0 +1,54 @@
+# Please refer to the LICENSE file in the root directory of the project.
+# https://github.com/kubesphere/kubesphere/blob/master/LICENSE
+
+header:
+  license:
+    spdx-id: KubeSphere
+    copyright-owner: KubeSphere Authors
+    content: |
+      Please refer to the LICENSE file in the root directory of the project.
+      https://github.com/kubesphere/console/blob/master/LICENSE
+
+  paths:
+    - 'cypress/**'
+    - 'jest/**'
+    - 'locales/**'
+    - 'packages/**'
+    - 'scripts/**'
+    - 'server/**'
+
+  paths-ignore:
+    - '.DS_Store'
+    - '.idea/**'
+    - '.vscode/**'
+    - '.history/**'
+    - '**/node_modules/**'
+    - '**/.yarn/**'
+    - 'configs/local_config.yaml'
+    - '**/*.tsbuildinfo'
+    - '**/coverage/**'
+    - '**/dist/**'
+    - '**/cjs/**'
+    - '**/esm/**'
+    - '**/v3dist/**'
+    - 'packages/*/lib/**'
+    - 'packages/bootstrap/assets/**'
+    - 'packages/bootstrap/extension/templates/**'
+    - 'extensions/**'
+    - 'server/sample/**'
+    - 'server/locales/*.properties'
+    - 'bin/**'
+    - '.github/**'
+    - '**/*.md'
+    - '**/*.json'
+    - '**/*.sh'
+    - '**/*.svg'
+    - '**/*.html'
+    - '.gitignore'
+    - '.gitattributes'
+    - 'LICENSE'
+    - 'OWNERS'
+    - 'Makefile'
+
+  comment: on-failure
+  license-location-threshold: 80

@@ -1,19 +1,6 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
 module.exports = {
@@ -44,8 +31,7 @@ module.exports = {
   PIPELINE_QUEUED_TITLE: 'About to Complete Initialization',
   INITIALIZING_PIPELINE: 'Pipeline Initializing',
   PIPELINE_PREPARE_DESC: 'Preparing the environment...',
-  INITIALIZING_PIPELINE_DESC:
-    'Please wait until the pipeline initialization is complete.',
+  INITIALIZING_PIPELINE_DESC: 'Please wait until the pipeline initialization is complete.',
   TASK_FAILED_NOT_OPERATIONAL: 'The stage has failed and is not operational.',
   NO_PIPELINE_CONFIG_FILE_TIP: 'No pipeline configuration file is found.',
   // Task Status > Edit Pipeline
@@ -71,8 +57,7 @@ module.exports = {
   CREDENTIAL_NAME: 'Credential Name',
   REMOTE_REPOSITORY_URL: 'Remote Repository URL',
   SCM: 'SCM',
-  INPUT_MESSAGE_DESC:
-    'This message will be displayed in the pipeline running state.',
+  INPUT_MESSAGE_DESC: 'This message will be displayed in the pipeline running state.',
   KUBERNETES_DEPLOY_DESC: `Deploy resources on a Kubernetes cluster.
     In a continuous integration or continuous deployment environment,
     only those resources that need to be updated regularly should be placed in the deployment step.
@@ -174,72 +159,5 @@ module.exports = {
   // Pull Requests
   PULL_REQUEST_PL: 'Pull Requests',
   FAILED_CHECK_SCRIPT_COMPILE:
-    'Failed to check script compiling. If you want to skip the step, click Continue.',
-  // detail page // Create Pipeline modal // add step modal 
-  IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
-    //Create pipeline modal -> Custom Pipeline
-  General: 'General',
-  Container: 'Container',
-  Review: 'Review',
-  URL: 'URL',
-  'Credential Name': 'Credential Name',
-  Branch: 'Branch',
-  'SVN URL': 'SVN URL',
-  'Credential Name': 'Credential Name',
-  'The message to print': 'Message to Print',
-  'Shell command line': 'Shell command line',
-  //   Recipient: 'Recipient',
-  //   CC: 'CC',
-  //   Subject: 'Subject',
-  Body: 'Body',
-  'Credential Name': 'Credential Name',
-  //   'Username Variable': 'Username Variable',
-  //   'Password Variable': 'Password Variable',
-  Variable: 'Variable',
-  'KeyFile Variable': 'KeyFile Variable',
-  'Passphrase Variable': 'Passphrase Variable',
-  'Artifacts Location': 'Artifacts Location',
-  Time: 'Time',
-  Unit: 'Unit',
-  //   'Timeout after no activity in logs for this block':
-  // 'Timeout after no activity in logs for this block',
-  'Groovy script': 'Groovy script',
-  'Target Pipeline Name': 'Target Pipeline Name',
-  'Quiet Period': 'Quiet Period',
-  'Wait For Completion': 'Wait for completion',
-  'Propagate Errors': 'Propagate errors',
-  'Error Message': 'Error Message',
-  Time: 'Time',
-  Unit: 'Unit',
-  'Test Results Location': 'Location of Test Results',
-  'Allow Empty Results': 'Allow empty results',
-  'Keep Long Output': 'Retain long output',
-  'Skip Publishing Checks': 'Skip publishing checks',
-  'Retry Count': 'Retry Times',
-  Message: 'Message',
-  Submitter: 'Submitter',
-  'Config Name': 'Configuration Item',
-  'AbortPipeline if quality gate status is not green':
-    'Abort the pipeline if quality gate status is not green',
-  'Container Name': 'Container Name',
-  'Continuous Deployments': 'Continuous Deployment',
-  Branch: 'Branch',
-  'Original Image Address': 'Original Image Address',
-  'New Image Address': 'New Image Address',
-  'New Image Tag': 'New Image Tag',
-  Credential: 'Credential',
-    // detail page -> pipeline configuration tab
-  PIPELINE_CONFIGURATION: 'Pipeline Configurations',
-  Replay: 'Replay',
-  BRANCH_DISABLED_NOT_REPLAY: 'The branch has been disabled and cannot be replayed.',
-  // detail page // run log // task status
-  RUN_LOGS: 'Run Logs',
-  VIEW_FULL_LOG: 'View Full Logs',
-  VIEW_REAL_TIME_LOG: 'View Real-time Logs',
-  // detail page // run log // task status // pipeline log modal
-  PIPELINE_LOG: 'Pipeline Logs',
-  // detail page // Create Pipeline modal // add step modal
-  IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
-    // detail page // parameters tab
-  NO_BUILD_PARAMETERS: 'Not found build parameters.',
-}
+    'The check of script compile failed, if you want to bypass the step, please click the continue button',
+};

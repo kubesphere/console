@@ -1,43 +1,26 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-describe('The StorageClasses Page', function() {
-  beforeEach('login', function() {
-    cy.login('admin')
-  })
+describe('The StorageClasses Page', function () {
+  beforeEach('login', function () {
+    cy.login('admin');
+  });
 
-  it('successfully loads', function() {
-    cy.server()
+  it('successfully loads', function () {
+    cy.server();
 
-    cy.route('GET', /\/components/).as('getComponents')
+    cy.route('GET', /\/components/).as('getComponents');
 
-    cy.visit('/components')
+    cy.visit('/components');
 
-    cy.wait('@getComponents')
+    cy.wait('@getComponents');
 
-    cy.get('[data-test="service-component"]')
-      .its('length')
-      .should('be.gt', 0)
+    cy.get('[data-test="service-component"]').its('length').should('be.gt', 0);
 
-    cy.contains('Kubernetes').click()
+    cy.contains('Kubernetes').click();
 
-    cy.get('[data-test="service-component"]')
-      .its('length')
-      .should('be.gt', 0)
-  })
-})
+    cy.get('[data-test="service-component"]').its('length').should('be.gt', 0);
+  });
+});

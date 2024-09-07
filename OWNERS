@@ -1,15 +1,12 @@
 approvers:
-    - zheng1
-    - donniean
+  - zheng1
+  - donniean
 
 reviewers:
-    - zheng1
-    - leoendless
-    - justahole
-    - LinuxSuRen
-    - liuboaibc
-    - xuliwenwenwen
-    - harrisonliu5
-    - qinyueshang
-    - fuchunlan
-    - patrickluoyu
+  - zheng1
+  - donniean
+  - miaqiang
+  - 51wangping
+  - fuchunlan
+  - yazhouio
+  - Leioy

@@ -1,29 +1,20 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Navigation pane
   PROJECT_SETTINGS: '項目設置',
   // Banner
   HOW_TO_USE_QUOTA_Q: '如何使用資源配額?',
-  HOW_TO_USE_QUOTA_A: 'Resource quotas are a mechanism used to limit the resource usage. You can edit project resource quotas and default container quotas by clicking <b>Edit Project</b>.',
+  HOW_TO_USE_QUOTA_A:
+    'Resource quotas are a mechanism used to limit the resource usage. You can edit project resource quotas and default container quotas by clicking <b>Edit Project</b>.',
   WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q: 'What are default container quotas?',
-  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A: 'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
-  PROJECT_BASIC_INFO_DESC: 'Basic information provides an overview of the project. You can view the project information and resource quotas.',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A:
+    'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
+  PROJECT_BASIC_INFO_DESC:
+    'Basic information provides an overview of the project. You can view the project information and resource quotas.',
   // Manage > Edit Information
   // Manage > Edit Project Quotas
   EDIT_PROJECT_QUOTA: 'Edit Project Quota',
@@ -36,7 +27,8 @@ module.exports = {
   REQUEST_EXCEED_LIMIT: '資源預留不能超過資源限制。',
   REQUEST_EXCEED_AVAILABLE_QUOTA: 'Insufficient resources.',
   // Mange > Delete
-  DELETE_PROJECT_TIP: 'Enter the project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
+  DELETE_PROJECT_TIP:
+    'Enter the project name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
   // Project Information
   MANAGE: '管理',
   PROJECT_INFO: '項目資訊',
@@ -59,5 +51,5 @@ module.exports = {
   VOLUMES: 'Volumes',
   SERVICES: '服務',
   ROUTES: '應用路由',
-  SECRETS: '保密字典'
+  SECRETS: '保密字典',
 };

@@ -1,19 +1,6 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
 module.exports = {
@@ -37,8 +24,7 @@ module.exports = {
   SPECIFY_WEIGHTS: 'Specify Weights',
   SPECIFY_WEIGHTS_DESC:
     'Set the total number of pod replicas and a weight for each cluster. The pod replicas will be scheduled to the clusters according to the weights.',
-  SPECIFY_REPLICAS_DESC:
-    'Manually set the number of pod replicas in each cluster.',
+  SPECIFY_REPLICAS_DESC: 'Manually set the number of pod replicas in each cluster.',
   REPLICA_LOW_SI: 'replica',
   REPLICA_LOW_PL: 'replicas',
   WEIGHT: 'Weight',
@@ -54,12 +40,10 @@ module.exports = {
   IMAGE_PLACEHOLDER: 'Image name or path such as nginx:latest',
   IMAGE_EMPTY: 'Please set an image.',
   ENTER_POSITIVE_INTEGER_DESC: 'Please enter a positive integer.',
-  TOTAL_REPLICAS_EMPTY_DESC:
-    'Please enter the total number of pod replicas in all clusters.',
+  TOTAL_REPLICAS_EMPTY_DESC: 'Please enter the total number of pod replicas in all clusters.',
   CONTAINER_NAME: 'Container Name',
   CONTAINER_TYPE: 'Container Type',
   USE_DEFAULT_PORTS: 'Use Default Ports',
-  USE_IMAGE_DEFAULT_PORTS: 'Use Default Port of Images',
   NO_DEFAULT_PORT: 'No default ports config',
   REGISTRY: 'Registry',
   SET_IMAGE_DESC: 'Set an image for the container.',
@@ -82,8 +66,7 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Use Local Image First
   IMAGE_PULL_POLICY_ALWAYS: 'Pull Image Always',
   IMAGE_PULL_POLICY_NEVER: 'Use Local Image Only',
-  IMAGE_PULL_POLICY_ALWAYS_DESC:
-    'Pulls an image always when the pod is created or updated.',
+  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Pulls an image always when the pod is created or updated.',
   IMAGE_PULL_POLICY_IFNOTPRESENT_DESC:
     'Pulls an image only when the required image does not exist locally.',
   IMAGE_PULL_POLICY_NEVER_DESC:
@@ -94,8 +77,7 @@ module.exports = {
   READINESS_CHECK: 'Readiness Check',
   STARTUP_CHECK: 'Startup Check',
   LIVENESS_CHECK_DESC: 'Checks whether the container is alive.',
-  READINESS_CHECK_DESC:
-    'Checks whether the container is ready to process requests.',
+  READINESS_CHECK_DESC: 'Checks whether the container is ready to process requests.',
   STARTUP_CHECK_DESC: 'Checks whether the container is started successfully.',
   ADD_PROBE: 'Add Probe',
   COMMANDS: 'Commands',
@@ -108,34 +90,23 @@ module.exports = {
     'Add actions to be performed after the container is started or before it is stopped for environment preparation or graceful shutdown.',
   POSTSTART_ACTION: 'Post-start Action',
   PRESTOP_ACTION: 'Pre-stop Action',
-  POSTSTART_ACTION_DESC:
-    'Add an action to be performed after the container is started.',
-  PRESTOP_ACTION_DESC:
-    'Add an action to be performed before the container is stopped.',
+  POSTSTART_ACTION_DESC: 'Add an action to be performed after the container is started.',
+  PRESTOP_ACTION_DESC: 'Add an action to be performed before the container is stopped.',
   ADD_ACTION: 'Add Action',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: 'Add Environment Variable',
   KEY_IN_RESOURCE: 'Key in resource',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
   RESOURCE: 'Resource',
-  CREATE_CONFIGMAP_SECRET_DESC:
-    'If no configmap or secret meets the requirements, you can',
+  CREATE_CONFIGMAP_SECRET_DESC: 'If no configmap or secret meets the requirements, you can',
   CREATE_CONFIG: 'create a configmap',
   OR: 'or',
   CREATE_SECRET: 'create a secret.',
-  DEFAULT_REPOSITORY: 'Default Registry',
-  SET_DEFAULT_REPOSITORY: 'Set Default Registry',
-  SET_AS_DEFAULT_REPOSITORY_DESC:
-    'Set the image registry as the default image registry. Unless otherwise specified, the system uses images from the default image registry to create application workloads. Only one default image registry is allowed in each project.',
-  SET_AS_DEFAULT_REPOSITORY: 'Set as Default',
-  SET_DEFAULT_REPO_SUCCESSFUL: 'Default repository set successfully',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: 'Container Security Context',
-  CONTAINER_SECURITY_CONTEXT_DESC:
-    'Customize the privilege settings of the container.',
+  CONTAINER_SECURITY_CONTEXT_DESC: 'Customize the privilege settings of the container.',
   PRIVILEGED_MODE: 'Privileged Mode',
-  PRIVILEGED_MODE_DESC:
-    'Runs container processes as the root user of the host.',
+  PRIVILEGED_MODE_DESC: 'Runs container processes as the root user of the host.',
   ALLOW_PRIVILEGE_ESCALATION: 'Allow Privilege Escalation',
   ALLOW_PRIVILEGE_ESCALATION_DESC:
     'Allows container processes to acquire more privileges than the parent process. This option is enabled by default when the privileged mode is enabled.',
@@ -157,8 +128,7 @@ module.exports = {
   ACCESS_CONTROL: 'Access Control',
   LEVEL: 'Level',
   // List > Create > Pod Settings > Add Container > Synchronize Host Timezone
-  SYNC_HOST_TIMEZONE_DESC:
-    'Synchronize the time zone of the container with that of the host.',
+  SYNC_HOST_TIMEZONE_DESC: 'Synchronize the time zone of the container with that of the host.',
   SYNC_HOST_TIMEZONE: 'Synchronize Host Timezone',
   // List > Create > Pod Settings > Update Strategy
   UPDATE_STRATEGY: 'Update Strategy',
@@ -178,19 +148,14 @@ module.exports = {
     'If User, User Group, and SELinux Context settings are defined in both pod Security Context and Container Security Context, the Container Security Context settings will override the Pod Security Context settings.',
   // List > Create > Pod Settings > Pod Scheduling Rules
   POD_SCHEDULING_RULES: 'Pod Scheduling Rules',
-  POD_SCHEDULING_RULES_DESC:
-    'Specify the rules for scheduling the pod replicas to nodes.',
+  POD_SCHEDULING_RULES_DESC: 'Specify the rules for scheduling the pod replicas to nodes.',
   DEFAULT_RULES: 'Default Rules',
-  DEFAULT_RULES_DESC:
-    'Schedules the pod replicas to nodes according to default rules.',
+  DEFAULT_RULES_DESC: 'Schedules the pod replicas to nodes according to default rules.',
   DECENTRALIZED_SCHEDULING: 'Decentralized Scheduling',
   CUSTOM_RULES: 'Custom Rules',
-  CUSTOM_RULES_DESC:
-    'Schedules the pod replicas to nodes according to custom rules.',
-  DECENTRALIZED_SCHEDULING_DESC:
-    'Schedules the pod replicas to different nodes if possible.',
-  CENTRALIZED_SCHEDULING_DESC:
-    'Schedules the pod replicas to the same node if possible.',
+  CUSTOM_RULES_DESC: 'Schedules the pod replicas to nodes according to custom rules.',
+  DECENTRALIZED_SCHEDULING_DESC: 'Schedules the pod replicas to different nodes if possible.',
+  CENTRALIZED_SCHEDULING_DESC: 'Schedules the pod replicas to the same node if possible.',
   CENTRALIZED_SCHEDULING: 'Centralized Scheduling',
   SCHEDULE_WITH_TARGET: 'Schedule with target',
   SCHEDULE_AWAY_FROM_TARGET: 'Schedule away from target',
@@ -198,11 +163,6 @@ module.exports = {
   MUST_MATCH: 'Must match',
   TARGET: 'Target',
   STRATEGY: 'Strategy',
-  // List > Create > Pod Settings > Pod Grace Period
-  POD_GRACE_PERIOD: 'Pod Grace Period',
-  POD_GRACE_PERIOD_DESC:
-    'Set the waiting time before Pod terminates, after which Pod will be forcibly terminated.',
-  TERMINATION_GRACEPERIOD_SECONDS: 'Termination GracePeriod Seconds (s)',
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: 'Add Metadata',
   POD_ADD_METADATA_DESC: 'Add metadata to the pod replicas.',
@@ -233,15 +193,12 @@ module.exports = {
   READ_ONLY: 'Read-only',
   // List > Create > Storage Settings > Mount Configmap or Secret
   MOUNT_CONFIGMAP_OR_SECRET: 'Mount Configmap or Secret',
-  MOUNT_CONFIGMAP_OR_SECRET_DESC:
-    'Mount a configmap or secret to the containers.',
+  MOUNT_CONFIGMAP_OR_SECRET_DESC: 'Mount a configmap or secret to the containers.',
   CONFIGMAP: 'Configmap',
   SELECT_CONFIGMAP_DESC: 'Mount a configmap to the containers.',
-  READ_WRITE_MOUNT_EMPTY:
-    'Please specify the volume access mode and mount path.',
+  READ_WRITE_MOUNT_EMPTY: 'Please specify the volume access mode and mount path.',
   SELECT_SPECIFIC_KEYS: 'Select Specific Keys',
-  SELECT_SPECIFIC_KEYS_DESC:
-    'Select specific keys to be mounted to the containers.',
+  SELECT_SPECIFIC_KEYS_DESC: 'Select specific keys to be mounted to the containers.',
   SELECT_SECRET_DESC: 'Mount a secret to the containers.',
   CONFIGMAP_NOT_SELECT: 'Please select a configmap.',
   SECRET_NOT_SELECT: 'Please select a secret.',
@@ -260,12 +217,10 @@ module.exports = {
   WORKLOAD_SPECIFY_NODE_DESC: 'Assign pod replicas to a specific node.',
   // List > Create > Cluster Differences
   CLUSTER_DIFF: 'Cluster Differences',
-  CLUSTER_DIFF_CONTAINER_SETTINGS_DESC:
-    'Use different container settings in different clusters.',
-  CLUSTER_DIFF_PORT_SETTINGS_DESC:
-    'Set different ports for containers in different clusters.',
+  CLUSTER_DIFF_CONTAINER_SETTINGS_DESC: 'Use different container settings in different clusters.',
+  CLUSTER_DIFF_PORT_SETTINGS_DESC: 'Set different ports for containers in different clusters.',
   CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC:
     'Set different environment variables for containers in different clusters.',
   CONTAINER_IMAGE: 'Container Image',
   // Customize Columns
-}
+};
