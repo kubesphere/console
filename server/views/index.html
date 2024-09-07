@@ -1,35 +1,32 @@
 <% var bundlePrefix = isDev ? '//' + hostname + ':8001' : '/dist' %>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title><%= title %></title>
-    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="<%= favicon %>" type="image/x-icon" />
     <style>
       <%- include('../public/loading.css') %>
     </style>
-    <% if (manifest && manifest.css && manifest.css.length > 0) { %>
-      <% manifest.css.forEach(function(item){ %>
-        <link href="<%= bundlePrefix %>/<%= item %>" rel="stylesheet" media="all" />
-      <% }) %>
-    <% } %>
+    <% if (!isDev && manifest['main.css']) { %>
+    <link href="<%= bundlePrefix %>/<%= manifest['main.css'] %>" rel="stylesheet" />
+    <% } %> <% if (manifest && manifest.css && manifest.css.length > 0) { %> <%
+    manifest.css.forEach(function(item){ %>
+    <link href="<%= bundlePrefix %>/<%= item %>" rel="stylesheet" media="all" />
+    <% }) %> <% } %>
   </head>
   <body>
-    <div id="root">
-      <%- include('./components/loading.html')  %>
-    </div>
-    <script type="text/javascript">
-      window.globals = JSON.parse(`<%- globals %>`)
+    <div id="root"><%- include('./components/loading.html') %></div>
+    <script type="systemjs-importmap">
+      { "imports": <%- importMap %> }
     </script>
-    <% if (manifest && manifest.js && manifest.js.length > 0) { %>
-      <% manifest.js.forEach(function(item){ %>
-        <script type="text/javascript" src="<%= bundlePrefix %>/<%= item %>"></script>
-      <% }) %>
-    <% } %>
+    <script type="text/javascript">
+      window.globals = JSON.parse(`<%- globals %>`);
+    </script>
+    <!-- <script src="/dist/assets/system.min.js"></script> -->
+    <% if (isDev) { %> <%- include('./components/dev_scripts.html') %> <% } else { %> <%-
+    include('./components/prod_scripts.html') %> <% } %>
   </body>
 </html>

@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   PIPELINE_PL: '流水線',
@@ -41,14 +29,15 @@ module.exports = {
   // List > Create
   CREATE_PIPELINE: '創建流水線',
   // List > Create > Basic Information
-  GO_CREATE_REPO_ACTION: 'No code repository is available. Please <span class="text-action">create a code repository.</span>',
   PIPELINE_TYPE: 'Pipeline Type',
   SELECT_CODE_REPOSITORY: '選擇代碼倉庫',
-  BRANCH_PIPELINE_DESC: 'Describe the software build process with visual orchestration or Jenkinsfile.',
-  MULTI_BRANCH_PIPELINE_DESC: 'Create a series of pipelines for each branch detected in the source code management (SCM) repository.',
+  BRANCH_PIPELINE_DESC:
+    'Describe the software build process with visual orchestration or Jenkinsfile.',
+  MULTI_BRANCH_PIPELINE_DESC:
+    'Create a series of pipelines for each branch detected in the source code management (SCM) repository.',
   PIPELINE_CREATE_DEVOPS_PROJECT_DESC: 'Select the DevOps project to which the pipeline belongs.',
   CODE_REPOSITORY_OPTIONAL: '代碼倉庫（可選）',
-  CODE_REPOSITORY_REQUIRED: '代碼倉庫',
+  CODE_REPOSITORY_REQUIRED: 'Code Repository',
   CODE_REPOSITORY_REQUIRED_DESC: 'Please select a code repository.',
   GO_CREATE_REPO: 'No code repository is available. Please create a code repository.',
   CODE_REPO_EXISTS: 'code repository already exists',
@@ -74,7 +63,8 @@ module.exports = {
   GITLAB_SERVER_ADDRESS: 'Gitlab 服務',
   GITLAB_SERVER_EMPTY_TIP: 'Please enter the address of a GitLab server.',
   PROJECT_GROUP_OWNER: 'GitLab 項目所屬組',
-  PROJECT_GROUP_OWNER_EMPTY_TIP: 'Please enter the name of a GitLab project group or project owner.',
+  PROJECT_GROUP_OWNER_EMPTY_TIP:
+    'Please enter the name of a GitLab project group or project owner.',
   REPOSITORY_NAME: '倉庫名稱',
   REPOSITORY_NAME_EMPTY_TIP: 'Please enter the name of a repository name.',
   // List > Create > Basic Information > Code Repository > Bitbucket
@@ -95,7 +85,8 @@ module.exports = {
   BRANCH_INCLUDED: '包括分支',
   // List > Create > Advanced Settings
   DELETE_OUTDATED_BRANCHES: '丢棄舊的分支',
-  DELETE_OUTDATED_BRANCHES_TIP: 'Set the system to automatically delete outdated branches to save disk space.',
+  DELETE_OUTDATED_BRANCHES_TIP:
+    'Set the system to automatically delete outdated branches to save disk space.',
   BRANCH_SETTINGS: ' 分支設置',
   BRANCH_RETENTION_PERIOD_DAYS: '保留分支的天數',
   MAXIMUM_BRANCHES: '保留分支的最大個數',
@@ -146,10 +137,12 @@ module.exports = {
   DELETE_OUTDATED_BUILD_RECORDS_TIP: `Set the system to automatically delete outdated build records including console output, archived artifacts, and metadata to save disk space.`,
   BUILD_RECORD_RETENTION_PERIOD_DAYS: '保留構建的天數',
   BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC: '達到保留天數的構建將被刪除，默認值為 7。',
-  BUILD_RECORD_RETENTION_PERIOD_DAYS_INVALID_TIP: 'The retention period must be a positive integer.',
+  BUILD_RECORD_RETENTION_PERIOD_DAYS_INVALID_TIP:
+    'The retention period must be a positive integer.',
   MAXIMUM_BUILD_RECORDS: '保留構建的最大個數',
   MAXIMUM_BUILD_RECORDS_DESC: '如果構建超過保留的最大數量，將丟棄舊的構建。默認值為 10。',
-  MAXIMUM_BUILD_RECORDS_INVALID_TIP: 'The maximum number of build records must be a positive integer.',
+  MAXIMUM_BUILD_RECORDS_INVALID_TIP:
+    'The maximum number of build records must be a positive integer.',
   NO_CONCURRENT_BUILDS: '不允許並發構建',
   NO_CONCURRENT_BUILD_DESC: '如果勾選此選項，則不能同時運行多個構建。',
   BUILD_PARAMETERS: '參數化構建',
@@ -167,12 +160,13 @@ module.exports = {
   BUILD_PERIODICALLY: '定時構建',
   BUILD_PERIODICALLY_TIP: '提供類似 cron 的功能來定期執行此流水線。',
   PIPELINE_CRON_DESC: '上次運行時間 {lastTime}，下次運行時間 {nextTime}。',
-  PIPELINE_SCHEDULE_DESC: 'Enter a CRON expression to set a schedule. <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">Learn More</a>',
+  PIPELINE_SCHEDULE_DESC:
+    'Enter a CRON expression to set a schedule. <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">Learn More</a>',
   DEFAULT_VALUE: '預設值',
   PARAMETER_NAME_EMPTY_DESC: 'Please set the parameter name.',
   SELECT_TEMPLATE: 'Select template',
   PARAMETER_CONFIG: 'Parameter configuration',
   PREVIEW: 'Preview',
   EMPTY_PARAMS_CONFIG: 'This operation does not require parameter configuration.',
-  PIPELINE_VALIDATOR_DESC: 'Please select a pipeline template.'
+  PIPELINE_VALIDATOR_DESC: 'Please select a pipeline template.',
 };

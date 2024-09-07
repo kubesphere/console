@@ -1,19 +1,6 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
 module.exports = {
@@ -36,13 +23,15 @@ module.exports = {
   // More > Edit Taints
   TAINTS: 'Taints',
   EDIT_TAINTS: 'Edit Taints',
-  TAINTS_DESC: 'Add taints to nodes so that pods are not scheduled to the nodes or not scheduled to the nodes if possible. After you add taints to nodes, you can set tolerations on a pod to allow the pod to be scheduled to nodes with certain taints.',
+  TAINTS_DESC:
+    'Add taints to nodes so that pods are not scheduled to the nodes or not scheduled to the nodes if possible. After you add taints to nodes, you can set tolerations on a pod to allow the pod to be scheduled to nodes with certain taints.',
   COMMON_TAINTS: 'Common Taints',
   NOSCHEDULE: 'Prevent scheduling',
   PREFER_NOSCHEDULE: 'Prevent scheduling if possible',
   NOEXECUTE: 'Prevent scheduling and evict existing pods',
   TAINT_SELECT_TIPS: 'Join Common Taints',
-  TAINTS_TIPS: '<b>Prevent scheduling</b><br />Prevents all pods from being scheduled to the node.<br /><br /><b>Prevent scheduling if possible</b><br />Prevents all pods from being scheduled to the node if possible.<br /><br /><b>Prevent scheduling and evict existing pods</b><br />Prevents all pods from being scheduled to the node and evict all existing pods on the node.',
+  TAINTS_TIPS:
+    '<b>Prevent scheduling</b><br />Prevents all pods from being scheduled to the node.<br /><br /><b>Prevent scheduling if possible</b><br />Prevents all pods from being scheduled to the node if possible.<br /><br /><b>Prevent scheduling and evict existing pods</b><br />Prevents all pods from being scheduled to the node and evict all existing pods on the node.',
   TAINT_DELETE_TIP: 'Delete taint',
   // Running Status > Resource Usage
   RESOURCE_USAGE: 'Resource Usage',
@@ -64,9 +53,11 @@ module.exports = {
   NODE_MEMORYPRESSURE: 'Memory Pressure',
   NODE_MEMORYPRESSURE_DESC: 'Whether the remaining memory of the node is less than the threshold.',
   NODE_DISKPRESSURE: 'Disk Pressure',
-  NODE_DISKPRESSURE_DESC: 'Whether the ramaining disk space or inodes of the node is less than the threshold.',
+  NODE_DISKPRESSURE_DESC:
+    'Whether the ramaining disk space or inodes of the node is less than the threshold.',
   NODE_PIDPRESSURE: 'PID Pressure',
-  NODE_PIDPRESSURE_DESC: 'Whether the number of processes allowed to be created on the node is less the threshold.',
+  NODE_PIDPRESSURE_DESC:
+    'Whether the number of processes allowed to be created on the node is less the threshold.',
   NODE_READY: 'Readiness',
   NODE_READY_DESC: 'Whether the node is ready to accept pods.',
   LAST_HEARTBEAT_VALUE: 'Last Heartbeat: {value}',
@@ -82,4 +73,4 @@ module.exports = {
   OUT: 'Out',
   IN: 'In',
   // Events
-}
+};

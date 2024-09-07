@@ -1,65 +1,56 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
-  APP_REPOSITORY_PL: 'App Repositories',
+  APP_REPOSITORY_PL: '應用倉庫',
   APP_REPO: '應用倉庫',
-  HOW_TO_USE_APP_REPO_Q: 'How do I use an app repository?',
-  HOW_TO_USE_APP_REPO_A: 'You need to go to your project in the workspace. When you deploy a new app, select <b>From App Template</b> and then choose an app repository in the drop-down list to deploy an app in the repository.',
-  APP_REPO_DESC: 'An app repository is a repository used to store application templates. You can add an app repository to deploy and manage its applications.',
+  HOW_TO_USE_APP_REPO_Q: '如何使用應用程序存儲庫？',
+  HOW_TO_USE_APP_REPO_A:
+    '您需要轉到工作區中的項目。 部署新應用程序時，請選擇 " 從應用程序範本 "，然後在下拉清單中選擇應用程序存儲庫以在存儲庫中部署應用程序。',
+  APP_REPO_DESC:
+    '應用程序存儲庫是用於存儲應用程序範本的存儲庫。 您可以添加應用程序存儲庫來部署和管理其應用程序。',
   // List
-  APP_REPOSITORY_EMPTY_DESC: 'Please add an app repository.',
+  APP_REPOSITORY_EMPTY_DESC: '請添加應用程序存儲庫。',
   APP_REPO_STATUS_SUCCESSFUL: '成功',
   APP_REPO_STATUS_FAILED: '失敗',
-  APP_REPO_STATUS_SYNCING: 'Syncing',
+  APP_REPO_STATUS_SYNCING: '同步中',
+  APP_REPO_STATUS_NOSYNC: '不同步',
   // List > Add
-  ADD_APP_REPO: 'Add App Repository',
-  VALIDATE: 'Validate',
-  SYNC_INTERVAL: 'Sync Interval',
-  SYNC_INTERVAL_DESC: 'Set a synchronization interval. The value range is 3 minutes to 24 hours. The default value 0 indicates no synchronization.',
-  SYNC_PERIOD_EMPTY_DESC: 'Please set a synchronization interval.',
-  SYNC_INTERVAL_INVALID: 'Invalid value. Please enter 0 or a positive integer. ',
-  APP_REPO_URL_DESC: 'The URL needs to be validated before you add or edit an app repository.',
-  SYNC_INTERVAL_TIP: 'The value range is 3 minutes to 24 hours. Please enter a valid value.',
-  SECONDS: 'Seconds',
-  MINUTES: 'Minutes',
-  HOURS: 'Hours',
-  UNRECOGNIZED_URL: 'Unrecognized URL.',
-  INVALID_CREDENTIAL_FORMAT: 'Invalid credential format.',
-  MISSING_ACCESS_KEY_ID: 'Missing access key ID.',
-  MISSING_SECRET_ACCESS_KEY: 'Missing secret access key.',
-  S_THREE_ACCESS_DENIED: 'S3 access denied.',
-  INVALID_URL_FORMAT: 'Invalid URL format.',
-  INVALID_HTTP_SCHEME: 'Invalid HTTP scheme.',
-  HTTP_ACCESS_DENIED: 'HTTP access denied.',
-  INVALID_HTTPS_SCHEME: 'Invalid HTTPS scheme.',
-  INVALID_TYPE: 'Invalid type.',
-  INVALID_PROVIDERS: 'Invalid providers.',
-  INVALID_REPO_URL: 'Invalid repository URL.',
-  INVALID_S_THREE_SCHEME: 'Invalid S3 scheme.',
+  ADD_APP_REPO: '添加應用程序存儲庫',
+  VALIDATE: '驗證',
+  SYNC_INTERVAL: '同步間隔',
+  SYNC_INTERVAL_DESC: '設定同步間隔。 該值的範圍為3分鐘到24小時。 預設值0表示沒有同步。',
+  SYNC_PERIOD_EMPTY_DESC: '請設定同步間隔。',
+  SYNC_INTERVAL_INVALID: '無效值。 請輸入0或正整數。',
+  APP_REPO_URL_DESC: '在添加或編輯應用程序存儲庫之前，需要驗證URL。',
+  SYNC_INTERVAL_TIP: '該值的範圍為3分鐘到24小時。 請輸入一個有效值。',
+  SECONDS: '秒',
+  MINUTES: '分鐘',
+  HOURS: '小時',
+  UNRECOGNIZED_URL: '無法識別的URL。',
+  INVALID_CREDENTIAL_FORMAT: '無效的憑據格式。',
+  MISSING_ACCESS_KEY_ID: '缺少訪問金鑰ID。',
+  MISSING_SECRET_ACCESS_KEY: '缺少秘密訪問金鑰。',
+  S_THREE_ACCESS_DENIED: 'S3訪問被拒絕。',
+  INVALID_URL_FORMAT: '無效的URL格式。',
+  INVALID_HTTP_SCHEME: '無效的HTTP方案。',
+  HTTP_ACCESS_DENIED: 'HTTP訪問被拒絕。',
+  INVALID_HTTPS_SCHEME: 'HTTPS方案無效。',
+  INVALID_TYPE: '無效的類型。',
+  INVALID_PROVIDERS: '無效的提供程式。',
+  INVALID_REPO_URL: '無效的存儲庫URL。',
+  INVALID_S_THREE_SCHEME: '無效的S3方案。',
   // List > Add > URL > s3://
-  ACCESS_KEY_ID: 'Access Key ID',
-  SECRET_ACCESS_KEY: 'Secret Access Key',
+  ACCESS_KEY_ID: '訪問金鑰ID',
+  SECRET_ACCESS_KEY: '秘密訪問金鑰',
   // List > Edit
-  EDIT_APP_REPO: 'Edit App Repository',
-  INVALID_URL_DESC: 'Invalid URL.',
-  VALID_URL_DESC: 'Valid URL.',
+  EDIT_APP_REPO: '編輯應用程序存儲庫',
+  INVALID_URL_DESC: '無效的URL。',
+  VALID_URL_DESC: '有效的URL。',
   // List > Delete
-  APP_REPOSITORY: 'App Repository',
-  APP_REPOSITORY_LOW: 'app repository'
+  APP_REPOSITORY: '應用程序存儲庫',
+  APP_REPOSITORY_LOW: '應用程序存儲庫',
 };

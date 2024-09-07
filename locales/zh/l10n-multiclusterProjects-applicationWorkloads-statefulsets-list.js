@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   // List
@@ -30,15 +18,19 @@ module.exports = {
   ONDELETE: '删除容器组时更新',
   ONDELETE_DESC: '需要手动删除容器组副本才能对其进行更新。',
   PARTITION_ORDINAL: '容器组副本分组序号',
-  PARTITION_ORDINAL_DESC: '设置一个分组序号以将容器组副本分成两组。更新有状态副本集时，只有序号大于或等于分组序号的容器组副本会被更新。',
+  PARTITION_ORDINAL_DESC:
+    '设置一个分组序号以将容器组副本分成两组。更新有状态副本集时，只有序号大于或等于分组序号的容器组副本会被更新。',
   // List > Create > Storage Settings
   PVC_NAME_PREFIX: 'PVC 名称前缀',
-  PVC_NAME_PREFIX_DESC: '持久卷声明名称的前缀。前缀只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
+  PVC_NAME_PREFIX_DESC:
+    '持久卷声明名称的前缀。前缀只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
   PVC_NAME_PREFIX_EMPTY: '请输入持久卷声明名称的前缀。',
-  INVALID_PVC_NAME_PREFIX: '前缀无效。前缀只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
+  INVALID_PVC_NAME_PREFIX:
+    '前缀无效。前缀只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
   PVC_NAME_PREFIX_EXISTS: '前缀已经存在，请输入其他前缀。',
   ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE: '添加持久卷声明模板',
-  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE_DESC: '添加持久卷声明模板为有状态副本集的每个容器组挂载一个持久卷。',
+  ADD_PERSISTENT_VOLUME_CLAIM_TEMPLATE_DESC:
+    '添加持久卷声明模板为有状态副本集的每个容器组挂载一个持久卷。',
   VOLUME_CAPACITY_TCAP: '卷容量',
   MOUNT_PATH_TCAP: '挂载路径',
   VOLUME_TEMPLATES: '卷模板',
@@ -48,5 +40,5 @@ module.exports = {
   SERVICE_PORT_VALUE: '服务端口：{value}',
   // List > Create > Cluster Differences (Displayed after you add a volume template)
   VOLUME_TEMPLATE_SETTINGS: '卷模板设置',
-  CLUSTER_VOLUME_DIFF_DESC: '在不同的集群中使用不同的存储设置。'
+  CLUSTER_VOLUME_DIFF_DESC: '在不同的集群中使用不同的存储设置。',
 };

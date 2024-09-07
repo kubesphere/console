@@ -1,23 +1,12 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Title
-  TOTAL_AUDITING_TODAY: 'A total of <span class={className}> {auditing} </span> audit log entries have been collected today.',
+  TOTAL_AUDITING_TODAY:
+    'A total of <span class={className}> {auditing} </span> audit log entries have been collected today.',
   NO_AUDIT_LOG_TODAY: 'No Audit Log Collected Today',
   AUDIT_LOG_TREND_LAST_TWELVE_HOURS: 'Audit log trend in the last 12 hours',
   START_TIME_VALUE: 'Start Time: {value}',
@@ -40,5 +29,6 @@ module.exports = {
   SEARCH_BY_STATUS_CODE: 'Search by Status Code',
   SEARCH_BY_OPERATOR: 'Search by Operator',
   SEARCH_BY_SOURCE_IP_ADDRESS: 'Search by Source IP Address',
-  ENABLE_AUDIT_LOG_COLLECTION_DESC: 'You need to enable audit log collection if it is disabled. <a href="{link}" target="_blank">Learn More</a>'
+  ENABLE_AUDIT_LOG_COLLECTION_DESC:
+    'You need to enable audit log collection if it is disabled. <a href="{link}" target="_blank">Learn More</a>',
 };

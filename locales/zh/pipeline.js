@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   abortPipeline: '检查结果是否影响后续任务',
   'Absolute duration': '代码块所用的绝对时间',
@@ -40,8 +28,7 @@ module.exports = {
   'Send messages by email': '可以通过邮件发送消息',
   'Send messages in the build': '可以在构建中发送消息',
   'Change Current Directory': '更改当前目录',
-  'Chinese is not allowed in the pipeline configuration':
-    '配置中不允许含有中文',
+  'Chinese is not allowed in the pipeline configuration': '配置中不允许含有中文',
   'Clean when aborted': '清理失败不影响运行',
   'Clean Workspace': '清理企业空间',
   'Code Quality Check': '代码质量检查',
@@ -90,8 +77,7 @@ module.exports = {
   input: '审核',
   'Inspection results do not affect subsequent tasks': '检查结果不影响后续任务',
   'instance failed to match at least one schema': '至少需要一个嵌套步骤',
-  'Internal nested conditions only need to satisfy one':
-    '内部嵌套的条件只需符合一个',
+  'Internal nested conditions only need to satisfy one': '内部嵌套的条件只需符合一个',
   'Internal nesting conditions must be matched': '内部嵌套的条件需全部满足',
   'Jenkinsfile syntax error, message': 'Jenkinsfile 语法错误，消息',
   'key File Variable': '私钥变量',
@@ -142,13 +128,11 @@ module.exports = {
   SELECT_THIS_REPOSITORY: '选择此仓库',
   Sender: '发件人',
   sh: 'shell 脚本',
-  'Shell commands can be executed in the container':
-    '可以在容器中执行 shell 命令',
+  'Shell commands can be executed in the container': '可以在容器中执行 shell 命令',
   'Show Advanced Settings': '展示高级设置',
   'show yaml editor': '用 YAML 编辑器编辑',
   'sonar is the default config name.': '默认配置名称是 sonar',
-  "Sorry, you don't have the permission to do this.":
-    '抱歉，您没有权限进行此操作',
+  "Sorry, you don't have the permission to do this.": '抱歉，您没有权限进行此操作',
   'Specify a container to add nested tasks to execute inside the container':
     '指定容器，可添加嵌套任务在容器内执行',
   'Start the follow-up task after the inspection': '检查通过后开始后续任务',
@@ -161,19 +145,16 @@ module.exports = {
     '执行当前阶段所需要满足的条件 （可选）',
   'The environment variable entered before running the pipeline is match the current value.':
     '运行流水线前输入的环境变量与当前值一致',
-  'The label on which to run the Pipeline or individual stage':
-    '流水线或单个阶段的标签',
+  'The label on which to run the Pipeline or individual stage': '流水线或单个阶段的标签',
   'This name has been used.': '此名称已被使用',
   'Time Used': '用时',
   Timeout: '超时',
   timeout: '超时',
-  'Timeout after no activity in logs for this block':
-    '此区块代码无日志输出后开始计算超时',
+  'Timeout after no activity in logs for this block': '此区块代码无日志输出后开始计算超时',
   timer: '定时器',
   TRIGGER_REMOTE_BUILD: '触发远程构建（例如，使用脚本）',
   Unnamed: '未命名',
-  'Use the following URL to remotely triggerworkbench the build':
-    '使用以下 URL 远程触发构建',
+  'Use the following URL to remotely triggerworkbench the build': '使用以下 URL 远程触发构建',
   'User types that can trigger builds': '可以触发构建的用户类型',
   'username or group name, multiple values ​​used, separated':
     '用户名或组名，多个值使用英文逗号分隔',
@@ -224,19 +205,16 @@ module.exports = {
   waitForQualityGate_desc:
     '代码质量检查标准来源于SonarQube的 Quality Gate (质量阈)，如果需要自定义检查标准请前往 SonarQube 设置',
   REVIEW_DESC: '流水线运行至此任务将会暂停，审核后可选择继续或终止',
-  INPUT_DESC:
-    '流水线运行至此任务将会暂停，创建者和被@的人可以选择继续或终止流水线',
+  INPUT_DESC: '流水线运行至此任务将会暂停，创建者和被@的人可以选择继续或终止流水线',
   LoadPrevData_Desc: '检测到此流水线上次未编辑成功，是否加载上次数据继续编辑？',
   withSonarQubeEnv_DESC: '快速的定位代码中潜在的或者明显的错误',
   waitForQualityGate_DESC: '在执行代码分析后执行',
   script_DESC: '执行groovy脚本',
   pipeline_owner: 'DevOps 项目的所有者，可以进行 DevOps 项目的所有操作',
-  pipeline_maintainer:
-    'DevOps 项目的主要维护者，可以进行项目内的凭证配置、流水线配置等操作',
+  pipeline_maintainer: 'DevOps 项目的主要维护者，可以进行项目内的凭证配置、流水线配置等操作',
   pipeline_developer: 'DevOps 项目的开发者，可以进行流水线的触发以及查看',
   pipeline_reporter: 'DevOps 项目的观察者，可以查看流水线的运行情况',
-  PATTERN_PIPELINE_NAME_VALID_NAME_TIP:
-    '名称不合法 （仅支持大小写字母、数字、_、-）',
+  PATTERN_PIPELINE_NAME_VALID_NAME_TIP: '名称不合法 （仅支持大小写字母、数字、_、-）',
   GET_GITHUB_TOKEN_DESC: `用于获取 GitHub 代码仓库
     <a
       class="float-right"
@@ -253,6 +231,5 @@ module.exports = {
   'Run Start': '运行开始',
   'Choose a Pipeline Template': '选择流水线模板',
   // Pipeline Creation Page
-  DEVOPS_PROJECT_DESC:
-    'DevOps 项目用于对资源进行分组管理以及控制不同用户的资源管理权限。',
-}
+  DEVOPS_PROJECT_DESC: 'DevOps 项目用于对资源进行分组管理以及控制不同用户的资源管理权限。',
+};

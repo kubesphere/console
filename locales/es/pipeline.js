@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   abortPipeline: 'abortPipeline',
   'Absolute duration': 'Duración total',
@@ -59,12 +47,10 @@ module.exports = {
   critical: 'crítico',
   'Current branch name must match the input value':
     'El nombre de la rama actual debe coincidir con el valor de entrada',
-  'defaultValue -1 means not to discard':
-    'defaultValue -1 significa no descartar',
+  'defaultValue -1 means not to discard': 'defaultValue -1 significa no descartar',
   'Delete all resources of the deployment file':
     'Eliminar todos los recursos del archivo de despliegue',
-  'Deploy resources to the Kubernetes cluster':
-    'Implementar recursos en el clúster de Kubernetes',
+  'Deploy resources to the Kubernetes cluster': 'Implementar recursos en el clúster de Kubernetes',
   "Didn't pass": 'No pasó',
   dir: 'directorio',
   Discard: 'Descarte',
@@ -73,8 +59,7 @@ module.exports = {
   DISCOVER_PR_FROM_ORIGIN: 'Descubrir PR desde Origin',
   'Discover pull requests from forks': 'Descubrir las PR desde forks',
   'Discover pull requests from origin': 'Descubrir las PR desde origin',
-  'Docker Container Registry Credentials':
-    'credenciales de Docker Container Registry',
+  'Docker Container Registry Credentials': 'credenciales de Docker Container Registry',
   'Docker Registry URL': 'URL del Docker Registry',
   dockerCredentials: 'dockerCredentials',
   'Drag and drop tasks to sort': 'Arrastra y suelta tareas para ordenar',
@@ -103,16 +88,14 @@ module.exports = {
     'Las condiciones anidadas solo necesitan cumplir una condición',
   'Internal nesting conditions must be matched':
     'Las condiciones internas de anidación deben coincidir',
-  'Jenkinsfile syntax error, message':
-    'Error de sintaxis de Jenkinsfile, mensaje',
+  'Jenkinsfile syntax error, message': 'Error de sintaxis de Jenkinsfile, mensaje',
   'key File Variable': 'variable de archivo clave',
   keyFileVariable: 'keyFileVariable',
   'Kubeconfig Variable': 'Variable de Kubeconfig',
   'Kubernetes Namespace for Secret': 'Namespace de Kubernetes para el Secret',
   'Kubernetes Secrets': 'Secrets de Kubernetes',
   Line: 'Línea',
-  'Load credentials into environment variables':
-    'Cargue credenciales en variables de entorno',
+  'Load credentials into environment variables': 'Cargue credenciales en variables de entorno',
   'Load the sonarqube configuration provided by Jenkins into the Pipeline.':
     'Cargue la configuración de sonarqube proporcionada por Jenkins en la Pipeline.',
   mail: 'correo',
@@ -137,8 +120,7 @@ module.exports = {
   'pipeline syntax error': 'error de sintaxis en la Pipeline',
   'Please add at least one step.': 'Por favor agregue al menos un paso.',
   'Please input images name': 'Por favor introduce el nombre de las imágenes',
-  'Please input the credential name.':
-    'Por favor introduce el nombre de la credencial.',
+  'Please input the credential name.': 'Por favor introduce el nombre de la credencial.',
   'Press enter for the next': 'Presione enter para ir al siguiente paso',
   'Print message': 'Imprimir mensaje',
   'Pull code by Git': 'Pull código con Git',
@@ -160,8 +142,7 @@ module.exports = {
     'Los comandos de shell se pueden ejecutar en el contenedor',
   'Show Advanced Settings': 'Mostrar configuración avanzada',
   'show yaml editor': 'muestre el editor de yaml',
-  'sonar is the default config name.':
-    'sonar es el nombre de configuración predeterminado.',
+  'sonar is the default config name.': 'sonar es el nombre de configuración predeterminado.',
   "Sorry, you don't have the permission to do this.":
     'Lo sentimos, no tienes permiso para hacer esto.',
   'Specify a container to add nested tasks to execute inside the container':
@@ -186,13 +167,11 @@ module.exports = {
   'Timeout after no activity in logs for this block':
     'Tiempo de espera agotado tras inactividad en los logs deregistro de este bloque',
   timer: 'temporizador',
-  TRIGGER_REMOTE_BUILD:
-    'Ejecutar una build remota (por ejemplo, usando un script)',
+  TRIGGER_REMOTE_BUILD: 'Ejecutar una build remota (por ejemplo, usando un script)',
   Unnamed: 'Sin nombre',
   'Use the following URL to remotely triggerworkbench the build':
     'Utilice la siguiente URL para activar remotamente el triggerworkbench en el build',
-  'User types that can trigger builds':
-    'Tipos de usuarios que pueden desencadenar compilaciones',
+  'User types that can trigger builds': 'Tipos de usuarios que pueden desencadenar compilaciones',
   'username or group name, multiple values ​​used, separated':
     'nombre de usuario o nombre de grupo, múltiples valores utilizados, separados',
   'Username Variable': 'Variable Username',
@@ -230,16 +209,14 @@ module.exports = {
   PIPELINE_ADVANCE_SETTINGS_DESC:
     'Configure una política de comportamiento compleja para la pipeline (Opcional).',
   CREDENTIALS_CREATE_DESC: 'Crear credenciales para proyectos DevOps',
-  CHECKOUT_DESC:
-    'Código de extracción; a menudo se usa para extraer código no git, como svn.',
+  CHECKOUT_DESC: 'Código de extracción; a menudo se usa para extraer código no git, como svn.',
   PRIVATE_IMAGE_DESC: `To deploy from a private image repository,
     you need to create a mirrored repository and then pull the image. `,
   AUTHENTICATION_TOKEN_DESC: `Use the following URL to remotely trigger the build:
     JENKINS_URL / job / JOB_NAME / build? Token =TOKEN_NAME or /buildWithParameters?
     Token = TOKEN_NAME You can choose to append &cause=reason to provide the text that
     will be included in the build reason for the record. `,
-  PIPELINE_NO_CONFIG:
-    'El archivo de configuración relevante no se encontró en la pipeline actual',
+  PIPELINE_NO_CONFIG: 'El archivo de configuración relevante no se encontró en la pipeline actual',
   EDIT_CREDENTIAL_DESC:
     'El siguiente formulario no mostrará la información de credenciales original. Volver a ingresarlo lo sobrescribirá.',
   pipeline_conditions: 'Condiciones',
@@ -259,19 +236,15 @@ module.exports = {
     'Cuando la canalización se ejecuta aquí, la tarea se suspenderá, y el creador y @somebody pueden elegir continuar o finalizar la canalización.',
   LoadPrevData_Desc:
     'Se detectó que esta pipeline no se editó correctamente la última vez. ¿Se cargan los últimos datos para continuar editando?',
-  withSonarQubeEnv_DESC:
-    'Localice rápidamente errores potenciales u obvios en su código',
-  waitForQualityGate_DESC:
-    'Ejecutado después de realizar el análisis de código',
+  withSonarQubeEnv_DESC: 'Localice rápidamente errores potenciales u obvios en su código',
+  waitForQualityGate_DESC: 'Ejecutado después de realizar el análisis de código',
   script_DESC: 'Ejecutar script maravilloso',
   pipeline_owner:
     'El propietario del proyecto DevOps, con la máxima autorización del proyecto, puedes realizar todas las operaciones.',
   pipeline_maintainer:
     'El responsable del proyecto DevOps puedes realizar credenciales y configuración de canalización en el proyecto DevOps',
-  pipeline_developer:
-    'El desarrollador del proyecto DevOps puedes activar y ver la pipeline',
-  pipeline_reporter:
-    'El observador del proyecto DevOps solo puedes ver los recursos del proyecto',
+  pipeline_developer: 'El desarrollador del proyecto DevOps puedes activar y ver la pipeline',
+  pipeline_reporter: 'El observador del proyecto DevOps solo puedes ver los recursos del proyecto',
   PATTERN_PIPELINE_NAME_VALID_NAME_TIP:
     'Nombre no válido (admite letras mayúsculas y minúsculas, números, "_" y "-")',
   GET_GITHUB_TOKEN_DESC: `Para acceder a GitHub
@@ -282,8 +255,7 @@ module.exports = {
     >
       Get Token
     </a>`,
-  PIPELINES_FOOTER_SEE_MORE:
-    'Vaya a la página de detalles de la sucursal para ver más.',
+  PIPELINES_FOOTER_SEE_MORE: 'Vaya a la página de detalles de la sucursal para ver más.',
   JENKINS_LINS_ERROR: 'tiene un error de sintaxis en la línea {line}.',
   // Concatenated
   'Invalid credential ID': 'Invalid credential ID',
@@ -293,4 +265,4 @@ module.exports = {
   // Pipeline Creation Page
   DEVOPS_PROJECT_DESC:
     'DevOps projects are used to group resources and control the resource management permissions of different users.',
-}
+};

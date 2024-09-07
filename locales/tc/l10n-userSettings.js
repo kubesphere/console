@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Basic Information
   EMAIL_DESC: '郵箱可作為登入帳號',
@@ -30,5 +18,5 @@ module.exports = {
   ENTER_CURRENT_PASSWORD_TIP: '請輸入目前密碼',
   CONFIRM_PASSWORD: '重複新的密碼',
   PASSWORD_NOT_SAME_DESC: '兩次輸入的密碼必須一致',
-  ENTER_CURRENT_PASSWORD_DESC: '您必須輸入正確的目前密碼才可更改為新的密碼'
+  ENTER_CURRENT_PASSWORD_DESC: '您必須輸入正確的目前密碼才可更改為新的密碼',
 };

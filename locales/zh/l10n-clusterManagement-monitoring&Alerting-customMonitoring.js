@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   CUSTOM_MONITORING: '自定义监控',
@@ -43,14 +31,18 @@ module.exports = {
   APPLICABLE_SCENE: '适用场景',
   BASE_LINE_CHART: '基础折线图',
   STACK_LINE_CHART: '堆叠面积图',
-  BASE_LINE_CHART_DESC: '折线图主要用来展示数据相随着时间推移的趋势或变化。折线图非常适合用于展示一个连续的二维数据，如某网站访问人数或商品销量价格的波动。',
-  STACK_LINE_CHART_DESC: '堆积面积图是一种特殊的面积图，可以用来比较在一个区间内的多个变量。如果有多个数据系列，并想分析每个类别的部分到整体的关系，并展现部分量对于总量的贡献时，使用堆积面积图是非常合适的选择。',
+  BASE_LINE_CHART_DESC:
+    '折线图主要用来展示数据相随着时间推移的趋势或变化。折线图非常适合用于展示一个连续的二维数据，如某网站访问人数或商品销量价格的波动。',
+  STACK_LINE_CHART_DESC:
+    '堆积面积图是一种特殊的面积图，可以用来比较在一个区间内的多个变量。如果有多个数据系列，并想分析每个类别的部分到整体的关系，并展现部分量对于总量的贡献时，使用堆积面积图是非常合适的选择。',
   LINE_CHART_DESC: '折线图主要用来展示数据相随着时间推移的趋势或变化。',
   BASE_BAR_CHART: '基础柱状图',
   STACK_BAR_CHART: '堆叠柱状图',
-  BAR_CHART_DESC: '柱状图是最常见的图表类型，通过使用水平或垂直方向\b柱子的高度来显示不同类别的数值。',
+  BAR_CHART_DESC:
+    '柱状图是最常见的图表类型，通过使用水平或垂直方向\b柱子的高度来显示不同类别的数值。',
   BASE_BAR_CHART_DESC: '基础柱状图的一个轴显示正在比较的类别，而另一个轴代表对应的刻度值。',
-  STACK_BAR_CHART_DESC: '堆叠柱状图是柱状图的扩展，不同的是，柱状图的数据值为并行排列，堆叠柱图则是一个个叠加起来的。它可以展示每一个分类的总量，以及该分类包含的每个小分类的大小及占比，因此非常适合处理部分与整体的关系。',
+  STACK_BAR_CHART_DESC:
+    '堆叠柱状图是柱状图的扩展，不同的是，柱状图的数据值为并行排列，堆叠柱图则是一个个叠加起来的。它可以展示每一个分类的总量，以及该分类包含的每个小分类的大小及占比，因此非常适合处理部分与整体的关系。',
   CUSTOM_DISPLAY_MODAL_DESC: '根据需要定制 Table 中的显示格式',
   THRESHOLD_FILL_DESC: '可以设置阈值，数值超出后可以自动更改样式提示',
   ADD_MONITOR_ITEM: '添加监控项',
@@ -105,5 +97,5 @@ module.exports = {
   // List > Edit Information
   // List > Edit YAMl
   // List > Delete
-  CUSTOM_MONITORING_DASHBOARD_LOW: '自定义监控面板'
+  CUSTOM_MONITORING_DASHBOARD_LOW: '自定义监控面板',
 };

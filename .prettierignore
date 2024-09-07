@@ -1,3 +1,14 @@
-node_modules
+.git/
+.history/
+**/node_modules/
+**/dist/
+**/v3dist/
+**/*.tsbuildinfo
+packages/*/lib/
+packages/*/esm/
+packages/*/cjs/
 yarn.lock
 package-lock.json
+
+# system.min.js
+**/*.min.js

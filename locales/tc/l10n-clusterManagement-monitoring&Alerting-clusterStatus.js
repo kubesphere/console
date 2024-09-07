@@ -1,26 +1,15 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Navigation pane
   MONITORING_AND_ALERTING: '監控告警',
   // Banner
   CLUSTER_STATUS: '集群狀態',
-  MONITORING_CLUSTER_DESC: '集群狀態展示集群資源的概覽和詳情，您可以查看集群資源的監控數據和用量排行情況。',
+  MONITORING_CLUSTER_DESC:
+    '集群狀態展示集群資源的概覽和詳情，您可以查看集群資源的監控數據和用量排行情況。',
   // Overview > Cluster Node Status
   CLUSTER_NODE_STATUS: '集群節點狀態',
   ALL_NODES: '全部節點',
@@ -70,9 +59,9 @@ module.exports = {
   // Physical Resource Monitoring
   SELECT_TIME_RANGE: '選擇時間範圍',
   LAST_TIME: '最近 {value}',
-  LAST_TIME_M: '最近 {num} 分鐘',
-  LAST_TIME_H: '最近 {num} 小時',
-  LAST_TIME_D: '最近 {num} 天',
+  LAST_TIME_M_other: '最近 {count} 分鐘',
+  LAST_TIME_H_other: '最近 {count} 小時',
+  LAST_TIME_D_other: '最近 {count} 天',
   TIMERANGE_SELECTOR_MSG: '結束時間需晚於開始時間。',
   TIMERANGE_SELECTOR_ERROR_MSG: '時間範圍設置錯誤。',
   PHYSICAL_RESOURCES_MONITORING: '物理資源監控',
@@ -88,9 +77,9 @@ module.exports = {
   WRITE: '寫',
   RUNNING: '運行中',
   // Physical Resource Monitoring > Average CPU Load
-  TIME_M: '{num} 分鐘',
-  TIME_H: '{num, plural, =1 {1 hour} other{# hours}}',
-  TIME_D: '{num, plural, =1 {1 day} other{# days}}',
+  TIME_M_other: '{count} 分鐘',
+  TIME_H_other: '{count} 小時',
+  TIME_D_other: '{count} 天',
   // etcd Monitoring
   EXTERNAL_ETCD: '外部 etcd',
   DB_FSYNC: '資料庫同步時間',
@@ -128,5 +117,5 @@ module.exports = {
   SORT_BY_NODE_LOAD1: 'Sort by 1-minute CPU load average',
   SORT_BY_NAMESPACE_MEMORY_USAGE_WO_CACHE: '按記憶體使用量排行',
   POD_USAGE: '容器組用量',
-  EXPORT: '匯出'
+  EXPORT: '匯出',
 };

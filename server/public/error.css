@@ -1,3 +1,8 @@
+/*
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
+ */
+
 html {
   background-color: #eff4f8;
 }
@@ -6,22 +11,32 @@ body {
   height: 100%;
   line-height: 1;
   font-size: 14px;
-  font-family: "PingFang SC", "Lantinghei SC", "Helvetica Neue", Helvetica, Arial, "Microsoft YaHei", 微软雅黑, STHeitiSC-Light, simsun, 宋体, "WenQuanYi Zen Hei", "WenQuanYi Micro Hei", sans-serif;
+  font-family: 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue', Helvetica, Arial, 'Microsoft YaHei',
+    微软雅黑, STHeitiSC-Light, simsun, 宋体, 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-html, body, h1, h2, h3, h4, h5, h6, a, p {
-  margin:0;
-  padding:0;
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p {
+  margin: 0;
+  padding: 0;
 }
 
 svg {
   height: 20px;
   width: 20px;
-    color: #324558;
-    fill: #b6c2cd;
+  color: #324558;
+  fill: #b6c2cd;
 }
 
 ::selection {
@@ -29,10 +44,10 @@ svg {
   background: #369a6a;
 }
 
-::-moz-selection { 
+::-moz-selection {
   color: #fff;
-  background: #369a6a; 
-} 
+  background: #369a6a;
+}
 
 .wrapper {
   text-align: center;

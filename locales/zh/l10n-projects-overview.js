@@ -1,28 +1,18 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Edit Quotas
   EDIT_QUOTAS: '编辑配额',
   QUOTA: '配额',
   PROJECT_QUOTAS_NOT_SET: '项目配额未设置',
-  PROJECT_QUOTAS_DESC: '项目配额用于指定项目中可用的 CPU 和内存资源数量和容器组、部署、服务等应用资源的最大数量。',
+  PROJECT_QUOTAS_DESC:
+    '项目配额用于指定项目中可用的 CPU 和内存资源数量和容器组、部署、服务等应用资源的最大数量。',
   DEFAULT_CONTAINER_QUOTAS_NOT_SET: '默认容器配额未设置',
-  DEFAULT_CONTAINER_QUOTAS_DESC: '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 上限、内存预留和内存上限。',
+  DEFAULT_CONTAINER_QUOTAS_DESC:
+    '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 上限、内存预留和内存上限。',
   APPLICATION_RESOURCE_COUNT: '应用资源',
   SELECT_RESOURCE_TIP: '请选择资源或输入资源名称',
   NUMBER_OF_PODS: '容器组数量',
@@ -56,5 +46,5 @@ module.exports = {
   SORT_BY_WORKLOAD_CPU_USAGE: '按 CPU 用量排行',
   SORT_BY_WORKLOAD_MEMORY_USAGE_WO_CACHE: '按内存用量排行',
   SORT_BY_WORKLOAD_NET_BYTES_TRANSMITTED: '按出站流量排行',
-  SORT_BY_WORKLOAD_NET_BYTES_RECEIVED: '按入站流量排行'
+  SORT_BY_WORKLOAD_NET_BYTES_RECEIVED: '按入站流量排行',
 };

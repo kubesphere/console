@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // More > Roll Back
   ROLL_BACK: '回退',
@@ -78,7 +66,8 @@ module.exports = {
   VIEW_ALL_REPLICAS: '查看所有副本',
   SHOW_SELECTED_ONLY: '仅显示已选',
   MONITORING_SELECT_LIMIT_MSG: '最多可以选择 10 个资源。',
-  MONITORING_ALERT_DESC: '默认最多显示五个容器组副本的信息。您可以点击<b>查看所有副本</b>以查看所有容器组副本的信息。',
+  MONITORING_ALERT_DESC:
+    '默认最多显示五个容器组副本的信息。您可以点击<b>查看所有副本</b>以查看所有容器组副本的信息。',
   CURRENT_VALUE: '当前：{value}',
   // Environment Variables
   ENVIRONMENT_VARIABLE_PL: '环境变量',
@@ -86,5 +75,5 @@ module.exports = {
   EVENT_AGE: '发生时间',
   EVENT_AGE_DATA: '{lastTime}<br/>（近 {duration}发生 {count} 次)',
   EVENT_AGE_DATA_TWICE: '{lastTime}<br/>（近 {duration}发生 2 次）',
-  SOURCE: '来源'
+  SOURCE: '来源',
 };

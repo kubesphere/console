@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   DEVOPS_PROJECT_ROLE_PL: 'DevOps 项目角色',
@@ -64,5 +52,5 @@ module.exports = {
   PERMISSION_CODE_REPOSITORIES_VIEW: '代码仓库查看',
   PERMISSION_CODE_REPOSITORIES_VIEW_DESC: '查看 DevOps 项目中的代码仓库。',
   PERMISSION_CODE_REPOSITORIES_MANAGEMENT: '代码仓库管理',
-  PERMISSION_CODE_REPOSITORIES_MANAGEMENT_DESC: '管理 DevOps 项目中的代码仓库。'
+  PERMISSION_CODE_REPOSITORIES_MANAGEMENT_DESC: '管理 DevOps 项目中的代码仓库。',
 };

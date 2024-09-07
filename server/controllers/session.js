@@ -1,183 +1,245 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-const isEmpty = require('lodash/isEmpty')
-const jwtDecode = require('jwt-decode')
-const omit = require('lodash/omit')
-const base64_url_decode = require('jwt-decode/lib/base64_url_decode')
-const { getServerConfig } = require('../libs/utils')
+const isEmpty = require('lodash/isEmpty');
+const get = require('lodash/get');
+const jwtDecode = require('jwt-decode');
+const omit = require('lodash/omit');
+const base64UrlDecode = require('jwt-decode/lib/base64_url_decode');
+const { getServerConfig } = require('../libs/utils');
 
-const { client: clientConfig } = getServerConfig()
+const { client: clientConfig } = getServerConfig();
 
-const {
-  login,
-  loginThird,
-  oAuthLogin,
-  getNewToken,
-  createUser,
-} = require('../services/session')
+const { login, loginThird, oAuthLogin, getNewToken, createUser } = require('../services/session');
 const {
   isValidReferer,
   isAppsRoute,
   decryptPassword,
   safeParseJSON,
   safeBase64,
-} = require('../libs/utils')
+} = require('../libs/utils');
 
-const { send_gateway_request } = require('../libs/request')
+const { sendGatewayRequest } = require('../libs/request');
 
-const handleLogin = async ctx => {
-  const params = ctx.request.body
-
-  let referer = ctx.cookies.get('referer')
-  referer = referer ? decodeURIComponent(referer) : ''
-
-  const error = {}
-  let user = null
+const handleLoginByPwd = async ctx => {
+  const params = ctx.request.body;
+  const error = {};
+  let user = null;
 
   if (isEmpty(params) || !params.username || !params.encrypt) {
     Object.assign(error, {
       status: 400,
       reason: 'Invalid Login Params',
       message: 'invalid login params',
-    })
+    });
   }
 
   if (isEmpty(error)) {
-    try {
-      const encryptKey = clientConfig.encryptKey || 'kubesphere'
-      params.password = decryptPassword(params.encrypt, encryptKey)
+    const encryptKey = clientConfig.encryptKey || 'kubesphere';
+    params.password = decryptPassword(params.encrypt, encryptKey);
 
-      user = await login(params, { 'x-client-ip': ctx.request.ip })
+    user = await login(params, { 'x-client-ip': ctx.request.ip });
 
-      if (!user) {
-        Object.assign(error, {
-          status: 401,
-          reason: 'Unauthorized',
-          message: 'INCORRECT_USERNAME_OR_PASSWORD',
-        })
-      }
-    } catch (err) {
-      ctx.app.emit('error', err)
-
-      switch (err.code) {
-        case 400:
-        case 401:
-          Object.assign(error, {
-            status: err.code,
-            reason: 'Unauthorized',
-            message: 'INCORRECT_USERNAME_OR_PASSWORD',
-          })
-          break
-        case 429:
-          Object.assign(error, {
-            status: err.code,
-            reason: 'Too Many Failures',
-            message: 'TOO_MANY_FAILURES',
-          })
-          break
-        case 502:
-          Object.assign(error, {
-            status: err.code,
-            reason: 'Bad Gateway',
-            message: 'FAILED_TO_ACCESS_BACKEND',
-          })
-          break
-        case 'ETIMEDOUT':
-          Object.assign(error, {
-            status: 500,
-            reason: 'Internal Server Error',
-            message: 'FAILED_TO_ACCESS_API_SERVER',
-          })
-          break
-        default:
-          Object.assign(error, {
-            status: 500,
-            reason: err.statusText,
-            message: err.message,
-          })
-      }
+    if (!user) {
+      Object.assign(error, {
+        status: 401,
+        reason: 'Unauthorized',
+        message: 'INCORRECT_USERNAME_OR_PASSWORD',
+      });
     }
   }
+  return { user, error };
+};
 
-  if (!isEmpty(error) || !user) {
-    ctx.body = error
-    return
-  }
+const handleLoginByOtp = async ctx => {
+  const params = ctx.request.body;
+  const error = {};
+  let user = null;
 
-  const lastToken = ctx.cookies.get('token')
-
-  ctx.cookies.set('token', user.token)
-  ctx.cookies.set('expire', user.expire)
-  ctx.cookies.set('refreshToken', user.refreshToken)
-  ctx.cookies.set('referer', null)
-
-  if (user.username === 'system:pre-registration') {
-    const extraname = safeBase64.safeBtoa(user.extraname)
-    ctx.cookies.set('defaultUser', extraname)
-    ctx.cookies.set('defaultEmail', user.email)
-    return ctx.redirect('/login/confirm')
-  }
-
-  if (!user.initialized) {
-    return ctx.redirect('/password/confirm')
-  }
-
-  if (lastToken) {
-    const { username } = jwtDecode(lastToken)
-    if (username && username !== user.username) {
-      return ctx.redirect('/')
-    }
-  }
-
-  ctx.redirect(isValidReferer(referer) ? referer : '/')
-}
-
-const handleThirdLogin = async ctx => {
-  const params = ctx.request.body
-
-  let referer = ctx.cookies.get('referer')
-  referer = referer ? decodeURIComponent(referer) : ''
-
-  const error = {}
-  let user = null
-
-  if (!params.username || !params.password) {
+  if (!params.otp || !params.token) {
     Object.assign(error, {
       status: 400,
       reason: 'Invalid Login Params',
       message: 'invalid login params',
-    })
+    });
+  }
+  if (isEmpty(error)) {
+    user = await login(
+      {
+        otp: params.otp,
+        token: params.token,
+        grant_type: 'otp',
+      },
+      { 'x-client-ip': ctx.request.ip },
+    );
+    ctx.cookies.set('otpToken', null);
+    if (!user) {
+      Object.assign(error, {
+        status: 401,
+        reason: 'Unauthorized',
+        message: 'TWO_FACTOR_AUTHENTICATION_FAILED',
+      });
+    }
+  }
+  return { user, error };
+};
+
+const handleLogin = async ctx => {
+  const params = ctx.request.body;
+
+  const authAuthorizeUrl = ctx.cookies.get('authAuthorizeUrl');
+  let referer = ctx.cookies.get('referer');
+  referer = referer ? decodeURIComponent(referer) : '';
+
+  let error = {};
+  let user = null;
+
+  if (isEmpty(error)) {
+    try {
+      const action = params.grant_type === 'otp' ? handleLoginByOtp : handleLoginByPwd;
+      const { user: user1, error: error1 } = await action(ctx);
+      user = user1;
+      error = error1;
+    } catch (err) {
+      ctx.app.emit('error', err);
+
+      switch (err.code) {
+        case 400:
+        case 401:
+          Object.assign(error, {
+            status: err.code,
+            reason: 'Unauthorized',
+            message:
+              params.grant_type === 'otp'
+                ? 'TWO_FACTOR_AUTHENTICATION_FAILED'
+                : 'INCORRECT_USERNAME_OR_PASSWORD',
+          });
+          break;
+        case 429:
+          Object.assign(error, {
+            status: err.code,
+            reason: 'Too Many Failures',
+            message: 'TOO_MANY_FAILURES',
+          });
+          break;
+        case 502:
+          Object.assign(error, {
+            status: err.code,
+            reason: 'Bad Gateway',
+            message: 'FAILED_TO_ACCESS_BACKEND',
+          });
+          break;
+        case 'ETIMEDOUT':
+          Object.assign(error, {
+            status: 500,
+            reason: 'Internal Server Error',
+            message: 'FAILED_TO_ACCESS_API_SERVER',
+          });
+          break;
+        default:
+          Object.assign(error, {
+            status: 500,
+            reason: err.statusText,
+            message: err.message,
+          });
+      }
+    }
+  }
+
+  if (!isEmpty(error) || !user) {
+    ctx.body = error;
+    return;
+  }
+
+  const lastToken = ctx.cookies.get('token');
+
+  ctx.cookies.set('token', user.token);
+  ctx.cookies.set('expire', user.expire);
+  ctx.cookies.set('refreshToken', user.refreshToken);
+  ctx.cookies.set('referer', null);
+
+  if (user.username === 'system:pre-registration') {
+    const extraname = safeBase64.safeBtoa(user.extraname);
+    ctx.cookies.set('defaultUser', extraname);
+    ctx.cookies.set('defaultEmail', user.email);
+    ctx.body = {
+      success: true,
+      redirect: '/login/confirm',
+    };
+    return;
+  }
+
+  if (!user.initialized) {
+    ctx.body = {
+      success: true,
+      redirect: '/password/confirm',
+    };
+    return;
+  }
+
+  if (lastToken) {
+    const { username } = jwtDecode(lastToken);
+    if (username && username !== user.username) {
+      ctx.body = {
+        success: true,
+        redirect: '/',
+      };
+      return;
+    }
+  }
+
+  if (authAuthorizeUrl) {
+    ctx.body = {
+      success: true,
+      redirect: authAuthorizeUrl,
+    };
+    return;
+  }
+
+  ctx.body = {
+    success: true,
+    redirect: isValidReferer(referer) ? referer : '/',
+  };
+};
+
+const handleThirdLogin = async ctx => {
+  const params = ctx.request.body;
+
+  let referer = ctx.cookies.get('referer');
+  referer = referer ? decodeURIComponent(referer) : '';
+
+  const error = {};
+  let user = null;
+
+  if (isEmpty(params) || !params.username || !params.encrypt) {
+    Object.assign(error, {
+      status: 400,
+      reason: 'Invalid Login Params',
+      message: 'invalid login params',
+    });
   }
 
   if (isEmpty(error)) {
     try {
-      user = await loginThird(params, { 'x-client-ip': ctx.request.ip })
+      const encryptKey = clientConfig.encryptKey || 'kubesphere';
+      params.password = decryptPassword(params.encrypt, encryptKey);
+      params.provider = get(ctx, 'params.provider');
+
+      user = await loginThird(omit(params, 'encrypt'), {
+        'x-client-ip': ctx.request.ip,
+      });
 
       if (!user) {
         Object.assign(error, {
           status: 401,
           reason: 'Unauthorized',
           message: 'INCORRECT_USERNAME_OR_PASSWORD',
-        })
+        });
       }
     } catch (err) {
-      ctx.app.emit('error', err)
+      ctx.app.emit('error', err);
 
       switch (err.code) {
         case 400:
@@ -186,83 +248,106 @@ const handleThirdLogin = async ctx => {
             status: err.code,
             reason: 'Unauthorized',
             message: 'INCORRECT_USERNAME_OR_PASSWORD',
-          })
-          break
+          });
+          break;
         case 429:
           Object.assign(error, {
             status: err.code,
             reason: 'Too Many Failures',
             message: 'TOO_MANY_FAILURES',
-          })
-          break
+          });
+          break;
         case 502:
           Object.assign(error, {
             status: err.code,
             reason: 'Bad Gateway',
             message: 'FAILED_TO_ACCESS_BACKEND',
-          })
-          break
+          });
+          break;
         case 'ETIMEDOUT':
           Object.assign(error, {
             status: 500,
             reason: 'Internal Server Error',
             message: 'FAILED_TO_ACCESS_API_SERVER',
-          })
-          break
+          });
+          break;
         default:
           Object.assign(error, {
             status: 500,
             reason: err.statusText,
-            message: err.message,
-          })
+            message: err.message || 'FAILED_TO_ACCESS_API_SERVER',
+          });
       }
     }
   }
 
   if (!isEmpty(error) || !user) {
-    ctx.body = error
-    return
+    ctx.body = error;
+    return;
   }
 
-  const lastToken = ctx.cookies.get('token')
+  const lastToken = ctx.cookies.get('token');
 
-  ctx.cookies.set('token', user.token)
-  ctx.cookies.set('expire', user.expire)
-  ctx.cookies.set('refreshToken', user.refreshToken)
-  ctx.cookies.set('referer', null)
+  ctx.cookies.set('token', user.token);
+  ctx.cookies.set('expire', user.expire);
+  ctx.cookies.set('refreshToken', user.refreshToken);
+  ctx.cookies.set('referer', null);
 
   if (user.username === 'system:pre-registration') {
-    const extraname = safeBase64.safeBtoa(user.extraname)
-    ctx.cookies.set('defaultUser', extraname)
-    ctx.cookies.set('defaultEmail', user.email)
-    return ctx.redirect('/login/confirm')
+    const extraname = safeBase64.safeBtoa(user.extraname);
+    ctx.cookies.set('defaultUser', extraname);
+    ctx.cookies.set('defaultEmail', user.email);
+
+    // return ctx.redirect('/login/confirm'); // todo need refactor
+
+    ctx.body = {
+      success: true,
+      redirect: '/login/confirm',
+    };
+    return;
   }
 
   if (!user.initialized) {
-    return ctx.redirect('/password/confirm')
+    // return ctx.redirect('/password/confirm');
+
+    ctx.body = {
+      success: true,
+      redirect: '/password/confirm',
+    };
+    return;
   }
 
   if (lastToken) {
-    const { username } = jwtDecode(lastToken)
+    const { username } = jwtDecode(lastToken);
     if (username && username !== user.username) {
-      return ctx.redirect('/')
+      // return ctx.redirect('/');
+
+      ctx.body = {
+        success: true,
+        redirect: '/',
+      };
+      return;
     }
   }
 
-  ctx.redirect(isValidReferer(referer) ? referer : '/')
-}
+  // ctx.redirect(isValidReferer(referer) ? referer : '/');
+
+  ctx.body = {
+    success: true,
+    redirect: isValidReferer(referer) ? referer : '/',
+  };
+};
 
 const handleLogout = async ctx => {
-  const oAuthLoginInfo = safeParseJSON(
-    decodeURIComponent(ctx.cookies.get('oAuthLoginInfo'))
-  )
+  const oAuthLoginInfo = safeParseJSON(decodeURIComponent(ctx.cookies.get('oAuthLoginInfo')));
 
-  const token = ctx.cookies.get('token')
+  const token = ctx.cookies.get('token');
 
-  ctx.cookies.set('token', null)
-  ctx.cookies.set('expire', null)
-  ctx.cookies.set('refreshToken', null)
-  ctx.cookies.set('oAuthLoginInfo', null)
+  ctx.cookies.set('token', null);
+  ctx.cookies.set('expire', null);
+  ctx.cookies.set('refreshToken', null);
+  ctx.cookies.set('oAuthLoginInfo', null);
+  ctx.cookies.set('authAuthorizeUrl', null);
 
   if (
     !isEmpty(oAuthLoginInfo) &&
@@ -270,107 +355,114 @@ const handleLogout = async ctx => {
     oAuthLoginInfo.type === 'OIDCIdentityProvider' &&
     oAuthLoginInfo.endSessionURL
   ) {
-    const url = `${oAuthLoginInfo.endSessionURL}`
-    ctx.body = { data: { url }, success: true }
+    const url = `${oAuthLoginInfo.endSessionURL}`;
+    ctx.body = { data: { url }, success: true };
   } else {
-    const { origin = '', referer = '' } = ctx.headers
-    const refererPath = referer.replace(origin, '')
+    const { origin = '', referer = '' } = ctx.headers;
+    const refererPath = referer.replace(origin, '');
 
-    await send_gateway_request({
+    await sendGatewayRequest({
       method: 'GET',
       url: '/oauth/logout',
       token,
-    })
+    });
 
     if (isAppsRoute(refererPath)) {
-      ctx.redirect(refererPath)
+      ctx.redirect(refererPath);
     } else {
-      ctx.redirect('/login')
+      ctx.redirect('/login');
     }
   }
-}
+};
 
 const handleOAuthLogin = async ctx => {
-  let user = null
-  const error = {}
-  const oauthParams = omit(ctx.query, ['redirect_url', 'state'])
-  let referer = ctx.cookies.get('referer')
-  referer = referer ? decodeURIComponent(referer) : ''
+  let user = null;
+  const error = {};
+  const oauthParams = omit(ctx.query, ['redirect_url', 'state']);
+  let referer = ctx.cookies.get('referer');
+  referer = referer ? decodeURIComponent(referer) : '';
 
   try {
-    user = await oAuthLogin({ ...oauthParams, oauthName: ctx.params.name })
+    user = await oAuthLogin({ ...oauthParams, oauthName: ctx.params.name });
   } catch (err) {
     /* eslint-disable no-console */
-    console.log(err)
+    console.log(err);
 
-    ctx.app.emit('error', err)
+    ctx.app.emit('error', err);
     Object.assign(error, {
       status: err.code,
       reason: err.statusText,
       message: err.message,
-    })
+    });
   }
 
   if (!isEmpty(error) || !user) {
-    ctx.body = error
-    return
+    ctx.body = error;
+    return;
   }
 
-  ctx.cookies.set('token', user.token)
-  ctx.cookies.set('expire', user.expire)
-  ctx.cookies.set('refreshToken', user.refreshToken)
-  ctx.cookies.set('referer', null)
+  ctx.cookies.set('token', user.token);
+  ctx.cookies.set('expire', user.expire);
+  ctx.cookies.set('refreshToken', user.refreshToken);
+  ctx.cookies.set('referer', null);
 
   if (user.username === 'system:pre-registration') {
-    const extraname = safeBase64.safeBtoa(user.extraname)
-    ctx.cookies.set('defaultUser', extraname)
-    ctx.cookies.set('defaultEmail', user.email)
-    return ctx.redirect('/login/confirm')
+    const extraname = safeBase64.safeBtoa(user.extraname);
+    ctx.cookies.set('defaultUser', extraname);
+    ctx.cookies.set('defaultEmail', user.email);
+    ctx.body = {
+      success: true,
+      redirect: '/login/confirm',
+    };
+    return;
   }
 
-  const state = ctx.query.state
-  const redirect_url = ctx.query.redirect_url
+  const state = ctx.query.state;
+  const redirectUrl = ctx.query.redirect_url;
 
   if (state) {
     try {
-      const state_object = JSON.parse(base64_url_decode(state))
-      const state_url = state_object.redirect_url
-      if (state_url) {
-        ctx.redirect(state_url)
+      const stateObject = JSON.parse(base64UrlDecode(state));
+      const stateUrl = stateObject.redirect_url;
+      if (stateUrl) {
+        ctx.redirect(stateUrl);
       }
     } catch (err) {
       /* eslint-disable no-console */
-      console.log(err)
+      console.log(err);
     }
   }
 
-  if (redirect_url) {
-    const redirectHost = new URL(redirect_url).host
+  if (redirectUrl) {
+    const redirectHost = new URL(redirectUrl).host;
     if (redirectHost === ctx.headers.host) {
-      ctx.redirect(redirect_url)
+      ctx.redirect(redirectUrl);
     }
   } else {
-    ctx.redirect(isValidReferer(referer) ? referer : '/')
+    ctx.redirect(isValidReferer(referer) ? referer : '/');
   }
-}
+};
 
 const handleLoginConfirm = async ctx => {
-  const token = ctx.cookies.get('token')
-  const params = ctx.request.body
+  const token = ctx.cookies.get('token');
+  const params = ctx.request.body;
 
-  await createUser(params, token)
+  await createUser(params, token);
 
-  const data = await getNewToken(ctx)
+  const data = await getNewToken(ctx);
   if (data.token) {
-    ctx.cookies.set('token', data.token)
-    ctx.cookies.set('expire', data.expire)
-    ctx.cookies.set('refreshToken', data.refreshToken)
+    ctx.cookies.set('token', data.token);
+    ctx.cookies.set('expire', data.expire);
+    ctx.cookies.set('refreshToken', data.refreshToken);
 
-    ctx.cookies.set('defaultUser', null)
-    ctx.cookies.set('defaultEmail', null)
-    ctx.redirect('/')
+    ctx.cookies.set('defaultUser', null);
+    ctx.cookies.set('defaultEmail', null);
+    ctx.body = {
+      success: true,
+      redirect: '/',
+    };
   }
-}
+};
 
 module.exports = {
   handleLogin,
@@ -378,4 +470,4 @@ module.exports = {
   handleLogout,
   handleOAuthLogin,
   handleLoginConfirm,
-}
+};

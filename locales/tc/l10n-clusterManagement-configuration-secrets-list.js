@@ -1,29 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Navigation pane
   CONFIGURATION: '配置',
   // Banner
   SECRET_PL: '保密字典',
-  SECRET_DESC: '保密字典（Secret）是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵值對形式保存並且可以在容器組中使用。',
+  SECRET_DESC:
+    '保密字典（Secret）是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵值對形式保存並且可以在容器組中使用。',
   // List
   SECRET_FIELD_COUNT: '字段數量',
-  SECRET_EMPTY_DESC: '保密字典是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
+  SECRET_EMPTY_DESC:
+    '保密字典是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
   // List > Create > Basic Information
   SECRET: '保密字典',
   // List > Create > Data Settings
@@ -42,7 +32,8 @@ module.exports = {
   REGISTRY_ADDRESS_TCAP: '倉庫地址',
   REGISTRY_SECRET_VER_ERR: '鏡像倉庫驗證失敗。',
   REGISTRY_SECRET_VER_SUC: '鏡像倉庫驗證通過。',
-  SECRET_NO_CHINESE_CODE_DESC: '保密字典的鍵必須由字母數字字符、連字符（-）、下劃線（_）或句點（.）組成。',
+  SECRET_NO_CHINESE_CODE_DESC:
+    '保密字典的鍵必須由字母數字字符、連字符（-）、下劃線（_）或句點（.）組成。',
   SECRET_TYPE_DESC: '選擇一個保密字典類型',
   IMAGE_REGISTRY_VALIDATE_TIP: '創建鏡像倉庫密鑰前, 請先驗證用戶名和密碼。',
   DATA_KEY: '鍵',
@@ -53,5 +44,5 @@ module.exports = {
   // List > Edit YAML
   // List > Edit Settings
   DATA: '數據',
-  EDIT_DATA_TCAP: '編輯數據'
+  EDIT_DATA_TCAP: '編輯數據',
 };

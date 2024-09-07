@@ -1,6 +1,4 @@
-# Copyright 2021 The KubeSphere Authors. All rights reserved.
-# Use of this source code is governed by a AGPL-3.0 license
-# that can be found in the LICENSE file.
+
 
 REPO?=kubespheredev
 TAG?=$(shell git rev-parse --abbrev-ref HEAD | sed -e 's/\//-/g')

@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   HOST_CLUSTER: '主集群',
@@ -38,7 +26,8 @@ module.exports = {
   // Kubernetes Status
   KUBERNETES_STATUS: 'Kubernetes 状态',
   API_REQUESTS_PER_SECOND: '每秒 API 请求数',
-  VALUE_REQUESTS_SECOND: '{value, plural, =1 {1 次} other {# 次}}/s',
+  VALUE_REQUESTS_SECOND: '1 次/s',
+  VALUE_REQUESTS_SECOND_PL: '{value} 次/s',
   API_REQUEST_LATENCY: 'API 请求延迟',
   SCHEDULING_OPERATIONS: '调度次数',
   SCHEDULING_OPERATION: '调度次数',
@@ -54,10 +43,12 @@ module.exports = {
   NODE_POD_UTILISATION: '容器组利用率',
   // Cluster Initializing
   WAIT_FOR_CLUSTER: '等待集群加入...',
-  WAIT_FOR_CLUSTER_DESC: '集群当前不可用。请执行以下步骤添加集群。',
-  CLUSTER_AGENT_TIP_1: '1. 通过 SSH 登录集群，并执行 <span class="code">vi agent.yaml</span> 命令创建配置文件。',
+  WAIT_FOR_CLUSTER_DESC: '集群当前不可用，请稍后重试。',
+  CLUSTER_AGENT_TIP_1:
+    '1. 通过 SSH 登录集群，并执行 <span class="code">vi agent.yaml</span> 命令创建配置文件。',
   CLUSTER_AGENT_TIP_2: '2. 将以下信息复制到 <span class="code">agent.yaml</span> 文件中。',
-  CLUSTER_AGENT_TIP_3: '3. 执行 <span class="code">kubectl create -f agent.yaml</span> 命令添加集群。',
+  CLUSTER_AGENT_TIP_3:
+    '3. 执行 <span class="code">kubectl create -f agent.yaml</span> 命令添加集群。',
   CLUSTER_AGENT_TIP_3_DESC: '此操作可能需要一定时间，请等待集群状态更新。',
   CREATING_CLUSTER: '集群创建中...',
   CREATING_CLUSTER_DESC: '集群正在创建中，当前状态不可用。',
@@ -65,5 +56,5 @@ module.exports = {
   CLUSTER_CREATION_PROGRESS: '集群创建进度',
   FETCHING_LOGS: '正在加载日志...',
   CURRENT_STEP: '当前步骤：{step}',
-  CLUSTER_CREATION_PROGRESS_TIP: '取决于集群规模和基础设施环境，集群创建可能需要 30 到 60 分钟。'
+  CLUSTER_CREATION_PROGRESS_TIP: '取决于集群规模和基础设施环境，集群创建可能需要 30 到 60 分钟。',
 };

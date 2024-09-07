@@ -1,23 +1,12 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
-  WORKLOAD_DESC: '工作负载（Workload）用于处理业务请求，可包含一个或多个容器组。日志、监控等系统功能也是由工作负载实现的。',
+  WORKLOAD_DESC:
+    '工作负载（Workload）用于处理业务请求，可包含一个或多个容器组。日志、监控等系统功能也是由工作负载实现的。',
   // List
   DEPLOYMENT_EMPTY_DESC: '请创建一个部署。',
   UPDATING: '更新中',
@@ -45,7 +34,8 @@ module.exports = {
   ADD_CONTAINER_DESC: '自定义容器的设置以创建容器。',
   CONTAINERS: '容器',
   IMAGE_TIME_SIZE_LAYER: '更新于 {time}',
-  IMAGE_DESC: '如需使用私有镜像服务，您需要先创建镜像服务保密字典。<a href={link} target="_blank">了解更多</a>',
+  IMAGE_DESC:
+    '如需使用私有镜像服务，您需要先创建镜像服务保密字典。<a href={link} target="_blank">了解更多</a>',
   IMAGE_PLACEHOLDER: '镜像名称或路径，例如 nginx:latest',
   IMAGE_EMPTY: '请设置镜像。',
   ENTER_POSITIVE_INTEGER_DESC: '请输入一个正整数。',
@@ -53,7 +43,6 @@ module.exports = {
   CONTAINER_NAME: '容器名称',
   CONTAINER_TYPE: '容器类型',
   USE_DEFAULT_PORTS: '使用默认端口',
-  USE_IMAGE_DEFAULT_PORTS: '使用默认镜像端口',
   NO_DEFAULT_PORT: '暂无默认端口配置',
   REGISTRY: '镜像服务',
   SET_IMAGE_DESC: '为容器设置镜像。',
@@ -61,7 +50,7 @@ module.exports = {
   CONTAINER_RESOURCE_LIMIT_TIP: '设置容器的资源上限与资源预留，以将容器调度到合适的节点上。',
   GPU_TYPE: 'GPU 类型',
   GPU_LIMIT: 'GPU 上限',
-  NVIDIA_COM_GPU: 'NVIDIA GPU',
+  NVIDIA_COM_GPU: 'NVIDIA 显卡',
   NO_LIMIT: '无上限',
   NO_REQUEST: '无预留',
   NO_RESOURCE_LIMIT: '无资源上限',
@@ -69,7 +58,8 @@ module.exports = {
   AVAILABLE_QUOTAS: '可用配额',
   // List > Create > Pod Settings > Add Container > Port Settings
   PORT_SETTINGS: '端口设置',
-  ISTIO_PROTOCOL_TIP: '选择服务实际使用的协议以充分利用应用治理功能。例如，为 HTTP 服务选择 HTTP 协议。',
+  ISTIO_PROTOCOL_TIP:
+    '选择服务实际使用的协议以充分利用应用治理功能。例如，为 HTTP 服务选择 HTTP 协议。',
   REQUIRED: '必填',
   // List > Create > Pod Settings > Add Container > Use Local Image First
   IMAGE_PULL_POLICY_ALWAYS: '每次都拉取镜像',
@@ -107,24 +97,21 @@ module.exports = {
   CREATE_CONFIG: '创建配置字典',
   OR: '或',
   CREATE_SECRET: '创建保密字典。',
-  DEFAULT_REPOSITORY: '默认镜像仓库',
-  SET_DEFAULT_REPOSITORY: '设置默认镜像仓库',
-  SET_AS_DEFAULT_REPOSITORY_DESC: '设置为默认镜像仓库后，如果没有特殊指定，系统将使用默认镜像仓库创建应用负载。一个项目中仅允许设置一个默认镜像仓库。',
-  SET_AS_DEFAULT_REPOSITORY: '设为默认镜像仓库',
-  SET_DEFAULT_REPO_SUCCESSFUL: '设置默认镜像仓库成功',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: '容器安全上下文',
   CONTAINER_SECURITY_CONTEXT_DESC: '自定义容器的权限设置。',
   PRIVILEGED_MODE: '特权模式',
   PRIVILEGED_MODE_DESC: '以主机上的 root 用户运行容器进程。',
   ALLOW_PRIVILEGE_ESCALATION: '允许特权提升',
-  ALLOW_PRIVILEGE_ESCALATION_DESC: '允许容器进程获取比父进程更多的特权。当特权模式启用时，此选项目默认启用。',
+  ALLOW_PRIVILEGE_ESCALATION_DESC:
+    '允许容器进程获取比父进程更多的特权。当特权模式启用时，此选项目默认启用。',
   ROOT_DIRECTORY_READONLY: '根目录只读',
   ROOT_DIRECTORY_READONLY_DESC: '将容器文件系统的根目录设置为只读。',
   USER_AND_USER_GROUP: '用户和用户组',
   USER_GROUP: '用户组',
   RUN_AS_NON_ROOT: '仅允许非 root 用户运行',
-  RUN_AS_NON_ROOT_DESC: '启动容器之前检查容器是否将以 root 用户运行。如果容器将以 root 用户运行则不启动容器。',
+  RUN_AS_NON_ROOT_DESC:
+    '启动容器之前检查容器是否将以 root 用户运行。如果容器将以 root 用户运行则不启动容器。',
   RUN_AS_USER_DESC: '执行容器进程入口点的 UID。默认为镜像元数据中指定的 UID。',
   RUN_AS_USER_GROUP_DESC: '执行容器进程入口点的 GID。默认为容器运行时的默认 GID。',
   SELINUX_CONTEXT: 'SELinux 上下文',
@@ -139,14 +126,16 @@ module.exports = {
   UPDATE_STRATEGY: '更新策略',
   ROLLING_UPDATE_RECOMMENDED: '滚动更新（推荐）',
   SIMULTANEOUS_UPDATE: '同时更新',
-  ROLLINGUPDATE_DESC: '用新容器组副本逐步替换旧容器组副本。升级过程中业务流量会负载均衡到新旧容器组副本上，业务不会中断。',
+  ROLLINGUPDATE_DESC:
+    '用新容器组副本逐步替换旧容器组副本。升级过程中业务流量会负载均衡到新旧容器组副本上，业务不会中断。',
   SIMULTANEOUS_UPDATE_DESC: '删除全部旧容器组副本再创建新容器组副本。升级过程中业务会中断。',
   ENTER_INTEGER_OR_PERCENTAGE: '请输入整数或百分比。',
   MAX_EXTRA_EMPTY: '请设置更新过程中允许的多余容器组副本的最大数量或百分比。',
   // List > Create > Pod Settings > Pod Security Context
   POD_SECURITY_CONTEXT: '容器组安全上下文',
   POD_SECURITY_CONTEXT_DESC: '自定义容器组的权限设置。',
-  POD_SECURITY_CONTEXT_TIP: '如果容器组安全上下文和容器安全上下文中都设置了用户、用户组和 SELinux 上下文，容器安全上下文中的设置将覆盖容器组安全上下文中的设置。',
+  POD_SECURITY_CONTEXT_TIP:
+    '如果容器组安全上下文和容器安全上下文中都设置了用户、用户组和 SELinux 上下文，容器安全上下文中的设置将覆盖容器组安全上下文中的设置。',
   // List > Create > Pod Settings > Pod Scheduling Rules
   POD_SCHEDULING_RULES: '容器组调度规则',
   POD_SCHEDULING_RULES_DESC: '设置容器组副本调度到节点的规则。',
@@ -164,10 +153,6 @@ module.exports = {
   MUST_MATCH: '必须匹配',
   TARGET: '目标',
   STRATEGY: '策略',
-  // List > Create > Pod Settings > Pod Grace Period
-  POD_GRACE_PERIOD: '容器组优雅终止',
-  POD_GRACE_PERIOD_DESC: '设置容器终止前等待的时间，超时后容器将强制终止。',
-  TERMINATION_GRACEPERIOD_SECONDS: '终止宽限时间 (s)',
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: '添加元数据',
   POD_ADD_METADATA_DESC: '为容器组副本添加元数据。',
@@ -221,5 +206,5 @@ module.exports = {
   CLUSTER_DIFF_CONTAINER_SETTINGS_DESC: '在不同的集群中使用不同的容器设置。',
   CLUSTER_DIFF_PORT_SETTINGS_DESC: '为不同集群中的容器设置不同的端口。',
   CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: '为不同集群中的容器设置不同的环境变量。',
-  CONTAINER_IMAGE: '容器镜像'
+  CONTAINER_IMAGE: '容器镜像',
 };

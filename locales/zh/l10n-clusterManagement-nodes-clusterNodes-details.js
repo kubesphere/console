@@ -1,20 +1,8 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Attributes
   ATTRIBUTES: '属性',
@@ -35,13 +23,15 @@ module.exports = {
   // More > Edit Taints
   TAINTS: '污点',
   EDIT_TAINTS: '编辑污点',
-  TAINTS_DESC: '为节点添加污点以避免或尽可能避免容器组调度到节点。为节点设置污点后，您可以为容器组设置容忍度以允许容器组调度到有特定污点的节点。',
+  TAINTS_DESC:
+    '为节点添加污点以避免或尽可能避免容器组调度到节点。为节点设置污点后，您可以为容器组设置容忍度以允许容器组调度到有特定污点的节点。',
   COMMON_TAINTS: '公共污点',
   NOSCHEDULE: '阻止调度',
   PREFER_NOSCHEDULE: '尽可能阻止调度',
   NOEXECUTE: '阻止调度并驱逐现有容器组',
   TAINT_SELECT_TIPS: '加入公共污点',
-  TAINTS_TIPS: '<b>阻止调度</b><br/>阻止容器组调度到节点。<br/><br/><b>尽可能阻止调度</b>尽可能阻止容器组调度到节点。<br/><br/><b>阻止调度并驱逐现有容器组</b>阻止容器组调度到节点并驱逐节点上现有的容器组。',
+  TAINTS_TIPS:
+    '<b>阻止调度</b><br/>阻止容器组调度到节点。<br/><br/><b>尽可能阻止调度</b>尽可能阻止容器组调度到节点。<br/><br/><b>阻止调度并驱逐现有容器组</b>阻止容器组调度到节点并驱逐节点上现有的容器组。',
   TAINT_DELETE_TIP: '删除污点',
   // Running Status > Resource Usage
   RESOURCE_USAGE: '资源用量',
@@ -79,5 +69,5 @@ module.exports = {
   // Monitoring
   USAGE: '用量',
   OUT: '出',
-  IN: '入'
+  IN: '入',
 };

@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["dom", "es5", "es2017", "es2020.promise", "ES2021", "DOM.Iterable"],
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    // "isolatedModules": false,
+    "noEmit": false,
+    "paths": {
+      "@ks-console/*": ["packages/*/src"]
+    }
+  },
+  "include": ["src", "packages", "extensions", "server"]
+}

@@ -1,26 +1,14 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
 module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: 'Notification Management',
   NOTIFICATION_CHANNELS: 'Notification Channels',
-  NOTIFICATION_CHANNELS_DESC: 'Notify users through multiple channels when resource metrics meet conditions configured in rule groups.',
+  NOTIFICATION_CHANNELS_DESC:
+    'Notify users through multiple channels when resource metrics meet conditions configured in rule groups.',
   // Email
   MAIL_TITLE: 'Email',
   MAIL_DESC: 'Send notifications to email addresses.',
@@ -36,8 +24,10 @@ module.exports = {
   CONTAINER: 'Container',
   VALUES: 'Values',
   CONDITION_OPERATOR: 'Operator',
-  NOTIFICATION_CONDITION_SETTING_TIP: 'The <strong>Contain</strong> and <strong>Not contain</strong> operators require one or more values. You can press <strong>Enter</strong> to set multiple values.',
-  NOTIFICATION_CONDITION_SETTINGS_DESC: 'Set the system to send only alerts that meet the conditions.',
+  NOTIFICATION_CONDITION_SETTING_TIP:
+    'The <strong>Contain</strong> and <strong>Not contain</strong> operators require one or more values. You can press <strong>Enter</strong> to set multiple values.',
+  NOTIFICATION_CONDITION_SETTINGS_DESC:
+    'Set the system to send only alerts that meet the conditions.',
   CONTAIN: 'Contain',
   NOT_CONTAIN: 'Not contain',
   EXIST: 'Exist',
@@ -46,10 +36,10 @@ module.exports = {
     'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
   PATTERN_TAG_VALUE_INVALID_TIP:
     'Invalid value. The value can only contain uppercase and lowercase letters, numbers, hyphens (-), underscores (_) and dots (.) and must begin and end with an uppercase or lowercase letter or number and be a maximum of 63 characters.',
-  INVALID_NOTIFICATION_CONDITION:
-    'Please enter a correct notification condition.',
+  INVALID_NOTIFICATION_CONDITION: 'Please enter a correct notification condition.',
   SEND_TEST_MESSAGE: 'Send Test Message',
-  SEND_TEST_MESSAGE_DESC: 'Send a test message to verify that the notification channel is working properly.',
+  SEND_TEST_MESSAGE_DESC:
+    'Send a test message to verify that the notification channel is working properly.',
   SEND_TEST_MESSAGE_SUCCESS_DESC: 'Verified successfully. A test message has been sent.',
   SMTP_SERVER_ADDRESS: 'SMTP Server Address',
   USE_SSL_SECURE_CONNECTION: 'Use SSL secure connection',
@@ -67,13 +57,14 @@ module.exports = {
   POD: 'Pod',
   UPDATE_SUCCESSFUL: 'Updated successfully.',
   // Feishu
-  FEISHU:'Feishu',
+  FEISHU: 'Feishu',
   FEISHU_TITLE: 'Feishu',
   FEISHU_DESC: 'Send notifications to Feishu users.',
   PLEASE_ENTER_APP_ID: 'Please enter an app ID.',
   USER_ID: 'User ID',
   DEPARTMENT_ID: 'Department ID',
-  FEISHU_RECEIPIENT_SETTINGS_DESC: 'To receive notifications, please set at least one user ID or department ID.',
+  FEISHU_RECEIPIENT_SETTINGS_DESC:
+    'To receive notifications, please set at least one user ID or department ID.',
   FEISHU_SECRET: 'Secret',
   // DingTalk
   DINGTALK_TITLE: 'DingTalk',
@@ -152,4 +143,4 @@ module.exports = {
   WEBHOOK_USERNAME_EMPTY_DESC: 'Please enter a username.',
   WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
   WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.',
-}
+};

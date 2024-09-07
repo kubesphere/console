@@ -1,32 +1,22 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
 module.exports = {
   // Navigation pane
   STORAGE: 'Storage',
   // Banner
-  PERSISTENT_VOLUME_CLAIM_DESC:'Persistent volume claims define storage requirements. The system creates persistent volumes according to persistent volume claims.',
+  PERSISTENT_VOLUME_CLAIM_DESC:
+    'Persistent volume claims define storage requirements. The system creates persistent volumes according to persistent volume claims.',
   PERSISTENT_VOLUME_CLAIM: 'Persistent Volume Claim',
   PERSISTENT_VOLUME_CLAIM_PL: 'Persistent Volume Claims',
   WHAT_IS_STORAGE_CLASS_Q: 'What is a storage class?',
-  WHAT_IS_STORAGE_CLASS_A: 'A storage class is a storage type configured by the cluster administrator. Different storage classes provide cluster users with different types of volumes.',
+  WHAT_IS_STORAGE_CLASS_A:
+    'A storage class is a storage type configured by the cluster administrator. Different storage classes provide cluster users with different types of volumes.',
   WHAT_IS_LOCAL_VOLUME_Q: 'What is a local volume?',
-  WHAT_IS_LOCAL_VOLUME_A:'A local volume is a volume created in the local file system of the cluster.',
+  WHAT_IS_LOCAL_VOLUME_A:
+    'A local volume is a volume created in the local file system of the cluster.',
   // List
   VOLUME_STATUS_BOUND: 'Bound',
   VOLUME_STATUS_LOST: 'Lost',
@@ -60,4 +50,4 @@ module.exports = {
   // List > Edit YAML
   // List > Delete
   PERSISTENT_VOLUME_CLAIM_LOW: 'persistent volume claim',
-}
+};

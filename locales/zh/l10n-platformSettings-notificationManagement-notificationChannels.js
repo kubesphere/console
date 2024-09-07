@@ -1,25 +1,14 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
+
 module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: '通知管理',
   NOTIFICATION_CHANNELS: '通知渠道',
-  NOTIFICATION_CHANNELS_DESC: '当资源指标满足规则组中配置的条件和持续时间时，通过多种渠道通知用户。',
+  NOTIFICATION_CHANNELS_DESC:
+    '当资源指标满足规则组中配置的条件和持续时间时，通过多种渠道通知用户。',
   // Email
   MAIL_TITLE: '邮件',
   MAIL_DESC: '向邮件地址发送通知。',
@@ -35,14 +24,17 @@ module.exports = {
   CONTAINER: '容器',
   VALUES: '值',
   CONDITION_OPERATOR: '操作符',
-  NOTIFICATION_CONDITION_SETTING_TIP: '<strong>包含</strong>和<strong>不包含</strong>操作符需要一个或多个值。您可以按 <strong>Enter</strong> 设置多个值。',
+  NOTIFICATION_CONDITION_SETTING_TIP:
+    '<strong>包含</strong>和<strong>不包含</strong>操作符需要一个或多个值。您可以按 <strong>Enter</strong> 设置多个值。',
   NOTIFICATION_CONDITION_SETTINGS_DESC: '设置系统仅发送符合条件的告警。',
   CONTAIN: '包含',
   NOT_CONTAIN: '不包含',
   EXIST: '存在',
   NOT_EXIST: '不存在',
-  PATTERN_TAG_INVALID_TIP: '标签无效。标签只能包含字母、数字、连字符（-）、下划线（_）和句点（.），必须以数字或字母开头和结尾。',
-  PATTERN_TAG_VALUE_INVALID_TIP: '值无效。值只能包含字母、数字、连字符（-）、下划线（_）和句点（.），必须以数字或字母开头和结尾，最长 63 个字符。',
+  PATTERN_TAG_INVALID_TIP:
+    '标签无效。标签只能包含字母、数字、连字符（-）、下划线（_）和句点（.），必须以数字或字母开头和结尾。',
+  PATTERN_TAG_VALUE_INVALID_TIP:
+    '值无效。值只能包含字母、数字、连字符（-）、下划线（_）和句点（.），必须以数字或字母开头和结尾，最长 63 个字符。',
   INVALID_NOTIFICATION_CONDITION: '请填写正确的通知条件。',
   SEND_TEST_MESSAGE: '发送测试信息',
   SEND_TEST_MESSAGE_DESC: '发送测试消息以确认通知渠道工作正常。',
@@ -67,8 +59,8 @@ module.exports = {
   FEISHU_TITLE: '飞书',
   FEISHU_DESC: '向飞书用户发送通知。',
   PLEASE_ENTER_APP_ID: '请输入 App ID。',
-  USER_ID: 'User ID',
-  DEPARTMENT_ID: 'Department ID',
+  USER_ID: '用户 ID',
+  DEPARTMENT_ID: '部门 ID',
   FEISHU_RECEIPIENT_SETTINGS_DESC: '如需接收通知，请设置至少一个 User ID 或 Department ID。',
   FEISHU_SECRET: '密钥',
   // DingTalk
@@ -147,5 +139,5 @@ module.exports = {
   TOKEN: '令牌',
   WEBHOOK_USERNAME_EMPTY_DESC: '请输入一个用户名。',
   WEBHOOK_PASSWORD_EMPTY_DESC: '请输入密码。',
-  WEBHOOK_TOKEN_EMPTY_DESC: '请输入一个令牌。'
+  WEBHOOK_TOKEN_EMPTY_DESC: '请输入一个令牌。',
 };
