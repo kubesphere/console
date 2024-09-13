@@ -33,7 +33,7 @@
     "lodash": "^4.17.21",
     "node-cache": "^5.1.2",
     "node-fetch": "^2.6.1",
-    "path-to-regexp": "^2.2.1",
+    "path-to-regexp": "^3.3.0",
     "stream-array": "^1.1.2"
   },
   "gitHead": "6380079918d574a833739b35ee51b0d2f72985ee"
