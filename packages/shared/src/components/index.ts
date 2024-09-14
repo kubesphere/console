@@ -88,3 +88,4 @@ export { default as WorkspaceSelectorModal } from './WorkspaceLayout/WorkspaceSe
 export { default as WorkspaceClusterSettingsForm } from './WorkspaceLayout/WorkspaceClusterSettingsForm';
 export { WorkspaceBasicInfoForm } from './WorkspaceLayout/WorkspaceBasicInfoForm';
 export { default as ProjectsSelectorModal } from './ProjectLayout/ProjectsSelectorModal';
+export * from './ExtensionConsoleV3Embed';

@@ -85,24 +85,24 @@ const ProfileMenu = ({ isLogin }: ProfileMenuProps) => {
     });
   };
 
-  // const openNotificationV3Modal = () => {
-  //   open({
-  //     action: 'notification.user.setting',
-  //     v3Module: 'userStore',
-  //     v3StoreParams: {},
-  //   });
-  // };
+  const openNotificationV3Modal = () => {
+    open({
+      action: 'notification.user.setting',
+      v3Module: 'userStore',
+      v3StoreParams: {},
+    });
+  };
 
   const userMenu = (
     <Menu>
       <MenuItem icon={<Wrench />} onClick={openUserSettingModal}>
         {t('USER_SETTINGS')}
       </MenuItem>
-      {/* {hasKSModule('whizard-notification') && v3Completed && (
+      {hasKSModule('whizard-notification') && v3Completed && (
         <MenuItem icon={<Loudspeaker />} onClick={openNotificationV3Modal}>
           <NotifiContext>{t('NOTIFICATION_SETTINGS')}</NotifiContext>
         </MenuItem>
-      )} */}
+      )}
       <MenuItem icon={<Logout />} as="a" href="/logout">
         {t('LOG_OUT')}
       </MenuItem>

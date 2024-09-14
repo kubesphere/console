@@ -24,6 +24,8 @@ enum TimeToS {
   h = 3600,
 }
 
+type TimeUnit = keyof typeof TimeToS;
+
 function getValue(val: number): {
   unit: 's' | 'm' | 'h';
   value: number;
@@ -78,8 +80,11 @@ function TimeInput({ value, onChange, hideSeconds }: Props): JSX.Element {
     onChange?.(getSeconds(target.value));
   }
 
-  function handleChangeUnit(unitStr: any): void {
+  function handleChangeUnit(unitStr: TimeUnit): void {
+    const currentSeconds = +interval * TimeToS[unitStr];
+
     setUnit(unitStr);
+    onChange?.(currentSeconds);
   }
 
   return (

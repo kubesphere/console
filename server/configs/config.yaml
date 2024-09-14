@@ -435,71 +435,71 @@ client:
               authKey: 'project-settings',
             }
 
-  # federatedProjectNavs:
-  #   cate: 'project'
-  #   children:
-  #     - { name: overview, title: OVERVIEW, icon: dashboard, skipAuth: true }
-  #     - name: app-workloads
-  #       title: APPLICATION_WORKLOAD_PL
-  #       icon: appcenter
-  #       children:
-  #         - { name: applications, title: COMPOSED_APP_PL, icon: application }
-  #         - { name: services, title: SERVICE_PL }
-  #         - name: workloads
-  #           title: WORKLOAD_PL
-  #           tabs:
-  #             - { name: deployments, title: DEPLOYMENT_PL }
-  #             - { name: statefulsets, title: STATEFULSET_PL }
-  #         - { name: ingresses, title: ROUTE_PL }
-  #     - { name: volumes, title: PERSISTENT_VOLUME_CLAIM, icon: storage }
-  #     - name: config
-  #       title: CONFIGURATION
-  #       icon: hammer
-  #       children:
-  #         - { name: secrets, title: SECRET_PL }
-  #         - { name: configmaps, title: CONFIGMAP_PL }
-  #     - name: settings
-  #       title: PROJECT_SETTINGS
-  #       icon: cogwheel
-  #       children:
-  #         - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
-  #         - { name: quota, title: PROJECT_QUOTA_PL, authKey: 'project-settings' }
-  #         - {
-  #             name: log-collections,
-  #             title: LOG_COLLECTION,
-  #             ksModuleAnnotationClusters: 'whizard-logging|logging.kubesphere.io/enable-loggingsidecar',
-  #             ksModule: whizard-logging,
-  #             authKey: 'project-settings',
-  #           }
+  federatedProjectNavs:
+    cate: 'project'
+    children:
+      - { name: overview, title: OVERVIEW, icon: dashboard, skipAuth: true }
+      - name: app-workloads
+        title: APPLICATION_WORKLOAD_PL
+        icon: appcenter
+        children:
+          - { name: applications, title: COMPOSED_APP_PL, icon: application }
+          - { name: services, title: SERVICE_PL }
+          - name: workloads
+            title: WORKLOAD_PL
+            tabs:
+              - { name: deployments, title: DEPLOYMENT_PL }
+              - { name: statefulsets, title: STATEFULSET_PL }
+          - { name: ingresses, title: ROUTE_PL }
+      - { name: volumes, title: PERSISTENT_VOLUME_CLAIM, icon: storage }
+      - name: config
+        title: CONFIGURATION
+        icon: hammer
+        children:
+          - { name: secrets, title: SECRET_PL }
+          - { name: configmaps, title: CONFIGMAP_PL }
+      - name: settings
+        title: PROJECT_SETTINGS
+        icon: cogwheel
+        children:
+          - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
+          - { name: quota, title: PROJECT_QUOTA_PL, authKey: 'project-settings' }
+          - {
+              name: log-collections,
+              title: LOG_COLLECTION,
+              ksModuleAnnotationClusters: 'whizard-logging|logging.kubesphere.io/enable-loggingsidecar',
+              ksModule: whizard-logging,
+              authKey: 'project-settings',
+            }
 
-  # # devops page navigations
-  # devopsNavs:
-  #   name: 'devops'
-  #   children:
-  #     - { name: pipelines, title: PIPELINE_PL, icon: application }
-  #     - {
-  #         name: cd,
-  #         title: CONTINUOUS_DEPLOYMENT_PL,
-  #         icon: rocket,
-  #         authKey: 'applications',
-  #         # requiredClusterVersion: v3.3.0,
-  #       }
-  #     - {
-  #         name: code-repo,
-  #         title: CODE_REPO_PL,
-  #         icon: code,
-  #         authKey: 'gitrepositories',
-  #         # requiredClusterVersion: v3.3.0,
-  #       }
-  #     - name: management
-  #       title: DEVOPS_PROJECT_SETTINGS
-  #       icon: cogwheel
-  #       open: true
-  #       children:
-  #         - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
-  #         - { name: credentials, title: CREDENTIAL_PL }
-  #         - { name: roles, title: DEVOPS_PROJECT_ROLE_PL }
-  #         - { name: members, title: DEVOPS_PROJECT_MEMBER_PL }
+  # devops page navigations
+  devopsNavs:
+    name: 'devops'
+    children:
+      - { name: pipelines, title: PIPELINE_PL, icon: application }
+      - {
+          name: cd,
+          title: CONTINUOUS_DEPLOYMENT_PL,
+          icon: rocket,
+          authKey: 'applications',
+          # requiredClusterVersion: v3.3.0,
+        }
+      - {
+          name: code-repo,
+          title: CODE_REPO_PL,
+          icon: code,
+          authKey: 'gitrepositories',
+          # requiredClusterVersion: v3.3.0,
+        }
+      - name: management
+        title: DEVOPS_PROJECT_SETTINGS
+        icon: cogwheel
+        open: true
+        children:
+          - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
+          - { name: credentials, title: CREDENTIAL_PL }
+          - { name: roles, title: DEVOPS_PROJECT_ROLE_PL }
+          - { name: members, title: DEVOPS_PROJECT_MEMBER_PL }
 
   # toolbox nav
   toolboxNavs:
@@ -552,140 +552,154 @@ client:
               enabled: true,
             }
 
-  # # whizard telemetry navigations
-  # whizardTelemetryNavs:
-  #   name: 'whizardTelemetry'
-  #   children:
-  #     - name: resource-monitoring
-  #       title: WHIZARD_MONITORING.RESOURCE_MONITORING
-  #       icon: dashboard
-  #       children:
-  #         - name: overview
-  #           title: WHIZARD_MONITORING.MULTI_CLUSTER_MONITOR
-  #           skipAuth: true
-  #         - name: ranking
-  #           title: WHIZARD_MONITORING.RESOURCE_RANKING_PL
-  #           skipAuth: true
-  #     - name: global-alarm
-  #       title: GLOBAL_ALERTS
-  #       icon: alarm-lamp
-  #       ksModule: whizard-alerting
-  #       children:
-  #         - name: alerting/builtin-alerts
-  #           title: WHIZARD_MONITORING.BUILT_IN_ALERTING_PL
-  #           skipAuth: true
-  #         - name: alerting/custom-alerts
-  #           title: WHIZARD_MONITORING.CUSTOM_ALERTING_PL
-  #           skipAuth: true
-  #         - name: alerting/builtin-rules
-  #           title: BUILT_IN_POLICIES
-  #           skipAuth: true
-  #         - name: alerting/custom-rules
-  #           title: CUSTOM_POLICIES
-  #           skipAuth: true
-  #     - name: resource-filter
-  #       title: WHIZARD_MONITORING.RESOURCE_FILTER
-  #       icon: magnifier
-  #       children:
-  #         - name: pods
-  #           title: POD_PL
-  #           skipAuth: true
+  alertingCenterNavs:
+    name: 'alerting'
+    children:
+      - cate: 'alertingCenter'
+        items:
+          - name: message
+            title: ALERTING_MESSAGE_PL
+            icon: loudspeaker
+            skipAuth: true
+          - name: policy
+            title: ALERTING_POLICY_PL
+            icon: bell
+            skipAuth: true
 
-  # observabilityNavs:
-  #   name: 'observability'
-  #   children:
-  #     - cate: observability
-  #       items:
-  #         - name: overview
-  #           title: OVERVIEW
-  #           icon: dashboard
-  #           skipAuth: true
-  #           showInDisable: true
-  #         - name: nodes
-  #           title: NODE_PL
-  #           icon: nodes
-  #           children:
-  #             - { name: nodes, title: CLUSTER_NODE_PL }
-  #             - { name: edgenodes, title: EDGE_NODE_PL, clusterModule: edgeruntime }
-  #         - { name: projects, title: PROJECT_PL, icon: project }
-  #         - name: app-workloads
-  #           title: APPLICATION_WORKLOAD_PL
-  #           icon: appcenter
-  #           children:
-  #             - name: workloads
-  #               title: WORKLOAD_PL
-  #               tabs:
-  #                 - { name: deployments, title: DEPLOYMENT_PL }
-  #                 - { name: statefulsets, title: STATEFULSET_PL }
-  #                 - { name: daemonsets, title: DAEMONSET_PL }
-  #             - name: jobs
-  #               title: JOB_PL
-  #               tabs:
-  #                 - { name: jobs, title: JOB_PL }
-  #                 - { name: cronjobs, title: CRONJOB_PL }
-  #             - { name: pods, title: POD_PL }
-  #             - { name: services, title: SERVICE_PL }
-  #             - { name: ingresses, title: ROUTE_PL }
-  #         # Contains dangerous operations, only available for platform-admin.
-  #         - name: storage
-  #           title: STORAGE
-  #           icon: database
-  #           children:
-  #             - { name: volumes, title: PERSISTENT_VOLUME_CLAIM_PL }
-  #             - { name: storageclasses, title: STORAGE_CLASS_PL }
-  #             - {
-  #                 name: volume-snapshots,
-  #                 title: VOLUME_SNAPSHOT_PL,
-  #                 ksModule: 'storage-utils',
-  #                 clusterModule: 'storage-utils',
-  #                 authKey: 'volumesnapshots',
-  #               }
-  #             - {
-  #                 name: volume-snapshot-classes,
-  #                 title: VOLUME_SNAPSHOT_CLASS_PL,
-  #                 ksModule: 'storage-utils',
-  #                 clusterModule: 'storage-utils',
-  #                 authKey: 'volumesnapshotclasses',
-  #               }
-  #         - name: monitoring-alerting
-  #           title: MONITORING_AND_ALERTING
-  #           icon: monitor
-  #           children:
-  #             - {
-  #                 name: alerts,
-  #                 title: ALERTING_MESSAGE_PL,
-  #                 icon: loudspeaker,
-  #                 clusterModule: whizard-alerting,
-  #               }
-  #             - {
-  #                 name: alert-rules,
-  #                 title: ALERTING_POLICY_PL,
-  #                 icon: hammer,
-  #                 clusterModule: whizard-alerting,
-  #                 authKey: 'rulegroups',
-  #               }
-  #             - {
-  #                 name: monitor-cluster,
-  #                 title: CLUSTER_STATUS,
-  #                 icon: linechart,
-  #                 authKey: monitoring,
-  #               }
-  #             - {
-  #                 name: monitor-resource,
-  #                 title: APPLICATION_RESOURCE_PL,
-  #                 icon: linechart,
-  #                 authKey: monitoring,
-  #               }
-  #             # - {
-  #             #     name: custom-monitoring,
-  #             #     title: CUSTOM_MONITORING,
-  #             #     requiredClusterVersion: v3.1.0,
-  #             #   }
-  #         - name: gateways
-  #           title: GATEWAY_SETTINGS
-  #           icon: loadbalancer
-  #           clusterModule: 'gateway'
-  #           authKey: 'gateway'
+  # whizard telemetry navigations
+  whizardTelemetryNavs:
+    name: 'whizardTelemetry'
+    children:
+      - name: resource-monitoring
+        title: WHIZARD_MONITORING.RESOURCE_MONITORING
+        icon: dashboard
+        children:
+          - name: overview
+            title: WHIZARD_MONITORING.MULTI_CLUSTER_MONITOR
+            skipAuth: true
+          - name: ranking
+            title: WHIZARD_MONITORING.RESOURCE_RANKING_PL
+            skipAuth: true
+      - name: global-alarm
+        title: GLOBAL_ALERTS
+        icon: alarm-lamp
+        ksModule: whizard-alerting
+        children:
+          - name: alerting/builtin-alerts
+            title: WHIZARD_MONITORING.BUILT_IN_ALERTING_PL
+            skipAuth: true
+          - name: alerting/custom-alerts
+            title: WHIZARD_MONITORING.CUSTOM_ALERTING_PL
+            skipAuth: true
+          - name: alerting/builtin-rules
+            title: BUILT_IN_POLICIES
+            skipAuth: true
+          - name: alerting/custom-rules
+            title: CUSTOM_POLICIES
+            skipAuth: true
+      - name: resource-filter
+        title: WHIZARD_MONITORING.RESOURCE_FILTER
+        icon: magnifier
+        children:
+          - name: pods
+            title: POD_PL
+            skipAuth: true
+
+  observabilityNavs:
+    name: 'observability'
+    children:
+      - cate: observability
+        items:
+          - name: overview
+            title: OVERVIEW
+            icon: dashboard
+            skipAuth: true
+            showInDisable: true
+          - name: nodes
+            title: NODE_PL
+            icon: nodes
+            children:
+              - { name: nodes, title: CLUSTER_NODE_PL }
+              - { name: edgenodes, title: EDGE_NODE_PL, clusterModule: edgeruntime }
+          - { name: projects, title: PROJECT_PL, icon: project }
+          - name: app-workloads
+            title: APPLICATION_WORKLOAD_PL
+            icon: appcenter
+            children:
+              - name: workloads
+                title: WORKLOAD_PL
+                tabs:
+                  - { name: deployments, title: DEPLOYMENT_PL }
+                  - { name: statefulsets, title: STATEFULSET_PL }
+                  - { name: daemonsets, title: DAEMONSET_PL }
+              - name: jobs
+                title: JOB_PL
+                tabs:
+                  - { name: jobs, title: JOB_PL }
+                  - { name: cronjobs, title: CRONJOB_PL }
+              - { name: pods, title: POD_PL }
+              - { name: services, title: SERVICE_PL }
+              - { name: ingresses, title: ROUTE_PL }
+          # Contains dangerous operations, only available for platform-admin.
+          - name: storage
+            title: STORAGE
+            icon: database
+            children:
+              - { name: volumes, title: PERSISTENT_VOLUME_CLAIM_PL }
+              - { name: storageclasses, title: STORAGE_CLASS_PL }
+              - {
+                  name: volume-snapshots,
+                  title: VOLUME_SNAPSHOT_PL,
+                  ksModule: 'storage-utils',
+                  clusterModule: 'storage-utils',
+                  authKey: 'volumesnapshots',
+                }
+              - {
+                  name: volume-snapshot-classes,
+                  title: VOLUME_SNAPSHOT_CLASS_PL,
+                  ksModule: 'storage-utils',
+                  clusterModule: 'storage-utils',
+                  authKey: 'volumesnapshotclasses',
+                }
+          - name: monitoring-alerting
+            title: MONITORING_AND_ALERTING
+            icon: monitor
+            children:
+              - {
+                  name: alerts,
+                  title: ALERTING_MESSAGE_PL,
+                  icon: loudspeaker,
+                  clusterModule: whizard-alerting,
+                }
+              - {
+                  name: alert-rules,
+                  title: ALERTING_POLICY_PL,
+                  icon: hammer,
+                  clusterModule: whizard-alerting,
+                  authKey: 'rulegroups',
+                }
+              - {
+                  name: monitor-cluster,
+                  title: CLUSTER_STATUS,
+                  icon: linechart,
+                  authKey: monitoring,
+                }
+              - {
+                  name: monitor-resource,
+                  title: APPLICATION_RESOURCE_PL,
+                  icon: linechart,
+                  authKey: monitoring,
+                }
+              # - {
+              #     name: custom-monitoring,
+              #     title: CUSTOM_MONITORING,
+              #     requiredClusterVersion: v3.1.0,
+              #   }
+          - name: gateways
+            title: GATEWAY_SETTINGS
+            icon: loadbalancer
+            clusterModule: 'gateway'
+            authKey: 'gateway'
 
   # system workspace rules control
   systemWorkspace: system-workspace

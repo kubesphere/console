@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { Navigate, RouteObject } from 'react-router-dom';
-// import { alertingDetailRoutes, alertingListRoutes } from '../containers/Alerting/routes';
+import { alertingDetailRoutes, alertingListRoutes } from '../containers/Alerting/routes';
 import BaseLayout from '../containers/Base/BaseLayout';
 import ListLayout from '../containers/Base/ListLayout';
 // import projectList from '../../workspaces/containers/Members/Detail/ProjectList';
@@ -20,17 +20,20 @@ import CustomResourcesDetail from '../containers/CustomResources/Detail';
 import ResourceStatus from '../containers/CustomResources/Detail/ResourceStatus';
 
 import KubeConfig from '../containers/KubeConfig';
-// import MonitorRoutes from '../containers/Monitor/routes';
+import MonitorRoutes from '../containers/Monitor/routes';
 
-// import { networkDetailRoutes, networkListRoutes } from '../containers/Network/routes';
+import { networkDetailRoutes, networkListRoutes } from '../containers/Network/routes';
 import Nodes from '../containers/Nodes';
 import NodesDetailRoutes from '../containers/Nodes/Detail/routes';
-// import EdgeNodes from '../containers/KubeEdge/index';
-// import EdgeNodesRoutes from '../containers/KubeEdge/Detail/routes';
+import EdgeNodes from '../containers/KubeEdge/index';
+import EdgeNodesRoutes from '../containers/KubeEdge/Detail/routes';
 import Overview from '../containers/Overview/';
 import { projectDetailRoutes, projectListRoutes } from '../containers/Projects/routes';
 import { storageDetailRoutes, storageListRoutes } from '../containers/Storage/routes';
 
+import SystemComponents from '../containers/SystemComponents';
+import SystemComponentDetail from '../containers/SystemComponents/Detail';
+import SystemComponentDetailTab from '../containers/SystemComponents/Detail/ServiceDetail';
 // import CronJobsDetail from '../containers/Workload/CronJobs/Detail/routes';
 // import DaemonSets from '../containers/Workload/DaemonSets/Embed';
 
@@ -76,10 +79,10 @@ const routes: RouteObject[] = [
             path: `${PATH}/nodes`,
             element: <Nodes />,
           },
-          /* {
+          {
             path: `${PATH}/edgenodes`,
             element: <EdgeNodes />,
-          }, */
+          },
           {
             path: `${PATH}/customresources`,
             element: <CustomResources />,
@@ -88,10 +91,10 @@ const routes: RouteObject[] = [
           //   path: `${PATH}/projects`,
           //   element: <Projects />,
           // },
-          // {
-          //   path: `${PATH}/components`,
-          //   element: <SystemComponents />,
-          // },
+          {
+            path: `${PATH}/components`,
+            element: <SystemComponents />,
+          },
           // ...WorkloadRoutes,
           {
             path: `${PATH}/workloads`,
@@ -102,12 +105,12 @@ const routes: RouteObject[] = [
             path: `${PATH}/pods`,
             element: <Pods />,
           },
-          // ...networkListRoutes,
+          ...networkListRoutes,
           ...configListRoutes,
           ...storageListRoutes,
-          // ...MonitorRoutes,
+          ...MonitorRoutes,
           ...clusterSettingListRoutes,
-          // ...alertingListRoutes,
+          ...alertingListRoutes,
           ...projectListRoutes,
         ],
       },
@@ -130,20 +133,20 @@ const routes: RouteObject[] = [
           },
         ],
       },
-      // {
-      //   path: `${PATH}/components/:namespace/:name`,
-      //   element: <SystemComponentDetail />,
-      //   children: [
-      //     {
-      //       index: true,
-      //       element: <Navigate to="service-details" replace />,
-      //     },
-      //     {
-      //       path: 'service-details',
-      //       element: <SystemComponentDetailTab />,
-      //     },
-      //   ],
-      // },
+      {
+        path: `${PATH}/components/:namespace/:name`,
+        element: <SystemComponentDetail />,
+        children: [
+          {
+            index: true,
+            element: <Navigate to="service-details" replace />,
+          },
+          {
+            path: 'service-details',
+            element: <SystemComponentDetailTab />,
+          },
+        ],
+      },
 
       // {
       //   path: `${PATH}/projects/:namespace/services/:name/`,
@@ -157,15 +160,15 @@ const routes: RouteObject[] = [
       // },
       ...projectDetailRoutes,
       ...NodesDetailRoutes,
-      // ...networkDetailRoutes,
+      ...networkDetailRoutes,
       ...configDetailRoutes,
       ...storageDetailRoutes,
       ...clusterSettingDetailRoutes,
       ...ApplicationWorkloadDetailRoutes(PATH),
       ...PodDetail,
       ...IngressDetail,
-      // ...alertingDetailRoutes,
-      // ...EdgeNodesRoutes,
+      ...alertingDetailRoutes,
+      ...EdgeNodesRoutes,
     ],
   },
 ];

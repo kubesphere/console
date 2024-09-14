@@ -9,7 +9,7 @@ import { Navigate } from 'react-router-dom';
 import { BaseLayout, ListLayout } from '../containers/Base';
 
 import Overview from '../containers/Overview';
-// import Devops from '../containers/Devops';
+import Devops from '../containers/Devops';
 import BaseInfo from '../containers/BaseInfo';
 import QuotaManage from '../containers/QuotaManage';
 // import Groups from '../containers/Groups';
@@ -18,12 +18,12 @@ import Members from '../containers/Members';
 import memberDetailRoutes from '../containers/Members/Detail/routes';
 import roleDetailRoutes from '../containers/Roles/Detail/routes';
 import Projects from '../containers/Projects';
-// import FedProjects from '../containers/FedProjects';
+import FedProjects from '../containers/FedProjects';
 import Repos from '../containers/Repos';
 import AppTemplate from '../containers/AppTemplates';
 import repoDetailRoutes from '../containers/Repos/RepoDetail/routes';
-// import Gateway from '../containers/Gateway';
-// import GatewayDetail from '../containers/Gateway/Detail/routes';
+import Gateway from '../containers/Gateway';
+import GatewayDetail from '../containers/Gateway/Detail/routes';
 // import appTemplateDetailRoutes from '../containers/AppTemplates/AppTemplateDetail/routes';
 
 const PATH = '/workspaces/:workspace';
@@ -52,14 +52,14 @@ export default [
             path: 'projects',
             element: <Projects />,
           },
-          /* {
+          {
             path: 'federatedprojects',
             element: <FedProjects />,
-          }, */
-          /* {
+          },
+          {
             path: 'devops',
             element: <Devops />,
-          }, */
+          },
           {
             path: 'apps',
             element: <AppTemplate />,
@@ -88,25 +88,25 @@ export default [
             path: 'members',
             element: <Members />,
           },
-          // {
-          //   path: `gateways`,
-          //   children: [
-          //     {
-          //       index: true,
-          //       element: <Navigate to="workspace" replace />,
-          //     },
-          //     {
-          //       path: `${PATH}/gateways/:component`,
-          //       element: <Gateway />,
-          //     },
-          //   ],
-          // },
+          {
+            path: `gateways`,
+            children: [
+              {
+                index: true,
+                element: <Navigate to="workspace" replace />,
+              },
+              {
+                path: `${PATH}/gateways/:component`,
+                element: <Gateway />,
+              },
+            ],
+          },
         ],
       },
       ...roleDetailRoutes,
       ...memberDetailRoutes,
       ...repoDetailRoutes,
-      // ...GatewayDetail,
+      ...GatewayDetail,
       // ...appTemplateDetailRoutes,
     ],
   },

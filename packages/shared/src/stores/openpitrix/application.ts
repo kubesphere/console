@@ -44,6 +44,7 @@ const STATUSES: Record<string, string> = {
   upgrading: 'Upgrading',
   upgraded: 'Upgrading',
   deployFailed: 'Failed',
+  timeout: 'Failed',
 };
 
 export function dataItemFormatter(item: any): any {

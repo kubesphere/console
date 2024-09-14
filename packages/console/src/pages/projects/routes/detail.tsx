@@ -22,13 +22,13 @@ import PodContainerDetail from '../containers/Pods/ContainerDetail';
 import VolumeSnapshotDetail from '../containers/VolumeSnapshots/Detail';
 import ServiceAccountDetail from '../containers/ServiceAccounts/Detail';
 import AlertPoliciesDetail from '../containers/Alerting/Policies/Detail';
-// import ConfigurationDetail from '../containers/SpringCloud/configurations/Detail';
-// import MicroserviceDetail from '../containers/SpringCloud/microservices/Detail';
-// import MicroserviceGatewayDetail from '../containers/SpringCloud/microservicegateways/Detail';
-// import ServiceRoutingDetail from '../containers/SpringCloud/servicerouting/Detail';
-// import MicroserviceInstancesDetail from '../containers/SpringCloud/microserviceInstances/Detail';
+import ConfigurationDetail from '../containers/SpringCloud/configurations/Detail';
+import MicroserviceDetail from '../containers/SpringCloud/microservices/Detail';
+import MicroserviceGatewayDetail from '../containers/SpringCloud/microservicegateways/Detail';
+import ServiceRoutingDetail from '../containers/SpringCloud/servicerouting/Detail';
+import MicroserviceInstancesDetail from '../containers/SpringCloud/microserviceInstances/Detail';
 import ComposingDetail from '../containers/ApplicationComposing/Detail';
-// import GatewaysDetail from '../containers/Gateway/Detail/index';
+import GatewaysDetail from '../containers/Gateway/Detail/index';
 
 import jobDetailRoutes from '../containers/Jobs/Detail/routes';
 import podDetailRoutes from '../containers/Pods/Detail/routes';
@@ -48,13 +48,13 @@ import volumeSnapshotDetailRoute from '../containers/VolumeSnapshots/Detail/rout
 import applicationsDetailRoutes from '../containers/Applications/DetailInfo/routes';
 import serviceAccountDetailRoutes from '../containers/ServiceAccounts/Detail/routes';
 import alertPoliciesDetailRoutes from '../containers/Alerting/Policies/Detail/routes';
-// import configurationDetailRoutes from '../containers/SpringCloud/configurations/Detail/routes';
-// import microservicesRoutes from '../containers/SpringCloud/microservices/Detail/routes';
-// import microservicegatewaysRoutes from '../containers/SpringCloud/microservicegateways/Detail/routes';
-// import serviceroutingRoutes from '../containers/SpringCloud/servicerouting/Detail/routes';
-// import MicroserviceInstancesRoutes from '../containers/SpringCloud/microserviceInstances/Detail/routes';
+import configurationDetailRoutes from '../containers/SpringCloud/configurations/Detail/routes';
+import microservicesRoutes from '../containers/SpringCloud/microservices/Detail/routes';
+import microservicegatewaysRoutes from '../containers/SpringCloud/microservicegateways/Detail/routes';
+import serviceroutingRoutes from '../containers/SpringCloud/servicerouting/Detail/routes';
+import MicroserviceInstancesRoutes from '../containers/SpringCloud/microserviceInstances/Detail/routes';
 import composingDetailRoutes from '../containers/ApplicationComposing/Detail/routes';
-// import GatewaysDetailRoutes from '../containers/Gateway/Detail/routes';
+import GatewaysDetailRoutes from '../containers/Gateway/Detail/routes';
 
 export default (PATH: string) => [
   ...applicationsDetailRoutes(PATH),
@@ -148,39 +148,39 @@ export default (PATH: string) => [
     element: <AlertPoliciesDetail />,
     children: [...alertPoliciesDetailRoutes],
   },
-  // {
-  //   path: `${PATH}/configurations/:name`,
-  //   element: <ConfigurationDetail />,
-  //   children: [...configurationDetailRoutes],
-  // },
-  // {
-  //   path: `${PATH}/microservices/:name`,
-  //   element: <MicroserviceDetail />,
-  //   children: [...microservicesRoutes],
-  // },
-  // {
-  //   path: `${PATH}/microservicegateways/:name`,
-  //   element: <MicroserviceGatewayDetail />,
-  //   children: [...microservicegatewaysRoutes],
-  // },
-  // {
-  //   path: `${PATH}/servicerouting/:name`,
-  //   element: <ServiceRoutingDetail />,
-  //   children: [...serviceroutingRoutes],
-  // },
-  // {
-  //   path: `${PATH}/microservice-instances/:podName/:instanceId`,
-  //   element: <MicroserviceInstancesDetail />,
-  //   children: [...MicroserviceInstancesRoutes],
-  // },
+  {
+    path: `${PATH}/configurations/:name`,
+    element: <ConfigurationDetail />,
+    children: [...configurationDetailRoutes],
+  },
+  {
+    path: `${PATH}/microservices/:name`,
+    element: <MicroserviceDetail />,
+    children: [...microservicesRoutes],
+  },
+  {
+    path: `${PATH}/microservicegateways/:name`,
+    element: <MicroserviceGatewayDetail />,
+    children: [...microservicegatewaysRoutes],
+  },
+  {
+    path: `${PATH}/servicerouting/:name`,
+    element: <ServiceRoutingDetail />,
+    children: [...serviceroutingRoutes],
+  },
+  {
+    path: `${PATH}/microservice-instances/:podName/:instanceId`,
+    element: <MicroserviceInstancesDetail />,
+    children: [...MicroserviceInstancesRoutes],
+  },
   {
     path: `${PATH}/composing/:name`,
     element: <ComposingDetail />,
     children: [...composingDetailRoutes],
   },
-  // {
-  //   path: `${PATH}/gateways/:gatewayName`,
-  //   element: <GatewaysDetail />,
-  //   children: [...GatewaysDetailRoutes],
-  // },
+  {
+    path: `${PATH}/gateways/:gatewayName`,
+    element: <GatewaysDetail />,
+    children: [...GatewaysDetailRoutes],
+  },
 ];
