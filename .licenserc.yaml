@@ -3,7 +3,7 @@
 
 header:
   license:
-    spdx-id: KubeSphere
+    spdx-id: Apache-2.0
     copyright-owner: KubeSphere Authors
     content: |
       Please refer to the LICENSE file in the root directory of the project.

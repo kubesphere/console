@@ -1,0 +1,55 @@
+name: npm Release - Next
+
+on:
+  push:
+    branches:
+      - ksc-npm-next
+      - ksc-npm-next-*
+      - ksc-npm-*-next
+      - ksc-npm-*-next-*
+  workflow_dispatch:
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build
+        run: |
+          yarn build:locales
+          yarn build:packages
+
+      - name: Version
+        run: yarn changeset version --snapshot next
+
+      - name: Create .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish
+        run: yarn changeset publish --no-git-tag --tag next
+
+      - name: Delete Branch
+        run: |
+          branch=${GITHUB_REF#refs/heads/}
+          git push origin --delete $branch

@@ -16,7 +16,7 @@ import Gateway from './EmbedGateway';
 
 import RoleDetail from './Roles/Detail';
 import LogCollectionDetail from './LogCollection/Detail/Embed';
-// import GatewayDetail from './EmbedGateway/Detail';
+import GatewayDetail from './EmbedGateway/Detail';
 const PATH = '/clusters/:cluster';
 
 const clusterSettingListRoutes = [
@@ -96,32 +96,32 @@ const clusterSettingDetailRoutes = [
       },
     ],
   },
-  // {
-  //   path: `${PATH}/gateways/:component/:gatewayName`,
-  //   element: <GatewayDetail />,
-  //   children: [
-  //     {
-  //       path: 'monitors',
-  //       element: <></>,
-  //     },
-  //     {
-  //       path: 'gateway-configs',
-  //       element: <></>,
-  //     },
-  //     {
-  //       path: 'logs',
-  //       element: <></>,
-  //     },
-  //     {
-  //       path: 'resource-status',
-  //       element: <></>,
-  //     },
-  //     {
-  //       path: 'metadata',
-  //       element: <></>,
-  //     },
-  //   ],
-  // },
+  {
+    path: `${PATH}/gateways/:component/:gatewayName`,
+    element: <GatewayDetail />,
+    children: [
+      {
+        path: 'monitors',
+        element: <></>,
+      },
+      {
+        path: 'gateway-configs',
+        element: <></>,
+      },
+      {
+        path: 'logs',
+        element: <></>,
+      },
+      {
+        path: 'resource-status',
+        element: <></>,
+      },
+      {
+        path: 'metadata',
+        element: <></>,
+      },
+    ],
+  },
   {
     path: `${PATH}/log-collections/:component/:name`,
     element: <LogCollectionDetail />,

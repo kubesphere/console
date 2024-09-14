@@ -12,7 +12,7 @@ import Jobs from '../containers/Jobs';
 import Roles from '../containers/Roles';
 import Routes from '../containers/Routes';
 import Members from '../containers/Members';
-// import Gateway from '../containers/Gateway';
+import Gateway from '../containers/Gateway';
 import Volumes from '../containers/Volumes';
 import Secrets from '../containers/Secrets';
 import CronJobs from '../containers/CronJobs';
@@ -23,10 +23,10 @@ import ConfigMaps from '../containers/ConfigMaps';
 import DaemonSets from '../containers/DaemonSets';
 import Deployments from '../containers/Deployments';
 import Applications from '../containers/Applications';
-// import Configurations from '../containers/SpringCloud/configurations';
-// import Microservices from '../containers/SpringCloud/microservices';
-// import MicroserviceGateways from '../containers/SpringCloud/microservicegateways';
-// import ServiceRouting from '../containers/SpringCloud/servicerouting';
+import Configurations from '../containers/SpringCloud/configurations';
+import Microservices from '../containers/SpringCloud/microservices';
+import MicroserviceGateways from '../containers/SpringCloud/microservicegateways';
+import ServiceRouting from '../containers/SpringCloud/servicerouting';
 import ApplicationComposing from '../containers/ApplicationComposing';
 import StatefulSets from '../containers/StatefulSets';
 import ImageBuilder from '../containers/ImageBuilder';
@@ -34,10 +34,10 @@ import BaseLayout from '../containers/Base/BaseLayout';
 import LogCollection from '../containers/LogCollection';
 import VolumeSnapshots from '../containers/VolumeSnapshots';
 import ServiceAccounts from '../containers/ServiceAccounts';
-// import NetworkPolicies from '../containers/Network/Policies';
-// import CustomMonitoring from '../containers/CustomMonitoring';
-// import AlertingPolicies from '../containers/Alerting/Policies';
-// import AlertingMessages from '../containers/Alerting/Messages';
+import NetworkPolicies from '../containers/Network/Policies';
+import CustomMonitoring from '../containers/CustomMonitoring';
+import AlertingPolicies from '../containers/Alerting/Policies';
+import AlertingMessages from '../containers/Alerting/Messages';
 
 import { getDefaultApplicationType } from '../utils';
 
@@ -129,10 +129,10 @@ export default [
             path: 'base-info',
             element: <BaseInfo />,
           },
-          /* {
+          {
             path: 'networkpolicies',
             element: <NetworkPolicies />,
-          }, */
+          },
           {
             path: 'configmaps',
             element: <ConfigMaps />,
@@ -157,38 +157,38 @@ export default [
             path: 'log-collections',
             element: <LogCollection />,
           },
-          // {
-          //   path: 'gateways',
-          //   element: <Gateway />,
-          // },
-          // {
-          //   path: 'alert-rules',
-          //   element: <AlertingPolicies />,
-          // },
-          //  {
-          //   path: 'alerts',
-          //   element: <AlertingMessages />,
-          // },
-          // {
-          //   path: 'custom-monitoring',
-          //   element: <CustomMonitoring />,
-          // },
-          // {
-          //   path: 'configurations',
-          //   element: <Configurations />,
-          // },
-          // {
-          //   path: 'microservices',
-          //   element: <Microservices />,
-          // },
-          // {
-          //   path: 'microservicegateways',
-          //   element: <MicroserviceGateways />,
-          // },
-          // {
-          //   path: 'servicerouting',
-          //   element: <ServiceRouting />,
-          // },
+          {
+            path: 'gateways',
+            element: <Gateway />,
+          },
+          {
+            path: 'alert-rules',
+            element: <AlertingPolicies />,
+          },
+          {
+            path: 'alerts',
+            element: <AlertingMessages />,
+          },
+          {
+            path: 'custom-monitoring',
+            element: <CustomMonitoring />,
+          },
+          {
+            path: 'configurations',
+            element: <Configurations />,
+          },
+          {
+            path: 'microservices',
+            element: <Microservices />,
+          },
+          {
+            path: 'microservicegateways',
+            element: <MicroserviceGateways />,
+          },
+          {
+            path: 'servicerouting',
+            element: <ServiceRouting />,
+          },
         ],
       },
       ...detailsRoutes(PATH),

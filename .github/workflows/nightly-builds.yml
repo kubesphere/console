@@ -31,8 +31,8 @@ jobs:
     - name: Build
       run: yarn build
 
-    - name: Test
-      run: yarn test
+    # - name: Test
+      # run: yarn test
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1

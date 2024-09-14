@@ -10,9 +10,9 @@ import accessRoutes from '../pages/access/routes';
 import clusterRoutes from '../pages/clusters/routes';
 import workspaceRoutes from '../pages/workspaces/routes';
 import projectRoutes from '../pages/projects/routes';
-// import fedProjectsRoutes from '../pages/fedprojects/routes';
-// import devopsRoutes from '../pages/devops/routes';
-// import whizardTelemetryRoutes from '../pages/whizard-telemetry/routes';
+import fedProjectsRoutes from '../pages/fedprojects/routes';
+import devopsRoutes from '../pages/devops/routes';
+import whizardTelemetryRoutes from '../pages/whizard-telemetry/routes';
 
 const routes: RouteObject[] = [
   ...platformRoutes,
@@ -20,9 +20,9 @@ const routes: RouteObject[] = [
   ...clusterRoutes,
   ...workspaceRoutes,
   ...projectRoutes,
-  // ...fedProjectsRoutes,
-  // ...devopsRoutes,
-  // ...whizardTelemetryRoutes,
+  ...fedProjectsRoutes,
+  ...devopsRoutes,
+  ...whizardTelemetryRoutes,
 ];
 
 export default routes;
