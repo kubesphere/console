@@ -1,0 +1,56 @@
+name: npm Release - Canary
+
+on:
+  push:
+    branches:
+      - ksc-npm-canary
+      - ksc-npm-canary-*
+      - ksc-npm-*-canary
+      - ksc-npm-*-canary-*
+  workflow_dispatch:
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build
+        run: |
+          yarn build:locales
+          yarn build:server
+          yarn build:packages
+
+      - name: Version
+        run: yarn changeset version --snapshot canary
+
+      - name: Create .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish
+        run: yarn changeset publish --no-git-tag --tag canary
+
+      - name: Delete Branch
+        run: |
+          branch=${GITHUB_REF#refs/heads/}
+          git push origin --delete $branch

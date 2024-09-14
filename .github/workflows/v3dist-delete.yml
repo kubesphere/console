@@ -1,0 +1,30 @@
+name: Delete v3dist
+
+on:
+  workflow_dispatch:
+
+jobs:
+  delete-v3dist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      - name: Delete v3dist
+        run: rm -rf packages/bootstrap/assets/v3dist/
+
+      - name: 'Create Pull Request'
+        env:
+          COMMIT_MESSAGE: 'chore(bot): delete packages/bootstrap/assets/v3dist/'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: ${{ env.COMMIT_MESSAGE }}
+          signoff: true
+          delete-branch: true
+          branch-suffix: timestamp
+          title: ${{ env.COMMIT_MESSAGE }}
+          body: |
+            ```release-note
+            none
+            ```
+          labels: approved

@@ -53,11 +53,11 @@ jobs:
       run: |
         TAG=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,') REPO=docker.io/kubespheredev make container-cross-push
 
-#    - name: slack
-#      uses: 8398a7/action-slack@v3
-#      env:
-#        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-#      with:
-#        status: ${{ job.status }}
-#        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-#      if: failure()
+    - name: slack
+      uses: 8398a7/action-slack@v3
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      with:
+        status: ${{ job.status }}
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+      if: failure()
