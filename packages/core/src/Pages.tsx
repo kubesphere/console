@@ -27,7 +27,7 @@ const baseRoutes: RouteObject[] = [
 const homePage = globals.config.homePage || '/dashboard';
 
 function usePages() {
-  const [isRemoteExtensionLoading, setIsRemoteExtensionLoading] = useState(false);
+  const [isRemoteExtensionLoading, setIsRemoteExtensionLoading] = useState(true);
 
   useEffect(() => {
     setIsRemoteExtensionLoading(true);
