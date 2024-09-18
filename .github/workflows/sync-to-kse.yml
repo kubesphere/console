@@ -20,7 +20,7 @@ env:
 
 jobs:
   sync-to-kse:
-    runs-on: self-runner-kubesphere
+    runs-on: ubuntu-latest
 
     steps:
       - name: Get current date
@@ -31,11 +31,6 @@ jobs:
 
       - name: Checkout Source
         uses: actions/checkout@v4
-
-      # - name: Setup Git user
-      #   run: |
-      #     git config user.name "GitHub Actions"
-      #     git config user.email "actions@github.com"
 
       - name: Checkout Target
         run: |
