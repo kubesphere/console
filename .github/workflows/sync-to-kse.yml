@@ -1,4 +1,4 @@
-name: Sync commit to kse-console
+name: Sync to kse-console
 
 on:
   push:
@@ -40,7 +40,7 @@ jobs:
 
       - name: Checkout Target
         run: |
-          git remote add kse-console https://github.com/${{ env.TARGET_OWNER }}/${{ env.TARGET_REPO_NAME }}.git
+          git remote add kse-console git@github.com:${{ env.TARGET_OWNER }}/${{ env.TARGET_REPO_NAME }}.git
           git fetch ${{ env.TARGET_REPO_NAME }} ${{ env.TARGET_BRANCH }}
           git checkout ${{ env.TARGET_BRANCH }}
 
