@@ -29,6 +29,12 @@ jobs:
           echo "NOW=$(TZ='Asia/Shanghai' date '+%Y%m%d-%H%M%S')" >> $GITHUB_ENV
           echo "DISPLAY_NOW=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
 
+      - name: Setup SSH
+        uses: MrSquaare/ssh-setup-action@v3
+        with:
+          host: github.com
+          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Checkout Source
         uses: actions/checkout@v4
 
