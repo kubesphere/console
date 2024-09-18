@@ -16,7 +16,7 @@ env:
 
   TARGET_OWNER: kubesphere
   TARGET_REPO_NAME: kse-console
-  TARGET_BRANCH: kse-release-4.1
+  TARGET_BRANCH: ksc-release-4.1
 
 jobs:
   sync-to-kse:
