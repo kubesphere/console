@@ -1,0 +1,68 @@
+name: Sync commit to kse-console
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  # SOURCE_OWNER: kubesphere
+  SOURCE_REPO_NAME: console
+  SOURCE_BRANCH: master
+
+  TARGET_OWNER: kubesphere
+  TARGET_REPO_NAME: kse-console
+  TARGET_BRANCH: kse-release-4.1
+
+jobs:
+  sync-to-kse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get current date
+        id: date
+        run: |
+          echo "NOW=$(TZ='Asia/Shanghai' date '+%Y%m%d-%H%M%S')" >> $GITHUB_ENV
+          echo "DISPLAY_NOW=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+
+      - name: Setup SSH
+        uses: MrSquaare/ssh-setup-action@v3
+        with:
+          host: github.com
+          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Checkout Target
+        run: |
+          git remote add kse-console https://github.com/${{ env.TARGET_OWNER }}/${{ env.TARGET_REPO_NAME }}.git
+          git fetch ${{ env.TARGET_REPO_NAME }} ${{ env.TARGET_BRANCH }}
+          git checkout ${{ env.TARGET_BRANCH }}
+
+      - name: Cherry-pick the latest commit
+        run: |
+          git cherry-pick ${{ github.sha }}
+
+      - name: Create Pull Request
+        env:
+          COMMIT_MESSAGE: 'chore(bot): sync commit ${{ github.sha }} from ${{ env.SOURCE_REPO_NAME }}:${{ env.SOURCE_BRANCH }} to ${{ env.TARGET_REPO_NAME }}:${{ env.TARGET_BRANCH }} at ${{ env.DISPLAY_NOW }}'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: ${{ env.COMMIT_MESSAGE }}
+          signoff: true
+          branch: ${{ env.TARGET_BRANCH }}-${{ github.sha }}
+          delete-branch: true
+          branch-suffix: timestamp
+          sign-commits: true
+          title: ${{ env.COMMIT_MESSAGE }}
+          body: |
+            ```release-note
+            none
+            ```
+          labels: approved
+          reviewers: ${{ github.event.head_commit.committer }}
