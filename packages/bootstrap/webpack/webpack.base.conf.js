@@ -113,6 +113,4 @@ const webpackBaseConfig = merge(configs, {
   ],
 });
 
-//
-
 module.exports = webpackBaseConfig;
