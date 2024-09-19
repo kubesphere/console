@@ -5,6 +5,8 @@
 
 const path = require('path');
 
+const KUBESPHERE_EDITION = 'ks';
+
 const resolve = absolutePath => path.resolve(process.cwd(), absolutePath);
 
 const rootDir = path.resolve(__dirname, '../');
@@ -46,4 +48,4 @@ const systemImports = {
 
 const locales = ['ar', 'en', 'es', 'fr', 'hi', 'ko', 'lt', 'pl', 'tc', 'tr', 'zh'];
 
-module.exports = { config, systemImports, locales };
+module.exports = { config, systemImports, locales, KUBESPHERE_EDITION };

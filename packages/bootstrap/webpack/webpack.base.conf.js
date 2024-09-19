@@ -4,7 +4,7 @@
  */
 
 const fs = require('fs-extra');
-const { config, systemImports } = require('./config');
+const { config, systemImports, KUBESPHERE_EDITION } = require('./config');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const { merge } = require('webpack-merge');
@@ -89,7 +89,7 @@ const webpackBaseConfig = merge(configs, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.KUBESPHERE_EDITION': JSON.stringify('ks'),
+      'process.env.KUBESPHERE_EDITION': JSON.stringify(KUBESPHERE_EDITION),
     }),
     new ForkTsCheckerWebpackPlugin(),
     new CopyWebpackPlugin({
