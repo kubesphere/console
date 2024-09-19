@@ -10,7 +10,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { config: configShared } = require('./config');
+const { config: configShared, KUBESPHERE_EDITION } = require('./config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const resolveShared = configShared.resolve;
 const absResolve = configShared.absResolve;
@@ -91,6 +91,9 @@ const config = {
     minimizer: [new TerserPlugin()],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.KUBESPHERE_EDITION': JSON.stringify(KUBESPHERE_EDITION),
+    }),
     new WebpackBar({
       name: 'build dll',
       color: 'green',
