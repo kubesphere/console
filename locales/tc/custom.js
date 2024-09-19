@@ -541,4 +541,5 @@ module.exports = {
     'Observer of the DevOps project, capable of viewing the running status of pipelines',
   DEVOPS_PROJECT_DESC:
     "DevOps projects are used to group resources for management and to control different users' resource management permissions.",
+  PLEASE_SELECT_CLUSTER: '請選擇集群',
 };

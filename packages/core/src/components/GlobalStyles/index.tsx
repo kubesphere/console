@@ -147,6 +147,15 @@ const GlobalStyles = createGlobalStyle`
       visibility: visible;
     }
   }
+  .kube-table {
+    td.table-cell {
+      word-break: break-word;
+
+      .field-label {
+        max-width: 350px;
+      }
+     }
+  }
 `;
 
 export default GlobalStyles;
