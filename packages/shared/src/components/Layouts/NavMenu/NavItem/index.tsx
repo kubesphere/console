@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { ChevronDown } from '@kubed/icons';
 
 import type { LicenseAuthorizationStatus } from '../../../../types/license';
+import { ENV } from '../../../../constants';
 import { LicenseErrorTip } from '../../../../index';
 import Icon from '../../../Icon';
 
@@ -56,6 +57,8 @@ interface NavItemProps {
   disabled?: boolean;
 }
 
+const isCheckLicense = ENV.isKseEdition;
+
 const NavItem = ({ item, onOpen, isOpen, pathArr, prefix, disabled }: NavItemProps) => {
   const handleToggle = () => {
     onOpen(item?.name || '');
@@ -73,9 +76,10 @@ const NavItem = ({ item, onOpen, isOpen, pathArr, prefix, disabled }: NavItemPro
     return pathArr.includes(navItem.name);
   };
 
-  const isItemDisabled = item?.isLicenseError ? true : disabled && !item?.showInDisable;
+  const isItemDisabled =
+    isCheckLicense && item?.isLicenseError ? true : disabled && !item?.showInDisable;
 
-  const itemLicenseErrorTipWrapper = item?.isLicenseError && (
+  const itemLicenseErrorTipWrapper = isCheckLicense && item?.isLicenseError && (
     <LicenseErrorTipWrapper>
       <LicenseErrorTip authorizationStatus={item?.licenseAuthorizationStatus} />
     </LicenseErrorTipWrapper>
@@ -102,7 +106,8 @@ const NavItem = ({ item, onOpen, isOpen, pathArr, prefix, disabled }: NavItemPro
         </TitleWrapper>
         <InnerNav className="inner-nav">
           {item?.children.map((child: NavMenuItem) => {
-            const isChildDisabled = child.isLicenseError ? true : disabled && !child.showInDisable;
+            const isChildDisabled =
+              isCheckLicense && child.isLicenseError ? true : disabled && !child.showInDisable;
 
             return (
               <InnerItem
@@ -117,7 +122,7 @@ const NavItem = ({ item, onOpen, isOpen, pathArr, prefix, disabled }: NavItemPro
                 ) : (
                   <Link to={`${prefix}/${child.name}`}>{t(child.title)}</Link>
                 )}
-                {child.isLicenseError && (
+                {isCheckLicense && child.isLicenseError && (
                   <LicenseErrorTipWrapper>
                     <LicenseErrorTip authorizationStatus={child.licenseAuthorizationStatus} />
                   </LicenseErrorTipWrapper>
