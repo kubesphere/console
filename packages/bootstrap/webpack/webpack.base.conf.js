@@ -5,6 +5,7 @@
 
 const fs = require('fs-extra');
 const { config, systemImports } = require('./config');
+const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -87,6 +88,9 @@ const webpackBaseConfig = merge(configs, {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.KUBESPHERE_EDITION': JSON.stringify('ks'),
+    }),
     new ForkTsCheckerWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
