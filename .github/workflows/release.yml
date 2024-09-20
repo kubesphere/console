@@ -18,7 +18,7 @@ jobs:
           registry: swr.cn-southwest-2.myhuaweicloud.com
           username: ${{ secrets.HUAWEICLOUD_USERNAME }}
           password: ${{ secrets.HUAWEICLOUD_PASSWORD }}
-          
+
       - name: Login to DOCKER
         uses: docker/login-action@v3
         with:
@@ -73,7 +73,7 @@ jobs:
       - name: Sync ks images to HUAWEICLOUD
         if: steps.chose_registry.outputs.env == 'prod'
         run: |
-          # apiserver
+          # console
           docker pull docker.io/kubesphere/ks-console:${{ steps.chose_registry.outputs.tag }}
           docker tag docker.io/kubesphere/ks-console:${{ steps.chose_registry.outputs.tag }} swr.cn-southwest-2.myhuaweicloud.com/ks/kubesphere/ks-console:${{ steps.chose_registry.outputs.tag }}
           docker push swr.cn-southwest-2.myhuaweicloud.com/ks/kubesphere/ks-console:${{ steps.chose_registry.outputs.tag }}
