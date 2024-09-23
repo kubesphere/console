@@ -53,10 +53,11 @@ function UrlInput({
   isSubmitting,
 }: Props): JSX.Element {
   const { workspace = '' } = useParams();
-  const protocolReg = /^(http|https|s3):\/\//;
+  const protocolReg = /^(http|https|s3|oci):\/\//;
   const protocols = [
     { label: 'http://', value: 'http' },
     { label: 'https://', value: 'https' },
+    { label: 'oci://', value: 'oci' },
     // { label: 's3://', value: 's3' },
   ];
   const initUrlInputValue = useMemo(() => {
