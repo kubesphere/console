@@ -17,10 +17,12 @@ import i18n from './utils/i18n';
 import emitter from './utils/emitter';
 
 import App from './App';
-import { isEmpty } from 'lodash';
+import { isEmpty, set } from 'lodash';
+
+set(globals, 'config.isKsEdition', process.env.KUBESPHERE_EDITION === 'ks');
+set(globals, 'config.isKseEdition', process.env.KUBESPHERE_EDITION === 'kse');
 
 globals.context = new Context();
-
 if (!isEmpty(globals?.ksConfig?.enabledExtensionModulesStatus)) {
   Object.entries(globals.ksConfig.enabledExtensionModulesStatus).forEach(([key, value]) => {
     if ((value as Record<string, any>).annotations) {
