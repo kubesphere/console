@@ -8,7 +8,7 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Loading } from '@kubed/components';
 
-import { CacheStoreProvider } from '@ks-console/shared';
+import { CacheStoreProvider, ENV } from '@ks-console/shared';
 import Context from './utils/Context';
 import { registerInternalExtensions } from './utils/extensions.internal';
 import { registerLocalExtensions } from './utils/extensions.local';
@@ -19,8 +19,8 @@ import emitter from './utils/emitter';
 import App from './App';
 import { isEmpty, set } from 'lodash';
 
-set(globals, 'config.isKsEdition', process.env.KUBESPHERE_EDITION === 'ks');
-set(globals, 'config.isKseEdition', process.env.KUBESPHERE_EDITION === 'kse');
+set(globals, 'config.isKsEdition', ENV.isKsEdition);
+set(globals, 'config.isKseEdition', ENV.isKseEdition);
 
 globals.context = new Context();
 if (!isEmpty(globals?.ksConfig?.enabledExtensionModulesStatus)) {
