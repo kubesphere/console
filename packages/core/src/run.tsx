@@ -8,7 +8,7 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Loading } from '@kubed/components';
 
-import { CacheStoreProvider } from '@ks-console/shared';
+import { CacheStoreProvider, ENV } from '@ks-console/shared';
 import Context from './utils/Context';
 import { registerInternalExtensions } from './utils/extensions.internal';
 import { registerLocalExtensions } from './utils/extensions.local';
@@ -17,10 +17,12 @@ import i18n from './utils/i18n';
 import emitter from './utils/emitter';
 
 import App from './App';
-import { isEmpty } from 'lodash';
+import { isEmpty, set } from 'lodash';
+
+set(globals, 'config.isKsEdition', ENV.isKsEdition);
+set(globals, 'config.isKseEdition', ENV.isKseEdition);
 
 globals.context = new Context();
-
 if (!isEmpty(globals?.ksConfig?.enabledExtensionModulesStatus)) {
   Object.entries(globals.ksConfig.enabledExtensionModulesStatus).forEach(([key, value]) => {
     if ((value as Record<string, any>).annotations) {
