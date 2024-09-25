@@ -9,8 +9,7 @@ module.exports = {
   APPLICATIONS_DESC: '應用為用戶提供完整的業務功能，由一個或多個特定功能的組件組成。',
   APP_PL: '應用',
   APP_TYPES_Q: '應用類型',
-  APP_TYPES_A:
-    'KubeSphere 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)，同樣也支持自制應用(Application CRD)。',
+  APP_TYPES_A: 'KubeSphere 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)。',
   HOW_TO_USE_APP_GOVERN_Q: '如何使用應用治理？',
   HOW_TO_USE_APP_GOVERN_A: '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
   DEPLOY_SAMPLE_APP: '部署範例應用',

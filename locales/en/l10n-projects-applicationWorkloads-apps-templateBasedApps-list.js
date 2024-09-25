@@ -11,7 +11,7 @@ module.exports = {
   APP_PL: 'Apps',
   APP_TYPES_Q: 'What app types does KubeSphere support?',
   APP_TYPES_A:
-    'KubeSphere supports templated-based apps and composed apps. Template-based apps are created from You can deploy apps from the KubeSphere App Store or an app template. Composed apps are customized by users.',
+    'KubeSphere supports templated-based apps. Template-based apps are created from You can deploy apps from the KubeSphere App Store or an app template.',
   HOW_TO_USE_APP_GOVERN_Q: 'How do I use Application Governance?',
   HOW_TO_USE_APP_GOVERN_A: 'You can enable Application Governance when you create a composed app.',
   DEPLOY_SAMPLE_APP: 'Deploy Sample App',

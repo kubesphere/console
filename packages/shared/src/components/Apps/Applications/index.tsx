@@ -13,20 +13,6 @@ import { OPAppTable } from './AppTypeTable';
 import type { OPAppTableProps } from './AppTypeTable';
 
 export function Applications(props: OPAppTableProps): JSX.Element {
-  const navigate = useNavigate();
-  const { appType } = useParams();
-  const [urlPrefix] = useStore('wujieUrlPrefix');
-  const navs = [
-    {
-      value: 'template',
-      label: t('TEMPLATE_BASED_APP_PL'),
-    },
-  ];
-
-  function handleNavChange(nav: string): void {
-    navigate(`${urlPrefix}/applications/${nav}`);
-  }
-
   return (
     <>
       <Banner
@@ -35,7 +21,6 @@ export function Applications(props: OPAppTableProps): JSX.Element {
         title={t(`APP_PL`)}
         description={t('APPLICATIONS_DESC')}
       >
-        <Navs value={appType} data={navs} onChange={handleNavChange} />
         <BannerTip title={t('APP_TYPES_Q')} key="app-type">
           {t('APP_TYPES_A')}
         </BannerTip>
