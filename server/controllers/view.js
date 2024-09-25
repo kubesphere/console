@@ -10,8 +10,6 @@ const {
   getK8sRuntime,
   getOAuthInfo,
   getClusterRole,
-  getSupportGpuList,
-  getInstallerSpec,
   getTheme,
 } = require('../services/session');
 
@@ -182,18 +180,16 @@ const renderView = async ctx => {
     const clusterRole = await getClusterRole(ctx);
     const ksConfig = await getKSConfig(ctx);
 
-    const [user, runtime, supportGpuType, installer, installedExtensions] = await Promise.all([
+    const [user, runtime, installedExtensions] = await Promise.all([
       getCurrentUser(ctx, clusterRole, ksConfig.multicluster),
       getK8sRuntime(ctx),
-      getSupportGpuList(ctx),
-      getInstallerSpec(ctx),
       getInstalledExtensions(ctx),
     ]);
 
     await renderIndex(ctx, {
       ksConfig: {
         ...ksConfig,
-        metrics_server: get(installer, 'metrics_server.enabled', false),
+        metrics_server: false,
       },
       user,
       runtime,
@@ -201,7 +197,7 @@ const renderView = async ctx => {
       installedExtensions,
       config: {
         ...clientConfig,
-        supportGpuType: [...supportGpuType, ...clientConfig.supportGpuType],
+        supportGpuType: [...clientConfig.supportGpuType],
       },
     });
   } catch (err) {
@@ -214,24 +210,22 @@ const renderV3View = async ctx => {
     const clusterRole = await getClusterRole(ctx);
     const ksConfig = await getKSConfig(ctx);
 
-    const [user, runtime, supportGpuType, installer] = await Promise.all([
+    const [user, runtime] = await Promise.all([
       getCurrentUser(ctx, clusterRole, ksConfig.multicluster),
       getK8sRuntime(ctx),
-      getSupportGpuList(ctx),
-      getInstallerSpec(ctx),
     ]);
 
     await renderV3Index(ctx, {
       ksConfig: {
         ...ksConfig,
-        metrics_server: get(installer, 'metrics_server.enabled', false),
+        metrics_server: false,
       },
       user,
       runtime,
       clusterRole,
       config: {
         ...clientConfig,
-        supportGpuType: [...supportGpuType, ...clientConfig.supportGpuType],
+        supportGpuType: [...clientConfig.supportGpuType],
       },
     });
   } catch (err) {

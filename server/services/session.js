@@ -404,32 +404,6 @@ const getClusterRole = async ctx => {
   return role;
 };
 
-const getSupportGpuList = async ctx => {
-  const token = ctx.cookies.get('token');
-  let gpuKinds = [];
-  if (!token) {
-    return [];
-  }
-  try {
-    const list = await sendGatewayRequest({
-      method: 'GET',
-      url: '/kapis/config.kubesphere.io/v1alpha2/configs/gpu/kinds',
-      token,
-    });
-    if (Array.isArray(list)) {
-      const defaultGpu = list.filter(item => item.default).map(item => item.resourceName);
-
-      const otherGpus = list.filter(item => !item.default).map(item => item.resourceName);
-
-      gpuKinds = [...defaultGpu, ...otherGpus];
-    }
-  } catch (error) {
-    console.error(error);
-  }
-
-  return gpuKinds;
-};
-
 const getOAuthInfo = async () => {
   let resp = [];
   try {
@@ -511,27 +485,6 @@ const createUser = (params, token) => {
   });
 };
 
-const getInstallerSpec = async ctx => {
-  const token = ctx.cookies.get('token');
-  if (!token) {
-    return {};
-  }
-
-  try {
-    const result = await sendGatewayRequest({
-      method: 'GET',
-      url: `/apis/installer.kubesphere.io/v1alpha1/clusterconfigurations?name=ks-installer`,
-      token,
-    });
-
-    return result.items[0].spec;
-  } catch (error) {
-    console.error(error);
-  }
-
-  return {};
-};
-
 const getTheme = async () => {
   try {
     const theme = await sendGatewayRequest({
@@ -566,7 +519,5 @@ module.exports = {
   getK8sRuntime,
   createUser,
   getClusterRole,
-  getSupportGpuList,
-  getInstallerSpec,
   getTheme,
 };
