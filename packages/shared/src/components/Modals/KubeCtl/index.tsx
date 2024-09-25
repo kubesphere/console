@@ -50,7 +50,8 @@ export function KubectlModal({ visible, title, params, onCancel }: KubectlModalP
   } = fetchGrantedList(
     { limit: -1 },
     {
-      onSuccess: (arr: FormattedCluster[]) => {
+      onSuccess: (list: FormattedCluster[]) => {
+        const arr = list.filter(({ isReady }) => isReady);
         if (!selectedCluster || arr.findIndex(({ name }) => name === selectedCluster) === -1) {
           setSelectedCluster(arr[0]?.name);
         }
