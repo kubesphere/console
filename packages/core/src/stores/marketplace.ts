@@ -48,17 +48,18 @@ function useMarketplaceConfigQuery(options?: UseMarketplaceConfigQueryOptions) {
   const onSuccess = options?.onSuccess;
 
   const result = useQuery({
+    enabled: false,
     queryKey,
     queryFn: () =>
       request.get<never, OriginalMarketplaceConfig>(url, { headers }).then(formatMarketplaceConfig),
     onSuccess: data => onSuccess?.(data),
   });
-  const isSettled = result.isSuccess || result.isError;
+  // const isSettled = result.isSuccess || result.isError;
   const formattedMarketplaceConfig = result.data;
-  const isOnline = isSettled ? Boolean(formattedMarketplaceConfig?.url) : undefined;
-  const isOffline = isSettled ? !isOnline : undefined;
+  // const isOnline = isSettled ? Boolean(formattedMarketplaceConfig?.url) : undefined;
+  // const isOffline = isSettled ? !isOnline : undefined;
 
-  return { ...result, formattedMarketplaceConfig, isOnline, isOffline };
+  return { ...result, formattedMarketplaceConfig, isOnline: false, isOffline: true };
 }
 
 interface UseMarketplaceCallbackQueryOptions {
