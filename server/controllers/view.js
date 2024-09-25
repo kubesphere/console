@@ -118,6 +118,12 @@ const renderViewErr = async (ctx, err) => {
         message: 'Unable to access the api server',
       });
     } else {
+      await ctx.render('error', {
+        title: useDefaultTheme ? defaultTheme?.tabTitle : title,
+        favicon,
+        t: ctx.t.bind(ctx),
+        message: err.message,
+      });
       ctx.app.emit('error', err);
     }
   } else {
