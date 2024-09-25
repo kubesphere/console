@@ -122,7 +122,7 @@ const renderViewErr = async (ctx, err) => {
         title: useDefaultTheme ? defaultTheme?.tabTitle : title,
         favicon,
         t: ctx.t.bind(ctx),
-        message: err.message,
+        message: '',
       });
       ctx.app.emit('error', err);
     }
