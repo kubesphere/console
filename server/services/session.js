@@ -485,27 +485,6 @@ const createUser = (params, token) => {
   });
 };
 
-const getInstallerSpec = async ctx => {
-  const token = ctx.cookies.get('token');
-  if (!token) {
-    return {};
-  }
-
-  try {
-    const result = await sendGatewayRequest({
-      method: 'GET',
-      url: `/apis/installer.kubesphere.io/v1alpha1/clusterconfigurations?name=ks-installer`,
-      token,
-    });
-
-    return result.items[0].spec;
-  } catch (error) {
-    console.error(error);
-  }
-
-  return {};
-};
-
 const getTheme = async () => {
   try {
     const theme = await sendGatewayRequest({
@@ -540,6 +519,5 @@ module.exports = {
   getK8sRuntime,
   createUser,
   getClusterRole,
-  getInstallerSpec,
   getTheme,
 };

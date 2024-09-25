@@ -10,7 +10,6 @@ const {
   getK8sRuntime,
   getOAuthInfo,
   getClusterRole,
-  getInstallerSpec,
   getTheme,
 } = require('../services/session');
 
@@ -181,17 +180,16 @@ const renderView = async ctx => {
     const clusterRole = await getClusterRole(ctx);
     const ksConfig = await getKSConfig(ctx);
 
-    const [user, runtime, installer, installedExtensions] = await Promise.all([
+    const [user, runtime, installedExtensions] = await Promise.all([
       getCurrentUser(ctx, clusterRole, ksConfig.multicluster),
       getK8sRuntime(ctx),
-      getInstallerSpec(ctx),
       getInstalledExtensions(ctx),
     ]);
 
     await renderIndex(ctx, {
       ksConfig: {
         ...ksConfig,
-        metrics_server: get(installer, 'metrics_server.enabled', false),
+        metrics_server: false,
       },
       user,
       runtime,
@@ -212,16 +210,15 @@ const renderV3View = async ctx => {
     const clusterRole = await getClusterRole(ctx);
     const ksConfig = await getKSConfig(ctx);
 
-    const [user, runtime, installer] = await Promise.all([
+    const [user, runtime] = await Promise.all([
       getCurrentUser(ctx, clusterRole, ksConfig.multicluster),
       getK8sRuntime(ctx),
-      getInstallerSpec(ctx),
     ]);
 
     await renderV3Index(ctx, {
       ksConfig: {
         ...ksConfig,
-        metrics_server: get(installer, 'metrics_server.enabled', false),
+        metrics_server: false,
       },
       user,
       runtime,
