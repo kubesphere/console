@@ -1,19 +1,6 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 module.exports = {
   // Banner
@@ -21,7 +8,7 @@ module.exports = {
   APPLICATIONS_DESC: 'Bir uygulama, kullanıcılara tek bir pakette kapsamlı iş işlevleri sağlar. KubeSphere\'deki uygulama şablonları, Helm paketleme spesifikasyonuna göre oluşturulmuştur. Birleşik bir genel veya özel Helm deposu aracılığıyla teslim edilirler. Bir uygulama, iş yükleri, hizmetler ve girişler dahil olmak üzere bir veya daha fazla Kubernetes nesnesinden oluşur.',
   APP_PL: 'Uygulamalar',
   APP_TYPES_Q: 'KubeSphere hangi uygulama türlerini destekler?',
-  APP_TYPES_A: 'KubeSphere, şablon tabanlı uygulamaları ve oluşturulmuş uygulamaları destekler. Şablon tabanlı uygulamalar şuradan oluşturulur: Uygulamaları KubeSphere App Store\'dan veya bir uygulama şablonundan dağıtabilirsiniz. Oluşturulan uygulamalar kullanıcılar tarafından özelleştirilir.',
+  APP_TYPES_A: 'KubeSphere supports templated-based apps. Template-based apps are created from You can deploy apps from the KubeSphere App Store or an app template.',
   HOW_TO_USE_APP_GOVERN_Q: 'Uygulama Yönetimini nasıl kullanırım?',
   HOW_TO_USE_APP_GOVERN_A: 'Oluşturulan bir uygulama oluşturduğunuzda Uygulama Yönetimini etkinleştirebilirsiniz.',
   DEPLOY_SAMPLE_APP: 'Örnek Uygulamayı Dağıt',
@@ -48,5 +35,10 @@ module.exports = {
   // List > Create > From App Template > Chart Files
   // List > Edit
   // List > Delete
-  APP_LOW: 'Uygulama'
+  APP_LOW: 'Uygulama',
+  APP_STATUS_WITH_SUFFIX: 'Application instance deployment {suffix}',
+  APP_DEPLOY_STATUS: 'Application deployment status',
+  APP_DEPLOY_LOGS: 'Application instance deployment logs',
+  deployFailed: 'Deployment failed',
+  DEPLOYFAILED: 'Deployment failed'
 };
