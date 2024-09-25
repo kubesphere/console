@@ -1,19 +1,6 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * Please refer to the LICENSE file in the root directory of the project.
+ * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 module.exports = {
   // Banner
@@ -21,7 +8,7 @@ module.exports = {
   APPLICATIONS_DESC: '應用為用戶提供完整的業務功能，由一個或多個特定功能的組件組成。',
   APP_PL: '應用',
   APP_TYPES_Q: '應用類型',
-  APP_TYPES_A: 'KubeSphere 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)，同樣也支持自制應用(Application CRD)。',
+  APP_TYPES_A: 'KubeSphere supports templated-based apps. Template-based apps are created from You can deploy apps from the KubeSphere App Store or an app template.',
   HOW_TO_USE_APP_GOVERN_Q: '如何使用應用治理？',
   HOW_TO_USE_APP_GOVERN_A: '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
   DEPLOY_SAMPLE_APP: '部署範例應用',
@@ -48,5 +35,10 @@ module.exports = {
   // List > Create > From App Template > Chart Files
   // List > Edit
   // List > Delete
-  APP_LOW: '應用'
+  APP_LOW: '應用',
+  APP_STATUS_WITH_SUFFIX: 'Application instance deployment {suffix}',
+  APP_DEPLOY_STATUS: 'Application deployment status',
+  APP_DEPLOY_LOGS: 'Application instance deployment logs',
+  deployFailed: 'Deployment failed',
+  DEPLOYFAILED: 'Deployment failed'
 };
