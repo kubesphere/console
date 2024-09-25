@@ -35,7 +35,6 @@ export function Applications(props: OPAppTableProps): JSX.Element {
         title={t(`APP_PL`)}
         description={t('APPLICATIONS_DESC')}
       >
-        <Navs value={appType} data={navs} onChange={handleNavChange} />
         <BannerTip title={t('APP_TYPES_Q')} key="app-type">
           {t('APP_TYPES_A')}
         </BannerTip>
