@@ -2,7 +2,7 @@ on:
   push:
     # Sequence of patterns matched against refs/tags
     tags:
-    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 name: Build Release
 
 jobs:
@@ -57,7 +57,6 @@ jobs:
           push: true
           tags: |
             docker.io/kubesphere/ks-console:${{ steps.chose_registry.outputs.tag }}
-            registry.cn-beijing.aliyuncs.com/kubesphereio/ks-console:${{ steps.chose_registry.outputs.tag }}
 
       - name: Build and push ks-console dev images
         uses: docker/build-push-action@v6
