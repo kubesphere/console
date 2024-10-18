@@ -12,6 +12,7 @@ import { useCacheStore as useStore } from '../../../../../hooks';
 import TextPreview from '../../../../TextPreview';
 import { openpitrixStore } from '../../../../../stores';
 import { StyledCard, TabsWrapper } from './styles';
+import { Markdown } from '../../../../Markdown';
 
 const { fileStore, fetchAppDetail } = openpitrixStore;
 
@@ -72,7 +73,7 @@ function AppTemplate(): JSX.Element {
           {filesLoading ? (
             <Loading className="page-loading" />
           ) : (
-            <ReactMarkdown className="content">{readme}</ReactMarkdown>
+            <Markdown isSupportGFM themeName="github-light">{readme}</Markdown>
           )}
         </>
       )}
