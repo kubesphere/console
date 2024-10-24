@@ -48,7 +48,7 @@ export function KubectlModal({ visible, title, params, onCancel }: KubectlModalP
     isSuccess,
     isLoading = false,
   } = fetchGrantedList(
-    { limit: -1 },
+    { limit: -1, roleBindingExists: true },
     {
       onSuccess: (list: FormattedCluster[]) => {
         const arr = list.filter(({ isReady }) => isReady);
