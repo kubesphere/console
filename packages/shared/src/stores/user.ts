@@ -268,15 +268,23 @@ function useUsersStatusMutation(options?: { onSuccess?: () => void }) {
   );
 }
 
-type FetchMemberUsersOptions = FetchListParams;
+interface FetchMemberUsersOptions extends FetchListParams {
+  roleKey: string;
+}
 
 async function fetchMemberUsers({
+  roleKey,
+  name,
+  cluster,
+  workspace,
+  namespace,
+  devops,
   sortBy,
   ascending,
   limit,
   page,
-  ...pathParams
 }: FetchMemberUsersOptions) {
+  const pathParams = { cluster, workspace, namespace, devops };
   const moduleName = getModule(pathParams);
 
   const fetchListParams = formatFetchListParams(moduleName, {
@@ -289,7 +297,7 @@ async function fetchMemberUsers({
 
   const membersUrl = getResourceUrl(pathParams);
   const memberList = await request.get<never, ResponseUser>(membersUrl, {
-    params: filterParams,
+    params: { [roleKey]: name, namespace, workspace, cluster, ...filterParams },
   });
   const members = memberList?.items ?? [];
 
