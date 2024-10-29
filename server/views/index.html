@@ -25,7 +25,6 @@
     <script type="text/javascript">
       window.globals = JSON.parse(`<%- globals %>`);
     </script>
-    <!-- <script src="/dist/assets/system.min.js"></script> -->
     <% if (isDev) { %> <%- include('./components/dev_scripts.html') %> <% } else { %> <%-
     include('./components/prod_scripts.html') %> <% } %>
   </body>

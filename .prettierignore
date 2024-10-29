@@ -9,6 +9,3 @@ packages/*/esm/
 packages/*/cjs/
 yarn.lock
 package-lock.json
-
-# system.min.js
-**/*.min.js
