@@ -3,73 +3,88 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import type { ColumnDef } from '@tanstack/react-table';
-import styled from 'styled-components';
-import { Human } from '@kubed/icons';
-import { Card, Empty, DataTable } from '@kubed/components';
+import { Card, DataTable } from '@kubed/components';
 
-import { Column, DataTable as Table } from '../../DataTable';
-import StatusIndicator from '../../StatusIndicator';
+import type { FormattedUser } from '../../../types';
+import { formatTime, useUrlSearchParamsStatus, tableState2Query } from '../../../utils';
 import { userStore } from '../../../stores';
-import { formatTime } from '../../../utils';
-import type { OriginalUser } from '../../../types';
+import StatusIndicator from '../../StatusIndicator';
+
+const { useFetchMembersList } = userStore;
 
 interface Props {
   roleKey: string;
 }
 
-const { mapper: formatUser, getResourceUrl, useFetchMembersList } = userStore;
-
-const StyledEmpty = styled(Empty)`
-  padding: 32px;
-  // margin: -12px;
-`;
-
 function AuthorizedUsers({ roleKey }: Props) {
   const { name, namespace, workspace, cluster } = useParams();
-  const url = getResourceUrl({
+
+  const { state, setState } = useUrlSearchParamsStatus(['']);
+  const query = tableState2Query(state);
+
+  const { isFetching, formattedUsers, refetch } = useFetchMembersList({
+    roleKey,
+    name,
     namespace,
     workspace,
     cluster,
+    ...query,
   });
-  console.log(url);
 
-  const { data } = useFetchMembersList({ name, namespace, workspace, cluster });
-  console.log('useFetchMembersList', data);
-
-  const columns: Column[] = [
+  const columns: ColumnDef<FormattedUser, any>[] = [
     {
-      title: t('USERNAME'),
-      field: 'username',
-      width: '33%',
+      accessorKey: 'username',
+      header: t('USERNAME'),
     },
     {
-      title: t('STATUS'),
-      field: 'status',
-      width: '33%',
-      render: status => (
-        <StatusIndicator type={status}>{t(`USER_${status.toUpperCase()}`)}</StatusIndicator>
-      ),
+      accessorKey: 'status',
+      header: t('STATUS'),
+      cell: ({ getValue }) => {
+        const status = getValue();
+        return <StatusIndicator type={status}>{t(`USER_${status.toUpperCase()}`)}</StatusIndicator>;
+      },
     },
     {
-      title: t('LAST_LOGIN'),
-      field: 'lastLoginTime',
-      width: '33%',
-      render: time => <p>{time ? formatTime(time) : t('NOT_LOGIN_YET')}</p>,
+      accessorKey: 'lastLoginTime',
+      header: t('LAST_LOGIN'),
+      cell: ({ getValue }) => {
+        const time = getValue();
+        return <p>{time ? formatTime(time) : t('NOT_LOGIN_YET')}</p>;
+      },
     },
   ];
-  const parameters = {
-    [roleKey]: name,
-    namespace,
-    workspace,
-    cluster,
-  };
+
+  const data = useMemo(() => formattedUsers, [JSON.stringify(formattedUsers)]);
+
+  const [baseConfig] = useState(() =>
+    DataTable.getDefaultTableOptions<FormattedUser>({
+      tableName: 'AuthorizedUsers',
+      manual: true,
+    }),
+  );
+
+  const table = DataTable.useTable<FormattedUser>({
+    ...baseConfig,
+    columns,
+    loading: isFetching,
+    data,
+    // rowCount: totalCount,
+    state,
+    autoResetPageIndex: true,
+    meta: {
+      ...baseConfig.meta,
+      refetch,
+    },
+    onParamsChange: setState,
+  });
 
   return (
     <Card sectionTitle={t('AUTHORIZED_USER_PL')} padding={0}>
-      <Table
+      <DataTable.DataTable table={table} />
+      {/*<Table
         url={url}
         columns={columns}
         tableName="users"
@@ -87,7 +102,7 @@ function AuthorizedUsers({ roleKey }: Props) {
           ),
           withoutTable: true,
         }}
-      />
+      />*/}
     </Card>
   );
 }
