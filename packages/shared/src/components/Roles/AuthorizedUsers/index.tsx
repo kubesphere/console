@@ -5,11 +5,12 @@
 
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import type { ColumnDef } from '@tanstack/react-table';
 import styled from 'styled-components';
 import { Human } from '@kubed/icons';
-import { Card, Empty } from '@kubed/components';
+import { Card, Empty, DataTable } from '@kubed/components';
 
-import { Column, DataTable } from '../../DataTable';
+import { Column, DataTable as Table } from '../../DataTable';
 import StatusIndicator from '../../StatusIndicator';
 import { userStore } from '../../../stores';
 import { formatTime } from '../../../utils';
@@ -19,7 +20,7 @@ interface Props {
   roleKey: string;
 }
 
-const { mapper: formatUser, getResourceUrl } = userStore;
+const { mapper: formatUser, getResourceUrl, useFetchMembersList } = userStore;
 
 const StyledEmpty = styled(Empty)`
   padding: 32px;
@@ -33,6 +34,11 @@ function AuthorizedUsers({ roleKey }: Props) {
     workspace,
     cluster,
   });
+  console.log(url);
+
+  const { data } = useFetchMembersList({ name, namespace, workspace, cluster });
+  console.log('useFetchMembersList', data);
+
   const columns: Column[] = [
     {
       title: t('USERNAME'),
@@ -63,7 +69,7 @@ function AuthorizedUsers({ roleKey }: Props) {
 
   return (
     <Card sectionTitle={t('AUTHORIZED_USER_PL')} padding={0}>
-      <DataTable
+      <Table
         url={url}
         columns={columns}
         tableName="users"
