@@ -297,7 +297,7 @@ async function fetchMemberUsers({
 
   const membersUrl = getResourceUrl(pathParams);
   const memberList = await request.get<never, ResponseUser>(membersUrl, {
-    params: { [roleKey]: name, namespace, workspace, cluster, ...filterParams },
+    params: { ...filterParams, [roleKey]: name, namespace, workspace, cluster },
   });
   const members = memberList?.items ?? [];
 

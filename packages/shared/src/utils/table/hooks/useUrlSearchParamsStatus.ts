@@ -127,7 +127,6 @@ export const useUrlSearchParamsStatus = (omitKeys: string[] = []) => {
 
   React.useEffect(() => {
     if (paramsRef.current !== params.toString()) {
-      console.log(222);
       setState(urlParams2Status(omitUrlSearchParams(params, omitKeys)));
       paramsRef.current = params.toString();
     }
