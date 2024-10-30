@@ -303,7 +303,7 @@ async function fetchMemberUsers({
 
   let result: ResponseUser;
 
-  if (moduleName === 'users' || members.length === 0) {
+  if (members.length === 0 || moduleName === 'users') {
     result = memberList;
   } else {
     const usersUrl = getResourceUrl();
