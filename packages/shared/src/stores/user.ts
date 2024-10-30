@@ -351,7 +351,7 @@ function useFetchMembersList(options: UseFetchMembersListOptions) {
 
 function useAllUserListQuery() {
   const queryKey = ['getAllUserList'];
-  return useQuery(queryKey, () => request.get(getResourceUrl()));
+  return useQuery(queryKey, () => request.get(getResourceUrl(), { params: { limit: -1 } }));
 }
 
 const store = {
